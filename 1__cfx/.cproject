@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?fileVersion 4.0.0?><cproject storage_type_id="org.eclipse.cdt.core.XmlProjectDescriptionStorage">
+	<storageModule moduleId="org.eclipse.cdt.core.settings">
+		<cconfiguration id="snps.asipdesigner.toolchain.exe.win_debug.871238755">
+			<storageModule buildSystemId="org.eclipse.cdt.managedbuilder.core.configurationDataProvider" id="snps.asipdesigner.toolchain.exe.win_debug.871238755" moduleId="org.eclipse.cdt.core.settings" name="Debug">
+				<macros>
+					<stringMacro name="PROCDIR" type="VALUE_TEXT" value="${cf624c_DIR}"/>
+				</macros>
+				<externalSettings/>
+				<extensions>
+					<extension id="org.eclipse.cdt.core.ELF" point="org.eclipse.cdt.core.BinaryParser"/>
+					<extension id="org.eclipse.cdt.core.GASErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.GmakeErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.GLDErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.MakeErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.VCErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.CWDLocator" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.autotools.core.ErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.GCCErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+				</extensions>
+			</storageModule>
+			<storageModule moduleId="cdtBuildSystem" version="4.0.0">
+				<configuration artifactExtension="elf" artifactName="${ProjName}" buildArtefactType="org.eclipse.cdt.build.core.buildArtefactType.exe" buildProperties="org.eclipse.cdt.build.core.buildArtefactType=org.eclipse.cdt.build.core.buildArtefactType.exe" cleanCommand="cmd /c del /Q /S *" description="" errorParsers="org.eclipse.cdt.autotools.core.ErrorParser;org.eclipse.cdt.core.GASErrorParser;org.eclipse.cdt.core.GLDErrorParser;org.eclipse.cdt.core.GCCErrorParser;org.eclipse.cdt.core.GmakeErrorParser;org.eclipse.cdt.core.VCErrorParser;org.eclipse.cdt.core.CWDLocator;org.eclipse.cdt.core.MakeErrorParser" id="snps.asipdesigner.toolchain.exe.win_debug.871238755" name="Debug" optionalBuildProperties="org.eclipse.cdt.docker.launcher.containerbuild.property.volumes=,org.eclipse.cdt.docker.launcher.containerbuild.property.selectedvolumes=" parent="snps.asipdesigner.toolchain.exe.win_debug">
+					<folderInfo id="snps.asipdesigner.toolchain.exe.win_debug.871238755." name="/" resourcePath="">
+						<toolChain id="snps.asipdesigner.toolchain.exe.win_debug_toolchain.649203063" name="ASIP Designer Windows tool chain" superClass="snps.asipdesigner.toolchain.exe.win_debug_toolchain">
+							<option id="snps.asipdesigner.toolchain.toolchain.model.1762448906" name="Processor Name" superClass="snps.asipdesigner.toolchain.toolchain.model" useByScannerDiscovery="false" value="cf624c" valueType="string"/>
+							<option id="snps.asipdesigner.toolchain.toolchain.disasm_output.1829227280" name="Disassemble Output" superClass="snps.asipdesigner.toolchain.toolchain.disasm_output" value="true" valueType="boolean"/>
+							<targetPlatform binaryParser="org.eclipse.cdt.core.ELF" id="snps.asipdesigner.toolchain.toolchain.targetPlatform.1374052921" isAbstract="false" name="ASIP Designer Target Platform" superClass="snps.asipdesigner.toolchain.toolchain.targetPlatform"/>
+							<builder buildPath="${workspace_loc:/${ProjName}}/Debug" id="snps.asipdesigner.toolchain.exe.win_debug.871238755.82745484" keepEnvironmentInBuildfile="false" name="CDT Internal Builder" superClass="org.eclipse.cdt.build.core.internal.builder"/>
+							<tool id="snps.asipdesigner.toolchain.exe.win_debug_compiler.1513849806" name="ASIP Designer Compiler" superClass="snps.asipdesigner.toolchain.exe.win_debug_compiler">
+								<option id="snps.asipdesigner.toolchain.compiler.dbginfo.1654055873" name="Enable Debug Info" superClass="snps.asipdesigner.toolchain.compiler.dbginfo" useByScannerDiscovery="false" value="true" valueType="boolean"/>
+								<option id="snps.asipdesigner.toolchain.compiler.disasm_output.712407272" name="Disassemble Output" superClass="snps.asipdesigner.toolchain.compiler.disasm_output" useByScannerDiscovery="false" value="true" valueType="boolean"/>
+								<option id="snps.asipdesigner.toolchain.compiler.model.860606156" name="Processor Name" superClass="snps.asipdesigner.toolchain.compiler.model" useByScannerDiscovery="false" value="cf624c" valueType="string"/>
+								<option id="snps.asipdesigner.toolchain.compiler.modelpath.1711505829" name="Processor Model Directory" superClass="snps.asipdesigner.toolchain.compiler.modelpath" useByScannerDiscovery="false" value="" valueType="string"/>
+								<option IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="false" id="snps.asipdesigner.toolchain.compiler.incpath.1935172" name="Include Files Path" superClass="snps.asipdesigner.toolchain.compiler.incpath" valueType="includePath">
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:\${ProjName}\hear}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:\${ProjName}\OTE_1_5_gen}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:\${ProjName}\internalDevice}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:\${ProjName}\signalProcessing}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:\${ProjName}\systemControl}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:\${ProjName}\environment}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:\${ProjName}\asm}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:\${ProjName}\lib_cfx}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${eclipse_home}..\include\cfx&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${eclipse_home}..\include\shared&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${PROCDIR}\runtime\include&quot;"/>
+								</option>
+								<option IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="false" id="snps.asipdesigner.toolchain.compiler.ppdefines.449424031" name="Preprocessor Defines" superClass="snps.asipdesigner.toolchain.compiler.ppdefines" valueType="definedSymbols">
+									<listOptionValue builtIn="false" value="SK5_CID=101"/>
+									<listOptionValue builtIn="false" value="HARDWARE=0"/>
+									<listOptionValue builtIn="false" value="ISS=1"/>
+									<listOptionValue builtIn="false" value="TARGET=HARDWARE"/>
+									<listOptionValue builtIn="false" value="CFX_CORE=1"/>
+								</option>
+								<inputType id="snps.asipdesigner.toolchain.compiler.input.469945805" name="Compiler Input" superClass="snps.asipdesigner.toolchain.compiler.input"/>
+								<inputType id="snps.asipdesigner.toolchain.compiler.asminput.1579136098" name="Compiler Assembly Input" superClass="snps.asipdesigner.toolchain.compiler.asminput"/>
+								<inputType id="snps.asipdesigner.toolchain.compiler.cxxinput.550710557" name="C++ Compiler Input" superClass="snps.asipdesigner.toolchain.compiler.cxxinput"/>
+							</tool>
+							<tool id="snps.asipdesigner.toolchain.exe.win_debug_linker.1317595966" name="ASIP Designer Linker" superClass="snps.asipdesigner.toolchain.exe.win_debug_linker">
+								<option id="snps.asipdesigner.toolchain.linker.dbginfo.2036044879" name="Enable Debug Info" superClass="snps.asipdesigner.toolchain.linker.dbginfo" useByScannerDiscovery="false" value="true" valueType="boolean"/>
+								<option id="snps.asipdesigner.toolchain.linker.disasm_output.309182650" name="Disassemble Output" superClass="snps.asipdesigner.toolchain.linker.disasm_output" useByScannerDiscovery="false" value="true" valueType="boolean"/>
+								<option id="snps.asipdesigner.toolchain.linker.model.1160186077" name="Processor Name" superClass="snps.asipdesigner.toolchain.linker.model" useByScannerDiscovery="false" value="cf624c" valueType="string"/>
+								<option id="snps.asipdesigner.toolchain.linker.modelpath.203273809" name="Processor Model Directory" superClass="snps.asipdesigner.toolchain.linker.modelpath" useByScannerDiscovery="false" value="" valueType="string"/>
+								<option id="snps.asipdesigner.toolchain.linker.linker_script.940801702" name="Linker configuration file" superClass="snps.asipdesigner.toolchain.linker.linker_script" useByScannerDiscovery="false" value="${workspace_loc:\${ProjName}\app_LCF.bcf}" valueType="string"/>
+								<option id="snps.asipdesigner.toolchain.linker.other.1386676455" name="Other options" superClass="snps.asipdesigner.toolchain.linker.other" useByScannerDiscovery="false" value="+Wbridge,-Wnomap -I&quot;${eclipse_home}..\include\cfx&quot;" valueType="string"/>
+								<option IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="false" id="snps.asipdesigner.toolchain.linker.library.1817940648" name="Add libraries" superClass="snps.asipdesigner.toolchain.linker.library" valueType="stringList">
+									<listOptionValue builtIn="false" value="cf624c"/>
+									<listOptionValue builtIn="false" value="c"/>
+									<listOptionValue builtIn="false" value="syslib"/>
+									<listOptionValue builtIn="false" value="HAL"/>
+									<listOptionValue builtIn="false" value="HALWrapper"/>
+								</option>
+								<option IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="false" id="snps.asipdesigner.toolchain.linker.library_paths.1610350713" name="Add library path" superClass="snps.asipdesigner.toolchain.linker.library_paths" valueType="libPaths">
+									<listOptionValue builtIn="false" value="&quot;${PROCDIR}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${PROCDIR}\runtime\lib&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${eclipse_home}..\lib\cfx&quot;"/>
+								</option>
+								<option id="snps.asipdesigner.toolchain.linker.map_file.1879515442" name="Create map file" superClass="snps.asipdesigner.toolchain.linker.map_file" value="true" valueType="boolean"/>
+								<inputType id="snps.asipdesigner.toolchain.linker.input.1129698281" name="Linker input" superClass="snps.asipdesigner.toolchain.linker.input"/>
+							</tool>
+						</toolChain>
+					</folderInfo>
+					<sourceEntries>
+						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="OTE_1_5_gen"/>
+						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="asm"/>
+						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="environment"/>
+						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="hear"/>
+						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="internalDevice"/>
+						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="lib_cfx"/>
+						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="signalProcessing"/>
+						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="systemControl"/>
+					</sourceEntries>
+				</configuration>
+			</storageModule>
+			<storageModule moduleId="org.eclipse.cdt.core.externalSettings"/>
+		</cconfiguration>
+	</storageModule>
+	<storageModule moduleId="cdtBuildSystem" version="4.0.0">
+		<project id="audio_passthrough_cfx.snps.asipdesigner.toolchain.executable.1477758751" name="Executable" projectType="snps.asipdesigner.toolchain.executable"/>
+	</storageModule>
+	<storageModule moduleId="scannerConfiguration">
+		<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
+	</storageModule>
+	<storageModule moduleId="org.eclipse.cdt.core.LanguageSettingsProviders"/>
+	<storageModule moduleId="org.eclipse.cdt.make.core.buildtargets"/>
+	<storageModule moduleId="refreshScope" versionNumber="2"/>
+	<storageModule moduleId="org.eclipse.cdt.internal.ui.text.commentOwnerProjectMappings"/>
+	<storageModule moduleId="org.eclipse.cdt.core.language.mapping">
+		<project-mappings>
+			<content-type-mapping configuration="" content-type="org.eclipse.cdt.core.cHeader" language="com.snps.asipdesigner.toolchain.cpp_asip"/>
+			<content-type-mapping configuration="" content-type="org.eclipse.cdt.core.cSource" language="com.snps.asipdesigner.toolchain.cpp_asip"/>
+			<content-type-mapping configuration="" content-type="org.eclipse.cdt.core.cxxHeader" language="com.snps.asipdesigner.toolchain.cpp_asip"/>
+			<content-type-mapping configuration="" content-type="org.eclipse.cdt.core.cxxSource" language="com.snps.asipdesigner.toolchain.cpp_asip"/>
+		</project-mappings>
+	</storageModule>
+</cproject>

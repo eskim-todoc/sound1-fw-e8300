@@ -1,0 +1,205 @@
+/**
+ * @file app_LCF.bcf
+ * @brief Application Linker Configuration File
+ * @copyright @parblock
+ * Copyright (c) 2022 Semiconductor Components Industries, LLC (d/b/a
+ * onsemi), All Rights Reserved
+ *
+ * This code is the property of onsemi and may not be redistributed
+ * in any form without prior written permission from onsemi.
+ * The terms of use and warranty for this code are covered by contractual
+ * agreements between onsemi and the licensee.
+ *
+ * This is Reusable Code.
+ * @endparblock
+ */
+
+#include <sk5_cfx_map.h>
+#include <sk5_cfx_sys.h>
+
+/* Enforce the following layout order:
+ * 1-interrupt vector table
+ * 2-APP_START_ADDR
+ * 3-APP_START_RESULT
+ * 4-application version
+ * 5-main init (application start)    */
+
+_symbol App_Version = D_PMEM_APP_BASE
+_symbol _main_init _after App_Version
+_symbol _main _after _main_init
+_entry_point _main_init
+
+/* Allocate stack memory */ 
+#define _STACK_TOP              D_XMEM_TOP 
+#define _STACK_SIZE             1024
+#define _STACK_BOTTOM           =(_STACK_TOP - _STACK_SIZE + 1)
+_stack XMEM _STACK_BOTTOM _STACK_SIZE
+
+/* Allocate space near the top of IOMEM/PMEM for 32-bit variables. 
+ * The size might need to change depending on the application. 
+ * Note that bootloader, support code, and keys begin at 0xF000 
+ * so leave space for that at the top of IOMEM/PMEM. */
+#define FILE_SYSTEM_START       0xF000
+#define IOMEM_DATA_SIZE         1000
+#define IOMEM_DATA_TOP          =(FILE_SYSTEM_START - 1)
+#define IOMEM_DATA_BASE         =(FILE_SYSTEM_START - IOMEM_DATA_SIZE)
+#define PMEM_ALLOCATION_TOP     =(FILE_SYSTEM_START - IOMEM_DATA_SIZE - 1)
+
+/* IOMEM address space */
+#define D_IOMEM_BASE          0x00000
+#define D_IOMEM_TOP           0x7BFFF
+
+/* Limit low 64K memory address spaces (note: only necessary for XMEM and IOMEM
+ * as the entire YMEM, and by extension XYMEM address spaces are within the
+ * lower 64k of memory */
+#define MEM_64K_TOP           0xFFFF
+
+/* Reserve CFX START_ADDR and START_RESULT variable addresses which are used
+ * by the bootloader */
+_reserved PMEM =(D_APP_START_ADDR)      .. =(D_APP_START_RESULT)
+
+/* Reserve the entire IOMEM memory space so that no relocatable symbols can
+ * be accidently mapped to this region. This project uses a portion of the
+ * CFX PRAM. */
+_reserved IOMEM D_IOMEM_BASE            .. =(D_FENG_PMEM_LSB_BASE - 1)
+
+/* FENG PRAM */
+_reserved IOMEM D_FENG_PMEM_LSB_BASE    .. =(D_FENG_PMEM_MSB_BASE - 1)
+_reserved IOMEM D_FENG_PMEM_MSB_BASE    .. D_FENG_PMEM_MSB_TOP
+
+/* Reserved */
+_reserved IOMEM =(D_FENG_PMEM_MSB_TOP + 1) .. =(D_HEAR_MICROCODE_MEM_BASE - 1)
+
+/* HEAR Microcode Memory PRAM0 - PRAM1 */
+_reserved IOMEM D_HEAR_MICROCODE_MEM_BASE .. D_HEAR_MICROCODE_MEM_TOP
+
+/* CFX Program Memory ROM Instance */
+_reserved IOMEM D_PROM_BASE             .. D_PROM_TOP
+
+/* Reserved */
+_reserved IOMEM =(D_PROM_TOP + 1)       .. =(D_PMEM_BASE - 1)
+
+/* CFX Program Memory RAM Instances PRAM0 - PRAM1 */
+_reserved IOMEM D_PMEM_BASE             .. PMEM_ALLOCATION_TOP
+
+/* ARM Cortex-M3 Program Memory PRAM0 - PRAM6 */
+_reserved IOMEM D_CM3_PMEM_BASE         .. D_CM3_PMEM_TOP
+
+/* LPDSP32 Program Memory PRAM5 - PRAM0 */
+_reserved IOMEM D_DSP_PMEM_BASE         .. D_DSP_PMEM_TOP
+
+/* Reserved */
+_reserved IOMEM =(D_DSP_PMEM_TOP + 1)   .. =(D_DSP_BMEM_BASE - 1)
+
+/* LPDSP32 B Data Memory BRAM0 - BRAM2 */
+_reserved IOMEM D_DSP_BMEM_BASE         .. D_DSP_BMEM_TOP
+
+/* Arm Cortex-M3 Data Memory DRAM0 - DRAM3 */
+_reserved IOMEM D_CM3_DMEM_BASE         .. D_CM3_DMEM_TOP
+
+/* LPDSP32 A Data Memory ARAM5 - ARAM0 */
+_reserved IOMEM D_DSP_AMEM_BASE         .. D_DSP_AMEM_TOP
+
+_reserved IOMEM =(D_DSP_AMEM_TOP + 1)   .. D_IOMEM_TOP
+
+/* Reserve the first few words of XMEM that are used by the program ROM and
+ * user applications for system variables */
+_reserved XMEM D_XMEM_BASE .. =(SYSVAR_MAX_ADDR - 1)
+
+/* Reserve the space between the end of XMEM and beginning of shared XMEM to 
+ * block off the area from XMEM mapping */ 
+_reserved XMEM =(D_XMEM_TOP + 1) .. =(D_HEAR_SHARED_MEM_BASE - 1)
+
+/* Reserve the ROM segments of the shared XMEM so that no relocatable symbols 
+ * can be accidently mapped to them. */
+_reserved XMEM D_HEAR_ROM_BASE .. =(D_HEAR_AB0MEM_BASE - 1)
+
+/* Portions of memory spaces available for allocation (low and high address spaces)
+/* Note: Nothing should be allocated to XMEM_REG, YMEM_REG, XYMEM_REG, or IOMEM_REG
+ *        PMEM:
+ *            Base    -> 0x8000     (D_PRAM0_BASE)
+ *            Top     -> calculated (PMEM_ALLOCATION_TOP)
+ *        XMEM:
+ *            Base    -> 0x4000     (D_XMEM_BASE)
+ *            Top     -> 0x13FFF    (D_XMEM_TOP)
+ *        Shared XMEM:
+ *            Base    -> 0x40000    (D_HEAR_SHARED_MEM_BASE)
+ *            Top     -> 0x7FFFF    (D_HEAR_SHARED_MEM_TOP)
+ *        YMEM:
+ *            Base    -> 0x4000     (D_YMEM_BASE)
+ *            Top     -> 0x7FFF     (D_YMEM_TOP)
+ *        XYMEM:
+ *            Base    -> 0x4000     (D_YMEM_BASE)
+ *            Top     -> 0x7FFF     (D_YMEM_TOP)    
+ *        IOMEM:
+ *            Base    -> calculated (IOMEM_DATA_BASE)
+ *            Top     -> calculated (IOMEM_DATA_TOP)    */
+              
+/* PMEM */
+_mapping _in_range _type .text PMEM D_PRAM0_BASE                .. PMEM_ALLOCATION_TOP
+_mapping _in_range _type .bss PMEM D_PRAM0_BASE                 .. PMEM_ALLOCATION_TOP
+_mapping _in_range _type .data PMEM D_PRAM0_BASE                .. PMEM_ALLOCATION_TOP
+_mapping _in_range _type .rodata PMEM D_PRAM0_BASE              .. PMEM_ALLOCATION_TOP
+_mapping _in_range _type .rodata.constmem PMEM D_PRAM0_BASE     .. PMEM_ALLOCATION_TOP
+
+/* XMEM (including shared XMEM) */
+_mapping _in_range _type .bss XMEM D_XMEM_BASE                  .. D_HEAR_SHARED_MEM_TOP
+_mapping _in_range _type .data XMEM D_XMEM_BASE                 .. D_HEAR_SHARED_MEM_TOP
+_mapping _in_range _type .rodata XMEM D_XMEM_BASE               .. D_HEAR_SHARED_MEM_TOP
+_mapping _in_range _type .rodata.constmem XMEM D_XMEM_BASE      .. D_HEAR_SHARED_MEM_TOP
+
+/* YMEM */
+_mapping _in_range _type .bss YMEM D_YMEM_BASE                  .. D_YMEM_TOP
+_mapping _in_range _type .data YMEM D_YMEM_BASE                 .. D_YMEM_TOP
+_mapping _in_range _type .rodata YMEM D_YMEM_BASE               .. D_YMEM_TOP
+_mapping _in_range _type .rodata.constmem YMEM D_YMEM_BASE      .. D_YMEM_TOP
+
+/* XYMEM */
+_mapping _in_range _type .bss XYMEM D_YMEM_BASE                 .. D_YMEM_TOP
+_mapping _in_range _type .data XYMEM D_YMEM_BASE                .. D_YMEM_TOP
+_mapping _in_range _type .rodata XYMEM D_YMEM_BASE              .. D_YMEM_TOP
+_mapping _in_range _type .rodata.constmem XYMEM D_YMEM_BASE     .. D_YMEM_TOP
+
+/* IOMEM */
+_mapping _in_range _type .bss IOMEM IOMEM_DATA_BASE             .. IOMEM_DATA_TOP
+_mapping _in_range _type .data IOMEM IOMEM_DATA_BASE            .. IOMEM_DATA_TOP
+_mapping _in_range _type .rodata IOMEM IOMEM_DATA_BASE          .. IOMEM_DATA_TOP
+_mapping _in_range _type .rodata.constmem IOMEM IOMEM_DATA_BASE .. IOMEM_DATA_TOP
+
+/* Define memory space addresses (low address spaces)
+ *        XMEM_64k:
+ *            Base    -> 0x4000     (D_XMEM_BASE)
+ *            Top     -> 0xFFFF     (MEM_64K_TOP)
+ *        YMEM_64k:
+ *            Base    -> 0x4000     (D_YMEM_BASE)
+ *            Top     -> 0x7FFF     (D_YMEM_TOP)
+ *        XYMEM_64k:
+ *            Base    -> 0x4000     (D_YMEM_BASE)
+ *            Top     -> 0x7FFF     (D_YMEM_TOP)    
+ *        IOMEM_64k:
+ *            Base    -> calculated (IOMEM_DATA_BASE)
+ *            Top     -> calculated (IOMEM_DATA_TOP)    */
+
+/* XMEM_64k */
+_mapping _in_range _type .bss XMEM_64k D_XMEM_BASE                  .. MEM_64K_TOP
+_mapping _in_range _type .data XMEM_64k D_XMEM_BASE                 .. MEM_64K_TOP
+_mapping _in_range _type .rodata XMEM_64k D_XMEM_BASE               .. MEM_64K_TOP
+_mapping _in_range _type .rodata.constmem XMEM_64k D_XMEM_BASE      .. MEM_64K_TOP
+
+/* YMEM_64k */
+_mapping _in_range _type .bss YMEM_64k D_YMEM_BASE                  .. D_YMEM_TOP
+_mapping _in_range _type .data YMEM_64k D_YMEM_BASE                 .. D_YMEM_TOP
+_mapping _in_range _type .rodata YMEM_64k D_YMEM_BASE               .. D_YMEM_TOP
+_mapping _in_range _type .rodata.constmem YMEM_64k D_YMEM_BASE      .. D_YMEM_TOP
+
+/* XYMEM_64k */
+_mapping _in_range _type .bss XYMEM_64k D_YMEM_BASE                 .. D_YMEM_TOP
+_mapping _in_range _type .data XYMEM_64k D_YMEM_BASE                .. D_YMEM_TOP
+_mapping _in_range _type .rodata XYMEM_64k D_YMEM_BASE              .. D_YMEM_TOP
+_mapping _in_range _type .rodata.constmem XYMEM_64k D_YMEM_BASE     .. D_YMEM_TOP
+
+/* IOMEM_64k */
+_mapping _in_range _type .bss IOMEM_64k IOMEM_DATA_BASE             .. IOMEM_DATA_TOP
+_mapping _in_range _type .data IOMEM_64k IOMEM_DATA_BASE            .. IOMEM_DATA_TOP
+_mapping _in_range _type .rodata IOMEM_64k IOMEM_DATA_BASE          .. IOMEM_DATA_TOP
+_mapping _in_range _type .rodata.constmem IOMEM_64k IOMEM_DATA_BASE .. IOMEM_DATA_TOP

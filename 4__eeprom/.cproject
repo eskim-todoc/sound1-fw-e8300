@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?fileVersion 4.0.0?><cproject storage_type_id="org.eclipse.cdt.core.XmlProjectDescriptionStorage">
+	<storageModule moduleId="org.eclipse.cdt.core.settings">
+		<cconfiguration id="com.signaklara.sk5.nvm.config.release.1687485921">
+			<storageModule buildSystemId="org.eclipse.cdt.managedbuilder.core.configurationDataProvider" id="com.signaklara.sk5.nvm.config.release.1687485921" moduleId="org.eclipse.cdt.core.settings" name="Release">
+				<externalSettings/>
+				<extensions>
+					<extension id="org.eclipse.cdt.core.GmakeErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.CWDLocator" point="org.eclipse.cdt.core.ErrorParser"/>
+				</extensions>
+			</storageModule>
+			<storageModule moduleId="cdtBuildSystem" version="4.0.0">
+				<configuration artifactExtension="nvm" artifactName="${ProjName}" buildArtefactType="org.eclipse.cdt.build.core.buildArtefactType.nvmObject" buildProperties="org.eclipse.cdt.build.core.buildArtefactType=org.eclipse.cdt.build.core.buildArtefactType.nvmObject" cleanCommand="rm -f *.hex" description="" errorParsers="org.eclipse.cdt.core.GmakeErrorParser;org.eclipse.cdt.core.CWDLocator" id="com.signaklara.sk5.nvm.config.release.1687485921" name="Release" optionalBuildProperties="org.eclipse.cdt.docker.launcher.containerbuild.property.dockerdpath=,org.eclipse.cdt.docker.launcher.containerbuild.property.enablement=null,org.eclipse.cdt.docker.launcher.containerbuild.property.volumes=,org.eclipse.cdt.docker.launcher.containerbuild.property.connection=null,org.eclipse.cdt.docker.launcher.containerbuild.property.selectedvolumes=,org.eclipse.cdt.docker.launcher.containerbuild.property.image=null" parent="com.signaklara.sk5.nvm.config.release" postbuildStep="cmd /c ${ProjDirPath}/nvmupdate.bat ${ProjDirPath} ${ProjName} manuf_data.hex" preannouncebuildStep="" prebuildStep="">
+					<folderInfo id="com.signaklara.sk5.nvm.config.release.1687485921." name="/" resourcePath="">
+						<toolChain id="com.signaklara.sk5.nvm.toolChain.nvm.release.334892466" name="NVMI Builder" superClass="com.signaklara.sk5.nvm.toolChain.nvm.release">
+							<targetPlatform binaryParser="" id="com.signaklara.sk5.nvm.config.release.1687485921..1883099021" name=""/>
+							<builder buildPath="${workspace_loc:/EEPROM}/Release" id="com.signaklara.sk5.nvm.builder.1804997711" keepEnvironmentInBuildfile="false" managedBuildOn="true" name="NVM Tool" superClass="com.signaklara.sk5.nvm.builder"/>
+							<tool id="com.signaklara.sk5.nvm.tool.nvm.release.2009196670" name="NVMI Builder" superClass="com.signaklara.sk5.nvm.tool.nvm.release">
+								<option id="nvm.verbose.1622988896" name="Operate in verbose mode (-v)" superClass="nvm.verbose" value="true" valueType="boolean"/>
+								<option IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="false" id="nvm.applicationPath.1751908544" name="Applications (-A)" superClass="nvm.applicationPath" valueType="stringList">
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/2__cm3/Debug/2__cm3.elf}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/1__cfx/Debug/1__cfx.elf}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/3__hear/Release/3__hear.elf}&quot;"/>
+								</option>
+								<option IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="false" id="nvm.Loadapplication.439575220" name="Applications to Boot (Load at Start-Up, Cortex-M3 and CFX applications only) (-L)" superClass="nvm.Loadapplication" valueType="stringList">
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/2__cm3/Debug/2__cm3.elf}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/1__cfx/Debug/1__cfx.elf}&quot;"/>
+								</option>
+								<option id="cfcc.nvm.preprocess.bootloaderPath.1589182330" name="NVM Bootloader Path (-I)" superClass="cfcc.nvm.preprocess.bootloaderPath" value="D:\Workspaces\sound1-fw-e8300\0__bootloader\Debug\0__bootloader.elf" valueType="string"/>
+								<option id="nvm.additionalOptions.1875199298" name="Additional Options" superClass="nvm.additionalOptions" value="-v" valueType="string"/>
+								<option id="nvm.OptionnvmSize.1301726588" name="NVM target size (bytes) (-s)" superClass="nvm.OptionnvmSize" value="4MB" valueType="string"/>
+								<option id="nvm.targetProgrammer.964492429" name="Select the target programmer" superClass="nvm.targetProgrammer" value="nvm.targetProgrammer.jflash" valueType="enumerated"/>
+								<option id="nvm.boot_speed.1343401397" name="Boot Speed (--speed) " superClass="nvm.boot_speed" value="nvm.boot_speed.sspi" valueType="enumerated"/>
+								<option id="nvm.sharedKeyFile.464475514" name="Keyfile path (--keyfile)" superClass="nvm.sharedKeyFile" value="" valueType="string"/>
+								<option id="nvm.sharedKeyIndex.748619327" name="Shared Key:Index (-k)" superClass="nvm.sharedKeyIndex" value="" valueType="string"/>
+								<option id="nvm.userKey.1974179652" name="User Key (-u)" superClass="nvm.userKey" value="" valueType="string"/>
+								<option id="cfcc.nvm.preprocess.manufacturingPath.873799778" name="NVM Manufacturing Data (--manu)" superClass="cfcc.nvm.preprocess.manufacturingPath" value="" valueType="string"/>
+							</tool>
+						</toolChain>
+					</folderInfo>
+				</configuration>
+			</storageModule>
+			<storageModule moduleId="org.eclipse.cdt.core.externalSettings"/>
+		</cconfiguration>
+	</storageModule>
+	<storageModule moduleId="cdtBuildSystem" version="4.0.0">
+		<project id="EEPROM.com.signaklara.sk5.nvm.projectType.1905871269" name="NVM Image Project" projectType="com.signaklara.sk5.nvm.projectType"/>
+	</storageModule>
+	<storageModule moduleId="scannerConfiguration">
+		<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
+	</storageModule>
+	<storageModule moduleId="org.eclipse.cdt.core.LanguageSettingsProviders"/>
+	<storageModule moduleId="refreshScope" versionNumber="2">
+		<configuration configurationName="Release">
+			<resource resourceType="PROJECT" workspacePath="/EEPROM"/>
+		</configuration>
+	</storageModule>
+	<storageModule moduleId="org.eclipse.cdt.make.core.buildtargets"/>
+	<storageModule moduleId="org.eclipse.cdt.internal.ui.text.commentOwnerProjectMappings"/>
+</cproject>
