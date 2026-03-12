@@ -92,6 +92,12 @@
 #define HCT_FIFO_A0_1_IOBLOCK_PTR (0)
 #define HCT_FIFO_A0_1_BLOCK_SIZE  (16)
 
+#define HCT_FIFO_A0_2_START       (64)
+#define HCT_FIFO_A0_2_LENGTH      (32)
+#define HCT_FIFO_A0_2_BASE_PTR    (0)
+#define HCT_FIFO_A0_2_IOBLOCK_PTR (0)
+#define HCT_FIFO_A0_2_BLOCK_SIZE  (16)
+
 #define HCT_FIFO_A0_3_START       (96)
 #define HCT_FIFO_A0_3_LENGTH      (32)
 #define HCT_FIFO_A0_3_BASE_PTR    (0)
@@ -103,6 +109,18 @@
 #define HCT_FIFO_A0_4_BASE_PTR    (0)
 #define HCT_FIFO_A0_4_IOBLOCK_PTR (0)
 #define HCT_FIFO_A0_4_BLOCK_SIZE  (24)
+
+#define HCT_FIFO_A0_5_START       (192)
+#define HCT_FIFO_A0_5_LENGTH      (32)
+#define HCT_FIFO_A0_5_BASE_PTR    (0)
+#define HCT_FIFO_A0_5_IOBLOCK_PTR (0)
+#define HCT_FIFO_A0_5_BLOCK_SIZE  (16)
+
+#define HCT_FIFO_A0_6_START       (224)
+#define HCT_FIFO_A0_6_LENGTH      (32)
+#define HCT_FIFO_A0_6_BASE_PTR    (0)
+#define HCT_FIFO_A0_6_IOBLOCK_PTR (0)
+#define HCT_FIFO_A0_6_BLOCK_SIZE  (16)
 
 #define HCT_FIFO_A1_0_START       (0)
 #define HCT_FIFO_A1_0_LENGTH      (512)
@@ -128,6 +146,12 @@
                        HCT_FIFO_A0_1_BLOCK_SIZE, \
                        HCT_FIFO_A0_1_BASE_PTR, \
                        HCT_FIFO_A0_1_IOBLOCK_PTR); \
+    Sys_FIFO_Configure((D_FIFO_Type *) D_FIFO_A0_2, \
+                       HCT_FIFO_A0_2_START, \
+                       HCT_FIFO_A0_2_LENGTH, \
+                       HCT_FIFO_A0_2_BLOCK_SIZE, \
+                       HCT_FIFO_A0_2_BASE_PTR, \
+                       HCT_FIFO_A0_2_IOBLOCK_PTR); \
     Sys_FIFO_Configure((D_FIFO_Type *) D_FIFO_A0_3, \
                        HCT_FIFO_A0_3_START, \
                        HCT_FIFO_A0_3_LENGTH, \
@@ -140,6 +164,18 @@
                        HCT_FIFO_A0_4_BLOCK_SIZE, \
                        HCT_FIFO_A0_4_BASE_PTR, \
                        HCT_FIFO_A0_4_IOBLOCK_PTR); \
+    Sys_FIFO_Configure((D_FIFO_Type *) D_FIFO_A0_5, \
+                       HCT_FIFO_A0_5_START, \
+                       HCT_FIFO_A0_5_LENGTH, \
+                       HCT_FIFO_A0_5_BLOCK_SIZE, \
+                       HCT_FIFO_A0_5_BASE_PTR, \
+                       HCT_FIFO_A0_5_IOBLOCK_PTR); \
+    Sys_FIFO_Configure((D_FIFO_Type *) D_FIFO_A0_6, \
+                       HCT_FIFO_A0_6_START, \
+                       HCT_FIFO_A0_6_LENGTH, \
+                       HCT_FIFO_A0_6_BLOCK_SIZE, \
+                       HCT_FIFO_A0_6_BASE_PTR, \
+                       HCT_FIFO_A0_6_IOBLOCK_PTR); \
     Sys_FIFO_Configure((D_FIFO_Type *) D_FIFO_A1_0, \
                        HCT_FIFO_A1_0_START, \
                        HCT_FIFO_A1_0_LENGTH, \
@@ -153,8 +189,11 @@
 //
 extern volatile int HCT_A0_0[HCT_FIFO_A0_0_LENGTH];
 extern volatile int HCT_A0_1[HCT_FIFO_A0_1_LENGTH];
+extern volatile int HCT_A0_2[HCT_FIFO_A0_2_LENGTH];
 extern volatile int HCT_A0_3[HCT_FIFO_A0_3_LENGTH];
 extern volatile int HCT_A0_4[HCT_FIFO_A0_4_LENGTH];
+extern volatile int HCT_A0_5[HCT_FIFO_A0_5_LENGTH];
+extern volatile int HCT_A0_6[HCT_FIFO_A0_6_LENGTH];
 extern volatile int HCT_A1_0[HCT_FIFO_A1_0_LENGTH];
 
 

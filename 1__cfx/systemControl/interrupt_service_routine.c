@@ -5,14 +5,17 @@
 #include <interrupt_service_routine.h>
 
 volatile app_interrupt_flag_t chess_storage(XMEM) g_interrupt_flags = {
-    .read_isd_info   = 0,
-    .wake_up         = 0,
-    .mic0            = 0,
-    .mic1            = 0,
-    .dac1            = 0,
-    .pcm_out         = 0,
-    .function_chain0 = 0,
-    .function_chain1 = 0,
+        .read_isd_info   = 0,
+        .wake_up         = 0,
+        .mic0            = 0,
+        .mic1            = 0,
+        .dac0            = 0,
+        .dac1            = 0,
+        .pcm_out         = 0,
+        .i2s_in          = 0,
+        .i2s_out         = 0,
+        .function_chain0 = 0,
+        .function_chain1 = 0,
 };
 
 void app_configure_interrupts(int mode)
@@ -31,7 +34,7 @@ void app_configure_interrupts(int mode)
     if (mode == CFX_INT_NORMAL)
     {
         D_INT->EBL_0  = INT0_EBL_WATCHDOG;
-        D_INT->EBL_7  = (INT7_EBL_FIFO_4 | INT7_EBL_FIFO_3 | INT7_EBL_FIFO_1 | INT7_EBL_FIFO_0);
+        D_INT->EBL_7  = (INT7_EBL_FIFO_6 | INT7_EBL_FIFO_5 | INT7_EBL_FIFO_4 | INT7_EBL_FIFO_3 | INT7_EBL_FIFO_2 | INT7_EBL_FIFO_1 | INT7_EBL_FIFO_0);
         D_INT->EBL_8  = (INT8_EBL_HEAR_1 | INT8_EBL_HEAR_0);
         D_INT->EBL_10 = INT10_EBL_CM3_0;
     }
@@ -54,8 +57,11 @@ void app_clear_all_interrupt_flags(void)
     g_interrupt_flags.wake_up         = 0;
     g_interrupt_flags.mic0            = 0;
     g_interrupt_flags.mic1            = 0;
+    g_interrupt_flags.dac0            = 0;
     g_interrupt_flags.dac1            = 0;
     g_interrupt_flags.pcm_out         = 0;
+    g_interrupt_flags.i2s_in          = 0;
+    g_interrupt_flags.i2s_out         = 0;
     g_interrupt_flags.function_chain0 = 0;
     g_interrupt_flags.function_chain1 = 0;
 }
@@ -82,6 +88,11 @@ extern "C" void FIFO_1_ISR() property(isr)
     g_interrupt_flags.mic1 = 1;
 }
 
+extern "C" void FIFO_2_ISR() property(isr)
+{
+    g_interrupt_flags.dac0 = 1;
+}
+
 extern "C" void FIFO_3_ISR() property(isr)
 {
     g_interrupt_flags.dac1 = 1;
@@ -90,6 +101,18 @@ extern "C" void FIFO_3_ISR() property(isr)
 extern "C" void FIFO_4_ISR() property(isr)
 {
     g_interrupt_flags.pcm_out = 1;
+}
+
+extern "C" void FIFO_5_ISR() property(isr)
+{
+    lib_g_i2s_interrupt_flag = 1;
+    lib_g_i2s_interrupt_cnt  = (lib_g_i2s_interrupt_cnt + 1) & 0x0F;
+    // Sys_GPIO_Toggle(DIO14);  // V0.3에서 Net Name: DMIC_OUT
+}
+
+extern "C" void FIFO_6_ISR() property(isr)
+{
+    g_interrupt_flags.i2s_out = 1;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////

@@ -10,7 +10,10 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include <custom_types.h>
 #include <hw.h>
+
+#include <lib_i2s.h>
 
 #define CFX_INT_STANDBY 0
 #define CFX_INT_NORMAL  1
@@ -21,8 +24,11 @@ typedef struct
     int wake_up;
     int mic0;
     int mic1;
+    int dac0;
     int dac1;
     int pcm_out;
+    int i2s_in;
+    int i2s_out;
     int function_chain0;
     int function_chain1;
 } app_interrupt_flag_t;

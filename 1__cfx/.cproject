@@ -33,6 +33,9 @@
 								<option id="snps.asipdesigner.toolchain.compiler.model.860606156" name="Processor Name" superClass="snps.asipdesigner.toolchain.compiler.model" useByScannerDiscovery="false" value="cf624c" valueType="string"/>
 								<option id="snps.asipdesigner.toolchain.compiler.modelpath.1711505829" name="Processor Model Directory" superClass="snps.asipdesigner.toolchain.compiler.modelpath" useByScannerDiscovery="false" value="" valueType="string"/>
 								<option IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="false" id="snps.asipdesigner.toolchain.compiler.incpath.1935172" name="Include Files Path" superClass="snps.asipdesigner.toolchain.compiler.incpath" valueType="includePath">
+									<listOptionValue builtIn="false" value="&quot;${eclipse_home}..\include\shared&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${eclipse_home}..\include\cfx&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${PROCDIR}\runtime\include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:\${ProjName}\hear}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:\${ProjName}\OTE_1_5_gen}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:\${ProjName}\internalDevice}&quot;"/>
@@ -41,9 +44,6 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:\${ProjName}\environment}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:\${ProjName}\asm}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:\${ProjName}\lib_cfx}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${eclipse_home}..\include\cfx&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${eclipse_home}..\include\shared&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${PROCDIR}\runtime\include&quot;"/>
 								</option>
 								<option IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="false" id="snps.asipdesigner.toolchain.compiler.ppdefines.449424031" name="Preprocessor Defines" superClass="snps.asipdesigner.toolchain.compiler.ppdefines" valueType="definedSymbols">
 									<listOptionValue builtIn="false" value="SK5_CID=101"/>
@@ -103,7 +103,11 @@
 	</storageModule>
 	<storageModule moduleId="org.eclipse.cdt.core.LanguageSettingsProviders"/>
 	<storageModule moduleId="org.eclipse.cdt.make.core.buildtargets"/>
-	<storageModule moduleId="refreshScope" versionNumber="2"/>
+	<storageModule moduleId="refreshScope" versionNumber="2">
+		<configuration configurationName="Debug">
+			<resource resourceType="PROJECT" workspacePath="/1__cfx"/>
+		</configuration>
+	</storageModule>
 	<storageModule moduleId="org.eclipse.cdt.internal.ui.text.commentOwnerProjectMappings"/>
 	<storageModule moduleId="org.eclipse.cdt.core.language.mapping">
 		<project-mappings>

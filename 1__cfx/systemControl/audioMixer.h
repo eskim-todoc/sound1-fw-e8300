@@ -21,7 +21,7 @@
 void audio_mix_internal_mic_only(void);
 void audio_mix_external_mic_only(void);
 
-void lib_audio_loopback(int _XMEM* sink, int _XMEM* src);
-void lib_loopback_AGC_out(int _XMEM* sink, int _XMEM* src);
+void audio_mix_1_buffer(int _XMEM *p_buf1);
+void audio_mix_2_buffers(int _XMEM *p_buf1, int _XMEM *p_buf2);
 
 #endif // __audioMixer_h__

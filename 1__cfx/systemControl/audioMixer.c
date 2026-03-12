@@ -29,35 +29,27 @@ void audio_mix_external_mic_only(void)
         }
 }
 
-void lib_audio_loopback(int _XMEM* sink, int _XMEM* src)
+
+void audio_mix_1_buffer(int _XMEM* p_buf1)
 {
+    int _XMEM* p_mix = (int _XMEM*) HEAR_ADDR_AUDIO_MIX;
+
     for (register int i = 0; i < df_inputADC_DataBuffLength; i++)
         chess_loop_range(df_inputADC_DataBuffLength, df_inputADC_DataBuffLength)
         {
-            sink[i] = src[i];
+            p_mix[i] = (p_buf1[i] >> AUDIO_INPUT_RSHIFT);
         }
 }
 
-void lib_loopback_AGC_out(int _XMEM* sink, int _XMEM* src)
+void audio_mix_2_buffers(int _XMEM* p_buf1, int _XMEM* p_buf2)
 {
-    long long_acc;
+    int _XMEM* p_mix = (int _XMEM*) HEAR_ADDR_AUDIO_MIX;
 
     for (register int i = 0; i < df_inputADC_DataBuffLength; i++)
         chess_loop_range(df_inputADC_DataBuffLength, df_inputADC_DataBuffLength)
         {
-            long_acc = src[i];
-            long_acc = long_acc << AUDIO_INPUT_RSHIFT;
-
-            if (long_acc > INT24_MAX)
-            {
-                long_acc = INT24_MAX;
-            }
-            else if (long_acc < INT24_MIN)
-            {
-                long_acc = INT24_MIN;
-            }
-
-            sink[i] = (int) long_acc;
+            // 두 값을 믹싱 했으므로 반으로 줄여준다.
+            p_mix[i] = ((p_buf1[i] >> AUDIO_INPUT_RSHIFT) + (p_buf2[i] >> AUDIO_INPUT_RSHIFT)) >> 1;
         }
 }
 

@@ -10,8 +10,11 @@
 
 .undef global text FIFO_0_ISR
 .undef global text FIFO_1_ISR
+.undef global text FIFO_2_ISR
 .undef global text FIFO_3_ISR
 .undef global text FIFO_4_ISR
+.undef global text FIFO_5_ISR
+.undef global text FIFO_6_ISR
 
 .undef global text CM3_0_ISR
 .undef global text CM3_1_ISR
@@ -76,13 +79,13 @@
     goto Empty_ISR               // RS ENC OUT RDY
     goto Empty_ISR               // RS DEC IN RDY
     goto Empty_ISR               // RS DEC OUT RDY
-    goto FIFO_0_ISR              // FIFO 0 (디지털 마이크)
-    goto FIFO_1_ISR              // FIFO 1 (이어피스)
-    goto Empty_ISR               // FIFO 2
+    goto FIFO_0_ISR              // FIFO 0 (디지털 마이크1)
+    goto FIFO_1_ISR              // FIFO 1 (디지털 마이크2)
+    goto FIFO_2_ISR              // FIFO 2 (OD0)
     goto FIFO_3_ISR              // FIFO 3 (OD1)
     goto FIFO_4_ISR              // FIFO 4 (PCM)
-    goto Empty_ISR               // FIFO 5
-    goto Empty_ISR               // FIFO 6
+    goto FIFO_5_ISR              // FIFO 5 (I2S in)
+    goto FIFO_6_ISR              // FIFO 6 (I2S out)
     goto Empty_ISR               // FIFO 7
     goto HEAR_0_ISR              // HEAR 0
     goto HEAR_1_ISR              // HEAR 1
