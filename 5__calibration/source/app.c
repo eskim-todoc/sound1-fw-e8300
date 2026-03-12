@@ -527,6 +527,7 @@ int main(void)
      * mask register PRIMASK */
     __set_PRIMASK(PRIMASK_ENABLE_INTERRUPTS);
 
+#if 0  // LSAD 캘리브레이션 블록 시작
     Sys_LSAD_InputConfig(0, LSAD_INPUT_VSSA);
     Sys_LSAD_InputConfig(1, LSAD_INPUT_VMIC);
     Sys_LSAD_InputConfig(2, LSAD_INPUT_VTEMP);
@@ -623,6 +624,8 @@ int main(void)
     NVIC_DisableIRQ(LSAD_IRQn);
     LSAD->CFG = (LSAD_INT_CH0 | LSAD_INT_DISABLE | LSAD_PRESCALE_3200);
 
+#endif  // LSAD 캘리브레이션 블록 끝
+
     /* Mount filesystem and write LSAD calibration value */
     // if (NVMReInitOptions(NULL) != ARM_DRIVER_OK)
     if (NVMInit(NULL) != ARM_DRIVER_OK)
@@ -672,6 +675,7 @@ int main(void)
         ci_handle_result(ERRNO_GENERAL_FAILURE, "f_chdrive(\"1:\")");
     }
 
+#if 0  // LSAD 캘리브레이션 블록2 시작
     ret = f_open(&g_ci_ohdl, "/BATT_CAL", (FA_OPEN_ALWAYS | FA_READ | FA_WRITE));
 
     if (ret != FR_OK)
@@ -727,6 +731,12 @@ int main(void)
     }
 
     ci_handle_result(ERRNO_NO_ERROR, "UPDATE LSAD CALIBRATION VALUE");
+
+#else
+    uint8_t file_buf[4];
+    int     file_btw;
+    int     file_bw;
+#endif  // LSAD 캘리브레이션 블록2 끝
 
 #if 1  // Manufacture table backup (start)
     ret = f_open(&g_ci_ohdl, "/MANUF_TABLE", (FA_OPEN_ALWAYS | FA_READ | FA_WRITE));
