@@ -15,14 +15,15 @@
  * @endparblock
  */
 
-#include <stdbool.h>
+#include <hw.h>
 #include <aes.h>
 #include <bootloader_application_file.h>
 #include <bootloader_internal.h>
 #include <calibrate_power.h>
+
 #include <ff.h>
-#include <hw.h>
 #include <nvmctrl.h>
+
 #include <sk5_map.h>
 #include <sk5_map_nvm.h>
 #include <sk5_sys.h>
@@ -31,8 +32,11 @@
 #include <stdlib.h>
 #include <string.h>
 #include <trims.h>
-#include <stddef.h>
-#include <stdbool.h>
+
+#include <ci_boot.h>
+#include <ci_initialize.h>
+#include <rtt_printf.h>
+#include <uart_printf.h>
 
 #define SHOULD_BOOT 0xA5
 
@@ -989,6 +993,27 @@ int bootloader_manifest_open_files(char* file_name)
     int                             ret;
     uint8_t                         tmp[MANIFEST_MAXIMUM_SIZE];
     struct application_file_header* app_header;
+    char                            file_path[20] = "/";
+
+#if 1  // kes0481@to-doc.com
+    uint8_t slot_num = ci_boot_get_slot_num();
+
+    if (0 < slot_num && slot_num < 5)
+    {
+        file_path[0] = '/';
+        file_path[1] = '0' + slot_num;
+        file_path[2] = '/';
+        file_path[3] = 0;
+    }
+    else
+    {
+        file_path[0] = '/';
+        file_path[1] = 0;
+    }
+
+#endif
+
+    strcat(file_path, file_name);
 
     app_header = (struct application_file_header*) tmp;
 
@@ -1136,7 +1161,7 @@ int bootloader_process_manifest(FIL* file_desc, struct application_file_header* 
 int bootloader_load_app_file(const char* file_name)
 {
     int32_t                         ret;
-    char                            file_path[16] = "/";
+    char                            file_path[20] = "/";
     struct application_file_header* app_header;
     uint32_t                        tmp[128];
 
@@ -1148,6 +1173,24 @@ int bootloader_load_app_file(const char* file_name)
 
     cfx_boot_flag = 0;
     cm3_boot_flag = 0;
+
+#if 1  // kes0481@to-doc.com
+    uint8_t slot_num = ci_boot_get_slot_num();
+
+    if (0 < slot_num && slot_num < 5)
+    {
+        file_path[0] = '/';
+        file_path[1] = '0' + slot_num;
+        file_path[2] = '/';
+        file_path[3] = 0;
+    }
+    else
+    {
+        file_path[0] = '/';
+        file_path[1] = 0;
+    }
+    uart_printf("file path = '%s' \r\n", file_path);
+#endif
 
     strcat(file_path, file_name);
 
@@ -1191,8 +1234,6 @@ int bootloader_load_app_file(const char* file_name)
         return ret;
     }
 
-    SYS_WATCHDOG_REFRESH();
-
     if (cfx_boot_flag == SHOULD_BOOT)
     {
         ret = bootloader_boot_cfx(cfx_boot_data.init_pointer);
@@ -1202,9 +1243,6 @@ int bootloader_load_app_file(const char* file_name)
             return ret;
         }
     }
-
-    SYS_WATCHDOG_REFRESH();
-
     if (cm3_boot_flag == SHOULD_BOOT)
     {
         /* Doesn't return */
@@ -1212,28 +1250,6 @@ int bootloader_load_app_file(const char* file_name)
     }
 
     return ret;
-}
-
-void _infinite_error(void)
-{
-    SYS_WATCHDOG_REFRESH();
-
-    Sys_GPIO_Write(DIO24, 0);  // Red
-    Sys_GPIO_Write(DIO22, 0);  // Green
-    Sys_GPIO_Write(DIO29, 0);  // Blue
-
-    while (1)
-    {
-        for (int i = 0; i < 5; i++)
-        {
-            Sys_GPIO_Write(DIO24, 1);  // Red
-            Sys_Delay((SystemCoreClock / 1000) * 100 + (i * 100));
-            SYS_WATCHDOG_REFRESH();
-            Sys_GPIO_Write(DIO24, 0);  // Red
-            Sys_Delay((SystemCoreClock / 1000) * 100 + (i * 100));
-            SYS_WATCHDOG_REFRESH();
-        }
-    }
 }
 
 int bootloader_boot(void)
@@ -1248,7 +1264,6 @@ int bootloader_boot(void)
     bootloader_error = BOOTLOADER_EXIT_STATUS_CODE(0);
 
     NVMGetDefaultOptions(&options);
-
     ret = NVMInit(&options);
     if (ret != 0)
     {
@@ -1353,6 +1368,22 @@ int bootloader_boot(void)
         bootloader_error = BOOTLOADER_EXIT_STATUS_CODE(ret);
         return ret;
     }
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+// NOTE: OTA : kes0481@to-doc.com
+////////////////////////////////////////////////////////////////////////////////////////////////////
+#if 1
+    initialize_late();
+
+    uart_printf("\r\n");
+    uart_printf("Hello, Sound1 Bootloader! SystemCoreClock: %uHz \r\n", SystemCoreClock);
+
+    ci_boot_set_fp(&ohdl);
+    ci_boot_handle_boot_file();
+    ci_boot_print_boot_file();  // for debugging
+    ci_boot_debug_mode();
+#endif
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
 
     return bootloader_load_app_file(app_name);
 }

@@ -7,10 +7,10 @@
 //
 // private macros
 //
-#define _INFINITE_LOOP() \
-    while (1)            \
-    {                    \
-        (void) 0;        \
+#define _INFINITE_LOOP()                                                                                                                                                                                                                                                                                                       \
+    while (1)                                                                                                                                                                                                                                                                                                                  \
+    {                                                                                                                                                                                                                                                                                                                          \
+        (void) 0;                                                                                                                                                                                                                                                                                                              \
     }
 
 #define _DELAY_MS(ms) Sys_Delay((SystemCoreClock / 1000) * ms)
@@ -54,17 +54,17 @@ void ci_boot_handle_boot_file(void)
     if (_is_boot_file_exist())
     {
         // 상태 파일 있음
-        _read_boot_file(); // 읽기
+        _read_boot_file();  // 읽기
     }
     else
     {
         // 상태 파일 없음
-    	uart_printf("There is no boot file. \r\n");
-        _initialize_boot_file(); // 초기화
-        _update_boot_file();     // 업데이트
+        uart_printf("There is no boot file. \r\n");
+        _initialize_boot_file();  // 초기화
+        _update_boot_file();      // 업데이트
     }
 
-    _determine_slot_num(); // 상태 정보를 토대로 부팅 슬롯 결정
+    _determine_slot_num();  // 상태 정보를 토대로 부팅 슬롯 결정
 
     SYS_WATCHDOG_REFRESH();
 }
@@ -310,14 +310,34 @@ static void _update_boot_file(void)
     UINT    btw;
     FRESULT res;
 
-    res = f_open(_g_fp, SDK_CI_BOOT_FILE_PATH, (FA_CREATE_ALWAYS | FA_READ | FA_WRITE));
+    res = f_open(_g_fp, SDK_CI_BOOT_FILE_PATH, (FA_OPEN_ALWAYS | FA_READ | FA_WRITE));
 
     if (res == FR_OK)
     {
+        f_lseek(_g_fp, 4096);  // FATFS에게 4KB로 고정된 파일을 생성할 수 있게 의도적으로 파일 포지션을 4096으로 설정
+        f_lseek(_g_fp, 0);
+
+        rtt_printf("[FATFS] PERFORMED : FILE (%s) LSEEK --> 4096 --> 0 \r\n", SDK_CI_BOOT_FILE_PATH);
+
         res = f_write(_g_fp, &_g_boot_status, sizeof(ST__CI_LIB_BOOT_STATUS), &btw);
 
         if (res == FR_OK)
         {
+            // 안전을 위한 flush
+            f_sync(_g_fp);
+
+#if 1
+            FILINFO fno;
+            res = f_stat(SDK_CI_BOOT_FILE_PATH, &fno);
+            if (res == FR_OK)
+            {
+                rtt_printf("[FATFS] NAME : %s, TOTAL SIZE : %u BYTES, START CLUSTER : %u \r\n",  //
+                           fno.fname,
+                           fno.fsize,
+                           _g_fp->obj.sclust);
+            }
+#endif
+
             if (btw == sizeof(ST__CI_LIB_BOOT_STATUS))
             {
                 f_close(_g_fp);
@@ -342,7 +362,7 @@ static void _determine_slot_num(void)
             _validate_alt_boot();
             break;
 
-        default: // 존재할 수 없는 상태
+        default:  // 존재할 수 없는 상태
         {
             _g_slot_num              = _g_boot_status.boot_slot_num;
             _g_boot_status.sub_state = SDK_CI_BOOT_SUB_STATE_UNKNOWN;
