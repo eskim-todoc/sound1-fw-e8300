@@ -10,6 +10,141 @@
 #include "commonDataProcessing.h"
 #include "isd_interface.h"
 
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+// Sound1
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+// 배터리 관련
+volatile int                s_snd_batt_percent = 0;
+volatile EN__SND_BATT_STATE s_snd_batt_state   = EN__SND_BATT_STATE_RESET;
+
+// 충전 상태 관련
+volatile EN__SND_CHARGER_STATE s_snd_charger_state = EN__SND_BATT_STATE_RESET;
+
+EN__SND_BATT_STATE snd_batt_get_state(void)
+{
+    return s_snd_batt_state;
+}
+
+void snd_batt_set_state(EN__SND_BATT_STATE state)
+{
+    s_snd_batt_state = state;
+}
+
+int snd_batt_get_percent(void)
+{
+    return s_snd_batt_percent;
+}
+
+void snd_batt_set_percent(int percent)
+{
+    s_snd_batt_percent = percent;
+}
+
+EN__BATTERY_LEVEL snd_batt_get_level(void)
+{
+    int percent;
+
+    percent = snd_batt_get_percent();
+
+    // 100
+    if (100 <= percent)
+    {
+        return en__batteryPower_100per;
+    }
+    // 80 ~ 99
+    else if ((80 <= percent) && (percent < 100))
+    {
+        return en__batteryPower_80btw100;
+    }
+    // 60 ~ 79
+    else if ((60 <= percent) && (percent < 80))
+    {
+        return en__batteryPower_60btw80;
+    }
+    // 40 ~ 59
+    else if ((40 <= percent) && (percent < 60))
+    {
+        return en__batteryPower_40btw60;
+    }
+    // 20 ~ 39
+    else if ((20 <= percent) && (percent < 40))
+    {
+        return en__batteryPower_20btw40;
+    }
+    // 1 ~ 19
+    else if ((0 < percent) && (percent < 20))
+    {
+        return en__batteryPower_0btw20;
+    }
+    // 0
+    else
+    {
+        return en__batteryPower_0per;
+    }
+}
+
+ST__USB_CONNECTOR snd_charger_get_state(void)
+{
+    return cfx_cm3_sharedMemoryAll.chargerState;
+}
+
+void snd_charger_set_state(EN__SND_CHARGER_STATE state)
+{
+    // 충전 케이블 연결 상태 디버깅 메시지 출력
+#if 1
+    if (s_snd_charger_state != state)
+    {
+        ci_printd("[CHARGER] %s -> %s \r\n",
+                  // 이전 상태
+                  (s_snd_charger_state == EN__SND_CHARGER_STATE_RESET)          ? "RESET"  //
+                  : (s_snd_charger_state == EN__SND_CHARGER_STATE_CONNECTED)    ? "CONNECTED"
+                  : (s_snd_charger_state == EN__SND_CHARGER_STATE_DISCONNECTED) ? "DISCONNECTED"
+                                                                                : "INVALID",
+                  // 현재 상태
+                  (state == EN__SND_CHARGER_STATE_RESET)          ? "RESET"  //
+                  : (state == EN__SND_CHARGER_STATE_CONNECTED)    ? "CONNECTED"
+                  : (state == EN__SND_CHARGER_STATE_DISCONNECTED) ? "DISCONNECTED"
+                                                                  : "INVALID");
+    }
+#endif
+
+    s_snd_charger_state = state;
+
+    switch (state)
+    {
+        case EN__SND_CHARGER_STATE_CONNECTED:
+        {
+            // 기존 방식에서, USB 케이블 연결에 대한 것만 연결 상태로 설정한다.
+            // NOTE: 크래들 연결 상태 및 뚜껑 열림 상태 처리 방법은 추후 논의가 필요하다.
+            cfx_cm3_sharedMemoryAll.chargerState.chargerConnectorPluggedIn = df_Connected;
+            cfx_cm3_sharedMemoryAll.chargerState.carryingCasePluggedIn     = df_Disconnected;
+            cfx_cm3_sharedMemoryAll.chargerState.carryingCaseCoverOpen     = df_Disconnected;
+        }
+        break;
+
+        case EN__SND_CHARGER_STATE_DISCONNECTED:
+        {
+            cfx_cm3_sharedMemoryAll.chargerState.chargerConnectorPluggedIn = df_Disconnected;
+            cfx_cm3_sharedMemoryAll.chargerState.carryingCasePluggedIn     = df_Disconnected;
+            cfx_cm3_sharedMemoryAll.chargerState.carryingCaseCoverOpen     = df_Disconnected;
+        }
+        break;
+
+        default:  // EN__SND_CHARGER_STATE_RESET
+        {
+            cfx_cm3_sharedMemoryAll.chargerState.chargerConnectorPluggedIn = df_Defalut;
+            cfx_cm3_sharedMemoryAll.chargerState.carryingCasePluggedIn     = df_Defalut;
+            cfx_cm3_sharedMemoryAll.chargerState.carryingCaseCoverOpen     = df_Defalut;
+        }
+        break;
+    }
+}
+
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+// Sullivan
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
 // 전압 분배 배율
 // LSAD 값 = 0~2V를  0~511로 표현
 

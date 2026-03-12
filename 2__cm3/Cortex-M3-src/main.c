@@ -37,6 +37,8 @@
 #error Link PMIC is NOT selected.
 #endif
 
+#include <driver_IQS323.h>
+
 #include "isd_interface_stimulationStandAlone.h"  // 신규 추가 for I2S 디버깅
 #include <isd_interface_init_FPGA.h>              // 절전 모드 진입 전 FPGA 리셋 목적
 #include <isd_interface_FPGA.h>
@@ -165,20 +167,38 @@ void update_mapNum(void)
 
 int main_counter = 0;
 
-// sections.ld 에 정의된 심볼들 (반드시 동일 이름)
-extern uint32_t __data_init__;   // LMA (PRAM 쪽, 초기값 블록 시작)
-extern uint32_t __data_start__;  // VMA (DRAM .data 시작)
-extern uint32_t __data_end__;    // VMA (DRAM .data 끝)
+/*
+ * sections.ld 에 정의된 심볼들 (반드시 동일 이름)
+ */
+extern uint8_t __data_init__;   // LMA (PRAM 쪽, 초기값 블록 시작)
+extern uint8_t __data_start__;  // VMA (DRAM .data 시작)
+extern uint8_t __data_end__;    // VMA (DRAM .data 끝)
+
+// sk5_start.h 에 존재하여 아래는 주석
+// extern uint8_t __bss_start__;  // VMA (DRAM .bss 시작)
+// extern uint8_t __bss_end__;    // VMA (DRAM .bss 끝)
 
 void load_data_section(void)
 {
-    uint32_t *src = &__data_init__;
-    uint32_t *dst = &__data_start__;
+    memcpy(&__data_start__,                            // VMA data 영역의 시작부터
+           &__data_init__,                             // LMA data 영역의 값으로
+           (size_t) (&__data_end__ - &__data_start__)  // VMA data 영역의 크기 만큼 초기화
+    );
+}
 
-    while (dst < &__data_end__)
-    {
-        *dst++ = *src++;
-    }
+void load_bss_section(void)
+{
+#if 0
+    memset(&__bss_start__,                           // VMA bss 영역의 시작부터
+           0,                                        // 0 값으로
+           (size_t) (&__bss_end__ - &__bss_start__)  // VMA bss 영역의 크기 만큼 초기화
+    );
+#else
+    memset(&__bss_start__,                                                   // VMA bss 영역의 시작부터
+           0,                                                                // 0 값으로
+           (size_t) ((uintptr_t) &__bss_end__ - (uintptr_t) &__bss_start__)  // VMA bss 영역의 크기 만큼 초기화
+    );
+#endif
 }
 
 void aes128_test(void)
@@ -206,21 +226,72 @@ void aes128_test(void)
 
     AES_init_ctx(&ctx, key128);
 
-    ci_printf("[AES] BEFORE ENCRYPT : %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X \r\n", text[0], text[1], text[2], text[3], text[4], text[5], text[6], text[7], text[8], text[9], text[10], text[11], text[12], text[13], text[14], text[15]);
+    ci_printf("[AES] BEFORE ENCRYPT : %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X \r\n",  //
+              text[0],
+              text[1],
+              text[2],
+              text[3],
+              text[4],
+              text[5],
+              text[6],
+              text[7],
+              text[8],
+              text[9],
+              text[10],
+              text[11],
+              text[12],
+              text[13],
+              text[14],
+              text[15]);
 
     AES_ECB_encrypt(&ctx, text);
 
-    ci_printf("[AES] AFTER  ENCRYPT : %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X \r\n", text[0], text[1], text[2], text[3], text[4], text[5], text[6], text[7], text[8], text[9], text[10], text[11], text[12], text[13], text[14], text[15]);
+    ci_printf("[AES] AFTER  ENCRYPT : %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X \r\n",  //
+              text[0],
+              text[1],
+              text[2],
+              text[3],
+              text[4],
+              text[5],
+              text[6],
+              text[7],
+              text[8],
+              text[9],
+              text[10],
+              text[11],
+              text[12],
+              text[13],
+              text[14],
+              text[15]);
 
     AES_ECB_decrypt(&ctx, text);
 
-    ci_printf("[AES] AFTER  DECRYPT : %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X \r\n", text[0], text[1], text[2], text[3], text[4], text[5], text[6], text[7], text[8], text[9], text[10], text[11], text[12], text[13], text[14], text[15]);
+    ci_printf("[AES] AFTER  DECRYPT : %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X \r\n",  //
+              text[0],
+              text[1],
+              text[2],
+              text[3],
+              text[4],
+              text[5],
+              text[6],
+              text[7],
+              text[8],
+              text[9],
+              text[10],
+              text[11],
+              text[12],
+              text[13],
+              text[14],
+              text[15]);
 }
 
 int main(void)
 {
-    // .data 섹션 정보가 올바르게 로드되지 않는 이슈가 발생하여 직접 복사하도록 수정
+    /* .data 및 .bss 섹션 데이터가 PRAM에서 올바르게 로드되지 못하는 이슈 발생.
+     * 이슈를 해결하기 위해 일반적인 펌웨어 'warm reset' 방법을 사용함.
+     * 즉, PRAM의 LMA, DRAM의 VMA 영역을 직접 초기화 하는 방법으로 해결. */
     load_data_section();
+    load_bss_section();
 
     // SWJ-DP에 대한 DIO 설정
     Sys_DIO_CM3JTAGConfig(true, false);
@@ -236,13 +307,15 @@ int main(void)
     Sys_NVIC_ClearAllPendingInt();
     __set_PRIMASK(PRIMASK_ENABLE_INTERRUPTS);
 
+    SEGGER_RTT_Init();  // 버퍼링 이슈가 있을까 싶어서 초기화를 수행한다.
+
     // AES128 암호화, 복호화 테스트 함수
     // aes128_test();
 
     // AES128 암호화/복호화 키 정보 초기화 (NOTE: 현재 예제 키를 사용하므로, 올바른 키를 생성하여 적용해야함)
     ci_aes_init();
 
-    ci_printi("[INFO] MODEL : SULLIVAN 1.5 \r\n");
+    ci_printi("[INFO] MODEL : SOUND1 \r\n");
     ci_printi("[INFO] FW    : %u.%u%u (%s) \r\n", firmwareInfo.version[0], firmwareInfo.version[1], firmwareInfo.version[2], firmwareInfo.buildData);
 
     while (1)
@@ -250,6 +323,61 @@ int main(void)
         func_normal();
         func_sleep();
     }
+}
+
+bool proc_touch(int state_now);
+
+bool iqs323_proc(void)
+{
+    static bool is_touch_printed = false;
+
+    static char *print_states[4] = {
+        "    RESET",  // 0
+        "    TOUCH",  // 1
+        "NOT TOUCH",  // 2
+        "ATI ERROR"   // 3
+    };
+
+    int last_touch_state;
+    int curr_touch_state;
+
+    int last_tick;
+    int curr_tick;
+
+    last_touch_state = iqs323_get_state();
+
+    last_tick = iqs323_get_tick();
+    // curr_tick = OTE_1_5_gen_TIMER_get_tick();
+    curr_tick = ci_timer_get_tick();
+
+    // 100ms 마다 확인
+    if (100 <= (curr_tick - last_tick))
+    {
+        iqs323_update_tick(curr_tick);
+
+        // 터치 상태 읽기
+        if (iqs323_get_touch_state(&curr_touch_state))
+        {
+            if (last_touch_state != curr_touch_state)
+            {
+                ci_printf("[TOUCH] STATE UPDATE : %s -> %s \r\n",  //
+                          print_states[last_touch_state],
+                          print_states[curr_touch_state]);
+
+                iqs323_update_state(curr_touch_state);
+            }
+        }
+
+        // 읽어온 터치 상태로 롱터치 검증
+        if (proc_touch(curr_touch_state))
+        {
+            // long touch
+            ci_printf("\r\n[TOUCH] LONG TOUCH STATE! \r\n");
+            return true;
+        }
+    }
+
+    return false;
 }
 
 int func_normal(void)
@@ -310,13 +438,45 @@ int func_normal(void)
         {
             mcuErrorCode = readErrorCode();
 
-            usbConnectorState = readUsbConnectorState();
+            // usbConnectorState = readUsbConnectorState();
+            usbConnectorState = snd_charger_get_state();
 
             ledPattern = geteLED_OutputPattern();
 
-            batteryLevel = updateBatteryLevel(usbConnectorState.chargerConnectorPluggedIn, ledPattern);
+            // batteryLevel      = updateBatteryLevel(usbConnectorState.chargerConnectorPluggedIn, ledPattern);
+            // powerButtonPushed = isPowerButtonPushed();
 
-            powerButtonPushed = isPowerButtonPushed();
+            batteryLevel      = snd_batt_get_level();  // 직접 측정하지 않고, QCC에서 배터리 정보 받으면 업데이트 됨
+            powerButtonPushed = iqs323_proc();         // NOTE: 터치 센서 처리하는 코드가, 드라이버 말고 main.c에 있음
+
+#if 1  // QCC 대체용 디버깅 코드 시작, 약 500밀리초 이후 시스템 동작
+            {
+                static int fake_0x34      = 0;
+                static int fake_0x34_done = 0;
+
+                if (fake_0x34_done == 0)
+                {
+                    if (fake_0x34 == 0)
+                    {
+                        fake_0x34 = ci_timer_get_tick();
+                    }
+
+                    if (500 < (ci_timer_get_tick() - fake_0x34))
+                    {
+                        fake_0x34_done = 1;
+                        ci_printw("[FAKE_0x34] UPDATE FAKE BATT LEVEL, FAKE CHARGER STATE \r\n");
+                        snd_batt_set_percent(90);
+                        snd_batt_set_state(EN__SND_BATT_STATE_DISCHARGING);
+                        snd_charger_set_state(EN__SND_CHARGER_STATE_DISCONNECTED);
+                    }
+                }
+            }
+#endif  // QCC 대체용 디버깅 코드 끝
+
+            // NOTE: QCC에게 0x34(Power info) 프로토콜 수신 전까지는
+            //       usbConnectorState.chargerConnectorPluggedIn == df_Default; 상태이다.
+            //       df_Default 상태일 때는 아래의 systemControl() 에서
+            //       systemStatus.Led_Pattern = en__LED_NA; 외에는 동작하는게 없다.
 
             systemState = systemControl(ledPattern,  // 최초 부팅 시 초기 값 : en__LED_NA
                                         mcuErrorCode,
@@ -358,7 +518,7 @@ int func_normal(void)
             {
                 changeSystemModeFlag(en__normalMode);
                 shareMappingProgramConnection(false);
-                updateEarPieceStatus();
+                // updateEarPieceStatus();
             }
 
 #if 1  // LED가 어떤 패턴으로 업데이트 되는지 디버깅하는 용도

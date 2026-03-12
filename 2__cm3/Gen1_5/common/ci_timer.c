@@ -119,14 +119,7 @@ void ci_timer_update_reference_time(CI_TIMER_TIME_T *p_time, uint32_t count_init
 
     _ci_timer_update_flag = true;
 
-    ci_printv("[TIMER] UPDATE REFERENCE TIME {%02d-%02d-%02d-%02d-%02d-%02d} INIT VALUE {%d} \r\n",
-              _ci_timer_reference_time.year,
-              _ci_timer_reference_time.month,
-              _ci_timer_reference_time.day,
-              _ci_timer_reference_time.hour,
-              _ci_timer_reference_time.min,
-              _ci_timer_reference_time.sec,
-              _ci_timer_count_init_value);
+    ci_printv("[TIMER] UPDATE REFERENCE TIME {%02d-%02d-%02d-%02d-%02d-%02d} INIT VALUE {%d} \r\n", _ci_timer_reference_time.year, _ci_timer_reference_time.month, _ci_timer_reference_time.day, _ci_timer_reference_time.hour, _ci_timer_reference_time.min, _ci_timer_reference_time.sec, _ci_timer_count_init_value);
 }
 
 void ci_timer_increase_tick(void)
@@ -154,7 +147,7 @@ int ci_timer_init(uint32_t tick)
     NVIC_ClearPendingIRQ(OTE_1_5_GEN_TIMER_IRQn);
     NVIC_EnableIRQ(OTE_1_5_GEN_TIMER_IRQn);
 
-    Sys_DIO_Config(DIO19, (DIO_1X_DRIVE | DIO_LPF_DISABLE | DIO_NO_PULL | DIO_MODE_GPIO_OUT));
+    // Sys_DIO_Config(DIO19, (DIO_1X_DRIVE | DIO_LPF_DISABLE | DIO_NO_PULL | DIO_MODE_GPIO_OUT));
 
     Sys_Timer_Config(OTE_1_5_GEN_TIMER_INSTANCE, TIMER_PRESCALE_1, TIMER_FREE_RUN, tick);
     Sys_Timer_Start(OTE_1_5_GEN_TIMER_INSTANCE);

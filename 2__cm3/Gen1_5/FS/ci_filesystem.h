@@ -30,11 +30,15 @@
 // Pointer to the null-terminated string that specifies the logical drive.
 // The string without drive number means the default drive.
 // #define CI_FILESYSTEM_LOGICAL_DRIVE_NUM "0:"  // Default drive.
-#define CI_FILESYSTEM_LOGICAL_DRIVE_NUM "1:"  // Default drive.
+#define CI_FILESYSTEM_LOGICAL_DRIVE_NUM                 "1:"  // Default drive.
+#define CI_FILESYSTEM_LOGICAL_DRIVE_NUM_FOR_BOOT_STATUS "0:"  // Default drive.
+
+#define SND_FATFS_LDRV_NUM_BOOT      0
+#define SND_FATFS_LDRV_NUM_USER_DATA 1
 
 // 0: Do not mount now (to be mounted on the first access to the volume),
 // 1: Force mounted the volume to check if it is ready to work.
-#define CI_FILESYSTEM_MOUNT_OPTION 1
+#define SND_FATFS_MOUNT_OPTION 1
 
 // FS의 FFT PASS BIN 베이스 주소
 #define CI_FILESYSTEM_BASE_ADDR_FFT_PASS_BIN DSP_PRAM4_REMAP_BASE
@@ -105,36 +109,37 @@ typedef struct
 //
 // extern system variables
 //
-extern CI_FILESYSTEM_FFT_PASS_BIN_T* g_ci_filesystem_ptr_pass_bin;
-extern CI_FILESYSTEM_ENTIRE_MAP_T*   g_ci_filesystem_ptr_entire_map;
-extern FATFS                         g_ci_filesystem_mount;
-extern FIL                           g_ci_filesystem_ohdl;
+extern CI_FILESYSTEM_FFT_PASS_BIN_T *g_ci_filesystem_ptr_pass_bin;
+extern CI_FILESYSTEM_ENTIRE_MAP_T   *g_ci_filesystem_ptr_entire_map;
+extern FATFS                         g_snd_fatfs_mount;
+extern FIL                           g_snd_fatfs_ohdl;
 
 //
 // function headers
 //
-const NVMCTRL_Options_t* ci_filesystem_get_nvmctrl_option(void);
+
+FIL *ci_filesystem_get_fp(void);
+
+const NVMCTRL_Options_t *ci_filesystem_get_nvmctrl_option(void);
 
 int ci_filesystem_nvm_init(void);
 int ci_filesystem_nvm_reinit(void);
 
+int snd_fatfs_init_mem_map(void);
+int snd_fatfs_remount(int ldrv);
+int snd_fatfs_mount(int ldrv);
+int snd_fatfs_unmount(void);
+
 int ci_filesystem_remount(void);
 int ci_filesystem_mount(void);
 
-int ci_filesystem_read_with_crc_and_aes128(char*     p_name,
-                                           uint8_t*  p_data,
-                                           int       data_size,
-                                           uint32_t* p_uint32_crc,
-                                           uint32_t* p_uint32_aes128_padding,
-                                           int       aes128_padding_size,
-                                           bool      enable_crc,
-                                           bool      enable_aes);
+int ci_filesystem_read_with_crc_and_aes128(char *p_name, uint8_t *p_data, int data_size, uint32_t *p_uint32_crc, uint32_t *p_uint32_aes128_padding, int aes128_padding_size, bool enable_crc, bool enable_aes);
 
-int ci_filesystem_write_with_crc_and_aes128(char*     p_name,
-                                            uint8_t*  p_data,                   // 평문 데이터(data_size)
+int ci_filesystem_write_with_crc_and_aes128(char     *p_name,
+                                            uint8_t  *p_data,                   // 평문 데이터(data_size)
                                             int       data_size,                // 예: 132
-                                            uint32_t* p_uint32_crc,             // 4B (하위 16비트만 유효)
-                                            uint32_t* p_uint32_aes128_padding,  // 패딩 버퍼(쓰기 전용, 0 채움 권장)
+                                            uint32_t *p_uint32_crc,             // 4B (하위 16비트만 유효)
+                                            uint32_t *p_uint32_aes128_padding,  // 패딩 버퍼(쓰기 전용, 0 채움 권장)
                                             int       aes128_padding_size,      // 예: 8  (remain+4+pad==16 충족)
                                             bool      enable_crc,
                                             bool      enable_aes);

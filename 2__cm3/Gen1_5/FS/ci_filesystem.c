@@ -9,8 +9,8 @@
 CI_FILESYSTEM_FFT_PASS_BIN_T *g_ci_filesystem_ptr_pass_bin;
 CI_FILESYSTEM_ENTIRE_MAP_T   *g_ci_filesystem_ptr_entire_map;
 
-FATFS g_ci_filesystem_mount;
-FIL   g_ci_filesystem_ohdl;
+FATFS g_snd_fatfs_mount;
+FIL   g_snd_fatfs_ohdl;
 
 static const NVMCTRL_Options_t s_nvmctrl_option = {
     .config   = SPI_DEFAULT_CFG,
@@ -23,6 +23,11 @@ static const NVMCTRL_Options_t s_nvmctrl_option = {
     .io2      = 5,
     .io3      = 4,
 };
+
+FIL *ci_filesystem_get_fp(void)
+{
+    return &g_snd_fatfs_ohdl;
+}
 
 const NVMCTRL_Options_t *ci_filesystem_get_nvmctrl_option(void)
 {
@@ -55,8 +60,87 @@ int ci_filesystem_nvm_reinit(void)
     return df_True;
 }
 
+int snd_fatfs_init_mem_map(void)
+{
+    g_ci_filesystem_ptr_pass_bin   = (CI_FILESYSTEM_FFT_PASS_BIN_T *) CI_FILESYSTEM_BASE_ADDR_FFT_PASS_BIN;
+    g_ci_filesystem_ptr_entire_map = (CI_FILESYSTEM_ENTIRE_MAP_T *) CI_FILESYSTEM_BASE_ADDR_ENTIRE_MAP;
+
+    return df_True;
+}
+
+int snd_fatfs_remount(int ldrv)
+{
+    if (snd_fatfs_unmount())
+    {
+        return snd_fatfs_mount(ldrv);
+    }
+
+    return df_False;
+}
+
+int snd_fatfs_mount(int ldrv)
+{
+    FRESULT fr;
+    char    path[3];
+
+    path[0] = '0' + ldrv;
+    path[1] = ':';
+    path[2] = '\0';
+
+    fr = f_mount(&g_snd_fatfs_mount, path, SND_FATFS_MOUNT_OPTION);
+    SYS_WATCHDOG_REFRESH();
+
+    if (fr != FR_OK)
+    {
+        ci_printe("[FATFS] MOUNT FAILED, DRIVE : '%s' \r\n", path);
+        return df_False;
+    }
+
+    fr = f_chdrive(path);
+    SYS_WATCHDOG_REFRESH();
+
+    if (fr != FR_OK)
+    {
+        ci_printe("[FATFS] CHANGE DRIVE FAILED, DRIVE : '%s' \r\n", path);
+        return df_False;
+    }
+
+    return df_True;
+}
+
+int snd_fatfs_unmount(void)
+{
+    FRESULT fr;
+    char    path[3];
+
+    // 현재 마운트 된 드라이브를 해제한다.
+
+    // 마운트 된 상태 아니면 즉시 True로 종료 (0: not mounted)
+    if (g_snd_fatfs_mount.fs_type == 0)
+    {
+        return df_True;
+    }
+
+    // Logical 드라이브 번호 확인 후, 드라이브 unmount
+    path[0] = '0' + g_snd_fatfs_mount.ldrv;
+    path[1] = ':';
+    path[2] = '\0';
+
+    fr = f_unmount(path);
+    SYS_WATCHDOG_REFRESH();
+
+    if (fr != FR_OK)
+    {
+        ci_printe("[FATFS] UMOUNT FAILED, DRIVE : '%s' \r\n", path);
+        return df_False;
+    }
+
+    return df_True;
+}
+
 int ci_filesystem_remount(void)
 {
+#if 0
     int ret;
 
     ret = f_unmount(CI_FILESYSTEM_LOGICAL_DRIVE_NUM);
@@ -66,7 +150,9 @@ int ci_filesystem_remount(void)
         ci_printe("[FS] FAILED TO UNMOUNT DRIVE ('%s') \r\n", CI_FILESYSTEM_LOGICAL_DRIVE_NUM);
         return df_False;
     }
-
+#else
+    snd_fatfs_unmount();
+#endif
     return ci_filesystem_mount();
 }
 
@@ -74,7 +160,7 @@ int ci_filesystem_mount(void)
 {
     int ret;
 
-    ret = f_mount(&g_ci_filesystem_mount, CI_FILESYSTEM_LOGICAL_DRIVE_NUM, CI_FILESYSTEM_MOUNT_OPTION);
+    ret = f_mount(&g_snd_fatfs_mount, CI_FILESYSTEM_LOGICAL_DRIVE_NUM, SND_FATFS_MOUNT_OPTION);
 
     if (ret != FR_OK)
     {
@@ -109,27 +195,27 @@ int ci_filesystem_read_with_crc_and_aes128(char *p_name, uint8_t *p_data, int da
     uint8_t *p_uint8_aes128_padding = (uint8_t *) p_uint32_aes128_padding;
 
     // ---- 파일 열기 (읽기 전용) ----
-    fr = f_open(&g_ci_filesystem_ohdl, p_name, FA_OPEN_EXISTING | FA_READ);
+    fr = f_open(&g_snd_fatfs_ohdl, p_name, FA_OPEN_EXISTING | FA_READ);
     if (fr != FR_OK)
     {
         ci_printe("[FS] OPEN FAIL '%s' (FRESULT=%d)\r\n", p_name, fr);
         return ret;
     }
 
-    fr = f_lseek(&g_ci_filesystem_ohdl, 0);
+    fr = f_lseek(&g_snd_fatfs_ohdl, 0);
     if (fr != FR_OK)
     {
         ci_printe("[FS] LSEEK FAIL '%s' (FRESULT=%d)\r\n", p_name, fr);
-        f_close(&g_ci_filesystem_ohdl);
+        f_close(&g_snd_fatfs_ohdl);
         return ret;
     }
 
     // ---- 파일 읽기 ----
-    fr = f_read(&g_ci_filesystem_ohdl, p_data, data_size, &br);
+    fr = f_read(&g_snd_fatfs_ohdl, p_data, data_size, &br);
     if (fr != FR_OK || (int) br != data_size)
     {
         ci_printe("[FS] READ DATA FAIL '%s' (res=%d, got=%u)\r\n", p_name, fr, br);
-        f_close(&g_ci_filesystem_ohdl);
+        f_close(&g_snd_fatfs_ohdl);
         return ret;
     }
 
@@ -137,11 +223,11 @@ int ci_filesystem_read_with_crc_and_aes128(char *p_name, uint8_t *p_data, int da
     if (enable_crc)
     {
         // ---- CRC 암호문 4바이트 읽기 ----
-        fr = f_read(&g_ci_filesystem_ohdl, p_uint32_crc, 4, &br);
+        fr = f_read(&g_snd_fatfs_ohdl, p_uint32_crc, 4, &br);
         if (fr != FR_OK || br != 4)
         {
             ci_printe("[FS] READ CRC FAIL '%s' (res=%d, got=%u)\r\n", p_name, fr, br);
-            f_close(&g_ci_filesystem_ohdl);
+            f_close(&g_snd_fatfs_ohdl);
             return ret;
         }
     }
@@ -157,11 +243,11 @@ int ci_filesystem_read_with_crc_and_aes128(char *p_name, uint8_t *p_data, int da
         // ---- 패딩 암호문 읽기 (0일 수도 있음) ----
         if (aes128_padding_size > 0)
         {
-            fr = f_read(&g_ci_filesystem_ohdl, p_uint32_aes128_padding, aes128_padding_size, &br);
+            fr = f_read(&g_snd_fatfs_ohdl, p_uint32_aes128_padding, aes128_padding_size, &br);
             if (fr != FR_OK || (int) br != aes128_padding_size)
             {
                 ci_printe("[FS] READ PAD FAIL '%s' (res=%d, got=%u)\r\n", p_name, fr, br);
-                f_close(&g_ci_filesystem_ohdl);
+                f_close(&g_snd_fatfs_ohdl);
                 return ret;
             }
         }
@@ -257,7 +343,7 @@ int ci_filesystem_read_with_crc_and_aes128(char *p_name, uint8_t *p_data, int da
         if (last_block_tail <= 0 || last_block_tail > 16)
         {
             ci_printe("[FS] INVALID TAIL (%d) remain=%d pad=%d\r\n", last_block_tail, remain, aes128_padding_size);
-            f_close(&g_ci_filesystem_ohdl);
+            f_close(&g_snd_fatfs_ohdl);
             return ret;
         }
 
@@ -304,7 +390,7 @@ int ci_filesystem_read_with_crc_and_aes128(char *p_name, uint8_t *p_data, int da
 
         ci_printv("[FS] '%s' CRC FILE=%u CALC=%u\r\n", p_name, (unsigned) crc_file, (unsigned) crc_calc);
 
-        f_close(&g_ci_filesystem_ohdl);
+        f_close(&g_snd_fatfs_ohdl);
 
 #if 0
         {
@@ -499,15 +585,15 @@ int ci_filesystem_write_with_crc_and_aes128(char     *p_name,
 
     // 파일 열기(덮어쓰기)
     // FRESULT fr = f_open(&g_ci_filesystem_ohdl, p_name, FA_CREATE_ALWAYS | FA_WRITE);
-    FRESULT fr = f_open(&g_ci_filesystem_ohdl, p_name, FA_OPEN_ALWAYS | FA_WRITE);
+    FRESULT fr = f_open(&g_snd_fatfs_ohdl, p_name, FA_OPEN_ALWAYS | FA_WRITE);
     if (fr != FR_OK)
     {
         ci_printe("[FS] OPEN FAIL '%s' (FRESULT=%d)\r\n", p_name, fr);
         return ret;
     }
 
-    f_lseek(&g_ci_filesystem_ohdl, 4096);  // FATFS에게 4KB로 고정된 파일을 생성할 수 있게 의도적으로 파일 포지션을 4096으로 설정
-    f_lseek(&g_ci_filesystem_ohdl, 0);
+    f_lseek(&g_snd_fatfs_ohdl, 4096);  // FATFS에게 4KB로 고정된 파일을 생성할 수 있게 의도적으로 파일 포지션을 4096으로 설정
+    f_lseek(&g_snd_fatfs_ohdl, 0);
     ci_printv("[FS] PERFORMED : FILE (%s) LSEEK --> 4096 --> 0 \r\n", p_name);
 
     UINT bw = 0;
@@ -537,11 +623,11 @@ int ci_filesystem_write_with_crc_and_aes128(char     *p_name,
 #endif
         }
 
-        fr = f_write(&g_ci_filesystem_ohdl, blk, 16, &bw);
+        fr = f_write(&g_snd_fatfs_ohdl, blk, 16, &bw);
         if (fr != FR_OK || bw != 16)
         {
             ci_printe("[FS] WRITE DATA BLOCK FAIL '%s' (res=%d, wrote=%u)\r\n", p_name, fr, bw);
-            f_close(&g_ci_filesystem_ohdl);
+            f_close(&g_snd_fatfs_ohdl);
             return ret;
         }
 
@@ -589,39 +675,39 @@ int ci_filesystem_write_with_crc_and_aes128(char     *p_name,
         //  - 먼저 data의 남은 부분(remain) 만큼을 data영역의 연속으로 기록
         if (remain > 0)
         {
-            fr = f_write(&g_ci_filesystem_ohdl, last_cipher, (UINT) remain, &bw);
+            fr = f_write(&g_snd_fatfs_ohdl, last_cipher, (UINT) remain, &bw);
             if (fr != FR_OK || (int) bw != remain)
             {
                 ci_printe("[FS] WRITE DATA TAIL FAIL '%s' (res=%d, wrote=%u)\r\n", p_name, fr, bw);
-                f_close(&g_ci_filesystem_ohdl);
+                f_close(&g_snd_fatfs_ohdl);
                 return ret;
             }
         }
 
         //  - 다음 4바이트는 CRC 영역에 해당
-        fr = f_write(&g_ci_filesystem_ohdl, last_cipher + remain, 4, &bw);
+        fr = f_write(&g_snd_fatfs_ohdl, last_cipher + remain, 4, &bw);
         if (fr != FR_OK || bw != 4)
         {
             ci_printe("[FS] WRITE CRC FAIL '%s' (res=%d, wrote=%u)\r\n", p_name, fr, bw);
-            f_close(&g_ci_filesystem_ohdl);
+            f_close(&g_snd_fatfs_ohdl);
             return ret;
         }
 
         //  - 마지막 aes128_padding_size 바이트는 패딩 영역
         if (aes128_padding_size > 0)
         {
-            fr = f_write(&g_ci_filesystem_ohdl, last_cipher + remain + 4, (UINT) aes128_padding_size, &bw);
+            fr = f_write(&g_snd_fatfs_ohdl, last_cipher + remain + 4, (UINT) aes128_padding_size, &bw);
             if (fr != FR_OK || (int) bw != aes128_padding_size)
             {
                 ci_printe("[FS] WRITE PAD FAIL '%s' (res=%d, wrote=%u)\r\n", p_name, fr, bw);
-                f_close(&g_ci_filesystem_ohdl);
+                f_close(&g_snd_fatfs_ohdl);
                 return ret;
             }
         }
     }
 
     // 안전을 위한 flush
-    f_sync(&g_ci_filesystem_ohdl);
+    f_sync(&g_snd_fatfs_ohdl);
 
 #if 1
     FILINFO fno;
@@ -631,11 +717,11 @@ int ci_filesystem_write_with_crc_and_aes128(char     *p_name,
         ci_printv("[FS] NAME : %s, TOTAL SIZE : %u BYTES, START CLUSTER : %u \r\n",  //
                   fno.fname,
                   fno.fsize,
-                  g_ci_filesystem_ohdl.obj.sclust);
+                  g_snd_fatfs_ohdl.obj.sclust);
     }
 #endif
 
-    f_close(&g_ci_filesystem_ohdl);
+    f_close(&g_snd_fatfs_ohdl);
 
 #if 0
     {
@@ -711,7 +797,7 @@ int ci_filesystem_read(char *p_name, uint8_t *p_buf, int size)
     int ret;
     int read;
 
-    ret = f_open(&g_ci_filesystem_ohdl, p_name, FA_OPEN_EXISTING | FA_READ | FA_WRITE);
+    ret = f_open(&g_snd_fatfs_ohdl, p_name, FA_OPEN_EXISTING | FA_READ | FA_WRITE);
 
     if (ret != FR_OK)
     {
@@ -721,11 +807,11 @@ int ci_filesystem_read(char *p_name, uint8_t *p_buf, int size)
         return -1;
     }
 
-    f_lseek(&g_ci_filesystem_ohdl, 0);
+    f_lseek(&g_snd_fatfs_ohdl, 0);
 
-    ret = f_read(&g_ci_filesystem_ohdl, p_buf, size, &read);
+    ret = f_read(&g_snd_fatfs_ohdl, p_buf, size, &read);
 
-    f_close(&g_ci_filesystem_ohdl);
+    f_close(&g_snd_fatfs_ohdl);
 
     if (ret != FR_OK)
     {
@@ -751,7 +837,7 @@ int ci_filesystem_write(char *p_name, uint8_t *p_buf, int size)
     int ret;
     int written;
 
-    ret = f_open(&g_ci_filesystem_ohdl, p_name, (FA_OPEN_ALWAYS | FA_READ | FA_WRITE));
+    ret = f_open(&g_snd_fatfs_ohdl, p_name, (FA_OPEN_ALWAYS | FA_READ | FA_WRITE));
 
     if (ret != FR_OK)
     {
@@ -761,14 +847,14 @@ int ci_filesystem_write(char *p_name, uint8_t *p_buf, int size)
         return -1;
     }
 
-    f_lseek(&g_ci_filesystem_ohdl, 4096);  // FATFS에게 4KB로 고정된 파일을 생성할 수 있게 의도적으로 파일 포지션을 4096으로 설정
-    f_lseek(&g_ci_filesystem_ohdl, 0);
+    f_lseek(&g_snd_fatfs_ohdl, 4096);  // FATFS에게 4KB로 고정된 파일을 생성할 수 있게 의도적으로 파일 포지션을 4096으로 설정
+    f_lseek(&g_snd_fatfs_ohdl, 0);
     ci_printv("[FS] PERFORMED : FILE (%s) LSEEK --> 4096 --> 0 \r\n", p_name);
 
-    ret = f_write(&g_ci_filesystem_ohdl, p_buf, size, &written);
+    ret = f_write(&g_snd_fatfs_ohdl, p_buf, size, &written);
 
     // 안전을 위한 flush
-    f_sync(&g_ci_filesystem_ohdl);
+    f_sync(&g_snd_fatfs_ohdl);
 
 #if 1
     FILINFO fno;
@@ -778,11 +864,11 @@ int ci_filesystem_write(char *p_name, uint8_t *p_buf, int size)
         ci_printv("[FS] NAME : %s, TOTAL SIZE : %u BYTES, START CLUSTER : %u \r\n",  //
                   fno.fname,
                   fno.fsize,
-                  g_ci_filesystem_ohdl.obj.sclust);
+                  g_snd_fatfs_ohdl.obj.sclust);
     }
 #endif
 
-    f_close(&g_ci_filesystem_ohdl);
+    f_close(&g_snd_fatfs_ohdl);
 
     if (ret != FR_OK)
     {

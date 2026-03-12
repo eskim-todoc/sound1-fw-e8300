@@ -18,6 +18,8 @@
 #include <ci_uart.h>
 #include <processorDirective.h>
 
+#include <snd1_qcc_control_pins.h>
+
 // DIO list
 
 // CFG for normal mode

@@ -30,12 +30,12 @@ ST__SYSTEM_STATE systemStatus = {en__LED_NA, false, false, false, false, false};
 
 void NRF_Off_Command(void)
 {
-    Sys_GPIO_Set_Low(DIO_NUM_NRF_ON_OFF_COMMAND);
+    // Sys_GPIO_Set_Low(DIO_NUM_NRF_ON_OFF_COMMAND);
 }
 
 void NRF_On_Command(void)
 {
-    Sys_GPIO_Set_High(DIO_NUM_NRF_ON_OFF_COMMAND);
+    // Sys_GPIO_Set_High(DIO_NUM_NRF_ON_OFF_COMMAND);
 }
 
 bool ISD_ConnectionHistory = false;
@@ -95,11 +95,11 @@ void NRF_On_OFF(ST__ISD_STATUS isd_state, bool global_BLE_Off, bool mappingConne
 
     if (BLE_OFF)
     {
-        NRF_Off_Command();
+        // NRF_Off_Command();
     }
     else
     {
-        NRF_On_Command();
+        // NRF_On_Command();
     }
 }
 
@@ -130,7 +130,7 @@ void NRF_adv_powerMode(bool mode)
 // 전역 bool xxxxyyyy=false; ==>.bss
 // 전역 bool xxxxyyyy;    ==>.bss
 
-ST__SYSTEM_STATE systemControl(EN__LED_PATTERN   current_led_pattern,
+ST__SYSTEM_STATE systemControl(EN__LED_PATTERN   current_led_pattern,  //
                                ST__ERROR_CODE    mcuErrorCode,
                                ST__USB_CONNECTOR chargerState,
                                EN__BATTERY_LEVEL batteryLevel,

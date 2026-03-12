@@ -64,8 +64,6 @@ int ci_dio_configure_normal(void)
     // FPGA 활성화 핀
     Sys_DIO_Config(DIO_PIN_INDEX_for_FPGA_SLEEP, DIO_PIN_CFG_FOR_GPIO_OUPUT_NOPULLUP);
     Sys_GPIO_Set_High(DIO_PIN_INDEX_for_FPGA_SLEEP);
-    // __KIM: 테스트 단계이므로 항상 켜놓는 상태로 만듬
-    //      : FPGA_SLEEP 핀의 레벨이 FPGA 내부에서 V_LINK_ON 핀으로 바이패스 출력되도록 설정되었음
 
 #if 0
     Sys_DIO_Config(DIO_PIN_INDEX_for_FPGA_3P3V_ON, DIO_PIN_CFG_FOR_GPIO_OUPUT_NOPULLUP);
@@ -81,67 +79,17 @@ int ci_dio_configure_normal(void)
     Sys_SPI_DIOConfig(SPI1, SPI_SELECT_SLAVE, SPI_DIO_PIN_CFG, NRF_SPI_CLK_PIN, NRF_SPI_CS_PIN, NRF_SPI_MOSI_PIN, NRF_SPI_MISO_PIN);
 
     // SPI 통신 보조핀
-    Sys_DIO_Config(GPIO_PIN_ReadCommandForSPI_Master,
-                   CM3_DIO_PIN_CFG_FOR_GPIO_OUPUT_NOPULLUP);  // nRF 칩에서 풀업 설정함
+    Sys_DIO_Config(GPIO_PIN_ReadCommandForSPI_Master, CM3_DIO_PIN_CFG_FOR_GPIO_OUPUT_NOPULLUP);  // nRF 칩에서 풀업 설정함
+    Sys_GPIO_Set_Low(GPIO_PIN_ReadCommandForSPI_Master);
 
-    // nRF의 BLE On/Off 핀
-    Sys_DIO_Config(DIO_NUM_NRF_ON_OFF_COMMAND, CM3_DIO_PIN_CFG_FOR_GPIO_OUPUT_NOPULLUP);
-    // Sys_GPIO_Set_High(DIO_NUM_NRF_ON_OFF_COMMAND);
-    Sys_GPIO_Set_Low(DIO_NUM_NRF_ON_OFF_COMMAND);
-
-    // nRF의 BLE 광고 전력 모드
-    Sys_DIO_Config(ENABLE_NRF_ADV_LowPower, CM3_DIO_PIN_CFG_FOR_GPIO_OUPUT_NOPULLUP);
-    Sys_GPIO_Set_High(ENABLE_NRF_ADV_LowPower);
-
-    // nRF 리셋핀
-    Sys_DIO_Config(DIO_NUM_NRF_SWDIO_NRESET, DIO_PIN_CFG_FOR_GPIO_OUPUT_NOPULLUP);
-    Sys_GPIO_Set_High(DIO_NUM_NRF_SWDIO_NRESET);  // 초기 값은 High 설정하여 nRF가 리셋되지 않도록 설정
-
-    // Earpiece detection
-    Sys_DIO_Config(DIO_PIN_INDEX_for_EARPIECE_DET_N, OTE_1_5_GEN_DIO_CFG_NORMAL_EARPIECE_DET_N);
-
-    // Power charger detection
-    Sys_DIO_Config(DIO_PIN_INDEX_for_ChargerConnectorPluggedIn, OTE_1_5_GEN_DIO_CFG_NORMAL_CHG_DET_N);
-
-    // Carrying case detection
-    Sys_DIO_Config(DIO_PIN_INDEX_for_CarryingCasePluggedIn, OTE_1_5_GEN_DIO_CFG_NORMAL_CASE_DET);
-
-    // Carrying case cover open detection
-    Sys_DIO_Config(DIO_PIN_INDEX_for_CarryingCaseCoverOpen, OTE_1_5_GEN_DIO_CFG_NORMAL_CASE_OPEN);
-    // Sys_DIO_Config(DIO_PIN_INDEX_for_CarryingCaseCoverOpen, (DIO_1X_DRIVE | DIO_LPF_ENABLE | DIO_60K_PULL_DOWN | DIO_MODE_GPIO_IN));
+    // Power charger detection (앞으로 차저 감지를 사용하지 않음)
+    // Sys_DIO_Config(DIO_PIN_INDEX_for_ChargerConnectorPluggedIn, OTE_1_5_GEN_DIO_CFG_NORMAL_CHG_DET_N);
 
     // Acc-sensor interrupt detection
     Sys_DIO_Config(DIO_PIN_INDEX_for_Accelerometer, OTE_1_5_GEN_DIO_CFG_NORMAL_ACCEL_INT);
 
-    // Configure DIO interrupt for acc-sensor
-#if 1  // Sullivan 1.5
-    Sys_DIO_IntConfig(0, (DIO_INT_SRC_DIO_34 | DIO_INT_DEBOUNCE_DISABLE | DIO_INT_EVENT_FALLING_EDGE), DIO_DEBOUNCE_SLOWCLK_DIV32, 0);
-
-    // Configure DIO interrupt for carrying case cover open detection
-    // CASE_OPEN_n 핀이 25.09.30일 잠수함 패치 회로에서 DIO28에서 DIO27로 변경됨
-    // 커버 닫히면 Low, 열리면 High 신호가 들어오므로 Rising edge를 감지하도록 한다.
-    Sys_DIO_IntConfig(1, (DIO_INT_SRC_DIO_27 | DIO_INT_DEBOUNCE_DISABLE | DIO_INT_EVENT_RISING_EDGE), DIO_DEBOUNCE_SLOWCLK_DIV32, 0);
-    // Sys_DIO_IntConfig(1, (DIO_INT_SRC_DIO_27 | DIO_INT_DEBOUNCE_DISABLE | DIO_INT_EVENT_FALLING_EDGE), DIO_DEBOUNCE_SLOWCLK_DIV32, 0);
-#else  // Sound1 Test
-    // acc sensor
-    Sys_DIO_IntConfig(0, (DIO_INT_SRC_DIO_19 | DIO_INT_DEBOUNCE_DISABLE | DIO_INT_EVENT_FALLING_EDGE), DIO_DEBOUNCE_SLOWCLK_DIV32, 0);
-#endif
-
-    NVIC_ClearPendingIRQ(DIO_0_IRQn);
-    NVIC_ClearPendingIRQ(DIO_1_IRQn);
-
-    NVIC_DisableIRQ(DIO_0_IRQn);
-    NVIC_DisableIRQ(DIO_1_IRQn);
-
-#if 1  // CM3 디버깅 용도의 DIO 설정 (TDI_E8300 사용)
-    Sys_DIO_Config(DIO32, (DIO_1X_DRIVE | DIO_LPF_DISABLE | DIO_NO_PULL | DIO_MODE_GPIO_OUT));
-    Sys_GPIO_Set_Low(DIO32);
-#endif
-
-#if 1  // CFX 디버깅 용도의 DIO 설정 (CALIBRATION 사용)
-    Sys_GPIO_Set_High(DIO19);
-    Sys_DIO_Config(DIO19, (DIO_1X_DRIVE | DIO_LPF_DISABLE | DIO_NO_PULL | DIO_MODE_GPIO_OUT));
-#endif
+    // QCC 제어 핀 설정
+    snd1_qcc_init_control_pins();
 
     return df_True;
 }

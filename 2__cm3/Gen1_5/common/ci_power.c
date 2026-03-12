@@ -26,7 +26,7 @@ int ci_power_normal(void)
     int ret;
     int br;
 
-    ret = f_open(&g_ci_filesystem_ohdl, "/MANUF_TABLE", FA_OPEN_EXISTING | FA_READ);
+    ret = f_open(&g_snd_fatfs_ohdl, "/MANUF_TABLE", FA_OPEN_EXISTING | FA_READ);
 
     if (ret != FR_OK)
     {
@@ -34,9 +34,9 @@ int ci_power_normal(void)
         return df_False;
     }
 
-    f_lseek(&g_ci_filesystem_ohdl, 0);
+    f_lseek(&g_snd_fatfs_ohdl, 0);
 
-    ret = f_read(&g_ci_filesystem_ohdl, s_manu_table, MANU_TABLE_SIZE_OCTETS, &br);
+    ret = f_read(&g_snd_fatfs_ohdl, s_manu_table, MANU_TABLE_SIZE_OCTETS, &br);
 
     if (ret != FR_OK)
     {
@@ -44,7 +44,7 @@ int ci_power_normal(void)
         return df_False;
     }
 
-    f_close(&g_ci_filesystem_ohdl);
+    f_close(&g_snd_fatfs_ohdl);
 
     if (MANU_TABLE_SIZE_OCTETS != br)
     {

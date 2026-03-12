@@ -152,8 +152,6 @@ void init_FPGA(bool isdControlStateChagedFlag)
             reset_Fpga_variable();
             changePcmOutputMode(PcmBitStream_Mode_FillZero);
             change_i2c_is_free();
-
-            ci_printv("[FPGA] RESET FPGA REGISTER VARIABLES \r\n");
         }
         break;
 

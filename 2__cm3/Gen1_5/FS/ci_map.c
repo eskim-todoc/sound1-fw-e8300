@@ -68,6 +68,7 @@ int ci_map_write_isd_info(int isd_num)
     static char name[CI_MAP_FILE_NAME_LEN_ISD_INFO] = CI_MAP_FILE_INIT_NAME_ISD_INFO;
     name[CI_MAP_FILE_INDEX_ISD_NUM]                 = (char) ('0' + isd_num);
 
+    ci_printd("[MAP] TRY WRITING, FILE : '%s' \r\n", name);
 #if 1
     return ci_filesystem_write_with_crc_and_aes128(
         name, (uint8_t *) &g_ci_filesystem_ptr_entire_map->map[isd_num - 1].isd_info, sizeof(ST__CFX_CM3_SharedMemory_ISD_info), &g_ci_filesystem_ptr_entire_map->map[isd_num - 1].isd_info_crc_ccitt, g_ci_filesystem_ptr_entire_map->map[isd_num - 1].isd_info_aes128_padding, 8, true, true);
@@ -82,6 +83,8 @@ int ci_map_write_user_setting_value(int isd_num)
     static char name[CI_MAP_FILE_NAME_LEN_USER_SETTING_VALUE] = CI_MAP_FILE_INIT_NAME_USER_SETTING_VALUE;
     name[CI_MAP_FILE_INDEX_ISD_NUM]                           = (char) ('0' + isd_num);
 
+    ci_printd("[MAP] TRY WRITING, FILE : '%s' \r\n", name);
+
 #if 1
     return ci_filesystem_write_with_crc_and_aes128(name, (uint8_t *) &g_ci_filesystem_ptr_entire_map->map[isd_num - 1].user_setting_value, sizeof(ST__CFX_CM3_SharedMemory_userSettingValue), &g_ci_filesystem_ptr_entire_map->map[isd_num - 1].user_setting_value_crc_ccitt, NULL, 0, true, false);
 #else
@@ -94,6 +97,8 @@ int ci_map_write_map_stamp(int isd_num)
     int         ret;
     static char name[CI_MAP_FILE_NAME_LEN_MAP_STAMP] = CI_MAP_FILE_INIT_NAME_MAP_STAMP;
     name[CI_MAP_FILE_INDEX_ISD_NUM]                  = (char) ('0' + isd_num);
+
+    ci_printd("[MAP] TRY WRITING, FILE : '%s' \r\n", name);
 
 #if 1
     return ci_filesystem_write_with_crc_and_aes128(name, (uint8_t *) &g_ci_filesystem_ptr_entire_map->map[isd_num - 1].map_stamp, sizeof(ST__MAPPING_DATE), &g_ci_filesystem_ptr_entire_map->map[isd_num - 1].map_stamp_crc_ccitt, g_ci_filesystem_ptr_entire_map->map[isd_num - 1].map_stamp_aes128_padding, 4, true, false);
@@ -108,6 +113,8 @@ int ci_map_write_map_data(int isd_num, int map_num)
     static char name[CI_MAP_FILE_NAME_LEN_MAP_DATA] = CI_MAP_FILE_INIT_NAME_MAP_DATA;
     name[CI_MAP_FILE_INDEX_ISD_NUM]                 = (char) ('0' + isd_num);
     name[CI_MAP_FILE_INDEX_MAP_NUM]                 = (char) ('0' + map_num);
+
+    ci_printd("[MAP] TRY WRITING, FILE : '%s' \r\n", name);
 
 #if 1
     return ci_filesystem_write_with_crc_and_aes128(name,
@@ -390,6 +397,7 @@ int ci_map_init_map_data(int isd_num, bool force_init)
         p_info->remocon_passkey[2] = '1';  // remocon passkey 3
         p_info->remocon_passkey[3] = '1';  // remocon passkey 4
 
+        //ci_printd("[MAP] BEFORE WRITE ISD INFO \r\n");
         ci_map_write_isd_info(isd_num);
         ci_printd("[MAP] ISD '%d' HAS BEEN INIT \r\n", isd_num);
     }

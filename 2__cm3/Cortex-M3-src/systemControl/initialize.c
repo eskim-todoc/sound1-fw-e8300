@@ -51,6 +51,7 @@
 #include "processorDirective.h"
 
 #include <driver_MAX17262.h>
+#include <driver_IQS323.h>
 
 #include <ci_dio.h>
 #include <ci_power.h>
@@ -64,24 +65,25 @@
 #include <ci_battery.h>
 #include <ci_power.h>
 #include <ci_printf.h>
+#include <ci_boot.h>
 
 void ResetNRF(void)
 {
-    Sys_GPIO_Set_High(DIO_NUM_NRF_SWDIO_NRESET);
+    // Sys_GPIO_Set_High(DIO_NUM_NRF_SWDIO_NRESET);
 
     for (volatile int i = 0; i < 200; i++)
     {
         __NOP();
     }
 
-    Sys_GPIO_Set_Low(DIO_NUM_NRF_SWDIO_NRESET);
+    // Sys_GPIO_Set_Low(DIO_NUM_NRF_SWDIO_NRESET);
 
     for (volatile int i = 0; i < 200; i++)
     {
         __NOP();
     }
 
-    Sys_GPIO_Set_High(DIO_NUM_NRF_SWDIO_NRESET);
+    // Sys_GPIO_Set_High(DIO_NUM_NRF_SWDIO_NRESET);
 }
 
 void reset_interrupt_Disable_PRIMASK(void)
@@ -230,6 +232,171 @@ void error_blink(void)
     }
 }
 
+bool proc_touch(int state_now)
+{
+    static int  _state_old = IQS323_TOUCH_STATE_RESET;
+    static int  _tick_first_touch;
+    static bool _is_long_touch = false;
+    int         tick_current;
+    bool        ret = false;
+
+    switch (_state_old)
+    {
+        // RESET -> TOUCH
+        // RESET -> NOT TOUCH
+        // RESET -> ATI ERROR
+        case IQS323_TOUCH_STATE_RESET:
+        {
+            if (state_now == IQS323_TOUCH_STATE_TOUCH)
+            {
+                _tick_first_touch = ci_timer_get_tick();
+            }
+            else if (state_now == IQS323_TOUCH_STATE_NOT_TOUCH)
+            {
+            }
+            else if (state_now == IQS323_TOUCH_STATE_ATI_ERROR)
+            {
+            }
+        }
+        break;
+
+        // TOUCH -> TOUCH (LONG TOUCH CHECK)
+        // TOUCH -> NOT TOUCH
+        // TOUCH -> ATI ERROR
+        case IQS323_TOUCH_STATE_TOUCH:
+        {
+            if (state_now == IQS323_TOUCH_STATE_TOUCH)
+            {
+                tick_current = ci_timer_get_tick();
+
+                if (3000 <= (tick_current - _tick_first_touch))
+                {
+                    if (_is_long_touch == false)
+                    {
+                        _is_long_touch = true;
+                        ret            = true;
+                    }
+                }
+            }
+            else if (state_now == IQS323_TOUCH_STATE_NOT_TOUCH)
+            {
+                _is_long_touch = false;
+            }
+            else if (state_now == IQS323_TOUCH_STATE_ATI_ERROR)
+            {
+            }
+        }
+        break;
+
+        // NOT TOUCH -> TOUCH
+        // NOT TOUCH -> ATI ERROR
+        case IQS323_TOUCH_STATE_NOT_TOUCH:
+        {
+            if (state_now == IQS323_TOUCH_STATE_TOUCH)
+            {
+                _tick_first_touch = ci_timer_get_tick();
+            }
+            else if (state_now == IQS323_TOUCH_STATE_ATI_ERROR)
+            {
+            }
+        }
+        break;
+
+        // ATI ERROR -> RESET
+        // ATI ERROR -> TOUCH
+        // ATI ERROR -> NOT TOUCH
+        case IQS323_TOUCH_STATE_ATI_ERROR:
+        {
+            if (state_now == IQS323_TOUCH_STATE_RESET)
+            {
+            }
+            else if (state_now == IQS323_TOUCH_STATE_TOUCH)
+            {
+            }
+            else if (state_now == IQS323_TOUCH_STATE_NOT_TOUCH)
+            {
+            }
+        }
+        break;
+
+        default:
+            break;
+    }
+
+    _state_old = state_now;  // 현재 상태로 업데이트
+
+    return ret;
+}
+
+void iqs323_init(void)
+{
+    int touch_state;
+
+    touch_state = 0;
+
+    ci_printf("\r\n\n");
+
+    ci_timer_init(19); /* Make around 1msec timer */
+
+    SYS_WATCHDOG_REFRESH();
+
+    // 1) reset event clear + i2c mode setting
+    // iqs323_ack_reset_event_and_i2c_event_mode_setting();
+
+    ci_printf("\r\n\n[TOUCH] ACK RESET EVENT // \r\n");
+    iqs323_ack_reset_event();
+
+    ci_printf("\r\n\n[TOUCH] CONFIRM RESET EVENT // \r\n");
+    iqs323_confirm_reset_event();
+
+    // 2) i2c stop bit disable
+    // iqs323_i2c_stop_bit_disable_setting();
+
+    // 3) evnets enable
+    ci_printf("\r\n\n[TOUCH] EVENTS ENABLE // \r\n");
+    iqs323_events_enable();
+
+    // 4) sensor setup
+    ci_printf("\r\n\n[TOUCH] SENSOR SETUP // \r\n");
+    iqs323_sensor_setup();
+
+    // 5) touch settings
+    ci_printf("\r\n\n[TOUCH] TOUCH SETTINGS // \r\n");
+    iqs323_touch_settings();
+
+    // 6) re-ati trigger
+    ci_printf("\r\n\n[TOUCH] RE ATI TRIGGER // \r\n");
+    iqs323_re_ati_trigger();
+
+    {
+        int tick_old, tick_now;
+
+        tick_old = ci_timer_get_tick();
+
+        while (1)
+        {
+            tick_now = ci_timer_get_tick();
+            if (50 <= (tick_now - tick_old))
+            {
+                break;
+            }
+        }
+    }
+
+    // 7) wait re-ati done
+    ci_printf("\r\n\n[TOUCH] RE ATI DONE CHECK // \r\n");
+    iqs323_wait_re_ati_done();
+
+    SYS_WATCHDOG_REFRESH();
+
+    ci_printf("\r\n\n\n[TOUCH] ENTIRE SETTINGS DONE \r\n\n");
+
+    iqs323_update_tick(ci_timer_get_tick());
+    iqs323_update_state(IQS323_TOUCH_STATE_RESET);
+
+    ci_timer_uninit();  // not use timer anymore
+}
+
 void Initialize(void)
 {
     int counter = 0;
@@ -248,20 +415,30 @@ void Initialize(void)
     ci_printv("[INFO] BUILD TIME : %s \r\n", __TIME__);
 
     ci_util_assert(ci_filesystem_nvm_init());
-    ci_util_assert(ci_filesystem_mount());
+    // ci_util_assert(ci_filesystem_mount());
+    ci_util_assert(snd_fatfs_init_mem_map());  // 파일 시스템 메모리에서 사용되는 맵 데이터와 FFT 패스 빈 메모리 포인터 관련 초기화
+    ci_util_assert(snd_fatfs_mount(SND_FATFS_LDRV_NUM_USER_DATA));
     ci_util_assert(ci_power_normal());
 
     ci_printi("[INFO] POWER NORMAL, CLOCK : %u HZ \r\n", SystemCoreClock);
 
-    ci_util_assert(ci_filesystem_remount());
+    // ci_util_assert(ci_filesystem_remount());
+    ci_util_assert(snd_fatfs_remount(SND_FATFS_LDRV_NUM_USER_DATA));
     ci_printv("[INFO] REMOUNT FILESYSTEM DRIVE ('%s') \r\n", CI_FILESYSTEM_LOGICAL_DRIVE_NUM);
 
     ci_dio_configure_normal();
-    ci_uart_init();
+    // ci_uart_init();
 
     ci_printv("[INFO] INIT : DIO, UART, ETC.. \r\n");
 
     SYS_WATCHDOG_REFRESH();
+
+#if 0
+    // DFU, OTA, BOOT_MGR 검증
+    ci_util_assert(snd_fatfs_remount(SND_FATFS_LDRV_NUM_BOOT));
+    ci_boot_init_fp(ci_filesystem_get_fp());
+    ci_boot_handle_fsm();
+#endif
 
     // Check, make and init ISD map files (info, user setting, map stamp, map_data.....)
     ci_map_init_map_data_all(false);
@@ -314,12 +491,13 @@ void Initialize(void)
 
     // NRF 끄기 전달
     NRF_Off_Command();
-    ci_printv("[BLE] NRF OFF ('DIO%d' LEVEL LOW) \r\n", DIO_NUM_NRF_ON_OFF_COMMAND);
+    // ci_printv("[BLE] NRF OFF ('DIO%d' LEVEL LOW) \r\n", DIO_NUM_NRF_ON_OFF_COMMAND);
 
     // 인터럽트 초기화 및 비활성화
     // reset_interrupt_Disable_PRIMASK();
 
-    ci_battery_init();  // 배터리 측정을 위한 초기화
+    // 더 이상 EZ에서 배터리 측정하지 않음
+    // ci_battery_init();  // 배터리 측정을 위한 초기화
 
     // DAM 초기화 및 비활성화
     reset_DMA_disable();
@@ -331,23 +509,37 @@ void Initialize(void)
     init_cm3_SPI();
 
     // CFX 트리거를 받은 인터럽트 활성화
-    enable_CFX_trigger_for_iteration();
+    enable_CFX_trigger_for_iteration();  // CFX_0, FIFO_5 인터럽트 활성화
 
     // 인터럽트 활성화
     enable_interrupt();
 
+    // 터치 센서 (IQS323) 초기화, 타이머 사용하기 때문에 인터럽트 활성화된 후에 동작시켜야 함
+    // 초기화 함수는 드라이버 코드에 없고, Initialize() 함수 위에 있다. 나중에 옮기자. (2026.03.11)
+    iqs323_init();
+
+    // 초기화 과정에서 전원 버튼 (가속도 센서, 이제는 터치 센서)의 인터럽트 상태를 초기화 시킨다.
+    cfx_cm3_sharedMemoryAll.systemShare.powerButton_pushed_CFX_to_CM3 = 0;
+
     // 내부기 통신 용 외부전원 끄기
     OnOff_3V_PMIC_CM3_to_CFX(false);
 
+    // 더 이상 가속도 센서 사용하지 않음
+#if 0
     // 가속도 센서 설정
     if (!configure_MIS2DH_asClickMode(2))
     {
         ci_printe("[ACC] FAILED TO CONFIGURE AS CLICK MODE \r\n");
         errorCodeUpdate(en__ACCELEROMETER_ERROR, en__I2C_ACCELER_WritingError, __LINE__);
     }
+#endif
 
     clearAllErrorFlag();
 
+    // 더 이상 EZ가 배터리 측정하지 않음
+    snd_batt_set_state(EN__SND_BATT_STATE_RESET);
+    snd_batt_set_percent(0);
+#if 0
     // LSAD의 측정이 최초 한번은 미정확하다고 하여, 넉넉히 4번 측정이 완료된 후 진행되도록 구현하였다.
     while (1)
     {
@@ -364,4 +556,8 @@ void Initialize(void)
     ci_printi("[LSAD] END OF INIT, CURRENTLY BATT SAMPLE COUNT=%d, LSAD VALUE=%d \r\n",
             ci_battery_get_count(),
             cfx_cm3_sharedMemoryAll.systemShare.batteryLevel_CfX_to_CM3);
+#endif
+
+    // USB 충전 상태 초기화
+    snd_charger_set_state(EN__SND_CHARGER_STATE_RESET);
 }

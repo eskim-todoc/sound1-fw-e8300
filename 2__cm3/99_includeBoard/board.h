@@ -13,29 +13,13 @@
 #define EEPROM_SPI_SERI_POS 3
 #define EEPROM_SPI_SERO_POS 2
 
-#if 1  // Sullivan 1.5
-
-#define DIO_NUM_NRF_SWDIO_NRESET          DIO35  // nRF51822 reset               // SWDIO_RESET
-#define NRF_SPI_CS_PIN                    DIO14  // SPI Chip Select              // nRF_SPI_CS
-#define NRF_SPI_CLK_PIN                   DIO13  // SPI Clock                    // nRF_SPI_CLK
-#define NRF_SPI_MOSI_PIN                  DIO18  // SPI Master Out Slave In      // nRF_SPI_MISO
-#define NRF_SPI_MISO_PIN                  DIO15  // SPI Master In Slave Out      // nRF_SPI_MOSI
-#define GPIO_PIN_ReadCommandForSPI_Master DIO8   // ReadCommandForSPI_Master     // nRF_SPI_READY_TO_READ_FLAG
-#define DIO_NUM_NRF_ON_OFF_COMMAND            DIO16  // NRF 칩의  BLE                 // nRF_ON/OFF_COMMAND
-#define ENABLE_NRF_ADV_LowPower           DIO5   // DIO22 // NRF 광고 전력 모드    // EN_nRF_ADV_LOWPOWER
-
-#else  // Sound1 Test
-
-#define DIO_NUM_NRF_SWDIO_NRESET          DIO16  // nRF51822 reset               // SWDIO_RESET
-#define NRF_SPI_CS_PIN                    DIO5   // SPI Chip Select              // nRF_SPI_CS
-#define NRF_SPI_CLK_PIN                   DIO12  // SPI Clock                    // nRF_SPI_CLK
-#define NRF_SPI_MOSI_PIN                  DIO6   // SPI Master Out Slave In      // nRF_SPI_MISO
-#define NRF_SPI_MISO_PIN                  DIO8   // SPI Master In Slave Out      // nRF_SPI_MOSI
-#define GPIO_PIN_ReadCommandForSPI_Master DIO4   // ReadCommandForSPI_Master     // nRF_SPI_READY_TO_READ_FLAG
-#define DIO_NUM_NRF_ON_OFF_COMMAND            DIO15  // NRF 칩의  BLE                 // nRF_ON/OFF_COMMAND
-#define ENABLE_NRF_ADV_LowPower           DIO5   // DIO22 // NRF 광고 전력 모드    // EN_nRF_ADV_LOWPOWER
-
-#endif
+#define DIO_NUM_NRF_SWDIO_NRESET                 // NOT USED ANY MORE
+#define NRF_SPI_CS_PIN                    DIO21  // v0.35, NET: QCC_SPI_CS
+#define NRF_SPI_CLK_PIN                   DIO28  // v0.35, NET: QCC_SPI_CLK
+#define NRF_SPI_MOSI_PIN                  DIO26  // v0.35, NET: QCC_SPI_MOSI
+#define NRF_SPI_MISO_PIN                  DIO18  // v0.35, NET: QCC_SPI_MISO
+#define GPIO_PIN_ReadCommandForSPI_Master DIO20  // v0.35, NET: QCC_SPI_FLAG
+#define DIO_NUM_NRF_ON_OFF_COMMAND               // NOT USED ANY MODE
 
 #else
 // 보드랑 관계없이 공통적인 핀
@@ -64,7 +48,7 @@
 #define NRF_SPI_MOSI_PIN                  13  // SPI Master Out Slave In
 #define NRF_SPI_MISO_PIN                  14  // SPI Master In Slave Out
 #define GPIO_PIN_ReadCommandForSPI_Master 15  // ReadCommandForSPI_Master
-#define DIO_NUM_NRF_ON_OFF_COMMAND            16  // NRF 칩의  BLE
+#define DIO_NUM_NRF_ON_OFF_COMMAND        16  // NRF 칩의  BLE
 #define ENABLE_NRF_ADV_LowPower           17  // NRF 광고 전력 모드
 #endif
 
