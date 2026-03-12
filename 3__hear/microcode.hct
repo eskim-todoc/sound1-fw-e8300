@@ -1,0 +1,198 @@
+
+// +----------------------------------------------------------------------------------------------------------------------------+
+// |                                                         FIFO List                                                          |
+// +----+----------+---------+--------+--------------+--------------------+---------------+-----------+----------+--------------+
+// | No | Purpose  | Memory  | I/O    | Base Address | Start address bias | IO block size | FIFO size | Base PTR | IO Block PTR |
+// +----+----------+---------+--------+--------------+--------------------+---------------+-----------+----------+--------------+
+// |  1 |  MIC 0   |   A0_0  | Input  |   0x6_0000   |   0 (A0MEM_BASE)   |      16       |    32     |    0     |      0       |
+// |  2 |  MIC 1   |   A0_1  | Input  |   0x6_0020   |   32               |      16       |    32     |    0     |      0       |
+// |  3 |  DAC 0   |   A0_2  | Output |   0x6_0040   |   64               |      16       |    32     |    0     |      0       |
+// |  4 |  DAC 1   |   A0_3  | Output |   0x6_0060   |   96               |      16       |    32     |    0     |      0       |
+// |  5 |  PCM     |   A0_4  | Output |   0x6_0080   |   128              |      24       |    64     |    0     |      0       |
+// |  6 |  I2S in  |   A0_5  | Input  |   0x6_0120   |   192              |      16       |    32     |    0     |      0       |
+// |  7 |  I2S out |   A0_6  | Output |   0x6_0140   |   224              |      16       |    32     |    0     |      0       |
+// |  8 |  FFT     |   A1_0  | N/A    |   0x6_2000   |   0 (A1MEM_BASE)   |      16       |   512     |    0     |      0       |
+// +----+----------+---------+--------+--------------+--------------------+---------------+-----------+----------+--------------+
+
+// FFT 크기
+Define (HEAR_FFT_SIZE,      512)
+Define (HEAR_HALF_FFT_SIZE, 256)
+
+// MIC, DAC, I2S, FFT가 모두 같은 BLOCK SIZE를 갖는다.
+Define (HEAR_AUDIO_FIFO_SIZE,     32)
+Define (HEAR_AUDIO_FIFO_BLK_SIZE, 16)
+
+// 입력되는 MIC, I2S 등의 오디오 믹싱 버퍼 크기는 오디오 FIFO BLOCK SIZE와 같다.
+Define (HEAR_AUDIO_MIX_SIZE, 16)
+
+// A0_0 : MIC 0 
+Define (HEAR_MIC0_FIFO_START_ADDR_BIAS, 0) // A0MEM_BASE
+Define (HEAR_MIC0_FIFO_SIZE,            HEAR_AUDIO_FIFO_SIZE)
+Define (HEAR_MIC0_FIFO_BLK_SIZE,        HEAR_AUDIO_FIFO_BLK_SIZE)
+Define (HEAR_MIC0_FIFO_BASE_PTR,        0)
+Define (HEAR_MIC0_FIFO_IOBLK_PTR,       0)
+
+// A0_1 : MIC 1 
+Define (HEAR_MIC1_FIFO_START_ADDR_BIAS, 32)
+Define (HEAR_MIC1_FIFO_SIZE,            HEAR_AUDIO_FIFO_SIZE)
+Define (HEAR_MIC1_FIFO_BLK_SIZE,        HEAR_AUDIO_FIFO_BLK_SIZE)
+Define (HEAR_MIC1_FIFO_BASE_PTR,        0)
+Define (HEAR_MIC1_FIFO_IOBLK_PTR,       0)
+
+// A0_2 : DAC 0
+Define (HEAR_DAC0_FIFO_START_ADDR_BIAS, 64)
+Define (HEAR_DAC0_FIFO_SIZE,            HEAR_AUDIO_FIFO_SIZE)
+Define (HEAR_DAC0_FIFO_BLK_SIZE,        HEAR_AUDIO_FIFO_BLK_SIZE)
+Define (HEAR_DAC0_FIFO_BASE_PTR,        0)
+Define (HEAR_DAC0_FIFO_IOBLK_PTR,       0)
+
+// A0_3 : DAC 1
+Define (HEAR_DAC1_FIFO_START_ADDR_BIAS, 96)
+Define (HEAR_DAC1_FIFO_SIZE,            HEAR_AUDIO_FIFO_SIZE)
+Define (HEAR_DAC1_FIFO_BLK_SIZE,        HEAR_AUDIO_FIFO_BLK_SIZE)
+Define (HEAR_DAC1_FIFO_BASE_PTR,        0)
+Define (HEAR_DAC1_FIFO_IOBLK_PTR,       0)
+
+// A0_4 : PCM
+Define (HEAR_PCM_FIFO_START_ADDR_BIAS, 128)
+Define (HEAR_PCM_FIFO_SIZE,            64)
+Define (HEAR_PCM_FIFO_BLK_SIZE,        24)
+Define (HEAR_PCM_FIFO_BASE_PTR,        0)
+Define (HEAR_PCM_FIFO_IOBLK_PTR,       0)
+ 
+// A0_5 : I2S in
+Define (HEAR_I2S_IN_FIFO_START_ADDR_BIAS, 192)
+Define (HEAR_I2S_IN_FIFO_SIZE,            HEAR_AUDIO_FIFO_SIZE)
+Define (HEAR_I2S_IN_FIFO_BLK_SIZE,        HEAR_AUDIO_FIFO_BLK_SIZE)
+Define (HEAR_I2S_IN_FIFO_BASE_PTR,        0)
+Define (HEAR_I2S_IN_FIFO_IOBLK_PTR,       0)
+ 
+// A0_6 : I2S out
+Define (HEAR_I2S_OUT_FIFO_START_ADDR_BIAS, 224)
+Define (HEAR_I2S_OUT_FIFO_SIZE,            HEAR_AUDIO_FIFO_SIZE)
+Define (HEAR_I2S_OUT_FIFO_BLK_SIZE,        HEAR_AUDIO_FIFO_BLK_SIZE)
+Define (HEAR_I2S_OUT_FIFO_BASE_PTR,        0)
+Define (HEAR_I2S_OUT_FIFO_IOBLK_PTR,       0)
+   
+// A1_0 : FFT buffer
+Define (HEAR_FFT_FIFO_START_ADDR_BIAS, 0) // A1MEM_BASE
+Define (HEAR_FFT_FIFO_SIZE,            HEAR_FFT_SIZE)
+Define (HEAR_FFT_FIFO_BLK_SIZE,        HEAR_AUDIO_FIFO_BLK_SIZE)
+Define (HEAR_FFT_FIFO_BASE_PTR,        0)
+Define (HEAR_FFT_FIFO_IOBLK_PTR,       0)
+            
+//----------------------------------------------------------------------------------------------------
+// CFX 및 Function chain 코드에서 참조하여 사용하는 메모리 주소 정보
+//----------------------------------------------------------------------------------------------------
+
+Define (HEAR_ADDR_FIFO_MIC0,    (D_HEAR_A0MEM_BASE + HEAR_MIC0_FIFO_START_ADDR_BIAS))    // Base address for MIC0
+Define (HEAR_ADDR_FIFO_MIC1,    (D_HEAR_A0MEM_BASE + HEAR_MIC1_FIFO_START_ADDR_BIAS))    // Base address for MIC1
+Define (HEAR_ADDR_FIFO_DAC0,    (D_HEAR_A0MEM_BASE + HEAR_DAC0_FIFO_START_ADDR_BIAS))    // Base address for DAC0
+Define (HEAR_ADDR_FIFO_DAC1,    (D_HEAR_A0MEM_BASE + HEAR_DAC1_FIFO_START_ADDR_BIAS))    // Base address for DAC1
+Define (HEAR_ADDR_FIFO_PCM,     (D_HEAR_A0MEM_BASE + HEAR_PCM_FIFO_START_ADDR_BIAS))     // Base address for PCM out
+Define (HEAR_ADDR_FIFO_I2S_IN,  (D_HEAR_A0MEM_BASE + HEAR_I2S_IN_FIFO_START_ADDR_BIAS))  // Base address for I2S in
+Define (HEAR_ADDR_FIFO_I2S_OUT, (D_HEAR_A0MEM_BASE + HEAR_I2S_OUT_FIFO_START_ADDR_BIAS)) // Base address for I2S out
+Define (HEAR_ADDR_FIFO_FFT,     (D_HEAR_A1MEM_BASE + HEAR_FFT_FIFO_START_ADDR_BIAS))     // Base address for FFT
+
+Define (HEAR_ADDR_FIFO_PCM_WRITING, (HEAR_ADDR_FIFO_PCM + (HEAR_PCM_FIFO_BLK_SIZE - 1))) // Address for PCM input (Last index for IO block)
+Define (HEAR_ADDR_AUDIO_MIX,        (HEAR_ADDR_FIFO_I2S_OUT + HEAR_I2S_OUT_FIFO_SIZE))   // 오디오 입력 믹싱에 사용할 메모리 시작 주소 
+                                                                                                                
+Define (HEAR_ADDR_FFT_INPUT,  HEAR_ADDR_FIFO_FFT)
+Define (HEAR_ADDR_FFT_OUTPUT, D_HEAR_C0MEM_BASE)                      // FFT 계산 결과가 저장되는 메모리 주소
+Define (HEAR_ADDR_FFT_TEMP01, D_HEAR_H01MEM_BASE)                     // FFT 계산에 사용되는 계산용 메모리 주소 (Scratch pad)
+Define (HEAR_ADDR_FFT_TEMP23, D_HEAR_H23MEM_BASE)                     // FFT 계산에 사용되는 계산용 메모리 주소 (Scratch pad)
+Define (HEAR_ADDR_FFT_WINDOW, (HEAR_ADDR_FFT_OUTPUT + HEAR_FFT_SIZE)) // FFT 계산에 사용되는 윈도우 값이 저장된 메모리 주소
+
+Define (HEAR_ADDR_VMAG_OUTPUT, (HEAR_ADDR_FFT_INPUT + HEAR_FFT_SIZE)) // FFT 계산 결과를 사용해 vMag 수행 후 결과를 저장하는 메모리 주소
+
+//AGC 관련 주소
+Define (HEAR_ADDR_AUDIO_MIX_ABS,           D_HEAR_H4MEM_BASE)       // 입력된 오디오 신호의 믹스된 값 16개를 절대값 계산하여 저장하는 주소
+Define (HEAR_ADDR_AUDIO_MIX_ABS_MAX_VALUE, HEAR_ADDR_AUDIO_MIX_ABS) // 절대값 계산된 16개 값 중 최대 값을 저장하는 주소 (절대값 계산 주소에 덮어씀)
+
+// 가장 큰 FIFO 길이 정보
+Define (HEAR_LARGEST_FIFO_SIZE, HEAR_FFT_FIFO_SIZE) // 구성된 FIFO 중 가장 큰 FIFO 크기
+
+// +-----------------------------------------------------------------------------------------------------------------------+
+// | FIFO configuration                                                                                                    |
+// +-----------------------------------------------------------------------------------------------------------------------+
+
+// Purpose     FIFO       Start Bias                         FIFO Size               Block Size                  Base PTR                    IO Block PTR                       
+
+// MIC0        FIFO_A0_0  0                                  32                      16                          0                           0
+FIFOConfigure (FIFO_A0_0, HEAR_MIC0_FIFO_START_ADDR_BIAS,    HEAR_MIC0_FIFO_SIZE,    HEAR_MIC0_FIFO_BLK_SIZE,    HEAR_MIC0_FIFO_BASE_PTR,    HEAR_MIC0_FIFO_IOBLK_PTR)    
+
+// MIC1        FIFO_A0_1  32                                 32                      16                          0                           0
+FIFOConfigure (FIFO_A0_1, HEAR_MIC1_FIFO_START_ADDR_BIAS,    HEAR_MIC1_FIFO_SIZE,    HEAR_MIC1_FIFO_BLK_SIZE,    HEAR_MIC1_FIFO_BASE_PTR,    HEAR_MIC1_FIFO_IOBLK_PTR)    
+
+// DAC0        FIFO_A0_2  64                                 32                      16                          0                           0
+FIFOConfigure (FIFO_A0_2, HEAR_DAC0_FIFO_START_ADDR_BIAS,    HEAR_DAC0_FIFO_SIZE,    HEAR_DAC0_FIFO_BLK_SIZE,    HEAR_DAC0_FIFO_BASE_PTR,    HEAR_DAC0_FIFO_IOBLK_PTR)    
+
+// DAC1        FIFO_A0_3  96                                 32                      16                          0                           0
+FIFOConfigure (FIFO_A0_3, HEAR_DAC1_FIFO_START_ADDR_BIAS,    HEAR_DAC1_FIFO_SIZE,    HEAR_DAC1_FIFO_BLK_SIZE,    HEAR_DAC1_FIFO_BASE_PTR,    HEAR_DAC1_FIFO_IOBLK_PTR)    
+
+// PCM         FIFO_A0_4, 128                                64                      24                          0                           0
+FIFOConfigure (FIFO_A0_4, HEAR_PCM_FIFO_START_ADDR_BIAS,     HEAR_PCM_FIFO_SIZE,     HEAR_PCM_FIFO_BLK_SIZE,     HEAR_PCM_FIFO_BASE_PTR,     HEAR_PCM_FIFO_IOBLK_PTR)     
+
+// I2S IN      FIFO_A0_5  192                                32                      16                          0                           0
+FIFOConfigure (FIFO_A0_5, HEAR_I2S_IN_FIFO_START_ADDR_BIAS,  HEAR_I2S_IN_FIFO_SIZE,  HEAR_I2S_IN_FIFO_BLK_SIZE,  HEAR_I2S_IN_FIFO_BASE_PTR,  HEAR_I2S_IN_FIFO_IOBLK_PTR)  
+
+// I2S OUT     FIFO_A0_6  224                                32                      16                          0                           0
+FIFOConfigure (FIFO_A0_6, HEAR_I2S_OUT_FIFO_START_ADDR_BIAS, HEAR_I2S_OUT_FIFO_SIZE, HEAR_I2S_OUT_FIFO_BLK_SIZE, HEAR_I2S_OUT_FIFO_BASE_PTR, HEAR_I2S_OUT_FIFO_IOBLK_PTR) 
+
+// FFT         FIFO_A1_0  0                                  512                     16                          0                           0
+FIFOConfigure (FIFO_A1_0, HEAR_FFT_FIFO_START_ADDR_BIAS,     HEAR_FFT_FIFO_SIZE,     HEAR_FFT_FIFO_BLK_SIZE,     HEAR_FFT_FIFO_BASE_PTR,     HEAR_FFT_FIFO_IOBLK_PTR)      
+
+// +-----------------------------------------------------------------------------------------------------------------------+
+// | Function chain list                                                                                                   |
+// +-----------------------------------------------------------------------------------------------------------------------+
+
+StartFunctionChain(CMD0, HEAR_FC_agc_preprocessing)
+    
+    vAbsolute (
+        HEAR_FC_agc_preprocessing_abs,              // name
+        HEAR_AUDIO_MIX_SIZE,                        // K 
+        HEAR_ADDR_AUDIO_MIX,                        // input_addr  (입력 메모리와 출력 메모리의 영역이 같으면 안됨)
+        HEAR_ADDR_AUDIO_MIX_ABS,                    // output_addr (입력 메모리와 출력 메모리의 영역이 같으면 안됨)
+        1,                                          // input_addr_mode
+        1                                           // output_addr_mode
+    ) // end, vAbsolute()        
+             
+    MaxElement (
+        HEAR_FC_agc_preprocessing_max,              // name
+        HEAR_AUDIO_MIX_SIZE,                        // K
+        HEAR_ADDR_AUDIO_MIX_ABS,                    // input_addr  (입력 메모리와 출력 메모리의 영역을 동일하게 사용할 수 있음)
+        HEAR_ADDR_AUDIO_MIX_ABS_MAX_VALUE,          // output_addr (입력 메모리와 출력 메모리의 영역을 동일하게 사용할 수 있음)
+        1                                           // input_addr_mode
+    ) // end, MaxElement()
+
+    Event(0) // Trigger the HEAR_0 interrupt on the CFX
+
+EndFunctionChain() // end, HEAR_FC_agc_preprocessing
+
+StartFunctionChain(CMD1, HEAR_FC_fft_vmag)
+
+    Win_DFT_R_Forward (
+        HEAR_FC_fft_vmag_win_fft,                   // name
+        HEAR_FFT_SIZE,                              // K
+        HEAR_ADDR_FFT_INPUT,                        // fwd_input_addr 
+        HEAR_ADDR_FFT_OUTPUT,                       // fwd_output_addr
+        HEAR_ADDR_FFT_TEMP01,                       // temp01_addr
+        HEAR_ADDR_FFT_TEMP23,                       // temp23_addr
+        HEAR_ADDR_FFT_WINDOW,                       // fwd_window_addr
+        1,                                          // fwd_input_addr_mode
+        1                                           // fwd_window_addr_mode
+    ) // end, Win_DFT_R_Forward()
+
+    vMag (
+        HEAR_FC_fft_vmag_vmag,                      // name
+        HEAR_HALF_FFT_SIZE,                         // K
+        HEAR_ADDR_FFT_OUTPUT,                       // input_addr
+        HEAR_ADDR_VMAG_OUTPUT,                      // output_addr
+        1,                                          // input_addr_mode
+        1,                                          // output_addr_mode
+        VMAG_SINGLE_PRECISION                       // output_precision
+    ) // end, vMag()
+    
+    Event(1) // Trigger the HEAR_1 interrupt on the CFX
+
+EndFunctionChain() // end, HEAR_FC_fft_vmag

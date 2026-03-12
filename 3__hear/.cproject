@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?fileVersion 4.0.0?><cproject storage_type_id="org.eclipse.cdt.core.XmlProjectDescriptionStorage">
+	<storageModule moduleId="org.eclipse.cdt.core.settings">
+		<cconfiguration id="com.signaklara.sk5.hear.config.release.2023347826">
+			<storageModule buildSystemId="org.eclipse.cdt.managedbuilder.core.configurationDataProvider" id="com.signaklara.sk5.hear.config.release.2023347826" moduleId="org.eclipse.cdt.core.settings" name="Release">
+				<externalSettings/>
+				<extensions>
+					<extension id="org.eclipse.cdt.core.GmakeErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.CWDLocator" point="org.eclipse.cdt.core.ErrorParser"/>
+				</extensions>
+			</storageModule>
+			<storageModule moduleId="cdtBuildSystem" version="4.0.0">
+				<configuration artifactExtension="elf" artifactName="${ProjName}" buildArtefactType="org.eclipse.cdt.build.core.buildArtefactType.hctElfObject" buildProperties="org.eclipse.cdt.build.core.buildArtefactType=org.eclipse.cdt.build.core.buildArtefactType.hctElfObject" cleanCommand="rm -f" description="" id="com.signaklara.sk5.hear.config.release.2023347826" name="Release" optionalBuildProperties="org.eclipse.cdt.docker.launcher.containerbuild.property.dockerdpath=,org.eclipse.cdt.docker.launcher.containerbuild.property.selectedvolumes=,org.eclipse.cdt.docker.launcher.containerbuild.property.volumes=" parent="com.signaklara.sk5.hear.config.release">
+					<folderInfo id="com.signaklara.sk5.hear.config.release.2023347826." name="/" resourcePath="">
+						<toolChain id="com.signaklara.sk5.hear.toolChain.hct.release.601435706" name="HEAR Toolchain" superClass="com.signaklara.sk5.hear.toolChain.hct.release">
+							<targetPlatform id="com.signaklara.sk5.hear.config.release.2023347826..1442442840" name=""/>
+							<builder buildPath="${workspace_loc:/HEAR}/Release" id="com.signaklara.sk5.hear.builder.763022562" keepEnvironmentInBuildfile="false" managedBuildOn="true" name="GNU Make" superClass="com.signaklara.sk5.hear.builder"/>
+							<tool id="com.signaklara.sk5.hear.tool.hct.release.907390862" name="HEAR Assembler" superClass="com.signaklara.sk5.hear.tool.hct.release">
+								<option id="hct.verbose.1998983391" name="Operate in verbose mode (-v)" superClass="hct.verbose" value="true" valueType="boolean"/>
+							</tool>
+							<tool id="com.signaklara.sk5.hear.tool.cfcc.release.417961515" name="HEAR Executable Builder" superClass="com.signaklara.sk5.hear.tool.cfcc.release"/>
+							<tool id="com.signaklara.sk5.hear.tool.support.release.1827260988" name="HEAR Support Tool" superClass="com.signaklara.sk5.hear.tool.support.release">
+								<option IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="false" id="cfcc.category.copy.c.files.1775572253" name="Source Destination" superClass="cfcc.category.copy.c.files" valueType="stringList">
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/1__cfx/hear}&quot;"/>
+								</option>
+								<option IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="false" id="cfcc.category.copy.h.files.1650115715" name="Header Destination" superClass="cfcc.category.copy.h.files" valueType="stringList">
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/1__cfx/hear}&quot;"/>
+								</option>
+							</tool>
+						</toolChain>
+					</folderInfo>
+				</configuration>
+			</storageModule>
+			<storageModule moduleId="org.eclipse.cdt.core.externalSettings"/>
+		</cconfiguration>
+		<cconfiguration id="com.signaklara.sk5.hear.config.debug.175777274">
+			<storageModule buildSystemId="org.eclipse.cdt.managedbuilder.core.configurationDataProvider" id="com.signaklara.sk5.hear.config.debug.175777274" moduleId="org.eclipse.cdt.core.settings" name="Debug">
+				<externalSettings/>
+				<extensions>
+					<extension id="org.eclipse.cdt.core.GmakeErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.CWDLocator" point="org.eclipse.cdt.core.ErrorParser"/>
+				</extensions>
+			</storageModule>
+			<storageModule moduleId="cdtBuildSystem" version="4.0.0">
+				<configuration artifactExtension="elf" artifactName="${ProjName}" buildArtefactType="org.eclipse.cdt.build.core.buildArtefactType.hctElfObject" buildProperties="org.eclipse.cdt.build.core.buildArtefactType=org.eclipse.cdt.build.core.buildArtefactType.hctElfObject" cleanCommand="rm -f" description="" id="com.signaklara.sk5.hear.config.debug.175777274" name="Debug" parent="com.signaklara.sk5.hear.config.debug">
+					<folderInfo id="com.signaklara.sk5.hear.config.debug.175777274." name="/" resourcePath="">
+						<toolChain id="com.signaklara.sk5.hear.toolChain.hct.debug.1509414298" name="HEAR Toolchain" superClass="com.signaklara.sk5.hear.toolChain.hct.debug">
+							<targetPlatform id="com.signaklara.sk5.hear.config.debug.175777274..82741310" name=""/>
+							<builder buildPath="${workspace_loc:/HEAR}/Debug" id="com.signaklara.sk5.hear.builder.1024251958" keepEnvironmentInBuildfile="false" managedBuildOn="true" name="GNU Make" superClass="com.signaklara.sk5.hear.builder"/>
+							<tool id="com.signaklara.sk5.hear.tool.hct.debug.1973317828" name="HEAR Assembler" superClass="com.signaklara.sk5.hear.tool.hct.debug"/>
+							<tool id="com.signaklara.sk5.hear.tool.cfcc.debug.800841218" name="HEAR Executable Builder" superClass="com.signaklara.sk5.hear.tool.cfcc.debug"/>
+							<tool id="com.signaklara.sk5.hear.tool.support.debug.376883907" name="HEAR Support Tool" superClass="com.signaklara.sk5.hear.tool.support.debug"/>
+						</toolChain>
+					</folderInfo>
+				</configuration>
+			</storageModule>
+			<storageModule moduleId="org.eclipse.cdt.core.externalSettings"/>
+		</cconfiguration>
+	</storageModule>
+	<storageModule moduleId="cdtBuildSystem" version="4.0.0">
+		<project id="HEAR.com.signaklara.sk5.hear.projectType.418629936" name="HEAR Microcode Project" projectType="com.signaklara.sk5.hear.projectType"/>
+	</storageModule>
+	<storageModule moduleId="scannerConfiguration">
+		<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
+	</storageModule>
+	<storageModule moduleId="org.eclipse.cdt.core.LanguageSettingsProviders"/>
+	<storageModule moduleId="refreshScope" versionNumber="2">
+		<configuration configurationName="Release">
+			<resource resourceType="PROJECT" workspacePath="/3__hear"/>
+		</configuration>
+		<configuration configurationName="Debug">
+			<resource resourceType="PROJECT" workspacePath="/3__hear"/>
+		</configuration>
+	</storageModule>
+	<storageModule moduleId="org.eclipse.cdt.make.core.buildtargets"/>
+</cproject>

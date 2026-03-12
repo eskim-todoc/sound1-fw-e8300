@@ -1,0 +1,20 @@
+/**
+ * @file OTE_1_5_gen_FS_MEM.h
+ */
+
+#include <hw.h>
+
+#ifndef __OTE_1_5_gen_FS_MEM_h__
+#define __OTE_1_5_gen_FS_MEM_h__
+
+#define ADDR_MAP_DATA_IN_FS_MEM        D_DSP_PRAM3_BASE
+#define WORD_OFFSET_MAP_DATA_IN_FS_MEM 994  // Cortex-M3의 OTE_1_5_gen_FS.h 참조
+#define WORD_OFFSET_PROGRAM_IN_FS_MEM  237
+
+#define ADDR_NUM_OF_FREQ_BAND_IN_FS_MEM D_DSP_PRAM4_BASE
+#define ADDR_FFT_PASS_BIN_IN_FS_MEM     (ADDR_NUM_OF_FREQ_BAND_IN_FS_MEM + 1)
+
+#define WORD_OFFSET_WINDOW_COEFF_IN_FS_MEM 1024
+#define ADDR_WINDOW_COEFF_IN_FS_MEM        (D_DSP_PRAM4_BASE + WORD_OFFSET_WINDOW_COEFF_IN_FS_MEM)
+
+#endif  // __OTE_1_5_gen_FS_MEM_h__

@@ -1,0 +1,906 @@
+/**
+ * @file OTE_1_5_gen_FS.c
+ */
+
+#include <ci_filesystem.h>
+
+#include <ff.h>
+
+CI_FILESYSTEM_FFT_PASS_BIN_T *g_ci_filesystem_ptr_pass_bin;
+CI_FILESYSTEM_ENTIRE_MAP_T   *g_ci_filesystem_ptr_entire_map;
+
+FATFS g_snd_fatfs_mount;
+FIL   g_snd_fatfs_ohdl;
+
+static const NVMCTRL_Options_t s_nvmctrl_option = {
+    .config   = SPI_DEFAULT_CFG,
+    .freq_max = DEFAULT_SPI_FREQ_MAX,
+    .device   = NVMLIB_STORAGE_W25Q64JW,  // NVMLIB_STORAGE_AUTO
+    .sclk     = 0,
+    .ctrl     = 1,
+    .io0      = 2,
+    .io1      = 3,
+    .io2      = 5,
+    .io3      = 4,
+};
+
+FIL *ci_filesystem_get_fp(void)
+{
+    return &g_snd_fatfs_ohdl;
+}
+
+const NVMCTRL_Options_t *ci_filesystem_get_nvmctrl_option(void)
+{
+    return &s_nvmctrl_option;
+}
+
+int ci_filesystem_nvm_init(void)
+{
+    if (NVMInit((NVMCTRL_Options_t *) &s_nvmctrl_option) != ARM_DRIVER_OK)
+    {
+        ci_printe("[FS] FAILED TO INIT NVM \r\n");
+        return df_False;
+    }
+
+    SYS_WATCHDOG_REFRESH();
+
+    return df_True;
+}
+
+int ci_filesystem_nvm_reinit(void)
+{
+    SYS_WATCHDOG_REFRESH();
+
+    if (NVMReInitOptions((NVMCTRL_Options_t *) &s_nvmctrl_option) != ARM_DRIVER_OK)
+    {
+        ci_printe("[FS] FAILED TO REINIT NVM \r\n");
+        return df_False;
+    }
+
+    return df_True;
+}
+
+int snd_fatfs_init_mem_map(void)
+{
+    g_ci_filesystem_ptr_pass_bin   = (CI_FILESYSTEM_FFT_PASS_BIN_T *) CI_FILESYSTEM_BASE_ADDR_FFT_PASS_BIN;
+    g_ci_filesystem_ptr_entire_map = (CI_FILESYSTEM_ENTIRE_MAP_T *) CI_FILESYSTEM_BASE_ADDR_ENTIRE_MAP;
+
+    return df_True;
+}
+
+int snd_fatfs_remount(int ldrv)
+{
+    if (snd_fatfs_unmount())
+    {
+        return snd_fatfs_mount(ldrv);
+    }
+
+    return df_False;
+}
+
+int snd_fatfs_mount(int ldrv)
+{
+    FRESULT fr;
+    char    path[3];
+
+    path[0] = '0' + ldrv;
+    path[1] = ':';
+    path[2] = '\0';
+
+    fr = f_mount(&g_snd_fatfs_mount, path, SND_FATFS_MOUNT_OPTION);
+    SYS_WATCHDOG_REFRESH();
+
+    if (fr != FR_OK)
+    {
+        ci_printe("[FATFS] MOUNT FAILED, DRIVE : '%s' \r\n", path);
+        return df_False;
+    }
+
+    fr = f_chdrive(path);
+    SYS_WATCHDOG_REFRESH();
+
+    if (fr != FR_OK)
+    {
+        ci_printe("[FATFS] CHANGE DRIVE FAILED, DRIVE : '%s' \r\n", path);
+        return df_False;
+    }
+
+    return df_True;
+}
+
+int snd_fatfs_unmount(void)
+{
+    FRESULT fr;
+    char    path[3];
+
+    // 현재 마운트 된 드라이브를 해제한다.
+
+    // 마운트 된 상태 아니면 즉시 True로 종료 (0: not mounted)
+    if (g_snd_fatfs_mount.fs_type == 0)
+    {
+        return df_True;
+    }
+
+    // Logical 드라이브 번호 확인 후, 드라이브 unmount
+    path[0] = '0' + g_snd_fatfs_mount.ldrv;
+    path[1] = ':';
+    path[2] = '\0';
+
+    fr = f_unmount(path);
+    SYS_WATCHDOG_REFRESH();
+
+    if (fr != FR_OK)
+    {
+        ci_printe("[FATFS] UMOUNT FAILED, DRIVE : '%s' \r\n", path);
+        return df_False;
+    }
+
+    return df_True;
+}
+
+int ci_filesystem_remount(void)
+{
+#if 0
+    int ret;
+
+    ret = f_unmount(CI_FILESYSTEM_LOGICAL_DRIVE_NUM);
+
+    if (ret != FR_OK)
+    {
+        ci_printe("[FS] FAILED TO UNMOUNT DRIVE ('%s') \r\n", CI_FILESYSTEM_LOGICAL_DRIVE_NUM);
+        return df_False;
+    }
+#else
+    snd_fatfs_unmount();
+#endif
+    return ci_filesystem_mount();
+}
+
+int ci_filesystem_mount(void)
+{
+    int ret;
+
+    ret = f_mount(&g_snd_fatfs_mount, CI_FILESYSTEM_LOGICAL_DRIVE_NUM, SND_FATFS_MOUNT_OPTION);
+
+    if (ret != FR_OK)
+    {
+        ci_printe("[FS] FAILED TO MOUNT DRIVE ('%s') \r\n", CI_FILESYSTEM_LOGICAL_DRIVE_NUM);
+        return df_False;
+    }
+
+    SYS_WATCHDOG_REFRESH();
+
+    ret = f_chdrive(CI_FILESYSTEM_LOGICAL_DRIVE_NUM);
+
+    if (ret != FR_OK)
+    {
+        ci_printe("[FS] FAILED TO CHANGE DRIVE ('%s') \r\n", CI_FILESYSTEM_LOGICAL_DRIVE_NUM);
+        return df_False;
+    }
+
+    SYS_WATCHDOG_REFRESH();
+
+    g_ci_filesystem_ptr_pass_bin   = (CI_FILESYSTEM_FFT_PASS_BIN_T *) CI_FILESYSTEM_BASE_ADDR_FFT_PASS_BIN;
+    g_ci_filesystem_ptr_entire_map = (CI_FILESYSTEM_ENTIRE_MAP_T *) CI_FILESYSTEM_BASE_ADDR_ENTIRE_MAP;
+
+    return df_True;
+}
+
+int ci_filesystem_read_with_crc_and_aes128(char *p_name, uint8_t *p_data, int data_size, uint32_t *p_uint32_crc, uint32_t *p_uint32_aes128_padding, int aes128_padding_size, bool enable_crc, bool enable_aes)
+{
+    int      ret = -1;
+    FRESULT  fr;
+    UINT     br;
+    uint8_t *p_uint8_crc            = (uint8_t *) p_uint32_crc;
+    uint8_t *p_uint8_aes128_padding = (uint8_t *) p_uint32_aes128_padding;
+
+    // ---- 파일 열기 (읽기 전용) ----
+    fr = f_open(&g_snd_fatfs_ohdl, p_name, FA_OPEN_EXISTING | FA_READ);
+    if (fr != FR_OK)
+    {
+        ci_printe("[FS] OPEN FAIL '%s' (FRESULT=%d)\r\n", p_name, fr);
+        return ret;
+    }
+
+    fr = f_lseek(&g_snd_fatfs_ohdl, 0);
+    if (fr != FR_OK)
+    {
+        ci_printe("[FS] LSEEK FAIL '%s' (FRESULT=%d)\r\n", p_name, fr);
+        f_close(&g_snd_fatfs_ohdl);
+        return ret;
+    }
+
+    // ---- 파일 읽기 ----
+    fr = f_read(&g_snd_fatfs_ohdl, p_data, data_size, &br);
+    if (fr != FR_OK || (int) br != data_size)
+    {
+        ci_printe("[FS] READ DATA FAIL '%s' (res=%d, got=%u)\r\n", p_name, fr, br);
+        f_close(&g_snd_fatfs_ohdl);
+        return ret;
+    }
+
+    // ---- CRC 기능 사용 시 ----
+    if (enable_crc)
+    {
+        // ---- CRC 암호문 4바이트 읽기 ----
+        fr = f_read(&g_snd_fatfs_ohdl, p_uint32_crc, 4, &br);
+        if (fr != FR_OK || br != 4)
+        {
+            ci_printe("[FS] READ CRC FAIL '%s' (res=%d, got=%u)\r\n", p_name, fr, br);
+            f_close(&g_snd_fatfs_ohdl);
+            return ret;
+        }
+    }
+    else
+    {
+        // CRC 사용하지 않을 시 값을 0으로 초기화
+        *p_uint32_crc = 0;
+    }
+
+    // ---- AES128 사용 시 ----
+    if (enable_aes)
+    {
+        // ---- 패딩 암호문 읽기 (0일 수도 있음) ----
+        if (aes128_padding_size > 0)
+        {
+            fr = f_read(&g_snd_fatfs_ohdl, p_uint32_aes128_padding, aes128_padding_size, &br);
+            if (fr != FR_OK || (int) br != aes128_padding_size)
+            {
+                ci_printe("[FS] READ PAD FAIL '%s' (res=%d, got=%u)\r\n", p_name, fr, br);
+                f_close(&g_snd_fatfs_ohdl);
+                return ret;
+            }
+        }
+    }
+
+#if 0
+    {
+        SEGGER_RTT_printf(0, "\r\n");
+
+        if (enable_aes)
+        {
+            ci_printf("[FS] '%s' BEFORE DECRYPTION \r\n\n", p_name);
+        }
+        else
+        {
+            ci_printf("[FS] '%s' BEFORE DECRYPTION (ACTUALLY AES128 NOT USED) \r\n\n", p_name);
+        }
+
+        ci_printf("[FS] DATA \r\n");
+
+        for (int print_i = 0; print_i < data_size; print_i++)
+        {
+            SEGGER_RTT_printf(0, "%02X ", p_data[print_i]);
+
+            if (((print_i + 1) % 32 == 0) || ((print_i + 1) == data_size))
+            {
+                SEGGER_RTT_printf(0, "\r\n");
+            }
+        }
+
+        SEGGER_RTT_printf(0, "\r\n");
+
+        if (enable_crc)
+        {
+            ci_printf("[FS] CRC \r\n");
+        }
+        else
+        {
+            ci_printf("[FS] CRC (ACTUALLY CRC NOT USED) \r\n");
+        }
+
+        for (int print_i = 0; print_i < 4; print_i++)
+        {
+            SEGGER_RTT_printf(0, "%02X ", ((uint8_t*) p_uint32_crc)[print_i]);
+
+            if (((print_i + 1) % 32 == 0) || ((print_i + 1) == 4))
+            {
+                SEGGER_RTT_printf(0, "\r\n");
+            }
+        }
+
+        SEGGER_RTT_printf(0, "\r\n");
+
+        if (aes128_padding_size > 0)
+        {
+            ci_printf("[FS] PADDING \r\n");
+
+            for (int print_i = 0; print_i < aes128_padding_size; print_i++)
+            {
+                SEGGER_RTT_printf(0, "%02X ", ((uint8_t*) p_uint32_aes128_padding)[print_i]);
+
+                if (((print_i + 1) % 32 == 0) || ((print_i + 1) == aes128_padding_size))
+                {
+                    SEGGER_RTT_printf(0, "\r\n");
+                }
+            }
+
+            SEGGER_RTT_printf(0, "\r\n");
+        }
+    }
+#endif
+
+    if (enable_aes)
+    {
+        // ---- 복호화 (ECB) ----
+
+        // 1) data의 16바이트 정블록
+        int full_blocks = data_size / 16;
+        int remain      = data_size % 16;
+
+        // 정블록 복호화 (in-place)
+        uint8_t *p = p_data;
+
+        for (int i = 0; i < full_blocks; ++i)
+        {
+            ci_aes_decrypt(p);  // 16B block
+            p += 16;
+        }
+
+        // 2) 마지막 16바이트 블록 구성: [data_tail(remain)] + [crc 4B] + [pad N]  => 총 16B 여야 함
+        int last_block_tail = remain + 4 + aes128_padding_size;
+
+        if (last_block_tail <= 0 || last_block_tail > 16)
+        {
+            ci_printe("[FS] INVALID TAIL (%d) remain=%d pad=%d\r\n", last_block_tail, remain, aes128_padding_size);
+            f_close(&g_snd_fatfs_ohdl);
+            return ret;
+        }
+
+        uint8_t blk[16] = {0};
+
+        // a) data의 남은 암호문 바이트 복사
+        if (remain > 0)
+        {
+            memcpy(blk, p, remain);
+        }
+
+        // b) 이어서 CRC 암호문 4바이트
+        memcpy(blk + remain, p_uint8_crc, 4);
+
+        // c) 이어서 패딩 암호문 N바이트
+        if (aes128_padding_size > 0)
+        {
+            memcpy(blk + remain + 4, p_uint8_aes128_padding, aes128_padding_size);
+        }
+
+        // d) 마지막 블록 복호화
+        ci_aes_decrypt(blk);
+
+        // e) 평문 재배치: data tail, CRC, PAD
+        if (remain > 0)
+        {
+            memcpy(p, blk, remain);
+        }
+
+        memcpy(p_uint8_crc, blk + remain, 4);
+
+        if (aes128_padding_size > 0)
+        {
+            memcpy(p_uint8_aes128_padding, blk + remain + 4, aes128_padding_size);
+        }
+    }
+
+    // ---- CRC 검증 ----
+    if (enable_crc)
+    {
+        // ---- CRC 체크 (하위 16비트만 유효) ----
+        uint16_t crc_calc = ci_crc_ccitt_calc(p_data, data_size);
+        uint16_t crc_file = (uint16_t) (*p_uint32_crc & 0xFFFF);
+
+        ci_printv("[FS] '%s' CRC FILE=%u CALC=%u\r\n", p_name, (unsigned) crc_file, (unsigned) crc_calc);
+
+        f_close(&g_snd_fatfs_ohdl);
+
+#if 0
+        {
+            SEGGER_RTT_printf(0, "\r\n");
+
+            if (enable_aes)
+            {
+                ci_printf("[FS] '%s' AFTER DECRYPTION \r\n\n", p_name);
+            }
+            else
+            {
+                ci_printf("[FS] '%s' AFTER DECRYPTION (ACTUALLY AES128 NOT USED) \r\n\n", p_name);
+            }
+
+            ci_printf("[FS] DATA \r\n");
+
+            for (int print_i = 0; print_i < data_size; print_i++)
+            {
+                SEGGER_RTT_printf(0, "%02X ", p_data[print_i]);
+
+                if (((print_i + 1) % 32 == 0) || ((print_i + 1) == data_size))
+                {
+                    SEGGER_RTT_printf(0, "\r\n");
+                }
+            }
+
+            SEGGER_RTT_printf(0, "\r\n");
+
+            if (enable_crc)
+            {
+                ci_printf("[FS] CRC \r\n");
+            }
+            else
+            {
+                ci_printf("[FS] CRC (ACTUALLY CRC NOT USED) \r\n");
+            }
+
+            for (int print_i = 0; print_i < 4; print_i++)
+            {
+                SEGGER_RTT_printf(0, "%02X ", ((uint8_t*) p_uint32_crc)[print_i]);
+
+                if (((print_i + 1) % 32 == 0) || ((print_i + 1) == 4))
+                {
+                    SEGGER_RTT_printf(0, "\r\n");
+                }
+            }
+
+            SEGGER_RTT_printf(0, "\r\n");
+
+            if (aes128_padding_size > 0)
+            {
+                ci_printf("[FS] PADDING \r\n");
+
+                for (int print_i = 0; print_i < aes128_padding_size; print_i++)
+                {
+                    SEGGER_RTT_printf(0, "%02X ", ((uint8_t*) p_uint32_aes128_padding)[print_i]);
+
+                    if (((print_i + 1) % 32 == 0) || ((print_i + 1) == aes128_padding_size))
+                    {
+                        SEGGER_RTT_printf(0, "\r\n");
+                    }
+                }
+
+                SEGGER_RTT_printf(0, "\r\n");
+            }
+        }
+#endif
+
+        ret = (crc_file == crc_calc) ? 0 : -1;
+    }
+    else
+    {
+        ret = 0;
+    }
+
+    return ret;
+}
+
+int ci_filesystem_write_with_crc_and_aes128(char     *p_name,
+                                            uint8_t  *p_data,                   // 평문 데이터(data_size)
+                                            int       data_size,                // 예: 132
+                                            uint32_t *p_uint32_crc,             // 4B (하위 16비트만 유효)
+                                            uint32_t *p_uint32_aes128_padding,  // 패딩 버퍼(쓰기 전용, 0 채움 권장)
+                                            int       aes128_padding_size,      // 예: 8  (remain+4+pad==16 충족)
+                                            bool      enable_crc,
+                                            bool      enable_aes)
+{
+    int ret = -1;
+
+    if (data_size < 0)
+    {
+        return ret;
+    }
+
+    if (aes128_padding_size < 0)
+    {
+        return ret;
+    }
+
+    // 마지막 블록 불변식 검증
+    int remain = data_size % 16;
+    if ((remain + 4 + aes128_padding_size) != 16)
+    {
+        ci_printe("[FS] INVALID TAIL: REMAIN(%d) + 4 + PAD(%d) != 16\r\n", remain, aes128_padding_size);
+        return ret;
+    }
+
+    if (enable_crc)
+    {
+        // CRC16 계산 (평문 data 전체 대상)
+        uint16_t crc16 = ci_crc_ccitt_calc(p_data, data_size);
+        // 하위 16비트에 기록, 상위 16비트는 0
+        *p_uint32_crc = (uint32_t) crc16;
+    }
+    else
+    {
+        *p_uint32_crc = 0;
+    }
+
+    // 패딩 바이트는 0 채움 권장(고정값) : 나중에 용도 생기면 활용
+    if (aes128_padding_size > 0 && p_uint32_aes128_padding)
+    {
+        memset(p_uint32_aes128_padding, 0, (size_t) aes128_padding_size);
+    }
+
+#if 0
+    {
+        SEGGER_RTT_printf(0, "\r\n");
+
+        if (enable_aes)
+        {
+            ci_printf("[FS] '%s' BEFORE ENCRYPTION \r\n\n", p_name);
+        }
+        else
+        {
+            ci_printf("[FS] '%s' BEFORE ENCRYPTION (ACTUALLY AES128 NOT USED) \r\n\n", p_name);
+        }
+
+        ci_printf("[FS] DATA \r\n");
+
+        for (int print_i = 0; print_i < data_size; print_i++)
+        {
+            SEGGER_RTT_printf(0, "%02X ", p_data[print_i]);
+
+            if (((print_i + 1) % 32 == 0) || ((print_i + 1) == data_size))
+            {
+                SEGGER_RTT_printf(0, "\r\n");
+            }
+        }
+
+        SEGGER_RTT_printf(0, "\r\n");
+
+        if (enable_crc)
+        {
+            ci_printf("[FS] CRC \r\n");
+        }
+        else
+        {
+            ci_printf("[FS] CRC (ACTUALLY CRC NOT USED) \r\n");
+        }
+
+        for (int print_i = 0; print_i < 4; print_i++)
+        {
+            SEGGER_RTT_printf(0, "%02X ", ((uint8_t *) p_uint32_crc)[print_i]);
+
+            if (((print_i + 1) % 32 == 0) || ((print_i + 1) == 4))
+            {
+                SEGGER_RTT_printf(0, "\r\n");
+            }
+        }
+
+        SEGGER_RTT_printf(0, "\r\n");
+
+        if (aes128_padding_size > 0)
+        {
+            ci_printf("[FS] PADDING \r\n");
+
+            for (int print_i = 0; print_i < aes128_padding_size; print_i++)
+            {
+                SEGGER_RTT_printf(0, "%02X ", ((uint8_t *) p_uint32_aes128_padding)[print_i]);
+
+                if (((print_i + 1) % 32 == 0) || ((print_i + 1) == aes128_padding_size))
+                {
+                    SEGGER_RTT_printf(0, "\r\n");
+                }
+            }
+
+            SEGGER_RTT_printf(0, "\r\n");
+        }
+    }
+#endif
+
+    // 파일 열기(덮어쓰기)
+    // FRESULT fr = f_open(&g_ci_filesystem_ohdl, p_name, FA_CREATE_ALWAYS | FA_WRITE);
+    FRESULT fr = f_open(&g_snd_fatfs_ohdl, p_name, FA_OPEN_ALWAYS | FA_WRITE);
+    if (fr != FR_OK)
+    {
+        ci_printe("[FS] OPEN FAIL '%s' (FRESULT=%d)\r\n", p_name, fr);
+        return ret;
+    }
+
+    f_lseek(&g_snd_fatfs_ohdl, 4096);  // FATFS에게 4KB로 고정된 파일을 생성할 수 있게 의도적으로 파일 포지션을 4096으로 설정
+    f_lseek(&g_snd_fatfs_ohdl, 0);
+    ci_printv("[FS] PERFORMED : FILE (%s) LSEEK --> 4096 --> 0 \r\n", p_name);
+
+    UINT bw = 0;
+
+    // 1) data의 16바이트 정블록을 암호화하여 그대로 기록
+    int            full_blocks = data_size / 16;
+    const uint8_t *p           = p_data;
+
+    for (int i = 0; i < full_blocks; ++i)
+    {
+        uint8_t blk[16];
+        memcpy(blk, p, 16);
+
+        if (enable_aes)
+        {
+            ci_aes_encrypt(blk);  // 16B in-place 암호화
+
+#if 0
+            SEGGER_RTT_printf(0, "BLK_[%4d] : ", i);
+
+            for (int print_i = 0; print_i < 16; print_i++)
+            {
+                SEGGER_RTT_printf(0, "%02X ", blk[print_i]);
+            }
+
+            SEGGER_RTT_printf(0, "\r\n");
+#endif
+        }
+
+        fr = f_write(&g_snd_fatfs_ohdl, blk, 16, &bw);
+        if (fr != FR_OK || bw != 16)
+        {
+            ci_printe("[FS] WRITE DATA BLOCK FAIL '%s' (res=%d, wrote=%u)\r\n", p_name, fr, bw);
+            f_close(&g_snd_fatfs_ohdl);
+            return ret;
+        }
+
+        p += 16;
+    }
+
+    // 2) 마지막 16바이트 블록 구성: [data_tail(remain)] + [CRC 4B] + [padding N] → 암호화
+    {
+        uint8_t last_plain[16] = {0};
+        uint8_t last_cipher[16];
+
+        if (remain > 0)
+        {
+            memcpy(last_plain, p, (size_t) remain);
+        }
+
+        // CRC 4바이트 (LE 기준으로 메모리에 들어있다고 가정)
+        memcpy(last_plain + remain, (uint8_t *) p_uint32_crc, 4);
+
+        // 패딩 N바이트
+        if (aes128_padding_size > 0 && p_uint32_aes128_padding)
+        {
+            memcpy(last_plain + remain + 4, (uint8_t *) p_uint32_aes128_padding, (size_t) aes128_padding_size);
+        }
+
+        // 암호화
+        memcpy(last_cipher, last_plain, 16);
+
+        if (enable_aes)
+        {
+            ci_aes_encrypt(last_cipher);
+#if 0
+            SEGGER_RTT_printf(0, "BLK_[%4d] : ", full_blocks);
+
+            for (int print_i = 0; print_i < 16; print_i++)
+            {
+                SEGGER_RTT_printf(0, "%02X ", last_cipher[print_i]);
+            }
+
+            SEGGER_RTT_printf(0, "\r\n");
+#endif
+        }
+
+        // 파일에는 read 로직과 대칭되게 "분할"하여 기록:
+        //  - 먼저 data의 남은 부분(remain) 만큼을 data영역의 연속으로 기록
+        if (remain > 0)
+        {
+            fr = f_write(&g_snd_fatfs_ohdl, last_cipher, (UINT) remain, &bw);
+            if (fr != FR_OK || (int) bw != remain)
+            {
+                ci_printe("[FS] WRITE DATA TAIL FAIL '%s' (res=%d, wrote=%u)\r\n", p_name, fr, bw);
+                f_close(&g_snd_fatfs_ohdl);
+                return ret;
+            }
+        }
+
+        //  - 다음 4바이트는 CRC 영역에 해당
+        fr = f_write(&g_snd_fatfs_ohdl, last_cipher + remain, 4, &bw);
+        if (fr != FR_OK || bw != 4)
+        {
+            ci_printe("[FS] WRITE CRC FAIL '%s' (res=%d, wrote=%u)\r\n", p_name, fr, bw);
+            f_close(&g_snd_fatfs_ohdl);
+            return ret;
+        }
+
+        //  - 마지막 aes128_padding_size 바이트는 패딩 영역
+        if (aes128_padding_size > 0)
+        {
+            fr = f_write(&g_snd_fatfs_ohdl, last_cipher + remain + 4, (UINT) aes128_padding_size, &bw);
+            if (fr != FR_OK || (int) bw != aes128_padding_size)
+            {
+                ci_printe("[FS] WRITE PAD FAIL '%s' (res=%d, wrote=%u)\r\n", p_name, fr, bw);
+                f_close(&g_snd_fatfs_ohdl);
+                return ret;
+            }
+        }
+    }
+
+    // 안전을 위한 flush
+    f_sync(&g_snd_fatfs_ohdl);
+
+#if 1
+    FILINFO fno;
+    fr = f_stat(p_name, &fno);
+    if (fr == FR_OK)
+    {
+        ci_printv("[FS] NAME : %s, TOTAL SIZE : %u BYTES, START CLUSTER : %u \r\n",  //
+                  fno.fname,
+                  fno.fsize,
+                  g_snd_fatfs_ohdl.obj.sclust);
+    }
+#endif
+
+    f_close(&g_snd_fatfs_ohdl);
+
+#if 0
+    {
+        SEGGER_RTT_printf(0, "\r\n");
+
+        if (enable_aes)
+        {
+            ci_printf("[FS] '%s' AFTER ENCRYPTION \r\n\n", p_name);
+        }
+        else
+        {
+            ci_printf("[FS] '%s' AFTER ENCRYPTION (ACTUALLY AES128 NOT USED) \r\n\n", p_name);
+        }
+        ci_printf("[FS] DATA \r\n");
+
+        for (int print_i = 0; print_i < data_size; print_i++)
+        {
+            SEGGER_RTT_printf(0, "%02X ", p_data[print_i]);
+
+            if (((print_i + 1) % 32 == 0) || ((print_i + 1) == data_size))
+            {
+                SEGGER_RTT_printf(0, "\r\n");
+            }
+        }
+
+        SEGGER_RTT_printf(0, "\r\n");
+
+        if (enable_crc)
+        {
+            ci_printf("[FS] CRC \r\n");
+        }
+        else
+        {
+            ci_printf("[FS] CRC (ACTUALLY CRC NOT USED) \r\n");
+        }
+
+        for (int print_i = 0; print_i < 4; print_i++)
+        {
+            SEGGER_RTT_printf(0, "%02X ", ((uint8_t*) p_uint32_crc)[print_i]);
+
+            if (((print_i + 1) % 32 == 0) || ((print_i + 1) == 4))
+            {
+                SEGGER_RTT_printf(0, "\r\n");
+            }
+        }
+
+        SEGGER_RTT_printf(0, "\r\n");
+
+        if (aes128_padding_size > 0)
+        {
+            ci_printf("[FS] PADDING \r\n");
+
+            for (int print_i = 0; print_i < aes128_padding_size; print_i++)
+            {
+                SEGGER_RTT_printf(0, "%02X ", ((uint8_t*) p_uint32_aes128_padding)[print_i]);
+
+                if (((print_i + 1) % 32 == 0) || ((print_i + 1) == aes128_padding_size))
+                {
+                    SEGGER_RTT_printf(0, "\r\n");
+                }
+            }
+
+            SEGGER_RTT_printf(0, "\r\n");
+        }
+    }
+#endif
+
+    return 0;
+}
+
+int ci_filesystem_read(char *p_name, uint8_t *p_buf, int size)
+{
+    int ret;
+    int read;
+
+    ret = f_open(&g_snd_fatfs_ohdl, p_name, FA_OPEN_EXISTING | FA_READ | FA_WRITE);
+
+    if (ret != FR_OK)
+    {
+#if ENABLE_DETAIL_MESSAGE_FOR_FILE_READ_WRITE
+        ci_printe("[FS] FAILED TO OPEN '%s' (FRESULT=%d) \r\n", p_name, ret);
+#endif
+        return -1;
+    }
+
+    f_lseek(&g_snd_fatfs_ohdl, 0);
+
+    ret = f_read(&g_snd_fatfs_ohdl, p_buf, size, &read);
+
+    f_close(&g_snd_fatfs_ohdl);
+
+    if (ret != FR_OK)
+    {
+#if ENABLE_DETAIL_MESSAGE_FOR_FILE_READ_WRITE
+        ci_printe("[FS] FAILED TO READ '%s' (FRESULT=%d) \r\n", p_name, ret);
+#endif
+        return -1;
+    }
+
+    if (size != read)
+    {
+#if ENABLE_DETAIL_MESSAGE_FOR_FILE_READ_WRITE
+        ci_printe("[FS] FAILED TO READ '%s', NOT EQUAL SIZE(%d) AND READ(%d) \r\n", p_name, size, read);
+#endif
+        return -1;
+    }
+
+    return 0;
+}
+
+int ci_filesystem_write(char *p_name, uint8_t *p_buf, int size)
+{
+    int ret;
+    int written;
+
+    ret = f_open(&g_snd_fatfs_ohdl, p_name, (FA_OPEN_ALWAYS | FA_READ | FA_WRITE));
+
+    if (ret != FR_OK)
+    {
+#if ENABLE_DETAIL_MESSAGE_FOR_FILE_READ_WRITE
+        ci_printe("[FS] FAILED TO WRITE '%s' (FRESULT=%d) \r\n", p_name, ret);
+#endif
+        return -1;
+    }
+
+    f_lseek(&g_snd_fatfs_ohdl, 4096);  // FATFS에게 4KB로 고정된 파일을 생성할 수 있게 의도적으로 파일 포지션을 4096으로 설정
+    f_lseek(&g_snd_fatfs_ohdl, 0);
+    ci_printv("[FS] PERFORMED : FILE (%s) LSEEK --> 4096 --> 0 \r\n", p_name);
+
+    ret = f_write(&g_snd_fatfs_ohdl, p_buf, size, &written);
+
+    // 안전을 위한 flush
+    f_sync(&g_snd_fatfs_ohdl);
+
+#if 1
+    FILINFO fno;
+    ret = f_stat(p_name, &fno);
+    if (ret == FR_OK)
+    {
+        ci_printv("[FS] NAME : %s, TOTAL SIZE : %u BYTES, START CLUSTER : %u \r\n",  //
+                  fno.fname,
+                  fno.fsize,
+                  g_snd_fatfs_ohdl.obj.sclust);
+    }
+#endif
+
+    f_close(&g_snd_fatfs_ohdl);
+
+    if (ret != FR_OK)
+    {
+#if ENABLE_DETAIL_MESSAGE_FOR_FILE_READ_WRITE
+        ci_printe("[FS] FAILED TO WRITE '%s' (FRESULT=%d) \r\n", p_name, ret);
+#endif
+        return -1;
+    }
+
+    if (size != written)
+    {
+#if ENABLE_DETAIL_MESSAGE_FOR_FILE_READ_WRITE
+        ci_printe("[FS] FAILED TO WRITE '%s', NOT EQUAL SIZE(%d) AND WRITTEN(%d) \r\n", p_name, size, written);
+#endif
+        return -1;
+    }
+
+    return 0;
+}
+
+int ci_filesystem_copy_isd_info_from_filesystem_to_shared_memory(void)
+{
+    int *p_src, *p_dst;
+
+    for (int i = 0; i < MaxNumUser; i++)
+    {
+        p_dst = (int*) &(cfx_cm3_sharedMemoryAll.cfx_ISD_info[i]);
+        p_src = (int*) &(g_ci_filesystem_ptr_entire_map->map[i].isd_info);
+
+        for (int k = 0; k < df_24bitWordLength_ISD_info; k++)
+        {
+            p_dst[k] = p_src[k];
+        }
+    }
+}
