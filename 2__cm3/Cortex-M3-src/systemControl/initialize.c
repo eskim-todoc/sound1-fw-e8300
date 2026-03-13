@@ -67,6 +67,8 @@
 #include <ci_printf.h>
 #include <ci_boot.h>
 
+#include <snd_qcc.h>
+
 void ResetNRF(void)
 {
     // Sys_GPIO_Set_High(DIO_NUM_NRF_SWDIO_NRESET);
@@ -334,8 +336,6 @@ void iqs323_init(void)
 
     touch_state = 0;
 
-    ci_printf("\r\n\n");
-
     ci_timer_init(19); /* Make around 1msec timer */
 
     SYS_WATCHDOG_REFRESH();
@@ -343,29 +343,29 @@ void iqs323_init(void)
     // 1) reset event clear + i2c mode setting
     // iqs323_ack_reset_event_and_i2c_event_mode_setting();
 
-    ci_printf("\r\n\n[TOUCH] ACK RESET EVENT // \r\n");
+    ci_printd("[TOUCH] ACK RESET EVENT \r\n");
     iqs323_ack_reset_event();
 
-    ci_printf("\r\n\n[TOUCH] CONFIRM RESET EVENT // \r\n");
+    ci_printd("[TOUCH] CONFIRM RESET EVENT \r\n");
     iqs323_confirm_reset_event();
 
     // 2) i2c stop bit disable
     // iqs323_i2c_stop_bit_disable_setting();
 
     // 3) evnets enable
-    ci_printf("\r\n\n[TOUCH] EVENTS ENABLE // \r\n");
+    ci_printd("[TOUCH] EVENTS ENABLE \r\n");
     iqs323_events_enable();
 
     // 4) sensor setup
-    ci_printf("\r\n\n[TOUCH] SENSOR SETUP // \r\n");
+    ci_printd("[TOUCH] SENSOR SETUP \r\n");
     iqs323_sensor_setup();
 
     // 5) touch settings
-    ci_printf("\r\n\n[TOUCH] TOUCH SETTINGS // \r\n");
+    ci_printd("[TOUCH] TOUCH SETTINGS \r\n");
     iqs323_touch_settings();
 
     // 6) re-ati trigger
-    ci_printf("\r\n\n[TOUCH] RE ATI TRIGGER // \r\n");
+    ci_printd("[TOUCH] RE-ATI TRIGGER \r\n");
     iqs323_re_ati_trigger();
 
     {
@@ -384,12 +384,12 @@ void iqs323_init(void)
     }
 
     // 7) wait re-ati done
-    ci_printf("\r\n\n[TOUCH] RE ATI DONE CHECK // \r\n");
+    ci_printd("[TOUCH] RE-ATI DONE CHECK \r\n");
     iqs323_wait_re_ati_done();
 
     SYS_WATCHDOG_REFRESH();
 
-    ci_printf("\r\n\n\n[TOUCH] ENTIRE SETTINGS DONE \r\n\n");
+    ci_printd("[TOUCH] ENTIRE SETTINGS DONE \r\n");
 
     iqs323_update_tick(ci_timer_get_tick());
     iqs323_update_state(IQS323_TOUCH_STATE_RESET);
@@ -433,11 +433,11 @@ void Initialize(void)
 
     SYS_WATCHDOG_REFRESH();
 
-#if 0
-    // DFU, OTA, BOOT_MGR 검증
+#if 1  // NOTE: 부트 상태 정보 파일은 드라이브0에 있으므로, 관련 설정이 끝나면 반드시 드라이브1로 변경시키도록 하자.
     ci_util_assert(snd_fatfs_remount(SND_FATFS_LDRV_NUM_BOOT));
-    ci_boot_init_fp(ci_filesystem_get_fp());
+    ci_boot_init_fp(snd_fatfs_get_fp());
     ci_boot_handle_fsm();
+    ci_util_assert(snd_fatfs_remount(SND_FATFS_LDRV_NUM_USER_DATA));
 #endif
 
     // Check, make and init ISD map files (info, user setting, map stamp, map_data.....)

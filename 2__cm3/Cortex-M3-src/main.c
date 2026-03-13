@@ -53,6 +53,8 @@
 #include <SEGGER_RTT_Wrapper.h>
 #include <aes.h>
 
+#include <snd_qcc.h>
+
 void debug_led_pattern(EN__LED_PATTERN pattern);
 
 typedef struct
@@ -360,9 +362,7 @@ bool iqs323_proc(void)
         {
             if (last_touch_state != curr_touch_state)
             {
-                ci_printf("[TOUCH] STATE UPDATE : %s -> %s \r\n",  //
-                          print_states[last_touch_state],
-                          print_states[curr_touch_state]);
+                ci_printv("[TOUCH] STATE: %s -> %s \r\n", print_states[last_touch_state], print_states[curr_touch_state]);
 
                 iqs323_update_state(curr_touch_state);
             }
@@ -372,7 +372,7 @@ bool iqs323_proc(void)
         if (proc_touch(curr_touch_state))
         {
             // long touch
-            ci_printf("\r\n[TOUCH] LONG TOUCH STATE! \r\n");
+            ci_printi("\r\n[TOUCH] EVENT: LONG TOUCH \r\n");
             return true;
         }
     }
@@ -432,6 +432,10 @@ int func_normal(void)
 
     cfx_cm3_sharedMemoryAll.is_enabled_CFX_iteration = 1;  // CFX 동작 활성화
 
+    // 초기화 과정을 통해 SPI 인터페이스 설정도 완료 되었고
+    // 위에서 CFX 동작까지 실행시켰으므로, 이제 QCC를 깨우고 배터리 정보를 얻을 수 있도록 한다.
+    snd_qcc_set_mode(SND_QCC_MODE_NORMAL);
+
     while (1)
     {
         if ((iterationFlag == true))
@@ -449,7 +453,7 @@ int func_normal(void)
             batteryLevel      = snd_batt_get_level();  // 직접 측정하지 않고, QCC에서 배터리 정보 받으면 업데이트 됨
             powerButtonPushed = iqs323_proc();         // NOTE: 터치 센서 처리하는 코드가, 드라이버 말고 main.c에 있음
 
-#if 1  // QCC 대체용 디버깅 코드 시작, 약 500밀리초 이후 시스템 동작
+#if 0   // QCC 대체용 디버깅 코드 시작, 약 500밀리초 이후 시스템 동작
             {
                 static int fake_0x34      = 0;
                 static int fake_0x34_done = 0;

@@ -9,12 +9,12 @@
 typedef enum
 {
     en__isdStatus_NA = 0,
-    en__isdStatus_PowerIC_Reset,   // PCM 초기화 시작
-    en__isdStatus_PowerIC_OK,      // FPGA 초기화 시작
-    en__isdStatus_FPGA_Ok,         // 내부기 파워 조정 시작
-    en__isdStatus_ISD_Power_Ok,    // 내부기 파워 정상이므로 내부기 패스 오픈
-    en__isdStatus_ISD_pathOpen_Ok, // 내부기 패스가 열렸으며 10V 출력 활성화
-    en__isdStatus_stimul_10V_Ok    // 내부기 출력 10v 정상. 자극 출력 설정 시작
+    en__isdStatus_PowerIC_Reset,    // PCM 초기화 시작
+    en__isdStatus_PowerIC_OK,       // FPGA 초기화 시작
+    en__isdStatus_FPGA_Ok,          // 내부기 파워 조정 시작
+    en__isdStatus_ISD_Power_Ok,     // 내부기 파워 정상이므로 내부기 패스 오픈
+    en__isdStatus_ISD_pathOpen_Ok,  // 내부기 패스가 열렸으며 10V 출력 활성화
+    en__isdStatus_stimul_10V_Ok     // 내부기 출력 10v 정상. 자극 출력 설정 시작
 
 } EN__ISD_CONTROL_STATE;
 
@@ -25,6 +25,7 @@ typedef struct
 
 } ST__ISD_STATUS;
 
+ST__ISD_STATUS snd_isd_interface_get_state(void);
 ST__ISD_STATUS isd_interface(bool isd_enable, bool mappingConnection, EN__ISD_CONTROL_STATE isdControlCommand);
 void           change_isd_state(EN__ISD_CONTROL_STATE ISD_controlState);
 void           clearIsdControlStateChagedFlag(void);

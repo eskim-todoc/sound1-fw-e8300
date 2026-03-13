@@ -39,6 +39,12 @@ typedef enum
 
 typedef enum
 {
+    EN__SND_BT_CMD_SYSTEM_INFO_BATTERY = 0x33,
+    EN__SND_BT_CMD_SYSTEM_INFO_POWER   = 0x34,
+} EN__SND_BT_CMD_SYSTEM_INFO;
+
+typedef enum
+{
     en__remoteControl_IDLE              = 0,
     en__remoteControl_check_isd_passKey = 0x40,              // 40 (리모콘 사용)
     en__remoteControl_readInfoOfExtenalDevice,               // 41 (리모콘 사용) // 확인 완료: nRF 자체 처리

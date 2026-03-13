@@ -88,8 +88,9 @@ int ci_dio_configure_normal(void)
     // Acc-sensor interrupt detection
     Sys_DIO_Config(DIO_PIN_INDEX_for_Accelerometer, OTE_1_5_GEN_DIO_CFG_NORMAL_ACCEL_INT);
 
-    // QCC 제어 핀 설정
-    snd1_qcc_init_control_pins();
+    // 부트로더에서 DIO 설정, 셧다운 상태 설정, ISD 연결해제 상태 설정을 하고
+    // 부팅하기 때문에 사실상 큰 의미 없다.
+    snd_qcc_init();
 
     return df_True;
 }

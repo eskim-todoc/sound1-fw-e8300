@@ -118,7 +118,7 @@ extern FIL                           g_snd_fatfs_ohdl;
 // function headers
 //
 
-FIL *ci_filesystem_get_fp(void);
+FIL *snd_fatfs_get_fp(void);
 
 const NVMCTRL_Options_t *ci_filesystem_get_nvmctrl_option(void);
 

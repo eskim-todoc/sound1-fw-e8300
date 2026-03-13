@@ -24,7 +24,7 @@ static const NVMCTRL_Options_t s_nvmctrl_option = {
     .io3      = 4,
 };
 
-FIL *ci_filesystem_get_fp(void)
+FIL *snd_fatfs_get_fp(void)
 {
     return &g_snd_fatfs_ohdl;
 }

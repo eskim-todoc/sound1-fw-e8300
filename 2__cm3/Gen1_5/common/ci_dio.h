@@ -18,7 +18,7 @@
 #include <ci_uart.h>
 #include <processorDirective.h>
 
-#include <snd1_qcc_control_pins.h>
+#include <snd_qcc.h>
 
 // DIO list
 

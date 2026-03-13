@@ -373,7 +373,7 @@ CI_OTA_RET_E ci_ota_prepare_file(CI_OTA_PREPARE_FILE_T *p_prepare)
     strcat(path, p_name);
 
     //fp = ci_file_system_get_fp();
-    fp = ci_filesystem_get_fp();
+    fp = snd_fatfs_get_fp();
 
     res = f_open(fp, path, (FA_CREATE_ALWAYS | FA_READ | FA_WRITE));
 
@@ -405,7 +405,7 @@ CI_OTA_RET_E ci_ota_write_file(uint8_t *p_data, uint32_t len)
 
     btw = len;
     //fp  = ci_file_system_get_fp();
-    fp  = ci_filesystem_get_fp();
+    fp  = snd_fatfs_get_fp();
     res = f_write(fp, p_data, btw, &bw);
 
     if ((res != FR_OK) || (bw != len))

@@ -36,6 +36,8 @@
 #error Link PMIC is NOT selected.
 #endif
 
+#include <snd_qcc.h>
+
 static bool i2c_is_freeS_for_10msec = false;
 
 bool is_i2c_free(void)
@@ -130,14 +132,19 @@ void fill_pcmBuff_check_ISD_PathOpen_duplicateZeroData(int *p_pcm_index)
     fillSepcificCommndBuffer((*p_pcm_index)++, pcm_Mold_NopBacktel);
 }
 
-static ST__ISD_STATUS isd_state                 = {en__isdStatus_PowerIC_Reset, false};
-static bool           isdControlStateChagedFlag = true;
+static ST__ISD_STATUS s_isd_state                     = {en__isdStatus_PowerIC_Reset, false};
+static bool           s_isd_control_state_chaged_flag = true;
+
+ST__ISD_STATUS snd_isd_interface_get_state(void)
+{
+    return s_isd_state;
+}
 
 void change_isd_state(EN__ISD_CONTROL_STATE ISD_controlState)
 {
-    int i                      = 0;
-    isd_state.isd_controlState = ISD_controlState;
-    isdControlStateChagedFlag  = true;
+    int i                           = 0;
+    s_isd_state.isd_controlState    = ISD_controlState;
+    s_isd_control_state_chaged_flag = true;
 
     changePcmOutputMode(PcmBitStream_Mode_NopStandby);
 
@@ -149,7 +156,7 @@ void change_isd_state(EN__ISD_CONTROL_STATE ISD_controlState)
 
 void clearIsdControlStateChagedFlag(void)
 {
-    isdControlStateChagedFlag = false;
+    s_isd_control_state_chaged_flag = false;
 }
 
 ST__ISD_STATUS isd_interface(bool isd_enable, bool mappingConnection, EN__ISD_CONTROL_STATE isdControlCommand)
@@ -167,23 +174,23 @@ ST__ISD_STATUS isd_interface(bool isd_enable, bool mappingConnection, EN__ISD_CO
 
         // 매핑 기능에서 명령 또는 특정한 상태에 따라 내부기를 제어하는 경우가 아니면,
         // 전역 변수로 저장된 내부기 상태에 따라서 내부기와 연결될 때 까지 내부기 연결 과정을 반복적으로 시도한다.
-        switch (isd_state.isd_controlState)
+        switch (s_isd_state.isd_controlState)
         {
             case en__isdStatus_PowerIC_Reset:
                 // 링크 5V PMIC를 최소 전압에서 최대전압으로 단계적 증가
-                init_txPowerIC(isdControlStateChagedFlag);
+                init_txPowerIC(s_isd_control_state_chaged_flag);
                 break;
 
             case en__isdStatus_PowerIC_OK:
                 // FPGA의 소프트웨어 리셋, PCM Abort, Preamble, Nop 패킷 전송 시퀀스 수행 후,
                 // 마지막으로 FPGA에 에러가 없는지 검증한다. (싱크 로스트 등)
-                init_FPGA(isdControlStateChagedFlag);
+                init_FPGA(s_isd_control_state_chaged_flag);
                 break;
 
             case en__isdStatus_FPGA_Ok:
                 // RF Tx (10Mhz 캐리어 클럭)을 일정기간 죽인 후, 내부기 전송 시작,
                 // 내부기의 전원 안정화 여부는 관계 없이 내부기 칩의 전원 레벨이 읽히는지 여부까지만 수행한다.
-                init_ISD(isdControlStateChagedFlag);
+                init_ISD(s_isd_control_state_chaged_flag);
                 break;
 
             case en__isdStatus_ISD_Power_Ok:
@@ -198,13 +205,13 @@ ST__ISD_STATUS isd_interface(bool isd_enable, bool mappingConnection, EN__ISD_CO
                 // 순서 1: 파일 읽고 맵 데이터 메모리 영역에 로드 : ISD 정보, 사용자 설정 값, 매핑 일자, 프로그램 1, 2, 3, 4
                 // 순서 2: 맵 데이터 메모리 영역에서 공유 메모리 영역으로 ISD 번호에 해당하는 정보 모두 복사
                 // 순서 3: 공유 메모리의 현재 연결 중인 ISD 번호 업데이트하여 CFX가 처리하도록 함
-                isd_path_Open(isdControlStateChagedFlag);
+                isd_path_Open(s_isd_control_state_chaged_flag);
                 break;
 
             case en__isdStatus_ISD_pathOpen_Ok:
                 // 자극 출력을 위한 내부기 칩 외부의 10V를 켜고, 이 10V를 활용하도록 VTG_LOCK_ENABLE을 설정하여
                 // 자극발생부가 잘 활성화 되도록 설정 및 검증하는 단계이다.
-                enableStimul_10v(isdControlStateChagedFlag);
+                enableStimul_10v(s_isd_control_state_chaged_flag);
                 break;
 
             default:
@@ -213,7 +220,7 @@ ST__ISD_STATUS isd_interface(bool isd_enable, bool mappingConnection, EN__ISD_CO
 
         // 내부기 칩의 자극발생부 활성화까지 전부 문제가 없으면, 맵 데이터를 사용해 내부기 칩의 자극 방식을 설정하는 단계를 수행한다.
         // 자극 방식 설정까지 모두 완료되면, 주기적으로 링크 연결 상태 체크를 위해 백텔 데이터를 주고 받는다.
-        if (isd_state.isd_controlState == en__isdStatus_stimul_10V_Ok)
+        if (s_isd_state.isd_controlState == en__isdStatus_stimul_10V_Ok)
         {
             // 매핑 앱 연결 상태가 아닌 즉, 일반적인 외부기 자체 동작 상태다.
             if (!mappingConnection)
@@ -235,28 +242,32 @@ ST__ISD_STATUS isd_interface(bool isd_enable, bool mappingConnection, EN__ISD_CO
 
     if (mappingConnection)
     {
-        if (isd_state.isd_controlState >= en__isdStatus_stimul_10V_Ok)
+        if (s_isd_state.isd_controlState >= en__isdStatus_stimul_10V_Ok)
         {
-            isd_state.conneded_ISD = true;
+            s_isd_state.conneded_ISD = true;
+            snd_qcc_set_isd(SND_QCC_ISD_CONNECTED);
         }
         else
         {
-            isd_state.conneded_ISD = false;
+            s_isd_state.conneded_ISD = false;
+            snd_qcc_set_isd(SND_QCC_ISD_DISCONNECTED);
         }
     }
     else
     {
         if (stimulationParameterSettingIsDone)
         {
-            isd_state.conneded_ISD = true;
+            s_isd_state.conneded_ISD = true;
+            snd_qcc_set_isd(SND_QCC_ISD_CONNECTED);
         }
         else
         {
-            isd_state.conneded_ISD = false;
+            s_isd_state.conneded_ISD = false;
+            snd_qcc_set_isd(SND_QCC_ISD_DISCONNECTED);
         }
     }
 
-    return isd_state;
+    return s_isd_state;
 }
 
 void update_isd_LinkConnection_byBacktel_withLiveStimulation(void)

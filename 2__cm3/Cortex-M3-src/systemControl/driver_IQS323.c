@@ -149,7 +149,7 @@ bool iqs323_wait_rdy_window_closed(int max_ms)
     }
 
 #if 1
-    ci_printf("[TOUCH] ERROR : TIMEOUT (%d MS) FOR WAIT WINDOW CLOSE \r\n", max_ms);
+    ci_printe("[TOUCH] ERROR: TIMEOUT (%d MS) FOR WAIT WINDOW CLOSE \r\n", max_ms);
 #endif
 
     return false;
@@ -271,34 +271,34 @@ bool iqs323_ack_reset_event(void)
     // confirm window open
     if (iqs323_rdy_window_open())
     {
-        ci_printf("[TOUCH] ACK RESET EVENT : WINDOW OPEN SUCCESS \r\n");
+        ci_printv("[TOUCH] ACK RESET EVENT: WINDOW OPEN SUCCESS \r\n");
     }
     else
     {
-        ci_printf("[TOUCH] ACK RESET EVENT : WINDOW OPEN FAIL \r\n");
+        ci_printe("[TOUCH] ACK RESET EVENT: WINDOW OPEN FAIL \r\n");
     }
 
     // write control
     if (!iqs323_i2c_write(&system_control.bytes[0], 3))
     {
-        ci_printf("[TOUCH] ERROR : I2C WRITE FOR ACK RESET EVENT AND I2C EVENT MODE \r\n");
+        ci_printe("[TOUCH] I2C WRITE ERROR: ACK RESET EVENT AND I2C EVENT MODE \r\n");
         return false;
     }
 
-    ci_printf("[TOUCH] I2C WRITE SUCCESS : REG(%02X) LSB(%02X) MSB(%02X) \r\n",  //
-              system_control.bytes[0],                                           //
-              system_control.bytes[1],                                           //
-              system_control.bytes[2]                                            //
+    ci_printv("[TOUCH] I2C WRITE SUCCESS: REG = %02X, LSB = %02X, MSB = %02X \r\n",  //
+              system_control.bytes[0],                                               //
+              system_control.bytes[1],                                               //
+              system_control.bytes[2]                                                //
     );
 
     // confirm window close
     if (iqs323_wait_rdy_window_closed(10))
     {
-        ci_printf("[TOUCH] ACK RESET EVENT : WINDOW CLOSE SUCCESS \r\n");
+        ci_printv("[TOUCH] ACK RESET EVENT: WINDOW CLOSE SUCCESS \r\n");
     }
     else
     {
-        ci_printf("[TOUCH] ACK RESET EVENT : WINDOW CLOSE FAIL \r\n");
+        ci_printe("[TOUCH] ACK RESET EVENT: WINDOW CLOSE FAIL \r\n");
     }
 
     return true;
@@ -318,77 +318,75 @@ bool iqs323_confirm_reset_event(void)
     // window open 및 reset event 초기화에 시간이 걸릴 수 있으므로 최대 10회를 체크해본다. (회당 1ms 딜레이 적용)
     for (int i = 0; i < 10; i++)
     {
-        ci_printf("[TOUCH] ==== TRY COUNT (%d) ==== \r\n", i + 1);
+        ci_printd("[TOUCH] TRY COUNT: %d \r\n", i + 1);
 
         // confirm window open
         if (iqs323_rdy_window_open())
         {
-            ci_printf("[TOUCH] ACK RESET EVENT : WINDOW OPEN SUCCESS \r\n");
+            ci_printv("[TOUCH] ACK RESET EVENT: WINDOW OPEN SUCCESS \r\n");
         }
         else
         {
-            ci_printf("[TOUCH] ACK RESET EVENT : WINDOW OPEN FAIL \r\n");
+            ci_printe("[TOUCH] ACK RESET EVENT: WINDOW OPEN FAIL \r\n");
         }
 
         // register address
         if (!iqs323_i2c_write(&system_status.bytes[0], 1))
         {
-            ci_printf("[TOUCH] ERROR : I2C WRITE FOR SYSTEM STATUS REGISTER \r\n");
+            ci_printe("[TOUCH] I2C WRITE ERROR: SYSTEM STATUS REGISTER \r\n");
             return false;
         }
 
-        ci_printf("[TOUCH] I2C WRITE SUCCESS : REG(%02X) \r\n",  //
-                  system_status.bytes[0]                         //
-        );
+        ci_printv("[TOUCH] I2C WRITE SUCCESS: REG = %02X \r\n", system_status.bytes[0]);
 
         // confirm window close
         if (iqs323_wait_rdy_window_closed(10))
         {
-            ci_printf("[TOUCH] ACK RESET EVENT : WINDOW CLOSE SUCCESS \r\n");
+            ci_printv("[TOUCH] ACK RESET EVENT: WINDOW CLOSE SUCCESS \r\n");
         }
         else
         {
-            ci_printf("[TOUCH] ACK RESET EVENT : WINDOW CLOSE FAIL \r\n");
+            ci_printe("[TOUCH] ACK RESET EVENT: WINDOW CLOSE FAIL \r\n");
         }
 
         // confirm window open
         if (iqs323_rdy_window_open())
         {
-            ci_printf("[TOUCH] ACK RESET EVENT : WINDOW OPEN SUCCESS \r\n");
+            ci_printv("[TOUCH] ACK RESET EVENT: WINDOW OPEN SUCCESS \r\n");
         }
         else
         {
-            ci_printf("[TOUCH] ACK RESET EVENT : WINDOW OPEN FAIL \r\n");
+            ci_printe("[TOUCH] ACK RESET EVENT: WINDOW OPEN FAIL \r\n");
         }
 
         // read status
         if (!iqs323_i2c_read(&system_status.bytes[1], 2))
         {
-            ci_printf("[TOUCH] ERROR : I2C READ FOR SYSTEM STATUS \r\n");
+            ci_printe("[TOUCH] I2C READ ERROR: SYSTEM STATUS \r\n");
             return false;
         }
 
-        ci_printf("[TOUCH] I2C READ SUCCESS : REG(%02X) LSB(%02X) MSB(%02X) \r\n",  //
-                  system_status.bytes[0],                                           //
-                  system_status.bytes[1],                                           //
-                  system_status.bytes[2]                                            //
+        ci_printv("[TOUCH] I2C READ SUCCESS: REG = %02X, LSB = %02X, MSB = %02X \r\n",  //
+                  system_status.bytes[0],                                               //
+                  system_status.bytes[1],                                               //
+                  system_status.bytes[2]                                                //
         );
 
         // confirm window close
         if (iqs323_wait_rdy_window_closed(10))
         {
-            ci_printf("[TOUCH] ACK RESET EVENT : WINDOW CLOSE SUCCESS \r\n");
+            ci_printv("[TOUCH] ACK RESET EVENT: WINDOW CLOSE SUCCESS \r\n");
         }
         else
         {
-            ci_printf("[TOUCH] ACK RESET EVENT : WINDOW CLOSE FAIL \r\n");
+            ci_printe("[TOUCH] ACK RESET EVENT: WINDOW CLOSE FAIL \r\n");
         }
 
         // 16bit가 0xEEEE로 읽히면 window open 확보에 이슈가 있었던 것이므로,
         // 다시 한 번 더 상태 레지스터 읽기를 진행해본다.
         if ((system_status.bytes[1] == 0xEE) && (system_status.bytes[2] == 0xEE))
         {
-            ci_printf("[TOUCH] WARNN : SYSTEM STATUS READ RESULT : 0xEEEE \r\n");
+            ci_printw("[TOUCH] WARNN: SYSTEM STATUS READ RESULT = 0xEEEE \r\n");
         }
         else
         {
@@ -397,7 +395,7 @@ bool iqs323_confirm_reset_event(void)
                 // window open이 확실하여 읽은 값이 0xEEEE가 아닌 값이며,
                 // reset event가 확실히 clear 되어 있다면 true 상태로 반환한다.
                 is_clear = true;
-                ci_printf("[TOUCH] CURRENTLY, RESET EVENT IS NOT SET \r\n");
+                ci_printv("[TOUCH] CURRENTLY, RESET EVENT IS NOT SET \r\n");
                 break;
             }
         }
@@ -432,97 +430,95 @@ bool iqs323_events_enable(void)
     // confirm window open
     if (iqs323_rdy_window_open())
     {
-        ci_printf("[TOUCH] ACK RESET EVENT : WINDOW OPEN SUCCESS \r\n");
+        ci_printv("[TOUCH] ACK RESET EVENT: WINDOW OPEN SUCCESS \r\n");
     }
     else
     {
-        ci_printf("[TOUCH] ACK RESET EVENT : WINDOW OPEN FAIL \r\n");
+        ci_printe("[TOUCH] ACK RESET EVENT: WINDOW OPEN FAIL \r\n");
     }
 
     if (!iqs323_i2c_write(&events_enable.bytes[0], 3))
     {
-        ci_printf("[TOUCH] ERROR : I2C WRITE FOR EVENTS ENABLE \r\n");
+        ci_printe("[TOUCH] I2C WRITE ERROR: EVENTS ENABLE \r\n");
         return false;
     }
 
-    ci_printf("[TOUCH] I2C WRITE SUCCESS : REG(%02X) LSB(%02X) MSB(%02X) \r\n",  //
-              events_enable.bytes[0],                                            //
-              events_enable.bytes[1],                                            //
-              events_enable.bytes[2]                                             //
+    ci_printv("[TOUCH] I2C WRITE SUCCESS: REG = %02X, LSB = %02X, MSB = %02X \r\n",  //
+              events_enable.bytes[0],                                                //
+              events_enable.bytes[1],                                                //
+              events_enable.bytes[2]                                                 //
     );
 
     // confirm window close
     if (iqs323_wait_rdy_window_closed(10))
     {
-        ci_printf("[TOUCH] ACK RESET EVENT : WINDOW CLOSE SUCCESS \r\n");
+        ci_printv("[TOUCH] ACK RESET EVENT: WINDOW CLOSE SUCCESS \r\n");
     }
     else
     {
-        ci_printf("[TOUCH] ACK RESET EVENT : WINDOW CLOSE FAIL \r\n");
+        ci_printe("[TOUCH] ACK RESET EVENT: WINDOW CLOSE FAIL \r\n");
     }
 
     // confirm window open
     if (iqs323_rdy_window_open())
     {
-        ci_printf("[TOUCH] ACK RESET EVENT : WINDOW OPEN SUCCESS \r\n");
+        ci_printv("[TOUCH] ACK RESET EVENT: WINDOW OPEN SUCCESS \r\n");
     }
     else
     {
-        ci_printf("[TOUCH] ACK RESET EVENT : WINDOW OPEN FAIL \r\n");
+        ci_printe("[TOUCH] ACK RESET EVENT: WINDOW OPEN FAIL \r\n");
     }
 
     // register address
     if (!iqs323_i2c_write(&events_enable.bytes[0], 1))
     {
-        ci_printf("[TOUCH] ERROR : I2C WRITE FOR EVENTS ENABLE REGISTER \r\n");
+        ci_printe("[TOUCH] I2C WRITE ERROR: EVENTS ENABLE REGISTER \r\n");
         return false;
     }
 
-    ci_printf("[TOUCH] I2C WRITE SUCCESS : REG(%02X) \r\n",  //
-              events_enable.bytes[0]                         //
-    );
+    ci_printv("[TOUCH] I2C WRITE SUCCESS: REG = %02X \r\n", events_enable.bytes[0]);
 
     // confirm window close
     if (iqs323_wait_rdy_window_closed(10))
     {
-        ci_printf("[TOUCH] ACK RESET EVENT : WINDOW CLOSE SUCCESS \r\n");
+        ci_printv("[TOUCH] ACK RESET EVENT: WINDOW CLOSE SUCCESS \r\n");
     }
     else
     {
-        ci_printf("[TOUCH] ACK RESET EVENT : WINDOW CLOSE FAIL \r\n");
+        ci_printe("[TOUCH] ACK RESET EVENT: WINDOW CLOSE FAIL \r\n");
     }
 
     // confirm window open
     if (iqs323_rdy_window_open())
     {
-        ci_printf("[TOUCH] ACK RESET EVENT : WINDOW OPEN SUCCESS \r\n");
+        ci_printv("[TOUCH] ACK RESET EVENT: WINDOW OPEN SUCCESS \r\n");
     }
     else
     {
-        ci_printf("[TOUCH] ACK RESET EVENT : WINDOW OPEN FAIL \r\n");
+        ci_printe("[TOUCH] ACK RESET EVENT: WINDOW OPEN FAIL \r\n");
     }
 
     // read status
     if (!iqs323_i2c_read(&events_enable.bytes[1], 2))
     {
-        ci_printf("[TOUCH] ERROR : I2C READ FOR EVENTS ENABLE \r\n");
+        ci_printe("[TOUCH] I2C READ ERROR: EVENTS ENABLE \r\n");
         return false;
     }
 
-    ci_printf("[TOUCH] I2C READ SUCCESS : REG(%02X) LSB(%02X) MSB(%02X) \r\n",  //
-              events_enable.bytes[0],                                           //
-              events_enable.bytes[1],                                           //
-              events_enable.bytes[2]                                            //
+    ci_printv("[TOUCH] I2C READ SUCCESS: REG = %02X, LSB = %02X, MSB = %02X \r\n",  //
+              events_enable.bytes[0],                                               //
+              events_enable.bytes[1],                                               //
+              events_enable.bytes[2]                                                //
     );
 
     // confirm window close
     if (iqs323_wait_rdy_window_closed(10))
     {
-        ci_printf("[TOUCH] ACK RESET EVENT : WINDOW CLOSE SUCCESS \r\n");
+        ci_printv("[TOUCH] ACK RESET EVENT: WINDOW CLOSE SUCCESS \r\n");
     }
     else
     {
-        ci_printf("[TOUCH] ACK RESET EVENT : WINDOW CLOSE FAIL \r\n");
+        ci_printe("[TOUCH] ACK RESET EVENT: WINDOW CLOSE FAIL \r\n");
     }
 
     return true;
@@ -556,216 +552,212 @@ bool iqs323_sensor_setup(void)
     sensor_setup.elements.lsb.linearise_counts           = IQS323_REG_VAL_SENSOR_SETUP_LSB_DO_NOT_LINEARISE_COUNTS;
     sensor_setup.elements.lsb.enable_channel             = IQS323_REG_VAL_SENSOR_SETUP_LSB_CHANNEL_DISABLE;
 
-    ci_printf("[TOUCH] ==== SENSOR 2 ==== \r\n");
+    ci_printd("[TOUCH] SETUP SENSOR: 2 \r\n");
 
     // confirm window open
     if (iqs323_rdy_window_open())
     {
-        ci_printf("[TOUCH] ACK RESET EVENT : WINDOW OPEN SUCCESS \r\n");
+        ci_printv("[TOUCH] ACK RESET EVENT: WINDOW OPEN SUCCESS \r\n");
     }
     else
     {
-        ci_printf("[TOUCH] ACK RESET EVENT : WINDOW OPEN FAIL \r\n");
+        ci_printe("[TOUCH] ACK RESET EVENT: WINDOW OPEN FAIL \r\n");
     }
 
     // sensor 2 disable
     sensor_setup.elements.addr = IQS323_REG_ADDR_SENSOR2_SETUP;
     if (!iqs323_i2c_write(&sensor_setup.bytes[0], 3))
     {
-        ci_printf("[TOUCH] ERROR : I2C WRITE FOR SENSOR 2 SETUP \r\n");
+        ci_printe("[TOUCH] I2C WRITE ERROR: SENSOR 2 SETUP \r\n");
         return false;
     }
 
-    ci_printf("[TOUCH] I2C WRITE SUCCESS : REG(%02X) LSB(%02X) MSB(%02X) \r\n",  //
-              sensor_setup.bytes[0],                                             //
-              sensor_setup.bytes[1],                                             //
-              sensor_setup.bytes[2]                                              //
+    ci_printv("[TOUCH] I2C WRITE SUCCESS: REG = %02X, LSB = %02X, MSB = %02X \r\n",  //
+              sensor_setup.bytes[0],                                                 //
+              sensor_setup.bytes[1],                                                 //
+              sensor_setup.bytes[2]                                                  //
     );
 
     // confirm window close
     if (iqs323_wait_rdy_window_closed(10))
     {
-        ci_printf("[TOUCH] ACK RESET EVENT : WINDOW CLOSE SUCCESS \r\n");
+        ci_printv("[TOUCH] ACK RESET EVENT: WINDOW CLOSE SUCCESS \r\n");
     }
     else
     {
-        ci_printf("[TOUCH] ACK RESET EVENT : WINDOW CLOSE FAIL \r\n");
+        ci_printe("[TOUCH] ACK RESET EVENT: WINDOW CLOSE FAIL \r\n");
     }
 
     // confirm window open
     if (iqs323_rdy_window_open())
     {
-        ci_printf("[TOUCH] ACK RESET EVENT : WINDOW OPEN SUCCESS \r\n");
+        ci_printv("[TOUCH] ACK RESET EVENT: WINDOW OPEN SUCCESS \r\n");
     }
     else
     {
-        ci_printf("[TOUCH] ACK RESET EVENT : WINDOW OPEN FAIL \r\n");
+        ci_printe("[TOUCH] ACK RESET EVENT: WINDOW OPEN FAIL \r\n");
     }
 
     // register address
     if (!iqs323_i2c_write(&sensor_setup.bytes[0], 1))
     {
-        ci_printf("[TOUCH] ERROR : I2C WRITE FOR SENSOR 2 REGISTER \r\n");
+        ci_printe("[TOUCH] I2C WRITE ERROR: SENSOR 2 REGISTER \r\n");
         return false;
     }
 
-    ci_printf("[TOUCH] I2C WRITE SUCCESS : REG(%02X) \r\n",  //
-              sensor_setup.bytes[0]                          //
-    );
+    ci_printv("[TOUCH] I2C WRITE SUCCESS: REG = %02X \r\n", sensor_setup.bytes[0]);
 
     // confirm window close
     if (iqs323_wait_rdy_window_closed(10))
     {
-        ci_printf("[TOUCH] ACK RESET EVENT : WINDOW CLOSE SUCCESS \r\n");
+        ci_printv("[TOUCH] ACK RESET EVENT: WINDOW CLOSE SUCCESS \r\n");
     }
     else
     {
-        ci_printf("[TOUCH] ACK RESET EVENT : WINDOW CLOSE FAIL \r\n");
+        ci_printe("[TOUCH] ACK RESET EVENT: WINDOW CLOSE FAIL \r\n");
     }
 
     // confirm window open
     if (iqs323_rdy_window_open())
     {
-        ci_printf("[TOUCH] ACK RESET EVENT : WINDOW OPEN SUCCESS \r\n");
+        ci_printv("[TOUCH] ACK RESET EVENT: WINDOW OPEN SUCCESS \r\n");
     }
     else
     {
-        ci_printf("[TOUCH] ACK RESET EVENT : WINDOW OPEN FAIL \r\n");
+        ci_printe("[TOUCH] ACK RESET EVENT: WINDOW OPEN FAIL \r\n");
     }
 
     // read status
     if (!iqs323_i2c_read(&sensor_setup.bytes[1], 2))
     {
-        ci_printf("[TOUCH] ERROR : I2C READ FOR SENSOR 2 RESGISTER \r\n");
+        ci_printe("[TOUCH] I2C READ ERROR: SENSOR 2 RESGISTER \r\n");
         return false;
     }
 
-    ci_printf("[TOUCH] I2C READ SUCCESS : REG(%02X) LSB(%02X) MSB(%02X) \r\n",  //
-              sensor_setup.bytes[0],                                            //
-              sensor_setup.bytes[1],                                            //
-              sensor_setup.bytes[2]                                             //
+    ci_printv("[TOUCH] I2C READ SUCCESS: REG = %02X, LSB = %02X, MSB = %02X \r\n",  //
+              sensor_setup.bytes[0],                                                //
+              sensor_setup.bytes[1],                                                //
+              sensor_setup.bytes[2]                                                 //
     );
 
     // confirm window close
     if (iqs323_wait_rdy_window_closed(10))
     {
-        ci_printf("[TOUCH] ACK RESET EVENT : WINDOW CLOSE SUCCESS \r\n");
+        ci_printv("[TOUCH] ACK RESET EVENT: WINDOW CLOSE SUCCESS \r\n");
     }
     else
     {
-        ci_printf("[TOUCH] ACK RESET EVENT : WINDOW CLOSE FAIL \r\n");
+        ci_printe("[TOUCH] ACK RESET EVENT: WINDOW CLOSE FAIL \r\n");
     }
 
-    ci_printf("[TOUCH] ==== SENSOR 1 ==== \r\n");
+    ci_printd("[TOUCH] SETUP SENSOR: 1 \r\n");
 
     // confirm window open
     if (iqs323_rdy_window_open())
     {
-        ci_printf("[TOUCH] ACK RESET EVENT : WINDOW OPEN SUCCESS \r\n");
+        ci_printv("[TOUCH] ACK RESET EVENT: WINDOW OPEN SUCCESS \r\n");
     }
     else
     {
-        ci_printf("[TOUCH] ACK RESET EVENT : WINDOW OPEN FAIL \r\n");
+        ci_printe("[TOUCH] ACK RESET EVENT: WINDOW OPEN FAIL \r\n");
     }
 
     // sensor 1 disable
     sensor_setup.elements.addr = IQS323_REG_ADDR_SENSOR1_SETUP;
     if (!iqs323_i2c_write(&sensor_setup.bytes[0], 3))
     {
-        ci_printf("[TOUCH] ERROR : I2C WRITE FOR SENSOR 1 SETUP \r\n");
+        ci_printe("[TOUCH] I2C WRITE ERROR: SENSOR 1 SETUP \r\n");
         return false;
     }
 
-    ci_printf("[TOUCH] I2C WRITE SUCCESS : REG(%02X) LSB(%02X) MSB(%02X) \r\n",  //
-              sensor_setup.bytes[0],                                             //
-              sensor_setup.bytes[1],                                             //
-              sensor_setup.bytes[2]                                              //
+    ci_printv("[TOUCH] I2C WRITE SUCCESS: REG = %02X, LSB = %02X, MSB = %02X \r\n",  //
+              sensor_setup.bytes[0],                                                 //
+              sensor_setup.bytes[1],                                                 //
+              sensor_setup.bytes[2]                                                  //
     );
 
     // confirm window close
     if (iqs323_wait_rdy_window_closed(10))
     {
-        ci_printf("[TOUCH] ACK RESET EVENT : WINDOW CLOSE SUCCESS \r\n");
+        ci_printv("[TOUCH] ACK RESET EVENT: WINDOW CLOSE SUCCESS \r\n");
     }
     else
     {
-        ci_printf("[TOUCH] ACK RESET EVENT : WINDOW CLOSE FAIL \r\n");
+        ci_printe("[TOUCH] ACK RESET EVENT: WINDOW CLOSE FAIL \r\n");
     }
 
     // confirm window open
     if (iqs323_rdy_window_open())
     {
-        ci_printf("[TOUCH] ACK RESET EVENT : WINDOW OPEN SUCCESS \r\n");
+        ci_printv("[TOUCH] ACK RESET EVENT: WINDOW OPEN SUCCESS \r\n");
     }
     else
     {
-        ci_printf("[TOUCH] ACK RESET EVENT : WINDOW OPEN FAIL \r\n");
+        ci_printe("[TOUCH] ACK RESET EVENT: WINDOW OPEN FAIL \r\n");
     }
 
     // register address
     if (!iqs323_i2c_write(&sensor_setup.bytes[0], 1))
     {
-        ci_printf("[TOUCH] ERROR : I2C WRITE FOR SENSOR 1 REGISTER \r\n");
+        ci_printe("[TOUCH] I2C WRITE ERROR: SENSOR 1 REGISTER \r\n");
         return false;
     }
 
-    ci_printf("[TOUCH] I2C WRITE SUCCESS : REG(%02X) \r\n",  //
-              sensor_setup.bytes[0]                          //
-    );
+    ci_printv("[TOUCH] I2C WRITE SUCCESS: REG = %02X \r\n", sensor_setup.bytes[0]);
 
     // confirm window close
     if (iqs323_wait_rdy_window_closed(10))
     {
-        ci_printf("[TOUCH] ACK RESET EVENT : WINDOW CLOSE SUCCESS \r\n");
+        ci_printv("[TOUCH] ACK RESET EVENT: WINDOW CLOSE SUCCESS \r\n");
     }
     else
     {
-        ci_printf("[TOUCH] ACK RESET EVENT : WINDOW CLOSE FAIL \r\n");
+        ci_printe("[TOUCH] ACK RESET EVENT: WINDOW CLOSE FAIL \r\n");
     }
 
     // confirm window open
     if (iqs323_rdy_window_open())
     {
-        ci_printf("[TOUCH] ACK RESET EVENT : WINDOW OPEN SUCCESS \r\n");
+        ci_printv("[TOUCH] ACK RESET EVENT: WINDOW OPEN SUCCESS \r\n");
     }
     else
     {
-        ci_printf("[TOUCH] ACK RESET EVENT : WINDOW OPEN FAIL \r\n");
+        ci_printe("[TOUCH] ACK RESET EVENT: WINDOW OPEN FAIL \r\n");
     }
 
     // read status
     if (!iqs323_i2c_read(&sensor_setup.bytes[1], 2))
     {
-        ci_printf("[TOUCH] ERROR : I2C READ FOR SENSOR 1 RESGISTER \r\n");
+        ci_printe("[TOUCH] I2C READ ERROR: SENSOR 1 RESGISTER \r\n");
         return false;
     }
 
-    ci_printf("[TOUCH] I2C READ SUCCESS : REG(%02X) LSB(%02X) MSB(%02X) \r\n",  //
-              sensor_setup.bytes[0],                                            //
-              sensor_setup.bytes[1],                                            //
-              sensor_setup.bytes[2]                                             //
+    ci_printv("[TOUCH] I2C READ SUCCESS: REG = %02X, LSB = %02X, MSB = %02X \r\n",  //
+              sensor_setup.bytes[0],                                                //
+              sensor_setup.bytes[1],                                                //
+              sensor_setup.bytes[2]                                                 //
     );
 
     // confirm window close
     if (iqs323_wait_rdy_window_closed(10))
     {
-        ci_printf("[TOUCH] ACK RESET EVENT : WINDOW CLOSE SUCCESS \r\n");
+        ci_printv("[TOUCH] ACK RESET EVENT: WINDOW CLOSE SUCCESS \r\n");
     }
     else
     {
-        ci_printf("[TOUCH] ACK RESET EVENT : WINDOW CLOSE FAIL \r\n");
+        ci_printe("[TOUCH] ACK RESET EVENT: WINDOW CLOSE FAIL \r\n");
     }
 
-    ci_printf("[TOUCH] ==== SENSOR 0 ==== \r\n");
+    ci_printd("[TOUCH] SETUP SENSOR: 0 \r\n");
 
     // confirm window open
     if (iqs323_rdy_window_open())
     {
-        ci_printf("[TOUCH] ACK RESET EVENT : WINDOW OPEN SUCCESS \r\n");
+        ci_printv("[TOUCH] ACK RESET EVENT: WINDOW OPEN SUCCESS \r\n");
     }
     else
     {
-        ci_printf("[TOUCH] ACK RESET EVENT : WINDOW OPEN FAIL \r\n");
+        ci_printe("[TOUCH] ACK RESET EVENT: WINDOW OPEN FAIL \r\n");
     }
 
     // sensor 0 enable
@@ -774,88 +766,86 @@ bool iqs323_sensor_setup(void)
     sensor_setup.elements.addr               = IQS323_REG_ADDR_SENSOR0_SETUP;
     if (!iqs323_i2c_write(&sensor_setup.bytes[0], 3))
     {
-        ci_printf("[TOUCH] ERROR : I2C WRITE FOR SENSOR 0 SETUP \r\n");
+        ci_printe("[TOUCH] I2C WRITE ERROR: SENSOR 0 SETUP \r\n");
         return false;
     }
 
-    ci_printf("[TOUCH] I2C WRITE SUCCESS : REG(%02X) LSB(%02X) MSB(%02X) \r\n",  //
-              sensor_setup.bytes[0],                                             //
-              sensor_setup.bytes[1],                                             //
-              sensor_setup.bytes[2]                                              //
+    ci_printv("[TOUCH] I2C WRITE SUCCESS: REG = %02X, LSB = %02X, MSB = %02X \r\n",  //
+              sensor_setup.bytes[0],                                                 //
+              sensor_setup.bytes[1],                                                 //
+              sensor_setup.bytes[2]                                                  //
     );
 
     // confirm window close
     if (iqs323_wait_rdy_window_closed(10))
     {
-        ci_printf("[TOUCH] ACK RESET EVENT : WINDOW CLOSE SUCCESS \r\n");
+        ci_printv("[TOUCH] ACK RESET EVENT: WINDOW CLOSE SUCCESS \r\n");
     }
     else
     {
-        ci_printf("[TOUCH] ACK RESET EVENT : WINDOW CLOSE FAIL \r\n");
+        ci_printe("[TOUCH] ACK RESET EVENT: WINDOW CLOSE FAIL \r\n");
     }
 
     // confirm window open
     if (iqs323_rdy_window_open())
     {
-        ci_printf("[TOUCH] ACK RESET EVENT : WINDOW OPEN SUCCESS \r\n");
+        ci_printv("[TOUCH] ACK RESET EVENT: WINDOW OPEN SUCCESS \r\n");
     }
     else
     {
-        ci_printf("[TOUCH] ACK RESET EVENT : WINDOW OPEN FAIL \r\n");
+        ci_printe("[TOUCH] ACK RESET EVENT: WINDOW OPEN FAIL \r\n");
     }
 
     // register address
     if (!iqs323_i2c_write(&sensor_setup.bytes[0], 1))
     {
-        ci_printf("[TOUCH] ERROR : I2C WRITE FOR SENSOR 0 REGISTER \r\n");
+        ci_printe("[TOUCH] I2C WRITE ERROR: SENSOR 0 REGISTER \r\n");
         return false;
     }
 
-    ci_printf("[TOUCH] I2C WRITE SUCCESS : REG(%02X) \r\n",  //
-              sensor_setup.bytes[0]                          //
-    );
+    ci_printv("[TOUCH] I2C WRITE SUCCESS: REG = %02X \r\n", sensor_setup.bytes[0]);
 
     // confirm window close
     if (iqs323_wait_rdy_window_closed(10))
     {
-        ci_printf("[TOUCH] ACK RESET EVENT : WINDOW CLOSE SUCCESS \r\n");
+        ci_printv("[TOUCH] ACK RESET EVENT: WINDOW CLOSE SUCCESS \r\n");
     }
     else
     {
-        ci_printf("[TOUCH] ACK RESET EVENT : WINDOW CLOSE FAIL \r\n");
+        ci_printe("[TOUCH] ACK RESET EVENT: WINDOW CLOSE FAIL \r\n");
     }
 
     // confirm window open
     if (iqs323_rdy_window_open())
     {
-        ci_printf("[TOUCH] ACK RESET EVENT : WINDOW OPEN SUCCESS \r\n");
+        ci_printv("[TOUCH] ACK RESET EVENT: WINDOW OPEN SUCCESS \r\n");
     }
     else
     {
-        ci_printf("[TOUCH] ACK RESET EVENT : WINDOW OPEN FAIL \r\n");
+        ci_printe("[TOUCH] ACK RESET EVENT: WINDOW OPEN FAIL \r\n");
     }
 
     // read status
     if (!iqs323_i2c_read(&sensor_setup.bytes[1], 2))
     {
-        ci_printf("[TOUCH] ERROR : I2C READ FOR SENSOR 0 RESGISTER \r\n");
+        ci_printv("[TOUCH] I2C READ ERROR: SENSOR 0 RESGISTER \r\n");
         return false;
     }
 
-    ci_printf("[TOUCH] I2C READ SUCCESS : REG(%02X) LSB(%02X) MSB(%02X) \r\n",  //
-              sensor_setup.bytes[0],                                            //
-              sensor_setup.bytes[1],                                            //
-              sensor_setup.bytes[2]                                             //
+    ci_printv("[TOUCH] I2C READ SUCCESS: REG = %02X, LSB = %02X, MSB = %02X \r\n",  //
+              sensor_setup.bytes[0],                                                //
+              sensor_setup.bytes[1],                                                //
+              sensor_setup.bytes[2]                                                 //
     );
 
     // confirm window close
     if (iqs323_wait_rdy_window_closed(10))
     {
-        ci_printf("[TOUCH] ACK RESET EVENT : WINDOW CLOSE SUCCESS \r\n");
+        ci_printv("[TOUCH] ACK RESET EVENT: WINDOW CLOSE SUCCESS \r\n");
     }
     else
     {
-        ci_printf("[TOUCH] ACK RESET EVENT : WINDOW CLOSE FAIL \r\n");
+        ci_printe("[TOUCH] ACK RESET EVENT: WINDOW CLOSE FAIL \r\n");
     }
 
     return true;
@@ -878,97 +868,95 @@ bool iqs323_touch_settings(void)
     // confirm window open
     if (iqs323_rdy_window_open())
     {
-        ci_printf("[TOUCH] ACK RESET EVENT : WINDOW OPEN SUCCESS \r\n");
+        ci_printv("[TOUCH] ACK RESET EVENT: WINDOW OPEN SUCCESS \r\n");
     }
     else
     {
-        ci_printf("[TOUCH] ACK RESET EVENT : WINDOW OPEN FAIL \r\n");
+        ci_printe("[TOUCH] ACK RESET EVENT: WINDOW OPEN FAIL \r\n");
     }
 
     if (!iqs323_i2c_write(&touch_settings.bytes[0], 3))
     {
-        ci_printf("[TOUCH] ERROR : I2C WRITE FOR CH0 TOUCH SETTINGS \r\n");
+        ci_printe("[TOUCH] I2C WRITE ERROR: CH0 TOUCH SETTINGS \r\n");
         return false;
     }
 
-    ci_printf("[TOUCH] I2C WRITE SUCCESS : REG(%02X) LSB(%02X) MSB(%02X) \r\n",  //
-              touch_settings.bytes[0],                                           //
-              touch_settings.bytes[1],                                           //
-              touch_settings.bytes[2]                                            //
+    ci_printv("[TOUCH] I2C WRITE SUCCESS: REG = %02X, LSB = %02X, MSB = %02X \r\n",  //
+              touch_settings.bytes[0],                                               //
+              touch_settings.bytes[1],                                               //
+              touch_settings.bytes[2]                                                //
     );
 
     // confirm window close
     if (iqs323_wait_rdy_window_closed(10))
     {
-        ci_printf("[TOUCH] ACK RESET EVENT : WINDOW CLOSE SUCCESS \r\n");
+        ci_printv("[TOUCH] ACK RESET EVENT: WINDOW CLOSE SUCCESS \r\n");
     }
     else
     {
-        ci_printf("[TOUCH] ACK RESET EVENT : WINDOW CLOSE FAIL \r\n");
+        ci_printe("[TOUCH] ACK RESET EVENT: WINDOW CLOSE FAIL \r\n");
     }
 
     // confirm window open
     if (iqs323_rdy_window_open())
     {
-        ci_printf("[TOUCH] ACK RESET EVENT : WINDOW OPEN SUCCESS \r\n");
+        ci_printv("[TOUCH] ACK RESET EVENT: WINDOW OPEN SUCCESS \r\n");
     }
     else
     {
-        ci_printf("[TOUCH] ACK RESET EVENT : WINDOW OPEN FAIL \r\n");
+        ci_printe("[TOUCH] ACK RESET EVENT: WINDOW OPEN FAIL \r\n");
     }
 
     // register address
     if (!iqs323_i2c_write(&touch_settings.bytes[0], 1))
     {
-        ci_printf("[TOUCH] ERROR : I2C WRITE FOR TOUCH SETTINGS REGISTER \r\n");
+        ci_printe("[TOUCH] I2C WRITE ERROR: TOUCH SETTINGS REGISTER \r\n");
         return false;
     }
 
-    ci_printf("[TOUCH] I2C WRITE SUCCESS : REG(%02X) \r\n",  //
-              touch_settings.bytes[0]                        //
-    );
+    ci_printv("[TOUCH] I2C WRITE SUCCESS: REG = %02X \r\n", touch_settings.bytes[0]);
 
     // confirm window close
     if (iqs323_wait_rdy_window_closed(10))
     {
-        ci_printf("[TOUCH] ACK RESET EVENT : WINDOW CLOSE SUCCESS \r\n");
+        ci_printv("[TOUCH] ACK RESET EVENT: WINDOW CLOSE SUCCESS \r\n");
     }
     else
     {
-        ci_printf("[TOUCH] ACK RESET EVENT : WINDOW CLOSE FAIL \r\n");
+        ci_printe("[TOUCH] ACK RESET EVENT: WINDOW CLOSE FAIL \r\n");
     }
 
     // confirm window open
     if (iqs323_rdy_window_open())
     {
-        ci_printf("[TOUCH] ACK RESET EVENT : WINDOW OPEN SUCCESS \r\n");
+        ci_printv("[TOUCH] ACK RESET EVENT: WINDOW OPEN SUCCESS \r\n");
     }
     else
     {
-        ci_printf("[TOUCH] ACK RESET EVENT : WINDOW OPEN FAIL \r\n");
+        ci_printe("[TOUCH] ACK RESET EVENT: WINDOW OPEN FAIL \r\n");
     }
 
     // read status
     if (!iqs323_i2c_read(&touch_settings.bytes[1], 2))
     {
-        ci_printf("[TOUCH] ERROR : I2C READ FOR TOUCH SETTINGS \r\n");
+        ci_printe("[TOUCH] I2C READ ERROR: TOUCH SETTINGS \r\n");
         return false;
     }
 
-    ci_printf("[TOUCH] I2C READ SUCCESS : REG(%02X) LSB(%02X) MSB(%02X) \r\n",  //
-              touch_settings.bytes[0],                                          //
-              touch_settings.bytes[1],                                          //
-              touch_settings.bytes[2]                                           //
+    ci_printv("[TOUCH] I2C READ SUCCESS: REG = %02X, LSB = %02X, MSB = %02X \r\n",  //
+              touch_settings.bytes[0],                                              //
+              touch_settings.bytes[1],                                              //
+              touch_settings.bytes[2]                                               //
     );
 
     // confirm window close
     if (iqs323_wait_rdy_window_closed(10))
     {
-        ci_printf("[TOUCH] ACK RESET EVENT : WINDOW CLOSE SUCCESS \r\n");
+        ci_printv("[TOUCH] ACK RESET EVENT: WINDOW CLOSE SUCCESS \r\n");
     }
     else
     {
-        ci_printf("[TOUCH] ACK RESET EVENT : WINDOW CLOSE FAIL \r\n");
+        ci_printe("[TOUCH] ACK RESET EVENT: WINDOW CLOSE FAIL \r\n");
     }
 
     return true;
@@ -991,33 +979,33 @@ bool iqs323_re_ati_trigger(void)
     // confirm window open
     if (iqs323_rdy_window_open())
     {
-        ci_printf("[TOUCH] ACK RESET EVENT : WINDOW OPEN SUCCESS \r\n");
+        ci_printv("[TOUCH] ACK RESET EVENT: WINDOW OPEN SUCCESS \r\n");
     }
     else
     {
-        ci_printf("[TOUCH] ACK RESET EVENT : WINDOW OPEN FAIL \r\n");
+        ci_printe("[TOUCH] ACK RESET EVENT: WINDOW OPEN FAIL \r\n");
     }
 
     if (!iqs323_i2c_write(&system_control.bytes[0], 3))
     {
-        ci_printf("[TOUCH] ERROR : I2C WRITE FOR RE-ATI TRIGGER \r\n");
+        ci_printe("[TOUCH] I2C WRITE ERROR: RE-ATI TRIGGER \r\n");
         return false;
     }
 
-    ci_printf("[TOUCH] I2C WRITE SUCCESS : REG(%02X) LSB(%02X) MSB(%02X) \r\n",  //
-              system_control.bytes[0],                                           //
-              system_control.bytes[1],                                           //
-              system_control.bytes[2]                                            //
+    ci_printv("[TOUCH] I2C WRITE SUCCESS: REG = %02X, LSB = %02X, MSB = %02X \r\n",  //
+              system_control.bytes[0],                                               //
+              system_control.bytes[1],                                               //
+              system_control.bytes[2]                                                //
     );
 
     // confirm window close
     if (iqs323_wait_rdy_window_closed(10))
     {
-        ci_printf("[TOUCH] ACK RESET EVENT : WINDOW CLOSE SUCCESS \r\n");
+        ci_printv("[TOUCH] ACK RESET EVENT: WINDOW CLOSE SUCCESS \r\n");
     }
     else
     {
-        ci_printf("[TOUCH] ACK RESET EVENT : WINDOW CLOSE FAIL \r\n");
+        ci_printe("[TOUCH] ACK RESET EVENT: WINDOW CLOSE FAIL \r\n");
     }
 
     // window close가 되는 시점 즉, i2c 트랜잭션이 종료되는 시점에 바로 re-ati를 시작함
@@ -1037,59 +1025,57 @@ bool iqs323_wait_re_ati_done(void)
     // wait re-ati done (maximum 500ms)
     for (int i = 0; i < 10; i++)
     {
-        ci_printf("[TOUCH] ==== TRY COUNT (%d) ==== \r\n", i + 1);
+        ci_printd("[TOUCH] TRY COUNT: %d \r\n", i + 1);
 
         // confirm window open
         if (iqs323_rdy_window_open())
         {
-            ci_printf("[TOUCH] ACK RESET EVENT : WINDOW OPEN SUCCESS \r\n");
+            ci_printv("[TOUCH] ACK RESET EVENT: WINDOW OPEN SUCCESS \r\n");
         }
         else
         {
-            ci_printf("[TOUCH] ACK RESET EVENT : WINDOW OPEN FAIL \r\n");
+            ci_printe("[TOUCH] ACK RESET EVENT: WINDOW OPEN FAIL \r\n");
         }
 
         // register address
         if (!iqs323_i2c_write(&system_status.bytes[0], 1))
         {
-            ci_printf("[TOUCH] ERROR : I2C WRITE FOR SYSTEM STATUS REGISTER \r\n");
+            ci_printe("[TOUCH] I2C WRITE ERROR: SYSTEM STATUS REGISTER \r\n");
             // return false;
 
             Sys_Delay(IQS323_DEFAULT_DELAY_MS * 100);  // 100ms
             continue;
         }
 
-        ci_printf("[TOUCH] I2C WRITE SUCCESS : REG(%02X) \r\n",  //
-                  system_status.bytes[0]                         //
-        );
+        ci_printv("[TOUCH] I2C WRITE SUCCESS: REG = %02X \r\n", system_status.bytes[0]);
 
         // confirm window close
         if (iqs323_wait_rdy_window_closed(10))
         {
-            ci_printf("[TOUCH] ACK RESET EVENT : WINDOW CLOSE SUCCESS \r\n");
+            ci_printv("[TOUCH] ACK RESET EVENT: WINDOW CLOSE SUCCESS \r\n");
         }
         else
         {
-            ci_printf("[TOUCH] ACK RESET EVENT : WINDOW CLOSE FAIL \r\n");
+            ci_printe("[TOUCH] ACK RESET EVENT: WINDOW CLOSE FAIL \r\n");
         }
 
         // confirm window open
         if (iqs323_rdy_window_open())
         {
-            ci_printf("[TOUCH] ACK RESET EVENT : WINDOW OPEN SUCCESS \r\n");
+            ci_printv("[TOUCH] ACK RESET EVENT: WINDOW OPEN SUCCESS \r\n");
         }
         else
         {
-            ci_printf("[TOUCH] ACK RESET EVENT : WINDOW OPEN FAIL \r\n");
+            ci_printe("[TOUCH] ACK RESET EVENT: WINDOW OPEN FAIL \r\n");
         }
 
         // 읽기 성공 시
         if (iqs323_i2c_read(&system_status.bytes[1], 2))
         {
-            ci_printf("[TOUCH] I2C READ SUCCESS : REG(%02X) LSB(%02X) MSB(%02X) \r\n",  //
-                      system_status.bytes[0],                                           //
-                      system_status.bytes[1],                                           //
-                      system_status.bytes[2]                                            //
+            ci_printv("[TOUCH] I2C READ SUCCESS: REG = %02X, LSB = %02X, MSB = %02X \r\n",  //
+                      system_status.bytes[0],                                               //
+                      system_status.bytes[1],                                               //
+                      system_status.bytes[2]                                                //
             );
 
             // 읽은 값이 0xEEEE가 아닐 때
@@ -1098,7 +1084,7 @@ bool iqs323_wait_re_ati_done(void)
                 // ATI 에러?
                 if (system_status.elements.lsb.ati_error == IQS323_REG_VAL_SYSTEM_STATUS_LSB_ATI_ERROR)
                 {
-                    ci_printf("[TOUCH] ERROR : RE-ATI ERROR OCCURRED \r\n");
+                    ci_printe("[TOUCH] ERROR: RE-ATI ERROR OCCURRED \r\n");
                     return false;
                 }
                 else  // 에러 없음
@@ -1109,14 +1095,14 @@ bool iqs323_wait_re_ati_done(void)
                         // confirm window close
                         if (iqs323_wait_rdy_window_closed(10))
                         {
-                            ci_printf("[TOUCH] ACK RESET EVENT : WINDOW CLOSE SUCCESS \r\n");
+                            ci_printv("[TOUCH] ACK RESET EVENT: WINDOW CLOSE SUCCESS \r\n");
                         }
                         else
                         {
-                            ci_printf("[TOUCH] ACK RESET EVENT : WINDOW CLOSE FAIL \r\n");
+                            ci_printe("[TOUCH] ACK RESET EVENT: WINDOW CLOSE FAIL \r\n");
                         }
 
-                        ci_printf("[TOUCH] ATI EVENT DONE (SUCCESS) \r\n");
+                        ci_printv("[TOUCH] SUCCESS: RE-ATI \r\n");
 
                         return true;
                     }
@@ -1124,29 +1110,29 @@ bool iqs323_wait_re_ati_done(void)
             }
             else
             {
-                ci_printf("[TOUCH] WARNN : SYSTEM STATUS READ RESULT : 0xEEEE \r\n");
+                ci_printw("[TOUCH] WARNN: SYSTEM STATUS READ RESULT = 0xEEEE \r\n");
             }
         }
         else
         {
-            ci_printf("[TOUCH] ERROR : I2C READ FOR RE-ATI DONE CHECK \r\n");
+            ci_printe("[TOUCH] I2C READ ERROR: RE-ATI DONE CHECK \r\n");
         }
 
         // confirm window close
         if (iqs323_wait_rdy_window_closed(10))
         {
-            ci_printf("[TOUCH] ACK RESET EVENT : WINDOW CLOSE SUCCESS \r\n");
+            ci_printv("[TOUCH] ACK RESET EVENT: WINDOW CLOSE SUCCESS \r\n");
         }
         else
         {
-            ci_printf("[TOUCH] ACK RESET EVENT : WINDOW CLOSE FAIL \r\n");
+            ci_printe("[TOUCH] ACK RESET EVENT: WINDOW CLOSE FAIL \r\n");
         }
 
         Sys_Delay(IQS323_DEFAULT_DELAY_MS * 100);  // 100ms
 
     }  // end, for loop
 
-    ci_printf("[TOUCH] ERROR : RE-ATI TIMEOUT \r\n");
+    ci_printe("[TOUCH] ERROR: RE-ATI TIMEOUT \r\n");
 
     return false;
 }
@@ -1168,7 +1154,7 @@ bool iqs323_get_touch_state(int *p_state)
     // register address
     if (!iqs323_i2c_write(&system_status.bytes[0], 1))
     {
-        ci_printf("[TOUCH] ERROR : I2C WRITE FOR SYSTEM STATUS REGISTER \r\n");
+        ci_printe("[TOUCH] ERROR: I2C WRITE FOR SYSTEM STATUS REGISTER \r\n");
         return false;
     }
 
@@ -1180,7 +1166,7 @@ bool iqs323_get_touch_state(int *p_state)
 
     if (!iqs323_i2c_read(&system_status.bytes[1], 2))
     {
-        ci_printf("[TOUCH] I2C READ FAIL : SYSTEM STATUS DURING GET TOUCH STATE \r\n");
+        ci_printe("[TOUCH] ERROR: I2C READ FOR SYSTEM STATUS DURING GET TOUCH STATE \r\n");
         return false;
     }
 
