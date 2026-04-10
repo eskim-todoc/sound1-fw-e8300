@@ -1,8 +1,6 @@
 
 #include <rtt_printf.h>
 
-#if ENABLE_SEGGER_RTT
-
 void rtt_printf(const char *p_fmt, ...)
 {
     char    buf[64];
@@ -20,5 +18,3 @@ int rtt_getch(char *buf)
 {
     return SEGGER_RTT_Read(0, buf, 1);
 }
-
-#endif

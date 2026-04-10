@@ -10,11 +10,37 @@ int ci_uart_init(void)
 {
     uint32_t cfg;
 
+#if 1
+    // 출력 중이던 TX 데이터가 있다면 출력이 완료될 때 까지 대기 (Last 1 char)
+    while ((UART->STATUS & UART_TX_BUSY) == UART_TX_BUSY)
+    {
+        (void) 0;
+    }
+
+    UART->CTRL = UART_DISABLE;  // UART 비활성화
+
+    // UART 비활성화 검증 (계속 비활성화 되지 않는다면 워치독이 발생할 수 있음)
+    while ((UART->CTRL & UART_STATUS_ENABLED) == UART_STATUS_ENABLED)
+    {
+        (void) 0;
+    }
+
+    UART->CTRL       = UART_RESET;              // UART 리셋
+    DIO->SRC_UART[0] = UART_RX_SRC_CONST_HIGH;  // UART RX DIO 레벨을 HIGH로 고정
+
+    FS_MEM_UART->state = FS_MEM_UART_STATE_RESET;
+#endif
+
     // UART 설정
     Sys_UART_Config(UART, SystemCoreClock, CI_UART_BAUDRATE, CI_UART_CONFIG);
 
     // DIO 설정
-    Sys_UART_DIOConfig(UART, CI_UART_DIO_INIT_CFG, CI_UART_DIO_TX, CI_UART_DIO_RX);
+    Sys_DIO_Config(CI_UART_DIO_TX, ((DIO_1X_DRIVE | DIO_LPF_ENABLE | DIO_NO_PULL | DIO_MODE_DISABLE)));
+    Sys_DIO_Config(CI_UART_DIO_RX, ((DIO_1X_DRIVE | DIO_LPF_ENABLE | DIO_NO_PULL | DIO_MODE_DISABLE)));
+
+    Sys_UART_DIOConfig(UART, CI_UART_DIO_INIT_CFG, /*CI_UART_DIO_TX*/ DIO33, /*CI_UART_DIO_RX*/ DIO32);
+    // Sys_DIO_Config(DIO_PIN_INDEX_for_LED_color_R, DIO_PIN_CFG_FOR_GPIO_OUPUT_NOPULLUP);  // R
+    // DIO->SRC_UART[0] = UART_RX_SRC_CONST_HIGH;
 
     // UART 활성화
     UART->CTRL = UART_ENABLE;
@@ -56,7 +82,7 @@ int ci_uart_uninit(void)
     return df_True;
 }
 
-int ci_uart_getch(char* p_ch)
+int ci_uart_getch(char *p_ch)
 {
     if ((UART->CTRL & UART_STATUS_ENABLED) != UART_STATUS_ENABLED)
     {
@@ -78,7 +104,7 @@ int ci_uart_getch(char* p_ch)
     return df_True;
 }
 
-int ci_uart_printf(const char* p_fmt, ...)
+int ci_uart_printf(const char *p_fmt, ...)
 {
     int     len;
     va_list ap;
@@ -134,7 +160,10 @@ int ci_uart_printf(const char* p_fmt, ...)
     return df_True;
 }
 
-void ci_uart_set_color(uint32_t color) { ci_uart_printf("\033[38:5:%um", color); }
+void ci_uart_set_color(uint32_t color)
+{
+    ci_uart_printf("\033[38:5:%um", color);
+}
 
 void ci_uart_clear_color(void)
 {

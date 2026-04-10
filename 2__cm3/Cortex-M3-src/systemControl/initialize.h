@@ -14,9 +14,12 @@
 
 #include <ci_util.h>
 
+#include <isd_interface_init_FPGA.h>
+#include <isd_interface_FPGA.h>
+
 void Uninitialize(void);
 void Initialize(void);
 void ResetNRF(void);
 void cm3MemorySetupCompleted(void);
 
-#endif // __initialize_h__
+#endif  // __initialize_h__

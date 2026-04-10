@@ -11,7 +11,7 @@ int ci_stim_mute_init(void)
     int            ret;
     CI_STIM_MUTE_T stim_mute;
 
-    fp    = &g_snd_fatfs_ohdl;
+    fp    = &g_ci_filesystem_ohdl;
     fname = CI_STIM_MUTE_FILE_NAME;
 
     // 파일이 없으면 생성하는 옵션으로 연다.
@@ -27,8 +27,8 @@ int ci_stim_mute_init(void)
     // 파일은 존재하는데, 유효한 상태인지 검증한다.
     is_validated_file = true;
 
-    f_lseek(&g_snd_fatfs_ohdl, 4096);  // FATFS에게 4KB로 고정된 파일을 생성할 수 있게 의도적으로 파일 포지션을 4096으로 설정
-    f_lseek(&g_snd_fatfs_ohdl, 0);
+    f_lseek(&g_ci_filesystem_ohdl, 4096);  // FATFS에게 4KB로 고정된 파일을 생성할 수 있게 의도적으로 파일 포지션을 4096으로 설정
+    f_lseek(&g_ci_filesystem_ohdl, 0);
     ci_printv("[MUTE] PERFORMED : FILE (%s) LSEEK --> 4096 --> 0 \r\n", fname);
 
     br  = 0;
@@ -105,7 +105,7 @@ int ci_stim_mute_init(void)
     }
 
     // 안전을 위한 flush
-    f_sync(&g_snd_fatfs_ohdl);
+    f_sync(&g_ci_filesystem_ohdl);
 
 #if 1
     FILINFO fno;
@@ -115,7 +115,7 @@ int ci_stim_mute_init(void)
         ci_printv("[FS] NAME : %s, TOTAL SIZE : %u BYTES, START CLUSTER : %u \r\n",  //
                   fno.fname,
                   fno.fsize,
-                  g_snd_fatfs_ohdl.obj.sclust);
+                  g_ci_filesystem_ohdl.obj.sclust);
     }
 #endif
 
@@ -159,7 +159,7 @@ int ci_stim_mute_update(uint32_t enable, uint32_t level)
         return CI_STIM_MUTE_RET_FALSE;
     }
 
-    fp    = &g_snd_fatfs_ohdl;
+    fp    = &g_ci_filesystem_ohdl;
     fname = CI_STIM_MUTE_FILE_NAME;
 
     // 파일이 없으면 생성하는 옵션으로 연다.

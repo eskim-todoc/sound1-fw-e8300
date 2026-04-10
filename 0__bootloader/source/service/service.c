@@ -23,7 +23,7 @@ void service_main(void)
             Sys_GPIO_Write(DIO_NUM_LED_B, debugger_led.element.b);
 
             SYS_WATCHDOG_REFRESH();
-            delay_ms(380);
+            tdc_delay_ms(380);
         }
     }
 }

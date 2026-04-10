@@ -28,8 +28,8 @@ typedef enum
 } EN__BOOT_RET;
 
 void         ci_boot_init_fp(FIL *fp);
-EN__BOOT_RET ci_boot_get_status(ST__CI_LIB_BOOT_STATUS *p_status);
-EN__BOOT_RET ci_boot_update_status(ST__CI_LIB_BOOT_STATUS *p_status);
+EN__BOOT_RET ci_boot_get_status(snd_boot_status_t *p_status);
+EN__BOOT_RET ci_boot_update_status(snd_boot_status_t *p_status);
 void         ci_boot_handle_fsm(void);
 
 #endif  // __ci_boot_h__

@@ -19,9 +19,10 @@
  * ------------------------------------------------------------------------- */
 MEMORY
 {
-  PRAM  (xrw) : ORIGIN = 0x00060000, LENGTH = 65K /* PRAM5 */
-  DRAM  (xrw) : ORIGIN = 0x20019B2C, LENGTH = 25812 /* DRAM2 */
-  SYSVARS(xrw): ORIGIN = 0x20810000, LENGTH = 128 /* XRAM system variables */
+  PRAM  (xrw)        : ORIGIN = 0x00060000, LENGTH = 65K   /* PRAM5 */
+  DRAM  (xrw)        : ORIGIN = 0x20019B2C, LENGTH = 25812 /* DRAM2 */
+  SYSVARS (xrw)      : ORIGIN = 0x20810000, LENGTH = 128   /* XRAM system variables */
+  LPDSP32_BRAM (xrw) : ORIGIN = 0x20000000, LENGTH = 32K   /* LPDSP32 BRAM0 to BRAM2 */
 }
 
 
@@ -197,4 +198,10 @@ SECTIONS
         . += 0x0C*4;
         KEEP(*(.bootloader_error))
     } > SYSVARS
+    
+    /* J-Link RTT Viewer */
+    .segger_rtt 0x20000000 : ALIGN(4)
+    {
+        KEEP(*(.segger_rtt))
+    } > LPDSP32_BRAM
 }

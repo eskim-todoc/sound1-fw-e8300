@@ -13,12 +13,7 @@
 
 #include <SEGGER_RTT.h>
 
-#if ENABLE_SEGGER_RTT
 void rtt_printf(const char *p_fmt, ...);
 int  rtt_getch(char *buf);
-#else
-#define rtt_printf(...)
-#define rtt_getch(...)
-#endif
 
 #endif // __rtt_printf_h__

@@ -25,6 +25,13 @@
 #include <LedOutput.h>  //ok
 #include <fn_from_cfx_eeprom_erase.h>
 
+// 개발 진행 시 부여되는 버전 정보
+#define DEV_FW_VER_BETA    0
+#define DEV_FW_VER_RELEASE 1
+#define DEV_FW_VER_RND     2
+#define DEV_FW_VER_HW_TEST 4
+#define DEV_FW_VER_SW_TEST 3
+
 #define OTE_1_5_GEN_TEST_WITHOUT_CFX 1
 
 #define ENABLE_MAIN_DEBUG_PRINT 1
@@ -50,26 +57,13 @@ int func_normal(void);
 bool checkCharList(char *p_inList, int len, char *p_retCh);
 bool checkChar(char in);
 void debugMode(void);
-bool calculate_48bit_QInFn(uint32_t QIn,
-                           uint32_t Fn,
-                           int32_t  val_H,
-                           int32_t  val_L,
-                           int     *p_ret_QI_H,
-                           int     *p_ret_F_H,
-                           int     *p_ret_QI_L,
-                           int     *p_ret_F_L,
-                           bool    *p_isMinus);
+bool calculate_48bit_QInFn(uint32_t QIn, uint32_t Fn, int32_t val_H, int32_t val_L, int *p_ret_QI_H, int *p_ret_F_H, int *p_ret_QI_L, int *p_ret_F_L, bool *p_isMinus);
 bool calculate_24bit_QInFn(uint32_t QIn, uint32_t Fn, int32_t val, int *p_ret_QI, int *p_ret_F, bool *p_isMinus);
 #if ENABLE_MAIN_DEBUG_PRINT
 void debug_printer_for_mcuErrorCode(ST__ERROR_CODE *p_mcuErrorCode);
 #endif
 void debugPrint_ADCRegs(int num);
 void debugPrint_ADCInput(void);
-void debugging_for_monitoring(ST__USB_CONNECTOR           usbConnectorState,
-                              bool                        powerButtonPushed,
-                              EN__BATTERY_LEVEL           batteryLevel,
-                              ST__ISD_STATUS              isd_state,
-                              ST__SYSTEM_STATE            systemState,
-                              ST__BLE_COMMUNICATION_STATE BLE_communicationState);
+void debugging_for_monitoring(ST__USB_CONNECTOR usbConnectorState, bool powerButtonPushed, EN__BATTERY_LEVEL batteryLevel, ST__ISD_STATUS isd_state, ST__SYSTEM_STATE systemState, ST__BLE_COMMUNICATION_STATE BLE_communicationState);
 
 #endif  // __main_h__

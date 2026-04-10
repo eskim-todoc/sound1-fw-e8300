@@ -7,6 +7,18 @@
 
 typedef enum
 {
+    LED_MODE_BACKGROUND = 0,
+    LED_MODE_FOREGROUND,
+} led_mode_t;
+
+typedef enum
+{
+    LED_FOREGROUND_TYPE_BATT_STATE = 1,
+    LED_FOREGROUND_TYPE_PAIR_STAE  = 2,
+} led_foreground_type_t;
+
+typedef enum
+{
     en__LED_NA = 0,
     en__LED_Map_Error,
     en__LED_MCU_Error,
@@ -29,8 +41,11 @@ typedef enum
     en__LED_BatteryChargingLevel_60btw80,
     en__LED_BatteryChargingLevel_80btw100,
     en__LED_BatteryChargingLevel_100per,
-    en__LED_POWER_Off
+    en__LED_POWER_Off,
 
+    /* Sound1, LED Indication 추가 by QCC */
+    en__LED_IND_BATT_STATE,
+    en__LED_IND_PAIR_STATE,
 } EN__LED_PATTERN;
 
 typedef enum

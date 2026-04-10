@@ -57,7 +57,7 @@ static void _handle_command_option_write(int slot_num, int file_type, int *p_pac
 {
     FILINFO                fno;
     FIL                   *fp;
-    ST__CI_LIB_BOOT_STATUS boot_status;
+    snd_boot_status_t boot_status;
     uint8_t                resp_packet[9] = {0};
     int                    total_byte;
     int                    end_data_index;
@@ -80,7 +80,7 @@ static void _handle_command_option_write(int slot_num, int file_type, int *p_pac
     }
 
     // fp = ci_file_system_get_fp();
-    fp = snd_fatfs_get_fp();
+    fp = ci_fatfs_get_fp();
 
     // 쓰기 옵션 첫 데이터 인덱스에서 파일을 준비해야 한다.
     // 드라이브를 1에서 0으로 변경해준다.
@@ -278,7 +278,7 @@ static void _fetch_packet_data(int *p_packet, int data_index)
     FIL    *fp;
 
     // fp = ci_file_system_get_fp();
-    fp = snd_fatfs_get_fp();
+    fp = ci_fatfs_get_fp();
 
     wbuf[0] = p_packet[0];  // Header
     wbuf[1] = p_packet[1];  // Data index (MSB)

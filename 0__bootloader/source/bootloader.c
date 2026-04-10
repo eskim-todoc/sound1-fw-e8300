@@ -36,7 +36,7 @@
 #include <ci_boot.h>
 #include <ci_initialize.h>
 #include <rtt_printf.h>
-#include <uart_printf.h>
+#include <tdc_uart.h>
 
 #define SHOULD_BOOT 0xA5
 
@@ -49,8 +49,9 @@ uint32_t bootloader_error __attribute__((section(".sysvars")));
 static uint32_t _data_temp_buffer[_DATA_TEMP_BUFFER_SIZE];
 static FIL      ohdl;
 static FATFS    fsmount;
+static DIR      dir;
 
-int bootloader_initialize_aes_ctx(struct AES_ctx* aes_context, uint32_t* key)
+int bootloader_initialize_aes_ctx(struct AES_ctx *aes_context, uint32_t *key)
 {
     uint32_t aes_key_scratchpad[4];
     int      i;
@@ -65,15 +66,15 @@ int bootloader_initialize_aes_ctx(struct AES_ctx* aes_context, uint32_t* key)
         aes_key_scratchpad[i] = htonl(key[i]);
     }
 
-    AES_init_ctx(aes_context, (unsigned char*) aes_key_scratchpad);
+    AES_init_ctx(aes_context, (unsigned char *) aes_key_scratchpad);
 
     return 0;
 }
 
-int bootloader_decrypt_data(struct AES_ctx* aes_context, uint32_t* data, size_t len)
+int bootloader_decrypt_data(struct AES_ctx *aes_context, uint32_t *data, size_t len)
 {
     uint32_t  i;
-    uint32_t* p;
+    uint32_t *p;
 
     /* len is not an integer number of AES blocks. */
     if ((len & 0x03) != 0)
@@ -89,7 +90,7 @@ int bootloader_decrypt_data(struct AES_ctx* aes_context, uint32_t* data, size_t 
     p = data;
     for (i = 0; i < (len >> 2); i++)
     {
-        AES_ECB_decrypt(aes_context, (unsigned char*) p);
+        AES_ECB_decrypt(aes_context, (unsigned char *) p);
         p += 4;
     }
 
@@ -100,7 +101,7 @@ int bootloader_decrypt_data(struct AES_ctx* aes_context, uint32_t* data, size_t 
     return 0;
 }
 
-void bootloader_lock_pram(struct data_section_header* section_header, uint32_t* dest_addr)
+void bootloader_lock_pram(struct data_section_header *section_header, uint32_t *dest_addr)
 {
     uint32_t lock_value;
 
@@ -109,7 +110,7 @@ void bootloader_lock_pram(struct data_section_header* section_header, uint32_t* 
     if (section_header->type == SEC_CFX_P)
     {
         /* Check starting bank */
-        if (dest_addr < (uint32_t*) CFX_PRAM1_BASE)
+        if (dest_addr < (uint32_t *) CFX_PRAM1_BASE)
         {
             lock_value = CFX_PRAM0_LOCK;
         }
@@ -119,7 +120,7 @@ void bootloader_lock_pram(struct data_section_header* section_header, uint32_t* 
         }
 
         /* Check if it'll go to PRAM1 */
-        if ((dest_addr + section_header->size) > (uint32_t*) CFX_PRAM1_BASE)
+        if ((dest_addr + section_header->size) > (uint32_t *) CFX_PRAM1_BASE)
         {
             lock_value |= CFX_PRAM1_LOCK;
         }
@@ -127,7 +128,7 @@ void bootloader_lock_pram(struct data_section_header* section_header, uint32_t* 
     else if (section_header->type == SEC_CM3_P)
     {
         /* Check starting bank */
-        if (dest_addr < (uint32_t*) PRAM1_BASE)
+        if (dest_addr < (uint32_t *) PRAM1_BASE)
         {
             lock_value = CM3_PRAM0_LOCK;
         }
@@ -137,7 +138,7 @@ void bootloader_lock_pram(struct data_section_header* section_header, uint32_t* 
         }
 
         /* Check if it'll go to PRAM1 */
-        if ((dest_addr + section_header->size) > (uint32_t*) PRAM1_BASE)
+        if ((dest_addr + section_header->size) > (uint32_t *) PRAM1_BASE)
         {
             lock_value |= CM3_PRAM1_LOCK;
         }
@@ -156,25 +157,15 @@ typedef struct
 #define NUM_IOMEM_MAPPINGS 20
 
 static const IOMEM_map_t iomem_map[NUM_IOMEM_MAPPINGS] = {
-    {PRAM_BASE,
-     PRAM_TOP,
-     CM3_PRAM0_POWER_ENABLE | CM3_PRAM1_POWER_ENABLE | CM3_PRAM2_POWER_ENABLE | CM3_PRAM3_POWER_ENABLE | CM3_PRAM4_POWER_ENABLE | CM3_PRAM5_POWER_ENABLE
-         | CM3_PRAM6_POWER_ENABLE,
-     true},
+    {PRAM_BASE, PRAM_TOP, CM3_PRAM0_POWER_ENABLE | CM3_PRAM1_POWER_ENABLE | CM3_PRAM2_POWER_ENABLE | CM3_PRAM3_POWER_ENABLE | CM3_PRAM4_POWER_ENABLE | CM3_PRAM5_POWER_ENABLE | CM3_PRAM6_POWER_ENABLE, true},
 
-    {DSP_PRAM5_REMAP_BASE,
-     DSP_PRAM_TOP,
-     DSP_PRAM5_POWER_ENABLE | DSP_PRAM4_POWER_ENABLE | DSP_PRAM3_POWER_ENABLE | DSP_PRAM2_POWER_ENABLE | DSP_PRAM1_POWER_ENABLE | DSP_PRAM0_POWER_ENABLE,
-     true},
+    {DSP_PRAM5_REMAP_BASE, DSP_PRAM_TOP, DSP_PRAM5_POWER_ENABLE | DSP_PRAM4_POWER_ENABLE | DSP_PRAM3_POWER_ENABLE | DSP_PRAM2_POWER_ENABLE | DSP_PRAM1_POWER_ENABLE | DSP_PRAM0_POWER_ENABLE, true},
 
     {DSP_BRAM0_REMAP_BASE, DSP_BRAM2_REMAP_TOP, DSP_BRAM0_POWER_ENABLE | DSP_BRAM1_POWER_ENABLE | DSP_BRAM2_POWER_ENABLE, true},
 
     {DRAM_BASE, DRAM_TOP, CM3_DRAM0_POWER_ENABLE | CM3_DRAM1_POWER_ENABLE | CM3_DRAM2_POWER_ENABLE | CM3_DRAM3_POWER_ENABLE, true},
 
-    {DSP_ARAM5_REMAP_BASE,
-     DSP_ARAM0_REMAP_TOP,
-     DSP_ARAM5_POWER_ENABLE | DSP_ARAM4_POWER_ENABLE | DSP_ARAM3_POWER_ENABLE | DSP_ARAM2_POWER_ENABLE | DSP_ARAM1_POWER_ENABLE | DSP_ARAM0_POWER_ENABLE,
-     true},
+    {DSP_ARAM5_REMAP_BASE, DSP_ARAM0_REMAP_TOP, DSP_ARAM5_POWER_ENABLE | DSP_ARAM4_POWER_ENABLE | DSP_ARAM3_POWER_ENABLE | DSP_ARAM2_POWER_ENABLE | DSP_ARAM1_POWER_ENABLE | DSP_ARAM0_POWER_ENABLE, true},
 
     {EMMC_BUFFER_BASE, EMMC_BUFFER_TOP, CM3_EMMC_RAM_POWER_ENABLE, true},
 
@@ -190,34 +181,15 @@ static const IOMEM_map_t iomem_map[NUM_IOMEM_MAPPINGS] = {
 
     {PRAM0_REMAP_BASE, PRAM1_REMAP_TOP, CM3_PRAM0_POWER_ENABLE | CM3_PRAM1_POWER_ENABLE, true},
 
-    {DSP_ARAM_BASE,
-     DSP_ARAM_TOP,
-     DSP_ARAM0_POWER_ENABLE | DSP_ARAM1_POWER_ENABLE | DSP_ARAM2_POWER_ENABLE | DSP_ARAM3_POWER_ENABLE | DSP_ARAM4_POWER_ENABLE | DSP_ARAM5_POWER_ENABLE,
-     true},
+    {DSP_ARAM_BASE, DSP_ARAM_TOP, DSP_ARAM0_POWER_ENABLE | DSP_ARAM1_POWER_ENABLE | DSP_ARAM2_POWER_ENABLE | DSP_ARAM3_POWER_ENABLE | DSP_ARAM4_POWER_ENABLE | DSP_ARAM5_POWER_ENABLE, true},
 
-    {DSP_BRAM01_ARAM_REMAP_BASE,
-     DSP_BRAM01_ARAM_REMAP_TOP,
-     DSP_ARAM0_POWER_ENABLE | DSP_ARAM1_POWER_ENABLE | DSP_ARAM2_POWER_ENABLE | DSP_ARAM3_POWER_ENABLE | DSP_ARAM4_POWER_ENABLE | DSP_ARAM5_POWER_ENABLE
-         | DSP_BRAM0_POWER_ENABLE | DSP_BRAM1_POWER_ENABLE,
-     true},
+    {DSP_BRAM01_ARAM_REMAP_BASE, DSP_BRAM01_ARAM_REMAP_TOP, DSP_ARAM0_POWER_ENABLE | DSP_ARAM1_POWER_ENABLE | DSP_ARAM2_POWER_ENABLE | DSP_ARAM3_POWER_ENABLE | DSP_ARAM4_POWER_ENABLE | DSP_ARAM5_POWER_ENABLE | DSP_BRAM0_POWER_ENABLE | DSP_BRAM1_POWER_ENABLE, true},
 
-    {DSP_PRAM45_ARAM_REMAP_BASE,
-     DSP_PRAM45_ARAM_REMAP_TOP,
-     DSP_ARAM0_POWER_ENABLE | DSP_ARAM1_POWER_ENABLE | DSP_ARAM2_POWER_ENABLE | DSP_ARAM3_POWER_ENABLE | DSP_ARAM4_POWER_ENABLE | DSP_ARAM5_POWER_ENABLE
-         | DSP_PRAM4_POWER_ENABLE | DSP_PRAM5_POWER_ENABLE,
-     true},
+    {DSP_PRAM45_ARAM_REMAP_BASE, DSP_PRAM45_ARAM_REMAP_TOP, DSP_ARAM0_POWER_ENABLE | DSP_ARAM1_POWER_ENABLE | DSP_ARAM2_POWER_ENABLE | DSP_ARAM3_POWER_ENABLE | DSP_ARAM4_POWER_ENABLE | DSP_ARAM5_POWER_ENABLE | DSP_PRAM4_POWER_ENABLE | DSP_PRAM5_POWER_ENABLE, true},
 
-    {PRAM56_ARAM_REMAP_BASE,
-     PRAM56_ARAM_REMAP_TOP,
-     DSP_ARAM0_POWER_ENABLE | DSP_ARAM1_POWER_ENABLE | DSP_ARAM2_POWER_ENABLE | DSP_ARAM3_POWER_ENABLE | DSP_ARAM4_POWER_ENABLE | DSP_ARAM5_POWER_ENABLE
-         | CM3_PRAM5_POWER_ENABLE | CM3_PRAM6_POWER_ENABLE,
-     true},
+    {PRAM56_ARAM_REMAP_BASE, PRAM56_ARAM_REMAP_TOP, DSP_ARAM0_POWER_ENABLE | DSP_ARAM1_POWER_ENABLE | DSP_ARAM2_POWER_ENABLE | DSP_ARAM3_POWER_ENABLE | DSP_ARAM4_POWER_ENABLE | DSP_ARAM5_POWER_ENABLE | CM3_PRAM5_POWER_ENABLE | CM3_PRAM6_POWER_ENABLE, true},
 
-    {DRAM23_ARAM_REMAP_BASE,
-     DRAM23_ARAM_REMAP_TOP,
-     DSP_ARAM0_POWER_ENABLE | DSP_ARAM1_POWER_ENABLE | DSP_ARAM2_POWER_ENABLE | DSP_ARAM3_POWER_ENABLE | DSP_ARAM4_POWER_ENABLE | DSP_ARAM5_POWER_ENABLE
-         | CM3_DRAM2_POWER_ENABLE | CM3_DRAM3_POWER_ENABLE,
-     true},
+    {DRAM23_ARAM_REMAP_BASE, DRAM23_ARAM_REMAP_TOP, DSP_ARAM0_POWER_ENABLE | DSP_ARAM1_POWER_ENABLE | DSP_ARAM2_POWER_ENABLE | DSP_ARAM3_POWER_ENABLE | DSP_ARAM4_POWER_ENABLE | DSP_ARAM5_POWER_ENABLE | CM3_DRAM2_POWER_ENABLE | CM3_DRAM3_POWER_ENABLE, true},
 
     {DSP_BRAM0_BASE, DSP_BRAM2_TOP, DSP_BRAM0_POWER_ENABLE | DSP_BRAM1_POWER_ENABLE | DSP_BRAM2_POWER_ENABLE, true},
 
@@ -234,7 +206,7 @@ static const IOMEM_map_t iomem_map[NUM_IOMEM_MAPPINGS] = {
  * @param[out] cfg Enable config value for the SYSCTRL_MEM_POWER_CFG0 or CFG1 register
  * @return exit 1 if we have found the last memory being used and 0 to continue looping
  */
-static int step_addr_cfg(const IOMEM_map_t mem_map_info, uint32_t* check_addr, const uint32_t end_inp_addr, uint32_t* cfg)
+static int step_addr_cfg(const IOMEM_map_t mem_map_info, uint32_t *check_addr, const uint32_t end_inp_addr, uint32_t *cfg)
 {
     /* If address is inside this memory */
     if (mem_map_info.start_addr <= *check_addr && *check_addr <= mem_map_info.end_addr)
@@ -272,7 +244,7 @@ static int step_addr_cfg(const IOMEM_map_t mem_map_info, uint32_t* check_addr, c
  * @param[out] cfg_0 Enable config value for the SYSCTRL_MEM_POWER_CFG0 register
  * @param[out] cfg_1 Enable config value for the SYSCTRL_MEM_POWER_CFG1 register
  */
-static void get_mem_enable_cfg(uint32_t start_addr, uint32_t end_addr, uint32_t* cfg_0, uint32_t* cfg_1)
+static void get_mem_enable_cfg(uint32_t start_addr, uint32_t end_addr, uint32_t *cfg_0, uint32_t *cfg_1)
 {
     *cfg_0              = 0;
     *cfg_1              = 0;
@@ -286,9 +258,9 @@ static void get_mem_enable_cfg(uint32_t start_addr, uint32_t end_addr, uint32_t*
     }
 }
 
-int bootloader_transfer_section_data(struct data_section_header* section_header, FIL* file_desc, uint16_t data_crc)
+int bootloader_transfer_section_data(struct data_section_header *section_header, FIL *file_desc, uint16_t data_crc)
 {
-    uint32_t* dest_addr;
+    uint32_t *dest_addr;
     uint32_t  offset;
     uint32_t  remainder;
     size_t    read_size;
@@ -298,9 +270,9 @@ int bootloader_transfer_section_data(struct data_section_header* section_header,
     int32_t        ret;
     uint32_t       word_size, dma_len_mul;
     uint32_t       region_size;
-    uint32_t*      aes_key;
+    uint32_t      *aes_key;
     struct AES_ctx aes_context;
-    uint32_t*      lock_addr;
+    uint32_t      *lock_addr;
     uint32_t       dma_src_inc;
 
     word_size   = WORD_SIZE_32BITS_TO_32BITS;
@@ -336,7 +308,7 @@ int bootloader_transfer_section_data(struct data_section_header* section_header,
                 return -1;
             }
             Sys_Memory_Enable(0, CFX_XRAM0_POWER_ENABLE | CFX_XRAM1_POWER_ENABLE | CFX_XRAM2_POWER_ENABLE | CFX_XRAM3_POWER_ENABLE);
-            dest_addr   = (uint32_t*) CFX_XMEM_LSB_UNSIGNED_BASE;
+            dest_addr   = (uint32_t *) CFX_XMEM_LSB_UNSIGNED_BASE;
             word_size   = WORD_SIZE_8BITS_TO_24BITS;
             dest_inc    = (_DATA_TEMP_BUFFER_SIZE * 4) / 3;
             dma_len_mul = 2;
@@ -348,7 +320,7 @@ int bootloader_transfer_section_data(struct data_section_header* section_header,
                 return -1;
             }
             Sys_Memory_Enable(0, CFX_YRAM0_POWER_ENABLE | CFX_YRAM1_POWER_ENABLE | CFX_YRAM2_POWER_ENABLE);
-            dest_addr   = (uint32_t*) CFX_YRAM0_LSB_UNSIGNED_BASE;
+            dest_addr   = (uint32_t *) CFX_YRAM0_LSB_UNSIGNED_BASE;
             word_size   = WORD_SIZE_8BITS_TO_24BITS;
             dest_inc    = (_DATA_TEMP_BUFFER_SIZE * 4) / 3;
             dma_len_mul = 2;
@@ -359,7 +331,7 @@ int bootloader_transfer_section_data(struct data_section_header* section_header,
             {
                 return -1;
             }
-            dest_addr = (uint32_t*) CFX_PRAM_BASE;
+            dest_addr = (uint32_t *) CFX_PRAM_BASE;
             Sys_Memory_Enable(0, CFX_PRAM0_POWER_ENABLE | CFX_PRAM1_POWER_ENABLE);
             Sys_PRAMSec_SetLock(CFX_PRAM0_NOT_LOCKED | CFX_PRAM1_NOT_LOCKED);
             break;
@@ -369,10 +341,8 @@ int bootloader_transfer_section_data(struct data_section_header* section_header,
             {
                 return -1;
             }
-            Sys_Memory_Enable(CM3_PRAM0_POWER_ENABLE | CM3_PRAM1_POWER_ENABLE | CM3_PRAM2_POWER_ENABLE | CM3_PRAM3_POWER_ENABLE | CM3_PRAM4_POWER_ENABLE
-                                  | CM3_PRAM5_POWER_ENABLE | CM3_PRAM6_POWER_ENABLE,
-                              0);
-            dest_addr = (uint32_t*) PRAM_BASE;
+            Sys_Memory_Enable(CM3_PRAM0_POWER_ENABLE | CM3_PRAM1_POWER_ENABLE | CM3_PRAM2_POWER_ENABLE | CM3_PRAM3_POWER_ENABLE | CM3_PRAM4_POWER_ENABLE | CM3_PRAM5_POWER_ENABLE | CM3_PRAM6_POWER_ENABLE, 0);
+            dest_addr = (uint32_t *) PRAM_BASE;
             Sys_PRAMSec_SetLock(CM3_PRAM0_NOT_LOCKED | CM3_PRAM1_NOT_LOCKED);
             break;
         case SEC_IOMEM:
@@ -423,7 +393,7 @@ int bootloader_transfer_section_data(struct data_section_header* section_header,
             }
 
             /* Read is in bytes */
-            ret = f_read(file_desc, (uint8_t*) _data_temp_buffer, read_size << 2, &bytes_read);
+            ret = f_read(file_desc, (uint8_t *) _data_temp_buffer, read_size << 2, &bytes_read);
             if (bytes_read != (read_size << 2) || ret != FR_OK)
             {
                 return -1;
@@ -444,9 +414,8 @@ int bootloader_transfer_section_data(struct data_section_header* section_header,
                 return -1;
             }
             Sys_DMA_ChannelConfig(CRC_CALCULATION_DMA,
-                                  DMA_COMPLETE_INT_DISABLE | DMA_CNT_INT_DISABLE | DMA_DEST_ADDR_LSB_TOGGLE_DISABLE | DMA_SRC_ADDR_LSB_TOGGLE_DISABLE
-                                      | DMA_DEST_ADDR_STATIC | DMA_SRC_ADDR_INCR_1 | WORD_SIZE_32BITS_TO_32BITS | DMA_DEST_ALWAYS_ON | DMA_SRC_ALWAYS_ON
-                                      | DMA_PRIORITY_0 | SRC_TRANS_LENGTH_SEL | DMA_LITTLE_ENDIAN,
+                                  DMA_COMPLETE_INT_DISABLE | DMA_CNT_INT_DISABLE | DMA_DEST_ADDR_LSB_TOGGLE_DISABLE | DMA_SRC_ADDR_LSB_TOGGLE_DISABLE | DMA_DEST_ADDR_STATIC | DMA_SRC_ADDR_INCR_1 | WORD_SIZE_32BITS_TO_32BITS | DMA_DEST_ALWAYS_ON | DMA_SRC_ALWAYS_ON | DMA_PRIORITY_0 | SRC_TRANS_LENGTH_SEL
+                                      | DMA_LITTLE_ENDIAN,
                                   read_size,
                                   0,
                                   (uint32_t) _data_temp_buffer,
@@ -475,9 +444,7 @@ int bootloader_transfer_section_data(struct data_section_header* section_header,
             return -1;
         }
         Sys_DMA_ChannelConfig(SECTION_TRANSFER_DMA,
-                              DMA_COMPLETE_INT_DISABLE | DMA_CNT_INT_DISABLE | DMA_DEST_ADDR_LSB_TOGGLE_DISABLE | DMA_SRC_ADDR_LSB_TOGGLE_DISABLE
-                                  | DMA_DEST_ADDR_INCR_1 | dma_src_inc | word_size | DMA_DEST_ALWAYS_ON | DMA_SRC_ALWAYS_ON | DMA_PRIORITY_0
-                                  | SRC_TRANS_LENGTH_SEL | DMA_LITTLE_ENDIAN,
+                              DMA_COMPLETE_INT_DISABLE | DMA_CNT_INT_DISABLE | DMA_DEST_ADDR_LSB_TOGGLE_DISABLE | DMA_SRC_ADDR_LSB_TOGGLE_DISABLE | DMA_DEST_ADDR_INCR_1 | dma_src_inc | word_size | DMA_DEST_ALWAYS_ON | DMA_SRC_ALWAYS_ON | DMA_PRIORITY_0 | SRC_TRANS_LENGTH_SEL | DMA_LITTLE_ENDIAN,
                               read_size << dma_len_mul,
                               0,
                               (uint32_t) _data_temp_buffer,
@@ -487,8 +454,7 @@ int bootloader_transfer_section_data(struct data_section_header* section_header,
 
         Nop();
         /* Wait for data transfer and CRC calculation to complete. */
-        while (BIT_TEST(Sys_DMA_Get_Status(SECTION_TRANSFER_DMA), DMA_STATUS_ACTIVE_Pos)
-               || BIT_TEST(Sys_DMA_Get_Status(CRC_CALCULATION_DMA), DMA_STATUS_ACTIVE_Pos))
+        while (BIT_TEST(Sys_DMA_Get_Status(SECTION_TRANSFER_DMA), DMA_STATUS_ACTIVE_Pos) || BIT_TEST(Sys_DMA_Get_Status(CRC_CALCULATION_DMA), DMA_STATUS_ACTIVE_Pos))
         {
             ;
         }
@@ -529,10 +495,10 @@ int bootloader_transfer_section_data(struct data_section_header* section_header,
     }
 }
 
-int bootloader_read_nvm_boot_info(uint32_t* buf)
+int bootloader_read_nvm_boot_info(uint32_t *buf)
 {
     int                          ret;
-    bootloader_boot_information* boot_info;
+    bootloader_boot_information *boot_info;
     uint16_t                     calc_crc;
 
     if (buf == NULL)
@@ -546,9 +512,9 @@ int bootloader_read_nvm_boot_info(uint32_t* buf)
         return ret;
     }
 
-    boot_info = (bootloader_boot_information*) buf;
+    boot_info = (bootloader_boot_information *) buf;
 
-    calc_crc = bootloader_CRC_calc((uint8_t*) buf, sizeof(bootloader_boot_information) - 2);
+    calc_crc = bootloader_CRC_calc((uint8_t *) buf, sizeof(bootloader_boot_information) - 2);
 
     return (calc_crc == boot_info->boot_info_crc ? 0 : -1);
 }
@@ -557,7 +523,7 @@ int bootloader_load_manu_table(uint16_t boot_manu_off)
 {
     int              ret;
     uint16_t         calc_crc;
-    MANU_TABLE_Type* manuf_table;
+    MANU_TABLE_Type *manuf_table;
     int              max_target  = 0;
     int              curr_target = 0;
     bool             ones_flag   = true;
@@ -569,9 +535,9 @@ int bootloader_load_manu_table(uint16_t boot_manu_off)
         return ret;
     }
 
-    manuf_table = (MANU_TABLE_Type*) (_data_temp_buffer + ((boot_manu_off & 0x1FF) >> 2));
+    manuf_table = (MANU_TABLE_Type *) (_data_temp_buffer + ((boot_manu_off & 0x1FF) >> 2));
 
-    calc_crc = bootloader_CRC_calc((uint8_t*) manuf_table, BOOTSTRAP_MANU_CRC_OFFSET);
+    calc_crc = bootloader_CRC_calc((uint8_t *) manuf_table, BOOTSTRAP_MANU_CRC_OFFSET);
 
     if (calc_crc != manuf_table->MANU_CRC_CCITT.upper)
     {
@@ -602,9 +568,52 @@ int bootloader_load_manu_table(uint16_t boot_manu_off)
         return -1;
     }
 
+#if 1
+    tdc_uart_printf("manuf_table = \r\n");
+    for (int i = 0; i < MANU_TABLE_SIZE; i++)
+    {
+        tdc_uart_printf("0x%08X ", ((uint32_t *) manuf_table)[i]);
+        if (((i + 1) % 4) == 0)
+        {
+            tdc_uart_printf("\r\n");
+        }
+    }
+    tdc_uart_printf("\r\n");
+#endif
+
+#if 1
+    tdc_uart_printf("\r\n\nbefore, LoadManuTable \r\n");
+    tdc_uart_printf("SYSVAR_MANU_TABLE = \r\n");
+    for (int i = 0; i < MANU_TABLE_SIZE; i++)
+    {
+        tdc_uart_printf("0x%08X ", ((uint32_t *) SYSVAR_MANU_TABLE)[i]);
+        if (((i + 1) % 4) == 0)
+        {
+            tdc_uart_printf("\r\n");
+        }
+    }
+    tdc_uart_printf("\r\n");
+    tdc_uart_printf("==================================================\r\n");
+#endif
+
     /* Copy the manufacturing table to the preset location in CM3
      * PRAM using the function in HAL. */
-    Sys_Trims_LoadManuTable((uint32_t*) manuf_table);
+    Sys_Trims_LoadManuTable((uint32_t *) manuf_table);
+
+#if 1
+    tdc_uart_printf("\r\n\nafter, LoadManuTable \r\n");
+    tdc_uart_printf("SYSVAR_MANU_TABLE = \r\n");
+    for (int i = 0; i < MANU_TABLE_SIZE; i++)
+    {
+        tdc_uart_printf("0x%08X ", ((uint32_t *) SYSVAR_MANU_TABLE)[i]);
+        if (((i + 1) % 4) == 0)
+        {
+            tdc_uart_printf("\r\n");
+        }
+    }
+    tdc_uart_printf("\r\n");
+    tdc_uart_printf("==================================================\r\n");
+#endif
 
     /* Try to set the default values if they are in the manufacturing table. */
     Sys_Trims_SetVREGAndLSAD();
@@ -637,7 +646,7 @@ int bootloader_load_manu_table(uint16_t boot_manu_off)
     return 0;
 }
 
-int get_app_load_ext(bootloader_boot_information* boot_info, char* result)
+int get_app_load_ext(bootloader_boot_information *boot_info, char *result)
 {
     uint8_t len_app_load;
     uint8_t len_app_ext;
@@ -646,29 +655,29 @@ int get_app_load_ext(bootloader_boot_information* boot_info, char* result)
         return -1;
     }
 
-    len_app_load = strlen((char*) boot_info->boot_app_load);
-    len_app_ext  = strlen((char*) boot_info->boot_app_ext);
+    len_app_load = strlen((char *) boot_info->boot_app_load);
+    len_app_ext  = strlen((char *) boot_info->boot_app_ext);
 
     if (len_app_load == 0 || len_app_ext == 0)
     {
         return -1;
     }
 
-    strcpy(result, (char*) boot_info->boot_app_load);
+    strcpy(result, (char *) boot_info->boot_app_load);
     result[len_app_load] = '.';
-    strcpy(&result[len_app_load + 1], (char*) boot_info->boot_app_ext);
+    strcpy(&result[len_app_load + 1], (char *) boot_info->boot_app_ext);
 
     return len_app_load + len_app_ext + 1;
 }
 
-int bootloader_load_boot_section(struct data_section_header* section_header, FIL* file_desc, struct boot_section_data* boot_data, uint16_t data_crc)
+int bootloader_load_boot_section(struct data_section_header *section_header, FIL *file_desc, struct boot_section_data *boot_data, uint16_t data_crc)
 {
     int32_t        ret;
     uint32_t       i;
     size_t         read_size;
     size_t         bytes_read;
     struct AES_ctx aes_context;
-    uint32_t*      aes_key;
+    uint32_t      *aes_key;
 
     if (section_header == NULL || boot_data == NULL)
     {
@@ -684,7 +693,7 @@ int bootloader_load_boot_section(struct data_section_header* section_header, FIL
     }
 
     /* Read structure and the CRC */
-    ret = f_read(file_desc, (uint8_t*) _data_temp_buffer, read_size, &bytes_read);
+    ret = f_read(file_desc, (uint8_t *) _data_temp_buffer, read_size, &bytes_read);
     if (bytes_read != read_size || ret != FR_OK)
     {
         return -1;
@@ -727,15 +736,15 @@ int bootloader_load_boot_section(struct data_section_header* section_header, FIL
     return 0;
 }
 
-uint32_t* bootloader_get_application_key(void)
+uint32_t *bootloader_get_application_key(void)
 {
-    return (uint32_t*) SYSVAR_KEY_START; /* Cast to the correct type */
+    return (uint32_t *) SYSVAR_KEY_START; /* Cast to the correct type */
 }
 
-int bootloader_check_header_crc(struct data_section_header* section_header)
+int bootloader_check_header_crc(struct data_section_header *section_header)
 {
     uint16_t       calc_crc;
-    uint32_t*      aes_key;
+    uint32_t      *aes_key;
     struct AES_ctx aes_context;
     int            ret;
 
@@ -744,7 +753,7 @@ int bootloader_check_header_crc(struct data_section_header* section_header)
         return -1;
     }
     /* Verify header CRC */
-    calc_crc = bootloader_CRC_calc((uint8_t*) section_header, sizeof(struct data_section_header));
+    calc_crc = bootloader_CRC_calc((uint8_t *) section_header, sizeof(struct data_section_header));
     if (calc_crc == 0)
     {
         /* If the CRC matches, there's nothing else to do, just return. */
@@ -759,13 +768,13 @@ int bootloader_check_header_crc(struct data_section_header* section_header)
         return ret;
     }
 
-    ret = bootloader_decrypt_data(&aes_context, (uint32_t*) section_header, sizeof(struct data_section_header) >> 2);
+    ret = bootloader_decrypt_data(&aes_context, (uint32_t *) section_header, sizeof(struct data_section_header) >> 2);
     if (ret != 0)
     {
         return ret;
     }
 
-    calc_crc = bootloader_CRC_calc((uint8_t*) section_header, sizeof(struct data_section_header));
+    calc_crc = bootloader_CRC_calc((uint8_t *) section_header, sizeof(struct data_section_header));
     if (calc_crc != 0)
     {
         return -1;
@@ -780,10 +789,7 @@ int bootloader_check_header_crc(struct data_section_header* section_header)
     return 0;
 }
 
-BOOTLOADER_LOAD_SECTIONS_RETURN bootloader_load_sections(FIL*                            file_desc,
-                                                         struct application_file_header* app_header,
-                                                         struct boot_section_data*       cfx_boot_data,
-                                                         struct boot_section_data*       cm3_boot_data)
+BOOTLOADER_LOAD_SECTIONS_RETURN bootloader_load_sections(FIL *file_desc, struct application_file_header *app_header, struct boot_section_data *cfx_boot_data, struct boot_section_data *cm3_boot_data)
 {
     int32_t                    ret;
     struct data_section_header section_header;
@@ -800,7 +806,7 @@ BOOTLOADER_LOAD_SECTIONS_RETURN bootloader_load_sections(FIL*                   
     }
 
     /* Read first header */
-    ret = f_read(file_desc, (uint8_t*) &section_header, sizeof(struct data_section_header), &bytes_read);
+    ret = f_read(file_desc, (uint8_t *) &section_header, sizeof(struct data_section_header), &bytes_read);
     while (bytes_read > 0 && section_number < app_header->crc_table_size)
     {
         /* Verify header CRC */
@@ -829,7 +835,7 @@ BOOTLOADER_LOAD_SECTIONS_RETURN bootloader_load_sections(FIL*                   
             return BOOTLOADER_LOAD_SECTIONS_RETURN_error;
         }
         /* Read next header */
-        ret = f_read(file_desc, (uint8_t*) &section_header, sizeof(struct data_section_header), &bytes_read);
+        ret = f_read(file_desc, (uint8_t *) &section_header, sizeof(struct data_section_header), &bytes_read);
         section_number++;
     }
 
@@ -841,14 +847,14 @@ BOOTLOADER_LOAD_SECTIONS_RETURN bootloader_load_sections(FIL*                   
     return (BOOTLOADER_LOAD_SECTIONS_RETURN_ok | boot_flags);
 }
 
-int bootloader_read_and_check_file_header(FIL* file_desc, struct application_file_header* app_header, size_t buf_size)
+int bootloader_read_and_check_file_header(FIL *file_desc, struct application_file_header *app_header, size_t buf_size)
 {
     int32_t        ret;
     uint16_t       calc_crc;
-    uint32_t*      aes_key;
+    uint32_t      *aes_key;
     struct AES_ctx aes_context;
     size_t         data_size, read_size;
-    uint32_t*      p;
+    uint32_t      *p;
     size_t         bytes_read;
 
     memset(app_header, '\0', buf_size);
@@ -858,7 +864,7 @@ int bootloader_read_and_check_file_header(FIL* file_desc, struct application_fil
     /* Read the first 8 bytes of the file header. If the file header happens to
      * be encrypted, this will read the ident member and the first 4 bytes of
      * the first AES block.*/
-    ret = f_read(file_desc, (uint8_t*) app_header, data_size, &read_size);
+    ret = f_read(file_desc, (uint8_t *) app_header, data_size, &read_size);
     if (read_size != data_size || ret != FR_OK)
     {
         return -1;
@@ -869,11 +875,11 @@ int bootloader_read_and_check_file_header(FIL* file_desc, struct application_fil
     /* Check if the file is encrypted or not */
     if (app_header->ident == APPFILE_IDENT_APPENCRYPTED || app_header->ident == APPFILE_IDENT_MANIFESTENCRYPTED)
     {
-        p = (uint32_t*) (((uint8_t*) app_header) + offsetof(struct application_file_header, crc_table_size));
+        p = (uint32_t *) (((uint8_t *) app_header) + offsetof(struct application_file_header, crc_table_size));
 
         /* Encrypted file. Read the last 12 bytes of the first AES block. The
          * first 4 bytes were read in the previous read. */
-        ret = f_read(file_desc, ((uint8_t*) app_header) + read_size, 12, &bytes_read);
+        ret = f_read(file_desc, ((uint8_t *) app_header) + read_size, 12, &bytes_read);
         if (bytes_read != 12 || ret != FR_OK)
         {
             return -1;
@@ -928,7 +934,7 @@ int bootloader_read_and_check_file_header(FIL* file_desc, struct application_fil
             return -1;
         }
 
-        ret = f_read(file_desc, ((uint8_t*) app_header) + read_size, data_size, &bytes_read);
+        ret = f_read(file_desc, ((uint8_t *) app_header) + read_size, data_size, &bytes_read);
         if (bytes_read != data_size || ret != FR_OK)
         {
             return -1;
@@ -936,7 +942,7 @@ int bootloader_read_and_check_file_header(FIL* file_desc, struct application_fil
 
         if (app_header->ident == APPFILE_IDENT_APPENCRYPTED || app_header->ident == APPFILE_IDENT_MANIFESTENCRYPTED)
         {
-            if (bootloader_decrypt_data(&aes_context, (uint32_t*) (((uint8_t*) app_header) + read_size), data_size >> 2) < 0)
+            if (bootloader_decrypt_data(&aes_context, (uint32_t *) (((uint8_t *) app_header) + read_size), data_size >> 2) < 0)
             {
                 return -1;
             }
@@ -949,7 +955,7 @@ int bootloader_read_and_check_file_header(FIL* file_desc, struct application_fil
     }
     data_size += offsetof(struct application_file_header, crc_table) + sizeof(uint16_t);
 
-    calc_crc = bootloader_CRC_calc((uint8_t*) app_header, data_size);
+    calc_crc = bootloader_CRC_calc((uint8_t *) app_header, data_size);
 
     if (calc_crc != 0)
     {
@@ -964,7 +970,7 @@ uint8_t                  cfx_boot_flag;
 struct boot_section_data cm3_boot_data;
 uint8_t                  cm3_boot_flag;
 
-int bootloader_process_sections(FIL* file_desc, struct application_file_header* app_header)
+int bootloader_process_sections(FIL *file_desc, struct application_file_header *app_header)
 {
     int ret;
 
@@ -988,15 +994,15 @@ int bootloader_process_sections(FIL* file_desc, struct application_file_header* 
     return 0;
 }
 
-int bootloader_manifest_open_files(char* file_name)
+int bootloader_manifest_open_files(char *file_name)
 {
     int                             ret;
     uint8_t                         tmp[MANIFEST_MAXIMUM_SIZE];
-    struct application_file_header* app_header;
+    struct application_file_header *app_header;
     char                            file_path[20] = "/";
 
 #if 1  // kes0481@to-doc.com
-    uint8_t slot_num = ci_boot_get_slot_num();
+    uint8_t slot_num = tdc_boot_get_slot_num();
 
     if (0 < slot_num && slot_num < 5)
     {
@@ -1005,17 +1011,28 @@ int bootloader_manifest_open_files(char* file_name)
         file_path[2] = '/';
         file_path[3] = 0;
     }
-    else
+    else  // when, 255 (factory reset slot)
     {
         file_path[0] = '/';
         file_path[1] = 0;
     }
 
+    tdc_uart_printf("File path : '%s' \r\n", file_path);
+
+    ret = f_chdir(file_path);
+
+    if (ret != FR_OK)
+    {
+        tdc_uart_printf("Fail : f_chdir() \r\n");
+        return -1;
+    }
 #endif
 
-    strcat(file_path, file_name);
+    // strcat(file_path, file_name);
+    strcpy(file_path, file_name);
+    tdc_uart_printf("f_open : '%s' \r\n", file_path);
 
-    app_header = (struct application_file_header*) tmp;
+    app_header = (struct application_file_header *) tmp;
 
     /* Instead of simply calling bootloader_load_app_file, we open and read
      * the file header here so we don't have recursive calls. If a manifest
@@ -1038,6 +1055,7 @@ int bootloader_manifest_open_files(char* file_name)
     {
         case APPFILE_IDENT_APP:
         case APPFILE_IDENT_APPENCRYPTED:
+            tdc_uart_printf("app_header->ident : app... \r\n");
             ret = bootloader_process_sections(&ohdl, app_header);
             f_close(&ohdl);
             break;
@@ -1055,7 +1073,7 @@ int bootloader_manifest_open_files(char* file_name)
     return ret;
 }
 
-int get_manifest_files(char* src, char* dst, int len)
+int get_manifest_files(char *src, char *dst, int len)
 {
     int i;
     i = 0;
@@ -1085,7 +1103,7 @@ int get_manifest_files(char* src, char* dst, int len)
     return i;
 }
 
-int bootloader_process_manifest(FIL* file_desc, struct application_file_header* app_header)
+int bootloader_process_manifest(FIL *file_desc, struct application_file_header *app_header)
 {
     int            ret, pos;
     size_t         read_len;
@@ -1094,7 +1112,7 @@ int bootloader_process_manifest(FIL* file_desc, struct application_file_header* 
     uint16_t       calc_crc;
     uint32_t       i;
     struct AES_ctx aes_context;
-    uint32_t*      aes_key;
+    uint32_t      *aes_key;
 
     if (app_header == NULL || app_header->crc_table_size != 1)
     {
@@ -1102,13 +1120,33 @@ int bootloader_process_manifest(FIL* file_desc, struct application_file_header* 
     }
 
     memset(manifest_contents, '\0', sizeof(manifest_contents));
-    ret = f_read(file_desc, (uint8_t*) manifest_contents, sizeof(manifest_contents) - 1, &read_len);
+    ret = f_read(file_desc, (uint8_t *) manifest_contents, sizeof(manifest_contents) - 1, &read_len);
     if (ret != FR_OK)
     {
         return -1;
     }
+
+    f_close(file_desc);  // 김은수 추가
+
+#if 1
+    tdc_uart_printf("\r\n\nafter, read manifest_contents \r\n");
+    tdc_uart_printf("SYSVAR_MANU_TABLE = \r\n");
+    for (int i = 0; i < MANU_TABLE_SIZE; i++)
+    {
+        tdc_uart_printf("0x%08X ", ((uint32_t *) SYSVAR_MANU_TABLE)[i]);
+        if (((i + 1) % 4) == 0)
+        {
+            tdc_uart_printf("\r\n");
+        }
+    }
+    tdc_uart_printf("\r\n");
+    tdc_uart_printf("==================================================\r\n");
+#endif
+
     while (read_len > 0)
     {
+        tdc_uart_printf("manifest_contents read len : %d \r\n", read_len);
+
         if (app_header->ident == APPFILE_IDENT_MANIFESTENCRYPTED)
         {
             aes_key = bootloader_get_application_key();
@@ -1119,7 +1157,7 @@ int bootloader_process_manifest(FIL* file_desc, struct application_file_header* 
             }
 
             /* Decrypt the first AES block. It contains crc_table_size */
-            if (bootloader_decrypt_data(&aes_context, (uint32_t*) manifest_contents, read_len) < 0)
+            if (bootloader_decrypt_data(&aes_context, (uint32_t *) manifest_contents, read_len) < 0)
             {
                 return -1;
             }
@@ -1143,26 +1181,48 @@ int bootloader_process_manifest(FIL* file_desc, struct application_file_header* 
 
         pos = 0;
         i   = get_manifest_files(manifest_contents, file_name, sizeof(file_name));
+
+        tdc_uart_printf("i = %u \r\n", i);
+
         while (i != 0)
         {
+            tdc_uart_printf("file_name : '%s' \r\n", file_name);
+
             ret = bootloader_manifest_open_files(file_name);
             if (ret < 0)
             {
                 return ret;
             }
+#if 1
+            tdc_uart_printf("\r\n\nafter, load file: '%s' \r\n", file_name);
+            tdc_uart_printf("SYSVAR_MANU_TABLE = \r\n");
+            for (int i = 0; i < MANU_TABLE_SIZE; i++)
+            {
+                tdc_uart_printf("0x%08X ", ((uint32_t *) SYSVAR_MANU_TABLE)[i]);
+                if (((i + 1) % 4) == 0)
+                {
+                    tdc_uart_printf("\r\n");
+                }
+            }
+            tdc_uart_printf("\r\n");
+            tdc_uart_printf("==================================================\r\n");
+#endif
+
             pos += i + 1;
             i = get_manifest_files(manifest_contents + pos, file_name, sizeof(file_name));
+
+            tdc_uart_printf("i = %u \r\n", i);
         }
-        ret = f_read(file_desc, (uint8_t*) manifest_contents, sizeof(manifest_contents), &read_len);
+        ret = f_read(file_desc, (uint8_t *) manifest_contents, sizeof(manifest_contents), &read_len);
     }
     return 0;
 }
 
-int bootloader_load_app_file(const char* file_name)
+int bootloader_load_app_file(const char *file_name)
 {
     int32_t                         ret;
     char                            file_path[20] = "/";
-    struct application_file_header* app_header;
+    struct application_file_header *app_header;
     uint32_t                        tmp[128];
 
     if (file_name == NULL)
@@ -1175,7 +1235,9 @@ int bootloader_load_app_file(const char* file_name)
     cm3_boot_flag = 0;
 
 #if 1  // kes0481@to-doc.com
-    uint8_t slot_num = ci_boot_get_slot_num();
+    uint8_t slot_num = tdc_boot_get_slot_num();
+
+    tdc_uart_printf("\r\nslot_num = %u \r\n", slot_num);
 
     if (0 < slot_num && slot_num < 5)
     {
@@ -1184,15 +1246,26 @@ int bootloader_load_app_file(const char* file_name)
         file_path[2] = '/';
         file_path[3] = 0;
     }
-    else
+    else  // when, 255 (factory reset slot)
     {
         file_path[0] = '/';
         file_path[1] = 0;
     }
-    uart_printf("file path = '%s' \r\n", file_path);
+    tdc_uart_printf("file path = '%s' \r\n", file_path);
+
+    ret = f_chdir(file_path);
+
+    if (ret != FR_OK)
+    {
+        tdc_uart_printf("Fail : f_chdir() \r\n");
+        return -1;
+    }
 #endif
 
-    strcat(file_path, file_name);
+    // strcat(file_path, file_name);
+    strcpy(file_path, file_name);
+
+    tdc_uart_printf("f_open : '%s' \r\n", file_path);
 
     ret = f_open(&ohdl, file_path, FA_OPEN_EXISTING | FA_READ);
     if (ret != FR_OK)
@@ -1201,7 +1274,7 @@ int bootloader_load_app_file(const char* file_name)
         return -1;
     }
 
-    app_header = (struct application_file_header*) tmp;
+    app_header = (struct application_file_header *) tmp;
 
     ret = bootloader_read_and_check_file_header(&ohdl, app_header, sizeof(tmp));
     if (ret < 0)
@@ -1215,12 +1288,14 @@ int bootloader_load_app_file(const char* file_name)
     {
         case APPFILE_IDENT_APP:
         case APPFILE_IDENT_APPENCRYPTED:
+            tdc_uart_printf("app_header->ident : APP... \r\n");
             /* File is closed in bootloader_process_sections in case we
              * encounter a SEC_BOOT_CM3 section, otherwise close it here. */
             ret = bootloader_process_sections(&ohdl, app_header);
             break;
         case APPFILE_IDENT_MANIFEST:
         case APPFILE_IDENT_MANIFESTENCRYPTED:
+            tdc_uart_printf("app_header->ident : MANIFEST... \r\n");
             ret = bootloader_process_manifest(&ohdl, app_header);
             break;
         default:
@@ -1230,9 +1305,59 @@ int bootloader_load_app_file(const char* file_name)
     f_close(&ohdl);
     if (ret < 0)
     {
+        tdc_uart_printf("Fail : f_close() \r\n");
         bootloader_error = BOOTLOADER_EXIT_STATUS_CODE(ret);
         return ret;
     }
+
+    if (!NVMSync())
+    {
+        tdc_uart_printf("Fail : NVMSync(), before boot \r\n");
+        return -1;
+    }
+
+#if 0
+    tdc_uart_printf("\r\n\nafter fw image copy \r\n");
+    tdc_uart_printf("SYSVAR_MANU_TABLE = \r\n");
+    for (int i = 0; i < MANU_TABLE_SIZE; i++)
+    {
+        tdc_uart_printf("0x%08X ", ((uint32_t *) SYSVAR_MANU_TABLE)[i]);
+        if (((i + 1) % 4) == 0)
+        {
+            tdc_uart_printf("\r\n");
+        }
+    }
+    tdc_uart_printf("\r\n");
+    tdc_uart_printf("==================================================\r\n");
+#endif
+
+    ret = f_unmount("0:");
+    if (ret == FR_OK)
+    {
+        tdc_uart_printf("Success : f_unmount(\"0:\"); \r\n");
+    }
+    else
+    {
+        tdc_uart_printf("Failed : f_unmount(\"0:\"); \r\n");
+    }
+
+    SYS_WATCHDOG_REFRESH();
+
+#if 0
+    tdc_uart_printf("before, boot each cores \r\n");
+    tdc_uart_printf("SYSVAR_MANU_TABLE = \r\n");
+    for (int i = 0; i < MANU_TABLE_SIZE; i++)
+    {
+        tdc_uart_printf("0x%08X ", ((uint32_t *) SYSVAR_MANU_TABLE)[i]);
+        if (((i + 1) % 4) == 0)
+        {
+            tdc_uart_printf("\r\n");
+        }
+    }
+    tdc_uart_printf("\r\n");
+
+    tdc_uart_printf("==================================================\r\n");
+#endif
 
     if (cfx_boot_flag == SHOULD_BOOT)
     {
@@ -1255,7 +1380,7 @@ int bootloader_load_app_file(const char* file_name)
 int bootloader_boot(void)
 {
     int                          ret;
-    bootloader_boot_information* boot_info;
+    bootloader_boot_information *boot_info;
     NVMCTRL_Options_t            options;
     uint32_t                     buf[128];
     char                         app_name[20];
@@ -1278,7 +1403,7 @@ int bootloader_boot(void)
         return ret;
     }
 
-    boot_info = (bootloader_boot_information*) buf;
+    boot_info = (bootloader_boot_information *) buf;
 
     if (boot_info->boot_speed < BOOT_SPEED_AUTO || boot_info->boot_speed > BOOT_SPEED_QSPI)
     {
@@ -1336,10 +1461,16 @@ int bootloader_boot(void)
             break;
     }
 
-    uint32_t app_number = *((uint32_t*) SYSVAR_BOOT_APPN);
+    uint32_t app_number = *((uint32_t *) SYSVAR_BOOT_APPN);
+
+    tdc_uart_printf("app_number = %u \r\n", app_number);
+
     if (app_number == 0)
     {
         ret = get_app_load_ext(boot_info, app_name);
+
+        tdc_uart_printf("app_name = '%s' \r\n", app_name);
+
         if (ret <= 0)
         {
             bootloader_error = BOOTLOADER_EXIT_STATUS_CODE(-1);
@@ -1360,28 +1491,102 @@ int bootloader_boot(void)
         strcpy(app_name + 9 + count, ".TXT");
     }
 
+    tdc_uart_printf("boot_manu_off = %u \r\n", boot_info->boot_manu_off);
+
     bootloader_load_manu_table(boot_info->boot_manu_off);
 
-    ret = f_mount(&fsmount, "0", 1);
+    tdc_uart_init();  // 재 초기화
+
+#if 0
+    tdc_uart_printf("\r\n\nafter all of power, clock setting \r\n");
+    tdc_uart_printf("SYSVAR_MANU_TABLE = \r\n");
+    for (int i = 0; i < MANU_TABLE_SIZE; i++)
+    {
+        tdc_uart_printf("0x%08X ", ((uint32_t *) SYSVAR_MANU_TABLE)[i]);
+        if (((i + 1) % 4) == 0)
+        {
+            tdc_uart_printf("\r\n");
+        }
+    }
+    tdc_uart_printf("\r\n");
+    tdc_uart_printf("==================================================\r\n");
+#endif
+
+    ret = f_mount(&fsmount, "0:", 1);  // default: "0"
     if (ret != FR_OK)
     {
         bootloader_error = BOOTLOADER_EXIT_STATUS_CODE(ret);
         return ret;
     }
 
+    ret = f_chdrive("0:");
+    if (ret != FR_OK)
+    {
+        tdc_uart_printf("Fail : f_chdrive() \r\n");
+        return ret;
+    }
+
+    ret = f_opendir(&dir, "0:");
+    if (ret != FR_OK)
+    {
+        tdc_uart_printf("Fail : f_opendir() \r\n");
+        return ret;
+    }
+
+    ret = f_closedir(&dir);
+    if (ret != FR_OK)
+    {
+        tdc_uart_printf("Fail : f_closedir() \r\n");
+        return ret;
+    }
+
+    if (!NVMSync())
+    {
+        tdc_uart_printf("Fail : NVMSync() \r\n");
+        return -1;
+    }
+
+#if 0
+    tdc_uart_printf("\r\n\nafter, moount \r\n");
+    tdc_uart_printf("SYSVAR_MANU_TABLE = \r\n");
+    for (int i = 0; i < MANU_TABLE_SIZE; i++)
+    {
+        tdc_uart_printf("0x%08X ", ((uint32_t *) SYSVAR_MANU_TABLE)[i]);
+        if (((i + 1) % 4) == 0)
+        {
+            tdc_uart_printf("\r\n");
+        }
+    }
+    tdc_uart_printf("\r\n");
+    tdc_uart_printf("==================================================\r\n");
+#endif
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // NOTE: OTA : kes0481@to-doc.com
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 #if 1
-    initialize_late();
+    tdc_uart_printf("\r\n");
+    tdc_uart_printf("system core clock : %u (hz) \r\n", SystemCoreClock);
 
-    uart_printf("\r\n");
-    uart_printf("Hello, Sound1 Bootloader! SystemCoreClock: %uHz \r\n", SystemCoreClock);
+    snd_boot_set_fp(&ohdl);
+    snd_boot_handle_file();
+    tdc_boot_print_boot_file();  // for debugging
+    tdc_boot_debug_mode();
+#endif
 
-    ci_boot_set_fp(&ohdl);
-    ci_boot_handle_boot_file();
-    ci_boot_print_boot_file();  // for debugging
-    ci_boot_debug_mode();
+#if 0
+    tdc_uart_printf("\r\n\nafter, handle boot file \r\n");
+    tdc_uart_printf("SYSVAR_MANU_TABLE = \r\n");
+    for (int i = 0; i < MANU_TABLE_SIZE; i++)
+    {
+        tdc_uart_printf("0x%08X ", ((uint32_t *) SYSVAR_MANU_TABLE)[i]);
+        if (((i + 1) % 4) == 0)
+        {
+            tdc_uart_printf("\r\n");
+        }
+    }
+    tdc_uart_printf("\r\n");
+    tdc_uart_printf("==================================================\r\n");
 #endif
     ////////////////////////////////////////////////////////////////////////////////////////////////////
 

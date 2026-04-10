@@ -278,7 +278,7 @@ void init_ISD(bool isdControlStateChagedFlag)
                 write_FPGA_disable_RF_tx();
                 write_change_TxPowerLevel(MaxVoltageControlValue);
 
-                ci_printv("[FPGA] TRY TO DISABLE XFR(RF) \r\n");
+                // ci_printv("[FPGA] TRY TO DISABLE XFR(RF) \r\n");
             }
 
             change_i2c_is_free();
@@ -296,7 +296,7 @@ void init_ISD(bool isdControlStateChagedFlag)
 
             if (!is_RF_tx_eanble())
             {
-                ci_printv("[FPGA] SUCCESS TO DISABLE XFR(RF) THEN, TRY TO ENABLE XFR(RF) \r\n");
+                // ci_printv("[FPGA] SUCCESS TO DISABLE XFR(RF) THEN, TRY TO ENABLE XFR(RF) \r\n");
 
                 if (write_FPGA_enable_RF_tx())
                 {
@@ -553,7 +553,7 @@ void init_ISD(bool isdControlStateChagedFlag)
                     change_isd_state(en__isdStatus_FPGA_Ok);  // RF PMIC MAX POWER 설정을 FPGA_OK 상태에서도 진행한다.
                     // change_isd_state(en__isdStatus_PowerIC_OK);
 
-                    ci_printv("[FPGA] NO POWER LEVEL BACKTEL RESPONSE FOR INITIAL CONNECTION \r\n");
+                    // ci_printv("[FPGA] NO POWER LEVEL BACKTEL RESPONSE FOR INITIAL CONNECTION \r\n");
                 }
             }
         }

@@ -16,109 +16,140 @@
 static uint32_t s_boot_info[NVM_BOOT_INFO_SIZE];
 static uint32_t s_manu_table[MANU_TABLE_SIZE];
 
-static void delay_ms(uint32_t ms)
+uint32_t bootloader_CRC_calc(uint32_t *data, uint32_t size)
 {
-    Sys_Delay((SystemCoreClock / 1000) * ms);
+    uint32_t i;
+
+    Sys_Set_CRC_Config(CRC, CRC_LITTLE_ENDIAN | 0 | CRC_BIT_ORDER_STANDARD | CRC_FINAL_XOR_STANDARD);
+
+    Sys_CRC_CCITTInitValue(CRC);
+
+    for (i = 0; i < (size >> 2); i++)
+    {
+        Sys_CRC_Add(CRC, data[i], 32);
+    }
+    for (i = 0; i < (size & 03U); i++)
+    {
+        Sys_CRC_Add(CRC, ((data[size >> 2]) >> ((i & 0x03UL) << 3)) & 0xFFUL, 8);
+    }
+    return Sys_CRC_GetFinalValue(CRC);
 }
 
+// IMPORTANT: 절대 이 함수의 내용을 함부로 수정하지 마십시오.
+// 타이밍 이슈가 커서 코드 수정 시 동작하지 않을 수 있습니다.
 int ci_power_normal(void)
 {
-    int ret;
-    int br;
+    FRESULT fr;
+    int     br;
 
-    ret = f_open(&g_snd_fatfs_ohdl, "/MANUF_TABLE", FA_OPEN_EXISTING | FA_READ);
+    memset(s_manu_table, 0, MANU_TABLE_SIZE_OCTETS);  // 버퍼 초기화
 
-    if (ret != FR_OK)
+    fr = f_open(&g_ci_filesystem_ohdl, CI_MANUF_TABLE_FILE, (FA_OPEN_EXISTING | FA_READ));
+    if (fr != FR_OK)
     {
-        ci_printe("[POWER] FAILED TO OPEN '%s' (RES=%d) \r\n", "/MANUF_TABLE", ret);
+        ci_printe("[POWER] FAIL : OPEN '%s' (FR : %d) \r\n", CI_MANUF_TABLE_FILE, fr);
         return df_False;
     }
 
-    f_lseek(&g_snd_fatfs_ohdl, 0);
+    f_lseek(&g_ci_filesystem_ohdl, 0);
 
-    ret = f_read(&g_snd_fatfs_ohdl, s_manu_table, MANU_TABLE_SIZE_OCTETS, &br);
-
-    if (ret != FR_OK)
+    // Manufacturing Information (Manufacturing area)의 크기는 256 바이트
+    fr = f_read(&g_ci_filesystem_ohdl, s_manu_table, MANU_TABLE_SIZE_OCTETS, &br);
+    if (fr != FR_OK)
     {
-        ci_printe("[POWER] FAIELD TO READ '%s' \r\n", "/MANUF_TABLE");
+        ci_printe("[POWER] FAIL : READ '%s' (FR : %d) \r\n", CI_MANUF_TABLE_FILE, fr);
         return df_False;
     }
 
-    f_close(&g_snd_fatfs_ohdl);
+    fr = f_close(&g_ci_filesystem_ohdl);
+    if (fr != FR_OK)
+    {
+        ci_printe("[POWER] FAIL : CLESE '%s' (FR : %d) \r\n", CI_MANUF_TABLE_FILE, fr);
+        return df_False;
+    }
 
     if (MANU_TABLE_SIZE_OCTETS != br)
     {
-        ci_printe("[POWER] INVALID READ SIZE (READ=%d, GOT=%d) \r\n", MANU_TABLE_SIZE_OCTETS, br);
+        ci_printe("[POWER] INVALID READ SIZE (%d OF %d) \r\n", br, MANU_TABLE_SIZE_OCTETS);
         return df_False;
     }
 
-    Sys_Trims_LoadManuTable(s_manu_table);
-
-    if (Sys_Trims_SetVREGAndLSAD() != SYS_ERRNO_NO_ERROR)
+    if (!NVMSync())
     {
-        ci_printe("[POWER] NO CALIBRATE FOR VREG AND LSAD \r\n");
+        ci_printe("[POWER] TIMEOUT : NVM SYNC \r\n");
         return df_False;
     }
 
-    if (Sys_Trims_SetVDDIF((VDDIF_ACTIVE_TARGET / 10)) != SYS_ERRNO_NO_ERROR)
-    {
-        ci_printe("[POWER] NO CALIBRATE FOR VDDIF \r\n");
-        return df_False;
-    }
+    SYS_WATCHDOG_REFRESH();
 
-    if (Sys_Trims_SetVDDA((VDDA_ACTIVE_TARGET / 10)) != SYS_ERRNO_NO_ERROR)
-    {
-        ci_printe("[POWER] NO CALIBRATE FOR VDDA \r\n");
-        return df_False;
-    }
+    // 여기부터 실제 전원과 클럭 설정하는 부분
+    tdc_Trims_LoadManuTable(s_manu_table);
 
-    if (Sys_Trims_SetVDDC((VDDC_ACTIVE_TARGET / 10)) != SYS_ERRNO_NO_ERROR)
-    {
-        ci_printe("[POWER] NO CALIBRATE FOR VDDC \r\n");
-        return df_False;
-    }
+        if (tdc_Trims_SetVREGAndLSAD() != SYS_ERRNO_NO_ERROR)
+        {
+            ci_printe("[POWER] NO CALIBRATE FOR VREG AND LSAD \r\n");
+            return df_False;
+        }
 
-    if (Sys_Trims_SetVDDC_CP(VDDCM_MIN_CP_DELTA_TARGET) != SYS_ERRNO_NO_ERROR)
-    {
-        ci_printe("[POWER] NO CALIBRATE FOR VDDC_CP \r\n");
-        return df_False;
-    }
+        if (tdc_Trims_SetVDDIF((VDDIF_ACTIVE_TARGET / 10)) != SYS_ERRNO_NO_ERROR)
+        {
+            ci_printe("[POWER] NO CALIBRATE FOR VDDIF \r\n");
+            return df_False;
+        }
 
-    if (Sys_Trims_SetVDDM((VDDM_ACTIVE_TARGET / 10)) != SYS_ERRNO_NO_ERROR)
-    {
-        ci_printe("[POWER] NO CALIBRATE FOR VDDM \r\n");
-        return df_False;
-    }
+        if (tdc_Trims_SetVDDA((VDDA_ACTIVE_TARGET / 10)) != SYS_ERRNO_NO_ERROR)
+        {
+            ci_printe("[POWER] NO CALIBRATE FOR VDDA \r\n");
+            return df_False;
+        }
 
-    if (Sys_Trims_SetVDDM_CP(VDDCM_MIN_CP_DELTA_TARGET) != SYS_ERRNO_NO_ERROR)
-    {
-        ci_printe("[POWER] NO CALIBRATE FOR VDDM_CP \r\n");
-        return df_False;
-    }
+        if (tdc_Trims_SetVDDC((VDDC_ACTIVE_TARGET / 10)) != SYS_ERRNO_NO_ERROR)
+        {
+            ci_printe("[POWER] NO CALIBRATE FOR VDDC \r\n");
+            return df_False;
+        }
 
-    if (Sys_Trims_SetVDDOD((VDDOD_ACTIVE_TARGET / 10)) != SYS_ERRNO_NO_ERROR)
-    {
-        ci_printe("[POWER] NO CALIBRATE FOR VDDOD \r\n");
-        return df_False;
-    }
+        if (tdc_Trims_SetVDDC_CP(VDDCM_MIN_CP_DELTA_TARGET) != SYS_ERRNO_NO_ERROR)
+        {
+            ci_printe("[POWER] NO CALIBRATE FOR VDDC_CP \r\n");
+            return df_False;
+        }
 
-    if (Sys_Trims_SetVMIC((VMIC_ACTIVE_TARGET / 10)) != SYS_ERRNO_NO_ERROR)
-    {
-        ci_printe("[POWER] NO CALIBRATE FOR VMIC \r\n");
-        return df_False;
-    }
+        if (tdc_Trims_SetVDDM((VDDM_ACTIVE_TARGET / 10)) != SYS_ERRNO_NO_ERROR)
+        {
+            ci_printe("[POWER] NO CALIBRATE FOR VDDM \r\n");
+            return df_False;
+        }
 
-    if (Sys_Trims_SetADCOffsets() != SYS_ERRNO_NO_ERROR)
-    {
-        ci_printe("[POWER] NO CALIBRATE FOR ADC OFFSETS \r\n");
-        return df_False;
-    }
+        if (tdc_Trims_SetVDDM_CP(VDDCM_MIN_CP_DELTA_TARGET) != SYS_ERRNO_NO_ERROR)
+        {
+            ci_printe("[POWER] NO CALIBRATE FOR VDDM_CP \r\n");
+            return df_False;
+        }
 
-    if (Sys_Trims_SetOperatingFrequency(SYS_FREQ_30M72) != SYS_ERRNO_NO_ERROR)
-    {
-        ci_printe("[POWER] NO CALIBRATE FOR SYS_FREQ_30M72 \r\n");
-        return df_False;
-    }
+        if (tdc_Trims_SetVDDOD((VDDOD_ACTIVE_TARGET / 10)) != SYS_ERRNO_NO_ERROR)
+        {
+            ci_printe("[POWER] NO CALIBRATE FOR VDDOD \r\n");
+            return df_False;
+        }
+
+        if (tdc_Trims_SetVMIC((VMIC_ACTIVE_TARGET / 10)) != SYS_ERRNO_NO_ERROR)
+        {
+            ci_printe("[POWER] NO CALIBRATE FOR VMIC \r\n");
+            return df_False;
+        }
+
+        if (tdc_Trims_SetADCOffsets() != SYS_ERRNO_NO_ERROR)
+        {
+            ci_printe("[POWER] NO CALIBRATE FOR ADC OFFSETS \r\n");
+            return df_False;
+        }
+
+        if (tdc_Trims_SetOperatingFrequency(SYS_FREQ_30M72) != SYS_ERRNO_NO_ERROR)
+        {
+            ci_printe("[POWER] NO CALIBRATE FOR SYS_FREQ_30M72 \r\n");
+            return df_False;
+        }
 
     // SLOWCLK은 반드시 1.28 MHz로 설정
     D_CLK->CFG_1 = (ADCCLK_PRESCALE_8 | ADCCLK_SRC_SYSCLK | SDMCLK_PRESCALE_2 | SLOWCLK_PRESCALE_24 | SLOWCLK_SRC_SYSCLK | UARTCLK_SRC_SYSCLK);

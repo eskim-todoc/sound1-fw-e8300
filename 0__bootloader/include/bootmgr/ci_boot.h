@@ -14,12 +14,12 @@
 
 #include <sdk_ci_boot.h>
 
-#define CI_BOOT_COUNT_DOWN_SEC 3
+#define CI_BOOT_COUNT_DOWN_SEC 1
 
-uint8_t ci_boot_get_slot_num(void);
-void    ci_boot_set_fp(FIL *fp);
-void    ci_boot_handle_boot_file(void);
-void    ci_boot_print_boot_file(void);
-void    ci_boot_debug_mode(void);
+uint8_t tdc_boot_get_slot_num(void);
+void    snd_boot_set_fp(FIL *fp);
+void    snd_boot_handle_file(void);
+void    tdc_boot_print_boot_file(void);
+void    tdc_boot_debug_mode(void);
 
-#endif // __ota_h__
+#endif  // __ota_h__

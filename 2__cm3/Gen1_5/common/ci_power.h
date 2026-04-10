@@ -11,19 +11,24 @@
 #include <string.h>
 
 #include <hw.h>
-
+#include <sk5_map_nvm.h>
 #include <calibrate_power.h>
 #include <nvmctrl.h>
 #include <nvmlib.h>
 
 #include <definitionsForAlgorithm.h>
 
+#include <ci_util.h>
 #include <ci_filesystem.h>
 #include <ci_printf.h>
+
+#include <tdc_trims.h>
 
 #define SM_POWER_NORMAL  1
 #define SM_POWER_STANDBY 2
 #define SM_POWER_PREHEAT 3
+
+#define CI_MANUF_TABLE_FILE "/MANUF_TABLE"
 
 typedef struct
 {
@@ -92,4 +97,4 @@ typedef struct _bootloader_boot_information
 int ci_power_normal(void);
 int ci_power_sleep(void);
 
-#endif // __OTE_1P5_power_manager_h__
+#endif  // __OTE_1P5_power_manager_h__

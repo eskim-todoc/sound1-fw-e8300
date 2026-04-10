@@ -30,8 +30,8 @@ void fetch_readDataForBleSetting(const int *Rx_dataPacket)
     // 현재는 0x34, Power info만 데이터가 존재하는 상태이지만,
     // 추후에 얼마나 명령어가 늘어날지 예측할 수 없다. (2026.03.12)
 
-    if ((EN__SND_BT_CMD_SYSTEM_INFO_POWER <= Rx_dataPacket[0])      // 0x34, Power info 부터
-        && (Rx_dataPacket[0] <= EN__SND_BT_CMD_SYSTEM_INFO_POWER))  // 0x34, Power info 까지
+    if ((EN__SND_BT_CMD_SYSTEM_INFO_POWER <= Rx_dataPacket[0])        // 0x34 POWER INFO 부터
+        && (Rx_dataPacket[0] <= EN__SND_BT_CMD_SYSTEM_INFO_LED_IND))  // 0x35 LED INDICATION 까지
     {
         for (int i = 0; i < todoc_PayloadSize; i++)
         {
@@ -153,8 +153,29 @@ void setting_nrf_ble_adv_info(void)
 
         writeDataToSpiTxBuff(Tx_dataBuff, tx_index);     // 송싱 데이터 SPI TX버퍼에 복사
         bleSettingPacket.command = en__bleSetting_IDLE;  // 명령 종료
+    }
+    // 끝, else if (bleSettingPacket.command == EN__SND_BT_CMD_SYSTEM_INFO_POWER)
+    // 시작, QCC와 새로 초가한 패킷 (0x35, LED Indication)
+    else if (bleSettingPacket.command == EN__SND_BT_CMD_SYSTEM_INFO_LED_IND)
+    {
+        int led_ind;  // 패킷 인덱스 1 → 헤더 제외 시, 데이터 인덱스 0
 
-    }  // 끝, else if (bleSettingPacket.command == EN__SND_BT_CMD_SYSTEM_INFO_POWER)
+        /* 수신 패킷 파싱 */
+        led_ind = bleSettingPacket.data[0];  // LED 표시 상태
+
+        /* 명령 처리 */
+
+        // snd_led_set_ind_state(led_ind);  // 수신한 LED 표시 상태로 업데이트 한다. (함수 아직 미구현)
+
+        ci_printv("[BT] CMD 0x%02X, LED IND: %d \r\n", EN__SND_BT_CMD_SYSTEM_INFO_LED_IND, led_ind);
+
+        /* 응답 패킷 */
+        Tx_dataBuff[tx_index++] = EN__SND_BT_CMD_SYSTEM_INFO_LED_IND;
+        Tx_dataBuff[tx_index++] = 1;                     // 수신 확인 응답
+        writeDataToSpiTxBuff(Tx_dataBuff, tx_index);     // 송신 데이터 SPI TX버퍼에 복사
+        bleSettingPacket.command = en__bleSetting_IDLE;  // 명령 종료
+    }
+    // 끝, else if (bleSettingPacket.command == EN__SND_BT_CMD_SYSTEM_INFO_LED_IND)
 }
 
 ST__BLE_COMMUNICATION_STATE bleCommunication(ST__ISD_STATUS isd_state)
@@ -222,29 +243,16 @@ ST__BLE_COMMUNICATION_STATE bleCommunication(ST__ISD_STATUS isd_state)
 
             if (print_allowed)
             {
+                // clang-format off
                 ci_printv("\r\n\n[SPI RX] (LSB) 0x%02X %02X %02X %02X %02X %02X %02X %02X %02X %02X "
                           "%02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X (MSB) \r\n",
-                          p_Rx_dataPacket[0],
-                          p_Rx_dataPacket[1],
-                          p_Rx_dataPacket[2],
-                          p_Rx_dataPacket[3],
-                          p_Rx_dataPacket[4],
-                          p_Rx_dataPacket[5],
-                          p_Rx_dataPacket[6],
-                          p_Rx_dataPacket[7],
-                          p_Rx_dataPacket[8],
-                          p_Rx_dataPacket[9],
-                          p_Rx_dataPacket[10],
-                          p_Rx_dataPacket[11],
-                          p_Rx_dataPacket[12],
-                          p_Rx_dataPacket[13],
-                          p_Rx_dataPacket[14],
-                          p_Rx_dataPacket[15],
-                          p_Rx_dataPacket[16],
-                          p_Rx_dataPacket[17],
-                          p_Rx_dataPacket[18],
-                          p_Rx_dataPacket[19],
+                          p_Rx_dataPacket[0], p_Rx_dataPacket[1], p_Rx_dataPacket[2], p_Rx_dataPacket[3],
+                          p_Rx_dataPacket[4], p_Rx_dataPacket[5], p_Rx_dataPacket[6], p_Rx_dataPacket[7],
+                          p_Rx_dataPacket[8], p_Rx_dataPacket[9], p_Rx_dataPacket[10], p_Rx_dataPacket[11],
+                          p_Rx_dataPacket[12], p_Rx_dataPacket[13], p_Rx_dataPacket[14], p_Rx_dataPacket[15],
+                          p_Rx_dataPacket[16], p_Rx_dataPacket[17], p_Rx_dataPacket[18], p_Rx_dataPacket[19],
                           p_Rx_dataPacket[20]);
+                // clang-format on
             }
 #endif
 
@@ -275,8 +283,8 @@ ST__BLE_COMMUNICATION_STATE bleCommunication(ST__ISD_STATUS isd_state)
                 fetch_mappingControlPacket(p_Rx_dataPacket);
             }
             // Sound1에서 추가된 QCC와 EZ 사이의 특수 명령어
-            else if ((EN__SND_BT_CMD_SYSTEM_INFO_BATTERY <= p_Rx_dataPacket[0])  //
-                     && (p_Rx_dataPacket[0] <= EN__SND_BT_CMD_SYSTEM_INFO_POWER))
+            else if ((EN__SND_BT_CMD_SYSTEM_INFO_BATTERY <= p_Rx_dataPacket[0])      // 0x33 배터리 정보 부터
+                     && (p_Rx_dataPacket[0] <= EN__SND_BT_CMD_SYSTEM_INFO_LED_IND))  // 0x35 LED 표시 까지
             {
                 // NOTE: 별도의 함수를 만들어야 하지만,
                 // 우선은 부팅 시 초기에 수행되는 en__bleSetting_ReadConnected_ISD_info 명령과 동일한

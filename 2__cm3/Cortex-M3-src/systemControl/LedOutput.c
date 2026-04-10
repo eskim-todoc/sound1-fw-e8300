@@ -9,6 +9,9 @@
 
 static bool testLED_Trigger;
 
+static led_mode_t           g_mode = LED_MODE_BACKGROUND;
+//static led_foregroud_type_t g_foreground_type;
+
 void enabletestLED_Trigger(void)
 {
     testLED_Trigger = true;

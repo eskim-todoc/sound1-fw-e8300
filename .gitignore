@@ -1,3 +1,7 @@
 RemoteSystemsTempFiles
 .metadata
 .clang-format
+calibratelib
+fatfs
+HAL
+nvmlib

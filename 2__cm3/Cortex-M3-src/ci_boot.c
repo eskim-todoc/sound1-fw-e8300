@@ -12,7 +12,7 @@
     }
 
 static FIL                   *_g_fp     = NULL;
-static ST__CI_LIB_BOOT_STATUS _g_status = {0};
+static snd_boot_status_t _g_status = {0};
 
 static void _open_status_file(void)
 {
@@ -24,7 +24,7 @@ static void _open_status_file(void)
         _INFINITE_LOOP();
     }
 
-    res = f_open(_g_fp, SDK_CI_BOOT_FILE_PATH, (FA_OPEN_EXISTING | FA_READ | FA_WRITE));
+    res = f_open(_g_fp, SND_BOOT_FILE_NAME, (FA_OPEN_EXISTING | FA_READ | FA_WRITE));
 
     if (res != FR_OK)
     {
@@ -71,9 +71,9 @@ static void _load_status(void)
         _INFINITE_LOOP();
     }
 
-    result = f_read(_g_fp, &_g_status, sizeof(ST__CI_LIB_BOOT_STATUS), &byte_read);
+    result = f_read(_g_fp, &_g_status, sizeof(snd_boot_status_t), &byte_read);
 
-    if ((result != FR_OK) || (byte_read != sizeof(ST__CI_LIB_BOOT_STATUS)))
+    if ((result != FR_OK) || (byte_read != sizeof(snd_boot_status_t)))
     {
         ci_printf("[%s] [%s] [%d] [BOOT] ERROR \r\n", "ci_boot.c", __func__, __LINE__);
         _INFINITE_LOOP();
@@ -99,9 +99,9 @@ static void _store_status(void)
         _INFINITE_LOOP();
     }
 
-    result = f_write(_g_fp, &_g_status, sizeof(ST__CI_LIB_BOOT_STATUS), &byte_to_write);
+    result = f_write(_g_fp, &_g_status, sizeof(snd_boot_status_t), &byte_to_write);
 
-    if ((result != FR_OK) || (byte_to_write != sizeof(ST__CI_LIB_BOOT_STATUS)))
+    if ((result != FR_OK) || (byte_to_write != sizeof(snd_boot_status_t)))
     {
         ci_printf("[%s] [%s] [%d] [BOOT] ERROR \r\n", "ci_boot.c", __func__, __LINE__);
         _INFINITE_LOOP();
@@ -118,14 +118,14 @@ static void _store_status(void)
 
 static void _set_unexpected_sub_state(void)
 {
-    _g_status.state     = SDK_CI_BOOT_STATE_BOOT;
-    _g_status.sub_state = SDK_CI_BOOT_SUB_STATE_UNKNOWN;
+    _g_status.state     = SND_BOOT_STATE_BOOT;
+    _g_status.sub_state = SND_BOOT_SUB_STATE_UNKNOWN;
 }
 
 static void _set_boot_alt_try_success(void)
 {
-    _g_status.sub_state       = SDK_CI_BOOT_SUB_STATE_BOOT_TRY_DONE;
-    _g_status.alt_boot_result = SDK_CI_BOOT_ALT_BOOT_RESULT_SUCCESS;
+    _g_status.sub_state       = SND_BOOT_SUB_STATE_BOOT_TRY_DONE;
+    _g_status.alt_boot_result = SND_BOOT_ALT_BOOT_RESULT_SUCCESS;
 }
 
 static void _handle_state_boot(void)
@@ -136,38 +136,38 @@ static void _handle_state_boot(void)
     sub_state  = _g_status.sub_state;
     alt_result = _g_status.alt_boot_result;
 
-    if (sub_state == SDK_CI_BOOT_SUB_STATE_IDLE)
+    if (sub_state == SND_BOOT_SUB_STATE_IDLE)
     {
         (void) 0;
     }
-    else if ((sub_state == SDK_CI_BOOT_SUB_STATE_BOOT_TRY_DONE)    //
-             && (alt_result == SDK_CI_BOOT_ALT_BOOT_RESULT_FAIL))  //
+    else if ((sub_state == SND_BOOT_SUB_STATE_BOOT_TRY_DONE)    //
+             && (alt_result == SND_BOOT_ALT_BOOT_RESULT_FAIL))  //
     {
-        _g_status.sub_state          = SDK_CI_BOOT_SUB_STATE_IDLE;
+        _g_status.sub_state          = SND_BOOT_SUB_STATE_IDLE;
         _g_status.alt_boot_try_count = 0;
-        _g_status.alt_boot_result    = SDK_CI_BOOT_ALT_BOOT_RESULT_NONE;
+        _g_status.alt_boot_result    = SND_BOOT_ALT_BOOT_RESULT_NONE;
 
         if (_g_status.alt_boot_slot_num == 1)
         {
-            _g_status.slot_1_state = SDK_CI_BOOT_SLOT_STATE_NONE;
+            _g_status.slot_1_state = SND_BOOT_SLOT_STATE_NONE;
         }
         else if (_g_status.alt_boot_slot_num == 2)
         {
-            _g_status.slot_2_state = SDK_CI_BOOT_SLOT_STATE_NONE;
+            _g_status.slot_2_state = SND_BOOT_SLOT_STATE_NONE;
         }
         else if (_g_status.alt_boot_slot_num == 3)
         {
-            _g_status.slot_3_state = SDK_CI_BOOT_SLOT_STATE_NONE;
+            _g_status.slot_3_state = SND_BOOT_SLOT_STATE_NONE;
         }
         else if (_g_status.alt_boot_slot_num == 4)
         {
-            _g_status.slot_4_state = SDK_CI_BOOT_SLOT_STATE_NONE;
+            _g_status.slot_4_state = SND_BOOT_SLOT_STATE_NONE;
         }
 
         _g_status.alt_boot_slot_num = 0;
         _store_status();
     }
-    else if (sub_state == SDK_CI_BOOT_SUB_STATE_UNKNOWN)
+    else if (sub_state == SND_BOOT_SUB_STATE_UNKNOWN)
     {
         (void) 0;
     }
@@ -187,35 +187,35 @@ static void _handle_state_alt_boot(void)
     sub_state  = _g_status.sub_state;
     alt_result = _g_status.alt_boot_result;
 
-    if (((sub_state == SDK_CI_BOOT_SUB_STATE_BOOT_TRY) && (alt_result == SDK_CI_BOOT_ALT_BOOT_RESULT_NONE))  //
-        || ((sub_state == SDK_CI_BOOT_SUB_STATE_BOOT_TRY_DONE) && (alt_result == SDK_CI_BOOT_ALT_BOOT_RESULT_SUCCESS)))
+    if (((sub_state == SND_BOOT_SUB_STATE_BOOT_TRY) && (alt_result == SND_BOOT_ALT_BOOT_RESULT_NONE))  //
+        || ((sub_state == SND_BOOT_SUB_STATE_BOOT_TRY_DONE) && (alt_result == SND_BOOT_ALT_BOOT_RESULT_SUCCESS)))
     {
         //_set_boot_alt_try_success();
         //_store_status();
         if (_g_status.alt_boot_slot_num == 1)
         {
-            _g_status.slot_1_state = SDK_CI_BOOT_SLOT_STATE_USABLE;
+            _g_status.slot_1_state = SND_BOOT_SLOT_STATE_USABLE;
         }
         else if (_g_status.alt_boot_slot_num == 2)
         {
-            _g_status.slot_2_state = SDK_CI_BOOT_SLOT_STATE_USABLE;
+            _g_status.slot_2_state = SND_BOOT_SLOT_STATE_USABLE;
         }
         else if (_g_status.alt_boot_slot_num == 3)
         {
-            _g_status.slot_3_state = SDK_CI_BOOT_SLOT_STATE_USABLE;
+            _g_status.slot_3_state = SND_BOOT_SLOT_STATE_USABLE;
         }
         else if (_g_status.alt_boot_slot_num == 4)
         {
-            _g_status.slot_4_state = SDK_CI_BOOT_SLOT_STATE_USABLE;
+            _g_status.slot_4_state = SND_BOOT_SLOT_STATE_USABLE;
         }
 
-        _g_status.state              = SDK_CI_BOOT_STATE_BOOT;
-        _g_status.sub_state          = SDK_CI_BOOT_SUB_STATE_IDLE;
+        _g_status.state              = SND_BOOT_STATE_BOOT;
+        _g_status.sub_state          = SND_BOOT_SUB_STATE_IDLE;
         _g_status.last_boot_slot_num = _g_status.boot_slot_num;
         _g_status.boot_slot_num      = _g_status.alt_boot_slot_num;
         _g_status.alt_boot_slot_num  = 0;
         _g_status.alt_boot_try_count = 0;
-        _g_status.alt_boot_result    = SDK_CI_BOOT_ALT_BOOT_RESULT_NONE;
+        _g_status.alt_boot_result    = SND_BOOT_ALT_BOOT_RESULT_NONE;
 
         _store_status();
     }
@@ -237,7 +237,7 @@ void ci_boot_init_fp(FIL *fp)
     _g_fp = fp;
 }
 
-EN__BOOT_RET ci_boot_get_status(ST__CI_LIB_BOOT_STATUS *p_status)
+EN__BOOT_RET ci_boot_get_status(snd_boot_status_t *p_status)
 {
     if ((_g_fp == NULL) || (p_status == NULL))
     {
@@ -258,7 +258,7 @@ EN__BOOT_RET ci_boot_get_status(ST__CI_LIB_BOOT_STATUS *p_status)
     return BOOT_RET_TRUE;
 }
 
-EN__BOOT_RET ci_boot_update_status(ST__CI_LIB_BOOT_STATUS *p_status)
+EN__BOOT_RET ci_boot_update_status(snd_boot_status_t *p_status)
 {
     if ((_g_fp == NULL) || (p_status == NULL))
     {
@@ -299,7 +299,7 @@ void ci_boot_handle_fsm(void)
         // 결과적으로 마지막에 사용되던 정상 부팅 이미지가 다시 사용되는 상태로 복원한다.
         // DFU 성공, 실패 여부는 리모트 앱에서 현재 동작 중인 부팅 슬롯 번호를 확인하여,
         // 부팅 시도를 했던 번호와 일치하는지 여부를 통해 DFU 성공 여부를 판단한다.
-        case SDK_CI_BOOT_STATE_BOOT:
+        case SND_BOOT_STATE_BOOT:
         {
             _handle_state_boot();
         }
@@ -312,7 +312,7 @@ void ci_boot_handle_fsm(void)
         // 위 두 결과 모두 DFU가 성공한 상태를 의미하므로,
         // 상태를 BOOT로 업데이트, 라스트 부트 슬롯은 부트 슬롯 번호로, 부트 슬롯은 알트 부트 슬롯 번호로 업데이트한다.
         // 해당하는 알트 부트 슬롯에 대해서 USABLE로 상태를 표시하고, 부트 결과는 NONE으로 변경한다.
-        case SDK_CI_BOOT_STATE_ALT_BOOT:
+        case SND_BOOT_STATE_ALT_BOOT:
         {
             _handle_state_alt_boot();
         }

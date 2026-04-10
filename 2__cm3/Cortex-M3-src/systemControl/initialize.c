@@ -411,34 +411,26 @@ void Initialize(void)
     // 다시 수행해야 하는 이슈가 있다.
     // 그래서 캘리브레이션을 한 번만 수행하고 이후로는 이 MANUF_TABLE 정보를 활용하도록 구성하였다.
 
-    ci_printv("[INFO] BUILD DATE : %s \r\n", __DATE__);
-    ci_printv("[INFO] BUILD TIME : %s \r\n", __TIME__);
+    ci_util_assert(ci_filesystem_nvm_init());  // NVM 인터페이스 초기화
+    ci_util_assert(snd_fatfs_init_mem_map());  // FFT 및 맵 관련 공유 메모리 포인터 초기화
+    ci_util_assert(snd_fatfs_remount(1));      // 사용자 드라이브(1)로 마운트
+    ci_util_assert(ci_power_normal());         // 전원 및 클럭 설정
 
-    ci_util_assert(ci_filesystem_nvm_init());
-    // ci_util_assert(ci_filesystem_mount());
-    ci_util_assert(snd_fatfs_init_mem_map());  // 파일 시스템 메모리에서 사용되는 맵 데이터와 FFT 패스 빈 메모리 포인터 관련 초기화
-    ci_util_assert(snd_fatfs_mount(SND_FATFS_LDRV_NUM_USER_DATA));
-    ci_util_assert(ci_power_normal());
-
-    ci_printi("[INFO] POWER NORMAL, CLOCK : %u HZ \r\n", SystemCoreClock);
-
-    // ci_util_assert(ci_filesystem_remount());
-    ci_util_assert(snd_fatfs_remount(SND_FATFS_LDRV_NUM_USER_DATA));
-    ci_printv("[INFO] REMOUNT FILESYSTEM DRIVE ('%s') \r\n", CI_FILESYSTEM_LOGICAL_DRIVE_NUM);
+    ci_printi("[INIT] POWER NORMAL, CLOCK : %u HZ \r\n", SystemCoreClock);
 
     ci_dio_configure_normal();
-    // ci_uart_init();
 
-    ci_printv("[INFO] INIT : DIO, UART, ETC.. \r\n");
+    ci_printv("[INIT] INIT : DIO, UART, ETC.. \r\n");
+#if 0
+    /* 드라이브 0으로 변경 후 부트 상태 처리 후
+     * 드라이브 1로 변경하여 맵 관련 파일을 사용할 수 있게 설정 */
 
-    SYS_WATCHDOG_REFRESH();
-
-#if 1  // NOTE: 부트 상태 정보 파일은 드라이브0에 있으므로, 관련 설정이 끝나면 반드시 드라이브1로 변경시키도록 하자.
-    ci_util_assert(snd_fatfs_remount(SND_FATFS_LDRV_NUM_BOOT));
-    ci_boot_init_fp(snd_fatfs_get_fp());
+    ci_util_assert(snd_fatfs_remount(0));  // 부트 드라이브(0)으로 마운트
+    ci_boot_init_fp(ci_fatfs_get_fp());
     ci_boot_handle_fsm();
-    ci_util_assert(snd_fatfs_remount(SND_FATFS_LDRV_NUM_USER_DATA));
-#endif
+    ci_util_assert(snd_fatfs_remount(1));  // 사용자 드라이브(1)로 마운트
+
+    ci_printi("[INFO] INIT : BOOT STATUS \r\n");
 
     // Check, make and init ISD map files (info, user setting, map stamp, map_data.....)
     ci_map_init_map_data_all(false);
@@ -469,7 +461,7 @@ void Initialize(void)
     cfx_cm3_sharedMemoryAll.CFX_EEPROM_data_is_Loaded = 1;
 
     ci_printv("[INFO] COPY ISD INFO FOR ALL MAPS FROM FS_MEM TO SH_MEM \r\n");
-
+#endif
     // LED 출력 끄기
     turnOffLED();
 
@@ -504,6 +496,78 @@ void Initialize(void)
 
     // I2C 초기화
     init_I2c();
+
+#if 0  // 오직 TX PMIC 테스트를 위한 코드
+    {
+        int tx_power;
+
+        // 인터럽트 활성화
+        enable_interrupt();
+
+        // TX PMIC 초기화
+        if (!Reset_REN_ISL9122())
+        {
+            turnON_RedLED();
+            while (1)
+            {
+                SYS_WATCHDOG_REFRESH();
+            }
+        }
+
+        // 리셋 디폴트로 세팅
+        write_change_TxPowerLevel(ResetVoltageSetValue);
+
+        while (1)
+        {
+            // 읽어본다.
+            if (!read_txPowerLevel(&tx_power))
+            {
+                while (1)
+                {
+                    SYS_WATCHDOG_REFRESH();
+                }
+            }
+
+            // 최대 값 설정 완료 되면 더 할거 없이 무한루프
+            if (tx_power == MaxVoltageControlValue)
+            {
+                ci_printw("[TEST] PMIC TX POWER SET DONE \r\n");
+                turnON_GreenLED();
+
+                while (1)
+                {
+                    SYS_WATCHDOG_REFRESH();
+                }
+            }
+
+            // 지금 레벨에서 스탭을 더한다.
+            tx_power = tx_power + VoltageControlStep;
+
+            // 새 레벨이 최대 값을 안 넘으면 이대로 설정
+            if (tx_power <= MaxVoltageControlValue)
+            {
+                if (!write_change_TxPowerLevel(tx_power))
+                {
+                    while (1)
+                    {
+                        SYS_WATCHDOG_REFRESH();
+                    }
+                }
+            }
+            // 새 레벨이 최대 값을 넘으면 최대 값으로 설정
+            else
+            {
+                if (!write_change_TxPowerLevel(MaxVoltageControlValue))
+                {
+                    while (1)
+                    {
+                        SYS_WATCHDOG_REFRESH();
+                    }
+                }
+            }
+        }
+    }
+#endif
 
     // SPI 초기화
     init_cm3_SPI();

@@ -46,7 +46,7 @@ int ci_event_log_init(void)
     int             byte_written;
     int             ret;
 
-    fp          = &g_snd_fatfs_ohdl;
+    fp          = &g_ci_filesystem_ohdl;
     p_event_log = (CI_EVENT_LOG_T *) CI_FILESYSTEM_BASE_ADDR_FOR_EVENT_LOG;
     p_file_name = (uint8_t *) CI_EVENT_LOG_IDENT;
     is_validate = true;
@@ -61,8 +61,8 @@ int ci_event_log_init(void)
 
     SYS_WATCHDOG_REFRESH();
 
-    f_lseek(&g_snd_fatfs_ohdl, 4096);  // FATFS에게 4KB로 고정된 파일을 생성할 수 있게 의도적으로 파일 포지션을 4096으로 설정
-    f_lseek(&g_snd_fatfs_ohdl, 0);
+    f_lseek(&g_ci_filesystem_ohdl, 4096);  // FATFS에게 4KB로 고정된 파일을 생성할 수 있게 의도적으로 파일 포지션을 4096으로 설정
+    f_lseek(&g_ci_filesystem_ohdl, 0);
     ci_printv("[LOG] PERFORMED : FILE (%s) LSEEK --> 4096 --> 0 \r\n", p_file_name);
 
     byte_read = 0;
@@ -138,7 +138,7 @@ int ci_event_log_init(void)
     }
 
     // 안전을 위한 flush
-    f_sync(&g_snd_fatfs_ohdl);
+    f_sync(&g_ci_filesystem_ohdl);
 
 #if 1
     FILINFO fno;
@@ -148,7 +148,7 @@ int ci_event_log_init(void)
         ci_printv("[FS] NAME : %s, TOTAL SIZE : %u BYTES, START CLUSTER : %u \r\n",  //
                   fno.fname,
                   fno.fsize,
-                  g_snd_fatfs_ohdl.obj.sclust);
+                  g_ci_filesystem_ohdl.obj.sclust);
     }
 #endif
 
@@ -173,7 +173,7 @@ int ci_event_log_write(uint32_t event_type)
     CI_EVENT_LOG_BT_ADDR_T bt_addr;
     CI_EVENT_LOG_ENTITY_T  entity;
 
-    fp          = &g_snd_fatfs_ohdl;
+    fp          = &g_ci_filesystem_ohdl;
     p_event_log = (CI_EVENT_LOG_T *) CI_FILESYSTEM_BASE_ADDR_FOR_EVENT_LOG;
     p_file_name = (uint8_t *) CI_EVENT_LOG_IDENT;
     is_validate = true;
@@ -317,7 +317,7 @@ int ci_event_log_read(void)
     uint8_t        *p_entity_src;
     uint8_t        *p_entity_dst;
 
-    fp          = &g_snd_fatfs_ohdl;
+    fp          = &g_ci_filesystem_ohdl;
     p_event_log = (CI_EVENT_LOG_T *) CI_FILESYSTEM_BASE_ADDR_FOR_EVENT_LOG;
     p_file_name = (uint8_t *) CI_EVENT_LOG_IDENT;
     is_validate = true;

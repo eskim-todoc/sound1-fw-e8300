@@ -27,15 +27,7 @@
 #include "indicatorByStimul.h"   //ok
 #include "stimulationParaCal.h"  //ok
 
-#if defined(Board_is_OTE_VER_1_2)
-#include "driver_REN_ISL91128.h"
-#elif defined(Board_is_TD_DEV_ver_1_4) || defined(Board_is_OTE_1_5gen_Test_board) || defined(Board_is_OTE_VER_1_5)
 #include "driver_REN_ISL9122.h"  //ok
-#elif defined(Board_is_OTE_VER_1_3)
-#include "driver_REN_ISL98608.h"
-#else
-#error Link PMIC is NOT selected.
-#endif
 
 #include <driver_IQS323.h>
 
@@ -61,10 +53,31 @@ typedef struct
 {
     uint8_t version[3];
     uint8_t buildData[11];
-
 } FirmWare_Info;
 
+// clang-format off
+__attribute__((section(".cm3_manu_reserved"),used,aligned(4)))
+volatile unsigned char g_cm3_manu_reserved[0xC0] =
+{
+    1,   2,   3,   4,   5,   6,   7,   8,   9,   10,  11,  12,  13,  14,  15,  16,  /* 0x00 ~ 0x0F */
+    17,  18,  19,  20,  21,  22,  23,  24,  25,  26,  27,  28,  29,  30,  31,  32,  /* 0x10 ~ 0x1F */
+    33,  34,  35,  36,  37,  38,  39,  40,  41,  42,  43,  44,  45,  46,  47,  48,  /* 0x20 ~ 0x2F */
+    49,  50,  51,  52,  53,  54,  55,  56,  57,  58,  59,  60,  61,  62,  63,  64,  /* 0x30 ~ 0x3F */
+    65,  66,  67,  68,  69,  70,  71,  72,  73,  74,  75,  76,  77,  78,  79,  80,  /* 0x40 ~ 0x4F */
+    81,  82,  83,  84,  85,  86,  87,  88,  89,  90,  91,  92,  93,  94,  95,  96,  /* 0x50 ~ 0x5F */
+    97,  98,  99,  100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, /* 0x60 ~ 0x6F */
+    113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, /* 0x70 ~ 0x7F */
+    129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143, 144, /* 0x80 ~ 0x8F */
+    145, 146, 147, 148, 149, 150, 151, 152, 153, 154, 155, 156, 157, 158, 159, 160, /* 0x90 ~ 0x9F */
+    161, 162, 163, 164, 165, 166, 167, 168, 169, 170, 171, 172, 173, 174, 175, 176, /* 0xA0 ~ 0xAF */
+    177, 178, 179, 180, 181, 182, 183, 184, 185, 186, 187, 188, 189, 190, 191, 192  /* 0xB0 ~ 0xBF */
+};
+// clang-format on
+
 static const FirmWare_Info firmwareInfo = {2, 0, 1, __DATE__};
+
+static const int devFwVer_type = DEV_FW_VER_BETA;  // 내부 개발 버전 (Beta)
+static const int devFwVer_num  = 1;                // 1
 
 char *readFirmwareInfo()
 {
@@ -182,10 +195,20 @@ extern uint8_t __data_end__;    // VMA (DRAM .data 끝)
 
 void load_data_section(void)
 {
+#if 0
     memcpy(&__data_start__,                            // VMA data 영역의 시작부터
            &__data_init__,                             // LMA data 영역의 값으로
            (size_t) (&__data_end__ - &__data_start__)  // VMA data 영역의 크기 만큼 초기화
     );
+#else
+    uint32_t *src = &__data_init__;
+    uint32_t *dst = &__data_start__;
+
+    while (dst < &__data_end__)
+    {
+        *dst++ = *src++;
+    }
+#endif
 }
 
 void load_bss_section(void)
@@ -203,89 +226,35 @@ void load_bss_section(void)
 #endif
 }
 
+// clang-format off
 void aes128_test(void)
 {
     static uint8_t key128[16] = {0x2B, 0x7E, 0x15, 0x16, 0x28, 0xAE, 0xD2, 0xA6, 0xAB, 0xF7, 0x15, 0x88, 0x09, 0xCF, 0x4F, 0x3C};
     struct AES_ctx ctx;
     uint8_t        text[16] = {
-        0xD,  // 1
-        0xE,  // 2
-        0xA,  // 3
-        0xD,  // 4
-        0xB,  // 5
-        0xE,  // 6
-        0xA,  // 7
-        0xF,  // 8
-        0xA,  // 9
-        0xB,  // 10
-        0xC,  // 11
-        0xD,  // 12
-        0x1,  // 13
-        0x2,  // 14
-        0x3,  // 15
-        0x4,  // 16
+        0xD, /* 1 */ 0xE, /* 2 */ 0xA, /* 3 */ 0xD, /* 4 */ 0xB, /* 5 */ 0xE, /* 6 */ 0xA, /* 7 */
+        0xF, /* 8 */ 0xA, /* 9 */ 0xB, /* 10 */ 0xC, /* 11 */ 0xD, /* 12 */ 0x1, /* 13 */ 0x2, /* 14 */ 0x3, /* 15 */ 0x4, /* 16 */
     };
 
     AES_init_ctx(&ctx, key128);
 
-    ci_printf("[AES] BEFORE ENCRYPT : %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X \r\n",  //
-              text[0],
-              text[1],
-              text[2],
-              text[3],
-              text[4],
-              text[5],
-              text[6],
-              text[7],
-              text[8],
-              text[9],
-              text[10],
-              text[11],
-              text[12],
-              text[13],
-              text[14],
-              text[15]);
+    ci_printf("[AES] BEFORE ENCRYPT : %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X \r\n",
+            text[0], text[1], text[2], text[3], text[4], text[5], text[6], text[7],
+            text[8], text[9], text[10], text[11], text[12], text[13], text[14], text[15]);
 
     AES_ECB_encrypt(&ctx, text);
 
-    ci_printf("[AES] AFTER  ENCRYPT : %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X \r\n",  //
-              text[0],
-              text[1],
-              text[2],
-              text[3],
-              text[4],
-              text[5],
-              text[6],
-              text[7],
-              text[8],
-              text[9],
-              text[10],
-              text[11],
-              text[12],
-              text[13],
-              text[14],
-              text[15]);
+    ci_printf("[AES] AFTER  ENCRYPT : %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X \r\n",
+            text[0], text[1], text[2], text[3], text[4], text[5], text[6], text[7],
+            text[8], text[9], text[10], text[11], text[12], text[13], text[14], text[15]);
 
     AES_ECB_decrypt(&ctx, text);
 
-    ci_printf("[AES] AFTER  DECRYPT : %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X \r\n",  //
-              text[0],
-              text[1],
-              text[2],
-              text[3],
-              text[4],
-              text[5],
-              text[6],
-              text[7],
-              text[8],
-              text[9],
-              text[10],
-              text[11],
-              text[12],
-              text[13],
-              text[14],
-              text[15]);
+    ci_printf("[AES] AFTER  DECRYPT : %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X \r\n",
+            text[0], text[1], text[2], text[3], text[4], text[5], text[6], text[7],
+            text[8], text[9], text[10], text[11], text[12], text[13], text[14], text[15]);
 }
+// clang-format on
 
 int main(void)
 {
@@ -309,7 +278,8 @@ int main(void)
     Sys_NVIC_ClearAllPendingInt();
     __set_PRIMASK(PRIMASK_ENABLE_INTERRUPTS);
 
-    SEGGER_RTT_Init();  // 버퍼링 이슈가 있을까 싶어서 초기화를 수행한다.
+    // EEPROM의 WP을 방지
+    Sys_DIO_Config(DIO7, (DIO_1X_DRIVE | DIO_LPF_ENABLE | DIO_WEAK_PULL_UP | DIO_MODE_GPIO_IN));
 
     // AES128 암호화, 복호화 테스트 함수
     // aes128_test();
@@ -317,8 +287,16 @@ int main(void)
     // AES128 암호화/복호화 키 정보 초기화 (NOTE: 현재 예제 키를 사용하므로, 올바른 키를 생성하여 적용해야함)
     ci_aes_init();
 
-    ci_printi("[INFO] MODEL : SOUND1 \r\n");
-    ci_printi("[INFO] FW    : %u.%u%u (%s) \r\n", firmwareInfo.version[0], firmwareInfo.version[1], firmwareInfo.version[2], firmwareInfo.buildData);
+    // JLink RTT를 강제 초기화 시킴 (버퍼 인덱스 이슈 발생 방지 등)
+    SEGGER_RTT_Init();
+
+    ci_printi("[INFO] MODEL : SOUND1 (%u.%u%u / %s) \r\n", /* lf */
+              firmwareInfo.version[0],
+              firmwareInfo.version[1],
+              firmwareInfo.version[2],
+              firmwareInfo.buildData);
+
+    ci_printi("[INFO] DEV   : %d.%d \r\n", devFwVer_type, devFwVer_num);
 
     while (1)
     {
@@ -390,25 +368,16 @@ int func_normal(void)
     ST__BLE_COMMUNICATION_STATE BLE_communicationState = {en__isdStatus_PowerIC_Reset, false, false, false};
     ST__ERROR_CODE              mcuErrorCode;
 
+    SYS_WATCHDOG_REFRESH();  // 시작 시 처음에 워치독 리프레시
+
     bool powerButtonPushed = false;
     bool conneded_ISD      = false;
     bool mappingConnection = false;
-
-    // 부트로더에서 각 코어의 이미지 로딩 시간이 오래 걸리므로, CM3 이미지 시작 직후 워치독 리프레시 수행
-    SYS_WATCHDOG_REFRESH();
 
     main_counter                                      = 0;
     cfx_cm3_sharedMemoryAll.CFX_EEPROM_data_is_Loaded = 0;
 
     systemState.systemOff = false;
-
-#if 0  // 디버그 메시지 확인을 위해 약 2초의 딜레이를 주었다. (2026.03.06)
-    for (int delay_i = 0; delay_i < 2000; delay_i++)
-    {
-        Sys_Delay(SystemCoreClock / 1000);  // 1ms
-        SYS_WATCHDOG_REFRESH();
-    }
-#endif
 
     // CFX가 실행되고 자체적으로 플래그를 설정할 때까지 대기
     while (1)
@@ -453,7 +422,9 @@ int func_normal(void)
             batteryLevel      = snd_batt_get_level();  // 직접 측정하지 않고, QCC에서 배터리 정보 받으면 업데이트 됨
             powerButtonPushed = iqs323_proc();         // NOTE: 터치 센서 처리하는 코드가, 드라이버 말고 main.c에 있음
 
-#if 0   // QCC 대체용 디버깅 코드 시작, 약 500밀리초 이후 시스템 동작
+            // powerButtonPushed = false;                 // 왜 인지 특정 보드에서는 RE-ATI 에러가 발생하는 중
+
+#if 1  // QCC 대체용 디버깅 코드 시작, 약 500밀리초 이후 시스템 동작
             {
                 static int fake_0x34      = 0;
                 static int fake_0x34_done = 0;
@@ -490,6 +461,9 @@ int func_normal(void)
                                         isd_state.conneded_ISD,                   // 최초 부팅 시 초기 값 : false
                                         BLE_communicationState.mappingConnection  // 최초 부팅 시 초기 값 : false
             );
+
+            // 특수 LED 사용 유무 판별
+            //tdc_LED_handle_special_case(systemState.Led_Pattern);
 
             update_mapNum();  // 맵데이터 업데이트
 
@@ -541,105 +515,8 @@ int func_normal(void)
 
             NRF_On_OFF(isd_state, systemState.BLE_Off, BLE_communicationState.mappingConnection, BLE_communicationState.BLE_Off_Command);
 
-#if 0
-            /**
-             * CM3의 setFlag_AudioParametersCalculationDone_Cm3ToCfx() 함수에서 트리거 된다.
-             * CFX가 각종 계수를 계산 후, 그 값을 디버깅하는 코드이다. */
-            if (FS_MEM_UART->flag[0] == 2)
-            {
-                ci_printv("\r\n[DEBUG] LOG MAPPING COEFFS \r\n");
-                ci_printv("                       ");
-                ci_printv("X MIN        ");
-                ci_printv("X MIN GAINED ");
-                ci_printv("X MAX        ");
-                ci_printv("COEFF A      ");
-                ci_printv("COEFF B      ");
-                ci_printv("C LEVEL      ");
-                ci_printv("T LEVEL \r\n");
-
-                for (int i = 0; i < 32; i++)
-                {
-                    ci_printv("        CH%2u           %-12d %-12d %-12d %-12d %-12d %-12d %-12d \r\n", i, FS_MEM_UART->buffer[0 + i], FS_MEM_UART->buffer[32 + i], FS_MEM_UART->buffer[64 + i], FS_MEM_UART->buffer[96 + i], FS_MEM_UART->buffer[128 + i], FS_MEM_UART->buffer[160 + i], FS_MEM_UART->buffer[192 + i]);
-                }
-
-#if 0
-                /**
-                 * 로그 계산 후 Y 결과가 T에서 C 사이로 출력되는지 확인하기 위한 디버그 코드
-                 * calculate_logarithmMapping_coeff_with_audioVolume() 함수에서 수행한다. */
-                ci_printf("\r\n");
-
-                for (int i = 400; i < 500;)
-                {
-                    for (int j = 0; j < 10; j++, i++)
-                    {
-                        n = snprintf(out, sizeof(out), "%12d ", FS_MEM_UART->buffer[i]);
-                        ci_printf(out);
-                    }
-                    ci_printf("\r\n");
-                }
-
-                ci_printf("\r\n");
-#endif
-
-                FS_MEM_UART->flag[0] = 0;
-            }  // xMin에 게인 적용된 로그매핑 A, B 계수 디버깅 구문 끝.
-#endif
             do
             {
-#if 0
-                /**
-                 * 어느 영역의 AGC 계수를 사용할 것인지 디버깅하는 코드이다. (audio_agc() 함수)
-                 * 오디오 믹스와 AGC 결과를 출력해서 확인하기 위한 코드이다. (위 처리 후 main() 함수 내) */
-                if (cfx_cm3_sharedMemoryAll.CM3_tempValue1 == 1)
-                {
-                    ci_printf("\r\n");
-                    ci_printf("Region : %s, max audio input = %d, audio volume = %d \r\n",
-                              cfx_cm3_sharedMemoryAll.CM3_tempValue2 == 1   ? "Noise"
-                              : cfx_cm3_sharedMemoryAll.CM3_tempValue2 == 2 ? "Attenuation"
-                              : cfx_cm3_sharedMemoryAll.CM3_tempValue2 == 3 ? "Amplify"
-                                                                            : "Unknown",
-                              cfx_cm3_sharedMemoryAll.maxAudioInput,
-							  cfx_cm3_sharedMemoryAll.userSettingValue.audioVolume);
-
-                    ci_printf("Mix : 0x %08X %08X %08X %08X %08X %08X %08X %08X %08X %08X %08X %08X %08X %08X %08X %08X \r\n",
-                              cfx_cm3_sharedMemoryAll.currentOutputStimulLevel_255[0],
-                              cfx_cm3_sharedMemoryAll.currentOutputStimulLevel_255[1],
-                              cfx_cm3_sharedMemoryAll.currentOutputStimulLevel_255[2],
-                              cfx_cm3_sharedMemoryAll.currentOutputStimulLevel_255[3],
-                              cfx_cm3_sharedMemoryAll.currentOutputStimulLevel_255[4],
-                              cfx_cm3_sharedMemoryAll.currentOutputStimulLevel_255[5],
-                              cfx_cm3_sharedMemoryAll.currentOutputStimulLevel_255[6],
-                              cfx_cm3_sharedMemoryAll.currentOutputStimulLevel_255[7],
-                              cfx_cm3_sharedMemoryAll.currentOutputStimulLevel_255[8],
-                              cfx_cm3_sharedMemoryAll.currentOutputStimulLevel_255[9],
-                              cfx_cm3_sharedMemoryAll.currentOutputStimulLevel_255[10],
-                              cfx_cm3_sharedMemoryAll.currentOutputStimulLevel_255[11],
-                              cfx_cm3_sharedMemoryAll.currentOutputStimulLevel_255[12],
-                              cfx_cm3_sharedMemoryAll.currentOutputStimulLevel_255[13],
-                              cfx_cm3_sharedMemoryAll.currentOutputStimulLevel_255[14],
-                              cfx_cm3_sharedMemoryAll.currentOutputStimulLevel_255[15]);
-
-                    ci_printf("AGC : 0x %08X %08X %08X %08X %08X %08X %08X %08X %08X %08X %08X %08X %08X %08X %08X %08X \r\n",
-                              cfx_cm3_sharedMemoryAll.currentOutputStimulLevel_255[16],
-                              cfx_cm3_sharedMemoryAll.currentOutputStimulLevel_255[17],
-                              cfx_cm3_sharedMemoryAll.currentOutputStimulLevel_255[18],
-                              cfx_cm3_sharedMemoryAll.currentOutputStimulLevel_255[19],
-                              cfx_cm3_sharedMemoryAll.currentOutputStimulLevel_255[20],
-                              cfx_cm3_sharedMemoryAll.currentOutputStimulLevel_255[21],
-                              cfx_cm3_sharedMemoryAll.currentOutputStimulLevel_255[22],
-                              cfx_cm3_sharedMemoryAll.currentOutputStimulLevel_255[23],
-                              cfx_cm3_sharedMemoryAll.currentOutputStimulLevel_255[24],
-                              cfx_cm3_sharedMemoryAll.currentOutputStimulLevel_255[25],
-                              cfx_cm3_sharedMemoryAll.currentOutputStimulLevel_255[26],
-                              cfx_cm3_sharedMemoryAll.currentOutputStimulLevel_255[27],
-                              cfx_cm3_sharedMemoryAll.currentOutputStimulLevel_255[28],
-                              cfx_cm3_sharedMemoryAll.currentOutputStimulLevel_255[29],
-                              cfx_cm3_sharedMemoryAll.currentOutputStimulLevel_255[30],
-                              cfx_cm3_sharedMemoryAll.currentOutputStimulLevel_255[31]);
-
-                    cfx_cm3_sharedMemoryAll.CM3_tempValue1 = 0;
-                }
-#endif
                 char byte;
 
                 if (0 < SEGGER_RTT_Read(0, &byte, 1))
@@ -806,8 +683,10 @@ int func_sleep(void)
 
     ResetNRF();                                     /* Reset nRF */
     NRF_Off_Command();                              /* Disable nRF */
+    snd_qcc_set_mode(SND_QCC_MODE_SHUTDOWN);        // QCC 셧다운
     Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_FPGA_SLEEP); /* Disable FPGA */
     OnOff_3V_PMIC_CM3_to_CFX(false);                /* Disable 3.3V, 1.2V PMIC */
+    turnOffLED();                                   // LED 끄기
 
 #if 1
     while (1) /* Wait for the CFX to enter ULP mode */
@@ -820,17 +699,104 @@ int func_sleep(void)
     }
 #endif
 
-    Uninitialize(); /* Disable peripherals and DIOs */
+    // Uninitialize(); /* Disable peripherals and DIOs */
 
-    ci_power_sleep();
+    // ci_power_sleep();
 
     // ci_timer_init(OTE_1_5_GEN_TIMER_TICK_500MS_PM_LP); /* Make 500ms timer for watchdog refresh */
-    ci_timer_init(19999); /* Make 500ms timer for watchdog refresh */
+    // ci_timer_init(19999); /* Make 500ms timer for watchdog refresh */
+
+    ci_timer_init(19); /* Make around 1msec timer */
+
+    SYS_WATCHDOG_REFRESH();
+
+    static int long_touch_event_cnt = 0;
+
+    int blue_cnt   = 0;
+    int cyan_cnt   = 0;
+    int color_type = 0;
 
     while (1)  // ULP loop
     {
         SYS_WATCHDOG_REFRESH();
 
+        // 롱-터치 이벤트가 감지되면, 터치가 해제 될 때까지 기다리도록 한다.
+        if (long_touch_event_cnt == 0)
+        {
+            if (iqs323_proc())
+            {
+                ci_printi("[MAIN] LONG TOUCH DETECTED, WAIT RELEASE \r\n");
+                long_touch_event_cnt = 1;
+            }
+        }
+        // 롱-터치 후 해제까지 감지되면, 그제서야 절전 모드에서 깨어나도록 한다.
+        else if (long_touch_event_cnt == 1)
+        {
+            int curr_touch_state = IQS323_TOUCH_STATE_TOUCH;
+
+            if (iqs323_get_touch_state(&curr_touch_state))
+            {
+                if (curr_touch_state == IQS323_TOUCH_STATE_NOT_TOUCH)
+                {
+                    Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_R);
+                    Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_G);
+                    Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_B);
+
+                    ci_printi("[MAIN] TOUCH RELEASED SO, WAKE UP! \r\n");
+                    delay_ms(20);  // 디버깅을 위해 RTT 뷰어가 메시지를 읽을 수 있도록 잠시 대기함
+
+                    SYS_WATCHDOG_RESET();
+                    break;
+                }
+            }
+
+            switch (color_type)
+            {
+                case 0:  // cyan
+                    if (cyan_cnt == 0)
+                    {
+                        Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_R);
+                        Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_G);
+                        Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_B);
+                        cyan_cnt++;
+                    }
+                    else if (300 <= cyan_cnt)
+                    {
+                        cyan_cnt   = 0;
+                        blue_cnt   = 0;
+                        color_type = 1;
+                    }
+                    else
+                    {
+                        cyan_cnt++;
+                    }
+                    break;
+
+                case 1:  // blue
+                    if (blue_cnt == 0)
+                    {
+                        Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_R);
+                        Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_G);
+                        Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_B);
+                        blue_cnt++;
+                    }
+                    else if (300 <= blue_cnt)
+                    {
+                        cyan_cnt   = 0;
+                        blue_cnt   = 0;
+                        color_type = 0;
+                    }
+                    else
+                    {
+                        blue_cnt++;
+                    }
+                    break;
+            }
+        }
+
+        SYS_WAIT_FOR_INTERRUPT;
+
+#if 0
         /* Interrupt occurred for acc-sensor */
         if (ci_dio_is_set_int_flag_acc_sensor())
         {
@@ -868,6 +834,7 @@ int func_sleep(void)
         }
 
         SYS_WAIT_FOR_INTERRUPT;
+#endif
     }
 
     SYS_WATCHDOG_REFRESH();

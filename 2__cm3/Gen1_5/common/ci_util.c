@@ -3,6 +3,7 @@
  */
 
 #include <ci_util.h>
+#include <ci_uart.h>
 
 static void _critical_error_led_toggler(uint32_t cnt, uint32_t msec)
 {
@@ -43,4 +44,51 @@ void ci_util_assert(int a)
     {
         ci_util_indicate_critical_error();
     }
+}
+
+void delay_ms(uint32_t ms)
+{
+    Sys_Delay((SystemCoreClock / 1000) * ms);
+}
+
+void delay_ms_long_time(uint32_t ms, uint32_t cnt)
+{
+    ci_uart_printf("[DELAY] ");
+
+    for (int i = 0; i < cnt; i++)
+    {
+        delay_ms(ms);
+        SYS_WATCHDOG_REFRESH();
+
+        if (i == (cnt - 1))
+        {
+            ci_uart_printf("%u (ms) \r\n", (i + 1) * 100);
+        }
+        else
+        {
+            ci_uart_printf("%u, ", (i + 1) * 100);
+        }
+    }
+    SYS_WATCHDOG_REFRESH();
+}
+
+void print_sysvar_manu_table(void)
+{
+    uint32_t *p;
+
+    p = (uint32_t *) SYSVAR_MANU_TABLE;
+
+    ci_uart_printf("SYSVAR_MANU_TABLE = \r\n");
+
+    for (int i = 0; i < MANU_TABLE_SIZE; i++)
+    {
+        ci_uart_printf("0x%08X ", p[i]);
+
+        if (((i + 1) % 4) == 0)
+        {
+            ci_uart_printf("\r\n");
+        }
+    }
+
+    ci_uart_printf("\r\n");
 }

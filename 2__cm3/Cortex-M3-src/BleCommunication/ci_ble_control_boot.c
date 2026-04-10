@@ -32,7 +32,7 @@ static void _send_error_packet_boot(uint8_t error)
 
 static void _fetch_packet_boot_info(int* p_packet)
 {
-    ST__CI_LIB_BOOT_STATUS boot_status;
+    snd_boot_status_t boot_status;
     uint8_t                resp_packet[RESP_PKT_SIZE_BOOT_INFO] = {0};
 
     // get boot status
@@ -55,7 +55,7 @@ static void _fetch_packet_boot_info(int* p_packet)
 
 static void _fetch_packet_boot_select(int* p_packet)
 {
-    ST__CI_LIB_BOOT_STATUS boot_status;
+    snd_boot_status_t boot_status;
     uint8_t                slot_num;
     uint8_t                resp_packet[RESP_PKT_SIZE_BOOT_SELECT] = {0};
 
@@ -91,11 +91,11 @@ static void _fetch_packet_boot_select(int* p_packet)
         }
     }
 
-    boot_status.state              = SDK_CI_BOOT_STATE_ALT_BOOT;
-    boot_status.sub_state          = SDK_CI_BOOT_SUB_STATE_BOOT_TRY;
+    boot_status.state              = SND_BOOT_STATE_ALT_BOOT;
+    boot_status.sub_state          = SND_BOOT_SUB_STATE_BOOT_TRY;
     boot_status.alt_boot_slot_num  = slot_num;
     boot_status.alt_boot_try_count = 0;
-    boot_status.alt_boot_result    = SDK_CI_BOOT_ALT_BOOT_RESULT_NONE;
+    boot_status.alt_boot_result    = SND_BOOT_ALT_BOOT_RESULT_NONE;
 
     resp_packet[RESP_PKT_IDX_BOOT_SELECT_RESULT] = PKT_BOOT_RESULT_ACCEPT;
 
