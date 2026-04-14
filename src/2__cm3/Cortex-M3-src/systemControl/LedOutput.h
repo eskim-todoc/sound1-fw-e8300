@@ -7,15 +7,12 @@
 
 typedef enum
 {
-    LED_MODE_BACKGROUND = 0,
-    LED_MODE_FOREGROUND,
-} led_mode_t;
-
-typedef enum
-{
-    LED_FOREGROUND_TYPE_BATT_STATE = 1,
-    LED_FOREGROUND_TYPE_PAIR_STAE  = 2,
-} led_foreground_type_t;
+    TDC_LED_IND_STATE_NONE       = 0,
+    TDC_LED_IND_STATE_BATT       = 1,
+    TDC_LED_IND_STATE_PAIR       = 2,
+    TDC_LED_IND_STATE_OTA_QCC    = 3,
+    TDC_LED_IND_STATE_OTA_EZAIRO = 4,
+} tdc_led_ind_state_t;
 
 typedef enum
 {

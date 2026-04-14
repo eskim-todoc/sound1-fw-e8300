@@ -7,10 +7,33 @@
 #include "LedOutput.h"
 #include "cfx_cm3_sharedMemory.h"
 
+/**
+ * LED 켜기 우선 순위
+ *
+ * 1 순위.
+ * en__LED_Map_Error, en__LED_MCU_Error, en__LED_MCU_Accelerometer_Error,
+ * en__LED_MCU_FPGA_Error, en__LED_MCU_RF_PMIC_Error
+ *
+ * 2 순위.
+ * en__LED_POWER_On, en__LED_POWER_Off
+ *
+ * 3 순위.
+ *
+ */
+
 static bool testLED_Trigger;
 
-static led_mode_t           g_mode = LED_MODE_BACKGROUND;
-//static led_foregroud_type_t g_foreground_type;
+static tdc_led_ind_state_t sg_led_ind_state;
+
+void tdc_led_set_ind_state(tdc_led_ind_state_t state)
+{
+    sg_led_ind_state = state;
+}
+
+tdc_led_ind_state_t tdc_led_get_ind_state(void)
+{
+    return sg_led_ind_state;
+}
 
 void enabletestLED_Trigger(void)
 {
