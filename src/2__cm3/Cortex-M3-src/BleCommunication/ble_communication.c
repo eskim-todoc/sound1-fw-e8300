@@ -165,7 +165,7 @@ void setting_nrf_ble_adv_info(void)
 
         /* 명령 처리 */
 
-        // snd_led_set_ind_state(led_ind);  // 수신한 LED 표시 상태로 업데이트 한다. (함수 아직 미구현)
+        tdc_led_set_ind_state((tdc_led_ind_state_t) led_ind);  // Arbiter에 LED 표시 상태 반영 (Rev.3)
 
         ci_printv("[BT] CMD 0x%02X, LED IND: %d \r\n", EN__SND_BT_CMD_SYSTEM_INFO_LED_IND, led_ind);
 

@@ -113,23 +113,6 @@ void NRF_adv_powerMode(bool mode)
 }
 #endif
 
-// 함수 밖 static int xxxxyyyy=5; ==> .data
-// 함수 밖 static int xxxxyyyy=1; ==> .data
-// 함수 밖 static int xxxxyyyy=0; ===>.bss
-// 함수 밖 static int xxxxyyyy;  ==> .bss
-
-// 함수 밖 static  bool xxxxyyyy=true;  ==>.data
-// 함수 밖 static  bool xxxxyyyy=false;  ==> .bss
-// 함수 밖 static  bool xxxxyyyy; ==> .bss
-
-// 전역 int xxxxyyy=1;   ==>.data
-// 전역 int xxxxyyy=0;   ==>.bss
-// 전역 int xxxxyyy;     ==>.bss
-
-// 전역 bool xxxxyyyy=true;  ==>.data
-// 전역 bool xxxxyyyy=false; ==>.bss
-// 전역 bool xxxxyyyy;    ==>.bss
-
 ST__SYSTEM_STATE systemControl(EN__LED_PATTERN   current_led_pattern,  //
                                ST__ERROR_CODE    mcuErrorCode,
                                ST__USB_CONNECTOR chargerState,
@@ -138,16 +121,6 @@ ST__SYSTEM_STATE systemControl(EN__LED_PATTERN   current_led_pattern,  //
                                bool              conneded_ISD,
                                bool              mappingConnected)
 {
-    // static int xxxxyyyy;
-
-    // 함수 안  static int xxxxyyyy=1; ===>.data
-    // 함수 안  static int xxxxyyyy=0; ===>.bss
-    // 함수 안  static int xxxxyyyy; ===>.bss
-
-    // 함수 안  static bool xxxxyyyy=true; ===>.data
-    // 함수 안  static bool xxxxyyyy=false; ===>.bss
-    // 함수 안  static bool xxxxyyyy; ===>.bss
-
     static int PowerOn_StartCounter                = 0;
     static int PowerOff_StartCounter               = 0;
     static int normalModeCounter                   = 0;
@@ -164,15 +137,18 @@ ST__SYSTEM_STATE systemControl(EN__LED_PATTERN   current_led_pattern,  //
 
     if ((mcuErrorCode.dataProcessingErrorFlag == en__NA)         //
         && (mcuErrorCode.accelerometerErrorFlag == en__NA)       //
-        && (mcuErrorCode.FPGA_CommunicationErrorFlag == en__NA)  // &&(mcuErrorCode.PowerIcErrorFlag==en__NA))
+        && (mcuErrorCode.FPGA_CommunicationErrorFlag == en__NA)  //
         && (mcuErrorCode.data_logging_error == en__NA))
     {
+        /* 에러 해제 시 ERROR 소스 클리어 */
+        led_request(LED_SRC_ERROR, LED_ST_NONE);
+
         // 충전기가 꼽히면 하드웨어적으로 리셋이 된다. 따라서 가장 먼저 여기로 들어오게 된다.
         if (chargerState.chargerConnectorPluggedIn == df_Defalut)
         {
             systemStatus.Led_Pattern = en__LED_NA;
         }
-        // 완충이 되어도 charging connection 은 항상 유지되는지 확인
+        // 충전기가 연결된 상태 -- LED 충전 레벨 표시 폐지 (Rev.3 이슈 #1)
         else if (chargerState.chargerConnectorPluggedIn == df_Connected)
         {
             // NRF를 꺼진 상태로 변경 유지
@@ -181,59 +157,24 @@ ST__SYSTEM_STATE systemControl(EN__LED_PATTERN   current_led_pattern,  //
             // 상시전원을 제외하고 전원을 끄도록 CFX에 전달
             systemStatus.enablePMIC = false;
 
-            // ci_printf("[CHARGER] CONNECTOR PLUGGED IN \r\n");
-
-            //
             changePcmOutputMode(PcmBitStream_Mode_FillZero);
 
             if (chargerState.carryingCasePluggedIn == df_Connected)  // 충전 케이스가 연결된 경우
             {
-                // ci_printf("[CHARGER] CASE PLUGGED IN \r\n");
-
-                // 충전기 케이이 커버가 열린 경우에만 LED를 켠다.
                 if (chargerState.carryingCaseCoverOpen == df_Connected)
                 {
-                    // ci_printf("[CHARGER] COVER OPENED \r\n");
-
                     CounterAfterCoverClosed = 0;
-
-                    switch (batteryLevel)
-                    {
-                        case en__batteryPower_0per:
-                            systemStatus.Led_Pattern = en__LED_BatteryChargingLevel_0per;
-                            break;
-                        case en__batteryPower_0btw20:
-                            systemStatus.Led_Pattern = en__LED_BatteryChargingLevel_0btw20;
-                            break;
-                        case en__batteryPower_20btw40:
-                            systemStatus.Led_Pattern = en__LED_BatteryChargingLevel_20btw40;
-                            break;
-                        case en__batteryPower_40btw60:
-                            systemStatus.Led_Pattern = en__LED_BatteryChargingLevel_40btw60;
-                            break;
-                        case en__batteryPower_60btw80:
-                            systemStatus.Led_Pattern = en__LED_BatteryChargingLevel_60btw80;
-                            break;
-                        case en__batteryPower_80btw100:
-                            systemStatus.Led_Pattern = en__LED_BatteryChargingLevel_80btw100;
-                            break;
-                        case en__batteryPower_100per:
-                            systemStatus.Led_Pattern = en__LED_BatteryChargingLevel_100per;
-                            break;
-                    }
+                    /* 충전 중 LED: 배터리 레벨 판정은 Arbiter가 처리 (led_request 불필요) */
                 }
                 else
                 {
-                    // ci_printf("[CHARGER] COVER CLOSED \r\n");
-
                     if (CounterAfterCoverClosed == LED_OnTime_afterCoverClosed)
                     {
-                        systemStatus.Led_Pattern = en__LED_NA;
+                        /* 커버 닫힌 후 일정 시간 지나면 LED OFF */
                     }
                     else if (CounterAfterCoverClosed > LED_OnTime_afterCoverClosed)
                     {
                         CounterAfterCoverClosed = 0;
-                        // 저전력 모드 진입하도록 CFX전달
                         systemStatus.systemOff  = true;
                         CounterAfterCoverClosed = 0;
 
@@ -245,51 +186,24 @@ ST__SYSTEM_STATE systemControl(EN__LED_PATTERN   current_led_pattern,  //
             else  // 충전 케이스가 연결되지 않고 자극기에 직접 충전기가 꼽힌 경우.
             {
                 CounterAfterCoverClosed = 0;
-
-                switch (batteryLevel)
-                {
-                    case en__batteryPower_0per:
-                        systemStatus.Led_Pattern = en__LED_BatteryChargingLevel_0per;
-                        break;
-                    case en__batteryPower_0btw20:
-                        systemStatus.Led_Pattern = en__LED_BatteryChargingLevel_0btw20;
-                        break;
-                    case en__batteryPower_20btw40:
-                        systemStatus.Led_Pattern = en__LED_BatteryChargingLevel_20btw40;
-                        break;
-                    case en__batteryPower_40btw60:
-                        systemStatus.Led_Pattern = en__LED_BatteryChargingLevel_40btw60;
-                        break;
-                    case en__batteryPower_60btw80:
-                        systemStatus.Led_Pattern = en__LED_BatteryChargingLevel_60btw80;
-                        break;
-                    case en__batteryPower_80btw100:
-                        systemStatus.Led_Pattern = en__LED_BatteryChargingLevel_80btw100;
-                        break;
-                    case en__batteryPower_100per:
-                        systemStatus.Led_Pattern = en__LED_BatteryChargingLevel_100per;
-                        break;
-                }
+                /* 충전 중 LED: 배터리 레벨 판정은 Arbiter가 처리 */
             }
 
             StartFlag = false;
         }
-        else if (chargerState.chargerConnectorPluggedIn == df_Disconnected)  // 충전기가 연겨되지 않은 상태.
+        else if (chargerState.chargerConnectorPluggedIn == df_Disconnected)  // 충전기가 연결되지 않은 상태.
         {
             systemStatus.BLE_Off = false;
 
-            // 전원이 켜지고 충전기가 연결되지 않은 상태
-            // 충충전기의 연결이 끊어지면 저전력 모드로 진입.
             if (prev_batteryChargerConnectionStatus == chargerState.carryingCasePluggedIn)
             {
-                // update_CM3Status_toCFX(__LINE__);
-
                 if (StartFlag == false)
                 {
                     turnOffLED();
                     systemStatus.Led_Pattern = en__LED_POWER_On;
-                    PowerOn_StartCounter     = 0;
-                    StartFlag                = true;
+                    led_request(LED_SRC_POWER, LED_ST_POWER_ON);
+                    PowerOn_StartCounter = 0;
+                    StartFlag            = true;
                     ci_printi("[SYSTEM] LED PATTERN IS POWER ON \r\n");
                 }
                 else
@@ -322,7 +236,7 @@ ST__SYSTEM_STATE systemControl(EN__LED_PATTERN   current_led_pattern,  //
                         }
 
                         // 전원 끄기 시작
-                        if (veryLowBattery || powerButtonPushed)  // 전원 끄기
+                        if (veryLowBattery || powerButtonPushed)
                         {
                             if (isPowerOffEnabled == false)  // 1회 설정
                             {
@@ -337,9 +251,10 @@ ST__SYSTEM_STATE systemControl(EN__LED_PATTERN   current_led_pattern,  //
                                 }
 
                                 systemStatus.Led_Pattern = en__LED_POWER_Off;
-                                systemStatus.enable_ISD  = false;
-                                PowerOff_StartCounter    = 0;
-                                isPowerOffEnabled        = true;
+                                led_request(LED_SRC_POWER, LED_ST_POWER_OFF);
+                                systemStatus.enable_ISD = false;
+                                PowerOff_StartCounter   = 0;
+                                isPowerOffEnabled       = true;
 
                                 ci_printi("[SYSTEM] LED PATTERN IS POWER OFF \r\n");
                             }
@@ -352,11 +267,8 @@ ST__SYSTEM_STATE systemControl(EN__LED_PATTERN   current_led_pattern,  //
                             {
                                 isPowerOffEnabled         = false;
                                 ISD_Disconnection_counter = 0;
-                                // update_CM3Status_toCFX(__LINE__);
-                                //  상시전원을 제외하고 전원을 끄도록 CFX에 전달
-                                systemStatus.enablePMIC = false;
-                                // 저전력 모드 진입하도록 CFX전달
-                                systemStatus.systemOff = true;
+                                systemStatus.enablePMIC   = false;
+                                systemStatus.systemOff    = true;
                                 ci_printi("[SYSTEM] GO TO SYSTEM OFF \r\n");
                             }
                             else
@@ -375,95 +287,46 @@ ST__SYSTEM_STATE systemControl(EN__LED_PATTERN   current_led_pattern,  //
                         }
                         else
                         {
-                            if (mappingConnected)
+                            /* ===================================================
+                             * LED 판정은 Arbiter로 이관됨 (Rev.3)
+                             * Battery/ISD/Mapping 요청은 main.c에서 led_request() 호출
+                             * =================================================== */
+
+                            /* 저배터리 자극 알림 (10분 주기) -- LED와 독립된 기능 */
+                            if (conneded_ISD && batteryLevel <= en__batteryPower_0btw20)
                             {
-                                if (conneded_ISD)
+                                if (lowBatteryIndicatorCounter == 0)
                                 {
-                                    if (batteryLevel > en__batteryPower_0btw20)
-                                    {
-                                        systemStatus.Led_Pattern = en__LED_MappingConneted_ISD_Connected_BatteryNormal;
-                                    }
-                                    else
-                                    {
-                                        systemStatus.Led_Pattern = en__LED_MappingConneted_ISD_Connected_BatteryLow;
-                                    }
+                                    stimulationTrigger         = true;
+                                    lowBatteryIndicatorCounter = df_lowbatteryIndicationPeriod_ms;
                                 }
-                                else
-                                {
-                                    if (batteryLevel > en__batteryPower_0btw20)
-                                    {
-                                        systemStatus.Led_Pattern = en__LED_MappingConneted_ISD_Unconnected_BatteryNormal;
-                                    }
-                                    else
-                                    {
-                                        systemStatus.Led_Pattern = en__LED_MappingConneted_ISD_Unconnected_BatteryLow;
-                                    }
-                                }
+                                lowBatteryIndicatorCounter--;
                             }
-                            else  // 매핑이 연결되지 않았을 경우
+                            else
                             {
-                                if (conneded_ISD)
-                                {
-                                    // LED 출력 및 NRF 칩 설정
-                                    if (batteryLevel > en__batteryPower_0btw20)
-                                    {
-                                        systemStatus.Led_Pattern = en__LED_ISD_StimulationOut_batteryNormal;
+                                lowBatteryIndicatorCounter = 0;
+                            }
 
-                                        lowBatteryIndicatorCounter = 0;
-                                    }
-                                    else
-                                    {
-                                        systemStatus.Led_Pattern = en__LED_ISD_StimulationOut_batteryLow;
-#if 1
-                                        if (lowBatteryIndicatorCounter == 0)  // 10분마다 자극 알림을 출력한다.
-                                        {
-                                            stimulationTrigger         = true;
-                                            lowBatteryIndicatorCounter = df_lowbatteryIndicationPeriod_ms;
-                                        }
-#endif
-                                        lowBatteryIndicatorCounter--;
-                                    }
-                                }
-                                else
-                                {
-                                    // LED 출력 및 NRF 칩 설정
-                                    if (batteryLevel > en__batteryPower_0btw20)
-                                    {
-                                        systemStatus.Led_Pattern   = en__LED_StandbyForconneded_ISD_batteryNormal;
-                                        lowBatteryIndicatorCounter = 0;
-                                    }
-                                    else
-                                    {
-                                        systemStatus.Led_Pattern   = en__LED_StandbyForconneded_ISD_batteryLow;
-                                        lowBatteryIndicatorCounter = 0;
-                                    }
-                                }
+                            if (conneded_ISD)
+                            {
+                                ISD_Disconnection_counter = 0;
+                            }
+                            else
+                            {
+                                ISD_Disconnection_counter++;
+                            }
 
-                                if (conneded_ISD)
-                                {
-                                    ISD_Disconnection_counter = 0;
-                                }
-                                else
-                                {
-                                    ISD_Disconnection_counter++;
-                                }
+                            if (ISD_Disconnection_counter > 180000)  // 3분
+                            {
+                                ISD_Disconnection_counter = 0;
 
-                                if (ISD_Disconnection_counter > 180000)  // 3분
-                                {
-
-                                    ISD_Disconnection_counter = 0;
-
-                                    systemStatus.Led_Pattern = en__LED_POWER_Off;
-                                    systemStatus.enable_ISD  = false;
-                                    PowerOff_StartCounter    = 0;
-                                    isPowerOffEnabled        = true;
-                                    // update_CM3tempValue2_toCFX(4);
-                                }
-                                // if (ISD_Disconnection_counter>1800000) // 30분
-
-                            }  // 매핑.연결
+                                systemStatus.Led_Pattern = en__LED_POWER_Off;
+                                led_request(LED_SRC_POWER, LED_ST_POWER_OFF);
+                                systemStatus.enable_ISD = false;
+                                PowerOff_StartCounter   = 0;
+                                isPowerOffEnabled       = true;
+                            }
                         }
-                        ////
                     }
                 }
                 PowerOn_StartCounter++;
@@ -472,10 +335,8 @@ ST__SYSTEM_STATE systemControl(EN__LED_PATTERN   current_led_pattern,  //
             {
                 if (prev_batteryChargerConnectionStatus == df_Disconnected)
                 {
-                    // 상시전원을 제외하고 전원을 끄도록 CFX에 전달
                     systemStatus.enablePMIC = false;
-                    // 저전력 모드 진입하도록 CFX전달
-                    systemStatus.systemOff = true;
+                    systemStatus.systemOff  = true;
                     ci_printi("[SYSTEM] GO TO SYSTEM OFF \r\n");
                 }
             }
@@ -486,19 +347,29 @@ ST__SYSTEM_STATE systemControl(EN__LED_PATTERN   current_led_pattern,  //
         }
         prev_batteryChargerConnectionStatus = chargerState.carryingCasePluggedIn;
 
-    }  // 에러
+    }  // 에러 없음
     else
     {
-        // 에러 코드 확인..
-        systemStatus.Led_Pattern=en__LED_MCU_Error;
+        /* 에러 발생 -- led_request(ERROR, ...) (Rev.3 SS4.2) */
+        led_request(LED_SRC_ERROR, LED_ST_ERROR_MCU);
+        systemStatus.Led_Pattern = en__LED_MCU_Error;
 
-        if(mcuErrorCode.dataProcessingErrorFlag!=en__NA)
+        if (mcuErrorCode.dataProcessingErrorFlag != en__NA)
         {
-            systemStatus.Led_Pattern=en__LED_Map_Error;
+            led_request(LED_SRC_ERROR, LED_ST_ERROR_MAP);
+            systemStatus.Led_Pattern = en__LED_Map_Error;
+        }
+        if (mcuErrorCode.accelerometerErrorFlag != en__NA)
+        {
+            led_request(LED_SRC_ERROR, LED_ST_ERROR_ACCEL);
+        }
+        if (mcuErrorCode.FPGA_CommunicationErrorFlag != en__NA)
+        {
+            led_request(LED_SRC_ERROR, LED_ST_ERROR_FPGA);
         }
     }
 
-    systemStatus.StimulationIndicatorTriggerLowPower=stimulationTrigger;
+    systemStatus.StimulationIndicatorTriggerLowPower = stimulationTrigger;
 
     return systemStatus;
 }

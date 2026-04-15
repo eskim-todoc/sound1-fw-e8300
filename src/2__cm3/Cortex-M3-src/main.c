@@ -47,6 +47,12 @@
 
 #include <snd_qcc.h>
 
+#ifdef ENABLE_UI_CMD
+#include "ui_cmd.h"
+#include "ui_led_cmd.h"
+#include "ui_sys_cmd.h"
+#endif
+
 void debug_led_pattern(EN__LED_PATTERN pattern);
 
 typedef struct
@@ -201,10 +207,10 @@ void load_data_section(void)
            (size_t) (&__data_end__ - &__data_start__)  // VMA data 영역의 크기 만큼 초기화
     );
 #else
-    uint32_t *src = &__data_init__;
-    uint32_t *dst = &__data_start__;
+    uint32_t *src = (uint32_t *) &__data_init__;
+    uint32_t *dst = (uint32_t *) &__data_start__;
 
-    while (dst < &__data_end__)
+    while (dst < ((uint32_t *) &__data_end__))
     {
         *dst++ = *src++;
     }
@@ -405,6 +411,12 @@ int func_normal(void)
     // 위에서 CFX 동작까지 실행시켰으므로, 이제 QCC를 깨우고 배터리 정보를 얻을 수 있도록 한다.
     snd_qcc_set_mode(SND_QCC_MODE_NORMAL);
 
+#ifdef ENABLE_UI_CMD
+    ui_cmd_init();
+    ui_led_cmd_register();
+    ui_sys_cmd_register();
+#endif
+
     while (1)
     {
         if ((iterationFlag == true))
@@ -499,22 +511,62 @@ int func_normal(void)
                 // updateEarPieceStatus();
             }
 
-#if 1  // LED가 어떤 패턴으로 업데이트 되는지 디버깅하는 용도
+            /* ===================================================
+             * LED source requests (Rev.3)
+             * =================================================== */
             {
-                static EN__LED_PATTERN d_led_pattern_prev = 0;
+                /* Battery (SS4.5) -- hysteresis +/-2% */
+#ifdef ENABLE_UI_CMD
+                int pct = ui_sys_ovr_batt_active() ? (int) ui_sys_ovr_batt_percent()
+                                                   : snd_batt_get_percent();
+#else
+                int pct = snd_batt_get_percent();
+#endif
+                static led_state_t prev_batt_st = LED_ST_IDLE;
+                led_state_t batt_st;
 
-                if (d_led_pattern_prev != systemState.Led_Pattern)
+                if      (pct < 10)                                              batt_st = LED_ST_BATT_CRITICAL;
+                else if (pct < 12 && prev_batt_st == LED_ST_BATT_CRITICAL)      batt_st = LED_ST_BATT_CRITICAL;
+                else if (pct >= 80)                                             batt_st = LED_ST_READY;
+                else if (pct >= 78 && prev_batt_st == LED_ST_READY)             batt_st = LED_ST_READY;
+                else                                                            batt_st = LED_ST_BATT_MID;
+
+                prev_batt_st = batt_st;
+                led_request(LED_SRC_BATTERY, batt_st);
+
+                /* ISD (SS4.6) */
+#ifdef ENABLE_UI_CMD
+                bool isd_conn = ui_sys_ovr_isd_active() ? ui_sys_ovr_isd_value()
+                                                        : isd_state.conneded_ISD;
+#else
+                bool isd_conn = isd_state.conneded_ISD;
+#endif
+                led_request(LED_SRC_ISD, isd_conn ? LED_ST_IN_USE : LED_ST_NONE);
+
+                /* Mapping (SS4.4) */
+#ifdef ENABLE_UI_CMD
+                bool map_conn = ui_sys_ovr_map_active() ? ui_sys_ovr_map_value()
+                                                        : BLE_communicationState.mappingConnection;
+#else
+                bool map_conn = BLE_communicationState.mappingConnection;
+#endif
+                if (map_conn)
                 {
-                    d_led_pattern_prev = systemState.Led_Pattern;
-
-                    debug_led_pattern(d_led_pattern_prev);
+                    led_request(LED_SRC_MAPPING, isd_conn ? LED_ST_MAPPING_ISD : LED_ST_MAPPING_NO_ISD);
+                }
+                else
+                {
+                    led_request(LED_SRC_MAPPING, LED_ST_NONE);
                 }
             }
-#endif
-            LedPatternOut(systemState.Led_Pattern);
+
+            led_arbiter_tick();
 
             NRF_On_OFF(isd_state, systemState.BLE_Off, BLE_communicationState.mappingConnection, BLE_communicationState.BLE_Off_Command);
 
+#ifdef ENABLE_UI_CMD
+            ui_cmd_poll();
+#else
             do
             {
                 char byte;
@@ -556,6 +608,7 @@ int func_normal(void)
                     }
                 }
             } while (false);
+#endif
 
             // 중요!!
             disable_iteration();
@@ -602,51 +655,6 @@ void debug_led_pattern(EN__LED_PATTERN pattern)
             break;
         case en__LED_POWER_On:
             ci_printv("POWER ON \r\n");
-            break;
-        case en__LED_ISD_StimulationOut_batteryNormal:
-            ci_printv("STIM OUT BATTERY NORMAL \r\n");
-            break;
-        case en__LED_ISD_StimulationOut_batteryLow:
-            ci_printv("STIM OUT BATTERY LOW \r\n");
-            break;
-        case en__LED_StandbyForconneded_ISD_batteryNormal:
-            ci_printv("STANBY CONN ISD BATTERY NORMAL \r\n");
-            break;
-        case en__LED_StandbyForconneded_ISD_batteryLow:
-            ci_printv("STANBY CONN ISD BATTERY LOW \r\n");
-            break;
-        case en__LED_MappingConneted_ISD_Connected_BatteryNormal:
-            ci_printv("MAPPING CONN ISD CONN BATTERY NORMAL \r\n");
-            break;
-        case en__LED_MappingConneted_ISD_Connected_BatteryLow:
-            ci_printv("MAPPING CONN ISD CONN BATTERY LOW \r\n");
-            break;
-        case en__LED_MappingConneted_ISD_Unconnected_BatteryNormal:
-            ci_printv("MAPPING CONN ISD NOT CONN BATTERY NORMAL \r\n");
-            break;
-        case en__LED_MappingConneted_ISD_Unconnected_BatteryLow:
-            ci_printv("MAPPING CONN ISD NOT CONN BATTERY LOW \r\n");
-            break;
-        case en__LED_BatteryChargingLevel_0per:
-            ci_printv("BATTERY CHARGING 0%% \r\n");
-            break;
-        case en__LED_BatteryChargingLevel_0btw20:
-            ci_printv("BATTERY CHARGING 0%%-20%% \r\n");
-            break;
-        case en__LED_BatteryChargingLevel_20btw40:
-            ci_printv("BATTERY CHARGING 20%%-40%% \r\n");
-            break;
-        case en__LED_BatteryChargingLevel_40btw60:
-            ci_printv("BATTERY CHARGING 40%%-60%% \r\n");
-            break;
-        case en__LED_BatteryChargingLevel_60btw80:
-            ci_printv("BATTERY CHARGING 60%%-80%% \r\n");
-            break;
-        case en__LED_BatteryChargingLevel_80btw100:
-            ci_printv("BATTERY CHARGING 80%%-100%% \r\n");
-            break;
-        case en__LED_BatteryChargingLevel_100per:
-            ci_printv("BATTERY CHARGING 100%% \r\n");
             break;
         case en__LED_POWER_Off:
             ci_printv("POWER OFF \r\n");

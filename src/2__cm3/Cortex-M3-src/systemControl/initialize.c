@@ -421,7 +421,7 @@ void Initialize(void)
     ci_dio_configure_normal();
 
     ci_printv("[INIT] INIT : DIO, UART, ETC.. \r\n");
-#if 0
+
     /* 드라이브 0으로 변경 후 부트 상태 처리 후
      * 드라이브 1로 변경하여 맵 관련 파일을 사용할 수 있게 설정 */
 
@@ -461,7 +461,7 @@ void Initialize(void)
     cfx_cm3_sharedMemoryAll.CFX_EEPROM_data_is_Loaded = 1;
 
     ci_printv("[INFO] COPY ISD INFO FOR ALL MAPS FROM FS_MEM TO SH_MEM \r\n");
-#endif
+
     // LED 출력 끄기
     turnOffLED();
 

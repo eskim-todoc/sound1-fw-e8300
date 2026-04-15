@@ -7,19 +7,105 @@
 #include "LedOutput.h"
 #include "cfx_cm3_sharedMemory.h"
 
-/**
- * LED 켜기 우선 순위
- *
- * 1 순위.
- * en__LED_Map_Error, en__LED_MCU_Error, en__LED_MCU_Accelerometer_Error,
- * en__LED_MCU_FPGA_Error, en__LED_MCU_RF_PMIC_Error
- *
- * 2 순위.
- * en__LED_POWER_On, en__LED_POWER_Off
- *
- * 3 순위.
- *
- */
+#include <ci_timer.h>
+
+/* ========================================================================
+ *  Pattern Descriptor Table (Rev.3 SS3.4)
+ * ======================================================================== */
+
+static const led_pattern_desc_t k_led_patterns[LED_ST__MAX] = {
+    [LED_ST_NONE]           = { en__LED_BLACK,   0,    0,    0 },
+    [LED_ST_IDLE]           = { en__LED_BLACK,   0,    0,    0 },
+
+    [LED_ST_READY]          = { en__LED_GREEN,   0,    0,    0 },
+    [LED_ST_IN_USE]         = { en__LED_WHITE,   0,    0,    0 },
+    [LED_ST_BATT_MID]       = { en__LED_ORANGE,  1100, 2200, 0 },
+    [LED_ST_BATT_CRITICAL]  = { en__LED_ORANGE,  180,  360,  0 },
+
+    [LED_ST_MAPPING_NO_ISD] = { en__LED_BLUE,   300,  600,  0 },
+    [LED_ST_MAPPING_ISD]    = { en__LED_BLUE,    0,    0,    0 },
+
+    [LED_ST_PAIR]           = { en__LED_BLUE,   180,  360,  0 },
+    [LED_ST_OTA_QCC]        = { en__LED_GREEN,  1100, 2200, 0 },
+    [LED_ST_OTA_EZAIRO]     = { en__LED_GREEN,  1100, 2200, 0 },
+
+    [LED_ST_ERROR_MAP]      = { en__LED_RED,    180,  360,  0 },
+    [LED_ST_ERROR_MCU]      = { en__LED_RED,    180,  360,  0 },
+    [LED_ST_ERROR_ACCEL]    = { en__LED_RED,    180,  360,  0 },
+    [LED_ST_ERROR_FPGA]     = { en__LED_RED,    180,  360,  0 },
+    [LED_ST_ERROR_PMIC]     = { en__LED_RED,    180,  360,  0 },
+
+    /* 게이트 -- 출하 검증값 유지 */
+    [LED_ST_POWER_ON]       = { en__LED_SKYBLUE, 80,  300,  5 },
+    [LED_ST_POWER_OFF]      = { en__LED_BLUE,   100,  300,  4 },
+};
+
+/* ========================================================================
+ *  Priority Table (Rev.3 SS3.3)
+ * ======================================================================== */
+
+static int led_prio_of(led_state_t st)
+{
+    switch (st)
+    {
+        case LED_ST_POWER_OFF:      return 100;
+        case LED_ST_POWER_ON:       return 95;
+
+        case LED_ST_ERROR_MAP:
+        case LED_ST_ERROR_MCU:
+        case LED_ST_ERROR_ACCEL:
+        case LED_ST_ERROR_FPGA:
+        case LED_ST_ERROR_PMIC:     return 90;
+
+        case LED_ST_OTA_QCC:
+        case LED_ST_OTA_EZAIRO:     return 80;
+
+        case LED_ST_MAPPING_ISD:
+        case LED_ST_MAPPING_NO_ISD: return 75;
+
+        case LED_ST_PAIR:           return 70;
+
+        case LED_ST_BATT_CRITICAL:  return 60;
+
+        case LED_ST_IN_USE:         return 40;
+
+        case LED_ST_READY:          return 30;
+
+        case LED_ST_BATT_MID:       return 20;
+
+        case LED_ST_IDLE:           return 10;
+
+        default:                    return 0;
+    }
+}
+
+static bool led_is_error(led_state_t st)
+{
+    return (st >= LED_ST_ERROR_MAP && st <= LED_ST_ERROR_PMIC);
+}
+
+/* ========================================================================
+ *  Legacy pattern <-> new state mapping
+ * ======================================================================== */
+
+static EN__LED_PATTERN led_state_to_enum(led_state_t st)
+{
+    switch (st)
+    {
+        case LED_ST_ERROR_MAP:   return en__LED_Map_Error;
+        case LED_ST_ERROR_MCU:   return en__LED_MCU_Error;
+        case LED_ST_ERROR_ACCEL: return en__LED_MCU_Accelerometer_Error;
+        case LED_ST_ERROR_FPGA:  return en__LED_MCU_FPGA_Error;
+        case LED_ST_ERROR_PMIC:  return en__LED_MCU_RF_PMIC_Error;
+        case LED_ST_POWER_ON:    return en__LED_POWER_On;
+        case LED_ST_POWER_OFF:   return en__LED_POWER_Off;
+        default:                 return en__LED_NA;
+    }
+}
+
+/* ========================================================================
+ *  BLE LED Indication state (기존 유지)
+ * ======================================================================== */
 
 static bool testLED_Trigger;
 
@@ -28,6 +114,27 @@ static tdc_led_ind_state_t sg_led_ind_state;
 void tdc_led_set_ind_state(tdc_led_ind_state_t state)
 {
     sg_led_ind_state = state;
+
+    /* BLE 수신 시 Arbiter에 반영 (Rev.3 SS4.3) */
+    switch (state)
+    {
+        case TDC_LED_IND_STATE_PAIR:
+            led_request(LED_SRC_BLE_IND, LED_ST_PAIR);
+            break;
+        case TDC_LED_IND_STATE_OTA_QCC:
+            led_request(LED_SRC_BLE_IND, LED_ST_OTA_QCC);
+            break;
+        case TDC_LED_IND_STATE_OTA_EZAIRO:
+            led_request(LED_SRC_BLE_IND, LED_ST_OTA_EZAIRO);
+            break;
+        case TDC_LED_IND_STATE_BATT:
+            /* BATT는 별도 상태 아님 -- 본체 배터리 판정이 이미 처리 (no-op) */
+            break;
+        case TDC_LED_IND_STATE_NONE:
+        default:
+            led_request(LED_SRC_BLE_IND, LED_ST_NONE);
+            break;
+    }
 }
 
 tdc_led_ind_state_t tdc_led_get_ind_state(void)
@@ -50,6 +157,10 @@ bool isTestTriggerEanbled(void)
     return testLED_Trigger;
 }
 
+/* ========================================================================
+ *  Legacy LED pattern tracking (게이트 호환)
+ * ======================================================================== */
+
 static EN__LED_PATTERN LedOutputPattern;
 
 void updateLED_OutputPattern(EN__LED_PATTERN Led_Pattern)
@@ -62,636 +173,169 @@ EN__LED_PATTERN geteLED_OutputPattern(void)
     return LedOutputPattern;
 }
 
+/* ========================================================================
+ *  LED output color (엔진이 설정, LED_OUT()이 GPIO 출력)
+ * ======================================================================== */
+
 static EN__LED_COLOR LED_outputColor = en__LED_BLACK;
 
-void Led_powerOn(bool resetTimerCounter)
+/* ========================================================================
+ *  Arbiter (Rev.3 SS3.5)
+ * ======================================================================== */
+
+static led_state_t s_req[LED_SRC__MAX];
+static uint32_t    s_pair_latch_until_tick;
+static bool        s_power_burst_in_progress;
+
+void led_request(led_src_t src, led_state_t st)
 {
-    const int PatternTime_ms    = 300;
-    const int onTime_ms         = 80;
-    const int PatternOutput_Num = 5;
-
-    static int timerCounter       = 0;
-    static int outputCycleCounter = 0;
-
-    if (resetTimerCounter)
+    if (src >= LED_SRC__MAX)
     {
-        timerCounter = 0;
-    }
-    if (timerCounter < onTime_ms)
-    {
-        LED_outputColor = en__LED_SKYBLUE;
-    }
-    else
-    {
-        LED_outputColor = en__LED_BLACK;
+        return;
     }
 
-    timerCounter++;
-
-    if (timerCounter >= PatternTime_ms)  //
+    /* PAIR latch: 요청이 들어오면 최소 500ms 유지 */
+    if (src == LED_SRC_BLE_IND && st == LED_ST_PAIR)
     {
-        timerCounter = 0;
-        outputCycleCounter++;
+        s_pair_latch_until_tick = ci_timer_get_tick() + 500;
     }
 
-    if (outputCycleCounter == PatternOutput_Num)
-    {
-        updateLED_OutputPattern(en__LED_NA);
-        outputCycleCounter = 0;
-    }
+    s_req[src] = st;
 }
 
-void Led_powerOff(bool resetTimerCounter)
+bool led_is_power_burst_in_progress(void)
 {
-    const int PatternTime_ms    = 300;
-    const int onTime_ms         = 100;
-    const int PatternOutput_Num = 4;
-
-    static int timerCounter       = 0;
-    static int outputCycleCounter = 0;
-
-    if (resetTimerCounter)
-    {
-        timerCounter = 0;
-    }
-
-    if (timerCounter < onTime_ms)
-    {
-        LED_outputColor = en__LED_BLUE;
-    }
-    else
-    {
-        LED_outputColor = en__LED_BLACK;
-    }
-
-    timerCounter++;
-
-    if (timerCounter >= PatternTime_ms)  //
-    {
-        timerCounter = 0;
-        outputCycleCounter++;
-    }
-
-    if (outputCycleCounter == PatternOutput_Num)
-    {
-        updateLED_OutputPattern(en__LED_NA);
-
-        outputCycleCounter = 0;
-    }
+    return s_power_burst_in_progress;
 }
 
-void standby_isdNotConnectedLED_batteryNormal(void)
+led_state_t led_get_request(led_src_t src)
 {
-    LED_outputColor = en__LED_GREEN;
+    if (src >= LED_SRC__MAX)
+    {
+        return LED_ST_NONE;
+    }
+    return s_req[src];
 }
 
-void standby_isdNotConnectedLED_batteryLow(void)
+/* ========================================================================
+ *  Pattern Engine (Rev.3 SS3.6)
+ * ======================================================================== */
+
+static void led_engine_run(led_state_t st, bool reset)
 {
-    LED_outputColor = en__LED_ORANGE;
-}
+    const led_pattern_desc_t *p = &k_led_patterns[st];
+    static uint16_t timer_ms       = 0;
+    static uint8_t  burst_done_cnt = 0;
 
-void sitimulationOutputOnLED_batteryNormal(bool resetTimerCounter)
-{
-    const int PatternTime_ms = 1000;
-    const int onTime_ms      = 200;
-
-    static int timerCounter = 0;
-
-    if (resetTimerCounter)
+    if (reset)
     {
-        timerCounter = 0;
+        timer_ms       = 0;
+        burst_done_cnt = 0;
     }
 
-    if (timerCounter < onTime_ms)
+    /* 지속 ON */
+    if (p->period_ms == 0)
     {
-        LED_outputColor = en__LED_GREEN;
-    }
-    else
-    {
-        LED_outputColor = en__LED_BLACK;
+        LED_outputColor = p->color;
+        return;
     }
 
-    timerCounter++;
+    /* 점멸 */
+    LED_outputColor = (timer_ms < p->on_ms) ? p->color : en__LED_BLACK;
 
-    if (timerCounter >= PatternTime_ms)  //
+    timer_ms++;
+    if (timer_ms >= p->period_ms)
     {
-        timerCounter = 0;
-    }
-}
-
-void sitimulationOutputOnLED_batteryLow(bool resetTimerCounter)
-{
-    const int PatternTime_ms = 1000;
-    const int onTime_ms      = 200;
-
-    static int timerCounter = 0;
-
-    if (resetTimerCounter)
-    {
-        timerCounter = 0;
-    }
-
-    if (timerCounter < onTime_ms)
-    {
-        LED_outputColor = en__LED_ORANGE;
-    }
-    else
-    {
-        LED_outputColor = en__LED_BLACK;
-    }
-
-    timerCounter++;
-
-    if (timerCounter >= PatternTime_ms)  //
-    {
-        timerCounter = 0;
-    }
-}
-
-void mappingConnected_ISD_connected_OutputOnLED_batteryNormal(bool resetTimerCounter)
-{
-    const int PatternTime_ms = 1000;
-    const int onTime_ms      = 200;
-
-    static int timerCounter = 0;
-
-    if (resetTimerCounter)
-    {
-        timerCounter = 0;
-    }
-
-    if (timerCounter < onTime_ms)
-    {
-        LED_outputColor = en__LED_BLUE;
-    }
-    else
-    {
-        LED_outputColor = en__LED_BLACK;
-    }
-
-    timerCounter++;
-
-    if (timerCounter >= PatternTime_ms)  //
-    {
-        timerCounter = 0;
-    }
-}
-void mappingConnected_ISD_connected_OutputOnLED_batteryLow(bool resetTimerCounter)
-{
-    const int PatternTime_ms = 1000;
-    const int onTime_ms      = 100;
-
-    static int timerCounter = 0;
-
-    if (resetTimerCounter)
-    {
-        timerCounter = 0;
-    }
-
-    if (timerCounter < onTime_ms)
-    {
-        LED_outputColor = en__LED_PURPLE;
-    }
-    else
-    {
-        LED_outputColor = en__LED_BLACK;
-    }
-
-    timerCounter++;
-
-    if (timerCounter >= PatternTime_ms)  //
-    {
-        timerCounter = 0;
-    }
-}
-
-void mappingConnected_ISD_Unconnected_OutputOnLED_batteryNormal(void)
-{
-    LED_outputColor = en__LED_BLUE;
-}
-void mappingConnected_ISD_Unconnected_OutputOnLED_batteryLow(void)
-{
-    LED_outputColor = en__LED_PURPLE;
-}
-
-void batteryChargingLevelLED_veryLow(bool resetTimerCounter)
-{
-    const int PatternTime_ms = 200;
-    const int onTime_ms      = 20;
-
-    static int timerCounter = 0;
-
-    if (resetTimerCounter)
-    {
-        timerCounter = 0;
-    }
-
-    if (timerCounter < onTime_ms)
-    {
-        LED_outputColor = en__LED_WHITE;
-    }
-    else
-    {
-        LED_outputColor = en__LED_BLACK;
-    }
-
-    timerCounter++;
-
-    if (timerCounter >= PatternTime_ms)  //
-    {
-        timerCounter = 0;
-    }
-}
-
-void batteryChargingLevelLED_0btw20(bool resetTimerCounter)
-{
-    const int longPatternOffTime_ms = 4000;
-    const int shortPatternTime_ms   = 500;
-    const int onTime_ms             = 160;
-
-    const int shortPatternOutput_Nums = 1;
-
-    static int shortTimerCounter  = 0;
-    static int longtimeCounter    = 0;
-    static int outputCycleCounter = 0;
-
-    if (resetTimerCounter)
-    {
-        shortTimerCounter = 0;
-    }
-
-    if (shortTimerCounter < onTime_ms)
-    {
-        LED_outputColor = en__LED_WHITE;
-    }
-    else
-    {
-        LED_outputColor = en__LED_BLACK;
-    }
-
-    shortTimerCounter++;
-    longtimeCounter++;
-
-    if (shortTimerCounter == shortPatternTime_ms)  //
-    {
-        outputCycleCounter++;
-
-        if (outputCycleCounter != shortPatternOutput_Nums)
+        timer_ms = 0;
+        if (p->burst_cnt > 0)
         {
-            shortTimerCounter = 0;
+            burst_done_cnt++;
+            if (burst_done_cnt >= p->burst_cnt)
+            {
+                /* 게이트 자가 해제: 기존 관례 유지 */
+                updateLED_OutputPattern(en__LED_NA);
+                s_req[LED_SRC_POWER]       = LED_ST_NONE;
+                s_power_burst_in_progress  = false;
+                burst_done_cnt             = 0;
+            }
+        }
+    }
+    else
+    {
+        if (p->burst_cnt > 0)
+        {
+            s_power_burst_in_progress = true;
+        }
+    }
+}
+
+/* ========================================================================
+ *  Arbiter tick -- 매 iteration 호출 (Rev.3 SS3.5)
+ * ======================================================================== */
+
+void led_arbiter_tick(void)
+{
+    bool user_off = (readLED_indicatorOnOff() == 2);
+
+    /* PAIR latch 처리: 해제 요청이 와도 latch 동안 유지 */
+    if (s_req[LED_SRC_BLE_IND] != LED_ST_PAIR
+        && ci_timer_get_tick() < s_pair_latch_until_tick)
+    {
+        s_req[LED_SRC_BLE_IND] = LED_ST_PAIR;
+    }
+
+    led_state_t best  = LED_ST_IDLE;
+    int         max_p = -1;
+
+    for (int src = 0; src < LED_SRC__MAX; ++src)
+    {
+        led_state_t st = s_req[src];
+        int         p  = led_prio_of(st);
+
+        /* 사용자 LED off: ERROR / POWER_ON / POWER_OFF 외 전부 억제 */
+        if (user_off && !led_is_error(st)
+            && st != LED_ST_POWER_ON && st != LED_ST_POWER_OFF)
+        {
+            continue;
+        }
+
+        if (p > max_p)
+        {
+            max_p = p;
+            best  = st;
         }
     }
 
-    if (longtimeCounter == longPatternOffTime_ms)
-    {
-        shortTimerCounter  = 0;
-        longtimeCounter    = 0;
-        outputCycleCounter = 0;
-    }
+    /* Legacy pattern 업데이트 (게이트 호환) */
+    EN__LED_PATTERN legacy = led_state_to_enum(best);
+    updateLED_OutputPattern(legacy);
+
+    /* 패턴 엔진 구동 */
+    static led_state_t prev_best = LED_ST_NONE;
+    bool reset = (prev_best != best);
+    prev_best  = best;
+
+    led_engine_run(best, reset);
+
+    /* GPIO 출력 */
+    LED_OUT();
 }
 
-void batteryChargingLevelLED_20btw40(bool resetTimerCounter)
+/* ========================================================================
+ *  LedPatternOut -- Legacy 래퍼 (직접 호출 시 하위 호환)
+ * ======================================================================== */
+
+void LedPatternOut(EN__LED_PATTERN ledOutputPattern)
 {
-    const int longPatternOffTime_ms = 4000;
-    const int shortPatternTime_ms   = 500;
-    const int onTime_ms             = 160;
-
-    const int shortPatternOutput_Nums = 2;
-
-    static int shortTimerCounter  = 0;
-    static int longtimeCounter    = 0;
-    static int outputCycleCounter = 0;
-
-    if (resetTimerCounter)
-    {
-        shortTimerCounter = 0;
-    }
-
-    if (shortTimerCounter < onTime_ms)
-    {
-        LED_outputColor = en__LED_WHITE;
-    }
-    else
-    {
-        LED_outputColor = en__LED_BLACK;
-    }
-
-    shortTimerCounter++;
-    longtimeCounter++;
-
-    if (shortTimerCounter == shortPatternTime_ms)  //
-    {
-        outputCycleCounter++;
-
-        if (outputCycleCounter != shortPatternOutput_Nums)
-        {
-            shortTimerCounter = 0;
-        }
-    }
-
-    if (longtimeCounter == longPatternOffTime_ms)
-    {
-        shortTimerCounter  = 0;
-        longtimeCounter    = 0;
-        outputCycleCounter = 0;
-    }
+    /* 새 아키텍처에서는 led_arbiter_tick()이 모든 처리를 담당.
+     * 이 함수는 기존 호출 지점 호환을 위해 남겨둔 빈 래퍼.
+     * LED 출력은 led_arbiter_tick() 내에서 이루어진다. */
+    (void) ledOutputPattern;
 }
 
-void batteryChargingLevelLED_40btw60(bool resetTimerCounter)
-{
-    const int longPatternOffTime_ms = 4000;
-    const int shortPatternTime_ms   = 500;
-    const int onTime_ms             = 160;
-
-    const int shortPatternOutput_Nums = 3;
-
-    static int shortTimerCounter  = 0;
-    static int longtimeCounter    = 0;
-    static int outputCycleCounter = 0;
-
-    if (resetTimerCounter)
-    {
-        shortTimerCounter = 0;
-    }
-
-    if (shortTimerCounter < onTime_ms)
-    {
-        LED_outputColor = en__LED_WHITE;
-    }
-    else
-    {
-        LED_outputColor = en__LED_BLACK;
-    }
-
-    shortTimerCounter++;
-    longtimeCounter++;
-
-    if (shortTimerCounter == shortPatternTime_ms)  //
-    {
-        outputCycleCounter++;
-
-        if (outputCycleCounter != shortPatternOutput_Nums)
-        {
-            shortTimerCounter = 0;
-        }
-    }
-
-    if (longtimeCounter == longPatternOffTime_ms)
-    {
-        shortTimerCounter  = 0;
-        longtimeCounter    = 0;
-        outputCycleCounter = 0;
-    }
-}
-
-void batteryChargingLevelLED_60btw80(bool resetTimerCounter)
-{
-    const int longPatternOffTime_ms = 4000;
-    const int shortPatternTime_ms   = 500;
-    const int onTime_ms             = 160;
-
-    const int shortPatternOutput_Nums = 4;
-
-    static int shortTimerCounter  = 0;
-    static int longtimeCounter    = 0;
-    static int outputCycleCounter = 0;
-
-    if (resetTimerCounter)
-    {
-        shortTimerCounter = 0;
-    }
-
-    if (shortTimerCounter < onTime_ms)
-    {
-        LED_outputColor = en__LED_WHITE;
-    }
-    else
-    {
-        LED_outputColor = en__LED_BLACK;
-    }
-
-    shortTimerCounter++;
-    longtimeCounter++;
-
-    if (shortTimerCounter == shortPatternTime_ms)  //
-    {
-        outputCycleCounter++;
-
-        if (outputCycleCounter != shortPatternOutput_Nums)
-        {
-            shortTimerCounter = 0;
-        }
-    }
-
-    if (longtimeCounter == longPatternOffTime_ms)
-    {
-        shortTimerCounter  = 0;
-        longtimeCounter    = 0;
-        outputCycleCounter = 0;
-    }
-}
-
-void batteryChargingLevelLED_80btw100(bool resetTimerCounter)
-{
-    const int longPatternOffTime_ms = 4000;
-    const int shortPatternTime_ms   = 500;
-    const int onTime_ms             = 160;
-
-    const int shortPatternOutput_Nums = 5;
-
-    static int shortTimerCounter  = 0;
-    static int longtimeCounter    = 0;
-    static int outputCycleCounter = 0;
-
-    if (resetTimerCounter)
-    {
-        shortTimerCounter = 0;
-    }
-
-    if (shortTimerCounter < onTime_ms)
-    {
-        LED_outputColor = en__LED_WHITE;
-    }
-    else
-    {
-        LED_outputColor = en__LED_BLACK;
-    }
-
-    shortTimerCounter++;
-    longtimeCounter++;
-
-    if (shortTimerCounter == shortPatternTime_ms)  //
-    {
-        outputCycleCounter++;
-
-        if (outputCycleCounter != shortPatternOutput_Nums)
-        {
-            shortTimerCounter = 0;
-        }
-    }
-
-    if (longtimeCounter == longPatternOffTime_ms)
-    {
-        shortTimerCounter  = 0;
-        longtimeCounter    = 0;
-        outputCycleCounter = 0;
-    }
-}
-
-void batteryChargingLevelLED_Full(bool resetTimerCounter)
-{
-    LED_outputColor = en__LED_WHITE;
-}
-
-void LED_Map_error(bool resetTimerCounter)
-{
-    const int PatternTime_ms = 500;
-    const int onTime_ms      = 100;
-
-    static int timerCounter       = 0;
-    static int outputCycleCounter = 0;
-
-    if (resetTimerCounter)
-    {
-        timerCounter = 0;
-    }
-
-    if (timerCounter < onTime_ms)
-    {
-        LED_outputColor = en__LED_RED;
-    }
-    else
-    {
-        LED_outputColor = en__LED_BLACK;
-    }
-
-    timerCounter++;
-
-    if (timerCounter >= PatternTime_ms)  //
-    {
-        timerCounter = 0;
-    }
-}
-
-void LED_MCU_error(bool resetTimerCounter)
-{
-    const int PatternTime_ms = 1000;
-    const int onTime_ms      = 500;
-
-    static int timerCounter       = 0;
-    static int outputCycleCounter = 0;
-
-    if (resetTimerCounter)
-    {
-        timerCounter = 0;
-    }
-
-    if (timerCounter < onTime_ms)
-    {
-        LED_outputColor = en__LED_RED;
-    }
-    else
-    {
-        LED_outputColor = en__LED_BLACK;
-    }
-
-    timerCounter++;
-
-    if (timerCounter >= PatternTime_ms)  //
-    {
-        timerCounter = 0;
-    }
-}
-
-void LED_Accelerometer_error(bool resetTimerCounter)
-{
-    const int PatternTime_ms = 2000;
-    const int onTime_ms      = 500;
-
-    static int timerCounter       = 0;
-    static int outputCycleCounter = 0;
-
-    if (resetTimerCounter)
-    {
-        timerCounter = 0;
-    }
-
-    if (timerCounter < onTime_ms)
-    {
-        LED_outputColor = en__LED_RED;
-    }
-    else
-    {
-        LED_outputColor = en__LED_BLACK;
-    }
-
-    timerCounter++;
-
-    if (timerCounter >= PatternTime_ms)  //
-    {
-        timerCounter = 0;
-    }
-}
-
-void LED_FPGA_error(bool resetTimerCounter)
-{
-    const int PatternTime_ms = 1000;
-    const int onTime_ms      = 500;
-
-    static int timerCounter       = 0;
-    static int outputCycleCounter = 0;
-
-    if (resetTimerCounter)
-    {
-        timerCounter = 0;
-    }
-
-    if (timerCounter < onTime_ms)
-    {
-        LED_outputColor = en__LED_BLUE;
-    }
-    else
-    {
-        LED_outputColor = en__LED_BLACK;
-    }
-
-    timerCounter++;
-
-    if (timerCounter >= PatternTime_ms)  //
-    {
-        timerCounter = 0;
-    }
-}
-
-void LED_RF_PMIC_error(bool resetTimerCounter)
-{
-    const int PatternTime_ms = 1000;
-    const int onTime_ms      = 500;
-
-    static int timerCounter       = 0;
-    static int outputCycleCounter = 0;
-
-    if (resetTimerCounter)
-    {
-        timerCounter = 0;
-    }
-
-    if (timerCounter < onTime_ms)
-    {
-        LED_outputColor = en__LED_PURPLE;
-    }
-    else
-    {
-        LED_outputColor = en__LED_BLACK;
-    }
-
-    timerCounter++;
-
-    if (timerCounter >= PatternTime_ms)  //
-    {
-        timerCounter = 0;
-    }
-}
+/* ========================================================================
+ *  Direct color / utility (기존 유지)
+ * ======================================================================== */
 
 void LED_black(void)
 {
@@ -763,8 +407,6 @@ void turnOffLED(void)
 
 void turnON_RedLED(void)
 {
-    // LED_outputColor=en__LED_RED;
-
 #if defined(LED_IS_ACTIVELOW)
 #if defined(LED_B_pin_CFX_test)
     Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_R);
@@ -784,8 +426,6 @@ void turnON_RedLED(void)
 
 void turnON_GreenLED(void)
 {
-    // LED_outputColor=en__LED_GREEN;
-
 #if defined(LED_IS_ACTIVELOW)
 #if defined(LED_B_pin_CFX_test)
     Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_R);
@@ -805,8 +445,6 @@ void turnON_GreenLED(void)
 
 void turnON_BlueLED(void)
 {
-    // LED_outputColor=en__LED_BLUE;
-
 #if defined(LED_IS_ACTIVELOW)
 #if defined(LED_B_pin_CFX_test)
     Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_R);
@@ -823,6 +461,10 @@ void turnON_BlueLED(void)
     Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_B);
 #endif
 }
+
+/* ========================================================================
+ *  LED_OUT -- GPIO 출력 (기존 그대로 유지)
+ * ======================================================================== */
 
 #if defined(LED_IS_ACTIVELOW)
 
@@ -1155,214 +797,3 @@ void LED_OUT(void)
 }
 
 #endif
-
-void LedPatternOut(EN__LED_PATTERN ledOutputPattern)
-{
-    static EN__LED_PATTERN prev_ledOutputPattern = en__LED_NA;
-
-    bool resetTimerEnable = false;
-
-    updateLED_OutputPattern(ledOutputPattern);
-
-    if (prev_ledOutputPattern != ledOutputPattern)
-    {
-        resetTimerEnable = true;
-    }
-
-    prev_ledOutputPattern = ledOutputPattern;
-
-    switch (ledOutputPattern)
-    {
-        case en__LED_Map_Error:
-            LED_Map_error(resetTimerEnable);
-            break;
-
-        case en__LED_MCU_Error:
-            LED_MCU_error(resetTimerEnable);
-            break;
-
-        case en__LED_MCU_Accelerometer_Error:
-            LED_Accelerometer_error(resetTimerEnable);
-            break;
-
-        case en__LED_MCU_FPGA_Error:
-            LED_FPGA_error(resetTimerEnable);
-            break;
-
-        case en__LED_MCU_RF_PMIC_Error:
-            LED_RF_PMIC_error(resetTimerEnable);
-            break;
-
-        case en__LED_POWER_On:
-            Led_powerOn(resetTimerEnable);
-            break;
-
-        case en__LED_POWER_Off:
-            Led_powerOff(resetTimerEnable);
-            break;
-
-#if 1  // 내부기 연결 안되면 깜빡이고, 연결되면 켜져있게 변경 (1==기존, 0==LED 변경)
-
-            // 연결된 상태
-        case en__LED_ISD_StimulationOut_batteryNormal:
-        {
-            if (2 == readLED_indicatorOnOff())
-            {
-                LED_black();
-            }
-            else
-            {
-                sitimulationOutputOnLED_batteryNormal(resetTimerEnable);
-            }
-        }
-        break;
-
-        case en__LED_ISD_StimulationOut_batteryLow:
-        {
-            if (2 == readLED_indicatorOnOff())
-            {
-                LED_black();
-            }
-            else
-            {
-                sitimulationOutputOnLED_batteryLow(resetTimerEnable);
-            }
-        }
-        break;
-
-        // 스텐바이
-        case en__LED_StandbyForconneded_ISD_batteryNormal:
-        {
-            // 내부기와 연결이 되지 않은 상태에서는 사용자 설정값을 읽어 올 수 없는 상태이며,
-            // 연결이 되지 않은 상태는 표시를 해주는 것이 맞을 듯 한다.
-            standby_isdNotConnectedLED_batteryNormal();
-        }
-        break;
-
-        case en__LED_StandbyForconneded_ISD_batteryLow:
-        {
-            if (2 == readLED_indicatorOnOff())
-            {
-                LED_black();
-            }
-            else
-            {
-                standby_isdNotConnectedLED_batteryLow();
-            }
-        }
-        break;
-#else
-            // 연결된 상태
-        case en__LED_ISD_StimulationOut_batteryNormal:
-        {
-            if (2 == readLED_indicatorOnOff())
-            {
-                LED_black();
-            }
-            else
-            {
-                standby_isdNotConnectedLED_batteryNormal();
-            }
-        }
-        break;
-
-        case en__LED_ISD_StimulationOut_batteryLow:
-        {
-            if (2 == readLED_indicatorOnOff())
-            {
-                LED_black();
-            }
-            else
-            {
-                standby_isdNotConnectedLED_batteryLow();
-            }
-        }
-        break;
-
-        // 스텐바이
-        case en__LED_StandbyForconneded_ISD_batteryNormal:
-        {
-            // 내부기와 연결이 되지 않은 상태에서는 사용자 설정값을 읽어 올 수 없는 상태이며,
-            // 연결이 되지 않은 상태는 표시를 해주는 것이 맞을 듯 한다.
-            if (2 == readLED_indicatorOnOff())
-            {
-                LED_black();
-            }
-            else
-            {
-                sitimulationOutputOnLED_batteryNormal(resetTimerEnable);
-            }
-        }
-        break;
-
-        case en__LED_StandbyForconneded_ISD_batteryLow:
-        {
-            if (2 == readLED_indicatorOnOff())
-            {
-                LED_black();
-            }
-            else
-            {
-                sitimulationOutputOnLED_batteryLow(resetTimerEnable);
-            }
-        }
-        break;
-#endif
-            ///
-
-        case en__LED_MappingConneted_ISD_Connected_BatteryNormal:
-            mappingConnected_ISD_connected_OutputOnLED_batteryNormal(resetTimerEnable);  // 기존
-            // mappingConnected_ISD_Unconnected_OutputOnLED_batteryNormal();  // 내부기 없으면 깜빡이게 변경
-            break;
-
-        case en__LED_MappingConneted_ISD_Connected_BatteryLow:
-            mappingConnected_ISD_connected_OutputOnLED_batteryLow(resetTimerEnable);  // 기존
-            // mappingConnected_ISD_Unconnected_OutputOnLED_batteryLow();  // 내부기 없으면 깜빡이게 변경
-            break;
-
-        case en__LED_MappingConneted_ISD_Unconnected_BatteryNormal:
-            mappingConnected_ISD_Unconnected_OutputOnLED_batteryNormal();  // 기존
-            // mappingConnected_ISD_connected_OutputOnLED_batteryNormal(resetTimerEnable);  // 내부기 없으면 깜빡이게 변경
-            break;
-
-        case en__LED_MappingConneted_ISD_Unconnected_BatteryLow:
-            mappingConnected_ISD_Unconnected_OutputOnLED_batteryLow();  // 기존
-            // mappingConnected_ISD_connected_OutputOnLED_batteryLow(resetTimerEnable);  // 내부기 없으면 깜빡이게 변경
-            break;
-
-        case en__LED_BatteryChargingLevel_0per:
-            batteryChargingLevelLED_veryLow(resetTimerEnable);
-            break;
-
-        case en__LED_BatteryChargingLevel_0btw20:
-            batteryChargingLevelLED_0btw20(resetTimerEnable);
-            break;
-
-        case en__LED_BatteryChargingLevel_20btw40:
-            batteryChargingLevelLED_20btw40(resetTimerEnable);
-            break;
-
-        case en__LED_BatteryChargingLevel_40btw60:
-            batteryChargingLevelLED_40btw60(resetTimerEnable);
-            break;
-
-        case en__LED_BatteryChargingLevel_60btw80:
-            batteryChargingLevelLED_60btw80(resetTimerEnable);
-            break;
-
-        case en__LED_BatteryChargingLevel_80btw100:
-            batteryChargingLevelLED_80btw100(resetTimerEnable);
-            break;
-
-        case en__LED_BatteryChargingLevel_100per:
-            batteryChargingLevelLED_Full(resetTimerEnable);
-            break;
-
-        case en__LED_NA:
-        default:
-            LED_black();
-            break;
-    }
-
-    LED_OUT();
-}
