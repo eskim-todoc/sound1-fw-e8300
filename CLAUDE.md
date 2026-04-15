@@ -38,11 +38,12 @@ Sound1/
 
 예시:
 ```
-[1.5세대] SRS-FW-TD20B 소프트웨어 요구사항 사양서 Rev.1 by 김은수.xlsx
-[1.5세대] SDP-FW-TD20B 소프트웨어 개발 계획서 Rev.1 by 김은수.docx
+[1.5세대] SRS-FW-TD20B 소프트웨어 요구사항 사양서 Rev.1 by 김은수.md
+[1.5세대] SDP-FW-TD20B 소프트웨어 개발 계획서 Rev.1 by 김은수.md
+[분석] LED 운용 방식 분석 및 수정 방향 Rev.4 by 김은수.md
 ```
 
-회사 문서 코드 체계 (SDP, SCMP, SCCP, SRMP, SPRP, SMP, SR, SRS, SAD, SDDD, SIP, SITC, SSTC, SUVC, SVVR, SRRH 등)는 루트 CLAUDE.md 참조.
+문서 기본 포멧은 Markdown (`.md`). 회사 공유폴더로 전달 시점에 `.docx`/`.xlsx` 변환 요청 가능. 자세한 규칙과 prefix 목록(`[분석]`, `[상세설계]`, `[테스트]` 포함)은 루트 `CLAUDE.md` 참조.
 
 ## 외부 의존 문서 (본인이 작성하지 않음)
 다른 담당자가 작성해서 가져오는 참고 문서:
