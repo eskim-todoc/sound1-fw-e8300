@@ -3,10 +3,18 @@
 E8300 임베디드 펌웨어 프로젝트.
 
 ## 메타
-- Repository: todoc-dev/sound1-fw-e8300
-- Main branch: Develop
+- Repository (`origin`, 본인): `eskim-todoc/sound1-fw-e8300` (평소 push 대상)
+- Repository (`upstream`, 원본): `todoc-dev/sound1-fw-e8300` (PR 기여 대상)
+- Main branch: `claude_main` (origin 기준, 일상 작업 베이스) · `Develop` (upstream 동기화용 baseline)
 - 작업 브랜치 규칙: `claude_<설명>` (루트 `E:\Claude\CLAUDE.md` 참조)
 - 담당 범위: SW/펌웨어 코드 + 문서 작성
+
+## 원본 기여 흐름 (Fork-and-PR)
+본인 저장소(`origin`)를 중간 단계로 사용. upstream 직접 push 권한 제한 대응.
+
+- 일상 작업: `claude_<설명>` 브랜치 → `claude_main` 머지 → `git push origin claude_main`
+- upstream 변경 받아오기: `git fetch upstream && git checkout Develop && git merge upstream/Develop && git push origin Develop`
+- 원본 기여: GitHub 웹에서 `eskim-todoc/sound1-fw-e8300:claude_main` → `todoc-dev/sound1-fw-e8300:Develop` cross-repo PR 생성 (빈 repo로 만든 저장소라 공식 fork 관계는 없지만 공통 커밋 조상이 있어 PR 가능)
 
 ## Layout
 
