@@ -1,8 +1,12 @@
-# 2__cm3 LED 운용 분석 및 수정 방향 (Rev.3, 구현 착수본)
+# 2__cm3 LED 운용 분석 및 수정 방향 (Rev.4, 구현 착수본)
 
 작성자: 김은수
-작성일: 2026-04-14
+작성일: 2026-04-15
 상태: **구현 착수 확정본**. 열린 이슈는 자체 검증 후 모두 결정으로 반영.
+
+Rev.4 변경점:
+- Rev.3 오류 정정: `LED_ST_IN_USE` 색상 `en__LED_GREEN` → `en__LED_WHITE` (스펙 `led_ind_state.JPG`의 "사용 중(내부기 연결됨, 착용 상태)" 흰색 지속과 정합).
+- 우선순위 표 IN_USE 항목 "녹색 지속" → "흰색 지속".
 
 근거 코드/문서:
 - `src/2__cm3/Cortex-M3-src/systemControl/LedOutput.{c,h}`
