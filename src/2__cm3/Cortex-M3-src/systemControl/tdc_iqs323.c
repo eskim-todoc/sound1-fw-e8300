@@ -566,7 +566,7 @@ bool tdc_iqs323_get_touch_state(int *p_state)
  *
  * 보상값 확인 방법: TDC_IQS323_ATI_DUMP_ENABLE 1로 설정 후 빌드 → RTT 로그 확인
  */
-#define TDC_IQS323_ATI_DUMP_ENABLE 0  /* 1: RE-ATI 실행 후 보상값 로그 출력 (개발용) */
+#define TDC_IQS323_ATI_DUMP_ENABLE 1  /* 1: RE-ATI 실행 후 보상값 로그 출력 (개발용) */
 
 /* 사전 측정된 Sensor 0 ATI 보상값 (고정 상수) */
 #define TDC_IQS323_ATI_SETUP_LSB 0x84  /* ATI Resolution Factor + ATI Band + ATI Mode */
@@ -648,7 +648,32 @@ void tdc_iqs323_init(void)
     ci_printd("[TOUCH] MCLR HARD RESET \r\n");
     mclr_reset();
 
-    /* 2) Reset Event SET 상태 → ATI 중에도 통신 가능 → 바로 설정 진행 */
+#if TDC_IQS323_ATI_DUMP_ENABLE
+    /*
+     * [덤프 모드] Auto-ATI 완료 대기 → ACK → 설정 → RE-ATI → 덤프.
+     * Auto-ATI 실행 중에 센서 설정을 변경하면 ATI 엔진이 꼬이므로,
+     * 덤프 모드에서는 Auto-ATI가 끝난 후 설정 → RE-ATI 순서를 따른다.
+     * 1회 실행용이므로 시간은 무관.
+     */
+    ci_printd("[TOUCH] WAIT AUTO-ATI DONE (DUMP MODE) \r\n");
+    if (!wait_auto_ati_done())
+    {
+        ci_printw("[TOUCH] WARN: AUTO-ATI TIMEOUT \r\n");
+    }
+
+    SYS_WATCHDOG_REFRESH();
+
+    ci_printd("[TOUCH] ACK RESET EVENT \r\n");
+    if (!ack_reset_event())
+    {
+        ci_printe("[TOUCH] FAIL: ACK RESET EVENT \r\n");
+    }
+
+    ci_printd("[TOUCH] CONFIRM RESET EVENT \r\n");
+    if (!confirm_reset_event())
+    {
+        ci_printe("[TOUCH] FAIL: CONFIRM RESET EVENT \r\n");
+    }
 
     ci_printd("[TOUCH] SENSOR SETUP \r\n");
     if (!sensor_setup())
@@ -670,23 +695,6 @@ void tdc_iqs323_init(void)
 
     SYS_WATCHDOG_REFRESH();
 
-    /* 3) ACK Reset → Reset Event 클리어 */
-    ci_printd("[TOUCH] ACK RESET EVENT \r\n");
-    if (!ack_reset_event())
-    {
-        ci_printe("[TOUCH] FAIL: ACK RESET EVENT \r\n");
-    }
-
-    ci_printd("[TOUCH] CONFIRM RESET EVENT \r\n");
-    if (!confirm_reset_event())
-    {
-        ci_printe("[TOUCH] FAIL: CONFIRM RESET EVENT \r\n");
-    }
-
-    SYS_WATCHDOG_REFRESH();
-
-#if TDC_IQS323_ATI_DUMP_ENABLE
-    /* [덤프 모드] RE-ATI 실행 후 보상값 출력 */
     ci_printd("[TOUCH] RE-ATI TRIGGER (DUMP MODE) \r\n");
     if (!re_ati_trigger())
     {
@@ -705,8 +713,48 @@ void tdc_iqs323_init(void)
     }
 
     dump_ati_registers();
+
 #else
-    /* [운용 모드] ATI 실행 없이 고정 보상값 적용 */
+    /*
+     * [운용 모드] Auto-ATI 완료를 기다리지 않고 바로 설정 진행.
+     * Reset Event SET 동안 ATI 중에도 통신 가능 (데이터시트).
+     * ATI는 실행하지 않고 사전 측정된 보상값을 직접 쓴다.
+     */
+    ci_printd("[TOUCH] SENSOR SETUP \r\n");
+    if (!sensor_setup())
+    {
+        ci_printe("[TOUCH] FAIL: SENSOR SETUP \r\n");
+    }
+
+    ci_printd("[TOUCH] TOUCH SETTINGS \r\n");
+    if (!touch_settings())
+    {
+        ci_printe("[TOUCH] FAIL: TOUCH SETTINGS \r\n");
+    }
+
+    ci_printd("[TOUCH] EVENTS ENABLE \r\n");
+    if (!events_enable())
+    {
+        ci_printe("[TOUCH] FAIL: EVENTS ENABLE \r\n");
+    }
+
+    SYS_WATCHDOG_REFRESH();
+
+    ci_printd("[TOUCH] ACK RESET EVENT \r\n");
+    if (!ack_reset_event())
+    {
+        ci_printe("[TOUCH] FAIL: ACK RESET EVENT \r\n");
+    }
+
+    ci_printd("[TOUCH] CONFIRM RESET EVENT \r\n");
+    if (!confirm_reset_event())
+    {
+        ci_printe("[TOUCH] FAIL: CONFIRM RESET EVENT \r\n");
+    }
+
+    SYS_WATCHDOG_REFRESH();
+
+    /* ATI 실행 없이 고정 보상값 적용 */
     if (!write_ati_compensation())
     {
         ci_printe("[TOUCH] FAIL: WRITE ATI COMPENSATION \r\n");
