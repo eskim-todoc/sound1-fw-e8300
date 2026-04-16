@@ -48,9 +48,7 @@
 #include <snd_qcc.h>
 
 #ifdef ENABLE_UI_CMD
-#include "ui_cmd.h"
-#include "ui_led_cmd.h"
-#include "ui_sys_cmd.h"
+#include "tdc_ui_command.h"
 #endif
 
 void debug_led_pattern(EN__LED_PATTERN pattern);
@@ -361,9 +359,7 @@ int func_normal(void)
     snd_qcc_set_mode(SND_QCC_MODE_NORMAL);
 
 #ifdef ENABLE_UI_CMD
-    ui_cmd_init();
-    ui_led_cmd_register();
-    ui_sys_cmd_register();
+    tdc_ui_command_init();
 #endif
 
     while (1)
@@ -471,8 +467,8 @@ int func_normal(void)
                  *            부팅 초기에 노란색 LED가 잠깐 켜지는 현상이 발생한다.
                  *            따라서 RESET 상태에서는 pct 판정을 건너뛰고 IDLE로 요청한다. */
 #ifdef ENABLE_UI_CMD
-                bool ovr_batt_active = ui_sys_ovr_batt_active();
-                int  pct             = ovr_batt_active ? (int) ui_sys_ovr_batt_percent()
+                bool ovr_batt_active = tdc_ui_command_override_battery_active();
+                int  pct             = ovr_batt_active ? (int) tdc_ui_command_override_battery_percent()
                                                        : snd_batt_get_percent();
 #else
                 bool ovr_batt_active = false;
@@ -493,31 +489,42 @@ int func_normal(void)
                 else                                                            batt_st = LED_ST_BATT_MID;
 
                 prev_batt_st = batt_st;
-                led_request(LED_SRC_BATTERY, batt_st);
+#ifdef ENABLE_UI_CMD
+                if (!tdc_ui_command_is_led_override(LED_SRC_BATTERY))
+#endif
+                    led_request(LED_SRC_BATTERY, batt_st);
 
                 /* ISD (SS4.6) */
 #ifdef ENABLE_UI_CMD
-                bool isd_conn = ui_sys_ovr_isd_active() ? ui_sys_ovr_isd_value()
+                bool isd_conn = tdc_ui_command_override_isd_active() ? tdc_ui_command_override_isd_value()
                                                         : isd_state.conneded_ISD;
 #else
                 bool isd_conn = isd_state.conneded_ISD;
 #endif
-                led_request(LED_SRC_ISD, isd_conn ? LED_ST_IN_USE : LED_ST_NONE);
+#ifdef ENABLE_UI_CMD
+                if (!tdc_ui_command_is_led_override(LED_SRC_ISD))
+#endif
+                    led_request(LED_SRC_ISD, isd_conn ? LED_ST_IN_USE : LED_ST_NONE);
 
                 /* Mapping (SS4.4) */
 #ifdef ENABLE_UI_CMD
-                bool map_conn = ui_sys_ovr_map_active() ? ui_sys_ovr_map_value()
+                bool map_conn = tdc_ui_command_override_map_active() ? tdc_ui_command_override_map_value()
                                                         : BLE_communicationState.mappingConnection;
 #else
                 bool map_conn = BLE_communicationState.mappingConnection;
 #endif
-                if (map_conn)
+#ifdef ENABLE_UI_CMD
+                if (!tdc_ui_command_is_led_override(LED_SRC_MAPPING))
+#endif
                 {
-                    led_request(LED_SRC_MAPPING, isd_conn ? LED_ST_MAPPING_ISD : LED_ST_MAPPING_NO_ISD);
-                }
-                else
-                {
-                    led_request(LED_SRC_MAPPING, LED_ST_NONE);
+                    if (map_conn)
+                    {
+                        led_request(LED_SRC_MAPPING, isd_conn ? LED_ST_MAPPING_ISD : LED_ST_MAPPING_NO_ISD);
+                    }
+                    else
+                    {
+                        led_request(LED_SRC_MAPPING, LED_ST_NONE);
+                    }
                 }
             }
 
@@ -526,7 +533,7 @@ int func_normal(void)
             NRF_On_OFF(isd_state, systemState.BLE_Off, BLE_communicationState.mappingConnection, BLE_communicationState.BLE_Off_Command);
 
 #ifdef ENABLE_UI_CMD
-            ui_cmd_poll();
+            tdc_ui_command_poll();
 #else
             do
             {

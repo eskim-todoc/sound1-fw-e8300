@@ -4,7 +4,7 @@
 작성일: 2026-04-15
 상태: 구현 1차 완료. 실기 검증 대기.
 브랜치: `claude_led-rev5-impl`
-관련 계획서: [`docs/[분석] LED 운용 방식 분석 및 수정 방향 Rev.5 by 김은수.md`](./%5B%EB%B6%84%EC%84%9D%5D%20LED%20%EC%9A%B4%EC%9A%A9%20%EB%B0%A9%EC%8B%9D%20%EB%B6%84%EC%84%9D%20%EB%B0%8F%20%EC%88%98%EC%A0%95%20%EB%B0%A9%ED%96%A5%20Rev.5%20by%20%EA%B9%80%EC%9D%80%EC%88%98.md)
+관련 분석서: [`docs/[분석] LED 운용 방식.md`](./%5B%EB%B6%84%EC%84%9D%5D%20LED%20%EC%9A%B4%EC%9A%A9%20%EB%B0%A9%EC%8B%9D.md)
 
 > **표기 안내 (전체 문서 공통)**
 > - 점멸 패턴은 모두 `ON X ms / OFF Y ms` 형식으로 표기. 한 주기 = `X + Y` ms.
