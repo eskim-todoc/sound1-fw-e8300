@@ -515,20 +515,32 @@ int func_normal(void)
              * LED source requests (Rev.3)
              * =================================================== */
             {
-                /* Battery (SS4.5) -- hysteresis +/-2% */
+                /* Battery (SS4.5) -- hysteresis +/-2%
+                 * Rev.5 추가: QCC로부터 0x34(Power info) 수신 전까지는 배터리 상태가
+                 *            EN__SND_BATT_STATE_RESET 이고 percent = 0 이므로,
+                 *            pct 기반 판정(pct<10 → BATT_CRITICAL)이 그대로 적용되면
+                 *            부팅 초기에 노란색 LED가 잠깐 켜지는 현상이 발생한다.
+                 *            따라서 RESET 상태에서는 pct 판정을 건너뛰고 IDLE로 요청한다. */
 #ifdef ENABLE_UI_CMD
-                int pct = ui_sys_ovr_batt_active() ? (int) ui_sys_ovr_batt_percent()
-                                                   : snd_batt_get_percent();
+                bool ovr_batt_active = ui_sys_ovr_batt_active();
+                int  pct             = ovr_batt_active ? (int) ui_sys_ovr_batt_percent()
+                                                       : snd_batt_get_percent();
 #else
-                int pct = snd_batt_get_percent();
+                bool ovr_batt_active = false;
+                int  pct             = snd_batt_get_percent();
 #endif
                 static led_state_t prev_batt_st = LED_ST_IDLE;
                 led_state_t batt_st;
 
-                if      (pct < 10)                                              batt_st = LED_ST_BATT_CRITICAL;
+                if (!ovr_batt_active && snd_batt_get_state() == EN__SND_BATT_STATE_RESET)
+                {
+                    /* 배터리 정보 미수신: 판정 보류 */
+                    batt_st = LED_ST_IDLE;
+                }
+                else if (pct < 10)                                              batt_st = LED_ST_BATT_CRITICAL;
                 else if (pct < 12 && prev_batt_st == LED_ST_BATT_CRITICAL)      batt_st = LED_ST_BATT_CRITICAL;
-                else if (pct >= 80)                                             batt_st = LED_ST_READY;
-                else if (pct >= 78 && prev_batt_st == LED_ST_READY)             batt_st = LED_ST_READY;
+                else if (pct >= 80)                                             batt_st = LED_ST_BATT_READY;
+                else if (pct >= 78 && prev_batt_st == LED_ST_BATT_READY)        batt_st = LED_ST_BATT_READY;
                 else                                                            batt_st = LED_ST_BATT_MID;
 
                 prev_batt_st = batt_st;
