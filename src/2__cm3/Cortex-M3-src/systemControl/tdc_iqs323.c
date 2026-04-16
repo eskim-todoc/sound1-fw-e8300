@@ -560,8 +560,11 @@ bool tdc_iqs323_get_touch_state(int *p_state)
 /* **********************************************************************
  * Public API — Init
  *
- * MCLR 하드 리셋 → ACK Reset → Events Enable → Sensor Setup →
- * Touch Settings → Re-ATI → Wait Done
+ * MCLR 리셋 후 Reset Event가 SET된 상태에서 바로 설정 진행.
+ * Reset Event SET 동안에는 ATI 실행 중에도 통신 윈도우가 제공되므로
+ * Auto-ATI 완료를 기다리지 않고 센서 설정 → ACK Reset → RE-ATI 순서로 처리.
+ * Auto-ATI는 3채널 기본 설정으로 실행되지만, 센서 설정으로 1채널만 활성화한 후
+ * RE-ATI를 트리거하면 Sensor 0만 캘리브레이션하여 빠르고 안정적으로 완료됨.
  */
 void tdc_iqs323_init(void)
 {
@@ -569,17 +572,33 @@ void tdc_iqs323_init(void)
 
     SYS_WATCHDOG_REFRESH();
 
+    /* 1) MCLR 하드 리셋 → IQS323 POR, Reset Event SET, Auto-ATI 시작 */
     ci_printd("[TOUCH] MCLR HARD RESET \r\n");
     mclr_reset();
 
-    ci_printd("[TOUCH] WAIT AUTO-ATI DONE \r\n");
-    if (!wait_auto_ati_done())
+    /* 2) Reset Event SET 상태 → ATI 중에도 통신 가능 → 바로 설정 진행 */
+
+    ci_printd("[TOUCH] SENSOR SETUP \r\n");
+    if (!sensor_setup())
     {
-        ci_printw("[TOUCH] WARN: AUTO-ATI TIMEOUT (터치 중이면 정상, 이후 RE-ATI로 보정) \r\n");
+        ci_printe("[TOUCH] FAIL: SENSOR SETUP \r\n");
+    }
+
+    ci_printd("[TOUCH] TOUCH SETTINGS \r\n");
+    if (!touch_settings())
+    {
+        ci_printe("[TOUCH] FAIL: TOUCH SETTINGS \r\n");
+    }
+
+    ci_printd("[TOUCH] EVENTS ENABLE \r\n");
+    if (!events_enable())
+    {
+        ci_printe("[TOUCH] FAIL: EVENTS ENABLE \r\n");
     }
 
     SYS_WATCHDOG_REFRESH();
 
+    /* 3) ACK Reset → Reset Event 클리어 */
     ci_printd("[TOUCH] ACK RESET EVENT \r\n");
     if (!ack_reset_event())
     {
@@ -594,26 +613,7 @@ void tdc_iqs323_init(void)
 
     SYS_WATCHDOG_REFRESH();
 
-    ci_printd("[TOUCH] EVENTS ENABLE \r\n");
-    if (!events_enable())
-    {
-        ci_printe("[TOUCH] FAIL: EVENTS ENABLE \r\n");
-    }
-
-    ci_printd("[TOUCH] SENSOR SETUP \r\n");
-    if (!sensor_setup())
-    {
-        ci_printe("[TOUCH] FAIL: SENSOR SETUP \r\n");
-    }
-
-    ci_printd("[TOUCH] TOUCH SETTINGS \r\n");
-    if (!touch_settings())
-    {
-        ci_printe("[TOUCH] FAIL: TOUCH SETTINGS \r\n");
-    }
-
-    SYS_WATCHDOG_REFRESH();
-
+    /* 4) RE-ATI — Sensor 0만 활성이므로 단일 채널 캘리브레이션 */
     ci_printd("[TOUCH] RE-ATI TRIGGER \r\n");
     if (!re_ati_trigger())
     {
