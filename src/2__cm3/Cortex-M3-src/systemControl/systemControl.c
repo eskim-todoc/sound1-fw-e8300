@@ -20,6 +20,10 @@
 #include "processorDirective.h"
 #include "systemControl.h"
 
+#ifdef ENABLE_UI_CMD
+#include "tdc_ui_command.h"
+#endif
+
 #include <ci_printf.h>
 
 ST__SYSTEM_STATE systemStatus = {en__LED_NA, false, false, false, false, false};
@@ -141,6 +145,9 @@ ST__SYSTEM_STATE systemControl(EN__LED_PATTERN   current_led_pattern,  //
         && (mcuErrorCode.data_logging_error == en__NA))
     {
         /* 에러 해제 시 ERROR 소스 클리어 */
+#ifdef ENABLE_UI_CMD
+        if (!tdc_ui_command_is_led_override(LED_SRC_ERROR))
+#endif
         led_request(LED_SRC_ERROR, LED_ST_NONE);
 
         // 충전기가 꼽히면 하드웨어적으로 리셋이 된다. 따라서 가장 먼저 여기로 들어오게 된다.
@@ -351,6 +358,10 @@ ST__SYSTEM_STATE systemControl(EN__LED_PATTERN   current_led_pattern,  //
     else
     {
         /* 에러 발생 -- led_request(ERROR, ...) (Rev.3 SS4.2) */
+#ifdef ENABLE_UI_CMD
+        if (!tdc_ui_command_is_led_override(LED_SRC_ERROR))
+        {
+#endif
         led_request(LED_SRC_ERROR, LED_ST_ERROR_MCU);
         systemStatus.Led_Pattern = en__LED_MCU_Error;
 
@@ -367,6 +378,9 @@ ST__SYSTEM_STATE systemControl(EN__LED_PATTERN   current_led_pattern,  //
         {
             led_request(LED_SRC_ERROR, LED_ST_ERROR_FPGA);
         }
+#ifdef ENABLE_UI_CMD
+        }
+#endif
     }
 
     systemStatus.StimulationIndicatorTriggerLowPower = stimulationTrigger;
