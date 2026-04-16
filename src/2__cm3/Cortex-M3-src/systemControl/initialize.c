@@ -51,7 +51,7 @@
 #include "processorDirective.h"
 
 #include <driver_MAX17262.h>
-#include <driver_IQS323.h>
+#include <tdc_iqs323.h>
 
 #include <ci_dio.h>
 #include <ci_power.h>
@@ -234,168 +234,7 @@ void error_blink(void)
     }
 }
 
-bool proc_touch(int state_now)
-{
-    static int  _state_old = IQS323_TOUCH_STATE_RESET;
-    static int  _tick_first_touch;
-    static bool _is_long_touch = false;
-    int         tick_current;
-    bool        ret = false;
-
-    switch (_state_old)
-    {
-        // RESET -> TOUCH
-        // RESET -> NOT TOUCH
-        // RESET -> ATI ERROR
-        case IQS323_TOUCH_STATE_RESET:
-        {
-            if (state_now == IQS323_TOUCH_STATE_TOUCH)
-            {
-                _tick_first_touch = ci_timer_get_tick();
-            }
-            else if (state_now == IQS323_TOUCH_STATE_NOT_TOUCH)
-            {
-            }
-            else if (state_now == IQS323_TOUCH_STATE_ATI_ERROR)
-            {
-            }
-        }
-        break;
-
-        // TOUCH -> TOUCH (LONG TOUCH CHECK)
-        // TOUCH -> NOT TOUCH
-        // TOUCH -> ATI ERROR
-        case IQS323_TOUCH_STATE_TOUCH:
-        {
-            if (state_now == IQS323_TOUCH_STATE_TOUCH)
-            {
-                tick_current = ci_timer_get_tick();
-
-                if (3000 <= (tick_current - _tick_first_touch))
-                {
-                    if (_is_long_touch == false)
-                    {
-                        _is_long_touch = true;
-                        ret            = true;
-                    }
-                }
-            }
-            else if (state_now == IQS323_TOUCH_STATE_NOT_TOUCH)
-            {
-                _is_long_touch = false;
-            }
-            else if (state_now == IQS323_TOUCH_STATE_ATI_ERROR)
-            {
-            }
-        }
-        break;
-
-        // NOT TOUCH -> TOUCH
-        // NOT TOUCH -> ATI ERROR
-        case IQS323_TOUCH_STATE_NOT_TOUCH:
-        {
-            if (state_now == IQS323_TOUCH_STATE_TOUCH)
-            {
-                _tick_first_touch = ci_timer_get_tick();
-            }
-            else if (state_now == IQS323_TOUCH_STATE_ATI_ERROR)
-            {
-            }
-        }
-        break;
-
-        // ATI ERROR -> RESET
-        // ATI ERROR -> TOUCH
-        // ATI ERROR -> NOT TOUCH
-        case IQS323_TOUCH_STATE_ATI_ERROR:
-        {
-            if (state_now == IQS323_TOUCH_STATE_RESET)
-            {
-            }
-            else if (state_now == IQS323_TOUCH_STATE_TOUCH)
-            {
-            }
-            else if (state_now == IQS323_TOUCH_STATE_NOT_TOUCH)
-            {
-            }
-        }
-        break;
-
-        default:
-            break;
-    }
-
-    _state_old = state_now;  // 현재 상태로 업데이트
-
-    return ret;
-}
-
-void iqs323_init(void)
-{
-    int touch_state;
-
-    touch_state = 0;
-
-    ci_timer_init(19); /* Make around 1msec timer */
-
-    SYS_WATCHDOG_REFRESH();
-
-    // 1) reset event clear + i2c mode setting
-    // iqs323_ack_reset_event_and_i2c_event_mode_setting();
-
-    ci_printd("[TOUCH] ACK RESET EVENT \r\n");
-    iqs323_ack_reset_event();
-
-    ci_printd("[TOUCH] CONFIRM RESET EVENT \r\n");
-    iqs323_confirm_reset_event();
-
-    // 2) i2c stop bit disable
-    // iqs323_i2c_stop_bit_disable_setting();
-
-    // 3) evnets enable
-    ci_printd("[TOUCH] EVENTS ENABLE \r\n");
-    iqs323_events_enable();
-
-    // 4) sensor setup
-    ci_printd("[TOUCH] SENSOR SETUP \r\n");
-    iqs323_sensor_setup();
-
-    // 5) touch settings
-    ci_printd("[TOUCH] TOUCH SETTINGS \r\n");
-    iqs323_touch_settings();
-
-    // 6) re-ati trigger
-    ci_printd("[TOUCH] RE-ATI TRIGGER \r\n");
-    iqs323_re_ati_trigger();
-
-    {
-        int tick_old, tick_now;
-
-        tick_old = ci_timer_get_tick();
-
-        while (1)
-        {
-            tick_now = ci_timer_get_tick();
-            if (50 <= (tick_now - tick_old))
-            {
-                break;
-            }
-        }
-    }
-
-    // 7) wait re-ati done
-    ci_printd("[TOUCH] RE-ATI DONE CHECK \r\n");
-    iqs323_wait_re_ati_done();
-
-    SYS_WATCHDOG_REFRESH();
-
-    ci_printd("[TOUCH] ENTIRE SETTINGS DONE \r\n");
-
-    iqs323_update_tick(ci_timer_get_tick());
-    iqs323_update_state(IQS323_TOUCH_STATE_RESET);
-
-    ci_timer_uninit();  // not use timer anymore
-}
+/* proc_touch(), iqs323_init() → tdc_iqs323.c로 이동됨 */
 
 void Initialize(void)
 {
@@ -579,8 +418,7 @@ void Initialize(void)
     enable_interrupt();
 
     // 터치 센서 (IQS323) 초기화, 타이머 사용하기 때문에 인터럽트 활성화된 후에 동작시켜야 함
-    // 초기화 함수는 드라이버 코드에 없고, Initialize() 함수 위에 있다. 나중에 옮기자. (2026.03.11)
-    iqs323_init();
+    tdc_iqs323_init();
 
     // 초기화 과정에서 전원 버튼 (가속도 센서, 이제는 터치 센서)의 인터럽트 상태를 초기화 시킨다.
     cfx_cm3_sharedMemoryAll.systemShare.powerButton_pushed_CFX_to_CM3 = 0;

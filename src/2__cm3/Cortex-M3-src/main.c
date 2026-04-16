@@ -29,7 +29,7 @@
 
 #include "driver_REN_ISL9122.h"  //ok
 
-#include <driver_IQS323.h>
+#include <tdc_iqs323.h>
 
 #include "isd_interface_stimulationStandAlone.h"  // 신규 추가 for I2S 디버깅
 #include <isd_interface_init_FPGA.h>              // 절전 모드 진입 전 FPGA 리셋 목적
@@ -311,58 +311,7 @@ int main(void)
     }
 }
 
-bool proc_touch(int state_now);
-
-bool iqs323_proc(void)
-{
-    static bool is_touch_printed = false;
-
-    static char *print_states[4] = {
-        "    RESET",  // 0
-        "    TOUCH",  // 1
-        "NOT TOUCH",  // 2
-        "ATI ERROR"   // 3
-    };
-
-    int last_touch_state;
-    int curr_touch_state;
-
-    int last_tick;
-    int curr_tick;
-
-    last_touch_state = iqs323_get_state();
-
-    last_tick = iqs323_get_tick();
-    // curr_tick = OTE_1_5_gen_TIMER_get_tick();
-    curr_tick = ci_timer_get_tick();
-
-    // 100ms 마다 확인
-    if (100 <= (curr_tick - last_tick))
-    {
-        iqs323_update_tick(curr_tick);
-
-        // 터치 상태 읽기
-        if (iqs323_get_touch_state(&curr_touch_state))
-        {
-            if (last_touch_state != curr_touch_state)
-            {
-                ci_printv("[TOUCH] STATE: %s -> %s \r\n", print_states[last_touch_state], print_states[curr_touch_state]);
-
-                iqs323_update_state(curr_touch_state);
-            }
-        }
-
-        // 읽어온 터치 상태로 롱터치 검증
-        if (proc_touch(curr_touch_state))
-        {
-            // long touch
-            ci_printi("\r\n[TOUCH] EVENT: LONG TOUCH \r\n");
-            return true;
-        }
-    }
-
-    return false;
-}
+/* iqs323_proc() → tdc_iqs323.c의 tdc_iqs323_process()로 이동됨 */
 
 int func_normal(void)
 {
@@ -432,7 +381,7 @@ int func_normal(void)
             // powerButtonPushed = isPowerButtonPushed();
 
             batteryLevel      = snd_batt_get_level();  // 직접 측정하지 않고, QCC에서 배터리 정보 받으면 업데이트 됨
-            powerButtonPushed = iqs323_proc();         // NOTE: 터치 센서 처리하는 코드가, 드라이버 말고 main.c에 있음
+            powerButtonPushed = tdc_iqs323_process();
 
             // powerButtonPushed = false;                 // 왜 인지 특정 보드에서는 RE-ATI 에러가 발생하는 중
 
@@ -743,7 +692,7 @@ int func_sleep(void)
         // 롱-터치 이벤트가 감지되면, 터치가 해제 될 때까지 기다리도록 한다.
         if (long_touch_event_cnt == 0)
         {
-            if (iqs323_proc())
+            if (tdc_iqs323_process())
             {
                 ci_printi("[MAIN] LONG TOUCH DETECTED, WAIT RELEASE \r\n");
                 long_touch_event_cnt = 1;
@@ -752,11 +701,11 @@ int func_sleep(void)
         // 롱-터치 후 해제까지 감지되면, 그제서야 절전 모드에서 깨어나도록 한다.
         else if (long_touch_event_cnt == 1)
         {
-            int curr_touch_state = IQS323_TOUCH_STATE_TOUCH;
+            int curr_touch_state = TDC_IQS323_TOUCH_STATE_TOUCH;
 
-            if (iqs323_get_touch_state(&curr_touch_state))
+            if (tdc_iqs323_get_touch_state(&curr_touch_state))
             {
-                if (curr_touch_state == IQS323_TOUCH_STATE_NOT_TOUCH)
+                if (curr_touch_state == TDC_IQS323_TOUCH_STATE_NOT_TOUCH)
                 {
                     Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_R);
                     Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_G);
