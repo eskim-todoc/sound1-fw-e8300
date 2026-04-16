@@ -569,12 +569,12 @@ bool tdc_iqs323_get_touch_state(int *p_state)
 #define TDC_IQS323_ATI_DUMP_ENABLE 1  /* 1: RE-ATI 실행 후 보상값 로그 출력 (개발용) */
 
 /* 사전 측정된 Sensor 0 ATI 보상값 (고정 상수) */
-#define TDC_IQS323_ATI_SETUP_LSB 0x84  /* ATI Resolution Factor + ATI Band + ATI Mode */
-#define TDC_IQS323_ATI_SETUP_MSB 0x00
-#define TDC_IQS323_ATI_MULT_LSB  0x44  /* Fine/Coarse Fractional Multiplier/Divider */
-#define TDC_IQS323_ATI_MULT_MSB  0x21
-#define TDC_IQS323_ATI_COMP_LSB  0x33  /* Compensation Divider + Compensation */
-#define TDC_IQS323_ATI_COMP_MSB  0x2A
+#define TDC_IQS323_ATI_SETUP_LSB 0x0C  /* ATI Resolution Factor + ATI Band + ATI Mode */
+#define TDC_IQS323_ATI_SETUP_MSB 0x04
+#define TDC_IQS323_ATI_MULT_LSB  0x82  /* Fine/Coarse Fractional Multiplier/Divider */
+#define TDC_IQS323_ATI_MULT_MSB  0x5A
+#define TDC_IQS323_ATI_COMP_LSB  0x00  /* Compensation Divider + Compensation */
+#define TDC_IQS323_ATI_COMP_MSB  0x58
 
 static bool write_ati_compensation(void)
 {
