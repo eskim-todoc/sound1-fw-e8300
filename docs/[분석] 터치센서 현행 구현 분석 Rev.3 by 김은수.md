@@ -1,7 +1,7 @@
 # 터치센서 현행 구현 분석
 
 IQS323 터치센서 드라이버의 현재 구현 상태를 분석한 문서.
-Rev.2 — 드라이버 리팩토링 및 Auto-ATI 대기 수정 반영.
+Rev.3 — 터치 중 부팅 시 Auto-ATI 타임아웃 분석 추가.
 
 ---
 
@@ -143,6 +143,44 @@ ATI Setup/Base(`0x36`~`0x38`), Prox Threshold(`0x61`), Event Timeout(`0xD2`), Fi
 [수정 후]  MCLR → 50ms → ATI Active=0 폴링 → ACK Reset → 설정 → RE-ATI
 ```
 
+### 5.3 터치 누른 채 전원 인가 시 Auto-ATI 타임아웃
+
+**증상**: 센서를 터치한 상태에서 전원을 켜면 `wait_auto_ati_done()`이 20회 타임아웃. 그러나 이후 RE-ATI는 성공하여 **init 전체는 정상 완료**됨.
+
+**로그 분석**:
+
+```
+TRY 1~10:  LSB=0xA0, MSB=0x20  → Reset Event=1, ATI Active=1, CH2 Touch=1
+TRY 11:    LSB=0xB2, MSB=0x00  → ATI Event=1 (한 번 완료) + ATI Active=1 (즉시 Re-ATI 재실행)
+TRY 13~20: LSB=0xA0, MSB=0x0F  → ATI Active=1, CH0/CH1 Touch+Prox 감지
+→ TIMEOUT
+
+(이후 init 계속 진행)
+RE-ATI CHECK TRY 1: LSB=0x32, MSB=0x03 → ATI Event=1 → SUCCESS
+```
+
+**원인**: MCLR 리셋 직후에는 3채널 전부 기본 활성 상태. 터치를 누르고 있으면:
+
+1. Auto-ATI가 "터치 중" 상태를 기준으로 캘리브레이션
+2. ATI 완료 직후 LTA가 ATI Band를 벗어남 (터치로 인한 불안정)
+3. Auto Re-ATI가 즉시 재실행됨 → ATI Active가 0이 되지 않는 무한 루프
+
+**타임아웃 후에도 init이 성공하는 이유**:
+
+```
+wait_auto_ati_done() → TIMEOUT
+  ↓ (init 계속 진행)
+ACK Reset → sensor_setup() (Sensor 1,2 비활성화, Sensor 0만 활성)
+  ↓
+RE-ATI → Sensor 0 하나만 캘리브레이션 → 안정적으로 수렴 → SUCCESS
+```
+
+센서 설정으로 불필요한 채널을 비활성화한 후 RE-ATI를 하면 단일 채널에서 수렴 가능.
+
+**처리**: `wait_auto_ati_done()` 타임아웃을 **경고(warning)** 로 처리. 터치 중 부팅은 예상 가능한 시나리오이며, 후속 RE-ATI에서 보정됨. 데이터시트에도 "ATI 중 사용자 접촉 시 Re-ATI로 복구 가능"으로 명시.
+
+**주의**: RE-ATI가 터치 중에 수행되면 기준값이 "터치 상태"로 설정됨. 터치 해제 후 IQS323의 Auto Re-ATI가 자동으로 기준값을 보정할 때까지 일시적으로 감지가 부정확할 수 있음.
+
 ---
 
 ## 6. 하드웨어 설정
@@ -169,3 +207,4 @@ ATI Setup/Base(`0x36`~`0x38`), Prox Threshold(`0x61`), Event Timeout(`0xD2`), Fi
 | Rev.0 | 최초 현행 분석 (driver_IQS323.c/h 기준) |
 | Rev.1 | 절전 후 워치독 리셋 시 RE-ATI 타임아웃 원인 분석 추가 |
 | Rev.2 | 드라이버 리팩토링 반영 (tdc_iqs323.c/h), Auto-ATI 대기 수정 반영, Rev.0/1의 구 코드 참조 제거 |
+| Rev.3 | 터치 중 부팅 시 Auto-ATI 타임아웃 원인 분석 추가, 로그 레벨 warning으로 조정 |

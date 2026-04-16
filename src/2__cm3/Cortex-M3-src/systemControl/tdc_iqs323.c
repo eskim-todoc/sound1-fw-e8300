@@ -359,7 +359,7 @@ static bool wait_auto_ati_done(void)
         Sys_Delay(TDC_IQS323_DEFAULT_DELAY_MS * 50);  // 50ms
     }
 
-    ci_printe("[TOUCH] AUTO-ATI: TIMEOUT \r\n");
+    ci_printw("[TOUCH] AUTO-ATI: TIMEOUT (터치 중이면 정상) \r\n");
     return false;
 }
 
@@ -575,7 +575,7 @@ void tdc_iqs323_init(void)
     ci_printd("[TOUCH] WAIT AUTO-ATI DONE \r\n");
     if (!wait_auto_ati_done())
     {
-        ci_printe("[TOUCH] FAIL: WAIT AUTO-ATI DONE \r\n");
+        ci_printw("[TOUCH] WARN: AUTO-ATI TIMEOUT (터치 중이면 정상, 이후 RE-ATI로 보정) \r\n");
     }
 
     SYS_WATCHDOG_REFRESH();
