@@ -567,7 +567,7 @@ bool tdc_iqs323_get_touch_state(int *p_state)
 #define TDC_IQS323_ATI_DUMP_ENABLE 0  /* 1: RE-ATI 실행 후 보상값 로그 출력 (개발용) */
 
 /* 사전 측정된 Sensor 0 ATI 보상값 (고정 상수) */
-#define TDC_IQS323_ATI_SETUP_LSB 0x08  /* ATI Resolution Factor + ATI Band + ATI Mode=Disabled(000) */
+#define TDC_IQS323_ATI_SETUP_LSB 0x09  /* ATI Resolution Factor + ATI Band + ATI Mode=CompOnly(001) */
 #define TDC_IQS323_ATI_SETUP_MSB 0x04
 #define TDC_IQS323_ATI_MULT_LSB  0x82  /* Fine/Coarse Fractional Multiplier/Divider */
 #define TDC_IQS323_ATI_MULT_MSB  0x5A
