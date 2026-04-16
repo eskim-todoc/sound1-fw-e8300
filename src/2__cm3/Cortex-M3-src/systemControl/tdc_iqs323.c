@@ -566,8 +566,8 @@ bool tdc_iqs323_get_touch_state(int *p_state)
  */
 #define TDC_IQS323_ATI_DUMP_ENABLE 0  /* 1: RE-ATI 실행 후 보상값 로그 출력 (개발용) */
 
-/* 사전 측정된 Sensor 0 ATI 보상값 (고정 상수) */
-#define TDC_IQS323_ATI_SETUP_LSB 0x09  /* ATI Resolution Factor + ATI Band + ATI Mode=CompOnly(001) */
+/* 사전 측정된 Sensor 0 ATI 보상값 (고정 상수) — ATI Mode=Full 그대로 유지 */
+#define TDC_IQS323_ATI_SETUP_LSB 0x0C  /* ATI Resolution Factor + ATI Band=1 + ATI Mode=Full(100) */
 #define TDC_IQS323_ATI_SETUP_MSB 0x04
 #define TDC_IQS323_ATI_MULT_LSB  0x82  /* Fine/Coarse Fractional Multiplier/Divider */
 #define TDC_IQS323_ATI_MULT_MSB  0x5A
@@ -714,10 +714,32 @@ void tdc_iqs323_init(void)
 
 #else
     /*
-     * [운용 모드] Auto-ATI 완료를 기다리지 않고 바로 설정 진행.
-     * Reset Event SET 동안 ATI 중에도 통신 가능 (데이터시트).
-     * ATI는 실행하지 않고 사전 측정된 보상값을 직접 쓴다.
+     * [운용 모드] Auto-ATI 완료 대기 → 설정 → 고정 보상값 → Reseed.
+     * Auto-ATI 실행 중에 센서 설정을 변경하면 ATI 엔진이 꼬이므로,
+     * Auto-ATI 완료 후 설정을 진행한다.
+     * RE-ATI는 실행하지 않고 사전 측정된 보상값을 직접 쓴 뒤
+     * Reseed로 LTA를 현재 Counts에 맞춰 Auto Re-ATI 트리거를 방지한다.
      */
+    ci_printd("[TOUCH] WAIT AUTO-ATI DONE \r\n");
+    if (!wait_auto_ati_done())
+    {
+        ci_printw("[TOUCH] WARN: AUTO-ATI TIMEOUT \r\n");
+    }
+
+    SYS_WATCHDOG_REFRESH();
+
+    ci_printd("[TOUCH] ACK RESET EVENT \r\n");
+    if (!ack_reset_event())
+    {
+        ci_printe("[TOUCH] FAIL: ACK RESET EVENT \r\n");
+    }
+
+    ci_printd("[TOUCH] CONFIRM RESET EVENT \r\n");
+    if (!confirm_reset_event())
+    {
+        ci_printe("[TOUCH] FAIL: CONFIRM RESET EVENT \r\n");
+    }
+
     ci_printd("[TOUCH] SENSOR SETUP \r\n");
     if (!sensor_setup())
     {
@@ -738,24 +760,17 @@ void tdc_iqs323_init(void)
 
     SYS_WATCHDOG_REFRESH();
 
-    ci_printd("[TOUCH] ACK RESET EVENT \r\n");
-    if (!ack_reset_event())
-    {
-        ci_printe("[TOUCH] FAIL: ACK RESET EVENT \r\n");
-    }
-
-    ci_printd("[TOUCH] CONFIRM RESET EVENT \r\n");
-    if (!confirm_reset_event())
-    {
-        ci_printe("[TOUCH] FAIL: CONFIRM RESET EVENT \r\n");
-    }
-
-    SYS_WATCHDOG_REFRESH();
-
-    /* ATI 실행 없이 고정 보상값 적용 */
+    /* 고정 보상값 적용 */
     if (!write_ati_compensation())
     {
         ci_printe("[TOUCH] FAIL: WRITE ATI COMPENSATION \r\n");
+    }
+
+    /* Reseed — LTA를 현재 Counts로 설정하여 Auto Re-ATI 트리거 방지 */
+    ci_printd("[TOUCH] RESEED \r\n");
+    if (!write_register(TDC_IQS323_REG_ADDR_SYSTEM_CONTROL, 0x08, 0x00))  /* Bit3=Reseed */
+    {
+        ci_printe("[TOUCH] FAIL: RESEED \r\n");
     }
 #endif
 
