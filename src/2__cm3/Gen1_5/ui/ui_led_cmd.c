@@ -43,7 +43,7 @@ static const str_map_t k_src_map[] = {
 
 static const str_map_t k_state_map[] = {
     {"NONE",           LED_ST_NONE},
-    {"READY",          LED_ST_READY},
+    {"BATT_READY",     LED_ST_BATT_READY},
     {"IN_USE",         LED_ST_IN_USE},
     {"BATT_MID",       LED_ST_BATT_MID},
     {"BATT_CRITICAL",  LED_ST_BATT_CRITICAL},

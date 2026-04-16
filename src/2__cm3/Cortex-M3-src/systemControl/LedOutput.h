@@ -61,19 +61,19 @@ typedef enum
     LED_ST_IDLE,
 
     /* 운용 */
-    LED_ST_READY,
-    LED_ST_IN_USE,
-    LED_ST_BATT_MID,
-    LED_ST_BATT_CRITICAL,
+    LED_ST_BATT_READY,     /* 녹색 지속 ON */
+    LED_ST_IN_USE,         /* 흰색 지속 ON */
+    LED_ST_BATT_MID,       /* 노랑 지속 ON */
+    LED_ST_BATT_CRITICAL,  /* 노랑 ON 1100ms / OFF 1100ms 점멸 */
 
     /* Mapping */
-    LED_ST_MAPPING_NO_ISD, /* 파랑 300/300 점멸 */
+    LED_ST_MAPPING_NO_ISD, /* 파랑 ON 1100ms / OFF 1100ms 점멸 */
     LED_ST_MAPPING_ISD,    /* 파랑 지속 ON */
 
     /* BLE led_ind */
-    LED_ST_PAIR,       /* 파랑 180/180 (+500ms latch) */
-    LED_ST_OTA_QCC,    /* 녹색 1100/1100 */
-    LED_ST_OTA_EZAIRO, /* 녹색 1100/1100 */
+    LED_ST_PAIR,       /* 파랑 ON 180ms / OFF 180ms 점멸 (+500ms latch) */
+    LED_ST_OTA_QCC,    /* 녹색 ON 1100ms / OFF 1100ms 점멸 */
+    LED_ST_OTA_EZAIRO, /* 녹색 ON 180ms / OFF 180ms 점멸 */
 
     /* 에러 (색/패턴 공통 180/360 빨강) */
     LED_ST_ERROR_MAP,
@@ -100,12 +100,21 @@ typedef enum
     LED_SRC__MAX
 } led_src_t;
 
+/* LED 패턴 디스크립터.
+ *   on_ms     : 한 주기 안에서 LED가 켜져 있는 시간 (ms)
+ *   period_ms : 한 주기 전체 길이 (ms). off 시간 = period_ms - on_ms.
+ *               on_ms == 0 && period_ms == 0 인 경우 점멸 없이 "지속 ON".
+ *   burst_cnt : 0 = 무한 반복, >0 = N회 반복 후 자가 해제 (POWER_ON/POWER_OFF 게이트용).
+ *
+ * 주의: 본 구조체의 (on_ms, period_ms) 표기와, 사람이 읽는 "ON Xms / OFF Yms"
+ *       표기는 다음 관계임. period_ms = on_ms + off_ms.
+ *       예) ON 1100ms / OFF 1100ms  ↔  { on_ms=1100, period_ms=2200 } */
 typedef struct
 {
     EN__LED_COLOR color;
     uint16_t      on_ms;
-    uint16_t      period_ms; /* 0 = 지속 ON */
-    uint8_t       burst_cnt; /* 0 = 무한, >0 = N회 후 자가 해제 */
+    uint16_t      period_ms;
+    uint8_t       burst_cnt;
 } led_pattern_desc_t;
 
 /* ========================================================================
