@@ -638,7 +638,11 @@ static void dump_ati_registers(void)
  */
 void tdc_iqs323_init(void)
 {
+    int tick_init_start, tick_init_end;
+
     ci_timer_init(19); /* 약 1ms 타이머 */
+
+    tick_init_start = ci_timer_get_tick();
 
     SYS_WATCHDOG_REFRESH();
 
@@ -776,7 +780,10 @@ void tdc_iqs323_init(void)
 
     SYS_WATCHDOG_REFRESH();
 
-    ci_printd("[TOUCH] INIT DONE \r\n");
+    tick_init_end = ci_timer_get_tick();
+
+    ci_printi("[TOUCH] INIT DONE — START=%d END=%d ELAPSED=%d ms \r\n",
+             tick_init_start, tick_init_end, tick_init_end - tick_init_start);
 
     s_tdc_iqs323_tick_old        = ci_timer_get_tick();
     s_tdc_iqs323_touch_state_old = TDC_IQS323_TOUCH_STATE_RESET;
