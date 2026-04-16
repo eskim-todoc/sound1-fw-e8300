@@ -13,31 +13,36 @@
  *  Pattern Descriptor Table (Rev.3 SS3.4)
  * ======================================================================== */
 
+/* 표기 안내:
+ *   디스크립터 값 (on_ms, period_ms) ↔ 사람이 읽는 (ON, OFF) 환산:
+ *     period_ms = on_ms + off_ms
+ *   예) { on_ms=1100, period_ms=2200 }  ⇒  ON 1100ms / OFF 1100ms
+ *   각 행의 // 주석에 ON/OFF 형식으로 같이 표기. */
 static const led_pattern_desc_t k_led_patterns[LED_ST__MAX] = {
-    [LED_ST_NONE]           = { en__LED_BLACK,   0,    0,    0 },
-    [LED_ST_IDLE]           = { en__LED_BLACK,   0,    0,    0 },
+    [LED_ST_NONE]           = { en__LED_BLACK,   0,    0,    0 },  // 지속 OFF
+    [LED_ST_IDLE]           = { en__LED_BLACK,   0,    0,    0 },  // 지속 OFF
 
-    [LED_ST_READY]          = { en__LED_GREEN,   0,    0,    0 },
-    [LED_ST_IN_USE]         = { en__LED_WHITE,   0,    0,    0 },
-    [LED_ST_BATT_MID]       = { en__LED_ORANGE,  1100, 2200, 0 },
-    [LED_ST_BATT_CRITICAL]  = { en__LED_ORANGE,  180,  360,  0 },
+    [LED_ST_BATT_READY]     = { en__LED_GREEN,   0,    0,    0 },  // 녹색 지속 ON
+    [LED_ST_IN_USE]         = { en__LED_WHITE,   0,    0,    0 },  // 흰색 지속 ON
+    [LED_ST_BATT_MID]       = { en__LED_ORANGE,  0,    0,    0 },  // 노랑 지속 ON
+    [LED_ST_BATT_CRITICAL]  = { en__LED_ORANGE,  1100, 2200, 0 },  // 노랑  ON 1100ms / OFF 1100ms
 
-    [LED_ST_MAPPING_NO_ISD] = { en__LED_BLUE,   300,  600,  0 },
-    [LED_ST_MAPPING_ISD]    = { en__LED_BLUE,    0,    0,    0 },
+    [LED_ST_MAPPING_NO_ISD] = { en__LED_BLUE,   1100, 2200, 0 },   // 파랑  ON 1100ms / OFF 1100ms
+    [LED_ST_MAPPING_ISD]    = { en__LED_BLUE,    0,    0,    0 },  // 파랑 지속 ON
 
-    [LED_ST_PAIR]           = { en__LED_BLUE,   180,  360,  0 },
-    [LED_ST_OTA_QCC]        = { en__LED_GREEN,  1100, 2200, 0 },
-    [LED_ST_OTA_EZAIRO]     = { en__LED_GREEN,  1100, 2200, 0 },
+    [LED_ST_PAIR]           = { en__LED_BLUE,   180,  360,  0 },   // 파랑  ON 180ms  / OFF 180ms
+    [LED_ST_OTA_QCC]        = { en__LED_GREEN,  1100, 2200, 0 },   // 녹색  ON 1100ms / OFF 1100ms
+    [LED_ST_OTA_EZAIRO]     = { en__LED_GREEN,  180,  360,  0 },   // 녹색  ON 180ms  / OFF 180ms
 
-    [LED_ST_ERROR_MAP]      = { en__LED_RED,    180,  360,  0 },
-    [LED_ST_ERROR_MCU]      = { en__LED_RED,    180,  360,  0 },
-    [LED_ST_ERROR_ACCEL]    = { en__LED_RED,    180,  360,  0 },
-    [LED_ST_ERROR_FPGA]     = { en__LED_RED,    180,  360,  0 },
-    [LED_ST_ERROR_PMIC]     = { en__LED_RED,    180,  360,  0 },
+    [LED_ST_ERROR_MAP]      = { en__LED_RED,    180,  360,  0 },   // 빨강  ON 180ms  / OFF 180ms
+    [LED_ST_ERROR_MCU]      = { en__LED_RED,    180,  360,  0 },   // 빨강  ON 180ms  / OFF 180ms
+    [LED_ST_ERROR_ACCEL]    = { en__LED_RED,    180,  360,  0 },   // 빨강  ON 180ms  / OFF 180ms
+    [LED_ST_ERROR_FPGA]     = { en__LED_RED,    180,  360,  0 },   // 빨강  ON 180ms  / OFF 180ms
+    [LED_ST_ERROR_PMIC]     = { en__LED_RED,    180,  360,  0 },   // 빨강  ON 180ms  / OFF 180ms
 
     /* 게이트 -- 출하 검증값 유지 */
-    [LED_ST_POWER_ON]       = { en__LED_SKYBLUE, 80,  300,  5 },
-    [LED_ST_POWER_OFF]      = { en__LED_BLUE,   100,  300,  4 },
+    [LED_ST_POWER_ON]       = { en__LED_SKYBLUE, 80,  300,  5 },   // SKYBLUE ON 80ms  / OFF 220ms × 5회 버스트
+    [LED_ST_POWER_OFF]      = { en__LED_BLUE,   100,  300,  4 },   // BLUE    ON 100ms / OFF 200ms × 4회 버스트
 };
 
 /* ========================================================================
@@ -69,7 +74,7 @@ static int led_prio_of(led_state_t st)
 
         case LED_ST_IN_USE:         return 40;
 
-        case LED_ST_READY:          return 30;
+        case LED_ST_BATT_READY:     return 30;
 
         case LED_ST_BATT_MID:       return 20;
 

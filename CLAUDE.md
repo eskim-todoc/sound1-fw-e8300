@@ -5,8 +5,8 @@ E8300 임베디드 펌웨어 프로젝트.
 ## 메타
 - Repository (`origin`, 본인): `eskim-todoc/sound1-fw-e8300` (평소 push 대상)
 - Repository (`upstream`, 원본): `todoc-dev/sound1-fw-e8300` (PR 기여 대상)
+- Git Workflow: 루트 `E:\Claude\CLAUDE.md`의 **Git Workflow (전역 규칙)** 참조
 - Main branch: `claude_main` (origin 기준, 일상 작업 베이스) · `Develop` (upstream 동기화용 baseline)
-- 작업 브랜치 규칙: `claude_<설명>` (루트 `E:\Claude\CLAUDE.md` 참조)
 - 담당 범위: SW/펌웨어 코드 + 문서 작성
 
 ## 원본 기여 흐름 (Fork-and-PR)
@@ -35,6 +35,9 @@ Sound1/
 ├── tests/          단위 · 통합 테스트 (초기: 빈 폴더)
 └── docs/           SW 문서 (초기: 빈 폴더)
 ```
+
+## 네이밍 컨벤션
+루트 `E:\Claude\CLAUDE.md`의 **네이밍 컨벤션** 참조 ([`docs/naming-convention.md`](../../docs/naming-convention.md)).
 
 ## 문서 작성
 `docs/` 안의 파일명은 루트 CLAUDE.md의 **파일명 prefix 컨벤션**을 따름.
