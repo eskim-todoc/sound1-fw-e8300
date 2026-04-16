@@ -558,13 +558,85 @@ bool tdc_iqs323_get_touch_state(int *p_state)
 }
 
 /* **********************************************************************
+ * ATI 보상값 고정 적용
+ *
+ * ATI 캘리브레이션을 실행하지 않고, 사전 측정된 보상값을 직접 쓴다.
+ * 단순 터치/비터치 판정에서는 LTA가 환경을 자동 추적하므로
+ * 고정 보상값으로 충분하며, ATI 실패/지연 위험이 없다.
+ *
+ * 보상값 확인 방법: TDC_IQS323_ATI_DUMP_ENABLE 1로 설정 후 빌드 → RTT 로그 확인
+ */
+#define TDC_IQS323_ATI_DUMP_ENABLE 0  /* 1: RE-ATI 실행 후 보상값 로그 출력 (개발용) */
+
+/* 사전 측정된 Sensor 0 ATI 보상값 (고정 상수) */
+#define TDC_IQS323_ATI_SETUP_LSB 0x84  /* ATI Resolution Factor + ATI Band + ATI Mode */
+#define TDC_IQS323_ATI_SETUP_MSB 0x00
+#define TDC_IQS323_ATI_MULT_LSB  0x44  /* Fine/Coarse Fractional Multiplier/Divider */
+#define TDC_IQS323_ATI_MULT_MSB  0x21
+#define TDC_IQS323_ATI_COMP_LSB  0x33  /* Compensation Divider + Compensation */
+#define TDC_IQS323_ATI_COMP_MSB  0x2A
+
+static bool write_ati_compensation(void)
+{
+    ci_printd("[TOUCH] WRITE ATI FIXED VALUES \r\n");
+
+    if (!write_register(TDC_IQS323_REG_ADDR_SENSOR0_ATI_SETUP,
+                        TDC_IQS323_ATI_SETUP_LSB, TDC_IQS323_ATI_SETUP_MSB))
+    {
+        return false;
+    }
+
+    if (!write_register(TDC_IQS323_REG_ADDR_SENSOR0_ATI_MULT,
+                        TDC_IQS323_ATI_MULT_LSB, TDC_IQS323_ATI_MULT_MSB))
+    {
+        return false;
+    }
+
+    if (!write_register(TDC_IQS323_REG_ADDR_SENSOR0_ATI_COMP,
+                        TDC_IQS323_ATI_COMP_LSB, TDC_IQS323_ATI_COMP_MSB))
+    {
+        return false;
+    }
+
+    return true;
+}
+
+#if TDC_IQS323_ATI_DUMP_ENABLE
+static void dump_ati_registers(void)
+{
+    uint8_t lsb, msb;
+
+    ci_printi("[TOUCH] === ATI REGISTER DUMP (Sensor 0) === \r\n");
+
+    if (read_register(TDC_IQS323_REG_ADDR_SENSOR0_ATI_SETUP, &lsb, &msb))
+    {
+        ci_printi("[TOUCH] ATI_SETUP (0x36): LSB=0x%02X MSB=0x%02X \r\n", lsb, msb);
+    }
+
+    if (read_register(TDC_IQS323_REG_ADDR_SENSOR0_ATI_MULT, &lsb, &msb))
+    {
+        ci_printi("[TOUCH] ATI_MULT  (0x38): LSB=0x%02X MSB=0x%02X \r\n", lsb, msb);
+    }
+
+    if (read_register(TDC_IQS323_REG_ADDR_SENSOR0_ATI_COMP, &lsb, &msb))
+    {
+        ci_printi("[TOUCH] ATI_COMP  (0x39): LSB=0x%02X MSB=0x%02X \r\n", lsb, msb);
+    }
+
+    ci_printi("[TOUCH] === ATI DUMP END === \r\n");
+}
+#endif
+
+/* **********************************************************************
  * Public API — Init
  *
- * MCLR 리셋 후 Reset Event가 SET된 상태에서 바로 설정 진행.
- * Reset Event SET 동안에는 ATI 실행 중에도 통신 윈도우가 제공되므로
- * Auto-ATI 완료를 기다리지 않고 센서 설정 → ACK Reset → RE-ATI 순서로 처리.
- * Auto-ATI는 3채널 기본 설정으로 실행되지만, 센서 설정으로 1채널만 활성화한 후
- * RE-ATI를 트리거하면 Sensor 0만 캘리브레이션하여 빠르고 안정적으로 완료됨.
+ * MCLR 리셋 후 Reset Event SET 상태에서 바로 설정 진행.
+ * ATI는 실행하지 않고 사전 측정된 보상값을 직접 쓴다.
+ *
+ * [ATI 덤프 모드] TDC_IQS323_ATI_DUMP_ENABLE=1 시:
+ *   RE-ATI를 실행하고 결과 보상값을 로그로 출력.
+ *   출력된 값을 TDC_IQS323_ATI_*_LSB/MSB 상수에 반영 후
+ *   TDC_IQS323_ATI_DUMP_ENABLE=0으로 되돌린다.
  */
 void tdc_iqs323_init(void)
 {
@@ -613,8 +685,9 @@ void tdc_iqs323_init(void)
 
     SYS_WATCHDOG_REFRESH();
 
-    /* 4) RE-ATI — Sensor 0만 활성이므로 단일 채널 캘리브레이션 */
-    ci_printd("[TOUCH] RE-ATI TRIGGER \r\n");
+#if TDC_IQS323_ATI_DUMP_ENABLE
+    /* [덤프 모드] RE-ATI 실행 후 보상값 출력 */
+    ci_printd("[TOUCH] RE-ATI TRIGGER (DUMP MODE) \r\n");
     if (!re_ati_trigger())
     {
         ci_printe("[TOUCH] FAIL: RE-ATI TRIGGER \r\n");
@@ -622,14 +695,7 @@ void tdc_iqs323_init(void)
 
     {
         int tick_old = ci_timer_get_tick();
-
-        while (1)
-        {
-            if (50 <= (ci_timer_get_tick() - tick_old))
-            {
-                break;
-            }
-        }
+        while (50 > (ci_timer_get_tick() - tick_old)) {}
     }
 
     ci_printd("[TOUCH] RE-ATI DONE CHECK \r\n");
@@ -637,6 +703,15 @@ void tdc_iqs323_init(void)
     {
         ci_printe("[TOUCH] FAIL: RE-ATI DONE \r\n");
     }
+
+    dump_ati_registers();
+#else
+    /* [운용 모드] ATI 실행 없이 고정 보상값 적용 */
+    if (!write_ati_compensation())
+    {
+        ci_printe("[TOUCH] FAIL: WRITE ATI COMPENSATION \r\n");
+    }
+#endif
 
     SYS_WATCHDOG_REFRESH();
 
