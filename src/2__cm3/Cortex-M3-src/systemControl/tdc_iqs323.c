@@ -318,6 +318,51 @@ static void mclr_reset(void)
  * Register configuration steps
  */
 
+/*
+ * Auto-ATI 완료 대기
+ *
+ * MCLR 리셋 후 IQS323이 자체적으로 Auto-ATI를 수행한다.
+ * ATI Active 플래그가 0이 될 때까지 폴링하여 Auto-ATI 완료를 확인한다.
+ * Reset Event가 SET된 동안에는 ATI 중에도 통신 윈도우가 제공되므로
+ * ACK Reset 전에 호출해야 한다.
+ */
+static bool wait_auto_ati_done(void)
+{
+    tdc_iqs323_reg_system_status_t status;
+    uint8_t                        lsb, msb;
+
+    for (int i = 0; i < 20; i++)
+    {
+        ci_printd("[TOUCH] AUTO-ATI CHECK: TRY %d \r\n", i + 1);
+
+        if (!read_register(TDC_IQS323_REG_ADDR_SYSTEM_STATUS, &lsb, &msb))
+        {
+            Sys_Delay(TDC_IQS323_DEFAULT_DELAY_MS * 50);  // 50ms
+            continue;
+        }
+
+        if ((lsb == 0xEE) && (msb == 0xEE))
+        {
+            Sys_Delay(TDC_IQS323_DEFAULT_DELAY_MS * 50);
+            continue;
+        }
+
+        status.bytes[1] = lsb;
+        status.bytes[2] = msb;
+
+        if (status.elements.lsb.ati_active == 0)
+        {
+            ci_printv("[TOUCH] AUTO-ATI: DONE \r\n");
+            return true;
+        }
+
+        Sys_Delay(TDC_IQS323_DEFAULT_DELAY_MS * 50);  // 50ms
+    }
+
+    ci_printe("[TOUCH] AUTO-ATI: TIMEOUT \r\n");
+    return false;
+}
+
 static bool ack_reset_event(void)
 {
     return write_register(TDC_IQS323_REG_ADDR_SYSTEM_CONTROL, 0x01, 0x00);
@@ -526,6 +571,14 @@ void tdc_iqs323_init(void)
 
     ci_printd("[TOUCH] MCLR HARD RESET \r\n");
     mclr_reset();
+
+    ci_printd("[TOUCH] WAIT AUTO-ATI DONE \r\n");
+    if (!wait_auto_ati_done())
+    {
+        ci_printe("[TOUCH] FAIL: WAIT AUTO-ATI DONE \r\n");
+    }
+
+    SYS_WATCHDOG_REFRESH();
 
     ci_printd("[TOUCH] ACK RESET EVENT \r\n");
     if (!ack_reset_event())
