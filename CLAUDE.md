@@ -36,6 +36,9 @@ Sound1/
 └── docs/           SW 문서 (초기: 빈 폴더)
 ```
 
+## 네이밍 컨벤션
+루트 `E:\Claude\CLAUDE.md`의 **네이밍 컨벤션** 참조 ([`docs/naming-convention.md`](../../docs/naming-convention.md)).
+
 ## 문서 작성
 `docs/` 안의 파일명은 루트 CLAUDE.md의 **파일명 prefix 컨벤션**을 따름.
 
