@@ -1,11 +1,14 @@
 # Sound1
 
+> **루트 지침 필수 참조**: 이 프로젝트는 [`E:\Claude\CLAUDE.md`](../../CLAUDE.md)의 전역 규칙을 따른다.
+> 작업 전 반드시 [`[지침] 작업 규칙.md`](../../docs/[지침]%20작업%20규칙.md)를 확인할 것.
+
 E8300 임베디드 펌웨어 프로젝트.
 
 ## 메타
 - Repository (`origin`, 본인): `eskim-todoc/sound1-fw-e8300` (평소 push 대상)
 - Repository (`upstream`, 원본): `todoc-dev/sound1-fw-e8300` (PR 기여 대상)
-- Git Workflow: 루트 `E:\Claude\CLAUDE.md`의 **Git Workflow (전역 규칙)** 참조
+- Git Workflow: 루트 [`[지침] [Git] 브랜치, 병합 규칙.md`](../../docs/[지침]%20[Git]%20브랜치,%20병합%20규칙.md) 참조
 - Main branch: `claude_main` (origin 기준, 일상 작업 베이스) · `Develop` (upstream 동기화용 baseline)
 - 담당 범위: SW/펌웨어 코드 + 문서 작성
 
@@ -36,11 +39,18 @@ Sound1/
 └── docs/           SW 문서 (초기: 빈 폴더)
 ```
 
-## 네이밍 컨벤션
-루트 `E:\Claude\CLAUDE.md`의 **네이밍 컨벤션** 참조 ([`docs/naming-convention.md`](../../docs/naming-convention.md)).
+## 루트 지침 참조
 
-## 문서 작성
-`docs/` 안의 파일명은 루트 CLAUDE.md의 **파일명 prefix 컨벤션**을 따름.
+아래 규칙은 루트 `docs/` 지침 문서를 따른다:
+
+| 항목 | 참조 문서 |
+|---|---|
+| 네이밍 컨벤션 | [`[지침] [코딩] 네이밍 컨벤션.md`](../../docs/[지침]%20[코딩]%20네이밍%20컨벤션.md) |
+| 문서 작성 규칙 | [`[지침] [일반] 문서 작성 규칙.md`](../../docs/[지침]%20[일반]%20문서%20작성%20규칙.md) |
+| 프로그래밍 작업 규칙 | [`[지침] [코딩] 작업 규칙.md`](../../docs/[지침]%20[코딩]%20작업%20규칙.md) |
+| Git 규칙 | [`[지침] [Git] 브랜치, 병합 규칙.md`](../../docs/[지침]%20[Git]%20브랜치,%20병합%20규칙.md) |
+
+## 문서 작성 (프로젝트 고유)
 
 회사 실제 파일명 형식:
 ```
@@ -51,10 +61,8 @@ Sound1/
 ```
 [1.5세대] SRS-FW-TD20B 소프트웨어 요구사항 사양서 Rev.1 by 김은수.md
 [1.5세대] SDP-FW-TD20B 소프트웨어 개발 계획서 Rev.1 by 김은수.md
-[분석] LED 운용 방식 분석 및 수정 방향 Rev.4 by 김은수.md
+[현상분석] LED 운용 방식 분석 및 수정 방향 Rev.4 by 김은수.md
 ```
-
-문서 기본 포멧은 Markdown (`.md`). 회사 공유폴더로 전달 시점에 `.docx`/`.xlsx` 변환 요청 가능. 자세한 규칙과 prefix 목록(`[분석]`, `[상세설계]`, `[테스트]` 포함)은 루트 `CLAUDE.md` 참조.
 
 ## 외부 의존 문서 (본인이 작성하지 않음)
 다른 담당자가 작성해서 가져오는 참고 문서:
