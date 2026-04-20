@@ -51,6 +51,9 @@
 #define TDC_IQS323_REG_ADDR_SENSOR0_SETUP      0x30
 #define TDC_IQS323_REG_ADDR_SENSOR1_SETUP      0x40
 #define TDC_IQS323_REG_ADDR_SENSOR2_SETUP      0x50
+#define TDC_IQS323_REG_ADDR_SENSOR0_ATI_SETUP   0x36
+#define TDC_IQS323_REG_ADDR_SENSOR0_ATI_MULT   0x38
+#define TDC_IQS323_REG_ADDR_SENSOR0_ATI_COMP   0x39
 #define TDC_IQS323_REG_ADDR_CH0_TOUCH_SETTINGS 0x62
 #define TDC_IQS323_REG_ADDR_SYSTEM_CONTROL     0xC0
 #define TDC_IQS323_REG_ADDR_EVENTS_ENABLE      0xD3
@@ -299,11 +302,30 @@ typedef union
 } tdc_iqs323_reg_i2c_settings_t;
 
 /* **********************************************************************
+ * Initialization state machine
+ *
+ * 초기화는 2단계로 나뉜다:
+ *  1) tdc_iqs323_init_begin() — MCLR 리셋만 수행 후 즉시 리턴.
+ *     Power On LED 패턴 시작과 같은 시점에서 호출한다.
+ *  2) tdc_iqs323_process() 내부의 상태머신이 매 tick마다 Auto-ATI 완료를
+ *     폴링하고, 완료 감지 시 ACK / Sensor / Touch / Events / 보상값 / Reseed를
+ *     일괄 적용한다. 이 과정은 파워온 LED 버스트(~1.5초)와 병렬로 진행된다.
+ */
+typedef enum
+{
+    TDC_IQS323_INIT_STATE_NONE = 0,   /* begin() 호출 전 */
+    TDC_IQS323_INIT_STATE_MCLR_DONE,  /* MCLR 완료, Auto-ATI 진행/완료 대기 */
+    TDC_IQS323_INIT_STATE_READY       /* 모든 설정 완료, 터치 감지 가능 */
+} tdc_iqs323_init_state_t;
+
+/* **********************************************************************
  * Public API
  */
 
-/* 초기화 및 런타임 */
-void tdc_iqs323_init(void);
+/* 초기화 — systemControl()에서 POWER_ON 진입 시 1회 호출 */
+void tdc_iqs323_init_begin(void);
+
+/* 런타임 — 매 tick마다 호출. 초기화 상태머신 진행 + 터치 폴링 + 롱터치 판정. */
 bool tdc_iqs323_process(void);
 
 /* 런타임 상태 읽기 */
