@@ -24,6 +24,8 @@
 #include "tdc_ui_command.h"
 #endif
 
+#include "tdc_iqs323.h"
+
 #include <ci_printf.h>
 
 ST__SYSTEM_STATE systemStatus = {en__LED_NA, false, false, false, false, false};
@@ -209,6 +211,13 @@ ST__SYSTEM_STATE systemControl(EN__LED_PATTERN   current_led_pattern,  //
                     turnOffLED();
                     systemStatus.Led_Pattern = en__LED_POWER_On;
                     led_request(LED_SRC_POWER, LED_ST_POWER_ON);
+
+                    /* 터치 센서 초기화 시작 — 파워온 LED 버스트(~1.5초)와 Auto-ATI
+                     * 대기를 병렬 진행한다. 나머지 설정은 tdc_iqs323_process()
+                     * 내부 상태머신이 ATI 완료 시점에 일괄 적용한다.
+                     * 상세: docs/[구현계획] 터치 센서 초기화 분할 Rev.2 by 김은수.md */
+                    tdc_iqs323_init_begin();
+
                     PowerOn_StartCounter = 0;
                     StartFlag            = true;
                     ci_printi("[SYSTEM] LED PATTERN IS POWER ON \r\n");

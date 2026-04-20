@@ -417,8 +417,9 @@ void Initialize(void)
     // 인터럽트 활성화
     enable_interrupt();
 
-    // 터치 센서 (IQS323) 초기화, 타이머 사용하기 때문에 인터럽트 활성화된 후에 동작시켜야 함
-    tdc_iqs323_init();
+    // 터치 센서 (IQS323) 초기화는 systemControl()의 POWER_ON 진입 시점으로 이동됨.
+    // 파워온 LED 버스트(~1.5초)와 Auto-ATI 대기를 병렬 진행하여 체감 부팅 시간을 숨긴다.
+    // 상세: docs/[구현계획] 터치 센서 초기화 분할 Rev.2 by 김은수.md
 
     // 초기화 과정에서 전원 버튼 (가속도 센서, 이제는 터치 센서)의 인터럽트 상태를 초기화 시킨다.
     cfx_cm3_sharedMemoryAll.systemShare.powerButton_pushed_CFX_to_CM3 = 0;
