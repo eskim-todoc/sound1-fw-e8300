@@ -1,2 +1,4 @@
 # Claude Code 세션 state (프로젝트에 포함하지 않음)
-.claude/
+.claude/*
+# 단, 팀 공용 훅/설정은 tracked
+!.claude/settings.json
