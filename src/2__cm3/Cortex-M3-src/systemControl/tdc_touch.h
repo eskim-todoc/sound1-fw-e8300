@@ -1,0 +1,59 @@
+/*
+ * tdc_touch.h
+ *
+ * 터치 기능 레이어 — IC 독립.
+ *
+ * 부팅 후 초기화 상태머신 진행, 100ms 폴링, 3초 롱터치 판정 등 UX 로직을
+ * 담당한다. 실제 하드웨어 통신은 드라이버 레이어(`tdc_drv_iqs323`) 에
+ * #include 로 위임하며, IC 교체 시 본 파일은 수정 대상이 아니다.
+ *
+ * 공개 API:
+ *   tdc_touch_init_begin()  — POWER_ON 진입 시 1회
+ *   tdc_touch_process()     — 매 tick 호출 (초기화 진행 + 폴링 + 롱터치)
+ *   tdc_touch_get_state()   — 즉시 상태 조회 (ULP 웨이크 판정 등)
+ */
+
+#ifndef TDC_TOUCH_H_
+#define TDC_TOUCH_H_
+
+#include <stdbool.h>
+
+/* **********************************************************************
+ * 상수
+ */
+#define TDC_TOUCH_POLL_INTERVAL     100   /* 폴링 간격 (ms) */
+#define TDC_TOUCH_LONG_TOUCH_MS     3000  /* 롱터치 판정 시간 (ms) */
+#define TDC_TOUCH_INIT_TIMEOUT_MS   2500  /* 초기화 Auto-ATI 대기 타임아웃.
+                                           * 터치 중 부팅 등 대비 */
+
+/* **********************************************************************
+ * 상태 enum (레이어 중립 — 드라이버 에러도 일반화)
+ */
+typedef enum
+{
+    TDC_TOUCH_STATE_RESET,              /* 초기 상태 */
+    TDC_TOUCH_STATE_TOUCH,              /* 터치 중 */
+    TDC_TOUCH_STATE_NOT_TOUCH,          /* 비터치 */
+    TDC_TOUCH_STATE_CALIBRATION_ERROR   /* 드라이버 캘리브레이션 실패
+                                         * (예: IQS323 의 ATI_ERROR) */
+} tdc_touch_state_t;
+
+/* **********************************************************************
+ * Public API
+ */
+
+/* POWER_ON 진입 시 1회 호출. 드라이버 MCLR 리셋만 트리거 후 즉시 리턴. */
+void tdc_touch_init_begin(void);
+
+/* 매 tick 호출.
+ *  - 초기화 미완이면 상태머신 진행 (Auto-ATI 폴링 → 설정 일괄 적용)
+ *  - 초기화 완료 후엔 TDC_TOUCH_POLL_INTERVAL 주기로 터치 상태 읽고
+ *    TDC_TOUCH_LONG_TOUCH_MS 이상 눌림 지속 시 true 반환 (최초 1회).
+ */
+bool tdc_touch_process(void);
+
+/* 현재 터치 상태 즉시 조회.
+ * 반환: true = read 성공, *p_state 에 상태 enum 저장. */
+bool tdc_touch_get_state(tdc_touch_state_t *p_state);
+
+#endif /* TDC_TOUCH_H_ */
