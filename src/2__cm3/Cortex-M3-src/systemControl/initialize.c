@@ -51,7 +51,6 @@
 #include "processorDirective.h"
 
 #include <driver_MAX17262.h>
-#include <tdc_iqs323.h>
 
 #include <ci_dio.h>
 #include <ci_power.h>
@@ -234,7 +233,7 @@ void error_blink(void)
     }
 }
 
-/* proc_touch(), iqs323_init() → tdc_iqs323.c로 이동됨 */
+/* proc_touch(), iqs323_init() → tdc_drv_iqs323.c로 이동됨 */
 
 void Initialize(void)
 {
