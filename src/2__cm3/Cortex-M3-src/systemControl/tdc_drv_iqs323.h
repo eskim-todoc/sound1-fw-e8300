@@ -319,7 +319,11 @@ typedef enum
 } tdc_drv_iqs323_init_state_t;
 
 /* **********************************************************************
- * Public API
+ * Public API — 구(舊) 기능 혼재 API
+ *
+ * 상태머신·롱터치 판정까지 포함된 고수준 인터페이스. Step 5 에서 기능
+ * 레이어(tdc_touch) 로 이관되고 Step 6 에서 본 드라이버에서 제거된다.
+ * 신규 코드는 아래 "저수준 API" 를 사용할 것.
  */
 
 /* 초기화 — systemControl()에서 POWER_ON 진입 시 1회 호출 */
@@ -330,5 +334,28 @@ bool tdc_drv_iqs323_process(void);
 
 /* 런타임 상태 읽기 */
 bool tdc_drv_iqs323_get_touch_state(int *p_state);
+
+/* **********************************************************************
+ * Public API — 저수준 드라이버 인터페이스 (Step 3)
+ *
+ * 기능 레이어(tdc_touch) 에서 상태머신 단계를 조립할 때 사용.
+ * 이 인터페이스만 사용하면 IC 특유 로직에 의존하지 않는다.
+ */
+
+/* MCLR 하드 리셋. ~55ms 블로킹. IQS323 POR 발생 → Auto-ATI 시작. */
+void tdc_drv_iqs323_mclr_reset(void);
+
+/* Auto-ATI 완료 여부 1회 read (논블로킹).
+ * 반환: true = 완료 / false = 아직 진행 중 */
+bool tdc_drv_iqs323_is_auto_ati_done(void);
+
+/* ACK + Sensor/Touch/Events 설정 + 고정 ATI 보상값 + Reseed 일괄 적용.
+ * Auto-ATI 완료 후 호출해야 한다. 덤프 모드 시에는 RE-ATI 후 덤프 출력. */
+void tdc_drv_iqs323_apply_settings(void);
+
+/* 현재 터치 여부 + 드라이버 에러 여부 1회 read.
+ * 반환: true = read 성공. *p_pressed 에 터치 상태,
+ *       *p_ati_error 에 ATI_ERROR 플래그. */
+bool tdc_drv_iqs323_read_status(bool *p_pressed, bool *p_ati_error);
 
 #endif /* TDC_DRV_IQS323_H_ */

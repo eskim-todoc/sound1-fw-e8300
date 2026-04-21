@@ -902,3 +902,146 @@ bool tdc_drv_iqs323_process(void)
 
     return false;
 }
+
+/* **********************************************************************
+ * Public API — 저수준 드라이버 (Step 3)
+ *
+ * 기능 레이어(tdc_touch) 에서 상태머신 단계를 조립할 때 사용.
+ * 구(舊) 고수준 API (init_begin/process/get_touch_state) 는 Step 5~6 에서
+ * tdc_touch 로 이관되며 본 파일에서 제거된다.
+ */
+
+void tdc_drv_iqs323_mclr_reset(void)
+{
+    mclr_reset();
+}
+
+bool tdc_drv_iqs323_is_auto_ati_done(void)
+{
+    return is_auto_ati_done_single_read();
+}
+
+void tdc_drv_iqs323_apply_settings(void)
+{
+    SYS_WATCHDOG_REFRESH();
+
+#if TDC_DRV_IQS323_ATI_DUMP_ENABLE
+    /* [덤프 모드] ACK → 설정 → RE-ATI → 덤프 */
+    ci_printd("[TOUCH] ACK RESET EVENT \r\n");
+    if (!ack_reset_event())
+    {
+        ci_printe("[TOUCH] FAIL: ACK RESET EVENT \r\n");
+    }
+
+    ci_printd("[TOUCH] CONFIRM RESET EVENT \r\n");
+    if (!confirm_reset_event())
+    {
+        ci_printe("[TOUCH] FAIL: CONFIRM RESET EVENT \r\n");
+    }
+
+    ci_printd("[TOUCH] SENSOR SETUP \r\n");
+    if (!sensor_setup())
+    {
+        ci_printe("[TOUCH] FAIL: SENSOR SETUP \r\n");
+    }
+
+    ci_printd("[TOUCH] TOUCH SETTINGS \r\n");
+    if (!touch_settings())
+    {
+        ci_printe("[TOUCH] FAIL: TOUCH SETTINGS \r\n");
+    }
+
+    ci_printd("[TOUCH] EVENTS ENABLE \r\n");
+    if (!events_enable())
+    {
+        ci_printe("[TOUCH] FAIL: EVENTS ENABLE \r\n");
+    }
+
+    SYS_WATCHDOG_REFRESH();
+
+    ci_printd("[TOUCH] RE-ATI TRIGGER (DUMP MODE) \r\n");
+    if (!re_ati_trigger())
+    {
+        ci_printe("[TOUCH] FAIL: RE-ATI TRIGGER \r\n");
+    }
+
+    {
+        int tick_old = ci_timer_get_tick();
+        while (50 > (ci_timer_get_tick() - tick_old)) {}
+    }
+
+    ci_printd("[TOUCH] RE-ATI DONE CHECK \r\n");
+    if (!wait_re_ati_done())
+    {
+        ci_printe("[TOUCH] FAIL: RE-ATI DONE \r\n");
+    }
+
+    dump_ati_registers();
+
+#else
+    /* [운용 모드] ACK → 설정 → 고정 보상값 → Reseed */
+    ci_printd("[TOUCH] ACK RESET EVENT \r\n");
+    if (!ack_reset_event())
+    {
+        ci_printe("[TOUCH] FAIL: ACK RESET EVENT \r\n");
+    }
+
+    ci_printd("[TOUCH] CONFIRM RESET EVENT \r\n");
+    if (!confirm_reset_event())
+    {
+        ci_printe("[TOUCH] FAIL: CONFIRM RESET EVENT \r\n");
+    }
+
+    ci_printd("[TOUCH] SENSOR SETUP \r\n");
+    if (!sensor_setup())
+    {
+        ci_printe("[TOUCH] FAIL: SENSOR SETUP \r\n");
+    }
+
+    ci_printd("[TOUCH] TOUCH SETTINGS \r\n");
+    if (!touch_settings())
+    {
+        ci_printe("[TOUCH] FAIL: TOUCH SETTINGS \r\n");
+    }
+
+    ci_printd("[TOUCH] EVENTS ENABLE \r\n");
+    if (!events_enable())
+    {
+        ci_printe("[TOUCH] FAIL: EVENTS ENABLE \r\n");
+    }
+
+    SYS_WATCHDOG_REFRESH();
+
+    if (!write_ati_compensation())
+    {
+        ci_printe("[TOUCH] FAIL: WRITE ATI COMPENSATION \r\n");
+    }
+
+    ci_printd("[TOUCH] RESEED \r\n");
+    if (!write_register(TDC_DRV_IQS323_REG_ADDR_SYSTEM_CONTROL, 0x08, 0x00))
+    {
+        ci_printe("[TOUCH] FAIL: RESEED \r\n");
+    }
+#endif
+
+    SYS_WATCHDOG_REFRESH();
+}
+
+bool tdc_drv_iqs323_read_status(bool *p_pressed, bool *p_ati_error)
+{
+    tdc_drv_iqs323_reg_system_status_t status;
+    uint8_t                            lsb, msb;
+
+    if (!read_register(TDC_DRV_IQS323_REG_ADDR_SYSTEM_STATUS, &lsb, &msb))
+    {
+        return false;
+    }
+
+    status.bytes[1] = lsb;
+    status.bytes[2] = msb;
+
+    *p_ati_error = (status.elements.lsb.ati_error == TDC_DRV_IQS323_ATI_ERROR);
+    *p_pressed   = (status.elements.msb.ch0_touch == TDC_DRV_IQS323_CH0_IN_TOUCH);
+
+    return true;
+}
