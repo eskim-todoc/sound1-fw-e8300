@@ -233,7 +233,7 @@ void error_blink(void)
     }
 }
 
-/* proc_touch(), iqs323_init() → tdc_drv_iqs323.c로 이동됨 */
+/* proc_touch(), iqs323_init() → tdc_touch.c 로 이동됨 */
 
 void Initialize(void)
 {

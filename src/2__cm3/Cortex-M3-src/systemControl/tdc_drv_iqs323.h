@@ -36,14 +36,6 @@
 #define TDC_DRV_IQS323_MCLR_HOLD_MS       1   /* MCLR LOW 유지 시간 (데이터시트: ≥250ns, 마진 확보) */
 #define TDC_DRV_IQS323_BOOT_WAIT_MS       50  /* MCLR 해제 후 IQS323 부팅 대기 */
 
-#define TDC_DRV_IQS323_TOUCH_STATE_RESET     0
-#define TDC_DRV_IQS323_TOUCH_STATE_TOUCH     1
-#define TDC_DRV_IQS323_TOUCH_STATE_NOT_TOUCH 2
-#define TDC_DRV_IQS323_TOUCH_STATE_ATI_ERROR 3
-
-#define TDC_DRV_IQS323_LONG_TOUCH_MS 3000  /* 롱터치 판정 시간 */
-#define TDC_DRV_IQS323_POLL_INTERVAL 100   /* 터치 폴링 간격 (ms) */
-
 /* **********************************************************************
  * Register address
  */
@@ -302,44 +294,10 @@ typedef union
 } tdc_drv_iqs323_reg_i2c_settings_t;
 
 /* **********************************************************************
- * Initialization state machine
- *
- * 초기화는 2단계로 나뉜다:
- *  1) tdc_drv_iqs323_init_begin() — MCLR 리셋만 수행 후 즉시 리턴.
- *     Power On LED 패턴 시작과 같은 시점에서 호출한다.
- *  2) tdc_drv_iqs323_process() 내부의 상태머신이 매 tick마다 Auto-ATI 완료를
- *     폴링하고, 완료 감지 시 ACK / Sensor / Touch / Events / 보상값 / Reseed를
- *     일괄 적용한다. 이 과정은 파워온 LED 버스트(~1.5초)와 병렬로 진행된다.
- */
-typedef enum
-{
-    TDC_DRV_IQS323_INIT_STATE_NONE = 0,   /* begin() 호출 전 */
-    TDC_DRV_IQS323_INIT_STATE_MCLR_DONE,  /* MCLR 완료, Auto-ATI 진행/완료 대기 */
-    TDC_DRV_IQS323_INIT_STATE_READY       /* 모든 설정 완료, 터치 감지 가능 */
-} tdc_drv_iqs323_init_state_t;
-
-/* **********************************************************************
- * Public API — 구(舊) 기능 혼재 API
- *
- * 상태머신·롱터치 판정까지 포함된 고수준 인터페이스. Step 5 에서 기능
- * 레이어(tdc_touch) 로 이관되고 Step 6 에서 본 드라이버에서 제거된다.
- * 신규 코드는 아래 "저수준 API" 를 사용할 것.
- */
-
-/* 초기화 — systemControl()에서 POWER_ON 진입 시 1회 호출 */
-void tdc_drv_iqs323_init_begin(void);
-
-/* 런타임 — 매 tick마다 호출. 초기화 상태머신 진행 + 터치 폴링 + 롱터치 판정. */
-bool tdc_drv_iqs323_process(void);
-
-/* 런타임 상태 읽기 */
-bool tdc_drv_iqs323_get_touch_state(int *p_state);
-
-/* **********************************************************************
- * Public API — 저수준 드라이버 인터페이스 (Step 3)
+ * Public API — 저수준 드라이버 인터페이스
  *
  * 기능 레이어(tdc_touch) 에서 상태머신 단계를 조립할 때 사용.
- * 이 인터페이스만 사용하면 IC 특유 로직에 의존하지 않는다.
+ * 상태머신·롱터치 판정 등 UX 로직은 tdc_touch 에 위치.
  */
 
 /* MCLR 하드 리셋. ~55ms 블로킹. IQS323 POR 발생 → Auto-ATI 시작. */
