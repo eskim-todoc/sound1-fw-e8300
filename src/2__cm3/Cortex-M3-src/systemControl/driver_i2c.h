@@ -9,15 +9,17 @@
 #define CM3_I2c_using_ISR
 
 // SCL = SYSCLK / ((PRESCALE+1) × 3) — HW §18.4.5.1
-
-// Run 모드 (SYSCLK=30.72 MHz) 용
-// 현재 FPGA 통신이 100kHz 지원..
+//
+// SDK (sk5_hw_cid101.h) 이 I2C_MASTER_PRESCALE_3 ~ _768 까지 표준 3*N 시퀀스
+// 매크로를 제공. 비표준 값만 여기서 커스텀 정의한다.
+//
+// Run 모드 (SYSCLK=30.72 MHz) 용 — 현재 FPGA 통신이 100kHz 지원..
 #define I2C_MASTER_PRESCALE_240 ((uint32_t) (0x4FU << I2C_CFG_MASTER_PRESCALE_Pos))  // 128    kHz
 #define I2C_MASTER_PRESCALE_243 ((uint32_t) (0x50U << I2C_CFG_MASTER_PRESCALE_Pos))  // 126.42 kHz
 
 // Sleep 모드 (SYSCLK=2.56 MHz) 용: 동일 PRESCALE 이면 SCL 이 12배 낮아져
 // 10.67 kHz 로 떨어지므로, 분주비를 240→21 로 낮춰 SCL ≈ 122 kHz 유지.
-#define I2C_MASTER_PRESCALE_21  ((uint32_t) (0x06U << I2C_CFG_MASTER_PRESCALE_Pos))  // 121.9  kHz @ 2.56 MHz
+// I2C_MASTER_PRESCALE_21 은 SDK 에 이미 정의되어 있으므로 그대로 사용.
 
 // clang-format off
 #define CM3_I2C_CFG_VAL_AsMaster   ( I2C_MASTER_PRESCALE_240            \
