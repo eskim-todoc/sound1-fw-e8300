@@ -652,7 +652,6 @@ void debug_led_pattern(EN__LED_PATTERN pattern)
 int func_sleep(void)
 {
     int *p_int32;
-    int  msTickForULP;
 
     SYS_WATCHDOG_REFRESH(); /* Refresh the watchdog at very first time */
 
@@ -725,46 +724,6 @@ int func_sleep(void)
         {
             touch_cnt = 0;  /* 손 뗌 또는 read 실패 → 카운터 초기화 */
         }
-
-#if 0
-        /* Interrupt occurred for acc-sensor */
-        if (ci_dio_is_set_int_flag_acc_sensor())
-        {
-            ci_dio_clear_int_flag_acc_sensor();
-
-            /* If still the acc-sensor DIO interrupt active level is asserted, wake up CM3 from ULP mode */
-            if (Sys_GPIO_Read(DIO_PIN_INDEX_for_Accelerometer) == 0)
-            {
-                // USB 케이블로 충전 중일 때는 sleep 모드로 진입하지 않지만
-                // 휴대 보관함에서 충전 중일 때는 커버가 일정 시간 닫혀 있으면 sleep 모드로 진입한다.
-                // 그래서 가속도 센서 인터럽트가 발생했을 때
-                // 휴대보관함 연결 중이라면 무시해야 한다.
-                // 휴대보관함에서는 커버를 열었을 때만 깨어나면 된다.
-
-                if (Sys_GPIO_Read(DIO_PIN_INDEX_for_CarryingCasePluggedIn) != 1)
-                {
-                    SYS_WATCHDOG_RESET();
-                    break;
-                }
-            }
-        }
-
-        /* Interrupt occurred for carrying case cover open */
-        if (ci_dio_is_set_int_flag_case_lid_open())
-        {
-            ci_dio_clear_int_flag_case_lid_open();
-
-            /* If still the carrying case cover open DIO interrupt active level is asserted, wake up CM3 from ULP mode */
-            if (Sys_GPIO_Read(DIO_PIN_INDEX_for_CarryingCaseCoverOpen) == 1)
-            // if (Sys_GPIO_Read(DIO_PIN_INDEX_for_CarryingCasePluggedIn) == 0)
-            {
-                SYS_WATCHDOG_RESET();
-                break;
-            }
-        }
-
-        SYS_WAIT_FOR_INTERRUPT;
-#endif
     }
 
     SYS_WATCHDOG_REFRESH();
