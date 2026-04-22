@@ -692,14 +692,20 @@ int func_sleep(void)
 
     // Uninitialize(); /* Disable peripherals and DIOs */
 
+    ci_printi("[SLEEP-DBG] before ci_power_sleep \r\n");
     ci_power_sleep();                                 /* SYSCLK 30.72M → 2.56M, SLOWCLK 유지 */
+    ci_printi("[SLEEP-DBG] after ci_power_sleep \r\n");
+
     i2c_set_master_prescale(I2C_MASTER_PRESCALE_21);  /* SCL ≈ 122 kHz 유지 (저속 방지) */
+    ci_printi("[SLEEP-DBG] after i2c prescale \r\n");
 
     ci_timer_init_prescaled(ULP_TIMER_PRESCALE, ULP_TIMER_TIMEOUT_VALUE);  /* ≈ 500 ms 주기 */
+    ci_printi("[SLEEP-DBG] after timer init \r\n");
 
     SYS_WATCHDOG_REFRESH();
 
     int touch_cnt = 0;
+    int loop_cnt  = 0;
 
     while (1)  // ULP loop
     {
@@ -707,9 +713,15 @@ int func_sleep(void)
 
         SYS_WATCHDOG_REFRESH();          /* 워치독 3.28s 대비 매 웨이크업마다 refresh */
 
+        loop_cnt++;
+        ci_printi("[SLEEP-DBG] loop %d \r\n", loop_cnt);
+
         /* 터치 상태 1회 샘플링. ULP_LONG_TOUCH_COUNT 회 연속 TOUCH 면 롱-터치 → 리셋. */
         tdc_touch_state_t state = TDC_TOUCH_STATE_RESET;
-        if (tdc_touch_get_state(&state) && state == TDC_TOUCH_STATE_TOUCH)
+        bool              ok    = tdc_touch_get_state(&state);
+        ci_printi("[SLEEP-DBG] get_state ok=%d state=%d \r\n", ok, state);
+
+        if (ok && state == TDC_TOUCH_STATE_TOUCH)
         {
             touch_cnt++;
             if (touch_cnt >= ULP_LONG_TOUCH_COUNT)

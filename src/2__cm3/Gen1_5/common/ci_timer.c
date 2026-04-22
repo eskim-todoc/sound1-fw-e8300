@@ -14,13 +14,18 @@ static volatile uint32_t        _ci_timer_count_init_value      = 0;
 static volatile CI_TIMER_TIME_T _ci_timer_reference_time        = {0};
 static volatile bool            _ci_timer_update_flag           = false;
 
+/* ULP 모드 타이머 디버그 — 1 이면 매 IRQ 마다 빨간 LED 토글.
+ * 시각 확인: LED 가 약 1 Hz (500ms high / 500ms low) 로 깜빡이면 타이머 정상. */
+#define CI_TIMER_DEBUG_TOGGLE_LED_R  1
+
 void TIMER_3_IRQHandler(void)
 {
     g_ci_timer_main_tick++;
     enable_iteration(); /* Use when the CFX is not working */
 
-    // 절전모드에서 정말 원하는 시간 마다 타이머 이벤트가 발생하는지 확인하는 용도
-    // Sys_GPIO_Toggle(DIO19);
+#if CI_TIMER_DEBUG_TOGGLE_LED_R
+    Sys_GPIO_Toggle(DIO_PIN_INDEX_for_LED_color_R);
+#endif
 }
 
 static bool _ci_is_leap(uint16_t year)
