@@ -41,6 +41,7 @@
 #include <ci_timer.h>
 #include <ci_uart.h>
 #include <ci_printf.h>
+#include "driver_i2c.h"  //ok  — Sleep 진입 시 I2C PRESCALE 런타임 재설정용
 
 #include <SEGGER_RTT_Wrapper.h>
 #include <aes.h>
@@ -633,10 +634,24 @@ void debug_led_pattern(EN__LED_PATTERN pattern)
     }
 }
 
+/* ULP 모드 롱-터치 감지 파라미터 — 튜닝 시 아래 값만 수정 */
+#define ULP_WAKE_INTERVAL_MS       500         /* 웨이크업 주기 (ms) */
+#define ULP_LONG_TOUCH_MS          3000        /* 롱터치 판정 시간 (ms) */
+
+/* 유도값 — 웨이크업 N 회 연속 TOUCH 시 리셋 (올림 나눗셈, 실제 응답 ≥ ULP_LONG_TOUCH_MS) */
+#define ULP_LONG_TOUCH_COUNT \
+    ((ULP_LONG_TOUCH_MS + ULP_WAKE_INTERVAL_MS - 1) / ULP_WAKE_INTERVAL_MS)
+
+/* 타이머 하드웨어 설정값
+ * 공식: T[ms] = 2^PRESCALE × (TIMEOUT+1) / 40   (SLOWCLK_DIV32 = 40 kHz)
+ * 현재: 2^7 × 156 / 40 = 499.2 ms ≈ ULP_WAKE_INTERVAL_MS(500)
+ * 주기 변경 시 PRESCALE / TIMEOUT_VALUE 도 재계산 필요 */
+#define ULP_TIMER_PRESCALE         TIMER_PRESCALE_128
+#define ULP_TIMER_TIMEOUT_VALUE    155
+
 int func_sleep(void)
 {
     int *p_int32;
-    int  msTickForULP;
 
     SYS_WATCHDOG_REFRESH(); /* Refresh the watchdog at very first time */
 
@@ -677,140 +692,38 @@ int func_sleep(void)
 
     // Uninitialize(); /* Disable peripherals and DIOs */
 
-    // ci_power_sleep();
+    ci_power_sleep();                                 /* SYSCLK 30.72M → 2.56M, SLOWCLK 유지 */
+    i2c_set_master_prescale(I2C_MASTER_PRESCALE_21);  /* SCL ≈ 122 kHz 유지 (저속 방지) */
 
-    // ci_timer_init(OTE_1_5_GEN_TIMER_TICK_500MS_PM_LP); /* Make 500ms timer for watchdog refresh */
-    // ci_timer_init(19999); /* Make 500ms timer for watchdog refresh */
-
-    ci_timer_init(19); /* Make around 1msec timer */
+    ci_timer_init_prescaled(ULP_TIMER_PRESCALE, ULP_TIMER_TIMEOUT_VALUE);  /* ≈ 500 ms 주기 */
 
     SYS_WATCHDOG_REFRESH();
 
-    static int long_touch_event_cnt = 0;
-
-    int blue_cnt   = 0;
-    int cyan_cnt   = 0;
-    int color_type = 0;
+    int touch_cnt = 0;
 
     while (1)  // ULP loop
     {
-        SYS_WATCHDOG_REFRESH();
+        SYS_WAIT_FOR_INTERRUPT;          /* ULP_WAKE_INTERVAL_MS 동안 idle */
 
-        // 롱-터치 이벤트가 감지되면, 터치가 해제 될 때까지 기다리도록 한다.
-        if (long_touch_event_cnt == 0)
+        SYS_WATCHDOG_REFRESH();          /* 워치독 3.28s 대비 매 웨이크업마다 refresh */
+
+        /* 터치 상태 1회 샘플링. ULP_LONG_TOUCH_COUNT 회 연속 TOUCH 면 롱-터치 → 리셋. */
+        tdc_touch_state_t state = TDC_TOUCH_STATE_RESET;
+        if (tdc_touch_get_state(&state) && state == TDC_TOUCH_STATE_TOUCH)
         {
-            if (tdc_touch_process())
+            touch_cnt++;
+            if (touch_cnt >= ULP_LONG_TOUCH_COUNT)
             {
-                ci_printi("[MAIN] LONG TOUCH DETECTED, WAIT RELEASE \r\n");
-                long_touch_event_cnt = 1;
-            }
-        }
-        // 롱-터치 후 해제까지 감지되면, 그제서야 절전 모드에서 깨어나도록 한다.
-        else if (long_touch_event_cnt == 1)
-        {
-            tdc_touch_state_t curr_touch_state = TDC_TOUCH_STATE_TOUCH;
-
-            if (tdc_touch_get_state(&curr_touch_state))
-            {
-                if (curr_touch_state == TDC_TOUCH_STATE_NOT_TOUCH)
-                {
-                    Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_R);
-                    Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_G);
-                    Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_B);
-
-                    ci_printi("[MAIN] TOUCH RELEASED SO, WAKE UP! \r\n");
-                    delay_ms(20);  // 디버깅을 위해 RTT 뷰어가 메시지를 읽을 수 있도록 잠시 대기함
-
-                    SYS_WATCHDOG_RESET();
-                    break;
-                }
-            }
-
-            switch (color_type)
-            {
-                case 0:  // cyan
-                    if (cyan_cnt == 0)
-                    {
-                        Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_R);
-                        Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_G);
-                        Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_B);
-                        cyan_cnt++;
-                    }
-                    else if (300 <= cyan_cnt)
-                    {
-                        cyan_cnt   = 0;
-                        blue_cnt   = 0;
-                        color_type = 1;
-                    }
-                    else
-                    {
-                        cyan_cnt++;
-                    }
-                    break;
-
-                case 1:  // blue
-                    if (blue_cnt == 0)
-                    {
-                        Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_R);
-                        Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_G);
-                        Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_B);
-                        blue_cnt++;
-                    }
-                    else if (300 <= blue_cnt)
-                    {
-                        cyan_cnt   = 0;
-                        blue_cnt   = 0;
-                        color_type = 0;
-                    }
-                    else
-                    {
-                        blue_cnt++;
-                    }
-                    break;
-            }
-        }
-
-        SYS_WAIT_FOR_INTERRUPT;
-
-#if 0
-        /* Interrupt occurred for acc-sensor */
-        if (ci_dio_is_set_int_flag_acc_sensor())
-        {
-            ci_dio_clear_int_flag_acc_sensor();
-
-            /* If still the acc-sensor DIO interrupt active level is asserted, wake up CM3 from ULP mode */
-            if (Sys_GPIO_Read(DIO_PIN_INDEX_for_Accelerometer) == 0)
-            {
-                // USB 케이블로 충전 중일 때는 sleep 모드로 진입하지 않지만
-                // 휴대 보관함에서 충전 중일 때는 커버가 일정 시간 닫혀 있으면 sleep 모드로 진입한다.
-                // 그래서 가속도 센서 인터럽트가 발생했을 때
-                // 휴대보관함 연결 중이라면 무시해야 한다.
-                // 휴대보관함에서는 커버를 열었을 때만 깨어나면 된다.
-
-                if (Sys_GPIO_Read(DIO_PIN_INDEX_for_CarryingCasePluggedIn) != 1)
-                {
-                    SYS_WATCHDOG_RESET();
-                    break;
-                }
-            }
-        }
-
-        /* Interrupt occurred for carrying case cover open */
-        if (ci_dio_is_set_int_flag_case_lid_open())
-        {
-            ci_dio_clear_int_flag_case_lid_open();
-
-            /* If still the carrying case cover open DIO interrupt active level is asserted, wake up CM3 from ULP mode */
-            if (Sys_GPIO_Read(DIO_PIN_INDEX_for_CarryingCaseCoverOpen) == 1)
-            // if (Sys_GPIO_Read(DIO_PIN_INDEX_for_CarryingCasePluggedIn) == 0)
-            {
+                ci_printi("[MAIN] LONG TOUCH DETECTED, RESET \r\n");
+                delay_ms(20);  // RTT 뷰어 로그 드레인 대기
                 SYS_WATCHDOG_RESET();
                 break;
             }
         }
-
-        SYS_WAIT_FOR_INTERRUPT;
-#endif
+        else
+        {
+            touch_cnt = 0;  /* 손 뗌 또는 read 실패 → 카운터 초기화 */
+        }
     }
 
     SYS_WATCHDOG_REFRESH();

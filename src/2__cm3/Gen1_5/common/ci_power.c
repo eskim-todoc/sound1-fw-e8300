@@ -165,7 +165,7 @@ int ci_power_sleep(void)
 #if 1
     LSAD->CFG = LSAD_DISABLE;
 
-    Sys_Trims_SetOperatingFrequency(SYS_FREQ_2M56);
+    tdc_Trims_SetOperatingFrequency(SYS_FREQ_2M56);
 
     D_CLK->CFG_1 = (ADCCLK_PRESCALE_32 | ADCCLK_SRC_SYSCLK | SDMCLK_PRESCALE_64 | SLOWCLK_PRESCALE_2 | SLOWCLK_SRC_SYSCLK | UARTCLK_SRC_SYSCLK);
     D_CLK->CFG_2 = (UCLK_PRESCALE_4096 | UCLK_SRC_ADCCLK);
