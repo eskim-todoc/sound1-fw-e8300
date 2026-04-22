@@ -41,6 +41,7 @@
 #include <ci_timer.h>
 #include <ci_uart.h>
 #include <ci_printf.h>
+#include "driver_i2c.h"  //ok  — Sleep 진입 시 I2C PRESCALE 런타임 재설정용
 
 #include <SEGGER_RTT_Wrapper.h>
 #include <aes.h>
@@ -633,6 +634,21 @@ void debug_led_pattern(EN__LED_PATTERN pattern)
     }
 }
 
+/* ULP 모드 롱-터치 감지 파라미터 — 튜닝 시 아래 값만 수정 */
+#define ULP_WAKE_INTERVAL_MS       500         /* 웨이크업 주기 (ms) */
+#define ULP_LONG_TOUCH_MS          3000        /* 롱터치 판정 시간 (ms) */
+
+/* 유도값 — 웨이크업 N 회 연속 TOUCH 시 리셋 (올림 나눗셈, 실제 응답 ≥ ULP_LONG_TOUCH_MS) */
+#define ULP_LONG_TOUCH_COUNT \
+    ((ULP_LONG_TOUCH_MS + ULP_WAKE_INTERVAL_MS - 1) / ULP_WAKE_INTERVAL_MS)
+
+/* 타이머 하드웨어 설정값
+ * 공식: T[ms] = 2^PRESCALE × (TIMEOUT+1) / 40   (SLOWCLK_DIV32 = 40 kHz)
+ * 현재: 2^7 × 156 / 40 = 499.2 ms ≈ ULP_WAKE_INTERVAL_MS(500)
+ * 주기 변경 시 PRESCALE / TIMEOUT_VALUE 도 재계산 필요 */
+#define ULP_TIMER_PRESCALE         TIMER_PRESCALE_128
+#define ULP_TIMER_TIMEOUT_VALUE    155
+
 int func_sleep(void)
 {
     int *p_int32;
@@ -677,31 +693,38 @@ int func_sleep(void)
 
     // Uninitialize(); /* Disable peripherals and DIOs */
 
-    // ci_power_sleep();
+    ci_power_sleep();                                 /* SYSCLK 30.72M → 2.56M, SLOWCLK 유지 */
+    i2c_set_master_prescale(I2C_MASTER_PRESCALE_21);  /* SCL ≈ 122 kHz 유지 (저속 방지) */
 
-    // ci_timer_init(OTE_1_5_GEN_TIMER_TICK_500MS_PM_LP); /* Make 500ms timer for watchdog refresh */
-    // ci_timer_init(19999); /* Make 500ms timer for watchdog refresh */
-
-    ci_timer_init(19); /* Make around 1msec timer */
+    ci_timer_init_prescaled(ULP_TIMER_PRESCALE, ULP_TIMER_TIMEOUT_VALUE);  /* ≈ 500 ms 주기 */
 
     SYS_WATCHDOG_REFRESH();
 
+    int touch_cnt = 0;
+
     while (1)  // ULP loop
     {
-        SYS_WATCHDOG_REFRESH();
+        SYS_WAIT_FOR_INTERRUPT;          /* ULP_WAKE_INTERVAL_MS 동안 idle */
 
-        // 롱-터치 감지 즉시 워치독 리셋으로 재부팅.
-        // 터치 해제 대기 로직은 제거됨 — IQS323 덤프 모드 적용 이후 터치 누른 채
-        // 리셋되어도 ATI 에러 없이 정상 부팅되므로 해제 대기 불필요.
-        if (tdc_touch_process())
+        SYS_WATCHDOG_REFRESH();          /* 워치독 3.28s 대비 매 웨이크업마다 refresh */
+
+        /* 터치 상태 1회 샘플링. ULP_LONG_TOUCH_COUNT 회 연속 TOUCH 면 롱-터치 → 리셋. */
+        tdc_touch_state_t state = TDC_TOUCH_STATE_RESET;
+        if (tdc_touch_get_state(&state) && state == TDC_TOUCH_STATE_TOUCH)
         {
-            ci_printi("[MAIN] LONG TOUCH DETECTED, RESET \r\n");
-            delay_ms(20);  // RTT 뷰어 로그 드레인 대기
-            SYS_WATCHDOG_RESET();
-            break;
+            touch_cnt++;
+            if (touch_cnt >= ULP_LONG_TOUCH_COUNT)
+            {
+                ci_printi("[MAIN] LONG TOUCH DETECTED, RESET \r\n");
+                delay_ms(20);  // RTT 뷰어 로그 드레인 대기
+                SYS_WATCHDOG_RESET();
+                break;
+            }
         }
-
-        SYS_WAIT_FOR_INTERRUPT;
+        else
+        {
+            touch_cnt = 0;  /* 손 뗌 또는 read 실패 → 카운터 초기화 */
+        }
 
 #if 0
         /* Interrupt occurred for acc-sensor */
