@@ -101,7 +101,11 @@ static bool wait_rdy_window_closed(int max_ms)
     {
         if (max_ms <= (ci_timer_get_tick() - tick_old))
         {
-            ci_printe("[TOUCH] TIMEOUT (%d MS) WAIT WINDOW CLOSE \r\n", max_ms);
+            /* write_register/read_register 끝에서 호출되는 이 대기는 반환값이
+             * 사용되지 않는 soft delay. 여기서 타임아웃이 나도 다음 transaction
+             * 직전의 force_window_open() 이 올바르게 복구한다. 에러가 아니라
+             * 단순 상태 관찰 실패이므로 verbose 레벨로 유지. */
+            ci_printv("[TOUCH] WAIT WINDOW CLOSE: soft timeout (%d ms) \r\n", max_ms);
             return false;
         }
 
@@ -292,7 +296,7 @@ static bool wait_auto_ati_done(void)
 
     for (int i = 0; i < 20; i++)
     {
-        ci_printd("[TOUCH] AUTO-ATI CHECK: TRY %d \r\n", i + 1);
+        ci_printv("[TOUCH] AUTO-ATI CHECK: TRY %d \r\n", i + 1);
 
         if (!read_register(TDC_DRV_IQS323_REG_ADDR_SYSTEM_STATUS, &lsb, &msb))
         {
@@ -334,7 +338,7 @@ static bool confirm_reset_event(void)
 
     for (int i = 0; i < 10; i++)
     {
-        ci_printd("[TOUCH] CONFIRM RESET: TRY %d \r\n", i + 1);
+        ci_printv("[TOUCH] CONFIRM RESET: TRY %d \r\n", i + 1);
 
         if (!read_register(TDC_DRV_IQS323_REG_ADDR_SYSTEM_STATUS, &lsb, &msb))
         {
@@ -344,7 +348,7 @@ static bool confirm_reset_event(void)
 
         if ((lsb == 0xEE) && (msb == 0xEE))
         {
-            ci_printw("[TOUCH] CONFIRM RESET: READ 0xEEEE \r\n");
+            ci_printv("[TOUCH] CONFIRM RESET: READ 0xEEEE (retry) \r\n");
             Sys_Delay(TDC_DRV_IQS323_DEFAULT_DELAY_MS);
             continue;
         }
@@ -447,7 +451,7 @@ static bool wait_re_ati_done(void)
 
     for (int i = 0; i < 10; i++)
     {
-        ci_printd("[TOUCH] RE-ATI CHECK: TRY %d \r\n", i + 1);
+        ci_printv("[TOUCH] RE-ATI CHECK: TRY %d \r\n", i + 1);
 
         if (!read_register(TDC_DRV_IQS323_REG_ADDR_SYSTEM_STATUS, &lsb, &msb))
         {
@@ -457,7 +461,7 @@ static bool wait_re_ati_done(void)
 
         if ((lsb == 0xEE) && (msb == 0xEE))
         {
-            ci_printw("[TOUCH] RE-ATI CHECK: READ 0xEEEE \r\n");
+            ci_printv("[TOUCH] RE-ATI CHECK: READ 0xEEEE (retry) \r\n");
             Sys_Delay(TDC_DRV_IQS323_DEFAULT_DELAY_MS * 100);
             continue;
         }
