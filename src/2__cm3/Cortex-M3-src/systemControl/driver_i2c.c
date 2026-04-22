@@ -142,6 +142,21 @@ void init_I2c(void)
 #endif
 }
 
+void i2c_set_master_prescale(uint32_t prescale_mask)
+{
+    // 진행 중 트랜잭션 완료 대기.
+    // 호출 시점이 Sleep 진입 직전이라 사실상 idle 이지만 방어적으로 spin.
+    while (!isI2cDriverStatusIdle())
+    {
+        /* 무한 대기 시 워치독(3.28s)이 동작하므로 별도 타임아웃 불필요 */
+    }
+
+    // MASTER_PRESCALE 필드만 교체.
+    uint32_t cfg = I2C0->CFG;
+    cfg = (cfg & ~I2C_CFG_MASTER_PRESCALE_Mask) | prescale_mask;
+    I2C0->CFG = cfg;
+}
+
 #ifdef CM3_I2c_using_ISR
 void I2C_0_IRQHandler(void)
 #else

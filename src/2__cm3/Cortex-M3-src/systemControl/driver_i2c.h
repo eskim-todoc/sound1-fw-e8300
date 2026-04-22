@@ -8,9 +8,16 @@
 
 #define CM3_I2c_using_ISR
 
+// SCL = SYSCLK / ((PRESCALE+1) × 3) — HW §18.4.5.1
+
+// Run 모드 (SYSCLK=30.72 MHz) 용
 // 현재 FPGA 통신이 100kHz 지원..
 #define I2C_MASTER_PRESCALE_240 ((uint32_t) (0x4FU << I2C_CFG_MASTER_PRESCALE_Pos))  // 128    kHz
 #define I2C_MASTER_PRESCALE_243 ((uint32_t) (0x50U << I2C_CFG_MASTER_PRESCALE_Pos))  // 126.42 kHz
+
+// Sleep 모드 (SYSCLK=2.56 MHz) 용: 동일 PRESCALE 이면 SCL 이 12배 낮아져
+// 10.67 kHz 로 떨어지므로, 분주비를 240→21 로 낮춰 SCL ≈ 122 kHz 유지.
+#define I2C_MASTER_PRESCALE_21  ((uint32_t) (0x06U << I2C_CFG_MASTER_PRESCALE_Pos))  // 121.9  kHz @ 2.56 MHz
 
 // clang-format off
 #define CM3_I2C_CFG_VAL_AsMaster   ( I2C_MASTER_PRESCALE_240            \
@@ -144,6 +151,12 @@ typedef struct
 
 void enableI2cInterface(bool isEnabled);
 void init_I2c(void);
+
+/* I2C 마스터 SCL 분주(MASTER_PRESCALE 필드)만 런타임 재설정.
+ * 진행 중 트랜잭션이 있으면 완료될 때까지 대기한 후 CFG 레지스터 갱신.
+ *   prescale_mask: I2C_MASTER_PRESCALE_* 매크로 중 하나 (시프트 완료된 값) */
+void i2c_set_master_prescale(uint32_t prescale_mask);
+
 EN__I2C_DRIVER_STATE get_i2cDriverStatus(void);
 bool isI2cDriverStatusIdle(void);
 uint32_t getI2cHardwareStatus(void);
