@@ -686,88 +686,19 @@ int func_sleep(void)
 
     SYS_WATCHDOG_REFRESH();
 
-    static int long_touch_event_cnt = 0;
-
-    int blue_cnt   = 0;
-    int cyan_cnt   = 0;
-    int color_type = 0;
-
     while (1)  // ULP loop
     {
         SYS_WATCHDOG_REFRESH();
 
-        // 롱-터치 이벤트가 감지되면, 터치가 해제 될 때까지 기다리도록 한다.
-        if (long_touch_event_cnt == 0)
+        // 롱-터치 감지 즉시 워치독 리셋으로 재부팅.
+        // 터치 해제 대기 로직은 제거됨 — IQS323 덤프 모드 적용 이후 터치 누른 채
+        // 리셋되어도 ATI 에러 없이 정상 부팅되므로 해제 대기 불필요.
+        if (tdc_touch_process())
         {
-            if (tdc_touch_process())
-            {
-                ci_printi("[MAIN] LONG TOUCH DETECTED, WAIT RELEASE \r\n");
-                long_touch_event_cnt = 1;
-            }
-        }
-        // 롱-터치 후 해제까지 감지되면, 그제서야 절전 모드에서 깨어나도록 한다.
-        else if (long_touch_event_cnt == 1)
-        {
-            tdc_touch_state_t curr_touch_state = TDC_TOUCH_STATE_TOUCH;
-
-            if (tdc_touch_get_state(&curr_touch_state))
-            {
-                if (curr_touch_state == TDC_TOUCH_STATE_NOT_TOUCH)
-                {
-                    Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_R);
-                    Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_G);
-                    Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_B);
-
-                    ci_printi("[MAIN] TOUCH RELEASED SO, WAKE UP! \r\n");
-                    delay_ms(20);  // 디버깅을 위해 RTT 뷰어가 메시지를 읽을 수 있도록 잠시 대기함
-
-                    SYS_WATCHDOG_RESET();
-                    break;
-                }
-            }
-
-            switch (color_type)
-            {
-                case 0:  // cyan
-                    if (cyan_cnt == 0)
-                    {
-                        Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_R);
-                        Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_G);
-                        Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_B);
-                        cyan_cnt++;
-                    }
-                    else if (300 <= cyan_cnt)
-                    {
-                        cyan_cnt   = 0;
-                        blue_cnt   = 0;
-                        color_type = 1;
-                    }
-                    else
-                    {
-                        cyan_cnt++;
-                    }
-                    break;
-
-                case 1:  // blue
-                    if (blue_cnt == 0)
-                    {
-                        Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_R);
-                        Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_G);
-                        Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_B);
-                        blue_cnt++;
-                    }
-                    else if (300 <= blue_cnt)
-                    {
-                        cyan_cnt   = 0;
-                        blue_cnt   = 0;
-                        color_type = 0;
-                    }
-                    else
-                    {
-                        blue_cnt++;
-                    }
-                    break;
-            }
+            ci_printi("[MAIN] LONG TOUCH DETECTED, RESET \r\n");
+            delay_ms(20);  // RTT 뷰어 로그 드레인 대기
+            SYS_WATCHDOG_RESET();
+            break;
         }
 
         SYS_WAIT_FOR_INTERRUPT;
