@@ -140,7 +140,7 @@ int ci_timer_get_tick(void)
     return g_ci_timer_main_tick;
 }
 
-int ci_timer_init(uint32_t tick)
+int ci_timer_init_prescaled(uint32_t prescale_field, uint32_t tick)
 {
     Sys_Timer_Stop(OTE_1_5_GEN_TIMER_INSTANCE);
 
@@ -149,10 +149,15 @@ int ci_timer_init(uint32_t tick)
 
     // Sys_DIO_Config(DIO19, (DIO_1X_DRIVE | DIO_LPF_DISABLE | DIO_NO_PULL | DIO_MODE_GPIO_OUT));
 
-    Sys_Timer_Config(OTE_1_5_GEN_TIMER_INSTANCE, TIMER_PRESCALE_1, TIMER_FREE_RUN, tick);
+    Sys_Timer_Config(OTE_1_5_GEN_TIMER_INSTANCE, prescale_field, TIMER_FREE_RUN, tick);
     Sys_Timer_Start(OTE_1_5_GEN_TIMER_INSTANCE);
 
     return df_True;
+}
+
+int ci_timer_init(uint32_t tick)
+{
+    return ci_timer_init_prescaled(TIMER_PRESCALE_1, tick);
 }
 
 int ci_timer_uninit(void)

@@ -47,7 +47,17 @@ typedef struct
 void TIMER_3_IRQHandler(void);
 void ci_timer_increase_tick(void);
 int  ci_timer_get_tick(void);
+
+/* PRESCALE 고정(=1) 초기화. 기존 호출자 호환용.
+ * 내부적으로 ci_timer_init_prescaled(TIMER_PRESCALE_1, tick) 호출. */
 int  ci_timer_init(uint32_t tick);
+
+/* PRESCALE·TIMEOUT 둘 다 지정. 긴 주기 타이머(예: ULP 모드 500 ms) 용.
+ * 공식: T = 2^prescale_field × (tick + 1) / 40 kHz  (SLOWCLK=1.28 MHz 기준)
+ *   prescale_field: TIMER_PRESCALE_1 ~ _128 중 하나
+ *   tick: TIMEOUT_VALUE 필드 (24-bit) */
+int  ci_timer_init_prescaled(uint32_t prescale_field, uint32_t tick);
+
 int  ci_timer_uninit(void);
 
 CI_TIMER_TIME_T ci_timer_get_reference_time_after_self_update(void);
