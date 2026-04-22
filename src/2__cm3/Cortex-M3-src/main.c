@@ -706,15 +706,26 @@ int func_sleep(void)
 
     int touch_cnt = 0;
     int loop_cnt  = 0;
+    int tick_last = ci_timer_get_tick();
 
-    while (1)  // ULP loop
+    /* 진단 모드: WFI 대신 tick 카운터 polling.
+     * 타이머 IRQ 가 실제로 발생하는지 확인 — g_ci_timer_main_tick 가 증가하면
+     * IRQ 정상 동작, 증가 없이 watchdog 걸리면 IRQ 자체가 안 뜸. */
+    while (1)
     {
-        SYS_WAIT_FOR_INTERRUPT;          /* ULP_WAKE_INTERVAL_MS 동안 idle */
+        SYS_WATCHDOG_REFRESH();          /* busy-wait 중에도 watchdog 보호 */
 
-        SYS_WATCHDOG_REFRESH();          /* 워치독 3.28s 대비 매 웨이크업마다 refresh */
+        int tick_now = ci_timer_get_tick();
+        if (tick_now == tick_last)
+        {
+            continue;  /* 다음 IRQ 까지 spin */
+        }
+
+        int delta  = tick_now - tick_last;
+        tick_last  = tick_now;
 
         loop_cnt++;
-        ci_printi("[SLEEP-DBG] loop %d \r\n", loop_cnt);
+        ci_printi("[SLEEP-DBG] loop %d tick=%d delta=%d \r\n", loop_cnt, tick_now, delta);
 
         /* 터치 상태 1회 샘플링. ULP_LONG_TOUCH_COUNT 회 연속 TOUCH 면 롱-터치 → 리셋. */
         tdc_touch_state_t state = TDC_TOUCH_STATE_RESET;
