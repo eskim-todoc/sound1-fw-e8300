@@ -30,6 +30,21 @@ static int               s_touch_tick_old  = 0;
 static tdc_touch_state_t s_touch_state_old = TDC_TOUCH_STATE_RESET;
 
 /* **********************************************************************
+ * Helper — 상태 enum 을 로그용 문자열로 변환
+ */
+static const char *state_name(tdc_touch_state_t s)
+{
+    switch (s)
+    {
+        case TDC_TOUCH_STATE_RESET:             return "RESET";
+        case TDC_TOUCH_STATE_TOUCH:             return "TOUCH";
+        case TDC_TOUCH_STATE_NOT_TOUCH:         return "NOT_TOUCH";
+        case TDC_TOUCH_STATE_CALIBRATION_ERROR: return "CAL_ERROR";
+        default:                                return "?";
+    }
+}
+
+/* **********************************************************************
  * 롱터치 판정 (3초)
  */
 static bool proc_long_touch(tdc_touch_state_t state_now)
@@ -177,7 +192,8 @@ bool tdc_touch_process(void)
         {
             if (s_touch_state_old != curr_state)
             {
-                ci_printv("[TOUCH] STATE: %d -> %d \r\n", s_touch_state_old, curr_state);
+                ci_printv("[TOUCH] STATE: %s -> %s \r\n",
+                          state_name(s_touch_state_old), state_name(curr_state));
                 s_touch_state_old = curr_state;
             }
         }
