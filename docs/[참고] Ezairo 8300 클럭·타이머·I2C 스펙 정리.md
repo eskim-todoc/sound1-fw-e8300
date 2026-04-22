@@ -92,7 +92,7 @@ graph LR
 > "For optimal performance, limit frequency-based clock throttling to steps of no more than 400% of the lower frequency."
 
 - 한 번에 최대 4배 스텝까지만 권장. 예: 3.84 → 15.36 MHz (4배) OK, 3.84 → 19.2 MHz (5배) 는 중간 주파수(7.68) 경유 필요.
-- `Sys_Trims_SetOperatingFrequency` 직접 호출 시에도 동일 원칙 권장.
+- `Sys_Trims_SetOperatingFrequency` / `tdc_Trims_SetOperatingFrequency` 직접 호출 시에도 동일 원칙 권장.
 
 ---
 
@@ -275,6 +275,24 @@ unsigned int Sys_Trims_SetOperatingFrequency(unsigned int frequency_index);
 - 내부 CCO 기본 주파수(multiplier 적용 전)를 변경
 - `frequency_index`: `SYS_FREQ_*` 심볼 사용
 - 반환: `SYS_ERRNO_NO_ERROR` 성공 / `SYS_ERRNO_NO_MATCH` 해당 주파수에 대한 캘리브레이션 없음
+
+> [!WARNING]
+> **SDK 의 `Sys_Trims_SetOperatingFrequency` 는 기저 trim 값만 갱신**하고 `ANALOG_OSC_CTRL_1_MULT` 필드는 건드리지 않는다. 이전에 MULT = 2x / 4x 로 설정되어 있었다면 그대로 유지되어 **의도하지 않은 주파수 × 멀티플라이어 조합**이 CCO 에 적용됨 → 공장 trim 이 해당 조합에 캘리브레이션되어 있지 않으면 CCO 불안정.
+>
+> **Sound1 프로젝트에선 `tdc_Trims_SetOperatingFrequency` 래퍼 사용 권장** — 목표 주파수 대비 올바른 멀티플라이어를 자동 선택 (SYS_FREQ_29M44 초과 → 2x, SYS_FREQ_59M52 초과 → 4x, 그 이하 → 1x). 정의: [`tdc_trims.c:270`](../src/2__cm3/Gen1_5/common/tdc_trims.c).
+
+### 5.0 프로젝트 래퍼 `tdc_Trims_SetOperatingFrequency`
+
+```c
+unsigned int tdc_Trims_SetOperatingFrequency(unsigned int frequency_index);
+```
+
+- 내부적으로 `tdc_Trims_SetOperatingFrequencyMult(frequency_index, OSC_MULTIPLY_BY_{1|2|4})` 호출
+- 멀티플라이어 선택 로직:
+  - `frequency_index > OSC_MUL_LIMIT2` (=SYS_FREQ_59M52) → `OSC_MULTIPLY_BY_4`
+  - `frequency_index > OSC_MUL_LIMIT1` (=SYS_FREQ_29M44) → `OSC_MULTIPLY_BY_2`
+  - 그 외 → `OSC_MULTIPLY_BY_1`
+- 따라서 같은 호출로 base trim 과 멀티플라이어를 일관되게 설정 → Run 모드(30.72M) · Sleep 모드(2.56M) 왕복 시 안전.
 
 ### 5.1 알려진 SYS_FREQ_* 심볼 (PDF 내 언급)
 
