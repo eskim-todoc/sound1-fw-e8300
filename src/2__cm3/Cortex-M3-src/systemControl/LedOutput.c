@@ -8,6 +8,7 @@
 #include "cfx_cm3_sharedMemory.h"
 
 #include <ci_timer.h>
+#include <ci_util.h>  /* delay_ms */
 
 /* ========================================================================
  *  LED Dimming (타이머 3 1ms tick 기반 PWM 듀티 변조)
@@ -575,22 +576,27 @@ void LED_clock_error(void)
 
 void turnOffLED(void)
 {
-    LED_outputColor = en__LED_BLACK;
-#if defined(LED_IS_ACTIVELOW)
-#if defined(LED_B_pin_CFX_test)
-    Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_R);
-    Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_G);
-#else
-    Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_R);
-    Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_G);
-    Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_B);
-#endif
+    /* GPIO R/G/B 순차 호출 사이의 transient 로 의도치 않은 중간색이 보이는
+     * 현상 회피 — 직전 LED 색이 ORANGE/SKYBLUE/PURPLE/WHITE 등 두 핀 이상
+     * ON 상태였다면, R→G→B 순차 LOW 처리 사이에 단일 핀 ON 색 (GREEN/BLUE)
+     * 등이 잠깐 보일 수 있다 (사용자 보고: BLUE 깜빡 후 SKYBLUE 잔상).
+     *
+     * perceived 곡선으로 brightness 를 점진 감소시키면서 LED_OUT() 을 통해
+     * GPIO 를 갱신. PWM duty 0 도달 후엔 LED_OUT() 의 OFF 분기 (GPIO 모두 OFF
+     * base) 만 실행 → 추가 GPIO 변화 없음. 마지막 LED_outputColor 도 BLACK
+     * 으로 명시 적용. */
+    for (uint16_t t = 0; t < LED_DIMMING_FADE_MAX_MS; t++)
+    {
+        uint8_t perceived = (uint8_t) (((uint32_t) (LED_DIMMING_FADE_MAX_MS - t) * 255UL)
+                                       / LED_DIMMING_FADE_MAX_MS);
+        s_led_pwm_on_count = perceived_to_pwm(perceived);
+        LED_OUT();
+        delay_ms(1);
+    }
 
-#else
-    Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_R);
-    Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_G);
-    Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_B);
-#endif
+    LED_outputColor    = en__LED_BLACK;
+    s_led_pwm_on_count = 0;
+    LED_OUT();
 }
 
 void turnON_RedLED(void)
