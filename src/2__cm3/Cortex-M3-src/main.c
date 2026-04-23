@@ -622,6 +622,12 @@ int func_normal(void)
             else
             {
                 ci_printi("[SYSTEM] ENTERING SLEEP MODE \r\n");
+                /* cross-fade Phase A 강제 — POWER_OFF burst 직후 다른 best
+                 * (BATTERY/ISD/MAPPING) 로 진입한 새 색 (예: GREEN) 이
+                 * turnOffLED() 에서 fade-out 되어 잔상으로 보이는 현상 방지.
+                 * 모든 src 를 LED_ST_NONE 으로 강제하고 FADE_MAX_MS+10 동안
+                 * 자연 fade-out 진행 후 break. */
+                led_force_fade_off();
                 break; /* Escape this main loop to enter the ULP mode */
             }
         }

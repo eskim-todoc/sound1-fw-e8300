@@ -128,6 +128,11 @@ void        led_arbiter_tick(void);
 bool        led_is_power_burst_in_progress(void);
 led_state_t led_get_request(led_src_t src);
 
+/* 절전 진입 직전 1 회 호출. 모든 src LED_ST_NONE 강제 + cross-fade
+ * Phase A 자연 fade-off 보장 (소요 ≈ LED_DIMMING_FADE_MAX_MS + 10 ms).
+ * 호출 후엔 LED 가 BLACK 상태로 안정 — turnOffLED() 가 잔상 없이 마무리. */
+void        led_force_fade_off(void);
+
 /* ========================================================================
  *  Legacy API (호환용 유지)
  * ======================================================================== */

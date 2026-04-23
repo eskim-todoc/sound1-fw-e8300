@@ -32,11 +32,16 @@
  *   - 출처: https://en.wikipedia.org/wiki/Relative_luminance
  *           https://en.wikipedia.org/wiki/Stevens%27s_power_law
  * ======================================================================== */
-#define LED_DIMMING_FADE_MAX_MS  150  /* fade-in / fade-out 시간 상한 */
+#define LED_DIMMING_FADE_MAX_MS  40   /* fade-in / fade-out 시간 상한 */
 #define LED_DIMMING_FADE_DIVISOR 3    /* 점멸 fade 자동 조정: on_ms / N */
 #define LED_DIMMING_PWM_STEPS    10   /* 1ms × 10 = 10ms = 100Hz PWM */
 
 static uint8_t s_led_pwm_on_count = LED_DIMMING_PWM_STEPS;  /* 0 ~ STEPS */
+
+/* ISR 에서 engine/LED_OUT 을 일시 정지하는 플래그.
+ * turnOffLED() 처럼 main loop 가 직접 LED state 를 조작하는 구간의
+ * ISR engine 경쟁 방지용. set → 수동 fade → clear 순서로 사용. */
+static volatile bool s_led_isr_suspended = false;
 
 /* 색상 전환 cross-fade 상태머신
  *   FADE_OUT : 이전 색을 perceived 255 → 0 으로 감소 출력 (timer_ms 진행 보류)
@@ -145,7 +150,7 @@ static const led_pattern_desc_t k_led_patterns[LED_ST__MAX] = {
 
     [LED_ST_MAPPING_ISD_BATT_READY]    = { en__LED_BLUE,   200, 1000, 0 },  // 파랑  ON 200ms  / OFF 800ms 점멸  (>20%, ISD 연결)
     [LED_ST_MAPPING_NO_ISD_BATT_READY] = { en__LED_BLUE,     0,    0, 0 },  // 파랑 지속 ON                       (>20%, ISD 미연결)
-    [LED_ST_MAPPING_ISD_BATT_LOW]      = { en__LED_PURPLE, 100, 1000, 0 },  // 보라  ON 100ms  / OFF 900ms 점멸  (≤20%, ISD 연결)
+    [LED_ST_MAPPING_ISD_BATT_LOW]      = { en__LED_PURPLE, 120, 1000, 0 },  // 보라  ON 120ms  / OFF 880ms 점멸  (≤20%, ISD 연결)
     [LED_ST_MAPPING_NO_ISD_BATT_LOW]   = { en__LED_PURPLE,   0,    0, 0 },  // 보라 지속 ON                       (≤20%, ISD 미연결)
 
     [LED_ST_PAIR]           = { en__LED_BLUE,   500, 1000, 0 },   // 파랑  ON 500ms  / OFF 500ms 점멸 (1주기 1000ms)
@@ -158,9 +163,9 @@ static const led_pattern_desc_t k_led_patterns[LED_ST__MAX] = {
     [LED_ST_ERROR_FPGA]     = { en__LED_RED,    180,  360,  0 },   // 빨강  ON 180ms  / OFF 180ms
     [LED_ST_ERROR_PMIC]     = { en__LED_RED,    180,  360,  0 },   // 빨강  ON 180ms  / OFF 180ms
 
-    /* 게이트 -- 출하 검증값 유지 */
-    [LED_ST_POWER_ON]       = { en__LED_SKYBLUE, 80,  300,  5 },   // SKYBLUE ON 80ms  / OFF 220ms × 5회 버스트
-    [LED_ST_POWER_OFF]      = { en__LED_BLUE,   100,  300,  4 },   // BLUE    ON 100ms / OFF 200ms × 4회 버스트
+    /* 게이트 — 최소 ON 120ms 원칙 (FADE 40 · peak 40 · FADE 40), 주기 300ms 유지 */
+    [LED_ST_POWER_ON]       = { en__LED_SKYBLUE, 120, 300,  5 },   // SKYBLUE ON 120ms / OFF 180ms × 5회 버스트
+    [LED_ST_POWER_OFF]      = { en__LED_BLUE,    120, 300,  4 },   // BLUE    ON 120ms / OFF 180ms × 4회 버스트
 };
 
 /* ========================================================================
@@ -343,6 +348,39 @@ led_state_t led_get_request(led_src_t src)
 }
 
 /* ========================================================================
+ *  Force fade-off — 절전 진입 직전 cross-fade Phase A 보장
+ * ========================================================================
+ * 문제: POWER_OFF burst 자가 해제 후 다음 led_arbiter_tick() 에서 best 가
+ *       BATTERY (BATT_READY 등) 로 변경 → cross-fade Phase B 가 새 색을
+ *       LED_outputColor 에 주입 → 곧이은 main loop break → func_sleep() →
+ *       turnOffLED() 가 새 색 (예: GREEN) 을 fade-out → 잔상색 인지.
+ *
+ * 해법: break 전에 모든 src 를 LED_ST_NONE 으로 강제 → best = IDLE → cross-fade
+ *       Phase A 가 현재 색 (LED_outputColor) 을 prev_color 로 캡처하고 자연
+ *       fade-out → 도달 후 BLACK 안정. 그 후 turnOffLED() 호출 시 이미 BLACK
+ *       이므로 잔상 없음.
+ * ======================================================================== */
+void led_force_fade_off(void)
+{
+    /* 모든 src 강제 NONE — Arbiter 가 즉시 IDLE 결정하도록 */
+    for (int src = 0; src < LED_SRC__MAX; src++)
+    {
+        s_req[src] = LED_ST_NONE;
+    }
+
+    /* PAIR latch 도 무효화 — 잔존 latch 가 IDLE 결정을 막지 않게 */
+    s_pair_latch_until_tick = 0;
+
+    /* Phase A 진행 + 안정화 마진. led_arbiter_tick() 이 매 호출 시 LED_OUT()
+     * 까지 처리하므로 GPIO 도 같이 갱신. */
+    for (int i = 0; i < LED_DIMMING_FADE_MAX_MS + 10; i++)
+    {
+        led_arbiter_tick();
+        delay_ms(1);
+    }
+}
+
+/* ========================================================================
  *  Pattern Engine (Rev.3 SS3.6)
  * ======================================================================== */
 
@@ -464,6 +502,13 @@ static void led_engine_run(led_state_t st, bool reset)
 
 void led_arbiter_tick(void)
 {
+    /* turnOffLED() 등 main loop 가 직접 LED state 를 조작하는 구간에서는
+     * ISR engine 을 일시 정지해 shared state 경쟁 방지. */
+    if (s_led_isr_suspended)
+    {
+        return;
+    }
+
     bool user_off = (readLED_indicatorOnOff() == 2);
 
     /* PAIR latch 처리: 해제 요청이 와도 latch 동안 유지 */
@@ -584,7 +629,12 @@ void turnOffLED(void)
      * perceived 곡선으로 brightness 를 점진 감소시키면서 LED_OUT() 을 통해
      * GPIO 를 갱신. PWM duty 0 도달 후엔 LED_OUT() 의 OFF 분기 (GPIO 모두 OFF
      * base) 만 실행 → 추가 GPIO 변화 없음. 마지막 LED_outputColor 도 BLACK
-     * 으로 명시 적용. */
+     * 으로 명시 적용.
+     *
+     * ISR engine 과 경쟁 방지 — 수동 fade 구간 동안 s_led_isr_suspended 로
+     * Timer 3 ISR 의 led_arbiter_tick() 일시 정지. */
+    s_led_isr_suspended = true;
+
     for (uint16_t t = 0; t < LED_DIMMING_FADE_MAX_MS; t++)
     {
         uint8_t perceived = (uint8_t) (((uint32_t) (LED_DIMMING_FADE_MAX_MS - t) * 255UL)
@@ -597,6 +647,8 @@ void turnOffLED(void)
     LED_outputColor    = en__LED_BLACK;
     s_led_pwm_on_count = 0;
     LED_OUT();
+
+    s_led_isr_suspended = false;
 }
 
 void turnON_RedLED(void)
@@ -657,304 +709,110 @@ void turnON_BlueLED(void)
 }
 
 /* ========================================================================
- *  LED_OUT -- GPIO 출력 (기존 그대로 유지)
+ *  LED 색상별 R/G/B PWM duty cap (%) — 조합색 색감 교정
+ * ========================================================================
+ *  저항 R13=R14=R15=1.2kΩ + 3.3V_STBY 고정 회로에서 각 조합색의 체감
+ *  색감을 의도와 일치시키기 위해 색상마다 R/G/B 채널별 cap 을 독립 설정.
+ *
+ *  단순 per-channel gain 은 단색 · 조합색 둘 다 동시 만족 불가 — 예를 들어
+ *  GREEN 단색을 밝게 유지하면서 ORANGE 의 G 만 약화하는 게 필요한데,
+ *  단일 gain 으로는 두 조건 충돌. 색상별 per-channel cap 테이블로 해결.
+ *
+ *  동작:
+ *   - base_duty (s_led_pwm_on_count, 0..LED_DIMMING_PWM_STEPS) 는 Dimming
+ *     (perceived + CIE L*) 결과.
+ *   - 색상 → cap lookup → 채널별 duty = base × cap / 100
+ *   - 채널별 timerCounter 비교로 per-channel PWM 출력
+ *
+ *  주의:
+ *   - PWM_STEPS=10 → cap 10% 단위 양자화.
+ *   - 아래 값은 실측 튜닝 전 초안. 보드 테스트 후 육안 매칭으로 갱신.
  * ======================================================================== */
 
+typedef struct
+{
+    uint8_t cap_pc_r;  /* 0..100 */
+    uint8_t cap_pc_g;  /* 0..100 */
+    uint8_t cap_pc_b;  /* 0..100 */
+} tdc_led_mix_t;
+
+static const tdc_led_mix_t k_led_mix[] = {
+    [en__LED_BLACK]   = {   0,   0,   0 },
+    [en__LED_RED]     = { 100,   0,   0 },  /* 1.0× 기준 */
+    [en__LED_GREEN]   = {   0,  50,   0 },  /* G 감쇠 — 체감 2× 보정 */
+    [en__LED_BLUE]    = {   0,   0, 100 },  /* 1.0× 기준 */
+    [en__LED_ORANGE]  = {  80,  10,   0 },  /* R 우세 + G 최소 → 주황 */
+    [en__LED_SKYBLUE] = {   0,  30,  40 },  /* 총 광량 감쇠 (원 SKYBLUE 가 최고 밝음) */
+    [en__LED_PURPLE]  = {  50,   0,  50 },  /* 총 광량 감쇠 */
+    [en__LED_WHITE]   = {  30,  30,  30 },  /* G 비중 ↑ → 연보라 제거 */
+};
+
+/* ========================================================================
+ *  GPIO 극성 helper — Active HIGH / Active LOW / B pin 유무 컴파일 타임 분기
+ * ======================================================================== */
+
+static void tdc_led_write_gpio(bool on_r, bool on_g, bool on_b)
+{
 #if defined(LED_IS_ACTIVELOW)
-
-#if defined(LED_B_pin_CFX_test)
-void LED_OUT(void)
-{
-    static int timerCounter = 0;
-
-    /* Dimming PWM: s_led_pwm_on_count (0 ~ LED_DIMMING_PWM_STEPS) 비율로 ON */
-    bool enablePatternOut = (timerCounter < s_led_pwm_on_count);
-
-    if (enablePatternOut)
-    {
-        switch (LED_outputColor)
-        {
-
-            case en__LED_BLACK:
-            {
-
-                Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_R);
-                Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_G);
-            }
-            break;
-            case en__LED_RED:
-            {
-                Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_R);
-                Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_G);
-            }
-            break;
-            case en__LED_GREEN:
-            {
-                Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_R);
-                Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_G);
-            }
-            break;
-            case en__LED_BLUE:
-            {
-                Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_R);
-                Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_G);
-            }
-            break;
-            case en__LED_ORANGE:
-            {
-
-                Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_R);
-                Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_G);
-            }
-            break;
-            case en__LED_SKYBLUE:
-            {
-                Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_R);
-                Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_G);
-            }
-            break;
-            case en__LED_PURPLE:
-            {
-                Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_R);
-                Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_G);
-            }
-            break;
-            case en__LED_WHITE:
-            {
-                Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_R);
-                Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_G);
-            }
-            break;
-
-            default:
-            {
-
-                Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_R);
-                Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_G);
-            }
-            break;
-        }
-    }
-    else
-    {
-
-        Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_R);
-        Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_G);
-    }
-
-    /* PWM 카운터 진행 — Dimming brightness 반영 */
-    timerCounter++;
-    if (timerCounter >= LED_DIMMING_PWM_STEPS)
-    {
-        timerCounter = 0;
-    }
-}
-
-#else
-
-void LED_OUT(void)
-{
-    static int timerCounter = 0;
-
-    /* Dimming PWM: s_led_pwm_on_count (0 ~ LED_DIMMING_PWM_STEPS) 비율로 ON */
-    bool enablePatternOut = (timerCounter < s_led_pwm_on_count);
-
-    if (enablePatternOut)
-    {
-        switch (LED_outputColor)
-        {
-
-            case en__LED_BLACK:
-            {
-
-                Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_R);
-                Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_G);
-                Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_B);
-            }
-            break;
-            case en__LED_RED:
-            {
-                Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_R);
-                Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_G);
-                Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_B);
-            }
-            break;
-            case en__LED_GREEN:
-            {
-                Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_R);
-                Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_G);
-                Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_B);
-            }
-            break;
-            case en__LED_BLUE:
-            {
-                Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_R);
-                Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_G);
-                Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_B);
-            }
-            break;
-            case en__LED_ORANGE:
-            {
-
-                Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_R);
-                Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_G);
-                Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_B);
-            }
-            break;
-            case en__LED_SKYBLUE:
-            {
-                Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_R);
-                Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_G);
-                Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_B);
-            }
-            break;
-            case en__LED_PURPLE:
-            {
-                Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_R);
-                Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_G);
-                Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_B);
-            }
-            break;
-            case en__LED_WHITE:
-            {
-                Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_R);
-                Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_G);
-                Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_B);
-            }
-            break;
-
-            default:
-            {
-
-                Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_R);
-                Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_G);
-                Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_B);
-            }
-            break;
-        }
-    }
-    else
-    {
-
-        Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_R);
-        Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_G);
-        Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_B);
-    }
-
-    /* PWM 카운터 진행 — Dimming brightness 반영 */
-    timerCounter++;
-    if (timerCounter >= LED_DIMMING_PWM_STEPS)
-    {
-        timerCounter = 0;
-    }
-
-    if (isTestTriggerEanbled())
-    {
-        Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_R);
-        Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_G);
-        Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_B);
-    }
-}
-
-#endif  //
-
-#else
-void LED_OUT(void)
-{
-    static int timerCounter = 0;
-
-    /* Dimming PWM: s_led_pwm_on_count (0 ~ LED_DIMMING_PWM_STEPS) 비율로 ON */
-    bool enablePatternOut = (timerCounter < s_led_pwm_on_count);
-
-    if (enablePatternOut)
-    {
-        switch (LED_outputColor)
-        {
-            case en__LED_BLACK:
-            {
-                Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_R);
-                Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_G);
-                Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_B);
-            }
-            break;
-            case en__LED_RED:
-            {
-                Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_R);
-                Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_G);
-                Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_B);
-            }
-            break;
-            case en__LED_GREEN:
-            {
-                Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_R);
-                Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_G);
-                Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_B);
-            }
-            break;
-            case en__LED_BLUE:
-            {
-                Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_R);
-                Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_G);
-                Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_B);
-            }
-            break;
-            case en__LED_ORANGE:
-            {
-                Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_R);
-                Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_G);
-                Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_B);
-            }
-            break;
-            case en__LED_SKYBLUE:
-            {
-                Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_R);
-                Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_G);
-                Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_B);
-            }
-            break;
-            case en__LED_PURPLE:
-            {
-                Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_R);
-                Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_G);
-                Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_B);
-            }
-            break;
-            case en__LED_WHITE:
-            {
-                Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_R);
-                Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_G);
-                Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_B);
-            }
-            break;
-            default:
-            {
-                Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_R);
-                Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_G);
-                Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_B);
-            }
-            break;
-        }
-    }
-    else
-    {
-        Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_R);
-        Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_G);
-        Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_B);
-    }
-
-    /* PWM 카운터 진행 — Dimming brightness 반영 */
-    timerCounter++;
-    if (timerCounter >= LED_DIMMING_PWM_STEPS)
-    {
-        timerCounter = 0;
-    }
-
-    if (isTestTriggerEanbled())
-    {
-        Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_R);
-        Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_G);
-        Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_B);
-    }
-}
-
+    if (on_r) Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_R);
+    else      Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_R);
+    if (on_g) Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_G);
+    else      Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_G);
+  #if !defined(LED_B_pin_CFX_test)
+    if (on_b) Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_B);
+    else      Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_B);
+  #else
+    (void) on_b;
+  #endif
+#else  /* Active HIGH (Board_OTE_ver1_5 기본) */
+    if (on_r) Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_R);
+    else      Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_R);
+    if (on_g) Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_G);
+    else      Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_G);
+    if (on_b) Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_B);
+    else      Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_B);
 #endif
+}
+
+/* ========================================================================
+ *  LED_OUT — 색상 × Dimming × PWM → GPIO 출력
+ * ======================================================================== */
+
+void LED_OUT(void)
+{
+    static int timerCounter = 0;
+
+    /* Test trigger: 강제 BLUE. 테이블 lookup 으로 일관 처리. */
+    EN__LED_COLOR color = isTestTriggerEanbled() ? en__LED_BLUE : LED_outputColor;
+
+    /* 배열 bound 가드 — 미등록 색상은 OFF 로 처리 */
+    const tdc_led_mix_t *mix;
+    if ((unsigned) color < (sizeof(k_led_mix) / sizeof(k_led_mix[0])))
+    {
+        mix = &k_led_mix[color];
+    }
+    else
+    {
+        static const tdc_led_mix_t k_off = { 0, 0, 0 };
+        mix = &k_off;
+    }
+
+    /* 채널별 감쇠 duty — base × cap / 100 */
+    uint8_t duty_r = (uint8_t) ((uint32_t) s_led_pwm_on_count * mix->cap_pc_r / 100U);
+    uint8_t duty_g = (uint8_t) ((uint32_t) s_led_pwm_on_count * mix->cap_pc_g / 100U);
+    uint8_t duty_b = (uint8_t) ((uint32_t) s_led_pwm_on_count * mix->cap_pc_b / 100U);
+
+    /* 채널별 PWM 비교 (동일 timerCounter, 서로 다른 duty cap) */
+    bool on_r = (timerCounter < duty_r);
+    bool on_g = (timerCounter < duty_g);
+    bool on_b = (timerCounter < duty_b);
+
+    tdc_led_write_gpio(on_r, on_g, on_b);
+
+    /* PWM 카운터 진행 */
+    timerCounter++;
+    if (timerCounter >= LED_DIMMING_PWM_STEPS)
+    {
+        timerCounter = 0;
+    }
+}
