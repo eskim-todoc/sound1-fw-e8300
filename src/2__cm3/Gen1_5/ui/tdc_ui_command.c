@@ -188,9 +188,11 @@ static const str_map_t s_tdc_state_map[] = {
     {"critical",   LED_ST_BATT_CRITICAL},
     /* isd */
     {"in_use",     LED_ST_IN_USE},
-    /* mapping */
-    {"no_isd",     LED_ST_MAPPING_NO_ISD},
-    {"with_isd",   LED_ST_MAPPING_ISD},
+    /* mapping (배터리 LOW 임계 20% × ISD 연결 여부 4종) */
+    {"no_isd_ready",   LED_ST_MAPPING_NO_ISD_BATT_READY},
+    {"with_isd_ready", LED_ST_MAPPING_ISD_BATT_READY},
+    {"no_isd_low",     LED_ST_MAPPING_NO_ISD_BATT_LOW},
+    {"with_isd_low",   LED_ST_MAPPING_ISD_BATT_LOW},
     /* ble */
     {"pair",       LED_ST_PAIR},
     {"ota_qcc",    LED_ST_OTA_QCC},
