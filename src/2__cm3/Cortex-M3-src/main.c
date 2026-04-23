@@ -380,7 +380,7 @@ int func_normal(void)
 
             // powerButtonPushed = false;                 // 왜 인지 특정 보드에서는 RE-ATI 에러가 발생하는 중
 
-#if 1  // QCC 대체용 디버깅 코드 시작, 약 500밀리초 이후 시스템 동작
+#if 0  // QCC 대체용 디버깅 코드 시작, 약 500밀리초 이후 시스템 동작
             {
                 static int fake_0x34      = 0;
                 static int fake_0x34_done = 0;
@@ -543,7 +543,8 @@ int func_normal(void)
                 }
             }
 
-            led_arbiter_tick();
+            /* led_arbiter_tick() 은 Timer 3 ISR 에서 직접 구동 (ci_timer.c).
+             * main loop 의 I2C/EEPROM 폴링 블록으로 인한 fade/PWM jitter 회피. */
 
             NRF_On_OFF(isd_state, systemState.BLE_Off, BLE_communicationState.mappingConnection, BLE_communicationState.BLE_Off_Command);
 
@@ -603,21 +604,24 @@ int func_normal(void)
         if (systemState.systemOff == true)
         {
             /* 절전 모드 진입 가드 — 매핑 / 페어링 / OTA 진행 중에는 보류한다.
-             * (사용자 작업 흐름이 끊기지 않도록 함) */
-            tdc_led_ind_state_t ind          = tdc_led_get_ind_state();
-            bool                map_active   = BLE_communicationState.mappingConnection;
-            bool                pair_active  = (ind == TDC_LED_IND_STATE_PAIR);
-            bool                ota_active   = (ind == TDC_LED_IND_STATE_OTA_QCC)
-                                            || (ind == TDC_LED_IND_STATE_OTA_EZAIRO);
+             *
+             * BLE 활성 검사는 Arbiter src 요청을 직접 본다 — tdc_led_get_ind_state()
+             * 는 BLE 가 set 한 후 NONE 으로 reset 안 보내면 잔존하기 때문. */
+            led_state_t ble_st      = led_get_request(LED_SRC_BLE_IND);
+            bool        map_active  = BLE_communicationState.mappingConnection;
+            bool        pair_active = (ble_st == LED_ST_PAIR);
+            bool        ota_active  = (ble_st == LED_ST_OTA_QCC)
+                                    || (ble_st == LED_ST_OTA_EZAIRO);
 
             if (map_active || pair_active || ota_active)
             {
-                ci_printw("[SYSTEM] SLEEP DEFERRED (map=%d pair=%d ota=%d) \r\n",
-                          map_active, pair_active, ota_active);
+                ci_printw("[SYSTEM] SLEEP DEFERRED (map=%d pair=%d ota=%d ble_st=%d) \r\n",
+                          map_active, pair_active, ota_active, (int) ble_st);
                 systemState.systemOff = false;  /* 다음 iteration 에서 트리거 재평가 */
             }
             else
             {
+                ci_printi("[SYSTEM] ENTERING SLEEP MODE \r\n");
                 break; /* Escape this main loop to enter the ULP mode */
             }
         }
