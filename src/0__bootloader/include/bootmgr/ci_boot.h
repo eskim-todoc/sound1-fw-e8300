@@ -14,7 +14,7 @@
 
 #include <sdk_ci_boot.h>
 
-#define CI_BOOT_COUNT_DOWN_SEC 1
+#define CI_BOOT_COUNT_DOWN_SEC 0  // 1
 
 uint8_t tdc_boot_get_slot_num(void);
 void    snd_boot_set_fp(FIL *fp);
