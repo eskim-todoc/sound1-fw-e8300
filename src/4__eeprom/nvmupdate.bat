@@ -15,12 +15,14 @@ set MANU_FILE=%PROJ_PATH%/%MANUF_FILE_NAME%
 set LOG_JFLASH_FILE=%PROJ_PATH%/jflash.log
 set LOG_JLINK_FILE=%PROJ_PATH%/jlink.log
 set BACKUP_HEX=%PROJ_PATH%/manuf_backup.hex
+set "JLINK_SN=602011400"
 
 echo [INFO] PROJ_PATH : %PROJ_PATH%
 echo [INFO] BUILD_OUT_NAME : %BUILD_OUT_NAME%
 echo [INFO] OBJCOPY : %OBJCOPY%
 echo [INFO] SREC_CAT : %SREC_CAT%
 echo [INFO] JFALSH : %JFLASH%
+echo [INFO] SN : %JLINK_SN%
 
 if "%~3" == "" (
     set HAS_MANUF_INPUT_OPTION=0
@@ -53,7 +55,8 @@ if %USE_MANUF_FILE% == 1 (
     %SREC_CAT% %HEX_FILE% -Intel %MANU_FILE% -Intel -o %HEX_FILE% -Intel
 ) else (
     echo [INFO] READ MANUF AREA FROM CONNECTED DEVICE
-    %JFLASH% -openprj %PROJ_PATH%/ezairo8300_LOWER_4MB.jflash ^
+    %JFLASH% -usb%JLINK_SN% ^
+             -openprj %PROJ_PATH%/ezairo8300_LOWER_4MB.jflash ^
              -readrange 0x40008400,0x400084FF ^
              -saveas %BACKUP_HEX% ^
              -exit ^
@@ -76,7 +79,8 @@ if %USE_MANUF_FILE% == 1 (
 )
 
 echo [INFO] DOWNLOAD .hex TO DEVICE
-%JFLASH% -openprj %PROJ_PATH%/ezairo8300_LOWER_4MB.jflash ^
+%JFLASH% -usb%JLINK_SN% ^
+         -openprj %PROJ_PATH%/ezairo8300_LOWER_4MB.jflash ^
 		 -open %HEX_FILE% ^
 		 -auto ^
 		 -exit ^
