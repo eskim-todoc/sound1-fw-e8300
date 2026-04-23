@@ -12,25 +12,34 @@
 /* ========================================================================
  *  LED Dimming (타이머 3 1ms tick 기반 PWM 듀티 변조)
  * ========================================================================
- *  led_engine_run() 이 매 1ms 호출되며 패턴 디스크립터 + 경과 시간으로
- *  brightness(0~255) 를 산출 → PWM 단위(0~LED_DIMMING_PWM_STEPS) 로 변환.
- *  LED_OUT() 은 timerCounter 와 비교해 GPIO ON/OFF 결정.
+ *  led_engine_run() 이 매 1ms 호출되어 패턴 디스크립터 + 경과 시간으로
+ *  perceived brightness(0~255) 를 산출, CIE 1931 L* 곡선 LUT 로
+ *  physical PWM duty 로 변환 → LED_OUT() 이 GPIO ON/OFF 결정.
  *
  *  Fade 효과:
- *   - 점멸 ON 구간 시작:  fade-in   (0 → 255 in LED_DIMMING_FADE_MS)
- *   - 점멸 ON 구간 종료:  fade-out  (255 → 0 in LED_DIMMING_FADE_MS)
- *   - ON 구간이 fade × 2 보다 짧으면 삼각파 (정점 미도달)
- *   - 색상 전환:          새 색을 0 부터 LED_DIMMING_FADE_MS 동안 점진 등장
- *   - 지속 ON:            brightness = 255 (PWM full duty)
+ *   - 점멸 ON 구간:  fade-in / peak / fade-out
+ *                    (fade 시간은 ON 시간에 맞춰 자동 조정 — on_ms / 3,
+ *                     단 LED_DIMMING_FADE_MAX_MS 를 상한으로 cap)
+ *                    → 모든 패턴에서 정점 (max brightness) 도달 보장
+ *   - 색상 전환:     이전 색 fade-out (FADE_MAX_MS) 후 새 색 fade-in (FADE_MAX_MS)
+ *   - 지속 ON:       perceived = 255 → PWM full duty
+ *
+ *  사람 눈 인지 곡선 (CIE 1931 Lightness L*):
+ *   - 사람 눈은 밝기에 비선형 반응 (Stevens' Power Law: ≈ luminance^0.33)
+ *   - 시간에 따른 perceived 를 선형 증가시키면 사람 눈에 균등하게 인식됨
+ *   - LUT 가 perceived (0~255) 를 physical PWM (0~255) 으로 비선형 매핑
+ *   - 출처: https://en.wikipedia.org/wiki/Relative_luminance
+ *           https://en.wikipedia.org/wiki/Stevens%27s_power_law
  * ======================================================================== */
-#define LED_DIMMING_FADE_MS    150     /* fade-in / fade-out 각각 시간 */
-#define LED_DIMMING_PWM_STEPS  10      /* 1ms × 10 = 10ms = 100Hz PWM */
+#define LED_DIMMING_FADE_MAX_MS  150  /* fade-in / fade-out 시간 상한 */
+#define LED_DIMMING_FADE_DIVISOR 3    /* 점멸 fade 자동 조정: on_ms / N */
+#define LED_DIMMING_PWM_STEPS    10   /* 1ms × 10 = 10ms = 100Hz PWM */
 
 static uint8_t s_led_pwm_on_count = LED_DIMMING_PWM_STEPS;  /* 0 ~ STEPS */
 
 /* 색상 전환 cross-fade 상태머신
- *   FADE_OUT : 이전 색을 brightness 255 → 0 으로 감소 출력 (timer_ms 진행 보류)
- *   FADE_IN  : 새 색을 brightness 0 → 255 로 증가 출력 (패턴 진행 정상)
+ *   FADE_OUT : 이전 색을 perceived 255 → 0 으로 감소 출력 (timer_ms 진행 보류)
+ *   FADE_IN  : 새 색을 perceived 0 → 255 로 증가 출력 (패턴 진행 정상)
  *   NONE     : 평상시 (점멸 fade-in/out 만 적용)
  */
 typedef enum
@@ -44,43 +53,75 @@ static led_tx_phase_t s_tx_phase      = LED_TX_NONE;
 static EN__LED_COLOR  s_tx_prev_color = en__LED_BLACK;
 static uint16_t       s_tx_ms         = 0;
 
-static uint8_t led_dim_calc_brightness(uint16_t t, uint16_t on_ms, uint16_t period_ms)
+/* CIE 1931 Lightness (L*) → relative luminance LUT.
+ *
+ * 입력: perceived brightness 0~255 (시간 진행을 이 값 선형 증가)
+ * 출력: physical PWM duty 0~255 (LED 실제 출력 강도)
+ *
+ * 표는 Python 으로 자동 생성:
+ *   L = i * 100 / 255              (입력 0~255 → CIE L* 0~100)
+ *   Y = ((L + 16) / 116) ^ 3       if L > 8
+ *   Y = L / 903.3                  if L ≤ 8
+ *   PWM = round(Y * 255)
+ *
+ * 시간에 따라 입력을 선형 증가시키면 사람 눈에 밝기가 균등하게 변하는
+ * 것처럼 보인다. 단조 증가, LUT[0]=0, LUT[255]=255 보장.
+ */
+static const uint8_t k_perceptual_lut[256] = {
+      0,   0,   0,   0,   0,   1,   1,   1,   1,   1,   1,   1,   1,   1,   2,   2,
+      2,   2,   2,   2,   2,   2,   2,   3,   3,   3,   3,   3,   3,   3,   3,   4,
+      4,   4,   4,   4,   4,   5,   5,   5,   5,   5,   6,   6,   6,   6,   6,   7,
+      7,   7,   7,   8,   8,   8,   8,   9,   9,   9,  10,  10,  10,  10,  11,  11,
+     11,  12,  12,  12,  13,  13,  13,  14,  14,  15,  15,  15,  16,  16,  17,  17,
+     17,  18,  18,  19,  19,  20,  20,  21,  21,  22,  22,  23,  23,  24,  24,  25,
+     25,  26,  26,  27,  28,  28,  29,  29,  30,  31,  31,  32,  32,  33,  34,  34,
+     35,  36,  37,  37,  38,  39,  39,  40,  41,  42,  43,  43,  44,  45,  46,  47,
+     47,  48,  49,  50,  51,  52,  53,  54,  54,  55,  56,  57,  58,  59,  60,  61,
+     62,  63,  64,  65,  66,  67,  68,  70,  71,  72,  73,  74,  75,  76,  77,  79,
+     80,  81,  82,  83,  85,  86,  87,  88,  90,  91,  92,  94,  95,  96,  98,  99,
+    100, 102, 103, 105, 106, 108, 109, 110, 112, 113, 115, 116, 118, 120, 121, 123,
+    124, 126, 128, 129, 131, 132, 134, 136, 138, 139, 141, 143, 145, 146, 148, 150,
+    152, 154, 155, 157, 159, 161, 163, 165, 167, 169, 171, 173, 175, 177, 179, 181,
+    183, 185, 187, 189, 191, 193, 196, 198, 200, 202, 204, 207, 209, 211, 214, 216,
+    218, 220, 223, 225, 228, 230, 232, 235, 237, 240, 242, 245, 247, 250, 252, 255,
+};
+
+/* 점멸 패턴 fade 시간 자동 조정 — on_ms / 3, 단 MAX 까지 cap.
+ * 결과: ON 구간 안에서 반드시 정점 (perceived 255) 도달 + peak 유지 ≥ on_ms/3. */
+static uint16_t calc_pattern_fade_ms(uint16_t on_ms)
 {
-    /* 지속 ON */
-    if (period_ms == 0)
-    {
-        return 255;
-    }
+    uint16_t one_third = on_ms / LED_DIMMING_FADE_DIVISOR;
+    return (one_third < LED_DIMMING_FADE_MAX_MS) ? one_third : LED_DIMMING_FADE_MAX_MS;
+}
 
-    /* OFF 구간 */
-    if (t >= on_ms)
-    {
-        return 0;
-    }
+/* 점멸 패턴 내 시간 t 의 perceived brightness (선형 0~255).
+ * fade 시간이 ON 시간에 맞춰 자동 조정되어 정점 도달 보장. */
+static uint8_t calc_perceived_pattern(uint16_t t, uint16_t on_ms, uint16_t period_ms)
+{
+    if (period_ms == 0)  return 255;  /* 지속 ON */
+    if (t >= on_ms)      return 0;    /* OFF 구간 */
 
-    /* ON 구간이 fade × 2 보다 짧으면 삼각파 — 정점 도달 못 함 */
-    if (on_ms <= 2 * LED_DIMMING_FADE_MS)
-    {
-        uint16_t mid = on_ms / 2;
-        if (t <= mid)
-        {
-            return (uint8_t) ((t * 255UL) / LED_DIMMING_FADE_MS);
-        }
-        return (uint8_t) (((on_ms - t) * 255UL) / LED_DIMMING_FADE_MS);
-    }
+    uint16_t fade_ms = calc_pattern_fade_ms(on_ms);
+    if (fade_ms == 0)    return 255;  /* on_ms < 3 (이론상 미발생, 안전 가드) */
 
-    /* fade-in: 0 ~ fade_ms */
-    if (t < LED_DIMMING_FADE_MS)
+    /* fade-in 영역 */
+    if (t < fade_ms)
     {
-        return (uint8_t) ((t * 255UL) / LED_DIMMING_FADE_MS);
+        return (uint8_t) ((t * 255UL) / fade_ms);
     }
-    /* fade-out: on_ms - fade_ms ~ on_ms */
-    if (t >= (uint16_t) (on_ms - LED_DIMMING_FADE_MS))
+    /* fade-out 영역 */
+    if (t >= (uint16_t) (on_ms - fade_ms))
     {
-        return (uint8_t) (((on_ms - t) * 255UL) / LED_DIMMING_FADE_MS);
+        return (uint8_t) (((on_ms - t) * 255UL) / fade_ms);
     }
     /* 정점 */
     return 255;
+}
+
+/* perceived (0~255) → PWM step (0~LED_DIMMING_PWM_STEPS) — CIE L* LUT 경유 */
+static uint8_t perceived_to_pwm(uint8_t perceived)
+{
+    return (uint8_t) (((uint32_t) k_perceptual_lut[perceived] * LED_DIMMING_PWM_STEPS) / 255);
 }
 
 /* ========================================================================
@@ -335,15 +376,18 @@ static void led_engine_run(led_state_t st, bool reset)
         }
     }
 
-    /* Phase A — 이전 색 fade-out. timer_ms / 패턴 진행 보류 */
+    /* Phase A — 이전 색 fade-out (perceived 곡선 적용). timer_ms 진행 보류 */
     if (s_tx_phase == LED_TX_FADE_OUT)
     {
         LED_outputColor = s_tx_prev_color;
-        uint32_t b = (uint32_t) 255 * (LED_DIMMING_FADE_MS - s_tx_ms) / LED_DIMMING_FADE_MS;
-        s_led_pwm_on_count = (uint8_t) (b * LED_DIMMING_PWM_STEPS / 255);
+
+        /* perceived 255 → 0 으로 선형 감소, LUT 통해 PWM 변환 */
+        uint8_t perceived = (uint8_t) (((LED_DIMMING_FADE_MAX_MS - s_tx_ms) * 255UL)
+                                       / LED_DIMMING_FADE_MAX_MS);
+        s_led_pwm_on_count = perceived_to_pwm(perceived);
 
         s_tx_ms++;
-        if (s_tx_ms >= LED_DIMMING_FADE_MS)
+        if (s_tx_ms >= LED_DIMMING_FADE_MAX_MS)
         {
             /* fade-out 완료 → 다음 tick 부터 Phase B (새 패턴 시작) */
             s_tx_phase = LED_TX_FADE_IN;
@@ -364,22 +408,24 @@ static void led_engine_run(led_state_t st, bool reset)
         LED_outputColor = (timer_ms < p->on_ms) ? p->color : en__LED_BLACK;
     }
 
-    /* Brightness 산출 (점멸 fade) */
-    uint8_t bright = led_dim_calc_brightness(timer_ms, p->on_ms, p->period_ms);
+    /* perceived brightness 산출 (점멸 fade-in/peak/fade-out, 자동 fade 시간) */
+    uint8_t perceived = calc_perceived_pattern(timer_ms, p->on_ms, p->period_ms);
 
-    /* Phase B — 새 색 fade-in (전체 brightness 스케일 다운) */
+    /* Phase B — 새 색 fade-in: ratio 와 perceived 결합 (perceived 단위 곱셈) */
     if (s_tx_phase == LED_TX_FADE_IN)
     {
-        bright = (uint8_t) (((uint32_t) bright * s_tx_ms) / LED_DIMMING_FADE_MS);
+        uint8_t fade_in_perc = (uint8_t) ((s_tx_ms * 255UL) / LED_DIMMING_FADE_MAX_MS);
+        perceived = (uint8_t) (((uint32_t) perceived * fade_in_perc) / 255);
+
         s_tx_ms++;
-        if (s_tx_ms >= LED_DIMMING_FADE_MS)
+        if (s_tx_ms >= LED_DIMMING_FADE_MAX_MS)
         {
             s_tx_phase = LED_TX_NONE;
         }
     }
 
-    /* 0~255 → 0~LED_DIMMING_PWM_STEPS PWM 카운트 */
-    s_led_pwm_on_count = (uint8_t) (((uint32_t) bright * LED_DIMMING_PWM_STEPS) / 255);
+    /* perceived → PWM (CIE L* LUT) */
+    s_led_pwm_on_count = perceived_to_pwm(perceived);
 
     /* 점멸 주기 진행 */
     if (p->period_ms != 0)
