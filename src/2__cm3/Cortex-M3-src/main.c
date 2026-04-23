@@ -52,8 +52,6 @@
 #include "tdc_ui_command.h"
 #endif
 
-void debug_led_pattern(EN__LED_PATTERN pattern);
-
 typedef struct
 {
     uint8_t version[3];
@@ -507,20 +505,36 @@ int func_normal(void)
 #endif
                     led_request(LED_SRC_ISD, isd_conn ? LED_ST_IN_USE : LED_ST_NONE);
 
-                /* Mapping (SS4.4) */
+                /* Mapping (SS4.4) — 배터리 레벨(LOW 임계 20%) × ISD 연결 여부 4종 분기.
+                 * LOW 진입 pct ≤ 20, 해제 pct ≥ 22 (±2% 히스테리시스). */
 #ifdef ENABLE_UI_CMD
                 bool map_conn = tdc_ui_command_override_map_active() ? tdc_ui_command_override_map_value()
                                                         : BLE_communicationState.mappingConnection;
 #else
                 bool map_conn = BLE_communicationState.mappingConnection;
 #endif
+                static bool s_map_low_active = false;
+                if (pct <= 20)      s_map_low_active = true;
+                else if (pct >= 22) s_map_low_active = false;
+                /* pct == 21 구간은 직전 상태 유지 */
 #ifdef ENABLE_UI_CMD
                 if (!tdc_ui_command_is_led_override(LED_SRC_MAPPING))
 #endif
                 {
                     if (map_conn)
                     {
-                        led_request(LED_SRC_MAPPING, isd_conn ? LED_ST_MAPPING_ISD : LED_ST_MAPPING_NO_ISD);
+                        led_state_t map_st;
+                        if (s_map_low_active)
+                        {
+                            map_st = isd_conn ? LED_ST_MAPPING_ISD_BATT_LOW
+                                              : LED_ST_MAPPING_NO_ISD_BATT_LOW;
+                        }
+                        else
+                        {
+                            map_st = isd_conn ? LED_ST_MAPPING_ISD_BATT_READY
+                                              : LED_ST_MAPPING_NO_ISD_BATT_READY;
+                        }
+                        led_request(LED_SRC_MAPPING, map_st);
                     }
                     else
                     {
@@ -588,7 +602,24 @@ int func_normal(void)
 
         if (systemState.systemOff == true)
         {
-            break; /* Escape this main loop to enter the ULP mode */
+            /* 절전 모드 진입 가드 — 매핑 / 페어링 / OTA 진행 중에는 보류한다.
+             * (사용자 작업 흐름이 끊기지 않도록 함) */
+            tdc_led_ind_state_t ind          = tdc_led_get_ind_state();
+            bool                map_active   = BLE_communicationState.mappingConnection;
+            bool                pair_active  = (ind == TDC_LED_IND_STATE_PAIR);
+            bool                ota_active   = (ind == TDC_LED_IND_STATE_OTA_QCC)
+                                            || (ind == TDC_LED_IND_STATE_OTA_EZAIRO);
+
+            if (map_active || pair_active || ota_active)
+            {
+                ci_printw("[SYSTEM] SLEEP DEFERRED (map=%d pair=%d ota=%d) \r\n",
+                          map_active, pair_active, ota_active);
+                systemState.systemOff = false;  /* 다음 iteration 에서 트리거 재평가 */
+            }
+            else
+            {
+                break; /* Escape this main loop to enter the ULP mode */
+            }
         }
 
         SYS_WATCHDOG_REFRESH();
@@ -596,42 +627,6 @@ int func_normal(void)
     }  // 끝, while
 
     return 0;
-}
-
-void debug_led_pattern(EN__LED_PATTERN pattern)
-{
-    ci_printv("[DEBUG] LED PATTERN UPDATE TO ");
-
-    switch (pattern)
-    {
-        case en__LED_NA:
-            ci_printv("NA \r\n");
-            break;
-        case en__LED_Map_Error:
-            ci_printv("MAP ERROR \r\n");
-            break;
-        case en__LED_MCU_Error:
-            ci_printv("MCU ERROR \r\n");
-            break;
-        case en__LED_MCU_Accelerometer_Error:
-            ci_printv("ACC ERROR \r\n");
-            break;
-        case en__LED_MCU_FPGA_Error:
-            ci_printv("FPGA ERROR \r\n");
-            break;
-        case en__LED_MCU_RF_PMIC_Error:
-            ci_printv("RF PMIC ERROR \r\n");
-            break;
-        case en__LED_POWER_On:
-            ci_printv("POWER ON \r\n");
-            break;
-        case en__LED_POWER_Off:
-            ci_printv("POWER OFF \r\n");
-            break;
-        default:
-            ci_printv("UNKNOWN (%d) \r\n", pattern);
-            break;
-    }
 }
 
 /* ULP 모드 롱-터치 감지 파라미터 — 튜닝 시 아래 값만 수정 */
@@ -651,8 +646,6 @@ void debug_led_pattern(EN__LED_PATTERN pattern)
 
 int func_sleep(void)
 {
-    int *p_int32;
-
     SYS_WATCHDOG_REFRESH(); /* Refresh the watchdog at very first time */
 
     ci_printi("[INFO] CM3 IS PREPARING TO ENTER SLEEP MODE \r\n");
@@ -717,7 +710,7 @@ int func_sleep(void)
                 ci_printi("[MAIN] LONG TOUCH DETECTED, RESET \r\n");
                 delay_ms(20);  // RTT 뷰어 로그 드레인 대기
                 SYS_WATCHDOG_RESET();
-                break;
+                /* 도달 불가 — 칩 리셋 */
             }
         }
         else
@@ -726,25 +719,7 @@ int func_sleep(void)
         }
     }
 
-    SYS_WATCHDOG_REFRESH();
-
-    ci_timer_uninit();
-    ci_power_normal(); /* Make Normal clock setting */
-
-    // cfx_cm3_sharedMemoryAll.is_CFX_started           = 0; /* Reset flag for initializing CFX related booting sequence
-    // */ cfx_cm3_sharedMemoryAll.is_enabled_CFX_iteration = 0; /* Reset flag for initializing CFX related booting
-    // sequence */
-
-    p_int32 = (int *) &cfx_cm3_sharedMemoryAll;
-
-    for (int i = 0; i < (sizeof(ST__CFX_CM3_SharedMemory_ALL) / 4); i++)
-    {
-        p_int32[i] = 0;
-    }
-
-    SYSCTRL_CFX_CMD->CFX_CMD_0_ALIAS = 1; /* Interrupt triggering to CFX */
-
-    return 0;
+    return 0;  /* 도달 불가 — 컴파일러 만족용 */
 }
 
 /* EOF */
