@@ -378,6 +378,16 @@ void led_force_fade_off(void)
         led_arbiter_tick();
         delay_ms(1);
     }
+
+    /* ISR (TIMER_3 / CFX_0 / FIFO_5) 의 led_arbiter_tick() 호출을 영구 차단.
+     *
+     * led_arbiter_tick() 은 main loop 가 아니라 위 3 개 ISR 에서 직접 호출된다.
+     * main loop 가 break 후 func_sleep() 안 (ResetNRF / NRF_Off / QCC SHUTDOWN /
+     * PMIC OFF / turnOffLED / ci_power_sleep ...) 진행 사이에 IRQ 가 발생하면
+     * led_arbiter_tick() → LED_OUT() 이 실행되어 GPIO 가 새 색으로 갱신될 수
+     * 있다. 이번 fade-off 이후 절전 진입까지는 LED 상태가 더 변하면 안 되므로
+     * 영구 suspend 한다. (다음 부팅 시 static 변수 초기값 false 로 자연 reset.) */
+    s_led_isr_suspended = true;
 }
 
 /* ========================================================================
