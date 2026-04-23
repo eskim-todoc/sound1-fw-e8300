@@ -32,7 +32,7 @@
  *   - 출처: https://en.wikipedia.org/wiki/Relative_luminance
  *           https://en.wikipedia.org/wiki/Stevens%27s_power_law
  * ======================================================================== */
-#define LED_DIMMING_FADE_MAX_MS  40   /* fade-in / fade-out 시간 상한 */
+#define LED_DIMMING_FADE_MAX_MS  15   /* fade-in / fade-out 시간 상한 */
 #define LED_DIMMING_FADE_DIVISOR 3    /* 점멸 fade 자동 조정: on_ms / N */
 #define LED_DIMMING_PWM_STEPS    10   /* 1ms × 10 = 10ms = 100Hz PWM */
 
@@ -150,7 +150,7 @@ static const led_pattern_desc_t k_led_patterns[LED_ST__MAX] = {
 
     [LED_ST_MAPPING_ISD_BATT_READY]    = { en__LED_BLUE,   200, 1000, 0 },  // 파랑  ON 200ms  / OFF 800ms 점멸  (>20%, ISD 연결)
     [LED_ST_MAPPING_NO_ISD_BATT_READY] = { en__LED_BLUE,     0,    0, 0 },  // 파랑 지속 ON                       (>20%, ISD 미연결)
-    [LED_ST_MAPPING_ISD_BATT_LOW]      = { en__LED_PURPLE, 120, 1000, 0 },  // 보라  ON 120ms  / OFF 880ms 점멸  (≤20%, ISD 연결)
+    [LED_ST_MAPPING_ISD_BATT_LOW]      = { en__LED_PURPLE, 200, 1000, 0 },  // 보라  ON 200ms  / OFF 800ms 점멸  (≤20%, ISD 연결)
     [LED_ST_MAPPING_NO_ISD_BATT_LOW]   = { en__LED_PURPLE,   0,    0, 0 },  // 보라 지속 ON                       (≤20%, ISD 미연결)
 
     [LED_ST_PAIR]           = { en__LED_BLUE,   500, 1000, 0 },   // 파랑  ON 500ms  / OFF 500ms 점멸 (1주기 1000ms)
@@ -163,9 +163,9 @@ static const led_pattern_desc_t k_led_patterns[LED_ST__MAX] = {
     [LED_ST_ERROR_FPGA]     = { en__LED_RED,    180,  360,  0 },   // 빨강  ON 180ms  / OFF 180ms
     [LED_ST_ERROR_PMIC]     = { en__LED_RED,    180,  360,  0 },   // 빨강  ON 180ms  / OFF 180ms
 
-    /* 게이트 — 최소 ON 120ms 원칙 (FADE 40 · peak 40 · FADE 40), 주기 300ms 유지 */
-    [LED_ST_POWER_ON]       = { en__LED_SKYBLUE, 120, 300,  5 },   // SKYBLUE ON 120ms / OFF 180ms × 5회 버스트
-    [LED_ST_POWER_OFF]      = { en__LED_BLUE,    120, 300,  4 },   // BLUE    ON 120ms / OFF 180ms × 4회 버스트
+    /* 게이트 — ON 180ms · OFF 180ms, fade 15 · peak 150 · fade 15 */
+    [LED_ST_POWER_ON]       = { en__LED_SKYBLUE, 180, 360,  5 },   // SKYBLUE ON 180ms / OFF 180ms × 5회 버스트
+    [LED_ST_POWER_OFF]      = { en__LED_BLUE,    180, 360,  4 },   // BLUE    ON 180ms / OFF 180ms × 4회 버스트
 };
 
 /* ========================================================================
