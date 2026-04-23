@@ -26,8 +26,23 @@
 #define LED_DIMMING_FADE_MS    150     /* fade-in / fade-out 각각 시간 */
 #define LED_DIMMING_PWM_STEPS  10      /* 1ms × 10 = 10ms = 100Hz PWM */
 
-static uint8_t s_led_pwm_on_count    = LED_DIMMING_PWM_STEPS;  /* 0 ~ STEPS */
-static uint16_t s_color_changed_ms   = LED_DIMMING_FADE_MS;    /* 색상 전환 후 경과(ms). max 면 정상 모드 */
+static uint8_t s_led_pwm_on_count = LED_DIMMING_PWM_STEPS;  /* 0 ~ STEPS */
+
+/* 색상 전환 cross-fade 상태머신
+ *   FADE_OUT : 이전 색을 brightness 255 → 0 으로 감소 출력 (timer_ms 진행 보류)
+ *   FADE_IN  : 새 색을 brightness 0 → 255 로 증가 출력 (패턴 진행 정상)
+ *   NONE     : 평상시 (점멸 fade-in/out 만 적용)
+ */
+typedef enum
+{
+    LED_TX_NONE = 0,
+    LED_TX_FADE_OUT,
+    LED_TX_FADE_IN,
+} led_tx_phase_t;
+
+static led_tx_phase_t s_tx_phase      = LED_TX_NONE;
+static EN__LED_COLOR  s_tx_prev_color = en__LED_BLACK;
+static uint16_t       s_tx_ms         = 0;
 
 static uint8_t led_dim_calc_brightness(uint16_t t, uint16_t on_ms, uint16_t period_ms)
 {
@@ -297,10 +312,47 @@ static void led_engine_run(led_state_t st, bool reset)
 
     if (reset)
     {
-        timer_ms             = 0;
-        burst_done_cnt       = 0;
-        s_color_changed_ms   = 0;  /* 색상 전환 fade-in 시작 */
+        timer_ms       = 0;
+        burst_done_cnt = 0;
+
+        /* Cross-fade 진입 결정 — 진행 중인 fade-out 은 그대로 둔다 */
+        if (s_tx_phase != LED_TX_FADE_OUT)
+        {
+            EN__LED_COLOR new_color = p->color;
+            if (LED_outputColor != en__LED_BLACK && LED_outputColor != new_color)
+            {
+                /* 이전 색이 켜져 있고 새 색이 다르면 fade-out 부터 */
+                s_tx_phase      = LED_TX_FADE_OUT;
+                s_tx_prev_color = LED_outputColor;
+                s_tx_ms         = 0;
+            }
+            else
+            {
+                /* 이전이 OFF 였거나 같은 색 → fade-in 직행 */
+                s_tx_phase = LED_TX_FADE_IN;
+                s_tx_ms    = 0;
+            }
+        }
     }
+
+    /* Phase A — 이전 색 fade-out. timer_ms / 패턴 진행 보류 */
+    if (s_tx_phase == LED_TX_FADE_OUT)
+    {
+        LED_outputColor = s_tx_prev_color;
+        uint32_t b = (uint32_t) 255 * (LED_DIMMING_FADE_MS - s_tx_ms) / LED_DIMMING_FADE_MS;
+        s_led_pwm_on_count = (uint8_t) (b * LED_DIMMING_PWM_STEPS / 255);
+
+        s_tx_ms++;
+        if (s_tx_ms >= LED_DIMMING_FADE_MS)
+        {
+            /* fade-out 완료 → 다음 tick 부터 Phase B (새 패턴 시작) */
+            s_tx_phase = LED_TX_FADE_IN;
+            s_tx_ms    = 0;
+        }
+        return;
+    }
+
+    /* Phase B (또는 NONE) — 새 패턴 정상 진행 */
 
     /* 출력 색상 결정 */
     if (p->period_ms == 0)
@@ -315,11 +367,15 @@ static void led_engine_run(led_state_t st, bool reset)
     /* Brightness 산출 (점멸 fade) */
     uint8_t bright = led_dim_calc_brightness(timer_ms, p->on_ms, p->period_ms);
 
-    /* 색상 전환 fade-in: 새 색이 점진적으로 등장 */
-    if (s_color_changed_ms < LED_DIMMING_FADE_MS)
+    /* Phase B — 새 색 fade-in (전체 brightness 스케일 다운) */
+    if (s_tx_phase == LED_TX_FADE_IN)
     {
-        bright = (uint8_t) (((uint32_t) bright * s_color_changed_ms) / LED_DIMMING_FADE_MS);
-        s_color_changed_ms++;
+        bright = (uint8_t) (((uint32_t) bright * s_tx_ms) / LED_DIMMING_FADE_MS);
+        s_tx_ms++;
+        if (s_tx_ms >= LED_DIMMING_FADE_MS)
+        {
+            s_tx_phase = LED_TX_NONE;
+        }
     }
 
     /* 0~255 → 0~LED_DIMMING_PWM_STEPS PWM 카운트 */
