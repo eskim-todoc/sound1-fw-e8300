@@ -10,6 +10,65 @@
 #include <ci_timer.h>
 
 /* ========================================================================
+ *  LED Dimming (타이머 3 1ms tick 기반 PWM 듀티 변조)
+ * ========================================================================
+ *  led_engine_run() 이 매 1ms 호출되며 패턴 디스크립터 + 경과 시간으로
+ *  brightness(0~255) 를 산출 → PWM 단위(0~LED_DIMMING_PWM_STEPS) 로 변환.
+ *  LED_OUT() 은 timerCounter 와 비교해 GPIO ON/OFF 결정.
+ *
+ *  Fade 효과:
+ *   - 점멸 ON 구간 시작:  fade-in   (0 → 255 in LED_DIMMING_FADE_MS)
+ *   - 점멸 ON 구간 종료:  fade-out  (255 → 0 in LED_DIMMING_FADE_MS)
+ *   - ON 구간이 fade × 2 보다 짧으면 삼각파 (정점 미도달)
+ *   - 색상 전환:          새 색을 0 부터 LED_DIMMING_FADE_MS 동안 점진 등장
+ *   - 지속 ON:            brightness = 255 (PWM full duty)
+ * ======================================================================== */
+#define LED_DIMMING_FADE_MS    150     /* fade-in / fade-out 각각 시간 */
+#define LED_DIMMING_PWM_STEPS  10      /* 1ms × 10 = 10ms = 100Hz PWM */
+
+static uint8_t s_led_pwm_on_count    = LED_DIMMING_PWM_STEPS;  /* 0 ~ STEPS */
+static uint16_t s_color_changed_ms   = LED_DIMMING_FADE_MS;    /* 색상 전환 후 경과(ms). max 면 정상 모드 */
+
+static uint8_t led_dim_calc_brightness(uint16_t t, uint16_t on_ms, uint16_t period_ms)
+{
+    /* 지속 ON */
+    if (period_ms == 0)
+    {
+        return 255;
+    }
+
+    /* OFF 구간 */
+    if (t >= on_ms)
+    {
+        return 0;
+    }
+
+    /* ON 구간이 fade × 2 보다 짧으면 삼각파 — 정점 도달 못 함 */
+    if (on_ms <= 2 * LED_DIMMING_FADE_MS)
+    {
+        uint16_t mid = on_ms / 2;
+        if (t <= mid)
+        {
+            return (uint8_t) ((t * 255UL) / LED_DIMMING_FADE_MS);
+        }
+        return (uint8_t) (((on_ms - t) * 255UL) / LED_DIMMING_FADE_MS);
+    }
+
+    /* fade-in: 0 ~ fade_ms */
+    if (t < LED_DIMMING_FADE_MS)
+    {
+        return (uint8_t) ((t * 255UL) / LED_DIMMING_FADE_MS);
+    }
+    /* fade-out: on_ms - fade_ms ~ on_ms */
+    if (t >= (uint16_t) (on_ms - LED_DIMMING_FADE_MS))
+    {
+        return (uint8_t) (((on_ms - t) * 255UL) / LED_DIMMING_FADE_MS);
+    }
+    /* 정점 */
+    return 255;
+}
+
+/* ========================================================================
  *  Pattern Descriptor Table (Rev.3 SS3.4)
  * ======================================================================== */
 
@@ -27,10 +86,12 @@ static const led_pattern_desc_t k_led_patterns[LED_ST__MAX] = {
     [LED_ST_BATT_MID]       = { en__LED_ORANGE,  0,    0,    0 },  // 노랑 지속 ON
     [LED_ST_BATT_CRITICAL]  = { en__LED_ORANGE,  1100, 2200, 0 },  // 노랑  ON 1100ms / OFF 1100ms
 
-    [LED_ST_MAPPING_NO_ISD] = { en__LED_BLUE,   1100, 2200, 0 },   // 파랑  ON 1100ms / OFF 1100ms
-    [LED_ST_MAPPING_ISD]    = { en__LED_BLUE,    0,    0,    0 },  // 파랑 지속 ON
+    [LED_ST_MAPPING_ISD_BATT_READY]    = { en__LED_BLUE,   200, 1000, 0 },  // 파랑  ON 200ms  / OFF 800ms 점멸  (>20%, ISD 연결)
+    [LED_ST_MAPPING_NO_ISD_BATT_READY] = { en__LED_BLUE,     0,    0, 0 },  // 파랑 지속 ON                       (>20%, ISD 미연결)
+    [LED_ST_MAPPING_ISD_BATT_LOW]      = { en__LED_PURPLE, 100, 1000, 0 },  // 보라  ON 100ms  / OFF 900ms 점멸  (≤20%, ISD 연결)
+    [LED_ST_MAPPING_NO_ISD_BATT_LOW]   = { en__LED_PURPLE,   0,    0, 0 },  // 보라 지속 ON                       (≤20%, ISD 미연결)
 
-    [LED_ST_PAIR]           = { en__LED_BLUE,   180,  360,  0 },   // 파랑  ON 180ms  / OFF 180ms
+    [LED_ST_PAIR]           = { en__LED_BLUE,   500, 1000, 0 },   // 파랑  ON 500ms  / OFF 500ms 점멸 (1주기 1000ms)
     [LED_ST_OTA_QCC]        = { en__LED_GREEN,  1100, 2200, 0 },   // 녹색  ON 1100ms / OFF 1100ms
     [LED_ST_OTA_EZAIRO]     = { en__LED_GREEN,  180,  360,  0 },   // 녹색  ON 180ms  / OFF 180ms
 
@@ -65,8 +126,10 @@ static int led_prio_of(led_state_t st)
         case LED_ST_OTA_QCC:
         case LED_ST_OTA_EZAIRO:     return 80;
 
-        case LED_ST_MAPPING_ISD:
-        case LED_ST_MAPPING_NO_ISD: return 75;
+        case LED_ST_MAPPING_ISD_BATT_READY:
+        case LED_ST_MAPPING_NO_ISD_BATT_READY:
+        case LED_ST_MAPPING_ISD_BATT_LOW:
+        case LED_ST_MAPPING_NO_ISD_BATT_LOW: return 75;
 
         case LED_ST_PAIR:           return 70;
 
@@ -199,10 +262,10 @@ void led_request(led_src_t src, led_state_t st)
         return;
     }
 
-    /* PAIR latch: 요청이 들어오면 최소 500ms 유지 */
+    /* PAIR latch: 요청이 들어오면 한 주기(1000ms) 보장 — ON 500/OFF 500 패턴 1회 표시 */
     if (src == LED_SRC_BLE_IND && st == LED_ST_PAIR)
     {
-        s_pair_latch_until_tick = ci_timer_get_tick() + 500;
+        s_pair_latch_until_tick = ci_timer_get_tick() + 1000;
     }
 
     s_req[src] = st;
@@ -234,42 +297,60 @@ static void led_engine_run(led_state_t st, bool reset)
 
     if (reset)
     {
-        timer_ms       = 0;
-        burst_done_cnt = 0;
+        timer_ms             = 0;
+        burst_done_cnt       = 0;
+        s_color_changed_ms   = 0;  /* 색상 전환 fade-in 시작 */
     }
 
-    /* 지속 ON */
+    /* 출력 색상 결정 */
     if (p->period_ms == 0)
     {
-        LED_outputColor = p->color;
-        return;
-    }
-
-    /* 점멸 */
-    LED_outputColor = (timer_ms < p->on_ms) ? p->color : en__LED_BLACK;
-
-    timer_ms++;
-    if (timer_ms >= p->period_ms)
-    {
-        timer_ms = 0;
-        if (p->burst_cnt > 0)
-        {
-            burst_done_cnt++;
-            if (burst_done_cnt >= p->burst_cnt)
-            {
-                /* 게이트 자가 해제: 기존 관례 유지 */
-                updateLED_OutputPattern(en__LED_NA);
-                s_req[LED_SRC_POWER]       = LED_ST_NONE;
-                s_power_burst_in_progress  = false;
-                burst_done_cnt             = 0;
-            }
-        }
+        LED_outputColor = p->color;  /* 지속 ON */
     }
     else
     {
-        if (p->burst_cnt > 0)
+        LED_outputColor = (timer_ms < p->on_ms) ? p->color : en__LED_BLACK;
+    }
+
+    /* Brightness 산출 (점멸 fade) */
+    uint8_t bright = led_dim_calc_brightness(timer_ms, p->on_ms, p->period_ms);
+
+    /* 색상 전환 fade-in: 새 색이 점진적으로 등장 */
+    if (s_color_changed_ms < LED_DIMMING_FADE_MS)
+    {
+        bright = (uint8_t) (((uint32_t) bright * s_color_changed_ms) / LED_DIMMING_FADE_MS);
+        s_color_changed_ms++;
+    }
+
+    /* 0~255 → 0~LED_DIMMING_PWM_STEPS PWM 카운트 */
+    s_led_pwm_on_count = (uint8_t) (((uint32_t) bright * LED_DIMMING_PWM_STEPS) / 255);
+
+    /* 점멸 주기 진행 */
+    if (p->period_ms != 0)
+    {
+        timer_ms++;
+        if (timer_ms >= p->period_ms)
         {
-            s_power_burst_in_progress = true;
+            timer_ms = 0;
+            if (p->burst_cnt > 0)
+            {
+                burst_done_cnt++;
+                if (burst_done_cnt >= p->burst_cnt)
+                {
+                    /* 게이트 자가 해제: 기존 관례 유지 */
+                    updateLED_OutputPattern(en__LED_NA);
+                    s_req[LED_SRC_POWER]       = LED_ST_NONE;
+                    s_power_burst_in_progress  = false;
+                    burst_done_cnt             = 0;
+                }
+            }
+        }
+        else
+        {
+            if (p->burst_cnt > 0)
+            {
+                s_power_burst_in_progress = true;
+            }
         }
     }
 }
@@ -476,18 +557,10 @@ void turnON_BlueLED(void)
 #if defined(LED_B_pin_CFX_test)
 void LED_OUT(void)
 {
+    static int timerCounter = 0;
 
-    const int pwmTime_ms   = 10;
-    int       pwmDuty_rate = 3;
-
-    static int timerCounter = 1;
-
-    bool enablePatternOut;
-
-    if (0 == timerCounter % pwmDuty_rate)
-        enablePatternOut = false;
-    else
-        enablePatternOut = true;
+    /* Dimming PWM: s_led_pwm_on_count (0 ~ LED_DIMMING_PWM_STEPS) 비율로 ON */
+    bool enablePatternOut = (timerCounter < s_led_pwm_on_count);
 
     if (enablePatternOut)
     {
@@ -561,31 +634,22 @@ void LED_OUT(void)
         Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_G);
     }
 
-#if 1  // LED PWM 사용할 경우
-
+    /* PWM 카운터 진행 — Dimming brightness 반영 */
     timerCounter++;
-    if (timerCounter >= pwmTime_ms)
-        timerCounter = 1;
-
-#endif
+    if (timerCounter >= LED_DIMMING_PWM_STEPS)
+    {
+        timerCounter = 0;
+    }
 }
 
 #else
 
 void LED_OUT(void)
 {
+    static int timerCounter = 0;
 
-    const int pwmTime_ms   = 10;
-    int       pwmDuty_rate = 3;
-
-    static int timerCounter = 1;
-
-    bool enablePatternOut;
-
-    if (0 == timerCounter % pwmDuty_rate)
-        enablePatternOut = false;
-    else
-        enablePatternOut = true;
+    /* Dimming PWM: s_led_pwm_on_count (0 ~ LED_DIMMING_PWM_STEPS) 비율로 ON */
+    bool enablePatternOut = (timerCounter < s_led_pwm_on_count);
 
     if (enablePatternOut)
     {
@@ -669,13 +733,12 @@ void LED_OUT(void)
         Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_B);
     }
 
-#if 1  // LED PWM 사용할 경우
-
+    /* PWM 카운터 진행 — Dimming brightness 반영 */
     timerCounter++;
-    if (timerCounter >= pwmTime_ms)
-        timerCounter = 1;
-
-#endif
+    if (timerCounter >= LED_DIMMING_PWM_STEPS)
+    {
+        timerCounter = 0;
+    }
 
     if (isTestTriggerEanbled())
     {
@@ -690,21 +753,10 @@ void LED_OUT(void)
 #else
 void LED_OUT(void)
 {
-    const int pwmTime_ms   = 10;
-    int       pwmDuty_rate = 2;  // 3;
+    static int timerCounter = 0;
 
-    static int timerCounter = 1;
-
-    bool enablePatternOut;
-
-    if (0 == timerCounter % pwmDuty_rate)
-    {
-        enablePatternOut = false;
-    }
-    else
-    {
-        enablePatternOut = true;
-    }
+    /* Dimming PWM: s_led_pwm_on_count (0 ~ LED_DIMMING_PWM_STEPS) 비율로 ON */
+    bool enablePatternOut = (timerCounter < s_led_pwm_on_count);
 
     if (enablePatternOut)
     {
@@ -782,16 +834,12 @@ void LED_OUT(void)
         Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_B);
     }
 
-#if 0  // LED PWM 사용할 경우
-
+    /* PWM 카운터 진행 — Dimming brightness 반영 */
     timerCounter++;
-
-    if (timerCounter >= pwmTime_ms)
+    if (timerCounter >= LED_DIMMING_PWM_STEPS)
     {
-        timerCounter = 1;
+        timerCounter = 0;
     }
-
-#endif
 
     if (isTestTriggerEanbled())
     {
