@@ -66,12 +66,14 @@ typedef enum
     LED_ST_BATT_MID,       /* 노랑 지속 ON */
     LED_ST_BATT_CRITICAL,  /* 노랑 ON 1100ms / OFF 1100ms 점멸 */
 
-    /* Mapping */
-    LED_ST_MAPPING_NO_ISD, /* 파랑 ON 1100ms / OFF 1100ms 점멸 */
-    LED_ST_MAPPING_ISD,    /* 파랑 지속 ON */
+    /* Mapping (4종 분화 — 배터리 LOW 임계 20% × ISD 연결 여부) */
+    LED_ST_MAPPING_ISD_BATT_READY,    /* 파랑 ON 200ms / OFF 800ms 점멸 (배터리 > 20% & ISD 연결) */
+    LED_ST_MAPPING_NO_ISD_BATT_READY, /* 파랑 지속 ON                  (배터리 > 20% & ISD 미연결) */
+    LED_ST_MAPPING_ISD_BATT_LOW,      /* 보라 ON 100ms / OFF 900ms 점멸 (배터리 ≤ 20% & ISD 연결) */
+    LED_ST_MAPPING_NO_ISD_BATT_LOW,   /* 보라 지속 ON                  (배터리 ≤ 20% & ISD 미연결) */
 
     /* BLE led_ind */
-    LED_ST_PAIR,       /* 파랑 ON 180ms / OFF 180ms 점멸 (+500ms latch) */
+    LED_ST_PAIR,       /* 파랑 ON 500ms / OFF 500ms 점멸 (+1000ms latch) */
     LED_ST_OTA_QCC,    /* 녹색 ON 1100ms / OFF 1100ms 점멸 */
     LED_ST_OTA_EZAIRO, /* 녹색 ON 180ms / OFF 180ms 점멸 */
 
@@ -125,6 +127,11 @@ void        led_request(led_src_t src, led_state_t st);
 void        led_arbiter_tick(void);
 bool        led_is_power_burst_in_progress(void);
 led_state_t led_get_request(led_src_t src);
+
+/* 절전 진입 직전 1 회 호출. 모든 src LED_ST_NONE 강제 + cross-fade
+ * Phase A 자연 fade-off 보장 (소요 ≈ LED_DIMMING_FADE_MAX_MS + 10 ms).
+ * 호출 후엔 LED 가 BLACK 상태로 안정 — turnOffLED() 가 잔상 없이 마무리. */
+void        led_force_fade_off(void);
 
 /* ========================================================================
  *  Legacy API (호환용 유지)
