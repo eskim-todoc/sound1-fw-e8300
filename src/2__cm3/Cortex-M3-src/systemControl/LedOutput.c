@@ -32,7 +32,7 @@
  *   - 출처: https://en.wikipedia.org/wiki/Relative_luminance
  *           https://en.wikipedia.org/wiki/Stevens%27s_power_law
  * ======================================================================== */
-#define LED_DIMMING_FADE_MAX_MS  15   /* fade-in / fade-out 시간 상한 */
+#define LED_DIMMING_FADE_MAX_MS  30//15   /* fade-in / fade-out 시간 상한 */
 #define LED_DIMMING_FADE_DIVISOR 3    /* 점멸 fade 자동 조정: on_ms / N */
 #define LED_DIMMING_PWM_STEPS    10   /* 1ms × 10 = 10ms = 100Hz PWM */
 
