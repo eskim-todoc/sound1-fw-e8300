@@ -375,7 +375,7 @@ void update_isd_LinkConnection_byBacktel_withLiveStimulation(void)
 
                             TxPowerLevel--;
 
-                            ci_printv("[LINK] HIGH, STABLE : TX POWER > MIN POWER (CURR=%4d, NEXT=%4d) \r\n", current_TxPowerLevel, TxPowerLevel);
+                            // ci_printv("[LINK] HIGH, STABLE : TX POWER > MIN POWER (CURR=%4d, NEXT=%4d) \r\n", current_TxPowerLevel, TxPowerLevel);
 
                             write_change_TxPowerLevel(TxPowerLevel);
                         }
@@ -384,7 +384,7 @@ void update_isd_LinkConnection_byBacktel_withLiveStimulation(void)
                             if (TxPowerLevel_bak != TxPowerLevel)
                             {
                                 TxPowerLevel_bak = TxPowerLevel;
-                                ci_printv("[LINK] HIGH, STABLE : TX POWER <= MIN POWER (CURR=%4d) \r\n", TxPowerLevel);
+                                // ci_printv("[LINK] HIGH, STABLE : TX POWER <= MIN POWER (CURR=%4d) \r\n", TxPowerLevel);
                             }
 
                             temp = 0;
@@ -398,7 +398,7 @@ void update_isd_LinkConnection_byBacktel_withLiveStimulation(void)
                         if (TxPowerLevel_bak != TxPowerLevel)
                         {
                             TxPowerLevel_bak = TxPowerLevel;
-                            ci_printv("[LINK] HIGH, UNSTABLE (CURR=%4d) \r\n", TxPowerLevel);
+                            // ci_printv("[LINK] HIGH, UNSTABLE (CURR=%4d) \r\n", TxPowerLevel);
                         }
 
                         temp = 0;
@@ -418,7 +418,7 @@ void update_isd_LinkConnection_byBacktel_withLiveStimulation(void)
 
                             TxPowerLevel++;
 
-                            ci_printv("[LINK] LOW, STABLE : TX POWER < MAX CONTROL POWER (CURR=%4d, NEXT=%4d) \r\n", current_TxPowerLevel, TxPowerLevel);
+                            // ci_printv("[LINK] LOW, STABLE : TX POWER < MAX CONTROL POWER (CURR=%4d, NEXT=%4d) \r\n", current_TxPowerLevel, TxPowerLevel);
 
                             write_change_TxPowerLevel(TxPowerLevel);
                         }
@@ -427,7 +427,7 @@ void update_isd_LinkConnection_byBacktel_withLiveStimulation(void)
                             if (TxPowerLevel_bak != TxPowerLevel)
                             {
                                 TxPowerLevel_bak = TxPowerLevel;
-                                ci_printv("[LINK] LOW, STABLE : TX POWER >= MAX CONTROL POWER (CURR=%4d) \r\n", TxPowerLevel);
+                                // ci_printv("[LINK] LOW, STABLE : TX POWER >= MAX CONTROL POWER (CURR=%4d) \r\n", TxPowerLevel);
                             }
                         }
                     }
@@ -438,7 +438,7 @@ void update_isd_LinkConnection_byBacktel_withLiveStimulation(void)
                         if (TxPowerLevel_bak != TxPowerLevel)
                         {
                             TxPowerLevel_bak = TxPowerLevel;
-                            ci_printv("[LINK] LOW, UNSTABLE (CURR=%4d) \r\n", TxPowerLevel);
+                            // ci_printv("[LINK] LOW, UNSTABLE (CURR=%4d) \r\n", TxPowerLevel);
                         }
 
                         temp = 0;
