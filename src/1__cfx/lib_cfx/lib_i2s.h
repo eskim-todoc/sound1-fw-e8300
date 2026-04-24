@@ -95,6 +95,7 @@ void lib_i2s_disable(void);
 int  lib_i2s_is_buffer_copy_done(void);
 void lib_i2s_clear_buffer_copy_done(void);
 
+void tdc_i2s_set_streaming_state(int state);
 int  I2S_isStreaming(void);
 void I2S_update_state(void);
 
@@ -116,6 +117,11 @@ extern volatile int _XMEM lib_g_i2s_prev1_offset;
 
 extern volatile int _XMEM lib_g_i2s_click_occurred;
 extern volatile int _XMEM lib_g_i2s_last_output_val;
+
+extern int _XMEM lib_g_i2s_buffer_in_pos;
+extern int _XMEM lib_g_i2s_buffer_out_pos;
+
+extern int _XMEM lib_g_i2s_buffers[I2S_BUFFER_FULL_READY_CNT][16];
 
 extern int _XMEM lib_g_i2s_buffer[LIB_I2S_DATA_BUF_LEN];
 extern int _XMEM lib_g_i2s_buffer_prev1[LIB_I2S_DATA_BUF_LEN];
