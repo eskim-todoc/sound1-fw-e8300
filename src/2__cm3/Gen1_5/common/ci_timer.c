@@ -3,6 +3,7 @@
  */
 
 #include <ci_timer.h>
+#include <LedOutput.h>  /* led_arbiter_tick — Timer 3 ISR 직접 구동 */
 
 static bool    _ci_is_leap(uint16_t year);
 static uint8_t _ci_day_in_month(uint8_t year, uint8_t month);
@@ -18,6 +19,11 @@ void TIMER_3_IRQHandler(void)
 {
     g_ci_timer_main_tick++;
     enable_iteration(); /* Use when the CFX is not working */
+
+    /* LED arbiter/engine/PWM 을 ISR 에서 직접 구동 — main loop 의
+     * I2C/EEPROM 폴링 블록으로 인한 fade/PWM 타이밍 jitter 방지.
+     * 실행시간 추정 ~15 μs @ 30.72 MHz / ~62 μs @ 7.68 MHz. */
+    led_arbiter_tick();
 
     // 절전모드에서 정말 원하는 시간 마다 타이머 이벤트가 발생하는지 확인하는 용도
     // Sys_GPIO_Toggle(DIO19);

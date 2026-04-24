@@ -188,9 +188,11 @@ static const str_map_t s_tdc_state_map[] = {
     {"critical",   LED_ST_BATT_CRITICAL},
     /* isd */
     {"in_use",     LED_ST_IN_USE},
-    /* mapping */
-    {"no_isd",     LED_ST_MAPPING_NO_ISD},
-    {"with_isd",   LED_ST_MAPPING_ISD},
+    /* mapping (배터리 LOW 임계 20% × ISD 연결 여부 4종) */
+    {"no_isd_ready",   LED_ST_MAPPING_NO_ISD_BATT_READY},
+    {"with_isd_ready", LED_ST_MAPPING_ISD_BATT_READY},
+    {"no_isd_low",     LED_ST_MAPPING_NO_ISD_BATT_LOW},
+    {"with_isd_low",   LED_ST_MAPPING_ISD_BATT_LOW},
     /* ble */
     {"pair",       LED_ST_PAIR},
     {"ota_qcc",    LED_ST_OTA_QCC},
@@ -239,6 +241,33 @@ static int handle_help(int argc, char *argv[])
     print_help();
     return 0;
 }
+
+/* ======================================================================== */
+/*  --led pattern N — 사진 "패턴 (디버깅)" 칼럼 0~14 매핑                  */
+/* ======================================================================== */
+/* N=0 은 sentinel — 모든 src NONE 만 적용 (LED off). N>0 은 (src, state). */
+static const struct {
+    led_src_t   src;
+    led_state_t st;
+    const char *desc;
+} k_tdc_pattern_table[] = {
+    /*  0 */ { LED_SRC__MAX,    LED_ST_NONE,                       "all off"                   },
+    /*  1 */ { LED_SRC_POWER,   LED_ST_POWER_ON,                   "POWER_ON"                  },
+    /*  2 */ { LED_SRC_POWER,   LED_ST_POWER_OFF,                  "POWER_OFF"                 },
+    /*  3 */ { LED_SRC_MAPPING, LED_ST_MAPPING_ISD_BATT_READY,     "MAPPING_ISD_BATT_READY"    },
+    /*  4 */ { LED_SRC_MAPPING, LED_ST_MAPPING_NO_ISD_BATT_READY,  "MAPPING_NO_ISD_BATT_READY" },
+    /*  5 */ { LED_SRC_MAPPING, LED_ST_MAPPING_ISD_BATT_LOW,       "MAPPING_ISD_BATT_LOW"      },
+    /*  6 */ { LED_SRC_MAPPING, LED_ST_MAPPING_NO_ISD_BATT_LOW,    "MAPPING_NO_ISD_BATT_LOW"   },
+    /*  7 */ { LED_SRC_ERROR,   LED_ST_ERROR_MCU,                  "ERROR_MCU (대표)"          },
+    /*  8 */ { LED_SRC_BATTERY, LED_ST_BATT_CRITICAL,              "BATT_CRITICAL"             },
+    /*  9 */ { LED_SRC_BATTERY, LED_ST_BATT_MID,                   "BATT_MID"                  },
+    /* 10 */ { LED_SRC_BATTERY, LED_ST_BATT_READY,                 "BATT_READY"                },
+    /* 11 */ { LED_SRC_ISD,     LED_ST_IN_USE,                     "IN_USE"                    },
+    /* 12 */ { LED_SRC_BLE_IND, LED_ST_PAIR,                       "PAIR"                      },
+    /* 13 */ { LED_SRC_BLE_IND, LED_ST_OTA_QCC,                    "OTA_QCC"                   },
+    /* 14 */ { LED_SRC_BLE_IND, LED_ST_OTA_EZAIRO,                 "OTA_EZAIRO"                },
+};
+#define TDC_PATTERN_TABLE_LEN  ((int) (sizeof(k_tdc_pattern_table) / sizeof(k_tdc_pattern_table[0])))
 
 /* ======================================================================== */
 /*  --led handler                                                           */
@@ -329,6 +358,35 @@ static int handle_led(int argc, char *argv[])
     {
         led_request(LED_SRC_BLE_IND, LED_ST_PAIR);
         output_printf("OK: PAIR latch injected\r\n");
+        return 0;
+    }
+
+    /* --led pattern <0~14>  — 사진 디버깅 칼럼 매핑 */
+    if (ci_strcasecmp(argv[1], "pattern") == 0)
+    {
+        if (argc < 3) return -1;
+
+        int n = atoi(argv[2]);
+        if (n < 0 || n >= TDC_PATTERN_TABLE_LEN)
+        {
+            output_printf("invalid pattern (0~%d)\r\n", TDC_PATTERN_TABLE_LEN - 1);
+            return -1;
+        }
+
+        /* 모든 src 강제 NONE + override 활성 — 단일 패턴만 보이도록 */
+        for (int src = 0; src < LED_SRC__MAX; src++)
+        {
+            s_tdc_led_override[src] = true;
+            led_request((led_src_t) src, LED_ST_NONE);
+        }
+
+        /* N>0 인 경우 해당 패턴 요청 (N=0 은 모든 src NONE 만 — LED off) */
+        if (n > 0)
+        {
+            led_request(k_tdc_pattern_table[n].src, k_tdc_pattern_table[n].st);
+        }
+
+        output_printf("OK: pattern %d -- %s\r\n", n, k_tdc_pattern_table[n].desc);
         return 0;
     }
 
@@ -581,7 +639,7 @@ static int handle_write_integrity_error(int argc, char *argv[])
 
 static const command_entry_t s_tdc_commands[] = {
     {"help",               handle_help,                   "--help"},
-    {"led",                handle_led,                    "--led show|req|clr|user|pair|burst"},
+    {"led",                handle_led,                    "--led show|req|clr|user|pair|burst|pattern"},
     {"batt",               handle_battery,                "--batt show|<0~100>"},
     {"isd",                handle_isd,                    "--isd on|off"},
     {"map",                handle_map,                    "--map on|off"},

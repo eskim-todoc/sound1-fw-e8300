@@ -5,8 +5,8 @@
 Ezairo 8300 / RSL15 계열 SoC 의 **클럭 분배, 일반 목적 타이머, I2C 마스터 모드** 관련 스펙을 공식 레퍼런스에서 발췌·정리한 문서. 저전력 전환·타이머 주기 재계산·I2C 속도 조정 등 작업 시 PDF 를 다시 열지 않고 본 문서만으로 판단할 수 있도록 구성.
 
 **출처**
-- `[참고] Ezairo 8300 Hardware Reference.pdf` (1098p) — 회로·레지스터 레벨 스펙
-- `[참고] Ezairo 8300 Firmware Reference.pdf` (578p) — SDK API 스펙
+- [`Ezairo 8300 Hardware Reference.pdf`](Ezairo%208300%20Hardware%20Reference.pdf) (1098p) — 회로·레지스터 레벨 스펙
+- [`Ezairo 8300 Firmware Reference.pdf`](Ezairo%208300%20Firmware%20Reference.pdf) (578p) — SDK API 스펙
 
 각 항목에 원본 페이지 번호를 `HW p.311` 형식으로 병기.
 

@@ -329,7 +329,7 @@ ST__SYSTEM_STATE systemControl(EN__LED_PATTERN   current_led_pattern,  //
                             }
                             else
                             {
-                                ISD_Disconnection_counter++;
+                                ISD_Disconnection_counter++;  // 내부기 미연결 시 해제 카운트 증가하는 부분
                             }
 
                             if (ISD_Disconnection_counter > 180000)  // 3분
