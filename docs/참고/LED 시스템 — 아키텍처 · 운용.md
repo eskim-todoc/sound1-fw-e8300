@@ -5,7 +5,7 @@
 
 본 문서는 E8300 외부기기의 **RGB LED 인디케이터 시스템** 전반을 서술한다. 설계 철학, 계층 구조, 상태/소스 정의, arbiter 우선순위, 소스별 요청 규칙, 부팅·절전 시퀀스, ISR 구동, 디버그 도구까지 포괄한다.
 
-Dimming 엔진 내부 (CIE L* LUT, fade 곡선) 는 별도 문서 [`[참고] LED 시스템 — Dimming · 인지 곡선 · LUT`]([참고]%20LED%20시스템%20—%20Dimming%20·%20인지%20곡선%20·%20LUT.md) 참조. 색감 교정 (per-color cap 테이블) 은 [`[참고] LED 시스템 — 색감 관리 · 회로 보정`]([참고]%20LED%20시스템%20—%20색감%20관리%20·%20회로%20보정.md) 참조.
+Dimming 엔진 내부 (CIE L* LUT, fade 곡선) 는 별도 문서 [`LED 시스템 — Dimming · 인지 곡선 · LUT`](LED%20시스템%20—%20Dimming%20·%20인지%20곡선%20·%20LUT.md) 참조. 색감 교정 (per-color cap 테이블) 은 [`LED 시스템 — 색감 관리 · 회로 보정`](LED%20시스템%20—%20색감%20관리%20·%20회로%20보정.md) 참조.
 
 ---
 
@@ -15,7 +15,7 @@ Dimming 엔진 내부 (CIE L* LUT, fade 곡선) 는 별도 문서 [`[참고] LED
 
 기기 상태 (전원, 에러, BLE, 매핑, 배터리, ISD 연결 등) 를 사용자에게 RGB LED 1 개로 표시한다. 여러 소스가 동시에 LED 를 점유 시도할 수 있으므로 **Arbiter (중재자)** 가 우선순위에 따라 하나만 선택한다.
 
-스펙 원본 사진: [`docs/led_ind_state.JPG`](led_ind_state.JPG)
+스펙 원본 사진: [`tasks/LED/operation-scheme/led_ind_state.JPG`](../tasks/LED/operation-scheme/led_ind_state.JPG)
 
 ### 1.2 하드웨어
 
@@ -618,7 +618,7 @@ Cortex-M3 정렬 접근 기준. torn read 없음.
 | `--led burst` | POWER_ON 버스트 재현 |
 | `--led info` | 현재 Arbiter 상태 덤프 |
 
-상세 사용법: [`[참고] UI 명령어 사용법.md`](./%5B%EC%B0%B8%EA%B3%A0%5D%20UI%20%EB%AA%85%EB%A0%B9%EC%96%B4%20%EC%82%AC%EC%9A%A9%EB%B2%95.md)
+상세 사용법: [`UI 명령어 사용법.md`](./%5B%EC%B0%B8%EA%B3%A0%5D%20UI%20%EB%AA%85%EB%A0%B9%EC%96%B4%20%EC%82%AC%EC%9A%A9%EB%B2%95.md)
 
 ---
 
@@ -655,8 +655,8 @@ bool isTestTriggerEanbled(void);
 
 ## 참고 문서
 
-- [`[참고] LED 시스템 — Dimming · 인지 곡선 · LUT.md`]([참고]%20LED%20시스템%20—%20Dimming%20·%20인지%20곡선%20·%20LUT.md) — fade 곡선 / CIE L* LUT / cross-fade 내부
-- [`[참고] LED 시스템 — 색감 관리 · 회로 보정.md`]([참고]%20LED%20시스템%20—%20색감%20관리%20·%20회로%20보정.md) — 회로 · 색감 cap 테이블 · 튜닝 절차
-- [`[참고] UI 명령어 사용법.md`](./%5B%EC%B0%B8%EA%B3%A0%5D%20UI%20%EB%AA%85%EB%A0%B9%EC%96%B4%20%EC%82%AC%EC%9A%A9%EB%B2%95.md)
-- [`[참고] Ezairo 8300 클럭·타이머·I2C 스펙 정리.md`](./%5B%EC%B0%B8%EA%B3%A0%5D%20Ezairo%208300%20%ED%81%B4%EB%9F%AD%C2%B7%ED%83%80%EC%9D%B4%EB%A8%B8%C2%B7I2C%20%EC%8A%A4%ED%8E%99%20%EC%A0%95%EB%A6%AC.md)
+- [`LED 시스템 — Dimming · 인지 곡선 · LUT.md`](LED%20시스템%20—%20Dimming%20·%20인지%20곡선%20·%20LUT.md) — fade 곡선 / CIE L* LUT / cross-fade 내부
+- [`LED 시스템 — 색감 관리 · 회로 보정.md`](LED%20시스템%20—%20색감%20관리%20·%20회로%20보정.md) — 회로 · 색감 cap 테이블 · 튜닝 절차
+- [`UI 명령어 사용법.md`](./%5B%EC%B0%B8%EA%B3%A0%5D%20UI%20%EB%AA%85%EB%A0%B9%EC%96%B4%20%EC%82%AC%EC%9A%A9%EB%B2%95.md)
+- [`Ezairo 8300 클럭·타이머·I2C 스펙 정리.md`](./%5B%EC%B0%B8%EA%B3%A0%5D%20Ezairo%208300%20%ED%81%B4%EB%9F%AD%C2%B7%ED%83%80%EC%9D%B4%EB%A8%B8%C2%B7I2C%20%EC%8A%A4%ED%8E%99%20%EC%A0%95%EB%A6%AC.md)
 - 스펙 사진: [`led_ind_state.JPG`](led_ind_state.JPG)
