@@ -5,7 +5,7 @@
 
 본 문서는 RGB LED 의 **색감 (color perception) 교정**을 다룬다. 회로 제약에서 비롯된 채널별 밝기 불균형, 조합색 편향의 원인, **색상별 R/G/B duty cap 테이블** 아키텍처, 보드 실측 기반 튜닝 절차, HW 한계와 향후 개선 방향까지 포괄.
 
-Dimming 엔진 (fade 타이밍, LUT) 은 [`[참고] LED 시스템 — Dimming · 인지 곡선 · LUT`]([참고]%20LED%20시스템%20—%20Dimming%20·%20인지%20곡선%20·%20LUT.md) 참조. 전체 아키텍처는 [`[참고] LED 시스템 — 아키텍처 · 운용`]([참고]%20LED%20시스템%20—%20아키텍처%20·%20운용.md) 참조.
+Dimming 엔진 (fade 타이밍, LUT) 은 [`LED 시스템 — Dimming · 인지 곡선 · LUT`](LED%20시스템%20—%20Dimming%20·%20인지%20곡선%20·%20LUT.md) 참조. 전체 아키텍처는 [`LED 시스템 — 아키텍처 · 운용`](LED%20시스템%20—%20아키텍처%20·%20운용.md) 참조.
 
 ---
 
@@ -455,7 +455,7 @@ static const tdc_led_mix_t k_led_mix[] = {
 
 ### 7.3 HW PWM 지원 여부
 
-Ezairo 8300 TIMER 는 **HW PWM 출력 기능 없음** ([`[참고] Ezairo 8300 클럭·타이머·I2C 스펙 정리`](./%5B%EC%B0%B8%EA%B3%A0%5D%20Ezairo%208300%20%ED%81%B4%EB%9F%AD%C2%B7%ED%83%80%EC%9D%B4%EB%A8%B8%C2%B7I2C%20%EC%8A%A4%ED%8E%99%20%EC%A0%95%EB%A6%AC.md) §2.1 참조). 모드가 Single-shot / Multi-shot / Free-run / DIO 인터럽트 캡처 뿐 — **Output Compare / PWM 출력 핀 없음**.
+Ezairo 8300 TIMER 는 **HW PWM 출력 기능 없음** ([`Ezairo 8300 클럭·타이머·I2C 스펙 정리`](./%5B%EC%B0%B8%EA%B3%A0%5D%20Ezairo%208300%20%ED%81%B4%EB%9F%AD%C2%B7%ED%83%80%EC%9D%B4%EB%A8%B8%C2%B7I2C%20%EC%8A%A4%ED%8E%99%20%EC%A0%95%EB%A6%AC.md) §2.1 참조). 모드가 Single-shot / Multi-shot / Free-run / DIO 인터럽트 캡처 뿐 — **Output Compare / PWM 출력 핀 없음**.
 
 HW PWM 이 꼭 필요하면:
 - 외부 LED 드라이버 IC (예: PCA9685, TLC59108) 부착 → BOM 변경
@@ -524,9 +524,9 @@ HW PWM 이 꼭 필요하면:
 
 ## 참고 문서
 
-- [`[참고] LED 시스템 — 아키텍처 · 운용.md`]([참고]%20LED%20시스템%20—%20아키텍처%20·%20운용.md) — 전체 아키텍처
-- [`[참고] LED 시스템 — Dimming · 인지 곡선 · LUT.md`]([참고]%20LED%20시스템%20—%20Dimming%20·%20인지%20곡선%20·%20LUT.md) — fade · LUT 내부
-- [`[참고] Ezairo 8300 클럭·타이머·I2C 스펙 정리.md`](./%5B%EC%B0%B8%EA%B3%A0%5D%20Ezairo%208300%20%ED%81%B4%EB%9F%AD%C2%B7%ED%83%80%EC%9D%B4%EB%A8%B8%C2%B7I2C%20%EC%8A%A4%ED%8E%99%20%EC%A0%95%EB%A6%AC.md) — TIMER 스펙 (후속 PWM 해상도 향상 시 참고)
+- [`LED 시스템 — 아키텍처 · 운용.md`](LED%20시스템%20—%20아키텍처%20·%20운용.md) — 전체 아키텍처
+- [`LED 시스템 — Dimming · 인지 곡선 · LUT.md`](LED%20시스템%20—%20Dimming%20·%20인지%20곡선%20·%20LUT.md) — fade · LUT 내부
+- [`Ezairo 8300 클럭·타이머·I2C 스펙 정리.md`](./%5B%EC%B0%B8%EA%B3%A0%5D%20Ezairo%208300%20%ED%81%B4%EB%9F%AD%C2%B7%ED%83%80%EC%9D%B4%EB%A8%B8%C2%B7I2C%20%EC%8A%A4%ED%8E%99%20%EC%A0%95%EB%A6%AC.md) — TIMER 스펙 (후속 PWM 해상도 향상 시 참고)
 
 ## 참고 링크 (외부)
 
