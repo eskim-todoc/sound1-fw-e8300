@@ -10,6 +10,16 @@
 
 int main(void)
 {
+#if 1  // 부팅 시간 체크를 위한 디버깅 코드
+    Sys_DIO_Config(DIO_NUM_LED_R_UART_TX_E8300, DIO_CFG_LED);
+    Sys_DIO_Config(DIO_NUM_LED_G_UART_RX_E8300, DIO_CFG_LED);
+    Sys_DIO_Config(DIO_NUM_LED_B, DIO_CFG_LED);
+
+    Sys_GPIO_Write(DIO_NUM_LED_R_UART_TX_E8300, 0);
+    Sys_GPIO_Write(DIO_NUM_LED_G_UART_RX_E8300, 1);
+    Sys_GPIO_Write(DIO_NUM_LED_B, 1);
+#endif
+
     // EEPROM의 WP을 방지 (쓰기 가능)
     // 그런데 실제로 사용되는 EEPROM 제품의 경우 리셋 디폴트가
     // WP 기능의 핀이 아니고 QSPI 기능으로 동작하는 제품임
