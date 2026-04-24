@@ -380,7 +380,7 @@ int func_normal(void)
 
             // powerButtonPushed = false;                 // 왜 인지 특정 보드에서는 RE-ATI 에러가 발생하는 중
 
-#if 0  // QCC 대체용 디버깅 코드 시작, 약 500밀리초 이후 시스템 동작
+#if 1  // QCC 대체용 디버깅 코드 시작, 약 250밀리초 이후 시스템 동작
             {
                 static int fake_0x34      = 0;
                 static int fake_0x34_done = 0;
@@ -392,13 +392,18 @@ int func_normal(void)
                         fake_0x34 = ci_timer_get_tick();
                     }
 
-                    if (500 < (ci_timer_get_tick() - fake_0x34))
+                    if (250 < (ci_timer_get_tick() - fake_0x34))
                     {
                         fake_0x34_done = 1;
                         ci_printw("[FAKE_0x34] UPDATE FAKE BATT LEVEL, FAKE CHARGER STATE \r\n");
-                        snd_batt_set_percent(90);
+                        snd_batt_set_percent(9);
                         snd_batt_set_state(EN__SND_BATT_STATE_DISCHARGING);
                         snd_charger_set_state(EN__SND_CHARGER_STATE_DISCONNECTED);
+                    }
+                    else if (snd_batt_get_state() != EN__SND_BATT_STATE_RESET)
+                    {
+                        fake_0x34_done = 1;
+                        ci_printw("[FAKE_0x34] QCC UPDATE BATT LEVEL, IMMEDIATELY FAKE_0x34 FINISH \r\n");
                     }
                 }
             }
