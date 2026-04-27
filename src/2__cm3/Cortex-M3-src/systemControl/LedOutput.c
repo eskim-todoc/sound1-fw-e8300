@@ -598,10 +598,20 @@ void led_arbiter_tick(void)
     if (s_fade_off_state == LED_FADE_OFF_ACTIVE)
     {
         /* 새 high-priority 요청 검사 — best != IDLE 이면 fade-off 즉시 중단 후
-         * 정상 arbiter path 진행. cross-fade 메커니즘이 새 패턴 fade-in 자연 처리.
+         * 정상 arbiter path 진행.
+         *
+         * 출력 상태를 BLACK 으로 강제 리셋한 뒤 fall-through:
+         *   리셋이 없으면 cross-fade Phase A (FADE_OUT) 가 잔존 LED_outputColor 를
+         *   기준으로 가동되며, 새 패턴 첫 frame 출력이 cross-fade 길이만큼 지연된다.
+         *   POWER_ON 직후 첫 펄스가 fade-in 으로 좁아진 뒤 ~48 ms 공백이 생기던
+         *   현상이 이 경로에서 발생. BLACK 리셋으로 engine_run() 의 cross-fade 분기가
+         *   FADE_IN 으로 직행하여 패턴이 의도된 형태로 시작된다.
          * (정책: ERROR 등 진입 시 기존 fade 중단 + 새 패턴 fade 적용.) */
         if (compute_best_state() != LED_ST_IDLE)
         {
+            LED_outputColor    = en__LED_BLACK;
+            s_led_pwm_on_count = 0;
+            LED_OUT();
             s_fade_off_state = LED_FADE_OFF_IDLE;
             /* fall through to (가드 2) 검사 후 정상 arbiter */
         }
