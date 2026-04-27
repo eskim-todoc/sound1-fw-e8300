@@ -128,6 +128,10 @@ void        led_arbiter_tick(void);
 bool        led_is_power_burst_in_progress(void);
 led_state_t led_get_request(led_src_t src);
 
+/* CFX / FIFO ISR 활성 여부 통지 — initialize.c 에서 set / clear.
+ * turnOffLED() 가 ISR 의존 fade-off vs. 즉시 OFF 분기 결정에 사용. */
+void        led_isr_active_set(bool active);
+
 /* 절전 진입 직전 1 회 호출. 모든 src LED_ST_NONE 강제 + cross-fade
  * Phase A 자연 fade-off 보장 (소요 ≈ LED_DIMMING_FADE_MAX_MS + 10 ms).
  * 호출 후엔 LED 가 BLACK 상태로 안정 — turnOffLED() 가 잔상 없이 마무리. */

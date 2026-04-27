@@ -171,6 +171,11 @@ void lib_i2s_clear_buffer_copy_done(void)
     lib_g_i2s_buffer_copy_done = 0;
 }
 
+void tdc_i2s_set_streaming_state(int state)
+{
+    lib_g_i2s_state = state;
+}
+
 int I2S_isStreaming(void)
 {
     return lib_g_i2s_state == LIB_I2S_STATE_ENABLED;

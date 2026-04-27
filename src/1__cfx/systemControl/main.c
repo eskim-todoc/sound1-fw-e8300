@@ -127,6 +127,56 @@ void normal_loop(void)
 {
     while (Addr_SharedMem->systemShare.enter_ULP_mode_Command_CM3_to_CFX != 1)
     {
+#if 1
+        // I2S 플래그 핀이 액티브 상태여야 진짜 입력이다.
+        if (Sys_GPIO_Read(I2S_FLAG_DIO_NUM) == I2S_FLAG_ACTIVE_LEVEL)
+        {
+            // I2S 입력 인터럽트가 발생했다면
+            if (lib_g_i2s_interrupt_flag == 1)
+            {
+                int *restrict p_dst;
+                int *restrict p_src;
+
+                // 인터럽트 플래그 초기화
+                lib_g_i2s_interrupt_flag = 0;
+
+                // 입력 데이터 복사해야함
+                p_dst = (int *) &lib_g_i2s_buffers[lib_g_i2s_buffer_in_pos][0];
+                p_src = (int *) (int _XMEM *) &HCT_A0_5[0];
+
+                for (register int i = 0; i < 16; i++)
+                    chess_loop_range(16, 16) chess_unroll_loop(*)
+                    {
+                        p_dst[i] = p_src[i];
+                    }
+
+                // 입력 버퍼의 포인터 변경
+                if (lib_g_i2s_buffer_in_pos == 0)
+                {
+                    lib_g_i2s_buffer_in_pos = 1;
+                }
+                else
+                {
+                    lib_g_i2s_buffer_in_pos = 0;
+                }
+
+                tdc_i2s_set_streaming_state(LIB_I2S_STATE_ENABLED);
+            }
+        }
+        else
+        {
+            // 인터럽트 플래그 초기화
+            lib_g_i2s_interrupt_flag = 0;
+
+            // I2S 스트리밍 상태를 활성화로 변경
+            tdc_i2s_set_streaming_state(LIB_I2S_STATE_DISABLED);
+
+            // 입력/출력 버퍼 인덱스 초기화
+            lib_g_i2s_buffer_in_pos  = 0;
+            lib_g_i2s_buffer_out_pos = 0;
+        }
+#endif
+
         // I2S 입력이 언제부터 들어올지 알 수 없다. 그러므로 PCM 출력과 EZ 마이크만 사용하도록 한다.
         // mic0 = DMIC0 = EZ, mic1 = DIMC2 = QCC
         if ((g_interrupt_flags.pcm_out == 1) && (g_interrupt_flags.mic0 == 1))  // && (g_interrupt_flags.mic1 == 1))
@@ -272,6 +322,7 @@ void I2S_handle(void)
 
         audio_mix_2_buffers((int _XMEM *) &HCT_A0_0[0], p_buffer);
         lib_audio_loopback((int _XMEM *) &HCT_A0_3[0], p_buffer);  // DAC1로 I2S 출력
+        // lib_audio_loopback((int _XMEM *) &HCT_A0_2[0], p_buffer);  // DAC0로 I2S 출력
 
         lib_g_i2s_buffer_copy_cnt--;
 
@@ -311,11 +362,28 @@ void I2S_handle(void)
 
 void PCM_LiveStimulation_Mode(void)
 {
-    I2S_update_state();  // I2S 스트리밍 체크
+    // I2S_update_state();  // I2S 스트리밍 체크
 
     if (I2S_isStreaming())  // I2S 스트리밍 상태면 I2S 처리
     {
-        I2S_handle();
+        // I2S_handle();
+        int *p_buffer = (int *) &lib_g_i2s_buffers[lib_g_i2s_buffer_out_pos][0];
+
+        // I2S + 마이크 둘 다 믹싱 버퍼에 복사 (합친 후 나누기 2 하는 것 더이상 안함)
+        audio_mix_2_buffers((int _XMEM *) &HCT_A0_0[0], p_buffer);
+
+        // I2S만 믹싱 버퍼에 복사
+        // audio_mix_1_buffer(p_buffer);
+
+        // 출력 버퍼의 포인터 변경
+        if (lib_g_i2s_buffer_out_pos == 0)
+        {
+            lib_g_i2s_buffer_out_pos = 1;
+        }
+        else
+        {
+            lib_g_i2s_buffer_out_pos = 0;
+        }
     }
     else  // I2S 스트리밍 상태가 아니면 Mic만 처리
     {
@@ -346,10 +414,8 @@ void HEAR_LiveStimulation_Mode(void)
          * 이 계산이 끝나기 전까지 처리할 사항을 처리하면 된다.
          * 예를 들면, 오디오 디버깅을 위해 DAC FIFO로 AGC 출력 결과를 복사하는 등이 있다. */
 
-        // lib_audio_loopback((int _XMEM *) &HCT_A0_2[0], (int _XMEM *) &HCT_A0_0[0]); // DAC0로 MIC0 복사
-        // lib_audio_loopback((int _XMEM*) &HCT_A0_3[0], (int _XMEM*) &HCT_A0_1[0]);  // DAC1로 MIC1 복사
-        lib_loopback_AGC_out((int _XMEM *) &HCT_A0_3[0], &m_agc_output_buffer[0]);  // DAC1로 AGC 출력
-        // lib_audio_loopback((int _XMEM*) &HCT_A0_2[0], (int _XMEM*) &lib_g_i2s_buffer[0]);  // DAC0로 I2S 출력
+        // (디버그 마더 보드의 실크 오타로 DAC0이라고 헤더에 적혀있다. 하지만, 실제로 DAC1을 사용함)
+        lib_loopback_AGC_out((int _XMEM *) &HCT_A0_3[0], &m_agc_output_buffer[0]);  // DAC1으로 AGC 출력
 
         lib_i2s_clear_data();  // I2S 디버깅 출력까지 완료되면 버퍼 클리어
 
