@@ -267,6 +267,9 @@ int main(void)
     load_data_section();
     load_bss_section();
 
+    Sys_DIO_Config(DIO33, (DIO_1X_DRIVE | DIO_LPF_ENABLE | DIO_NO_PULL | DIO_MODE_GPIO_OUT));  // DIO 설정: 오실로스코프 측정용
+    Sys_GPIO_Set_Low(DIO33);
+
     // SWJ-DP에 대한 DIO 설정
     Sys_DIO_CM3JTAGConfig(true, false);
 
