@@ -43,6 +43,34 @@ static uint8_t s_led_pwm_on_count = LED_DIMMING_PWM_STEPS;  /* 0 ~ STEPS */
  * ISR engine 경쟁 방지용. set → 수동 fade → clear 순서로 사용. */
 static volatile bool s_led_isr_suspended = false;
 
+/* 비차단 fade-off 상태머신 — turnOffLED() / led_force_fade_off() 진입 시
+ * ACTIVE 로 전환되며, ISR 의 led_arbiter_tick() 이 매 tick step 진행. */
+typedef enum
+{
+    LED_FADE_OFF_IDLE   = 0,
+    LED_FADE_OFF_ACTIVE,
+} led_fade_off_state_t;
+
+static volatile led_fade_off_state_t s_fade_off_state = LED_FADE_OFF_IDLE;
+static volatile uint16_t             s_fade_off_t     = 0;
+static volatile uint16_t             s_fade_off_max   = 0;  /* 30 (turnOff) / 40 (force) */
+
+/* CFX_0 / FIFO_5 ISR 활성 여부 — initialize.c 에서 set / clear.
+ * turnOffLED() / led_force_fade_off() 가 ISR 의존 fade-off vs. 즉시 OFF
+ * 분기 결정에 사용. */
+static volatile bool s_led_isr_active = false;
+
+/* arbiter ISR 이 정상 구동 가능한 상태인가? (활성 + 일시정지 아님) */
+static inline bool led_arbiter_can_run(void)
+{
+    return s_led_isr_active && !s_led_isr_suspended;
+}
+
+void led_isr_active_set(bool active)
+{
+    s_led_isr_active = active;
+}
+
 /* 색상 전환 cross-fade 상태머신
  *   FADE_OUT : 이전 색을 perceived 255 → 0 으로 감소 출력 (timer_ms 진행 보류)
  *   FADE_IN  : 새 색을 perceived 0 → 255 로 증가 출력 (패턴 진행 정상)
@@ -371,22 +399,32 @@ void led_force_fade_off(void)
     /* PAIR latch 도 무효화 — 잔존 latch 가 IDLE 결정을 막지 않게 */
     s_pair_latch_until_tick = 0;
 
-    /* Phase A 진행 + 안정화 마진. led_arbiter_tick() 이 매 호출 시 LED_OUT()
-     * 까지 처리하므로 GPIO 도 같이 갱신. */
-    for (int i = 0; i < LED_DIMMING_FADE_MAX_MS + 10; i++)
+    /* 호출 사이트는 main.c:638 sleep 진입 한 곳뿐 — ISR 활성 가정.
+     * 그러나 안전상 동일 검사 후 즉시 OFF + suspend. */
+    if (!led_arbiter_can_run())
     {
-        led_arbiter_tick();
-        delay_ms(1);
+        LED_outputColor    = en__LED_BLACK;
+        s_led_pwm_on_count = 0;
+        LED_OUT();
+        s_led_isr_suspended = true;
+        return;
     }
 
-    /* ISR (TIMER_3 / CFX_0 / FIFO_5) 의 led_arbiter_tick() 호출을 영구 차단.
+    /* 비차단 fade-off 시작 (40 ms) — 호출자(main.c:638) 는 break 로 즉시 main loop
+     * 탈출, func_sleep() 의 NRF/QCC/PMIC OFF 처리 동안 ISR 이 자연 tick 으로
+     * fade 진행 → turnOffLED() 진입 시점엔 BLACK 안정 도달 (또는 진행 중). */
+    s_fade_off_state = LED_FADE_OFF_ACTIVE;
+    s_fade_off_t     = 0;
+    s_fade_off_max   = LED_DIMMING_FADE_MAX_MS + 10;
+
+    /* sleep 진입 동안 LED 보호 — fade 완료 후 ISR 차단.
      *
-     * led_arbiter_tick() 은 main loop 가 아니라 위 3 개 ISR 에서 직접 호출된다.
-     * main loop 가 break 후 func_sleep() 안 (ResetNRF / NRF_Off / QCC SHUTDOWN /
-     * PMIC OFF / turnOffLED / ci_power_sleep ...) 진행 사이에 IRQ 가 발생하면
-     * led_arbiter_tick() → LED_OUT() 이 실행되어 GPIO 가 새 색으로 갱신될 수
-     * 있다. 이번 fade-off 이후 절전 진입까지는 LED 상태가 더 변하면 안 되므로
-     * 영구 suspend 한다. (다음 부팅 시 static 변수 초기값 false 로 자연 reset.) */
+     * arbiter 가드 순서가 fade-off step 분기 → suspended 가드 순이라 본 set
+     * 이후에도 진행 중인 fade 는 끝까지 진행된다 (led_arbiter_tick 가드 1 참조).
+     * fade 완료 시 가드 1 에서 IDLE 로 reset 된 뒤로는 가드 2 (suspended) 에서
+     * 차단되어 IRQ 발생해도 LED 갱신 없음.
+     *
+     * 다음 부팅 시 static 변수 초기값 false 로 자연 reset. */
     s_led_isr_suspended = true;
 }
 
@@ -510,16 +548,15 @@ static void led_engine_run(led_state_t st, bool reset)
  *  Arbiter tick -- 매 iteration 호출 (Rev.3 SS3.5)
  * ======================================================================== */
 
-void led_arbiter_tick(void)
+/* Best state 산출 — fade-off 분기에서 재사용을 위해 추출.
+ *
+ * PAIR latch 갱신 부수효과가 있으나 idempotent (`!= LED_ST_PAIR` 가드).
+ * 한 tick 내 두 번 호출되어도 동등 결과. */
+static led_state_t compute_best_state(void)
 {
-    /* turnOffLED() 등 main loop 가 직접 LED state 를 조작하는 구간에서는
-     * ISR engine 을 일시 정지해 shared state 경쟁 방지. */
-    if (s_led_isr_suspended)
-    {
-        return;
-    }
-
-    bool user_off = (readLED_indicatorOnOff() == 2);
+    bool        user_off = (readLED_indicatorOnOff() == 2);
+    led_state_t best     = LED_ST_IDLE;
+    int         max_p    = -1;
 
     /* PAIR latch 처리: 해제 요청이 와도 latch 동안 유지 */
     if (s_req[LED_SRC_BLE_IND] != LED_ST_PAIR
@@ -527,9 +564,6 @@ void led_arbiter_tick(void)
     {
         s_req[LED_SRC_BLE_IND] = LED_ST_PAIR;
     }
-
-    led_state_t best  = LED_ST_IDLE;
-    int         max_p = -1;
 
     for (int src = 0; src < LED_SRC__MAX; ++src)
     {
@@ -549,6 +583,55 @@ void led_arbiter_tick(void)
             best  = st;
         }
     }
+
+    return best;
+}
+
+void led_arbiter_tick(void)
+{
+    /* (가드 1) Fade-off step — suspended 가드보다 먼저 처리.
+     *
+     * 이유: led_force_fade_off() 가 fade 시작과 동시에 s_led_isr_suspended = true
+     *       로 sleep 진입 보호를 걸어둔다. 만약 suspended 가드가 먼저면 fade 가
+     *       진행 안 됨. fade-off step 분기를 먼저 두어 fade 는 끝까지 진행되고,
+     *       완료 후엔 본 분기를 빠져나가 (가드 2) 로 차단된다. */
+    if (s_fade_off_state == LED_FADE_OFF_ACTIVE)
+    {
+        /* 새 high-priority 요청 검사 — best != IDLE 이면 fade-off 즉시 중단 후
+         * 정상 arbiter path 진행. cross-fade 메커니즘이 새 패턴 fade-in 자연 처리.
+         * (정책: ERROR 등 진입 시 기존 fade 중단 + 새 패턴 fade 적용.) */
+        if (compute_best_state() != LED_ST_IDLE)
+        {
+            s_fade_off_state = LED_FADE_OFF_IDLE;
+            /* fall through to (가드 2) 검사 후 정상 arbiter */
+        }
+        else
+        {
+            /* fade-off step 진행 (perceived 선형 감소) */
+            uint8_t perceived = (uint8_t) (((uint32_t) (s_fade_off_max - s_fade_off_t) * 255UL)
+                                            / s_fade_off_max);
+            s_led_pwm_on_count = perceived_to_pwm(perceived);
+            LED_OUT();
+
+            if (++s_fade_off_t >= s_fade_off_max)
+            {
+                LED_outputColor    = en__LED_BLACK;
+                s_led_pwm_on_count = 0;
+                LED_OUT();
+                s_fade_off_state = LED_FADE_OFF_IDLE;
+            }
+            return;
+        }
+    }
+
+    /* (가드 2) Suspended — main loop 가 직접 LED state 를 조작하던 구간 보호.
+     * 본 작업 후엔 led_force_fade_off() 의 sleep 진입 보호가 유일한 set 사이트. */
+    if (s_led_isr_suspended)
+    {
+        return;
+    }
+
+    led_state_t best = compute_best_state();
 
     /* Legacy pattern 업데이트 (게이트 호환) */
     EN__LED_PATTERN legacy = led_state_to_enum(best);
@@ -631,34 +714,25 @@ void LED_clock_error(void)
 
 void turnOffLED(void)
 {
-    /* GPIO R/G/B 순차 호출 사이의 transient 로 의도치 않은 중간색이 보이는
-     * 현상 회피 — 직전 LED 색이 ORANGE/SKYBLUE/PURPLE/WHITE 등 두 핀 이상
-     * ON 상태였다면, R→G→B 순차 LOW 처리 사이에 단일 핀 ON 색 (GREEN/BLUE)
-     * 등이 잠깐 보일 수 있다 (사용자 보고: BLUE 깜빡 후 SKYBLUE 잔상).
+    /* 직전 LED 색의 perceived 곡선을 점진 감소시키며 BLACK 으로 안정시킨다.
+     * 두 핀 이상 ON 상태 (ORANGE/SKYBLUE/PURPLE/WHITE) 에서 R→G→B 순차 LOW
+     * 사이의 transient 로 의도치 않은 중간색이 보이는 현상 회피.
      *
-     * perceived 곡선으로 brightness 를 점진 감소시키면서 LED_OUT() 을 통해
-     * GPIO 를 갱신. PWM duty 0 도달 후엔 LED_OUT() 의 OFF 분기 (GPIO 모두 OFF
-     * base) 만 실행 → 추가 GPIO 변화 없음. 마지막 LED_outputColor 도 BLACK
-     * 으로 명시 적용.
-     *
-     * ISR engine 과 경쟁 방지 — 수동 fade 구간 동안 s_led_isr_suspended 로
-     * Timer 3 ISR 의 led_arbiter_tick() 일시 정지. */
-    s_led_isr_suspended = true;
-
-    for (uint16_t t = 0; t < LED_DIMMING_FADE_MAX_MS; t++)
+     * ISR 비활성 (Initialize-time) 또는 영구 suspended (sleep 진입 후) 구간에서는
+     * arbiter 가 fade-off step 을 진행할 수 없으므로 즉시 OFF 1 회로 마무리. */
+    if (!led_arbiter_can_run())
     {
-        uint8_t perceived = (uint8_t) (((uint32_t) (LED_DIMMING_FADE_MAX_MS - t) * 255UL)
-                                       / LED_DIMMING_FADE_MAX_MS);
-        s_led_pwm_on_count = perceived_to_pwm(perceived);
+        LED_outputColor    = en__LED_BLACK;
+        s_led_pwm_on_count = 0;
         LED_OUT();
-        delay_ms(1);
+        return;
     }
 
-    LED_outputColor    = en__LED_BLACK;
-    s_led_pwm_on_count = 0;
-    LED_OUT();
-
-    s_led_isr_suspended = false;
+    /* 비차단 fade-off 시작 — 다음 ISR tick 부터 led_arbiter_tick() 의 가드 1
+     * 분기가 매 1 ms perceived 감소 step 진행 (총 30 ms). */
+    s_fade_off_state = LED_FADE_OFF_ACTIVE;
+    s_fade_off_t     = 0;
+    s_fade_off_max   = LED_DIMMING_FADE_MAX_MS;
 }
 
 void turnON_RedLED(void)
