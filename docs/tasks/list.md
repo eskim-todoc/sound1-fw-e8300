@@ -15,13 +15,13 @@ Sound1 프로젝트(`E:\Claude\projects\Sound1`) 작업 레지스트리.
 | 내부 링크 경로 정정 | meta | docs, links, tech-debt | [meta/internal-links-fix](meta/internal-links-fix/) _(폴더 미생성)_ | 대기 | - | → [meta/docs-restructure](meta/docs-restructure/) | migration 후 남은 구 프리픽스 링크 25+ 건 정정 |
 | POWER_ON LED 조기 점등 및 초기화 병렬화 | LED | init, startup, parallelization | [LED/power-on-early-lighting](LED/power-on-early-lighting/) | 진행 | 2026-04-23 | ← [LED/bootloader-power-on-indicator](LED/bootloader-power-on-indicator/) (상위 단계, 보완 관계) | Rev.0 요구사항·분석 작성 (사용자 진행 중) |
 | 부트로더 단계 LED 조기 점등 | LED | bootloader, startup, indicator | [LED/bootloader-power-on-indicator](LED/bootloader-power-on-indicator/) | 진행 | 2026-04-27 | → [LED/non-blocking-fade-off](LED/non-blocking-fade-off/) (분리), → [LED/power-on-early-lighting](LED/power-on-early-lighting/) (보완) | 부트로더 진입 직후 LED 조기 점등 — 조사 단계 (LED G 미스터리·SKYBLUE 매칭 등 미해결) |
-| LED Fade-Off 비차단 변환 | LED | non-blocking, isr, fade, refactor | [LED/non-blocking-fade-off](LED/non-blocking-fade-off/) | 진행 | 2026-04-27 | ← [LED/bootloader-power-on-indicator](LED/bootloader-power-on-indicator/) §4 (발견 경위) | 폴링 fade-off (`turnOffLED` 30ms · `led_force_fade_off` 40ms) → ISR 상태머신 변환. 요구사항.md 작성 (사용자 승인 대기) |
 
 ## 완료
 
 | 작업명 | 모듈 | 태그 | 폴더 | 상태 | 시작·완료 | 연계 | 요약 |
 |---|---|---|---|---|---|---|---|
 | LED 운용 방식 | LED | operation, scheme | [LED/operation-scheme](LED/operation-scheme/) | 완료 | ~2026-04-21 | - | 분석·구현·이력 완결 (이력 문서 존재) |
+| LED Fade-Off 비차단 변환 | LED | non-blocking, isr, fade, refactor | [LED/non-blocking-fade-off](LED/non-blocking-fade-off/) | 완료 | 2026-04-27 ~ 2026-04-27 | ← [LED/bootloader-power-on-indicator](LED/bootloader-power-on-indicator/) §4 (발견 경위) | 폴링 fade-off (`turnOffLED` 30ms · `led_force_fade_off` 40ms) → ISR 상태머신 변환. 사용자 검증 통과 (30 ms 절약 확인). |
 | 저전력 모드 전환 | power | sleep, low-power | [power/low-power-mode](power/low-power-mode/) | 완료 _(추정)_ | ~2026-04-22 | - | 분석·구현계획 Rev.0 — 이력 미작성, 상태 사용자 확인 요망 |
 | 터치 레이어 분리 | touch | layer, refactor | [touch/layer-separation](touch/layer-separation/) | 완료 _(추정)_ | ~2026-04-21 | - | 구현계획 Rev.1 — 이력 미작성, 상태 사용자 확인 요망 |
 | 터치 센서 초기화 분할 | touch | init, sequencing | [touch/init-split](touch/init-split/) | 완료 _(추정)_ | ~2026-04-21 | - | 구현계획 Rev.2 + 로그 (성공·실패 포함) — 이력 미작성, 상태 사용자 확인 요망 |
@@ -57,3 +57,4 @@ Sound1 프로젝트(`E:\Claude\projects\Sound1`) 작업 레지스트리.
 | 2026-04-24 | 레지스트리 생성. 기존 Sound1 작업 5건 등재 (활성 2, 완료(추정) 3 + 완료 1). `meta/docs-restructure` (migration 작업) 활성으로 등재. |
 | 2026-04-24 | 구조 정정: `기준/` → `지침/` 통합 (1건 이동). `참고/` 모듈 분할 — `칩/`·`LED/`·`터치/` 서브폴더 생성 (9건 이동). `참고/LED/` 내 3 파일 프리픽스 "LED 시스템 —" 제거 후 상호참조 링크 갱신. `참고/칩/Ezairo 클럭·타이머·I2C 스펙 정리.md` PDF 링크 연결. `참고/터치/터치센서 운용 방식.md`의 IQS323 링크 정정 (malformed 이스케이프 시퀀스 교체). Sound1 CLAUDE.md layout 섹션 갱신. |
 | 2026-04-27 | 활성 작업 2건 등재: `LED/bootloader-power-on-indicator` (조사 단계, 진행상황 인계 commit `e1630e9`) · `LED/non-blocking-fade-off` (요구사항.md 작성, 사용자 승인 대기). |
+| 2026-04-27 | `LED/non-blocking-fade-off` 활성 → 완료. 사용자 검증 통과 (30 ms 절약 확인, 회귀 없음). 잔존 이슈는 LED G 미스터리 (별도 작업). |
