@@ -704,34 +704,25 @@ void LED_clock_error(void)
 
 void turnOffLED(void)
 {
-    /* GPIO R/G/B 순차 호출 사이의 transient 로 의도치 않은 중간색이 보이는
-     * 현상 회피 — 직전 LED 색이 ORANGE/SKYBLUE/PURPLE/WHITE 등 두 핀 이상
-     * ON 상태였다면, R→G→B 순차 LOW 처리 사이에 단일 핀 ON 색 (GREEN/BLUE)
-     * 등이 잠깐 보일 수 있다 (사용자 보고: BLUE 깜빡 후 SKYBLUE 잔상).
+    /* 직전 LED 색의 perceived 곡선을 점진 감소시키며 BLACK 으로 안정시킨다.
+     * 두 핀 이상 ON 상태 (ORANGE/SKYBLUE/PURPLE/WHITE) 에서 R→G→B 순차 LOW
+     * 사이의 transient 로 의도치 않은 중간색이 보이는 현상 회피.
      *
-     * perceived 곡선으로 brightness 를 점진 감소시키면서 LED_OUT() 을 통해
-     * GPIO 를 갱신. PWM duty 0 도달 후엔 LED_OUT() 의 OFF 분기 (GPIO 모두 OFF
-     * base) 만 실행 → 추가 GPIO 변화 없음. 마지막 LED_outputColor 도 BLACK
-     * 으로 명시 적용.
-     *
-     * ISR engine 과 경쟁 방지 — 수동 fade 구간 동안 s_led_isr_suspended 로
-     * Timer 3 ISR 의 led_arbiter_tick() 일시 정지. */
-    s_led_isr_suspended = true;
-
-    for (uint16_t t = 0; t < LED_DIMMING_FADE_MAX_MS; t++)
+     * ISR 비활성 (Initialize-time) 또는 영구 suspended (sleep 진입 후) 구간에서는
+     * arbiter 가 fade-off step 을 진행할 수 없으므로 즉시 OFF 1 회로 마무리. */
+    if (!led_arbiter_can_run())
     {
-        uint8_t perceived = (uint8_t) (((uint32_t) (LED_DIMMING_FADE_MAX_MS - t) * 255UL)
-                                       / LED_DIMMING_FADE_MAX_MS);
-        s_led_pwm_on_count = perceived_to_pwm(perceived);
+        LED_outputColor    = en__LED_BLACK;
+        s_led_pwm_on_count = 0;
         LED_OUT();
-        delay_ms(1);
+        return;
     }
 
-    LED_outputColor    = en__LED_BLACK;
-    s_led_pwm_on_count = 0;
-    LED_OUT();
-
-    s_led_isr_suspended = false;
+    /* 비차단 fade-off 시작 — 다음 ISR tick 부터 led_arbiter_tick() 의 가드 1
+     * 분기가 매 1 ms perceived 감소 step 진행 (총 30 ms). */
+    s_fade_off_state = LED_FADE_OFF_ACTIVE;
+    s_fade_off_t     = 0;
+    s_fade_off_max   = LED_DIMMING_FADE_MAX_MS;
 }
 
 void turnON_RedLED(void)
