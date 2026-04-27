@@ -58,3 +58,4 @@ Sound1 프로젝트(`E:\Claude\projects\Sound1`) 작업 레지스트리.
 | 2026-04-24 | 구조 정정: `기준/` → `지침/` 통합 (1건 이동). `참고/` 모듈 분할 — `칩/`·`LED/`·`터치/` 서브폴더 생성 (9건 이동). `참고/LED/` 내 3 파일 프리픽스 "LED 시스템 —" 제거 후 상호참조 링크 갱신. `참고/칩/Ezairo 클럭·타이머·I2C 스펙 정리.md` PDF 링크 연결. `참고/터치/터치센서 운용 방식.md`의 IQS323 링크 정정 (malformed 이스케이프 시퀀스 교체). Sound1 CLAUDE.md layout 섹션 갱신. |
 | 2026-04-27 | 활성 작업 2건 등재: `LED/bootloader-power-on-indicator` (조사 단계, 진행상황 인계 commit `e1630e9`) · `LED/non-blocking-fade-off` (요구사항.md 작성, 사용자 승인 대기). |
 | 2026-04-27 | `LED/non-blocking-fade-off` 활성 → 완료. 사용자 검증 통과 (30 ms 절약 확인, 회귀 없음). 잔존 이슈는 LED G 미스터리 (별도 작업). |
+| 2026-04-27 | `LED/non-blocking-fade-off` 사후 fix (commit `85c250f`) — fade-off cancel 시 cross-fade Phase A 잔존 색 가동 anomaly 해소. 부수 발견: LED G 미스터리(B 작업) 도 동일 원인이라 함께 해소. 이력.md §8 추가. |
