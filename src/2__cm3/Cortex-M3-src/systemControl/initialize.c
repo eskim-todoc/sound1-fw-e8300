@@ -175,6 +175,9 @@ void Uninitialize(void)
     /* Clear all pending source. */
     Sys_NVIC_ClearAllPendingInt();
 
+    /* LED arbiter ISR 도 같이 비활성 — turnOffLED() 가 즉시 OFF 분기로 진입 */
+    led_isr_active_set(false);
+
     /* Turn off the LED */
     turnOffLED();
 
@@ -412,6 +415,7 @@ void Initialize(void)
 
     // CFX 트리거를 받은 인터럽트 활성화
     enable_CFX_trigger_for_iteration();  // CFX_0, FIFO_5 인터럽트 활성화
+    led_isr_active_set(true);            // LED arbiter ISR 가용 시작 — turnOffLED() 가 비차단 fade 분기로
 
     // 인터럽트 활성화
     enable_interrupt();
