@@ -43,6 +43,34 @@ static uint8_t s_led_pwm_on_count = LED_DIMMING_PWM_STEPS;  /* 0 ~ STEPS */
  * ISR engine 경쟁 방지용. set → 수동 fade → clear 순서로 사용. */
 static volatile bool s_led_isr_suspended = false;
 
+/* 비차단 fade-off 상태머신 — turnOffLED() / led_force_fade_off() 진입 시
+ * ACTIVE 로 전환되며, ISR 의 led_arbiter_tick() 이 매 tick step 진행. */
+typedef enum
+{
+    LED_FADE_OFF_IDLE   = 0,
+    LED_FADE_OFF_ACTIVE,
+} led_fade_off_state_t;
+
+static volatile led_fade_off_state_t s_fade_off_state = LED_FADE_OFF_IDLE;
+static volatile uint16_t             s_fade_off_t     = 0;
+static volatile uint16_t             s_fade_off_max   = 0;  /* 30 (turnOff) / 40 (force) */
+
+/* CFX_0 / FIFO_5 ISR 활성 여부 — initialize.c 에서 set / clear.
+ * turnOffLED() / led_force_fade_off() 가 ISR 의존 fade-off vs. 즉시 OFF
+ * 분기 결정에 사용. */
+static volatile bool s_led_isr_active = false;
+
+/* arbiter ISR 이 정상 구동 가능한 상태인가? (활성 + 일시정지 아님) */
+static inline bool led_arbiter_can_run(void)
+{
+    return s_led_isr_active && !s_led_isr_suspended;
+}
+
+void led_isr_active_set(bool active)
+{
+    s_led_isr_active = active;
+}
+
 /* 색상 전환 cross-fade 상태머신
  *   FADE_OUT : 이전 색을 perceived 255 → 0 으로 감소 출력 (timer_ms 진행 보류)
  *   FADE_IN  : 새 색을 perceived 0 → 255 로 증가 출력 (패턴 진행 정상)
