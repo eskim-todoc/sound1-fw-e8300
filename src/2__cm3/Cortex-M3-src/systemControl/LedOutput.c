@@ -579,8 +579,43 @@ static led_state_t compute_best_state(void)
 
 void led_arbiter_tick(void)
 {
-    /* turnOffLED() 등 main loop 가 직접 LED state 를 조작하는 구간에서는
-     * ISR engine 을 일시 정지해 shared state 경쟁 방지. */
+    /* (가드 1) Fade-off step — suspended 가드보다 먼저 처리.
+     *
+     * 이유: led_force_fade_off() 가 fade 시작과 동시에 s_led_isr_suspended = true
+     *       로 sleep 진입 보호를 걸어둔다. 만약 suspended 가드가 먼저면 fade 가
+     *       진행 안 됨. fade-off step 분기를 먼저 두어 fade 는 끝까지 진행되고,
+     *       완료 후엔 본 분기를 빠져나가 (가드 2) 로 차단된다. */
+    if (s_fade_off_state == LED_FADE_OFF_ACTIVE)
+    {
+        /* 새 high-priority 요청 검사 — best != IDLE 이면 fade-off 즉시 중단 후
+         * 정상 arbiter path 진행. cross-fade 메커니즘이 새 패턴 fade-in 자연 처리.
+         * (정책: ERROR 등 진입 시 기존 fade 중단 + 새 패턴 fade 적용.) */
+        if (compute_best_state() != LED_ST_IDLE)
+        {
+            s_fade_off_state = LED_FADE_OFF_IDLE;
+            /* fall through to (가드 2) 검사 후 정상 arbiter */
+        }
+        else
+        {
+            /* fade-off step 진행 (perceived 선형 감소) */
+            uint8_t perceived = (uint8_t) (((uint32_t) (s_fade_off_max - s_fade_off_t) * 255UL)
+                                            / s_fade_off_max);
+            s_led_pwm_on_count = perceived_to_pwm(perceived);
+            LED_OUT();
+
+            if (++s_fade_off_t >= s_fade_off_max)
+            {
+                LED_outputColor    = en__LED_BLACK;
+                s_led_pwm_on_count = 0;
+                LED_OUT();
+                s_fade_off_state = LED_FADE_OFF_IDLE;
+            }
+            return;
+        }
+    }
+
+    /* (가드 2) Suspended — main loop 가 직접 LED state 를 조작하던 구간 보호.
+     * 본 작업 후엔 led_force_fade_off() 의 sleep 진입 보호가 유일한 set 사이트. */
     if (s_led_isr_suspended)
     {
         return;
