@@ -14,7 +14,7 @@ Sound1 프로젝트(`E:\Claude\projects\Sound1`) 작업 레지스트리.
 | Sound1 docs 폴더 구조 세분화 | meta | docs, convention, migration | [meta/docs-restructure](meta/docs-restructure/) | 진행 | 2026-04-24 | → 루트 [meta/docs-restructure](../../../../docs/tasks/meta/docs-restructure/), → [meta/internal-links-fix](meta/internal-links-fix/) (예정) | 루트 컨벤션 Sound1 적용 |
 | 내부 링크 경로 정정 | meta | docs, links, tech-debt | [meta/internal-links-fix](meta/internal-links-fix/) _(폴더 미생성)_ | 대기 | - | → [meta/docs-restructure](meta/docs-restructure/) | migration 후 남은 구 프리픽스 링크 25+ 건 정정 |
 | POWER_ON LED 조기 점등 및 초기화 병렬화 | LED | init, startup, parallelization | [LED/power-on-early-lighting](LED/power-on-early-lighting/) | 진행 | 2026-04-23 | ← [LED/bootloader-power-on-indicator](LED/bootloader-power-on-indicator/) (상위 단계, 보완 관계) | Rev.0 요구사항·분석 작성 (사용자 진행 중) |
-| 부트로더 단계 LED 조기 점등 | LED | bootloader, startup, indicator | [LED/bootloader-power-on-indicator](LED/bootloader-power-on-indicator/) | 진행 | 2026-04-27 | → [LED/non-blocking-fade-off](LED/non-blocking-fade-off/) (분리), → [LED/power-on-early-lighting](LED/power-on-early-lighting/) (보완) | 부트로더 진입 직후 LED 조기 점등 — 조사 단계 (LED G 미스터리·SKYBLUE 매칭 등 미해결) |
+| 부트로더 단계 LED 조기 점등 | LED | bootloader, startup, indicator | [LED/bootloader-power-on-indicator](LED/bootloader-power-on-indicator/) | 진행 | 2026-04-27 | ← [LED/non-blocking-fade-off](LED/non-blocking-fade-off/) (A·B 단계), → [LED/power-on-early-lighting](LED/power-on-early-lighting/) (보완) | 본 작업 본격 진입 준비 완료 — A 완료 / B(LED G) 자연 해소. 다음 세션(2026-04-30 목)부터 `요구사항.md` 작성 |
 
 ## 완료
 
@@ -59,3 +59,4 @@ Sound1 프로젝트(`E:\Claude\projects\Sound1`) 작업 레지스트리.
 | 2026-04-27 | 활성 작업 2건 등재: `LED/bootloader-power-on-indicator` (조사 단계, 진행상황 인계 commit `e1630e9`) · `LED/non-blocking-fade-off` (요구사항.md 작성, 사용자 승인 대기). |
 | 2026-04-27 | `LED/non-blocking-fade-off` 활성 → 완료. 사용자 검증 통과 (30 ms 절약 확인, 회귀 없음). 잔존 이슈는 LED G 미스터리 (별도 작업). |
 | 2026-04-27 | `LED/non-blocking-fade-off` 사후 fix (commit `85c250f`) — fade-off cancel 시 cross-fade Phase A 잔존 색 가동 anomaly 해소. 부수 발견: LED G 미스터리(B 작업) 도 동일 원인이라 함께 해소. 이력.md §8 추가. |
+| 2026-04-27 | `LED/bootloader-power-on-indicator` 진행상황.md 갱신 (B 자연 해소·C 진입 준비). 회고 신규 카테고리 [`코딩.md`](../../../../docs/회고/코딩.md) 생성 — "비차단/ISR 시스템에서 동기 폴링 회피". CLAUDE.md / 회고 README 카테고리 목록 갱신. 다음 세션 = 2026-04-30 (목) C 작업 진입. |
