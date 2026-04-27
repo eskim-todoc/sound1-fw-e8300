@@ -399,22 +399,32 @@ void led_force_fade_off(void)
     /* PAIR latch 도 무효화 — 잔존 latch 가 IDLE 결정을 막지 않게 */
     s_pair_latch_until_tick = 0;
 
-    /* Phase A 진행 + 안정화 마진. led_arbiter_tick() 이 매 호출 시 LED_OUT()
-     * 까지 처리하므로 GPIO 도 같이 갱신. */
-    for (int i = 0; i < LED_DIMMING_FADE_MAX_MS + 10; i++)
+    /* 호출 사이트는 main.c:638 sleep 진입 한 곳뿐 — ISR 활성 가정.
+     * 그러나 안전상 동일 검사 후 즉시 OFF + suspend. */
+    if (!led_arbiter_can_run())
     {
-        led_arbiter_tick();
-        delay_ms(1);
+        LED_outputColor    = en__LED_BLACK;
+        s_led_pwm_on_count = 0;
+        LED_OUT();
+        s_led_isr_suspended = true;
+        return;
     }
 
-    /* ISR (TIMER_3 / CFX_0 / FIFO_5) 의 led_arbiter_tick() 호출을 영구 차단.
+    /* 비차단 fade-off 시작 (40 ms) — 호출자(main.c:638) 는 break 로 즉시 main loop
+     * 탈출, func_sleep() 의 NRF/QCC/PMIC OFF 처리 동안 ISR 이 자연 tick 으로
+     * fade 진행 → turnOffLED() 진입 시점엔 BLACK 안정 도달 (또는 진행 중). */
+    s_fade_off_state = LED_FADE_OFF_ACTIVE;
+    s_fade_off_t     = 0;
+    s_fade_off_max   = LED_DIMMING_FADE_MAX_MS + 10;
+
+    /* sleep 진입 동안 LED 보호 — fade 완료 후 ISR 차단.
      *
-     * led_arbiter_tick() 은 main loop 가 아니라 위 3 개 ISR 에서 직접 호출된다.
-     * main loop 가 break 후 func_sleep() 안 (ResetNRF / NRF_Off / QCC SHUTDOWN /
-     * PMIC OFF / turnOffLED / ci_power_sleep ...) 진행 사이에 IRQ 가 발생하면
-     * led_arbiter_tick() → LED_OUT() 이 실행되어 GPIO 가 새 색으로 갱신될 수
-     * 있다. 이번 fade-off 이후 절전 진입까지는 LED 상태가 더 변하면 안 되므로
-     * 영구 suspend 한다. (다음 부팅 시 static 변수 초기값 false 로 자연 reset.) */
+     * arbiter 가드 순서가 fade-off step 분기 → suspended 가드 순이라 본 set
+     * 이후에도 진행 중인 fade 는 끝까지 진행된다 (led_arbiter_tick 가드 1 참조).
+     * fade 완료 시 가드 1 에서 IDLE 로 reset 된 뒤로는 가드 2 (suspended) 에서
+     * 차단되어 IRQ 발생해도 LED 갱신 없음.
+     *
+     * 다음 부팅 시 static 변수 초기값 false 로 자연 reset. */
     s_led_isr_suspended = true;
 }
 
