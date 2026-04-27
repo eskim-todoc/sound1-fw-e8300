@@ -538,16 +538,15 @@ static void led_engine_run(led_state_t st, bool reset)
  *  Arbiter tick -- 매 iteration 호출 (Rev.3 SS3.5)
  * ======================================================================== */
 
-void led_arbiter_tick(void)
+/* Best state 산출 — fade-off 분기에서 재사용을 위해 추출.
+ *
+ * PAIR latch 갱신 부수효과가 있으나 idempotent (`!= LED_ST_PAIR` 가드).
+ * 한 tick 내 두 번 호출되어도 동등 결과. */
+static led_state_t compute_best_state(void)
 {
-    /* turnOffLED() 등 main loop 가 직접 LED state 를 조작하는 구간에서는
-     * ISR engine 을 일시 정지해 shared state 경쟁 방지. */
-    if (s_led_isr_suspended)
-    {
-        return;
-    }
-
-    bool user_off = (readLED_indicatorOnOff() == 2);
+    bool        user_off = (readLED_indicatorOnOff() == 2);
+    led_state_t best     = LED_ST_IDLE;
+    int         max_p    = -1;
 
     /* PAIR latch 처리: 해제 요청이 와도 latch 동안 유지 */
     if (s_req[LED_SRC_BLE_IND] != LED_ST_PAIR
@@ -555,9 +554,6 @@ void led_arbiter_tick(void)
     {
         s_req[LED_SRC_BLE_IND] = LED_ST_PAIR;
     }
-
-    led_state_t best  = LED_ST_IDLE;
-    int         max_p = -1;
 
     for (int src = 0; src < LED_SRC__MAX; ++src)
     {
@@ -577,6 +573,20 @@ void led_arbiter_tick(void)
             best  = st;
         }
     }
+
+    return best;
+}
+
+void led_arbiter_tick(void)
+{
+    /* turnOffLED() 등 main loop 가 직접 LED state 를 조작하는 구간에서는
+     * ISR engine 을 일시 정지해 shared state 경쟁 방지. */
+    if (s_led_isr_suspended)
+    {
+        return;
+    }
+
+    led_state_t best = compute_best_state();
 
     /* Legacy pattern 업데이트 (게이트 호환) */
     EN__LED_PATTERN legacy = led_state_to_enum(best);
