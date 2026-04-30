@@ -28,6 +28,14 @@
 #define DIO_ACTIVE_LEVEL_CAL         0
 #define DIO_ACTIVE_LEVEL_UART_ENABLE 0
 
+/* 부트로더 단계 LED 조기 점등 (작업: LED/bootloader-power-on-indicator).
+ * =1: 활성 — UART 비활성 시 SW PWM SKYBLUE fade-in 점등
+ * =0: 비활성 (디폴트, 기존 부트로더 동작 유지)
+ * Eclipse 빌드 설정 / Makefile 에서 -DTDC_BOOT_LED_ENABLE=1 로 override. */
+#ifndef TDC_BOOT_LED_ENABLE
+#define TDC_BOOT_LED_ENABLE 1
+#endif
+
 void tdc_delay_ms(uint32_t ms);
 void tdc_delay_us(uint32_t us);
 

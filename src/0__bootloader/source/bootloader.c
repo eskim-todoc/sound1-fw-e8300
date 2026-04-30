@@ -35,7 +35,9 @@
 
 #include <ci_boot.h>
 #include <ci_initialize.h>
+#include <main.h>
 #include <rtt_printf.h>
+#include <tdc_boot_led.h>
 #include <tdc_uart.h>
 
 #define SHOULD_BOOT 0xA5
@@ -1370,6 +1372,21 @@ int bootloader_load_app_file(const char *file_name)
     }
     if (cm3_boot_flag == SHOULD_BOOT)
     {
+        /* 작업: LED/bootloader-power-on-indicator.
+         * SW PWM 1 cycle (540 ms) 보장 후 정리하고 점프.
+         * tdc_boot_led_start() 가 호출됐을 때만 (= 가드 ON + UART 비활성) wait —
+         * elapsed_ms == 0 이면 미시작 케이스라 즉시 통과. */
+#if TDC_BOOT_LED_ENABLE
+        if (tdc_boot_led_elapsed_ms() > 0)
+        {
+            while (!tdc_boot_led_is_done())
+            {
+                /* SW PWM ISR 가 LED 출력 갱신, 본 main loop 는 단순 wait */
+            }
+            tdc_boot_led_stop();
+        }
+#endif
+
         /* Doesn't return */
         bootloader_boot_cm3(cm3_boot_data.stack_pointer, cm3_boot_data.init_pointer);
     }
@@ -1494,6 +1511,22 @@ int bootloader_boot(void)
     tdc_uart_printf("boot_manu_off = %u \r\n", boot_info->boot_manu_off);
 
     bootloader_load_manu_table(boot_info->boot_manu_off);
+
+    /* T-B 도달: 클럭 30.72 MHz 안정 (Sys_Trims_SetOperatingFrequency 직후).
+     * 작업: LED/bootloader-power-on-indicator. 가드 + 검증 핀 2 단 분기:
+     *  - 가드 OFF → 본 블록 컴파일 제외, 기존 동작 유지
+     *  - 가드 ON  + UART 활성   → SW PWM 미가동 (G 핀 = UART RX 와 공유 충돌 회피)
+     *  - 가드 ON  + UART 비활성 → SW PWM SKYBLUE fade cycle 1 회 시작 */
+#if TDC_BOOT_LED_ENABLE
+    {
+        bool uart_active = (Sys_GPIO_Read(DIO_NUM_UART_ENABLE) == DIO_ACTIVE_LEVEL_UART_ENABLE);
+        if (!uart_active)
+        {
+            tdc_boot_led_init();
+            tdc_boot_led_start();
+        }
+    }
+#endif
 
     tdc_uart_init();  // 재 초기화
 

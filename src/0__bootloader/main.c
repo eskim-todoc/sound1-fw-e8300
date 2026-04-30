@@ -13,7 +13,9 @@ int main(void)
     Sys_DIO_Config(DIO_NUM_ELAPSE_TIME_CHECK, DIO_CFG_ELAPSE_TIME_CHECK);  // DIO 설정: 오실로스코프 측정용
     Sys_GPIO_Set_High(DIO_NUM_ELAPSE_TIME_CHECK);
 
-#if 1  // 부팅 시간 체크를 위한 디버깅 코드
+#if !TDC_BOOT_LED_ENABLE
+    // 부팅 시간 체크를 위한 디버깅 코드 (가드 OFF 시 기존 동작 유지).
+    // 가드 ON 시: GPIO DIO_MODE_DISABLE 유지 → 풀다운 자연 OFF → T-B 시 SW PWM fade-in 자연 점등.
     Sys_DIO_Config(DIO_NUM_LED_R_UART_TX_E8300, DIO_CFG_LED);
     Sys_DIO_Config(DIO_NUM_LED_G_UART_RX_E8300, DIO_CFG_LED);
     Sys_DIO_Config(DIO_NUM_LED_B, DIO_CFG_LED);
