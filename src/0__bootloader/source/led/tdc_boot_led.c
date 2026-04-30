@@ -6,11 +6,18 @@
  * 활성 조건: main.h 의 TDC_BOOT_LED_ENABLE = 1 + 런타임 UART 검증 핀 비활성.
  * 비활성 조건: TDC_BOOT_LED_ENABLE = 0 (디폴트) → 본 .c 는 빈 컴파일 단위.
  *
- * 동작 (가드 ON + UART 비활성):
- *   1. bootloader.c 가 T-B 도달 후 init() + start() 호출
- *   2. Timer2 ISR 가 10 us 주기로 PWM bin 진행 (100 bin = 1 ms PWM 주기)
- *   3. 1 ms 마다 phase tick — FADE_IN(30) → PEAK(300) → FADE_OUT(30) → OFF(180) → DONE
- *   4. bootloader.c 가 DONE 도달까지 wait 후 stop() + bootloader_boot_cm3() 점프
+ * 클럭 체인 (Step 3 보정 후):
+ *   SYSCLK 30.72 MHz (부트로더 T-B 시점)
+ *     → SLOWCLK = SYSCLK / 24 = 1.28 MHz   (D_CLK->CFG_1 의 SLOWCLK_PRESCALE_24)
+ *     → Timer = SLOWCLK / 32 = 40 kHz       (RSL10 General Timer 의 고정 분주, ci_timer.h:56)
+ *   ISR 주기 = (tick+1) / 40 kHz, prescale=TIMER_PRESCALE_1 (= 2^0).
+ *   tick=0 → ISR 25 us 주기 (= 40 kHz, Timer 최소 분해능).
+ *
+ *   PWM 분해능 100 bin, PWM 주기 = 100 × 25 us = 2.5 ms = 400 Hz (깜빡임 안전).
+ *   1 ms 단위 phase tick 은 ISR 40 회 마다 호출 (40 × 25 us = 1 ms).
+ *
+ *   부트로더는 D_CLK 디폴트 분주값으로 시작하므로 본 init 에서 CM3 ci_power.c:154-156
+ *   와 동일한 설정 (SLOWCLK 1.28 MHz) 명시 적용 + 5 ms 안정화 대기 후 Timer 가동.
  *
  * 색: k_led_mix[en__LED_SKYBLUE] = {R=0, G=30, B=40} (LedOutput.c 참조) 비율 차용.
  *     R 채널 미사용. G/B 만 active HIGH PWM.
@@ -23,13 +30,17 @@
 #include <hw.h>
 #include <tdc_boot_led.h>
 
-/* SW PWM 매개변수 — 분석.md D-2/D-5 기반 */
-#define TDC_BOOT_LED_PWM_RESOLUTION   100    /* 한 PWM 주기 = 100 bin */
-#define TDC_BOOT_LED_PWM_BIN_US       10     /* 1 bin = 10 us → PWM 주기 = 1 ms = 1 kHz */
+/* SW PWM 매개변수 — 분석.md D-2/D-5 + Step 3 보정 (Timer 40 kHz 기반) */
 
-/* Timer2 reload — 30.72 MHz @ TIMER_PRESCALE_1 기준 10 us tick.
- * 30.72 cycles/us × 10 us - 1 = 306.2. 정수 307 채택. 측정 후 보정. */
-#define TDC_BOOT_LED_TIMER_RELOAD     307
+/* ISR 주기 = 25 us (= 1 / 40 kHz, Timer prescale_1 + tick 0).
+ * Timer 40 kHz 가 본 모듈의 시간 분해능 한계. */
+#define TDC_BOOT_LED_TIMER_RELOAD     0     /* (tick+1)/40 kHz = 25 us */
+
+/* PWM 분해능 100, 주기 100 × 25 us = 2.5 ms = 400 Hz */
+#define TDC_BOOT_LED_PWM_RESOLUTION   100
+
+/* 1 ms 단위 phase tick — ISR 40 회 마다 1 ms 카운터 증가 */
+#define TDC_BOOT_LED_ISR_PER_MS       40    /* 1 ms / 25 us */
 
 /* k_led_mix[en__LED_SKYBLUE] = {R=0, G=30, B=40} 차용. PWM_RESOLUTION = 100 이라
  * G duty 30/100 = 30%, B duty 40/100 = 40%. */
@@ -57,13 +68,14 @@ typedef enum {
 
 /* ISR <-> main 공유 — volatile 필수. ISR 만 갱신, public read API 가 read. */
 static volatile tdc_boot_led_phase_t s_tdc_boot_led_phase       = TDC_BOOT_LED_PHASE_IDLE;
-static volatile uint32_t             s_tdc_boot_led_pwm_bin     = 0;
-static volatile uint32_t             s_tdc_boot_led_elapsed_ms  = 0;
+static volatile uint32_t             s_tdc_boot_led_pwm_bin     = 0;   /* 0~PWM_RESOLUTION-1 */
+static volatile uint32_t             s_tdc_boot_led_isr_in_ms   = 0;   /* 0~ISR_PER_MS-1 */
+static volatile uint32_t             s_tdc_boot_led_elapsed_ms  = 0;   /* start 이후 누적 ms */
 static volatile uint8_t              s_tdc_boot_led_duty_g      = 0;
 static volatile uint8_t              s_tdc_boot_led_duty_b      = 0;
 static          bool                 s_tdc_boot_led_initialized = false;
 
-/* ISR 컨텍스트 호출 — bin == 0 시 1 ms 마다 1 회.
+/* ISR 컨텍스트 호출 — 1 ms 마다 1 회 (= ISR 40 회 마다).
  * 본 함수가 phase, duty_g, duty_b 갱신. */
 static void phase_tick(void)
 {
@@ -131,15 +143,16 @@ static void phase_tick(void)
     }
 }
 
-/* Timer2 ISR — 10 us 주기 (100 kHz).
+/* Timer2 ISR — 25 us 주기 (40 kHz, Timer 분해능 한계).
  *
  * Cortex-M3 NVIC 가 ISR entry/exit 시 active bit 자동 set/clear → ISR 본문 ack 호출 없음.
  * peripheral pending bit 도 RSL10 Timer 는 hardware auto-clear 가정 (Step 측정에서 재확인).
  *
  * 부트로더 외 다른 ISR 없음 (분석 §1 F-3, F-4) → uninterrupted.
- * 처리 시간 ~30 cycles @ 30.72 MHz ≈ 1 us — 충분 여유. */
+ * 처리 시간 ~50 cycles @ 30.72 MHz ≈ 1.6 us / 25 us 주기 = 6% CPU. 무관. */
 void TIMER_2_IRQHandler(void)
 {
+    /* PWM bin 진행 (0~99 cycle, 100 → 0 wrap) */
     uint32_t bin = s_tdc_boot_led_pwm_bin + 1;
     if (bin >= TDC_BOOT_LED_PWM_RESOLUTION)
     {
@@ -151,12 +164,15 @@ void TIMER_2_IRQHandler(void)
     Sys_GPIO_Write(DIO_NUM_LED_G_UART_RX_E8300, (bin < s_tdc_boot_led_duty_g) ? 1 : 0);
     Sys_GPIO_Write(DIO_NUM_LED_B,               (bin < s_tdc_boot_led_duty_b) ? 1 : 0);
 
-    /* PWM 한 주기 완료 → 1 ms 경과 → phase 갱신 */
-    if (bin == 0)
+    /* 1 ms 카운터 — 40 ISR 마다 1 ms 경과 */
+    uint32_t isr_in_ms = s_tdc_boot_led_isr_in_ms + 1;
+    if (isr_in_ms >= TDC_BOOT_LED_ISR_PER_MS)
     {
+        isr_in_ms = 0;
         s_tdc_boot_led_elapsed_ms++;
         phase_tick();
     }
+    s_tdc_boot_led_isr_in_ms = isr_in_ms;
 }
 
 void tdc_boot_led_init(void)
@@ -174,7 +190,16 @@ void tdc_boot_led_init(void)
     Sys_DIO_Config(DIO_NUM_LED_G_UART_RX_E8300, DIO_CFG_LED);
     Sys_DIO_Config(DIO_NUM_LED_B,               DIO_CFG_LED);
 
-    /* Timer2 setup — 10 us tick. 분석 §1.4 O-1 (PRAM5 배치): 본 .c 가 부트로더
+    /* 클럭 분주 설정 — CM3 ci_power.c:154-156 동일. SYSCLK 30.72 MHz 가정.
+     * SLOWCLK_PRESCALE_24 → SLOWCLK = 1.28 MHz → Timer = SLOWCLK/32 = 40 kHz.
+     * UARTCLK_SRC_SYSCLK 유지 → 부트로더 UART (이미 30.72 MHz 가정으로 init) 영향 없음. */
+    D_CLK->CFG_1 = (ADCCLK_PRESCALE_8 | ADCCLK_SRC_SYSCLK | SDMCLK_PRESCALE_2
+                  | SLOWCLK_PRESCALE_24 | SLOWCLK_SRC_SYSCLK | UARTCLK_SRC_SYSCLK);
+    D_CLK->CFG_2 = (UCLK_PRESCALE_8 | UCLK_SRC_ADCCLK);
+
+    tdc_delay_ms(5);  /* 시스템 클럭 안정화 대기 — CM3 ci_power.c:158 동일 */
+
+    /* Timer2 setup — 25 us tick (40 kHz). 분석 §1.4 O-1 (PRAM5 배치): 본 .c 가 부트로더
      * sections.ld 로 link 되므로 자동. ci_timer.c 와 동일 SDK API 사용. */
     Sys_Timer_Stop(TIMER2);  /* 안전 측 (이전 가동 상태 정리) */
     Sys_Timer_Config(TIMER2, TIMER_PRESCALE_1, TIMER_FREE_RUN, TDC_BOOT_LED_TIMER_RELOAD);
@@ -195,6 +220,7 @@ void tdc_boot_led_start(void)
      * 깨끗한 상태에서 시작하도록. */
     s_tdc_boot_led_phase      = TDC_BOOT_LED_PHASE_FADE_IN;
     s_tdc_boot_led_pwm_bin    = 0;
+    s_tdc_boot_led_isr_in_ms  = 0;
     s_tdc_boot_led_elapsed_ms = 0;
     s_tdc_boot_led_duty_g     = 0;
     s_tdc_boot_led_duty_b     = 0;
