@@ -364,11 +364,6 @@ void Initialize(void)
     // I2C 초기화
     init_I2c();
 
-    /* P11: 터치 센서 초기화 시작 — Initialize 안에서 직접 호출 (Q5).
-     * Auto-ATI 대기 (~1.5s) 는 LED 버스트 (~1.8s) 와 병렬 진행 → 체감 시간 0. */
-    tdc_touch_init_begin();
-    ci_printi("[MILESTONE] TOUCH-INIT-BEGIN t3=%d \r\n", tdc_timer_get_t3_tick());
-
 #if 0  // 오직 TX PMIC 테스트를 위한 코드
     {
         int tx_power;
@@ -443,6 +438,15 @@ void Initialize(void)
 
     // SPI 초기화
     init_cm3_SPI();
+
+    /* P11 (Rev.4 patch): 터치 센서 초기화 — init_cm3_SPI() 직후로 이동.
+     * 사유: warm reset (워치독) 후 NRF 의 잔존 SPI 상태가 init_cm3_SPI() 전에
+     *       CS RISE 를 만들어 DMA TRANSFER_WORD_CNT_SHORT 미스매치 회귀 발생.
+     *       원래 P11 위치 (init_I2c 직후) 는 SPI init 시점을 늦춰 NRF SPI race 가능성.
+     *       본 위치는 본 작업 전 시점 (systemControl 분기 → init_cm3_SPI 후) 과 동등.
+     * Auto-ATI 대기 (~1.5s) 는 LED 버스트 (~1.8s) 와 병렬 진행 → 체감 시간 0. */
+    tdc_touch_init_begin();
+    ci_printi("[MILESTONE] TOUCH-INIT-BEGIN t3=%d \r\n", tdc_timer_get_t3_tick());
 
     /* 종료 배리어: CFX 트리거 → main_tick · iteration 활성. TIMER3 는 stop 안 함. */
     enable_CFX_trigger_for_iteration();  // CFX_0, FIFO_5 인터럽트 활성화
