@@ -278,6 +278,7 @@ void Initialize(void)
 
     /* L1: TIMER3 ISR 활성 (1ms tick — LED · 터치 공유 카운터 + LED arbiter) */
     ci_timer_init(OTE_1_5_GEN_TIMER_TICK_1MS_PM_NORMAL);
+    ci_printi("[MILESTONE] LED-GATE-ENTER (TIMER3 ON) \r\n");
 
     /* L2: 공유 메모리 주소 검증 — 에러 시 LED 켜기 전에 무한루프 진입 (R4) */
     if (sharedMemoryAddresError())
@@ -299,6 +300,7 @@ void Initialize(void)
 
     /* L5: POWER_ON 버스트 요청 — TIMER3 ISR 가 SKYBLUE fade-in/out × 5 진행 */
     led_request(LED_SRC_POWER, LED_ST_POWER_ON);
+    ci_printi("[MILESTONE] LED-POWER-ON-REQ t3=%d \r\n", tdc_timer_get_t3_tick());
 
     /* 드라이브 0으로 변경 후 부트 상태 처리 후
      * 드라이브 1로 변경하여 맵 관련 파일을 사용할 수 있게 설정 */
@@ -365,6 +367,7 @@ void Initialize(void)
     /* P11: 터치 센서 초기화 시작 — Initialize 안에서 직접 호출 (Q5).
      * Auto-ATI 대기 (~1.5s) 는 LED 버스트 (~1.8s) 와 병렬 진행 → 체감 시간 0. */
     tdc_touch_init_begin();
+    ci_printi("[MILESTONE] TOUCH-INIT-BEGIN t3=%d \r\n", tdc_timer_get_t3_tick());
 
 #if 0  // 오직 TX PMIC 테스트를 위한 코드
     {
@@ -443,6 +446,8 @@ void Initialize(void)
 
     /* 종료 배리어: CFX 트리거 → main_tick · iteration 활성. TIMER3 는 stop 안 함. */
     enable_CFX_trigger_for_iteration();  // CFX_0, FIFO_5 인터럽트 활성화
+    ci_printi("[MILESTONE] CFX-ITER-ENABLE t3=%d main=%d \r\n",
+              tdc_timer_get_t3_tick(), ci_timer_get_tick());
 
     // 인터럽트 활성화 (PRIMASK 는 main.c 에서 이미 enable — 사실상 noop, 안전망)
     enable_interrupt();
