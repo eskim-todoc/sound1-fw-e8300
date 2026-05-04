@@ -208,19 +208,16 @@ ST__SYSTEM_STATE systemControl(EN__LED_PATTERN   current_led_pattern,  //
             {
                 if (StartFlag == false)
                 {
-                    turnOffLED();
+                    /* turnOffLED · led_request(POWER, POWER_ON) · tdc_touch_init_begin
+                     * 은 Initialize() P3-Early 에서 직접 수행 (Rev.4 이관). 본 분기는
+                     * 부팅 후 첫 진입 시 systemStatus 마커와 카운터만 셋업.
+                     * StartFlag · PowerOn_StartCounter 변수 자체 정리는 별도 cleanup
+                     * 작업으로 위임 (사용처 dead 확인됨). */
                     systemStatus.Led_Pattern = en__LED_POWER_On;
-                    led_request(LED_SRC_POWER, LED_ST_POWER_ON);
-
-                    /* 터치 센서 초기화 시작 — 파워온 LED 버스트(~1.5초)와 Auto-ATI
-                     * 대기를 병렬 진행한다. 나머지 설정은 tdc_touch_process()
-                     * 내부 상태머신이 ATI 완료 시점에 일괄 적용한다.
-                     * 상세: docs/[구현계획] 터치 센서 초기화 분할 Rev.2 by 김은수.md */
-                    tdc_touch_init_begin();
 
                     PowerOn_StartCounter = 0;
                     StartFlag            = true;
-                    ci_printi("[SYSTEM] LED PATTERN IS POWER ON \r\n");
+                    ci_printi("[SYSTEM] FIRST POWER-ON SYSTEM CONTROL TICK \r\n");
                 }
                 else
                 {
