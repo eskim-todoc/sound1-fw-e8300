@@ -1,7 +1,6 @@
 
 #include <ci_timer.h>
 #include <stdbool.h>
-#include <LedOutput.h>  /* led_arbiter_tick — CFX ISR 직접 구동 */
 
 // Ezairo7150의 CM3에는 타이머가 들어있지 않다.
 // CFX에서 일정주기의 인터럽트를 수신하여 타이머처럼 동작시킨다.
@@ -13,9 +12,7 @@ void CFX_0_IRQHandler(void)
     enable_iteration();
     ci_timer_increase_tick();  // 시스템 사용 시간, 로그 시간 등을 위해 카운터 증가
 
-    /* LED arbiter/engine/PWM — main loop 의 I2C/EEPROM 폴링 블록으로 인한
-     * fade/PWM 타이밍 jitter 방지 목적. CFX 가 평상시 1ms tick 소스. */
-    led_arbiter_tick();
+    /* LED arbiter 호출은 TIMER_3_IRQHandler (`ci_timer.c`) 가 전담 — ISR 책임 분리. */
 }
 
 void FIFO_5_IRQHandler(void)
