@@ -12,6 +12,7 @@
 
 #include <ci_uart.h>
 #include <ci_printf.h>
+#include <ci_timer.h>
 
 /***********************************************************************
  * GLOBAL VARIABLES
@@ -64,16 +65,46 @@ void SPI1_COM_IRQHandler(void)
 
     if (SPI1_STATUS->CS_RISE_ALIAS)
     {
-        if (DMA0_CNTS->TRANSFER_WORD_CNT_SHORT != SPI_COMM_PACKET_SIZE)
+        int  dma0_cnt      = DMA0_CNTS->TRANSFER_WORD_CNT_SHORT;
+        int  dma1_cnt      = DMA1_CNTS->TRANSFER_WORD_CNT_SHORT;
+        bool size_mismatch = false;
+
+        if (dma0_cnt != SPI_COMM_PACKET_SIZE)
         {
             spi_CommuState = SPI_CMMM_ERROR;
-            ci_printe("[SPI] DMA0_CNTS->TRANSFER_WORD_CNT_SHORT (%d) \r\n", DMA0_CNTS->TRANSFER_WORD_CNT_SHORT);
+            ci_printe("[SPI] DMA0_CNTS->TRANSFER_WORD_CNT_SHORT (%d) \r\n", dma0_cnt);
+            size_mismatch = true;
         }
 
-        if (DMA1_CNTS->TRANSFER_WORD_CNT_SHORT != SPI_COMM_PACKET_SIZE)
+        if (dma1_cnt != SPI_COMM_PACKET_SIZE)
         {
             spi_CommuState = SPI_CMMM_ERROR;
-            ci_printe("[SPI] DMA1_CNTS->TRANSFER_WORD_CNT_SHORT (%d) \r\n", DMA1_CNTS->TRANSFER_WORD_CNT_SHORT);
+            ci_printe("[SPI] DMA1_CNTS->TRANSFER_WORD_CNT_SHORT (%d) \r\n", dma1_cnt);
+            size_mismatch = true;
+        }
+
+        /* (디버그) size mismatch 시 RX/TX 버퍼 내용 dump — 받은/송신한 크기만큼 */
+        if (size_mismatch)
+        {
+            int rx_n = (dma0_cnt > 0 && dma0_cnt <= SPI_COMM_PACKET_SIZE) ? dma0_cnt : SPI_COMM_PACKET_SIZE;
+            int tx_n = (dma1_cnt > 0 && dma1_cnt <= SPI_COMM_PACKET_SIZE) ? dma1_cnt : SPI_COMM_PACKET_SIZE;
+
+            ci_printw("[SPI] DMA-MISMATCH t3=%d ms / RX_CNT=%d / TX_CNT=%d \r\n",
+                      tdc_timer_get_t3_tick(), dma0_cnt, dma1_cnt);
+
+            ci_printw("[SPI] RX_BUFF (LSB->):");
+            for (int i = 0; i < rx_n; i++)
+            {
+                ci_printw(" %02X", (unsigned int)(SPI_Rx_Buffer[i] & 0xFF));
+            }
+            ci_printw(" \r\n");
+
+            ci_printw("[SPI] TX_BUFF (LSB->):");
+            for (int i = 0; i < tx_n; i++)
+            {
+                ci_printw(" %02X", (unsigned int)(SPI_Tx_Buffer[i] & 0xFF));
+            }
+            ci_printw(" \r\n");
         }
 
         clear_SPI_Tx_Buffer();
@@ -107,7 +138,19 @@ void DMA0_IRQHandler(void)  // DMA0은 SPI Rx에서 Memory로 패킷 단위의 �
         Sys_DMA_Mode_Enable(DMA0, DMA_DISABLE);  // DMA0 끄기
 
 #if 1
-        ci_printe("[DMA] SPI RX ERROR \r\n");
+        {
+            int dma0_cnt = DMA0_CNTS->TRANSFER_WORD_CNT_SHORT;
+            int rx_n     = (dma0_cnt > 0 && dma0_cnt <= SPI_COMM_PACKET_SIZE) ? dma0_cnt : SPI_COMM_PACKET_SIZE;
+
+            ci_printw("[DMA] SPI RX ERROR t3=%d ms / RX_CNT=%d \r\n",
+                      tdc_timer_get_t3_tick(), dma0_cnt);
+            ci_printw("[DMA] RX_BUFF (LSB->):");
+            for (int i = 0; i < rx_n; i++)
+            {
+                ci_printw(" %02X", (unsigned int)(SPI_Rx_Buffer[i] & 0xFF));
+            }
+            ci_printw(" \r\n");
+        }
 #endif
     }
     else
@@ -137,7 +180,19 @@ void DMA1_IRQHandler(void)  // DMA1은 Memory에서 SPI Tx로 패킷 단위의 �
         spi_CommuState = SPI_CMMM_ERROR;         // 에러 상황 (DMA1이 완료 되지 않았는데 인터럽트가 발생)
         Sys_DMA_Mode_Enable(DMA1, DMA_DISABLE);  // DMA1 끄기
 #if 1
-        ci_printe("[DMA] SPI TX ERROR \r\n");
+        {
+            int dma1_cnt = DMA1_CNTS->TRANSFER_WORD_CNT_SHORT;
+            int tx_n     = (dma1_cnt > 0 && dma1_cnt <= SPI_COMM_PACKET_SIZE) ? dma1_cnt : SPI_COMM_PACKET_SIZE;
+
+            ci_printw("[DMA] SPI TX ERROR t3=%d ms / TX_CNT=%d \r\n",
+                      tdc_timer_get_t3_tick(), dma1_cnt);
+            ci_printw("[DMA] TX_BUFF (LSB->):");
+            for (int i = 0; i < tx_n; i++)
+            {
+                ci_printw(" %02X", (unsigned int)(SPI_Tx_Buffer[i] & 0xFF));
+            }
+            ci_printw(" \r\n");
+        }
 #endif
     }
     else
@@ -275,6 +330,8 @@ void init_cm3_SPI(void)
 // void writeDataToSpiTxBuff(const int source[], int dataSize)
 void writeDataToSpiTxBuff(int *source, int dataSize)
 {
+    ci_printw("[TX] ENTER empty=%d t3=%d ms\r\n", (int)isSpiTxBuffEmpty(), tdc_timer_get_t3_tick());
+
     while (1)
     {
         if (isSpiTxBuffEmpty())
@@ -305,6 +362,8 @@ void writeDataToSpiTxBuff(int *source, int dataSize)
 
             if (print_allowed)
             {
+                ci_printw("[TX] PRINTV-BEFORE\r\n");
+
                 ci_printv("[SPI TX] (LSB) 0x%02X %02X %02X %02X %02X %02X %02X %02X %02X %02X "
                           "%02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X (MSB) \r\n",
                           SPI_Tx_Buffer[0],
@@ -331,6 +390,8 @@ void writeDataToSpiTxBuff(int *source, int dataSize)
             }
 #endif
 
+            ci_printw("[TX] DMA-CYCLE-START\r\n");
+
             Sys_DMA_Mode_Enable(DMA0, DMA_DISABLE);  // DMA0 끄기
             Sys_DMA_Mode_Enable(DMA1, DMA_DISABLE);  // DMA1 끄기
 
@@ -346,11 +407,15 @@ void writeDataToSpiTxBuff(int *source, int dataSize)
             Sys_SPI_TransferConfig(SPI1, DRIVER_SPI_CTRL_ENABLE);
 
             enable_ReadCommandForSPI_Master();
+            ci_printw("[TX] DONE-EXIT t3=%d ms\r\n", tdc_timer_get_t3_tick());
             break;
         }
         else
         {
+            ci_printw("[TX] WFE-ENTER t3=%d ms\r\n", tdc_timer_get_t3_tick());
             __WFE();
+            ci_printw("[TX] WFE-WAKE t3=%d ms empty=%d\r\n",
+                      tdc_timer_get_t3_tick(), (int)isSpiTxBuffEmpty());
         }
     }
 }

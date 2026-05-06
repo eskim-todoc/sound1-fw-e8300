@@ -12,6 +12,9 @@
 #include <ci_ble_control_boot.h>
 #include <ci_ble_control_ota.h>
 
+#include <ci_timer.h>
+#include <ci_printf.h>
+
 typedef struct
 {
     ReadCommandForBleSetting command;
@@ -150,6 +153,9 @@ void setting_nrf_ble_adv_info(void)
 
         Tx_dataBuff[tx_index++] = EN__SND_BT_CMD_SYSTEM_INFO_POWER;
         Tx_dataBuff[tx_index++] = 1;  // 수신 확인 응답
+
+        ci_printw("[BT] BEFORE-WRITE-TX 0x34 t3=%d ms\r\n", tdc_timer_get_t3_tick());
+        ci_printw("[BT] CALL-WRITE-TX TxEmpty=%d\r\n", (int)isSpiTxBuffEmpty());
 
         writeDataToSpiTxBuff(Tx_dataBuff, tx_index);     // 송싱 데이터 SPI TX버퍼에 복사
         bleSettingPacket.command = en__bleSetting_IDLE;  // 명령 종료
@@ -318,6 +324,12 @@ ST__BLE_COMMUNICATION_STATE bleCommunication(ST__ISD_STATUS isd_state)
 
         case SPI_CMMM_ERROR:
         {
+            ci_printw("\r\n");
+            ci_printw("################################################################\r\n");
+            ci_printw("###  [SPI ERROR HANDLED]    t3 = %d ms\r\n", tdc_timer_get_t3_tick());
+            ci_printw("################################################################\r\n");
+            ci_printw("\r\n");
+
             // SPI 인터페이스 에러
             NVIC_DisableIRQ(SPI1_COM_IRQn);
 

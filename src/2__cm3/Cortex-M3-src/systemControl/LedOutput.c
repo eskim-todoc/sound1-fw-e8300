@@ -9,6 +9,7 @@
 
 #include <ci_timer.h>
 #include <ci_util.h>  /* delay_ms */
+#include <ci_printf.h>
 
 /* ========================================================================
  *  LED Dimming (타이머 3 1ms tick 기반 PWM 듀티 변조)
@@ -541,6 +542,17 @@ static void led_engine_run(led_state_t st, bool reset)
                 burst_done_cnt++;
                 if (burst_done_cnt >= p->burst_cnt)
                 {
+                    /* (디버그) POWER_ON 패턴 종료 강조 — V10 SPI race 측정 트레이스
+                     * st 가 LED_ST_POWER_ON 일 때만 출력. POWER_OFF 등은 영향 없음. */
+                    if (st == LED_ST_POWER_ON)
+                    {
+                        ci_printi("\r\n");
+                        ci_printi("################################################################\r\n");
+                        ci_printi("###  [POWER-ON  END]     t3 = %d ms\r\n", tdc_timer_get_t3_tick());
+                        ci_printi("################################################################\r\n");
+                        ci_printi("\r\n");
+                    }
+
                     /* 게이트 자가 해제: 기존 관례 유지 */
                     updateLED_OutputPattern(en__LED_NA);
                     s_req[LED_SRC_POWER]       = LED_ST_NONE;

@@ -10,7 +10,7 @@
     //////////////////
 
     // SPI로 사용될 때 DIO 핀 설정값
-    #define SPI_DIO_PIN_CFG (DIO_2X_DRIVE | DIO_LPF_DISABLE | DIO_60K_PULL_UP)
+    #define SPI_DIO_PIN_CFG (DIO_2X_DRIVE | DIO_LPF_DISABLE | DIO_WEAK_PULL_UP /*DIO_60K_PULL_UP*/ )
 
     // UART로 사용될 때 DIO 핀 설정값
     #define UART_DIO_PIN_CFG (DIO_1X_DRIVE | DIO_LPF_DISABLE | DIO_250K_PULL_UP)
