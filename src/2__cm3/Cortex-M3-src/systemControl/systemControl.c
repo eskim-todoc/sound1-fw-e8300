@@ -221,7 +221,11 @@ ST__SYSTEM_STATE systemControl(EN__LED_PATTERN   current_led_pattern,  //
                 }
                 else
                 {
-                    if (current_led_pattern != en__LED_POWER_On)
+                    /* burst 진행 상태를 직접 조회 — `current_led_pattern` 은 LED arbiter ISR
+                     * 가 갱신하므로 main loop iter 와 1-tick stale race 가능 (커밋 cecbc3d
+                     * 의 ISR 책임 분리로 노출). burst flag 는 `led_engine_run()` 이 직접
+                     * set/clear 하므로 본질적 진행 상태와 일치. */
+                    if (!led_is_power_burst_in_progress())
                     {
                         systemStatus.enable_ISD = true;
                         systemStatus.enablePMIC = true;
@@ -275,8 +279,13 @@ ST__SYSTEM_STATE systemControl(EN__LED_PATTERN   current_led_pattern,  //
 
                         if (isPowerOffEnabled)
                         {
-                            // LED 출력이 완료되었다.
-                            if ((current_led_pattern != en__LED_POWER_Off) && (PowerOff_StartCounter != 0))
+                            /* burst 종료 검출 — burst 진행 flag 직접 조회.
+                             * `current_led_pattern` 은 LED arbiter ISR 가 갱신해 main loop
+                             * iter 와 1-tick stale race 가능 (커밋 cecbc3d ISR 분리 영향).
+                             * stale 일 경우 (NA 잔존) burst 시작 직후 systemOff 즉시 트리거
+                             * → led_force_fade_off() 가 burst 자가 해제 전 모든 src NONE
+                             * 으로 강제 → POWER_OFF 패턴이 전혀 안 보이는 회귀 발생. */
+                            if (!led_is_power_burst_in_progress() && (PowerOff_StartCounter != 0))
                             {
                                 isPowerOffEnabled         = false;
                                 ISD_Disconnection_counter = 0;
