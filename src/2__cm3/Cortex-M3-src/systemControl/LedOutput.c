@@ -35,6 +35,17 @@
  * ======================================================================== */
 #define LED_DIMMING_FADE_MAX_MS  30//15   /* fade-in / fade-out 시간 상한 */
 #define LED_DIMMING_FADE_DIVISOR 3    /* 점멸 fade 자동 조정: on_ms / N */
+
+/* 부트로더 → CM3 LED OFF 인계 gap 보전 (2026-05-07).
+ *
+ * 부트로더 SW PWM 의 OFF phase 가 180 ms → 0 ms 로 단축된 후
+ * (bootloader-power-on-indicator/이력.md §8), 부트로더 SKYBLUE fade 종료 ~
+ * CM3 main 진입까지의 자연 OFF 시간이 ~100 ms (= 부트로더 자체 잔여 작업)
+ * 만 남는다. CM3 측 LED_ST_POWER_ON 패턴 진입 직전에 본 매크로 시간 만큼
+ * leading OFF 를 추가해 변경 전 OFF gap (~180 ms) 을 보전한다.
+ *
+ * 부트로더 잔여 ~100 ms + 본 leading OFF 100 ms ≈ 200 ms (≥ 180 ms) 확보. */
+#define LED_BOOT_HANDOFF_OFF_MS  100
 #define LED_DIMMING_PWM_STEPS    10   /* 1ms × 10 = 10ms = 100Hz PWM */
 
 static uint8_t s_led_pwm_on_count = LED_DIMMING_PWM_STEPS;  /* 0 ~ STEPS */
@@ -74,6 +85,7 @@ void led_isr_active_set(bool active)
 
 /* 색상 전환 cross-fade 상태머신
  *   FADE_OUT : 이전 색을 perceived 255 → 0 으로 감소 출력 (timer_ms 진행 보류)
+ *   LEAD_OFF : POWER_ON 진입 시 leading OFF (LED_BOOT_HANDOFF_OFF_MS, timer_ms 보류)
  *   FADE_IN  : 새 색을 perceived 0 → 255 로 증가 출력 (패턴 진행 정상)
  *   NONE     : 평상시 (점멸 fade-in/out 만 적용)
  */
@@ -81,6 +93,7 @@ typedef enum
 {
     LED_TX_NONE = 0,
     LED_TX_FADE_OUT,
+    LED_TX_LEAD_OFF,
     LED_TX_FADE_IN,
 } led_tx_phase_t;
 
@@ -470,6 +483,13 @@ static void led_engine_run(led_state_t st, bool reset)
                 s_tx_prev_color = LED_outputColor;
                 s_tx_ms         = 0;
             }
+            else if (st == LED_ST_POWER_ON)
+            {
+                /* POWER_ON 진입 — 부트로더 → CM3 LED OFF 인계 gap 보전.
+                 * leading OFF 후 FADE_IN 으로 자가 전이. */
+                s_tx_phase = LED_TX_LEAD_OFF;
+                s_tx_ms    = 0;
+            }
             else
             {
                 /* 이전이 OFF 였거나 같은 색 → fade-in 직행 */
@@ -493,6 +513,22 @@ static void led_engine_run(led_state_t st, bool reset)
         if (s_tx_ms >= LED_DIMMING_FADE_MAX_MS)
         {
             /* fade-out 완료 → 다음 tick 부터 Phase B (새 패턴 시작) */
+            s_tx_phase = LED_TX_FADE_IN;
+            s_tx_ms    = 0;
+        }
+        return;
+    }
+
+    /* Phase 0 — POWER_ON 진입 시 leading OFF (부트로더 → CM3 인계 gap 보전).
+     * timer_ms 진행 보류 — LED_BOOT_HANDOFF_OFF_MS 경과 후 FADE_IN 으로 전이. */
+    if (s_tx_phase == LED_TX_LEAD_OFF)
+    {
+        LED_outputColor    = en__LED_BLACK;
+        s_led_pwm_on_count = 0;
+
+        s_tx_ms++;
+        if (s_tx_ms >= LED_BOOT_HANDOFF_OFF_MS)
+        {
             s_tx_phase = LED_TX_FADE_IN;
             s_tx_ms    = 0;
         }
