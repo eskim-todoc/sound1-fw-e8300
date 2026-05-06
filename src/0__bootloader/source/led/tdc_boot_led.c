@@ -47,15 +47,17 @@
 #define TDC_BOOT_LED_DUTY_G_MAX       30
 #define TDC_BOOT_LED_DUTY_B_MAX       40
 
-/* Phase 시간 (ms) — D-5 */
+/* Phase 시간 (ms) — D-5 (사후 갱신 2026-05-07: OFF 180 → 0).
+ * OFF wait 는 CM3 진입 직후 자체 초기화 시간으로 자연 흡수 — 부트로더 wait 100 ms 단축.
+ * 사용자가 보는 LED 패턴 (SKYBLUE fade → OFF → 정식 LED_ST_POWER_ON) 은 동일. */
 #define TDC_BOOT_LED_T_FADE_IN_MS     30
 #define TDC_BOOT_LED_T_PEAK_MS        300
 #define TDC_BOOT_LED_T_FADE_OUT_MS    30
-#define TDC_BOOT_LED_T_OFF_MS         180
+#define TDC_BOOT_LED_T_OFF_MS         0
 #define TDC_BOOT_LED_T_TOTAL_MS       (TDC_BOOT_LED_T_FADE_IN_MS \
                                      + TDC_BOOT_LED_T_PEAK_MS \
                                      + TDC_BOOT_LED_T_FADE_OUT_MS \
-                                     + TDC_BOOT_LED_T_OFF_MS)  /* 540 */
+                                     + TDC_BOOT_LED_T_OFF_MS)  /* 360 */
 
 typedef enum {
     TDC_BOOT_LED_PHASE_IDLE = 0,

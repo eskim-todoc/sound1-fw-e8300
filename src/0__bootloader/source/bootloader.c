@@ -1373,7 +1373,8 @@ int bootloader_load_app_file(const char *file_name)
     if (cm3_boot_flag == SHOULD_BOOT)
     {
         /* 작업: LED/bootloader-power-on-indicator.
-         * SW PWM 1 cycle (540 ms) 보장 후 정리하고 점프.
+         * SW PWM 1 cycle (360 ms — OFF 0, CM3 진입 후 자연 OFF 흡수, 사후 갱신 2026-05-07)
+         * 보장 후 정리하고 점프.
          * tdc_boot_led_start() 가 호출됐을 때만 (= 가드 ON + UART 비활성) wait —
          * elapsed_ms == 0 이면 미시작 케이스라 즉시 통과. */
 #if TDC_BOOT_LED_ENABLE
