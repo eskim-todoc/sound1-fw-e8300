@@ -443,6 +443,16 @@ static void led_engine_run(led_state_t st, bool reset)
         timer_ms       = 0;
         burst_done_cnt = 0;
 
+        /* burst 시작 즉시 진행 flag set — fade-out Phase A (~ LED_DIMMING_FADE_MAX_MS = 30ms)
+         * 동안에도 burst 진행 중으로 간주. 누락 시 systemControl 의 burst 종료 검출
+         * (`!led_is_power_burst_in_progress()`) 이 fade-out 동안 false 로 잘못 평가되어
+         * burst 시작 직후 systemOff 즉시 트리거 → led_force_fade_off() → POWER_OFF burst
+         * 가 표시 안 되는 회귀 발생 (Fix B-LED 1차 적용 시 발견). */
+        if (p->burst_cnt > 0)
+        {
+            s_power_burst_in_progress = true;
+        }
+
         /* Cross-fade 진입 결정 — 진행 중인 fade-out 은 그대로 둔다 */
         if (s_tx_phase != LED_TX_FADE_OUT)
         {
