@@ -395,7 +395,7 @@ int func_normal(void)
                         fake_0x34 = ci_timer_get_tick();
                     }
 
-                    if (250 < (ci_timer_get_tick() - fake_0x34))
+                    if (2000 < (ci_timer_get_tick() - fake_0x34))
                     {
                         fake_0x34_done = 1;
                         ci_printw("[FAKE_0x34] UPDATE FAKE BATT LEVEL, FAKE CHARGER STATE \r\n");
@@ -406,7 +406,7 @@ int func_normal(void)
                     else if (snd_batt_get_state() != EN__SND_BATT_STATE_RESET)
                     {
                         fake_0x34_done = 1;
-                        ci_printw("[FAKE_0x34] QCC UPDATE BATT LEVEL, IMMEDIATELY FAKE_0x34 FINISH \r\n");
+                        ci_printw("[FAKE_0x34] QCC UPDATE BATT LEVEL, IMMEDIATELY FAKE_0x34 FINISH (WAIT %d MS) \r\n", (ci_timer_get_tick() - fake_0x34));
                     }
                 }
             }

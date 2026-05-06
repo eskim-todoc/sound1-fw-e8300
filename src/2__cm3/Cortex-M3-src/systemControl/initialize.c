@@ -65,6 +65,9 @@
 #include <ci_power.h>
 #include <ci_printf.h>
 #include <ci_boot.h>
+#include <ci_timer.h>
+
+#include <tdc_touch.h>
 
 #include <snd_qcc.h>
 
@@ -263,6 +266,42 @@ void Initialize(void)
 
     ci_printv("[INIT] INIT : DIO, UART, ETC.. \r\n");
 
+    /* ====================================================================
+     * LED 진입 게이트 — POWER_ON LED 조기 점등 (P3-Early)
+     *
+     * 이 시점부터 TIMER3 가 1ms 주기로 g_tdc_timer_t3_tick 증가 + LED arbiter 구동.
+     * 이후 ParLED 단계 (FS · NRF · DMA · I2C · SPI 등) 를 진행하는 동안에도
+     * LED POWER_ON 버스트가 백그라운드로 출력되어 체감 부팅 시간을 단축한다.
+     *
+     * 상세: docs/tasks/LED/power-on-early-lighting/구현계획.md §3.2
+     * ==================================================================== */
+
+    /* L1: TIMER3 ISR 활성 (1ms tick — LED · 터치 공유 카운터 + LED arbiter) */
+    ci_timer_init(OTE_1_5_GEN_TIMER_TICK_1MS_PM_NORMAL);
+    ci_printi("[MILESTONE] LED-GATE-ENTER (TIMER3 ON) \r\n");
+
+    /* L2: 공유 메모리 주소 검증 — 에러 시 LED 켜기 전에 무한루프 진입 (R4) */
+    if (sharedMemoryAddresError())
+    {
+        ci_printe("[INFO] INVALID SHARED MEMORY ADDRESS \r\n");
+
+        while (1)
+        {
+            LED_Memory_error();
+            __WFI();
+        }
+    }
+
+    /* L3: 잔상 제거 — led_isr_active_set(false) 상태에서 즉시 OFF 분기 */
+    turnOffLED();
+
+    /* L4: LED arbiter ISR 가용 시작 */
+    led_isr_active_set(true);
+
+    /* L5: POWER_ON 버스트 요청 — TIMER3 ISR 가 SKYBLUE fade-in/out × 5 진행 */
+    led_request(LED_SRC_POWER, LED_ST_POWER_ON);
+    ci_printi("[MILESTONE] LED-POWER-ON-REQ t3=%d \r\n", tdc_timer_get_t3_tick());
+
     /* 드라이브 0으로 변경 후 부트 상태 처리 후
      * 드라이브 1로 변경하여 맵 관련 파일을 사용할 수 있게 설정 */
 
@@ -303,20 +342,7 @@ void Initialize(void)
 
     ci_printv("[INFO] COPY ISD INFO FOR ALL MAPS FROM FS_MEM TO SH_MEM \r\n");
 
-    // LED 출력 끄기
-    turnOffLED();
-
-    // CFX와 CM3와의 공유 메모리 주소 확인 (컴파일 오류)
-    if (sharedMemoryAddresError())
-    {
-        ci_printe("[INFO] INVALID SHARED MEMORY ADDRESS \r\n");
-
-        while (1)
-        {
-            LED_Memory_error();
-            __WFI();
-        }
-    }
+    /* turnOffLED · sharedMemoryAddresError 는 LED 진입 게이트 (P3-Early) 로 이관됨 */
 
     // NRF 리셋
     ResetNRF();
@@ -413,16 +439,26 @@ void Initialize(void)
     // SPI 초기화
     init_cm3_SPI();
 
-    // CFX 트리거를 받은 인터럽트 활성화
-    enable_CFX_trigger_for_iteration();  // CFX_0, FIFO_5 인터럽트 활성화
-    led_isr_active_set(true);            // LED arbiter ISR 가용 시작 — turnOffLED() 가 비차단 fade 분기로
+    /* P11 (Rev.4 patch): 터치 센서 초기화 — init_cm3_SPI() 직후로 이동.
+     * 사유: warm reset (워치독) 후 NRF 의 잔존 SPI 상태가 init_cm3_SPI() 전에
+     *       CS RISE 를 만들어 DMA TRANSFER_WORD_CNT_SHORT 미스매치 회귀 발생.
+     *       원래 P11 위치 (init_I2c 직후) 는 SPI init 시점을 늦춰 NRF SPI race 가능성.
+     *       본 위치는 본 작업 전 시점 (systemControl 분기 → init_cm3_SPI 후) 과 동등.
+     * Auto-ATI 대기 (~1.5s) 는 LED 버스트 (~1.8s) 와 병렬 진행 → 체감 시간 0. */
+    tdc_touch_init_begin();
+    ci_printi("[MILESTONE] TOUCH-INIT-BEGIN t3=%d \r\n", tdc_timer_get_t3_tick());
 
-    // 인터럽트 활성화
+    /* 종료 배리어: CFX 트리거 → main_tick · iteration 활성. TIMER3 는 stop 안 함. */
+    enable_CFX_trigger_for_iteration();  // CFX_0, FIFO_5 인터럽트 활성화
+    ci_printi("[MILESTONE] CFX-ITER-ENABLE t3=%d main=%d \r\n",
+              tdc_timer_get_t3_tick(), ci_timer_get_tick());
+
+    // 인터럽트 활성화 (PRIMASK 는 main.c 에서 이미 enable — 사실상 noop, 안전망)
     enable_interrupt();
 
-    // 터치 센서 (IQS323) 초기화는 systemControl()의 POWER_ON 진입 시점으로 이동됨.
-    // 파워온 LED 버스트(~1.5초)와 Auto-ATI 대기를 병렬 진행하여 체감 부팅 시간을 숨긴다.
-    // 상세: docs/[구현계획] 터치 센서 초기화 분할 Rev.2 by 김은수.md
+    /* 터치 센서 초기화는 P11 (init_I2c 직후) 에서 tdc_touch_init_begin() 으로 시작.
+     * led_isr_active_set(true) 는 LED 진입 게이트 (P3-Early L4) 에서 이미 호출.
+     * 상세: docs/tasks/LED/power-on-early-lighting/구현계획.md (Rev.4) */
 
     // 초기화 과정에서 전원 버튼 (가속도 센서, 이제는 터치 센서)의 인터럽트 상태를 초기화 시킨다.
     cfx_cm3_sharedMemoryAll.systemShare.powerButton_pushed_CFX_to_CM3 = 0;

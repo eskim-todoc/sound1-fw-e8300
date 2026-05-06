@@ -14,6 +14,15 @@
 
 /* **********************************************************************
  * 초기화 상태머신 (내부 전용)
+ *
+ * 전이:
+ *   NONE       → MCLR_DONE   : tdc_touch_init_begin() 호출 (Initialize P3-Early 병렬 블록, I2C init 후)
+ *   MCLR_DONE  → READY       : tdc_timer_get_t3_tick() - s_mclr_done_tick >= TDC_TOUCH_INIT_TIMEOUT_MS
+ *                              또는 tdc_drv_iqs323_is_auto_ati_done() == true (메인 루프 polling)
+ *
+ * 시간 기준: g_tdc_timer_t3_tick (TIMER3 LED·터치 공유 카운터).
+ *   tdc_touch_init_begin() 시점 = CFX iteration 미활성 → g_ci_timer_main_tick 미증가.
+ *   이후 READY 전이 후 폴링은 g_ci_timer_main_tick 기준 (CFX iteration 활성 상태).
  */
 typedef enum
 {
@@ -23,7 +32,7 @@ typedef enum
 } tdc_touch_init_state_t;
 
 static tdc_touch_init_state_t s_init_state     = TDC_TOUCH_INIT_STATE_NONE;
-static int                    s_mclr_done_tick = 0;
+static int                    s_mclr_done_tick = 0; /* g_tdc_timer_t3_tick 기준 */
 
 /* 런타임 폴링 상태 */
 static int               s_touch_tick_old  = 0;
@@ -115,7 +124,7 @@ static bool try_finish_init(void)
 {
     if (!tdc_drv_iqs323_is_auto_ati_done())
     {
-        if (TDC_TOUCH_INIT_TIMEOUT_MS < (ci_timer_get_tick() - s_mclr_done_tick))
+        if (TDC_TOUCH_INIT_TIMEOUT_MS < (tdc_timer_get_t3_tick() - s_mclr_done_tick))
         {
             ci_printw("[TOUCH] AUTO-ATI: TIMEOUT, FORCING FINISH \r\n");
             /* 타임아웃 경로도 설정 적용은 진행 */
@@ -137,7 +146,7 @@ static bool try_finish_init(void)
     s_touch_state_old = TDC_TOUCH_STATE_RESET;
 
     ci_printi("[TOUCH] INIT FINISH DONE — ELAPSED=%d ms \r\n",
-              ci_timer_get_tick() - s_mclr_done_tick);
+              tdc_timer_get_t3_tick() - s_mclr_done_tick);
 
     return true;
 }
@@ -154,7 +163,7 @@ void tdc_touch_init_begin(void)
 
     tdc_drv_iqs323_mclr_reset();
 
-    s_mclr_done_tick = ci_timer_get_tick();
+    s_mclr_done_tick = tdc_timer_get_t3_tick();
     s_init_state     = TDC_TOUCH_INIT_STATE_MCLR_DONE;
 }
 

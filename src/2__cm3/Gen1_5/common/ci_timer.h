@@ -48,6 +48,11 @@ void TIMER_3_IRQHandler(void);
 void ci_timer_increase_tick(void);
 int  ci_timer_get_tick(void);
 
+/* TIMER3 전담 카운터(`g_tdc_timer_t3_tick`) 조회.
+ * `ci_timer_get_tick()` 의 `g_ci_timer_main_tick` 는 CFX FIFO 가 증가시키는
+ * 시스템 시간 전담 카운터이며, 본 카운터는 LED · 터치 초기화 동기에만 사용. */
+int  tdc_timer_get_t3_tick(void);
+
 /* PRESCALE 고정(=1) 초기화. 기존 호출자 호환용.
  * 내부적으로 ci_timer_init_prescaled(TIMER_PRESCALE_1, tick) 호출. */
 int  ci_timer_init(uint32_t tick);
