@@ -343,7 +343,12 @@ static EN__LED_COLOR LED_outputColor = en__LED_BLACK;
 
 static led_state_t s_req[LED_SRC__MAX];
 static uint32_t    s_pair_latch_until_tick;
-static bool        s_power_burst_in_progress;
+
+/* burst 패턴 (POWER_ON / POWER_OFF 등 burst_cnt > 0) 의 진행 상태 추적.
+ * set 책임: `led_request()` 가 burst 패턴 요청 즉시 true (외부 호출 시점).
+ * clear 책임: `led_engine_run()` 이 burst 자가 해제 시 false (LED 핸들러 내부).
+ * 의도: timer/tick 무관 시작·끝 명확화 — systemControl 의 종료 검출 race 회피. */
+static bool        s_tdc_burst_pending;
 
 void led_request(led_src_t src, led_state_t st)
 {
@@ -358,12 +363,18 @@ void led_request(led_src_t src, led_state_t st)
         s_pair_latch_until_tick = ci_timer_get_tick() + 1000;
     }
 
+    /* burst 패턴 요청 즉시 pending flag set — timer 기반 set 의 timing race 회피. */
+    if (st < LED_ST__MAX && k_led_patterns[st].burst_cnt > 0)
+    {
+        s_tdc_burst_pending = true;
+    }
+
     s_req[src] = st;
 }
 
-bool led_is_power_burst_in_progress(void)
+bool tdc_led_is_burst_pending(void)
 {
-    return s_power_burst_in_progress;
+    return s_tdc_burst_pending;
 }
 
 led_state_t led_get_request(led_src_t src)
@@ -443,15 +454,9 @@ static void led_engine_run(led_state_t st, bool reset)
         timer_ms       = 0;
         burst_done_cnt = 0;
 
-        /* burst 시작 즉시 진행 flag set — fade-out Phase A (~ LED_DIMMING_FADE_MAX_MS = 30ms)
-         * 동안에도 burst 진행 중으로 간주. 누락 시 systemControl 의 burst 종료 검출
-         * (`!led_is_power_burst_in_progress()`) 이 fade-out 동안 false 로 잘못 평가되어
-         * burst 시작 직후 systemOff 즉시 트리거 → led_force_fade_off() → POWER_OFF burst
-         * 가 표시 안 되는 회귀 발생 (Fix B-LED 1차 적용 시 발견). */
-        if (p->burst_cnt > 0)
-        {
-            s_power_burst_in_progress = true;
-        }
+        /* `s_tdc_burst_pending` 의 set 책임은 `led_request()` 이관 — 본 위치 set 제거
+         * (Fix B-LED-2 추가분 폐기). led_request 시점 set 으로 fade-out Phase A 동안
+         * 에도 pending true 보장 → systemControl 종료 검출 race 본질적 해소. */
 
         /* Cross-fade 진입 결정 — 진행 중인 fade-out 은 그대로 둔다 */
         if (s_tx_phase != LED_TX_FADE_OUT)
@@ -539,18 +544,13 @@ static void led_engine_run(led_state_t st, bool reset)
                     /* 게이트 자가 해제: 기존 관례 유지 */
                     updateLED_OutputPattern(en__LED_NA);
                     s_req[LED_SRC_POWER]       = LED_ST_NONE;
-                    s_power_burst_in_progress  = false;
+                    s_tdc_burst_pending        = false;
                     burst_done_cnt             = 0;
                 }
             }
         }
-        else
-        {
-            if (p->burst_cnt > 0)
-            {
-                s_power_burst_in_progress = true;
-            }
-        }
+        /* Phase B 진행 중 set 분기 제거 — `s_tdc_burst_pending` set 책임은
+         * `led_request()` 가 단독 보유 (요청 시점 즉시 set, fade-out 무관). */
     }
 }
 

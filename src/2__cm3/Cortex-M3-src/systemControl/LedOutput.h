@@ -125,7 +125,7 @@ typedef struct
 
 void        led_request(led_src_t src, led_state_t st);
 void        led_arbiter_tick(void);
-bool        led_is_power_burst_in_progress(void);
+bool        tdc_led_is_burst_pending(void);
 led_state_t led_get_request(led_src_t src);
 
 /* CFX / FIFO ISR 활성 여부 통지 — initialize.c 에서 set / clear.
