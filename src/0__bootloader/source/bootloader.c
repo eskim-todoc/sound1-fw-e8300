@@ -1395,13 +1395,24 @@ int bootloader_load_app_file(const char *file_name)
     return ret;
 }
 
-int bootloader_boot(void)
+/**
+ * @brief NVM·FATFS 초기화 (부트로더·service 공통 storage init).
+ *
+ * NVMInit → boot_info read → boot speed 분기 → bootloader_load_manu_table →
+ * tdc_uart_init 재 초기화 → f_mount → f_chdrive → f_opendir/closedir → NVMSync.
+ *
+ * 책임 외: LED 가드, app_name 결정, OTA 슬롯 선택(snd_boot_*/tdc_boot_print_boot_file),
+ * bootloader_load_app_file. 이들은 호출자에게 남김.
+ *
+ * @param[out] out_boot_info NULL 이 아니면 NVM 에서 읽은 boot info 복사. service 는 NULL 전달.
+ * @return 0 성공, < 0 실패 (bootloader_error 에 코드 기록).
+ */
+int tdc_boot_storage_init(bootloader_boot_information *out_boot_info)
 {
     int                          ret;
     bootloader_boot_information *boot_info;
     NVMCTRL_Options_t            options;
     uint32_t                     buf[128];
-    char                         app_name[20];
 
     /* If the bootloader succeeded, this should be the only value in bootloader_error */
     bootloader_error = BOOTLOADER_EXIT_STATUS_CODE(0);
@@ -1479,72 +1490,11 @@ int bootloader_boot(void)
             break;
     }
 
-    uint32_t app_number = *((uint32_t *) SYSVAR_BOOT_APPN);
-
-    tdc_uart_printf("app_number = %u \r\n", app_number);
-
-    if (app_number == 0)
-    {
-        ret = get_app_load_ext(boot_info, app_name);
-
-        tdc_uart_printf("app_name = '%s' \r\n", app_name);
-
-        if (ret <= 0)
-        {
-            bootloader_error = BOOTLOADER_EXIT_STATUS_CODE(-1);
-            return -1;
-        }
-    }
-    else
-    {
-        int      count           = 0;
-        uint32_t app_number_temp = app_number;
-        do
-        {
-            app_number_temp /= 10;
-            ++count;
-        } while (app_number_temp != 0);
-        strcpy(app_name, "MANIFEST_");
-        itoa(app_number, app_name + 9, 10);
-        strcpy(app_name + 9 + count, ".TXT");
-    }
-
     tdc_uart_printf("boot_manu_off = %u \r\n", boot_info->boot_manu_off);
 
     bootloader_load_manu_table(boot_info->boot_manu_off);
 
-    /* T-B 도달: 클럭 30.72 MHz 안정 (Sys_Trims_SetOperatingFrequency 직후).
-     * 작업: LED/bootloader-power-on-indicator. 가드 + 검증 핀 2 단 분기:
-     *  - 가드 OFF → 본 블록 컴파일 제외, 기존 동작 유지
-     *  - 가드 ON  + UART 활성   → SW PWM 미가동 (G 핀 = UART RX 와 공유 충돌 회피)
-     *  - 가드 ON  + UART 비활성 → SW PWM SKYBLUE fade cycle 1 회 시작 */
-#if TDC_BOOT_LED_ENABLE
-    {
-        bool uart_active = (Sys_GPIO_Read(DIO_NUM_UART_ENABLE) == DIO_ACTIVE_LEVEL_UART_ENABLE);
-        if (!uart_active)
-        {
-            tdc_boot_led_init();
-            tdc_boot_led_start();
-        }
-    }
-#endif
-
     tdc_uart_init();  // 재 초기화
-
-#if 0
-    tdc_uart_printf("\r\n\nafter all of power, clock setting \r\n");
-    tdc_uart_printf("SYSVAR_MANU_TABLE = \r\n");
-    for (int i = 0; i < MANU_TABLE_SIZE; i++)
-    {
-        tdc_uart_printf("0x%08X ", ((uint32_t *) SYSVAR_MANU_TABLE)[i]);
-        if (((i + 1) % 4) == 0)
-        {
-            tdc_uart_printf("\r\n");
-        }
-    }
-    tdc_uart_printf("\r\n");
-    tdc_uart_printf("==================================================\r\n");
-#endif
 
     ret = f_mount(&fsmount, "0:", 1);  // default: "0"
     if (ret != FR_OK)
@@ -1580,19 +1530,84 @@ int bootloader_boot(void)
         return -1;
     }
 
-#if 0
-    tdc_uart_printf("\r\n\nafter, moount \r\n");
-    tdc_uart_printf("SYSVAR_MANU_TABLE = \r\n");
-    for (int i = 0; i < MANU_TABLE_SIZE; i++)
+    if (out_boot_info != NULL)
     {
-        tdc_uart_printf("0x%08X ", ((uint32_t *) SYSVAR_MANU_TABLE)[i]);
-        if (((i + 1) % 4) == 0)
+        memcpy(out_boot_info, boot_info, sizeof(bootloader_boot_information));
+    }
+
+    return 0;
+}
+
+/**
+ * @brief 부트로더 정적 file handle (ohdl) 의 외부 접근용 getter.
+ *
+ * service 모드의 _print_fw_file 이 부트로더 ohdl 을 그대로 재사용 → 별도 fp 변수 불필요.
+ */
+FIL *tdc_boot_get_ohdl(void)
+{
+    return &ohdl;
+}
+
+int bootloader_boot(void)
+{
+    int                          ret;
+    bootloader_boot_information  boot_info;
+    char                         app_name[20];
+
+    ret = tdc_boot_storage_init(&boot_info);
+    if (ret < 0)
+    {
+        return ret;
+    }
+
+    /* app_name 결정 (부트로더 전용) */
+    uint32_t app_number = *((uint32_t *) SYSVAR_BOOT_APPN);
+
+    tdc_uart_printf("app_number = %u \r\n", app_number);
+
+    if (app_number == 0)
+    {
+        ret = get_app_load_ext(&boot_info, app_name);
+
+        tdc_uart_printf("app_name = '%s' \r\n", app_name);
+
+        if (ret <= 0)
         {
-            tdc_uart_printf("\r\n");
+            bootloader_error = BOOTLOADER_EXIT_STATUS_CODE(-1);
+            return -1;
         }
     }
-    tdc_uart_printf("\r\n");
-    tdc_uart_printf("==================================================\r\n");
+    else
+    {
+        int      count           = 0;
+        uint32_t app_number_temp = app_number;
+        do
+        {
+            app_number_temp /= 10;
+            ++count;
+        } while (app_number_temp != 0);
+        strcpy(app_name, "MANIFEST_");
+        itoa(app_number, app_name + 9, 10);
+        strcpy(app_name + 9 + count, ".TXT");
+    }
+
+    /* T-B 시점 도달 — Sys_Trims_SetOperatingFrequency 30.72 MHz 후 NVM/FATFS init 까지 완료된 직후
+     * 작업: LED/bootloader-power-on-indicator. 가드 + 검증 핀 2 단 분기:
+     *  - 가드 OFF → 본 블록 컴파일 제외, 기존 동작 유지
+     *  - 가드 ON  + UART 활성   → SW PWM 미가동 (G 핀 = UART RX 와 공유 충돌 회피)
+     *  - 가드 ON  + UART 비활성 → SW PWM SKYBLUE fade cycle 1 회 시작
+     * NOTE (Rev.4): tdc_boot_storage_init 추출로 LED 시작 위치가 bootloader_load_manu_table 직후 →
+     * NVMSync 직후 (+ app_name 결정 직후) 로 ~수십 ms 늦춰짐. AC-1 (835 ms 이내) 통과 여부는
+     * 측정 검증 필요. */
+#if TDC_BOOT_LED_ENABLE
+    {
+        bool uart_active = (Sys_GPIO_Read(DIO_NUM_UART_ENABLE) == DIO_ACTIVE_LEVEL_UART_ENABLE);
+        if (!uart_active)
+        {
+            tdc_boot_led_init();
+            tdc_boot_led_start();
+        }
+    }
 #endif
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1602,25 +1617,11 @@ int bootloader_boot(void)
     tdc_uart_printf("\r\n");
     tdc_uart_printf("system core clock : %u (hz) \r\n", SystemCoreClock);
 
+    /* OTA DFU 이미지 슬롯 선택 (bootloader_load_app_file 직전 의무) */
     snd_boot_set_fp(&ohdl);
     snd_boot_handle_file();
     tdc_boot_print_boot_file();  // for debugging
     tdc_boot_debug_mode();
-#endif
-
-#if 0
-    tdc_uart_printf("\r\n\nafter, handle boot file \r\n");
-    tdc_uart_printf("SYSVAR_MANU_TABLE = \r\n");
-    for (int i = 0; i < MANU_TABLE_SIZE; i++)
-    {
-        tdc_uart_printf("0x%08X ", ((uint32_t *) SYSVAR_MANU_TABLE)[i]);
-        if (((i + 1) % 4) == 0)
-        {
-            tdc_uart_printf("\r\n");
-        }
-    }
-    tdc_uart_printf("\r\n");
-    tdc_uart_printf("==================================================\r\n");
 #endif
     ////////////////////////////////////////////////////////////////////////////////////////////////////
 
