@@ -1,4 +1,14 @@
+---
+name: "[Sound1] Ezairo LED 패턴 사양 Rev.0"
+purpose: Sound1 E8300 LED 부팅/종료 패턴 전체 타임라인 사양
+type: 참고
+applies_to: [Sound1]
+tags: [led, pattern, spec, rev0, sound1]
+---
+
 # [Sound1] Ezairo LED 패턴 사양 Rev.0
+
+**TL;DR**: Sound1(E8300/TD20B) 펌웨어의 부팅·종료 LED 패턴을 Bootloader SKYBLUE fade(540 ms 후 360 ms) → CM3 POWER_ON burst 4회 두 단계로 정의하고, 각 패턴 카탈로그·arbiter 우선순위·디밍 매핑·HW 핀 배치까지 포괄한 Rev.0 사양서.
 
 **작성**: 김은수
 **모델**: Sound1 (E8300, TD20B)

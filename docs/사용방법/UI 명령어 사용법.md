@@ -1,4 +1,14 @@
+---
+name: UI 명령어 사용법
+purpose: RTT 콘솔 CLI(`--led`, `--help`) 사용 가이드
+type: 사용방법
+applies_to: [Sound1]
+tags: [ui, cli, rtt, debug]
+---
+
 # UI 명령어 사용법
+
+**TL;DR**: `ENABLE_UI_CMD` 활성 펌웨어에서 RTT 콘솔로 LED arbiter·상태를 점검·강제하는 `--`-prefix CLI 사용 가이드. 빈 줄 입력 시 `--led show` 자동 실행, 대소문자 무시.
 
 RTT 콘솔에서 펌웨어 동작을 테스트하는 CLI. `ENABLE_UI_CMD` 매크로 활성 시 사용 가능.
 
