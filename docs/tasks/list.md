@@ -11,7 +11,7 @@ Sound1 프로젝트(`E:\Claude\projects\Sound1`) 작업 레지스트리.
 
 | 작업명 | 모듈 | 태그 | 폴더 | 상태 | 시작일 | 연계 | 요약 |
 |---|---|---|---|---|---|---|---|
-| _(없음)_ | | | | | | | |
+| service 모드 RTT 디버그 콘솔 | bootloader | rtt, debug-console, service, refactor | [bootloader/service-rtt-debug-console](bootloader/service-rtt-debug-console/) | 진행 | 2026-05-07 | - | service_main에 RTT 입력 펌웨어 hex 덤프 콘솔(`manifest`/`app0~2`/`reboot`) 신설 + 부트로더 UART 디버그 모드 폐기 + storage init 헬퍼(`tdc_boot_storage_init`) + ohdl getter(`tdc_boot_get_ohdl`) 추출. `snd_boot_*`/`tdc_boot_print_boot_file` 은 부트로더만 호출 (OTA DFU 영역, service 미해당). service 의 `_print_fw_file` 은 ohdl getter 로 부트로더 fp 재사용. `reboot`는 500 ms RTT flush delay 후 `SYS_WATCHDOG_RESET()` 으로 재부팅. 산출물 Rev.4 (사용자 피드백 4차 반영), 재검토 대기. |
 
 ## 완료
 
@@ -48,6 +48,7 @@ Sound1 프로젝트(`E:\Claude\projects\Sound1`) 작업 레지스트리.
 | `LED` | LED 운용·밝기·dimming·패턴·표시 상태 |
 | `touch` | 터치 센서·레이어·초기화·이벤트 처리 |
 | `power` | 저전력 모드·전원 관리 |
+| `bootloader` | 부트로더·service 모드·storage init·디버그 콘솔 |
 | `meta` | 문서·워크플로우 등 프로젝트 메타 작업 |
 | (추가 예정) | `comms`, `audio`, `calibration` 등 필요 시 |
 
@@ -78,3 +79,7 @@ Sound1 프로젝트(`E:\Claude\projects\Sound1`) 작업 레지스트리.
 | 2026-05-07 | `meta/folder-readmes` 등재·완료 (루트 `meta/docs-consistency-audit`의 후속 분기 1번). `docs/지침/·사용방법/·참고/·tasks/` 4개 README.md 신규 추가 (루트 §9.3 충족). Sound1 archive 컨벤션상 폴더 이동 없이 위치(`meta/folder-readmes/`) 유지·list.md 완료 등재. |
 | 2026-05-07 | `meta/frontmatter-retrofit` 등재·완료 (folder-readmes 점검 빈틈 후속). 사용자 (다) 명시 요청으로 일괄 소급. `docs/{지침·사용방법·참고}/` 영속 9 파일에 frontmatter+TL;DR 일괄 추가, general-purpose 서브에이전트 1회 위임 + spot check 통과. 본문 무변경. CLAUDE.md·tasks/_archive 산출물은 본 task 외(권고로 이력에 명시). |
 | 2026-05-07 | task 산출물 frontmatter 일괄 소급 — 사용자 명시 트리거 "전부다 빼지말고 다 적용"로 frontmatter-retrofit 후속 영향에서 권고했던 항목 처리. `tasks/{LED·touch·power·meta}/<>/` 활성 위치 산출물 34 파일 점검 후 신규 23 / TL;DR만 11 / skip 12. general-purpose 서브에이전트 1회 위임. 본문 무변경, 신 §9.2 정책(80~250자) 준수. |
+| 2026-05-07 | `bootloader/service-rtt-debug-console` 활성 등재. 부트로더 UART 디버그 모드(`tdc_boot_debug_mode` 등 4개 함수) 폐기 + service 모드에 RTT 입력 디버그 콘솔(`manifest`/`app0~2`/`reboot`) 신설 + `bootloader_boot()` storage init 시퀀스를 `tdc_boot_storage_init()` 헬퍼로 추출. `reboot`는 워치독 리셋으로 재부팅. 신규 모듈 `bootloader` 추가. 산출물 3종 Rev.0 작성 후 사용자 피드백 반영(명령어 이름 + reboot 동작) Rev.1 갱신, 사용자 재검토 대기. |
+| 2026-05-07 | `bootloader/service-rtt-debug-console` 산출물 Rev.2 갱신 — 사용자 피드백 2차 반영. ① `reboot` 처리 = `SYS_WATCHDOG_RESET()` 직접 호출 + 500 ms 사전 delay (RTT 출력 버퍼 flush 보장 — 출력 중이던 hex 덤프 메시지 손실 방지). ② line_terminator `\n` 확정 → 위험_2 해소. CM3 코드 4곳에서 `SYS_WATCHDOG_RESET()` 사용 사례 확인 (강제 리셋 패턴), 부트로더 빌드 가용성은 Step 3에서 검증. 사용자 재검토 대기. |
+| 2026-05-07 | `bootloader/service-rtt-debug-console` 산출물 Rev.3 갱신 — 사용자 피드백 3차 반영. 헬퍼 함수 책임 축소: `snd_boot_set_fp` / `snd_boot_handle_file` / `tdc_boot_print_boot_file` 은 OTA DFU 이미지 슬롯 선택 영역이라 `tdc_boot_storage_init()` 외부에서 호출 (`bootloader_boot()` 은 `bootloader_load_app_file()` 직전, `service.c` 는 storage init 직후). ohdl 접근은 신규 `tdc_boot_get_ohdl()` getter 경유. 헬퍼 내부 변수(`buf[128]`/`options`/`boot_info` cast) 모두 로컬, `out_boot_info` 만 외부 인터페이스. `ci_boot.h` 헤더 의존 정리 (`bootloader_internal.h`/`ff.h` 추가 검토). 사용자 재검토 대기. |
+| 2026-05-07 | `bootloader/service-rtt-debug-console` 산출물 Rev.4 갱신 — 사용자 피드백 4차 반영. service 는 OTA 슬롯 처리 자체 불필요라 `snd_boot_set_fp`/`snd_boot_handle_file`/`tdc_boot_print_boot_file` 호출 안 함 (Rev.3에서 service 도 호출하던 디자인 폐기). `tdc_boot_get_ohdl()` getter 는 service 의 `_print_fw_file` 이 부트로더 정적 변수 `ohdl` 을 그대로 재사용용으로만 사용 — 별도 `s_tdc_service_fp` 변수 폐기 (사이즈 절약). 부트로더는 같은 파일 내 정적 변수라 `snd_boot_set_fp(&ohdl)` 직접 사용 (getter 불필요). 사용자 재검토 대기. |
