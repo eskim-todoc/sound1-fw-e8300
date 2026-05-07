@@ -356,10 +356,6 @@ int func_normal(void)
 
     cfx_cm3_sharedMemoryAll.is_enabled_CFX_iteration = 1;  // CFX 동작 활성화
 
-    // 초기화 과정을 통해 SPI 인터페이스 설정도 완료 되었고
-    // 위에서 CFX 동작까지 실행시켰으므로, 이제 QCC를 깨우고 배터리 정보를 얻을 수 있도록 한다.
-    snd_qcc_set_mode(SND_QCC_MODE_NORMAL);
-
 #ifdef ENABLE_UI_CMD
     tdc_ui_command_init();
 #endif
@@ -395,7 +391,7 @@ int func_normal(void)
                         fake_0x34 = ci_timer_get_tick();
                     }
 
-                    if (250 < (ci_timer_get_tick() - fake_0x34))
+                    if (2000 < (ci_timer_get_tick() - fake_0x34))
                     {
                         fake_0x34_done = 1;
                         ci_printw("[FAKE_0x34] UPDATE FAKE BATT LEVEL, FAKE CHARGER STATE \r\n");
@@ -406,7 +402,12 @@ int func_normal(void)
                     else if (snd_batt_get_state() != EN__SND_BATT_STATE_RESET)
                     {
                         fake_0x34_done = 1;
-                        ci_printw("[FAKE_0x34] QCC UPDATE BATT LEVEL, IMMEDIATELY FAKE_0x34 FINISH \r\n");
+                        ci_printi("\r\n");
+                        ci_printi("################################################################\r\n");
+                        ci_printi("###  [FAKE_0x34 EXIT-DMA]   t3 = %d ms / WAIT = %d ms\r\n",
+                                  tdc_timer_get_t3_tick(), (ci_timer_get_tick() - fake_0x34));
+                        ci_printi("################################################################\r\n");
+                        ci_printi("\r\n");
                     }
                 }
             }

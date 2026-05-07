@@ -75,8 +75,12 @@ int ci_dio_configure_normal(void)
     // I2C 핀
     Sys_I2C_DIOConfig(I2C0, I2C_PIN_CFG_VAL_forDIO, DIO_PIN_INDEX_for_CM3_SCL, DIO_PIN_INDEX_for_CM3_SDA);
 
+    // NOTE: SPI CS가 플로팅 상태일 때 오류가 발생할 수 있어서, GPIO 출력으로 확실히 1로 설정 후 진행
+    Sys_DIO_Config(NRF_SPI_CS_PIN, CM3_DIO_PIN_CFG_FOR_GPIO_OUPUT_NOPULLUP);
+    Sys_GPIO_Set_High(NRF_SPI_CS_PIN);
+
     // SPI 통신 핀 설정: Cortex-M3 <-> nRF
-    Sys_SPI_DIOConfig(SPI1, SPI_SELECT_SLAVE, SPI_DIO_PIN_CFG, NRF_SPI_CLK_PIN, NRF_SPI_CS_PIN, NRF_SPI_MOSI_PIN, NRF_SPI_MISO_PIN);
+    //Sys_SPI_DIOConfig(SPI1, SPI_SELECT_SLAVE, SPI_DIO_PIN_CFG, NRF_SPI_CLK_PIN, NRF_SPI_CS_PIN, NRF_SPI_MOSI_PIN, NRF_SPI_MISO_PIN);
 
     // SPI 통신 보조핀
     Sys_DIO_Config(GPIO_PIN_ReadCommandForSPI_Master, CM3_DIO_PIN_CFG_FOR_GPIO_OUPUT_NOPULLUP);  // nRF 칩에서 풀업 설정함

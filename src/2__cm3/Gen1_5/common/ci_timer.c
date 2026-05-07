@@ -8,7 +8,8 @@
 static bool    _ci_is_leap(uint16_t year);
 static uint8_t _ci_day_in_month(uint8_t year, uint8_t month);
 
-static volatile int g_ci_timer_main_tick = 1;
+static volatile int g_ci_timer_main_tick = 1; /* CFX FIFO 가 증가 — 시스템 시간 전담 */
+static volatile int g_tdc_timer_t3_tick  = 0; /* TIMER3 가 증가 — LED · 터치 초기화 동기 전담 */
 
 static volatile uint32_t        _ci_timer_elapsed_1msec_counter = 0;
 static volatile uint32_t        _ci_timer_count_init_value      = 0;
@@ -17,12 +18,10 @@ static volatile bool            _ci_timer_update_flag           = false;
 
 void TIMER_3_IRQHandler(void)
 {
-    g_ci_timer_main_tick++;
-    enable_iteration(); /* Use when the CFX is not working */
-
-    /* LED arbiter/engine/PWM 을 ISR 에서 직접 구동 — main loop 의
-     * I2C/EEPROM 폴링 블록으로 인한 fade/PWM 타이밍 jitter 방지.
-     * 실행시간 추정 ~15 μs @ 30.72 MHz / ~62 μs @ 7.68 MHz. */
+    /* normal 모드: LED · 터치 공유 카운터 + LED arbiter 전담.
+     * `g_ci_timer_main_tick` 증가와 `enable_iteration()` 호출은 CFX FIFO ISR
+     * (`CFX_0_IRQHandler` / `FIFO_5_IRQHandler`) 가 담당 — 책임 분리. */
+    g_tdc_timer_t3_tick++;
     led_arbiter_tick();
 
     // 절전모드에서 정말 원하는 시간 마다 타이머 이벤트가 발생하는지 확인하는 용도
@@ -144,6 +143,11 @@ void ci_timer_increase_tick(void)
 int ci_timer_get_tick(void)
 {
     return g_ci_timer_main_tick;
+}
+
+int tdc_timer_get_t3_tick(void)
+{
+    return g_tdc_timer_t3_tick;
 }
 
 int ci_timer_init_prescaled(uint32_t prescale_field, uint32_t tick)

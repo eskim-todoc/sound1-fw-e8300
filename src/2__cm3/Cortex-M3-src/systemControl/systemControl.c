@@ -208,23 +208,24 @@ ST__SYSTEM_STATE systemControl(EN__LED_PATTERN   current_led_pattern,  //
             {
                 if (StartFlag == false)
                 {
-                    turnOffLED();
+                    /* turnOffLED · led_request(POWER, POWER_ON) · tdc_touch_init_begin
+                     * 은 Initialize() P3-Early 에서 직접 수행 (Rev.4 이관). 본 분기는
+                     * 부팅 후 첫 진입 시 systemStatus 마커와 카운터만 셋업.
+                     * StartFlag · PowerOn_StartCounter 변수 자체 정리는 별도 cleanup
+                     * 작업으로 위임 (사용처 dead 확인됨). */
                     systemStatus.Led_Pattern = en__LED_POWER_On;
-                    led_request(LED_SRC_POWER, LED_ST_POWER_ON);
-
-                    /* 터치 센서 초기화 시작 — 파워온 LED 버스트(~1.5초)와 Auto-ATI
-                     * 대기를 병렬 진행한다. 나머지 설정은 tdc_touch_process()
-                     * 내부 상태머신이 ATI 완료 시점에 일괄 적용한다.
-                     * 상세: docs/[구현계획] 터치 센서 초기화 분할 Rev.2 by 김은수.md */
-                    tdc_touch_init_begin();
 
                     PowerOn_StartCounter = 0;
                     StartFlag            = true;
-                    ci_printi("[SYSTEM] LED PATTERN IS POWER ON \r\n");
+                    ci_printi("[SYSTEM] FIRST POWER-ON SYSTEM CONTROL TICK \r\n");
                 }
                 else
                 {
-                    if (current_led_pattern != en__LED_POWER_On)
+                    /* burst pending flag 직접 조회 — `current_led_pattern` 은 LED arbiter
+                     * ISR 가 갱신하므로 main loop iter 와 1-tick stale race 가능 (커밋
+                     * cecbc3d 의 ISR 책임 분리로 노출). pending flag 는 `led_request()`
+                     * 가 set, `led_engine_run()` burst 완료 시 clear → timer/tick 무관 정확. */
+                    if (!tdc_led_is_burst_pending())
                     {
                         systemStatus.enable_ISD = true;
                         systemStatus.enablePMIC = true;
@@ -278,8 +279,12 @@ ST__SYSTEM_STATE systemControl(EN__LED_PATTERN   current_led_pattern,  //
 
                         if (isPowerOffEnabled)
                         {
-                            // LED 출력이 완료되었다.
-                            if ((current_led_pattern != en__LED_POWER_Off) && (PowerOff_StartCounter != 0))
+                            /* burst 종료 검출 — burst pending flag 직접 조회.
+                             * pending flag set/clear 책임 분리: `led_request()` 가 요청 시점
+                             * 즉시 set, `led_engine_run()` 이 burst 자가 해제 시 clear.
+                             * timer/tick 무관 정확. (`current_led_pattern` 은 LED arbiter ISR
+                             * 갱신이라 main loop iter 와 stale race 가능 — 부정확.) */
+                            if (!tdc_led_is_burst_pending() && (PowerOff_StartCounter != 0))
                             {
                                 isPowerOffEnabled         = false;
                                 ISD_Disconnection_counter = 0;

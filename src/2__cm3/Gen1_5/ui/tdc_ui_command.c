@@ -290,7 +290,7 @@ static int handle_led(int argc, char *argv[])
                           val_to_str(s_tdc_state_map, state),
                           s_tdc_led_override[src] ? " (override)" : "");
         }
-        output_printf("  burst_in_progress = %d\r\n", led_is_power_burst_in_progress());
+        output_printf("  burst_pending = %d\r\n", tdc_led_is_burst_pending());
         output_printf("  user_led_off = %d\r\n", (readLED_indicatorOnOff() == 2) ? 1 : 0);
         output_printf("-------------------------\r\n");
         return 0;
@@ -397,7 +397,7 @@ static int handle_led(int argc, char *argv[])
 
         if (ci_strcasecmp(argv[2], "on") == 0)
         {
-            output_printf("burst_in_progress = %d\r\n", led_is_power_burst_in_progress());
+            output_printf("burst_pending = %d\r\n", tdc_led_is_burst_pending());
         }
         else if (ci_strcasecmp(argv[2], "off") == 0)
         {

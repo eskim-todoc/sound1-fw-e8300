@@ -9,6 +9,7 @@
 
 #include <ci_timer.h>
 #include <ci_util.h>  /* delay_ms */
+#include <ci_printf.h>
 
 /* ========================================================================
  *  LED Dimming (타이머 3 1ms tick 기반 PWM 듀티 변조)
@@ -32,8 +33,31 @@
  *   - 출처: https://en.wikipedia.org/wiki/Relative_luminance
  *           https://en.wikipedia.org/wiki/Stevens%27s_power_law
  * ======================================================================== */
-#define LED_DIMMING_FADE_MAX_MS  30//15   /* fade-in / fade-out 시간 상한 */
+#define LED_DIMMING_FADE_MAX_MS  30//15   /* 점멸 패턴 매 cycle fade 시간 상한 (ON 시작 fade-in / ON 끝 fade-out) */
 #define LED_DIMMING_FADE_DIVISOR 3    /* 점멸 fade 자동 조정: on_ms / N */
+
+/* 색상 전환 cross-fade 시간 (s_tx_phase 의 FADE_OUT / FADE_IN 각각).
+ *
+ * 점멸 패턴 매 cycle 내부 fade (LED_DIMMING_FADE_MAX_MS = 30 ms) 와 분리.
+ * burst 내부 fade 의 2 배 → 색상 전환이 "신중한 동작" 으로 인지되어
+ * 연속 정보 갱신 (BATT 색 변화 등) 의 부드러움 ↑. 모든 LED 상태 전환 시
+ * 1 회 적용 (지속 ON, 점멸, burst 모두 진입 시 동일하게 1 회 fade-out / fade-in). */
+#define LED_DIMMING_TX_FADE_MS   60
+
+/* POWER_ON / POWER_OFF 진입 시 leading OFF 시간 (음악적 쉼표).
+ *
+ * 두 단계 사용자 인지 시퀀스의 분리감 보전 — burst 시퀀스 직전에 명확한
+ * OFF gap 을 확보해 직전 색/이벤트 (부트로더 SKYBLUE 또는 BATT 색 등) 와
+ * 본 burst 가 시각적으로 분리되도록 한다.
+ *
+ * - POWER_ON: 부트로더 → CM3 인계 gap 보전 (부트로더 OFF phase 180 → 0
+ *   단축 대응, bootloader-power-on-indicator §8). 부트로더 자체 잔여
+ *   ~100 ms + 본 매크로 400 ms ≈ 500 ms 분리.
+ * - POWER_OFF: 직전 색 (BATT 녹/노랑/주황 등) cross-fade FADE_OUT 후
+ *   본 매크로 시간 OFF → BLUE burst.
+ *
+ * 적정 가이드: burst 내부 OFF (180 ms) 의 약 2~3 배 (음악 ~1 박자 휴식). */
+#define LED_POWER_LEAD_OFF_MS    400
 #define LED_DIMMING_PWM_STEPS    10   /* 1ms × 10 = 10ms = 100Hz PWM */
 
 static uint8_t s_led_pwm_on_count = LED_DIMMING_PWM_STEPS;  /* 0 ~ STEPS */
@@ -72,14 +96,16 @@ void led_isr_active_set(bool active)
 }
 
 /* 색상 전환 cross-fade 상태머신
- *   FADE_OUT : 이전 색을 perceived 255 → 0 으로 감소 출력 (timer_ms 진행 보류)
- *   FADE_IN  : 새 색을 perceived 0 → 255 로 증가 출력 (패턴 진행 정상)
+ *   FADE_OUT : 이전 색을 perceived 255 → 0 으로 감소 (LED_DIMMING_TX_FADE_MS, timer_ms 보류)
+ *   LEAD_OFF : POWER_ON / POWER_OFF 진입 시 leading OFF (LED_POWER_LEAD_OFF_MS, timer_ms 보류)
+ *   FADE_IN  : 새 색을 perceived 0 → 255 로 증가 (LED_DIMMING_TX_FADE_MS, 패턴 진행 정상)
  *   NONE     : 평상시 (점멸 fade-in/out 만 적용)
  */
 typedef enum
 {
     LED_TX_NONE = 0,
     LED_TX_FADE_OUT,
+    LED_TX_LEAD_OFF,
     LED_TX_FADE_IN,
 } led_tx_phase_t;
 
@@ -191,8 +217,8 @@ static const led_pattern_desc_t k_led_patterns[LED_ST__MAX] = {
     [LED_ST_ERROR_FPGA]     = { en__LED_RED,    180,  360,  0 },   // 빨강  ON 180ms  / OFF 180ms
     [LED_ST_ERROR_PMIC]     = { en__LED_RED,    180,  360,  0 },   // 빨강  ON 180ms  / OFF 180ms
 
-    /* 게이트 — ON 180ms · OFF 180ms, fade 15 · peak 150 · fade 15 */
-    [LED_ST_POWER_ON]       = { en__LED_SKYBLUE, 180, 360,  5 },   // SKYBLUE ON 180ms / OFF 180ms × 5회 버스트
+    /* 게이트 — ON 180ms · OFF 180ms, fade 30 · peak 120 · fade 30 (LED_DIMMING_FADE_MAX_MS) */
+    [LED_ST_POWER_ON]       = { en__LED_SKYBLUE, 180, 360,  4 },   // SKYBLUE ON 180ms / OFF 180ms × 4회 버스트
     [LED_ST_POWER_OFF]      = { en__LED_BLUE,    180, 360,  4 },   // BLUE    ON 180ms / OFF 180ms × 4회 버스트
 };
 
@@ -343,7 +369,12 @@ static EN__LED_COLOR LED_outputColor = en__LED_BLACK;
 
 static led_state_t s_req[LED_SRC__MAX];
 static uint32_t    s_pair_latch_until_tick;
-static bool        s_power_burst_in_progress;
+
+/* burst 패턴 (POWER_ON / POWER_OFF 등 burst_cnt > 0) 의 진행 상태 추적.
+ * set 책임: `led_request()` 가 burst 패턴 요청 즉시 true (외부 호출 시점).
+ * clear 책임: `led_engine_run()` 이 burst 자가 해제 시 false (LED 핸들러 내부).
+ * 의도: timer/tick 무관 시작·끝 명확화 — systemControl 의 종료 검출 race 회피. */
+static bool        s_tdc_burst_pending;
 
 void led_request(led_src_t src, led_state_t st)
 {
@@ -358,12 +389,18 @@ void led_request(led_src_t src, led_state_t st)
         s_pair_latch_until_tick = ci_timer_get_tick() + 1000;
     }
 
+    /* burst 패턴 요청 즉시 pending flag set — timer 기반 set 의 timing race 회피. */
+    if (st < LED_ST__MAX && k_led_patterns[st].burst_cnt > 0)
+    {
+        s_tdc_burst_pending = true;
+    }
+
     s_req[src] = st;
 }
 
-bool led_is_power_burst_in_progress(void)
+bool tdc_led_is_burst_pending(void)
 {
-    return s_power_burst_in_progress;
+    return s_tdc_burst_pending;
 }
 
 led_state_t led_get_request(led_src_t src)
@@ -415,7 +452,7 @@ void led_force_fade_off(void)
      * fade 진행 → turnOffLED() 진입 시점엔 BLACK 안정 도달 (또는 진행 중). */
     s_fade_off_state = LED_FADE_OFF_ACTIVE;
     s_fade_off_t     = 0;
-    s_fade_off_max   = LED_DIMMING_FADE_MAX_MS + 10;
+    s_fade_off_max   = LED_DIMMING_TX_FADE_MS + 10;  /* cross-fade FADE_OUT 시간 + 10 ms 마진 */
 
     /* sleep 진입 동안 LED 보호 — fade 완료 후 ISR 차단.
      *
@@ -443,6 +480,10 @@ static void led_engine_run(led_state_t st, bool reset)
         timer_ms       = 0;
         burst_done_cnt = 0;
 
+        /* `s_tdc_burst_pending` 의 set 책임은 `led_request()` 이관 — 본 위치 set 제거
+         * (Fix B-LED-2 추가분 폐기). led_request 시점 set 으로 fade-out Phase A 동안
+         * 에도 pending true 보장 → systemControl 종료 검출 race 본질적 해소. */
+
         /* Cross-fade 진입 결정 — 진행 중인 fade-out 은 그대로 둔다 */
         if (s_tx_phase != LED_TX_FADE_OUT)
         {
@@ -453,6 +494,15 @@ static void led_engine_run(led_state_t st, bool reset)
                 s_tx_phase      = LED_TX_FADE_OUT;
                 s_tx_prev_color = LED_outputColor;
                 s_tx_ms         = 0;
+            }
+            else if (st == LED_ST_POWER_ON || st == LED_ST_POWER_OFF)
+            {
+                /* POWER_ON / POWER_OFF 진입 — 직전 시각 사건과 burst 사이에
+                 * 분리감 보전 (음악적 쉼표). leading OFF 후 FADE_IN 자가 전이.
+                 * (이전 색이 켜진 채 색상이 다르면 위 FADE_OUT 분기로 들어가
+                 *  fade-out 종료 시 LEAD_OFF 로 다시 분기된다.) */
+                s_tx_phase = LED_TX_LEAD_OFF;
+                s_tx_ms    = 0;
             }
             else
             {
@@ -469,14 +519,38 @@ static void led_engine_run(led_state_t st, bool reset)
         LED_outputColor = s_tx_prev_color;
 
         /* perceived 255 → 0 으로 선형 감소, LUT 통해 PWM 변환 */
-        uint8_t perceived = (uint8_t) (((LED_DIMMING_FADE_MAX_MS - s_tx_ms) * 255UL)
-                                       / LED_DIMMING_FADE_MAX_MS);
+        uint8_t perceived = (uint8_t) (((LED_DIMMING_TX_FADE_MS - s_tx_ms) * 255UL)
+                                       / LED_DIMMING_TX_FADE_MS);
         s_led_pwm_on_count = perceived_to_pwm(perceived);
 
         s_tx_ms++;
-        if (s_tx_ms >= LED_DIMMING_FADE_MAX_MS)
+        if (s_tx_ms >= LED_DIMMING_TX_FADE_MS)
         {
-            /* fade-out 완료 → 다음 tick 부터 Phase B (새 패턴 시작) */
+            /* fade-out 완료 — POWER_ON / POWER_OFF 진입 시 leading OFF 끼워넣기.
+             * 그 외 (지속 ON, 점멸 패턴 진입) 는 즉시 Phase B (새 패턴 FADE_IN). */
+            if (st == LED_ST_POWER_ON || st == LED_ST_POWER_OFF)
+            {
+                s_tx_phase = LED_TX_LEAD_OFF;
+            }
+            else
+            {
+                s_tx_phase = LED_TX_FADE_IN;
+            }
+            s_tx_ms = 0;
+        }
+        return;
+    }
+
+    /* Phase 0 — POWER_ON / POWER_OFF 진입 시 leading OFF (분리감 보전, 음악적 쉼표).
+     * timer_ms 진행 보류 — LED_POWER_LEAD_OFF_MS 경과 후 FADE_IN 으로 전이. */
+    if (s_tx_phase == LED_TX_LEAD_OFF)
+    {
+        LED_outputColor    = en__LED_BLACK;
+        s_led_pwm_on_count = 0;
+
+        s_tx_ms++;
+        if (s_tx_ms >= LED_POWER_LEAD_OFF_MS)
+        {
             s_tx_phase = LED_TX_FADE_IN;
             s_tx_ms    = 0;
         }
@@ -501,11 +575,11 @@ static void led_engine_run(led_state_t st, bool reset)
     /* Phase B — 새 색 fade-in: ratio 와 perceived 결합 (perceived 단위 곱셈) */
     if (s_tx_phase == LED_TX_FADE_IN)
     {
-        uint8_t fade_in_perc = (uint8_t) ((s_tx_ms * 255UL) / LED_DIMMING_FADE_MAX_MS);
+        uint8_t fade_in_perc = (uint8_t) ((s_tx_ms * 255UL) / LED_DIMMING_TX_FADE_MS);
         perceived = (uint8_t) (((uint32_t) perceived * fade_in_perc) / 255);
 
         s_tx_ms++;
-        if (s_tx_ms >= LED_DIMMING_FADE_MAX_MS)
+        if (s_tx_ms >= LED_DIMMING_TX_FADE_MS)
         {
             s_tx_phase = LED_TX_NONE;
         }
@@ -526,21 +600,27 @@ static void led_engine_run(led_state_t st, bool reset)
                 burst_done_cnt++;
                 if (burst_done_cnt >= p->burst_cnt)
                 {
+                    /* (디버그) POWER_ON 패턴 종료 강조 — V10 SPI race 측정 트레이스
+                     * st 가 LED_ST_POWER_ON 일 때만 출력. POWER_OFF 등은 영향 없음. */
+                    if (st == LED_ST_POWER_ON)
+                    {
+                        ci_printi("\r\n");
+                        ci_printi("################################################################\r\n");
+                        ci_printi("###  [POWER-ON  END]     t3 = %d ms\r\n", tdc_timer_get_t3_tick());
+                        ci_printi("################################################################\r\n");
+                        ci_printi("\r\n");
+                    }
+
                     /* 게이트 자가 해제: 기존 관례 유지 */
                     updateLED_OutputPattern(en__LED_NA);
                     s_req[LED_SRC_POWER]       = LED_ST_NONE;
-                    s_power_burst_in_progress  = false;
+                    s_tdc_burst_pending        = false;
                     burst_done_cnt             = 0;
                 }
             }
         }
-        else
-        {
-            if (p->burst_cnt > 0)
-            {
-                s_power_burst_in_progress = true;
-            }
-        }
+        /* Phase B 진행 중 set 분기 제거 — `s_tdc_burst_pending` set 책임은
+         * `led_request()` 가 단독 보유 (요청 시점 즉시 set, fade-out 무관). */
     }
 }
 
