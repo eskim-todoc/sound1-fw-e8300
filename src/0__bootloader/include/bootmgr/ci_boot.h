@@ -22,7 +22,6 @@ uint8_t tdc_boot_get_slot_num(void);
 void    snd_boot_set_fp(FIL *fp);
 void    snd_boot_handle_file(void);
 void    tdc_boot_print_boot_file(void);
-void    tdc_boot_debug_mode(void);
 
 int  tdc_boot_storage_init(bootloader_boot_information *out_boot_info);
 FIL *tdc_boot_get_ohdl(void);

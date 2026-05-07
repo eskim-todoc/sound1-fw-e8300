@@ -13,20 +13,15 @@
         (void) 0;                                                                                                                                                                                                                                                                                                              \
     }
 
-#define _DELAY_MS(ms) Sys_Delay((SystemCoreClock / 1000) * ms)
-
 //
 // private function headers
 //
-static void tdc_boot_handle_debug_mode(void);
-static void _print_fw_file(char *p_path);
 static bool snd_boot_is_file_exist(void);
 static bool snd_boot_read_file(void);
 static void snd_boot_initialize_file(void);
 static void snd_boot_update_file(void);
 static void snd_boot_determine_slot_num(void);
 static void snd_boot_validate_alt_boot(void);
-static bool tdc_boot_debug_mode_count_down(uint8_t sec);
 
 //
 // private variables
@@ -127,149 +122,9 @@ void tdc_boot_print_boot_file(void)
     tdc_uart_printf("crc32 = 0x%08X \r\n", sg_boot_status.crc32);
 }
 
-void tdc_boot_debug_mode(void)
-{
-    if (!tdc_boot_debug_mode_count_down(CI_BOOT_COUNT_DOWN_SEC))
-    {
-        return;
-    }
-
-    tdc_boot_handle_debug_mode();
-}
-
 //
 // private functions
 //
-static void tdc_boot_handle_debug_mode(void)
-{
-    uint8_t buf[64] = {0};
-    int     idx     = 0;
-    char    ch;
-
-    tdc_uart_printf("\r\nDebug mode entered. \r\n");
-
-    while (1)
-    {
-        SYS_WATCHDOG_REFRESH();
-
-        if (0 < tdc_uart_getch(&ch))
-        {
-            if (ch == '\n')
-            {
-                tdc_uart_printf("\r\n");
-
-                if (strncmp((const char *) buf, "--quit", 6) == 0)
-                {
-                    break;
-                }
-                else if (strncmp((const char *) buf, "--print=mf", 10) == 0)
-                {
-                    _print_fw_file("/MANIFEST.TXT");
-                    idx      = 0;
-                    buf[idx] = 0;
-                }
-                else if (strncmp((const char *) buf, "--print=a0", 10) == 0)
-                {
-                    _print_fw_file("/APP000.FEZ");
-                    idx      = 0;
-                    buf[idx] = 0;
-                }
-                else if (strncmp((const char *) buf, "--print=a1", 10) == 0)
-                {
-                    _print_fw_file("/APP001.FEZ");
-                    idx      = 0;
-                    buf[idx] = 0;
-                }
-                else if (strncmp((const char *) buf, "--print=a2", 10) == 0)
-                {
-                    _print_fw_file("/APP002.FEZ");
-                    idx      = 0;
-                    buf[idx] = 0;
-                }
-                else
-                {
-                    if (idx != 0)
-                    {
-                        tdc_uart_printf("invalid command. \r\n");
-                    }
-                }
-
-                idx      = 0;
-                buf[idx] = 0;
-            }
-            else if (ch == '\b')
-            {
-                if (0 < idx)
-                {
-                    idx--;
-                }
-
-                buf[idx] = 0;
-
-                tdc_uart_printf("\b \b");
-            }
-            else
-            {
-                if (idx < 62)
-                {
-                    buf[idx]     = ch;
-                    buf[idx + 1] = 0;
-                    idx++;
-                }
-
-                tdc_uart_printf("%c", ch);
-            }
-        }
-    }
-}
-
-static void _print_fw_file(char *p_path)
-{
-    uint8_t rtt_buffer[64];
-    UINT    br;
-    FRESULT res;
-
-    res = f_open(sg_fp, p_path, (FA_OPEN_EXISTING | FA_READ));
-
-    if (res != FR_OK)
-    {
-        tdc_uart_printf("[ERROR] Failed to open '%s' file. \r\n", p_path);
-        return;
-    }
-
-    rtt_printf("%s=<<<<<\r\n", p_path);
-
-    while (1)
-    {
-        SYS_WATCHDOG_REFRESH();
-
-        res = f_read(sg_fp, rtt_buffer, 64, &br);
-
-        if (res != FR_OK)
-        {
-            tdc_uart_printf("[ERROR] Failed to read '%s' file. \r\n", p_path);
-            f_close(sg_fp);
-            break;
-        }
-
-        if (br == 0)
-        {
-            rtt_printf(">>>>>\r\n");
-            tdc_uart_printf("print done. \r\n");
-            break;
-        }
-
-        for (int i = 0; i < br; i++)
-        {
-            rtt_printf("%02X ", rtt_buffer[i]);
-        }
-
-        rtt_printf("\r\n");
-    }
-
-    f_close(sg_fp);
-}
-
 static bool snd_boot_is_file_exist(void)
 {
     FILINFO fno;
@@ -503,38 +358,3 @@ static void snd_boot_validate_alt_boot(void)
     }
 }
 
-static bool tdc_boot_debug_mode_count_down(uint8_t sec)
-{
-    bool ret = false;
-    char ch;
-
-    tdc_uart_printf("Debug mode count down : ");
-
-    for (int i = 0; i < sec; i++)
-    {
-        tdc_uart_printf("\b%u", sec - i);
-
-        for (int j = 0; j < 100; j++)
-        {
-            if (ret)
-            {
-                break;
-            }
-
-            if ((volatile int) 0 < tdc_uart_getch(&ch))
-            {
-                if (ch == '\n')
-                {
-                    ret = true;
-                    break;
-                }
-            }
-            SYS_WATCHDOG_REFRESH();
-            _DELAY_MS(10);
-        }
-    }
-
-    tdc_uart_printf("\b0 \r\n");
-
-    return ret;
-}

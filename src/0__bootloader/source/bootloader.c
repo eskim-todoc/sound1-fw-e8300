@@ -1621,7 +1621,6 @@ int bootloader_boot(void)
     snd_boot_set_fp(&ohdl);
     snd_boot_handle_file();
     tdc_boot_print_boot_file();  // for debugging
-    tdc_boot_debug_mode();
 #endif
     ////////////////////////////////////////////////////////////////////////////////////////////////////
 
