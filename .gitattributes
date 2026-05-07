@@ -1,0 +1,32 @@
+# Auto-detect text files, normalize to LF in repo (working tree LF too).
+# Overrides core.autocrlf=true so this repo is consistent across machines.
+* text=auto eol=lf
+
+# Windows-only scripts: keep CRLF on disk
+*.bat       text eol=crlf
+*.cmd       text eol=crlf
+*.ps1       text eol=crlf
+
+# Common binary types (no line-ending conversion, no diff)
+*.png       binary
+*.jpg       binary
+*.jpeg      binary
+*.gif       binary
+*.ico       binary
+*.pdf       binary
+*.zip       binary
+*.7z        binary
+*.gz        binary
+*.tar       binary
+*.docx      binary
+*.xlsx      binary
+*.pptx      binary
+
+# Firmware build artifacts
+*.hex       binary
+*.bin       binary
+*.elf       binary
+*.o         binary
+*.lst       binary
+*.map       binary
+*.a         binary
