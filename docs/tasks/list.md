@@ -11,7 +11,7 @@ Sound1 프로젝트(`E:\Claude\projects\Sound1`) 작업 레지스트리.
 
 | 작업명 | 모듈 | 태그 | 폴더 | 상태 | 시작일 | 연계 | 요약 |
 |---|---|---|---|---|---|---|---|
-| _(없음)_ | | | | | | | |
+| Sound1 CLAUDE.md 슬림화 + 루트 강제 강화 | meta | docs, claude-md, root-enforcement, slim | [meta/claude-md-slim](meta/claude-md-slim/) | 진행 | 2026-05-08 | - | 외부 의존 3섹션 제거, 루트 강제 강화(Alert + 충돌 시 루트 우선), 중복 섹션(루트 지침 참조 표·문서 작성) 슬림화, 절대 경로 → 상대 경로 일관 |
 
 ## 완료
 
