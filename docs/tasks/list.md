@@ -11,7 +11,7 @@ Sound1 프로젝트(`E:\Claude\projects\Sound1`) 작업 레지스트리.
 
 | 작업명 | 모듈 | 태그 | 폴더 | 상태 | 시작일 | 연계 | 요약 |
 |---|---|---|---|---|---|---|---|
-| Sound1 CLAUDE.md 슬림화 + 루트 강제 강화 | meta | docs, claude-md, root-enforcement, slim | [meta/claude-md-slim](meta/claude-md-slim/) | 진행 | 2026-05-08 | - | 외부 의존 3섹션 제거, 루트 강제 강화(Alert + 충돌 시 루트 우선), 중복 섹션(루트 지침 참조 표·문서 작성) 슬림화, 절대 경로 → 상대 경로 일관 |
+| _(없음)_ | | | | | | | |
 
 ## 완료
 
@@ -28,6 +28,7 @@ Sound1 프로젝트(`E:\Claude\projects\Sound1`) 작업 레지스트리.
 | 내부 링크 경로 정정 | meta | docs, links, tech-debt | [meta/internal-links-fix](meta/internal-links-fix/) | 완료 | 2026-05-07 ~ 2026-05-07 | ← [meta/docs-restructure](meta/docs-restructure/) | docs-restructure 후 깨진 markdown 링크 25 건 정정. 검증 grep 0 건. src 코드 (`../src/...`) 상대경로 깊이 오류는 별도 후속 작업 (본 작업 범위 외). |
 | docs 폴더별 README 추가 | meta | docs, readme, lazy-loading | [meta/folder-readmes](meta/folder-readmes/) | 완료 | 2026-05-07 ~ 2026-05-07 | ← 루트 [meta/docs-consistency-audit](../../../../docs/tasks/_archive/meta/docs-consistency-audit/) (후속 분기 1번) | `docs/지침/`·`사용방법/`·`참고/`·`tasks/` 4개에 README.md 인덱스 신규 추가 (루트 `문서 작성 규칙 §9.3` 충족). 인덱스 자료는 Explore 서브에이전트로 일괄 추출. `참고/LED/` 서브폴더 README는 후속 검토. |
 | 영속 문서 frontmatter+TL;DR 일괄 소급 | meta | docs, frontmatter, retrofit, lazy-loading | [meta/frontmatter-retrofit](meta/frontmatter-retrofit/) | 완료 | 2026-05-07 ~ 2026-05-07 | ← [meta/folder-readmes](meta/folder-readmes/) (점검 빈틈 후속) | 사용자 명시 요청으로 일괄 소급. `docs/{지침·사용방법·참고}/` 영속 9 파일에 frontmatter 5필드 + `**TL;DR**:` 한 줄 in-place 추가. general-purpose 서브에이전트 1회 위임 + spot check 2 파일. 본문 무변경. |
+| Sound1 CLAUDE.md 슬림화 + 루트 강제 강화 | meta | docs, claude-md, root-enforcement, slim | [_archive/meta/claude-md-slim](_archive/meta/claude-md-slim/) | 완료 | 2026-05-08 ~ 2026-05-08 | - | 외부 의존 3섹션(대외/외부의존/완성본) 제거, > [!IMPORTANT] Alert로 루트 절대 우선 강제 + 충돌 정책 명시(CLAUDE.md=루트 우선, docs/지침/=프로젝트 우선), 루트 지침 참조 표·docs 레이아웃 다이어그램 제거, list.md 진입점만 §작업 라우팅으로 보존, frontmatter+TL;DR 추가, 절대 경로→상대 경로. 99줄/9섹션 → 60줄/6섹션 |
 
 ---
 
@@ -78,3 +79,4 @@ Sound1 프로젝트(`E:\Claude\projects\Sound1`) 작업 레지스트리.
 | 2026-05-07 | `meta/folder-readmes` 등재·완료 (루트 `meta/docs-consistency-audit`의 후속 분기 1번). `docs/지침/·사용방법/·참고/·tasks/` 4개 README.md 신규 추가 (루트 §9.3 충족). Sound1 archive 컨벤션상 폴더 이동 없이 위치(`meta/folder-readmes/`) 유지·list.md 완료 등재. |
 | 2026-05-07 | `meta/frontmatter-retrofit` 등재·완료 (folder-readmes 점검 빈틈 후속). 사용자 (다) 명시 요청으로 일괄 소급. `docs/{지침·사용방법·참고}/` 영속 9 파일에 frontmatter+TL;DR 일괄 추가, general-purpose 서브에이전트 1회 위임 + spot check 통과. 본문 무변경. CLAUDE.md·tasks/_archive 산출물은 본 task 외(권고로 이력에 명시). |
 | 2026-05-07 | task 산출물 frontmatter 일괄 소급 — 사용자 명시 트리거 "전부다 빼지말고 다 적용"로 frontmatter-retrofit 후속 영향에서 권고했던 항목 처리. `tasks/{LED·touch·power·meta}/<>/` 활성 위치 산출물 34 파일 점검 후 신규 23 / TL;DR만 11 / skip 12. general-purpose 서브에이전트 1회 위임. 본문 무변경, 신 §9.2 정책(80~250자) 준수. |
+| 2026-05-08 | `meta/claude-md-slim` 등재·완료 (claude_develop 머지 `4fc3700`). Sound1 CLAUDE.md 슬림화 + 루트 절대 우선 강제 강화 — 외부 의존 3섹션 제거, > [!IMPORTANT] Alert로 충돌 정책 명시, 중복 섹션 제거, frontmatter 추가, 절대 경로 통일. 99줄/9섹션 → 60줄/6섹션. 루트의 4단계 프로세스 첫 Sound1 적용 사례. `_archive/meta/claude-md-slim/`로 이동, `이력.md` 작성. |
