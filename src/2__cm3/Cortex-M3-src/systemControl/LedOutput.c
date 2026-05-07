@@ -33,19 +33,31 @@
  *   - 출처: https://en.wikipedia.org/wiki/Relative_luminance
  *           https://en.wikipedia.org/wiki/Stevens%27s_power_law
  * ======================================================================== */
-#define LED_DIMMING_FADE_MAX_MS  30//15   /* fade-in / fade-out 시간 상한 */
+#define LED_DIMMING_FADE_MAX_MS  30//15   /* 점멸 패턴 매 cycle fade 시간 상한 (ON 시작 fade-in / ON 끝 fade-out) */
 #define LED_DIMMING_FADE_DIVISOR 3    /* 점멸 fade 자동 조정: on_ms / N */
 
-/* 부트로더 → CM3 LED OFF 인계 gap 보전 (2026-05-07).
+/* 색상 전환 cross-fade 시간 (s_tx_phase 의 FADE_OUT / FADE_IN 각각).
  *
- * 부트로더 SW PWM 의 OFF phase 가 180 ms → 0 ms 로 단축된 후
- * (bootloader-power-on-indicator/이력.md §8), 부트로더 SKYBLUE fade 종료 ~
- * CM3 main 진입까지의 자연 OFF 시간이 ~100 ms (= 부트로더 자체 잔여 작업)
- * 만 남는다. CM3 측 LED_ST_POWER_ON 패턴 진입 직전에 본 매크로 시간 만큼
- * leading OFF 를 추가해 변경 전 OFF gap (~180 ms) 을 보전한다.
+ * 점멸 패턴 매 cycle 내부 fade (LED_DIMMING_FADE_MAX_MS = 30 ms) 와 분리.
+ * burst 내부 fade 의 2 배 → 색상 전환이 "신중한 동작" 으로 인지되어
+ * 연속 정보 갱신 (BATT 색 변화 등) 의 부드러움 ↑. 모든 LED 상태 전환 시
+ * 1 회 적용 (지속 ON, 점멸, burst 모두 진입 시 동일하게 1 회 fade-out / fade-in). */
+#define LED_DIMMING_TX_FADE_MS   60
+
+/* POWER_ON / POWER_OFF 진입 시 leading OFF 시간 (음악적 쉼표).
  *
- * 부트로더 잔여 ~100 ms + 본 leading OFF 100 ms ≈ 200 ms (≥ 180 ms) 확보. */
-#define LED_BOOT_HANDOFF_OFF_MS  100
+ * 두 단계 사용자 인지 시퀀스의 분리감 보전 — burst 시퀀스 직전에 명확한
+ * OFF gap 을 확보해 직전 색/이벤트 (부트로더 SKYBLUE 또는 BATT 색 등) 와
+ * 본 burst 가 시각적으로 분리되도록 한다.
+ *
+ * - POWER_ON: 부트로더 → CM3 인계 gap 보전 (부트로더 OFF phase 180 → 0
+ *   단축 대응, bootloader-power-on-indicator §8). 부트로더 자체 잔여
+ *   ~100 ms + 본 매크로 400 ms ≈ 500 ms 분리.
+ * - POWER_OFF: 직전 색 (BATT 녹/노랑/주황 등) cross-fade FADE_OUT 후
+ *   본 매크로 시간 OFF → BLUE burst.
+ *
+ * 적정 가이드: burst 내부 OFF (180 ms) 의 약 2~3 배 (음악 ~1 박자 휴식). */
+#define LED_POWER_LEAD_OFF_MS    400
 #define LED_DIMMING_PWM_STEPS    10   /* 1ms × 10 = 10ms = 100Hz PWM */
 
 static uint8_t s_led_pwm_on_count = LED_DIMMING_PWM_STEPS;  /* 0 ~ STEPS */
@@ -84,9 +96,9 @@ void led_isr_active_set(bool active)
 }
 
 /* 색상 전환 cross-fade 상태머신
- *   FADE_OUT : 이전 색을 perceived 255 → 0 으로 감소 출력 (timer_ms 진행 보류)
- *   LEAD_OFF : POWER_ON 진입 시 leading OFF (LED_BOOT_HANDOFF_OFF_MS, timer_ms 보류)
- *   FADE_IN  : 새 색을 perceived 0 → 255 로 증가 출력 (패턴 진행 정상)
+ *   FADE_OUT : 이전 색을 perceived 255 → 0 으로 감소 (LED_DIMMING_TX_FADE_MS, timer_ms 보류)
+ *   LEAD_OFF : POWER_ON / POWER_OFF 진입 시 leading OFF (LED_POWER_LEAD_OFF_MS, timer_ms 보류)
+ *   FADE_IN  : 새 색을 perceived 0 → 255 로 증가 (LED_DIMMING_TX_FADE_MS, 패턴 진행 정상)
  *   NONE     : 평상시 (점멸 fade-in/out 만 적용)
  */
 typedef enum
@@ -205,8 +217,8 @@ static const led_pattern_desc_t k_led_patterns[LED_ST__MAX] = {
     [LED_ST_ERROR_FPGA]     = { en__LED_RED,    180,  360,  0 },   // 빨강  ON 180ms  / OFF 180ms
     [LED_ST_ERROR_PMIC]     = { en__LED_RED,    180,  360,  0 },   // 빨강  ON 180ms  / OFF 180ms
 
-    /* 게이트 — ON 180ms · OFF 180ms, fade 15 · peak 150 · fade 15 */
-    [LED_ST_POWER_ON]       = { en__LED_SKYBLUE, 180, 360,  5 },   // SKYBLUE ON 180ms / OFF 180ms × 5회 버스트
+    /* 게이트 — ON 180ms · OFF 180ms, fade 30 · peak 120 · fade 30 (LED_DIMMING_FADE_MAX_MS) */
+    [LED_ST_POWER_ON]       = { en__LED_SKYBLUE, 180, 360,  4 },   // SKYBLUE ON 180ms / OFF 180ms × 4회 버스트
     [LED_ST_POWER_OFF]      = { en__LED_BLUE,    180, 360,  4 },   // BLUE    ON 180ms / OFF 180ms × 4회 버스트
 };
 
@@ -440,7 +452,7 @@ void led_force_fade_off(void)
      * fade 진행 → turnOffLED() 진입 시점엔 BLACK 안정 도달 (또는 진행 중). */
     s_fade_off_state = LED_FADE_OFF_ACTIVE;
     s_fade_off_t     = 0;
-    s_fade_off_max   = LED_DIMMING_FADE_MAX_MS + 10;
+    s_fade_off_max   = LED_DIMMING_TX_FADE_MS + 10;  /* cross-fade FADE_OUT 시간 + 10 ms 마진 */
 
     /* sleep 진입 동안 LED 보호 — fade 완료 후 ISR 차단.
      *
@@ -483,10 +495,12 @@ static void led_engine_run(led_state_t st, bool reset)
                 s_tx_prev_color = LED_outputColor;
                 s_tx_ms         = 0;
             }
-            else if (st == LED_ST_POWER_ON)
+            else if (st == LED_ST_POWER_ON || st == LED_ST_POWER_OFF)
             {
-                /* POWER_ON 진입 — 부트로더 → CM3 LED OFF 인계 gap 보전.
-                 * leading OFF 후 FADE_IN 으로 자가 전이. */
+                /* POWER_ON / POWER_OFF 진입 — 직전 시각 사건과 burst 사이에
+                 * 분리감 보전 (음악적 쉼표). leading OFF 후 FADE_IN 자가 전이.
+                 * (이전 색이 켜진 채 색상이 다르면 위 FADE_OUT 분기로 들어가
+                 *  fade-out 종료 시 LEAD_OFF 로 다시 분기된다.) */
                 s_tx_phase = LED_TX_LEAD_OFF;
                 s_tx_ms    = 0;
             }
@@ -505,29 +519,37 @@ static void led_engine_run(led_state_t st, bool reset)
         LED_outputColor = s_tx_prev_color;
 
         /* perceived 255 → 0 으로 선형 감소, LUT 통해 PWM 변환 */
-        uint8_t perceived = (uint8_t) (((LED_DIMMING_FADE_MAX_MS - s_tx_ms) * 255UL)
-                                       / LED_DIMMING_FADE_MAX_MS);
+        uint8_t perceived = (uint8_t) (((LED_DIMMING_TX_FADE_MS - s_tx_ms) * 255UL)
+                                       / LED_DIMMING_TX_FADE_MS);
         s_led_pwm_on_count = perceived_to_pwm(perceived);
 
         s_tx_ms++;
-        if (s_tx_ms >= LED_DIMMING_FADE_MAX_MS)
+        if (s_tx_ms >= LED_DIMMING_TX_FADE_MS)
         {
-            /* fade-out 완료 → 다음 tick 부터 Phase B (새 패턴 시작) */
-            s_tx_phase = LED_TX_FADE_IN;
-            s_tx_ms    = 0;
+            /* fade-out 완료 — POWER_ON / POWER_OFF 진입 시 leading OFF 끼워넣기.
+             * 그 외 (지속 ON, 점멸 패턴 진입) 는 즉시 Phase B (새 패턴 FADE_IN). */
+            if (st == LED_ST_POWER_ON || st == LED_ST_POWER_OFF)
+            {
+                s_tx_phase = LED_TX_LEAD_OFF;
+            }
+            else
+            {
+                s_tx_phase = LED_TX_FADE_IN;
+            }
+            s_tx_ms = 0;
         }
         return;
     }
 
-    /* Phase 0 — POWER_ON 진입 시 leading OFF (부트로더 → CM3 인계 gap 보전).
-     * timer_ms 진행 보류 — LED_BOOT_HANDOFF_OFF_MS 경과 후 FADE_IN 으로 전이. */
+    /* Phase 0 — POWER_ON / POWER_OFF 진입 시 leading OFF (분리감 보전, 음악적 쉼표).
+     * timer_ms 진행 보류 — LED_POWER_LEAD_OFF_MS 경과 후 FADE_IN 으로 전이. */
     if (s_tx_phase == LED_TX_LEAD_OFF)
     {
         LED_outputColor    = en__LED_BLACK;
         s_led_pwm_on_count = 0;
 
         s_tx_ms++;
-        if (s_tx_ms >= LED_BOOT_HANDOFF_OFF_MS)
+        if (s_tx_ms >= LED_POWER_LEAD_OFF_MS)
         {
             s_tx_phase = LED_TX_FADE_IN;
             s_tx_ms    = 0;
@@ -553,11 +575,11 @@ static void led_engine_run(led_state_t st, bool reset)
     /* Phase B — 새 색 fade-in: ratio 와 perceived 결합 (perceived 단위 곱셈) */
     if (s_tx_phase == LED_TX_FADE_IN)
     {
-        uint8_t fade_in_perc = (uint8_t) ((s_tx_ms * 255UL) / LED_DIMMING_FADE_MAX_MS);
+        uint8_t fade_in_perc = (uint8_t) ((s_tx_ms * 255UL) / LED_DIMMING_TX_FADE_MS);
         perceived = (uint8_t) (((uint32_t) perceived * fade_in_perc) / 255);
 
         s_tx_ms++;
-        if (s_tx_ms >= LED_DIMMING_FADE_MAX_MS)
+        if (s_tx_ms >= LED_DIMMING_TX_FADE_MS)
         {
             s_tx_phase = LED_TX_NONE;
         }
