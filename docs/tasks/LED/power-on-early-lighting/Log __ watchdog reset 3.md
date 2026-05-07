@@ -1,3 +1,15 @@
+---
+name: 로그 — watchdog reset (재현 3회차)
+purpose: 롱터치 감지 후 워치독 리셋 부팅 시퀀스 RTT 캡처 (속도 1000kHz)
+type: tasks/이력
+applies_to: [Sound1]
+tags: [LED, log, rtt, watchdog-reset, long-touch, verification]
+---
+
+# Log — watchdog reset (재현 3회차)
+
+**TL;DR**: 롱터치 → 워치독 리셋 후 J-Link 재연결(speed=1000kHz)·INIT·LED-GATE-ENTER 시점 RTT 3회차 캡처. 본 작업의 워치독 경로 LED 동작 V9 검증 자료로, 1, 2회차와 동일 시퀀스인지 cross-check용.
+
 [MAIN] LONG TOUCH DETECTED, RESET
 [AUTO-RTT] 21:31:09.204 WARN  타겟 응답 없음 (JLinkReadException: Unspecified error.) — 연결 끊김 판정
 [AUTO-RTT] 21:31:09.229 WARN  연결 끊김. 재연결 시도 중.
