@@ -500,12 +500,21 @@ static bool wait_re_ati_done(void)
 #define TDC_DRV_IQS323_ATI_DUMP_ENABLE 0  /* 1: RE-ATI 실행 후 보상값 로그 출력 (개발용) */
 
 /* 사전 측정된 Sensor 0 ATI 보상값 (고정 상수) — ATI Mode=Full 그대로 유지 */
+#if 1 // Sound1 Mini Board
 #define TDC_DRV_IQS323_ATI_SETUP_LSB 0x0C  /* ATI Resolution Factor + ATI Band=1 + ATI Mode=Full(100) */
 #define TDC_DRV_IQS323_ATI_SETUP_MSB 0x04
 #define TDC_DRV_IQS323_ATI_MULT_LSB  0x82  /* Fine/Coarse Fractional Multiplier/Divider */
 #define TDC_DRV_IQS323_ATI_MULT_MSB  0x5A
 #define TDC_DRV_IQS323_ATI_COMP_LSB  0x00  /* Compensation Divider + Compensation */
 #define TDC_DRV_IQS323_ATI_COMP_MSB  0x58
+#else // Sound1 Develop Board
+#define TDC_DRV_IQS323_ATI_SETUP_LSB 0x0C  /* ATI Resolution Factor + ATI Band=1 + ATI Mode=Full(100) */
+#define TDC_DRV_IQS323_ATI_SETUP_MSB 0x04
+#define TDC_DRV_IQS323_ATI_MULT_LSB  0x82  /* Fine/Coarse Fractional Multiplier/Divider */
+#define TDC_DRV_IQS323_ATI_MULT_MSB  0x62
+#define TDC_DRV_IQS323_ATI_COMP_LSB  0xFF  /* Compensation Divider + Compensation */
+#define TDC_DRV_IQS323_ATI_COMP_MSB  0x53
+#endif
 
 static bool write_ati_compensation(void)
 {
