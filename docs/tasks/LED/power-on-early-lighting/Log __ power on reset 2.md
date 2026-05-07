@@ -1,3 +1,15 @@
+---
+name: 로그 — power on reset (재현 2회차)
+purpose: 전원 인가 후 부팅 시퀀스 RTT 캡처 (POWER-ON START t3=0 ms 시점 포함)
+type: tasks/이력
+applies_to: [Sound1]
+tags: [LED, log, rtt, power-on-reset, verification]
+---
+
+# Log — power on reset (재현 2회차)
+
+**TL;DR**: 전원 인가 후 부팅 RTT 캡처. SOUND1 v2.01 / DEV 0.1 / CFX STARTED, POWER NORMAL 30.72 MHz, INIT(DIO·UART·ETC) 후 LED-GATE-ENTER(TIMER3 ON) 마일스톤 도달 시점 기록. POWER-ON START 직후 t3=0 ms 기준의 LED·터치 동작 시퀀스 검증 자료.
+
 [AUTO-RTT] 20:52:20.249 WARN  연결 끊김. 재연결 시도 중.
 [AUTO-RTT] 20:52:20.271 INFO  J-Link 선택: SN=602011400 (세션 기억)
 [AUTO-RTT] 20:52:20.309 INFO  RTT 연결 완료 (device=Cortex-M3, tif=SWD, speed=400kHz, up_ch=0, down_ch=0)
