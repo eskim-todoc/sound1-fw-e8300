@@ -499,21 +499,54 @@ static bool wait_re_ati_done(void)
  */
 #define TDC_DRV_IQS323_ATI_DUMP_ENABLE 0  /* 1: RE-ATI 실행 후 보상값 로그 출력 (개발용) */
 
-/* 사전 측정된 Sensor 0 ATI 보상값 (고정 상수) — ATI Mode=Full 그대로 유지 */
-#if 1 // Sound1 Mini Board
+/* ========================================================================
+ *  보드 변종별 IQS323 Sensor 0 ATI 보상값 (사전 측정, ATI Mode=Full 고정)
+ * ========================================================================
+ *  Sound1 Mini 보드와 Develop 보드는 PCB 레이아웃 차이로 IQS323 의 ATI
+ *  보상값이 다르다. 빌드 시 TDC_BOARD_VARIANT 매크로로 연결된 보드 종류를
+ *  선택 — 디폴트는 Mini (현재 활성 변종).
+ *
+ *  변종         | ATI_MULT_MSB | ATI_COMP_LSB | ATI_COMP_MSB
+ *  -------------|--------------|--------------|---------------
+ *  MINI (디폴트)| 0x5A         | 0x00         | 0x58
+ *  DEVELOP      | 0x62         | 0xFF         | 0x53
+ *
+ *  (다른 3 개 — ATI_SETUP_LSB/MSB, ATI_MULT_LSB — 는 양쪽 동일)
+ *
+ *  사용:
+ *   - Mini 보드 빌드: 매크로 미정의 → 자동 디폴트 MINI. 별도 작업 불필요.
+ *   - Develop 보드 빌드: 본 파일 디폴트를 DEVELOP 으로 변경 또는
+ *                       빌드 옵션 -DTDC_BOARD_VARIANT=TDC_BOARD_VARIANT_DEVELOP.
+ *
+ *  Note: processorDirective.h 의 Board_is_* 와는 의미 레이어가 다르다
+ *        (Board_is_*=핀 매핑, TDC_BOARD_VARIANT=드라이버 캘리브레이션).
+ *        통합은 별개 작업으로 검토.
+ *
+ *  보상값 확인 방법: TDC_DRV_IQS323_ATI_DUMP_ENABLE 1 로 설정 후 빌드 → RTT 로그
+ * ======================================================================== */
+#define TDC_BOARD_VARIANT_MINI     0
+#define TDC_BOARD_VARIANT_DEVELOP  1
+
+#ifndef TDC_BOARD_VARIANT
+#define TDC_BOARD_VARIANT  TDC_BOARD_VARIANT_MINI   /* 디폴트: Mini 보드 */
+#endif
+
+#if (TDC_BOARD_VARIANT == TDC_BOARD_VARIANT_MINI)
 #define TDC_DRV_IQS323_ATI_SETUP_LSB 0x0C  /* ATI Resolution Factor + ATI Band=1 + ATI Mode=Full(100) */
 #define TDC_DRV_IQS323_ATI_SETUP_MSB 0x04
 #define TDC_DRV_IQS323_ATI_MULT_LSB  0x82  /* Fine/Coarse Fractional Multiplier/Divider */
 #define TDC_DRV_IQS323_ATI_MULT_MSB  0x5A
 #define TDC_DRV_IQS323_ATI_COMP_LSB  0x00  /* Compensation Divider + Compensation */
 #define TDC_DRV_IQS323_ATI_COMP_MSB  0x58
-#else // Sound1 Develop Board
-#define TDC_DRV_IQS323_ATI_SETUP_LSB 0x0C  /* ATI Resolution Factor + ATI Band=1 + ATI Mode=Full(100) */
+#elif (TDC_BOARD_VARIANT == TDC_BOARD_VARIANT_DEVELOP)
+#define TDC_DRV_IQS323_ATI_SETUP_LSB 0x0C
 #define TDC_DRV_IQS323_ATI_SETUP_MSB 0x04
-#define TDC_DRV_IQS323_ATI_MULT_LSB  0x82  /* Fine/Coarse Fractional Multiplier/Divider */
+#define TDC_DRV_IQS323_ATI_MULT_LSB  0x82
 #define TDC_DRV_IQS323_ATI_MULT_MSB  0x62
-#define TDC_DRV_IQS323_ATI_COMP_LSB  0xFF  /* Compensation Divider + Compensation */
+#define TDC_DRV_IQS323_ATI_COMP_LSB  0xFF
 #define TDC_DRV_IQS323_ATI_COMP_MSB  0x53
+#else
+#error "TDC_BOARD_VARIANT 미지원 값. TDC_BOARD_VARIANT_MINI 또는 TDC_BOARD_VARIANT_DEVELOP 만 허용."
 #endif
 
 static bool write_ati_compensation(void)
