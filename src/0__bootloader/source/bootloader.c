@@ -1401,7 +1401,7 @@ int bootloader_load_app_file(const char *file_name)
  * NVMInit → boot_info read → boot speed 분기 → bootloader_load_manu_table →
  * tdc_uart_init 재 초기화 → f_mount → f_chdrive → f_opendir/closedir → NVMSync.
  *
- * 책임 외: LED 가드, app_name 결정, OTA 슬롯 선택(snd_boot_*/tdc_boot_print_boot_file),
+ * 책임 외: LED 가드, app_name 결정, OTA 슬롯 선택(snd_boot_* / tdc_boot_print_boot_file),
  * bootloader_load_app_file. 이들은 호출자에게 남김.
  *
  * @param[out] out_boot_info NULL 이 아니면 NVM 에서 읽은 boot info 복사. service 는 NULL 전달.
