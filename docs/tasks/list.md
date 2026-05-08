@@ -9,7 +9,9 @@ Sound1 프로젝트(`E:\Claude\projects\Sound1`) 작업 레지스트리.
 
 ## 활성
 
-(없음)
+| 작업명 | 모듈 | 태그 | 폴더 | 상태 | 시작·완료 | 연계 | 요약 |
+|---|---|---|---|---|---|---|---|
+| OTA DFU FW 이미지 변종별 LED 색상 정리 | LED | ota-dfu, fw-variant, build-config, cleanup | [LED/ota-dfu-fw-variant](LED/ota-dfu-fw-variant/) | 진행 | 2026-05-08 ~ | - | OTA DFU 테스트 시 App 이미지 / Factory Reset 이미지 식별용 LED 색 변경을 코멘트-스왑 (en__LED_PURPLE/*en__LED_WHITE*/) 형태에서 빌드 매크로 `TDC_FW_VARIANT` (APP / FACTORY_RESET) 분기로 정리. 디폴트 = App. LED_ST_IN_USE: APP=WHITE / FACT=PURPLE, LED_ST_POWER_ON: APP=SKYBLUE / FACT=WHITE. 단일 commit, LedOutput.c 외 무영향. 사용자 빌드 검증 대기. |
 
 ## 완료
 
@@ -85,3 +87,4 @@ Sound1 프로젝트(`E:\Claude\projects\Sound1`) 작업 레지스트리.
 | 2026-05-07 | `bootloader/service-rtt-debug-console` 산출물 Rev.4 갱신 — 사용자 피드백 4차 반영. service 는 OTA 슬롯 처리 자체 불필요라 `snd_boot_set_fp`/`snd_boot_handle_file`/`tdc_boot_print_boot_file` 호출 안 함 (Rev.3에서 service 도 호출하던 디자인 폐기). `tdc_boot_get_ohdl()` getter 는 service 의 `_print_fw_file` 이 부트로더 정적 변수 `ohdl` 을 그대로 재사용용으로만 사용 — 별도 `s_tdc_service_fp` 변수 폐기 (사이즈 절약). 부트로더는 같은 파일 내 정적 변수라 `snd_boot_set_fp(&ohdl)` 직접 사용 (getter 불필요). 사용자 재검토 대기. |
 | 2026-05-08 | `meta/claude-md-slim` 등재·완료 (claude_develop 머지 `4fc3700`). Sound1 CLAUDE.md 슬림화 + 루트 절대 우선 강제 강화 — 외부 의존 3섹션 제거, > [!IMPORTANT] Alert로 충돌 정책 명시, 중복 섹션 제거, frontmatter 추가, 절대 경로 통일. 99줄/9섹션 → 60줄/6섹션. 루트의 4단계 프로세스 첫 Sound1 적용 사례. `_archive/meta/claude-md-slim/`로 이동, `이력.md` 작성. |
 | 2026-05-08 | `bootloader/service-rtt-debug-console` 활성 → **완료**. Step 1~3 구현 commit (`bf1d269` storage init 헬퍼 추출, `4984f49` UART 디버그 폐기, `89c6969` service RTT 콘솔). 압축 후 진행 = Step 4 fix commit (`9d8b42f` doxygen `*/` 빌드 에러 + ci_boot.h transitive 의존 분리, 회고 [`코딩.md`](../../../../docs/회고/코딩.md) "doxygen 주석 안 */ 시퀀스 금지" 추가) + Step 5 commit (`0f3b174` 출력 형식 sound1-fw-extractor 명세 준수 + RTT BLOCK 모드, 명령 5→2 통합). 사용자 검증 — BLOCK 모드 동작 OK + extractor 4 파일 추출 정상 (`MANIFEST.TXT` 45 B + `APP000~002.FEZ` 178336/9476/1280 B + 경고 0) + 모두 OK. 이력.md 작성. 머지 (`claude_feature_service-rtt-debug-console` → `claude_develop`) 진행. |
+| 2026-05-08 | `LED/ota-dfu-fw-variant` 활성 등재. OTA DFU 테스트용 LedOutput.c 코멘트-스왑 정리 — `LED_ST_IN_USE` (App=WHITE / FactRst=PURPLE), `LED_ST_POWER_ON` (App=SKYBLUE / FactRst=WHITE) 빌드 매크로 `TDC_FW_VARIANT` 분기로 통합. 디폴트 App. 4 단계 산출물 작성 + 단일 코드 commit. 사용자 빌드 검증 대기. 부수 발견: `ci_ble_control_boot.c` 의 QCC SHUTDOWN 시퀀스 변경은 별도 작업으로 분리 (working tree 그대로 유지). |
