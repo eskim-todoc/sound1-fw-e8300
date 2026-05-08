@@ -9,9 +9,7 @@ Sound1 프로젝트(`E:\Claude\projects\Sound1`) 작업 레지스트리.
 
 ## 활성
 
-| 작업명 | 모듈 | 태그 | 폴더 | 상태 | 시작일 | 연계 | 요약 |
-|---|---|---|---|---|---|---|---|
-| service 모드 RTT 디버그 콘솔 | bootloader | rtt, debug-console, service, refactor | [bootloader/service-rtt-debug-console](bootloader/service-rtt-debug-console/) | 진행 | 2026-05-07 | - | service_main에 RTT 입력 펌웨어 hex 덤프 콘솔(`manifest`/`app0~2`/`reboot`) 신설 + 부트로더 UART 디버그 모드 폐기 + storage init 헬퍼(`tdc_boot_storage_init`) + ohdl getter(`tdc_boot_get_ohdl`) 추출. `snd_boot_*`/`tdc_boot_print_boot_file` 은 부트로더만 호출 (OTA DFU 영역, service 미해당). service 의 `_print_fw_file` 은 ohdl getter 로 부트로더 fp 재사용. `reboot`는 500 ms RTT flush delay 후 `SYS_WATCHDOG_RESET()` 으로 재부팅. 산출물 Rev.4 (사용자 피드백 4차 반영), 재검토 대기. |
+(없음)
 
 ## 완료
 
@@ -28,6 +26,7 @@ Sound1 프로젝트(`E:\Claude\projects\Sound1`) 작업 레지스트리.
 | 내부 링크 경로 정정 | meta | docs, links, tech-debt | [meta/internal-links-fix](meta/internal-links-fix/) | 완료 | 2026-05-07 ~ 2026-05-07 | ← [meta/docs-restructure](meta/docs-restructure/) | docs-restructure 후 깨진 markdown 링크 25 건 정정. 검증 grep 0 건. src 코드 (`../src/...`) 상대경로 깊이 오류는 별도 후속 작업 (본 작업 범위 외). |
 | docs 폴더별 README 추가 | meta | docs, readme, lazy-loading | [meta/folder-readmes](meta/folder-readmes/) | 완료 | 2026-05-07 ~ 2026-05-07 | ← 루트 [meta/docs-consistency-audit](../../../../docs/tasks/_archive/meta/docs-consistency-audit/) (후속 분기 1번) | `docs/지침/`·`사용방법/`·`참고/`·`tasks/` 4개에 README.md 인덱스 신규 추가 (루트 `문서 작성 규칙 §9.3` 충족). 인덱스 자료는 Explore 서브에이전트로 일괄 추출. `참고/LED/` 서브폴더 README는 후속 검토. |
 | 영속 문서 frontmatter+TL;DR 일괄 소급 | meta | docs, frontmatter, retrofit, lazy-loading | [meta/frontmatter-retrofit](meta/frontmatter-retrofit/) | 완료 | 2026-05-07 ~ 2026-05-07 | ← [meta/folder-readmes](meta/folder-readmes/) (점검 빈틈 후속) | 사용자 명시 요청으로 일괄 소급. `docs/{지침·사용방법·참고}/` 영속 9 파일에 frontmatter 5필드 + `**TL;DR**:` 한 줄 in-place 추가. general-purpose 서브에이전트 1회 위임 + spot check 2 파일. 본문 무변경. |
+| service 모드 RTT 디버그 콘솔 | bootloader | rtt, debug-console, service, refactor, sound1-fw-extractor | [bootloader/service-rtt-debug-console](bootloader/service-rtt-debug-console/) | 완료 | 2026-05-07 ~ 2026-05-08 | ↔ [`sound1-fw-extractor`](../../../sound1-fw-extractor) (외부 도구 명세 협업) | 부트로더 UART 디버그 모드 4 함수 폐기 + storage init 시퀀스를 `tdc_boot_storage_init()` 헬퍼로 추출 (`tdc_boot_get_ohdl()` getter 포함) + service 모드에 RTT 디버그 콘솔 신설. 출력 형식은 외부 Python 도구 [`sound1-fw-extractor`](../../../../sound1-fw-extractor) 명세 준수 — `dump` 단일 명령으로 4 파일 (`MANIFEST.TXT` + `APP000~002.FEZ`) 일괄 hex 덤프 → fw.txt 캡처 → 자동 추출. RTT up 채널은 service 모드 한정 BLOCK_IF_FIFO_FULL 전환 (drop 0 보장). `reboot` = 500 ms RTT flush + `SYS_WATCHDOG_RESET()`. 사용자 extractor 추출 통과 (45 + 178336 + 9476 + 1280 B + 경고 0). |
 
 ---
 
@@ -83,3 +82,4 @@ Sound1 프로젝트(`E:\Claude\projects\Sound1`) 작업 레지스트리.
 | 2026-05-07 | `bootloader/service-rtt-debug-console` 산출물 Rev.2 갱신 — 사용자 피드백 2차 반영. ① `reboot` 처리 = `SYS_WATCHDOG_RESET()` 직접 호출 + 500 ms 사전 delay (RTT 출력 버퍼 flush 보장 — 출력 중이던 hex 덤프 메시지 손실 방지). ② line_terminator `\n` 확정 → 위험_2 해소. CM3 코드 4곳에서 `SYS_WATCHDOG_RESET()` 사용 사례 확인 (강제 리셋 패턴), 부트로더 빌드 가용성은 Step 3에서 검증. 사용자 재검토 대기. |
 | 2026-05-07 | `bootloader/service-rtt-debug-console` 산출물 Rev.3 갱신 — 사용자 피드백 3차 반영. 헬퍼 함수 책임 축소: `snd_boot_set_fp` / `snd_boot_handle_file` / `tdc_boot_print_boot_file` 은 OTA DFU 이미지 슬롯 선택 영역이라 `tdc_boot_storage_init()` 외부에서 호출 (`bootloader_boot()` 은 `bootloader_load_app_file()` 직전, `service.c` 는 storage init 직후). ohdl 접근은 신규 `tdc_boot_get_ohdl()` getter 경유. 헬퍼 내부 변수(`buf[128]`/`options`/`boot_info` cast) 모두 로컬, `out_boot_info` 만 외부 인터페이스. `ci_boot.h` 헤더 의존 정리 (`bootloader_internal.h`/`ff.h` 추가 검토). 사용자 재검토 대기. |
 | 2026-05-07 | `bootloader/service-rtt-debug-console` 산출물 Rev.4 갱신 — 사용자 피드백 4차 반영. service 는 OTA 슬롯 처리 자체 불필요라 `snd_boot_set_fp`/`snd_boot_handle_file`/`tdc_boot_print_boot_file` 호출 안 함 (Rev.3에서 service 도 호출하던 디자인 폐기). `tdc_boot_get_ohdl()` getter 는 service 의 `_print_fw_file` 이 부트로더 정적 변수 `ohdl` 을 그대로 재사용용으로만 사용 — 별도 `s_tdc_service_fp` 변수 폐기 (사이즈 절약). 부트로더는 같은 파일 내 정적 변수라 `snd_boot_set_fp(&ohdl)` 직접 사용 (getter 불필요). 사용자 재검토 대기. |
+| 2026-05-08 | `bootloader/service-rtt-debug-console` 활성 → **완료**. Step 1~3 구현 commit (`bf1d269` storage init 헬퍼 추출, `4984f49` UART 디버그 폐기, `89c6969` service RTT 콘솔). 압축 후 진행 = Step 4 fix commit (`9d8b42f` doxygen `*/` 빌드 에러 + ci_boot.h transitive 의존 분리, 회고 [`코딩.md`](../../../../docs/회고/코딩.md) "doxygen 주석 안 */ 시퀀스 금지" 추가) + Step 5 commit (`0f3b174` 출력 형식 sound1-fw-extractor 명세 준수 + RTT BLOCK 모드, 명령 5→2 통합). 사용자 검증 — BLOCK 모드 동작 OK + extractor 4 파일 추출 정상 (`MANIFEST.TXT` 45 B + `APP000~002.FEZ` 178336/9476/1280 B + 경고 0) + 모두 OK. 이력.md 작성. 머지 (`claude_feature_service-rtt-debug-console` → `claude_develop`) 진행. |
