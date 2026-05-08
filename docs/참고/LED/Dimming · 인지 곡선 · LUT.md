@@ -1,4 +1,14 @@
+---
+name: LED 시스템 기술 문서 — Dimming · 인지 곡선 · LUT
+purpose: LED 밝기 변조 엔진(인지 곡선·LUT·fade)
+type: 참고
+applies_to: [Sound1]
+tags: [led, dimming, lut, perception]
+---
+
 # LED 시스템 기술 문서 — Dimming · 인지 곡선 · LUT
+
+**TL;DR**: 시간을 perceived 선형으로 두고 CIE 1931 L\* 역함수 LUT(256 entry)로 PWM duty를 비선형 출력하는 LED dimming 엔진의 이론·구현·fade 자동 조정·cross-fade Phase A/B FSM까지 다루는 내부 설계 문서.
 
 작성자: 김은수
 최종 갱신: 2026-04-23

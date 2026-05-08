@@ -1,4 +1,14 @@
+---
+name: Ezairo 8300 클럭·타이머·I2C 스펙 정리
+purpose: E8300 클럭 분배·타이머·I2C 스펙 요약
+type: 참고
+applies_to: [Sound1]
+tags: [chip, ezairo, e8300, clock, timer, i2c]
+---
+
 # Ezairo 8300 클럭·타이머·I2C 스펙 정리
+
+**TL;DR**: E8300/RSL15 SoC의 SYSCLK 분배 트리·일반 목적 타이머·I2C 마스터 스펙을 HW/FW Reference PDF에서 발췌해 페이지 인용과 함께 정리한 카탈로그. 저전력 전환·타이머 재계산·I2C 속도 조정 시 PDF 재열람 없이 결정 가능하도록 구성.
 
 ## 개요
 

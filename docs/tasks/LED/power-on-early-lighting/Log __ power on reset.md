@@ -1,3 +1,15 @@
+---
+name: 로그 — power on reset (1회차)
+purpose: 전원 인가 후 부팅 시퀀스 RTT 캡처 (J-Link 재연결+POWER-ON START 포함)
+type: tasks/이력
+applies_to: [Sound1]
+tags: [LED, log, rtt, power-on-reset, verification]
+---
+
+# Log — power on reset (1회차)
+
+**TL;DR**: 전원 인가에 따른 J-Link 재연결 및 부팅 RTT 1회차 캡처. SOUND1 v2.01·DEV 0.1·CFX STARTED·POWER NORMAL 30.72 MHz·INIT 후 LED-GATE-ENTER(TIMER3 ON) 마일스톤 시점 확인용. P3-Early·`g_tdc_timer_t3_tick` 적용 후 LED 동작 검증 근거.
+
 [AUTO-RTT] 19:48:05.231 WARN  타겟 응답 없음 (JLinkReadException: Unspecified error.) — 연결 끊김 판정
 [AUTO-RTT] 19:48:05.270 WARN  연결 끊김. 재연결 시도 중.
 [AUTO-RTT] 19:48:05.292 INFO  J-Link 선택: SN=602011400 (세션 기억)

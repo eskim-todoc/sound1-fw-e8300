@@ -185,6 +185,40 @@ static uint8_t perceived_to_pwm(uint8_t perceived)
 }
 
 /* ========================================================================
+ *  OTA DFU 테스트용 FW 이미지 변종 — LED 색상 분기
+ * ========================================================================
+ *  하나의 펌웨어 소스가 운용용 App 이미지와 Factory Reset 이미지 두 변종으로
+ *  빌드되어 OTA DFU 테스트 시 어느 이미지가 동작 중인지 LED 색으로 즉시
+ *  식별 가능하도록 한다.
+ *
+ *  변종         | LED_ST_IN_USE | LED_ST_POWER_ON
+ *  -------------|---------------|------------------
+ *  APP (운용)   | WHITE         | SKYBLUE
+ *  FACT_RESET   | PURPLE        | WHITE
+ *
+ *  사용:
+ *   - 운용/정식 빌드: 매크로 미정의 → 자동 디폴트 APP. 별도 작업 불필요.
+ *   - Factory Reset 테스트 빌드: 본 파일 디폴트를 FACTORY_RESET 으로 변경
+ *                                또는 빌드 옵션 -DTDC_FW_VARIANT=TDC_FW_VARIANT_FACTORY_RESET.
+ * ======================================================================== */
+#define TDC_FW_VARIANT_APP             0
+#define TDC_FW_VARIANT_FACTORY_RESET   1
+
+#ifndef TDC_FW_VARIANT
+#define TDC_FW_VARIANT  TDC_FW_VARIANT_APP   /* 디폴트: 운용 (APP) */
+#endif
+
+#if (TDC_FW_VARIANT == TDC_FW_VARIANT_FACTORY_RESET)
+    #define TDC_FW_LED_IN_USE_COLOR    en__LED_PURPLE
+    #define TDC_FW_LED_POWER_ON_COLOR  en__LED_WHITE
+#elif (TDC_FW_VARIANT == TDC_FW_VARIANT_APP)
+    #define TDC_FW_LED_IN_USE_COLOR    en__LED_WHITE
+    #define TDC_FW_LED_POWER_ON_COLOR  en__LED_SKYBLUE
+#else
+    #error "TDC_FW_VARIANT 미지원 값. TDC_FW_VARIANT_APP 또는 TDC_FW_VARIANT_FACTORY_RESET 만 허용."
+#endif
+
+/* ========================================================================
  *  Pattern Descriptor Table (Rev.3 SS3.4)
  * ======================================================================== */
 
@@ -198,7 +232,7 @@ static const led_pattern_desc_t k_led_patterns[LED_ST__MAX] = {
     [LED_ST_IDLE]           = { en__LED_BLACK,   0,    0,    0 },  // 지속 OFF
 
     [LED_ST_BATT_READY]     = { en__LED_GREEN,   0,    0,    0 },  // 녹색 지속 ON
-    [LED_ST_IN_USE]         = { en__LED_WHITE,   0,    0,    0 },  // 흰색 지속 ON
+    [LED_ST_IN_USE]         = { TDC_FW_LED_IN_USE_COLOR, 0,    0,    0 },  // 지속 ON (App=WHITE / FactRst=PURPLE)
     [LED_ST_BATT_MID]       = { en__LED_ORANGE,  0,    0,    0 },  // 노랑 지속 ON
     [LED_ST_BATT_CRITICAL]  = { en__LED_ORANGE,  1100, 2200, 0 },  // 노랑  ON 1100ms / OFF 1100ms
 
@@ -218,7 +252,7 @@ static const led_pattern_desc_t k_led_patterns[LED_ST__MAX] = {
     [LED_ST_ERROR_PMIC]     = { en__LED_RED,    180,  360,  0 },   // 빨강  ON 180ms  / OFF 180ms
 
     /* 게이트 — ON 180ms · OFF 180ms, fade 30 · peak 120 · fade 30 (LED_DIMMING_FADE_MAX_MS) */
-    [LED_ST_POWER_ON]       = { en__LED_SKYBLUE, 180, 360,  4 },   // SKYBLUE ON 180ms / OFF 180ms × 4회 버스트
+    [LED_ST_POWER_ON]       = { TDC_FW_LED_POWER_ON_COLOR, 180, 360,  4 },   // ON 180ms / OFF 180ms × 4회 버스트 (App=SKYBLUE / FactRst=WHITE)
     [LED_ST_POWER_OFF]      = { en__LED_BLUE,    180, 360,  4 },   // BLUE    ON 180ms / OFF 180ms × 4회 버스트
 };
 
