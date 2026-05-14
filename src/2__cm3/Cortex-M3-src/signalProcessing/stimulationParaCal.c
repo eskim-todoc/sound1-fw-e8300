@@ -584,6 +584,24 @@ bool calculationStimulParaN_cfxShare(void)
     frameNumPerOneChannel  = calculationNumFramePerOneChannle(p_mapdata->stimulationPulsePhaseWidth);
     transferableChannelNum = calculationTransferableChanneNum(frameNumPerOneChannel, p_mapdata->numFrequencyBand);
 
+    /* IMPORTANT : NofM 사용 시 프레임 수 고정. NofM 가능 여부를 판별하는 기능이 필요함 */
+#if 1
+    if (p_mapdata->stimulationStrategy == df_stimulationStrategy_nOFm)
+    {
+        if (p_mapdata->numFrequencyBand < 16)
+        {
+            ci_printe("[PARAM] [NofM] NOT AVAILABLE! 'BAND NUM < 16' !! \r\n");
+        }
+        else
+        {
+            frameNumPerOneChannel  = 3;  // 채널 당 3 프레임
+            transferableChannelNum = 8;  // 1 밀리초에 최대 8 채널 자극
+            ci_printw("[PARAM] [NofM] FRAME NUM PER 1 CH  : 3 \r\n");
+            ci_printw("[PARAM] [NofM] TRANSFERABLE CH NUM : 8 \r\n");
+        }
+    }
+#endif
+
     configurationDone = setting_stimulationRange(p_mapdata->stimulationPulsePhaseWidth, p_mapdata->T_level_uA, p_mapdata->C_level_uA, p_mapdata->numFrequencyBand, T_level_255, C_level_255);
 
     // CFX와 공유
