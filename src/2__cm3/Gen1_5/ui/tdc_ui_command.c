@@ -13,6 +13,8 @@
 #include "error.h"
 #include "ci_event_log.h"
 #include "ci_map.h"
+#include "isd_interface.h"
+#include "processorDirective.h"
 
 #include <ci_printf.h>
 
@@ -56,6 +58,9 @@ static bool    s_tdc_override_map_value;
 static bool    s_tdc_override_battery_active;
 static uint8_t s_tdc_override_battery_percent;
 
+/* main.c 가 매 cycle 갱신 — 실 매핑 앱 연결 상태 (--prog 가드용) */
+static bool    s_tdc_actual_mapping_connected;
+
 /* --led req/clr 로 설정한 per-source LED override */
 static bool    s_tdc_led_override[LED_SRC__MAX];
 
@@ -71,6 +76,11 @@ bool tdc_ui_command_override_map_value(void)         { return s_tdc_override_map
 
 bool tdc_ui_command_override_battery_active(void)    { return s_tdc_override_battery_active; }
 uint8_t tdc_ui_command_override_battery_percent(void){ return s_tdc_override_battery_percent; }
+
+void tdc_ui_command_set_mapping_connected(bool connected)
+{
+    s_tdc_actual_mapping_connected = connected;
+}
 
 bool tdc_ui_command_is_led_override(int source)
 {
@@ -588,6 +598,55 @@ static int handle_volume(int argc, char *argv[])
 }
 
 /* ======================================================================== */
+/*  --prog handler                                                          */
+/* ======================================================================== */
+/* 프로그램(맵) 번호 1~MaxNumMap 전환. 가드: ISD 연결 + 자극 10V 정상 + 매핑 앱 미연결
+ * (= LiveStimulationStandAlone 운용 상태). 가드 미충족 시 사유 출력 + 미호출. */
+
+static int handle_program(int argc, char *argv[])
+{
+    if (argc < 2) return -1;
+
+    int n = 0;
+    const char *p = argv[1];
+    while (*p >= '0' && *p <= '9')
+    {
+        n = n * 10 + (*p - '0');
+        p++;
+    }
+
+    if (*p != '\0' || n < 1 || n > MaxNumMap)
+    {
+        output_printf("invalid: 1~%d\r\n", MaxNumMap);
+        return -1;
+    }
+
+    ST__ISD_STATUS isd = snd_isd_interface_get_state();
+
+    if (!isd.conneded_ISD)
+    {
+        output_printf("denied: ISD not connected\r\n");
+        return 0;
+    }
+
+    if (isd.isd_controlState != en__isdStatus_stimul_10V_Ok)
+    {
+        output_printf("denied: ISD not in stimulation 10V state\r\n");
+        return 0;
+    }
+
+    if (s_tdc_actual_mapping_connected)
+    {
+        output_printf("denied: mapping app connected\r\n");
+        return 0;
+    }
+
+    changeProgramMapNum(n);
+    output_printf("OK: program = %d\r\n", n);
+    return 0;
+}
+
+/* ======================================================================== */
 /*  --init_all_map handler                                                  */
 /* ======================================================================== */
 
@@ -645,6 +704,7 @@ static const command_entry_t s_tdc_commands[] = {
     {"map",                handle_map,                    "--map on|off"},
     {"err",                handle_error,                  "--err clr|data_logging|fpga|acc|pmic|mcu|map"},
     {"vol",                handle_volume,                 "--vol <1~10>"},
+    {"prog",               handle_program,                "--prog <1~4>"},
     {"init_all_map",       handle_init_all_map,           "--init_all_map"},
     {"dump_log",           handle_dump_log,               "--dump_log"},
     {"write_integrity_err",handle_write_integrity_error,  "--write_integrity_err"},

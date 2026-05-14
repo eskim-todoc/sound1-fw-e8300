@@ -558,6 +558,7 @@ int func_normal(void)
             NRF_On_OFF(isd_state, systemState.BLE_Off, BLE_communicationState.mappingConnection, BLE_communicationState.BLE_Off_Command);
 
 #ifdef ENABLE_UI_CMD
+            tdc_ui_command_set_mapping_connected(BLE_communicationState.mappingConnection);
             tdc_ui_command_poll();
 #else
             do
