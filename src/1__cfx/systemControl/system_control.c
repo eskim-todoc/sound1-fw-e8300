@@ -71,10 +71,10 @@ void Normal_PowerMode_event_mapChange(void)
             copy_MappingData_without_mappingDate(); /* Mapping app live mode */
         }
 
-        if (addr_MapProgramData_stimulationStrategy == df_stimulationStrategy_nOFm)
+        /* NOTE: 프로그램 변경 시 NofM 전략이라면 NofM Phase가 0부터 수행될 수 있게 초기화. */
+        if (addr_MapProgramData_stimulationStrategy == df_stimulationStrategy_NofM)
         {
-            g_nOFm_LastStimulus_BandIndex = 0;
-            g_nOFm_Phase                  = 0;
+            g_NofM_Phase = 0;
         }
 
         prepare_pcmStimulationPacketHeader(); /* Stimulation pulse phase setting */
@@ -100,7 +100,7 @@ void Normal_PowerMode_event_audioParameterCalculation(void)
         for (register int i = 0; i < HALF_FFT_SIZE; i++)
             chess_loop_range(HALF_FFT_SIZE, HALF_FFT_SIZE)
             {
-                ((int _XMEM*) HEAR_ADDR_VMAG_OUTPUT)[i] = 0;
+                ((int _XMEM *) HEAR_ADDR_VMAG_OUTPUT)[i] = 0;
             }
 
         /* Set the 'addr_prev_stimulationVolume' to '-1'.
@@ -133,8 +133,7 @@ void Normal_PowerMode_event_stimulationVolumeChange(void)
 
 void Normal_PowerMode_event_both_stimulation_audio_volumeChange(void)
 {
-    if ((Addr_SharedMem->userSettingValue.stimulVolume != m_previous_stimulation_volume)
-        || (Addr_SharedMem->userSettingValue.audioVolume != m_previous_audio_volume))
+    if ((Addr_SharedMem->userSettingValue.stimulVolume != m_previous_stimulation_volume) || (Addr_SharedMem->userSettingValue.audioVolume != m_previous_audio_volume))
     {
         if ((0 < Addr_SharedMem->userSettingValue.stimulVolume) && (0 < Addr_SharedMem->userSettingValue.audioVolume))
         {
@@ -233,7 +232,7 @@ void Normal_PowerMode_isdDisonnected(void)
 
 void copy_MappingData(void)
 {
-    int _IOMEM* pMappingDate = (int _IOMEM*) &Addr_SharedMem->currentMapData.mappingDate;
+    int _IOMEM *pMappingDate = (int _IOMEM *) &Addr_SharedMem->currentMapData.mappingDate;
 
     /* copy MappingDate */
 
