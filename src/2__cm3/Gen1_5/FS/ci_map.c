@@ -397,7 +397,7 @@ int ci_map_init_map_data(int isd_num, bool force_init)
         p_info->remocon_passkey[2] = '1';  // remocon passkey 3
         p_info->remocon_passkey[3] = '1';  // remocon passkey 4
 
-        //ci_printd("[MAP] BEFORE WRITE ISD INFO \r\n");
+        // ci_printd("[MAP] BEFORE WRITE ISD INFO \r\n");
         ci_map_write_isd_info(isd_num);
         ci_printd("[MAP] ISD '%d' HAS BEEN INIT \r\n", isd_num);
     }
@@ -453,6 +453,14 @@ int ci_map_init_map_data(int isd_num, bool force_init)
 
             // stimulation strategy (1 word)
             p_map_data[i]->stimulationStrategy = 1;  // 1: CIS, 2: nOFm
+
+            /* NOTE: NofM 테스트를 위한 코드. 테스트 후 삭제할 것. */
+#if 1
+            if (i == CI_MAP_NUM_3_INDEX)
+            {
+                p_map_data[i]->stimulationStrategy = 2;  // 1: CIS, 2: nOFm
+            }
+#endif
 
             // first pulse phase (1 word)
             if (isd_num == 1)
