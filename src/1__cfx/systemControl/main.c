@@ -428,9 +428,11 @@ void HEAR_LiveStimulation_Mode(void)
             }
         } while ((volatile int) 1);
 
+        /* pcmDataOut() -> PcmBitStream_Mode_LiveStimulation: 세부 설정으로 이동 */
+#if 0
         find_freq_rep_value(); // 113usec @ 2025.01.10
-
         logarithmMapping(); // 76 usec 소요 @ 2025.01.20
+#endif
 
         pcmDataOut(); // PCM
     }

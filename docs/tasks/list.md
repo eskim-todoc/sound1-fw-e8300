@@ -3,13 +3,27 @@
 Sound1 프로젝트(`E:\Claude\projects\Sound1`) 작업 레지스트리.
 
 - 신규 작업 시 먼저 이 목록을 조회해 관련 작업 여부 확인 → 기존 폴더에서 이어갈지 신규 분리할지 사용자 확인
+- **우선 진행 약속이 등재되어 있을 때, 사용자가 새 작업을 지시하면 응답 첫머리에서 "이것부터 하기로 했습니다."라고 안내한 뒤 사용자 의사를 먼저 확인한다.**
 - 컨벤션 상세: 루트 [`지침/일반/문서 작성 규칙.md`](../../../../docs/지침/일반/문서%20작성%20규칙.md) (섹션 3·4·5)
 
 ---
 
+## 우선 진행 약속 (사용자 복귀 후 첫 작업)
+
+> [!IMPORTANT]
+> 사용자(다) 연차 종료 후 복귀 시점(**2026-05-14, 목**) 부터 다음 작업을 **다른 어떤 작업보다 먼저** 진행하기로 약속됨. 본 약속은 2026-05-08(금) 사용자 명시 지시로 등재됨. 약속 잔존 시 사용자가 새 작업 지시를 하면 응답 첫 줄에서 본 약속을 먼저 안내하고 사용자 의사를 확인한다.
+
+| # | 작업명 | 모듈 | 폴더 | 상태 | 약속일 | 진입 | 비고 |
+|---|---|---|---|---|---|---|---|
+| (없음) | — | — | — | — | — | — | 우선 약속 모두 이행 완료 (#1 NofM, #2 Sullivan 둘 다 2026-05-14 종결) |
+
+(우선 약속 #1 [`signalProcessing/nofm-merge`](signalProcessing/nofm-merge/), #2 [`sync/sullivan1.5-rel2`](sync/sullivan1.5-rel2/) 둘 다 2026-05-14 진입·종결 — §완료 참조)
+
 ## 활성
 
-(없음)
+| 작업명 | 모듈 | 태그 | 폴더 | 상태 | 시작 | 연계 | 비고 |
+|---|---|---|---|---|---|---|---|
+| QCC OTA 후 셧다운 진입 딜레이 | ble | qcc, shutdown, delay, ota | [ble/qcc-shutdown-delay](ble/qcc-shutdown-delay/) | 대기 | 2026-05-14 | ← [signalProcessing/nofm-merge](signalProcessing/nofm-merge/) (부수 발견·분리 권고) | placeholder. `ci_ble_control_boot.c` +15/-15. `snd_qcc_set_mode(SND_QCC_MODE_SHUTDOWN)` 신규 + 딜레이 100×10ms → 2200×1ms (2.2 초). 사용자(다) 설명 후 분석 진입. |
 
 ## 완료
 
@@ -30,6 +44,9 @@ Sound1 프로젝트(`E:\Claude\projects\Sound1`) 작업 레지스트리.
 | service 모드 RTT 디버그 콘솔 | bootloader | rtt, debug-console, service, refactor, sound1-fw-extractor | [bootloader/service-rtt-debug-console](bootloader/service-rtt-debug-console/) | 완료 | 2026-05-07 ~ 2026-05-08 | ↔ [`sound1-fw-extractor`](../../../sound1-fw-extractor) (외부 도구 명세 협업) | 부트로더 UART 디버그 모드 4 함수 폐기 + storage init 시퀀스를 `tdc_boot_storage_init()` 헬퍼로 추출 (`tdc_boot_get_ohdl()` getter 포함) + service 모드에 RTT 디버그 콘솔 신설. 출력 형식은 외부 Python 도구 [`sound1-fw-extractor`](../../../../sound1-fw-extractor) 명세 준수 — `dump` 단일 명령으로 4 파일 (`MANIFEST.TXT` + `APP000~002.FEZ`) 일괄 hex 덤프 → fw.txt 캡처 → 자동 추출. RTT up 채널은 service 모드 한정 BLOCK_IF_FIFO_FULL 전환 (drop 0 보장). `reboot` = 500 ms RTT flush + `SYS_WATCHDOG_RESET()`. 사용자 extractor 추출 통과 (45 + 178336 + 9476 + 1280 B + 경고 0). |
 | OTA DFU FW 이미지 변종별 LED 색상 정리 | LED | ota-dfu, fw-variant, build-config, cleanup | [LED/ota-dfu-fw-variant](LED/ota-dfu-fw-variant/) | 완료 | 2026-05-08 ~ 2026-05-08 | ↔ [touch/board-variant-iqs323-ati](touch/board-variant-iqs323-ati/) (동일 패턴 짝 작업, 같은 브랜치·사이클) | LedOutput.c 디스크립터 표 안의 `en__LED_PURPLE/*en__LED_WHITE*/` 코멘트-스왑 형태를 빌드 매크로 `TDC_FW_VARIANT` (APP / FACTORY_RESET) 분기로 정리. 디폴트 = APP, `#error` 로 잘못된 값 즉시 빌드 실패. LED_ST_IN_USE: APP=WHITE / FACT=PURPLE, LED_ST_POWER_ON: APP=SKYBLUE / FACT=WHITE. 사용자 빌드 + 실기 검증 통과 ("다 잘 빌드 된다. 동작도 정상이야"). LedOutput.c +38/-2 단일 commit. |
 | IQS323 ATI 보상값 보드 변종 매크로 정리 | touch | iqs323, board-variant, build-config, cleanup | [touch/board-variant-iqs323-ati](touch/board-variant-iqs323-ati/) | 완료 | 2026-05-08 ~ 2026-05-08 | ↔ [LED/ota-dfu-fw-variant](LED/ota-dfu-fw-variant/) (동일 패턴 짝 작업, 같은 브랜치·사이클) | tdc_drv_iqs323.c L502~517 의 `#if 1 // Mini Board` / `#else // Develop Board` 형태를 빌드 매크로 `TDC_BOARD_VARIANT` (MINI / DEVELOP) 분기로 정리. 디폴트 = Mini (현 활성 변종 보존), `#error` 잘못된 값 빌드 실패. ATI 6 매크로 이름·사용처 무변경 → `write_ati_compensation()` 동작 동등. `Board_is_*` 와는 의도적 분리 (핀 매핑 vs 캘리브레이션, 의미 레이어 다름). 사용자 빌드 + 실기 터치 검증 통과. tdc_drv_iqs323.c +45/-7 단일 commit. |
+| Sullivan1.5 rel.2 동기화 | sync | sullivan, baseline, sync, comparison | [sync/sullivan1.5-rel2](sync/sullivan1.5-rel2/) | 완료 (흡수 0건) | 2026-05-14 ~ 2026-05-14 | ↔ 우선 진행 약속 #2 → [signalProcessing/nofm-merge](signalProcessing/nofm-merge/) (Ble 영역 인벤토리 인계) | 베이스 `Sullivan1_5__CM3` ↔ Sound1 `2__cm3` 의 BleCommunication(13)·internalDevice(32)·signalProcessing(4) 합 **49 파일** 의미적 비교. 차이 9 파일(Ble 4 + iDev 5), 동등 40 파일. Sullivan 후속 패치 후보 4 묶음 (A. fatfs 마운트 2회 패치, B. DFU 디버그 로그 7 줄, C. FPGA I²C 실패 진단 로그 4 줄, D. ISD FIFO COUNT 실패 진단 로그 1 줄) + Sound1 잠재 의미 변경 1 건 (E. FPGA_version MAJOR mask `0x07`→`0x0F`) 식별. 사용자 판단 = "이 정도 차이는 의미 없다, 흡수 안 함" → 코드 변경 0 건, 임시 베이스 폴더 삭제, `src/.gitignore` 정리. NofM 작업 재참조용으로 산출물 5 종 영구 보존. |
+| NofM 기능 병합 | signalProcessing | nofm, cfx, analysis, daniel, merge | [signalProcessing/nofm-merge](signalProcessing/nofm-merge/) | 완료 (분석 종결) | 2026-05-14 ~ 2026-05-14 | ← 우선 진행 약속 #1 (`ble/nofm-merge` placeholder → 모듈 재분류 commit `549d30b` → 본 분석 진입), ↔ [sync/sullivan1.5-rel2](sync/sullivan1.5-rel2/) (Ble 인벤토리 재참조 가능) | 다른 팀원(다니엘) 작성 CFX NofM 신호처리 기능을 사용자(다) 본인 직접 working tree 병합 (빌드 OK, 9 파일 unstaged). 본 task = 분석 문서화만 (구현은 본 task 외). 분석.md Rev.0 (8 절, 함수별 walk-through 심화) — NofM 본체 6 신규 함수 (`stimulationStrategy_NofM` 마스터 + `Init_Buffers` + `Peak_Pick` (packed score + bitmask sort) + `Interleaving` (half_ch stride) + `Packet` (loop peeling + 거리 기반 시작점) + `PCM_Write` (NOP pre-fill + Case A/B 1ms 한도)) 라인 단위 분석. 부수 최적화 (`nonlinearMapping.c` loop unswitching + branchless math, `FrequencyAnalysis.c` 포인터 후증가 + branchless max) + 통합 (`system_control.c:75` Phase 초기화 트리거, `main.c:428-435` CIS 호출 dispatch 이동) 분석. CM3 측 2 파일 (`ci_ble_control_boot.c` OTA 후 QCC 절전 딜레이 2200×1ms, `LedOutput.c` 팩토리 리셋 LED color default) 은 NofM 무관 — 사용자 명시 별도 task 분리 권고 (`ble/qcc-shutdown-delay`, `LED/factory-reset-default`). NofM 코드 staging/commit 은 사용자 본인 의도로 별도 진행 (본 task 외 보존). |
+| OTA Factory Reset LED default 전환 | LED | ota, factory-reset, default, fw-variant | (단일 파일, 별도 폴더 없음) | 완료 | 2026-05-14 ~ 2026-05-14 | ← [LED/ota-dfu-fw-variant](LED/ota-dfu-fw-variant/) (default 후속), ← [signalProcessing/nofm-merge](signalProcessing/nofm-merge/) (분리 권고) | `LedOutput.c:208` `TDC_FW_VARIANT` default 를 `APP` → `FACTORY_RESET` 으로 전환. 사용자(다) 명시 "처음 펌웨어 다운로드 받은 상태가 팩토리 리셋 상태라는 것을 표시하기위한 LED 색상 버전이야. 앞으로는 이 설정 상태를 기본으로 할거야". 단일 라인 default 토글 — 별도 task 폴더 없이 단순 commit + list.md 등재. NofM 분석에서 분리된 CM3 측 부수 변경 짝 작업 ([`ble/qcc-shutdown-delay`](ble/qcc-shutdown-delay/) 와 같은 사이클). |
 
 ---
 
@@ -51,8 +68,11 @@ Sound1 프로젝트(`E:\Claude\projects\Sound1`) 작업 레지스트리.
 | `touch` | 터치 센서·레이어·초기화·이벤트 처리 |
 | `power` | 저전력 모드·전원 관리 |
 | `bootloader` | 부트로더·service 모드·storage init·디버그 콘솔 |
+| `ble` | BLE 통신 (`BleCommunication/`) — 페어링·서비스 등 |
+| `signalProcessing` | CFX 신호처리 (`src/1__cfx/signalProcessing/`) — NofM, AGC, FrequencyAnalysis, nonlinearMapping, stimulationStrategy 등 |
+| `sync` | 외부 baseline·release(예: Sullivan1.5 rel.2) 동기화 — 다중 영역에 걸치는 비교·맞추기 작업 분류용 |
 | `meta` | 문서·워크플로우 등 프로젝트 메타 작업 |
-| (추가 예정) | `comms`, `audio`, `calibration` 등 필요 시 |
+| (추가 예정) | `internalDevice`, `audio`, `calibration` 등 필요 시 |
 
 ## 갱신 이력
 
@@ -90,3 +110,11 @@ Sound1 프로젝트(`E:\Claude\projects\Sound1`) 작업 레지스트리.
 | 2026-05-08 | `LED/ota-dfu-fw-variant` 활성 등재. OTA DFU 테스트용 LedOutput.c 코멘트-스왑 정리 — `LED_ST_IN_USE` (App=WHITE / FactRst=PURPLE), `LED_ST_POWER_ON` (App=SKYBLUE / FactRst=WHITE) 빌드 매크로 `TDC_FW_VARIANT` 분기로 통합. 디폴트 App. 4 단계 산출물 작성 + 단일 코드 commit. 사용자 빌드 검증 대기. 부수 발견: `ci_ble_control_boot.c` 의 QCC SHUTDOWN 시퀀스 변경은 별도 작업으로 분리 (working tree 그대로 유지). |
 | 2026-05-08 | `touch/board-variant-iqs323-ati` 활성 등재. LED 작업과 동일 패턴 — `tdc_drv_iqs323.c` L502~517 의 `#if 1 // Mini Board` / `#else // Develop Board` 를 `TDC_BOARD_VARIANT` (MINI / DEVELOP) 매크로 분기로 정리. 디폴트 Mini (현 활성과 동등). ATI 6 매크로 이름·사용처 무변경. `Board_is_*` 와는 의도적 분리. 4 단계 산출물 + 단일 코드 commit, LED 작업과 동일 브랜치 (`claude_feature_ota-dfu-fw-variant-led`) 에서 한 번의 빌드/실기 사이클로 함께 검증 예정. |
 | 2026-05-08 | `LED/ota-dfu-fw-variant` + `touch/board-variant-iqs323-ati` 활성 → **완료** 동시 처리. 사용자 빌드 + 실기 검증 통과 ("다 잘 빌드 된다. 동작도 정상이야"). 두 작업 각각 이력.md 작성 + list.md 활성→완료 이동. 머지 (`claude_feature_ota-dfu-fw-variant-led` → `claude_develop`, --no-ff) 진행 — LED commit `356a1e5` + 보드 commit `103ff17` + 정리 docs commit 함께. ci_ble_control_boot.c (QCC SHUTDOWN 시퀀스) 와 LedOutput.c default 토글(사용자 OTA 테스트 진행분) 은 별도 흐름으로 working tree 보존. |
+| 2026-05-08 | **우선 진행 약속** 신설 — 사용자(다) 연차 종료 후 복귀(2026-05-14, 목) 첫 작업으로 두 건 등재. ① `ble/nofm-merge` (NofM 기능 병합), ② `sync/sullivan1.5-rel2` (Sullivan1.5 rel.2 baseline 비교·맞추기 — `BleCommunication`/`internalDevice`/`signalProcessing` 3 폴더). 두 작업 모두 placeholder 요구사항.md (Rev.0) 만 작성, 자세한 내용은 사용자 복귀 시 설명 예정. 신규 모듈 `ble`·`sync` 정의 추가. **본 list.md 안내 라인에 "우선 진행 약속이 있으면 새 작업 지시 시 그것부터 안내" 조항 신설**. |
+| 2026-05-14 | `sync/sullivan1.5-rel2` 활성 등재 — 사용자(다) 연차 복귀 당일 직접 지시로 진입. 베이스 = `src/Sullivan1_5__CM3/` (임시, `src/.gitignore` 등록). 요구사항 Rev.0 → Rev.1 갱신, `분석 BleCommunication.md` Rev.0 작성 — 13 파일 중 4 파일 차이(`ble_commonProtocol.h`/`ble_communication.c`/`ci_ble_control_boot.c`/`ci_ble_control_ota.c`), 9 파일 의미적 동등. Sullivan 측 후속 패치 후보 2 건 식별: ① `snd_fatfs_remount_twice()` 8 곳 (마운트 2회 패치), ② DFU 디버그 로그 7 줄. Sound1 측 추가는 QCC 0x33~0x35 시스템 정보 패킷·`snd_boot_*` 타입 마이그레이션·QCC SHUTDOWN 시퀀스·RTT 로그 전환. 다음 단계 = `internalDevice/` / `signalProcessing/` (사용자 트리거 대기). |
+| 2026-05-14 | `sync/sullivan1.5-rel2` `분석 internalDevice.md` + `분석 signalProcessing.md` + `요약.md` Rev.0 작성. internalDevice 32 파일 중 5 파일 차이 — Sullivan 후속 패치 후보 = I²C 실패 진단 로그 5 줄 (`isd_interface_init_FPGA.c` 4 + `isd_interface_init_ISD.c` 1). 잠재 의미 변경 1 건 = FPGA_version MAJOR 비트 mask `0x07` → `0x0F`. Sound1 측 정리는 QCC ISD 통보·getter 신설·`s_` prefix·로그 매크로(`ci_link_print*`/`ci_ifc_init_fpga_print*`) 전체 폐기·로그 메시지/레벨 조정. signalProcessing 4 파일 **모두 의미적 동등** (변경 없음). 3 영역 종합 = Sullivan 후속 패치 후보 **총 4 묶음** (A~D) + Sound1 잠재 의미 변경 1 건 (E). 본 task 활성 → "사용자 판단 대기" 상태 전환. |
+| 2026-05-14 | `sync/sullivan1.5-rel2` 활성 → **완료** (흡수 0 건). 사용자(다) 판단 = "내 판단에 딱히 할 게 없다. 이 정도 차이는 의미 없다. 비교는 더 안 해도 될 것 같다. 마무리 하자. 나중에 NofM 작업할 때 다시 얘기할게." 후보 A~E 전부 기각, 코드 변경 0 건. `이력.md` Rev.0 작성, `src/Sullivan1_5__CM3/` 임시 폴더 삭제, `src/.gitignore` Sullivan 항목 제거. 우선 진행 약속 #2 이행 완료. 산출물 5 종(요구사항/분석 ×3/요약/이력) 영구 보존 — NofM 작업([`signalProcessing/nofm-merge`](signalProcessing/nofm-merge/)) 진입 시 Ble 영역 Sound1 후속 작업 인벤토리(분석 BleCommunication §4) 재참조 가능. |
+| 2026-05-14 | `ble/nofm-merge` placeholder 모듈 재분류 — `ble` → `signalProcessing`. 사용자(다) 지적 ("nofm-merge는 ble관련 작업이 아니고 CFX의 신호처리 관련 작업이야") 으로 NofM 병합 본질이 CFX 신호처리 영역임이 확정. 폴더 `git mv` (`docs/tasks/ble/nofm-merge` → `docs/tasks/signalProcessing/nofm-merge`) + 요구사항.md 6곳 + 갱신 이력 1행. list.md = 우선 진행 약속 행 모듈/링크 + Sullivan 완료 행 cross-link + Sullivan 종결 갱신 이력 cross-link + 모듈 정의 `signalProcessing` 정식 등재 + `ble` 정의에서 NofM 토큰 제거 + `(추가 예정)` 토큰 정리. `sync/sullivan1.5-rel2/이력.md` NofM 인계 cross-link 경로. `ble` 모듈 정의는 보존 (Sullivan 산출 BleCommunication 인벤토리 잔존, 향후 재진입 가능성). |
+| 2026-05-14 | `signalProcessing/nofm-merge` 활성 → **완료** (분석 종결). 다른 팀원 다니엘 작성 CFX NofM 기능을 사용자(다) 본인 직접 working tree 병합 (빌드 OK, 9 파일 unstaged) → 본 task 분석 문서화 진입·종결. 산출물 = 요구사항.md Rev.1 + 분석.md Rev.0 (8 절, 함수별 walk-through 심화, `stimulationStrategy.c` 의 NofM 본체 6 신규 함수 라인 단위) + 이력.md Rev.0. NofM 본체 알고리즘 = packed score `(amp<<5)|(31-idx)` + bitmask sort (Peak_Pick), `half_ch` stride (Interleaving), 거리 기반 시작점 + loop peeling (Packet), NOP pre-fill + Case A/B 1ms 한도 (PCM_Write). 원본 (`nOFm`) 대비 ① 매크로/심볼명 정규화, ② Peak selection brute-force → packed score + bitmask 단일 변수 (RAM 32× 절약), ③ Interleaving 16 줄 명시 → stride 일반화, ④ Packet modulo wrap → loop peeling, ⑤ Phase0/Phase1 별도 함수 → 통합 `PCM_Write`. 부수 최적화 (nonlinearMapping/FrequencyAnalysis) 와 통합 (system_control/main) 포함. CM3 측 2 파일 (`ci_ble_control_boot.c` OTA 후 QCC 절전 딜레이, `LedOutput.c` 팩토리 리셋 LED default) 은 NofM 무관 — 별도 task 등재 권고 (`ble/qcc-shutdown-delay`, `LED/factory-reset-default`). NofM 코드 9 파일 staging/commit 은 사용자 본인 의도로 별도 진행 (본 task 외 보존). 우선 진행 약속 #1 이행 완료 — 활성 우선 약속 없음. |
+| 2026-05-14 | `ble/qcc-shutdown-delay` 활성 등재 — `signalProcessing/nofm-merge` 분석에서 분리 권고된 CM3 측 부수 변경 중 하나. 사용자(다) 명시 별도 task 분리 — "CM3 측 2 파일은 별도로 ... 진행하자". placeholder Rev.0 요구사항.md 작성 (사용자 설명 대기). `ci_ble_control_boot.c` +15/-15 (`snd_qcc_set_mode(SND_QCC_MODE_SHUTDOWN)` + 딜레이 2.2 초). 짝 작업 = `LedOutput.c` default 토글 (단순 commit, 별도 task 폴더 없음). |
+| 2026-05-14 | `LedOutput.c` `TDC_FW_VARIANT` default 전환 — `APP` → `FACTORY_RESET`. 사용자(다) 명시 "처음 펌웨어 다운로드 받은 상태가 팩토리 리셋 상태라는 것을 표시하기위한 LED 색상 버전이야. 앞으로는 이 설정 상태를 기본으로 할거야". NofM 분석에서 분리된 CM3 측 부수 변경 짝 작업 (`ble/qcc-shutdown-delay` 와 같은 사이클). 단일 라인 변경이라 별도 task 폴더 없이 list.md §완료 행만 등재 + LedOutput.c 코드 + list.md 1 commit. |

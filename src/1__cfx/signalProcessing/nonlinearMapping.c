@@ -56,103 +56,109 @@ int chess_storage(XMEM) g_pcm_amplitude_level[df_MaxNumOfElectrode]             
 
 void logarithmMapping(void)
 {
-    // 로그 매핑 기능 변수
-    int x_power_p, coeff_a, coeff_b;
-    int a_x_power_p, a_x_power_p_b;
-    int y;
+    int temp_x_power_p[df_MaxNumOfElectrode];
 
-    // 자극 알림 기능 변수
-    int indicatorStimulationLevelByCM3;
-    int indicatorStimulationChannelIndex;
-
-    long long_acc;
-
-    // 로그 매핑 기능
+    /* 각 전극 별로 x_power_p (QI8F16) 값을 미리 계산하여 배열에 저장함.
+     * Pre-calculate and store x_power_p for all electrodes to reduce redundant operations. */
     for (register int i = 0; i < df_MaxNumOfElectrode; i++)
-        chess_loop_range(df_MaxNumOfElectrode, df_MaxNumOfElectrode)
-        {
-            x_power_p = calculate_x_power_p(g_freq_rep_values_scaled[i]);  // QI8F16
-            coeff_a   = g_logaritmMapping_coeff_A_Q16_8[i];                // QI16F8
-            coeff_b   = g_logaritmMapping_coeff_B_Q16_8[i];                // QI16F8
+        chess_loop_range(df_MaxNumOfElectrode, df_MaxNumOfElectrode) {
+            temp_x_power_p[i] = calculate_x_power_p(g_freq_rep_values_scaled[i]);
+    }
 
-            /* a * x_power p 계산은
-             * Q8.16 * Q16.8    -> Q24.24
-             * Q24.24 >> 16     -> Q24.8
-             * (int) Q24.8      -> Q16.8 형식을 갖는다. */
-            long_acc = ((long) coeff_a) * x_power_p;
-            long_acc = long_acc >> 16;
+    int mute_mode = Addr_SharedMem->is_enabled_mute_stimulation_under_t_level;
+    int t_offset  = Addr_SharedMem->mute_stimulation_t_level_offset;
 
-            if (long_acc > INT24_MAX)
-            {
-                long_acc = INT24_MAX;
-            }
-            else if (long_acc < INT24_MIN)
-            {
-                long_acc = INT24_MIN;
-            }
+    /* Loop Unswitching & Branchless Math 적용
+     * 루프 내부의 조건 분기(if-else)를 제거하기 위해 묵음 처리 모드(mute_mode)에 따라 루프를 분리했음.
+     * 3항 연산자(Ternary operator)를 사용하여 분기 없는(branchless) 수학 연산을 수행함.
+     *
+     * a * x_power p 계산: Q8.16 * Q16.8 -> Q24.24 -> Q24.8 -> Q16.8
+     * a * x_power_p + b 계산: Q16.8 + Q16.8 -> Q16.8
+     * y는 소수점 영역을 제거하고 정수형 Q16.0 형식을 갖다. */
+    if (mute_mode == 1) {
+        // 묵음 처리 활성화 상태 (Mute stimulation enabled)
+        for (register int i = 0; i < df_MaxNumOfElectrode; i++)
+            chess_loop_range(df_MaxNumOfElectrode, df_MaxNumOfElectrode) {
+                int coeff_a = g_logaritmMapping_coeff_A_Q16_8[i];   // QI16F8
+                int coeff_b = g_logaritmMapping_coeff_B_Q16_8[i];   // QI16F8
 
-            a_x_power_p = (int) long_acc;
-            // a_x_power_p = (int) ((((long) coeff_a) * x_power_p) >> 16);
+                /* 오버플로우 방지 (Overflow clamp)
+                 * a * x_power p 계산은
+                 * Q8.16 * Q16.8    -> Q24.24
+                 * Q24.24 >> 16     -> Q24.8
+                 * (int) Q24.8      -> Q16.8 형식을 갖는다. */
+                long long_acc = ((long)coeff_a) * temp_x_power_p[i];
+                long_acc >>= 16;
+                long_acc = (long_acc > INT24_MAX) ? INT24_MAX : ((long_acc < INT24_MIN) ? INT24_MIN : long_acc);
 
-            /* a * x_power_p + b 계산은
-             * Q16.8 + Q16.8    -> Q16.8 형식을 갖는다. */
-            a_x_power_p_b = a_x_power_p + coeff_b;  // Q16.8
+                /* long_acc = (int) ((((long) coeff_a) * x_power_p) >> 16);
+                 * a * x_power_p + b 계산은
+                 * Q16.8 + Q16.8    -> Q16.8 형식을 갖는다.
+                 * y는 소수점 영역을 제거하고 정수형 Q16.0 형식을 갖는다. */
+                int y = ((int)long_acc + coeff_b) >> 8;   // Q16.0 부호 영향 없음
 
-            /* y는 소수점 영역을 제거하고 정수형 Q16.0 형식을 갖는다. */
-            y = a_x_power_p_b >> 8;  // Q16.0 // 부호 영향 없음
+                int c_level = g_max_limit_stimulus_amplitude_C_level[i];
+                int t_level = g_mapping_stimulus_amplitude_T_level[i];
 
-            /* 최대 출력 한계치인 C 레벨을 벗어나면 C 레벨로 자극 레벨 변경 */
-            if (g_max_limit_stimulus_amplitude_C_level[i] < y)
-            {
-                y = g_max_limit_stimulus_amplitude_C_level[i];
-            }
-#if 0 /* 기존에 묵음 처리 기능을 CFX에서 상수로 설정하는 경우 */
+                // T 레벨 + offset 미만이면 0, 최대 출력은 C 레벨로 제한
+                // Set to 0 if below T-level + offset, clamp max output to C-level
+                y = (y < (t_level + t_offset)) ? 0 : y;
+                y = (y > c_level) ? c_level : y;
 
-#ifdef df_muteStimulationUnder_TLevel  // 묵음 처리 기능
-            else if (y < (g_mapping_stimulus_amplitude_T_level[i] + T_levelOffset))
-            {
-                y = 0;
-            }
-#else
-            /* 최소한 자극은 발생할 수 있게, T 레벨보다 작으면 T 레벨로 자극 레벨 변경 */
-            else if (y < g_mapping_stimulus_amplitude_T_level[i])
-            {
-                y = g_mapping_stimulus_amplitude_T_level[i];
-            }
-#endif
-#else /* CM3에서 묵음 처리 기능 활성화/비활성화 코드를 사용하여 처리하는 경우 */
-            else
-            {
-                int stim_mute_t_level_offset;
-                int is_enabled_mute_stimulation_under_t_level;
-
-                is_enabled_mute_stimulation_under_t_level = Addr_SharedMem->is_enabled_mute_stimulation_under_t_level;
-                stim_mute_t_level_offset                  = Addr_SharedMem->mute_stimulation_t_level_offset;
-
-                if (is_enabled_mute_stimulation_under_t_level == 1)  // 묵음 처리 활성화
-                {
-                    if (y < (g_mapping_stimulus_amplitude_T_level[i] + stim_mute_t_level_offset))
-                    {
-                        y = 0;
-                    }
-                }
-                else if (is_enabled_mute_stimulation_under_t_level == 2)  // 묵음 처리 비활성화 상태
-                {
-                    if (y < g_mapping_stimulus_amplitude_T_level[i])
-                    {
-                        y = g_mapping_stimulus_amplitude_T_level[i];
-                    }
-                }
-                else  // 묵음 처리에 대해서 정의 되지 않은 알 수 없는 상태에서는 자극 출력하지 않음
-                {
-                    y = 0;
-                }
-            }
-#endif  // 끝, CM3 사용하는 묵음 처리 기능
-
-            g_pcm_amplitude_level[i]                        = y;  // 자극 출력 PCM에서 사용
-            Addr_SharedMem->currentOutputStimulLevel_255[i] = y;  // 이퀄라이져 기능을 위하여 CM3와 공유
+                g_pcm_amplitude_level[i]                        = y;  // 자극 출력 PCM에서 사용
+                Addr_SharedMem->currentOutputStimulLevel_255[i] = y;  // 이퀄라이져 기능을 위하여 CM3와 공유
         }
+    }
+    else if (mute_mode == 2) {
+        // 묵음 처리 비활성화 상태 (Mute stimulation disabled)
+        for (register int i = 0; i < df_MaxNumOfElectrode; i++)
+            chess_loop_range(df_MaxNumOfElectrode, df_MaxNumOfElectrode) {
+                int coeff_a = g_logaritmMapping_coeff_A_Q16_8[i];
+                int coeff_b = g_logaritmMapping_coeff_B_Q16_8[i];
+
+                long long_acc = ((long)coeff_a) * temp_x_power_p[i];
+                long_acc >>= 16;
+
+                long_acc = (long_acc > INT24_MAX) ? INT24_MAX : ((long_acc < INT24_MIN) ? INT24_MIN : long_acc);
+
+                int y = ((int)long_acc + coeff_b) >> 8;
+
+                int c_level = g_max_limit_stimulus_amplitude_C_level[i];
+                int t_level = g_mapping_stimulus_amplitude_T_level[i];
+
+                // T 레벨과 C 레벨 사이로 값 제한
+                // Clamp amplitude strictly between T-level and C-level
+                y = (y < t_level) ? t_level : y;
+                y = (y > c_level) ? c_level : y;
+
+                g_pcm_amplitude_level[i]                        = y;  // 자극 출력 PCM에서 사용
+                Addr_SharedMem->currentOutputStimulLevel_255[i] = y;  // 이퀄라이져 기능을 위하여 CM3와 공유
+        }
+    }
+    else {
+        // 묵음 처리에 대해서 정의 되지 않은 알 수 없는 상태에서는 자극 출력하지 않음
+        for (register int i = 0; i < df_MaxNumOfElectrode; i++)
+            chess_loop_range(df_MaxNumOfElectrode, df_MaxNumOfElectrode) {
+                int coeff_a = g_logaritmMapping_coeff_A_Q16_8[i];
+                int coeff_b = g_logaritmMapping_coeff_B_Q16_8[i];
+
+                long long_acc = ((long)coeff_a) * temp_x_power_p[i];
+                long_acc >>= 16;
+
+                long_acc = (long_acc > INT24_MAX) ? INT24_MAX : ((long_acc < INT24_MIN) ? INT24_MIN : long_acc);
+
+                int y = ((int)long_acc + coeff_b) >> 8;
+
+                int c_level = g_max_limit_stimulus_amplitude_C_level[i];
+
+                // 자극 출력하지 않음 (0 처리), 단 C 레벨 한계치는 유지
+                // Output disabled (set to 0), constrained by C-level limit
+                y = (y > c_level) ? c_level : 0;
+
+                g_pcm_amplitude_level[i]                        = y;  // 자극 출력 PCM에서 사용
+                Addr_SharedMem->currentOutputStimulLevel_255[i] = y;  // 이퀄라이져 기능을 위하여 CM3와 공유
+        }
+    }
 
     /* 원본 코드의 Addr_SharedMem_indicatorStimulOutput_OnOff 는 다음을 가리킴.
      * Addr_SharedMem->calculatedStimulationIndcator_byCM3.indicatorStimulOutput_OnOff_Coltroled_byCM3
@@ -180,13 +186,11 @@ void logarithmMapping(void)
              * 하지만, 매핑 라이브 실행 중에 알림 채널을 설정하는 경우
              * 매핑 앱을 통해 Addr_SharedMem->currentMapData.stimulationIndicatorChannelNum 의 값을 실시간으로 변경하고,
              * CFX가 이 값을 사용하도록 구현되었다. */
-
             addr_MapProgramData_indicatorStimulCannel_index = Addr_SharedMem->currentMapData.stimulationIndicatorChannelNum;
         }
 
         /* 원본 코드의 Addr_SharedMem_indcatorStimulationLevel_255 는 다음을 가리킴.
          * Addr_SharedMem->calculatedStimulationIndcator_byCM3.indicatorStimulLevel_255 */
-
         g_pcm_amplitude_level[addr_MapProgramData_indicatorStimulCannel_index - 1] =
             Addr_SharedMem->calculatedStimulationIndcator_byCM3.indicatorStimulLevel_255;
     }
