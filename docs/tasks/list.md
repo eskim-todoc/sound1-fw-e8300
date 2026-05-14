@@ -21,7 +21,9 @@ Sound1 프로젝트(`E:\Claude\projects\Sound1`) 작업 레지스트리.
 
 ## 활성
 
-(없음)
+| 작업명 | 모듈 | 태그 | 폴더 | 상태 | 시작 | 연계 | 비고 |
+|---|---|---|---|---|---|---|---|
+| QCC OTA 후 셧다운 진입 딜레이 | ble | qcc, shutdown, delay, ota | [ble/qcc-shutdown-delay](ble/qcc-shutdown-delay/) | 대기 | 2026-05-14 | ← [signalProcessing/nofm-merge](signalProcessing/nofm-merge/) (부수 발견·분리 권고) | placeholder. `ci_ble_control_boot.c` +15/-15. `snd_qcc_set_mode(SND_QCC_MODE_SHUTDOWN)` 신규 + 딜레이 100×10ms → 2200×1ms (2.2 초). 사용자(다) 설명 후 분석 진입. |
 
 ## 완료
 
@@ -113,3 +115,4 @@ Sound1 프로젝트(`E:\Claude\projects\Sound1`) 작업 레지스트리.
 | 2026-05-14 | `sync/sullivan1.5-rel2` 활성 → **완료** (흡수 0 건). 사용자(다) 판단 = "내 판단에 딱히 할 게 없다. 이 정도 차이는 의미 없다. 비교는 더 안 해도 될 것 같다. 마무리 하자. 나중에 NofM 작업할 때 다시 얘기할게." 후보 A~E 전부 기각, 코드 변경 0 건. `이력.md` Rev.0 작성, `src/Sullivan1_5__CM3/` 임시 폴더 삭제, `src/.gitignore` Sullivan 항목 제거. 우선 진행 약속 #2 이행 완료. 산출물 5 종(요구사항/분석 ×3/요약/이력) 영구 보존 — NofM 작업([`signalProcessing/nofm-merge`](signalProcessing/nofm-merge/)) 진입 시 Ble 영역 Sound1 후속 작업 인벤토리(분석 BleCommunication §4) 재참조 가능. |
 | 2026-05-14 | `ble/nofm-merge` placeholder 모듈 재분류 — `ble` → `signalProcessing`. 사용자(다) 지적 ("nofm-merge는 ble관련 작업이 아니고 CFX의 신호처리 관련 작업이야") 으로 NofM 병합 본질이 CFX 신호처리 영역임이 확정. 폴더 `git mv` (`docs/tasks/ble/nofm-merge` → `docs/tasks/signalProcessing/nofm-merge`) + 요구사항.md 6곳 + 갱신 이력 1행. list.md = 우선 진행 약속 행 모듈/링크 + Sullivan 완료 행 cross-link + Sullivan 종결 갱신 이력 cross-link + 모듈 정의 `signalProcessing` 정식 등재 + `ble` 정의에서 NofM 토큰 제거 + `(추가 예정)` 토큰 정리. `sync/sullivan1.5-rel2/이력.md` NofM 인계 cross-link 경로. `ble` 모듈 정의는 보존 (Sullivan 산출 BleCommunication 인벤토리 잔존, 향후 재진입 가능성). |
 | 2026-05-14 | `signalProcessing/nofm-merge` 활성 → **완료** (분석 종결). 다른 팀원 다니엘 작성 CFX NofM 기능을 사용자(다) 본인 직접 working tree 병합 (빌드 OK, 9 파일 unstaged) → 본 task 분석 문서화 진입·종결. 산출물 = 요구사항.md Rev.1 + 분석.md Rev.0 (8 절, 함수별 walk-through 심화, `stimulationStrategy.c` 의 NofM 본체 6 신규 함수 라인 단위) + 이력.md Rev.0. NofM 본체 알고리즘 = packed score `(amp<<5)|(31-idx)` + bitmask sort (Peak_Pick), `half_ch` stride (Interleaving), 거리 기반 시작점 + loop peeling (Packet), NOP pre-fill + Case A/B 1ms 한도 (PCM_Write). 원본 (`nOFm`) 대비 ① 매크로/심볼명 정규화, ② Peak selection brute-force → packed score + bitmask 단일 변수 (RAM 32× 절약), ③ Interleaving 16 줄 명시 → stride 일반화, ④ Packet modulo wrap → loop peeling, ⑤ Phase0/Phase1 별도 함수 → 통합 `PCM_Write`. 부수 최적화 (nonlinearMapping/FrequencyAnalysis) 와 통합 (system_control/main) 포함. CM3 측 2 파일 (`ci_ble_control_boot.c` OTA 후 QCC 절전 딜레이, `LedOutput.c` 팩토리 리셋 LED default) 은 NofM 무관 — 별도 task 등재 권고 (`ble/qcc-shutdown-delay`, `LED/factory-reset-default`). NofM 코드 9 파일 staging/commit 은 사용자 본인 의도로 별도 진행 (본 task 외 보존). 우선 진행 약속 #1 이행 완료 — 활성 우선 약속 없음. |
+| 2026-05-14 | `ble/qcc-shutdown-delay` 활성 등재 — `signalProcessing/nofm-merge` 분석에서 분리 권고된 CM3 측 부수 변경 중 하나. 사용자(다) 명시 별도 task 분리 — "CM3 측 2 파일은 별도로 ... 진행하자". placeholder Rev.0 요구사항.md 작성 (사용자 설명 대기). `ci_ble_control_boot.c` +15/-15 (`snd_qcc_set_mode(SND_QCC_MODE_SHUTDOWN)` + 딜레이 2.2 초). 짝 작업 = `LedOutput.c` default 토글 (단순 commit, 별도 task 폴더 없음). |
