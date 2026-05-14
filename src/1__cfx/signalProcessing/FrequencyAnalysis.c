@@ -44,18 +44,15 @@ void update_FFT_inputData(void)
 
 void find_freq_rep_value(void)
 {
-    register int index;
-    register int magnitude;
-
     /* 전극 32개에 매핑하기 위해
      * FFT 계산 결과의 PASS BIN을 총 32개의 주파수 대역으로 나누었다.
      * 32개의 주파수 대역 별 대표 값을 초기화 한다. */
-
+    int* freq_rep_ptr = g_freq_rep_values;
     for (register int i = 0; i < df_MaxNumOfElectrode; i++)
         chess_loop_range(df_MaxNumOfElectrode, df_MaxNumOfElectrode)
-        {
-            g_freq_rep_values[i] = 0;
-        }
+    {
+        *freq_rep_ptr++ = 0;
+    }
 
     /* index pass bin 배열에는
      * FFT 계산 후 출력된 각 pass bin을 어떤 주파수 그룹으로 매핑할 것인지에 대한 값을 가지고 있다.
@@ -71,23 +68,23 @@ void find_freq_rep_value(void)
      * index pass bin이 가리키고 있는 주파수 그룹의 크기와 비교하며
      * freq rep values 배열의 각 주파수 대표 그룹에 가장 큰 magnitude가 저장되도록 한다. */
 
+    int* bin_index_ptr  = g_pass_bin_index;                      // 어떤 주파수 그룹인가
+    int _XMEM* vmag_ptr = (int _XMEM*) HEAR_ADDR_VMAG_OUTPUT;    // magnitude, HEAR의 vMag 계산 결과
+
     for (register int i = 0; i < HALF_FFT_SIZE; i++)
         chess_loop_range(HALF_FFT_SIZE, HALF_FFT_SIZE)
-        {
-            index     = g_pass_bin_index[i];                      // 어떤 주파수 그룹인가
-            magnitude = ((int _XMEM*) HEAR_ADDR_VMAG_OUTPUT)[i];  // magnitude, HEAR의 vMag 계산 결과
+    {
+        register int index     = *bin_index_ptr++;
+        register int magnitude = *vmag_ptr++;
 
-            // 참고: vMag 계산은 sqrt(Re^2 + Im^2) 이므로 항상 0 이상 (비음수) 값이다.
+        // 참고: vMag 계산은 sqrt(Re^2 + Im^2) 이므로 항상 0 이상 (비음수) 값이다.
+        // index는 -1, 0 ~ 31로 구성된다. -1은 사용하지 않는 주파수 그룹을 의미한다.
 
-            /* index는 -1, 0 ~ 31로 구성된다. -1은 사용하지 않는 주파수 그룹을 의미한다. */
-            if (0 <= index)
-            {
-                if (g_freq_rep_values[index] < magnitude)
-                {
-                    g_freq_rep_values[index] = magnitude;
-                }
-            }
+        if (index >= 0) {
+            register int current_max = g_freq_rep_values[index];
+            g_freq_rep_values[index] = (magnitude > current_max) ? magnitude : current_max;
         }
+    }
 
     /* 일반적으로 시간 영역의 크기 A인 신호를 FFT 변환을 하면 주파수 영역에서 크기는 FFT_SIZE 배로 커진다.
      * 시간 영역의 신호가 사인파형일 경우에는 두 개의 피크로 크기가 분산되기 때문에 1/2 게인이 적용된다.
@@ -99,10 +96,12 @@ void find_freq_rep_value(void)
      * 그래서 모든 게인의 총 합은, '(FFT_SIZE / 16)' * '1/2_vMag' = 'FFT_SIZE / 32' 이다.
      * 정리하면, 'FFT_SIZE / 32' = '512 / 32' = '16' = '2^4' 이므로
      * 각 주파수 그룹의 최대 magnitude로 구해진 값에 오른쪽 쉬프트 4를 하면 시간영역에서 구한 크기가 된다. */
+    freq_rep_ptr    = g_freq_rep_values;
+    int* scaled_ptr = g_freq_rep_values_scaled;
 
     for (register int i = 0; i < df_MaxNumOfElectrode; i++)
         chess_loop_range(df_MaxNumOfElectrode, df_MaxNumOfElectrode)
-        {
-            g_freq_rep_values_scaled[i] = g_freq_rep_values[i] >> RIGHT_SHIFT_MAX_MAG_FREQ_SCALE;
-        }
+    {
+        *scaled_ptr++ = (*freq_rep_ptr++) >> RIGHT_SHIFT_MAX_MAG_FREQ_SCALE;
+    }
 }

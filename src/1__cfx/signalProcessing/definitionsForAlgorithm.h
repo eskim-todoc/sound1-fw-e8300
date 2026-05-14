@@ -61,9 +61,6 @@
 
 #define df_minAudioForLogarithm 8
 
-// nOFm 주파수 밴드 수
-#define df_MaxNum_nOFm 16
-
 // 사용자수
 #define MAX_NUM_USER 4
 
@@ -145,6 +142,9 @@
 // 전극
 #define df_MaxNumOfElectrode 32
 
+// NofM 주파수 밴드 수
+#define df_MaxNum_NofM 16
+
 // 자극
 
 #define df_maxStimulationVloumeLevel 4
@@ -153,7 +153,7 @@
 #define df_stimulation_Max 255
 
 #define df_stimulationStrategy_CIS    1
-#define df_stimulationStrategy_nOFm   2
+#define df_stimulationStrategy_NofM   2
 #define df_stimulationStrategy_medium 3
 
 // ISD 연결 체크 주기
