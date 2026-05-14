@@ -7,6 +7,7 @@
 #include <driver_SPI.h>
 #include <error.h>
 #include <ci_filesystem.h>
+#include <snd_qcc.h>
 
 #define _DELAY_MS(ms) Sys_Delay((SystemCoreClock / 1000) * ms)
 
@@ -108,12 +109,20 @@ static void _fetch_packet_boot_select(int* p_packet)
 
     _send_resp_packet_boot(resp_packet, RESP_PKT_SIZE_BOOT_SELECT);
 
-    // 선택한 슬록으로 일정 시간 후 재부팅 시작
-    for (volatile int i = 0; i < 100; i++)
+    /* 응답 패킷 송신 까지 일정 시간 딜레이  */
+    SYS_WATCHDOG_REFRESH();
+    _DELAY_MS(20);
+
+    /* 2초 이상 QCC_CTRL을 0으로 유지해야 QCC가 꺼진다. */
+    snd_qcc_set_mode(SND_QCC_MODE_SHUTDOWN);
+
+    for (volatile int i = 0; i < 2200; i++)
     {
         SYS_WATCHDOG_REFRESH();
-        _DELAY_MS(10);
+        _DELAY_MS(1);
     }
+
+    // 선택한 슬롯으로 일정 시간 후 재부팅 시작
     SYS_WATCHDOG_RESET();
 }
 
