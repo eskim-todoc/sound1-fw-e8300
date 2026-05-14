@@ -67,12 +67,35 @@ void stimulationStrategy_NofM(void)
 {
     /* N-of-M stimulation pipeline in a 2-phase cycle.
      * N-of-M 자극 전략의 전체 파이프라인을 2단계(Phase 0, 1) 사이클로 제어한다. */
-    if (g_NofM_Phase == 0) {
+    if (g_NofM_Phase == 0)
+    {
 
         /* Phase 0: Execute the full signal processing and packet generation pipeline.
          * 전체 신호 처리(주파수 분석, 매핑, 피크 선택, 교차 배치, 패킷 생성)를 수행한다. */
         find_freq_rep_value();
         logarithmMapping();
+
+        /* NOTE: NofM 테스트를 위한 코드. 테스트 후 삭제할 것. */
+#if 1
+        // Phase 0
+        g_pcm_amplitude_level[0]  = 255;
+        g_pcm_amplitude_level[8]  = 200;
+        g_pcm_amplitude_level[1]  = 190;
+        g_pcm_amplitude_level[9]  = 180;
+        g_pcm_amplitude_level[2]  = 170;
+        g_pcm_amplitude_level[10]  = 160;
+        g_pcm_amplitude_level[3]  = 150;
+        g_pcm_amplitude_level[11]  = 140;
+        // Phase 1
+        g_pcm_amplitude_level[4]  = 130;
+        g_pcm_amplitude_level[12]  = 120;
+        g_pcm_amplitude_level[5] = 110;
+        g_pcm_amplitude_level[13] = 100;
+        g_pcm_amplitude_level[6] = 90;
+        g_pcm_amplitude_level[14] = 80;
+        g_pcm_amplitude_level[7] = 70;
+        g_pcm_amplitude_level[15] = 60;
+#endif
         stimulationStrategy_NofM_Peak_Pick();
         stimulationStrategy_NofM_Interleaving();
         stimulationStrategy_NofM_Packet();
@@ -83,7 +106,8 @@ void stimulationStrategy_NofM(void)
         // 새로운 PCM 전송을 시작하기 위해 인덱스를 초기화한다.
         addr_transferred_index = 0;
     }
-    else {
+    else
+    {
         /* Phase 1: Skip processing to balance CPU load and allow multi-frame transmission.
          * 연산 부하를 분산하고 이전 프레임의 남은 패킷 전송을 이어가기 위해 신호 처리를 생략한다. */
         g_NofM_Phase = 0;
@@ -101,16 +125,16 @@ void stimulationStrategy_NofM_Init_Buffers(void)
     // ==========================================
     for (register int i = 0; i < df_MaxNum_NofM; i++)
         chess_loop_range(df_MaxNum_NofM, df_MaxNum_NofM)
-    {
+        {
             g_NofM_adjacent_BandIndex[i]    = -1;
             g_NofM_notAdjacent_BandIndex[i] = -1;
-    }
+        }
 
     for (register int i = 0; i < df_MaxNumOfElectrode; i++)
         chess_loop_range(df_MaxNumOfElectrode, df_MaxNumOfElectrode)
-    {
-            addr_stimulationTempBuff[i]     = -1;
-    }
+        {
+            addr_stimulationTempBuff[i] = -1;
+        }
 }
 
 void stimulationStrategy_NofM_Peak_Pick(void)
@@ -140,9 +164,9 @@ void stimulationStrategy_NofM_Peak_Pick(void)
      * Because 345 < 349, the high frequency (Index 6) is flagged as the weaker peak. */
     for (register int i = 0; i < df_MaxNumOfElectrode; i++)
         chess_loop_range(df_MaxNumOfElectrode, df_MaxNumOfElectrode)
-    {
-        packed_scores[i] = (g_pcm_amplitude_level[i] << 5) | (31 - i);
-    }
+        {
+            packed_scores[i] = (g_pcm_amplitude_level[i] << 5) | (31 - i);
+        }
 
     /* ================================================
      * Fill the initial bucket
@@ -151,9 +175,9 @@ void stimulationStrategy_NofM_Peak_Pick(void)
      * 처음 N개의 패킹된 점수로 버킷을 초기화함.*/
     for (register int i = 0; i < df_MaxNum_NofM; i++)
         chess_loop_range(df_MaxNum_NofM, df_MaxNum_NofM)
-    {
-        top_packed[i] = packed_scores[i];
-    }
+        {
+            top_packed[i] = packed_scores[i];
+        }
 
     register int min_packed        = top_packed[0];
     register int min_idx_in_bucket = 0;
@@ -162,12 +186,13 @@ void stimulationStrategy_NofM_Peak_Pick(void)
     // 버킷 내에서 가장 작은 점수(가장 약한 피크)를 탐색함.
     for (register int i = 1; i < df_MaxNum_NofM; i++)
         chess_loop_range(1, df_MaxNum_NofM)
-    {
-        if (top_packed[i] < min_packed) {
-            min_packed        = top_packed[i];
-            min_idx_in_bucket = i;
+        {
+            if (top_packed[i] < min_packed)
+            {
+                min_packed        = top_packed[i];
+                min_idx_in_bucket = i;
+            }
         }
-    }
 
     /* ================================================
      * Brute-Force Bucket Swap
@@ -178,27 +203,29 @@ void stimulationStrategy_NofM_Peak_Pick(void)
      * 해당 값을 교체하고 버킷 내 새로운 최솟값을 다시 찾다. */
     for (register int i = df_MaxNum_NofM; i < df_MaxNumOfElectrode; i++)
         chess_loop_range(1, df_MaxNumOfElectrode)
-    {
-        register int current_packed = packed_scores[i];
+        {
+            register int current_packed = packed_scores[i];
 
-        if (current_packed > min_packed) {
-            // Replace the weakest peak
-            top_packed[min_idx_in_bucket] = current_packed;
-
-            // Find the NEW weakest peak
-            min_packed        = top_packed[0];
-            min_idx_in_bucket = 0;
-
-            for (register int t = 1; t < df_MaxNum_NofM; t++)
-                chess_loop_range(1, df_MaxNum_NofM)
+            if (current_packed > min_packed)
             {
-                if (top_packed[t] < min_packed) {
-                    min_packed        = top_packed[t];
-                    min_idx_in_bucket = t;
-                }
+                // Replace the weakest peak
+                top_packed[min_idx_in_bucket] = current_packed;
+
+                // Find the NEW weakest peak
+                min_packed        = top_packed[0];
+                min_idx_in_bucket = 0;
+
+                for (register int t = 1; t < df_MaxNum_NofM; t++)
+                    chess_loop_range(1, df_MaxNum_NofM)
+                    {
+                        if (top_packed[t] < min_packed)
+                        {
+                            min_packed        = top_packed[t];
+                            min_idx_in_bucket = t;
+                        }
+                    }
             }
         }
-    }
 
     /* ==========================================
      * Frequency Sort (Bitmask Presence)
@@ -214,21 +241,22 @@ void stimulationStrategy_NofM_Peak_Pick(void)
     // 하위 5비트를 마스킹(0x1F)하여 원래 인덱스를 복원하고, 비트마스크의 해당 위치를 1로 설정함.
     for (register int i = 0; i < df_MaxNum_NofM; i++)
         chess_loop_range(df_MaxNum_NofM, df_MaxNum_NofM)
-    {
-        register int original_idx = 31 - (top_packed[i] & 0x1F);
-        present_mask |= (1UL << original_idx);
-    }
+        {
+            register int original_idx = 31 - (top_packed[i] & 0x1F);
+            present_mask |= (1UL << original_idx);
+        }
 
     // Count through the 32 bits. If the bit is '1', write the index to the output buffer.
     // 비트마스크를 0부터 순회하며 1로 설정된 인덱스만 출력 버퍼에 순서대로 저장함.
     register int presentOut = 0;
     for (register int b = 0; b < df_MaxNumOfElectrode; b++)
         chess_loop_range(df_MaxNumOfElectrode, df_MaxNumOfElectrode)
-    {
-        if (present_mask & (1UL << b)) {
-            g_NofM_adjacent_BandIndex[presentOut++] = b;
+        {
+            if (present_mask & (1UL << b))
+            {
+                g_NofM_adjacent_BandIndex[presentOut++] = b;
+            }
         }
-    }
 }
 
 void stimulationStrategy_NofM_Interleaving(void)
@@ -252,7 +280,8 @@ void stimulationStrategy_NofM_Interleaving(void)
      * 정렬된 배열을 절반으로 나누어 교차 배치한다.
      * 짝수 인덱스 배열에는 하위 절반의 값을, 홀수 인덱스 배열에는 상위 절반의 값을 할당한다.
      * Example (N=4): [A, B, C, D] -> [A, C, B, D] */
-    for (int i = 0; i < half_ch; i++) {
+    for (int i = 0; i < half_ch; i++)
+    {
         g_NofM_notAdjacent_BandIndex[i * 2]       = g_NofM_adjacent_BandIndex[i];
         g_NofM_notAdjacent_BandIndex[(i * 2) + 1] = g_NofM_adjacent_BandIndex[i + half_ch];
     }
@@ -263,14 +292,15 @@ void stimulationStrategy_NofM_Interleaving(void)
      * is appended to the very end of the interleaved array.
      * 선택된 대역의 수(N)가 홀수인 경우를 동적으로 처리한다.
      * N이 홀수일 때 남는 마지막 요소는 교차 배열의 맨 끝에 그대로 배치된다. */
-    if (df_MaxNum_NofM % 2 != 0) {
+    if (df_MaxNum_NofM % 2 != 0)
+    {
         g_NofM_notAdjacent_BandIndex[df_MaxNum_NofM - 1] = g_NofM_adjacent_BandIndex[df_MaxNum_NofM - 1];
     }
 }
 
 void stimulationStrategy_NofM_Packet(void)
 {
-    int NofM_maxIndex = df_MaxNum_NofM - 1;
+    int NofM_maxIndex   = df_MaxNum_NofM - 1;
     int first_electrode = g_NofM_notAdjacent_BandIndex[0];
     int last_electrode  = g_NofM_notAdjacent_BandIndex[NofM_maxIndex];
     int prev_last_stim  = g_NofM_LastStimulus_BandIndex;
@@ -281,19 +311,22 @@ void stimulationStrategy_NofM_Packet(void)
      * 이전 프레임의 마지막 자극 전극과 현재 시퀀스의 처음 및 마지막 전극 간의 공간적 거리를 계산한다.
      * 프레임 간의 전기적 간섭(Crosstalk)을 최소화하기 위해 거리가 더 먼 쪽을 시작 지점으로 선택한다. */
     int dist_to_first = first_electrode - prev_last_stim;
-    dist_to_first = (dist_to_first < 0) ? -dist_to_first : dist_to_first;
+    dist_to_first     = (dist_to_first < 0) ? -dist_to_first : dist_to_first;
 
     int dist_to_last = last_electrode - prev_last_stim;
-    dist_to_last = (dist_to_last < 0) ? -dist_to_last : dist_to_last;
+    dist_to_last     = (dist_to_last < 0) ? -dist_to_last : dist_to_last;
 
     // Pick the starting index (Only two possibilities: Forward or Wrapped/Reversed)
     int start_idx = (dist_to_last > dist_to_first) ? (NofM_maxIndex) : 0;
 
     /* Pre-update the last stimulus band index so it is ready for the NEXT frame's distance calculation.
      * 선택된 시작 방향을 바탕으로 다음 프레임 거리 계산에 사용될 마지막 자극 대역 인덱스를 미리 업데이트한다. */
-    if (start_idx == 0) {
+    if (start_idx == 0)
+    {
         g_NofM_LastStimulus_BandIndex = last_electrode;
-    } else {
+    }
+    else
+    {
         g_NofM_LastStimulus_BandIndex = g_NofM_notAdjacent_BandIndex[df_MaxNum_NofM - 2];
     }
 
@@ -307,17 +340,21 @@ void stimulationStrategy_NofM_Packet(void)
      * If the sequence starts from the end (N-1), process that single element first.
      * 모듈로(modulo) 연산을 피하기 위해 루프 필링(Loop Peeling)을 적용하여 최종 PCM 패킷을 생성한다.
      * 시퀀스가 끝(N-1)에서 시작하는 경우 해당 요소를 먼저 단독으로 처리한다. */
-    if (start_idx == NofM_maxIndex) {
+    if (start_idx == NofM_maxIndex)
+    {
         freqBandOrder = g_NofM_notAdjacent_BandIndex[NofM_maxIndex];
         electrodIndex = addr_MapProgramData_StimulusChannelAssignedElectrodIndex[freqBandOrder] - 1;
         electrodeMap  = addr_electrodeMap[electrodIndex] << electrodIndexPositionAtPCM_Mold;
 
         // Muted signals below T-level are replaced with a forward path check packet.
         // T 레벨 미만으로 묵음 처리된 신호는 상태 확인용 더미 데이터 패킷으로 대체한다.
-        if (Addr_SharedMem->is_enabled_mute_stimulation_under_t_level == 1 && g_pcm_amplitude_level[freqBandOrder] == 0) {
+        if (Addr_SharedMem->is_enabled_mute_stimulation_under_t_level == 1 && g_pcm_amplitude_level[freqBandOrder] == 0)
+        {
             addr_stimulationTempBuff[pcmOut++] = ISD_registerAddr_forwardPath_check_Data;
-        } else {
-            stimulusLevel = g_pcm_amplitude_level[freqBandOrder] << stimulationPositionAtPCM_Mold;
+        }
+        else
+        {
+            stimulusLevel                      = g_pcm_amplitude_level[freqBandOrder] << stimulationPositionAtPCM_Mold;
             addr_stimulationTempBuff[pcmOut++] = (electrodeMap | stimulusLevel | g_pcm_stimulation_packet_header);
         }
     }
@@ -330,19 +367,21 @@ void stimulationStrategy_NofM_Packet(void)
 
     for (int pcmIdx = 0; pcmIdx < loop_end; pcmIdx++)
         chess_loop_range(df_MaxNum_NofM - 1, df_MaxNum_NofM)
-    {
-        freqBandOrder = g_NofM_notAdjacent_BandIndex[pcmIdx];
-        electrodIndex = addr_MapProgramData_StimulusChannelAssignedElectrodIndex[freqBandOrder] - 1;
-        electrodeMap  = addr_electrodeMap[electrodIndex] << electrodIndexPositionAtPCM_Mold;
+        {
+            freqBandOrder = g_NofM_notAdjacent_BandIndex[pcmIdx];
+            electrodIndex = addr_MapProgramData_StimulusChannelAssignedElectrodIndex[freqBandOrder] - 1;
+            electrodeMap  = addr_electrodeMap[electrodIndex] << electrodIndexPositionAtPCM_Mold;
 
-        if (Addr_SharedMem->is_enabled_mute_stimulation_under_t_level == 1 && g_pcm_amplitude_level[freqBandOrder] == 0) {
-            addr_stimulationTempBuff[pcmOut++] = ISD_registerAddr_forwardPath_check_Data;
+            if (Addr_SharedMem->is_enabled_mute_stimulation_under_t_level == 1 && g_pcm_amplitude_level[freqBandOrder] == 0)
+            {
+                addr_stimulationTempBuff[pcmOut++] = ISD_registerAddr_forwardPath_check_Data;
+            }
+            else
+            {
+                stimulusLevel                      = g_pcm_amplitude_level[freqBandOrder] << stimulationPositionAtPCM_Mold;
+                addr_stimulationTempBuff[pcmOut++] = (electrodeMap | stimulusLevel | g_pcm_stimulation_packet_header);
+            }
         }
-        else {
-            stimulusLevel = g_pcm_amplitude_level[freqBandOrder] << stimulationPositionAtPCM_Mold;
-            addr_stimulationTempBuff[pcmOut++] = (electrodeMap | stimulusLevel | g_pcm_stimulation_packet_header);
-        }
-    }
 }
 
 void stimulationStrategy_NofM_PCM_Write(void)
@@ -351,7 +390,11 @@ void stimulationStrategy_NofM_PCM_Write(void)
     // STEP 8: PCM WRITING
     // ==========================================
     int _XMEM *p_pcmFIFO = (int _XMEM *) HEAR_ADDR_FIFO_PCM_WRITING;
-    int stride = g_pcmFrameNum_per_channel;
+#if 1
+    int        stride    = g_pcmFrameNum_per_channel;
+#else
+    int        stride    = 3; // IMPORTANT : NofM일 때는 자극 당 3 프레임을 고정 시킴
+#endif
 
     /* ---------------------------------------------------------
      * FAST PRE-FILL: Blast the entire buffer with NOPs
@@ -360,9 +403,9 @@ void stimulationStrategy_NofM_PCM_Write(void)
      * 먼저 PCM 전송 버퍼 전체를 NOP 대기 패킷으로 채우다. */
     for (register int i = 0; i < df_MaxNumTransferableChannel; i++)
         chess_loop_range(0, df_MaxNumTransferableChannel)
-    {
-        *p_pcmFIFO-- = pcm_Mold_NopStandby;
-    }
+        {
+            *p_pcmFIFO-- = pcm_Mold_NopStandby;
+        }
 
     /* ---------------------------------------------------------
      * STRIDED OVERWRITE: Inject pulses at the correct offsets
@@ -376,14 +419,15 @@ void stimulationStrategy_NofM_PCM_Write(void)
      * Write all pulses and reset the tracking index to 0 for the next frame.
      * 펄스 개수(N)가 1ms 하드웨어 전송 한도 이내인 경우이다.
      * 모든 펄스를 전송 버퍼에 기록하고 다음 프레임을 위해 인덱스를 0으로 초기화한다. */
-    if (df_MaxNum_NofM < g_transferableChannelNum_per_1msec) {
+    if (df_MaxNum_NofM < g_transferableChannelNum_per_1msec)
+    {
         for (register int i = 0; i < df_MaxNum_NofM; i++)
             chess_loop_range(0, df_MaxNum_NofM)
-        {
-            *pulse_ptr = addr_stimulationTempBuff[addr_transferred_index];
-            pulse_ptr -= stride; // Move pointer backward by stride (간격만큼 포인터 이동)
-            addr_transferred_index++;
-        }
+            {
+                *pulse_ptr = addr_stimulationTempBuff[addr_transferred_index];
+                pulse_ptr -= stride;  // Move pointer backward by stride (간격만큼 포인터 이동)
+                addr_transferred_index++;
+            }
         addr_transferred_index = 0;
     }
     /* Case B: The pulses exceed the 1msec transfer limit.
@@ -392,18 +436,20 @@ void stimulationStrategy_NofM_PCM_Write(void)
      * 펄스 개수가 1ms 전송 한도를 초과하는 경우이다.
      * 한도까지만 기록하며, 다음 프레임에서 남은 펄스를 이어서 전송할 수 있도록
      * 인덱스를 유지하고 최대치(N) 도달 시 순환시킨다. */
-    else {
+    else
+    {
         for (register int i = 0; i < g_transferableChannelNum_per_1msec; i++)
             chess_loop_range(0, 24)
-        {
-            *pulse_ptr = addr_stimulationTempBuff[addr_transferred_index];
-            pulse_ptr -= stride;
+            {
+                *pulse_ptr = addr_stimulationTempBuff[addr_transferred_index];
+                pulse_ptr -= stride;
 
-            addr_transferred_index++;
-            if (addr_transferred_index >= df_MaxNum_NofM) {
-                addr_transferred_index = 0;
+                addr_transferred_index++;
+                if (addr_transferred_index >= df_MaxNum_NofM)
+                {
+                    addr_transferred_index = 0;
+                }
             }
-        }
     }
 }
 
@@ -481,7 +527,7 @@ void stimulationStrategy_CIS(void)
                     addr_stimulationTempBuff[i] = (electrodeMap | stimulusLevel | g_pcm_stimulation_packet_header);
                 }
             }
-            else // 묵음 처리 기능이 활성화 되지 않은 상태
+            else  // 묵음 처리 기능이 활성화 되지 않은 상태
             {
                 stimulusLevel = g_pcm_amplitude_level[freqBandOrder] << stimulationPositionAtPCM_Mold;
 

@@ -33,9 +33,9 @@ void Enable_backtelCircuit(void)
 {
     register int backtelControlRegister;
     register int backtelConfiguration;
-    int _XMEM*   p_pcmFifo_Top;
+    int _XMEM   *p_pcmFifo_Top;
 
-    p_pcmFifo_Top = (int _XMEM*) HEAR_ADDR_FIFO_PCM_WRITING;
+    p_pcmFifo_Top = (int _XMEM *) HEAR_ADDR_FIFO_PCM_WRITING;
 
     // 현재 설정되어 있는 backtel 제어 레지스터 값을 읽어 들여 백텔 회로를 켜는 값만 수정해서 PCM으로 보낸다.
     backtelControlRegister                 = ((int) Addr_SharedMem->backtelControlRegister) | 1;  // Enable backtel
@@ -105,12 +105,12 @@ void frame_1_perChannel(void)
 #endif
 
     // 첫 번째 채널 데이터
-    *((int _XMEM*) HEAR_ADDR_FIFO_PCM_WRITING) = pcm_Mold_connectionCheck;
+    *((int _XMEM *) HEAR_ADDR_FIFO_PCM_WRITING) = pcm_Mold_connectionCheck;
 
     // Backtel NOP 1, 2, 3
-    *((int _XMEM*) HEAR_ADDR_FIFO_PCM_WRITING - 1) = pcm_Mold_NopBacktel;  // 두 번째 채널 데이터
-    *((int _XMEM*) HEAR_ADDR_FIFO_PCM_WRITING - 2) = pcm_Mold_NopBacktel;  // 세 번째 채널 데이터
-    *((int _XMEM*) HEAR_ADDR_FIFO_PCM_WRITING - 3) = pcm_Mold_NopBacktel;  // 네 번째 채널 데이터
+    *((int _XMEM *) HEAR_ADDR_FIFO_PCM_WRITING - 1) = pcm_Mold_NopBacktel;  // 두 번째 채널 데이터
+    *((int _XMEM *) HEAR_ADDR_FIFO_PCM_WRITING - 2) = pcm_Mold_NopBacktel;  // 세 번째 채널 데이터
+    *((int _XMEM *) HEAR_ADDR_FIFO_PCM_WRITING - 3) = pcm_Mold_NopBacktel;  // 네 번째 채널 데이터
 }
 
 void frame_2_perChannel(void)
@@ -127,20 +127,20 @@ void frame_2_perChannel(void)
 #endif
 
     // 첫 번째 채널 데이터
-    *((int _XMEM*) HEAR_ADDR_FIFO_PCM_WRITING)     = pcm_Mold_connectionCheck;
-    *((int _XMEM*) HEAR_ADDR_FIFO_PCM_WRITING - 1) = pcm_Mold_NopBacktel;  // pcm_Mold_NopStandby;
+    *((int _XMEM *) HEAR_ADDR_FIFO_PCM_WRITING)     = pcm_Mold_connectionCheck;
+    *((int _XMEM *) HEAR_ADDR_FIFO_PCM_WRITING - 1) = pcm_Mold_NopBacktel;  // pcm_Mold_NopStandby;
 
     // Backtel NOP 1, 2, 3, 4
-    *((int _XMEM*) HEAR_ADDR_FIFO_PCM_WRITING - 2) = pcm_Mold_NopBacktel;  // 두 번째 채널 데이터 1
-    *((int _XMEM*) HEAR_ADDR_FIFO_PCM_WRITING - 3) = pcm_Mold_NopBacktel;  // 두 번째 채널 데이터 2
-    *((int _XMEM*) HEAR_ADDR_FIFO_PCM_WRITING - 4) = pcm_Mold_NopBacktel;  // 세 번째 채널 데이터 1
-    *((int _XMEM*) HEAR_ADDR_FIFO_PCM_WRITING - 5) = pcm_Mold_NopBacktel;  // 세 번째 채널 데이터 2
+    *((int _XMEM *) HEAR_ADDR_FIFO_PCM_WRITING - 2) = pcm_Mold_NopBacktel;  // 두 번째 채널 데이터 1
+    *((int _XMEM *) HEAR_ADDR_FIFO_PCM_WRITING - 3) = pcm_Mold_NopBacktel;  // 두 번째 채널 데이터 2
+    *((int _XMEM *) HEAR_ADDR_FIFO_PCM_WRITING - 4) = pcm_Mold_NopBacktel;  // 세 번째 채널 데이터 1
+    *((int _XMEM *) HEAR_ADDR_FIFO_PCM_WRITING - 5) = pcm_Mold_NopBacktel;  // 세 번째 채널 데이터 2
 
     // 2개 더 추가해본다.
-    *((int _XMEM*) HEAR_ADDR_FIFO_PCM_WRITING - 6) = pcm_Mold_NopBacktel;  // 세 번째 채널 데이터 1
-    *((int _XMEM*) HEAR_ADDR_FIFO_PCM_WRITING - 7) = pcm_Mold_NopBacktel;  // 세 번째 채널 데이터 2
+    *((int _XMEM *) HEAR_ADDR_FIFO_PCM_WRITING - 6) = pcm_Mold_NopBacktel;  // 세 번째 채널 데이터 1
+    *((int _XMEM *) HEAR_ADDR_FIFO_PCM_WRITING - 7) = pcm_Mold_NopBacktel;  // 세 번째 채널 데이터 2
 
-    //Addr_SharedMem->CM3_tempValue2 = 1;
+    // Addr_SharedMem->CM3_tempValue2 = 1;
 }
 
 void frame_3_perChannel(void)
@@ -154,28 +154,32 @@ void frame_3_perChannel(void)
     pcm_Mold_connectionCheck = pcm_Mold_connectionCheck_ReadISDPower;
 #endif
 
+    /* IMPORTANT : 펄스 폭 설정과 관계 없이
+     * pcm_Mold_connectionCheck 출력 후 바로 pcm_Mold_NopBacktel을 적용함으로써
+     * 백텔 수신 실패의 경우가 없도록 한다. */
+
     // 첫 번째 채널 데이터
-    *((int _XMEM*) HEAR_ADDR_FIFO_PCM_WRITING)     = pcm_Mold_connectionCheck;
-    *((int _XMEM*) HEAR_ADDR_FIFO_PCM_WRITING - 1) = pcm_Mold_NopStandby;
-    *((int _XMEM*) HEAR_ADDR_FIFO_PCM_WRITING - 2) = pcm_Mold_NopStandby;
+    *((int _XMEM *) HEAR_ADDR_FIFO_PCM_WRITING)     = pcm_Mold_connectionCheck;
+    *((int _XMEM *) HEAR_ADDR_FIFO_PCM_WRITING - 1) = pcm_Mold_NopBacktel;  // pcm_Mold_NopStandby;
+    *((int _XMEM *) HEAR_ADDR_FIFO_PCM_WRITING - 2) = pcm_Mold_NopBacktel;  // pcm_Mold_NopStandby;
 
     // Backtel NOP 1, 2, 3
-    *((int _XMEM*) HEAR_ADDR_FIFO_PCM_WRITING - 3) = pcm_Mold_NopBacktel;  // 두 번째 채널 데이터 1
-    *((int _XMEM*) HEAR_ADDR_FIFO_PCM_WRITING - 4) = pcm_Mold_NopBacktel;  // 두 번째 채널 데이터 2
-    *((int _XMEM*) HEAR_ADDR_FIFO_PCM_WRITING - 5) = pcm_Mold_NopBacktel;  // 두 번째 채널 데이터 3
+    *((int _XMEM *) HEAR_ADDR_FIFO_PCM_WRITING - 3) = pcm_Mold_NopBacktel;  // 두 번째 채널 데이터 1
+    *((int _XMEM *) HEAR_ADDR_FIFO_PCM_WRITING - 4) = pcm_Mold_NopBacktel;  // 두 번째 채널 데이터 2
+    *((int _XMEM *) HEAR_ADDR_FIFO_PCM_WRITING - 5) = pcm_Mold_NopBacktel;  // 두 번째 채널 데이터 3
 
     // standby NOP 1, 2 (채널의 남는 데이터는 일반 NOP으로 채움, Backtel NOP도 무방)
     // load x0, pcm_Mold_NopStandby
-    *((int _XMEM*) HEAR_ADDR_FIFO_PCM_WRITING - 6) = pcm_Mold_NopBacktel;
-    *((int _XMEM*) HEAR_ADDR_FIFO_PCM_WRITING - 7) = pcm_Mold_NopBacktel;
-    *((int _XMEM*) HEAR_ADDR_FIFO_PCM_WRITING - 8) = pcm_Mold_NopBacktel;
+    *((int _XMEM *) HEAR_ADDR_FIFO_PCM_WRITING - 6) = pcm_Mold_NopBacktel;
+    *((int _XMEM *) HEAR_ADDR_FIFO_PCM_WRITING - 7) = pcm_Mold_NopBacktel;
+    *((int _XMEM *) HEAR_ADDR_FIFO_PCM_WRITING - 8) = pcm_Mold_NopBacktel;
 }
 
 void frame_4_perChannel(void)
 {
     // 채널당 프레임 수가 4개 이상인 경우에는 나머지를 모두 Backtel NOP으로 채운다.
 
-    int _XMEM* ptr_FIFO_for_WritingPCM;
+    int _XMEM *ptr_FIFO_for_WritingPCM;
     int        pcm_Mold_connectionCheck;
 
     // 내부기 레지스터 주소 선택
@@ -185,7 +189,7 @@ void frame_4_perChannel(void)
     pcm_Mold_connectionCheck = pcm_Mold_connectionCheck_ReadISDPower;
 #endif
 
-    ptr_FIFO_for_WritingPCM = (int _XMEM*) HEAR_ADDR_FIFO_PCM_WRITING;
+    ptr_FIFO_for_WritingPCM = (int _XMEM *) HEAR_ADDR_FIFO_PCM_WRITING;
 
     // 첫 번째 채널 데이터
     *ptr_FIFO_for_WritingPCM = pcm_Mold_connectionCheck;
@@ -209,9 +213,9 @@ void Disable_backtelCircuit(void)
 {
     int        backtelControlRegister;
     int        backtelConfiguration;
-    int _XMEM* ptr_FIFO_for_WritingPCM;
+    int _XMEM *ptr_FIFO_for_WritingPCM;
 
-    ptr_FIFO_for_WritingPCM = (int _XMEM*) HEAR_ADDR_FIFO_PCM_WRITING;
+    ptr_FIFO_for_WritingPCM = (int _XMEM *) HEAR_ADDR_FIFO_PCM_WRITING;
 
     // 현재 설정되어 있는 backtel 제어 레지스터 값을 읽어 들여 backtel 회로를 끄는 값만 수정해서 PCM으로 보낸다.
 
