@@ -2,3 +2,7 @@
 .claude/*
 # 단, 팀 공용 훅/설정은 tracked
 !.claude/settings.json
+
+# Claude Code Plan Mode plan files — 세션 임시, 폴더 구조만 .gitkeep으로 유지
+docs/plans/*
+!docs/plans/.gitkeep
