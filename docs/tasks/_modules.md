@@ -29,3 +29,72 @@ tags: [meta, archive, index, wiki-sync]
 | touch | 2026-05-08 | [board-variant-iqs323-ati](touch/board-variant-iqs323-ati/) | 3 |
 | bootloader | 2026-05-08 | [service-rtt-debug-console](bootloader/service-rtt-debug-console/) | 1 |
 | power | 2026-05-07 | [low-power-mode](power/low-power-mode/) | 1 |
+
+## 작업 상세 (Task α 이후 신규)
+
+### ble
+
+| 작업 | 완료일 | 폴더 |
+|---|---|---|
+| qcc-shutdown-delay | — | [ble/qcc-shutdown-delay](ble/qcc-shutdown-delay/) |
+
+### bootloader
+
+| 작업 | 완료일 | 폴더 |
+|---|---|---|
+| service-rtt-debug-console | 2026-05-07 | [bootloader/service-rtt-debug-console](bootloader/service-rtt-debug-console/) |
+
+### LED
+
+| 작업 | 완료일 | 폴더 |
+|---|---|---|
+| bootloader-power-on-indicator | 2026-04-27 | [LED/bootloader-power-on-indicator](LED/bootloader-power-on-indicator/) |
+| non-blocking-fade-off | 2026-04-27 | [LED/non-blocking-fade-off](LED/non-blocking-fade-off/) |
+| operation-scheme | — | [LED/operation-scheme](LED/operation-scheme/) |
+| ota-dfu-fw-variant | 2026-05-08 | [LED/ota-dfu-fw-variant](LED/ota-dfu-fw-variant/) |
+| power-on-early-lighting | 2026-04-23 | [LED/power-on-early-lighting](LED/power-on-early-lighting/) |
+
+### meta
+
+| 작업 | 완료일 | 폴더 |
+|---|---|---|
+| claude-md-slim | 2026-05-08 | [meta/claude-md-slim](meta/claude-md-slim/) |
+| docs-restructure | 2026-04-24 | [meta/docs-restructure](meta/docs-restructure/) |
+| folder-readmes | 2026-05-07 | [meta/folder-readmes](meta/folder-readmes/) |
+| frontmatter-retrofit | 2026-05-07 | [meta/frontmatter-retrofit](meta/frontmatter-retrofit/) |
+| internal-links-fix | 2026-05-07 | [meta/internal-links-fix](meta/internal-links-fix/) |
+
+### power
+
+| 작업 | 완료일 | 폴더 |
+|---|---|---|
+| low-power-mode | — | [power/low-power-mode](power/low-power-mode/) |
+
+### signalProcessing
+
+| 작업 | 완료일 | 폴더 |
+|---|---|---|
+| cfx-cm3-analysis | 2026-05-14 | [signalProcessing/cfx-cm3-analysis](signalProcessing/cfx-cm3-analysis/) |
+| nofm-merge | — | [signalProcessing/nofm-merge](signalProcessing/nofm-merge/) |
+| nofm-tuning | 2026-05-14 | [signalProcessing/nofm-tuning](signalProcessing/nofm-tuning/) |
+
+### sync
+
+| 작업 | 완료일 | 폴더 |
+|---|---|---|
+| sullivan1.5-rel2 | — | [sync/sullivan1.5-rel2](sync/sullivan1.5-rel2/) |
+
+### touch
+
+| 작업 | 완료일 | 폴더 |
+|---|---|---|
+| board-variant-iqs323-ati | 2026-05-08 | [touch/board-variant-iqs323-ati](touch/board-variant-iqs323-ati/) |
+| init-split | — | [touch/init-split](touch/init-split/) |
+| layer-separation | — | [touch/layer-separation](touch/layer-separation/) |
+
+### ui
+
+| 작업 | 완료일 | 폴더 |
+|---|---|---|
+| program-change-command | — | [ui/program-change-command](ui/program-change-command/) |
+
