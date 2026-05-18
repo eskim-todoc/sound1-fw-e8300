@@ -13,7 +13,7 @@ tags: [sullivan, baseline, diff, internal-device, comparison]
 **TL;DR**: `src/Sullivan1_5__CM3/Cortex-M3-src/internalDevice/` ↔ `src/2__cm3/Cortex-M3-src/internalDevice/` 32 파일 의미적 비교. **27 파일 동등, 5 파일 차이** (`isd_interface.c/.h`, `isd_interface_init_FPGA.c/.h`, `isd_interface_init_ISD.c`). 차이의 대부분은 Sound1 측 정리·통합(① QCC ISD 연결 상태 통보 `snd_qcc_set_isd()` 추가, ② 신규 getter `snd_isd_interface_get_state()` + 정적 변수 `s_` prefix 적용, ③ 로컬 로그 매크로 `ci_link_print*` / `ci_ifc_init_fpga_print*` 전체 폐기 → 표준 `ci_print*` 일원화). **Sullivan에만 있고 Sound1에 미반영**된 항목은 I²C 통신 실패 에러 진단 로그 5 줄(`isd_interface_init_FPGA.c` 4 줄, `isd_interface_init_ISD.c` 1 줄) — 진단 가치 측면에서 부활 여부 검토 필요.
 
 > [!IMPORTANT]
-> 비교 기준은 [`분석 BleCommunication.md §7`](분석%20BleCommunication.md) 와 동일 — `git diff --no-index -w --ignore-blank-lines` + hunk 직접 검토.
+> 비교 기준은 [`첨부_분석_BleCommunication.md §7`](첨부_분석_BleCommunication.md) 와 동일 — `git diff --no-index -w --ignore-blank-lines` + hunk 직접 검토.
 
 ## 1. 비교 범위
 

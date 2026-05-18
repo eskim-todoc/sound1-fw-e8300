@@ -13,7 +13,7 @@ tags: [sullivan, baseline, diff, signal-processing, comparison]
 **TL;DR**: `src/Sullivan1_5__CM3/Cortex-M3-src/signalProcessing/` ↔ `src/2__cm3/Cortex-M3-src/signalProcessing/` 4 파일 의미적 비교 결과 **전체 동등** (공백·빈줄·주석만 차이). 의미적 변경 없음. **Sullivan 후속 패치 없음, Sound1 후속 변경 없음.** 본 폴더는 sync 대상 외.
 
 > [!IMPORTANT]
-> 비교 기준은 [`분석 BleCommunication.md §7`](분석%20BleCommunication.md) 와 동일 — `git diff --no-index -w --ignore-blank-lines`. stat 명령 출력 = **빈 결과** (변경 없음).
+> 비교 기준은 [`첨부_분석_BleCommunication.md §7`](첨부_분석_BleCommunication.md) 와 동일 — `git diff --no-index -w --ignore-blank-lines`. stat 명령 출력 = **빈 결과** (변경 없음).
 
 ## 1. 비교 범위
 
