@@ -273,7 +273,7 @@ void Initialize(void)
      * 이후 ParLED 단계 (FS · NRF · DMA · I2C · SPI 등) 를 진행하는 동안에도
      * LED POWER_ON 버스트가 백그라운드로 출력되어 체감 부팅 시간을 단축한다.
      *
-     * 상세: docs/tasks/LED/power-on-early-lighting/구현계획.md §3.2
+     * 상세: docs/tasks/LED/20260423_power-on-early-lighting/구현계획.md §3.2
      * ==================================================================== */
 
     /* L1: TIMER3 ISR 활성 (1ms tick ? LED · 터치 공유 카운터 + LED arbiter) */
@@ -458,7 +458,7 @@ void Initialize(void)
 
     /* 터치 센서 초기화는 P11 (init_I2c 직후) 에서 tdc_touch_init_begin() 으로 시작.
      * led_isr_active_set(true) 는 LED 진입 게이트 (P3-Early L4) 에서 이미 호출.
-     * 상세: docs/tasks/LED/power-on-early-lighting/구현계획.md (Rev.4) */
+     * 상세: docs/tasks/LED/20260423_power-on-early-lighting/구현계획.md (Rev.4) */
 
     // 초기화 과정에서 전원 버튼 (가속도 센서, 이제는 터치 센서)의 인터럽트 상태를 초기화 시킨다.
     cfx_cm3_sharedMemoryAll.systemShare.powerButton_pushed_CFX_to_CM3 = 0;
