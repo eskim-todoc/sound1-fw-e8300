@@ -353,7 +353,7 @@ int ci_map_init_map_data(int isd_num, bool force_init)
             p_info->isd_year        = 0x18;    //  ISD info (year)
             p_info->isd_month_model = 0x91;    //  ISD info (month, model)
             p_info->isd_serial      = 0x0000;  //  ISD info (serial)
-            p_info->isd_location_RL = 2;       //  ISD info (left/right)
+            p_info->isd_location_RL = 1;       //  ISD info (left/right)
         }
         else
         {

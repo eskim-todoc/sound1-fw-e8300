@@ -205,7 +205,7 @@ static uint8_t perceived_to_pwm(uint8_t perceived)
 #define TDC_FW_VARIANT_FACTORY_RESET   1
 
 #ifndef TDC_FW_VARIANT
-#define TDC_FW_VARIANT  TDC_FW_VARIANT_FACTORY_RESET   /* 디폴트: 운용 (APP) */
+#define TDC_FW_VARIANT  TDC_FW_VARIANT_APP   /* 디폴트: 운용 (APP) */
 #endif
 
 #if (TDC_FW_VARIANT == TDC_FW_VARIANT_FACTORY_RESET)

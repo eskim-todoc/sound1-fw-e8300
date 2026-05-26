@@ -309,7 +309,8 @@ int battery_percentage;
 
 int readBatteryPercentage(void)
 {
-    return battery_percentage;
+    // return battery_percentage;
+    return s_snd_batt_percent;
 }
 
 EN__BATTERY_LEVEL updateBatteryLevel(int chargingState, EN__LED_PATTERN ledPattern)

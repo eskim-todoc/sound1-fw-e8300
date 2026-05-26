@@ -76,7 +76,7 @@ void stimulationStrategy_NofM(void)
         logarithmMapping();
 
         /* NOTE: NofM 테스트를 위한 코드. 테스트 후 삭제할 것. */
-#if 1
+#if 0
         // Phase 0
         g_pcm_amplitude_level[0]  = 255;
         g_pcm_amplitude_level[8]  = 200;

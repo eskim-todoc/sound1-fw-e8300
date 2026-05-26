@@ -492,8 +492,8 @@ int func_normal(void)
                 }
                 else if (pct < 10)                                              batt_st = LED_ST_BATT_CRITICAL;
                 else if (pct < 12 && prev_batt_st == LED_ST_BATT_CRITICAL)      batt_st = LED_ST_BATT_CRITICAL;
-                else if (pct >= 80)                                             batt_st = LED_ST_BATT_READY;
-                else if (pct >= 78 && prev_batt_st == LED_ST_BATT_READY)        batt_st = LED_ST_BATT_READY;
+                else if (pct >= 65/*80*/)                                             batt_st = LED_ST_BATT_READY;
+                else if (pct >= 63/*78*/ && prev_batt_st == LED_ST_BATT_READY)        batt_st = LED_ST_BATT_READY;
                 else                                                            batt_st = LED_ST_BATT_MID;
 
                 prev_batt_st = batt_st;
