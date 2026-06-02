@@ -163,4 +163,6 @@ void turnON_RedLED(void);
 void turnON_GreenLED(void);
 void turnON_BlueLED(void);
 
+void led_set_isd_conn_state(int state);
+
 #endif

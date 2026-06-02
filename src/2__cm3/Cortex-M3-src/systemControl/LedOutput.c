@@ -84,6 +84,13 @@ static volatile uint16_t             s_fade_off_max   = 0;  /* 30 (turnOff) / 40
  * 분기 결정에 사용. */
 static volatile bool s_led_isr_active = false;
 
+static volatile int s_isd_conn = false;
+
+void led_set_isd_conn_state(int state)
+{
+    s_isd_conn = state;
+}
+
 /* arbiter ISR 이 정상 구동 가능한 상태인가? (활성 + 일시정지 아님) */
 static inline bool led_arbiter_can_run(void)
 {
@@ -688,7 +695,10 @@ static led_state_t compute_best_state(void)
         if (user_off && !led_is_error(st)
             && st != LED_ST_POWER_ON && st != LED_ST_POWER_OFF)
         {
+            if (s_isd_conn == 1)
+            {
             continue;
+            }
         }
 
         if (p > max_p)

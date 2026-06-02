@@ -404,8 +404,7 @@ int func_normal(void)
                         fake_0x34_done = 1;
                         ci_printi("\r\n");
                         ci_printi("################################################################\r\n");
-                        ci_printi("###  [FAKE_0x34 EXIT-DMA]   t3 = %d ms / WAIT = %d ms\r\n",
-                                  tdc_timer_get_t3_tick(), (ci_timer_get_tick() - fake_0x34));
+                        ci_printi("###  [FAKE_0x34 EXIT-DMA]   t3 = %d ms / WAIT = %d ms\r\n", tdc_timer_get_t3_tick(), (ci_timer_get_tick() - fake_0x34));
                         ci_printi("################################################################\r\n");
                         ci_printi("\r\n");
                     }
@@ -428,7 +427,7 @@ int func_normal(void)
             );
 
             // 특수 LED 사용 유무 판별
-            //tdc_LED_handle_special_case(systemState.Led_Pattern);
+            // tdc_LED_handle_special_case(systemState.Led_Pattern);
 
             update_mapNum();  // 맵데이터 업데이트
 
@@ -506,30 +505,59 @@ int func_normal(void)
 #endif
                     led_request(LED_SRC_BATTERY, batt_st);
 
-                /* ISD (SS4.6) */
+                    /* ISD (SS4.6) */
 #ifdef ENABLE_UI_CMD
-                bool isd_conn = tdc_ui_command_override_isd_active() ? tdc_ui_command_override_isd_value()
-                                                        : isd_state.conneded_ISD;
+                bool isd_conn = tdc_ui_command_override_isd_active() ? tdc_ui_command_override_isd_value() : isd_state.conneded_ISD;
 #else
                 bool isd_conn = isd_state.conneded_ISD;
 #endif
 #ifdef ENABLE_UI_CMD
                 if (!tdc_ui_command_is_led_override(LED_SRC_ISD))
 #endif
-                    led_request(LED_SRC_ISD, isd_conn ? LED_ST_IN_USE : LED_ST_NONE);
+                    /* IMPORTANT: 내부기 연결 해제시 위에서 구한 배터리 레벨에 대한 LED를 켜도록 유도했다. */
+                {
+                    if (isd_conn) // 내부기 연결 상태
+                    {
+                        // 내부기 연결 상태에서는 연결된 내부기의 사용자 설정 정보에서 LED 제어 값을 이용해야 한다.
+                        // LED 표시 설정값: 1=켜기, 2=끄기. (truthy 검사는 2도 참이 되므로 == 1 로 명시 비교)
+                        if (readLED_indicatorOnOff() == 1)
+                        {
+                            // LED 표시 설정이 켜기(1)이면,
+                            led_request(LED_SRC_ISD, LED_ST_IN_USE);
+                        }
+                        else
+                        {
+                            // LED 표시 설정이 끄기(2)이면,
+                            led_request(LED_SRC_ISD, LED_ST_NONE);
+                        }
+                    }
+                    else // 내부기 미 연결 상태
+                    {
+                        // 항상 LED가 켜질 수 있게 설정 정보를 LED 켜기로 강제한다.
+                        led_request(LED_SRC_ISD, LED_ST_NONE);
+                        led_request(LED_SRC_BATTERY, batt_st);
+                    }
+
+                    /* s_req[LED_SRC_ISD] 확정 후 게이트 갱신 — 연결 해제 전환 시
+                     * s_isd_conn=0 과 s_req[ISD]=NONE 사이에 TIMER_3 ISR 이 끼어들어
+                     * 1-tick IN_USE(백색) 잔상이 뜨던 race 를 방지하기 위해 분기 뒤로 이동. */
+                    led_set_isd_conn_state(isd_conn);
+                    //led_request(LED_SRC_ISD, isd_conn ? LED_ST_IN_USE : prev_batt_st /*LED_ST_NONE*/);
+                }
 
                 /* Mapping (SS4.4) — 배터리 레벨(LOW 임계 20%) × ISD 연결 여부 4종 분기.
                  * LOW 진입 pct ≤ 20, 해제 pct ≥ 22 (±2% 히스테리시스). */
 #ifdef ENABLE_UI_CMD
-                bool map_conn = tdc_ui_command_override_map_active() ? tdc_ui_command_override_map_value()
-                                                        : BLE_communicationState.mappingConnection;
+                bool map_conn = tdc_ui_command_override_map_active() ? tdc_ui_command_override_map_value() : BLE_communicationState.mappingConnection;
 #else
                 bool map_conn = BLE_communicationState.mappingConnection;
 #endif
                 static bool s_map_low_active = false;
-                if (pct <= 20)      s_map_low_active = true;
-                else if (pct >= 22) s_map_low_active = false;
-                /* pct == 21 구간은 직전 상태 유지 */
+                if (pct <= 20)
+                    s_map_low_active = true;
+                else if (pct >= 22)
+                    s_map_low_active = false;
+                    /* pct == 21 구간은 직전 상태 유지 */
 #ifdef ENABLE_UI_CMD
                 if (!tdc_ui_command_is_led_override(LED_SRC_MAPPING))
 #endif
@@ -539,13 +567,11 @@ int func_normal(void)
                         led_state_t map_st;
                         if (s_map_low_active)
                         {
-                            map_st = isd_conn ? LED_ST_MAPPING_ISD_BATT_LOW
-                                              : LED_ST_MAPPING_NO_ISD_BATT_LOW;
+                            map_st = isd_conn ? LED_ST_MAPPING_ISD_BATT_LOW : LED_ST_MAPPING_NO_ISD_BATT_LOW;
                         }
                         else
                         {
-                            map_st = isd_conn ? LED_ST_MAPPING_ISD_BATT_READY
-                                              : LED_ST_MAPPING_NO_ISD_BATT_READY;
+                            map_st = isd_conn ? LED_ST_MAPPING_ISD_BATT_READY : LED_ST_MAPPING_NO_ISD_BATT_READY;
                         }
                         led_request(LED_SRC_MAPPING, map_st);
                     }
@@ -624,14 +650,12 @@ int func_normal(void)
             led_state_t ble_st      = led_get_request(LED_SRC_BLE_IND);
             bool        map_active  = BLE_communicationState.mappingConnection;
             bool        pair_active = (ble_st == LED_ST_PAIR);
-            bool        ota_active  = (ble_st == LED_ST_OTA_QCC)
-                                    || (ble_st == LED_ST_OTA_EZAIRO);
+            bool        ota_active  = (ble_st == LED_ST_OTA_QCC) || (ble_st == LED_ST_OTA_EZAIRO);
 
             if (map_active || pair_active || ota_active)
             {
-                ci_printw("[SYSTEM] SLEEP DEFERRED (map=%d pair=%d ota=%d ble_st=%d) \r\n",
-                          map_active, pair_active, ota_active, (int) ble_st);
-                systemState.systemOff = false;  /* 다음 iteration 에서 트리거 재평가 */
+                ci_printw("[SYSTEM] SLEEP DEFERRED (map=%d pair=%d ota=%d ble_st=%d) \r\n", map_active, pair_active, ota_active, (int) ble_st);
+                systemState.systemOff = false; /* 다음 iteration 에서 트리거 재평가 */
             }
             else
             {
@@ -654,19 +678,18 @@ int func_normal(void)
 }
 
 /* ULP 모드 롱-터치 감지 파라미터 — 튜닝 시 아래 값만 수정 */
-#define ULP_WAKE_INTERVAL_MS       500         /* 웨이크업 주기 (ms) */
-#define ULP_LONG_TOUCH_MS          3000        /* 롱터치 판정 시간 (ms) */
+#define ULP_WAKE_INTERVAL_MS 500  /* 웨이크업 주기 (ms) */
+#define ULP_LONG_TOUCH_MS    3000 /* 롱터치 판정 시간 (ms) */
 
 /* 유도값 — 웨이크업 N 회 연속 TOUCH 시 리셋 (올림 나눗셈, 실제 응답 ≥ ULP_LONG_TOUCH_MS) */
-#define ULP_LONG_TOUCH_COUNT \
-    ((ULP_LONG_TOUCH_MS + ULP_WAKE_INTERVAL_MS - 1) / ULP_WAKE_INTERVAL_MS)
+#define ULP_LONG_TOUCH_COUNT ((ULP_LONG_TOUCH_MS + ULP_WAKE_INTERVAL_MS - 1) / ULP_WAKE_INTERVAL_MS)
 
 /* 타이머 하드웨어 설정값
  * 공식: T[ms] = 2^PRESCALE × (TIMEOUT+1) / 40   (SLOWCLK_DIV32 = 40 kHz)
  * 현재: 2^7 × 156 / 40 = 499.2 ms ≈ ULP_WAKE_INTERVAL_MS(500)
  * 주기 변경 시 PRESCALE / TIMEOUT_VALUE 도 재계산 필요 */
-#define ULP_TIMER_PRESCALE         TIMER_PRESCALE_128
-#define ULP_TIMER_TIMEOUT_VALUE    155
+#define ULP_TIMER_PRESCALE      TIMER_PRESCALE_128
+#define ULP_TIMER_TIMEOUT_VALUE 155
 
 int func_sleep(void)
 {
