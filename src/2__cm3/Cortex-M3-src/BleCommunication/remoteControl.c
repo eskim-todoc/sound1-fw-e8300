@@ -737,6 +737,8 @@ ST__REMOTECONTROL_STATE remoteControl(bool isdConnection)  // 연결 상태에 �
         }
 #endif
 
+        ci_printw("[PASSKEY] ALWAYS PATH OPENED. \r\n");
+
         // 송신 데이터 준비
         // command loop-back
         bufferForSPI_tx[tx_index++] = remoteDataPacket.command;
