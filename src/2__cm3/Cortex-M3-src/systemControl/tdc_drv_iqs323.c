@@ -526,9 +526,10 @@ static bool wait_re_ati_done(void)
  * ======================================================================== */
 #define TDC_BOARD_VARIANT_MINI     0
 #define TDC_BOARD_VARIANT_DEVELOP  1
+#define TDC_BOARD_VARIANT_PACKAGE  2
 
 #ifndef TDC_BOARD_VARIANT
-#define TDC_BOARD_VARIANT  TDC_BOARD_VARIANT_MINI   /* 디폴트: Mini 보드 */
+#define TDC_BOARD_VARIANT  TDC_BOARD_VARIANT_PACKAGE   /* 디폴트: Mini 보드 */
 #endif
 
 #if (TDC_BOARD_VARIANT == TDC_BOARD_VARIANT_MINI)
@@ -545,6 +546,13 @@ static bool wait_re_ati_done(void)
 #define TDC_DRV_IQS323_ATI_MULT_MSB  0x62
 #define TDC_DRV_IQS323_ATI_COMP_LSB  0xFF
 #define TDC_DRV_IQS323_ATI_COMP_MSB  0x53
+#elif (TDC_BOARD_VARIANT == TDC_BOARD_VARIANT_PACKAGE)
+#define TDC_DRV_IQS323_ATI_SETUP_LSB 0x0C
+#define TDC_DRV_IQS323_ATI_SETUP_MSB 0x04
+#define TDC_DRV_IQS323_ATI_MULT_LSB  0x82
+#define TDC_DRV_IQS323_ATI_MULT_MSB  0x5E
+#define TDC_DRV_IQS323_ATI_COMP_LSB  0xFF
+#define TDC_DRV_IQS323_ATI_COMP_MSB  0x73
 #else
 #error "TDC_BOARD_VARIANT 미지원 값. TDC_BOARD_VARIANT_MINI 또는 TDC_BOARD_VARIANT_DEVELOP 만 허용."
 #endif
