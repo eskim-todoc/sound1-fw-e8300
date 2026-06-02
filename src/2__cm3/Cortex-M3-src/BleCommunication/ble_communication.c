@@ -33,8 +33,8 @@ void fetch_readDataForBleSetting(const int *Rx_dataPacket)
     // 현재는 0x34, Power info만 데이터가 존재하는 상태이지만,
     // 추후에 얼마나 명령어가 늘어날지 예측할 수 없다. (2026.03.12)
 
-    if ((EN__SND_BT_CMD_SYSTEM_INFO_POWER <= Rx_dataPacket[0])        // 0x34 POWER INFO 부터
-        && (Rx_dataPacket[0] <= EN__SND_BT_CMD_SYSTEM_INFO_LED_IND))  // 0x35 LED INDICATION 까지
+    if ((EN__SND_BT_CMD_SYSTEM_INFO_POWER <= Rx_dataPacket[0])              // 0x34 POWER INFO 부터
+        && (Rx_dataPacket[0] <= EN__SND_BT_CMD_SYSTEM_INFO_CLASSIC_STATE))  // 0x36 클래식 상태 표시 까지
     {
         for (int i = 0; i < todoc_PayloadSize; i++)
         {
@@ -155,7 +155,7 @@ void setting_nrf_ble_adv_info(void)
         Tx_dataBuff[tx_index++] = 1;  // 수신 확인 응답
 
         ci_printw("[BT] BEFORE-WRITE-TX 0x34 t3=%d ms\r\n", tdc_timer_get_t3_tick());
-        ci_printw("[BT] CALL-WRITE-TX TxEmpty=%d\r\n", (int)isSpiTxBuffEmpty());
+        ci_printw("[BT] CALL-WRITE-TX TxEmpty=%d\r\n", (int) isSpiTxBuffEmpty());
 
         writeDataToSpiTxBuff(Tx_dataBuff, tx_index);     // 송싱 데이터 SPI TX버퍼에 복사
         bleSettingPacket.command = en__bleSetting_IDLE;  // 명령 종료
@@ -182,6 +182,34 @@ void setting_nrf_ble_adv_info(void)
         bleSettingPacket.command = en__bleSetting_IDLE;  // 명령 종료
     }
     // 끝, else if (bleSettingPacket.command == EN__SND_BT_CMD_SYSTEM_INFO_LED_IND)
+    // 시작, QCC와 새로 초가한 패킷 (0x36, 클래식 상태 표시)
+    else if (bleSettingPacket.command == EN__SND_BT_CMD_SYSTEM_INFO_CLASSIC_STATE)
+    {
+        int classic_state;  // 패킷 인덱스 1 →헤더 제외 시, 데이터 인덱스 0
+        int classic_type;   // 패킷 인덱스 2 →헤더 제외 시, 데이터 인덱스 1
+
+        classic_state = bleSettingPacket.data[0];  // 클래식 상태
+        classic_type  = bleSettingPacket.data[1];  // 클래식 종류
+
+        /* 명령 처리 */
+        ci_printd("[BT] CMD 0x%02X, CLASSIC STATE: %s, %s \r\n",  //
+                  classic_state == 0   ? "DISCONN"
+                  : classic_state == 1 ? "CONN"
+                                       : "INVALID",
+                  classic_type == 0   ? "UNKNOWN"
+                  : classic_type == 1 ? "CRADLE"
+                  : classic_type == 2 ? "OTHER"
+                                      : "INVALID");
+
+        /* IMPORTANT: 향후 크래들과 I2S 게인 테이블 적용할 수 있게 해야함 */
+
+        /* 응답 패킷 */
+        Tx_dataBuff[tx_index++] = EN__SND_BT_CMD_SYSTEM_INFO_CLASSIC_STATE;
+        Tx_dataBuff[tx_index++] = 1;                     // 수신 확인 응답
+        writeDataToSpiTxBuff(Tx_dataBuff, tx_index);     // 송신 데이터 SPI TX버퍼에 복사
+        bleSettingPacket.command = en__bleSetting_IDLE;  // 명령 종료
+    }
+    // 끝, else if (bleSettingPacket.command == EN__SND_BT_CMD_SYSTEM_INFO_CLASSIC_STATE)
 }
 
 ST__BLE_COMMUNICATION_STATE bleCommunication(ST__ISD_STATUS isd_state)
@@ -289,8 +317,8 @@ ST__BLE_COMMUNICATION_STATE bleCommunication(ST__ISD_STATUS isd_state)
                 fetch_mappingControlPacket(p_Rx_dataPacket);
             }
             // Sound1에서 추가된 QCC와 EZ 사이의 특수 명령어
-            else if ((EN__SND_BT_CMD_SYSTEM_INFO_BATTERY <= p_Rx_dataPacket[0])      // 0x33 배터리 정보 부터
-                     && (p_Rx_dataPacket[0] <= EN__SND_BT_CMD_SYSTEM_INFO_LED_IND))  // 0x35 LED 표시 까지
+            else if ((EN__SND_BT_CMD_SYSTEM_INFO_BATTERY <= p_Rx_dataPacket[0])            // 0x33 배터리 정보 부터
+                     && (p_Rx_dataPacket[0] <= EN__SND_BT_CMD_SYSTEM_INFO_CLASSIC_STATE))  // 0x36 클래식 상태 표시 까지
             {
                 // NOTE: 별도의 함수를 만들어야 하지만,
                 // 우선은 부팅 시 초기에 수행되는 en__bleSetting_ReadConnected_ISD_info 명령과 동일한
