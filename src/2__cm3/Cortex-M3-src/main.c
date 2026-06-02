@@ -476,25 +476,29 @@ int func_normal(void)
                  *            따라서 RESET 상태에서는 pct 판정을 건너뛰고 IDLE로 요청한다. */
 #ifdef ENABLE_UI_CMD
                 bool ovr_batt_active = tdc_ui_command_override_battery_active();
-                int  pct             = ovr_batt_active ? (int) tdc_ui_command_override_battery_percent()
-                                                       : snd_batt_get_percent();
+                int  pct             = ovr_batt_active ? (int) tdc_ui_command_override_battery_percent() : snd_batt_get_percent();
 #else
                 bool ovr_batt_active = false;
                 int  pct             = snd_batt_get_percent();
 #endif
                 static led_state_t prev_batt_st = LED_ST_IDLE;
-                led_state_t batt_st;
+                led_state_t        batt_st;
 
                 if (!ovr_batt_active && snd_batt_get_state() == EN__SND_BATT_STATE_RESET)
                 {
                     /* 배터리 정보 미수신: 판정 보류 */
                     batt_st = LED_ST_IDLE;
                 }
-                else if (pct < 10)                                              batt_st = LED_ST_BATT_CRITICAL;
-                else if (pct < 12 && prev_batt_st == LED_ST_BATT_CRITICAL)      batt_st = LED_ST_BATT_CRITICAL;
-                else if (pct >= 65/*80*/)                                             batt_st = LED_ST_BATT_READY;
-                else if (pct >= 63/*78*/ && prev_batt_st == LED_ST_BATT_READY)        batt_st = LED_ST_BATT_READY;
-                else                                                            batt_st = LED_ST_BATT_MID;
+                else if (pct < 40 /*10*/)
+                    batt_st = LED_ST_BATT_CRITICAL;
+                else if (pct < 41 /*12*/ && prev_batt_st == LED_ST_BATT_CRITICAL)
+                    batt_st = LED_ST_BATT_CRITICAL;
+                else if (pct >= 65 /*80*/)
+                    batt_st = LED_ST_BATT_READY;
+                else if (pct >= 64 /*78*/ && prev_batt_st == LED_ST_BATT_READY)
+                    batt_st = LED_ST_BATT_READY;
+                else
+                    batt_st = LED_ST_BATT_MID;
 
                 prev_batt_st = batt_st;
 #ifdef ENABLE_UI_CMD

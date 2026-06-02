@@ -150,7 +150,7 @@ ST__SYSTEM_STATE systemControl(EN__LED_PATTERN   current_led_pattern,  //
 #ifdef ENABLE_UI_CMD
         if (!tdc_ui_command_is_led_override(LED_SRC_ERROR))
 #endif
-        led_request(LED_SRC_ERROR, LED_ST_NONE);
+            led_request(LED_SRC_ERROR, LED_ST_NONE);
 
         // 충전기가 꼽히면 하드웨어적으로 리셋이 된다. 따라서 가장 먼저 여기로 들어오게 된다.
         if (chargerState.chargerConnectorPluggedIn == df_Defalut)
@@ -242,8 +242,10 @@ ST__SYSTEM_STATE systemControl(EN__LED_PATTERN   current_led_pattern,  //
                             powerButtonPushed = false;
                         }
 
-                        // 배터리 방전 상태 확인
-                        if (batteryLevel == en__batteryPower_0per)
+                        // 배터리 방전 상태 확인 (전기기계적안정성 시험을 위해 저전력 범위 변경)
+                        if ((batteryLevel == en__batteryPower_0per)         // 원래 0per만 저전력 인데
+                            || (batteryLevel == en__batteryPower_0btw20)    // 0~20per 랑
+                            || (batteryLevel == en__batteryPower_20btw40))  // 20~40per 도 저전력으로 처리 즉, 40per 미만이면 저전력
                         {
                             veryLowBattery = true;
                         }
@@ -376,22 +378,22 @@ ST__SYSTEM_STATE systemControl(EN__LED_PATTERN   current_led_pattern,  //
         if (!tdc_ui_command_is_led_override(LED_SRC_ERROR))
         {
 #endif
-        led_request(LED_SRC_ERROR, LED_ST_ERROR_MCU);
-        systemStatus.Led_Pattern = en__LED_MCU_Error;
+            led_request(LED_SRC_ERROR, LED_ST_ERROR_MCU);
+            systemStatus.Led_Pattern = en__LED_MCU_Error;
 
-        if (mcuErrorCode.dataProcessingErrorFlag != en__NA)
-        {
-            led_request(LED_SRC_ERROR, LED_ST_ERROR_MAP);
-            systemStatus.Led_Pattern = en__LED_Map_Error;
-        }
-        if (mcuErrorCode.accelerometerErrorFlag != en__NA)
-        {
-            led_request(LED_SRC_ERROR, LED_ST_ERROR_ACCEL);
-        }
-        if (mcuErrorCode.FPGA_CommunicationErrorFlag != en__NA)
-        {
-            led_request(LED_SRC_ERROR, LED_ST_ERROR_FPGA);
-        }
+            if (mcuErrorCode.dataProcessingErrorFlag != en__NA)
+            {
+                led_request(LED_SRC_ERROR, LED_ST_ERROR_MAP);
+                systemStatus.Led_Pattern = en__LED_Map_Error;
+            }
+            if (mcuErrorCode.accelerometerErrorFlag != en__NA)
+            {
+                led_request(LED_SRC_ERROR, LED_ST_ERROR_ACCEL);
+            }
+            if (mcuErrorCode.FPGA_CommunicationErrorFlag != en__NA)
+            {
+                led_request(LED_SRC_ERROR, LED_ST_ERROR_FPGA);
+            }
 #ifdef ENABLE_UI_CMD
         }
 #endif
