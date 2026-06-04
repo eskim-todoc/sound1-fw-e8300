@@ -17,6 +17,8 @@
 #include <ci_printf.h>
 #include <ci_timer.h>
 
+#include <tdc_touch_config.h>
+
 /* **********************************************************************
  * Common defines
  */
@@ -315,5 +317,36 @@ void tdc_drv_iqs323_apply_settings(void);
  * 반환: true = read 성공. *p_pressed 에 터치 상태,
  *       *p_ati_error 에 ATI_ERROR 플래그. */
 bool tdc_drv_iqs323_read_status(bool *p_pressed, bool *p_ati_error);
+
+/* **********************************************************************
+ * ATI Calibration Mode — TDC_TOUCH_ATI_CALIB_MODE 빌드 전용
+ *
+ * 조립 완제품에서 디버그 포트 없이 최적 ATI 보상값 후보를 LED 로 식별하는
+ * 1회성 개발 도구. 프로덕션 빌드에 포함하지 않는다.
+ */
+#if TDC_TOUCH_ATI_CALIB_MODE
+
+#define TDC_DRV_IQS323_CALIB_CANDIDATE_COUNT  10
+
+typedef struct
+{
+    uint8_t mult_lsb;
+    uint8_t mult_msb;
+    uint8_t comp_lsb;
+    uint8_t comp_msb;
+} tdc_drv_iqs323_calib_candidate_t;
+
+extern const tdc_drv_iqs323_calib_candidate_t
+    tdc_drv_iqs323_calib_candidates[TDC_DRV_IQS323_CALIB_CANDIDATE_COUNT];
+
+/* auto-ATI 완료 직후 호출. MULT/COMP 를 I2C 로 읽어 후보 테이블과 비교.
+ * 반환: 최근접 후보 인덱스 (1~10). 0=I2C read 실패. */
+uint8_t tdc_drv_iqs323_calib_find_candidate(void);
+
+/* auto-ATI 완료 직후 MULT·COMP 16비트 값을 직접 읽어 반환.
+ * 반환: true=성공. *p_mult=(MSB<<8)|LSB, *p_comp=(MSB<<8)|LSB. */
+bool tdc_drv_iqs323_calib_read_ati(uint16_t *p_mult, uint16_t *p_comp);
+
+#endif /* TDC_TOUCH_ATI_CALIB_MODE */
 
 #endif /* TDC_DRV_IQS323_H_ */

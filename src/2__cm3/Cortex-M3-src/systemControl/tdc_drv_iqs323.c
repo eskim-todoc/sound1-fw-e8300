@@ -497,41 +497,16 @@ static bool wait_re_ati_done(void)
  *
  * 보상값 확인 방법: TDC_DRV_IQS323_ATI_DUMP_ENABLE 1로 설정 후 빌드 → RTT 로그 확인
  */
-#define TDC_DRV_IQS323_ATI_DUMP_ENABLE 0  /* 1: RE-ATI 실행 후 보상값 로그 출력 (개발용) */
-
-/* ========================================================================
- *  보드 변종별 IQS323 Sensor 0 ATI 보상값 (사전 측정, ATI Mode=Full 고정)
- * ========================================================================
- *  Sound1 Mini 보드와 Develop 보드는 PCB 레이아웃 차이로 IQS323 의 ATI
- *  보상값이 다르다. 빌드 시 TDC_BOARD_VARIANT 매크로로 연결된 보드 종류를
- *  선택 — 디폴트는 Mini (현재 활성 변종).
+/* 보드 변종별 IQS323 Sensor 0 ATI 보상값 (사전 측정, ATI Mode=Full 고정)
  *
  *  변종         | ATI_MULT_MSB | ATI_COMP_LSB | ATI_COMP_MSB
  *  -------------|--------------|--------------|---------------
- *  MINI (디폴트)| 0x5A         | 0x00         | 0x58
+ *  MINI         | 0x5A         | 0x00         | 0x58
  *  DEVELOP      | 0x62         | 0xFF         | 0x53
+ *  PACKAGE      | 0x5E         | 0xFF         | 0x73
  *
- *  (다른 3 개 — ATI_SETUP_LSB/MSB, ATI_MULT_LSB — 는 양쪽 동일)
- *
- *  사용:
- *   - Mini 보드 빌드: 매크로 미정의 → 자동 디폴트 MINI. 별도 작업 불필요.
- *   - Develop 보드 빌드: 본 파일 디폴트를 DEVELOP 으로 변경 또는
- *                       빌드 옵션 -DTDC_BOARD_VARIANT=TDC_BOARD_VARIANT_DEVELOP.
- *
- *  Note: processorDirective.h 의 Board_is_* 와는 의미 레이어가 다르다
- *        (Board_is_*=핀 매핑, TDC_BOARD_VARIANT=드라이버 캘리브레이션).
- *        통합은 별개 작업으로 검토.
- *
- *  보상값 확인 방법: TDC_DRV_IQS323_ATI_DUMP_ENABLE 1 로 설정 후 빌드 → RTT 로그
- * ======================================================================== */
-#define TDC_BOARD_VARIANT_MINI     0
-#define TDC_BOARD_VARIANT_DEVELOP  1
-#define TDC_BOARD_VARIANT_PACKAGE  2
-
-#ifndef TDC_BOARD_VARIANT
-#define TDC_BOARD_VARIANT  TDC_BOARD_VARIANT_PACKAGE   /* 디폴트: Mini 보드 */
-#endif
-
+ *  (나머지 — ATI_SETUP_LSB/MSB, ATI_MULT_LSB — 는 3개 변종 동일)
+ *  TDC_BOARD_VARIANT 선택: tdc_touch_config.h 참조 */
 #if (TDC_BOARD_VARIANT == TDC_BOARD_VARIANT_MINI)
 #define TDC_DRV_IQS323_ATI_SETUP_LSB 0x0C  /* ATI Resolution Factor + ATI Band=1 + ATI Mode=Full(100) */
 #define TDC_DRV_IQS323_ATI_SETUP_MSB 0x04
@@ -607,6 +582,92 @@ static void dump_ati_registers(void)
     ci_printi("[TOUCH] === ATI DUMP END === \r\n");
 }
 #endif
+
+/* **********************************************************************
+ * ATI Calibration — TDC_TOUCH_ATI_CALIB_MODE 빌드 전용
+ */
+#if TDC_TOUCH_ATI_CALIB_MODE
+
+const tdc_drv_iqs323_calib_candidate_t
+    tdc_drv_iqs323_calib_candidates[TDC_DRV_IQS323_CALIB_CANDIDATE_COUNT] =
+{
+    /* mult_lsb  mult_msb  comp_lsb  comp_msb */
+    { 0x82,     0x5C,     0x00,     0x48 },  /* 1: MINI 이하       */
+    { 0x82,     0x5E,     0xFF,     0x53 },  /* 2: ≈DEVELOP        */
+    { 0x82,     0x5A,     0x00,     0x58 },  /* 3: ≈MINI           */
+    { 0x82,     0x5C,     0x00,     0x60 },  /* 4                  */
+    { 0x82,     0x5C,     0x00,     0x68 },  /* 5                  */
+    { 0x82,     0x5C,     0x00,     0x70 },  /* 6                  */
+    { 0x82,     0x5E,     0xFF,     0x73 },  /* 7: ≈PACKAGE        */
+    { 0x82,     0x5A,     0x00,     0x80 },  /* 8                  */
+    { 0x82,     0x58,     0x00,     0x90 },  /* 9                  */
+    { 0x82,     0x56,     0x00,     0xA0 },  /* 10: 고용량 조립     */
+};
+
+uint8_t tdc_drv_iqs323_calib_find_candidate(void)
+{
+    uint8_t mult_lsb, mult_msb, comp_lsb, comp_msb;
+
+    if (!read_register(TDC_DRV_IQS323_REG_ADDR_SENSOR0_ATI_MULT, &mult_lsb, &mult_msb))
+    {
+        ci_printe("[TOUCH] CALIB: MULT READ FAIL \r\n");
+        return 0;
+    }
+    if (!read_register(TDC_DRV_IQS323_REG_ADDR_SENSOR0_ATI_COMP, &comp_lsb, &comp_msb))
+    {
+        ci_printe("[TOUCH] CALIB: COMP READ FAIL \r\n");
+        return 0;
+    }
+
+    ci_printi("[TOUCH] CALIB READ — MULT: LSB=0x%02X MSB=0x%02X  COMP: LSB=0x%02X MSB=0x%02X \r\n",
+              mult_lsb, mult_msb, comp_lsb, comp_msb);
+
+    uint32_t comp16_actual = ((uint32_t)comp_msb << 8) | comp_lsb;
+    uint8_t  best_idx      = 1;
+    uint32_t best_dist     = UINT32_MAX;
+
+    for (uint8_t i = 0; i < TDC_DRV_IQS323_CALIB_CANDIDATE_COUNT; i++)
+    {
+        const tdc_drv_iqs323_calib_candidate_t *c = &tdc_drv_iqs323_calib_candidates[i];
+        uint32_t comp16_cand = ((uint32_t)c->comp_msb << 8) | c->comp_lsb;
+        int32_t  dc          = (int32_t)comp16_actual - (int32_t)comp16_cand;
+        int32_t  dm          = (int32_t)mult_msb      - (int32_t)c->mult_msb;
+        uint32_t dist        = (uint32_t)(dc * dc) + (uint32_t)(dm * dm * 256);
+
+        if (dist < best_dist)
+        {
+            best_dist = dist;
+            best_idx  = i + 1;
+        }
+    }
+
+    ci_printi("[TOUCH] CALIB: Best candidate = %d \r\n", best_idx);
+    return best_idx;
+}
+
+bool tdc_drv_iqs323_calib_read_ati(uint16_t *p_mult, uint16_t *p_comp)
+{
+    uint8_t lsb, msb;
+
+    if (!read_register(TDC_DRV_IQS323_REG_ADDR_SENSOR0_ATI_MULT, &lsb, &msb))
+    {
+        ci_printe("[TOUCH] CALIB: MULT READ FAIL \r\n");
+        return false;
+    }
+    *p_mult = ((uint16_t)msb << 8) | lsb;
+
+    if (!read_register(TDC_DRV_IQS323_REG_ADDR_SENSOR0_ATI_COMP, &lsb, &msb))
+    {
+        ci_printe("[TOUCH] CALIB: COMP READ FAIL \r\n");
+        return false;
+    }
+    *p_comp = ((uint16_t)msb << 8) | lsb;
+
+    ci_printi("[TOUCH] CALIB — MULT=0x%04X  COMP=0x%04X \r\n", *p_mult, *p_comp);
+    return true;
+}
+
+#endif /* TDC_TOUCH_ATI_CALIB_MODE */
 
 /* **********************************************************************
  * Public API — 저수준 드라이버 인터페이스
