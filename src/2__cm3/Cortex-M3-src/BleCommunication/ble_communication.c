@@ -192,7 +192,7 @@ void setting_nrf_ble_adv_info(void)
         classic_type  = bleSettingPacket.data[1];  // 클래식 종류
 
         /* 명령 처리 */
-        ci_printd("[BT] CMD 0x%02X, CLASSIC STATE: %s, %s \r\n",  //
+        ci_printw("[BT] CMD 0x%02X, CLASSIC STATE: %s, %s \r\n",  //
                   classic_state == 0   ? "DISCONN"
                   : classic_state == 1 ? "CONN"
                                        : "INVALID",
