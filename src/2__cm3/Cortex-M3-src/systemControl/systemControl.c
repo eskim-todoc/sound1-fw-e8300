@@ -198,6 +198,9 @@ ST__SYSTEM_STATE systemControl(EN__LED_PATTERN   current_led_pattern,  //
                 /* 충전 중 LED: 배터리 레벨 판정은 Arbiter가 처리 */
             }
 
+#if TDC_DBG_LONG_TOUCH_IGNORE_LED
+            if (powerButtonPushed) { led_request(LED_SRC_DBG, LED_ST_DBG_LONG_TOUCH_IGNORE); }
+#endif
             StartFlag = false;
         }
         else if (chargerState.chargerConnectorPluggedIn == df_Disconnected)  // 충전기가 연결되지 않은 상태.
@@ -235,10 +238,16 @@ ST__SYSTEM_STATE systemControl(EN__LED_PATTERN   current_led_pattern,  //
                         // 매핑이 연결되어있으면 전원 버튼은 무시한다.
                         if (mappingConnected)
                         {
+#if TDC_DBG_LONG_TOUCH_IGNORE_LED
+                            if (powerButtonPushed) { led_request(LED_SRC_DBG, LED_ST_DBG_LONG_TOUCH_IGNORE); }
+#endif
                             powerButtonPushed = false;
                         }
                         else if (ISD_Disconnection_counter < 300)
                         {
+#if TDC_DBG_LONG_TOUCH_IGNORE_LED
+                            if (powerButtonPushed) { led_request(LED_SRC_DBG, LED_ST_DBG_LONG_TOUCH_IGNORE); }
+#endif
                             powerButtonPushed = false;
                         }
 
