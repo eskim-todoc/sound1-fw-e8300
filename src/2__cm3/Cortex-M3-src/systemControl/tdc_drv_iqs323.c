@@ -497,7 +497,7 @@ static bool wait_re_ati_done(void)
  *
  * 보상값 확인 방법: TDC_DRV_IQS323_ATI_DUMP_ENABLE 1로 설정 후 빌드 → RTT 로그 확인
  */
-/* 보드 변종별 IQS323 Sensor 0 ATI 보상값 (사전 측정, ATI Mode=Full 고정)
+/* 보드 변종별 IQS323 Sensor 0 ATI 보상값 (사전 측정, ATI Mode=Disabled 고정)
  *
  *  변종         | ATI_MULT_MSB | ATI_COMP_LSB | ATI_COMP_MSB
  *  -------------|--------------|--------------|---------------
@@ -506,23 +506,28 @@ static bool wait_re_ati_done(void)
  *  PACKAGE      | 0x5E         | 0xFF         | 0x73
  *
  *  (나머지 — ATI_SETUP_LSB/MSB, ATI_MULT_LSB — 는 3개 변종 동일)
+ *
+ *  ATI_SETUP_LSB 0x08: bits[2:0]=000 → ATI Mode=Disabled (런타임 auto-reATI 차단)
+ *    MCLR 리셋 직후 HW auto-ATI는 영향 없음. apply_settings() 이후 IQS323이
+ *    stuck-touch를 감지해 auto-reATI를 재실행→COMP 변경→ATI_ERROR→무응답 되는
+ *    경로를 차단한다. (이전: 0x0C = ATI Mode=Full(100))
  *  TDC_BOARD_VARIANT 선택: tdc_touch_config.h 참조 */
 #if (TDC_BOARD_VARIANT == TDC_BOARD_VARIANT_MINI)
-#define TDC_DRV_IQS323_ATI_SETUP_LSB 0x0C  /* ATI Resolution Factor + ATI Band=1 + ATI Mode=Full(100) */
+#define TDC_DRV_IQS323_ATI_SETUP_LSB 0x08  /* ATI Resolution Factor + ATI Band=1 + ATI Mode=Disabled(000) */
 #define TDC_DRV_IQS323_ATI_SETUP_MSB 0x04
 #define TDC_DRV_IQS323_ATI_MULT_LSB  0x82  /* Fine/Coarse Fractional Multiplier/Divider */
 #define TDC_DRV_IQS323_ATI_MULT_MSB  0x5A
 #define TDC_DRV_IQS323_ATI_COMP_LSB  0x00  /* Compensation Divider + Compensation */
 #define TDC_DRV_IQS323_ATI_COMP_MSB  0x58
 #elif (TDC_BOARD_VARIANT == TDC_BOARD_VARIANT_DEVELOP)
-#define TDC_DRV_IQS323_ATI_SETUP_LSB 0x0C
+#define TDC_DRV_IQS323_ATI_SETUP_LSB 0x08
 #define TDC_DRV_IQS323_ATI_SETUP_MSB 0x04
 #define TDC_DRV_IQS323_ATI_MULT_LSB  0x82
 #define TDC_DRV_IQS323_ATI_MULT_MSB  0x62
 #define TDC_DRV_IQS323_ATI_COMP_LSB  0xFF
 #define TDC_DRV_IQS323_ATI_COMP_MSB  0x53
 #elif (TDC_BOARD_VARIANT == TDC_BOARD_VARIANT_PACKAGE)
-#define TDC_DRV_IQS323_ATI_SETUP_LSB 0x0C
+#define TDC_DRV_IQS323_ATI_SETUP_LSB 0x08
 #define TDC_DRV_IQS323_ATI_SETUP_MSB 0x04
 #define TDC_DRV_IQS323_ATI_MULT_LSB  0x82
 #define TDC_DRV_IQS323_ATI_MULT_MSB  0x5E
@@ -817,6 +822,14 @@ void tdc_drv_iqs323_apply_settings(void)
     if (!write_register(TDC_DRV_IQS323_REG_ADDR_SYSTEM_CONTROL, 0x08, 0x00))
     {
         ci_printe("[TOUCH] FAIL: RESEED \r\n");
+    }
+
+    /* CH0~CH2 stuck-touch timeout 비활성화 — auto-reATI 트리거 경로 차단
+     * ATI Mode=Disabled(0x08)와 이중 방어. MSB bit[0..2] = ch0/ch1/ch2_timeout_disable */
+    ci_printv("[TOUCH] DISABLE CH TIMEOUT \r\n");
+    if (!write_register(TDC_DRV_IQS323_REG_ADDR_SYSTEM_CONTROL, 0x00, 0x07))
+    {
+        ci_printe("[TOUCH] FAIL: DISABLE CH TIMEOUT \r\n");
     }
 #endif
 
