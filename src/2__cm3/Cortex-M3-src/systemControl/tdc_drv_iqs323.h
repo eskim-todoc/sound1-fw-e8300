@@ -347,6 +347,10 @@ uint8_t tdc_drv_iqs323_calib_find_candidate(void);
  * 반환: true=성공. *p_mult=(MSB<<8)|LSB, *p_comp=(MSB<<8)|LSB. */
 bool tdc_drv_iqs323_calib_read_ati(uint16_t *p_mult, uint16_t *p_comp);
 
+/* RE-ATI 트리거 후 완료까지 블로킹 대기 (타임아웃 500ms).
+ * 반환: true=정상 완료 / false=트리거 실패 또는 타임아웃. */
+bool tdc_drv_iqs323_calib_re_ati(void);
+
 #endif /* TDC_TOUCH_ATI_CALIB_MODE */
 
 #endif /* TDC_DRV_IQS323_H_ */

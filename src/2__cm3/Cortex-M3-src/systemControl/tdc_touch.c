@@ -122,14 +122,12 @@ static bool proc_long_touch(tdc_touch_state_t state_now)
 #if TDC_TOUCH_ATI_CALIB_MODE
 
 /* 이진 LED 표시 파라미터
- *   SEP      : 구분자(파랑=MULT, 빨강=COMP) 표시 시간
- *   BIT_ON   : 비트 표시 시간 (녹=1 / 노랑≈주황=0)
- *   BIT_OFF  : 비트 사이 소등 시간
- *   LOOP_GAP : 루프 반복 전 대기 */
-#define TDC_TOUCH_CALIB_SEP_MS       1200
+ *   SEP    : 구분자(파랑=MULT, 빨강=COMP) 표시 시간
+ *   BIT_ON : 비트 표시 시간 (녹=1 / 노랑≈주황=0)
+ *   BIT_OFF: 비트 사이 소등 시간 */
+#define TDC_TOUCH_CALIB_SEP_MS      1200
 #define TDC_TOUCH_CALIB_BIT_ON_MS    700
 #define TDC_TOUCH_CALIB_BIT_OFF_MS   250
-#define TDC_TOUCH_CALIB_LOOP_GAP_MS  1600
 
 static void calib_delay_ms(int ms)
 {
@@ -148,54 +146,45 @@ static void calib_led_off(void)
     }
 }
 
-/* MULT/COMP 16비트 값을 LED 이진수로 무한 반복 출력.
+/* MULT/COMP 16비트 값을 LED 이진수로 1회 출력.
  *   구분자: 파랑(MULT 시작) / 빨강 점멸(COMP 시작)
  *   비트:   녹색=1 / 노랑≈주황=0   (MSB→LSB 순) */
-static void tdc_touch_calib_led_binary(uint16_t mult16, uint16_t comp16)
+static void tdc_touch_calib_led_binary_once(uint16_t mult16, uint16_t comp16)
 {
-    calib_delay_ms(400);  /* 부팅 LED 완료 대기 */
+    /* ── MULT 구분자: 파란색 고정 ── */
+    led_request(LED_SRC_MAPPING, LED_ST_MAPPING_NO_ISD_BATT_READY);
+    calib_delay_ms(TDC_TOUCH_CALIB_SEP_MS);
     calib_led_off();
+    calib_delay_ms(TDC_TOUCH_CALIB_BIT_OFF_MS);
 
-    while (1)
+    /* ── MULT 16비트 (MSB→LSB) ── */
+    for (int8_t bit = 15; bit >= 0; bit--)
     {
-        /* ── MULT 구분자: 파란색 고정 ── */
-        led_request(LED_SRC_MAPPING, LED_ST_MAPPING_NO_ISD_BATT_READY);
-        calib_delay_ms(TDC_TOUCH_CALIB_SEP_MS);
+        if ((mult16 >> bit) & 1)
+            led_request(LED_SRC_BATTERY, LED_ST_BATT_READY);  /* 1 = 녹색 */
+        else
+            led_request(LED_SRC_BATTERY, LED_ST_BATT_MID);    /* 0 = 노랑(주황 근사) */
+        calib_delay_ms(TDC_TOUCH_CALIB_BIT_ON_MS);
         calib_led_off();
         calib_delay_ms(TDC_TOUCH_CALIB_BIT_OFF_MS);
+    }
 
-        /* ── MULT 16비트 (MSB→LSB) ── */
-        for (int8_t bit = 15; bit >= 0; bit--)
-        {
-            if ((mult16 >> bit) & 1)
-                led_request(LED_SRC_BATTERY, LED_ST_BATT_READY);  /* 1 = 녹색 */
-            else
-                led_request(LED_SRC_BATTERY, LED_ST_BATT_MID);    /* 0 = 노랑(주황 근사) */
-            calib_delay_ms(TDC_TOUCH_CALIB_BIT_ON_MS);
-            calib_led_off();
-            calib_delay_ms(TDC_TOUCH_CALIB_BIT_OFF_MS);
-        }
+    /* ── COMP 구분자: 빨간색 점멸 ── */
+    led_request(LED_SRC_ERROR, LED_ST_ERROR_MAP);
+    calib_delay_ms(TDC_TOUCH_CALIB_SEP_MS);
+    calib_led_off();
+    calib_delay_ms(TDC_TOUCH_CALIB_BIT_OFF_MS);
 
-        /* ── COMP 구분자: 빨간색 점멸 ── */
-        led_request(LED_SRC_ERROR, LED_ST_ERROR_MAP);
-        calib_delay_ms(TDC_TOUCH_CALIB_SEP_MS);
+    /* ── COMP 16비트 (MSB→LSB) ── */
+    for (int8_t bit = 15; bit >= 0; bit--)
+    {
+        if ((comp16 >> bit) & 1)
+            led_request(LED_SRC_BATTERY, LED_ST_BATT_READY);
+        else
+            led_request(LED_SRC_BATTERY, LED_ST_BATT_MID);
+        calib_delay_ms(TDC_TOUCH_CALIB_BIT_ON_MS);
         calib_led_off();
         calib_delay_ms(TDC_TOUCH_CALIB_BIT_OFF_MS);
-
-        /* ── COMP 16비트 (MSB→LSB) ── */
-        for (int8_t bit = 15; bit >= 0; bit--)
-        {
-            if ((comp16 >> bit) & 1)
-                led_request(LED_SRC_BATTERY, LED_ST_BATT_READY);
-            else
-                led_request(LED_SRC_BATTERY, LED_ST_BATT_MID);
-            calib_delay_ms(TDC_TOUCH_CALIB_BIT_ON_MS);
-            calib_led_off();
-            calib_delay_ms(TDC_TOUCH_CALIB_BIT_OFF_MS);
-        }
-
-        calib_delay_ms(TDC_TOUCH_CALIB_LOOP_GAP_MS);
-        SYS_WATCHDOG_REFRESH();
     }
 }
 
@@ -229,8 +218,14 @@ static bool try_finish_init(void)
 #if TDC_TOUCH_ATI_CALIB_MODE
     {
         uint16_t mult16 = 0, comp16 = 0;
-        tdc_drv_iqs323_calib_read_ati(&mult16, &comp16);
-        tdc_touch_calib_led_binary(mult16, comp16);  /* 내부 while(1) */
+        calib_delay_ms(400);  /* 부팅 LED 완료 대기 */
+        calib_led_off();
+        while (1)
+        {
+            tdc_drv_iqs323_calib_read_ati(&mult16, &comp16);
+            tdc_touch_calib_led_binary_once(mult16, comp16);
+            tdc_drv_iqs323_calib_re_ati();
+        }
     }
 #else
     tdc_drv_iqs323_apply_settings();

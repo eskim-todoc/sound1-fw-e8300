@@ -525,9 +525,9 @@ static bool wait_re_ati_done(void)
 #define TDC_DRV_IQS323_ATI_SETUP_LSB 0x0C
 #define TDC_DRV_IQS323_ATI_SETUP_MSB 0x04
 #define TDC_DRV_IQS323_ATI_MULT_LSB  0x82
-#define TDC_DRV_IQS323_ATI_MULT_MSB  0x5E
-#define TDC_DRV_IQS323_ATI_COMP_LSB  0xFF
-#define TDC_DRV_IQS323_ATI_COMP_MSB  0x73
+#define TDC_DRV_IQS323_ATI_MULT_MSB  0x5A
+#define TDC_DRV_IQS323_ATI_COMP_LSB  0xD2
+#define TDC_DRV_IQS323_ATI_COMP_MSB  0x63
 #else
 #error "TDC_BOARD_VARIANT 미지원 값. TDC_BOARD_VARIANT_MINI 또는 TDC_BOARD_VARIANT_DEVELOP 만 허용."
 #endif
@@ -663,7 +663,38 @@ bool tdc_drv_iqs323_calib_read_ati(uint16_t *p_mult, uint16_t *p_comp)
     }
     *p_comp = ((uint16_t)msb << 8) | lsb;
 
-    ci_printi("[TOUCH] CALIB — MULT=0x%04X  COMP=0x%04X \r\n", *p_mult, *p_comp);
+    ci_printw("[TOUCH] CALIB — MULT=0x%04X  COMP=0x%04X \r\n", *p_mult, *p_comp);
+    return true;
+}
+
+bool tdc_drv_iqs323_calib_re_ati(void)
+{
+    if (!re_ati_trigger())
+    {
+        ci_printe("[TOUCH] CALIB: RE-ATI TRIGGER FAIL \r\n");
+        return false;
+    }
+
+    /* 안정화 대기 */
+    {
+        int tick_old = ci_timer_get_tick();
+        while (50 > (ci_timer_get_tick() - tick_old)) { SYS_WATCHDOG_REFRESH(); }
+    }
+
+    /* 완료 대기 (최대 500ms) */
+    {
+        int tick_old = ci_timer_get_tick();
+        while (!tdc_drv_iqs323_is_auto_ati_done())
+        {
+            SYS_WATCHDOG_REFRESH();
+            if (TDC_DRV_IQS323_MAX_WAIT_MS_FOR_ATI_DONE < (ci_timer_get_tick() - tick_old))
+            {
+                ci_printw("[TOUCH] CALIB: RE-ATI TIMEOUT \r\n");
+                return false;
+            }
+        }
+    }
+
     return true;
 }
 
