@@ -17,6 +17,7 @@
 #define TDC_TOUCH_H_
 
 #include <stdbool.h>
+#include <tdc_touch_config.h>
 
 /* **********************************************************************
  * 상수
@@ -55,5 +56,11 @@ bool tdc_touch_process(void);
 /* 현재 터치 상태 즉시 조회.
  * 반환: true = read 성공, *p_state 에 상태 enum 저장. */
 bool tdc_touch_get_state(tdc_touch_state_t *p_state);
+
+#if TDC_TOUCH_SLEEP_MEASURE_MODE
+/* CALIB 루프에서 's' 입력으로 예약된 절전 요청을 소비(1회 리셋).
+ * true 반환 시 tdc_on_sleep_measure_cmd() + func_sleep() 전환 필요. */
+bool tdc_touch_consume_sleep_request(void);
+#endif
 
 #endif /* TDC_TOUCH_H_ */

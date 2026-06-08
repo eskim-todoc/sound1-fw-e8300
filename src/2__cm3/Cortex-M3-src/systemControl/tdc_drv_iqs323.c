@@ -426,8 +426,8 @@ static bool touch_settings(void)
     tdc_drv_iqs323_reg_touch_settings_t reg;
 
     reg.elements.addr                 = TDC_DRV_IQS323_REG_ADDR_CH0_TOUCH_SETTINGS;
-    reg.elements.lsb.touch_threshold  = TDC_DRV_IQS323_TOUCH_THRESHOLD_80;
-    reg.elements.msb.touch_hysteresis = TDC_DRV_IQS323_TOUCH_HYSTERESIS_80;
+    reg.elements.lsb.touch_threshold  = TDC_DRV_IQS323_TOUCH_THRESHOLD;
+    reg.elements.msb.touch_hysteresis = TDC_DRV_IQS323_TOUCH_HYSTERESIS;
 
     return write_and_verify(reg.bytes[0], reg.bytes[1], reg.bytes[2]);
 }
@@ -499,25 +499,26 @@ static bool wait_re_ati_done(void)
  */
 /* 보드 변종별 IQS323 Sensor 0 ATI 보상값 (사전 측정, ATI Mode=Disabled 고정)
  *
- *  변종         | ATI_MULT_MSB | ATI_COMP_LSB | ATI_COMP_MSB
- *  -------------|--------------|--------------|---------------
- *  MINI         | 0x5A         | 0x00         | 0x58
- *  DEVELOP      | 0x62         | 0xFF         | 0x53
- *  PACKAGE      | 0x5E         | 0xFF         | 0x73
+ *  변종         | ATI_MULT_MSB | ATI_COMP_LSB | ATI_COMP_MSB | 기준
+ *  -------------|--------------|--------------|--------------|----------------------------
+ *  MINI         | 0x5A         | 0x00         | 0x58         | 초기 측정값
+ *  DEVELOP      | 0x62         | 0xFF         | 0x53         | 초기 측정값
+ *  PACKAGE      | 0x5E         | 0xE4         | 0x63         | 정상 노터치 실측 (2026-06-08)
  *
- *  (나머지 — ATI_SETUP_LSB/MSB, ATI_MULT_LSB — 는 3개 변종 동일)
+ *  (ATI_SETUP_LSB/MSB, ATI_MULT_LSB 는 3개 변종 동일)
  *
- *  ATI_SETUP_LSB 0x08: bits[2:0]=000 → ATI Mode=Disabled (런타임 auto-reATI 차단)
- *    MCLR 리셋 직후 HW auto-ATI는 영향 없음. apply_settings() 이후 IQS323이
- *    stuck-touch를 감지해 auto-reATI를 재실행→COMP 변경→ATI_ERROR→무응답 되는
- *    경로를 차단한다. (이전: 0x0C = ATI Mode=Full(100))
+ *  ATI_SETUP_LSB 0x08: bits[2:0]=000 → ATI Mode=Disabled
+ *    운용 중 stuck-touch → auto-reATI → ATI_ERROR → I2C 무응답 경로 차단.
+ *    CH timeout 비활성화와 이중 방어.
+ *
+ *  절전 모드 전환 시 tdc_drv_iqs323_apply_sleep_settings() 로 re-ATI 실행. 직접 값 설정 불필요.
  *  TDC_BOARD_VARIANT 선택: tdc_touch_config.h 참조 */
 #if (TDC_BOARD_VARIANT == TDC_BOARD_VARIANT_MINI)
 #define TDC_DRV_IQS323_ATI_SETUP_LSB 0x08  /* ATI Resolution Factor + ATI Band=1 + ATI Mode=Disabled(000) */
 #define TDC_DRV_IQS323_ATI_SETUP_MSB 0x04
-#define TDC_DRV_IQS323_ATI_MULT_LSB  0x82  /* Fine/Coarse Fractional Multiplier/Divider */
+#define TDC_DRV_IQS323_ATI_MULT_LSB  0x82
 #define TDC_DRV_IQS323_ATI_MULT_MSB  0x5A
-#define TDC_DRV_IQS323_ATI_COMP_LSB  0x00  /* Compensation Divider + Compensation */
+#define TDC_DRV_IQS323_ATI_COMP_LSB  0x00
 #define TDC_DRV_IQS323_ATI_COMP_MSB  0x58
 #elif (TDC_BOARD_VARIANT == TDC_BOARD_VARIANT_DEVELOP)
 #define TDC_DRV_IQS323_ATI_SETUP_LSB 0x08
@@ -530,9 +531,9 @@ static bool wait_re_ati_done(void)
 #define TDC_DRV_IQS323_ATI_SETUP_LSB 0x08
 #define TDC_DRV_IQS323_ATI_SETUP_MSB 0x04
 #define TDC_DRV_IQS323_ATI_MULT_LSB  0x82
-#define TDC_DRV_IQS323_ATI_MULT_MSB  0x5E
-#define TDC_DRV_IQS323_ATI_COMP_LSB  0xE4
-#define TDC_DRV_IQS323_ATI_COMP_MSB  0x63
+#define TDC_DRV_IQS323_ATI_MULT_MSB  0x5E  /* 정상 노터치 실측 (2026-06-08) */
+#define TDC_DRV_IQS323_ATI_COMP_LSB  0xE4  /* 정상 노터치 실측 (2026-06-08) */
+#define TDC_DRV_IQS323_ATI_COMP_MSB  0x63  /* 정상 노터치 실측 (2026-06-08) */
 #else
 #error "TDC_BOARD_VARIANT 미지원 값. TDC_BOARD_VARIANT_MINI 또는 TDC_BOARD_VARIANT_DEVELOP 만 허용."
 #endif
@@ -686,24 +687,61 @@ bool tdc_drv_iqs323_calib_re_ati(void)
         while (50 > (ci_timer_get_tick() - tick_old)) { SYS_WATCHDOG_REFRESH(); }
     }
 
-    /* 완료 대기 (최대 500ms) */
+    /* 완료 대기 — ati_event 확인 (ati_active==0 만으로는 미실행도 완료로 오판) */
+    if (!wait_re_ati_done())
     {
-        int tick_old = ci_timer_get_tick();
-        while (!tdc_drv_iqs323_is_auto_ati_done())
-        {
-            SYS_WATCHDOG_REFRESH();
-            if (TDC_DRV_IQS323_MAX_WAIT_MS_FOR_ATI_DONE < (ci_timer_get_tick() - tick_old))
-            {
-                ci_printw("[TOUCH] CALIB: RE-ATI TIMEOUT \r\n");
-                return false;
-            }
-        }
+        ci_printw("[TOUCH] CALIB: RE-ATI TIMEOUT \r\n");
+        return false;
     }
 
     return true;
 }
 
 #endif /* TDC_TOUCH_ATI_CALIB_MODE */
+
+/* **********************************************************************
+ * Sleep Measure Mode — TDC_TOUCH_SLEEP_MEASURE_MODE 빌드 전용
+ */
+
+#if TDC_TOUCH_SLEEP_MEASURE_MODE
+
+void tdc_drv_iqs323_sleep_measure_dump(void)
+{
+    uint8_t lsb, msb;
+
+    /* ATI Mode=Full(bits[2:0]=100) — Disabled 상태에서는 re-ATI가 실행되지 않음 */
+    if (!write_register(TDC_DRV_IQS323_REG_ADDR_SENSOR0_ATI_SETUP,
+                        0x0C, TDC_DRV_IQS323_ATI_SETUP_MSB))
+    {
+        ci_printe("[SLEEP-MEAS] FAIL: ATI SETUP FULL\r\n");
+    }
+
+    if (!re_ati_trigger())
+    {
+        ci_printe("[SLEEP-MEAS] FAIL: RE-ATI TRIGGER\r\n");
+        return;
+    }
+
+    if (!wait_re_ati_done())
+    {
+        ci_printw("[SLEEP-MEAS] WARN: RE-ATI TIMEOUT\r\n");
+    }
+
+    ci_printi("[SLEEP-MEAS] ===========================\r\n");
+
+    if (read_register(TDC_DRV_IQS323_REG_ADDR_SENSOR0_ATI_SETUP, &lsb, &msb))
+        ci_printi("[SLEEP-MEAS] ATI_SETUP(0x36): LSB=0x%02X MSB=0x%02X\r\n", lsb, msb);
+
+    if (read_register(TDC_DRV_IQS323_REG_ADDR_SENSOR0_ATI_MULT, &lsb, &msb))
+        ci_printi("[SLEEP-MEAS] ATI_MULT (0x38): LSB=0x%02X MSB=0x%02X\r\n", lsb, msb);
+
+    if (read_register(TDC_DRV_IQS323_REG_ADDR_SENSOR0_ATI_COMP, &lsb, &msb))
+        ci_printi("[SLEEP-MEAS] ATI_COMP (0x39): LSB=0x%02X MSB=0x%02X\r\n", lsb, msb);
+
+    ci_printi("[SLEEP-MEAS] ===========================\r\n");
+}
+
+#endif /* TDC_TOUCH_SLEEP_MEASURE_MODE */
 
 /* **********************************************************************
  * Public API — 저수준 드라이버 인터페이스
@@ -720,6 +758,54 @@ void tdc_drv_iqs323_mclr_reset(void)
 bool tdc_drv_iqs323_is_auto_ati_done(void)
 {
     return is_auto_ati_done_single_read();
+}
+
+void tdc_drv_iqs323_reseed(void)
+{
+    if (!write_register(TDC_DRV_IQS323_REG_ADDR_SYSTEM_CONTROL, 0x08, 0x00))
+    {
+        ci_printe("[TOUCH] FAIL: RESEED \r\n");
+    }
+}
+
+void tdc_drv_iqs323_apply_sleep_settings(void)
+{
+    /* ATI Mode=Full(bits[2:0]=100) 로 일시 전환 — re-ATI가 MULT/COMP 모두 갱신하도록. */
+    if (!write_register(TDC_DRV_IQS323_REG_ADDR_SENSOR0_ATI_SETUP,
+                        0x0C, TDC_DRV_IQS323_ATI_SETUP_MSB))
+    {
+        ci_printe("[TOUCH] FAIL: SLEEP ATI SETUP FULL \r\n");
+    }
+
+    /* 절전 환경에서 re-ATI 트리거 → 새 환경 기준 MULT/COMP 자동 수렴 */
+    if (!re_ati_trigger())
+    {
+        ci_printe("[TOUCH] FAIL: SLEEP RE-ATI TRIGGER \r\n");
+    }
+
+    if (!wait_re_ati_done())
+    {
+        ci_printw("[TOUCH] WARN: SLEEP RE-ATI TIMEOUT \r\n");
+    }
+
+    /* ATI Mode=Disabled(bits[2:0]=000) 복원 — 운용 중 자동 재실행 방지 */
+    if (!write_register(TDC_DRV_IQS323_REG_ADDR_SENSOR0_ATI_SETUP,
+                        TDC_DRV_IQS323_ATI_SETUP_LSB, TDC_DRV_IQS323_ATI_SETUP_MSB))
+    {
+        ci_printe("[TOUCH] FAIL: SLEEP ATI SETUP DISABLED \r\n");
+    }
+
+    /* CH timeout 비활성화 */
+    if (!write_register(TDC_DRV_IQS323_REG_ADDR_SYSTEM_CONTROL, 0x00, 0x07))
+    {
+        ci_printe("[TOUCH] FAIL: SLEEP CH TIMEOUT DISABLE \r\n");
+    }
+
+    /* RESEED — 현재 counts(re-ATI 수렴 기준)를 LTA로 고정 */
+    if (!write_register(TDC_DRV_IQS323_REG_ADDR_SYSTEM_CONTROL, 0x08, 0x00))
+    {
+        ci_printe("[TOUCH] FAIL: SLEEP RESEED \r\n");
+    }
 }
 
 void tdc_drv_iqs323_apply_settings(void)

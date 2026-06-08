@@ -83,6 +83,10 @@
 #define TDC_DRV_IQS323_TOUCH_HYSTERESIS_80 80
 #define TDC_DRV_IQS323_TOUCH_THRESHOLD_80  80
 
+/* auto-ATI 모드 기준값 — 기기별 자동 캘리브레이션 후 Threshold 80으로 충분 */
+#define TDC_DRV_IQS323_TOUCH_THRESHOLD   80
+#define TDC_DRV_IQS323_TOUCH_HYSTERESIS  80
+
 /* **********************************************************************
  * System Control (0xC0) bit values
  */
@@ -352,5 +356,25 @@ bool tdc_drv_iqs323_calib_read_ati(uint16_t *p_mult, uint16_t *p_comp);
 bool tdc_drv_iqs323_calib_re_ati(void);
 
 #endif /* TDC_TOUCH_ATI_CALIB_MODE */
+
+/* **********************************************************************
+ * Sleep Measure Mode — TDC_TOUCH_SLEEP_MEASURE_MODE 빌드 전용
+ *
+ * func_sleep 환경(주변장치 OFF, 저속 클럭)에서 re-ATI 후 ATI 레지스터를
+ * RTT로 반복 출력하는 1회성 측정 도구.
+ */
+#if TDC_TOUCH_SLEEP_MEASURE_MODE
+
+/* re-ATI 트리거 → 완료 대기 → ATI_SETUP/MULT/COMP 레지스터를 RTT로 출력. */
+void tdc_drv_iqs323_sleep_measure_dump(void);
+
+#endif /* TDC_TOUCH_SLEEP_MEASURE_MODE */
+
+/* LTA 를 현재 counts 로 강제 재설정. */
+void tdc_drv_iqs323_reseed(void);
+
+/* 절전 환경에서 re-ATI(Full) → ATI Mode=Disabled 복원 → RESEED 일괄 적용.
+ * func_sleep 에서 소자 절전 완료 후, I2C prescale 변경 전에 호출. */
+void tdc_drv_iqs323_apply_sleep_settings(void);
 
 #endif /* TDC_DRV_IQS323_H_ */

@@ -47,4 +47,20 @@
 #  define TDC_TOUCH_ATI_CALIB_MODE  0
 #endif
 
+/* 3-1. ATI 캘리브레이션 LED 출력 활성화 (TDC_TOUCH_ATI_CALIB_MODE=1 시에만 유효)
+ *    0: RTT 출력만 (빠름 — JLink 연결 환경 전용)
+ *    1: LED 이진 출력 (기본값 — JLink 없이 육안 확인 가능) */
+#ifndef TDC_TOUCH_ATI_CALIB_LED_ENABLE
+#  define TDC_TOUCH_ATI_CALIB_LED_ENABLE  0
+#endif
+
+/* 4. 절전 모드 ATI 측정 모드 (개발용)
+ *    0: 비활성 (운용 모드)                              ← 프로덕션 기본값
+ *    1: 활성 — RTT 's' 입력 시 func_sleep 진입,
+ *             주변장치 OFF 환경에서 re-ATI 후 ATI 레지스터를 RTT로 반복 출력.
+ *             'q' 입력 시 WDT 리셋. */
+#ifndef TDC_TOUCH_SLEEP_MEASURE_MODE
+#  define TDC_TOUCH_SLEEP_MEASURE_MODE  0
+#endif
+
 #endif /* TDC_TOUCH_CONFIG_H_ */

@@ -2,7 +2,7 @@
 #define LED_OUTPUT_H__
 
 /** 롱터치 무시 케이스 보라색 LED 피드백 (디버깅용) — 0 으로 설정 시 기존 동작(무시만) 복원 */
-#define TDC_DBG_LONG_TOUCH_IGNORE_LED  1
+#define TDC_DBG_LONG_TOUCH_IGNORE_LED  0
 
 #include <stdbool.h>
 #include <stdint.h>
