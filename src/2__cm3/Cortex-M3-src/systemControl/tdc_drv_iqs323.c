@@ -839,14 +839,14 @@ bool tdc_drv_iqs323_apply_sleep_settings(void)
         return false;
     }
 
-    /* RESEED 전 터치 상태 확인 — 터치 중 RESEED 하면 터치 counts 가 LTA 로 고정되어 이후 감지 불량 */
+    /* RESEED 전 터치 해제 대기 — 터치 중 RESEED 하면 터치 counts 가 LTA 로 고정되어 이후 감지 불량 */
     {
         bool pressed   = false;
         bool ati_error = false;
-        if (tdc_drv_iqs323_read_status(&pressed, &ati_error) && pressed)
+        while (tdc_drv_iqs323_read_status(&pressed, &ati_error) && pressed)
         {
-            ci_printw("[TOUCH] WARN: SLEEP RESEED SKIP — touch active, retry \r\n");
-            return false;
+            ci_printv("[TOUCH] SLEEP: WAIT TOUCH RELEASE FOR RESEED \r\n");
+            SYS_WATCHDOG_REFRESH();
         }
     }
 
