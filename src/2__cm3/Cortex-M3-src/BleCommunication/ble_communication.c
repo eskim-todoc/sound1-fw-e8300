@@ -154,8 +154,8 @@ void setting_nrf_ble_adv_info(void)
         Tx_dataBuff[tx_index++] = EN__SND_BT_CMD_SYSTEM_INFO_POWER;
         Tx_dataBuff[tx_index++] = 1;  // 수신 확인 응답
 
-        ci_printw("[BT] BEFORE-WRITE-TX 0x34 t3=%d ms\r\n", tdc_timer_get_t3_tick());
-        ci_printw("[BT] CALL-WRITE-TX TxEmpty=%d\r\n", (int) isSpiTxBuffEmpty());
+        // ci_printw("[BT] BEFORE-WRITE-TX 0x34 t3=%d ms\r\n", tdc_timer_get_t3_tick());
+        // ci_printw("[BT] CALL-WRITE-TX TxEmpty=%d\r\n", (int) isSpiTxBuffEmpty());
 
         writeDataToSpiTxBuff(Tx_dataBuff, tx_index);     // 송싱 데이터 SPI TX버퍼에 복사
         bleSettingPacket.command = en__bleSetting_IDLE;  // 명령 종료

@@ -17,6 +17,7 @@
 #include "processorDirective.h"
 
 #include <ci_printf.h>
+#include <tdc_touch_config.h>
 
 /* ======================================================================== */
 /*  Defines                                                                 */
@@ -845,6 +846,13 @@ void tdc_ui_command_poll(void)
                 echo_string("\b \b");
             }
         }
+#if TDC_TOUCH_SLEEP_MEASURE_MODE
+        else if (ch == 's')
+        {
+            extern void tdc_on_sleep_measure_cmd(void);
+            tdc_on_sleep_measure_cmd();
+        }
+#endif
         else if (s_tdc_line_len < MAX_LINE - 1)
         {
             s_tdc_line[s_tdc_line_len++] = ch;
