@@ -782,12 +782,6 @@ int func_sleep(void)
     }
 #endif
 
-    // Uninitialize(); /* Disable peripherals and DIOs */
-
-    ci_power_sleep(); /* SYSCLK 30.72M → 2.56M, SLOWCLK 유지 */
-
-    i2c_set_master_prescale(I2C_MASTER_PRESCALE_21); /* SCL ? 122 kHz 유지 (저속 방지) */
-
 #if TDC_TOUCH_SLEEP_MEASURE_MODE
     if (s_sleep_measure_mode)
     {
@@ -811,14 +805,21 @@ int func_sleep(void)
     }
 #endif
 
-    /* 저속 클럭 환경에서 IQS323 전체 재설정 — 절전 고정 보상값 적용 (autoATI 없음). */
+    /* 저속 클럭 환경에서 IQS323 전체 재설정 ? 절전 고정 보상값 적용 (autoATI 없음). */
     tdc_drv_iqs323_apply_sleep_settings();
+
+    // Uninitialize(); /* Disable peripherals and DIOs */
+
+    ci_power_sleep(); /* SYSCLK 30.72M → 2.56M, SLOWCLK 유지 */
+
+    i2c_set_master_prescale(I2C_MASTER_PRESCALE_21); /* SCL ? 122 kHz 유지 (저속 방지) */
 
     ci_timer_init_prescaled(ULP_TIMER_PRESCALE, ULP_TIMER_TIMEOUT_VALUE);  /* ? 500 ms 주기 */
 
     SYS_WATCHDOG_REFRESH();
 
-    int touch_cnt = 0;
+    int               touch_cnt      = 0;
+    tdc_touch_state_t ulp_state_prev = TDC_TOUCH_STATE_RESET;
 
     while (1)  // ULP loop
     {
@@ -828,20 +829,35 @@ int func_sleep(void)
 
         /* 터치 상태 1회 샘플링. ULP_LONG_TOUCH_COUNT 회 연속 TOUCH 면 롱-터치 → 리셋. */
         tdc_touch_state_t state = TDC_TOUCH_STATE_RESET;
-        if (tdc_touch_get_state(&state) && state == TDC_TOUCH_STATE_TOUCH)
+        if (tdc_touch_get_state(&state))
         {
-            touch_cnt++;
-            if (touch_cnt >= ULP_LONG_TOUCH_COUNT)
+            if (ulp_state_prev != state)
             {
-                ci_printi("[MAIN] LONG TOUCH DETECTED, RESET \r\n");
-                delay_ms(20);  // RTT 뷰어 로그 드레인 대기
-                SYS_WATCHDOG_RESET();
-                /* 도달 불가 ? 칩 리셋 */
+                ci_printv("[TOUCH] STATE: %s -> %s \r\n",
+                          tdc_touch_state_name(ulp_state_prev),
+                          tdc_touch_state_name(state));
+                ulp_state_prev = state;
+            }
+
+            if (state == TDC_TOUCH_STATE_TOUCH)
+            {
+                touch_cnt++;
+                if (touch_cnt >= ULP_LONG_TOUCH_COUNT)
+                {
+                    ci_printi("[MAIN] LONG TOUCH DETECTED, RESET \r\n");
+                    delay_ms(20);  // RTT 뷰어 로그 드레인 대기
+                    SYS_WATCHDOG_RESET();
+                    /* 도달 불가 ? 칩 리셋 */
+                }
+            }
+            else
+            {
+                touch_cnt = 0;  /* 손 뗌 → 카운터 초기화 */
             }
         }
         else
         {
-            touch_cnt = 0;  /* 손 뗌 또는 read 실패 → 카운터 초기화 */
+            touch_cnt = 0;  /* read 실패 → 카운터 초기화 */
         }
     }
 

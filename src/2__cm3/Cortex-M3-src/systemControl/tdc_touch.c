@@ -55,7 +55,7 @@ static bool s_sleep_request = false;
 /* **********************************************************************
  * Helper ? 상태 enum 을 로그용 문자열로 변환
  */
-static const char *state_name(tdc_touch_state_t s)
+const char *tdc_touch_tdc_touch_state_name(tdc_touch_state_t s)
 {
     switch (s)
     {
@@ -343,7 +343,7 @@ bool tdc_touch_process(void)
         {
             if (s_touch_state_old != curr_state)
             {
-                ci_printv("[TOUCH] STATE: %s -> %s \r\n", state_name(s_touch_state_old), state_name(curr_state));
+                ci_printv("[TOUCH] STATE: %s -> %s \r\n", tdc_touch_state_name(s_touch_state_old), tdc_touch_state_name(curr_state));
                 s_touch_state_old = curr_state;
             }
         }
