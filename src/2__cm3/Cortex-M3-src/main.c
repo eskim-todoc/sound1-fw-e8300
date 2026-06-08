@@ -805,31 +805,45 @@ int func_sleep(void)
     }
 #endif
 
-    /* 저속 클럭 환경에서 IQS323 전체 재설정 — 실패(I2C 오류·터치 중 RESEED 방지) 시 재시도. */
-    while (!tdc_drv_iqs323_apply_sleep_settings())
-    {
-        ci_printw("[MAIN] SLEEP SETTINGS FAILED, RETRY \r\n");
-        SYS_WATCHDOG_REFRESH();
-    }
-
     // Uninitialize(); /* Disable peripherals and DIOs */
 
     ci_power_sleep(); /* SYSCLK 30.72M → 2.56M, SLOWCLK 유지 */
 
     i2c_set_master_prescale(I2C_MASTER_PRESCALE_21); /* SCL ? 122 kHz 유지 (저속 방지) */
 
-    ci_timer_init_prescaled(ULP_TIMER_PRESCALE, ULP_TIMER_TIMEOUT_VALUE);  /* ? 500 ms 주기 */
+    /* 저속 클럭 환경에서 IQS323 전체 재설정 ? 실패(I2C 오류·터치 중 RESEED 방지) 시 재시도. */
+    while (!tdc_drv_iqs323_apply_sleep_settings())
+    {
+        ci_printw("[MAIN] SLEEP SETTINGS FAILED, RETRY \r\n");
+        SYS_WATCHDOG_REFRESH();
+        Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_R);
+        Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_G);
+        Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_B);
+        delay_ms(100);
+        SYS_WATCHDOG_REFRESH();
+        delay_ms(100);
+        SYS_WATCHDOG_REFRESH();
+        delay_ms(100);
+        SYS_WATCHDOG_REFRESH();
+        Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_R);
+    }
+
+    ci_timer_init_prescaled(ULP_TIMER_PRESCALE, ULP_TIMER_TIMEOUT_VALUE); /* ? 500 ms 주기 */
 
     SYS_WATCHDOG_REFRESH();
 
     int               touch_cnt      = 0;
     tdc_touch_state_t ulp_state_prev = TDC_TOUCH_STATE_RESET;
 
+    Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_R);
+    Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_G);
+    Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_B);
+
     while (1)  // ULP loop
     {
-        SYS_WAIT_FOR_INTERRUPT;          /* ULP_WAKE_INTERVAL_MS 동안 idle */
+        SYS_WAIT_FOR_INTERRUPT; /* ULP_WAKE_INTERVAL_MS 동안 idle */
 
-        SYS_WATCHDOG_REFRESH();          /* 워치독 3.28s 대비 매 웨이크업마다 refresh */
+        SYS_WATCHDOG_REFRESH(); /* 워치독 3.28s 대비 매 웨이크업마다 refresh */
 
         /* 터치 상태 1회 샘플링. ULP_LONG_TOUCH_COUNT 회 연속 TOUCH 면 롱-터치 → 리셋. */
         tdc_touch_state_t state = TDC_TOUCH_STATE_RESET;
@@ -860,8 +874,8 @@ int func_sleep(void)
             }
             else
             {
-                Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_R);
-                Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_G);
+                Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_R);
+                Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_G);
                 Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_B);
 
                 touch_cnt = 0;  /* 손 뗌 → 카운터 초기화 */
@@ -869,6 +883,10 @@ int func_sleep(void)
         }
         else
         {
+            Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_R);
+                            Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_G);
+                            Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_B);
+
             touch_cnt = 0;  /* read 실패 → 카운터 초기화 */
         }
     }
