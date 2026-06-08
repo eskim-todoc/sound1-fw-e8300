@@ -805,8 +805,12 @@ int func_sleep(void)
     }
 #endif
 
-    /* 저속 클럭 환경에서 IQS323 전체 재설정 ? 절전 고정 보상값 적용 (autoATI 없음). */
-    tdc_drv_iqs323_apply_sleep_settings();
+    /* 저속 클럭 환경에서 IQS323 전체 재설정 — 실패(I2C 오류·터치 중 RESEED 방지) 시 재시도. */
+    while (!tdc_drv_iqs323_apply_sleep_settings())
+    {
+        ci_printw("[MAIN] SLEEP SETTINGS FAILED, RETRY \r\n");
+        SYS_WATCHDOG_REFRESH();
+    }
 
     // Uninitialize(); /* Disable peripherals and DIOs */
 
@@ -841,6 +845,10 @@ int func_sleep(void)
 
             if (state == TDC_TOUCH_STATE_TOUCH)
             {
+                Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_R);
+                Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_G);
+                Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_B);
+
                 touch_cnt++;
                 if (touch_cnt >= ULP_LONG_TOUCH_COUNT)
                 {
@@ -852,6 +860,10 @@ int func_sleep(void)
             }
             else
             {
+                Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_R);
+                Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_G);
+                Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_B);
+
                 touch_cnt = 0;  /* 손 뗌 → 카운터 초기화 */
             }
         }

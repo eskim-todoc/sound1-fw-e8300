@@ -88,8 +88,8 @@
 #define TDC_DRV_IQS323_TOUCH_HYSTERESIS  80
 
 /* 절전 모드 운용값 — 주변 소자 OFF + 저속 클럭 환경에서 counts delta 감소 대응 */
-#define TDC_DRV_IQS323_SLEEP_TOUCH_THRESHOLD   40
-#define TDC_DRV_IQS323_SLEEP_TOUCH_HYSTERESIS  40
+#define TDC_DRV_IQS323_SLEEP_TOUCH_THRESHOLD   30
+#define TDC_DRV_IQS323_SLEEP_TOUCH_HYSTERESIS  30
 
 /* **********************************************************************
  * System Control (0xC0) bit values
@@ -377,8 +377,8 @@ void tdc_drv_iqs323_sleep_measure_dump(void);
 /* LTA 를 현재 counts 로 강제 재설정. */
 void tdc_drv_iqs323_reseed(void);
 
-/* 절전 환경에서 re-ATI(Full) → ATI Mode=Disabled 복원 → RESEED 일괄 적용.
- * func_sleep 에서 소자 절전 완료 후, I2C prescale 변경 전에 호출. */
-void tdc_drv_iqs323_apply_sleep_settings(void);
+/* 절전 환경 IQS323 전체 재설정 (고정 보상값 적용).
+ * 반환: true = 성공, false = 단계 실패 또는 RESEED 직전 터치 감지 (재시도 필요). */
+bool tdc_drv_iqs323_apply_sleep_settings(void);
 
 #endif /* TDC_DRV_IQS323_H_ */

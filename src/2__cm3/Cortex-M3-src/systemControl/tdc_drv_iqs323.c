@@ -781,33 +781,38 @@ void tdc_drv_iqs323_reseed(void)
     }
 }
 
-void tdc_drv_iqs323_apply_sleep_settings(void)
+bool tdc_drv_iqs323_apply_sleep_settings(void)
 {
     SYS_WATCHDOG_REFRESH();
 
     if (!ack_reset_event())
     {
         ci_printe("[TOUCH] FAIL: SLEEP ACK RESET EVENT \r\n");
+        return false;
     }
 
     if (!confirm_reset_event())
     {
         ci_printe("[TOUCH] FAIL: SLEEP CONFIRM RESET EVENT \r\n");
+        return false;
     }
 
     if (!sensor_setup())
     {
         ci_printe("[TOUCH] FAIL: SLEEP SENSOR SETUP \r\n");
+        return false;
     }
 
     if (!touch_settings_impl(TDC_DRV_IQS323_SLEEP_TOUCH_THRESHOLD, TDC_DRV_IQS323_SLEEP_TOUCH_HYSTERESIS))
     {
         ci_printe("[TOUCH] FAIL: SLEEP TOUCH SETTINGS \r\n");
+        return false;
     }
 
     if (!events_enable())
     {
         ci_printe("[TOUCH] FAIL: SLEEP EVENTS ENABLE \r\n");
+        return false;
     }
 
     SYS_WATCHDOG_REFRESH();
@@ -817,33 +822,50 @@ void tdc_drv_iqs323_apply_sleep_settings(void)
                         TDC_DRV_IQS323_SLEEP_ATI_SETUP_LSB, TDC_DRV_IQS323_SLEEP_ATI_SETUP_MSB))
     {
         ci_printe("[TOUCH] FAIL: SLEEP ATI SETUP \r\n");
+        return false;
     }
 
     if (!write_register(TDC_DRV_IQS323_REG_ADDR_SENSOR0_ATI_MULT,
                         TDC_DRV_IQS323_SLEEP_ATI_MULT_LSB, TDC_DRV_IQS323_SLEEP_ATI_MULT_MSB))
     {
         ci_printe("[TOUCH] FAIL: SLEEP ATI MULT \r\n");
+        return false;
     }
 
     if (!write_register(TDC_DRV_IQS323_REG_ADDR_SENSOR0_ATI_COMP,
                         TDC_DRV_IQS323_SLEEP_ATI_COMP_LSB, TDC_DRV_IQS323_SLEEP_ATI_COMP_MSB))
     {
         ci_printe("[TOUCH] FAIL: SLEEP ATI COMP \r\n");
+        return false;
+    }
+
+    /* RESEED 전 터치 상태 확인 — 터치 중 RESEED 하면 터치 counts 가 LTA 로 고정되어 이후 감지 불량 */
+    {
+        bool pressed   = false;
+        bool ati_error = false;
+        if (tdc_drv_iqs323_read_status(&pressed, &ati_error) && pressed)
+        {
+            ci_printw("[TOUCH] WARN: SLEEP RESEED SKIP — touch active, retry \r\n");
+            return false;
+        }
     }
 
     /* RESEED — 현재 counts 를 LTA 로 고정 */
     if (!write_register(TDC_DRV_IQS323_REG_ADDR_SYSTEM_CONTROL, 0x08, 0x00))
     {
         ci_printe("[TOUCH] FAIL: SLEEP RESEED \r\n");
+        return false;
     }
 
     /* CH0~CH2 stuck-touch timeout 비활성화 */
     if (!write_register(TDC_DRV_IQS323_REG_ADDR_SYSTEM_CONTROL, 0x00, 0x07))
     {
         ci_printe("[TOUCH] FAIL: SLEEP CH TIMEOUT DISABLE \r\n");
+        return false;
     }
 
     SYS_WATCHDOG_REFRESH();
+    return true;
 }
 
 void tdc_drv_iqs323_apply_settings(void)
