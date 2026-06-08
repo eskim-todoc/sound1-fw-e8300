@@ -811,7 +811,7 @@ int func_sleep(void)
     }
 #endif
 
-    /* 소자 절전 완료 환경에서 IQS323 절전 설정 ? re-ATI 로 새 기준 수렴 후 LTA 고정. */
+    /* 저속 클럭 환경에서 IQS323 전체 재설정 — 절전 고정 보상값 적용 (autoATI 없음). */
     tdc_drv_iqs323_apply_sleep_settings();
 
     ci_timer_init_prescaled(ULP_TIMER_PRESCALE, ULP_TIMER_TIMEOUT_VALUE);  /* ? 500 ms 주기 */
