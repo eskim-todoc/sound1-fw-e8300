@@ -55,7 +55,7 @@ static bool s_sleep_request = false;
 /* **********************************************************************
  * Helper ? 상태 enum 을 로그용 문자열로 변환
  */
-const char *tdc_touch_tdc_touch_state_name(tdc_touch_state_t s)
+const char *tdc_touch_state_name(tdc_touch_state_t s)
 {
     switch (s)
     {
