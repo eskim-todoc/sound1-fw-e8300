@@ -125,7 +125,10 @@ MCLR 리셋 + Auto-ATI 완료 후 호출하므로, 이 시점에 터치 상태�
 ### 6.2 절전 모드 (`apply_sleep_settings()`)
 
 ```c
-/* MULT/COMP 변경 후 counts 스케일 달라짐 — 터치 해제 대기 후 RESEED */
+/* 1. RESEED 먼저 — MULT 변경으로 인한 counts 스케일 불일치 즉시 해소 */
+write_register(0xC0, 0x08, 0x00);  // LTA ← 현재 counts, delta = 0
+
+/* 2. RESEED 후 실제 터치 해제 대기 */
 {
     bool pressed, ati_error;
     while (tdc_drv_iqs323_read_status(&pressed, &ati_error) && pressed)
@@ -133,10 +136,11 @@ MCLR 리셋 + Auto-ATI 완료 후 호출하므로, 이 시점에 터치 상태�
         SYS_WATCHDOG_REFRESH();
     }
 }
-write_register(0xC0, 0x08, 0x00);  // RESEED
 ```
 
-**터치 해제 대기 이유**: 절전 MULT(0x5C82)로 바꾼 직후 counts 스케일이 달라져 기존 LTA 대비 delta > THRESHOLD로 잠시 터치로 오판됨. 손을 뗀 상태에서 RESEED해야 LTA가 올바른 비터치 기준으로 고정된다.
+**순서가 중요한 이유**: MULT(0x5C82)로 바꾼 직후 counts 스케일이 달라져 기존 LTA 대비 delta > THRESHOLD → 실제 터치가 없어도 계속 터치로 판정된다. 터치 해제 대기를 RESEED 전에 두면 오판으로 인해 영원히 해제되지 않는 무한 루프가 된다.
+
+RESEED를 먼저 실행해 delta = 0으로 초기화한 뒤 터치 해제를 기다려야 실제 터치만 정확히 반영된다.
 
 ---
 

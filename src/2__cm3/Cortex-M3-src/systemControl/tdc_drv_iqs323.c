@@ -839,22 +839,23 @@ bool tdc_drv_iqs323_apply_sleep_settings(void)
         return false;
     }
 
-    /* RESEED 전 터치 해제 대기 — 터치 중 RESEED 하면 터치 counts 가 LTA 로 고정되어 이후 감지 불량 */
+    /* RESEED — MULT/COMP 변경으로 인한 counts 스케일 불일치 해소 (LTA ← 현재 counts, delta = 0).
+     * 실제 터치 여부와 무관하게 먼저 실행해야 이후 터치 해제 판정이 올바르게 동작한다. */
+    if (!write_register(TDC_DRV_IQS323_REG_ADDR_SYSTEM_CONTROL, 0x08, 0x00))
+    {
+        ci_printe("[TOUCH] FAIL: SLEEP RESEED \r\n");
+        return false;
+    }
+
+    /* RESEED 후 실제 터치 해제 대기 — RESEED 로 delta = 0 이 됐으므로 여기서의 터치 판정은 실제 터치만 반영 */
     {
         bool pressed   = false;
         bool ati_error = false;
         while (tdc_drv_iqs323_read_status(&pressed, &ati_error) && pressed)
         {
-            ci_printv("[TOUCH] SLEEP: WAIT TOUCH RELEASE FOR RESEED \r\n");
+            ci_printv("[TOUCH] SLEEP: WAIT TOUCH RELEASE \r\n");
             SYS_WATCHDOG_REFRESH();
         }
-    }
-
-    /* RESEED — 현재 counts 를 LTA 로 고정 */
-    if (!write_register(TDC_DRV_IQS323_REG_ADDR_SYSTEM_CONTROL, 0x08, 0x00))
-    {
-        ci_printe("[TOUCH] FAIL: SLEEP RESEED \r\n");
-        return false;
     }
 
     /* CH0~CH2 stuck-touch timeout 비활성화 */
