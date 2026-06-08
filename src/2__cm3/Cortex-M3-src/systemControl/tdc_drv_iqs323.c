@@ -421,15 +421,20 @@ static bool sensor_setup(void)
     return true;
 }
 
-static bool touch_settings(void)
+static bool touch_settings_impl(uint8_t threshold, uint8_t hysteresis)
 {
     tdc_drv_iqs323_reg_touch_settings_t reg;
 
     reg.elements.addr                 = TDC_DRV_IQS323_REG_ADDR_CH0_TOUCH_SETTINGS;
-    reg.elements.lsb.touch_threshold  = TDC_DRV_IQS323_TOUCH_THRESHOLD;
-    reg.elements.msb.touch_hysteresis = TDC_DRV_IQS323_TOUCH_HYSTERESIS;
+    reg.elements.lsb.touch_threshold  = threshold;
+    reg.elements.msb.touch_hysteresis = hysteresis;
 
     return write_and_verify(reg.bytes[0], reg.bytes[1], reg.bytes[2]);
+}
+
+static bool touch_settings(void)
+{
+    return touch_settings_impl(TDC_DRV_IQS323_TOUCH_THRESHOLD, TDC_DRV_IQS323_TOUCH_HYSTERESIS);
 }
 
 static bool re_ati_trigger(void)
@@ -795,7 +800,7 @@ void tdc_drv_iqs323_apply_sleep_settings(void)
         ci_printe("[TOUCH] FAIL: SLEEP SENSOR SETUP \r\n");
     }
 
-    if (!touch_settings())
+    if (!touch_settings_impl(TDC_DRV_IQS323_SLEEP_TOUCH_THRESHOLD, TDC_DRV_IQS323_SLEEP_TOUCH_HYSTERESIS))
     {
         ci_printe("[TOUCH] FAIL: SLEEP TOUCH SETTINGS \r\n");
     }

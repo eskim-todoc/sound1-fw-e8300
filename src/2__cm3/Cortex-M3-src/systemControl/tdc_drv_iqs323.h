@@ -83,9 +83,13 @@
 #define TDC_DRV_IQS323_TOUCH_HYSTERESIS_80 80
 #define TDC_DRV_IQS323_TOUCH_THRESHOLD_80  80
 
-/* auto-ATI 모드 기준값 — 기기별 자동 캘리브레이션 후 Threshold 80으로 충분 */
+/* 노말 모드 운용값 */
 #define TDC_DRV_IQS323_TOUCH_THRESHOLD   80
 #define TDC_DRV_IQS323_TOUCH_HYSTERESIS  80
+
+/* 절전 모드 운용값 — 주변 소자 OFF + 저속 클럭 환경에서 counts delta 감소 대응 */
+#define TDC_DRV_IQS323_SLEEP_TOUCH_THRESHOLD   40
+#define TDC_DRV_IQS323_SLEEP_TOUCH_HYSTERESIS  40
 
 /* **********************************************************************
  * System Control (0xC0) bit values
