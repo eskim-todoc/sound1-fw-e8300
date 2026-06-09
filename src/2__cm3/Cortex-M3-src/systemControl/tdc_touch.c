@@ -381,13 +381,6 @@ bool tdc_touch_get_state(tdc_touch_state_t *p_state)
     bool pressed   = false;
     bool ati_error = false;
 
-#if TDC_TOUCH_CRX0_DISCHARGE_ENABLE
-    if (!tdc_drv_iqs323_discharge_crx0())
-    {
-        return false;
-    }
-#endif
-
     if (!tdc_drv_iqs323_read_status(&pressed, &ati_error))
     {
         return false;
@@ -405,6 +398,12 @@ bool tdc_touch_get_state(tdc_touch_state_t *p_state)
     {
         *p_state = TDC_TOUCH_STATE_NOT_TOUCH;
     }
+
+#if TDC_TOUCH_CRX0_DISCHARGE_ENABLE
+    /* 상태 결정 후 방전 — 다음 호출 시점에 IC가 신선한 ESD-free 측정값을 준비.
+     * 방전 실패는 다음 읽기 품질에만 영향, 현재 상태 반환은 이미 성공이므로 무시. */
+    (void)tdc_drv_iqs323_discharge_crx0();
+#endif
 
     return true;
 }
