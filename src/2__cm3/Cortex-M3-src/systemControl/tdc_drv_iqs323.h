@@ -84,6 +84,14 @@
 #define TDC_DRV_IQS323_INACTIVE_RXS_VSS      0x0A
 
 /* **********************************************************************
+ * Channel Setup (0x60/0x70/0x80) — 채널 동작 모드
+ */
+#define TDC_DRV_IQS323_REG_ADDR_CHANNEL1_SETUP  0x70
+/* bits[3:0]: Channel Mode */
+#define TDC_DRV_IQS323_CH_MODE_INDEPENDENT  0x00  /* 독립 채널 (기본) */
+#define TDC_DRV_IQS323_CH_MODE_REFERENCE    0x02  /* 환경 기준값 채널 — LTA 드리프트 보정 */
+
+/* **********************************************************************
  * Touch Settings (0x62, 0x72, 0x82) values
  */
 #define TDC_DRV_IQS323_TOUCH_HYSTERESIS_80 80

@@ -73,4 +73,19 @@
 #  define TDC_TOUCH_CRX1_VSS_ENABLE  0
 #endif
 
+/* 6. CRX1 Reference 채널 모드 — CH0 LTA 느린 환경 드리프트(온도·습도) 보정
+ *    C52(100nF) 있는 상태에서도 동작 (AC 경로로 정전용량 측정)
+ *    0: 비활성 — CH1 사용 안 함 (기본값)
+ *    1: 활성   — CH1을 Reference 모드로 활성화, CH0 LTA 보정 기준값 채널로 사용
+ *    효과: IQS323 Channel Setup (0x70) bits[3:0] = 0x02 (Reference 모드)
+ *          온도·습도 변화에 의한 CH0 delta 오판 감소 (ESD 급격 변화에는 무효)
+ *    참고: 5번(VSS_ENABLE)과 상호 배타 — 동시 활성 시 컴파일 오류 */
+#ifndef TDC_TOUCH_CRX1_REF_ENABLE
+#  define TDC_TOUCH_CRX1_REF_ENABLE  1
+#endif
+
+#if TDC_TOUCH_CRX1_VSS_ENABLE && TDC_TOUCH_CRX1_REF_ENABLE
+#  error "TDC_TOUCH_CRX1_VSS_ENABLE 과 TDC_TOUCH_CRX1_REF_ENABLE 은 상호 배타 — 하나만 활성화하세요"
+#endif
+
 #endif /* TDC_TOUCH_CONFIG_H_ */

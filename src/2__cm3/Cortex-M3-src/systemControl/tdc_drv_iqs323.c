@@ -399,20 +399,41 @@ static bool sensor_setup(void)
         return false;
     }
 
-    /* Sensor 1 비활성 — CRX1 상태는 TDC_TOUCH_CRX1_VSS_ENABLE 에 따라 결정 */
-#if TDC_TOUCH_CRX1_VSS_ENABLE
-    /* C52 단락(0Ω) 상태 — CRX1을 IC 내부 VSS에 연결해 J4 패드 ESD 방전 경로 생성 */
-    reg.bytes[1] = TDC_DRV_IQS323_INACTIVE_RXS_VSS;
-    ci_printv("[TOUCH] SETUP SENSOR 1 (DISABLE, CRX1=VSS) \r\n");
-#else
-    reg.bytes[1] = TDC_DRV_IQS323_INACTIVE_RXS_FLOATING;
-    ci_printv("[TOUCH] SETUP SENSOR 1 (DISABLE) \r\n");
-#endif
+    /* Sensor 1 — CRX1 동작 모드 (REF_ENABLE·VSS_ENABLE·기본 세 가지 분기) */
+#if TDC_TOUCH_CRX1_REF_ENABLE
+    /* Reference 모드: CH1 활성, CH0 LTA 환경 드리프트 보정 (C52 있어도 동작) */
+    reg.bytes[1] = 0x00;
     reg.bytes[2] = 0x00;
+    reg.elements.msb.ctx0           = TDC_DRV_IQS323_CTX0_ENABLE;
+    reg.elements.lsb.enable_channel = TDC_DRV_IQS323_CHANNEL_ENABLE;
+    ci_printv("[TOUCH] SETUP SENSOR 1 (ENABLE, CRX1=REF) \r\n");
     if (!write_and_verify(TDC_DRV_IQS323_REG_ADDR_SENSOR1_SETUP, reg.bytes[1], reg.bytes[2]))
     {
         return false;
     }
+    ci_printv("[TOUCH] SETUP CHANNEL 1 (REFERENCE) \r\n");
+    if (!write_and_verify(TDC_DRV_IQS323_REG_ADDR_CHANNEL1_SETUP, TDC_DRV_IQS323_CH_MODE_REFERENCE, 0x00))
+    {
+        return false;
+    }
+#elif TDC_TOUCH_CRX1_VSS_ENABLE
+    /* C52 단락(0Ω) 상태 — CRX1을 IC 내부 VSS에 연결해 J4 패드 ESD 방전 경로 생성 */
+    reg.bytes[1] = TDC_DRV_IQS323_INACTIVE_RXS_VSS;
+    reg.bytes[2] = 0x00;
+    ci_printv("[TOUCH] SETUP SENSOR 1 (DISABLE, CRX1=VSS) \r\n");
+    if (!write_and_verify(TDC_DRV_IQS323_REG_ADDR_SENSOR1_SETUP, reg.bytes[1], reg.bytes[2]))
+    {
+        return false;
+    }
+#else
+    reg.bytes[1] = TDC_DRV_IQS323_INACTIVE_RXS_FLOATING;
+    reg.bytes[2] = 0x00;
+    ci_printv("[TOUCH] SETUP SENSOR 1 (DISABLE) \r\n");
+    if (!write_and_verify(TDC_DRV_IQS323_REG_ADDR_SENSOR1_SETUP, reg.bytes[1], reg.bytes[2]))
+    {
+        return false;
+    }
+#endif
 
     /* Sensor 0 활성 (CTx0 + Channel Enable) — 이전 채널 잔류값 초기화 후 설정 */
     reg.bytes[1] = 0x00;
