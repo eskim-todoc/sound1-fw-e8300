@@ -343,6 +343,12 @@ int func_normal(void)
     bool conneded_ISD      = false;
     bool mappingConnection = false;
 
+    /* QCC 0x34(배터리) 수신 타임아웃 → 파워오프 패턴 후 절전 진입.
+     * 지역변수(static 아님): 절전 후 func_normal 재진입 시 false로 리셋되어
+     * 무한 재절전을 방지한다(fake_0x34_done 은 유지되어 타임아웃 재감지도 차단). */
+    bool qcc_batt_timeout             = false;
+    bool qcc_timeout_poweroff_started = false;
+
     main_counter                                      = 0;
     cfx_cm3_sharedMemoryAll.CFX_EEPROM_data_is_Loaded = 0;
 
@@ -405,13 +411,11 @@ int func_normal(void)
                         fake_0x34 = ci_timer_get_tick();
                     }
 
-                    if (2000 < (ci_timer_get_tick() - fake_0x34))
+                    if (3000 < (ci_timer_get_tick() - fake_0x34))
                     {
-                        fake_0x34_done = 1;
-                        ci_printw("[FAKE_0x34] UPDATE FAKE BATT LEVEL, FAKE CHARGER STATE \r\n");
-                        snd_batt_set_percent(9);
-                        snd_batt_set_state(EN__SND_BATT_STATE_DISCHARGING);
-                        snd_charger_set_state(EN__SND_CHARGER_STATE_DISCONNECTED);
+                        fake_0x34_done   = 1;
+                        qcc_batt_timeout = true;  // 타임아웃 → 아래 systemControl 직후 블록에서 파워오프+절전
+                        ci_printw("[FAKE_0x34] QCC BATT TIMEOUT -> POWER OFF (SLEEP) \r\n");
                     }
                     else if (snd_batt_get_state() != EN__SND_BATT_STATE_RESET)
                     {
@@ -660,6 +664,25 @@ int func_normal(void)
 
         main_counter++;
         update_CM3Status_toCFX(main_counter);
+
+        /* QCC 배터리 타임아웃 → 파워오프 패턴 후 절전.
+         * QCC 미수신 시 systemControl 은 df_Default 게이트(en__LED_NA)에 막혀 자체
+         * 파워오프 시퀀스에 도달하지 못하므로, 여기서 직접 POWER_OFF 패턴을 요청하고
+         * burst 완료 후 systemOff 를 세팅해 기존 절전 경로(아래 → break → func_sleep)를 탄다.
+         * 상세: docs/tasks/power/20260609_qcc-batt-timeout-sleep/분석.md §4 */
+        if (qcc_batt_timeout)
+        {
+            if (!qcc_timeout_poweroff_started)
+            {
+                led_request(LED_SRC_POWER, LED_ST_POWER_OFF);
+                qcc_timeout_poweroff_started = true;
+                ci_printi("[FAKE_0x34] LED PATTERN IS POWER OFF (QCC TIMEOUT) \r\n");
+            }
+            else if (!tdc_led_is_burst_pending())
+            {
+                systemState.systemOff = true;
+            }
+        }
 
         if (systemState.systemOff == true)
         {
