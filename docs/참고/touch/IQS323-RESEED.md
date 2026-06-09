@@ -1,6 +1,6 @@
 ---
 name: IQS323-RESEED
-purpose: IQS323 RESEED 동작 원리 — LTA 강제 초기화 메커니즘과 올바른 사용 조건 설명
+purpose: IQS323 터치 감지 핵심 개념(counts·LTA·delta·count drift·RESEED) 상세 설명 — Sound1 동작 원리 이해용 1차 참고
 type: 참고
 maturity: stable
 tags: [iqs323, touch, reseed, lta, calibration]
@@ -8,28 +8,139 @@ tags: [iqs323, touch, reseed, lta, calibration]
 
 # IQS323 RESEED
 
-**TL;DR**: RESEED는 현재 counts를 LTA(터치 기준선)로 강제 고정하는 트리거. 반드시 비터치 상태에서 실행해야 하며, ATI 보상값(MULT/COMP) 변경 후 환경 재기준화에 필수.
+**TL;DR**: counts = 정전용량 측정값, LTA = 비터치 기준선(지수 이동 평균), delta = counts − LTA. delta > THRESHOLD이면 터치 판정. Count drift는 ESD 등으로 counts가 기준값을 벗어나는 현상. RESEED는 LTA ← current_counts로 강제 초기화하는 트리거 — 반드시 비터치 상태에서 실행.
 
 ---
 
-## 1. 배경 — 터치 감지 구조
+## 1. 배경 — 핵심 개념 정의
 
-IQS323은 정전용량 변화를 **counts** 값으로 읽는다.
+### 1.1 Counts (카운트)
+
+IQS323이 터치 전극의 정전용량을 측정해 **숫자로 변환한 값**이다. 단위는 없으며, 정전용량이 클수록 counts가 크다.
 
 ```
-터치 판정: delta > THRESHOLD
-터치 해제: delta < -HYSTERESIS
-
-여기서 delta = current_counts - LTA
+물리적 정전용량 (pF)  →  [IQS323 내부 변환]  →  counts (정수)
 ```
 
-**LTA(Long-Term Average)**: 비터치 상태의 정전용량 기준선. 온도·습도 같은 느린 환경 변화를 자동 추적한다.
+- 비터치 상태에서도 전극 고유의 기생 정전용량 때문에 counts = 0이 아닌 어떤 값을 가진다.
+- 손가락을 대면 전극과 손가락 사이 정전용량 증가 → counts 증가.
+- ATI 캘리브레이션 후 비터치 기준 counts ≈ **ATI_TARGET(512)**로 맞춰진다.
+- MULT/COMP 보상값이 counts 스케일을 결정한다. MULT가 크면 같은 물리 정전용량도 더 큰 counts로 읽힌다.
 
-터치가 없는 평상시 `delta ≈ 0`, 손을 대면 counts가 오르며 `delta > THRESHOLD`에서 터치로 판정한다.
+```
+counts 예시 (Sound1, 절전 MULT=0x5C82):
+  비터치 상태: ~0x5C82 (약 400~500 범위)
+  터치 상태:   ~0x6282~0x6682 (약 100~200 더 높음)
+```
 
 ---
 
-## 2. RESEED란
+### 1.2 LTA (Long-Term Average, 장기 이동 평균)
+
+**counts의 장기 평균값**으로, 터치 판정의 기준선 역할을 한다.
+
+IQS323 내부에서 지수 이동 평균(exponential moving average)으로 계산된다:
+
+```
+LTA_new = LTA_old + (counts - LTA_old) × (1/2^BETA)
+```
+
+- `BETA`가 클수록 LTA가 느리게 움직인다 (환경 변화에 둔감, 드리프트에 강함).
+- **비터치 상태**: counts ≈ LTA이므로 LTA는 천천히 counts를 따라 움직인다.
+- **터치 상태**: LTA 업데이트가 일시 정지된다. 손가락을 댄 동안의 높은 counts가 LTA에 반영되지 않는다.
+
+> [!NOTE]
+> LTA가 느린 환경 변화(온도·습도·노화)를 자동으로 흡수하는 것이 핵심 역할이다. 계절이 바뀌거나 습도가 달라져도 기준선이 자동 이동하므로 재캘리브레이션이 불필요하다.
+
+---
+
+### 1.3 Delta (델타)
+
+**delta = current_counts − LTA**
+
+현재 counts와 LTA의 차이. 이 값으로 터치 여부를 판정한다.
+
+```
+비터치 상태:  counts ≈ LTA  →  delta ≈ 0
+터치 상태:    counts > LTA  →  delta > 0
+터치 판정:    delta > THRESHOLD          (손 댐)
+터치 해제:    delta < −HYSTERESIS        (손 뗌)
+```
+
+Sound1 설정값:
+- 노말 모드: THRESHOLD = 80, HYSTERESIS = 80
+- 절전 모드: THRESHOLD = 30, HYSTERESIS = 30
+
+HYSTERESIS를 두는 이유는 판정 경계선에서의 떨림(채터링)을 방지하기 위해서다.
+
+```
+delta 값 흐름 예시:
+  비터치  →   0
+  터치 시작 →  THRESHOLD 초과 → 터치 판정
+  손 뗌  →   0 방향으로 감소
+  −HYSTERESIS 미만 → 터치 해제
+```
+
+---
+
+### 1.4 Count Drift (카운트 드리프트)
+
+**실제 터치 없이 counts가 기준값에서 벗어나는 현상.** LTA가 따라오지 못하면 delta 오류가 생긴다.
+
+#### 느린 드리프트 (Slow Drift) — 정상 처리됨
+
+원인: 온도·습도 변화, 제품 노화
+```
+counts가 서서히 상승 → LTA도 천천히 따라 상승 → delta ≈ 0 유지
+```
+LTA의 설계 목적 자체가 이 드리프트를 흡수하는 것이므로 정상 동작이다.
+
+#### 급격한 드리프트 (Fast Drift) — 문제 발생
+
+원인: ESD, 전원 순환, 클럭/MULT 변경
+```
+counts가 갑자기 급등 → LTA가 즉시 따라오지 못함 → delta 급증 → 오판정
+```
+
+경미한 경우: LTA가 수십 ms~수백 ms 이내에 수렴 → 일시적 오판 후 자연 회복.
+
+**심각한 경우 (Sound1 ESD 문제)**:
+```
+ESD 누적 → 전극 기생 정전용량 실질 증가 → counts가 항상 높게 유지
+         → delta 항상 > THRESHOLD → 항시 터치 판정 → 먹통
+```
+
+| 드리프트 종류 | 속도 | LTA 추적 | 결과 |
+|---|---|---|---|
+| 온도·습도 | 분~시간 단위 | 충분히 따라옴 | ✅ 자동 보정 |
+| MULT 변경 | 즉시 | 따라오지 못함 | ⚠️ RESEED 필요 |
+| 경미한 ESD | 빠름 | 수백 ms 내 수렴 | ⚠️ 일시 오판 |
+| ESD 누적 (심각) | 지속 | 영원히 따라오지 못함 | ❌ 먹통 → SW 해결 불가 |
+
+> [!IMPORTANT]
+> **ESD 누적 먹통 상태에서 RESEED가 무효한 이유**: RESEED는 LTA ← current_counts로 즉시 초기화한다. 그러나 ESD로 인한 counts 상승이 지속되면 RESEED 직후에도 counts = LTA로 시작하지만, 즉시 다시 counts > LTA가 된다. 비터치 구간이 없으므로 어떤 타이밍에 RESEED를 해도 근본 문제(전극 정전기 누적)를 해결하지 못한다.
+
+---
+
+## 2. 터치 감지 전체 흐름
+
+```
+전극 정전용량 측정
+       ↓
+   counts 계산 (MULT/COMP 적용)
+       ↓
+   delta = counts - LTA
+       ↓
+   delta > THRESHOLD ?
+     YES → 터치 판정
+     NO  → 비터치
+       ↓
+   비터치 상태이면: LTA를 counts 방향으로 서서히 이동 (느린 드리프트 흡수)
+```
+
+---
+
+## 3. RESEED란
 
 > **현재 counts 값을 LTA로 강제 덮어쓰는 트리거.**
 
@@ -49,7 +160,7 @@ write_register(0xC0, 0x08, 0x00);
 
 ---
 
-## 3. RESEED가 필요한 상황
+## 4. RESEED가 필요한 상황
 
 ### 3.1 ATI 보상값(MULT/COMP) 변경 후
 
@@ -78,7 +189,7 @@ RESEED로 LTA를 새 MULT 기준 counts로 재초기화해야 delta = 0에서 �
 
 ---
 
-## 4. 터치 중 RESEED 시 발생하는 문제
+## 5. 터치 중 RESEED 시 발생하는 문제
 
 ```
 [잘못된 순서]
@@ -95,7 +206,7 @@ RESEED로 LTA를 새 MULT 기준 counts로 재초기화해야 delta = 0에서 �
 
 ---
 
-## 5. RESEED vs ATI
+## 6. RESEED vs ATI
 
 | 항목 | RESEED | ATI |
 |---|---|---|
@@ -109,7 +220,7 @@ RESEED로 LTA를 새 MULT 기준 counts로 재초기화해야 delta = 0에서 �
 
 ---
 
-## 6. Sound1 코드에서의 RESEED
+## 7. Sound1 코드에서의 RESEED
 
 ### 6.1 노말 모드 (`apply_settings()`)
 
@@ -144,7 +255,7 @@ RESEED를 먼저 실행해 delta = 0으로 초기화한 뒤 터치 해제를 기
 
 ---
 
-## 7. 요약
+## 8. 요약
 
 ```
 RESEED를 안 하면  → 환경 변화 후 LTA가 틀어져 delta 오류
