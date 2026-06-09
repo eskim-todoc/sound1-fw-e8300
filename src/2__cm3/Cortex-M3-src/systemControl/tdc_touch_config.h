@@ -34,7 +34,7 @@
  *    0: 비활성 (운용 모드)                              ← 프로덕션 기본값
  *    1: 활성 — RE-ATI 실행 후 MULT/COMP 값을 시리얼로 출력 */
 #ifndef TDC_DRV_IQS323_ATI_DUMP_ENABLE
-#  define TDC_DRV_IQS323_ATI_DUMP_ENABLE  0
+#  define TDC_DRV_IQS323_ATI_DUMP_ENABLE  1
 #endif
 
 /* 3. ATI 캘리브레이션 모드 (LED 이진 출력)
@@ -44,7 +44,7 @@
  *    Note: processorDirective.h 의 Board_is_* 와는 의미 레이어가 다르다
  *          (Board_is_*=핀 매핑, TDC_BOARD_VARIANT=드라이버 캘리브레이션). */
 #ifndef TDC_TOUCH_ATI_CALIB_MODE
-#  define TDC_TOUCH_ATI_CALIB_MODE  0
+#  define TDC_TOUCH_ATI_CALIB_MODE  1
 #endif
 
 /* 3-1. ATI 캘리브레이션 LED 출력 활성화 (TDC_TOUCH_ATI_CALIB_MODE=1 시에만 유효)
@@ -60,7 +60,17 @@
  *             주변장치 OFF 환경에서 re-ATI 후 ATI 레지스터를 RTT로 반복 출력.
  *             'q' 입력 시 WDT 리셋. */
 #ifndef TDC_TOUCH_SLEEP_MEASURE_MODE
-#  define TDC_TOUCH_SLEEP_MEASURE_MODE  0
+#  define TDC_TOUCH_SLEEP_MEASURE_MODE  1
+#endif
+
+/* 5. CRX1 GND(VSS) 설정 — ESD 방전 경로 생성
+ *    HW 전제조건: C52(100nF) 제거 후 0Ω 쇼트 완료 (J4 ─ R32(0Ω) ─ CRX1 DC 직결)
+ *    0: 비활성 — CRX1 Floating (기본값, C52 미수정 상태에서도 안전)
+ *    1: 활성   — CRX1 IC 내부 VSS 고정 → J4 패드 ESD 방전 경로 생성    ← C52 단락 후 사용
+ *    효과: IQS323 Sensor1 Setup Inactive Rxs = VSS (bits[3:2]=0b10) 적용
+ *          CRX1에 누적된 정전기가 IC 내부 VSS로 방전됨 */
+#ifndef TDC_TOUCH_CRX1_VSS_ENABLE
+#  define TDC_TOUCH_CRX1_VSS_ENABLE  0
 #endif
 
 #endif /* TDC_TOUCH_CONFIG_H_ */

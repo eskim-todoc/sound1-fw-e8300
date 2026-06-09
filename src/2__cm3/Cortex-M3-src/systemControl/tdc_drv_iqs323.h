@@ -77,6 +77,12 @@
 #define TDC_DRV_IQS323_CHANNEL_DISABLE 0
 #define TDC_DRV_IQS323_CHANNEL_ENABLE  1
 
+/* Sensor Setup LSB — 비활성 채널 CRx 핀 전기적 상태 (enable_channel=0 시 적용)
+ * bits[3:2]=CRX1 state, bits[1:0]=CRX0 state  (2-bit per pin: 00=Float, 01=Bias, 10=VSS, 11=VREG)
+ * 0x00=둘 다 Floating(기본), 0x0A=둘 다 VSS(GND), 0x05=Bias, 0x0F=VREG */
+#define TDC_DRV_IQS323_INACTIVE_RXS_FLOATING 0x00
+#define TDC_DRV_IQS323_INACTIVE_RXS_VSS      0x0A
+
 /* **********************************************************************
  * Touch Settings (0x62, 0x72, 0x82) values
  */
