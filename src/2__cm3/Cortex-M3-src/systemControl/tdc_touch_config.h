@@ -79,13 +79,25 @@
  *    1: 활성   — CH1을 Reference 모드로 활성화, CH0 LTA 보정 기준값 채널로 사용
  *    효과: IQS323 Channel Setup (0x70) bits[3:0] = 0x02 (Reference 모드)
  *          온도·습도 변화에 의한 CH0 delta 오판 감소 (ESD 급격 변화에는 무효)
- *    참고: 5번(VSS_ENABLE)과 상호 배타 — 동시 활성 시 컴파일 오류 */
+ *    참고: 5번(VSS_ENABLE)·6-1번(DUMMY_ENABLE)과 상호 배타 */
 #ifndef TDC_TOUCH_CRX1_REF_ENABLE
 #  define TDC_TOUCH_CRX1_REF_ENABLE  0
 #endif
 
-#if TDC_TOUCH_CRX1_VSS_ENABLE && TDC_TOUCH_CRX1_REF_ENABLE
-#  error "TDC_TOUCH_CRX1_VSS_ENABLE 과 TDC_TOUCH_CRX1_REF_ENABLE 은 상호 배타 — 하나만 활성화하세요"
+/* 6-1. CRX1 더미 채널 — IC 내부 기준 캐패시턴스만 사용, 외부 CRX1 핀 완전 무시
+ *    목적: CH1을 내부에서만 활성화 → IC measurement cycle 유지
+ *          → CH0 discharge(7번) 사용 시 "유일 활성 채널 없음" 문제 방지
+ *    원리: Prox Input Control(0x43) Internal Reference(bit 13) 활성화
+ *          외부 CRX1 핀을 IC 측정에서 제외 → C52 유무·쇼트 상태 무관
+ *    0: 비활성 (기본값)
+ *    1: 활성   — CH1 enable + Internal Reference (C52 유무·쇼트 무관)
+ *    참고: 5번(VSS_ENABLE)·6번(REF_ENABLE)과 상호 배타 */
+#ifndef TDC_TOUCH_CRX1_DUMMY_ENABLE
+#  define TDC_TOUCH_CRX1_DUMMY_ENABLE  0
+#endif
+
+#if (TDC_TOUCH_CRX1_VSS_ENABLE + TDC_TOUCH_CRX1_REF_ENABLE + TDC_TOUCH_CRX1_DUMMY_ENABLE) > 1
+#  error "TDC_TOUCH_CRX1_VSS_ENABLE·REF_ENABLE·DUMMY_ENABLE 중 하나만 활성화하세요"
 #endif
 
 /* 7. CRX0 VSS 방전 — CH0 일시 비활성+접지로 ESD 전하 제거 시도
@@ -98,7 +110,8 @@
  *      re-enable(enable=1) 후 ATI(자동 재보정, ~100 ms+)를 시작해 20 ms soft timeout을 유발.
  *      → wait_rdy_window_closed soft timeout 무한 반복, 초기화부터 먹통.
  *
- *    ESD 문제 대응은 HW(CRX1→VSS 점퍼) 또는 TDC_TOUCH_CRX1_REF_ENABLE=1 고려.
+ *    ESD 문제 대응은 HW(CRX1→VSS 점퍼), TDC_TOUCH_CRX1_REF_ENABLE=1,
+ *      또는 TDC_TOUCH_CRX1_DUMMY_ENABLE=1 + TDC_TOUCH_CRX0_DISCHARGE_ENABLE=1 조합 고려.
  *
  *    0: 비활성 (기본값)
  *    1: 비사용 (위 이유로 동작 불가) */

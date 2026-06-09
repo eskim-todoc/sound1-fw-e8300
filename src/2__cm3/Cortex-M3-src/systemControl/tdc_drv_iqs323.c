@@ -425,6 +425,31 @@ static bool sensor_setup(void)
     {
         return false;
     }
+#elif TDC_TOUCH_CRX1_DUMMY_ENABLE
+    /* Dummy 채널 — CH1 내부 활성화, 외부 CRX1 핀 완전 무시
+     * Prox Input Control Internal Reference(bit 13) → C52 유무·쇼트 무관
+     * 목적: IC measurement cycle 유지 → CH0 discharge 가능 */
+    reg.bytes[1] = 0x00;
+    reg.bytes[2] = 0x00;
+    reg.elements.msb.ctx0           = TDC_DRV_IQS323_CTX0_ENABLE;
+    reg.elements.lsb.enable_channel = TDC_DRV_IQS323_CHANNEL_ENABLE;
+    ci_printv("[TOUCH] SETUP SENSOR 1 (DUMMY) \r\n");
+    if (!write_and_verify(TDC_DRV_IQS323_REG_ADDR_SENSOR1_SETUP, reg.bytes[1], reg.bytes[2]))
+    {
+        return false;
+    }
+    ci_printv("[TOUCH] SETUP PROX INPUT 1 (INTERNAL REF) \r\n");
+    if (!write_and_verify(TDC_DRV_IQS323_REG_ADDR_SENSOR1_PROX_INPUT,
+                          0x00, TDC_DRV_IQS323_PROX_INTERNAL_REF_MSB))
+    {
+        return false;
+    }
+    ci_printv("[TOUCH] SETUP CHANNEL 1 (INDEPENDENT) \r\n");
+    if (!write_and_verify(TDC_DRV_IQS323_REG_ADDR_CHANNEL1_SETUP,
+                          TDC_DRV_IQS323_CH_MODE_INDEPENDENT, 0x00))
+    {
+        return false;
+    }
 #else
     reg.bytes[1] = TDC_DRV_IQS323_INACTIVE_RXS_FLOATING;
     reg.bytes[2] = 0x00;

@@ -85,6 +85,15 @@
 #define TDC_DRV_IQS323_INACTIVE_RXS_CRX0_VSS  0x02  /* CRX0만 VSS, CRX1 Floating */
 
 /* **********************************************************************
+ * Prox Input and Control (0x33/0x43/0x53) — 수신 핀 선택
+ */
+#define TDC_DRV_IQS323_REG_ADDR_SENSOR1_PROX_INPUT  0x43
+/* bits[10:8] = CRx2/CRx1/CRx0 enable (MSB byte bits[2:0])
+ * bit 13     = Internal Reference (MSB byte bit 5)
+ *   → 외부 CRX 핀 완전 무시, IC 내부 기준 캐패시턴스로만 측정 */
+#define TDC_DRV_IQS323_PROX_INTERNAL_REF_MSB  0x20  /* bit 13 = MSB byte bit 5 */
+
+/* **********************************************************************
  * Channel Setup (0x60/0x70/0x80) — 채널 동작 모드
  */
 #define TDC_DRV_IQS323_REG_ADDR_CHANNEL1_SETUP  0x70
