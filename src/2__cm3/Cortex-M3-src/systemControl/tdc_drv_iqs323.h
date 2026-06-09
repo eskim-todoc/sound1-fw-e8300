@@ -48,6 +48,7 @@
 #define TDC_DRV_IQS323_REG_ADDR_SENSOR0_ATI_SETUP   0x36
 #define TDC_DRV_IQS323_REG_ADDR_SENSOR0_ATI_MULT   0x38
 #define TDC_DRV_IQS323_REG_ADDR_SENSOR0_ATI_COMP   0x39
+#define TDC_DRV_IQS323_REG_ADDR_SENSOR1_ATI_SETUP   0x46  /* CH1 더미 ATI Disabled용 */
 #define TDC_DRV_IQS323_REG_ADDR_CH0_TOUCH_SETTINGS 0x62
 #define TDC_DRV_IQS323_REG_ADDR_SYSTEM_CONTROL     0xC0
 #define TDC_DRV_IQS323_REG_ADDR_EVENTS_ENABLE      0xD3
@@ -76,6 +77,47 @@
 
 #define TDC_DRV_IQS323_CHANNEL_DISABLE 0
 #define TDC_DRV_IQS323_CHANNEL_ENABLE  1
+
+/* Sensor Setup LSB — 비활성 채널 CRx 핀 전기적 상태 (enable_channel=0 시 적용)
+ * bits[3:2]=CRX1 state, bits[1:0]=CRX0 state  (2-bit per pin: 00=Float, 01=Bias, 10=VSS, 11=VREG)
+ * 0x00=둘 다 Floating(기본), 0x0A=둘 다 VSS(GND), 0x05=Bias, 0x0F=VREG */
+#define TDC_DRV_IQS323_INACTIVE_RXS_FLOATING  0x00
+#define TDC_DRV_IQS323_INACTIVE_RXS_VSS       0x0A  /* CRX0+CRX1 모두 VSS */
+#define TDC_DRV_IQS323_INACTIVE_RXS_CRX0_VSS  0x02  /* CRX0만 VSS, CRX1 Floating */
+
+/* **********************************************************************
+ * Prox Input and Control (0x33/0x43/0x53) — 수신 핀 선택
+ * reset value 0x01CF (reserved bit7=1, bit1-0=11 강제 — 임의 변경 시 IC 먹통).
+ * CalCap 더미 채널에서는 이 레지스터를 쓰지 않고 reset 상태를 유지한다.
+ */
+#define TDC_DRV_IQS323_REG_ADDR_SENSOR1_PROX_INPUT  0x43
+
+/* **********************************************************************
+ * Pattern Definitions (0x34/0x44/0x54) — CalCap 크기·Inactive Rxs
+ * reset value 0x030A
+ */
+#define TDC_DRV_IQS323_REG_ADDR_SENSOR1_PATTERN_DEF  0x44
+/* CalCap 더미 채널용 값 (reset 0x030A 기준 산출):
+ *   LSB 0x2A = CalCap size(bit7-4)=2 → 1.0pF + Inactive Rxs(bit3-0)=VSS(0x0A)
+ *   MSB 0x03 = Wav Pattern 0 (self-cap) 유지
+ * 상세: docs/참고/touch/IQS323-CalCap-더미채널.md */
+#define TDC_DRV_IQS323_PATTERN_CALCAP_SIZE_1PF_LSB   0x2A
+#define TDC_DRV_IQS323_PATTERN_DEF_MSB               0x03
+
+/* CH1 더미 ATI Mode=Disabled (0x46 reset 0x040C → bits[2:0]=000):
+ * CalCap 부하에서 auto-ATI가 수렴 못 해 전역 ATI_ERROR(System Status bit6)가 SET되면
+ * tdc_touch_get_state()가 CAL_ERROR로 단락되어 CH0 터치 판정이 막힌다. CH0(0x36)와 동일하게
+ * ATI를 꺼서 §5.11 "ATI 실행 후 error check"를 스킵시킨다. 상세: IQS323-CalCap-더미채널.md */
+#define TDC_DRV_IQS323_DUMMY_ATI_SETUP_LSB           0x08
+#define TDC_DRV_IQS323_DUMMY_ATI_SETUP_MSB           0x04
+
+/* **********************************************************************
+ * Channel Setup (0x60/0x70/0x80) — 채널 동작 모드
+ */
+#define TDC_DRV_IQS323_REG_ADDR_CHANNEL1_SETUP  0x70
+/* bits[3:0]: Channel Mode */
+#define TDC_DRV_IQS323_CH_MODE_INDEPENDENT  0x00  /* 독립 채널 (기본) */
+#define TDC_DRV_IQS323_CH_MODE_REFERENCE    0x02  /* 환경 기준값 채널 — LTA 드리프트 보정 */
 
 /* **********************************************************************
  * Touch Settings (0x62, 0x72, 0x82) values
@@ -377,8 +419,14 @@ void tdc_drv_iqs323_sleep_measure_dump(void);
 /* LTA 를 현재 counts 로 강제 재설정. */
 void tdc_drv_iqs323_reseed(void);
 
-/* 절전 환경 IQS323 전체 재설정 (고정 보상값 적용).
- * 반환: true = 성공, false = 단계 실패 또는 RESEED 직전 터치 감지 (재시도 필요). */
+/* ESD 방전 — CH0 일시 비활성(CRX0=VSS) 후 복원. 누적 정전기 제거.
+ * 반환: true = 성공, false = I2C 쓰기 실패.
+ * 호출: tdc_touch_get_state() 에서 read_status() 직전 (TDC_TOUCH_CRX0_DISCHARGE_ENABLE=1 시). */
+bool tdc_drv_iqs323_discharge_crx0(void);
+
+/* 절전 레지스터 사전 적용 — ci_power_sleep() 전 호출. THRESHOLD/HYSTERESIS/MULT/COMP/CH_TIMEOUT 기록.
+ * RESEED 및 터치 해제 대기는 ci_power_sleep() 이후 호출자 책임.
+ * 반환: true = 성공, false = I2C 쓰기 실패. */
 bool tdc_drv_iqs323_apply_sleep_settings(void);
 
 #endif /* TDC_DRV_IQS323_H_ */
