@@ -707,47 +707,25 @@ int func_normal(void)
     return 0;
 }
 
-/* ULP 모드 롱-터치 감지 파라미터 ? 튜닝 시 아래 값만 수정 */
-#define ULP_WAKE_INTERVAL_MS 500   /* 웨이크업 주기 (ms) */
-#define ULP_LONG_TOUCH_MS    2500  // 3000 /* 롱터치 판정 시간 (ms) */
+/* ULP 모드 롱-터치 감지 파라미터 — 튜닝 시 아래 값만 수정 */
+#define ULP_WAKE_INTERVAL_MS 200   /* 웨이크업 주기 (ms) */
+#define ULP_LONG_TOUCH_MS    2400  /* 롱터치 판정 시간 (ms) */
 
-/* 유도값 ? 웨이크업 N 회 연속 TOUCH 시 리셋 (올림 나눗셈, 실제 응답 ≥ ULP_LONG_TOUCH_MS) */
+/* 유도값 — 웨이크업 N 회 연속 TOUCH 시 리셋 (올림 나눗셈, 실제 응답 ≥ ULP_LONG_TOUCH_MS) */
 #define ULP_LONG_TOUCH_COUNT ((ULP_LONG_TOUCH_MS + ULP_WAKE_INTERVAL_MS - 1) / ULP_WAKE_INTERVAL_MS)
 
 /* 타이머 하드웨어 설정값
  * 공식: T[ms] = 2^PRESCALE × (TIMEOUT+1) / 40   (SLOWCLK_DIV32 = 40 kHz)
- * 현재: 2^7 × 156 / 40 = 499.2 ms ? ULP_WAKE_INTERVAL_MS(500)
+ * 현재: 2^7 × 63 / 40 = 201.6 ms ≈ ULP_WAKE_INTERVAL_MS(200)
  * 주기 변경 시 PRESCALE / TIMEOUT_VALUE 도 재계산 필요 */
 #define ULP_TIMER_PRESCALE      TIMER_PRESCALE_128
-#define ULP_TIMER_TIMEOUT_VALUE 155
+#define ULP_TIMER_TIMEOUT_VALUE 62
 
 int func_sleep(void)
 {
     SYS_WATCHDOG_REFRESH(); /* Refresh the watchdog at very first time */
 
     ci_printi("[INFO] CM3 IS PREPARING TO ENTER SLEEP MODE \r\n");
-
-    /* 롱터치에서 손 뗌 대기 ? 소자 절전 전, 정상 환경에서 확인. */
-    {
-        tdc_touch_state_t state = TDC_TOUCH_STATE_RESET;
-#if TDC_DBG_LONG_TOUCH_IGNORE_LED
-        int  tick_start = ci_timer_get_tick();
-        bool warned     = false;
-#endif
-        while (tdc_touch_get_state(&state) && state == TDC_TOUCH_STATE_TOUCH)
-        {
-            SYS_WATCHDOG_REFRESH();
-#if TDC_DBG_LONG_TOUCH_IGNORE_LED
-            if (!warned && 5000 <= (ci_timer_get_tick() - tick_start))
-            {
-                warned = true;
-                ci_printw("[TOUCH] SLEEP RELEASE WAIT > 5s \r\n");
-                led_request(LED_SRC_DBG, LED_ST_DBG_LONG_TOUCH_IGNORE);
-            }
-#endif
-        }
-    }
-    ci_printi("[TOUCH] RELEASE CONFIRMED \r\n");
 
     ci_printi("[INFO] FIRST OF ALL, TRY TO POWER OFF FPGA BACKTRL H/W \r\n");
 
@@ -807,28 +785,26 @@ int func_sleep(void)
 
     // Uninitialize(); /* Disable peripherals and DIOs */
 
+    /* 절전 모드 레지스터 사전 적용 — 클럭 변경 전 정상속도 I2C로 확실히 기록 */
+    tdc_drv_iqs323_apply_sleep_settings();
+
     ci_power_sleep(); /* SYSCLK 30.72M → 2.56M, SLOWCLK 유지 */
 
-    i2c_set_master_prescale(I2C_MASTER_PRESCALE_21); /* SCL ? 122 kHz 유지 (저속 방지) */
+    i2c_set_master_prescale(I2C_MASTER_PRESCALE_6/*I2C_MASTER_PRESCALE_21*/); /* SCL ≈ 122 kHz 유지 (저속 방지) */
 
-    /* 저속 클럭 환경에서 IQS323 전체 재설정 ? 실패(I2C 오류·터치 중 RESEED 방지) 시 재시도. */
-    while (!tdc_drv_iqs323_apply_sleep_settings())
+    /* 절전 환경 확정 후 터치 해제 확인 → RESEED (LTA ← 절전 환경 counts, delta = 0) */
     {
-        ci_printw("[MAIN] SLEEP SETTINGS FAILED, RETRY \r\n");
-        SYS_WATCHDOG_REFRESH();
-        Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_R);
-        Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_G);
-        Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_B);
-        delay_ms(100);
-        SYS_WATCHDOG_REFRESH();
-        delay_ms(100);
-        SYS_WATCHDOG_REFRESH();
-        delay_ms(100);
-        SYS_WATCHDOG_REFRESH();
-        Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_R);
+        bool pressed   = false;
+        bool ati_error = false;
+        while (tdc_drv_iqs323_read_status(&pressed, &ati_error) && pressed)
+        {
+            ci_printv("[TOUCH] SLEEP: WAIT TOUCH RELEASE \r\n");
+            SYS_WATCHDOG_REFRESH();
+        }
     }
+    tdc_drv_iqs323_reseed();
 
-    ci_timer_init_prescaled(ULP_TIMER_PRESCALE, ULP_TIMER_TIMEOUT_VALUE); /* ? 500 ms 주기 */
+    ci_timer_init_prescaled(ULP_TIMER_PRESCALE, ULP_TIMER_TIMEOUT_VALUE); /* ≈ 200 ms 주기 */
 
     SYS_WATCHDOG_REFRESH();
 

@@ -377,8 +377,9 @@ void tdc_drv_iqs323_sleep_measure_dump(void);
 /* LTA 를 현재 counts 로 강제 재설정. */
 void tdc_drv_iqs323_reseed(void);
 
-/* 절전 환경 IQS323 전체 재설정 (고정 보상값 적용).
- * 반환: true = 성공, false = 단계 실패 또는 RESEED 직전 터치 감지 (재시도 필요). */
+/* 절전 레지스터 사전 적용 — ci_power_sleep() 전 호출. THRESHOLD/HYSTERESIS/MULT/COMP/CH_TIMEOUT 기록.
+ * RESEED 및 터치 해제 대기는 ci_power_sleep() 이후 호출자 책임.
+ * 반환: true = 성공, false = I2C 쓰기 실패. */
 bool tdc_drv_iqs323_apply_sleep_settings(void);
 
 #endif /* TDC_DRV_IQS323_H_ */

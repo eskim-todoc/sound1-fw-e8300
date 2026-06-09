@@ -233,13 +233,28 @@ write_register(0xC0, 0x08, 0x00);  // RESEED
 MCLR 리셋 + Auto-ATI 완료 후 호출하므로, 이 시점에 터치 상태일 수 있다.
 → READY 전이 직후 `s_boot_touch_ignore` 플래그로 부팅 터치 무시 처리.
 
-### 6.2 절전 모드 (`apply_sleep_settings()`)
+### 6.2 절전 모드 — 2단계 분리 처리
+
+절전 진입 흐름은 다음 두 단계로 분리한다.
+
+**단계 1 — `tdc_drv_iqs323_apply_sleep_settings()` (ci_power_sleep() 전)**
 
 ```c
-/* 1. RESEED 먼저 — MULT 변경으로 인한 counts 스케일 불일치 즉시 해소 */
-write_register(0xC0, 0x08, 0x00);  // LTA ← 현재 counts, delta = 0
+/* 절전용 THRESHOLD/HYSTERESIS, ATI_MULT/COMP, CH_TIMEOUT 기록.
+ * 정상 클럭(30.72 MHz) + 정상속도 I2C에서 확실히 쓴다.
+ * RESEED는 아직 하지 않는다. */
+tdc_drv_iqs323_apply_sleep_settings();
+```
 
-/* 2. RESEED 후 실제 터치 해제 대기 */
+**단계 2 — ci_power_sleep() 이후 (main.c)**
+
+```c
+ci_power_sleep();               /* SYSCLK 30.72M → 2.56M, 주변기기 OFF */
+i2c_set_master_prescale(...);   /* 저속 클럭 맞게 I2C 속도 조정 */
+
+/* 절전 환경(주변기기 OFF·클럭 다운)이 확정된 후:
+ * 1. 실제 터치 해제 대기 (사용자 손가락이 아직 닿아 있으면 기다림)
+ * 2. RESEED — 이 환경의 counts를 LTA 기준으로 확정 */
 {
     bool pressed, ati_error;
     while (tdc_drv_iqs323_read_status(&pressed, &ati_error) && pressed)
@@ -247,11 +262,10 @@ write_register(0xC0, 0x08, 0x00);  // LTA ← 현재 counts, delta = 0
         SYS_WATCHDOG_REFRESH();
     }
 }
+tdc_drv_iqs323_reseed();        /* LTA ← 절전 환경 counts, delta = 0 */
 ```
 
-**순서가 중요한 이유**: MULT(0x5C82)로 바꾼 직후 counts 스케일이 달라져 기존 LTA 대비 delta > THRESHOLD → 실제 터치가 없어도 계속 터치로 판정된다. 터치 해제 대기를 RESEED 전에 두면 오판으로 인해 영원히 해제되지 않는 무한 루프가 된다.
-
-RESEED를 먼저 실행해 delta = 0으로 초기화한 뒤 터치 해제를 기다려야 실제 터치만 정확히 반영된다.
+**분리 이유**: MULT/COMP를 ci_power_sleep() 전에 적용하면 정상 환경(빠른 클럭, 정상 I2C)에서 레지스터 기록이 보장된다. 이후 ci_power_sleep()으로 주변기기가 꺼지면서 전극 환경(기생 정전용량)이 바뀌므로, RESEED는 이 변화 후에 해야 올바른 LTA 기준이 설정된다.
 
 ---
 

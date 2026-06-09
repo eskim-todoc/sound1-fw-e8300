@@ -785,37 +785,12 @@ bool tdc_drv_iqs323_apply_sleep_settings(void)
 {
     SYS_WATCHDOG_REFRESH();
 
-    if (!ack_reset_event())
-    {
-        ci_printe("[TOUCH] FAIL: SLEEP ACK RESET EVENT \r\n");
-        return false;
-    }
-
-    if (!confirm_reset_event())
-    {
-        ci_printe("[TOUCH] FAIL: SLEEP CONFIRM RESET EVENT \r\n");
-        return false;
-    }
-
-    if (!sensor_setup())
-    {
-        ci_printe("[TOUCH] FAIL: SLEEP SENSOR SETUP \r\n");
-        return false;
-    }
-
+    /* 절전 터치 감도 적용 (THRESHOLD/HYSTERESIS 낮춤) */
     if (!touch_settings_impl(TDC_DRV_IQS323_SLEEP_TOUCH_THRESHOLD, TDC_DRV_IQS323_SLEEP_TOUCH_HYSTERESIS))
     {
         ci_printe("[TOUCH] FAIL: SLEEP TOUCH SETTINGS \r\n");
         return false;
     }
-
-    if (!events_enable())
-    {
-        ci_printe("[TOUCH] FAIL: SLEEP EVENTS ENABLE \r\n");
-        return false;
-    }
-
-    SYS_WATCHDOG_REFRESH();
 
     /* 절전 환경 고정 ATI 보상값 적용 — autoATI 없음 */
     if (!write_register(TDC_DRV_IQS323_REG_ADDR_SENSOR0_ATI_SETUP,
@@ -837,25 +812,6 @@ bool tdc_drv_iqs323_apply_sleep_settings(void)
     {
         ci_printe("[TOUCH] FAIL: SLEEP ATI COMP \r\n");
         return false;
-    }
-
-    /* RESEED — MULT/COMP 변경으로 인한 counts 스케일 불일치 해소 (LTA ← 현재 counts, delta = 0).
-     * 실제 터치 여부와 무관하게 먼저 실행해야 이후 터치 해제 판정이 올바르게 동작한다. */
-    if (!write_register(TDC_DRV_IQS323_REG_ADDR_SYSTEM_CONTROL, 0x08, 0x00))
-    {
-        ci_printe("[TOUCH] FAIL: SLEEP RESEED \r\n");
-        return false;
-    }
-
-    /* RESEED 후 실제 터치 해제 대기 — RESEED 로 delta = 0 이 됐으므로 여기서의 터치 판정은 실제 터치만 반영 */
-    {
-        bool pressed   = false;
-        bool ati_error = false;
-        while (tdc_drv_iqs323_read_status(&pressed, &ati_error) && pressed)
-        {
-            ci_printv("[TOUCH] SLEEP: WAIT TOUCH RELEASE \r\n");
-            SYS_WATCHDOG_REFRESH();
-        }
     }
 
     /* CH0~CH2 stuck-touch timeout 비활성화 */
