@@ -88,4 +88,13 @@
 #  error "TDC_TOUCH_CRX1_VSS_ENABLE 과 TDC_TOUCH_CRX1_REF_ENABLE 은 상호 배타 — 하나만 활성화하세요"
 #endif
 
+/* 7. CRX0 VSS 방전 — 매 폴링 직전 CH0 일시 비활성+접지로 ESD 전하 제거
+ *    조건 없이 항상 방전 → 먹통 예방(평소) + 먹통 치료(이미 ESD 누적 시)
+ *    방전 후에도 실제 터치 정전용량(손가락)은 유지됨 — 오감지 없음
+ *    0: 비활성 (기본값, 원래 동작 유지)
+ *    1: 활성   — tdc_touch_get_state() 호출마다 CH0 disable(CRX0=VSS) → enable → read */
+#ifndef TDC_TOUCH_CRX0_DISCHARGE_ENABLE
+#  define TDC_TOUCH_CRX0_DISCHARGE_ENABLE  1
+#endif
+
 #endif /* TDC_TOUCH_CONFIG_H_ */

@@ -381,6 +381,13 @@ bool tdc_touch_get_state(tdc_touch_state_t *p_state)
     bool pressed   = false;
     bool ati_error = false;
 
+#if TDC_TOUCH_CRX0_DISCHARGE_ENABLE
+    if (!tdc_drv_iqs323_discharge_crx0())
+    {
+        return false;
+    }
+#endif
+
     if (!tdc_drv_iqs323_read_status(&pressed, &ati_error))
     {
         return false;

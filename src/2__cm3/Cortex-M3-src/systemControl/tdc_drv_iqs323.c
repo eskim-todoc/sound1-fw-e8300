@@ -810,6 +810,22 @@ void tdc_drv_iqs323_reseed(void)
     }
 }
 
+bool tdc_drv_iqs323_discharge_crx0(void)
+{
+    /* CH0 비활성 + CRX0=VSS: 누적 ESD 전하 방전 (CRX1은 현재 설정 유지) */
+    if (!write_and_verify(TDC_DRV_IQS323_REG_ADDR_SENSOR0_SETUP,
+                          TDC_DRV_IQS323_INACTIVE_RXS_CRX0_VSS, 0x00))
+    {
+        return false;
+    }
+    /* CH0 복원: enable_channel=1, ctx0=1 — sensor_setup() 의 Sensor0 설정과 동일 */
+    if (!write_and_verify(TDC_DRV_IQS323_REG_ADDR_SENSOR0_SETUP, 0x01, 0x01))
+    {
+        return false;
+    }
+    return true;
+}
+
 bool tdc_drv_iqs323_apply_sleep_settings(void)
 {
     SYS_WATCHDOG_REFRESH();

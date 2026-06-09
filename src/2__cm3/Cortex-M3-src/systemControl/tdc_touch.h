@@ -3,7 +3,7 @@
  *
  * 터치 기능 레이어 — IC 독립.
  *
- * 부팅 후 초기화 상태머신 진행, 100ms 폴링, 3초 롱터치 판정 등 UX 로직을
+ * 부팅 후 초기화 상태머신 진행, 200ms 폴링, 2.8초 롱터치 판정 등 UX 로직을
  * 담당한다. 실제 하드웨어 통신은 드라이버 레이어(`tdc_drv_iqs323`) 에
  * #include 로 위임하며, IC 교체 시 본 파일은 수정 대상이 아니다.
  *
@@ -22,8 +22,8 @@
 /* **********************************************************************
  * 상수
  */
-#define TDC_TOUCH_POLL_INTERVAL     100   /* 폴링 간격 (ms) */
-#define TDC_TOUCH_LONG_TOUCH_MS     3000  /* 롱터치 판정 시간 (ms) */
+#define TDC_TOUCH_POLL_INTERVAL     200   /* 폴링 간격 (ms) */
+#define TDC_TOUCH_LONG_TOUCH_MS     2800  /* 롱터치 판정 시간 (ms) — 노말→절전 */
 #define TDC_TOUCH_INIT_TIMEOUT_MS   2500  /* 초기화 Auto-ATI 대기 타임아웃.
                                            * 터치 중 부팅 등 대비 */
 

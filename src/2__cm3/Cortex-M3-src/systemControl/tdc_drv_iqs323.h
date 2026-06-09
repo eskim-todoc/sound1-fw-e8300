@@ -80,8 +80,9 @@
 /* Sensor Setup LSB — 비활성 채널 CRx 핀 전기적 상태 (enable_channel=0 시 적용)
  * bits[3:2]=CRX1 state, bits[1:0]=CRX0 state  (2-bit per pin: 00=Float, 01=Bias, 10=VSS, 11=VREG)
  * 0x00=둘 다 Floating(기본), 0x0A=둘 다 VSS(GND), 0x05=Bias, 0x0F=VREG */
-#define TDC_DRV_IQS323_INACTIVE_RXS_FLOATING 0x00
-#define TDC_DRV_IQS323_INACTIVE_RXS_VSS      0x0A
+#define TDC_DRV_IQS323_INACTIVE_RXS_FLOATING  0x00
+#define TDC_DRV_IQS323_INACTIVE_RXS_VSS       0x0A  /* CRX0+CRX1 모두 VSS */
+#define TDC_DRV_IQS323_INACTIVE_RXS_CRX0_VSS  0x02  /* CRX0만 VSS, CRX1 Floating */
 
 /* **********************************************************************
  * Channel Setup (0x60/0x70/0x80) — 채널 동작 모드
@@ -390,6 +391,11 @@ void tdc_drv_iqs323_sleep_measure_dump(void);
 
 /* LTA 를 현재 counts 로 강제 재설정. */
 void tdc_drv_iqs323_reseed(void);
+
+/* ESD 방전 — CH0 일시 비활성(CRX0=VSS) 후 복원. 누적 정전기 제거.
+ * 반환: true = 성공, false = I2C 쓰기 실패.
+ * 호출: tdc_touch_get_state() 에서 read_status() 직전 (TDC_TOUCH_CRX0_DISCHARGE_ENABLE=1 시). */
+bool tdc_drv_iqs323_discharge_crx0(void);
 
 /* 절전 레지스터 사전 적용 — ci_power_sleep() 전 호출. THRESHOLD/HYSTERESIS/MULT/COMP/CH_TIMEOUT 기록.
  * RESEED 및 터치 해제 대기는 ci_power_sleep() 이후 호출자 책임.
