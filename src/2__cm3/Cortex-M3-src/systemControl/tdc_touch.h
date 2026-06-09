@@ -35,8 +35,9 @@ typedef enum
     TDC_TOUCH_STATE_RESET,              /* 초기 상태 */
     TDC_TOUCH_STATE_TOUCH,              /* 터치 중 */
     TDC_TOUCH_STATE_NOT_TOUCH,          /* 비터치 */
-    TDC_TOUCH_STATE_CALIBRATION_ERROR   /* 드라이버 캘리브레이션 실패
-                                         * (예: IQS323 의 ATI_ERROR) */
+    TDC_TOUCH_STATE_CALIBRATION_ERROR   /* (미사용) 과거 IQS323 ATI_ERROR 매핑.
+                                         * 운용 모드는 ATI 미사용이라 get_state가 발생시키지
+                                         * 않음 — enum/문자열 호환 위해 유지. */
 } tdc_touch_state_t;
 
 /* **********************************************************************

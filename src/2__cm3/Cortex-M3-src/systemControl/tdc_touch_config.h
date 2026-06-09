@@ -84,39 +84,43 @@
 #  define TDC_TOUCH_CRX1_REF_ENABLE  0
 #endif
 
-/* 6-1. CRX1 더미 채널 — IC 내부 기준 캐패시턴스만 사용, 외부 CRX1 핀 완전 무시
- *    목적: CH1을 내부에서만 활성화 → IC measurement cycle 유지
+/* 6-1. CRX1 더미 채널 — 내부 CalCap을 변환 부하로 사용, 외부 CRX1 핀 완전 무관
+ *    목적: CH1을 더미로 활성화 → IC measurement cycle 유지
  *          → CH0 discharge(7번) 사용 시 "유일 활성 채널 없음" 문제 방지
- *    원리: Prox Input Control(0x43) Internal Reference(bit 13) 활성화
- *          외부 CRX1 핀을 IC 측정에서 제외 → C52 유무·쇼트 상태 무관
+ *    원리: 내부 CalCap(0.5pF×N)을 Sensor Setup CalCap Rx/Tx(0x40 bit14/13)로 선택
+ *          변환 경로가 IC 내부에서 닫힘 → C52 유무·쇼트 무관, ATI 수렴 안정
+ *          0x43(Prox Input)은 미수정(reset 0x01CF 유지) — reserved 비트 보존
  *    0: 비활성 (기본값)
- *    1: 활성   — CH1 enable + Internal Reference (C52 유무·쇼트 무관)
+ *    1: 활성   — CH1 enable + CalCap Rx/Tx (C52 유무·쇼트 무관)
+ *    상세: docs/참고/touch/IQS323-CalCap-더미채널.md
  *    참고: 5번(VSS_ENABLE)·6번(REF_ENABLE)과 상호 배타 */
 #ifndef TDC_TOUCH_CRX1_DUMMY_ENABLE
-#  define TDC_TOUCH_CRX1_DUMMY_ENABLE  0
+#  define TDC_TOUCH_CRX1_DUMMY_ENABLE  1
 #endif
 
 #if (TDC_TOUCH_CRX1_VSS_ENABLE + TDC_TOUCH_CRX1_REF_ENABLE + TDC_TOUCH_CRX1_DUMMY_ENABLE) > 1
 #  error "TDC_TOUCH_CRX1_VSS_ENABLE·REF_ENABLE·DUMMY_ENABLE 중 하나만 활성화하세요"
 #endif
 
-/* 7. CRX0 VSS 방전 — CH0 일시 비활성+접지로 ESD 전하 제거 시도
+/* 7. CRX0 VSS 방전 — 매 폴링마다 CH0 일시 비활성+접지로 ESD 누적 전하 제거
  *
- *    [주의] 현재 구현은 IQS323 RDY 윈도우 프로토콜과 호환 불가 — 사용 금지(기본값 0 유지).
+ *    [전제] 6-1(CRX1_DUMMY_ENABLE=1)과 반드시 함께 사용. CH0이 유일 활성 채널이면
+ *    disable 순간 measurement cycle이 멈춰 RDY 윈도우 먹통이 되므로, CH1 더미 채널이
+ *    cycle을 유지해줘야 한다. (상세: docs/참고/touch/이슈해결/2026-06_CRX1-ESD-더미채널.md)
  *
- *    실패 원인:
- *      CH0이 유일한 활성 채널이므로, SENSOR0_SETUP(enable=0) 직후 IC에 활성 채널이 없어진다.
- *      IC는 measurement cycle을 완료하지 못하고 RDY를 HIGH로 유지하거나,
- *      re-enable(enable=1) 후 ATI(자동 재보정, ~100 ms+)를 시작해 20 ms soft timeout을 유발.
- *      → wait_rdy_window_closed soft timeout 무한 반복, 초기화부터 먹통.
- *
- *    ESD 문제 대응은 HW(CRX1→VSS 점퍼), TDC_TOUCH_CRX1_REF_ENABLE=1,
- *      또는 TDC_TOUCH_CRX1_DUMMY_ENABLE=1 + TDC_TOUCH_CRX0_DISCHARGE_ENABLE=1 조합 고려.
- *
- *    0: 비활성 (기본값)
- *    1: 비사용 (위 이유로 동작 불가) */
+ *    0: 비활성
+ *    1: 활성 (기본값) — 6-1 DUMMY_ENABLE=1 전제 */
 #ifndef TDC_TOUCH_CRX0_DISCHARGE_ENABLE
-#  define TDC_TOUCH_CRX0_DISCHARGE_ENABLE  0
+#  define TDC_TOUCH_CRX0_DISCHARGE_ENABLE  1
+#endif
+
+/* 8. CRX0 방전 write 로그 — 7번이 200ms 폴링마다 write 2회를 수행해 RTT 범람.
+ *    방전 전용 write 헬퍼(write_register_discharge)의 verbose 로그만 제어하며,
+ *    다른 시퀀스(sensor_setup 등)의 write 로그와 에러 로그는 영향 없음.
+ *    0: 방전 write 로그 억제 (기본값)
+ *    1: 방전 write 출력 ([DISCHARGE] 태그) — 방전 시퀀스 디버깅용 */
+#ifndef TDC_TOUCH_CRX0_DISCHARGE_LOG
+#  define TDC_TOUCH_CRX0_DISCHARGE_LOG  0
 #endif
 
 #endif /* TDC_TOUCH_CONFIG_H_ */

@@ -48,6 +48,7 @@
 #define TDC_DRV_IQS323_REG_ADDR_SENSOR0_ATI_SETUP   0x36
 #define TDC_DRV_IQS323_REG_ADDR_SENSOR0_ATI_MULT   0x38
 #define TDC_DRV_IQS323_REG_ADDR_SENSOR0_ATI_COMP   0x39
+#define TDC_DRV_IQS323_REG_ADDR_SENSOR1_ATI_SETUP   0x46  /* CH1 더미 ATI Disabled용 */
 #define TDC_DRV_IQS323_REG_ADDR_CH0_TOUCH_SETTINGS 0x62
 #define TDC_DRV_IQS323_REG_ADDR_SYSTEM_CONTROL     0xC0
 #define TDC_DRV_IQS323_REG_ADDR_EVENTS_ENABLE      0xD3
@@ -86,12 +87,29 @@
 
 /* **********************************************************************
  * Prox Input and Control (0x33/0x43/0x53) — 수신 핀 선택
+ * reset value 0x01CF (reserved bit7=1, bit1-0=11 강제 — 임의 변경 시 IC 먹통).
+ * CalCap 더미 채널에서는 이 레지스터를 쓰지 않고 reset 상태를 유지한다.
  */
 #define TDC_DRV_IQS323_REG_ADDR_SENSOR1_PROX_INPUT  0x43
-/* bits[10:8] = CRx2/CRx1/CRx0 enable (MSB byte bits[2:0])
- * bit 13     = Internal Reference (MSB byte bit 5)
- *   → 외부 CRX 핀 완전 무시, IC 내부 기준 캐패시턴스로만 측정 */
-#define TDC_DRV_IQS323_PROX_INTERNAL_REF_MSB  0x20  /* bit 13 = MSB byte bit 5 */
+
+/* **********************************************************************
+ * Pattern Definitions (0x34/0x44/0x54) — CalCap 크기·Inactive Rxs
+ * reset value 0x030A
+ */
+#define TDC_DRV_IQS323_REG_ADDR_SENSOR1_PATTERN_DEF  0x44
+/* CalCap 더미 채널용 값 (reset 0x030A 기준 산출):
+ *   LSB 0x2A = CalCap size(bit7-4)=2 → 1.0pF + Inactive Rxs(bit3-0)=VSS(0x0A)
+ *   MSB 0x03 = Wav Pattern 0 (self-cap) 유지
+ * 상세: docs/참고/touch/IQS323-CalCap-더미채널.md */
+#define TDC_DRV_IQS323_PATTERN_CALCAP_SIZE_1PF_LSB   0x2A
+#define TDC_DRV_IQS323_PATTERN_DEF_MSB               0x03
+
+/* CH1 더미 ATI Mode=Disabled (0x46 reset 0x040C → bits[2:0]=000):
+ * CalCap 부하에서 auto-ATI가 수렴 못 해 전역 ATI_ERROR(System Status bit6)가 SET되면
+ * tdc_touch_get_state()가 CAL_ERROR로 단락되어 CH0 터치 판정이 막힌다. CH0(0x36)와 동일하게
+ * ATI를 꺼서 §5.11 "ATI 실행 후 error check"를 스킵시킨다. 상세: IQS323-CalCap-더미채널.md */
+#define TDC_DRV_IQS323_DUMMY_ATI_SETUP_LSB           0x08
+#define TDC_DRV_IQS323_DUMMY_ATI_SETUP_MSB           0x04
 
 /* **********************************************************************
  * Channel Setup (0x60/0x70/0x80) — 채널 동작 모드
