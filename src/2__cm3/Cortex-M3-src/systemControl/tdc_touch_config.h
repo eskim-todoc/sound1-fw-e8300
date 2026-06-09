@@ -34,7 +34,7 @@
  *    0: 비활성 (운용 모드)                              ← 프로덕션 기본값
  *    1: 활성 — RE-ATI 실행 후 MULT/COMP 값을 시리얼로 출력 */
 #ifndef TDC_DRV_IQS323_ATI_DUMP_ENABLE
-#  define TDC_DRV_IQS323_ATI_DUMP_ENABLE  1
+#  define TDC_DRV_IQS323_ATI_DUMP_ENABLE  0
 #endif
 
 /* 3. ATI 캘리브레이션 모드 (LED 이진 출력)
@@ -44,7 +44,7 @@
  *    Note: processorDirective.h 의 Board_is_* 와는 의미 레이어가 다르다
  *          (Board_is_*=핀 매핑, TDC_BOARD_VARIANT=드라이버 캘리브레이션). */
 #ifndef TDC_TOUCH_ATI_CALIB_MODE
-#  define TDC_TOUCH_ATI_CALIB_MODE  1
+#  define TDC_TOUCH_ATI_CALIB_MODE  0
 #endif
 
 /* 3-1. ATI 캘리브레이션 LED 출력 활성화 (TDC_TOUCH_ATI_CALIB_MODE=1 시에만 유효)
@@ -60,7 +60,7 @@
  *             주변장치 OFF 환경에서 re-ATI 후 ATI 레지스터를 RTT로 반복 출력.
  *             'q' 입력 시 WDT 리셋. */
 #ifndef TDC_TOUCH_SLEEP_MEASURE_MODE
-#  define TDC_TOUCH_SLEEP_MEASURE_MODE  1
+#  define TDC_TOUCH_SLEEP_MEASURE_MODE  0
 #endif
 
 /* 5. CRX1 GND(VSS) 설정 — ESD 방전 경로 생성
@@ -81,20 +81,29 @@
  *          온도·습도 변화에 의한 CH0 delta 오판 감소 (ESD 급격 변화에는 무효)
  *    참고: 5번(VSS_ENABLE)과 상호 배타 — 동시 활성 시 컴파일 오류 */
 #ifndef TDC_TOUCH_CRX1_REF_ENABLE
-#  define TDC_TOUCH_CRX1_REF_ENABLE  1
+#  define TDC_TOUCH_CRX1_REF_ENABLE  0
 #endif
 
 #if TDC_TOUCH_CRX1_VSS_ENABLE && TDC_TOUCH_CRX1_REF_ENABLE
 #  error "TDC_TOUCH_CRX1_VSS_ENABLE 과 TDC_TOUCH_CRX1_REF_ENABLE 은 상호 배타 — 하나만 활성화하세요"
 #endif
 
-/* 7. CRX0 VSS 방전 — 매 폴링 직전 CH0 일시 비활성+접지로 ESD 전하 제거
- *    조건 없이 항상 방전 → 먹통 예방(평소) + 먹통 치료(이미 ESD 누적 시)
- *    방전 후에도 실제 터치 정전용량(손가락)은 유지됨 — 오감지 없음
- *    0: 비활성 (기본값, 원래 동작 유지)
- *    1: 활성   — tdc_touch_get_state() 호출마다 CH0 disable(CRX0=VSS) → enable → read */
+/* 7. CRX0 VSS 방전 — CH0 일시 비활성+접지로 ESD 전하 제거 시도
+ *
+ *    [주의] 현재 구현은 IQS323 RDY 윈도우 프로토콜과 호환 불가 — 사용 금지(기본값 0 유지).
+ *
+ *    실패 원인:
+ *      CH0이 유일한 활성 채널이므로, SENSOR0_SETUP(enable=0) 직후 IC에 활성 채널이 없어진다.
+ *      IC는 measurement cycle을 완료하지 못하고 RDY를 HIGH로 유지하거나,
+ *      re-enable(enable=1) 후 ATI(자동 재보정, ~100 ms+)를 시작해 20 ms soft timeout을 유발.
+ *      → wait_rdy_window_closed soft timeout 무한 반복, 초기화부터 먹통.
+ *
+ *    ESD 문제 대응은 HW(CRX1→VSS 점퍼) 또는 TDC_TOUCH_CRX1_REF_ENABLE=1 고려.
+ *
+ *    0: 비활성 (기본값)
+ *    1: 비사용 (위 이유로 동작 불가) */
 #ifndef TDC_TOUCH_CRX0_DISCHARGE_ENABLE
-#  define TDC_TOUCH_CRX0_DISCHARGE_ENABLE  1
+#  define TDC_TOUCH_CRX0_DISCHARGE_ENABLE  0
 #endif
 
 #endif /* TDC_TOUCH_CONFIG_H_ */
