@@ -136,6 +136,13 @@
 #define TDC_DRV_IQS323_SLEEP_TOUCH_HYSTERESIS 200//105//34  // 30
 
 /* **********************************************************************
+ * RTT 런타임 터치 파라미터 튜닝 (개발용)
+ * 0: 비활성(기본), 1: 활성 — RTT UI로 MULT·COMP·THRESHOLD·HYSTERESIS 조정 가능.
+ * 활성 시 부팅 기본 threshold/hysteresis=255 (터치 무반응 → set+apply 후 활성).
+ */
+#define TDC_TOUCH_RTT_TUNING 0
+
+/* **********************************************************************
  * System Control (0xC0) bit values
  */
 #define TDC_DRV_IQS323_ACK_RESET      1
@@ -442,5 +449,23 @@ bool tdc_drv_iqs323_apply_sleep_settings(void);
 void tdc_set_iqs323_in_ulp_mode(void);
 void tdc_clear_iqs323_in_ulp_mode(void);
 bool tdc_is_iqs323_in_ulp_mode(void);
+
+#if TDC_TOUCH_RTT_TUNING
+typedef struct {
+    uint8_t mult_lsb;
+    uint8_t mult_msb;
+    uint8_t comp_lsb;
+    uint8_t comp_msb;
+    uint8_t threshold;
+    uint8_t hysteresis;
+    bool    ati_valid;
+} tdc_iqs323_tuning_t;
+
+void tdc_drv_iqs323_set_normal_tuning(const tdc_iqs323_tuning_t *p);
+void tdc_drv_iqs323_set_sleep_tuning(const tdc_iqs323_tuning_t *p);
+void tdc_drv_iqs323_apply_tuning(void);
+void tdc_drv_iqs323_clear_tuning(void);
+void tdc_drv_iqs323_show_tuning(void);
+#endif /* TDC_TOUCH_RTT_TUNING */
 
 #endif /* TDC_DRV_IQS323_H_ */
