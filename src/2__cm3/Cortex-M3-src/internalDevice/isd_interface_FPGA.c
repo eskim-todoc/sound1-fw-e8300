@@ -136,6 +136,7 @@ int get_last_fpga_backterConfiguration_written_Value(void)
 
 bool read_FPGA_version(int *p_readValue)
 {
+    static int error_cnt = 0;
 
 #ifdef CM3_I2C_controls_FPAG
     if (read_ISD_by_CM3_I2C(i2cAddr_FPGA_version, p_readValue, 1))
@@ -143,12 +144,17 @@ bool read_FPGA_version(int *p_readValue)
     if (cfx_i2c_read(i2cAddr_FPGA_version, p_readValue, 1))
 #endif
     {
+        error_cnt = 0;
         return true;
     }
     else
     {
+        error_cnt++;
         // I2C 읽기 실패, FPGA 초기화
-        errorCodeUpdate(en__FPGA_COMMUNICATION_ERROR, en__I2C_FPGA_ReadingError, __LINE__);
+        if (error_cnt > 3)
+        {
+            errorCodeUpdate(en__FPGA_COMMUNICATION_ERROR, en__I2C_FPGA_ReadingError, __LINE__);
+        }
         change_isd_state(en__isdStatus_PowerIC_OK);
         return false;
     }
@@ -156,18 +162,25 @@ bool read_FPGA_version(int *p_readValue)
 
 bool read_FPGA_systemResgister_1st(int *p_readValue)
 {
+    static int error_cnt = 0;
 #ifdef CM3_I2C_controls_FPAG
     if (read_ISD_by_CM3_I2C(i2cAddr_FPGA_systemResgister_1st, p_readValue, 1))
 #else
     if (cfx_i2c_read(i2cAddr_FPGA_systemResgister_1st, p_readValue, 1))
 #endif
     {
+        error_cnt = 0;
         return true;
     }
     else
     {
+        error_cnt++;
+
         // I2C 읽기 실패, FPGA 초기화
-        errorCodeUpdate(en__FPGA_COMMUNICATION_ERROR, en__I2C_FPGA_ReadingError, __LINE__);
+        if (error_cnt > 3)
+        {
+            errorCodeUpdate(en__FPGA_COMMUNICATION_ERROR, en__I2C_FPGA_ReadingError, __LINE__);
+        }
         change_isd_state(en__isdStatus_PowerIC_OK);
         return false;
     }
@@ -194,7 +207,8 @@ bool read_FPGA_systemResgister_2nd(int *p_readValue)
 
 bool check_FPGA_PCM_Error(bool *isError)
 {
-    int readValue;
+    int        readValue;
+    static int error_cnt = 0;
 
 #ifdef CM3_I2C_controls_FPAG
     if (read_ISD_by_CM3_I2C(i2cAddr_FPGA_error_Flag, &readValue, 1))
@@ -213,12 +227,17 @@ bool check_FPGA_PCM_Error(bool *isError)
             *isError = false;
         }
 
+        error_cnt = 0;
         return true;
     }
     else
     {
+        error_cnt++;
         // I2C 읽기 실패, FPGA 초기화
-        errorCodeUpdate(en__FPGA_COMMUNICATION_ERROR, en__I2C_FPGA_ReadingError, __LINE__);
+        if (error_cnt > 3)
+        {
+            errorCodeUpdate(en__FPGA_COMMUNICATION_ERROR, en__I2C_FPGA_ReadingError, __LINE__);
+        }
         change_isd_state(en__isdStatus_PowerIC_OK);
         return false;
     }
@@ -297,7 +316,8 @@ bool read_FPGA_backtelError_Flag(int *p_readValue)
 
 bool read_FPGA_PulseWidth(int *pulseWidth)
 {
-    int readValue;
+    int        readValue;
+    static int error_cnt = 0;
 
 #ifdef CM3_I2C_controls_FPAG
     if (read_ISD_by_CM3_I2C(i2cAddr_FPGA_pulsePhaseWidth, &readValue, 1))
@@ -306,12 +326,17 @@ bool read_FPGA_PulseWidth(int *pulseWidth)
 #endif
     {
         *pulseWidth = readValue + FPGA_pulsePhaseWidth_minimum;  // FPGA에 설정된 값에 기본 오프셋 값이 더해진게 실제 펄스 폭이 된다.
+        error_cnt   = 0;
         return true;
     }
     else
     {
+        error_cnt++;
         // I2C 읽기 실패, FPGA 초기화
-        errorCodeUpdate(en__FPGA_COMMUNICATION_ERROR, en__I2C_FPGA_ReadingError, __LINE__);
+        if (error_cnt > 3)
+        {
+            errorCodeUpdate(en__FPGA_COMMUNICATION_ERROR, en__I2C_FPGA_ReadingError, __LINE__);
+        }
         change_isd_state(en__isdStatus_PowerIC_OK);
         return false;
     }
@@ -319,18 +344,24 @@ bool read_FPGA_PulseWidth(int *pulseWidth)
 
 bool read_FPGA_FIFO_counter(int *counterFIFO)
 {
+    static int error_cnt = 0;
 #ifdef CM3_I2C_controls_FPAG
     if (read_ISD_by_CM3_I2C(i2cAddr_FPGA_FIFO_counter, counterFIFO, 1))
 #else
     if (cfx_i2c_read(i2cAddr_FPGA_FIFO_counter, p_readValue, 1))
 #endif
     {
+        error_cnt = 0;
         return true;
     }
     else
     {
+        error_cnt++;
         // I2C 읽기 실패, FPGA 초기화
-        errorCodeUpdate(en__FPGA_COMMUNICATION_ERROR, en__I2C_FPGA_ReadingError, __LINE__);
+        if (error_cnt > 10)
+        {
+            errorCodeUpdate(en__FPGA_COMMUNICATION_ERROR, en__I2C_FPGA_ReadingError, __LINE__);
+        }
         change_isd_state(en__isdStatus_PowerIC_OK);
         return false;
     }
@@ -615,7 +646,8 @@ bool write_FPGA_backtelConfig(int value)
 
 bool write_FPGA_reset(void)
 {
-    int value;
+    int        value;
+    static int error_cnt = 0;
 
     value = 1 << FPGA_BitPosition_ResetFPGA;
 
@@ -626,12 +658,17 @@ bool write_FPGA_reset(void)
 #endif
     {
         reset_Fpga_variable();
+        error_cnt = 0;
         return true;
     }
     else
     {
+        error_cnt++;
         // I2C 쓰기 실패, FPGA 초기화
-        errorCodeUpdate(en__FPGA_COMMUNICATION_ERROR, en__I2C_FPGA_WritingError, __LINE__);
+        if (error_cnt > 3)
+        {
+            errorCodeUpdate(en__FPGA_COMMUNICATION_ERROR, en__I2C_FPGA_WritingError, __LINE__);
+        }
         change_isd_state(en__isdStatus_PowerIC_OK);
         return false;
     }
@@ -639,8 +676,9 @@ bool write_FPGA_reset(void)
 
 bool write_FPGA_enable_RF_tx(void)
 {
-    int writingValue;
-    int bitReverse;
+    int        writingValue;
+    int        bitReverse;
+    static int error_cnt = 0;
 
     bitReverse   = (~(1 << FPGA_BitPosition_TxEnable));
     writingValue = bitReverse & fpag_lastWrittenRegister.systemResgister_1st_value;
@@ -653,12 +691,17 @@ bool write_FPGA_enable_RF_tx(void)
 #endif
     {
         fpag_lastWrittenRegister.systemResgister_1st_value = writingValue;
+        error_cnt                                          = 0;
         return true;
     }
     else
     {
+        error_cnt++;
         // I2C 쓰기 실패, FPGA 초기화
-        errorCodeUpdate(en__FPGA_COMMUNICATION_ERROR, en__I2C_FPGA_WritingError, __LINE__);
+        if (error_cnt > 3)
+        {
+            errorCodeUpdate(en__FPGA_COMMUNICATION_ERROR, en__I2C_FPGA_WritingError, __LINE__);
+        }
         change_isd_state(en__isdStatus_PowerIC_OK);
         return false;
     }
@@ -666,7 +709,8 @@ bool write_FPGA_enable_RF_tx(void)
 
 bool is_RF_tx_eanble(void)
 {
-    int readValue;
+    int        readValue;
+    static int error_cnt = 0;
 
 #ifdef CM3_I2C_controls_FPAG
     if (read_ISD_by_CM3_I2C(i2cAddr_FPGA_systemResgister_1st, &readValue, 1))
@@ -676,17 +720,23 @@ bool is_RF_tx_eanble(void)
     {
         if ((readValue >> FPGA_BitPosition_TxEnable) & 0x1 == 1)
         {
+            error_cnt = 0;
             return true;
         }
         else
         {
+            error_cnt = 0;
             return false;
         }
     }
     else
     {
+        error_cnt++;
         // I2C 읽기 실패, FPGA 초기화
-        errorCodeUpdate(en__FPGA_COMMUNICATION_ERROR, en__I2C_FPGA_ReadingError, __LINE__);
+        if (error_cnt > 3)
+        {
+            errorCodeUpdate(en__FPGA_COMMUNICATION_ERROR, en__I2C_FPGA_ReadingError, __LINE__);
+        }
         change_isd_state(en__isdStatus_PowerIC_OK);
         return false;
     }
