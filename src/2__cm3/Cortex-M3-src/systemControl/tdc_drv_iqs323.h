@@ -128,12 +128,12 @@
 #define TDC_DRV_IQS323_TOUCH_THRESHOLD_80  80
 
 /* 노말 모드 운용값 */
-#define TDC_DRV_IQS323_TOUCH_THRESHOLD  105//80
-#define TDC_DRV_IQS323_TOUCH_HYSTERESIS 105//80
+#define TDC_DRV_IQS323_TOUCH_THRESHOLD  200//105//80
+#define TDC_DRV_IQS323_TOUCH_HYSTERESIS 200//105//80
 
 /* 절전 모드 운용값 ? 주변 소자 OFF + 저속 클럭 환경에서 counts delta 감소 대응 */
-#define TDC_DRV_IQS323_SLEEP_TOUCH_THRESHOLD  105//34  // 30
-#define TDC_DRV_IQS323_SLEEP_TOUCH_HYSTERESIS 105//34  // 30
+#define TDC_DRV_IQS323_SLEEP_TOUCH_THRESHOLD  200//105//34  // 30
+#define TDC_DRV_IQS323_SLEEP_TOUCH_HYSTERESIS 200//105//34  // 30
 
 /* **********************************************************************
  * System Control (0xC0) bit values

@@ -643,7 +643,7 @@ static bool wait_re_ati_done(void)
 #define TDC_DRV_IQS323_ATI_SETUP_LSB 0x08
 #define TDC_DRV_IQS323_ATI_SETUP_MSB 0x04
 #define TDC_DRV_IQS323_ATI_MULT_LSB  0x82
-#define TDC_DRV_IQS323_ATI_MULT_MSB  0x5E /* 정상 노터치 실측 (2026-06-08) */
+#define TDC_DRV_IQS323_ATI_MULT_MSB  0x6E//0x5E /* 정상 노터치 실측 (2026-06-08) */
 #define TDC_DRV_IQS323_ATI_COMP_LSB  0xE4 /* 정상 노터치 실측 (2026-06-08) */
 #define TDC_DRV_IQS323_ATI_COMP_MSB  0x63 /* 정상 노터치 실측 (2026-06-08) */
 #else
@@ -654,7 +654,7 @@ static bool wait_re_ati_done(void)
 #define TDC_DRV_IQS323_SLEEP_ATI_SETUP_LSB 0x08
 #define TDC_DRV_IQS323_SLEEP_ATI_SETUP_MSB 0x04
 #define TDC_DRV_IQS323_SLEEP_ATI_MULT_LSB  0x82
-#define TDC_DRV_IQS323_SLEEP_ATI_MULT_MSB  0x5E//0x5C /* MULT=0x5C82 ? 절전 실측 */
+#define TDC_DRV_IQS323_SLEEP_ATI_MULT_MSB  0x62//0x5E//0x5C /* MULT=0x5C82 ? 절전 실측 */
 #define TDC_DRV_IQS323_SLEEP_ATI_COMP_LSB  0xE4//0x00
 #define TDC_DRV_IQS323_SLEEP_ATI_COMP_MSB  0x63//0x60 /* COMP=0x6000 ? 절전 실측 */
 
