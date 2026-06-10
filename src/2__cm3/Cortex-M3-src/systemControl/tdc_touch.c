@@ -402,11 +402,17 @@ bool tdc_touch_get_state(tdc_touch_state_t *p_state)
     }
 
 #if TDC_TOUCH_MARGIN_LOG_ENABLE
-    /* 터치 마진 환산 로그 ? 반드시 방전 전에 호출해야 신선한 LTA/Counts 로 환산된다.
-     * 노말·절전 공통 경로. 결과는 헬퍼 내부에서 RTT 출력하므로 out param 은 불필요. */
-    //if (tdc_is_iqs323_in_ulp_mode())
+    /* 터치 마진 환산 로그 - 반드시 방전 전에 호출해야 신선한 LTA/Counts 로 환산된다.
+     * 노말·절전 공통 경로. 결과는 헬퍼 내부에서 RTT 출력하므로 out param 은 불필요.
+     * read_touch_margin 의 레지스터 3회 읽기(force communication)가 측정 cycle 을
+     * 방해하지 않도록 INTERVAL 폴링마다 1회만 호출한다. */
     {
-        (void)tdc_drv_iqs323_read_touch_margin(NULL, NULL);
+        static uint16_t s_margin_log_cnt = 0;
+        if (++s_margin_log_cnt >= TDC_TOUCH_MARGIN_LOG_INTERVAL)
+        {
+            s_margin_log_cnt = 0;
+            (void)tdc_drv_iqs323_read_touch_margin(NULL, NULL);
+        }
     }
 #endif
 

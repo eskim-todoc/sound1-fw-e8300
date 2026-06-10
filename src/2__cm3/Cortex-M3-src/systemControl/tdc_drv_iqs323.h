@@ -51,6 +51,7 @@
 #define TDC_DRV_IQS323_REG_ADDR_SENSOR0_ATI_MULT    0x38
 #define TDC_DRV_IQS323_REG_ADDR_SENSOR0_ATI_COMP    0x39
 #define TDC_DRV_IQS323_REG_ADDR_SENSOR1_ATI_SETUP   0x46 /* CH1 더미 ATI Disabled용 */
+#define TDC_DRV_IQS323_REG_ADDR_CH0_PROX_SETTINGS   0x61
 #define TDC_DRV_IQS323_REG_ADDR_CH0_TOUCH_SETTINGS  0x62
 #define TDC_DRV_IQS323_REG_ADDR_SYSTEM_CONTROL      0xC0
 #define TDC_DRV_IQS323_REG_ADDR_EVENTS_ENABLE       0xD3
@@ -128,12 +129,21 @@
 #define TDC_DRV_IQS323_TOUCH_THRESHOLD_80  80
 
 /* 노말 모드 운용값 */
-#define TDC_DRV_IQS323_TOUCH_THRESHOLD  200//105//80
-#define TDC_DRV_IQS323_TOUCH_HYSTERESIS 200//105//80
+#define TDC_DRV_IQS323_TOUCH_THRESHOLD  100
+#define TDC_DRV_IQS323_TOUCH_HYSTERESIS 80
 
 /* 절전 모드 운용값 ? 주변 소자 OFF + 저속 클럭 환경에서 counts delta 감소 대응 */
-#define TDC_DRV_IQS323_SLEEP_TOUCH_THRESHOLD  200//105//34  // 30
-#define TDC_DRV_IQS323_SLEEP_TOUCH_HYSTERESIS 200//105//34  // 30
+#define TDC_DRV_IQS323_SLEEP_TOUCH_THRESHOLD  100
+#define TDC_DRV_IQS323_SLEEP_TOUCH_HYSTERESIS 80
+
+/* **********************************************************************
+ * Prox Settings (0x61, 0x71, 0x81) values
+ * Prox Threshold 를 노터치 baseline delta 보다 크게 설정 → 노터치가 prox 로
+ * 오판되어 LTA 가 freeze 되는 것을 방지한다. (reset 0 → 항상 prox → baseline drift)
+ * prox event 는 events_enable 에서 비활성 — prox 판정은 LTA freeze 제어 용도로만 쓰인다.
+ */
+#define TDC_DRV_IQS323_PROX_THRESHOLD        120
+#define TDC_DRV_IQS323_SLEEP_PROX_THRESHOLD  100
 
 /* **********************************************************************
  * RTT 런타임 터치 파라미터 튜닝 (개발용)

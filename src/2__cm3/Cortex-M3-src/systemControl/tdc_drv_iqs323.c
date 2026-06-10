@@ -553,6 +553,19 @@ static bool touch_settings(void)
 #endif
 }
 
+/* Prox Settings(0x61): LSB=Prox Threshold, MSB=Prox Debounce(Enter/Exit) 0 유지.
+ * 노터치 미세 delta가 prox로 오판되어 LTA freeze → baseline drift 되는 것을 방지한다.
+ * prox event는 events_enable에서 비활성이므로, prox 판정은 LTA freeze 제어 용도로만 쓰인다. */
+static bool prox_settings(uint8_t threshold)
+{
+#if TDC_TOUCH_PROX_THRESHOLD_ENABLE
+    return write_and_verify(TDC_DRV_IQS323_REG_ADDR_CH0_PROX_SETTINGS, threshold, 0x00);
+#else
+    (void) threshold; /* 비활성: Prox Settings 미설정(reset 0 유지) = prox 적용 전 원래 동작 */
+    return true;
+#endif
+}
+
 static bool re_ati_trigger(void)
 {
     tdc_drv_iqs323_reg_system_control_t reg;
@@ -652,8 +665,8 @@ static bool wait_re_ati_done(void)
 #define TDC_DRV_IQS323_ATI_SETUP_LSB 0x08
 #define TDC_DRV_IQS323_ATI_SETUP_MSB 0x04
 #define TDC_DRV_IQS323_ATI_MULT_LSB  0x82
-#define TDC_DRV_IQS323_ATI_MULT_MSB  0x72//0x5E /* 정상 노터치 실측 (2026-06-08) */
-#define TDC_DRV_IQS323_ATI_COMP_LSB  0xE4 /* 정상 노터치 실측 (2026-06-08) */
+#define TDC_DRV_IQS323_ATI_MULT_MSB  0x5C//0x5E /* 정상 노터치 실측 (2026-06-08) */
+#define TDC_DRV_IQS323_ATI_COMP_LSB  0xEF /* 정상 노터치 실측 (2026-06-08) */
 #define TDC_DRV_IQS323_ATI_COMP_MSB  0x63 /* 정상 노터치 실측 (2026-06-08) */
 #else
 #error "TDC_BOARD_VARIANT 미지원 값. TDC_BOARD_VARIANT_MINI 또는 TDC_BOARD_VARIANT_DEVELOP 만 허용."
@@ -663,8 +676,8 @@ static bool wait_re_ati_done(void)
 #define TDC_DRV_IQS323_SLEEP_ATI_SETUP_LSB 0x08
 #define TDC_DRV_IQS323_SLEEP_ATI_SETUP_MSB 0x04
 #define TDC_DRV_IQS323_SLEEP_ATI_MULT_LSB  0x82
-#define TDC_DRV_IQS323_SLEEP_ATI_MULT_MSB  0x72//0x5E//0x5C /* MULT=0x5C82 ? 절전 실측 */
-#define TDC_DRV_IQS323_SLEEP_ATI_COMP_LSB  0xE4//0x00
+#define TDC_DRV_IQS323_SLEEP_ATI_MULT_MSB  0x5C//0x5E//0x5C /* MULT=0x5C82 ? 절전 실측 */
+#define TDC_DRV_IQS323_SLEEP_ATI_COMP_LSB  0xEF//0x00
 #define TDC_DRV_IQS323_SLEEP_ATI_COMP_MSB  0x63//0x60 /* COMP=0x6000 ? 절전 실측 */
 
 static bool write_ati_compensation(void)
@@ -910,6 +923,12 @@ void tdc_drv_iqs323_reseed(void)
         ci_printe("[TOUCH] FAIL: SLEEP TOUCH SETTINGS \r\n");
     }
 
+    /* 절전 Prox Threshold 적용 - 노터치 freeze 방지 (baseline drift 차단) */
+    if (!prox_settings(TDC_DRV_IQS323_SLEEP_PROX_THRESHOLD))
+    {
+        ci_printe("[TOUCH] FAIL: SLEEP PROX SETTINGS \r\n");
+    }
+
     if (!write_register(TDC_DRV_IQS323_REG_ADDR_SYSTEM_CONTROL, 0x08, 0x00))
     {
         ci_printe("[TOUCH] FAIL: RESEED \r\n");
@@ -1031,6 +1050,12 @@ void tdc_drv_iqs323_apply_settings(void)
         ci_printe("[TOUCH] FAIL: TOUCH SETTINGS \r\n");
     }
 
+    ci_printv("[TOUCH] PROX SETTINGS \r\n");
+    if (!prox_settings(TDC_DRV_IQS323_PROX_THRESHOLD))
+    {
+        ci_printe("[TOUCH] FAIL: PROX SETTINGS \r\n");
+    }
+
     ci_printv("[TOUCH] EVENTS ENABLE \r\n");
     if (!events_enable())
     {
@@ -1084,6 +1109,12 @@ void tdc_drv_iqs323_apply_settings(void)
     if (!touch_settings())
     {
         ci_printe("[TOUCH] FAIL: TOUCH SETTINGS \r\n");
+    }
+
+    ci_printv("[TOUCH] PROX SETTINGS \r\n");
+    if (!prox_settings(TDC_DRV_IQS323_PROX_THRESHOLD))
+    {
+        ci_printe("[TOUCH] FAIL: PROX SETTINGS \r\n");
     }
 
     ci_printv("[TOUCH] EVENTS ENABLE \r\n");

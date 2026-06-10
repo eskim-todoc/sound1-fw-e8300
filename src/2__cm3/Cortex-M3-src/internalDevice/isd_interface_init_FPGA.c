@@ -652,9 +652,11 @@ void init_ISD(bool isdControlStateChagedFlag)
                     read_FPGA_backtelError_Flag(&r_FPGA_registerValue);
 
                     // 백텔 에러는 발생하지 않았으나 백텔이 들어 오지 않았다. -> 내부기 전송 파워 설정 부터 다시.
+#if 0
                     backtel_cnt_err_cnt--;
                     TDC_ISD_DEBOUNCE_FAIL(backtel_cnt_err_cnt, "[ISD]", "init_ISD c260bt", "verify",
                                           en__EN__ISD_ERROR, en__BackTelCounterZero);
+#endif
                     change_isd_state(en__isdStatus_FPGA_Ok);  // RF PMIC MAX POWER 설정을 FPGA_OK 상태에서도 진행한다.
                     // change_isd_state(en__isdStatus_PowerIC_OK);
 
