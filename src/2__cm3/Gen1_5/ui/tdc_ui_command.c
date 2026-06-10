@@ -27,7 +27,7 @@
 #define SENTINEL      "--"
 #define SENTINEL_LEN  2
 #define MAX_LINE      128
-#define MAX_ARGC      8
+#define MAX_ARGC      12
 #define MAX_HANDLERS  32
 
 /* ======================================================================== */
@@ -882,10 +882,18 @@ void tdc_ui_command_init(void)
 
 void tdc_ui_command_poll(void)
 {
-    char ch;
+    char         ch;
+    static bool  s_prev_was_cr = false;
 
     while (SEGGER_RTT_Read(0, &ch, 1) > 0)
     {
+        if (ch == '\n' && s_prev_was_cr)
+        {
+            s_prev_was_cr = false;
+            continue; /* \r\n 쌍의 \n은 중복 dispatch 방지를 위해 무시 */
+        }
+        s_prev_was_cr = (ch == '\r');
+
         if (ch == '\r' || ch == '\n')
         {
             echo_string("\r\n");
