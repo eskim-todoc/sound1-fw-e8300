@@ -704,7 +704,6 @@ static int handle_touch_tuning(int argc, char *argv[])
 {
     if (argc < 2)
     {
-        output_printf("usage: --touch show|clear|apply|set normal|sleep <ml> <mh> <cl> <ch> <thr> <hyst>\r\n");
         return -1;
     }
 
@@ -747,7 +746,6 @@ static int handle_touch_tuning(int argc, char *argv[])
     }
     else
     {
-        output_printf("usage: --touch show|clear|apply|set normal|sleep <ml> <mh> <cl> <ch> <thr> <hyst>\r\n");
         return -1;
     }
 
