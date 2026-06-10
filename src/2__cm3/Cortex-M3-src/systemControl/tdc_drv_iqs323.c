@@ -12,6 +12,11 @@ static bool touch_settings_impl(uint8_t threshold, uint8_t hysteresis);
 
 static bool g_tdc_iqs323_in_ulp_mode = false;
 
+#if TDC_TOUCH_RTT_TUNING
+static tdc_iqs323_tuning_t s_tdc_normal_tuning = { .threshold = 255, .hysteresis = 255, .ati_valid = false };
+static tdc_iqs323_tuning_t s_tdc_sleep_tuning  = { .threshold = 255, .hysteresis = 255, .ati_valid = false };
+#endif
+
 void tdc_set_iqs323_in_ulp_mode(void)
 {
     g_tdc_iqs323_in_ulp_mode = true;
@@ -541,7 +546,24 @@ static bool touch_settings_impl(uint8_t threshold, uint8_t hysteresis)
 
 static bool touch_settings(void)
 {
+#if TDC_TOUCH_RTT_TUNING
+    return touch_settings_impl(s_tdc_normal_tuning.threshold, s_tdc_normal_tuning.hysteresis);
+#else
     return touch_settings_impl(TDC_DRV_IQS323_TOUCH_THRESHOLD, TDC_DRV_IQS323_TOUCH_HYSTERESIS);
+#endif
+}
+
+/* Prox Settings(0x61): LSB=Prox Threshold, MSB=Prox Debounce(Enter/Exit) 0 유지.
+ * 노터치 미세 delta가 prox로 오판되어 LTA freeze → baseline drift 되는 것을 방지한다.
+ * prox event는 events_enable에서 비활성이므로, prox 판정은 LTA freeze 제어 용도로만 쓰인다. */
+static bool prox_settings(uint8_t threshold)
+{
+#if TDC_TOUCH_PROX_THRESHOLD_ENABLE
+    return write_and_verify(TDC_DRV_IQS323_REG_ADDR_CH0_PROX_SETTINGS, threshold, 0x00);
+#else
+    (void) threshold; /* 비활성: Prox Settings 미설정(reset 0 유지) = prox 적용 전 원래 동작 */
+    return true;
+#endif
 }
 
 static bool re_ati_trigger(void)
@@ -643,8 +665,8 @@ static bool wait_re_ati_done(void)
 #define TDC_DRV_IQS323_ATI_SETUP_LSB 0x08
 #define TDC_DRV_IQS323_ATI_SETUP_MSB 0x04
 #define TDC_DRV_IQS323_ATI_MULT_LSB  0x82
-#define TDC_DRV_IQS323_ATI_MULT_MSB  0x6E//0x5E /* 정상 노터치 실측 (2026-06-08) */
-#define TDC_DRV_IQS323_ATI_COMP_LSB  0xE4 /* 정상 노터치 실측 (2026-06-08) */
+#define TDC_DRV_IQS323_ATI_MULT_MSB  0x5C//0x5E /* 정상 노터치 실측 (2026-06-08) */
+#define TDC_DRV_IQS323_ATI_COMP_LSB  0xEF /* 정상 노터치 실측 (2026-06-08) */
 #define TDC_DRV_IQS323_ATI_COMP_MSB  0x63 /* 정상 노터치 실측 (2026-06-08) */
 #else
 #error "TDC_BOARD_VARIANT 미지원 값. TDC_BOARD_VARIANT_MINI 또는 TDC_BOARD_VARIANT_DEVELOP 만 허용."
@@ -654,8 +676,8 @@ static bool wait_re_ati_done(void)
 #define TDC_DRV_IQS323_SLEEP_ATI_SETUP_LSB 0x08
 #define TDC_DRV_IQS323_SLEEP_ATI_SETUP_MSB 0x04
 #define TDC_DRV_IQS323_SLEEP_ATI_MULT_LSB  0x82
-#define TDC_DRV_IQS323_SLEEP_ATI_MULT_MSB  0x62//0x5E//0x5C /* MULT=0x5C82 ? 절전 실측 */
-#define TDC_DRV_IQS323_SLEEP_ATI_COMP_LSB  0xE4//0x00
+#define TDC_DRV_IQS323_SLEEP_ATI_MULT_MSB  0x5C//0x5E//0x5C /* MULT=0x5C82 ? 절전 실측 */
+#define TDC_DRV_IQS323_SLEEP_ATI_COMP_LSB  0xEF//0x00
 #define TDC_DRV_IQS323_SLEEP_ATI_COMP_MSB  0x63//0x60 /* COMP=0x6000 ? 절전 실측 */
 
 static bool write_ati_compensation(void)
@@ -667,6 +689,22 @@ static bool write_ati_compensation(void)
         return false;
     }
 
+#if TDC_TOUCH_RTT_TUNING
+    {
+        uint8_t m_l = s_tdc_normal_tuning.ati_valid ? s_tdc_normal_tuning.mult_lsb : TDC_DRV_IQS323_ATI_MULT_LSB;
+        uint8_t m_h = s_tdc_normal_tuning.ati_valid ? s_tdc_normal_tuning.mult_msb : TDC_DRV_IQS323_ATI_MULT_MSB;
+        uint8_t c_l = s_tdc_normal_tuning.ati_valid ? s_tdc_normal_tuning.comp_lsb : TDC_DRV_IQS323_ATI_COMP_LSB;
+        uint8_t c_h = s_tdc_normal_tuning.ati_valid ? s_tdc_normal_tuning.comp_msb : TDC_DRV_IQS323_ATI_COMP_MSB;
+        if (!write_register(TDC_DRV_IQS323_REG_ADDR_SENSOR0_ATI_MULT, m_l, m_h))
+        {
+            return false;
+        }
+        if (!write_register(TDC_DRV_IQS323_REG_ADDR_SENSOR0_ATI_COMP, c_l, c_h))
+        {
+            return false;
+        }
+    }
+#else
     if (!write_register(TDC_DRV_IQS323_REG_ADDR_SENSOR0_ATI_MULT, TDC_DRV_IQS323_ATI_MULT_LSB, TDC_DRV_IQS323_ATI_MULT_MSB))
     {
         return false;
@@ -676,6 +714,7 @@ static bool write_ati_compensation(void)
     {
         return false;
     }
+#endif
 
     return true;
 }
@@ -884,6 +923,12 @@ void tdc_drv_iqs323_reseed(void)
         ci_printe("[TOUCH] FAIL: SLEEP TOUCH SETTINGS \r\n");
     }
 
+    /* 절전 Prox Threshold 적용 - 노터치 freeze 방지 (baseline drift 차단) */
+    if (!prox_settings(TDC_DRV_IQS323_SLEEP_PROX_THRESHOLD))
+    {
+        ci_printe("[TOUCH] FAIL: SLEEP PROX SETTINGS \r\n");
+    }
+
     if (!write_register(TDC_DRV_IQS323_REG_ADDR_SYSTEM_CONTROL, 0x08, 0x00))
     {
         ci_printe("[TOUCH] FAIL: RESEED \r\n");
@@ -910,16 +955,14 @@ bool tdc_drv_iqs323_apply_sleep_settings(void)
 {
     SYS_WATCHDOG_REFRESH();
 
-#if 1
-    /* 절전 터치 감도 적용 (세팅 중에 반응 없게 큰 값 설정) */
-    if (!touch_settings_impl(255, 255))
+#if TDC_TOUCH_RTT_TUNING
+    if (!touch_settings_impl(s_tdc_sleep_tuning.threshold, s_tdc_sleep_tuning.hysteresis))
     {
         ci_printe("[TOUCH] FAIL: SLEEP TOUCH SETTINGS \r\n");
         return false;
     }
 #else
-    /* 절전 터치 감도 적용 (THRESHOLD/HYSTERESIS 낮춤) */
-    if (!touch_settings_impl(TDC_DRV_IQS323_SLEEP_TOUCH_THRESHOLD, TDC_DRV_IQS323_SLEEP_TOUCH_HYSTERESIS))
+    if (!touch_settings_impl(255, 255))
     {
         ci_printe("[TOUCH] FAIL: SLEEP TOUCH SETTINGS \r\n");
         return false;
@@ -933,6 +976,24 @@ bool tdc_drv_iqs323_apply_sleep_settings(void)
         return false;
     }
 
+#if TDC_TOUCH_RTT_TUNING
+    {
+        uint8_t m_l = s_tdc_sleep_tuning.ati_valid ? s_tdc_sleep_tuning.mult_lsb : TDC_DRV_IQS323_SLEEP_ATI_MULT_LSB;
+        uint8_t m_h = s_tdc_sleep_tuning.ati_valid ? s_tdc_sleep_tuning.mult_msb : TDC_DRV_IQS323_SLEEP_ATI_MULT_MSB;
+        uint8_t c_l = s_tdc_sleep_tuning.ati_valid ? s_tdc_sleep_tuning.comp_lsb : TDC_DRV_IQS323_SLEEP_ATI_COMP_LSB;
+        uint8_t c_h = s_tdc_sleep_tuning.ati_valid ? s_tdc_sleep_tuning.comp_msb : TDC_DRV_IQS323_SLEEP_ATI_COMP_MSB;
+        if (!write_register(TDC_DRV_IQS323_REG_ADDR_SENSOR0_ATI_MULT, m_l, m_h))
+        {
+            ci_printe("[TOUCH] FAIL: SLEEP ATI MULT \r\n");
+            return false;
+        }
+        if (!write_register(TDC_DRV_IQS323_REG_ADDR_SENSOR0_ATI_COMP, c_l, c_h))
+        {
+            ci_printe("[TOUCH] FAIL: SLEEP ATI COMP \r\n");
+            return false;
+        }
+    }
+#else
     if (!write_register(TDC_DRV_IQS323_REG_ADDR_SENSOR0_ATI_MULT, TDC_DRV_IQS323_SLEEP_ATI_MULT_LSB, TDC_DRV_IQS323_SLEEP_ATI_MULT_MSB))
     {
         ci_printe("[TOUCH] FAIL: SLEEP ATI MULT \r\n");
@@ -944,6 +1005,7 @@ bool tdc_drv_iqs323_apply_sleep_settings(void)
         ci_printe("[TOUCH] FAIL: SLEEP ATI COMP \r\n");
         return false;
     }
+#endif
 
     /* CH0~CH2 stuck-touch timeout 비활성화 */
     if (!write_register(TDC_DRV_IQS323_REG_ADDR_SYSTEM_CONTROL, 0x00, 0x07))
@@ -986,6 +1048,12 @@ void tdc_drv_iqs323_apply_settings(void)
     if (!touch_settings())
     {
         ci_printe("[TOUCH] FAIL: TOUCH SETTINGS \r\n");
+    }
+
+    ci_printv("[TOUCH] PROX SETTINGS \r\n");
+    if (!prox_settings(TDC_DRV_IQS323_PROX_THRESHOLD))
+    {
+        ci_printe("[TOUCH] FAIL: PROX SETTINGS \r\n");
     }
 
     ci_printv("[TOUCH] EVENTS ENABLE \r\n");
@@ -1041,6 +1109,12 @@ void tdc_drv_iqs323_apply_settings(void)
     if (!touch_settings())
     {
         ci_printe("[TOUCH] FAIL: TOUCH SETTINGS \r\n");
+    }
+
+    ci_printv("[TOUCH] PROX SETTINGS \r\n");
+    if (!prox_settings(TDC_DRV_IQS323_PROX_THRESHOLD))
+    {
+        ci_printe("[TOUCH] FAIL: PROX SETTINGS \r\n");
     }
 
     ci_printv("[TOUCH] EVENTS ENABLE \r\n");
@@ -1151,3 +1225,56 @@ bool tdc_drv_iqs323_read_touch_margin(uint8_t *p_threshold_coeff, uint16_t *p_cu
     }
     return true;
 }
+
+#if TDC_TOUCH_RTT_TUNING
+void tdc_drv_iqs323_set_normal_tuning(const tdc_iqs323_tuning_t *p)
+{
+    s_tdc_normal_tuning           = *p;
+    s_tdc_normal_tuning.ati_valid = true;
+    ci_printi("[TOUCH-TUNE] normal: MULT=%02X%02X COMP=%02X%02X THR=%u HYST=%u\r\n",
+              p->mult_lsb, p->mult_msb, p->comp_lsb, p->comp_msb, p->threshold, p->hysteresis);
+}
+
+void tdc_drv_iqs323_set_sleep_tuning(const tdc_iqs323_tuning_t *p)
+{
+    s_tdc_sleep_tuning           = *p;
+    s_tdc_sleep_tuning.ati_valid = true;
+    ci_printi("[TOUCH-TUNE] sleep:  MULT=%02X%02X COMP=%02X%02X THR=%u HYST=%u\r\n",
+              p->mult_lsb, p->mult_msb, p->comp_lsb, p->comp_msb, p->threshold, p->hysteresis);
+}
+
+void tdc_drv_iqs323_apply_tuning(void)
+{
+    if (tdc_is_iqs323_in_ulp_mode())
+    {
+        ci_printi("[TOUCH-TUNE] apply: sleep re-init\r\n");
+        tdc_drv_iqs323_apply_sleep_settings();
+    }
+    else
+    {
+        ci_printi("[TOUCH-TUNE] apply: normal re-init\r\n");
+        tdc_drv_iqs323_apply_settings();
+    }
+}
+
+void tdc_drv_iqs323_clear_tuning(void)
+{
+    s_tdc_normal_tuning = (tdc_iqs323_tuning_t){ .threshold = 255, .hysteresis = 255, .ati_valid = false };
+    s_tdc_sleep_tuning  = (tdc_iqs323_tuning_t){ .threshold = 255, .hysteresis = 255, .ati_valid = false };
+    ci_printi("[TOUCH-TUNE] cleared: thr/hyst=255, MULT/COMP=compile defaults\r\n");
+}
+
+void tdc_drv_iqs323_show_tuning(void)
+{
+    ci_printi("[TOUCH-TUNE] normal ati_valid=%d MULT=%02X%02X COMP=%02X%02X THR=%u HYST=%u\r\n",
+              s_tdc_normal_tuning.ati_valid,
+              s_tdc_normal_tuning.mult_lsb, s_tdc_normal_tuning.mult_msb,
+              s_tdc_normal_tuning.comp_lsb, s_tdc_normal_tuning.comp_msb,
+              s_tdc_normal_tuning.threshold, s_tdc_normal_tuning.hysteresis);
+    ci_printi("[TOUCH-TUNE] sleep  ati_valid=%d MULT=%02X%02X COMP=%02X%02X THR=%u HYST=%u\r\n",
+              s_tdc_sleep_tuning.ati_valid,
+              s_tdc_sleep_tuning.mult_lsb, s_tdc_sleep_tuning.mult_msb,
+              s_tdc_sleep_tuning.comp_lsb, s_tdc_sleep_tuning.comp_msb,
+              s_tdc_sleep_tuning.threshold, s_tdc_sleep_tuning.hysteresis);
+}
+#endif /* TDC_TOUCH_RTT_TUNING */

@@ -23,7 +23,7 @@
  * 상수
  */
 #define TDC_TOUCH_POLL_INTERVAL     200   /* 폴링 간격 (ms) */
-#define TDC_TOUCH_LONG_TOUCH_MS     2800  /* 롱터치 판정 시간 (ms) — 노말→절전 */
+#define TDC_TOUCH_LONG_TOUCH_MS     2400  /* 롱터치 판정 시간 (ms) — 노말→절전 */
 #define TDC_TOUCH_INIT_TIMEOUT_MS   2500  /* 초기화 Auto-ATI 대기 타임아웃.
                                            * 터치 중 부팅 등 대비 */
 

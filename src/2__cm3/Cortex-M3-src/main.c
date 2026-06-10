@@ -49,7 +49,7 @@
 
 #include <snd_qcc.h>
 
-#ifdef ENABLE_UI_CMD
+#if defined(ENABLE_UI_CMD) || TDC_TOUCH_RTT_TUNING
 #include "tdc_ui_command.h"
 #endif
 
@@ -732,7 +732,7 @@ int func_normal(void)
 
 /* ULP 모드 롱-터치 감지 파라미터 ? 튜닝 시 아래 값만 수정 */
 #define ULP_WAKE_INTERVAL_MS 200  /* 웨이크업 주기 (ms) */
-#define ULP_LONG_TOUCH_MS    2400 /* 롱터치 판정 시간 (ms) */
+#define ULP_LONG_TOUCH_MS    2200 /* 롱터치 판정 시간 (ms) */
 
 /* 유도값 ? 웨이크업 N 회 연속 TOUCH 시 리셋 (올림 나눗셈, 실제 응답 ≥ ULP_LONG_TOUCH_MS) */
 #define ULP_LONG_TOUCH_COUNT ((ULP_LONG_TOUCH_MS + ULP_WAKE_INTERVAL_MS - 1) / ULP_WAKE_INTERVAL_MS)
@@ -847,6 +847,10 @@ int func_sleep(void)
         SYS_WAIT_FOR_INTERRUPT; /* ULP_WAKE_INTERVAL_MS 동안 idle */
 
         SYS_WATCHDOG_REFRESH(); /* 워치독 3.28s 대비 매 웨이크업마다 refresh */
+
+#if TDC_TOUCH_RTT_TUNING
+        tdc_ui_command_poll();
+#endif
 
         /* 터치 상태 1회 샘플링. ULP_LONG_TOUCH_COUNT 회 연속 TOUCH 면 롱-터치 → 리셋. */
         tdc_touch_state_t state = TDC_TOUCH_STATE_RESET;

@@ -134,4 +134,21 @@
 #  define TDC_TOUCH_MARGIN_LOG_ENABLE  1
 #endif
 
+/* 9-1. 터치 마진 로그 출력 주기 (9번 활성 시) — 이 폴링 횟수마다 1회만 마진을 읽는다.
+ *    read_touch_margin 은 레지스터 3회 읽기(force communication 다수)를 유발해 self-cap
+ *    측정 cycle 을 방해할 수 있으므로, 빈도를 낮춰 측정 교란을 줄인다.
+ *    1 = 매 폴링(기존 동작), 권장 10 안팎(200ms 폴링 기준 약 2초마다 1회). */
+#ifndef TDC_TOUCH_MARGIN_LOG_INTERVAL
+#  define TDC_TOUCH_MARGIN_LOG_INTERVAL  5
+#endif
+
+/* 10. Prox Threshold 적용 — 노터치 LTA freeze 방지용 Prox Settings(0x61) 설정.
+ *    적용 값은 tdc_drv_iqs323.h 의 (SLEEP_)PROX_THRESHOLD.
+ *    실측에서 측정 불안정(터치/노터치 채터링) 유발이 의심되어 기본 비활성으로 둔다.
+ *    0: 비활성 — Prox Settings 미설정(reset 0 유지) = prox 적용 전 원래 동작 (기본값)
+ *    1: 활성 — 노말 PROX_THRESHOLD / 절전 SLEEP_PROX_THRESHOLD 적용 */
+#ifndef TDC_TOUCH_PROX_THRESHOLD_ENABLE
+#  define TDC_TOUCH_PROX_THRESHOLD_ENABLE  0
+#endif
+
 #endif /* TDC_TOUCH_CONFIG_H_ */
