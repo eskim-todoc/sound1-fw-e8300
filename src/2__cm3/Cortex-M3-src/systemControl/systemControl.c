@@ -119,11 +119,6 @@ void NRF_adv_powerMode(bool mode)
 }
 #endif
 
-// 초반 과도기 통신 에러로 인한 빨간 LED "파르르르"(빠른 점멸) 억제용 디바운스.
-// FPGA_Communication 에러가 연속 N tick 지속될 때만 빨강 점등, 정상 1회면 즉시 소등.
-// 초반 3~10회 산발 과도기 에러는 연속 N 조건 미달로 점등되지 않음. 만성 단선만 점등.
-#define TDC_FPGA_COMM_LED_DEBOUNCE_N (10)  // 조정 가능 (실기 튜닝)
-
 ST__SYSTEM_STATE systemControl(EN__LED_PATTERN   current_led_pattern,  //
                                ST__ERROR_CODE    mcuErrorCode,
                                ST__USB_CONNECTOR chargerState,
@@ -143,30 +138,12 @@ ST__SYSTEM_STATE systemControl(EN__LED_PATTERN   current_led_pattern,  //
     static bool StartFlag         = false;
     static bool isPowerOffEnabled = false;
 
-    static int s_tdc_fpga_comm_led_cnt = 0;  // FPGA 통신 에러 LED 점등 디바운스 카운터
-
     bool veryLowBattery     = false;
     bool stimulationTrigger = false;
-    bool fpga_comm_led_on;
-
-    // 점등 디바운스·소등 즉시: FPGA 통신 에러가 연속 N tick 지속될 때만 빨강 점등,
-    // 정상 응답 1회면 즉시 카운터 리셋(소등). 초반 산발 과도기 에러는 점등 자체가 안 됨.
-    if (mcuErrorCode.FPGA_CommunicationErrorFlag != en__NA)
-    {
-        if (s_tdc_fpga_comm_led_cnt < TDC_FPGA_COMM_LED_DEBOUNCE_N)
-        {
-            s_tdc_fpga_comm_led_cnt++;
-        }
-    }
-    else
-    {
-        s_tdc_fpga_comm_led_cnt = 0;
-    }
-    fpga_comm_led_on = (s_tdc_fpga_comm_led_cnt >= TDC_FPGA_COMM_LED_DEBOUNCE_N);
 
     if ((mcuErrorCode.dataProcessingErrorFlag == en__NA)         //
         && (mcuErrorCode.accelerometerErrorFlag == en__NA)       //
-        && (!fpga_comm_led_on)                                   //  디바운스된 FPGA 통신 에러
+        && (mcuErrorCode.FPGA_CommunicationErrorFlag == en__NA)  //
         && (mcuErrorCode.data_logging_error == en__NA))
     {
         /* 에러 해제 시 ERROR 소스 클리어 */
@@ -422,7 +399,7 @@ ST__SYSTEM_STATE systemControl(EN__LED_PATTERN   current_led_pattern,  //
             {
                 led_request(LED_SRC_ERROR, LED_ST_ERROR_ACCEL);
             }
-            if (fpga_comm_led_on)
+            if (mcuErrorCode.FPGA_CommunicationErrorFlag != en__NA)
             {
                 led_request(LED_SRC_ERROR, LED_ST_ERROR_FPGA);
             }

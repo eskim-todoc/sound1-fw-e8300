@@ -889,8 +889,8 @@ int func_sleep(void)
         else
         {
             Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_R);
-                            Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_G);
-                            Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_B);
+            Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_G);
+            Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_B);
 
             touch_cnt = 0;  /* read 실패 → 카운터 초기화 */
         }
