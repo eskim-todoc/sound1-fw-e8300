@@ -48,7 +48,7 @@ static int  s_boot_ready_tick   = 0;
 static bool s_boot_5s_warned    = false;
 
 #if TDC_TOUCH_SLEEP_MEASURE_MODE
-/* CALIB 루프에서 's' 입력 시 설정 — func_normal() 에서 소비하여 절전 전환. */
+/* CALIB 루프에서 's' 입력 시 설정 ? func_normal() 에서 소비하여 절전 전환. */
 static bool s_sleep_request = false;
 #endif
 
@@ -230,7 +230,7 @@ static bool try_finish_init(void)
 
     SYS_WATCHDOG_REFRESH();
 
-    tdc_drv_iqs323_apply_settings(); /* 센서 설정 — CALIB/운용 공통. ATI_DUMP=1이면 1회 덤프 포함. */
+    tdc_drv_iqs323_apply_settings(); /* 센서 설정 ? CALIB/운용 공통. ATI_DUMP=1이면 1회 덤프 포함. */
 
 #if TDC_TOUCH_ATI_CALIB_MODE
     {
@@ -249,7 +249,7 @@ static bool try_finish_init(void)
 #if TDC_TOUCH_SLEEP_MEASURE_MODE
             if (SEGGER_RTT_HasKey() && 's' == SEGGER_RTT_GetKey())
             {
-                ci_printi("[CALIB] 's' — exit CALIB, sleep measure scheduled.\r\n");
+                ci_printi("[CALIB] 's' ? exit CALIB, sleep measure scheduled.\r\n");
                 s_sleep_request = true;
                 break;
             }
@@ -386,11 +386,11 @@ bool tdc_touch_get_state(tdc_touch_state_t *p_state)
         return false;
     }
 
-    /* ATI 에러 무시 — 운용 모드는 ATI Disabled + 보드별 고정 보상값을 써서 ATI 기능 자체를
+    /* ATI 에러 무시 ? 운용 모드는 ATI Disabled + 보드별 고정 보상값을 써서 ATI 기능 자체를
      * 사용하지 않는다. ati_error는 전역 비트(System Status 0x10 bit6)라 CH1 더미 채널의
      * auto-ATI 잔재까지 합산되지만, 터치 판정(CH0 Touch 비트)은 채널별로 정확해 무관하다.
      * 노말·절전 양쪽 공통 경로. 상세: docs/참고/touch/이슈해결/2026-06_CRX1-ESD-더미채널.md */
-    (void)ati_error;
+    (void) ati_error;
 
     if (pressed)
     {
@@ -401,8 +401,17 @@ bool tdc_touch_get_state(tdc_touch_state_t *p_state)
         *p_state = TDC_TOUCH_STATE_NOT_TOUCH;
     }
 
+#if TDC_TOUCH_MARGIN_LOG_ENABLE
+    /* 터치 마진 환산 로그 ? 반드시 방전 전에 호출해야 신선한 LTA/Counts 로 환산된다.
+     * 노말·절전 공통 경로. 결과는 헬퍼 내부에서 RTT 출력하므로 out param 은 불필요. */
+    //if (tdc_is_iqs323_in_ulp_mode())
+    {
+        (void)tdc_drv_iqs323_read_touch_margin(NULL, NULL);
+    }
+#endif
+
 #if TDC_TOUCH_CRX0_DISCHARGE_ENABLE
-    /* 상태 결정 후 방전 — 다음 호출 시점에 IC가 신선한 ESD-free 측정값을 준비.
+    /* 상태 결정 후 방전 ? 다음 호출 시점에 IC가 신선한 ESD-free 측정값을 준비.
      * 방전 실패는 다음 읽기 품질에만 영향, 현재 상태 반환은 이미 성공이므로 무시. */
     (void)tdc_drv_iqs323_discharge_crx0();
 #endif

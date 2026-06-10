@@ -754,8 +754,9 @@ int func_sleep(void)
         bool ati_error = false;
         while (tdc_drv_iqs323_read_status(&pressed, &ati_error) && pressed)
         {
-            // ci_printv("[TOUCH] SLEEP: WAIT TOUCH RELEASE \r\n");
+            ci_printv("[TOUCH] SLEEP: WAIT TOUCH RELEASE \r\n");
             SYS_WATCHDOG_REFRESH();
+            delay_ms(100);
         }
     }
 

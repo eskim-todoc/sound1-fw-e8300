@@ -10,6 +10,23 @@
 
 static bool touch_settings_impl(uint8_t threshold, uint8_t hysteresis);
 
+static bool g_tdc_iqs323_in_ulp_mode = false;
+
+void tdc_set_iqs323_in_ulp_mode(void)
+{
+    g_tdc_iqs323_in_ulp_mode = true;
+}
+
+void tdc_clear_iqs323_in_ulp_mode(void)
+{
+    g_tdc_iqs323_in_ulp_mode = false;
+}
+
+bool tdc_is_iqs323_in_ulp_mode(void)
+{
+    return g_tdc_iqs323_in_ulp_mode;
+}
+
 /* **********************************************************************
  * I2C low-level
  */
@@ -175,7 +192,7 @@ static bool write_register(uint8_t addr, uint8_t lsb, uint8_t msb)
     return true;
 }
 
-/* discharge_crx0() 전용 write — 200ms 폴링마다 호출되므로 write 로그를
+/* discharge_crx0() 전용 write ? 200ms 폴링마다 호출되므로 write 로그를
  * TDC_TOUCH_CRX0_DISCHARGE_LOG 로 제어해 RTT 범람을 막는다. write_register 와 동일하나
  * verbose write 로그만 플래그 조건부이며, 에러(ci_printe)는 항상 출력한다. */
 static bool write_register_discharge(uint8_t addr, uint8_t lsb, uint8_t msb)
@@ -455,14 +472,12 @@ static bool sensor_setup(void)
         return false;
     }
 #elif TDC_TOUCH_CRX1_DUMMY_ENABLE
-    /* CalCap 더미 채널 — 내부 CalCap을 변환 부하로 사용, 외부 CRX1 핀 완전 무관
+    /* CalCap 더미 채널 ? 내부 CalCap을 변환 부하로 사용, 외부 CRX1 핀 완전 무관
      * (C52 유무·쇼트 무관). 목적: CH1 활성 유지 → CH0 discharge 시 measurement cycle 보존.
-     * 0x43(Prox Input)은 쓰지 않음 — reset 0x01CF가 reserved 비트·CalCap Select 올바름.
+     * 0x43(Prox Input)은 쓰지 않음 ? reset 0x01CF가 reserved 비트·CalCap Select 올바름.
      * 상세: docs/참고/touch/IQS323-CalCap-더미채널.md */
     ci_printv("[TOUCH] SETUP PATTERN DEF 1 (CALCAP 1pF) \r\n");
-    if (!write_and_verify(TDC_DRV_IQS323_REG_ADDR_SENSOR1_PATTERN_DEF,
-                          TDC_DRV_IQS323_PATTERN_CALCAP_SIZE_1PF_LSB,
-                          TDC_DRV_IQS323_PATTERN_DEF_MSB))
+    if (!write_and_verify(TDC_DRV_IQS323_REG_ADDR_SENSOR1_PATTERN_DEF, TDC_DRV_IQS323_PATTERN_CALCAP_SIZE_1PF_LSB, TDC_DRV_IQS323_PATTERN_DEF_MSB))
     {
         return false;
     }
@@ -477,11 +492,9 @@ static bool sensor_setup(void)
     {
         return false;
     }
-    /* CH1 ATI Mode=Disabled — CalCap 부하 auto-ATI 수렴 실패로 인한 전역 ATI_ERROR 방지 */
+    /* CH1 ATI Mode=Disabled ? CalCap 부하 auto-ATI 수렴 실패로 인한 전역 ATI_ERROR 방지 */
     ci_printv("[TOUCH] SETUP SENSOR 1 ATI (DISABLED) \r\n");
-    if (!write_and_verify(TDC_DRV_IQS323_REG_ADDR_SENSOR1_ATI_SETUP,
-                          TDC_DRV_IQS323_DUMMY_ATI_SETUP_LSB,
-                          TDC_DRV_IQS323_DUMMY_ATI_SETUP_MSB))
+    if (!write_and_verify(TDC_DRV_IQS323_REG_ADDR_SENSOR1_ATI_SETUP, TDC_DRV_IQS323_DUMMY_ATI_SETUP_LSB, TDC_DRV_IQS323_DUMMY_ATI_SETUP_MSB))
     {
         return false;
     }
@@ -641,9 +654,9 @@ static bool wait_re_ati_done(void)
 #define TDC_DRV_IQS323_SLEEP_ATI_SETUP_LSB 0x08
 #define TDC_DRV_IQS323_SLEEP_ATI_SETUP_MSB 0x04
 #define TDC_DRV_IQS323_SLEEP_ATI_MULT_LSB  0x82
-#define TDC_DRV_IQS323_SLEEP_ATI_MULT_MSB  0x5C /* MULT=0x5C82 ? 절전 실측 */
-#define TDC_DRV_IQS323_SLEEP_ATI_COMP_LSB  0x00
-#define TDC_DRV_IQS323_SLEEP_ATI_COMP_MSB  0x60 /* COMP=0x6000 ? 절전 실측 */
+#define TDC_DRV_IQS323_SLEEP_ATI_MULT_MSB  0x5E//0x5C /* MULT=0x5C82 ? 절전 실측 */
+#define TDC_DRV_IQS323_SLEEP_ATI_COMP_LSB  0xE4//0x00
+#define TDC_DRV_IQS323_SLEEP_ATI_COMP_MSB  0x63//0x60 /* COMP=0x6000 ? 절전 실측 */
 
 static bool write_ati_compensation(void)
 {
@@ -880,12 +893,12 @@ void tdc_drv_iqs323_reseed(void)
 bool tdc_drv_iqs323_discharge_crx0(void)
 {
     /* CH0 비활성 + CRX0=VSS: 누적 ESD 전하 방전 (CRX1은 현재 설정 유지).
-     * verify(read-back) 불필요 — 방전은 best-effort이며 200ms 폴링 통신 부하를 줄인다. */
+     * verify(read-back) 불필요 ? 방전은 best-effort이며 200ms 폴링 통신 부하를 줄인다. */
     if (!write_register_discharge(TDC_DRV_IQS323_REG_ADDR_SENSOR0_SETUP, TDC_DRV_IQS323_INACTIVE_RXS_CRX0_VSS, 0x00))
     {
         return false;
     }
-    /* CH0 복원: enable_channel=1, ctx0=1 — sensor_setup() 의 Sensor0 설정과 동일 */
+    /* CH0 복원: enable_channel=1, ctx0=1 ? sensor_setup() 의 Sensor0 설정과 동일 */
     if (!write_register_discharge(TDC_DRV_IQS323_REG_ADDR_SENSOR0_SETUP, 0x01, 0x01))
     {
         return false;
@@ -898,8 +911,8 @@ bool tdc_drv_iqs323_apply_sleep_settings(void)
     SYS_WATCHDOG_REFRESH();
 
 #if 1
-    /* 절전 터치 감도 적용 (THRESHOLD/HYSTERESIS 낮춤) */
-    if (!touch_settings_impl((TDC_DRV_IQS323_SLEEP_TOUCH_THRESHOLD * 3), (TDC_DRV_IQS323_SLEEP_TOUCH_HYSTERESIS * 3)))
+    /* 절전 터치 감도 적용 (세팅 중에 반응 없게 큰 값 설정) */
+    if (!touch_settings_impl(255, 255))
     {
         ci_printe("[TOUCH] FAIL: SLEEP TOUCH SETTINGS \r\n");
         return false;
@@ -907,10 +920,10 @@ bool tdc_drv_iqs323_apply_sleep_settings(void)
 #else
     /* 절전 터치 감도 적용 (THRESHOLD/HYSTERESIS 낮춤) */
     if (!touch_settings_impl(TDC_DRV_IQS323_SLEEP_TOUCH_THRESHOLD, TDC_DRV_IQS323_SLEEP_TOUCH_HYSTERESIS))
-        {
-            ci_printe("[TOUCH] FAIL: SLEEP TOUCH SETTINGS \r\n");
-            return false;
-        }
+    {
+        ci_printe("[TOUCH] FAIL: SLEEP TOUCH SETTINGS \r\n");
+        return false;
+    }
 #endif
 
     /* 절전 환경 고정 ATI 보상값 적용 ? autoATI 없음 */
@@ -938,6 +951,8 @@ bool tdc_drv_iqs323_apply_sleep_settings(void)
         ci_printe("[TOUCH] FAIL: SLEEP CH TIMEOUT DISABLE \r\n");
         return false;
     }
+
+    tdc_set_iqs323_in_ulp_mode();
 
     SYS_WATCHDOG_REFRESH();
     return true;
@@ -1056,6 +1071,8 @@ void tdc_drv_iqs323_apply_settings(void)
     }
 #endif
 
+    tdc_clear_iqs323_in_ulp_mode();
+
     SYS_WATCHDOG_REFRESH();
 }
 
@@ -1075,5 +1092,62 @@ bool tdc_drv_iqs323_read_status(bool *p_pressed, bool *p_ati_error)
     *p_ati_error = (status.elements.lsb.ati_error == TDC_DRV_IQS323_ATI_ERROR);
     *p_pressed   = (status.elements.msb.ch0_touch == TDC_DRV_IQS323_CH0_IN_TOUCH);
 
+    return true;
+}
+
+bool tdc_drv_iqs323_read_touch_margin(uint8_t *p_threshold_coeff, uint16_t *p_current_coeff)
+{
+    uint8_t  lsb, msb;
+    uint8_t  threshold;
+    uint16_t lta, counts, current;
+
+    /* Touch Settings(0x62): LSB=Touch Threshold 계수, MSB=Touch Hysteresis 계수 */
+    if (!read_register(TDC_DRV_IQS323_REG_ADDR_CH0_TOUCH_SETTINGS, &lsb, &msb))
+    {
+        ci_printe("[TOUCH] MARGIN: TOUCH SETTINGS READ FAIL \r\n");
+        return false;
+    }
+    threshold = lsb;
+
+    /* CH0 LTA(0x14) ? 16bit little-endian */
+    if (!read_register(TDC_DRV_IQS323_REG_ADDR_CH0_LTA, &lsb, &msb))
+    {
+        ci_printe("[TOUCH] MARGIN: LTA READ FAIL \r\n");
+        return false;
+    }
+    lta = ((uint16_t) msb << 8) | lsb;
+
+    /* CH0 Filtered Counts(0x13) ? 16bit little-endian */
+    if (!read_register(TDC_DRV_IQS323_REG_ADDR_CH0_FILTERED_COUNTS, &lsb, &msb))
+    {
+        ci_printe("[TOUCH] MARGIN: COUNTS READ FAIL \r\n");
+        return false;
+    }
+    counts = ((uint16_t) msb << 8) | lsb;
+
+    /* current_coeff = (LTA-Counts)×256/LTA ? threshold 계수와 같은 단위.
+     * div0·underflow 방어 (self-cap: 접촉 시 Counts<LTA, 노이즈로 역전 시 0 처리).
+     * (LTA-Counts)×256 는 24bit 까지 가므로 uint32 로 승격해 계산한다. */
+    if (lta == 0 || counts >= lta)
+    {
+        current = 0;
+    }
+    else
+    {
+        current = (uint16_t) ((uint32_t) (lta - counts) * 256u / lta);
+    }
+
+#if TDC_TOUCH_MARGIN_LOG_ENABLE
+    ci_printi("[TOUCH] MARGIN cur=%u / th=%u (LTA=%u Counts=%u) \r\n", current, threshold, lta, counts);
+#endif
+
+    if (p_threshold_coeff != NULL)
+    {
+        *p_threshold_coeff = threshold;
+    }
+    if (p_current_coeff != NULL)
+    {
+        *p_current_coeff = current;
+    }
     return true;
 }

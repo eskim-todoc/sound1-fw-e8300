@@ -34,25 +34,27 @@
 
 /* MCLR 하드 리셋용 DIO 설정 */
 #define TDC_DRV_IQS323_RDY_PIN_CFG_OUTPUT (DIO_2X_DRIVE | DIO_LPF_DISABLE | DIO_NO_PULL | DIO_MODE_GPIO_OUT)
-#define TDC_DRV_IQS323_RDY_PIN_CFG_INPUT  (DIO_1X_DRIVE | DIO_LPF_ENABLE  | DIO_NO_PULL | DIO_MODE_GPIO_IN)
-#define TDC_DRV_IQS323_MCLR_HOLD_MS       1   /* MCLR LOW 유지 시간 (데이터시트: ≥250ns, 마진 확보) */
-#define TDC_DRV_IQS323_BOOT_WAIT_MS       50  /* MCLR 해제 후 IQS323 부팅 대기 */
+#define TDC_DRV_IQS323_RDY_PIN_CFG_INPUT  (DIO_1X_DRIVE | DIO_LPF_ENABLE | DIO_NO_PULL | DIO_MODE_GPIO_IN)
+#define TDC_DRV_IQS323_MCLR_HOLD_MS       1  /* MCLR LOW 유지 시간 (데이터시트: ≥250ns, 마진 확보) */
+#define TDC_DRV_IQS323_BOOT_WAIT_MS       50 /* MCLR 해제 후 IQS323 부팅 대기 */
 
 /* **********************************************************************
  * Register address
  */
-#define TDC_DRV_IQS323_REG_ADDR_SYSTEM_STATUS      0x10
-#define TDC_DRV_IQS323_REG_ADDR_SENSOR0_SETUP      0x30
-#define TDC_DRV_IQS323_REG_ADDR_SENSOR1_SETUP      0x40
-#define TDC_DRV_IQS323_REG_ADDR_SENSOR2_SETUP      0x50
+#define TDC_DRV_IQS323_REG_ADDR_SYSTEM_STATUS       0x10
+#define TDC_DRV_IQS323_REG_ADDR_CH0_FILTERED_COUNTS 0x13 /* CH0 측정 카운트 (16bit) ? 터치 마진 환산용 */
+#define TDC_DRV_IQS323_REG_ADDR_CH0_LTA             0x14 /* CH0 장기평균(LTA) (16bit) ? 터치 마진 환산용 */
+#define TDC_DRV_IQS323_REG_ADDR_SENSOR0_SETUP       0x30
+#define TDC_DRV_IQS323_REG_ADDR_SENSOR1_SETUP       0x40
+#define TDC_DRV_IQS323_REG_ADDR_SENSOR2_SETUP       0x50
 #define TDC_DRV_IQS323_REG_ADDR_SENSOR0_ATI_SETUP   0x36
-#define TDC_DRV_IQS323_REG_ADDR_SENSOR0_ATI_MULT   0x38
-#define TDC_DRV_IQS323_REG_ADDR_SENSOR0_ATI_COMP   0x39
-#define TDC_DRV_IQS323_REG_ADDR_SENSOR1_ATI_SETUP   0x46  /* CH1 더미 ATI Disabled용 */
-#define TDC_DRV_IQS323_REG_ADDR_CH0_TOUCH_SETTINGS 0x62
-#define TDC_DRV_IQS323_REG_ADDR_SYSTEM_CONTROL     0xC0
-#define TDC_DRV_IQS323_REG_ADDR_EVENTS_ENABLE      0xD3
-#define TDC_DRV_IQS323_REG_ADDR_I2C_SETTINGS       0xE0
+#define TDC_DRV_IQS323_REG_ADDR_SENSOR0_ATI_MULT    0x38
+#define TDC_DRV_IQS323_REG_ADDR_SENSOR0_ATI_COMP    0x39
+#define TDC_DRV_IQS323_REG_ADDR_SENSOR1_ATI_SETUP   0x46 /* CH1 더미 ATI Disabled용 */
+#define TDC_DRV_IQS323_REG_ADDR_CH0_TOUCH_SETTINGS  0x62
+#define TDC_DRV_IQS323_REG_ADDR_SYSTEM_CONTROL      0xC0
+#define TDC_DRV_IQS323_REG_ADDR_EVENTS_ENABLE       0xD3
+#define TDC_DRV_IQS323_REG_ADDR_I2C_SETTINGS        0xE0
 
 /* **********************************************************************
  * System Status (0x10) bit values
@@ -78,46 +80,46 @@
 #define TDC_DRV_IQS323_CHANNEL_DISABLE 0
 #define TDC_DRV_IQS323_CHANNEL_ENABLE  1
 
-/* Sensor Setup LSB — 비활성 채널 CRx 핀 전기적 상태 (enable_channel=0 시 적용)
+/* Sensor Setup LSB ? 비활성 채널 CRx 핀 전기적 상태 (enable_channel=0 시 적용)
  * bits[3:2]=CRX1 state, bits[1:0]=CRX0 state  (2-bit per pin: 00=Float, 01=Bias, 10=VSS, 11=VREG)
  * 0x00=둘 다 Floating(기본), 0x0A=둘 다 VSS(GND), 0x05=Bias, 0x0F=VREG */
-#define TDC_DRV_IQS323_INACTIVE_RXS_FLOATING  0x00
-#define TDC_DRV_IQS323_INACTIVE_RXS_VSS       0x0A  /* CRX0+CRX1 모두 VSS */
-#define TDC_DRV_IQS323_INACTIVE_RXS_CRX0_VSS  0x02  /* CRX0만 VSS, CRX1 Floating */
+#define TDC_DRV_IQS323_INACTIVE_RXS_FLOATING 0x00
+#define TDC_DRV_IQS323_INACTIVE_RXS_VSS      0x0A /* CRX0+CRX1 모두 VSS */
+#define TDC_DRV_IQS323_INACTIVE_RXS_CRX0_VSS 0x02 /* CRX0만 VSS, CRX1 Floating */
 
 /* **********************************************************************
- * Prox Input and Control (0x33/0x43/0x53) — 수신 핀 선택
- * reset value 0x01CF (reserved bit7=1, bit1-0=11 강제 — 임의 변경 시 IC 먹통).
+ * Prox Input and Control (0x33/0x43/0x53) ? 수신 핀 선택
+ * reset value 0x01CF (reserved bit7=1, bit1-0=11 강제 ? 임의 변경 시 IC 먹통).
  * CalCap 더미 채널에서는 이 레지스터를 쓰지 않고 reset 상태를 유지한다.
  */
-#define TDC_DRV_IQS323_REG_ADDR_SENSOR1_PROX_INPUT  0x43
+#define TDC_DRV_IQS323_REG_ADDR_SENSOR1_PROX_INPUT 0x43
 
 /* **********************************************************************
- * Pattern Definitions (0x34/0x44/0x54) — CalCap 크기·Inactive Rxs
+ * Pattern Definitions (0x34/0x44/0x54) ? CalCap 크기·Inactive Rxs
  * reset value 0x030A
  */
-#define TDC_DRV_IQS323_REG_ADDR_SENSOR1_PATTERN_DEF  0x44
+#define TDC_DRV_IQS323_REG_ADDR_SENSOR1_PATTERN_DEF 0x44
 /* CalCap 더미 채널용 값 (reset 0x030A 기준 산출):
  *   LSB 0x2A = CalCap size(bit7-4)=2 → 1.0pF + Inactive Rxs(bit3-0)=VSS(0x0A)
  *   MSB 0x03 = Wav Pattern 0 (self-cap) 유지
  * 상세: docs/참고/touch/IQS323-CalCap-더미채널.md */
-#define TDC_DRV_IQS323_PATTERN_CALCAP_SIZE_1PF_LSB   0x2A
-#define TDC_DRV_IQS323_PATTERN_DEF_MSB               0x03
+#define TDC_DRV_IQS323_PATTERN_CALCAP_SIZE_1PF_LSB 0x2A
+#define TDC_DRV_IQS323_PATTERN_DEF_MSB             0x03
 
 /* CH1 더미 ATI Mode=Disabled (0x46 reset 0x040C → bits[2:0]=000):
  * CalCap 부하에서 auto-ATI가 수렴 못 해 전역 ATI_ERROR(System Status bit6)가 SET되면
  * tdc_touch_get_state()가 CAL_ERROR로 단락되어 CH0 터치 판정이 막힌다. CH0(0x36)와 동일하게
  * ATI를 꺼서 §5.11 "ATI 실행 후 error check"를 스킵시킨다. 상세: IQS323-CalCap-더미채널.md */
-#define TDC_DRV_IQS323_DUMMY_ATI_SETUP_LSB           0x08
-#define TDC_DRV_IQS323_DUMMY_ATI_SETUP_MSB           0x04
+#define TDC_DRV_IQS323_DUMMY_ATI_SETUP_LSB 0x08
+#define TDC_DRV_IQS323_DUMMY_ATI_SETUP_MSB 0x04
 
 /* **********************************************************************
- * Channel Setup (0x60/0x70/0x80) — 채널 동작 모드
+ * Channel Setup (0x60/0x70/0x80) ? 채널 동작 모드
  */
-#define TDC_DRV_IQS323_REG_ADDR_CHANNEL1_SETUP  0x70
+#define TDC_DRV_IQS323_REG_ADDR_CHANNEL1_SETUP 0x70
 /* bits[3:0]: Channel Mode */
-#define TDC_DRV_IQS323_CH_MODE_INDEPENDENT  0x00  /* 독립 채널 (기본) */
-#define TDC_DRV_IQS323_CH_MODE_REFERENCE    0x02  /* 환경 기준값 채널 — LTA 드리프트 보정 */
+#define TDC_DRV_IQS323_CH_MODE_INDEPENDENT 0x00 /* 독립 채널 (기본) */
+#define TDC_DRV_IQS323_CH_MODE_REFERENCE   0x02 /* 환경 기준값 채널 ? LTA 드리프트 보정 */
 
 /* **********************************************************************
  * Touch Settings (0x62, 0x72, 0x82) values
@@ -126,17 +128,17 @@
 #define TDC_DRV_IQS323_TOUCH_THRESHOLD_80  80
 
 /* 노말 모드 운용값 */
-#define TDC_DRV_IQS323_TOUCH_THRESHOLD   80
-#define TDC_DRV_IQS323_TOUCH_HYSTERESIS  80
+#define TDC_DRV_IQS323_TOUCH_THRESHOLD  105//80
+#define TDC_DRV_IQS323_TOUCH_HYSTERESIS 105//80
 
-/* 절전 모드 운용값 — 주변 소자 OFF + 저속 클럭 환경에서 counts delta 감소 대응 */
-#define TDC_DRV_IQS323_SLEEP_TOUCH_THRESHOLD   30
-#define TDC_DRV_IQS323_SLEEP_TOUCH_HYSTERESIS  30
+/* 절전 모드 운용값 ? 주변 소자 OFF + 저속 클럭 환경에서 counts delta 감소 대응 */
+#define TDC_DRV_IQS323_SLEEP_TOUCH_THRESHOLD  105//34  // 30
+#define TDC_DRV_IQS323_SLEEP_TOUCH_HYSTERESIS 105//34  // 30
 
 /* **********************************************************************
  * System Control (0xC0) bit values
  */
-#define TDC_DRV_IQS323_ACK_RESET    1
+#define TDC_DRV_IQS323_ACK_RESET      1
 #define TDC_DRV_IQS323_TRIGGER_RE_ATI 1
 
 /* **********************************************************************
@@ -173,7 +175,7 @@ typedef struct
 
 typedef struct
 {
-    uint8_t                        addr;
+    uint8_t                            addr;
     tdc_drv_iqs323_lsb_system_status_t lsb;
     tdc_drv_iqs323_msb_system_status_t msb;
 } tdc_drv_iqs323_element_system_status_t;
@@ -181,7 +183,7 @@ typedef struct
 typedef union
 {
     tdc_drv_iqs323_element_system_status_t elements;
-    uint8_t                            bytes[3];
+    uint8_t                                bytes[3];
 } tdc_drv_iqs323_reg_system_status_t;
 
 /* **********************************************************************
@@ -213,7 +215,7 @@ typedef struct
 
 typedef struct
 {
-    uint8_t                       addr;
+    uint8_t                           addr;
     tdc_drv_iqs323_lsb_sensor_setup_t lsb;
     tdc_drv_iqs323_msb_sensor_setup_t msb;
 } tdc_drv_iqs323_element_sensor_setup_t;
@@ -221,7 +223,7 @@ typedef struct
 typedef union
 {
     tdc_drv_iqs323_element_sensor_setup_t elements;
-    uint8_t                           bytes[3];
+    uint8_t                               bytes[3];
 } tdc_drv_iqs323_reg_sensor_setup_t;
 
 /* **********************************************************************
@@ -239,7 +241,7 @@ typedef struct
 
 typedef struct
 {
-    uint8_t                         addr;
+    uint8_t                             addr;
     tdc_drv_iqs323_lsb_touch_settings_t lsb;
     tdc_drv_iqs323_msb_touch_settings_t msb;
 } tdc_drv_iqs323_element_touch_settings_t;
@@ -247,7 +249,7 @@ typedef struct
 typedef union
 {
     tdc_drv_iqs323_element_touch_settings_t elements;
-    uint8_t                             bytes[3];
+    uint8_t                                 bytes[3];
 } tdc_drv_iqs323_reg_touch_settings_t;
 
 /* **********************************************************************
@@ -273,7 +275,7 @@ typedef struct
 
 typedef struct
 {
-    uint8_t                         addr;
+    uint8_t                             addr;
     tdc_drv_iqs323_lsb_system_control_t lsb;
     tdc_drv_iqs323_msb_system_control_t msb;
 } tdc_drv_iqs323_element_system_control_t;
@@ -281,7 +283,7 @@ typedef struct
 typedef union
 {
     tdc_drv_iqs323_element_system_control_t elements;
-    uint8_t                             bytes[3];
+    uint8_t                                 bytes[3];
 } tdc_drv_iqs323_reg_system_control_t;
 
 /* **********************************************************************
@@ -306,7 +308,7 @@ typedef struct
 
 typedef struct
 {
-    uint8_t                        addr;
+    uint8_t                            addr;
     tdc_drv_iqs323_lsb_events_enable_t lsb;
     tdc_drv_iqs323_msb_events_enable_t msb;
 } tdc_drv_iqs323_element_events_enable_t;
@@ -314,7 +316,7 @@ typedef struct
 typedef union
 {
     tdc_drv_iqs323_element_events_enable_t elements;
-    uint8_t                            bytes[3];
+    uint8_t                                bytes[3];
 } tdc_drv_iqs323_reg_events_enable_t;
 
 /* **********************************************************************
@@ -334,7 +336,7 @@ typedef struct
 
 typedef struct
 {
-    uint8_t                       addr;
+    uint8_t                           addr;
     tdc_drv_iqs323_lsb_i2c_settings_t lsb;
     tdc_drv_iqs323_msb_i2c_settings_t msb;
 } tdc_drv_iqs323_element_i2c_settings_t;
@@ -342,11 +344,11 @@ typedef struct
 typedef union
 {
     tdc_drv_iqs323_element_i2c_settings_t elements;
-    uint8_t                           bytes[3];
+    uint8_t                               bytes[3];
 } tdc_drv_iqs323_reg_i2c_settings_t;
 
 /* **********************************************************************
- * Public API — 저수준 드라이버 인터페이스
+ * Public API ? 저수준 드라이버 인터페이스
  *
  * 기능 레이어(tdc_touch) 에서 상태머신 단계를 조립할 때 사용.
  * 상태머신·롱터치 판정 등 UX 로직은 tdc_touch 에 위치.
@@ -368,15 +370,24 @@ void tdc_drv_iqs323_apply_settings(void);
  *       *p_ati_error 에 ATI_ERROR 플래그. */
 bool tdc_drv_iqs323_read_status(bool *p_pressed, bool *p_ati_error);
 
+/* 현재 CH0 터치 마진을 threshold '계수' 단위로 역환산해 1회 read·로그.
+ * self-cap 터치 조건 (LTA-Counts) > Touch Threshold(절대=계수×LTA/256) 에서
+ * 양변을 ×256/LTA 하여, 현재 신호를 설정 threshold 계수와 같은 단위로 비교한다:
+ *   current_coeff = (LTA-Counts)×256/LTA   (값이 클수록 터치 근접, threshold 계수 초과 시 터치)
+ * 방전 전 신선한 LTA/Counts 로 호출해야 마진이 정확하다.
+ * p_threshold_coeff / p_current_coeff 는 NULL 허용 (로그만 필요할 때).
+ * 반환: true = read 성공. */
+bool tdc_drv_iqs323_read_touch_margin(uint8_t *p_threshold_coeff, uint16_t *p_current_coeff);
+
 /* **********************************************************************
- * ATI Calibration Mode — TDC_TOUCH_ATI_CALIB_MODE 빌드 전용
+ * ATI Calibration Mode ? TDC_TOUCH_ATI_CALIB_MODE 빌드 전용
  *
  * 조립 완제품에서 디버그 포트 없이 최적 ATI 보상값 후보를 LED 로 식별하는
  * 1회성 개발 도구. 프로덕션 빌드에 포함하지 않는다.
  */
 #if TDC_TOUCH_ATI_CALIB_MODE
 
-#define TDC_DRV_IQS323_CALIB_CANDIDATE_COUNT  10
+#define TDC_DRV_IQS323_CALIB_CANDIDATE_COUNT 10
 
 typedef struct
 {
@@ -386,8 +397,7 @@ typedef struct
     uint8_t comp_msb;
 } tdc_drv_iqs323_calib_candidate_t;
 
-extern const tdc_drv_iqs323_calib_candidate_t
-    tdc_drv_iqs323_calib_candidates[TDC_DRV_IQS323_CALIB_CANDIDATE_COUNT];
+extern const tdc_drv_iqs323_calib_candidate_t tdc_drv_iqs323_calib_candidates[TDC_DRV_IQS323_CALIB_CANDIDATE_COUNT];
 
 /* auto-ATI 완료 직후 호출. MULT/COMP 를 I2C 로 읽어 후보 테이블과 비교.
  * 반환: 최근접 후보 인덱스 (1~10). 0=I2C read 실패. */
@@ -404,7 +414,7 @@ bool tdc_drv_iqs323_calib_re_ati(void);
 #endif /* TDC_TOUCH_ATI_CALIB_MODE */
 
 /* **********************************************************************
- * Sleep Measure Mode — TDC_TOUCH_SLEEP_MEASURE_MODE 빌드 전용
+ * Sleep Measure Mode ? TDC_TOUCH_SLEEP_MEASURE_MODE 빌드 전용
  *
  * func_sleep 환경(주변장치 OFF, 저속 클럭)에서 re-ATI 후 ATI 레지스터를
  * RTT로 반복 출력하는 1회성 측정 도구.
@@ -419,14 +429,18 @@ void tdc_drv_iqs323_sleep_measure_dump(void);
 /* LTA 를 현재 counts 로 강제 재설정. */
 void tdc_drv_iqs323_reseed(void);
 
-/* ESD 방전 — CH0 일시 비활성(CRX0=VSS) 후 복원. 누적 정전기 제거.
+/* ESD 방전 ? CH0 일시 비활성(CRX0=VSS) 후 복원. 누적 정전기 제거.
  * 반환: true = 성공, false = I2C 쓰기 실패.
  * 호출: tdc_touch_get_state() 에서 read_status() 직전 (TDC_TOUCH_CRX0_DISCHARGE_ENABLE=1 시). */
 bool tdc_drv_iqs323_discharge_crx0(void);
 
-/* 절전 레지스터 사전 적용 — ci_power_sleep() 전 호출. THRESHOLD/HYSTERESIS/MULT/COMP/CH_TIMEOUT 기록.
+/* 절전 레지스터 사전 적용 ? ci_power_sleep() 전 호출. THRESHOLD/HYSTERESIS/MULT/COMP/CH_TIMEOUT 기록.
  * RESEED 및 터치 해제 대기는 ci_power_sleep() 이후 호출자 책임.
  * 반환: true = 성공, false = I2C 쓰기 실패. */
 bool tdc_drv_iqs323_apply_sleep_settings(void);
+
+void tdc_set_iqs323_in_ulp_mode(void);
+void tdc_clear_iqs323_in_ulp_mode(void);
+bool tdc_is_iqs323_in_ulp_mode(void);
 
 #endif /* TDC_DRV_IQS323_H_ */

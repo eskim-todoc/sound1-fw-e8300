@@ -123,4 +123,15 @@
 #  define TDC_TOUCH_CRX0_DISCHARGE_LOG  0
 #endif
 
+/* 9. 터치 마진 환산 로그 — tdc_touch_get_state()에서 CRX0 방전(7번) 직전 출력.
+ *    노말·절전 공통 경로에서 현재 신호를 threshold 계수 단위로 역환산해 RTT 출력.
+ *    current_coeff = (LTA-Counts)*256/LTA. 설정 threshold(80)에 근접할수록 터치 직전,
+ *    threshold 계수 초과 시 터치 진입. 방전하면 측정값이 다음 사이클용으로 바뀌므로
+ *    반드시 방전 전 신선한 LTA/Counts 로 읽어야 마진이 정확하다.
+ *    0: 비활성 (기본값)
+ *    1: 활성 — 매 폴링마다 [TOUCH] MARGIN ... 출력 (RTT 범람 주의) */
+#ifndef TDC_TOUCH_MARGIN_LOG_ENABLE
+#  define TDC_TOUCH_MARGIN_LOG_ENABLE  1
+#endif
+
 #endif /* TDC_TOUCH_CONFIG_H_ */
