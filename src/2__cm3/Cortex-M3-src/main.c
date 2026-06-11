@@ -78,10 +78,10 @@ volatile unsigned char g_cm3_manu_reserved[0xC0] =
 };
 // clang-format on
 
-static const FirmWare_Info firmwareInfo = {2, 0, 1, __DATE__};
+static const FirmWare_Info firmwareInfo = {1, 0, 0, __DATE__};
 
-static const int devFwVer_type = DEV_FW_VER_BETA;  // 내부 개발 버전 (Beta)
-static const int devFwVer_num  = 1;                // 1
+static const int devFwVer_type = DEV_FW_VER_RELEASE;  // 내부 개발 버전 (Release)
+static const int devFwVer_num  = 1;                   // 1 (전기기계적안정성시험)
 
 char *readFirmwareInfo()
 {
@@ -379,6 +379,56 @@ int func_normal(void)
 #ifdef ENABLE_UI_CMD
     tdc_ui_command_init();
 #endif
+
+    {
+        ST__CFX_CM3_SharedMemory_ISD_info *p_isd_info          = &g_ci_filesystem_ptr_entire_map->map[0].isd_info;
+        int                               *p_isd_1_info_name   = &g_ci_filesystem_ptr_entire_map->map[0].isd_info.isd_userName[0];     // [25]
+        int                               *p_isd_1_passkey     = &g_ci_filesystem_ptr_entire_map->map[0].isd_info.remocon_passkey[0];  // [4]
+        int                               *p_isd_1_location    = &g_ci_filesystem_ptr_entire_map->map[0].isd_info.isd_location_RL;     // 1: L, 2: R
+        int                               *p_isd_1_year        = &g_ci_filesystem_ptr_entire_map->map[0].isd_info.isd_year;
+        int                               *p_isd_1_month_model = &g_ci_filesystem_ptr_entire_map->map[0].isd_info.isd_month_model;
+        int                               *p_isd_1_serial      = &g_ci_filesystem_ptr_entire_map->map[0].isd_info.isd_serial;
+
+        ci_printw("[INFO] BOOT ISD 1 INFO \r\n");
+        ci_printw("[INFO] NAME : ");
+        for (int name_i = 0; name_i < 25; name_i++)
+        {
+            if (p_isd_1_info_name[name_i] != 0)
+            {
+                ci_printw("%c", p_isd_1_info_name[name_i]);
+            }
+            else
+            {
+                ci_printv("\r\n");
+                break;
+            }
+        }
+
+        ci_printw("[INFO] PASSKEY : ");
+        for (int passkey_i = 0; passkey_i < 4; passkey_i++)
+        {
+            ci_printw("%c", p_isd_1_passkey[passkey_i]);
+        }
+        ci_printv("\r\n");
+
+        ci_printw("[INFO] RL : ");
+        if (*p_isd_1_location == 1)
+        {
+            ci_printw("LEFT \r\n");
+        }
+        else if (*p_isd_1_location == 2)
+        {
+            ci_printw("RIGHT \r\n");
+        }
+        else
+        {
+            ci_printw("F \r\n");
+        }
+
+        ci_printw("[INFO] YEAR : 0x%02X \r\n", *p_isd_1_year);
+        ci_printw("[INFO] MONTH MODEL : 0x%02X \r\n", *p_isd_1_month_model);
+        ci_printw("[INFO] SERIAL : 0x%04X \r\n", *p_isd_1_serial);
+    }
 
     while (1)
     {
