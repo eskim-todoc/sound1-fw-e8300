@@ -1,12 +1,12 @@
 ---
 name: touch-reference-index
-purpose: IQS323 터치 참고 문서 전체 색인 — 레퍼런스(데이터시트 지식)와 이슈해결(트러블슈팅 로그) 2축
+purpose: IQS323 터치 참고 문서 전체 색인 — 데이터시트(원문 1차)·레퍼런스(2차 해설)·이슈해결(트러블슈팅) 3축
 type: index
 maturity: stable
-tags: [touch, iqs323, index, reference, troubleshooting]
+tags: [touch, iqs323, index, datasheet, reference, troubleshooting]
 ---
 
-> **TL;DR**: Sound1 터치(IQS323) 참고 문서 색인. **레퍼런스/** 는 데이터시트 기반 변하지 않는 지식, **이슈해결/** 은 시간순으로 누적하는 이슈→해결 로그. 새 이슈는 `이슈해결/YYYY-MM_<슬러그>.md`로 추가하고 본 색인에 한 줄 등록한다.
+> **TL;DR**: Sound1 터치(IQS323) 참고 문서 색인. **데이터시트/** 는 Azoteq 원문 1차 정리(SSOT, README+8파일), **레퍼런스/** 는 그 위의 2차 해설·Sound1 적용, **이슈해결/** 은 시간순 이슈→해결 로그. 새 이슈는 `이슈해결/YYYY-MM_<슬러그>.md`로 추가하고 본 색인에 한 줄 등록한다.
 
 ---
 
@@ -15,7 +15,8 @@ tags: [touch, iqs323, index, reference, troubleshooting]
 ```
 docs/참고/touch/
 ├── README.md                  ← 본 색인
-├── 레퍼런스/                   데이터시트 지식 (영속)
+├── 데이터시트/                 데이터시트 원문 1차 정리 (SSOT, README+8파일)
+├── 레퍼런스/                   2차 해설·Sound1 적용 (영속)
 ├── 이슈해결/                   트러블슈팅 로그 (시간순 누적)
 ├── iqs323_datasheet.pdf       Azoteq 원본 데이터시트 v1.11
 └── Touch Sensor Schematic.JPG 회로도 원본
@@ -23,7 +24,25 @@ docs/참고/touch/
 
 ---
 
-## 레퍼런스 (데이터시트 지식)
+## 데이터시트 (원문 1차 정리, SSOT)
+
+Azoteq IQS323 데이터시트(v1.11, 68p) 원문을 빠짐없이 정리. 레지스터·임계값·동작을 PDF 재독 없이 참조.
+
+| 문서 | 구간 | 내용 |
+|---|---|---|
+| [README (색인·빠른참조)](데이터시트/README.md) | — | 8파일 색인 + 빠른 참조표(주소·공식·전류·기본값) |
+| [01_개요·전기·타이밍](데이터시트/01_개요·전기·타이밍.md) | §1~4 | 개요·핀맵·전기특성·타이밍 |
+| [02_proxfusion동작](데이터시트/02_proxfusion동작.md) | §5 | Count·LTA·ATI·Threshold·Sensor Setup |
+| [03_하드웨어설정](데이터시트/03_하드웨어설정.md) | §6 | Prox Control·Dead Time·Conv Freq·Reset |
+| [04_부가기능·UI](데이터시트/04_부가기능·UI.md) | §7 | OutA·Slider·Reference/Release/Movement UI |
+| [05_i2c인터페이스](데이터시트/05_i2c인터페이스.md) | §8 | 통신·이벤트모드·Force Comm·Program Flow |
+| [06_레지스터레퍼런스](데이터시트/06_레지스터레퍼런스.md) ★ | §9+부록A | 전체 레지스터 맵(주소+비트 전수) |
+| [07_오더링·패키지](데이터시트/07_오더링·패키지.md) | §10~11 | Order Code·패키지·Tape&Reel |
+| [08_개정이력·이슈](데이터시트/08_개정이력·이슈.md) | 부록B·C | Revision History·Known Issues |
+
+## 레퍼런스 (2차 해설·Sound1 적용)
+
+데이터시트 원문 위에 쌓은 개념 해설·비유·Sound1 실측·코드 적용.
 
 | 문서 | 내용 |
 |---|---|
