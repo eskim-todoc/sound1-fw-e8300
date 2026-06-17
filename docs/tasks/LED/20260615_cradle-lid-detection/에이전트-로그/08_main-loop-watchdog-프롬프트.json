@@ -1,0 +1,8 @@
+{
+  "agent_id": "08",
+  "persona": "main.c 루프 구조 & 워치독 분석가",
+  "stage": "분석",
+  "purpose": "func_normal() 전체 구조, 슬립 전환 패턴, SYS_WATCHDOG_RESET() 사용 방식, 워치독 타임아웃 파악",
+  "target_repo": "/mnt/e/Claude/projects/Sound1",
+  "prompt": "Sound1 펌웨어(2__cm3) 코드베이스의 main.c를 심층 분석하라. 리포지토리 루트: /mnt/e/Claude/projects/Sound1/src/2__cm3\n\n다음을 조사해서 구조화된 보고서를 작성해라:\n\n1. func_normal() 함수 전체 구조 (라인 범위, 주요 분기 목록)\n2. main() 함수에서 func_normal() 호출 방식 — 어떤 조건에서 func_normal/func_sleep/func_lowbatt 등으로 분기하는지\n3. SYS_WATCHDOG_RESET() — 정의 파일·매크로 내용, 사용처 grep (라인번호 포함)\n4. 워치독 리프레시 코드 — Sys_Watchdog_Refresh() 또는 유사 함수의 호출 주기·위치\n5. 워치독 타임아웃 설정값 (몇 ms/s인지)\n6. 신규 func_cradle_sleep() 함수를 추가한다면:\n   - 어느 파일에 추가할지 (main.c 또는 systemControl.c)\n   - main()의 루프에서 어떻게 전환할지 (상태 플래그 vs 직접 함수 포인터)\n   - bleCommunication(isd_state) 호출만 있는 단순 루프가 워치독 타임아웃에 안전한지\n7. func_normal() 내 systemControl() 호출 위치와 bleCommunication() 호출 위치 (라인번호)\n\n결과 형식:\n- main() 루프 흐름 텍스트 다이어그램\n- SYS_WATCHDOG_RESET() 정의 발췌\n- func_cradle_sleep() 추가를 위한 권장 설계 (위치·패턴)\n- 응답은 한국어로"
+}

@@ -1,0 +1,8 @@
+{
+  "agent_id": "09",
+  "persona": "bleCommunication 반환값 구조 분석가",
+  "stage": "분석",
+  "purpose": "bleCommunication() 반환 타입·구조, BLE_communicationState 내용, 약 절전 루프에서 뚜껑 열림 패킷 감지 방법 설계",
+  "target_repo": "/mnt/e/Claude/projects/Sound1",
+  "prompt": "Sound1 펌웨어(2__cm3) 코드베이스에서 bleCommunication() 함수의 반환값 구조를 분석하라. 리포지토리 루트: /mnt/e/Claude/projects/Sound1/src/2__cm3\n\n다음을 조사해서 구조화된 보고서를 작성해라:\n\n1. bleCommunication() 함수 시그니처 및 반환 타입 (파일·라인)\n2. BLE_communicationState 타입/구조체 정의 전체 내용\n3. bleCommunication()이 반환하는 값의 의미 — 어떤 필드/플래그가 있는지\n4. EN__SND_BT_CMD_SYSTEM_INFO_POWER(0x34) 패킷 수신 시 BLE_communicationState에 어떤 값이 설정되는지\n5. 약 절전 루프에서 bleCommunication(isd_state)만 호출할 때:\n   - isd_state가 필요한지 (내부에서 어떻게 사용하는지)\n   - 뚜껑 열림 패킷(data[2]=1) 수신 감지를 BLE_communicationState로 할 수 있는지\n   - 또는 별도 플래그/게터 함수가 필요한지\n6. bleSettingPacket.command 초기화 — IDLE로 되돌리는 시점 (ble_communication.c:160 근처)\n7. 약 절전 루프에서 워치독 리프레시를 어떻게 처리할지 (bleCommunication 내부에 있는지)\n\n결과 형식:\n- BLE_communicationState 타입 정의 전체 발췌\n- 약 절전 루프 의사 코드 (뚜껑 열림 감지 포함)\n- 뚜껑 열림 감지를 위한 권장 방법 (반환값 vs 전역 플래그 vs snd_charger_get_state())\n- 응답은 한국어로"
+}

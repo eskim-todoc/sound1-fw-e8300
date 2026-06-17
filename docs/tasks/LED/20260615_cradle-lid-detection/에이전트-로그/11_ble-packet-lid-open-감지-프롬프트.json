@@ -1,0 +1,8 @@
+{
+  "agent_id": "11",
+  "persona": "BLE 패킷 뚜껑 열림 감지 분석가",
+  "stage": "분석",
+  "purpose": "약 절전 루프에서 뚜껑 열림 패킷 감지 방법, 0x34 패킷이 오는 주기, 재부팅 전 필요한 정리 작업 파악",
+  "target_repo": "/mnt/e/Claude/projects/Sound1",
+  "prompt": "Sound1 펌웨어(2__cm3) 코드베이스에서 약 절전 루프 중 뚜껑 열림 감지 방법을 분석하라. 리포지토리 루트: /mnt/e/Claude/projects/Sound1/src/2__cm3\n\n다음을 조사해서 구조화된 보고서를 작성해라:\n\n1. ble_communication.c에서 0x34 패킷 처리 완료 후 bleSettingPacket.command를 IDLE로 초기화하는 코드 (라인번호)\n2. bleCommunication() 함수 전체에서 0x34 패킷 처리 후 반환값에 어떤 정보가 담기는지\n3. 약 절전 루프에서 bleCommunication(isd_state)만 반복 호출 시:\n   a. SPI 통신은 정상 동작하는지 (SPI 클럭 공급 여부)\n   b. FPGA가 꺼진 상태에서 isd_state를 넘기는 것이 안전한지\n   c. isd_state 대신 더미 값(NULL 등)을 넘겨도 되는지\n4. 0x34 패킷 수신 주기 추정 (QCC에서 얼마나 자주 보내는지 — 코드 주석 또는 타이머 힌트)\n5. SYS_WATCHDOG_RESET() 호출 전 필요한 정리 작업:\n   - 현재 SYS_WATCHDOG_RESET() 직전 실행 패턴 조사 (ble/20260514_qcc-shutdown-delay에서 500ms flush 존재)\n   - 약 절전 루프에서 재부팅 전 추가 정리가 필요한지\n6. 뚜껑 열림 감지 조건 — data[2] != 2 (not 닫힘)으로 단순히 처리하면 충분한지, 아니면 명시적 data[2] == 1만 처리할지\n\n결과 형식:\n- 약 절전 루프 의사 코드 (완전한 형태)\n- isd_state 처리 방법 권고\n- 재부팅 전 최소 정리 작업 목록\n- 응답은 한국어로"
+}

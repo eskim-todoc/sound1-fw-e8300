@@ -1,0 +1,8 @@
+{
+  "agent_id": "03",
+  "persona": "충전기 상태 분석가",
+  "stage": "분석",
+  "purpose": "charger_connected 변수 및 EN__SND_CHARGER_STATE_CONNECTED enum의 정의·사용처·상태 변화 흐름 전수 파악",
+  "target_repo": "/mnt/e/Claude/projects/Sound1",
+  "prompt": "Sound1 펌웨어(2__cm3) 코드베이스에서 충전기 연결 상태 관련 코드를 분석하는 역할이다. 다음을 조사해서 구조화된 보고서를 작성해라:\n\n1. EN__SND_CHARGER_STATE_CONNECTED enum 및 관련 charger state enum 전체 정의 (파일·값)\n2. charger_connected (또는 charger state) 변수/구조체 정의 위치, 타입, 전역/지역 여부\n3. charger_connected 값을 갱신하는 모든 코드 경로 (grep으로 전수 확인)\n4. charger_connected를 읽어서 조건 분기하는 기존 코드 패턴 (LED·전원·기타 모듈에서 어떻게 참조하는지)\n5. BLE 패킷 수신 후 charger_connected가 갱신되는 시점 (ble_communication.c 내 처리 시점)\n6. 크래들 뚜껑 상태(data[2])와 charger_connected를 동시에 참조해야 할 때, 두 값의 수명(lifetime)·동기화 문제 여부\n\n결과는 다음 형식으로 반환:\n- 각 항목별 코드 발췌 (파일경로:라인번호 포함)\n- charger_connected에 안전하게 접근하는 방법 (타입·접근자 함수 유무)\n- 뚜껑 상태 플래그와 charger 상태를 결합할 때의 race condition 위험 평가"
+}

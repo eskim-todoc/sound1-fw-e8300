@@ -1,0 +1,8 @@
+{
+  "agent_id": "10",
+  "persona": "크래들 상태 갱신 경로 설계가",
+  "stage": "분석",
+  "purpose": "data[2] 값을 carryingCaseCoverOpen에 반영하는 최적 경로 설계 — snd_charger_set_state 확장 vs 별도 함수 vs 공유 메모리 직접 갱신",
+  "target_repo": "/mnt/e/Claude/projects/Sound1",
+  "prompt": "Sound1 펌웨어(2__cm3) 코드베이스에서 크래들 뚜껑 상태(BLE data[2]) → carryingCaseCoverOpen 갱신 경로를 설계하기 위한 분석을 수행하라. 리포지토리 루트: /mnt/e/Claude/projects/Sound1/src/2__cm3\n\n다음을 조사해서 구조화된 보고서를 작성해라:\n\n1. cfx_cm3_sharedMemoryAll.chargerState.carryingCaseCoverOpen을 직접 쓰는 코드가 있는지 grep (batteryNPowerControl.c, systemControl.c, cfx_cm3_sharedMemory.c 등)\n2. snd_charger_set_state()가 carryingCaseCoverOpen을 설정하는 방식 전체 (batteryNPowerControl.c 92~142)\n3. readUsbConnectorState() 함수 — GPIO로 carryingCaseCoverOpen을 읽는 방식 (cfx_cm3_sharedMemory.c)\n4. BLE data[2]로 carryingCaseCoverOpen을 갱신할 수 있는 방법 3가지 비교:\n   방법 A: snd_charger_set_state() 내부에서 data[2]로 carryingCaseCoverOpen 갱신\n   방법 B: 별도 snd_charger_set_cradle_cover(int state) 함수 신설\n   방법 C: ble_communication.c에서 직접 cfx_cm3_sharedMemoryAll.chargerState.carryingCaseCoverOpen 갱신\n5. readUsbConnectorState()가 주기적으로 GPIO를 읽어서 덮어쓰는지 — BLE 갱신값을 덮어쓸 위험\n6. systemControl.c에서 chargerState를 읽는 시점 (snd_charger_get_state() 또는 직접 접근)\n\n결과 형식:\n- 3가지 방법 비교표 (장단점)\n- 권장 방법과 이유\n- carryingCaseCoverOpen 갱신 후 systemControl()이 즉시 반영하는지 (타이밍 분석)\n- 응답은 한국어로"
+}
