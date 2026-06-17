@@ -327,6 +327,8 @@ void tdc_on_sleep_measure_cmd(void)
 }
 #endif
 
+static void func_cradle_lid_closed_loop(void);
+
 int func_normal(void)
 {
     EN__BATTERY_LEVEL           batteryLevel;
