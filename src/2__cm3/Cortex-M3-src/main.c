@@ -739,6 +739,7 @@ int func_normal(void)
         /* 크래들 뚜껑 닫힘 첫 감지 → 약 절전 루프 (ISD 연결 중이면 차단) */
         if (systemState.cradleLidClosed && !isd_state.conneded_ISD)
         {
+            led_force_fade_off();  /* fade-out ISR 완료 후 LED 완전 소등 */
             func_cradle_lid_closed_loop();
             /* 도달 불가 — 루프 내 SYS_WATCHDOG_RESET()으로 재부팅 */
         }
@@ -820,7 +821,7 @@ static void func_cradle_lid_closed_loop(void)
     NRF_Off_Command();
 
     /* 3. QCC_CTRL = 0 (충전기 연결 시 QCC는 절전 미진입, SPI 패킷 수신 유지) */
-    snd_qcc_set_mode(SND_QCC_MODE_SHUTDOWN);
+    // snd_qcc_set_mode(SND_QCC_MODE_SHUTDOWN);
 
     /* 4. FPGA 슬립 */
     Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_FPGA_SLEEP);
@@ -836,7 +837,8 @@ static void func_cradle_lid_closed_loop(void)
     ci_printi("[CRADLE] LIGHT SLEEP ACTIVE. WAITING FOR LID OPEN PACKET...\r\n");
 
     /* 약 절전 루프 — BLE 패킷 수신으로 뚜껑 열림 감지 */
-    ST__ISD_STATUS dummy_isd = {en__isdStatus_NA, false};
+    ST__ISD_STATUS dummy_isd  = {en__isdStatus_NA, false};
+    uint32_t       wfi_count  = 0;
 
     while (1)
     {
@@ -848,6 +850,7 @@ static void func_cradle_lid_closed_loop(void)
         /* 뚜껑 열림 패킷 감지 (data[2]=1 또는 else → setter가 df_Connected으로 갱신) */
         if (tdc_cradle_get_cover_state() == df_Connected)
         {
+            snd_qcc_set_mode(SND_QCC_MODE_SHUTDOWN);
             ci_printi("[CRADLE] LID OPENED PACKET RECEIVED - WATCHDOG RESET FOR REBOOT\r\n");
             delay_ms(20);  /* 로그 드레인 */
             SYS_WATCHDOG_RESET();
@@ -855,6 +858,11 @@ static void func_cradle_lid_closed_loop(void)
 
         /* ULP가 아닌 normal 모드 — 딜레이 없이 인터럽트 기반 iteration */
         SYS_WAIT_FOR_INTERRUPT;
+
+        if (++wfi_count % 1000 == 0)
+        {
+            ci_printi("[CRADLE] WFI wakeup count: %d\r\n", (int)wfi_count);
+        }
     }
 }
 
