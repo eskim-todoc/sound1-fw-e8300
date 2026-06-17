@@ -120,9 +120,11 @@ void setting_nrf_ble_adv_info(void)
     {
         int battery_level;      // 패킷 인덱스 1 → 헤더 제외 시, 데이터 인덱스 0
         int charger_connected;  // 패킷 인덱스 2 → 헤더 제외 시, 데이터 인덱스 1
+        int cradle_lid_state;   // 패킷 인덱스 3 → 헤더 제외 시, 데이터 인덱스 2 (1=열림, 2=닫힘, else=열림처리)
 
         battery_level     = bleSettingPacket.data[0];  // 배터리 레벨
         charger_connected = bleSettingPacket.data[1];  // 충전기 연결 상태
+        cradle_lid_state  = bleSettingPacket.data[2];  // 크래들 뚜껑 상태
 
         // 수신한 배터리 정보로 업데이트 한다.
         snd_batt_set_percent(battery_level);
@@ -149,7 +151,8 @@ void setting_nrf_ble_adv_info(void)
                 break;
         }  // 끝, switch
 
-        ci_printv("[BT] CMD 0x%02X, CHARGER STATE: %d, BATT LEVEL %d PERCENT \r\n", EN__SND_BT_CMD_SYSTEM_INFO_POWER, charger_connected, battery_level);
+        tdc_charger_set_cradle_cover_state(cradle_lid_state);
+        ci_printv("[BT] CMD 0x%02X, CHARGER STATE: %d, BATT LEVEL %d PERCENT, LID STATE %d\r\n", EN__SND_BT_CMD_SYSTEM_INFO_POWER, charger_connected, battery_level, cradle_lid_state);
 
         Tx_dataBuff[tx_index++] = EN__SND_BT_CMD_SYSTEM_INFO_POWER;
         Tx_dataBuff[tx_index++] = 1;  // 수신 확인 응답
