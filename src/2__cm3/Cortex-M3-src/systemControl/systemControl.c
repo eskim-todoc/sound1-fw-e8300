@@ -28,7 +28,7 @@
 
 #include <ci_printf.h>
 
-ST__SYSTEM_STATE systemStatus = {en__LED_NA, false, false, false, false, false};
+ST__SYSTEM_STATE systemStatus = {en__LED_NA, false, false, false, false, false, false};
 
 #define LED_OnTime_afterCoverClosed 4501
 
@@ -130,7 +130,8 @@ ST__SYSTEM_STATE systemControl(EN__LED_PATTERN   current_led_pattern,  //
     static int PowerOn_StartCounter                = 0;
     static int PowerOff_StartCounter               = 0;
     static int normalModeCounter                   = 0;
-    static int CounterAfterCoverClosed             = 0;
+    static int  CounterAfterCoverClosed             = 0;
+    static bool s_tdc_cradle_cover_closed_edge      = false;
     static int ISD_Disconnection_counter           = Df_Disconnection_BLE_Time_ms;
     static int lowBatteryIndicatorCounter          = 0;
     static int prev_batteryChargerConnectionStatus = df_Defalut;
@@ -172,24 +173,19 @@ ST__SYSTEM_STATE systemControl(EN__LED_PATTERN   current_led_pattern,  //
             {
                 if (chargerState.carryingCaseCoverOpen == df_Connected)
                 {
-                    CounterAfterCoverClosed = 0;
+                    CounterAfterCoverClosed        = 0;
+                    s_tdc_cradle_cover_closed_edge = false;  /* 뚜껑 열림 → 엣지 플래그 리셋 */
                     /* 충전 중 LED: 배터리 레벨 판정은 Arbiter가 처리 (led_request 불필요) */
                 }
                 else
                 {
-                    if (CounterAfterCoverClosed == LED_OnTime_afterCoverClosed)
+                    if (!s_tdc_cradle_cover_closed_edge)
                     {
-                        /* 커버 닫힌 후 일정 시간 지나면 LED OFF */
+                        s_tdc_cradle_cover_closed_edge = true;
+                        CounterAfterCoverClosed        = 0;
+                        systemStatus.cradleLidClosed   = true;
+                        ci_printi("[SYSTEM] CRADLE LID CLOSED FIRST DETECT\r\n");
                     }
-                    else if (CounterAfterCoverClosed > LED_OnTime_afterCoverClosed)
-                    {
-                        CounterAfterCoverClosed = 0;
-                        systemStatus.systemOff  = true;
-                        CounterAfterCoverClosed = 0;
-
-                        ci_printi("[SYSTEM] GO TO SYSTEM OFF \r\n");
-                    }
-                    CounterAfterCoverClosed++;
                 }
             }
             else  // 충전 케이스가 연결되지 않고 자극기에 직접 충전기가 꼽힌 경우.
