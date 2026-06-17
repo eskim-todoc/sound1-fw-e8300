@@ -19,6 +19,7 @@ typedef struct
     bool            BLE_Off; // 충전기 연결 시 시스템에서 BLE를 끄기 위함
     bool            StimulationIndicatorTriggerLowPower;
     bool            systemOff;
+    bool            cradleLidClosed;
 
 } ST__SYSTEM_STATE;
 

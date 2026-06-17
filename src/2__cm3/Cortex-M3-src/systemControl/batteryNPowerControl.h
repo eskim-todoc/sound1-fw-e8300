@@ -66,4 +66,7 @@ EN__BATTERY_LEVEL  snd_batt_get_level(void);
 ST__USB_CONNECTOR snd_charger_get_state(void);
 void              snd_charger_set_state(EN__SND_CHARGER_STATE state);
 
+void tdc_charger_set_cradle_cover_state(int state);
+int  tdc_cradle_get_cover_state(void);
+
 #endif  // BATTERY_N_POWERCONTROL_H__
