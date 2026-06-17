@@ -1,0 +1,8 @@
+{
+  "agent_id": "12",
+  "persona": "아키텍처 & 통합 설계가 (Rev.1)",
+  "stage": "분석",
+  "purpose": "전체 요구사항(LED OFF + 약 절전 모드)에 대한 통합 설계, 변경 파일 목록, 신규 심볼, 데이터 흐름 전체",
+  "target_repo": "/mnt/e/Claude/projects/Sound1",
+  "prompt": "Sound1 펌웨어(2__cm3) 코드베이스에서 크래들 뚜껑 닫힘 → 약 절전 모드 진입 기능의 통합 설계를 수행하라. 리포지토리 루트: /mnt/e/Claude/projects/Sound1/src/2__cm3\n\n배경:\n- BLE 0x34 패킷 data[2]: 1=열림, 2=닫힘, else=열림처리\n- 충전기 연결(charger_connected==1) + 뚜껑 닫힘(lid==2) → 약 절전 모드 진입\n- 약 절전: FPGA리셋+nRF끔+QCC셧다운+FPGA슬립+PMIC끔+LED끔, CFX는 유지\n- main 루프에서 bleCommunication()만 반복 호출\n- 뚜껑 열림 수신 시 SYS_WATCHDOG_RESET() 재부팅\n\n다음을 조사하고 설계해라:\n\n1. 현재 tdc_ui_command.c의 setter 패턴과 유사한 신규 함수 후보 목록 (tdc_ prefix 필수)\n2. 약 절전 진입 함수 설계: func_cradle_sleep() vs systemControl.c 내 처리 vs main.c 직접 — 최적 위치\n3. 뚜껑 닫힘 '첫 감지' 처리: 이벤트 엣지(edge) 감지 방법 (플래그로 1회만 실행)\n4. 약 절전 루프 구현 위치: main.c에 func_cradle_lid_closed_loop() 신설 vs func_normal() 내 분기\n5. 변경이 필요한 파일 목록 및 각 파일의 변경 범위\n6. data[2] 처리에서 carryingCaseCoverOpen 갱신 경로 최종 결정\n7. 신규 추가할 심볼 전체 목록 (tdc_ prefix, 파일별)\n8. 기존 snd_charger_set_state()에서 CFX 전원이 OFF되는지 확인 (약 절전에서 CFX 유지 가능성)\n\n결과 형식:\n- 전체 데이터 흐름 (BLE 수신 → 약 절전 진입 → 뚜껑 열림 → 재부팅)\n- 변경 파일 목록 (파일명, 변경 유형, 핵심 변경 내용 1줄)\n- 신규 심볼 표 (이름, 파일, 역할)\n- 응답은 한국어로"
+}

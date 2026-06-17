@@ -1,0 +1,8 @@
+{
+  "agent_id": "04",
+  "persona": "아키텍처 & 통합 설계가",
+  "stage": "분석",
+  "purpose": "크래들 뚜껑 상태를 LED 레이어에 전달하는 최적 경로 탐색, tdc_ 코딩 패턴·setter/getter 관례 파악",
+  "target_repo": "/mnt/e/Claude/projects/Sound1",
+  "prompt": "Sound1 펌웨어(2__cm3)에서 크래들 뚜껑 상태(BLE 수신) → LED enable/disable 경로를 설계하기 위한 아키텍처 분석 역할이다. 다음을 조사해서 구조화된 보고서를 작성해라:\n\n1. tdc_ prefix 모듈들의 setter/getter 패턴 조사 — tdc_ui_command.c/h, tdc_touch.c/h 등에서 상태를 외부에 노출하는 방식 (함수 시그니처, 헤더 선언 방식)\n2. main.c의 메인 루프 — tdc 모듈 poll/update 호출 순서, BLE 패킷 처리 → LED 갱신까지의 실행 흐름\n3. BLE 수신 콜백에서 LED 레이어까지 기존에 연결된 유사 데이터 흐름 사례 (예: 볼륨·프로그램 변경 명령이 어떻게 LED 상태까지 전달되는지)\n4. LedOutput.c 또는 tdc_led 레이어에 bool 플래그(예: s_tdc_led_cradle_lid_closed)를 추가하는 방식 vs BLE 레이어에 전역 변수를 두는 방식 — 장단점 비교\n5. tdc_led_set_cradle_lid_closed(bool) 형태의 setter를 어느 헤더에 선언하고 어디서 호출하는 것이 기존 패턴에 맞는지\n6. 기존 tdc_ui_command_override_* 패턴(main → tdc 단방향 setter)을 이 기능에도 적용 가능한지 평가\n\n결과는 다음 형식으로 반환:\n- 권장 설계 방안 (데이터 흐름 텍스트 다이어그램)\n- 대안 방안과 비교 (장단점 2줄씩)\n- 신규 추가할 심볼 목록 초안 (tdc_ prefix 포함, 파일별 위치 포함)"
+}

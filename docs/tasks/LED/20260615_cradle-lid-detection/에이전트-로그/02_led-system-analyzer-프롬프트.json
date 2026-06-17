@@ -1,0 +1,8 @@
+{
+  "agent_id": "02",
+  "persona": "LED 시스템 분석가",
+  "stage": "분석",
+  "purpose": "LED GPIO 제어 메커니즘, enable/disable 플래그 현황, LED OFF 유지 패턴 분석",
+  "target_repo": "/mnt/e/Claude/projects/Sound1",
+  "prompt": "Sound1 펌웨어(2__cm3) 코드베이스에서 LED 제어 시스템을 분석하는 역할이다. 다음을 조사해서 구조화된 보고서를 작성해라:\n\n1. LED GPIO 제어의 핵심 진입점 — LED 값을 실제 GPIO에 쓰는 최하위 함수 (grep 'GPIO'·'DIO'·'led_write'·'LedOutput' 등)\n2. LedOutput.c 전체 구조 — LED 상태 → GPIO 출력 경로, 어느 시점에 GPIO가 실제로 구동되는지\n3. 기존에 LED를 일시 억제하는 메커니즘이 있는지 (bool 플래그·enable/disable 함수·override 패턴 grep)\n4. tdc_led*.h/.c 파일 목록 및 역할 — 특히 LED enable/disable 관련 인터페이스\n5. LED 상태 머신(FSM) 개요 — 상태 전이 중 GPIO OFF를 보장하는 기존 패턴 (예: s_tdc_burst_pending 등)\n6. LED GPIO를 OFF로 강제 유지하기 위한 가장 적합한 삽입 지점 (최소 침습 원칙)\n\n결과는 다음 형식으로 반환:\n- 각 항목별 코드 발췌 (파일경로:라인번호 포함)\n- LED OFF 유지 플래그를 추가하기 최적인 레이어·함수 후보 (1~3개)\n- 기존 패턴과 일관성을 유지하기 위한 구현 주의사항"
+}
