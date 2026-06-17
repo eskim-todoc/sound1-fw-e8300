@@ -118,9 +118,8 @@ void snd_charger_set_state(EN__SND_CHARGER_STATE state)
     {
         case EN__SND_CHARGER_STATE_CONNECTED:
         {
-            // 기존 방식에서, USB 케이블 연결에 대한 것만 연결 상태로 설정한다.
             cfx_cm3_sharedMemoryAll.chargerState.chargerConnectorPluggedIn = df_Connected;
-            cfx_cm3_sharedMemoryAll.chargerState.carryingCasePluggedIn     = df_Disconnected;
+            cfx_cm3_sharedMemoryAll.chargerState.carryingCasePluggedIn     = df_Connected;
             /* carryingCaseCoverOpen: BLE 0x34 data[2] 수신값 유지 — tdc_charger_set_cradle_cover_state()가 관리 */
         }
         break;
