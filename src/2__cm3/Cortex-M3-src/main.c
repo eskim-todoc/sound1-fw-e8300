@@ -734,6 +734,13 @@ int func_normal(void)
             }
         }
 
+        /* 크래들 뚜껑 닫힘 첫 감지 → 약 절전 루프 (ISD 연결 중이면 차단) */
+        if (systemState.cradleLidClosed && !isd_state.conneded_ISD)
+        {
+            func_cradle_lid_closed_loop();
+            /* 도달 불가 — 루프 내 SYS_WATCHDOG_RESET()으로 재부팅 */
+        }
+
         if (systemState.systemOff == true)
         {
             /* 절전 모드 진입 가드 ? 매핑 / 페어링 / OTA 진행 중에는 보류한다.
@@ -793,6 +800,61 @@ int func_normal(void)
  * 주기 변경 시 PRESCALE / TIMEOUT_VALUE 도 재계산 필요 */
 #define ULP_TIMER_PRESCALE      TIMER_PRESCALE_128
 #define ULP_TIMER_TIMEOUT_VALUE 62
+
+static void func_cradle_lid_closed_loop(void)
+{
+    ci_printi("[CRADLE] ENTERING LIGHT SLEEP MODE\r\n");
+
+    SYS_WATCHDOG_REFRESH();
+
+    /* 1. FPGA 리셋 */
+    if (write_FPGA_reset())
+    {
+        ci_printi("[CRADLE] FPGA SW RESET OK\r\n");
+    }
+
+    /* 2. nRF 리셋/끄기 (시퀀스 유지, 실효 없음) */
+    ResetNRF();
+    NRF_Off_Command();
+
+    /* 3. QCC_CTRL = 0 (충전기 연결 시 QCC는 절전 미진입, SPI 패킷 수신 유지) */
+    snd_qcc_set_mode(SND_QCC_MODE_SHUTDOWN);
+
+    /* 4. FPGA 슬립 */
+    Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_FPGA_SLEEP);
+
+    /* 5. PMIC 끄기 신호 (1.5세대에서 실질 효과 미미, 시퀀스 유지) */
+    OnOff_3V_PMIC_CM3_to_CFX(false);
+
+    /* 6. LED 끄기 */
+    turnOffLED();
+
+    /* ※ CFX 유지: enter_ULP_mode 신호 보내지 않음 */
+
+    ci_printi("[CRADLE] LIGHT SLEEP ACTIVE. WAITING FOR LID OPEN PACKET...\r\n");
+
+    /* 약 절전 루프 — BLE 패킷 수신으로 뚜껑 열림 감지 */
+    ST__ISD_STATUS dummy_isd = {en__isdStatus_NA, false};
+
+    while (1)
+    {
+        SYS_WATCHDOG_REFRESH();
+
+        /* BLE 통신: 충전 중 QCC는 SPI 패킷 계속 수신 가능 */
+        (void)bleCommunication(dummy_isd);
+
+        /* 뚜껑 열림 패킷 감지 (data[2]=1 또는 else → setter가 df_Connected으로 갱신) */
+        if (tdc_cradle_get_cover_state() == df_Connected)
+        {
+            ci_printi("[CRADLE] LID OPENED PACKET RECEIVED - WATCHDOG RESET FOR REBOOT\r\n");
+            delay_ms(20);  /* 로그 드레인 */
+            SYS_WATCHDOG_RESET();
+        }
+
+        /* ULP가 아닌 normal 모드 — 딜레이 없이 인터럽트 기반 iteration */
+        SYS_WAIT_FOR_INTERRUPT;
+    }
+}
 
 int func_sleep(void)
 {
