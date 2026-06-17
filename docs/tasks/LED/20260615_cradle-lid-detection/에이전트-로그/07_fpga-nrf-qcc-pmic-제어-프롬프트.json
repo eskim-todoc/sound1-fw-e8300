@@ -1,0 +1,8 @@
+{
+  "agent_id": "07",
+  "persona": "FPGA/nRF/QCC/PMIC 제어 함수 분석가",
+  "stage": "분석",
+  "purpose": "write_FPGA_reset(), ResetNRF(), NRF_Off_Command(), snd_qcc_set_mode(), Sys_GPIO_Set_Low(FPGA_SLEEP), OnOff_3V_PMIC_CM3_to_CFX()의 구현 및 딜레이/사이드이펙트 파악",
+  "target_repo": "/mnt/e/Claude/projects/Sound1",
+  "prompt": "Sound1 펌웨어(2__cm3) 코드베이스에서 FPGA/nRF/QCC/PMIC 제어 함수들을 분석하라. 리포지토리 루트: /mnt/e/Claude/projects/Sound1/src/2__cm3\n\n다음을 조사해서 구조화된 보고서를 작성해라:\n\n1. write_FPGA_reset() — 파일·라인·전체 구현, 블로킹 여부, 딜레이\n2. ResetNRF() — 파일·라인·전체 구현, 블로킹 여부, 딜레이\n3. NRF_Off_Command() — 파일·라인·전체 구현, 블로킹 여부, 딜레이\n4. snd_qcc_set_mode(SND_QCC_MODE_SHUTDOWN) — 파일·라인·전체 구현, 내부 딜레이(이전 분석에서 2.2초 딜레이 존재 가능성 확인)\n5. DIO_PIN_INDEX_for_FPGA_SLEEP — 정의 파일·값\n6. OnOff_3V_PMIC_CM3_to_CFX(bool) — 파일·라인·전체 구현, 3.3V/1.2V 제어 경로\n7. 각 함수를 호출하면 안전한 최소 딜레이 — 다음 함수 호출 전 대기 시간 추정\n8. CFX 관련 전원 제어 함수가 따로 있다면 (OnOff_3V_PMIC_CM3_to_CFX false 시 CFX도 꺼지는지 확인)\n\n결과 형식:\n- 각 함수 파일 절대경로:라인번호 + 핵심 구현 발췌\n- 약 절전 진입 시퀀스에서 안전한 호출 순서와 필요 딜레이 권고\n- CFX 전원이 OnOff_3V_PMIC_CM3_to_CFX와 독립적인지 여부\n- 응답은 한국어로"
+}

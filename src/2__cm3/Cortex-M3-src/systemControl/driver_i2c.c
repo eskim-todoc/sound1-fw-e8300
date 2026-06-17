@@ -152,9 +152,11 @@ void i2c_set_master_prescale(uint32_t prescale_mask)
     }
 
     // MASTER_PRESCALE 필드만 교체.
+    enableI2cInterface(false);
     uint32_t cfg = I2C0->CFG;
     cfg = (cfg & ~I2C_CFG_MASTER_PRESCALE_Mask) | prescale_mask;
     I2C0->CFG = cfg;
+    enableI2cInterface(true);
 }
 
 #ifdef CM3_I2c_using_ISR

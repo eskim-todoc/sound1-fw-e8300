@@ -1,0 +1,8 @@
+{
+  "agent_id": "01",
+  "persona": "BLE 패킷 분석가",
+  "stage": "분석",
+  "purpose": "ble_communication.c 119라인의 EN__SND_BT_CMD_SYSTEM_INFO_POWER 블록 전체 분석, bleSettingPacket 구조체 및 data[] 접근 방식 파악",
+  "target_repo": "/mnt/e/Claude/projects/Sound1",
+  "prompt": "Sound1 펌웨어(2__cm3) 코드베이스에서 BLE 패킷 처리 관련 코드를 분석하는 역할이다. 다음을 조사해서 구조화된 보고서를 작성해라:\n\n1. EN__SND_BT_CMD_SYSTEM_INFO_POWER enum 정의 위치·값 확인 (grep으로 전수 탐색)\n2. ble_communication.c 119라인 주변 EN__SND_BT_CMD_SYSTEM_INFO_POWER else if 블록 전체 코드 (현재 data[] 처리 현황)\n3. bleSettingPacket 구조체 정의 — data[] 필드 타입·크기·인덱스 의미\n4. 동일 패킷 내 data[0], data[1]은 이미 무엇을 처리하고 있는지 (data[2] 추가 위한 맥락)\n5. SYSTEM_INFO_POWER 블록에서 현재 어떤 함수를 호출하는지 (charger 상태 처리 흐름)\n6. EN__SND_CHARGER_STATE_CONNECTED를 포함한 charger state enum 전체 정의\n\n결과는 다음 형식으로 반환:\n- 각 항목별 코드 발췌 (파일경로:라인번호 포함)\n- 핵심 발견사항 3~5줄 요약\n- data[2] 추가 시 고려해야 할 기존 코드 제약사항"
+}

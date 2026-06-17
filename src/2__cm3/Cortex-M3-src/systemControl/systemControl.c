@@ -28,7 +28,7 @@
 
 #include <ci_printf.h>
 
-ST__SYSTEM_STATE systemStatus = {en__LED_NA, false, false, false, false, false};
+ST__SYSTEM_STATE systemStatus = {en__LED_NA, false, false, false, false, false, false};
 
 #define LED_OnTime_afterCoverClosed 4501
 
@@ -130,7 +130,8 @@ ST__SYSTEM_STATE systemControl(EN__LED_PATTERN   current_led_pattern,  //
     static int PowerOn_StartCounter                = 0;
     static int PowerOff_StartCounter               = 0;
     static int normalModeCounter                   = 0;
-    static int CounterAfterCoverClosed             = 0;
+    static int  CounterAfterCoverClosed             = 0;
+    static bool s_tdc_cradle_cover_closed_edge      = false;
     static int ISD_Disconnection_counter           = Df_Disconnection_BLE_Time_ms;
     static int lowBatteryIndicatorCounter          = 0;
     static int prev_batteryChargerConnectionStatus = df_Defalut;
@@ -150,7 +151,7 @@ ST__SYSTEM_STATE systemControl(EN__LED_PATTERN   current_led_pattern,  //
 #ifdef ENABLE_UI_CMD
         if (!tdc_ui_command_is_led_override(LED_SRC_ERROR))
 #endif
-        led_request(LED_SRC_ERROR, LED_ST_NONE);
+            led_request(LED_SRC_ERROR, LED_ST_NONE);
 
         // 충전기가 꼽히면 하드웨어적으로 리셋이 된다. 따라서 가장 먼저 여기로 들어오게 된다.
         if (chargerState.chargerConnectorPluggedIn == df_Defalut)
@@ -172,24 +173,19 @@ ST__SYSTEM_STATE systemControl(EN__LED_PATTERN   current_led_pattern,  //
             {
                 if (chargerState.carryingCaseCoverOpen == df_Connected)
                 {
-                    CounterAfterCoverClosed = 0;
+                    CounterAfterCoverClosed        = 0;
+                    s_tdc_cradle_cover_closed_edge = false;  /* 뚜껑 열림 → 엣지 플래그 리셋 */
                     /* 충전 중 LED: 배터리 레벨 판정은 Arbiter가 처리 (led_request 불필요) */
                 }
                 else
                 {
-                    if (CounterAfterCoverClosed == LED_OnTime_afterCoverClosed)
+                    if (!s_tdc_cradle_cover_closed_edge)
                     {
-                        /* 커버 닫힌 후 일정 시간 지나면 LED OFF */
+                        s_tdc_cradle_cover_closed_edge = true;
+                        CounterAfterCoverClosed        = 0;
+                        systemStatus.cradleLidClosed   = true;
+                        ci_printi("[SYSTEM] CRADLE LID CLOSED FIRST DETECT\r\n");
                     }
-                    else if (CounterAfterCoverClosed > LED_OnTime_afterCoverClosed)
-                    {
-                        CounterAfterCoverClosed = 0;
-                        systemStatus.systemOff  = true;
-                        CounterAfterCoverClosed = 0;
-
-                        ci_printi("[SYSTEM] GO TO SYSTEM OFF \r\n");
-                    }
-                    CounterAfterCoverClosed++;
                 }
             }
             else  // 충전 케이스가 연결되지 않고 자극기에 직접 충전기가 꼽힌 경우.
@@ -198,6 +194,9 @@ ST__SYSTEM_STATE systemControl(EN__LED_PATTERN   current_led_pattern,  //
                 /* 충전 중 LED: 배터리 레벨 판정은 Arbiter가 처리 */
             }
 
+#if TDC_DBG_LONG_TOUCH_IGNORE_LED
+            if (powerButtonPushed) { led_request(LED_SRC_DBG, LED_ST_DBG_LONG_TOUCH_IGNORE); }
+#endif
             StartFlag = false;
         }
         else if (chargerState.chargerConnectorPluggedIn == df_Disconnected)  // 충전기가 연결되지 않은 상태.
@@ -235,15 +234,23 @@ ST__SYSTEM_STATE systemControl(EN__LED_PATTERN   current_led_pattern,  //
                         // 매핑이 연결되어있으면 전원 버튼은 무시한다.
                         if (mappingConnected)
                         {
+#if TDC_DBG_LONG_TOUCH_IGNORE_LED
+                            if (powerButtonPushed) { led_request(LED_SRC_DBG, LED_ST_DBG_LONG_TOUCH_IGNORE); }
+#endif
                             powerButtonPushed = false;
                         }
                         else if (ISD_Disconnection_counter < 300)
                         {
+#if TDC_DBG_LONG_TOUCH_IGNORE_LED
+                            if (powerButtonPushed) { led_request(LED_SRC_DBG, LED_ST_DBG_LONG_TOUCH_IGNORE); }
+#endif
                             powerButtonPushed = false;
                         }
 
-                        // 배터리 방전 상태 확인
-                        if (batteryLevel == en__batteryPower_0per)
+                        // 배터리 방전 상태 확인 (전기기계적안정성 시험을 위해 저전력 범위 변경)
+                        if ((batteryLevel == en__batteryPower_0per)         // 원래 0per만 저전력 인데
+                            || (batteryLevel == en__batteryPower_0btw20)    // 0~20per 랑
+                            || (batteryLevel == en__batteryPower_20btw40))  // 20~40per 도 저전력으로 처리 즉, 40per 미만이면 저전력
                         {
                             veryLowBattery = true;
                         }
@@ -376,22 +383,22 @@ ST__SYSTEM_STATE systemControl(EN__LED_PATTERN   current_led_pattern,  //
         if (!tdc_ui_command_is_led_override(LED_SRC_ERROR))
         {
 #endif
-        led_request(LED_SRC_ERROR, LED_ST_ERROR_MCU);
-        systemStatus.Led_Pattern = en__LED_MCU_Error;
+            led_request(LED_SRC_ERROR, LED_ST_ERROR_MCU);
+            systemStatus.Led_Pattern = en__LED_MCU_Error;
 
-        if (mcuErrorCode.dataProcessingErrorFlag != en__NA)
-        {
-            led_request(LED_SRC_ERROR, LED_ST_ERROR_MAP);
-            systemStatus.Led_Pattern = en__LED_Map_Error;
-        }
-        if (mcuErrorCode.accelerometerErrorFlag != en__NA)
-        {
-            led_request(LED_SRC_ERROR, LED_ST_ERROR_ACCEL);
-        }
-        if (mcuErrorCode.FPGA_CommunicationErrorFlag != en__NA)
-        {
-            led_request(LED_SRC_ERROR, LED_ST_ERROR_FPGA);
-        }
+            if (mcuErrorCode.dataProcessingErrorFlag != en__NA)
+            {
+                led_request(LED_SRC_ERROR, LED_ST_ERROR_MAP);
+                systemStatus.Led_Pattern = en__LED_Map_Error;
+            }
+            if (mcuErrorCode.accelerometerErrorFlag != en__NA)
+            {
+                led_request(LED_SRC_ERROR, LED_ST_ERROR_ACCEL);
+            }
+            if (mcuErrorCode.FPGA_CommunicationErrorFlag != en__NA)
+            {
+                led_request(LED_SRC_ERROR, LED_ST_ERROR_FPGA);
+            }
 #ifdef ENABLE_UI_CMD
         }
 #endif

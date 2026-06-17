@@ -1,0 +1,8 @@
+{
+  "agent_id": "06",
+  "persona": "func_sleep() 구현 참조 분석가",
+  "stage": "분석",
+  "purpose": "func_sleep() 전체 구현 코드, 슬립 진입 시 FPGA/nRF/QCC/PMIC 종료 순서, CFX 처리 방식, 관련 함수 시그니처 파악",
+  "target_repo": "/mnt/e/Claude/projects/Sound1",
+  "prompt": "Sound1 펌웨어(2__cm3) 코드베이스에서 func_sleep() 및 관련 저전력 진입 함수들을 분석하라. 리포지토리 루트: /mnt/e/Claude/projects/Sound1/src/2__cm3\n\n다음을 조사해서 구조화된 보고서를 작성해라:\n\n1. func_sleep() 함수 전체 코드 (main.c 또는 다른 파일에 있는지 찾기) — 모든 라인\n2. func_sleep() 내 실행 순서:\n   - write_FPGA_reset() 호출 여부·위치\n   - ResetNRF(), NRF_Off_Command() 호출 여부·위치\n   - snd_qcc_set_mode(SND_QCC_MODE_SHUTDOWN) 딜레이 포함 여부\n   - Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_FPGA_SLEEP) 위치\n   - OnOff_3V_PMIC_CM3_to_CFX(false) 위치\n   - turnOffLED() 또는 led_force_fade_off() 위치\n   - CFX 전원 처리 방식\n3. func_lowbatt_sleep() 등 유사 함수가 있다면 그것도 분석\n4. 각 함수 시그니처: write_FPGA_reset(), ResetNRF(), NRF_Off_Command(), OnOff_3V_PMIC_CM3_to_CFX(), snd_qcc_set_mode()\n5. func_sleep() 직전에 시스템 상태를 준비하는 코드 (워치독 리프레시, ISR 비활성 등)\n6. func_sleep() 이후 main 루프 흐름 (Sys_WFI() 또는 저전력 대기)\n\n결과 형식:\n- func_sleep() 전체 코드 그대로 발췌\n- 각 함수 시그니처 + 파일 절대경로:라인번호\n- 약 절전 모드(CFX 제외 + BLE 폴링 루프)와의 차이점\n- 응답은 한국어로"
+}

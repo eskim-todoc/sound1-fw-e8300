@@ -84,6 +84,13 @@ static volatile uint16_t             s_fade_off_max   = 0;  /* 30 (turnOff) / 40
  * 분기 결정에 사용. */
 static volatile bool s_led_isr_active = false;
 
+static volatile int s_isd_conn = false;
+
+void led_set_isd_conn_state(int state)
+{
+    s_isd_conn = state;
+}
+
 /* arbiter ISR 이 정상 구동 가능한 상태인가? (활성 + 일시정지 아님) */
 static inline bool led_arbiter_can_run(void)
 {
@@ -205,7 +212,7 @@ static uint8_t perceived_to_pwm(uint8_t perceived)
 #define TDC_FW_VARIANT_FACTORY_RESET   1
 
 #ifndef TDC_FW_VARIANT
-#define TDC_FW_VARIANT  TDC_FW_VARIANT_FACTORY_RESET   /* 디폴트: 운용 (APP) */
+#define TDC_FW_VARIANT  TDC_FW_VARIANT_APP   /* 디폴트: 운용 (APP) */
 #endif
 
 #if (TDC_FW_VARIANT == TDC_FW_VARIANT_FACTORY_RESET)
@@ -254,6 +261,9 @@ static const led_pattern_desc_t k_led_patterns[LED_ST__MAX] = {
     /* 게이트 — ON 180ms · OFF 180ms, fade 30 · peak 120 · fade 30 (LED_DIMMING_FADE_MAX_MS) */
     [LED_ST_POWER_ON]       = { TDC_FW_LED_POWER_ON_COLOR, 180, 360,  4 },   // ON 180ms / OFF 180ms × 4회 버스트 (App=SKYBLUE / FactRst=WHITE)
     [LED_ST_POWER_OFF]      = { en__LED_BLUE,    180, 360,  4 },   // BLUE    ON 180ms / OFF 180ms × 4회 버스트
+
+    /* [DBG] 롱터치 무시 케이스 피드백 */
+    [LED_ST_DBG_LONG_TOUCH_IGNORE] = { en__LED_PURPLE, 180, 360, 3 },  // 보라 ON 180ms / OFF 180ms × 3회
 };
 
 /* ========================================================================
@@ -292,6 +302,10 @@ static int led_prio_of(led_state_t st)
         case LED_ST_BATT_MID:       return 20;
 
         case LED_ST_IDLE:           return 10;
+
+#if TDC_DBG_LONG_TOUCH_IGNORE_LED
+        case LED_ST_DBG_LONG_TOUCH_IGNORE: return 76;  /* [DBG] MAPPING(75)보다 약간 높음 */
+#endif
 
         default:                    return 0;
     }
@@ -648,6 +662,10 @@ static void led_engine_run(led_state_t st, bool reset)
                     /* 게이트 자가 해제: 기존 관례 유지 */
                     updateLED_OutputPattern(en__LED_NA);
                     s_req[LED_SRC_POWER]       = LED_ST_NONE;
+#if TDC_DBG_LONG_TOUCH_IGNORE_LED
+                    if (st == LED_ST_DBG_LONG_TOUCH_IGNORE)
+                        s_req[LED_SRC_DBG] = LED_ST_NONE;  /* DBG burst 자가 해제 */
+#endif
                     s_tdc_burst_pending        = false;
                     burst_done_cnt             = 0;
                 }
@@ -688,7 +706,10 @@ static led_state_t compute_best_state(void)
         if (user_off && !led_is_error(st)
             && st != LED_ST_POWER_ON && st != LED_ST_POWER_OFF)
         {
+            if (s_isd_conn == 1)
+            {
             continue;
+            }
         }
 
         if (p > max_p)

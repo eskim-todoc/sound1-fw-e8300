@@ -62,14 +62,21 @@ void init_txPowerIC(bool isdControlStateChagedFlag)
 
         case 10:  // 전압 제어 범위 중 최소 값으로 시작.
         {
+            static int power_reset_err_cnt = 0;
+
             change_i2c_is_busy();
 
             // Pwoer IC의 전원이 켜져 있어야 한다.
             if (!Reset_REN_ISL9122())
             {
                 // update_CM3Status_toCFX(flowControlCounter);
-                ci_printe("[LINK] POWER PMIC RESET FAILED \r\n");
-                errorCodeUpdate(en__RF_PowerIC_ERROR, en__NON_RESETTABLE, __LINE__);
+                ci_printe("[PMIC] c10: PMIC reset failed\r\n");
+                TDC_ISD_DEBOUNCE_FAIL(power_reset_err_cnt, "[PMIC]", "init_txPwr c10", "verify",
+                                      en__RF_PowerIC_ERROR, en__NON_RESETTABLE);
+            }
+            else
+            {
+                power_reset_err_cnt = 0;
             }
         }
         break;
@@ -125,7 +132,7 @@ void init_txPowerIC(bool isdControlStateChagedFlag)
             change_isd_state(en__isdStatus_PowerIC_OK);
             clearErrorFlag(en__RF_PowerIC_ERROR);
 
-            ci_printd("[LINK] POWER PMIC INIT SUCCESS \r\n");
+            ci_printd("[PMIC] INIT SUCCESS\r\n");
         }
         break;
     }
@@ -167,25 +174,44 @@ void init_FPGA(bool isdControlStateChagedFlag)
             {
                 if (read_FPGA_version(&FPGA_version))
                 {
-                    ci_printv("[FPGA] VERSION : %u.%u \r\n", ((FPGA_version >> 4) & 0x0F), (FPGA_version & 0x0F));
+                    ci_printv("[FPGA] VERSION : %u.%u\r\n", ((FPGA_version >> 4) & 0x0F), (FPGA_version & 0x0F));
 
                     // FPGA 상태를 읽어 본다.
                     if (read_FPGA_systemResgister_1st(&r_FPGA_registerValue))
                     {
+                        static int no_reset_value_error_cnt = 0;
+
                         comparing = r_FPGA_registerValue & FPGA_Status_FlagIndex;
                         if (comparing != FPGA_Status__Reset_value)
                         {
                             // FPGA 초기화
                             change_isd_state(en__isdStatus_PowerIC_OK);
-                            errorCodeUpdate(en__FPGA_COMMUNICATION_ERROR, en__FPGA_ResetValueError, __LINE__);
+                            TDC_ISD_DEBOUNCE_FAIL(no_reset_value_error_cnt, "[FPGA]", "init_FPGA c11", "verify",
+                                                  en__FPGA_COMMUNICATION_ERROR, en__FPGA_ResetValueError);
 
-                            ci_printe("[FPGA] NOT INITIALIZED AFTER RESET, SYS_STAT1=0x%02X, MASKER=0x%02X, RESULT=0x%02X \r\n",  //
-                                      r_FPGA_registerValue,
-                                      FPGA_Status_FlagIndex,
-                                      comparing);
+                            ci_printe("[FPGA] c11: not initialized after reset, SYS_STAT1=0x%02X MASKER=0x%02X RESULT=0x%02X\r\n",
+                                      r_FPGA_registerValue, FPGA_Status_FlagIndex, comparing);
+                        }
+                        else
+                        {
+                            // 정상 구간이라 출력문 없음
+                            clearErrorFlag(en__FPGA_COMMUNICATION_ERROR);
+                            no_reset_value_error_cnt = 0;
                         }
                     }
+                    else
+                    {
+                        ci_printw("[FPGA] c11: systemReg1 read comm fail\r\n");
+                    }
                 }
+                else
+                {
+                    ci_printw("[FPGA] c11: version read comm fail\r\n");
+                }
+            }
+            else
+            {
+                ci_printw("[FPGA] c11: reset write comm fail\r\n");
             }
         }
         break;
@@ -201,6 +227,8 @@ void init_FPGA(bool isdControlStateChagedFlag)
             // FPGA 상태를 읽어 본다.
             if (read_FPGA_systemResgister_1st(&r_FPGA_registerValue))
             {
+                static int no_disabled_rf_error_cnt = 0;
+
                 comparing = r_FPGA_registerValue & FPGA_Status_FlagIndex;
                 if (comparing == FPGA_Status__OK_DisabledRF_value)
                 {
@@ -211,19 +239,24 @@ void init_FPGA(bool isdControlStateChagedFlag)
                     change_isd_state(en__isdStatus_FPGA_Ok);
                     clearErrorFlag(en__FPGA_CONFIGUARATION_ERROR);
 
-                    ci_printd("[FPGA] INIT SUCCESS \r\n");
+                    ci_printd("[FPGA] INIT SUCCESS\r\n");
+
+                    no_disabled_rf_error_cnt = 0;
                 }
                 else
                 {
                     // FPGA 초기화
                     change_isd_state(en__isdStatus_PowerIC_OK);
-                    errorCodeUpdate(en__FPGA_CONFIGUARATION_ERROR, en_RegisterConfigError_byPCM, __LINE__);
+                    TDC_ISD_DEBOUNCE_FAIL(no_disabled_rf_error_cnt, "[FPGA]", "init_FPGA c20", "verify",
+                                          en__FPGA_CONFIGUARATION_ERROR, en_RegisterConfigError_byPCM);
 
-                    ci_printe("[FPGA] INIT FAILED, SYS_STAT1=0x%02X, MASKER=0x%02X, RESULT=0x%02X \r\n",  //
-                              r_FPGA_registerValue,
-                              FPGA_Status_FlagIndex,
-                              comparing);
+                    ci_printe("[FPGA] c20: INIT FAILED, SYS_STAT1=0x%02X MASKER=0x%02X RESULT=0x%02X\r\n",
+                              r_FPGA_registerValue, FPGA_Status_FlagIndex, comparing);
                 }
+            }
+            else
+            {
+                ci_printe("[FPGA] c20: systemReg1 read comm fail\r\n");
             }
         }
         break;
@@ -271,7 +304,7 @@ void init_ISD(bool isdControlStateChagedFlag)
             {
                 // FPGA 에러 발생, FPGA 초기화
                 change_isd_state(en__isdStatus_PowerIC_OK);
-                ci_printe("[FPGA] ERROR OCCURRED \r\n");
+                ci_printe("[FPGA] c0: PCM error detected\r\n");
             }
             else
             {
@@ -289,6 +322,7 @@ void init_ISD(bool isdControlStateChagedFlag)
         // 다시 10Mhz 캐리어 클럭을 켬
         case 200:
         {
+            static int outer_rf_tx_error_cnt = 0;
             // PCM 출력 모드 변경
             changePcmOutputMode(PcmBitStream_Mode_NopStandby);
 
@@ -296,23 +330,38 @@ void init_ISD(bool isdControlStateChagedFlag)
 
             if (!is_RF_tx_eanble())
             {
+                outer_rf_tx_error_cnt = 0;
                 // ci_printv("[FPGA] SUCCESS TO DISABLE XFR(RF) THEN, TRY TO ENABLE XFR(RF) \r\n");
 
                 if (write_FPGA_enable_RF_tx())
                 {
+                    static int inner_rf_tx_error_cnt = 0;
+
                     if (!is_RF_tx_eanble())
                     {
                         change_isd_state(en__isdStatus_PowerIC_OK);  // FPGA 초기화
-                        errorCodeUpdate(en__FPGA_CONFIGUARATION_ERROR, en_RF_Tx_enableError, __LINE__);
-                        ci_printe("[FPGA] FAILED TO ENABLE XFR(RF) \r\n");
+                        TDC_ISD_DEBOUNCE_FAIL(inner_rf_tx_error_cnt, "[FPGA]", "init_ISD c200EN", "verify",
+                                              en__FPGA_CONFIGUARATION_ERROR, en_RF_Tx_enableError);
+                        ci_printe("[FPGA] c200: RF_tx not enabled after write\r\n");
                     }
+                    else
+                    {
+                        // 정상 구간
+                        clearErrorFlag(en__FPGA_CONFIGUARATION_ERROR);
+                        inner_rf_tx_error_cnt = 0;
+                    }
+                }
+                else
+                {
+                    ci_printe("[FPGA] c200: RF_tx enable write comm fail\r\n");
                 }
             }
             else
             {
                 change_isd_state(en__isdStatus_PowerIC_OK);  // FPGA 초기화
-                errorCodeUpdate(en__FPGA_CONFIGUARATION_ERROR, en_RF_Tx_enableError, __LINE__);
-                ci_printe("[FPGA] FAILED TO DISABLE XFR(RF) \r\n");
+                TDC_ISD_DEBOUNCE_FAIL(outer_rf_tx_error_cnt, "[FPGA]", "init_ISD c200DIS", "verify",
+                                      en__FPGA_CONFIGUARATION_ERROR, en_RF_Tx_enableError);
+                ci_printe("[FPGA] c200: RF_tx still enabled (expected off)\r\n");
             }
         }
         break;
@@ -338,12 +387,20 @@ void init_ISD(bool isdControlStateChagedFlag)
         // FPGA의 펄스 폭이 최소로 설정되었는지 검증
         case 205:
         {
+            static int pulse_width_error_cnt = 0;
+            static int tx_power_err_cnt      = 0;
+
             if (read_FPGA_PulseWidth(&r_FPGA_registerValue))
             {
+                clearErrorFlag(en__FPGA_COMMUNICATION_ERROR);
+
                 if (r_FPGA_registerValue == FPGA_pulsePhaseWidth_minimum)
                 {
+                    pulse_width_error_cnt = 0;
                     // 펄스 폭 설정이 정상적으로 완료되었기 때문에 펄스폭 값을 업데이트한다.
                     upadte_fpga_pulsePhaseWidth_written_Value(r_FPGA_registerValue);
+
+                    clearErrorFlag(en__FPGA_CONFIGUARATION_ERROR);
 
                     if (write_change_TxPowerLevel(MaxVoltageControlValue))
                     {
@@ -352,22 +409,42 @@ void init_ISD(bool isdControlStateChagedFlag)
                             if (RF_TxPowerValue != MaxVoltageControlValue)
                             {
                                 // R_TxPower 설정 실패, powerIC 초기화
-                                errorCodeUpdate(en__RF_PowerIC_ERROR, en__writtenReadVlaueIsNotSame, __LINE__);
+                                TDC_ISD_DEBOUNCE_FAIL(tx_power_err_cnt, "[PMIC]", "init_ISD c205pwr", "verify",
+                                                      en__RF_PowerIC_ERROR, en__writtenReadVlaueIsNotSame);
                                 change_isd_state(en__isdStatus_PowerIC_Reset);
 
-                                ci_printe("[FPGA] FAILED TO SET RF TX POWER TO MAX POWER \r\n");
+                                ci_printe("[PMIC] c205: TxPower != MaxVoltage after write\r\n");
+                            }
+                            else
+                            {
+                                // 정상 구간
+                                clearErrorFlag(en__RF_PowerIC_ERROR);
+                                tx_power_err_cnt = 0;
                             }
                         }
+                        else
+                        {
+                            ci_printe("[PMIC] c205: TxPowerLevel read comm fail\r\n");
+                        }
+                    }
+                    else
+                    {
+                        ci_printe("[PMIC] c205: TxPowerLevel write comm fail\r\n");
                     }
                 }
                 else
                 {
                     // 펄스폭 설정 실패 , FPGA 초기화
-                    errorCodeUpdate(en__FPGA_CONFIGUARATION_ERROR, en_PulseWidthDifferent, __LINE__);
+                    TDC_ISD_DEBOUNCE_FAIL(pulse_width_error_cnt, "[FPGA]", "init_ISD c205pls", "verify",
+                                          en__FPGA_CONFIGUARATION_ERROR, en_PulseWidthDifferent);
                     change_isd_state(en__isdStatus_PowerIC_OK);
 
-                    ci_printe("[FPGA] FAILED TO SET PULSE PHASE WIDTH TO MINIMUM \r\n");
+                    ci_printe("[FPGA] c205: pulse width != minimum\r\n");
                 }
+            }
+            else
+            {
+                ci_printe("[FPGA] c205: pulse width read comm fail\r\n");
             }
         }
         break;
@@ -394,10 +471,17 @@ void init_ISD(bool isdControlStateChagedFlag)
         // FPGA의 백텔 레지스터가 8비트 모드로 설정되었는지 확인 후 백텔 FIFO 클리어 진행
         case 210:
         {
+            static int fifo_clear_err_cnt  = 0;
+            static int backtel_cfg_err_cnt = 0;
+
             if (read_FPGA_backtelConfig(&r_FPGA_registerValue))
             {
+                clearErrorFlag(en__FPGA_COMMUNICATION_ERROR);
+
                 if (temporal_registerValue == r_FPGA_registerValue)
                 {
+                    backtel_cfg_err_cnt = 0;
+
                     // 위에서, PCM으로 설정한 FPGA 백텔 레지스터가 원하는 값으로 쓰여졌는지 확인 후 업데이트
                     upadte_fpga_backtelConfig_written_Value(temporal_registerValue);
 
@@ -408,20 +492,36 @@ void init_ISD(bool isdControlStateChagedFlag)
                         {
                             if (!FPGA_FIFO_empty)
                             {
-                                errorCodeUpdate(en__FPGA_CONFIGUARATION_ERROR, en_FIFO_NotCleared, __LINE__);
+                                TDC_ISD_DEBOUNCE_FAIL(fifo_clear_err_cnt, "[FPGA]", "init_ISD c210fifo", "verify",
+                                                      en__FPGA_CONFIGUARATION_ERROR, en_FIFO_NotCleared);
                                 change_isd_state(en__isdStatus_PowerIC_OK);  //
-                                ci_printe("[FPGA] FIFO IS NOT CLEARED \r\n");
+                                ci_printe("[FPGA] c210: FIFO not empty after clear\r\n");
+                            }
+                            else
+                            {
+                                // 정상 구간
+                                clearErrorFlag(en__FPGA_CONFIGUARATION_ERROR);
+                                fifo_clear_err_cnt = 0;
                             }
                         }
+                        else
+                        {
+                            ci_printe("[FPGA] c210: FIFO empty check comm fail\r\n");
+                        }
+                    }
+                    else
+                    {
+                        ci_printe("[FPGA] c210: FIFO clear write comm fail\r\n");
                     }
                 }
                 else
                 {
                     // 백텔 레지스터 설정 오류
-                    errorCodeUpdate(en__FPGA_CONFIGUARATION_ERROR, en_RegisterConfigError_byPCM, __LINE__);
+                    TDC_ISD_DEBOUNCE_FAIL(backtel_cfg_err_cnt, "[FPGA]", "init_ISD c210bt", "verify",
+                                          en__FPGA_CONFIGUARATION_ERROR, en_RegisterConfigError_byPCM);
                     change_isd_state(en__isdStatus_PowerIC_OK);
 
-                    ci_printe("[FPGA] BACKTEL REGISTER IS NOT CONFIGURED \r\n");
+                    ci_printe("[FPGA] c210: backtel reg mismatch\r\n");
                 }
             }
         }
@@ -530,6 +630,8 @@ void init_ISD(bool isdControlStateChagedFlag)
         // 응답이 없거나 많아도 문제인 것이므로 내부기 연결 과정 처음부터 다시 진행한다.
         case 260:
         {
+            static int backtel_cnt_err_cnt = 0;
+
             // FIFO 카운터를 읽어 본다.
             if (read_FPGA_FIFO_counter(&r_FPGA_registerValue))
             {
@@ -541,20 +643,29 @@ void init_ISD(bool isdControlStateChagedFlag)
                     clearErrorFlag(en__RF_PowerIC_ERROR);
                     clearErrorFlag(en__FPGA_CONFIGUARATION_ERROR);
                     clearErrorFlag(en__EN__ISD_ERROR);
+                    backtel_cnt_err_cnt = 0;
 
-                    ci_printd("[FPGA] SUCCESS TO GET POWER LEVEL BACKTEL FOR INITIAL CONNECTION \r\n");
+                    ci_printd("[FPGA] c260: backtel power-level response OK\r\n");
                 }
                 else
                 {
                     read_FPGA_backtelError_Flag(&r_FPGA_registerValue);
 
                     // 백텔 에러는 발생하지 않았으나 백텔이 들어 오지 않았다. -> 내부기 전송 파워 설정 부터 다시.
-                    errorCodeUpdate(en__EN__ISD_ERROR, en__BackTelCounterZero, __LINE__);
+#if 0
+                    backtel_cnt_err_cnt--;
+                    TDC_ISD_DEBOUNCE_FAIL(backtel_cnt_err_cnt, "[ISD]", "init_ISD c260bt", "verify",
+                                          en__EN__ISD_ERROR, en__BackTelCounterZero);
+#endif
                     change_isd_state(en__isdStatus_FPGA_Ok);  // RF PMIC MAX POWER 설정을 FPGA_OK 상태에서도 진행한다.
                     // change_isd_state(en__isdStatus_PowerIC_OK);
 
                     // ci_printv("[FPGA] NO POWER LEVEL BACKTEL RESPONSE FOR INITIAL CONNECTION \r\n");
                 }
+            }
+            else
+            {
+                ci_printw("[FPGA] c260: FIFO counter read comm fail\r\n");
             }
         }
         break;

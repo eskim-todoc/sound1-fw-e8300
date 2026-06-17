@@ -1,6 +1,9 @@
 #ifndef LED_OUTPUT_H__
 #define LED_OUTPUT_H__
 
+/** 롱터치 무시 케이스 보라색 LED 피드백 (디버깅용) — 0 으로 설정 시 기존 동작(무시만) 복원 */
+#define TDC_DBG_LONG_TOUCH_IGNORE_LED  0
+
 #include <stdbool.h>
 #include <stdint.h>
 
@@ -88,6 +91,9 @@ typedef enum
     LED_ST_POWER_ON,
     LED_ST_POWER_OFF,
 
+    /* [DBG] 롱터치 무시 케이스 피드백 — TDC_DBG_LONG_TOUCH_IGNORE_LED 로 제어 */
+    LED_ST_DBG_LONG_TOUCH_IGNORE, /* 보라 ON 180ms / OFF 180ms × 3회 버스트 */
+
     LED_ST__MAX
 } led_state_t;
 
@@ -99,6 +105,7 @@ typedef enum
     LED_SRC_MAPPING,
     LED_SRC_BATTERY, /* BATT_CRITICAL / BATT_MID / READY */
     LED_SRC_ISD,     /* IN_USE */
+    LED_SRC_DBG,     /* [DBG] 디버깅 전용 임시 소스 — TDC_DBG_LONG_TOUCH_IGNORE_LED */
     LED_SRC__MAX
 } led_src_t;
 
@@ -162,5 +169,7 @@ void LED_clock_error(void);
 void turnON_RedLED(void);
 void turnON_GreenLED(void);
 void turnON_BlueLED(void);
+
+void led_set_isd_conn_state(int state);
 
 #endif

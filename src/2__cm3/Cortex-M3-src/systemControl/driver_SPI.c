@@ -330,7 +330,7 @@ void init_cm3_SPI(void)
 // void writeDataToSpiTxBuff(const int source[], int dataSize)
 void writeDataToSpiTxBuff(int *source, int dataSize)
 {
-    ci_printw("[TX] ENTER empty=%d t3=%d ms\r\n", (int)isSpiTxBuffEmpty(), tdc_timer_get_t3_tick());
+    // ci_printw("[TX] ENTER empty=%d t3=%d ms\r\n", (int)isSpiTxBuffEmpty(), tdc_timer_get_t3_tick());
 
     while (1)
     {
@@ -362,7 +362,7 @@ void writeDataToSpiTxBuff(int *source, int dataSize)
 
             if (print_allowed)
             {
-                ci_printw("[TX] PRINTV-BEFORE\r\n");
+                // ci_printw("[TX] PRINTV-BEFORE\r\n");
 
                 ci_printv("[SPI TX] (LSB) 0x%02X %02X %02X %02X %02X %02X %02X %02X %02X %02X "
                           "%02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X (MSB) \r\n",
@@ -390,7 +390,7 @@ void writeDataToSpiTxBuff(int *source, int dataSize)
             }
 #endif
 
-            ci_printw("[TX] DMA-CYCLE-START\r\n");
+            // ci_printw("[TX] DMA-CYCLE-START\r\n");
 
             Sys_DMA_Mode_Enable(DMA0, DMA_DISABLE);  // DMA0 끄기
             Sys_DMA_Mode_Enable(DMA1, DMA_DISABLE);  // DMA1 끄기
@@ -407,15 +407,15 @@ void writeDataToSpiTxBuff(int *source, int dataSize)
             Sys_SPI_TransferConfig(SPI1, DRIVER_SPI_CTRL_ENABLE);
 
             enable_ReadCommandForSPI_Master();
-            ci_printw("[TX] DONE-EXIT t3=%d ms\r\n", tdc_timer_get_t3_tick());
+            // ci_printw("[TX] DONE-EXIT t3=%d ms\r\n", tdc_timer_get_t3_tick());
             break;
         }
         else
         {
-            ci_printw("[TX] WFE-ENTER t3=%d ms\r\n", tdc_timer_get_t3_tick());
+            // ci_printw("[TX] WFE-ENTER t3=%d ms\r\n", tdc_timer_get_t3_tick());
             __WFE();
-            ci_printw("[TX] WFE-WAKE t3=%d ms empty=%d\r\n",
-                      tdc_timer_get_t3_tick(), (int)isSpiTxBuffEmpty());
+            // ci_printw("[TX] WFE-WAKE t3=%d ms empty=%d\r\n",
+               //       tdc_timer_get_t3_tick(), (int)isSpiTxBuffEmpty());
         }
     }
 }

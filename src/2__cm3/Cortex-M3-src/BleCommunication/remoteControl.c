@@ -726,6 +726,7 @@ ST__REMOTECONTROL_STATE remoteControl(bool isdConnection)  // 연결 상태에 �
         p_conectedISD_remoconPasskey = read_recomcon_passkey_connected_ISD(connectedISD_num);
         remocon_passkey_Match        = true;
 
+#if 0 // IMPORTANT: 패스키 인증을 더 이상 사용하지 않는다.
         for (i = 0; i < 4; i++)
         {
             if (p_conectedISD_remoconPasskey[i] != remoteDataPacket.data[i])
@@ -734,6 +735,9 @@ ST__REMOTECONTROL_STATE remoteControl(bool isdConnection)  // 연결 상태에 �
                 break;
             }
         }
+#endif
+
+        ci_printw("[PASSKEY] ALWAYS PATH OPENED. \r\n");
 
         // 송신 데이터 준비
         // command loop-back

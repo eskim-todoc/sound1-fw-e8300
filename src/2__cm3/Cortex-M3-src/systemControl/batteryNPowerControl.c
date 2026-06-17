@@ -21,6 +21,9 @@ volatile EN__SND_BATT_STATE s_snd_batt_state   = EN__SND_BATT_STATE_RESET;
 // 충전 상태 관련
 volatile EN__SND_CHARGER_STATE s_snd_charger_state = EN__SND_BATT_STATE_RESET;
 
+// 크래들 뚜껑 상태
+static int s_tdc_cradle_cover_state = df_Defalut;
+
 EN__SND_BATT_STATE snd_batt_get_state(void)
 {
     return s_snd_batt_state;
@@ -116,10 +119,9 @@ void snd_charger_set_state(EN__SND_CHARGER_STATE state)
         case EN__SND_CHARGER_STATE_CONNECTED:
         {
             // 기존 방식에서, USB 케이블 연결에 대한 것만 연결 상태로 설정한다.
-            // NOTE: 크래들 연결 상태 및 뚜껑 열림 상태 처리 방법은 추후 논의가 필요하다.
             cfx_cm3_sharedMemoryAll.chargerState.chargerConnectorPluggedIn = df_Connected;
             cfx_cm3_sharedMemoryAll.chargerState.carryingCasePluggedIn     = df_Disconnected;
-            cfx_cm3_sharedMemoryAll.chargerState.carryingCaseCoverOpen     = df_Disconnected;
+            /* carryingCaseCoverOpen: BLE 0x34 data[2] 수신값 유지 — tdc_charger_set_cradle_cover_state()가 관리 */
         }
         break;
 
@@ -127,7 +129,7 @@ void snd_charger_set_state(EN__SND_CHARGER_STATE state)
         {
             cfx_cm3_sharedMemoryAll.chargerState.chargerConnectorPluggedIn = df_Disconnected;
             cfx_cm3_sharedMemoryAll.chargerState.carryingCasePluggedIn     = df_Disconnected;
-            cfx_cm3_sharedMemoryAll.chargerState.carryingCaseCoverOpen     = df_Disconnected;
+            /* carryingCaseCoverOpen: BLE 0x34 data[2] 수신값 유지 — tdc_charger_set_cradle_cover_state()가 관리 */
         }
         break;
 
@@ -135,10 +137,29 @@ void snd_charger_set_state(EN__SND_CHARGER_STATE state)
         {
             cfx_cm3_sharedMemoryAll.chargerState.chargerConnectorPluggedIn = df_Defalut;
             cfx_cm3_sharedMemoryAll.chargerState.carryingCasePluggedIn     = df_Defalut;
-            cfx_cm3_sharedMemoryAll.chargerState.carryingCaseCoverOpen     = df_Defalut;
+            /* carryingCaseCoverOpen: BLE 0x34 data[2] 수신값 유지 — tdc_charger_set_cradle_cover_state()가 관리 */
         }
         break;
     }
+}
+
+void tdc_charger_set_cradle_cover_state(int state)
+{
+    if (state == 2)
+    {
+        s_tdc_cradle_cover_state = df_Disconnected;  /* df_Closed == 2 */
+    }
+    else
+    {
+        s_tdc_cradle_cover_state = df_Connected;  /* 1=열림, else=열림 처리 */
+    }
+    cfx_cm3_sharedMemoryAll.chargerState.carryingCaseCoverOpen = s_tdc_cradle_cover_state;
+    ci_printd("[CRADLE] COVER STATE: %s\r\n", (s_tdc_cradle_cover_state == df_Connected) ? "OPENED" : "CLOSED");
+}
+
+int tdc_cradle_get_cover_state(void)
+{
+    return s_tdc_cradle_cover_state;
 }
 
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -309,7 +330,8 @@ int battery_percentage;
 
 int readBatteryPercentage(void)
 {
-    return battery_percentage;
+    // return battery_percentage;
+    return s_snd_batt_percent;
 }
 
 EN__BATTERY_LEVEL updateBatteryLevel(int chargingState, EN__LED_PATTERN ledPattern)

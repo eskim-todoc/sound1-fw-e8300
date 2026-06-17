@@ -17,6 +17,8 @@
 #include "processorDirective.h"
 
 #include <ci_printf.h>
+#include <tdc_touch_config.h>
+#include <tdc_drv_iqs323.h>
 
 /* ======================================================================== */
 /*  Defines                                                                 */
@@ -25,7 +27,7 @@
 #define SENTINEL      "--"
 #define SENTINEL_LEN  2
 #define MAX_LINE      128
-#define MAX_ARGC      8
+#define MAX_ARGC      12
 #define MAX_HANDLERS  32
 
 /* ======================================================================== */
@@ -692,6 +694,65 @@ static int handle_write_integrity_error(int argc, char *argv[])
     return 0;
 }
 
+#if TDC_TOUCH_RTT_TUNING
+static uint8_t parse_hex_byte(const char *s)
+{
+    return (uint8_t) strtol(s, NULL, 16);
+}
+
+static int handle_touch_tuning(int argc, char *argv[])
+{
+    if (argc < 2)
+    {
+        return -1;
+    }
+
+    if (strcmp(argv[1], "show") == 0)
+    {
+        tdc_drv_iqs323_show_tuning();
+    }
+    else if (strcmp(argv[1], "clear") == 0)
+    {
+        tdc_drv_iqs323_clear_tuning();
+    }
+    else if (strcmp(argv[1], "apply") == 0)
+    {
+        tdc_drv_iqs323_apply_tuning();
+    }
+    else if (strcmp(argv[1], "set") == 0 && argc == 9)
+    {
+        tdc_iqs323_tuning_t t;
+        t.mult_lsb   = parse_hex_byte(argv[3]);
+        t.mult_msb   = parse_hex_byte(argv[4]);
+        t.comp_lsb   = parse_hex_byte(argv[5]);
+        t.comp_msb   = parse_hex_byte(argv[6]);
+        t.threshold  = parse_hex_byte(argv[7]);
+        t.hysteresis = parse_hex_byte(argv[8]);
+        t.ati_valid  = true;
+
+        if (strcmp(argv[2], "normal") == 0)
+        {
+            tdc_drv_iqs323_set_normal_tuning(&t);
+        }
+        else if (strcmp(argv[2], "sleep") == 0)
+        {
+            tdc_drv_iqs323_set_sleep_tuning(&t);
+        }
+        else
+        {
+            output_printf("err: mode must be 'normal' or 'sleep'\r\n");
+            return -1;
+        }
+    }
+    else
+    {
+        return -1;
+    }
+
+    return 0;
+}
+#endif /* TDC_TOUCH_RTT_TUNING */
+
 /* ======================================================================== */
 /*  Registration table                                                      */
 /* ======================================================================== */
@@ -708,6 +769,9 @@ static const command_entry_t s_tdc_commands[] = {
     {"init_all_map",       handle_init_all_map,           "--init_all_map"},
     {"dump_log",           handle_dump_log,               "--dump_log"},
     {"write_integrity_err",handle_write_integrity_error,  "--write_integrity_err"},
+#if TDC_TOUCH_RTT_TUNING
+    {"touch",              handle_touch_tuning,           "--touch show|clear|apply|set normal|sleep <ml> <mh> <cl> <ch> <thr> <hyst>"},
+#endif
 };
 
 /* ======================================================================== */
@@ -816,10 +880,18 @@ void tdc_ui_command_init(void)
 
 void tdc_ui_command_poll(void)
 {
-    char ch;
+    char         ch;
+    static bool  s_prev_was_cr = false;
 
     while (SEGGER_RTT_Read(0, &ch, 1) > 0)
     {
+        if (ch == '\n' && s_prev_was_cr)
+        {
+            s_prev_was_cr = false;
+            continue; /* \r\n 쌍의 \n은 중복 dispatch 방지를 위해 무시 */
+        }
+        s_prev_was_cr = (ch == '\r');
+
         if (ch == '\r' || ch == '\n')
         {
             echo_string("\r\n");
@@ -845,6 +917,13 @@ void tdc_ui_command_poll(void)
                 echo_string("\b \b");
             }
         }
+#if TDC_TOUCH_SLEEP_MEASURE_MODE
+        else if (ch == 's')
+        {
+            extern void tdc_on_sleep_measure_cmd(void);
+            tdc_on_sleep_measure_cmd();
+        }
+#endif
         else if (s_tdc_line_len < MAX_LINE - 1)
         {
             s_tdc_line[s_tdc_line_len++] = ch;
