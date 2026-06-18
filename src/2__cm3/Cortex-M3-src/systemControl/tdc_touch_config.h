@@ -27,7 +27,7 @@
  *    DEVELOP(1): 개발 보드
  *    PACKAGE(2): 완제품 조립 (자석·배터리 근접)          ← 프로덕션 기본값 */
 #ifndef TDC_BOARD_VARIANT
-#  define TDC_BOARD_VARIANT  TDC_BOARD_VARIANT_DEVELOP//TDC_BOARD_VARIANT_PACKAGE
+#  define TDC_BOARD_VARIANT  TDC_BOARD_VARIANT_MINI
 #endif
 
 /* 2. ATI 덤프 모드 (시리얼 RTT 출력)

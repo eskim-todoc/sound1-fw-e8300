@@ -13,8 +13,8 @@ static bool touch_settings_impl(uint8_t threshold, uint8_t hysteresis);
 static bool g_tdc_iqs323_in_ulp_mode = false;
 
 #if TDC_TOUCH_RTT_TUNING
-static tdc_iqs323_tuning_t s_tdc_normal_tuning = { .threshold = 255, .hysteresis = 255, .ati_valid = false };
-static tdc_iqs323_tuning_t s_tdc_sleep_tuning  = { .threshold = 255, .hysteresis = 255, .ati_valid = false };
+static tdc_iqs323_tuning_t s_tdc_normal_tuning = {.threshold = 255, .hysteresis = 255, .ati_valid = false};
+static tdc_iqs323_tuning_t s_tdc_sleep_tuning  = {.threshold = 255, .hysteresis = 255, .ati_valid = false};
 #endif
 
 void tdc_set_iqs323_in_ulp_mode(void)
@@ -654,31 +654,44 @@ static bool wait_re_ati_done(void)
 #define TDC_DRV_IQS323_ATI_MULT_MSB  0x5A
 #define TDC_DRV_IQS323_ATI_COMP_LSB  0x00
 #define TDC_DRV_IQS323_ATI_COMP_MSB  0x58
-#elif (TDC_BOARD_VARIANT == TDC_BOARD_VARIANT_DEVELOP)
-#define TDC_DRV_IQS323_ATI_SETUP_LSB 0x08
-#define TDC_DRV_IQS323_ATI_SETUP_MSB 0x04
-#define TDC_DRV_IQS323_ATI_MULT_LSB  0x82
-#define TDC_DRV_IQS323_ATI_MULT_MSB  0x62
-#define TDC_DRV_IQS323_ATI_COMP_LSB  0xFF
-#define TDC_DRV_IQS323_ATI_COMP_MSB  0x53
-#elif (TDC_BOARD_VARIANT == TDC_BOARD_VARIANT_PACKAGE)
-#define TDC_DRV_IQS323_ATI_SETUP_LSB 0x08
-#define TDC_DRV_IQS323_ATI_SETUP_MSB 0x04
-#define TDC_DRV_IQS323_ATI_MULT_LSB  0x82
-#define TDC_DRV_IQS323_ATI_MULT_MSB  0x5C//0x5E /* 정상 노터치 실측 (2026-06-08) */
-#define TDC_DRV_IQS323_ATI_COMP_LSB  0xEF /* 정상 노터치 실측 (2026-06-08) */
-#define TDC_DRV_IQS323_ATI_COMP_MSB  0x63 /* 정상 노터치 실측 (2026-06-08) */
-#else
-#error "TDC_BOARD_VARIANT 미지원 값. TDC_BOARD_VARIANT_MINI 또는 TDC_BOARD_VARIANT_DEVELOP 만 허용."
-#endif
-
-/* 절전 환경 ATI 고정 보상값 ? 주변장치 OFF + 저속 클럭 기준 실측값. 보드 변종 무관 공통. */
+/* 절전 환경 ATI 고정 보상값 — 보드 변종별 normal ATI와 동일값 (절전 전용 실측 미적용). */
 #define TDC_DRV_IQS323_SLEEP_ATI_SETUP_LSB 0x08
 #define TDC_DRV_IQS323_SLEEP_ATI_SETUP_MSB 0x04
 #define TDC_DRV_IQS323_SLEEP_ATI_MULT_LSB  0x82
-#define TDC_DRV_IQS323_SLEEP_ATI_MULT_MSB  0x5C//0x5E//0x5C /* MULT=0x5C82 ? 절전 실측 */
-#define TDC_DRV_IQS323_SLEEP_ATI_COMP_LSB  0xEF//0x00
-#define TDC_DRV_IQS323_SLEEP_ATI_COMP_MSB  0x63//0x60 /* COMP=0x6000 ? 절전 실측 */
+#define TDC_DRV_IQS323_SLEEP_ATI_MULT_MSB  0x5A
+#define TDC_DRV_IQS323_SLEEP_ATI_COMP_LSB  0x00
+#define TDC_DRV_IQS323_SLEEP_ATI_COMP_MSB  0x58
+#elif (TDC_BOARD_VARIANT == TDC_BOARD_VARIANT_DEVELOP)
+#define TDC_DRV_IQS323_ATI_SETUP_LSB       0x08
+#define TDC_DRV_IQS323_ATI_SETUP_MSB       0x04
+#define TDC_DRV_IQS323_ATI_MULT_LSB        0x82
+#define TDC_DRV_IQS323_ATI_MULT_MSB        0x62
+#define TDC_DRV_IQS323_ATI_COMP_LSB        0xFF
+#define TDC_DRV_IQS323_ATI_COMP_MSB        0x53
+/* 절전 환경 ATI 고정 보상값 — 보드 변종별 normal ATI와 동일값 (절전 전용 실측 미적용). */
+#define TDC_DRV_IQS323_SLEEP_ATI_SETUP_LSB 0x08
+#define TDC_DRV_IQS323_SLEEP_ATI_SETUP_MSB 0x04
+#define TDC_DRV_IQS323_SLEEP_ATI_MULT_LSB  0x82
+#define TDC_DRV_IQS323_SLEEP_ATI_MULT_MSB  0x62
+#define TDC_DRV_IQS323_SLEEP_ATI_COMP_LSB  0xFF
+#define TDC_DRV_IQS323_SLEEP_ATI_COMP_MSB  0x53
+#elif (TDC_BOARD_VARIANT == TDC_BOARD_VARIANT_PACKAGE)
+#define TDC_DRV_IQS323_ATI_SETUP_LSB       0x08
+#define TDC_DRV_IQS323_ATI_SETUP_MSB       0x04
+#define TDC_DRV_IQS323_ATI_MULT_LSB        0x82
+#define TDC_DRV_IQS323_ATI_MULT_MSB        0x5C  // 0x5E /* 정상 노터치 실측 (2026-06-08) */
+#define TDC_DRV_IQS323_ATI_COMP_LSB        0xEF  /* 정상 노터치 실측 (2026-06-08) */
+#define TDC_DRV_IQS323_ATI_COMP_MSB        0x63  /* 정상 노터치 실측 (2026-06-08) */
+/* 절전 환경 ATI 고정 보상값 — 보드 변종별 normal ATI와 동일값 (절전 전용 실측 미적용). */
+#define TDC_DRV_IQS323_SLEEP_ATI_SETUP_LSB 0x08
+#define TDC_DRV_IQS323_SLEEP_ATI_SETUP_MSB 0x04
+#define TDC_DRV_IQS323_SLEEP_ATI_MULT_LSB  0x82
+#define TDC_DRV_IQS323_SLEEP_ATI_MULT_MSB  0x5C
+#define TDC_DRV_IQS323_SLEEP_ATI_COMP_LSB  0xEF
+#define TDC_DRV_IQS323_SLEEP_ATI_COMP_MSB  0x63
+#else
+#error "TDC_BOARD_VARIANT 미지원 값. TDC_BOARD_VARIANT_MINI 또는 TDC_BOARD_VARIANT_DEVELOP 만 허용."
+#endif
 
 static bool write_ati_compensation(void)
 {
@@ -1231,16 +1244,14 @@ void tdc_drv_iqs323_set_normal_tuning(const tdc_iqs323_tuning_t *p)
 {
     s_tdc_normal_tuning           = *p;
     s_tdc_normal_tuning.ati_valid = true;
-    ci_printi("[TOUCH-TUNE] normal: MULT=%02X%02X COMP=%02X%02X THR=%u HYST=%u\r\n",
-              p->mult_lsb, p->mult_msb, p->comp_lsb, p->comp_msb, p->threshold, p->hysteresis);
+    ci_printi("[TOUCH-TUNE] normal: MULT=%02X%02X COMP=%02X%02X THR=%u HYST=%u\r\n", p->mult_lsb, p->mult_msb, p->comp_lsb, p->comp_msb, p->threshold, p->hysteresis);
 }
 
 void tdc_drv_iqs323_set_sleep_tuning(const tdc_iqs323_tuning_t *p)
 {
     s_tdc_sleep_tuning           = *p;
     s_tdc_sleep_tuning.ati_valid = true;
-    ci_printi("[TOUCH-TUNE] sleep:  MULT=%02X%02X COMP=%02X%02X THR=%u HYST=%u\r\n",
-              p->mult_lsb, p->mult_msb, p->comp_lsb, p->comp_msb, p->threshold, p->hysteresis);
+    ci_printi("[TOUCH-TUNE] sleep:  MULT=%02X%02X COMP=%02X%02X THR=%u HYST=%u\r\n", p->mult_lsb, p->mult_msb, p->comp_lsb, p->comp_msb, p->threshold, p->hysteresis);
 }
 
 void tdc_drv_iqs323_apply_tuning(void)
