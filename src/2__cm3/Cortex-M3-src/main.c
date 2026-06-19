@@ -739,7 +739,7 @@ int func_normal(void)
         /* 크래들 뚜껑 닫힘 첫 감지 → 약 절전 루프 (ISD 연결 중이면 차단) */
         if (systemState.cradleLidClosed && !isd_state.conneded_ISD)
         {
-            led_force_fade_off();  /* fade-out ISR 완료 후 LED 완전 소등 */
+            led_force_fade_off(); /* fade-out ISR 완료 후 LED 완전 소등 */
             func_cradle_lid_closed_loop();
             /* 도달 불가 — 루프 내 SYS_WATCHDOG_RESET()으로 재부팅 */
         }
@@ -837,22 +837,22 @@ static void func_cradle_lid_closed_loop(void)
     ci_printi("[CRADLE] LIGHT SLEEP ACTIVE. WAITING FOR LID OPEN PACKET...\r\n");
 
     /* 약 절전 루프 — BLE 패킷 수신으로 뚜껑 열림 감지 */
-    ST__ISD_STATUS dummy_isd  = {en__isdStatus_NA, false};
-    uint32_t       wfi_count  = 0;
+    ST__ISD_STATUS dummy_isd = {en__isdStatus_NA, false};
+    uint32_t       wfi_count = 0;
 
     while (1)
     {
         SYS_WATCHDOG_REFRESH();
 
         /* BLE 통신: 충전 중 QCC는 SPI 패킷 계속 수신 가능 */
-        (void)bleCommunication(dummy_isd);
+        (void) bleCommunication(dummy_isd);
 
         /* 뚜껑 열림 패킷 감지 (data[2]=1 또는 else → setter가 df_Connected으로 갱신) */
         if (tdc_cradle_get_cover_state() == df_Connected)
         {
             snd_qcc_set_mode(SND_QCC_MODE_SHUTDOWN);
             ci_printi("[CRADLE] LID OPENED PACKET RECEIVED - WATCHDOG RESET FOR REBOOT\r\n");
-            delay_ms(20);  /* 로그 드레인 */
+            delay_ms(20); /* 로그 드레인 */
             SYS_WATCHDOG_RESET();
         }
 
@@ -861,7 +861,7 @@ static void func_cradle_lid_closed_loop(void)
 
         if (++wfi_count % 1000 == 0)
         {
-            ci_printi("[CRADLE] WFI wakeup count: %d\r\n", (int)wfi_count);
+            ci_printi("[CRADLE] WFI wakeup count: %d\r\n", (int) wfi_count);
         }
     }
 }
