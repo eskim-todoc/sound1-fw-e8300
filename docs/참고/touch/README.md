@@ -16,9 +16,15 @@ tags: [touch, iqs323, index, datasheet, reference, troubleshooting]
 docs/참고/touch/
 ├── README.md                  ← 본 색인
 ├── 데이터시트/                 데이터시트 원문 1차 정리 (SSOT, README+8파일)
+├── AZD004 센싱 일반 가이드/     앱노트 AZD004 원문 정리 (센싱 일반·ATI·필터, README+6파일)
+├── AZD125 정전용량 설계 가이드/ 앱노트 AZD125 원문 정리 (레이아웃·버튼·온도, README+6파일)
+├── IQS323 예제코드/            Arduino 예제 코드·가이드 정리 (드라이버·init, README+4파일)
 ├── 레퍼런스/                   2차 해설·Sound1 적용 (영속)
+├── 적용가이드/                 외부 앱노트(AZD004·AZD125 등) → 제어 운영 적용
+├── 개선/                       제어 재설계·검토 산출물
 ├── 이슈해결/                   트러블슈팅 로그 (시간순 누적)
 ├── iqs323_datasheet.pdf       Azoteq 원본 데이터시트 v1.11
+├── (외부 앱노트 PDF)          AZD004·AZD125·User Guide·예제코드 등
 └── Touch Sensor Schematic.JPG 회로도 원본
 ```
 
@@ -40,6 +46,16 @@ Azoteq IQS323 데이터시트(v1.11, 68p) 원문을 빠짐없이 정리. 레지�
 | [07_오더링·패키지](데이터시트/07_오더링·패키지.md) | §10~11 | Order Code·패키지·Tape&Reel |
 | [08_개정이력·이슈](데이터시트/08_개정이력·이슈.md) | 부록B·C | Revision History·Known Issues |
 
+## 앱노트·예제코드 (외부 원문 1차 정리)
+
+Azoteq 앱노트 2종 + IQS323 Arduino 예제 코드를 데이터시트 폴더처럼 원문 충실 정리(SSOT). 각 폴더 README가 파일 색인. 모든 수치·표는 할루시네이션 검증(원문 전수 대조) 완료.
+
+| 폴더 | 원본 | 내용 |
+|---|---|---|
+| [AZD004 센싱 일반 가이드](AZD004%20센싱%20일반%20가이드/README.md) | `azd004_..._v1.1.pdf` (33p) | 전하 전달·센싱 4종·ATI·필터·선형화·전력·EMC·I²C (6파일) |
+| [AZD125 정전용량 설계 가이드](AZD125%20정전용량%20설계%20가이드/README.md) | `azd125-..._v1.2.pdf` (41p) | 레이아웃 베스트프랙티스·근접/접지·터치 버튼·슬라이더/휠·온도/방수/노이즈 (6파일) |
+| [IQS323 예제코드](IQS323%20예제코드/README.md) | `iqs323-example-code/` | Arduino 드라이버 API·init 시퀀스·EV-Kit 설정·가이드 (4파일) |
+
 ## 레퍼런스 (2차 해설·Sound1 적용)
 
 데이터시트 원문 위에 쌓은 개념 해설·비유·Sound1 실측·코드 적용.
@@ -51,6 +67,14 @@ Azoteq IQS323 데이터시트(v1.11, 68p) 원문을 빠짐없이 정리. 레지�
 | [레지스터-맵](레퍼런스/IQS323-레지스터-맵.md) | 레지스터 reset value·비트맵·ATI/CalCap/ATI Error 동작 종합 |
 | [회로-구성](레퍼런스/IQS323-회로-구성.md) | 핀 연결·부품값·CRX0/CRX1·C52·J4 채널 배치 |
 | [RESEED](레퍼런스/IQS323-RESEED.md) | counts·LTA·delta·drift·RESEED·절전 설정 순서 |
+
+## 적용가이드 (외부 앱노트 → 제어 운영 적용)
+
+Azoteq 외부 자료(앱노트·User Guide·예제코드)를 정독·검증해 Sound1 제어 방향에 매핑한 개발 참조 문서.
+
+| 문서 | 내용 |
+|---|---|
+| [IQS323-제어운영-적용가이드](적용가이드/IQS323-제어운영-적용가이드.md) | AZD004·AZD125·User Guide·예제코드 종합 — ATI 2단계·온도 드리프트 정량(−18cnt/°C)·Follow UI 적용불가·SNR≥5·부팅/절전 시퀀스·개발 체크리스트·데이터시트 잔여 과제 |
 
 ## 이슈해결 (트러블슈팅 로그)
 
