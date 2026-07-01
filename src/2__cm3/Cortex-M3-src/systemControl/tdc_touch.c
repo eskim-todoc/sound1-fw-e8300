@@ -53,9 +53,19 @@ uint16_t tdc_touch_debug_get_recent_lta(void)
     return s_debug_recent_lta;
 }
 
+void tdc_touch_debug_set_recent_lta(uint16_t lta)
+{
+    s_debug_recent_lta = lta;
+}
+
 uint16_t tdc_touch_debug_get_recent_count(void)
 {
     return s_debug_recent_count;
+}
+
+void tdc_touch_debug_set_recent_count(uint16_t count)
+{
+    s_debug_recent_count = count;
 }
 
 uint16_t tdc_touch_debug_get_recent_delta(void)
@@ -63,9 +73,19 @@ uint16_t tdc_touch_debug_get_recent_delta(void)
     return s_debug_recent_delta;
 }
 
+void tdc_touch_debug_set_recent_delta(uint16_t delta)
+{
+    s_debug_recent_delta = delta;
+}
+
 uint16_t tdc_touch_debug_get_recent_abs_thr(void)
 {
     return s_debug_recent_abs_thr;
+}
+
+void tdc_touch_debug_set_recent_abs_thr(uint16_t abs_thr)
+{
+    s_debug_recent_abs_thr = abs_thr;
 }
 
 uint8_t tdc_touch_debug_get_recent_pressed(void)
@@ -73,14 +93,29 @@ uint8_t tdc_touch_debug_get_recent_pressed(void)
     return s_debug_recent_pressed;
 }
 
+void tdc_touch_debug_set_recent_pressed(uint8_t pressed)
+{
+    s_debug_recent_pressed = pressed;
+}
+
 uint8_t tdc_touch_debug_get_recent_ati_error(void)
 {
     return s_debug_recent_ati_error;
 }
 
+void tdc_touch_debug_set_recent_ati_error(uint8_t ati_error)
+{
+    s_debug_recent_ati_error = ati_error;
+}
+
 uint8_t tdc_touch_debug_get_recent_ati_active(void)
 {
     return s_debug_recent_ati_active;
+}
+
+void tdc_touch_debug_set_recent_ati_active(uint8_t ati_active)
+{
+    s_debug_recent_ati_active = ati_active;
 }
 
 const char *tdc_touch_state_name(tdc_touch_state_t s)

@@ -96,5 +96,6 @@ typedef struct _bootloader_boot_information
 
 int ci_power_normal(void);
 int ci_power_sleep(void);
+int ci_fake_power_sleep(void);
 
 #endif  // __OTE_1P5_power_manager_h__
