@@ -10,7 +10,18 @@
 #include <SEGGER_RTT_Wrapper.h>
 #include <ci_dio.h>
 
-static ST__OTA_FILE_WRITE_INFO _g_file_write_info = {0};
+static ST__OTA_FILE_WRITE_INFO _g_file_write_info       = {0};
+static int                     s_tdc_ota_dfu_conn_state = TDC_OTA_DFU_CONN_ST_DISCONN;
+
+int tdc_get_ota_dfu_conn_state(void)
+{
+    return s_tdc_ota_dfu_conn_state;
+}
+
+void tdc_set_ota_dfu_conn_state(int state)
+{
+    s_tdc_ota_dfu_conn_state = state;
+}
 
 char *_get_ota_file_name(int file_type)
 {
@@ -55,16 +66,16 @@ static void _send_error_packet_boot(uint8_t error)
 
 static void _handle_command_option_write(int slot_num, int file_type, int *p_packet)
 {
-    FILINFO                fno;
-    FIL                   *fp;
+    FILINFO           fno;
+    FIL              *fp;
     snd_boot_status_t boot_status;
-    uint8_t                resp_packet[9] = {0};
-    int                    total_byte;
-    int                    end_data_index;
-    int                    end_data_index_byte;
-    char                  *p_name;
-    char                   path[20];
-    FRESULT                res;
+    uint8_t           resp_packet[9] = {0};
+    int               total_byte;
+    int               end_data_index;
+    int               end_data_index_byte;
+    char             *p_name;
+    char              path[20];
+    FRESULT           res;
 
     // get boot status
     if (ci_boot_get_status(&boot_status) != BOOT_RET_TRUE)

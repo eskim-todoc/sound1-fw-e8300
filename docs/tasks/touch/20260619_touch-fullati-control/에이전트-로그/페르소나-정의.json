@@ -1,0 +1,103 @@
+{
+  "workflow": "touch-fullati-control-analysis",
+  "purpose": "FullATI 타임아웃 단순안의 펌웨어 구현을 위한 정량 분석·설계 결정·adversarial 검증",
+  "mode": "ultracode",
+  "model": "opus-4.8 (main-loop 상속)",
+  "effort": "xhigh",
+  "구조": "분석 8 (병렬) → adversarial 검증 2 (병렬, 분석 결과 입력) → 종합 1",
+  "공통입력": {
+    "브레인스토밍": "docs/tasks/touch/20260618_touch-review/브레인스토밍_FullATI타임아웃단순안.md",
+    "적용가이드": "docs/참고/touch/적용가이드/IQS323-제어운영-적용가이드.md",
+    "데이터시트": "docs/참고/touch/데이터시트/{01_개요·전기·타이밍,02_proxfusion동작,03_하드웨어설정,06_레지스터레퍼런스}.md",
+    "개선문서": "docs/참고/touch/개선/{제어 재설계 분석·권고,펌웨어 구현·시퀀스 분석,회로 구성·분석}.md",
+    "이슈해결": "docs/참고/touch/이슈해결/2026-06_CRX1-ESD-더미채널.md",
+    "직전분석": "docs/tasks/touch/20260618_touch-review/분석.md",
+    "현코드": "src/2__cm3/Cortex-M3-src/{main.c,systemControl/tdc_drv_iqs323.c,systemControl/tdc_drv_iqs323.h,systemControl/tdc_touch.c,systemControl/tdc_touch.h,systemControl/tdc_touch_config.h}",
+    "요구사항": "docs/tasks/touch/20260619_touch-fullati-control/요구사항.md"
+  },
+  "personas": [
+    {
+      "id": "01_분석_FullATI전환",
+      "phase": "분석",
+      "역할": "ATI Mode=Disabled→Full 전환의 레지스터·시퀀스·과거 I²C 무응답 원인과 대책",
+      "다루는요구사항": ["요구사항_1", "요구사항_14", "검토_4"],
+      "핵심질문": "Full ATI 전환 시 레지스터 변경점, ATI 진행 중 I²C 무응답이 왜 났는지(과거 펌웨어가 끈 이유), 100ms 폴링과 ATI burst 충돌 대책(은수님 가정: 실패 시 다음 100ms 재시도, N회 연속 실패 시 고장 판정)"
+    },
+    {
+      "id": "02_분석_ReATI에러처리",
+      "phase": "분석",
+      "역할": "ATI 에러 폴링→Re-ATI, 터치 중 Re-ATI 경계(급소)",
+      "다루는요구사항": ["요구사항_2", "요구사항_12", "요구사항_13", "검토_2"],
+      "핵심질문": "System Status bit6(ATI Error) 폴링→Re-ATI 트리거 시퀀스. 터치 판정 중 밴드이탈/ATI에러 Re-ATI가 터치를 노터치로 학습하는가(LTA halt가 막는가)? '터치 중 Re-ATI 보류' 게이트 필요 여부"
+    },
+    {
+      "id": "03_분석_SW타임아웃시퀀스",
+      "phase": "분석",
+      "역할": "터치 지속 SW 카운트 30초, 노말/절전 시퀀스, 에러 처리 동작 정의",
+      "다루는요구사항": ["요구사항_3", "요구사항_4", "요구사항_5", "요구사항_10", "검토_1"],
+      "핵심질문": "노말 메인루프·절전 루프에서 터치 지속시간 카운트 방법(100ms·웨이크업 기반). 절전 30초 대기 위치(초입 vs 루프). Full ATI면 절전 함수 내 센서 재설정 불필요한가. 30초 후 '에러 처리'의 구체 동작(Re-ATI/Reseed/MCLR/알림)"
+    },
+    {
+      "id": "04_분석_Beta수렴",
+      "phase": "분석",
+      "역할": "Beta·Fast Filter Band 비대칭 정량 계산 — 수렴 속도 vs 터치 흡수",
+      "다루는요구사항": ["요구사항_7", "검토_5"],
+      "핵심질문": "LTA β·Counts β·Fast Filter Band 설정. 100ms 주기에서 노터치 카운터 수렴 목표시간 달성 Beta 값 계산. 단순 β 상향의 약터치 흡수 위험 vs Fast Filter Band 비대칭. 데이터시트 IIR 공식(yk) 기반 정량",
+      "정량": true
+    },
+    {
+      "id": "05_분석_임계카운터",
+      "phase": "분석",
+      "역할": "ATI Target/Base/Band/Threshold 관계 — LTA 밴드 초과 없이 threshold 동작 영역",
+      "다루는요구사항": ["요구사항_8"],
+      "핵심질문": "ATI Target·Base·ATI Band 폭·Touch Threshold의 정량 관계. '드리프트는 ATI Band 안, 터치는 Threshold 초과'가 동시 성립하는 파라미터 영역 계산. SNR≥5(앱노트 raw 20cnt) 적용. 델타 마진 vs ATI Band 마진",
+      "정량": true
+    },
+    {
+      "id": "06_분석_컨버전전력",
+      "phase": "분석",
+      "역할": "컨버전 1MHz + 100ms 폴링 적절성, ATI 시간, auto ULP 가능 여부, 전력",
+      "다루는요구사항": ["요구사항_9"],
+      "핵심질문": "컨버전 주파수 1MHz에서 1 측정·ATI burst 소요시간. 100ms 폴링 주기와의 정합. Power Mode Automatic/Automatic No ULP 설정. auto ULP 가능 여부(단 완전 저전력 진입 불가 — LP 유지). 전류 추정(데이터시트 §1 표)",
+      "정량": true
+    },
+    {
+      "id": "07_분석_단일채널ESD",
+      "phase": "분석",
+      "역할": "CRX0만 사용, CRX1 폐기, ESD 대책, 단일채널 정지 이슈 재검토",
+      "다루는요구사항": ["요구사항_15", "검토_3", "검토_7"],
+      "핵심질문": "CRX1 CalCap 더미채널 폐기 시 단일채널(CRX0) 구성의 레지스터·정지 이슈(이슈해결 문서). ESD 방전 역할 상실 — Full ATI Re-ATI 자가복구로 충분한가. Max Counts 포화 안전망(MCLR) 유지 여부"
+    },
+    {
+      "id": "08_분석_부팅게이트",
+      "phase": "분석",
+      "역할": "부팅 MCLR vs ATI 에러 체크, 내부기/충전 게이트",
+      "다루는요구사항": ["요구사항_6", "요구사항_11", "검토_6"],
+      "핵심질문": "부팅 시 'ATI 에러 체크→Re-ATI' vs 'MCLR 항상 초기화 후 노말 진입' 비교·권고. 내부기 연결·크래들 충전 중 터치 미사용 게이트 구현(현 코드 df_Connected·크래들 뚜껑). 부팅 ~500ms + ATI 시간 영향"
+    },
+    {
+      "id": "09_검증_정량할루시네이션",
+      "phase": "검증",
+      "역할": "adversarial — 정량 노드(04·05·06) 계산이 데이터시트 근거 정확한지 원문 대조",
+      "핵심질문": "Beta IIR 공식·ATI Band 폭·컨버전 시간·전류 수치가 데이터시트 원문과 일치하는가. 근거 없는 수치·과대 일반화 적출. [확인됨]/[과장]/[근거없음] 판정"
+    },
+    {
+      "id": "10_검증_회귀충돌",
+      "phase": "검증",
+      "역할": "adversarial — 과거 이슈·현 코드와의 충돌 검증",
+      "핵심질문": "Full ATI 전환이 과거 이슈(I²C 무응답·단일채널 정지·Reseed 오염·드리프트 고착)와 어떻게 충돌/해소되는가. 현 코드(tdc_drv_iqs323·main.c) 구조와 정합. 설계 결정이 회귀를 부르는 지점 적출"
+    },
+    {
+      "id": "99_종합_설계수렴",
+      "phase": "종합",
+      "역할": "전부 통합 — 모듈/시퀀스/레지스터 설계 + 미해결·실측 게이트 + 계획 골격",
+      "핵심질문": "8 분석 + 2 검증을 통합해 단일 구현 설계(레지스터 설정·노말/절전 시퀀스·Re-ATI 트리거·SW 타임아웃·게이트·Beta/임계 범위) + 결정 8항목 결론 + 실측 게이트 + 계획.md 골격"
+    }
+  ],
+  "산출규칙": [
+    "각 노드는 결론을 에이전트-로그/<id>.md에 Write(frontmatter+TL;DR+GFM)",
+    "한자 절대 금지(한글만). 인용은 [출처 §섹션] 근거. 추정 [추정]·미명시 [자료 미명시]·실측의존 [실측 게이트] 라벨",
+    "정량 노드는 계산 과정·공식·가정 명시. 데이터시트 수치 인용",
+    "구조화 요약 반환(파일경로·핵심결론·미해결·설계함의)"
+  ]
+}

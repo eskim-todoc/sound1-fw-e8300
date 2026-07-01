@@ -12,6 +12,8 @@
 
 #include <ci_stim_mute.h>
 
+#include <tdc_touch.h>
+
 typedef struct
 {
     int slot_index;

@@ -20,6 +20,7 @@
 #include "isd_interface_stimulationStandAlone.h"
 #include "isd_interface_stimulationParaSetting.h"
 #include "mappingControl.h"
+#include <ci_ble_control_ota.h>
 
 #include "cfx_cm3_sharedMemory.h"
 
@@ -222,11 +223,33 @@ ST__ISD_STATUS isd_interface(bool isd_enable, bool mappingConnection, EN__ISD_CO
         // 자극 방식 설정까지 모두 완료되면, 주기적으로 링크 연결 상태 체크를 위해 백텔 데이터를 주고 받는다.
         if (s_isd_state.isd_controlState == en__isdStatus_stimul_10V_Ok)
         {
-            // 매핑 앱 연결 상태가 아닌 즉, 일반적인 외부기 자체 동작 상태다.
+            /* 매핑 연결이 아닐 때 */
             if (!mappingConnection)
             {
                 stimulationParameterSettingIsDone = stimulationStandAlone();
+
+                // OTA DFU 모드에 따른 Link backtel 체크 유무 결정
+#if 0
                 update_isd_LinkConnection_byBacktel_withLiveStimulation();
+#else
+                // OTA DFU 모드 (Link backtel 체크 X) 사용 중일 때는 FIFO clear + 상태 초기화만 반복한다.
+                if (tdc_get_ota_dfu_conn_state() == TDC_OTA_DFU_CONN_ST_CONN)
+                {
+                    if (BackelCircuitDisabled_readPcmFired_duringLiveStimulation == readConnectionCheckPcmState())
+                    {
+                        if (!write_FPGA_clear_FIFO())
+                        {
+                            change_isd_state(en__isdStatus_PowerIC_OK);
+                        }
+
+                        clearConnectionCheckPcmFiredFlag();  // 기록을 지운다.
+                    }
+                }
+                else
+                {
+                    update_isd_LinkConnection_byBacktel_withLiveStimulation();
+                }
+#endif
             }
         }
     }

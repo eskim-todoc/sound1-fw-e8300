@@ -2099,6 +2099,9 @@ ST__MAPPING_STATE mappingControl(ST__ISD_STATUS ISD_state)
 
                 case en__mapping_write_original_ISD_N_USER:
                 {
+                    /* 플레쉬에 저장하면서 BLE 광고 이름을 바꾸기 위해서
+                     * change_isd_state(en__isdStatus_ISD_Power_Ok);를 사용해 내부기 연결 해제를 유도하여
+                     * BLE 연결 해제 후 광고이름 변경하여 진행하게 한다. */
                     write_Original_isdInfo_N_userSetting_atFlash(mappingCommandStartFlag, en__mapping_write_original_ISD_N_USER);
                 }
                 break;

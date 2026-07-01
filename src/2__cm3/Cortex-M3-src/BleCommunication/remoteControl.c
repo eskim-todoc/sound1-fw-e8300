@@ -13,6 +13,7 @@
 #include "batteryNPowerControl.h"
 #include "systemControl.h"
 #include "error.h"
+#include <ci_ble_control_ota.h>
 
 #include "isd_interface_mapping_readWrtieMapData.h"
 #include "isd_interface_init_ISD.h"
@@ -221,8 +222,7 @@ void fetch_remoteControlPacket(const int *Rx_dataPacket)
                                     break;
                             }
 
-                            p_RepositoryFor_ISD_info[i - 1] =
-                                Rx_dataPacket[index++];  // 시리얼 번호를 16bit으로 조합하면서 실제 참조해야할 포인터의 인덱스 감소 [i-1]
+                            p_RepositoryFor_ISD_info[i - 1] = Rx_dataPacket[index++];  // 시리얼 번호를 16bit으로 조합하면서 실제 참조해야할 포인터의 인덱스 감소 [i-1]
                         }
                     }
                     break;
@@ -573,8 +573,7 @@ void fetch_remoteControlPacket(const int *Rx_dataPacket)
                 }
                 else
                 {
-                    sendErrorToApp(
-                        en__remoteControl_write_Mapdata_STIMUL_PARA, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);  // 데이터 범위 벗어남
+                    sendErrorToApp(en__remoteControl_write_Mapdata_STIMUL_PARA, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);  // 데이터 범위 벗어남
 
                     clearRemoteColtrolCommand();
                 }
@@ -726,7 +725,7 @@ ST__REMOTECONTROL_STATE remoteControl(bool isdConnection)  // 연결 상태에 �
         p_conectedISD_remoconPasskey = read_recomcon_passkey_connected_ISD(connectedISD_num);
         remocon_passkey_Match        = true;
 
-#if 0 // IMPORTANT: 패스키 인증을 더 이상 사용하지 않는다.
+#if 0  // IMPORTANT: 패스키 인증을 더 이상 사용하지 않는다.
         for (i = 0; i < 4; i++)
         {
             if (p_conectedISD_remoconPasskey[i] != remoteDataPacket.data[i])
@@ -1240,52 +1239,37 @@ ST__REMOTECONTROL_STATE remoteControl(bool isdConnection)  // 연결 상태에 �
 
                 case en__remoteControl_read_SlotData_ISD_N_USER:
                 {
-                    read_isdInfo_N_userSetting_fromFlash(
-                        remoteCommandStartFlag, en__remoteControl_read_SlotData_ISD_N_USER, remoteDataPacket.remocon_ReadWriteMapData_Flash.slot_index);
+                    read_isdInfo_N_userSetting_fromFlash(remoteCommandStartFlag, en__remoteControl_read_SlotData_ISD_N_USER, remoteDataPacket.remocon_ReadWriteMapData_Flash.slot_index);
                 }
                 break;
 
                 case en__remoteControl_write_SlotData_ISD_N_USER:
                 {
-                    write_isdInfo_N_userSetting_atFlash(
-                        remoteCommandStartFlag, en__remoteControl_write_SlotData_ISD_N_USER, remoteDataPacket.remocon_ReadWriteMapData_Flash.slot_index);
+                    write_isdInfo_N_userSetting_atFlash(remoteCommandStartFlag, en__remoteControl_write_SlotData_ISD_N_USER, remoteDataPacket.remocon_ReadWriteMapData_Flash.slot_index);
                 }
                 break;
 
                 case en__remoteControl_read_Mapdata_STIMUL_PARA:
                 {
-                    read_stimulPara_fromFlash(remoteCommandStartFlag,
-                                              en__remoteControl_read_Mapdata_STIMUL_PARA,
-                                              remoteDataPacket.remocon_ReadWriteMapData_Flash.slot_index,
-                                              remoteDataPacket.remocon_ReadWriteMapData_Flash.map_index);
+                    read_stimulPara_fromFlash(remoteCommandStartFlag, en__remoteControl_read_Mapdata_STIMUL_PARA, remoteDataPacket.remocon_ReadWriteMapData_Flash.slot_index, remoteDataPacket.remocon_ReadWriteMapData_Flash.map_index);
                 }
                 break;
 
                 case en__remoteControl_write_Mapdata_STIMUL_PARA:
                 {
-                    write_stimulPara_atFlash(remoteCommandStartFlag,
-                                             en__remoteControl_write_Mapdata_STIMUL_PARA,
-                                             remoteDataPacket.remocon_ReadWriteMapData_Flash.slot_index,
-                                             remoteDataPacket.remocon_ReadWriteMapData_Flash.map_index);
+                    write_stimulPara_atFlash(remoteCommandStartFlag, en__remoteControl_write_Mapdata_STIMUL_PARA, remoteDataPacket.remocon_ReadWriteMapData_Flash.slot_index, remoteDataPacket.remocon_ReadWriteMapData_Flash.map_index);
                 }
                 break;
 
                 case en__remoteControl_erase_SlotData:
                 {
-                    reset_NVM_Selected_ISD_allData(remoteCommandStartFlag,
-                                                   en__remoteControl_erase_SlotData,
-                                                   remoteDataPacket.remocon_ReadWriteMapData_Flash.slot_index,
-                                                   flash_Command_Erase);
+                    reset_NVM_Selected_ISD_allData(remoteCommandStartFlag, en__remoteControl_erase_SlotData, remoteDataPacket.remocon_ReadWriteMapData_Flash.slot_index, flash_Command_Erase);
                 }
                 break;
 
                 case en__remoteControl_erase_mapData_STIMUL_PARA:
                 {
-                    reset_NVM_MapData(remoteCommandStartFlag,
-                                      en__remoteControl_erase_mapData_STIMUL_PARA,
-                                      remoteDataPacket.remocon_ReadWriteMapData_Flash.slot_index,
-                                      remoteDataPacket.remocon_ReadWriteMapData_Flash.map_index,
-                                      flash_Command_Erase);
+                    reset_NVM_MapData(remoteCommandStartFlag, en__remoteControl_erase_mapData_STIMUL_PARA, remoteDataPacket.remocon_ReadWriteMapData_Flash.slot_index, remoteDataPacket.remocon_ReadWriteMapData_Flash.map_index, flash_Command_Erase);
                 }
                 break;
 
@@ -1354,6 +1338,115 @@ ST__REMOTECONTROL_STATE remoteControl(bool isdConnection)  // 연결 상태에 �
 
 #if 1
                 /**
+                 * 26.06.23 범용 디버깅 프로토콜 기능에 대한 코드
+                 * by 김은수 */
+                case EN__SND_BT_CMD_GENERAL_DEBUG:
+                {
+                    int option = remoteDataPacket.data[0];  // 옵션
+
+                    ci_printd("[GD] opt: %d \r\n", option);
+
+                    if (option == 1)  // 터치센서 디버깅 프로토콜
+                    {
+                        uint16_t lta;
+                        uint16_t count;
+                        uint16_t delta;
+                        uint16_t abs_thr;
+                        uint8_t  pressed;
+                        uint8_t  ati_error;
+                        uint8_t  ati_active;
+
+                        // 송신 데이터 준비
+                        bufferForSPI_tx[tx_index++] = remoteDataPacket.command;  //     command : loop-back
+
+                        lta        = tdc_touch_debug_get_recent_lta();
+                        count      = tdc_touch_debug_get_recent_count();
+                        delta      = tdc_touch_debug_get_recent_delta();
+                        abs_thr    = tdc_touch_debug_get_recent_abs_thr();
+                        pressed    = tdc_touch_debug_get_recent_pressed();
+                        ati_error  = tdc_touch_debug_get_recent_ati_error();
+                        ati_active = tdc_touch_debug_get_recent_ati_active();
+
+                        ci_printi("[GD] lta: %4u, count: %4u, delta: %4u, abs_thr: %4u, ", lta, count, delta, abs_thr);
+                        ci_printi("pressed: %u, ati_error: %u, ati_active: %u \r\n", pressed, ati_error, ati_active);
+
+                        bufferForSPI_tx[tx_index++] = option;
+                        bufferForSPI_tx[tx_index++] = (lta >> 8) & 0x00FF;
+                        bufferForSPI_tx[tx_index++] = lta & 0x00FF;
+                        bufferForSPI_tx[tx_index++] = (count >> 8) & 0x00FF;
+                        bufferForSPI_tx[tx_index++] = count & 0x00FF;
+                        bufferForSPI_tx[tx_index++] = (delta >> 8) & 0x00FF;
+                        bufferForSPI_tx[tx_index++] = delta & 0x00FF;
+                        bufferForSPI_tx[tx_index++] = (abs_thr >> 8) & 0x00FF;
+                        bufferForSPI_tx[tx_index++] = abs_thr & 0x00FF;
+                        bufferForSPI_tx[tx_index++] = pressed;
+                        bufferForSPI_tx[tx_index++] = ati_error;
+                        bufferForSPI_tx[tx_index++] = ati_active;
+                    }
+                    else if (option == 2)  // 백텔 체크 무시하기
+                    {
+                        int noBacktel_mode;
+
+                        noBacktel_mode = remoteDataPacket.data[1];  // 옵션 이후 데이터
+
+                        if (noBacktel_mode == 1)
+                        {
+                            tdc_set_ota_dfu_conn_state(TDC_OTA_DFU_CONN_ST_CONN);
+                        }
+                        else
+                        {
+                            tdc_set_ota_dfu_conn_state(TDC_OTA_DFU_CONN_ST_DISCONN);
+                        }
+
+                        ci_printi("[GD] noBacktel_mode : %d \r\n", noBacktel_mode);
+
+                        // 송신 데이터 준비
+                        bufferForSPI_tx[tx_index++] = remoteDataPacket.command;  //     command : loop-back
+                        bufferForSPI_tx[tx_index++] = option;
+                        bufferForSPI_tx[tx_index++] = noBacktel_mode;
+                    }
+                    else if (option == 3)  // 맵 초기화 디버깅 프로토콜
+                    {
+                        int RL;  // 옵션 이후 데이터
+
+                        RL = remoteDataPacket.data[1];  // 옵션 이후 데이터
+
+                        if ((RL == 1) || (RL == 2))
+                        {
+                            // PARAMETER ORDER : ISD_NUM, FORCE_INIT, SPECIFIC_RL, VAL_RL
+                            ci_map_init_map_data(1, true, true, RL);  // 왼쪽 = 1 / 오른쪽 = 2
+                            SYS_WATCHDOG_REFRESH();
+                            ci_map_init_map_data(2, true, false, 1);  // 왼쪽
+                            SYS_WATCHDOG_REFRESH();
+                            ci_map_init_map_data(3, true, false, 1);  // 왼쪽
+                            SYS_WATCHDOG_REFRESH();
+                            ci_map_init_map_data(4, true, false, 1);  // 왼쪽
+                            SYS_WATCHDOG_REFRESH();
+                        }
+                        else
+                        {
+                            ci_printw("[GD] Specific RL Command invalid. \r\n");
+                        }
+
+                        // 송신 데이터 준비
+                        bufferForSPI_tx[tx_index++] = remoteDataPacket.command;  //     command : loop-back
+                        bufferForSPI_tx[tx_index++] = option;
+                        bufferForSPI_tx[tx_index++] = RL;
+                    }
+                    else
+                    {
+                        // 송신 데이터 준비
+                        bufferForSPI_tx[tx_index++] = remoteDataPacket.command;  //     command : loop-back
+                    }
+
+                    writeDataToSpiTxBuff(bufferForSPI_tx, tx_index);  // 송신 데이터 SPI TX버퍼에 복사
+                    clearRemoteColtrolCommand();                      // 명령 종료
+                }
+                break;
+#endif
+
+#if 1
+                /**
                  * 26.01.19 CFX의 묵음 처리 기능 활성화/비활성화를 위해 추가한 기능.
                  * 무선 프로토콜 문서 v4.0.2의 시스템 동작 모드 패킷 (0x59)에 대한 처리 구문.
                  * by 김은수 */
@@ -1366,19 +1459,13 @@ ST__REMOTECONTROL_STATE remoteControl(bool isdConnection)  // 연결 상태에 �
                             ci_printd("[MUTE] RECEVIED : READ PACKET \r\n");
 
                             // 송신 데이터 준비
-                            bufferForSPI_tx[tx_index++] = remoteDataPacket.command;  //     command : loop-back
-                            bufferForSPI_tx[tx_index++] = 1;                         //      option : read
-                            bufferForSPI_tx[tx_index++] = 1;                         // sub option1 : normal mode
-                            bufferForSPI_tx[tx_index++] =
-                                (int) cfx_cm3_sharedMemoryAll.is_enabled_mute_stimulation_under_t_level;                  // sub option2 : enable state
-                            bufferForSPI_tx[tx_index++] = (int) cfx_cm3_sharedMemoryAll.mute_stimulation_t_level_offset;  // sub option3 : mute t level offset
+                            bufferForSPI_tx[tx_index++] = remoteDataPacket.command;                                                 //     command : loop-back
+                            bufferForSPI_tx[tx_index++] = 1;                                                                        //      option : read
+                            bufferForSPI_tx[tx_index++] = 1;                                                                        // sub option1 : normal mode
+                            bufferForSPI_tx[tx_index++] = (int) cfx_cm3_sharedMemoryAll.is_enabled_mute_stimulation_under_t_level;  // sub option2 : enable state
+                            bufferForSPI_tx[tx_index++] = (int) cfx_cm3_sharedMemoryAll.mute_stimulation_t_level_offset;            // sub option3 : mute t level offset
 
-                            ci_printd("[MUTE] RESPONSE : %02X %02X %02X %02X %02X \r\n",
-                                      bufferForSPI_tx[0],
-                                      bufferForSPI_tx[1],
-                                      bufferForSPI_tx[2],
-                                      bufferForSPI_tx[3],
-                                      bufferForSPI_tx[4]);
+                            ci_printd("[MUTE] RESPONSE : %02X %02X %02X %02X %02X \r\n", bufferForSPI_tx[0], bufferForSPI_tx[1], bufferForSPI_tx[2], bufferForSPI_tx[3], bufferForSPI_tx[4]);
 
                             writeDataToSpiTxBuff(bufferForSPI_tx, tx_index);  // 송신 데이터 SPI TX버퍼에 복사
                             clearRemoteColtrolCommand();                      // 명령 종료
@@ -1398,8 +1485,7 @@ ST__REMOTECONTROL_STATE remoteControl(bool isdConnection)  // 연결 상태에 �
                                             ci_printd("[MUTE] RECEVIED : WRITE NORMAL + ENABLE MUTE + T LEVEL OFFSET %d \r\n", remoteDataPacket.data[3]);
 
                                             // 설정 가능 범위 초과 시 에러
-                                            if ((remoteDataPacket.data[3] < CI_STIM_MUTE_T_LEVEL_OFFSET_MIN)
-                                                || (CI_STIM_MUTE_T_LEVEL_OFFSET_MAX < remoteDataPacket.data[3]))
+                                            if ((remoteDataPacket.data[3] < CI_STIM_MUTE_T_LEVEL_OFFSET_MIN) || (CI_STIM_MUTE_T_LEVEL_OFFSET_MAX < remoteDataPacket.data[3]))
                                             {
                                                 ci_printe("[MUTE] RECEVIED : WRITE NORMAL + ENABLE MUTE, BUT INVALID T OFFSET LEVEL \r\n");
 
@@ -1409,8 +1495,7 @@ ST__REMOTECONTROL_STATE remoteControl(bool isdConnection)  // 연결 상태에 �
                                             else  // 유효한 설정 값인 경우
                                             {
                                                 // 묵음 처리 파일 및 공유 메모리 값 업데이트
-                                                if (ci_stim_mute_update(CI_STIM_MUTE_UNDER_T_LEVEL_ENABLE, (uint32_t) remoteDataPacket.data[3])
-                                                    != CI_STIM_MUTE_RET_TRUE)
+                                                if (ci_stim_mute_update(CI_STIM_MUTE_UNDER_T_LEVEL_ENABLE, (uint32_t) remoteDataPacket.data[3]) != CI_STIM_MUTE_RET_TRUE)
                                                 {
                                                     ci_printe("[MUTE] RECEVIED : WRITE NORMAL + ENABLE MUTE, BUT FAILED TO UPDATE FILE \r\n");
 
@@ -1421,20 +1506,13 @@ ST__REMOTECONTROL_STATE remoteControl(bool isdConnection)  // 연결 상태에 �
                                                 else  // 묵음 처리 파일 및 공유 메모리 값 업데이트 성공
                                                 {
                                                     // 송신 데이터 준비
-                                                    bufferForSPI_tx[tx_index++] = remoteDataPacket.command;  //     command : loop-back
-                                                    bufferForSPI_tx[tx_index++] = 2;                         //      option : write
-                                                    bufferForSPI_tx[tx_index++] = 1;                         // sub option1 : normal mode
-                                                    bufferForSPI_tx[tx_index++] =
-                                                        (int) cfx_cm3_sharedMemoryAll.is_enabled_mute_stimulation_under_t_level;  // sub option2 : enable state
-                                                    bufferForSPI_tx[tx_index++] =
-                                                        (int) cfx_cm3_sharedMemoryAll.mute_stimulation_t_level_offset;  // sub option3 : mute t level offset
+                                                    bufferForSPI_tx[tx_index++] = remoteDataPacket.command;                                                 //     command : loop-back
+                                                    bufferForSPI_tx[tx_index++] = 2;                                                                        //      option : write
+                                                    bufferForSPI_tx[tx_index++] = 1;                                                                        // sub option1 : normal mode
+                                                    bufferForSPI_tx[tx_index++] = (int) cfx_cm3_sharedMemoryAll.is_enabled_mute_stimulation_under_t_level;  // sub option2 : enable state
+                                                    bufferForSPI_tx[tx_index++] = (int) cfx_cm3_sharedMemoryAll.mute_stimulation_t_level_offset;            // sub option3 : mute t level offset
 
-                                                    ci_printd("[MUTE] RESPONSE : %02X %02X %02X %02X %02X \r\n",
-                                                              bufferForSPI_tx[0],
-                                                              bufferForSPI_tx[1],
-                                                              bufferForSPI_tx[2],
-                                                              bufferForSPI_tx[3],
-                                                              bufferForSPI_tx[4]);
+                                                    ci_printd("[MUTE] RESPONSE : %02X %02X %02X %02X %02X \r\n", bufferForSPI_tx[0], bufferForSPI_tx[1], bufferForSPI_tx[2], bufferForSPI_tx[3], bufferForSPI_tx[4]);
 
                                                     writeDataToSpiTxBuff(bufferForSPI_tx, tx_index);  // 송신 데이터 SPI TX버퍼에 복사
                                                     clearRemoteColtrolCommand();                      // 명령 종료
@@ -1451,8 +1529,7 @@ ST__REMOTECONTROL_STATE remoteControl(bool isdConnection)  // 연결 상태에 �
                                             ci_printd("[MUTE] RECEVIED : WRITE NORMAL + DISABLE MUTE \r\n");
 
                                             // 묵음 처리 파일 및 공유 메모리 값 업데이트
-                                            if (ci_stim_mute_update(CI_STIM_MUTE_UNDER_T_LEVEL_DISABLE, cfx_cm3_sharedMemoryAll.mute_stimulation_t_level_offset)
-                                                != CI_STIM_MUTE_RET_TRUE)
+                                            if (ci_stim_mute_update(CI_STIM_MUTE_UNDER_T_LEVEL_DISABLE, cfx_cm3_sharedMemoryAll.mute_stimulation_t_level_offset) != CI_STIM_MUTE_RET_TRUE)
                                             {
                                                 ci_printe("[MUTE] RECEVIED : WRITE NORMAL + DISABLE MUTE, BUT FAILED TO UPDATE FILE \r\n");
 
@@ -1463,20 +1540,13 @@ ST__REMOTECONTROL_STATE remoteControl(bool isdConnection)  // 연결 상태에 �
                                             else  // 묵음 처리 파일 및 공유 메모리 값 업데이트 성공
                                             {
                                                 // 송신 데이터 준비
-                                                bufferForSPI_tx[tx_index++] = remoteDataPacket.command;  //     command : loop-back
-                                                bufferForSPI_tx[tx_index++] = 2;                         //      option : write
-                                                bufferForSPI_tx[tx_index++] = 1;                         // sub option1 : normal mode
-                                                bufferForSPI_tx[tx_index++] =
-                                                    (int) cfx_cm3_sharedMemoryAll.is_enabled_mute_stimulation_under_t_level;  // sub option2 : enable state
-                                                bufferForSPI_tx[tx_index++] =
-                                                    (int) cfx_cm3_sharedMemoryAll.mute_stimulation_t_level_offset;  // sub option3 : mute t level offset
+                                                bufferForSPI_tx[tx_index++] = remoteDataPacket.command;                                                 //     command : loop-back
+                                                bufferForSPI_tx[tx_index++] = 2;                                                                        //      option : write
+                                                bufferForSPI_tx[tx_index++] = 1;                                                                        // sub option1 : normal mode
+                                                bufferForSPI_tx[tx_index++] = (int) cfx_cm3_sharedMemoryAll.is_enabled_mute_stimulation_under_t_level;  // sub option2 : enable state
+                                                bufferForSPI_tx[tx_index++] = (int) cfx_cm3_sharedMemoryAll.mute_stimulation_t_level_offset;            // sub option3 : mute t level offset
 
-                                                ci_printd("[MUTE] RESPONSE : %02X %02X %02X %02X %02X \r\n",
-                                                          bufferForSPI_tx[0],
-                                                          bufferForSPI_tx[1],
-                                                          bufferForSPI_tx[2],
-                                                          bufferForSPI_tx[3],
-                                                          bufferForSPI_tx[4]);
+                                                ci_printd("[MUTE] RESPONSE : %02X %02X %02X %02X %02X \r\n", bufferForSPI_tx[0], bufferForSPI_tx[1], bufferForSPI_tx[2], bufferForSPI_tx[3], bufferForSPI_tx[4]);
 
                                                 writeDataToSpiTxBuff(bufferForSPI_tx, tx_index);  // 송신 데이터 SPI TX버퍼에 복사
                                                 clearRemoteColtrolCommand();                      // 명령 종료

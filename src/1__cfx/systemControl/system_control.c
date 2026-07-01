@@ -64,11 +64,59 @@ void Normal_PowerMode_event_mapChange(void)
         {
             fn_PcmBitStream_Mode_NopStandby(); /* Fill the PCM with NOP data before change map(program) */
             copy_MappingData();                /* For stand alone mode */
+
+            /** Stand alone mode로 여기까지 왔다는 것은 ISD가 제대로 연결되었다는 것.
+             *  그래서 ISD가 L/R 어느쪽인지 알 수 있음. 단, I2S 스트리밍 중이라면 1 마이크만 사용한다. */
+            if (I2S_isStreaming())  // I2S 스트리밍 중이라면 1 마이크로 활성화
+            {
+                tdc_enable_1_DMIC();
+            }
+            else
+            {
+                tdc_enable_2_DMICs();
+            }
+#if 1
+            /* [MODULE] M3 HW 오디오 경로 / [UNIT] U12 front mic + HW 소수점 지연 설정.
+             *   ISD 착용 귀(L/R)로 front mic 선택 + front 채널에만 FRAC=6(0.025샘플) 인가.
+             *   검증=integration-test / 전제(의존)=U4 front mic 상태, U10 DMIC 수 전환.
+             *   상세: 유닛-모듈-테스트맵.md */
+            // 하지만 마이크 수와 상관 없이 Left, Right 에 대한 앞쪽 마이크 설정은 해야한다.
+            /* 현재 연결된 내부기 ID가 1 이상일 때, 또한 ISD 번호가 1 이상이어야 정상이다. */
+            if (0 < m_current_isd)
+            {
+                switch (Addr_SharedMem->cfx_ISD_info[m_current_isd - 1].isd_location_RL)
+                {
+                    case Left_Ear:
+                        // Left 귀: front mic = DMIC2(QCC, ch2). front 채널에만 HW 소수점 지연(0.025샘플) 부여.
+                        tdc_audio_set_front_mic(LIB_AUDIO_FRONT_MIC_LEFT);
+                        SYS_SET_ADC_DEC_CTRL(AUDIO, 0, LIB_ADC_DEC_CTRL_VAL);         // ch0 DMIC1(EZ) = rear,  지연 0
+                        SYS_SET_ADC_DEC_CTRL(AUDIO, 2, LIB_ADC_DEC_CTRL_VAL_0_0250);  // ch2 DMIC2(QCC) = front, 지연 0.025샘플
+                        break;
+
+                    case Right_Ear:
+                        // Right 귀: front mic = DMIC1(EZ, ch0). front 채널에만 HW 소수점 지연(0.025샘플) 부여.
+                        tdc_audio_set_front_mic(LIB_AUDIO_FRONT_MIC_RIGHT);
+                        SYS_SET_ADC_DEC_CTRL(AUDIO, 0, LIB_ADC_DEC_CTRL_VAL_0_0250);  // ch0 DMIC1(EZ) = front, 지연 0.025샘플
+                        SYS_SET_ADC_DEC_CTRL(AUDIO, 2, LIB_ADC_DEC_CTRL_VAL);         // ch2 DMIC2(QCC) = rear,  지연 0
+                        break;
+
+                    default:
+                        tdc_audio_set_front_mic(LIB_AUDIO_FRONT_MIC_NONE);
+                        SYS_SET_ADC_DEC_CTRL(AUDIO, 0, LIB_ADC_DEC_CTRL_VAL);  // EZ
+                        SYS_SET_ADC_DEC_CTRL(AUDIO, 2, LIB_ADC_DEC_CTRL_VAL);  // QCC
+                        break;
+                }
+            }
+#endif
         }
         else /* Mapping App의 Live 기능 실행 중 맵 변경일 경우 맵 번호가 0 보다 작을 수 있음 */
         {
             fn_PcmBitStream_Mode_NopStandby();
             copy_MappingData_without_mappingDate(); /* Mapping app live mode */
+
+            /** Mapping 연결 상태에서는 마이크를 1개만 사용하게 고정해야 한다.
+             *  Mapping Live 모드에서는 마이크 1개만 사용해서 진행한다. */
+            tdc_enable_1_DMIC();
         }
 
         /* NOTE: 프로그램 변경 시 NofM 전략이라면 NofM Phase가 0부터 수행될 수 있게 초기화. */

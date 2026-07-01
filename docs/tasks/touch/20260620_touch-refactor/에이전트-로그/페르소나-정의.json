@@ -1,0 +1,72 @@
+{
+  "workflow": "touch-refactor-3layer-analysis",
+  "purpose": "Full ATI 터치 코드를 3레이어 분리·시간 상수 파생·테스트 용이 구조로 재구조화하기 위한 분석·설계",
+  "mode": "ultracode",
+  "model": "opus-4.8 (main-loop 상속)",
+  "effort": "xhigh",
+  "구조": "분석/설계 6 (병렬) → adversarial 검증 1 → 종합 1",
+  "공통입력": {
+    "현코드_로직": "src/2__cm3/Cortex-M3-src/systemControl/tdc_touch.c (.h)",
+    "현코드_드라이버": "src/2__cm3/Cortex-M3-src/systemControl/tdc_drv_iqs323.c (.h)",
+    "현코드_설정": "src/2__cm3/Cortex-M3-src/systemControl/tdc_touch_config.h",
+    "현코드_상위": "src/2__cm3/Cortex-M3-src/main.c (func_normal·func_sleep·ULP 루프)",
+    "동작분석": "docs/tasks/touch/20260619_touch-fullati-control/에이전트-로그/동작분석/B99_동작분석종합.md",
+    "요구사항": "docs/tasks/touch/20260620_touch-refactor/요구사항.md"
+  },
+  "personas": [
+    {
+      "id": "01_현코드구조매핑",
+      "phase": "분석",
+      "역할": "현 터치 코드 함수별 책임·HW 의존·전역 상태 전수 인벤토리",
+      "핵심질문": "tdc_touch.c·tdc_drv_iqs323.c 모든 함수를 분류: 순수 가능(상태·시간 계산·판정) vs HW 종속(I2C·레지스터·force window). 전역/static 상태 목록과 그 소유 레이어. 시간 상수·파생값 현황(POLL_INTERVAL·LONG_TOUCH·ULP_WAKE·ULP_LONG_TOUCH 등)"
+    },
+    {
+      "id": "02_L2순수FSM설계",
+      "phase": "설계",
+      "역할": "순수 터치 FSM 로직(HW 비의존) 설계",
+      "핵심질문": "상태머신(RESET·TOUCH·NOT_TOUCH·CAL_ERROR)·이벤트(터치/해제/드리프트/read실패/롱터치/stuck)·전이·액션(Re-ATI·reseed·MCLR 요청)을 순수 함수로. 입력=현재상태·시간·플래그(pressed·ati_error·ati_active·tick), 출력=다음상태·요청액션. 게이트·쿨다운·stuck 카운터를 순수 상태 구조체로. 테스트 가능 시그니처"
+    },
+    {
+      "id": "03_L1드라이버경계",
+      "phase": "설계",
+      "역할": "HW 드라이버 인터페이스(L2가 호출할 추상) 설계",
+      "핵심질문": "L2가 필요로 하는 HW 동작을 인터페이스로 추상화(read_status·re_ati·reseed·apply_settings·mclr). 함수 포인터 vtable vs 직접 모듈 호출(은수님: 모듈 호출 격리). mock/스텁 지점. tdc_drv_iqs323를 그 인터페이스 구현으로"
+    },
+    {
+      "id": "04_L3어댑터시간상수",
+      "phase": "설계",
+      "역할": "시간·이벤트 어댑터 + 시간 상수 자동 파생 매크로",
+      "핵심질문": "ms 상수(POLL_INTERVAL_MS·LONG_TOUCH_MS·ULP_WAKE_MS·ULP_POLL_MS·ULP_LONG_TOUCH_MS)→파생 카운트 매크로(올림 나눗셈). 어댑터가 폴링 게이팅·tick 공급·L2 호출·L2 액션을 L1 호출로 변환. 노말·절전 두 어댑터(서로 다른 시간축). 은수님이 상수만 바꾸면 동작"
+    },
+    {
+      "id": "05_테스트구조",
+      "phase": "설계",
+      "역할": "유닛/모듈 테스트 경계·케이스·스텁 골격",
+      "핵심질문": "L2 순수 함수 유닛 테스트 케이스(이벤트별 상태 전이·게이트 4조건·stuck 3단계·쿨다운·read실패 hold). 모듈 테스트(L2+L3 with L1 mock). HW mock/스텁 골격(프레임워크 없이, 호출 기록). tests/ 폴더 구성. 프레임워크 미도입 전제"
+    },
+    {
+      "id": "06_파일모듈구성",
+      "phase": "설계",
+      "역할": "신규 파일 레이아웃·빌드·호출처 영향",
+      "핵심질문": "신규 파일(예: tdc_touch_fsm.c/.h 순수 L2, tdc_touch_port.h 인터페이스, tdc_touch_time.h 상수/파생). 기존 tdc_touch.c·tdc_drv_iqs323 역할 재배치. main.c(func_normal·func_sleep·ULP) 호출 영향. 빌드가드·기존 매크로 마이그레이션. 작고 단일 책임 파일"
+    },
+    {
+      "id": "07_검증_동작보존회귀",
+      "phase": "검증",
+      "역할": "adversarial — 3레이어 설계가 Full ATI 동작 보존하는지",
+      "핵심질문": "설계가 20260619 Full ATI 동작(게이트 터치중 보류 급소·read실패 캐시 무효화·stuck 3단계·부팅 Re-ATI·절전 미변경·Beta/Power)을 기능 동등 보존하는가. 순수화 과정의 누락·전역상태 race·시간축 혼동·회귀. [보존]/[위험]/[누락] 판정"
+    },
+    {
+      "id": "99_종합_3레이어설계",
+      "phase": "종합",
+      "역할": "단일 설계 + 마이그레이션 단계 + 순서도",
+      "핵심질문": "L1/L2/L3 인터페이스·파일 구성·시간 상수 매크로·테스트 경계·마이그레이션 Phase + 레이어 구조 Mermaid + 계획.md 골격"
+    }
+  ],
+  "산출규칙": [
+    "각 노드 결론을 에이전트-로그/<id>.md에 Write(frontmatter+TL;DR+GFM)",
+    "한자 절대 금지(한글만). 코드 근거 [파일:라인]. 추정 [추정]·실측의존 [실측 게이트]",
+    "설계는 인터페이스 시그니처·파일명·매크로 구체 제시",
+    "구조화 요약 반환(파일경로·핵심결론·설계함의·미해결)"
+  ]
+}

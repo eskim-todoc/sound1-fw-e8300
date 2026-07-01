@@ -82,15 +82,15 @@ void normal_init(void)
     /* Start the HEAR */
     SYS_HEAR_START(D_SYSTEM);
 
-    // 오디오 IN 0, ADC 0, DMIC 0   :   FIFO_A0_0   :   DMIC_CLK1/CAL (DIO22) + DMIC_OUT1 (DIO23)   :   EZ
-    // 오디오 IN 1, ADC 1, DMIC 1   :   FIFO_A0_1   :   DMIC_CLK2     (DIO10) + DMIC_OUT2 (DIO17)   :   QCC
-    configure_audio_path_all();
+    // 오디오 IN 0, ADC 0, DMIC 0(ch0)   :   FIFO_A0_0   :   DMIC_CLK1/CAL (DIO22) + DMIC_OUT1 (DIO23)   :   EZ
+    // 오디오 IN 2, ADC 2, DMIC 2(ch2)   :   FIFO_A0_1   :   DMIC_CLK2     (DIO10) + DMIC_OUT2 (DIO17)   :   QCC
+    tdc_configure_audio_path_all();
 
     lib_init_PCM(DIO_PCM_CLK, DIO_PCM_FRAME, DIO_PCM_MOSI);                // PCM 설정
     lib_init_I2S(DIO_I2S_CLK, DIO_I2S_FRAME, DIO_I2S_MISO, DIO_I2S_FLAG);  // I2S 설정
 
-    // 순서 1. 마이크 입력 켜기
-    enable_DMIC();
+    // 순서 1. 마이크 입력 켜기 (빔포밍: 2-DMIC로 시작)
+    tdc_enable_2_DMICs();
 
     // 순서 2. I2S 입력 켜기
     lib_enable_I2S();
@@ -100,7 +100,7 @@ void normal_init(void)
 
     // 순서 4. DAC 출력 켜기
     SYS_SET_DAC_GF_CTRL(AUDIO, OUTPUT_GAIN_VAL);  // DAC 출력을 약 2배로 게인 증가 시킴 (1.9990234375)
-    SYS_SET_OUTPUT_CTRL(AUDIO, OUTPUT_CTRL_VAL);  // OD1 활성화 (OD2는 NC 상태)
+    SYS_SET_OUTPUT_CTRL(AUDIO, OUTPUT_CTRL_VAL);  // OD_1 활성화 (OD_0 NC 상태)
 
     fn_reset_PCM();  // 프리앰블 시작은 어보트부터 하도록 초기화
 
@@ -162,6 +162,12 @@ void normal_loop(void)
 
                 tdc_i2s_set_streaming_state(LIB_I2S_STATE_ENABLED);
             }
+
+            /** I2S 스트리밍 상태인데 DMIC가 2개 사용 중인 상태 **/
+            if (I2S_isStreaming() && (tdc_get_enabled_DMIC_count() == LIB_AUDIO_DMIC_COUNT_DUAL))
+            {
+                tdc_enable_1_DMIC();
+            }
         }
         else
         {
@@ -174,19 +180,29 @@ void normal_loop(void)
             // 입력/출력 버퍼 인덱스 초기화
             lib_g_i2s_buffer_in_pos  = 0;
             lib_g_i2s_buffer_out_pos = 0;
+
+            /** I2S 스트리밍 상태가 아닌데 DMIC가 1개 사용 중인 상태 **/
+            if ((!I2S_isStreaming()) && (tdc_get_enabled_DMIC_count() == LIB_AUDIO_DMIC_COUNT_SINGLE))
+            {
+                tdc_enable_2_DMICs();
+            }
         }
 #endif
 
         // I2S 입력이 언제부터 들어올지 알 수 없다. 그러므로 PCM 출력과 EZ 마이크만 사용하도록 한다.
-        // mic0 = DMIC0 = EZ, mic1 = DIMC2 = QCC
-        if ((g_interrupt_flags.pcm_out == 1) && (g_interrupt_flags.mic0 == 1))  // && (g_interrupt_flags.mic1 == 1))
+        // mic0 = DMIC1 = EZ, mic1 = DMIC2 = QCC
+        if ((g_interrupt_flags.pcm_out == 1) && (g_interrupt_flags.mic0 == 1) && (g_interrupt_flags.mic1 == 1) && (g_interrupt_flags.dac1 == 1))
         {
             g_interrupt_flags.pcm_out = 0;
-            g_interrupt_flags.mic0    = 0;
-            // g_interrupt_flags.mic1    = 0;
+            g_interrupt_flags.mic0    = 0;  // e8300
+            g_interrupt_flags.mic1    = 0;  // qcc
+            g_interrupt_flags.dac1    = 0;  // dac1
 
             /* CM3가 설정한 PCM 모드와 이어피스 상태 업데이트 */
             g_pcm_mode = Addr_SharedMem->cfx_PCM_interface.PCM_mode;
+
+            /* copy DMIC buffers */
+            tdc_copy_DMIC_buffers();
 
             /* 설정, 내부기 연결/해제 감지, 신호처리 계수 계산 등을 수행 */
             LB_Normal_PowerMode();
@@ -298,6 +314,48 @@ void standby(void)
     }
 }
 
+/**
+ * tdc_copy_DMIC_buffers ? DMIC FIFO를 입력 링버퍼로 shift-복사.
+ *
+ * 매 인터럽트(블록 16샘플)마다 두 마이크에 대해:
+ *   1) 기존 블록을 한 칸 뒤로 민다: block[0](직전 최신) → block[1](직전).
+ *   2) 새 FIFO 데이터를 block[0](현재 최신)에 채운다.
+ * 결과적으로 block[0]=최신, block[1]=직전 프레임이 유지된다(빔포밍 블록 경계용).
+ * (BUF_MAX_CNT=2이면 내부 j 루프는 1회: block[1] = block[0].)
+ */
+/* [MODULE] M4 DMIC 버퍼 수집 / [UNIT] U9 DMIC 링버퍼 시프트.
+ *   검증=integration-test / 전제(의존)=M3 HW 오디오 경로.   상세: 유닛-모듈-테스트맵.md */
+void tdc_copy_DMIC_buffers(void)
+{
+    // DMIC1 (EZ, FIFO MIC0 = HCT_A0_0)
+    for (register int i = 0; i < df_inputADC_DataBuffLength; i++)
+        chess_loop_range(df_inputADC_DataBuffLength, df_inputADC_DataBuffLength)
+        {
+            for (register int j = 0; j < LIB_AUDIO_IN_BUF_MAX_CNT - 1; j++)
+                chess_loop_range(LIB_AUDIO_IN_BUF_MAX_CNT - 1, LIB_AUDIO_IN_BUF_MAX_CNT - 1)
+                {
+                    g_lib_dmic_in_buffers[LIB_DMIC_IDX_DMIC1][(LIB_AUDIO_IN_BUF_MAX_CNT - 1) - j][i] = g_lib_dmic_in_buffers[LIB_DMIC_IDX_DMIC1][(LIB_AUDIO_IN_BUF_MAX_CNT - 2) - j][i];
+                }
+
+            g_lib_dmic_in_buffers[LIB_DMIC_IDX_DMIC1][0][i] = ((int _XMEM *) &HCT_A0_0)[i];
+        }
+
+    // DMIC2 (QCC, FIFO MIC1 = HCT_A0_1)
+    for (register int i = 0; i < df_inputADC_DataBuffLength; i++)
+        chess_loop_range(df_inputADC_DataBuffLength, df_inputADC_DataBuffLength)
+        {
+            for (register int j = 0; j < LIB_AUDIO_IN_BUF_MAX_CNT - 1; j++)
+                chess_loop_range(LIB_AUDIO_IN_BUF_MAX_CNT - 1, LIB_AUDIO_IN_BUF_MAX_CNT - 1)
+                {
+                    g_lib_dmic_in_buffers[LIB_DMIC_IDX_DMIC2][(LIB_AUDIO_IN_BUF_MAX_CNT - 1) - j][i] = g_lib_dmic_in_buffers[LIB_DMIC_IDX_DMIC2][(LIB_AUDIO_IN_BUF_MAX_CNT - 2) - j][i];
+                }
+
+            g_lib_dmic_in_buffers[LIB_DMIC_IDX_DMIC2][0][i] = ((int _XMEM *) &HCT_A0_1)[i];
+        }
+}
+
+/* [DEAD] 미사용 - 호출부 없음(아래 PCM_LiveStimulation_Mode 내 주석). I2S 처리는
+ *        PCM_LiveStimulation_Mode 인라인으로 수행. 물리 삭제는 후속 일괄 - git 이력 보존. */
 void I2S_handle(void)
 {
     int _XMEM *p_buffer;
@@ -320,7 +378,7 @@ void I2S_handle(void)
             }
         Addr_SharedMem->currentOutputStimulLevel_255[31] = 1;
 
-        audio_mix_2_buffers((int _XMEM *) &HCT_A0_0[0], p_buffer);
+        tdc_audio_mix_2_buffers((int _XMEM *) &HCT_A0_0[0], p_buffer);
         lib_audio_loopback((int _XMEM *) &HCT_A0_3[0], p_buffer);  // DAC1로 I2S 출력
         // lib_audio_loopback((int _XMEM *) &HCT_A0_2[0], p_buffer);  // DAC0로 I2S 출력
 
@@ -348,7 +406,7 @@ void I2S_handle(void)
             }
         Addr_SharedMem->currentOutputStimulLevel_255[31] = 1;
 
-        audio_mix_2_buffers((int _XMEM *) &HCT_A0_0[0], p_buffer);
+        tdc_audio_mix_2_buffers((int _XMEM *) &HCT_A0_0[0], p_buffer);
         lib_audio_loopback((int _XMEM *) &HCT_A0_3[0], p_buffer);  // DAC1로 I2S 출력
 
         if (lib_g_i2s_buffer_sub_state != (I2S_BUFFER_SUB_STATE_FADE_OUT_STEP_0 + I2S_BUFFER_UNDERRUN_CNT))
@@ -360,6 +418,14 @@ void I2S_handle(void)
     lib_i2s_copy_data_from_fifo((int _XMEM *) &HCT_A0_5[0]);
 }
 
+/* ============================================================================
+ * [MODULE] M6 신호 디스패치 - 상태(I2S/DMIC수/front mic)에 따라 믹싱 경로 선택.
+ *   I2S 스트리밍: tdc_audio_mix_2_buffers(DMIC1 + I2S).
+ *   비스트리밍 2-DMIC: tdc_audio_mix_2_buffers_for_beamforming(L/R로 front 채널 지연).
+ *   비스트리밍 1-DMIC/NONE: tdc_audio_mix_1_buffer(DMIC1).
+ *   검증=integration-test / 전제(의존)=M1 믹싱·M2 라우팅·M4 DMIC수집·M5 I2S 통과.
+ *   상세: 유닛-모듈-테스트맵.md
+ * ========================================================================== */
 void PCM_LiveStimulation_Mode(void)
 {
     // I2S_update_state();  // I2S 스트리밍 체크
@@ -370,10 +436,11 @@ void PCM_LiveStimulation_Mode(void)
         int *p_buffer = (int *) &lib_g_i2s_buffers[lib_g_i2s_buffer_out_pos][0];
 
         // I2S + 마이크 둘 다 믹싱 버퍼에 복사 (합친 후 나누기 2 하는 것 더이상 안함)
-        audio_mix_2_buffers((int _XMEM *) &HCT_A0_0[0], p_buffer);
+        // tdc_audio_mix_2_buffers((int _XMEM *) &HCT_A0_0[0], p_buffer);
+        tdc_audio_mix_2_buffers((int _XMEM *) &g_lib_dmic_in_buffers[LIB_DMIC_IDX_DMIC1][0][0], p_buffer);  // DMIC1 현재블록 sample0
 
         // I2S만 믹싱 버퍼에 복사
-        // audio_mix_1_buffer(p_buffer);
+        // tdc_audio_mix_1_buffer(p_buffer);
 
         // 출력 버퍼의 포인터 변경
         if (lib_g_i2s_buffer_out_pos == 0)
@@ -387,7 +454,32 @@ void PCM_LiveStimulation_Mode(void)
     }
     else  // I2S 스트리밍 상태가 아니면 Mic만 처리
     {
-        audio_mix_internal_mic_only();
+        if (tdc_get_enabled_DMIC_count() == LIB_AUDIO_DMIC_COUNT_SINGLE)
+        {
+            tdc_audio_mix_1_buffer((int _XMEM *) &g_lib_dmic_in_buffers[LIB_DMIC_IDX_DMIC1][0][0]);  // DMIC1 현재블록 sample0
+        }
+        else if (tdc_get_enabled_DMIC_count() == LIB_AUDIO_DMIC_COUNT_DUAL)
+        {
+            // 빔포밍 인수 = (지연 mic 현재블록, 지연 mic 직전블록, 기준 mic 현재블록).
+            //   블록 인덱스: [BUF_MAX_CNT-2]=0(현재/최신), [BUF_MAX_CNT-1]=1(직전).
+            //   front mic(음원에 먼저 닿는 쪽)을 지연 채널로 넘겨 forward 빔을 정렬한다.
+            if (tdc_audio_get_front_mic() == LIB_AUDIO_FRONT_MIC_LEFT)
+            {
+                // Left 귀: front = DMIC2(QCC) → DMIC2 지연, DMIC1 기준
+                tdc_audio_mix_2_buffers_for_beamforming((int _XMEM *) &g_lib_dmic_in_buffers[LIB_DMIC_IDX_DMIC2][LIB_AUDIO_IN_BUF_MAX_CNT - 2][0], (int _XMEM *) &g_lib_dmic_in_buffers[LIB_DMIC_IDX_DMIC2][LIB_AUDIO_IN_BUF_MAX_CNT - 1][0], (int _XMEM *) &g_lib_dmic_in_buffers[LIB_DMIC_IDX_DMIC1][0][0]);
+            }
+            else if (tdc_audio_get_front_mic() == LIB_AUDIO_FRONT_MIC_RIGHT)
+            {
+                // Right 귀: front = DMIC1(EZ) → DMIC1 지연, DMIC2 기준
+                tdc_audio_mix_2_buffers_for_beamforming((int _XMEM *) &g_lib_dmic_in_buffers[LIB_DMIC_IDX_DMIC1][LIB_AUDIO_IN_BUF_MAX_CNT - 2][0], (int _XMEM *) &g_lib_dmic_in_buffers[LIB_DMIC_IDX_DMIC1][LIB_AUDIO_IN_BUF_MAX_CNT - 1][0], (int _XMEM *) &g_lib_dmic_in_buffers[LIB_DMIC_IDX_DMIC2][0][0]);
+            }
+            else
+            {
+                // front mic 미지정: 기본 DMIC1(EZ) 단일 사용
+                tdc_audio_mix_1_buffer((int _XMEM *) &g_lib_dmic_in_buffers[LIB_DMIC_IDX_DMIC1][0][0]);  // DMIC1 현재블록 sample0
+            }
+            // lib_audio_loopback((int _XMEM *) &HCT_A0_3[0], (int _XMEM *) &HCT_A0_0[0]);  // DAC1로 MIC1 출력
+        }
         // lib_audio_loopback((int _XMEM *) &HCT_A0_3[0], (int _XMEM *) &HCT_A0_0[0]);  // DAC1로 MIC0 출력
     }
 

@@ -201,6 +201,8 @@ void standby(void);
 void PCM_LiveStimulation_Mode(void);
 void HEAR_LiveStimulation_Mode(void);
 
+void tdc_copy_DMIC_buffers(void);
+
 /* extern variable */
 extern volatile int _XMEM g_pcm_mode;
 
