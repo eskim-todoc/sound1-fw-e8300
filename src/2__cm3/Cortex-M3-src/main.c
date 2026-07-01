@@ -29,8 +29,8 @@
 
 #include "driver_REN_ISL9122.h"  //ok
 
-#include <tdc_touch.h>
-#include <tdc_drv_iqs323.h> /* tdc_touch_config.h 제공 + SLEEP_MEASURE_MODE API 선언 */
+#include <tdc_touch.h>        /* 공개 API + tdc_touch_time.h(ULP 시간상수) 재노출 */
+#include <tdc_touch_iqs323.h> /* 절전 진입 IQS323 직접 호출 */
 
 #include "isd_interface_stimulationStandAlone.h"  // 신규 추가 for I2S 디버깅
 #include <isd_interface_init_FPGA.h>              // 절전 모드 진입 전 FPGA 리셋 목적
@@ -49,7 +49,7 @@
 
 #include <snd_qcc.h>
 
-#if defined(ENABLE_UI_CMD) || TDC_TOUCH_RTT_TUNING
+#if defined(ENABLE_UI_CMD)
 #include "tdc_ui_command.h"
 #endif
 
@@ -314,19 +314,6 @@ int main(void)
 
 /* iqs323_proc() → tdc_touch.c의 tdc_touch_process()로 이동됨 */
 
-#if TDC_TOUCH_SLEEP_MEASURE_MODE
-/* func_normal → func_sleep 측정 모드 진입 트리거. RTT 's' 입력 시 true. */
-static bool s_sleep_measure_mode = false;
-
-/* ENABLE_UI_CMD/비활성 양쪽 경로에서 호출되는 's' 수신 콜백.
- * tdc_ui_command.c가 extern으로 참조한다. */
-void tdc_on_sleep_measure_cmd(void)
-{
-    s_sleep_measure_mode = true;
-    ci_printi("[SLEEP-MEAS] Scheduled. Entering sleep...\r\n");
-}
-#endif
-
 static void func_cradle_lid_closed_loop(void);
 
 int func_normal(void)
@@ -501,10 +488,25 @@ int func_normal(void)
 
             update_mapNum();  // 맵데이터 업데이트
 
+#if 1                                                          // 기본 코드
             isd_state = isd_interface(systemState.enable_ISD,  //
                                       BLE_communicationState.mappingConnection,
                                       BLE_communicationState.isdControlCommand  //
             );
+#else  // BLE 강제로 동작시키기 위한 코드
+            {
+                static bool is_debug_force_isd_read = false;
+
+                if (is_debug_force_isd_read == false)
+                {
+                    is_debug_force_isd_read = true;
+                    changeConnected_isd_num_CFX(1);
+                }
+            }
+            isd_state.conneded_ISD     = true;
+            isd_state.isd_controlState = en__isdStatus_stimul_10V_Ok;
+            snd_qcc_set_isd(SND_QCC_ISD_CONNECTED);
+#endif
 
             /* 매핑 연결 상태이고,
              * isd_state.isd_controlState >= en__isdStatus_stimul_10V_Ok 이면,
@@ -700,12 +702,6 @@ int func_normal(void)
                         ci_printi("[DEBUG] SETTING FILE INTEGRITY ERROR \r\n");
                         ci_event_log_write(CI_EVENT_LOG_TYPE_INTEGRITY_ERROR);
                     }
-#if TDC_TOUCH_SLEEP_MEASURE_MODE
-                    else if ('s' == byte)
-                    {
-                        tdc_on_sleep_measure_cmd();
-                    }
-#endif
                 }
             } while (false);
 #endif
@@ -741,7 +737,7 @@ int func_normal(void)
         {
             led_force_fade_off(); /* fade-out ISR 완료 후 LED 완전 소등 */
             func_cradle_lid_closed_loop();
-            /* 도달 불가 — 루프 내 SYS_WATCHDOG_RESET()으로 재부팅 */
+            /* 도달 불가 ? 루프 내 SYS_WATCHDOG_RESET()으로 재부팅 */
         }
 
         if (systemState.systemOff == true)
@@ -773,16 +769,6 @@ int func_normal(void)
             }
         }
 
-#if TDC_TOUCH_SLEEP_MEASURE_MODE
-        if (tdc_touch_consume_sleep_request())
-        {
-            tdc_on_sleep_measure_cmd();
-        }
-        if (s_sleep_measure_mode)
-        {
-            break;
-        }
-#endif
         SYS_WATCHDOG_REFRESH();
         SYS_WAIT_FOR_INTERRUPT;
     }  // 끝, while
@@ -790,19 +776,9 @@ int func_normal(void)
     return 0;
 }
 
-/* ULP 모드 롱-터치 감지 파라미터 ? 튜닝 시 아래 값만 수정 */
-#define ULP_WAKE_INTERVAL_MS 200  /* 웨이크업 주기 (ms) */
-#define ULP_LONG_TOUCH_MS    2200 /* 롱터치 판정 시간 (ms) */
-
-/* 유도값 ? 웨이크업 N 회 연속 TOUCH 시 리셋 (올림 나눗셈, 실제 응답 ≥ ULP_LONG_TOUCH_MS) */
-#define ULP_LONG_TOUCH_COUNT ((ULP_LONG_TOUCH_MS + ULP_WAKE_INTERVAL_MS - 1) / ULP_WAKE_INTERVAL_MS)
-
-/* 타이머 하드웨어 설정값
- * 공식: T[ms] = 2^PRESCALE × (TIMEOUT+1) / 40   (SLOWCLK_DIV32 = 40 kHz)
- * 현재: 2^7 × 63 / 40 = 201.6 ms ? ULP_WAKE_INTERVAL_MS(200)
- * 주기 변경 시 PRESCALE / TIMEOUT_VALUE 도 재계산 필요 */
-#define ULP_TIMER_PRESCALE      TIMER_PRESCALE_128
-#define ULP_TIMER_TIMEOUT_VALUE 62
+/* ULP 모드 롱터치/웨이크업/타이머 시간상수는 tdc_touch_time.h 가 단일 소유
+ * (TDC_TOUCH_ULP_WAKE_MS / ULP_LONG_TOUCH_MS / ULP_LONG_TOUCH_CNT /
+ *  ULP_TIMER_PRESCALE / ULP_TIMER_TIMEOUT_VALUE). ms 만 바꾸면 카운트 자동 파생. */
 
 static void func_cradle_lid_closed_loop(void)
 {
@@ -836,7 +812,7 @@ static void func_cradle_lid_closed_loop(void)
 
     ci_printi("[CRADLE] LIGHT SLEEP ACTIVE. WAITING FOR LID OPEN PACKET...\r\n");
 
-    /* 약 절전 루프 — BLE 패킷 수신으로 뚜껑 열림 감지 */
+    /* 약 절전 루프 ? BLE 패킷 수신으로 뚜껑 열림 감지 */
     ST__ISD_STATUS dummy_isd = {en__isdStatus_NA, false};
     uint32_t       wfi_count = 0;
 
@@ -856,7 +832,7 @@ static void func_cradle_lid_closed_loop(void)
             SYS_WATCHDOG_RESET();
         }
 
-        /* ULP가 아닌 normal 모드 — 딜레이 없이 인터럽트 기반 iteration */
+        /* ULP가 아닌 normal 모드 ? 딜레이 없이 인터럽트 기반 iteration */
         SYS_WAIT_FOR_INTERRUPT;
 
         if (++wfi_count % 1000 == 0)
@@ -870,17 +846,8 @@ int func_sleep(void)
 {
     SYS_WATCHDOG_REFRESH(); /* Refresh the watchdog at very first time */
 
-    /* 절전 환경 확정 후 터치 해제 확인 → RESEED (LTA ← 절전 환경 counts, delta = 0) */
-    {
-        bool pressed   = false;
-        bool ati_error = false;
-        while (tdc_drv_iqs323_read_status(&pressed, &ati_error) && pressed)
-        {
-            ci_printv("[TOUCH] SLEEP: WAIT TOUCH RELEASE \r\n");
-            SYS_WATCHDOG_REFRESH();
-            delay_ms(100);
-        }
-    }
+    /* 절전 노터치 baseline RESEED 는 ULP 루프 내 '첫 NOT_TOUCH 시 1회'로 이동했다(아래).
+     * 진입 초입의 무한 'WAIT TOUCH RELEASE' 루프는 손 미해제·임계 오인 시 무한 스턱이라 제거. */
 
     ci_printi("[INFO] CM3 IS PREPARING TO ENTER SLEEP MODE \r\n");
 
@@ -917,31 +884,8 @@ int func_sleep(void)
     }
 #endif
 
-#if TDC_TOUCH_SLEEP_MEASURE_MODE
-    if (s_sleep_measure_mode)
-    {
-        ci_printi("[SLEEP-MEAS] === Sleep Measure Mode ===\r\n");
-        ci_printi("[SLEEP-MEAS] Peripherals OFF. RTT 'q' to reset.\r\n");
-        while (1)
-        {
-            SYS_WATCHDOG_REFRESH();
-            if (SEGGER_RTT_HasKey())
-            {
-                int key = SEGGER_RTT_GetKey();
-                if (key == 'q')
-                {
-                    ci_printi("[SLEEP-MEAS] Reset.\r\n");
-                    delay_ms(20);
-                    SYS_WATCHDOG_RESET();
-                }
-            }
-            tdc_drv_iqs323_sleep_measure_dump();
-        }
-    }
-#endif
-
-    /* 절전 모드 레지스터 사전 적용 ? 클럭 변경 전 정상속도 I2C로 확실히 기록 */
-    tdc_drv_iqs323_apply_sleep_settings();
+    /* 절전 IQS323 설정은 노말과 동일하게 유지(전용 sleep settings 제거 ? 운용 임계 그대로,
+     * is_ulp 플래그 미사용). CM3 클럭만 ci_power_sleep 로 절감한다. */
 
     // Uninitialize(); /* Disable peripherals and DIOs */
 
@@ -949,76 +893,108 @@ int func_sleep(void)
 
     i2c_set_master_prescale(I2C_MASTER_PRESCALE_6 /*I2C_MASTER_PRESCALE_21*/); /* SCL ? 122 kHz 유지 (저속 방지) */
 
-    tdc_drv_iqs323_reseed();
+    /* RESEED 는 ULP 루프 내 '첫 NOT_TOUCH 시 1회'로 이동(손 떼야 절전 노터치 baseline 동기). */
 
-    ci_timer_init_prescaled(ULP_TIMER_PRESCALE, ULP_TIMER_TIMEOUT_VALUE); /* ? 200 ms 주기 */
+    ci_timer_init_prescaled(TDC_TOUCH_ULP_TIMER_PRESCALE, TDC_TOUCH_ULP_TIMER_TIMEOUT_VALUE); /* ? 200 ms 주기 */
 
     SYS_WATCHDOG_REFRESH();
 
-    int               touch_cnt      = 0;
+    /* 절전 ULP 터치 감시 (부팅 boot_ignore 철학):
+     *  - sleep_ignore 구간: 첫 '400ms(2폴링) 연속 노터치' 확정 전까지 터치 무시(손 댄 채 진입 대응).
+     *    확정 시 RESEED 1회로 절전 노터치 baseline 동기 후 게이트 해제.
+     *  - 노터치가 10초 넘게 확정 안 되면(계속 터치/오염) 강제 RESEED 로 현재 상태를 baseline 끌어와 탈출.
+     *  - 게이트 해제 후 '400ms 연속 터치' 시 재부팅 → 노말 모드 복귀(30/60/90 stuck 불요). */
+    bool              sleep_ignore   = true; /* 첫 노터치 확정 전 터치 막힘 */
+    int               notouch_cnt    = 0;    /* 연속 NOT_TOUCH 샘플 (게이트 해제 기준) */
+    int               ignore_elapsed = 0;    /* 게이트 지속 샘플 (10s 강제 RESEED 기준) */
+    int               touch_cnt      = 0;    /* 게이트 해제 후 연속 TOUCH 샘플 (재부팅 기준) */
     tdc_touch_state_t ulp_state_prev = TDC_TOUCH_STATE_RESET;
-
-#if 0
-    Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_R);
-    Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_G);
-    Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_B);
-#endif
 
     while (1)  // ULP loop
     {
-        SYS_WAIT_FOR_INTERRUPT; /* ULP_WAKE_INTERVAL_MS 동안 idle */
-
+        SYS_WAIT_FOR_INTERRUPT; /* ULP_WAKE_MS 동안 idle */
         SYS_WATCHDOG_REFRESH(); /* 워치독 3.28s 대비 매 웨이크업마다 refresh */
 
-#if TDC_TOUCH_RTT_TUNING
-        tdc_ui_command_poll();
+        tdc_touch_iqs323_status_t st;
+        bool                      ok    = tdc_touch_iqs323_read_status(&st);
+        tdc_touch_state_t         state = st.pressed ? TDC_TOUCH_STATE_TOUCH : TDC_TOUCH_STATE_NOT_TOUCH;
+
+#if (TDC_TOUCH_DEBUG_PRINT_ENABLE)
+        /* 절전 ULP 계측 (노말 폴링과 동일 포맷) ? LTA/Counts/절대임계/밴드초과 */
+        if (ok)
+        {
+            tdc_touch_iqs323_debug_t dbg;
+            if (tdc_touch_iqs323_read_debug(&dbg) && dbg.ok)
+            {
+                uint16_t delta    = (dbg.lta > dbg.counts) ? (uint16_t) (dbg.lta - dbg.counts) : 0;
+                uint16_t abs_thr  = (uint16_t) (((uint32_t) TDC_TOUCH_IQS323_THRESHOLD * dbg.lta) / 256u);
+                uint16_t pabs_thr = (uint16_t) (((uint32_t) TDC_TOUCH_IQS323_PROX_THRESHOLD * dbg.lta) / 256u);
+                ci_printd("[T] LTA=%3u  CNT=%3u  D=%3u  THR=%3u  (k=%3u  H=%3u)  %s   PTHR=%3u (pk=%3u)  %s \r\n", dbg.lta, dbg.counts, delta, abs_thr, TDC_TOUCH_IQS323_THRESHOLD, TDC_TOUCH_IQS323_HYSTERESIS, (state == TDC_TOUCH_STATE_TOUCH) ? "T" : ".", pabs_thr, TDC_TOUCH_IQS323_PROX_THRESHOLD, st.prox ? "P" : ".");
+            }
+        }
 #endif
 
-        /* 터치 상태 1회 샘플링. ULP_LONG_TOUCH_COUNT 회 연속 TOUCH 면 롱-터치 → 리셋. */
-        tdc_touch_state_t state = TDC_TOUCH_STATE_RESET;
-        if (tdc_touch_get_state(&state))
+        /* 절전 ATI 에러 복구(나안): 직접 Re-ATI 없이 재부팅 → 노말 복귀해 Re-ATI 게이트로 복구.
+         * ati_active(정상 ATI burst) 중에는 제외, 실제 에러(!ati_active && ati_error)만. */
+        if (ok && st.ati_error && !st.ati_active)
         {
-            if (ulp_state_prev != state)
+            ci_printw("\r\n[TOUCH] SLEEP: ATI ERROR -> REBOOT (recover in normal) \r\n");
+            delay_ms(20); /* RTT 드레인 */
+            SYS_WATCHDOG_RESET();
+        }
+
+        if (sleep_ignore)
+        {
+            ignore_elapsed++; /* read 성패 무관 게이트 지속 시간 */
+
+            if (ok && state == TDC_TOUCH_STATE_NOT_TOUCH)
             {
-                ci_printv("[TOUCH] STATE: %s -> %s \r\n",
-                          tdc_touch_state_name(ulp_state_prev),
-                          tdc_touch_state_name(state));
-                ulp_state_prev = state;
+                notouch_cnt++;
+                if (notouch_cnt >= TDC_TOUCH_ULP_NOTOUCH_DEBOUNCE_CNT)
+                {
+                    tdc_touch_iqs323_reseed();
+                    sleep_ignore = false;
+                    ci_printi("[TOUCH] SLEEP: notouch confirmed -> RESEED, gate open \r\n");
+                }
+            }
+            else /* TOUCH 또는 read 실패 → 노터치 확정 보류 */
+            {
+                notouch_cnt = 0;
             }
 
-            if (state == TDC_TOUCH_STATE_TOUCH)
+            /* 첫 노터치가 10초 넘게 확정 안 됨(계속 터치/오염) → 강제 RESEED 로 baseline 끌어와 탈출 */
+            if (sleep_ignore && ignore_elapsed >= TDC_TOUCH_ULP_FORCE_RESEED_CNT)
             {
-#if 0
-                Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_R);
-                Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_G);
-                Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_B);
-#endif
+                tdc_touch_iqs323_reseed();
+                ignore_elapsed = 0;
+                notouch_cnt    = 0;
+                ci_printw("[TOUCH] SLEEP: notouch timeout 10s -> forced RESEED \r\n");
+            }
+        }
+        else /* 게이트 해제 후 ? 터치 발생 시 재부팅 */
+        {
+            if (ok && state == TDC_TOUCH_STATE_TOUCH)
+            {
                 touch_cnt++;
-                if (touch_cnt >= ULP_LONG_TOUCH_COUNT)
+                if (touch_cnt >= TDC_TOUCH_ULP_REBOOT_TOUCH_CNT)
                 {
-                    ci_printi("[MAIN] LONG TOUCH DETECTED, RESET \r\n");
-                    delay_ms(20);  // RTT 뷰어 로그 드레인 대기
+                    ci_printi("\r\n[TOUCH] SLEEP: touch detected -> REBOOT \r\n");
+                    delay_ms(20); /* RTT 뷰어 로그 드레인 대기 */
                     SYS_WATCHDOG_RESET();
                     /* 도달 불가 ? 칩 리셋 */
                 }
             }
             else
             {
-#if 0
-                Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_R);
-                Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_G);
-                Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_B);
-#endif
-                touch_cnt = 0;  /* 손 뗌 → 카운터 초기화 */
+                touch_cnt = 0;
             }
         }
-        else
-        {
-            Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_R);
-            Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_G);
-            Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_B);
 
-            touch_cnt = 0;  /* read 실패 → 카운터 초기화 */
+        if (ok && ulp_state_prev != state)
+        {
+            ci_printv("[TOUCH] ULP STATE: %s -> %s \r\n",
+                      tdc_touch_state_name(ulp_state_prev), tdc_touch_state_name(state));
+            ulp_state_prev = state;
         }
     }
 

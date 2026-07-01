@@ -1,426 +1,398 @@
 /*
  * tdc_touch.c
  *
- * 터치 기능 레이어 ? 상세는 tdc_touch.h 참조.
- * 하드웨어 접근은 전부 tdc_drv_iqs323 의 저수준 공개 API 를 경유한다.
+ * 터치 연결층 + 초기화 상태머신. 3레이어 탈피 간결 재작성 2026-06-20.
+ *
+ *   순수 제어 FSM(tdc_touch_logic)과 IQS323 직접 접근(tdc_touch_iqs323)을 잇는 얇은 연결.
+ *   책임 4가지: ① init 상태머신(MCLR -> auto-ATI 폴링 -> apply_settings -> READY),
+ *   ② 폴링 게이팅(ms 차분), ③ read -> FSM 입력 정규화(실패 시 전부 false),
+ *   ④ FSM 액션 -> IQS323 직접 호출 + 로그. 터치 판정 로직은 전부 logic 에 위임한다.
+ *
+ *   공개 API 시그니처 불변 -> main.c / initialize.c 호출처 0변경.
+ *   절전 ULP 는 main.c func_sleep 이 get_state 를 직접 호출(순수 FSM 미경유).
  */
 
 #include <tdc_touch.h>
-#include <tdc_drv_iqs323.h>
+#include <tdc_touch_logic.h>
+#include <tdc_touch_iqs323.h>
+#include <tdc_touch_time.h>
 
 #include <hw.h>
 #include <ci_timer.h>
 #include <ci_printf.h>
+#include <ci_util.h> /* delay_ms() ? MCLR 전 RTT 드레인 */
 
-#include <LedOutput.h> /* led_request() ? 부팅 터치 무시 피드백 + ATI CALIB 모드 */
+#include <LedOutput.h> /* led_request() ? 부팅 터치 무시 디버그 피드백 */
 
-/* **********************************************************************
- * 초기화 상태머신 (내부 전용)
- *
- * 전이:
- *   NONE       → MCLR_DONE   : tdc_touch_init_begin() 호출 (Initialize P3-Early 병렬 블록, I2C init 후)
- *   MCLR_DONE  → READY       : tdc_timer_get_t3_tick() - s_mclr_done_tick >= TDC_TOUCH_INIT_TIMEOUT_MS
- *                              또는 tdc_drv_iqs323_is_auto_ati_done() == true (메인 루프 polling)
- *
- * 시간 기준: g_tdc_timer_t3_tick (TIMER3 LED·터치 공유 카운터).
- *   tdc_touch_init_begin() 시점 = CFX iteration 미활성 → g_ci_timer_main_tick 미증가.
- *   이후 READY 전이 후 폴링은 g_ci_timer_main_tick 기준 (CFX iteration 활성 상태).
- */
+/* 초기화 상태 (HW 본질이라 순수 FSM 밖, 연결 소유). */
 typedef enum
 {
-    TDC_TOUCH_INIT_STATE_NONE = 0,  /* begin() 호출 전 */
-    TDC_TOUCH_INIT_STATE_MCLR_DONE, /* MCLR 완료, Auto-ATI 진행/완료 대기 */
-    TDC_TOUCH_INIT_STATE_READY      /* 모든 설정 완료, 터치 감지 가능 */
+    TDC_TOUCH_INIT_NONE = 0,  /* begin() 전 */
+    TDC_TOUCH_INIT_MCLR_DONE, /* MCLR 완료, auto-ATI 대기 */
+    TDC_TOUCH_INIT_READY      /* 설정 완료, 폴링 가능 */
 } tdc_touch_init_state_t;
 
-static tdc_touch_init_state_t s_init_state     = TDC_TOUCH_INIT_STATE_NONE;
-static int                    s_mclr_done_tick = 0; /* g_tdc_timer_t3_tick 기준 */
+/* 연결 소유 static (최소). FSM 상태는 s_logic 단일 구조체로 격리. */
+static tdc_touch_init_state_t  s_init_state     = TDC_TOUCH_INIT_NONE;
+static int                     s_mclr_done_tick = 0; /* t3 tick 기준 */
+static int                     s_poll_tick_old  = 0; /* 폴링 게이팅 기준 */
+static tdc_touch_logic_state_t s_logic;
+static tdc_touch_state_t       s_log_prev_state = TDC_TOUCH_STATE_RESET;
 
-/* 런타임 폴링 상태 */
-static int               s_touch_tick_old  = 0;
-static tdc_touch_state_t s_touch_state_old = TDC_TOUCH_STATE_RESET;
+/* 무선 통신을 통한 디버깅을 위한 측정 값 저장 버퍼 */
+static uint16_t s_debug_recent_lta;
+static uint16_t s_debug_recent_count;
+static uint16_t s_debug_recent_delta;
+static uint16_t s_debug_recent_abs_thr;
+static uint8_t  s_debug_recent_pressed;
+static uint8_t  s_debug_recent_ati_error;
+static uint8_t  s_debug_recent_ati_active;
 
-/* 부팅 직후 터치 무시 상태
- *   READY 전이 시 터치 중이면 ignore=true. 해제 시 자동 복귀.
- *   5초 이상 지속 시 보라 깜빡임(디버깅). */
-static bool s_boot_touch_ignore = false;
-static int  s_boot_ready_tick   = 0;
-static bool s_boot_5s_warned    = false;
+uint16_t tdc_touch_debug_get_recent_lta(void)
+{
+    return s_debug_recent_lta;
+}
 
-#if TDC_TOUCH_SLEEP_MEASURE_MODE
-/* CALIB 루프에서 's' 입력 시 설정 ? func_normal() 에서 소비하여 절전 전환. */
-static bool s_sleep_request = false;
-#endif
+uint16_t tdc_touch_debug_get_recent_count(void)
+{
+    return s_debug_recent_count;
+}
 
-/* **********************************************************************
- * Helper ? 상태 enum 을 로그용 문자열로 변환
- */
+uint16_t tdc_touch_debug_get_recent_delta(void)
+{
+    return s_debug_recent_delta;
+}
+
+uint16_t tdc_touch_debug_get_recent_abs_thr(void)
+{
+    return s_debug_recent_abs_thr;
+}
+
+uint8_t tdc_touch_debug_get_recent_pressed(void)
+{
+    return s_debug_recent_pressed;
+}
+
+uint8_t tdc_touch_debug_get_recent_ati_error(void)
+{
+    return s_debug_recent_ati_error;
+}
+
+uint8_t tdc_touch_debug_get_recent_ati_active(void)
+{
+    return s_debug_recent_ati_active;
+}
+
 const char *tdc_touch_state_name(tdc_touch_state_t s)
 {
     switch (s)
     {
         case TDC_TOUCH_STATE_RESET:
+        {
             return "RESET";
+        }
         case TDC_TOUCH_STATE_TOUCH:
+        {
             return "TOUCH";
+        }
         case TDC_TOUCH_STATE_NOT_TOUCH:
+        {
             return "NOT_TOUCH";
+        }
         case TDC_TOUCH_STATE_CALIBRATION_ERROR:
+        {
             return "CAL_ERROR";
+        }
         default:
+        {
             return "?";
+        }
     }
 }
 
-/* **********************************************************************
- * 롱터치 판정 (3초)
- */
-static bool proc_long_touch(tdc_touch_state_t state_now)
+/* 초기화 ? auto-ATI 완료 감지 후 설정 일괄 적용, READY 전이, 부팅 터치 판정. */
+static void try_finish_init(void)
 {
-    static tdc_touch_state_t s_state_old        = TDC_TOUCH_STATE_RESET;
-    static int               s_tick_first_touch = 0;
-    static bool              s_is_long_touch    = false;
-    bool                     ret                = false;
-
-    switch (s_state_old)
+    if (!tdc_touch_iqs323_is_ati_done())
     {
-        case TDC_TOUCH_STATE_RESET:
+        if (TDC_TOUCH_INIT_TIMEOUT_MS >= (tdc_timer_get_t3_tick() - s_mclr_done_tick))
         {
-            if (state_now == TDC_TOUCH_STATE_TOUCH)
-            {
-                s_tick_first_touch = ci_timer_get_tick();
-                s_is_long_touch    = false;
-            }
+            return; /* 대기 ? 다음 tick 재시도 */
         }
-        break;
-
-        case TDC_TOUCH_STATE_TOUCH:
-        {
-            if (state_now == TDC_TOUCH_STATE_TOUCH)
-            {
-                if (!s_is_long_touch)
-                {
-                    if (TDC_TOUCH_LONG_TOUCH_MS <= (ci_timer_get_tick() - s_tick_first_touch))
-                    {
-                        s_is_long_touch = true;
-                        ret             = true;
-                    }
-                }
-            }
-            else
-            {
-                s_is_long_touch = false;
-            }
-        }
-        break;
-
-        case TDC_TOUCH_STATE_NOT_TOUCH:
-        case TDC_TOUCH_STATE_CALIBRATION_ERROR:
-        default:
-        {
-            if (state_now == TDC_TOUCH_STATE_TOUCH)
-            {
-                s_tick_first_touch = ci_timer_get_tick();
-                s_is_long_touch    = false;
-            }
-        }
-        break;
-    }
-
-    s_state_old = state_now;
-    return ret;
-}
-
-/* **********************************************************************
- * ATI Calibration Mode ? TDC_TOUCH_ATI_CALIB_MODE 빌드 전용
- */
-#if TDC_TOUCH_ATI_CALIB_MODE
-
-/* 이진 LED 표시 파라미터
- *   SEP    : 구분자(파랑=MULT, 빨강=COMP) 표시 시간
- *   BIT_ON : 비트 표시 시간 (녹=1 / 노랑?주황=0)
- *   BIT_OFF: 비트 사이 소등 시간 */
-#define TDC_TOUCH_CALIB_SEP_MS     1200
-#define TDC_TOUCH_CALIB_BIT_ON_MS  700
-#define TDC_TOUCH_CALIB_BIT_OFF_MS 250
-
-static void calib_delay_ms(int ms)
-{
-    int t = ci_timer_get_tick();
-    while (ms > (ci_timer_get_tick() - t))
-    {
-        SYS_WATCHDOG_REFRESH();
-    }
-}
-
-static void calib_led_off(void)
-{
-    for (led_src_t s = 0; s < LED_SRC__MAX; s++)
-    {
-        led_request(s, LED_ST_NONE);
-    }
-}
-
-/* MULT/COMP 16비트 값을 LED 이진수로 1회 출력.
- *   구분자: 파랑(MULT 시작) / 빨강 점멸(COMP 시작)
- *   비트:   녹색=1 / 노랑?주황=0   (MSB→LSB 순) */
-static void tdc_touch_calib_led_binary_once(uint16_t mult16, uint16_t comp16)
-{
-    /* ── MULT 구분자: 파란색 고정 ── */
-    led_request(LED_SRC_MAPPING, LED_ST_MAPPING_NO_ISD_BATT_READY);
-    calib_delay_ms(TDC_TOUCH_CALIB_SEP_MS);
-    calib_led_off();
-    calib_delay_ms(TDC_TOUCH_CALIB_BIT_OFF_MS);
-
-    /* ── MULT 16비트 (MSB→LSB) ── */
-    for (int8_t bit = 15; bit >= 0; bit--)
-    {
-        if ((mult16 >> bit) & 1)
-            led_request(LED_SRC_BATTERY, LED_ST_BATT_READY); /* 1 = 녹색 */
-        else
-            led_request(LED_SRC_BATTERY, LED_ST_BATT_MID); /* 0 = 노랑(주황 근사) */
-        calib_delay_ms(TDC_TOUCH_CALIB_BIT_ON_MS);
-        calib_led_off();
-        calib_delay_ms(TDC_TOUCH_CALIB_BIT_OFF_MS);
-    }
-
-    /* ── COMP 구분자: 빨간색 점멸 ── */
-    led_request(LED_SRC_ERROR, LED_ST_ERROR_MAP);
-    calib_delay_ms(TDC_TOUCH_CALIB_SEP_MS);
-    calib_led_off();
-    calib_delay_ms(TDC_TOUCH_CALIB_BIT_OFF_MS);
-
-    /* ── COMP 16비트 (MSB→LSB) ── */
-    for (int8_t bit = 15; bit >= 0; bit--)
-    {
-        if ((comp16 >> bit) & 1)
-            led_request(LED_SRC_BATTERY, LED_ST_BATT_READY);
-        else
-            led_request(LED_SRC_BATTERY, LED_ST_BATT_MID);
-        calib_delay_ms(TDC_TOUCH_CALIB_BIT_ON_MS);
-        calib_led_off();
-        calib_delay_ms(TDC_TOUCH_CALIB_BIT_OFF_MS);
-    }
-}
-
-#endif /* TDC_TOUCH_ATI_CALIB_MODE */
-
-/* **********************************************************************
- * 초기화 ? Auto-ATI 완료 감지 후 설정 일괄 적용
- *
- * 반환: true  = READY 전이 준비 완료
- *       false = 아직 Auto-ATI 중. 다음 tick 에서 재시도
- *
- * 타임아웃 초과 시 경고 로그와 함께 강제 진행 (터치 누른 채 부팅 대비).
- */
-static bool try_finish_init(void)
-{
-    if (!tdc_drv_iqs323_is_auto_ati_done())
-    {
-        if (TDC_TOUCH_INIT_TIMEOUT_MS < (tdc_timer_get_t3_tick() - s_mclr_done_tick))
-        {
-            ci_printw("[TOUCH] AUTO-ATI: TIMEOUT, FORCING FINISH \r\n");
-            /* 타임아웃 경로도 설정 적용은 진행 */
-        }
-        else
-        {
-            return false;
-        }
+        ci_printw("[TOUCH] AUTO-ATI: TIMEOUT, FORCING FINISH \r\n");
     }
 
     SYS_WATCHDOG_REFRESH();
-
-    tdc_drv_iqs323_apply_settings(); /* 센서 설정 ? CALIB/운용 공통. ATI_DUMP=1이면 1회 덤프 포함. */
-
-#if TDC_TOUCH_ATI_CALIB_MODE
-    {
-        uint16_t mult16 = 0, comp16 = 0;
-        calib_delay_ms(400); /* 부팅 LED 완료 대기 */
-        calib_led_off();
-        while (1)
-        {
-            tdc_drv_iqs323_calib_read_ati(&mult16, &comp16);
-#if TDC_TOUCH_ATI_CALIB_LED_ENABLE
-            tdc_touch_calib_led_binary_once(mult16, comp16);
-#else
-            ci_printi("[CALIB] MULT=0x%04X  COMP=0x%04X\r\n", mult16, comp16);
-            calib_delay_ms(500);
-#endif
-#if TDC_TOUCH_SLEEP_MEASURE_MODE
-            if (SEGGER_RTT_HasKey() && 's' == SEGGER_RTT_GetKey())
-            {
-                ci_printi("[CALIB] 's' ? exit CALIB, sleep measure scheduled.\r\n");
-                s_sleep_request = true;
-                break;
-            }
-#endif
-            tdc_drv_iqs323_calib_re_ati();
-        }
-    }
-#endif
-
+    tdc_touch_iqs323_apply_settings(); /* Full ATI / 임계 / Beta / Power / 부팅 Re-ATI */
     SYS_WATCHDOG_REFRESH();
 
-    /* READY 전이 직전 폴링 상태 초기화 */
-    s_touch_tick_old  = ci_timer_get_tick();
-    s_touch_state_old = TDC_TOUCH_STATE_RESET;
+    uint32_t now = (uint32_t) ci_timer_get_tick();
+    tdc_touch_logic_init(&s_logic, now);
+    s_log_prev_state = TDC_TOUCH_STATE_RESET;
+    s_poll_tick_old  = (int) now;
+    s_init_state     = TDC_TOUCH_INIT_READY;
+    ci_printi("[TOUCH] INIT FINISH DONE \r\n");
 
-    ci_printi("[TOUCH] INIT FINISH DONE ? ELAPSED=%d ms \r\n", tdc_timer_get_t3_tick() - s_mclr_done_tick);
-
-    return true;
-}
-
-/* **********************************************************************
- * Public API
- */
-
-#if TDC_TOUCH_SLEEP_MEASURE_MODE
-bool tdc_touch_consume_sleep_request(void)
-{
-    if (!s_sleep_request)
+    /* 누른 채 부팅 방어 ? 첫 read 로 터치 판정 후 FSM 에 무시 설정. */
+    tdc_touch_iqs323_status_t st;
+    if (tdc_touch_iqs323_read_status(&st) && st.pressed)
     {
-        return false;
+        tdc_touch_logic_set_boot_ignore(&s_logic, now);
+        ci_printw("[TOUCH] BOOT TOUCH ignoring until released \r\n");
     }
-    s_sleep_request = false;
-    return true;
 }
-#endif
 
 void tdc_touch_init_begin(void)
 {
     ci_printi("[TOUCH] INIT BEGIN \r\n");
 
     SYS_WATCHDOG_REFRESH();
-
-    tdc_drv_iqs323_mclr_reset();
+    tdc_touch_iqs323_mclr();
 
     s_mclr_done_tick = tdc_timer_get_t3_tick();
-    s_init_state     = TDC_TOUCH_INIT_STATE_MCLR_DONE;
+    s_init_state     = TDC_TOUCH_INIT_MCLR_DONE;
+}
+
+void led_debug_blink_blue(int cnt, int on_ms, int off_ms)
+{
+    int lap_end;
+
+    for (int i = 0; i < cnt; i++)
+    {
+        lap_end = ci_timer_get_tick() + on_ms;
+        while (ci_timer_get_tick() < lap_end)
+        {
+            turnON_BlueLED();
+            SYS_WATCHDOG_REFRESH();
+        }
+
+        lap_end = ci_timer_get_tick() + off_ms;
+        while (ci_timer_get_tick() < lap_end)
+        {
+            Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_R);
+            Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_G);
+            Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_B);
+            SYS_WATCHDOG_REFRESH();
+        }
+    }
+
+    Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_R);
+    Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_G);
+    Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_B);
+}
+
+void led_debug_blink_12bits(uint16_t bits)
+{
+    int lap_end;
+
+    for (int i = 0; i < 12; i++)
+    {
+        uint8_t bit = (bits >> (11 - i)) & 1;
+
+        lap_end = ci_timer_get_tick() + 500;
+
+        while (ci_timer_get_tick() < lap_end)
+        {
+            if (bit == 0)
+            {
+                turnON_GreenLED();
+                SYS_WATCHDOG_REFRESH();
+            }
+            else
+            {
+                turnON_RedLED();
+                SYS_WATCHDOG_REFRESH();
+            }
+        }
+
+        lap_end = ci_timer_get_tick() + 500;
+
+        while (ci_timer_get_tick() < lap_end)
+        {
+            Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_R);
+            Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_G);
+            Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_B);
+            SYS_WATCHDOG_REFRESH();
+        }
+    }
+}
+
+void tdc_touch_led_debug(uint16_t lta, uint16_t count, uint16_t delta)
+{
+    int lap_start;
+    int lap_end;
+
+    // lta
+    led_debug_blink_blue(1, 1000, 0);
+    led_debug_blink_12bits(lta);
+
+    // count
+    led_debug_blink_blue(2, 600, 300);
+    led_debug_blink_12bits(count);
+
+    // delta
+    led_debug_blink_blue(3, 300, 200);
+    led_debug_blink_12bits(delta);
 }
 
 bool tdc_touch_process(void)
 {
-    int               curr_tick;
-    tdc_touch_state_t curr_state;
-
-    /* 초기화 상태머신 진행 */
+    /* --- init 상태머신 (READY 전) --- */
     switch (s_init_state)
     {
-        case TDC_TOUCH_INIT_STATE_NONE:
-            return false; /* begin() 호출 전 ? no-op */
-
-        case TDC_TOUCH_INIT_STATE_MCLR_DONE:
-            if (try_finish_init())
-            {
-                s_init_state      = TDC_TOUCH_INIT_STATE_READY;
-                s_boot_ready_tick = ci_timer_get_tick();
-
-                /* READY 전이 직후 즉시 터치 상태 확인 ? 누른 채 부팅 방어 */
-                tdc_touch_state_t boot_state = TDC_TOUCH_STATE_RESET;
-                tdc_touch_get_state(&boot_state);
-                if (boot_state == TDC_TOUCH_STATE_TOUCH)
-                {
-                    s_boot_touch_ignore = true;
-                    ci_printw("[TOUCH] BOOT TOUCH ? ignoring until released \r\n");
-                }
-            }
-            return false; /* 초기화 중엔 터치 판정 미수행 */
-
-        case TDC_TOUCH_INIT_STATE_READY:
-        default:
-            break;
-    }
-
-    /* READY 상태: 100ms 폴링 + 롱터치 판정 */
-    curr_tick = ci_timer_get_tick();
-
-    if (TDC_TOUCH_POLL_INTERVAL <= (curr_tick - s_touch_tick_old))
-    {
-        s_touch_tick_old = curr_tick;
-
-        bool got_state = tdc_touch_get_state(&curr_state);
-        if (got_state)
+        case TDC_TOUCH_INIT_NONE:
         {
-            if (s_touch_state_old != curr_state)
-            {
-                ci_printv("[TOUCH] STATE: %s -> %s \r\n", tdc_touch_state_name(s_touch_state_old), tdc_touch_state_name(curr_state));
-                s_touch_state_old = curr_state;
-            }
+            return false; /* begin() 전 no-op */
         }
-
-        /* 부팅 직후 터치 무시 구간 */
-        if (s_boot_touch_ignore)
+        case TDC_TOUCH_INIT_MCLR_DONE:
         {
-            /* read 실패 시 curr_state 는 쓰레기 값 ? 상태 불명이므로 해제 판정 보류 */
-            if (got_state && curr_state != TDC_TOUCH_STATE_TOUCH)
-            {
-                s_boot_touch_ignore = false;
-                ci_printi("[TOUCH] BOOT TOUCH RELEASED ? sensing resumed \r\n");
-            }
-            else if (!s_boot_5s_warned && 5000 <= (curr_tick - s_boot_ready_tick))
-            {
-                s_boot_5s_warned = true;
-                ci_printw("[TOUCH] BOOT TOUCH > 5s \r\n");
-                led_request(LED_SRC_DBG, LED_ST_DBG_LONG_TOUCH_IGNORE);
-            }
+            try_finish_init();
             return false;
         }
-
-        if (got_state && proc_long_touch(curr_state))
+        case TDC_TOUCH_INIT_READY:
+        default:
         {
-            ci_printi("\r\n[TOUCH] EVENT: LONG TOUCH \r\n");
-            return true;
+            break;
         }
     }
 
+    /* --- 폴링 게이팅 (ms 차분) --- */
+    int now = ci_timer_get_tick();
+    if (TDC_TOUCH_POLL_INTERVAL_MS > (now - s_poll_tick_old))
+    {
+        return false;
+    }
+    s_poll_tick_old = now;
+
+    /* --- read -> FSM 입력 정규화 (실패 시 status 가 전부 false 보장) --- */
+    tdc_touch_iqs323_status_t st;
+    tdc_touch_in_t            in;
+    in.read_ok    = tdc_touch_iqs323_read_status(&st);
+    in.now_ms     = (uint32_t) now;
+    in.pressed    = st.pressed;
+    in.ati_error  = st.ati_error;
+    in.ati_active = st.ati_active;
+
+#if (TDC_TOUCH_DEBUG_PRINT_ENABLE)
+    /* --- 디버그 계측 (LTA/Counts/절대임계/밴드초과) ? 실측 튜닝용. read_ok 시에만 --- */
+    if (in.read_ok)
+    {
+        tdc_touch_iqs323_debug_t dbg;
+        if (tdc_touch_iqs323_read_debug(&dbg) && dbg.ok)
+        {
+            /* self-cap: 터치 시 counts 감소 -> delta(=LTA-Counts) 증가. 절대임계 = 계수 x LTA / 256.
+             * 밴드초과(터치 판정 방향)는 delta > abs_thr 로 본다(counts 직접 비교 아님). */
+            uint16_t delta    = (dbg.lta > dbg.counts) ? (uint16_t) (dbg.lta - dbg.counts) : 0;
+            uint16_t abs_thr  = (uint16_t) (((uint32_t) TDC_TOUCH_IQS323_THRESHOLD * dbg.lta) / 256u);
+            uint16_t pabs_thr = (uint16_t) (((uint32_t) TDC_TOUCH_IQS323_PROX_THRESHOLD * dbg.lta) / 256u);
+            ci_printd("[T] LTA=%3u  CNT=%3u  D=%3u  THR=%3u (k=%3u  H=%3u)  %s   PTHR=%3u (pk=%3u)  %s \r\n", dbg.lta, dbg.counts, delta, abs_thr, TDC_TOUCH_IQS323_THRESHOLD, TDC_TOUCH_IQS323_HYSTERESIS, in.pressed ? "T" : ".", pabs_thr, TDC_TOUCH_IQS323_PROX_THRESHOLD, st.prox ? "P" : ".");
+
+            s_debug_recent_lta        = dbg.lta;
+            s_debug_recent_count      = dbg.counts;
+            s_debug_recent_delta      = delta;
+            s_debug_recent_abs_thr    = abs_thr;
+            s_debug_recent_pressed    = in.pressed ? 1 : 0;
+            s_debug_recent_ati_error  = in.ati_error ? 1 : 0;
+            s_debug_recent_ati_active = in.ati_active ? 1 : 0;
+
+#if 0 /* --- LED를 사용한 터치 디버깅 --- */
+            tdc_touch_led_debug(dbg.lta, dbg.counts, delta);
+#endif
+        }
+    }
+#endif
+
+    /* --- ATI 에러 감지(드리프트 신호) 경고 ? Re-ATI 게이트 조건과 동일 시점 --- */
+    if (in.read_ok && in.ati_error && !in.ati_active)
+    {
+        ci_printw("[TOUCH] ATI ERROR (drift) \r\n");
+    }
+
+    /* --- 순수 FSM 1회 --- */
+    tdc_touch_out_t out;
+    tdc_touch_logic_step(&s_logic, &in, &out);
+
+    /* --- 로그 --- */
+    if (out.state_changed)
+    {
+        ci_printv("[TOUCH] STATE: %s -> %s \r\n", tdc_touch_state_name(s_log_prev_state), tdc_touch_state_name(out.curr_state));
+        s_log_prev_state = out.curr_state;
+    }
+    switch (out.boot_event)
+    {
+        case TDC_TOUCH_BOOT_RELEASED:
+        {
+            ci_printi("[TOUCH] BOOT TOUCH RELEASED, sensing resumed \r\n");
+            break;
+        }
+        case TDC_TOUCH_BOOT_WARN_5S:
+        {
+            ci_printw("[TOUCH] BOOT TOUCH > 5s \r\n");
+            led_request(LED_SRC_DBG, LED_ST_DBG_LONG_TOUCH_IGNORE);
+            break;
+        }
+        case TDC_TOUCH_BOOT_IGNORING:
+        case TDC_TOUCH_BOOT_NONE:
+        default:
+        {
+            break;
+        }
+    }
+
+    /* --- 액션 -> IQS323 직접 호출 --- */
+    switch (out.action)
+    {
+        case TDC_TOUCH_ACT_RE_ATI:
+        {
+            /* 원인 구분: NOT_TOUCH 경로 = 드리프트 게이트, TOUCH 경로 = stuck stage2(게이트 우회). */
+            if (out.curr_state == TDC_TOUCH_STATE_TOUCH)
+            {
+                ci_printi("[TOUCH] RE-ATI (stuck stage2) \r\n");
+            }
+            else
+            {
+                ci_printi("[TOUCH] RE-ATI (drift) \r\n");
+            }
+            (void) tdc_touch_iqs323_re_ati();
+            break;
+        }
+        case TDC_TOUCH_ACT_RESEED:
+        {
+            ci_printi("[TOUCH] RESEED (stuck stage1) \r\n");
+            (void) tdc_touch_iqs323_reseed();
+            break;
+        }
+        case TDC_TOUCH_ACT_MCLR:
+        {
+            ci_printi("\r\n[TOUCH] STUCK -> MCLR RESET \r\n");
+            delay_ms(20); /* RTT 드레인 */
+            SYS_WATCHDOG_RESET();
+            break;
+        }
+        case TDC_TOUCH_ACT_HOLD:
+        case TDC_TOUCH_ACT_NONE:
+        default:
+        {
+            break;
+        }
+    }
+
+    if (out.long_touch)
+    {
+        ci_printi("\r\n[TOUCH] EVENT: LONG TOUCH \r\n");
+        return true; /* 절전 트리거 */
+    }
     return false;
 }
 
 bool tdc_touch_get_state(tdc_touch_state_t *p_state)
 {
-    bool pressed   = false;
-    bool ati_error = false;
+    tdc_touch_iqs323_status_t st;
 
-    if (!tdc_drv_iqs323_read_status(&pressed, &ati_error))
+    if (!tdc_touch_iqs323_read_status(&st))
     {
         return false;
     }
-
-    /* ATI 에러 무시 ? 운용 모드는 ATI Disabled + 보드별 고정 보상값을 써서 ATI 기능 자체를
-     * 사용하지 않는다. ati_error는 전역 비트(System Status 0x10 bit6)라 CH1 더미 채널의
-     * auto-ATI 잔재까지 합산되지만, 터치 판정(CH0 Touch 비트)은 채널별로 정확해 무관하다.
-     * 노말·절전 양쪽 공통 경로. 상세: docs/참고/touch/이슈해결/2026-06_CRX1-ESD-더미채널.md */
-    (void) ati_error;
-
-    if (pressed)
-    {
-        *p_state = TDC_TOUCH_STATE_TOUCH;
-    }
-    else
-    {
-        *p_state = TDC_TOUCH_STATE_NOT_TOUCH;
-    }
-
-#if TDC_TOUCH_MARGIN_LOG_ENABLE
-    /* 터치 마진 환산 로그 - 반드시 방전 전에 호출해야 신선한 LTA/Counts 로 환산된다.
-     * 노말·절전 공통 경로. 결과는 헬퍼 내부에서 RTT 출력하므로 out param 은 불필요.
-     * read_touch_margin 의 레지스터 3회 읽기(force communication)가 측정 cycle 을
-     * 방해하지 않도록 INTERVAL 폴링마다 1회만 호출한다. */
-    {
-        static uint16_t s_margin_log_cnt = 0;
-        if (++s_margin_log_cnt >= TDC_TOUCH_MARGIN_LOG_INTERVAL)
-        {
-            s_margin_log_cnt = 0;
-            (void)tdc_drv_iqs323_read_touch_margin(NULL, NULL);
-        }
-    }
-#endif
-
-#if TDC_TOUCH_CRX0_DISCHARGE_ENABLE
-    /* 상태 결정 후 방전 ? 다음 호출 시점에 IC가 신선한 ESD-free 측정값을 준비.
-     * 방전 실패는 다음 읽기 품질에만 영향, 현재 상태 반환은 이미 성공이므로 무시. */
-    (void)tdc_drv_iqs323_discharge_crx0();
-#endif
-
+    *p_state = st.pressed ? TDC_TOUCH_STATE_TOUCH : TDC_TOUCH_STATE_NOT_TOUCH;
     return true;
 }

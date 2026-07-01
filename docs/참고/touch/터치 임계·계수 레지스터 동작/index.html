@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>터치 임계·계수 레지스터 동작 레퍼런스 — IQS323</title>
+<style>
+  :root{
+    --bg:#f0eee6; --card:#faf9f5; --card2:#f5f2ea; --ink:#1f1e1d; --muted:#6b6862;
+    --accent:#cc785c; --accent2:#a8462a; --accent-soft:#f3e3da; --border:#e4ddcf;
+    --green:#7a8f5e; --warn:#b88a3a; --crit:#bb5a4a;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+    line-height:1.65;font-size:15px}
+  .wrap{max-width:920px;margin:0 auto;padding:48px 24px 80px}
+  code,.mono{font-family:ui-monospace,"SF Mono","Cascadia Code","D2Coding",monospace;
+    background:var(--accent-soft);color:var(--accent2);padding:1px 6px;border-radius:5px;font-size:.9em}
+  h1{font-size:30px;font-weight:700;letter-spacing:-.02em;margin:0 0 6px}
+  h2{font-size:21px;font-weight:700;margin:44px 0 14px;padding-bottom:8px;
+    border-bottom:2px solid var(--accent-soft);display:flex;align-items:center;gap:10px}
+  h2 .num{display:inline-flex;width:26px;height:26px;background:var(--accent);color:#fff;border-radius:7px;
+    align-items:center;justify-content:center;font-size:14px;font-weight:700;flex:0 0 auto}
+  h3{font-size:16px;font-weight:700;margin:22px 0 8px;color:var(--accent2)}
+  .sub{color:var(--muted);font-size:15px;margin:0 0 22px}
+  .tldr{background:var(--card);border:1px solid var(--border);border-left:4px solid var(--accent);
+    border-radius:12px;padding:16px 20px;margin:22px 0}
+  .tldr b{color:var(--accent2)}
+  .formula{background:linear-gradient(135deg,#2d2a26,#3a352f);color:#f6efe6;border-radius:14px;
+    padding:22px 24px;margin:20px 0;text-align:center;box-shadow:0 6px 22px rgba(60,40,20,.12)}
+  .formula .eq{font-family:ui-monospace,monospace;font-size:20px;font-weight:600;letter-spacing:.01em}
+  .formula .eq b{color:var(--accent)}
+  .formula .cap{color:#c9bfb2;font-size:13px;margin-top:8px}
+  .flow{display:flex;flex-wrap:wrap;gap:10px;align-items:stretch;margin:18px 0}
+  .step{flex:1 1 150px;background:var(--card);border:1px solid var(--border);border-radius:11px;padding:12px 14px;position:relative}
+  .step .lbl{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--accent2);font-weight:700}
+  .step .big{font-weight:700;margin:3px 0}
+  .step .reg{font-family:ui-monospace,monospace;font-size:12px;color:var(--muted)}
+  .arrow{align-self:center;color:var(--accent);font-size:22px;font-weight:700}
+  table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px;background:var(--card);
+    border-radius:10px;overflow:hidden;border:1px solid var(--border)}
+  th,td{padding:9px 11px;text-align:left;border-bottom:1px solid var(--border);vertical-align:top}
+  th{background:var(--card2);font-weight:700;color:var(--accent2)}
+  tr:last-child td{border-bottom:none}
+  .tag{display:inline-block;font-size:11px;font-weight:700;padding:2px 8px;border-radius:20px}
+  .t-raw{background:#e7efe0;color:#4f6138} .t-conv{background:var(--accent-soft);color:var(--accent2)}
+  .t-ic{background:#e6e9f0;color:#46506a}
+  .card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px 20px;margin:14px 0}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  @media(max-width:680px){.grid{grid-template-columns:1fr}}
+  .note{border-left:4px solid var(--green);background:#eef2e8;border-radius:0 10px 10px 0;padding:12px 16px;margin:14px 0}
+  .warn{border-left:4px solid var(--warn);background:#f7eedd;border-radius:0 10px 10px 0;padding:12px 16px;margin:14px 0}
+  .crit{border-left:4px solid var(--crit);background:#f6e4e0;border-radius:0 10px 10px 0;padding:12px 16px;margin:14px 0}
+  .note b,.warn b,.crit b{color:var(--ink)}
+  .pill{display:inline-block;background:var(--accent);color:#fff;font-size:11px;font-weight:700;
+    padding:2px 9px;border-radius:20px;vertical-align:middle}
+  .muted{color:var(--muted)} .big-n{color:var(--accent2);font-weight:700}
+  .logline{font-family:ui-monospace,monospace;font-size:12.5px;background:#2d2a26;color:#f0e9de;
+    padding:12px 14px;border-radius:9px;overflow-x:auto;white-space:pre}
+  .logline .hl{color:var(--accent)}
+  footer{margin-top:50px;padding-top:18px;border-top:1px solid var(--border);color:var(--muted);font-size:13px}
+  .legend{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;margin:6px 0 0}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>터치 임계·계수 레지스터 동작 레퍼런스</h1>
+  <p class="sub">Sound1 · IQS323 self-cap 터치 — 코드 상수가 레지스터에서 어떻게 계산·적용되는가 <span class="pill">조사·검증 완료</span></p>
+
+  <div class="tldr">
+    코드 상수(임계·히스테리시스·Beta·ATI)가 IQS323 레지스터로 들어가는 경로와, IC가 그 값을 내부에서 어떻게 실제 터치 임계로 바꾸는지를 정리했습니다.
+    <b>딱 하나만 기억하면 됩니다 — 터치 절대임계 = 계수 × LTA ÷ 256.</b> 모든 수치·공식은 데이터시트와 소스를 직접 인용했고, 페르소나 4 + 적대적 검증 1로 교차검증했습니다(할루시네이션 0). 상세 근거는 같은 폴더 <code>터치 임계·계수 레지스터 동작.md</code>.
+  </div>
+
+  <h2><span class="num">1</span>큰 그림 — 측정값이 흐르는 길</h2>
+  <p>전극의 정전용량을 <b>Counts</b>로 재고, 평상시 기준선 <b>LTA</b>와 비교해 그 차이(<b>delta</b>)로 터치를 판정합니다. 상수들은 이 비교의 <b>임계</b>와 필터 <b>속도</b>를 정합니다.</p>
+  <div class="flow">
+    <div class="step"><div class="lbl">측정</div><div class="big">전극 충전전달</div><div class="reg">raw ADC (정전용량 ∝ 1/C)</div></div>
+    <div class="arrow">→</div>
+    <div class="step"><div class="lbl">평활</div><div class="big">Counts</div><div class="reg">0x13 · Counts Beta 0xB0</div></div>
+    <div class="arrow">→</div>
+    <div class="step"><div class="lbl">기준선</div><div class="big">LTA</div><div class="reg">0x14 · LTA Beta 0xB1/0xB2</div></div>
+    <div class="arrow">→</div>
+    <div class="step"><div class="lbl">판정</div><div class="big">delta = LTA − Counts</div><div class="reg">delta &gt; 임계 → 터치</div></div>
+  </div>
+  <p class="muted" style="font-size:13.5px">self-cap이라 <b>터치하면 Counts가 줄고</b>(C 증가) delta가 커집니다. 터치/prox 동안에는 LTA가 얼어붙어(freeze) 기준선이 터치를 흡수하지 않습니다.</p>
+
+  <h2><span class="num">2</span>핵심 공식</h2>
+  <div class="formula">
+    <div class="eq">절대 터치임계 = ( 계수<span style="color:var(--accent)">(0x62)</span> × LTA ) ÷ 256</div>
+    <div class="cap">예) 계수 80, LTA 400 → 80 × 400 ÷ 256 = <b style="color:var(--accent)">125 counts</b> · 진입조건: delta &gt; 125</div>
+  </div>
+  <div class="formula" style="background:linear-gradient(135deg,#3a352f,#46403a)">
+    <div class="eq">해제임계 = 절대임계 − ( H<span style="color:var(--accent)">(0x62 상위니블)</span> ÷ 256 × 절대임계 )</div>
+    <div class="cap">예) H=8, 절대임계 125 → hyst ≈ 3.9 → 해제 하한 ≈ <b style="color:var(--accent)">121</b></div>
+  </div>
+  <p class="muted" style="font-size:13.5px">임계가 고정 숫자가 아니라 <b>LTA에 비례</b>하는 게 포인트입니다. 보드마다 기생용량이 달라 LTA가 달라져도 "LTA의 약 31%"라는 상대 감도는 유지됩니다.</p>
+
+  <h2><span class="num">3</span>상수 → 레지스터 매핑표</h2>
+  <div class="legend">
+    <span><span class="tag t-raw">그대로</span> 코드값이 레지스터에 직접</span>
+    <span><span class="tag t-conv">코드변환</span> 코드가 비트 위치·형식 변경</span>
+    <span><span class="tag t-ic">IC계산</span> IC가 LTA 등과 재계산</span>
+  </div>
+  <table>
+    <tr><th>코드 상수 / 설정</th><th>값</th><th>레지스터</th><th>분류</th><th>IC 내부 결과</th></tr>
+    <tr><td><code>THRESHOLD</code></td><td>80</td><td>0x62 [7:0]</td><td><span class="tag t-raw">그대로</span> <span class="tag t-ic">IC계산</span></td><td>절대임계 = 80×LTA÷256 ≈ <b>125</b></td></tr>
+    <tr><td><code>HYSTERESIS</code></td><td>8</td><td>0x62 [15:12]</td><td><span class="tag t-conv">코드변환</span> <code>(8&amp;0xF)&lt;&lt;4</code></td><td>hyst = 8÷256×임계 ≈ <b>3.9</b></td></tr>
+    <tr><td><code>PROX_THRESHOLD</code></td><td>255</td><td>0x61 [7:0]</td><td><span class="tag t-raw">그대로</span></td><td>delta&gt;255 (사실상 불가 → 무력화)</td></tr>
+    <tr><td>Counts Beta</td><td>2/2</td><td>0xB0</td><td><span class="tag t-raw">그대로</span></td><td>Counts 평활</td></tr>
+    <tr><td>LTA Normal Beta</td><td>6/6</td><td>0xB1</td><td><span class="tag t-raw">그대로</span></td><td>LTA 통상 추종(§5)</td></tr>
+    <tr><td>LTA Fast Beta</td><td>2/2</td><td>0xB2</td><td><span class="tag t-raw">그대로</span></td><td>급변 추종</td></tr>
+    <tr><td>Fast Filter Band</td><td>10</td><td>0xB4</td><td><span class="tag t-raw">그대로</span></td><td>Normal↔Fast 전환</td></tr>
+    <tr><td>ATI Resolution Factor</td><td>64</td><td>0x36 [15:4]</td><td><span class="tag t-conv">코드변환</span> 0x040C</td><td rowspan="3">Target=Base×64÷16=<b>400</b><br>Band(1/8)=50 → 경계 [350,450]</td></tr>
+    <tr><td>ATI Base</td><td>100</td><td>0x37</td><td><span class="tag t-ic">기본값(미기입)</span></td></tr>
+    <tr><td>ATI Band</td><td>Large</td><td>0x36 bit3</td><td><span class="tag t-conv">코드변환</span></td></tr>
+  </table>
+
+  <h2><span class="num">4</span>상수별 핵심</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>Touch Threshold (계수 80)</h3>
+      <p><code>0x62</code> LSB에 80 그대로. IC가 매 샘플 <b>80×LTA÷256</b>로 절대임계 재계산. LTA 따라 변동하므로 <b>상대 감도</b>가 일정.</p>
+      <p class="muted" style="font-size:12.5px">진입: delta &gt; 절대임계</p>
+    </div>
+    <div class="card">
+      <h3>Hysteresis (H 8) — 4비트 한계</h3>
+      <p><code>(8&amp;0xF)&lt;&lt;4</code>로 <b>bits[15:12]</b>에 위치(과거 bits[11:8] 오기입 버그 수정됨). 실제 hyst ≈ 3.9.</p>
+      <div class="warn" style="margin:8px 0 0;font-size:12.5px"><b>최대 H=15여도 해제임계는 임계의 ~94%까지만</b> 내려감. 터치 stuck은 hysteresis로 못 풉니다(LTA 흡수 문제).</div>
+    </div>
+    <div class="card">
+      <h3>Prox Threshold (255) — touch와 채널 공유</h3>
+      <p>prox 전용 카운터 없음 — 같은 delta를 prox·touch 임계와 <b>각각</b> 비교. LTA freeze가 "touch <b>또는</b> prox"라, prox를 <b>255로 무력화</b>해 freeze를 touch에만 맡김.</p>
+      <p class="muted" style="font-size:12.5px">[실측 게이트] prox 단위(절대/계수) DS 미명시</p>
+    </div>
+    <div class="card">
+      <h3>ATI — baseline 자동 정규화</h3>
+      <p>Full ATI(0x36)가 노터치 Counts를 <b>Target 400</b>으로 맞춰 보드별 기생용량(Cp)을 흡수. MULT/COMP는 IC 자동 산출.</p>
+      <p class="muted" style="font-size:12.5px">LTA∉[350,450] → 자동 Re-ATI</p>
+    </div>
+  </div>
+
+  <h2><span class="num">5</span>Beta — 수렴 속도, 그리고 해석 반전 <span class="pill" style="background:var(--crit)">실측 확정</span></h2>
+  <div class="crit">
+    <b>Beta 해석은 두 자료가 정반대입니다.</b><br>
+    · 데이터시트 §5.6: <code>damping = Beta/256</code> → β 클수록 <b>빠름</b><br>
+    · 앱노트 AZD004(코드 설계 근거): <code>α = 1/2^β</code> → β 클수록 <b>느림</b><br><br>
+    실기 로그에서 <b>β=16일 때 LTA가 6초에 단 −1</b>(거의 동결) → AZD004 해석(α≈0)과 일치, 데이터시트 해석(−78 예상)과 불일치. <b>→ AZD004(β 클수록 느림)가 맞습니다.</b>
+    그래서 "빠른 수렴"을 위해 β를 <b>줄입니다</b>. 현재 <span class="big-n">β=6</span>(시정수 ≈12.8초, 롱터치 2.4초의 ~5배)은 터치 중 LTA 흡수를 막으면서 약결합은 결국 흡수하는 절충값.
+  </div>
+  <div class="note" style="font-size:13px"><b>왜 이게 중요한가</b> — 수렴이 너무 빠르면(β 작음) 천천히 누르는 터치를 LTA가 흡수해 임계에 못 닿고, 너무 느리면(β 큼) 핀셋 같은 약결합이 영원히 안 빠집니다. β로 그 균형을 잡습니다.</div>
+
+  <h2><span class="num">6</span>ATI가 못 맞추는 것 — Grounding</h2>
+  <div class="note">
+    ATI는 <b>노터치 baseline(Cp 산포)</b>만 정규화합니다. 하지만 <b>터치 변화량(delta)은 손가락–대지 결합(grounding)에 의존</b>해서, PC+GND 연결(delta 170)과 독립/배터리(delta 80~96)의 차이는 ATI가 못 잡습니다.
+    <b>→ 임계는 반드시 실사용 grounding 환경(독립)에서 측정한 delta로 잡아야 합니다.</b> PC 연결 상태 값으로 잡으면 제품에서 터치가 누락됩니다.
+  </div>
+
+  <h2><span class="num">7</span>계측 출력 읽는 법</h2>
+  <div class="logline">[T] LTA=<span class="hl">399</span>  CNT=<span class="hl">355</span>  D=<span class="hl"> 44</span>  THR=<span class="hl">125</span> (k= 80  H=  8)  <span class="hl">.</span>   PTHR=397 (pk=255)  <span class="hl">.</span></div>
+  <table>
+    <tr><th>필드</th><th>의미</th><th>출처</th></tr>
+    <tr><td><code>LTA / CNT</code></td><td>기준선(0x14) / 현재 Counts(0x13)</td><td>IC read-only</td></tr>
+    <tr><td><code>D</code></td><td>delta = LTA − CNT</td><td>SW 계산</td></tr>
+    <tr><td><code>THR (k,H)</code></td><td>절대임계 = k×LTA÷256 · 계수 k · hyst필드 H</td><td>SW 미러링(디버그)</td></tr>
+    <tr><td>첫 <code>. / T</code></td><td>CH0_Touch 비트(0x10 bit9)</td><td>IC 판정</td></tr>
+    <tr><td><code>PTHR (pk)</code></td><td>prox 임계 = pk×LTA÷256 · prox 계수 pk</td><td>SW 미러링</td></tr>
+    <tr><td>끝 <code>. / P</code></td><td>CH0_Prox 비트(0x10 bit8)</td><td>IC 판정</td></tr>
+  </table>
+  <p class="muted" style="font-size:13px"><code>THR</code>·<code>PTHR</code>은 SW가 IC 공식을 흉내 낸 표시값이고, 실제 판정은 IC 하드웨어(System Status 비트)가 합니다.</p>
+
+  <h2><span class="num">8</span>미해결 [실측 게이트]</h2>
+  <table>
+    <tr><th>항목</th><th>내용</th><th>판별 방법</th></tr>
+    <tr><td>Prox 단위</td><td>절대 delta vs ×LTA/256 계수 (A.16 미명시)</td><td>0x61 바꿔 CH0_Prox 진입 delta 관찰</td></tr>
+    <tr><td>Beta 공식</td><td>DS(Beta/256) vs AZD004(1/2^β) — 실측상 AZD004 우세</td><td>β=1 설정 후 수렴 시정수 측정</td></tr>
+    <tr><td>ATI Base(0x37)</td><td>코드 미기입, 기본값 100 보존 여부</td><td>POR 후 0x37 레지스터 덤프</td></tr>
+    <tr><td>Hysteresis 상한</td><td>4비트 최대(15) 실효 동작</td><td>H=15 설정 후 해제 delta 관찰</td></tr>
+  </table>
+
+  <h2><span class="num">9</span>발견된 코드 주석 불일치 <span class="muted" style="font-size:13px;font-weight:400">(코드 미수정 · 참고)</span></h2>
+  <table>
+    <tr><th>위치</th><th>주석</th><th>실제</th></tr>
+    <tr><td><code>iqs323.c:300</code></td><td>0xB1 = 0x0808 (β8)</td><td><b>0x0606 (β6)</b> — 검증만 포착</td></tr>
+    <tr><td><code>iqs323.h:49</code></td><td>hyst ≈ 5cnt</td><td><b>≈ 3.9cnt</b></td></tr>
+    <tr><td><code>iqs323.c:412</code></td><td>Prox = Touch 동일 계수</td><td><b>실제 255(무력화)</b></td></tr>
+  </table>
+
+  <footer>
+    조사 페르소나 4(코드매핑·데이터시트공식·계수출처·데이터흐름) + 적대적 검증 1로 작성. 모든 수치·공식은 <code>데이터시트/06·02</code>, <code>tdc_touch_iqs323.c/.h</code> 직접 인용.
+    상세·근거: <code>터치 임계·계수 레지스터 동작.md</code> · 조사 과정: <code>tasks/touch/20260623_threshold-register-reference/에이전트-로그/</code><br>
+    <span class="muted">Sound1 · 2026-06-23 · 코드 수정 없음(조사·분석·검증 전용)</span>
+  </footer>
+
+</div>
+</body>
+</html>
