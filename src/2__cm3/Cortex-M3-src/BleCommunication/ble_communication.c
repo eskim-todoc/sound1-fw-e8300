@@ -176,6 +176,15 @@ void setting_nrf_ble_adv_info(void)
 
         tdc_led_set_ind_state((tdc_led_ind_state_t) led_ind);  // Arbiter에 LED 표시 상태 반영 (Rev.3)
 
+        if (led_ind == TDC_LED_IND_STATE_OTA_EZAIRO)
+        {
+            tdc_set_ota_dfu_conn_state(TDC_OTA_DFU_CONN_ST_CONN);
+        }
+        else
+        {
+            tdc_set_ota_dfu_conn_state(TDC_OTA_DFU_CONN_ST_DISCONN);
+        }
+
         ci_printv("[BT] CMD 0x%02X, LED IND: %d \r\n", EN__SND_BT_CMD_SYSTEM_INFO_LED_IND, led_ind);
 
         /* 응답 패킷 */
@@ -314,8 +323,10 @@ ST__BLE_COMMUNICATION_STATE bleCommunication(ST__ISD_STATUS isd_state)
             }
             // 매핑
             // 헤더 0x60에서 0x91까지 (실제 유효한 마지막 헤더는 0x71 en__mapping_recover_ALL_SlotData_ManufactureData 까지)
-            else if ((en__mapping_connect <= p_Rx_dataPacket[0])  //
-                     && (p_Rx_dataPacket[0] <= en__mapping_read_Connected_ISD_id))
+            else if (((en__mapping_connect <= p_Rx_dataPacket[0])                   //
+                      && (p_Rx_dataPacket[0] <= en__mapping_waiting_for_BleOff))    //
+                     || (p_Rx_dataPacket[0] == en__mapping_testStimulation)         //
+                     || (p_Rx_dataPacket[0] == en__mapping_read_Connected_ISD_id))  //
             {
                 fetch_mappingControlPacket(p_Rx_dataPacket);
             }
@@ -342,6 +353,10 @@ ST__BLE_COMMUNICATION_STATE bleCommunication(ST__ISD_STATUS isd_state)
             else if (p_Rx_dataPacket[0] == CI_BLE_OTA_COMMAND_OTA)  // 0xC3, DFU (OTA) 데이터 명령
             {
                 ci_ble_fetch_packet_ota(p_Rx_dataPacket);
+            }
+            else if (p_Rx_dataPacket[0] == EN__SND_BT_CMD_GENERAL_DEBUG)  // 0x8F 범용 디버그 프로토콜
+            {
+                fetch_remoteControlPacket(p_Rx_dataPacket);
             }
             else
             {

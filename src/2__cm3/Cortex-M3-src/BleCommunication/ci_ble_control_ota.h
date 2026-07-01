@@ -41,6 +41,9 @@
 // #define CI_OTA_RET_ERROR_WRITE_FAIL 3
 // #define CI_OTA_RET_ERROR_READ_FAIL  4
 
+#define TDC_OTA_DFU_CONN_ST_DISCONN 0
+#define TDC_OTA_DFU_CONN_ST_CONN    1
+
 typedef struct
 {
     int data_index;
@@ -137,7 +140,10 @@ typedef enum
     CI_OTA_RESULT_FAIL    = 1
 } CI_OTA_RESULT_E;
 
-void ci_ble_fetch_packet_ota_start_end(int* p_packet);
+void ci_ble_fetch_packet_ota_start_end(int *p_packet);
 void ci_ble_fetch_packet_ota(int *p_packet);
+
+int  tdc_get_ota_dfu_conn_state(void);
+void tdc_set_ota_dfu_conn_state(int state);
 
 #endif // __otaControl_h__

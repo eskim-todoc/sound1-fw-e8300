@@ -112,7 +112,6 @@ void read_Original_isdInfo_N_userSetting_fromFlash(bool startFlag, int command)
 
 void write_Original_isdInfo_N_userSetting_atFlash(bool startFlag, int command)
 {
-
     ST__CFX_CM3_SharedMemory_ReadWriteCommand_ForFlash FlashCommand;
 
     int         bufferForSPI_tx[BLE_DataPacketSize];

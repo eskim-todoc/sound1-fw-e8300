@@ -4,6 +4,20 @@
 
 #include <lib_audio_in.h>
 
+volatile int s_enabled_dmic_cnt    = 0;
+volatile int s_lib_audio_front_mic = LIB_AUDIO_FRONT_MIC_NONE;
+/**
+ * buffer indexing information
+ * dmic1
+ * [0] : dmic1 / [0] : buffer0 / [0:15] : 16 samples
+ * [0] : dmic1 / [1] : buffer1 / [0:15] : 16 samples
+ * dmic2
+ * [1] : dmic2 / [0] : buffer0 / [0:15] : 16 samples
+ * [1] : dmic2 / [1] : buffer1 / [0:15] : 16 samples
+ */
+// 인덱스 규약은 lib_audio_in.h의 선언 주석 참조 ([mic][block][sample], 모두 0=최신)
+int _XMEM g_lib_dmic_in_buffers[LIB_AUDIO_IN_DMIC_ENABLE_COUNT][LIB_AUDIO_IN_BUF_MAX_CNT][16];
+
 static void lib_init_audio_in_path_common(void)
 {
     /* Calculate SFCR based on the sampling frequency and ADCCLK and configure
@@ -90,7 +104,10 @@ void enable_AMIC(void)
     SYS_SET_ADC_CTRL(AUDIO, 3, (ADC_SEL_AI3 | LIB_ADC_CTRL_VAL));
 }
 
-void configure_audio_path_all(void)
+/* [MODULE] M3 HW 오디오 경로 (모듈 전제=M2 마이크 라우팅)
+ * [UNIT] U11 HW 오디오 경로 설정 (FIFO/IOC/MUX/DEC, 유닛 전제=없음).
+ *   검증=integration-test.   상세: 유닛-모듈-테스트맵.md */
+void tdc_configure_audio_path_all(void)
 {
     // 샘플링 주파수 관련 설정, ADC, OD, PCM, IOC 등 비활성화 먼저 진행
     // FIFO 설정, FIFO 클리어, FIFO 인터럽트 설정
@@ -121,11 +138,11 @@ void configure_audio_path_all(void)
     DIO->SRC_DMIC_DATA = DMIC1_DATA_SRC_DIO_23;  // DMIC_OUT1     (EZ)
 #elif (LIB_AUDIO_IN_DMIC_ENABLE_COUNT == 2)
     /* Configure ADCs */
-    SYS_SET_ADC_CFG(AUDIO, 1, LIB_ADC_CFG_VAL);  // 이게 필요한지 테스트 해야한다. (필요한듯)
+    SYS_SET_ADC_CFG(AUDIO, 0, LIB_ADC_CFG_VAL);  // 이게 필요한지 테스트 해야한다. (필요한듯)
     SYS_SET_ADC_CFG(AUDIO, 2, LIB_ADC_CFG_VAL);  // 이게 필요한지 테스트 해야한다. (필요한듯)
 
     /* Configure the decimation filters for DMICs */
-    SYS_SET_ADC_DEC_CTRL(AUDIO, 1, LIB_ADC_DEC_CTRL_VAL);  // EZ
+    SYS_SET_ADC_DEC_CTRL(AUDIO, 0, LIB_ADC_DEC_CTRL_VAL);  // EZ
     SYS_SET_ADC_DEC_CTRL(AUDIO, 2, LIB_ADC_DEC_CTRL_VAL);  // QCC
 
     // DMIC 관련 DIO 설정
@@ -136,10 +153,47 @@ void configure_audio_path_all(void)
 
     // DMIC를 1개, 2개, 몇개를 사용하든 CLK 설정은 하나만 가능하다. (DMIC_CLK1/CAL을 기본으로 사용)
     DIO->SRC_DMIC_CLK  = DMIC_CLK_SRC_DIO_22;                            // DMIC_CLK1/CAL (EZ)
-    DIO->SRC_DMIC_DATA = DMIC1_DATA_SRC_DIO_23 | DMIC2_DATA_SRC_DIO_17;  // DMIC_OUT1 (DIO23) : EZ, DMIC_OUT2(DIO17) : QCC
+    DIO->SRC_DMIC_DATA = DMIC0_DATA_SRC_DIO_23 | DMIC2_DATA_SRC_DIO_17;  // DMIC_OUT1 (DIO23) : EZ, DMIC_OUT2(DIO17) : QCC
 #else
 #error "Invalid value : LIB_AUDIO_IN_DMIC_ENABLE_COUNT in 'lib_audio_in.h'"
 #endif
+}
+
+/* ============================================================================
+ * [MODULE] M2 마이크 라우팅 - front mic 방향·활성 DMIC 수 상태. 전제(의존): 없음.
+ *   구성: U4 front mic 상태, U5 DMIC 수 상태.   검증: 유닛테스트.
+ * ========================================================================== */
+
+/* [UNIT] U4 front mic 상태 - set/get(착용 귀 기준 NONE/LEFT/RIGHT). 검증=unit-test. */
+void tdc_audio_set_front_mic(int type)
+{
+    s_lib_audio_front_mic = type;
+}
+
+int tdc_audio_get_front_mic(void)
+{
+    return s_lib_audio_front_mic;
+}
+
+/* [UNIT] U5 DMIC 수 상태 - 활성 DMIC 수(1/2) 반환. 검증=unit-test. */
+int tdc_get_enabled_DMIC_count(void)
+{
+    return s_enabled_dmic_cnt;
+}
+
+/* [UNIT] U10 DMIC 수 전환 - 1/2-DMIC 토글(DIO 클럭). 검증=integration / 의존=U5. */
+void tdc_enable_1_DMIC(void)
+{
+    s_enabled_dmic_cnt = 1;
+    Sys_DIO_Config(DIO22, (DIO_1X_DRIVE | DIO_LPF_DISABLE | DIO_NO_PULL | DIO_MODE_ADCCLK));        // DMIC_CLK1/CAL (EZ)
+    Sys_DIO_Config(DIO10, (DIO_1X_DRIVE | DIO_LPF_DISABLE | DIO_WEAK_PULL_UP | DIO_MODE_DISABLE));  // DMIC_CLK2     (QCC)
+}
+
+void tdc_enable_2_DMICs(void)
+{
+    s_enabled_dmic_cnt = 2;
+    Sys_DIO_Config(DIO22, (DIO_1X_DRIVE | DIO_LPF_DISABLE | DIO_NO_PULL | DIO_MODE_ADCCLK));  // DMIC_CLK1/CAL (EZ)
+    Sys_DIO_Config(DIO10, (DIO_1X_DRIVE | DIO_LPF_DISABLE | DIO_NO_PULL | DIO_MODE_ADCCLK));  // DMIC_CLK2     (QCC)
 }
 
 void enable_DMIC(void)

@@ -18,17 +18,18 @@
 
 #include <ci_printf.h>
 #include <tdc_touch_config.h>
-#include <tdc_drv_iqs323.h>
+/* tdc_drv_iqs323.h 제거 (터치 3파일 리팩토링 2026-06-20) ? RTT_TUNING 폐기로
+ * 본 파일의 #if TDC_TOUCH_RTT_TUNING tuning 블록은 미정의(0)로 컴파일 제외된다. */
 
 /* ======================================================================== */
 /*  Defines                                                                 */
 /* ======================================================================== */
 
-#define SENTINEL      "--"
-#define SENTINEL_LEN  2
-#define MAX_LINE      128
-#define MAX_ARGC      12
-#define MAX_HANDLERS  32
+#define SENTINEL     "--"
+#define SENTINEL_LEN 2
+#define MAX_LINE     128
+#define MAX_ARGC     12
+#define MAX_HANDLERS 32
 
 /* ======================================================================== */
 /*  Internal types                                                          */
@@ -36,13 +37,15 @@
 
 typedef int (*command_fn_t)(int argc, char *argv[]);
 
-typedef struct {
-    const char    *name;
-    command_fn_t   fn;
-    const char    *help;
+typedef struct
+{
+    const char  *name;
+    command_fn_t fn;
+    const char  *help;
 } command_entry_t;
 
-typedef struct {
+typedef struct
+{
     const char *name;
     int         val;
 } str_map_t;
@@ -51,33 +54,51 @@ typedef struct {
 /*  Override state                                                          */
 /* ======================================================================== */
 
-static bool    s_tdc_override_isd_active;
-static bool    s_tdc_override_isd_value;
+static bool s_tdc_override_isd_active;
+static bool s_tdc_override_isd_value;
 
-static bool    s_tdc_override_map_active;
-static bool    s_tdc_override_map_value;
+static bool s_tdc_override_map_active;
+static bool s_tdc_override_map_value;
 
 static bool    s_tdc_override_battery_active;
 static uint8_t s_tdc_override_battery_percent;
 
-/* main.c 가 매 cycle 갱신 — 실 매핑 앱 연결 상태 (--prog 가드용) */
-static bool    s_tdc_actual_mapping_connected;
+/* main.c 가 매 cycle 갱신 ? 실 매핑 앱 연결 상태 (--prog 가드용) */
+static bool s_tdc_actual_mapping_connected;
 
 /* --led req/clr 로 설정한 per-source LED override */
-static bool    s_tdc_led_override[LED_SRC__MAX];
+static bool s_tdc_led_override[LED_SRC__MAX];
 
 /* ======================================================================== */
-/*  Override hook getters (public — called from main.c)                     */
+/*  Override hook getters (public ? called from main.c)                     */
 /* ======================================================================== */
 
-bool tdc_ui_command_override_isd_active(void)        { return s_tdc_override_isd_active; }
-bool tdc_ui_command_override_isd_value(void)         { return s_tdc_override_isd_value; }
+bool tdc_ui_command_override_isd_active(void)
+{
+    return s_tdc_override_isd_active;
+}
+bool tdc_ui_command_override_isd_value(void)
+{
+    return s_tdc_override_isd_value;
+}
 
-bool tdc_ui_command_override_map_active(void)        { return s_tdc_override_map_active; }
-bool tdc_ui_command_override_map_value(void)         { return s_tdc_override_map_value; }
+bool tdc_ui_command_override_map_active(void)
+{
+    return s_tdc_override_map_active;
+}
+bool tdc_ui_command_override_map_value(void)
+{
+    return s_tdc_override_map_value;
+}
 
-bool tdc_ui_command_override_battery_active(void)    { return s_tdc_override_battery_active; }
-uint8_t tdc_ui_command_override_battery_percent(void){ return s_tdc_override_battery_percent; }
+bool tdc_ui_command_override_battery_active(void)
+{
+    return s_tdc_override_battery_active;
+}
+uint8_t tdc_ui_command_override_battery_percent(void)
+{
+    return s_tdc_override_battery_percent;
+}
 
 void tdc_ui_command_set_mapping_connected(bool connected)
 {
@@ -146,9 +167,12 @@ static int ci_strcasecmp(const char *a, const char *b)
     while (*a && *b)
     {
         char ca = *a, cb = *b;
-        if (ca >= 'a' && ca <= 'z') ca -= 32;
-        if (cb >= 'a' && cb <= 'z') cb -= 32;
-        if (ca != cb) return ca - cb;
+        if (ca >= 'a' && ca <= 'z')
+            ca -= 32;
+        if (cb >= 'a' && cb <= 'z')
+            cb -= 32;
+        if (ca != cb)
+            return ca - cb;
         a++;
         b++;
     }
@@ -179,44 +203,34 @@ static const char *val_to_str(const str_map_t *map, int val)
 /*  String <-> enum maps                                                    */
 /* ======================================================================== */
 
-static const str_map_t s_tdc_source_map[] = {
-    {"power",   LED_SRC_POWER},
-    {"error",   LED_SRC_ERROR},
-    {"ble",     LED_SRC_BLE_IND},
-    {"mapping", LED_SRC_MAPPING},
-    {"battery", LED_SRC_BATTERY},
-    {"isd",     LED_SRC_ISD},
-    {NULL, 0}
-};
+static const str_map_t s_tdc_source_map[] = {{"power", LED_SRC_POWER}, {"error", LED_SRC_ERROR}, {"ble", LED_SRC_BLE_IND}, {"mapping", LED_SRC_MAPPING}, {"battery", LED_SRC_BATTERY}, {"isd", LED_SRC_ISD}, {NULL, 0}};
 
-static const str_map_t s_tdc_state_map[] = {
-    {"none",       LED_ST_NONE},
-    /* power */
-    {"on",         LED_ST_POWER_ON},
-    {"off",        LED_ST_POWER_OFF},
-    /* battery */
-    {"ready",      LED_ST_BATT_READY},
-    {"mid",        LED_ST_BATT_MID},
-    {"critical",   LED_ST_BATT_CRITICAL},
-    /* isd */
-    {"in_use",     LED_ST_IN_USE},
-    /* mapping (배터리 LOW 임계 20% × ISD 연결 여부 4종) */
-    {"no_isd_ready",   LED_ST_MAPPING_NO_ISD_BATT_READY},
-    {"with_isd_ready", LED_ST_MAPPING_ISD_BATT_READY},
-    {"no_isd_low",     LED_ST_MAPPING_NO_ISD_BATT_LOW},
-    {"with_isd_low",   LED_ST_MAPPING_ISD_BATT_LOW},
-    /* ble */
-    {"pair",       LED_ST_PAIR},
-    {"ota_qcc",    LED_ST_OTA_QCC},
-    {"ota_ezairo", LED_ST_OTA_EZAIRO},
-    /* error */
-    {"map",        LED_ST_ERROR_MAP},
-    {"mcu",        LED_ST_ERROR_MCU},
-    {"accel",      LED_ST_ERROR_ACCEL},
-    {"fpga",       LED_ST_ERROR_FPGA},
-    {"pmic",       LED_ST_ERROR_PMIC},
-    {NULL, 0}
-};
+static const str_map_t s_tdc_state_map[] = {{"none", LED_ST_NONE},
+                                            /* power */
+                                            {"on", LED_ST_POWER_ON},
+                                            {"off", LED_ST_POWER_OFF},
+                                            /* battery */
+                                            {"ready", LED_ST_BATT_READY},
+                                            {"mid", LED_ST_BATT_MID},
+                                            {"critical", LED_ST_BATT_CRITICAL},
+                                            /* isd */
+                                            {"in_use", LED_ST_IN_USE},
+                                            /* mapping (배터리 LOW 임계 20% × ISD 연결 여부 4종) */
+                                            {"no_isd_ready", LED_ST_MAPPING_NO_ISD_BATT_READY},
+                                            {"with_isd_ready", LED_ST_MAPPING_ISD_BATT_READY},
+                                            {"no_isd_low", LED_ST_MAPPING_NO_ISD_BATT_LOW},
+                                            {"with_isd_low", LED_ST_MAPPING_ISD_BATT_LOW},
+                                            /* ble */
+                                            {"pair", LED_ST_PAIR},
+                                            {"ota_qcc", LED_ST_OTA_QCC},
+                                            {"ota_ezairo", LED_ST_OTA_EZAIRO},
+                                            /* error */
+                                            {"map", LED_ST_ERROR_MAP},
+                                            {"mcu", LED_ST_ERROR_MCU},
+                                            {"accel", LED_ST_ERROR_ACCEL},
+                                            {"fpga", LED_ST_ERROR_FPGA},
+                                            {"pmic", LED_ST_ERROR_PMIC},
+                                            {NULL, 0}};
 
 /* ======================================================================== */
 /*  Framework: register, print_help                                         */
@@ -255,31 +269,32 @@ static int handle_help(int argc, char *argv[])
 }
 
 /* ======================================================================== */
-/*  --led pattern N — 사진 "패턴 (디버깅)" 칼럼 0~14 매핑                  */
+/*  --led pattern N ? 사진 "패턴 (디버깅)" 칼럼 0~14 매핑                  */
 /* ======================================================================== */
-/* N=0 은 sentinel — 모든 src NONE 만 적용 (LED off). N>0 은 (src, state). */
-static const struct {
+/* N=0 은 sentinel ? 모든 src NONE 만 적용 (LED off). N>0 은 (src, state). */
+static const struct
+{
     led_src_t   src;
     led_state_t st;
     const char *desc;
 } k_tdc_pattern_table[] = {
-    /*  0 */ { LED_SRC__MAX,    LED_ST_NONE,                       "all off"                   },
-    /*  1 */ { LED_SRC_POWER,   LED_ST_POWER_ON,                   "POWER_ON"                  },
-    /*  2 */ { LED_SRC_POWER,   LED_ST_POWER_OFF,                  "POWER_OFF"                 },
-    /*  3 */ { LED_SRC_MAPPING, LED_ST_MAPPING_ISD_BATT_READY,     "MAPPING_ISD_BATT_READY"    },
-    /*  4 */ { LED_SRC_MAPPING, LED_ST_MAPPING_NO_ISD_BATT_READY,  "MAPPING_NO_ISD_BATT_READY" },
-    /*  5 */ { LED_SRC_MAPPING, LED_ST_MAPPING_ISD_BATT_LOW,       "MAPPING_ISD_BATT_LOW"      },
-    /*  6 */ { LED_SRC_MAPPING, LED_ST_MAPPING_NO_ISD_BATT_LOW,    "MAPPING_NO_ISD_BATT_LOW"   },
-    /*  7 */ { LED_SRC_ERROR,   LED_ST_ERROR_MCU,                  "ERROR_MCU (대표)"          },
-    /*  8 */ { LED_SRC_BATTERY, LED_ST_BATT_CRITICAL,              "BATT_CRITICAL"             },
-    /*  9 */ { LED_SRC_BATTERY, LED_ST_BATT_MID,                   "BATT_MID"                  },
-    /* 10 */ { LED_SRC_BATTERY, LED_ST_BATT_READY,                 "BATT_READY"                },
-    /* 11 */ { LED_SRC_ISD,     LED_ST_IN_USE,                     "IN_USE"                    },
-    /* 12 */ { LED_SRC_BLE_IND, LED_ST_PAIR,                       "PAIR"                      },
-    /* 13 */ { LED_SRC_BLE_IND, LED_ST_OTA_QCC,                    "OTA_QCC"                   },
-    /* 14 */ { LED_SRC_BLE_IND, LED_ST_OTA_EZAIRO,                 "OTA_EZAIRO"                },
+    /*  0 */ {LED_SRC__MAX, LED_ST_NONE, "all off"},
+    /*  1 */ {LED_SRC_POWER, LED_ST_POWER_ON, "POWER_ON"},
+    /*  2 */ {LED_SRC_POWER, LED_ST_POWER_OFF, "POWER_OFF"},
+    /*  3 */ {LED_SRC_MAPPING, LED_ST_MAPPING_ISD_BATT_READY, "MAPPING_ISD_BATT_READY"},
+    /*  4 */ {LED_SRC_MAPPING, LED_ST_MAPPING_NO_ISD_BATT_READY, "MAPPING_NO_ISD_BATT_READY"},
+    /*  5 */ {LED_SRC_MAPPING, LED_ST_MAPPING_ISD_BATT_LOW, "MAPPING_ISD_BATT_LOW"},
+    /*  6 */ {LED_SRC_MAPPING, LED_ST_MAPPING_NO_ISD_BATT_LOW, "MAPPING_NO_ISD_BATT_LOW"},
+    /*  7 */ {LED_SRC_ERROR, LED_ST_ERROR_MCU, "ERROR_MCU (대표)"},
+    /*  8 */ {LED_SRC_BATTERY, LED_ST_BATT_CRITICAL, "BATT_CRITICAL"},
+    /*  9 */ {LED_SRC_BATTERY, LED_ST_BATT_MID, "BATT_MID"},
+    /* 10 */ {LED_SRC_BATTERY, LED_ST_BATT_READY, "BATT_READY"},
+    /* 11 */ {LED_SRC_ISD, LED_ST_IN_USE, "IN_USE"},
+    /* 12 */ {LED_SRC_BLE_IND, LED_ST_PAIR, "PAIR"},
+    /* 13 */ {LED_SRC_BLE_IND, LED_ST_OTA_QCC, "OTA_QCC"},
+    /* 14 */ {LED_SRC_BLE_IND, LED_ST_OTA_EZAIRO, "OTA_EZAIRO"},
 };
-#define TDC_PATTERN_TABLE_LEN  ((int) (sizeof(k_tdc_pattern_table) / sizeof(k_tdc_pattern_table[0])))
+#define TDC_PATTERN_TABLE_LEN ((int) (sizeof(k_tdc_pattern_table) / sizeof(k_tdc_pattern_table[0])))
 
 /* ======================================================================== */
 /*  --led handler                                                           */
@@ -297,10 +312,7 @@ static int handle_led(int argc, char *argv[])
         for (int src = 0; src < LED_SRC__MAX; src++)
         {
             led_state_t state = led_get_request((led_src_t) src);
-            output_printf("  [%s] = %s%s\r\n",
-                          val_to_str(s_tdc_source_map, src),
-                          val_to_str(s_tdc_state_map, state),
-                          s_tdc_led_override[src] ? " (override)" : "");
+            output_printf("  [%s] = %s%s\r\n", val_to_str(s_tdc_source_map, src), val_to_str(s_tdc_state_map, state), s_tdc_led_override[src] ? " (override)" : "");
         }
         output_printf("  burst_pending = %d\r\n", tdc_led_is_burst_pending());
         output_printf("  user_led_off = %d\r\n", (readLED_indicatorOnOff() == 2) ? 1 : 0);
@@ -311,7 +323,8 @@ static int handle_led(int argc, char *argv[])
     /* --led req <src> <state> */
     if (ci_strcasecmp(argv[1], "req") == 0)
     {
-        if (argc < 4) return -1;
+        if (argc < 4)
+            return -1;
 
         int src   = str_to_val(s_tdc_source_map, argv[2]);
         int state = str_to_val(s_tdc_state_map, argv[3]);
@@ -329,7 +342,8 @@ static int handle_led(int argc, char *argv[])
     /* --led clr <src> */
     if (ci_strcasecmp(argv[1], "clr") == 0)
     {
-        if (argc < 3) return -1;
+        if (argc < 3)
+            return -1;
 
         int src = str_to_val(s_tdc_source_map, argv[2]);
         if (src < 0)
@@ -346,7 +360,8 @@ static int handle_led(int argc, char *argv[])
     /* --led user on|off */
     if (ci_strcasecmp(argv[1], "user") == 0)
     {
-        if (argc < 3) return -1;
+        if (argc < 3)
+            return -1;
 
         if (ci_strcasecmp(argv[2], "on") == 0)
         {
@@ -373,10 +388,11 @@ static int handle_led(int argc, char *argv[])
         return 0;
     }
 
-    /* --led pattern <0~14>  — 사진 디버깅 칼럼 매핑 */
+    /* --led pattern <0~14>  ? 사진 디버깅 칼럼 매핑 */
     if (ci_strcasecmp(argv[1], "pattern") == 0)
     {
-        if (argc < 3) return -1;
+        if (argc < 3)
+            return -1;
 
         int n = atoi(argv[2]);
         if (n < 0 || n >= TDC_PATTERN_TABLE_LEN)
@@ -385,14 +401,14 @@ static int handle_led(int argc, char *argv[])
             return -1;
         }
 
-        /* 모든 src 강제 NONE + override 활성 — 단일 패턴만 보이도록 */
+        /* 모든 src 강제 NONE + override 활성 ? 단일 패턴만 보이도록 */
         for (int src = 0; src < LED_SRC__MAX; src++)
         {
             s_tdc_led_override[src] = true;
             led_request((led_src_t) src, LED_ST_NONE);
         }
 
-        /* N>0 인 경우 해당 패턴 요청 (N=0 은 모든 src NONE 만 — LED off) */
+        /* N>0 인 경우 해당 패턴 요청 (N=0 은 모든 src NONE 만 ? LED off) */
         if (n > 0)
         {
             led_request(k_tdc_pattern_table[n].src, k_tdc_pattern_table[n].st);
@@ -405,7 +421,8 @@ static int handle_led(int argc, char *argv[])
     /* --led burst <on|off> */
     if (ci_strcasecmp(argv[1], "burst") == 0)
     {
-        if (argc < 3) return -1;
+        if (argc < 3)
+            return -1;
 
         if (ci_strcasecmp(argv[2], "on") == 0)
         {
@@ -448,8 +465,8 @@ static int handle_battery(int argc, char *argv[])
     }
 
     /* --batt <percent> -- 0~100 */
-    int percent = 0;
-    const char *p = argv[1];
+    int         percent = 0;
+    const char *p       = argv[1];
     while (*p >= '0' && *p <= '9')
     {
         percent = percent * 10 + (*p - '0');
@@ -473,7 +490,8 @@ static int handle_battery(int argc, char *argv[])
 
 static int handle_isd(int argc, char *argv[])
 {
-    if (argc < 2) return -1;
+    if (argc < 2)
+        return -1;
 
     bool val;
     if (ci_strcasecmp(argv[1], "on") == 0)
@@ -498,7 +516,8 @@ static int handle_isd(int argc, char *argv[])
 
 static int handle_map(int argc, char *argv[])
 {
-    if (argc < 2) return -1;
+    if (argc < 2)
+        return -1;
 
     bool val;
     if (ci_strcasecmp(argv[1], "on") == 0)
@@ -523,7 +542,8 @@ static int handle_map(int argc, char *argv[])
 
 static int handle_error(int argc, char *argv[])
 {
-    if (argc < 2) return -1;
+    if (argc < 2)
+        return -1;
 
     if (ci_strcasecmp(argv[1], "clr") == 0)
     {
@@ -578,10 +598,11 @@ static int handle_error(int argc, char *argv[])
 
 static int handle_volume(int argc, char *argv[])
 {
-    if (argc < 2) return -1;
+    if (argc < 2)
+        return -1;
 
-    int volume = 0;
-    const char *p = argv[1];
+    int         volume = 0;
+    const char *p      = argv[1];
     while (*p >= '0' && *p <= '9')
     {
         volume = volume * 10 + (*p - '0');
@@ -607,9 +628,10 @@ static int handle_volume(int argc, char *argv[])
 
 static int handle_program(int argc, char *argv[])
 {
-    if (argc < 2) return -1;
+    if (argc < 2)
+        return -1;
 
-    int n = 0;
+    int         n = 0;
     const char *p = argv[1];
     while (*p >= '0' && *p <= '9')
     {
@@ -658,7 +680,35 @@ static int handle_init_all_map(int argc, char *argv[])
     (void) argv;
 
     ci_printi("[UI CMD] START TO ERASE ALL MAPS\r\n");
-    ci_map_init_map_data_all(true);
+    if (argc == 2)
+    {
+        char *p = argv[1];
+
+        if (*p == 'R')
+        {
+            // PARAMETER ORDER : ISD_NUM, FORCE_INIT, SPECIFIC_RL, VAL_RL
+            ci_map_init_map_data(1, true, true, 2);  // 오른쪽 강제
+        }
+        else
+        {
+            // PARAMETER ORDER : ISD_NUM, FORCE_INIT, SPECIFIC_RL, VAL_RL
+            ci_map_init_map_data(1, true, true, 1);  // 왼쪽 강제
+        }
+    }
+    else
+    {
+        // ci_map_init_map_data_all(true);
+        // PARAMETER ORDER : ISD_NUM, FORCE_INIT, SPECIFIC_RL, VAL_RL
+        ci_map_init_map_data(1, true, false, 1);
+    }
+    SYS_WATCHDOG_REFRESH();
+    ci_map_init_map_data(2, true, false, 1);
+    SYS_WATCHDOG_REFRESH();
+    ci_map_init_map_data(3, true, false, 1);
+    SYS_WATCHDOG_REFRESH();
+    ci_map_init_map_data(4, true, false, 1);
+    SYS_WATCHDOG_REFRESH();
+
     ci_printi("[UI CMD] FINISHED ERASING ALL MAPS\r\n");
     output_printf("OK: all maps erased\r\n");
     return 0;
@@ -694,84 +744,22 @@ static int handle_write_integrity_error(int argc, char *argv[])
     return 0;
 }
 
-#if TDC_TOUCH_RTT_TUNING
-static uint8_t parse_hex_byte(const char *s)
-{
-    return (uint8_t) strtol(s, NULL, 16);
-}
-
-static int handle_touch_tuning(int argc, char *argv[])
-{
-    if (argc < 2)
-    {
-        return -1;
-    }
-
-    if (strcmp(argv[1], "show") == 0)
-    {
-        tdc_drv_iqs323_show_tuning();
-    }
-    else if (strcmp(argv[1], "clear") == 0)
-    {
-        tdc_drv_iqs323_clear_tuning();
-    }
-    else if (strcmp(argv[1], "apply") == 0)
-    {
-        tdc_drv_iqs323_apply_tuning();
-    }
-    else if (strcmp(argv[1], "set") == 0 && argc == 9)
-    {
-        tdc_iqs323_tuning_t t;
-        t.mult_lsb   = parse_hex_byte(argv[3]);
-        t.mult_msb   = parse_hex_byte(argv[4]);
-        t.comp_lsb   = parse_hex_byte(argv[5]);
-        t.comp_msb   = parse_hex_byte(argv[6]);
-        t.threshold  = parse_hex_byte(argv[7]);
-        t.hysteresis = parse_hex_byte(argv[8]);
-        t.ati_valid  = true;
-
-        if (strcmp(argv[2], "normal") == 0)
-        {
-            tdc_drv_iqs323_set_normal_tuning(&t);
-        }
-        else if (strcmp(argv[2], "sleep") == 0)
-        {
-            tdc_drv_iqs323_set_sleep_tuning(&t);
-        }
-        else
-        {
-            output_printf("err: mode must be 'normal' or 'sleep'\r\n");
-            return -1;
-        }
-    }
-    else
-    {
-        return -1;
-    }
-
-    return 0;
-}
-#endif /* TDC_TOUCH_RTT_TUNING */
-
 /* ======================================================================== */
 /*  Registration table                                                      */
 /* ======================================================================== */
 
 static const command_entry_t s_tdc_commands[] = {
-    {"help",               handle_help,                   "--help"},
-    {"led",                handle_led,                    "--led show|req|clr|user|pair|burst|pattern"},
-    {"batt",               handle_battery,                "--batt show|<0~100>"},
-    {"isd",                handle_isd,                    "--isd on|off"},
-    {"map",                handle_map,                    "--map on|off"},
-    {"err",                handle_error,                  "--err clr|data_logging|fpga|acc|pmic|mcu|map"},
-    {"vol",                handle_volume,                 "--vol <1~10>"},
-    {"prog",               handle_program,                "--prog <1~4>"},
-    {"init_all_map",       handle_init_all_map,           "--init_all_map"},
-    {"dump_log",           handle_dump_log,               "--dump_log"},
-    {"write_integrity_err",handle_write_integrity_error,  "--write_integrity_err"},
-#if TDC_TOUCH_RTT_TUNING
-    {"touch",              handle_touch_tuning,           "--touch show|clear|apply|set normal|sleep <ml> <mh> <cl> <ch> <thr> <hyst>"},
-#endif
+    {"help", handle_help, "--help"},
+    {"led", handle_led, "--led show|req|clr|user|pair|burst|pattern"},
+    {"batt", handle_battery, "--batt show|<0~100>"},
+    {"isd", handle_isd, "--isd on|off"},
+    {"map", handle_map, "--map on|off"},
+    {"err", handle_error, "--err clr|data_logging|fpga|acc|pmic|mcu|map"},
+    {"vol", handle_volume, "--vol <1~10>"},
+    {"prog", handle_program, "--prog <1~4>"},
+    {"init_all_map", handle_init_all_map, "--init_all_map"},
+    {"dump_log", handle_dump_log, "--dump_log"},
+    {"write_integrity_err", handle_write_integrity_error, "--write_integrity_err"},
 };
 
 /* ======================================================================== */
@@ -780,8 +768,8 @@ static const command_entry_t s_tdc_commands[] = {
 
 static int tokenize(char *line, char *argv[], int max_argc)
 {
-    int argc = 0;
-    char *p  = line;
+    int   argc = 0;
+    char *p    = line;
 
     while (*p && argc < max_argc)
     {
@@ -869,7 +857,7 @@ void tdc_ui_command_init(void)
     s_tdc_table_cnt = 0;
     s_tdc_line_len  = 0;
 
-    for (int i = 0; i < (int)(sizeof(s_tdc_commands) / sizeof(s_tdc_commands[0])); i++)
+    for (int i = 0; i < (int) (sizeof(s_tdc_commands) / sizeof(s_tdc_commands[0])); i++)
     {
         register_command(&s_tdc_commands[i]);
     }
@@ -880,8 +868,8 @@ void tdc_ui_command_init(void)
 
 void tdc_ui_command_poll(void)
 {
-    char         ch;
-    static bool  s_prev_was_cr = false;
+    char        ch;
+    static bool s_prev_was_cr = false;
 
     while (SEGGER_RTT_Read(0, &ch, 1) > 0)
     {
@@ -917,13 +905,6 @@ void tdc_ui_command_poll(void)
                 echo_string("\b \b");
             }
         }
-#if TDC_TOUCH_SLEEP_MEASURE_MODE
-        else if (ch == 's')
-        {
-            extern void tdc_on_sleep_measure_cmd(void);
-            tdc_on_sleep_measure_cmd();
-        }
-#endif
         else if (s_tdc_line_len < MAX_LINE - 1)
         {
             s_tdc_line[s_tdc_line_len++] = ch;

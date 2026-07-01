@@ -57,7 +57,7 @@
 #define CI_ELEC_NUM_32_INDEX 31
 
 #define CI_MAP_FILE_INIT_NAME_ISD_INFO                                                                                                                                                                                                                                                                                         \
-    { /* 1    2    3    4    5    6    7    8    9    10   11*/                                                                                                                                                                                                                                                                 \
+    { /* 1    2    3    4    5    6    7    8    9    10   11*/                                                                                                                                                                                                                                                                \
         '/', 'I', 'S', 'D', '*', '_', 'I', 'N', 'F', 'O', '\0'                                                                                                                                                                                                                                                                 \
     }
 
@@ -94,7 +94,8 @@ int ci_map_write_user_setting_value(int isd_num);
 int ci_map_write_map_stamp(int isd_num);
 int ci_map_write_map_data(int isd_num, int map_num);
 
-int ci_map_init_map_data(int isd_num, bool force_init);
+// int ci_map_init_map_data(int isd_num, bool force_init);
+int ci_map_init_map_data(int isd_num, bool force_init, bool specific_RL, int val_RL);
 int ci_map_init_map_data_all(bool force_init);
 
 #endif  // __ci_map_h__

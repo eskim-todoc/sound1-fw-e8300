@@ -112,6 +112,11 @@ typedef enum
     en__mapping_read_Connected_ISD_id
 } EN__MAPPING_COMMAND;
 
+typedef enum
+{
+    EN__SND_BT_CMD_GENERAL_DEBUG = 0x8F,
+} EN__SND_BT_CMD_80_RANGE;
+
 #define Max_ImpedanceReturnDataSize              4  // b
 #define PayloadSize_ExternalDeviceInfo_Size_byte 8  // 8byte
 #endif

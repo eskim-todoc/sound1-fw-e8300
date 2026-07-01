@@ -130,7 +130,7 @@ int ci_map_write_map_data(int isd_num, int map_num)
 #endif
 }
 
-int ci_map_init_map_data(int isd_num, bool force_init)
+int ci_map_init_map_data(int isd_num, bool force_init, bool specific_RL, int val_RL)
 {
     ST__CFX_CM3_SharedMemory_ISD_info         *p_info;
     ST__CFX_CM3_SharedMemory_userSettingValue *p_user_setting;
@@ -347,6 +347,7 @@ int ci_map_init_map_data(int isd_num, bool force_init)
     // ISD information
     if ((validate_isd_info < 0) || (force_init))
     {
+#if 1  // 기본 코드
         if (isd_num == 1)
         {
             // ISD info (4 word)
@@ -364,7 +365,13 @@ int ci_map_init_map_data(int isd_num, bool force_init)
             p_info->isd_location_RL = 2;  //  ISD info (left/right)
 #endif
             /* 양이 사용자 끝. */
+
+            if (specific_RL)
+            {
+                p_info->isd_location_RL = val_RL;
+            }
         }
+
         else
         {
             // ISD info (4 word)
@@ -400,7 +407,80 @@ int ci_map_init_map_data(int isd_num, bool force_init)
         p_info->isd_userName[22] = 0;     // user name 23
         p_info->isd_userName[23] = 0;     // user name 24
         p_info->isd_userName[24] = 0xFB;  // user name 25
+#else                                     // 임의로 내부기 2개 할당 (테스트 코드)
+        if (isd_num == 1)
+        {
+            // ISD info (4 word)
+            p_info->isd_year        = 0x18;    //  ISD info (year)
+            p_info->isd_month_model = 0x91;    //  ISD info (month, model)
+            p_info->isd_serial      = 0x0022;  //  ISD info (serial)
+            p_info->isd_location_RL = 2;       //  ISD info (left/right)
 
+            p_info->isd_userName[0] = 'K';  // user name 1
+            p_info->isd_userName[1] = 'E';  // user name 2
+            p_info->isd_userName[2] = 'S';  // user name 3
+            p_info->isd_userName[3] = '_';  // user name 4
+            p_info->isd_userName[4] = 'R';  // user name 5
+            p_info->isd_userName[5] = 'I';  // user name 6
+            p_info->isd_userName[6] = 'G';  // user name 7
+            p_info->isd_userName[7] = 'H';  // user name 8
+            p_info->isd_userName[8] = 'T';  // user name 9
+        }
+        else if (isd_num == 2)
+        {
+            // ISD info (4 word)
+            p_info->isd_year        = 0x00;    //  ISD info (year)
+            p_info->isd_month_model = 0x00;    //  ISD info (month, model)
+            p_info->isd_serial      = 0x00FA;  //  ISD info (serial)
+            p_info->isd_location_RL = 1;       //  ISD info (left/right)
+
+            p_info->isd_userName[0] = 'K';  // user name 1
+            p_info->isd_userName[1] = 'E';  // user name 2
+            p_info->isd_userName[2] = 'S';  // user name 3
+            p_info->isd_userName[3] = '_';  // user name 4
+            p_info->isd_userName[4] = 'L';  // user name 5
+            p_info->isd_userName[5] = 'E';  // user name 6
+            p_info->isd_userName[6] = 'F';  // user name 7
+            p_info->isd_userName[7] = 'T';  // user name 8
+            p_info->isd_userName[8] = 0;    // user name 9
+        }
+        else
+        {
+            // ISD info (4 word)
+            p_info->isd_year        = 0x12;    //  ISD info (year)
+            p_info->isd_month_model = 0x34;    //  ISD info (month, model)
+            p_info->isd_serial      = 0x5678;  //  ISD info (serial)
+            p_info->isd_location_RL = 1;       //  ISD info (left/right)
+
+            p_info->isd_userName[0] = 'T';  // user name 1
+            p_info->isd_userName[1] = 'O';  // user name 2
+            p_info->isd_userName[2] = 'D';  // user name 3
+            p_info->isd_userName[3] = 'O';  // user name 4
+            p_info->isd_userName[4] = 'C';  // user name 5
+            p_info->isd_userName[5] = '_';  // user name 6
+            p_info->isd_userName[6] = 'O';  // user name 7
+            p_info->isd_userName[7] = 'T';  // user name 8
+            p_info->isd_userName[8] = 'E';  // user name 9
+        }
+
+        // user name (25 word)
+        p_info->isd_userName[9]  = 0;     // user name 10
+        p_info->isd_userName[10] = 0;     // user name 11
+        p_info->isd_userName[11] = 0;     // user name 12
+        p_info->isd_userName[12] = 0;     // user name 13
+        p_info->isd_userName[13] = 0;     // user name 14
+        p_info->isd_userName[14] = 0;     // user name 15
+        p_info->isd_userName[15] = 0;     // user name 16
+        p_info->isd_userName[16] = 0;     // user name 17
+        p_info->isd_userName[17] = 0;     // user name 18
+        p_info->isd_userName[18] = 0;     // user name 19
+        p_info->isd_userName[19] = 0;     // user name 20
+        p_info->isd_userName[20] = 0;     // user name 21
+        p_info->isd_userName[21] = 0;     // user name 22
+        p_info->isd_userName[22] = 0;     // user name 23
+        p_info->isd_userName[23] = 0;     // user name 24
+        p_info->isd_userName[24] = 0xFB;  // user name 25
+#endif
         // remocon passkey (4 word)
         p_info->remocon_passkey[0] = '1';  // remocon passkey 1
         p_info->remocon_passkey[1] = '1';  // remocon passkey 2
@@ -684,7 +764,8 @@ int ci_map_init_map_data_all(bool force_init)
 {
     for (int isd_num = 1; isd_num <= MaxNumUser; isd_num++)
     {
-        ci_map_init_map_data(isd_num, force_init);
+        // ci_map_init_map_data(isd_num, force_init);
+        ci_map_init_map_data(isd_num, force_init, false, 1);
         SYS_WATCHDOG_REFRESH();
     }
 
