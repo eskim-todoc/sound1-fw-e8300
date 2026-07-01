@@ -334,7 +334,6 @@ void Initialize(void)
     ci_printi("[INFO] INIT : STIM MUTE \r\n");
 
     ci_event_log_init();
-
     ci_printi("[INFO] INIT : EVENT LOG \r\n");
 
     // 1세대에서는 CFX가 플래시에서 ISD 정보를 읽어서 공유 메모리에 저장하던 기능을,

@@ -503,25 +503,10 @@ int func_normal(void)
 
             update_mapNum();  // 맵데이터 업데이트
 
-#if 1                                                          // 기본 코드
             isd_state = isd_interface(systemState.enable_ISD,  //
                                       BLE_communicationState.mappingConnection,
                                       BLE_communicationState.isdControlCommand  //
             );
-#else  // BLE 강제로 동작시키기 위한 코드
-            {
-                static bool is_debug_force_isd_read = false;
-
-                if (is_debug_force_isd_read == false)
-                {
-                    is_debug_force_isd_read = true;
-                    changeConnected_isd_num_CFX(1);
-                }
-            }
-            isd_state.conneded_ISD     = true;
-            isd_state.isd_controlState = en__isdStatus_stimul_10V_Ok;
-            snd_qcc_set_isd(SND_QCC_ISD_CONNECTED);
-#endif
 
             /* 매핑 연결 상태이고,
              * isd_state.isd_controlState >= en__isdStatus_stimul_10V_Ok 이면,
@@ -677,48 +662,6 @@ int func_normal(void)
 #ifdef ENABLE_UI_CMD
             tdc_ui_command_set_mapping_connected(BLE_communicationState.mappingConnection);
             tdc_ui_command_poll();
-#else
-            do
-            {
-                char byte;
-
-                if (0 < SEGGER_RTT_Read(0, &byte, 1))
-                {
-                    if ('0' <= byte && byte <= '9')
-                    {
-                        int vol = (byte - '0') + 1;
-
-                        ci_printi("[DEBUG] NEW AUDIO VOLUME INPUT : %d \r\n", vol);
-                        changeAudioVolume(vol);
-                    }
-                    else if ('e' == byte)
-                    {
-                        ci_printi("[DEBUG] STATRT TO ERASE ALL MAPS \r\n");
-
-                        ci_map_init_map_data_all(true);
-
-                        ci_printi("[DEBUG] FINISHED ERASING ALL MAPS \r\n");
-                    }
-                    else if ('l' == byte)
-                    {
-                        ci_printi("[DEBUG] START TO READ EVENT LOG \r\n");
-
-                        ci_event_log_read();
-
-                        ci_printi("[DEBUG] FINISHED TO READ EVENT LOG \r\n");
-                    }
-                    else if ('x' == byte)
-                    {
-                        ci_printi("[DEBUG] MAKE DATA LOGGING ERROR \r\n");
-                        errorCodeUpdate(en__MAJOR_ERRORCODE_DATA_LOGGING_ERROR, en__data_logging_error_open, __LINE__);
-                    }
-                    else if ('t' == byte)
-                    {
-                        ci_printi("[DEBUG] SETTING FILE INTEGRITY ERROR \r\n");
-                        ci_event_log_write(CI_EVENT_LOG_TYPE_INTEGRITY_ERROR);
-                    }
-                }
-            } while (false);
 #endif
 
             // 중요!!
