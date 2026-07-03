@@ -847,6 +847,7 @@ int fake_func_sleep(void)
 
     // Uninitialize(); /* Disable peripherals and DIOs */
 
+#if 0
     if (!public_touch_settings(255, TDC_TOUCH_IQS323_HYSTERESIS))
     {
         ci_printw("[GD] fail : threshold, hysteresis \r\n");
@@ -855,6 +856,7 @@ int fake_func_sleep(void)
     {
         ci_printw("[GD] success : threshold(%u), hysteresis(%u) \r\n", 255, TDC_TOUCH_IQS323_HYSTERESIS);
     }
+#endif
 
     // ci_power_sleep(); /* SYSCLK 30.72M → 2.56M, SLOWCLK 유지 */
     ci_fake_power_sleep();
@@ -872,11 +874,12 @@ int fake_func_sleep(void)
      *    확정 시 RESEED 1회로 절전 노터치 baseline 동기 후 게이트 해제.
      *  - 노터치가 10초 넘게 확정 안 되면(계속 터치/오염) 강제 RESEED 로 현재 상태를 baseline 끌어와 탈출.
      *  - 게이트 해제 후 '400ms 연속 터치' 시 재부팅 → 노말 모드 복귀(30/60/90 stuck 불요). */
-    bool              sleep_ignore   = true; /* 첫 노터치 확정 전 터치 막힘 */
-    int               notouch_cnt    = 0;    /* 연속 NOT_TOUCH 샘플 (게이트 해제 기준) */
-    int               ignore_elapsed = 0;    /* 게이트 지속 샘플 (10s 강제 RESEED 기준) */
-    int               touch_cnt      = 0;    /* 게이트 해제 후 연속 TOUCH 샘플 (재부팅 기준) */
-    tdc_touch_state_t ulp_state_prev = TDC_TOUCH_STATE_RESET;
+    bool              sleep_ignore         = true; /* 첫 노터치 확정 전 터치 막힘 */
+    int               notouch_cnt          = 0;    /* 연속 NOT_TOUCH 샘플 (게이트 해제 기준) */
+    int               ignore_elapsed       = 0;    /* 게이트 지속 샘플 (10s 강제 RESEED 기준) */
+    int               touch_cnt            = 0;    /* 게이트 해제 후 연속 TOUCH 샘플 (재부팅 기준) */
+    tdc_touch_state_t ulp_state_prev       = TDC_TOUCH_STATE_RESET;
+    int               ati_error_reboot_cnt = 0;
 
     ST__ISD_STATUS dummy_isd = {en__isdStatus_NA, false};
     uint32_t       wfi_count = 0;
@@ -943,9 +946,29 @@ int fake_func_sleep(void)
              * ati_active(정상 ATI burst) 중에는 제외, 실제 에러(!ati_active && ati_error)만. */
             if (ok && st.ati_error && !st.ati_active)
             {
-                ci_printw("\r\n[TOUCH] SLEEP: ATI ERROR -> REBOOT (recover in normal) \r\n");
-                delay_ms(20); /* RTT 드레인 */
-                SYS_WATCHDOG_RESET();
+                if (5 < ati_error_reboot_cnt)
+                {
+                    ci_printw("\r\n[TOUCH] SLEEP: ATI ERROR -> REBOOT (recover in normal) \r\n");
+                    delay_ms(20); /* RTT 드레인 */
+                    SYS_WATCHDOG_RESET();
+                }
+                else
+                {
+                    // ati 에러 발생 시 한번 복구를 시도해본다.
+                    turnON_RedLED();
+                    ci_printw("\r\n[TOUCH] SLEEP: ATI ERROR -> RECOVER (in sleep) \r\n");
+                    tdc_touch_iqs323_re_ati();
+                    ati_error_reboot_cnt++;
+                }
+                // delay_ms(20); /* RTT 드레인 */
+                // SYS_WATCHDOG_RESET();
+            }
+            else if (ok && !st.ati_error && !st.ati_active)
+            {
+                Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_R);
+                Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_G);
+                Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_B);
+                ati_error_reboot_cnt = 0;
             }
 
             if (sleep_ignore)
@@ -985,7 +1008,7 @@ int fake_func_sleep(void)
                     {
                         ci_printi("\r\n[TOUCH] SLEEP: touch detected -> REBOOT \r\n");
                         delay_ms(20); /* RTT 뷰어 로그 드레인 대기 */
-                        SYS_WATCHDOG_RESET();
+                        // SYS_WATCHDOG_RESET();
                         /* 도달 불가 ? 칩 리셋 */
                     }
                 }
