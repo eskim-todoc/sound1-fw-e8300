@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CIS vs NofM 자극 출력 패턴 &amp; PCM/COLA 타이밍 뷰어</title>
+<style>
+  :root {
+    --page-plane: #EFE7D6;
+    --surface-1: #FAF5EA;
+    --card-bg: #FBF7EE;
+    --card-border: #E2D5BC;
+    --gridline: #E6DAC2;
+    --baseline: #CBB999;
+    --text-primary: #33291C;
+    --text-secondary: #6B5C46;
+    --text-muted: #6E5F48;
+
+    --cis-accent: #C15F3C;
+    --cis-tint-1: #F5DECB;
+    --cis-tint-2: #ECC7A6;
+    --cis-tint-3: #E2AE82;
+
+    --nofm-accent: #3E6E64;
+    --nofm-tint-1: #D6E6DF;
+    --nofm-tint-2: #C1D9CE;
+    --nofm-tint-3: #ACCCBD;
+
+    --idle-fill: #C7C0B0;
+    --idle-border: #AAA089;
+
+    --warn-bg: #F7E7BE;
+    --warn-fg: #7A5A0E;
+    --danger-bg: #F4DCD0;
+    --danger-fg: #A23B22;
+    --info-bg: #DEE9E3;
+    --info-fg: #2F5C50;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--page-plane); color: var(--text-primary);
+    font-family: system-ui, -apple-system, "Segoe UI", "Pretendard", "Noto Sans KR", sans-serif;
+    padding-bottom: 40px;
+  }
+  header {
+    display: flex; align-items: baseline; gap: 12px;
+    padding: 16px 24px; background: var(--surface-1); border-bottom: 1px solid var(--card-border);
+    position: sticky; top: 0; z-index: 20;
+  }
+  header h1 { font-size: 17px; margin: 0; }
+  header .sub { font-size: 12px; color: var(--text-muted); }
+  main { width: 100%; max-width: 1900px; margin: 0 auto; padding: 18px 24px; }
+  .controls {
+    display: flex; align-items: center; flex-wrap: wrap; gap: 24px;
+    background: var(--card-bg); border: 1px solid var(--card-border);
+    border-radius: 12px; padding: 18px; margin-bottom: 16px;
+  }
+  .controls-primary { display: flex; gap: 28px; flex: 1 1 auto; flex-wrap: wrap; }
+  .controls-secondary { display: flex; gap: 18px; margin-left: auto; }
+  .controls label { display: block; font-size: 12px; color: var(--text-secondary); font-weight: 600; }
+  .controls-secondary label { font-size: 11px; color: var(--text-muted); font-weight: 500; }
+  .duration-label { flex: 1 1 320px; }
+  .controls .field-row { display: flex; align-items: center; gap: 8px; margin-top: 6px; }
+  .controls input[type=range] { accent-color: var(--cis-accent); }
+  .controls-primary #kRange { width: 130px; }
+  .duration-slider-wrap { position: relative; flex: 1; min-width: 260px; }
+  .duration-slider-wrap input[type=range] {
+    width: 100%; -webkit-appearance: none; appearance: none;
+    height: 4px; background: var(--gridline); border-radius: 2px; outline: none; margin: 0;
+  }
+  .duration-slider-wrap input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none; width: 16px; height: 16px; border-radius: 50%;
+    background: var(--cis-accent); cursor: pointer; border: 2px solid var(--card-bg);
+    margin-top: -6px; /* 트랙(4px) 대비 썸(16px) 높이 차를 보정해 세로 중앙 정렬 */
+  }
+  .duration-slider-wrap input[type=range]::-moz-range-thumb {
+    width: 16px; height: 16px; border-radius: 50%; background: var(--cis-accent);
+    cursor: pointer; border: 2px solid var(--card-bg);
+  }
+  .nofm-limit-mark {
+    /* left는 JS(positionNofmLimitMark)가 실제 슬라이더 썸 위치를 측정해 px로 직접 지정 */
+    position: absolute; top: 50%; transform: translate(-50%, -50%);
+    width: 2px; height: 16px; background: var(--nofm-accent); pointer-events: none; border-radius: 1px;
+  }
+  .nofm-limit-mark::after {
+    content: "NofM 한계"; position: absolute; top: -15px; left: 50%; transform: translateX(-50%);
+    font-size: 9px; color: var(--nofm-accent); white-space: nowrap;
+  }
+  .controls-secondary input[type=range] { width: 90px; }
+  .controls input[type=number], .controls select {
+    width: 68px; padding: 5px 6px; border-radius: 6px; border: 1px solid var(--card-border);
+    background: var(--surface-1); color: var(--text-primary); font-variant-numeric: tabular-nums;
+  }
+  .controls select { width: auto; }
+  .unit { font-size: 12px; color: var(--text-muted); }
+  .duration-note { font-size: 11px; color: var(--warn-fg); margin-top: 5px; }
+  .stats {
+    display: grid; grid-template-columns: 170px 1fr 1fr; gap: 1px;
+    background: var(--gridline); border: 1px solid var(--card-border); border-radius: 12px;
+    overflow: hidden; margin-bottom: 18px; font-size: 13px;
+  }
+  .stats > div { background: var(--card-bg); padding: 9px 14px; min-width: 0; }
+  .stats .head { font-weight: 700; background: var(--surface-1); }
+  .stats .metric-label { color: var(--text-secondary); }
+  .stats .cis-col { color: var(--cis-accent); }
+  .stats .nofm-col { color: var(--nofm-accent); }
+  .panel { margin-bottom: 26px; }
+  .panel-title { display: flex; align-items: center; gap: 10px; font-size: 15px; font-weight: 700; margin: 0 0 10px; }
+  .clamp-note { color: var(--danger-fg); font-weight: 700; font-size: 13px; }
+  .dot { width: 11px; height: 11px; border-radius: 50%; display: inline-block; }
+  .dot.cis { background: var(--cis-accent); }
+  .dot.nofm { background: var(--nofm-accent); }
+  .note {
+    font-size: 12.5px; color: var(--text-secondary); background: var(--card-bg);
+    border: 1px dashed var(--card-border); border-radius: 10px; padding: 10px 14px; margin: 8px 0 12px;
+  }
+  .scrollwrap {
+    overflow-x: auto; border: 1px solid var(--card-border); border-radius: 12px; background: var(--surface-1);
+    width: 100%;
+  }
+  .tl-row { display: flex; align-items: stretch; border-bottom: 1px solid var(--gridline); }
+  .tl-row:last-child { border-bottom: none; }
+  .row-label {
+    position: sticky; left: 0; z-index: 2; flex: 0 0 132px; width: 132px;
+    background: var(--surface-1); border-right: 1px solid var(--gridline);
+    font-size: 11.5px; color: var(--text-secondary); padding: 4px 10px; display: flex; align-items: center;
+  }
+  canvas.tl-canvas { display: block; cursor: crosshair; }
+  #tooltip {
+    position: fixed; pointer-events: none; z-index: 50; background: var(--card-bg); color: var(--text-primary);
+    border: 1px solid var(--card-border); border-radius: 6px; padding: 6px 10px; font-size: 12px;
+    box-shadow: 0 4px 14px rgba(51,41,28,.18); display: none; white-space: nowrap;
+  }
+  .disabled-msg {
+    padding: 16px; font-size: 13px; color: var(--text-secondary); background: var(--surface-1);
+    border: 1px dashed var(--card-border); border-radius: 10px; text-align: center;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>CIS vs NofM 자극 출력 패턴 &amp; PCM/COLA 타이밍 뷰어</h1>
+  <div class="sub">e8300 인공와우 외부기 — duration 설정에 따른 PCM 패킷 수 · COLA 전송시간 · 자극율 비교</div>
+</header>
+
+<main>
+  <section class="controls">
+    <div class="controls-primary">
+      <label>활성 채널 수
+        <div class="field-row">
+          <input type="range" id="kRange" min="1" max="32" value="32">
+          <input type="number" id="kNum" min="1" max="32" value="32">
+          <span class="unit">ch</span>
+        </div>
+      </label>
+      <label class="duration-label">Duration
+        <div class="field-row">
+          <div class="duration-slider-wrap">
+            <input type="range" id="pRange" min="13" max="255" value="13" list="pTicks">
+            <datalist id="pTicks">
+              <option value="13"></option>
+              <option value="34"></option>
+              <option value="54"></option>
+              <option value="123"></option>
+              <option value="164"></option>
+              <option value="205"></option>
+              <option value="255"></option>
+            </datalist>
+            <div class="nofm-limit-mark" title="NofM 3패킷 한계(54usec)"></div>
+          </div>
+          <input type="number" id="pNum" min="13" max="255" value="13">
+          <span class="unit">usec</span>
+        </div>
+        <div class="duration-note">⚠ NofM의 한계는 54usec 입니다. 안정적인 여유 확보를 고려하면 47usec 이하를 권장합니다.</div>
+      </label>
+    </div>
+    <div class="controls-secondary">
+      <label>표시 구간
+        <div class="field-row">
+          <select id="msWindowSel">
+            <option value="5" selected>5 ms</option>
+            <option value="10">10 ms</option>
+            <option value="20">20 ms</option>
+            <option value="50">50 ms</option>
+          </select>
+        </div>
+      </label>
+      <label>패킷 표시 크기
+        <div class="field-row">
+          <input type="range" id="zoomRange" min="6" max="36" value="36">
+          <span class="unit" id="zoomVal">36px</span>
+        </div>
+      </label>
+    </div>
+  </section>
+
+  <section class="stats" id="statsGrid">
+    <div class="head"></div><div class="head cis-col">CIS</div><div class="head nofm-col">NofM (16 of M)</div>
+    <div class="metric-label">채널당 PCM 패킷 수</div><div id="s-frames-cis"></div><div id="s-frames-nofm"></div>
+    <div class="metric-label">1ms당 처리 채널</div><div id="s-cpm-cis"></div><div id="s-cpm-nofm"></div>
+    <div class="metric-label">채널당 rate (PPS)</div><div id="s-rate-cis"></div><div id="s-rate-nofm"></div>
+    <div class="metric-label">자극율 (Stimulation rate)</div><div id="s-stimrate-cis"></div><div id="s-stimrate-nofm"></div>
+  </section>
+
+  <section class="panel" id="cisPanel">
+    <p class="panel-title"><span class="dot cis"></span>CIS — 전체 채널 순차 자극</p>
+    <div class="scrollwrap">
+      <div class="tl-row"><div class="row-label">ms</div><canvas class="tl-canvas" id="cis-ruler"></canvas></div>
+      <div class="tl-row"><div class="row-label">PCM 자극 패킷</div><canvas class="tl-canvas" id="cis-ab"></canvas></div>
+      <div class="tl-row"><div class="row-label">COLA 패킷</div><canvas class="tl-canvas" id="cis-c"></canvas></div>
+      <div class="tl-row"><div class="row-label">자극 펄스</div><canvas class="tl-canvas" id="cis-d"></canvas></div>
+    </div>
+  </section>
+
+  <section class="panel" id="nofmPanel">
+    <p class="panel-title"><span class="dot nofm"></span>NofM — 상위 16채널 고정 3패킷 자극<span class="clamp-note" id="nofmClampNote" hidden> (54usec 초과하여 54usec로 고정)</span></p>
+    <div id="nofmContent">
+      <div class="scrollwrap">
+        <div class="tl-row"><div class="row-label">ms</div><canvas class="tl-canvas" id="nofm-ruler"></canvas></div>
+        <div class="tl-row"><div class="row-label">PCM 자극 패킷</div><canvas class="tl-canvas" id="nofm-ab"></canvas></div>
+        <div class="tl-row"><div class="row-label">COLA 패킷</div><canvas class="tl-canvas" id="nofm-c"></canvas></div>
+        <div class="tl-row"><div class="row-label">자극 펄스</div><canvas class="tl-canvas" id="nofm-d"></canvas></div>
+      </div>
+    </div>
+    <div class="disabled-msg" id="nofmDisabled" hidden></div>
+  </section>
+</main>
+
+<div id="tooltip"></div>
+
+<script>
+(function () {
+  "use strict";
+
+  var TOKEN = 41, GAP = 4, ELEC = 10, MAXSLOT = 24;
+
+  function frames(p) {
+    var raw = 2 * p + GAP + ELEC;
+    return Math.floor(raw / TOKEN) + 1;
+  }
+  function channelsPerMs(f) { return Math.floor(MAXSLOT / f); }
+  function colaUsec(p) { return 2 * p + 7; }
+  function averageRatePps(K, c) { return K <= c ? 1000 : 1000 * c / K; }
+
+  function cisChannelsForMs(t, K, f) {
+    var c = channelsPerMs(f);
+    if (K < c) {
+      var arr = [];
+      for (var i = 0; i < K; i++) arr.push(i);
+      return arr;
+    }
+    var start = (t * c) % K, out = [];
+    for (var j = 0; j < c; j++) out.push((start + j) % K);
+    return out;
+  }
+  function nofmChannelsForMs(t) {
+    var start = (t * 8) % 16, out = [];
+    for (var j = 0; j < 8; j++) out.push((start + j) % 16);
+    return out;
+  }
+
+  // NofM은 채널 수(K&lt;16)일 때만 구조적으로 불가능하다. duration&gt;54usec는 "불가"가 아니라
+  // NofM 시뮬레이션 자체를 54usec로 고정(clamp)해서 보여준다 — nofmClampedP() 참조.
+  function nofmAvailability(K) {
+    if (K < 16) return { ok: false, reason: "channels" };
+    return { ok: true };
+  }
+
+  function nofmClampedP(p) { return Math.min(p, 54); }
+
+  function buildTimeline(K, p, msWindow, isNofM) {
+    var f = isNofM ? 3 : frames(p);
+    var rows = [];
+    for (var t = 0; t < msWindow; t++) {
+      var seq = isNofM ? nofmChannelsForMs(t) : cisChannelsForMs(t, K, f);
+      var slots = [];
+      for (var k = 0; k < seq.length; k++) {
+        for (var fi = 0; fi < f; fi++) {
+          slots.push({ channel: seq[k], isNop: false, fi: fi, f: f });
+        }
+      }
+      while (slots.length < MAXSLOT) slots.push({ channel: null, isNop: true });
+      rows.push(slots);
+    }
+    return { f: f, rows: rows };
+  }
+
+  var CIS_PALETTE = { tints: ["#F5DECB", "#ECC7A6", "#E2AE82"], border: "#C15F3C" };
+  var NOFM_PALETTE = { tints: ["#D6E6DF", "#C1D9CE", "#ACCCBD"], border: "#3E6E64" };
+
+  function cssVar(name) { return getComputedStyle(document.documentElement).getPropertyValue(name).trim(); }
+
+  function setupCanvas(canvas, widthPx, heightPx) {
+    var ratio = window.devicePixelRatio || 1;
+    canvas.style.width = widthPx + "px";
+    canvas.style.height = heightPx + "px";
+    canvas.width = Math.round(widthPx * ratio);
+    canvas.height = Math.round(heightPx * ratio);
+    var ctx = canvas.getContext("2d");
+    ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+    return ctx;
+  }
+
+  function drawRuler(canvas, msWindow, slotPx, marginSlots) {
+    var widthPx = (msWindow * MAXSLOT + marginSlots) * slotPx, h = 22;
+    var ctx = setupCanvas(canvas, widthPx, h);
+    ctx.clearRect(0, 0, widthPx, h);
+    ctx.strokeStyle = cssVar("--gridline");
+    ctx.fillStyle = cssVar("--text-muted");
+    ctx.font = "10px system-ui, sans-serif";
+    for (var t = 0; t <= msWindow; t++) {
+      var x = t * MAXSLOT * slotPx;
+      ctx.beginPath(); ctx.moveTo(x + 0.5, 0); ctx.lineTo(x + 0.5, h); ctx.stroke();
+      if (t < msWindow) ctx.fillText(t + "ms", x + 3, h - 6);
+    }
+  }
+
+  function drawChannelRow(canvas, tl, palette, msWindow, slotPx, marginSlots, totalK) {
+    var h = 40, widthPx = (msWindow * MAXSLOT + marginSlots) * slotPx;
+    var ctx = setupCanvas(canvas, widthPx, h);
+    ctx.clearRect(0, 0, widthPx, h);
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+    var idleFill = cssVar("--idle-fill"), idleBorder = cssVar("--idle-border");
+    var textColor = cssVar("--text-primary");
+    var wrapColor = cssVar("--text-primary");
+    var lastActiveChannel = -1;
+
+    for (var t = 0; t < tl.rows.length; t++) {
+      var row = tl.rows[t];
+      var i = 0;
+      while (i < row.length) {
+        var slot = row[i];
+        if (slot.isNop) {
+          var runLen = 1;
+          while (i + runLen < row.length && row[i + runLen].isNop) runLen++;
+          var xN = (t * MAXSLOT + i) * slotPx, wN = runLen * slotPx;
+          ctx.fillStyle = idleFill;
+          ctx.fillRect(xN, 5, wN - 1, h - 10);
+          ctx.strokeStyle = idleBorder;
+          ctx.strokeRect(xN + 0.5, 5.5, wN - 2, h - 11);
+          i += runLen;
+          continue;
+        }
+        var f = slot.f, ch = slot.channel;
+        var x = (t * MAXSLOT + i) * slotPx, w = f * slotPx;
+        // 채널 1↔마지막 채널(totalK) 경계 표시 — 순환(wrap) 지점을 한눈에 볼 수 있게
+        if (ch === 0 && lastActiveChannel === totalK - 1) {
+          ctx.strokeStyle = wrapColor;
+          ctx.lineWidth = 2;
+          ctx.setLineDash([3, 2]);
+          ctx.beginPath(); ctx.moveTo(x + 0.5, 0); ctx.lineTo(x + 0.5, h); ctx.stroke();
+          ctx.setLineDash([]);
+        }
+        lastActiveChannel = ch;
+        // 첫 PCM 패킷 = 실 자극 데이터, 나머지(2번째~)는 20bit NOP 패킷(타이밍 확보용 필러)
+        ctx.fillStyle = idleFill;
+        ctx.fillRect(x, 2, w - 1, h - 4);
+        ctx.fillStyle = palette.tints[ch % palette.tints.length];
+        ctx.fillRect(x, 2, Math.min(slotPx, w) - 1, h - 4);
+        ctx.strokeStyle = palette.border;
+        ctx.lineWidth = 1;
+        ctx.strokeRect(x + 0.5, 2.5, w - 2, h - 5);
+        for (var k = 1; k < f; k++) {
+          var tx = x + k * slotPx;
+          ctx.beginPath();
+          ctx.moveTo(tx + 0.5, 4);
+          ctx.lineTo(tx + 0.5, h - 4);
+          ctx.strokeStyle = "rgba(51,41,28,0.28)";
+          ctx.stroke();
+        }
+        var fontPx = slotPx >= 22 ? 12 : (slotPx >= 8 ? 9 : 0);
+        if (fontPx > 0) {
+          ctx.font = "bold " + fontPx + "px system-ui, sans-serif";
+          ctx.fillStyle = textColor;
+          ctx.fillText(String(ch + 1), x + slotPx / 2, h / 2 + 1);
+        }
+        i += f;
+      }
+    }
+  }
+
+  function forEachGroup(tl, cb) {
+    for (var t = 0; t < tl.rows.length; t++) {
+      var row = tl.rows[t];
+      var i = 0;
+      while (i < row.length) {
+        var slot = row[i];
+        if (slot.isNop) { i++; continue; }
+        var f = slot.f;
+        cb(t, i, slot.channel, f);
+        i += f;
+      }
+    }
+  }
+
+  // 자극 펄스 위치 계산 전용: '다음 COLA'는 바로 다음 슬롯이 아니라, 다음으로 실제 데이터가 있는(NOP이 아닌) 그룹의 COLA 시작점이다.
+  // 같은 ms 안에 다음 채널이 이어지면 +(f+1)슬롯과 동일하지만, 그 ms의 마지막 채널(뒤가 전부 NOP)이면 다음 ms 첫 채널까지 건너뛰어야 한다.
+  function forEachGroupWithNext(tl, cb) {
+    for (var t = 0; t < tl.rows.length; t++) {
+      var row = tl.rows[t];
+      var i = 0;
+      while (i < row.length) {
+        var slot = row[i];
+        if (slot.isNop) { i++; continue; }
+        var f = slot.f;
+        var groupEndSlot = i + f;
+        var isLastInMs = groupEndSlot >= row.length || row[groupEndSlot].isNop;
+        var nextColaAbsSlot = isLastInMs
+          ? (t + 1) * MAXSLOT + 1   // 다음 ms 첫 채널(항상 슬롯0 시작)의 COLA 시작
+          : t * MAXSLOT + groupEndSlot + 1; // 같은 ms 안 바로 다음 채널의 COLA 시작
+        cb(t, i, slot.channel, f, nextColaAbsSlot);
+        i += f;
+      }
+    }
+  }
+
+  function drawBiphasicShape(ctx, x0, baseline, pulseH, pxPerUsec, p, color) {
+    // interphase gap(4usec)은 별도 간격으로 그리지 않고 neg/pos 각각에 절반(2usec)씩 흡수 — 항상 붙어서 출력
+    var negW = (p + GAP / 2) * pxPerUsec;
+    var posW = (p + GAP / 2) * pxPerUsec;
+    ctx.fillStyle = color;
+    ctx.fillRect(x0, baseline, negW, pulseH);
+    ctx.fillRect(x0 + negW, baseline - pulseH, posW, pulseH);
+  }
+
+  function drawChannelLabel(ctx, x, w, slotPx, textColor) {
+    var fontPx = slotPx >= 22 ? 11 : (slotPx >= 8 ? 9 : 0);
+    if (fontPx > 0 && w >= 15) {
+      ctx.font = "bold " + fontPx + "px system-ui, sans-serif";
+      ctx.fillStyle = textColor;
+      return true;
+    }
+    return false;
+  }
+
+  function drawColaRow(canvas, tl, palette, p, msWindow, slotPx, marginSlots) {
+    var widthPx = (msWindow * MAXSLOT + marginSlots) * slotPx, h = 40;
+    var ctx = setupCanvas(canvas, widthPx, h);
+    ctx.clearRect(0, 0, widthPx, h);
+    var cola = colaUsec(p);
+    var barTop = 16, barH = 20;
+    ctx.textAlign = "center"; ctx.textBaseline = "middle";
+    var textColor = cssVar("--text-primary");
+
+    forEachGroup(tl, function (t, i, ch, f) {
+      var groupBudgetUsec = f * TOKEN;
+      var groupW = f * slotPx;
+      var groupX = (t * MAXSLOT + i) * slotPx + slotPx; // COLA는 PCM 대비 1슬롯 파이프라인 지연
+      ctx.fillStyle = palette.tints[0];
+      ctx.fillRect(groupX, barTop, groupW - 1, barH);
+      var activeW = (cola / groupBudgetUsec) * groupW;
+      ctx.fillStyle = palette.border;
+      ctx.fillRect(groupX, barTop, Math.min(activeW, groupW) - 0.5, barH);
+      if (drawChannelLabel(ctx, groupX, groupW, slotPx, textColor)) {
+        ctx.fillText(String(ch + 1), groupX + groupW / 2, 8);
+      }
+    });
+  }
+
+  function drawAnnotationArrow(ctx, x1, x2, y, label, lineColor, textColor) {
+    ctx.strokeStyle = lineColor;
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(x1, y); ctx.lineTo(x2, y);
+    ctx.moveTo(x1, y); ctx.lineTo(x1 + 4, y - 3); ctx.moveTo(x1, y); ctx.lineTo(x1 + 4, y + 3);
+    ctx.moveTo(x2, y); ctx.lineTo(x2 - 4, y - 3); ctx.moveTo(x2, y); ctx.lineTo(x2 - 4, y + 3);
+    ctx.stroke();
+    ctx.fillStyle = textColor;
+    ctx.textAlign = "center";
+    ctx.textBaseline = "alphabetic";
+    ctx.font = "9px system-ui, sans-serif";
+    ctx.fillText(label, (x1 + x2) / 2, y - 9);
+  }
+
+  function fmtUs(us) {
+    return us < 1000 ? Math.round(us) + "usec" : (us / 1000).toFixed(2) + "ms";
+  }
+
+  function drawPulseRow(canvas, tl, palette, p, msWindow, slotPx, marginSlots) {
+    var h = 100;
+    var widthPx = (msWindow * MAXSLOT + marginSlots) * slotPx;
+    var ctx = setupCanvas(canvas, widthPx, h);
+    ctx.clearRect(0, 0, widthPx, h);
+    var baseline = 26, pulseH = 9;
+    ctx.strokeStyle = cssVar("--baseline");
+    ctx.beginPath(); ctx.moveTo(0, baseline + 0.5); ctx.lineTo(widthPx, baseline + 0.5); ctx.stroke();
+    ctx.textAlign = "center"; ctx.textBaseline = "middle";
+    var textColor = cssVar("--text-primary");
+    var mutedColor = cssVar("--text-muted"), secondaryColor = cssVar("--text-secondary");
+
+    var firstGroups = [];
+    forEachGroupWithNext(tl, function (t, i, ch, f, nextColaAbsSlot) {
+      var groupW = f * slotPx;
+      // 자극 펄스(Negative 시작)는 '실제 다음 COLA'가 시작되는 위치에 왼쪽 정렬 — NOP을 건너뛰고 다음 활성 채널까지 반영
+      var groupX = nextColaAbsSlot * slotPx;
+      var pxPerUsec = groupW / (f * TOKEN);
+      drawBiphasicShape(ctx, groupX, baseline, pulseH, pxPerUsec, p, palette.border);
+      if (drawChannelLabel(ctx, groupX, groupW, slotPx, textColor)) {
+        ctx.fillText(String(ch + 1), groupX + groupW / 2, 8);
+      }
+      if (firstGroups.length < 2) firstGroups.push({ groupX: groupX, pxPerUsec: pxPerUsec });
+    });
+
+    // duration에 따라 펄스 모양·위치가 바뀌므로, 맨 앞 펄스를 예시로 (a) duration, (b) IDLE(자극 사이 순수 유휴 시간)을 직접 표시
+    if (firstGroups.length >= 1) {
+      var g0 = firstGroups[0];
+      var negW = (p + GAP / 2) * g0.pxPerUsec;
+      var totalW = negW * 2;
+      drawAnnotationArrow(ctx, g0.groupX, g0.groupX + negW, 56, "(a) duration " + p + "usec", mutedColor, secondaryColor);
+      if (firstGroups.length >= 2) {
+        var g1 = firstGroups[1];
+        var intervalUs = (g1.groupX - g0.groupX) / g0.pxPerUsec;
+        var idleUs = intervalUs - 2 * (p + GAP / 2);
+        drawAnnotationArrow(ctx, g0.groupX + totalW, g1.groupX, 84, "(b) IDLE " + fmtUs(idleUs), mutedColor, secondaryColor);
+      }
+    }
+  }
+
+  function renderPanel(prefix, K, p, msWindow, slotPx, isNofM, palette) {
+    var totalK = isNofM ? 16 : K;
+    var tl = buildTimeline(totalK, p, msWindow, isNofM);
+    // 자극 펄스는 그룹 시작 대비 최대 (f+1+f)슬롯까지 확장되므로, 창 끝 채널이 잘리지 않도록 여유 폭 확보
+    var marginSlots = tl.f + 1;
+    drawRuler(document.getElementById(prefix + "-ruler"), msWindow, slotPx, marginSlots);
+    drawChannelRow(document.getElementById(prefix + "-ab"), tl, palette, msWindow, slotPx, marginSlots, totalK);
+    drawColaRow(document.getElementById(prefix + "-c"), tl, palette, p, msWindow, slotPx, marginSlots);
+    drawPulseRow(document.getElementById(prefix + "-d"), tl, palette, p, msWindow, slotPx, marginSlots);
+    return tl;
+  }
+
+  function fmtHz(hz) {
+    return hz >= 1000 ? (hz / 1000) + "kHz" : Math.round(hz) + "Hz";
+  }
+
+  function updateStats(K, p, nofmAvail) {
+    var cisF = frames(p), cisC = channelsPerMs(cisF);
+    var cisRate = averageRatePps(K, cisC);
+    document.getElementById("s-frames-cis").textContent = cisF;
+    document.getElementById("s-cpm-cis").textContent = cisC + " ch/ms";
+    document.getElementById("s-rate-cis").textContent = (Math.round(cisRate * 10) / 10) + " pps";
+    document.getElementById("s-stimrate-cis").textContent = fmtHz(cisC * 1000);
+
+    if (nofmAvail.ok) {
+      document.getElementById("s-frames-nofm").textContent = "3 (고정)";
+      document.getElementById("s-cpm-nofm").textContent = "8 ch/ms (고정)";
+      document.getElementById("s-rate-nofm").textContent = "500 pps (고정)";
+      document.getElementById("s-stimrate-nofm").textContent = fmtHz(8000) + " (고정)";
+    } else {
+      ["s-frames-nofm", "s-cpm-nofm", "s-rate-nofm", "s-stimrate-nofm"].forEach(function (id) {
+        document.getElementById(id).textContent = "불가";
+      });
+    }
+
+  }
+
+  function setupTooltip(canvas, getTl, isNofM) {
+    var tooltip = document.getElementById("tooltip");
+    canvas.addEventListener("mousemove", function (e) {
+      var rect = canvas.getBoundingClientRect();
+      var x = e.clientX - rect.left;
+      var slotPx = currentSlotPx;
+      var t = Math.floor(x / (MAXSLOT * slotPx));
+      var slotInMs = Math.floor((x - t * MAXSLOT * slotPx) / slotPx);
+      var tl = getTl();
+      if (!tl || t < 0 || t >= tl.rows.length || slotInMs < 0 || slotInMs >= MAXSLOT) { tooltip.style.display = "none"; return; }
+      var slot = tl.rows[t][slotInMs];
+      var label = slot.isNop
+        ? ("t=" + t + "ms · slot " + slotInMs + " · IDLE(NOP)")
+        : ("t=" + t + "ms · slot " + slotInMs + " · " + (isNofM ? "NofM" : "CIS") + " 채널 #" + (slot.channel + 1) + " · PCM 패킷 " + (slot.fi + 1) + "/" + slot.f);
+      tooltip.textContent = label;
+      tooltip.style.display = "block";
+      tooltip.style.left = (e.clientX + 14) + "px";
+      tooltip.style.top = (e.clientY + 14) + "px";
+    });
+    canvas.addEventListener("mouseleave", function () { tooltip.style.display = "none"; });
+  }
+
+  var lastTlCis = null, lastTlNofm = null, currentSlotPx = 36;
+
+  function computeSlotPx(msWindow) {
+    var userMin = parseInt(document.getElementById("zoomRange").value, 10);
+    var scrollwrapEl = document.querySelector(".scrollwrap");
+    var available = scrollwrapEl.clientWidth - 132 - 4;
+    var fitPx = Math.floor(available / (msWindow * MAXSLOT));
+    return Math.max(userMin, fitPx, 3);
+  }
+
+  function buildDurationTrackGradient() {
+    // frames(p)는 계단함수이므로, 부드러운 그라데이션이 아니라 패킷 수(f) 구간별로 딱 끊어지는 색 밴드를 만든다.
+    var minP = 13, maxP = 255, maxF = frames(maxP);
+    var parts = [];
+    var bandStartP = minP, prevF = frames(minP);
+    for (var p = minP + 1; p <= maxP + 1; p++) {
+      var f = p <= maxP ? frames(p) : -1;
+      if (f !== prevF) {
+        var pEnd = p - 1;
+        var pct0 = (bandStartP - minP) / (maxP - minP) * 100;
+        var pct1 = (pEnd - minP) / (maxP - minP) * 100;
+        var light = 82 - (prevF - 1) / (maxF - 1) * 47;
+        var color = "hsl(22 40% " + light.toFixed(1) + "%)";
+        parts.push(color + " " + pct0.toFixed(2) + "%");
+        parts.push(color + " " + pct1.toFixed(2) + "%");
+        bandStartP = p;
+        prevF = f;
+      }
+    }
+    return "linear-gradient(to right, " + parts.join(", ") + ")";
+  }
+
+  function positionNofmLimitMark() {
+    var input = document.getElementById("pRange");
+    var mark = document.querySelector(".nofm-limit-mark");
+    var thumbRadius = 8; // ::-webkit-slider-thumb / ::-moz-range-thumb 에서 지정한 16px 썸의 절반
+    var trackWidth = input.clientWidth;
+    var fraction = (54 - 13) / (255 - 13);
+    var left = thumbRadius + fraction * (trackWidth - thumbRadius * 2);
+    mark.style.left = left + "px";
+  }
+
+  function renderAll() {
+    positionNofmLimitMark();
+    var K = parseInt(document.getElementById("kNum").value, 10);
+    var p = parseInt(document.getElementById("pNum").value, 10);
+    var msWindow = parseInt(document.getElementById("msWindowSel").value, 10);
+    var slotPx = computeSlotPx(msWindow);
+    currentSlotPx = slotPx;
+    document.getElementById("zoomVal").textContent = slotPx + "px";
+
+    lastTlCis = renderPanel("cis", K, p, msWindow, slotPx, false, CIS_PALETTE);
+
+    var nofmAvail = nofmAvailability(K);
+    var nofmP = nofmClampedP(p);
+    document.getElementById("nofmClampNote").hidden = p <= 54;
+    document.getElementById("nofmContent").hidden = !nofmAvail.ok;
+    document.getElementById("nofmDisabled").hidden = nofmAvail.ok;
+    if (nofmAvail.ok) {
+      lastTlNofm = renderPanel("nofm", K, nofmP, msWindow, slotPx, true, NOFM_PALETTE);
+    } else {
+      lastTlNofm = null;
+      document.getElementById("nofmDisabled").textContent =
+        "NofM 불가 — 선택한 채널 수(" + K + ")가 15개 이하입니다. N of M은 항상 16 of M 구조이므로 M이 16 미만이면 CIS를 사용합니다.";
+    }
+
+    updateStats(K, p, nofmAvail);
+  }
+
+  var pending = false;
+  function scheduleRender() {
+    if (pending) return;
+    pending = true;
+    requestAnimationFrame(function () { pending = false; renderAll(); });
+  }
+
+  function syncPair(rangeEl, numEl) {
+    rangeEl.addEventListener("input", function () { numEl.value = rangeEl.value; scheduleRender(); });
+    numEl.addEventListener("input", function () {
+      var v = Math.max(parseInt(numEl.min, 10), Math.min(parseInt(numEl.max, 10), parseInt(numEl.value || numEl.min, 10)));
+      rangeEl.value = v; scheduleRender();
+    });
+  }
+
+  syncPair(document.getElementById("kRange"), document.getElementById("kNum"));
+  syncPair(document.getElementById("pRange"), document.getElementById("pNum"));
+  document.getElementById("msWindowSel").addEventListener("change", scheduleRender);
+  document.getElementById("zoomRange").addEventListener("input", scheduleRender);
+  window.addEventListener("resize", scheduleRender);
+
+  setupTooltip(document.getElementById("cis-ab"), function () { return lastTlCis; }, false);
+  setupTooltip(document.getElementById("cis-c"), function () { return lastTlCis; }, false);
+  setupTooltip(document.getElementById("cis-d"), function () { return lastTlCis; }, false);
+  setupTooltip(document.getElementById("nofm-ab"), function () { return lastTlNofm; }, true);
+  setupTooltip(document.getElementById("nofm-c"), function () { return lastTlNofm; }, true);
+  setupTooltip(document.getElementById("nofm-d"), function () { return lastTlNofm; }, true);
+
+  document.getElementById("pRange").style.background = buildDurationTrackGradient();
+  renderAll();
+})();
+</script>
+</body>
+</html>
