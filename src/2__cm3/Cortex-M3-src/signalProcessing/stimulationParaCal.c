@@ -38,11 +38,11 @@ int calculationNumFramePerOneChannle(int pulsewidth)
     duration = pulsewidth;
     duration += duration;
     // 펄스 위상 반전 간격
-    duration += FPGA_interphaseGapTokenTime;
+    duration += FPGA_interphaseGapTokenTime; // FPGA_interphaseGapTokenTime : 4
     // 자극파라미터 전송 시간
-    duration += FPGA_electrodAndStimulLevelTokenTime;
+    duration += FPGA_electrodAndStimulLevelTokenTime; // FPGA_electrodAndStimulLevelTokenTime : 10
 
-    tokenTime          = FPGA_oneChannelDataTokenTime;
+    tokenTime          = FPGA_oneChannelDataTokenTime; // FPGA_oneChannelDataTokenTime : 41
     numFramePerChannel = 1;
     while (true)
     {
@@ -51,7 +51,7 @@ int calculationNumFramePerOneChannle(int pulsewidth)
             break;
         }
         numFramePerChannel++;
-        tokenTime += FPGA_oneChannelDataTokenTime;
+        tokenTime += FPGA_oneChannelDataTokenTime; // FPGA_oneChannelDataTokenTime : 41
     }
 
     return numFramePerChannel;

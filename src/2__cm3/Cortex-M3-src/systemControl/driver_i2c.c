@@ -68,7 +68,7 @@ void clearI2cHardwareStatus(void)
     NVIC_ClearPendingIRQ(I2C_0_IRQn);
 }
 
-void i2c_startWriteData(const int slaveAddress, int* p_sourcedata, const int dataLength)
+void i2c_startWriteData(const int slaveAddress, int *p_sourcedata, const int dataLength)
 {
     OTE_1_5gen_I2C_STATUS_T i2cStatus;
 
@@ -99,7 +99,7 @@ void i2c_startWriteData(const int slaveAddress, int* p_sourcedata, const int dat
     }
 }
 
-void i2c_startReadData(const int slaveAddress, int* p_destination, const int dataLength)
+void i2c_startReadData(const int slaveAddress, int *p_destination, const int dataLength)
 {
     OTE_1_5gen_I2C_STATUS_T i2cStatus;
 
@@ -154,8 +154,8 @@ void i2c_set_master_prescale(uint32_t prescale_mask)
     // MASTER_PRESCALE 필드만 교체.
     enableI2cInterface(false);
     uint32_t cfg = I2C0->CFG;
-    cfg = (cfg & ~I2C_CFG_MASTER_PRESCALE_Mask) | prescale_mask;
-    I2C0->CFG = cfg;
+    cfg          = (cfg & ~I2C_CFG_MASTER_PRESCALE_Mask) | prescale_mask;
+    I2C0->CFG    = cfg;
     enableI2cInterface(true);
 }
 

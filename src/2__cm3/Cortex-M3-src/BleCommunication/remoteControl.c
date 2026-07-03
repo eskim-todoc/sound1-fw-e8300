@@ -3,6 +3,7 @@
 #include <stdbool.h>
 
 #include "remoteControl.h"
+#include "tdc_remote_general_debug.h"
 #include "remoteControl_read_SP_para.h"
 #include "driver_SPI.h"
 #include "definitionsForAlgorithm.h"
@@ -1339,105 +1340,11 @@ ST__REMOTECONTROL_STATE remoteControl(bool isdConnection)  // 연결 상태에 �
 #if 1
                 /**
                  * 26.06.23 범용 디버깅 프로토콜 기능에 대한 코드
-                 * by 김은수 */
+                 * by 김은수
+                 * 26.07.01 tdc_remote_general_debug.c 로 분리 */
                 case EN__SND_BT_CMD_GENERAL_DEBUG:
                 {
-                    int option = remoteDataPacket.data[0];  // 옵션
-
-                    ci_printd("[GD] opt: %d \r\n", option);
-
-                    if (option == 1)  // 터치센서 디버깅 프로토콜
-                    {
-                        uint16_t lta;
-                        uint16_t count;
-                        uint16_t delta;
-                        uint16_t abs_thr;
-                        uint8_t  pressed;
-                        uint8_t  ati_error;
-                        uint8_t  ati_active;
-
-                        // 송신 데이터 준비
-                        bufferForSPI_tx[tx_index++] = remoteDataPacket.command;  //     command : loop-back
-
-                        lta        = tdc_touch_debug_get_recent_lta();
-                        count      = tdc_touch_debug_get_recent_count();
-                        delta      = tdc_touch_debug_get_recent_delta();
-                        abs_thr    = tdc_touch_debug_get_recent_abs_thr();
-                        pressed    = tdc_touch_debug_get_recent_pressed();
-                        ati_error  = tdc_touch_debug_get_recent_ati_error();
-                        ati_active = tdc_touch_debug_get_recent_ati_active();
-
-                        ci_printi("[GD] lta: %4u, count: %4u, delta: %4u, abs_thr: %4u, ", lta, count, delta, abs_thr);
-                        ci_printi("pressed: %u, ati_error: %u, ati_active: %u \r\n", pressed, ati_error, ati_active);
-
-                        bufferForSPI_tx[tx_index++] = option;
-                        bufferForSPI_tx[tx_index++] = (lta >> 8) & 0x00FF;
-                        bufferForSPI_tx[tx_index++] = lta & 0x00FF;
-                        bufferForSPI_tx[tx_index++] = (count >> 8) & 0x00FF;
-                        bufferForSPI_tx[tx_index++] = count & 0x00FF;
-                        bufferForSPI_tx[tx_index++] = (delta >> 8) & 0x00FF;
-                        bufferForSPI_tx[tx_index++] = delta & 0x00FF;
-                        bufferForSPI_tx[tx_index++] = (abs_thr >> 8) & 0x00FF;
-                        bufferForSPI_tx[tx_index++] = abs_thr & 0x00FF;
-                        bufferForSPI_tx[tx_index++] = pressed;
-                        bufferForSPI_tx[tx_index++] = ati_error;
-                        bufferForSPI_tx[tx_index++] = ati_active;
-                    }
-                    else if (option == 2)  // 백텔 체크 무시하기
-                    {
-                        int noBacktel_mode;
-
-                        noBacktel_mode = remoteDataPacket.data[1];  // 옵션 이후 데이터
-
-                        if (noBacktel_mode == 1)
-                        {
-                            tdc_set_ota_dfu_conn_state(TDC_OTA_DFU_CONN_ST_CONN);
-                        }
-                        else
-                        {
-                            tdc_set_ota_dfu_conn_state(TDC_OTA_DFU_CONN_ST_DISCONN);
-                        }
-
-                        ci_printi("[GD] noBacktel_mode : %d \r\n", noBacktel_mode);
-
-                        // 송신 데이터 준비
-                        bufferForSPI_tx[tx_index++] = remoteDataPacket.command;  //     command : loop-back
-                        bufferForSPI_tx[tx_index++] = option;
-                        bufferForSPI_tx[tx_index++] = noBacktel_mode;
-                    }
-                    else if (option == 3)  // 맵 초기화 디버깅 프로토콜
-                    {
-                        int RL;  // 옵션 이후 데이터
-
-                        RL = remoteDataPacket.data[1];  // 옵션 이후 데이터
-
-                        if ((RL == 1) || (RL == 2))
-                        {
-                            // PARAMETER ORDER : ISD_NUM, FORCE_INIT, SPECIFIC_RL, VAL_RL
-                            ci_map_init_map_data(1, true, true, RL);  // 왼쪽 = 1 / 오른쪽 = 2
-                            SYS_WATCHDOG_REFRESH();
-                            ci_map_init_map_data(2, true, false, 1);  // 왼쪽
-                            SYS_WATCHDOG_REFRESH();
-                            ci_map_init_map_data(3, true, false, 1);  // 왼쪽
-                            SYS_WATCHDOG_REFRESH();
-                            ci_map_init_map_data(4, true, false, 1);  // 왼쪽
-                            SYS_WATCHDOG_REFRESH();
-                        }
-                        else
-                        {
-                            ci_printw("[GD] Specific RL Command invalid. \r\n");
-                        }
-
-                        // 송신 데이터 준비
-                        bufferForSPI_tx[tx_index++] = remoteDataPacket.command;  //     command : loop-back
-                        bufferForSPI_tx[tx_index++] = option;
-                        bufferForSPI_tx[tx_index++] = RL;
-                    }
-                    else
-                    {
-                        // 송신 데이터 준비
-                        bufferForSPI_tx[tx_index++] = remoteDataPacket.command;  //     command : loop-back
-                    }
+                    tx_index = tdc_remote_general_debug_handle(&remoteDataPacket, bufferForSPI_tx, tx_index);
 
                     writeDataToSpiTxBuff(bufferForSPI_tx, tx_index);  // 송신 데이터 SPI TX버퍼에 복사
                     clearRemoteColtrolCommand();                      // 명령 종료

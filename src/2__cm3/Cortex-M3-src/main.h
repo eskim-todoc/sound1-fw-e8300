@@ -66,4 +66,8 @@ void debugPrint_ADCRegs(int num);
 void debugPrint_ADCInput(void);
 void debugging_for_monitoring(ST__USB_CONNECTOR usbConnectorState, bool powerButtonPushed, EN__BATTERY_LEVEL batteryLevel, ST__ISD_STATUS isd_state, ST__SYSTEM_STATE systemState, ST__BLE_COMMUNICATION_STATE BLE_communicationState);
 
+void tdc_set_fake_op_mode(int mode);
+int  tdc_get_fake_op_mode(void);
+int fake_func_sleep(void);
+
 #endif  // __main_h__
