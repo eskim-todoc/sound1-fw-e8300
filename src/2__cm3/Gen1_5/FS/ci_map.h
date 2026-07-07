@@ -18,6 +18,8 @@
 
 #include <ci_filesystem.h>
 
+#define TDC_MAP_TEST_NOFM_USAGE_TIME 0
+
 #define CI_MAP_NUM_1_INDEX 0
 #define CI_MAP_NUM_2_INDEX 1
 #define CI_MAP_NUM_3_INDEX 2

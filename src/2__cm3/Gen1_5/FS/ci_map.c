@@ -558,7 +558,11 @@ int ci_map_init_map_data(int isd_num, bool force_init, bool specific_RL, int val
                 switch (i)
                 {
                     case CI_MAP_NUM_3_INDEX:
-                        p_map_data[i]->firstPulsePhase = 1;  // positive first
+#if TDC_MAP_TEST_NOFM_USAGE_TIME
+                        p_map_data[i]->firstPulsePhase = 0; // negative first
+#else
+                        p_map_data[i]->firstPulsePhase = 1; // positive first
+#endif
                         break;
 
                     default:
@@ -584,7 +588,11 @@ int ci_map_init_map_data(int isd_num, bool force_init, bool specific_RL, int val
                         break;
 
                     case CI_MAP_NUM_3_INDEX:
+#if TDC_MAP_TEST_NOFM_USAGE_TIME
+                        p_map_data[i]->stimulationPulsePhaseWidth = 13;
+#else
                         p_map_data[i]->stimulationPulsePhaseWidth = 14;
+#endif
                         break;
 
                     case CI_MAP_NUM_4_INDEX:
@@ -592,7 +600,11 @@ int ci_map_init_map_data(int isd_num, bool force_init, bool specific_RL, int val
                         break;
 
                     default:
+#if TDC_MAP_TEST_NOFM_USAGE_TIME
+                        p_map_data[i]->stimulationPulsePhaseWidth = 13;
+#else
                         p_map_data[i]->stimulationPulsePhaseWidth = FPGA_pulsePhaseWidth_minimum + 37;  // = 13 + 37
+#endif
                         break;
                 }
             }
@@ -667,7 +679,11 @@ int ci_map_init_map_data(int isd_num, bool force_init, bool specific_RL, int val
                             break;
 
                         default:
+#if TDC_MAP_TEST_NOFM_USAGE_TIME
+                            p_map_data[i]->T_level_uA[k] = 1200;
+#else
                             p_map_data[i]->T_level_uA[k] = (k == CI_ELEC_NUM_16_INDEX) ? 1500 : 500;
+#endif
                             break;
                     }
                 }
@@ -703,7 +719,11 @@ int ci_map_init_map_data(int isd_num, bool force_init, bool specific_RL, int val
                             break;
 
                         default:
+#if TDC_MAP_TEST_NOFM_USAGE_TIME
+                            p_map_data[i]->C_level_uA[k] = 1200;
+#else
                             p_map_data[i]->C_level_uA[k] = 1500;
+#endif
                             break;
                     }
                 }

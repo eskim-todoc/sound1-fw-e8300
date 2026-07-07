@@ -1044,7 +1044,20 @@ static void tdc_touch_sleep_log_debug(bool ok, const tdc_touch_iqs323_status_t *
             uint16_t delta    = (dbg.lta > dbg.counts) ? (uint16_t) (dbg.lta - dbg.counts) : 0;
             uint16_t abs_thr  = (uint16_t) (((uint32_t) TDC_TOUCH_IQS323_THRESHOLD * dbg.lta) / 256u);
             uint16_t pabs_thr = (uint16_t) (((uint32_t) TDC_TOUCH_IQS323_PROX_THRESHOLD * dbg.lta) / 256u);
-            ci_printd("[TOUCH] LTA=%3u  CNT=%3u  D=%3u  THR=%3u  (k=%3u  H=%3u)  %s   PTHR=%3u (pk=%3u)  %s \r\n", dbg.lta, dbg.counts, delta, abs_thr, TDC_TOUCH_IQS323_THRESHOLD, TDC_TOUCH_IQS323_HYSTERESIS, (state == TDC_TOUCH_STATE_TOUCH) ? "T" : ".", pabs_thr, TDC_TOUCH_IQS323_PROX_THRESHOLD, st->prox ? "P" : ".");
+
+#if 0
+            ci_printd("[TOUCH] LTA=%3u  CNT=%3u  D=%3u  THR=%3u  (k=%3u  H=%3u)  %s   PTHR=%3u (pk=%3u)  %s \r\n",  //
+                      dbg.lta,
+                      dbg.counts,
+                      delta,
+                      abs_thr,
+                      TDC_TOUCH_IQS323_THRESHOLD,
+                      TDC_TOUCH_IQS323_HYSTERESIS,
+                      (state == TDC_TOUCH_STATE_TOUCH) ? "T" : ".",
+                      pabs_thr,
+                      TDC_TOUCH_IQS323_PROX_THRESHOLD,
+                      st->prox ? "P" : ".");
+#endif
         }
     }
 }

@@ -320,8 +320,20 @@ bool tdc_touch_process(void)
             uint16_t delta    = (dbg.lta > dbg.counts) ? (uint16_t) (dbg.lta - dbg.counts) : 0;
             uint16_t abs_thr  = (uint16_t) (((uint32_t) TDC_TOUCH_IQS323_THRESHOLD * dbg.lta) / 256u);
             uint16_t pabs_thr = (uint16_t) (((uint32_t) TDC_TOUCH_IQS323_PROX_THRESHOLD * dbg.lta) / 256u);
-            ci_printd("[T] LTA=%3u  CNT=%3u  D=%3u  THR=%3u (k=%3u  H=%3u)  %s   PTHR=%3u (pk=%3u)  %s \r\n", dbg.lta, dbg.counts, delta, abs_thr, TDC_TOUCH_IQS323_THRESHOLD, TDC_TOUCH_IQS323_HYSTERESIS, in.pressed ? "T" : ".", pabs_thr, TDC_TOUCH_IQS323_PROX_THRESHOLD, st.prox ? "P" : ".");
 
+#if 0
+            ci_printd("[T] LTA=%3u  CNT=%3u  D=%3u  THR=%3u (k=%3u  H=%3u)  %s   PTHR=%3u (pk=%3u)  %s \r\n",  //
+                      dbg.lta,
+                      dbg.counts,
+                      delta,
+                      abs_thr,
+                      TDC_TOUCH_IQS323_THRESHOLD,
+                      TDC_TOUCH_IQS323_HYSTERESIS,
+                      in.pressed ? "T" : ".",
+                      pabs_thr,
+                      TDC_TOUCH_IQS323_PROX_THRESHOLD,
+                      st.prox ? "P" : ".");
+#endif
             s_debug_recent_lta        = dbg.lta;
             s_debug_recent_count      = dbg.counts;
             s_debug_recent_delta      = delta;

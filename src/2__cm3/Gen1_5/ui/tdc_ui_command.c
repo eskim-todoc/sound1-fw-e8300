@@ -15,6 +15,7 @@
 #include "ci_map.h"
 #include "isd_interface.h"
 #include "processorDirective.h"
+#include <ci_stim_mute.h>
 
 #include <ci_printf.h>
 #include <tdc_touch_config.h>
@@ -745,6 +746,48 @@ static int handle_write_integrity_error(int argc, char *argv[])
 }
 
 /* ======================================================================== */
+/*  --gating handler                                           */
+/* ======================================================================== */
+
+static int handle_gating(int argc, char *argv[])
+{
+    if (argc < 2)
+        return -1;
+
+    bool val = false;
+
+    if (ci_strcasecmp(argv[1], "on") == 0)
+    {
+        if (ci_stim_mute_update(CI_STIM_MUTE_UNDER_T_LEVEL_ENABLE, 2) == CI_STIM_MUTE_RET_TRUE)
+        {
+            ci_printe("[UI] Enable gating mode \r\n");
+            val = true;
+        }
+    }
+    else if (ci_strcasecmp(argv[1], "off") == 0)
+    {
+        if (ci_stim_mute_update(CI_STIM_MUTE_UNDER_T_LEVEL_DISABLE, 2) == CI_STIM_MUTE_RET_TRUE)
+        {
+            ci_printe("[UI] Disable gating mode \r\n");
+            val = true;
+        }
+    }
+    else
+    {
+        output_printf("invalid: on or off\r\n");
+        return -1;
+    }
+
+    if (!val)
+    {
+        ci_printw("[UI] Failed to change gating mode \r\n");
+        return -1;
+    }
+
+    return 0;
+}
+
+/* ======================================================================== */
 /*  Registration table                                                      */
 /* ======================================================================== */
 
@@ -760,6 +803,7 @@ static const command_entry_t s_tdc_commands[] = {
     {"init_all_map", handle_init_all_map, "--init_all_map"},
     {"dump_log", handle_dump_log, "--dump_log"},
     {"write_integrity_err", handle_write_integrity_error, "--write_integrity_err"},
+    {"gating", handle_gating, "--gating on|off"},
 };
 
 /* ======================================================================== */
