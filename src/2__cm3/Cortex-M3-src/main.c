@@ -331,6 +331,133 @@ int main(void)
 
 static void func_cradle_lid_closed_loop(void);
 
+/* ===================================================
+ * 배터리/ISD/매핑 LED 요청 헬퍼 (func_normal, Rev.6)
+ *   - 변화 마진(히스테리시스) 제거: QCC가 배터리 측정·필터링을 담당하므로
+ *     E8300 쪽 진입/이탈 이중임계·prev 상태 추적을 두지 않는다.
+ *   - 과거 updateBatteryLevel()의 "경계 테이블 → 등급" 골격을 노이즈 가드 없이 재현.
+ * =================================================== */
+
+/* 배터리 percent -> LED 등급 경계 테이블.
+ * 내림차순(min_pct 큰 것부터) 필수 — 위에서부터 pct >= min_pct 첫 매치를 채택한다.
+ * 등급 추가/컷 변경은 이 표만 편집하면 된다(매직넘버의 데이터화). */
+typedef struct
+{
+    int         min_pct;
+    led_state_t state;
+} tdc_batt_led_bin_t;
+
+static const tdc_batt_led_bin_t s_tdc_batt_led_table[] = {
+    {80, LED_ST_BATT_READY},     /* pct >= 80         */
+    {10, LED_ST_BATT_MID},       /* 10 <= pct < 80    */
+    {0, LED_ST_BATT_CRITICAL},   /* pct <  10 (fallback) */
+};
+#define TDC_BATT_LED_TABLE_LEN ((int) (sizeof(s_tdc_batt_led_table) / sizeof(s_tdc_batt_led_table[0])))
+
+#define TDC_MAP_LOW_BATT_PCT 20   /* pct <= 20 -> 배터리 LOW (마진 없는 단일 컷) */
+
+/* 배터리 LED 요청. 반환값 batt_st 는 ISD 미연결 시 재송출에 재사용된다. */
+static led_state_t tdc_led_request_battery(int pct, bool ovr_batt_active, bool batt_is_reset_state)
+{
+    led_state_t batt_st = LED_ST_BATT_CRITICAL;   /* 테이블 매치 실패 시 안전측 기본값 */
+
+    if (!ovr_batt_active && batt_is_reset_state)
+    {
+        /* 배터리 정보 미수신(RESET, percent=0): 판정 보류 — 최우선 분기 유지
+         * (부팅 초기 pct=0 이 CRITICAL 로 새는 회귀 방지, Rev.5 근거) */
+        batt_st = LED_ST_IDLE;
+    }
+    else
+    {
+        int i;
+        for (i = 0; i < TDC_BATT_LED_TABLE_LEN; ++i)
+        {
+            if (pct >= s_tdc_batt_led_table[i].min_pct)
+            {
+                batt_st = s_tdc_batt_led_table[i].state;
+                break;
+            }
+        }
+    }
+
+#ifdef ENABLE_UI_CMD
+    if (!tdc_ui_command_is_led_override(LED_SRC_BATTERY))
+#endif
+        led_request(LED_SRC_BATTERY, batt_st);
+
+    return batt_st;
+}
+
+/* ISD LED 요청. isd_conn 을 반환(매핑 블록이 재사용).
+ * batt_st: 내부기 미연결 시 배터리 LED 를 재송출하기 위해 전달받는다. */
+static bool tdc_led_request_isd(bool isd_conn, led_state_t batt_st)
+{
+#ifdef ENABLE_UI_CMD
+    if (!tdc_ui_command_is_led_override(LED_SRC_ISD))
+#endif
+    /* IMPORTANT: 내부기 연결 해제시 위에서 구한 배터리 레벨에 대한 LED를 켜도록 유도했다. */
+    {
+        if (isd_conn)  // 내부기 연결 상태
+        {
+            // 내부기 연결 상태에서는 연결된 내부기의 사용자 설정 정보에서 LED 제어 값을 이용해야 한다.
+            // LED 표시 설정값: 1=켜기, 2=끄기. (truthy 검사는 2도 참이 되므로 == 1 로 명시 비교)
+            if (readLED_indicatorOnOff() == 1)
+            {
+                // LED 표시 설정이 켜기(1)이면,
+                led_request(LED_SRC_ISD, LED_ST_IN_USE);
+            }
+            else
+            {
+                // LED 표시 설정이 끄기(2)이면,
+                led_request(LED_SRC_ISD, LED_ST_NONE);
+            }
+        }
+        else  // 내부기 미 연결 상태
+        {
+            // 항상 LED가 켜질 수 있게 설정 정보를 LED 켜기로 강제한다.
+            led_request(LED_SRC_ISD, LED_ST_NONE);
+            led_request(LED_SRC_BATTERY, batt_st);
+        }
+
+        /* s_req[LED_SRC_ISD] 확정 후 게이트 갱신 — 연결 해제 전환 시
+         * s_isd_conn=0 과 s_req[ISD]=NONE 사이에 TIMER_3 ISR 이 끼어들어
+         * 1-tick IN_USE(백색) 잔상이 뜨던 race 를 방지하기 위해 분기 뒤(마지막)로 봉인. */
+        led_set_isd_conn_state(isd_conn);
+    }
+
+    return isd_conn;
+}
+
+/* 매핑 LED 요청. 배터리 LOW(단일 컷 pct<=TDC_MAP_LOW_BATT_PCT) × ISD 연결 여부 4분기.
+ * 마진 제거로 s_map_low_active static 래치를 없애고 매 호출 pct 만으로 판정(순수 계산). */
+static void tdc_led_request_mapping(int pct, bool map_conn, bool isd_conn)
+{
+    bool map_low_active = (pct <= TDC_MAP_LOW_BATT_PCT);
+
+#ifdef ENABLE_UI_CMD
+    if (!tdc_ui_command_is_led_override(LED_SRC_MAPPING))
+#endif
+    {
+        if (map_conn)
+        {
+            led_state_t map_st;
+            if (map_low_active)
+            {
+                map_st = isd_conn ? LED_ST_MAPPING_ISD_BATT_LOW : LED_ST_MAPPING_NO_ISD_BATT_LOW;
+            }
+            else
+            {
+                map_st = isd_conn ? LED_ST_MAPPING_ISD_BATT_READY : LED_ST_MAPPING_NO_ISD_BATT_READY;
+            }
+            led_request(LED_SRC_MAPPING, map_st);
+        }
+        else
+        {
+            led_request(LED_SRC_MAPPING, LED_ST_NONE);
+        }
+    }
+}
+
 int func_normal(void)
 {
     EN__BATTERY_LEVEL           batteryLevel;
@@ -445,7 +572,6 @@ int func_normal(void)
 
             ledPattern = geteLED_OutputPattern();
 
-            // batteryLevel      = updateBatteryLevel(usbConnectorState.chargerConnectorPluggedIn, ledPattern);
             // powerButtonPushed = isPowerButtonPushed();
 
             batteryLevel      = snd_batt_get_level();  // 직접 측정하지 않고, QCC에서 배터리 정보 받으면 업데이트 됨
@@ -539,12 +665,9 @@ int func_normal(void)
              * LED source requests (Rev.3)
              * =================================================== */
             {
-                /* Battery (SS4.5) -- hysteresis +/-2%
-                 * Rev.5 추가: QCC로부터 0x34(Power info) 수신 전까지는 배터리 상태가
-                 *            EN__SND_BATT_STATE_RESET 이고 percent = 0 이므로,
-                 *            pct 기반 판정(pct<10 → BATT_CRITICAL)이 그대로 적용되면
-                 *            부팅 초기에 노란색 LED가 잠깐 켜지는 현상이 발생한다.
-                 *            따라서 RESET 상태에서는 pct 판정을 건너뛰고 IDLE로 요청한다. */
+                /* Battery (SS4.5) — 마진 제거: QCC가 배터리 측정·필터링을 담당하므로
+                 * 진입/이탈 이중임계·prev 추적 없이 단일 컷 테이블로 판정(tdc_led_request_battery).
+                 * RESET(0x34 수신 전, percent=0) 시 부팅 초기 CRITICAL 누출 방지를 위해 IDLE 최우선 분기. */
 #ifdef ENABLE_UI_CMD
                 bool ovr_batt_active = tdc_ui_command_override_battery_active();
                 int  pct             = ovr_batt_active ? (int) tdc_ui_command_override_battery_percent() : snd_batt_get_percent();
@@ -552,106 +675,26 @@ int func_normal(void)
                 bool ovr_batt_active = false;
                 int  pct             = snd_batt_get_percent();
 #endif
-                static led_state_t prev_batt_st = LED_ST_IDLE;
-                led_state_t        batt_st;
+                bool        batt_is_reset_state = (snd_batt_get_state() == EN__SND_BATT_STATE_RESET);
+                led_state_t batt_st             = tdc_led_request_battery(pct, ovr_batt_active, batt_is_reset_state);
 
-                if (!ovr_batt_active && snd_batt_get_state() == EN__SND_BATT_STATE_RESET)
-                {
-                    /* 배터리 정보 미수신: 판정 보류 */
-                    batt_st = LED_ST_IDLE;
-                }
-                else if (pct < 40 /*10*/)
-                    batt_st = LED_ST_BATT_CRITICAL;
-                else if (pct < 41 /*12*/ && prev_batt_st == LED_ST_BATT_CRITICAL)
-                    batt_st = LED_ST_BATT_CRITICAL;
-                else if (pct >= 65 /*80*/)
-                    batt_st = LED_ST_BATT_READY;
-                else if (pct >= 64 /*78*/ && prev_batt_st == LED_ST_BATT_READY)
-                    batt_st = LED_ST_BATT_READY;
-                else
-                    batt_st = LED_ST_BATT_MID;
-
-                prev_batt_st = batt_st;
+                /* ISD (SS4.6) — 배터리→ISD 순서 의존(미연결 시 batt_st 재송출) +
+                 * led_set_isd_conn_state() 봉인(1-tick 잔상 race 방지)은 함수 내부에 유지. */
 #ifdef ENABLE_UI_CMD
-                if (!tdc_ui_command_is_led_override(LED_SRC_BATTERY))
-#endif
-                    led_request(LED_SRC_BATTERY, batt_st);
-
-                    /* ISD (SS4.6) */
-#ifdef ENABLE_UI_CMD
-                bool isd_conn = tdc_ui_command_override_isd_active() ? tdc_ui_command_override_isd_value() : isd_state.conneded_ISD;
+                bool isd_conn_raw = tdc_ui_command_override_isd_active() ? tdc_ui_command_override_isd_value() : isd_state.conneded_ISD;
 #else
-                bool isd_conn = isd_state.conneded_ISD;
+                bool isd_conn_raw = isd_state.conneded_ISD;
 #endif
-#ifdef ENABLE_UI_CMD
-                if (!tdc_ui_command_is_led_override(LED_SRC_ISD))
-#endif
-                /* IMPORTANT: 내부기 연결 해제시 위에서 구한 배터리 레벨에 대한 LED를 켜도록 유도했다. */
-                {
-                    if (isd_conn)  // 내부기 연결 상태
-                    {
-                        // 내부기 연결 상태에서는 연결된 내부기의 사용자 설정 정보에서 LED 제어 값을 이용해야 한다.
-                        // LED 표시 설정값: 1=켜기, 2=끄기. (truthy 검사는 2도 참이 되므로 == 1 로 명시 비교)
-                        if (readLED_indicatorOnOff() == 1)
-                        {
-                            // LED 표시 설정이 켜기(1)이면,
-                            led_request(LED_SRC_ISD, LED_ST_IN_USE);
-                        }
-                        else
-                        {
-                            // LED 표시 설정이 끄기(2)이면,
-                            led_request(LED_SRC_ISD, LED_ST_NONE);
-                        }
-                    }
-                    else  // 내부기 미 연결 상태
-                    {
-                        // 항상 LED가 켜질 수 있게 설정 정보를 LED 켜기로 강제한다.
-                        led_request(LED_SRC_ISD, LED_ST_NONE);
-                        led_request(LED_SRC_BATTERY, batt_st);
-                    }
+                bool isd_conn = tdc_led_request_isd(isd_conn_raw, batt_st);
 
-                    /* s_req[LED_SRC_ISD] 확정 후 게이트 갱신 ? 연결 해제 전환 시
-                     * s_isd_conn=0 과 s_req[ISD]=NONE 사이에 TIMER_3 ISR 이 끼어들어
-                     * 1-tick IN_USE(백색) 잔상이 뜨던 race 를 방지하기 위해 분기 뒤로 이동. */
-                    led_set_isd_conn_state(isd_conn);
-                    // led_request(LED_SRC_ISD, isd_conn ? LED_ST_IN_USE : prev_batt_st /*LED_ST_NONE*/);
-                }
-
-                /* Mapping (SS4.4) ? 배터리 레벨(LOW 임계 20%) × ISD 연결 여부 4종 분기.
-                 * LOW 진입 pct ≤ 20, 해제 pct ≥ 22 (±2% 히스테리시스). */
+                /* Mapping (SS4.4) — 배터리 LOW(단일 컷 pct<=TDC_MAP_LOW_BATT_PCT) × ISD 연결 여부 4분기.
+                 * 마진(s_map_low_active 래치) 제거 → 매 호출 pct 만으로 판정(tdc_led_request_mapping). */
 #ifdef ENABLE_UI_CMD
                 bool map_conn = tdc_ui_command_override_map_active() ? tdc_ui_command_override_map_value() : BLE_communicationState.mappingConnection;
 #else
                 bool map_conn = BLE_communicationState.mappingConnection;
 #endif
-                static bool s_map_low_active = false;
-                if (pct <= 20)
-                    s_map_low_active = true;
-                else if (pct >= 22)
-                    s_map_low_active = false;
-                    /* pct == 21 구간은 직전 상태 유지 */
-#ifdef ENABLE_UI_CMD
-                if (!tdc_ui_command_is_led_override(LED_SRC_MAPPING))
-#endif
-                {
-                    if (map_conn)
-                    {
-                        led_state_t map_st;
-                        if (s_map_low_active)
-                        {
-                            map_st = isd_conn ? LED_ST_MAPPING_ISD_BATT_LOW : LED_ST_MAPPING_NO_ISD_BATT_LOW;
-                        }
-                        else
-                        {
-                            map_st = isd_conn ? LED_ST_MAPPING_ISD_BATT_READY : LED_ST_MAPPING_NO_ISD_BATT_READY;
-                        }
-                        led_request(LED_SRC_MAPPING, map_st);
-                    }
-                    else
-                    {
-                        led_request(LED_SRC_MAPPING, LED_ST_NONE);
-                    }
-                }
+                tdc_led_request_mapping(pct, map_conn, isd_conn);
             }
 
             /* led_arbiter_tick() 은 Timer 3 ISR 에서 직접 구동 (ci_timer.c).
