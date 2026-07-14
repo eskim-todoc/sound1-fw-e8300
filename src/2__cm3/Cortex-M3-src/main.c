@@ -460,7 +460,6 @@ static void tdc_led_request_mapping(int pct, bool map_conn, bool isd_conn)
 
 int func_normal(void)
 {
-    EN__BATTERY_LEVEL           batteryLevel;
     EN__LED_PATTERN             ledPattern = en__LED_NA;
     ST__SYSTEM_STATE            systemState;
     volatile ST__ISD_STATUS     isd_state = {en__isdStatus_PowerIC_Reset, false};
@@ -574,7 +573,6 @@ int func_normal(void)
 
             // powerButtonPushed = isPowerButtonPushed();
 
-            batteryLevel      = snd_batt_get_level();  // 직접 측정하지 않고, QCC에서 배터리 정보 받으면 업데이트 됨
             powerButtonPushed = tdc_touch_process();
 
             // powerButtonPushed = false;                 // 왜 인지 특정 보드에서는 RE-ATI 에러가 발생하는 중
@@ -618,7 +616,7 @@ int func_normal(void)
             systemState = systemControl(ledPattern,  // 최초 부팅 시 초기 값 : en__LED_NA
                                         mcuErrorCode,
                                         usbConnectorState,
-                                        batteryLevel,  // Initialize 단계에서 배터리 정보 수집 완료되어 알 수 없는 배터리 레벨이 될 수 없다.
+                                        snd_batt_get_percent(),  // 배터리 percent 직접 전달(QCC 제공). Initialize 단계에서 수집 완료.
                                         powerButtonPushed,
                                         isd_state.conneded_ISD,                   // 최초 부팅 시 초기 값 : false
                                         BLE_communicationState.mappingConnection  // 최초 부팅 시 초기 값 : false

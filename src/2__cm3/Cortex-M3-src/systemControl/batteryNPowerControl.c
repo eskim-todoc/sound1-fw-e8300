@@ -44,49 +44,6 @@ void snd_batt_set_percent(int percent)
     s_snd_batt_percent = percent;
 }
 
-EN__BATTERY_LEVEL snd_batt_get_level(void)
-{
-    int percent;
-
-    percent = snd_batt_get_percent();
-
-    // 100
-    if (100 <= percent)
-    {
-        return en__batteryPower_100per;
-    }
-    // 80 ~ 99
-    else if ((80 <= percent) && (percent < 100))
-    {
-        return en__batteryPower_80btw100;
-    }
-    // 60 ~ 79
-    else if ((60 <= percent) && (percent < 80))
-    {
-        return en__batteryPower_60btw80;
-    }
-    // 40 ~ 59
-    else if ((40 <= percent) && (percent < 60))
-    {
-        return en__batteryPower_40btw60;
-    }
-    // 20 ~ 39
-    else if ((20 <= percent) && (percent < 40))
-    {
-        return en__batteryPower_20btw40;
-    }
-    // 1 ~ 19
-    else if ((0 < percent) && (percent < 20))
-    {
-        return en__batteryPower_0btw20;
-    }
-    // 0
-    else
-    {
-        return en__batteryPower_0per;
-    }
-}
-
 ST__USB_CONNECTOR snd_charger_get_state(void)
 {
     return cfx_cm3_sharedMemoryAll.chargerState;
@@ -218,17 +175,11 @@ ST__SYSTEM_BATTERY_BOUNDARY batteryBoundary;
 
 int calculated_3V_value;
 
-volatile EN__BATTERY_LEVEL batteryLevelStatus      = en__batteryPower_100per;
-volatile EN__BATTERY_LEVEL prev_batteryLevelStatus = en__batteryPower_100per;
-
 void calculationBatteryBoundary(void)
 {
     int tempValueA;
     int tempValueB;
     int mesured4V_value;
-
-    batteryLevelStatus      = en__batteryPower_100per;
-    prev_batteryLevelStatus = en__batteryPower_100per;
 
     mesured4V_value = readBatteryCalibrationValue();  // 4v 전압을 인가했을 때 측정된 값(보드 교정 시)
 

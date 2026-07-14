@@ -14,16 +14,8 @@
 // Sullivan
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-typedef enum
-{
-    en__batteryPower_0per = 0,
-    en__batteryPower_0btw20,
-    en__batteryPower_20btw40,
-    en__batteryPower_40btw60,
-    en__batteryPower_60btw80,
-    en__batteryPower_80btw100,
-    en__batteryPower_100per
-} EN__BATTERY_LEVEL;
+/* EN__BATTERY_LEVEL(7단계 레벨 enum) 제거(2026-07-14): systemControl이 배터리 percent를
+ * 직접 비교하도록 전환. 배터리 표현은 percent(snd_batt_get_percent) 단일 소스로 통일. */
 
 typedef struct
 {
@@ -60,7 +52,6 @@ EN__SND_BATT_STATE snd_batt_get_state(void);
 void               snd_batt_set_state(EN__SND_BATT_STATE state);
 int                snd_batt_get_percent(void);
 void               snd_batt_set_percent(int percent);
-EN__BATTERY_LEVEL  snd_batt_get_level(void);
 
 ST__USB_CONNECTOR snd_charger_get_state(void);
 void              snd_charger_set_state(EN__SND_CHARGER_STATE state);

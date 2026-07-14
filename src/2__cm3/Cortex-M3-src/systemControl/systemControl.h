@@ -26,7 +26,7 @@ typedef struct
 ST__SYSTEM_STATE systemControl(EN__LED_PATTERN   current_led_pattern,
                                ST__ERROR_CODE    mcuErrorCode,
                                ST__USB_CONNECTOR chargerState,
-                               EN__BATTERY_LEVEL batteryLevel,
+                               int               battery_percent,
                                bool              powerButtonPushed,
                                bool              conneded_ISD,
                                bool              mappingConnected);
