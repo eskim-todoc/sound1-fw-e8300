@@ -122,7 +122,7 @@ void NRF_adv_powerMode(bool mode)
 ST__SYSTEM_STATE systemControl(EN__LED_PATTERN   current_led_pattern,  //
                                ST__ERROR_CODE    mcuErrorCode,
                                ST__USB_CONNECTOR chargerState,
-                               EN__BATTERY_LEVEL batteryLevel,
+                               int               battery_percent,
                                bool              powerButtonPushed,
                                bool              conneded_ISD,
                                bool              mappingConnected)
@@ -248,9 +248,8 @@ ST__SYSTEM_STATE systemControl(EN__LED_PATTERN   current_led_pattern,  //
                         }
 
                         // 배터리 방전 상태 확인 (전기기계적안정성 시험을 위해 저전력 범위 변경)
-                        if ((batteryLevel == en__batteryPower_0per)         // 원래 0per만 저전력 인데
-                            || (batteryLevel == en__batteryPower_0btw20)    // 0~20per 랑
-                            || (batteryLevel == en__batteryPower_20btw40))  // 20~40per 도 저전력으로 처리 즉, 40per 미만이면 저전력
+                        // 40per 미만이면 저전력 (구: EN__BATTERY_LEVEL 0per/0btw20/20btw40 비교 → percent 직접 비교)
+                        if (battery_percent < 40)
                         {
                             veryLowBattery = true;
                         }
@@ -321,7 +320,8 @@ ST__SYSTEM_STATE systemControl(EN__LED_PATTERN   current_led_pattern,  //
                              * =================================================== */
 
                             /* 저배터리 자극 알림 (10분 주기) -- LED와 독립된 기능 */
-                            if (conneded_ISD && batteryLevel <= en__batteryPower_0btw20)
+                            /* 20per 미만 (구: batteryLevel <= en__batteryPower_0btw20 → percent 직접 비교) */
+                            if (conneded_ISD && battery_percent < 20)
                             {
                                 if (lowBatteryIndicatorCounter == 0)
                                 {
