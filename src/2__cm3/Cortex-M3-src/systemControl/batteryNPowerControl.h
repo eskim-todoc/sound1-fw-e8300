@@ -32,7 +32,6 @@ typedef struct
 } ST__CARRINGCASE_STATE;
 
 void              calculationBatteryBoundary(void);
-EN__BATTERY_LEVEL updateBatteryLevel(int chargingState, EN__LED_PATTERN ledPattern);
 int               readBatteryPercentage(void);
 int               read_BatteryChargerConnectinStatus(void);
 void              updateCarryingCaseStatus(void);

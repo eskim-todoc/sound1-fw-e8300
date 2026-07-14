@@ -572,7 +572,6 @@ int func_normal(void)
 
             ledPattern = geteLED_OutputPattern();
 
-            // batteryLevel      = updateBatteryLevel(usbConnectorState.chargerConnectorPluggedIn, ledPattern);
             // powerButtonPushed = isPowerButtonPushed();
 
             batteryLevel      = snd_batt_get_level();  // 직접 측정하지 않고, QCC에서 배터리 정보 받으면 업데이트 됨
