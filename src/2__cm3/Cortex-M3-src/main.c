@@ -53,8 +53,13 @@
 #include "tdc_ui_command.h"
 #endif
 
-static bool snd_qcc_has_batt_level_rx_timed_out(void);
-static void print_default_isd_info(void);
+static bool tdc_qcc_has_batt_level_rx_timed_out(void);
+static void tdc_print_default_isd_info(void);
+static void tdc_wait_for_cfx_start(void);
+static void tdc_apply_mapping_mode(bool mapping_connected);
+static void tdc_update_led_requests(bool isd_conn_default, bool map_conn_default);
+static bool tdc_handle_qcc_batt_timeout(bool *poweroff_started);
+static bool tdc_can_enter_sleep(bool map_active);
 
 typedef struct
 {
@@ -478,7 +483,7 @@ int func_normal(void)
 
     /* QCC 0x34(배터리) 수신 타임아웃 → 파워오프 패턴 후 절전 진입.
      * 지역변수(static 아님): 절전 후 func_normal 재진입 시 false로 리셋되어
-     * 무한 재절전을 방지한다(snd_qcc_has_batt_level_rx_timed_out() 내부 is_done 은
+     * 무한 재절전을 방지한다(tdc_qcc_has_batt_level_rx_timed_out() 내부 is_done 은
      * static 이라 유지되므로 타임아웃 재감지도 차단된다). */
     bool qcc_batt_timeout             = false;
     bool qcc_timeout_poweroff_started = false;
@@ -488,17 +493,7 @@ int func_normal(void)
 
     systemState.systemOff = false;
 
-    // CFX가 실행되고 자체적으로 플래그를 설정할 때까지 대기
-    while (1)
-    {
-        if (cfx_cm3_sharedMemoryAll.is_CFX_started == 1)
-        {
-            ci_printd("[INFO] CFX STARTED \r\n");
-            break;
-        }
-
-        __NOP();  // 최적화 방지 및 메모리 접근 경쟁 상태 방지 목적
-    }
+    tdc_wait_for_cfx_start();  // CFX가 자체적으로 플래그를 설정할 때까지 대기
 
     Initialize();
 
@@ -514,7 +509,7 @@ int func_normal(void)
     tdc_ui_command_init();
 #endif
 
-    print_default_isd_info();  // default ISD 정보 출력
+    tdc_print_default_isd_info();  // default ISD 정보 출력
 
     while (1)
     {
@@ -531,7 +526,7 @@ int func_normal(void)
 
             powerButtonPushed = tdc_touch_process();
 
-            qcc_batt_timeout = snd_qcc_has_batt_level_rx_timed_out();
+            qcc_batt_timeout = tdc_qcc_has_batt_level_rx_timed_out();
 
             // NOTE: QCC에게 0x34(Power info) 프로토콜 수신 전까지는
             //       usbConnectorState.chargerConnectorPluggedIn == df_Default; 상태이다.
@@ -571,54 +566,9 @@ int func_normal(void)
             // PMIC 켜고/끄기
             OnOff_3V_PMIC_CM3_to_CFX(systemState.enablePMIC);
 
-            // 매핑 연결ㅅ
-            if (BLE_communicationState.mappingConnection)
-            {
-                changeSystemModeFlag(en__mappingMode);
-                shareMappingProgramConnection(true);
-            }
-            else
-            {
-                changeSystemModeFlag(en__normalMode);
-                shareMappingProgramConnection(false);
-                // updateEarPieceStatus();
-            }
+            tdc_apply_mapping_mode(BLE_communicationState.mappingConnection);
 
-            /* ===================================================
-             * LED source requests (Rev.3)
-             * =================================================== */
-            {
-                /* Battery (SS4.5) - 마진 제거: QCC가 배터리 측정·필터링을 담당하므로
-                 * 진입/이탈 이중임계·prev 추적 없이 단일 컷 테이블로 판정(tdc_led_request_battery).
-                 * RESET(0x34 수신 전, percent=0) 시 부팅 초기 CRITICAL 누출 방지를 위해 IDLE 최우선 분기. */
-#ifdef ENABLE_UI_CMD
-                bool ovr_batt_active = tdc_ui_command_override_battery_active();
-                int  pct             = ovr_batt_active ? (int) tdc_ui_command_override_battery_percent() : snd_batt_get_percent();
-#else
-                bool ovr_batt_active = false;
-                int  pct             = snd_batt_get_percent();
-#endif
-                bool        batt_is_reset_state = (snd_batt_get_state() == EN__SND_BATT_STATE_RESET);
-                led_state_t batt_st             = tdc_led_request_battery(pct, ovr_batt_active, batt_is_reset_state);
-
-                /* ISD (SS4.6) - 배터리→ISD 순서 의존(미연결 시 batt_st 재송출) +
-                 * led_set_isd_conn_state() 봉인(1-tick 잔상 race 방지)은 함수 내부에 유지. */
-#ifdef ENABLE_UI_CMD
-                bool isd_conn_raw = tdc_ui_command_override_isd_active() ? tdc_ui_command_override_isd_value() : isd_state.conneded_ISD;
-#else
-                bool isd_conn_raw = isd_state.conneded_ISD;
-#endif
-                bool isd_conn = tdc_led_request_isd(isd_conn_raw, batt_st);
-
-                /* Mapping (SS4.4) - 배터리 LOW(단일 컷 pct<=TDC_MAP_LOW_BATT_PCT) × ISD 연결 여부 4분기.
-                 * 마진(s_map_low_active 래치) 제거 → 매 호출 pct 만으로 판정(tdc_led_request_mapping). */
-#ifdef ENABLE_UI_CMD
-                bool map_conn = tdc_ui_command_override_map_active() ? tdc_ui_command_override_map_value() : BLE_communicationState.mappingConnection;
-#else
-                bool map_conn = BLE_communicationState.mappingConnection;
-#endif
-                tdc_led_request_mapping(pct, map_conn, isd_conn);
-            }
+            tdc_update_led_requests(isd_state.conneded_ISD, BLE_communicationState.mappingConnection);
 
             /* led_arbiter_tick() 은 Timer 3 ISR 에서 직접 구동 (ci_timer.c).
              * main loop 의 I2C/EEPROM 폴링 블록으로 인한 fade/PWM jitter 회피. */
@@ -642,18 +592,9 @@ int func_normal(void)
          * 파워오프 시퀀스에 도달하지 못하므로, 여기서 직접 POWER_OFF 패턴을 요청하고
          * burst 완료 후 systemOff 를 세팅해 기존 절전 경로(아래 → break → func_sleep)를 탄다.
          * 상세: docs/tasks/power/20260609_qcc-batt-timeout-sleep/분석.md §4 */
-        if (qcc_batt_timeout)
+        if (qcc_batt_timeout && tdc_handle_qcc_batt_timeout(&qcc_timeout_poweroff_started))
         {
-            if (!qcc_timeout_poweroff_started)
-            {
-                ci_printw("[BATT] QCC BATT TIMED-OUT -> LED PATTERN = POWER OFF \r\n");
-                led_request(LED_SRC_POWER, LED_ST_POWER_OFF);
-                qcc_timeout_poweroff_started = true;
-            }
-            else if (!tdc_led_is_burst_pending())
-            {
-                systemState.systemOff = true;
-            }
+            systemState.systemOff = true;
         }
 
         /* 크래들 뚜껑 닫힘 첫 감지 → 약 절전 루프 (ISD 연결 중이면 차단) */
@@ -666,23 +607,8 @@ int func_normal(void)
 
         if (systemState.systemOff == true)
         {
-            /* 절전 모드 진입 가드 - 매핑 / 페어링 / OTA 진행 중에는 보류한다.
-             *
-             * BLE 활성 검사는 Arbiter src 요청을 직접 본다 - tdc_led_get_ind_state()
-             * 는 BLE 가 set 한 후 NONE 으로 reset 안 보내면 잔존하기 때문. */
-            led_state_t ble_st      = led_get_request(LED_SRC_BLE_IND);
-            bool        map_active  = BLE_communicationState.mappingConnection;
-            bool        pair_active = (ble_st == LED_ST_PAIR);
-            bool        ota_active  = (ble_st == LED_ST_OTA_QCC) || (ble_st == LED_ST_OTA_EZAIRO);
-
-            if (map_active || pair_active || ota_active)
+            if (tdc_can_enter_sleep(BLE_communicationState.mappingConnection))
             {
-                ci_printw("[SYSTEM] SLEEP DEFERRED (map=%d pair=%d ota=%d ble_st=%d) \r\n", map_active, pair_active, ota_active, (int) ble_st);
-                systemState.systemOff = false; /* 다음 iteration 에서 트리거 재평가 */
-            }
-            else
-            {
-                ci_printi("[SYSTEM] ENTERING SLEEP MODE \r\n");
                 /* cross-fade Phase A 강제 - POWER_OFF burst 직후 다른 best
                  * (BATTERY/ISD/MAPPING) 로 진입한 새 색 (예: GREEN) 이
                  * turnOffLED() 에서 fade-out 되어 잔상으로 보이는 현상 방지.
@@ -691,6 +617,8 @@ int func_normal(void)
                 led_force_fade_off();
                 break; /* Escape this main loop to enter the ULP mode */
             }
+
+            systemState.systemOff = false; /* 보류 - 다음 iteration 에서 트리거 재평가 */
         }
 
         if (tdc_get_fake_op_mode() == 1)  // fake sleep mode가 맞을 때
@@ -707,7 +635,115 @@ int func_normal(void)
     return 0;
 }
 
-static bool snd_qcc_has_batt_level_rx_timed_out(void)
+/* CFX 가 자체 플래그를 세울 때까지 블로킹 대기. Initialize() 선행 조건. */
+static void tdc_wait_for_cfx_start(void)
+{
+    while (1)
+    {
+        if (cfx_cm3_sharedMemoryAll.is_CFX_started == 1)
+        {
+            ci_printd("[INFO] CFX STARTED \r\n");
+            break;
+        }
+
+        __NOP();  // 최적화 방지 및 메모리 접근 경쟁 상태 방지 목적
+    }
+}
+
+/* 매핑 연결 여부에 따라 시스템 모드 플래그와 CFX 공유 상태를 함께 전환. */
+static void tdc_apply_mapping_mode(bool mapping_connected)
+{
+    if (mapping_connected)
+    {
+        changeSystemModeFlag(en__mappingMode);
+        shareMappingProgramConnection(true);
+    }
+    else
+    {
+        changeSystemModeFlag(en__normalMode);
+        shareMappingProgramConnection(false);
+        // updateEarPieceStatus();
+    }
+}
+
+/* LED source requests (Rev.3).
+ * isd_conn_default / map_conn_default 는 UI 커맨드 override 가 없을 때 쓰는 실제 상태.
+ *
+ * Battery (SS4.5) - 마진 제거: QCC가 배터리 측정·필터링을 담당하므로 진입/이탈
+ * 이중임계·prev 추적 없이 단일 컷 테이블로 판정(tdc_led_request_battery).
+ * RESET(0x34 수신 전, percent=0) 시 부팅 초기 CRITICAL 누출 방지를 위해 IDLE 최우선 분기.
+ *
+ * ISD (SS4.6) - 배터리→ISD 순서 의존(미연결 시 batt_st 재송출) + led_set_isd_conn_state()
+ * 봉인(1-tick 잔상 race 방지)은 tdc_led_request_isd() 내부에 유지.
+ *
+ * Mapping (SS4.4) - 배터리 LOW(단일 컷 pct<=TDC_MAP_LOW_BATT_PCT) × ISD 연결 여부 4분기.
+ * 마진(s_map_low_active 래치) 제거 -> 매 호출 pct 만으로 판정(tdc_led_request_mapping). */
+static void tdc_update_led_requests(bool isd_conn_default, bool map_conn_default)
+{
+#ifdef ENABLE_UI_CMD
+    bool ovr_batt_active = tdc_ui_command_override_battery_active();
+    int  pct             = ovr_batt_active ? (int) tdc_ui_command_override_battery_percent() : snd_batt_get_percent();
+#else
+    bool ovr_batt_active = false;
+    int  pct             = snd_batt_get_percent();
+#endif
+    bool        batt_is_reset_state = (snd_batt_get_state() == EN__SND_BATT_STATE_RESET);
+    led_state_t batt_st             = tdc_led_request_battery(pct, ovr_batt_active, batt_is_reset_state);
+
+#ifdef ENABLE_UI_CMD
+    bool isd_conn_raw = tdc_ui_command_override_isd_active() ? tdc_ui_command_override_isd_value() : isd_conn_default;
+#else
+    bool isd_conn_raw = isd_conn_default;
+#endif
+    bool isd_conn = tdc_led_request_isd(isd_conn_raw, batt_st);
+
+#ifdef ENABLE_UI_CMD
+    bool map_conn = tdc_ui_command_override_map_active() ? tdc_ui_command_override_map_value() : map_conn_default;
+#else
+    bool map_conn = map_conn_default;
+#endif
+    tdc_led_request_mapping(pct, map_conn, isd_conn);
+}
+
+/* QCC 배터리 타임아웃 처리. 첫 호출에서 POWER_OFF 패턴을 요청하고, 이후 burst 가
+ * 끝나면 true 를 반환해 호출자가 절전(systemOff)을 트리거하게 한다.
+ *
+ * poweroff_started 는 호출자의 지역변수 포인터다 - func_normal 재진입 시 false 로
+ * 리셋되어야 무한 재절전이 방지되므로 static 으로 승격하지 않는다. */
+static bool tdc_handle_qcc_batt_timeout(bool *poweroff_started)
+{
+    if (!*poweroff_started)
+    {
+        ci_printw("[BATT] QCC BATT TIMED-OUT -> LED PATTERN = POWER OFF \r\n");
+        led_request(LED_SRC_POWER, LED_ST_POWER_OFF);
+        *poweroff_started = true;
+        return false;
+    }
+
+    return !tdc_led_is_burst_pending();
+}
+
+/* 절전 진입 가부 판정. 매핑 / 페어링 / OTA 진행 중에는 false(보류).
+ *
+ * BLE 활성 검사는 Arbiter src 요청을 직접 본다 - tdc_led_get_ind_state() 는 BLE 가
+ * set 한 후 NONE 으로 reset 안 보내면 잔존하기 때문. */
+static bool tdc_can_enter_sleep(bool map_active)
+{
+    led_state_t ble_st      = led_get_request(LED_SRC_BLE_IND);
+    bool        pair_active = (ble_st == LED_ST_PAIR);
+    bool        ota_active  = (ble_st == LED_ST_OTA_QCC) || (ble_st == LED_ST_OTA_EZAIRO);
+
+    if (map_active || pair_active || ota_active)
+    {
+        ci_printw("[SYSTEM] SLEEP DEFERRED (map=%d pair=%d ota=%d ble_st=%d) \r\n", map_active, pair_active, ota_active, (int) ble_st);
+        return false;
+    }
+
+    ci_printi("[SYSTEM] ENTERING SLEEP MODE \r\n");
+    return true;
+}
+
+static bool tdc_qcc_has_batt_level_rx_timed_out(void)
 {
     static int  time_laps = 0;
     static bool is_done   = false;
@@ -739,7 +775,7 @@ static bool snd_qcc_has_batt_level_rx_timed_out(void)
     return timed_out;
 }
 
-static void print_default_isd_info(void)
+static void tdc_print_default_isd_info(void)
 {
     ST__CFX_CM3_SharedMemory_ISD_info *p_isd_info          = &g_ci_filesystem_ptr_entire_map->map[0].isd_info;
     int                               *p_isd_1_info_name   = &g_ci_filesystem_ptr_entire_map->map[0].isd_info.isd_userName[0];     // [25]
