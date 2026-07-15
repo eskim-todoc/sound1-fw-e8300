@@ -10,21 +10,21 @@
 #include "error.h"
 #include "isd_interface.h"
 
+/* LED 판정은 Arbiter(led_request / LED_SRC_ 계열)로 이관됨(Rev.3).
+ * 구 Led_Pattern 필드와 current_led_pattern 입력은 소비자가 없어 제거했다. */
 typedef struct
 {
 
-    EN__LED_PATTERN Led_Pattern;
-    bool            enable_ISD;
-    bool            enablePMIC;
-    bool            BLE_Off; // 충전기 연결 시 시스템에서 BLE를 끄기 위함
-    bool            StimulationIndicatorTriggerLowPower;
-    bool            systemOff;
-    bool            cradleLidClosed;
+    bool enable_ISD;
+    bool enablePMIC;
+    bool BLE_Off; // 충전기 연결 시 시스템에서 BLE를 끄기 위함
+    bool StimulationIndicatorTriggerLowPower;
+    bool systemOff;
+    bool cradleLidClosed;
 
 } ST__SYSTEM_STATE;
 
-ST__SYSTEM_STATE systemControl(EN__LED_PATTERN   current_led_pattern,
-                               ST__ERROR_CODE    mcuErrorCode,
+ST__SYSTEM_STATE systemControl(ST__ERROR_CODE    mcuErrorCode,
                                ST__USB_CONNECTOR chargerState,
                                int               battery_percent,
                                bool              powerButtonPushed,

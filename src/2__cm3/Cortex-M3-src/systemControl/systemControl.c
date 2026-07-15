@@ -28,7 +28,10 @@
 
 #include <ci_printf.h>
 
-ST__SYSTEM_STATE systemStatus = {en__LED_NA, false, false, false, false, false, false};
+/* 이 파일 전용 상태. 헤더에 extern 선언이 없어 외부에서 쓰지 않으므로 static.
+ * systemControl() 은 이 값을 갱신한 뒤 복사본을 반환한다 - 호출자가 반환값을
+ * 수정해도 여기 원본에는 반영되지 않는다는 점에 유의. */
+static ST__SYSTEM_STATE systemStatus = {false, false, false, false, false, false};
 
 #define LED_OnTime_afterCoverClosed 4501
 
@@ -119,8 +122,13 @@ void NRF_adv_powerMode(bool mode)
 }
 #endif
 
-ST__SYSTEM_STATE systemControl(EN__LED_PATTERN   current_led_pattern,  //
-                               ST__ERROR_CODE    mcuErrorCode,
+/* conneded_ISD / mappingConnected 는 '지난 tick' 값이다 - isd_interface() 와
+ * bleCommunication() 이 systemControl() 의 enable_ISD 를 받아 도는 순환 구조라
+ * 같은 tick 안에서는 확정되지 않는다. 다만 이 두 입력의 소비처는 모두 시간 누적
+ * 판정(ISD_Disconnection_counter / 저배터리 10분 주기)이거나 인간 조작 스케일
+ * (파워오프 탈출 / 매핑 중 버튼 무시)이라 1-tick(=1ms) 지연은 무해하다.
+ * 지연에 민감한 값을 이 순환에 태우지 말 것. */
+ST__SYSTEM_STATE systemControl(ST__ERROR_CODE    mcuErrorCode,  //
                                ST__USB_CONNECTOR chargerState,
                                int               battery_percent,
                                bool              powerButtonPushed,
@@ -153,13 +161,12 @@ ST__SYSTEM_STATE systemControl(EN__LED_PATTERN   current_led_pattern,  //
 #endif
             led_request(LED_SRC_ERROR, LED_ST_NONE);
 
-        // 충전기가 꼽히면 하드웨어적으로 리셋이 된다. 따라서 가장 먼저 여기로 들어오게 된다.
-        if (chargerState.chargerConnectorPluggedIn == df_Defalut)
-        {
-            systemStatus.Led_Pattern = en__LED_NA;
-        }
+        /* 충전기 미연결(df_Defalut) 분기는 할 일이 없어 제거했다. 충전기가 꼽히면
+         * 하드웨어적으로 리셋되므로 부팅 직후엔 df_Defalut 로 들어온다.
+         * (구: Led_Pattern = en__LED_NA 설정만 있었고 소비자가 없었다) */
+
         // 충전기가 연결된 상태 -- LED 충전 레벨 표시 폐지 (Rev.3 이슈 #1)
-        else if (chargerState.chargerConnectorPluggedIn == df_Connected)
+        if (chargerState.chargerConnectorPluggedIn == df_Connected)
         {
             // NRF를 꺼진 상태로 변경 유지
             systemStatus.BLE_Off = true;
@@ -212,7 +219,6 @@ ST__SYSTEM_STATE systemControl(EN__LED_PATTERN   current_led_pattern,  //
                      * 부팅 후 첫 진입 시 systemStatus 마커와 카운터만 셋업.
                      * StartFlag · PowerOn_StartCounter 변수 자체 정리는 별도 cleanup
                      * 작업으로 위임 (사용처 dead 확인됨). */
-                    systemStatus.Led_Pattern = en__LED_POWER_On;
 
                     PowerOn_StartCounter = 0;
                     StartFlag            = true;
@@ -220,10 +226,10 @@ ST__SYSTEM_STATE systemControl(EN__LED_PATTERN   current_led_pattern,  //
                 }
                 else
                 {
-                    /* burst pending flag 직접 조회 - `current_led_pattern` 은 LED arbiter
-                     * ISR 가 갱신하므로 main loop iter 와 1-tick stale race 가능 (커밋
-                     * cecbc3d 의 ISR 책임 분리로 노출). pending flag 는 `led_request()`
-                     * 가 set, `led_engine_run()` burst 완료 시 clear → timer/tick 무관 정확. */
+                    /* burst pending flag 직접 조회. pending flag 는 `led_request()` 가 set,
+                     * `led_engine_run()` burst 완료 시 clear → timer/tick 무관 정확.
+                     * (구 current_led_pattern 입력은 LED arbiter ISR 갱신이라 main loop iter
+                     *  와 1-tick stale race 가 있었고, 소비자가 없어 제거됨) */
                     if (!tdc_led_is_burst_pending())
                     {
                         systemStatus.enable_ISD = true;
@@ -273,7 +279,6 @@ ST__SYSTEM_STATE systemControl(EN__LED_PATTERN   current_led_pattern,  //
                                     ci_printd("[SYSTEM] POWER BUTTON PUSHED \r\n");
                                 }
 
-                                systemStatus.Led_Pattern = en__LED_POWER_Off;
                                 led_request(LED_SRC_POWER, LED_ST_POWER_OFF);
                                 systemStatus.enable_ISD = false;
                                 PowerOff_StartCounter   = 0;
@@ -288,8 +293,7 @@ ST__SYSTEM_STATE systemControl(EN__LED_PATTERN   current_led_pattern,  //
                             /* burst 종료 검출 - burst pending flag 직접 조회.
                              * pending flag set/clear 책임 분리: `led_request()` 가 요청 시점
                              * 즉시 set, `led_engine_run()` 이 burst 자가 해제 시 clear.
-                             * timer/tick 무관 정확. (`current_led_pattern` 은 LED arbiter ISR
-                             * 갱신이라 main loop iter 와 stale race 가능 - 부정확.) */
+                             * timer/tick 무관 정확. */
                             if (!tdc_led_is_burst_pending() && (PowerOff_StartCounter != 0))
                             {
                                 isPowerOffEnabled         = false;
@@ -348,7 +352,6 @@ ST__SYSTEM_STATE systemControl(EN__LED_PATTERN   current_led_pattern,  //
                             {
                                 ISD_Disconnection_counter = 0;
 
-                                systemStatus.Led_Pattern = en__LED_POWER_Off;
                                 led_request(LED_SRC_POWER, LED_ST_POWER_OFF);
                                 systemStatus.enable_ISD = false;
                                 PowerOff_StartCounter   = 0;
@@ -384,12 +387,10 @@ ST__SYSTEM_STATE systemControl(EN__LED_PATTERN   current_led_pattern,  //
         {
 #endif
             led_request(LED_SRC_ERROR, LED_ST_ERROR_MCU);
-            systemStatus.Led_Pattern = en__LED_MCU_Error;
 
             if (mcuErrorCode.dataProcessingErrorFlag != en__NA)
             {
                 led_request(LED_SRC_ERROR, LED_ST_ERROR_MAP);
-                systemStatus.Led_Pattern = en__LED_Map_Error;
             }
             if (mcuErrorCode.accelerometerErrorFlag != en__NA)
             {
