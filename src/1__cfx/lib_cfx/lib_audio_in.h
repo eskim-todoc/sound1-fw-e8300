@@ -117,7 +117,7 @@
 
 // HW 소수점 지연: FRAC=6 = 6/240 = 0.025샘플 (decimation 8x30 서브분할 기준).
 // 빔포밍에서 front mic 채널에 적용하며, SW 1샘플 지연(믹서 i+1 오프셋)과 합쳐
-// 총 1.025샘플(≈64.06µs ≈ 22mm 음향 경로차)을 만든다. rear mic 채널은 지연 0.
+// 총 1.025샘플(~64.06us ~ 22mm 음향 경로차)을 만든다. rear mic 채널은 지연 0.
 #define LIB_ADC_FRACTIONAL_DELAY_6  (6 << AUDIO_ADC_DEC_CTRL_DELAY_FRACTIONAL_Pos)
 #define LIB_ADC_DEC_CTRL_VAL_0_0250 (BAND_SELECT_ADC_0K_8K | ADC_INTEGER_DELAY_0 | LIB_ADC_FRACTIONAL_DELAY_6 | ADC_UNMUTE | ADC_DEC_ENABLE | ADC_DC_REMOVE_CUTOFF_20HZ | LIB_SYS_CALC_GF)
 

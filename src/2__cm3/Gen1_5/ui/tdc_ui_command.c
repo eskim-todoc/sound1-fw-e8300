@@ -19,7 +19,7 @@
 
 #include <ci_printf.h>
 #include <tdc_touch_config.h>
-/* tdc_drv_iqs323.h 제거 (터치 3파일 리팩토링 2026-06-20) ? RTT_TUNING 폐기로
+/* tdc_drv_iqs323.h 제거 (터치 3파일 리팩토링 2026-06-20) - RTT_TUNING 폐기로
  * 본 파일의 #if TDC_TOUCH_RTT_TUNING tuning 블록은 미정의(0)로 컴파일 제외된다. */
 
 /* ======================================================================== */
@@ -64,14 +64,14 @@ static bool s_tdc_override_map_value;
 static bool    s_tdc_override_battery_active;
 static uint8_t s_tdc_override_battery_percent;
 
-/* main.c 가 매 cycle 갱신 ? 실 매핑 앱 연결 상태 (--prog 가드용) */
+/* main.c 가 매 cycle 갱신 - 실 매핑 앱 연결 상태 (--prog 가드용) */
 static bool s_tdc_actual_mapping_connected;
 
 /* --led req/clr 로 설정한 per-source LED override */
 static bool s_tdc_led_override[LED_SRC__MAX];
 
 /* ======================================================================== */
-/*  Override hook getters (public ? called from main.c)                     */
+/*  Override hook getters (public - called from main.c)                     */
 /* ======================================================================== */
 
 bool tdc_ui_command_override_isd_active(void)
@@ -270,9 +270,9 @@ static int handle_help(int argc, char *argv[])
 }
 
 /* ======================================================================== */
-/*  --led pattern N ? 사진 "패턴 (디버깅)" 칼럼 0~14 매핑                  */
+/*  --led pattern N - 사진 "패턴 (디버깅)" 칼럼 0~14 매핑                  */
 /* ======================================================================== */
-/* N=0 은 sentinel ? 모든 src NONE 만 적용 (LED off). N>0 은 (src, state). */
+/* N=0 은 sentinel - 모든 src NONE 만 적용 (LED off). N>0 은 (src, state). */
 static const struct
 {
     led_src_t   src;
@@ -389,7 +389,7 @@ static int handle_led(int argc, char *argv[])
         return 0;
     }
 
-    /* --led pattern <0~14>  ? 사진 디버깅 칼럼 매핑 */
+    /* --led pattern <0~14>  - 사진 디버깅 칼럼 매핑 */
     if (ci_strcasecmp(argv[1], "pattern") == 0)
     {
         if (argc < 3)
@@ -402,14 +402,14 @@ static int handle_led(int argc, char *argv[])
             return -1;
         }
 
-        /* 모든 src 강제 NONE + override 활성 ? 단일 패턴만 보이도록 */
+        /* 모든 src 강제 NONE + override 활성 - 단일 패턴만 보이도록 */
         for (int src = 0; src < LED_SRC__MAX; src++)
         {
             s_tdc_led_override[src] = true;
             led_request((led_src_t) src, LED_ST_NONE);
         }
 
-        /* N>0 인 경우 해당 패턴 요청 (N=0 은 모든 src NONE 만 ? LED off) */
+        /* N>0 인 경우 해당 패턴 요청 (N=0 은 모든 src NONE 만 - LED off) */
         if (n > 0)
         {
             led_request(k_tdc_pattern_table[n].src, k_tdc_pattern_table[n].st);

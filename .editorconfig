@@ -1,0 +1,23 @@
+# EditorConfig — 에디터 무관 인코딩·개행 통일 (https://editorconfig.org)
+#
+# charset=utf-8 이 핵심. CP949 경유 시 U+2014(—) 등이 '?' 로 영구 손실되는
+# 사고를 막는다. .gitattributes(eol=lf) · .clang-format(indent 4/space) 과 정합.
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+[*.{c,h}]
+indent_style = space
+indent_size = 4
+
+# 마크다운은 줄끝 공백이 <br> 의미를 가지므로 trim 제외
+[*.md]
+trim_trailing_whitespace = false
+
+# Windows 전용 스크립트는 CRLF 유지 (.gitattributes 와 동일)
+[*.{bat,cmd,ps1}]
+end_of_line = crlf

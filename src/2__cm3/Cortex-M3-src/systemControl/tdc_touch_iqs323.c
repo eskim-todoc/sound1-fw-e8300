@@ -133,7 +133,7 @@ static bool wait_window_closed(int max_ms)
     {
         if (max_ms <= (ci_timer_get_tick() - tick_old))
         {
-            return false; /* soft timeout ? 다음 force_window_open 이 복구 */
+            return false; /* soft timeout - 다음 force_window_open 이 복구 */
         }
         if (Sys_GPIO_Read(TDC_TOUCH_IQS323_RDY_PIN) == TDC_TOUCH_IQS323_WIN_CLOSED)
         {
@@ -304,13 +304,13 @@ static bool events_enable(void)
 }
 
 /* Beta(필터)·Power·Conversion write. Beta 정수값과 해석(damping=Beta/256 해석_A vs 시프트 해석_B)은
- * [실측 게이트] ? 시험 1회 판별 후 비대칭 방향(LTA Normal 약터치 보존 / LTA Fast 노터치 복귀) 확정.
+ * [실측 게이트] - 시험 1회 판별 후 비대칭 방향(LTA Normal 약터치 보존 / LTA Fast 노터치 복귀) 확정.
  * 현재 값 0xB1=0x0808·0xB2=0x0202 는 안전 기본값(99 §6 #1). */
 static bool beta_power_settings(void)
 {
     bool ok = true;
     ok &= write_register(REG_BETA_COUNTS, 0x02, 0x02);      /* Counts beta NP/LP */
-    ok &= write_register(REG_BETA_LTA_NORMAL, 0x06, 0x06);  /* LTA Normal NP/LP=6 — AZD004 α=1/2^β. τ≈12.8s(롱터치 2.4s의 ~5배)로 터치 진입 전 LTA 흡수 최소화 + 약결합 ~13s 흡수 균형. (4=3.2s 너무빠름·터치흡수 / 8=51s 느림) */
+    ok &= write_register(REG_BETA_LTA_NORMAL, 0x06, 0x06);  /* LTA Normal NP/LP=6 - AZD004 α=1/2^β. τ~12.8s(롱터치 2.4s의 ~5배)로 터치 진입 전 LTA 흡수 최소화 + 약결합 ~13s 흡수 균형. (4=3.2s 너무빠름·터치흡수 / 8=51s 느림) */
     ok &= write_register(REG_BETA_LTA_FAST, 0x02, 0x02);    /* LTA Fast NP/LP (빠름) */
     ok &= write_register(REG_FAST_FILTER_BAND, 0x0A, 0x00); /* Fast Filter Band 10cnt */
     ok &= write_register(REG_CONV_FREQ, 0x7F, 0x05);        /* 0x057F = 1MHz (self-cap 상한) */
@@ -368,7 +368,7 @@ bool tdc_touch_iqs323_read_status(tdc_touch_iqs323_status_t *out)
 
 bool tdc_touch_iqs323_read_debug(tdc_touch_iqs323_debug_t *out)
 {
-    uint8_t reg = REG_CH0_COUNTS; /* 0x13 시작 ? 0x13(Counts)+0x14(LTA) 연속 4바이트 read */
+    uint8_t reg = REG_CH0_COUNTS; /* 0x13 시작 - 0x13(Counts)+0x14(LTA) 연속 4바이트 read */
     uint8_t buf[4];
 
     out->ok     = false;
@@ -433,7 +433,7 @@ void tdc_touch_iqs323_apply_settings(void)
         ci_printe("[TOUCH] FAIL: BETA/POWER \r\n");
     }
 
-    /* Full ATI: 0x36 = 0x040C (Mode=Full). MULT/COMP write 폐기 ? IC 자동 산출. */
+    /* Full ATI: 0x36 = 0x040C (Mode=Full). MULT/COMP write 폐기 - IC 자동 산출. */
     if (!write_register(REG_SENSOR0_ATI_SETUP, 0x0C, 0x04))
     {
         ci_printe("[TOUCH] FAIL: ATI SETUP FULL \r\n");
@@ -461,7 +461,7 @@ void tdc_touch_iqs323_apply_settings(void)
 
 bool tdc_touch_iqs323_re_ati(void)
 {
-    /* bit2 Re-ATI + Power No ULP(0x50) + CH timeout disable(0x07) 보존 ? 단독 0x04 는 Power Mode 를 Normal 로 덮음. */
+    /* bit2 Re-ATI + Power No ULP(0x50) + CH timeout disable(0x07) 보존 - 단독 0x04 는 Power Mode 를 Normal 로 덮음. */
     return write_register(REG_SYSTEM_CONTROL, 0x54, 0x07);
 }
 
@@ -492,8 +492,8 @@ bool tdc_touch_iqs323_is_ati_done(void)
 }
 
 /* **********************************************************************
- * 보조 ? 절전 설정 (Full ATI 정합: 운용 임계 유지, ATI 재쓰기 0)
+ * 보조 - 절전 설정 (Full ATI 정합: 운용 임계 유지, ATI 재쓰기 0)
  */
-/* 절전 전용 settings 는 제거됨 — 절전도 노말과 동일한 IQS323 설정(운용 임계·Full ATI·PM timeout 0
+/* 절전 전용 settings 는 제거됨 - 절전도 노말과 동일한 IQS323 설정(운용 임계·Full ATI·PM timeout 0
  * → 항상 NP)을 그대로 사용한다. CM3 클럭만 ci_power_sleep(main.c)로 절감. RESEED 는 ULP 루프가
  * 첫 노터치 확정 시점에 직접 발행한다. */

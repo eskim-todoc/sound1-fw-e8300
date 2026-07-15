@@ -87,7 +87,7 @@ extern "C"
 typedef struct _bootloader_boot_information {
     uint16_t    boot_fs_ver;       /**< NVM File System version */
     uint8_t     boot_app_load[10]; /**< Name of application to load from root
-                                         directory. Set to "APP000" by default.
+                                         directory. Set to "APP000" by default.
                                          Application is loaded by the bootloader.
                                          Maximum length of string 8 - characters.
                                          Last two bytes padded with zero */

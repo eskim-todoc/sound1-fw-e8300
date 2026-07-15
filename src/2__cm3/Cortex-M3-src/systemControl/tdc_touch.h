@@ -8,10 +8,10 @@
  * 본 헤더는 main.c 가 부르는 공개 API 시그니처를 고정해 호출처 변경을 막는다.
  *
  * 공개 API:
- *   tdc_touch_init_begin()  ? POWER_ON 진입 시 1회 (MCLR 트리거)
- *   tdc_touch_process()     ? 매 tick 호출 (초기화 진행 + 폴링 + 액션 디스패치)
- *   tdc_touch_get_state()   ? 즉시 상태 조회 (ULP 웨이크 판정 등)
- *   tdc_touch_state_name()  ? 상태 enum -> 문자열
+ *   tdc_touch_init_begin()  - POWER_ON 진입 시 1회 (MCLR 트리거)
+ *   tdc_touch_process()     - 매 tick 호출 (초기화 진행 + 폴링 + 액션 디스패치)
+ *   tdc_touch_get_state()   - 즉시 상태 조회 (ULP 웨이크 판정 등)
+ *   tdc_touch_state_name()  - 상태 enum -> 문자열
  */
 
 #ifndef TDC_TOUCH_H_
@@ -20,10 +20,10 @@
 #include <hw.h>
 #include <stdbool.h>
 #include <tdc_touch_config.h>
-#include <tdc_touch_time.h> /* 시간 상수 단일 소유 (POLL/LONG/INIT 등) ? 본 파일이 재노출 */
+#include <tdc_touch_time.h> /* 시간 상수 단일 소유 (POLL/LONG/INIT 등) - 본 파일이 재노출 */
 
 /* **********************************************************************
- * 상태 enum (레이어 중립 ? 드라이버 에러도 일반화)
+ * 상태 enum (레이어 중립 - 드라이버 에러도 일반화)
  */
 typedef enum
 {
@@ -32,7 +32,7 @@ typedef enum
     TDC_TOUCH_STATE_NOT_TOUCH,        /* 비터치 */
     TDC_TOUCH_STATE_CALIBRATION_ERROR /* (미사용) 과거 IQS323 ATI_ERROR 매핑.
                                        * 운용 모드는 ATI 미사용이라 get_state가 발생시키지
-                                       * 않음 ? enum/문자열 호환 위해 유지. */
+                                       * 않음 - enum/문자열 호환 위해 유지. */
 } tdc_touch_state_t;
 
 /* **********************************************************************

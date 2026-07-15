@@ -149,7 +149,7 @@ bool read_FPGA_version(int *p_readValue)
     }
     else
     {
-        // I2C 읽기 실패 — 연속 실패 디바운스
+        // I2C 읽기 실패 - 연속 실패 디바운스
         TDC_ISD_DEBOUNCE_FAIL(error_cnt, "[FPGA]", "read_FPGA_version", "RD",
                               en__FPGA_COMMUNICATION_ERROR, en__I2C_FPGA_ReadingError);
         change_isd_state(en__isdStatus_PowerIC_OK);
@@ -171,7 +171,7 @@ bool read_FPGA_systemResgister_1st(int *p_readValue)
     }
     else
     {
-        // I2C 읽기 실패 — 연속 실패 디바운스
+        // I2C 읽기 실패 - 연속 실패 디바운스
         TDC_ISD_DEBOUNCE_FAIL(error_cnt, "[FPGA]", "read_FPGA_sysReg1st", "RD",
                               en__FPGA_COMMUNICATION_ERROR, en__I2C_FPGA_ReadingError);
         change_isd_state(en__isdStatus_PowerIC_OK);
@@ -225,7 +225,7 @@ bool check_FPGA_PCM_Error(bool *isError)
     }
     else
     {
-        // I2C 읽기 실패 — 연속 실패 디바운스
+        // I2C 읽기 실패 - 연속 실패 디바운스
         TDC_ISD_DEBOUNCE_FAIL(error_cnt, "[FPGA]", "check_FPGA_PCM_Error", "RD",
                               en__FPGA_COMMUNICATION_ERROR, en__I2C_FPGA_ReadingError);
         change_isd_state(en__isdStatus_PowerIC_OK);
@@ -261,7 +261,7 @@ bool check_FPGA_FIFO_empty(bool *isEmpty)
     }
     else
     {
-        // I2C 읽기 실패 — 연속 실패 디바운스
+        // I2C 읽기 실패 - 연속 실패 디바운스
         TDC_ISD_DEBOUNCE_FAIL(error_cnt, "[FPGA]", "check_FPGA_FIFO_empty", "RD",
                               en__FPGA_COMMUNICATION_ERROR, en__I2C_FPGA_ReadingError);
         change_isd_state(en__isdStatus_PowerIC_OK);
@@ -302,7 +302,7 @@ bool read_FPGA_backtelError_Flag(int *p_readValue)
     }
     else
     {
-        // I2C 읽기 실패 — 연속 실패 디바운스
+        // I2C 읽기 실패 - 연속 실패 디바운스
         TDC_ISD_DEBOUNCE_FAIL(error_cnt, "[FPGA]", "read_FPGA_backtelErr", "RD",
                               en__FPGA_COMMUNICATION_ERROR, en__I2C_FPGA_ReadingError);
         change_isd_state(en__isdStatus_PowerIC_OK);
@@ -327,7 +327,7 @@ bool read_FPGA_PulseWidth(int *pulseWidth)
     }
     else
     {
-        // I2C 읽기 실패 — 연속 실패 디바운스
+        // I2C 읽기 실패 - 연속 실패 디바운스
         TDC_ISD_DEBOUNCE_FAIL(error_cnt, "[FPGA]", "read_FPGA_PulseWidth", "RD",
                               en__FPGA_COMMUNICATION_ERROR, en__I2C_FPGA_ReadingError);
         change_isd_state(en__isdStatus_PowerIC_OK);
@@ -349,7 +349,7 @@ bool read_FPGA_FIFO_counter(int *counterFIFO)
     }
     else
     {
-        // I2C 읽기 실패 — 연속 실패 디바운스
+        // I2C 읽기 실패 - 연속 실패 디바운스
         TDC_ISD_DEBOUNCE_FAIL(error_cnt, "[FPGA]", "read_FPGA_FIFO_cnt", "RD",
                               en__FPGA_COMMUNICATION_ERROR, en__I2C_FPGA_ReadingError);
         change_isd_state(en__isdStatus_PowerIC_OK);
@@ -390,7 +390,7 @@ bool read_FPGA_backtelConfig(int *p_readValue)
     }
     else
     {
-        // I2C 읽기 실패 — 연속 실패 디바운스
+        // I2C 읽기 실패 - 연속 실패 디바운스
         TDC_ISD_DEBOUNCE_FAIL(error_cnt, "[FPGA]", "read_FPGA_backtelCfg", "RD",
                               en__FPGA_COMMUNICATION_ERROR, en__I2C_FPGA_ReadingError);
         change_isd_state(en__isdStatus_PowerIC_OK);
@@ -431,7 +431,7 @@ bool read_FPGA_backtel_FIFO(int *p_readValue, int counter)
     }
     else
     {
-        // I2C 읽기 실패 — 연속 실패 디바운스
+        // I2C 읽기 실패 - 연속 실패 디바운스
         TDC_ISD_DEBOUNCE_FAIL(error_cnt, "[FPGA]", "read_FPGA_backtelFIFO", "RD",
                               en__FPGA_COMMUNICATION_ERROR, en__I2C_FPGA_ReadingError);
         change_isd_state(en__isdStatus_PowerIC_OK);
@@ -473,7 +473,7 @@ bool read_txPowerLevel(int *p_readValue)
     }
     else
     {
-        // I2C 실패 — 연속 실패 디바운스
+        // I2C 실패 - 연속 실패 디바운스
         TDC_ISD_DEBOUNCE_FAIL(error_cnt, "[PMIC]", "read_txPowerLevel", "RD",
                               en__RF_PowerIC_ERROR, en__I2C_RFPOW_ReadingError);
 
@@ -663,7 +663,7 @@ bool write_FPGA_reset(void)
     }
     else
     {
-        // I2C 실패 — 연속 실패 디바운스
+        // I2C 실패 - 연속 실패 디바운스
         TDC_ISD_DEBOUNCE_FAIL(error_cnt, "[FPGA]", "write_FPGA_reset", "WR",
                               en__FPGA_COMMUNICATION_ERROR, en__I2C_FPGA_WritingError);
         change_isd_state(en__isdStatus_PowerIC_OK);
@@ -693,7 +693,7 @@ bool write_FPGA_enable_RF_tx(void)
     }
     else
     {
-        // I2C 실패 — 연속 실패 디바운스
+        // I2C 실패 - 연속 실패 디바운스
         TDC_ISD_DEBOUNCE_FAIL(error_cnt, "[FPGA]", "write_FPGA_enRF", "WR",
                               en__FPGA_COMMUNICATION_ERROR, en__I2C_FPGA_WritingError);
         change_isd_state(en__isdStatus_PowerIC_OK);
@@ -725,7 +725,7 @@ bool is_RF_tx_eanble(void)
     }
     else
     {
-        // I2C 실패 — 연속 실패 디바운스
+        // I2C 실패 - 연속 실패 디바운스
         TDC_ISD_DEBOUNCE_FAIL(error_cnt, "[FPGA]", "is_RF_tx_eanble", "RD",
                               en__FPGA_COMMUNICATION_ERROR, en__I2C_FPGA_ReadingError);
         change_isd_state(en__isdStatus_PowerIC_OK);
@@ -754,7 +754,7 @@ bool write_FPGA_disable_RF_tx(void)
     }
     else
     {
-        // I2C 실패 — 연속 실패 디바운스
+        // I2C 실패 - 연속 실패 디바운스
         TDC_ISD_DEBOUNCE_FAIL(error_cnt, "[FPGA]", "write_FPGA_disRF", "WR",
                               en__FPGA_COMMUNICATION_ERROR, en__I2C_FPGA_WritingError);
         change_isd_state(en__isdStatus_PowerIC_OK);
@@ -800,7 +800,7 @@ bool write_change_TxPowerLevel(int txLevel)
     }
     else
     {
-        // I2C 실패 — 연속 실패 디바운스
+        // I2C 실패 - 연속 실패 디바운스
         TDC_ISD_DEBOUNCE_FAIL(error_cnt, "[PMIC]", "write_TxPowerLvl", "WR",
                               en__RF_PowerIC_ERROR, en__I2C_RFPOW_WritingError);
         change_isd_state(en__isdStatus_PowerIC_Reset);  // I2C 쓰기 실패, RF_Power IC 초기화
@@ -866,7 +866,7 @@ bool write_FPGA_clear_FIFO(void)
     }
     else
     {
-        // I2C 실패 — 연속 실패 디바운스
+        // I2C 실패 - 연속 실패 디바운스
         TDC_ISD_DEBOUNCE_FAIL(error_cnt, "[FPGA]", "write_FPGA_clrFIFO", "WR",
                               en__FPGA_COMMUNICATION_ERROR, en__I2C_FPGA_WritingError);
         change_isd_state(en__isdStatus_PowerIC_OK);

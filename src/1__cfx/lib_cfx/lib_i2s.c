@@ -172,11 +172,11 @@ void lib_i2s_clear_buffer_copy_done(void)
 }
 
 /* ============================================================================
- * [MODULE] M5 I2S — 스트리밍 상태·FIFO 복사·fade·HW init. 전제(의존): M3 HW 경로.
+ * [MODULE] M5 I2S - 스트리밍 상태·FIFO 복사·fade·HW init. 전제(의존): M3 HW 경로.
  *   검증: 통합테스트.   상세: 유닛-모듈-테스트맵.md
  * ========================================================================== */
 
-/* [UNIT] U6 I2S 스트리밍 상태 — set/get(I2S_isStreaming). 검증=unit-test / 의존=없음. */
+/* [UNIT] U6 I2S 스트리밍 상태 - set/get(I2S_isStreaming). 검증=unit-test / 의존=없음. */
 void tdc_i2s_set_streaming_state(int state)
 {
     lib_g_i2s_state = state;
@@ -187,8 +187,8 @@ int I2S_isStreaming(void)
     return lib_g_i2s_state == LIB_I2S_STATE_ENABLED;
 }
 
-/* [DEAD] 미사용 — I2S 스트리밍 검출이 normal_loop(main.c) 인라인 로직으로 대체됨.
- *        호출부 없음(main.c:419 주석). 물리 삭제는 후속 일괄 — git 이력 보존. */
+/* [DEAD] 미사용 - I2S 스트리밍 검출이 normal_loop(main.c) 인라인 로직으로 대체됨.
+ *        호출부 없음(main.c:419 주석). 물리 삭제는 후속 일괄 - git 이력 보존. */
 void I2S_update_state(void)
 {
     // 상태가 Disabled 상태일 때는 Enabled가 되는지 확인하고,

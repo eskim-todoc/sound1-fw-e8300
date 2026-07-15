@@ -5,14 +5,14 @@
 #include <audioMixer.h>
 
 /* ============================================================================
- * [MODULE] M1 믹싱 연산 모듈 — 입력 버퍼(들)을 HEAR_ADDR_AUDIO_MIX[16]로 합성.
+ * [MODULE] M1 믹싱 연산 모듈 - 입력 버퍼(들)을 HEAR_ADDR_AUDIO_MIX[16]로 합성.
  *   구성 유닛: U1 tdc_audio_mix_2_buffers_for_beamforming(DAS 빔포밍),
  *             U2 tdc_audio_mix_1_buffer(단일), U3 tdc_audio_mix_2_buffers(독립2버퍼).
- *   검증: 유닛테스트(온타깃) — 입력 인수 결정론 → 출력 HEAR_ADDR 관측.
+ *   검증: 유닛테스트(온타깃) - 입력 인수 결정론 → 출력 HEAR_ADDR 관측.
  *   전제(의존): 없음.   상세: 유닛-모듈-테스트맵.md
  * ========================================================================== */
 
-/* [UNIT] U2 단일버퍼 믹서 — p_buf1[16]을 >>AUDIO_INPUT_RSHIFT 스케일해 HEAR로 복사.
+/* [UNIT] U2 단일버퍼 믹서 - p_buf1[16]을 >>AUDIO_INPUT_RSHIFT 스케일해 HEAR로 복사.
  *   검증=unit-test / 의존=없음 / 테스트벡터: 함수 시작점 p_buf1 하드코딩 → HEAR 관측. */
 void tdc_audio_mix_1_buffer(int _XMEM *p_buf1)
 {
@@ -25,7 +25,7 @@ void tdc_audio_mix_1_buffer(int _XMEM *p_buf1)
         }
 }
 
-/* [UNIT] U3 독립2버퍼 믹서 — 독립 음원(mic + I2S) 단순 합산(÷2 없음).
+/* [UNIT] U3 독립2버퍼 믹서 - 독립 음원(mic + I2S) 단순 합산(÷2 없음).
  *   검증=unit-test / 의존=없음 / 테스트벡터: p_buf1·p_buf2 하드코딩 → HEAR 관측. */
 void tdc_audio_mix_2_buffers(int _XMEM *p_buf1, int _XMEM *p_buf2)
 {
@@ -34,7 +34,7 @@ void tdc_audio_mix_2_buffers(int _XMEM *p_buf1, int _XMEM *p_buf2)
     for (register int i = 0; i < df_inputADC_DataBuffLength; i++)
         chess_loop_range(df_inputADC_DataBuffLength, df_inputADC_DataBuffLength)
         {
-            // 독립 음원(mic + I2S) 단순 합산 — 의도적으로 ÷2(>>1) 생략.
+            // 독립 음원(mic + I2S) 단순 합산 - 의도적으로 ÷2(>>1) 생략.
             // 빔포밍(동일 음원 2경로)과 달리 두 입력이 독립이므로 합산 레벨이 그대로 출력이 된다.
             p_mix[i] = ((p_buf1[i] >> AUDIO_INPUT_RSHIFT) + (p_buf2[i] >> AUDIO_INPUT_RSHIFT));
         }
@@ -44,11 +44,11 @@ void tdc_audio_mix_2_buffers(int _XMEM *p_buf1, int _XMEM *p_buf2)
  * [UNIT] U1 DAS 빔포밍 믹서 (검증=unit-test / 의존=없음 /
  *        테스트벡터: 함수 시작점 3버퍼 하드코딩 → HEAR 관측. 케이스 (a)i=0..14 (b)경계 i=15)
  *
- * tdc_audio_mix_2_buffers_for_beamforming — delay-and-sum(DAS) 빔포밍 믹서.
+ * tdc_audio_mix_2_buffers_for_beamforming - delay-and-sum(DAS) 빔포밍 믹서.
  *
  * ===== 1) 마이크 배치와 소리 방향 =====================================
  *
- *      정면 음원  )))  ── 소리 진행 방향 ──►
+ *      정면 음원  )))  ── 소리 진행 방향 ──>
  *
  *         +-------+       22 mm        +-------+
  *         | FRONT |<------------------>| REAR  |
@@ -90,7 +90,7 @@ void tdc_audio_mix_2_buffers(int _XMEM *p_buf1, int _XMEM *p_buf2)
  *         = 6/240 샘플 = 0.025 샘플 (서브샘플 보정).
  *         system_control.c의 L/R 분기에서 FRONT 채널에만
  *         LIB_ADC_DEC_CTRL_VAL_0_0250 으로 설정(REAR 채널은 지연 0).
- *   - 합계 : 1.025 샘플 ≈ 64.06 µs ≈ 22 mm / 343 m·s  (end-fire 정면 정렬)
+ *   - 합계 : 1.025 샘플 ~ 64.06 us ~ 22 mm / 343 m·s  (end-fire 정면 정렬)
  *
  * 인수: p_delay_buf0=FRONT 현재블록, p_delay_buf1=FRONT 직전블록,
  *       p_no_delay_buf0=REAR 현재블록. 각 채널 >>AUDIO_INPUT_RSHIFT(입력 스케일)

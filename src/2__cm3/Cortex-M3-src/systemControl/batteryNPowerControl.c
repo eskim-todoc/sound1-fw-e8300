@@ -77,7 +77,7 @@ void snd_charger_set_state(EN__SND_CHARGER_STATE state)
         {
             cfx_cm3_sharedMemoryAll.chargerState.chargerConnectorPluggedIn = df_Connected;
             cfx_cm3_sharedMemoryAll.chargerState.carryingCasePluggedIn     = df_Connected;
-            /* carryingCaseCoverOpen: BLE 0x34 data[2] 수신값 유지 — tdc_charger_set_cradle_cover_state()가 관리 */
+            /* carryingCaseCoverOpen: BLE 0x34 data[2] 수신값 유지 - tdc_charger_set_cradle_cover_state()가 관리 */
         }
         break;
 
@@ -85,7 +85,7 @@ void snd_charger_set_state(EN__SND_CHARGER_STATE state)
         {
             cfx_cm3_sharedMemoryAll.chargerState.chargerConnectorPluggedIn = df_Disconnected;
             cfx_cm3_sharedMemoryAll.chargerState.carryingCasePluggedIn     = df_Disconnected;
-            /* carryingCaseCoverOpen: BLE 0x34 data[2] 수신값 유지 — tdc_charger_set_cradle_cover_state()가 관리 */
+            /* carryingCaseCoverOpen: BLE 0x34 data[2] 수신값 유지 - tdc_charger_set_cradle_cover_state()가 관리 */
         }
         break;
 
@@ -93,7 +93,7 @@ void snd_charger_set_state(EN__SND_CHARGER_STATE state)
         {
             cfx_cm3_sharedMemoryAll.chargerState.chargerConnectorPluggedIn = df_Defalut;
             cfx_cm3_sharedMemoryAll.chargerState.carryingCasePluggedIn     = df_Defalut;
-            /* carryingCaseCoverOpen: BLE 0x34 data[2] 수신값 유지 — tdc_charger_set_cradle_cover_state()가 관리 */
+            /* carryingCaseCoverOpen: BLE 0x34 data[2] 수신값 유지 - tdc_charger_set_cradle_cover_state()가 관리 */
         }
         break;
     }

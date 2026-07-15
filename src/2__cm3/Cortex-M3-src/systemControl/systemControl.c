@@ -220,7 +220,7 @@ ST__SYSTEM_STATE systemControl(EN__LED_PATTERN   current_led_pattern,  //
                 }
                 else
                 {
-                    /* burst pending flag 직접 조회 — `current_led_pattern` 은 LED arbiter
+                    /* burst pending flag 직접 조회 - `current_led_pattern` 은 LED arbiter
                      * ISR 가 갱신하므로 main loop iter 와 1-tick stale race 가능 (커밋
                      * cecbc3d 의 ISR 책임 분리로 노출). pending flag 는 `led_request()`
                      * 가 set, `led_engine_run()` burst 완료 시 clear → timer/tick 무관 정확. */
@@ -285,11 +285,11 @@ ST__SYSTEM_STATE systemControl(EN__LED_PATTERN   current_led_pattern,  //
 
                         if (isPowerOffEnabled)
                         {
-                            /* burst 종료 검출 — burst pending flag 직접 조회.
+                            /* burst 종료 검출 - burst pending flag 직접 조회.
                              * pending flag set/clear 책임 분리: `led_request()` 가 요청 시점
                              * 즉시 set, `led_engine_run()` 이 burst 자가 해제 시 clear.
                              * timer/tick 무관 정확. (`current_led_pattern` 은 LED arbiter ISR
-                             * 갱신이라 main loop iter 와 stale race 가능 — 부정확.) */
+                             * 갱신이라 main loop iter 와 stale race 가능 - 부정확.) */
                             if (!tdc_led_is_burst_pending() && (PowerOff_StartCounter != 0))
                             {
                                 isPowerOffEnabled         = false;

@@ -97,7 +97,7 @@ void lib_i2s_clear_buffer_copy_done(void);
 
 void tdc_i2s_set_streaming_state(int state);
 int  I2S_isStreaming(void);
-void I2S_update_state(void);  // [DEAD] 미사용(normal_loop 인라인 대체) — 후속 일괄 삭제
+void I2S_update_state(void);  // [DEAD] 미사용(normal_loop 인라인 대체) - 후속 일괄 삭제
 
 void lib_i2s_copy_data_from_fifo(int _XMEM *p_fifo);
 void lib_i2s_clear_data(void);

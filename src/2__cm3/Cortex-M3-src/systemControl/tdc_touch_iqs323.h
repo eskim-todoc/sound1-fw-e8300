@@ -40,28 +40,28 @@
 
 /* **********************************************************************
  * Touch 임계 (FullATI 계수 기반: 절대 = 계수 x LTA / 256 이므로 계수 < 32 필수).
- * Beta/Power 레지스터 정수값은 [실측 게이트] ? 시험 write 1회 판별 후 고정.
+ * Beta/Power 레지스터 정수값은 [실측 게이트] - 시험 write 1회 판별 후 고정.
  */
 #ifndef TDC_TOUCH_IQS323_THRESHOLD
-#define TDC_TOUCH_IQS323_THRESHOLD 80 /* 절대임계 = 계수 x LTA / 256 ≈ 125 @ LTA399 (터치 D 160~190의 약 78%, 약결합 D~40의 3배+). 수렴에 막혀 158 도달난 → 80으로 하향. 8비트(0~255) */
+#define TDC_TOUCH_IQS323_THRESHOLD 80 /* 절대임계 = 계수 x LTA / 256 ~ 125 @ LTA399 (터치 D 160~190의 약 78%, 약결합 D~40의 3배+). 수렴에 막혀 158 도달난 → 80으로 하향. 8비트(0~255) */
 #endif
 #ifndef TDC_TOUCH_IQS323_HYSTERESIS
-#define TDC_TOUCH_IQS323_HYSTERESIS 8 /* Hysteresis 필드값(4비트 0~15, bits[15:12]). 실제 hyst = (H/256) x Threshold ? 5cnt */
+#define TDC_TOUCH_IQS323_HYSTERESIS 8 /* Hysteresis 필드값(4비트 0~15, bits[15:12]). 실제 hyst = (H/256) x Threshold - 5cnt */
 #endif
 #ifndef TDC_TOUCH_IQS323_PROX_THRESHOLD
-#define TDC_TOUCH_IQS323_PROX_THRESHOLD 255 /* Prox Threshold 계수. 255 = prox 사실상 무력화(진입점≈LTA) → LTA freeze는 touch만 담당. [실측 게이트: prox 단위 절대/계수] */
+#define TDC_TOUCH_IQS323_PROX_THRESHOLD 255 /* Prox Threshold 계수. 255 = prox 사실상 무력화(진입점~LTA) → LTA freeze는 touch만 담당. [실측 게이트: prox 단위 절대/계수] */
 #endif
 
 /* **********************************************************************
- * 상태 read 결과 (4-tuple) ? 순수 FSM 의 단일 입력 채널.
+ * 상태 read 결과 (4-tuple) - 순수 FSM 의 단일 입력 채널.
  *   read 실패/글리치(0xEEEE) 시 ok=false, 나머지 false.
  */
 typedef struct
 {
     bool ok;         /* read 성공 (통신 실패/0xEEEE 글리치 시 false) */
     bool pressed;    /* CH0 Touch (System Status bit9) */
-    bool prox;       /* CH0 Prox (System Status bit8) ? 계측/진단용 (FSM 미사용) */
-    bool ati_error;  /* ATI Error (bit6) ? 드리프트 신호 */
+    bool prox;       /* CH0 Prox (System Status bit8) - 계측/진단용 (FSM 미사용) */
+    bool ati_error;  /* ATI Error (bit6) - 드리프트 신호 */
     bool ati_active; /* ATI burst 진행 중 (bit5) */
 } tdc_touch_iqs323_status_t;
 
@@ -78,7 +78,7 @@ void tdc_touch_iqs323_apply_settings(void);
 /* 3. Re-ATI 트리거 (0xC0 bit2, 논블로킹). 완료는 다음 read 의 ati_active==0 로 판정. */
 bool tdc_touch_iqs323_re_ati(void);
 
-/* 4. RESEED 트리거 (0xC0 bit3 only, 논블로킹). 절전 감도 미동반 ? 순수 LTA 재동기. */
+/* 4. RESEED 트리거 (0xC0 bit3 only, 논블로킹). 절전 감도 미동반 - 순수 LTA 재동기. */
 bool tdc_touch_iqs323_reseed(void);
 
 /* 5. MCLR 하드리셋 (DIO16 OUTPUT->LOW->INPUT, 약 51ms 블로킹). IQS323 POR -> Auto-ATI. */
@@ -88,7 +88,7 @@ void tdc_touch_iqs323_mclr(void);
 bool tdc_touch_iqs323_is_ati_done(void);
 
 /* **********************************************************************
- * 디버그 계측 (LTA/Counts 실측 튜닝용) ? 노말 폴링에서만 사용, FSM 입력 아님.
+ * 디버그 계측 (LTA/Counts 실측 튜닝용) - 노말 폴링에서만 사용, FSM 입력 아님.
  */
 typedef struct
 {
