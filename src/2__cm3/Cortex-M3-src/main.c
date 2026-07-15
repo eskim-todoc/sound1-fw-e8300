@@ -609,7 +609,7 @@ static void tdc_normal_boot_sequence(void)
 static void tdc_collect_events(tdc_normal_events_t *ev)
 {
     ev->mcu_error    = readErrorCode();
-    ev->charger      = snd_charger_get_state();  // readUsbConnectorState() 대체
+    ev->charger      = snd_charger_get_state();  // QCC 0x34 기반
     ev->batt_percent = snd_batt_get_percent();   // QCC 제공. Initialize 단계에서 수집 완료.
     ev->power_button = tdc_touch_process();      // isPowerButtonPushed() 대체
     ev->batt_timeout = tdc_qcc_has_batt_level_rx_timed_out();
