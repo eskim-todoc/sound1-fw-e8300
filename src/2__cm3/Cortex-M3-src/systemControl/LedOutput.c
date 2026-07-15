@@ -317,25 +317,6 @@ static bool led_is_error(led_state_t st)
 }
 
 /* ========================================================================
- *  Legacy pattern <-> new state mapping
- * ======================================================================== */
-
-static EN__LED_PATTERN led_state_to_enum(led_state_t st)
-{
-    switch (st)
-    {
-        case LED_ST_ERROR_MAP:   return en__LED_Map_Error;
-        case LED_ST_ERROR_MCU:   return en__LED_MCU_Error;
-        case LED_ST_ERROR_ACCEL: return en__LED_MCU_Accelerometer_Error;
-        case LED_ST_ERROR_FPGA:  return en__LED_MCU_FPGA_Error;
-        case LED_ST_ERROR_PMIC:  return en__LED_MCU_RF_PMIC_Error;
-        case LED_ST_POWER_ON:    return en__LED_POWER_On;
-        case LED_ST_POWER_OFF:   return en__LED_POWER_Off;
-        default:                 return en__LED_NA;
-    }
-}
-
-/* ========================================================================
  *  BLE LED Indication state (기존 유지)
  * ======================================================================== */
 
@@ -387,22 +368,6 @@ void disabletestLED_Trigger(void)
 bool isTestTriggerEanbled(void)
 {
     return testLED_Trigger;
-}
-
-/* ========================================================================
- *  Legacy LED pattern tracking (게이트 호환)
- * ======================================================================== */
-
-static EN__LED_PATTERN LedOutputPattern;
-
-void updateLED_OutputPattern(EN__LED_PATTERN Led_Pattern)
-{
-    LedOutputPattern = Led_Pattern;
-}
-
-EN__LED_PATTERN geteLED_OutputPattern(void)
-{
-    return LedOutputPattern;
 }
 
 /* ========================================================================
@@ -660,7 +625,6 @@ static void led_engine_run(led_state_t st, bool reset)
                     }
 
                     /* 게이트 자가 해제: 기존 관례 유지 */
-                    updateLED_OutputPattern(en__LED_NA);
                     s_req[LED_SRC_POWER]       = LED_ST_NONE;
 #if TDC_DBG_LONG_TOUCH_IGNORE_LED
                     if (st == LED_ST_DBG_LONG_TOUCH_IGNORE)
@@ -777,10 +741,6 @@ void led_arbiter_tick(void)
     }
 
     led_state_t best = compute_best_state();
-
-    /* Legacy pattern 업데이트 (게이트 호환) */
-    EN__LED_PATTERN legacy = led_state_to_enum(best);
-    updateLED_OutputPattern(legacy);
 
     /* 패턴 엔진 구동 */
     static led_state_t prev_best = LED_ST_NONE;

@@ -56,10 +56,8 @@
 /* 배열 원소 개수. 배열 정의가 바뀌어도 순회 길이가 자동 추종한다(매직넘버 방지). */
 #define TDC_ARRAY_LEN(arr) (sizeof(arr) / sizeof((arr)[0]))
 
-/* func_normal() 메인 루프 상태.
- * iteration 블록이 갱신하고 루프 후반(타임아웃/크래들/절전 판정)이 읽는 값만 담는다.
- * mcuErrorCode / usbConnectorState / ledPattern / powerButtonPushed 는 iteration
- * 안에서만 쓰이므로 여기 두지 않고 tdc_normal_iteration() 지역변수로 유지한다. */
+/* func_normal() 메인 루프 상태 (tick 간 유지).
+ * iteration 이 갱신하고 루프 후반(타임아웃/크래들/절전 판정)이 읽는 값만 담는다. */
 typedef struct
 {
     ST__SYSTEM_STATE            systemState;
@@ -68,13 +66,28 @@ typedef struct
     bool                        qcc_batt_timeout;
 } tdc_normal_ctx_t;
 
+/* 1 tick 분 입력 스냅샷 (tick 내에서만 유효).
+ * 수집을 한곳에 모아 handler 가 일관된 값을 보게 한다 - 특히 batt_percent 는
+ * 기존에 systemControl / LED 요청이 각자 snd_batt_get_percent() 를 호출해
+ * 한 tick 안에서 서로 다른 값을 볼 여지가 있었다. */
+typedef struct
+{
+    ST__ERROR_CODE    mcu_error;
+    ST__USB_CONNECTOR charger;
+    int               batt_percent;
+    bool              power_button;
+    bool              batt_timeout;
+} tdc_normal_events_t;
+
 static bool tdc_qcc_has_batt_level_rx_timed_out(void);
 static void tdc_print_default_isd_info(void);
 static void tdc_wait_for_cfx_start(void);
 static void tdc_normal_boot_sequence(void);
+static void tdc_collect_events(tdc_normal_events_t *ev);
+static void tdc_handle_events(const tdc_normal_events_t *ev, tdc_normal_ctx_t *ctx);
 static void tdc_normal_iteration(tdc_normal_ctx_t *ctx);
 static void tdc_apply_mapping_mode(bool mapping_connected);
-static void tdc_update_led_requests(bool isd_conn_default, bool map_conn_default);
+static void tdc_update_led_requests(int batt_percent, bool isd_conn_default, bool map_conn_default);
 static bool tdc_handle_qcc_batt_timeout(bool *poweroff_started);
 static bool tdc_can_enter_sleep(bool map_active);
 
@@ -590,33 +603,36 @@ static void tdc_normal_boot_sequence(void)
     tdc_print_default_isd_info();  // default ISD 정보 출력
 }
 
-/* 메인 루프 1 iteration: 입력 수집 -> systemControl -> ISD/BLE -> 출력 반영.
- * ctx 의 4개 상태를 갱신하고, 루프 후반(타임아웃/크래들/절전 판정)이 이를 읽는다. */
-static void tdc_normal_iteration(tdc_normal_ctx_t *ctx)
+/* 입력 수집 - 부작용 없이 읽기만 한다.
+ * 예외: tdc_touch_process() 와 tdc_qcc_has_batt_level_rx_timed_out() 은 내부에
+ * 자체 FSM/타이머를 돌리므로 tick 당 정확히 1회 호출해야 한다. */
+static void tdc_collect_events(tdc_normal_events_t *ev)
 {
-    ST__ERROR_CODE    mcuErrorCode      = readErrorCode();
-    ST__USB_CONNECTOR usbConnectorState = snd_charger_get_state();  // readUsbConnectorState() 대체
-    EN__LED_PATTERN   ledPattern        = geteLED_OutputPattern();
-    bool              powerButtonPushed = tdc_touch_process();  // isPowerButtonPushed() 대체
+    ev->mcu_error    = readErrorCode();
+    ev->charger      = snd_charger_get_state();  // readUsbConnectorState() 대체
+    ev->batt_percent = snd_batt_get_percent();   // QCC 제공. Initialize 단계에서 수집 완료.
+    ev->power_button = tdc_touch_process();      // isPowerButtonPushed() 대체
+    ev->batt_timeout = tdc_qcc_has_batt_level_rx_timed_out();
+}
 
-    ctx->qcc_batt_timeout = tdc_qcc_has_batt_level_rx_timed_out();
+/* 수집된 입력으로 상태를 전이시키고 출력에 반영한다.
+ * 순서 의존: systemControl -> isd_interface -> bleCommunication (enable_ISD 전달).
+ * LED 요청은 배터리 -> ISD -> 매핑 순서에 의존한다(tdc_update_led_requests 내부). */
+static void tdc_handle_events(const tdc_normal_events_t *ev, tdc_normal_ctx_t *ctx)
+{
+    ctx->qcc_batt_timeout = ev->batt_timeout;
 
     // NOTE: QCC에게 0x34(Power info) 프로토콜 수신 전까지는
-    //       usbConnectorState.chargerConnectorPluggedIn == df_Default; 상태이다.
-    //       df_Default 상태일 때는 아래의 systemControl() 에서
-    //       systemStatus.Led_Pattern = en__LED_NA; 외에는 동작하는게 없다.
+    //       charger.chargerConnectorPluggedIn == df_Default; 상태이다.
+    //       df_Default 상태일 때는 아래의 systemControl() 에서 동작하는게 없다.
 
-    ctx->systemState = systemControl(ledPattern,  // 최초 부팅 시 초기 값 : en__LED_NA
-                                     mcuErrorCode,
-                                     usbConnectorState,
-                                     snd_batt_get_percent(),  // 배터리 percent 직접 전달(QCC 제공). Initialize 단계에서 수집 완료.
-                                     powerButtonPushed,
-                                     ctx->isd_state.conneded_ISD,     // 최초 부팅 시 초기 값 : false
-                                     ctx->ble_state.mappingConnection  // 최초 부팅 시 초기 값 : false
+    ctx->systemState = systemControl(ev->mcu_error,
+                                     ev->charger,
+                                     ev->batt_percent,
+                                     ev->power_button,
+                                     ctx->isd_state.conneded_ISD,      // 지난 tick 값 (순환 의존 - systemControl.c 주석 참조)
+                                     ctx->ble_state.mappingConnection  // 지난 tick 값
     );
-
-    // 특수 LED 사용 유무 판별
-    // tdc_LED_handle_special_case(ctx->systemState.Led_Pattern);
 
     update_mapNum();  // 맵데이터 업데이트
 
@@ -641,7 +657,7 @@ static void tdc_normal_iteration(tdc_normal_ctx_t *ctx)
 
     tdc_apply_mapping_mode(ctx->ble_state.mappingConnection);
 
-    tdc_update_led_requests(ctx->isd_state.conneded_ISD, ctx->ble_state.mappingConnection);
+    tdc_update_led_requests(ev->batt_percent, ctx->isd_state.conneded_ISD, ctx->ble_state.mappingConnection);
 
     /* led_arbiter_tick() 은 Timer 3 ISR 에서 직접 구동 (ci_timer.c).
      * main loop 의 I2C/EEPROM 폴링 블록으로 인한 fade/PWM jitter 회피. */
@@ -652,6 +668,15 @@ static void tdc_normal_iteration(tdc_normal_ctx_t *ctx)
     tdc_ui_command_set_mapping_connected(ctx->ble_state.mappingConnection);
     tdc_ui_command_poll();
 #endif
+}
+
+/* 메인 루프 1 iteration: collect -> handle -> iteration 종료. */
+static void tdc_normal_iteration(tdc_normal_ctx_t *ctx)
+{
+    tdc_normal_events_t ev;
+
+    tdc_collect_events(&ev);
+    tdc_handle_events(&ev, ctx);
 
     // 중요!!
     disable_iteration();
@@ -689,7 +714,8 @@ static void tdc_apply_mapping_mode(bool mapping_connected)
 }
 
 /* LED source requests (Rev.3).
- * isd_conn_default / map_conn_default 는 UI 커맨드 override 가 없을 때 쓰는 실제 상태.
+ * batt_percent 는 이번 tick 스냅샷(tdc_collect_events). isd_conn_default /
+ * map_conn_default 는 UI 커맨드 override 가 없을 때 쓰는 실제 상태.
  *
  * Battery (SS4.5) - 마진 제거: QCC가 배터리 측정·필터링을 담당하므로 진입/이탈
  * 이중임계·prev 추적 없이 단일 컷 테이블로 판정(tdc_led_request_battery).
@@ -700,14 +726,14 @@ static void tdc_apply_mapping_mode(bool mapping_connected)
  *
  * Mapping (SS4.4) - 배터리 LOW(단일 컷 pct<=TDC_MAP_LOW_BATT_PCT) × ISD 연결 여부 4분기.
  * 마진(s_map_low_active 래치) 제거 -> 매 호출 pct 만으로 판정(tdc_led_request_mapping). */
-static void tdc_update_led_requests(bool isd_conn_default, bool map_conn_default)
+static void tdc_update_led_requests(int batt_percent, bool isd_conn_default, bool map_conn_default)
 {
 #ifdef ENABLE_UI_CMD
     bool ovr_batt_active = tdc_ui_command_override_battery_active();
-    int  pct             = ovr_batt_active ? (int) tdc_ui_command_override_battery_percent() : snd_batt_get_percent();
+    int  pct             = ovr_batt_active ? (int) tdc_ui_command_override_battery_percent() : batt_percent;
 #else
     bool ovr_batt_active = false;
-    int  pct             = snd_batt_get_percent();
+    int  pct             = batt_percent;
 #endif
     bool        batt_is_reset_state = (snd_batt_get_state() == EN__SND_BATT_STATE_RESET);
     led_state_t batt_st             = tdc_led_request_battery(pct, ovr_batt_active, batt_is_reset_state);

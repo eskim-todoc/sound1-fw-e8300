@@ -151,8 +151,7 @@ void        led_force_fade_off(void);
 void                tdc_led_set_ind_state(tdc_led_ind_state_t state);
 tdc_led_ind_state_t tdc_led_get_ind_state(void);
 
-EN__LED_PATTERN geteLED_OutputPattern(void);
-void            LedPatternOut(EN__LED_PATTERN ledOutputPattern);
+void LedPatternOut(EN__LED_PATTERN ledOutputPattern);
 
 void enabletestLED_Trigger(void);
 void disabletestLED_Trigger(void);
