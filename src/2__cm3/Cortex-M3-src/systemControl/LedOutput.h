@@ -1,7 +1,7 @@
 #ifndef LED_OUTPUT_H__
 #define LED_OUTPUT_H__
 
-/** 롱터치 무시 케이스 보라색 LED 피드백 (디버깅용) — 0 으로 설정 시 기존 동작(무시만) 복원 */
+/** 롱터치 무시 케이스 보라색 LED 피드백 (디버깅용) - 0 으로 설정 시 기존 동작(무시만) 복원 */
 #define TDC_DBG_LONG_TOUCH_IGNORE_LED  0
 
 #include <stdbool.h>
@@ -69,7 +69,7 @@ typedef enum
     LED_ST_BATT_MID,       /* 노랑 지속 ON */
     LED_ST_BATT_CRITICAL,  /* 노랑 ON 1100ms / OFF 1100ms 점멸 */
 
-    /* Mapping (4종 분화 — 배터리 LOW 임계 20% × ISD 연결 여부) */
+    /* Mapping (4종 분화 - 배터리 LOW 임계 20% × ISD 연결 여부) */
     LED_ST_MAPPING_ISD_BATT_READY,    /* 파랑 ON 200ms / OFF 800ms 점멸 (배터리 > 20% & ISD 연결) */
     LED_ST_MAPPING_NO_ISD_BATT_READY, /* 파랑 지속 ON                  (배터리 > 20% & ISD 미연결) */
     LED_ST_MAPPING_ISD_BATT_LOW,      /* 보라 ON 100ms / OFF 900ms 점멸 (배터리 ≤ 20% & ISD 연결) */
@@ -91,7 +91,7 @@ typedef enum
     LED_ST_POWER_ON,
     LED_ST_POWER_OFF,
 
-    /* [DBG] 롱터치 무시 케이스 피드백 — TDC_DBG_LONG_TOUCH_IGNORE_LED 로 제어 */
+    /* [DBG] 롱터치 무시 케이스 피드백 - TDC_DBG_LONG_TOUCH_IGNORE_LED 로 제어 */
     LED_ST_DBG_LONG_TOUCH_IGNORE, /* 보라 ON 180ms / OFF 180ms × 3회 버스트 */
 
     LED_ST__MAX
@@ -105,7 +105,7 @@ typedef enum
     LED_SRC_MAPPING,
     LED_SRC_BATTERY, /* BATT_CRITICAL / BATT_MID / READY */
     LED_SRC_ISD,     /* IN_USE */
-    LED_SRC_DBG,     /* [DBG] 디버깅 전용 임시 소스 — TDC_DBG_LONG_TOUCH_IGNORE_LED */
+    LED_SRC_DBG,     /* [DBG] 디버깅 전용 임시 소스 - TDC_DBG_LONG_TOUCH_IGNORE_LED */
     LED_SRC__MAX
 } led_src_t;
 
@@ -135,13 +135,13 @@ void        led_arbiter_tick(void);
 bool        tdc_led_is_burst_pending(void);
 led_state_t led_get_request(led_src_t src);
 
-/* CFX / FIFO ISR 활성 여부 통지 — initialize.c 에서 set / clear.
+/* CFX / FIFO ISR 활성 여부 통지 - initialize.c 에서 set / clear.
  * turnOffLED() 가 ISR 의존 fade-off vs. 즉시 OFF 분기 결정에 사용. */
 void        led_isr_active_set(bool active);
 
 /* 절전 진입 직전 1 회 호출. 모든 src LED_ST_NONE 강제 + cross-fade
- * Phase A 자연 fade-off 보장 (소요 ≈ LED_DIMMING_FADE_MAX_MS + 10 ms).
- * 호출 후엔 LED 가 BLACK 상태로 안정 — turnOffLED() 가 잔상 없이 마무리. */
+ * Phase A 자연 fade-off 보장 (소요 ~ LED_DIMMING_FADE_MAX_MS + 10 ms).
+ * 호출 후엔 LED 가 BLACK 상태로 안정 - turnOffLED() 가 잔상 없이 마무리. */
 void        led_force_fade_off(void);
 
 /* ========================================================================

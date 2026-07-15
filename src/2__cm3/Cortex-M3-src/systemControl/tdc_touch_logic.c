@@ -6,7 +6,7 @@
  * 현 tdc_touch 의 롱터치 / Re-ATI 게이트 / stuck 3단계 / read 실패 hold / 부팅 무시를
  * 단일 step 순수 함수로 통합한다. 동작 정본은 B99 이벤트표(E1~E10, S1~S3).
  *
- * 순수성: include 는 본 헤더 + 시간 상수뿐. HW/timer/printf 0건 — 호스트 유닛테스트 가능.
+ * 순수성: include 는 본 헤더 + 시간 상수뿐. HW/timer/printf 0건 - 호스트 유닛테스트 가능.
  */
 
 #include <tdc_touch_logic.h>
@@ -120,7 +120,7 @@ void tdc_touch_logic_step(tdc_touch_logic_state_t *st,
     {
         if (in->read_ok && curr_state != TDC_TOUCH_STATE_TOUCH)
         {
-            /* 연속 not-pressed 가 디바운스 카운트(400ms = 2폴링) 도달 시에만 진짜 해제 — 채터 방지.
+            /* 연속 not-pressed 가 디바운스 카운트(400ms = 2폴링) 도달 시에만 진짜 해제 - 채터 방지.
              * (read 실패 시엔 상단 hold 에서 선처리, 여기 도달은 hold 초과 NOT_TOUCH = read_ok false
              *  → 본 분기 미진입 → else 에서 카운터 리셋.) */
             st->boot_release_cnt++;
@@ -160,7 +160,7 @@ void tdc_touch_logic_step(tdc_touch_logic_state_t *st,
         st->re_ati_cooldown_until_ms = in->now_ms + TDC_TOUCH_RE_ATI_COOLDOWN_MS;
     }
 
-    /* --- stuck 3단계 (TOUCH 전용 — 게이트와 상태 배타라 액션 충돌 0) --- */
+    /* --- stuck 3단계 (TOUCH 전용 - 게이트와 상태 배타라 액션 충돌 0) --- */
     {
         tdc_touch_act_t sa = stuck_eval(st, curr_state, in->now_ms);
         if (sa != TDC_TOUCH_ACT_NONE)

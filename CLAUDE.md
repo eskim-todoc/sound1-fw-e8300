@@ -22,6 +22,8 @@ E8300 임베디드 펌웨어 프로젝트.
 ```
 Sound1/
 ├── CLAUDE.md       이 파일
+├── .editorconfig   인코딩 · 개행 통일 (charset=utf-8) — 아래 §소스 인코딩 규칙
+├── .githooks/      pre-commit — CP949 손실 문자 커밋 차단
 ├── src/            Eclipse 임베디드 프로젝트 (펌웨어 소스)
 │   ├── 0__bootloader/
 │   ├── 1__cfx/
@@ -29,6 +31,7 @@ Sound1/
 │   ├── 3__hear/
 │   ├── 4__eeprom/
 │   ├── 5__calibration/
+│   │   └── .settings/      Eclipse 인코딩 UTF-8 고정 (각 프로젝트 공통)
 │   ├── .metadata/          Eclipse workspace (경로 이동 시 재-import 필요)
 │   ├── .clang-format
 │   ├── .gitignore
@@ -36,3 +39,33 @@ Sound1/
 ├── tests/          단위 · 통합 테스트 (초기: 빈 폴더)
 └── docs/           SW 문서 — 루트 컨벤션 적용 (참고/·사용방법/·tasks/<모듈>/<작업>/)
 ```
+
+## 소스 인코딩 규칙 (필수)
+
+> [!CAUTION]
+> **소스(`.c` / `.h`) 주석에 CP949 비호환 문자 금지.** 한글은 안전하지만 `—`(em dash) 등은 **영구 손실**된다.
+>
+> **원인**: Eclipse clang-format 플러그인은 clang-format 을 외부 프로세스로 실행하면서 stdin/stdout 인코딩을 명시하지 않아 플랫폼 기본값(한국어 Windows = **CP949**)을 쓴다. 이때 `UTF-8 → CP949 → UTF-8` 왕복이 일어나고, CP949 에 매핑이 없는 문자는 `?`(0x3F)로 대체되어 되돌릴 수 없다. **파일은 UTF-8 을 유지한 채 특정 문자만 죽기 때문에 알아채기 어렵다.**
+>
+> **실제 피해 (2026-07-15)**: `—` 148건이 시한폭탄으로 잠복, 그중 75건이 이미 `?` 로 손상된 상태였다. 전량 ASCII 치환으로 해소.
+
+| 금지 문자 | 대체 | 비고 |
+|---|---|---|
+| `—` (U+2014) · `–` (U+2013) | `-` | 피해 대부분이 이것 |
+| `≈` (U+2248) | `~` | |
+| `µ` (U+00B5) | `u` | `µs` → `us`. **`?` 가 아니라 `μ`(U+03BC)로 조용히 변질**되어 더 위험 |
+| `►` (U+25BA) | `>` | |
+
+한글 · `·` · `→` · `×` 는 CP949 에 존재하므로 **안전하다**. 문서(`.md`)는 Eclipse 를 거치지 않으므로 이 규칙의 대상이 아니다.
+
+**방어 장치 (3중)**:
+
+1. `.editorconfig` — `charset=utf-8` (에디터 무관)
+2. `src/<프로젝트>/.settings/org.eclipse.core.resources.prefs` — Eclipse 인코딩 UTF-8 고정
+3. `.githooks/pre-commit` — 위반 시 커밋 차단. **clone 후 1회 설치 필요**:
+   ```sh
+   git config core.hooksPath .githooks
+   ```
+
+> [!NOTE]
+> 방어 장치 1·2 는 보조다. Eclipse 의 외부 프로세스 I/O 는 파일 인코딩 설정과 **별개 경로**라서 설정만으로는 완전히 막히지 않는다. **애초에 해당 문자를 쓰지 않는 것**이 유일한 확실한 해결책이며, 훅이 그것을 강제한다.

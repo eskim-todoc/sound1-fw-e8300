@@ -12,7 +12,7 @@ void CFX_0_IRQHandler(void)
     enable_iteration();
     ci_timer_increase_tick();  // 시스템 사용 시간, 로그 시간 등을 위해 카운터 증가
 
-    /* LED arbiter 호출은 TIMER_3_IRQHandler (`ci_timer.c`) 가 전담 — ISR 책임 분리. */
+    /* LED arbiter 호출은 TIMER_3_IRQHandler (`ci_timer.c`) 가 전담 - ISR 책임 분리. */
 }
 
 void FIFO_5_IRQHandler(void)

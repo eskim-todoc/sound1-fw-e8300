@@ -3,13 +3,13 @@
  */
 
 #include <ci_timer.h>
-#include <LedOutput.h>  /* led_arbiter_tick — Timer 3 ISR 직접 구동 */
+#include <LedOutput.h>  /* led_arbiter_tick - Timer 3 ISR 직접 구동 */
 
 static bool    _ci_is_leap(uint16_t year);
 static uint8_t _ci_day_in_month(uint8_t year, uint8_t month);
 
-static volatile int g_ci_timer_main_tick = 1; /* CFX FIFO 가 증가 — 시스템 시간 전담 */
-static volatile int g_tdc_timer_t3_tick  = 0; /* TIMER3 가 증가 — LED · 터치 초기화 동기 전담 */
+static volatile int g_ci_timer_main_tick = 1; /* CFX FIFO 가 증가 - 시스템 시간 전담 */
+static volatile int g_tdc_timer_t3_tick  = 0; /* TIMER3 가 증가 - LED · 터치 초기화 동기 전담 */
 
 static volatile uint32_t        _ci_timer_elapsed_1msec_counter = 0;
 static volatile uint32_t        _ci_timer_count_init_value      = 0;
@@ -20,7 +20,7 @@ void TIMER_3_IRQHandler(void)
 {
     /* normal 모드: LED · 터치 공유 카운터 + LED arbiter 전담.
      * `g_ci_timer_main_tick` 증가와 `enable_iteration()` 호출은 CFX FIFO ISR
-     * (`CFX_0_IRQHandler` / `FIFO_5_IRQHandler`) 가 담당 — 책임 분리. */
+     * (`CFX_0_IRQHandler` / `FIFO_5_IRQHandler`) 가 담당 - 책임 분리. */
     g_tdc_timer_t3_tick++;
     led_arbiter_tick();
 

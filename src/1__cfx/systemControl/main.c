@@ -315,7 +315,7 @@ void standby(void)
 }
 
 /**
- * tdc_copy_DMIC_buffers ? DMIC FIFO를 입력 링버퍼로 shift-복사.
+ * tdc_copy_DMIC_buffers - DMIC FIFO를 입력 링버퍼로 shift-복사.
  *
  * 매 인터럽트(블록 16샘플)마다 두 마이크에 대해:
  *   1) 기존 블록을 한 칸 뒤로 민다: block[0](직전 최신) → block[1](직전).

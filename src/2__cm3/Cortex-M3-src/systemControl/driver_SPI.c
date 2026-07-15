@@ -83,7 +83,7 @@ void SPI1_COM_IRQHandler(void)
             size_mismatch = true;
         }
 
-        /* (디버그) size mismatch 시 RX/TX 버퍼 내용 dump — 받은/송신한 크기만큼 */
+        /* (디버그) size mismatch 시 RX/TX 버퍼 내용 dump - 받은/송신한 크기만큼 */
         if (size_mismatch)
         {
             int rx_n = (dma0_cnt > 0 && dma0_cnt <= SPI_COMM_PACKET_SIZE) ? dma0_cnt : SPI_COMM_PACKET_SIZE;

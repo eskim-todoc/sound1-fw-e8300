@@ -20,9 +20,9 @@
 #include <hw.h>
 #include <ci_timer.h>
 #include <ci_printf.h>
-#include <ci_util.h> /* delay_ms() ? MCLR 전 RTT 드레인 */
+#include <ci_util.h> /* delay_ms() - MCLR 전 RTT 드레인 */
 
-#include <LedOutput.h> /* led_request() ? 부팅 터치 무시 디버그 피드백 */
+#include <LedOutput.h> /* led_request() - 부팅 터치 무시 디버그 피드백 */
 
 /* 초기화 상태 (HW 본질이라 순수 FSM 밖, 연결 소유). */
 typedef enum
@@ -145,14 +145,14 @@ const char *tdc_touch_state_name(tdc_touch_state_t s)
     }
 }
 
-/* 초기화 ? auto-ATI 완료 감지 후 설정 일괄 적용, READY 전이, 부팅 터치 판정. */
+/* 초기화 - auto-ATI 완료 감지 후 설정 일괄 적용, READY 전이, 부팅 터치 판정. */
 static void try_finish_init(void)
 {
     if (!tdc_touch_iqs323_is_ati_done())
     {
         if (TDC_TOUCH_INIT_TIMEOUT_MS >= (tdc_timer_get_t3_tick() - s_mclr_done_tick))
         {
-            return; /* 대기 ? 다음 tick 재시도 */
+            return; /* 대기 - 다음 tick 재시도 */
         }
         ci_printw("[TOUCH] AUTO-ATI: TIMEOUT, FORCING FINISH \r\n");
     }
@@ -168,7 +168,7 @@ static void try_finish_init(void)
     s_init_state     = TDC_TOUCH_INIT_READY;
     ci_printi("[TOUCH] INIT FINISH DONE \r\n");
 
-    /* 누른 채 부팅 방어 ? 첫 read 로 터치 판정 후 FSM 에 무시 설정. */
+    /* 누른 채 부팅 방어 - 첫 read 로 터치 판정 후 FSM 에 무시 설정. */
     tdc_touch_iqs323_status_t st;
     if (tdc_touch_iqs323_read_status(&st) && st.pressed)
     {
@@ -309,7 +309,7 @@ bool tdc_touch_process(void)
     in.ati_active = st.ati_active;
 
 #if (TDC_TOUCH_DEBUG_PRINT_ENABLE)
-    /* --- 디버그 계측 (LTA/Counts/절대임계/밴드초과) ? 실측 튜닝용. read_ok 시에만 --- */
+    /* --- 디버그 계측 (LTA/Counts/절대임계/밴드초과) - 실측 튜닝용. read_ok 시에만 --- */
     if (in.read_ok)
     {
         tdc_touch_iqs323_debug_t dbg;
@@ -349,7 +349,7 @@ bool tdc_touch_process(void)
     }
 #endif
 
-    /* --- ATI 에러 감지(드리프트 신호) 경고 ? Re-ATI 게이트 조건과 동일 시점 --- */
+    /* --- ATI 에러 감지(드리프트 신호) 경고 - Re-ATI 게이트 조건과 동일 시점 --- */
     if (in.read_ok && in.ati_error && !in.ati_active)
     {
         ci_printw("[TOUCH] ATI ERROR (drift) \r\n");
