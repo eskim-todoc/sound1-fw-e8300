@@ -53,9 +53,26 @@
 #include "tdc_ui_command.h"
 #endif
 
+/* 배열 원소 개수. 배열 정의가 바뀌어도 순회 길이가 자동 추종한다(매직넘버 방지). */
+#define TDC_ARRAY_LEN(arr) (sizeof(arr) / sizeof((arr)[0]))
+
+/* func_normal() 메인 루프 상태.
+ * iteration 블록이 갱신하고 루프 후반(타임아웃/크래들/절전 판정)이 읽는 값만 담는다.
+ * mcuErrorCode / usbConnectorState / ledPattern / powerButtonPushed 는 iteration
+ * 안에서만 쓰이므로 여기 두지 않고 tdc_normal_iteration() 지역변수로 유지한다. */
+typedef struct
+{
+    ST__SYSTEM_STATE            systemState;
+    volatile ST__ISD_STATUS     isd_state;
+    ST__BLE_COMMUNICATION_STATE ble_state;
+    bool                        qcc_batt_timeout;
+} tdc_normal_ctx_t;
+
 static bool tdc_qcc_has_batt_level_rx_timed_out(void);
 static void tdc_print_default_isd_info(void);
 static void tdc_wait_for_cfx_start(void);
+static void tdc_normal_boot_sequence(void);
+static void tdc_normal_iteration(tdc_normal_ctx_t *ctx);
 static void tdc_apply_mapping_mode(bool mapping_connected);
 static void tdc_update_led_requests(bool isd_conn_default, bool map_conn_default);
 static bool tdc_handle_qcc_batt_timeout(bool *poweroff_started);
@@ -468,120 +485,35 @@ static void tdc_led_request_mapping(int pct, bool map_conn, bool isd_conn)
 
 int func_normal(void)
 {
-    EN__LED_PATTERN             ledPattern = en__LED_NA;
-    ST__SYSTEM_STATE            systemState;
-    volatile ST__ISD_STATUS     isd_state = {en__isdStatus_PowerIC_Reset, false};
-    ST__USB_CONNECTOR           usbConnectorState;
-    ST__BLE_COMMUNICATION_STATE BLE_communicationState = {en__isdStatus_PowerIC_Reset, false, false, false};
-    ST__ERROR_CODE              mcuErrorCode;
-
-    SYS_WATCHDOG_REFRESH();  // 시작 시 처음에 워치독 리프레시
-
-    bool powerButtonPushed = false;
-    bool conneded_ISD      = false;
-    bool mappingConnection = false;
+    /* zero-init 후 필요한 필드만 명시 초기화.
+     * systemState 를 0 으로 깔아두는 것이 중요하다 - 첫 iteration 전(iterationFlag
+     * 가 아직 false)에도 루프 후반이 systemState.cradleLidClosed 를 읽기 때문에,
+     * 미초기화 상태면 스택 쓰레기값으로 크래들 루프에 오진입할 수 있다. */
+    tdc_normal_ctx_t ctx = {
+        .isd_state = {en__isdStatus_PowerIC_Reset, false},
+        .ble_state = {en__isdStatus_PowerIC_Reset, false, false, false},
+    };
 
     /* QCC 0x34(배터리) 수신 타임아웃 → 파워오프 패턴 후 절전 진입.
      * 지역변수(static 아님): 절전 후 func_normal 재진입 시 false로 리셋되어
      * 무한 재절전을 방지한다(tdc_qcc_has_batt_level_rx_timed_out() 내부 is_done 은
      * static 이라 유지되므로 타임아웃 재감지도 차단된다). */
-    bool qcc_batt_timeout             = false;
     bool qcc_timeout_poweroff_started = false;
+
+    SYS_WATCHDOG_REFRESH();  // 시작 시 처음에 워치독 리프레시
 
     main_counter                                      = 0;
     cfx_cm3_sharedMemoryAll.CFX_EEPROM_data_is_Loaded = 0;
 
-    systemState.systemOff = false;
+    ctx.systemState.systemOff = false;
 
-    tdc_wait_for_cfx_start();  // CFX가 자체적으로 플래그를 설정할 때까지 대기
-
-    Initialize();
-
-    // CFX iteration을 활성화시키면, CFX가 FIFO 등을 초기화 한 후 PCM FillZero 모드로 동작하게 됨
-    // 여기서 iteration을 활성화 한 뒤에야 CFX는 노말 모드에 대한 초기화 과정을 수행한다는 뜻이다.
-    // 단, 노말 모드 초기화 과정에서 g_ISR_Flag_CM3_FS_Init = 1; 을 자체적으로 적용하기 때문에
-    // 노말 모드 iteration 내부의 fn_systemControl_NormalMode() 함수에서
-    // ISD Information을 FS 메모리에서 공유 메모리로 복사하고 CFX_EEPROM_data_is_Loaded = 1; 을 적용한다.
-
-    cfx_cm3_sharedMemoryAll.is_enabled_CFX_iteration = 1;  // CFX 동작 활성화
-
-#ifdef ENABLE_UI_CMD
-    tdc_ui_command_init();
-#endif
-
-    tdc_print_default_isd_info();  // default ISD 정보 출력
+    tdc_normal_boot_sequence();
 
     while (1)
     {
         if ((iterationFlag == true))
         {
-            mcuErrorCode = readErrorCode();
-
-            // usbConnectorState = readUsbConnectorState();
-            usbConnectorState = snd_charger_get_state();
-
-            ledPattern = geteLED_OutputPattern();
-
-            // powerButtonPushed = isPowerButtonPushed();
-
-            powerButtonPushed = tdc_touch_process();
-
-            qcc_batt_timeout = tdc_qcc_has_batt_level_rx_timed_out();
-
-            // NOTE: QCC에게 0x34(Power info) 프로토콜 수신 전까지는
-            //       usbConnectorState.chargerConnectorPluggedIn == df_Default; 상태이다.
-            //       df_Default 상태일 때는 아래의 systemControl() 에서
-            //       systemStatus.Led_Pattern = en__LED_NA; 외에는 동작하는게 없다.
-
-            systemState = systemControl(ledPattern,  // 최초 부팅 시 초기 값 : en__LED_NA
-                                        mcuErrorCode,
-                                        usbConnectorState,
-                                        snd_batt_get_percent(),  // 배터리 percent 직접 전달(QCC 제공). Initialize 단계에서 수집 완료.
-                                        powerButtonPushed,
-                                        isd_state.conneded_ISD,                   // 최초 부팅 시 초기 값 : false
-                                        BLE_communicationState.mappingConnection  // 최초 부팅 시 초기 값 : false
-            );
-
-            // 특수 LED 사용 유무 판별
-            // tdc_LED_handle_special_case(systemState.Led_Pattern);
-
-            update_mapNum();  // 맵데이터 업데이트
-
-            isd_state = isd_interface(systemState.enable_ISD,  //
-                                      BLE_communicationState.mappingConnection,
-                                      BLE_communicationState.isdControlCommand  //
-            );
-
-            /* 매핑 연결 상태이고,
-             * isd_state.isd_controlState >= en__isdStatus_stimul_10V_Ok 이면,
-             * isd_state.connededISD == true 상태이다. */
-
-            BLE_communicationState = bleCommunication(isd_state);
-
-            stimulation_IndicatorOut(readStimulIndicator_OnOff(),  //
-                                     systemState.StimulationIndicatorTriggerLowPower,
-                                     BLE_communicationState.StimulationIndicatorTrigger  //
-            );
-
-            // PMIC 켜고/끄기
-            OnOff_3V_PMIC_CM3_to_CFX(systemState.enablePMIC);
-
-            tdc_apply_mapping_mode(BLE_communicationState.mappingConnection);
-
-            tdc_update_led_requests(isd_state.conneded_ISD, BLE_communicationState.mappingConnection);
-
-            /* led_arbiter_tick() 은 Timer 3 ISR 에서 직접 구동 (ci_timer.c).
-             * main loop 의 I2C/EEPROM 폴링 블록으로 인한 fade/PWM jitter 회피. */
-
-            NRF_On_OFF(isd_state, systemState.BLE_Off, BLE_communicationState.mappingConnection, BLE_communicationState.BLE_Off_Command);
-
-#ifdef ENABLE_UI_CMD
-            tdc_ui_command_set_mapping_connected(BLE_communicationState.mappingConnection);
-            tdc_ui_command_poll();
-#endif
-
-            // 중요!!
-            disable_iteration();
+            tdc_normal_iteration(&ctx);
         }  // 끝, iteration
 
         main_counter++;
@@ -592,22 +524,22 @@ int func_normal(void)
          * 파워오프 시퀀스에 도달하지 못하므로, 여기서 직접 POWER_OFF 패턴을 요청하고
          * burst 완료 후 systemOff 를 세팅해 기존 절전 경로(아래 → break → func_sleep)를 탄다.
          * 상세: docs/tasks/power/20260609_qcc-batt-timeout-sleep/분석.md §4 */
-        if (qcc_batt_timeout && tdc_handle_qcc_batt_timeout(&qcc_timeout_poweroff_started))
+        if (ctx.qcc_batt_timeout && tdc_handle_qcc_batt_timeout(&qcc_timeout_poweroff_started))
         {
-            systemState.systemOff = true;
+            ctx.systemState.systemOff = true;
         }
 
         /* 크래들 뚜껑 닫힘 첫 감지 → 약 절전 루프 (ISD 연결 중이면 차단) */
-        if (systemState.cradleLidClosed && !isd_state.conneded_ISD)
+        if (ctx.systemState.cradleLidClosed && !ctx.isd_state.conneded_ISD)
         {
             led_force_fade_off(); /* fade-out ISR 완료 후 LED 완전 소등 */
             func_cradle_lid_closed_loop();
             /* 도달 불가 - 루프 내 SYS_WATCHDOG_RESET()으로 재부팅 */
         }
 
-        if (systemState.systemOff == true)
+        if (ctx.systemState.systemOff == true)
         {
-            if (tdc_can_enter_sleep(BLE_communicationState.mappingConnection))
+            if (tdc_can_enter_sleep(ctx.ble_state.mappingConnection))
             {
                 /* cross-fade Phase A 강제 - POWER_OFF burst 직후 다른 best
                  * (BATTERY/ISD/MAPPING) 로 진입한 새 색 (예: GREEN) 이
@@ -618,7 +550,7 @@ int func_normal(void)
                 break; /* Escape this main loop to enter the ULP mode */
             }
 
-            systemState.systemOff = false; /* 보류 - 다음 iteration 에서 트리거 재평가 */
+            ctx.systemState.systemOff = false; /* 보류 - 다음 iteration 에서 트리거 재평가 */
         }
 
         if (tdc_get_fake_op_mode() == 1)  // fake sleep mode가 맞을 때
@@ -633,6 +565,96 @@ int func_normal(void)
     }  // 끝, while
 
     return 0;
+}
+
+/* 노말 모드 부팅 시퀀스: CFX 기동 대기 -> 하드웨어 초기화 -> CFX iteration 개방
+ * -> UI 커맨드 초기화 -> default ISD 정보 출력. 메인 루프 진입 전 1회.
+ *
+ * CFX iteration을 활성화시키면, CFX가 FIFO 등을 초기화 한 후 PCM FillZero 모드로 동작하게 됨
+ * 여기서 iteration을 활성화 한 뒤에야 CFX는 노말 모드에 대한 초기화 과정을 수행한다는 뜻이다.
+ * 단, 노말 모드 초기화 과정에서 g_ISR_Flag_CM3_FS_Init = 1; 을 자체적으로 적용하기 때문에
+ * 노말 모드 iteration 내부의 fn_systemControl_NormalMode() 함수에서
+ * ISD Information을 FS 메모리에서 공유 메모리로 복사하고 CFX_EEPROM_data_is_Loaded = 1; 을 적용한다. */
+static void tdc_normal_boot_sequence(void)
+{
+    tdc_wait_for_cfx_start();  // CFX가 자체적으로 플래그를 설정할 때까지 대기
+
+    Initialize();
+
+    cfx_cm3_sharedMemoryAll.is_enabled_CFX_iteration = 1;  // CFX 동작 활성화
+
+#ifdef ENABLE_UI_CMD
+    tdc_ui_command_init();
+#endif
+
+    tdc_print_default_isd_info();  // default ISD 정보 출력
+}
+
+/* 메인 루프 1 iteration: 입력 수집 -> systemControl -> ISD/BLE -> 출력 반영.
+ * ctx 의 4개 상태를 갱신하고, 루프 후반(타임아웃/크래들/절전 판정)이 이를 읽는다. */
+static void tdc_normal_iteration(tdc_normal_ctx_t *ctx)
+{
+    ST__ERROR_CODE    mcuErrorCode      = readErrorCode();
+    ST__USB_CONNECTOR usbConnectorState = snd_charger_get_state();  // readUsbConnectorState() 대체
+    EN__LED_PATTERN   ledPattern        = geteLED_OutputPattern();
+    bool              powerButtonPushed = tdc_touch_process();  // isPowerButtonPushed() 대체
+
+    ctx->qcc_batt_timeout = tdc_qcc_has_batt_level_rx_timed_out();
+
+    // NOTE: QCC에게 0x34(Power info) 프로토콜 수신 전까지는
+    //       usbConnectorState.chargerConnectorPluggedIn == df_Default; 상태이다.
+    //       df_Default 상태일 때는 아래의 systemControl() 에서
+    //       systemStatus.Led_Pattern = en__LED_NA; 외에는 동작하는게 없다.
+
+    ctx->systemState = systemControl(ledPattern,  // 최초 부팅 시 초기 값 : en__LED_NA
+                                     mcuErrorCode,
+                                     usbConnectorState,
+                                     snd_batt_get_percent(),  // 배터리 percent 직접 전달(QCC 제공). Initialize 단계에서 수집 완료.
+                                     powerButtonPushed,
+                                     ctx->isd_state.conneded_ISD,     // 최초 부팅 시 초기 값 : false
+                                     ctx->ble_state.mappingConnection  // 최초 부팅 시 초기 값 : false
+    );
+
+    // 특수 LED 사용 유무 판별
+    // tdc_LED_handle_special_case(ctx->systemState.Led_Pattern);
+
+    update_mapNum();  // 맵데이터 업데이트
+
+    ctx->isd_state = isd_interface(ctx->systemState.enable_ISD,  //
+                                   ctx->ble_state.mappingConnection,
+                                   ctx->ble_state.isdControlCommand  //
+    );
+
+    /* 매핑 연결 상태이고,
+     * ctx->isd_state.isd_controlState >= en__isdStatus_stimul_10V_Ok 이면,
+     * ctx->isd_state.connededISD == true 상태이다. */
+
+    ctx->ble_state = bleCommunication(ctx->isd_state);
+
+    stimulation_IndicatorOut(readStimulIndicator_OnOff(),  //
+                             ctx->systemState.StimulationIndicatorTriggerLowPower,
+                             ctx->ble_state.StimulationIndicatorTrigger  //
+    );
+
+    // PMIC 켜고/끄기
+    OnOff_3V_PMIC_CM3_to_CFX(ctx->systemState.enablePMIC);
+
+    tdc_apply_mapping_mode(ctx->ble_state.mappingConnection);
+
+    tdc_update_led_requests(ctx->isd_state.conneded_ISD, ctx->ble_state.mappingConnection);
+
+    /* led_arbiter_tick() 은 Timer 3 ISR 에서 직접 구동 (ci_timer.c).
+     * main loop 의 I2C/EEPROM 폴링 블록으로 인한 fade/PWM jitter 회피. */
+
+    NRF_On_OFF(ctx->isd_state, ctx->systemState.BLE_Off, ctx->ble_state.mappingConnection, ctx->ble_state.BLE_Off_Command);
+
+#ifdef ENABLE_UI_CMD
+    tdc_ui_command_set_mapping_connected(ctx->ble_state.mappingConnection);
+    tdc_ui_command_poll();
+#endif
+
+    // 중요!!
+    disable_iteration();
 }
 
 /* CFX 가 자체 플래그를 세울 때까지 블로킹 대기. Initialize() 선행 조건. */
@@ -777,21 +799,17 @@ static bool tdc_qcc_has_batt_level_rx_timed_out(void)
 
 static void tdc_print_default_isd_info(void)
 {
-    ST__CFX_CM3_SharedMemory_ISD_info *p_isd_info          = &g_ci_filesystem_ptr_entire_map->map[0].isd_info;
-    int                               *p_isd_1_info_name   = &g_ci_filesystem_ptr_entire_map->map[0].isd_info.isd_userName[0];     // [25]
-    int                               *p_isd_1_passkey     = &g_ci_filesystem_ptr_entire_map->map[0].isd_info.remocon_passkey[0];  // [4]
-    int                               *p_isd_1_location    = &g_ci_filesystem_ptr_entire_map->map[0].isd_info.isd_location_RL;     // 1: L, 2: R
-    int                               *p_isd_1_year        = &g_ci_filesystem_ptr_entire_map->map[0].isd_info.isd_year;
-    int                               *p_isd_1_month_model = &g_ci_filesystem_ptr_entire_map->map[0].isd_info.isd_month_model;
-    int                               *p_isd_1_serial      = &g_ci_filesystem_ptr_entire_map->map[0].isd_info.isd_serial;
+    /* 6개 필드가 모두 같은 isd_info 를 가리키므로 베이스 포인터 하나로 통일.
+     * 순회 길이는 배열 정의(cfx_cm3_sharedMemory.h)에서 파생 - 크기 변경 시 자동 추종. */
+    ST__CFX_CM3_SharedMemory_ISD_info *p_isd_info = &g_ci_filesystem_ptr_entire_map->map[0].isd_info;
 
     ci_printw("[INFO] BOOT ISD 1 INFO \r\n");
     ci_printw("[INFO] NAME : ");
-    for (int name_i = 0; name_i < 25; name_i++)
+    for (size_t name_i = 0; name_i < TDC_ARRAY_LEN(p_isd_info->isd_userName); name_i++)
     {
-        if (p_isd_1_info_name[name_i] != 0)
+        if (p_isd_info->isd_userName[name_i] != 0)
         {
-            ci_printw("%c", p_isd_1_info_name[name_i]);
+            ci_printw("%c", p_isd_info->isd_userName[name_i]);
         }
         else
         {
@@ -801,18 +819,18 @@ static void tdc_print_default_isd_info(void)
     }
 
     ci_printw("[INFO] PASSKEY : ");
-    for (int passkey_i = 0; passkey_i < 4; passkey_i++)
+    for (size_t passkey_i = 0; passkey_i < TDC_ARRAY_LEN(p_isd_info->remocon_passkey); passkey_i++)
     {
-        ci_printw("%c", p_isd_1_passkey[passkey_i]);
+        ci_printw("%c", p_isd_info->remocon_passkey[passkey_i]);
     }
     ci_printv("\r\n");
 
-    ci_printw("[INFO] RL : ");
-    if (*p_isd_1_location == 1)
+    ci_printw("[INFO] RL : ");  // 1: L, 2: R
+    if (p_isd_info->isd_location_RL == 1)
     {
         ci_printw("LEFT \r\n");
     }
-    else if (*p_isd_1_location == 2)
+    else if (p_isd_info->isd_location_RL == 2)
     {
         ci_printw("RIGHT \r\n");
     }
@@ -821,9 +839,9 @@ static void tdc_print_default_isd_info(void)
         ci_printw("F \r\n");
     }
 
-    ci_printw("[INFO] YEAR : 0x%02X \r\n", *p_isd_1_year);
-    ci_printw("[INFO] MONTH MODEL : 0x%02X \r\n", *p_isd_1_month_model);
-    ci_printw("[INFO] SERIAL : 0x%04X \r\n", *p_isd_1_serial);
+    ci_printw("[INFO] YEAR : 0x%02X \r\n", p_isd_info->isd_year);
+    ci_printw("[INFO] MONTH MODEL : 0x%02X \r\n", p_isd_info->isd_month_model);
+    ci_printw("[INFO] SERIAL : 0x%04X \r\n", p_isd_info->isd_serial);
 }
 
 /* ULP 모드 롱터치/웨이크업/타이머 시간상수는 tdc_touch_time.h 가 단일 소유
