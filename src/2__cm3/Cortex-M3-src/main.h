@@ -32,6 +32,8 @@
 #define DEV_FW_VER_HW_TEST 4
 #define DEV_FW_VER_SW_TEST 3
 
+#define RX_BATT_LEVEL_TIME_OUT_MS 3000
+
 #define OTE_1_5_GEN_TEST_WITHOUT_CFX 1
 
 #define ENABLE_MAIN_DEBUG_PRINT 1
@@ -67,6 +69,6 @@ void debugPrint_ADCInput(void);
 
 void tdc_set_fake_op_mode(int mode);
 int  tdc_get_fake_op_mode(void);
-int fake_func_sleep(void);
+int  fake_func_sleep(void);
 
 #endif  // __main_h__

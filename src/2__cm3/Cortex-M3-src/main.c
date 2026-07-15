@@ -42,7 +42,7 @@
 #include <ci_timer.h>
 #include <ci_uart.h>
 #include <ci_printf.h>
-#include "driver_i2c.h"  //ok  ? Sleep 진입 시 I2C PRESCALE 런타임 재설정용
+#include "driver_i2c.h"  //ok  - Sleep 진입 시 I2C PRESCALE 런타임 재설정용
 
 #include <SEGGER_RTT_Wrapper.h>
 #include <aes.h>
@@ -52,6 +52,9 @@
 #if defined(ENABLE_UI_CMD)
 #include "tdc_ui_command.h"
 #endif
+
+static bool snd_qcc_has_batt_level_rx_timed_out(void);
+static void print_default_isd_info(void);
 
 typedef struct
 {
@@ -339,7 +342,7 @@ static void func_cradle_lid_closed_loop(void);
  * =================================================== */
 
 /* 배터리 percent -> LED 등급 경계 테이블.
- * 내림차순(min_pct 큰 것부터) 필수 — 위에서부터 pct >= min_pct 첫 매치를 채택한다.
+ * 내림차순(min_pct 큰 것부터) 필수 - 위에서부터 pct >= min_pct 첫 매치를 채택한다.
  * 등급 추가/컷 변경은 이 표만 편집하면 된다(매직넘버의 데이터화). */
 typedef struct
 {
@@ -348,22 +351,22 @@ typedef struct
 } tdc_batt_led_bin_t;
 
 static const tdc_batt_led_bin_t s_tdc_batt_led_table[] = {
-    {80, LED_ST_BATT_READY},     /* pct >= 80         */
-    {10, LED_ST_BATT_MID},       /* 10 <= pct < 80    */
-    {0, LED_ST_BATT_CRITICAL},   /* pct <  10 (fallback) */
+    {80, LED_ST_BATT_READY},   /* pct >= 80         */
+    {10, LED_ST_BATT_MID},     /* 10 <= pct < 80    */
+    {0, LED_ST_BATT_CRITICAL}, /* pct <  10 (fallback) */
 };
 #define TDC_BATT_LED_TABLE_LEN ((int) (sizeof(s_tdc_batt_led_table) / sizeof(s_tdc_batt_led_table[0])))
 
-#define TDC_MAP_LOW_BATT_PCT 20   /* pct <= 20 -> 배터리 LOW (마진 없는 단일 컷) */
+#define TDC_MAP_LOW_BATT_PCT 20 /* pct <= 20 -> 배터리 LOW (마진 없는 단일 컷) */
 
 /* 배터리 LED 요청. 반환값 batt_st 는 ISD 미연결 시 재송출에 재사용된다. */
 static led_state_t tdc_led_request_battery(int pct, bool ovr_batt_active, bool batt_is_reset_state)
 {
-    led_state_t batt_st = LED_ST_BATT_CRITICAL;   /* 테이블 매치 실패 시 안전측 기본값 */
+    led_state_t batt_st = LED_ST_BATT_CRITICAL; /* 테이블 매치 실패 시 안전측 기본값 */
 
     if (!ovr_batt_active && batt_is_reset_state)
     {
-        /* 배터리 정보 미수신(RESET, percent=0): 판정 보류 — 최우선 분기 유지
+        /* 배터리 정보 미수신(RESET, percent=0): 판정 보류 - 최우선 분기 유지
          * (부팅 초기 pct=0 이 CRITICAL 로 새는 회귀 방지, Rev.5 근거) */
         batt_st = LED_ST_IDLE;
     }
@@ -419,7 +422,7 @@ static bool tdc_led_request_isd(bool isd_conn, led_state_t batt_st)
             led_request(LED_SRC_BATTERY, batt_st);
         }
 
-        /* s_req[LED_SRC_ISD] 확정 후 게이트 갱신 — 연결 해제 전환 시
+        /* s_req[LED_SRC_ISD] 확정 후 게이트 갱신 - 연결 해제 전환 시
          * s_isd_conn=0 과 s_req[ISD]=NONE 사이에 TIMER_3 ISR 이 끼어들어
          * 1-tick IN_USE(백색) 잔상이 뜨던 race 를 방지하기 위해 분기 뒤(마지막)로 봉인. */
         led_set_isd_conn_state(isd_conn);
@@ -475,7 +478,8 @@ int func_normal(void)
 
     /* QCC 0x34(배터리) 수신 타임아웃 → 파워오프 패턴 후 절전 진입.
      * 지역변수(static 아님): 절전 후 func_normal 재진입 시 false로 리셋되어
-     * 무한 재절전을 방지한다(fake_0x34_done 은 유지되어 타임아웃 재감지도 차단). */
+     * 무한 재절전을 방지한다(snd_qcc_has_batt_level_rx_timed_out() 내부 is_done 은
+     * static 이라 유지되므로 타임아웃 재감지도 차단된다). */
     bool qcc_batt_timeout             = false;
     bool qcc_timeout_poweroff_started = false;
 
@@ -510,55 +514,7 @@ int func_normal(void)
     tdc_ui_command_init();
 #endif
 
-    {
-        ST__CFX_CM3_SharedMemory_ISD_info *p_isd_info          = &g_ci_filesystem_ptr_entire_map->map[0].isd_info;
-        int                               *p_isd_1_info_name   = &g_ci_filesystem_ptr_entire_map->map[0].isd_info.isd_userName[0];     // [25]
-        int                               *p_isd_1_passkey     = &g_ci_filesystem_ptr_entire_map->map[0].isd_info.remocon_passkey[0];  // [4]
-        int                               *p_isd_1_location    = &g_ci_filesystem_ptr_entire_map->map[0].isd_info.isd_location_RL;     // 1: L, 2: R
-        int                               *p_isd_1_year        = &g_ci_filesystem_ptr_entire_map->map[0].isd_info.isd_year;
-        int                               *p_isd_1_month_model = &g_ci_filesystem_ptr_entire_map->map[0].isd_info.isd_month_model;
-        int                               *p_isd_1_serial      = &g_ci_filesystem_ptr_entire_map->map[0].isd_info.isd_serial;
-
-        ci_printw("[INFO] BOOT ISD 1 INFO \r\n");
-        ci_printw("[INFO] NAME : ");
-        for (int name_i = 0; name_i < 25; name_i++)
-        {
-            if (p_isd_1_info_name[name_i] != 0)
-            {
-                ci_printw("%c", p_isd_1_info_name[name_i]);
-            }
-            else
-            {
-                ci_printv("\r\n");
-                break;
-            }
-        }
-
-        ci_printw("[INFO] PASSKEY : ");
-        for (int passkey_i = 0; passkey_i < 4; passkey_i++)
-        {
-            ci_printw("%c", p_isd_1_passkey[passkey_i]);
-        }
-        ci_printv("\r\n");
-
-        ci_printw("[INFO] RL : ");
-        if (*p_isd_1_location == 1)
-        {
-            ci_printw("LEFT \r\n");
-        }
-        else if (*p_isd_1_location == 2)
-        {
-            ci_printw("RIGHT \r\n");
-        }
-        else
-        {
-            ci_printw("F \r\n");
-        }
-
-        ci_printw("[INFO] YEAR : 0x%02X \r\n", *p_isd_1_year);
-        ci_printw("[INFO] MONTH MODEL : 0x%02X \r\n", *p_isd_1_month_model);
-        ci_printw("[INFO] SERIAL : 0x%04X \r\n", *p_isd_1_serial);
-    }
+    print_default_isd_info();  // default ISD 정보 출력
 
     while (1)
     {
@@ -575,38 +531,7 @@ int func_normal(void)
 
             powerButtonPushed = tdc_touch_process();
 
-            // powerButtonPushed = false;                 // 왜 인지 특정 보드에서는 RE-ATI 에러가 발생하는 중
-
-#if 1  // QCC 대체용 디버깅 코드 시작, 약 250밀리초 이후 시스템 동작
-            {
-                static int fake_0x34      = 0;
-                static int fake_0x34_done = 0;
-
-                if (fake_0x34_done == 0)
-                {
-                    if (fake_0x34 == 0)
-                    {
-                        fake_0x34 = ci_timer_get_tick();
-                    }
-
-                    if (3000 < (ci_timer_get_tick() - fake_0x34))
-                    {
-                        fake_0x34_done   = 1;
-                        qcc_batt_timeout = true;  // 타임아웃 → 아래 systemControl 직후 블록에서 파워오프+절전
-                        ci_printw("[FAKE_0x34] QCC BATT TIMEOUT -> POWER OFF (SLEEP) \r\n");
-                    }
-                    else if (snd_batt_get_state() != EN__SND_BATT_STATE_RESET)
-                    {
-                        fake_0x34_done = 1;
-                        ci_printi("\r\n");
-                        ci_printi("################################################################\r\n");
-                        ci_printi("###  [FAKE_0x34 EXIT-DMA]   t3 = %d ms / WAIT = %d ms\r\n", tdc_timer_get_t3_tick(), (ci_timer_get_tick() - fake_0x34));
-                        ci_printi("################################################################\r\n");
-                        ci_printi("\r\n");
-                    }
-                }
-            }
-#endif  // QCC 대체용 디버깅 코드 끝
+            qcc_batt_timeout = snd_qcc_has_batt_level_rx_timed_out();
 
             // NOTE: QCC에게 0x34(Power info) 프로토콜 수신 전까지는
             //       usbConnectorState.chargerConnectorPluggedIn == df_Default; 상태이다.
@@ -663,7 +588,7 @@ int func_normal(void)
              * LED source requests (Rev.3)
              * =================================================== */
             {
-                /* Battery (SS4.5) — 마진 제거: QCC가 배터리 측정·필터링을 담당하므로
+                /* Battery (SS4.5) - 마진 제거: QCC가 배터리 측정·필터링을 담당하므로
                  * 진입/이탈 이중임계·prev 추적 없이 단일 컷 테이블로 판정(tdc_led_request_battery).
                  * RESET(0x34 수신 전, percent=0) 시 부팅 초기 CRITICAL 누출 방지를 위해 IDLE 최우선 분기. */
 #ifdef ENABLE_UI_CMD
@@ -676,7 +601,7 @@ int func_normal(void)
                 bool        batt_is_reset_state = (snd_batt_get_state() == EN__SND_BATT_STATE_RESET);
                 led_state_t batt_st             = tdc_led_request_battery(pct, ovr_batt_active, batt_is_reset_state);
 
-                /* ISD (SS4.6) — 배터리→ISD 순서 의존(미연결 시 batt_st 재송출) +
+                /* ISD (SS4.6) - 배터리→ISD 순서 의존(미연결 시 batt_st 재송출) +
                  * led_set_isd_conn_state() 봉인(1-tick 잔상 race 방지)은 함수 내부에 유지. */
 #ifdef ENABLE_UI_CMD
                 bool isd_conn_raw = tdc_ui_command_override_isd_active() ? tdc_ui_command_override_isd_value() : isd_state.conneded_ISD;
@@ -685,7 +610,7 @@ int func_normal(void)
 #endif
                 bool isd_conn = tdc_led_request_isd(isd_conn_raw, batt_st);
 
-                /* Mapping (SS4.4) — 배터리 LOW(단일 컷 pct<=TDC_MAP_LOW_BATT_PCT) × ISD 연결 여부 4분기.
+                /* Mapping (SS4.4) - 배터리 LOW(단일 컷 pct<=TDC_MAP_LOW_BATT_PCT) × ISD 연결 여부 4분기.
                  * 마진(s_map_low_active 래치) 제거 → 매 호출 pct 만으로 판정(tdc_led_request_mapping). */
 #ifdef ENABLE_UI_CMD
                 bool map_conn = tdc_ui_command_override_map_active() ? tdc_ui_command_override_map_value() : BLE_communicationState.mappingConnection;
@@ -721,9 +646,9 @@ int func_normal(void)
         {
             if (!qcc_timeout_poweroff_started)
             {
+                ci_printw("[BATT] QCC BATT TIMED-OUT -> LED PATTERN = POWER OFF \r\n");
                 led_request(LED_SRC_POWER, LED_ST_POWER_OFF);
                 qcc_timeout_poweroff_started = true;
-                ci_printi("[FAKE_0x34] LED PATTERN IS POWER OFF (QCC TIMEOUT) \r\n");
             }
             else if (!tdc_led_is_burst_pending())
             {
@@ -736,14 +661,14 @@ int func_normal(void)
         {
             led_force_fade_off(); /* fade-out ISR 완료 후 LED 완전 소등 */
             func_cradle_lid_closed_loop();
-            /* 도달 불가 ? 루프 내 SYS_WATCHDOG_RESET()으로 재부팅 */
+            /* 도달 불가 - 루프 내 SYS_WATCHDOG_RESET()으로 재부팅 */
         }
 
         if (systemState.systemOff == true)
         {
-            /* 절전 모드 진입 가드 ? 매핑 / 페어링 / OTA 진행 중에는 보류한다.
+            /* 절전 모드 진입 가드 - 매핑 / 페어링 / OTA 진행 중에는 보류한다.
              *
-             * BLE 활성 검사는 Arbiter src 요청을 직접 본다 ? tdc_led_get_ind_state()
+             * BLE 활성 검사는 Arbiter src 요청을 직접 본다 - tdc_led_get_ind_state()
              * 는 BLE 가 set 한 후 NONE 으로 reset 안 보내면 잔존하기 때문. */
             led_state_t ble_st      = led_get_request(LED_SRC_BLE_IND);
             bool        map_active  = BLE_communicationState.mappingConnection;
@@ -758,7 +683,7 @@ int func_normal(void)
             else
             {
                 ci_printi("[SYSTEM] ENTERING SLEEP MODE \r\n");
-                /* cross-fade Phase A 강제 ? POWER_OFF burst 직후 다른 best
+                /* cross-fade Phase A 강제 - POWER_OFF burst 직후 다른 best
                  * (BATTERY/ISD/MAPPING) 로 진입한 새 색 (예: GREEN) 이
                  * turnOffLED() 에서 fade-out 되어 잔상으로 보이는 현상 방지.
                  * 모든 src 를 LED_ST_NONE 으로 강제하고 FADE_MAX_MS+10 동안
@@ -780,6 +705,89 @@ int func_normal(void)
     }  // 끝, while
 
     return 0;
+}
+
+static bool snd_qcc_has_batt_level_rx_timed_out(void)
+{
+    static int  time_laps = 0;
+    static bool is_done   = false;
+    static bool timed_out = false;
+
+    if (!is_done)
+    {
+        if (time_laps == 0)  // 최초 시간 업데이트. state 와 무관하게 기점을 잡아야
+        {                    // 첫 호출부터 수신 완료인 경우에도 WAIT 로그가 유효하다.
+            time_laps = ci_timer_get_tick();
+        }
+
+        if (snd_batt_get_state() == EN__SND_BATT_STATE_RESET)
+        {
+            if (RX_BATT_LEVEL_TIME_OUT_MS < (ci_timer_get_tick() - time_laps))
+            {
+                ci_printw("[BATT] QCC BATT TIMED-OUT -> POWER OFF (SLEEP) \r\n");
+                is_done   = true;
+                timed_out = true;  // 시간 초과 발생
+            }
+        }
+        else
+        {
+            ci_printd("[BATT] QCC BATT RX %d%% (TICK = %d / WAIT = %d MS) \r\n", snd_batt_get_percent(), ci_timer_get_tick(), (ci_timer_get_tick() - time_laps));
+            is_done = true;
+        }
+    }
+
+    return timed_out;
+}
+
+static void print_default_isd_info(void)
+{
+    ST__CFX_CM3_SharedMemory_ISD_info *p_isd_info          = &g_ci_filesystem_ptr_entire_map->map[0].isd_info;
+    int                               *p_isd_1_info_name   = &g_ci_filesystem_ptr_entire_map->map[0].isd_info.isd_userName[0];     // [25]
+    int                               *p_isd_1_passkey     = &g_ci_filesystem_ptr_entire_map->map[0].isd_info.remocon_passkey[0];  // [4]
+    int                               *p_isd_1_location    = &g_ci_filesystem_ptr_entire_map->map[0].isd_info.isd_location_RL;     // 1: L, 2: R
+    int                               *p_isd_1_year        = &g_ci_filesystem_ptr_entire_map->map[0].isd_info.isd_year;
+    int                               *p_isd_1_month_model = &g_ci_filesystem_ptr_entire_map->map[0].isd_info.isd_month_model;
+    int                               *p_isd_1_serial      = &g_ci_filesystem_ptr_entire_map->map[0].isd_info.isd_serial;
+
+    ci_printw("[INFO] BOOT ISD 1 INFO \r\n");
+    ci_printw("[INFO] NAME : ");
+    for (int name_i = 0; name_i < 25; name_i++)
+    {
+        if (p_isd_1_info_name[name_i] != 0)
+        {
+            ci_printw("%c", p_isd_1_info_name[name_i]);
+        }
+        else
+        {
+            ci_printv("\r\n");
+            break;
+        }
+    }
+
+    ci_printw("[INFO] PASSKEY : ");
+    for (int passkey_i = 0; passkey_i < 4; passkey_i++)
+    {
+        ci_printw("%c", p_isd_1_passkey[passkey_i]);
+    }
+    ci_printv("\r\n");
+
+    ci_printw("[INFO] RL : ");
+    if (*p_isd_1_location == 1)
+    {
+        ci_printw("LEFT \r\n");
+    }
+    else if (*p_isd_1_location == 2)
+    {
+        ci_printw("RIGHT \r\n");
+    }
+    else
+    {
+        ci_printw("F \r\n");
+    }
+
+    ci_printw("[INFO] YEAR : 0x%02X \r\n", *p_isd_1_year);
+    ci_printw("[INFO] MONTH MODEL : 0x%02X \r\n", *p_isd_1_month_model);
+    ci_printw("[INFO] SERIAL : 0x%04X \r\n", *p_isd_1_serial);
 }
 
 /* ULP 모드 롱터치/웨이크업/타이머 시간상수는 tdc_touch_time.h 가 단일 소유
@@ -818,7 +826,7 @@ static void func_cradle_lid_closed_loop(void)
 
     ci_printi("[CRADLE] LIGHT SLEEP ACTIVE. WAITING FOR LID OPEN PACKET...\r\n");
 
-    /* 약 절전 루프 ? BLE 패킷 수신으로 뚜껑 열림 감지 */
+    /* 약 절전 루프 - BLE 패킷 수신으로 뚜껑 열림 감지 */
     ST__ISD_STATUS dummy_isd = {en__isdStatus_NA, false};
     uint32_t       wfi_count = 0;
 
@@ -838,7 +846,7 @@ static void func_cradle_lid_closed_loop(void)
             SYS_WATCHDOG_RESET();
         }
 
-        /* ULP가 아닌 normal 모드 ? 딜레이 없이 인터럽트 기반 iteration */
+        /* ULP가 아닌 normal 모드 - 딜레이 없이 인터럽트 기반 iteration */
         SYS_WAIT_FOR_INTERRUPT;
 
         if (++wfi_count % 1000 == 0)
@@ -883,7 +891,7 @@ int fake_func_sleep(void)
     }
 #endif
 
-    /* 절전 IQS323 설정은 노말과 동일하게 유지(전용 sleep settings 제거 ? 운용 임계 그대로,
+    /* 절전 IQS323 설정은 노말과 동일하게 유지(전용 sleep settings 제거 - 운용 임계 그대로,
      * is_ulp 플래그 미사용). CM3 클럭만 ci_power_sleep 로 절감한다. */
 
     // Uninitialize(); /* Disable peripherals and DIOs */
@@ -906,7 +914,7 @@ int fake_func_sleep(void)
 
     /* RESEED 는 ULP 루프 내 '첫 NOT_TOUCH 시 1회'로 이동(손 떼야 절전 노터치 baseline 동기). */
 
-    ci_timer_init_prescaled(TDC_TOUCH_ULP_TIMER_PRESCALE, TDC_TOUCH_ULP_TIMER_TIMEOUT_VALUE); /* ? 200 ms 주기 */
+    ci_timer_init_prescaled(TDC_TOUCH_ULP_TIMER_PRESCALE, TDC_TOUCH_ULP_TIMER_TIMEOUT_VALUE); /* - 200 ms 주기 */
 
     SYS_WATCHDOG_REFRESH();
 
@@ -951,7 +959,7 @@ int fake_func_sleep(void)
             tdc_touch_state_t         state = st.pressed ? TDC_TOUCH_STATE_TOUCH : TDC_TOUCH_STATE_NOT_TOUCH;
 
 #if (TDC_TOUCH_DEBUG_PRINT_ENABLE)
-            /* 절전 ULP 계측 (노말 폴링과 동일 포맷) ? LTA/Counts/절대임계/밴드초과 */
+            /* 절전 ULP 계측 (노말 폴링과 동일 포맷) - LTA/Counts/절대임계/밴드초과 */
             if (ok)
             {
                 tdc_touch_iqs323_debug_t dbg;
@@ -1040,7 +1048,7 @@ int fake_func_sleep(void)
                     ci_printw("[TOUCH] SLEEP: notouch timeout 10s -> forced RESEED \r\n");
                 }
             }
-            else /* 게이트 해제 후 ? 터치 발생 시 재부팅 */
+            else /* 게이트 해제 후 - 터치 발생 시 재부팅 */
             {
                 if (ok && state == TDC_TOUCH_STATE_TOUCH)
                 {
@@ -1050,7 +1058,7 @@ int fake_func_sleep(void)
                         ci_printi("\r\n[TOUCH] SLEEP: touch detected -> REBOOT \r\n");
                         delay_ms(20); /* RTT 뷰어 로그 드레인 대기 */
                         // SYS_WATCHDOG_RESET();
-                        /* 도달 불가 ? 칩 리셋 */
+                        /* 도달 불가 - 칩 리셋 */
                     }
                 }
                 else
@@ -1066,15 +1074,15 @@ int fake_func_sleep(void)
             }
 
         }  // end t3 tick cmp
-    }      // end while
+    }  // end while
 
-    return 0; /* 도달 불가 ? 컴파일러 만족용 */
+    return 0; /* 도달 불가 - 컴파일러 만족용 */
 }
 
-/* func_sleep() ULP 루프 헬퍼 ? 상태(카운터·게이트)는 전부 포인터로 전달, func_sleep() 소유 유지 */
+/* func_sleep() ULP 루프 헬퍼 - 상태(카운터·게이트)는 전부 포인터로 전달, func_sleep() 소유 유지 */
 
 #if (TDC_TOUCH_DEBUG_PRINT_ENABLE)
-/* 절전 ULP 계측 (노말 폴링과 동일 포맷) ? LTA/Counts/절대임계/밴드초과 */
+/* 절전 ULP 계측 (노말 폴링과 동일 포맷) - LTA/Counts/절대임계/밴드초과 */
 static void tdc_touch_sleep_log_debug(bool ok, const tdc_touch_iqs323_status_t *st, tdc_touch_state_t state)
 {
     if (ok)
@@ -1130,7 +1138,7 @@ static void tdc_touch_sleep_handle_ati_error(bool ok, const tdc_touch_iqs323_sta
             delay_ms(20); /* RTT 드레인 */
 #endif
             SYS_WATCHDOG_RESET();
-            /* 도달 불가 ? 칩 리셋 */
+            /* 도달 불가 - 칩 리셋 */
         }
         else
         {
@@ -1175,7 +1183,7 @@ static void tdc_touch_sleep_handle_notouch_gate(bool ok, tdc_touch_state_t state
     }
 }
 
-/* 게이트 해제 후 ? 터치 발생 시 재부팅 */
+/* 게이트 해제 후 - 터치 발생 시 재부팅 */
 static void tdc_touch_sleep_handle_touch_reboot(bool ok, tdc_touch_state_t state, int *touch_cnt)
 {
     if (ok && state == TDC_TOUCH_STATE_TOUCH)
@@ -1197,7 +1205,7 @@ static void tdc_touch_sleep_handle_touch_reboot(bool ok, tdc_touch_state_t state
             delay_ms(20); /* RTT 뷰어 로그 드레인 대기 */
 #endif
             SYS_WATCHDOG_RESET();
-            /* 도달 불가 ? 칩 리셋 */
+            /* 도달 불가 - 칩 리셋 */
         }
     }
     else
@@ -1222,7 +1230,7 @@ int func_sleep(void)
      *    확정 시 RESEED 1회로 절전 노터치 baseline 동기 후 게이트 해제.
      *  - 노터치가 10초 넘게 확정 안 되면(계속 터치/오염) 강제 RESEED 로 현재 상태를 baseline 끌어와 탈출.
      *  - 게이트 해제 후 '400ms 연속 터치' 시 재부팅 → 노말 모드 복귀(30/60/90 stuck 불요).
-     * 아래는 루프 진입 전 1회 초기화되는 영속 상태 ? 매 iteration 재초기화 금지(상태머신 붕괴). */
+     * 아래는 루프 진입 전 1회 초기화되는 영속 상태 - 매 iteration 재초기화 금지(상태머신 붕괴). */
     bool              sleep_ignore         = true; /* 첫 노터치 확정 전 터치 막힘 */
     int               notouch_cnt          = 0;    /* 연속 NOT_TOUCH 샘플 (게이트 해제 기준) */
     int               ignore_elapsed       = 0;    /* 게이트 지속 샘플 (10s 강제 RESEED 기준) */
@@ -1230,7 +1238,7 @@ int func_sleep(void)
     tdc_touch_state_t ulp_state_prev       = TDC_TOUCH_STATE_RESET;
     int               ati_error_reboot_cnt = 0;
 
-    /* 매 iteration 갱신 ? 선언만 여기, 대입(read_status 등)은 루프 내부에 그대로 유지 */
+    /* 매 iteration 갱신 - 선언만 여기, 대입(read_status 등)은 루프 내부에 그대로 유지 */
     tdc_touch_iqs323_status_t st;
     bool                      ok;
     tdc_touch_state_t         state;
@@ -1266,12 +1274,12 @@ int func_sleep(void)
     }
 #endif
 
-    /* 절전 IQS323 설정은 노말과 동일하게 유지(전용 sleep settings 제거 ? 운용 임계 그대로,
+    /* 절전 IQS323 설정은 노말과 동일하게 유지(전용 sleep settings 제거 - 운용 임계 그대로,
      * is_ulp 플래그 미사용). CM3 클럭만 ci_power_sleep 로 절감한다. */
 
     ci_power_sleep(); /* SYSCLK 30.72M → 2.56M, SLOWCLK 유지 */
 
-    /* [FIXME] 실제 SCL ? 426.7kHz(2.56MHz/6) ? "~122kHz 유지" 의도라면 분주비가 틀렸다.
+    /* [FIXME] 실제 SCL - 426.7kHz(2.56MHz/6) - "~122kHz 유지" 의도라면 분주비가 틀렸다.
      * driver_i2c.h 설계값은 PRESCALE_21(2.56MHz/21?121.9kHz). 의도적 변경인지 확인 필요. */
     i2c_set_master_prescale(I2C_MASTER_PRESCALE_6 /*I2C_MASTER_PRESCALE_21*/);
 
@@ -1302,7 +1310,7 @@ int func_sleep(void)
         tdc_touch_sleep_log_state_transition(ok, state, &ulp_state_prev);
     }
 
-    return 0;  /* 도달 불가 ? 컴파일러 만족용 */
+    return 0;  /* 도달 불가 - 컴파일러 만족용 */
 }
 
 /* EOF */
