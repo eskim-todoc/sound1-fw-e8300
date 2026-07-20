@@ -16,20 +16,27 @@
 // 구조체의 배치되는 주소를 sections.ld 파일을 수정하여 LPDSP32_PRAM5에 위치한다.
 ST__CFX_CM3_SharedMemory_ALL cfx_cm3_sharedMemoryAll __attribute__((section(".shared_memory")));
 
-void update_CM3Status_toCFX(int value)
+/* CM3 생존 신호(heartbeat)를 공유 메모리에 게시한다.
+ *
+ * 펌웨어 안에는 이 값을 읽는 코드가 없다(CM3 · CFX · calibration 전수 확인).
+ * 유일한 소비자는 디버거다 - JTAG/RTT 로 공유 메모리를 들여다볼 때 값이 계속
+ * 증가하면 CM3 메인 루프가 살아 있다는 뜻이다. 비용이 int 대입 1회뿐이라
+ * 진단 가치를 위해 존치한다(2026-07-20 은수님 판단).
+ *
+ * NOTE: 필드명 CM3_status 는 공유 메모리 ABI 라 바꾸지 않는다. CFX(shared_memory.h)
+ *       와 calibration 헤더가 같은 레이아웃을 복제하고 있어 한쪽만 바꾸면 어긋난다. */
+void tdc_shared_publish_cm3_heartbeat(int beat)
 {
-    cfx_cm3_sharedMemoryAll.CM3_status = value;
+    cfx_cm3_sharedMemoryAll.CM3_status = beat;
 }
 
-void update_CM3tempValue1_toCFX(int value)
-{
-    cfx_cm3_sharedMemoryAll.CM3_tempValue1 = value;
-}
-
-void update_CM3tempValue2_toCFX(int value)
-{
-    cfx_cm3_sharedMemoryAll.CM3_tempValue2 = value;
-}
+/* update_CM3tempValue1_toCFX() / update_CM3tempValue2_toCFX() 제거(2026-07-20):
+ * 두 래퍼 모두 호출처가 0 이었다.
+ *
+ * 단 CM3_tempValue1 / CM3_tempValue2 '필드'는 살아 있다 - CFX 의 AGC 가
+ * tempValue1 을 읽고 tempValue2 에 쓴다(1__cfx/signalProcessing/agc.c:100/213/
+ * 238/259 및 :215/240/261). CM3 쪽 초기화도 stimulationParaCal.c:617~618 에서
+ * 직접 대입한다. 필드를 지우면 AGC 가 깨지므로 래퍼만 제거했다. */
 
 bool isCFX_EEPROM_data_Loaded(void)
 {

@@ -160,18 +160,9 @@ int ci_power_normal(void)
     return df_True;
 }
 
-int ci_fake_power_sleep(void)
-{
-    LSAD->CFG = LSAD_DISABLE;
-
-    tdc_Trims_SetOperatingFrequency(SYS_FREQ_30M72);
-
-    D_CLK->CFG_1 = (ADCCLK_PRESCALE_32 | ADCCLK_SRC_SYSCLK | SDMCLK_PRESCALE_64 | SLOWCLK_PRESCALE_24 | SLOWCLK_SRC_SYSCLK | UARTCLK_SRC_SYSCLK);
-    D_CLK->CFG_2 = (UCLK_PRESCALE_4096 | UCLK_SRC_ADCCLK);
-
-    delay_ms(1);  // 시스템 클럭 안정화 대기
-    return 0;
-}
+/* ci_fake_power_sleep() 제거(2026-07-20): SYSCLK 를 30.72MHz 로 유지해 터치센서
+ * 계측을 가능케 하던 '가짜 절전'용. fake_func_sleep() 이 유일한 호출자였다.
+ * 상세: docs/tasks/main/20260720_fake-sleep-removal/ */
 
 int ci_power_sleep(void)
 {
