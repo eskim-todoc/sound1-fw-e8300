@@ -1,6 +1,6 @@
 
 
-#include "dirver_i2c_for_ISD.h"
+#include "driver_i2c_for_ISD.h"
 #include <ci_printf.h>
 
 bool write_ISD_by_CM3_I2C(int slaveAddr, int* dataBuff, int dataSize)

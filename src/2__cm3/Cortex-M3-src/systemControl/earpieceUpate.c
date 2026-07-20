@@ -6,7 +6,7 @@
 #include "commonDataProcessing.h"
 #include "isd_interface.h"
 
-#include "dirver_i2c_for_ISD.h"
+#include "driver_i2c_for_ISD.h"
 
 bool updateEarPieceStatus(void)
 {

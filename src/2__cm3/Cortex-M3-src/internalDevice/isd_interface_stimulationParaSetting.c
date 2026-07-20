@@ -3,11 +3,11 @@
 
 #include <cfx_cm3_sharedMemory.h>
 #include <FPGA.h>
-#include <dirver_PCM.h>
+#include <driver_PCM.h>
 #include <isd_interface_FPGA.h>
 #include <internalStimulationChip.h>
 #include <isd_interface.h>
-#include <dirver_i2c_for_ISD.h>
+#include <driver_i2c_for_ISD.h>
 #include <definitionsForAlgorithm.h>
 #include <isd_interface_init_FPGA.h>
 #include <isd_interface.h>

@@ -1,6 +1,6 @@
 
 #include <hw.h>
-#include <isdExecution/dirver_PCM.h>
+#include <isdExecution/driver_PCM.h>
 #include <stdbool.h>
 
 #include "FPGA.h"
@@ -10,7 +10,7 @@
 #if 0
 #include "driver_cfx_i2c.h"
 #else
-#include "dirver_i2c_for_ISD.h"
+#include "driver_i2c_for_ISD.h"
 #endif
 
 #include "definitionsForAlgorithm.h"
