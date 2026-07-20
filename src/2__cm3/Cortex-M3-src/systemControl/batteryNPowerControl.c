@@ -288,144 +288,16 @@ int readBatteryPercentage(void)
  * 제공하는 구조로 전환되며 dead code가 되어 제거함(2026-07-14). percent -> LED 등급 매핑은
  * main.c 의 tdc_led_request_battery(경계 테이블)로 이관. 이력: docs/tasks/main/20260714_battery-led-refactor. */
 
-#if defined(Board_is_TD_DEV_ver_1_4) || defined(Board_is_OTE_VER_1_3) || defined(Board_is_OTE_VER_1_4) || defined(Board_is_OTE_VER_1_5)
-
-int read_BatteryChargerConnectinStatus(void)
-{
-
-    ST__USB_CONNECTOR chargerState;
-    chargerState = readUsbConnectorState();
-
-    return chargerState.chargerConnectorPluggedIn;
-}
-
-bool isCarryingCaseConnected(void)
-{
-    ST__USB_CONNECTOR chargerState;
-    chargerState = readUsbConnectorState();
-
-#if 1
-
-    if (chargerState.carryingCasePluggedIn == 1)
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
-
-#else
-    return false;
-#endif
-}
-
-bool isCarryingCaseCoverOpen(void)
-{
-
-    ST__USB_CONNECTOR chargerState;
-    chargerState = readUsbConnectorState();
-
-#if 1
-
-    if (chargerState.carryingCaseCoverOpen == 1)
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
-
-#else
-    return false;
-#endif
-}
-
-#else
-
-#define df_batteryChargingCheckInterval_ms 100
-static int batteryChargerConnected;
-
-void updateBatteryChargerConnection(void)
-{
-
-    int readVal;
-
-    if (read_ISD_by_CM3_I2C(i2cAddr_FPGA_systemResgister_1st, &readVal, 1))
-    {
-
-        readVal = readVal >> FPGA_BitPosition_BatteryCharging;  // battery Charger 연결 상태
-        readVal = readVal & 0x01;
-
-        batteryChargerConnected = readVal;
-    }
-}
-
-int read_BatteryChargerConnectinStatus(void)
-{
-
-    return batteryChargerConnected;
-}
-
-#define df_carringCaseStatusCheckInterval_ms 100
-static bool carringCaseStatus = false;
-
-static ST__CARRINGCASE_STATE caringCaseStatus;
-
-void updateCarryingCaseStatus(void)
-{
-    static int intervalCounter = 0;
-    int        value;
-    int        readVal;
-
-    if (intervalCounter == 0)
-    {
-
-        read_ISD_by_CM3_I2C(i2cAddr_FPGA_systemResgister_1st, &readVal, 1);
-
-        value = data_ExtractionAndRigthShift(readVal, FPGA_BitPosition_CarringCaseOpen, 1);  //
-
-        if (value == 1)
-            caringCaseStatus.isCoverOpen = true;
-        else
-            caringCaseStatus.isCoverOpen = false;
-
-        value = data_ExtractionAndRigthShift(readVal, FPGA_BitPosition_CarringCaseConnecton, 1);  //
-
-        if (value == 1)
-            caringCaseStatus.isCarryingCaseConnected = true;
-        else
-            caringCaseStatus.isCarryingCaseConnected = false;
-
-        intervalCounter = df_carringCaseStatusCheckInterval_ms;
-    }
-
-    intervalCounter--;
-}
-
-bool isCarryingCaseConnected(void)
-{
-#if 1
-    return caringCaseStatus.isCarryingCaseConnected;
-#else
-    return false;
-#endif
-}
-
-bool isCarryingCaseCoverOpen(void)
-{
-
-#if 1
-    return caringCaseStatus.isCoverOpen;
-#else
-    return false;
-#endif
-
-
-}
-
-#endif
+/* Sullivan 유산 제거(2026-07-15): readUsbConnectorState() 기반 GPIO 3함수
+ * (read_BatteryChargerConnectinStatus / isCarryingCaseConnected /
+ * isCarryingCaseCoverOpen)와 FPGA I2C 기반 #else 벌을 삭제했다.
+ *
+ * Sullivan 은 USB 케이블(charger)과 캐링케이스(carryingCase)가 독립 신호였으나,
+ * Sound1 은 포고핀 크래들 단일 경로로 바뀌며 snd_charger_set_state() 가 두 필드를
+ * 항상 동시 설정한다. GPIO 3함수는 호출처가 0 이었고, #else 벌(FPGA I2C)은 보드
+ * define 이 하나라도 있으면 컴파일되지 않는다(processorDirective.h:10 에서
+ * Board_is_OTE_VER_1_5 활성).
+ * 상세: docs/tasks/main/20260715_systemcontrol-fsm-decompose/분석-부록-sullivan유산.md */
 
 
 

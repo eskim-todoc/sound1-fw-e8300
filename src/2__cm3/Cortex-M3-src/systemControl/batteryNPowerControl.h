@@ -17,18 +17,12 @@
 /* EN__BATTERY_LEVEL(7단계 레벨 enum) 제거(2026-07-14): systemControl이 배터리 percent를
  * 직접 비교하도록 전환. 배터리 표현은 percent(snd_batt_get_percent) 단일 소스로 통일. */
 
-typedef struct
-{
-    bool isCarryingCaseConnected;
-    bool isCoverOpen;
-} ST__CARRINGCASE_STATE;
+/* ST__CARRINGCASE_STATE 및 캐링케이스 / 충전기 상태 조회 API 제거(2026-07-15):
+ * Sullivan 유산. 충전 상태는 QCC 0x34 기반 snd_charger_get_state() 로 단일화됐다.
+ * 상세: docs/tasks/main/20260715_systemcontrol-fsm-decompose/분석-부록-sullivan유산.md */
 
-void              calculationBatteryBoundary(void);
-int               readBatteryPercentage(void);
-int               read_BatteryChargerConnectinStatus(void);
-void              updateCarryingCaseStatus(void);
-bool              isCarryingCaseConnected(void);
-bool              isCarryingCaseCoverOpen(void);
+void calculationBatteryBoundary(void);
+int  readBatteryPercentage(void);
 
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // Sound1

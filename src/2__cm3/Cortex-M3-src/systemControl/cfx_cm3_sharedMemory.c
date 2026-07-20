@@ -63,57 +63,13 @@ bool sharedMemoryAddresError(void)
 //
 //
 
-ST__USB_CONNECTOR readUsbConnectorState(void)
-{
-    ST__USB_CONNECTOR *p_old;
-    ST__USB_CONNECTOR  current;
-
-    p_old = &cfx_cm3_sharedMemoryAll.chargerState;
-
-    current.chargerConnectorPluggedIn = Sys_GPIO_Read(DIO_PIN_INDEX_for_ChargerConnectorPluggedIn) == 0 ? df_Connected : df_Disconnected;
-    current.carryingCasePluggedIn     = Sys_GPIO_Read(DIO_PIN_INDEX_for_CarryingCasePluggedIn) == 1 ? df_Connected : df_Disconnected;
-
-    // 휴대보관함에 들어간 상태가 아니면, 커버 상태는 무의미함
-    if (current.carryingCasePluggedIn != df_Connected)
-    {
-        current.carryingCaseCoverOpen = df_Closed;
-    }
-    else
-    {
-        // CASE_OPEN_n은 외부 풀-다운 저항이 적용되어 있음.
-        // 휴대보관함 커버가 열리면 자석이 홀세선에서 멀어지면서, 홀센서 OUT으로 high 레벨 출력.
-        // High 레벨 즉, 1이 커버 열림 상태를 의미함.
-        current.carryingCaseCoverOpen = Sys_GPIO_Read(DIO_PIN_INDEX_for_CarryingCaseCoverOpen) == 1 ? df_Opened : df_Closed;
-    }
-
-    if (p_old->chargerConnectorPluggedIn != current.chargerConnectorPluggedIn)
-    {
-        ci_printd("[USB][CABLE] %s -> %s \r\n",                                                         // 충전 케이블 연결 상태
-                  (p_old->chargerConnectorPluggedIn == df_Connected) ? "CONNECTED" : "DISCONNECTED",    // 이전 상태
-                  (current.chargerConnectorPluggedIn == df_Connected) ? "CONNECTED" : "DISCONNECTED");  // 현재 상태
-    }
-
-    if (p_old->carryingCasePluggedIn != current.carryingCasePluggedIn)
-    {
-        ci_printd("[USB][ CASE] %s -> %s \r\n",                                              // 휴대보관함 넣기/빼기 상태
-                  (p_old->carryingCasePluggedIn == df_Connected) ? "DOCKED" : "UNDOCKED",    // 이전 상태
-                  (current.carryingCasePluggedIn == df_Connected) ? "DOCKED" : "UNDOCKED");  // 현재 상태
-    }
-
-    if (p_old->carryingCaseCoverOpen != current.carryingCaseCoverOpen)
-    {
-        ci_printd("[USB][COVER] %s -> %s \r\n",                                         // 커버 열림/닫힘 상태 출력
-                  (p_old->carryingCaseCoverOpen == df_Opened) ? "OPENED" : "CLOSED",    // 이전 상태
-                  (current.carryingCaseCoverOpen == df_Opened) ? "OPENED" : "CLOSED");  // 현재 상태
-    }
-
-    // 현재 수집된 정보로 업데이트
-    p_old->chargerConnectorPluggedIn = current.chargerConnectorPluggedIn;
-    p_old->carryingCasePluggedIn     = current.carryingCasePluggedIn;
-    p_old->carryingCaseCoverOpen     = current.carryingCaseCoverOpen;
-
-    return cfx_cm3_sharedMemoryAll.chargerState;
-}
+/* readUsbConnectorState() 제거(2026-07-15): Sullivan 유산.
+ * USB 케이블 / 캐링케이스 / 홀센서 커버를 독립 GPIO 3개로 읽던 함수였다.
+ * Sound1 은 포고핀 크래들 단일 경로이며 충전 상태는 QCC 0x34 로 수신한다
+ * (snd_charger_set_state / snd_charger_get_state, batteryNPowerControl.c).
+ * 호출처가 전부 dead 함수 안이었으므로 실행되지 않았다.
+ * DIO_PIN_INDEX_for_* 핀 정의는 ci_dio.c 의 저전력 모드 설정이 계속 사용하므로 유지.
+ * 상세: docs/tasks/main/20260715_systemcontrol-fsm-decompose/분석-부록-sullivan유산.md */
 
 void changeSystemModeFlag(EN__SYSTEM_OP_MODE flag)
 {

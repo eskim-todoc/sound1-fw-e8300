@@ -362,15 +362,17 @@ ST__SYSTEM_STATE systemControl(ST__ERROR_CODE    mcuErrorCode,  //
                 }
                 PowerOn_StartCounter++;
             }
-            else  // 충전기가 꼽혔다가 빠진 상태.
-            {
-                if (prev_batteryChargerConnectionStatus == df_Disconnected)
-                {
-                    systemStatus.enablePMIC = false;
-                    systemStatus.systemOff  = true;
-                    ci_printi("[SYSTEM] GO TO SYSTEM OFF \r\n");
-                }
-            }
+            /* 구 Sullivan 방어 분기 제거(2026-07-15).
+             *
+             * 원본은 여기서 "prev_carryingCase == df_Disconnected 이면 systemOff" 를 했다.
+             * Sullivan 은 USB(charger)와 캐링케이스(carryingCase)가 독립 신호라, USB 없이
+             * 캐링케이스만 연결된 모순 상태를 감지해 슬립으로 도피하는 방어였다.
+             *
+             * Sound1 은 포고핀 크래들 단일 경로다. snd_charger_set_state() 가 두 필드를
+             * 항상 같은 값으로 설정하므로(batteryNPowerControl.c:74~99), 이 else 에 도달한
+             * 시점엔 prev != df_Disconnected 가 확정이고 원본 조건은 항상 거짓이었다.
+             * 즉 방어가 뚫린 게 아니라 모순 자체가 성립 불가해져 불필요해진 것이다.
+             * 상세: docs/tasks/main/20260715_systemcontrol-fsm-decompose/분석-부록-sullivan유산.md */
 
         }  // end battery Charging
         else
