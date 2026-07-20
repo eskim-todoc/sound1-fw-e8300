@@ -58,6 +58,6 @@ tags: [cm3, refactoring, gate, g1, hal, util]
 | 검증_공통_2 (공유 ABI 무변경) | ✅ `cfx_cm3_sharedMemory.h` diff = include 파일명 1줄뿐 |
 | 검증_공통_3 (균형·훅) | ✅ 이동 14파일 + 제거 후 9파일 브레이스·전처리기 균형, 커밋 훅 통과 |
 | 검증_공통_4 (사장 실증) | ✅ 후보 14건 텍스트 전수(비활성 `#if` 포함) 실증 → **12건 제거** · `uart_uninit` 유지(`initialize.c:203` 호출) · `uart_printf` 유지(`TDC_PRINTF` UART 분기 참조) |
-| 검증_공통_5 (빌드·실기) | ⏳ 은수님 게이트 |
+| 검증_공통_5 (빌드·실기) | ✅ PASS — 은수님 확인 (2026-07-20): "빌드 후 정상동작 봤어" → **G1 폐쇄** |
 
 **2차 파생 기록** (상한 규칙 — 제거 안 함): `tdc_hal_dio.c` 의 int flag static 2종은 is_set/clear 제거로 **쓰기 전용**이 됨(IRQ 가 set 만 함). 후속 게이트에서 IRQ 핸들러 정리 시 판단.
