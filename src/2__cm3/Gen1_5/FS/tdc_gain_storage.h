@@ -65,4 +65,8 @@ int tdc_gain_storage_load(int isd_num, ST__TDC_GAIN_SETTING *p_out);
 /* 해당 ISD 슬롯의 게인 설정을 저장한다. 다른 슬롯 값은 보존된다. */
 int tdc_gain_storage_save(int isd_num, const ST__TDC_GAIN_SETTING *p_in);
 
+/* 해당 ISD 슬롯의 게인 설정을 기본값으로 되돌린다(공장 초기화 시 사용).
+ * 다른 슬롯 값은 보존된다. */
+int tdc_gain_storage_reset(int isd_num);
+
 #endif /* __tdc_gain_storage_h__ */

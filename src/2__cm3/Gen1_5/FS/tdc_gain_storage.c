@@ -116,6 +116,18 @@ int tdc_gain_storage_save(int isd_num, const ST__TDC_GAIN_SETTING *p_in)
     return TDC_GAIN_STORAGE_RET_OK;
 }
 
+int tdc_gain_storage_reset(int isd_num)
+{
+    ST__TDC_GAIN_SETTING gain_setting;
+
+    gain_setting.gain_table_index_a = TDC_GAIN_TABLE_INDEX_DEFAULT_A;
+    gain_setting.gain_table_index_b = TDC_GAIN_TABLE_INDEX_DEFAULT_B;
+
+    ci_printi("[GAIN] RESET TO DEFAULT : ISD %d \r\n", isd_num);
+
+    return tdc_gain_storage_save(isd_num, &gain_setting);
+}
+
 static bool tdc_gain_is_valid_index(int index)
 {
     return ((TDC_GAIN_TABLE_INDEX_MIN <= index) && (index <= TDC_GAIN_TABLE_INDEX_MAX));
