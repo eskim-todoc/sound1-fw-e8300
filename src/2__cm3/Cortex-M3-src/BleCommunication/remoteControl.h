@@ -6,9 +6,9 @@
 #include "ble_commonProtocol.h"
 #include "isd_interface.h"
 
-#include <ci_printf.h>
+#include <tdc_printf.h>
 #include <ci_event_log.h>
-#include <ci_timer.h>
+#include <tdc_hal_timer.h>
 
 #include <ci_stim_mute.h>
 

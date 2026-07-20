@@ -13,7 +13,7 @@
 #include <nvmlib.h>
 
 #include <ci_filesystem.h>  // FIL 포인터 extern 선언된 헤더
-#include <ci_timer.h>
+#include <tdc_hal_timer.h>
 
 #define CI_EVENT_LOG_IDENT        "EVENTLOG.TXT"  // 12 bytes
 #define CI_EVENT_LOG_ENTITY_COUNT ((FF_MAX_SS / 16) - 1)

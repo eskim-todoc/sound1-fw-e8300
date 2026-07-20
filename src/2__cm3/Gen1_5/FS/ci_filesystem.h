@@ -22,10 +22,10 @@
 #include <processorDirective.h>
 #include <99_eeprom_address.h>
 
-#include <ci_uart.h>
-#include <ci_printf.h>
+#include <tdc_hal_uart.h>
+#include <tdc_printf.h>
 #include <aes.h>
-#include <ci_crc.h>
+#include <tdc_crc.h>
 
 // Pointer to the null-terminated string that specifies the logical drive.
 // The string without drive number means the default drive.

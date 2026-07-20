@@ -1,5 +1,5 @@
 
-#include <ci_uart.h>
+#include <tdc_hal_uart.h>
 #include <hw.h>
 #include <stdbool.h>
 
@@ -26,7 +26,7 @@
 
 #include "tdc_touch.h"
 
-#include <ci_printf.h>
+#include <tdc_printf.h>
 
 /* 이 파일 전용 상태. 헤더에 extern 선언이 없어 외부에서 쓰지 않으므로 static.
  * systemControl() 은 이 값을 갱신한 뒤 복사본을 반환한다 - 호출자가 반환값을
@@ -191,7 +191,7 @@ ST__SYSTEM_STATE systemControl(ST__ERROR_CODE    mcuErrorCode,  //
                         s_tdc_cradle_cover_closed_edge = true;
                         CounterAfterCoverClosed        = 0;
                         systemStatus.cradleLidClosed   = true;
-                        ci_printi("[SYSTEM] CRADLE LID CLOSED FIRST DETECT\r\n");
+                        TDC_PRINTF_I("[SYSTEM] CRADLE LID CLOSED FIRST DETECT\r\n");
                     }
                 }
             }
@@ -222,7 +222,7 @@ ST__SYSTEM_STATE systemControl(ST__ERROR_CODE    mcuErrorCode,  //
 
                     PowerOn_StartCounter = 0;
                     StartFlag            = true;
-                    ci_printi("[SYSTEM] FIRST POWER-ON SYSTEM CONTROL TICK \r\n");
+                    TDC_PRINTF_I("[SYSTEM] FIRST POWER-ON SYSTEM CONTROL TICK \r\n");
                 }
                 else
                 {
@@ -271,12 +271,12 @@ ST__SYSTEM_STATE systemControl(ST__ERROR_CODE    mcuErrorCode,  //
                             {
                                 if (veryLowBattery)
                                 {
-                                    ci_printw("[SYSTEM] VERY LOW BATTERY \r\n");
+                                    TDC_PRINTF_W("[SYSTEM] VERY LOW BATTERY \r\n");
                                 }
 
                                 if (powerButtonPushed)
                                 {
-                                    ci_printd("[SYSTEM] POWER BUTTON PUSHED \r\n");
+                                    TDC_PRINTF_D("[SYSTEM] POWER BUTTON PUSHED \r\n");
                                 }
 
                                 led_request(LED_SRC_POWER, LED_ST_POWER_OFF);
@@ -284,7 +284,7 @@ ST__SYSTEM_STATE systemControl(ST__ERROR_CODE    mcuErrorCode,  //
                                 PowerOff_StartCounter   = 0;
                                 isPowerOffEnabled       = true;
 
-                                ci_printi("[SYSTEM] LED PATTERN IS POWER OFF \r\n");
+                                TDC_PRINTF_I("[SYSTEM] LED PATTERN IS POWER OFF \r\n");
                             }
                         }
 
@@ -300,7 +300,7 @@ ST__SYSTEM_STATE systemControl(ST__ERROR_CODE    mcuErrorCode,  //
                                 ISD_Disconnection_counter = 0;
                                 systemStatus.enablePMIC   = false;
                                 systemStatus.systemOff    = true;
-                                ci_printi("[SYSTEM] GO TO SYSTEM OFF \r\n");
+                                TDC_PRINTF_I("[SYSTEM] GO TO SYSTEM OFF \r\n");
                             }
                             else
                             {

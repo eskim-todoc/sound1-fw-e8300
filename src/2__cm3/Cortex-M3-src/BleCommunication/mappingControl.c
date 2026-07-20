@@ -735,7 +735,7 @@ void fetch_mappingControlPacket(const int *Rx_dataPacket)  // spi 통신에서 �
 
                                 mappingPacket.liveStimulation.subCommand = en__allParameter;
 
-                                ci_printi("[LIVE] LIVE ALL PARAMETER PAYLOAD NUM : NOW, SUB COMMAND SET TO EN__ALL_PARAMETER \r\n");
+                                TDC_PRINTF_I("[LIVE] LIVE ALL PARAMETER PAYLOAD NUM : NOW, SUB COMMAND SET TO EN__ALL_PARAMETER \r\n");
                             }
                             else
                             {
@@ -866,7 +866,7 @@ void fetch_mappingControlPacket(const int *Rx_dataPacket)  // spi 통신에서 �
 
                             if ((value > max_C_uA) || (value < min_T_uA))
                             {
-                                ci_printe("[MAPPING] VALUE=%d, max_C_uA=%d, min_T_uA=%d \r\n", value, max_C_uA, min_T_uA);
+                                TDC_PRINTF_E("[MAPPING] VALUE=%d, max_C_uA=%d, min_T_uA=%d \r\n", value, max_C_uA, min_T_uA);
                                 // 에러 전송
                                 sendErrorToApp(en__mapping_live_stimulation, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);  // 데이터 범위 벗어남
                                 mappingPacket.liveStimulation.subCommand = en__Standby;
@@ -1902,15 +1902,15 @@ ST__MAPPING_STATE mappingControl(ST__ISD_STATUS ISD_state)
             mappingPacket.command         = mappingPacket.fetched_command;
             mappingPacket.fetched_command = en__mapping_IDLE;
 
-            // ci_printv("\r\n[MAPPING] COMMAND <-- FETCHED COMMAND (0x%02X) \r\n", mappingPacket.command);
+            // TDC_PRINTF_V("\r\n[MAPPING] COMMAND <-- FETCHED COMMAND (0x%02X) \r\n", mappingPacket.command);
         }
         else
         {
             if (prev_mppingCommand != mappingPacket.command)
             {
-                ci_printv("\r\n[MAPPING] FETCHED COMMAND REMAINED : 0x%02X \r\n", mappingPacket.fetched_command);
-                ci_printv("[MAPPING] PREV COMMAND : 0x%02X, CURRENT COMMAND : 0x%02X \r\n", prev_mppingCommand, mappingPacket.command);
-                ci_printv("[MAPPING] BUT, NOW WAITING FOR LINK CONNECTION CHECK \r\n");
+                TDC_PRINTF_V("\r\n[MAPPING] FETCHED COMMAND REMAINED : 0x%02X \r\n", mappingPacket.fetched_command);
+                TDC_PRINTF_V("[MAPPING] PREV COMMAND : 0x%02X, CURRENT COMMAND : 0x%02X \r\n", prev_mppingCommand, mappingPacket.command);
+                TDC_PRINTF_V("[MAPPING] BUT, NOW WAITING FOR LINK CONNECTION CHECK \r\n");
             }
         }
     }
@@ -2002,7 +2002,7 @@ ST__MAPPING_STATE mappingControl(ST__ISD_STATUS ISD_state)
                     }
                     else
                     {
-                        ci_printe("[MAPPING] CAN NOT CHECK IMPEDANCE, BECAUSE ISD NOT CONNECTED \r\n");
+                        TDC_PRINTF_E("[MAPPING] CAN NOT CHECK IMPEDANCE, BECAUSE ISD NOT CONNECTED \r\n");
                         sendErrorToApp(en__mapping_impedanceChekck, en__EN__ISD_ERROR, en__ISD_notConnected, __LINE__);
                         clear_mappingCommand();
                     }
@@ -2257,7 +2257,7 @@ ST__MAPPING_STATE mappingControl(ST__ISD_STATUS ISD_state)
 #if 0
                         if (connectionCheckCounter == 0)
                         {
-                            ci_printv("\r\n[MAPPING] IDLE, LINK CHECK \r\n");
+                            TDC_PRINTF_V("\r\n[MAPPING] IDLE, LINK CHECK \r\n");
                         }
 #endif
                         update_isd_LinkConnection_byBacktel_withMapping(connectionCheckCounter);  // 체크가 완료되면 flag가 FLASE로 변경

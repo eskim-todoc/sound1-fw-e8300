@@ -135,12 +135,12 @@ void ci_ble_fetch_packet_boot(int* p_packet)
     switch (opt)
     {
         case PKT_BOOT_OPTION_INFO:
-            ci_printf("[BOOT] INFO \r\n");
+            TDC_PRINTF("[BOOT] INFO \r\n");
             _fetch_packet_boot_info(p_packet);
             break;
 
         case PKT_BOOT_OPTION_SELECT:
-            ci_printf("[BOOT] SELECT \r\n");
+            TDC_PRINTF("[BOOT] SELECT \r\n");
             _fetch_packet_boot_select(p_packet);
             break;
 

@@ -11,16 +11,16 @@
 #include <string.h>
 
 #include <hw.h>
-#include <ci_printf.h>
+#include <tdc_printf.h>
 
 #define SND_QCC_DEBUG_ENABLE 1
 
 #if SND_QCC_DEBUG_ENABLE
-#define snd_qcc_printe(fmt, ...) ci_printe("[QCC] " fmt, ##__VA_ARGS__)
-#define snd_qcc_printw(fmt, ...) ci_printw("[QCC] " fmt, ##__VA_ARGS__)
-#define snd_qcc_printi(fmt, ...) ci_printi("[QCC] " fmt, ##__VA_ARGS__)
-#define snd_qcc_printd(fmt, ...) ci_printd("[QCC] " fmt, ##__VA_ARGS__)
-#define snd_qcc_printv(fmt, ...) ci_printv("[QCC] " fmt, ##__VA_ARGS__)
+#define snd_qcc_printe(fmt, ...) TDC_PRINTF_E("[QCC] " fmt, ##__VA_ARGS__)
+#define snd_qcc_printw(fmt, ...) TDC_PRINTF_W("[QCC] " fmt, ##__VA_ARGS__)
+#define snd_qcc_printi(fmt, ...) TDC_PRINTF_I("[QCC] " fmt, ##__VA_ARGS__)
+#define snd_qcc_printd(fmt, ...) TDC_PRINTF_D("[QCC] " fmt, ##__VA_ARGS__)
+#define snd_qcc_printv(fmt, ...) TDC_PRINTF_V("[QCC] " fmt, ##__VA_ARGS__)
 #else
 #define snd_qcc_printe(fmt, ...)
 #define snd_qcc_printw(fmt, ...)

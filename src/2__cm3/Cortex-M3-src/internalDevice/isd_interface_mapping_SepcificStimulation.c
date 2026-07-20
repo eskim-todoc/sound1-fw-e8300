@@ -428,24 +428,24 @@ void specificStimulation(bool startFlag)
         // 어떻게 처리되는 건지 디버그 메시지 출력을 위한 별도의 case 문
         case 20:
         {
-            ci_printi("[SPEC] USABLE ELEC NUM : %d \r\n", mappingPacket->specificStimulation.usableElectrodeNum);
-            ci_printi("[SPEC] PULSE WIDTH : %d \r\n", mappingPacket->specificStimulation.pulseWidth);
-            ci_printi("[SPEC] FRAME NUM PER 1 CH : %d \r\n", numFramePerChannel);
-            ci_printi("[SPEC] TRANSFERABLE CH NUM PER 1 MS : %d \r\n", TransferabelChannelNum);
-            ci_printi("[SPEC] STIM LEVEL (UA) : %d \r\n", mappingPacket->specificStimulation.stimulationLevel_uA);
-            ci_printi("[SPEC] DELIVERY CHARGE PICO : %d \r\n",  //
+            TDC_PRINTF_I("[SPEC] USABLE ELEC NUM : %d \r\n", mappingPacket->specificStimulation.usableElectrodeNum);
+            TDC_PRINTF_I("[SPEC] PULSE WIDTH : %d \r\n", mappingPacket->specificStimulation.pulseWidth);
+            TDC_PRINTF_I("[SPEC] FRAME NUM PER 1 CH : %d \r\n", numFramePerChannel);
+            TDC_PRINTF_I("[SPEC] TRANSFERABLE CH NUM PER 1 MS : %d \r\n", TransferabelChannelNum);
+            TDC_PRINTF_I("[SPEC] STIM LEVEL (UA) : %d \r\n", mappingPacket->specificStimulation.stimulationLevel_uA);
+            TDC_PRINTF_I("[SPEC] DELIVERY CHARGE PICO : %d \r\n",  //
                       (mappingPacket->specificStimulation.pulseWidth) * mappingPacket->specificStimulation.stimulationLevel_uA);
-            ci_printi("[SPEC] STIM DAC SLOPE : %d \r\n", stimulDAC_slope);
-            ci_printi("[SPEC] STIM DAC VALUE : %d \r\n", stimulLevel_255);
-            ci_printi("[SPEC] OFFSET DAC RESOLUTION : %d \r\n", stimulDAC_offsetResolution);
-            ci_printi("[SPEC] OFFSET DAC VALUE : %d \r\n", stimulDAC_offsetValue);
-            ci_printi("[SPEC] STIM HOLD TIME (MS)  : %d \r\n", stimulationHoldTime_msec);
-            ci_printi("[SPEC] REF CH MODE : %s \r\n",  //
+            TDC_PRINTF_I("[SPEC] STIM DAC SLOPE : %d \r\n", stimulDAC_slope);
+            TDC_PRINTF_I("[SPEC] STIM DAC VALUE : %d \r\n", stimulLevel_255);
+            TDC_PRINTF_I("[SPEC] OFFSET DAC RESOLUTION : %d \r\n", stimulDAC_offsetResolution);
+            TDC_PRINTF_I("[SPEC] OFFSET DAC VALUE : %d \r\n", stimulDAC_offsetValue);
+            TDC_PRINTF_I("[SPEC] STIM HOLD TIME (MS)  : %d \r\n", stimulationHoldTime_msec);
+            TDC_PRINTF_I("[SPEC] REF CH MODE : %s \r\n",  //
                       mappingPacket->specificStimulation.stimulatonMode == en__monopolr_body          ? "MP-B"
                       : mappingPacket->specificStimulation.stimulatonMode == en__monopolr_rod         ? "MP-R"
                       : mappingPacket->specificStimulation.stimulatonMode == en__monopolr_BothRodBody ? "MP-R&B"
                                                                                                       : "BP, CG, ETC...");
-            ci_printi("[SPEC] STIM MODE : %s \r\n",  //
+            TDC_PRINTF_I("[SPEC] STIM MODE : %s \r\n",  //
                       mappingPacket->specificStimulation.stimulatonMode == en__monopolr_body          ? "MP-B"
                       : mappingPacket->specificStimulation.stimulatonMode == en__monopolr_rod         ? "MP-R"
                       : mappingPacket->specificStimulation.stimulatonMode == en__monopolr_BothRodBody ? "MP-R&B"
@@ -455,11 +455,11 @@ void specificStimulation(bool startFlag)
                                                                                                       : "INVALID");
             if (mappingPacket->specificStimulation.stimulatonMode == en__bipolar)
             {
-                ci_printi("[SPEC] BIPOLAR REF CH NUM : %d (PCB : %d) \r\n",  //
+                TDC_PRINTF_I("[SPEC] BIPOLAR REF CH NUM : %d (PCB : %d) \r\n",  //
                           mappingPacket->specificStimulation.bipolarReferenceElectrodeNum,
                           bipolarReferenceElectrodeNum[electrodeMap[(mappingPacket->specificStimulation.stimulationElectrodeNum - 1)]]);
             }
-            ci_printi("[SPEC] STIM CH NUM : %d (PCB : %d ) \r\n",  //
+            TDC_PRINTF_I("[SPEC] STIM CH NUM : %d (PCB : %d ) \r\n",  //
                       mappingPacket->specificStimulation.stimulationElectrodeNum,
                       electrodeMap[(mappingPacket->specificStimulation.stimulationElectrodeNum - 1)]);
         }
@@ -504,7 +504,7 @@ void specificStimulation(bool startFlag)
             // 커맨드 리셋;
             clear_mappingCommand();
 
-            ci_printi("[MAPPING] STIMULATION HOLD TIME FINISHED \r\n");
+            TDC_PRINTF_I("[MAPPING] STIMULATION HOLD TIME FINISHED \r\n");
         }
         else
         {
@@ -523,12 +523,12 @@ void specificStimulation(bool startFlag)
                     break;
                 }
 
-                ci_printi("[MAPPING] NOW, CFX IS READING SPECIFIC COMMAND (IDLE LOOP CNT: %d) \r\n", specific_command_idle_loop_i);
+                TDC_PRINTF_I("[MAPPING] NOW, CFX IS READING SPECIFIC COMMAND (IDLE LOOP CNT: %d) \r\n", specific_command_idle_loop_i);
             }
 
             if (50 <= specific_command_idle_loop_i)
             {
-                ci_printe("[MAPPING] SPECIFIC COMMAND TIMING ISSUE OCCURRED \r\n");
+                TDC_PRINTF_E("[MAPPING] SPECIFIC COMMAND TIMING ISSUE OCCURRED \r\n");
             }
 
             for (i = 0; i < TransferabelChannelNum; i++)  //

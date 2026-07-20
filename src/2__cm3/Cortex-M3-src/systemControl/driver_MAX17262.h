@@ -12,7 +12,7 @@
 
 #include <hw.h>
 #include <driver_i2c.h>
-#include <ci_printf.h>
+#include <tdc_printf.h>
 
 #define MAX17262_SLAVE_ADDR 0x36
 #define MAX17262_REG_VCELL  0x09

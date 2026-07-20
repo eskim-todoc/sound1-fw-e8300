@@ -16,7 +16,7 @@
 #ifndef TDC_TOUCH_CONFIG_H_
 #define TDC_TOUCH_CONFIG_H_
 
-/* 노말 폴링(200ms)마다 LTA/Counts/임계 계측을 RTT(ci_printd)로 출력 - 실측 튜닝용.
+/* 노말 폴링(200ms)마다 LTA/Counts/임계 계측을 RTT(TDC_PRINTF_D)로 출력 - 실측 튜닝용.
  * 튜닝 완료 후 0 으로 두면 계측 블록이 컴파일 단계에서 완전 제거(런타임 비용 0). */
 #ifndef TDC_TOUCH_DEBUG_PRINT_ENABLE
 #  define TDC_TOUCH_DEBUG_PRINT_ENABLE  1

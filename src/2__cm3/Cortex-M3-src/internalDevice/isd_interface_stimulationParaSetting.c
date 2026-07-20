@@ -364,7 +364,7 @@ bool settingStimulPara_monoPolarMode(bool isdControlStateChagedFlag)
                     // 자극 파라미터 설정 완료
                     if (write_FPGA_clear_FIFO())
                     {
-                        ci_printv("[STIMULATION] DONE, STIMULATION PARAMETER SETTING \r\n");
+                        TDC_PRINTF_V("[STIMULATION] DONE, STIMULATION PARAMETER SETTING \r\n");
                         done_setting_StimulPara_variable();
                     }
                     else
@@ -477,7 +477,7 @@ bool settingStimulPara_biPolarMode(bool isdControlStateChagedFlag)
                 bipolarReferenceElectrodeNum[i] = unusedReferenceElectrode_DummyNum;
             }
 
-            ci_printi("[PARA] TOTAL NUM FREQ BAND : %d \r\n", p_mapdata->numFrequencyBand);
+            TDC_PRINTF_I("[PARA] TOTAL NUM FREQ BAND : %d \r\n", p_mapdata->numFrequencyBand);
 
             for (i = 0; i < p_mapdata->numFrequencyBand; i++)
             {
@@ -492,7 +492,7 @@ bool settingStimulPara_biPolarMode(bool isdControlStateChagedFlag)
                 bipolarReferenceElectrodeNum[electrodeMap[p_mapdata->usableStimulationElectrodIndex[i] - 1]] =  // 코드가 길어서 강제 줄 바꿈
                     electrodeMap[p_mapdata->usableReferenceElectrodIndex[i] - 1];
 
-                ci_printi("[PARA] (1 BASE), BAND : %2d, STIM ELEC NUM : %2d (PCB : %2d), REF ELEC NUM : %2d (PCB : %2d) \r\n",  //
+                TDC_PRINTF_I("[PARA] (1 BASE), BAND : %2d, STIM ELEC NUM : %2d (PCB : %2d), REF ELEC NUM : %2d (PCB : %2d) \r\n",  //
                           i + 1,
                           p_mapdata->usableStimulationElectrodIndex[i],
                           electrodeMap[p_mapdata->usableStimulationElectrodIndex[i] - 1] + 1,
@@ -503,7 +503,7 @@ bool settingStimulPara_biPolarMode(bool isdControlStateChagedFlag)
 
             for (i = p_mapdata->numFrequencyBand; i < df_MaxNumOfElectrode; i++)
             {
-                ci_printi("[PARA] (1 BASE), BAND : %2d, STIM ELEC NUM : %2d (PCB : XX), REF ELEC NUM : %2d (PCB : XX) \r\n",  //
+                TDC_PRINTF_I("[PARA] (1 BASE), BAND : %2d, STIM ELEC NUM : %2d (PCB : XX), REF ELEC NUM : %2d (PCB : XX) \r\n",  //
                           i + 1,
                           p_mapdata->usableStimulationElectrodIndex[i],
                           p_mapdata->usableReferenceElectrodIndex[i]);
@@ -802,21 +802,21 @@ bool settingStimulPara_biPolarMode(bool isdControlStateChagedFlag)
             {
                 if (r_FPGA_registerValue != 0)
                 {
-                    ci_printi("[PARA] BIPOLAR REF READ BACKTEL COUNT : %d \r\n", r_FPGA_registerValue);
+                    TDC_PRINTF_I("[PARA] BIPOLAR REF READ BACKTEL COUNT : %d \r\n", r_FPGA_registerValue);
 
                     // if (cfx_i2c_read(df_I2C_ADDR_FPGA_BackTel, backtelBuff, df_MaxNumOfElectrode))
                     if (read_FPGA_backtel_FIFO(backtelBuff, r_FPGA_registerValue))
                     {
                         for (i = 0; i < df_MaxNumOfElectrode - 1; i++)
                         {
-                            ci_printi("[PARA] CHIP, (0 BASE), INDEX MAP (PCB) [%2d] : (PCB) %d \r\n",  //
+                            TDC_PRINTF_I("[PARA] CHIP, (0 BASE), INDEX MAP (PCB) [%2d] : (PCB) %d \r\n",  //
                                       i,
                                       ((0x1F) & (backtelBuff[i])));
 
                             // if (electrodeMap[bipolarReferenceElectrodeNum[i]] != ((0x1F) & (backtelBuff[i])))
                             if (bipolarReferenceElectrodeNum[i] != ((0x1F) & (backtelBuff[i])))
                             {
-                                ci_printe("[PARA] PRE-SETTING BIPOLAR REF INDEX : %d, READ REF INDEX : %d \r\n",  //
+                                TDC_PRINTF_E("[PARA] PRE-SETTING BIPOLAR REF INDEX : %d, READ REF INDEX : %d \r\n",  //
                                           bipolarReferenceElectrodeNum[i],
                                           (0x1F) & (backtelBuff[i]));
                                 change_isd_state(en__isdStatus_FPGA_Ok);  // 내부기 전송 파워 설정 부터 다시.
@@ -824,7 +824,7 @@ bool settingStimulPara_biPolarMode(bool isdControlStateChagedFlag)
                             }
                         }
 
-                        ci_printi("[PARA] CHIP, (0 BASE), INDEX MAP (PCB) [%2d] : (PCB) %d \r\n",  //
+                        TDC_PRINTF_I("[PARA] CHIP, (0 BASE), INDEX MAP (PCB) [%2d] : (PCB) %d \r\n",  //
                                   df_MaxNumOfElectrode - 1,
                                   ((0x1F) & (backtelBuff[df_MaxNumOfElectrode - 1])));
                     }
@@ -832,14 +832,14 @@ bool settingStimulPara_biPolarMode(bool isdControlStateChagedFlag)
                 else
                 {
                     // 백텔이 안들어 왔다.
-                    ci_printw("[PARA] BIPOLAR REF READ BACKTEL COUNT IS 0 \r\n");
+                    TDC_PRINTF_W("[PARA] BIPOLAR REF READ BACKTEL COUNT IS 0 \r\n");
                     change_isd_state(en__isdStatus_FPGA_Ok);  // 내부기 전송 파워 설정 부터 다시.
                     stimulationConfigError = true;
                 }
             }
             else
             {
-                ci_printe("[PARA] I2C FAILED TO READ FIFO COUNT FOR READING BIPOLAR REF \r\n");
+                TDC_PRINTF_E("[PARA] I2C FAILED TO READ FIFO COUNT FOR READING BIPOLAR REF \r\n");
                 change_isd_state(en__isdStatus_PowerIC_OK);  // FPGA 리셋
                 stimulationConfigError = true;
             }
@@ -999,7 +999,7 @@ bool settingStimulPara_biPolarMode(bool isdControlStateChagedFlag)
                         {
                             isdSettingError = true;
 
-                            ci_printw("[PARA] SETTING ERROR, SETTING OFFSET DAC LEVEL : %d, READ OFFSET DAC LEVEL : %d \r\n",  //
+                            TDC_PRINTF_W("[PARA] SETTING ERROR, SETTING OFFSET DAC LEVEL : %d, READ OFFSET DAC LEVEL : %d \r\n",  //
                                       p_stimulDAC_setting->DAC_offsetLevel_register,
                                       backtelBuff[0]);
                         }
@@ -1009,7 +1009,7 @@ bool settingStimulPara_biPolarMode(bool isdControlStateChagedFlag)
                         {
                             isdSettingError = true;  //
 
-                            ci_printw("[PARA] SETTING ERROR, SETTING STIMUL CONFIG : %d, READ STIMUL CONFIG : %d \r\n",  //
+                            TDC_PRINTF_W("[PARA] SETTING ERROR, SETTING STIMUL CONFIG : %d, READ STIMUL CONFIG : %d \r\n",  //
                                       sent_stimulConfig,
                                       backtelBuff[1]);
                         }
@@ -1024,14 +1024,14 @@ bool settingStimulPara_biPolarMode(bool isdControlStateChagedFlag)
                 }
                 else
                 {
-                    ci_printw("[PARA] OFFSET DAC LEVEL, STIM CONFIG READ BACKTEL COOUNT IS NOT 2, (COUNT: %d) \r\n", r_FPGA_registerValue);
+                    TDC_PRINTF_W("[PARA] OFFSET DAC LEVEL, STIM CONFIG READ BACKTEL COOUNT IS NOT 2, (COUNT: %d) \r\n", r_FPGA_registerValue);
                     change_isd_state(en__isdStatus_FPGA_Ok);  // 내부기 전송 파워 설정 부터 다시.
                     stimulationConfigError = true;
                 }
             }
             else
             {
-                ci_printw("[PARA] OFFSET DAC LEVEL, STIM CONFIG READ BACKTEL COOUNT IS 0 \r\n");
+                TDC_PRINTF_W("[PARA] OFFSET DAC LEVEL, STIM CONFIG READ BACKTEL COOUNT IS 0 \r\n");
                 change_isd_state(en__isdStatus_FPGA_Ok);  // 내부기 전송 파워 설정 부터 다시.
                 stimulationConfigError = true;
             }
@@ -1069,18 +1069,18 @@ bool settingStimulPara_biPolarMode(bool isdControlStateChagedFlag)
 
                     if (write_FPGA_clear_FIFO())
                     {
-                        ci_printv("[STIMULATION] DONE, STIMULATION PARAMETER SETTING \r\n");
+                        TDC_PRINTF_V("[STIMULATION] DONE, STIMULATION PARAMETER SETTING \r\n");
                         done_setting_StimulPara_variable();
                     }
                     else
                     {
-                        ci_printe("[PARA] I2C FAILED TO CLEAR FPGA FIFO \r\n");
+                        TDC_PRINTF_E("[PARA] I2C FAILED TO CLEAR FPGA FIFO \r\n");
                         change_isd_state(en__isdStatus_PowerIC_OK);
                     }
                 }
                 else
                 {
-                    ci_printe("[PARA] FAILED TO SET FPGA PULSE WIDTH \r\n");
+                    TDC_PRINTF_E("[PARA] FAILED TO SET FPGA PULSE WIDTH \r\n");
 
                     if (read_FPGA_systemError_Flag(&r_FPGA_registerValue))
                     {
@@ -1093,7 +1093,7 @@ bool settingStimulPara_biPolarMode(bool isdControlStateChagedFlag)
             }
             else
             {
-                ci_printe("[PARA] I2C FAILED TO READ FPGA PULSE WIDTH \r\n");
+                TDC_PRINTF_E("[PARA] I2C FAILED TO READ FPGA PULSE WIDTH \r\n");
                 change_isd_state(en__isdStatus_FPGA_Ok);  // 내부기 전송 파워 설정 부터 다시.
             }
         }
@@ -1126,7 +1126,7 @@ bool stimulationSetting(bool startTrigger)
 
     if (startTrigger)
     {
-        ci_printv("[STIMULATION] TRIGGER, STIMULATION PARAMETER SETTING \r\n");
+        TDC_PRINTF_V("[STIMULATION] TRIGGER, STIMULATION PARAMETER SETTING \r\n");
     }
 
     switch(p_mapdata->stimulationMode)
@@ -1137,21 +1137,21 @@ bool stimulationSetting(bool startTrigger)
         {
             // 내부기 칩 레지스터 0x05, 0x06을 설정하여
             // 오프셋 DAC 값과 오프셋 DAC의 기울기, 슬로프 DAC의 기울기, 자극 모드 및 레퍼런스 전극 설정을 진행한다.
-            //ci_printi("[SETTING] START MONOPOLAR MODE SETTING \r\n");
+            //TDC_PRINTF_I("[SETTING] START MONOPOLAR MODE SETTING \r\n");
             error = settingStimulPara_monoPolarMode(startTrigger);
         }
         break;
 
         case en__bipolar:
         {
-            //ci_printi("[SETTING] START BIPOLAR MODE SETTING \r\n");
+            //TDC_PRINTF_I("[SETTING] START BIPOLAR MODE SETTING \r\n");
             error = settingStimulPara_biPolarMode(startTrigger);
         }
         break;
 
         case en__commonground:
         {
-            //ci_printi("[SETTING] START CG MODE SETTING \r\n");
+            //TDC_PRINTF_I("[SETTING] START CG MODE SETTING \r\n");
             error = settingStimulPara_monoPolarMode(startTrigger);
         }
         break;

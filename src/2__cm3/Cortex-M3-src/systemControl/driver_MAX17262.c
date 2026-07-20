@@ -43,7 +43,7 @@ void max17262_update_mv(void)
         if (i2c_driver_state == i2c_state_Error)
         {
             init_I2c();
-            ci_printe("[MAX17262] I2C WRITING ERROR. \r\n");
+            TDC_PRINTF_E("[MAX17262] I2C WRITING ERROR. \r\n");
             return;
         }
 
@@ -67,7 +67,7 @@ void max17262_update_mv(void)
         if (i2c_driver_state == i2c_state_Error)
         {
             init_I2c();
-            ci_printe("[MAX17262] I2C READING ERROR. \r\n");
+            TDC_PRINTF_E("[MAX17262] I2C READING ERROR. \r\n");
             return;
         }
 

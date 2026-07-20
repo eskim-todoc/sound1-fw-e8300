@@ -1,7 +1,7 @@
 
-#include <ci_crc.h>
+#include <tdc_crc.h>
 
-uint16_t ci_crc_ccitt_calc(void* buf, uint32_t size)
+uint16_t tdc_crc_ccitt_calc(void* buf, uint32_t size)
 {
     uint32_t i;
     uint8_t* p = (uint8_t*) buf;

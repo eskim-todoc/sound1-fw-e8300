@@ -12,7 +12,7 @@
 
 #include <hw.h>
 
-#include <ci_util.h>
+#include <tdc_util.h>
 
 #include <isd_interface_init_FPGA.h>
 #include <isd_interface_FPGA.h>

@@ -17,7 +17,7 @@
 #include "processorDirective.h"
 #include <ci_stim_mute.h>
 
-#include <ci_printf.h>
+#include <tdc_printf.h>
 #include <tdc_touch_config.h>
 /* tdc_drv_iqs323.h 제거 (터치 3파일 리팩토링 2026-06-20) - RTT_TUNING 폐기로
  * 본 파일의 #if TDC_TOUCH_RTT_TUNING tuning 블록은 미정의(0)로 컴파일 제외된다. */
@@ -680,7 +680,7 @@ static int handle_init_all_map(int argc, char *argv[])
     (void) argc;
     (void) argv;
 
-    ci_printi("[UI CMD] START TO ERASE ALL MAPS\r\n");
+    TDC_PRINTF_I("[UI CMD] START TO ERASE ALL MAPS\r\n");
     if (argc == 2)
     {
         char *p = argv[1];
@@ -710,7 +710,7 @@ static int handle_init_all_map(int argc, char *argv[])
     ci_map_init_map_data(4, true, false, 1);
     SYS_WATCHDOG_REFRESH();
 
-    ci_printi("[UI CMD] FINISHED ERASING ALL MAPS\r\n");
+    TDC_PRINTF_I("[UI CMD] FINISHED ERASING ALL MAPS\r\n");
     output_printf("OK: all maps erased\r\n");
     return 0;
 }
@@ -724,9 +724,9 @@ static int handle_dump_log(int argc, char *argv[])
     (void) argc;
     (void) argv;
 
-    ci_printi("[UI CMD] START TO READ EVENT LOG\r\n");
+    TDC_PRINTF_I("[UI CMD] START TO READ EVENT LOG\r\n");
     ci_event_log_read();
-    ci_printi("[UI CMD] FINISHED TO READ EVENT LOG\r\n");
+    TDC_PRINTF_I("[UI CMD] FINISHED TO READ EVENT LOG\r\n");
     output_printf("OK: event log dumped\r\n");
     return 0;
 }
@@ -760,7 +760,7 @@ static int handle_gating(int argc, char *argv[])
     {
         if (ci_stim_mute_update(CI_STIM_MUTE_UNDER_T_LEVEL_ENABLE, 2) == CI_STIM_MUTE_RET_TRUE)
         {
-            ci_printe("[UI] Enable gating mode \r\n");
+            TDC_PRINTF_E("[UI] Enable gating mode \r\n");
             val = true;
         }
     }
@@ -768,7 +768,7 @@ static int handle_gating(int argc, char *argv[])
     {
         if (ci_stim_mute_update(CI_STIM_MUTE_UNDER_T_LEVEL_DISABLE, 2) == CI_STIM_MUTE_RET_TRUE)
         {
-            ci_printe("[UI] Disable gating mode \r\n");
+            TDC_PRINTF_E("[UI] Disable gating mode \r\n");
             val = true;
         }
     }
@@ -780,7 +780,7 @@ static int handle_gating(int argc, char *argv[])
 
     if (!val)
     {
-        ci_printw("[UI] Failed to change gating mode \r\n");
+        TDC_PRINTF_W("[UI] Failed to change gating mode \r\n");
         return -1;
     }
 

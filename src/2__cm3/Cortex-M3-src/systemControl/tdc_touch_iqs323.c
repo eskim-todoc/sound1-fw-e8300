@@ -127,11 +127,11 @@ static bool i2c_read(uint8_t *p_buf, int len)
  */
 static bool wait_window_closed(int max_ms)
 {
-    int tick_old = ci_timer_get_tick();
+    int tick_old = tdc_hal_timer_get_tick();
 
     while (1)
     {
-        if (max_ms <= (ci_timer_get_tick() - tick_old))
+        if (max_ms <= (tdc_hal_timer_get_tick() - tick_old))
         {
             return false; /* soft timeout - 다음 force_window_open 이 복구 */
         }
@@ -158,17 +158,17 @@ static bool force_window_open(void)
     }
 #endif
 
-    int tick_old = ci_timer_get_tick();
+    int tick_old = tdc_hal_timer_get_tick();
     while (1)
     {
-        if (TDC_TOUCH_IQS323_MAX_WAIT_OPEN_MS <= (ci_timer_get_tick() - tick_old))
+        if (TDC_TOUCH_IQS323_MAX_WAIT_OPEN_MS <= (tdc_hal_timer_get_tick() - tick_old))
         {
-            ci_printe("[TOUCH] FORCE WINDOW OPEN TIMEOUT (START = %d, END = %d) \r\n", tick_old, ci_timer_get_tick());
+            TDC_PRINTF_E("[TOUCH] FORCE WINDOW OPEN TIMEOUT (START = %d, END = %d) \r\n", tick_old, tdc_hal_timer_get_tick());
             return false;
         }
         if (Sys_GPIO_Read(TDC_TOUCH_IQS323_RDY_PIN) == TDC_TOUCH_IQS323_WIN_OPEN)
         {
-            // ci_printi("[TOUCH] WINDOW OPEN WAIT TIME TOTAL %d MSEC \r\n", ci_timer_get_tick() - tick_old);
+            // TDC_PRINTF_I("[TOUCH] WINDOW OPEN WAIT TIME TOTAL %d MSEC \r\n", tdc_hal_timer_get_tick() - tick_old);
             return true;
         }
     }
@@ -183,15 +183,15 @@ static bool write_register(uint8_t addr, uint8_t lsb, uint8_t msb)
 
     if (!force_window_open())
     {
-        ci_printe("[TOUCH] WRITE 0x%02X: WINDOW OPEN FAIL \r\n", addr);
+        TDC_PRINTF_E("[TOUCH] WRITE 0x%02X: WINDOW OPEN FAIL \r\n", addr);
         return false;
     }
     if (!i2c_write(buf, 3))
     {
-        ci_printe("[TOUCH] WRITE 0x%02X: I2C FAIL \r\n", addr);
+        TDC_PRINTF_E("[TOUCH] WRITE 0x%02X: I2C FAIL \r\n", addr);
         return false;
     }
-    ci_printv("[TOUCH] WRITE 0x%02X: LSB=0x%02X MSB=0x%02X \r\n", addr, lsb, msb);
+    TDC_PRINTF_V("[TOUCH] WRITE 0x%02X: LSB=0x%02X MSB=0x%02X \r\n", addr, lsb, msb);
     wait_window_closed(TDC_TOUCH_IQS323_MAX_WAIT_CLOSE_MS);
     return true;
 }
@@ -203,24 +203,24 @@ static bool read_register(uint8_t addr, uint8_t *p_lsb, uint8_t *p_msb)
 
     if (!force_window_open())
     {
-        ci_printe("[TOUCH] READ 0x%02X: WINDOW OPEN FAIL (ADDR) \r\n", addr);
+        TDC_PRINTF_E("[TOUCH] READ 0x%02X: WINDOW OPEN FAIL (ADDR) \r\n", addr);
         return false;
     }
     if (!i2c_write(&reg, 1))
     {
-        ci_printe("[TOUCH] READ 0x%02X: WRITE ADDR FAIL \r\n", addr);
+        TDC_PRINTF_E("[TOUCH] READ 0x%02X: WRITE ADDR FAIL \r\n", addr);
         return false;
     }
     wait_window_closed(TDC_TOUCH_IQS323_MAX_WAIT_CLOSE_MS);
 
     if (!force_window_open())
     {
-        ci_printe("[TOUCH] READ 0x%02X: WINDOW OPEN FAIL (DATA) \r\n", addr);
+        TDC_PRINTF_E("[TOUCH] READ 0x%02X: WINDOW OPEN FAIL (DATA) \r\n", addr);
         return false;
     }
     if (!i2c_read(buf, 2))
     {
-        ci_printe("[TOUCH] READ 0x%02X: I2C READ FAIL \r\n", addr);
+        TDC_PRINTF_E("[TOUCH] READ 0x%02X: I2C READ FAIL \r\n", addr);
         return false;
     }
     *p_lsb = buf[0];
@@ -337,7 +337,7 @@ static bool wait_ati_done_blocking(void)
         }
         Sys_Delay(TDC_TOUCH_IQS323_DEFAULT_DELAY_MS * 50);
     }
-    ci_printw("[TOUCH] BOOT RE-ATI: NOT CONFIRMED (터치 중이면 정상) \r\n");
+    TDC_PRINTF_W("[TOUCH] BOOT RE-ATI: NOT CONFIRMED (터치 중이면 정상) \r\n");
     return false;
 }
 
@@ -379,14 +379,14 @@ bool tdc_touch_iqs323_read_debug(tdc_touch_iqs323_debug_t *out)
      * 계측 실패는 부가 기능이므로 printw(경고)로만 알리고 false 반환(FSM 무영향). */
     if (!force_window_open() || !i2c_write(&reg, 1))
     {
-        ci_printw("[TOUCH] DEBUG READ FAIL (addr) \r\n");
+        TDC_PRINTF_W("[TOUCH] DEBUG READ FAIL (addr) \r\n");
         return false;
     }
     wait_window_closed(TDC_TOUCH_IQS323_MAX_WAIT_CLOSE_MS);
 
     if (!force_window_open() || !i2c_read(buf, 4))
     {
-        ci_printw("[TOUCH] DEBUG READ FAIL (data) \r\n");
+        TDC_PRINTF_W("[TOUCH] DEBUG READ FAIL (data) \r\n");
         return false;
     }
     wait_window_closed(TDC_TOUCH_IQS323_MAX_WAIT_CLOSE_MS);
@@ -403,40 +403,40 @@ void tdc_touch_iqs323_apply_settings(void)
 
     if (!ack_reset())
     {
-        ci_printe("[TOUCH] FAIL: ACK RESET \r\n");
+        TDC_PRINTF_E("[TOUCH] FAIL: ACK RESET \r\n");
     }
     if (!confirm_reset())
     {
-        ci_printe("[TOUCH] FAIL: CONFIRM RESET \r\n");
+        TDC_PRINTF_E("[TOUCH] FAIL: CONFIRM RESET \r\n");
     }
     if (!sensor_setup())
     {
-        ci_printe("[TOUCH] FAIL: SENSOR SETUP \r\n");
+        TDC_PRINTF_E("[TOUCH] FAIL: SENSOR SETUP \r\n");
     }
     if (!touch_settings(TDC_TOUCH_IQS323_THRESHOLD, TDC_TOUCH_IQS323_HYSTERESIS))
     {
-        ci_printe("[TOUCH] FAIL: TOUCH SETTINGS \r\n");
+        TDC_PRINTF_E("[TOUCH] FAIL: TOUCH SETTINGS \r\n");
     }
     /* Prox Threshold = Touch Threshold 동일 계수 → prox 진입점을 touch 진입점과 일치시킨다.
      * 약결합(터치 미만)은 prox 미진입이라 LTA 자유 수렴(흡수), 진짜 터치 진입 시에만 LTA freeze(보호).
      * 0x61 LSB=Prox Threshold(계수), MSB=Prox Debounce(0=즉시). [실측 게이트: prox 단위 절대/계수 확인] */
     if (!write_register(REG_CH0_PROX, TDC_TOUCH_IQS323_PROX_THRESHOLD, 0x00))
     {
-        ci_printe("[TOUCH] FAIL: PROX SETTINGS \r\n");
+        TDC_PRINTF_E("[TOUCH] FAIL: PROX SETTINGS \r\n");
     }
     if (!events_enable())
     {
-        ci_printe("[TOUCH] FAIL: EVENTS ENABLE \r\n");
+        TDC_PRINTF_E("[TOUCH] FAIL: EVENTS ENABLE \r\n");
     }
     if (!beta_power_settings())
     {
-        ci_printe("[TOUCH] FAIL: BETA/POWER \r\n");
+        TDC_PRINTF_E("[TOUCH] FAIL: BETA/POWER \r\n");
     }
 
     /* Full ATI: 0x36 = 0x040C (Mode=Full). MULT/COMP write 폐기 - IC 자동 산출. */
     if (!write_register(REG_SENSOR0_ATI_SETUP, 0x0C, 0x04))
     {
-        ci_printe("[TOUCH] FAIL: ATI SETUP FULL \r\n");
+        TDC_PRINTF_E("[TOUCH] FAIL: ATI SETUP FULL \r\n");
     }
 
     SYS_WATCHDOG_REFRESH();
@@ -446,13 +446,13 @@ void tdc_touch_iqs323_apply_settings(void)
      * 트리거 write 가 beta_power_settings 의 Power Mode 설정을 000(Normal)로 덮지 않는다. */
     if (!write_register(REG_SYSTEM_CONTROL, 0x54, 0x07)) /* bit2 Re-ATI + Power No ULP + CH timeout disable */
     {
-        ci_printe("[TOUCH] FAIL: BOOT RE-ATI \r\n");
+        TDC_PRINTF_E("[TOUCH] FAIL: BOOT RE-ATI \r\n");
     }
     (void) wait_ati_done_blocking();
 
     if (!write_register(REG_SYSTEM_CONTROL, 0x58, 0x07)) /* bit3 RESEED + Power No ULP + CH timeout disable */
     {
-        ci_printe("[TOUCH] FAIL: RESEED \r\n");
+        TDC_PRINTF_E("[TOUCH] FAIL: RESEED \r\n");
     }
 
     tdc_touch_iqs323_clear_ulp();

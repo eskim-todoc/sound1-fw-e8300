@@ -1,6 +1,6 @@
-#include <ci_printf.h>
+#include <tdc_printf.h>
 
-void ci_print_file_func_line(const char* file, const char* func, int line)
+void tdc_printf_file_func_line(const char* file, const char* func, int line)
 {
 
 #if 0

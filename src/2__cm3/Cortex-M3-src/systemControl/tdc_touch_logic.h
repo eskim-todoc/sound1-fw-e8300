@@ -3,7 +3,7 @@
  *
  * 순수 터치 제어 FSM (HW 비의존). 3레이어 탈피 간결 재작성 2026-06-20.
  *
- * 순수성 게이트: 본 헤더와 tdc_touch_logic.c 는 hw.h / ci_timer.h / ci_printf.h /
+ * 순수성 게이트: 본 헤더와 tdc_touch_logic.c 는 hw.h / tdc_hal_timer.h / tdc_printf.h /
  *   LedOutput.h / tdc_touch_iqs323.h 를 절대 include 하지 않는다. 허용 include 는
  *   <stdbool.h> / <stdint.h> / tdc_touch.h(상태 enum) / tdc_touch_time.h(시간 상수)뿐.
  *   이 화살표 부재가 호스트(PC) 유닛테스트의 구조적 보증이다(의료기기 SW 밸리데이션).

@@ -18,11 +18,11 @@
 
 #include <definitionsForAlgorithm.h>
 
-#include <ci_util.h>
+#include <tdc_util.h>
 #include <ci_filesystem.h>
-#include <ci_printf.h>
+#include <tdc_printf.h>
 
-#include <tdc_trims.h>
+#include <tdc_hal_trims.h>
 
 #define SM_POWER_NORMAL  1
 #define SM_POWER_STANDBY 2

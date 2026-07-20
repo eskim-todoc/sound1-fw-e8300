@@ -29,7 +29,7 @@ bool updateEarPieceStatus(void)
 #if 1
         detectionValue = (Sys_GPIO_Read(DIO_PIN_INDEX_for_EARPIECE_DET_N) == 0) ? 1 : 0;
 
-        // ci_printf("[DIO] EARPIECE DETECT VALUE : %u \r\n", detectionValue);
+        // TDC_PRINTF("[DIO] EARPIECE DETECT VALUE : %u \r\n", detectionValue);
 
         if (detectionValue == 1)
         {
@@ -37,7 +37,7 @@ bool updateEarPieceStatus(void)
             if (detectionValue != prev_detectionValue)
             {
                 prev_detectionValue = detectionValue;
-                ci_printd("[EARPIRCE] CONNECTED \r\n");
+                TDC_PRINTF_D("[EARPIRCE] CONNECTED \r\n");
             }
 
             updateEarpieceDetectionValue_toCFX(true);
@@ -48,7 +48,7 @@ bool updateEarPieceStatus(void)
             if (detectionValue != prev_detectionValue)
             {
                 prev_detectionValue = detectionValue;
-                ci_printd("[EARPIECE] DISCONNECTED \r\n");
+                TDC_PRINTF_D("[EARPIECE] DISCONNECTED \r\n");
             }
 
             updateEarpieceDetectionValue_toCFX(false);
@@ -74,7 +74,7 @@ bool updateEarPieceStatus(void)
                     if (detectionValue != prev_detectionValue)
                     {
                         prev_detectionValue = detectionValue;
-                        ci_printf("[EARPIRCE] CONNECTED \r\n");
+                        TDC_PRINTF("[EARPIRCE] CONNECTED \r\n");
                     }
 
                     updateEarpieceDetectionValue_toCFX(true);
@@ -85,7 +85,7 @@ bool updateEarPieceStatus(void)
                     if (detectionValue != prev_detectionValue)
                     {
                         prev_detectionValue = detectionValue;
-                        ci_printf("[EARPIECE] DISCONNECTED \r\n");
+                        TDC_PRINTF("[EARPIECE] DISCONNECTED \r\n");
                     }
 
                     updateEarpieceDetectionValue_toCFX(false);

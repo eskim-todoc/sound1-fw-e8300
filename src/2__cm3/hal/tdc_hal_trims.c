@@ -1,8 +1,8 @@
-#include <tdc_trims.h>
+#include <tdc_hal_trims.h>
 // clang-format off
 static MANU_TABLE_Type *tdc_manuTable = NULL;
 
-static int tdc_Trims_FindTrim(uint32_t chess_storage(IOMEM) *manusection_ptr,
+static int tdc_hal_trims_find_trim(uint32_t chess_storage(IOMEM) *manusection_ptr,
                               unsigned section_size, unsigned int target)
 {
     uint32_t mask = 0xFFFF;
@@ -31,17 +31,17 @@ static int tdc_Trims_FindTrim(uint32_t chess_storage(IOMEM) *manusection_ptr,
     return (SYS_ERROR_SEARCH_FAILURE);
 }
 
-void tdc_Trims_LoadManuTable(uint32_t *p_manu_table)
+void tdc_hal_trims_load_manu_table(uint32_t *p_manu_table)
 {
     tdc_manuTable = (MANU_TABLE_Type *) p_manu_table;
 }
 
-unsigned int tdc_Trims_SetVREGAndLSAD()
+unsigned int tdc_hal_trims_set_vreg_and_lsad()
 {
     uint32_t chess_storage(IOMEM) *cal_ptr = (uint32_t chess_storage(IOMEM) *)&tdc_manuTable->MANU_VREG;
 
     /* Search for the trim */
-    int result = tdc_Trims_FindTrim(cal_ptr, 1, VREG_0P9V);
+    int result = tdc_hal_trims_find_trim(cal_ptr, 1, VREG_0P9V);
 
     /* Return no match if the trim is not found. */
     if (result == SYS_ERROR_SEARCH_FAILURE)
@@ -62,12 +62,12 @@ unsigned int tdc_Trims_SetVREGAndLSAD()
     return SYS_ERRNO_NO_ERROR;
 }
 
-unsigned int tdc_Trims_SetVDDIF(unsigned int target)
+unsigned int tdc_hal_trims_set_vddif(unsigned int target)
 {
     uint32_t chess_storage(IOMEM) *cal_ptr = (uint32_t chess_storage(IOMEM) *)&tdc_manuTable->MANU_VDDIF[0];
 
     /* Search for the requested trim */
-    int result = tdc_Trims_FindTrim(cal_ptr, (MANU_VDDIF_SIZE >> 1), target);
+    int result = tdc_hal_trims_find_trim(cal_ptr, (MANU_VDDIF_SIZE >> 1), target);
 
     /* Set the trim value to the appropriate register if it is found */
     if (result != SYS_ERROR_SEARCH_FAILURE)
@@ -89,7 +89,7 @@ static unsigned int _tdc_Trims_SetVDDA(unsigned int target, unsigned int pmu_ref
                                              (uint32_t chess_storage(IOMEM) *)&tdc_manuTable->MANU_VDDA_PMURef[0];
 
     /* Search for the requested trim */
-    int result = tdc_Trims_FindTrim(cal_ptr, (MANU_VDDA_SIZE >> 1), target);
+    int result = tdc_hal_trims_find_trim(cal_ptr, (MANU_VDDA_SIZE >> 1), target);
 
     /* Set the trim value to the appropriate register if it is found */
     if (result != SYS_ERROR_SEARCH_FAILURE)
@@ -104,7 +104,7 @@ static unsigned int _tdc_Trims_SetVDDA(unsigned int target, unsigned int pmu_ref
     return SYS_ERRNO_NO_MATCH;
 }
 
-unsigned int tdc_Trims_SetVDDA(unsigned int target)
+unsigned int tdc_hal_trims_set_vdda(unsigned int target)
 {
     return _tdc_Trims_SetVDDA(target, 0);
 }
@@ -116,7 +116,7 @@ static unsigned int _tdc_Trims_SetVDDC(unsigned int target, unsigned int pmu_ref
                                              (uint32_t chess_storage(IOMEM) *)&tdc_manuTable->MANU_VDDC_PMURef[0];
 
     /* Search for the requested trim */
-    int result = tdc_Trims_FindTrim(cal_ptr, (MANU_VDDC_SIZE >> 1), target);
+    int result = tdc_hal_trims_find_trim(cal_ptr, (MANU_VDDC_SIZE >> 1), target);
 
     /* Set the trim value to the appropriate register if it is found */
     if (result != SYS_ERROR_SEARCH_FAILURE)
@@ -131,17 +131,17 @@ static unsigned int _tdc_Trims_SetVDDC(unsigned int target, unsigned int pmu_ref
     return SYS_ERRNO_NO_MATCH;
 }
 
-unsigned int tdc_Trims_SetVDDC(unsigned int target)
+unsigned int tdc_hal_trims_set_vddc(unsigned int target)
 {
     return _tdc_Trims_SetVDDC(target, 0);
 }
 
-unsigned int tdc_Trims_SetVDDC_CP(unsigned int target)
+unsigned int tdc_hal_trims_set_vddc_cp(unsigned int target)
 {
     uint32_t chess_storage(IOMEM) *cal_ptr = (uint32_t chess_storage(IOMEM) *)&tdc_manuTable->MANU_VDDC_CP;
 
     /* Search for the requested trim */
-    int result = tdc_Trims_FindTrim(cal_ptr, 1, target);
+    int result = tdc_hal_trims_find_trim(cal_ptr, 1, target);
 
     /* Set the trim value to the appropriate register if it is found */
     if (result != SYS_ERROR_SEARCH_FAILURE)
@@ -163,7 +163,7 @@ static unsigned int _tdc_Trims_SetVDDM(unsigned int target, unsigned int pmu_ref
                                              (uint32_t chess_storage(IOMEM) *)&tdc_manuTable->MANU_VDDM_PMURef[0];
 
     /* Search for the requested trim */
-    int result = tdc_Trims_FindTrim(cal_ptr, (MANU_VDDM_SIZE >> 1), target);
+    int result = tdc_hal_trims_find_trim(cal_ptr, (MANU_VDDM_SIZE >> 1), target);
 
     /* Set the trim value to the appropriate register if it is found */
     if (result != SYS_ERROR_SEARCH_FAILURE)
@@ -178,17 +178,17 @@ static unsigned int _tdc_Trims_SetVDDM(unsigned int target, unsigned int pmu_ref
     return SYS_ERRNO_NO_MATCH;
 }
 
-unsigned int tdc_Trims_SetVDDM(unsigned int target)
+unsigned int tdc_hal_trims_set_vddm(unsigned int target)
 {
     return _tdc_Trims_SetVDDM(target, 0);
 }
 
-unsigned int tdc_Trims_SetVDDM_CP(unsigned int target)
+unsigned int tdc_hal_trims_set_vddm_cp(unsigned int target)
 {
     uint32_t chess_storage(IOMEM) *cal_ptr = (uint32_t chess_storage(IOMEM) *)&tdc_manuTable->MANU_VDDM_CP;
 
     /* Search for the requested trim */
-    int result = tdc_Trims_FindTrim(cal_ptr, 1, target);
+    int result = tdc_hal_trims_find_trim(cal_ptr, 1, target);
 
     /* Set the trim value to the appropriate register if it is found */
     if (result != SYS_ERROR_SEARCH_FAILURE)
@@ -203,12 +203,12 @@ unsigned int tdc_Trims_SetVDDM_CP(unsigned int target)
     return SYS_ERRNO_NO_MATCH;
 }
 
-unsigned int tdc_Trims_SetVDDOD(unsigned int target)
+unsigned int tdc_hal_trims_set_vddod(unsigned int target)
 {
     uint32_t chess_storage(IOMEM) *cal_ptr = (uint32_t chess_storage(IOMEM) *)&tdc_manuTable->MANU_VDDOD;
 
     /* Search for the requested trim */
-    int result = tdc_Trims_FindTrim(cal_ptr, 1, target);
+    int result = tdc_hal_trims_find_trim(cal_ptr, 1, target);
 
     /* Set the trim value to the appropriate register if it is found */
     if (result != SYS_ERROR_SEARCH_FAILURE)
@@ -223,12 +223,12 @@ unsigned int tdc_Trims_SetVDDOD(unsigned int target)
     return SYS_ERRNO_NO_MATCH;
 }
 
-unsigned int tdc_Trims_SetVMIC(unsigned int target)
+unsigned int tdc_hal_trims_set_vmic(unsigned int target)
 {
     uint32_t chess_storage(IOMEM) *cal_ptr = (uint32_t chess_storage(IOMEM) *)&tdc_manuTable->MANU_VMIC;
 
     /* Search for the requested trim */
-    int result = tdc_Trims_FindTrim(cal_ptr, 1, target);
+    int result = tdc_hal_trims_find_trim(cal_ptr, 1, target);
 
     /* Set the trim value to the appropriate register if it is found */
     if (result != SYS_ERROR_SEARCH_FAILURE)
@@ -243,11 +243,11 @@ unsigned int tdc_Trims_SetVMIC(unsigned int target)
     return SYS_ERRNO_NO_MATCH;
 }
 
-unsigned int tdc_Trims_SetOperatingFrequencyMult(unsigned int frequency_index, unsigned int multiplier)
+unsigned int tdc_hal_trims_set_operating_frequency_mult(unsigned int frequency_index, unsigned int multiplier)
 {
     /* Given the frequency index, find the corresponding trim setting */
     uint32_t chess_storage(IOMEM) *cal_ptr = (uint32_t chess_storage(IOMEM) *)&tdc_manuTable->MANU_CLK;
-    unsigned int result = tdc_Trims_FindTrim(cal_ptr, MANU_CLK_SIZE, frequency_index);
+    unsigned int result = tdc_hal_trims_find_trim(cal_ptr, MANU_CLK_SIZE, frequency_index);
 
     if (result != SYS_ERROR_SEARCH_FAILURE)
     {
@@ -267,25 +267,25 @@ unsigned int tdc_Trims_SetOperatingFrequencyMult(unsigned int frequency_index, u
     return SYS_ERRNO_NO_MATCH;
 }
 
-unsigned int tdc_Trims_SetOperatingFrequency(unsigned int frequency_index)
+unsigned int tdc_hal_trims_set_operating_frequency(unsigned int frequency_index)
 {
     /* Assume for any trim value over 30 MHz will be accounting for an
      * oscillator multiplier of 2, and multiplier of 4 if over 60 MHz */
     if (frequency_index > OSC_MUL_LIMIT2)
     {
-        return tdc_Trims_SetOperatingFrequencyMult(frequency_index, OSC_MULTIPLY_BY_4);
+        return tdc_hal_trims_set_operating_frequency_mult(frequency_index, OSC_MULTIPLY_BY_4);
     }
     else if (frequency_index > OSC_MUL_LIMIT1)
     {
-        return tdc_Trims_SetOperatingFrequencyMult(frequency_index, OSC_MULTIPLY_BY_2);
+        return tdc_hal_trims_set_operating_frequency_mult(frequency_index, OSC_MULTIPLY_BY_2);
     }
     else
     {
-        return tdc_Trims_SetOperatingFrequencyMult(frequency_index, OSC_MULTIPLY_BY_1);
+        return tdc_hal_trims_set_operating_frequency_mult(frequency_index, OSC_MULTIPLY_BY_1);
     }
 }
 
-unsigned int tdc_Trims_SetADCOffsets()
+unsigned int tdc_hal_trims_set_adc_offsets()
 {
     volatile uint32_t chess_storage(IOMEM) *ADC_offset = (uint32_t chess_storage(IOMEM) *)(&(AUDIO->ADC_OFFSET_TRIM0[0]));
     uint32_t chess_storage(a0) reg_value;

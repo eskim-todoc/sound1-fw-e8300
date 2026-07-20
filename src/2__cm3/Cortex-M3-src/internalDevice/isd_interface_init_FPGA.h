@@ -5,7 +5,7 @@
 
 #include "FPGA.h" //ok
 
-#include <ci_printf.h>
+#include <tdc_printf.h>
 
 void init_FPGA(bool isdControlStateChagedFlag);
 void init_txPowerIC(bool isdControlStateChagedFlag);

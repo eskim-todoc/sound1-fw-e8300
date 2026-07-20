@@ -1,7 +1,7 @@
 
 
 #include "driver_i2c_for_ISD.h"
-#include <ci_printf.h>
+#include <tdc_printf.h>
 
 bool write_ISD_by_CM3_I2C(int slaveAddr, int* dataBuff, int dataSize)
 {
@@ -44,7 +44,7 @@ bool write_ISD_by_CM3_I2C(int slaveAddr, int* dataBuff, int dataSize)
         {
             PassFail = false;
             init_I2c();
-            ci_printe("[I2C] TIMEOUT FOR WRITING \r\n");
+            TDC_PRINTF_E("[I2C] TIMEOUT FOR WRITING \r\n");
         }
 
         return PassFail;
@@ -93,7 +93,7 @@ bool read_ISD_by_CM3_I2C(int slaveAddr, int* dataBuff, int dataSize)
         {
             PassFail = false;
             init_I2c();
-            ci_printe("[I2C] TIMEOUT FOR READING \r\n");
+            TDC_PRINTF_E("[I2C] TIMEOUT FOR READING \r\n");
         }
 
         return PassFail;

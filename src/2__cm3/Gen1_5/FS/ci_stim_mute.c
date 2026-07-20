@@ -18,7 +18,7 @@ int ci_stim_mute_init(void)
     ret = f_open(fp, fname, (FA_OPEN_ALWAYS | FA_READ | FA_WRITE));
     if (ret != FR_OK)
     {
-        ci_printe("[MUTE] OPEN FAIL '%s' (RES=%d) \r\n", fname, ret);
+        TDC_PRINTF_E("[MUTE] OPEN FAIL '%s' (RES=%d) \r\n", fname, ret);
         return -1;
     }
 
@@ -29,7 +29,7 @@ int ci_stim_mute_init(void)
 
     f_lseek(&g_ci_filesystem_ohdl, 4096);  // FATFS에게 4KB로 고정된 파일을 생성할 수 있게 의도적으로 파일 포지션을 4096으로 설정
     f_lseek(&g_ci_filesystem_ohdl, 0);
-    ci_printv("[MUTE] PERFORMED : FILE (%s) LSEEK --> 4096 --> 0 \r\n", fname);
+    TDC_PRINTF_V("[MUTE] PERFORMED : FILE (%s) LSEEK --> 4096 --> 0 \r\n", fname);
 
     br  = 0;
     ret = f_read(fp, (void *) &stim_mute, sizeof(CI_STIM_MUTE_T), &br);
@@ -82,7 +82,7 @@ int ci_stim_mute_init(void)
     // 파일이 유효하지 않은 경우 초기화 시킨다.
     if (!is_validated_file)
     {
-        ci_printe("[MUTE] INVALID '%s', SO FULLY RESET \r\n", fname);
+        TDC_PRINTF_E("[MUTE] INVALID '%s', SO FULLY RESET \r\n", fname);
 
         // 구조체 내용 초기화
         // CI_STIM_MUTE_T_LEVEL_OFFSET_DEFAULT 값은 CFX 프로젝트에서 참조
@@ -96,12 +96,12 @@ int ci_stim_mute_init(void)
 
         if ((ret != FR_OK) || (bw != sizeof(CI_STIM_MUTE_T)))
         {
-            ci_printe("[MUTE] INIT FAIL '%s' (RES=%d, WRITTEN=%d) \r\n", fname, ret, bw);
+            TDC_PRINTF_E("[MUTE] INIT FAIL '%s' (RES=%d, WRITTEN=%d) \r\n", fname, ret, bw);
             f_close(fp);
             return -1;
         }
 
-        ci_printd("[MUTE] SUCCESS TO FULLY RESET '%s' \r\n", fname);
+        TDC_PRINTF_D("[MUTE] SUCCESS TO FULLY RESET '%s' \r\n", fname);
     }
 
     // 안전을 위한 flush
@@ -112,7 +112,7 @@ int ci_stim_mute_init(void)
     ret = f_stat(fname, &fno);
     if (ret == FR_OK)
     {
-        ci_printv("[FS] NAME : %s, TOTAL SIZE : %u BYTES, START CLUSTER : %u \r\n",  //
+        TDC_PRINTF_V("[FS] NAME : %s, TOTAL SIZE : %u BYTES, START CLUSTER : %u \r\n",  //
                   fno.fname,
                   fno.fsize,
                   g_ci_filesystem_ohdl.obj.sclust);
@@ -141,21 +141,21 @@ int ci_stim_mute_update(uint32_t enable, uint32_t level)
     // 매개변수 유효성 확인
     if ((CI_STIM_MUTE_UNDER_T_LEVEL_ENABLE == enable) || (CI_STIM_MUTE_UNDER_T_LEVEL_DISABLE == enable))
     {
-        ci_printd("[MUTE] NEW STIM MUTE FLAG : %u \r\n", enable);
+        TDC_PRINTF_D("[MUTE] NEW STIM MUTE FLAG : %u \r\n", enable);
     }
     else
     {
-        ci_printe("[MUTE] INVALID STIM MUTE FLAG : %u \r\n", enable);
+        TDC_PRINTF_E("[MUTE] INVALID STIM MUTE FLAG : %u \r\n", enable);
         return CI_STIM_MUTE_RET_FALSE;
     }
 
     if ((CI_STIM_MUTE_T_LEVEL_OFFSET_MIN <= level) && (level <= CI_STIM_MUTE_T_LEVEL_OFFSET_MAX))
     {
-        ci_printd("[MUTE] NEW T LEVEL OPTION VALUE : %u \r\n", level);
+        TDC_PRINTF_D("[MUTE] NEW T LEVEL OPTION VALUE : %u \r\n", level);
     }
     else
     {
-        ci_printe("[MUTE] INVALID T LEVEL OPTION VALUE : %u \r\n", level);
+        TDC_PRINTF_E("[MUTE] INVALID T LEVEL OPTION VALUE : %u \r\n", level);
         return CI_STIM_MUTE_RET_FALSE;
     }
 
@@ -166,7 +166,7 @@ int ci_stim_mute_update(uint32_t enable, uint32_t level)
     ret = f_open(fp, fname, (FA_OPEN_APPEND | FA_READ | FA_WRITE));
     if (ret != FR_OK)
     {
-        ci_printe("[MUTE] OPEN FAIL '%s' (RES=%d) \r\n", fname, ret);
+        TDC_PRINTF_E("[MUTE] OPEN FAIL '%s' (RES=%d) \r\n", fname, ret);
         return CI_STIM_MUTE_RET_FALSE;
     }
 
@@ -183,12 +183,12 @@ int ci_stim_mute_update(uint32_t enable, uint32_t level)
 
     if ((ret != FR_OK) || (bw != sizeof(CI_STIM_MUTE_T)))
     {
-        ci_printe("[MUTE] UPDATE FAIL '%s' (RES=%d, WRITTEN=%d) \r\n", fname, ret, bw);
+        TDC_PRINTF_E("[MUTE] UPDATE FAIL '%s' (RES=%d, WRITTEN=%d) \r\n", fname, ret, bw);
         f_close(fp);
         return CI_STIM_MUTE_RET_FALSE;
     }
 
-    ci_printd("[MUTE] SUCCESS TO UPDATE '%s' \r\n", fname);
+    TDC_PRINTF_D("[MUTE] SUCCESS TO UPDATE '%s' \r\n", fname);
 
     f_close(fp);
     SYS_WATCHDOG_REFRESH();

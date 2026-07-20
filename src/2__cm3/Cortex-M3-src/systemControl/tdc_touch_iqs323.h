@@ -17,8 +17,8 @@
 
 #include <hw.h>
 #include <driver_i2c.h>
-#include <ci_printf.h>
-#include <ci_timer.h>
+#include <tdc_printf.h>
+#include <tdc_hal_timer.h>
 
 #include <tdc_touch_config.h>
 

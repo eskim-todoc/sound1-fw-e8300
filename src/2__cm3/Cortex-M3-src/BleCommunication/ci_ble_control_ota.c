@@ -8,7 +8,7 @@
 #include <error.h>
 #include <ci_filesystem.h>
 #include <SEGGER_RTT_Wrapper.h>
-#include <ci_dio.h>
+#include <tdc_hal_dio.h>
 
 static ST__OTA_FILE_WRITE_INFO _g_file_write_info       = {0};
 static int                     s_tdc_ota_dfu_conn_state = TDC_OTA_DFU_CONN_ST_DISCONN;
@@ -95,7 +95,7 @@ static void _handle_command_option_write(int slot_num, int file_type, int *p_pac
 
     // 쓰기 옵션 첫 데이터 인덱스에서 파일을 준비해야 한다.
     // 드라이브를 1에서 0으로 변경해준다.
-    ci_util_assert(snd_fatfs_remount(SND_FATFS_LDRV_NUM_BOOT));
+    tdc_util_assert(snd_fatfs_remount(SND_FATFS_LDRV_NUM_BOOT));
 
     // 다른 파일을 처리하는 중이었는지 확인
     if (_g_file_write_info.file_type != 0)
@@ -121,7 +121,7 @@ static void _handle_command_option_write(int slot_num, int file_type, int *p_pac
     // 슬롯 번호에 해당하는 디렉토리 생성 실패시 에러 처리
     if (res != FR_OK)
     {
-        ci_util_assert(snd_fatfs_remount(SND_FATFS_LDRV_NUM_USER_DATA));  // NOTE: 디렉토리 생성 실패시 드라이브1로 되돌린다.
+        tdc_util_assert(snd_fatfs_remount(SND_FATFS_LDRV_NUM_USER_DATA));  // NOTE: 디렉토리 생성 실패시 드라이브1로 되돌린다.
         _send_error_packet_boot(2);                                       // File write
         return;
     }
@@ -136,7 +136,7 @@ static void _handle_command_option_write(int slot_num, int file_type, int *p_pac
 
     if (res != FR_OK)
     {
-        ci_util_assert(snd_fatfs_remount(SND_FATFS_LDRV_NUM_USER_DATA));  // NOTE: 파일 오픈 실패시 드라이브1로 되돌린다.
+        tdc_util_assert(snd_fatfs_remount(SND_FATFS_LDRV_NUM_USER_DATA));  // NOTE: 파일 오픈 실패시 드라이브1로 되돌린다.
         _send_error_packet_boot(2);                                       // File write
         return;
     }
@@ -211,11 +211,11 @@ static void _handle_command_option_size(int slot_num, int file_type, int *p_pack
 
     strcat(path, p_name);  // slot + name
 
-    ci_util_assert(snd_fatfs_remount(SND_FATFS_LDRV_NUM_BOOT));  // NOTE: 드라이브 0으로 변경 후 정보를 읽고
+    tdc_util_assert(snd_fatfs_remount(SND_FATFS_LDRV_NUM_BOOT));  // NOTE: 드라이브 0으로 변경 후 정보를 읽고
 
     res = f_stat(path, &fno);
 
-    ci_util_assert(snd_fatfs_remount(SND_FATFS_LDRV_NUM_USER_DATA));  // NOTE: 드라이브1로 다시 되돌린다.
+    tdc_util_assert(snd_fatfs_remount(SND_FATFS_LDRV_NUM_USER_DATA));  // NOTE: 드라이브1로 다시 되돌린다.
 
     if (res != FR_OK)
     {
@@ -303,7 +303,7 @@ static void _fetch_packet_data(int *p_packet, int data_index)
         // Sys_GPIO_Set_High(DIO_NUM_OTA_DETAIL_DEBUG);  // NOTE: OTA DEBUG
 
         f_close(fp);
-        ci_util_assert(snd_fatfs_remount(SND_FATFS_LDRV_NUM_USER_DATA));  // NOTE: 데이터 인덱스 에러 발생이므로 드라이브0에서 드라이브1로 되돌린다.
+        tdc_util_assert(snd_fatfs_remount(SND_FATFS_LDRV_NUM_USER_DATA));  // NOTE: 데이터 인덱스 에러 발생이므로 드라이브0에서 드라이브1로 되돌린다.
 
         // Sys_GPIO_Set_Low(DIO_NUM_OTA_DETAIL_DEBUG);  // NOTE: OTA DEBUG
 
@@ -339,7 +339,7 @@ static void _fetch_packet_data(int *p_packet, int data_index)
     {
         f_close(fp);
 
-        ci_util_assert(snd_fatfs_remount(SND_FATFS_LDRV_NUM_USER_DATA));  // NOTE: 파일 데이터 쓰기를 실패 했으므로 드라이브0에서 드라이브1로 되돌린다.
+        tdc_util_assert(snd_fatfs_remount(SND_FATFS_LDRV_NUM_USER_DATA));  // NOTE: 파일 데이터 쓰기를 실패 했으므로 드라이브0에서 드라이브1로 되돌린다.
 
         _g_file_write_info.file_type = 0;
         _send_error_packet_boot(2);  // File write
@@ -354,7 +354,7 @@ static void _fetch_packet_data(int *p_packet, int data_index)
         // Sys_GPIO_Set_High(DIO_NUM_OTA_DETAIL_DEBUG);  // NOTE: OTA DEBUG
 
         f_close(fp);
-        ci_util_assert(snd_fatfs_remount(SND_FATFS_LDRV_NUM_USER_DATA));  // NOTE: 파일 데이터 쓰기를 마지막 데이터 인덱스까지 모두 성공 했으므로 드라이브0에서 드라이브1로 되돌린다.
+        tdc_util_assert(snd_fatfs_remount(SND_FATFS_LDRV_NUM_USER_DATA));  // NOTE: 파일 데이터 쓰기를 마지막 데이터 인덱스까지 모두 성공 했으므로 드라이브0에서 드라이브1로 되돌린다.
 
         // Sys_GPIO_Set_Low(DIO_NUM_OTA_DETAIL_DEBUG);  // NOTE: OTA DEBUG
 
@@ -394,7 +394,7 @@ void ci_ble_fetch_packet_ota(int *p_packet)
 
     data_index = (p_packet[1] << 16) | (p_packet[2] << 8) | p_packet[3];
 
-    ci_printf("[OTA] DATA INDEX %d \r\n", data_index);
+    TDC_PRINTF("[OTA] DATA INDEX %d \r\n", data_index);
 
     // 데이터 인덱스가 0일 때만 특별한 처리를 수행한다.
     if (data_index == 0)
