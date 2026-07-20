@@ -28,7 +28,9 @@
 static int gd_handle_touch_debug(const ST__REMOTECONTROL_PACKET *packet, int *tx_buf, int tx_index, int option);      // option 1
 static int gd_handle_no_backtel(const ST__REMOTECONTROL_PACKET *packet, int *tx_buf, int tx_index, int option);       // option 2
 static int gd_handle_map_init(const ST__REMOTECONTROL_PACKET *packet, int *tx_buf, int tx_index, int option);         // option 3
-static int gd_handle_op_mode_setting(const ST__REMOTECONTROL_PACKET *packet, int *tx_buf, int tx_index, int option);  // option 4
+/* option 4(운영 모드 설정)는 fake sleep mode 제거와 함께 삭제됨(2026-07-20).
+ * 미지정 option 은 아래 else 에서 command 만 loop-back 하고 무시된다.
+ * 상세: docs/tasks/main/20260720_fake-sleep-removal/ */
 
 int tdc_remote_general_debug_handle(const ST__REMOTECONTROL_PACKET *packet, int *tx_buf, int tx_index)
 {
@@ -47,10 +49,6 @@ int tdc_remote_general_debug_handle(const ST__REMOTECONTROL_PACKET *packet, int 
     else if (option == 3)  // 맵 초기화 디버깅 프로토콜
     {
         tx_index = gd_handle_map_init(packet, tx_buf, tx_index, option);
-    }
-    else if (option == 4)  // 운영 모드 설정
-    {
-        tx_index = gd_handle_op_mode_setting(packet, tx_buf, tx_index, option);
     }
     else
     {
@@ -153,31 +151,6 @@ static int gd_handle_map_init(const ST__REMOTECONTROL_PACKET *packet, int *tx_bu
     tx_buf[tx_index++] = packet->command;  //     command : loop-back
     tx_buf[tx_index++] = option;
     tx_buf[tx_index++] = RL;
-
-    return tx_index;
-}
-
-static int gd_handle_op_mode_setting(const ST__REMOTECONTROL_PACKET *packet, int *tx_buf, int tx_index, int option)
-{
-    int op_mode;
-
-    op_mode = packet->data[1];
-
-    if (op_mode == 1)  // 절전 모드
-    {
-        ci_printw("[GD] Got fake sleep mode command. \r\n");
-        tdc_set_fake_op_mode(1);
-    }
-    else  // 1이 아닌 경우 전부 노말 모드
-    {
-        ci_printw("[GD] Got fake normal mode command. \r\n");
-        tdc_set_fake_op_mode(0);
-    }
-
-    // 송신 데이터 준비
-    tx_buf[tx_index++] = packet->command;  //     command : loop-back
-    tx_buf[tx_index++] = option;
-    tx_buf[tx_index++] = op_mode;
 
     return tx_index;
 }

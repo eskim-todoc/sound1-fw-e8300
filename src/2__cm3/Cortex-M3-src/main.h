@@ -67,8 +67,7 @@ void debug_printer_for_mcuErrorCode(ST__ERROR_CODE *p_mcuErrorCode);
 void debugPrint_ADCRegs(int num);
 void debugPrint_ADCInput(void);
 
-void tdc_set_fake_op_mode(int mode);
-int  tdc_get_fake_op_mode(void);
-int  fake_func_sleep(void);
+/* fake sleep mode API 제거(2026-07-20): 터치센서 계측용 임시 코드.
+ * 상세: docs/tasks/main/20260720_fake-sleep-removal/ */
 
 #endif  // __main_h__

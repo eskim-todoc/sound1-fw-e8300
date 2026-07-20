@@ -96,6 +96,6 @@ typedef struct _bootloader_boot_information
 
 int ci_power_normal(void);
 int ci_power_sleep(void);
-int ci_fake_power_sleep(void);
+/* ci_fake_power_sleep() 제거(2026-07-20) - fake sleep mode 삭제 */
 
 #endif  // __OTE_1P5_power_manager_h__

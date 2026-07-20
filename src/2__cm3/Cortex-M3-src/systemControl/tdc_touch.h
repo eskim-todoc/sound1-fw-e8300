@@ -39,20 +39,16 @@ typedef enum
  * Public API
  */
 
+/* 터치 계측 스냅샷 조회 - BLE 0x8F option 1 이 사용.
+ * 값 공급은 tdc_touch_process() 가 담당한다(setter 없이 내부 static 직접 대입).
+ * 짝이던 set_recent_* 7개는 fake sleep mode 제거와 함께 삭제됨(2026-07-20). */
 uint16_t tdc_touch_debug_get_recent_lta(void);
-void     tdc_touch_debug_set_recent_lta(uint16_t lta);
 uint16_t tdc_touch_debug_get_recent_count(void);
-void     tdc_touch_debug_set_recent_count(uint16_t count);
 uint16_t tdc_touch_debug_get_recent_delta(void);
-void     tdc_touch_debug_set_recent_delta(uint16_t delta);
 uint16_t tdc_touch_debug_get_recent_abs_thr(void);
-void     tdc_touch_debug_set_recent_abs_thr(uint16_t abs_thr);
 uint8_t  tdc_touch_debug_get_recent_pressed(void);
-void     tdc_touch_debug_set_recent_pressed(uint8_t pressed);
 uint8_t  tdc_touch_debug_get_recent_ati_error(void);
-void     tdc_touch_debug_set_recent_ati_error(uint8_t ati_error);
 uint8_t  tdc_touch_debug_get_recent_ati_active(void);
-void     tdc_touch_debug_set_recent_ati_active(uint8_t ati_active);
 
 /* POWER_ON 진입 시 1회 호출. 드라이버 MCLR 리셋만 트리거 후 즉시 리턴. */
 void tdc_touch_init_begin(void);
