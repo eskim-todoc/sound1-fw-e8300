@@ -3,7 +3,7 @@
 
 #include <stdbool.h>
 #include "processorDirective.h"
-#include "dirver_i2c_for_ISD.h"
+#include "driver_i2c_for_ISD.h"
 #include "LedOutput.h"
 
 #include <cfx_cm3_sharedMemory.h>

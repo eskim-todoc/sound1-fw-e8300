@@ -1,3 +1,17 @@
+/* ============================================================================
+ * [공유 ABI - 단독 rename/제거 금지] (2026-07-20, cm3 전면 리팩토링 G0)
+ *
+ * 이 헤더의 타입 19종과 구조체 필드 105종은 CFX(1__cfx/environment/
+ * shared_memory.h)와 calibration(5__calibration/include/cfx_cm3_sharedMemory.h)
+ * 이 같은 레이아웃을 복제해 사용하는 프로세서 간 공유 인터페이스다.
+ *
+ *  - 필드/타입의 제거·순서 변경 = 레이아웃(ABI) 파괴 -> CFX 오동작
+ *  - 2__cm3 단독 rename = 세 헤더의 소스 불일치 -> 유지보수 파괴
+ *  - 미사용으로 보이는 필드도 존치한다 (은수님 지시, 2026-07-20)
+ *
+ * 변경이 필요하면 세 프로젝트 헤더를 동시에 바꾸는 별도 작업으로 진행할 것.
+ * 목록: docs/tasks/cm3/20260720_cm3-full-refactor/분석-데이터/06_공유-인터페이스.md
+ * ========================================================================== */
 
 #ifndef cfx_cm3_sharedMemory_H__
 #define cfx_cm3_sharedMemory_H__
@@ -5,7 +19,7 @@
 #include <stdbool.h>
 
 #include <hw.h>
-#include <dirver_PCM.h>  //ok
+#include <driver_PCM.h>  //ok
 
 #include "ble_commonProtocol.h"       //ok
 #include "board.h"                    //ok

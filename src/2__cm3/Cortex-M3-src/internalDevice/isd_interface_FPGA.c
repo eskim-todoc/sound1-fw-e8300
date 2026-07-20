@@ -1,4 +1,4 @@
-#include <isdExecution/dirver_PCM.h>
+#include <isdExecution/driver_PCM.h>
 #include "isd_interface_FPGA.h"
 #include "isd_interface.h"
 #include "cfx_cm3_sharedMemory.h"
@@ -7,7 +7,7 @@
 #include "FPGA.h"
 
 #ifdef CM3_I2C_controls_FPAG
-#include "dirver_i2c_for_ISD.h"
+#include "driver_i2c_for_ISD.h"
 #else
 #include "driver_cfx_i2c.h"
 #endif

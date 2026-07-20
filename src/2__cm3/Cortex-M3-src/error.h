@@ -9,7 +9,9 @@
 
 typedef enum
 {
-    en__ClockError = 1,  // cfx  99_errorCode.h 참조
+    /* CFX 측 에러 코드 값과 정합 (구 99_errorCode.h - 포함처 0 으로 삭제(2026-07-20).
+     * 원 내용: NoError=0, clock_init_Error=1) */
+    en__ClockError = 1,
 } EN__CFX_ERROR;
 
 typedef enum

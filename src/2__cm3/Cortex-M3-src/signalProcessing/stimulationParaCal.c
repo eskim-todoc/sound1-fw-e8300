@@ -1,5 +1,5 @@
 #include <hw.h>
-#include <isdExecution/dirver_PCM.h>
+#include <isdExecution/driver_PCM.h>
 #include <stdbool.h>
 
 #include "board.h"
