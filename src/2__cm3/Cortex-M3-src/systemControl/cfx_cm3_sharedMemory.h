@@ -240,10 +240,11 @@ typedef struct
     int pcm_specific_command_read_index;
 } ST__CFX_CM3_SharedMemory_ALL;
 
-void update_CM3Status_toCFX(int value);
-
-void update_CM3tempValue1_toCFX(int value);
-void update_CM3tempValue2_toCFX(int value);
+/* CM3 생존 신호 게시 (구 update_CM3Status_toCFX).
+ * 읽는 코드는 없고 디버거 관측용이다 - 상세는 정의부 주석 참조.
+ * 구 update_CM3tempValue1/2_toCFX 래퍼는 호출처 0 으로 제거됨(2026-07-20).
+ * 해당 '필드'는 CFX AGC 가 사용하므로 구조체에 그대로 있다. */
+void tdc_shared_publish_cm3_heartbeat(int beat);
 
 bool isCFX_EEPROM_data_Loaded(void);
 

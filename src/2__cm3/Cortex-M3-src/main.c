@@ -225,7 +225,11 @@ void update_mapNum(void)
     prev_userSettingValueLoadedFlag = userSettingValueLoadedFlag;
 }
 
-int main_counter = 0;
+/* 메인 루프 생존 카운터. 매 iteration 증가시켜 공유 메모리에 게시한다
+ * (tdc_shared_publish_cm3_heartbeat). 펌웨어 내 소비자는 없고 디버거로
+ * CM3 가 살아 있는지 확인하는 용도다. 구 이름 main_counter, 비-static 전역이었으나
+ * 외부 참조가 없어 static 으로 좁혔다(2026-07-20). */
+static int s_cm3_heartbeat = 0;
 
 /*
  * sections.ld 에 정의된 심볼들 (반드시 동일 이름)
@@ -503,7 +507,7 @@ int func_normal(void)
 
     SYS_WATCHDOG_REFRESH();  // 시작 시 처음에 워치독 리프레시
 
-    main_counter                                      = 0;
+    s_cm3_heartbeat                                   = 0;
     cfx_cm3_sharedMemoryAll.CFX_EEPROM_data_is_Loaded = 0;
 
     ctx.systemState.systemOff = false;
@@ -517,8 +521,8 @@ int func_normal(void)
             tdc_normal_iteration(&ctx);
         }  // 끝, iteration
 
-        main_counter++;
-        update_CM3Status_toCFX(main_counter);
+        s_cm3_heartbeat++;
+        tdc_shared_publish_cm3_heartbeat(s_cm3_heartbeat);
 
         /* QCC 배터리 타임아웃 → 파워오프 패턴 후 절전.
          * QCC 미수신 시 systemControl 은 df_Default 게이트(en__LED_NA)에 막혀 자체

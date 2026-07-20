@@ -69,7 +69,6 @@ void init_txPowerIC(bool isdControlStateChagedFlag)
             // Pwoer IC의 전원이 켜져 있어야 한다.
             if (!Reset_REN_ISL9122())
             {
-                // update_CM3Status_toCFX(flowControlCounter);
                 ci_printe("[PMIC] c10: PMIC reset failed\r\n");
                 TDC_ISD_DEBOUNCE_FAIL(power_reset_err_cnt, "[PMIC]", "init_txPwr c10", "verify",
                                       en__RF_PowerIC_ERROR, en__NON_RESETTABLE);
