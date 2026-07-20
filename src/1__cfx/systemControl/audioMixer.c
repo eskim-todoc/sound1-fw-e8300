@@ -8,13 +8,13 @@
  * [MODULE] M1 믹싱 연산 모듈 - 입력 버퍼(들)을 HEAR_ADDR_AUDIO_MIX[16]로 합성.
  *   구성 유닛: U1 tdc_audio_mix_2_buffers_for_beamforming(DAS 빔포밍),
  *             U2 tdc_audio_mix_1_buffer(단일), U3 tdc_audio_mix_2_buffers(독립2버퍼),
- *             U4 tdc_audio_gain_lookup_q8_16(게인 테이블),
- *             U5 tdc_audio_mix_2_buffers_with_gain(게인 적용 2버퍼).
+ *             U13 tdc_audio_gain_lookup_q8_16(게인 테이블),
+ *             U14 tdc_audio_mix_2_buffers_with_gain(게인 적용 2버퍼).
  *   검증: 유닛테스트(온타깃) - 입력 인수 결정론 → 출력 HEAR_ADDR 관측.
- *   전제(의존): U5는 U4 통과 전제.   상세: 유닛-모듈-테스트맵.md
+ *   전제(의존): U14는 U13 통과 전제.   상세: 유닛-모듈-테스트맵.md
  * ========================================================================== */
 
-/* [UNIT] U4 게인 변환 테이블 - 인덱스(0~255) -> Q8.16 리니어 게인.
+/* [UNIT] U13 게인 변환 테이블 - 인덱스(0~255) -> Q8.16 리니어 게인.
  *   인덱스 0 = 뮤트, 128 = 유니티(65536 = 1.0), 255 = +17.8594 dB.
  *   0.140625 dB 등간격으로 채워져 있으나 수식이 아닌 순수 룩업이다.
  *   특정 인덱스만 임의 게인으로 교체해 쓸 수 있게 인덱스별로 나열한다.
@@ -318,12 +318,12 @@ void tdc_audio_mix_2_buffers(int _XMEM *p_buf1, int _XMEM *p_buf2)
         }
 }
 
-/* [UNIT] U5 게인 적용 2버퍼 믹서 - U3(독립2버퍼)에 Q8.16 게인을 곱해 합산.
+/* [UNIT] U14 게인 적용 2버퍼 믹서 - U3(독립2버퍼)에 Q8.16 게인을 곱해 합산.
  *   p_mic_buf 에 gain_a(Gain_A), p_i2s_buf 에 gain_b(Gain_B)를 적용한다.
  *   두 곱을 48비트 long 으로 누산한 뒤 한 번만 >>16 하여 반올림 오차를 줄인다.
  *   24비트를 넘는 결과는 랩어라운드(부호 반전 -> 폭발적 잡음) 대신 절삭(포화)한다.
  *   유니티 게인(65536)이면 (x << 16) >> 16 = x 로 U3 와 비트 단위로 동일하다.
- *   검증=unit-test / 의존=U4(게인 테이블) 통과 전제 /
+ *   검증=unit-test / 의존=U13(게인 테이블) 통과 전제 /
  *   테스트벡터: 함수 시작점 p_mic_buf·p_i2s_buf·게인 하드코딩 → HEAR 관측. */
 void tdc_audio_mix_2_buffers_with_gain(int _XMEM *p_mic_buf, int _XMEM *p_i2s_buf, int gain_a_q8_16, int gain_b_q8_16)
 {
