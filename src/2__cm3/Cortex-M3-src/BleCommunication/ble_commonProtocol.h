@@ -114,6 +114,7 @@ typedef enum
 
 typedef enum
 {
+    EN__SND_BT_CMD_GAIN_CONTROL  = 0x8C,  // 게인 테이블 인덱스 읽기/쓰기 (앱 -> QCC -> E8300)
     EN__SND_BT_CMD_GENERAL_DEBUG = 0x8F,
 } EN__SND_BT_CMD_80_RANGE;
 

@@ -15,6 +15,8 @@
 #include <ci_timer.h>
 #include <ci_printf.h>
 
+#include "cfx_cm3_sharedMemory.h"  // cfx_cm3_sharedMemoryAll (게인 테이블 연동)
+
 typedef struct
 {
     ReadCommandForBleSetting command;
@@ -213,7 +215,10 @@ void setting_nrf_ble_adv_info(void)
                   : classic_type == 2 ? "OTHER"
                                       : "INVALID");
 
-        /* IMPORTANT: 향후 크래들과 I2S 게인 테이블 적용할 수 있게 해야함 */
+        /* I2S 로 들어오는 오디오가 크래들 마이크인지 CFX 에 알려 준다.
+         * CFX 는 이 값이 1 이면 I2S 경로에 Gain_B 를 적용하고,
+         * 0(스트리밍)이면 스마트폰이 볼륨을 제어하므로 게인을 적용하지 않는다. */
+        cfx_cm3_sharedMemoryAll.is_i2s_source_cradle = ((classic_state == 1) && (classic_type == 1)) ? 1 : 0;
 
         /* 응답 패킷 */
         Tx_dataBuff[tx_index++] = EN__SND_BT_CMD_SYSTEM_INFO_CLASSIC_STATE;
@@ -353,6 +358,10 @@ ST__BLE_COMMUNICATION_STATE bleCommunication(ST__ISD_STATUS isd_state)
             else if (p_Rx_dataPacket[0] == CI_BLE_OTA_COMMAND_OTA)  // 0xC3, DFU (OTA) 데이터 명령
             {
                 ci_ble_fetch_packet_ota(p_Rx_dataPacket);
+            }
+            else if (p_Rx_dataPacket[0] == EN__SND_BT_CMD_GAIN_CONTROL)  // 0x8C 게인 제어 프로토콜
+            {
+                fetch_remoteControlPacket(p_Rx_dataPacket);
             }
             else if (p_Rx_dataPacket[0] == EN__SND_BT_CMD_GENERAL_DEBUG)  // 0x8F 범용 디버그 프로토콜
             {
