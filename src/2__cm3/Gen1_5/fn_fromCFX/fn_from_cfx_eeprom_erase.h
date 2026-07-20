@@ -14,7 +14,7 @@
 
 #include <FPGA.h>
 
-#include <ci_map.h>
+#include <tdc_fs_map.h>
 #include <fn_from_cfx_eeprom_read.h>
 
 void fn_erase_mapStamp_byMapping(void);

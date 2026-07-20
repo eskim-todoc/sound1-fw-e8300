@@ -1,136 +1,136 @@
 /**
- * @file ci_map.c
+ * @file tdc_fs_map.c
  */
 
-#include <ci_map.h>
+#include <tdc_fs_map.h>
 
-int ci_map_read_isd_info(int isd_num)
+int tdc_fs_map_read_isd_info(int isd_num)
 {
-    static char name[CI_MAP_FILE_NAME_LEN_ISD_INFO] = CI_MAP_FILE_INIT_NAME_ISD_INFO;
-    name[CI_MAP_FILE_INDEX_ISD_NUM]                 = (char) ('0' + isd_num);
+    static char name[TDC_FS_MAP_FILE_NAME_LEN_ISD_INFO] = TDC_FS_MAP_FILE_INIT_NAME_ISD_INFO;
+    name[TDC_FS_MAP_FILE_INDEX_ISD_NUM]                 = (char) ('0' + isd_num);
 
 #if 1
-    return ci_filesystem_read_with_crc_and_aes128(
-        name, (uint8_t *) &g_ci_filesystem_ptr_entire_map->map[isd_num - 1].isd_info, sizeof(ST__CFX_CM3_SharedMemory_ISD_info), &g_ci_filesystem_ptr_entire_map->map[isd_num - 1].isd_info_crc_ccitt, g_ci_filesystem_ptr_entire_map->map[isd_num - 1].isd_info_aes128_padding, 8, true, true);
+    return tdc_fs_read_with_crc_and_aes128(
+        name, (uint8_t *) &g_tdc_fs_ptr_entire_map->map[isd_num - 1].isd_info, sizeof(ST__CFX_CM3_SharedMemory_ISD_info), &g_tdc_fs_ptr_entire_map->map[isd_num - 1].isd_info_crc_ccitt, g_tdc_fs_ptr_entire_map->map[isd_num - 1].isd_info_aes128_padding, 8, true, true);
 #else
-    return ci_filesystem_read(name, (uint8_t *) &g_ci_filesystem_ptr_entire_map->map[isd_num - 1].isd_info, sizeof(ST__CFX_CM3_SharedMemory_ISD_info));
+    return tdc_fs_read(name, (uint8_t *) &g_tdc_fs_ptr_entire_map->map[isd_num - 1].isd_info, sizeof(ST__CFX_CM3_SharedMemory_ISD_info));
 #endif
 }
 
-int ci_map_read_user_setting_value(int isd_num)
+int tdc_fs_map_read_user_setting_value(int isd_num)
 {
     int         ret;
-    static char name[CI_MAP_FILE_NAME_LEN_USER_SETTING_VALUE] = CI_MAP_FILE_INIT_NAME_USER_SETTING_VALUE;
-    name[CI_MAP_FILE_INDEX_ISD_NUM]                           = (char) ('0' + isd_num);
+    static char name[TDC_FS_MAP_FILE_NAME_LEN_USER_SETTING_VALUE] = TDC_FS_MAP_FILE_INIT_NAME_USER_SETTING_VALUE;
+    name[TDC_FS_MAP_FILE_INDEX_ISD_NUM]                           = (char) ('0' + isd_num);
 
 #if 1
-    return ci_filesystem_read_with_crc_and_aes128(name, (uint8_t *) &g_ci_filesystem_ptr_entire_map->map[isd_num - 1].user_setting_value, sizeof(ST__CFX_CM3_SharedMemory_userSettingValue), &g_ci_filesystem_ptr_entire_map->map[isd_num - 1].user_setting_value_crc_ccitt, NULL, 0, true, false);
+    return tdc_fs_read_with_crc_and_aes128(name, (uint8_t *) &g_tdc_fs_ptr_entire_map->map[isd_num - 1].user_setting_value, sizeof(ST__CFX_CM3_SharedMemory_userSettingValue), &g_tdc_fs_ptr_entire_map->map[isd_num - 1].user_setting_value_crc_ccitt, NULL, 0, true, false);
 #else
-    return ci_filesystem_read(name, (uint8_t *) &g_ci_filesystem_ptr_entire_map->map[isd_num - 1].user_setting_value, sizeof(ST__CFX_CM3_SharedMemory_userSettingValue));
+    return tdc_fs_read(name, (uint8_t *) &g_tdc_fs_ptr_entire_map->map[isd_num - 1].user_setting_value, sizeof(ST__CFX_CM3_SharedMemory_userSettingValue));
 #endif
 }
 
-int ci_map_read_map_stamp(int isd_num)
+int tdc_fs_map_read_map_stamp(int isd_num)
 {
     int         ret;
-    static char name[CI_MAP_FILE_NAME_LEN_MAP_STAMP] = CI_MAP_FILE_INIT_NAME_MAP_STAMP;
-    name[CI_MAP_FILE_INDEX_ISD_NUM]                  = (char) ('0' + isd_num);
+    static char name[TDC_FS_MAP_FILE_NAME_LEN_MAP_STAMP] = TDC_FS_MAP_FILE_INIT_NAME_MAP_STAMP;
+    name[TDC_FS_MAP_FILE_INDEX_ISD_NUM]                  = (char) ('0' + isd_num);
 #if 1
-    return ci_filesystem_read_with_crc_and_aes128(name, (uint8_t *) &g_ci_filesystem_ptr_entire_map->map[isd_num - 1].map_stamp, sizeof(ST__MAPPING_DATE), &g_ci_filesystem_ptr_entire_map->map[isd_num - 1].map_stamp_crc_ccitt, g_ci_filesystem_ptr_entire_map->map[isd_num - 1].map_stamp_aes128_padding, 4, true, false);
+    return tdc_fs_read_with_crc_and_aes128(name, (uint8_t *) &g_tdc_fs_ptr_entire_map->map[isd_num - 1].map_stamp, sizeof(ST__MAPPING_DATE), &g_tdc_fs_ptr_entire_map->map[isd_num - 1].map_stamp_crc_ccitt, g_tdc_fs_ptr_entire_map->map[isd_num - 1].map_stamp_aes128_padding, 4, true, false);
 #else
-    return ci_filesystem_read(name, (uint8_t *) &g_ci_filesystem_ptr_entire_map->map[isd_num - 1].map_stamp, sizeof(ST__MAPPING_DATE));
+    return tdc_fs_read(name, (uint8_t *) &g_tdc_fs_ptr_entire_map->map[isd_num - 1].map_stamp, sizeof(ST__MAPPING_DATE));
 #endif
 }
 
-int ci_map_read_map_data(int isd_num, int map_num)
+int tdc_fs_map_read_map_data(int isd_num, int map_num)
 {
     int         ret;
-    static char name[CI_MAP_FILE_NAME_LEN_MAP_DATA] = CI_MAP_FILE_INIT_NAME_MAP_DATA;
-    name[CI_MAP_FILE_INDEX_ISD_NUM]                 = (char) ('0' + isd_num);
-    name[CI_MAP_FILE_INDEX_MAP_NUM]                 = (char) ('0' + map_num);
+    static char name[TDC_FS_MAP_FILE_NAME_LEN_MAP_DATA] = TDC_FS_MAP_FILE_INIT_NAME_MAP_DATA;
+    name[TDC_FS_MAP_FILE_INDEX_ISD_NUM]                 = (char) ('0' + isd_num);
+    name[TDC_FS_MAP_FILE_INDEX_MAP_NUM]                 = (char) ('0' + map_num);
 
 #if 1
-    return ci_filesystem_read_with_crc_and_aes128(name,
-                                                  (uint8_t *) &g_ci_filesystem_ptr_entire_map->map[isd_num - 1].map_data[map_num - 1],
+    return tdc_fs_read_with_crc_and_aes128(name,
+                                                  (uint8_t *) &g_tdc_fs_ptr_entire_map->map[isd_num - 1].map_data[map_num - 1],
                                                   sizeof(ST__CFX_CM3_SharedMemory_mapData),
-                                                  &g_ci_filesystem_ptr_entire_map->map[isd_num - 1].map_data_crc_ccitt[map_num - 1],
-                                                  &g_ci_filesystem_ptr_entire_map->map[isd_num - 1].map_data_aes128_padding[map_num - 1][0],
+                                                  &g_tdc_fs_ptr_entire_map->map[isd_num - 1].map_data_crc_ccitt[map_num - 1],
+                                                  &g_tdc_fs_ptr_entire_map->map[isd_num - 1].map_data_aes128_padding[map_num - 1][0],
                                                   8,
                                                   true,
                                                   false);
 #else
-    return ci_filesystem_read(name, (uint8_t *) &g_ci_filesystem_ptr_entire_map->map[isd_num - 1].map_data[map_num - 1], sizeof(ST__CFX_CM3_SharedMemory_mapData));
+    return tdc_fs_read(name, (uint8_t *) &g_tdc_fs_ptr_entire_map->map[isd_num - 1].map_data[map_num - 1], sizeof(ST__CFX_CM3_SharedMemory_mapData));
 #endif
 }
 
-int ci_map_write_isd_info(int isd_num)
+int tdc_fs_map_write_isd_info(int isd_num)
 {
-    static char name[CI_MAP_FILE_NAME_LEN_ISD_INFO] = CI_MAP_FILE_INIT_NAME_ISD_INFO;
-    name[CI_MAP_FILE_INDEX_ISD_NUM]                 = (char) ('0' + isd_num);
+    static char name[TDC_FS_MAP_FILE_NAME_LEN_ISD_INFO] = TDC_FS_MAP_FILE_INIT_NAME_ISD_INFO;
+    name[TDC_FS_MAP_FILE_INDEX_ISD_NUM]                 = (char) ('0' + isd_num);
 
     TDC_PRINTF_D("[MAP] TRY WRITING, FILE : '%s' \r\n", name);
 #if 1
-    return ci_filesystem_write_with_crc_and_aes128(
-        name, (uint8_t *) &g_ci_filesystem_ptr_entire_map->map[isd_num - 1].isd_info, sizeof(ST__CFX_CM3_SharedMemory_ISD_info), &g_ci_filesystem_ptr_entire_map->map[isd_num - 1].isd_info_crc_ccitt, g_ci_filesystem_ptr_entire_map->map[isd_num - 1].isd_info_aes128_padding, 8, true, true);
+    return tdc_fs_write_with_crc_and_aes128(
+        name, (uint8_t *) &g_tdc_fs_ptr_entire_map->map[isd_num - 1].isd_info, sizeof(ST__CFX_CM3_SharedMemory_ISD_info), &g_tdc_fs_ptr_entire_map->map[isd_num - 1].isd_info_crc_ccitt, g_tdc_fs_ptr_entire_map->map[isd_num - 1].isd_info_aes128_padding, 8, true, true);
 #else
-    return ci_filesystem_write(name, (uint8_t *) &g_ci_filesystem_ptr_entire_map->map[isd_num - 1].isd_info, sizeof(ST__CFX_CM3_SharedMemory_ISD_info));
+    return tdc_fs_write(name, (uint8_t *) &g_tdc_fs_ptr_entire_map->map[isd_num - 1].isd_info, sizeof(ST__CFX_CM3_SharedMemory_ISD_info));
 #endif
 }
 
-int ci_map_write_user_setting_value(int isd_num)
+int tdc_fs_map_write_user_setting_value(int isd_num)
 {
     int         ret;
-    static char name[CI_MAP_FILE_NAME_LEN_USER_SETTING_VALUE] = CI_MAP_FILE_INIT_NAME_USER_SETTING_VALUE;
-    name[CI_MAP_FILE_INDEX_ISD_NUM]                           = (char) ('0' + isd_num);
+    static char name[TDC_FS_MAP_FILE_NAME_LEN_USER_SETTING_VALUE] = TDC_FS_MAP_FILE_INIT_NAME_USER_SETTING_VALUE;
+    name[TDC_FS_MAP_FILE_INDEX_ISD_NUM]                           = (char) ('0' + isd_num);
 
     TDC_PRINTF_D("[MAP] TRY WRITING, FILE : '%s' \r\n", name);
 
 #if 1
-    return ci_filesystem_write_with_crc_and_aes128(name, (uint8_t *) &g_ci_filesystem_ptr_entire_map->map[isd_num - 1].user_setting_value, sizeof(ST__CFX_CM3_SharedMemory_userSettingValue), &g_ci_filesystem_ptr_entire_map->map[isd_num - 1].user_setting_value_crc_ccitt, NULL, 0, true, false);
+    return tdc_fs_write_with_crc_and_aes128(name, (uint8_t *) &g_tdc_fs_ptr_entire_map->map[isd_num - 1].user_setting_value, sizeof(ST__CFX_CM3_SharedMemory_userSettingValue), &g_tdc_fs_ptr_entire_map->map[isd_num - 1].user_setting_value_crc_ccitt, NULL, 0, true, false);
 #else
-    return ci_filesystem_write(name, (uint8_t *) &g_ci_filesystem_ptr_entire_map->map[isd_num - 1].user_setting_value, sizeof(ST__CFX_CM3_SharedMemory_userSettingValue));
+    return tdc_fs_write(name, (uint8_t *) &g_tdc_fs_ptr_entire_map->map[isd_num - 1].user_setting_value, sizeof(ST__CFX_CM3_SharedMemory_userSettingValue));
 #endif
 }
 
-int ci_map_write_map_stamp(int isd_num)
+int tdc_fs_map_write_map_stamp(int isd_num)
 {
     int         ret;
-    static char name[CI_MAP_FILE_NAME_LEN_MAP_STAMP] = CI_MAP_FILE_INIT_NAME_MAP_STAMP;
-    name[CI_MAP_FILE_INDEX_ISD_NUM]                  = (char) ('0' + isd_num);
+    static char name[TDC_FS_MAP_FILE_NAME_LEN_MAP_STAMP] = TDC_FS_MAP_FILE_INIT_NAME_MAP_STAMP;
+    name[TDC_FS_MAP_FILE_INDEX_ISD_NUM]                  = (char) ('0' + isd_num);
 
     TDC_PRINTF_D("[MAP] TRY WRITING, FILE : '%s' \r\n", name);
 
 #if 1
-    return ci_filesystem_write_with_crc_and_aes128(name, (uint8_t *) &g_ci_filesystem_ptr_entire_map->map[isd_num - 1].map_stamp, sizeof(ST__MAPPING_DATE), &g_ci_filesystem_ptr_entire_map->map[isd_num - 1].map_stamp_crc_ccitt, g_ci_filesystem_ptr_entire_map->map[isd_num - 1].map_stamp_aes128_padding, 4, true, false);
+    return tdc_fs_write_with_crc_and_aes128(name, (uint8_t *) &g_tdc_fs_ptr_entire_map->map[isd_num - 1].map_stamp, sizeof(ST__MAPPING_DATE), &g_tdc_fs_ptr_entire_map->map[isd_num - 1].map_stamp_crc_ccitt, g_tdc_fs_ptr_entire_map->map[isd_num - 1].map_stamp_aes128_padding, 4, true, false);
 #else
-    return ci_filesystem_write(name, (uint8_t *) &g_ci_filesystem_ptr_entire_map->map[isd_num - 1].map_stamp, sizeof(ST__MAPPING_DATE));
+    return tdc_fs_write(name, (uint8_t *) &g_tdc_fs_ptr_entire_map->map[isd_num - 1].map_stamp, sizeof(ST__MAPPING_DATE));
 #endif
 }
 
-int ci_map_write_map_data(int isd_num, int map_num)
+int tdc_fs_map_write_map_data(int isd_num, int map_num)
 {
     int         ret;
-    static char name[CI_MAP_FILE_NAME_LEN_MAP_DATA] = CI_MAP_FILE_INIT_NAME_MAP_DATA;
-    name[CI_MAP_FILE_INDEX_ISD_NUM]                 = (char) ('0' + isd_num);
-    name[CI_MAP_FILE_INDEX_MAP_NUM]                 = (char) ('0' + map_num);
+    static char name[TDC_FS_MAP_FILE_NAME_LEN_MAP_DATA] = TDC_FS_MAP_FILE_INIT_NAME_MAP_DATA;
+    name[TDC_FS_MAP_FILE_INDEX_ISD_NUM]                 = (char) ('0' + isd_num);
+    name[TDC_FS_MAP_FILE_INDEX_MAP_NUM]                 = (char) ('0' + map_num);
 
     TDC_PRINTF_D("[MAP] TRY WRITING, FILE : '%s' \r\n", name);
 
 #if 1
-    return ci_filesystem_write_with_crc_and_aes128(name,
-                                                   (uint8_t *) &g_ci_filesystem_ptr_entire_map->map[isd_num - 1].map_data[map_num - 1],
+    return tdc_fs_write_with_crc_and_aes128(name,
+                                                   (uint8_t *) &g_tdc_fs_ptr_entire_map->map[isd_num - 1].map_data[map_num - 1],
                                                    sizeof(ST__CFX_CM3_SharedMemory_mapData),
-                                                   &g_ci_filesystem_ptr_entire_map->map[isd_num - 1].map_data_crc_ccitt[map_num - 1],
-                                                   &g_ci_filesystem_ptr_entire_map->map[isd_num - 1].map_data_aes128_padding[map_num - 1][0],
+                                                   &g_tdc_fs_ptr_entire_map->map[isd_num - 1].map_data_crc_ccitt[map_num - 1],
+                                                   &g_tdc_fs_ptr_entire_map->map[isd_num - 1].map_data_aes128_padding[map_num - 1][0],
                                                    8,
                                                    true,
                                                    false);
 #else
-    return ci_filesystem_write(name, (uint8_t *) &g_ci_filesystem_ptr_entire_map->map[isd_num - 1].map_data[map_num - 1], sizeof(ST__CFX_CM3_SharedMemory_mapData));
+    return tdc_fs_write(name, (uint8_t *) &g_tdc_fs_ptr_entire_map->map[isd_num - 1].map_data[map_num - 1], sizeof(ST__CFX_CM3_SharedMemory_mapData));
 #endif
 }
 
-int ci_map_init_map_data(int isd_num, bool force_init, bool specific_RL, int val_RL)
+int tdc_fs_map_init_map_data(int isd_num, bool force_init, bool specific_RL, int val_RL)
 {
     ST__CFX_CM3_SharedMemory_ISD_info         *p_info;
     ST__CFX_CM3_SharedMemory_userSettingValue *p_user_setting;
@@ -144,22 +144,22 @@ int ci_map_init_map_data(int isd_num, bool force_init, bool specific_RL, int val
     int validate_all;
 
     // Initialize pointers
-    p_info         = &g_ci_filesystem_ptr_entire_map->map[isd_num - 1].isd_info;
-    p_user_setting = &g_ci_filesystem_ptr_entire_map->map[isd_num - 1].user_setting_value;
-    p_map_stamp    = &g_ci_filesystem_ptr_entire_map->map[isd_num - 1].map_stamp;
+    p_info         = &g_tdc_fs_ptr_entire_map->map[isd_num - 1].isd_info;
+    p_user_setting = &g_tdc_fs_ptr_entire_map->map[isd_num - 1].user_setting_value;
+    p_map_stamp    = &g_tdc_fs_ptr_entire_map->map[isd_num - 1].map_stamp;
 
     for (int i = 0; i < MaxNumMap; i++)
     {
-        p_map_data[i] = &g_ci_filesystem_ptr_entire_map->map[isd_num - 1].map_data[i];
+        p_map_data[i] = &g_tdc_fs_ptr_entire_map->map[isd_num - 1].map_data[i];
     }
 
-    validate_isd_info     = ci_map_read_isd_info(isd_num);
-    validate_user_setting = ci_map_read_user_setting_value(isd_num);
-    validate_map_stamp    = ci_map_read_map_stamp(isd_num);
-    validate_map_data[0]  = ci_map_read_map_data(isd_num, 1);
-    validate_map_data[1]  = ci_map_read_map_data(isd_num, 2);
-    validate_map_data[2]  = ci_map_read_map_data(isd_num, 3);
-    validate_map_data[3]  = ci_map_read_map_data(isd_num, 4);
+    validate_isd_info     = tdc_fs_map_read_isd_info(isd_num);
+    validate_user_setting = tdc_fs_map_read_user_setting_value(isd_num);
+    validate_map_stamp    = tdc_fs_map_read_map_stamp(isd_num);
+    validate_map_data[0]  = tdc_fs_map_read_map_data(isd_num, 1);
+    validate_map_data[1]  = tdc_fs_map_read_map_data(isd_num, 2);
+    validate_map_data[2]  = tdc_fs_map_read_map_data(isd_num, 3);
+    validate_map_data[3]  = tdc_fs_map_read_map_data(isd_num, 4);
 
 #if 0
     TDC_PRINTF_V("\r\n\n[MAP] * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  \r\n\n");
@@ -488,7 +488,7 @@ int ci_map_init_map_data(int isd_num, bool force_init, bool specific_RL, int val
         p_info->remocon_passkey[3] = '1';  // remocon passkey 4
 
         // TDC_PRINTF_D("[MAP] BEFORE WRITE ISD INFO \r\n");
-        ci_map_write_isd_info(isd_num);
+        tdc_fs_map_write_isd_info(isd_num);
         TDC_PRINTF_D("[MAP] ISD '%d' HAS BEEN INIT \r\n", isd_num);
     }
 
@@ -505,7 +505,7 @@ int ci_map_init_map_data(int isd_num, bool force_init, bool specific_RL, int val
         p_user_setting->teleCoil_OnOff        = 2;  // telecoil on/off
         p_user_setting->Ble_Onff              = 1;  // BLE on/off
 
-        ci_map_write_user_setting_value(isd_num);
+        tdc_fs_map_write_user_setting_value(isd_num);
         TDC_PRINTF_D("[MAP] USER SETTING '%d' HAS BEEN INIT \r\n", isd_num);
     }
 
@@ -521,7 +521,7 @@ int ci_map_init_map_data(int isd_num, bool force_init, bool specific_RL, int val
         p_map_stamp->mapping_min   = 11;  // map stamp minute
         p_map_stamp->mapping_sec   = 11;  // map stamp second
 
-        ci_map_write_map_stamp(isd_num);
+        tdc_fs_map_write_map_stamp(isd_num);
         TDC_PRINTF_D("[MAP] MAP STAMP '%d' HAS BEEN INIT \r\n", isd_num);
     }
 
@@ -546,7 +546,7 @@ int ci_map_init_map_data(int isd_num, bool force_init, bool specific_RL, int val
 
             /* NOTE: NofM 테스트를 위한 코드. 테스트 후 삭제할 것. */
 #if 1
-            if (i == CI_MAP_NUM_3_INDEX)
+            if (i == TDC_FS_MAP_NUM_3_INDEX)
             {
                 p_map_data[i]->stimulationStrategy = 2;  // 1: CIS, 2: nOFm
             }
@@ -557,7 +557,7 @@ int ci_map_init_map_data(int isd_num, bool force_init, bool specific_RL, int val
             {
                 switch (i)
                 {
-                    case CI_MAP_NUM_3_INDEX:
+                    case TDC_FS_MAP_NUM_3_INDEX:
 #if TDC_MAP_TEST_NOFM_USAGE_TIME
                         p_map_data[i]->firstPulsePhase = 0; // negative first
 #else
@@ -583,11 +583,11 @@ int ci_map_init_map_data(int isd_num, bool force_init, bool specific_RL, int val
             {
                 switch (i)
                 {
-                    case CI_MAP_NUM_2_INDEX:
+                    case TDC_FS_MAP_NUM_2_INDEX:
                         p_map_data[i]->stimulationPulsePhaseWidth = 13;
                         break;
 
-                    case CI_MAP_NUM_3_INDEX:
+                    case TDC_FS_MAP_NUM_3_INDEX:
 #if TDC_MAP_TEST_NOFM_USAGE_TIME
                         p_map_data[i]->stimulationPulsePhaseWidth = 13;
 #else
@@ -595,7 +595,7 @@ int ci_map_init_map_data(int isd_num, bool force_init, bool specific_RL, int val
 #endif
                         break;
 
-                    case CI_MAP_NUM_4_INDEX:
+                    case TDC_FS_MAP_NUM_4_INDEX:
                         p_map_data[i]->stimulationPulsePhaseWidth = 255;
                         break;
 
@@ -618,7 +618,7 @@ int ci_map_init_map_data(int isd_num, bool force_init, bool specific_RL, int val
             {
                 switch (i)
                 {
-                    case CI_MAP_NUM_2_INDEX:
+                    case TDC_FS_MAP_NUM_2_INDEX:
                         p_map_data[i]->numFrequencyBand = 24;
                         break;
 
@@ -663,7 +663,7 @@ int ci_map_init_map_data(int isd_num, bool force_init, bool specific_RL, int val
                 {
                     switch (i)
                     {
-                        case CI_MAP_NUM_2_INDEX:
+                        case TDC_FS_MAP_NUM_2_INDEX:
                             if (k == CI_ELEC_NUM_16_INDEX)
                             {
                                 p_map_data[i]->T_level_uA[k] = 1500;
@@ -703,7 +703,7 @@ int ci_map_init_map_data(int isd_num, bool force_init, bool specific_RL, int val
                 {
                     switch (i)
                     {
-                        case CI_MAP_NUM_2_INDEX:
+                        case TDC_FS_MAP_NUM_2_INDEX:
                             if (k == CI_ELEC_NUM_16_INDEX)
                             {
                                 p_map_data[i]->C_level_uA[k] = 1500;
@@ -768,7 +768,7 @@ int ci_map_init_map_data(int isd_num, bool force_init, bool specific_RL, int val
                 p_map_data[i]->audio_input_x_max[k] = df_maxAudioForLogarithm;
             }
 
-            ci_map_write_map_data(isd_num, 1 + i);
+            tdc_fs_map_write_map_data(isd_num, 1 + i);
             TDC_PRINTF_D("[MAP] ISD '%d' PROGRAM '%d' HAS BEEN INIT \r\n", isd_num, 1 + i);
         }
 
@@ -780,12 +780,12 @@ int ci_map_init_map_data(int isd_num, bool force_init, bool specific_RL, int val
     return df_True;
 }
 
-int ci_map_init_map_data_all(bool force_init)
+int tdc_fs_map_init_map_data_all(bool force_init)
 {
     for (int isd_num = 1; isd_num <= MaxNumUser; isd_num++)
     {
-        // ci_map_init_map_data(isd_num, force_init);
-        ci_map_init_map_data(isd_num, force_init, false, 1);
+        // tdc_fs_map_init_map_data(isd_num, force_init);
+        tdc_fs_map_init_map_data(isd_num, force_init, false, 1);
         SYS_WATCHDOG_REFRESH();
     }
 

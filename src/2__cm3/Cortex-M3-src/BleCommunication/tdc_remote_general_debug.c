@@ -23,7 +23,7 @@
 #include <tdc_touch.h>
 #include <tdc_printf.h>
 #include <ci_ble_control_ota.h>
-#include <ci_map.h>
+#include <tdc_fs_map.h>
 
 static int gd_handle_touch_debug(const ST__REMOTECONTROL_PACKET *packet, int *tx_buf, int tx_index, int option);      // option 1
 static int gd_handle_no_backtel(const ST__REMOTECONTROL_PACKET *packet, int *tx_buf, int tx_index, int option);       // option 2
@@ -133,13 +133,13 @@ static int gd_handle_map_init(const ST__REMOTECONTROL_PACKET *packet, int *tx_bu
     if ((RL == 1) || (RL == 2))
     {
         // PARAMETER ORDER : ISD_NUM, FORCE_INIT, SPECIFIC_RL, VAL_RL
-        ci_map_init_map_data(1, true, true, RL);  // 왼쪽 = 1 / 오른쪽 = 2
+        tdc_fs_map_init_map_data(1, true, true, RL);  // 왼쪽 = 1 / 오른쪽 = 2
         SYS_WATCHDOG_REFRESH();
-        ci_map_init_map_data(2, true, false, 1);  // 왼쪽
+        tdc_fs_map_init_map_data(2, true, false, 1);  // 왼쪽
         SYS_WATCHDOG_REFRESH();
-        ci_map_init_map_data(3, true, false, 1);  // 왼쪽
+        tdc_fs_map_init_map_data(3, true, false, 1);  // 왼쪽
         SYS_WATCHDOG_REFRESH();
-        ci_map_init_map_data(4, true, false, 1);  // 왼쪽
+        tdc_fs_map_init_map_data(4, true, false, 1);  // 왼쪽
         SYS_WATCHDOG_REFRESH();
     }
     else

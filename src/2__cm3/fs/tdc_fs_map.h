@@ -1,9 +1,9 @@
 /**
- * @file ci_map.h
+ * @file tdc_fs_map.h
  */
 
-#ifndef __ci_map_h__
-#define __ci_map_h__
+#ifndef __tdc_fs_map_h__
+#define __tdc_fs_map_h__
 
 #include <stdbool.h>
 #include <stdio.h>
@@ -16,14 +16,14 @@
 #include <cfx_cm3_sharedMemory.h>
 #include <definitionsForAlgorithm.h>
 
-#include <ci_filesystem.h>
+#include <tdc_fs.h>
 
 #define TDC_MAP_TEST_NOFM_USAGE_TIME 0
 
-#define CI_MAP_NUM_1_INDEX 0
-#define CI_MAP_NUM_2_INDEX 1
-#define CI_MAP_NUM_3_INDEX 2
-#define CI_MAP_NUM_4_INDEX 3
+#define TDC_FS_MAP_NUM_1_INDEX 0
+#define TDC_FS_MAP_NUM_2_INDEX 1
+#define TDC_FS_MAP_NUM_3_INDEX 2
+#define TDC_FS_MAP_NUM_4_INDEX 3
 
 #define CI_ELEC_NUM_1_INDEX  0
 #define CI_ELEC_NUM_2_INDEX  1
@@ -58,46 +58,46 @@
 #define CI_ELEC_NUM_31_INDEX 30
 #define CI_ELEC_NUM_32_INDEX 31
 
-#define CI_MAP_FILE_INIT_NAME_ISD_INFO                                                                                                                                                                                                                                                                                         \
+#define TDC_FS_MAP_FILE_INIT_NAME_ISD_INFO                                                                                                                                                                                                                                                                                         \
     { /* 1    2    3    4    5    6    7    8    9    10   11*/                                                                                                                                                                                                                                                                \
         '/', 'I', 'S', 'D', '*', '_', 'I', 'N', 'F', 'O', '\0'                                                                                                                                                                                                                                                                 \
     }
 
-#define CI_MAP_FILE_INIT_NAME_USER_SETTING_VALUE                                                                                                                                                                                                                                                                               \
+#define TDC_FS_MAP_FILE_INIT_NAME_USER_SETTING_VALUE                                                                                                                                                                                                                                                                               \
     {                                                                                                                                                                                                                                                                                                                          \
         '/', 'I', 'S', 'D', '*', '_', 'U', 'S', 'E', 'R', '_', 'S', 'E', 'T', 'T', 'I', 'N', 'G', '\0'                                                                                                                                                                                                                         \
     }
 
-#define CI_MAP_FILE_INIT_NAME_MAP_STAMP                                                                                                                                                                                                                                                                                        \
+#define TDC_FS_MAP_FILE_INIT_NAME_MAP_STAMP                                                                                                                                                                                                                                                                                        \
     {                                                                                                                                                                                                                                                                                                                          \
         '/', 'I', 'S', 'D', '*', 'S', 'T', 'A', 'M', 'P', '\0'                                                                                                                                                                                                                                                                 \
     }
 
-#define CI_MAP_FILE_INIT_NAME_MAP_DATA                                                                                                                                                                                                                                                                                         \
+#define TDC_FS_MAP_FILE_INIT_NAME_MAP_DATA                                                                                                                                                                                                                                                                                         \
     {                                                                                                                                                                                                                                                                                                                          \
         '/', 'I', 'S', 'D', '*', '_', 'M', 'A', 'P', '*', '\0'                                                                                                                                                                                                                                                                 \
     }
 
-#define CI_MAP_FILE_NAME_LEN_ISD_INFO           11
-#define CI_MAP_FILE_NAME_LEN_USER_SETTING_VALUE 19
-#define CI_MAP_FILE_NAME_LEN_MAP_STAMP          11
-#define CI_MAP_FILE_NAME_LEN_MAP_DATA           11
+#define TDC_FS_MAP_FILE_NAME_LEN_ISD_INFO           11
+#define TDC_FS_MAP_FILE_NAME_LEN_USER_SETTING_VALUE 19
+#define TDC_FS_MAP_FILE_NAME_LEN_MAP_STAMP          11
+#define TDC_FS_MAP_FILE_NAME_LEN_MAP_DATA           11
 
-#define CI_MAP_FILE_INDEX_ISD_NUM 4
-#define CI_MAP_FILE_INDEX_MAP_NUM 9
+#define TDC_FS_MAP_FILE_INDEX_ISD_NUM 4
+#define TDC_FS_MAP_FILE_INDEX_MAP_NUM 9
 
-int ci_map_read_isd_info(int isd_num);
-int ci_map_read_user_setting_value(int isd_num);
-int ci_map_read_map_stamp(int isd_num);
-int ci_map_read_map_data(int isd_num, int map_num);
+int tdc_fs_map_read_isd_info(int isd_num);
+int tdc_fs_map_read_user_setting_value(int isd_num);
+int tdc_fs_map_read_map_stamp(int isd_num);
+int tdc_fs_map_read_map_data(int isd_num, int map_num);
 
-int ci_map_write_isd_info(int isd_num);
-int ci_map_write_user_setting_value(int isd_num);
-int ci_map_write_map_stamp(int isd_num);
-int ci_map_write_map_data(int isd_num, int map_num);
+int tdc_fs_map_write_isd_info(int isd_num);
+int tdc_fs_map_write_user_setting_value(int isd_num);
+int tdc_fs_map_write_map_stamp(int isd_num);
+int tdc_fs_map_write_map_data(int isd_num, int map_num);
 
-// int ci_map_init_map_data(int isd_num, bool force_init);
-int ci_map_init_map_data(int isd_num, bool force_init, bool specific_RL, int val_RL);
-int ci_map_init_map_data_all(bool force_init);
+// int tdc_fs_map_init_map_data(int isd_num, bool force_init);
+int tdc_fs_map_init_map_data(int isd_num, bool force_init, bool specific_RL, int val_RL);
+int tdc_fs_map_init_map_data_all(bool force_init);
 
-#endif  // __ci_map_h__
+#endif  // __tdc_fs_map_h__

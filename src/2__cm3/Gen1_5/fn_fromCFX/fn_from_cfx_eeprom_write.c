@@ -2,16 +2,16 @@
  * @file OTE_1_5_gen_CFX_EEPROM_write.c
  */
 
-#include <ci_filesystem.h>
+#include <tdc_fs.h>
 #include <fn_from_cfx_eeprom_write.h>
 
 void fn_write_userSettingParameters(int connected_ISD_num)
 {
     if (0 < cfx_cm3_sharedMemoryAll.userSettingValue.mapNum)  // 초기화 과정이 다 끝나고, 맵 번호가 0이 아닐 때만 수행할 수 있게 한다.
     {
-        g_ci_filesystem_ptr_entire_map->map[connected_ISD_num - 1].user_setting_value = cfx_cm3_sharedMemoryAll.userSettingValue;
+        g_tdc_fs_ptr_entire_map->map[connected_ISD_num - 1].user_setting_value = cfx_cm3_sharedMemoryAll.userSettingValue;
 
-        ci_map_write_user_setting_value(connected_ISD_num);  // 신규 코드
+        tdc_fs_map_write_user_setting_value(connected_ISD_num);  // 신규 코드
     }
 }
 
@@ -23,14 +23,14 @@ void fn_write_userSettingParameters_byMapping(void)
     isd_num                = cfx_cm3_sharedMemoryAll.ReadWriteCommand_ForFlash.isd_index;
     p_repo_for_rw_map_data = &cfx_cm3_sharedMemoryAll.repositoryForReadWriteMapData;
 
-    g_ci_filesystem_ptr_entire_map->map[isd_num - 1].user_setting_value = p_repo_for_rw_map_data->userSettingValue_mapData;
+    g_tdc_fs_ptr_entire_map->map[isd_num - 1].user_setting_value = p_repo_for_rw_map_data->userSettingValue_mapData;
 
-    ci_map_write_user_setting_value(isd_num);  // 신규 코드
+    tdc_fs_map_write_user_setting_value(isd_num);  // 신규 코드
 
-    // g_ci_filesystem_ptr_entire_map->map[isd_num - 1].map_stamp          = p_repo_for_rw_map_data->readWritemapData.mappingDate;
-    // g_ci_filesystem_ptr_entire_map->map[isd_num - 1].map_stamp          = p_repo_for_rw_map_data->mapStamp;
+    // g_tdc_fs_ptr_entire_map->map[isd_num - 1].map_stamp          = p_repo_for_rw_map_data->readWritemapData.mappingDate;
+    // g_tdc_fs_ptr_entire_map->map[isd_num - 1].map_stamp          = p_repo_for_rw_map_data->mapStamp;
 
-    // ci_map_write_map_stamp(isd_num);          // 신규 코드
+    // tdc_fs_map_write_map_stamp(isd_num);          // 신규 코드
 }
 
 void fn_write_mapStmpParameters_byMapping(void)
@@ -41,9 +41,9 @@ void fn_write_mapStmpParameters_byMapping(void)
     isd_num                = cfx_cm3_sharedMemoryAll.ReadWriteCommand_ForFlash.isd_index;
     p_repo_for_rw_map_data = &cfx_cm3_sharedMemoryAll.repositoryForReadWriteMapData;
 
-    g_ci_filesystem_ptr_entire_map->map[isd_num - 1].map_stamp = p_repo_for_rw_map_data->mapStamp;
+    g_tdc_fs_ptr_entire_map->map[isd_num - 1].map_stamp = p_repo_for_rw_map_data->mapStamp;
 
-    ci_map_write_map_stamp(isd_num);  // 신규 코드
+    tdc_fs_map_write_map_stamp(isd_num);  // 신규 코드
 }
 
 void fn_write_ISD_info_byMapping(void)
@@ -54,9 +54,9 @@ void fn_write_ISD_info_byMapping(void)
 
     if ((0 < isd_num) && (isd_num <= MaxNumUser))
     {
-        g_ci_filesystem_ptr_entire_map->map[isd_num - 1].isd_info = cfx_cm3_sharedMemoryAll.repositoryForReadWriteMapData.ISD_info_mapData;
+        g_tdc_fs_ptr_entire_map->map[isd_num - 1].isd_info = cfx_cm3_sharedMemoryAll.repositoryForReadWriteMapData.ISD_info_mapData;
 
-        ci_map_write_isd_info(isd_num);  // 신규 코드
+        tdc_fs_map_write_isd_info(isd_num);  // 신규 코드
     }
 }
 
@@ -69,11 +69,11 @@ void fn_write_mapData_byMapping(void)
     map_num = cfx_cm3_sharedMemoryAll.ReadWriteCommand_ForFlash.map_index;
 
     p_src_map_data = &cfx_cm3_sharedMemoryAll.repositoryForReadWriteMapData.readWritemapData;
-    p_dst_map_data = &(g_ci_filesystem_ptr_entire_map->map[isd_num - 1].map_data[map_num - 1]);
+    p_dst_map_data = &(g_tdc_fs_ptr_entire_map->map[isd_num - 1].map_data[map_num - 1]);
 
     *p_dst_map_data = *p_src_map_data;
 
-    ci_map_write_map_data(isd_num, map_num);  // 신규 코드
+    tdc_fs_map_write_map_data(isd_num, map_num);  // 신규 코드
 }
 
 void fn_write_Mapdata_mappingApp(void)

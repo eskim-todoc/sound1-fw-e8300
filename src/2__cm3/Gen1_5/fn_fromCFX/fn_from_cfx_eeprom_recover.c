@@ -2,19 +2,19 @@
  * @file ci_from_cfx_eeprom_recover.c
  */
 
-#include <ci_filesystem.h>
+#include <tdc_fs.h>
 #include <fn_from_cfx_eeprom_recover.h>
 
 void fn_recover_mapData_byMapping(void)
 {
     int                  isd_num, map_num;
     int                  map_num_begin, map_num_end;
-    CI_FILESYSTEM_MAP_T* p_isd;
+    TDC_FS_MAP_T* p_isd;
 
     isd_num = cfx_cm3_sharedMemoryAll.ReadWriteCommand_ForFlash.isd_index;
     map_num = cfx_cm3_sharedMemoryAll.ReadWriteCommand_ForFlash.map_index;
 
-    p_isd = &(g_ci_filesystem_ptr_entire_map->map[isd_num - 1]);
+    p_isd = &(g_tdc_fs_ptr_entire_map->map[isd_num - 1]);
 
     if (map_num == 0)  // map_num이 0이면 모든 맵 지우기
     {
@@ -101,7 +101,7 @@ void fn_recover_mapData_byMapping(void)
             p_isd->map_data[i].audio_input_x_max[k] = df_maxAudioForLogarithm;
         }
 
-        ci_map_write_map_data(isd_num, i + 1 /* map_num */);
+        tdc_fs_map_write_map_data(isd_num, i + 1 /* map_num */);
     }
 }
 

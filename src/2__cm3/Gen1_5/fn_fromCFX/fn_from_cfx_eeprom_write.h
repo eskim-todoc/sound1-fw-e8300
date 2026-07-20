@@ -12,7 +12,7 @@
 
 #include <hw.h>
 
-#include <ci_map.h>
+#include <tdc_fs_map.h>
 #include <fn_from_cfx_eeprom_erase.h>
 #include <fn_from_cfx_eeprom_read.h>
 

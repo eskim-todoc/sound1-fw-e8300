@@ -11,11 +11,11 @@
 #include "batteryNPowerControl.h"
 #include "cfx_cm3_sharedMemory.h"
 #include "error.h"
-#include "ci_event_log.h"
-#include "ci_map.h"
+#include "tdc_fs_event_log.h"
+#include "tdc_fs_map.h"
 #include "isd_interface.h"
 #include "processorDirective.h"
-#include <ci_stim_mute.h>
+#include <tdc_fs_stim_mute.h>
 
 #include <tdc_printf.h>
 #include <tdc_touch_config.h>
@@ -688,26 +688,26 @@ static int handle_init_all_map(int argc, char *argv[])
         if (*p == 'R')
         {
             // PARAMETER ORDER : ISD_NUM, FORCE_INIT, SPECIFIC_RL, VAL_RL
-            ci_map_init_map_data(1, true, true, 2);  // 오른쪽 강제
+            tdc_fs_map_init_map_data(1, true, true, 2);  // 오른쪽 강제
         }
         else
         {
             // PARAMETER ORDER : ISD_NUM, FORCE_INIT, SPECIFIC_RL, VAL_RL
-            ci_map_init_map_data(1, true, true, 1);  // 왼쪽 강제
+            tdc_fs_map_init_map_data(1, true, true, 1);  // 왼쪽 강제
         }
     }
     else
     {
-        // ci_map_init_map_data_all(true);
+        // tdc_fs_map_init_map_data_all(true);
         // PARAMETER ORDER : ISD_NUM, FORCE_INIT, SPECIFIC_RL, VAL_RL
-        ci_map_init_map_data(1, true, false, 1);
+        tdc_fs_map_init_map_data(1, true, false, 1);
     }
     SYS_WATCHDOG_REFRESH();
-    ci_map_init_map_data(2, true, false, 1);
+    tdc_fs_map_init_map_data(2, true, false, 1);
     SYS_WATCHDOG_REFRESH();
-    ci_map_init_map_data(3, true, false, 1);
+    tdc_fs_map_init_map_data(3, true, false, 1);
     SYS_WATCHDOG_REFRESH();
-    ci_map_init_map_data(4, true, false, 1);
+    tdc_fs_map_init_map_data(4, true, false, 1);
     SYS_WATCHDOG_REFRESH();
 
     TDC_PRINTF_I("[UI CMD] FINISHED ERASING ALL MAPS\r\n");
@@ -725,7 +725,7 @@ static int handle_dump_log(int argc, char *argv[])
     (void) argv;
 
     TDC_PRINTF_I("[UI CMD] START TO READ EVENT LOG\r\n");
-    ci_event_log_read();
+    tdc_fs_event_log_read();
     TDC_PRINTF_I("[UI CMD] FINISHED TO READ EVENT LOG\r\n");
     output_printf("OK: event log dumped\r\n");
     return 0;
@@ -740,7 +740,7 @@ static int handle_write_integrity_error(int argc, char *argv[])
     (void) argc;
     (void) argv;
 
-    ci_event_log_write(CI_EVENT_LOG_TYPE_INTEGRITY_ERROR);
+    tdc_fs_event_log_write(TDC_FS_EVENT_LOG_TYPE_INTEGRITY_ERROR);
     output_printf("OK: integrity error logged\r\n");
     return 0;
 }
@@ -758,7 +758,7 @@ static int handle_gating(int argc, char *argv[])
 
     if (ci_strcasecmp(argv[1], "on") == 0)
     {
-        if (ci_stim_mute_update(CI_STIM_MUTE_UNDER_T_LEVEL_ENABLE, 2) == CI_STIM_MUTE_RET_TRUE)
+        if (tdc_fs_stim_mute_update(TDC_FS_STIM_MUTE_UNDER_T_LEVEL_ENABLE, 2) == TDC_FS_STIM_MUTE_RET_TRUE)
         {
             TDC_PRINTF_E("[UI] Enable gating mode \r\n");
             val = true;
@@ -766,7 +766,7 @@ static int handle_gating(int argc, char *argv[])
     }
     else if (ci_strcasecmp(argv[1], "off") == 0)
     {
-        if (ci_stim_mute_update(CI_STIM_MUTE_UNDER_T_LEVEL_DISABLE, 2) == CI_STIM_MUTE_RET_TRUE)
+        if (tdc_fs_stim_mute_update(TDC_FS_STIM_MUTE_UNDER_T_LEVEL_DISABLE, 2) == TDC_FS_STIM_MUTE_RET_TRUE)
         {
             TDC_PRINTF_E("[UI] Disable gating mode \r\n");
             val = true;

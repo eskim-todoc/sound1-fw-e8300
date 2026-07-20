@@ -748,7 +748,7 @@ ST__REMOTECONTROL_STATE remoteControl(bool isdConnection)  // 연결 상태에 �
         {
 #if 1  // 로그 기능
             tdc_hal_timer_time_t        time;
-            CI_EVENT_LOG_BT_ADDR_T bt_addr;
+            TDC_FS_EVENT_LOG_BT_ADDR_T bt_addr;
 
             // 참조 시간 정보
             time.year  = remoteDataPacket.data[4];
@@ -768,10 +768,10 @@ ST__REMOTECONTROL_STATE remoteControl(bool isdConnection)  // 연결 상태에 �
             bt_addr.bt_addr[4] = remoteDataPacket.data[14];
             bt_addr.bt_addr[5] = remoteDataPacket.data[15];
 
-            ci_event_log_update_bt_addr(&bt_addr);
+            tdc_fs_event_log_update_bt_addr(&bt_addr);
 
             // 로그 쓰기 : 블루투스 연결
-            ci_event_log_write(CI_EVENT_LOG_TYPE_CONNECTED);
+            tdc_fs_event_log_write(TDC_FS_EVENT_LOG_TYPE_CONNECTED);
 #endif
             bufferForSPI_tx[tx_index++] = 1;
 
@@ -1392,7 +1392,7 @@ ST__REMOTECONTROL_STATE remoteControl(bool isdConnection)  // 연결 상태에 �
                                             TDC_PRINTF_D("[MUTE] RECEVIED : WRITE NORMAL + ENABLE MUTE + T LEVEL OFFSET %d \r\n", remoteDataPacket.data[3]);
 
                                             // 설정 가능 범위 초과 시 에러
-                                            if ((remoteDataPacket.data[3] < CI_STIM_MUTE_T_LEVEL_OFFSET_MIN) || (CI_STIM_MUTE_T_LEVEL_OFFSET_MAX < remoteDataPacket.data[3]))
+                                            if ((remoteDataPacket.data[3] < TDC_FS_STIM_MUTE_T_LEVEL_OFFSET_MIN) || (TDC_FS_STIM_MUTE_T_LEVEL_OFFSET_MAX < remoteDataPacket.data[3]))
                                             {
                                                 TDC_PRINTF_E("[MUTE] RECEVIED : WRITE NORMAL + ENABLE MUTE, BUT INVALID T OFFSET LEVEL \r\n");
 
@@ -1402,7 +1402,7 @@ ST__REMOTECONTROL_STATE remoteControl(bool isdConnection)  // 연결 상태에 �
                                             else  // 유효한 설정 값인 경우
                                             {
                                                 // 묵음 처리 파일 및 공유 메모리 값 업데이트
-                                                if (ci_stim_mute_update(CI_STIM_MUTE_UNDER_T_LEVEL_ENABLE, (uint32_t) remoteDataPacket.data[3]) != CI_STIM_MUTE_RET_TRUE)
+                                                if (tdc_fs_stim_mute_update(TDC_FS_STIM_MUTE_UNDER_T_LEVEL_ENABLE, (uint32_t) remoteDataPacket.data[3]) != TDC_FS_STIM_MUTE_RET_TRUE)
                                                 {
                                                     TDC_PRINTF_E("[MUTE] RECEVIED : WRITE NORMAL + ENABLE MUTE, BUT FAILED TO UPDATE FILE \r\n");
 
@@ -1436,7 +1436,7 @@ ST__REMOTECONTROL_STATE remoteControl(bool isdConnection)  // 연결 상태에 �
                                             TDC_PRINTF_D("[MUTE] RECEVIED : WRITE NORMAL + DISABLE MUTE \r\n");
 
                                             // 묵음 처리 파일 및 공유 메모리 값 업데이트
-                                            if (ci_stim_mute_update(CI_STIM_MUTE_UNDER_T_LEVEL_DISABLE, cfx_cm3_sharedMemoryAll.mute_stimulation_t_level_offset) != CI_STIM_MUTE_RET_TRUE)
+                                            if (tdc_fs_stim_mute_update(TDC_FS_STIM_MUTE_UNDER_T_LEVEL_DISABLE, cfx_cm3_sharedMemoryAll.mute_stimulation_t_level_offset) != TDC_FS_STIM_MUTE_RET_TRUE)
                                             {
                                                 TDC_PRINTF_E("[MUTE] RECEVIED : WRITE NORMAL + DISABLE MUTE, BUT FAILED TO UPDATE FILE \r\n");
 

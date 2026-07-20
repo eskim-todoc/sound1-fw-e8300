@@ -2,16 +2,16 @@
  * @file OTE_1_5_gen_CFX_EEPROM_erase.c
  */
 
-#include <ci_filesystem.h>
+#include <tdc_fs.h>
 #include <fn_from_cfx_eeprom_erase.h>
 
 void fn_erase_mapStamp_byMapping(void)
 {
     int                  isd_num;
-    CI_FILESYSTEM_MAP_T* p_isd;
+    TDC_FS_MAP_T* p_isd;
 
     isd_num = cfx_cm3_sharedMemoryAll.ReadWriteCommand_ForFlash.isd_index;
-    p_isd   = &(g_ci_filesystem_ptr_entire_map->map[isd_num - 1]);
+    p_isd   = &(g_tdc_fs_ptr_entire_map->map[isd_num - 1]);
 
     p_isd->map_stamp.mapping_year  = 0;  // 년
     p_isd->map_stamp.mapping_month = 0;  // 월
@@ -20,16 +20,16 @@ void fn_erase_mapStamp_byMapping(void)
     p_isd->map_stamp.mapping_min   = 0;  // 분
     p_isd->map_stamp.mapping_sec   = 0;  // 초
 
-    ci_map_write_map_stamp(isd_num);  // 신규 코드
+    tdc_fs_map_write_map_stamp(isd_num);  // 신규 코드
 }
 
 void fn_erase_userSettingParameters_byMapping(void)
 {
     int                  isd_num;
-    CI_FILESYSTEM_MAP_T* p_isd;
+    TDC_FS_MAP_T* p_isd;
 
     isd_num = cfx_cm3_sharedMemoryAll.ReadWriteCommand_ForFlash.isd_index;
-    p_isd   = &(g_ci_filesystem_ptr_entire_map->map[isd_num - 1]);
+    p_isd   = &(g_tdc_fs_ptr_entire_map->map[isd_num - 1]);
 
     p_isd->user_setting_value.mapNum                = 1;  // 맵 번호
     p_isd->user_setting_value.stimulVolume          = 4;  // 자극 볼륨
@@ -39,17 +39,17 @@ void fn_erase_userSettingParameters_byMapping(void)
     p_isd->user_setting_value.teleCoil_OnOff        = 2;  // 텔레코일 On/Off (On == 1, Off == 2)
     p_isd->user_setting_value.Ble_Onff              = 1;  // Ble On/Off 현재는 사용 안함
 
-    ci_map_write_user_setting_value(isd_num);  // 신규 코드
+    tdc_fs_map_write_user_setting_value(isd_num);  // 신규 코드
 }
 
 void fn_erase_ISD_info_byMapping(void)
 {
     int                  name_index;
     int                  isd_num;
-    CI_FILESYSTEM_MAP_T* p_isd;
+    TDC_FS_MAP_T* p_isd;
 
     isd_num = cfx_cm3_sharedMemoryAll.ReadWriteCommand_ForFlash.isd_index;
-    p_isd   = &(g_ci_filesystem_ptr_entire_map->map[isd_num - 1]);
+    p_isd   = &(g_tdc_fs_ptr_entire_map->map[isd_num - 1]);
 
     p_isd->isd_info.isd_year        = 0;  // 년
     p_isd->isd_info.isd_month_model = 0;  // 월, 모델 번호
@@ -78,19 +78,19 @@ void fn_erase_ISD_info_byMapping(void)
     p_isd->isd_info.remocon_passkey[2] = '1';
     p_isd->isd_info.remocon_passkey[3] = '1';
 
-    ci_map_write_isd_info(isd_num);  // 신규 코드
+    tdc_fs_map_write_isd_info(isd_num);  // 신규 코드
 }
 
 void fn_erase_mapData_byMapping(void)
 {
     int                  isd_num, map_num;
     int                  map_num_begin, map_num_end;
-    CI_FILESYSTEM_MAP_T* p_isd;
+    TDC_FS_MAP_T* p_isd;
 
     isd_num = cfx_cm3_sharedMemoryAll.ReadWriteCommand_ForFlash.isd_index;
     map_num = cfx_cm3_sharedMemoryAll.ReadWriteCommand_ForFlash.map_index;
 
-    p_isd = &(g_ci_filesystem_ptr_entire_map->map[isd_num - 1]);
+    p_isd = &(g_tdc_fs_ptr_entire_map->map[isd_num - 1]);
 
     if (map_num == 0)  // map_num이 0이면 모든 맵 지우기
     {
@@ -177,7 +177,7 @@ void fn_erase_mapData_byMapping(void)
             p_isd->map_data[i].audio_input_x_max[k] = df_maxAudioForLogarithm;
         }
 
-        ci_map_write_map_data(isd_num, i + 1 /* map_num */);
+        tdc_fs_map_write_map_data(isd_num, i + 1 /* map_num */);
     }
 }
 

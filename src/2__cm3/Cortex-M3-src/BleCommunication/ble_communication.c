@@ -484,8 +484,8 @@ ST__BLE_COMMUNICATION_STATE bleCommunication(ST__ISD_STATUS isd_state)
             // ble_communication_state 구조체의 isdControlCommand의 값을 en__isdStatus_PowerIC_Reset 로 설정한다.
         }
 
-        //ci_event_log_write(CI_EVENT_LOG_TYPE_DISCONNECTED);
-        ci_event_log_update_bt_addr(NULL);
+        //tdc_fs_event_log_write(TDC_FS_EVENT_LOG_TYPE_DISCONNECTED);
+        tdc_fs_event_log_update_bt_addr(NULL);
 #endif
     }
 
