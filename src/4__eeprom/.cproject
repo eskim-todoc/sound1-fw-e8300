@@ -26,7 +26,7 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/2__cm3/Debug/2__cm3.elf}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/1__cfx/Debug/1__cfx.elf}&quot;"/>
 								</option>
-								<option id="cfcc.nvm.preprocess.bootloaderPath.1589182330" name="NVM Bootloader Path (-I)" superClass="cfcc.nvm.preprocess.bootloaderPath" value="E:\Claude\projects\Sound1\src\0__bootloader\Debug\0__bootloader.elf" valueType="string"/>
+								<option id="cfcc.nvm.preprocess.bootloaderPath.1589182330" name="NVM Bootloader Path (-I)" superClass="cfcc.nvm.preprocess.bootloaderPath" value="E:\workspace\projects\sound1-fw-e8300\src\0__bootloader\Debug\0__bootloader.elf" valueType="string"/>
 								<option id="nvm.additionalOptions.1875199298" name="Additional Options" superClass="nvm.additionalOptions" value="-v" valueType="string"/>
 								<option id="nvm.OptionnvmSize.1301726588" name="NVM target size (bytes) (-s)" superClass="nvm.OptionnvmSize" value="4MB" valueType="string"/>
 								<option id="nvm.targetProgrammer.964492429" name="Select the target programmer" superClass="nvm.targetProgrammer" value="nvm.targetProgrammer.jflash" valueType="enumerated"/>
