@@ -16,10 +16,10 @@
 #include <nvmctrl.h>
 
 #include <sdk_ci_boot.h>
-#include <ci_printf.h>
+#include <tdc_printf.h>
 
 #include <ci_filesystem.h>
-#include <ci_util.h>
+#include <tdc_util.h>
 
 typedef enum
 {

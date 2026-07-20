@@ -7,9 +7,9 @@
 #include "LedOutput.h"
 #include "cfx_cm3_sharedMemory.h"
 
-#include <ci_timer.h>
-#include <ci_util.h>  /* delay_ms */
-#include <ci_printf.h>
+#include <tdc_hal_timer.h>
+#include <tdc_util.h>  /* tdc_util_delay_ms */
+#include <tdc_printf.h>
 
 /* ========================================================================
  *  LED Dimming (타이머 3 1ms tick 기반 PWM 듀티 변조)
@@ -399,7 +399,7 @@ void led_request(led_src_t src, led_state_t st)
     /* PAIR latch: 요청이 들어오면 한 주기(1000ms) 보장 - ON 500/OFF 500 패턴 1회 표시 */
     if (src == LED_SRC_BLE_IND && st == LED_ST_PAIR)
     {
-        s_pair_latch_until_tick = ci_timer_get_tick() + 1000;
+        s_pair_latch_until_tick = tdc_hal_timer_get_tick() + 1000;
     }
 
     /* burst 패턴 요청 즉시 pending flag set - timer 기반 set 의 timing race 회피. */
@@ -617,11 +617,11 @@ static void led_engine_run(led_state_t st, bool reset)
                      * st 가 LED_ST_POWER_ON 일 때만 출력. POWER_OFF 등은 영향 없음. */
                     if (st == LED_ST_POWER_ON)
                     {
-                        ci_printi("\r\n");
-                        ci_printi("################################################################\r\n");
-                        ci_printi("###  [POWER-ON  END]     t3 = %d ms\r\n", tdc_timer_get_t3_tick());
-                        ci_printi("################################################################\r\n");
-                        ci_printi("\r\n");
+                        TDC_PRINTF_I("\r\n");
+                        TDC_PRINTF_I("################################################################\r\n");
+                        TDC_PRINTF_I("###  [POWER-ON  END]     t3 = %d ms\r\n", tdc_hal_timer_get_t3_tick());
+                        TDC_PRINTF_I("################################################################\r\n");
+                        TDC_PRINTF_I("\r\n");
                     }
 
                     /* 게이트 자가 해제: 기존 관례 유지 */
@@ -656,7 +656,7 @@ static led_state_t compute_best_state(void)
 
     /* PAIR latch 처리: 해제 요청이 와도 latch 동안 유지 */
     if (s_req[LED_SRC_BLE_IND] != LED_ST_PAIR
-        && ci_timer_get_tick() < s_pair_latch_until_tick)
+        && tdc_hal_timer_get_tick() < s_pair_latch_until_tick)
     {
         s_req[LED_SRC_BLE_IND] = LED_ST_PAIR;
     }

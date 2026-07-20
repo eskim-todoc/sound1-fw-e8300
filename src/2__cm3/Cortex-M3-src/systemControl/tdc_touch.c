@@ -18,9 +18,9 @@
 #include <tdc_touch_time.h>
 
 #include <hw.h>
-#include <ci_timer.h>
-#include <ci_printf.h>
-#include <ci_util.h> /* delay_ms() - MCLR 전 RTT 드레인 */
+#include <tdc_hal_timer.h>
+#include <tdc_printf.h>
+#include <tdc_util.h> /* tdc_util_delay_ms() - MCLR 전 RTT 드레인 */
 
 #include <LedOutput.h> /* led_request() - 부팅 터치 무시 디버그 피드백 */
 
@@ -120,41 +120,41 @@ static void try_finish_init(void)
 {
     if (!tdc_touch_iqs323_is_ati_done())
     {
-        if (TDC_TOUCH_INIT_TIMEOUT_MS >= (tdc_timer_get_t3_tick() - s_mclr_done_tick))
+        if (TDC_TOUCH_INIT_TIMEOUT_MS >= (tdc_hal_timer_get_t3_tick() - s_mclr_done_tick))
         {
             return; /* 대기 - 다음 tick 재시도 */
         }
-        ci_printw("[TOUCH] AUTO-ATI: TIMEOUT, FORCING FINISH \r\n");
+        TDC_PRINTF_W("[TOUCH] AUTO-ATI: TIMEOUT, FORCING FINISH \r\n");
     }
 
     SYS_WATCHDOG_REFRESH();
     tdc_touch_iqs323_apply_settings(); /* Full ATI / 임계 / Beta / Power / 부팅 Re-ATI */
     SYS_WATCHDOG_REFRESH();
 
-    uint32_t now = (uint32_t) ci_timer_get_tick();
+    uint32_t now = (uint32_t) tdc_hal_timer_get_tick();
     tdc_touch_logic_init(&s_logic, now);
     s_log_prev_state = TDC_TOUCH_STATE_RESET;
     s_poll_tick_old  = (int) now;
     s_init_state     = TDC_TOUCH_INIT_READY;
-    ci_printi("[TOUCH] INIT FINISH DONE \r\n");
+    TDC_PRINTF_I("[TOUCH] INIT FINISH DONE \r\n");
 
     /* 누른 채 부팅 방어 - 첫 read 로 터치 판정 후 FSM 에 무시 설정. */
     tdc_touch_iqs323_status_t st;
     if (tdc_touch_iqs323_read_status(&st) && st.pressed)
     {
         tdc_touch_logic_set_boot_ignore(&s_logic, now);
-        ci_printw("[TOUCH] BOOT TOUCH ignoring until released \r\n");
+        TDC_PRINTF_W("[TOUCH] BOOT TOUCH ignoring until released \r\n");
     }
 }
 
 void tdc_touch_init_begin(void)
 {
-    ci_printi("[TOUCH] INIT BEGIN \r\n");
+    TDC_PRINTF_I("[TOUCH] INIT BEGIN \r\n");
 
     SYS_WATCHDOG_REFRESH();
     tdc_touch_iqs323_mclr();
 
-    s_mclr_done_tick = tdc_timer_get_t3_tick();
+    s_mclr_done_tick = tdc_hal_timer_get_t3_tick();
     s_init_state     = TDC_TOUCH_INIT_MCLR_DONE;
 }
 
@@ -164,15 +164,15 @@ void led_debug_blink_blue(int cnt, int on_ms, int off_ms)
 
     for (int i = 0; i < cnt; i++)
     {
-        lap_end = ci_timer_get_tick() + on_ms;
-        while (ci_timer_get_tick() < lap_end)
+        lap_end = tdc_hal_timer_get_tick() + on_ms;
+        while (tdc_hal_timer_get_tick() < lap_end)
         {
             turnON_BlueLED();
             SYS_WATCHDOG_REFRESH();
         }
 
-        lap_end = ci_timer_get_tick() + off_ms;
-        while (ci_timer_get_tick() < lap_end)
+        lap_end = tdc_hal_timer_get_tick() + off_ms;
+        while (tdc_hal_timer_get_tick() < lap_end)
         {
             Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_R);
             Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_G);
@@ -194,9 +194,9 @@ void led_debug_blink_12bits(uint16_t bits)
     {
         uint8_t bit = (bits >> (11 - i)) & 1;
 
-        lap_end = ci_timer_get_tick() + 500;
+        lap_end = tdc_hal_timer_get_tick() + 500;
 
-        while (ci_timer_get_tick() < lap_end)
+        while (tdc_hal_timer_get_tick() < lap_end)
         {
             if (bit == 0)
             {
@@ -210,9 +210,9 @@ void led_debug_blink_12bits(uint16_t bits)
             }
         }
 
-        lap_end = ci_timer_get_tick() + 500;
+        lap_end = tdc_hal_timer_get_tick() + 500;
 
-        while (ci_timer_get_tick() < lap_end)
+        while (tdc_hal_timer_get_tick() < lap_end)
         {
             Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_R);
             Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_G);
@@ -262,7 +262,7 @@ bool tdc_touch_process(void)
     }
 
     /* --- 폴링 게이팅 (ms 차분) --- */
-    int now = ci_timer_get_tick();
+    int now = tdc_hal_timer_get_tick();
     if (TDC_TOUCH_POLL_INTERVAL_MS > (now - s_poll_tick_old))
     {
         return false;
@@ -292,7 +292,7 @@ bool tdc_touch_process(void)
             uint16_t pabs_thr = (uint16_t) (((uint32_t) TDC_TOUCH_IQS323_PROX_THRESHOLD * dbg.lta) / 256u);
 
 #if 0
-            ci_printd("[T] LTA=%3u  CNT=%3u  D=%3u  THR=%3u (k=%3u  H=%3u)  %s   PTHR=%3u (pk=%3u)  %s \r\n",  //
+            TDC_PRINTF_D("[T] LTA=%3u  CNT=%3u  D=%3u  THR=%3u (k=%3u  H=%3u)  %s   PTHR=%3u (pk=%3u)  %s \r\n",  //
                       dbg.lta,
                       dbg.counts,
                       delta,
@@ -322,7 +322,7 @@ bool tdc_touch_process(void)
     /* --- ATI 에러 감지(드리프트 신호) 경고 - Re-ATI 게이트 조건과 동일 시점 --- */
     if (in.read_ok && in.ati_error && !in.ati_active)
     {
-        ci_printw("[TOUCH] ATI ERROR (drift) \r\n");
+        TDC_PRINTF_W("[TOUCH] ATI ERROR (drift) \r\n");
     }
 
     /* --- 순수 FSM 1회 --- */
@@ -332,19 +332,19 @@ bool tdc_touch_process(void)
     /* --- 로그 --- */
     if (out.state_changed)
     {
-        ci_printv("[TOUCH] STATE: %s -> %s \r\n", tdc_touch_state_name(s_log_prev_state), tdc_touch_state_name(out.curr_state));
+        TDC_PRINTF_V("[TOUCH] STATE: %s -> %s \r\n", tdc_touch_state_name(s_log_prev_state), tdc_touch_state_name(out.curr_state));
         s_log_prev_state = out.curr_state;
     }
     switch (out.boot_event)
     {
         case TDC_TOUCH_BOOT_RELEASED:
         {
-            ci_printi("[TOUCH] BOOT TOUCH RELEASED, sensing resumed \r\n");
+            TDC_PRINTF_I("[TOUCH] BOOT TOUCH RELEASED, sensing resumed \r\n");
             break;
         }
         case TDC_TOUCH_BOOT_WARN_5S:
         {
-            ci_printw("[TOUCH] BOOT TOUCH > 5s \r\n");
+            TDC_PRINTF_W("[TOUCH] BOOT TOUCH > 5s \r\n");
             led_request(LED_SRC_DBG, LED_ST_DBG_LONG_TOUCH_IGNORE);
             break;
         }
@@ -364,25 +364,25 @@ bool tdc_touch_process(void)
             /* 원인 구분: NOT_TOUCH 경로 = 드리프트 게이트, TOUCH 경로 = stuck stage2(게이트 우회). */
             if (out.curr_state == TDC_TOUCH_STATE_TOUCH)
             {
-                ci_printi("[TOUCH] RE-ATI (stuck stage2) \r\n");
+                TDC_PRINTF_I("[TOUCH] RE-ATI (stuck stage2) \r\n");
             }
             else
             {
-                ci_printi("[TOUCH] RE-ATI (drift) \r\n");
+                TDC_PRINTF_I("[TOUCH] RE-ATI (drift) \r\n");
             }
             (void) tdc_touch_iqs323_re_ati();
             break;
         }
         case TDC_TOUCH_ACT_RESEED:
         {
-            ci_printi("[TOUCH] RESEED (stuck stage1) \r\n");
+            TDC_PRINTF_I("[TOUCH] RESEED (stuck stage1) \r\n");
             (void) tdc_touch_iqs323_reseed();
             break;
         }
         case TDC_TOUCH_ACT_MCLR:
         {
-            ci_printi("\r\n[TOUCH] STUCK -> MCLR RESET \r\n");
-            delay_ms(20); /* RTT 드레인 */
+            TDC_PRINTF_I("\r\n[TOUCH] STUCK -> MCLR RESET \r\n");
+            tdc_util_delay_ms(20); /* RTT 드레인 */
             SYS_WATCHDOG_RESET();
             break;
         }
@@ -396,7 +396,7 @@ bool tdc_touch_process(void)
 
     if (out.long_touch)
     {
-        ci_printi("\r\n[TOUCH] EVENT: LONG TOUCH \r\n");
+        TDC_PRINTF_I("\r\n[TOUCH] EVENT: LONG TOUCH \r\n");
         return true; /* 절전 트리거 */
     }
     return false;

@@ -38,21 +38,21 @@ int ci_fft_read_pass_bin(int num_of_freq_band)
 
     g_ci_filesystem_ptr_pass_bin->num_of_freq_band = num_of_freq_band;
 
-    ci_printv("[FFT] SUCCESS TO READ FFT PASS BIN (FILE: '%s') \r\n", name);
+    TDC_PRINTF_V("[FFT] SUCCESS TO READ FFT PASS BIN (FILE: '%s') \r\n", name);
 
 #if 0
-    ci_printf("\r\nCurrently loaded number of frequency band = %d..... ", g_ci_filesystem_ptr_pass_bin->num_of_freq_band);
+    TDC_PRINTF("\r\nCurrently loaded number of frequency band = %d..... ", g_ci_filesystem_ptr_pass_bin->num_of_freq_band);
 
     for (int i = 0; i < Half_FFT_Size; i++)
     {
         if ((i % 20) == 0)
         {
-            ci_printf("\r\n");
+            TDC_PRINTF("\r\n");
         }
 
-        ci_printf("%3d  ", g_ci_filesystem_ptr_pass_bin->fft_pass_bin[i]);
+        TDC_PRINTF("%3d  ", g_ci_filesystem_ptr_pass_bin->fft_pass_bin[i]);
     }
-    ci_printf("\r\n\n");
+    TDC_PRINTF("\r\n\n");
 #endif
 
     return 0;
@@ -194,11 +194,11 @@ int ci_fft_init_pass_bin_all(void)
         {
             if (ci_fft_init_pass_bin(i) < 0)
             {
-                ci_printe("[MAP] FAILED TO INIT FFT PASS BIN FOR '%d' TRANSFERABLE CH \r\n", i);
+                TDC_PRINTF_E("[MAP] FAILED TO INIT FFT PASS BIN FOR '%d' TRANSFERABLE CH \r\n", i);
             }
             else
             {
-                ci_printd("[MAP] SUCCESS TO INIT FFT PASS BIN FOR '%d' TRANSFERABLE CH \r\n", i);
+                TDC_PRINTF_D("[MAP] SUCCESS TO INIT FFT PASS BIN FOR '%d' TRANSFERABLE CH \r\n", i);
             }
         }
     }

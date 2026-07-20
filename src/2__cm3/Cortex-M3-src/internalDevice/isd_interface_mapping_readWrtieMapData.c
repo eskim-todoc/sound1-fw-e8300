@@ -730,7 +730,7 @@ bool reset_NVM_All_ISD_allData(bool startFlag, int command, EN__mapping_ReadWrit
     {
         if (startFlag)
         {
-            ci_printi("[FLASH] RECOVER OR ERASE PACKET, START FLAG : TRUE \r\n");
+            TDC_PRINTF_I("[FLASH] RECOVER OR ERASE PACKET, START FLAG : TRUE \r\n");
 
             counter          = 0;
             slot_index       = 1;
@@ -747,7 +747,7 @@ bool reset_NVM_All_ISD_allData(bool startFlag, int command, EN__mapping_ReadWrit
                 prevPcmOutputMode = readCurrentPcmOutputMode();
                 changePcmOutputMode(PcmBitStream_Mode_NopStandby);
 
-                ci_printi("[FLASH] COMMAND (%d), ISD INDEX (%d), MAP INDEX (%d) \r\n", FlashCommand.flashCommand, FlashCommand.isd_index, FlashCommand.map_index);
+                TDC_PRINTF_I("[FLASH] COMMAND (%d), ISD INDEX (%d), MAP INDEX (%d) \r\n", FlashCommand.flashCommand, FlashCommand.isd_index, FlashCommand.map_index);
                 setReadWriteMapDataFlashCommand(FlashCommand);
 
                 break;
@@ -758,7 +758,7 @@ bool reset_NVM_All_ISD_allData(bool startFlag, int command, EN__mapping_ReadWrit
                     slot_index++;
                     counter = -1;
 
-                    ci_printi("[FLASH] DONE FOR READ/WRITE MAPDATA FLASH COMMAND, SLOT INDEX (%u), COUNTER (%d) \r\n", slot_index, counter);
+                    TDC_PRINTF_I("[FLASH] DONE FOR READ/WRITE MAPDATA FLASH COMMAND, SLOT INDEX (%u), COUNTER (%d) \r\n", slot_index, counter);
                 }
                 break;
         }

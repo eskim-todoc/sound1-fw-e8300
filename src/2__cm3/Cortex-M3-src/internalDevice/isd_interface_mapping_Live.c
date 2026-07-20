@@ -18,7 +18,7 @@
 #include "electrodeMapping.h"
 #include "driver_SPI.h"
 
-#include <ci_printf.h>
+#include <tdc_printf.h>
 
 // 구조체의 배치되는 주소를 sections.ld 파일을 수정하여 LPDSP32_PRAM5에 위치한다.
 extern ST__CFX_CM3_SharedMemory_ALL cfx_cm3_sharedMemoryAll __attribute__((section(".shared_memory")));
@@ -128,7 +128,7 @@ bool liveStimulation(ST__ISD_STATUS ISD_state)
 
             // 모드 변경;
             p_mappingPacket->liveStimulation.subCommand = en__Standby;
-            ci_printi("[LIVE] LIVE STIMULATION, EN__ALL_PARAMERTER, SUB COMMAND : STANDBY \r\n");
+            TDC_PRINTF_I("[LIVE] LIVE STIMULATION, EN__ALL_PARAMERTER, SUB COMMAND : STANDBY \r\n");
         }
         break;
 
@@ -137,11 +137,11 @@ bool liveStimulation(ST__ISD_STATUS ISD_state)
             // CFX에서 맵데이터의 로딩이 완료될 때까지 로딩
             if (isMapdateLoaded_CFX())
             {
-                // ci_printi("[LIVE] LIVE STIMULATION, EN__START, CFX IS MAPDATA LOADED \r\n");
+                // TDC_PRINTF_I("[LIVE] LIVE STIMULATION, EN__START, CFX IS MAPDATA LOADED \r\n");
 
                 if (isNewMapLoadeFlag())  // 맵이 변경되어서  계산이 필요한 경우.
                 {
-                    ci_printi("[LIVE] LIVE STIMULATION, EN__START, NEW MAP LOADED FLAG IS TRUE \r\n");
+                    TDC_PRINTF_I("[LIVE] LIVE STIMULATION, EN__START, NEW MAP LOADED FLAG IS TRUE \r\n");
 
                     // Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_R);
                     calculationParameter = calculationStimulParaN_cfxShare();
@@ -149,7 +149,7 @@ bool liveStimulation(ST__ISD_STATUS ISD_state)
 
                     setFlag_AudioParametersCalculationDone_Cm3ToCfx();  // cfx에 파라미터 계산이 완료 되었을을 알려주는 플레그
 
-                    ci_printi("[LIVE] LIVE STIMULATION, CFX WILL CALCULATE AUDIO PARAMETERS, NOW \r\n");
+                    TDC_PRINTF_I("[LIVE] LIVE STIMULATION, CFX WILL CALCULATE AUDIO PARAMETERS, NOW \r\n");
 
                     clear_newMapLoadeFlag();  // 새로운 맵 데이터의 적용을 위한 처리가 완료되었다.
 
@@ -188,7 +188,7 @@ bool liveStimulation(ST__ISD_STATUS ISD_state)
                         clearErrorFlag(en__FPGA_CONFIGUARATION_ERROR);
                         clearErrorFlag(en__EN__ISD_ERROR);
 
-                        ci_printi("[LIVE] LIVE STIMULATION, SUCCESS TO ENABLE STIM 10V BY EN__START \r\n");
+                        TDC_PRINTF_I("[LIVE] LIVE STIMULATION, SUCCESS TO ENABLE STIM 10V BY EN__START \r\n");
 #endif
 
                         // command loop-back
@@ -615,7 +615,7 @@ bool liveStimulation(ST__ISD_STATUS ISD_state)
                                 clearErrorFlag(en__FPGA_CONFIGUARATION_ERROR);
                                 clearErrorFlag(en__EN__ISD_ERROR);
 
-                                ci_printi("[LIVE] LIVE STIMULATION, SUCCESS TO ENABLE STIM 10V BY EN__HOLDON \r\n");
+                                TDC_PRINTF_I("[LIVE] LIVE STIMULATION, SUCCESS TO ENABLE STIM 10V BY EN__HOLDON \r\n");
 #endif
 
                                 // 자극 출력
@@ -790,7 +790,7 @@ bool liveStimulation(ST__ISD_STATUS ISD_state)
 
                 if (ISD_connectionCounter_withMapping == 0)
                 {
-                    ci_printv("\r\n[MAPPING] LINK CHECK TRIGGERED (LIVE, STANDBY) \r\n");
+                    TDC_PRINTF_V("\r\n[MAPPING] LINK CHECK TRIGGERED (LIVE, STANDBY) \r\n");
                 }
 
                 update_isd_LinkConnection_byBacktel_withMapping(ISD_connectionCounter_withMapping);

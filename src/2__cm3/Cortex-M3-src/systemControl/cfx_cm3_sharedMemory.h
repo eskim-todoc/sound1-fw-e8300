@@ -26,7 +26,7 @@
 #include "definitionsForAlgorithm.h"  //ok
 #include "internalStimulationChip.h"  //ok
 
-#include "ci_printf.h"
+#include "tdc_printf.h"
 
 // #include <OTE_1_5_gen_CFX_EEPROM_erase.h>
 // #include <OTE_1_5_gen_CFX_EEPROM_read.h>

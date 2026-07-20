@@ -737,7 +737,7 @@ ST__REMOTECONTROL_STATE remoteControl(bool isdConnection)  // 연결 상태에 �
         }
 #endif
 
-        ci_printw("[PASSKEY] ALWAYS PATH OPENED. \r\n");
+        TDC_PRINTF_W("[PASSKEY] ALWAYS PATH OPENED. \r\n");
 
         // 송신 데이터 준비
         // command loop-back
@@ -747,7 +747,7 @@ ST__REMOTECONTROL_STATE remoteControl(bool isdConnection)  // 연결 상태에 �
         if (remocon_passkey_Match)
         {
 #if 1  // 로그 기능
-            CI_TIMER_TIME_T        time;
+            tdc_hal_timer_time_t        time;
             CI_EVENT_LOG_BT_ADDR_T bt_addr;
 
             // 참조 시간 정보
@@ -758,7 +758,7 @@ ST__REMOTECONTROL_STATE remoteControl(bool isdConnection)  // 연결 상태에 �
             time.min   = remoteDataPacket.data[8];
             time.sec   = remoteDataPacket.data[9];
 
-            ci_timer_update_reference_time(&time, 0);
+            tdc_hal_timer_update_reference_time(&time, 0);
 
             // 블루투스 주소 정보
             bt_addr.bt_addr[0] = remoteDataPacket.data[10];
@@ -1282,13 +1282,13 @@ ST__REMOTECONTROL_STATE remoteControl(bool isdConnection)  // 연결 상태에 �
 
                 case en__remoteControl_recover_ALL_SlotData_ManufactureData:
                 {
-                    ci_printi("[PACKET] RECEIVED, RECOVER ALL SLOT DATA MANUFACTURE DATA \r\n");
+                    TDC_PRINTF_I("[PACKET] RECEIVED, RECOVER ALL SLOT DATA MANUFACTURE DATA \r\n");
 
                     result = reset_NVM_All_ISD_allData(remoteCommandStartFlag, en__remoteControl_recover_ALL_SlotData_ManufactureData, flash_Command_Recover);
 
                     if (result)
                     {
-                        ci_printi("[PACKET] RESULT : TRUE, AFTER RESET NVM ALL ISD ALL DATA \r\n");
+                        TDC_PRINTF_I("[PACKET] RESULT : TRUE, AFTER RESET NVM ALL ISD ALL DATA \r\n");
 
                         while (1)
                         {
@@ -1363,7 +1363,7 @@ ST__REMOTECONTROL_STATE remoteControl(bool isdConnection)  // 연결 상태에 �
                     {
                         case 1:  // 읽기 (현재 상태 값으로 응답)
                         {
-                            ci_printd("[MUTE] RECEVIED : READ PACKET \r\n");
+                            TDC_PRINTF_D("[MUTE] RECEVIED : READ PACKET \r\n");
 
                             // 송신 데이터 준비
                             bufferForSPI_tx[tx_index++] = remoteDataPacket.command;                                                 //     command : loop-back
@@ -1372,7 +1372,7 @@ ST__REMOTECONTROL_STATE remoteControl(bool isdConnection)  // 연결 상태에 �
                             bufferForSPI_tx[tx_index++] = (int) cfx_cm3_sharedMemoryAll.is_enabled_mute_stimulation_under_t_level;  // sub option2 : enable state
                             bufferForSPI_tx[tx_index++] = (int) cfx_cm3_sharedMemoryAll.mute_stimulation_t_level_offset;            // sub option3 : mute t level offset
 
-                            ci_printd("[MUTE] RESPONSE : %02X %02X %02X %02X %02X \r\n", bufferForSPI_tx[0], bufferForSPI_tx[1], bufferForSPI_tx[2], bufferForSPI_tx[3], bufferForSPI_tx[4]);
+                            TDC_PRINTF_D("[MUTE] RESPONSE : %02X %02X %02X %02X %02X \r\n", bufferForSPI_tx[0], bufferForSPI_tx[1], bufferForSPI_tx[2], bufferForSPI_tx[3], bufferForSPI_tx[4]);
 
                             writeDataToSpiTxBuff(bufferForSPI_tx, tx_index);  // 송신 데이터 SPI TX버퍼에 복사
                             clearRemoteColtrolCommand();                      // 명령 종료
@@ -1389,12 +1389,12 @@ ST__REMOTECONTROL_STATE remoteControl(bool isdConnection)  // 연결 상태에 �
                                     {
                                         case 1:  // 묵음 처리 활성화
                                         {
-                                            ci_printd("[MUTE] RECEVIED : WRITE NORMAL + ENABLE MUTE + T LEVEL OFFSET %d \r\n", remoteDataPacket.data[3]);
+                                            TDC_PRINTF_D("[MUTE] RECEVIED : WRITE NORMAL + ENABLE MUTE + T LEVEL OFFSET %d \r\n", remoteDataPacket.data[3]);
 
                                             // 설정 가능 범위 초과 시 에러
                                             if ((remoteDataPacket.data[3] < CI_STIM_MUTE_T_LEVEL_OFFSET_MIN) || (CI_STIM_MUTE_T_LEVEL_OFFSET_MAX < remoteDataPacket.data[3]))
                                             {
-                                                ci_printe("[MUTE] RECEVIED : WRITE NORMAL + ENABLE MUTE, BUT INVALID T OFFSET LEVEL \r\n");
+                                                TDC_PRINTF_E("[MUTE] RECEVIED : WRITE NORMAL + ENABLE MUTE, BUT INVALID T OFFSET LEVEL \r\n");
 
                                                 sendErrorToApp(remoteDataPacket.command, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);
                                                 clearRemoteColtrolCommand();
@@ -1404,7 +1404,7 @@ ST__REMOTECONTROL_STATE remoteControl(bool isdConnection)  // 연결 상태에 �
                                                 // 묵음 처리 파일 및 공유 메모리 값 업데이트
                                                 if (ci_stim_mute_update(CI_STIM_MUTE_UNDER_T_LEVEL_ENABLE, (uint32_t) remoteDataPacket.data[3]) != CI_STIM_MUTE_RET_TRUE)
                                                 {
-                                                    ci_printe("[MUTE] RECEVIED : WRITE NORMAL + ENABLE MUTE, BUT FAILED TO UPDATE FILE \r\n");
+                                                    TDC_PRINTF_E("[MUTE] RECEVIED : WRITE NORMAL + ENABLE MUTE, BUT FAILED TO UPDATE FILE \r\n");
 
                                                     // 실패 시 에러 전송: 데이터 처리 에러 + 사용할 수 없는 맵데이터
                                                     sendErrorToApp(remoteDataPacket.command, en__dataProcessing_ERROR, en__unusableMapData, __LINE__);
@@ -1419,7 +1419,7 @@ ST__REMOTECONTROL_STATE remoteControl(bool isdConnection)  // 연결 상태에 �
                                                     bufferForSPI_tx[tx_index++] = (int) cfx_cm3_sharedMemoryAll.is_enabled_mute_stimulation_under_t_level;  // sub option2 : enable state
                                                     bufferForSPI_tx[tx_index++] = (int) cfx_cm3_sharedMemoryAll.mute_stimulation_t_level_offset;            // sub option3 : mute t level offset
 
-                                                    ci_printd("[MUTE] RESPONSE : %02X %02X %02X %02X %02X \r\n", bufferForSPI_tx[0], bufferForSPI_tx[1], bufferForSPI_tx[2], bufferForSPI_tx[3], bufferForSPI_tx[4]);
+                                                    TDC_PRINTF_D("[MUTE] RESPONSE : %02X %02X %02X %02X %02X \r\n", bufferForSPI_tx[0], bufferForSPI_tx[1], bufferForSPI_tx[2], bufferForSPI_tx[3], bufferForSPI_tx[4]);
 
                                                     writeDataToSpiTxBuff(bufferForSPI_tx, tx_index);  // 송신 데이터 SPI TX버퍼에 복사
                                                     clearRemoteColtrolCommand();                      // 명령 종료
@@ -1433,12 +1433,12 @@ ST__REMOTECONTROL_STATE remoteControl(bool isdConnection)  // 연결 상태에 �
                                             // 묵음 처리 비활성화 옵션에서는 세부 옵션 3은 N/A 처리 함
                                             // 결과적으로 현재 옵션 레벨을 그대로 사용하면 될 것으로 보임
 
-                                            ci_printd("[MUTE] RECEVIED : WRITE NORMAL + DISABLE MUTE \r\n");
+                                            TDC_PRINTF_D("[MUTE] RECEVIED : WRITE NORMAL + DISABLE MUTE \r\n");
 
                                             // 묵음 처리 파일 및 공유 메모리 값 업데이트
                                             if (ci_stim_mute_update(CI_STIM_MUTE_UNDER_T_LEVEL_DISABLE, cfx_cm3_sharedMemoryAll.mute_stimulation_t_level_offset) != CI_STIM_MUTE_RET_TRUE)
                                             {
-                                                ci_printe("[MUTE] RECEVIED : WRITE NORMAL + DISABLE MUTE, BUT FAILED TO UPDATE FILE \r\n");
+                                                TDC_PRINTF_E("[MUTE] RECEVIED : WRITE NORMAL + DISABLE MUTE, BUT FAILED TO UPDATE FILE \r\n");
 
                                                 // 실패 시 에러 전송: 데이터 처리 에러 + 사용할 수 없는 맵데이터
                                                 sendErrorToApp(remoteDataPacket.command, en__dataProcessing_ERROR, en__unusableMapData, __LINE__);
@@ -1453,7 +1453,7 @@ ST__REMOTECONTROL_STATE remoteControl(bool isdConnection)  // 연결 상태에 �
                                                 bufferForSPI_tx[tx_index++] = (int) cfx_cm3_sharedMemoryAll.is_enabled_mute_stimulation_under_t_level;  // sub option2 : enable state
                                                 bufferForSPI_tx[tx_index++] = (int) cfx_cm3_sharedMemoryAll.mute_stimulation_t_level_offset;            // sub option3 : mute t level offset
 
-                                                ci_printd("[MUTE] RESPONSE : %02X %02X %02X %02X %02X \r\n", bufferForSPI_tx[0], bufferForSPI_tx[1], bufferForSPI_tx[2], bufferForSPI_tx[3], bufferForSPI_tx[4]);
+                                                TDC_PRINTF_D("[MUTE] RESPONSE : %02X %02X %02X %02X %02X \r\n", bufferForSPI_tx[0], bufferForSPI_tx[1], bufferForSPI_tx[2], bufferForSPI_tx[3], bufferForSPI_tx[4]);
 
                                                 writeDataToSpiTxBuff(bufferForSPI_tx, tx_index);  // 송신 데이터 SPI TX버퍼에 복사
                                                 clearRemoteColtrolCommand();                      // 명령 종료
@@ -1463,7 +1463,7 @@ ST__REMOTECONTROL_STATE remoteControl(bool isdConnection)  // 연결 상태에 �
 
                                         default:
                                         {
-                                            ci_printe("[MUTE] RECEVIED : WRITE NORMAL OPTION, BUT UNDEFINED SUB OPTION 2 PACKET \r\n");
+                                            TDC_PRINTF_E("[MUTE] RECEVIED : WRITE NORMAL OPTION, BUT UNDEFINED SUB OPTION 2 PACKET \r\n");
 
                                             sendErrorToApp(remoteDataPacket.command, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);
                                             clearRemoteColtrolCommand();
@@ -1475,7 +1475,7 @@ ST__REMOTECONTROL_STATE remoteControl(bool isdConnection)  // 연결 상태에 �
 
                                 case 2:  // 진단 모드 (현재는 N/A)
                                 {
-                                    ci_printe("[MUTE] RECEVIED : WRITE DIAGNOSTICS PACKET, BUT N/A CURRENTLY \r\n");
+                                    TDC_PRINTF_E("[MUTE] RECEVIED : WRITE DIAGNOSTICS PACKET, BUT N/A CURRENTLY \r\n");
 
                                     sendErrorToApp(remoteDataPacket.command, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);
                                     clearRemoteColtrolCommand();
@@ -1484,7 +1484,7 @@ ST__REMOTECONTROL_STATE remoteControl(bool isdConnection)  // 연결 상태에 �
 
                                 default:
                                 {
-                                    ci_printe("[MUTE] RECEVIED : UNDEFINED SUB OPTION 1 PACKET \r\n");
+                                    TDC_PRINTF_E("[MUTE] RECEVIED : UNDEFINED SUB OPTION 1 PACKET \r\n");
 
                                     sendErrorToApp(remoteDataPacket.command, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);
                                     clearRemoteColtrolCommand();
@@ -1496,7 +1496,7 @@ ST__REMOTECONTROL_STATE remoteControl(bool isdConnection)  // 연결 상태에 �
 
                         default:  // 기타 정의되지 않은 옵션
                         {
-                            ci_printe("[MUTE] RECEVIED : UNDEFINED OPTOIN PACKET \r\n");
+                            TDC_PRINTF_E("[MUTE] RECEVIED : UNDEFINED OPTOIN PACKET \r\n");
 
                             sendErrorToApp(remoteDataPacket.command, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);
                             clearRemoteColtrolCommand();

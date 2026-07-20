@@ -37,11 +37,11 @@
 #include <isd_interface_FPGA.h>
 
 #include <ci_power.h>
-#include <ci_dio.h>
+#include <tdc_hal_dio.h>
 #include <ci_power.h>
-#include <ci_timer.h>
-#include <ci_uart.h>
-#include <ci_printf.h>
+#include <tdc_hal_timer.h>
+#include <tdc_hal_uart.h>
+#include <tdc_printf.h>
 #include "driver_i2c.h"  //ok  - Sleep 진입 시 I2C PRESCALE 런타임 재설정용
 
 #include <SEGGER_RTT_Wrapper.h>
@@ -184,8 +184,8 @@ void update_mapNum(void)
             p_connected_isd_usableMapIndex = readConnected_ISD_usableMapIndex();
             iterNum                        = 0;
 
-            ci_printd("[UPDATE MAP] NUMBER=%d \r\n", readProgramMapNum());
-            ci_printd("[UPDATE MAP] CONNECTED ISD'S USABLE MAP INDEX=%d (= MAP NUM - 1) \r\n", p_connected_isd_usableMapIndex[mapNum - 1]);
+            TDC_PRINTF_D("[UPDATE MAP] NUMBER=%d \r\n", readProgramMapNum());
+            TDC_PRINTF_D("[UPDATE MAP] CONNECTED ISD'S USABLE MAP INDEX=%d (= MAP NUM - 1) \r\n", p_connected_isd_usableMapIndex[mapNum - 1]);
 
             // 설정된 사용자 맵 번호가 사용이 불가능한 맵 번호로 되어 있을 경우.
             if (p_connected_isd_usableMapIndex[mapNum - 1] == 0)
@@ -201,11 +201,11 @@ void update_mapNum(void)
                 } while (p_connected_isd_usableMapIndex[mapNum - 1] == 0);
             }
 
-            ci_printd("[UPDATE MAP] MAP NUM=%d, ITERATION NUM=%d \r\n", mapNum, iterNum);
+            TDC_PRINTF_D("[UPDATE MAP] MAP NUM=%d, ITERATION NUM=%d \r\n", mapNum, iterNum);
 
             if (iterNum < MaxNumMap)
             {
-                ci_printi("[UPDATE MAP] CHANGE PROGRAM MAP NUM (%d)\r\n", mapNum);
+                TDC_PRINTF_I("[UPDATE MAP] CHANGE PROGRAM MAP NUM (%d)\r\n", mapNum);
                 changeProgramMapNum(mapNum);
 
                 // NOTE: 위 changeProgramMapNum() 함수는 전체적으로 아래 코드를 수행하는 꼴임.
@@ -287,19 +287,19 @@ void aes128_test(void)
 
     AES_init_ctx(&ctx, key128);
 
-    ci_printf("[AES] BEFORE ENCRYPT : %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X \r\n",
+    TDC_PRINTF("[AES] BEFORE ENCRYPT : %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X \r\n",
             text[0], text[1], text[2], text[3], text[4], text[5], text[6], text[7],
             text[8], text[9], text[10], text[11], text[12], text[13], text[14], text[15]);
 
     AES_ECB_encrypt(&ctx, text);
 
-    ci_printf("[AES] AFTER  ENCRYPT : %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X \r\n",
+    TDC_PRINTF("[AES] AFTER  ENCRYPT : %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X \r\n",
             text[0], text[1], text[2], text[3], text[4], text[5], text[6], text[7],
             text[8], text[9], text[10], text[11], text[12], text[13], text[14], text[15]);
 
     AES_ECB_decrypt(&ctx, text);
 
-    ci_printf("[AES] AFTER  DECRYPT : %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X \r\n",
+    TDC_PRINTF("[AES] AFTER  DECRYPT : %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X \r\n",
             text[0], text[1], text[2], text[3], text[4], text[5], text[6], text[7],
             text[8], text[9], text[10], text[11], text[12], text[13], text[14], text[15]);
 }
@@ -342,13 +342,13 @@ int main(void)
     // JLink RTT를 강제 초기화 시킴 (버퍼 인덱스 이슈 발생 방지 등)
     SEGGER_RTT_Init();
 
-    ci_printi("[INFO] MODEL : SOUND1 (%u.%u%u / %s) \r\n", /* lf */
+    TDC_PRINTF_I("[INFO] MODEL : SOUND1 (%u.%u%u / %s) \r\n", /* lf */
               firmwareInfo.version[0],
               firmwareInfo.version[1],
               firmwareInfo.version[2],
               firmwareInfo.buildData);
 
-    ci_printi("[INFO] DEV   : %d.%d \r\n", devFwVer_type, devFwVer_num);
+    TDC_PRINTF_I("[INFO] DEV   : %d.%d \r\n", devFwVer_type, devFwVer_num);
 
     while (1)
     {
@@ -644,7 +644,7 @@ static void tdc_handle_events(const tdc_normal_events_t *ev, tdc_normal_ctx_t *c
 
     tdc_update_led_requests(ev->batt_percent, ctx->isd_state.conneded_ISD, ctx->ble_state.mappingConnection);
 
-    /* led_arbiter_tick() 은 Timer 3 ISR 에서 직접 구동 (ci_timer.c).
+    /* led_arbiter_tick() 은 Timer 3 ISR 에서 직접 구동 (tdc_hal_timer.c).
      * main loop 의 I2C/EEPROM 폴링 블록으로 인한 fade/PWM jitter 회피. */
 
     NRF_On_OFF(ctx->isd_state, ctx->systemState.BLE_Off, ctx->ble_state.mappingConnection, ctx->ble_state.BLE_Off_Command);
@@ -674,7 +674,7 @@ static void tdc_wait_for_cfx_start(void)
     {
         if (cfx_cm3_sharedMemoryAll.is_CFX_started == 1)
         {
-            ci_printd("[INFO] CFX STARTED \r\n");
+            TDC_PRINTF_D("[INFO] CFX STARTED \r\n");
             break;
         }
 
@@ -747,7 +747,7 @@ static bool tdc_handle_qcc_batt_timeout(bool *poweroff_started)
 {
     if (!*poweroff_started)
     {
-        ci_printw("[BATT] QCC BATT TIMED-OUT -> LED PATTERN = POWER OFF \r\n");
+        TDC_PRINTF_W("[BATT] QCC BATT TIMED-OUT -> LED PATTERN = POWER OFF \r\n");
         led_request(LED_SRC_POWER, LED_ST_POWER_OFF);
         *poweroff_started = true;
         return false;
@@ -768,11 +768,11 @@ static bool tdc_can_enter_sleep(bool map_active)
 
     if (map_active || pair_active || ota_active)
     {
-        ci_printw("[SYSTEM] SLEEP DEFERRED (map=%d pair=%d ota=%d ble_st=%d) \r\n", map_active, pair_active, ota_active, (int) ble_st);
+        TDC_PRINTF_W("[SYSTEM] SLEEP DEFERRED (map=%d pair=%d ota=%d ble_st=%d) \r\n", map_active, pair_active, ota_active, (int) ble_st);
         return false;
     }
 
-    ci_printi("[SYSTEM] ENTERING SLEEP MODE \r\n");
+    TDC_PRINTF_I("[SYSTEM] ENTERING SLEEP MODE \r\n");
     return true;
 }
 
@@ -786,21 +786,21 @@ static bool tdc_qcc_has_batt_level_rx_timed_out(void)
     {
         if (time_laps == 0)  // 최초 시간 업데이트. state 와 무관하게 기점을 잡아야
         {                    // 첫 호출부터 수신 완료인 경우에도 WAIT 로그가 유효하다.
-            time_laps = ci_timer_get_tick();
+            time_laps = tdc_hal_timer_get_tick();
         }
 
         if (snd_batt_get_state() == EN__SND_BATT_STATE_RESET)
         {
-            if (RX_BATT_LEVEL_TIME_OUT_MS < (ci_timer_get_tick() - time_laps))
+            if (RX_BATT_LEVEL_TIME_OUT_MS < (tdc_hal_timer_get_tick() - time_laps))
             {
-                ci_printw("[BATT] QCC BATT TIMED-OUT -> POWER OFF (SLEEP) \r\n");
+                TDC_PRINTF_W("[BATT] QCC BATT TIMED-OUT -> POWER OFF (SLEEP) \r\n");
                 is_done   = true;
                 timed_out = true;  // 시간 초과 발생
             }
         }
         else
         {
-            ci_printd("[BATT] QCC BATT RX %d%% (TICK = %d / WAIT = %d MS) \r\n", snd_batt_get_percent(), ci_timer_get_tick(), (ci_timer_get_tick() - time_laps));
+            TDC_PRINTF_D("[BATT] QCC BATT RX %d%% (TICK = %d / WAIT = %d MS) \r\n", snd_batt_get_percent(), tdc_hal_timer_get_tick(), (tdc_hal_timer_get_tick() - time_laps));
             is_done = true;
         }
     }
@@ -814,45 +814,45 @@ static void tdc_print_default_isd_info(void)
      * 순회 길이는 배열 정의(cfx_cm3_sharedMemory.h)에서 파생 - 크기 변경 시 자동 추종. */
     ST__CFX_CM3_SharedMemory_ISD_info *p_isd_info = &g_ci_filesystem_ptr_entire_map->map[0].isd_info;
 
-    ci_printw("[INFO] BOOT ISD 1 INFO \r\n");
-    ci_printw("[INFO] NAME : ");
+    TDC_PRINTF_W("[INFO] BOOT ISD 1 INFO \r\n");
+    TDC_PRINTF_W("[INFO] NAME : ");
     for (size_t name_i = 0; name_i < TDC_ARRAY_LEN(p_isd_info->isd_userName); name_i++)
     {
         if (p_isd_info->isd_userName[name_i] != 0)
         {
-            ci_printw("%c", p_isd_info->isd_userName[name_i]);
+            TDC_PRINTF_W("%c", p_isd_info->isd_userName[name_i]);
         }
         else
         {
-            ci_printv("\r\n");
+            TDC_PRINTF_V("\r\n");
             break;
         }
     }
 
-    ci_printw("[INFO] PASSKEY : ");
+    TDC_PRINTF_W("[INFO] PASSKEY : ");
     for (size_t passkey_i = 0; passkey_i < TDC_ARRAY_LEN(p_isd_info->remocon_passkey); passkey_i++)
     {
-        ci_printw("%c", p_isd_info->remocon_passkey[passkey_i]);
+        TDC_PRINTF_W("%c", p_isd_info->remocon_passkey[passkey_i]);
     }
-    ci_printv("\r\n");
+    TDC_PRINTF_V("\r\n");
 
-    ci_printw("[INFO] RL : ");  // 1: L, 2: R
+    TDC_PRINTF_W("[INFO] RL : ");  // 1: L, 2: R
     if (p_isd_info->isd_location_RL == 1)
     {
-        ci_printw("LEFT \r\n");
+        TDC_PRINTF_W("LEFT \r\n");
     }
     else if (p_isd_info->isd_location_RL == 2)
     {
-        ci_printw("RIGHT \r\n");
+        TDC_PRINTF_W("RIGHT \r\n");
     }
     else
     {
-        ci_printw("F \r\n");
+        TDC_PRINTF_W("F \r\n");
     }
 
-    ci_printw("[INFO] YEAR : 0x%02X \r\n", p_isd_info->isd_year);
-    ci_printw("[INFO] MONTH MODEL : 0x%02X \r\n", p_isd_info->isd_month_model);
-    ci_printw("[INFO] SERIAL : 0x%04X \r\n", p_isd_info->isd_serial);
+    TDC_PRINTF_W("[INFO] YEAR : 0x%02X \r\n", p_isd_info->isd_year);
+    TDC_PRINTF_W("[INFO] MONTH MODEL : 0x%02X \r\n", p_isd_info->isd_month_model);
+    TDC_PRINTF_W("[INFO] SERIAL : 0x%04X \r\n", p_isd_info->isd_serial);
 }
 
 /* ULP 모드 롱터치/웨이크업/타이머 시간상수는 tdc_touch_time.h 가 단일 소유
@@ -861,14 +861,14 @@ static void tdc_print_default_isd_info(void)
 
 static void func_cradle_lid_closed_loop(void)
 {
-    ci_printi("[CRADLE] ENTERING LIGHT SLEEP MODE\r\n");
+    TDC_PRINTF_I("[CRADLE] ENTERING LIGHT SLEEP MODE\r\n");
 
     SYS_WATCHDOG_REFRESH();
 
     /* 1. FPGA 리셋 */
     if (write_FPGA_reset())
     {
-        ci_printi("[CRADLE] FPGA SW RESET OK\r\n");
+        TDC_PRINTF_I("[CRADLE] FPGA SW RESET OK\r\n");
     }
 
     /* 2. nRF 리셋/끄기 (시퀀스 유지, 실효 없음) */
@@ -889,7 +889,7 @@ static void func_cradle_lid_closed_loop(void)
 
     /* ※ CFX 유지: enter_ULP_mode 신호 보내지 않음 */
 
-    ci_printi("[CRADLE] LIGHT SLEEP ACTIVE. WAITING FOR LID OPEN PACKET...\r\n");
+    TDC_PRINTF_I("[CRADLE] LIGHT SLEEP ACTIVE. WAITING FOR LID OPEN PACKET...\r\n");
 
     /* 약 절전 루프 - BLE 패킷 수신으로 뚜껑 열림 감지 */
     ST__ISD_STATUS dummy_isd = {en__isdStatus_NA, false};
@@ -906,8 +906,8 @@ static void func_cradle_lid_closed_loop(void)
         if (tdc_cradle_get_cover_state() == df_Connected)
         {
             snd_qcc_set_mode(SND_QCC_MODE_SHUTDOWN);
-            ci_printi("[CRADLE] LID OPENED PACKET RECEIVED - WATCHDOG RESET FOR REBOOT\r\n");
-            delay_ms(20); /* 로그 드레인 */
+            TDC_PRINTF_I("[CRADLE] LID OPENED PACKET RECEIVED - WATCHDOG RESET FOR REBOOT\r\n");
+            tdc_util_delay_ms(20); /* 로그 드레인 */
             SYS_WATCHDOG_RESET();
         }
 
@@ -916,7 +916,7 @@ static void func_cradle_lid_closed_loop(void)
 
         if (++wfi_count % 1000 == 0)
         {
-            ci_printi("[CRADLE] WFI wakeup count: %d\r\n", (int) wfi_count);
+            TDC_PRINTF_I("[CRADLE] WFI wakeup count: %d\r\n", (int) wfi_count);
         }
     }
 }
@@ -943,7 +943,7 @@ static void tdc_touch_sleep_log_debug(bool ok, const tdc_touch_iqs323_status_t *
             uint16_t pabs_thr = (uint16_t) (((uint32_t) TDC_TOUCH_IQS323_PROX_THRESHOLD * dbg.lta) / 256u);
 
 #if 0
-            ci_printd("[TOUCH] LTA=%3u  CNT=%3u  D=%3u  THR=%3u  (k=%3u  H=%3u)  %s   PTHR=%3u (pk=%3u)  %s \r\n",  //
+            TDC_PRINTF_D("[TOUCH] LTA=%3u  CNT=%3u  D=%3u  THR=%3u  (k=%3u  H=%3u)  %s   PTHR=%3u (pk=%3u)  %s \r\n",  //
                       dbg.lta,
                       dbg.counts,
                       delta,
@@ -975,22 +975,22 @@ static void tdc_touch_sleep_handle_ati_error(bool ok, const tdc_touch_iqs323_sta
     {
         if (5 < *ati_error_reboot_cnt)
         {
-            ci_printw("[TOUCH] ati_error -> reboot \r\n");
+            TDC_PRINTF_W("[TOUCH] ati_error -> reboot \r\n");
 
 #if 0
             turnON_RedLED();
-            delay_ms(250); /* RTT 드레인 */
+            tdc_util_delay_ms(250); /* RTT 드레인 */
             SYS_WATCHDOG_REFRESH();
-            delay_ms(250);
+            tdc_util_delay_ms(250);
 #else
-            delay_ms(20); /* RTT 드레인 */
+            tdc_util_delay_ms(20); /* RTT 드레인 */
 #endif
             SYS_WATCHDOG_RESET();
             /* 도달 불가 - 칩 리셋 */
         }
         else
         {
-            ci_printd("[TOUCH] ati_error recover (n=%d) \r\n", *ati_error_reboot_cnt);
+            TDC_PRINTF_D("[TOUCH] ati_error recover (n=%d) \r\n", *ati_error_reboot_cnt);
             tdc_touch_iqs323_re_ati();
             (*ati_error_reboot_cnt)++;
         }
@@ -1013,7 +1013,7 @@ static void tdc_touch_sleep_handle_notouch_gate(bool ok, tdc_touch_state_t state
         {
             tdc_touch_iqs323_reseed();
             *sleep_ignore = false;
-            ci_printd("[TOUCH] notouch confirmed -> reseed, gate open \r\n");
+            TDC_PRINTF_D("[TOUCH] notouch confirmed -> reseed, gate open \r\n");
         }
     }
     else /* TOUCH 또는 read 실패 → 노터치 확정 보류 */
@@ -1027,7 +1027,7 @@ static void tdc_touch_sleep_handle_notouch_gate(bool ok, tdc_touch_state_t state
         tdc_touch_iqs323_reseed();
         *ignore_elapsed = 0;
         *notouch_cnt    = 0;
-        ci_printd("[TOUCH] notouch timeout -> forced reseed \r\n");
+        TDC_PRINTF_D("[TOUCH] notouch timeout -> forced reseed \r\n");
     }
 }
 
@@ -1039,18 +1039,18 @@ static void tdc_touch_sleep_handle_touch_reboot(bool ok, tdc_touch_state_t state
         (*touch_cnt)++;
         if (*touch_cnt >= TDC_TOUCH_ULP_REBOOT_TOUCH_CNT)
         {
-            ci_printw("[TOUCH] touch detected -> reboot \r\n");
+            TDC_PRINTF_W("[TOUCH] touch detected -> reboot \r\n");
 
 #if 0
             Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_R);
             Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_G);
             Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_B);
 
-            delay_ms(250); /* RTT 뷰어 로그 드레인 대기 */
+            tdc_util_delay_ms(250); /* RTT 뷰어 로그 드레인 대기 */
             SYS_WATCHDOG_REFRESH();
-            delay_ms(250); /* RTT 뷰어 로그 드레인 대기 */
+            tdc_util_delay_ms(250); /* RTT 뷰어 로그 드레인 대기 */
 #else
-            delay_ms(20); /* RTT 뷰어 로그 드레인 대기 */
+            tdc_util_delay_ms(20); /* RTT 뷰어 로그 드레인 대기 */
 #endif
             SYS_WATCHDOG_RESET();
             /* 도달 불가 - 칩 리셋 */
@@ -1066,7 +1066,7 @@ static void tdc_touch_sleep_log_state_transition(bool ok, tdc_touch_state_t stat
 {
     if (ok && *ulp_state_prev != state)
     {
-        ci_printd("[TOUCH] state %s -> %s \r\n", tdc_touch_state_name(*ulp_state_prev), tdc_touch_state_name(state));
+        TDC_PRINTF_D("[TOUCH] state %s -> %s \r\n", tdc_touch_state_name(*ulp_state_prev), tdc_touch_state_name(state));
         *ulp_state_prev = state;
     }
 }
@@ -1096,11 +1096,11 @@ int func_sleep(void)
     /* 절전 노터치 baseline RESEED 는 ULP 루프 내 '첫 NOT_TOUCH 시 1회'로 이동했다(아래).
      * 진입 초입의 무한 'WAIT TOUCH RELEASE' 루프는 손 미해제·임계 오인 시 무한 스턱이라 제거. */
 
-    ci_printd("[LP] enter sleep \r\n");
+    TDC_PRINTF_D("[LP] enter sleep \r\n");
 
     // I2C 레지스터의 sw_reset 만으로도 백텔 하드웨어 전원 OFF가 되는지 확인이 필요하다.
 
-    ci_printd("[LP] fpga reset %s \r\n", write_FPGA_reset() ? "ok" : "fail");
+    TDC_PRINTF_D("[LP] fpga reset %s \r\n", write_FPGA_reset() ? "ok" : "fail");
 
     cfx_cm3_sharedMemoryAll.systemShare.enter_ULP_mode_Command_CM3_to_CFX = 1;
 
@@ -1116,7 +1116,7 @@ int func_sleep(void)
     {
         if (cfx_cm3_sharedMemoryAll.systemShare.enter_ULP_mode_Command_CM3_to_CFX == 0)
         {
-            ci_printd("[LP] cfx sleep \r\n");
+            TDC_PRINTF_D("[LP] cfx sleep \r\n");
             break;
         }
     }
@@ -1131,7 +1131,7 @@ int func_sleep(void)
      * driver_i2c.h 설계값은 PRESCALE_21(2.56MHz/21?121.9kHz). 의도적 변경인지 확인 필요. */
     i2c_set_master_prescale(I2C_MASTER_PRESCALE_6 /*I2C_MASTER_PRESCALE_21*/);
 
-    ci_timer_init_prescaled(TDC_TOUCH_ULP_TIMER_PRESCALE, TDC_TOUCH_ULP_TIMER_TIMEOUT_VALUE); /* 100.0ms 정확 (tdc_touch_time.h 공식 확인) */
+    tdc_hal_timer_init_prescaled(TDC_TOUCH_ULP_TIMER_PRESCALE, TDC_TOUCH_ULP_TIMER_TIMEOUT_VALUE); /* 100.0ms 정확 (tdc_touch_time.h 공식 확인) */
 
     SYS_WATCHDOG_REFRESH();
 

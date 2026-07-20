@@ -7,7 +7,7 @@
 #include <stdbool.h>
 #include <stdint.h>
 
-#include <ci_printf.h>
+#include <tdc_printf.h>
 
 /* ========================================================================
  *  BLE LED Indication (QCC 경유)

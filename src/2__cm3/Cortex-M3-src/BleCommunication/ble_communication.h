@@ -1,7 +1,7 @@
 #ifndef BLE_setting_H__
 #define BLE_setting_H__
 
-#include <ci_uart.h>
+#include <tdc_hal_uart.h>
 #include <stdbool.h>
 
 #include "isd_interface.h"  //ok

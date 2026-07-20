@@ -2,11 +2,11 @@
  * @file OTE_1_5gen_UART.c
  */
 
-#include <ci_uart.h>
+#include <tdc_hal_uart.h>
 
-static char m_tx_buf[CI_UART_TX_BUF_LEN];
+static char m_tx_buf[TDC_HAL_UART_TX_BUF_LEN];
 
-int ci_uart_init(void)
+int tdc_hal_uart_init(void)
 {
     uint32_t cfg;
 
@@ -32,13 +32,13 @@ int ci_uart_init(void)
 #endif
 
     // UART 설정
-    Sys_UART_Config(UART, SystemCoreClock, CI_UART_BAUDRATE, CI_UART_CONFIG);
+    Sys_UART_Config(UART, SystemCoreClock, TDC_HAL_UART_BAUDRATE, TDC_HAL_UART_CONFIG);
 
     // DIO 설정
-    Sys_DIO_Config(CI_UART_DIO_TX, ((DIO_1X_DRIVE | DIO_LPF_ENABLE | DIO_NO_PULL | DIO_MODE_DISABLE)));
-    Sys_DIO_Config(CI_UART_DIO_RX, ((DIO_1X_DRIVE | DIO_LPF_ENABLE | DIO_NO_PULL | DIO_MODE_DISABLE)));
+    Sys_DIO_Config(TDC_HAL_UART_DIO_TX, ((DIO_1X_DRIVE | DIO_LPF_ENABLE | DIO_NO_PULL | DIO_MODE_DISABLE)));
+    Sys_DIO_Config(TDC_HAL_UART_DIO_RX, ((DIO_1X_DRIVE | DIO_LPF_ENABLE | DIO_NO_PULL | DIO_MODE_DISABLE)));
 
-    Sys_UART_DIOConfig(UART, CI_UART_DIO_INIT_CFG, /*CI_UART_DIO_TX*/ DIO33, /*CI_UART_DIO_RX*/ DIO32);
+    Sys_UART_DIOConfig(UART, TDC_HAL_UART_DIO_INIT_CFG, /*TDC_HAL_UART_DIO_TX*/ DIO33, /*TDC_HAL_UART_DIO_RX*/ DIO32);
     // Sys_DIO_Config(DIO_PIN_INDEX_for_LED_color_R, DIO_PIN_CFG_FOR_GPIO_OUPUT_NOPULLUP);  // R
     // DIO->SRC_UART[0] = UART_RX_SRC_CONST_HIGH;
 
@@ -57,7 +57,7 @@ int ci_uart_init(void)
     return df_True;
 }
 
-int ci_uart_uninit(void)
+int tdc_hal_uart_uninit(void)
 {
     // 출력 중이던 TX 데이터가 있다면 출력이 완료될 때 까지 대기 (Last 1 char)
     while ((UART->STATUS & UART_TX_BUSY) == UART_TX_BUSY)
@@ -74,15 +74,15 @@ int ci_uart_uninit(void)
         (void) 0;
     }
 
-    Sys_DIO_Config(CI_UART_DIO_TX, CI_UART_DIO_UNINIT_CFG);  // UART TX DIO 해제
-    Sys_DIO_Config(CI_UART_DIO_RX, CI_UART_DIO_UNINIT_CFG);  // UART TX DIO 해제
+    Sys_DIO_Config(TDC_HAL_UART_DIO_TX, TDC_HAL_UART_DIO_UNINIT_CFG);  // UART TX DIO 해제
+    Sys_DIO_Config(TDC_HAL_UART_DIO_RX, TDC_HAL_UART_DIO_UNINIT_CFG);  // UART TX DIO 해제
 
     FS_MEM_UART->state = FS_MEM_UART_STATE_RESET;
 
     return df_True;
 }
 
-int ci_uart_getch(char *p_ch)
+int tdc_hal_uart_getch(char *p_ch)
 {
     if ((UART->CTRL & UART_STATUS_ENABLED) != UART_STATUS_ENABLED)
     {
@@ -104,7 +104,7 @@ int ci_uart_getch(char *p_ch)
     return df_True;
 }
 
-int ci_uart_printf(const char *p_fmt, ...)
+int tdc_hal_uart_printf(const char *p_fmt, ...)
 {
     int     len;
     va_list ap;
@@ -122,7 +122,7 @@ int ci_uart_printf(const char *p_fmt, ...)
 
     va_start(ap, p_fmt);
 
-    len = vsnprintf(m_tx_buf, CI_UART_TX_BUF_LEN, p_fmt, ap);
+    len = vsnprintf(m_tx_buf, TDC_HAL_UART_TX_BUF_LEN, p_fmt, ap);
 
     va_end(ap);
 
@@ -160,12 +160,12 @@ int ci_uart_printf(const char *p_fmt, ...)
     return df_True;
 }
 
-void ci_uart_set_color(uint32_t color)
+void tdc_hal_uart_set_color(uint32_t color)
 {
-    ci_uart_printf("\033[38:5:%um", color);
+    tdc_hal_uart_printf("\033[38:5:%um", color);
 }
 
-void ci_uart_clear_color(void)
+void tdc_hal_uart_clear_color(void)
 {
-    ci_uart_printf("\033[0m");
+    tdc_hal_uart_printf("\033[0m");
 }

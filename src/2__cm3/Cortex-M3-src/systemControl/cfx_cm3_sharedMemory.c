@@ -10,8 +10,8 @@
 
 #include <ci_battery.h>
 #include <ci_battery.h>
-#include <ci_dio.h>
-#include <ci_printf.h>
+#include <tdc_hal_dio.h>
+#include <tdc_printf.h>
 
 // 구조체의 배치되는 주소를 sections.ld 파일을 수정하여 LPDSP32_PRAM5에 위치한다.
 ST__CFX_CM3_SharedMemory_ALL cfx_cm3_sharedMemoryAll __attribute__((section(".shared_memory")));
@@ -75,7 +75,7 @@ bool sharedMemoryAddresError(void)
  * Sound1 은 포고핀 크래들 단일 경로이며 충전 상태는 QCC 0x34 로 수신한다
  * (snd_charger_set_state / snd_charger_get_state, batteryNPowerControl.c).
  * 호출처가 전부 dead 함수 안이었으므로 실행되지 않았다.
- * DIO_PIN_INDEX_for_* 핀 정의는 ci_dio.c 의 저전력 모드 설정이 계속 사용하므로 유지.
+ * DIO_PIN_INDEX_for_* 핀 정의는 tdc_hal_dio.c 의 저전력 모드 설정이 계속 사용하므로 유지.
  * 상세: docs/tasks/main/20260715_systemcontrol-fsm-decompose/분석-부록-sullivan유산.md */
 
 void changeSystemModeFlag(EN__SYSTEM_OP_MODE flag)
@@ -94,7 +94,7 @@ bool isPowerButtonPushed(void)
         if (cfx_cm3_sharedMemoryAll.systemShare.powerButton_pushed_CFX_to_CM3 == 0)
         {
             cfx_cm3_sharedMemoryAll.systemShare.powerButton_pushed_CFX_to_CM3 = 1;
-            ci_printv("[ACC] DOUBLE TAP DETECTED \r\n");
+            TDC_PRINTF_V("[ACC] DOUBLE TAP DETECTED \r\n");
         }
 
         return true;
@@ -112,7 +112,7 @@ bool isPowerButtonPushed(void)
     if (cfx_cm3_sharedMemoryAll.systemShare.powerButton_pushed_CFX_to_CM3 == 1)
     {
         cfx_cm3_sharedMemoryAll.systemShare.powerButton_pushed_CFX_to_CM3 = (int) 0;
-        ci_printv("[ACC] INTERRUPT OCCURRED \r\n");
+        TDC_PRINTF_V("[ACC] INTERRUPT OCCURRED \r\n");
         return true;
     }
     else
@@ -608,7 +608,7 @@ void setReadWriteMapDataFlashCommand(ST__CFX_CM3_SharedMemory_ReadWriteCommand_F
 
         fn_recover_Mapdata_mappingApp();
 
-        ci_printw("[FLASH] DONE FOR FLASH COMMAND : RECOVER MAPDATA (%u) \r\n", cfx_cm3_sharedMemoryAll.ReadWriteCommand_ForFlash.flashCommand);
+        TDC_PRINTF_W("[FLASH] DONE FOR FLASH COMMAND : RECOVER MAPDATA (%u) \r\n", cfx_cm3_sharedMemoryAll.ReadWriteCommand_ForFlash.flashCommand);
     }
 
     //

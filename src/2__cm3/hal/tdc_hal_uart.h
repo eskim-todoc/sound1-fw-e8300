@@ -2,8 +2,8 @@
  * @file OTE_1_5gen_UART.h
  */
 
-#ifndef __OTE_1_5_gen_UART_h__
-#define __OTE_1_5_gen_UART_h__
+#ifndef __tdc_hal_uart_h__
+#define __tdc_hal_uart_h__
 
 #include <stdarg.h>
 #include <stdbool.h>
@@ -18,20 +18,20 @@
 
 #include <board.h>
 
-#define CI_UART_DIO_INIT_CFG   (DIO_1X_DRIVE | DIO_LPF_ENABLE | DIO_NO_PULL)
-#define CI_UART_DIO_UNINIT_CFG (DIO_1X_DRIVE | DIO_LPF_ENABLE | DIO_250K_PULL_UP | DIO_MODE_DISABLE)
+#define TDC_HAL_UART_DIO_INIT_CFG   (DIO_1X_DRIVE | DIO_LPF_ENABLE | DIO_NO_PULL)
+#define TDC_HAL_UART_DIO_UNINIT_CFG (DIO_1X_DRIVE | DIO_LPF_ENABLE | DIO_250K_PULL_UP | DIO_MODE_DISABLE)
 
-#define CI_UART_DIO_TX DIO_PIN_INDEX_forUART_TX
-#define CI_UART_DIO_RX DIO_PIN_INDEX_forUART_RX
+#define TDC_HAL_UART_DIO_TX DIO_PIN_INDEX_forUART_TX
+#define TDC_HAL_UART_DIO_RX DIO_PIN_INDEX_forUART_RX
 
-#define CI_UART_TX_BUF_LEN 256
+#define TDC_HAL_UART_TX_BUF_LEN 256
 
-#define CI_UART_BAUDRATE_115200 115200
-#define CI_UART_BAUDRATE_921600 921600
+#define TDC_HAL_UART_BAUDRATE_115200 115200
+#define TDC_HAL_UART_BAUDRATE_921600 921600
 
-#define CI_UART_BAUDRATE CI_UART_BAUDRATE_921600
+#define TDC_HAL_UART_BAUDRATE TDC_HAL_UART_BAUDRATE_921600
 
-#define CI_UART_CONFIG                                                                                                                                         \
+#define TDC_HAL_UART_CONFIG                                                                                                                                         \
     (UART_TX_DMA_DISABLE | UART_RX_DMA_DISABLE | UART_TX_END_INT_DISABLE | UART_TX_START_INT_DISABLE | UART_RX_INT_DISABLE | UART_OVERRUN_INT_DISABLE)
 
 #define FS_MEM_UART_BUF_LEN 256
@@ -132,13 +132,13 @@ typedef struct
 #endif
 } FS_MEM_UART_T;
 
-int  ci_uart_init(void);
-int  ci_uart_uninit(void);
-int  ci_uart_getch(char* p_ch);
-int  ci_uart_printf(const char* p_fmt, ...);
-void ci_uart_set_color(uint32_t color);
-void ci_uart_clear_color(void);
+int  tdc_hal_uart_init(void);
+int  tdc_hal_uart_uninit(void);
+int  tdc_hal_uart_getch(char* p_ch);
+int  tdc_hal_uart_printf(const char* p_fmt, ...);
+void tdc_hal_uart_set_color(uint32_t color);
+void tdc_hal_uart_clear_color(void);
 
 #define FS_MEM_UART ((volatile FS_MEM_UART_T*) DSP_PRAM1_REMAP_BASE)
 
-#endif  // __OTE_1_5_gen_UART_h__
+#endif  // __tdc_hal_uart_h__

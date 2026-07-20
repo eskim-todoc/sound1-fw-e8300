@@ -358,7 +358,7 @@ void update_isd_LinkConnection_byBacktel_withLiveStimulation(void)
 
                         if (r_isd_registerValue == NoBacktel || r_isd_registerValue == BackTelNumTooMuch || r_isd_registerValue == ISD_Power_NA)
                         {
-                            ci_printv("[LINK] STATE : %s \r\n",                                                     //
+                            TDC_PRINTF_V("[LINK] STATE : %s \r\n",                                                     //
                                       r_isd_registerValue == ISD_Power_LowUnstable    ? "ISD POWER LOW, UNSTABLE"   //
                                       : r_isd_registerValue == ISD_Power_LowStable    ? "ISD POWER LOW, STABLE"     //
                                       : r_isd_registerValue == ISD_Power_HighUnstable ? "ISD POWER HIGH, UNSTABLE"  //
@@ -369,7 +369,7 @@ void update_isd_LinkConnection_byBacktel_withLiveStimulation(void)
                         }
                     }
 #else  // 항상 출력
-                    ci_printv("[LINK] STATE : %s \r\n",                                                     //
+                    TDC_PRINTF_V("[LINK] STATE : %s \r\n",                                                     //
                               r_isd_registerValue == ISD_Power_LowUnstable    ? "ISD POWER LOW, UNSTABLE"   //
                               : r_isd_registerValue == ISD_Power_LowStable    ? "ISD POWER LOW, STABLE"     //
                               : r_isd_registerValue == ISD_Power_HighUnstable ? "ISD POWER HIGH, UNSTABLE"  //
@@ -398,7 +398,7 @@ void update_isd_LinkConnection_byBacktel_withLiveStimulation(void)
 
                             TxPowerLevel--;
 
-                            // ci_printv("[LINK] HIGH, STABLE : TX POWER > MIN POWER (CURR=%4d, NEXT=%4d) \r\n", current_TxPowerLevel, TxPowerLevel);
+                            // TDC_PRINTF_V("[LINK] HIGH, STABLE : TX POWER > MIN POWER (CURR=%4d, NEXT=%4d) \r\n", current_TxPowerLevel, TxPowerLevel);
 
                             write_change_TxPowerLevel(TxPowerLevel);
                         }
@@ -407,7 +407,7 @@ void update_isd_LinkConnection_byBacktel_withLiveStimulation(void)
                             if (TxPowerLevel_bak != TxPowerLevel)
                             {
                                 TxPowerLevel_bak = TxPowerLevel;
-                                // ci_printv("[LINK] HIGH, STABLE : TX POWER <= MIN POWER (CURR=%4d) \r\n", TxPowerLevel);
+                                // TDC_PRINTF_V("[LINK] HIGH, STABLE : TX POWER <= MIN POWER (CURR=%4d) \r\n", TxPowerLevel);
                             }
 
                             temp = 0;
@@ -421,7 +421,7 @@ void update_isd_LinkConnection_byBacktel_withLiveStimulation(void)
                         if (TxPowerLevel_bak != TxPowerLevel)
                         {
                             TxPowerLevel_bak = TxPowerLevel;
-                            // ci_printv("[LINK] HIGH, UNSTABLE (CURR=%4d) \r\n", TxPowerLevel);
+                            // TDC_PRINTF_V("[LINK] HIGH, UNSTABLE (CURR=%4d) \r\n", TxPowerLevel);
                         }
 
                         temp = 0;
@@ -441,7 +441,7 @@ void update_isd_LinkConnection_byBacktel_withLiveStimulation(void)
 
                             TxPowerLevel++;
 
-                            // ci_printv("[LINK] LOW, STABLE : TX POWER < MAX CONTROL POWER (CURR=%4d, NEXT=%4d) \r\n", current_TxPowerLevel, TxPowerLevel);
+                            // TDC_PRINTF_V("[LINK] LOW, STABLE : TX POWER < MAX CONTROL POWER (CURR=%4d, NEXT=%4d) \r\n", current_TxPowerLevel, TxPowerLevel);
 
                             write_change_TxPowerLevel(TxPowerLevel);
                         }
@@ -450,7 +450,7 @@ void update_isd_LinkConnection_byBacktel_withLiveStimulation(void)
                             if (TxPowerLevel_bak != TxPowerLevel)
                             {
                                 TxPowerLevel_bak = TxPowerLevel;
-                                // ci_printv("[LINK] LOW, STABLE : TX POWER >= MAX CONTROL POWER (CURR=%4d) \r\n", TxPowerLevel);
+                                // TDC_PRINTF_V("[LINK] LOW, STABLE : TX POWER >= MAX CONTROL POWER (CURR=%4d) \r\n", TxPowerLevel);
                             }
                         }
                     }
@@ -461,7 +461,7 @@ void update_isd_LinkConnection_byBacktel_withLiveStimulation(void)
                         if (TxPowerLevel_bak != TxPowerLevel)
                         {
                             TxPowerLevel_bak = TxPowerLevel;
-                            // ci_printv("[LINK] LOW, UNSTABLE (CURR=%4d) \r\n", TxPowerLevel);
+                            // TDC_PRINTF_V("[LINK] LOW, UNSTABLE (CURR=%4d) \r\n", TxPowerLevel);
                         }
 
                         temp = 0;
@@ -482,17 +482,17 @@ void update_isd_LinkConnection_byBacktel_withLiveStimulation(void)
 #if 0
                         int readValue[6];
                         read_ISD_by_CM3_I2C(i2cAddr_FPGA_systemResgister_1st, readValue, 6);
-                        ci_printv("system 1st   : 0x%02X \r\n", readValue[0]);
-                        ci_printv("system 2nd   : 0x%02X \r\n", readValue[1]);
-                        ci_printv("Error Flag   : 0x%02X \r\n", readValue[2]);
-                        ci_printv("Backel Error : 0x%02X \r\n", readValue[3]);
-                        ci_printv("Duration     : 0x%02X \r\n", readValue[4]);
-                        ci_printv("FIFO Count   : 0x%02X \r\n", readValue[5]);
+                        TDC_PRINTF_V("system 1st   : 0x%02X \r\n", readValue[0]);
+                        TDC_PRINTF_V("system 2nd   : 0x%02X \r\n", readValue[1]);
+                        TDC_PRINTF_V("Error Flag   : 0x%02X \r\n", readValue[2]);
+                        TDC_PRINTF_V("Backel Error : 0x%02X \r\n", readValue[3]);
+                        TDC_PRINTF_V("Duration     : 0x%02X \r\n", readValue[4]);
+                        TDC_PRINTF_V("FIFO Count   : 0x%02X \r\n", readValue[5]);
 #endif
-                        // ci_printf("CM3_tempValue1 : %u <- must be 2 \r\n", cfx_cm3_sharedMemoryAll.CM3_tempValue1);
-                        // ci_printf("CM3_tempValue2 : %u <- must be 1 \r\n", cfx_cm3_sharedMemoryAll.CM3_tempValue2);
+                        // TDC_PRINTF("CM3_tempValue1 : %u <- must be 2 \r\n", cfx_cm3_sharedMemoryAll.CM3_tempValue1);
+                        // TDC_PRINTF("CM3_tempValue2 : %u <- must be 1 \r\n", cfx_cm3_sharedMemoryAll.CM3_tempValue2);
 
-                        ci_printw("[LINK] DISCONNECTED, NO BACKTEL, LINK CONNECTION SUCCESS COUNTER : %d \r\n", link_connection_success_counter - 1);
+                        TDC_PRINTF_W("[LINK] DISCONNECTED, NO BACKTEL, LINK CONNECTION SUCCESS COUNTER : %d \r\n", link_connection_success_counter - 1);
                         link_connection_success_counter = 0;
 
                         errorCodeUpdate(en__EN__ISD_ERROR, en__BackTelCounterZero, __LINE__);
@@ -502,7 +502,7 @@ void update_isd_LinkConnection_byBacktel_withLiveStimulation(void)
 
                     case BackTelNumTooMuch:
                     {
-                        ci_printw("[LINK] DISCONNECTED, TOO MUCH BACKTEL, LINK CONNECTION SUCCESS COUNTER : %d \r\n", link_connection_success_counter - 1);
+                        TDC_PRINTF_W("[LINK] DISCONNECTED, TOO MUCH BACKTEL, LINK CONNECTION SUCCESS COUNTER : %d \r\n", link_connection_success_counter - 1);
                         link_connection_success_counter = 0;
 
                         errorCodeUpdate(en__EN__ISD_ERROR, en__BackterDataLengthError, __LINE__);
@@ -565,7 +565,7 @@ void update_isd_LinkConnection_byBacktel_withMapping(int connectionCheckCOUNTER)
 #if 0
     if (flowCounter < 7)
     {
-        ci_printv("[MAPPING] LINK CONNECTION CHECK FLOW COUNTER : %d \r\n", flowCounter);
+        TDC_PRINTF_V("[MAPPING] LINK CONNECTION CHECK FLOW COUNTER : %d \r\n", flowCounter);
     }
 #endif
 
@@ -684,7 +684,7 @@ void update_isd_LinkConnection_byBacktel_withMapping(int connectionCheckCOUNTER)
                         errorCodeUpdate(en__EN__ISD_ERROR, en__BackTelCounterZero, __LINE__);
                         change_isd_state(en__isdStatus_FPGA_Ok);  // 내부기 파워 조정 시작
 
-                        ci_printw("[MAPPING] NO BACKTEL DURING MAPPING LINK CONNECTION \r\n");
+                        TDC_PRINTF_W("[MAPPING] NO BACKTEL DURING MAPPING LINK CONNECTION \r\n");
                     }
                     break;
 
@@ -692,7 +692,7 @@ void update_isd_LinkConnection_byBacktel_withMapping(int connectionCheckCOUNTER)
                     {
                         errorCodeUpdate(en__EN__ISD_ERROR, en__BackterDataLengthError, __LINE__);
                         change_isd_state(en__isdStatus_FPGA_Ok);  // 내부기 파워 조정 시작
-                        ci_printw("[MAPPING] BACKTEL TOO MUCH DURING MAPPING LINK CONNECTOIN \r\n");
+                        TDC_PRINTF_W("[MAPPING] BACKTEL TOO MUCH DURING MAPPING LINK CONNECTOIN \r\n");
                     }
                     break;
                 }

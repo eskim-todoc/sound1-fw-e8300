@@ -88,25 +88,25 @@ int snd_fatfs_mount(int ldrv)
     // option 1: force mount
     if (f_mount(&g_ci_filesystem_mount, path, /* option */ 1) != FR_OK)
     {
-        ci_printe("[FATFS] FAIL : MOUNT '%s' \r\n", path);
+        TDC_PRINTF_E("[FATFS] FAIL : MOUNT '%s' \r\n", path);
         return df_False;
     }
 
     if (f_chdrive(path) != FR_OK)
     {
-        ci_printe("[FATFS] FAIL : CHANGE DRIVE '%s' \r\n", path);
+        TDC_PRINTF_E("[FATFS] FAIL : CHANGE DRIVE '%s' \r\n", path);
         return df_False;
     }
 
     if (f_opendir(&dir, path) != FR_OK)
     {
-        ci_printe("[FATFS] FAIL : OPEN DIR '%s' \r\n", path);
+        TDC_PRINTF_E("[FATFS] FAIL : OPEN DIR '%s' \r\n", path);
         return df_False;
     }
 
     if (f_closedir(&dir) != FR_OK)
     {
-        ci_printe("[FATFS] FAIL : CLOSE DIR '%s' \r\n", path);
+        TDC_PRINTF_E("[FATFS] FAIL : CLOSE DIR '%s' \r\n", path);
         return df_False;
     }
 
@@ -140,7 +140,7 @@ int snd_fatfs_unmount(void)
 
     if (fr != FR_OK)
     {
-        ci_printe("[FATFS] UMOUNT FAILED, DRIVE : '%s' \r\n", path);
+        TDC_PRINTF_E("[FATFS] UMOUNT FAILED, DRIVE : '%s' \r\n", path);
         return df_False;
     }
 
@@ -155,7 +155,7 @@ int ci_filesystem_remount(void)
 
     if (ret != FR_OK)
     {
-        ci_printe("[FS] FAILED TO UNMOUNT DRIVE ('%s') \r\n", CI_FILESYSTEM_LOGICAL_DRIVE_NUM);
+        TDC_PRINTF_E("[FS] FAILED TO UNMOUNT DRIVE ('%s') \r\n", CI_FILESYSTEM_LOGICAL_DRIVE_NUM);
         return df_False;
     }
 
@@ -170,7 +170,7 @@ int ci_filesystem_mount(void)
 
     if (ret != FR_OK)
     {
-        ci_printe("[FS] FAILED TO MOUNT DRIVE ('%s') \r\n", CI_FILESYSTEM_LOGICAL_DRIVE_NUM);
+        TDC_PRINTF_E("[FS] FAILED TO MOUNT DRIVE ('%s') \r\n", CI_FILESYSTEM_LOGICAL_DRIVE_NUM);
         return df_False;
     }
 
@@ -180,7 +180,7 @@ int ci_filesystem_mount(void)
 
     if (ret != FR_OK)
     {
-        ci_printe("[FS] FAILED TO CHANGE DRIVE ('%s') \r\n", CI_FILESYSTEM_LOGICAL_DRIVE_NUM);
+        TDC_PRINTF_E("[FS] FAILED TO CHANGE DRIVE ('%s') \r\n", CI_FILESYSTEM_LOGICAL_DRIVE_NUM);
         return df_False;
     }
 
@@ -208,23 +208,23 @@ int ci_filesystem_read_with_crc_and_aes128(char     *p_name,  //
     uint8_t *p_uint8_aes128_padding = (uint8_t *) p_uint32_aes128_padding;
 
 #if 1
-    ci_printd("[FS] READ --> NAME : '%s', DATA ADDR : 0x%08X, SIZE : %d, ", p_name, (uint32_t) p_data, data_size);
-    ci_printd("CRC ADDR : 0x%08X, AES128 PADDING ADDR : 0x%08X, ", (uint32_t) p_uint32_crc, (uint32_t) p_uint32_aes128_padding);
-    ci_printd("PADDING SIZE : %d, ENABLE CRC : %u, ENABLE AES128 : %u \r\n", aes128_padding_size, enable_crc, enable_aes);
+    TDC_PRINTF_D("[FS] READ --> NAME : '%s', DATA ADDR : 0x%08X, SIZE : %d, ", p_name, (uint32_t) p_data, data_size);
+    TDC_PRINTF_D("CRC ADDR : 0x%08X, AES128 PADDING ADDR : 0x%08X, ", (uint32_t) p_uint32_crc, (uint32_t) p_uint32_aes128_padding);
+    TDC_PRINTF_D("PADDING SIZE : %d, ENABLE CRC : %u, ENABLE AES128 : %u \r\n", aes128_padding_size, enable_crc, enable_aes);
 #endif
 
     // ---- 파일 열기 (읽기 전용) ----
     fr = f_open(&g_ci_filesystem_ohdl, p_name, FA_OPEN_EXISTING | FA_READ);
     if (fr != FR_OK)
     {
-        ci_printe("[FS] OPEN FAIL '%s' (FRESULT=%d)\r\n", p_name, fr);
+        TDC_PRINTF_E("[FS] OPEN FAIL '%s' (FRESULT=%d)\r\n", p_name, fr);
         return ret;
     }
 
     fr = f_lseek(&g_ci_filesystem_ohdl, 0);
     if (fr != FR_OK)
     {
-        ci_printe("[FS] LSEEK FAIL '%s' (FRESULT=%d)\r\n", p_name, fr);
+        TDC_PRINTF_E("[FS] LSEEK FAIL '%s' (FRESULT=%d)\r\n", p_name, fr);
         f_close(&g_ci_filesystem_ohdl);
         return ret;
     }
@@ -233,7 +233,7 @@ int ci_filesystem_read_with_crc_and_aes128(char     *p_name,  //
     fr = f_read(&g_ci_filesystem_ohdl, p_data, data_size, &br);
     if (fr != FR_OK || (int) br != data_size)
     {
-        ci_printe("[FS] READ DATA FAIL '%s' (res=%d, got=%u)\r\n", p_name, fr, br);
+        TDC_PRINTF_E("[FS] READ DATA FAIL '%s' (res=%d, got=%u)\r\n", p_name, fr, br);
         f_close(&g_ci_filesystem_ohdl);
         return ret;
     }
@@ -245,7 +245,7 @@ int ci_filesystem_read_with_crc_and_aes128(char     *p_name,  //
         fr = f_read(&g_ci_filesystem_ohdl, p_uint32_crc, 4, &br);
         if (fr != FR_OK || br != 4)
         {
-            ci_printe("[FS] READ CRC FAIL '%s' (res=%d, got=%u)\r\n", p_name, fr, br);
+            TDC_PRINTF_E("[FS] READ CRC FAIL '%s' (res=%d, got=%u)\r\n", p_name, fr, br);
             f_close(&g_ci_filesystem_ohdl);
             return ret;
         }
@@ -265,7 +265,7 @@ int ci_filesystem_read_with_crc_and_aes128(char     *p_name,  //
             fr = f_read(&g_ci_filesystem_ohdl, p_uint32_aes128_padding, aes128_padding_size, &br);
             if (fr != FR_OK || (int) br != aes128_padding_size)
             {
-                ci_printe("[FS] READ PAD FAIL '%s' (res=%d, got=%u)\r\n", p_name, fr, br);
+                TDC_PRINTF_E("[FS] READ PAD FAIL '%s' (res=%d, got=%u)\r\n", p_name, fr, br);
                 f_close(&g_ci_filesystem_ohdl);
                 return ret;
             }
@@ -278,14 +278,14 @@ int ci_filesystem_read_with_crc_and_aes128(char     *p_name,  //
 
         if (enable_aes)
         {
-            ci_printf("[FS] '%s' BEFORE DECRYPTION \r\n\n", p_name);
+            TDC_PRINTF("[FS] '%s' BEFORE DECRYPTION \r\n\n", p_name);
         }
         else
         {
-            ci_printf("[FS] '%s' BEFORE DECRYPTION (ACTUALLY AES128 NOT USED) \r\n\n", p_name);
+            TDC_PRINTF("[FS] '%s' BEFORE DECRYPTION (ACTUALLY AES128 NOT USED) \r\n\n", p_name);
         }
 
-        ci_printf("[FS] DATA \r\n");
+        TDC_PRINTF("[FS] DATA \r\n");
 
         for (int print_i = 0; print_i < data_size; print_i++)
         {
@@ -301,11 +301,11 @@ int ci_filesystem_read_with_crc_and_aes128(char     *p_name,  //
 
         if (enable_crc)
         {
-            ci_printf("[FS] CRC \r\n");
+            TDC_PRINTF("[FS] CRC \r\n");
         }
         else
         {
-            ci_printf("[FS] CRC (ACTUALLY CRC NOT USED) \r\n");
+            TDC_PRINTF("[FS] CRC (ACTUALLY CRC NOT USED) \r\n");
         }
 
         for (int print_i = 0; print_i < 4; print_i++)
@@ -322,7 +322,7 @@ int ci_filesystem_read_with_crc_and_aes128(char     *p_name,  //
 
         if (aes128_padding_size > 0)
         {
-            ci_printf("[FS] PADDING \r\n");
+            TDC_PRINTF("[FS] PADDING \r\n");
 
             for (int print_i = 0; print_i < aes128_padding_size; print_i++)
             {
@@ -361,7 +361,7 @@ int ci_filesystem_read_with_crc_and_aes128(char     *p_name,  //
 
         if (last_block_tail <= 0 || last_block_tail > 16)
         {
-            ci_printe("[FS] INVALID TAIL (%d) remain=%d pad=%d\r\n", last_block_tail, remain, aes128_padding_size);
+            TDC_PRINTF_E("[FS] INVALID TAIL (%d) remain=%d pad=%d\r\n", last_block_tail, remain, aes128_padding_size);
             f_close(&g_ci_filesystem_ohdl);
             return ret;
         }
@@ -404,10 +404,10 @@ int ci_filesystem_read_with_crc_and_aes128(char     *p_name,  //
     if (enable_crc)
     {
         // ---- CRC 체크 (하위 16비트만 유효) ----
-        uint16_t crc_calc = ci_crc_ccitt_calc(p_data, data_size);
+        uint16_t crc_calc = tdc_crc_ccitt_calc(p_data, data_size);
         uint16_t crc_file = (uint16_t) (*p_uint32_crc & 0xFFFF);
 
-        ci_printv("[FS] '%s' CRC FILE=%u CALC=%u\r\n", p_name, (unsigned) crc_file, (unsigned) crc_calc);
+        TDC_PRINTF_V("[FS] '%s' CRC FILE=%u CALC=%u\r\n", p_name, (unsigned) crc_file, (unsigned) crc_calc);
 
         f_close(&g_ci_filesystem_ohdl);
 
@@ -417,14 +417,14 @@ int ci_filesystem_read_with_crc_and_aes128(char     *p_name,  //
 
             if (enable_aes)
             {
-                ci_printf("[FS] '%s' AFTER DECRYPTION \r\n\n", p_name);
+                TDC_PRINTF("[FS] '%s' AFTER DECRYPTION \r\n\n", p_name);
             }
             else
             {
-                ci_printf("[FS] '%s' AFTER DECRYPTION (ACTUALLY AES128 NOT USED) \r\n\n", p_name);
+                TDC_PRINTF("[FS] '%s' AFTER DECRYPTION (ACTUALLY AES128 NOT USED) \r\n\n", p_name);
             }
 
-            ci_printf("[FS] DATA \r\n");
+            TDC_PRINTF("[FS] DATA \r\n");
 
             for (int print_i = 0; print_i < data_size; print_i++)
             {
@@ -440,11 +440,11 @@ int ci_filesystem_read_with_crc_and_aes128(char     *p_name,  //
 
             if (enable_crc)
             {
-                ci_printf("[FS] CRC \r\n");
+                TDC_PRINTF("[FS] CRC \r\n");
             }
             else
             {
-                ci_printf("[FS] CRC (ACTUALLY CRC NOT USED) \r\n");
+                TDC_PRINTF("[FS] CRC (ACTUALLY CRC NOT USED) \r\n");
             }
 
             for (int print_i = 0; print_i < 4; print_i++)
@@ -461,7 +461,7 @@ int ci_filesystem_read_with_crc_and_aes128(char     *p_name,  //
 
             if (aes128_padding_size > 0)
             {
-                ci_printf("[FS] PADDING \r\n");
+                TDC_PRINTF("[FS] PADDING \r\n");
 
                 for (int print_i = 0; print_i < aes128_padding_size; print_i++)
                 {
@@ -500,9 +500,9 @@ int ci_filesystem_write_with_crc_and_aes128(char     *p_name,
     int ret = -1;
 
 #if 1
-    ci_printd("[FS] WRITE --> NAME : '%s', DATA ADDR : 0x%08X, SIZE : %d, ", p_name, (uint32_t) p_data, data_size);
-    ci_printd("CRC ADDR : 0x%08X, AES128 PADDING ADDR : 0x%08X, ", (uint32_t) p_uint32_crc, (uint32_t) p_uint32_aes128_padding);
-    ci_printd("PADDING SIZE : %d, ENABLE CEC : %u, ENABLE AES128 : %u \r\n", aes128_padding_size, enable_crc, enable_aes);
+    TDC_PRINTF_D("[FS] WRITE --> NAME : '%s', DATA ADDR : 0x%08X, SIZE : %d, ", p_name, (uint32_t) p_data, data_size);
+    TDC_PRINTF_D("CRC ADDR : 0x%08X, AES128 PADDING ADDR : 0x%08X, ", (uint32_t) p_uint32_crc, (uint32_t) p_uint32_aes128_padding);
+    TDC_PRINTF_D("PADDING SIZE : %d, ENABLE CEC : %u, ENABLE AES128 : %u \r\n", aes128_padding_size, enable_crc, enable_aes);
 #endif
 
     if (data_size < 0)
@@ -519,14 +519,14 @@ int ci_filesystem_write_with_crc_and_aes128(char     *p_name,
     int remain = data_size % 16;
     if ((remain + 4 + aes128_padding_size) != 16)
     {
-        ci_printe("[FS] INVALID TAIL: REMAIN(%d) + 4 + PAD(%d) != 16\r\n", remain, aes128_padding_size);
+        TDC_PRINTF_E("[FS] INVALID TAIL: REMAIN(%d) + 4 + PAD(%d) != 16\r\n", remain, aes128_padding_size);
         return ret;
     }
 
     if (enable_crc)
     {
         // CRC16 계산 (평문 data 전체 대상)
-        uint16_t crc16 = ci_crc_ccitt_calc(p_data, data_size);
+        uint16_t crc16 = tdc_crc_ccitt_calc(p_data, data_size);
         // 하위 16비트에 기록, 상위 16비트는 0
         *p_uint32_crc = (uint32_t) crc16;
     }
@@ -535,7 +535,7 @@ int ci_filesystem_write_with_crc_and_aes128(char     *p_name,
         *p_uint32_crc = 0;
     }
 
-    ci_printi("[FS] CRC CALC : %u \r\n", *p_uint32_crc);
+    TDC_PRINTF_I("[FS] CRC CALC : %u \r\n", *p_uint32_crc);
 
     // 패딩 바이트는 0 채움 권장(고정값) : 나중에 용도 생기면 활용
     if (aes128_padding_size > 0 && p_uint32_aes128_padding)
@@ -549,14 +549,14 @@ int ci_filesystem_write_with_crc_and_aes128(char     *p_name,
 
         if (enable_aes)
         {
-            ci_printf("[FS] '%s' BEFORE ENCRYPTION \r\n\n", p_name);
+            TDC_PRINTF("[FS] '%s' BEFORE ENCRYPTION \r\n\n", p_name);
         }
         else
         {
-            ci_printf("[FS] '%s' BEFORE ENCRYPTION (ACTUALLY AES128 NOT USED) \r\n\n", p_name);
+            TDC_PRINTF("[FS] '%s' BEFORE ENCRYPTION (ACTUALLY AES128 NOT USED) \r\n\n", p_name);
         }
 
-        ci_printf("[FS] DATA \r\n");
+        TDC_PRINTF("[FS] DATA \r\n");
 
         for (int print_i = 0; print_i < data_size; print_i++)
         {
@@ -572,11 +572,11 @@ int ci_filesystem_write_with_crc_and_aes128(char     *p_name,
 
         if (enable_crc)
         {
-            ci_printf("[FS] CRC \r\n");
+            TDC_PRINTF("[FS] CRC \r\n");
         }
         else
         {
-            ci_printf("[FS] CRC (ACTUALLY CRC NOT USED) \r\n");
+            TDC_PRINTF("[FS] CRC (ACTUALLY CRC NOT USED) \r\n");
         }
 
         for (int print_i = 0; print_i < 4; print_i++)
@@ -593,7 +593,7 @@ int ci_filesystem_write_with_crc_and_aes128(char     *p_name,
 
         if (aes128_padding_size > 0)
         {
-            ci_printf("[FS] PADDING \r\n");
+            TDC_PRINTF("[FS] PADDING \r\n");
 
             for (int print_i = 0; print_i < aes128_padding_size; print_i++)
             {
@@ -615,13 +615,13 @@ int ci_filesystem_write_with_crc_and_aes128(char     *p_name,
     FRESULT fr = f_open(&g_ci_filesystem_ohdl, p_name, FA_OPEN_ALWAYS | FA_WRITE);
     if (fr != FR_OK)
     {
-        ci_printe("[FS] OPEN FAIL '%s' (FRESULT=%d)\r\n", p_name, fr);
+        TDC_PRINTF_E("[FS] OPEN FAIL '%s' (FRESULT=%d)\r\n", p_name, fr);
         return ret;
     }
 
     f_lseek(&g_ci_filesystem_ohdl, 4096);  // FATFS에게 4KB로 고정된 파일을 생성할 수 있게 의도적으로 파일 포지션을 4096으로 설정
     f_lseek(&g_ci_filesystem_ohdl, 0);
-    ci_printv("[FS] PERFORMED : FILE (%s) LSEEK --> 4096 --> 0 \r\n", p_name);
+    TDC_PRINTF_V("[FS] PERFORMED : FILE (%s) LSEEK --> 4096 --> 0 \r\n", p_name);
 
     UINT bw = 0;
 
@@ -653,7 +653,7 @@ int ci_filesystem_write_with_crc_and_aes128(char     *p_name,
         fr = f_write(&g_ci_filesystem_ohdl, blk, 16, &bw);
         if (fr != FR_OK || bw != 16)
         {
-            ci_printe("[FS] WRITE DATA BLOCK FAIL '%s' (res=%d, wrote=%u)\r\n", p_name, fr, bw);
+            TDC_PRINTF_E("[FS] WRITE DATA BLOCK FAIL '%s' (res=%d, wrote=%u)\r\n", p_name, fr, bw);
             f_close(&g_ci_filesystem_ohdl);
             return ret;
         }
@@ -705,7 +705,7 @@ int ci_filesystem_write_with_crc_and_aes128(char     *p_name,
             fr = f_write(&g_ci_filesystem_ohdl, last_cipher, (UINT) remain, &bw);
             if (fr != FR_OK || (int) bw != remain)
             {
-                ci_printe("[FS] WRITE DATA TAIL FAIL '%s' (res=%d, wrote=%u)\r\n", p_name, fr, bw);
+                TDC_PRINTF_E("[FS] WRITE DATA TAIL FAIL '%s' (res=%d, wrote=%u)\r\n", p_name, fr, bw);
                 f_close(&g_ci_filesystem_ohdl);
                 return ret;
             }
@@ -715,7 +715,7 @@ int ci_filesystem_write_with_crc_and_aes128(char     *p_name,
         fr = f_write(&g_ci_filesystem_ohdl, last_cipher + remain, 4, &bw);
         if (fr != FR_OK || bw != 4)
         {
-            ci_printe("[FS] WRITE CRC FAIL '%s' (res=%d, wrote=%u)\r\n", p_name, fr, bw);
+            TDC_PRINTF_E("[FS] WRITE CRC FAIL '%s' (res=%d, wrote=%u)\r\n", p_name, fr, bw);
             f_close(&g_ci_filesystem_ohdl);
             return ret;
         }
@@ -726,7 +726,7 @@ int ci_filesystem_write_with_crc_and_aes128(char     *p_name,
             fr = f_write(&g_ci_filesystem_ohdl, last_cipher + remain + 4, (UINT) aes128_padding_size, &bw);
             if (fr != FR_OK || (int) bw != aes128_padding_size)
             {
-                ci_printe("[FS] WRITE PAD FAIL '%s' (res=%d, wrote=%u)\r\n", p_name, fr, bw);
+                TDC_PRINTF_E("[FS] WRITE PAD FAIL '%s' (res=%d, wrote=%u)\r\n", p_name, fr, bw);
                 f_close(&g_ci_filesystem_ohdl);
                 return ret;
             }
@@ -741,7 +741,7 @@ int ci_filesystem_write_with_crc_and_aes128(char     *p_name,
     fr = f_stat(p_name, &fno);
     if (fr == FR_OK)
     {
-        ci_printv("[FS] NAME : %s, TOTAL SIZE : %u BYTES, START CLUSTER : %u \r\n",  //
+        TDC_PRINTF_V("[FS] NAME : %s, TOTAL SIZE : %u BYTES, START CLUSTER : %u \r\n",  //
                   fno.fname,
                   fno.fsize,
                   g_ci_filesystem_ohdl.obj.sclust);
@@ -756,13 +756,13 @@ int ci_filesystem_write_with_crc_and_aes128(char     *p_name,
 
         if (enable_aes)
         {
-            ci_printf("[FS] '%s' AFTER ENCRYPTION \r\n\n", p_name);
+            TDC_PRINTF("[FS] '%s' AFTER ENCRYPTION \r\n\n", p_name);
         }
         else
         {
-            ci_printf("[FS] '%s' AFTER ENCRYPTION (ACTUALLY AES128 NOT USED) \r\n\n", p_name);
+            TDC_PRINTF("[FS] '%s' AFTER ENCRYPTION (ACTUALLY AES128 NOT USED) \r\n\n", p_name);
         }
-        ci_printf("[FS] DATA \r\n");
+        TDC_PRINTF("[FS] DATA \r\n");
 
         for (int print_i = 0; print_i < data_size; print_i++)
         {
@@ -778,11 +778,11 @@ int ci_filesystem_write_with_crc_and_aes128(char     *p_name,
 
         if (enable_crc)
         {
-            ci_printf("[FS] CRC \r\n");
+            TDC_PRINTF("[FS] CRC \r\n");
         }
         else
         {
-            ci_printf("[FS] CRC (ACTUALLY CRC NOT USED) \r\n");
+            TDC_PRINTF("[FS] CRC (ACTUALLY CRC NOT USED) \r\n");
         }
 
         for (int print_i = 0; print_i < 4; print_i++)
@@ -799,7 +799,7 @@ int ci_filesystem_write_with_crc_and_aes128(char     *p_name,
 
         if (aes128_padding_size > 0)
         {
-            ci_printf("[FS] PADDING \r\n");
+            TDC_PRINTF("[FS] PADDING \r\n");
 
             for (int print_i = 0; print_i < aes128_padding_size; print_i++)
             {
@@ -829,7 +829,7 @@ int ci_filesystem_read(char *p_name, uint8_t *p_buf, int size)
     if (ret != FR_OK)
     {
 #if ENABLE_DETAIL_MESSAGE_FOR_FILE_READ_WRITE
-        ci_printe("[FS] FAILED TO OPEN '%s' (FRESULT=%d) \r\n", p_name, ret);
+        TDC_PRINTF_E("[FS] FAILED TO OPEN '%s' (FRESULT=%d) \r\n", p_name, ret);
 #endif
         return -1;
     }
@@ -843,7 +843,7 @@ int ci_filesystem_read(char *p_name, uint8_t *p_buf, int size)
     if (ret != FR_OK)
     {
 #if ENABLE_DETAIL_MESSAGE_FOR_FILE_READ_WRITE
-        ci_printe("[FS] FAILED TO READ '%s' (FRESULT=%d) \r\n", p_name, ret);
+        TDC_PRINTF_E("[FS] FAILED TO READ '%s' (FRESULT=%d) \r\n", p_name, ret);
 #endif
         return -1;
     }
@@ -851,7 +851,7 @@ int ci_filesystem_read(char *p_name, uint8_t *p_buf, int size)
     if (size != read)
     {
 #if ENABLE_DETAIL_MESSAGE_FOR_FILE_READ_WRITE
-        ci_printe("[FS] FAILED TO READ '%s', NOT EQUAL SIZE(%d) AND READ(%d) \r\n", p_name, size, read);
+        TDC_PRINTF_E("[FS] FAILED TO READ '%s', NOT EQUAL SIZE(%d) AND READ(%d) \r\n", p_name, size, read);
 #endif
         return -1;
     }
@@ -869,14 +869,14 @@ int ci_filesystem_write(char *p_name, uint8_t *p_buf, int size)
     if (ret != FR_OK)
     {
 #if ENABLE_DETAIL_MESSAGE_FOR_FILE_READ_WRITE
-        ci_printe("[FS] FAILED TO WRITE '%s' (FRESULT=%d) \r\n", p_name, ret);
+        TDC_PRINTF_E("[FS] FAILED TO WRITE '%s' (FRESULT=%d) \r\n", p_name, ret);
 #endif
         return -1;
     }
 
     f_lseek(&g_ci_filesystem_ohdl, 4096);  // FATFS에게 4KB로 고정된 파일을 생성할 수 있게 의도적으로 파일 포지션을 4096으로 설정
     f_lseek(&g_ci_filesystem_ohdl, 0);
-    ci_printv("[FS] PERFORMED : FILE (%s) LSEEK --> 4096 --> 0 \r\n", p_name);
+    TDC_PRINTF_V("[FS] PERFORMED : FILE (%s) LSEEK --> 4096 --> 0 \r\n", p_name);
 
     ret = f_write(&g_ci_filesystem_ohdl, p_buf, size, &written);
 
@@ -888,7 +888,7 @@ int ci_filesystem_write(char *p_name, uint8_t *p_buf, int size)
     ret = f_stat(p_name, &fno);
     if (ret == FR_OK)
     {
-        ci_printv("[FS] NAME : %s, TOTAL SIZE : %u BYTES, START CLUSTER : %u \r\n",  //
+        TDC_PRINTF_V("[FS] NAME : %s, TOTAL SIZE : %u BYTES, START CLUSTER : %u \r\n",  //
                   fno.fname,
                   fno.fsize,
                   g_ci_filesystem_ohdl.obj.sclust);
@@ -900,7 +900,7 @@ int ci_filesystem_write(char *p_name, uint8_t *p_buf, int size)
     if (ret != FR_OK)
     {
 #if ENABLE_DETAIL_MESSAGE_FOR_FILE_READ_WRITE
-        ci_printe("[FS] FAILED TO WRITE '%s' (FRESULT=%d) \r\n", p_name, ret);
+        TDC_PRINTF_E("[FS] FAILED TO WRITE '%s' (FRESULT=%d) \r\n", p_name, ret);
 #endif
         return -1;
     }
@@ -908,7 +908,7 @@ int ci_filesystem_write(char *p_name, uint8_t *p_buf, int size)
     if (size != written)
     {
 #if ENABLE_DETAIL_MESSAGE_FOR_FILE_READ_WRITE
-        ci_printe("[FS] FAILED TO WRITE '%s', NOT EQUAL SIZE(%d) AND WRITTEN(%d) \r\n", p_name, size, written);
+        TDC_PRINTF_E("[FS] FAILED TO WRITE '%s', NOT EQUAL SIZE(%d) AND WRITTEN(%d) \r\n", p_name, size, written);
 #endif
         return -1;
     }

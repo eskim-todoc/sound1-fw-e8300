@@ -16,7 +16,7 @@
 #include <LedOutput.h>
 
 #include <ci_filesystem.h>
-#include <ci_util.h>
+#include <tdc_util.h>
 
 #if 1  // Sullivan 1.5
 #define LSAD_INPUT_SEL_CH_NUM 0

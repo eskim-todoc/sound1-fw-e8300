@@ -20,12 +20,12 @@
     {                                                                                       \
         if (++(_cnt) > TDC_ISD_ERR_DEBOUNCE_N)                                              \
         {                                                                                   \
-            ci_printe(_mod " FAIL  %-22s %-6s cnt %2d  >> ERR set\r\n", _tag, _op, (_cnt)); \
+            TDC_PRINTF_E(_mod " FAIL  %-22s %-6s cnt %2d  >> ERR set\r\n", _tag, _op, (_cnt)); \
             errorCodeUpdate((_maj), (_det), __LINE__);                                      \
         }                                                                                   \
         else                                                                                \
         {                                                                                   \
-            ci_printw(_mod " WARN  %-22s %-6s cnt %2d/%2d\r\n", _tag, _op, (_cnt),           \
+            TDC_PRINTF_W(_mod " WARN  %-22s %-6s cnt %2d/%2d\r\n", _tag, _op, (_cnt),           \
                       TDC_ISD_ERR_DEBOUNCE_N);                                               \
         }                                                                                   \
     } while (0)

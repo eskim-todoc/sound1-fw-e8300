@@ -30,14 +30,14 @@ void set_newMapLoadeFlagForStimulParaSetting(void)
 
     newMapLoadeFlagForStimulParaCalculation = true;
 
-    ci_printv("[INDICATE] NEW MAP LOADED, SO CALCULATE STIMUL PARAMETERS \r\n");
+    TDC_PRINTF_V("[INDICATE] NEW MAP LOADED, SO CALCULATE STIMUL PARAMETERS \r\n");
 }
 
 void clear_newMapLoadeFlag(void)
 {
     newMapLoadeFlagForStimulParaCalculation = false;
 
-    ci_printv("[INDICATE] DONE FOR NEW MAP LOADED STIMUL PARAMETERS \r\n");
+    TDC_PRINTF_V("[INDICATE] DONE FOR NEW MAP LOADED STIMUL PARAMETERS \r\n");
 }
 
 bool isNewMapLoadeFlag(void)
@@ -114,7 +114,7 @@ bool stimulationStandAlone(void)
                     if (is_need_to_print_message_for_live_stimulation)
                     {
                         is_need_to_print_message_for_live_stimulation = false;
-                        ci_printd("[STIMULATION] START LIVE MODE \r\n");
+                        TDC_PRINTF_D("[STIMULATION] START LIVE MODE \r\n");
                     }
 
                     changePcmOutputMode(PcmBitStream_Mode_LiveStimulation);  // 자극 출력 시작

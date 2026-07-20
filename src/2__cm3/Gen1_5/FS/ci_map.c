@@ -68,7 +68,7 @@ int ci_map_write_isd_info(int isd_num)
     static char name[CI_MAP_FILE_NAME_LEN_ISD_INFO] = CI_MAP_FILE_INIT_NAME_ISD_INFO;
     name[CI_MAP_FILE_INDEX_ISD_NUM]                 = (char) ('0' + isd_num);
 
-    ci_printd("[MAP] TRY WRITING, FILE : '%s' \r\n", name);
+    TDC_PRINTF_D("[MAP] TRY WRITING, FILE : '%s' \r\n", name);
 #if 1
     return ci_filesystem_write_with_crc_and_aes128(
         name, (uint8_t *) &g_ci_filesystem_ptr_entire_map->map[isd_num - 1].isd_info, sizeof(ST__CFX_CM3_SharedMemory_ISD_info), &g_ci_filesystem_ptr_entire_map->map[isd_num - 1].isd_info_crc_ccitt, g_ci_filesystem_ptr_entire_map->map[isd_num - 1].isd_info_aes128_padding, 8, true, true);
@@ -83,7 +83,7 @@ int ci_map_write_user_setting_value(int isd_num)
     static char name[CI_MAP_FILE_NAME_LEN_USER_SETTING_VALUE] = CI_MAP_FILE_INIT_NAME_USER_SETTING_VALUE;
     name[CI_MAP_FILE_INDEX_ISD_NUM]                           = (char) ('0' + isd_num);
 
-    ci_printd("[MAP] TRY WRITING, FILE : '%s' \r\n", name);
+    TDC_PRINTF_D("[MAP] TRY WRITING, FILE : '%s' \r\n", name);
 
 #if 1
     return ci_filesystem_write_with_crc_and_aes128(name, (uint8_t *) &g_ci_filesystem_ptr_entire_map->map[isd_num - 1].user_setting_value, sizeof(ST__CFX_CM3_SharedMemory_userSettingValue), &g_ci_filesystem_ptr_entire_map->map[isd_num - 1].user_setting_value_crc_ccitt, NULL, 0, true, false);
@@ -98,7 +98,7 @@ int ci_map_write_map_stamp(int isd_num)
     static char name[CI_MAP_FILE_NAME_LEN_MAP_STAMP] = CI_MAP_FILE_INIT_NAME_MAP_STAMP;
     name[CI_MAP_FILE_INDEX_ISD_NUM]                  = (char) ('0' + isd_num);
 
-    ci_printd("[MAP] TRY WRITING, FILE : '%s' \r\n", name);
+    TDC_PRINTF_D("[MAP] TRY WRITING, FILE : '%s' \r\n", name);
 
 #if 1
     return ci_filesystem_write_with_crc_and_aes128(name, (uint8_t *) &g_ci_filesystem_ptr_entire_map->map[isd_num - 1].map_stamp, sizeof(ST__MAPPING_DATE), &g_ci_filesystem_ptr_entire_map->map[isd_num - 1].map_stamp_crc_ccitt, g_ci_filesystem_ptr_entire_map->map[isd_num - 1].map_stamp_aes128_padding, 4, true, false);
@@ -114,7 +114,7 @@ int ci_map_write_map_data(int isd_num, int map_num)
     name[CI_MAP_FILE_INDEX_ISD_NUM]                 = (char) ('0' + isd_num);
     name[CI_MAP_FILE_INDEX_MAP_NUM]                 = (char) ('0' + map_num);
 
-    ci_printd("[MAP] TRY WRITING, FILE : '%s' \r\n", name);
+    TDC_PRINTF_D("[MAP] TRY WRITING, FILE : '%s' \r\n", name);
 
 #if 1
     return ci_filesystem_write_with_crc_and_aes128(name,
@@ -162,9 +162,9 @@ int ci_map_init_map_data(int isd_num, bool force_init, bool specific_RL, int val
     validate_map_data[3]  = ci_map_read_map_data(isd_num, 4);
 
 #if 0
-    ci_printv("\r\n\n[MAP] * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  \r\n\n");
+    TDC_PRINTF_V("\r\n\n[MAP] * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  \r\n\n");
 
-    ci_printw("[MAP] ENTIRE ISD '%d' MAP DATA INFO \r\n", isd_num);
+    TDC_PRINTF_W("[MAP] ENTIRE ISD '%d' MAP DATA INFO \r\n", isd_num);
 
     char print_name[25];
 
@@ -178,9 +178,9 @@ int ci_map_init_map_data(int isd_num, bool force_init, bool specific_RL, int val
         print_name[name_i] = p_info->isd_userName[name_i];
     }
 
-    ci_printd("\r\n[MAP] ");
-    ci_printi("ISD '%d' INFO ", isd_num);
-    ci_printd("YEAR = %d, MONTH = %d, MODEL = %d, SERIAL = 0x%04X, (0x%08X) L/R = %c, NAME = %s, PASSKEY = %c%c%c%c \r\n",  //
+    TDC_PRINTF_D("\r\n[MAP] ");
+    TDC_PRINTF_I("ISD '%d' INFO ", isd_num);
+    TDC_PRINTF_D("YEAR = %d, MONTH = %d, MODEL = %d, SERIAL = 0x%04X, (0x%08X) L/R = %c, NAME = %s, PASSKEY = %c%c%c%c \r\n",  //
               p_info->isd_year,
               (p_info->isd_month_model >> 4) & 0x0F,
               p_info->isd_month_model & 0x0F,
@@ -195,9 +195,9 @@ int ci_map_init_map_data(int isd_num, bool force_init, bool specific_RL, int val
               p_info->remocon_passkey[2],
               p_info->remocon_passkey[3]);
 
-    ci_printd("\r\n[MAP] ");
-    ci_printi("ISD '%d' USER SETTING ", isd_num);
-    ci_printd("MAP NUM = %d, STIM VOL = %d, AUDIO VOL = %d, LED = %d, ALARM = %d, TELECOIL = %d, BLE = %d \r\n",  //
+    TDC_PRINTF_D("\r\n[MAP] ");
+    TDC_PRINTF_I("ISD '%d' USER SETTING ", isd_num);
+    TDC_PRINTF_D("MAP NUM = %d, STIM VOL = %d, AUDIO VOL = %d, LED = %d, ALARM = %d, TELECOIL = %d, BLE = %d \r\n",  //
               p_user_setting->mapNum,
               p_user_setting->stimulVolume,
               p_user_setting->audioVolume,
@@ -206,9 +206,9 @@ int ci_map_init_map_data(int isd_num, bool force_init, bool specific_RL, int val
               p_user_setting->teleCoil_OnOff,
               p_user_setting->Ble_Onff);
 
-    ci_printd("\r\n[MAP] ");
-    ci_printi("ISD '%d' MAP STAMP ", isd_num);
-    ci_printd("YEAR = %d, MONTH = %d, DAY = %d, HOUR = %d, MIN = %d, SEC = %d \r\n",  //
+    TDC_PRINTF_D("\r\n[MAP] ");
+    TDC_PRINTF_I("ISD '%d' MAP STAMP ", isd_num);
+    TDC_PRINTF_D("YEAR = %d, MONTH = %d, DAY = %d, HOUR = %d, MIN = %d, SEC = %d \r\n",  //
               p_map_stamp->mapping_year,
               p_map_stamp->mapping_month,
               p_map_stamp->mapping_day,
@@ -218,11 +218,11 @@ int ci_map_init_map_data(int isd_num, bool force_init, bool specific_RL, int val
 
     for (int loop_i = 0; loop_i < 4; loop_i++)
     {
-        ci_printd("\r\n[MAP] ");
-        ci_printi("ISD '%d' MAP '%d' ", isd_num, loop_i + 1);
+        TDC_PRINTF_D("\r\n[MAP] ");
+        TDC_PRINTF_I("ISD '%d' MAP '%d' ", isd_num, loop_i + 1);
 
-        ci_printd("\r\n      ");  // "\r\n[MAP] " 자리 만큼
-        ci_printd("MAPPING DATE : YEAR = %d, MONTH = %d, DAY = %d, HOUR = %d, MIN = %d, SEC = %d \r\n",
+        TDC_PRINTF_D("\r\n      ");  // "\r\n[MAP] " 자리 만큼
+        TDC_PRINTF_D("MAPPING DATE : YEAR = %d, MONTH = %d, DAY = %d, HOUR = %d, MIN = %d, SEC = %d \r\n",
                   p_map_data[loop_i]->mappingDate.mapping_year,  //
                   p_map_data[loop_i]->mappingDate.mapping_month,
                   p_map_data[loop_i]->mappingDate.mapping_day,
@@ -230,8 +230,8 @@ int ci_map_init_map_data(int isd_num, bool force_init, bool specific_RL, int val
                   p_map_data[loop_i]->mappingDate.mapping_min,
                   p_map_data[loop_i]->mappingDate.mapping_sec);
 
-        ci_printd("\r\n      ");  // "\r\n[MAP] " 자리 만큼
-        ci_printd("STRATEGY = %d (%s), FIRST PHASE = %d (%s), STIM MODE = %d (%s) \r\n",
+        TDC_PRINTF_D("\r\n      ");  // "\r\n[MAP] " 자리 만큼
+        TDC_PRINTF_D("STRATEGY = %d (%s), FIRST PHASE = %d (%s), STIM MODE = %d (%s) \r\n",
                   p_map_data[loop_i]->stimulationStrategy,  //
                   p_map_data[loop_i]->stimulationStrategy == 1   ? "CIS"
                   : p_map_data[loop_i]->stimulationStrategy == 2 ? "N-OF-M"
@@ -250,70 +250,70 @@ int ci_map_init_map_data(int isd_num, bool force_init, bool specific_RL, int val
                   : p_map_data[loop_i]->stimulationMode == 6 ? "SEMI"
                                                              : "INVALID");
 
-        ci_printd("\r\n      ");  // "\r\n[MAP] " 자리 만큼
-        ci_printd("PULSE WIDTH = %d, FREQ BAND  = %d, ALARM CH = %d, ALARM UA = %d \r\n",
+        TDC_PRINTF_D("\r\n      ");  // "\r\n[MAP] " 자리 만큼
+        TDC_PRINTF_D("PULSE WIDTH = %d, FREQ BAND  = %d, ALARM CH = %d, ALARM UA = %d \r\n",
                   p_map_data[loop_i]->stimulationPulsePhaseWidth,  //
                   p_map_data[loop_i]->numFrequencyBand,
                   p_map_data[loop_i]->stimulationIndicatorChannelNum,
                   p_map_data[loop_i]->stimulationIndicatorAmplitude_uA);
 
-        ci_printd("\r\n      ");  // "\r\n[MAP] " 자리 만큼
-        ci_printd("USABLE STIM ELEC NUM : ");
+        TDC_PRINTF_D("\r\n      ");  // "\r\n[MAP] " 자리 만큼
+        TDC_PRINTF_D("USABLE STIM ELEC NUM : ");
         for (int loop_k = 0; loop_k < df_MaxNumOfElectrode; loop_k++)
         {
-            ci_printd("%2d    ", p_map_data[loop_i]->usableStimulationElectrodIndex[loop_k]);
+            TDC_PRINTF_D("%2d    ", p_map_data[loop_i]->usableStimulationElectrodIndex[loop_k]);
             if (((loop_k + 1) % 8) == 0)
             {
-                ci_printd("\r\n      ");  // "\r\n[MAP] " 자리 만큼
-                ci_printd("                       ");
+                TDC_PRINTF_D("\r\n      ");  // "\r\n[MAP] " 자리 만큼
+                TDC_PRINTF_D("                       ");
             }
         }
 
-        ci_printd("\r\n      ");  // "\r\n[MAP] " 자리 만큼
-        ci_printd("USABLE REF  ELEC NUM : ");
+        TDC_PRINTF_D("\r\n      ");  // "\r\n[MAP] " 자리 만큼
+        TDC_PRINTF_D("USABLE REF  ELEC NUM : ");
         for (int loop_k = 0; loop_k < df_MaxNumOfElectrode; loop_k++)
         {
-            ci_printd("%2d    ", p_map_data[loop_i]->usableReferenceElectrodIndex[loop_k]);
+            TDC_PRINTF_D("%2d    ", p_map_data[loop_i]->usableReferenceElectrodIndex[loop_k]);
             if (((loop_k + 1) % 8) == 0)
             {
-                ci_printd("\r\n      ");  // "\r\n[MAP] " 자리 만큼
-                ci_printd("                       ");
+                TDC_PRINTF_D("\r\n      ");  // "\r\n[MAP] " 자리 만큼
+                TDC_PRINTF_D("                       ");
             }
         }
 
-        ci_printd("\r\n      ");  // "\r\n[MAP] " 자리 만큼
-        ci_printd("CIS FREQ BAND ORDER  : ");
+        TDC_PRINTF_D("\r\n      ");  // "\r\n[MAP] " 자리 만큼
+        TDC_PRINTF_D("CIS FREQ BAND ORDER  : ");
         for (int loop_k = 0; loop_k < df_MaxNumOfElectrode; loop_k++)
         {
-            ci_printd("%2d    ", p_map_data[loop_i]->CIS_FreqBandOrder[loop_k]);
+            TDC_PRINTF_D("%2d    ", p_map_data[loop_i]->CIS_FreqBandOrder[loop_k]);
             if (((loop_k + 1) % 8) == 0)
             {
-                ci_printd("\r\n      ");  // "\r\n[MAP] " 자리 만큼
-                ci_printd("                       ");
+                TDC_PRINTF_D("\r\n      ");  // "\r\n[MAP] " 자리 만큼
+                TDC_PRINTF_D("                       ");
             }
         }
 
-        ci_printd("\r\n      ");  // "\r\n[MAP] " 자리 만큼
-        ci_printd("T LEVEL : ");
+        TDC_PRINTF_D("\r\n      ");  // "\r\n[MAP] " 자리 만큼
+        TDC_PRINTF_D("T LEVEL : ");
         for (int loop_k = 0; loop_k < df_MaxNumOfElectrode; loop_k++)
         {
-            ci_printd("%4d    ", p_map_data[loop_i]->T_level_uA[loop_k]);
+            TDC_PRINTF_D("%4d    ", p_map_data[loop_i]->T_level_uA[loop_k]);
             if (((loop_k + 1) % 8) == 0)
             {
-                ci_printd("\r\n      ");  // "\r\n[MAP] " 자리 만큼
-                ci_printd("                       ");
+                TDC_PRINTF_D("\r\n      ");  // "\r\n[MAP] " 자리 만큼
+                TDC_PRINTF_D("                       ");
             }
         }
 
-        ci_printd("\r\n      ");  // "\r\n[MAP] " 자리 만큼
-        ci_printd("C LEVEL : ");
+        TDC_PRINTF_D("\r\n      ");  // "\r\n[MAP] " 자리 만큼
+        TDC_PRINTF_D("C LEVEL : ");
         for (int loop_k = 0; loop_k < df_MaxNumOfElectrode; loop_k++)
         {
-            ci_printd("%4d    ", p_map_data[loop_i]->C_level_uA[loop_k]);
+            TDC_PRINTF_D("%4d    ", p_map_data[loop_i]->C_level_uA[loop_k]);
             if (((loop_k + 1) % 8) == 0)
             {
-                ci_printd("\r\n      ");  // "\r\n[MAP] " 자리 만큼
-                ci_printd("                       ");
+                TDC_PRINTF_D("\r\n      ");  // "\r\n[MAP] " 자리 만큼
+                TDC_PRINTF_D("                       ");
             }
         }
     }
@@ -330,17 +330,17 @@ int ci_map_init_map_data(int isd_num, bool force_init, bool specific_RL, int val
     // 디버깅 메시지 구문
     if (validate_all < 0)
     {
-        ci_printe("[MAP] ISD '%d' IS NOT VALID \r\n", isd_num);
+        TDC_PRINTF_E("[MAP] ISD '%d' IS NOT VALID \r\n", isd_num);
     }
     else
     {
         if (force_init)
         {
-            ci_printw("[MAP] ISD '%d' IS VALID BUT, FORCE INIT IS ENABLED \r\n", isd_num);
+            TDC_PRINTF_W("[MAP] ISD '%d' IS VALID BUT, FORCE INIT IS ENABLED \r\n", isd_num);
         }
         else
         {
-            ci_printd("[MAP] ISD '%d' IS VALID \r\n", isd_num);
+            TDC_PRINTF_D("[MAP] ISD '%d' IS VALID \r\n", isd_num);
         }
     }
 
@@ -487,9 +487,9 @@ int ci_map_init_map_data(int isd_num, bool force_init, bool specific_RL, int val
         p_info->remocon_passkey[2] = '1';  // remocon passkey 3
         p_info->remocon_passkey[3] = '1';  // remocon passkey 4
 
-        // ci_printd("[MAP] BEFORE WRITE ISD INFO \r\n");
+        // TDC_PRINTF_D("[MAP] BEFORE WRITE ISD INFO \r\n");
         ci_map_write_isd_info(isd_num);
-        ci_printd("[MAP] ISD '%d' HAS BEEN INIT \r\n", isd_num);
+        TDC_PRINTF_D("[MAP] ISD '%d' HAS BEEN INIT \r\n", isd_num);
     }
 
     SYS_WATCHDOG_REFRESH();
@@ -506,7 +506,7 @@ int ci_map_init_map_data(int isd_num, bool force_init, bool specific_RL, int val
         p_user_setting->Ble_Onff              = 1;  // BLE on/off
 
         ci_map_write_user_setting_value(isd_num);
-        ci_printd("[MAP] USER SETTING '%d' HAS BEEN INIT \r\n", isd_num);
+        TDC_PRINTF_D("[MAP] USER SETTING '%d' HAS BEEN INIT \r\n", isd_num);
     }
 
     SYS_WATCHDOG_REFRESH();
@@ -522,7 +522,7 @@ int ci_map_init_map_data(int isd_num, bool force_init, bool specific_RL, int val
         p_map_stamp->mapping_sec   = 11;  // map stamp second
 
         ci_map_write_map_stamp(isd_num);
-        ci_printd("[MAP] MAP STAMP '%d' HAS BEEN INIT \r\n", isd_num);
+        TDC_PRINTF_D("[MAP] MAP STAMP '%d' HAS BEEN INIT \r\n", isd_num);
     }
 
     SYS_WATCHDOG_REFRESH();
@@ -769,7 +769,7 @@ int ci_map_init_map_data(int isd_num, bool force_init, bool specific_RL, int val
             }
 
             ci_map_write_map_data(isd_num, 1 + i);
-            ci_printd("[MAP] ISD '%d' PROGRAM '%d' HAS BEEN INIT \r\n", isd_num, 1 + i);
+            TDC_PRINTF_D("[MAP] ISD '%d' PROGRAM '%d' HAS BEEN INIT \r\n", isd_num, 1 + i);
         }
 
         SYS_WATCHDOG_REFRESH();

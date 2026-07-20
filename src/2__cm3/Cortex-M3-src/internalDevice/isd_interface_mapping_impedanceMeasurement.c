@@ -22,7 +22,7 @@
 
 #include "electrodeMapping.h"
 
-#include <ci_printf.h>
+#include <tdc_printf.h>
 
 static char impedanceValue[df_maxIterationNum_impedance][2][2];
 
@@ -83,7 +83,7 @@ void impedanceMeasurement(bool startFlag)
 
     if (startFlag)
     {
-        ci_printv("[MAPPING] CHECK IMPEDANCE, START FLAG IS SET \r\n");
+        TDC_PRINTF_V("[MAPPING] CHECK IMPEDANCE, START FLAG IS SET \r\n");
 
         mappingPacket = getMappingPacket();
 
@@ -168,7 +168,7 @@ void impedanceMeasurement(bool startFlag)
 
             if (deliveryCharge_pico > df_MaxDeliveryCharge_pC)  // 전하량 초과
             {
-                ci_printe("[MAPPING] IMPEDANCE CHECK - MAX CHARGE OVER \r\n");
+                TDC_PRINTF_E("[MAPPING] IMPEDANCE CHECK - MAX CHARGE OVER \r\n");
                 sendErrorToApp(en__mapping_impedanceChekck, en__EN__ISD_ERROR, en__MaxChargeOver, __LINE__);  // 에러 전송
                 clear_mappingCommand();                                                                       // 커맨드 리셋;
             }
@@ -222,7 +222,7 @@ void impedanceMeasurement(bool startFlag)
             }
             else  // 최소 기울기에 대해서만 일단 구현.. 모든 범위의 출력을 설정하려면 추가 코딩이 필요하나.. 임피던스는 작은 출력으로 측정하기 때문에 필요가 없을 듯하다.
             {
-                ci_printe("[MAPPING] IMPEDANCE CHECK - STIMUL LEVEL OVER \r\n");
+                TDC_PRINTF_E("[MAPPING] IMPEDANCE CHECK - STIMUL LEVEL OVER \r\n");
                 sendErrorToApp(en__mapping_impedanceChekck, en__EN__ISD_ERROR, en__stimulLevelOver, __LINE__);  // 에러 전송
                 clear_mappingCommand();                                                                         // 커맨드 리셋;
             }
@@ -259,7 +259,7 @@ void impedanceMeasurement(bool startFlag)
                 {
                     if (!FPGA_FIFO_empty)
                     {
-                        ci_printe("[MAPPING] IMPEDANCE CHECK - FIFO NOT EMPTY \r\n");
+                        TDC_PRINTF_E("[MAPPING] IMPEDANCE CHECK - FIFO NOT EMPTY \r\n");
                         change_isd_state(en__isdStatus_PowerIC_OK);  //
                     }
                 }

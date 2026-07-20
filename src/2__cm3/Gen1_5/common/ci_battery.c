@@ -47,14 +47,14 @@ void ci_battery_init(void)
 
     if (ci_filesystem_read("/BATT_CAL", rbuf, 4) < 0)
     {
-        ci_util_indicate_critical_error();
+        tdc_util_indicate_critical_error();
     }
 
     val = (rbuf[3] << 24) | (rbuf[2] << 16) | (rbuf[1] << 8) | rbuf[0];
 
     cfx_cm3_sharedMemoryAll.batteryCalibrationValue = val;
 
-    ci_printi("[LSAD] BATTERY CALIBRATION VALUE : %4d \r\n", cfx_cm3_sharedMemoryAll.batteryCalibrationValue);
+    TDC_PRINTF_I("[LSAD] BATTERY CALIBRATION VALUE : %4d \r\n", cfx_cm3_sharedMemoryAll.batteryCalibrationValue);
 
     calculationBatteryBoundary();
 }

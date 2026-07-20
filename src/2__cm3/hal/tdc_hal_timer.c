@@ -2,7 +2,7 @@
  * @file OTE_1_5gen_timer.c
  */
 
-#include <ci_timer.h>
+#include <tdc_hal_timer.h>
 #include <LedOutput.h>  /* led_arbiter_tick - Timer 3 ISR 직접 구동 */
 
 static bool    _ci_is_leap(uint16_t year);
@@ -13,7 +13,7 @@ static volatile int g_tdc_timer_t3_tick  = 0; /* TIMER3 가 증가 - LED · 터�
 
 static volatile uint32_t        _ci_timer_elapsed_1msec_counter = 0;
 static volatile uint32_t        _ci_timer_count_init_value      = 0;
-static volatile CI_TIMER_TIME_T _ci_timer_reference_time        = {0};
+static volatile tdc_hal_timer_time_t _ci_timer_reference_time        = {0};
 static volatile bool            _ci_timer_update_flag           = false;
 
 void TIMER_3_IRQHandler(void)
@@ -36,7 +36,7 @@ static bool _ci_is_leap(uint16_t year)
 static uint8_t _ci_day_in_month(uint8_t year, uint8_t month)
 {
     static const uint8_t dim[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-    uint16_t             y       = (uint16_t) (CI_TIMER_BASE_YEAR + (uint16_t) year);
+    uint16_t             y       = (uint16_t) (TDC_HAL_TIMER_BASE_YEAR + (uint16_t) year);
     uint8_t              day     = dim[(uint8_t) (month - 1u)];
 
     if (month == 2 && _ci_is_leap(y))
@@ -47,9 +47,9 @@ static uint8_t _ci_day_in_month(uint8_t year, uint8_t month)
     return day;
 }
 
-void ci_timer_self_update_with_elapsed_1msec_counter(void)
+void tdc_hal_timer_self_update_with_elapsed_1msec_counter(void)
 {
-    CI_TIMER_TIME_T time;
+    tdc_hal_timer_time_t time;
     uint32_t        cnt;
     uint8_t         dim;  // day in month;
 
@@ -101,16 +101,16 @@ void ci_timer_self_update_with_elapsed_1msec_counter(void)
         // 년 : uint8_t 형식에서 255년까지 지속될 일이 없으므로 오버플로우 생략
     }
 
-    ci_timer_update_reference_time(&time, cnt);
+    tdc_hal_timer_update_reference_time(&time, cnt);
 }
 
-CI_TIMER_TIME_T ci_timer_get_reference_time_after_self_update(void)
+tdc_hal_timer_time_t tdc_hal_timer_get_reference_time_after_self_update(void)
 {
-    ci_timer_self_update_with_elapsed_1msec_counter();
+    tdc_hal_timer_self_update_with_elapsed_1msec_counter();
     return _ci_timer_reference_time;
 }
 
-void ci_timer_update_reference_time(CI_TIMER_TIME_T *p_time, uint32_t count_init_value)
+void tdc_hal_timer_update_reference_time(tdc_hal_timer_time_t *p_time, uint32_t count_init_value)
 {
     //_ci_timer_reference_time   = *p_time;
     _ci_timer_reference_time.year  = p_time->year;
@@ -124,10 +124,10 @@ void ci_timer_update_reference_time(CI_TIMER_TIME_T *p_time, uint32_t count_init
 
     _ci_timer_update_flag = true;
 
-    ci_printv("[TIMER] UPDATE REFERENCE TIME {%02d-%02d-%02d-%02d-%02d-%02d} INIT VALUE {%d} \r\n", _ci_timer_reference_time.year, _ci_timer_reference_time.month, _ci_timer_reference_time.day, _ci_timer_reference_time.hour, _ci_timer_reference_time.min, _ci_timer_reference_time.sec, _ci_timer_count_init_value);
+    TDC_PRINTF_V("[TIMER] UPDATE REFERENCE TIME {%02d-%02d-%02d-%02d-%02d-%02d} INIT VALUE {%d} \r\n", _ci_timer_reference_time.year, _ci_timer_reference_time.month, _ci_timer_reference_time.day, _ci_timer_reference_time.hour, _ci_timer_reference_time.min, _ci_timer_reference_time.sec, _ci_timer_count_init_value);
 }
 
-void ci_timer_increase_tick(void)
+void tdc_hal_timer_increase_tick(void)
 {
     g_ci_timer_main_tick++;
     _ci_timer_elapsed_1msec_counter++;
@@ -140,17 +140,17 @@ void ci_timer_increase_tick(void)
     }
 }
 
-int ci_timer_get_tick(void)
+int tdc_hal_timer_get_tick(void)
 {
     return g_ci_timer_main_tick;
 }
 
-int tdc_timer_get_t3_tick(void)
+int tdc_hal_timer_get_t3_tick(void)
 {
     return g_tdc_timer_t3_tick;
 }
 
-int ci_timer_init_prescaled(uint32_t prescale_field, uint32_t tick)
+int tdc_hal_timer_init_prescaled(uint32_t prescale_field, uint32_t tick)
 {
     Sys_Timer_Stop(OTE_1_5_GEN_TIMER_INSTANCE);
 
@@ -165,12 +165,12 @@ int ci_timer_init_prescaled(uint32_t prescale_field, uint32_t tick)
     return df_True;
 }
 
-int ci_timer_init(uint32_t tick)
+int tdc_hal_timer_init(uint32_t tick)
 {
-    return ci_timer_init_prescaled(TIMER_PRESCALE_1, tick);
+    return tdc_hal_timer_init_prescaled(TIMER_PRESCALE_1, tick);
 }
 
-int ci_timer_uninit(void)
+int tdc_hal_timer_uninit(void)
 {
     Sys_Timer_Stop(OTE_1_5_GEN_TIMER_INSTANCE);
 

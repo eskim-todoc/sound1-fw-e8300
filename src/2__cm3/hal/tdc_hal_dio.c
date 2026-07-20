@@ -2,42 +2,42 @@
  * @file OTE_1_5gen_DIO.c
  */
 
-#include <ci_dio.h>
+#include <tdc_hal_dio.h>
 
 static volatile int s_int_flag_acc_sensor    = 0;
 static volatile int s_int_flag_case_lid_open = 0;
 
-bool ci_dio_is_set_int_flag_acc_sensor(void)
+bool tdc_hal_dio_is_set_int_flag_acc_sensor(void)
 {
     return (s_int_flag_acc_sensor == 1);
 }
 
-bool ci_dio_is_set_int_flag_case_lid_open(void)
+bool tdc_hal_dio_is_set_int_flag_case_lid_open(void)
 {
     return (s_int_flag_case_lid_open == 1);
 }
 
-void ci_dio_set_int_flag_acc_sensor(void)
+void tdc_hal_dio_set_int_flag_acc_sensor(void)
 {
     s_int_flag_acc_sensor = 1;
 }
 
-void ci_dio_set_int_flag_case_lid_open(void)
+void tdc_hal_dio_set_int_flag_case_lid_open(void)
 {
     s_int_flag_case_lid_open = 1;
 }
 
-void ci_dio_clear_int_flag_acc_sensor(void)
+void tdc_hal_dio_clear_int_flag_acc_sensor(void)
 {
     s_int_flag_acc_sensor = 0;
 }
 
-void ci_dio_clear_int_flag_case_lid_open(void)
+void tdc_hal_dio_clear_int_flag_case_lid_open(void)
 {
     s_int_flag_case_lid_open = 0;
 }
 
-int ci_dio_configure_normal(void)
+int tdc_hal_dio_configure_normal(void)
 {
     // LED
     Sys_DIO_Config(DIO_PIN_INDEX_for_LED_color_R, DIO_PIN_CFG_FOR_GPIO_OUPUT_NOPULLUP);  // R
@@ -99,7 +99,7 @@ int ci_dio_configure_normal(void)
     return df_True;
 }
 
-int ci_dio_configure_sleep(void)
+int tdc_hal_dio_configure_sleep(void)
 {
 #if 0
     // Earpiece detection
@@ -138,8 +138,8 @@ int ci_dio_configure_sleep(void)
     Sys_DIO_Config(DIO_PIN_INDEX_for_CM3_SDA, (DIO_8X_DRIVE | DIO_LPF_DISABLE | DIO_250K_PULL_UP | DIO_MODE_DISABLE));
 
     /* Reset DIOs for UART */
-    Sys_DIO_Config(CI_UART_DIO_TX, (DIO_8X_DRIVE | DIO_LPF_DISABLE | DIO_250K_PULL_UP | DIO_MODE_DISABLE));
-    Sys_DIO_Config(CI_UART_DIO_RX, (DIO_8X_DRIVE | DIO_LPF_DISABLE | DIO_250K_PULL_UP | DIO_MODE_DISABLE));
+    Sys_DIO_Config(TDC_HAL_UART_DIO_TX, (DIO_8X_DRIVE | DIO_LPF_DISABLE | DIO_250K_PULL_UP | DIO_MODE_DISABLE));
+    Sys_DIO_Config(TDC_HAL_UART_DIO_RX, (DIO_8X_DRIVE | DIO_LPF_DISABLE | DIO_250K_PULL_UP | DIO_MODE_DISABLE));
 
     NVIC_ClearPendingIRQ(DIO_0_IRQn);
     NVIC_ClearPendingIRQ(DIO_1_IRQn);
@@ -155,7 +155,7 @@ int ci_dio_configure_sleep(void)
  */
 void DIO_0_IRQHandler(void)
 {
-    ci_dio_set_int_flag_acc_sensor();
+    tdc_hal_dio_set_int_flag_acc_sensor();
 }
 
 /*
@@ -163,6 +163,6 @@ void DIO_0_IRQHandler(void)
  */
 void DIO_1_IRQHandler(void)
 {
-    ci_dio_set_int_flag_case_lid_open();
+    tdc_hal_dio_set_int_flag_case_lid_open();
 }
 

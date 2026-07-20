@@ -3,7 +3,7 @@
 
 #include <stdbool.h>
 
-#include "ci_printf.h"
+#include "tdc_printf.h"
 
 void clear_sitmulationParaSettingDone(void);
 bool isStimulParaIsSettingDone(void);

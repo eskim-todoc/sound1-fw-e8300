@@ -21,7 +21,7 @@
 
 #include "remoteControl.h"  // ST__REMOTECONTROL_PACKET, EN__SND_BT_CMD_GENERAL_DEBUG
 #include <tdc_touch.h>
-#include <ci_printf.h>
+#include <tdc_printf.h>
 #include <ci_ble_control_ota.h>
 #include <ci_map.h>
 
@@ -36,7 +36,7 @@ int tdc_remote_general_debug_handle(const ST__REMOTECONTROL_PACKET *packet, int 
 {
     int option = packet->data[0];  // 옵션
 
-    ci_printd("[GD] opt: %d \r\n", option);
+    TDC_PRINTF_D("[GD] opt: %d \r\n", option);
 
     if (option == 1)  // 터치센서 디버깅 프로토콜
     {
@@ -80,8 +80,8 @@ static int gd_handle_touch_debug(const ST__REMOTECONTROL_PACKET *packet, int *tx
     ati_error  = tdc_touch_debug_get_recent_ati_error();
     ati_active = tdc_touch_debug_get_recent_ati_active();
 
-    ci_printi("[GD] lta: %4u, count: %4u, delta: %4u, abs_thr: %4u, ", lta, count, delta, abs_thr);
-    ci_printi("pressed: %u, ati_error: %u, ati_active: %u \r\n", pressed, ati_error, ati_active);
+    TDC_PRINTF_I("[GD] lta: %4u, count: %4u, delta: %4u, abs_thr: %4u, ", lta, count, delta, abs_thr);
+    TDC_PRINTF_I("pressed: %u, ati_error: %u, ati_active: %u \r\n", pressed, ati_error, ati_active);
 
     tx_buf[tx_index++] = option;
     tx_buf[tx_index++] = (lta >> 8) & 0x00FF;
@@ -114,7 +114,7 @@ static int gd_handle_no_backtel(const ST__REMOTECONTROL_PACKET *packet, int *tx_
         tdc_set_ota_dfu_conn_state(TDC_OTA_DFU_CONN_ST_DISCONN);
     }
 
-    ci_printi("[GD] noBacktel_mode : %d \r\n", noBacktel_mode);
+    TDC_PRINTF_I("[GD] noBacktel_mode : %d \r\n", noBacktel_mode);
 
     // 송신 데이터 준비
     tx_buf[tx_index++] = packet->command;  //     command : loop-back
@@ -144,7 +144,7 @@ static int gd_handle_map_init(const ST__REMOTECONTROL_PACKET *packet, int *tx_bu
     }
     else
     {
-        ci_printw("[GD] Specific RL Command invalid. \r\n");
+        TDC_PRINTF_W("[GD] Specific RL Command invalid. \r\n");
     }
 
     // 송신 데이터 준비

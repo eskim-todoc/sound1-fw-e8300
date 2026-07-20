@@ -23,7 +23,7 @@
 #endif
 
 #include "commonDataProcessing.h"
-#include <ci_printf.h>
+#include <tdc_printf.h>
 
 static LAST_WRITTEN_REGISTER fpag_lastWrittenRegister;
 
@@ -213,7 +213,7 @@ bool check_FPGA_PCM_Error(bool *isError)
         {
             *isError = true;
             update_FPGA_systemError(readValue);
-            ci_printe("[FPGA] ERROR OCCURRED, SYS_ERR_CHK : 0x%02X \r\n", readValue);
+            TDC_PRINTF_E("[FPGA] ERROR OCCURRED, SYS_ERR_CHK : 0x%02X \r\n", readValue);
         }
         else
         {

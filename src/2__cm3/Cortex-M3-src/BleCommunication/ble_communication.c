@@ -12,8 +12,8 @@
 #include <ci_ble_control_boot.h>
 #include <ci_ble_control_ota.h>
 
-#include <ci_timer.h>
-#include <ci_printf.h>
+#include <tdc_hal_timer.h>
+#include <tdc_printf.h>
 
 typedef struct
 {
@@ -80,7 +80,7 @@ void setting_nrf_ble_adv_info(void)
         // 즉, [20] 인덱스도 0으로 채워져서 보내질 것이다.
         else
         {
-            ci_printw("[BT] ISD NOT CONNECTED, BUT RESPONSE 0x30 COMMAND \r\n");
+            TDC_PRINTF_W("[BT] ISD NOT CONNECTED, BUT RESPONSE 0x30 COMMAND \r\n");
             tx_index = 0;
         }
 
@@ -98,12 +98,12 @@ void setting_nrf_ble_adv_info(void)
         if (snd_batt_get_state() != EN__SND_BATT_STATE_RESET)
         {
             batt_percent = snd_batt_get_percent();
-            ci_printd("[BT] READ BATT LEVEL, %d PERCENT \r\n", batt_percent);
+            TDC_PRINTF_D("[BT] READ BATT LEVEL, %d PERCENT \r\n", batt_percent);
         }
         else
         {
             batt_percent = 0xFF;
-            ci_printd("[BT] READ BATT LEVEL NOT YET READY \r\n");
+            TDC_PRINTF_D("[BT] READ BATT LEVEL NOT YET READY \r\n");
         }
 
         charger_state = snd_charger_get_state().chargerConnectorPluggedIn;
@@ -145,20 +145,20 @@ void setting_nrf_ble_adv_info(void)
                 break;
 
             default:
-                ci_printe("[BT] CMD 0x%02X, INVALID CHARGER CONNECTED: %d \r\n", EN__SND_BT_CMD_SYSTEM_INFO_POWER, charger_connected);
+                TDC_PRINTF_E("[BT] CMD 0x%02X, INVALID CHARGER CONNECTED: %d \r\n", EN__SND_BT_CMD_SYSTEM_INFO_POWER, charger_connected);
                 snd_charger_set_state(EN__SND_CHARGER_STATE_RESET);
                 snd_batt_set_state(EN__SND_BATT_STATE_RESET);
                 break;
         }  // 끝, switch
 
         tdc_charger_set_cradle_cover_state(cradle_lid_state);
-        ci_printv("[BT] CMD 0x%02X, CHARGER STATE: %d, BATT LEVEL %d PERCENT, LID STATE %d\r\n", EN__SND_BT_CMD_SYSTEM_INFO_POWER, charger_connected, battery_level, cradle_lid_state);
+        TDC_PRINTF_V("[BT] CMD 0x%02X, CHARGER STATE: %d, BATT LEVEL %d PERCENT, LID STATE %d\r\n", EN__SND_BT_CMD_SYSTEM_INFO_POWER, charger_connected, battery_level, cradle_lid_state);
 
         Tx_dataBuff[tx_index++] = EN__SND_BT_CMD_SYSTEM_INFO_POWER;
         Tx_dataBuff[tx_index++] = 1;  // 수신 확인 응답
 
-        // ci_printw("[BT] BEFORE-WRITE-TX 0x34 t3=%d ms\r\n", tdc_timer_get_t3_tick());
-        // ci_printw("[BT] CALL-WRITE-TX TxEmpty=%d\r\n", (int) isSpiTxBuffEmpty());
+        // TDC_PRINTF_W("[BT] BEFORE-WRITE-TX 0x34 t3=%d ms\r\n", tdc_hal_timer_get_t3_tick());
+        // TDC_PRINTF_W("[BT] CALL-WRITE-TX TxEmpty=%d\r\n", (int) isSpiTxBuffEmpty());
 
         writeDataToSpiTxBuff(Tx_dataBuff, tx_index);     // 송싱 데이터 SPI TX버퍼에 복사
         bleSettingPacket.command = en__bleSetting_IDLE;  // 명령 종료
@@ -185,7 +185,7 @@ void setting_nrf_ble_adv_info(void)
             tdc_set_ota_dfu_conn_state(TDC_OTA_DFU_CONN_ST_DISCONN);
         }
 
-        ci_printv("[BT] CMD 0x%02X, LED IND: %d \r\n", EN__SND_BT_CMD_SYSTEM_INFO_LED_IND, led_ind);
+        TDC_PRINTF_V("[BT] CMD 0x%02X, LED IND: %d \r\n", EN__SND_BT_CMD_SYSTEM_INFO_LED_IND, led_ind);
 
         /* 응답 패킷 */
         Tx_dataBuff[tx_index++] = EN__SND_BT_CMD_SYSTEM_INFO_LED_IND;
@@ -204,7 +204,7 @@ void setting_nrf_ble_adv_info(void)
         classic_type  = bleSettingPacket.data[1];  // 클래식 종류
 
         /* 명령 처리 */
-        ci_printw("[BT] CMD 0x%02X, CLASSIC STATE: %s, %s \r\n",  //
+        TDC_PRINTF_W("[BT] CMD 0x%02X, CLASSIC STATE: %s, %s \r\n",  //
                   classic_state == 0   ? "DISCONN"
                   : classic_state == 1 ? "CONN"
                                        : "INVALID",
@@ -290,7 +290,7 @@ ST__BLE_COMMUNICATION_STATE bleCommunication(ST__ISD_STATUS isd_state)
             if (print_allowed)
             {
                 // clang-format off
-                ci_printv("\r\n\n[SPI RX] (LSB) 0x%02X %02X %02X %02X %02X %02X %02X %02X %02X %02X "
+                TDC_PRINTF_V("\r\n\n[SPI RX] (LSB) 0x%02X %02X %02X %02X %02X %02X %02X %02X %02X %02X "
                           "%02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X (MSB) \r\n",
                           p_Rx_dataPacket[0], p_Rx_dataPacket[1], p_Rx_dataPacket[2], p_Rx_dataPacket[3],
                           p_Rx_dataPacket[4], p_Rx_dataPacket[5], p_Rx_dataPacket[6], p_Rx_dataPacket[7],
@@ -370,11 +370,11 @@ ST__BLE_COMMUNICATION_STATE bleCommunication(ST__ISD_STATUS isd_state)
 
         case SPI_CMMM_ERROR:
         {
-            ci_printw("\r\n");
-            ci_printw("################################################################\r\n");
-            ci_printw("###  [SPI ERROR HANDLED]    t3 = %d ms\r\n", tdc_timer_get_t3_tick());
-            ci_printw("################################################################\r\n");
-            ci_printw("\r\n");
+            TDC_PRINTF_W("\r\n");
+            TDC_PRINTF_W("################################################################\r\n");
+            TDC_PRINTF_W("###  [SPI ERROR HANDLED]    t3 = %d ms\r\n", tdc_hal_timer_get_t3_tick());
+            TDC_PRINTF_W("################################################################\r\n");
+            TDC_PRINTF_W("\r\n");
 
             // SPI 인터페이스 에러
             NVIC_DisableIRQ(SPI1_COM_IRQn);

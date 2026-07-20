@@ -4,7 +4,7 @@
 
 #include <stdbool.h>
 
-#include "ci_printf.h"
+#include "tdc_printf.h"
 
 bool stimulationStandAlone(void);
 bool isNewMapLoadeFlag(void);

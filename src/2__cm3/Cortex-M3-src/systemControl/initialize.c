@@ -52,10 +52,10 @@
 
 #include <driver_MAX17262.h>
 
-#include <ci_dio.h>
+#include <tdc_hal_dio.h>
 #include <ci_power.h>
-#include <ci_uart.h>
-#include <ci_util.h>
+#include <tdc_hal_uart.h>
+#include <tdc_util.h>
 #include <ci_filesystem.h>
 #include <ci_map.h>
 #include <ci_fft.h>
@@ -63,9 +63,9 @@
 #include <ci_event_log.h>
 #include <ci_battery.h>
 #include <ci_power.h>
-#include <ci_printf.h>
+#include <tdc_printf.h>
 #include <ci_boot.h>
-#include <ci_timer.h>
+#include <tdc_hal_timer.h>
 
 #include <tdc_touch.h>
 
@@ -200,10 +200,10 @@ void Uninitialize(void)
     enableI2cInterface(false);
 
     /* Disable UART */
-    ci_uart_uninit();
+    tdc_hal_uart_uninit();
 
     /* Reset DIOs */
-    ci_dio_configure_sleep();
+    tdc_hal_dio_configure_sleep();
 }
 
 void error_toggler(int cnt, int msec)
@@ -255,16 +255,16 @@ void Initialize(void)
     // 다시 수행해야 하는 이슈가 있다.
     // 그래서 캘리브레이션을 한 번만 수행하고 이후로는 이 MANUF_TABLE 정보를 활용하도록 구성하였다.
 
-    ci_util_assert(ci_filesystem_nvm_init());  // NVM 인터페이스 초기화
-    ci_util_assert(snd_fatfs_init_mem_map());  // FFT 및 맵 관련 공유 메모리 포인터 초기화
-    ci_util_assert(snd_fatfs_remount(1));      // 사용자 드라이브(1)로 마운트
-    ci_util_assert(ci_power_normal());         // 전원 및 클럭 설정
+    tdc_util_assert(ci_filesystem_nvm_init());  // NVM 인터페이스 초기화
+    tdc_util_assert(snd_fatfs_init_mem_map());  // FFT 및 맵 관련 공유 메모리 포인터 초기화
+    tdc_util_assert(snd_fatfs_remount(1));      // 사용자 드라이브(1)로 마운트
+    tdc_util_assert(ci_power_normal());         // 전원 및 클럭 설정
 
-    ci_printi("[INIT] POWER NORMAL, CLOCK : %u HZ \r\n", SystemCoreClock);
+    TDC_PRINTF_I("[INIT] POWER NORMAL, CLOCK : %u HZ \r\n", SystemCoreClock);
 
-    ci_dio_configure_normal();
+    tdc_hal_dio_configure_normal();
 
-    ci_printv("[INIT] INIT : DIO, UART, ETC.. \r\n");
+    TDC_PRINTF_V("[INIT] INIT : DIO, UART, ETC.. \r\n");
 
     /* ====================================================================
      * LED 진입 게이트 - POWER_ON LED 조기 점등 (P3-Early)
@@ -277,13 +277,13 @@ void Initialize(void)
      * ==================================================================== */
 
     /* L1: TIMER3 ISR 활성 (1ms tick - LED · 터치 공유 카운터 + LED arbiter) */
-    ci_timer_init(OTE_1_5_GEN_TIMER_TICK_1MS_PM_NORMAL);
-    ci_printi("[MILESTONE] LED-GATE-ENTER (TIMER3 ON) \r\n");
+    tdc_hal_timer_init(OTE_1_5_GEN_TIMER_TICK_1MS_PM_NORMAL);
+    TDC_PRINTF_I("[MILESTONE] LED-GATE-ENTER (TIMER3 ON) \r\n");
 
     /* L2: 공유 메모리 주소 검증 - 에러 시 LED 켜기 전에 무한루프 진입 (R4) */
     if (sharedMemoryAddresError())
     {
-        ci_printe("[INFO] INVALID SHARED MEMORY ADDRESS \r\n");
+        TDC_PRINTF_E("[INFO] INVALID SHARED MEMORY ADDRESS \r\n");
 
         while (1)
         {
@@ -300,41 +300,41 @@ void Initialize(void)
 
     /* L5: POWER_ON 버스트 요청 - TIMER3 ISR 가 SKYBLUE fade-in/out × 5 진행 */
     led_request(LED_SRC_POWER, LED_ST_POWER_ON);
-    ci_printi("\r\n");
-    ci_printi("################################################################\r\n");
-    ci_printi("###  [POWER-ON  START]   t3 = %d ms\r\n", tdc_timer_get_t3_tick());
-    ci_printi("################################################################\r\n");
-    ci_printi("\r\n");
+    TDC_PRINTF_I("\r\n");
+    TDC_PRINTF_I("################################################################\r\n");
+    TDC_PRINTF_I("###  [POWER-ON  START]   t3 = %d ms\r\n", tdc_hal_timer_get_t3_tick());
+    TDC_PRINTF_I("################################################################\r\n");
+    TDC_PRINTF_I("\r\n");
 
     /* 드라이브 0으로 변경 후 부트 상태 처리 후
      * 드라이브 1로 변경하여 맵 관련 파일을 사용할 수 있게 설정 */
 
-    ci_util_assert(snd_fatfs_remount(0));  // 부트 드라이브(0)으로 마운트
+    tdc_util_assert(snd_fatfs_remount(0));  // 부트 드라이브(0)으로 마운트
     ci_boot_init_fp(ci_fatfs_get_fp());
     ci_boot_handle_fsm();
-    ci_util_assert(snd_fatfs_remount(1));  // 사용자 드라이브(1)로 마운트
+    tdc_util_assert(snd_fatfs_remount(1));  // 사용자 드라이브(1)로 마운트
 
-    ci_printi("[INFO] INIT : BOOT STATUS \r\n");
+    TDC_PRINTF_I("[INFO] INIT : BOOT STATUS \r\n");
 
     // Check, make and init ISD map files (info, user setting, map stamp, map_data.....)
     ci_map_init_map_data_all(false);
 
-    ci_printi("[INFO] INIT : MAP DATA ALL \r\n");
+    TDC_PRINTF_I("[INFO] INIT : MAP DATA ALL \r\n");
 
     // Check, make and init FFT pass bin files (ch1 to ch32.....).
     ci_fft_init_pass_bin_all();
 
-    ci_printi("[INFO] INIT : FFT PASS BIN \r\n");
+    TDC_PRINTF_I("[INFO] INIT : FFT PASS BIN \r\n");
 
     ci_fft_init_window_coeff();  // Check, make and init Hanning Window Coeff
 
-    ci_printi("[INFO] INIT : FFT WINDOW COEFF \r\n");
+    TDC_PRINTF_I("[INFO] INIT : FFT WINDOW COEFF \r\n");
 
     ci_stim_mute_init();
-    ci_printi("[INFO] INIT : STIM MUTE \r\n");
+    TDC_PRINTF_I("[INFO] INIT : STIM MUTE \r\n");
 
     ci_event_log_init();
-    ci_printi("[INFO] INIT : EVENT LOG \r\n");
+    TDC_PRINTF_I("[INFO] INIT : EVENT LOG \r\n");
 
     // 1세대에서는 CFX가 플래시에서 ISD 정보를 읽어서 공유 메모리에 저장하던 기능을,
     // 1.5세대에서는 CM3가 직접 플래시에서 맵 데이터를 맵 데이터용 메모리에 로드하기 때문에
@@ -343,17 +343,17 @@ void Initialize(void)
     ci_filesystem_copy_isd_info_from_filesystem_to_shared_memory();
     cfx_cm3_sharedMemoryAll.CFX_EEPROM_data_is_Loaded = 1;
 
-    ci_printv("[INFO] COPY ISD INFO FOR ALL MAPS FROM FS_MEM TO SH_MEM \r\n");
+    TDC_PRINTF_V("[INFO] COPY ISD INFO FOR ALL MAPS FROM FS_MEM TO SH_MEM \r\n");
 
     /* turnOffLED · sharedMemoryAddresError 는 LED 진입 게이트 (P3-Early) 로 이관됨 */
 
     // NRF 리셋
     ResetNRF();
-    ci_printv("[BLE] RESET NRF \r\n");
+    TDC_PRINTF_V("[BLE] RESET NRF \r\n");
 
     // NRF 끄기 전달
     NRF_Off_Command();
-    // ci_printv("[BLE] NRF OFF ('DIO%d' LEVEL LOW) \r\n", DIO_NUM_NRF_ON_OFF_COMMAND);
+    // TDC_PRINTF_V("[BLE] NRF OFF ('DIO%d' LEVEL LOW) \r\n", DIO_NUM_NRF_ON_OFF_COMMAND);
 
     // 인터럽트 초기화 및 비활성화
     // reset_interrupt_Disable_PRIMASK();
@@ -401,7 +401,7 @@ void Initialize(void)
             // 최대 값 설정 완료 되면 더 할거 없이 무한루프
             if (tx_power == MaxVoltageControlValue)
             {
-                ci_printw("[TEST] PMIC TX POWER SET DONE \r\n");
+                TDC_PRINTF_W("[TEST] PMIC TX POWER SET DONE \r\n");
                 turnON_GreenLED();
 
                 while (1)
@@ -446,11 +446,11 @@ void Initialize(void)
      *       본 위치는 본 작업 전 시점 (systemControl 분기 → init_cm3_SPI 후) 과 동등.
      * Auto-ATI 대기 (~1.5s) 는 LED 버스트 (~1.8s) 와 병렬 진행 → 체감 시간 0. */
     tdc_touch_init_begin();
-    ci_printi("[MILESTONE] TOUCH-INIT-BEGIN t3=%d \r\n", tdc_timer_get_t3_tick());
+    TDC_PRINTF_I("[MILESTONE] TOUCH-INIT-BEGIN t3=%d \r\n", tdc_hal_timer_get_t3_tick());
 
     /* 종료 배리어: CFX 트리거 → main_tick · iteration 활성. TIMER3 는 stop 안 함. */
     enable_CFX_trigger_for_iteration();  // CFX_0, FIFO_5 인터럽트 활성화
-    ci_printi("[MILESTONE] CFX-ITER-ENABLE t3=%d main=%d \r\n", tdc_timer_get_t3_tick(), ci_timer_get_tick());
+    TDC_PRINTF_I("[MILESTONE] CFX-ITER-ENABLE t3=%d main=%d \r\n", tdc_hal_timer_get_t3_tick(), tdc_hal_timer_get_tick());
 
     // 인터럽트 활성화 (PRIMASK 는 main.c 에서 이미 enable - 사실상 noop, 안전망)
     enable_interrupt();
@@ -470,7 +470,7 @@ void Initialize(void)
     // 가속도 센서 설정
     if (!configure_MIS2DH_asClickMode(2))
     {
-        ci_printe("[ACC] FAILED TO CONFIGURE AS CLICK MODE \r\n");
+        TDC_PRINTF_E("[ACC] FAILED TO CONFIGURE AS CLICK MODE \r\n");
         errorCodeUpdate(en__ACCELEROMETER_ERROR, en__I2C_ACCELER_WritingError, __LINE__);
     }
 #endif
@@ -494,7 +494,7 @@ void Initialize(void)
 
     ci_battery_update();
 
-    ci_printi("[LSAD] END OF INIT, CURRENTLY BATT SAMPLE COUNT=%d, LSAD VALUE=%d \r\n",
+    TDC_PRINTF_I("[LSAD] END OF INIT, CURRENTLY BATT SAMPLE COUNT=%d, LSAD VALUE=%d \r\n",
             ci_battery_get_count(),
             cfx_cm3_sharedMemoryAll.systemShare.batteryLevel_CfX_to_CM3);
 #endif
@@ -508,9 +508,9 @@ void Initialize(void)
     // 초기화 과정을 통해 SPI 인터페이스 설정도 완료 되었고
     // 위에서 CFX 동작까지 실행시켰으므로, 이제 QCC를 깨우고 배터리 정보를 얻을 수 있도록 한다.
     snd_qcc_set_mode(SND_QCC_MODE_NORMAL);
-    ci_printi("\r\n");
-    ci_printi("################################################################\r\n");
-    ci_printi("###  [QCC SET-NORMAL]    t3 = %d ms\r\n", tdc_timer_get_t3_tick());
-    ci_printi("################################################################\r\n");
-    ci_printi("\r\n");
+    TDC_PRINTF_I("\r\n");
+    TDC_PRINTF_I("################################################################\r\n");
+    TDC_PRINTF_I("###  [QCC SET-NORMAL]    t3 = %d ms\r\n", tdc_hal_timer_get_t3_tick());
+    TDC_PRINTF_I("################################################################\r\n");
+    TDC_PRINTF_I("\r\n");
 }

@@ -590,14 +590,14 @@ bool calculationStimulParaN_cfxShare(void)
     {
         if (p_mapdata->numFrequencyBand < 16)
         {
-            ci_printe("[PARAM] [NofM] NOT AVAILABLE! 'BAND NUM < 16' !! \r\n");
+            TDC_PRINTF_E("[PARAM] [NofM] NOT AVAILABLE! 'BAND NUM < 16' !! \r\n");
         }
         else
         {
             frameNumPerOneChannel  = 3;  // 채널 당 3 프레임
             transferableChannelNum = 8;  // 1 밀리초에 최대 8 채널 자극
-            ci_printw("[PARAM] [NofM] FRAME NUM PER 1 CH  : 3 \r\n");
-            ci_printw("[PARAM] [NofM] TRANSFERABLE CH NUM : 8 \r\n");
+            TDC_PRINTF_W("[PARAM] [NofM] FRAME NUM PER 1 CH  : 3 \r\n");
+            TDC_PRINTF_W("[PARAM] [NofM] TRANSFERABLE CH NUM : 8 \r\n");
         }
     }
 #endif
@@ -610,9 +610,9 @@ bool calculationStimulParaN_cfxShare(void)
     p_calculatedStimulPara_byCM3->frameNumPerChannel   = frameNumPerOneChannel;
     p_calculatedStimulPara_byCM3->transferableFrameNum = transferableChannelNum;
 
-    ci_printd("[PARAM] PULSE PHASE WIDTH            : %d \r\n", p_mapdata->stimulationPulsePhaseWidth);
-    ci_printd("[PARAM] FRAME NUMBER PER ONE CHANNEL : %d \r\n", frameNumPerOneChannel);
-    ci_printd("[PARAM] TRANSFERABLE CHANNEL NUMBER  : %d \r\n", transferableChannelNum);
+    TDC_PRINTF_D("[PARAM] PULSE PHASE WIDTH            : %d \r\n", p_mapdata->stimulationPulsePhaseWidth);
+    TDC_PRINTF_D("[PARAM] FRAME NUMBER PER ONE CHANNEL : %d \r\n", frameNumPerOneChannel);
+    TDC_PRINTF_D("[PARAM] TRANSFERABLE CHANNEL NUMBER  : %d \r\n", transferableChannelNum);
 
     cfx_cm3_sharedMemoryAll.CM3_tempValue1 = 0;
     cfx_cm3_sharedMemoryAll.CM3_tempValue2 = 0;
