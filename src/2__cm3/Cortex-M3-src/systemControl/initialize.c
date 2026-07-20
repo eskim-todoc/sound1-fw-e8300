@@ -33,6 +33,7 @@
 #include "isd_interface.h"
 #include "mappingControl.h"
 #include "remoteControl.h"
+#include "tdc_remote_gain_control.h"
 
 #include "LedOutput.h"
 #include "indicatorByStimul.h"
@@ -342,6 +343,11 @@ void Initialize(void)
     // 그러므로, CM3가 직접 ISD 정보를 공유 메모리로 로드 한 후 CFX_EEPROM_data_is_Loaded를 1로 설정한다.
     ci_filesystem_copy_isd_info_from_filesystem_to_shared_memory();
     cfx_cm3_sharedMemoryAll.CFX_EEPROM_data_is_Loaded = 1;
+
+    // 게인 테이블 인덱스를 기본값(유니티)으로 초기화한다.
+    // 인덱스 0 이 뮤트이므로, CFX 가 참조하기 전에 반드시 유효값을 넣어야 한다.
+    // (아래 enable_CFX_trigger_for_iteration() 보다 앞이어야 한다.)
+    tdc_remote_gain_control_init();
 
     ci_printv("[INFO] COPY ISD INFO FOR ALL MAPS FROM FS_MEM TO SH_MEM \r\n");
 
