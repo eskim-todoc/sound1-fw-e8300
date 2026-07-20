@@ -17,10 +17,12 @@
 #include "cfx_cm3_sharedMemory.h"  // cfx_cm3_sharedMemoryAll
 #include "remoteControl.h"         // ST__REMOTECONTROL_PACKET
 #include <ci_printf.h>
+#include <tdc_gain_storage.h>
 
 static bool gc_is_valid_request(int control_type, int gain_type, int gain_index);
 static int  gc_read_index(int gain_type);
 static void gc_write_index(int gain_type, int gain_index);
+static bool gc_save_to_file(void);
 
 void tdc_remote_gain_control_init(void)
 {
@@ -40,14 +42,23 @@ int tdc_remote_gain_control_handle(const ST__REMOTECONTROL_PACKET *packet, int *
 
     if (gc_is_valid_request(control_type, gain_type, gain_index))
     {
+        rsp_code = TDC_GAIN_RSP_SUCCESS;
+
         if (control_type == TDC_GAIN_CONTROL_TYPE_WRITE)
         {
             gc_write_index(gain_type, gain_index);
+
+            // 파일 저장까지 성공해야 이전 설정이 유지되므로, 실패는 응답으로 알린다.
+            // 저장에 실패해도 공유 메모리는 되돌리지 않는다. 소리는 이미 바뀌었고,
+            // 이번 전원 주기 동안은 그대로 쓸 수 있기 때문이다.
+            if (!gc_save_to_file())
+            {
+                rsp_code = TDC_GAIN_RSP_FAILED;
+            }
         }
 
-        // Read · Write 모두 현재 저장된 값으로 응답한다.
+        // Read · Write 모두 현재 적용 중인 값으로 응답한다.
         response_index = gc_read_index(gain_type);
-        rsp_code       = TDC_GAIN_RSP_SUCCESS;
     }
 
     ci_printi("[GAIN] ctrl: %d, type: %d, idx: %d, rsp: %d \r\n", control_type, gain_type, response_index, rsp_code);
@@ -109,4 +120,31 @@ static void gc_write_index(int gain_type, int gain_index)
     {
         cfx_cm3_sharedMemoryAll.gain_table_index_b = gain_index;
     }
+}
+
+/* 현재 연결된 ISD 슬롯에 게인 설정을 저장한다. 저장까지 성공하면 true. */
+static bool gc_save_to_file(void)
+{
+    ST__TDC_GAIN_SETTING gain_setting;
+    int                  isd_num = read_connected_ISD_Num();
+
+    // 매핑 모드에서는 ISD 슬롯 번호가 임시 값이라 엉뚱한 사용자 자리에 쓸 수 있다.
+    if (cfx_cm3_sharedMemoryAll.systemShare.system_opMode != en__normalMode)
+    {
+        ci_printw("[GAIN] SAVE SKIPPED (NOT NORMAL MODE) \r\n");
+        return false;
+    }
+
+    // ISD 가 연결되지 않으면 QCC 가 블루투스를 켜지 않으므로 여기까지 올 일이 없다.
+    // 그래도 도달했다면 비정상 상황이므로 저장하지 않고 실패로 알린다.
+    if ((isd_num < 1) || (MaxNumUser < isd_num))
+    {
+        ci_printw("[GAIN] SAVE SKIPPED (ISD NOT CONNECTED : %d) \r\n", isd_num);
+        return false;
+    }
+
+    gain_setting.gain_table_index_a = cfx_cm3_sharedMemoryAll.gain_table_index_a;
+    gain_setting.gain_table_index_b = cfx_cm3_sharedMemoryAll.gain_table_index_b;
+
+    return (tdc_gain_storage_save(isd_num, &gain_setting) == TDC_GAIN_STORAGE_RET_OK);
 }

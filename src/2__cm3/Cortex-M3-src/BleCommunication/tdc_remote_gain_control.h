@@ -21,10 +21,8 @@
 
 #include "remoteControl.h"  // ST__REMOTECONTROL_PACKET
 
-/* 게인 테이블 인덱스 기본값 - 유니티(0 dB).
- * 부팅 직후 CFX 가 곧바로 참조하므로 Initialize() 에서 공유 메모리에 기록한다. */
-#define TDC_GAIN_TABLE_INDEX_DEFAULT_A 128
-#define TDC_GAIN_TABLE_INDEX_DEFAULT_B 128
+/* 게인 테이블 인덱스 기본값(유니티)과 유효 범위는 영속화 모듈이 단일 출처로 갖는다. */
+#include <tdc_gain_storage.h>
 
 /* Control type */
 #define TDC_GAIN_CONTROL_TYPE_READ  0
@@ -38,10 +36,6 @@
 /* 응답 코드 */
 #define TDC_GAIN_RSP_FAILED  0
 #define TDC_GAIN_RSP_SUCCESS 1
-
-/* 게인 테이블 인덱스 유효 범위 (CFX audioMixer 의 테이블 크기와 일치) */
-#define TDC_GAIN_TABLE_INDEX_MIN 0
-#define TDC_GAIN_TABLE_INDEX_MAX 255
 
 /* 공유 메모리의 게인 인덱스를 기본값으로 초기화한다.
  * CFX iteration 이 열리기 전에 호출해야 한다(인덱스 0 이 뮤트이므로
