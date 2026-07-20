@@ -39,12 +39,8 @@
 // Function header
 int tdc_hal_dio_set_mode(int pm_mode);
 
-void tdc_hal_dio_clear_int_flag_case_lid_open(void);
-void tdc_hal_dio_clear_int_flag_acc_sensor(void);
 void tdc_hal_dio_set_int_flag_case_lid_open(void);
 void tdc_hal_dio_set_int_flag_acc_sensor(void);
-bool tdc_hal_dio_is_set_int_flag_case_lid_open(void);
-bool tdc_hal_dio_is_set_int_flag_acc_sensor(void);
 
 void DIO_0_IRQHandler(void);
 void DIO_1_IRQHandler(void);

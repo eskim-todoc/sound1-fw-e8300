@@ -7,16 +7,6 @@
 static volatile int s_int_flag_acc_sensor    = 0;
 static volatile int s_int_flag_case_lid_open = 0;
 
-bool tdc_hal_dio_is_set_int_flag_acc_sensor(void)
-{
-    return (s_int_flag_acc_sensor == 1);
-}
-
-bool tdc_hal_dio_is_set_int_flag_case_lid_open(void)
-{
-    return (s_int_flag_case_lid_open == 1);
-}
-
 void tdc_hal_dio_set_int_flag_acc_sensor(void)
 {
     s_int_flag_acc_sensor = 1;
@@ -25,16 +15,6 @@ void tdc_hal_dio_set_int_flag_acc_sensor(void)
 void tdc_hal_dio_set_int_flag_case_lid_open(void)
 {
     s_int_flag_case_lid_open = 1;
-}
-
-void tdc_hal_dio_clear_int_flag_acc_sensor(void)
-{
-    s_int_flag_acc_sensor = 0;
-}
-
-void tdc_hal_dio_clear_int_flag_case_lid_open(void)
-{
-    s_int_flag_case_lid_open = 0;
 }
 
 int tdc_hal_dio_configure_normal(void)

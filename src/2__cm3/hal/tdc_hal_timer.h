@@ -63,7 +63,6 @@ int  tdc_hal_timer_init(uint32_t tick);
  *   tick: TIMEOUT_VALUE 필드 (24-bit) */
 int  tdc_hal_timer_init_prescaled(uint32_t prescale_field, uint32_t tick);
 
-int  tdc_hal_timer_uninit(void);
 
 tdc_hal_timer_time_t tdc_hal_timer_get_reference_time_after_self_update(void);
 void            tdc_hal_timer_update_reference_time(tdc_hal_timer_time_t *p_time, uint32_t count_init_value);

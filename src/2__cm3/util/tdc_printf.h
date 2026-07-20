@@ -68,9 +68,6 @@ void tdc_printf_file_func_line(const char *file, const char *func, int line);
 #endif
 
 // clang-format off
-#define TDC_PRINTF_ERROR_LOC(fmt, ...)                                       \
-        tdc_printf_file_func_line(__SHORT_FILE__, __func__, __LINE__);    \
-        SEGGER_RTT_printf(0, RTT_CTRL_TEXT_BRIGHT_RED fmt RTT_CTRL_RESET, ##__VA_ARGS__)
 #if 1 // RTT 뷰어 사용 시
 #if 0 // 상세 정보 표시 O
 #define TDC_PRINTF(fmt, ...)                                         \

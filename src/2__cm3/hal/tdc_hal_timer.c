@@ -169,13 +169,3 @@ int tdc_hal_timer_init(uint32_t tick)
 {
     return tdc_hal_timer_init_prescaled(TIMER_PRESCALE_1, tick);
 }
-
-int tdc_hal_timer_uninit(void)
-{
-    Sys_Timer_Stop(OTE_1_5_GEN_TIMER_INSTANCE);
-
-    NVIC_DisableIRQ(OTE_1_5_GEN_TIMER_IRQn);
-    NVIC_ClearPendingIRQ(OTE_1_5_GEN_TIMER_IRQn);
-
-    return df_True;
-}

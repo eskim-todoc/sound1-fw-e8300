@@ -132,12 +132,8 @@ typedef struct
 #endif
 } FS_MEM_UART_T;
 
-int  tdc_hal_uart_init(void);
 int  tdc_hal_uart_uninit(void);
-int  tdc_hal_uart_getch(char* p_ch);
 int  tdc_hal_uart_printf(const char* p_fmt, ...);
-void tdc_hal_uart_set_color(uint32_t color);
-void tdc_hal_uart_clear_color(void);
 
 #define FS_MEM_UART ((volatile FS_MEM_UART_T*) DSP_PRAM1_REMAP_BASE)
 
