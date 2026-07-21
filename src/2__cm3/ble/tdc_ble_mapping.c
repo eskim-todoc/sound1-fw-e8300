@@ -2,11 +2,11 @@
 #include <hw.h>
 #include <stdbool.h>
 #include "tdc_sys_error.h"
-#include "mappingControl.h"
+#include "tdc_ble_mapping.h"
 #include "board.h"
 #include "internalStimulationChip.h"
 #include "cfx_cm3_sharedMemory.h"
-#include "mappingControl.h"
+#include "tdc_ble_mapping.h"
 #include "tdc_hal_spi.h"
 #include "definitionsForAlgorithm.h"
 #include "isd_interface_mapping_impedanceMeasurement.h"
@@ -20,11 +20,11 @@
 #include "isd_interface_init_ISD.h"
 #include "FPGA.h"
 #include "tdc_sys_control.h"
-#include "remoteControl.h"
+#include "tdc_ble_remote.h"
 
 static ST__MAPPING_PACKET mappingPacket;
 
-void clear_mappingCommand()
+void tdc_ble_mapping_clear_command()
 {
     mappingPacket.command                    = en__mapping_IDLE;
     mappingPacket.liveStimulation.subCommand = en__Standby;
@@ -32,30 +32,30 @@ void clear_mappingCommand()
     changePcmOutputMode(PcmBitStream_Mode_NopStandby);
 }
 
-void changeMappingCommandBleDisconneted(void)
+void tdc_ble_mapping_change_command_ble_disconnected(void)
 {
     mappingPacket.command = en__mapping_ble_disconneted;
 }
 
-void changeMappingCommandWaitingForBleOff(void)
+void tdc_ble_mapping_change_command_waiting_ble_off(void)
 {
     mappingPacket.command = en__mapping_waiting_for_BleOff;
 }
 
-EN__MAPPING_COMMAND getMappingCommand(void)
+EN__MAPPING_COMMAND tdc_ble_mapping_get_command(void)
 {
     return mappingPacket.command;
 }
 
-// const ST__MAPPING_PACKET *getMappingPacket(void)
-ST__MAPPING_PACKET *getMappingPacket(void)
+// const ST__MAPPING_PACKET *tdc_ble_mapping_get_packet(void)
+ST__MAPPING_PACKET *tdc_ble_mapping_get_packet(void)
 {
     return &mappingPacket;
 }
 
 static int writingStartSlot_index = 0;
 
-void fetch_mappingControlPacket(const int *Rx_dataPacket)  // spi 통신에서 호출 됨
+void tdc_ble_mapping_fetch_packet(const int *Rx_dataPacket)  // spi 통신에서 호출 됨
 {
     int        i, k, index;
     int        tempCommand;
@@ -1871,7 +1871,7 @@ void fetch_mappingControlPacket(const int *Rx_dataPacket)  // spi 통신에서 �
     }
 }
 
-ST__MAPPING_STATE mappingControl(ST__ISD_STATUS ISD_state)
+ST__MAPPING_STATE tdc_ble_mapping_step(ST__ISD_STATUS ISD_state)
 {
     static EN__MAPPING_COMMAND prev_mppingCommand      = en__mapping_IDLE;
     static int                 connectionCheckCounter  = df_connectionCheckPeriod_ms;
@@ -1959,7 +1959,7 @@ ST__MAPPING_STATE mappingControl(ST__ISD_STATUS ISD_state)
                         // SPI TX 버퍼가 모두 전송되고 난 뒤 시스템을 재부팅 시킨다. (with 워치독 리셋)
                         if (tdc_hal_spi_is_tx_buffer_empty())
                         {
-                            clear_mappingCommand();
+                            tdc_ble_mapping_clear_command();
                             changeSystemModeFlag(en__systemReset);
 
                             for (int i = 0; i < 100; i++)
@@ -1972,7 +1972,7 @@ ST__MAPPING_STATE mappingControl(ST__ISD_STATUS ISD_state)
                         }
                     }
 #else
-                    clear_mappingCommand();
+                    tdc_ble_mapping_clear_command();
                     mappingProgramConnected = false;
                     isdControlCommand       = en__isdStatus_PowerIC_Reset;
 
@@ -1983,7 +1983,7 @@ ST__MAPPING_STATE mappingControl(ST__ISD_STATUS ISD_state)
 
                 case en__mapping_ble_disconneted:
                 {
-                    clear_mappingCommand();
+                    tdc_ble_mapping_clear_command();
                     mappingProgramConnected = false;
                     isdControlCommand       = en__isdStatus_PowerIC_Reset;
 
@@ -2004,7 +2004,7 @@ ST__MAPPING_STATE mappingControl(ST__ISD_STATUS ISD_state)
                     {
                         TDC_PRINTF_E("[MAPPING] CAN NOT CHECK IMPEDANCE, BECAUSE ISD NOT CONNECTED \r\n");
                         tdc_sys_error_send_to_app(en__mapping_impedanceChekck, en__EN__ISD_ERROR, en__ISD_notConnected, __LINE__);
-                        clear_mappingCommand();
+                        tdc_ble_mapping_clear_command();
                     }
                 }
                 break;
@@ -2020,7 +2020,7 @@ ST__MAPPING_STATE mappingControl(ST__ISD_STATUS ISD_state)
                     else
                     {
                         tdc_sys_error_send_to_app(en__mapping_eCAP_Measurement_masking, en__EN__ISD_ERROR, en__ISD_notConnected, __LINE__);
-                        clear_mappingCommand();
+                        tdc_ble_mapping_clear_command();
                     }
                 }
                 break;
@@ -2044,7 +2044,7 @@ ST__MAPPING_STATE mappingControl(ST__ISD_STATUS ISD_state)
                     else
                     {
                         tdc_sys_error_send_to_app(en__mapping_specific_stimulation, en__EN__ISD_ERROR, en__ISD_notConnected, __LINE__);
-                        clear_mappingCommand();
+                        tdc_ble_mapping_clear_command();
                     }
                 }
                 break;
@@ -2087,7 +2087,7 @@ ST__MAPPING_STATE mappingControl(ST__ISD_STATUS ISD_state)
                     // 송신 데이터 SPI TX버퍼에 복사
                     tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, buffer_tx_index);
 
-                    clear_mappingCommand();
+                    tdc_ble_mapping_clear_command();
                 }
                 break;
 
@@ -2160,11 +2160,11 @@ ST__MAPPING_STATE mappingControl(ST__ISD_STATUS ISD_state)
                             {
                                 if (en__mapping_recover_ALL_SlotData_ManufactureData > 0x60)
                                 {
-                                    clear_mappingCommand();
+                                    tdc_ble_mapping_clear_command();
                                 }
                                 else
                                 {
-                                    clearRemoteColtrolCommand();
+                                    tdc_ble_remote_clear_command();
                                 }
 
                                 changeSystemModeFlag(en__systemReset);
@@ -2203,7 +2203,7 @@ ST__MAPPING_STATE mappingControl(ST__ISD_STATUS ISD_state)
                         }
                         else
                         {
-                            clear_mappingCommand();
+                            tdc_ble_mapping_clear_command();
                             delayCounter = 0;
                         }
                     }
@@ -2223,7 +2223,7 @@ ST__MAPPING_STATE mappingControl(ST__ISD_STATUS ISD_state)
                     else
                     {
                         tdc_sys_error_send_to_app(en__mapping_testStimulation, en__EN__ISD_ERROR, en__ISD_notConnected, __LINE__);
-                        clear_mappingCommand();
+                        tdc_ble_mapping_clear_command();
                     }
                 }
                 break;
@@ -2245,7 +2245,7 @@ ST__MAPPING_STATE mappingControl(ST__ISD_STATUS ISD_state)
                     tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, buffer_tx_index);
 
                     //  명령 종료
-                    clear_mappingCommand();
+                    tdc_ble_mapping_clear_command();
                 }
                 break;
 
@@ -2278,7 +2278,7 @@ ST__MAPPING_STATE mappingControl(ST__ISD_STATUS ISD_state)
             if (mappingPacket.command > en__mapping_connect)
             {
                 tdc_sys_error_send_to_app(mappingPacket.command, en__EN__BLE_PROTOCOL_ERROR, en__Command_Order, __LINE__);
-                clear_mappingCommand();
+                tdc_ble_mapping_clear_command();
             }
         }
     }
@@ -2291,7 +2291,7 @@ ST__MAPPING_STATE mappingControl(ST__ISD_STATUS ISD_state)
     return mappingStatus;
 }
 
-void updateMappingProgramConnection(bool connection)
+void tdc_ble_mapping_update_program_connection(bool connection)
 {
     if (connection)
     {
@@ -2302,403 +2302,10 @@ void updateMappingProgramConnection(bool connection)
         mappingPacket.fetched_command = en__mapping_disconnect;
     }
 }
-
-#if 0
-
-
-
-
-void importMappingConnectForDebug(void)
-{
-    //updateMappingProgramConnection(true);
-    mappingPacket.command=en__mapping_IDLE;
-}
-
-
-void importMappingDisconnectForDebug(void)
-
-{
-    clear_mappingCommand();
-
-    //updateMappingProgramConnection(false);
-
-
-    //update_isd_Link_is_Disconnected();
-}
-
-
-void importImpedanceDataForDebug(void)
-{
-
-
-    mappingPacket.impedanceCheck.iterationNum=2;
-    mappingPacket.impedanceCheck.pulseWidth_start_usec=80;
-    mappingPacket.impedanceCheck.pulseWidth_end_usec=180;
-    mappingPacket.impedanceCheck.stimulationLevel_uA=100;           // 현재 프로그램된 최대값은 1020
-
-    mappingPacket.command=en__mapping_impedanceChekck;
-
-}
-
-
-void import_eCapDataForDebug(void)
-{
-
-    mappingPacket.eCapMeasurement.firstPulsePhase=negativePulseFirst;
-    mappingPacket.eCapMeasurement.stimulatonMode=en__monopolr_body; //en__monopolr_body;    // 자극모드  en__bipolar
-
-    mappingPacket.eCapMeasurement.stimulationElectrodeNum=4; //자극 전극 번호
-    mappingPacket.eCapMeasurement.measurementElectrodeNum=2;
-
-    mappingPacket.eCapMeasurement.bipolarReferenceElectrodeNum=4; // 바이폴라 자극 모드일때 기준전극 번호
-
-    mappingPacket.eCapMeasurement.stimulationLevel_uA_masker=50;
-    mappingPacket.eCapMeasurement.stimulationLevel_uA_probe=45;
-
-    mappingPacket.eCapMeasurement.pulseWidth=FPGA_pulsePhaseWidth_minimum+0;//FPGA_pulsePhaseWidth_minimum~FPGA_pulsePhaseWidth_minimum+255
-    mappingPacket.eCapMeasurement.maskerProbeInterval_numFrame=21;          // 4~255 //자극 펄스(펄스폭고려) 2개와 인터벌의 합이 2msec의 시간을 넘지 않아야 한다.
-    mappingPacket.eCapMeasurement.iterationNum=1;
-    mappingPacket.eCapMeasurement.adcPreampGain=7;
-    mappingPacket.eCapMeasurement.adcSamplingFreq=1;    // 0 :40, 1:20, 2 :10 3: 5kHz.....
-    mappingPacket.eCapMeasurement.adcMeasurementDelay=1;    // 단위는 약 30usec
-    mappingPacket.eCapMeasurement.measurementSampleNum=32;
-
-
-
-
-
-
-    mappingPacket.command=en__mapping_eCAP_Measurement_masking;
-
-}
-
-
-void import_SpecificStimulationDebug(void)
-{
-
-    mappingPacket.specificStimulation.usableElectrodeNum=10;                        //1~32
-    mappingPacket.specificStimulation.firstPulsePhase=negativePulseFirst;
-    mappingPacket.specificStimulation.stimulatonMode=en__monopolr_body;                 //en__monopolr_body;    // 자극모드  en__bipolar
-
-    mappingPacket.specificStimulation.stimulationElectrodeNum=4;                    //자극 전극 번호
-
-
-    mappingPacket.specificStimulation.bipolarReferenceElectrodeNum=2;               // 바이폴라 자극 모드일때 기준전극 번호
-
-    mappingPacket.specificStimulation.stimulationLevel_uA=50;                       //
-
-    mappingPacket.specificStimulation.pulseWidth=FPGA_pulsePhaseWidth_minimum+200;  //FPGA_pulsePhaseWidth_minimum~FPGA_pulsePhaseWidth_minimum+255
-    mappingPacket.specificStimulation.stimulationTime_100msec=10;                   // 자극 출력 유지 시간.
-
-
-    mappingPacket.command=en__mapping_specific_stimulation;                         //
-
-
-
-}
-
-
-void import_original_ISD(void)
-{
-    char tempData_A[]={/*0x68,0x01,*/0x17,0x11,0x00,0x4a,0x01,0x6b,0x6a,0x73,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00};
-    char tempData_B[]={/*0x68,0x02,*/0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00};
-
-    int *p_RepositoryFor_ISD_info;
-    int *p_RepositoryFor_userSetting;
-
-    int tempValue;
-    int i, index;
-
-// ISD info
-                            p_RepositoryFor_ISD_info= getPointerRepositoryForReadWriteMapData_isd_info();
-
-
-
-                            for(i=0; i<18; i++)
-                            {
-                                switch(i)
-                                {
-                                    case 0 :
-                                    case 1 :
-                                        p_RepositoryFor_ISD_info[i]=tempData_A[index++]; // 내부기 제조번호 (년, 월_모델번호)
-                                    break;
-                                    case 2 : // 시리얼 번호 상위 8bit
-                                        tempValue=tempData_A[index++]; // 시리얼 번호 상위 8bit
-                                        tempValue=tempValue<<8;
-
-                                    break;
-                                    case 3 : // 시리얼 번호 하위 8bit
-                                        p_RepositoryFor_ISD_info[i-1]=tempValue|tempData_A[index++]; // 시리얼 번호 상위 8bit
-                                        // 시리얼 번호가 16bit가 전달되면서 인덱스 감소 [i-1]
-
-                                    break;
-
-                                    default :
-                                        p_RepositoryFor_ISD_info[i-1]=tempData_A[index++];
-                                        // 시리얼 번호가 16bit가 전달되면서 인덱스 감소 [i-1]
-                                    break;
-                                }
-                            }
-
-
-
-                            for(i=18; i<30; i++)
-                                p_RepositoryFor_ISD_info[i-1]=tempData_B[index++];  //  사용자 이름 나머지
-//                                                              // 시리얼 번호가 16bit가 전달되면서 인덱스 감소 [i-1]
-
-
-                            // 나머지 데이터는 초기값으로 설정한다.
-                                // 패스키
-                                p_RepositoryFor_ISD_info[(i++)-1]=1;
-                                p_RepositoryFor_ISD_info[(i++)-1]=1;
-                                p_RepositoryFor_ISD_info[(i++)-1]=1;
-                                p_RepositoryFor_ISD_info[(i++)-1]=1;
-
-// user setting
-
-                                p_RepositoryFor_userSetting=getPointerRepositoryForReadWriteMapData_userSetting();
-
-                                i=0;
-                                // 맵번호
-                                p_RepositoryFor_userSetting[(i++)]=1;       //1
-                                // 자극볼륨
-                                p_RepositoryFor_userSetting[(i++)]=4;           //2
-                                // 마이크감도
-                                p_RepositoryFor_userSetting[(i++)]=1;           //3
-                                // LED
-                                p_RepositoryFor_userSetting[(i++)]=1;           //4
-                                // 자극알림
-                                p_RepositoryFor_userSetting[(i++)]=1;           //5
-                                // 텔레코일
-                                p_RepositoryFor_userSetting[(i++)]=2;           //6
-
-                                //블루투스
-                                p_RepositoryFor_userSetting[(i++)]=1;
-
-                                // 맵 스템프
-
-// map stamp
-                                p_RepositoryFor_userSetting[(i++)]=0;
-                                p_RepositoryFor_userSetting[(i++)]=0;
-                                p_RepositoryFor_userSetting[(i++)]=0;
-                                p_RepositoryFor_userSetting[(i++)]=0;
-                                p_RepositoryFor_userSetting[(i++)]=0;
-                                p_RepositoryFor_userSetting[(i++)]=0;
-
-                                mappingPacket.command=en__mapping_write_original_ISD_N_USER;
-
-
-
-
-}
-
-
-void import_liveAllParaDebug(void)
-{
-
-    int i;
-
-
-    mappingPacket.liveStimulation.subCommand=en__allParameter;  //1~32 // 시작, 중지, 자극 볼륨 조절, 마이크 감도 조절, 알림용 자극  설정
-    mappingPacket.liveStimulation.stimulVolume=4;   //1~10
-    mappingPacket.liveStimulation.audioVolume=1;    // 1~4
-    mappingPacket.liveStimulation.stimulationIndicatorChannelNum=19;        // 1~32 주파수 밴스 인덱스로..받을  것
-    mappingPacket.liveStimulation.stimulationIndicatorAmplitude_uA=1500;    // 0~1800
-
-
-    mappingPacket.liveStimulation.stimulationStrategy=1;
-    mappingPacket.liveStimulation.firstPulsePhase=negativePulseFirst;
-    mappingPacket.liveStimulation.stimulationMode=en__monopolr_rod;
-    mappingPacket.liveStimulation.stimulationPulsePhaseWidth=FPGA_pulsePhaseWidth_minimum;
-    mappingPacket.liveStimulation.numFrequencyBand=32;
-
-    for(i=0; i<32; i++)
-        mappingPacket.liveStimulation.usableStimulationElectrodIndex[i]=i+1; //1~32
-
-    for(i=0; i<31; i++)
-        mappingPacket.liveStimulation.usableReferenceElectrodIndex[i]=i+2; //1~31
-
-    mappingPacket.liveStimulation.usableReferenceElectrodIndex[i]=99; //32
-
-    for(i=0; i<32; i++)
-        mappingPacket.liveStimulation.CIS_FreqBandOrder[i]=i+1; //1~32
-
-    for(i=0; i<32; i++)
-        mappingPacket.liveStimulation.T_level_uA[i]=900;//0~1800
-    for(i=0; i<32; i++)
-        mappingPacket.liveStimulation.C_level_uA[i]=1500;
-
-    for(i=0; i<32; i++)
-        mappingPacket.liveStimulation.audio_input_x_mim[i]=df_minAudioForLogarithm;
-    for(i=0; i<32; i++)
-        mappingPacket.liveStimulation.audio_input_x_max[i]=df_maxAudioForLogarithm;
-
-
-
-
-
-    mappingPacket.fetched_command=en__mapping_live_stimulation;
-
-}
-
-
-void import_liveStart(void)
-{
-
-    int i;
-
-
-    mappingPacket.liveStimulation.subCommand=en__Start;
-
-
-    mappingPacket.fetched_command=en__mapping_live_stimulation;
-
-}
-
-
-
-
-
-
-void import_liveStimulationVolumeAdjust(int volume)
-{
-    mappingPacket.liveStimulation.stimulVolume=volume;
-
-
-    mappingPacket.liveStimulation.subCommand=en__StimulationVolumeAdjust;
-    mappingPacket.fetched_command=en__mapping_live_stimulation;
-
-
-
-}
-void import_liveMicSensitivityAdjust(int volume)
-{
-
-
-    mappingPacket.liveStimulation.audioVolume=volume;
-
-    mappingPacket.liveStimulation.subCommand=en__MicSensitivityAdjust;
-    mappingPacket.fetched_command=en__mapping_live_stimulation;
-
-}
-void import_liveMapping_Stimul_indicator(int ch_index, int amplitude_uA)
-{
-
-    mappingPacket.liveStimulation.stimulationIndicatorChannelNum=ch_index;
-    mappingPacket.liveStimulation.stimulationIndicatorAmplitude_uA=amplitude_uA;
-
-    mappingPacket.liveStimulation.subCommand=en__mapping_Stimul_indicator;
-    mappingPacket.fetched_command=en__mapping_live_stimulation;
-
-}
-void import_liveReadEqualizer(int start_index, int end_index)
-{
-
-    mappingPacket.liveStimulation.subCommand=en__readEqualizer;
-    mappingPacket.fetched_command=en__mapping_live_stimulation;
-
-    mappingPacket.liveStimulation.equlizer_ReadStart_index=start_index;
-    mappingPacket.liveStimulation.equlizer_ReadEnd_index=end_index;
-
-}
-void import_liveReadDeviceStatus()
-{
-
-}
-
-void import_liveStop()
-{
-
-    mappingPacket.liveStimulation.subCommand=en__Stop;
-    mappingPacket.fetched_command=en__mapping_live_stimulation;
-
-}
-
-
-
-/*
-90010201000D0602006405
-9002200102030405060708090A0B0C0D0E0F10
-90031112131415161718191A1B1C1D1E1F20
-900402030405060708090A0B0C0D0E0F1011
-900512131415161718191A1B1C1D1E1F20
-*/
-void import_testStimulation()
-{
-            int i, trashValue;
-
-
-//
-#if 0
-            mappingPacket.testStimulation.stimulatonMode= en__monopolr_rod;
-            trashValue=0; // 오프셋 필요없음.
-            mappingPacket.testStimulation.firstPulsePhase=0 ;  // 0, 1
-            mappingPacket.testStimulation.pulseWidth= 13;
-            mappingPacket.testStimulation.stimulationDacSlope= 8;   // 2,4,6,8
-            mappingPacket.testStimulation.stimulationDacOffsetReslution=2; //2,4;
-            mappingPacket.testStimulation.stimulationDacOffset_255= 0;
-            mappingPacket.testStimulation.stimulationLevel_255= 0xFF;
-            mappingPacket.testStimulation.stimulationTime_100msec= 50;
-
-
-
-
-            mappingPacket.testStimulation.usableElectrodeNum=32;
-            for(i=0; i<df_MaxNumOfElectrode; i++)
-                mappingPacket.testStimulation.stimulationElectrodeNum[i]=i+1;
-
-
-
-
-
-            for(i=1; i<df_MaxNumOfElectrode; i++)
-                mappingPacket.testStimulation.bipolarReferenceElectrodeNum[i-1]=i+1;
-
-
-
-            mappingPacket.c=en__mapping_testStimulation;
-
-#else
-
-
-            mappingPacket.testStimulation.stimulatonMode= en__monopolr_rod;
-            trashValue=0; // 오프셋 필요없음.
-            mappingPacket.testStimulation.firstPulsePhase=0 ;  // 0, 1
-            mappingPacket.testStimulation.pulseWidth= 0x0D;
-            mappingPacket.testStimulation.stimulationDacSlope= 2;   // 2,4,6,8
-            mappingPacket.testStimulation.stimulationDacOffsetReslution=2; //2,4;
-            mappingPacket.testStimulation.stimulationDacOffset_255= 120;
-            mappingPacket.testStimulation.stimulationLevel_255= 0;
-            mappingPacket.testStimulation.stimulationTime_100msec= 50;
-
-
-
-
-            mappingPacket.testStimulation.usableElectrodeNum=24;
-            for(i=0; i<df_MaxNumOfElectrode; i++)
-                mappingPacket.testStimulation.stimulationElectrodeNum[i]=i+1;
-
-
-
-
-
-            for(i=1; i<df_MaxNumOfElectrode; i++)
-                // mappingPacket.testStimulation.bipolarReferenceElectrodeNum[i-1]=i+1
-                mappingPacket.testStimulation.bipolarReferenceElectrodeNum[i-1]=99;
-
-
-
-            mappingPacket.command=en__mapping_testStimulation;
-
-
-#endif
-
-
-}
-
-
-
-#endif
+/* import_*ForDebug / import_live* 계열 15개 제거(2026-07-22, G6).
+ * mapping 프로토콜 수동 주입용 구 디버그 진입점. 정의는 #if 0 블록(396줄) 안에서
+ * 죽어 있었고 헤더 선언 16개도 호출처가 0 이었다(import_livePause 는 선언만 있고
+ * 정의조차 없는 고아였다). 상세: docs/tasks/cm3/20260720_cm3-full-refactor/게이트-노트/G6-ble-qcc.md */
 
 
 

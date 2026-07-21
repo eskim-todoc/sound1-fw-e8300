@@ -1,6 +1,6 @@
 
 
-#include "remoteControl.h"
+#include "tdc_ble_remote.h"
 #include "stimulationParaCal.h"
 #include "tdc_hal_spi.h"
 #include "definitionsForAlgorithm.h"
@@ -9,7 +9,7 @@
 #include "tdc_sys_error.h"
 #include "isd_interface_init_ISD.h"
 
-void read_signal_processingPara(bool startFlag, int command)
+void tdc_ble_remote_read_sp_para(bool startFlag, int command)
 {
     static int     flowCounter = 0;
     int            bufferForSPI_tx[BLE_DataPacketSize];
@@ -266,7 +266,7 @@ void read_signal_processingPara(bool startFlag, int command)
     if(flowCounter==7)
     {
         //  명령 종료
-        clearRemoteColtrolCommand();
+        tdc_ble_remote_clear_command();
 
     }
 

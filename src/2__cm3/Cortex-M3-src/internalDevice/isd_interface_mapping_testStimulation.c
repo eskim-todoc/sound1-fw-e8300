@@ -18,7 +18,7 @@
 #include "isd_interface.h"
 #include "isd_interface_FPGA.h"
 #include "cfx_cm3_sharedMemory.h"
-#include "mappingControl.h"
+#include "tdc_ble_mapping.h"
 #include "tdc_hal_spi.h"
 #include "stimulationParaCal.h"
 #include "electrodeMapping.h"
@@ -106,7 +106,7 @@ bool testStimulation(bool startFlag)
 
             // 펄스폭에 따른 자극 프레임 갯수 계산
 
-            mappingPacket = getMappingPacket();
+            mappingPacket = tdc_ble_mapping_get_packet();
 
             numFramePerChannel = calculationNumFramePerOneChannle(mappingPacket->testStimulation.pulseWidth);
 
@@ -142,7 +142,7 @@ bool testStimulation(bool startFlag)
                     // 에러 전송
                     tdc_sys_error_send_to_app(en__mapping_testStimulation, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);
                     // 커맨드 리셋;
-                    clear_mappingCommand();
+                    tdc_ble_mapping_clear_command();
                     break;
             }
 
@@ -165,7 +165,7 @@ bool testStimulation(bool startFlag)
                     // 에러 전송
                     tdc_sys_error_send_to_app(en__mapping_testStimulation, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);
                     // 커맨드 리셋;
-                    clear_mappingCommand();
+                    tdc_ble_mapping_clear_command();
                     break;
             }
 
@@ -180,7 +180,7 @@ bool testStimulation(bool startFlag)
                 // 에러 전송
                 tdc_sys_error_send_to_app(en__mapping_testStimulation, en__EN__ISD_ERROR, en__MaxChargeOver, __LINE__);
                 // 커맨드 리셋;
-                clear_mappingCommand();
+                tdc_ble_mapping_clear_command();
             }
 
             for (i = 0; i < df_MaxNumOfElectrode; i++)
@@ -226,7 +226,7 @@ bool testStimulation(bool startFlag)
 
                         tdc_sys_error_send_to_app(en__mapping_testStimulation, en__FPGA_CONFIGUARATION_ERROR, en_FIFO_NotCleared, __LINE__);
                         // 커맨드 리셋;
-                        clear_mappingCommand();
+                        tdc_ble_mapping_clear_command();
 
                         change_isd_state(en__isdStatus_PowerIC_OK); //
                     }
@@ -235,7 +235,7 @@ bool testStimulation(bool startFlag)
                 {
                     tdc_sys_error_send_to_app(en__mapping_testStimulation, en__FPGA_COMMUNICATION_ERROR, en__I2C_FPGA_WritingError, __LINE__);
                     // 커맨드 리셋;
-                    clear_mappingCommand();
+                    tdc_ble_mapping_clear_command();
 
                     change_isd_state(en__isdStatus_PowerIC_OK); //
                 }
@@ -244,7 +244,7 @@ bool testStimulation(bool startFlag)
             {
                 tdc_sys_error_send_to_app(en__mapping_testStimulation, en__FPGA_COMMUNICATION_ERROR, en__I2C_FPGA_WritingError, __LINE__);
                 // 커맨드 리셋;
-                clear_mappingCommand();
+                tdc_ble_mapping_clear_command();
 
                 change_isd_state(en__isdStatus_PowerIC_OK); //
             }
@@ -555,7 +555,7 @@ bool testStimulation(bool startFlag)
                             {
                                 tdc_sys_error_send_to_app(en__mapping_testStimulation, en__EN__ISD_ERROR, en__SettingError_BipolarElectrodeNum, __LINE__);
                                 // 커맨드 리셋;
-                                clear_mappingCommand();
+                                tdc_ble_mapping_clear_command();
 
                                 change_isd_state(en__isdStatus_FPGA_Ok); // 내부기 전송 파워 설정 부터 다시.
                                 stimulationConfigError = true;
@@ -567,7 +567,7 @@ bool testStimulation(bool startFlag)
                 {
                     tdc_sys_error_send_to_app(en__mapping_testStimulation, en__EN__ISD_ERROR, en__BackterDataLengthError, __LINE__);
                     // 커맨드 리셋;
-                    clear_mappingCommand();
+                    tdc_ble_mapping_clear_command();
                     // 백텔이 안들어 왔다.
                     change_isd_state(en__isdStatus_FPGA_Ok); // 내부기 전송 파워 설정 부터 다시.
                 }
@@ -576,7 +576,7 @@ bool testStimulation(bool startFlag)
             {
                 tdc_sys_error_send_to_app(en__mapping_testStimulation, en__FPGA_COMMUNICATION_ERROR, en__I2C_FPGA_ReadingError, __LINE__);
                 // 커맨드 리셋;
-                clear_mappingCommand();
+                tdc_ble_mapping_clear_command();
 
                 change_isd_state(en__isdStatus_PowerIC_OK); // FPGA 리셋
             }
@@ -729,7 +729,7 @@ bool testStimulation(bool startFlag)
 
                             tdc_sys_error_send_to_app(en__mapping_testStimulation, en__EN__ISD_ERROR, en__SettingError_OffsetDAC_Level, __LINE__);
                             // 커맨드 리셋;
-                            clear_mappingCommand();
+                            tdc_ble_mapping_clear_command();
                             change_isd_state(en__isdStatus_FPGA_Ok); // 내부기 전송 파워 설정 부터 다시.
                             stimulationConfigError = true;
                         }
@@ -738,7 +738,7 @@ bool testStimulation(bool startFlag)
 
                             tdc_sys_error_send_to_app(en__mapping_testStimulation, en__EN__ISD_ERROR, en__SettingError_StimulatonPara, __LINE__);
                             // 커맨드 리셋;
-                            clear_mappingCommand();
+                            tdc_ble_mapping_clear_command();
                             change_isd_state(en__isdStatus_FPGA_Ok); // 내부기 전송 파워 설정 부터 다시.
                             stimulationConfigError = true;
                         }
@@ -752,7 +752,7 @@ bool testStimulation(bool startFlag)
                     {
                         tdc_sys_error_send_to_app(en__mapping_testStimulation, en__FPGA_COMMUNICATION_ERROR, en__I2C_FPGA_ReadingError, __LINE__);
                         // 커맨드 리셋;
-                        clear_mappingCommand();
+                        tdc_ble_mapping_clear_command();
                         // 백텔이 안들어 왔다.
                         change_isd_state(en__isdStatus_PowerIC_OK); // FPGA 리셋
                     }
@@ -768,7 +768,7 @@ bool testStimulation(bool startFlag)
 
                     tdc_sys_error_send_to_app(en__mapping_testStimulation, en__EN__ISD_ERROR, en__BackterDataLengthError, __LINE__);
                     // 커맨드 리셋;
-                    clear_mappingCommand();
+                    tdc_ble_mapping_clear_command();
                     // 백텔이 안들어 왔다.
                     change_isd_state(en__isdStatus_FPGA_Ok); // 내부기 전송 파워 설정 부터 다시.
                 }
@@ -777,7 +777,7 @@ bool testStimulation(bool startFlag)
             {
                 tdc_sys_error_send_to_app(en__mapping_testStimulation, en__FPGA_COMMUNICATION_ERROR, en__I2C_FPGA_ReadingError, __LINE__);
                 // 커맨드 리셋;
-                clear_mappingCommand();
+                tdc_ble_mapping_clear_command();
                 // 백텔이 안들어 왔다.
                 change_isd_state(en__isdStatus_PowerIC_OK); // FPGA 리셋
             }
@@ -824,7 +824,7 @@ bool testStimulation(bool startFlag)
 
                     tdc_sys_error_send_to_app(en__mapping_testStimulation, en__FPGA_COMMUNICATION_ERROR, en_PulseWidthDifferent, __LINE__);
                     // 커맨드 리셋;
-                    clear_mappingCommand();
+                    tdc_ble_mapping_clear_command();
 
                     stimulationConfigError = true;
 
@@ -839,7 +839,7 @@ bool testStimulation(bool startFlag)
             {
                 tdc_sys_error_send_to_app(en__mapping_testStimulation, en__FPGA_COMMUNICATION_ERROR, en__I2C_FPGA_ReadingError, __LINE__);
                 // 커맨드 리셋;
-                clear_mappingCommand();
+                tdc_ble_mapping_clear_command();
                 // 백텔이 안들어 왔다.
                 change_isd_state(en__isdStatus_PowerIC_OK); // FPGA 리셋
             }
@@ -888,7 +888,7 @@ bool testStimulation(bool startFlag)
             tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, buffer_tx_index);
 
             // 커맨드 리셋;
-            clear_mappingCommand();
+            tdc_ble_mapping_clear_command();
         }
         else // 자극 시간 동안 자극 출력
         {

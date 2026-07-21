@@ -21,7 +21,7 @@
 #include <hw.h>
 #include <driver_PCM.h>  //ok
 
-#include "ble_commonProtocol.h"       //ok
+#include "tdc_ble_protocol.h"       //ok
 #include "board.h"                    //ok
 #include "definitionsForAlgorithm.h"  //ok
 #include "internalStimulationChip.h"  //ok

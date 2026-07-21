@@ -3,8 +3,8 @@
 
 #include "tdc_sys_error.h"
 #include "cfx_cm3_sharedMemory.h"
-#include "mappingControl.h"
-#include "remoteControl.h"
+#include "tdc_ble_mapping.h"
+#include "tdc_ble_remote.h"
 #include "tdc_hal_spi.h"
 #include "isd_interface_mapping_readWrtieMapData.h"
 
@@ -97,11 +97,11 @@ void read_Original_isdInfo_N_userSetting_fromFlash(bool startFlag, int command)
             {
                 if (command > 0x60)
                 {
-                    clear_mappingCommand();
+                    tdc_ble_mapping_clear_command();
                 }
                 else
                 {
-                    clearRemoteColtrolCommand();
+                    tdc_ble_remote_clear_command();
                 }
             }
 
@@ -134,7 +134,7 @@ void write_Original_isdInfo_N_userSetting_atFlash(bool startFlag, int command)
         // 내부기 id 확인을 시작한다.
     }
 
-    p_mappingPacket = getMappingPacket();
+    p_mappingPacket = tdc_ble_mapping_get_packet();
 
     if (p_mappingPacket->rx_orignal_ISD_info.id_check_is_completed)
     {
@@ -178,7 +178,7 @@ void write_Original_isdInfo_N_userSetting_atFlash(bool startFlag, int command)
                 {
 
                     startFlashCommand = false;
-                    changeMappingCommandWaitingForBleOff();
+                    tdc_ble_mapping_change_command_waiting_ble_off();
                 }
             }
         }
@@ -189,7 +189,7 @@ void write_Original_isdInfo_N_userSetting_atFlash(bool startFlag, int command)
             tdc_sys_error_send_to_app(command, en__EN__ISD_ERROR, en__No_Matched_ISD_ID, __LINE__);
 
             // 커맨드 리셋;
-            clear_mappingCommand();
+            tdc_ble_mapping_clear_command();
         }
     }
 
@@ -200,7 +200,7 @@ void write_Original_isdInfo_N_userSetting_atFlash(bool startFlag, int command)
         tdc_sys_error_send_to_app(command, en__EN__ISD_ERROR, en__ISD_EEPROM_ValueZero, __LINE__);
 
         // 커맨드 리셋;
-        clear_mappingCommand();
+        tdc_ble_mapping_clear_command();
 
         counter = 0;
     }
@@ -313,11 +313,11 @@ void read_isdInfo_N_userSetting_fromFlash(bool startFlag, int command, int slot_
                 // 명령 종료
                 if (command > 0x60)
                 {
-                    clear_mappingCommand();
+                    tdc_ble_mapping_clear_command();
                 }
                 else
                 {
-                    clearRemoteColtrolCommand();
+                    tdc_ble_remote_clear_command();
                 }
             }
 
@@ -389,11 +389,11 @@ void write_isdInfo_N_userSetting_atFlash(bool startFlag, int command, int slot_i
             // 명령 종료
             if (command > 0x60)
             {
-                clear_mappingCommand();
+                tdc_ble_mapping_clear_command();
             }
             else
             {
-                clearRemoteColtrolCommand();
+                tdc_ble_remote_clear_command();
             }
         }
     }
@@ -561,11 +561,11 @@ void read_stimulPara_fromFlash(bool startFlag, int command, int slot_index, int 
                 // 명령 종료
                 if (command > 0x60)
                 {
-                    clear_mappingCommand();
+                    tdc_ble_mapping_clear_command();
                 }
                 else
                 {
-                    clearRemoteColtrolCommand();
+                    tdc_ble_remote_clear_command();
                 }
             }
 
@@ -622,11 +622,11 @@ void write_stimulPara_atFlash(bool startFlag, int command, int slot_index, int m
             // 명령 종료
             if (command > 0x60)
             {
-                clear_mappingCommand();
+                tdc_ble_mapping_clear_command();
             }
             else
             {
-                clearRemoteColtrolCommand();
+                tdc_ble_remote_clear_command();
             }
         }
     }
@@ -684,11 +684,11 @@ void reset_NVM_Selected_ISD_allData(bool startFlag, int command, int slot_index,
                 // 명령 종료
                 if (command > 0x60)
                 {
-                    clear_mappingCommand();
+                    tdc_ble_mapping_clear_command();
                 }
                 else
                 {
-                    clearRemoteColtrolCommand();
+                    tdc_ble_remote_clear_command();
                 }
             }
         }
@@ -702,11 +702,11 @@ void reset_NVM_Selected_ISD_allData(bool startFlag, int command, int slot_index,
         // 명령 종료
         if (command > 0x60)
         {
-            clear_mappingCommand();
+            tdc_ble_mapping_clear_command();
         }
         else
         {
-            clearRemoteColtrolCommand();
+            tdc_ble_remote_clear_command();
         }
     }
 }
@@ -867,11 +867,11 @@ void reset_NVM_2to4_ISD_allData(bool startFlag, int command, EN__mapping_ReadWri
             // 명령 종료
             if (command > 0x60)
             {
-                clear_mappingCommand();
+                tdc_ble_mapping_clear_command();
             }
             else
             {
-                clearRemoteColtrolCommand();
+                tdc_ble_remote_clear_command();
             }
         }
 
@@ -885,11 +885,11 @@ void reset_NVM_2to4_ISD_allData(bool startFlag, int command, EN__mapping_ReadWri
         // 명령 종료
         if (command > 0x60)
         {
-            clear_mappingCommand();
+            tdc_ble_mapping_clear_command();
         }
         else
         {
-            clearRemoteColtrolCommand();
+            tdc_ble_remote_clear_command();
         }
     }
 }
@@ -944,11 +944,11 @@ void reset_NVM_MapData(bool startFlag, int command, int slot_index, int map_inde
                 // 명령 종료
                 if (command > 0x60)
                 {
-                    clear_mappingCommand();
+                    tdc_ble_mapping_clear_command();
                 }
                 else
                 {
-                    clearRemoteColtrolCommand();
+                    tdc_ble_remote_clear_command();
                 }
             }
         }
@@ -961,11 +961,11 @@ void reset_NVM_MapData(bool startFlag, int command, int slot_index, int map_inde
         // 명령 종료
         if (command > 0x60)
         {
-            clear_mappingCommand();
+            tdc_ble_mapping_clear_command();
         }
         else
         {
-            clearRemoteColtrolCommand();
+            tdc_ble_remote_clear_command();
         }
     }
 }

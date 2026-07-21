@@ -1,9 +1,9 @@
-#ifndef BLE_REMOTECONTROL_H__
-#define BLE_REMOTECONTROL_H__
+#ifndef __tdc_ble_remote_h__
+#define __tdc_ble_remote_h__
 
 #include <hw.h>
 #include <stdbool.h>
-#include "ble_commonProtocol.h"
+#include "tdc_ble_protocol.h"
 #include "isd_interface.h"
 
 #include <tdc_printf.h>
@@ -39,14 +39,14 @@ typedef struct
 
 } ST__REMOTECONTROL_STATE;
 
-void                    fetch_remoteControlPacket(const int *Rx_dataPacket);
-ST__REMOTECONTROL_STATE remoteControl(bool isdConnection);
+void                    tdc_ble_remote_fetch_packet(const int *Rx_dataPacket);
+ST__REMOTECONTROL_STATE tdc_ble_remote_step(bool isdConnection);
 
-void                       set_isd_passKeyMatchResult(void);
-void                       clear_isd_passKeyMatchResult(void);
-bool                       is_isd_passKeyMatch(void);
-void                       clearRemoteColtrolCommand(void);
-void                       changeRemoteCommandWaitingForBleOff(void);
-EN__REMOTE_CONTROL_COMMAND getRemoteCommand(void);
+void                       tdc_ble_remote_set_passkey_match(void);
+void                       tdc_ble_remote_clear_passkey_match(void);
+bool                       tdc_ble_remote_is_passkey_match(void);
+void                       tdc_ble_remote_clear_command(void);
+void                       tdc_ble_remote_change_command_waiting_ble_off(void);
+EN__REMOTE_CONTROL_COMMAND tdc_ble_remote_get_command(void);
 
 #endif

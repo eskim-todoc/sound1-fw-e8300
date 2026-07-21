@@ -1,15 +1,15 @@
-#ifndef TDC_REMOTE_GENERAL_DEBUG_H_
-#define TDC_REMOTE_GENERAL_DEBUG_H_
+#ifndef __tdc_ble_general_debug_h__
+#define __tdc_ble_general_debug_h__
 
 /*
- * tdc_remote_general_debug.h
+ * tdc_ble_general_debug.h
  *
  * 범용 디버깅 프로토콜(EN__SND_BT_CMD_GENERAL_DEBUG, 0x8F) 처리 인터페이스.
- * remoteControl.c의 remote command 핸들러에서 분리(2026-07-01).
+ * tdc_ble_remote_step.c의 remote command 핸들러에서 분리(2026-07-01).
  * packet->data[0]=option 으로 서브 프로토콜을 분기한다.
  */
 
-#include "remoteControl.h"  // ST__REMOTECONTROL_PACKET
+#include "tdc_ble_remote.h"  // ST__REMOTECONTROL_PACKET
 
 /*
  * 범용 디버깅 프로토콜을 처리하고 응답을 tx_buf에 채운다.
@@ -18,7 +18,7 @@
  *  - tx_index : 현재 쓰기 오프셋(진입 시점)
  *  - 반환값   : 응답을 채운 뒤의 tx_index
  */
-int tdc_remote_general_debug_handle(const ST__REMOTECONTROL_PACKET *packet,
+int tdc_ble_general_debug_handle(const ST__REMOTECONTROL_PACKET *packet,
                                     int *tx_buf, int tx_index);
 
-#endif /* TDC_REMOTE_GENERAL_DEBUG_H_ */
+#endif /* __tdc_ble_general_debug_h__ */

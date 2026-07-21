@@ -74,7 +74,7 @@ int tdc_hal_dio_configure_normal(void)
 
     // 부트로더에서 DIO 설정, 셧다운 상태 설정, ISD 연결해제 상태 설정을 하고
     // 부팅하기 때문에 사실상 큰 의미 없다.
-    snd_qcc_init();
+    tdc_qcc_init();
 
     return df_True;
 }

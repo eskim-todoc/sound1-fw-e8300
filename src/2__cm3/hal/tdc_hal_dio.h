@@ -18,7 +18,7 @@
 #include <tdc_hal_uart.h>
 #include <processorDirective.h>
 
-#include <snd_qcc.h>
+#include <tdc_qcc.h>
 
 // DIO list
 

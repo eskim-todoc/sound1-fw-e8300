@@ -1,13 +1,13 @@
 /**
- * @file ci_ble_boot_control.c
+ * @file tdc_dfu_ble_boot.c
  */
 
-#include <ci_ble_control_boot.h>
+#include <tdc_dfu_ble_boot.h>
 #include <ci_boot.h>
 #include <tdc_hal_spi.h>
 #include <tdc_sys_error.h>
 #include <tdc_fs.h>
-#include <snd_qcc.h>
+#include <tdc_qcc.h>
 
 #define _DELAY_MS(ms) Sys_Delay((SystemCoreClock / 1000) * ms)
 
@@ -114,7 +114,7 @@ static void _fetch_packet_boot_select(int* p_packet)
     _DELAY_MS(20);
 
     /* 2초 이상 QCC_CTRL을 0으로 유지해야 QCC가 꺼진다. */
-    snd_qcc_set_mode(SND_QCC_MODE_SHUTDOWN);
+    tdc_qcc_set_mode(TDC_QCC_MODE_SHUTDOWN);
 
     for (volatile int i = 0; i < 2200; i++)
     {
@@ -126,7 +126,7 @@ static void _fetch_packet_boot_select(int* p_packet)
     SYS_WATCHDOG_RESET();
 }
 
-void ci_ble_fetch_packet_boot(int* p_packet)
+void tdc_dfu_ble_fetch_boot(int* p_packet)
 {
     uint8_t opt;
 

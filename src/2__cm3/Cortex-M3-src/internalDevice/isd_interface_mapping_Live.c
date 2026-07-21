@@ -1,6 +1,6 @@
 #include "tdc_sys_error.h"
 #include "cfx_cm3_sharedMemory.h"
-#include "mappingControl.h"
+#include "tdc_ble_mapping.h"
 #include "isd_interface.h"
 #include "isd_interface_stimulationParaSetting.h"
 #include "isd_interface_mapping_SepcificStimulation.h"
@@ -65,7 +65,7 @@ bool liveStimulation(ST__ISD_STATUS ISD_state)
 
     buffer_tx_index = 0;
 
-    p_mappingPacket = (ST__MAPPING_PACKET *) getMappingPacket();
+    p_mappingPacket = (ST__MAPPING_PACKET *) tdc_ble_mapping_get_packet();
 
     if (prev_subCommand != p_mappingPacket->liveStimulation.subCommand)
     {
@@ -778,7 +778,7 @@ bool liveStimulation(ST__ISD_STATUS ISD_state)
             tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, buffer_tx_index);
 
             // 커맨드 리셋;
-            clear_mappingCommand();
+            tdc_ble_mapping_clear_command();
         }
         break;
 

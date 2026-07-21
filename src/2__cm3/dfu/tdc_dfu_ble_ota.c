@@ -2,7 +2,7 @@
  * @file otaControl.c
  */
 
-#include <ci_ble_control_ota.h>
+#include <tdc_dfu_ble_ota.h>
 #include <ci_boot.h>
 #include <tdc_hal_spi.h>
 #include <tdc_sys_error.h>
@@ -11,14 +11,14 @@
 #include <tdc_hal_dio.h>
 
 static ST__OTA_FILE_WRITE_INFO _g_file_write_info       = {0};
-static int                     s_tdc_ota_dfu_conn_state = TDC_OTA_DFU_CONN_ST_DISCONN;
+static int                     s_tdc_ota_dfu_conn_state = TDC_DFU_CONN_ST_DISCONN;
 
-int tdc_get_ota_dfu_conn_state(void)
+int tdc_dfu_get_conn_state(void)
 {
     return s_tdc_ota_dfu_conn_state;
 }
 
-void tdc_set_ota_dfu_conn_state(int state)
+void tdc_dfu_set_conn_state(int state)
 {
     s_tdc_ota_dfu_conn_state = state;
 }
@@ -369,7 +369,7 @@ static void _fetch_packet_data(int *p_packet, int data_index)
     _send_resp_packet_boot(wbuf, 5);
 }
 
-void ci_ble_fetch_packet_ota_start_end(int *p_packet)
+void tdc_dfu_ble_fetch_ota_start_end(int *p_packet)
 {
     uint8_t wbuf[16];
 
@@ -388,7 +388,7 @@ void ci_ble_fetch_packet_ota_start_end(int *p_packet)
     _send_resp_packet_boot(wbuf, 3);
 }
 
-void ci_ble_fetch_packet_ota(int *p_packet)
+void tdc_dfu_ble_fetch_ota(int *p_packet)
 {
     int data_index;
 

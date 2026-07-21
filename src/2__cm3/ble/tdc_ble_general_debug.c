@@ -1,28 +1,28 @@
 /*
- * tdc_remote_general_debug.c
+ * tdc_ble_general_debug.c
  *
  * 범용 디버깅 프로토콜(EN__SND_BT_CMD_GENERAL_DEBUG, 0x8F) 처리.
- * remoteControl.c의 remote command 핸들러에서 분리(2026-07-01).
+ * tdc_ble_remote_step.c의 remote command 핸들러에서 분리(2026-07-01).
  * packet->data[0]=option 으로 서브 프로토콜을 분기한다.
  *   option 1 : 터치센서 디버깅  (최근 LTA/count/delta/abs_thr/pressed/ati 상태 조회)
  *   option 2 : 백텔 체크 무시    (OTA DFU 연결 상태 강제 설정)
  *   option 3 : 맵 초기화         (지정 RL로 맵 데이터 강제 초기화)
  *
- * 응답 바이트 포맷은 분리 전 remoteControl.c의 case 블록과 동일하다.
+ * 응답 바이트 포맷은 분리 전 tdc_ble_remote_step.c의 case 블록과 동일하다.
  * 수신 패킷은 인자(const 포인터)로 주입받아 전역 의존 없이 독립 수행된다.
  */
 
-#include "tdc_remote_general_debug.h"
+#include "tdc_ble_general_debug.h"
 
 #include <stdint.h>
 #include <stdbool.h>
 
 #include <hw.h>  // SYS_WATCHDOG_REFRESH
 
-#include "remoteControl.h"  // ST__REMOTECONTROL_PACKET, EN__SND_BT_CMD_GENERAL_DEBUG
+#include "tdc_ble_remote.h"  // ST__REMOTECONTROL_PACKET, EN__SND_BT_CMD_GENERAL_DEBUG
 #include <tdc_touch.h>
 #include <tdc_printf.h>
-#include <ci_ble_control_ota.h>
+#include <tdc_dfu_ble_ota.h>
 #include <tdc_fs_map.h>
 
 static int gd_handle_touch_debug(const ST__REMOTECONTROL_PACKET *packet, int *tx_buf, int tx_index, int option);      // option 1
@@ -32,7 +32,7 @@ static int gd_handle_map_init(const ST__REMOTECONTROL_PACKET *packet, int *tx_bu
  * 미지정 option 은 아래 else 에서 command 만 loop-back 하고 무시된다.
  * 상세: docs/tasks/main/20260720_fake-sleep-removal/ */
 
-int tdc_remote_general_debug_handle(const ST__REMOTECONTROL_PACKET *packet, int *tx_buf, int tx_index)
+int tdc_ble_general_debug_handle(const ST__REMOTECONTROL_PACKET *packet, int *tx_buf, int tx_index)
 {
     int option = packet->data[0];  // 옵션
 
@@ -107,11 +107,11 @@ static int gd_handle_no_backtel(const ST__REMOTECONTROL_PACKET *packet, int *tx_
 
     if (noBacktel_mode == 1)
     {
-        tdc_set_ota_dfu_conn_state(TDC_OTA_DFU_CONN_ST_CONN);
+        tdc_dfu_set_conn_state(TDC_DFU_CONN_ST_CONN);
     }
     else
     {
-        tdc_set_ota_dfu_conn_state(TDC_OTA_DFU_CONN_ST_DISCONN);
+        tdc_dfu_set_conn_state(TDC_DFU_CONN_ST_DISCONN);
     }
 
     TDC_PRINTF_I("[GD] noBacktel_mode : %d \r\n", noBacktel_mode);

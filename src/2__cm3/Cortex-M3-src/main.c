@@ -18,11 +18,11 @@
 #include "tdc_sys_control.h"  //ok
 
 #include "isd_interface.h"   //ok
-#include "mappingControl.h"  //ok
-#include "remoteControl.h"   //ok
+#include "tdc_ble_mapping.h"  //ok
+#include "tdc_ble_remote.h"   //ok
 
 #include "tdc_led_output.h"           //ok
-#include "ble_communication.h"   //ok
+#include "tdc_ble_communication.h"   //ok
 #include "tdc_sys_earpiece.h"      //ok
 #include "indicatorByStimul.h"   //ok
 #include "stimulationParaCal.h"  //ok
@@ -47,7 +47,7 @@
 #include <SEGGER_RTT_Wrapper.h>
 #include <aes.h>
 
-#include <snd_qcc.h>
+#include <tdc_qcc.h>
 
 #if defined(ENABLE_UI_CMD)
 #include "tdc_ui_command.h"
@@ -601,7 +601,7 @@ static void tdc_collect_events(tdc_normal_events_t *ev)
 }
 
 /* 수집된 입력으로 상태를 전이시키고 출력에 반영한다.
- * 순서 의존: tdc_sys_control_step -> isd_interface -> bleCommunication (enable_ISD 전달).
+ * 순서 의존: tdc_sys_control_step -> isd_interface -> tdc_ble_communication_step (enable_ISD 전달).
  * LED 요청은 배터리 -> ISD -> 매핑 순서에 의존한다(tdc_update_led_requests 내부). */
 static void tdc_handle_events(const tdc_normal_events_t *ev, tdc_normal_ctx_t *ctx)
 {
@@ -630,7 +630,7 @@ static void tdc_handle_events(const tdc_normal_events_t *ev, tdc_normal_ctx_t *c
      * ctx->isd_state.isd_controlState >= en__isdStatus_stimul_10V_Ok 이면,
      * ctx->isd_state.connededISD == true 상태이다. */
 
-    ctx->ble_state = bleCommunication(ctx->isd_state);
+    ctx->ble_state = tdc_ble_communication_step(ctx->isd_state);
 
     stimulation_IndicatorOut(readStimulIndicator_OnOff(),  //
                              ctx->systemState.StimulationIndicatorTriggerLowPower,
@@ -876,7 +876,7 @@ static void func_cradle_lid_closed_loop(void)
     tdc_sys_control_nrf_off_command();
 
     /* 3. QCC_CTRL = 0 (충전기 연결 시 QCC는 절전 미진입, SPI 패킷 수신 유지) */
-    // snd_qcc_set_mode(SND_QCC_MODE_SHUTDOWN);
+    // tdc_qcc_set_mode(TDC_QCC_MODE_SHUTDOWN);
 
     /* 4. FPGA 슬립 */
     Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_FPGA_SLEEP);
@@ -900,12 +900,12 @@ static void func_cradle_lid_closed_loop(void)
         SYS_WATCHDOG_REFRESH();
 
         /* BLE 통신: 충전 중 QCC는 SPI 패킷 계속 수신 가능 */
-        (void) bleCommunication(dummy_isd);
+        (void) tdc_ble_communication_step(dummy_isd);
 
         /* 뚜껑 열림 패킷 감지 (data[2]=1 또는 else → setter가 df_Connected으로 갱신) */
         if (tdc_pwr_cradle_get_cover_state() == df_Connected)
         {
-            snd_qcc_set_mode(SND_QCC_MODE_SHUTDOWN);
+            tdc_qcc_set_mode(TDC_QCC_MODE_SHUTDOWN);
             TDC_PRINTF_I("[CRADLE] LID OPENED PACKET RECEIVED - WATCHDOG RESET FOR REBOOT\r\n");
             tdc_util_delay_ms(20); /* 로그 드레인 */
             SYS_WATCHDOG_RESET();
@@ -1106,7 +1106,7 @@ int func_sleep(void)
 
     tdc_sys_reset_nrf();
     tdc_sys_control_nrf_off_command();
-    snd_qcc_set_mode(SND_QCC_MODE_SHUTDOWN);
+    tdc_qcc_set_mode(TDC_QCC_MODE_SHUTDOWN);
     Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_FPGA_SLEEP);
     OnOff_3V_PMIC_CM3_to_CFX(false); /* Disable 3.3V, 1.2V PMIC */
     tdc_led_turn_off();

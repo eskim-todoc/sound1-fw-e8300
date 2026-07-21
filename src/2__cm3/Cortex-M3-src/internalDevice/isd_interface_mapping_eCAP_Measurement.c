@@ -16,7 +16,7 @@
 #include "isd_interface.h"
 #include "isd_interface_init_FPGA.h"
 #include "cfx_cm3_sharedMemory.h"
-#include "mappingControl.h"
+#include "tdc_ble_mapping.h"
 #include "tdc_hal_spi.h"
 #include "isd_interface_mapping_eCAP_Measurement.h"
 
@@ -71,7 +71,7 @@ void file_PCM_templete_eCAP(EN__eCAP_Templete dataMode, int data)
                 tdc_sys_error_send_to_app(en__mapping_eCAP_Measurement_masking, en__EN__PCM_GEN_ERROR, en__PCM_TempleteBuff_OverFlow, __LINE__);
 
                 // 커맨드 리셋;
-                clear_mappingCommand();
+                tdc_ble_mapping_clear_command();
             }
         }
         break;
@@ -183,7 +183,7 @@ void eCapMeasurement_masking(bool startFlag)
 
             // 펄스폭에 따른 자극 프레임 갯수 계산
 
-            mappingPacket = getMappingPacket();
+            mappingPacket = tdc_ble_mapping_get_packet();
             // 소요시간 계산 - 측정 시작 시 펄스폭
             //  펄스폭 시간 (펄스 위상 x 2)
             duration = mappingPacket->eCapMeasurement.pulseWidth;
@@ -225,7 +225,7 @@ void eCapMeasurement_masking(bool startFlag)
                 tdc_sys_error_send_to_app(en__mapping_eCAP_Measurement_masking, en__EN__ISD_ERROR, en__MaxChargeOver, __LINE__);
 
                 // 커맨드 리셋;
-                clear_mappingCommand();
+                tdc_ble_mapping_clear_command();
             }
 
             // 자극 슬로프 및 자극 데이터. 계산  stimulLevel_uA stimulLevel_uA stimulDAC_offsetValue_uA
@@ -368,7 +368,7 @@ void eCapMeasurement_masking(bool startFlag)
                 tdc_sys_error_send_to_app(en__mapping_eCAP_Measurement_masking, en__EN__ISD_ERROR, en__MaskerProbe_InterVal_tooShort, __LINE__);
 
                 // 커맨드 리셋;
-                clear_mappingCommand();
+                tdc_ble_mapping_clear_command();
             }
 
             if ((numFramePerChannel << 1) + mappingPacket->eCapMeasurement.maskerProbeInterval_numFrame >
@@ -380,7 +380,7 @@ void eCapMeasurement_masking(bool startFlag)
                 tdc_sys_error_send_to_app(en__mapping_eCAP_Measurement_masking, en__EN__ISD_ERROR, en__MaskerProbe_InterVal_tooLong, __LINE__);
 
                 // 커맨드 리셋;
-                clear_mappingCommand();
+                tdc_ble_mapping_clear_command();
             }
 
             // 백텔을 수신하는데 필요한 시간.
@@ -566,7 +566,7 @@ void eCapMeasurement_masking(bool startFlag)
                             // 에러 전송
                             tdc_sys_error_send_to_app(en__mapping_eCAP_Measurement_masking,en__FPGA_ERROR, en_FIFO_NotCleared, __LINE__);
                             // 커맨드 리셋;
-                            clear_mappingCommand();
+                            tdc_ble_mapping_clear_command();
 
 #endif
                         }
@@ -580,7 +580,7 @@ void eCapMeasurement_masking(bool startFlag)
                         // 에러 전송
                         tdc_sys_error_send_to_app(en__mapping_eCAP_Measurement_masking,en__I2C_ERROR,en__ReadError, __LINE__);
                         // 커맨드 리셋;
-                        clear_mappingCommand();
+                        tdc_ble_mapping_clear_command();
                     }
                 }
                 else
@@ -591,7 +591,7 @@ void eCapMeasurement_masking(bool startFlag)
                     // 에러 전송
                     tdc_sys_error_send_to_app(en__mapping_eCAP_Measurement_masking,en__I2C_ERROR,en__WriteError, __LINE__);
                     // 커맨드 리셋;
-                    clear_mappingCommand();
+                    tdc_ble_mapping_clear_command();
                 }
 
 #else
@@ -1276,7 +1276,7 @@ void eCapMeasurement_masking(bool startFlag)
                             // 에러 전송
                             tdc_sys_error_send_to_app(en__mapping_eCAP_Measurement_masking,en__FPGA_ERROR,r_FPGA_registerValue, __LINE__); //FPGA 에러 값을 그대로 전달
                             // 커맨드 리셋;
-                            clear_mappingCommand();
+                            tdc_ble_mapping_clear_command();
 
                         }
 
@@ -1289,7 +1289,7 @@ void eCapMeasurement_masking(bool startFlag)
                         // 에러 전송
                         tdc_sys_error_send_to_app(en__mapping_eCAP_Measurement_masking,en__I2C_ERROR,en__ReadError, __LINE__);
                         // 커맨드 리셋;
-                        clear_mappingCommand();
+                        tdc_ble_mapping_clear_command();
                     }
 
 #else
@@ -1318,7 +1318,7 @@ void eCapMeasurement_masking(bool startFlag)
                         // 에러 전송
                         tdc_sys_error_send_to_app(en__mapping_eCAP_Measurement_masking, en__EN__ISD_ERROR, en__BackTelCounterZero, __LINE__);
                         // 커맨드 리셋;
-                        clear_mappingCommand();
+                        tdc_ble_mapping_clear_command();
                     }
                 }
             }
@@ -1334,7 +1334,7 @@ void eCapMeasurement_masking(bool startFlag)
                                r_FPGA_registerValue,
                                __LINE__); // FPGA 에러 값을 그대로 전달
                 // 커맨드 리셋;
-                clear_mappingCommand();
+                tdc_ble_mapping_clear_command();
             }
         }
 
@@ -1423,7 +1423,7 @@ void eCapMeasurement_masking(bool startFlag)
 
 
                             // 커맨드 리셋;
-                            clear_mappingCommand();
+                            tdc_ble_mapping_clear_command();
 
 
                         }
@@ -1521,7 +1521,7 @@ void eCapMeasurement_masking(bool startFlag)
             // 측정 완료.
 
             // 커맨드 리셋;
-            clear_mappingCommand();
+            tdc_ble_mapping_clear_command();
         }
     }
 

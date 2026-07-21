@@ -31,9 +31,9 @@
 #include "tdc_sys_control.h"
 
 #include "isd_interface.h"
-#include "mappingControl.h"
-#include "remoteControl.h"
-#include "tdc_remote_gain_control.h"
+#include "tdc_ble_mapping.h"
+#include "tdc_ble_remote.h"
+#include "tdc_ble_gain_control.h"
 #include <tdc_fs_gain.h>
 
 #include "tdc_led_output.h"
@@ -71,7 +71,7 @@
 
 #include <tdc_touch.h>
 
-#include <snd_qcc.h>
+#include <tdc_qcc.h>
 
 void tdc_sys_reset_nrf(void)
 {
@@ -354,7 +354,7 @@ void tdc_sys_init(void)
     // 인덱스 0 이 뮤트이므로, CFX 가 참조하기 전에 반드시 유효값을 넣어야 한다.
     // (아래 enable_CFX_trigger_for_iteration() 보다 앞이어야 한다.)
     // 연결된 ISD 의 저장값은 changeConnected_isd_num_CFX() 에서 덮어쓴다.
-    tdc_remote_gain_control_init();
+    tdc_ble_gain_control_init();
 
     TDC_PRINTF_V("[INFO] COPY ISD INFO FOR ALL MAPS FROM FS_MEM TO SH_MEM \r\n");
 
@@ -520,7 +520,7 @@ void tdc_sys_init(void)
 
     // 초기화 과정을 통해 SPI 인터페이스 설정도 완료 되었고
     // 위에서 CFX 동작까지 실행시켰으므로, 이제 QCC를 깨우고 배터리 정보를 얻을 수 있도록 한다.
-    snd_qcc_set_mode(SND_QCC_MODE_NORMAL);
+    tdc_qcc_set_mode(TDC_QCC_MODE_NORMAL);
     TDC_PRINTF_I("\r\n");
     TDC_PRINTF_I("################################################################\r\n");
     TDC_PRINTF_I("###  [QCC SET-NORMAL]    t3 = %d ms\r\n", tdc_hal_timer_get_t3_tick());

@@ -16,7 +16,7 @@
 #include "isd_interface.h"
 #include "isd_interface_init_FPGA.h"
 #include "cfx_cm3_sharedMemory.h"
-#include "mappingControl.h"
+#include "tdc_ble_mapping.h"
 #include "tdc_hal_spi.h"
 #include "isd_interface_mapping_impedanceMeasurement.h"
 
@@ -85,7 +85,7 @@ void impedanceMeasurement(bool startFlag)
     {
         TDC_PRINTF_V("[MAPPING] CHECK IMPEDANCE, START FLAG IS SET \r\n");
 
-        mappingPacket = getMappingPacket();
+        mappingPacket = tdc_ble_mapping_get_packet();
 
         flowCounter  = 0;
         iterationNum = 0;
@@ -170,7 +170,7 @@ void impedanceMeasurement(bool startFlag)
             {
                 TDC_PRINTF_E("[MAPPING] IMPEDANCE CHECK - MAX CHARGE OVER \r\n");
                 tdc_sys_error_send_to_app(en__mapping_impedanceChekck, en__EN__ISD_ERROR, en__MaxChargeOver, __LINE__);  // 에러 전송
-                clear_mappingCommand();                                                                       // 커맨드 리셋;
+                tdc_ble_mapping_clear_command();                                                                       // 커맨드 리셋;
             }
 
 #if 1
@@ -224,7 +224,7 @@ void impedanceMeasurement(bool startFlag)
             {
                 TDC_PRINTF_E("[MAPPING] IMPEDANCE CHECK - STIMUL LEVEL OVER \r\n");
                 tdc_sys_error_send_to_app(en__mapping_impedanceChekck, en__EN__ISD_ERROR, en__stimulLevelOver, __LINE__);  // 에러 전송
-                clear_mappingCommand();                                                                         // 커맨드 리셋;
+                tdc_ble_mapping_clear_command();                                                                         // 커맨드 리셋;
             }
         }
         break;
@@ -439,7 +439,7 @@ void impedanceMeasurement(bool startFlag)
             if (pcm_index >= df_MaxNumTransferableChannel)
             {
                 tdc_sys_error_send_to_app(en__mapping_impedanceChekck, en__EN__PCM_GEN_ERROR, en__PCMBufferOwerFlow, __LINE__);  // 에러 전송
-                clear_mappingCommand();                                                                               // 커맨드 리셋;
+                tdc_ble_mapping_clear_command();                                                                               // 커맨드 리셋;
             }
             else
             {
@@ -508,7 +508,7 @@ void impedanceMeasurement(bool startFlag)
             if (pcm_index >= df_MaxNumTransferableChannel)
             {
                 tdc_sys_error_send_to_app(en__mapping_impedanceChekck, en__EN__PCM_GEN_ERROR, en__PCMBufferOwerFlow, __LINE__);  // 에러 전송
-                clear_mappingCommand();                                                                               // 커맨드 리셋;
+                tdc_ble_mapping_clear_command();                                                                               // 커맨드 리셋;
             }
             else
             {
@@ -580,7 +580,7 @@ void impedanceMeasurement(bool startFlag)
                         {
                             change_isd_state(en__isdStatus_FPGA_Ok);                                                           // 백텔 안들어옴 에러 // 내부기 전송 파워 설정 부터 다시.
                             tdc_sys_error_send_to_app(en__mapping_impedanceChekck, en__EN__ISD_ERROR, en__BackTelCounterZero, __LINE__);  // 에러 전송
-                            clear_mappingCommand();                                                                            // 커맨드 리셋;
+                            tdc_ble_mapping_clear_command();                                                                            // 커맨드 리셋;
                         }
                     }
                 }
@@ -588,7 +588,7 @@ void impedanceMeasurement(bool startFlag)
                 {
                     change_isd_state(en__isdStatus_PowerIC_OK);                                                                 // FPGA 에러 발생, FPGA 초기화
                     tdc_sys_error_send_to_app(en__mapping_eCAP_Measurement_masking, en__FPGA_CONFIGUARATION_ERROR, FPGA_error, __LINE__);  // 에러 전송 // FPGA 에러 값을 그대로 전달
-                    clear_mappingCommand();                                                                                     // 커맨드 리셋;
+                    tdc_ble_mapping_clear_command();                                                                                     // 커맨드 리셋;
                 }
             }
         }
@@ -616,12 +616,12 @@ void impedanceMeasurement(bool startFlag)
 #if 1
                 if (electrodeNum >= df_MaxNumOfElectrode)
                 {
-                    clear_mappingCommand();  // 명령 종료 // 커맨드 리셋;
+                    tdc_ble_mapping_clear_command();  // 명령 종료 // 커맨드 리셋;
                 }
 #else
                 if (electrodeNum >= 16)  // 현재 실험보드에서 16번 전극 이후는 측정하면 에러 발생
                 {
-                    clear_mappingCommand();  // 명령 종료 // 커맨드 리셋;
+                    tdc_ble_mapping_clear_command();  // 명령 종료 // 커맨드 리셋;
                 }
 #endif
                 iterationNum = 0;
@@ -629,7 +629,7 @@ void impedanceMeasurement(bool startFlag)
             }
             else  // 단일 채널일 경우 반복 측정이 완료 되었으므로 종료
             {
-                clear_mappingCommand();  // 명령 종료 // 커맨드 리셋;
+                tdc_ble_mapping_clear_command();  // 명령 종료 // 커맨드 리셋;
             }
         }
         else

@@ -1,6 +1,6 @@
 
-#ifndef BLE_REMOTECONTROL_POROTOCOL_H__
-#define BLE_REMOTECONTROL_POROTOCOL_H__
+#ifndef __tdc_ble_protocol_h__
+#define __tdc_ble_protocol_h__
 
 #define BLE_DataPacketSize 20
 #define todoc_PayloadSize  19  // 20바이트 중, 1개는 헤더, 19개는 데이터
