@@ -1,7 +1,7 @@
 
 
 #include "tdc_sys_error.h"
-#include "ble_commonProtocol.h"
+#include "tdc_ble_protocol.h"
 
 #include "tdc_hal_spi.h"
 

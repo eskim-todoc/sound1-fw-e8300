@@ -4,9 +4,9 @@
 
 #include "tdc_hal_dma.h"
 #include "tdc_hal_spi.h"
-#include "mappingControl.h"
+#include "tdc_ble_mapping.h"
 #include "processorDirective.h"
-#include "remoteControl.h"
+#include "tdc_ble_remote.h"
 
 #include "board.h"  // 디버깅용
 

@@ -4,7 +4,7 @@
 #include <hw.h>
 #include <stdbool.h>
 
-#include "ble_commonProtocol.h" //ok
+#include "tdc_ble_protocol.h" //ok
 #include "processorDirective.h" //ok
 
 #define TDC_HAL_SPI_COMM_PACKET_SIZE (BLE_DataPacketSize + 1) // 20 + 1 = 21

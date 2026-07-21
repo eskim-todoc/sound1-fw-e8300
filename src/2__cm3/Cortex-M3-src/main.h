@@ -15,7 +15,7 @@
 #include "tdc_sys_control.h"
 
 #include <tdc_pwr_battery.h>
-#include <ble_communication.h>
+#include <tdc_ble_communication.h>
 #include <cfx_cm3_sharedMemory.h>
 #include <tdc_fs.h>
 #include <tdc_fs_map.h>

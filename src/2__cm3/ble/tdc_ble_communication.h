@@ -1,11 +1,11 @@
-#ifndef BLE_setting_H__
-#define BLE_setting_H__
+#ifndef __tdc_ble_communication_h__
+#define __tdc_ble_communication_h__
 
 #include <tdc_hal_uart.h>
 #include <stdbool.h>
 
 #include "isd_interface.h"  //ok
-#include "mappingControl.h" //ok
+#include "tdc_ble_mapping.h" //ok
 
 
 typedef struct
@@ -17,8 +17,8 @@ typedef struct
 
 } ST__BLE_COMMUNICATION_STATE;
 
-void reset_global_variables_in_ble_communication(void);
+void tdc_ble_communication_reset_globals(void);
 
-ST__BLE_COMMUNICATION_STATE bleCommunication(ST__ISD_STATUS isd_state);
+ST__BLE_COMMUNICATION_STATE tdc_ble_communication_step(ST__ISD_STATUS isd_state);
 
 #endif

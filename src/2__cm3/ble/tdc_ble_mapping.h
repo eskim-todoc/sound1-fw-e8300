@@ -1,11 +1,11 @@
-#ifndef MappingControl_H__
-#define MappingControl_H__
+#ifndef __tdc_ble_mapping_h__
+#define __tdc_ble_mapping_h__
 
 #include <stdbool.h>
 #include "definitionsForAlgorithm.h"
 #include "cfx_cm3_sharedMemory.h"
 #include "isd_interface.h"
-#include "ble_commonProtocol.h"
+#include "tdc_ble_protocol.h"
 
 typedef struct
 {
@@ -130,38 +130,22 @@ typedef struct
 
 } ST__MAPPING_STATE;
 
-void clear_mappingCommand();
+void tdc_ble_mapping_clear_command();
 
-bool                isMappingProgramConnected(void);
-void                changeMappingCommandBleDisconneted(void);
-void                changeMappingCommandWaitingForBleOff(void);
-EN__MAPPING_COMMAND getMappingCommand(void);
-// const ST__MAPPING_PACKET *getMappingPacket(void);
-ST__MAPPING_PACKET *getMappingPacket(void);
+bool                tdc_ble_mapping_is_program_connected(void);
+void                tdc_ble_mapping_change_command_ble_disconnected(void);
+void                tdc_ble_mapping_change_command_waiting_ble_off(void);
+EN__MAPPING_COMMAND tdc_ble_mapping_get_command(void);
+// const ST__MAPPING_PACKET *tdc_ble_mapping_get_packet(void);
+ST__MAPPING_PACKET *tdc_ble_mapping_get_packet(void);
 
-void fetch_mappingControlPacket(const int *Rx_dataPacket);
+void tdc_ble_mapping_fetch_packet(const int *Rx_dataPacket);
 
-ST__MAPPING_STATE mappingControl(ST__ISD_STATUS ISD_state);
+ST__MAPPING_STATE tdc_ble_mapping_step(ST__ISD_STATUS ISD_state);
 
-void importMappingConnectForDebug(void);
 
-void importMappingDisconnectForDebug(void);
 
-void importImpedanceDataForDebug(void);
-void import_eCapDataForDebug(void);
-void import_SpecificStimulationDebug(void);
 
-void updateMappingProgramConnection(bool connection);
-void import_liveAllParaDebug(void);
-void import_liveStart(void);
-void import_liveStimulationVolumeAdjust();
-void import_liveMicSensitivityAdjust();
-void import_liveMapping_Stimul_indicator();
-void import_liveReadEqualizer(int start_index, int end_index);
-void import_liveReadDeviceStatus();
-void import_livePause();
-void import_liveStop();
-void import_testStimulation();
-void import_original_ISD(void);
+void tdc_ble_mapping_update_program_connection(bool connection);
 
 #endif

@@ -18,7 +18,7 @@
 #include "isd_interface.h"
 #include "isd_interface_init_FPGA.h"
 #include "cfx_cm3_sharedMemory.h"
-#include "mappingControl.h"
+#include "tdc_ble_mapping.h"
 #include "tdc_hal_spi.h"
 #include "stimulationParaCal.h"
 
@@ -89,7 +89,7 @@ void specificStimulation(bool startFlag)
             changePcmOutputMode(PcmBitStream_Mode_NopStandby);
 
             // 펄스폭에 따른 자극 프레임 갯수 계산
-            mappingPacket      = getMappingPacket();
+            mappingPacket      = tdc_ble_mapping_get_packet();
             numFramePerChannel = calculationNumFramePerOneChannle(mappingPacket->specificStimulation.pulseWidth);
 
             // 사용가능한 채널 수는 24채널 보다 적고 펄스폭은 길게 설정할 경우... 가능하다면 1msec에 1회의 출력이 나올 수 있도록...
@@ -103,7 +103,7 @@ void specificStimulation(bool startFlag)
             if (deliveryCharge_pico > df_MaxDeliveryCharge_pC)  // 전하량 초과
             {
                 tdc_sys_error_send_to_app(en__mapping_specific_stimulation, en__EN__ISD_ERROR, en__MaxChargeOver, __LINE__);  // 에러 전송
-                clear_mappingCommand();                                                                            // 커맨드 리셋;
+                tdc_ble_mapping_clear_command();                                                                            // 커맨드 리셋;
             }
 
             // 자극 슬로프 및 자극 데이터. 계산 stimulLevel_uA stimulLevel_uA stimulDAC_offsetValue_uA
@@ -410,7 +410,7 @@ void specificStimulation(bool startFlag)
                 else
                 {
                     tdc_sys_error_send_to_app(en__mapping_specific_stimulation, en__FPGA_CONFIGUARATION_ERROR, en_PulseWidthDifferent, __LINE__);
-                    clear_mappingCommand();  // 커맨드 리셋;
+                    tdc_ble_mapping_clear_command();  // 커맨드 리셋;
 
                     if (read_FPGA_systemError_Flag(&r_FPGA_registerValue))
                     {
@@ -502,7 +502,7 @@ void specificStimulation(bool startFlag)
             tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, buffer_tx_index);
 
             // 커맨드 리셋;
-            clear_mappingCommand();
+            tdc_ble_mapping_clear_command();
 
             TDC_PRINTF_I("[MAPPING] STIMULATION HOLD TIME FINISHED \r\n");
         }

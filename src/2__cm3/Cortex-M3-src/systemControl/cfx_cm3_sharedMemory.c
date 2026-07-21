@@ -1,7 +1,7 @@
 
 #include <fn_from_cfx_eeprom_write.h>
 #include "cfx_cm3_sharedMemory.h"
-#include "ble_commonProtocol.h"
+#include "tdc_ble_protocol.h"
 #include "cfx_cm3_shared_Memory_Addr.h"
 #include "isd_interface_stimulationStandAlone.h"
 

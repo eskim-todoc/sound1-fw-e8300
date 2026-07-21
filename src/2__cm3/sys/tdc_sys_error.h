@@ -3,7 +3,7 @@
 
 #include <stdbool.h>
 
-#include "mappingControl.h"
+#include "tdc_ble_mapping.h"
 
 // 에러 코드 분류 및 배열 재 정립 필요
 

@@ -1,9 +1,9 @@
 /**
- * @file ci_ble_boot_control.h
+ * @file tdc_dfu_ble_boot.h
  */
 
-#ifndef __ci_ble_boot_control_h__
-#define __ci_ble_boot_control_h__
+#ifndef __tdc_dfu_ble_boot_h__
+#define __tdc_dfu_ble_boot_h__
 
 #include <stdbool.h>
 #include <stdio.h>
@@ -12,7 +12,7 @@
 
 #include <hw.h>
 
-#include <ble_commonProtocol.h>
+#include <tdc_ble_protocol.h>
 
 #include <sdk_ci_boot.h>
 
@@ -118,6 +118,6 @@ typedef enum
     BOOT_SLOT_NUM_END   = BOOT_SLOT_NUM_2,
 } EN__BOOT_SLOT_NUM;
 
-void ci_ble_fetch_packet_boot(int *p_packet);
+void tdc_dfu_ble_fetch_boot(int *p_packet);
 
-#endif // __ci_ble_boot_control_h__
+#endif // __tdc_dfu_ble_boot_h__

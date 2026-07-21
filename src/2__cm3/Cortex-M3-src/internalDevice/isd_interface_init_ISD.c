@@ -340,7 +340,7 @@ void isd_path_Open(bool isdControlStateChagedFlag)
                         {
                             TDC_PRINTF_I("[ISD] CURRENTLY CONNECTED ISD SERIAL : 0x%08X \r\n", isd_id);
 
-                            p_mappingPacket = (ST__MAPPING_PACKET *) getMappingPacket();
+                            p_mappingPacket = (ST__MAPPING_PACKET *) tdc_ble_mapping_get_packet();
 
                             // EEPROM에 쓰여진 데이터를 사용할 경우
                             if (p_mappingPacket->command != en__mapping_write_original_ISD_N_USER)

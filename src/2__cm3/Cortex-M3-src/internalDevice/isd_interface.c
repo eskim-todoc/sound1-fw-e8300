@@ -19,12 +19,12 @@
 #include "isd_interface_init_ISD.h"
 #include "isd_interface_stimulationStandAlone.h"
 #include "isd_interface_stimulationParaSetting.h"
-#include "mappingControl.h"
-#include <ci_ble_control_ota.h>
+#include "tdc_ble_mapping.h"
+#include <tdc_dfu_ble_ota.h>
 
 #include "cfx_cm3_sharedMemory.h"
 
-#include "remoteControl.h"
+#include "tdc_ble_remote.h"
 #include "tdc_sys_error.h"
 
 #if defined(Board_is_OTE_VER_1_2)
@@ -37,7 +37,7 @@
 #error Link PMIC is NOT selected.
 #endif
 
-#include <snd_qcc.h>
+#include <tdc_qcc.h>
 
 static bool i2c_is_freeS_for_10msec = false;
 
@@ -233,7 +233,7 @@ ST__ISD_STATUS isd_interface(bool isd_enable, bool mappingConnection, EN__ISD_CO
                 update_isd_LinkConnection_byBacktel_withLiveStimulation();
 #else
                 // OTA DFU 모드 (Link backtel 체크 X) 사용 중일 때는 FIFO clear + 상태 초기화만 반복한다.
-                if (tdc_get_ota_dfu_conn_state() == TDC_OTA_DFU_CONN_ST_CONN)
+                if (tdc_dfu_get_conn_state() == TDC_DFU_CONN_ST_CONN)
                 {
                     if (BackelCircuitDisabled_readPcmFired_duringLiveStimulation == readConnectionCheckPcmState())
                     {
@@ -268,12 +268,12 @@ ST__ISD_STATUS isd_interface(bool isd_enable, bool mappingConnection, EN__ISD_CO
         if (s_isd_state.isd_controlState >= en__isdStatus_stimul_10V_Ok)
         {
             s_isd_state.conneded_ISD = true;
-            snd_qcc_set_isd(SND_QCC_ISD_CONNECTED);
+            tdc_qcc_set_isd(TDC_QCC_ISD_CONNECTED);
         }
         else
         {
             s_isd_state.conneded_ISD = false;
-            snd_qcc_set_isd(SND_QCC_ISD_DISCONNECTED);
+            tdc_qcc_set_isd(TDC_QCC_ISD_DISCONNECTED);
         }
     }
     else
@@ -281,12 +281,12 @@ ST__ISD_STATUS isd_interface(bool isd_enable, bool mappingConnection, EN__ISD_CO
         if (stimulationParameterSettingIsDone)
         {
             s_isd_state.conneded_ISD = true;
-            snd_qcc_set_isd(SND_QCC_ISD_CONNECTED);
+            tdc_qcc_set_isd(TDC_QCC_ISD_CONNECTED);
         }
         else
         {
             s_isd_state.conneded_ISD = false;
-            snd_qcc_set_isd(SND_QCC_ISD_DISCONNECTED);
+            tdc_qcc_set_isd(TDC_QCC_ISD_DISCONNECTED);
         }
     }
 

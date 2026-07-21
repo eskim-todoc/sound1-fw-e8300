@@ -10,8 +10,8 @@
 #include "tdc_hal_spi.h"
 #include "tdc_hal_i2c_cfx.h"
 #include "isd_interface.h"
-#include "remoteControl.h"
-#include "mappingControl.h"
+#include "tdc_ble_remote.h"
+#include "tdc_ble_mapping.h"
 
 #include "tdc_led_output.h"
 #include "isd_interface_stimulationStandAlone.h"
@@ -123,7 +123,7 @@ void NRF_adv_powerMode(bool mode)
 #endif
 
 /* conneded_ISD / mappingConnected 는 '지난 tick' 값이다 - isd_interface() 와
- * bleCommunication() 이 tdc_sys_control_step() 의 enable_ISD 를 받아 도는 순환 구조라
+ * tdc_ble_communication_step() 이 tdc_sys_control_step() 의 enable_ISD 를 받아 도는 순환 구조라
  * 같은 tick 안에서는 확정되지 않는다. 다만 이 두 입력의 소비처는 모두 시간 누적
  * 판정(ISD_Disconnection_counter / 저배터리 10분 주기)이거나 인간 조작 스케일
  * (파워오프 탈출 / 매핑 중 버튼 무시)이라 1-tick(=1ms) 지연은 무해하다.
@@ -361,7 +361,7 @@ static bool handle_discharging(int battery_percent, bool power_button_pushed, bo
 }
 
 /* conneded_ISD / mappingConnected 는 '지난 tick' 값이다 - isd_interface() 와
- * bleCommunication() 이 본 함수의 enable_ISD 를 받아 도는 순환 구조라 같은 tick
+ * tdc_ble_communication_step() 이 본 함수의 enable_ISD 를 받아 도는 순환 구조라 같은 tick
  * 안에서는 확정되지 않는다. 다만 두 입력의 소비처는 모두 시간 누적 판정
  * (isd_disconnection_counter / 저배터리 10분 주기)이거나 인간 조작 스케일
  * (파워오프 탈출 / 매핑 중 버튼 무시)이라 1-tick(=1ms) 지연은 무해하다.

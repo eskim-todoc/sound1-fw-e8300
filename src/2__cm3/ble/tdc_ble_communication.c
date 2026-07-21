@@ -3,14 +3,14 @@
 #include <stdbool.h>
 #include "tdc_hal_spi.h"
 #include "isd_interface.h"
-#include "remoteControl.h"
-#include "mappingControl.h"
-#include "ble_communication.h"
+#include "tdc_ble_remote.h"
+#include "tdc_ble_mapping.h"
+#include "tdc_ble_communication.h"
 
 #include <tdc_pwr_battery.h>
 
-#include <ci_ble_control_boot.h>
-#include <ci_ble_control_ota.h>
+#include <tdc_dfu_ble_boot.h>
+#include <tdc_dfu_ble_ota.h>
 
 #include <tdc_hal_timer.h>
 #include <tdc_printf.h>
@@ -180,11 +180,11 @@ void setting_nrf_ble_adv_info(void)
 
         if (led_ind == TDC_LED_IND_STATE_OTA_EZAIRO)
         {
-            tdc_set_ota_dfu_conn_state(TDC_OTA_DFU_CONN_ST_CONN);
+            tdc_dfu_set_conn_state(TDC_DFU_CONN_ST_CONN);
         }
         else
         {
-            tdc_set_ota_dfu_conn_state(TDC_OTA_DFU_CONN_ST_DISCONN);
+            tdc_dfu_set_conn_state(TDC_DFU_CONN_ST_DISCONN);
         }
 
         TDC_PRINTF_V("[BT] CMD 0x%02X, LED IND: %d \r\n", EN__SND_BT_CMD_SYSTEM_INFO_LED_IND, led_ind);
@@ -229,7 +229,7 @@ void setting_nrf_ble_adv_info(void)
     // 끝, else if (bleSettingPacket.command == EN__SND_BT_CMD_SYSTEM_INFO_CLASSIC_STATE)
 }
 
-ST__BLE_COMMUNICATION_STATE bleCommunication(ST__ISD_STATUS isd_state)
+ST__BLE_COMMUNICATION_STATE tdc_ble_communication_step(ST__ISD_STATUS isd_state)
 {
     int         i;
     static int  Rx_counter = 1;
@@ -324,7 +324,7 @@ ST__BLE_COMMUNICATION_STATE bleCommunication(ST__ISD_STATUS isd_state)
             else if ((en__remoteControl_check_isd_passKey <= p_Rx_dataPacket[0])  //
                      && (p_Rx_dataPacket[0] < en__mapping_connect))
             {
-                fetch_remoteControlPacket(p_Rx_dataPacket);
+                tdc_ble_remote_fetch_packet(p_Rx_dataPacket);
             }
             // 매핑
             // 헤더 0x60에서 0x91까지 (실제 유효한 마지막 헤더는 0x71 en__mapping_recover_ALL_SlotData_ManufactureData 까지)
@@ -333,7 +333,7 @@ ST__BLE_COMMUNICATION_STATE bleCommunication(ST__ISD_STATUS isd_state)
                      || (p_Rx_dataPacket[0] == en__mapping_testStimulation)         //
                      || (p_Rx_dataPacket[0] == en__mapping_read_Connected_ISD_id))  //
             {
-                fetch_mappingControlPacket(p_Rx_dataPacket);
+                tdc_ble_mapping_fetch_packet(p_Rx_dataPacket);
             }
             // Sound1에서 추가된 QCC와 EZ 사이의 특수 명령어
             else if ((EN__SND_BT_CMD_SYSTEM_INFO_BATTERY <= p_Rx_dataPacket[0])            // 0x33 배터리 정보 부터
@@ -348,24 +348,24 @@ ST__BLE_COMMUNICATION_STATE bleCommunication(ST__ISD_STATUS isd_state)
             // DFU (OTA) 관련 명령어
             else if (p_Rx_dataPacket[0] == PKT_HEADER_BOOT)  // 0xC2, BOOT 명령 (상태 읽기, 슬롯 선택하기)
             {
-                ci_ble_fetch_packet_boot(p_Rx_dataPacket);
+                tdc_dfu_ble_fetch_boot(p_Rx_dataPacket);
             }
             else if ((p_Rx_dataPacket[0] == CI_BLE_OTA_COMMAND_OTA_START)    // 0xC0, DFU (OTA) 시작 명령
                      || (p_Rx_dataPacket[0] == CI_BLE_OTA_COMMAND_OTA_END))  // 0xC1, DFU (OTA) 종료 명령
             {
-                ci_ble_fetch_packet_ota_start_end(p_Rx_dataPacket);
+                tdc_dfu_ble_fetch_ota_start_end(p_Rx_dataPacket);
             }
             else if (p_Rx_dataPacket[0] == CI_BLE_OTA_COMMAND_OTA)  // 0xC3, DFU (OTA) 데이터 명령
             {
-                ci_ble_fetch_packet_ota(p_Rx_dataPacket);
+                tdc_dfu_ble_fetch_ota(p_Rx_dataPacket);
             }
             else if (p_Rx_dataPacket[0] == EN__SND_BT_CMD_GAIN_CONTROL)  // 0x8C 게인 제어 프로토콜
             {
-                fetch_remoteControlPacket(p_Rx_dataPacket);
+                tdc_ble_remote_fetch_packet(p_Rx_dataPacket);
             }
             else if (p_Rx_dataPacket[0] == EN__SND_BT_CMD_GENERAL_DEBUG)  // 0x8F 범용 디버그 프로토콜
             {
-                fetch_remoteControlPacket(p_Rx_dataPacket);
+                tdc_ble_remote_fetch_packet(p_Rx_dataPacket);
             }
             else
             {
@@ -426,10 +426,10 @@ ST__BLE_COMMUNICATION_STATE bleCommunication(ST__ISD_STATUS isd_state)
     setting_nrf_ble_adv_info();
 
     //
-    remoteControlState = remoteControl(isd_state.conneded_ISD);
+    remoteControlState = tdc_ble_remote_step(isd_state.conneded_ISD);
 
     //
-    mappingState = mappingControl(isd_state);
+    mappingState = tdc_ble_mapping_step(isd_state);
 
     // 매핑과 리모콘은 동시에 연결되지 못한다.
 
@@ -479,12 +479,12 @@ ST__BLE_COMMUNICATION_STATE bleCommunication(ST__ISD_STATUS isd_state)
     {
         p_Rx_dataPacket[0] = 0;
 #if 1
-        clear_isd_passKeyMatchResult();
-        clearRemoteColtrolCommand();
+        tdc_ble_remote_clear_passkey_match();
+        tdc_ble_remote_clear_command();
 
         if (mappingState.mappingConnection)
         {
-            changeMappingCommandBleDisconneted();
+            tdc_ble_mapping_change_command_ble_disconnected();
             ble_communication_state.mappingConnection = false;
             ble_communication_state.isdControlCommand = en__isdStatus_PowerIC_Reset;
 

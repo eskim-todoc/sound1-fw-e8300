@@ -1,9 +1,9 @@
 /**
- * @file otaControl.h
+ * @file tdc_dfu_ble_ota.h
  */
 
-#ifndef __otaControl_h__
-#define __otaControl_h__
+#ifndef __tdc_dfu_ble_ota_h__
+#define __tdc_dfu_ble_ota_h__
 
 #include <stdbool.h>
 #include <stdio.h>
@@ -20,7 +20,7 @@
 
 #include "tdc_hal_spi.h"
 
-#include "ble_commonProtocol.h"
+#include "tdc_ble_protocol.h"
 
 #include <sdk_ci_boot.h>
 
@@ -41,8 +41,8 @@
 // #define CI_OTA_RET_ERROR_WRITE_FAIL 3
 // #define CI_OTA_RET_ERROR_READ_FAIL  4
 
-#define TDC_OTA_DFU_CONN_ST_DISCONN 0
-#define TDC_OTA_DFU_CONN_ST_CONN    1
+#define TDC_DFU_CONN_ST_DISCONN 0
+#define TDC_DFU_CONN_ST_CONN    1
 
 typedef struct
 {
@@ -140,10 +140,10 @@ typedef enum
     CI_OTA_RESULT_FAIL    = 1
 } CI_OTA_RESULT_E;
 
-void ci_ble_fetch_packet_ota_start_end(int *p_packet);
-void ci_ble_fetch_packet_ota(int *p_packet);
+void tdc_dfu_ble_fetch_ota_start_end(int *p_packet);
+void tdc_dfu_ble_fetch_ota(int *p_packet);
 
-int  tdc_get_ota_dfu_conn_state(void);
-void tdc_set_ota_dfu_conn_state(int state);
+int  tdc_dfu_get_conn_state(void);
+void tdc_dfu_set_conn_state(int state);
 
-#endif // __otaControl_h__
+#endif // __tdc_dfu_ble_ota_h__

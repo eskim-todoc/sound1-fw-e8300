@@ -1,6 +1,6 @@
 #include "cfx_cm3_sharedMemory.h"
 #include "stimulationParaCal.h"
-#include "mappingControl.h"
+#include "tdc_ble_mapping.h"
 #include "internalStimulationChip.h"
 
 static bool stimulationIndicatorTrigger = false;
