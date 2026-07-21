@@ -13,7 +13,7 @@
 #include <hw.h>
 
 #include <board.h>
-#include <definitionsForAlgorithm.h>
+#include <tdc_stim_definitions.h>
 
 #include <tdc_hal_uart.h>
 

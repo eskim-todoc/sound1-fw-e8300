@@ -13,7 +13,7 @@
 #include "tdc_sys_error.h"
 #include "tdc_fs_event_log.h"
 #include "tdc_fs_map.h"
-#include "isd_interface.h"
+#include "tdc_isd.h"
 #include "processorDirective.h"
 #include <tdc_fs_stim_mute.h>
 
@@ -646,7 +646,7 @@ static int handle_program(int argc, char *argv[])
         return -1;
     }
 
-    ST__ISD_STATUS isd = snd_isd_interface_get_state();
+    ST__ISD_STATUS isd = tdc_isd_get_state();
 
     if (!isd.conneded_ISD)
     {

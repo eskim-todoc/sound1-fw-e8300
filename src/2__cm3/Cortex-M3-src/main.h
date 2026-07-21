@@ -21,7 +21,7 @@
 #include <tdc_fs_map.h>
 #include <tdc_fs_fft.h>
 #include <tdc_fs_event_log.h>
-#include <isd_interface.h>
+#include <tdc_isd.h>
 #include <tdc_led_output.h>  //ok
 #include <fn_from_cfx_eeprom_erase.h>
 

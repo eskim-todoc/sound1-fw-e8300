@@ -2,9 +2,9 @@
 #define __tdc_ble_mapping_h__
 
 #include <stdbool.h>
-#include "definitionsForAlgorithm.h"
+#include "tdc_stim_definitions.h"
 #include "cfx_cm3_sharedMemory.h"
-#include "isd_interface.h"
+#include "tdc_isd.h"
 #include "tdc_ble_protocol.h"
 
 typedef struct
@@ -112,8 +112,8 @@ typedef struct
     EN__MAPPING_COMMAND                     command;
     ST__MAPPINGPAYLOAD_IMPEDANCE            impedanceCheck;
     ST__MAPPINGPAYLOAD_eCAP                 eCapMeasurement;
-    ST__MAPPINGPAYLOAD_SPECIFIC_STIMULATION specificStimulation;
-    ST__MAPPINGPAYLOAD_LIVE_STIMULATION     liveStimulation;
+    ST__MAPPINGPAYLOAD_SPECIFIC_STIMULATION tdc_isd_map_specific_stim_step;
+    ST__MAPPINGPAYLOAD_LIVE_STIMULATION     tdc_isd_map_live_step;
     ST__MAPPINGPAYLOAD_TEST_STIMULATION     testStimulation;
     ST__MAPPINGPAYLOAD_READWRITEDATA_FLASH  ReadWriteMapData_Flash;
     ST__MAPPINGPAYLOAD_ORIGINAL_ISD_INFO    rx_orignal_ISD_info;

@@ -8,16 +8,16 @@
 #include "cfx_cm3_sharedMemory.h"
 #include "tdc_ble_mapping.h"
 #include "tdc_hal_spi.h"
-#include "definitionsForAlgorithm.h"
-#include "isd_interface_mapping_impedanceMeasurement.h"
-#include "isd_interface_mapping_eCAP_Measurement.h"
-#include "isd_interface_mapping_SepcificStimulation.h"
-#include "isd_interface_mapping_Live.h"
-#include "isd_interface.h"
-#include "isd_interface_mapping_testStimulation.h"
-#include "isd_interface_mapping_readWrtieMapData.h"
-#include "isd_interface_mapping_Live.h"
-#include "isd_interface_init_ISD.h"
+#include "tdc_stim_definitions.h"
+#include "tdc_isd_map_impedance.h"
+#include "tdc_isd_map_ecap.h"
+#include "tdc_isd_map_specific_stim.h"
+#include "tdc_isd_map_live.h"
+#include "tdc_isd.h"
+#include "tdc_isd_map_test_stim.h"
+#include "tdc_isd_map_data.h"
+#include "tdc_isd_map_live.h"
+#include "tdc_isd_init.h"
 #include "FPGA.h"
 #include "tdc_sys_control.h"
 #include "tdc_ble_remote.h"
@@ -27,7 +27,7 @@ static ST__MAPPING_PACKET mappingPacket;
 void tdc_ble_mapping_clear_command()
 {
     mappingPacket.command                    = en__mapping_IDLE;
-    mappingPacket.liveStimulation.subCommand = en__Standby;
+    mappingPacket.tdc_isd_map_live_step.subCommand = en__Standby;
 
     changePcmOutputMode(PcmBitStream_Mode_NopStandby);
 }
@@ -99,7 +99,7 @@ void tdc_ble_mapping_fetch_packet(const int *Rx_dataPacket)  // spi 통신에서
         {
             // 프로토콜 문서 상 0x66 명령어의 subCommand 1~8이 아닌,
             // 9: en__HoldOn, 0: en__Standby 인 경우 예외로 처리한다.
-            if ((mappingPacket.liveStimulation.subCommand == en__HoldOn) || (mappingPacket.liveStimulation.subCommand == en__Standby))
+            if ((mappingPacket.tdc_isd_map_live_step.subCommand == en__HoldOn) || (mappingPacket.tdc_isd_map_live_step.subCommand == en__Standby))
             {
                 exceptionCase = true;
             }
@@ -227,76 +227,76 @@ void tdc_ble_mapping_fetch_packet(const int *Rx_dataPacket)  // spi 통신에서
 
         case en__mapping_specific_stimulation:  // 헤더 0x65
         {
-            mappingPacket.specificStimulation.usableElectrodeNum           = Rx_dataPacket[index++];
-            mappingPacket.specificStimulation.pulseWidth                   = Rx_dataPacket[index++];
-            mappingPacket.specificStimulation.firstPulsePhase              = Rx_dataPacket[index++];
-            mappingPacket.specificStimulation.stimulatonMode               = Rx_dataPacket[index++];
-            mappingPacket.specificStimulation.stimulationElectrodeNum      = Rx_dataPacket[index++];
-            mappingPacket.specificStimulation.bipolarReferenceElectrodeNum = Rx_dataPacket[index++];
+            mappingPacket.tdc_isd_map_specific_stim_step.usableElectrodeNum           = Rx_dataPacket[index++];
+            mappingPacket.tdc_isd_map_specific_stim_step.pulseWidth                   = Rx_dataPacket[index++];
+            mappingPacket.tdc_isd_map_specific_stim_step.firstPulsePhase              = Rx_dataPacket[index++];
+            mappingPacket.tdc_isd_map_specific_stim_step.stimulatonMode               = Rx_dataPacket[index++];
+            mappingPacket.tdc_isd_map_specific_stim_step.stimulationElectrodeNum      = Rx_dataPacket[index++];
+            mappingPacket.tdc_isd_map_specific_stim_step.bipolarReferenceElectrodeNum = Rx_dataPacket[index++];
 
             value                                                     = Rx_dataPacket[index++] << 8;
             value                                                     = value | Rx_dataPacket[index++];
-            mappingPacket.specificStimulation.stimulationLevel_uA     = value;
-            mappingPacket.specificStimulation.stimulationTime_100msec = Rx_dataPacket[index++];
+            mappingPacket.tdc_isd_map_specific_stim_step.stimulationLevel_uA     = value;
+            mappingPacket.tdc_isd_map_specific_stim_step.stimulationTime_100msec = Rx_dataPacket[index++];
 
             // 데이터 범위 검사
             dataRangeError = false;
 
             // 사용 가능한 전극 수
-            if ((mappingPacket.specificStimulation.usableElectrodeNum < 1)       // 1 미만
-                || (32 < mappingPacket.specificStimulation.usableElectrodeNum))  // 32 초과 시 에러
+            if ((mappingPacket.tdc_isd_map_specific_stim_step.usableElectrodeNum < 1)       // 1 미만
+                || (32 < mappingPacket.tdc_isd_map_specific_stim_step.usableElectrodeNum))  // 32 초과 시 에러
             {
                 dataRangeError = true;
             }
 
             // 펄스 위상 폭
-            if ((mappingPacket.specificStimulation.pulseWidth < 13)       // 13 미만
-                || (255 < mappingPacket.specificStimulation.pulseWidth))  // 255 초과 시 에러
+            if ((mappingPacket.tdc_isd_map_specific_stim_step.pulseWidth < 13)       // 13 미만
+                || (255 < mappingPacket.tdc_isd_map_specific_stim_step.pulseWidth))  // 255 초과 시 에러
             {
                 dataRangeError = true;
             }
 
             // 선행 펄스 위상
-            if ((mappingPacket.specificStimulation.firstPulsePhase < 0)      // 0 미만
-                || (1 < mappingPacket.specificStimulation.firstPulsePhase))  // 1 초과 시 에러
+            if ((mappingPacket.tdc_isd_map_specific_stim_step.firstPulsePhase < 0)      // 0 미만
+                || (1 < mappingPacket.tdc_isd_map_specific_stim_step.firstPulsePhase))  // 1 초과 시 에러
             {
                 dataRangeError = true;
             }
 
             // 자극 모드
-            if ((mappingPacket.specificStimulation.stimulatonMode < 1)      // 1 미만
-                || (6 < mappingPacket.specificStimulation.stimulatonMode))  // 6 초과 시 에러
+            if ((mappingPacket.tdc_isd_map_specific_stim_step.stimulatonMode < 1)      // 1 미만
+                || (6 < mappingPacket.tdc_isd_map_specific_stim_step.stimulatonMode))  // 6 초과 시 에러
             {
                 dataRangeError = true;
             }
 
             // 자극 전극 번호
-            if ((mappingPacket.specificStimulation.stimulationElectrodeNum < 1)       // 1 미만
-                || (32 < mappingPacket.specificStimulation.stimulationElectrodeNum))  // 32 초과 시 에러
+            if ((mappingPacket.tdc_isd_map_specific_stim_step.stimulationElectrodeNum < 1)       // 1 미만
+                || (32 < mappingPacket.tdc_isd_map_specific_stim_step.stimulationElectrodeNum))  // 32 초과 시 에러
             {
                 dataRangeError = true;
             }
 
             // 바이폴라 모드일 때, 기준전극 번호
-            if ((mappingPacket.specificStimulation.bipolarReferenceElectrodeNum < 1)       // 1 미만
-                || (32 < mappingPacket.specificStimulation.bipolarReferenceElectrodeNum))  //  32 초과 시 에러
+            if ((mappingPacket.tdc_isd_map_specific_stim_step.bipolarReferenceElectrodeNum < 1)       // 1 미만
+                || (32 < mappingPacket.tdc_isd_map_specific_stim_step.bipolarReferenceElectrodeNum))  //  32 초과 시 에러
             {
-                if (mappingPacket.specificStimulation.bipolarReferenceElectrodeNum != 99)  // 99인 경우 예외 (for 모노폴라)
+                if (mappingPacket.tdc_isd_map_specific_stim_step.bipolarReferenceElectrodeNum != 99)  // 99인 경우 예외 (for 모노폴라)
                 {
                     dataRangeError = true;
                 }
             }
 
             // 자극 크기 uA
-            if ((mappingPacket.specificStimulation.stimulationLevel_uA < 0 /*1*/)   // 0 미만
-                || (1800 < mappingPacket.specificStimulation.stimulationLevel_uA))  // 1800 초과 시 에러
+            if ((mappingPacket.tdc_isd_map_specific_stim_step.stimulationLevel_uA < 0 /*1*/)   // 0 미만
+                || (1800 < mappingPacket.tdc_isd_map_specific_stim_step.stimulationLevel_uA))  // 1800 초과 시 에러
             {
                 dataRangeError = true;
             }
 
             // 자극 유지 시간 100msec
-            if ((mappingPacket.specificStimulation.stimulationTime_100msec < 1)        // 1 미만
-                || (255 < mappingPacket.specificStimulation.stimulationTime_100msec))  // 255 초과 시 에러
+            if ((mappingPacket.tdc_isd_map_specific_stim_step.stimulationTime_100msec < 1)        // 1 미만
+                || (255 < mappingPacket.tdc_isd_map_specific_stim_step.stimulationTime_100msec))  // 255 초과 시 에러
             {
                 dataRangeError = true;
             }
@@ -347,7 +347,7 @@ void tdc_ble_mapping_fetch_packet(const int *Rx_dataPacket)  // spi 통신에서
             {
                 case en__allParameter:  // 하위 명령 1
                 {
-                    mappingPacket.liveStimulation.subCommand = en__Standby;
+                    mappingPacket.tdc_isd_map_live_step.subCommand = en__Standby;
 
                     subCommandData_Num_index = Rx_dataPacket[index++];  // index++ : 2 → 3
 
@@ -371,78 +371,78 @@ void tdc_ble_mapping_fetch_packet(const int *Rx_dataPacket)  // spi 통신에서
                         {
                             case 1:  // 헤더 0x66 실시간 자극 -> 하위 명령 1 -> 데이터 인덱스 1
                             {
-                                mappingPacket.liveStimulation.stimulVolume                     = Rx_dataPacket[index++];          // index++ : 3 → 4
-                                mappingPacket.liveStimulation.audioVolume                      = Rx_dataPacket[index++];          // index++ : 4 → 5
-                                mappingPacket.liveStimulation.stimulationIndicatorChannelNum   = Rx_dataPacket[index++];          // index++ : 5 → 6
+                                mappingPacket.tdc_isd_map_live_step.stimulVolume                     = Rx_dataPacket[index++];          // index++ : 3 → 4
+                                mappingPacket.tdc_isd_map_live_step.audioVolume                      = Rx_dataPacket[index++];          // index++ : 4 → 5
+                                mappingPacket.tdc_isd_map_live_step.stimulationIndicatorChannelNum   = Rx_dataPacket[index++];          // index++ : 5 → 6
                                 value                                                          = Rx_dataPacket[index++] << 8;     // index++ : 6 → 7
                                 value                                                          = value | Rx_dataPacket[index++];  // index++ : 7 → 8
-                                mappingPacket.liveStimulation.stimulationIndicatorAmplitude_uA = value;
+                                mappingPacket.tdc_isd_map_live_step.stimulationIndicatorAmplitude_uA = value;
 
-                                mappingPacket.liveStimulation.stimulationStrategy        = Rx_dataPacket[index++];  // index++ : 8 → 9
-                                mappingPacket.liveStimulation.stimulationMode            = Rx_dataPacket[index++];  // index++ : 9 → 10
-                                mappingPacket.liveStimulation.firstPulsePhase            = Rx_dataPacket[index++];  // index++ : 10 → 11
-                                mappingPacket.liveStimulation.stimulationPulsePhaseWidth = Rx_dataPacket[index++];  // index++ : 11 → 12
-                                mappingPacket.liveStimulation.numFrequencyBand           = Rx_dataPacket[index++];  // index++ : 12 → 13
+                                mappingPacket.tdc_isd_map_live_step.stimulationStrategy        = Rx_dataPacket[index++];  // index++ : 8 → 9
+                                mappingPacket.tdc_isd_map_live_step.stimulationMode            = Rx_dataPacket[index++];  // index++ : 9 → 10
+                                mappingPacket.tdc_isd_map_live_step.firstPulsePhase            = Rx_dataPacket[index++];  // index++ : 10 → 11
+                                mappingPacket.tdc_isd_map_live_step.stimulationPulsePhaseWidth = Rx_dataPacket[index++];  // index++ : 11 → 12
+                                mappingPacket.tdc_isd_map_live_step.numFrequencyBand           = Rx_dataPacket[index++];  // index++ : 12 → 13
 
-                                // 자극 볼륨 (mappingPacket.liveStimulation.stimulVolume : 1~4)
-                                if ((mappingPacket.liveStimulation.stimulVolume < 1)      // 1 미만
-                                    || (4 < mappingPacket.liveStimulation.stimulVolume))  // 4 초과 시 에러
+                                // 자극 볼륨 (mappingPacket.tdc_isd_map_live_step.stimulVolume : 1~4)
+                                if ((mappingPacket.tdc_isd_map_live_step.stimulVolume < 1)      // 1 미만
+                                    || (4 < mappingPacket.tdc_isd_map_live_step.stimulVolume))  // 4 초과 시 에러
                                 {
                                     dataRangeError = true;
                                 }
 
-                                // 오디오 볼륨 (mappingPacket.liveStimulation.audioVolume : 1~10)
-                                if ((mappingPacket.liveStimulation.audioVolume < 1)       // 1 미만
-                                    || (10 < mappingPacket.liveStimulation.audioVolume))  // 10 초과 시 에러
+                                // 오디오 볼륨 (mappingPacket.tdc_isd_map_live_step.audioVolume : 1~10)
+                                if ((mappingPacket.tdc_isd_map_live_step.audioVolume < 1)       // 1 미만
+                                    || (10 < mappingPacket.tdc_isd_map_live_step.audioVolume))  // 10 초과 시 에러
                                 {
                                     dataRangeError = true;
                                 }
 
-                                // 알림용 자극 채널 번호 (mappingPacket.liveStimulation.stimulationIndicatorChannelNum : 1~32)
-                                if ((mappingPacket.liveStimulation.stimulationIndicatorChannelNum < 1)       // 1 미만
-                                    || (32 < mappingPacket.liveStimulation.stimulationIndicatorChannelNum))  // 32 초과 시 에러
+                                // 알림용 자극 채널 번호 (mappingPacket.tdc_isd_map_live_step.stimulationIndicatorChannelNum : 1~32)
+                                if ((mappingPacket.tdc_isd_map_live_step.stimulationIndicatorChannelNum < 1)       // 1 미만
+                                    || (32 < mappingPacket.tdc_isd_map_live_step.stimulationIndicatorChannelNum))  // 32 초과 시 에러
                                 {
                                     dataRangeError = true;
                                 }
 
-                                // 알림용 자극 크기 uA (mappingPacket.liveStimulation.stimulationIndicatorAmplitude_uA : 1~1800)
-                                if ((mappingPacket.liveStimulation.stimulationIndicatorAmplitude_uA < 0 /*1*/)   // 0 미만
-                                    || (1800 < mappingPacket.liveStimulation.stimulationIndicatorAmplitude_uA))  // 1800 초과 시 에러
+                                // 알림용 자극 크기 uA (mappingPacket.tdc_isd_map_live_step.stimulationIndicatorAmplitude_uA : 1~1800)
+                                if ((mappingPacket.tdc_isd_map_live_step.stimulationIndicatorAmplitude_uA < 0 /*1*/)   // 0 미만
+                                    || (1800 < mappingPacket.tdc_isd_map_live_step.stimulationIndicatorAmplitude_uA))  // 1800 초과 시 에러
                                 {
                                     dataRangeError = true;
                                 }
 
-                                // 자극 기법 (mappingPacket.liveStimulation.stimulationStrategy : 1~3)
-                                if ((mappingPacket.liveStimulation.stimulationStrategy < 1)      // 1 미만
-                                    || (3 < mappingPacket.liveStimulation.stimulationStrategy))  // 3 초과 시 에러
+                                // 자극 기법 (mappingPacket.tdc_isd_map_live_step.stimulationStrategy : 1~3)
+                                if ((mappingPacket.tdc_isd_map_live_step.stimulationStrategy < 1)      // 1 미만
+                                    || (3 < mappingPacket.tdc_isd_map_live_step.stimulationStrategy))  // 3 초과 시 에러
                                 {
                                     dataRangeError = true;
                                 }
 
-                                // 자극 모드 (mappingPacket.liveStimulation.stimulationMode : 1~6)
-                                if ((mappingPacket.liveStimulation.stimulationMode < 1)      // 1 미만
-                                    || (6 < mappingPacket.liveStimulation.stimulationMode))  // 6 초과 시 에러
+                                // 자극 모드 (mappingPacket.tdc_isd_map_live_step.stimulationMode : 1~6)
+                                if ((mappingPacket.tdc_isd_map_live_step.stimulationMode < 1)      // 1 미만
+                                    || (6 < mappingPacket.tdc_isd_map_live_step.stimulationMode))  // 6 초과 시 에러
                                 {
                                     dataRangeError = true;
                                 }
 
-                                // 선행 펄스 위상 (mappingPacket.liveStimulation.firstPulsePhase : 0~1)
-                                if ((mappingPacket.liveStimulation.firstPulsePhase < 0)      // 0 미만
-                                    || (1 < mappingPacket.liveStimulation.firstPulsePhase))  // 1 초과 시 에러
+                                // 선행 펄스 위상 (mappingPacket.tdc_isd_map_live_step.firstPulsePhase : 0~1)
+                                if ((mappingPacket.tdc_isd_map_live_step.firstPulsePhase < 0)      // 0 미만
+                                    || (1 < mappingPacket.tdc_isd_map_live_step.firstPulsePhase))  // 1 초과 시 에러
                                 {
                                     dataRangeError = true;
                                 }
 
-                                // 펄스 위상 폭 (mappingPacket.liveStimulation.stimulationPulsePhaseWidth : 13~255)
-                                if ((mappingPacket.liveStimulation.stimulationPulsePhaseWidth < 13)       // 13 미만
-                                    || (255 < mappingPacket.liveStimulation.stimulationPulsePhaseWidth))  // 255 초과 시 에러
+                                // 펄스 위상 폭 (mappingPacket.tdc_isd_map_live_step.stimulationPulsePhaseWidth : 13~255)
+                                if ((mappingPacket.tdc_isd_map_live_step.stimulationPulsePhaseWidth < 13)       // 13 미만
+                                    || (255 < mappingPacket.tdc_isd_map_live_step.stimulationPulsePhaseWidth))  // 255 초과 시 에러
                                 {
                                     dataRangeError = true;
                                 }
 
-                                // 주파수 밴드 (mappingPacket.liveStimulation.numFrequencyBand : 1~32)
-                                if ((mappingPacket.liveStimulation.numFrequencyBand < 1)       // 1 미만
-                                    || (32 < mappingPacket.liveStimulation.numFrequencyBand))  // 32 초과 시 에러
+                                // 주파수 밴드 (mappingPacket.tdc_isd_map_live_step.numFrequencyBand : 1~32)
+                                if ((mappingPacket.tdc_isd_map_live_step.numFrequencyBand < 1)       // 1 미만
+                                    || (32 < mappingPacket.tdc_isd_map_live_step.numFrequencyBand))  // 32 초과 시 에러
                                 {
                                     dataRangeError = true;
                                 }
@@ -454,10 +454,10 @@ void tdc_ble_mapping_fetch_packet(const int *Rx_dataPacket)  // spi 통신에서
                             {
                                 for (i = 0; i < 17; i++)
                                 {
-                                    mappingPacket.liveStimulation.usableStimulationElectrodIndex[i] = Rx_dataPacket[index++];
+                                    mappingPacket.tdc_isd_map_live_step.usableStimulationElectrodIndex[i] = Rx_dataPacket[index++];
 
-                                    if ((mappingPacket.liveStimulation.usableStimulationElectrodIndex[i] < 1)        // 1 미만
-                                        || (100 < mappingPacket.liveStimulation.usableStimulationElectrodIndex[i]))  // 100 초과 시 에러
+                                    if ((mappingPacket.tdc_isd_map_live_step.usableStimulationElectrodIndex[i] < 1)        // 1 미만
+                                        || (100 < mappingPacket.tdc_isd_map_live_step.usableStimulationElectrodIndex[i]))  // 100 초과 시 에러
                                     {
                                         dataRangeError = true;
                                     }
@@ -470,10 +470,10 @@ void tdc_ble_mapping_fetch_packet(const int *Rx_dataPacket)  // spi 통신에서
                             {
                                 for (i = 17; i < 32; i++)
                                 {
-                                    mappingPacket.liveStimulation.usableStimulationElectrodIndex[i] = Rx_dataPacket[index++];
+                                    mappingPacket.tdc_isd_map_live_step.usableStimulationElectrodIndex[i] = Rx_dataPacket[index++];
 
-                                    if ((mappingPacket.liveStimulation.usableStimulationElectrodIndex[i] < 1)        // 1 미만
-                                        || (100 < mappingPacket.liveStimulation.usableStimulationElectrodIndex[i]))  // 100 초과 시 에러
+                                    if ((mappingPacket.tdc_isd_map_live_step.usableStimulationElectrodIndex[i] < 1)        // 1 미만
+                                        || (100 < mappingPacket.tdc_isd_map_live_step.usableStimulationElectrodIndex[i]))  // 100 초과 시 에러
                                     {
                                         dataRangeError = true;
                                     }
@@ -486,10 +486,10 @@ void tdc_ble_mapping_fetch_packet(const int *Rx_dataPacket)  // spi 통신에서
                             {
                                 for (i = 0; i < 17; i++)
                                 {
-                                    mappingPacket.liveStimulation.usableReferenceElectrodIndex[i] = Rx_dataPacket[index++];
+                                    mappingPacket.tdc_isd_map_live_step.usableReferenceElectrodIndex[i] = Rx_dataPacket[index++];
 
-                                    if ((mappingPacket.liveStimulation.usableReferenceElectrodIndex[i] < 1)        // 1 미만
-                                        || (100 < mappingPacket.liveStimulation.usableReferenceElectrodIndex[i]))  // 100 초과 시 에러
+                                    if ((mappingPacket.tdc_isd_map_live_step.usableReferenceElectrodIndex[i] < 1)        // 1 미만
+                                        || (100 < mappingPacket.tdc_isd_map_live_step.usableReferenceElectrodIndex[i]))  // 100 초과 시 에러
                                     {
                                         dataRangeError = true;
                                     }
@@ -502,10 +502,10 @@ void tdc_ble_mapping_fetch_packet(const int *Rx_dataPacket)  // spi 통신에서
                             {
                                 for (i = 17; i < 32; i++)
                                 {
-                                    mappingPacket.liveStimulation.usableReferenceElectrodIndex[i] = Rx_dataPacket[index++];
+                                    mappingPacket.tdc_isd_map_live_step.usableReferenceElectrodIndex[i] = Rx_dataPacket[index++];
 
-                                    if ((mappingPacket.liveStimulation.usableReferenceElectrodIndex[i] < 1)        // 1 미만
-                                        || (100 < mappingPacket.liveStimulation.usableReferenceElectrodIndex[i]))  // 100 초과 시 에러
+                                    if ((mappingPacket.tdc_isd_map_live_step.usableReferenceElectrodIndex[i] < 1)        // 1 미만
+                                        || (100 < mappingPacket.tdc_isd_map_live_step.usableReferenceElectrodIndex[i]))  // 100 초과 시 에러
                                     {
                                         dataRangeError = true;
                                     }
@@ -518,10 +518,10 @@ void tdc_ble_mapping_fetch_packet(const int *Rx_dataPacket)  // spi 통신에서
                             {
                                 for (i = 0; i < 17; i++)
                                 {
-                                    mappingPacket.liveStimulation.CIS_FreqBandOrder[i] = Rx_dataPacket[index++];
+                                    mappingPacket.tdc_isd_map_live_step.CIS_FreqBandOrder[i] = Rx_dataPacket[index++];
 
-                                    if ((mappingPacket.liveStimulation.CIS_FreqBandOrder[i] < 1)        // 1 미만
-                                        || (100 < mappingPacket.liveStimulation.CIS_FreqBandOrder[i]))  // 100 초과 시 에러
+                                    if ((mappingPacket.tdc_isd_map_live_step.CIS_FreqBandOrder[i] < 1)        // 1 미만
+                                        || (100 < mappingPacket.tdc_isd_map_live_step.CIS_FreqBandOrder[i]))  // 100 초과 시 에러
                                     {
                                         dataRangeError = true;
                                     }
@@ -534,10 +534,10 @@ void tdc_ble_mapping_fetch_packet(const int *Rx_dataPacket)  // spi 통신에서
                             {
                                 for (i = 17; i < 32; i++)
                                 {
-                                    mappingPacket.liveStimulation.CIS_FreqBandOrder[i] = Rx_dataPacket[index++];
+                                    mappingPacket.tdc_isd_map_live_step.CIS_FreqBandOrder[i] = Rx_dataPacket[index++];
 
-                                    if ((mappingPacket.liveStimulation.CIS_FreqBandOrder[i] < 1)        // 1 미만
-                                        || (100 < mappingPacket.liveStimulation.CIS_FreqBandOrder[i]))  // 100 초과 시 에러
+                                    if ((mappingPacket.tdc_isd_map_live_step.CIS_FreqBandOrder[i] < 1)        // 1 미만
+                                        || (100 < mappingPacket.tdc_isd_map_live_step.CIS_FreqBandOrder[i]))  // 100 초과 시 에러
                                     {
                                         dataRangeError = true;
                                     }
@@ -552,10 +552,10 @@ void tdc_ble_mapping_fetch_packet(const int *Rx_dataPacket)  // spi 통신에서
                                 {
                                     value                                       = Rx_dataPacket[index++] << 8;
                                     value                                       = value | Rx_dataPacket[index++];
-                                    mappingPacket.liveStimulation.T_level_uA[i] = value;
+                                    mappingPacket.tdc_isd_map_live_step.T_level_uA[i] = value;
 
-                                    if ((mappingPacket.liveStimulation.T_level_uA[i] < 0)         // 0 미만
-                                        || (1800 < mappingPacket.liveStimulation.T_level_uA[i]))  // 1800 초과 시 에러
+                                    if ((mappingPacket.tdc_isd_map_live_step.T_level_uA[i] < 0)         // 0 미만
+                                        || (1800 < mappingPacket.tdc_isd_map_live_step.T_level_uA[i]))  // 1800 초과 시 에러
                                     {
                                         dataRangeError = true;
                                     }
@@ -570,10 +570,10 @@ void tdc_ble_mapping_fetch_packet(const int *Rx_dataPacket)  // spi 통신에서
                                 {
                                     value                                       = Rx_dataPacket[index++] << 8;
                                     value                                       = value | Rx_dataPacket[index++];
-                                    mappingPacket.liveStimulation.T_level_uA[i] = value;
+                                    mappingPacket.tdc_isd_map_live_step.T_level_uA[i] = value;
 
-                                    if ((mappingPacket.liveStimulation.T_level_uA[i] < 0)         // 0 미만
-                                        || (1800 < mappingPacket.liveStimulation.T_level_uA[i]))  // 1800 초과 시 에러
+                                    if ((mappingPacket.tdc_isd_map_live_step.T_level_uA[i] < 0)         // 0 미만
+                                        || (1800 < mappingPacket.tdc_isd_map_live_step.T_level_uA[i]))  // 1800 초과 시 에러
                                     {
                                         dataRangeError = true;
                                     }
@@ -588,10 +588,10 @@ void tdc_ble_mapping_fetch_packet(const int *Rx_dataPacket)  // spi 통신에서
                                 {
                                     value                                       = Rx_dataPacket[index++] << 8;
                                     value                                       = value | Rx_dataPacket[index++];
-                                    mappingPacket.liveStimulation.T_level_uA[i] = value;
+                                    mappingPacket.tdc_isd_map_live_step.T_level_uA[i] = value;
 
-                                    if ((mappingPacket.liveStimulation.T_level_uA[i] < 0)         // 0 미만
-                                        || (1800 < mappingPacket.liveStimulation.T_level_uA[i]))  // 1800 초과 시 에러
+                                    if ((mappingPacket.tdc_isd_map_live_step.T_level_uA[i] < 0)         // 0 미만
+                                        || (1800 < mappingPacket.tdc_isd_map_live_step.T_level_uA[i]))  // 1800 초과 시 에러
                                     {
                                         dataRangeError = true;
                                     }
@@ -606,10 +606,10 @@ void tdc_ble_mapping_fetch_packet(const int *Rx_dataPacket)  // spi 통신에서
                                 {
                                     value                                       = Rx_dataPacket[index++] << 8;
                                     value                                       = value | Rx_dataPacket[index++];
-                                    mappingPacket.liveStimulation.T_level_uA[i] = value;
+                                    mappingPacket.tdc_isd_map_live_step.T_level_uA[i] = value;
 
-                                    if ((mappingPacket.liveStimulation.T_level_uA[i] < 0)         // 0 미만
-                                        || (1800 < mappingPacket.liveStimulation.T_level_uA[i]))  // 1800 초과 시 에러
+                                    if ((mappingPacket.tdc_isd_map_live_step.T_level_uA[i] < 0)         // 0 미만
+                                        || (1800 < mappingPacket.tdc_isd_map_live_step.T_level_uA[i]))  // 1800 초과 시 에러
                                     {
                                         dataRangeError = true;
                                     }
@@ -624,10 +624,10 @@ void tdc_ble_mapping_fetch_packet(const int *Rx_dataPacket)  // spi 통신에서
                                 {
                                     value                                       = Rx_dataPacket[index++] << 8;
                                     value                                       = value | Rx_dataPacket[index++];
-                                    mappingPacket.liveStimulation.C_level_uA[i] = value;
+                                    mappingPacket.tdc_isd_map_live_step.C_level_uA[i] = value;
 
-                                    if ((mappingPacket.liveStimulation.C_level_uA[i] < 0)         // 0 미만
-                                        || (1800 < mappingPacket.liveStimulation.C_level_uA[i]))  // 1800 초과 시 에러
+                                    if ((mappingPacket.tdc_isd_map_live_step.C_level_uA[i] < 0)         // 0 미만
+                                        || (1800 < mappingPacket.tdc_isd_map_live_step.C_level_uA[i]))  // 1800 초과 시 에러
                                     {
                                         dataRangeError = true;
                                     }
@@ -642,10 +642,10 @@ void tdc_ble_mapping_fetch_packet(const int *Rx_dataPacket)  // spi 통신에서
                                 {
                                     value                                       = Rx_dataPacket[index++] << 8;
                                     value                                       = value | Rx_dataPacket[index++];
-                                    mappingPacket.liveStimulation.C_level_uA[i] = value;
+                                    mappingPacket.tdc_isd_map_live_step.C_level_uA[i] = value;
 
-                                    if ((mappingPacket.liveStimulation.C_level_uA[i] < 0)         // 0 미만
-                                        || (1800 < mappingPacket.liveStimulation.C_level_uA[i]))  // 1800 초과 시 에러
+                                    if ((mappingPacket.tdc_isd_map_live_step.C_level_uA[i] < 0)         // 0 미만
+                                        || (1800 < mappingPacket.tdc_isd_map_live_step.C_level_uA[i]))  // 1800 초과 시 에러
                                     {
                                         dataRangeError = true;
                                     }
@@ -660,10 +660,10 @@ void tdc_ble_mapping_fetch_packet(const int *Rx_dataPacket)  // spi 통신에서
                                 {
                                     value                                       = Rx_dataPacket[index++] << 8;
                                     value                                       = value | Rx_dataPacket[index++];
-                                    mappingPacket.liveStimulation.C_level_uA[i] = value;
+                                    mappingPacket.tdc_isd_map_live_step.C_level_uA[i] = value;
 
-                                    if ((mappingPacket.liveStimulation.C_level_uA[i] < 0)         // 0 미만
-                                        || (1800 < mappingPacket.liveStimulation.C_level_uA[i]))  // 1800 초과 시 에러
+                                    if ((mappingPacket.tdc_isd_map_live_step.C_level_uA[i] < 0)         // 0 미만
+                                        || (1800 < mappingPacket.tdc_isd_map_live_step.C_level_uA[i]))  // 1800 초과 시 에러
                                     {
                                         dataRangeError = true;
                                     }
@@ -678,10 +678,10 @@ void tdc_ble_mapping_fetch_packet(const int *Rx_dataPacket)  // spi 통신에서
                                 {
                                     value                                       = Rx_dataPacket[index++] << 8;
                                     value                                       = value | Rx_dataPacket[index++];
-                                    mappingPacket.liveStimulation.C_level_uA[i] = value;
+                                    mappingPacket.tdc_isd_map_live_step.C_level_uA[i] = value;
 
-                                    if ((mappingPacket.liveStimulation.C_level_uA[i] < 0)         // 0 미만
-                                        || (1800 < mappingPacket.liveStimulation.C_level_uA[i]))  // 1800 초과 시 에러
+                                    if ((mappingPacket.tdc_isd_map_live_step.C_level_uA[i] < 0)         // 0 미만
+                                        || (1800 < mappingPacket.tdc_isd_map_live_step.C_level_uA[i]))  // 1800 초과 시 에러
                                     {
                                         dataRangeError = true;
                                     }
@@ -724,22 +724,22 @@ void tdc_ble_mapping_fetch_packet(const int *Rx_dataPacket)  // spi 통신에서
                                 // x- min
                                 for (i = 0; i < 32; i++)
                                 {
-                                    mappingPacket.liveStimulation.audio_input_x_mim[i] = df_minAudioForLogarithm;
+                                    mappingPacket.tdc_isd_map_live_step.audio_input_x_mim[i] = df_minAudioForLogarithm;
                                 }
 
                                 // x- max
                                 for (i = 0; i < 32; i++)
                                 {
-                                    mappingPacket.liveStimulation.audio_input_x_max[i] = df_maxAudioForLogarithm;
+                                    mappingPacket.tdc_isd_map_live_step.audio_input_x_max[i] = df_maxAudioForLogarithm;
                                 }
 
-                                mappingPacket.liveStimulation.subCommand = en__allParameter;
+                                mappingPacket.tdc_isd_map_live_step.subCommand = en__allParameter;
 
                                 TDC_PRINTF_I("[LIVE] LIVE ALL PARAMETER PAYLOAD NUM : NOW, SUB COMMAND SET TO EN__ALL_PARAMETER \r\n");
                             }
                             else
                             {
-                                mappingPacket.liveStimulation.subCommand = en__Standby;
+                                mappingPacket.tdc_isd_map_live_step.subCommand = en__Standby;
                             }
                         }
                     }
@@ -748,27 +748,27 @@ void tdc_ble_mapping_fetch_packet(const int *Rx_dataPacket)  // spi 통신에서
 
                 case en__Start:  // 하위 명령 2 (실시간 자극 시작)
                 {
-                    mappingPacket.liveStimulation.subCommand = en__Start;
+                    mappingPacket.tdc_isd_map_live_step.subCommand = en__Start;
                 }
                 break;
 
                 case en__StimulationVolumeAdjust:  // 하위 명령 3 (자극 볼륨 조절)
                 {
-                    if (mappingPacket.liveStimulation.subCommand == en__HoldOn)
+                    if (mappingPacket.tdc_isd_map_live_step.subCommand == en__HoldOn)
                     {
                         value = Rx_dataPacket[index++];
 
                         if ((1 <= value)                                 // 1 이상
                             && (value <= df_maxStimulationVloumeLevel))  // 4 이하
                         {
-                            mappingPacket.liveStimulation.stimulVolume = value;
-                            mappingPacket.liveStimulation.subCommand   = en__StimulationVolumeAdjust;
+                            mappingPacket.tdc_isd_map_live_step.stimulVolume = value;
+                            mappingPacket.tdc_isd_map_live_step.subCommand   = en__StimulationVolumeAdjust;
                         }
                         else
                         {
                             // 에러 전송
                             tdc_sys_error_send_to_app(en__mapping_live_stimulation, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);  // 데이터 범위 벗어남
-                            mappingPacket.liveStimulation.subCommand = en__Standby;
+                            mappingPacket.tdc_isd_map_live_step.subCommand = en__Standby;
                         }
                     }
                     else
@@ -776,40 +776,40 @@ void tdc_ble_mapping_fetch_packet(const int *Rx_dataPacket)  // spi 통신에서
                         tdc_sys_error_send_to_app(en__mapping_live_stimulation, en__EN__BLE_PROTOCOL_ERROR, en__Command_Order,
                                        __LINE__);  // 라이브 자극 중에만 컨트롤 되는 명령어
 
-                        mappingPacket.liveStimulation.subCommand = en__Standby;
+                        mappingPacket.tdc_isd_map_live_step.subCommand = en__Standby;
                     }
                 }
                 break;
 
                 case en__MicSensitivityAdjust:  // 하위 명령 4 (마이크 감도 조절)
                 {
-                    if (mappingPacket.liveStimulation.subCommand == en__HoldOn)
+                    if (mappingPacket.tdc_isd_map_live_step.subCommand == en__HoldOn)
                     {
                         value = Rx_dataPacket[index++];
                         if ((1 <= value)                         // 1 이상
                             && (value <= df_maxMicVloumeLevel))  // 10 이하
                         {
-                            mappingPacket.liveStimulation.audioVolume = value;
-                            mappingPacket.liveStimulation.subCommand  = en__MicSensitivityAdjust;
+                            mappingPacket.tdc_isd_map_live_step.audioVolume = value;
+                            mappingPacket.tdc_isd_map_live_step.subCommand  = en__MicSensitivityAdjust;
                         }
                         else
                         {
                             // 에러 전송
                             tdc_sys_error_send_to_app(en__mapping_live_stimulation, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);  // 데이터 범위 벗어남
-                            mappingPacket.liveStimulation.subCommand = en__Standby;
+                            mappingPacket.tdc_isd_map_live_step.subCommand = en__Standby;
                         }
                     }
                     else
                     {
                         tdc_sys_error_send_to_app(en__mapping_live_stimulation, en__EN__BLE_PROTOCOL_ERROR, en__Command_Order, __LINE__);  // 라이브 자극 중에만 컨트롤 되는 명령어
-                        mappingPacket.liveStimulation.subCommand = en__Standby;
+                        mappingPacket.tdc_isd_map_live_step.subCommand = en__Standby;
                     }
                 }
                 break;
 
                 case en__mapping_Stimul_indicator:  // 하위 명령 5 (알림 자극 출력)
                 {
-                    if (mappingPacket.liveStimulation.subCommand == en__HoldOn)
+                    if (mappingPacket.tdc_isd_map_live_step.subCommand == en__HoldOn)
                     {
                         p_mapDataSharedMemory = getPointerCurrentMapData();
 
@@ -820,11 +820,11 @@ void tdc_ble_mapping_fetch_packet(const int *Rx_dataPacket)  // spi 통신에서
                         {
                             // 에러 전송
                             tdc_sys_error_send_to_app(en__mapping_live_stimulation, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);  // 데이터 범위 벗어남
-                            mappingPacket.liveStimulation.subCommand = en__Standby;
+                            mappingPacket.tdc_isd_map_live_step.subCommand = en__Standby;
                         }
                         else
                         {
-                            mappingPacket.liveStimulation.stimulationIndicatorChannelNum = value;
+                            mappingPacket.tdc_isd_map_live_step.stimulationIndicatorChannelNum = value;
 
                             value = Rx_dataPacket[index++] << 8;     // 알림용 자극 크기 uA (upper)
                             value = value | Rx_dataPacket[index++];  // 알림용 자극 크기 uA (lower)
@@ -869,12 +869,12 @@ void tdc_ble_mapping_fetch_packet(const int *Rx_dataPacket)  // spi 통신에서
                                 TDC_PRINTF_E("[MAPPING] VALUE=%d, max_C_uA=%d, min_T_uA=%d \r\n", value, max_C_uA, min_T_uA);
                                 // 에러 전송
                                 tdc_sys_error_send_to_app(en__mapping_live_stimulation, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);  // 데이터 범위 벗어남
-                                mappingPacket.liveStimulation.subCommand = en__Standby;
+                                mappingPacket.tdc_isd_map_live_step.subCommand = en__Standby;
                             }
                             else
                             {
-                                mappingPacket.liveStimulation.stimulationIndicatorAmplitude_uA = value;
-                                mappingPacket.liveStimulation.subCommand                       = en__mapping_Stimul_indicator;
+                                mappingPacket.tdc_isd_map_live_step.stimulationIndicatorAmplitude_uA = value;
+                                mappingPacket.tdc_isd_map_live_step.subCommand                       = en__mapping_Stimul_indicator;
                             }
                         }
                     }
@@ -882,14 +882,14 @@ void tdc_ble_mapping_fetch_packet(const int *Rx_dataPacket)  // spi 통신에서
                     {
                         tdc_sys_error_send_to_app(en__mapping_live_stimulation, en__EN__BLE_PROTOCOL_ERROR, en__Command_Order, __LINE__);  // 라이브 자극 중에만 컨트롤 되는 명령어
 
-                        mappingPacket.liveStimulation.subCommand = en__Standby;
+                        mappingPacket.tdc_isd_map_live_step.subCommand = en__Standby;
                     }
                 }
                 break;
 
                 case en__readEqualizer:  // 하위 명령 6 (자극 출력 값 읽기: 이퀄라이저)
                 {
-                    if (mappingPacket.liveStimulation.subCommand == en__HoldOn)
+                    if (mappingPacket.tdc_isd_map_live_step.subCommand == en__HoldOn)
                     {
                         tempA = Rx_dataPacket[index++];  // start index
                         tempB = Rx_dataPacket[index++];  // end index
@@ -909,7 +909,7 @@ void tdc_ble_mapping_fetch_packet(const int *Rx_dataPacket)  // spi 통신에서
                         if (dataRangeError)
                         {
                             tdc_sys_error_send_to_app(en__mapping_live_stimulation, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);  // 데이터 범위 벗어남
-                            mappingPacket.liveStimulation.subCommand = en__Standby;
+                            mappingPacket.tdc_isd_map_live_step.subCommand = en__Standby;
                         }
                         else
                         {
@@ -917,14 +917,14 @@ void tdc_ble_mapping_fetch_packet(const int *Rx_dataPacket)  // spi 통신에서
                             {
                                 // 에러 전송
                                 tdc_sys_error_send_to_app(en__mapping_live_stimulation, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);  // 데이터 범위 벗어남
-                                mappingPacket.liveStimulation.subCommand = en__Standby;
+                                mappingPacket.tdc_isd_map_live_step.subCommand = en__Standby;
                             }
                             else
                             {
-                                mappingPacket.liveStimulation.equlizer_ReadStart_index = tempA;
-                                mappingPacket.liveStimulation.equlizer_ReadEnd_index   = tempB;
+                                mappingPacket.tdc_isd_map_live_step.equlizer_ReadStart_index = tempA;
+                                mappingPacket.tdc_isd_map_live_step.equlizer_ReadEnd_index   = tempB;
 
-                                mappingPacket.liveStimulation.subCommand = en__readEqualizer;
+                                mappingPacket.tdc_isd_map_live_step.subCommand = en__readEqualizer;
                             }
                         }
                     }
@@ -933,26 +933,26 @@ void tdc_ble_mapping_fetch_packet(const int *Rx_dataPacket)  // spi 통신에서
                         tdc_sys_error_send_to_app(en__mapping_live_stimulation, en__EN__BLE_PROTOCOL_ERROR, en__Command_Order,
                                        __LINE__);  // 라이브 자극 중에만 컨트롤 되는 명령어
 
-                        mappingPacket.liveStimulation.subCommand = en__Standby;
+                        mappingPacket.tdc_isd_map_live_step.subCommand = en__Standby;
                     }
                 }
                 break;
 
                 case en__readDeviceStatus:  // 하위 명령 7 (장치 상태 읽기)
                 {
-                    mappingPacket.liveStimulation.subCommand = en__readDeviceStatus;
+                    mappingPacket.tdc_isd_map_live_step.subCommand = en__readDeviceStatus;
                 }
                 break;
 
                 case en__Stop:  // 하위 명령 8 (실시간 자극 종료)
                 {
-                    mappingPacket.liveStimulation.subCommand = en__Stop;
+                    mappingPacket.tdc_isd_map_live_step.subCommand = en__Stop;
                 }
                 break;
 
                 default:
                 {
-                    mappingPacket.liveStimulation.subCommand = en__Standby;
+                    mappingPacket.tdc_isd_map_live_step.subCommand = en__Standby;
                 }
                 break;
             }
@@ -1897,7 +1897,7 @@ ST__MAPPING_STATE tdc_ble_mapping_step(ST__ISD_STATUS ISD_state)
     // 매핑 명령이 수신되 시접에 내부기 연결 확인용 backtel 전송 명령이 실행 중일 경우에는 백텔 수신이 완료되고 명령을 실행 할 수 있도록 한다.
     if (mappingPacket.fetched_command != en__mapping_IDLE)
     {
-        if (!isING_connectionCheckWithMapping())
+        if (!tdc_isd_is_connection_check_with_mapping())
         {
             mappingPacket.command         = mappingPacket.fetched_command;
             mappingPacket.fetched_command = en__mapping_IDLE;
@@ -1976,7 +1976,7 @@ ST__MAPPING_STATE tdc_ble_mapping_step(ST__ISD_STATUS ISD_state)
                     mappingProgramConnected = false;
                     isdControlCommand       = en__isdStatus_PowerIC_Reset;
 
-                    // update_isd_Link_is_Disconnected();
+                    // tdc_isd_update_link_disconnected();
 #endif
                 }
                 break;
@@ -1987,7 +1987,7 @@ ST__MAPPING_STATE tdc_ble_mapping_step(ST__ISD_STATUS ISD_state)
                     mappingProgramConnected = false;
                     isdControlCommand       = en__isdStatus_PowerIC_Reset;
 
-                    // update_isd_Link_is_Disconnected();
+                    // tdc_isd_update_link_disconnected();
                 }
                 break;
 
@@ -1998,7 +1998,7 @@ ST__MAPPING_STATE tdc_ble_mapping_step(ST__ISD_STATUS ISD_state)
 
                     if (ISD_state.conneded_ISD)
                     {
-                        impedanceMeasurement(mappingCommandStartFlag);
+                        tdc_isd_map_impedance_step(mappingCommandStartFlag);
                     }
                     else
                     {
@@ -2015,7 +2015,7 @@ ST__MAPPING_STATE tdc_ble_mapping_step(ST__ISD_STATUS ISD_state)
                     connectionCheckCounter = df_connectionCheckPeriod_ms;
                     if (ISD_state.conneded_ISD)
                     {
-                        eCapMeasurement_masking(mappingCommandStartFlag);
+                        tdc_isd_map_ecap_step(mappingCommandStartFlag);
                     }
                     else
                     {
@@ -2029,7 +2029,7 @@ ST__MAPPING_STATE tdc_ble_mapping_step(ST__ISD_STATUS ISD_state)
                 {
                     // 카운터를 df_connectionCheckPeriod_ms로 리셋하여 연결확인 진행하지 않게 한다.
                     connectionCheckCounter = df_connectionCheckPeriod_ms;
-                    // eCapMeasurement_masking(mappingCommandStartFlag);
+                    // tdc_isd_map_ecap_step(mappingCommandStartFlag);
                 }
                 break;
 
@@ -2039,7 +2039,7 @@ ST__MAPPING_STATE tdc_ble_mapping_step(ST__ISD_STATUS ISD_state)
                     connectionCheckCounter = df_connectionCheckPeriod_ms;
                     if (ISD_state.conneded_ISD)
                     {
-                        specificStimulation(mappingCommandStartFlag);
+                        tdc_isd_map_specific_stim_step(mappingCommandStartFlag);
                     }
                     else
                     {
@@ -2052,7 +2052,7 @@ ST__MAPPING_STATE tdc_ble_mapping_step(ST__ISD_STATUS ISD_state)
                 case en__mapping_live_stimulation:
                 {
                     connectionCheckCounter      = df_connectionCheckPeriod_ms;
-                    sitmulationIndicatorTrigger = liveStimulation(ISD_state);
+                    sitmulationIndicatorTrigger = tdc_isd_map_live_step(ISD_state);
                     // 카운터를 df_connectionCheckPeriod_ms로 리셋하여 연결확인 진행하지 않게 한다.
                 }
                 break;
@@ -2093,64 +2093,64 @@ ST__MAPPING_STATE tdc_ble_mapping_step(ST__ISD_STATUS ISD_state)
 
                 case en__mapping_read_original_ISD_N_USER:
                 {
-                    read_Original_isdInfo_N_userSetting_fromFlash(mappingCommandStartFlag, en__mapping_read_original_ISD_N_USER);
+                    tdc_isd_map_read_original_info_setting(mappingCommandStartFlag, en__mapping_read_original_ISD_N_USER);
                 }
                 break;
 
                 case en__mapping_write_original_ISD_N_USER:
                 {
                     /* 플레쉬에 저장하면서 BLE 광고 이름을 바꾸기 위해서
-                     * change_isd_state(en__isdStatus_ISD_Power_Ok);를 사용해 내부기 연결 해제를 유도하여
+                     * tdc_isd_change_state(en__isdStatus_ISD_Power_Ok);를 사용해 내부기 연결 해제를 유도하여
                      * BLE 연결 해제 후 광고이름 변경하여 진행하게 한다. */
-                    write_Original_isdInfo_N_userSetting_atFlash(mappingCommandStartFlag, en__mapping_write_original_ISD_N_USER);
+                    tdc_isd_map_write_original_info_setting(mappingCommandStartFlag, en__mapping_write_original_ISD_N_USER);
                 }
                 break;
 
                 case en__mapping_read_SlotData_ISD_N_USER:
                 {
-                    read_isdInfo_N_userSetting_fromFlash(mappingCommandStartFlag, en__mapping_read_SlotData_ISD_N_USER, mappingPacket.ReadWriteMapData_Flash.slot_index);
+                    tdc_isd_map_read_info_setting(mappingCommandStartFlag, en__mapping_read_SlotData_ISD_N_USER, mappingPacket.ReadWriteMapData_Flash.slot_index);
                 }
                 break;
 
                 case en__mapping_write_SlotData_ISD_N_USER:
                 {
-                    write_isdInfo_N_userSetting_atFlash(mappingCommandStartFlag, en__mapping_write_SlotData_ISD_N_USER, mappingPacket.ReadWriteMapData_Flash.slot_index);
+                    tdc_isd_map_write_info_setting(mappingCommandStartFlag, en__mapping_write_SlotData_ISD_N_USER, mappingPacket.ReadWriteMapData_Flash.slot_index);
                 }
                 break;
 
                 case en__mapping_read_Mapdata_STIMUL_PARA:
                 {
-                    read_stimulPara_fromFlash(mappingCommandStartFlag, en__mapping_read_Mapdata_STIMUL_PARA, mappingPacket.ReadWriteMapData_Flash.slot_index, mappingPacket.ReadWriteMapData_Flash.map_index);
+                    tdc_isd_map_read_stim_para(mappingCommandStartFlag, en__mapping_read_Mapdata_STIMUL_PARA, mappingPacket.ReadWriteMapData_Flash.slot_index, mappingPacket.ReadWriteMapData_Flash.map_index);
                 }
                 break;
 
                 case en__mapping_write_Mapdata_STIMUL_PARA:
                 {
-                    write_stimulPara_atFlash(mappingCommandStartFlag, en__mapping_write_Mapdata_STIMUL_PARA, mappingPacket.ReadWriteMapData_Flash.slot_index, mappingPacket.ReadWriteMapData_Flash.map_index);
+                    tdc_isd_map_write_stim_para(mappingCommandStartFlag, en__mapping_write_Mapdata_STIMUL_PARA, mappingPacket.ReadWriteMapData_Flash.slot_index, mappingPacket.ReadWriteMapData_Flash.map_index);
                 }
                 break;
 
                 case en__mapping_erase_SlotData_manufacture:
                 {
-                    reset_NVM_Selected_ISD_allData(mappingCommandStartFlag, en__mapping_erase_SlotData_manufacture, mappingPacket.ReadWriteMapData_Flash.slot_index, flash_Command_Erase);
+                    tdc_isd_map_reset_nvm_selected(mappingCommandStartFlag, en__mapping_erase_SlotData_manufacture, mappingPacket.ReadWriteMapData_Flash.slot_index, flash_Command_Erase);
                 }
                 break;
 
                 case en__mapping_erase_mapData_STIMUL_PARA:
                 {
-                    reset_NVM_MapData(mappingCommandStartFlag, en__mapping_erase_mapData_STIMUL_PARA, mappingPacket.ReadWriteMapData_Flash.slot_index, mappingPacket.ReadWriteMapData_Flash.map_index, flash_Command_Erase);
+                    tdc_isd_map_reset_nvm_map_data(mappingCommandStartFlag, en__mapping_erase_mapData_STIMUL_PARA, mappingPacket.ReadWriteMapData_Flash.slot_index, mappingPacket.ReadWriteMapData_Flash.map_index, flash_Command_Erase);
                 }
                 break;
 
                 case en__mapping_recover_mppingData_exceptSlot_1:
                 {
-                    reset_NVM_2to4_ISD_allData(mappingCommandStartFlag, en__mapping_recover_mppingData_exceptSlot_1, flash_Command_Recover);
+                    tdc_isd_map_reset_nvm_2to4(mappingCommandStartFlag, en__mapping_recover_mppingData_exceptSlot_1, flash_Command_Recover);
                 }
                 break;
 
                 case en__mapping_recover_ALL_SlotData_ManufactureData:
                 {
-                    result = reset_NVM_All_ISD_allData(mappingCommandStartFlag, en__mapping_recover_ALL_SlotData_ManufactureData, flash_Command_Recover);
+                    result = tdc_isd_map_reset_nvm_all(mappingCommandStartFlag, en__mapping_recover_ALL_SlotData_ManufactureData, flash_Command_Recover);
 
                     if (result)
                     {
@@ -2190,7 +2190,7 @@ ST__MAPPING_STATE tdc_ble_mapping_step(ST__ISD_STATUS ISD_state)
 
                     if (delayCounter == 150)  // 수신명령 응답 돤료 이후에 NRF끔
                     {
-                        // update_isd_Link_is_Disconnected();
+                        // tdc_isd_update_link_disconnected();
                         isdControlCommand = en__isdStatus_PowerIC_Reset;
                     }
 
@@ -2235,7 +2235,7 @@ ST__MAPPING_STATE tdc_ble_mapping_step(ST__ISD_STATUS ISD_state)
                     bufferForSPI_tx[buffer_tx_index++] = mappingPacket.command;
 
                     // pay-load 준비
-                    value                              = read_Connected_ISD_id();
+                    value                              = tdc_isd_read_connected_id();
                     bufferForSPI_tx[buffer_tx_index++] = value >> 24;
                     bufferForSPI_tx[buffer_tx_index++] = 0xff & (value >> 16);
                     bufferForSPI_tx[buffer_tx_index++] = 0xff & (value >> 8);
@@ -2260,7 +2260,7 @@ ST__MAPPING_STATE tdc_ble_mapping_step(ST__ISD_STATUS ISD_state)
                             TDC_PRINTF_V("\r\n[MAPPING] IDLE, LINK CHECK \r\n");
                         }
 #endif
-                        update_isd_LinkConnection_byBacktel_withMapping(connectionCheckCounter);  // 체크가 완료되면 flag가 FLASE로 변경
+                        tdc_isd_update_link_by_backtel_mapping(connectionCheckCounter);  // 체크가 완료되면 flag가 FLASE로 변경
                     }
                 }
                 break;

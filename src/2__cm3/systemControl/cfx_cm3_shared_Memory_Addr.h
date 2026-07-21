@@ -5,7 +5,7 @@
 #include <hw.h>
 
 #include "99_eeprom_address.h"       //ok
-#include "definitionsForAlgorithm.h" //ok
+#include "tdc_stim_definitions.h" //ok
 #include "processorDirective.h"      //ok
 
 // CM3 DRAM에 cfx-cm3 공유메모리를 할당해서 사용한다.

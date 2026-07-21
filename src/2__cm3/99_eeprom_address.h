@@ -2,7 +2,7 @@
 #ifndef EEPROM_ADDRESS_H__
 #define EEPROM_ADDRESS_H__
 
-#include "definitionsForAlgorithm.h"
+#include "tdc_stim_definitions.h"
 #include "processorDirective.h"
 
 #define AT_WREN 0x06 // Write enable

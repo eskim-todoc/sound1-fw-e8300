@@ -9,7 +9,7 @@
 #include "tdc_hal_i2c.h"
 
 #include "tdc_drv_isl9122.h"
-#include "commonDataProcessing.h"
+#include "tdc_stim_common.h"
 
 bool tdc_drv_isl9122_write_register(int registerAddr, int value)
 {
@@ -94,7 +94,7 @@ bool tdc_drv_isl9122_reset(void)
 
     tdc_drv_isl9122_write_register(TDC_DRV_ISL9122_REG_CONV_CFG,TDC_DRV_PMIC_DEFAULTVALUE_CONV_CFG);
 
-    temp=data_clearBit(TDC_DRV_PMIC_DEFAULTVALUE_INTFLAG_MAS, TDC_DRV_PMIC_BITPOSITION_OC_FAULT_MODE, TDC_DRV_PMIC_BITLENGTH_OC_FAULT_MODE);
+    temp=tdc_stim_data_clear_bit(TDC_DRV_PMIC_DEFAULTVALUE_INTFLAG_MAS, TDC_DRV_PMIC_BITPOSITION_OC_FAULT_MODE, TDC_DRV_PMIC_BITLENGTH_OC_FAULT_MODE);
     value=1;
     value=(value<<TDC_DRV_PMIC_BITPOSITION_OC_FAULT_MODE)|temp;
 

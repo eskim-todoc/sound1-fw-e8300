@@ -2,7 +2,7 @@
 
 #include <stdbool.h>
 #include "tdc_hal_spi.h"
-#include "isd_interface.h"
+#include "tdc_isd.h"
 #include "tdc_ble_remote.h"
 #include "tdc_ble_mapping.h"
 #include "tdc_ble_communication.h"
@@ -60,7 +60,7 @@ void setting_nrf_ble_adv_info(void)
     {
         ST__ISD_STATUS isd_status;
 
-        isd_status = snd_isd_interface_get_state();
+        isd_status = tdc_isd_get_state();
 
         // ISD가 연결된 상태라면 내부기 정보 전달
         if (isd_status.conneded_ISD)

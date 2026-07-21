@@ -17,24 +17,24 @@
 #include "tdc_sys_error.h"          //ok
 #include "tdc_sys_control.h"  //ok
 
-#include "isd_interface.h"   //ok
+#include "tdc_isd.h"   //ok
 #include "tdc_ble_mapping.h"  //ok
 #include "tdc_ble_remote.h"   //ok
 
 #include "tdc_led_output.h"           //ok
 #include "tdc_ble_communication.h"   //ok
 #include "tdc_sys_earpiece.h"      //ok
-#include "indicatorByStimul.h"   //ok
-#include "stimulationParaCal.h"  //ok
+#include "tdc_stim_indicator.h"   //ok
+#include "tdc_stim_para_cal.h"  //ok
 
 #include "tdc_drv_isl9122.h"  //ok
 
 #include <tdc_touch.h>        /* 공개 API + tdc_touch_time.h(ULP 시간상수) 재노출 */
 #include <tdc_touch_iqs323.h> /* 절전 진입 IQS323 직접 호출 */
 
-#include "isd_interface_stimulationStandAlone.h"  // 신규 추가 for I2S 디버깅
-#include <isd_interface_init_FPGA.h>              // 절전 모드 진입 전 FPGA 리셋 목적
-#include <isd_interface_FPGA.h>
+#include "tdc_isd_stim_standalone.h"  // 신규 추가 for I2S 디버깅
+#include <tdc_isd_init_fpga.h>              // 절전 모드 진입 전 FPGA 리셋 목적
+#include <tdc_isd_fpga.h>
 
 #include <tdc_pwr_clock.h>
 #include <tdc_hal_dio.h>
@@ -152,7 +152,7 @@ void update_mapNum(void)
     bool userSettingValueLoadedFlag = false;
 
     // 참고:
-    // isd_interface() 함수에서, isd_path_Open() 함수를 통해 내부기 연결이 올바르게 인식되면,
+    // tdc_isd_step() 함수에서, tdc_isd_path_open() 함수를 통해 내부기 연결이 올바르게 인식되면,
     // 해당 내부기의 ISD 번호에 맞는 맵 데이터를 공유 메모리로 복사하고, 연결된 ISD 번호를 업데이트한다.
     // CFX가 ISD 번호를 확인 후, 사용자 설정 값이 로드 되었다는 의미의 플래그를 설정하게된다.
     // 아래는 이 과정이 다 이뤄졌는지 확인하는 과정이다.
@@ -166,8 +166,8 @@ void update_mapNum(void)
     // CFX는 Normal_PowerMode_event_mapChange() 함수에서 관련 처리를 한 후
     // 공유 메모리의 cfx_cm3_sharedMemoryAll.mapChangeFlag.cfx_Reloaded_MapdataFlag를 1로 설정한다.
 
-    // 여기까지 완료되면, isd_interface() 함수에서, isd_controlState가 en__isdStatus_stimul_10V_Ok인 상태의
-    // stimulationStandAlone() 함수 내부의 if (isMapdateLoaded_CFX()) 블록이 수행되는 구조이다.
+    // 여기까지 완료되면, tdc_isd_step() 함수에서, isd_controlState가 en__isdStatus_stimul_10V_Ok인 상태의
+    // tdc_isd_stim_standalone_step() 함수 내부의 if (isMapdateLoaded_CFX()) 블록이 수행되는 구조이다.
 
     // CFX에서 사용자 설정값 읽어 들여졌는지 확인.
     userSettingValueLoadedFlag = isUserSettingValueLoaded_CFX();
@@ -601,7 +601,7 @@ static void tdc_collect_events(tdc_normal_events_t *ev)
 }
 
 /* 수집된 입력으로 상태를 전이시키고 출력에 반영한다.
- * 순서 의존: tdc_sys_control_step -> isd_interface -> tdc_ble_communication_step (enable_ISD 전달).
+ * 순서 의존: tdc_sys_control_step -> tdc_isd_step -> tdc_ble_communication_step (enable_ISD 전달).
  * LED 요청은 배터리 -> ISD -> 매핑 순서에 의존한다(tdc_update_led_requests 내부). */
 static void tdc_handle_events(const tdc_normal_events_t *ev, tdc_normal_ctx_t *ctx)
 {
@@ -621,7 +621,7 @@ static void tdc_handle_events(const tdc_normal_events_t *ev, tdc_normal_ctx_t *c
 
     update_mapNum();  // 맵데이터 업데이트
 
-    ctx->isd_state = isd_interface(ctx->systemState.enable_ISD,  //
+    ctx->isd_state = tdc_isd_step(ctx->systemState.enable_ISD,  //
                                    ctx->ble_state.mappingConnection,
                                    ctx->ble_state.isdControlCommand  //
     );
@@ -632,7 +632,7 @@ static void tdc_handle_events(const tdc_normal_events_t *ev, tdc_normal_ctx_t *c
 
     ctx->ble_state = tdc_ble_communication_step(ctx->isd_state);
 
-    stimulation_IndicatorOut(readStimulIndicator_OnOff(),  //
+    tdc_stim_indicator_out(readStimulIndicator_OnOff(),  //
                              ctx->systemState.StimulationIndicatorTriggerLowPower,
                              ctx->ble_state.StimulationIndicatorTrigger  //
     );
@@ -866,7 +866,7 @@ static void func_cradle_lid_closed_loop(void)
     SYS_WATCHDOG_REFRESH();
 
     /* 1. FPGA 리셋 */
-    if (write_FPGA_reset())
+    if (tdc_isd_fpga_write_reset())
     {
         TDC_PRINTF_I("[CRADLE] FPGA SW RESET OK\r\n");
     }
@@ -1100,7 +1100,7 @@ int func_sleep(void)
 
     // I2C 레지스터의 sw_reset 만으로도 백텔 하드웨어 전원 OFF가 되는지 확인이 필요하다.
 
-    TDC_PRINTF_D("[LP] fpga reset %s \r\n", write_FPGA_reset() ? "ok" : "fail");
+    TDC_PRINTF_D("[LP] fpga reset %s \r\n", tdc_isd_fpga_write_reset() ? "ok" : "fail");
 
     cfx_cm3_sharedMemoryAll.systemShare.enter_ULP_mode_Command_CM3_to_CFX = 1;
 

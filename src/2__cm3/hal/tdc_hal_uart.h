@@ -14,7 +14,7 @@
 #include <hw.h>
 
 #include <processorDirective.h>
-#include <definitionsForAlgorithm.h>
+#include <tdc_stim_definitions.h>
 
 #include <board.h>
 

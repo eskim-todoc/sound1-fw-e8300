@@ -3,7 +3,7 @@
 #include "cfx_cm3_sharedMemory.h"
 #include "tdc_ble_protocol.h"
 #include "cfx_cm3_shared_Memory_Addr.h"
-#include "isd_interface_stimulationStandAlone.h"
+#include "tdc_isd_stim_standalone.h"
 
 #include "tdc_pwr_battery.h"  // 새로 추가
 #include <main.h>
@@ -482,7 +482,7 @@ void changeProgramMapNum(int mapNum)
         setCommandMapChange_Cm3ToCfx();
 
         // CM3에 새로운 맵으로 자극 관련 파라미터의 계산을 다시 하도록 플레그를 세팅한다.
-        set_newMapLoadeFlagForStimulParaSetting();
+        tdc_isd_set_new_map_loaded_flag();
     }
 }
 

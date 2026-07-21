@@ -19,11 +19,11 @@
 #include <stdbool.h>
 
 #include <hw.h>
-#include <driver_PCM.h>  //ok
+#include <tdc_isd_pcm.h>  //ok
 
 #include "tdc_ble_protocol.h"       //ok
 #include "board.h"                    //ok
-#include "definitionsForAlgorithm.h"  //ok
+#include "tdc_stim_definitions.h"  //ok
 #include "internalStimulationChip.h"  //ok
 
 #include "tdc_printf.h"

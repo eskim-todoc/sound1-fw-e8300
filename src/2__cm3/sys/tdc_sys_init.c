@@ -30,15 +30,15 @@
 #include "tdc_sys_error.h"
 #include "tdc_sys_control.h"
 
-#include "isd_interface.h"
+#include "tdc_isd.h"
 #include "tdc_ble_mapping.h"
 #include "tdc_ble_remote.h"
 #include "tdc_ble_gain_control.h"
 #include <tdc_fs_gain.h>
 
 #include "tdc_led_output.h"
-#include "indicatorByStimul.h"
-#include "stimulationParaCal.h"
+#include "tdc_stim_indicator.h"
+#include "tdc_stim_para_cal.h"
 
 #if defined(Board_is_OTE_VER_1_2)
 #include "tdc_drv_isl91128.h"
@@ -398,12 +398,12 @@ void tdc_sys_init(void)
         }
 
         // 리셋 디폴트로 세팅
-        write_change_TxPowerLevel(TDC_DRV_PMIC_RESET_VOLTAGE_SET_VALUE);
+        tdc_isd_fpga_write_change_tx_power_level(TDC_DRV_PMIC_RESET_VOLTAGE_SET_VALUE);
 
         while (1)
         {
             // 읽어본다.
-            if (!read_txPowerLevel(&tx_power))
+            if (!tdc_isd_fpga_read_tx_power_level(&tx_power))
             {
                 while (1)
                 {
@@ -429,7 +429,7 @@ void tdc_sys_init(void)
             // 새 레벨이 최대 값을 안 넘으면 이대로 설정
             if (tx_power <= TDC_DRV_PMIC_MAX_VOLTAGE_CONTROL_VALUE)
             {
-                if (!write_change_TxPowerLevel(tx_power))
+                if (!tdc_isd_fpga_write_change_tx_power_level(tx_power))
                 {
                     while (1)
                     {
@@ -440,7 +440,7 @@ void tdc_sys_init(void)
             // 새 레벨이 최대 값을 넘으면 최대 값으로 설정
             else
             {
-                if (!write_change_TxPowerLevel(TDC_DRV_PMIC_MAX_VOLTAGE_CONTROL_VALUE))
+                if (!tdc_isd_fpga_write_change_tx_power_level(TDC_DRV_PMIC_MAX_VOLTAGE_CONTROL_VALUE))
                 {
                     while (1)
                     {
