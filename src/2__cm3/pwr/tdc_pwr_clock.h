@@ -2,8 +2,8 @@
  * @file OTE_1P5_power_manager.h
  */
 
-#ifndef __OTE_1P5_power_manager_h__
-#define __OTE_1P5_power_manager_h__
+#ifndef __tdc_pwr_clock_h__
+#define __tdc_pwr_clock_h__
 
 #include <stdbool.h>
 #include <stdio.h>
@@ -24,11 +24,11 @@
 
 #include <tdc_hal_trims.h>
 
-#define SM_POWER_NORMAL  1
-#define SM_POWER_STANDBY 2
-#define SM_POWER_PREHEAT 3
+#define TDC_PWR_CLOCK_NORMAL  1
+#define TDC_PWR_CLOCK_STANDBY 2
+#define TDC_PWR_CLOCK_PREHEAT 3
 
-#define CI_MANUF_TABLE_FILE "/MANUF_TABLE"
+#define TDC_PWR_MANUF_TABLE_FILE "/MANUF_TABLE"
 
 typedef struct
 {
@@ -42,7 +42,7 @@ typedef struct
     bool         avs_enabled;
     bool         vddc_cp_enabled;
     bool         vddm_cp_enabled;
-} SM_power_backup_t;
+} tdc_pwr_clock_backup_t;
 
 /**
  * The boot-information block provides additional information about the
@@ -94,8 +94,8 @@ typedef struct _bootloader_boot_information
     uint16_t boot_info_crc;     /**< CRC-CCITT of boot information area. */
 } __attribute__((packed)) bootloader_boot_information;
 
-int ci_power_normal(void);
-int ci_power_sleep(void);
+int tdc_pwr_clock_normal(void);
+int tdc_pwr_clock_sleep(void);
 /* ci_fake_power_sleep() 제거(2026-07-20) - fake sleep mode 삭제 */
 
-#endif  // __OTE_1P5_power_manager_h__
+#endif  // __tdc_pwr_clock_h__

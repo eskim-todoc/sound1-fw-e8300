@@ -1,5 +1,5 @@
-#ifndef ERRROR_H__
-#define ERRROR_H__
+#ifndef __tdc_sys_error_h__
+#define __tdc_sys_error_h__
 
 #include <stdbool.h>
 
@@ -12,7 +12,7 @@ typedef enum
     /* CFX 측 에러 코드 값과 정합 (구 99_errorCode.h - 포함처 0 으로 삭제(2026-07-20).
      * 원 내용: NoError=0, clock_init_Error=1) */
     en__ClockError = 1,
-} EN__CFX_ERROR;
+} tdc_sys_error_cfx_error_t;
 
 typedef enum
 {
@@ -20,7 +20,7 @@ typedef enum
     en__stimulationParameterUnloaded = 2,
     en__MaxChargeOver_mapdata,
     en_sourceCodeError
-} EN__DATAPROCESSING_ERROR;
+} tdc_sys_error_dataprocessing_error_t;
 
 typedef enum
 {
@@ -29,7 +29,7 @@ typedef enum
     en__I2C_ACCELER_WritingError,
     en__I2C_ACCELER_ReadingError,
 
-} EN__ACCELEROMETER_ERROR;
+} tdc_sys_error_accelerometer_error_t;
 
 typedef enum
 {
@@ -40,7 +40,7 @@ typedef enum
     en__I2C_RFPOW_WritingError,
     en__I2C_RFPOW_ReadingError
 
-} EN__RF_PowerIC_ERROR;
+} tdc_sys_error_rf_poweric_error_t;
 
 typedef enum
 {
@@ -49,7 +49,7 @@ typedef enum
     en__I2C_FPGA_WritingError,
     en__I2C_FPGA_ReadingError,
 
-} EN__FPGA_COMMUNICATION_ERROR;
+} tdc_sys_error_fpga_communication_error_t;
 
 typedef enum
 {
@@ -60,7 +60,7 @@ typedef enum
     en_FIFO_NotCleared,
     en_PulseWidthDifferent
 
-} EN__FPGA_CONFIGUARATION_ERROR;
+} tdc_sys_error_fpga_configuaration_error_t;
 
 typedef enum
 {
@@ -80,7 +80,7 @@ typedef enum
     en__SettingError_OffsetDAC_Level,
     en__SettingError_BipolarElectrodeNum
 
-} EN__ISD_ERROR;
+} tdc_sys_error_isd_error_t;
 
 typedef enum
 {
@@ -91,14 +91,14 @@ typedef enum
     en__DATA_Order,
     en__UndefinedCommand,
     en__OutOfDataRange
-} EN__BLE_PROTOCOL_ERROR;
+} tdc_sys_error_ble_protocol_error_t;
 
 typedef enum
 {
     en__PCMBufferOwerFlow = 1,
     en__PCM_TempleteBuff_OverFlow
 
-} EN__PCM_GEN_ERROR;
+} tdc_sys_error_pcm_gen_error_t;
 
 typedef enum
 {
@@ -106,7 +106,7 @@ typedef enum
     en__data_logging_error_write,
     en__data_logging_error_not_inited,
     en__data_logging_error_currupted
-} EN__DATA_LOGGING_ERROR;
+} tdc_sys_error_data_logging_error_t;
 
 typedef enum
 {
@@ -122,36 +122,36 @@ typedef enum
     en__EN__PCM_GEN_ERROR,                  // 9
     en__MAJOR_ERRORCODE_DATA_LOGGING_ERROR  // 10
 
-} EN__MAJOR_ERRORCODE;
+} tdc_sys_error_major_t;
 
 typedef struct
 {
-    // EN__CFX_ERROR CFX_ErrorFlag;
-    EN__DATAPROCESSING_ERROR      dataProcessingErrorFlag;
-    EN__ACCELEROMETER_ERROR       accelerometerErrorFlag;
-    EN__RF_PowerIC_ERROR          PowerIcErrorFlag;
-    EN__FPGA_COMMUNICATION_ERROR  FPGA_CommunicationErrorFlag;
-    EN__FPGA_CONFIGUARATION_ERROR FPGA_ConfiguraionErrorFlag;
-    EN__ISD_ERROR                 ISD_ErrorFlag;
+    // tdc_sys_error_cfx_error_t CFX_ErrorFlag;
+    tdc_sys_error_dataprocessing_error_t      dataProcessingErrorFlag;
+    tdc_sys_error_accelerometer_error_t       accelerometerErrorFlag;
+    tdc_sys_error_rf_poweric_error_t          PowerIcErrorFlag;
+    tdc_sys_error_fpga_communication_error_t  FPGA_CommunicationErrorFlag;
+    tdc_sys_error_fpga_configuaration_error_t FPGA_ConfiguraionErrorFlag;
+    tdc_sys_error_isd_error_t                 ISD_ErrorFlag;
     int                           FPGA_OR_ISD_ErrorFlag;
     int                           FPGA_systemError;    // FPGA의 레지스터 값과 동일하게 유지
     int                           FPGA_backtelError;   // FPGA의 레지스터 값과 동일하게 유지
-    EN__DATA_LOGGING_ERROR        data_logging_error;  // NOTE: 사이버 보안을 고려하여, 검사 기록 생성 실패에 대한 오류 정보 추가
+    tdc_sys_error_data_logging_error_t        data_logging_error;  // NOTE: 사이버 보안을 고려하여, 검사 기록 생성 실패에 대한 오류 정보 추가
 
-} ST__ERROR_CODE;
+} tdc_sys_error_code_t;
 
-void update_FPGA_systemError(int value);
+void tdc_sys_error_update_fpga_system(int value);
 
-void update_FPGA_backtelError(int value);
+void tdc_sys_error_update_fpga_backtel(int value);
 
-void clearErrorFlag(EN__MAJOR_ERRORCODE majorError);
+void tdc_sys_error_clear_flag(tdc_sys_error_major_t majorError);
 
-void clearAllErrorFlag(void);
+void tdc_sys_error_clear_all(void);
 
-void errorCodeUpdate(EN__MAJOR_ERRORCODE majorError, int detailError, int lineNumber);
+void tdc_sys_error_update(tdc_sys_error_major_t majorError, int detailError, int lineNumber);
 
-ST__ERROR_CODE readErrorCode(void);
+tdc_sys_error_code_t tdc_sys_error_read(void);
 
-void sendErrorToApp(EN__MAPPING_COMMAND command, EN__MAJOR_ERRORCODE majorError, int minorError, int lineNumber);
+void tdc_sys_error_send_to_app(EN__MAPPING_COMMAND command, tdc_sys_error_major_t majorError, int minorError, int lineNumber);
 
 #endif

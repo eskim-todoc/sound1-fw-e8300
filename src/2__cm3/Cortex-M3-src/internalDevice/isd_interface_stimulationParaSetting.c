@@ -14,7 +14,7 @@
 #include <indicatorByStimul.h>
 #include <stimulationParaCal.h>
 #include <electrodeMapping.h>
-#include <error.h>
+#include <tdc_sys_error.h>
 
 static bool stimulationParameterSettingDone = false;
 
@@ -114,7 +114,7 @@ bool settingStimulPara_monoPolarMode(bool isdControlStateChagedFlag)
                 else
                 {
                     // 펄스폭 설정 실패, FPGA 초기화
-                    errorCodeUpdate(en__FPGA_CONFIGUARATION_ERROR, en_PulseWidthDifferent, __LINE__);
+                    tdc_sys_error_update(en__FPGA_CONFIGUARATION_ERROR, en_PulseWidthDifferent, __LINE__);
                     change_isd_state(en__isdStatus_PowerIC_OK);
 
                     stimulationConfigError = true;
@@ -135,7 +135,7 @@ bool settingStimulPara_monoPolarMode(bool isdControlStateChagedFlag)
                         {
                             if (!FPGA_FIFO_empty)
                             {
-                                errorCodeUpdate(en__FPGA_CONFIGUARATION_ERROR, en_FIFO_NotCleared, __LINE__);
+                                tdc_sys_error_update(en__FPGA_CONFIGUARATION_ERROR, en_FIFO_NotCleared, __LINE__);
                                 change_isd_state(en__isdStatus_PowerIC_OK);  //
 
                                 stimulationConfigError = true;
@@ -146,7 +146,7 @@ bool settingStimulPara_monoPolarMode(bool isdControlStateChagedFlag)
                 else
                 {
                     // 백텔 레지스터 설정 오류
-                    errorCodeUpdate(en__FPGA_CONFIGUARATION_ERROR, en_RegisterConfigError_byPCM, __LINE__);
+                    tdc_sys_error_update(en__FPGA_CONFIGUARATION_ERROR, en_RegisterConfigError_byPCM, __LINE__);
                     change_isd_state(en__isdStatus_PowerIC_OK);
 
                     stimulationConfigError = true;

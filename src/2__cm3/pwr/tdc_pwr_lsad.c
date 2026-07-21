@@ -2,8 +2,8 @@
  * @file GEN1_5_battery.c
  */
 
-#include <batteryNPowerControl.h>
-#include <ci_battery.h>
+#include <tdc_pwr_battery.h>
+#include <tdc_pwr_lsad.h>
 
 static volatile int s_sample_count = 0;
 
@@ -11,21 +11,21 @@ void LSAD_IRQHandler(void)
 {
     s_sample_count++;
 
-    if (CI_LASD_STABLE_CNT < s_sample_count)
+    if (TDC_PWR_LSAD_STABLE_CNT < s_sample_count)
     {
-        // LSAD->CFG = (LSAD_INT_CH_NUM | LSAD_INT_DISABLE | LSAD_PRESCALE_NUM);
-        LSAD->CFG = (LSAD_INT_CH1 | LSAD_INT_DISABLE | LSAD_PRESCALE_NUM);
+        // LSAD->CFG = (TDC_PWR_LSAD_INT_CH_NUM | LSAD_INT_DISABLE | TDC_PWR_LSAD_PRESCALE_NUM);
+        LSAD->CFG = (LSAD_INT_CH1 | LSAD_INT_DISABLE | TDC_PWR_LSAD_PRESCALE_NUM);
         NVIC_DisableIRQ(LSAD_IRQn);
         NVIC_ClearPendingIRQ(LSAD_IRQn);
     }
 }
 
-int ci_battery_get_count(void)
+int tdc_pwr_lsad_get_count(void)
 {
     return s_sample_count;
 }
 
-void ci_battery_init(void)
+void tdc_pwr_lsad_init(void)
 {
     int32_t val;
     uint8_t rbuf[4];
@@ -42,7 +42,7 @@ void ci_battery_init(void)
     NVIC_ClearPendingIRQ(LSAD_IRQn);
     NVIC_EnableIRQ(LSAD_IRQn);
 
-    // LSAD->CFG = (LSAD_INT_CH_NUM | LSAD_INT_ENABLE | LSAD_PRESCALE_3200);
+    // LSAD->CFG = (TDC_PWR_LSAD_INT_CH_NUM | LSAD_INT_ENABLE | LSAD_PRESCALE_3200);
     LSAD->CFG = (LSAD_INT_CH1 | LSAD_INT_ENABLE | LSAD_PRESCALE_3200);
 
     if (tdc_fs_read("/BATT_CAL", rbuf, 4) < 0)
@@ -56,10 +56,10 @@ void ci_battery_init(void)
 
     TDC_PRINTF_I("[LSAD] BATTERY CALIBRATION VALUE : %4d \r\n", cfx_cm3_sharedMemoryAll.batteryCalibrationValue);
 
-    calculationBatteryBoundary();
+    tdc_pwr_battery_calculate_boundary();
 }
 
-void ci_battery_uninit(void)
+void tdc_pwr_lsad_uninit(void)
 {
     s_sample_count = 0;
 
@@ -70,11 +70,11 @@ void ci_battery_uninit(void)
     NVIC_ClearPendingIRQ(LSAD_IRQn);
 }
 
-void ci_battery_update(void)
+void tdc_pwr_lsad_update(void)
 {
-    if (CI_LASD_STABLE_CNT < s_sample_count)
+    if (TDC_PWR_LSAD_STABLE_CNT < s_sample_count)
     {
-        // cfx_cm3_sharedMemoryAll.systemShare.batteryLevel_CfX_to_CM3 = LSAD->DATA_TRIM_SAT_CH[LSAD_INPUT_SEL_CH_NUM];
+        // cfx_cm3_sharedMemoryAll.systemShare.batteryLevel_CfX_to_CM3 = LSAD->DATA_TRIM_SAT_CH[TDC_PWR_LSAD_INPUT_SEL_CH_NUM];
         cfx_cm3_sharedMemoryAll.systemShare.batteryLevel_CfX_to_CM3 = (LSAD->DATA_TRIM_SAT_CH[0] - LSAD->DATA_TRIM_SAT_CH[1]);  // DIO23_INPUT - VSSA
     }
 }

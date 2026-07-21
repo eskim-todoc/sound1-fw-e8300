@@ -17,7 +17,7 @@
 #include "isd_interface_stimulationParaSetting.h"
 #include "stimulationParaCal.h"
 #include "indicatorByStimul.h"
-#include "error.h"
+#include "tdc_sys_error.h"
 
 // 구조체의 배치되는 주소를 sections.ld 파일을 수정하여 LPDSP32_PRAM5에 위치한다.
 extern ST__CFX_CM3_SharedMemory_ALL cfx_cm3_sharedMemoryAll __attribute__((section(".shared_memory")));
@@ -58,14 +58,14 @@ bool stimulationStandAlone(void)
 
     static bool    stimulationSettingIsDone = false;
     static bool    calculationParameter     = false;
-    ST__ERROR_CODE errorCode;
+    tdc_sys_error_code_t errorCode;
 
     // Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_R); //3
 
     // CFX에서 맵데이터의 로딩이 완료될 때까지 로딩
     if (isMapdateLoaded_CFX())
     {
-        errorCode = readErrorCode();
+        errorCode = tdc_sys_error_read();
 
         if (errorCode.dataProcessingErrorFlag != en__unusableMapData)
         {
@@ -124,7 +124,7 @@ bool stimulationStandAlone(void)
             }
             else
             {
-                errorCodeUpdate(en__dataProcessing_ERROR, en__unusableMapData, __LINE__);
+                tdc_sys_error_update(en__dataProcessing_ERROR, en__unusableMapData, __LINE__);
             }
         }
         else

@@ -1,7 +1,7 @@
 #include <hw.h>
 #include <stdbool.h>
 
-#include "error.h"
+#include "tdc_sys_error.h"
 #include "cfx_cm3_sharedMemory.h"
 #include "mappingControl.h"
 #include "remoteControl.h"
@@ -186,7 +186,7 @@ void write_Original_isdInfo_N_userSetting_atFlash(bool startFlag, int command)
         {
 
             // id가 맞지 않는다.
-            sendErrorToApp(command, en__EN__ISD_ERROR, en__No_Matched_ISD_ID, __LINE__);
+            tdc_sys_error_send_to_app(command, en__EN__ISD_ERROR, en__No_Matched_ISD_ID, __LINE__);
 
             // 커맨드 리셋;
             clear_mappingCommand();
@@ -197,7 +197,7 @@ void write_Original_isdInfo_N_userSetting_atFlash(bool startFlag, int command)
     {
 
         // id가 0으로 읽혀서 계속 시도 함으으로써 시간 초과
-        sendErrorToApp(command, en__EN__ISD_ERROR, en__ISD_EEPROM_ValueZero, __LINE__);
+        tdc_sys_error_send_to_app(command, en__EN__ISD_ERROR, en__ISD_EEPROM_ValueZero, __LINE__);
 
         // 커맨드 리셋;
         clear_mappingCommand();
@@ -697,7 +697,7 @@ void reset_NVM_Selected_ISD_allData(bool startFlag, int command, int slot_index,
     {
 
         // 에러 전송
-        sendErrorToApp(command, en__dataProcessing_ERROR, en_sourceCodeError, __LINE__);  // 소스 코드 에러
+        tdc_sys_error_send_to_app(command, en__dataProcessing_ERROR, en_sourceCodeError, __LINE__);  // 소스 코드 에러
 
         // 명령 종료
         if (command > 0x60)
@@ -789,7 +789,7 @@ bool reset_NVM_All_ISD_allData(bool startFlag, int command, EN__mapping_ReadWrit
     else
     {
         // 에러 전송
-        sendErrorToApp(command, en__dataProcessing_ERROR, en_sourceCodeError, __LINE__);  // 소스 코드 에러
+        tdc_sys_error_send_to_app(command, en__dataProcessing_ERROR, en_sourceCodeError, __LINE__);  // 소스 코드 에러
     }
 
     return CommandCompleted;
@@ -880,7 +880,7 @@ void reset_NVM_2to4_ISD_allData(bool startFlag, int command, EN__mapping_ReadWri
     else
     {
         // 에러 전송
-        sendErrorToApp(command, en__dataProcessing_ERROR, en_sourceCodeError, __LINE__);  // 소스 코드 에러
+        tdc_sys_error_send_to_app(command, en__dataProcessing_ERROR, en_sourceCodeError, __LINE__);  // 소스 코드 에러
 
         // 명령 종료
         if (command > 0x60)
@@ -956,7 +956,7 @@ void reset_NVM_MapData(bool startFlag, int command, int slot_index, int map_inde
     else
     {
         // 에러 전송
-        sendErrorToApp(command, en__dataProcessing_ERROR, en_sourceCodeError, __LINE__); // 소스 코드 에러
+        tdc_sys_error_send_to_app(command, en__dataProcessing_ERROR, en_sourceCodeError, __LINE__); // 소스 코드 에러
 
         // 명령 종료
         if (command > 0x60)

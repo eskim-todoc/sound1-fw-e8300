@@ -7,7 +7,7 @@
 #include "mappingControl.h"
 #include "ble_communication.h"
 
-#include <batteryNPowerControl.h>
+#include <tdc_pwr_battery.h>
 
 #include <ci_ble_control_boot.h>
 #include <ci_ble_control_ota.h>
@@ -97,9 +97,9 @@ void setting_nrf_ble_adv_info(void)
 
         // 배터리 레벨을 QCC에게 수신한 이후로만 0xFF가 아닌 값을 전송한다.
         // 사실상 QCC가 배터리 레벨을 측정하기로 한 뒤로 쓸모가 없는 명령이 되었다.
-        if (snd_batt_get_state() != EN__SND_BATT_STATE_RESET)
+        if (tdc_pwr_battery_get_state() != TDC_PWR_BATTERY_STATE_RESET)
         {
-            batt_percent = snd_batt_get_percent();
+            batt_percent = tdc_pwr_battery_get_percent();
             TDC_PRINTF_D("[BT] READ BATT LEVEL, %d PERCENT \r\n", batt_percent);
         }
         else
@@ -108,7 +108,7 @@ void setting_nrf_ble_adv_info(void)
             TDC_PRINTF_D("[BT] READ BATT LEVEL NOT YET READY \r\n");
         }
 
-        charger_state = snd_charger_get_state().chargerConnectorPluggedIn;
+        charger_state = tdc_pwr_charger_get_state().chargerConnectorPluggedIn;
 
         Tx_dataBuff[tx_index++] = EN__SND_BT_CMD_SYSTEM_INFO_BATTERY;
         Tx_dataBuff[tx_index++] = batt_percent;
@@ -129,7 +129,7 @@ void setting_nrf_ble_adv_info(void)
         cradle_lid_state  = bleSettingPacket.data[2];  // 크래들 뚜껑 상태
 
         // 수신한 배터리 정보로 업데이트 한다.
-        snd_batt_set_percent(battery_level);
+        tdc_pwr_battery_set_percent(battery_level);
 
         // 배터리 충전 상태인지 방전 즉, 일반 동작 상태인지는
         // 충전기 연결 상태에 따라서 배터리 상태 업데이트를 진행해야 한다.
@@ -137,23 +137,23 @@ void setting_nrf_ble_adv_info(void)
         switch (charger_connected)
         {
             case 0:  // Disconnected
-                snd_charger_set_state(EN__SND_CHARGER_STATE_DISCONNECTED);
-                snd_batt_set_state(EN__SND_BATT_STATE_DISCHARGING);
+                tdc_pwr_charger_set_state(TDC_PWR_CHARGER_STATE_DISCONNECTED);
+                tdc_pwr_battery_set_state(TDC_PWR_BATTERY_STATE_DISCHARGING);
                 break;
 
             case 1:  // Connected
-                snd_charger_set_state(EN__SND_CHARGER_STATE_CONNECTED);
-                snd_batt_set_state(EN__SND_BATT_STATE_CHARGING);
+                tdc_pwr_charger_set_state(TDC_PWR_CHARGER_STATE_CONNECTED);
+                tdc_pwr_battery_set_state(TDC_PWR_BATTERY_STATE_CHARGING);
                 break;
 
             default:
                 TDC_PRINTF_E("[BT] CMD 0x%02X, INVALID CHARGER CONNECTED: %d \r\n", EN__SND_BT_CMD_SYSTEM_INFO_POWER, charger_connected);
-                snd_charger_set_state(EN__SND_CHARGER_STATE_RESET);
-                snd_batt_set_state(EN__SND_BATT_STATE_RESET);
+                tdc_pwr_charger_set_state(TDC_PWR_CHARGER_STATE_RESET);
+                tdc_pwr_battery_set_state(TDC_PWR_BATTERY_STATE_RESET);
                 break;
         }  // 끝, switch
 
-        tdc_charger_set_cradle_cover_state(cradle_lid_state);
+        tdc_pwr_cradle_set_cover_state(cradle_lid_state);
         TDC_PRINTF_V("[BT] CMD 0x%02X, CHARGER STATE: %d, BATT LEVEL %d PERCENT, LID STATE %d\r\n", EN__SND_BT_CMD_SYSTEM_INFO_POWER, charger_connected, battery_level, cradle_lid_state);
 
         Tx_dataBuff[tx_index++] = EN__SND_BT_CMD_SYSTEM_INFO_POWER;

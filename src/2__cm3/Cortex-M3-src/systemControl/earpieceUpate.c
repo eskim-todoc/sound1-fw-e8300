@@ -2,7 +2,7 @@
 #include <stdbool.h>
 #include "FPGA.h"
 #include "cfx_cm3_sharedMemory.h"
-#include "error.h"
+#include "tdc_sys_error.h"
 #include "commonDataProcessing.h"
 #include "isd_interface.h"
 
@@ -96,7 +96,7 @@ bool updateEarPieceStatus(void)
             else
             {
 
-                errorCodeUpdate(en__FPGA_COMMUNICATION_ERROR, en__I2C_FPGA_ReadingError, __LINE__);
+                tdc_sys_error_update(en__FPGA_COMMUNICATION_ERROR, en__I2C_FPGA_ReadingError, __LINE__);
 
                 // I2C 읽기 실패, FPGA 초기화
                 change_isd_state(en__isdStatus_PowerIC_OK);

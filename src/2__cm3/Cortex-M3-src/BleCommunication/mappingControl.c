@@ -1,7 +1,7 @@
 
 #include <hw.h>
 #include <stdbool.h>
-#include "error.h"
+#include "tdc_sys_error.h"
 #include "mappingControl.h"
 #include "board.h"
 #include "internalStimulationChip.h"
@@ -19,7 +19,7 @@
 #include "isd_interface_mapping_Live.h"
 #include "isd_interface_init_ISD.h"
 #include "FPGA.h"
-#include "systemControl.h"
+#include "tdc_sys_control.h"
 #include "remoteControl.h"
 
 static ST__MAPPING_PACKET mappingPacket;
@@ -113,7 +113,7 @@ void fetch_mappingControlPacket(const int *Rx_dataPacket)  // spi 통신에서 �
         if (!exceptionCase)
         {
             // 현재 받은 명령을 수행하지 않는다.
-            sendErrorToApp(tempCommand, en__EN__BLE_PROTOCOL_ERROR, en__PreviouCommnadIsNotCompleted, __LINE__);
+            tdc_sys_error_send_to_app(tempCommand, en__EN__BLE_PROTOCOL_ERROR, en__PreviouCommnadIsNotCompleted, __LINE__);
             tempCommand = en__mapping_IDLE;
         }
     }
@@ -173,7 +173,7 @@ void fetch_mappingControlPacket(const int *Rx_dataPacket)  // spi 통신에서 �
             }
 
             // 데이터 범위를 벗어남
-            sendErrorToApp(en__mapping_impedanceChekck, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);
+            tdc_sys_error_send_to_app(en__mapping_impedanceChekck, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);
         }
         break;
 
@@ -304,7 +304,7 @@ void fetch_mappingControlPacket(const int *Rx_dataPacket)  // spi 통신에서 �
             if (dataRangeError)
             {
                 // 데이터 범위를 벗어남
-                sendErrorToApp(en__mapping_specific_stimulation, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);
+                tdc_sys_error_send_to_app(en__mapping_specific_stimulation, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);
             }
             else
             {
@@ -335,7 +335,7 @@ void fetch_mappingControlPacket(const int *Rx_dataPacket)  // spi 통신에서 �
             if ((liveSubCommand < 1) || (9 < liveSubCommand))  // 하위 명령 1~9 가능
             {
                 // 데이터 범위를 벗어남
-                sendErrorToApp(en__mapping_live_stimulation, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);
+                tdc_sys_error_send_to_app(en__mapping_live_stimulation, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);
                 break;
             }
             else
@@ -359,7 +359,7 @@ void fetch_mappingControlPacket(const int *Rx_dataPacket)  // spi 통신에서 �
                     if (subCommandData_Num_index != prev_subCommandData_Num_index + 1)
                     {
                         // 데이터가 순차적으로 들어와야된다. 순차적으로 들어 오지 않으면 에러 전송
-                        sendErrorToApp(en__mapping_live_stimulation, en__EN__BLE_PROTOCOL_ERROR, en__DATA_Order, __LINE__);  // 데이터 범위 벗어남
+                        tdc_sys_error_send_to_app(en__mapping_live_stimulation, en__EN__BLE_PROTOCOL_ERROR, en__DATA_Order, __LINE__);  // 데이터 범위 벗어남
                         prev_subCommandData_Num_index = 0;
                     }
                     else
@@ -698,7 +698,7 @@ void fetch_mappingControlPacket(const int *Rx_dataPacket)  // spi 통신에서 �
 
                         if (dataRangeError)
                         {
-                            sendErrorToApp(en__mapping_live_stimulation, en__EN__BLE_PROTOCOL_ERROR, en__DATA_Order, __LINE__);  // 데이터 범위 벗어남
+                            tdc_sys_error_send_to_app(en__mapping_live_stimulation, en__EN__BLE_PROTOCOL_ERROR, en__DATA_Order, __LINE__);  // 데이터 범위 벗어남
                             prev_subCommandData_Num_index = 0;
                         }
                         else
@@ -767,13 +767,13 @@ void fetch_mappingControlPacket(const int *Rx_dataPacket)  // spi 통신에서 �
                         else
                         {
                             // 에러 전송
-                            sendErrorToApp(en__mapping_live_stimulation, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);  // 데이터 범위 벗어남
+                            tdc_sys_error_send_to_app(en__mapping_live_stimulation, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);  // 데이터 범위 벗어남
                             mappingPacket.liveStimulation.subCommand = en__Standby;
                         }
                     }
                     else
                     {
-                        sendErrorToApp(en__mapping_live_stimulation, en__EN__BLE_PROTOCOL_ERROR, en__Command_Order,
+                        tdc_sys_error_send_to_app(en__mapping_live_stimulation, en__EN__BLE_PROTOCOL_ERROR, en__Command_Order,
                                        __LINE__);  // 라이브 자극 중에만 컨트롤 되는 명령어
 
                         mappingPacket.liveStimulation.subCommand = en__Standby;
@@ -795,13 +795,13 @@ void fetch_mappingControlPacket(const int *Rx_dataPacket)  // spi 통신에서 �
                         else
                         {
                             // 에러 전송
-                            sendErrorToApp(en__mapping_live_stimulation, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);  // 데이터 범위 벗어남
+                            tdc_sys_error_send_to_app(en__mapping_live_stimulation, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);  // 데이터 범위 벗어남
                             mappingPacket.liveStimulation.subCommand = en__Standby;
                         }
                     }
                     else
                     {
-                        sendErrorToApp(en__mapping_live_stimulation, en__EN__BLE_PROTOCOL_ERROR, en__Command_Order, __LINE__);  // 라이브 자극 중에만 컨트롤 되는 명령어
+                        tdc_sys_error_send_to_app(en__mapping_live_stimulation, en__EN__BLE_PROTOCOL_ERROR, en__Command_Order, __LINE__);  // 라이브 자극 중에만 컨트롤 되는 명령어
                         mappingPacket.liveStimulation.subCommand = en__Standby;
                     }
                 }
@@ -819,7 +819,7 @@ void fetch_mappingControlPacket(const int *Rx_dataPacket)  // spi 통신에서 �
                             || (value < 1))                                    // 1 미만이면 에러
                         {
                             // 에러 전송
-                            sendErrorToApp(en__mapping_live_stimulation, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);  // 데이터 범위 벗어남
+                            tdc_sys_error_send_to_app(en__mapping_live_stimulation, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);  // 데이터 범위 벗어남
                             mappingPacket.liveStimulation.subCommand = en__Standby;
                         }
                         else
@@ -868,7 +868,7 @@ void fetch_mappingControlPacket(const int *Rx_dataPacket)  // spi 통신에서 �
                             {
                                 TDC_PRINTF_E("[MAPPING] VALUE=%d, max_C_uA=%d, min_T_uA=%d \r\n", value, max_C_uA, min_T_uA);
                                 // 에러 전송
-                                sendErrorToApp(en__mapping_live_stimulation, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);  // 데이터 범위 벗어남
+                                tdc_sys_error_send_to_app(en__mapping_live_stimulation, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);  // 데이터 범위 벗어남
                                 mappingPacket.liveStimulation.subCommand = en__Standby;
                             }
                             else
@@ -880,7 +880,7 @@ void fetch_mappingControlPacket(const int *Rx_dataPacket)  // spi 통신에서 �
                     }
                     else
                     {
-                        sendErrorToApp(en__mapping_live_stimulation, en__EN__BLE_PROTOCOL_ERROR, en__Command_Order, __LINE__);  // 라이브 자극 중에만 컨트롤 되는 명령어
+                        tdc_sys_error_send_to_app(en__mapping_live_stimulation, en__EN__BLE_PROTOCOL_ERROR, en__Command_Order, __LINE__);  // 라이브 자극 중에만 컨트롤 되는 명령어
 
                         mappingPacket.liveStimulation.subCommand = en__Standby;
                     }
@@ -908,7 +908,7 @@ void fetch_mappingControlPacket(const int *Rx_dataPacket)  // spi 통신에서 �
 
                         if (dataRangeError)
                         {
-                            sendErrorToApp(en__mapping_live_stimulation, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);  // 데이터 범위 벗어남
+                            tdc_sys_error_send_to_app(en__mapping_live_stimulation, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);  // 데이터 범위 벗어남
                             mappingPacket.liveStimulation.subCommand = en__Standby;
                         }
                         else
@@ -916,7 +916,7 @@ void fetch_mappingControlPacket(const int *Rx_dataPacket)  // spi 통신에서 �
                             if ((tempB - tempA) > 8)
                             {
                                 // 에러 전송
-                                sendErrorToApp(en__mapping_live_stimulation, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);  // 데이터 범위 벗어남
+                                tdc_sys_error_send_to_app(en__mapping_live_stimulation, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);  // 데이터 범위 벗어남
                                 mappingPacket.liveStimulation.subCommand = en__Standby;
                             }
                             else
@@ -930,7 +930,7 @@ void fetch_mappingControlPacket(const int *Rx_dataPacket)  // spi 통신에서 �
                     }
                     else
                     {
-                        sendErrorToApp(en__mapping_live_stimulation, en__EN__BLE_PROTOCOL_ERROR, en__Command_Order,
+                        tdc_sys_error_send_to_app(en__mapping_live_stimulation, en__EN__BLE_PROTOCOL_ERROR, en__Command_Order,
                                        __LINE__);  // 라이브 자극 중에만 컨트롤 되는 명령어
 
                         mappingPacket.liveStimulation.subCommand = en__Standby;
@@ -985,7 +985,7 @@ void fetch_mappingControlPacket(const int *Rx_dataPacket)  // spi 통신에서 �
             if (subCommandData_Num_index != prev_subCommandData_Num_index + 1)
             {
                 // 데이터가 순차적으로 들어와야된다. 순차적으로 들어 오지 않으면 에러 전송
-                sendErrorToApp(en__mapping_write_original_ISD_N_USER, en__EN__BLE_PROTOCOL_ERROR, en__DATA_Order, __LINE__);
+                tdc_sys_error_send_to_app(en__mapping_write_original_ISD_N_USER, en__EN__BLE_PROTOCOL_ERROR, en__DATA_Order, __LINE__);
 
                 prev_subCommandData_Num_index = 0;
                 stimulPara_index              = 0;
@@ -1144,7 +1144,7 @@ void fetch_mappingControlPacket(const int *Rx_dataPacket)  // spi 통신에서 �
                 else
                 {
                     // 에러 전송, 데이터 범위를 벗어남
-                    sendErrorToApp(en__mapping_write_original_ISD_N_USER, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);
+                    tdc_sys_error_send_to_app(en__mapping_write_original_ISD_N_USER, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);
                 }
             }
         }
@@ -1165,7 +1165,7 @@ void fetch_mappingControlPacket(const int *Rx_dataPacket)  // spi 통신에서 �
             {
                 // 에러 전송
                 // 데이터 범위를 벗어남
-                sendErrorToApp(en__mapping_read_SlotData_ISD_N_USER, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);
+                tdc_sys_error_send_to_app(en__mapping_read_SlotData_ISD_N_USER, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);
             }
         }
         break;
@@ -1184,7 +1184,7 @@ void fetch_mappingControlPacket(const int *Rx_dataPacket)  // spi 통신에서 �
             if (subCommandData_Num_index != prev_subCommandData_Num_index + 1)
             {
                 // 데이터가 순차적으로 들어와야된다. 순차적으로 들어 오지 않으면 에러 전송
-                sendErrorToApp(en__mapping_write_SlotData_ISD_N_USER, en__EN__BLE_PROTOCOL_ERROR, en__DATA_Order, __LINE__);
+                tdc_sys_error_send_to_app(en__mapping_write_SlotData_ISD_N_USER, en__EN__BLE_PROTOCOL_ERROR, en__DATA_Order, __LINE__);
 
                 prev_subCommandData_Num_index = 0;
                 stimulPara_index              = 0;
@@ -1394,7 +1394,7 @@ void fetch_mappingControlPacket(const int *Rx_dataPacket)  // spi 통신에서 �
                 {
                     // 에러 전송
                     // 데이터 범위를 벗어남
-                    sendErrorToApp(en__mapping_write_SlotData_ISD_N_USER, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);
+                    tdc_sys_error_send_to_app(en__mapping_write_SlotData_ISD_N_USER, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);
                 }
             }
         }
@@ -1418,14 +1418,14 @@ void fetch_mappingControlPacket(const int *Rx_dataPacket)  // spi 통신에서 �
                 {
                     // 에러 전송
                     // 데이터 범위를 벗어남
-                    sendErrorToApp(en__mapping_read_Mapdata_STIMUL_PARA, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);
+                    tdc_sys_error_send_to_app(en__mapping_read_Mapdata_STIMUL_PARA, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);
                 }
             }
             else
             {
                 // 에러 전송
                 // 데이터 범위를 벗어남
-                sendErrorToApp(en__mapping_read_Mapdata_STIMUL_PARA, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);
+                tdc_sys_error_send_to_app(en__mapping_read_Mapdata_STIMUL_PARA, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);
             }
         }
         break;
@@ -1443,7 +1443,7 @@ void fetch_mappingControlPacket(const int *Rx_dataPacket)  // spi 통신에서 �
             if (subCommandData_Num_index != prev_subCommandData_Num_index + 1)
             {
                 // 데이터가 순차적으로 들어와야된다. 순차적으로 들어 오지 않으면 에러 전송
-                sendErrorToApp(en__mapping_write_Mapdata_STIMUL_PARA, en__EN__BLE_PROTOCOL_ERROR, en__DATA_Order, __LINE__);
+                tdc_sys_error_send_to_app(en__mapping_write_Mapdata_STIMUL_PARA, en__EN__BLE_PROTOCOL_ERROR, en__DATA_Order, __LINE__);
                 prev_subCommandData_Num_index = 0;
             }
             else
@@ -1710,7 +1710,7 @@ void fetch_mappingControlPacket(const int *Rx_dataPacket)  // spi 통신에서 �
                 }
                 else
                 {
-                    sendErrorToApp(en__mapping_write_Mapdata_STIMUL_PARA, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);  // 데이터 범위 벗어남
+                    tdc_sys_error_send_to_app(en__mapping_write_Mapdata_STIMUL_PARA, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);  // 데이터 범위 벗어남
                 }
             }
         }
@@ -1723,7 +1723,7 @@ void fetch_mappingControlPacket(const int *Rx_dataPacket)  // spi 통신에서 �
 
             if (!((1 <= mappingPacket.ReadWriteMapData_Flash.slot_index) && (mappingPacket.ReadWriteMapData_Flash.slot_index <= 4)))
             {
-                sendErrorToApp(en__mapping_erase_SlotData_manufacture, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);  // 데이터 범위 벗어남
+                tdc_sys_error_send_to_app(en__mapping_erase_SlotData_manufacture, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);  // 데이터 범위 벗어남
                 mappingPacket.fetched_command = en__mapping_IDLE;
             }
         }
@@ -1737,13 +1737,13 @@ void fetch_mappingControlPacket(const int *Rx_dataPacket)  // spi 통신에서 �
 
             if (!((1 <= mappingPacket.ReadWriteMapData_Flash.slot_index) && (mappingPacket.ReadWriteMapData_Flash.slot_index <= 4)))
             {
-                sendErrorToApp(en__mapping_erase_mapData_STIMUL_PARA, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);  // 데이터 범위 벗어남
+                tdc_sys_error_send_to_app(en__mapping_erase_mapData_STIMUL_PARA, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);  // 데이터 범위 벗어남
                 mappingPacket.fetched_command = en__mapping_IDLE;
             }
 
             if (!((1 <= mappingPacket.ReadWriteMapData_Flash.map_index) && (mappingPacket.ReadWriteMapData_Flash.map_index <= 4)))
             {
-                sendErrorToApp(en__mapping_erase_mapData_STIMUL_PARA, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);  // 데이터 범위 벗어남
+                tdc_sys_error_send_to_app(en__mapping_erase_mapData_STIMUL_PARA, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);  // 데이터 범위 벗어남
                 mappingPacket.fetched_command = en__mapping_IDLE;
             }
         }
@@ -1778,7 +1778,7 @@ void fetch_mappingControlPacket(const int *Rx_dataPacket)  // spi 통신에서 �
             {
                 // 데이터가 순차적으로 들어와야된다. 순차적으로 들어 오지 않으면 에러 전송
                 // 에러 전송
-                sendErrorToApp(en__mapping_testStimulation, en__EN__BLE_PROTOCOL_ERROR, en__DATA_Order,
+                tdc_sys_error_send_to_app(en__mapping_testStimulation, en__EN__BLE_PROTOCOL_ERROR, en__DATA_Order,
                                __LINE__);  // 데이터 범위 벗어남
 
                 prev_subCommandData_Num_index = 0;
@@ -1881,7 +1881,7 @@ ST__MAPPING_STATE mappingControl(ST__ISD_STATUS ISD_state)
 
     ST__MAPPING_STATE     mappingStatus     = {en__isdStatus_NA, false, false, false};
     EN__ISD_CONTROL_STATE isdControlCommand = en__isdStatus_NA;
-    ST__ERROR_CODE        errorCode;
+    tdc_sys_error_code_t        errorCode;
 
     int  bufferForSPI_tx[BLE_DataPacketSize];
     int  buffer_tx_index;
@@ -2003,7 +2003,7 @@ ST__MAPPING_STATE mappingControl(ST__ISD_STATUS ISD_state)
                     else
                     {
                         TDC_PRINTF_E("[MAPPING] CAN NOT CHECK IMPEDANCE, BECAUSE ISD NOT CONNECTED \r\n");
-                        sendErrorToApp(en__mapping_impedanceChekck, en__EN__ISD_ERROR, en__ISD_notConnected, __LINE__);
+                        tdc_sys_error_send_to_app(en__mapping_impedanceChekck, en__EN__ISD_ERROR, en__ISD_notConnected, __LINE__);
                         clear_mappingCommand();
                     }
                 }
@@ -2019,7 +2019,7 @@ ST__MAPPING_STATE mappingControl(ST__ISD_STATUS ISD_state)
                     }
                     else
                     {
-                        sendErrorToApp(en__mapping_eCAP_Measurement_masking, en__EN__ISD_ERROR, en__ISD_notConnected, __LINE__);
+                        tdc_sys_error_send_to_app(en__mapping_eCAP_Measurement_masking, en__EN__ISD_ERROR, en__ISD_notConnected, __LINE__);
                         clear_mappingCommand();
                     }
                 }
@@ -2043,7 +2043,7 @@ ST__MAPPING_STATE mappingControl(ST__ISD_STATUS ISD_state)
                     }
                     else
                     {
-                        sendErrorToApp(en__mapping_specific_stimulation, en__EN__ISD_ERROR, en__ISD_notConnected, __LINE__);
+                        tdc_sys_error_send_to_app(en__mapping_specific_stimulation, en__EN__ISD_ERROR, en__ISD_notConnected, __LINE__);
                         clear_mappingCommand();
                     }
                 }
@@ -2073,10 +2073,10 @@ ST__MAPPING_STATE mappingControl(ST__ISD_STATUS ISD_state)
                     }
 
                     // 배터리 레벨
-                    bufferForSPI_tx[buffer_tx_index++] = readBatteryPercentage();
+                    bufferForSPI_tx[buffer_tx_index++] = tdc_pwr_battery_read_percentage();
 
-                    // ST__ERROR_CODE 전달
-                    errorCode = readErrorCode();
+                    // tdc_sys_error_code_t 전달
+                    errorCode = tdc_sys_error_read();
 
                     bufferForSPI_tx[buffer_tx_index++] = (int) errorCode.ISD_ErrorFlag;
 
@@ -2222,7 +2222,7 @@ ST__MAPPING_STATE mappingControl(ST__ISD_STATUS ISD_state)
                     }
                     else
                     {
-                        sendErrorToApp(en__mapping_testStimulation, en__EN__ISD_ERROR, en__ISD_notConnected, __LINE__);
+                        tdc_sys_error_send_to_app(en__mapping_testStimulation, en__EN__ISD_ERROR, en__ISD_notConnected, __LINE__);
                         clear_mappingCommand();
                     }
                 }
@@ -2277,7 +2277,7 @@ ST__MAPPING_STATE mappingControl(ST__ISD_STATUS ISD_state)
         {
             if (mappingPacket.command > en__mapping_connect)
             {
-                sendErrorToApp(mappingPacket.command, en__EN__BLE_PROTOCOL_ERROR, en__Command_Order, __LINE__);
+                tdc_sys_error_send_to_app(mappingPacket.command, en__EN__BLE_PROTOCOL_ERROR, en__Command_Order, __LINE__);
                 clear_mappingCommand();
             }
         }

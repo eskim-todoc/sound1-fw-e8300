@@ -495,5 +495,5 @@ bool tdc_touch_iqs323_is_ati_done(void)
  * 보조 - 절전 설정 (Full ATI 정합: 운용 임계 유지, ATI 재쓰기 0)
  */
 /* 절전 전용 settings 는 제거됨 - 절전도 노말과 동일한 IQS323 설정(운용 임계·Full ATI·PM timeout 0
- * → 항상 NP)을 그대로 사용한다. CM3 클럭만 ci_power_sleep(main.c)로 절감. RESEED 는 ULP 루프가
+ * → 항상 NP)을 그대로 사용한다. CM3 클럭만 tdc_pwr_clock_sleep(main.c)로 절감. RESEED 는 ULP 루프가
  * 첫 노터치 확정 시점에 직접 발행한다. */

@@ -2,8 +2,8 @@
  * @file initialize.h
  */
 
-#ifndef __initialize_h__
-#define __initialize_h__
+#ifndef __tdc_sys_init_h__
+#define __tdc_sys_init_h__
 
 #include <stdbool.h>
 #include <stdio.h>
@@ -17,9 +17,9 @@
 #include <isd_interface_init_FPGA.h>
 #include <isd_interface_FPGA.h>
 
-void Uninitialize(void);
-void Initialize(void);
-void ResetNRF(void);
-void cm3MemorySetupCompleted(void);
+void tdc_sys_uninit(void);
+void tdc_sys_init(void);
+void tdc_sys_reset_nrf(void);
+void tdc_sys_memory_setup_completed(void);
 
-#endif  // __initialize_h__
+#endif  // __tdc_sys_init_h__

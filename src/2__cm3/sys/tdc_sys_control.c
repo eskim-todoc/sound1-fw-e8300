@@ -3,7 +3,7 @@
 #include <hw.h>
 #include <stdbool.h>
 
-#include "error.h"
+#include "tdc_sys_error.h"
 #include "cfx_cm3_sharedMemory.h"
 
 #include "tdc_drv_mis2dh.h"
@@ -15,10 +15,10 @@
 
 #include "LedOutput.h"
 #include "isd_interface_stimulationStandAlone.h"
-#include "batteryNPowerControl.h"
+#include "tdc_pwr_battery.h"
 #include "earpieceUpdate.h"
 #include "processorDirective.h"
-#include "systemControl.h"
+#include "tdc_sys_control.h"
 
 #ifdef ENABLE_UI_CMD
 #include "tdc_ui_command.h"
@@ -29,20 +29,20 @@
 #include <tdc_printf.h>
 
 /* 이 파일 전용 상태. 헤더에 extern 선언이 없어 외부에서 쓰지 않으므로 static.
- * systemControl() 은 이 값을 갱신한 뒤 복사본을 반환한다 - 호출자가 반환값을
+ * tdc_sys_control_step() 은 이 값을 갱신한 뒤 복사본을 반환한다 - 호출자가 반환값을
  * 수정해도 여기 원본에는 반영되지 않는다는 점에 유의. */
-static ST__SYSTEM_STATE systemStatus = {false, false, false, false, false, false};
+static tdc_sys_state_t systemStatus = {false, false, false, false, false, false};
 
 #define LED_OnTime_afterCoverClosed 4501
 
 #define BLE_OffTimeAfterISD_Disconnected 1000
 
-void NRF_Off_Command(void)
+void tdc_sys_control_nrf_off_command(void)
 {
     // Sys_GPIO_Set_Low(DIO_NUM_NRF_ON_OFF_COMMAND);
 }
 
-void NRF_On_Command(void)
+void tdc_sys_control_nrf_on_command(void)
 {
     // Sys_GPIO_Set_High(DIO_NUM_NRF_ON_OFF_COMMAND);
 }
@@ -50,7 +50,7 @@ void NRF_On_Command(void)
 bool ISD_ConnectionHistory = false;
 
 // 수정 필요함.. 리모콘 쪽 연결 끊김. 리모콘 연결 상태 및 타이머 필요할 듯
-void NRF_On_OFF(ST__ISD_STATUS isd_state, bool global_BLE_Off, bool mappingConnection, bool Mapping_BLE_Off)
+void tdc_sys_control_nrf_on_off(ST__ISD_STATUS isd_state, bool global_BLE_Off, bool mappingConnection, bool Mapping_BLE_Off)
 {
     static int deaylCounter = 0;
     bool       BLE_OFF      = false;
@@ -104,11 +104,11 @@ void NRF_On_OFF(ST__ISD_STATUS isd_state, bool global_BLE_Off, bool mappingConne
 
     if (BLE_OFF)
     {
-        // NRF_Off_Command();
+        // tdc_sys_control_nrf_off_command();
     }
     else
     {
-        // NRF_On_Command();
+        // tdc_sys_control_nrf_on_command();
     }
 }
 
@@ -123,12 +123,12 @@ void NRF_adv_powerMode(bool mode)
 #endif
 
 /* conneded_ISD / mappingConnected 는 '지난 tick' 값이다 - isd_interface() 와
- * bleCommunication() 이 systemControl() 의 enable_ISD 를 받아 도는 순환 구조라
+ * bleCommunication() 이 tdc_sys_control_step() 의 enable_ISD 를 받아 도는 순환 구조라
  * 같은 tick 안에서는 확정되지 않는다. 다만 이 두 입력의 소비처는 모두 시간 누적
  * 판정(ISD_Disconnection_counter / 저배터리 10분 주기)이거나 인간 조작 스케일
  * (파워오프 탈출 / 매핑 중 버튼 무시)이라 1-tick(=1ms) 지연은 무해하다.
  * 지연에 민감한 값을 이 순환에 태우지 말 것. */
-ST__SYSTEM_STATE systemControl(ST__ERROR_CODE    mcuErrorCode,  //
+tdc_sys_state_t tdc_sys_control_step(tdc_sys_error_code_t    mcuErrorCode,  //
                                ST__USB_CONNECTOR chargerState,
                                int               battery_percent,
                                bool              powerButtonPushed,
@@ -215,7 +215,7 @@ ST__SYSTEM_STATE systemControl(ST__ERROR_CODE    mcuErrorCode,  //
                 if (StartFlag == false)
                 {
                     /* turnOffLED · led_request(POWER, POWER_ON) · tdc_touch_init_begin
-                     * 은 Initialize() P3-Early 에서 직접 수행 (Rev.4 이관). 본 분기는
+                     * 은 tdc_sys_init() P3-Early 에서 직접 수행 (Rev.4 이관). 본 분기는
                      * 부팅 후 첫 진입 시 systemStatus 마커와 카운터만 셋업.
                      * StartFlag · PowerOn_StartCounter 변수 자체 정리는 별도 cleanup
                      * 작업으로 위임 (사용처 dead 확인됨). */
@@ -368,8 +368,8 @@ ST__SYSTEM_STATE systemControl(ST__ERROR_CODE    mcuErrorCode,  //
              * Sullivan 은 USB(charger)와 캐링케이스(carryingCase)가 독립 신호라, USB 없이
              * 캐링케이스만 연결된 모순 상태를 감지해 슬립으로 도피하는 방어였다.
              *
-             * Sound1 은 포고핀 크래들 단일 경로다. snd_charger_set_state() 가 두 필드를
-             * 항상 같은 값으로 설정하므로(batteryNPowerControl.c:74~99), 이 else 에 도달한
+             * Sound1 은 포고핀 크래들 단일 경로다. tdc_pwr_charger_set_state() 가 두 필드를
+             * 항상 같은 값으로 설정하므로(tdc_pwr_battery.c:74~99), 이 else 에 도달한
              * 시점엔 prev != df_Disconnected 가 확정이고 원본 조건은 항상 거짓이었다.
              * 즉 방어가 뚫린 게 아니라 모순 자체가 성립 불가해져 불필요해진 것이다.
              * 상세: docs/tasks/main/20260715_systemcontrol-fsm-decompose/분석-부록-sullivan유산.md */

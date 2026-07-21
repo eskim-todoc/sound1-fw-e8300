@@ -1,7 +1,7 @@
 #include <hw.h>
 #include <isdExecution/driver_PCM.h>
 #include <stdbool.h>
-#include "error.h"
+#include "tdc_sys_error.h"
 #include "FPGA.h"
 #include "isd_interface_FPGA.h"
 #include "internalStimulationChip.h"
@@ -68,7 +68,7 @@ void file_PCM_templete_eCAP(EN__eCAP_Templete dataMode, int data)
             else
             {
                 // 버퍼 크기 초과
-                sendErrorToApp(en__mapping_eCAP_Measurement_masking, en__EN__PCM_GEN_ERROR, en__PCM_TempleteBuff_OverFlow, __LINE__);
+                tdc_sys_error_send_to_app(en__mapping_eCAP_Measurement_masking, en__EN__PCM_GEN_ERROR, en__PCM_TempleteBuff_OverFlow, __LINE__);
 
                 // 커맨드 리셋;
                 clear_mappingCommand();
@@ -222,7 +222,7 @@ void eCapMeasurement_masking(bool startFlag)
             {
                 // 에러 전송
 
-                sendErrorToApp(en__mapping_eCAP_Measurement_masking, en__EN__ISD_ERROR, en__MaxChargeOver, __LINE__);
+                tdc_sys_error_send_to_app(en__mapping_eCAP_Measurement_masking, en__EN__ISD_ERROR, en__MaxChargeOver, __LINE__);
 
                 // 커맨드 리셋;
                 clear_mappingCommand();
@@ -365,7 +365,7 @@ void eCapMeasurement_masking(bool startFlag)
                 // 마스커 출력과 프로브출력 간격을 넓혀야 한다.
 
                 // 에러 전송
-                sendErrorToApp(en__mapping_eCAP_Measurement_masking, en__EN__ISD_ERROR, en__MaskerProbe_InterVal_tooShort, __LINE__);
+                tdc_sys_error_send_to_app(en__mapping_eCAP_Measurement_masking, en__EN__ISD_ERROR, en__MaskerProbe_InterVal_tooShort, __LINE__);
 
                 // 커맨드 리셋;
                 clear_mappingCommand();
@@ -377,7 +377,7 @@ void eCapMeasurement_masking(bool startFlag)
                 // 마스커 출력과 프로브출력 간격을 좁히거나, 펄스 폭을 좁혀야 한다. 2msec 템플릿에 다 들어 가지 못한다.
 
                 // 에러 전송
-                sendErrorToApp(en__mapping_eCAP_Measurement_masking, en__EN__ISD_ERROR, en__MaskerProbe_InterVal_tooLong, __LINE__);
+                tdc_sys_error_send_to_app(en__mapping_eCAP_Measurement_masking, en__EN__ISD_ERROR, en__MaskerProbe_InterVal_tooLong, __LINE__);
 
                 // 커맨드 리셋;
                 clear_mappingCommand();
@@ -564,7 +564,7 @@ void eCapMeasurement_masking(bool startFlag)
                             change_isd_state(en__isdStatus_PowerIC_OK);
 
                             // 에러 전송
-                            sendErrorToApp(en__mapping_eCAP_Measurement_masking,en__FPGA_ERROR, en_FIFO_NotCleared, __LINE__);
+                            tdc_sys_error_send_to_app(en__mapping_eCAP_Measurement_masking,en__FPGA_ERROR, en_FIFO_NotCleared, __LINE__);
                             // 커맨드 리셋;
                             clear_mappingCommand();
 
@@ -578,7 +578,7 @@ void eCapMeasurement_masking(bool startFlag)
                         change_isd_state(en__isdStatus_PowerIC_OK);
 
                         // 에러 전송
-                        sendErrorToApp(en__mapping_eCAP_Measurement_masking,en__I2C_ERROR,en__ReadError, __LINE__);
+                        tdc_sys_error_send_to_app(en__mapping_eCAP_Measurement_masking,en__I2C_ERROR,en__ReadError, __LINE__);
                         // 커맨드 리셋;
                         clear_mappingCommand();
                     }
@@ -589,7 +589,7 @@ void eCapMeasurement_masking(bool startFlag)
                     change_isd_state(en__isdStatus_PowerIC_OK);
 
                     // 에러 전송
-                    sendErrorToApp(en__mapping_eCAP_Measurement_masking,en__I2C_ERROR,en__WriteError, __LINE__);
+                    tdc_sys_error_send_to_app(en__mapping_eCAP_Measurement_masking,en__I2C_ERROR,en__WriteError, __LINE__);
                     // 커맨드 리셋;
                     clear_mappingCommand();
                 }
@@ -1274,7 +1274,7 @@ void eCapMeasurement_masking(bool startFlag)
                             change_isd_state(en__isdStatus_PowerIC_OK);
 
                             // 에러 전송
-                            sendErrorToApp(en__mapping_eCAP_Measurement_masking,en__FPGA_ERROR,r_FPGA_registerValue, __LINE__); //FPGA 에러 값을 그대로 전달
+                            tdc_sys_error_send_to_app(en__mapping_eCAP_Measurement_masking,en__FPGA_ERROR,r_FPGA_registerValue, __LINE__); //FPGA 에러 값을 그대로 전달
                             // 커맨드 리셋;
                             clear_mappingCommand();
 
@@ -1287,7 +1287,7 @@ void eCapMeasurement_masking(bool startFlag)
                         change_isd_state(en__isdStatus_PowerIC_OK);
 
                         // 에러 전송
-                        sendErrorToApp(en__mapping_eCAP_Measurement_masking,en__I2C_ERROR,en__ReadError, __LINE__);
+                        tdc_sys_error_send_to_app(en__mapping_eCAP_Measurement_masking,en__I2C_ERROR,en__ReadError, __LINE__);
                         // 커맨드 리셋;
                         clear_mappingCommand();
                     }
@@ -1316,7 +1316,7 @@ void eCapMeasurement_masking(bool startFlag)
                         change_isd_state(en__isdStatus_FPGA_Ok); // 내부기 전송 파워 설정 부터 다시.
 
                         // 에러 전송
-                        sendErrorToApp(en__mapping_eCAP_Measurement_masking, en__EN__ISD_ERROR, en__BackTelCounterZero, __LINE__);
+                        tdc_sys_error_send_to_app(en__mapping_eCAP_Measurement_masking, en__EN__ISD_ERROR, en__BackTelCounterZero, __LINE__);
                         // 커맨드 리셋;
                         clear_mappingCommand();
                     }
@@ -1329,7 +1329,7 @@ void eCapMeasurement_masking(bool startFlag)
                 change_isd_state(en__isdStatus_PowerIC_OK);
 
                 // 에러 전송
-                sendErrorToApp(en__mapping_eCAP_Measurement_masking,
+                tdc_sys_error_send_to_app(en__mapping_eCAP_Measurement_masking,
                                en__FPGA_CONFIGUARATION_ERROR,
                                r_FPGA_registerValue,
                                __LINE__); // FPGA 에러 값을 그대로 전달

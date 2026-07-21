@@ -22,13 +22,13 @@
 #include "tdc_hal_i2c_cfx.h"
 #include "tdc_hal_i2c.h"
 
-#include "batteryNPowerControl.h"
+#include "tdc_pwr_battery.h"
 
 #include "cfx_cm3_sharedMemory.h"
 
 #include "tdc_drv_mis2dh.h"
-#include "error.h"
-#include "systemControl.h"
+#include "tdc_sys_error.h"
+#include "tdc_sys_control.h"
 
 #include "isd_interface.h"
 #include "mappingControl.h"
@@ -55,7 +55,7 @@
 #include <tdc_drv_max17262.h>
 
 #include <tdc_hal_dio.h>
-#include <ci_power.h>
+#include <tdc_pwr_clock.h>
 #include <tdc_hal_uart.h>
 #include <tdc_util.h>
 #include <tdc_fs.h>
@@ -63,8 +63,8 @@
 #include <tdc_fs_fft.h>
 #include <tdc_fs_stim_mute.h>
 #include <tdc_fs_event_log.h>
-#include <ci_battery.h>
-#include <ci_power.h>
+#include <tdc_pwr_lsad.h>
+#include <tdc_pwr_clock.h>
 #include <tdc_printf.h>
 #include <ci_boot.h>
 #include <tdc_hal_timer.h>
@@ -73,7 +73,7 @@
 
 #include <snd_qcc.h>
 
-void ResetNRF(void)
+void tdc_sys_reset_nrf(void)
 {
     // Sys_GPIO_Set_High(DIO_NUM_NRF_SWDIO_NRESET);
 
@@ -153,13 +153,13 @@ void enable_interrupt(void)
     __set_PRIMASK(PRIMASK_ENABLE_INTERRUPTS);
 }
 
-void cm3MemorySetupCompleted(void)
+void tdc_sys_memory_setup_completed(void)
 {
     // CFX에 인터럽트 발생
     SYSCTRL_CFX_CMD->CFX_CMD_0_ALIAS = 1;  // CFX에 메모리 초기화가 완료되었음을 알려준다.
 }
 
-void Uninitialize(void)
+void tdc_sys_uninit(void)
 {
     /* PRIMASK is a 1-bit register. When this is set, it allows NMI and the hard fault exception;
      * all other interrupts and exceptions are masked;
@@ -187,7 +187,7 @@ void Uninitialize(void)
     turnOffLED();
 
     /* Clear all error flags */
-    clearAllErrorFlag();
+    tdc_sys_error_clear_all();
 
     /* Disable LSAD */
     LSAD->CFG = LSAD_DISABLE;
@@ -243,7 +243,7 @@ void error_blink(void)
 
 /* proc_touch(), iqs323_init() → tdc_touch.c 로 이동됨 */
 
-void Initialize(void)
+void tdc_sys_init(void)
 {
     int counter = 0;
     int ret;
@@ -260,7 +260,7 @@ void Initialize(void)
     tdc_util_assert(tdc_fs_nvm_init());  // NVM 인터페이스 초기화
     tdc_util_assert(tdc_fs_fatfs_init_mem_map());  // FFT 및 맵 관련 공유 메모리 포인터 초기화
     tdc_util_assert(tdc_fs_fatfs_remount(1));      // 사용자 드라이브(1)로 마운트
-    tdc_util_assert(ci_power_normal());         // 전원 및 클럭 설정
+    tdc_util_assert(tdc_pwr_clock_normal());         // 전원 및 클럭 설정
 
     TDC_PRINTF_I("[INIT] POWER NORMAL, CLOCK : %u HZ \r\n", SystemCoreClock);
 
@@ -361,18 +361,18 @@ void Initialize(void)
     /* turnOffLED · sharedMemoryAddresError 는 LED 진입 게이트 (P3-Early) 로 이관됨 */
 
     // NRF 리셋
-    ResetNRF();
+    tdc_sys_reset_nrf();
     TDC_PRINTF_V("[BLE] RESET NRF \r\n");
 
     // NRF 끄기 전달
-    NRF_Off_Command();
+    tdc_sys_control_nrf_off_command();
     // TDC_PRINTF_V("[BLE] NRF OFF ('DIO%d' LEVEL LOW) \r\n", DIO_NUM_NRF_ON_OFF_COMMAND);
 
     // 인터럽트 초기화 및 비활성화
     // reset_interrupt_Disable_PRIMASK();
 
     // 더 이상 EZ에서 배터리 측정하지 않음
-    // ci_battery_init();  // 배터리 측정을 위한 초기화
+    // tdc_pwr_lsad_init();  // 배터리 측정을 위한 초기화
 
     // DAM 초기화 및 비활성화
     reset_DMA_disable();
@@ -456,7 +456,7 @@ void Initialize(void)
      * 사유: warm reset (워치독) 후 NRF 의 잔존 SPI 상태가 tdc_hal_spi_init() 전에
      *       CS RISE 를 만들어 DMA TRANSFER_WORD_CNT_SHORT 미스매치 회귀 발생.
      *       원래 P11 위치 (tdc_hal_i2c_init 직후) 는 SPI init 시점을 늦춰 NRF SPI race 가능성.
-     *       본 위치는 본 작업 전 시점 (systemControl 분기 → tdc_hal_spi_init 후) 과 동등.
+     *       본 위치는 본 작업 전 시점 (tdc_sys_control_step 분기 → tdc_hal_spi_init 후) 과 동등.
      * Auto-ATI 대기 (~1.5s) 는 LED 버스트 (~1.8s) 와 병렬 진행 → 체감 시간 0. */
     tdc_touch_init_begin();
     TDC_PRINTF_I("[MILESTONE] TOUCH-INIT-BEGIN t3=%d \r\n", tdc_hal_timer_get_t3_tick());
@@ -484,20 +484,20 @@ void Initialize(void)
     if (!tdc_drv_mis2dh_configure_click_mode(2))
     {
         TDC_PRINTF_E("[ACC] FAILED TO CONFIGURE AS CLICK MODE \r\n");
-        errorCodeUpdate(en__ACCELEROMETER_ERROR, en__I2C_ACCELER_WritingError, __LINE__);
+        tdc_sys_error_update(en__ACCELEROMETER_ERROR, en__I2C_ACCELER_WritingError, __LINE__);
     }
 #endif
 
-    clearAllErrorFlag();
+    tdc_sys_error_clear_all();
 
     // 더 이상 EZ가 배터리 측정하지 않음
-    snd_batt_set_state(EN__SND_BATT_STATE_RESET);
-    snd_batt_set_percent(0);
+    tdc_pwr_battery_set_state(TDC_PWR_BATTERY_STATE_RESET);
+    tdc_pwr_battery_set_percent(0);
 #if 0
     // LSAD의 측정이 최초 한번은 미정확하다고 하여, 넉넉히 4번 측정이 완료된 후 진행되도록 구현하였다.
     while (1)
     {
-    	if (CI_LASD_STABLE_CNT < ci_battery_get_count())
+    	if (TDC_PWR_LSAD_STABLE_CNT < tdc_pwr_lsad_get_count())
     	{
     		break;
     	}
@@ -505,15 +505,15 @@ void Initialize(void)
     	__NOP(); // 최적화 방지 목적의 NOP
     }
 
-    ci_battery_update();
+    tdc_pwr_lsad_update();
 
     TDC_PRINTF_I("[LSAD] END OF INIT, CURRENTLY BATT SAMPLE COUNT=%d, LSAD VALUE=%d \r\n",
-            ci_battery_get_count(),
+            tdc_pwr_lsad_get_count(),
             cfx_cm3_sharedMemoryAll.systemShare.batteryLevel_CfX_to_CM3);
 #endif
 
     // USB 충전 상태 초기화
-    snd_charger_set_state(EN__SND_CHARGER_STATE_RESET);
+    tdc_pwr_charger_set_state(TDC_PWR_CHARGER_STATE_RESET);
 
     // SPI 초기화
     tdc_hal_spi_init();

@@ -6,7 +6,7 @@
 #include "definitionsForAlgorithm.h"
 #include "cfx_cm3_sharedMemory.h"
 #include "board.h" // 디버깅용
-#include "error.h"
+#include "tdc_sys_error.h"
 #include "isd_interface_init_ISD.h"
 
 void read_signal_processingPara(bool startFlag, int command)
@@ -15,7 +15,7 @@ void read_signal_processingPara(bool startFlag, int command)
     int            bufferForSPI_tx[BLE_DataPacketSize];
     int            tx_index = 0;
     int            i, k, m, n;
-    ST__ERROR_CODE errorCode;
+    tdc_sys_error_code_t errorCode;
 
     static int  stimulDAC_Slope_QI5F12;
     static int  offset_uA;

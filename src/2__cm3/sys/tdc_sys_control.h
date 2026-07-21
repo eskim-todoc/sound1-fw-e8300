@@ -1,13 +1,13 @@
-#ifndef SYSTEM_CONTROL_H__
-#define SYSTEM_CONTROL_H__
+#ifndef __tdc_sys_control_h__
+#define __tdc_sys_control_h__
 
 #include <hw.h>
 #include <stdbool.h>
 #include "board.h"
 #include "cfx_cm3_sharedMemory.h"
-#include "batteryNPowerControl.h"
+#include "tdc_pwr_battery.h"
 #include "LedOutput.h"
-#include "error.h"
+#include "tdc_sys_error.h"
 #include "isd_interface.h"
 
 /* LED 판정은 Arbiter(led_request / LED_SRC_ 계열)로 이관됨(Rev.3).
@@ -22,19 +22,19 @@ typedef struct
     bool systemOff;
     bool cradleLidClosed;
 
-} ST__SYSTEM_STATE;
+} tdc_sys_state_t;
 
-ST__SYSTEM_STATE systemControl(ST__ERROR_CODE    mcuErrorCode,
+tdc_sys_state_t tdc_sys_control_step(tdc_sys_error_code_t    mcuErrorCode,
                                ST__USB_CONNECTOR chargerState,
                                int               battery_percent,
                                bool              powerButtonPushed,
                                bool              conneded_ISD,
                                bool              mappingConnected);
 
-void NRF_On_OFF(ST__ISD_STATUS isd_state, bool global_BLE_Off, bool mappingConnection, bool Mapping_BLE_Off);
+void tdc_sys_control_nrf_on_off(ST__ISD_STATUS isd_state, bool global_BLE_Off, bool mappingConnection, bool Mapping_BLE_Off);
 
-void NRF_Off_Command(void);
+void tdc_sys_control_nrf_off_command(void);
 
-void NRF_ON_Command(void);
+void tdc_sys_control_nrf_on_command(void);
 
 #endif

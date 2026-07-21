@@ -18,7 +18,7 @@
 #include "cfx_cm3_sharedMemory.h"
 #include "commonDataProcessing.h"
 
-#include "error.h"
+#include "tdc_sys_error.h"
 #include "LedOutput.h"
 
 #define df_masterISD_Serial      0x0000FFFF
@@ -113,7 +113,7 @@ void isd_path_Open(bool isdControlStateChagedFlag)
                 else
                 {
                     // 펄스폭 설정 실패, FPGA 초기화
-                    errorCodeUpdate(en__FPGA_CONFIGUARATION_ERROR, en_PulseWidthDifferent, 0);
+                    tdc_sys_error_update(en__FPGA_CONFIGUARATION_ERROR, en_PulseWidthDifferent, 0);
                     change_isd_state(en__isdStatus_PowerIC_OK);
 
                     TDC_PRINTF_E("[FPGA] FAILED TO SET PULSE PHASE WIDTH TO MINIMUM \r\n");
@@ -153,7 +153,7 @@ void isd_path_Open(bool isdControlStateChagedFlag)
                         {
                             if (!FPGA_FIFO_empty)
                             {
-                                errorCodeUpdate(en__FPGA_CONFIGUARATION_ERROR, en_FIFO_NotCleared, 0);
+                                tdc_sys_error_update(en__FPGA_CONFIGUARATION_ERROR, en_FIFO_NotCleared, 0);
                                 change_isd_state(en__isdStatus_PowerIC_OK);
 
                                 TDC_PRINTF_E("[FPGA] FIFO IS NOT CLEARED \r\n");
@@ -164,7 +164,7 @@ void isd_path_Open(bool isdControlStateChagedFlag)
                 else
                 {
                     // 백텔 레지스터 설정 오류
-                    errorCodeUpdate(en__FPGA_CONFIGUARATION_ERROR, en_RegisterConfigError_byPCM, 0);
+                    tdc_sys_error_update(en__FPGA_CONFIGUARATION_ERROR, en_RegisterConfigError_byPCM, 0);
                     change_isd_state(en__isdStatus_PowerIC_OK);
 
                     TDC_PRINTF_E("[FPGA] BACKTEL REGISTER IS NOT CONFIGURED \r\n");
@@ -400,7 +400,7 @@ void isd_path_Open(bool isdControlStateChagedFlag)
                                     if (isd_id_match_num == 0)
                                     {
                                         // 내부기 연결을 끊고 다시 찾아야 함
-                                        errorCodeUpdate(en__EN__ISD_ERROR, en__No_Matched_ISD_ID, 0);
+                                        tdc_sys_error_update(en__EN__ISD_ERROR, en__No_Matched_ISD_ID, 0);
                                         change_isd_state(en__isdStatus_FPGA_Ok);  //
 
                                         TDC_PRINTF_D("[ISD] NO MATCHED ISD ID IN FLASH \r\n");
@@ -441,7 +441,7 @@ void isd_path_Open(bool isdControlStateChagedFlag)
                         }
                         else
                         {
-                            errorCodeUpdate(en__EN__ISD_ERROR, en__ISD_EEPROM_ValueZero, 0);
+                            tdc_sys_error_update(en__EN__ISD_ERROR, en__ISD_EEPROM_ValueZero, 0);
                             change_isd_state(en__isdStatus_FPGA_Ok);  // 내부기 전송 파워 설정 부터 다시.
 
                             TDC_PRINTF_W("[ISD] CURRENTLY CONNECTED ISD SERIAL : 0x%08X \r\n", isd_id);
@@ -453,12 +453,12 @@ void isd_path_Open(bool isdControlStateChagedFlag)
                     // 읽어온 Backtel 갯수가 적다.
                     if (FIFO_CounterValue == 0)
                     {
-                        errorCodeUpdate(en__EN__ISD_ERROR, en__BackTelCounterZero, 0);
+                        tdc_sys_error_update(en__EN__ISD_ERROR, en__BackTelCounterZero, 0);
                         TDC_PRINTF_W("[ISD] FAILED TO READ ISD SERIAL (COUNT 0) \r\n");
                     }
                     else
                     {
-                        errorCodeUpdate(en__EN__ISD_ERROR, en__BackterDataLengthError, 0);
+                        tdc_sys_error_update(en__EN__ISD_ERROR, en__BackterDataLengthError, 0);
                         TDC_PRINTF_W("[ISD] FAILED TO READ ISD SERIAL (NOT ENOUGH BACKTEL) \r\n");
                     }
 
@@ -621,7 +621,7 @@ void isd_path_Open(bool isdControlStateChagedFlag)
                     }
                     else
                     {
-                        errorCodeUpdate(en__EN__ISD_ERROR, en__No_Matched_ISD_ID, __LINE__);
+                        tdc_sys_error_update(en__EN__ISD_ERROR, en__No_Matched_ISD_ID, __LINE__);
                         change_isd_state(en__isdStatus_FPGA_Ok);  // 내부기와 연결을 끊고 다시 시도
 
                         TDC_PRINTF_W("[ISD] FAILED TO PATH OPEN WITH NORMAL CHECKING VALUE \r\n");
@@ -632,12 +632,12 @@ void isd_path_Open(bool isdControlStateChagedFlag)
                     // 읽어온 Backtel 갯수가 적다.
                     if (FIFO_CounterValue == 0)
                     {
-                        errorCodeUpdate(en__EN__ISD_ERROR, en__BackTelCounterZero, 0);
+                        tdc_sys_error_update(en__EN__ISD_ERROR, en__BackTelCounterZero, 0);
                         TDC_PRINTF_W("[ISD] FAILED TO PATH OPEN WITH NORMAL CHECKING VALUE (COUNT 0) \r\n");
                     }
                     else
                     {
-                        errorCodeUpdate(en__EN__ISD_ERROR, en__BackterDataLengthError, 0);
+                        tdc_sys_error_update(en__EN__ISD_ERROR, en__BackterDataLengthError, 0);
                         TDC_PRINTF_W("[ISD] FAILED TO PATH OPEN WITH NORMAL CHECKING VALUE (TOO MANY BACKTEL) \r\n");
                     }
 
@@ -646,7 +646,7 @@ void isd_path_Open(bool isdControlStateChagedFlag)
             }
 
 #else
-            clearAllErrorFlag();
+            tdc_sys_error_clear_all();
             change_isd_state(en__isdStatus_ISD_pathOpen_Ok);
             changeConnected_isd_num_CFX(isd_id_match_num);  // CFX와의 공유 메모리에 연결된 내부기 번호(1~4)를 알려주어서
                                                             // CFX에서 해당 맵데이터를 읽어 올 수 있도록 한다.
@@ -664,7 +664,7 @@ void isd_path_Open(bool isdControlStateChagedFlag)
                     if (is_arbitraryValue_matched_duplicateZeroData())
                     {
                         // 정상
-                        clearAllErrorFlag();
+                        tdc_sys_error_clear_all();
                         change_isd_state(en__isdStatus_ISD_pathOpen_Ok);
                         // CFX와의 공유 메모리에 연결된 내부기 번호(1~4)를 알려주어서
                         // CFX에서 해당 맵데이터를 읽어 올 수 있도록 한다.
@@ -690,16 +690,16 @@ void isd_path_Open(bool isdControlStateChagedFlag)
                         TDC_PRINTF_V("[ISD] USER SETTING: AUDIO VOLUME   = %d \r\n", cfx_cm3_sharedMemoryAll.userSettingValue.audioVolume);
                         TDC_PRINTF_V("[ISD] USER SETTING: STIM  VOLUME   = %d \r\n", cfx_cm3_sharedMemoryAll.userSettingValue.stimulVolume);
 
-                        clearErrorFlag(en__RF_PowerIC_ERROR);
-                        clearErrorFlag(en__FPGA_CONFIGUARATION_ERROR);
-                        clearErrorFlag(en__EN__ISD_ERROR);
+                        tdc_sys_error_clear_flag(en__RF_PowerIC_ERROR);
+                        tdc_sys_error_clear_flag(en__FPGA_CONFIGUARATION_ERROR);
+                        tdc_sys_error_clear_flag(en__EN__ISD_ERROR);
 
                         TDC_PRINTF_I("[ISD] SUCCESS TO OPEN ISD PATH \r\n");
                     }
                     else
                     {
                         // 제로가 많이 들어가 값에 대해서 백텔이 오류난다.
-                        errorCodeUpdate(en__FPGA_CONFIGUARATION_ERROR, en_BackTelDecodingCalibation_error, 0);
+                        tdc_sys_error_update(en__FPGA_CONFIGUARATION_ERROR, en_BackTelDecodingCalibation_error, 0);
                         change_isd_state(en__isdStatus_FPGA_Ok);
 
                         TDC_PRINTF_W("[ISD] FAILED TO PATH OPEN WITH DUPLICATE ZERO CHECKING DATA \r\n");
@@ -710,12 +710,12 @@ void isd_path_Open(bool isdControlStateChagedFlag)
                     // 읽어온 Backtel 갯수가 적다.
                     if (FIFO_CounterValue == 0)
                     {
-                        errorCodeUpdate(en__EN__ISD_ERROR, en__BackTelCounterZero, 0);
+                        tdc_sys_error_update(en__EN__ISD_ERROR, en__BackTelCounterZero, 0);
                         TDC_PRINTF_W("[ISD] FAILED TO PATH OPEN WITH DUPLICATE ZERO CHECKING DATA (COUNT 0) \r\n");
                     }
                     else
                     {
-                        errorCodeUpdate(en__EN__ISD_ERROR, en__BackterDataLengthError, 0);
+                        tdc_sys_error_update(en__EN__ISD_ERROR, en__BackterDataLengthError, 0);
                         TDC_PRINTF_W("[ISD] FAILED TO PATH OPEN WITH DUPLICATE ZERO CHECKING DATA (TOO MANY BACKTEL) \r\n");
                     }
 
@@ -803,7 +803,7 @@ void enableStimul_10v(bool isdControlStateChagedFlag)
                 else
                 {
                     // 펄스폭 설정 실패 , FPGA 초기화
-                    errorCodeUpdate(en__FPGA_CONFIGUARATION_ERROR, en_PulseWidthDifferent, __LINE__);
+                    tdc_sys_error_update(en__FPGA_CONFIGUARATION_ERROR, en_PulseWidthDifferent, __LINE__);
                     change_isd_state(en__isdStatus_PowerIC_OK);
                     TDC_PRINTF_E("[FPGA] FAILED TO SET PULSE PHASE WIDTH TO MINIMUM \r\n");
                 }
@@ -823,7 +823,7 @@ void enableStimul_10v(bool isdControlStateChagedFlag)
                         {
                             if (!FPGA_FIFO_empty)
                             {
-                                errorCodeUpdate(en__FPGA_CONFIGUARATION_ERROR, en_FIFO_NotCleared, __LINE__);
+                                tdc_sys_error_update(en__FPGA_CONFIGUARATION_ERROR, en_FIFO_NotCleared, __LINE__);
                                 change_isd_state(en__isdStatus_PowerIC_OK);  //
                                 TDC_PRINTF_E("[FPGA] FAILED TO EMPTY BACKTEL FIFO \r\n");
                             }
@@ -833,7 +833,7 @@ void enableStimul_10v(bool isdControlStateChagedFlag)
                 else
                 {
                     // 백텔 레지스터 설정 오류
-                    errorCodeUpdate(en__FPGA_CONFIGUARATION_ERROR, en_RegisterConfigError_byPCM, __LINE__);
+                    tdc_sys_error_update(en__FPGA_CONFIGUARATION_ERROR, en_RegisterConfigError_byPCM, __LINE__);
                     change_isd_state(en__isdStatus_PowerIC_OK);
                     TDC_PRINTF_E("[FPGA] FAILED TO SET BACKTEL REGISTER VALUE \r\n");
                 }
@@ -933,9 +933,9 @@ void enableStimul_10v(bool isdControlStateChagedFlag)
                             change_isd_state(en__isdStatus_stimul_10V_Ok);
                             //////////////////////////////////////
 
-                            clearErrorFlag(en__RF_PowerIC_ERROR);
-                            clearErrorFlag(en__FPGA_CONFIGUARATION_ERROR);
-                            clearErrorFlag(en__EN__ISD_ERROR);
+                            tdc_sys_error_clear_flag(en__RF_PowerIC_ERROR);
+                            tdc_sys_error_clear_flag(en__FPGA_CONFIGUARATION_ERROR);
+                            tdc_sys_error_clear_flag(en__EN__ISD_ERROR);
 
                             TDC_PRINTF_V("[ISD] SUCCESS TO ENABLE STIMULATION 10V \r\n");
                         }
@@ -947,7 +947,7 @@ void enableStimul_10v(bool isdControlStateChagedFlag)
 #if 1
                             if (iterationCouter > 10)
                             {
-                                errorCodeUpdate(en__EN__ISD_ERROR, en__VTG_Lock_Error, __LINE__);
+                                tdc_sys_error_update(en__EN__ISD_ERROR, en__VTG_Lock_Error, __LINE__);
                                 change_isd_state(en__isdStatus_FPGA_Ok);  // 내부기 전송 파워 설정 부터 다시.
                             }
 #endif
@@ -962,12 +962,12 @@ void enableStimul_10v(bool isdControlStateChagedFlag)
 
                     if (r_FPGA_registerValue == 0) // BACKETL 카운트가 1이 아니며, BACKETL 에러 레지스터의 값이 0이다.
                     {
-                        errorCodeUpdate(en__EN__ISD_ERROR, en__BackTelCounterZero, __LINE__);
+                        tdc_sys_error_update(en__EN__ISD_ERROR, en__BackTelCounterZero, __LINE__);
                         TDC_PRINTF_W("[ISD] FAILED TO ENABLE STIMULATION 10V (COUNT 0) \r\n");
                     }
                     else // BACKETL 에러 레지스터의 값이 0이 아니다.
                     {
-                        errorCodeUpdate(en__EN__ISD_ERROR, en__BackterDataLengthError, __LINE__);
+                        tdc_sys_error_update(en__EN__ISD_ERROR, en__BackterDataLengthError, __LINE__);
                         TDC_PRINTF_W("[ISD] FAILED TO ENABLE STIMULATION 10V (BACKTEL ERROR) \r\n");
                     }
 

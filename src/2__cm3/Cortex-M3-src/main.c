@@ -2,20 +2,20 @@
  * @file main.c
  */
 
-#include <initialize.h>
+#include <tdc_sys_init.h>
 #include <main.h>
 
 #include "board.h"           //ok
 #include "tdc_hal_spi.h"      //ok
 #include "tdc_hal_i2c_cfx.h"  //ok
 
-#include "batteryNPowerControl.h"  //ok
+#include "tdc_pwr_battery.h"  //ok
 
 #include "cfx_cm3_sharedMemory.h"  //ok
 
 #include "tdc_drv_mis2dh.h"  //ok
-#include "error.h"          //ok
-#include "systemControl.h"  //ok
+#include "tdc_sys_error.h"          //ok
+#include "tdc_sys_control.h"  //ok
 
 #include "isd_interface.h"   //ok
 #include "mappingControl.h"  //ok
@@ -36,9 +36,9 @@
 #include <isd_interface_init_FPGA.h>              // 절전 모드 진입 전 FPGA 리셋 목적
 #include <isd_interface_FPGA.h>
 
-#include <ci_power.h>
+#include <tdc_pwr_clock.h>
 #include <tdc_hal_dio.h>
-#include <ci_power.h>
+#include <tdc_pwr_clock.h>
 #include <tdc_hal_timer.h>
 #include <tdc_hal_uart.h>
 #include <tdc_printf.h>
@@ -60,7 +60,7 @@
  * iteration 이 갱신하고 루프 후반(타임아웃/크래들/절전 판정)이 읽는 값만 담는다. */
 typedef struct
 {
-    ST__SYSTEM_STATE            systemState;
+    tdc_sys_state_t            systemState;
     volatile ST__ISD_STATUS     isd_state;
     ST__BLE_COMMUNICATION_STATE ble_state;
     bool                        qcc_batt_timeout;
@@ -68,11 +68,11 @@ typedef struct
 
 /* 1 tick 분 입력 스냅샷 (tick 내에서만 유효).
  * 수집을 한곳에 모아 handler 가 일관된 값을 보게 한다 - 특히 batt_percent 는
- * 기존에 systemControl / LED 요청이 각자 snd_batt_get_percent() 를 호출해
+ * 기존에 tdc_sys_control_step / LED 요청이 각자 tdc_pwr_battery_get_percent() 를 호출해
  * 한 tick 안에서 서로 다른 값을 볼 여지가 있었다. */
 typedef struct
 {
-    ST__ERROR_CODE    mcu_error;
+    tdc_sys_error_code_t    mcu_error;
     ST__USB_CONNECTOR charger;
     int               batt_percent;
     bool              power_button;
@@ -129,7 +129,7 @@ char *readFirmwareInfo()
     return (char *) &firmwareInfo;
 }
 
-void Initialize(void);
+void tdc_sys_init(void);
 
 static bool iterationFlag = false;
 
@@ -217,7 +217,7 @@ void update_mapNum(void)
             }
             else
             {
-                errorCodeUpdate(en__dataProcessing_ERROR, en__unusableMapData, __LINE__);
+                tdc_sys_error_update(en__dataProcessing_ERROR, en__unusableMapData, __LINE__);
             }
         }
     }
@@ -525,7 +525,7 @@ int func_normal(void)
         tdc_shared_publish_cm3_heartbeat(s_cm3_heartbeat);
 
         /* QCC 배터리 타임아웃 → 파워오프 패턴 후 절전.
-         * QCC 미수신 시 systemControl 은 df_Default 게이트(en__LED_NA)에 막혀 자체
+         * QCC 미수신 시 tdc_sys_control_step 은 df_Default 게이트(en__LED_NA)에 막혀 자체
          * 파워오프 시퀀스에 도달하지 못하므로, 여기서 직접 POWER_OFF 패턴을 요청하고
          * burst 완료 후 systemOff 를 세팅해 기존 절전 경로(아래 → break → func_sleep)를 탄다.
          * 상세: docs/tasks/power/20260609_qcc-batt-timeout-sleep/분석.md §4 */
@@ -577,7 +577,7 @@ static void tdc_normal_boot_sequence(void)
 {
     tdc_wait_for_cfx_start();  // CFX가 자체적으로 플래그를 설정할 때까지 대기
 
-    Initialize();
+    tdc_sys_init();
 
     cfx_cm3_sharedMemoryAll.is_enabled_CFX_iteration = 1;  // CFX 동작 활성화
 
@@ -593,15 +593,15 @@ static void tdc_normal_boot_sequence(void)
  * 자체 FSM/타이머를 돌리므로 tick 당 정확히 1회 호출해야 한다. */
 static void tdc_collect_events(tdc_normal_events_t *ev)
 {
-    ev->mcu_error    = readErrorCode();
-    ev->charger      = snd_charger_get_state();  // QCC 0x34 기반
-    ev->batt_percent = snd_batt_get_percent();   // QCC 제공. Initialize 단계에서 수집 완료.
+    ev->mcu_error    = tdc_sys_error_read();
+    ev->charger      = tdc_pwr_charger_get_state();  // QCC 0x34 기반
+    ev->batt_percent = tdc_pwr_battery_get_percent();   // QCC 제공. tdc_sys_init 단계에서 수집 완료.
     ev->power_button = tdc_touch_process();      // isPowerButtonPushed() 대체
     ev->batt_timeout = tdc_qcc_has_batt_level_rx_timed_out();
 }
 
 /* 수집된 입력으로 상태를 전이시키고 출력에 반영한다.
- * 순서 의존: systemControl -> isd_interface -> bleCommunication (enable_ISD 전달).
+ * 순서 의존: tdc_sys_control_step -> isd_interface -> bleCommunication (enable_ISD 전달).
  * LED 요청은 배터리 -> ISD -> 매핑 순서에 의존한다(tdc_update_led_requests 내부). */
 static void tdc_handle_events(const tdc_normal_events_t *ev, tdc_normal_ctx_t *ctx)
 {
@@ -609,13 +609,13 @@ static void tdc_handle_events(const tdc_normal_events_t *ev, tdc_normal_ctx_t *c
 
     // NOTE: QCC에게 0x34(Power info) 프로토콜 수신 전까지는
     //       charger.chargerConnectorPluggedIn == df_Default; 상태이다.
-    //       df_Default 상태일 때는 아래의 systemControl() 에서 동작하는게 없다.
+    //       df_Default 상태일 때는 아래의 tdc_sys_control_step() 에서 동작하는게 없다.
 
-    ctx->systemState = systemControl(ev->mcu_error,
+    ctx->systemState = tdc_sys_control_step(ev->mcu_error,
                                      ev->charger,
                                      ev->batt_percent,
                                      ev->power_button,
-                                     ctx->isd_state.conneded_ISD,      // 지난 tick 값 (순환 의존 - systemControl.c 주석 참조)
+                                     ctx->isd_state.conneded_ISD,      // 지난 tick 값 (순환 의존 - tdc_sys_control_step.c 주석 참조)
                                      ctx->ble_state.mappingConnection  // 지난 tick 값
     );
 
@@ -647,7 +647,7 @@ static void tdc_handle_events(const tdc_normal_events_t *ev, tdc_normal_ctx_t *c
     /* led_arbiter_tick() 은 Timer 3 ISR 에서 직접 구동 (tdc_hal_timer.c).
      * main loop 의 I2C/EEPROM 폴링 블록으로 인한 fade/PWM jitter 회피. */
 
-    NRF_On_OFF(ctx->isd_state, ctx->systemState.BLE_Off, ctx->ble_state.mappingConnection, ctx->ble_state.BLE_Off_Command);
+    tdc_sys_control_nrf_on_off(ctx->isd_state, ctx->systemState.BLE_Off, ctx->ble_state.mappingConnection, ctx->ble_state.BLE_Off_Command);
 
 #ifdef ENABLE_UI_CMD
     tdc_ui_command_set_mapping_connected(ctx->ble_state.mappingConnection);
@@ -667,7 +667,7 @@ static void tdc_normal_iteration(tdc_normal_ctx_t *ctx)
     disable_iteration();
 }
 
-/* CFX 가 자체 플래그를 세울 때까지 블로킹 대기. Initialize() 선행 조건. */
+/* CFX 가 자체 플래그를 세울 때까지 블로킹 대기. tdc_sys_init() 선행 조건. */
 static void tdc_wait_for_cfx_start(void)
 {
     while (1)
@@ -720,7 +720,7 @@ static void tdc_update_led_requests(int batt_percent, bool isd_conn_default, boo
     bool ovr_batt_active = false;
     int  pct             = batt_percent;
 #endif
-    bool        batt_is_reset_state = (snd_batt_get_state() == EN__SND_BATT_STATE_RESET);
+    bool        batt_is_reset_state = (tdc_pwr_battery_get_state() == TDC_PWR_BATTERY_STATE_RESET);
     led_state_t batt_st             = tdc_led_request_battery(pct, ovr_batt_active, batt_is_reset_state);
 
 #ifdef ENABLE_UI_CMD
@@ -789,7 +789,7 @@ static bool tdc_qcc_has_batt_level_rx_timed_out(void)
             time_laps = tdc_hal_timer_get_tick();
         }
 
-        if (snd_batt_get_state() == EN__SND_BATT_STATE_RESET)
+        if (tdc_pwr_battery_get_state() == TDC_PWR_BATTERY_STATE_RESET)
         {
             if (RX_BATT_LEVEL_TIME_OUT_MS < (tdc_hal_timer_get_tick() - time_laps))
             {
@@ -800,7 +800,7 @@ static bool tdc_qcc_has_batt_level_rx_timed_out(void)
         }
         else
         {
-            TDC_PRINTF_D("[BATT] QCC BATT RX %d%% (TICK = %d / WAIT = %d MS) \r\n", snd_batt_get_percent(), tdc_hal_timer_get_tick(), (tdc_hal_timer_get_tick() - time_laps));
+            TDC_PRINTF_D("[BATT] QCC BATT RX %d%% (TICK = %d / WAIT = %d MS) \r\n", tdc_pwr_battery_get_percent(), tdc_hal_timer_get_tick(), (tdc_hal_timer_get_tick() - time_laps));
             is_done = true;
         }
     }
@@ -872,8 +872,8 @@ static void func_cradle_lid_closed_loop(void)
     }
 
     /* 2. nRF 리셋/끄기 (시퀀스 유지, 실효 없음) */
-    ResetNRF();
-    NRF_Off_Command();
+    tdc_sys_reset_nrf();
+    tdc_sys_control_nrf_off_command();
 
     /* 3. QCC_CTRL = 0 (충전기 연결 시 QCC는 절전 미진입, SPI 패킷 수신 유지) */
     // snd_qcc_set_mode(SND_QCC_MODE_SHUTDOWN);
@@ -903,7 +903,7 @@ static void func_cradle_lid_closed_loop(void)
         (void) bleCommunication(dummy_isd);
 
         /* 뚜껑 열림 패킷 감지 (data[2]=1 또는 else → setter가 df_Connected으로 갱신) */
-        if (tdc_cradle_get_cover_state() == df_Connected)
+        if (tdc_pwr_cradle_get_cover_state() == df_Connected)
         {
             snd_qcc_set_mode(SND_QCC_MODE_SHUTDOWN);
             TDC_PRINTF_I("[CRADLE] LID OPENED PACKET RECEIVED - WATCHDOG RESET FOR REBOOT\r\n");
@@ -1104,8 +1104,8 @@ int func_sleep(void)
 
     cfx_cm3_sharedMemoryAll.systemShare.enter_ULP_mode_Command_CM3_to_CFX = 1;
 
-    ResetNRF();
-    NRF_Off_Command();
+    tdc_sys_reset_nrf();
+    tdc_sys_control_nrf_off_command();
     snd_qcc_set_mode(SND_QCC_MODE_SHUTDOWN);
     Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_FPGA_SLEEP);
     OnOff_3V_PMIC_CM3_to_CFX(false); /* Disable 3.3V, 1.2V PMIC */
@@ -1123,9 +1123,9 @@ int func_sleep(void)
 #endif
 
     /* 절전 IQS323 설정은 노말과 동일하게 유지(전용 sleep settings 제거 - 운용 임계 그대로,
-     * is_ulp 플래그 미사용). CM3 클럭만 ci_power_sleep 로 절감한다. */
+     * is_ulp 플래그 미사용). CM3 클럭만 tdc_pwr_clock_sleep 로 절감한다. */
 
-    ci_power_sleep(); /* SYSCLK 30.72M → 2.56M, SLOWCLK 유지 */
+    tdc_pwr_clock_sleep(); /* SYSCLK 30.72M → 2.56M, SLOWCLK 유지 */
 
     /* [FIXME] 실제 SCL - 426.7kHz(2.56MHz/6) - "~122kHz 유지" 의도라면 분주비가 틀렸다.
      * tdc_hal_i2c.h 설계값은 PRESCALE_21(2.56MHz/21?121.9kHz). 의도적 변경인지 확인 필요. */
