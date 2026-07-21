@@ -88,13 +88,20 @@ tags: [cm3, refactoring, gate, g4, systemcontrol, fsm, power, battery]
 
 | 라벨 | 결과 |
 |---|---|
-| 검증_공통_1 (구 심볼 잔존 0) | (구현 후) |
-| 검증_공통_2 (공유 ABI 무변경) | (구현 후) |
-| 검증_공통_3 (균형·훅) | (구현 후) |
-| 검증_공통_4 (사장 실증) | (구현 후) |
-| **검증_G4_특화_1 (초기값 승계)** | `isd_disconnection_counter` = 2000 — **회귀 1순위** |
-| **검증_G4_특화_2 (초기값 전수)** | 원본 7개 ↔ 신규 7개 대조 |
-| **검증_G4_특화_3 (버튼 전파)** | `gate_power_button()` 반환값 재대입 |
-| **검증_G4_특화_4 (자극 트리거 전파)** | `handle_running()` 반환값 반영 |
-| **검증_G4_특화_5 (분기 등가)** | 충전기 3분기 및 하위 경로 |
+| 검증_공통_1 (구 심볼 잔존 0) | ✅ 15패턴 0 (주석 파일명까지 갱신). SEGGER 주석 내 `Initialize` 는 외부 라이브러리라 제외 |
+| 검증_공통_2 (공유 ABI 무변경) | ✅ 공유 구조체 무변경 |
+| 검증_공통_3 (균형·훅) | ✅ sys 6 + pwr 6 파일 균형 OK · 깨진 include 0 · 훅 통과 |
+| 검증_공통_4 (사장 실증) | ✅ dead static 3건 제거(읽기 0 실증). `tdc_drv_max17262` 는 **보류** — §6 |
+| **검증_G4_특화_1 (초기값 승계)** | ✅ `.isd_disconnection_counter = Df_Disconnection_BLE_Time_ms`(2000) — designated initializer 로 명시 |
+| **검증_G4_특화_2 (초기값 전수)** | ✅ 원본 7개 ↔ 신규 7개 대조 일치 |
+| **검증_G4_특화_3 (버튼 전파)** | ✅ `power_button_pushed = gate_power_button(...)` 재대입 확인 |
+| **검증_G4_특화_4 (자극 트리거 전파)** | ✅ `handle_running()` → `handle_discharging()` → `StimulationIndicatorTriggerLowPower` |
+| **검증_G4_특화_5 (분기 등가)** | ✅ 에러 early-return · prev 갱신 시점 · burst pending 무처리 · StartFlag 첫 tick · poweroff 탈출 조건 평탄화 전부 등가 대조 |
 | 검증_공통_5 (빌드·실기) | ⏳ 은수님 게이트 — **전원버튼·절전·충전·크래들 확인 권장** |
+
+## 6. 진행 방식 · 잔여
+
+- **2단계 분리 커밋**: G4-1(이관·rename, `44b3d72`) / G4-2(FSM 분해, `2fa7b39`). 회귀 시 이분 탐색 단위를 분리하기 위함.
+- 중첩 깊이 최대 8 → **3** 으로 감소, `tdc_sys_control_step()` 조립부는 에러 early-return + 충전기 2분기로 단순화.
+- **부수 정정**: `s_snd_charger_state` 가 충전기 enum 인데 배터리 enum 으로 초기화되던 타입 불일치 정정(둘 다 RESET=0 이라 동작 동일).
+- **보류**: `tdc_drv_max17262`(G3 이월 사장 후보) — 배터리 게이지가 QCC 이관으로 사장된 것으로 보이나, 외부 칩 드라이버라 제거는 별도 판단. `Gen1_5/common/` 은 본 게이트로 소멸.
