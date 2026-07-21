@@ -45,12 +45,14 @@ tags: [cm3, refactoring, gate, g7, isd, stimulation, fsm, mapping]
 
 접두어 극다양(`read`17·`write`11·`change`6·`get`6·`fill`3·무접두)에 **오타 다수**(`chang`·`upadte`·`Sepcific`·`readWrtie`·`Chaged`·`Resgister`) → 도메인별 명시 매핑 + 오타 정정.
 
-## 3. FSM 표준화 (G7-2 — 별도)
+## 3. FSM 표준화 (G7-2) — 생략 확정 (2026-07-22)
 
 매핑 5대(`Live`/`eCAP`/`impedance`/`testStim`/`specificStim`)는 각 14~16 static 의 대형 FSM이며 **동일 패턴의 복제 5벌**(② census). 자극 제어 = 의료 기능.
 
-> [!CAUTION]
-> **G7-1 통과(빌드·실기) 후에만 G7-2 착수.** rename 으로 파일이 안정된 상태에서, FSM 표준(계획 §4)을 1함수 1커밋 + 전이 등가표로 신중히 적용. G7-2 는 **동작 변경 위험이 실재**하므로 은수님과 범위를 재확인한다 (전면 표준화 vs 최소 정리).
+> [!IMPORTANT]
+> **은수님 판단: G7-2 생략, 현행 유지.** 5대 FSM 은 이미 동작 검증된 자극 제어 코드이므로 구조 변경 위험을 감수하지 않는다. G7-1 이동·rename 으로 파일명·심볼만 정합하고 제어 흐름은 그대로 둔다.
+>
+> 밸리데이션 계층화 지침(§6 "테스트를 위한 분해 금지", §7.2 "동작 보존 전제")과 정합. 향후 실제 필요(신규 기능·버그)가 생기면 그때 개별 FSM 을 표준 패턴으로 정리한다.
 
 ## 4. 불가침
 
@@ -83,11 +85,7 @@ tags: [cm3, refactoring, gate, g7, isd, stimulation, fsm, mapping]
 | **검증_G7_특화 (복제 심볼 동결)** | ✅ `tdc_stim_definitions.h`(구 definitionsForAlgorithm) 동결 34종 전부 무변경 — `df_MaxNumOfElectrode` 등 살아있음 |
 | 검증_공통_5 (빌드·실기) | ⏳ 은수님 게이트 — **ISD 연결·자극·매핑(임피던스/eCAP/라이브) 확인 필수** |
 
-### G7-2 (매핑 FSM 표준화) — 은수님 범위 확인 후
-
-| 라벨 | 결과 |
-|---|---|
-| **검증_G7-2_특화 (FSM 전이 등가)** | 매핑 5대 상태×입력 전후 대조 (착수 시) |
+### G7-2 (매핑 FSM 표준화) — **생략 확정** (은수님 판단, §3)
 
 ## 7. G7-1 결과 · 발견
 
