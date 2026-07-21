@@ -278,7 +278,7 @@ bool sharedMemoryAddresError(void);
 // 충전기 상태
 
 /* readUsbConnectorState() 제거(2026-07-15): Sullivan 유산.
- * 충전 상태는 QCC 0x34 기반 snd_charger_get_state() 로 단일화됐다. */
+ * 충전 상태는 QCC 0x34 기반 tdc_pwr_charger_get_state() 로 단일화됐다. */
 
 ////////////////////////////////////
 // PCM 관련

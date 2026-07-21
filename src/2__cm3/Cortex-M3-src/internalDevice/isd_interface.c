@@ -25,7 +25,7 @@
 #include "cfx_cm3_sharedMemory.h"
 
 #include "remoteControl.h"
-#include "error.h"
+#include "tdc_sys_error.h"
 
 #if defined(Board_is_OTE_VER_1_2)
 #include "tdc_drv_isl91128.h"
@@ -255,7 +255,7 @@ ST__ISD_STATUS isd_interface(bool isd_enable, bool mappingConnection, EN__ISD_CO
     }
     else  // if (isd_enable)에 대한 else
     {
-        // main 함수의 systemControl() 함수에서 획득한 isd_enable 상태가,
+        // main 함수의 tdc_sys_control_step() 함수에서 획득한 isd_enable 상태가,
         // 내부기 연결 과정을 진행하지 않게 false 인 경우에는
         // 내부기 연결 과정을 RF PMIC 5V를 리셋하는 것부터 다시 시작하도록
         // 내부기 상태를 지속적으로 en__isdStatus_PowerIC_Reset 값으로 초기화 시킨다.
@@ -495,7 +495,7 @@ void update_isd_LinkConnection_byBacktel_withLiveStimulation(void)
                         TDC_PRINTF_W("[LINK] DISCONNECTED, NO BACKTEL, LINK CONNECTION SUCCESS COUNTER : %d \r\n", link_connection_success_counter - 1);
                         link_connection_success_counter = 0;
 
-                        errorCodeUpdate(en__EN__ISD_ERROR, en__BackTelCounterZero, __LINE__);
+                        tdc_sys_error_update(en__EN__ISD_ERROR, en__BackTelCounterZero, __LINE__);
                         change_isd_state(en__isdStatus_FPGA_Ok);  // 내부기 파워 조정 시작
                     }
                     break;
@@ -505,7 +505,7 @@ void update_isd_LinkConnection_byBacktel_withLiveStimulation(void)
                         TDC_PRINTF_W("[LINK] DISCONNECTED, TOO MUCH BACKTEL, LINK CONNECTION SUCCESS COUNTER : %d \r\n", link_connection_success_counter - 1);
                         link_connection_success_counter = 0;
 
-                        errorCodeUpdate(en__EN__ISD_ERROR, en__BackterDataLengthError, __LINE__);
+                        tdc_sys_error_update(en__EN__ISD_ERROR, en__BackterDataLengthError, __LINE__);
                         change_isd_state(en__isdStatus_FPGA_Ok);  // 내부기 파워 조정 시작
                     }
                     break;
@@ -681,7 +681,7 @@ void update_isd_LinkConnection_byBacktel_withMapping(int connectionCheckCOUNTER)
                         read_FPGA_PulseWidth(&temp);
                         read_FPGA_FIFO_counter(&temp);
 #endif
-                        errorCodeUpdate(en__EN__ISD_ERROR, en__BackTelCounterZero, __LINE__);
+                        tdc_sys_error_update(en__EN__ISD_ERROR, en__BackTelCounterZero, __LINE__);
                         change_isd_state(en__isdStatus_FPGA_Ok);  // 내부기 파워 조정 시작
 
                         TDC_PRINTF_W("[MAPPING] NO BACKTEL DURING MAPPING LINK CONNECTION \r\n");
@@ -690,7 +690,7 @@ void update_isd_LinkConnection_byBacktel_withMapping(int connectionCheckCOUNTER)
 
                     case BackTelNumTooMuch:
                     {
-                        errorCodeUpdate(en__EN__ISD_ERROR, en__BackterDataLengthError, __LINE__);
+                        tdc_sys_error_update(en__EN__ISD_ERROR, en__BackterDataLengthError, __LINE__);
                         change_isd_state(en__isdStatus_FPGA_Ok);  // 내부기 파워 조정 시작
                         TDC_PRINTF_W("[MAPPING] BACKTEL TOO MUCH DURING MAPPING LINK CONNECTOIN \r\n");
                     }

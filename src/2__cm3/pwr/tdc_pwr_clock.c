@@ -2,7 +2,7 @@
  * @file OTE_1P5_power_manager.c
  */
 
-#include <ci_power.h>
+#include <tdc_pwr_clock.h>
 
 #define NVM_BOOT_INFO_OFFSET        BOOTSTRAP_NVM_BOOTINFORMATION_OFFSET
 #define NVM_BOOT_INFO_OFFSET_OCTETS BOOTSTRAP_NVM_BOOTINFORMATION_OFFSET_OCTETS
@@ -37,17 +37,17 @@ uint32_t bootloader_CRC_calc(uint32_t *data, uint32_t size)
 
 // IMPORTANT: 절대 이 함수의 내용을 함부로 수정하지 마십시오.
 // 타이밍 이슈가 커서 코드 수정 시 동작하지 않을 수 있습니다.
-int ci_power_normal(void)
+int tdc_pwr_clock_normal(void)
 {
     FRESULT fr;
     int     br;
 
     memset(s_manu_table, 0, MANU_TABLE_SIZE_OCTETS);  // 버퍼 초기화
 
-    fr = f_open(&g_tdc_fs_ohdl, CI_MANUF_TABLE_FILE, (FA_OPEN_EXISTING | FA_READ));
+    fr = f_open(&g_tdc_fs_ohdl, TDC_PWR_MANUF_TABLE_FILE, (FA_OPEN_EXISTING | FA_READ));
     if (fr != FR_OK)
     {
-        TDC_PRINTF_E("[POWER] FAIL : OPEN '%s' (FR : %d) \r\n", CI_MANUF_TABLE_FILE, fr);
+        TDC_PRINTF_E("[POWER] FAIL : OPEN '%s' (FR : %d) \r\n", TDC_PWR_MANUF_TABLE_FILE, fr);
         return df_False;
     }
 
@@ -57,14 +57,14 @@ int ci_power_normal(void)
     fr = f_read(&g_tdc_fs_ohdl, s_manu_table, MANU_TABLE_SIZE_OCTETS, &br);
     if (fr != FR_OK)
     {
-        TDC_PRINTF_E("[POWER] FAIL : READ '%s' (FR : %d) \r\n", CI_MANUF_TABLE_FILE, fr);
+        TDC_PRINTF_E("[POWER] FAIL : READ '%s' (FR : %d) \r\n", TDC_PWR_MANUF_TABLE_FILE, fr);
         return df_False;
     }
 
     fr = f_close(&g_tdc_fs_ohdl);
     if (fr != FR_OK)
     {
-        TDC_PRINTF_E("[POWER] FAIL : CLESE '%s' (FR : %d) \r\n", CI_MANUF_TABLE_FILE, fr);
+        TDC_PRINTF_E("[POWER] FAIL : CLESE '%s' (FR : %d) \r\n", TDC_PWR_MANUF_TABLE_FILE, fr);
         return df_False;
     }
 
@@ -164,7 +164,7 @@ int ci_power_normal(void)
  * 계측을 가능케 하던 '가짜 절전'용. fake_func_sleep() 이 유일한 호출자였다.
  * 상세: docs/tasks/main/20260720_fake-sleep-removal/ */
 
-int ci_power_sleep(void)
+int tdc_pwr_clock_sleep(void)
 {
 #if 1
     LSAD->CFG = LSAD_DISABLE;

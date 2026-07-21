@@ -12,9 +12,9 @@
 #include "board.h"  // 디버깅용
 
 #include "stimulationParaCal.h"
-#include "batteryNPowerControl.h"
-#include "systemControl.h"
-#include "error.h"
+#include "tdc_pwr_battery.h"
+#include "tdc_sys_control.h"
+#include "tdc_sys_error.h"
 #include <ci_ble_control_ota.h>
 
 #include "isd_interface_mapping_readWrtieMapData.h"
@@ -83,7 +83,7 @@ void fetch_remoteControlPacket(const int *Rx_dataPacket)
     /// 이전 명령에 대한 응답이 완료되기 전에 새 명령이 수신된 경우
     if (remoteDataPacket.command != en__remoteControl_IDLE)
     {
-        sendErrorToApp(tempCommand, en__EN__BLE_PROTOCOL_ERROR, en__PreviouCommnadIsNotCompleted, __LINE__);
+        tdc_sys_error_send_to_app(tempCommand, en__EN__BLE_PROTOCOL_ERROR, en__PreviouCommnadIsNotCompleted, __LINE__);
         tempCommand = en__remoteControl_IDLE;  // 현재 받은 명령을 수행하지 않는다.
     }
 
@@ -103,7 +103,7 @@ void fetch_remoteControlPacket(const int *Rx_dataPacket)
             else
             {
                 // 에러 전송 (데이터 범위를 벗어남)
-                sendErrorToApp(en__remoteControl_read_SlotData_ISD_N_USER, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);
+                tdc_sys_error_send_to_app(en__remoteControl_read_SlotData_ISD_N_USER, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);
                 clearRemoteColtrolCommand();
             }
         }
@@ -124,7 +124,7 @@ void fetch_remoteControlPacket(const int *Rx_dataPacket)
             if (subCommandData_Num_index != (prev_subCommandData_Num_index + 1))
             {
                 // 에러 전송
-                sendErrorToApp(en__remoteControl_write_SlotData_ISD_N_USER, en__EN__BLE_PROTOCOL_ERROR, en__DATA_Order, __LINE__);  // 데이터 범위 벗어남
+                tdc_sys_error_send_to_app(en__remoteControl_write_SlotData_ISD_N_USER, en__EN__BLE_PROTOCOL_ERROR, en__DATA_Order, __LINE__);  // 데이터 범위 벗어남
 
                 prev_subCommandData_Num_index = 0;
                 stimulPara_index              = 0;
@@ -341,7 +341,7 @@ void fetch_remoteControlPacket(const int *Rx_dataPacket)
                 {
                     // 에러 전송
                     // 데이터 범위를 벗어남
-                    sendErrorToApp(en__remoteControl_write_SlotData_ISD_N_USER, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);
+                    tdc_sys_error_send_to_app(en__remoteControl_write_SlotData_ISD_N_USER, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);
                     clearRemoteColtrolCommand();
                 }
             }
@@ -366,7 +366,7 @@ void fetch_remoteControlPacket(const int *Rx_dataPacket)
                 {
                     // 에러 전송
                     // 데이터 범위를 벗어남
-                    sendErrorToApp(en__remoteControl_read_Mapdata_STIMUL_PARA, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);
+                    tdc_sys_error_send_to_app(en__remoteControl_read_Mapdata_STIMUL_PARA, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);
                     clearRemoteColtrolCommand();
                 }
             }
@@ -374,7 +374,7 @@ void fetch_remoteControlPacket(const int *Rx_dataPacket)
             {
                 // 에러 전송
                 // 데이터 범위를 벗어남
-                sendErrorToApp(en__remoteControl_read_Mapdata_STIMUL_PARA, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);
+                tdc_sys_error_send_to_app(en__remoteControl_read_Mapdata_STIMUL_PARA, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);
                 clearRemoteColtrolCommand();
             }
         }
@@ -395,7 +395,7 @@ void fetch_remoteControlPacket(const int *Rx_dataPacket)
             {
                 // 데이터가 순차적으로 들어와야된다. 순차적으로 들어 오지 않으면 에러 전송
                 // 에러 전송
-                sendErrorToApp(en__remoteControl_write_Mapdata_STIMUL_PARA, en__EN__BLE_PROTOCOL_ERROR, en__DATA_Order, __LINE__);  // 데이터 범위 벗어남
+                tdc_sys_error_send_to_app(en__remoteControl_write_Mapdata_STIMUL_PARA, en__EN__BLE_PROTOCOL_ERROR, en__DATA_Order, __LINE__);  // 데이터 범위 벗어남
 
                 prev_subCommandData_Num_index = 0;
 
@@ -575,7 +575,7 @@ void fetch_remoteControlPacket(const int *Rx_dataPacket)
                 }
                 else
                 {
-                    sendErrorToApp(en__remoteControl_write_Mapdata_STIMUL_PARA, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);  // 데이터 범위 벗어남
+                    tdc_sys_error_send_to_app(en__remoteControl_write_Mapdata_STIMUL_PARA, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);  // 데이터 범위 벗어남
 
                     clearRemoteColtrolCommand();
                 }
@@ -964,7 +964,7 @@ ST__REMOTECONTROL_STATE remoteControl(bool isdConnection)  // 연결 상태에 �
 #endif
                 case en__remoteControl_readStatusOfExtenalDevice:  // 0x43
                 {
-                    value = readBatteryPercentage();
+                    value = tdc_pwr_battery_read_percentage();
 
                     if (value > 100)
                     {
@@ -1027,7 +1027,7 @@ ST__REMOTECONTROL_STATE remoteControl(bool isdConnection)  // 연결 상태에 �
                         }
                         else
                         {
-                            sendErrorToApp(remoteDataPacket.command, en__CFX_ERROR, en__unusableMapData, __LINE__);
+                            tdc_sys_error_send_to_app(remoteDataPacket.command, en__CFX_ERROR, en__unusableMapData, __LINE__);
                             clearRemoteColtrolCommand();
                         }
                     }
@@ -1061,13 +1061,13 @@ ST__REMOTECONTROL_STATE remoteControl(bool isdConnection)  // 연결 상태에 �
                         }
                         else
                         {
-                            sendErrorToApp(remoteDataPacket.command, en__CFX_ERROR, en__unusableMapData, __LINE__);
+                            tdc_sys_error_send_to_app(remoteDataPacket.command, en__CFX_ERROR, en__unusableMapData, __LINE__);
                             clearRemoteColtrolCommand();
                         }
                     }
                     else  // 에러: 입력 데이터 범위 1~2가 아닌 경우
                     {
-                        sendErrorToApp(remoteDataPacket.command, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);
+                        tdc_sys_error_send_to_app(remoteDataPacket.command, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);
                         clearRemoteColtrolCommand();
                     }
                 }
@@ -1105,7 +1105,7 @@ ST__REMOTECONTROL_STATE remoteControl(bool isdConnection)  // 연결 상태에 �
                     }
                     else  // 데이터 범위 에러
                     {
-                        sendErrorToApp(remoteDataPacket.command, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);
+                        tdc_sys_error_send_to_app(remoteDataPacket.command, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);
                         clearRemoteColtrolCommand();
                     }
                 }
@@ -1143,7 +1143,7 @@ ST__REMOTECONTROL_STATE remoteControl(bool isdConnection)  // 연결 상태에 �
                     }
                     else  // 데이터 범위 에러
                     {
-                        sendErrorToApp(remoteDataPacket.command, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);
+                        tdc_sys_error_send_to_app(remoteDataPacket.command, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);
                         clearRemoteColtrolCommand();
                     }
                 }
@@ -1164,7 +1164,7 @@ ST__REMOTECONTROL_STATE remoteControl(bool isdConnection)  // 연결 상태에 �
                     }
                     else  // 데이터 범위 에러
                     {
-                        sendErrorToApp(remoteDataPacket.command, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);
+                        tdc_sys_error_send_to_app(remoteDataPacket.command, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);
                         clearRemoteColtrolCommand();
                     }
                 }
@@ -1185,7 +1185,7 @@ ST__REMOTECONTROL_STATE remoteControl(bool isdConnection)  // 연결 상태에 �
                     }
                     else  // 데이터 범위 에러
                     {
-                        sendErrorToApp(remoteDataPacket.command, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);
+                        tdc_sys_error_send_to_app(remoteDataPacket.command, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);
                         clearRemoteColtrolCommand();
                     }
                 }
@@ -1206,7 +1206,7 @@ ST__REMOTECONTROL_STATE remoteControl(bool isdConnection)  // 연결 상태에 �
                     }
                     else  // 데이터 범위 에러
                     {
-                        sendErrorToApp(remoteDataPacket.command, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);
+                        tdc_sys_error_send_to_app(remoteDataPacket.command, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);
                         clearRemoteColtrolCommand();
                     }
                 }
@@ -1411,7 +1411,7 @@ ST__REMOTECONTROL_STATE remoteControl(bool isdConnection)  // 연결 상태에 �
                                             {
                                                 TDC_PRINTF_E("[MUTE] RECEVIED : WRITE NORMAL + ENABLE MUTE, BUT INVALID T OFFSET LEVEL \r\n");
 
-                                                sendErrorToApp(remoteDataPacket.command, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);
+                                                tdc_sys_error_send_to_app(remoteDataPacket.command, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);
                                                 clearRemoteColtrolCommand();
                                             }
                                             else  // 유효한 설정 값인 경우
@@ -1422,7 +1422,7 @@ ST__REMOTECONTROL_STATE remoteControl(bool isdConnection)  // 연결 상태에 �
                                                     TDC_PRINTF_E("[MUTE] RECEVIED : WRITE NORMAL + ENABLE MUTE, BUT FAILED TO UPDATE FILE \r\n");
 
                                                     // 실패 시 에러 전송: 데이터 처리 에러 + 사용할 수 없는 맵데이터
-                                                    sendErrorToApp(remoteDataPacket.command, en__dataProcessing_ERROR, en__unusableMapData, __LINE__);
+                                                    tdc_sys_error_send_to_app(remoteDataPacket.command, en__dataProcessing_ERROR, en__unusableMapData, __LINE__);
                                                     clearRemoteColtrolCommand();
                                                 }
                                                 else  // 묵음 처리 파일 및 공유 메모리 값 업데이트 성공
@@ -1456,7 +1456,7 @@ ST__REMOTECONTROL_STATE remoteControl(bool isdConnection)  // 연결 상태에 �
                                                 TDC_PRINTF_E("[MUTE] RECEVIED : WRITE NORMAL + DISABLE MUTE, BUT FAILED TO UPDATE FILE \r\n");
 
                                                 // 실패 시 에러 전송: 데이터 처리 에러 + 사용할 수 없는 맵데이터
-                                                sendErrorToApp(remoteDataPacket.command, en__dataProcessing_ERROR, en__unusableMapData, __LINE__);
+                                                tdc_sys_error_send_to_app(remoteDataPacket.command, en__dataProcessing_ERROR, en__unusableMapData, __LINE__);
                                                 clearRemoteColtrolCommand();
                                             }
                                             else  // 묵음 처리 파일 및 공유 메모리 값 업데이트 성공
@@ -1480,7 +1480,7 @@ ST__REMOTECONTROL_STATE remoteControl(bool isdConnection)  // 연결 상태에 �
                                         {
                                             TDC_PRINTF_E("[MUTE] RECEVIED : WRITE NORMAL OPTION, BUT UNDEFINED SUB OPTION 2 PACKET \r\n");
 
-                                            sendErrorToApp(remoteDataPacket.command, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);
+                                            tdc_sys_error_send_to_app(remoteDataPacket.command, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);
                                             clearRemoteColtrolCommand();
                                         }
                                         break;
@@ -1492,7 +1492,7 @@ ST__REMOTECONTROL_STATE remoteControl(bool isdConnection)  // 연결 상태에 �
                                 {
                                     TDC_PRINTF_E("[MUTE] RECEVIED : WRITE DIAGNOSTICS PACKET, BUT N/A CURRENTLY \r\n");
 
-                                    sendErrorToApp(remoteDataPacket.command, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);
+                                    tdc_sys_error_send_to_app(remoteDataPacket.command, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);
                                     clearRemoteColtrolCommand();
                                 }
                                 break;
@@ -1501,7 +1501,7 @@ ST__REMOTECONTROL_STATE remoteControl(bool isdConnection)  // 연결 상태에 �
                                 {
                                     TDC_PRINTF_E("[MUTE] RECEVIED : UNDEFINED SUB OPTION 1 PACKET \r\n");
 
-                                    sendErrorToApp(remoteDataPacket.command, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);
+                                    tdc_sys_error_send_to_app(remoteDataPacket.command, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);
                                     clearRemoteColtrolCommand();
                                 }
                                 break;
@@ -1513,7 +1513,7 @@ ST__REMOTECONTROL_STATE remoteControl(bool isdConnection)  // 연결 상태에 �
                         {
                             TDC_PRINTF_E("[MUTE] RECEVIED : UNDEFINED OPTOIN PACKET \r\n");
 
-                            sendErrorToApp(remoteDataPacket.command, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);
+                            tdc_sys_error_send_to_app(remoteDataPacket.command, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);
                             clearRemoteColtrolCommand();
                         }
                         break;
@@ -1535,7 +1535,7 @@ ST__REMOTECONTROL_STATE remoteControl(bool isdConnection)  // 연결 상태에 �
             if(remoteDataPacket.command != en__remoteControl_IDLE)
             {
                 // 송신 데이터 SPI TX버퍼에 복사
-                sendErrorToApp(remoteDataPacket.command, en__EN__BLE_PROTOCOL_ERROR ,en__NO_SECURITY, __LINE__ );
+                tdc_sys_error_send_to_app(remoteDataPacket.command, en__EN__BLE_PROTOCOL_ERROR ,en__NO_SECURITY, __LINE__ );
                 //  명령 종료
                 clearRemoteColtrolCommand();
             }

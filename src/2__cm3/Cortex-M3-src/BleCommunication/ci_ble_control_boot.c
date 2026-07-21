@@ -5,7 +5,7 @@
 #include <ci_ble_control_boot.h>
 #include <ci_boot.h>
 #include <tdc_hal_spi.h>
-#include <error.h>
+#include <tdc_sys_error.h>
 #include <tdc_fs.h>
 #include <snd_qcc.h>
 
@@ -28,7 +28,7 @@ static void _send_resp_packet_boot(uint8_t* packet_data, uint8_t packet_len)
 
 static void _send_error_packet_boot(uint8_t error)
 {
-    sendErrorToApp(PKT_HEADER_BOOT, en__EN__BLE_PROTOCOL_ERROR, error, __LINE__);
+    tdc_sys_error_send_to_app(PKT_HEADER_BOOT, en__EN__BLE_PROTOCOL_ERROR, error, __LINE__);
 }
 
 static void _fetch_packet_boot_info(int* p_packet)

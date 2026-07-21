@@ -12,9 +12,9 @@
 
 #include <hw.h>
 
-#include "systemControl.h"
+#include "tdc_sys_control.h"
 
-#include <batteryNPowerControl.h>
+#include <tdc_pwr_battery.h>
 #include <ble_communication.h>
 #include <cfx_cm3_sharedMemory.h>
 #include <tdc_fs.h>
@@ -62,7 +62,7 @@ void debugMode(void);
 bool calculate_48bit_QInFn(uint32_t QIn, uint32_t Fn, int32_t val_H, int32_t val_L, int *p_ret_QI_H, int *p_ret_F_H, int *p_ret_QI_L, int *p_ret_F_L, bool *p_isMinus);
 bool calculate_24bit_QInFn(uint32_t QIn, uint32_t Fn, int32_t val, int *p_ret_QI, int *p_ret_F, bool *p_isMinus);
 #if ENABLE_MAIN_DEBUG_PRINT
-void debug_printer_for_mcuErrorCode(ST__ERROR_CODE *p_mcuErrorCode);
+void debug_printer_for_mcuErrorCode(tdc_sys_error_code_t *p_mcuErrorCode);
 #endif
 void debugPrint_ADCRegs(int num);
 void debugPrint_ADCInput(void);

@@ -3,7 +3,7 @@
 #include <hw.h>
 #include <isdExecution/driver_PCM.h>
 #include <stdbool.h>
-#include "error.h"
+#include "tdc_sys_error.h"
 #include "FPGA.h"
 #include "isd_interface_FPGA.h"
 #include "internalStimulationChip.h"
@@ -102,7 +102,7 @@ void specificStimulation(bool startFlag)
 
             if (deliveryCharge_pico > df_MaxDeliveryCharge_pC)  // 전하량 초과
             {
-                sendErrorToApp(en__mapping_specific_stimulation, en__EN__ISD_ERROR, en__MaxChargeOver, __LINE__);  // 에러 전송
+                tdc_sys_error_send_to_app(en__mapping_specific_stimulation, en__EN__ISD_ERROR, en__MaxChargeOver, __LINE__);  // 에러 전송
                 clear_mappingCommand();                                                                            // 커맨드 리셋;
             }
 
@@ -409,7 +409,7 @@ void specificStimulation(bool startFlag)
                 }
                 else
                 {
-                    sendErrorToApp(en__mapping_specific_stimulation, en__FPGA_CONFIGUARATION_ERROR, en_PulseWidthDifferent, __LINE__);
+                    tdc_sys_error_send_to_app(en__mapping_specific_stimulation, en__FPGA_CONFIGUARATION_ERROR, en_PulseWidthDifferent, __LINE__);
                     clear_mappingCommand();  // 커맨드 리셋;
 
                     if (read_FPGA_systemError_Flag(&r_FPGA_registerValue))

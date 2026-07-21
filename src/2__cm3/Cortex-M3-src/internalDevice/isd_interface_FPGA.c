@@ -3,7 +3,7 @@
 #include "isd_interface.h"
 #include "cfx_cm3_sharedMemory.h"
 #include "isd_interface_FPGA.h"
-#include "error.h"
+#include "tdc_sys_error.h"
 #include "FPGA.h"
 
 #ifdef CM3_I2C_controls_FPAG
@@ -192,7 +192,7 @@ bool read_FPGA_systemResgister_2nd(int *p_readValue)
     else
     {
         // I2C 읽기 실패, FPGA 초기화
-        errorCodeUpdate(en__FPGA_COMMUNICATION_ERROR, en__I2C_FPGA_ReadingError, __LINE__);
+        tdc_sys_error_update(en__FPGA_COMMUNICATION_ERROR, en__I2C_FPGA_ReadingError, __LINE__);
         change_isd_state(en__isdStatus_PowerIC_OK);
         return false;
     }
@@ -212,7 +212,7 @@ bool check_FPGA_PCM_Error(bool *isError)
         if ((readValue & 0x1F) != 0)
         {
             *isError = true;
-            update_FPGA_systemError(readValue);
+            tdc_sys_error_update_fpga_system(readValue);
             TDC_PRINTF_E("[FPGA] ERROR OCCURRED, SYS_ERR_CHK : 0x%02X \r\n", readValue);
         }
         else
@@ -282,7 +282,7 @@ bool read_FPGA_systemError_Flag(int *p_readValue)
     else
     {
         // I2C 읽기 실패, FPGA 초기화
-        errorCodeUpdate(en__FPGA_COMMUNICATION_ERROR, en__I2C_FPGA_ReadingError, __LINE__);
+        tdc_sys_error_update(en__FPGA_COMMUNICATION_ERROR, en__I2C_FPGA_ReadingError, __LINE__);
         change_isd_state(en__isdStatus_PowerIC_OK);
         return false;
     }
@@ -370,7 +370,7 @@ bool read_FPGA_IO_MUX(int *p_readValue)
     else
     {
         // I2C 읽기 실패, FPGA 초기화
-        errorCodeUpdate(en__FPGA_COMMUNICATION_ERROR, en__I2C_FPGA_ReadingError, __LINE__);
+        tdc_sys_error_update(en__FPGA_COMMUNICATION_ERROR, en__I2C_FPGA_ReadingError, __LINE__);
         change_isd_state(en__isdStatus_PowerIC_OK);
         return false;
     }
@@ -411,7 +411,7 @@ bool read_FPGA_optionalConfig(int *p_readValue)
     else
     {
         // I2C 읽기 실패, FPGA 초기화
-        errorCodeUpdate(en__FPGA_COMMUNICATION_ERROR, en__I2C_FPGA_ReadingError, __LINE__);
+        tdc_sys_error_update(en__FPGA_COMMUNICATION_ERROR, en__I2C_FPGA_ReadingError, __LINE__);
         change_isd_state(en__isdStatus_PowerIC_OK);
         return false;
     }
@@ -452,7 +452,7 @@ bool read_txPowerLevel(int *p_readValue)
     else
     {
         // I2C 읽기 실패, RF_Power IC 초기화
-        errorCodeUpdate(en__RF_PowerIC_ERROR, en__I2C_RFPOW_ReadingError, __LINE__);
+        tdc_sys_error_update(en__RF_PowerIC_ERROR, en__I2C_RFPOW_ReadingError, __LINE__);
         change_isd_state(en__isdStatus_PowerIC_Reset);
         return false;
     }
@@ -509,7 +509,7 @@ bool read_txPowerLevel(int *p_readValue)
     else
     {
         // I2C 읽기 실패, RF_Power IC 초기화
-        errorCodeUpdate(en__RF_PowerIC_ERROR, en__I2C_RFPOW_ReadingError, __LINE__);
+        tdc_sys_error_update(en__RF_PowerIC_ERROR, en__I2C_RFPOW_ReadingError, __LINE__);
         change_isd_state(en__isdStatus_PowerIC_Reset);
         return false;
     }
@@ -593,7 +593,7 @@ bool write_FPGA_systemResgister_1st(int value)
     else
     {
         // I2C 쓰기 실패, FPGA 초기화
-        errorCodeUpdate(en__FPGA_COMMUNICATION_ERROR, en__I2C_FPGA_WritingError, __LINE__);
+        tdc_sys_error_update(en__FPGA_COMMUNICATION_ERROR, en__I2C_FPGA_WritingError, __LINE__);
         change_isd_state(en__isdStatus_PowerIC_OK);
         return false;
     }
@@ -615,7 +615,7 @@ bool write_FPGA_systemResgister_2nd(int value)
     else
     {
         // I2C 쓰기 실패, FPGA 초기화
-        errorCodeUpdate(en__FPGA_COMMUNICATION_ERROR, en__I2C_FPGA_WritingError, __LINE__);
+        tdc_sys_error_update(en__FPGA_COMMUNICATION_ERROR, en__I2C_FPGA_WritingError, __LINE__);
         change_isd_state(en__isdStatus_PowerIC_OK);
         return false;
     }
@@ -635,7 +635,7 @@ bool write_FPGA_backtelConfig(int value)
     else
     {
         // I2C 쓰기 실패, FPGA 초기화
-        errorCodeUpdate(en__FPGA_COMMUNICATION_ERROR, en__I2C_FPGA_WritingError, __LINE__);
+        tdc_sys_error_update(en__FPGA_COMMUNICATION_ERROR, en__I2C_FPGA_WritingError, __LINE__);
         change_isd_state(en__isdStatus_PowerIC_OK);
         return false;
     }
@@ -780,7 +780,7 @@ bool write_change_TxPowerLevel(int txLevel)
     }
     else
     {
-        errorCodeUpdate(en__RF_PowerIC_ERROR, en__I2C_RFPOW_WritingError, __LINE__);
+        tdc_sys_error_update(en__RF_PowerIC_ERROR, en__I2C_RFPOW_WritingError, __LINE__);
 
         // I2C 쓰기 실패, RF_Power IC 초기화
         change_isd_state(en__isdStatus_PowerIC_Reset);
@@ -827,7 +827,7 @@ bool write_change_TxPowerLevel(int txLevel)
         }
         else
         {
-            errorCodeUpdate(en__RF_PowerIC_ERROR, en__I2C_RFPOW_WritingError, __LINE__);
+            tdc_sys_error_update(en__RF_PowerIC_ERROR, en__I2C_RFPOW_WritingError, __LINE__);
 
             // I2C 쓰기 실패, RF_Power IC 초기화
             change_isd_state(en__isdStatus_PowerIC_Reset);
@@ -837,7 +837,7 @@ bool write_change_TxPowerLevel(int txLevel)
     }
     else
     {
-        errorCodeUpdate(en__RF_PowerIC_ERROR, en__I2C_RFPOW_WritingError, __LINE__);
+        tdc_sys_error_update(en__RF_PowerIC_ERROR, en__I2C_RFPOW_WritingError, __LINE__);
 
         // I2C 쓰기 실패, RF_Power IC 초기화
         change_isd_state(en__isdStatus_PowerIC_Reset);

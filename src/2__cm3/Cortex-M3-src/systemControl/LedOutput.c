@@ -386,7 +386,7 @@ static uint32_t    s_pair_latch_until_tick;
 /* burst 패턴 (POWER_ON / POWER_OFF 등 burst_cnt > 0) 의 진행 상태 추적.
  * set 책임: `led_request()` 가 burst 패턴 요청 즉시 true (외부 호출 시점).
  * clear 책임: `led_engine_run()` 이 burst 자가 해제 시 false (LED 핸들러 내부).
- * 의도: timer/tick 무관 시작·끝 명확화 - systemControl 의 종료 검출 race 회피. */
+ * 의도: timer/tick 무관 시작·끝 명확화 - tdc_sys_control_step 의 종료 검출 race 회피. */
 static bool        s_tdc_burst_pending;
 
 void led_request(led_src_t src, led_state_t st)
@@ -495,7 +495,7 @@ static void led_engine_run(led_state_t st, bool reset)
 
         /* `s_tdc_burst_pending` 의 set 책임은 `led_request()` 이관 - 본 위치 set 제거
          * (Fix B-LED-2 추가분 폐기). led_request 시점 set 으로 fade-out Phase A 동안
-         * 에도 pending true 보장 → systemControl 종료 검출 race 본질적 해소. */
+         * 에도 pending true 보장 → tdc_sys_control_step 종료 검출 race 본질적 해소. */
 
         /* Cross-fade 진입 결정 - 진행 중인 fade-out 은 그대로 둔다 */
         if (s_tx_phase != LED_TX_FADE_OUT)
@@ -823,7 +823,7 @@ void turnOffLED(void)
      * 두 핀 이상 ON 상태 (ORANGE/SKYBLUE/PURPLE/WHITE) 에서 R→G→B 순차 LOW
      * 사이의 transient 로 의도치 않은 중간색이 보이는 현상 회피.
      *
-     * ISR 비활성 (Initialize-time) 또는 영구 suspended (sleep 진입 후) 구간에서는
+     * ISR 비활성 (tdc_sys_init-time) 또는 영구 suspended (sleep 진입 후) 구간에서는
      * arbiter 가 fade-off step 을 진행할 수 없으므로 즉시 OFF 1 회로 마무리. */
     if (!led_arbiter_can_run())
     {

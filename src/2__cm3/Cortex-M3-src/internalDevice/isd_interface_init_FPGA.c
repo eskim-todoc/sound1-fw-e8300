@@ -19,7 +19,7 @@
 #include "cfx_cm3_sharedMemory.h"
 #include "isd_interface_FPGA.h"
 
-#include "error.h"
+#include "tdc_sys_error.h"
 
 // #include "FPGA.h"
 #if defined(Board_is_OTE_VER_1_2)
@@ -129,7 +129,7 @@ void init_txPowerIC(bool isdControlStateChagedFlag)
         case df_startStabilizationCounter + 10:  // 전송 파워 증가 시퀀스
         {
             change_isd_state(en__isdStatus_PowerIC_OK);
-            clearErrorFlag(en__RF_PowerIC_ERROR);
+            tdc_sys_error_clear_flag(en__RF_PowerIC_ERROR);
 
             TDC_PRINTF_D("[PMIC] INIT SUCCESS\r\n");
         }
@@ -194,7 +194,7 @@ void init_FPGA(bool isdControlStateChagedFlag)
                         else
                         {
                             // 정상 구간이라 출력문 없음
-                            clearErrorFlag(en__FPGA_COMMUNICATION_ERROR);
+                            tdc_sys_error_clear_flag(en__FPGA_COMMUNICATION_ERROR);
                             no_reset_value_error_cnt = 0;
                         }
                     }
@@ -236,7 +236,7 @@ void init_FPGA(bool isdControlStateChagedFlag)
                     //////////////
                     changePcmOutputMode(PcmBitStream_Mode_NopStandby);
                     change_isd_state(en__isdStatus_FPGA_Ok);
-                    clearErrorFlag(en__FPGA_CONFIGUARATION_ERROR);
+                    tdc_sys_error_clear_flag(en__FPGA_CONFIGUARATION_ERROR);
 
                     TDC_PRINTF_D("[FPGA] INIT SUCCESS\r\n");
 
@@ -346,7 +346,7 @@ void init_ISD(bool isdControlStateChagedFlag)
                     else
                     {
                         // 정상 구간
-                        clearErrorFlag(en__FPGA_CONFIGUARATION_ERROR);
+                        tdc_sys_error_clear_flag(en__FPGA_CONFIGUARATION_ERROR);
                         inner_rf_tx_error_cnt = 0;
                     }
                 }
@@ -391,7 +391,7 @@ void init_ISD(bool isdControlStateChagedFlag)
 
             if (read_FPGA_PulseWidth(&r_FPGA_registerValue))
             {
-                clearErrorFlag(en__FPGA_COMMUNICATION_ERROR);
+                tdc_sys_error_clear_flag(en__FPGA_COMMUNICATION_ERROR);
 
                 if (r_FPGA_registerValue == FPGA_pulsePhaseWidth_minimum)
                 {
@@ -399,7 +399,7 @@ void init_ISD(bool isdControlStateChagedFlag)
                     // 펄스 폭 설정이 정상적으로 완료되었기 때문에 펄스폭 값을 업데이트한다.
                     upadte_fpga_pulsePhaseWidth_written_Value(r_FPGA_registerValue);
 
-                    clearErrorFlag(en__FPGA_CONFIGUARATION_ERROR);
+                    tdc_sys_error_clear_flag(en__FPGA_CONFIGUARATION_ERROR);
 
                     if (write_change_TxPowerLevel(TDC_DRV_PMIC_MAX_VOLTAGE_CONTROL_VALUE))
                     {
@@ -417,7 +417,7 @@ void init_ISD(bool isdControlStateChagedFlag)
                             else
                             {
                                 // 정상 구간
-                                clearErrorFlag(en__RF_PowerIC_ERROR);
+                                tdc_sys_error_clear_flag(en__RF_PowerIC_ERROR);
                                 tx_power_err_cnt = 0;
                             }
                         }
@@ -475,7 +475,7 @@ void init_ISD(bool isdControlStateChagedFlag)
 
             if (read_FPGA_backtelConfig(&r_FPGA_registerValue))
             {
-                clearErrorFlag(en__FPGA_COMMUNICATION_ERROR);
+                tdc_sys_error_clear_flag(en__FPGA_COMMUNICATION_ERROR);
 
                 if (temporal_registerValue == r_FPGA_registerValue)
                 {
@@ -499,7 +499,7 @@ void init_ISD(bool isdControlStateChagedFlag)
                             else
                             {
                                 // 정상 구간
-                                clearErrorFlag(en__FPGA_CONFIGUARATION_ERROR);
+                                tdc_sys_error_clear_flag(en__FPGA_CONFIGUARATION_ERROR);
                                 fifo_clear_err_cnt = 0;
                             }
                         }
@@ -639,9 +639,9 @@ void init_ISD(bool isdControlStateChagedFlag)
                     read_FPGA_backtel_FIFO(r_isd_registerValue, 2);
                     change_isd_state(en__isdStatus_ISD_Power_Ok);
 
-                    clearErrorFlag(en__RF_PowerIC_ERROR);
-                    clearErrorFlag(en__FPGA_CONFIGUARATION_ERROR);
-                    clearErrorFlag(en__EN__ISD_ERROR);
+                    tdc_sys_error_clear_flag(en__RF_PowerIC_ERROR);
+                    tdc_sys_error_clear_flag(en__FPGA_CONFIGUARATION_ERROR);
+                    tdc_sys_error_clear_flag(en__EN__ISD_ERROR);
                     backtel_cnt_err_cnt = 0;
 
                     TDC_PRINTF_D("[FPGA] c260: backtel power-level response OK\r\n");

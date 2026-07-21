@@ -6,7 +6,7 @@
 #include "FPGA.h"
 
 #include "cfx_cm3_sharedMemory.h"
-#include "batteryNPowerControl.h"
+#include "tdc_pwr_battery.h"
 #include "commonDataProcessing.h"
 #include "isd_interface.h"
 
@@ -15,91 +15,93 @@
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 // 배터리 관련
-volatile int                s_snd_batt_percent = 0;
-volatile EN__SND_BATT_STATE s_snd_batt_state   = EN__SND_BATT_STATE_RESET;
+static volatile int                      s_tdc_pwr_battery_percent = 0;
+static volatile tdc_pwr_battery_state_t  s_tdc_pwr_battery_state   = TDC_PWR_BATTERY_STATE_RESET;
 
 // 충전 상태 관련
-volatile EN__SND_CHARGER_STATE s_snd_charger_state = EN__SND_BATT_STATE_RESET;
+/* 구 코드는 충전기 상태를 배터리 enum(EN__SND_BATT_STATE_RESET)으로 초기화했다.
+ * 두 enum 모두 RESET=0 이라 동작은 같았으나 타입이 어긋나 있었다 - 정정(2026-07-21). */
+static volatile tdc_pwr_charger_state_t  s_tdc_pwr_charger_state   = TDC_PWR_CHARGER_STATE_RESET;
 
 // 크래들 뚜껑 상태
 static int s_tdc_cradle_cover_state = df_Defalut;
 
-EN__SND_BATT_STATE snd_batt_get_state(void)
+tdc_pwr_battery_state_t tdc_pwr_battery_get_state(void)
 {
-    return s_snd_batt_state;
+    return s_tdc_pwr_battery_state;
 }
 
-void snd_batt_set_state(EN__SND_BATT_STATE state)
+void tdc_pwr_battery_set_state(tdc_pwr_battery_state_t state)
 {
-    s_snd_batt_state = state;
+    s_tdc_pwr_battery_state = state;
 }
 
-int snd_batt_get_percent(void)
+int tdc_pwr_battery_get_percent(void)
 {
-    return s_snd_batt_percent;
+    return s_tdc_pwr_battery_percent;
 }
 
-void snd_batt_set_percent(int percent)
+void tdc_pwr_battery_set_percent(int percent)
 {
-    s_snd_batt_percent = percent;
+    s_tdc_pwr_battery_percent = percent;
 }
 
-ST__USB_CONNECTOR snd_charger_get_state(void)
+ST__USB_CONNECTOR tdc_pwr_charger_get_state(void)
 {
     return cfx_cm3_sharedMemoryAll.chargerState;
 }
 
-void snd_charger_set_state(EN__SND_CHARGER_STATE state)
+void tdc_pwr_charger_set_state(tdc_pwr_charger_state_t state)
 {
     // 충전 케이블 연결 상태 디버깅 메시지 출력
 #if 1
-    if (s_snd_charger_state != state)
+    if (s_tdc_pwr_charger_state != state)
     {
         TDC_PRINTF_D("[CHARGER] %s -> %s \r\n",
                   // 이전 상태
-                  (s_snd_charger_state == EN__SND_CHARGER_STATE_RESET)          ? "RESET"  //
-                  : (s_snd_charger_state == EN__SND_CHARGER_STATE_CONNECTED)    ? "CONNECTED"
-                  : (s_snd_charger_state == EN__SND_CHARGER_STATE_DISCONNECTED) ? "DISCONNECTED"
+                  (s_tdc_pwr_charger_state == TDC_PWR_CHARGER_STATE_RESET)          ? "RESET"  //
+                  : (s_tdc_pwr_charger_state == TDC_PWR_CHARGER_STATE_CONNECTED)    ? "CONNECTED"
+                  : (s_tdc_pwr_charger_state == TDC_PWR_CHARGER_STATE_DISCONNECTED) ? "DISCONNECTED"
                                                                                 : "INVALID",
                   // 현재 상태
-                  (state == EN__SND_CHARGER_STATE_RESET)          ? "RESET"  //
-                  : (state == EN__SND_CHARGER_STATE_CONNECTED)    ? "CONNECTED"
-                  : (state == EN__SND_CHARGER_STATE_DISCONNECTED) ? "DISCONNECTED"
+                  (state == TDC_PWR_CHARGER_STATE_RESET)          ? "RESET"  //
+                  : (state == TDC_PWR_CHARGER_STATE_CONNECTED)    ? "CONNECTED"
+                  : (state == TDC_PWR_CHARGER_STATE_DISCONNECTED) ? "DISCONNECTED"
                                                                   : "INVALID");
     }
 #endif
 
-    s_snd_charger_state = state;
+    s_tdc_pwr_charger_state = state;
 
     switch (state)
     {
-        case EN__SND_CHARGER_STATE_CONNECTED:
+        case TDC_PWR_CHARGER_STATE_CONNECTED:
         {
             cfx_cm3_sharedMemoryAll.chargerState.chargerConnectorPluggedIn = df_Connected;
             cfx_cm3_sharedMemoryAll.chargerState.carryingCasePluggedIn     = df_Connected;
-            /* carryingCaseCoverOpen: BLE 0x34 data[2] 수신값 유지 - tdc_charger_set_cradle_cover_state()가 관리 */
+            /* carryingCaseCoverOpen: BLE 0x34 data[2] 수신값 유지 - tdc_pwr_cradle_set_cover_state()가 관리 */
         }
         break;
 
-        case EN__SND_CHARGER_STATE_DISCONNECTED:
+        case TDC_PWR_CHARGER_STATE_DISCONNECTED:
         {
             cfx_cm3_sharedMemoryAll.chargerState.chargerConnectorPluggedIn = df_Disconnected;
             cfx_cm3_sharedMemoryAll.chargerState.carryingCasePluggedIn     = df_Disconnected;
-            /* carryingCaseCoverOpen: BLE 0x34 data[2] 수신값 유지 - tdc_charger_set_cradle_cover_state()가 관리 */
+            /* carryingCaseCoverOpen: BLE 0x34 data[2] 수신값 유지 - tdc_pwr_cradle_set_cover_state()가 관리 */
         }
         break;
 
-        default:  // EN__SND_CHARGER_STATE_RESET
+        default:  // TDC_PWR_CHARGER_STATE_RESET
         {
             cfx_cm3_sharedMemoryAll.chargerState.chargerConnectorPluggedIn = df_Defalut;
             cfx_cm3_sharedMemoryAll.chargerState.carryingCasePluggedIn     = df_Defalut;
-            /* carryingCaseCoverOpen: BLE 0x34 data[2] 수신값 유지 - tdc_charger_set_cradle_cover_state()가 관리 */
+            /* carryingCaseCoverOpen: BLE 0x34 data[2] 수신값 유지 - tdc_pwr_cradle_set_cover_state()가 관리 */
         }
         break;
     }
 }
 
-void tdc_charger_set_cradle_cover_state(int state)
+void tdc_pwr_cradle_set_cover_state(int state)
 {
     if (state == 2)
     {
@@ -113,7 +115,7 @@ void tdc_charger_set_cradle_cover_state(int state)
     TDC_PRINTF_D("[CRADLE] COVER STATE: %s\r\n", (s_tdc_cradle_cover_state == df_Connected) ? "OPENED" : "CLOSED");
 }
 
-int tdc_cradle_get_cover_state(void)
+int tdc_pwr_cradle_get_cover_state(void)
 {
     return s_tdc_cradle_cover_state;
 }
@@ -175,7 +177,7 @@ ST__SYSTEM_BATTERY_BOUNDARY batteryBoundary;
 
 int calculated_3V_value;
 
-void calculationBatteryBoundary(void)
+void tdc_pwr_battery_calculate_boundary(void)
 {
     int tempValueA;
     int tempValueB;
@@ -278,10 +280,10 @@ void calculationBatteryBoundary(void)
 
 int battery_percentage;
 
-int readBatteryPercentage(void)
+int tdc_pwr_battery_read_percentage(void)
 {
     // return battery_percentage;
-    return s_snd_batt_percent;
+    return s_tdc_pwr_battery_percent;
 }
 
 /* updateBatteryLevel(): E8300 자체 LSAD 측정 기반 배터리 등급 함수였으나, QCC가 배터리 정보(0x34)를
@@ -293,7 +295,7 @@ int readBatteryPercentage(void)
  * isCarryingCaseCoverOpen)와 FPGA I2C 기반 #else 벌을 삭제했다.
  *
  * Sullivan 은 USB 케이블(charger)과 캐링케이스(carryingCase)가 독립 신호였으나,
- * Sound1 은 포고핀 크래들 단일 경로로 바뀌며 snd_charger_set_state() 가 두 필드를
+ * Sound1 은 포고핀 크래들 단일 경로로 바뀌며 tdc_pwr_charger_set_state() 가 두 필드를
  * 항상 동시 설정한다. GPIO 3함수는 호출처가 0 이었고, #else 벌(FPGA I2C)은 보드
  * define 이 하나라도 있으면 컴파일되지 않는다(processorDirective.h:10 에서
  * Board_is_OTE_VER_1_5 활성).

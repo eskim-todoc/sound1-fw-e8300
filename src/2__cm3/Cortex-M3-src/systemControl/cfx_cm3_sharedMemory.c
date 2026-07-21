@@ -5,11 +5,11 @@
 #include "cfx_cm3_shared_Memory_Addr.h"
 #include "isd_interface_stimulationStandAlone.h"
 
-#include "batteryNPowerControl.h"  // 새로 추가
+#include "tdc_pwr_battery.h"  // 새로 추가
 #include <main.h>
 
-#include <ci_battery.h>
-#include <ci_battery.h>
+#include <tdc_pwr_lsad.h>
+#include <tdc_pwr_lsad.h>
 #include <tdc_hal_dio.h>
 #include <tdc_printf.h>
 #include <tdc_fs_gain.h>  // ISD 별 게인 설정 로드
@@ -74,7 +74,7 @@ bool sharedMemoryAddresError(void)
 /* readUsbConnectorState() 제거(2026-07-15): Sullivan 유산.
  * USB 케이블 / 캐링케이스 / 홀센서 커버를 독립 GPIO 3개로 읽던 함수였다.
  * Sound1 은 포고핀 크래들 단일 경로이며 충전 상태는 QCC 0x34 로 수신한다
- * (snd_charger_set_state / snd_charger_get_state, batteryNPowerControl.c).
+ * (tdc_pwr_charger_set_state / tdc_pwr_charger_get_state, tdc_pwr_battery.c).
  * 호출처가 전부 dead 함수 안이었으므로 실행되지 않았다.
  * DIO_PIN_INDEX_for_* 핀 정의는 tdc_hal_dio.c 의 저전력 모드 설정이 계속 사용하므로 유지.
  * 상세: docs/tasks/main/20260715_systemcontrol-fsm-decompose/분석-부록-sullivan유산.md */
@@ -154,7 +154,7 @@ int readBatteryCalibrationValue(void)
 
 int readBatteryLevel_FromCFX(void)
 {
-    ci_battery_update();
+    tdc_pwr_lsad_update();
     return cfx_cm3_sharedMemoryAll.systemShare.batteryLevel_CfX_to_CM3;
 }
 

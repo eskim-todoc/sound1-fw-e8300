@@ -1,13 +1,13 @@
 
 
-#include "error.h"
+#include "tdc_sys_error.h"
 #include "ble_commonProtocol.h"
 
 #include "tdc_hal_spi.h"
 
-static ST__ERROR_CODE errorCode;
+static tdc_sys_error_code_t errorCode;
 
-void errorCodeUpdate(EN__MAJOR_ERRORCODE majorError, int detailError, int lineNumber)
+void tdc_sys_error_update(tdc_sys_error_major_t majorError, int detailError, int lineNumber)
 {
     int temp;
 
@@ -67,17 +67,17 @@ void errorCodeUpdate(EN__MAJOR_ERRORCODE majorError, int detailError, int lineNu
 #endif
 }
 
-void update_FPGA_systemError(int value)
+void tdc_sys_error_update_fpga_system(int value)
 {
     errorCode.FPGA_systemError = value;
 }
 
-void update_FPGA_backtelError(int value)
+void tdc_sys_error_update_fpga_backtel(int value)
 {
     errorCode.FPGA_backtelError = value;
 }
 
-void clearErrorFlag(EN__MAJOR_ERRORCODE majorError)
+void tdc_sys_error_clear_flag(tdc_sys_error_major_t majorError)
 {
     switch (majorError)
     {
@@ -125,7 +125,7 @@ void clearErrorFlag(EN__MAJOR_ERRORCODE majorError)
     }
 }
 
-void clearAllErrorFlag(void)
+void tdc_sys_error_clear_all(void)
 {
 
     errorCode.dataProcessingErrorFlag = en__NA;
@@ -142,16 +142,16 @@ void clearAllErrorFlag(void)
 
     errorCode.data_logging_error = en__NA;
 
-    update_FPGA_systemError(en__NA);
-    update_FPGA_backtelError(en__NA);
+    tdc_sys_error_update_fpga_system(en__NA);
+    tdc_sys_error_update_fpga_backtel(en__NA);
 }
 
-ST__ERROR_CODE readErrorCode(void)
+tdc_sys_error_code_t tdc_sys_error_read(void)
 {
     return errorCode;
 }
 
-void sendErrorToApp(EN__MAPPING_COMMAND command, EN__MAJOR_ERRORCODE majorError, int minorError, int lineNumber)
+void tdc_sys_error_send_to_app(EN__MAPPING_COMMAND command, tdc_sys_error_major_t majorError, int minorError, int lineNumber)
 {
     int bufferForSPI_tx[BLE_DataPacketSize];
     int buffer_tx_index;

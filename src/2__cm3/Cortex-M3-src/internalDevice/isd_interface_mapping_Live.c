@@ -1,4 +1,4 @@
-#include "error.h"
+#include "tdc_sys_error.h"
 #include "cfx_cm3_sharedMemory.h"
 #include "mappingControl.h"
 #include "isd_interface.h"
@@ -12,9 +12,9 @@
 
 #include "isd_interface_stimulationStandAlone.h"
 #include "isd_interface_mapping_Live.h"
-#include "batteryNPowerControl.h"
+#include "tdc_pwr_battery.h"
 // live 실행을 받으면 맵 번호 인덱스를 마이너스 값으로 변경하여  CFX에서 맵데이터를 실행한다.
-#include "error.h"
+#include "tdc_sys_error.h"
 #include "electrodeMapping.h"
 #include "tdc_hal_spi.h"
 
@@ -172,7 +172,7 @@ bool liveStimulation(ST__ISD_STATUS ISD_state)
 
                         if (error)
                         {
-                            sendErrorToApp(en__mapping_live_stimulation, en__FPGA_CONFIGUARATION_ERROR, en_RegisterConfigError_byPCM, __LINE__);
+                            tdc_sys_error_send_to_app(en__mapping_live_stimulation, en__FPGA_CONFIGUARATION_ERROR, en_RegisterConfigError_byPCM, __LINE__);
                             p_mappingPacket->liveStimulation.subCommand = en__Standby;
                         }
 
@@ -184,9 +184,9 @@ bool liveStimulation(ST__ISD_STATUS ISD_state)
                         change_isd_state(en__isdStatus_stimul_10V_Ok);
                         //////////////////////////////////////
 
-                        clearErrorFlag(en__RF_PowerIC_ERROR);
-                        clearErrorFlag(en__FPGA_CONFIGUARATION_ERROR);
-                        clearErrorFlag(en__EN__ISD_ERROR);
+                        tdc_sys_error_clear_flag(en__RF_PowerIC_ERROR);
+                        tdc_sys_error_clear_flag(en__FPGA_CONFIGUARATION_ERROR);
+                        tdc_sys_error_clear_flag(en__EN__ISD_ERROR);
 
                         TDC_PRINTF_I("[LIVE] LIVE STIMULATION, SUCCESS TO ENABLE STIM 10V BY EN__START \r\n");
 #endif
@@ -208,7 +208,7 @@ bool liveStimulation(ST__ISD_STATUS ISD_state)
                 }
                 else
                 {
-                    sendErrorToApp(en__mapping_live_stimulation, en__dataProcessing_ERROR, en__unusableMapData, __LINE__);
+                    tdc_sys_error_send_to_app(en__mapping_live_stimulation, en__dataProcessing_ERROR, en__unusableMapData, __LINE__);
                     p_mappingPacket->liveStimulation.subCommand = en__Standby;
                 }
             }
@@ -216,7 +216,7 @@ bool liveStimulation(ST__ISD_STATUS ISD_state)
             if (flowCounter > /*50*/ 1000)  // 실시간 자극 파라미터 설정 오류 (13msec)
             {
                 // 여기서 에러
-                sendErrorToApp(en__mapping_live_stimulation, en__dataProcessing_ERROR, en__stimulationParameterUnloaded, __LINE__);
+                tdc_sys_error_send_to_app(en__mapping_live_stimulation, en__dataProcessing_ERROR, en__stimulationParameterUnloaded, __LINE__);
 
                 p_mappingPacket->liveStimulation.subCommand = en__Standby;
             }
@@ -251,7 +251,7 @@ bool liveStimulation(ST__ISD_STATUS ISD_state)
             else
             {
 
-                sendErrorToApp(en__mapping_live_stimulation, en__EN__ISD_ERROR, en__ISD_notConnected, __LINE__);
+                tdc_sys_error_send_to_app(en__mapping_live_stimulation, en__EN__ISD_ERROR, en__ISD_notConnected, __LINE__);
 
                 // 라이브 자극 유지로 변경
                 p_mappingPacket->liveStimulation.subCommand = en__HoldOn;
@@ -285,7 +285,7 @@ bool liveStimulation(ST__ISD_STATUS ISD_state)
             }
             else
             {
-                sendErrorToApp(en__mapping_live_stimulation, en__EN__ISD_ERROR, en__ISD_notConnected, __LINE__);
+                tdc_sys_error_send_to_app(en__mapping_live_stimulation, en__EN__ISD_ERROR, en__ISD_notConnected, __LINE__);
 
                 // 라이브 자극 유지로 변경
                 p_mappingPacket->liveStimulation.subCommand = en__HoldOn;
@@ -335,7 +335,7 @@ bool liveStimulation(ST__ISD_STATUS ISD_state)
             }
             else
             {
-                sendErrorToApp(en__mapping_live_stimulation, en__EN__ISD_ERROR, en__ISD_notConnected, __LINE__);
+                tdc_sys_error_send_to_app(en__mapping_live_stimulation, en__EN__ISD_ERROR, en__ISD_notConnected, __LINE__);
 
                 // 라이브 자극 유지로 변경
                 p_mappingPacket->liveStimulation.subCommand = en__HoldOn;
@@ -427,7 +427,7 @@ bool liveStimulation(ST__ISD_STATUS ISD_state)
             }
             else
             {
-                sendErrorToApp(en__mapping_live_stimulation, en__EN__ISD_ERROR, en__ISD_notConnected, __LINE__);
+                tdc_sys_error_send_to_app(en__mapping_live_stimulation, en__EN__ISD_ERROR, en__ISD_notConnected, __LINE__);
 
                 // 라이브 자극 유지로 변경
                 p_mappingPacket->liveStimulation.subCommand = en__HoldOn;
@@ -457,7 +457,7 @@ bool liveStimulation(ST__ISD_STATUS ISD_state)
             bufferForSPI_tx[buffer_tx_index++] = value;
 
             // value=(int)readBatteryLevel();
-            value                              = readBatteryPercentage();
+            value                              = tdc_pwr_battery_read_percentage();
             bufferForSPI_tx[buffer_tx_index++] = value;
 
             // 송신 데이터 SPI TX버퍼에 복사
@@ -599,7 +599,7 @@ bool liveStimulation(ST__ISD_STATUS ISD_state)
 
                                 if (error)
                                 {
-                                    sendErrorToApp(en__mapping_live_stimulation, en__FPGA_CONFIGUARATION_ERROR, en_RegisterConfigError_byPCM, __LINE__);
+                                    tdc_sys_error_send_to_app(en__mapping_live_stimulation, en__FPGA_CONFIGUARATION_ERROR, en_RegisterConfigError_byPCM, __LINE__);
                                     p_mappingPacket->liveStimulation.subCommand = en__Standby;
                                 }
 
@@ -611,9 +611,9 @@ bool liveStimulation(ST__ISD_STATUS ISD_state)
                                 change_isd_state(en__isdStatus_stimul_10V_Ok);
                                 //////////////////////////////////////
 
-                                clearErrorFlag(en__RF_PowerIC_ERROR);
-                                clearErrorFlag(en__FPGA_CONFIGUARATION_ERROR);
-                                clearErrorFlag(en__EN__ISD_ERROR);
+                                tdc_sys_error_clear_flag(en__RF_PowerIC_ERROR);
+                                tdc_sys_error_clear_flag(en__FPGA_CONFIGUARATION_ERROR);
+                                tdc_sys_error_clear_flag(en__EN__ISD_ERROR);
 
                                 TDC_PRINTF_I("[LIVE] LIVE STIMULATION, SUCCESS TO ENABLE STIM 10V BY EN__HOLDON \r\n");
 #endif
@@ -626,7 +626,7 @@ bool liveStimulation(ST__ISD_STATUS ISD_state)
                         }
                         else
                         {
-                            sendErrorToApp(en__mapping_live_stimulation, en__dataProcessing_ERROR, en__unusableMapData, __LINE__);
+                            tdc_sys_error_send_to_app(en__mapping_live_stimulation, en__dataProcessing_ERROR, en__unusableMapData, __LINE__);
                             p_mappingPacket->liveStimulation.subCommand = en__Standby;
                         }
                     }

@@ -144,7 +144,7 @@ int tdc_fs_map_init_map_data(int isd_num, bool force_init, bool specific_RL, int
     int validate_map_data[MaxNumMap];
     int validate_all;
 
-    // Initialize pointers
+    // tdc_sys_init pointers
     p_info         = &g_tdc_fs_ptr_entire_map->map[isd_num - 1].isd_info;
     p_user_setting = &g_tdc_fs_ptr_entire_map->map[isd_num - 1].user_setting_value;
     p_map_stamp    = &g_tdc_fs_ptr_entire_map->map[isd_num - 1].map_stamp;

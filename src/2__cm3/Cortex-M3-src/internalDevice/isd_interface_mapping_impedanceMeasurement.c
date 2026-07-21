@@ -1,7 +1,7 @@
 #include <hw.h>
 #include <isdExecution/driver_PCM.h>
 #include <stdbool.h>
-#include "error.h"
+#include "tdc_sys_error.h"
 #include "FPGA.h"
 #include "isd_interface_FPGA.h"
 #include "internalStimulationChip.h"
@@ -169,7 +169,7 @@ void impedanceMeasurement(bool startFlag)
             if (deliveryCharge_pico > df_MaxDeliveryCharge_pC)  // 전하량 초과
             {
                 TDC_PRINTF_E("[MAPPING] IMPEDANCE CHECK - MAX CHARGE OVER \r\n");
-                sendErrorToApp(en__mapping_impedanceChekck, en__EN__ISD_ERROR, en__MaxChargeOver, __LINE__);  // 에러 전송
+                tdc_sys_error_send_to_app(en__mapping_impedanceChekck, en__EN__ISD_ERROR, en__MaxChargeOver, __LINE__);  // 에러 전송
                 clear_mappingCommand();                                                                       // 커맨드 리셋;
             }
 
@@ -223,7 +223,7 @@ void impedanceMeasurement(bool startFlag)
             else  // 최소 기울기에 대해서만 일단 구현.. 모든 범위의 출력을 설정하려면 추가 코딩이 필요하나.. 임피던스는 작은 출력으로 측정하기 때문에 필요가 없을 듯하다.
             {
                 TDC_PRINTF_E("[MAPPING] IMPEDANCE CHECK - STIMUL LEVEL OVER \r\n");
-                sendErrorToApp(en__mapping_impedanceChekck, en__EN__ISD_ERROR, en__stimulLevelOver, __LINE__);  // 에러 전송
+                tdc_sys_error_send_to_app(en__mapping_impedanceChekck, en__EN__ISD_ERROR, en__stimulLevelOver, __LINE__);  // 에러 전송
                 clear_mappingCommand();                                                                         // 커맨드 리셋;
             }
         }
@@ -438,7 +438,7 @@ void impedanceMeasurement(bool startFlag)
 
             if (pcm_index >= df_MaxNumTransferableChannel)
             {
-                sendErrorToApp(en__mapping_impedanceChekck, en__EN__PCM_GEN_ERROR, en__PCMBufferOwerFlow, __LINE__);  // 에러 전송
+                tdc_sys_error_send_to_app(en__mapping_impedanceChekck, en__EN__PCM_GEN_ERROR, en__PCMBufferOwerFlow, __LINE__);  // 에러 전송
                 clear_mappingCommand();                                                                               // 커맨드 리셋;
             }
             else
@@ -507,7 +507,7 @@ void impedanceMeasurement(bool startFlag)
 
             if (pcm_index >= df_MaxNumTransferableChannel)
             {
-                sendErrorToApp(en__mapping_impedanceChekck, en__EN__PCM_GEN_ERROR, en__PCMBufferOwerFlow, __LINE__);  // 에러 전송
+                tdc_sys_error_send_to_app(en__mapping_impedanceChekck, en__EN__PCM_GEN_ERROR, en__PCMBufferOwerFlow, __LINE__);  // 에러 전송
                 clear_mappingCommand();                                                                               // 커맨드 리셋;
             }
             else
@@ -579,7 +579,7 @@ void impedanceMeasurement(bool startFlag)
                         else
                         {
                             change_isd_state(en__isdStatus_FPGA_Ok);                                                           // 백텔 안들어옴 에러 // 내부기 전송 파워 설정 부터 다시.
-                            sendErrorToApp(en__mapping_impedanceChekck, en__EN__ISD_ERROR, en__BackTelCounterZero, __LINE__);  // 에러 전송
+                            tdc_sys_error_send_to_app(en__mapping_impedanceChekck, en__EN__ISD_ERROR, en__BackTelCounterZero, __LINE__);  // 에러 전송
                             clear_mappingCommand();                                                                            // 커맨드 리셋;
                         }
                     }
@@ -587,7 +587,7 @@ void impedanceMeasurement(bool startFlag)
                 else
                 {
                     change_isd_state(en__isdStatus_PowerIC_OK);                                                                 // FPGA 에러 발생, FPGA 초기화
-                    sendErrorToApp(en__mapping_eCAP_Measurement_masking, en__FPGA_CONFIGUARATION_ERROR, FPGA_error, __LINE__);  // 에러 전송 // FPGA 에러 값을 그대로 전달
+                    tdc_sys_error_send_to_app(en__mapping_eCAP_Measurement_masking, en__FPGA_CONFIGUARATION_ERROR, FPGA_error, __LINE__);  // 에러 전송 // FPGA 에러 값을 그대로 전달
                     clear_mappingCommand();                                                                                     // 커맨드 리셋;
                 }
             }

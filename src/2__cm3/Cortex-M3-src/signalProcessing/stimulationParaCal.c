@@ -12,7 +12,7 @@
 #include "isd_interface.h"
 #include "cfx_cm3_sharedMemory.h"
 #include "stimulationParaCal.h"
-#include "error.h"
+#include "tdc_sys_error.h"
 
 static ST_STIUL_DAC_REGISTER_VALUE stimulationDAC_para;
 
@@ -555,7 +555,7 @@ bool setting_stimulationRange(int pulseWidth, int *T_level_uA, int *C_level_uA, 
     else
     {
         configurationError = false;
-        errorCodeUpdate(en__dataProcessing_ERROR, en__MaxChargeOver_mapdata, __LINE__);
+        tdc_sys_error_update(en__dataProcessing_ERROR, en__MaxChargeOver_mapdata, __LINE__);
     }
 
     if (configurationError)

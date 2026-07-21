@@ -14,7 +14,7 @@
 
 #include <board.h>
 #include <tdc_hal_spi.h>
-#include <ci_power.h>
+#include <tdc_pwr_clock.h>
 #include <tdc_hal_uart.h>
 #include <processorDirective.h>
 

@@ -8,9 +8,9 @@
 #include <SEGGER_RTT.h>
 
 #include "LedOutput.h"
-#include "batteryNPowerControl.h"
+#include "tdc_pwr_battery.h"
 #include "cfx_cm3_sharedMemory.h"
-#include "error.h"
+#include "tdc_sys_error.h"
 #include "tdc_fs_event_log.h"
 #include "tdc_fs_map.h"
 #include "isd_interface.h"
@@ -457,7 +457,7 @@ static int handle_battery(int argc, char *argv[])
     /* --batt show */
     if (ci_strcasecmp(argv[1], "show") == 0)
     {
-        output_printf("  real  = %d%%\r\n", snd_batt_get_percent());
+        output_printf("  real  = %d%%\r\n", tdc_pwr_battery_get_percent());
         if (s_tdc_override_battery_active)
             output_printf("  ovr   = %d%% (active)\r\n", s_tdc_override_battery_percent);
         else
@@ -548,7 +548,7 @@ static int handle_error(int argc, char *argv[])
 
     if (ci_strcasecmp(argv[1], "clr") == 0)
     {
-        clearAllErrorFlag();
+        tdc_sys_error_clear_all();
         led_request(LED_SRC_ERROR, LED_ST_NONE);
         output_printf("OK: all error flags cleared\r\n");
         return 0;
@@ -556,32 +556,32 @@ static int handle_error(int argc, char *argv[])
 
     if (ci_strcasecmp(argv[1], "data_logging") == 0)
     {
-        errorCodeUpdate(en__MAJOR_ERRORCODE_DATA_LOGGING_ERROR, en__data_logging_error_open, __LINE__);
+        tdc_sys_error_update(en__MAJOR_ERRORCODE_DATA_LOGGING_ERROR, en__data_logging_error_open, __LINE__);
         output_printf("OK: DATA_LOGGING error injected\r\n");
     }
     else if (ci_strcasecmp(argv[1], "fpga") == 0)
     {
-        errorCodeUpdate(en__FPGA_COMMUNICATION_ERROR, en__FPGA_ResetValueError, __LINE__);
+        tdc_sys_error_update(en__FPGA_COMMUNICATION_ERROR, en__FPGA_ResetValueError, __LINE__);
         output_printf("OK: FPGA error injected\r\n");
     }
     else if (ci_strcasecmp(argv[1], "acc") == 0)
     {
-        errorCodeUpdate(en__ACCELEROMETER_ERROR, en__ACCELER_ResetValueError, __LINE__);
+        tdc_sys_error_update(en__ACCELEROMETER_ERROR, en__ACCELER_ResetValueError, __LINE__);
         output_printf("OK: ACC error injected\r\n");
     }
     else if (ci_strcasecmp(argv[1], "pmic") == 0)
     {
-        errorCodeUpdate(en__RF_PowerIC_ERROR, en__NON_RESETTABLE, __LINE__);
+        tdc_sys_error_update(en__RF_PowerIC_ERROR, en__NON_RESETTABLE, __LINE__);
         output_printf("OK: PMIC error injected\r\n");
     }
     else if (ci_strcasecmp(argv[1], "mcu") == 0)
     {
-        errorCodeUpdate(en__dataProcessing_ERROR, en__unusableMapData, __LINE__);
+        tdc_sys_error_update(en__dataProcessing_ERROR, en__unusableMapData, __LINE__);
         output_printf("OK: MCU error injected\r\n");
     }
     else if (ci_strcasecmp(argv[1], "map") == 0)
     {
-        errorCodeUpdate(en__dataProcessing_ERROR, en__unusableMapData, __LINE__);
+        tdc_sys_error_update(en__dataProcessing_ERROR, en__unusableMapData, __LINE__);
         output_printf("OK: MAP error injected\r\n");
     }
     else

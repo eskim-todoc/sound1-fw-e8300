@@ -16,7 +16,7 @@
 
 #include <processorDirective.h>
 
-#include "error.h"
+#include "tdc_sys_error.h"
 
 #include "tdc_hal_spi.h"
 

@@ -1,6 +1,6 @@
 #include <tdc_fs_event_log.h>
 #include <tdc_printf.h>
-#include <error.h>
+#include <tdc_sys_error.h>
 
 static TDC_FS_EVENT_LOG_BT_ADDR_T _ci_event_log_bt_addr = {0};
 
@@ -182,7 +182,7 @@ int tdc_fs_event_log_write(uint32_t event_type)
     ret = f_open(fp, TDC_FS_EVENT_LOG_IDENT, (FA_OPEN_EXISTING | FA_READ | FA_WRITE));
     if (ret != FR_OK)
     {
-        errorCodeUpdate(en__MAJOR_ERRORCODE_DATA_LOGGING_ERROR, en__data_logging_error_open, __LINE__);
+        tdc_sys_error_update(en__MAJOR_ERRORCODE_DATA_LOGGING_ERROR, en__data_logging_error_open, __LINE__);
         TDC_PRINTF_E("[LOG] OPEN FAIL '%s' FOR WRITING (RES=%d) \r\n", p_file_name, ret);
         return -1;
     }
@@ -197,7 +197,7 @@ int tdc_fs_event_log_write(uint32_t event_type)
     // 초기화가 완료 되었다면, 반드시 읽혀야 하며, 읽은 바이트는 꼭 sizeof(TDC_FS_EVENT_LOG_T) 크기여야 한다
     if ((ret != FR_OK) || (byte_read != sizeof(TDC_FS_EVENT_LOG_T)))
     {
-        errorCodeUpdate(en__MAJOR_ERRORCODE_DATA_LOGGING_ERROR, en__data_logging_error_not_inited, __LINE__);
+        tdc_sys_error_update(en__MAJOR_ERRORCODE_DATA_LOGGING_ERROR, en__data_logging_error_not_inited, __LINE__);
         TDC_PRINTF_E("[LOG] READ FAIL '%s' DURING WRITING (RES=%d, GOT=%d) \r\n", p_file_name, ret, byte_read);
         f_close(fp);
         return -1;
@@ -232,7 +232,7 @@ int tdc_fs_event_log_write(uint32_t event_type)
 
     if (!is_validate)
     {
-        errorCodeUpdate(en__MAJOR_ERRORCODE_DATA_LOGGING_ERROR, en__data_logging_error_currupted, __LINE__);
+        tdc_sys_error_update(en__MAJOR_ERRORCODE_DATA_LOGGING_ERROR, en__data_logging_error_currupted, __LINE__);
         TDC_PRINTF_E("[LOG] INVALID '%s' IDENT, WRITE INDEX, ENTITY COUNT DURING WRITING \r\n", p_file_name);
         f_close(fp);
         return -1;
@@ -291,7 +291,7 @@ int tdc_fs_event_log_write(uint32_t event_type)
 
     if ((ret != FR_OK) || (byte_written != sizeof(TDC_FS_EVENT_LOG_T)))
     {
-        errorCodeUpdate(en__MAJOR_ERRORCODE_DATA_LOGGING_ERROR, en__data_logging_error_write, __LINE__);
+        tdc_sys_error_update(en__MAJOR_ERRORCODE_DATA_LOGGING_ERROR, en__data_logging_error_write, __LINE__);
         TDC_PRINTF_E("[LOG] FAILED TO WRITE '%s' (RET=%d, WROTE=%d) \r\n", p_file_name, ret, byte_written);
         f_close(fp);
         return -1;

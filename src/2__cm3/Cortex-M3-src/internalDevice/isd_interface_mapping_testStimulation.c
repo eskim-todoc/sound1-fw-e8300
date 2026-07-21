@@ -3,7 +3,7 @@
 #include <hw.h>
 #include <isdExecution/driver_PCM.h>
 #include <stdbool.h>
-#include "error.h"
+#include "tdc_sys_error.h"
 #include "FPGA.h"
 #include "isd_interface_init_FPGA.h"
 #include "internalStimulationChip.h"
@@ -140,7 +140,7 @@ bool testStimulation(bool startFlag)
 
                 default:
                     // 에러 전송
-                    sendErrorToApp(en__mapping_testStimulation, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);
+                    tdc_sys_error_send_to_app(en__mapping_testStimulation, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);
                     // 커맨드 리셋;
                     clear_mappingCommand();
                     break;
@@ -163,7 +163,7 @@ bool testStimulation(bool startFlag)
 
                 default:
                     // 에러 전송
-                    sendErrorToApp(en__mapping_testStimulation, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);
+                    tdc_sys_error_send_to_app(en__mapping_testStimulation, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);
                     // 커맨드 리셋;
                     clear_mappingCommand();
                     break;
@@ -178,7 +178,7 @@ bool testStimulation(bool startFlag)
             if (deliveryCharge_pico > df_MaxDeliveryCharge_pC)                 // 전하량 초과
             {
                 // 에러 전송
-                sendErrorToApp(en__mapping_testStimulation, en__EN__ISD_ERROR, en__MaxChargeOver, __LINE__);
+                tdc_sys_error_send_to_app(en__mapping_testStimulation, en__EN__ISD_ERROR, en__MaxChargeOver, __LINE__);
                 // 커맨드 리셋;
                 clear_mappingCommand();
             }
@@ -224,7 +224,7 @@ bool testStimulation(bool startFlag)
                     if (!FPGA_FIFO_empty)
                     {
 
-                        sendErrorToApp(en__mapping_testStimulation, en__FPGA_CONFIGUARATION_ERROR, en_FIFO_NotCleared, __LINE__);
+                        tdc_sys_error_send_to_app(en__mapping_testStimulation, en__FPGA_CONFIGUARATION_ERROR, en_FIFO_NotCleared, __LINE__);
                         // 커맨드 리셋;
                         clear_mappingCommand();
 
@@ -233,7 +233,7 @@ bool testStimulation(bool startFlag)
                 }
                 else
                 {
-                    sendErrorToApp(en__mapping_testStimulation, en__FPGA_COMMUNICATION_ERROR, en__I2C_FPGA_WritingError, __LINE__);
+                    tdc_sys_error_send_to_app(en__mapping_testStimulation, en__FPGA_COMMUNICATION_ERROR, en__I2C_FPGA_WritingError, __LINE__);
                     // 커맨드 리셋;
                     clear_mappingCommand();
 
@@ -242,7 +242,7 @@ bool testStimulation(bool startFlag)
             }
             else
             {
-                sendErrorToApp(en__mapping_testStimulation, en__FPGA_COMMUNICATION_ERROR, en__I2C_FPGA_WritingError, __LINE__);
+                tdc_sys_error_send_to_app(en__mapping_testStimulation, en__FPGA_COMMUNICATION_ERROR, en__I2C_FPGA_WritingError, __LINE__);
                 // 커맨드 리셋;
                 clear_mappingCommand();
 
@@ -553,7 +553,7 @@ bool testStimulation(bool startFlag)
                         {
                             if (electrodeMap[bipolarReferenceElectrodeNum[i]] != ((0x1F) & (backtelBuff[i])))
                             {
-                                sendErrorToApp(en__mapping_testStimulation, en__EN__ISD_ERROR, en__SettingError_BipolarElectrodeNum, __LINE__);
+                                tdc_sys_error_send_to_app(en__mapping_testStimulation, en__EN__ISD_ERROR, en__SettingError_BipolarElectrodeNum, __LINE__);
                                 // 커맨드 리셋;
                                 clear_mappingCommand();
 
@@ -565,7 +565,7 @@ bool testStimulation(bool startFlag)
                 }
                 else
                 {
-                    sendErrorToApp(en__mapping_testStimulation, en__EN__ISD_ERROR, en__BackterDataLengthError, __LINE__);
+                    tdc_sys_error_send_to_app(en__mapping_testStimulation, en__EN__ISD_ERROR, en__BackterDataLengthError, __LINE__);
                     // 커맨드 리셋;
                     clear_mappingCommand();
                     // 백텔이 안들어 왔다.
@@ -574,7 +574,7 @@ bool testStimulation(bool startFlag)
             }
             else
             {
-                sendErrorToApp(en__mapping_testStimulation, en__FPGA_COMMUNICATION_ERROR, en__I2C_FPGA_ReadingError, __LINE__);
+                tdc_sys_error_send_to_app(en__mapping_testStimulation, en__FPGA_COMMUNICATION_ERROR, en__I2C_FPGA_ReadingError, __LINE__);
                 // 커맨드 리셋;
                 clear_mappingCommand();
 
@@ -727,7 +727,7 @@ bool testStimulation(bool startFlag)
                         if (backtelBuff[0] != mappingPacket->testStimulation.stimulationDacOffset_255)
                         {
 
-                            sendErrorToApp(en__mapping_testStimulation, en__EN__ISD_ERROR, en__SettingError_OffsetDAC_Level, __LINE__);
+                            tdc_sys_error_send_to_app(en__mapping_testStimulation, en__EN__ISD_ERROR, en__SettingError_OffsetDAC_Level, __LINE__);
                             // 커맨드 리셋;
                             clear_mappingCommand();
                             change_isd_state(en__isdStatus_FPGA_Ok); // 내부기 전송 파워 설정 부터 다시.
@@ -736,7 +736,7 @@ bool testStimulation(bool startFlag)
                         else if (backtelBuff[1] != sent_stimulConfig)
                         {
 
-                            sendErrorToApp(en__mapping_testStimulation, en__EN__ISD_ERROR, en__SettingError_StimulatonPara, __LINE__);
+                            tdc_sys_error_send_to_app(en__mapping_testStimulation, en__EN__ISD_ERROR, en__SettingError_StimulatonPara, __LINE__);
                             // 커맨드 리셋;
                             clear_mappingCommand();
                             change_isd_state(en__isdStatus_FPGA_Ok); // 내부기 전송 파워 설정 부터 다시.
@@ -750,7 +750,7 @@ bool testStimulation(bool startFlag)
                     }
                     else
                     {
-                        sendErrorToApp(en__mapping_testStimulation, en__FPGA_COMMUNICATION_ERROR, en__I2C_FPGA_ReadingError, __LINE__);
+                        tdc_sys_error_send_to_app(en__mapping_testStimulation, en__FPGA_COMMUNICATION_ERROR, en__I2C_FPGA_ReadingError, __LINE__);
                         // 커맨드 리셋;
                         clear_mappingCommand();
                         // 백텔이 안들어 왔다.
@@ -766,7 +766,7 @@ bool testStimulation(bool startFlag)
 
                     read_FPGA_backtelError_Flag(&r_FPGA_registerValue);
 
-                    sendErrorToApp(en__mapping_testStimulation, en__EN__ISD_ERROR, en__BackterDataLengthError, __LINE__);
+                    tdc_sys_error_send_to_app(en__mapping_testStimulation, en__EN__ISD_ERROR, en__BackterDataLengthError, __LINE__);
                     // 커맨드 리셋;
                     clear_mappingCommand();
                     // 백텔이 안들어 왔다.
@@ -775,7 +775,7 @@ bool testStimulation(bool startFlag)
             }
             else
             {
-                sendErrorToApp(en__mapping_testStimulation, en__FPGA_COMMUNICATION_ERROR, en__I2C_FPGA_ReadingError, __LINE__);
+                tdc_sys_error_send_to_app(en__mapping_testStimulation, en__FPGA_COMMUNICATION_ERROR, en__I2C_FPGA_ReadingError, __LINE__);
                 // 커맨드 리셋;
                 clear_mappingCommand();
                 // 백텔이 안들어 왔다.
@@ -822,7 +822,7 @@ bool testStimulation(bool startFlag)
                 else
                 {
 
-                    sendErrorToApp(en__mapping_testStimulation, en__FPGA_COMMUNICATION_ERROR, en_PulseWidthDifferent, __LINE__);
+                    tdc_sys_error_send_to_app(en__mapping_testStimulation, en__FPGA_COMMUNICATION_ERROR, en_PulseWidthDifferent, __LINE__);
                     // 커맨드 리셋;
                     clear_mappingCommand();
 
@@ -837,7 +837,7 @@ bool testStimulation(bool startFlag)
             }
             else
             {
-                sendErrorToApp(en__mapping_testStimulation, en__FPGA_COMMUNICATION_ERROR, en__I2C_FPGA_ReadingError, __LINE__);
+                tdc_sys_error_send_to_app(en__mapping_testStimulation, en__FPGA_COMMUNICATION_ERROR, en__I2C_FPGA_ReadingError, __LINE__);
                 // 커맨드 리셋;
                 clear_mappingCommand();
                 // 백텔이 안들어 왔다.
