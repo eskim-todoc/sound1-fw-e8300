@@ -8,8 +8,8 @@
 
 #include <stdbool.h>
 
-#include <ci_filesystem.h>
-#include <TDC_PRINTF.h>
+#include <tdc_fs.h>
+#include <tdc_printf.h>
 
 /* 쓰기 함수는 (데이터 % 16) + 4(CRC) + 패딩 == 16 을 만족하지 않으면 파일에
  * 아무것도 쓰지 않고 실패만 반환한다. 구조체가 바뀌어 이 조건이 깨지면

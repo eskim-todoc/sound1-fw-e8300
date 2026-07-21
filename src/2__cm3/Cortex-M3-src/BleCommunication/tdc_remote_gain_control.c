@@ -16,7 +16,7 @@
 
 #include "cfx_cm3_sharedMemory.h"  // cfx_cm3_sharedMemoryAll
 #include "remoteControl.h"         // ST__REMOTECONTROL_PACKET
-#include <TDC_PRINTF.h>
+#include <tdc_printf.h>
 #include <tdc_fs_gain.h>
 
 static bool gc_is_valid_request(int control_type, int gain_type, int gain_index);
