@@ -19,7 +19,7 @@
 #include "commonDataProcessing.h"
 
 #include "tdc_sys_error.h"
-#include "LedOutput.h"
+#include "tdc_led_output.h"
 
 #define df_masterISD_Serial      0x0000FFFF
 #define lenght_MANUFACTURER_NAME 9
@@ -928,7 +928,7 @@ void enableStimul_10v(bool isdControlStateChagedFlag)
 #endif
                         if (vtg_Lock_state == 1)
                         {
-                            // enabletestLED_Trigger();
+                            // tdc_led_enable_test_trigger();
                             ///////////////////////////////////////
                             change_isd_state(en__isdStatus_stimul_10V_Ok);
                             //////////////////////////////////////

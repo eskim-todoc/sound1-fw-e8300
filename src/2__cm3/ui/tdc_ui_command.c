@@ -7,7 +7,7 @@
 
 #include <SEGGER_RTT.h>
 
-#include "LedOutput.h"
+#include "tdc_led_output.h"
 #include "tdc_pwr_battery.h"
 #include "cfx_cm3_sharedMemory.h"
 #include "tdc_sys_error.h"
@@ -68,7 +68,7 @@ static uint8_t s_tdc_override_battery_percent;
 static bool s_tdc_actual_mapping_connected;
 
 /* --led req/clr 로 설정한 per-source LED override */
-static bool s_tdc_led_override[LED_SRC__MAX];
+static bool s_tdc_led_override[TDC_LED_SRC__MAX];
 
 /* ======================================================================== */
 /*  Override hook getters (public - called from main.c)                     */
@@ -108,7 +108,7 @@ void tdc_ui_command_set_mapping_connected(bool connected)
 
 bool tdc_ui_command_is_led_override(int source)
 {
-    if (source < 0 || source >= LED_SRC__MAX)
+    if (source < 0 || source >= TDC_LED_SRC__MAX)
         return false;
     return s_tdc_led_override[source];
 }
@@ -204,33 +204,33 @@ static const char *val_to_str(const str_map_t *map, int val)
 /*  String <-> enum maps                                                    */
 /* ======================================================================== */
 
-static const str_map_t s_tdc_source_map[] = {{"power", LED_SRC_POWER}, {"error", LED_SRC_ERROR}, {"ble", LED_SRC_BLE_IND}, {"mapping", LED_SRC_MAPPING}, {"battery", LED_SRC_BATTERY}, {"isd", LED_SRC_ISD}, {NULL, 0}};
+static const str_map_t s_tdc_source_map[] = {{"power", TDC_LED_SRC_POWER}, {"error", TDC_LED_SRC_ERROR}, {"ble", TDC_LED_SRC_BLE_IND}, {"mapping", TDC_LED_SRC_MAPPING}, {"battery", TDC_LED_SRC_BATTERY}, {"isd", TDC_LED_SRC_ISD}, {NULL, 0}};
 
-static const str_map_t s_tdc_state_map[] = {{"none", LED_ST_NONE},
+static const str_map_t s_tdc_state_map[] = {{"none", TDC_LED_ST_NONE},
                                             /* power */
-                                            {"on", LED_ST_POWER_ON},
-                                            {"off", LED_ST_POWER_OFF},
+                                            {"on", TDC_LED_ST_POWER_ON},
+                                            {"off", TDC_LED_ST_POWER_OFF},
                                             /* battery */
-                                            {"ready", LED_ST_BATT_READY},
-                                            {"mid", LED_ST_BATT_MID},
-                                            {"critical", LED_ST_BATT_CRITICAL},
+                                            {"ready", TDC_LED_ST_BATT_READY},
+                                            {"mid", TDC_LED_ST_BATT_MID},
+                                            {"critical", TDC_LED_ST_BATT_CRITICAL},
                                             /* isd */
-                                            {"in_use", LED_ST_IN_USE},
+                                            {"in_use", TDC_LED_ST_IN_USE},
                                             /* mapping (배터리 LOW 임계 20% × ISD 연결 여부 4종) */
-                                            {"no_isd_ready", LED_ST_MAPPING_NO_ISD_BATT_READY},
-                                            {"with_isd_ready", LED_ST_MAPPING_ISD_BATT_READY},
-                                            {"no_isd_low", LED_ST_MAPPING_NO_ISD_BATT_LOW},
-                                            {"with_isd_low", LED_ST_MAPPING_ISD_BATT_LOW},
+                                            {"no_isd_ready", TDC_LED_ST_MAPPING_NO_ISD_BATT_READY},
+                                            {"with_isd_ready", TDC_LED_ST_MAPPING_ISD_BATT_READY},
+                                            {"no_isd_low", TDC_LED_ST_MAPPING_NO_ISD_BATT_LOW},
+                                            {"with_isd_low", TDC_LED_ST_MAPPING_ISD_BATT_LOW},
                                             /* ble */
-                                            {"pair", LED_ST_PAIR},
-                                            {"ota_qcc", LED_ST_OTA_QCC},
-                                            {"ota_ezairo", LED_ST_OTA_EZAIRO},
+                                            {"pair", TDC_LED_ST_PAIR},
+                                            {"ota_qcc", TDC_LED_ST_OTA_QCC},
+                                            {"ota_ezairo", TDC_LED_ST_OTA_EZAIRO},
                                             /* error */
-                                            {"map", LED_ST_ERROR_MAP},
-                                            {"mcu", LED_ST_ERROR_MCU},
-                                            {"accel", LED_ST_ERROR_ACCEL},
-                                            {"fpga", LED_ST_ERROR_FPGA},
-                                            {"pmic", LED_ST_ERROR_PMIC},
+                                            {"map", TDC_LED_ST_ERROR_MAP},
+                                            {"mcu", TDC_LED_ST_ERROR_MCU},
+                                            {"accel", TDC_LED_ST_ERROR_ACCEL},
+                                            {"fpga", TDC_LED_ST_ERROR_FPGA},
+                                            {"pmic", TDC_LED_ST_ERROR_PMIC},
                                             {NULL, 0}};
 
 /* ======================================================================== */
@@ -275,25 +275,25 @@ static int handle_help(int argc, char *argv[])
 /* N=0 은 sentinel - 모든 src NONE 만 적용 (LED off). N>0 은 (src, state). */
 static const struct
 {
-    led_src_t   src;
-    led_state_t st;
+    tdc_led_src_t   src;
+    tdc_led_state_t st;
     const char *desc;
 } k_tdc_pattern_table[] = {
-    /*  0 */ {LED_SRC__MAX, LED_ST_NONE, "all off"},
-    /*  1 */ {LED_SRC_POWER, LED_ST_POWER_ON, "POWER_ON"},
-    /*  2 */ {LED_SRC_POWER, LED_ST_POWER_OFF, "POWER_OFF"},
-    /*  3 */ {LED_SRC_MAPPING, LED_ST_MAPPING_ISD_BATT_READY, "MAPPING_ISD_BATT_READY"},
-    /*  4 */ {LED_SRC_MAPPING, LED_ST_MAPPING_NO_ISD_BATT_READY, "MAPPING_NO_ISD_BATT_READY"},
-    /*  5 */ {LED_SRC_MAPPING, LED_ST_MAPPING_ISD_BATT_LOW, "MAPPING_ISD_BATT_LOW"},
-    /*  6 */ {LED_SRC_MAPPING, LED_ST_MAPPING_NO_ISD_BATT_LOW, "MAPPING_NO_ISD_BATT_LOW"},
-    /*  7 */ {LED_SRC_ERROR, LED_ST_ERROR_MCU, "ERROR_MCU (대표)"},
-    /*  8 */ {LED_SRC_BATTERY, LED_ST_BATT_CRITICAL, "BATT_CRITICAL"},
-    /*  9 */ {LED_SRC_BATTERY, LED_ST_BATT_MID, "BATT_MID"},
-    /* 10 */ {LED_SRC_BATTERY, LED_ST_BATT_READY, "BATT_READY"},
-    /* 11 */ {LED_SRC_ISD, LED_ST_IN_USE, "IN_USE"},
-    /* 12 */ {LED_SRC_BLE_IND, LED_ST_PAIR, "PAIR"},
-    /* 13 */ {LED_SRC_BLE_IND, LED_ST_OTA_QCC, "OTA_QCC"},
-    /* 14 */ {LED_SRC_BLE_IND, LED_ST_OTA_EZAIRO, "OTA_EZAIRO"},
+    /*  0 */ {TDC_LED_SRC__MAX, TDC_LED_ST_NONE, "all off"},
+    /*  1 */ {TDC_LED_SRC_POWER, TDC_LED_ST_POWER_ON, "POWER_ON"},
+    /*  2 */ {TDC_LED_SRC_POWER, TDC_LED_ST_POWER_OFF, "POWER_OFF"},
+    /*  3 */ {TDC_LED_SRC_MAPPING, TDC_LED_ST_MAPPING_ISD_BATT_READY, "MAPPING_ISD_BATT_READY"},
+    /*  4 */ {TDC_LED_SRC_MAPPING, TDC_LED_ST_MAPPING_NO_ISD_BATT_READY, "MAPPING_NO_ISD_BATT_READY"},
+    /*  5 */ {TDC_LED_SRC_MAPPING, TDC_LED_ST_MAPPING_ISD_BATT_LOW, "MAPPING_ISD_BATT_LOW"},
+    /*  6 */ {TDC_LED_SRC_MAPPING, TDC_LED_ST_MAPPING_NO_ISD_BATT_LOW, "MAPPING_NO_ISD_BATT_LOW"},
+    /*  7 */ {TDC_LED_SRC_ERROR, TDC_LED_ST_ERROR_MCU, "ERROR_MCU (대표)"},
+    /*  8 */ {TDC_LED_SRC_BATTERY, TDC_LED_ST_BATT_CRITICAL, "BATT_CRITICAL"},
+    /*  9 */ {TDC_LED_SRC_BATTERY, TDC_LED_ST_BATT_MID, "BATT_MID"},
+    /* 10 */ {TDC_LED_SRC_BATTERY, TDC_LED_ST_BATT_READY, "BATT_READY"},
+    /* 11 */ {TDC_LED_SRC_ISD, TDC_LED_ST_IN_USE, "IN_USE"},
+    /* 12 */ {TDC_LED_SRC_BLE_IND, TDC_LED_ST_PAIR, "PAIR"},
+    /* 13 */ {TDC_LED_SRC_BLE_IND, TDC_LED_ST_OTA_QCC, "OTA_QCC"},
+    /* 14 */ {TDC_LED_SRC_BLE_IND, TDC_LED_ST_OTA_EZAIRO, "OTA_EZAIRO"},
 };
 #define TDC_PATTERN_TABLE_LEN ((int) (sizeof(k_tdc_pattern_table) / sizeof(k_tdc_pattern_table[0])))
 
@@ -310,9 +310,9 @@ static int handle_led(int argc, char *argv[])
     if (ci_strcasecmp(argv[1], "show") == 0)
     {
         output_printf("--- LED Arbiter state ---\r\n");
-        for (int src = 0; src < LED_SRC__MAX; src++)
+        for (int src = 0; src < TDC_LED_SRC__MAX; src++)
         {
-            led_state_t state = led_get_request((led_src_t) src);
+            tdc_led_state_t state = tdc_led_get_request((tdc_led_src_t) src);
             output_printf("  [%s] = %s%s\r\n", val_to_str(s_tdc_source_map, src), val_to_str(s_tdc_state_map, state), s_tdc_led_override[src] ? " (override)" : "");
         }
         output_printf("  burst_pending = %d\r\n", tdc_led_is_burst_pending());
@@ -335,7 +335,7 @@ static int handle_led(int argc, char *argv[])
             return -1;
         }
         s_tdc_led_override[src] = true;
-        led_request((led_src_t) src, (led_state_t) state);
+        tdc_led_request((tdc_led_src_t) src, (tdc_led_state_t) state);
         output_printf("OK: %s <- %s (override)\r\n", argv[2], argv[3]);
         return 0;
     }
@@ -353,7 +353,7 @@ static int handle_led(int argc, char *argv[])
             return -1;
         }
         s_tdc_led_override[src] = false;
-        led_request((led_src_t) src, LED_ST_NONE);
+        tdc_led_request((tdc_led_src_t) src, TDC_LED_ST_NONE);
         output_printf("OK: %s cleared\r\n", argv[2]);
         return 0;
     }
@@ -384,7 +384,7 @@ static int handle_led(int argc, char *argv[])
     /* --led pair */
     if (ci_strcasecmp(argv[1], "pair") == 0)
     {
-        led_request(LED_SRC_BLE_IND, LED_ST_PAIR);
+        tdc_led_request(TDC_LED_SRC_BLE_IND, TDC_LED_ST_PAIR);
         output_printf("OK: PAIR latch injected\r\n");
         return 0;
     }
@@ -403,16 +403,16 @@ static int handle_led(int argc, char *argv[])
         }
 
         /* 모든 src 강제 NONE + override 활성 - 단일 패턴만 보이도록 */
-        for (int src = 0; src < LED_SRC__MAX; src++)
+        for (int src = 0; src < TDC_LED_SRC__MAX; src++)
         {
             s_tdc_led_override[src] = true;
-            led_request((led_src_t) src, LED_ST_NONE);
+            tdc_led_request((tdc_led_src_t) src, TDC_LED_ST_NONE);
         }
 
         /* N>0 인 경우 해당 패턴 요청 (N=0 은 모든 src NONE 만 - LED off) */
         if (n > 0)
         {
-            led_request(k_tdc_pattern_table[n].src, k_tdc_pattern_table[n].st);
+            tdc_led_request(k_tdc_pattern_table[n].src, k_tdc_pattern_table[n].st);
         }
 
         output_printf("OK: pattern %d -- %s\r\n", n, k_tdc_pattern_table[n].desc);
@@ -432,7 +432,7 @@ static int handle_led(int argc, char *argv[])
         else if (ci_strcasecmp(argv[2], "off") == 0)
         {
             /* force-clear power source */
-            led_request(LED_SRC_POWER, LED_ST_NONE);
+            tdc_led_request(TDC_LED_SRC_POWER, TDC_LED_ST_NONE);
             output_printf("OK: power burst force-cleared\r\n");
         }
         else
@@ -549,7 +549,7 @@ static int handle_error(int argc, char *argv[])
     if (ci_strcasecmp(argv[1], "clr") == 0)
     {
         tdc_sys_error_clear_all();
-        led_request(LED_SRC_ERROR, LED_ST_NONE);
+        tdc_led_request(TDC_LED_SRC_ERROR, TDC_LED_ST_NONE);
         output_printf("OK: all error flags cleared\r\n");
         return 0;
     }

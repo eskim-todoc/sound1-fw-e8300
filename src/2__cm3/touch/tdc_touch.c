@@ -22,7 +22,7 @@
 #include <tdc_printf.h>
 #include <tdc_util.h> /* tdc_util_delay_ms() - MCLR 전 RTT 드레인 */
 
-#include <LedOutput.h> /* led_request() - 부팅 터치 무시 디버그 피드백 */
+#include <tdc_led_output.h> /* tdc_led_request() - 부팅 터치 무시 디버그 피드백 */
 
 /* 초기화 상태 (HW 본질이라 순수 FSM 밖, 연결 소유). */
 typedef enum
@@ -167,7 +167,7 @@ void led_debug_blink_blue(int cnt, int on_ms, int off_ms)
         lap_end = tdc_hal_timer_get_tick() + on_ms;
         while (tdc_hal_timer_get_tick() < lap_end)
         {
-            turnON_BlueLED();
+            tdc_led_turn_on_blue();
             SYS_WATCHDOG_REFRESH();
         }
 
@@ -200,12 +200,12 @@ void led_debug_blink_12bits(uint16_t bits)
         {
             if (bit == 0)
             {
-                turnON_GreenLED();
+                tdc_led_turn_on_green();
                 SYS_WATCHDOG_REFRESH();
             }
             else
             {
-                turnON_RedLED();
+                tdc_led_turn_on_red();
                 SYS_WATCHDOG_REFRESH();
             }
         }
@@ -345,7 +345,7 @@ bool tdc_touch_process(void)
         case TDC_TOUCH_BOOT_WARN_5S:
         {
             TDC_PRINTF_W("[TOUCH] BOOT TOUCH > 5s \r\n");
-            led_request(LED_SRC_DBG, LED_ST_DBG_LONG_TOUCH_IGNORE);
+            tdc_led_request(TDC_LED_SRC_DBG, TDC_LED_ST_DBG_LONG_TOUCH_IGNORE);
             break;
         }
         case TDC_TOUCH_BOOT_IGNORING:

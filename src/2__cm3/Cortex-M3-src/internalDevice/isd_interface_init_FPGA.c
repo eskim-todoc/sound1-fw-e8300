@@ -31,7 +31,7 @@
 #endif
 
 #include "commonDataProcessing.h"
-#include "LedOutput.h"
+#include "tdc_led_output.h"
 
 static int FPGA_version;
 

@@ -36,7 +36,7 @@
 #include "tdc_remote_gain_control.h"
 #include <tdc_fs_gain.h>
 
-#include "LedOutput.h"
+#include "tdc_led_output.h"
 #include "indicatorByStimul.h"
 #include "stimulationParaCal.h"
 
@@ -180,11 +180,11 @@ void tdc_sys_uninit(void)
     /* Clear all pending source. */
     Sys_NVIC_ClearAllPendingInt();
 
-    /* LED arbiter ISR 도 같이 비활성 - turnOffLED() 가 즉시 OFF 분기로 진입 */
-    led_isr_active_set(false);
+    /* LED arbiter ISR 도 같이 비활성 - tdc_led_turn_off() 가 즉시 OFF 분기로 진입 */
+    tdc_led_isr_active_set(false);
 
     /* Turn off the LED */
-    turnOffLED();
+    tdc_led_turn_off();
 
     /* Clear all error flags */
     tdc_sys_error_clear_all();
@@ -289,19 +289,19 @@ void tdc_sys_init(void)
 
         while (1)
         {
-            LED_Memory_error();
+            tdc_led_memory_error();
             __WFI();
         }
     }
 
-    /* L3: 잔상 제거 - led_isr_active_set(false) 상태에서 즉시 OFF 분기 */
-    turnOffLED();
+    /* L3: 잔상 제거 - tdc_led_isr_active_set(false) 상태에서 즉시 OFF 분기 */
+    tdc_led_turn_off();
 
     /* L4: LED arbiter ISR 가용 시작 */
-    led_isr_active_set(true);
+    tdc_led_isr_active_set(true);
 
     /* L5: POWER_ON 버스트 요청 - TIMER3 ISR 가 SKYBLUE fade-in/out × 5 진행 */
-    led_request(LED_SRC_POWER, LED_ST_POWER_ON);
+    tdc_led_request(TDC_LED_SRC_POWER, TDC_LED_ST_POWER_ON);
     TDC_PRINTF_I("\r\n");
     TDC_PRINTF_I("################################################################\r\n");
     TDC_PRINTF_I("###  [POWER-ON  START]   t3 = %d ms\r\n", tdc_hal_timer_get_t3_tick());
@@ -358,7 +358,7 @@ void tdc_sys_init(void)
 
     TDC_PRINTF_V("[INFO] COPY ISD INFO FOR ALL MAPS FROM FS_MEM TO SH_MEM \r\n");
 
-    /* turnOffLED · sharedMemoryAddresError 는 LED 진입 게이트 (P3-Early) 로 이관됨 */
+    /* tdc_led_turn_off · sharedMemoryAddresError 는 LED 진입 게이트 (P3-Early) 로 이관됨 */
 
     // NRF 리셋
     tdc_sys_reset_nrf();
@@ -390,7 +390,7 @@ void tdc_sys_init(void)
         // TX PMIC 초기화
         if (!tdc_drv_isl9122_reset())
         {
-            turnON_RedLED();
+            tdc_led_turn_on_red();
             while (1)
             {
                 SYS_WATCHDOG_REFRESH();
@@ -415,7 +415,7 @@ void tdc_sys_init(void)
             if (tx_power == TDC_DRV_PMIC_MAX_VOLTAGE_CONTROL_VALUE)
             {
                 TDC_PRINTF_W("[TEST] PMIC TX POWER SET DONE \r\n");
-                turnON_GreenLED();
+                tdc_led_turn_on_green();
 
                 while (1)
                 {
@@ -469,7 +469,7 @@ void tdc_sys_init(void)
     enable_interrupt();
 
     /* 터치 센서 초기화는 P11 (tdc_hal_i2c_init 직후) 에서 tdc_touch_init_begin() 으로 시작.
-     * led_isr_active_set(true) 는 LED 진입 게이트 (P3-Early L4) 에서 이미 호출.
+     * tdc_led_isr_active_set(true) 는 LED 진입 게이트 (P3-Early L4) 에서 이미 호출.
      * 상세: docs/tasks/LED/20260423_power-on-early-lighting/구현계획.md (Rev.4) */
 
     // 초기화 과정에서 전원 버튼 (가속도 센서, 이제는 터치 센서)의 인터럽트 상태를 초기화 시킨다.
