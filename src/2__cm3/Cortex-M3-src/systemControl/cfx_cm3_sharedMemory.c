@@ -12,6 +12,7 @@
 #include <ci_battery.h>
 #include <tdc_hal_dio.h>
 #include <tdc_printf.h>
+#include <tdc_fs_gain.h>  // ISD 별 게인 설정 로드
 
 // 구조체의 배치되는 주소를 sections.ld 파일을 수정하여 LPDSP32_PRAM5에 위치한다.
 ST__CFX_CM3_SharedMemory_ALL cfx_cm3_sharedMemoryAll __attribute__((section(".shared_memory")));
@@ -351,6 +352,17 @@ void changeConnected_isd_num_CFX(int isd_num)
 
         fn_copy_MapInfo_toCM3(isd_num);                // #1. 맵 스탬프, 프로그램 별 매핑 일자, 사용 가능한 맵 프로그램 인덱스, 사용 가능한 맵 개수 복사
         fn_copy_userSettingParameters_toCM3(isd_num);  // #2. 사용자 설정 값 복사
+
+        // #3. 게인 설정도 이 ISD 것으로 복원한다.
+        //     파일이 없거나 손상되었으면 기본값(유니티)이 채워져 돌아온다.
+        {
+            tdc_fs_gain_setting_t gain_setting;
+
+            tdc_fs_gain_load(isd_num, &gain_setting);
+
+            cfx_cm3_sharedMemoryAll.gain_table_index_a = gain_setting.gain_table_index_a;
+            cfx_cm3_sharedMemoryAll.gain_table_index_b = gain_setting.gain_table_index_b;
+        }
     }
 #endif
 

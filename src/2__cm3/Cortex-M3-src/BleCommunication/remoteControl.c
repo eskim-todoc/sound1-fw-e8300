@@ -4,6 +4,7 @@
 
 #include "remoteControl.h"
 #include "tdc_remote_general_debug.h"
+#include "tdc_remote_gain_control.h"
 #include "remoteControl_read_SP_para.h"
 #include "driver_SPI.h"
 #include "definitionsForAlgorithm.h"
@@ -1345,6 +1346,20 @@ ST__REMOTECONTROL_STATE remoteControl(bool isdConnection)  // 연결 상태에 �
                 case EN__SND_BT_CMD_GENERAL_DEBUG:
                 {
                     tx_index = tdc_remote_general_debug_handle(&remoteDataPacket, bufferForSPI_tx, tx_index);
+
+                    writeDataToSpiTxBuff(bufferForSPI_tx, tx_index);  // 송신 데이터 SPI TX버퍼에 복사
+                    clearRemoteColtrolCommand();                      // 명령 종료
+                }
+                break;
+#endif
+
+#if 1
+                /**
+                 * 26.07.20 Gain Conversion Table 인덱스 설정 프로토콜 (0x8C)
+                 * by 김은수 */
+                case EN__SND_BT_CMD_GAIN_CONTROL:
+                {
+                    tx_index = tdc_remote_gain_control_handle(&remoteDataPacket, bufferForSPI_tx, tx_index);
 
                     writeDataToSpiTxBuff(bufferForSPI_tx, tx_index);  // 송신 데이터 SPI TX버퍼에 복사
                     clearRemoteColtrolCommand();                      // 명령 종료

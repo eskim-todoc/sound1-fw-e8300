@@ -419,8 +419,9 @@ void I2S_handle(void)
 }
 
 /* ============================================================================
- * [MODULE] M6 신호 디스패치 - 상태(I2S/DMIC수/front mic)에 따라 믹싱 경로 선택.
- *   I2S 스트리밍: tdc_audio_mix_2_buffers(DMIC1 + I2S).
+ * [MODULE] M6 신호 디스패치 - 상태(I2S/DMIC수/front mic/매핑)에 따라 믹싱 경로 선택.
+ *   I2S 스트리밍: tdc_audio_mix_2_buffers_with_gain(DMIC1 + I2S, Gain_A/Gain_B).
+ *                 단 매핑 연결 중에는 두 게인 모두 유니티(자극 레벨 측정 보호).
  *   비스트리밍 2-DMIC: tdc_audio_mix_2_buffers_for_beamforming(L/R로 front 채널 지연).
  *   비스트리밍 1-DMIC/NONE: tdc_audio_mix_1_buffer(DMIC1).
  *   검증=integration-test / 전제(의존)=M1 믹싱·M2 라우팅·M4 DMIC수집·M5 I2S 통과.
@@ -435,9 +436,29 @@ void PCM_LiveStimulation_Mode(void)
         // I2S_handle();
         int *p_buffer = (int *) &lib_g_i2s_buffers[lib_g_i2s_buffer_out_pos][0];
 
+        // 게인 결정 (Gain Conversion Table).
+        //   마이크 경로  : 항상 Gain_A.
+        //   I2S 경로     : 크래들 마이크면 Gain_B, 스트리밍이면 스마트폰이 볼륨을
+        //                  제어하므로 유니티(게인 없음)를 쓴다.
+        //   매핑 중      : 청각사가 자극 레벨을 측정하는 구간이므로 게인을 걸지 않는다.
+        //                  공유 메모리의 인덱스는 사용자 설정 그대로 두고 여기서만
+        //                  무시하므로, 매핑이 끝나면 별도 복원 없이 원래 게인으로 돌아온다.
+        int gain_a_q8_16 = tdc_audio_gain_lookup_q8_16(TDC_GAIN_TABLE_INDEX_UNITY);
+        int gain_b_q8_16 = gain_a_q8_16;
+
+        if (Addr_SharedMem->isMappingProgramConneted != 1)
+        {
+            gain_a_q8_16 = tdc_audio_gain_lookup_q8_16(Addr_SharedMem->gain_table_index_a);
+
+            if (Addr_SharedMem->is_i2s_source_cradle == 1)
+            {
+                gain_b_q8_16 = tdc_audio_gain_lookup_q8_16(Addr_SharedMem->gain_table_index_b);
+            }
+        }
+
         // I2S + 마이크 둘 다 믹싱 버퍼에 복사 (합친 후 나누기 2 하는 것 더이상 안함)
         // tdc_audio_mix_2_buffers((int _XMEM *) &HCT_A0_0[0], p_buffer);
-        tdc_audio_mix_2_buffers((int _XMEM *) &g_lib_dmic_in_buffers[LIB_DMIC_IDX_DMIC1][0][0], p_buffer);  // DMIC1 현재블록 sample0
+        tdc_audio_mix_2_buffers_with_gain((int _XMEM *) &g_lib_dmic_in_buffers[LIB_DMIC_IDX_DMIC1][0][0], p_buffer, gain_a_q8_16, gain_b_q8_16);  // DMIC1 현재블록 sample0
 
         // I2S만 믹싱 버퍼에 복사
         // tdc_audio_mix_1_buffer(p_buffer);

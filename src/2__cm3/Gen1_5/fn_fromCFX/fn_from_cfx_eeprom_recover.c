@@ -4,6 +4,7 @@
 
 #include <tdc_fs.h>
 #include <fn_from_cfx_eeprom_recover.h>
+#include <tdc_fs_gain.h>  // 공장 초기화 시 게인 설정도 되돌린다
 
 void fn_recover_mapData_byMapping(void)
 {
@@ -113,10 +114,13 @@ void fn_recover_Mapdata_mappingApp(void)
 
     if (map_num == 0)  // 맵 번호가 0이면 내부기 정보 및 사용자 설정 정보를 초기화
     {
+        isd_num = cfx_cm3_sharedMemoryAll.ReadWriteCommand_ForFlash.isd_index;
+
         fn_erase_ISD_info_byMapping();               // ISD 정보의 메타데이터 항목 제거
         fn_erase_userSettingParameters_byMapping();  // ISD 정보의 사용자 설정 값 제거
         fn_erase_mapStamp_byMapping();               // ISD 정보의 맵 스탭프 제어
         fn_recover_mapData_byMapping();              // ISD 정보의 모든 맵 데이터 초기화
+        tdc_fs_gain_reset(isd_num);             // ISD 정보의 게인 설정 초기화
         fn_read_All_isd_info();                      // 모든 ISD 정보를 다시 불러오기
     }
     else

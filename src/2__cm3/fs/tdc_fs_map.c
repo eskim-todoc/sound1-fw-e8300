@@ -3,6 +3,7 @@
  */
 
 #include <tdc_fs_map.h>
+#include <tdc_fs_gain.h>  // 공장 초기화 시 게인 설정도 되돌린다
 
 int tdc_fs_map_read_isd_info(int isd_num)
 {
@@ -774,6 +775,13 @@ int tdc_fs_map_init_map_data(int isd_num, bool force_init, bool specific_RL, int
 
         SYS_WATCHDOG_REFRESH();
     }  // end for
+
+    // 공장 초기화(강제 초기화)일 때는 게인 설정도 기본값으로 되돌린다.
+    // 부팅 시의 유효성 검사(force_init == false)에서는 건드리지 않는다.
+    if (force_init)
+    {
+        tdc_fs_gain_reset(isd_num);
+    }
 
     SYS_WATCHDOG_REFRESH();
 
