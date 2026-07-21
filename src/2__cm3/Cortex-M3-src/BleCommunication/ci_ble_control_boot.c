@@ -4,7 +4,7 @@
 
 #include <ci_ble_control_boot.h>
 #include <ci_boot.h>
-#include <driver_SPI.h>
+#include <tdc_hal_spi.h>
 #include <error.h>
 #include <tdc_fs.h>
 #include <snd_qcc.h>
@@ -23,7 +23,7 @@ static void _send_resp_packet_boot(uint8_t* packet_data, uint8_t packet_len)
         spi_buffer[i] = packet_data[i];
     }
 
-    writeDataToSpiTxBuff(spi_buffer, spi_len);
+    tdc_hal_spi_write_tx_buffer(spi_buffer, spi_len);
 }
 
 static void _send_error_packet_boot(uint8_t error)

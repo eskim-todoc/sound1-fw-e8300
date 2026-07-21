@@ -3,12 +3,12 @@
 
 #include <stdbool.h>
 #include "processorDirective.h"
-#include "driver_i2c_for_ISD.h"
+#include "tdc_hal_i2c_isd.h"
 #include "LedOutput.h"
 
 #include <cfx_cm3_sharedMemory.h>
 #include <tdc_printf.h>
-#include <driver_MAX17262.h>
+#include <tdc_drv_max17262.h>
 
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // Sullivan

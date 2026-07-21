@@ -1,7 +1,7 @@
 
 
 #include <stdbool.h>
-#include "driver_SPI.h"
+#include "tdc_hal_spi.h"
 #include "isd_interface.h"
 #include "remoteControl.h"
 #include "mappingControl.h"
@@ -86,7 +86,7 @@ void setting_nrf_ble_adv_info(void)
             tx_index = 0;
         }
 
-        writeDataToSpiTxBuff(Tx_dataBuff, tx_index);     // 송신 데이터 SPI TX버퍼에 복사
+        tdc_hal_spi_write_tx_buffer(Tx_dataBuff, tx_index);     // 송신 데이터 SPI TX버퍼에 복사
         bleSettingPacket.command = en__bleSetting_IDLE;  //  명령 종료
     }
     // QCC와 새로 추가한 패킷 (0x33. Battery 정보)
@@ -114,7 +114,7 @@ void setting_nrf_ble_adv_info(void)
         Tx_dataBuff[tx_index++] = batt_percent;
         Tx_dataBuff[tx_index++] = charger_state;  // 0: RESET, 1: CONNECTED, 2: DISCONNECTED
 
-        writeDataToSpiTxBuff(Tx_dataBuff, tx_index);     // 송싱 데이터 SPI TX버퍼에 복사
+        tdc_hal_spi_write_tx_buffer(Tx_dataBuff, tx_index);     // 송싱 데이터 SPI TX버퍼에 복사
         bleSettingPacket.command = en__bleSetting_IDLE;  // 명령 종료
     }
     // QCC와 새로 초가한 패킷 (0x34, Power info)
@@ -160,9 +160,9 @@ void setting_nrf_ble_adv_info(void)
         Tx_dataBuff[tx_index++] = 1;  // 수신 확인 응답
 
         // TDC_PRINTF_W("[BT] BEFORE-WRITE-TX 0x34 t3=%d ms\r\n", tdc_hal_timer_get_t3_tick());
-        // TDC_PRINTF_W("[BT] CALL-WRITE-TX TxEmpty=%d\r\n", (int) isSpiTxBuffEmpty());
+        // TDC_PRINTF_W("[BT] CALL-WRITE-TX TxEmpty=%d\r\n", (int) tdc_hal_spi_is_tx_buffer_empty());
 
-        writeDataToSpiTxBuff(Tx_dataBuff, tx_index);     // 송싱 데이터 SPI TX버퍼에 복사
+        tdc_hal_spi_write_tx_buffer(Tx_dataBuff, tx_index);     // 송싱 데이터 SPI TX버퍼에 복사
         bleSettingPacket.command = en__bleSetting_IDLE;  // 명령 종료
     }
     // 끝, else if (bleSettingPacket.command == EN__SND_BT_CMD_SYSTEM_INFO_POWER)
@@ -192,7 +192,7 @@ void setting_nrf_ble_adv_info(void)
         /* 응답 패킷 */
         Tx_dataBuff[tx_index++] = EN__SND_BT_CMD_SYSTEM_INFO_LED_IND;
         Tx_dataBuff[tx_index++] = 1;                     // 수신 확인 응답
-        writeDataToSpiTxBuff(Tx_dataBuff, tx_index);     // 송신 데이터 SPI TX버퍼에 복사
+        tdc_hal_spi_write_tx_buffer(Tx_dataBuff, tx_index);     // 송신 데이터 SPI TX버퍼에 복사
         bleSettingPacket.command = en__bleSetting_IDLE;  // 명령 종료
     }
     // 끝, else if (bleSettingPacket.command == EN__SND_BT_CMD_SYSTEM_INFO_LED_IND)
@@ -223,7 +223,7 @@ void setting_nrf_ble_adv_info(void)
         /* 응답 패킷 */
         Tx_dataBuff[tx_index++] = EN__SND_BT_CMD_SYSTEM_INFO_CLASSIC_STATE;
         Tx_dataBuff[tx_index++] = 1;                     // 수신 확인 응답
-        writeDataToSpiTxBuff(Tx_dataBuff, tx_index);     // 송신 데이터 SPI TX버퍼에 복사
+        tdc_hal_spi_write_tx_buffer(Tx_dataBuff, tx_index);     // 송신 데이터 SPI TX버퍼에 복사
         bleSettingPacket.command = en__bleSetting_IDLE;  // 명령 종료
     }
     // 끝, else if (bleSettingPacket.command == EN__SND_BT_CMD_SYSTEM_INFO_CLASSIC_STATE)
@@ -235,35 +235,35 @@ ST__BLE_COMMUNICATION_STATE bleCommunication(ST__ISD_STATUS isd_state)
     static int  Rx_counter = 1;
     static int *p_Rx_dataPacket;
 
-    EN__SPI_COMMU_STATE         communicationState;
+    tdc_hal_spi_comm_state_t         communicationState;
     ST__MAPPING_STATE           mappingState;
     ST__BLE_COMMUNICATION_STATE ble_communication_state = {en__isdStatus_NA, false, false, false};
     ST__REMOTECONTROL_STATE     remoteControlState      = {en__isdStatus_NA, false};
 
-    communicationState = get_spi_commu_state();
+    communicationState = tdc_hal_spi_get_comm_state();
 
     // SPI 통신으로 nRF로부터 패킷을 수신하면 communicationState가 SPI_CMMM_FETCH로 업데이트 됨
     // SPI 통신에 이슈가 발생한 경우 SPI_CMMM_ERROR로 업데이트 됨
     switch (communicationState)
     {
-        case SPI_COMM_IDLE:
+        case TDC_HAL_SPI_COMM_IDLE:
         {
             i++;
         }
         break;
 
-        case SPI_CMMM_FETCH:
+        case TDC_HAL_SPI_COMM_FETCH:
         {
 #if 0
             // NRF에서 수시된 데이터를 그대로 루프백하고, 마지막 데이터에 수신된 횟수를 추가하여 보낸다.
-            for (i = 0; i < SPI_COMM_PACKET_SIZE; i++)
+            for (i = 0; i < TDC_HAL_SPI_COMM_PACKET_SIZE; i++)
             {
                 SPI_Tx_Buffer[i] = 0;
             }
 
             SPI->TX_DATA = SPI_Rx_Buffer[0];  // 첫번째 byte는 먼저 준비해 놓아야 된다.
 
-            for (i = 0; i < SPI_COMM_PACKET_SIZE - 1; i++)
+            for (i = 0; i < TDC_HAL_SPI_COMM_PACKET_SIZE - 1; i++)
             {
                 if (SPI_Rx_Buffer[i + 1] != 0)
                 {
@@ -277,10 +277,10 @@ ST__BLE_COMMUNICATION_STATE bleCommunication(ST__ISD_STATUS isd_state)
 
             SPI_Tx_Buffer[i] = Rx_counter;
 
-            set_spi_commu_state_IDLE();
+            tdc_hal_spi_set_comm_state_idle();
             Rx_counter++;
 #else
-            p_Rx_dataPacket = getAddr_SPI_Rx_DataPacket();
+            p_Rx_dataPacket = tdc_hal_spi_get_rx_packet_addr();
 
 #if 1  // nRF SPI 디버깅
 
@@ -371,7 +371,7 @@ ST__BLE_COMMUNICATION_STATE bleCommunication(ST__ISD_STATUS isd_state)
             {
             }
 
-            set_spi_commu_state_IDLE();
+            tdc_hal_spi_set_comm_state_idle();
 
 #endif
         }
@@ -389,7 +389,7 @@ ST__BLE_COMMUNICATION_STATE bleCommunication(ST__ISD_STATUS isd_state)
             NVIC_DisableIRQ(SPI1_COM_IRQn);
 
             // Disable the SPI before configure the SPI port
-            Sys_SPI_TransferConfig(SPI1, DRIVER_SPI_CTRL_DISABLE);
+            Sys_SPI_TransferConfig(SPI1, TDC_HAL_SPI_CTRL_DISABLE);
 
             Sys_DMA_Mode_Enable(DMA0, DMA_DISABLE);  // DMA0 끄기
             Sys_DMA_Mode_Enable(DMA1, DMA_DISABLE);  // DMA1 끄기
@@ -399,16 +399,16 @@ ST__BLE_COMMUNICATION_STATE bleCommunication(ST__ISD_STATUS isd_state)
             NVIC_ClearPendingIRQ(DMA1_IRQn);
 
             // Clear flags
-            SPI1->STATUS = DRIVER_SPI_STATUS;
+            SPI1->STATUS = TDC_HAL_SPI_STATUS;
 
-            clear_SPI_Tx_Buffer();
+            tdc_hal_spi_clear_tx_buffer();
 
-            ci_SPI_enable_DMA();
+            tdc_hal_spi_enable_dma();
 
-            set_spi_commu_state_IDLE();
+            tdc_hal_spi_set_comm_state_idle();
 
             // Enable SPI
-            Sys_SPI_TransferConfig(SPI1, DRIVER_SPI_CTRL_ENABLE);
+            Sys_SPI_TransferConfig(SPI1, TDC_HAL_SPI_CTRL_ENABLE);
 
             NVIC_ClearPendingIRQ(SPI1_COM_IRQn);
             NVIC_EnableIRQ(SPI1_COM_IRQn);

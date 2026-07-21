@@ -1,18 +1,18 @@
-#include "driver_i2c.h"
+#include "tdc_hal_i2c.h"
 #include "processorDirective.h"
 #include <stdbool.h>
 #include <stddef.h>
 
 #define CM3_I2c_TestMode
 
-static ST__I2C_DRIVER i2c_driver;
+static tdc_hal_i2c_driver_t i2c_driver;
 
-EN__I2C_DRIVER_STATE get_i2cDriverStatus(void)
+tdc_hal_i2c_driver_state_t tdc_hal_i2c_get_driver_status(void)
 {
     return i2c_driver.i2c_diver_state;
 }
 
-bool isI2cDriverStatusIdle(void)
+bool tdc_hal_i2c_is_driver_status_idle(void)
 {
     if (i2c_driver.i2c_diver_state == i2c_state_Idle)
     {
@@ -24,22 +24,22 @@ bool isI2cDriverStatusIdle(void)
     }
 }
 
-void setI2cDriverStatusIdle(void)
+void tdc_hal_i2c_set_driver_status_idle(void)
 {
     i2c_driver.i2c_diver_state = i2c_state_Idle;
 }
 
-void clearI2cDriverStatus(void)
+void tdc_hal_i2c_clear_driver_status(void)
 {
     i2c_driver.i2c_diver_state             = i2c_state_Idle;
     i2c_driver.i2cTxRx_RemaindedDataLength = 0;
     i2c_driver.p_i2cTx_Source              = NULL;
     i2c_driver.p_i2cRx_Destination         = NULL;
     i2c_driver.slaveAddress                = 0;
-    i2c_driver.i2c_Error_Code              = I2C_NO_ERROR;
+    i2c_driver.i2c_Error_Code              = TDC_HAL_I2C_NO_ERROR;
 }
 
-uint32_t getI2cHardwareStatus(void)
+uint32_t tdc_hal_i2c_get_hardware_status(void)
 {
     return I2C0->STATUS;
 }
@@ -49,7 +49,7 @@ int I2C_statusRegister_dump[32];
 int dumpIndex = 0;
 #endif
 
-void enableI2cInterface(bool isEnabled)
+void tdc_hal_i2c_enable_interface(bool isEnabled)
 {
     // I2C_ENABLE과 I2C_DISABLE의 비트 인덱스가 다르다. 둘다 Write only 비트 필드이다.
     if (isEnabled)
@@ -62,21 +62,21 @@ void enableI2cInterface(bool isEnabled)
     }
 }
 
-void clearI2cHardwareStatus(void)
+void tdc_hal_i2c_clear_hardware_status(void)
 {
-    I2C0->STATUS = df__clearI2cHardwareStatus;
+    I2C0->STATUS = TDC_HAL_I2C_CLEAR_HW_STATUS;
     NVIC_ClearPendingIRQ(I2C_0_IRQn);
 }
 
-void i2c_startWriteData(const int slaveAddress, int *p_sourcedata, const int dataLength)
+void tdc_hal_i2c_start_write(const int slaveAddress, int *p_sourcedata, const int dataLength)
 {
-    OTE_1_5gen_I2C_STATUS_T i2cStatus;
+    tdc_hal_i2c_status_t i2cStatus;
 
     i2c_driver.slaveAddress                = slaveAddress;
     i2c_driver.p_i2cTx_Source              = p_sourcedata;
     i2c_driver.i2cTxRx_RemaindedDataLength = dataLength;
 
-    i2cStatus.status = getI2cHardwareStatus();
+    i2cStatus.status = tdc_hal_i2c_get_hardware_status();
 
 #ifdef CM3_I2c_TestMode
     I2C_statusRegister_dump[dumpIndex++] = (int) i2cStatus.status;
@@ -89,25 +89,25 @@ void i2c_startWriteData(const int slaveAddress, int *p_sourcedata, const int dat
     {
         i2c_driver.i2c_diver_state = i2c_state_WriteTriggered;
 
-        clearI2cHardwareStatus();
+        tdc_hal_i2c_clear_hardware_status();
         Sys_I2C_StartWrite(I2C0, i2c_driver.slaveAddress);
     }
     else
     {
         i2c_driver.i2c_diver_state = i2c_state_Error;
-        i2c_driver.i2c_Error_Code  = I2C_SLAVE_DEVICE_NO_REACTION;
+        i2c_driver.i2c_Error_Code  = TDC_HAL_I2C_SLAVE_DEVICE_NO_REACTION;
     }
 }
 
-void i2c_startReadData(const int slaveAddress, int *p_destination, const int dataLength)
+void tdc_hal_i2c_start_read(const int slaveAddress, int *p_destination, const int dataLength)
 {
-    OTE_1_5gen_I2C_STATUS_T i2cStatus;
+    tdc_hal_i2c_status_t i2cStatus;
 
     i2c_driver.slaveAddress                = slaveAddress;
     i2c_driver.p_i2cRx_Destination         = p_destination;
     i2c_driver.i2cTxRx_RemaindedDataLength = dataLength;
 
-    i2cStatus.status = getI2cHardwareStatus();
+    i2cStatus.status = tdc_hal_i2c_get_hardware_status();
 
 #ifdef CM3_I2c_TestMode
     I2C_statusRegister_dump[dumpIndex++] = (int) i2cStatus.status;
@@ -119,58 +119,58 @@ void i2c_startReadData(const int slaveAddress, int *p_destination, const int dat
     {
         i2c_driver.i2c_diver_state = i2c_state_ReadTriggerd;
 
-        clearI2cHardwareStatus();
+        tdc_hal_i2c_clear_hardware_status();
         Sys_I2C_StartRead(I2C0, i2c_driver.slaveAddress);
     }
     else
     {
         i2c_driver.i2c_diver_state = i2c_state_Error;
-        i2c_driver.i2c_Error_Code  = I2C_SLAVE_DEVICE_NO_REACTION;
+        i2c_driver.i2c_Error_Code  = TDC_HAL_I2C_SLAVE_DEVICE_NO_REACTION;
     }
 }
 
-void init_I2c(void)
+void tdc_hal_i2c_init(void)
 {
     Sys_I2C_Reset(I2C0);
-    Sys_I2C_Config(I2C0, CM3_I2C_CFG_VAL_AsMaster);
-    clearI2cDriverStatus();
-    enableI2cInterface(true);
+    Sys_I2C_Config(I2C0, TDC_HAL_I2C_CFG_MASTER);
+    tdc_hal_i2c_clear_driver_status();
+    tdc_hal_i2c_enable_interface(true);
 
-#ifdef CM3_I2c_using_ISR
+#ifdef TDC_HAL_I2C_USING_ISR
     NVIC_ClearPendingIRQ(I2C_0_IRQn);
     NVIC_EnableIRQ(I2C_0_IRQn);  // I2C0 인터럽트 활성화
 #endif
 }
 
-void i2c_set_master_prescale(uint32_t prescale_mask)
+void tdc_hal_i2c_set_master_prescale(uint32_t prescale_mask)
 {
     // 진행 중 트랜잭션 완료 대기.
     // 호출 시점이 Sleep 진입 직전이라 사실상 idle 이지만 방어적으로 spin.
-    while (!isI2cDriverStatusIdle())
+    while (!tdc_hal_i2c_is_driver_status_idle())
     {
         /* 무한 대기 시 워치독(3.28s)이 동작하므로 별도 타임아웃 불필요 */
     }
 
     // MASTER_PRESCALE 필드만 교체.
-    enableI2cInterface(false);
+    tdc_hal_i2c_enable_interface(false);
     uint32_t cfg = I2C0->CFG;
     cfg          = (cfg & ~I2C_CFG_MASTER_PRESCALE_Mask) | prescale_mask;
     I2C0->CFG    = cfg;
-    enableI2cInterface(true);
+    tdc_hal_i2c_enable_interface(true);
 }
 
-#ifdef CM3_I2c_using_ISR
+#ifdef TDC_HAL_I2C_USING_ISR
 void I2C_0_IRQHandler(void)
 #else
-void i2c_comm(void)
+void tdc_hal_i2c_comm(void)
 #endif
 {
     static int              i = 0;
-    OTE_1_5gen_I2C_STATUS_T i2cStatus;
+    tdc_hal_i2c_status_t i2cStatus;
 
     NVIC_ClearPendingIRQ(I2C_0_IRQn);
 
-    i2cStatus.status = getI2cHardwareStatus();
+    i2cStatus.status = tdc_hal_i2c_get_hardware_status();
 
 #ifdef CM3_I2c_TestMode
     I2C_statusRegister_dump[dumpIndex++] = (int) i2cStatus.status;
@@ -213,12 +213,12 @@ void i2c_comm(void)
                  if ((i2cStatus.fields.bus_error == 1) || (i2c_driver.i2cTxRx_RemaindedDataLength != 0))
                  {
                      i2c_driver.i2c_diver_state = i2c_state_Error;
-                     i2c_driver.i2c_Error_Code  = I2C_SLAVE_DEVICE_NO_REACTION;
+                     i2c_driver.i2c_Error_Code  = TDC_HAL_I2C_SLAVE_DEVICE_NO_REACTION;
                  }
                  else
                  {
                      i2c_driver.i2c_diver_state = i2c_state_WritingDone;
-                     I2C0->STATUS = df__clearI2cHardwareStatus;
+                     I2C0->STATUS = TDC_HAL_I2C_CLEAR_HW_STATUS;
                  }
              }
              else
@@ -228,10 +228,10 @@ void i2c_comm(void)
             // clang-format on
         }
         break;
-#ifndef CM3_I2c_using_ISR
+#ifndef TDC_HAL_I2C_USING_ISR
         case i2c_state_WritingDone:
         {
-            ST__I2C_DRIVER.i2c_diver_state = i2c_state_Idle;
+            tdc_hal_i2c_driver_t.i2c_diver_state = i2c_state_Idle;
         }
         break;
 #endif
@@ -277,12 +277,12 @@ void i2c_comm(void)
                  if ((i2cStatus.fields.bus_error == 1) || (i2c_driver.i2cTxRx_RemaindedDataLength != 0))
                  {
                      i2c_driver.i2c_diver_state = i2c_state_Error;
-                     i2c_driver.i2c_Error_Code  = I2C_SLAVE_DEVICE_NO_REACTION;
+                     i2c_driver.i2c_Error_Code  = TDC_HAL_I2C_SLAVE_DEVICE_NO_REACTION;
                  }
                  else
                  {
                      i2c_driver.i2c_diver_state = i2c_state_ReadingDone;
-                     I2C0->STATUS = df__clearI2cHardwareStatus;
+                     I2C0->STATUS = TDC_HAL_I2C_CLEAR_HW_STATUS;
                  }
              }
              else
@@ -292,16 +292,16 @@ void i2c_comm(void)
             // clang-format on
         }
         break;
-#ifndef CM3_I2c_using_ISR
+#ifndef TDC_HAL_I2C_USING_ISR
         case i2c_state_ReadingDone:
         {
-            ST__I2C_DRIVER.i2c_diver_state = i2c_state_Idle;
+            tdc_hal_i2c_driver_t.i2c_diver_state = i2c_state_Idle;
         }
         break;
 #endif
         case i2c_state_Error:
         {
-            init_I2c();
+            tdc_hal_i2c_init();
         }
         break;
         default:

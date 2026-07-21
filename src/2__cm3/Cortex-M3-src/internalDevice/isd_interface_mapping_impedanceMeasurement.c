@@ -7,9 +7,9 @@
 #include "internalStimulationChip.h"
 #include "isd_interface.h"
 #if 0
-#include "driver_cfx_i2c.h"
+#include "tdc_hal_i2c_cfx.h"
 #else
-#include "driver_i2c_for_ISD.h"
+#include "tdc_hal_i2c_isd.h"
 #endif
 #include "definitionsForAlgorithm.h"
 
@@ -17,7 +17,7 @@
 #include "isd_interface_init_FPGA.h"
 #include "cfx_cm3_sharedMemory.h"
 #include "mappingControl.h"
-#include "driver_SPI.h"
+#include "tdc_hal_spi.h"
 #include "isd_interface_mapping_impedanceMeasurement.h"
 
 #include "electrodeMapping.h"
@@ -546,7 +546,7 @@ void impedanceMeasurement(bool startFlag)
                         if (backtelCounter == 2)
                         {
                             // 백텔 데이터
-                            // if (cfx_i2c_read(df_I2C_ADDR_FPGA_BackTel, backtelFIFO, 2))
+                            // if (tdc_hal_i2c_cfx_read(df_I2C_ADDR_FPGA_BackTel, backtelFIFO, 2))
                             if (read_FPGA_backtel_FIFO(backtelFIFO, 2))
                             {
 
@@ -662,7 +662,7 @@ void impedanceMeasurement(bool startFlag)
             }
 
             // 송신 데이터 SPI TX버퍼에 복사
-            writeDataToSpiTxBuff(bufferForSPI_tx, buffer_tx_index);
+            tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, buffer_tx_index);
         }
     }
 

@@ -8,9 +8,9 @@
 #include "isd_interface.h"
 #include "isd_interface_FPGA.h"
 #if 0
-#include "driver_cfx_i2c.h"
+#include "tdc_hal_i2c_cfx.h"
 #else
-#include "driver_i2c_for_ISD.h"
+#include "tdc_hal_i2c_isd.h"
 #endif
 
 #include "definitionsForAlgorithm.h"
@@ -28,11 +28,11 @@
 #include "error.h"
 
 #if defined(Board_is_OTE_VER_1_2)
-#include "driver_REN_ISL91128.h"
+#include "tdc_drv_isl91128.h"
 #elif defined(Board_is_TD_DEV_ver_1_4) || defined(Board_is_OTE_VER_1_4) || defined(Board_is_OTE_VER_1_5)
-#include "driver_REN_ISL9122.h"
+#include "tdc_drv_isl9122.h"
 #elif defined(Board_is_OTE_VER_1_3)
-#include "driver_REN_ISL98608.h"
+#include "tdc_drv_isl98608.h"
 #else
 #error Link PMIC is NOT selected.
 #endif
@@ -389,7 +389,7 @@ void update_isd_LinkConnection_byBacktel_withLiveStimulation(void)
                     case ISD_Power_HighStable:
                     {
                         // 전송 파워 감소 시킴
-                        if (TxPowerLevel > MinTxPowerValue)
+                        if (TxPowerLevel > TDC_DRV_PMIC_MIN_TX_POWER_VALUE)
                         {
                             int current_TxPowerLevel;
 
@@ -432,7 +432,7 @@ void update_isd_LinkConnection_byBacktel_withLiveStimulation(void)
                     case ISD_Power_LowStable:  // 증가가 가능할 때까지 증가. 증가가 더이상 불가능한 경우. 상태 유지
                     {
                         // 전송 파워 감소 시킴
-                        if (TxPowerLevel < MaxVoltageControlValue)
+                        if (TxPowerLevel < TDC_DRV_PMIC_MAX_VOLTAGE_CONTROL_VALUE)
                         {
                             int current_TxPowerLevel;
 
@@ -481,7 +481,7 @@ void update_isd_LinkConnection_byBacktel_withLiveStimulation(void)
 
 #if 0
                         int readValue[6];
-                        read_ISD_by_CM3_I2C(i2cAddr_FPGA_systemResgister_1st, readValue, 6);
+                        tdc_hal_i2c_isd_read(i2cAddr_FPGA_systemResgister_1st, readValue, 6);
                         TDC_PRINTF_V("system 1st   : 0x%02X \r\n", readValue[0]);
                         TDC_PRINTF_V("system 2nd   : 0x%02X \r\n", readValue[1]);
                         TDC_PRINTF_V("Error Flag   : 0x%02X \r\n", readValue[2]);
@@ -636,7 +636,7 @@ void update_isd_LinkConnection_byBacktel_withMapping(int connectionCheckCOUNTER)
                     case ISD_Power_HighStable:
                     {
                         // 전송 파워 감소 시킴
-                        if (TxPowerLevel > MinTxPowerValue)
+                        if (TxPowerLevel > TDC_DRV_PMIC_MIN_TX_POWER_VALUE)
                         {
                             TxPowerLevel--;
 
@@ -655,7 +655,7 @@ void update_isd_LinkConnection_byBacktel_withMapping(int connectionCheckCOUNTER)
                     case ISD_Power_LowStable:  // 증가가 가능할 때까지 증가. 증가가 더이상 불가능한 경우. 상태 유지
                     {
                         // 전송 파워 감소 시킴
-                        if (TxPowerLevel < MaxVoltageControlValue)
+                        if (TxPowerLevel < TDC_DRV_PMIC_MAX_VOLTAGE_CONTROL_VALUE)
                         {
                             TxPowerLevel++;
 

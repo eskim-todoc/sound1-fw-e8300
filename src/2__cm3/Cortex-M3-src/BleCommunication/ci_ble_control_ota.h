@@ -18,7 +18,7 @@
 
 #include "error.h"
 
-#include "driver_SPI.h"
+#include "tdc_hal_spi.h"
 
 #include "ble_commonProtocol.h"
 

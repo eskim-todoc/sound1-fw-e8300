@@ -2,37 +2,37 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
-#include "driver_i2c.h"
+#include "tdc_hal_i2c.h"
 
-#include "driver_MIS2DH.h"
+#include "tdc_drv_mis2dh.h"
 
 #ifdef UART_isDedicated_CM3_DATA
 #include "02_cfx_cm3_communication_Data_block.h"
 #endif
 
-bool write_MIS2DH_Register_byCM3_I2C(ST__MIS2DH_Register_t Register)
+bool write_MIS2DH_Register_byCM3_I2C(tdc_drv_mis2dh_register_t Register)
 {
-    EN__I2C_DRIVER_STATE i2cDriverState;
+    tdc_hal_i2c_driver_state_t i2cDriverState;
     int                  transferBuffer[2];
     bool                 PassFail = false;
 
     transferBuffer[0] = (int) Register.addrSubRegister;
     transferBuffer[1] = (int) Register.data;
-    i2c_startWriteData(MIS2DH_I2C_Addr, transferBuffer, 2);
+    tdc_hal_i2c_start_write(TDC_DRV_MIS2DH_I2C_ADDR, transferBuffer, 2);
 
     while (1)
     {
-        i2cDriverState = get_i2cDriverStatus();
+        i2cDriverState = tdc_hal_i2c_get_driver_status();
         if (i2cDriverState == i2c_state_WritingDone)
         {
-            setI2cDriverStatusIdle();
+            tdc_hal_i2c_set_driver_status_idle();
             PassFail = true;
             break;
         }
 
         if (i2cDriverState == i2c_state_Error)
         {
-            init_I2c();
+            tdc_hal_i2c_init();
             break;
         }
         __WFE();
@@ -41,39 +41,39 @@ bool write_MIS2DH_Register_byCM3_I2C(ST__MIS2DH_Register_t Register)
     return PassFail;
 }
 
-bool read_MIS2DH_Register_byCM3_I2C(ST__MIS2DH_Register_t *Register)
+bool read_MIS2DH_Register_byCM3_I2C(tdc_drv_mis2dh_register_t *Register)
 {
-    EN__I2C_DRIVER_STATE i2cDriverState;
+    tdc_hal_i2c_driver_state_t i2cDriverState;
     bool                 PassFail = false;
     int                  transferBuffer[2];
 
     // 읽기 : 선행 명령 전송
     transferBuffer[0] = (int) Register->addrSubRegister;
-    i2c_startWriteData(MIS2DH_I2C_Addr, transferBuffer, 1);
+    tdc_hal_i2c_start_write(TDC_DRV_MIS2DH_I2C_ADDR, transferBuffer, 1);
 
     while (1)
     {
-        i2cDriverState = get_i2cDriverStatus();
+        i2cDriverState = tdc_hal_i2c_get_driver_status();
         if (i2cDriverState == i2c_state_WritingDone)
         {
-            setI2cDriverStatusIdle();
+            tdc_hal_i2c_set_driver_status_idle();
 
             // 읽기 : 레지스터 값 읽어들임
-            i2c_startReadData(MIS2DH_I2C_Addr, &transferBuffer[1], 1);
+            tdc_hal_i2c_start_read(TDC_DRV_MIS2DH_I2C_ADDR, &transferBuffer[1], 1);
         }
 
         if (i2cDriverState == i2c_state_ReadingDone)
         {
             Register->data = (char) transferBuffer[1];
 
-            setI2cDriverStatusIdle();
+            tdc_hal_i2c_set_driver_status_idle();
             PassFail = true;
             break;
         }
 
         if (i2cDriverState == i2c_state_Error)
         {
-            init_I2c();
+            tdc_hal_i2c_init();
             break;
         }
         __WFE();
@@ -82,15 +82,15 @@ bool read_MIS2DH_Register_byCM3_I2C(ST__MIS2DH_Register_t *Register)
     return PassFail;
 }
 
-bool reset_MIS2DH(void)
+bool tdc_drv_mis2dh_reset(void)
 {
 
     bool                  PassFail = true;
-    ST__MIS2DH_Register_t Register;
+    tdc_drv_mis2dh_register_t Register;
 
     if (PassFail)
     {
-        Register.addrSubRegister = MIS2DH_STATUS_REG_AUX;
+        Register.addrSubRegister = TDC_DRV_MIS2DH_STATUS_REG_AUX;
         Register.data            = 0x00;
 
         PassFail = write_MIS2DH_Register_byCM3_I2C(Register);
@@ -98,7 +98,7 @@ bool reset_MIS2DH(void)
 
     if (PassFail)
     {
-        Register.addrSubRegister = MIS2DH_OUT_TEMP_L;
+        Register.addrSubRegister = TDC_DRV_MIS2DH_OUT_TEMP_L;
         Register.data            = 0x00;
 
         PassFail = write_MIS2DH_Register_byCM3_I2C(Register);
@@ -106,7 +106,7 @@ bool reset_MIS2DH(void)
 
     if (PassFail)
     {
-        Register.addrSubRegister = MIS2DH_OUT_TEMP_H;
+        Register.addrSubRegister = TDC_DRV_MIS2DH_OUT_TEMP_H;
         Register.data            = 0x00;
 
         PassFail = write_MIS2DH_Register_byCM3_I2C(Register);
@@ -114,7 +114,7 @@ bool reset_MIS2DH(void)
 
     if (PassFail)
     {
-        Register.addrSubRegister = MIS2DH_INT_COUNTER_REG;
+        Register.addrSubRegister = TDC_DRV_MIS2DH_INT_COUNTER_REG;
         Register.data            = 0x00;
 
         PassFail = write_MIS2DH_Register_byCM3_I2C(Register);
@@ -122,7 +122,7 @@ bool reset_MIS2DH(void)
 
     if (PassFail)
     {
-        Register.addrSubRegister = MIS2DH_TEMP_CFG_REG;
+        Register.addrSubRegister = TDC_DRV_MIS2DH_TEMP_CFG_REG;
         Register.data            = 0x00;
 
         PassFail = write_MIS2DH_Register_byCM3_I2C(Register);
@@ -130,7 +130,7 @@ bool reset_MIS2DH(void)
 
     if (PassFail)
     {
-        Register.addrSubRegister = MIS2DH_CTRL_REG1;
+        Register.addrSubRegister = TDC_DRV_MIS2DH_CTRL_REG1;
         Register.data            = 0x00;
 
         PassFail = write_MIS2DH_Register_byCM3_I2C(Register);
@@ -138,7 +138,7 @@ bool reset_MIS2DH(void)
 
     if (PassFail)
     {
-        Register.addrSubRegister = MIS2DH_CTRL_REG2;
+        Register.addrSubRegister = TDC_DRV_MIS2DH_CTRL_REG2;
         Register.data            = 0x00;
 
         PassFail = write_MIS2DH_Register_byCM3_I2C(Register);
@@ -146,7 +146,7 @@ bool reset_MIS2DH(void)
 
     if (PassFail)
     {
-        Register.addrSubRegister = MIS2DH_CTRL_REG3;
+        Register.addrSubRegister = TDC_DRV_MIS2DH_CTRL_REG3;
         Register.data            = 0x00;
 
         PassFail = write_MIS2DH_Register_byCM3_I2C(Register);
@@ -154,7 +154,7 @@ bool reset_MIS2DH(void)
 
     if (PassFail)
     {
-        Register.addrSubRegister = MIS2DH_CTRL_REG4;
+        Register.addrSubRegister = TDC_DRV_MIS2DH_CTRL_REG4;
         Register.data            = 0x00;
 
         PassFail = write_MIS2DH_Register_byCM3_I2C(Register);
@@ -162,7 +162,7 @@ bool reset_MIS2DH(void)
 
     if (PassFail)
     {
-        Register.addrSubRegister = MIS2DH_CTRL_REG5;
+        Register.addrSubRegister = TDC_DRV_MIS2DH_CTRL_REG5;
         Register.data            = 0x00;
 
         PassFail = write_MIS2DH_Register_byCM3_I2C(Register);
@@ -170,7 +170,7 @@ bool reset_MIS2DH(void)
 
     if (PassFail)
     {
-        Register.addrSubRegister = MIS2DH_CTRL_REG6;
+        Register.addrSubRegister = TDC_DRV_MIS2DH_CTRL_REG6;
         Register.data            = 0x00;
 
         PassFail = write_MIS2DH_Register_byCM3_I2C(Register);
@@ -178,7 +178,7 @@ bool reset_MIS2DH(void)
 
     if (PassFail)
     {
-        Register.addrSubRegister = MIS2DH_REF_DAT_CAP;
+        Register.addrSubRegister = TDC_DRV_MIS2DH_REF_DAT_CAP;
         Register.data            = 0x00;
 
         PassFail = write_MIS2DH_Register_byCM3_I2C(Register);
@@ -186,7 +186,7 @@ bool reset_MIS2DH(void)
 
     if (PassFail)
     {
-        Register.addrSubRegister = MIS2DH_STATUS_REG;
+        Register.addrSubRegister = TDC_DRV_MIS2DH_STATUS_REG;
         Register.data            = 0x00;
 
         PassFail = write_MIS2DH_Register_byCM3_I2C(Register);
@@ -194,7 +194,7 @@ bool reset_MIS2DH(void)
 
     if (PassFail)
     {
-        Register.addrSubRegister = MIS2DH_FIFO_CTRL_REG;
+        Register.addrSubRegister = TDC_DRV_MIS2DH_FIFO_CTRL_REG;
         Register.data            = 0x00;
 
         PassFail = write_MIS2DH_Register_byCM3_I2C(Register);
@@ -202,7 +202,7 @@ bool reset_MIS2DH(void)
 
     if (PassFail)
     {
-        Register.addrSubRegister = MIS2DH_FIFO_SCR_REG;
+        Register.addrSubRegister = TDC_DRV_MIS2DH_FIFO_SCR_REG;
         Register.data            = 0x00;
 
         PassFail = write_MIS2DH_Register_byCM3_I2C(Register);
@@ -210,7 +210,7 @@ bool reset_MIS2DH(void)
 
     if (PassFail)
     {
-        Register.addrSubRegister = MIS2DH_INT1_CFG;
+        Register.addrSubRegister = TDC_DRV_MIS2DH_INT1_CFG;
         Register.data            = 0x00;
 
         PassFail = write_MIS2DH_Register_byCM3_I2C(Register);
@@ -218,7 +218,7 @@ bool reset_MIS2DH(void)
 
     if (PassFail)
     {
-        Register.addrSubRegister = MIS2DH_INT1_SRC;
+        Register.addrSubRegister = TDC_DRV_MIS2DH_INT1_SRC;
         Register.data            = 0x00;
 
         PassFail = write_MIS2DH_Register_byCM3_I2C(Register);
@@ -226,7 +226,7 @@ bool reset_MIS2DH(void)
 
     if (PassFail)
     {
-        Register.addrSubRegister = MIS2DH_INT1_THS;
+        Register.addrSubRegister = TDC_DRV_MIS2DH_INT1_THS;
         Register.data            = 0x00;
 
         PassFail = write_MIS2DH_Register_byCM3_I2C(Register);
@@ -234,7 +234,7 @@ bool reset_MIS2DH(void)
 
     if (PassFail)
     {
-        Register.addrSubRegister = MIS2DH_INT1_DURATION;
+        Register.addrSubRegister = TDC_DRV_MIS2DH_INT1_DURATION;
         Register.data            = 0x00;
 
         PassFail = write_MIS2DH_Register_byCM3_I2C(Register);
@@ -242,7 +242,7 @@ bool reset_MIS2DH(void)
 
     if (PassFail)
     {
-        Register.addrSubRegister = MIS2DH_INT2_CFG;
+        Register.addrSubRegister = TDC_DRV_MIS2DH_INT2_CFG;
         Register.data            = 0x00;
 
         PassFail = write_MIS2DH_Register_byCM3_I2C(Register);
@@ -250,7 +250,7 @@ bool reset_MIS2DH(void)
 
     if (PassFail)
     {
-        Register.addrSubRegister = MIS2DH_INT2_SRC;
+        Register.addrSubRegister = TDC_DRV_MIS2DH_INT2_SRC;
         Register.data            = 0x00;
 
         PassFail = write_MIS2DH_Register_byCM3_I2C(Register);
@@ -258,7 +258,7 @@ bool reset_MIS2DH(void)
 
     if (PassFail)
     {
-        Register.addrSubRegister = MIS2DH_INT2_THS;
+        Register.addrSubRegister = TDC_DRV_MIS2DH_INT2_THS;
         Register.data            = 0x00;
 
         PassFail = write_MIS2DH_Register_byCM3_I2C(Register);
@@ -266,7 +266,7 @@ bool reset_MIS2DH(void)
 
     if (PassFail)
     {
-        Register.addrSubRegister = MIS2DH_INT2_DURATION;
+        Register.addrSubRegister = TDC_DRV_MIS2DH_INT2_DURATION;
         Register.data            = 0x00;
 
         PassFail = write_MIS2DH_Register_byCM3_I2C(Register);
@@ -274,7 +274,7 @@ bool reset_MIS2DH(void)
 
     if (PassFail)
     {
-        Register.addrSubRegister = MIS2DH_CLICK_CFG;
+        Register.addrSubRegister = TDC_DRV_MIS2DH_CLICK_CFG;
         Register.data            = 0x00;
 
         PassFail = write_MIS2DH_Register_byCM3_I2C(Register);
@@ -282,7 +282,7 @@ bool reset_MIS2DH(void)
 
     if (PassFail)
     {
-        Register.addrSubRegister = MIS2DH_CLICK_THS;
+        Register.addrSubRegister = TDC_DRV_MIS2DH_CLICK_THS;
         Register.data            = 0x00;
 
         PassFail = write_MIS2DH_Register_byCM3_I2C(Register);
@@ -290,7 +290,7 @@ bool reset_MIS2DH(void)
 
     if (PassFail)
     {
-        Register.addrSubRegister = MIS2DH_TIME_LIMIT;
+        Register.addrSubRegister = TDC_DRV_MIS2DH_TIME_LIMIT;
         Register.data            = 0x00;
 
         PassFail = write_MIS2DH_Register_byCM3_I2C(Register);
@@ -298,7 +298,7 @@ bool reset_MIS2DH(void)
 
     if (PassFail)
     {
-        Register.addrSubRegister = MIS2DH_TIME_LATENCY;
+        Register.addrSubRegister = TDC_DRV_MIS2DH_TIME_LATENCY;
         Register.data            = 0x00;
 
         PassFail = write_MIS2DH_Register_byCM3_I2C(Register);
@@ -306,7 +306,7 @@ bool reset_MIS2DH(void)
 
     if (PassFail)
     {
-        Register.addrSubRegister = MIS2DH_TIME_WINDOW;
+        Register.addrSubRegister = TDC_DRV_MIS2DH_TIME_WINDOW;
         Register.data            = 0x00;
 
         PassFail = write_MIS2DH_Register_byCM3_I2C(Register);
@@ -314,7 +314,7 @@ bool reset_MIS2DH(void)
 
     if (PassFail)
     {
-        Register.addrSubRegister = MIS2DH_ACT_THS;
+        Register.addrSubRegister = TDC_DRV_MIS2DH_ACT_THS;
         Register.data            = 0x00;
 
         PassFail = write_MIS2DH_Register_byCM3_I2C(Register);
@@ -322,7 +322,7 @@ bool reset_MIS2DH(void)
 
     if (PassFail)
     {
-        Register.addrSubRegister = MIS2DH_ACT_DUR;
+        Register.addrSubRegister = TDC_DRV_MIS2DH_ACT_DUR;
         Register.data            = 0x00;
 
         PassFail = write_MIS2DH_Register_byCM3_I2C(Register);
@@ -331,17 +331,17 @@ bool reset_MIS2DH(void)
     return PassFail;
 }
 
-bool configure_MIS2DH_asClickMode(int numActivation)
+bool tdc_drv_mis2dh_configure_click_mode(int numActivation)
 {
     //
     bool                  PassFail = true;
-    ST__MIS2DH_Register_t Register;
+    tdc_drv_mis2dh_register_t Register;
 
-    reset_MIS2DH();
+    tdc_drv_mis2dh_reset();
 
     if (PassFail)
     {
-        Register.addrSubRegister = MIS2DH_CTRL_REG1;
+        Register.addrSubRegister = TDC_DRV_MIS2DH_CTRL_REG1;
         Register.data            = 0x7C; // 400 Hz, Low-power mode, X/Y/Z enable;
 
         PassFail = write_MIS2DH_Register_byCM3_I2C(Register);
@@ -349,42 +349,42 @@ bool configure_MIS2DH_asClickMode(int numActivation)
 
     if (PassFail)
     {
-        Register.addrSubRegister = MIS2DH_CTRL_REG2;
+        Register.addrSubRegister = TDC_DRV_MIS2DH_CTRL_REG2;
         Register.data            = 0x94; // HPF: Normal mode, HPF Cutoff: 0b01, FDS enable, HPF Click: enable
         PassFail                 = write_MIS2DH_Register_byCM3_I2C(Register);
     }
 
     if (PassFail)
     {
-        Register.addrSubRegister = MIS2DH_CTRL_REG3; // 인터럽트 PAD 1설정
+        Register.addrSubRegister = TDC_DRV_MIS2DH_CTRL_REG3; // 인터럽트 PAD 1설정
         Register.data            = 0x80;             // 0x80: 클릭인터럽트만 설정
         PassFail                 = write_MIS2DH_Register_byCM3_I2C(Register);
     }
 
     if (PassFail)
     {
-        Register.addrSubRegister = MIS2DH_CTRL_REG6; // 인터럽트 PAD 2설정
+        Register.addrSubRegister = TDC_DRV_MIS2DH_CTRL_REG6; // 인터럽트 PAD 2설정
         Register.data            = 0x80;             // 0x80: 클릭인터럽트만 설정
         PassFail                 = write_MIS2DH_Register_byCM3_I2C(Register);
     }
 
     if (PassFail) //
     {
-        Register.addrSubRegister = MIS2DH_CTRL_REG4;
+        Register.addrSubRegister = TDC_DRV_MIS2DH_CTRL_REG4;
         Register.data            = 0x10; // 16g : b11  8g : b10
         PassFail                 = write_MIS2DH_Register_byCM3_I2C(Register);
     }
 
     if (PassFail)
     {
-        Register.addrSubRegister = MIS2DH_INT1_DURATION;
+        Register.addrSubRegister = TDC_DRV_MIS2DH_INT1_DURATION;
         Register.data            = 0x7f; //
         PassFail                 = write_MIS2DH_Register_byCM3_I2C(Register);
     }
 
     if (PassFail)
     {
-        Register.addrSubRegister = MIS2DH_CLICK_CFG; // 클릭
+        Register.addrSubRegister = TDC_DRV_MIS2DH_CLICK_CFG; // 클릭
         if (numActivation == 1)
         {
             Register.data = 0x10; // single click.( z축 싱글)
@@ -402,28 +402,28 @@ bool configure_MIS2DH_asClickMode(int numActivation)
     if (PassFail)
     {
 
-        Register.addrSubRegister = MIS2DH_CLICK_THS; // 클럭 문턱값
+        Register.addrSubRegister = TDC_DRV_MIS2DH_CLICK_THS; // 클럭 문턱값
         Register.data            = 0x1F;             // 0~127
         PassFail                 = write_MIS2DH_Register_byCM3_I2C(Register);
     }
 
     if (PassFail)
     {
-        Register.addrSubRegister = MIS2DH_TIME_LIMIT;
+        Register.addrSubRegister = TDC_DRV_MIS2DH_TIME_LIMIT;
         Register.data            = 0x02; //
         PassFail                 = write_MIS2DH_Register_byCM3_I2C(Register);
     }
 
     if (PassFail)
     {
-        Register.addrSubRegister = MIS2DH_TIME_LATENCY;
+        Register.addrSubRegister = TDC_DRV_MIS2DH_TIME_LATENCY;
         Register.data            = 0x28; //
         PassFail                 = write_MIS2DH_Register_byCM3_I2C(Register);
     }
 
     if (PassFail)
     {
-        Register.addrSubRegister = MIS2DH_TIME_WINDOW;
+        Register.addrSubRegister = TDC_DRV_MIS2DH_TIME_WINDOW;
         Register.data            = 0x78; //
         PassFail                 = write_MIS2DH_Register_byCM3_I2C(Register);
     }
@@ -431,13 +431,13 @@ bool configure_MIS2DH_asClickMode(int numActivation)
     return PassFail;
 }
 
-bool configure_MIS2DH_asXyzStream(void)
+bool tdc_drv_mis2dh_configure_xyz_stream(void)
 {
 
     bool                  PassFail = false;
-    ST__MIS2DH_Register_t Register;
+    tdc_drv_mis2dh_register_t Register;
 
-    Register.addrSubRegister = MIS2DH_CTRL_REG1;
+    Register.addrSubRegister = TDC_DRV_MIS2DH_CTRL_REG1;
     Register.data            = 0x5f; // 100 Hz, Low-power mode, X/Y/Z enable;
 
     PassFail = write_MIS2DH_Register_byCM3_I2C(Register);
@@ -445,7 +445,7 @@ bool configure_MIS2DH_asXyzStream(void)
 #if 0
         // 하이패스필터를 거친 출력은 중력가속도 값이 없어진다.
         if (PassFail) {
-            Register.addrSubRegister = MIS2DH_CTRL_REG2;
+            Register.addrSubRegister = TDC_DRV_MIS2DH_CTRL_REG2;
             Register.data = 0x08; // filtered Data to output Register , cut-off = 0.02*samplingFreq
             PassFail = write_MIS2DH_Register_byCM3_I2C(Register);
         }
@@ -453,7 +453,7 @@ bool configure_MIS2DH_asXyzStream(void)
 
     if (PassFail)
     {
-        Register.addrSubRegister = MIS2DH_CTRL_REG4;
+        Register.addrSubRegister = TDC_DRV_MIS2DH_CTRL_REG4;
         Register.data            = 0x20; // 2g :0x00, 4g :0x10, 8g :0x20, 16g :0x30
         PassFail                 = write_MIS2DH_Register_byCM3_I2C(Register);
     }
@@ -461,20 +461,20 @@ bool configure_MIS2DH_asXyzStream(void)
     return PassFail;
 }
 
-static ST__MIS2DH_Stream_XYZ_t accelerationValue;
+static tdc_drv_mis2dh_stream_xyz_t accelerationValue;
 
-bool updatae_XYZ_Accelation(void)
+bool tdc_drv_mis2dh_update_xyz_acceleration(void)
 {
     bool PassFail = false;
     int  tempValue;
 
-    ST__MIS2DH_Register_t Register_xH;
-    ST__MIS2DH_Register_t Register_yH;
-    ST__MIS2DH_Register_t Register_zH;
+    tdc_drv_mis2dh_register_t Register_xH;
+    tdc_drv_mis2dh_register_t Register_yH;
+    tdc_drv_mis2dh_register_t Register_zH;
 
-    Register_xH.addrSubRegister = MIS2DH_OUT_X_H;
-    Register_yH.addrSubRegister = MIS2DH_OUT_Y_H;
-    Register_zH.addrSubRegister = MIS2DH_OUT_Z_H;
+    Register_xH.addrSubRegister = TDC_DRV_MIS2DH_OUT_X_H;
+    Register_yH.addrSubRegister = TDC_DRV_MIS2DH_OUT_Y_H;
+    Register_zH.addrSubRegister = TDC_DRV_MIS2DH_OUT_Z_H;
 
     PassFail = read_MIS2DH_Register_byCM3_I2C(&Register_xH);
     if (PassFail)
@@ -501,8 +501,8 @@ bool updatae_XYZ_Accelation(void)
 #if 1 // 에러가 발생했을 때 다시 센서를 초기화 한다?
     else
     {
-        init_I2c();
-        configure_MIS2DH_asXyzStream();
+        tdc_hal_i2c_init();
+        tdc_drv_mis2dh_configure_xyz_stream();
     }
 #endif
 
@@ -520,7 +520,7 @@ char tripleClick[]="Triple Click\r\n";
 
 #ifdef UART_isDedicated_CM3_DATA
 
-void transfer_AccelerationVlaue(bool resultTrue)
+void tdc_drv_mis2dh_transfer_acceleration_value(bool resultTrue)
 {
 
     int i;

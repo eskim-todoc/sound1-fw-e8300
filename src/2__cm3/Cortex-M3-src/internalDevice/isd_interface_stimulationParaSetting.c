@@ -7,7 +7,7 @@
 #include <isd_interface_FPGA.h>
 #include <internalStimulationChip.h>
 #include <isd_interface.h>
-#include <driver_i2c_for_ISD.h>
+#include <tdc_hal_i2c_isd.h>
 #include <definitionsForAlgorithm.h>
 #include <isd_interface_init_FPGA.h>
 #include <isd_interface.h>
@@ -797,14 +797,14 @@ bool settingStimulPara_biPolarMode(bool isdControlStateChagedFlag)
                 backtelBuff[i] = 0;
             }
 
-            // nop=(cfx_i2c_read(df_I2C_ADDR_FPGA_FIFO_counter, &r_FPGA_registerValue, 1));
+            // nop=(tdc_hal_i2c_cfx_read(df_I2C_ADDR_FPGA_FIFO_counter, &r_FPGA_registerValue, 1));
             if (read_FPGA_FIFO_counter(&r_FPGA_registerValue))
             {
                 if (r_FPGA_registerValue != 0)
                 {
                     TDC_PRINTF_I("[PARA] BIPOLAR REF READ BACKTEL COUNT : %d \r\n", r_FPGA_registerValue);
 
-                    // if (cfx_i2c_read(df_I2C_ADDR_FPGA_BackTel, backtelBuff, df_MaxNumOfElectrode))
+                    // if (tdc_hal_i2c_cfx_read(df_I2C_ADDR_FPGA_BackTel, backtelBuff, df_MaxNumOfElectrode))
                     if (read_FPGA_backtel_FIFO(backtelBuff, r_FPGA_registerValue))
                     {
                         for (i = 0; i < df_MaxNumOfElectrode - 1; i++)

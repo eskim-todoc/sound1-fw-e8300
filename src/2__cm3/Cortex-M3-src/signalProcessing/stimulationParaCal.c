@@ -5,7 +5,7 @@
 #include "board.h"
 #include "internalStimulationChip.h"
 #include "isd_interface.h"
-#include "driver_cfx_i2c.h"
+#include "tdc_hal_i2c_cfx.h"
 #include "definitionsForAlgorithm.h"
 
 #include "isd_interface_init_FPGA.h"
