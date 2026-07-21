@@ -7,10 +7,10 @@
 #include "isd_interface.h"
 
 #include <tdc_printf.h>
-#include <ci_event_log.h>
+#include <tdc_fs_event_log.h>
 #include <tdc_hal_timer.h>
 
-#include <ci_stim_mute.h>
+#include <tdc_fs_stim_mute.h>
 
 #include <tdc_touch.h>
 

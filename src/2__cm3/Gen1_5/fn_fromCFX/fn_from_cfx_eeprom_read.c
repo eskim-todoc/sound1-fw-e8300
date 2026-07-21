@@ -2,7 +2,7 @@
  * @file EEPROM_read.c
  */
 
-#include <ci_filesystem.h>
+#include <tdc_fs.h>
 #include <fn_from_cfx_eeprom_read.h>
 
 void fn_read_All_isd_info(void)
@@ -10,21 +10,21 @@ void fn_read_All_isd_info(void)
     for (int i = 0; i < MaxNumUser; i++)
     {
         // #1. File-system에서 ISD 전체 정보를 해당 ISD 공유 메모리에 로드한다.
-        ci_map_read_isd_info(i + 1);
+        tdc_fs_map_read_isd_info(i + 1);
 
         // #2. 공유 메모리로 로드한 전체 ISD 정보 중에 info 항목만 CFX와의 공유 메모리로 복사한다.
-        cfx_cm3_sharedMemoryAll.cfx_ISD_info[i] = g_ci_filesystem_ptr_entire_map->map[i].isd_info;
+        cfx_cm3_sharedMemoryAll.cfx_ISD_info[i] = g_tdc_fs_ptr_entire_map->map[i].isd_info;
     }
 }
 
 void fn_copy_MapInfo_toCM3(int isd_num)
 {
-    CI_FILESYSTEM_MAP_T *p_isd;
+    TDC_FS_MAP_T *p_isd;
     int                 *p_map_date;
     int                  map_cnt;
     int                  sum;
 
-    p_isd = &(g_ci_filesystem_ptr_entire_map->map[isd_num - 1]);
+    p_isd = &(g_tdc_fs_ptr_entire_map->map[isd_num - 1]);
 
     // 맵 스탬프 정보(6-워드)를 공유 메모리로 복사
     cfx_cm3_sharedMemoryAll.connected_ISD_Map_info.mapStamp = p_isd->map_stamp;
@@ -67,21 +67,21 @@ void fn_copy_MapInfo_toCM3(int isd_num)
 
 void fn_copy_userSettingParameters_toCM3(int isd_num)
 {
-    cfx_cm3_sharedMemoryAll.userSettingValue = g_ci_filesystem_ptr_entire_map->map[isd_num - 1].user_setting_value;
+    cfx_cm3_sharedMemoryAll.userSettingValue = g_tdc_fs_ptr_entire_map->map[isd_num - 1].user_setting_value;
 }
 
 void fn_copy_MappingData_toCM3(int map_num, int isd_num)
 {
-    cfx_cm3_sharedMemoryAll.currentMapData = g_ci_filesystem_ptr_entire_map->map[isd_num - 1].map_data[map_num - 1];
+    cfx_cm3_sharedMemoryAll.currentMapData = g_tdc_fs_ptr_entire_map->map[isd_num - 1].map_data[map_num - 1];
 }
 
 void fn_copy_isd_info_to_Repository(void)
 {
-    CI_FILESYSTEM_MAP_T               *p_isd;
+    TDC_FS_MAP_T               *p_isd;
     ST__CFX_CM3_SharedMemory_ISD_info *p_src;
     ST__CFX_CM3_SharedMemory_ISD_info *p_dst;
 
-    p_isd = &(g_ci_filesystem_ptr_entire_map->map[cfx_cm3_sharedMemoryAll.ReadWriteCommand_ForFlash.isd_index - 1]);
+    p_isd = &(g_tdc_fs_ptr_entire_map->map[cfx_cm3_sharedMemoryAll.ReadWriteCommand_ForFlash.isd_index - 1]);
     p_src = &p_isd->isd_info;
     p_dst = &cfx_cm3_sharedMemoryAll.repositoryForReadWriteMapData.ISD_info_mapData;
 
@@ -96,7 +96,7 @@ void fn_copy_MappingData_to_Repository(void)
     isd_num = cfx_cm3_sharedMemoryAll.ReadWriteCommand_ForFlash.isd_index;
     map_num = cfx_cm3_sharedMemoryAll.ReadWriteCommand_ForFlash.map_index;
 
-    p_src = &(g_ci_filesystem_ptr_entire_map->map[isd_num - 1].map_data[map_num - 1]);
+    p_src = &(g_tdc_fs_ptr_entire_map->map[isd_num - 1].map_data[map_num - 1]);
     p_dst = &(cfx_cm3_sharedMemoryAll.repositoryForReadWriteMapData.readWritemapData);
 
     *p_dst = *p_src;
@@ -106,7 +106,7 @@ void fn_copy_userSettingParameters_to_Repository(void)
 {
     ST__CFX_CM3_SharedMemory_userSettingValue *p_src, *p_dst;
 
-    p_src = &(g_ci_filesystem_ptr_entire_map->map[cfx_cm3_sharedMemoryAll.ReadWriteCommand_ForFlash.isd_index - 1].user_setting_value);
+    p_src = &(g_tdc_fs_ptr_entire_map->map[cfx_cm3_sharedMemoryAll.ReadWriteCommand_ForFlash.isd_index - 1].user_setting_value);
     p_dst = &cfx_cm3_sharedMemoryAll.repositoryForReadWriteMapData.userSettingValue_mapData;
 
     *p_dst = *p_src;
@@ -116,7 +116,7 @@ void fn_copy_mapStamp_to_Repository(void)
 {
     ST__MAPPING_DATE *p_src, *p_dst;
 
-    p_src = &(g_ci_filesystem_ptr_entire_map->map[cfx_cm3_sharedMemoryAll.ReadWriteCommand_ForFlash.isd_index - 1].map_stamp);
+    p_src = &(g_tdc_fs_ptr_entire_map->map[cfx_cm3_sharedMemoryAll.ReadWriteCommand_ForFlash.isd_index - 1].map_stamp);
     p_dst = &cfx_cm3_sharedMemoryAll.repositoryForReadWriteMapData.mapStamp;
 
     *p_dst = *p_src;

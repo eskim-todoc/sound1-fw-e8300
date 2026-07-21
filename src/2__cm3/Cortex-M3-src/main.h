@@ -17,10 +17,10 @@
 #include <batteryNPowerControl.h>
 #include <ble_communication.h>
 #include <cfx_cm3_sharedMemory.h>
-#include <ci_filesystem.h>
-#include <ci_map.h>
-#include <ci_fft.h>
-#include <ci_event_log.h>
+#include <tdc_fs.h>
+#include <tdc_fs_map.h>
+#include <tdc_fs_fft.h>
+#include <tdc_fs_event_log.h>
 #include <isd_interface.h>
 #include <LedOutput.h>  //ok
 #include <fn_from_cfx_eeprom_erase.h>

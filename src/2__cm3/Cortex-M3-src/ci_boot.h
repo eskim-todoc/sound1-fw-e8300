@@ -18,7 +18,7 @@
 #include <sdk_ci_boot.h>
 #include <tdc_printf.h>
 
-#include <ci_filesystem.h>
+#include <tdc_fs.h>
 #include <tdc_util.h>
 
 typedef enum

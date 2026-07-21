@@ -252,6 +252,14 @@ typedef struct
     // 내용: PCM의 SpecificCommand 읽기를 어디까지 했는지 표시하는 플래그와 인덱스
     int is_pcm_specific_command_reading;
     int pcm_specific_command_read_index;
+
+    /* 일시: 2026-07-20
+     * 작성: 김은수
+     * 내용: Gain Conversion Table 적용. 앱 0x8C 로 설정되는 게인 인덱스와 I2S 소스 종류.
+     *       CFX 의 shared_memory.h 와 필드 순서가 반드시 일치해야 한다. */
+    int gain_table_index_a;    // 0~255, 마이크 경로 게인 (128 = 0 dB)
+    int gain_table_index_b;    // 0~255, I2S 크래들 마이크 경로 게인 (128 = 0 dB)
+    int is_i2s_source_cradle;  // 1 = Mic (Case), 0 = Streaming 또는 미연결
 } ST__CFX_CM3_SharedMemory_ALL;
 
 /* CM3 생존 신호 게시 (구 update_CM3Status_toCFX).

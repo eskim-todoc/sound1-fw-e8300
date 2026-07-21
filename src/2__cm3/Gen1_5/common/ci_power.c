@@ -44,24 +44,24 @@ int ci_power_normal(void)
 
     memset(s_manu_table, 0, MANU_TABLE_SIZE_OCTETS);  // 버퍼 초기화
 
-    fr = f_open(&g_ci_filesystem_ohdl, CI_MANUF_TABLE_FILE, (FA_OPEN_EXISTING | FA_READ));
+    fr = f_open(&g_tdc_fs_ohdl, CI_MANUF_TABLE_FILE, (FA_OPEN_EXISTING | FA_READ));
     if (fr != FR_OK)
     {
         TDC_PRINTF_E("[POWER] FAIL : OPEN '%s' (FR : %d) \r\n", CI_MANUF_TABLE_FILE, fr);
         return df_False;
     }
 
-    f_lseek(&g_ci_filesystem_ohdl, 0);
+    f_lseek(&g_tdc_fs_ohdl, 0);
 
     // Manufacturing Information (Manufacturing area)의 크기는 256 바이트
-    fr = f_read(&g_ci_filesystem_ohdl, s_manu_table, MANU_TABLE_SIZE_OCTETS, &br);
+    fr = f_read(&g_tdc_fs_ohdl, s_manu_table, MANU_TABLE_SIZE_OCTETS, &br);
     if (fr != FR_OK)
     {
         TDC_PRINTF_E("[POWER] FAIL : READ '%s' (FR : %d) \r\n", CI_MANUF_TABLE_FILE, fr);
         return df_False;
     }
 
-    fr = f_close(&g_ci_filesystem_ohdl);
+    fr = f_close(&g_tdc_fs_ohdl);
     if (fr != FR_OK)
     {
         TDC_PRINTF_E("[POWER] FAIL : CLESE '%s' (FR : %d) \r\n", CI_MANUF_TABLE_FILE, fr);

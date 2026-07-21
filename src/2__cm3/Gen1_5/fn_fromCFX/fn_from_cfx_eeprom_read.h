@@ -16,7 +16,7 @@
 
 #include <cfx_cm3_sharedMemory.h>
 
-#include <ci_map.h>
+#include <tdc_fs_map.h>
 
 void fn_read_All_isd_info(void);
 void fn_copy_MapInfo_toCM3(int isd_num);

@@ -4,6 +4,7 @@
 
 #include "remoteControl.h"
 #include "tdc_remote_general_debug.h"
+#include "tdc_remote_gain_control.h"
 #include "remoteControl_read_SP_para.h"
 #include "driver_SPI.h"
 #include "definitionsForAlgorithm.h"
@@ -748,7 +749,7 @@ ST__REMOTECONTROL_STATE remoteControl(bool isdConnection)  // 연결 상태에 �
         {
 #if 1  // 로그 기능
             tdc_hal_timer_time_t        time;
-            CI_EVENT_LOG_BT_ADDR_T bt_addr;
+            TDC_FS_EVENT_LOG_BT_ADDR_T bt_addr;
 
             // 참조 시간 정보
             time.year  = remoteDataPacket.data[4];
@@ -768,10 +769,10 @@ ST__REMOTECONTROL_STATE remoteControl(bool isdConnection)  // 연결 상태에 �
             bt_addr.bt_addr[4] = remoteDataPacket.data[14];
             bt_addr.bt_addr[5] = remoteDataPacket.data[15];
 
-            ci_event_log_update_bt_addr(&bt_addr);
+            tdc_fs_event_log_update_bt_addr(&bt_addr);
 
             // 로그 쓰기 : 블루투스 연결
-            ci_event_log_write(CI_EVENT_LOG_TYPE_CONNECTED);
+            tdc_fs_event_log_write(TDC_FS_EVENT_LOG_TYPE_CONNECTED);
 #endif
             bufferForSPI_tx[tx_index++] = 1;
 
@@ -1354,6 +1355,20 @@ ST__REMOTECONTROL_STATE remoteControl(bool isdConnection)  // 연결 상태에 �
 
 #if 1
                 /**
+                 * 26.07.20 Gain Conversion Table 인덱스 설정 프로토콜 (0x8C)
+                 * by 김은수 */
+                case EN__SND_BT_CMD_GAIN_CONTROL:
+                {
+                    tx_index = tdc_remote_gain_control_handle(&remoteDataPacket, bufferForSPI_tx, tx_index);
+
+                    writeDataToSpiTxBuff(bufferForSPI_tx, tx_index);  // 송신 데이터 SPI TX버퍼에 복사
+                    clearRemoteColtrolCommand();                      // 명령 종료
+                }
+                break;
+#endif
+
+#if 1
+                /**
                  * 26.01.19 CFX의 묵음 처리 기능 활성화/비활성화를 위해 추가한 기능.
                  * 무선 프로토콜 문서 v4.0.2의 시스템 동작 모드 패킷 (0x59)에 대한 처리 구문.
                  * by 김은수 */
@@ -1392,7 +1407,7 @@ ST__REMOTECONTROL_STATE remoteControl(bool isdConnection)  // 연결 상태에 �
                                             TDC_PRINTF_D("[MUTE] RECEVIED : WRITE NORMAL + ENABLE MUTE + T LEVEL OFFSET %d \r\n", remoteDataPacket.data[3]);
 
                                             // 설정 가능 범위 초과 시 에러
-                                            if ((remoteDataPacket.data[3] < CI_STIM_MUTE_T_LEVEL_OFFSET_MIN) || (CI_STIM_MUTE_T_LEVEL_OFFSET_MAX < remoteDataPacket.data[3]))
+                                            if ((remoteDataPacket.data[3] < TDC_FS_STIM_MUTE_T_LEVEL_OFFSET_MIN) || (TDC_FS_STIM_MUTE_T_LEVEL_OFFSET_MAX < remoteDataPacket.data[3]))
                                             {
                                                 TDC_PRINTF_E("[MUTE] RECEVIED : WRITE NORMAL + ENABLE MUTE, BUT INVALID T OFFSET LEVEL \r\n");
 
@@ -1402,7 +1417,7 @@ ST__REMOTECONTROL_STATE remoteControl(bool isdConnection)  // 연결 상태에 �
                                             else  // 유효한 설정 값인 경우
                                             {
                                                 // 묵음 처리 파일 및 공유 메모리 값 업데이트
-                                                if (ci_stim_mute_update(CI_STIM_MUTE_UNDER_T_LEVEL_ENABLE, (uint32_t) remoteDataPacket.data[3]) != CI_STIM_MUTE_RET_TRUE)
+                                                if (tdc_fs_stim_mute_update(TDC_FS_STIM_MUTE_UNDER_T_LEVEL_ENABLE, (uint32_t) remoteDataPacket.data[3]) != TDC_FS_STIM_MUTE_RET_TRUE)
                                                 {
                                                     TDC_PRINTF_E("[MUTE] RECEVIED : WRITE NORMAL + ENABLE MUTE, BUT FAILED TO UPDATE FILE \r\n");
 
@@ -1436,7 +1451,7 @@ ST__REMOTECONTROL_STATE remoteControl(bool isdConnection)  // 연결 상태에 �
                                             TDC_PRINTF_D("[MUTE] RECEVIED : WRITE NORMAL + DISABLE MUTE \r\n");
 
                                             // 묵음 처리 파일 및 공유 메모리 값 업데이트
-                                            if (ci_stim_mute_update(CI_STIM_MUTE_UNDER_T_LEVEL_DISABLE, cfx_cm3_sharedMemoryAll.mute_stimulation_t_level_offset) != CI_STIM_MUTE_RET_TRUE)
+                                            if (tdc_fs_stim_mute_update(TDC_FS_STIM_MUTE_UNDER_T_LEVEL_DISABLE, cfx_cm3_sharedMemoryAll.mute_stimulation_t_level_offset) != TDC_FS_STIM_MUTE_RET_TRUE)
                                             {
                                                 TDC_PRINTF_E("[MUTE] RECEVIED : WRITE NORMAL + DISABLE MUTE, BUT FAILED TO UPDATE FILE \r\n");
 

@@ -45,7 +45,7 @@ void ci_battery_init(void)
     // LSAD->CFG = (LSAD_INT_CH_NUM | LSAD_INT_ENABLE | LSAD_PRESCALE_3200);
     LSAD->CFG = (LSAD_INT_CH1 | LSAD_INT_ENABLE | LSAD_PRESCALE_3200);
 
-    if (ci_filesystem_read("/BATT_CAL", rbuf, 4) < 0)
+    if (tdc_fs_read("/BATT_CAL", rbuf, 4) < 0)
     {
         tdc_util_indicate_critical_error();
     }

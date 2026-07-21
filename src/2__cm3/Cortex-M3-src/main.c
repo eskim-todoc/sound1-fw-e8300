@@ -812,7 +812,7 @@ static void tdc_print_default_isd_info(void)
 {
     /* 6개 필드가 모두 같은 isd_info 를 가리키므로 베이스 포인터 하나로 통일.
      * 순회 길이는 배열 정의(cfx_cm3_sharedMemory.h)에서 파생 - 크기 변경 시 자동 추종. */
-    ST__CFX_CM3_SharedMemory_ISD_info *p_isd_info = &g_ci_filesystem_ptr_entire_map->map[0].isd_info;
+    ST__CFX_CM3_SharedMemory_ISD_info *p_isd_info = &g_tdc_fs_ptr_entire_map->map[0].isd_info;
 
     TDC_PRINTF_W("[INFO] BOOT ISD 1 INFO \r\n");
     TDC_PRINTF_W("[INFO] NAME : ");

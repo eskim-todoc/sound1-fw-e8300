@@ -245,13 +245,13 @@ EN__BOOT_RET ci_boot_get_status(snd_boot_status_t *p_status)
         return BOOT_RET_FAIL;
     }
 
-    tdc_util_assert(snd_fatfs_remount(SND_FATFS_LDRV_NUM_BOOT));
+    tdc_util_assert(tdc_fs_fatfs_remount(SND_FATFS_LDRV_NUM_BOOT));
 
     _open_status_file();
     _load_status();
     _close_status_file();
 
-    tdc_util_assert(snd_fatfs_remount(SND_FATFS_LDRV_NUM_USER_DATA));
+    tdc_util_assert(tdc_fs_fatfs_remount(SND_FATFS_LDRV_NUM_USER_DATA));
 
     *p_status = _g_status;
 
@@ -268,13 +268,13 @@ EN__BOOT_RET ci_boot_update_status(snd_boot_status_t *p_status)
 
     _g_status = *p_status;
 
-    tdc_util_assert(snd_fatfs_remount(SND_FATFS_LDRV_NUM_BOOT));
+    tdc_util_assert(tdc_fs_fatfs_remount(SND_FATFS_LDRV_NUM_BOOT));
 
     _open_status_file();
     _store_status();
     _close_status_file();
 
-    tdc_util_assert(snd_fatfs_remount(SND_FATFS_LDRV_NUM_USER_DATA));
+    tdc_util_assert(tdc_fs_fatfs_remount(SND_FATFS_LDRV_NUM_USER_DATA));
 
     return BOOT_RET_TRUE;
 }

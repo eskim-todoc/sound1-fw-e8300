@@ -1,12 +1,12 @@
 /**
- * @file ci_fft.c
+ * @file tdc_fs_fft.c
  */
 
-#include <ci_fft.h>
+#include <tdc_fs_fft.h>
 
-int ci_fft_read_pass_bin(int num_of_freq_band)
+int tdc_fs_fft_read_pass_bin(int num_of_freq_band)
 {
-    char name[CI_FFT_FILE_NAME_LEN_PASS_BIN] = CI_FFT_FILE_INIT_NAME_PASS_BIN;
+    char name[TDC_FS_FFT_FILE_NAME_LEN_PASS_BIN] = TDC_FS_FFT_FILE_INIT_NAME_PASS_BIN;
     char read_buf[Half_FFT_Size];
 
     if ((num_of_freq_band < 1) || (32 < num_of_freq_band))
@@ -17,31 +17,31 @@ int ci_fft_read_pass_bin(int num_of_freq_band)
     // 파일 이름 구성
     if (10 <= num_of_freq_band)
     {
-        name[CI_FFT_FILE_INDEX_PASS_BIN_NUM_FIRST]  = (char) ('0' + (num_of_freq_band / 10));
-        name[CI_FFT_FILE_INDEX_PASS_BIN_NUM_SECOND] = (char) ('0' + (num_of_freq_band % 10));
+        name[TDC_FS_FFT_FILE_INDEX_PASS_BIN_NUM_FIRST]  = (char) ('0' + (num_of_freq_band / 10));
+        name[TDC_FS_FFT_FILE_INDEX_PASS_BIN_NUM_SECOND] = (char) ('0' + (num_of_freq_band % 10));
     }
     else
     {
-        name[CI_FFT_FILE_INDEX_PASS_BIN_NUM_FIRST]  = (char) '0';
-        name[CI_FFT_FILE_INDEX_PASS_BIN_NUM_SECOND] = (char) ('0' + (num_of_freq_band % 10));
+        name[TDC_FS_FFT_FILE_INDEX_PASS_BIN_NUM_FIRST]  = (char) '0';
+        name[TDC_FS_FFT_FILE_INDEX_PASS_BIN_NUM_SECOND] = (char) ('0' + (num_of_freq_band % 10));
     }
 
-    if (ci_filesystem_read(name, (uint8_t *) read_buf, Half_FFT_Size) < 0)
+    if (tdc_fs_read(name, (uint8_t *) read_buf, Half_FFT_Size) < 0)
     {
         return -1;
     }
 
     for (int i = 0; i < Half_FFT_Size; i++)
     {
-        g_ci_filesystem_ptr_pass_bin->fft_pass_bin[i] = read_buf[i];
+        g_tdc_fs_ptr_pass_bin->fft_pass_bin[i] = read_buf[i];
     }
 
-    g_ci_filesystem_ptr_pass_bin->num_of_freq_band = num_of_freq_band;
+    g_tdc_fs_ptr_pass_bin->num_of_freq_band = num_of_freq_band;
 
     TDC_PRINTF_V("[FFT] SUCCESS TO READ FFT PASS BIN (FILE: '%s') \r\n", name);
 
 #if 0
-    TDC_PRINTF("\r\nCurrently loaded number of frequency band = %d..... ", g_ci_filesystem_ptr_pass_bin->num_of_freq_band);
+    TDC_PRINTF("\r\nCurrently loaded number of frequency band = %d..... ", g_tdc_fs_ptr_pass_bin->num_of_freq_band);
 
     for (int i = 0; i < Half_FFT_Size; i++)
     {
@@ -50,7 +50,7 @@ int ci_fft_read_pass_bin(int num_of_freq_band)
             TDC_PRINTF("\r\n");
         }
 
-        TDC_PRINTF("%3d  ", g_ci_filesystem_ptr_pass_bin->fft_pass_bin[i]);
+        TDC_PRINTF("%3d  ", g_tdc_fs_ptr_pass_bin->fft_pass_bin[i]);
     }
     TDC_PRINTF("\r\n\n");
 #endif
@@ -58,10 +58,10 @@ int ci_fft_read_pass_bin(int num_of_freq_band)
     return 0;
 }
 
-int ci_fft_init_pass_bin(int num_of_freq_band)
+int tdc_fs_fft_init_pass_bin(int num_of_freq_band)
 {
     int  ret;
-    char name[CI_FFT_FILE_NAME_LEN_PASS_BIN] = CI_FFT_FILE_INIT_NAME_PASS_BIN;
+    char name[TDC_FS_FFT_FILE_NAME_LEN_PASS_BIN] = TDC_FS_FFT_FILE_INIT_NAME_PASS_BIN;
 
     if ((num_of_freq_band < 1) || (32 < num_of_freq_band))
     {
@@ -71,112 +71,112 @@ int ci_fft_init_pass_bin(int num_of_freq_band)
     // 파일 이름 구성
     if (10 <= num_of_freq_band)
     {
-        name[CI_FFT_FILE_INDEX_PASS_BIN_NUM_FIRST]  = (char) ('0' + (num_of_freq_band / 10));
-        name[CI_FFT_FILE_INDEX_PASS_BIN_NUM_SECOND] = (char) ('0' + (num_of_freq_band % 10));
+        name[TDC_FS_FFT_FILE_INDEX_PASS_BIN_NUM_FIRST]  = (char) ('0' + (num_of_freq_band / 10));
+        name[TDC_FS_FFT_FILE_INDEX_PASS_BIN_NUM_SECOND] = (char) ('0' + (num_of_freq_band % 10));
     }
     else
     {
-        name[CI_FFT_FILE_INDEX_PASS_BIN_NUM_FIRST]  = (char) '0';
-        name[CI_FFT_FILE_INDEX_PASS_BIN_NUM_SECOND] = (char) ('0' + (num_of_freq_band % 10));
+        name[TDC_FS_FFT_FILE_INDEX_PASS_BIN_NUM_FIRST]  = (char) '0';
+        name[TDC_FS_FFT_FILE_INDEX_PASS_BIN_NUM_SECOND] = (char) ('0' + (num_of_freq_band % 10));
     }
 
     switch (num_of_freq_band)
     {
         case 1:
-            ret = ci_fft_init_pass_bin_ch_1(name);
+            ret = tdc_fs_fft_init_pass_bin_ch_1(name);
             break;
         case 2:
-            ret = ci_fft_init_pass_bin_ch_2(name);
+            ret = tdc_fs_fft_init_pass_bin_ch_2(name);
             break;
         case 3:
-            ret = ci_fft_init_pass_bin_ch_3(name);
+            ret = tdc_fs_fft_init_pass_bin_ch_3(name);
             break;
         case 4:
-            ret = ci_fft_init_pass_bin_ch_4(name);
+            ret = tdc_fs_fft_init_pass_bin_ch_4(name);
             break;
         case 5:
-            ret = ci_fft_init_pass_bin_ch_5(name);
+            ret = tdc_fs_fft_init_pass_bin_ch_5(name);
             break;
         case 6:
-            ret = ci_fft_init_pass_bin_ch_6(name);
+            ret = tdc_fs_fft_init_pass_bin_ch_6(name);
             break;
         case 7:
-            ret = ci_fft_init_pass_bin_ch_7(name);
+            ret = tdc_fs_fft_init_pass_bin_ch_7(name);
             break;
         case 8:
-            ret = ci_fft_init_pass_bin_ch_8(name);
+            ret = tdc_fs_fft_init_pass_bin_ch_8(name);
             break;
         case 9:
-            ret = ci_fft_init_pass_bin_ch_9(name);
+            ret = tdc_fs_fft_init_pass_bin_ch_9(name);
             break;
         case 10:
-            ret = ci_fft_init_pass_bin_ch_10(name);
+            ret = tdc_fs_fft_init_pass_bin_ch_10(name);
             break;
         case 11:
-            ret = ci_fft_init_pass_bin_ch_11(name);
+            ret = tdc_fs_fft_init_pass_bin_ch_11(name);
             break;
         case 12:
-            ret = ci_fft_init_pass_bin_ch_12(name);
+            ret = tdc_fs_fft_init_pass_bin_ch_12(name);
             break;
         case 13:
-            ret = ci_fft_init_pass_bin_ch_13(name);
+            ret = tdc_fs_fft_init_pass_bin_ch_13(name);
             break;
         case 14:
-            ret = ci_fft_init_pass_bin_ch_14(name);
+            ret = tdc_fs_fft_init_pass_bin_ch_14(name);
             break;
         case 15:
-            ret = ci_fft_init_pass_bin_ch_15(name);
+            ret = tdc_fs_fft_init_pass_bin_ch_15(name);
             break;
         case 16:
-            ret = ci_fft_init_pass_bin_ch_16(name);
+            ret = tdc_fs_fft_init_pass_bin_ch_16(name);
             break;
         case 17:
-            ret = ci_fft_init_pass_bin_ch_17(name);
+            ret = tdc_fs_fft_init_pass_bin_ch_17(name);
             break;
         case 18:
-            ret = ci_fft_init_pass_bin_ch_18(name);
+            ret = tdc_fs_fft_init_pass_bin_ch_18(name);
             break;
         case 19:
-            ret = ci_fft_init_pass_bin_ch_19(name);
+            ret = tdc_fs_fft_init_pass_bin_ch_19(name);
             break;
         case 20:
-            ret = ci_fft_init_pass_bin_ch_20(name);
+            ret = tdc_fs_fft_init_pass_bin_ch_20(name);
             break;
         case 21:
-            ret = ci_fft_init_pass_bin_ch_21(name);
+            ret = tdc_fs_fft_init_pass_bin_ch_21(name);
             break;
         case 22:
-            ret = ci_fft_init_pass_bin_ch_22(name);
+            ret = tdc_fs_fft_init_pass_bin_ch_22(name);
             break;
         case 23:
-            ret = ci_fft_init_pass_bin_ch_23(name);
+            ret = tdc_fs_fft_init_pass_bin_ch_23(name);
             break;
         case 24:
-            ret = ci_fft_init_pass_bin_ch_24(name);
+            ret = tdc_fs_fft_init_pass_bin_ch_24(name);
             break;
         case 25:
-            ret = ci_fft_init_pass_bin_ch_25(name);
+            ret = tdc_fs_fft_init_pass_bin_ch_25(name);
             break;
         case 26:
-            ret = ci_fft_init_pass_bin_ch_26(name);
+            ret = tdc_fs_fft_init_pass_bin_ch_26(name);
             break;
         case 27:
-            ret = ci_fft_init_pass_bin_ch_27(name);
+            ret = tdc_fs_fft_init_pass_bin_ch_27(name);
             break;
         case 28:
-            ret = ci_fft_init_pass_bin_ch_28(name);
+            ret = tdc_fs_fft_init_pass_bin_ch_28(name);
             break;
         case 29:
-            ret = ci_fft_init_pass_bin_ch_29(name);
+            ret = tdc_fs_fft_init_pass_bin_ch_29(name);
             break;
         case 30:
-            ret = ci_fft_init_pass_bin_ch_30(name);
+            ret = tdc_fs_fft_init_pass_bin_ch_30(name);
             break;
         case 31:
-            ret = ci_fft_init_pass_bin_ch_31(name);
+            ret = tdc_fs_fft_init_pass_bin_ch_31(name);
             break;
         case 32:
-            ret = ci_fft_init_pass_bin_ch_32(name);
+            ret = tdc_fs_fft_init_pass_bin_ch_32(name);
             break;
         default:
             return -1;
@@ -186,13 +186,13 @@ int ci_fft_init_pass_bin(int num_of_freq_band)
     return ret;
 }
 
-int ci_fft_init_pass_bin_all(void)
+int tdc_fs_fft_init_pass_bin_all(void)
 {
     for (int i = 1; i <= 32; i++)
     {
-        if (ci_fft_read_pass_bin(i) < 0)
+        if (tdc_fs_fft_read_pass_bin(i) < 0)
         {
-            if (ci_fft_init_pass_bin(i) < 0)
+            if (tdc_fs_fft_init_pass_bin(i) < 0)
             {
                 TDC_PRINTF_E("[MAP] FAILED TO INIT FFT PASS BIN FOR '%d' TRANSFERABLE CH \r\n", i);
             }
@@ -207,359 +207,359 @@ int ci_fft_init_pass_bin_all(void)
 }
 
 // 사용가능 채널 수 : 1
-int ci_fft_init_pass_bin_ch_1(char *p_name)
+int tdc_fs_fft_init_pass_bin_ch_1(char *p_name)
 {
     char pass_bin[Half_FFT_Size] = {-1, -1, -1, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,  0,  0, 0, 0,
                                     0,  0,  0,  0,  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,  0,  0, 0, 0,
                                     0,  0,  0,  0,  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, -1, -1};
 
-    return ci_filesystem_write(p_name, (uint8_t *) pass_bin, Half_FFT_Size);
+    return tdc_fs_write(p_name, (uint8_t *) pass_bin, Half_FFT_Size);
 }
 
 // 사용가능 채널 수 : 2
-int ci_fft_init_pass_bin_ch_2(char *p_name)
+int tdc_fs_fft_init_pass_bin_ch_2(char *p_name)
 {
     char pass_bin[Half_FFT_Size] = {-1, -1, -1, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,  1,  1, 1, 1,
                                     1,  1,  1,  1,  1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,  1,  1, 1, 1,
                                     1,  1,  1,  1,  1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, -1, -1, -1};
 
-    return ci_filesystem_write(p_name, (uint8_t *) pass_bin, Half_FFT_Size);
+    return tdc_fs_write(p_name, (uint8_t *) pass_bin, Half_FFT_Size);
 }
 
 // 사용가능 채널 수 : 3
-int ci_fft_init_pass_bin_ch_3(char *p_name)
+int tdc_fs_fft_init_pass_bin_ch_3(char *p_name)
 {
     char pass_bin[Half_FFT_Size] = {-1, -1, -1, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2,  2,  2, 2, 2,
                                     2,  2,  2,  2,  2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,  2,  2, 2, 2,
                                     2,  2,  2,  2,  2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, -1, -1, -1};
 
-    return ci_filesystem_write(p_name, (uint8_t *) pass_bin, Half_FFT_Size);
+    return tdc_fs_write(p_name, (uint8_t *) pass_bin, Half_FFT_Size);
 }
 
 // 사용가능 채널 수 : 4
-int ci_fft_init_pass_bin_ch_4(char *p_name)
+int tdc_fs_fft_init_pass_bin_ch_4(char *p_name)
 {
     char pass_bin[Half_FFT_Size] = {-1, -1, -1, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,  2,  2, 2, 2,
                                     2,  2,  2,  2,  2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3,  3,  3, 3, 3,
                                     3,  3,  3,  3,  3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, -1, -1, -1};
 
-    return ci_filesystem_write(p_name, (uint8_t *) pass_bin, Half_FFT_Size);
+    return tdc_fs_write(p_name, (uint8_t *) pass_bin, Half_FFT_Size);
 }
 
 // 사용가능 채널 수 : 5
-int ci_fft_init_pass_bin_ch_5(char *p_name)
+int tdc_fs_fft_init_pass_bin_ch_5(char *p_name)
 {
     char pass_bin[Half_FFT_Size] = {-1, -1, -1, -1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3,  3,  3, 3, 3,
                                     3,  3,  3,  3,  3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4,  4,  4, 4, 4,
                                     4,  4,  4,  4,  4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, -1, -1, -1};
 
-    return ci_filesystem_write(p_name, (uint8_t *) pass_bin, Half_FFT_Size);
+    return tdc_fs_write(p_name, (uint8_t *) pass_bin, Half_FFT_Size);
 }
 
 // 사용가능 채널 수 : 6
-int ci_fft_init_pass_bin_ch_6(char *p_name)
+int tdc_fs_fft_init_pass_bin_ch_6(char *p_name)
 {
     char pass_bin[Half_FFT_Size] = {-1, -1, -1, -1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 4,  4,  4, 4, 4,
                                     4,  4,  4,  4,  4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5,  5,  5, 5, 5,
                                     5,  5,  5,  5,  5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, -1, -1, -1};
 
-    return ci_filesystem_write(p_name, (uint8_t *) pass_bin, Half_FFT_Size);
+    return tdc_fs_write(p_name, (uint8_t *) pass_bin, Half_FFT_Size);
 }
 
 // 사용가능 채널 수 : 7
-int ci_fft_init_pass_bin_ch_7(char *p_name)
+int tdc_fs_fft_init_pass_bin_ch_7(char *p_name)
 {
     char pass_bin[Half_FFT_Size] = {-1, -1, -1, -1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4,  4,  4, 4, 4,
                                     4,  4,  4,  4,  4, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6,  6,  6, 6, 6,
                                     6,  6,  6,  6,  6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, -1, -1, -1};
 
-    return ci_filesystem_write(p_name, (uint8_t *) pass_bin, Half_FFT_Size);
+    return tdc_fs_write(p_name, (uint8_t *) pass_bin, Half_FFT_Size);
 }
 
 // 사용가능 채널 수 : 8
-int ci_fft_init_pass_bin_ch_8(char *p_name)
+int tdc_fs_fft_init_pass_bin_ch_8(char *p_name)
 {
     char pass_bin[Half_FFT_Size] = {-1, -1, -1, -1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5,  5,  5, 5, 5,
                                     5,  5,  5,  5,  5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7,  7,  7, 7, 7,
                                     7,  7,  7,  7,  7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, -1, -1, -1};
 
-    return ci_filesystem_write(p_name, (uint8_t *) pass_bin, Half_FFT_Size);
+    return tdc_fs_write(p_name, (uint8_t *) pass_bin, Half_FFT_Size);
 }
 
 // 사용가능 채널 수 : 9
-int ci_fft_init_pass_bin_ch_9(char *p_name)
+int tdc_fs_fft_init_pass_bin_ch_9(char *p_name)
 {
     char pass_bin[Half_FFT_Size] = {-1, -1, -1, -1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 6, 6, 6, 6, 6, 6,  6,  6, 6, 6,
                                     6,  6,  6,  6,  6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7,  7,  7, 7, 8,
                                     8,  8,  8,  8,  8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, -1, -1, -1};
 
-    return ci_filesystem_write(p_name, (uint8_t *) pass_bin, Half_FFT_Size);
+    return tdc_fs_write(p_name, (uint8_t *) pass_bin, Half_FFT_Size);
 }
 
 // 사용가능 채널 수 : 10
-int ci_fft_init_pass_bin_ch_10(char *p_name)
+int tdc_fs_fft_init_pass_bin_ch_10(char *p_name)
 {
     char pass_bin[Half_FFT_Size] = {-1, -1, -1, -1, 0, 0, 0, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6,  6,  6, 6, 6,
                                     7,  7,  7,  7,  7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8,  8,  8, 8, 8,
                                     8,  8,  8,  8,  8, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, -1, -1, -1};
 
-    return ci_filesystem_write(p_name, (uint8_t *) pass_bin, Half_FFT_Size);
+    return tdc_fs_write(p_name, (uint8_t *) pass_bin, Half_FFT_Size);
 }
 
 // 사용가능 채널 수 : 11
-int ci_fft_init_pass_bin_ch_11(char *p_name)
+int tdc_fs_fft_init_pass_bin_ch_11(char *p_name)
 {
     char pass_bin[Half_FFT_Size] = {-1, -1, -1, -1, 0,  0,  0,  1,  1,  1,  1,  2,  2,  2,  2,  2,  3,  3,  3,  3,  3,  3,  3,  3,  4,  4,  4,  4,  4,  4,  4,  4,  4,  4,  5,  5,  5,  5,  5,  5,  5,  5,  5,  5,  5,  5,  5,  5,  5,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,
                                     6,  6,  6,  6,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,
                                     8,  8,  8,  8,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  10, 10, 10, 10, 10, 10, 10, 10, 10,
                                     10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, -1, -1, -1};
 
-    return ci_filesystem_write(p_name, (uint8_t *) pass_bin, Half_FFT_Size);
+    return tdc_fs_write(p_name, (uint8_t *) pass_bin, Half_FFT_Size);
 }
 
 // 사용가능 채널 수 : 12
-int ci_fft_init_pass_bin_ch_12(char *p_name)
+int tdc_fs_fft_init_pass_bin_ch_12(char *p_name)
 {
     char pass_bin[Half_FFT_Size] = {-1, -1, -1, -1, 0,  0,  1,  1,  1,  1,  2,  2,  2,  2,  2,  3,  3,  3,  3,  3,  3,  4,  4,  4,  4,  4,  4,  4,  4,  5,  5,  5,  5,  5,  5,  5,  5,  5,  5,  5,  5,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  7,  7,  7,  7,  7,  7,  7,  7,
                                     7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,
                                     9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 11, 11, 11, 11,
                                     11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, -1, -1, -1};
 
-    return ci_filesystem_write(p_name, (uint8_t *) pass_bin, Half_FFT_Size);
+    return tdc_fs_write(p_name, (uint8_t *) pass_bin, Half_FFT_Size);
 }
 
 // 사용가능 채널 수 : 13
-int ci_fft_init_pass_bin_ch_13(char *p_name)
+int tdc_fs_fft_init_pass_bin_ch_13(char *p_name)
 {
     char pass_bin[Half_FFT_Size] = {-1, -1, -1, -1, 0,  0,  1,  1,  1,  2,  2,  2,  2,  3,  3,  3,  3,  3,  3,  4,  4,  4,  4,  4,  4,  4,  5,  5,  5,  5,  5,  5,  5,  5,  5,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  8,
                                     8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10,
                                     10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11,
                                     11, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, -1, -1, -1};
 
-    return ci_filesystem_write(p_name, (uint8_t *) pass_bin, Half_FFT_Size);
+    return tdc_fs_write(p_name, (uint8_t *) pass_bin, Half_FFT_Size);
 }
 
 // 사용가능 채널 수 : 14
-int ci_fft_init_pass_bin_ch_14(char *p_name)
+int tdc_fs_fft_init_pass_bin_ch_14(char *p_name)
 {
     char pass_bin[Half_FFT_Size] = {-1, -1, -1, -1, 0,  0,  1,  1,  1,  2,  2,  2,  3,  3,  3,  3,  3,  4,  4,  4,  4,  4,  4,  5,  5,  5,  5,  5,  5,  5,  5,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,
                                     8,  8,  8,  8,  8,  8,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11,
                                     11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12,
                                     12, 12, 12, 12, 12, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, -1, -1, -1};
 
-    return ci_filesystem_write(p_name, (uint8_t *) pass_bin, Half_FFT_Size);
+    return tdc_fs_write(p_name, (uint8_t *) pass_bin, Half_FFT_Size);
 }
 
 // 사용가능 채널 수 : 15
-int ci_fft_init_pass_bin_ch_15(char *p_name)
+int tdc_fs_fft_init_pass_bin_ch_15(char *p_name)
 {
     char pass_bin[Half_FFT_Size] = {-1, -1, -1, -1, 0,  0,  1,  1,  2,  2,  2,  2,  3,  3,  3,  3,  4,  4,  4,  4,  4,  5,  5,  5,  5,  5,  5,  5,  6,  6,  6,  6,  6,  6,  6,  6,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  9,  9,  9,  9,
                                     9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 12, 12, 12, 12,
                                     12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13,
                                     13, 13, 13, 13, 13, 13, 13, 13, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, -1, -1, -1};
 
-    return ci_filesystem_write(p_name, (uint8_t *) pass_bin, Half_FFT_Size);
+    return tdc_fs_write(p_name, (uint8_t *) pass_bin, Half_FFT_Size);
 }
 
 // 사용가능 채널 수 : 16
-int ci_fft_init_pass_bin_ch_16(char *p_name)
+int tdc_fs_fft_init_pass_bin_ch_16(char *p_name)
 {
     char pass_bin[Half_FFT_Size] = {-1, -1, -1, -1, 0,  0,  1,  1,  2,  2,  2,  3,  3,  3,  3,  4,  4,  4,  4,  5,  5,  5,  5,  5,  5,  6,  6,  6,  6,  6,  6,  6,  7,  7,  7,  7,  7,  7,  7,  7,  7,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,
                                     9,  10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12,
                                     12, 12, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14,
                                     14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, -1, -1, -1};
 
-    return ci_filesystem_write(p_name, (uint8_t *) pass_bin, Half_FFT_Size);
+    return tdc_fs_write(p_name, (uint8_t *) pass_bin, Half_FFT_Size);
 }
 
 // 사용가능 채널 수 : 17
-int ci_fft_init_pass_bin_ch_17(char *p_name)
+int tdc_fs_fft_init_pass_bin_ch_17(char *p_name)
 {
     char pass_bin[Half_FFT_Size] = {-1, -1, -1, -1, 0,  1,  1,  1,  2,  2,  3,  3,  3,  3,  4,  4,  4,  4,  5,  5,  5,  5,  5,  6,  6,  6,  6,  6,  6,  7,  7,  7,  7,  7,  7,  7,  8,  8,  8,  8,  8,  8,  8,  8,  8,  8,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  9,  10, 10, 10, 10, 10, 10, 10,
                                     10, 10, 10, 10, 10, 10, 10, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13,
                                     13, 13, 13, 13, 13, 13, 13, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15,
                                     15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, -1, -1, -1};
 
-    return ci_filesystem_write(p_name, (uint8_t *) pass_bin, Half_FFT_Size);
+    return tdc_fs_write(p_name, (uint8_t *) pass_bin, Half_FFT_Size);
 }
 
 // 사용가능 채널 수 : 18
-int ci_fft_init_pass_bin_ch_18(char *p_name)
+int tdc_fs_fft_init_pass_bin_ch_18(char *p_name)
 {
     char pass_bin[Half_FFT_Size] = {-1, -1, -1, -1, 0,  1,  1,  2,  2,  2,  3,  3,  3,  4,  4,  4,  4,  5,  5,  5,  5,  6,  6,  6,  6,  6,  7,  7,  7,  7,  7,  7,  7,  8,  8,  8,  8,  8,  8,  8,  8,  9,  9,  9,  9,  9,  9,  9,  9,  9,  10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 11, 11,
                                     11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14,
                                     14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16,
                                     16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, -1, -1, -1};
 
-    return ci_filesystem_write(p_name, (uint8_t *) pass_bin, Half_FFT_Size);
+    return tdc_fs_write(p_name, (uint8_t *) pass_bin, Half_FFT_Size);
 }
 
 // 사용가능 채널 수 : 19
-int ci_fft_init_pass_bin_ch_19(char *p_name)
+int tdc_fs_fft_init_pass_bin_ch_19(char *p_name)
 {
     char pass_bin[Half_FFT_Size] = {-1, -1, -1, -1, 0,  1,  1,  2,  2,  3,  3,  3,  4,  4,  4,  4,  5,  5,  5,  6,  6,  6,  6,  6,  7,  7,  7,  7,  7,  7,  8,  8,  8,  8,  8,  8,  8,  9,  9,  9,  9,  9,  9,  9,  9,  10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 11, 11, 11, 11, 11, 11, 11, 11, 11,
                                     11, 11, 11, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 15, 15, 15, 15, 15, 15, 15, 15, 15,
                                     15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17,
                                     17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, -1, -1, -1};
 
-    return ci_filesystem_write(p_name, (uint8_t *) pass_bin, Half_FFT_Size);
+    return tdc_fs_write(p_name, (uint8_t *) pass_bin, Half_FFT_Size);
 }
 
 // 사용가능 채널 수 : 20
-int ci_fft_init_pass_bin_ch_20(char *p_name)
+int tdc_fs_fft_init_pass_bin_ch_20(char *p_name)
 {
     char pass_bin[Half_FFT_Size] = {-1, -1, -1, -1, 0,  1,  1,  2,  2,  3,  3,  3,  4,  4,  4,  5,  5,  5,  6,  6,  6,  6,  7,  7,  7,  7,  7,  7,  8,  8,  8,  8,  8,  8,  9,  9,  9,  9,  9,  9,  9,  10, 10, 10, 10, 10, 10, 10, 10, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 12, 12, 12, 12,
                                     12, 12, 12, 12, 12, 12, 12, 12, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 16, 16, 16, 16,
                                     16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18,
                                     18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, -1, -1, -1};
 
-    return ci_filesystem_write(p_name, (uint8_t *) pass_bin, Half_FFT_Size);
+    return tdc_fs_write(p_name, (uint8_t *) pass_bin, Half_FFT_Size);
 }
 
 // 사용가능 채널 수 : 21
-int ci_fft_init_pass_bin_ch_21(char *p_name)
+int tdc_fs_fft_init_pass_bin_ch_21(char *p_name)
 {
     char pass_bin[Half_FFT_Size] = {-1, -1, -1, -1, 0,  1,  1,  2,  2,  3,  3,  4,  4,  4,  5,  5,  5,  6,  6,  6,  6,  7,  7,  7,  7,  7,  8,  8,  8,  8,  8,  9,  9,  9,  9,  9,  9,  10, 10, 10, 10, 10, 10, 10, 10, 11, 11, 11, 11, 11, 11, 11, 11, 11, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12,
                                     13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16,
                                     17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19,
                                     19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, -1, -1, -1};
 
-    return ci_filesystem_write(p_name, (uint8_t *) pass_bin, Half_FFT_Size);
+    return tdc_fs_write(p_name, (uint8_t *) pass_bin, Half_FFT_Size);
 }
 
 // 사용가능 채널 수 : 22
-int ci_fft_init_pass_bin_ch_22(char *p_name)
+int tdc_fs_fft_init_pass_bin_ch_22(char *p_name)
 {
     char pass_bin[Half_FFT_Size] = {-1, -1, -1, -1, 0,  1,  1,  2,  3,  3,  3,  4,  4,  5,  5,  5,  6,  6,  6,  6,  7,  7,  7,  7,  8,  8,  8,  8,  8,  9,  9,  9,  9,  9,  10, 10, 10, 10, 10, 10, 10, 11, 11, 11, 11, 11, 11, 11, 11, 12, 12, 12, 12, 12, 12, 12, 12, 12, 13, 13, 13, 13, 13, 13,
                                     13, 13, 13, 13, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17,
                                     17, 17, 17, 17, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 20, 20, 20, 20, 20, 20, 20, 20, 20,
                                     20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, -1, -1, -1};
 
-    return ci_filesystem_write(p_name, (uint8_t *) pass_bin, Half_FFT_Size);
+    return tdc_fs_write(p_name, (uint8_t *) pass_bin, Half_FFT_Size);
 }
 
 // 사용가능 채널 수 : 23
-int ci_fft_init_pass_bin_ch_23(char *p_name)
+int tdc_fs_fft_init_pass_bin_ch_23(char *p_name)
 {
     char pass_bin[Half_FFT_Size] = {-1, -1, -1, -1, 0,  1,  2,  2,  3,  3,  4,  4,  4,  5,  5,  6,  6,  6,  6,  7,  7,  7,  8,  8,  8,  8,  8,  9,  9,  9,  9,  9,  10, 10, 10, 10, 10, 10, 11, 11, 11, 11, 11, 11, 12, 12, 12, 12, 12, 12, 12, 12, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 14, 14,
                                     14, 14, 14, 14, 14, 14, 14, 14, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18,
                                     18, 18, 18, 18, 18, 18, 18, 18, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 21, 21, 21, 21, 21, 21,
                                     21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, -1, -1, -1};
 
-    return ci_filesystem_write(p_name, (uint8_t *) pass_bin, Half_FFT_Size);
+    return tdc_fs_write(p_name, (uint8_t *) pass_bin, Half_FFT_Size);
 }
 
 // 사용가능 채널 수 : 24
-int ci_fft_init_pass_bin_ch_24(char *p_name)
+int tdc_fs_fft_init_pass_bin_ch_24(char *p_name)
 {
     char pass_bin[Half_FFT_Size] = {-1, -1, -1, -1, 0,  1,  2,  2,  3,  3,  4,  4,  5,  5,  5,  6,  6,  6,  7,  7,  7,  8,  8,  8,  8,  9,  9,  9,  9,  10, 10, 10, 10, 10, 10, 11, 11, 11, 11, 11, 11, 12, 12, 12, 12, 12, 12, 12, 13, 13, 13, 13, 13, 13, 13, 13, 14, 14, 14, 14, 14, 14, 14, 14,
                                     14, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 19, 19, 19, 19, 19, 19, 19, 19,
                                     19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 22, 22, 22, 22,
                                     22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, -1, -1, -1};
 
-    return ci_filesystem_write(p_name, (uint8_t *) pass_bin, Half_FFT_Size);
+    return tdc_fs_write(p_name, (uint8_t *) pass_bin, Half_FFT_Size);
 }
 
 // 사용가능 채널 수 : 25
-int ci_fft_init_pass_bin_ch_25(char *p_name)
+int tdc_fs_fft_init_pass_bin_ch_25(char *p_name)
 {
     char pass_bin[Half_FFT_Size] = {-1, -1, -1, -1, 0,  1,  2,  2,  3,  3,  4,  4,  5,  5,  6,  6,  6,  7,  7,  7,  8,  8,  8,  9,  9,  9,  9,  9,  10, 10, 10, 10, 11, 11, 11, 11, 11, 11, 12, 12, 12, 12, 12, 12, 13, 13, 13, 13, 13, 13, 13, 14, 14, 14, 14, 14, 14, 14, 14, 14, 15, 15, 15, 15,
                                     15, 15, 15, 15, 15, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 20, 20, 20, 20,
                                     20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 23,
                                     23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, -1, -1, -1};
 
-    return ci_filesystem_write(p_name, (uint8_t *) pass_bin, Half_FFT_Size);
+    return tdc_fs_write(p_name, (uint8_t *) pass_bin, Half_FFT_Size);
 }
 
 // 사용가능 채널 수 : 26
-int ci_fft_init_pass_bin_ch_26(char *p_name)
+int tdc_fs_fft_init_pass_bin_ch_26(char *p_name)
 {
     char pass_bin[Half_FFT_Size] = {-1, -1, -1, -1, 0,  1,  2,  2,  3,  4,  4,  5,  5,  6,  6,  6,  7,  7,  7,  8,  8,  8,  9,  9,  9,  9,  10, 10, 10, 10, 11, 11, 11, 11, 11, 12, 12, 12, 12, 12, 12, 13, 13, 13, 13, 13, 13, 14, 14, 14, 14, 14, 14, 14, 14, 15, 15, 15, 15, 15, 15, 15, 15, 16,
                                     16, 16, 16, 16, 16, 16, 16, 16, 16, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 21,
                                     21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23,
                                     23, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, -1, -1, -1};
 
-    return ci_filesystem_write(p_name, (uint8_t *) pass_bin, Half_FFT_Size);
+    return tdc_fs_write(p_name, (uint8_t *) pass_bin, Half_FFT_Size);
 }
 
 // 사용가능 채널 수 : 27
-int ci_fft_init_pass_bin_ch_27(char *p_name)
+int tdc_fs_fft_init_pass_bin_ch_27(char *p_name)
 {
     char pass_bin[Half_FFT_Size] = {-1, -1, -1, -1, 0,  1,  2,  3,  3,  4,  4,  5,  5,  6,  6,  7,  7,  7,  8,  8,  8,  9,  9,  9,  10, 10, 10, 10, 11, 11, 11, 11, 11, 12, 12, 12, 12, 12, 13, 13, 13, 13, 13, 13, 14, 14, 14, 14, 14, 14, 15, 15, 15, 15, 15, 15, 15, 15, 16, 16, 16, 16, 16, 16,
                                     16, 16, 16, 17, 17, 17, 17, 17, 17, 17, 17, 17, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21,
                                     21, 21, 21, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24,
                                     24, 24, 24, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, -1, -1, -1};
 
-    return ci_filesystem_write(p_name, (uint8_t *) pass_bin, Half_FFT_Size);
+    return tdc_fs_write(p_name, (uint8_t *) pass_bin, Half_FFT_Size);
 }
 
 // 사용가능 채널 수 : 28
-int ci_fft_init_pass_bin_ch_28(char *p_name)
+int tdc_fs_fft_init_pass_bin_ch_28(char *p_name)
 {
     char pass_bin[Half_FFT_Size] = {-1, -1, -1, -1, 0,  1,  2,  3,  3,  4,  5,  5,  6,  6,  6,  7,  7,  8,  8,  8,  9,  9,  9,  10, 10, 10, 10, 11, 11, 11, 11, 12, 12, 12, 12, 12, 13, 13, 13, 13, 13, 14, 14, 14, 14, 14, 14, 15, 15, 15, 15, 15, 15, 15, 16, 16, 16, 16, 16, 16, 16, 17, 17, 17,
                                     17, 17, 17, 17, 17, 17, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22,
                                     22, 22, 22, 22, 22, 22, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25,
                                     25, 25, 25, 25, 25, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, -1, -1, -1};
 
-    return ci_filesystem_write(p_name, (uint8_t *) pass_bin, Half_FFT_Size);
+    return tdc_fs_write(p_name, (uint8_t *) pass_bin, Half_FFT_Size);
 }
 
 // 사용가능 채널 수 : 29
-int ci_fft_init_pass_bin_ch_29(char *p_name)
+int tdc_fs_fft_init_pass_bin_ch_29(char *p_name)
 {
     char pass_bin[Half_FFT_Size] = {-1, -1, -1, -1, 0,  1,  2,  3,  3,  4,  5,  5,  6,  6,  7,  7,  8,  8,  8,  9,  9,  9,  10, 10, 10, 11, 11, 11, 11, 12, 12, 12, 12, 13, 13, 13, 13, 13, 14, 14, 14, 14, 14, 14, 15, 15, 15, 15, 15, 15, 16, 16, 16, 16, 16, 16, 16, 17, 17, 17, 17, 17, 17, 17,
                                     18, 18, 18, 18, 18, 18, 18, 18, 18, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 23, 23, 23, 23, 23, 23, 23,
                                     23, 23, 23, 23, 23, 23, 23, 23, 23, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26,
                                     26, 26, 26, 26, 26, 26, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, -1, -1, -1};
 
-    return ci_filesystem_write(p_name, (uint8_t *) pass_bin, Half_FFT_Size);
+    return tdc_fs_write(p_name, (uint8_t *) pass_bin, Half_FFT_Size);
 }
 
 // 사용가능 채널 수 : 30
-int ci_fft_init_pass_bin_ch_30(char *p_name)
+int tdc_fs_fft_init_pass_bin_ch_30(char *p_name)
 {
     char pass_bin[Half_FFT_Size] = {-1, -1, -1, -1, 0,  1,  2,  3,  4,  4,  5,  5,  6,  6,  7,  7,  8,  8,  9,  9,  9,  10, 10, 10, 11, 11, 11, 11, 12, 12, 12, 13, 13, 13, 13, 13, 14, 14, 14, 14, 14, 15, 15, 15, 15, 15, 16, 16, 16, 16, 16, 16, 16, 17, 17, 17, 17, 17, 17, 17, 18, 18, 18, 18,
                                     18, 18, 18, 19, 19, 19, 19, 19, 19, 19, 19, 19, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 24, 24, 24, 24,
                                     24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27,
                                     27, 27, 27, 27, 27, 27, 27, 27, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, -1, -1, -1};
 
-    return ci_filesystem_write(p_name, (uint8_t *) pass_bin, Half_FFT_Size);
+    return tdc_fs_write(p_name, (uint8_t *) pass_bin, Half_FFT_Size);
 }
 
 // 사용가능 채널 수 : 31
-int ci_fft_init_pass_bin_ch_31(char *p_name)
+int tdc_fs_fft_init_pass_bin_ch_31(char *p_name)
 {
     char pass_bin[Half_FFT_Size] = {-1, -1, -1, -1, 0,  1,  2,  3,  4,  4,  5,  6,  6,  7,  7,  8,  8,  9,  9,  9,  10, 10, 10, 11, 11, 11, 12, 12, 12, 12, 13, 13, 13, 13, 14, 14, 14, 14, 15, 15, 15, 15, 15, 16, 16, 16, 16, 16, 16, 17, 17, 17, 17, 17, 17, 18, 18, 18, 18, 18, 18, 18, 18, 19,
                                     19, 19, 19, 19, 19, 19, 20, 20, 20, 20, 20, 20, 20, 20, 20, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 25,
                                     25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28,
                                     28, 28, 28, 28, 28, 28, 28, 28, 28, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, -1, -1, -1};
 
-    return ci_filesystem_write(p_name, (uint8_t *) pass_bin, Half_FFT_Size);
+    return tdc_fs_write(p_name, (uint8_t *) pass_bin, Half_FFT_Size);
 }
 
 // 사용가능 채널 수 : 32
-int ci_fft_init_pass_bin_ch_32(char *p_name)
+int tdc_fs_fft_init_pass_bin_ch_32(char *p_name)
 {
     char pass_bin[Half_FFT_Size] = {-1, -1, -1, -1, 0,  1,  2,  3,  4,  5,  5,  6,  6,  7,  7,  8,  8,  9,  9,  10, 10, 10, 11, 11, 11, 12, 12, 12, 13, 13, 13, 13, 14, 14, 14, 14, 15, 15, 15, 15, 15, 16, 16, 16, 16, 16, 17, 17, 17, 17, 17, 17, 18, 18, 18, 18, 18, 18, 19, 19, 19, 19, 19, 19,
                                     19, 20, 20, 20, 20, 20, 20, 20, 20, 21, 21, 21, 21, 21, 21, 21, 21, 21, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25,
                                     25, 25, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29,
                                     29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, -1, -1, -1};
 
-    return ci_filesystem_write(p_name, (uint8_t *) pass_bin, Half_FFT_Size);
+    return tdc_fs_write(p_name, (uint8_t *) pass_bin, Half_FFT_Size);
 }
 
-int ci_fft_init_window_coeff(void)
+int tdc_fs_fft_init_window_coeff(void)
 {
     int ret;
 
     int *addr_fft_windowBuff_for_HEAR;
     int *addr_fft_windowBuff_for_FS;
 
-    ret = ci_fft_read_window_coeff();
+    ret = tdc_fs_fft_read_window_coeff();
 
     if (ret < 0)
     {
-        ret = ci_fft_write_window_coeff();
+        ret = tdc_fs_fft_write_window_coeff();
     }
 
     if (0 <= ret)
@@ -576,18 +576,18 @@ int ci_fft_init_window_coeff(void)
     return ret;
 }
 
-int ci_fft_read_window_coeff(void)
+int tdc_fs_fft_read_window_coeff(void)
 {
     int  ret;
     int *p_memory;
-    char name[CI_FFT_FILE_NAME_LEN_WINDOW_COEFF] = CI_FFT_FILE_INIT_NAME_WINDOW_COEFF;
+    char name[TDC_FS_FFT_FILE_NAME_LEN_WINDOW_COEFF] = TDC_FS_FFT_FILE_INIT_NAME_WINDOW_COEFF;
 
     p_memory = (int *) OTE_1_5_GEN_FS_HANN_WINDOW_COEFF_BASE_ADDR;
 
-    return ci_filesystem_read(name, (uint8_t *) p_memory, (FFT_Size * 4));
+    return tdc_fs_read(name, (uint8_t *) p_memory, (FFT_Size * 4));
 }
 
-int ci_fft_write_window_coeff(void)
+int tdc_fs_fft_write_window_coeff(void)
 {
     int  ret;
     int *p_memory;
@@ -601,7 +601,7 @@ int ci_fft_write_window_coeff(void)
                                                 7544626, 7575399, 7605661, 7635408, 7664634, 7693335, 7721508, 7749147, 7776249, 7802809, 7828823, 7854288, 7879200, 7903555, 7927349, 7950578, 7973240, 7995330, 8016846, 8037783, 8058140, 8077913, 8097098, 8115693, 8133695, 8151102, 8167911, 8184119, 8199723,
                                                 8214722, 8229114, 8242895, 8256064, 8268619, 8280558, 8291880, 8302581, 8312662, 8322120, 8330954, 8339163, 8346745, 8353699, 8360024, 8365719, 8370784, 8375218, 8379019, 8382188, 8384723, 8386625, 8387893, 8388527};
 
-    char name[CI_FFT_FILE_NAME_LEN_WINDOW_COEFF] = CI_FFT_FILE_INIT_NAME_WINDOW_COEFF;
+    char name[TDC_FS_FFT_FILE_NAME_LEN_WINDOW_COEFF] = TDC_FS_FFT_FILE_INIT_NAME_WINDOW_COEFF;
 
     // 256:256 총 512의 크기인데, 절반이 역으로 반복되는 윈도우 계수 구조이므로
     // 전반부 256만 배열로 지정해놓고, 이후 후반부 256 데이터는 전반부를 역으로 복사하게 구현하였다.
@@ -618,5 +618,5 @@ int ci_fft_write_window_coeff(void)
     }
 
     // 파일 쓰기 사이즈는 FFT 사이즈인 512개 * int 자료형 4 바이트 크기다.
-    return ci_filesystem_write(name, (uint8_t *) p_memory, (FFT_Size * 4));
+    return tdc_fs_write(name, (uint8_t *) p_memory, (FFT_Size * 4));
 }

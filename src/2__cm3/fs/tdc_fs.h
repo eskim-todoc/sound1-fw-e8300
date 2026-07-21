@@ -1,9 +1,9 @@
 /**
- * @file OTE_1_5_gen_FS.h
+ * @file tdc_fs.h
  */
 
-#ifndef __OTE_1_5_gen_FS_h__
-#define __OTE_1_5_gen_FS_h__
+#ifndef __tdc_fs_h__
+#define __tdc_fs_h__
 
 #include <stdbool.h>
 #include <stdio.h>
@@ -29,31 +29,31 @@
 
 // Pointer to the null-terminated string that specifies the logical drive.
 // The string without drive number means the default drive.
-// #define CI_FILESYSTEM_LOGICAL_DRIVE_NUM "0:"  // Default drive.
-#define CI_FILESYSTEM_LOGICAL_DRIVE_NUM                 "1:"
-#define CI_FILESYSTEM_LOGICAL_DRIVE_NUM_FOR_BOOT_STATUS "0:"
+// #define TDC_FS_LOGICAL_DRIVE_NUM "0:"  // Default drive.
+#define TDC_FS_LOGICAL_DRIVE_NUM                 "1:"
+#define TDC_FS_LOGICAL_DRIVE_NUM_FOR_BOOT_STATUS "0:"
 
 #define SND_FATFS_LDRV_NUM_BOOT      0
 #define SND_FATFS_LDRV_NUM_USER_DATA 1
 
 // 0: Do not mount now (to be mounted on the first access to the volume),
 // 1: Force mounted the volume to check if it is ready to work.
-#define CI_FILESYSTEM_MOUNT_OPTION 1
+#define TDC_FS_MOUNT_OPTION 1
 #define SND_FATFS_MOUNT_OPTION     1
 
 // FS의 FFT PASS BIN 베이스 주소
-#define CI_FILESYSTEM_BASE_ADDR_FFT_PASS_BIN DSP_PRAM4_REMAP_BASE
+#define TDC_FS_BASE_ADDR_FFT_PASS_BIN DSP_PRAM4_REMAP_BASE
 
 // FS의 FFT WINDOW 베이스 주소
 #define OTE_1_5_GEN_FS_HANN_WINDOW_COEFF_ADDR_OFFSET_BYTES 4096
-#define OTE_1_5_GEN_FS_HANN_WINDOW_COEFF_BASE_ADDR         (CI_FILESYSTEM_BASE_ADDR_FFT_PASS_BIN + OTE_1_5_GEN_FS_HANN_WINDOW_COEFF_ADDR_OFFSET_BYTES)
+#define OTE_1_5_GEN_FS_HANN_WINDOW_COEFF_BASE_ADDR         (TDC_FS_BASE_ADDR_FFT_PASS_BIN + OTE_1_5_GEN_FS_HANN_WINDOW_COEFF_ADDR_OFFSET_BYTES)
 
 // FS의 LOG 베이스 주소
-#define CI_FILESYSTEM_OFFSET_BYTES_FOR_EVENT_LOG_OFFSET_BYTES (OTE_1_5_GEN_FS_HANN_WINDOW_COEFF_ADDR_OFFSET_BYTES + 4096)
-#define CI_FILESYSTEM_BASE_ADDR_FOR_EVENT_LOG                 (CI_FILESYSTEM_BASE_ADDR_FFT_PASS_BIN + CI_FILESYSTEM_OFFSET_BYTES_FOR_EVENT_LOG_OFFSET_BYTES)
+#define TDC_FS_OFFSET_BYTES_FOR_EVENT_LOG_OFFSET_BYTES (OTE_1_5_GEN_FS_HANN_WINDOW_COEFF_ADDR_OFFSET_BYTES + 4096)
+#define TDC_FS_BASE_ADDR_FOR_EVENT_LOG                 (TDC_FS_BASE_ADDR_FFT_PASS_BIN + TDC_FS_OFFSET_BYTES_FOR_EVENT_LOG_OFFSET_BYTES)
 
 // FS의 맵 데이터 베이스 주소
-#define CI_FILESYSTEM_BASE_ADDR_ENTIRE_MAP   DSP_PRAM3_REMAP_BASE
+#define TDC_FS_BASE_ADDR_ENTIRE_MAP   DSP_PRAM3_REMAP_BASE
 #define OTE_1_5_GEN_FS_MAP_DATA_OFFSET_WORDS 994
 #define OTE_1_5_GEN_FS_MAP_DATA_OFFSET_BYTES 3976
 
@@ -90,30 +90,30 @@ typedef struct
     //
     // = 4048 바이트, 1012 워드
 
-} CI_FILESYSTEM_MAP_T;
+} TDC_FS_MAP_T;
 
 typedef struct
 {
-    CI_FILESYSTEM_MAP_T map[MaxNumUser];
+    TDC_FS_MAP_T map[MaxNumUser];
     // 각 맵 정보 4048 바이트, 1012 워드
     // 총 사용자 맵 정보는 16192 바이트, 4048 워드
     // LPDSP32 PRAM3 영역의 크기인 4096 워드를 거의 다 씀 (약 98.83% 사용)
 
-} CI_FILESYSTEM_ENTIRE_MAP_T;
+} TDC_FS_ENTIRE_MAP_T;
 
 typedef struct
 {
     int num_of_freq_band;
     int fft_pass_bin[Half_FFT_Size];
-} CI_FILESYSTEM_FFT_PASS_BIN_T;
+} TDC_FS_FFT_PASS_BIN_T;
 
 //
 // extern system variables
 //
-extern CI_FILESYSTEM_FFT_PASS_BIN_T* g_ci_filesystem_ptr_pass_bin;
-extern CI_FILESYSTEM_ENTIRE_MAP_T*   g_ci_filesystem_ptr_entire_map;
-extern FATFS                         g_ci_filesystem_mount;
-extern FIL                           g_ci_filesystem_ohdl;
+extern TDC_FS_FFT_PASS_BIN_T* g_tdc_fs_ptr_pass_bin;
+extern TDC_FS_ENTIRE_MAP_T*   g_tdc_fs_ptr_entire_map;
+extern FATFS                         g_tdc_fs_mount;
+extern FIL                           g_tdc_fs_ohdl;
 
 //
 // function headers
@@ -121,18 +121,16 @@ extern FIL                           g_ci_filesystem_ohdl;
 
 FIL *ci_fatfs_get_fp(void);
 
-int ci_filesystem_nvm_init(void);
+int tdc_fs_nvm_init(void);
 
-int snd_fatfs_init_mem_map(void);
-int snd_fatfs_remount_twice(int ldrv);
-int snd_fatfs_remount(int ldrv);
-int snd_fatfs_mount(int ldrv);
-int snd_fatfs_unmount(void);
+int tdc_fs_fatfs_init_mem_map(void);
+int tdc_fs_fatfs_remount(int ldrv);
+int tdc_fs_fatfs_mount(int ldrv);
+int tdc_fs_fatfs_unmount(void);
 
-int ci_filesystem_remount(void);
-int ci_filesystem_mount(void);
+int tdc_fs_mount(void);
 
-int ci_filesystem_read_with_crc_and_aes128(char*     p_name,
+int tdc_fs_read_with_crc_and_aes128(char*     p_name,
                                            uint8_t*  p_data,
                                            int       data_size,
                                            uint32_t* p_uint32_crc,
@@ -141,7 +139,7 @@ int ci_filesystem_read_with_crc_and_aes128(char*     p_name,
                                            bool      enable_crc,
                                            bool      enable_aes);
 
-int ci_filesystem_write_with_crc_and_aes128(char*     p_name,
+int tdc_fs_write_with_crc_and_aes128(char*     p_name,
                                             uint8_t*  p_data,                   // 평문 데이터(data_size)
                                             int       data_size,                // 예: 132
                                             uint32_t* p_uint32_crc,             // 4B (하위 16비트만 유효)
@@ -150,8 +148,8 @@ int ci_filesystem_write_with_crc_and_aes128(char*     p_name,
                                             bool      enable_crc,
                                             bool      enable_aes);
 
-int ci_filesystem_read(char* p_name, uint8_t* p_buf, int size);
-int ci_filesystem_write(char *p_name, uint8_t *p_buf, int size);
-int ci_filesystem_copy_isd_info_from_filesystem_to_shared_memory(void);
+int tdc_fs_read(char* p_name, uint8_t* p_buf, int size);
+int tdc_fs_write(char *p_name, uint8_t *p_buf, int size);
+int tdc_fs_copy_isd_info_from_filesystem_to_shared_memory(void);
 
-#endif // __OTE_1_5_gen_FS_h__
+#endif // __tdc_fs_h__

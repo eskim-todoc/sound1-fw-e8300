@@ -43,7 +43,7 @@ void ota_update_file(const char *name)
 
     RTT_printf("Update file '%s'. \r\n", name);
 
-    ret = f_open(&g_ci_filesystem_ohdl, name, (FA_CREATE_ALWAYS | FA_READ | FA_WRITE));
+    ret = f_open(&g_tdc_fs_ohdl, name, (FA_CREATE_ALWAYS | FA_READ | FA_WRITE));
 
     if (ret != FR_OK)
     {
@@ -88,12 +88,12 @@ void ota_update_file(const char *name)
                         binary   = binary | parsing;
                         is_upper = 1;
 
-                        ret = f_write(&g_ci_filesystem_ohdl, &binary, 1, &len);
+                        ret = f_write(&g_tdc_fs_ohdl, &binary, 1, &len);
 
                         if (ret != FR_OK || len != 1)
                         {
                             RTT_printf("Failed to write data!!! \r\n");
-                            f_close(&g_ci_filesystem_ohdl);
+                            f_close(&g_tdc_fs_ohdl);
                             return;
                         }
 
@@ -122,12 +122,12 @@ void ota_update_file(const char *name)
                         binary   = binary | parsing;
                         is_upper = 1;
 
-                        ret = f_write(&g_ci_filesystem_ohdl, &binary, 1, &len);
+                        ret = f_write(&g_tdc_fs_ohdl, &binary, 1, &len);
 
                         if (ret != FR_OK || len != 1)
                         {
                             RTT_printf("Failed to write data!!! \r\n");
-                            f_close(&g_ci_filesystem_ohdl);
+                            f_close(&g_tdc_fs_ohdl);
                             return;
                         }
 
@@ -146,7 +146,7 @@ void ota_update_file(const char *name)
         }
     }
 
-    f_close(&g_ci_filesystem_ohdl);
+    f_close(&g_tdc_fs_ohdl);
 
     RTT_printf("File write done. '%s' \r\n", name);
 }
@@ -204,7 +204,7 @@ void ota_command_parsing(void)
         {
             RTT_printf("Input boot value is %u. \r\n", boot_val);
 
-            if (ci_filesystem_write("boot", &boot_val, 1) < 0)
+            if (tdc_fs_write("boot", &boot_val, 1) < 0)
             {
                 RTT_printf("Failed to write boot value to 'boot' file. \r\n");
             }
@@ -220,7 +220,7 @@ void ota_command_parsing(void)
 
                 name = "/ota_status.bin";
 
-                ret = f_open(&g_ci_filesystem_ohdl, name, (FA_OPEN_EXISTING | FA_READ | FA_WRITE));
+                ret = f_open(&g_tdc_fs_ohdl, name, (FA_OPEN_EXISTING | FA_READ | FA_WRITE));
 
                 if (ret != FR_OK)
                 {
@@ -228,12 +228,12 @@ void ota_command_parsing(void)
                     return;
                 }
 
-                ret = f_read(&g_ci_filesystem_ohdl, &otaStatus_file, sizeof(otaStatus_file), &read);
+                ret = f_read(&g_tdc_fs_ohdl, &otaStatus_file, sizeof(otaStatus_file), &read);
 
                 if (ret != FR_OK)
                 {
                     RTT_printf("[OTA] Failed to read file : %s \r\n", name);
-                    f_close(&g_ci_filesystem_ohdl);
+                    f_close(&g_tdc_fs_ohdl);
                     return;
                 }
 
@@ -277,7 +277,7 @@ void ota_command_parsing(void)
         {
             p_file = file_list[i];
 
-            ret = f_open(&g_ci_filesystem_ohdl, p_file, (FA_OPEN_EXISTING | FA_READ));
+            ret = f_open(&g_tdc_fs_ohdl, p_file, (FA_OPEN_EXISTING | FA_READ));
 
             if (ret != FR_OK)
             {
@@ -287,10 +287,10 @@ void ota_command_parsing(void)
             else
             {
 
-                file_size = f_size(&g_ci_filesystem_ohdl);
+                file_size = f_size(&g_tdc_fs_ohdl);
                 RTT_printf("'%s' file size is %u. \r\n", p_file, file_size);
 
-                f_close(&g_ci_filesystem_ohdl);
+                f_close(&g_tdc_fs_ohdl);
             }
         }
     }
@@ -372,7 +372,7 @@ CI_OTA_RET_E ci_ota_prepare_file(CI_OTA_PREPARE_FILE_T *p_prepare)
 
     strcat(path, p_name);
 
-    // fp = ci_filesystem_get_fp();
+    // fp = tdc_fs_get_fp();
     fp = ci_fatfs_get_fp();
 
     res = f_open(fp, path, (FA_CREATE_ALWAYS | FA_READ | FA_WRITE));

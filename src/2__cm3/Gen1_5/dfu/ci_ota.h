@@ -12,7 +12,7 @@
 
 #include <hw.h>
 
-#include <ci_filesystem.h>
+#include <tdc_fs.h>
 #include "SEGGER_RTT_Wrapper.h"
 
 #define CI_OTA_FILE_PATH_LEN_MAX 25

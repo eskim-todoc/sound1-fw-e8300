@@ -33,6 +33,8 @@
 #include "isd_interface.h"
 #include "mappingControl.h"
 #include "remoteControl.h"
+#include "tdc_remote_gain_control.h"
+#include <tdc_fs_gain.h>
 
 #include "LedOutput.h"
 #include "indicatorByStimul.h"
@@ -56,11 +58,11 @@
 #include <ci_power.h>
 #include <tdc_hal_uart.h>
 #include <tdc_util.h>
-#include <ci_filesystem.h>
-#include <ci_map.h>
-#include <ci_fft.h>
-#include <ci_stim_mute.h>
-#include <ci_event_log.h>
+#include <tdc_fs.h>
+#include <tdc_fs_map.h>
+#include <tdc_fs_fft.h>
+#include <tdc_fs_stim_mute.h>
+#include <tdc_fs_event_log.h>
 #include <ci_battery.h>
 #include <ci_power.h>
 #include <tdc_printf.h>
@@ -255,9 +257,9 @@ void Initialize(void)
     // 다시 수행해야 하는 이슈가 있다.
     // 그래서 캘리브레이션을 한 번만 수행하고 이후로는 이 MANUF_TABLE 정보를 활용하도록 구성하였다.
 
-    tdc_util_assert(ci_filesystem_nvm_init());  // NVM 인터페이스 초기화
-    tdc_util_assert(snd_fatfs_init_mem_map());  // FFT 및 맵 관련 공유 메모리 포인터 초기화
-    tdc_util_assert(snd_fatfs_remount(1));      // 사용자 드라이브(1)로 마운트
+    tdc_util_assert(tdc_fs_nvm_init());  // NVM 인터페이스 초기화
+    tdc_util_assert(tdc_fs_fatfs_init_mem_map());  // FFT 및 맵 관련 공유 메모리 포인터 초기화
+    tdc_util_assert(tdc_fs_fatfs_remount(1));      // 사용자 드라이브(1)로 마운트
     tdc_util_assert(ci_power_normal());         // 전원 및 클럭 설정
 
     TDC_PRINTF_I("[INIT] POWER NORMAL, CLOCK : %u HZ \r\n", SystemCoreClock);
@@ -309,39 +311,50 @@ void Initialize(void)
     /* 드라이브 0으로 변경 후 부트 상태 처리 후
      * 드라이브 1로 변경하여 맵 관련 파일을 사용할 수 있게 설정 */
 
-    tdc_util_assert(snd_fatfs_remount(0));  // 부트 드라이브(0)으로 마운트
+    tdc_util_assert(tdc_fs_fatfs_remount(0));  // 부트 드라이브(0)으로 마운트
     ci_boot_init_fp(ci_fatfs_get_fp());
     ci_boot_handle_fsm();
-    tdc_util_assert(snd_fatfs_remount(1));  // 사용자 드라이브(1)로 마운트
+    tdc_util_assert(tdc_fs_fatfs_remount(1));  // 사용자 드라이브(1)로 마운트
 
     TDC_PRINTF_I("[INFO] INIT : BOOT STATUS \r\n");
 
     // Check, make and init ISD map files (info, user setting, map stamp, map_data.....)
-    ci_map_init_map_data_all(false);
+    tdc_fs_map_init_map_data_all(false);
 
     TDC_PRINTF_I("[INFO] INIT : MAP DATA ALL \r\n");
 
     // Check, make and init FFT pass bin files (ch1 to ch32.....).
-    ci_fft_init_pass_bin_all();
+    tdc_fs_fft_init_pass_bin_all();
 
     TDC_PRINTF_I("[INFO] INIT : FFT PASS BIN \r\n");
 
-    ci_fft_init_window_coeff();  // Check, make and init Hanning Window Coeff
+    tdc_fs_fft_init_window_coeff();  // Check, make and init Hanning Window Coeff
 
     TDC_PRINTF_I("[INFO] INIT : FFT WINDOW COEFF \r\n");
 
-    ci_stim_mute_init();
+    tdc_fs_stim_mute_init();
     TDC_PRINTF_I("[INFO] INIT : STIM MUTE \r\n");
 
-    ci_event_log_init();
+    tdc_fs_event_log_init();
     TDC_PRINTF_I("[INFO] INIT : EVENT LOG \r\n");
 
     // 1세대에서는 CFX가 플래시에서 ISD 정보를 읽어서 공유 메모리에 저장하던 기능을,
     // 1.5세대에서는 CM3가 직접 플래시에서 맵 데이터를 맵 데이터용 메모리에 로드하기 때문에
     // 이 맵 데이터용 메모리에서 공유 메모리로 ISD 정보를 CM3가 로드하도록 구현하였다.
     // 그러므로, CM3가 직접 ISD 정보를 공유 메모리로 로드 한 후 CFX_EEPROM_data_is_Loaded를 1로 설정한다.
-    ci_filesystem_copy_isd_info_from_filesystem_to_shared_memory();
+    tdc_fs_copy_isd_info_from_filesystem_to_shared_memory();
     cfx_cm3_sharedMemoryAll.CFX_EEPROM_data_is_Loaded = 1;
+
+    // 게인 설정 파일을 검사하고, 손상되었으면 기본값으로 되돌린다.
+    // 저장 실패로 파일이 깨지더라도 다음 부팅의 이 지점에서 복구된다.
+    tdc_fs_gain_init();
+    TDC_PRINTF_I("[INFO] INIT : GAIN STORAGE \r\n");
+
+    // 게인 테이블 인덱스를 기본값(유니티)으로 초기화한다.
+    // 인덱스 0 이 뮤트이므로, CFX 가 참조하기 전에 반드시 유효값을 넣어야 한다.
+    // (아래 enable_CFX_trigger_for_iteration() 보다 앞이어야 한다.)
+    // 연결된 ISD 의 저장값은 changeConnected_isd_num_CFX() 에서 덮어쓴다.
+    tdc_remote_gain_control_init();
 
     TDC_PRINTF_V("[INFO] COPY ISD INFO FOR ALL MAPS FROM FS_MEM TO SH_MEM \r\n");
 
