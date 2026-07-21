@@ -65,7 +65,7 @@ tags: [cm3, refactoring, gate, g3, driver, hal, chip]
 | 검증_공통_4 (사장 실증) | ✅ 공개 함수 73개 전수 → **15건 제거**(고아 선언 12 + dead 정의 1 + 그 선언 2). **3건 보존** — §5 참조 |
 | **검증_G3_특화 (SDK 심볼 보존)** | ✅ 13종 확인: `I2C_0_IRQHandler` · `I2C_ENABLE` · `I2C_ACK` · `I2C_NACK` · `I2C_LAST_DATA` · `I2C_STOP_INT_ENABLE` · `I2C_0_IRQn` · `SPI_1_COM_IRQHandler` · `CFX_0/1_IRQHandler` · `FIFO_5_IRQHandler` · `DMA0/1_IRQHandler` |
 | **검증_G3_특화 (보드 분기 정합)** | ✅ `isd_interface.c` · `isd_interface_FPGA.c` · `isd_interface_init_FPGA.c` 의 3분기 include 가 신규 파일명으로 동시 갱신 |
-| 검증_공통_5 (빌드·실기) | ⏳ 은수님 게이트 |
+| 검증_공통_5 (빌드·실기) | ✅ PASS — 은수님 확인 (2026-07-21): "빌드 후 동작 확인했어" → **G3 폐쇄** |
 
 ## 5. 사장 판정 — 보존 3건 (조건부 컴파일)
 
