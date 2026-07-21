@@ -7,7 +7,7 @@
 #include "internalStimulationChip.h"
 #include "cfx_cm3_sharedMemory.h"
 #include "mappingControl.h"
-#include "driver_SPI.h"
+#include "tdc_hal_spi.h"
 #include "definitionsForAlgorithm.h"
 #include "isd_interface_mapping_impedanceMeasurement.h"
 #include "isd_interface_mapping_eCAP_Measurement.h"
@@ -712,7 +712,7 @@ void fetch_mappingControlPacket(const int *Rx_dataPacket)  // spi 통신에서 �
                             bufferForSPI_tx[buffer_tx_index++] = subCommandData_Num_index;  // payload num 전송
 
                             // 송신 데이터 SPI TX버퍼에 복사
-                            writeDataToSpiTxBuff(bufferForSPI_tx, buffer_tx_index);
+                            tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, buffer_tx_index);
 
                             if (subCommandData_Num_index == Live_AllParameter_payloadNum)  // 모든 파라미터 수신 완료.
                             {
@@ -1122,7 +1122,7 @@ void fetch_mappingControlPacket(const int *Rx_dataPacket)  // spi 통신에서 �
                         bufferForSPI_tx[buffer_tx_index++] = en__mapping_write_original_ISD_N_USER;  // command loop-back
                         bufferForSPI_tx[buffer_tx_index++] = subCommandData_Num_index;               // payload num 전송
 
-                        writeDataToSpiTxBuff(bufferForSPI_tx, buffer_tx_index);  // 송신 데이터 SPI TX버퍼에 복사
+                        tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, buffer_tx_index);  // 송신 데이터 SPI TX버퍼에 복사
                     }
                     else  // 모든 데이터를 받은 시점에 Flash에 쓰기를 시작한다.
                     {
@@ -1133,7 +1133,7 @@ void fetch_mappingControlPacket(const int *Rx_dataPacket)  // spi 통신에서 �
                         bufferForSPI_tx[buffer_tx_index++] = en__mapping_write_original_ISD_N_USER;  // command loop-back
                         bufferForSPI_tx[buffer_tx_index++] = subCommandData_Num_index;               // payload num 전송
 
-                        writeDataToSpiTxBuff(bufferForSPI_tx, buffer_tx_index);  // 송신 데이터 SPI TX버퍼에 복사
+                        tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, buffer_tx_index);  // 송신 데이터 SPI TX버퍼에 복사
 #endif
 
                         mappingPacket.command = en__mapping_write_original_ISD_N_USER;
@@ -1380,7 +1380,7 @@ void fetch_mappingControlPacket(const int *Rx_dataPacket)  // spi 통신에서 �
                         bufferForSPI_tx[buffer_tx_index++] = en__mapping_write_SlotData_ISD_N_USER;  // command loop-back
                         bufferForSPI_tx[buffer_tx_index++] = subCommandData_Num_index;               // payload num 전송
 
-                        writeDataToSpiTxBuff(bufferForSPI_tx, buffer_tx_index);  // 송신 데이터 SPI TX버퍼에 복사
+                        tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, buffer_tx_index);  // 송신 데이터 SPI TX버퍼에 복사
                     }
                     else  // 모든 데이터를 받은 시점에 Flash에 쓰기를 시작한다.
                     {
@@ -1684,7 +1684,7 @@ void fetch_mappingControlPacket(const int *Rx_dataPacket)  // spi 통신에서 �
                         bufferForSPI_tx[buffer_tx_index++] = subCommandData_Num_index;  // payload num 전송
 
                         // 송신 데이터 SPI TX버퍼에 복사
-                        writeDataToSpiTxBuff(bufferForSPI_tx, buffer_tx_index);
+                        tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, buffer_tx_index);
                     }
                     else  // 모든 데이터를 받은 시점에 Flash에 쓰기를 시작한다.
                     {
@@ -1845,7 +1845,7 @@ void fetch_mappingControlPacket(const int *Rx_dataPacket)  // spi 통신에서 �
                     bufferForSPI_tx[buffer_tx_index++] = subCommandData_Num_index;  // payload num 전송
 
                     // 송신 데이터 SPI TX버퍼에 복사
-                    writeDataToSpiTxBuff(bufferForSPI_tx, buffer_tx_index);
+                    tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, buffer_tx_index);
                 }
             }
         }
@@ -1865,7 +1865,7 @@ void fetch_mappingControlPacket(const int *Rx_dataPacket)  // spi 통신에서 �
             bufferForSPI_tx[buffer_tx_index++] = en__UndefinedCommand;  //
 
             // 송신 데이터 SPI TX버퍼에 복사
-            writeDataToSpiTxBuff(bufferForSPI_tx, buffer_tx_index);
+            tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, buffer_tx_index);
         }
         break;
     }
@@ -1936,7 +1936,7 @@ ST__MAPPING_STATE mappingControl(ST__ISD_STATUS ISD_state)
         // 송신 데이터 준비
         bufferForSPI_tx[buffer_tx_index++] = mappingPacket.command;  // command loop-back
         bufferForSPI_tx[buffer_tx_index++] = 1;                      // pay-load 준비
-        writeDataToSpiTxBuff(bufferForSPI_tx, buffer_tx_index);      // 송신 데이터 SPI TX버퍼에 복사
+        tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, buffer_tx_index);      // 송신 데이터 SPI TX버퍼에 복사
         mappingPacket.command = en__mapping_IDLE;                    // 명령 종료
     }
     else
@@ -1950,14 +1950,14 @@ ST__MAPPING_STATE mappingControl(ST__ISD_STATUS ISD_state)
                     // 송신 데이터 준비
                     bufferForSPI_tx[buffer_tx_index++] = mappingPacket.command;  // command loop-back
                     bufferForSPI_tx[buffer_tx_index++] = 1;                      // pay-load 준비
-                    writeDataToSpiTxBuff(bufferForSPI_tx, buffer_tx_index);      // 송신 데이터 SPI TX버퍼에 복사
+                    tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, buffer_tx_index);      // 송신 데이터 SPI TX버퍼에 복사
 
 #if 1
                     while (1)
                     {
                         // 매핑 앱에서 (블루투스가 아닌, 매핑 기능) 연결을 종료하는 경우,
                         // SPI TX 버퍼가 모두 전송되고 난 뒤 시스템을 재부팅 시킨다. (with 워치독 리셋)
-                        if (isSpiTxBuffEmpty())
+                        if (tdc_hal_spi_is_tx_buffer_empty())
                         {
                             clear_mappingCommand();
                             changeSystemModeFlag(en__systemReset);
@@ -2085,7 +2085,7 @@ ST__MAPPING_STATE mappingControl(ST__ISD_STATUS ISD_state)
                     // NRF에 전달
 
                     // 송신 데이터 SPI TX버퍼에 복사
-                    writeDataToSpiTxBuff(bufferForSPI_tx, buffer_tx_index);
+                    tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, buffer_tx_index);
 
                     clear_mappingCommand();
                 }
@@ -2156,7 +2156,7 @@ ST__MAPPING_STATE mappingControl(ST__ISD_STATUS ISD_state)
                     {
                         while (1)
                         {
-                            if (isSpiTxBuffEmpty())
+                            if (tdc_hal_spi_is_tx_buffer_empty())
                             {
                                 if (en__mapping_recover_ALL_SlotData_ManufactureData > 0x60)
                                 {
@@ -2242,7 +2242,7 @@ ST__MAPPING_STATE mappingControl(ST__ISD_STATUS ISD_state)
                     bufferForSPI_tx[buffer_tx_index++] = 0xff & (value);
 
                     // 송신 데이터 SPI TX버퍼에 복사
-                    writeDataToSpiTxBuff(bufferForSPI_tx, buffer_tx_index);
+                    tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, buffer_tx_index);
 
                     //  명령 종료
                     clear_mappingCommand();

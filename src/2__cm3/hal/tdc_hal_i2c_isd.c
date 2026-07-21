@@ -1,11 +1,11 @@
 
 
-#include "driver_i2c_for_ISD.h"
+#include "tdc_hal_i2c_isd.h"
 #include <tdc_printf.h>
 
-bool write_ISD_by_CM3_I2C(int slaveAddr, int* dataBuff, int dataSize)
+bool tdc_hal_i2c_isd_write(int slaveAddr, int* dataBuff, int dataSize)
 {
-    EN__I2C_DRIVER_STATE i2cDriverState;
+    tdc_hal_i2c_driver_state_t i2cDriverState;
     bool                 PassFail = false;
     volatile int         wait_cnt;
 
@@ -15,23 +15,23 @@ bool write_ISD_by_CM3_I2C(int slaveAddr, int* dataBuff, int dataSize)
     }
     else
     {
-        i2c_startWriteData(slaveAddr, dataBuff, dataSize);
+        tdc_hal_i2c_start_write(slaveAddr, dataBuff, dataSize);
 
         wait_cnt = 5000;  // total 5 sec
 
         while (0 <= wait_cnt)
         {
-            i2cDriverState = get_i2cDriverStatus();
+            i2cDriverState = tdc_hal_i2c_get_driver_status();
             if (i2cDriverState == i2c_state_WritingDone)
             {
-                setI2cDriverStatusIdle();
+                tdc_hal_i2c_set_driver_status_idle();
                 PassFail = true;
                 break;
             }
 
             if (i2cDriverState == i2c_state_Error)
             {
-                init_I2c();
+                tdc_hal_i2c_init();
                 break;
             }
 
@@ -43,7 +43,7 @@ bool write_ISD_by_CM3_I2C(int slaveAddr, int* dataBuff, int dataSize)
         if (wait_cnt < 0)
         {
             PassFail = false;
-            init_I2c();
+            tdc_hal_i2c_init();
             TDC_PRINTF_E("[I2C] TIMEOUT FOR WRITING \r\n");
         }
 
@@ -51,9 +51,9 @@ bool write_ISD_by_CM3_I2C(int slaveAddr, int* dataBuff, int dataSize)
     }
 }
 
-bool read_ISD_by_CM3_I2C(int slaveAddr, int* dataBuff, int dataSize)
+bool tdc_hal_i2c_isd_read(int slaveAddr, int* dataBuff, int dataSize)
 {
-    EN__I2C_DRIVER_STATE i2cDriverState;
+    tdc_hal_i2c_driver_state_t i2cDriverState;
     bool                 PassFail = false;
     volatile int         wait_cnt;
 
@@ -63,24 +63,24 @@ bool read_ISD_by_CM3_I2C(int slaveAddr, int* dataBuff, int dataSize)
     }
     else
     {
-        i2c_startReadData(slaveAddr, dataBuff, dataSize);
+        tdc_hal_i2c_start_read(slaveAddr, dataBuff, dataSize);
 
         wait_cnt = 5000;  // total 5 sec
 
         while (0 <= wait_cnt)
         {
-            i2cDriverState = get_i2cDriverStatus();
+            i2cDriverState = tdc_hal_i2c_get_driver_status();
 
             if (i2cDriverState == i2c_state_ReadingDone)
             {
-                setI2cDriverStatusIdle();
+                tdc_hal_i2c_set_driver_status_idle();
                 PassFail = true;
                 break;
             }
 
             if (i2cDriverState == i2c_state_Error)
             {
-                init_I2c();
+                tdc_hal_i2c_init();
                 break;
             }
 
@@ -92,7 +92,7 @@ bool read_ISD_by_CM3_I2C(int slaveAddr, int* dataBuff, int dataSize)
         if (wait_cnt < 0)
         {
             PassFail = false;
-            init_I2c();
+            tdc_hal_i2c_init();
             TDC_PRINTF_E("[I2C] TIMEOUT FOR READING \r\n");
         }
 

@@ -5,7 +5,7 @@
 #include "cfx_cm3_sharedMemory.h"
 #include "mappingControl.h"
 #include "remoteControl.h"
-#include "driver_SPI.h"
+#include "tdc_hal_spi.h"
 #include "isd_interface_mapping_readWrtieMapData.h"
 
 void read_Original_isdInfo_N_userSetting_fromFlash(bool startFlag, int command)
@@ -91,7 +91,7 @@ void read_Original_isdInfo_N_userSetting_fromFlash(bool startFlag, int command)
             }
 
             // 송신 데이터 SPI TX버퍼에 복사
-            writeDataToSpiTxBuff(bufferForSPI_tx, buffer_tx_index);
+            tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, buffer_tx_index);
 
             if (dataPacket_index == numPacket_readMapData_Original_ISDnSetting)  // 명령 완료
             {
@@ -153,10 +153,10 @@ void write_Original_isdInfo_N_userSetting_atFlash(bool startFlag, int command)
                 bufferForSPI_tx[buffer_tx_index++] = 2;  // 정상
 
                 // 송신 데이터 SPI TX버퍼에 복사
-                writeDataToSpiTxBuff(bufferForSPI_tx, buffer_tx_index);
+                tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, buffer_tx_index);
             }
 
-            if (isSpiTxBuffEmpty())  // NRF로 응답 명령의 전송이 완료된 상태.
+            if (tdc_hal_spi_is_tx_buffer_empty())  // NRF로 응답 명령의 전송이 완료된 상태.
             {
 
                 // 1회 동작
@@ -306,7 +306,7 @@ void read_isdInfo_N_userSetting_fromFlash(bool startFlag, int command, int slot_
             }
 
             // 송신 데이터 SPI TX버퍼에 복사
-            writeDataToSpiTxBuff(bufferForSPI_tx, buffer_tx_index);
+            tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, buffer_tx_index);
 
             if (dataPacket_index == numPacket_readMapData_ISDnSetting)  // 명령 완료
             {
@@ -384,7 +384,7 @@ void write_isdInfo_N_userSetting_atFlash(bool startFlag, int command, int slot_i
             // NRF에 전달
 
             // 송신 데이터 SPI TX버퍼에 복사
-            writeDataToSpiTxBuff(bufferForSPI_tx, buffer_tx_index);
+            tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, buffer_tx_index);
 
             // 명령 종료
             if (command > 0x60)
@@ -551,7 +551,7 @@ void read_stimulPara_fromFlash(bool startFlag, int command, int slot_index, int 
             }
 
             // 송신 데이터 SPI TX버퍼에 복사
-            writeDataToSpiTxBuff(bufferForSPI_tx, buffer_tx_index);
+            tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, buffer_tx_index);
 
             if (dataPacket_index == numPacket_readMapData_stimulPara)  // 명령 완료
             {
@@ -617,7 +617,7 @@ void write_stimulPara_atFlash(bool startFlag, int command, int slot_index, int m
             // NRF에 전달
 
             // 송신 데이터 SPI TX버퍼에 복사
-            writeDataToSpiTxBuff(bufferForSPI_tx, buffer_tx_index);
+            tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, buffer_tx_index);
 
             // 명령 종료
             if (command > 0x60)
@@ -679,7 +679,7 @@ void reset_NVM_Selected_ISD_allData(bool startFlag, int command, int slot_index,
                 // NRF에 전달
 
                 // 송신 데이터 SPI TX버퍼에 복사
-                writeDataToSpiTxBuff(bufferForSPI_tx, buffer_tx_index);
+                tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, buffer_tx_index);
 
                 // 명령 종료
                 if (command > 0x60)
@@ -778,7 +778,7 @@ bool reset_NVM_All_ISD_allData(bool startFlag, int command, EN__mapping_ReadWrit
             // NRF에 전달
 
             // 송신 데이터 SPI TX버퍼에 복사
-            writeDataToSpiTxBuff(bufferForSPI_tx, buffer_tx_index);
+            tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, buffer_tx_index);
 
             // 명령 종료
             CommandCompleted = true;
@@ -862,7 +862,7 @@ void reset_NVM_2to4_ISD_allData(bool startFlag, int command, EN__mapping_ReadWri
             // NRF에 전달
 
             // 송신 데이터 SPI TX버퍼에 복사
-            writeDataToSpiTxBuff(bufferForSPI_tx, buffer_tx_index);
+            tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, buffer_tx_index);
 
             // 명령 종료
             if (command > 0x60)
@@ -939,7 +939,7 @@ void reset_NVM_MapData(bool startFlag, int command, int slot_index, int map_inde
                 // NRF에 전달
 
                 // 송신 데이터 SPI TX버퍼에 복사
-                writeDataToSpiTxBuff(bufferForSPI_tx, buffer_tx_index);
+                tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, buffer_tx_index);
 
                 // 명령 종료
                 if (command > 0x60)

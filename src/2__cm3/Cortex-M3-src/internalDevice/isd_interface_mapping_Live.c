@@ -16,7 +16,7 @@
 // live 실행을 받으면 맵 번호 인덱스를 마이너스 값으로 변경하여  CFX에서 맵데이터를 실행한다.
 #include "error.h"
 #include "electrodeMapping.h"
-#include "driver_SPI.h"
+#include "tdc_hal_spi.h"
 
 #include <tdc_printf.h>
 
@@ -198,7 +198,7 @@ bool liveStimulation(ST__ISD_STATUS ISD_state)
                         bufferForSPI_tx[buffer_tx_index++] = en__Start;
 
                         // 송신 데이터 SPI TX버퍼에 복사
-                        writeDataToSpiTxBuff(bufferForSPI_tx, buffer_tx_index);
+                        tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, buffer_tx_index);
 
                         p_mappingPacket->liveStimulation.subCommand = en__HoldOn;
 
@@ -243,7 +243,7 @@ bool liveStimulation(ST__ISD_STATUS ISD_state)
                 bufferForSPI_tx[buffer_tx_index++] = readStimulVolume();
 
                 // 송신 데이터 SPI TX버퍼에 복사
-                writeDataToSpiTxBuff(bufferForSPI_tx, buffer_tx_index);
+                tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, buffer_tx_index);
 
                 // 라이브 자극 유지로 변경
                 p_mappingPacket->liveStimulation.subCommand = en__HoldOn;
@@ -278,7 +278,7 @@ bool liveStimulation(ST__ISD_STATUS ISD_state)
                 bufferForSPI_tx[buffer_tx_index++] = readAudioVolume();
 
                 // 송신 데이터 SPI TX버퍼에 복사
-                writeDataToSpiTxBuff(bufferForSPI_tx, buffer_tx_index);
+                tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, buffer_tx_index);
 
                 // 라이브 자극 유지로 변경
                 p_mappingPacket->liveStimulation.subCommand = en__HoldOn;
@@ -324,7 +324,7 @@ bool liveStimulation(ST__ISD_STATUS ISD_state)
                         bufferForSPI_tx[buffer_tx_index++] = en__mapping_Stimul_indicator;
 
                         // 송신 데이터 SPI TX버퍼에 복사
-                        writeDataToSpiTxBuff(bufferForSPI_tx, buffer_tx_index);
+                        tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, buffer_tx_index);
 
                         // 라이브 자극 유지로 변경
                         p_mappingPacket->liveStimulation.subCommand = en__HoldOn;
@@ -418,7 +418,7 @@ bool liveStimulation(ST__ISD_STATUS ISD_state)
                 }
 
                 // 송신 데이터 SPI TX버퍼에 복사
-                writeDataToSpiTxBuff(bufferForSPI_tx, buffer_tx_index);
+                tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, buffer_tx_index);
 
                 // 라이브 자극 유지로 변경
                 p_mappingPacket->liveStimulation.subCommand = en__HoldOn;
@@ -462,7 +462,7 @@ bool liveStimulation(ST__ISD_STATUS ISD_state)
 
             // 송신 데이터 SPI TX버퍼에 복사
 
-            writeDataToSpiTxBuff(bufferForSPI_tx, buffer_tx_index);
+            tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, buffer_tx_index);
 
             p_mappingPacket->liveStimulation.subCommand = en__HoldOn;
 
@@ -775,7 +775,7 @@ bool liveStimulation(ST__ISD_STATUS ISD_state)
             bufferForSPI_tx[buffer_tx_index++] = en__Stop;
 
             // 송신 데이터 SPI TX버퍼에 복사
-            writeDataToSpiTxBuff(bufferForSPI_tx, buffer_tx_index);
+            tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, buffer_tx_index);
 
             // 커맨드 리셋;
             clear_mappingCommand();

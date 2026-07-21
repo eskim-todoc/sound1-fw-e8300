@@ -8,9 +8,9 @@
 #include "isd_interface.h"
 
 #if 0
-#include "driver_cfx_i2c.h"
+#include "tdc_hal_i2c_cfx.h"
 #else
-#include "driver_i2c_for_ISD.h"
+#include "tdc_hal_i2c_isd.h"
 #endif
 
 #include "definitionsForAlgorithm.h"
@@ -23,11 +23,11 @@
 
 // #include "FPGA.h"
 #if defined(Board_is_OTE_VER_1_2)
-#include "driver_REN_ISL91128.h"
+#include "tdc_drv_isl91128.h"
 #elif defined(Board_is_TD_DEV_ver_1_4) || defined(Board_is_OTE_VER_1_4) || defined(Board_is_OTE_VER_1_5)
-#include "driver_REN_ISL9122.h"
+#include "tdc_drv_isl9122.h"
 #elif defined(Board_is_OTE_VER_1_3)
-#include "driver_REN_ISL98608.h"
+#include "tdc_drv_isl98608.h"
 #endif
 
 #include "commonDataProcessing.h"
@@ -67,7 +67,7 @@ void init_txPowerIC(bool isdControlStateChagedFlag)
             change_i2c_is_busy();
 
             // Pwoer IC의 전원이 켜져 있어야 한다.
-            if (!Reset_REN_ISL9122())
+            if (!tdc_drv_isl9122_reset())
             {
                 TDC_PRINTF_E("[PMIC] c10: PMIC reset failed\r\n");
                 TDC_ISD_DEBOUNCE_FAIL(power_reset_err_cnt, "[PMIC]", "init_txPwr c10", "verify",
@@ -87,7 +87,7 @@ void init_txPowerIC(bool isdControlStateChagedFlag)
 
         case 12:  // 전압 제어 범위 중 최소 값으로 시작.
         {
-            write_change_TxPowerLevel(ResetVoltageSetValue);
+            write_change_TxPowerLevel(TDC_DRV_PMIC_RESET_VOLTAGE_SET_VALUE);
         }
         break;
 
@@ -96,10 +96,10 @@ void init_txPowerIC(bool isdControlStateChagedFlag)
             if (read_txPowerLevel(&RF_TxPowerValue))
             {
                 // 증가
-                tempValue = RF_TxPowerValue + VoltageControlStep;
+                tempValue = RF_TxPowerValue + TDC_DRV_PMIC_VOLTAGE_CONTROL_STEP;
 
                 // 큰 step 으로 전압을 올릴 수 있을 때
-                if (tempValue <= MaxVoltageControlValue)
+                if (tempValue <= TDC_DRV_PMIC_MAX_VOLTAGE_CONTROL_VALUE)
                 {
                     write_change_TxPowerLevel(tempValue);
 
@@ -109,7 +109,7 @@ void init_txPowerIC(bool isdControlStateChagedFlag)
                 {
                     tempValue = RF_TxPowerValue + 1;
 
-                    if (tempValue <= MaxVoltageControlValue)
+                    if (tempValue <= TDC_DRV_PMIC_MAX_VOLTAGE_CONTROL_VALUE)
                     {
                         write_change_TxPowerLevel(tempValue);  // 함수 종료 전 flowControlCounter++; → 실제로 case 13을 반복
                         flowControlCounter = 12;
@@ -308,7 +308,7 @@ void init_ISD(bool isdControlStateChagedFlag)
             else
             {
                 write_FPGA_disable_RF_tx();
-                write_change_TxPowerLevel(MaxVoltageControlValue);
+                write_change_TxPowerLevel(TDC_DRV_PMIC_MAX_VOLTAGE_CONTROL_VALUE);
 
                 // TDC_PRINTF_V("[FPGA] TRY TO DISABLE XFR(RF) \r\n");
             }
@@ -401,11 +401,11 @@ void init_ISD(bool isdControlStateChagedFlag)
 
                     clearErrorFlag(en__FPGA_CONFIGUARATION_ERROR);
 
-                    if (write_change_TxPowerLevel(MaxVoltageControlValue))
+                    if (write_change_TxPowerLevel(TDC_DRV_PMIC_MAX_VOLTAGE_CONTROL_VALUE))
                     {
                         if (read_txPowerLevel(&RF_TxPowerValue))
                         {
-                            if (RF_TxPowerValue != MaxVoltageControlValue)
+                            if (RF_TxPowerValue != TDC_DRV_PMIC_MAX_VOLTAGE_CONTROL_VALUE)
                             {
                                 // R_TxPower 설정 실패, powerIC 초기화
                                 TDC_ISD_DEBOUNCE_FAIL(tx_power_err_cnt, "[PMIC]", "init_ISD c205pwr", "verify",

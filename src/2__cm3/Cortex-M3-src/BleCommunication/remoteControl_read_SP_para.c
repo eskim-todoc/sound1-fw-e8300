@@ -2,7 +2,7 @@
 
 #include "remoteControl.h"
 #include "stimulationParaCal.h"
-#include "driver_SPI.h"
+#include "tdc_hal_spi.h"
 #include "definitionsForAlgorithm.h"
 #include "cfx_cm3_sharedMemory.h"
 #include "board.h" // 디버깅용
@@ -260,7 +260,7 @@ void read_signal_processingPara(bool startFlag, int command)
     if(flowCounter!=0)
     {
     // nrf 전달
-        writeDataToSpiTxBuff(bufferForSPI_tx,tx_index);
+        tdc_hal_spi_write_tx_buffer(bufferForSPI_tx,tx_index);
     }
 
     if(flowCounter==7)

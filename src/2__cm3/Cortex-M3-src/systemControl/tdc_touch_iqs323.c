@@ -56,10 +56,10 @@ bool tdc_touch_iqs323_is_ulp(void)
  */
 static bool i2c_write(uint8_t *p_buf, int len)
 {
-    EN__I2C_DRIVER_STATE state;
+    tdc_hal_i2c_driver_state_t state;
     static int           buf[3];
 
-    if (get_i2cDriverStatus() != i2c_state_Idle)
+    if (tdc_hal_i2c_get_driver_status() != i2c_state_Idle)
     {
         return false;
     }
@@ -67,19 +67,19 @@ static bool i2c_write(uint8_t *p_buf, int len)
     {
         buf[i] = (int) p_buf[i];
     }
-    i2c_startWriteData(TDC_TOUCH_IQS323_SLAVE_ADDR, &buf[0], len);
+    tdc_hal_i2c_start_write(TDC_TOUCH_IQS323_SLAVE_ADDR, &buf[0], len);
 
     while (1)
     {
-        state = get_i2cDriverStatus();
+        state = tdc_hal_i2c_get_driver_status();
         if (state == i2c_state_WritingDone)
         {
-            setI2cDriverStatusIdle();
+            tdc_hal_i2c_set_driver_status_idle();
             break;
         }
         if (state == i2c_state_Error)
         {
-            init_I2c();
+            tdc_hal_i2c_init();
             return false;
         }
     }
@@ -88,30 +88,30 @@ static bool i2c_write(uint8_t *p_buf, int len)
 
 static bool i2c_read(uint8_t *p_buf, int len)
 {
-    EN__I2C_DRIVER_STATE state;
+    tdc_hal_i2c_driver_state_t state;
     int                  buf[4]; /* 최대 4바이트 (0x13+0x14 연속 디버그 read 지원). 호출처 len <= 4 보장 */
 
     if (len < 1 || len > (int) (sizeof(buf) / sizeof(buf[0])))
     {
         return false;
     }
-    if (get_i2cDriverStatus() != i2c_state_Idle)
+    if (tdc_hal_i2c_get_driver_status() != i2c_state_Idle)
     {
         return false;
     }
-    i2c_startReadData(TDC_TOUCH_IQS323_SLAVE_ADDR, &buf[0], len);
+    tdc_hal_i2c_start_read(TDC_TOUCH_IQS323_SLAVE_ADDR, &buf[0], len);
 
     while (1)
     {
-        state = get_i2cDriverStatus();
+        state = tdc_hal_i2c_get_driver_status();
         if (state == i2c_state_ReadingDone)
         {
-            setI2cDriverStatusIdle();
+            tdc_hal_i2c_set_driver_status_idle();
             break;
         }
         if (state == i2c_state_Error)
         {
-            init_I2c();
+            tdc_hal_i2c_init();
             return false;
         }
     }

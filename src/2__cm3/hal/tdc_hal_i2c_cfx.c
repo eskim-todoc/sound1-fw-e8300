@@ -2,13 +2,13 @@
 #include <stdbool.h>
 
 #include "cfx_cm3_sharedMemory.h"
-#include "driver_i2c_state_cfx.h"
+#include "tdc_hal_i2c_state.h"
 #if 1
 #include "board.h"
 #endif
 
-#define df_i2c_CommandWrite 1
-#define df_i2c_CommandRead  2
+#define TDC_HAL_I2C_CFX_CMD_WRITE 1
+#define TDC_HAL_I2C_CFX_CMD_READ  2
 
 extern ST__CFX_CM3_SharedMemory_ALL cfx_cm3_sharedMemoryAll;
 
@@ -20,18 +20,13 @@ void CFX_1_IRQHandler(void)
     cfx_i2c_done = true;
 }
 
-bool isI2C_done(void)
-{
-    return cfx_i2c_done;
-}
-
-bool cfx_i2c_write(int slaveAddr, int *dataBuff, int dataSize)
+bool tdc_hal_i2c_cfx_write(int slaveAddr, int *dataBuff, int dataSize)
 {
 
     int k;
 
     cfx_cm3_sharedMemoryAll.cfx_i2c_interface.SlaveAddr = slaveAddr;
-    cfx_cm3_sharedMemoryAll.cfx_i2c_interface.RW        = df_i2c_CommandWrite;
+    cfx_cm3_sharedMemoryAll.cfx_i2c_interface.RW        = TDC_HAL_I2C_CFX_CMD_WRITE;
     cfx_cm3_sharedMemoryAll.cfx_i2c_interface.dataSize  = dataSize;
 
     for (k = 0; k < dataSize; k++)
@@ -47,7 +42,7 @@ bool cfx_i2c_write(int slaveAddr, int *dataBuff, int dataSize)
 
         __WFI();
     }
-    if (cfx_cm3_sharedMemoryAll.cfx_i2c_interface.i2c_State == df_I2C_State_Idle)
+    if (cfx_cm3_sharedMemoryAll.cfx_i2c_interface.i2c_State == TDC_HAL_I2C_STATE_IDLE)
     {
         return true;
     }
@@ -58,13 +53,13 @@ bool cfx_i2c_write(int slaveAddr, int *dataBuff, int dataSize)
     //
 }
 
-bool cfx_i2c_read(int slaveAddr, int *dataBuff, int dataSize)
+bool tdc_hal_i2c_cfx_read(int slaveAddr, int *dataBuff, int dataSize)
 {
 
     int k;
 
     cfx_cm3_sharedMemoryAll.cfx_i2c_interface.SlaveAddr = slaveAddr;
-    cfx_cm3_sharedMemoryAll.cfx_i2c_interface.RW        = df_i2c_CommandRead;
+    cfx_cm3_sharedMemoryAll.cfx_i2c_interface.RW        = TDC_HAL_I2C_CFX_CMD_READ;
     cfx_cm3_sharedMemoryAll.cfx_i2c_interface.dataSize  = dataSize;
 
     cfx_i2c_done                     = false;
@@ -77,7 +72,7 @@ bool cfx_i2c_read(int slaveAddr, int *dataBuff, int dataSize)
 
         __WFI();
     }
-    if (cfx_cm3_sharedMemoryAll.cfx_i2c_interface.i2c_State == df_I2C_State_Idle)
+    if (cfx_cm3_sharedMemoryAll.cfx_i2c_interface.i2c_State == TDC_HAL_I2C_STATE_IDLE)
     {
         for (k = 0; k < dataSize; k++)
             dataBuff[k] = cfx_cm3_sharedMemoryAll.cfx_i2c_interface.CM3_RxBuffer[k];

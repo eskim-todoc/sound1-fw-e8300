@@ -7,9 +7,9 @@
 #include "internalStimulationChip.h"
 #include "isd_interface.h"
 #if 0
-#include "driver_cfx_i2c.h"
+#include "tdc_hal_i2c_cfx.h"
 #else
-#include "driver_i2c_for_ISD.h"
+#include "tdc_hal_i2c_isd.h"
 #endif
 #include "definitionsForAlgorithm.h"
 

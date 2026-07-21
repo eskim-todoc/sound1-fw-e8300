@@ -3,7 +3,7 @@
 #include "error.h"
 #include "ble_commonProtocol.h"
 
-#include "driver_SPI.h"
+#include "tdc_hal_spi.h"
 
 static ST__ERROR_CODE errorCode;
 
@@ -177,5 +177,5 @@ void sendErrorToApp(EN__MAPPING_COMMAND command, EN__MAJOR_ERRORCODE majorError,
     bufferForSPI_tx[buffer_tx_index++] = lineNumber & 0xFF;  // 하위 바이트
 
     // 송신 데이터 SPI TX버퍼에 복사
-    writeDataToSpiTxBuff(bufferForSPI_tx, buffer_tx_index);
+    tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, buffer_tx_index);
 }

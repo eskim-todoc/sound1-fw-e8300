@@ -6,9 +6,9 @@
 #include "error.h"
 #include "cfx_cm3_sharedMemory.h"
 
-#include "driver_MIS2DH.h"
-#include "driver_SPI.h"
-#include "driver_cfx_i2c.h"
+#include "tdc_drv_mis2dh.h"
+#include "tdc_hal_spi.h"
+#include "tdc_hal_i2c_cfx.h"
 #include "isd_interface.h"
 #include "remoteControl.h"
 #include "mappingControl.h"

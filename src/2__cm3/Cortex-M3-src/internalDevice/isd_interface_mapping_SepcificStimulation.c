@@ -9,9 +9,9 @@
 #include "internalStimulationChip.h"
 #include "isd_interface.h"
 #if 0
-#include "driver_cfx_i2c.h"
+#include "tdc_hal_i2c_cfx.h"
 #else
-#include "driver_i2c_for_ISD.h"
+#include "tdc_hal_i2c_isd.h"
 #endif
 #include "definitionsForAlgorithm.h"
 
@@ -19,7 +19,7 @@
 #include "isd_interface_init_FPGA.h"
 #include "cfx_cm3_sharedMemory.h"
 #include "mappingControl.h"
-#include "driver_SPI.h"
+#include "tdc_hal_spi.h"
 #include "stimulationParaCal.h"
 
 #include "electrodeMapping.h"
@@ -499,7 +499,7 @@ void specificStimulation(bool startFlag)
 
             // 송신 데이터 SPI TX버퍼에 복사
 
-            writeDataToSpiTxBuff(bufferForSPI_tx, buffer_tx_index);
+            tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, buffer_tx_index);
 
             // 커맨드 리셋;
             clear_mappingCommand();

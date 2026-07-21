@@ -6,14 +6,14 @@
 #include <main.h>
 
 #include "board.h"           //ok
-#include "driver_SPI.h"      //ok
-#include "driver_cfx_i2c.h"  //ok
+#include "tdc_hal_spi.h"      //ok
+#include "tdc_hal_i2c_cfx.h"  //ok
 
 #include "batteryNPowerControl.h"  //ok
 
 #include "cfx_cm3_sharedMemory.h"  //ok
 
-#include "driver_MIS2DH.h"  //ok
+#include "tdc_drv_mis2dh.h"  //ok
 #include "error.h"          //ok
 #include "systemControl.h"  //ok
 
@@ -27,7 +27,7 @@
 #include "indicatorByStimul.h"   //ok
 #include "stimulationParaCal.h"  //ok
 
-#include "driver_REN_ISL9122.h"  //ok
+#include "tdc_drv_isl9122.h"  //ok
 
 #include <tdc_touch.h>        /* 공개 API + tdc_touch_time.h(ULP 시간상수) 재노출 */
 #include <tdc_touch_iqs323.h> /* 절전 진입 IQS323 직접 호출 */
@@ -42,7 +42,7 @@
 #include <tdc_hal_timer.h>
 #include <tdc_hal_uart.h>
 #include <tdc_printf.h>
-#include "driver_i2c.h"  //ok  - Sleep 진입 시 I2C PRESCALE 런타임 재설정용
+#include "tdc_hal_i2c.h"  //ok  - Sleep 진입 시 I2C PRESCALE 런타임 재설정용
 
 #include <SEGGER_RTT_Wrapper.h>
 #include <aes.h>
@@ -1128,8 +1128,8 @@ int func_sleep(void)
     ci_power_sleep(); /* SYSCLK 30.72M → 2.56M, SLOWCLK 유지 */
 
     /* [FIXME] 실제 SCL - 426.7kHz(2.56MHz/6) - "~122kHz 유지" 의도라면 분주비가 틀렸다.
-     * driver_i2c.h 설계값은 PRESCALE_21(2.56MHz/21?121.9kHz). 의도적 변경인지 확인 필요. */
-    i2c_set_master_prescale(I2C_MASTER_PRESCALE_6 /*I2C_MASTER_PRESCALE_21*/);
+     * tdc_hal_i2c.h 설계값은 PRESCALE_21(2.56MHz/21?121.9kHz). 의도적 변경인지 확인 필요. */
+    tdc_hal_i2c_set_master_prescale(I2C_MASTER_PRESCALE_6 /*I2C_MASTER_PRESCALE_21*/);
 
     tdc_hal_timer_init_prescaled(TDC_TOUCH_ULP_TIMER_PRESCALE, TDC_TOUCH_ULP_TIMER_TIMEOUT_VALUE); /* 100.0ms 정확 (tdc_touch_time.h 공식 확인) */
 

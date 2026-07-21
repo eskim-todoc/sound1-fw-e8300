@@ -18,15 +18,15 @@
 #include <stdbool.h>
 
 #include "board.h"
-#include "driver_SPI.h"
-#include "driver_cfx_i2c.h"
-#include "driver_i2c.h"
+#include "tdc_hal_spi.h"
+#include "tdc_hal_i2c_cfx.h"
+#include "tdc_hal_i2c.h"
 
 #include "batteryNPowerControl.h"
 
 #include "cfx_cm3_sharedMemory.h"
 
-#include "driver_MIS2DH.h"
+#include "tdc_drv_mis2dh.h"
 #include "error.h"
 #include "systemControl.h"
 
@@ -41,18 +41,18 @@
 #include "stimulationParaCal.h"
 
 #if defined(Board_is_OTE_VER_1_2)
-#include "driver_REN_ISL91128.h"
+#include "tdc_drv_isl91128.h"
 #elif defined(Board_is_TD_DEV_ver_1_4) || defined(Board_is_OTE_VER_1_4) || defined(Board_is_OTE_VER_1_5)
-#include "driver_REN_ISL9122.h"
+#include "tdc_drv_isl9122.h"
 #elif defined(Board_is_OTE_VER_1_3)
-#include "driver_REN_ISL98608.h"
+#include "tdc_drv_isl98608.h"
 #else
 #error Link PMIC is NOT selected.
 #endif
 
 #include "processorDirective.h"
 
-#include <driver_MAX17262.h>
+#include <tdc_drv_max17262.h>
 
 #include <tdc_hal_dio.h>
 #include <ci_power.h>
@@ -193,13 +193,13 @@ void Uninitialize(void)
     LSAD->CFG = LSAD_DISABLE;
 
     /* Disable SPI */
-    Sys_SPI_TransferConfig(SPI1, DRIVER_SPI_CTRL_DISABLE);
+    Sys_SPI_TransferConfig(SPI1, TDC_HAL_SPI_CTRL_DISABLE);
 
     /* Disable DMA */
     reset_DMA_disable();
 
     /* Disable I2C */
-    enableI2cInterface(false);
+    tdc_hal_i2c_enable_interface(false);
 
     /* Disable UART */
     tdc_hal_uart_uninit();
@@ -378,7 +378,7 @@ void Initialize(void)
     reset_DMA_disable();
 
     // I2C 초기화
-    init_I2c();
+    tdc_hal_i2c_init();
 
 #if 0  // 오직 TX PMIC 테스트를 위한 코드
     {
@@ -388,7 +388,7 @@ void Initialize(void)
         enable_interrupt();
 
         // TX PMIC 초기화
-        if (!Reset_REN_ISL9122())
+        if (!tdc_drv_isl9122_reset())
         {
             turnON_RedLED();
             while (1)
@@ -398,7 +398,7 @@ void Initialize(void)
         }
 
         // 리셋 디폴트로 세팅
-        write_change_TxPowerLevel(ResetVoltageSetValue);
+        write_change_TxPowerLevel(TDC_DRV_PMIC_RESET_VOLTAGE_SET_VALUE);
 
         while (1)
         {
@@ -412,7 +412,7 @@ void Initialize(void)
             }
 
             // 최대 값 설정 완료 되면 더 할거 없이 무한루프
-            if (tx_power == MaxVoltageControlValue)
+            if (tx_power == TDC_DRV_PMIC_MAX_VOLTAGE_CONTROL_VALUE)
             {
                 TDC_PRINTF_W("[TEST] PMIC TX POWER SET DONE \r\n");
                 turnON_GreenLED();
@@ -424,10 +424,10 @@ void Initialize(void)
             }
 
             // 지금 레벨에서 스탭을 더한다.
-            tx_power = tx_power + VoltageControlStep;
+            tx_power = tx_power + TDC_DRV_PMIC_VOLTAGE_CONTROL_STEP;
 
             // 새 레벨이 최대 값을 안 넘으면 이대로 설정
-            if (tx_power <= MaxVoltageControlValue)
+            if (tx_power <= TDC_DRV_PMIC_MAX_VOLTAGE_CONTROL_VALUE)
             {
                 if (!write_change_TxPowerLevel(tx_power))
                 {
@@ -440,7 +440,7 @@ void Initialize(void)
             // 새 레벨이 최대 값을 넘으면 최대 값으로 설정
             else
             {
-                if (!write_change_TxPowerLevel(MaxVoltageControlValue))
+                if (!write_change_TxPowerLevel(TDC_DRV_PMIC_MAX_VOLTAGE_CONTROL_VALUE))
                 {
                     while (1)
                     {
@@ -452,11 +452,11 @@ void Initialize(void)
     }
 #endif
 
-    /* P11 (Rev.4 patch): 터치 센서 초기화 - init_cm3_SPI() 직후로 이동.
-     * 사유: warm reset (워치독) 후 NRF 의 잔존 SPI 상태가 init_cm3_SPI() 전에
+    /* P11 (Rev.4 patch): 터치 센서 초기화 - tdc_hal_spi_init() 직후로 이동.
+     * 사유: warm reset (워치독) 후 NRF 의 잔존 SPI 상태가 tdc_hal_spi_init() 전에
      *       CS RISE 를 만들어 DMA TRANSFER_WORD_CNT_SHORT 미스매치 회귀 발생.
-     *       원래 P11 위치 (init_I2c 직후) 는 SPI init 시점을 늦춰 NRF SPI race 가능성.
-     *       본 위치는 본 작업 전 시점 (systemControl 분기 → init_cm3_SPI 후) 과 동등.
+     *       원래 P11 위치 (tdc_hal_i2c_init 직후) 는 SPI init 시점을 늦춰 NRF SPI race 가능성.
+     *       본 위치는 본 작업 전 시점 (systemControl 분기 → tdc_hal_spi_init 후) 과 동등.
      * Auto-ATI 대기 (~1.5s) 는 LED 버스트 (~1.8s) 와 병렬 진행 → 체감 시간 0. */
     tdc_touch_init_begin();
     TDC_PRINTF_I("[MILESTONE] TOUCH-INIT-BEGIN t3=%d \r\n", tdc_hal_timer_get_t3_tick());
@@ -468,7 +468,7 @@ void Initialize(void)
     // 인터럽트 활성화 (PRIMASK 는 main.c 에서 이미 enable - 사실상 noop, 안전망)
     enable_interrupt();
 
-    /* 터치 센서 초기화는 P11 (init_I2c 직후) 에서 tdc_touch_init_begin() 으로 시작.
+    /* 터치 센서 초기화는 P11 (tdc_hal_i2c_init 직후) 에서 tdc_touch_init_begin() 으로 시작.
      * led_isr_active_set(true) 는 LED 진입 게이트 (P3-Early L4) 에서 이미 호출.
      * 상세: docs/tasks/LED/20260423_power-on-early-lighting/구현계획.md (Rev.4) */
 
@@ -481,7 +481,7 @@ void Initialize(void)
     // 더 이상 가속도 센서 사용하지 않음
 #if 0
     // 가속도 센서 설정
-    if (!configure_MIS2DH_asClickMode(2))
+    if (!tdc_drv_mis2dh_configure_click_mode(2))
     {
         TDC_PRINTF_E("[ACC] FAILED TO CONFIGURE AS CLICK MODE \r\n");
         errorCodeUpdate(en__ACCELEROMETER_ERROR, en__I2C_ACCELER_WritingError, __LINE__);
@@ -516,7 +516,7 @@ void Initialize(void)
     snd_charger_set_state(EN__SND_CHARGER_STATE_RESET);
 
     // SPI 초기화
-    init_cm3_SPI();
+    tdc_hal_spi_init();
 
     // 초기화 과정을 통해 SPI 인터페이스 설정도 완료 되었고
     // 위에서 CFX 동작까지 실행시켰으므로, 이제 QCC를 깨우고 배터리 정보를 얻을 수 있도록 한다.

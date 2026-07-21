@@ -7,17 +7,17 @@
 #include "FPGA.h"
 
 #ifdef CM3_I2C_controls_FPAG
-#include "driver_i2c_for_ISD.h"
+#include "tdc_hal_i2c_isd.h"
 #else
-#include "driver_cfx_i2c.h"
+#include "tdc_hal_i2c_cfx.h"
 #endif
 
 #if defined(Board_is_OTE_VER_1_2)
-#include "driver_REN_ISL91128.h"
+#include "tdc_drv_isl91128.h"
 #elif defined(Board_is_TD_DEV_ver_1_4) || defined(Board_is_OTE_VER_1_4) || defined(Board_is_OTE_VER_1_5)
-#include "driver_REN_ISL9122.h"
+#include "tdc_drv_isl9122.h"
 #elif defined(Board_is_OTE_VER_1_3)
-#include "driver_REN_ISL98608.h"
+#include "tdc_drv_isl98608.h"
 #else
 #error Link PMIC is NOT selected.
 #endif
@@ -139,9 +139,9 @@ bool read_FPGA_version(int *p_readValue)
     static int error_cnt = 0;
 
 #ifdef CM3_I2C_controls_FPAG
-    if (read_ISD_by_CM3_I2C(i2cAddr_FPGA_version, p_readValue, 1))
+    if (tdc_hal_i2c_isd_read(i2cAddr_FPGA_version, p_readValue, 1))
 #else
-    if (cfx_i2c_read(i2cAddr_FPGA_version, p_readValue, 1))
+    if (tdc_hal_i2c_cfx_read(i2cAddr_FPGA_version, p_readValue, 1))
 #endif
     {
         error_cnt = 0;
@@ -161,9 +161,9 @@ bool read_FPGA_systemResgister_1st(int *p_readValue)
 {
     static int error_cnt = 0;
 #ifdef CM3_I2C_controls_FPAG
-    if (read_ISD_by_CM3_I2C(i2cAddr_FPGA_systemResgister_1st, p_readValue, 1))
+    if (tdc_hal_i2c_isd_read(i2cAddr_FPGA_systemResgister_1st, p_readValue, 1))
 #else
-    if (cfx_i2c_read(i2cAddr_FPGA_systemResgister_1st, p_readValue, 1))
+    if (tdc_hal_i2c_cfx_read(i2cAddr_FPGA_systemResgister_1st, p_readValue, 1))
 #endif
     {
         error_cnt = 0;
@@ -182,9 +182,9 @@ bool read_FPGA_systemResgister_1st(int *p_readValue)
 bool read_FPGA_systemResgister_2nd(int *p_readValue)
 {
 #ifdef CM3_I2C_controls_FPAG
-    if (read_ISD_by_CM3_I2C(i2cAddr_FPGA_systemResgister_2nd, p_readValue, 1))
+    if (tdc_hal_i2c_isd_read(i2cAddr_FPGA_systemResgister_2nd, p_readValue, 1))
 #else
-    if (cfx_i2c_read(i2cAddr_FPGA_systemResgister_2nd, p_readValue, 1))
+    if (tdc_hal_i2c_cfx_read(i2cAddr_FPGA_systemResgister_2nd, p_readValue, 1))
 #endif
     {
         return true;
@@ -204,9 +204,9 @@ bool check_FPGA_PCM_Error(bool *isError)
     static int error_cnt = 0;
 
 #ifdef CM3_I2C_controls_FPAG
-    if (read_ISD_by_CM3_I2C(i2cAddr_FPGA_error_Flag, &readValue, 1))
+    if (tdc_hal_i2c_isd_read(i2cAddr_FPGA_error_Flag, &readValue, 1))
 #else
-    if (cfx_i2c_read(i2cAddr_FPGA_systemResgister_1st, &readValue, 1))
+    if (tdc_hal_i2c_cfx_read(i2cAddr_FPGA_systemResgister_1st, &readValue, 1))
 #endif
     {
         if ((readValue & 0x1F) != 0)
@@ -240,9 +240,9 @@ bool check_FPGA_FIFO_empty(bool *isEmpty)
     static int error_cnt = 0;
 
 #ifdef CM3_I2C_controls_FPAG
-    if (read_ISD_by_CM3_I2C(i2cAddr_FPGA_systemResgister_2nd, &readValue, 1))
+    if (tdc_hal_i2c_isd_read(i2cAddr_FPGA_systemResgister_2nd, &readValue, 1))
 #else
-    if (cfx_i2c_read(i2cAddr_FPGA_systemResgister_2nd, p_readValue, 1))
+    if (tdc_hal_i2c_cfx_read(i2cAddr_FPGA_systemResgister_2nd, p_readValue, 1))
 #endif
     {
         temp = readValue & (1 << FPGA_BitPosition_FIFO_is_empty);
@@ -272,9 +272,9 @@ bool check_FPGA_FIFO_empty(bool *isEmpty)
 bool read_FPGA_systemError_Flag(int *p_readValue)
 {
 #ifdef CM3_I2C_controls_FPAG
-    if (read_ISD_by_CM3_I2C(i2cAddr_FPGA_error_Flag, p_readValue, 1))
+    if (tdc_hal_i2c_isd_read(i2cAddr_FPGA_error_Flag, p_readValue, 1))
 #else
-    if (cfx_i2c_read(i2cAddr_FPGA_error_Flag, p_readValue, 1))
+    if (tdc_hal_i2c_cfx_read(i2cAddr_FPGA_error_Flag, p_readValue, 1))
 #endif
     {
         return true;
@@ -292,9 +292,9 @@ bool read_FPGA_backtelError_Flag(int *p_readValue)
 {
     static int error_cnt = 0;
 #ifdef CM3_I2C_controls_FPAG
-    if (read_ISD_by_CM3_I2C(i2cAddr_FPGA_backtel_ErrorFlag, p_readValue, 1))
+    if (tdc_hal_i2c_isd_read(i2cAddr_FPGA_backtel_ErrorFlag, p_readValue, 1))
 #else
-    if (cfx_i2c_read(i2cAddr_FPGA_backtel_ErrorFlag, p_readValue, 1))
+    if (tdc_hal_i2c_cfx_read(i2cAddr_FPGA_backtel_ErrorFlag, p_readValue, 1))
 #endif
     {
         error_cnt = 0;
@@ -316,9 +316,9 @@ bool read_FPGA_PulseWidth(int *pulseWidth)
     static int error_cnt = 0;
 
 #ifdef CM3_I2C_controls_FPAG
-    if (read_ISD_by_CM3_I2C(i2cAddr_FPGA_pulsePhaseWidth, &readValue, 1))
+    if (tdc_hal_i2c_isd_read(i2cAddr_FPGA_pulsePhaseWidth, &readValue, 1))
 #else
-    if (cfx_i2c_read(i2cAddr_FPGA_pulsePhaseWidth, p_readValue, 1))
+    if (tdc_hal_i2c_cfx_read(i2cAddr_FPGA_pulsePhaseWidth, p_readValue, 1))
 #endif
     {
         *pulseWidth = readValue + FPGA_pulsePhaseWidth_minimum;  // FPGA에 설정된 값에 기본 오프셋 값이 더해진게 실제 펄스 폭이 된다.
@@ -339,9 +339,9 @@ bool read_FPGA_FIFO_counter(int *counterFIFO)
 {
     static int error_cnt = 0;
 #ifdef CM3_I2C_controls_FPAG
-    if (read_ISD_by_CM3_I2C(i2cAddr_FPGA_FIFO_counter, counterFIFO, 1))
+    if (tdc_hal_i2c_isd_read(i2cAddr_FPGA_FIFO_counter, counterFIFO, 1))
 #else
-    if (cfx_i2c_read(i2cAddr_FPGA_FIFO_counter, p_readValue, 1))
+    if (tdc_hal_i2c_cfx_read(i2cAddr_FPGA_FIFO_counter, p_readValue, 1))
 #endif
     {
         error_cnt = 0;
@@ -360,9 +360,9 @@ bool read_FPGA_FIFO_counter(int *counterFIFO)
 bool read_FPGA_IO_MUX(int *p_readValue)
 {
 #ifdef CM3_I2C_controls_FPAG
-    if (read_ISD_by_CM3_I2C(i2cAddr_FGPA_IO_MUX, p_readValue, 1))
+    if (tdc_hal_i2c_isd_read(i2cAddr_FGPA_IO_MUX, p_readValue, 1))
 #else
-    if (cfx_i2c_read(i2cAddr_FGPA_IO_MUX, p_readValue, 1))
+    if (tdc_hal_i2c_cfx_read(i2cAddr_FGPA_IO_MUX, p_readValue, 1))
 #endif
     {
         return true;
@@ -380,9 +380,9 @@ bool read_FPGA_backtelConfig(int *p_readValue)
 {
     static int error_cnt = 0;
 #ifdef CM3_I2C_controls_FPAG
-    if (read_ISD_by_CM3_I2C(i2cAddr_FPGA_backtel_Config, p_readValue, 1))
+    if (tdc_hal_i2c_isd_read(i2cAddr_FPGA_backtel_Config, p_readValue, 1))
 #else
-    if (cfx_i2c_read(i2cAddr_FPGA_backtel_Config, p_readValue, 1))
+    if (tdc_hal_i2c_cfx_read(i2cAddr_FPGA_backtel_Config, p_readValue, 1))
 #endif
     {
         error_cnt = 0;
@@ -401,9 +401,9 @@ bool read_FPGA_backtelConfig(int *p_readValue)
 bool read_FPGA_optionalConfig(int *p_readValue)
 {
 #ifdef CM3_I2C_controls_FPAG
-    if (read_ISD_by_CM3_I2C(i2cAddr_FPGA_optional_Config, p_readValue, 1))
+    if (tdc_hal_i2c_isd_read(i2cAddr_FPGA_optional_Config, p_readValue, 1))
 #else
-    if (cfx_i2c_read(i2cAddr_FPGA_optional_Config, p_readValue, 1))
+    if (tdc_hal_i2c_cfx_read(i2cAddr_FPGA_optional_Config, p_readValue, 1))
 #endif
     {
         return true;
@@ -421,9 +421,9 @@ bool read_FPGA_backtel_FIFO(int *p_readValue, int counter)
 {
     static int error_cnt = 0;
 #ifdef CM3_I2C_controls_FPAG
-    if (read_ISD_by_CM3_I2C(i2cAddr_FPGA_Backtel_FIFO, p_readValue, counter))
+    if (tdc_hal_i2c_isd_read(i2cAddr_FPGA_Backtel_FIFO, p_readValue, counter))
 #else
-    if (cfx_i2c_read(i2cAddr_FPGA_Backtel_FIFO, p_readValue, counter))
+    if (tdc_hal_i2c_cfx_read(i2cAddr_FPGA_Backtel_FIFO, p_readValue, counter))
 #endif
     {
         error_cnt = 0;
@@ -444,7 +444,7 @@ bool read_txPowerLevel(int *p_readValue)
 {
     int readValue;
 
-    if (read_REN_ISL91128_register_byCM3_I2C(REN_ISL91128_registerAddr_voltageControl, &readValue))
+    if (tdc_drv_isl91128_read_register(TDC_DRV_ISL91128_REG_VOLTAGECONTROL, &readValue))
     {
         *p_readValue = (readValue & 0x3F);
         return true;
@@ -465,7 +465,7 @@ bool read_txPowerLevel(int *p_readValue)
     int        readValue;
     static int error_cnt = 0;
 
-    if (read_REN_ISL9122_register_byCM3_I2C(REN_ISL9122_registerAddr_VoltageSet, &readValue))
+    if (tdc_drv_isl9122_read_register(TDC_DRV_ISL9122_REG_VOLTAGESET, &readValue))
     {
         *p_readValue = (readValue);
         error_cnt    = 0;
@@ -484,7 +484,7 @@ bool read_txPowerLevel(int *p_readValue)
 }
 #elif defined(Board_is_OTE_VER_1_3)
 
-#if defined(Error_ISL98608_ReadByte)
+#if defined(TDC_DRV_ISL98608_ERR_READ_BYTE)
 
 int txLevel_kkk = 0;
 
@@ -494,14 +494,14 @@ bool read_txPowerLevel(int *p_readValue)
 {
     int readValue;
 
-#if defined(Error_ISL98608_ReadByte)
+#if defined(TDC_DRV_ISL98608_ERR_READ_BYTE)
 
     *p_readValue = txLevel_kkk;
     return true;
 
 #else
 
-    if (read_REN_ISL98608_register_byCM3_I2C(REN_ISL98608_registerAddr_VP_Voltage, &readValue))
+    if (tdc_drv_isl98608_read_register(TDC_DRV_ISL98608_REG_VP_VOLTAGE, &readValue))
     {
         *p_readValue = (readValue);
         return true;
@@ -581,9 +581,9 @@ EN_ISD_PowerState read_isd_Power_State(void)
 bool write_FPGA_systemResgister_1st(int value)
 {
 #ifdef CM3_I2C_controls_FPAG
-    if (write_ISD_by_CM3_I2C(i2cAddr_FPGA_systemResgister_1st, &value, 1))
+    if (tdc_hal_i2c_isd_write(i2cAddr_FPGA_systemResgister_1st, &value, 1))
 #else
-    if (cfx_i2c_write(i2cAddr_FPGA_systemResgister_1st, &value, 1))
+    if (tdc_hal_i2c_cfx_write(i2cAddr_FPGA_systemResgister_1st, &value, 1))
 #endif
     {
         value                                              = value & systemResgister_1st_WRITABLE_BIT;
@@ -602,9 +602,9 @@ bool write_FPGA_systemResgister_1st(int value)
 bool write_FPGA_systemResgister_2nd(int value)
 {
 #ifdef CM3_I2C_controls_FPAG
-    if (write_ISD_by_CM3_I2C(i2cAddr_FPGA_systemResgister_2nd, &value, 1))
+    if (tdc_hal_i2c_isd_write(i2cAddr_FPGA_systemResgister_2nd, &value, 1))
 #else
-    if (cfx_i2c_write(i2cAddr_FPGA_systemResgister_2nd, &value, 1))
+    if (tdc_hal_i2c_cfx_write(i2cAddr_FPGA_systemResgister_2nd, &value, 1))
 #endif
     {
         value                                              = value & systemResgister_2nd_WRITABLE_BIT;
@@ -623,9 +623,9 @@ bool write_FPGA_systemResgister_2nd(int value)
 bool write_FPGA_backtelConfig(int value)
 {
 #ifdef CM3_I2C_controls_FPAG
-    if (write_ISD_by_CM3_I2C(i2cAddr_FPGA_pulsePhaseWidth, &value, 1))
+    if (tdc_hal_i2c_isd_write(i2cAddr_FPGA_pulsePhaseWidth, &value, 1))
 #else
-    if (cfx_i2c_write(i2cAddr_FPGA_pulsePhaseWidth, &value, 1))
+    if (tdc_hal_i2c_cfx_write(i2cAddr_FPGA_pulsePhaseWidth, &value, 1))
 #endif
     {
         value                                                    = value & backterConfiguration_WRITABLE_BIT;
@@ -652,9 +652,9 @@ bool write_FPGA_reset(void)
     value = 1 << FPGA_BitPosition_ResetFPGA;
 
 #ifdef CM3_I2C_controls_FPAG
-    if (write_ISD_by_CM3_I2C(i2cAddr_FPGA_systemResgister_1st, &value, 1))
+    if (tdc_hal_i2c_isd_write(i2cAddr_FPGA_systemResgister_1st, &value, 1))
 #else
-    if (cfx_i2c_write(i2cAddr_FPGA_systemResgister_1st, &value, 1))
+    if (tdc_hal_i2c_cfx_write(i2cAddr_FPGA_systemResgister_1st, &value, 1))
 #endif
     {
         reset_Fpga_variable();
@@ -682,9 +682,9 @@ bool write_FPGA_enable_RF_tx(void)
     writingValue = writingValue | (0x01 << FPGA_BitPosition_TxEnable);
 
 #ifdef CM3_I2C_controls_FPAG
-    if (write_ISD_by_CM3_I2C(i2cAddr_FPGA_systemResgister_1st, &writingValue, 1))
+    if (tdc_hal_i2c_isd_write(i2cAddr_FPGA_systemResgister_1st, &writingValue, 1))
 #else
-    if (cfx_i2c_write(i2cAddr_FPGA_systemResgister_1st, &writingValue, 1))
+    if (tdc_hal_i2c_cfx_write(i2cAddr_FPGA_systemResgister_1st, &writingValue, 1))
 #endif
     {
         fpag_lastWrittenRegister.systemResgister_1st_value = writingValue;
@@ -707,9 +707,9 @@ bool is_RF_tx_eanble(void)
     static int error_cnt = 0;
 
 #ifdef CM3_I2C_controls_FPAG
-    if (read_ISD_by_CM3_I2C(i2cAddr_FPGA_systemResgister_1st, &readValue, 1))
+    if (tdc_hal_i2c_isd_read(i2cAddr_FPGA_systemResgister_1st, &readValue, 1))
 #else
-    if (cfx_i2c_read(i2cAddr_FPGA_systemResgister_1st, p_readValue, 1))
+    if (tdc_hal_i2c_cfx_read(i2cAddr_FPGA_systemResgister_1st, p_readValue, 1))
 #endif
     {
         if ((readValue >> FPGA_BitPosition_TxEnable) & 0x1 == 1)
@@ -743,9 +743,9 @@ bool write_FPGA_disable_RF_tx(void)
     writingValue = bitReverse & fpag_lastWrittenRegister.systemResgister_1st_value;
 
 #ifdef CM3_I2C_controls_FPAG
-    if (write_ISD_by_CM3_I2C(i2cAddr_FPGA_systemResgister_1st, &writingValue, 1))
+    if (tdc_hal_i2c_isd_write(i2cAddr_FPGA_systemResgister_1st, &writingValue, 1))
 #else
-    if (cfx_i2c_write(i2cAddr_FPGA_systemResgister_1st, &writingValue, 1))
+    if (tdc_hal_i2c_cfx_write(i2cAddr_FPGA_systemResgister_1st, &writingValue, 1))
 #endif
     {
         fpag_lastWrittenRegister.systemResgister_1st_value = writingValue;
@@ -769,12 +769,12 @@ bool write_change_TxPowerLevel(int txLevel)
     int readValue;
 
     // i2C로 설정한 DCDC값을 활성화한다.
-    value = 1 << en__enalbe_I2C_Control_BitPosition;
+    value = 1 << TDC_DRV_ISL91128_ENALBE_I2C_CONTROL_BITPOSITION;
 
-    // value=value|(0x3F<<en__voltageControl_BitPosition);
-    value = value | (txLevel << en__voltageControl_BitPosition);
+    // value=value|(0x3F<<TDC_DRV_ISL91128_VOLTAGECONTROL_BITPOSITION);
+    value = value | (txLevel << TDC_DRV_ISL91128_VOLTAGECONTROL_BITPOSITION);
 
-    if (write_REN_ISL91128_register_byCM3_I2C(REN_ISL91128_registerAddr_voltageControl, value))
+    if (tdc_drv_isl91128_write_register(TDC_DRV_ISL91128_REG_VOLTAGECONTROL, value))
     {
         return true;
     }
@@ -793,7 +793,7 @@ bool write_change_TxPowerLevel(int txLevel)
 {
     static int error_cnt = 0;
 
-    if (write_REN_ISL9122_register_byCM3_I2C(REN_ISL9122_registerAddr_VoltageSet, txLevel))
+    if (tdc_drv_isl9122_write_register(TDC_DRV_ISL9122_REG_VOLTAGESET, txLevel))
     {
         error_cnt = 0;
         return true;
@@ -812,13 +812,13 @@ bool write_change_TxPowerLevel(int txLevel)
 bool write_change_TxPowerLevel(int txLevel)
 {
 
-    if (write_REN_ISL98608_register_byCM3_I2C(REN_ISL98608_registerAddr_VBST_Voltage, txLevel + 6))
+    if (tdc_drv_isl98608_write_register(TDC_DRV_ISL98608_REG_VBST_VOLTAGE, txLevel + 6))
     {
 
-        if (write_REN_ISL98608_register_byCM3_I2C(REN_ISL98608_registerAddr_VP_Voltage, txLevel))
+        if (tdc_drv_isl98608_write_register(TDC_DRV_ISL98608_REG_VP_VOLTAGE, txLevel))
         {
 
-#if defined(Error_ISL98608_ReadByte)
+#if defined(TDC_DRV_ISL98608_ERR_READ_BYTE)
 
             txLevel_kkk = txLevel;
 #endif
@@ -855,9 +855,9 @@ bool write_FPGA_clear_FIFO(void)
     writingValue = (1 << FPGA_BitPosition_Clear_FIFO) | (fpag_lastWrittenRegister.systemResgister_2nd_value);
 
 #ifdef CM3_I2C_controls_FPAG
-    if (write_ISD_by_CM3_I2C(i2cAddr_FPGA_systemResgister_2nd, &writingValue, 1))
+    if (tdc_hal_i2c_isd_write(i2cAddr_FPGA_systemResgister_2nd, &writingValue, 1))
 #else
-    if (cfx_i2c_write(i2cAddr_FPGA_systemResgister_2nd, &writingValue, 1))
+    if (tdc_hal_i2c_cfx_write(i2cAddr_FPGA_systemResgister_2nd, &writingValue, 1))
 #endif
     {
         // 자동으로 지워지는 값이기 때문에 저장하지 않는다.

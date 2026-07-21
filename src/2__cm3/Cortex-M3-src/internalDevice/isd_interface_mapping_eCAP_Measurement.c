@@ -7,9 +7,9 @@
 #include "internalStimulationChip.h"
 #include "isd_interface.h"
 #if 0
-#include "driver_cfx_i2c.h"
+#include "tdc_hal_i2c_cfx.h"
 #else
-#include "driver_i2c_for_ISD.h"
+#include "tdc_hal_i2c_isd.h"
 #endif
 #include "definitionsForAlgorithm.h"
 
@@ -17,7 +17,7 @@
 #include "isd_interface_init_FPGA.h"
 #include "cfx_cm3_sharedMemory.h"
 #include "mappingControl.h"
-#include "driver_SPI.h"
+#include "tdc_hal_spi.h"
 #include "isd_interface_mapping_eCAP_Measurement.h"
 
 #include "electrodeMapping.h"
@@ -543,12 +543,12 @@ void eCapMeasurement_masking(bool startFlag)
 
                 w_FPGA_VolatileValue = w_FPGA_VolatileValue | last_fpga_settingValue;
 
-                //if (cfx_i2c_write(df_I2C_ADDR_FPGA_System_State, &w_FPGA_VolatileValue, 1))
-                if (write_ISD_by_CM3_I2C(i2cAddr_FPGA_systemResgister_2nd, &w_FPGA_VolatileValue, 1))
+                //if (tdc_hal_i2c_cfx_write(df_I2C_ADDR_FPGA_System_State, &w_FPGA_VolatileValue, 1))
+                if (tdc_hal_i2c_isd_write(i2cAddr_FPGA_systemResgister_2nd, &w_FPGA_VolatileValue, 1))
                 {
 
-                    //if (cfx_i2c_read(df_I2C_ADDR_FPGA_System_State, &r_FPGA_registerValue, 1))
-                    if (read_ISD_by_CM3_I2C(i2cAddr_FPGA_systemResgister_2nd, &r_FPGA_registerValue, 1))
+                    //if (tdc_hal_i2c_cfx_read(df_I2C_ADDR_FPGA_System_State, &r_FPGA_registerValue, 1))
+                    if (tdc_hal_i2c_isd_read(i2cAddr_FPGA_systemResgister_2nd, &r_FPGA_registerValue, 1))
                     {
 
 
@@ -1257,16 +1257,16 @@ void eCapMeasurement_masking(bool startFlag)
 #if 0
 
                     // FGPA 상태 확인
-                    //if(cfx_i2c_read(df_I2C_ADDR_FPGA_System_State, &r_FPGA_registerValue, 1))
-                    if(read_ISD_by_CM3_I2C(i2cAddr_FPGA_systemResgister_1st, &r_FPGA_registerValue, 1))
+                    //if(tdc_hal_i2c_cfx_read(df_I2C_ADDR_FPGA_System_State, &r_FPGA_registerValue, 1))
+                    if(tdc_hal_i2c_isd_read(i2cAddr_FPGA_systemResgister_1st, &r_FPGA_registerValue, 1))
                     {
 
                         comparing=r_FPGA_registerValue&(1<<FPGA_BitPosition_SystemError);   // 에러 비트
                         if(comparing==0x20)
                         {
 
-                            //cfx_i2c_read(df_I2C_ADDR_FPGA_Error_Flag, &r_FPGA_registerValue, 1);
-                            read_ISD_by_CM3_I2C(i2cAddr_FPGA_error_Flag, &r_FPGA_registerValue, 1);
+                            //tdc_hal_i2c_cfx_read(df_I2C_ADDR_FPGA_Error_Flag, &r_FPGA_registerValue, 1);
+                            tdc_hal_i2c_isd_read(i2cAddr_FPGA_error_Flag, &r_FPGA_registerValue, 1);
 
 
 
@@ -1379,7 +1379,7 @@ void eCapMeasurement_masking(bool startFlag)
 
                 // 송신 데이터 SPI TX버퍼에 복사
 
-                writeDataToSpiTxBuff(bufferForSPI_tx,buffer_tx_index);
+                tdc_hal_spi_write_tx_buffer(bufferForSPI_tx,buffer_tx_index);
 
 
 
@@ -1394,7 +1394,7 @@ void eCapMeasurement_masking(bool startFlag)
 
                     while(1)
                     {
-                        if(isSpiTxBuffEmpty())
+                        if(tdc_hal_spi_is_tx_buffer_empty())
                         {
 
                             ble_transfer_index=0;
@@ -1499,7 +1499,7 @@ void eCapMeasurement_masking(bool startFlag)
 
                 // 송신 데이터 SPI TX버퍼에 복사
 
-                writeDataToSpiTxBuff(bufferForSPI_tx, buffer_tx_index);
+                tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, buffer_tx_index);
 
                 if (sendingPatternIndex == en__switchingArtifact)
                 {

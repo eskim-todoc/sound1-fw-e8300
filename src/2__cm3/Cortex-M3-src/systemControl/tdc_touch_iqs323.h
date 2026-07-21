@@ -16,7 +16,7 @@
 #include <stdint.h>
 
 #include <hw.h>
-#include <driver_i2c.h>
+#include <tdc_hal_i2c.h>
 #include <tdc_printf.h>
 #include <tdc_hal_timer.h>
 

@@ -6,7 +6,7 @@
 #include "commonDataProcessing.h"
 #include "isd_interface.h"
 
-#include "driver_i2c_for_ISD.h"
+#include "tdc_hal_i2c_isd.h"
 
 bool updateEarPieceStatus(void)
 {
@@ -60,9 +60,9 @@ bool updateEarPieceStatus(void)
         {
 
 #ifdef CM3_I2C_controls_FPAG
-            if (read_ISD_by_CM3_I2C(i2cAddr_FPGA_systemResgister_1st, &readValue, 1))
+            if (tdc_hal_i2c_isd_read(i2cAddr_FPGA_systemResgister_1st, &readValue, 1))
 #else
-            if (cfx_i2c_read(i2cAddr_FPGA_systemResgister_1st, &readValue, 1))
+            if (tdc_hal_i2c_cfx_read(i2cAddr_FPGA_systemResgister_1st, &readValue, 1))
 #endif
             {
 
