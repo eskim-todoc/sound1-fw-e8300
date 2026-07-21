@@ -8,7 +8,7 @@
 
 #include "tdc_hal_i2c_isd.h"
 
-bool updateEarPieceStatus(void)
+bool tdc_sys_earpiece_update_status(void)
 {
     static int updatecounter = 100;
 

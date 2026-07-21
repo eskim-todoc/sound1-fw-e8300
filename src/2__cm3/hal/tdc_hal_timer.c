@@ -3,7 +3,7 @@
  */
 
 #include <tdc_hal_timer.h>
-#include <LedOutput.h>  /* led_arbiter_tick - Timer 3 ISR 직접 구동 */
+#include <tdc_led_output.h>  /* tdc_led_arbiter_tick - Timer 3 ISR 직접 구동 */
 
 static bool    _ci_is_leap(uint16_t year);
 static uint8_t _ci_day_in_month(uint8_t year, uint8_t month);
@@ -22,7 +22,7 @@ void TIMER_3_IRQHandler(void)
      * `g_ci_timer_main_tick` 증가와 `enable_iteration()` 호출은 CFX FIFO ISR
      * (`CFX_0_IRQHandler` / `FIFO_5_IRQHandler`) 가 담당 - 책임 분리. */
     g_tdc_timer_t3_tick++;
-    led_arbiter_tick();
+    tdc_led_arbiter_tick();
 
     // 절전모드에서 정말 원하는 시간 마다 타이머 이벤트가 발생하는지 확인하는 용도
     // Sys_GPIO_Toggle(DIO19);

@@ -6,11 +6,11 @@
 #include "board.h"
 #include "cfx_cm3_sharedMemory.h"
 #include "tdc_pwr_battery.h"
-#include "LedOutput.h"
+#include "tdc_led_output.h"
 #include "tdc_sys_error.h"
 #include "isd_interface.h"
 
-/* LED 판정은 Arbiter(led_request / LED_SRC_ 계열)로 이관됨(Rev.3).
+/* LED 판정은 Arbiter(tdc_led_request / TDC_LED_SRC_ 계열)로 이관됨(Rev.3).
  * 구 Led_Pattern 필드와 current_led_pattern 입력은 소비자가 없어 제거했다. */
 typedef struct
 {

@@ -4,7 +4,7 @@
 #include <stdbool.h>
 #include "processorDirective.h"
 #include "tdc_hal_i2c_isd.h"
-#include "LedOutput.h"
+#include "tdc_led_output.h"
 
 #include <cfx_cm3_sharedMemory.h>
 #include <tdc_printf.h>

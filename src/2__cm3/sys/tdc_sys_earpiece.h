@@ -7,6 +7,6 @@
 #include <stdbool.h>
 #include "FPGA.h"
 
-bool updateEarPieceStatus(void);
+bool tdc_sys_earpiece_update_status(void);
 
 #endif

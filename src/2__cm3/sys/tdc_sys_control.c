@@ -13,10 +13,10 @@
 #include "remoteControl.h"
 #include "mappingControl.h"
 
-#include "LedOutput.h"
+#include "tdc_led_output.h"
 #include "isd_interface_stimulationStandAlone.h"
 #include "tdc_pwr_battery.h"
-#include "earpieceUpdate.h"
+#include "tdc_sys_earpiece.h"
 #include "processorDirective.h"
 #include "tdc_sys_control.h"
 
@@ -164,31 +164,31 @@ static tdc_sys_control_state_t s_sysctl = {
 static void handle_error(tdc_sys_error_code_t mcu_error)
 {
 #ifdef ENABLE_UI_CMD
-    if (tdc_ui_command_is_led_override(LED_SRC_ERROR))
+    if (tdc_ui_command_is_led_override(TDC_LED_SRC_ERROR))
     {
         return;
     }
 #endif
-    led_request(LED_SRC_ERROR, LED_ST_ERROR_MCU);
+    tdc_led_request(TDC_LED_SRC_ERROR, TDC_LED_ST_ERROR_MCU);
 
     if (mcu_error.dataProcessingErrorFlag != en__NA)
     {
-        led_request(LED_SRC_ERROR, LED_ST_ERROR_MAP);
+        tdc_led_request(TDC_LED_SRC_ERROR, TDC_LED_ST_ERROR_MAP);
     }
     if (mcu_error.accelerometerErrorFlag != en__NA)
     {
-        led_request(LED_SRC_ERROR, LED_ST_ERROR_ACCEL);
+        tdc_led_request(TDC_LED_SRC_ERROR, TDC_LED_ST_ERROR_ACCEL);
     }
     if (mcu_error.FPGA_CommunicationErrorFlag != en__NA)
     {
-        led_request(LED_SRC_ERROR, LED_ST_ERROR_FPGA);
+        tdc_led_request(TDC_LED_SRC_ERROR, TDC_LED_ST_ERROR_FPGA);
     }
 }
 
 /* 충전기 연결 시 처리 (크래들 뚜껑 엣지 감지 포함). */
 static void handle_charging(ST__USB_CONNECTOR charger, bool power_button_pushed, tdc_sys_state_t *out_state)
 {
-    (void) power_button_pushed; /* TDC_DBG_LONG_TOUCH_IGNORE_LED 비활성 시 미사용 */
+    (void) power_button_pushed; /* TDC_LED_DBG_LONG_TOUCH_IGNORE 비활성 시 미사용 */
 
     out_state->BLE_Off    = true;  /* NRF 를 꺼진 상태로 유지 */
     out_state->enablePMIC = false; /* 상시전원 외 전원 차단을 CFX 에 전달 */
@@ -200,7 +200,7 @@ static void handle_charging(ST__USB_CONNECTOR charger, bool power_button_pushed,
         if (charger.carryingCaseCoverOpen == df_Connected)
         {
             s_sysctl.cradle_cover_closed_edge = false; /* 뚜껑 열림 -> 엣지 플래그 리셋 */
-            /* 충전 중 LED: 배터리 레벨 판정은 Arbiter 가 처리 (led_request 불필요) */
+            /* 충전 중 LED: 배터리 레벨 판정은 Arbiter 가 처리 (tdc_led_request 불필요) */
         }
         else if (!s_sysctl.cradle_cover_closed_edge)
         {
@@ -211,8 +211,8 @@ static void handle_charging(ST__USB_CONNECTOR charger, bool power_button_pushed,
     }
     /* 크래들 없이 자극기에 직접 충전기가 꼽힌 경우: 할 일 없음 */
 
-#if TDC_DBG_LONG_TOUCH_IGNORE_LED
-    if (power_button_pushed) { led_request(LED_SRC_DBG, LED_ST_DBG_LONG_TOUCH_IGNORE); }
+#if TDC_LED_DBG_LONG_TOUCH_IGNORE
+    if (power_button_pushed) { tdc_led_request(TDC_LED_SRC_DBG, TDC_LED_ST_DBG_LONG_TOUCH_IGNORE); }
 #endif
     s_sysctl.start_flag = false;
 }
@@ -223,8 +223,8 @@ static bool gate_power_button(bool power_button_pushed, bool mapping_connected)
 {
     if (mapping_connected || (s_sysctl.isd_disconnection_counter < 300))
     {
-#if TDC_DBG_LONG_TOUCH_IGNORE_LED
-        if (power_button_pushed) { led_request(LED_SRC_DBG, LED_ST_DBG_LONG_TOUCH_IGNORE); }
+#if TDC_LED_DBG_LONG_TOUCH_IGNORE
+        if (power_button_pushed) { tdc_led_request(TDC_LED_SRC_DBG, TDC_LED_ST_DBG_LONG_TOUCH_IGNORE); }
 #endif
         return false;
     }
@@ -235,7 +235,7 @@ static bool gate_power_button(bool power_button_pushed, bool mapping_connected)
  * very_low_battery 는 탈출 조건에서 읽는다 (내부기 부착 중 오진입 대응). */
 static void handle_poweroff(bool very_low_battery, bool conneded_ISD, tdc_sys_state_t *out_state)
 {
-    /* burst 종료 검출 - pending flag 는 led_request() 가 set, led_engine_run() 이
+    /* burst 종료 검출 - pending flag 는 tdc_led_request() 가 set, led_engine_run() 이
      * burst 자가 해제 시 clear. timer/tick 무관 정확. */
     if (!tdc_led_is_burst_pending() && (s_sysctl.poweroff_start_counter != 0))
     {
@@ -290,7 +290,7 @@ static bool handle_running(int battery_percent, bool conneded_ISD, tdc_sys_state
     {
         s_sysctl.isd_disconnection_counter = 0;
 
-        led_request(LED_SRC_POWER, LED_ST_POWER_OFF);
+        tdc_led_request(TDC_LED_SRC_POWER, TDC_LED_ST_POWER_OFF);
         out_state->enable_ISD           = false;
         s_sysctl.poweroff_start_counter = 0;
         s_sysctl.poweroff_enabled       = true;
@@ -308,7 +308,7 @@ static bool handle_discharging(int battery_percent, bool power_button_pushed, bo
 
     if (!s_sysctl.start_flag)
     {
-        /* turnOffLED · led_request(POWER, POWER_ON) · tdc_touch_init_begin 은
+        /* tdc_led_turn_off · tdc_led_request(POWER, POWER_ON) · tdc_touch_init_begin 은
          * tdc_sys_init() P3-Early 에서 직접 수행 (Rev.4 이관).
          * 본 분기는 부팅 후 첫 진입 마커만 셋업. */
         s_sysctl.start_flag = true;
@@ -343,7 +343,7 @@ static bool handle_discharging(int battery_percent, bool power_button_pushed, bo
             TDC_PRINTF_D("[SYSTEM] POWER BUTTON PUSHED \r\n");
         }
 
-        led_request(LED_SRC_POWER, LED_ST_POWER_OFF);
+        tdc_led_request(TDC_LED_SRC_POWER, TDC_LED_ST_POWER_OFF);
         out_state->enable_ISD           = false;
         s_sysctl.poweroff_start_counter = 0;
         s_sysctl.poweroff_enabled       = true;
@@ -389,9 +389,9 @@ tdc_sys_state_t tdc_sys_control_step(tdc_sys_error_code_t mcuErrorCode,  //
 
     /* 에러 해제 시 ERROR 소스 클리어 */
 #ifdef ENABLE_UI_CMD
-    if (!tdc_ui_command_is_led_override(LED_SRC_ERROR))
+    if (!tdc_ui_command_is_led_override(TDC_LED_SRC_ERROR))
 #endif
-        led_request(LED_SRC_ERROR, LED_ST_NONE);
+        tdc_led_request(TDC_LED_SRC_ERROR, TDC_LED_ST_NONE);
 
     /* 충전기 미연결(df_Defalut) 분기는 할 일이 없어 제거했다. 충전기가 꼽히면
      * 하드웨어적으로 리셋되므로 부팅 직후엔 df_Defalut 로 들어온다. */

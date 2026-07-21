@@ -21,9 +21,9 @@
 #include "mappingControl.h"  //ok
 #include "remoteControl.h"   //ok
 
-#include "LedOutput.h"           //ok
+#include "tdc_led_output.h"           //ok
 #include "ble_communication.h"   //ok
-#include "earpieceUpdate.h"      //ok
+#include "tdc_sys_earpiece.h"      //ok
 #include "indicatorByStimul.h"   //ok
 #include "stimulationParaCal.h"  //ok
 
@@ -374,28 +374,28 @@ static void func_cradle_lid_closed_loop(void);
 typedef struct
 {
     int         min_pct;
-    led_state_t state;
+    tdc_led_state_t state;
 } tdc_batt_led_bin_t;
 
 static const tdc_batt_led_bin_t s_tdc_batt_led_table[] = {
-    {80, LED_ST_BATT_READY},   /* pct >= 80         */
-    {10, LED_ST_BATT_MID},     /* 10 <= pct < 80    */
-    {0, LED_ST_BATT_CRITICAL}, /* pct <  10 (fallback) */
+    {80, TDC_LED_ST_BATT_READY},   /* pct >= 80         */
+    {10, TDC_LED_ST_BATT_MID},     /* 10 <= pct < 80    */
+    {0, TDC_LED_ST_BATT_CRITICAL}, /* pct <  10 (fallback) */
 };
 #define TDC_BATT_LED_TABLE_LEN ((int) (sizeof(s_tdc_batt_led_table) / sizeof(s_tdc_batt_led_table[0])))
 
 #define TDC_MAP_LOW_BATT_PCT 20 /* pct <= 20 -> 배터리 LOW (마진 없는 단일 컷) */
 
 /* 배터리 LED 요청. 반환값 batt_st 는 ISD 미연결 시 재송출에 재사용된다. */
-static led_state_t tdc_led_request_battery(int pct, bool ovr_batt_active, bool batt_is_reset_state)
+static tdc_led_state_t tdc_led_request_battery(int pct, bool ovr_batt_active, bool batt_is_reset_state)
 {
-    led_state_t batt_st = LED_ST_BATT_CRITICAL; /* 테이블 매치 실패 시 안전측 기본값 */
+    tdc_led_state_t batt_st = TDC_LED_ST_BATT_CRITICAL; /* 테이블 매치 실패 시 안전측 기본값 */
 
     if (!ovr_batt_active && batt_is_reset_state)
     {
         /* 배터리 정보 미수신(RESET, percent=0): 판정 보류 - 최우선 분기 유지
          * (부팅 초기 pct=0 이 CRITICAL 로 새는 회귀 방지, Rev.5 근거) */
-        batt_st = LED_ST_IDLE;
+        batt_st = TDC_LED_ST_IDLE;
     }
     else
     {
@@ -411,19 +411,19 @@ static led_state_t tdc_led_request_battery(int pct, bool ovr_batt_active, bool b
     }
 
 #ifdef ENABLE_UI_CMD
-    if (!tdc_ui_command_is_led_override(LED_SRC_BATTERY))
+    if (!tdc_ui_command_is_led_override(TDC_LED_SRC_BATTERY))
 #endif
-        led_request(LED_SRC_BATTERY, batt_st);
+        tdc_led_request(TDC_LED_SRC_BATTERY, batt_st);
 
     return batt_st;
 }
 
 /* ISD LED 요청. isd_conn 을 반환(매핑 블록이 재사용).
  * batt_st: 내부기 미연결 시 배터리 LED 를 재송출하기 위해 전달받는다. */
-static bool tdc_led_request_isd(bool isd_conn, led_state_t batt_st)
+static bool tdc_led_request_isd(bool isd_conn, tdc_led_state_t batt_st)
 {
 #ifdef ENABLE_UI_CMD
-    if (!tdc_ui_command_is_led_override(LED_SRC_ISD))
+    if (!tdc_ui_command_is_led_override(TDC_LED_SRC_ISD))
 #endif
     /* IMPORTANT: 내부기 연결 해제시 위에서 구한 배터리 레벨에 대한 LED를 켜도록 유도했다. */
     {
@@ -434,25 +434,25 @@ static bool tdc_led_request_isd(bool isd_conn, led_state_t batt_st)
             if (readLED_indicatorOnOff() == 1)
             {
                 // LED 표시 설정이 켜기(1)이면,
-                led_request(LED_SRC_ISD, LED_ST_IN_USE);
+                tdc_led_request(TDC_LED_SRC_ISD, TDC_LED_ST_IN_USE);
             }
             else
             {
                 // LED 표시 설정이 끄기(2)이면,
-                led_request(LED_SRC_ISD, LED_ST_NONE);
+                tdc_led_request(TDC_LED_SRC_ISD, TDC_LED_ST_NONE);
             }
         }
         else  // 내부기 미 연결 상태
         {
             // 항상 LED가 켜질 수 있게 설정 정보를 LED 켜기로 강제한다.
-            led_request(LED_SRC_ISD, LED_ST_NONE);
-            led_request(LED_SRC_BATTERY, batt_st);
+            tdc_led_request(TDC_LED_SRC_ISD, TDC_LED_ST_NONE);
+            tdc_led_request(TDC_LED_SRC_BATTERY, batt_st);
         }
 
-        /* s_req[LED_SRC_ISD] 확정 후 게이트 갱신 - 연결 해제 전환 시
+        /* s_req[TDC_LED_SRC_ISD] 확정 후 게이트 갱신 - 연결 해제 전환 시
          * s_isd_conn=0 과 s_req[ISD]=NONE 사이에 TIMER_3 ISR 이 끼어들어
          * 1-tick IN_USE(백색) 잔상이 뜨던 race 를 방지하기 위해 분기 뒤(마지막)로 봉인. */
-        led_set_isd_conn_state(isd_conn);
+        tdc_led_set_isd_conn_state(isd_conn);
     }
 
     return isd_conn;
@@ -465,25 +465,25 @@ static void tdc_led_request_mapping(int pct, bool map_conn, bool isd_conn)
     bool map_low_active = (pct <= TDC_MAP_LOW_BATT_PCT);
 
 #ifdef ENABLE_UI_CMD
-    if (!tdc_ui_command_is_led_override(LED_SRC_MAPPING))
+    if (!tdc_ui_command_is_led_override(TDC_LED_SRC_MAPPING))
 #endif
     {
         if (map_conn)
         {
-            led_state_t map_st;
+            tdc_led_state_t map_st;
             if (map_low_active)
             {
-                map_st = isd_conn ? LED_ST_MAPPING_ISD_BATT_LOW : LED_ST_MAPPING_NO_ISD_BATT_LOW;
+                map_st = isd_conn ? TDC_LED_ST_MAPPING_ISD_BATT_LOW : TDC_LED_ST_MAPPING_NO_ISD_BATT_LOW;
             }
             else
             {
-                map_st = isd_conn ? LED_ST_MAPPING_ISD_BATT_READY : LED_ST_MAPPING_NO_ISD_BATT_READY;
+                map_st = isd_conn ? TDC_LED_ST_MAPPING_ISD_BATT_READY : TDC_LED_ST_MAPPING_NO_ISD_BATT_READY;
             }
-            led_request(LED_SRC_MAPPING, map_st);
+            tdc_led_request(TDC_LED_SRC_MAPPING, map_st);
         }
         else
         {
-            led_request(LED_SRC_MAPPING, LED_ST_NONE);
+            tdc_led_request(TDC_LED_SRC_MAPPING, TDC_LED_ST_NONE);
         }
     }
 }
@@ -525,7 +525,7 @@ int func_normal(void)
         tdc_shared_publish_cm3_heartbeat(s_cm3_heartbeat);
 
         /* QCC 배터리 타임아웃 → 파워오프 패턴 후 절전.
-         * QCC 미수신 시 tdc_sys_control_step 은 df_Default 게이트(en__LED_NA)에 막혀 자체
+         * QCC 미수신 시 tdc_sys_control_step 은 df_Default 게이트(TDC_LED_PATTERN_NA)에 막혀 자체
          * 파워오프 시퀀스에 도달하지 못하므로, 여기서 직접 POWER_OFF 패턴을 요청하고
          * burst 완료 후 systemOff 를 세팅해 기존 절전 경로(아래 → break → func_sleep)를 탄다.
          * 상세: docs/tasks/power/20260609_qcc-batt-timeout-sleep/분석.md §4 */
@@ -537,7 +537,7 @@ int func_normal(void)
         /* 크래들 뚜껑 닫힘 첫 감지 → 약 절전 루프 (ISD 연결 중이면 차단) */
         if (ctx.systemState.cradleLidClosed && !ctx.isd_state.conneded_ISD)
         {
-            led_force_fade_off(); /* fade-out ISR 완료 후 LED 완전 소등 */
+            tdc_led_force_fade_off(); /* fade-out ISR 완료 후 LED 완전 소등 */
             func_cradle_lid_closed_loop();
             /* 도달 불가 - 루프 내 SYS_WATCHDOG_RESET()으로 재부팅 */
         }
@@ -548,10 +548,10 @@ int func_normal(void)
             {
                 /* cross-fade Phase A 강제 - POWER_OFF burst 직후 다른 best
                  * (BATTERY/ISD/MAPPING) 로 진입한 새 색 (예: GREEN) 이
-                 * turnOffLED() 에서 fade-out 되어 잔상으로 보이는 현상 방지.
-                 * 모든 src 를 LED_ST_NONE 으로 강제하고 FADE_MAX_MS+10 동안
+                 * tdc_led_turn_off() 에서 fade-out 되어 잔상으로 보이는 현상 방지.
+                 * 모든 src 를 TDC_LED_ST_NONE 으로 강제하고 FADE_MAX_MS+10 동안
                  * 자연 fade-out 진행 후 break. */
-                led_force_fade_off();
+                tdc_led_force_fade_off();
                 break; /* Escape this main loop to enter the ULP mode */
             }
 
@@ -644,7 +644,7 @@ static void tdc_handle_events(const tdc_normal_events_t *ev, tdc_normal_ctx_t *c
 
     tdc_update_led_requests(ev->batt_percent, ctx->isd_state.conneded_ISD, ctx->ble_state.mappingConnection);
 
-    /* led_arbiter_tick() 은 Timer 3 ISR 에서 직접 구동 (tdc_hal_timer.c).
+    /* tdc_led_arbiter_tick() 은 Timer 3 ISR 에서 직접 구동 (tdc_hal_timer.c).
      * main loop 의 I2C/EEPROM 폴링 블록으로 인한 fade/PWM jitter 회피. */
 
     tdc_sys_control_nrf_on_off(ctx->isd_state, ctx->systemState.BLE_Off, ctx->ble_state.mappingConnection, ctx->ble_state.BLE_Off_Command);
@@ -694,7 +694,7 @@ static void tdc_apply_mapping_mode(bool mapping_connected)
     {
         changeSystemModeFlag(en__normalMode);
         shareMappingProgramConnection(false);
-        // updateEarPieceStatus();
+        // tdc_sys_earpiece_update_status();
     }
 }
 
@@ -706,7 +706,7 @@ static void tdc_apply_mapping_mode(bool mapping_connected)
  * 이중임계·prev 추적 없이 단일 컷 테이블로 판정(tdc_led_request_battery).
  * RESET(0x34 수신 전, percent=0) 시 부팅 초기 CRITICAL 누출 방지를 위해 IDLE 최우선 분기.
  *
- * ISD (SS4.6) - 배터리→ISD 순서 의존(미연결 시 batt_st 재송출) + led_set_isd_conn_state()
+ * ISD (SS4.6) - 배터리→ISD 순서 의존(미연결 시 batt_st 재송출) + tdc_led_set_isd_conn_state()
  * 봉인(1-tick 잔상 race 방지)은 tdc_led_request_isd() 내부에 유지.
  *
  * Mapping (SS4.4) - 배터리 LOW(단일 컷 pct<=TDC_MAP_LOW_BATT_PCT) × ISD 연결 여부 4분기.
@@ -721,7 +721,7 @@ static void tdc_update_led_requests(int batt_percent, bool isd_conn_default, boo
     int  pct             = batt_percent;
 #endif
     bool        batt_is_reset_state = (tdc_pwr_battery_get_state() == TDC_PWR_BATTERY_STATE_RESET);
-    led_state_t batt_st             = tdc_led_request_battery(pct, ovr_batt_active, batt_is_reset_state);
+    tdc_led_state_t batt_st             = tdc_led_request_battery(pct, ovr_batt_active, batt_is_reset_state);
 
 #ifdef ENABLE_UI_CMD
     bool isd_conn_raw = tdc_ui_command_override_isd_active() ? tdc_ui_command_override_isd_value() : isd_conn_default;
@@ -748,7 +748,7 @@ static bool tdc_handle_qcc_batt_timeout(bool *poweroff_started)
     if (!*poweroff_started)
     {
         TDC_PRINTF_W("[BATT] QCC BATT TIMED-OUT -> LED PATTERN = POWER OFF \r\n");
-        led_request(LED_SRC_POWER, LED_ST_POWER_OFF);
+        tdc_led_request(TDC_LED_SRC_POWER, TDC_LED_ST_POWER_OFF);
         *poweroff_started = true;
         return false;
     }
@@ -762,9 +762,9 @@ static bool tdc_handle_qcc_batt_timeout(bool *poweroff_started)
  * set 한 후 NONE 으로 reset 안 보내면 잔존하기 때문. */
 static bool tdc_can_enter_sleep(bool map_active)
 {
-    led_state_t ble_st      = led_get_request(LED_SRC_BLE_IND);
-    bool        pair_active = (ble_st == LED_ST_PAIR);
-    bool        ota_active  = (ble_st == LED_ST_OTA_QCC) || (ble_st == LED_ST_OTA_EZAIRO);
+    tdc_led_state_t ble_st      = tdc_led_get_request(TDC_LED_SRC_BLE_IND);
+    bool        pair_active = (ble_st == TDC_LED_ST_PAIR);
+    bool        ota_active  = (ble_st == TDC_LED_ST_OTA_QCC) || (ble_st == TDC_LED_ST_OTA_EZAIRO);
 
     if (map_active || pair_active || ota_active)
     {
@@ -885,7 +885,7 @@ static void func_cradle_lid_closed_loop(void)
     OnOff_3V_PMIC_CM3_to_CFX(false);
 
     /* 6. LED 끄기 */
-    turnOffLED();
+    tdc_led_turn_off();
 
     /* ※ CFX 유지: enter_ULP_mode 신호 보내지 않음 */
 
@@ -978,7 +978,7 @@ static void tdc_touch_sleep_handle_ati_error(bool ok, const tdc_touch_iqs323_sta
             TDC_PRINTF_W("[TOUCH] ati_error -> reboot \r\n");
 
 #if 0
-            turnON_RedLED();
+            tdc_led_turn_on_red();
             tdc_util_delay_ms(250); /* RTT 드레인 */
             SYS_WATCHDOG_REFRESH();
             tdc_util_delay_ms(250);
@@ -1109,7 +1109,7 @@ int func_sleep(void)
     snd_qcc_set_mode(SND_QCC_MODE_SHUTDOWN);
     Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_FPGA_SLEEP);
     OnOff_3V_PMIC_CM3_to_CFX(false); /* Disable 3.3V, 1.2V PMIC */
-    turnOffLED();
+    tdc_led_turn_off();
 
 #if 1
     while (1) /* CFX ULP 진입 대기 (공유메모리 플래그) */
