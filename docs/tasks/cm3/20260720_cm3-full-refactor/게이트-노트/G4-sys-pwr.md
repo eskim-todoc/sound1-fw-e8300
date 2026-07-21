@@ -97,7 +97,7 @@ tags: [cm3, refactoring, gate, g4, systemcontrol, fsm, power, battery]
 | **검증_G4_특화_3 (버튼 전파)** | ✅ `power_button_pushed = gate_power_button(...)` 재대입 확인 |
 | **검증_G4_특화_4 (자극 트리거 전파)** | ✅ `handle_running()` → `handle_discharging()` → `StimulationIndicatorTriggerLowPower` |
 | **검증_G4_특화_5 (분기 등가)** | ✅ 에러 early-return · prev 갱신 시점 · burst pending 무처리 · StartFlag 첫 tick · poweroff 탈출 조건 평탄화 전부 등가 대조 |
-| 검증_공통_5 (빌드·실기) | ⏳ 은수님 게이트 — **전원버튼·절전·충전·크래들 확인 권장** |
+| 검증_공통_5 (빌드·실기) | ✅ PASS — 은수님 확인 (2026-07-21, 세션 제목 "G4 구현 후 빌드, 테스트함"): 전원버튼·절전·충전·크래들 동작 확인 → **G4 폐쇄** |
 
 ## 6. 진행 방식 · 잔여
 
