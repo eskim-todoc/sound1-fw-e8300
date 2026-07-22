@@ -163,7 +163,7 @@ static void output_printf(const char *fmt, ...)
 /*  String helpers                                                          */
 /* ======================================================================== */
 
-static int ci_strcasecmp(const char *a, const char *b)
+static int str_casecmp(const char *a, const char *b)
 {
     while (*a && *b)
     {
@@ -184,7 +184,7 @@ static int str_to_val(const str_map_t *map, const char *tok)
 {
     for (int i = 0; map[i].name; i++)
     {
-        if (ci_strcasecmp(tok, map[i].name) == 0)
+        if (str_casecmp(tok, map[i].name) == 0)
             return map[i].val;
     }
     return -1;
@@ -307,7 +307,7 @@ static int handle_led(int argc, char *argv[])
         return -1;
 
     /* --led show */
-    if (ci_strcasecmp(argv[1], "show") == 0)
+    if (str_casecmp(argv[1], "show") == 0)
     {
         output_printf("--- LED Arbiter state ---\r\n");
         for (int src = 0; src < TDC_LED_SRC__MAX; src++)
@@ -322,7 +322,7 @@ static int handle_led(int argc, char *argv[])
     }
 
     /* --led req <src> <state> */
-    if (ci_strcasecmp(argv[1], "req") == 0)
+    if (str_casecmp(argv[1], "req") == 0)
     {
         if (argc < 4)
             return -1;
@@ -341,7 +341,7 @@ static int handle_led(int argc, char *argv[])
     }
 
     /* --led clr <src> */
-    if (ci_strcasecmp(argv[1], "clr") == 0)
+    if (str_casecmp(argv[1], "clr") == 0)
     {
         if (argc < 3)
             return -1;
@@ -359,17 +359,17 @@ static int handle_led(int argc, char *argv[])
     }
 
     /* --led user on|off */
-    if (ci_strcasecmp(argv[1], "user") == 0)
+    if (str_casecmp(argv[1], "user") == 0)
     {
         if (argc < 3)
             return -1;
 
-        if (ci_strcasecmp(argv[2], "on") == 0)
+        if (str_casecmp(argv[2], "on") == 0)
         {
             tdc_shm_change_led_indicator_on_off(en__PAYLOAD_ON);
             output_printf("OK: user LED on\r\n");
         }
-        else if (ci_strcasecmp(argv[2], "off") == 0)
+        else if (str_casecmp(argv[2], "off") == 0)
         {
             tdc_shm_change_led_indicator_on_off(en__PAYLOAD_OFF);
             output_printf("OK: user LED off\r\n");
@@ -382,7 +382,7 @@ static int handle_led(int argc, char *argv[])
     }
 
     /* --led pair */
-    if (ci_strcasecmp(argv[1], "pair") == 0)
+    if (str_casecmp(argv[1], "pair") == 0)
     {
         tdc_led_request(TDC_LED_SRC_BLE_IND, TDC_LED_ST_PAIR);
         output_printf("OK: PAIR latch injected\r\n");
@@ -390,7 +390,7 @@ static int handle_led(int argc, char *argv[])
     }
 
     /* --led pattern <0~14>  - 사진 디버깅 칼럼 매핑 */
-    if (ci_strcasecmp(argv[1], "pattern") == 0)
+    if (str_casecmp(argv[1], "pattern") == 0)
     {
         if (argc < 3)
             return -1;
@@ -420,16 +420,16 @@ static int handle_led(int argc, char *argv[])
     }
 
     /* --led burst <on|off> */
-    if (ci_strcasecmp(argv[1], "burst") == 0)
+    if (str_casecmp(argv[1], "burst") == 0)
     {
         if (argc < 3)
             return -1;
 
-        if (ci_strcasecmp(argv[2], "on") == 0)
+        if (str_casecmp(argv[2], "on") == 0)
         {
             output_printf("burst_pending = %d\r\n", tdc_led_is_burst_pending());
         }
-        else if (ci_strcasecmp(argv[2], "off") == 0)
+        else if (str_casecmp(argv[2], "off") == 0)
         {
             /* force-clear power source */
             tdc_led_request(TDC_LED_SRC_POWER, TDC_LED_ST_NONE);
@@ -455,7 +455,7 @@ static int handle_battery(int argc, char *argv[])
         return -1;
 
     /* --batt show */
-    if (ci_strcasecmp(argv[1], "show") == 0)
+    if (str_casecmp(argv[1], "show") == 0)
     {
         output_printf("  real  = %d%%\r\n", tdc_pwr_battery_get_percent());
         if (s_tdc_override_battery_active)
@@ -495,9 +495,9 @@ static int handle_isd(int argc, char *argv[])
         return -1;
 
     bool val;
-    if (ci_strcasecmp(argv[1], "on") == 0)
+    if (str_casecmp(argv[1], "on") == 0)
         val = true;
-    else if (ci_strcasecmp(argv[1], "off") == 0)
+    else if (str_casecmp(argv[1], "off") == 0)
         val = false;
     else
     {
@@ -521,9 +521,9 @@ static int handle_map(int argc, char *argv[])
         return -1;
 
     bool val;
-    if (ci_strcasecmp(argv[1], "on") == 0)
+    if (str_casecmp(argv[1], "on") == 0)
         val = true;
-    else if (ci_strcasecmp(argv[1], "off") == 0)
+    else if (str_casecmp(argv[1], "off") == 0)
         val = false;
     else
     {
@@ -546,7 +546,7 @@ static int handle_error(int argc, char *argv[])
     if (argc < 2)
         return -1;
 
-    if (ci_strcasecmp(argv[1], "clr") == 0)
+    if (str_casecmp(argv[1], "clr") == 0)
     {
         tdc_sys_error_clear_all();
         tdc_led_request(TDC_LED_SRC_ERROR, TDC_LED_ST_NONE);
@@ -554,32 +554,32 @@ static int handle_error(int argc, char *argv[])
         return 0;
     }
 
-    if (ci_strcasecmp(argv[1], "data_logging") == 0)
+    if (str_casecmp(argv[1], "data_logging") == 0)
     {
         tdc_sys_error_update(en__MAJOR_ERRORCODE_DATA_LOGGING_ERROR, en__data_logging_error_open, __LINE__);
         output_printf("OK: DATA_LOGGING error injected\r\n");
     }
-    else if (ci_strcasecmp(argv[1], "fpga") == 0)
+    else if (str_casecmp(argv[1], "fpga") == 0)
     {
         tdc_sys_error_update(en__FPGA_COMMUNICATION_ERROR, en__FPGA_ResetValueError, __LINE__);
         output_printf("OK: FPGA error injected\r\n");
     }
-    else if (ci_strcasecmp(argv[1], "acc") == 0)
+    else if (str_casecmp(argv[1], "acc") == 0)
     {
         tdc_sys_error_update(en__ACCELEROMETER_ERROR, en__ACCELER_ResetValueError, __LINE__);
         output_printf("OK: ACC error injected\r\n");
     }
-    else if (ci_strcasecmp(argv[1], "pmic") == 0)
+    else if (str_casecmp(argv[1], "pmic") == 0)
     {
         tdc_sys_error_update(en__RF_PowerIC_ERROR, en__NON_RESETTABLE, __LINE__);
         output_printf("OK: PMIC error injected\r\n");
     }
-    else if (ci_strcasecmp(argv[1], "mcu") == 0)
+    else if (str_casecmp(argv[1], "mcu") == 0)
     {
         tdc_sys_error_update(en__dataProcessing_ERROR, en__unusableMapData, __LINE__);
         output_printf("OK: MCU error injected\r\n");
     }
-    else if (ci_strcasecmp(argv[1], "map") == 0)
+    else if (str_casecmp(argv[1], "map") == 0)
     {
         tdc_sys_error_update(en__dataProcessing_ERROR, en__unusableMapData, __LINE__);
         output_printf("OK: MAP error injected\r\n");
@@ -756,7 +756,7 @@ static int handle_gating(int argc, char *argv[])
 
     bool val = false;
 
-    if (ci_strcasecmp(argv[1], "on") == 0)
+    if (str_casecmp(argv[1], "on") == 0)
     {
         if (tdc_fs_stim_mute_update(TDC_FS_STIM_MUTE_UNDER_T_LEVEL_ENABLE, 2) == TDC_FS_STIM_MUTE_RET_TRUE)
         {
@@ -764,7 +764,7 @@ static int handle_gating(int argc, char *argv[])
             val = true;
         }
     }
-    else if (ci_strcasecmp(argv[1], "off") == 0)
+    else if (str_casecmp(argv[1], "off") == 0)
     {
         if (tdc_fs_stim_mute_update(TDC_FS_STIM_MUTE_UNDER_T_LEVEL_DISABLE, 2) == TDC_FS_STIM_MUTE_RET_TRUE)
         {

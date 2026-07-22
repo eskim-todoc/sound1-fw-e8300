@@ -82,7 +82,10 @@ G8 은 **2__cm3 쪽 접근자·파일명만** 정리하고, 공유 구조체는 
 | **검증_G8_특화 (구조체 ABI diff 0)** | ✅ **구조체 필드 변경 라인 0** — 접근자 함수 선언만 rename. 공유 필드(`CM3_status`·`CM3_tempValue1`·`chargerConnectorPluggedIn`·`isd_userName` 등) 전부 존치. 인스턴스 `cfx_cm3_sharedMemoryAll` 동결 |
 | 검증_공통_3 (균형·훅) | ✅ cfx_link 11 + boot 2 + dfu 3 파일 균형 OK · 깨진 include 0 · 훅 통과 |
 | 검증_공통_4 (사장 실증) | ⚠️ **제거 보류** — §9 |
-| 검증_공통_5 (빌드·실기) | ⏳ 은수님 게이트 — **CFX 통신·EEPROM·부팅·OTA 확인 필수** |
+| 검증_공통_5 (빌드·실기) | ✅ PASS — 은수님 확인 (2026-07-22): "빌드 후 정상동작 확인했어" → **G8 폐쇄 · 전면 리팩토링 ⑦ 구현 종료** |
+
+> [!NOTE]
+> G8 커밋(`01c5162`) 이후 `.cproject` 정리(`201cd46`)를 함께 실기 확인했다. 소멸 폴더 include 경로 13건·`excluding` 3건·`sourcePath` 1건 제거로 Eclipse 인덱서 이중 경로(상대/절대 동시 노출) 잔재를 해소. `sections.ld`(링커 `-T` 스크립트)·`linked/include`·`${eclipse_home}` SDK 경로는 원형 보존.
 
 ## 9. 사장 판정 — 제거 보류 (19건)
 

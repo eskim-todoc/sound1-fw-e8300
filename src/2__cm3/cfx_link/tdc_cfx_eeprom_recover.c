@@ -1,5 +1,5 @@
 /**
- * @file ci_from_cfx_eeprom_recover.c
+ * @file tdc_cfx_eeprom_recover.c
  */
 
 #include <tdc_fs.h>

@@ -1,5 +1,5 @@
 /*
- * ci_system_mode.h
+ * tdc_fs_stim_mute.h
  */
 
 #ifndef __tdc_fs_stim_mute_h__

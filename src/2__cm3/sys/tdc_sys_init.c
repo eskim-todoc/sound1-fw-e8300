@@ -312,7 +312,7 @@ void tdc_sys_init(void)
      * 드라이브 1로 변경하여 맵 관련 파일을 사용할 수 있게 설정 */
 
     tdc_util_assert(tdc_fs_fatfs_remount(0));  // 부트 드라이브(0)으로 마운트
-    tdc_boot_init_fp(ci_fatfs_get_fp());
+    tdc_boot_init_fp(tdc_fs_get_fp());
     tdc_boot_handle_fsm();
     tdc_util_assert(tdc_fs_fatfs_remount(1));  // 사용자 드라이브(1)로 마운트
 

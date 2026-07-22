@@ -17,7 +17,7 @@
  * (조건 위반 시 아래 배열 크기가 음수가 되어 컴파일 에러) */
 typedef char tdc_gain_file_alignment_check[(((sizeof(tdc_fs_gain_file_t) % 16) + 4 + TDC_FS_GAIN_FILE_PADDING_LEN) == 16) ? 1 : -1];
 
-// ci_filesystem 의 read/write 는 파일명을 char* 로 받으므로 배열로 둔다.
+// tdc_fs 의 read/write 는 파일명을 char* 로 받으므로 배열로 둔다.
 static char m_tdc_gain_file_name[] = TDC_FS_GAIN_FILE_NAME;
 
 static tdc_fs_gain_file_t m_tdc_gain_file;

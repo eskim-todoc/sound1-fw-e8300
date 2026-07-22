@@ -213,7 +213,7 @@ void update_mapNum(void)
                 // cfx_cm3_sharedMemoryAll.mapChangeFlag.cm3Command_mapChange     = 1;
                 // cfx_cm3_sharedMemoryAll.mapChangeFlag.cfx_Reloaded_MapdataFlag = 0;
                 // tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_NopStandby);
-                // newMapLoadeFlagForStimulParaCalculation = true; ← isd_interface_StimulationStandAlone.c의 전역변수
+                // newMapLoadeFlagForStimulParaCalculation = true; ← tdc_isd_stim_standalone.c의 전역변수
             }
             else
             {
@@ -337,7 +337,7 @@ int main(void)
     // aes128_test();
 
     // AES128 암호화/복호화 키 정보 초기화 (NOTE: 현재 예제 키를 사용하므로, 올바른 키를 생성하여 적용해야함)
-    ci_aes_init();
+    tdc_aes_init();
 
     // JLink RTT를 강제 초기화 시킴 (버퍼 인덱스 이슈 발생 방지 등)
     SEGGER_RTT_Init();

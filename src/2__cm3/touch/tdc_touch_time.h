@@ -14,7 +14,7 @@
 /* 핵심 파생 매크로: ms 를 주기로 나눠 올림(최소 1회 보장). */
 #define TDC_TIME_TO_CNT(ms, interval_ms)  (((ms) + (interval_ms) - 1) / (interval_ms))
 
-/* ====================== (A) 노말 모드 - ci_timer ms 차분 기준 ====================== */
+/* ====================== (A) 노말 모드 - tdc_hal_timer ms 차분 기준 ====================== */
 #define TDC_TOUCH_POLL_INTERVAL_MS   100    /* 폴링 주기 (ms) */
 #define TDC_TOUCH_LONG_TOUCH_MS      2400   /* 롱터치 -> 절전 트리거 (ms) */
 #define TDC_TOUCH_INIT_TIMEOUT_MS    2500   /* 부팅 auto-ATI 대기 타임아웃 (ms) */

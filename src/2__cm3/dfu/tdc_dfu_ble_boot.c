@@ -33,7 +33,7 @@ static void _send_error_packet_boot(uint8_t error)
 
 static void _fetch_packet_boot_info(int* p_packet)
 {
-    snd_boot_status_t boot_status;
+    tdc_boot_status_t boot_status;
     uint8_t                resp_packet[RESP_PKT_SIZE_BOOT_INFO] = {0};
 
     // get boot status
@@ -56,7 +56,7 @@ static void _fetch_packet_boot_info(int* p_packet)
 
 static void _fetch_packet_boot_select(int* p_packet)
 {
-    snd_boot_status_t boot_status;
+    tdc_boot_status_t boot_status;
     uint8_t                slot_num;
     uint8_t                resp_packet[RESP_PKT_SIZE_BOOT_SELECT] = {0};
 

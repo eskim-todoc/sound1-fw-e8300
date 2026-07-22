@@ -8,18 +8,18 @@
 static bool    _ci_is_leap(uint16_t year);
 static uint8_t _ci_day_in_month(uint8_t year, uint8_t month);
 
-static volatile int g_ci_timer_main_tick = 1; /* CFX FIFO 가 증가 - 시스템 시간 전담 */
+static volatile int g_tdc_hal_timer_main_tick = 1; /* CFX FIFO 가 증가 - 시스템 시간 전담 */
 static volatile int g_tdc_timer_t3_tick  = 0; /* TIMER3 가 증가 - LED · 터치 초기화 동기 전담 */
 
-static volatile uint32_t        _ci_timer_elapsed_1msec_counter = 0;
-static volatile uint32_t        _ci_timer_count_init_value      = 0;
-static volatile tdc_hal_timer_time_t _ci_timer_reference_time        = {0};
-static volatile bool            _ci_timer_update_flag           = false;
+static volatile uint32_t        _tdc_hal_timer_elapsed_1msec_counter = 0;
+static volatile uint32_t        _tdc_hal_timer_count_init_value      = 0;
+static volatile tdc_hal_timer_time_t _tdc_hal_timer_reference_time        = {0};
+static volatile bool            _tdc_hal_timer_update_flag           = false;
 
 void TIMER_3_IRQHandler(void)
 {
     /* normal 모드: LED · 터치 공유 카운터 + LED arbiter 전담.
-     * `g_ci_timer_main_tick` 증가와 `enable_iteration()` 호출은 CFX FIFO ISR
+     * `g_tdc_hal_timer_main_tick` 증가와 `enable_iteration()` 호출은 CFX FIFO ISR
      * (`CFX_0_IRQHandler` / `FIFO_5_IRQHandler`) 가 담당 - 책임 분리. */
     g_tdc_timer_t3_tick++;
     tdc_led_arbiter_tick();
@@ -53,8 +53,8 @@ void tdc_hal_timer_self_update_with_elapsed_1msec_counter(void)
     uint32_t        cnt;
     uint8_t         dim;  // day in month;
 
-    cnt  = _ci_timer_elapsed_1msec_counter;
-    time = _ci_timer_reference_time;
+    cnt  = _tdc_hal_timer_elapsed_1msec_counter;
+    time = _tdc_hal_timer_reference_time;
 
     while (1000 <= cnt)
     {
@@ -107,42 +107,42 @@ void tdc_hal_timer_self_update_with_elapsed_1msec_counter(void)
 tdc_hal_timer_time_t tdc_hal_timer_get_reference_time_after_self_update(void)
 {
     tdc_hal_timer_self_update_with_elapsed_1msec_counter();
-    return _ci_timer_reference_time;
+    return _tdc_hal_timer_reference_time;
 }
 
 void tdc_hal_timer_update_reference_time(tdc_hal_timer_time_t *p_time, uint32_t count_init_value)
 {
-    //_ci_timer_reference_time   = *p_time;
-    _ci_timer_reference_time.year  = p_time->year;
-    _ci_timer_reference_time.month = p_time->month;
-    _ci_timer_reference_time.day   = p_time->day;
-    _ci_timer_reference_time.hour  = p_time->hour;
-    _ci_timer_reference_time.min   = p_time->min;
-    _ci_timer_reference_time.sec   = p_time->sec;
+    //_tdc_hal_timer_reference_time   = *p_time;
+    _tdc_hal_timer_reference_time.year  = p_time->year;
+    _tdc_hal_timer_reference_time.month = p_time->month;
+    _tdc_hal_timer_reference_time.day   = p_time->day;
+    _tdc_hal_timer_reference_time.hour  = p_time->hour;
+    _tdc_hal_timer_reference_time.min   = p_time->min;
+    _tdc_hal_timer_reference_time.sec   = p_time->sec;
 
-    _ci_timer_count_init_value = count_init_value;
+    _tdc_hal_timer_count_init_value = count_init_value;
 
-    _ci_timer_update_flag = true;
+    _tdc_hal_timer_update_flag = true;
 
-    TDC_PRINTF_V("[TIMER] UPDATE REFERENCE TIME {%02d-%02d-%02d-%02d-%02d-%02d} INIT VALUE {%d} \r\n", _ci_timer_reference_time.year, _ci_timer_reference_time.month, _ci_timer_reference_time.day, _ci_timer_reference_time.hour, _ci_timer_reference_time.min, _ci_timer_reference_time.sec, _ci_timer_count_init_value);
+    TDC_PRINTF_V("[TIMER] UPDATE REFERENCE TIME {%02d-%02d-%02d-%02d-%02d-%02d} INIT VALUE {%d} \r\n", _tdc_hal_timer_reference_time.year, _tdc_hal_timer_reference_time.month, _tdc_hal_timer_reference_time.day, _tdc_hal_timer_reference_time.hour, _tdc_hal_timer_reference_time.min, _tdc_hal_timer_reference_time.sec, _tdc_hal_timer_count_init_value);
 }
 
 void tdc_hal_timer_increase_tick(void)
 {
-    g_ci_timer_main_tick++;
-    _ci_timer_elapsed_1msec_counter++;
+    g_tdc_hal_timer_main_tick++;
+    _tdc_hal_timer_elapsed_1msec_counter++;
 
-    if (_ci_timer_update_flag)
+    if (_tdc_hal_timer_update_flag)
     {
-        _ci_timer_elapsed_1msec_counter = _ci_timer_count_init_value;
-        _ci_timer_count_init_value      = 0;
-        _ci_timer_update_flag           = false;
+        _tdc_hal_timer_elapsed_1msec_counter = _tdc_hal_timer_count_init_value;
+        _tdc_hal_timer_count_init_value      = 0;
+        _tdc_hal_timer_update_flag           = false;
     }
 }
 
 int tdc_hal_timer_get_tick(void)
 {
-    return g_ci_timer_main_tick;
+    return g_tdc_hal_timer_main_tick;
 }
 
 int tdc_hal_timer_get_t3_tick(void)

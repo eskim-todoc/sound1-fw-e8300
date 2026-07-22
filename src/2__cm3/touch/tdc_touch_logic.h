@@ -42,7 +42,7 @@ typedef enum
 /* 입력 (연결층이 read 결과를 정규화해 채운다. read_ok=false 면 아래 3개 false). */
 typedef struct
 {
-    uint32_t now_ms;      /* 현재 절대시각 ms (연결층이 ci_timer 에서 주입) - 시간 판정 단일 소스 */
+    uint32_t now_ms;      /* 현재 절대시각 ms (연결층이 tdc_hal_timer 에서 주입) - 시간 판정 단일 소스 */
     bool     read_ok;     /* read 성공 여부 */
     bool     pressed;     /* read_ok 시 유효: CH0 터치 눌림 */
     bool     ati_error;   /* read_ok 시 유효: ATI Error (드리프트 신호) */

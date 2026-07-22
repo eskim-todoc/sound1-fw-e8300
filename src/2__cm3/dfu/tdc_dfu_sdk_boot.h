@@ -62,6 +62,6 @@ typedef struct __attribute__((packed))
     uint8_t  reserved[47];       // 47 bytes sum: 60
     uint32_t crc32;              //  4 bytes sum: 64
                                  //    total sum: 64 bytes
-} snd_boot_status_t;
+} tdc_boot_status_t;
 
 #endif // __tdc_dfu_sdk_boot_h__
