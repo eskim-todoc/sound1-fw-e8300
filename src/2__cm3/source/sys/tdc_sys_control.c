@@ -5,8 +5,6 @@
 
 #include <tdc_sys_error.h>
 #include <tdc_shm.h>
-
-#include <tdc_drv_mis2dh.h>
 #include <tdc_hal_spi.h>
 #include <tdc_hal_i2c_cfx.h>
 #include <tdc_isd.h>

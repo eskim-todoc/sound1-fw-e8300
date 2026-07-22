@@ -27,15 +27,7 @@
 #include <tdc_ble_remote.h>
 #include <tdc_sys_error.h>
 
-#if defined(Board_is_OTE_VER_1_2)
-#include <tdc_drv_isl91128.h>
-#elif defined(Board_is_TD_DEV_ver_1_4) || defined(Board_is_OTE_VER_1_4) || defined(Board_is_OTE_VER_1_5)
 #include <tdc_drv_isl9122.h>
-#elif defined(Board_is_OTE_VER_1_3)
-#include <tdc_drv_isl98608.h>
-#else
-#error Link PMIC is NOT selected.
-#endif
 
 #include <tdc_qcc.h>
 

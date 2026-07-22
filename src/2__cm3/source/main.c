@@ -12,8 +12,6 @@
 #include <tdc_pwr_battery.h>  //ok
 
 #include <tdc_shm.h>  //ok
-
-#include <tdc_drv_mis2dh.h>  //ok
 #include <tdc_sys_error.h>          //ok
 #include <tdc_sys_control.h>  //ok
 

@@ -1,5 +1,4 @@
 #include <board.h>
-#if defined(Board_is_TD_DEV_ver_1_4) || defined(Board_is_OTE_VER_1_4) || defined(Board_is_OTE_VER_1_5)
 #ifndef __tdc_drv_isl9122_h__
 #define __tdc_drv_isl9122_h__
 
@@ -38,4 +37,3 @@ bool tdc_drv_isl9122_reset(void);
 
 #endif
 
-#endif

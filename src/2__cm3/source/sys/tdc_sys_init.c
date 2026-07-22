@@ -25,8 +25,6 @@
 #include <tdc_pwr_battery.h>
 
 #include <tdc_shm.h>
-
-#include <tdc_drv_mis2dh.h>
 #include <tdc_sys_error.h>
 #include <tdc_sys_control.h>
 
@@ -40,19 +38,9 @@
 #include <tdc_stim_indicator.h>
 #include <tdc_stim_para_cal.h>
 
-#if defined(Board_is_OTE_VER_1_2)
-#include <tdc_drv_isl91128.h>
-#elif defined(Board_is_TD_DEV_ver_1_4) || defined(Board_is_OTE_VER_1_4) || defined(Board_is_OTE_VER_1_5)
 #include <tdc_drv_isl9122.h>
-#elif defined(Board_is_OTE_VER_1_3)
-#include <tdc_drv_isl98608.h>
-#else
-#error Link PMIC is NOT selected.
-#endif
 
 #include <processorDirective.h>
-
-#include <tdc_drv_max17262.h>
 
 #include <tdc_hal_dio.h>
 #include <tdc_pwr_clock.h>
@@ -478,15 +466,7 @@ void tdc_sys_init(void)
     // 내부기 통신 용 외부전원 끄기
     tdc_shm_on_off_3_v_pmic_cm3_to_cfx(false);
 
-    // 더 이상 가속도 센서 사용하지 않음
-#if 0
-    // 가속도 센서 설정
-    if (!tdc_drv_mis2dh_configure_click_mode(2))
-    {
-        TDC_PRINTF_E("[ACC] FAILED TO CONFIGURE AS CLICK MODE \r\n");
-        tdc_sys_error_update(en__ACCELEROMETER_ERROR, en__I2C_ACCELER_WritingError, __LINE__);
-    }
-#endif
+    // 가속도 센서(MIS2DH) 는 더 이상 사용하지 않는다 - 드라이버 제거(2026-07-22)
 
     tdc_sys_error_clear_all();
 

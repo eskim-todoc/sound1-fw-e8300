@@ -12,15 +12,7 @@
 #include <tdc_hal_i2c_cfx.h>
 #endif
 
-#if defined(Board_is_OTE_VER_1_2)
-#include <tdc_drv_isl91128.h>
-#elif defined(Board_is_TD_DEV_ver_1_4) || defined(Board_is_OTE_VER_1_4) || defined(Board_is_OTE_VER_1_5)
 #include <tdc_drv_isl9122.h>
-#elif defined(Board_is_OTE_VER_1_3)
-#include <tdc_drv_isl98608.h>
-#else
-#error Link PMIC is NOT selected.
-#endif
 
 #include <tdc_stim_common.h>
 #include <tdc_printf.h>
@@ -439,26 +431,6 @@ bool tdc_isd_fpga_read_backtel_fifo(int *p_readValue, int counter)
     }
 }
 
-#if defined(Board_is_OTE_VER_1_2)
-bool tdc_isd_fpga_read_tx_power_level(int *p_readValue)
-{
-    int readValue;
-
-    if (tdc_drv_isl91128_read_register(TDC_DRV_ISL91128_REG_VOLTAGECONTROL, &readValue))
-    {
-        *p_readValue = (readValue & 0x3F);
-        return true;
-    }
-    else
-    {
-        // I2C 읽기 실패, RF_Power IC 초기화
-        tdc_sys_error_update(en__RF_PowerIC_ERROR, en__I2C_RFPOW_ReadingError, __LINE__);
-        tdc_isd_change_state(en__isdStatus_PowerIC_Reset);
-        return false;
-    }
-}
-
-#elif defined(Board_is_TD_DEV_ver_1_4) || defined(Board_is_OTE_VER_1_4) || defined(Board_is_OTE_VER_1_5)
 
 bool tdc_isd_fpga_read_tx_power_level(int *p_readValue)
 {
@@ -482,42 +454,6 @@ bool tdc_isd_fpga_read_tx_power_level(int *p_readValue)
         return false;
     }
 }
-#elif defined(Board_is_OTE_VER_1_3)
-
-#if defined(TDC_DRV_ISL98608_ERR_READ_BYTE)
-
-int txLevel_kkk = 0;
-
-#endif
-
-bool tdc_isd_fpga_read_tx_power_level(int *p_readValue)
-{
-    int readValue;
-
-#if defined(TDC_DRV_ISL98608_ERR_READ_BYTE)
-
-    *p_readValue = txLevel_kkk;
-    return true;
-
-#else
-
-    if (tdc_drv_isl98608_read_register(TDC_DRV_ISL98608_REG_VP_VOLTAGE, &readValue))
-    {
-        *p_readValue = (readValue);
-        return true;
-    }
-    else
-    {
-        // I2C 읽기 실패, RF_Power IC 초기화
-        tdc_sys_error_update(en__RF_PowerIC_ERROR, en__I2C_RFPOW_ReadingError, __LINE__);
-        tdc_isd_change_state(en__isdStatus_PowerIC_Reset);
-        return false;
-    }
-
-#endif
-}
-
-#endif
 
 bool tdc_isd_fpga_is_arbitrary_value_matched_normal_value(void)
 {
@@ -762,33 +698,6 @@ bool tdc_isd_fpga_write_disable_rf_tx(void)
     }
 }
 
-#if defined(Board_is_OTE_VER_1_2)
-bool tdc_isd_fpga_write_change_tx_power_level(int txLevel)
-{
-    int value;
-    int readValue;
-
-    // i2C로 설정한 DCDC값을 활성화한다.
-    value = 1 << TDC_DRV_ISL91128_ENALBE_I2C_CONTROL_BITPOSITION;
-
-    // value=value|(0x3F<<TDC_DRV_ISL91128_VOLTAGECONTROL_BITPOSITION);
-    value = value | (txLevel << TDC_DRV_ISL91128_VOLTAGECONTROL_BITPOSITION);
-
-    if (tdc_drv_isl91128_write_register(TDC_DRV_ISL91128_REG_VOLTAGECONTROL, value))
-    {
-        return true;
-    }
-    else
-    {
-        tdc_sys_error_update(en__RF_PowerIC_ERROR, en__I2C_RFPOW_WritingError, __LINE__);
-
-        // I2C 쓰기 실패, RF_Power IC 초기화
-        tdc_isd_change_state(en__isdStatus_PowerIC_Reset);
-
-        return false;
-    }
-}
-#elif defined(Board_is_TD_DEV_ver_1_4) || defined(Board_is_OTE_VER_1_4) || defined(Board_is_OTE_VER_1_5)
 bool tdc_isd_fpga_write_change_tx_power_level(int txLevel)
 {
     static int error_cnt = 0;
@@ -807,45 +716,6 @@ bool tdc_isd_fpga_write_change_tx_power_level(int txLevel)
         return false;
     }
 }
-#elif defined(Board_is_OTE_VER_1_3)
-
-bool tdc_isd_fpga_write_change_tx_power_level(int txLevel)
-{
-
-    if (tdc_drv_isl98608_write_register(TDC_DRV_ISL98608_REG_VBST_VOLTAGE, txLevel + 6))
-    {
-
-        if (tdc_drv_isl98608_write_register(TDC_DRV_ISL98608_REG_VP_VOLTAGE, txLevel))
-        {
-
-#if defined(TDC_DRV_ISL98608_ERR_READ_BYTE)
-
-            txLevel_kkk = txLevel;
-#endif
-
-            return true;
-        }
-        else
-        {
-            tdc_sys_error_update(en__RF_PowerIC_ERROR, en__I2C_RFPOW_WritingError, __LINE__);
-
-            // I2C 쓰기 실패, RF_Power IC 초기화
-            tdc_isd_change_state(en__isdStatus_PowerIC_Reset);
-
-            return false;
-        }
-    }
-    else
-    {
-        tdc_sys_error_update(en__RF_PowerIC_ERROR, en__I2C_RFPOW_WritingError, __LINE__);
-
-        // I2C 쓰기 실패, RF_Power IC 초기화
-        tdc_isd_change_state(en__isdStatus_PowerIC_Reset);
-
-        return false;
-    }
-}
-#endif
 
 bool tdc_isd_fpga_write_clear_fifo(void)
 {

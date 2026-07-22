@@ -22,13 +22,7 @@
 #include <tdc_sys_error.h>
 
 // #include "FPGA.h"
-#if defined(Board_is_OTE_VER_1_2)
-#include <tdc_drv_isl91128.h>
-#elif defined(Board_is_TD_DEV_ver_1_4) || defined(Board_is_OTE_VER_1_4) || defined(Board_is_OTE_VER_1_5)
 #include <tdc_drv_isl9122.h>
-#elif defined(Board_is_OTE_VER_1_3)
-#include <tdc_drv_isl98608.h>
-#endif
 
 #include <tdc_stim_common.h>
 #include <tdc_led_output.h>
