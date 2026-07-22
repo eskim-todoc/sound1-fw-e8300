@@ -83,7 +83,7 @@ tags: [cm3, refactoring, gate, g7, isd, stimulation, fsm, mapping]
 | 검증_공통_3 (균형·훅) | ✅ isd 25 + stim 7 파일 **활성 분기 균형 OK** · 깨진 include 0 · 훅 통과 |
 | 검증_공통_4 (사장 실증) | ⏳ 보류 — FPGA accessor 15개(③ census)는 G7-2 또는 별도 일괄 정리 (자극 계층 신중) |
 | **검증_G7_특화 (복제 심볼 동결)** | ✅ `tdc_stim_definitions.h`(구 definitionsForAlgorithm) 동결 34종 전부 무변경 — `df_MaxNumOfElectrode` 등 살아있음 |
-| 검증_공통_5 (빌드·실기) | ⏳ 은수님 게이트 — **ISD 연결·자극·매핑(임피던스/eCAP/라이브) 확인 필수** |
+| 검증_공통_5 (빌드·실기) | ✅ PASS — 은수님 확인 (2026-07-22): "빌드 후 동작 확인했어" → **G7 폐쇄** |
 
 ### G7-2 (매핑 FSM 표준화) — **생략 확정** (은수님 판단, §3)
 
