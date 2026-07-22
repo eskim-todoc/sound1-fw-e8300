@@ -4,24 +4,12 @@
 
 #include <processorDirective.h>
 
-#if defined(FPGA_Ver_is_100)
-#include <FPGA_ver1_0_0.h>
-#elif defined(FPGA_Ver_is_110)
-#include <FPGA_ver1_1_0.h>
-#elif defined(FPGA_Ver_is_200)
-#include <FPGA_ver2_0_0.h>
-#elif defined(FPGA_Ver_is_210)
-#include <FPGA_ver2_1_0.h>
-#elif defined(FPGA_Ver_is_230)
-#include <FPGA_ver2_1_0.h>
-#elif defined(FPGA_Ver_is_240)
-#include <FPGA_ver2_4_0.h>
-#elif defined(FPGA_Ver_is_270)
+/* 지원 버전: FPGA_Ver_is_270 만. 구세대(1.0.0~2.4.0)와 2.8.0 은
+ * Sullivan 1~1.5 세대 레거시로 제거했다(2026-07-22). 필요 시 git 이력에서 복원. */
+#if defined(FPGA_Ver_is_270)
 #include <FPGA_ver2_7_0.h>
-#elif defined(FPGA_Ver_is_280)
-#include <FPGA_ver2_8_0.h>
 #else
-#error FPGA is NOT selected.
+#error FPGA version is NOT selected or NOT supported. (supported: FPGA_Ver_is_270)
 #endif
 
 #endif

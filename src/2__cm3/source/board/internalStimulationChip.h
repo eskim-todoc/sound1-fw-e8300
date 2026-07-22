@@ -3,21 +3,11 @@
 
 #include <processorDirective.h>
 
-#if defined(ISD_Ver_is_100)
-
-#include <isd_ver1_0_0.h>
-
-#elif defined(ISD_Ver_is_110)
-
-#include <isd_ver1_1_0.h>
-
-#elif defined(ISD_Ver_is_111)
-#include <isd_ver1_1_1.h>
-
-#elif defined(ISD_Ver_is_112)
+/* 지원 버전: ISD_Ver_is_112 만. 구세대(1.0.0/1.1.0/1.1.1)는
+ * Sullivan 1~1.5 세대 레거시로 제거했다(2026-07-22). 필요 시 git 이력에서 복원. */
+#if defined(ISD_Ver_is_112)
 #include <isd_ver1_1_2.h>
-
 #else
-#error Board is NOT selected.
+#error ISD version is NOT selected or NOT supported. (supported: ISD_Ver_is_112)
 #endif
 #endif

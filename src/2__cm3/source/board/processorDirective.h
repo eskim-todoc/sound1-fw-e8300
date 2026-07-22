@@ -4,20 +4,15 @@
 #define DEFINITION_Preprocessor_H__
 
 //////////
-// 실행 보드
-
-// #define Board_is_TD_DEV_ver_1_4
+// 실행 보드 (지원: Board_is_OTE_VER_1_5)
 #define Board_is_OTE_VER_1_5
-// #define Board_is_OTE_VER_1_4
-// #define Board_is_OTE_VER_1_3
 
 ///////////
-// FPGA 버전
+// FPGA 버전 (지원: FPGA_Ver_is_270)
 #define FPGA_Ver_is_270
 
 ///////////
-// 내부이식장치 버전
-// #define     ISD_Ver_is_111
+// 내부이식장치 버전 (지원: ISD_Ver_is_112)
 #define ISD_Ver_is_112
 
 // 디버깅 관련
