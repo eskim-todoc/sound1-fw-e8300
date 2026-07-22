@@ -14,7 +14,7 @@
 
 #include <FPGA.h>
 #include <cfx_cm3_sharedMemory.h>
-#include <definitionsForAlgorithm.h>
+#include <tdc_stim_definitions.h>
 
 #include <tdc_fs.h>
 

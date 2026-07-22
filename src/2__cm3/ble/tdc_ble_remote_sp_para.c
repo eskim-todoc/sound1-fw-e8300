@@ -1,13 +1,13 @@
 
 
 #include "tdc_ble_remote.h"
-#include "stimulationParaCal.h"
+#include "tdc_stim_para_cal.h"
 #include "tdc_hal_spi.h"
-#include "definitionsForAlgorithm.h"
+#include "tdc_stim_definitions.h"
 #include "cfx_cm3_sharedMemory.h"
 #include "board.h" // 디버깅용
 #include "tdc_sys_error.h"
-#include "isd_interface_init_ISD.h"
+#include "tdc_isd_init.h"
 
 void tdc_ble_remote_read_sp_para(bool startFlag, int command)
 {
@@ -65,7 +65,7 @@ void tdc_ble_remote_read_sp_para(bool startFlag, int command)
             bufferForSPI_tx[tx_index++] = (char) ((adc_inputMax >> 8) & (0xFF));
             bufferForSPI_tx[tx_index++] = (char) ((adc_inputMax) & (0xFF));
 
-            stimulDAC_setting = readStimulDAC_RegisterValue();
+            stimulDAC_setting = tdc_stim_read_dac_register_value();
 
             // offset DAC 기울기 전송 및 offset 값 계산
             if (stimulDAC_setting->DAC_offsetSlope_register == 0) // 2uA 기울기 오프셋
@@ -116,7 +116,7 @@ void tdc_ble_remote_read_sp_para(bool startFlag, int command)
 
             // 연결된 내부기 ID 전송
 
-            isd_id = read_Connected_ISD_id();
+            isd_id = tdc_isd_read_connected_id();
 
             bufferForSPI_tx[tx_index++] = (char) (isd_id >> 24);
             bufferForSPI_tx[tx_index++] = (char) ((isd_id >> 16) & 0xFF);

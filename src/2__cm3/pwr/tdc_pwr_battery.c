@@ -7,8 +7,8 @@
 
 #include "cfx_cm3_sharedMemory.h"
 #include "tdc_pwr_battery.h"
-#include "commonDataProcessing.h"
-#include "isd_interface.h"
+#include "tdc_stim_common.h"
+#include "tdc_isd.h"
 
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // Sound1

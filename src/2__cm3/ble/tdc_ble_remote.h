@@ -4,7 +4,7 @@
 #include <hw.h>
 #include <stdbool.h>
 #include "tdc_ble_protocol.h"
-#include "isd_interface.h"
+#include "tdc_isd.h"
 
 #include <tdc_printf.h>
 #include <tdc_fs_event_log.h>

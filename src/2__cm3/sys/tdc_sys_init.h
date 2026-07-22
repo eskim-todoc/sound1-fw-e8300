@@ -14,8 +14,8 @@
 
 #include <tdc_util.h>
 
-#include <isd_interface_init_FPGA.h>
-#include <isd_interface_FPGA.h>
+#include <tdc_isd_init_fpga.h>
+#include <tdc_isd_fpga.h>
 
 void tdc_sys_uninit(void);
 void tdc_sys_init(void);

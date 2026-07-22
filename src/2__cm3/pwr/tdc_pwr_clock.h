@@ -16,7 +16,7 @@
 #include <nvmctrl.h>
 #include <nvmlib.h>
 
-#include <definitionsForAlgorithm.h>
+#include <tdc_stim_definitions.h>
 
 #include <tdc_util.h>
 #include <tdc_fs.h>

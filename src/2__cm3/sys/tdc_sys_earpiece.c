@@ -3,8 +3,8 @@
 #include "FPGA.h"
 #include "cfx_cm3_sharedMemory.h"
 #include "tdc_sys_error.h"
-#include "commonDataProcessing.h"
-#include "isd_interface.h"
+#include "tdc_stim_common.h"
+#include "tdc_isd.h"
 
 #include "tdc_hal_i2c_isd.h"
 
@@ -56,7 +56,7 @@ bool tdc_sys_earpiece_update_status(void)
 
         return true;
 #else
-        if (is_i2c_free())
+        if (tdc_isd_is_i2c_free())
         {
 
 #ifdef CM3_I2C_controls_FPAG
@@ -66,7 +66,7 @@ bool tdc_sys_earpiece_update_status(void)
 #endif
             {
 
-                detectionValue = data_ExtractionAndRigthShift(readValue, FPGA_BitPosition_EarPieceDetection, 1);
+                detectionValue = tdc_stim_data_extract_and_rshift(readValue, FPGA_BitPosition_EarPieceDetection, 1);
 
                 if (detectionValue == 1)
                 {
@@ -99,7 +99,7 @@ bool tdc_sys_earpiece_update_status(void)
                 tdc_sys_error_update(en__FPGA_COMMUNICATION_ERROR, en__I2C_FPGA_ReadingError, __LINE__);
 
                 // I2C 읽기 실패, FPGA 초기화
-                change_isd_state(en__isdStatus_PowerIC_OK);
+                tdc_isd_change_state(en__isdStatus_PowerIC_OK);
                 return false;
             }
         }

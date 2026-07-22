@@ -4,7 +4,7 @@
 #include <tdc_hal_uart.h>
 #include <stdbool.h>
 
-#include "isd_interface.h"  //ok
+#include "tdc_isd.h"  //ok
 #include "tdc_ble_mapping.h" //ok
 
 

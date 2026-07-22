@@ -7,18 +7,18 @@
 #include "tdc_ble_gain_control.h"
 #include "tdc_ble_remote_sp_para.h"
 #include "tdc_hal_spi.h"
-#include "definitionsForAlgorithm.h"
+#include "tdc_stim_definitions.h"
 #include "cfx_cm3_sharedMemory.h"
 #include "board.h"  // 디버깅용
 
-#include "stimulationParaCal.h"
+#include "tdc_stim_para_cal.h"
 #include "tdc_pwr_battery.h"
 #include "tdc_sys_control.h"
 #include "tdc_sys_error.h"
 #include <tdc_dfu_ble_ota.h>
 
-#include "isd_interface_mapping_readWrtieMapData.h"
-#include "isd_interface_init_ISD.h"
+#include "tdc_isd_map_data.h"
+#include "tdc_isd_init.h"
 
 // 송신할  데이터가 준비 되면  tdc_hal_spi_set_comm_state_idle()를 호출한다.
 
@@ -1241,43 +1241,43 @@ ST__REMOTECONTROL_STATE tdc_ble_remote_step(bool isdConnection)  // 연결 상�
 
                 case en__remoteControl_read_SlotData_ISD_N_USER:
                 {
-                    read_isdInfo_N_userSetting_fromFlash(remoteCommandStartFlag, en__remoteControl_read_SlotData_ISD_N_USER, remoteDataPacket.remocon_ReadWriteMapData_Flash.slot_index);
+                    tdc_isd_map_read_info_setting(remoteCommandStartFlag, en__remoteControl_read_SlotData_ISD_N_USER, remoteDataPacket.remocon_ReadWriteMapData_Flash.slot_index);
                 }
                 break;
 
                 case en__remoteControl_write_SlotData_ISD_N_USER:
                 {
-                    write_isdInfo_N_userSetting_atFlash(remoteCommandStartFlag, en__remoteControl_write_SlotData_ISD_N_USER, remoteDataPacket.remocon_ReadWriteMapData_Flash.slot_index);
+                    tdc_isd_map_write_info_setting(remoteCommandStartFlag, en__remoteControl_write_SlotData_ISD_N_USER, remoteDataPacket.remocon_ReadWriteMapData_Flash.slot_index);
                 }
                 break;
 
                 case en__remoteControl_read_Mapdata_STIMUL_PARA:
                 {
-                    read_stimulPara_fromFlash(remoteCommandStartFlag, en__remoteControl_read_Mapdata_STIMUL_PARA, remoteDataPacket.remocon_ReadWriteMapData_Flash.slot_index, remoteDataPacket.remocon_ReadWriteMapData_Flash.map_index);
+                    tdc_isd_map_read_stim_para(remoteCommandStartFlag, en__remoteControl_read_Mapdata_STIMUL_PARA, remoteDataPacket.remocon_ReadWriteMapData_Flash.slot_index, remoteDataPacket.remocon_ReadWriteMapData_Flash.map_index);
                 }
                 break;
 
                 case en__remoteControl_write_Mapdata_STIMUL_PARA:
                 {
-                    write_stimulPara_atFlash(remoteCommandStartFlag, en__remoteControl_write_Mapdata_STIMUL_PARA, remoteDataPacket.remocon_ReadWriteMapData_Flash.slot_index, remoteDataPacket.remocon_ReadWriteMapData_Flash.map_index);
+                    tdc_isd_map_write_stim_para(remoteCommandStartFlag, en__remoteControl_write_Mapdata_STIMUL_PARA, remoteDataPacket.remocon_ReadWriteMapData_Flash.slot_index, remoteDataPacket.remocon_ReadWriteMapData_Flash.map_index);
                 }
                 break;
 
                 case en__remoteControl_erase_SlotData:
                 {
-                    reset_NVM_Selected_ISD_allData(remoteCommandStartFlag, en__remoteControl_erase_SlotData, remoteDataPacket.remocon_ReadWriteMapData_Flash.slot_index, flash_Command_Erase);
+                    tdc_isd_map_reset_nvm_selected(remoteCommandStartFlag, en__remoteControl_erase_SlotData, remoteDataPacket.remocon_ReadWriteMapData_Flash.slot_index, flash_Command_Erase);
                 }
                 break;
 
                 case en__remoteControl_erase_mapData_STIMUL_PARA:
                 {
-                    reset_NVM_MapData(remoteCommandStartFlag, en__remoteControl_erase_mapData_STIMUL_PARA, remoteDataPacket.remocon_ReadWriteMapData_Flash.slot_index, remoteDataPacket.remocon_ReadWriteMapData_Flash.map_index, flash_Command_Erase);
+                    tdc_isd_map_reset_nvm_map_data(remoteCommandStartFlag, en__remoteControl_erase_mapData_STIMUL_PARA, remoteDataPacket.remocon_ReadWriteMapData_Flash.slot_index, remoteDataPacket.remocon_ReadWriteMapData_Flash.map_index, flash_Command_Erase);
                 }
                 break;
 
                 case en__remoteControl_erase_mppingData_exceptSlot_1:
                 {
-                    reset_NVM_2to4_ISD_allData(remoteCommandStartFlag, en__remoteControl_erase_mppingData_exceptSlot_1, flash_Command_Erase);
+                    tdc_isd_map_reset_nvm_2to4(remoteCommandStartFlag, en__remoteControl_erase_mppingData_exceptSlot_1, flash_Command_Erase);
                 }
                 break;
 
@@ -1285,7 +1285,7 @@ ST__REMOTECONTROL_STATE tdc_ble_remote_step(bool isdConnection)  // 연결 상�
                 {
                     TDC_PRINTF_I("[PACKET] RECEIVED, RECOVER ALL SLOT DATA MANUFACTURE DATA \r\n");
 
-                    result = reset_NVM_All_ISD_allData(remoteCommandStartFlag, en__remoteControl_recover_ALL_SlotData_ManufactureData, flash_Command_Recover);
+                    result = tdc_isd_map_reset_nvm_all(remoteCommandStartFlag, en__remoteControl_recover_ALL_SlotData_ManufactureData, flash_Command_Recover);
 
                     if (result)
                     {
@@ -1322,7 +1322,7 @@ ST__REMOTECONTROL_STATE tdc_ble_remote_step(bool isdConnection)  // 연결 상�
                     bufferForSPI_tx[tx_index++] = remoteDataPacket.command;
 
                     // pay-load 준비
-                    value = read_Connected_ISD_id();
+                    value = tdc_isd_read_connected_id();
 
                     bufferForSPI_tx[tx_index++] = value >> 24;
                     bufferForSPI_tx[tx_index++] = 0xff & (value >> 16);
