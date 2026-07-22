@@ -1,7 +1,7 @@
 #ifndef Board_OTE_VER_DEV_4_H__
 #define Board_OTE_VER_DEV_4_H__
 
-#include "DIO_PIN_Config.h"
+#include <DIO_PIN_Config.h>
 
 
 

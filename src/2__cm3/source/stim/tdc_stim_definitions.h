@@ -1,7 +1,7 @@
 #ifndef DEFINITION_ALGORITHM_H__
 #define DEFINITION_ALGORITHM_H__
 
-#include "processorDirective.h"
+#include <processorDirective.h>
 
 #define df_True  1
 #define df_False 0

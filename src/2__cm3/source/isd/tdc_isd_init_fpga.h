@@ -3,7 +3,7 @@
 
 #include <stdbool.h>
 
-#include "FPGA.h" //ok
+#include <FPGA.h> //ok
 
 #include <tdc_printf.h>
 

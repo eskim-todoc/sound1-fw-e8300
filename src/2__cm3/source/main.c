@@ -5,34 +5,34 @@
 #include <tdc_sys_init.h>
 #include <main.h>
 
-#include "board.h"           //ok
-#include "tdc_hal_spi.h"      //ok
-#include "tdc_hal_i2c_cfx.h"  //ok
+#include <board.h>           //ok
+#include <tdc_hal_spi.h>      //ok
+#include <tdc_hal_i2c_cfx.h>  //ok
 
-#include "tdc_pwr_battery.h"  //ok
+#include <tdc_pwr_battery.h>  //ok
 
-#include "tdc_shm.h"  //ok
+#include <tdc_shm.h>  //ok
 
-#include "tdc_drv_mis2dh.h"  //ok
-#include "tdc_sys_error.h"          //ok
-#include "tdc_sys_control.h"  //ok
+#include <tdc_drv_mis2dh.h>  //ok
+#include <tdc_sys_error.h>          //ok
+#include <tdc_sys_control.h>  //ok
 
-#include "tdc_isd.h"   //ok
-#include "tdc_ble_mapping.h"  //ok
-#include "tdc_ble_remote.h"   //ok
+#include <tdc_isd.h>   //ok
+#include <tdc_ble_mapping.h>  //ok
+#include <tdc_ble_remote.h>   //ok
 
-#include "tdc_led_output.h"           //ok
-#include "tdc_ble_communication.h"   //ok
-#include "tdc_sys_earpiece.h"      //ok
-#include "tdc_stim_indicator.h"   //ok
-#include "tdc_stim_para_cal.h"  //ok
+#include <tdc_led_output.h>           //ok
+#include <tdc_ble_communication.h>   //ok
+#include <tdc_sys_earpiece.h>      //ok
+#include <tdc_stim_indicator.h>   //ok
+#include <tdc_stim_para_cal.h>  //ok
 
-#include "tdc_drv_isl9122.h"  //ok
+#include <tdc_drv_isl9122.h>  //ok
 
 #include <tdc_touch.h>        /* 공개 API + tdc_touch_time.h(ULP 시간상수) 재노출 */
 #include <tdc_touch_iqs323.h> /* 절전 진입 IQS323 직접 호출 */
 
-#include "tdc_isd_stim_standalone.h"  // 신규 추가 for I2S 디버깅
+#include <tdc_isd_stim_standalone.h>  // 신규 추가 for I2S 디버깅
 #include <tdc_isd_init_fpga.h>              // 절전 모드 진입 전 FPGA 리셋 목적
 #include <tdc_isd_fpga.h>
 
@@ -42,7 +42,7 @@
 #include <tdc_hal_timer.h>
 #include <tdc_hal_uart.h>
 #include <tdc_printf.h>
-#include "tdc_hal_i2c.h"  //ok  - Sleep 진입 시 I2C PRESCALE 런타임 재설정용
+#include <tdc_hal_i2c.h>  //ok  - Sleep 진입 시 I2C PRESCALE 런타임 재설정용
 
 #include <SEGGER_RTT_Wrapper.h>
 #include <aes.h>
@@ -50,7 +50,7 @@
 #include <tdc_qcc.h>
 
 #if defined(ENABLE_UI_CMD)
-#include "tdc_ui_command.h"
+#include <tdc_ui_command.h>
 #endif
 
 /* 배열 원소 개수. 배열 정의가 바뀌어도 순회 길이가 자동 추종한다(매직넘버 방지). */

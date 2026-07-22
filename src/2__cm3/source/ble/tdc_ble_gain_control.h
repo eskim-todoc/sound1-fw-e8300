@@ -19,7 +19,7 @@
  *   [2] = Control type, [3] = Gain type, [4] = Gain table index
  */
 
-#include "tdc_ble_remote.h"  // ST__REMOTECONTROL_PACKET
+#include <tdc_ble_remote.h>  // ST__REMOTECONTROL_PACKET
 
 /* 게인 테이블 인덱스 기본값(유니티)과 유효 범위는 영속화 모듈이 단일 출처로 갖는다. */
 #include <tdc_fs_gain.h>

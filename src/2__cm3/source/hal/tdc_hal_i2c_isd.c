@@ -1,6 +1,6 @@
 
 
-#include "tdc_hal_i2c_isd.h"
+#include <tdc_hal_i2c_isd.h>
 #include <tdc_printf.h>
 
 bool tdc_hal_i2c_isd_write(int slaveAddr, int* dataBuff, int dataSize)

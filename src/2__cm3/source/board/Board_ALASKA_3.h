@@ -2,7 +2,7 @@
 #define Board_ALASKA_3_H__
 
 
-#include "DIO_PIN_Config.h"
+#include <DIO_PIN_Config.h>
 
 
 

@@ -1,10 +1,10 @@
 #include <hw.h>
 #include <stdbool.h>
 
-#include "tdc_shm.h"
-#include "tdc_hal_i2c_state.h"
+#include <tdc_shm.h>
+#include <tdc_hal_i2c_state.h>
 #if 1
-#include "board.h"
+#include <board.h>
 #endif
 
 #define TDC_HAL_I2C_CFX_CMD_WRITE 1

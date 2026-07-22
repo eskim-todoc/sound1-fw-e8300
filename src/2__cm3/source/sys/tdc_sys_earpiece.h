@@ -5,7 +5,7 @@
 
 #include <hw.h>
 #include <stdbool.h>
-#include "FPGA.h"
+#include <FPGA.h>
 
 bool tdc_sys_earpiece_update_status(void);
 

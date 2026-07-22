@@ -2,10 +2,10 @@
 #define __tdc_ble_mapping_h__
 
 #include <stdbool.h>
-#include "tdc_stim_definitions.h"
-#include "tdc_shm.h"
-#include "tdc_isd.h"
-#include "tdc_ble_protocol.h"
+#include <tdc_stim_definitions.h>
+#include <tdc_shm.h>
+#include <tdc_isd.h>
+#include <tdc_ble_protocol.h>
 
 typedef struct
 {

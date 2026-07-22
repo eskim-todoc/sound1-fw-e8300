@@ -4,7 +4,7 @@
 #define BOARD_H__
 
 // 동작 보드
-#include "processorDirective.h"
+#include <processorDirective.h>
 
 #if defined(Board_is_OTE_VER_1_5)
 // EEPROM
@@ -53,9 +53,9 @@
 #endif
 
 #if defined(Board_is_TD_DEV_ver_1_4)
-#include "Board_TD_DEV_ver_1_4.h"
+#include <Board_TD_DEV_ver_1_4.h>
 #elif defined(Board_is_OTE_VER_1_3)
-#include "Board_OTE_ver1_3.h"
+#include <Board_OTE_ver1_3.h>
 #elif defined(Board_is_OTE_VER_1_5)
 #include <Board_OTE_ver1_5.h>
 #else

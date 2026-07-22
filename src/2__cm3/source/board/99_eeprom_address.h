@@ -2,8 +2,8 @@
 #ifndef EEPROM_ADDRESS_H__
 #define EEPROM_ADDRESS_H__
 
-#include "tdc_stim_definitions.h"
-#include "processorDirective.h"
+#include <tdc_stim_definitions.h>
+#include <processorDirective.h>
 
 #define AT_WREN 0x06 // Write enable
 

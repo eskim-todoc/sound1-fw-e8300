@@ -3,7 +3,7 @@
 
 #include <stdbool.h>
 
-#include "tdc_printf.h"
+#include <tdc_printf.h>
 
 void tdc_isd_clear_stim_para_setting_done(void);
 bool tdc_isd_is_stim_para_setting_done(void);

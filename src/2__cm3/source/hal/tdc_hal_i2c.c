@@ -1,5 +1,5 @@
-#include "tdc_hal_i2c.h"
-#include "processorDirective.h"
+#include <tdc_hal_i2c.h>
+#include <processorDirective.h>
 #include <stdbool.h>
 #include <stddef.h>
 

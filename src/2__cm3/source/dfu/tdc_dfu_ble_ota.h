@@ -16,11 +16,11 @@
 
 #include <processorDirective.h>
 
-#include "tdc_sys_error.h"
+#include <tdc_sys_error.h>
 
-#include "tdc_hal_spi.h"
+#include <tdc_hal_spi.h>
 
-#include "tdc_ble_protocol.h"
+#include <tdc_ble_protocol.h>
 
 #include <tdc_dfu_sdk_boot.h>
 

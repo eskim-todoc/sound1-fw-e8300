@@ -3,13 +3,13 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
-#include "board.h"
+#include <board.h>
 
 #if defined(Board_is_TD_DEV_ver_1_4) || defined(Board_is_OTE_VER_1_4) || defined(Board_is_OTE_VER_1_5)
-#include "tdc_hal_i2c.h"
+#include <tdc_hal_i2c.h>
 
-#include "tdc_drv_isl9122.h"
-#include "tdc_stim_common.h"
+#include <tdc_drv_isl9122.h>
+#include <tdc_stim_common.h>
 
 bool tdc_drv_isl9122_write_register(int registerAddr, int value)
 {

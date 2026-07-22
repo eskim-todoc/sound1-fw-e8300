@@ -1,28 +1,28 @@
 #include <tdc_isd_pcm.h>
-#include "tdc_isd_fpga.h"
-#include "tdc_isd.h"
-#include "tdc_shm.h"
-#include "tdc_isd_fpga.h"
-#include "tdc_sys_error.h"
-#include "FPGA.h"
+#include <tdc_isd_fpga.h>
+#include <tdc_isd.h>
+#include <tdc_shm.h>
+#include <tdc_isd_fpga.h>
+#include <tdc_sys_error.h>
+#include <FPGA.h>
 
 #ifdef CM3_I2C_controls_FPAG
-#include "tdc_hal_i2c_isd.h"
+#include <tdc_hal_i2c_isd.h>
 #else
-#include "tdc_hal_i2c_cfx.h"
+#include <tdc_hal_i2c_cfx.h>
 #endif
 
 #if defined(Board_is_OTE_VER_1_2)
-#include "tdc_drv_isl91128.h"
+#include <tdc_drv_isl91128.h>
 #elif defined(Board_is_TD_DEV_ver_1_4) || defined(Board_is_OTE_VER_1_4) || defined(Board_is_OTE_VER_1_5)
-#include "tdc_drv_isl9122.h"
+#include <tdc_drv_isl9122.h>
 #elif defined(Board_is_OTE_VER_1_3)
-#include "tdc_drv_isl98608.h"
+#include <tdc_drv_isl98608.h>
 #else
 #error Link PMIC is NOT selected.
 #endif
 
-#include "tdc_stim_common.h"
+#include <tdc_stim_common.h>
 #include <tdc_printf.h>
 
 static LAST_WRITTEN_REGISTER fpag_lastWrittenRegister;

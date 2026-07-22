@@ -12,7 +12,7 @@
 
 #include <hw.h>
 
-#include "tdc_sys_control.h"
+#include <tdc_sys_control.h>
 
 #include <tdc_pwr_battery.h>
 #include <tdc_ble_communication.h>

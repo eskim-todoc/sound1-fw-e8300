@@ -3,12 +3,12 @@
 
 #include <hw.h>
 #include <stdbool.h>
-#include "board.h"
-#include "tdc_shm.h"
-#include "tdc_pwr_battery.h"
-#include "tdc_led_output.h"
-#include "tdc_sys_error.h"
-#include "tdc_isd.h"
+#include <board.h>
+#include <tdc_shm.h>
+#include <tdc_pwr_battery.h>
+#include <tdc_led_output.h>
+#include <tdc_sys_error.h>
+#include <tdc_isd.h>
 
 /* LED 판정은 Arbiter(tdc_led_request / TDC_LED_SRC_ 계열)로 이관됨(Rev.3).
  * 구 Led_Pattern 필드와 current_led_pattern 입력은 소비자가 없어 제거했다. */

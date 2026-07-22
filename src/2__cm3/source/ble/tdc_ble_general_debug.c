@@ -12,14 +12,14 @@
  * 수신 패킷은 인자(const 포인터)로 주입받아 전역 의존 없이 독립 수행된다.
  */
 
-#include "tdc_ble_general_debug.h"
+#include <tdc_ble_general_debug.h>
 
 #include <stdint.h>
 #include <stdbool.h>
 
 #include <hw.h>  // SYS_WATCHDOG_REFRESH
 
-#include "tdc_ble_remote.h"  // ST__REMOTECONTROL_PACKET, EN__SND_BT_CMD_GENERAL_DEBUG
+#include <tdc_ble_remote.h>  // ST__REMOTECONTROL_PACKET, EN__SND_BT_CMD_GENERAL_DEBUG
 #include <tdc_touch.h>
 #include <tdc_printf.h>
 #include <tdc_dfu_ble_ota.h>

@@ -2,8 +2,8 @@
 #define __tdc_isd_fpga_h__
 
 #include <stdbool.h>
-#include "FPGA.h"
-#include "internalStimulationChip.h"
+#include <FPGA.h>
+#include <internalStimulationChip.h>
 
 // FPGA/ISD 통신·검증 연속 실패 디바운스 임계.
 // 연속 실패가 이 값을 "초과"할 때만 tdc_sys_error_update(에러 확정 → LED)를 호출하고,

@@ -4,7 +4,7 @@
 #include <hw.h>
 #include <stdbool.h>
 
-#include "board.h"  //ok
+#include <board.h>  //ok
 
 #define TDC_HAL_I2C_USING_ISR
 

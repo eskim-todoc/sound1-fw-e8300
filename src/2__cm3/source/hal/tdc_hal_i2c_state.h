@@ -1,8 +1,8 @@
 #ifndef __tdc_hal_i2c_state_h__
 #define __tdc_hal_i2c_state_h__
 
-#include "board.h"              //ok
-#include "processorDirective.h" //ok
+#include <board.h>              //ok
+#include <processorDirective.h> //ok
 
 /////////////////////////////////////////////////////
 // I2C Rx/Tx 상태

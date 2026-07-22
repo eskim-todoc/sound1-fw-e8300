@@ -2,23 +2,23 @@
 #include <hw.h>  // 디버깅용
 #include <stdbool.h>
 
-#include "tdc_ble_remote.h"
-#include "tdc_ble_general_debug.h"
-#include "tdc_ble_gain_control.h"
-#include "tdc_ble_remote_sp_para.h"
-#include "tdc_hal_spi.h"
-#include "tdc_stim_definitions.h"
-#include "tdc_shm.h"
-#include "board.h"  // 디버깅용
+#include <tdc_ble_remote.h>
+#include <tdc_ble_general_debug.h>
+#include <tdc_ble_gain_control.h>
+#include <tdc_ble_remote_sp_para.h>
+#include <tdc_hal_spi.h>
+#include <tdc_stim_definitions.h>
+#include <tdc_shm.h>
+#include <board.h>  // 디버깅용
 
-#include "tdc_stim_para_cal.h"
-#include "tdc_pwr_battery.h"
-#include "tdc_sys_control.h"
-#include "tdc_sys_error.h"
+#include <tdc_stim_para_cal.h>
+#include <tdc_pwr_battery.h>
+#include <tdc_sys_control.h>
+#include <tdc_sys_error.h>
 #include <tdc_dfu_ble_ota.h>
 
-#include "tdc_isd_map_data.h"
-#include "tdc_isd_init.h"
+#include <tdc_isd_map_data.h>
+#include <tdc_isd_init.h>
 
 // 송신할  데이터가 준비 되면  tdc_hal_spi_set_comm_state_idle()를 호출한다.
 

@@ -2,24 +2,24 @@
 #include <tdc_isd_pcm.h>
 #include <stdbool.h>
 
-#include "board.h"
-#include "tdc_isd_fpga.h"
-#include "internalStimulationChip.h"
-#include "tdc_isd.h"
+#include <board.h>
+#include <tdc_isd_fpga.h>
+#include <internalStimulationChip.h>
+#include <tdc_isd.h>
 #if 0
-#include "tdc_hal_i2c_cfx.h"
+#include <tdc_hal_i2c_cfx.h>
 #else
-#include "tdc_hal_i2c_isd.h"
+#include <tdc_hal_i2c_isd.h>
 #endif
-#include "tdc_stim_definitions.h"
+#include <tdc_stim_definitions.h>
 
-#include "tdc_isd.h"
-#include "tdc_isd_init_fpga.h"
-#include "tdc_shm.h"
-#include "tdc_stim_common.h"
+#include <tdc_isd.h>
+#include <tdc_isd_init_fpga.h>
+#include <tdc_shm.h>
+#include <tdc_stim_common.h>
 
-#include "tdc_sys_error.h"
-#include "tdc_led_output.h"
+#include <tdc_sys_error.h>
+#include <tdc_led_output.h>
 
 #define df_masterISD_Serial      0x0000FFFF
 #define lenght_MANUFACTURER_NAME 9

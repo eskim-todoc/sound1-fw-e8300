@@ -1,4 +1,4 @@
-#include "board.h"
+#include <board.h>
 
 #if defined(Board_is_OTE_VER_1_3)
 #ifndef __tdc_drv_isl98608_h__

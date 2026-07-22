@@ -1,11 +1,11 @@
 
 #include <tdc_cfx_eeprom_write.h>
-#include "tdc_shm.h"
-#include "tdc_ble_protocol.h"
-#include "tdc_shm_addr.h"
-#include "tdc_isd_stim_standalone.h"
+#include <tdc_shm.h>
+#include <tdc_ble_protocol.h>
+#include <tdc_shm_addr.h>
+#include <tdc_isd_stim_standalone.h>
 
-#include "tdc_pwr_battery.h"  // 새로 추가
+#include <tdc_pwr_battery.h>  // 새로 추가
 #include <main.h>
 
 #include <tdc_pwr_lsad.h>

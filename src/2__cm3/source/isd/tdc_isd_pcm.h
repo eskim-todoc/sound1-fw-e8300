@@ -1,7 +1,7 @@
 #ifndef __tdc_isd_pcm_h__
 #define __tdc_isd_pcm_h__
 
-#include "processorDirective.h" //ok
+#include <processorDirective.h> //ok
 
 // PCM 모드
 #define PcmBitStream_Mode_FillZero        0

@@ -21,12 +21,12 @@
 #include <hw.h>
 #include <tdc_isd_pcm.h>  //ok
 
-#include "tdc_ble_protocol.h"       //ok
-#include "board.h"                    //ok
-#include "tdc_stim_definitions.h"  //ok
-#include "internalStimulationChip.h"  //ok
+#include <tdc_ble_protocol.h>       //ok
+#include <board.h>                    //ok
+#include <tdc_stim_definitions.h>  //ok
+#include <internalStimulationChip.h>  //ok
 
-#include "tdc_printf.h"
+#include <tdc_printf.h>
 
 // #include <OTE_1_5_gen_CFX_EEPROM_erase.h>
 // #include <OTE_1_5_gen_CFX_EEPROM_read.h>

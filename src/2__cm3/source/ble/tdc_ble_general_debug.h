@@ -9,7 +9,7 @@
  * packet->data[0]=option 으로 서브 프로토콜을 분기한다.
  */
 
-#include "tdc_ble_remote.h"  // ST__REMOTECONTROL_PACKET
+#include <tdc_ble_remote.h>  // ST__REMOTECONTROL_PACKET
 
 /*
  * 범용 디버깅 프로토콜을 처리하고 응답을 tx_buf에 채운다.

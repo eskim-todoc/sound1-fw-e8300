@@ -1,26 +1,26 @@
 
 #include <hw.h>
 #include <stdbool.h>
-#include "tdc_sys_error.h"
-#include "tdc_ble_mapping.h"
-#include "board.h"
-#include "internalStimulationChip.h"
-#include "tdc_shm.h"
-#include "tdc_ble_mapping.h"
-#include "tdc_hal_spi.h"
-#include "tdc_stim_definitions.h"
-#include "tdc_isd_map_impedance.h"
-#include "tdc_isd_map_ecap.h"
-#include "tdc_isd_map_specific_stim.h"
-#include "tdc_isd_map_live.h"
-#include "tdc_isd.h"
-#include "tdc_isd_map_test_stim.h"
-#include "tdc_isd_map_data.h"
-#include "tdc_isd_map_live.h"
-#include "tdc_isd_init.h"
-#include "FPGA.h"
-#include "tdc_sys_control.h"
-#include "tdc_ble_remote.h"
+#include <tdc_sys_error.h>
+#include <tdc_ble_mapping.h>
+#include <board.h>
+#include <internalStimulationChip.h>
+#include <tdc_shm.h>
+#include <tdc_ble_mapping.h>
+#include <tdc_hal_spi.h>
+#include <tdc_stim_definitions.h>
+#include <tdc_isd_map_impedance.h>
+#include <tdc_isd_map_ecap.h>
+#include <tdc_isd_map_specific_stim.h>
+#include <tdc_isd_map_live.h>
+#include <tdc_isd.h>
+#include <tdc_isd_map_test_stim.h>
+#include <tdc_isd_map_data.h>
+#include <tdc_isd_map_live.h>
+#include <tdc_isd_init.h>
+#include <FPGA.h>
+#include <tdc_sys_control.h>
+#include <tdc_ble_remote.h>
 
 static ST__MAPPING_PACKET mappingPacket;
 

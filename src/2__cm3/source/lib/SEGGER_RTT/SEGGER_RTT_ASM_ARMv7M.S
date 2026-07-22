@@ -15,7 +15,7 @@ Additional information:
 */
 
 #define SEGGER_RTT_ASM      // Used to control processed input from header file
-#include "SEGGER_RTT.h"
+#include <SEGGER_RTT.h>
 
 /*********************************************************************
 *

@@ -1,12 +1,12 @@
 #include <hw.h>
 #include <stdbool.h>
 
-#include "tdc_sys_error.h"
-#include "tdc_shm.h"
-#include "tdc_ble_mapping.h"
-#include "tdc_ble_remote.h"
-#include "tdc_hal_spi.h"
-#include "tdc_isd_map_data.h"
+#include <tdc_sys_error.h>
+#include <tdc_shm.h>
+#include <tdc_ble_mapping.h>
+#include <tdc_ble_remote.h>
+#include <tdc_hal_spi.h>
+#include <tdc_isd_map_data.h>
 
 void tdc_isd_map_read_original_info_setting(bool startFlag, int command)
 {

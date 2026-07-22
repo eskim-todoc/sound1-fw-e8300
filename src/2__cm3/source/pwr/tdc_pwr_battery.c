@@ -3,12 +3,12 @@
 
 #include <hw.h>
 #include <stdbool.h>
-#include "FPGA.h"
+#include <FPGA.h>
 
-#include "tdc_shm.h"
-#include "tdc_pwr_battery.h"
-#include "tdc_stim_common.h"
-#include "tdc_isd.h"
+#include <tdc_shm.h>
+#include <tdc_pwr_battery.h>
+#include <tdc_stim_common.h>
+#include <tdc_isd.h>
 
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // Sound1

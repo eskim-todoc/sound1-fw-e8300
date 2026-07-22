@@ -2,12 +2,12 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
-#include "tdc_hal_i2c.h"
+#include <tdc_hal_i2c.h>
 
-#include "tdc_drv_mis2dh.h"
+#include <tdc_drv_mis2dh.h>
 
 #ifdef UART_isDedicated_CM3_DATA
-#include "02_cfx_cm3_communication_Data_block.h"
+#include <02_cfx_cm3_communication_Data_block.h>
 #endif
 
 bool write_MIS2DH_Register_byCM3_I2C(tdc_drv_mis2dh_register_t Register)

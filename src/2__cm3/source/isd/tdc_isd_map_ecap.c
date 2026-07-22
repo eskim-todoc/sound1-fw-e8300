@@ -1,26 +1,26 @@
 #include <hw.h>
 #include <tdc_isd_pcm.h>
 #include <stdbool.h>
-#include "tdc_sys_error.h"
-#include "FPGA.h"
-#include "tdc_isd_fpga.h"
-#include "internalStimulationChip.h"
-#include "tdc_isd.h"
+#include <tdc_sys_error.h>
+#include <FPGA.h>
+#include <tdc_isd_fpga.h>
+#include <internalStimulationChip.h>
+#include <tdc_isd.h>
 #if 0
-#include "tdc_hal_i2c_cfx.h"
+#include <tdc_hal_i2c_cfx.h>
 #else
-#include "tdc_hal_i2c_isd.h"
+#include <tdc_hal_i2c_isd.h>
 #endif
-#include "tdc_stim_definitions.h"
+#include <tdc_stim_definitions.h>
 
-#include "tdc_isd.h"
-#include "tdc_isd_init_fpga.h"
-#include "tdc_shm.h"
-#include "tdc_ble_mapping.h"
-#include "tdc_hal_spi.h"
-#include "tdc_isd_map_ecap.h"
+#include <tdc_isd.h>
+#include <tdc_isd_init_fpga.h>
+#include <tdc_shm.h>
+#include <tdc_ble_mapping.h>
+#include <tdc_hal_spi.h>
+#include <tdc_isd_map_ecap.h>
 
-#include "electrodeMapping.h"
+#include <electrodeMapping.h>
 
 // static int eCAP_value[4][64]={0,};
 

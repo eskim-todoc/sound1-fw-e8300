@@ -2,10 +2,10 @@
 #include <hw.h>
 #include <stdbool.h>
 
-#include "processorDirective.h"
-#include "board.h"
-#include "tdc_led_output.h"
-#include "tdc_shm.h"
+#include <processorDirective.h>
+#include <board.h>
+#include <tdc_led_output.h>
+#include <tdc_shm.h>
 
 #include <tdc_hal_timer.h>
 #include <tdc_util.h>  /* tdc_util_delay_ms */

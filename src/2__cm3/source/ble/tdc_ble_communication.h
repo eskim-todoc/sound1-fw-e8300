@@ -4,8 +4,8 @@
 #include <tdc_hal_uart.h>
 #include <stdbool.h>
 
-#include "tdc_isd.h"  //ok
-#include "tdc_ble_mapping.h" //ok
+#include <tdc_isd.h>  //ok
+#include <tdc_ble_mapping.h> //ok
 
 
 typedef struct

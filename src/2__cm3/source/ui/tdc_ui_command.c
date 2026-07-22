@@ -1,4 +1,4 @@
-#include "tdc_ui_command.h"
+#include <tdc_ui_command.h>
 
 #include <stdarg.h>
 #include <stdio.h>
@@ -7,14 +7,14 @@
 
 #include <SEGGER_RTT.h>
 
-#include "tdc_led_output.h"
-#include "tdc_pwr_battery.h"
-#include "tdc_shm.h"
-#include "tdc_sys_error.h"
-#include "tdc_fs_event_log.h"
-#include "tdc_fs_map.h"
-#include "tdc_isd.h"
-#include "processorDirective.h"
+#include <tdc_led_output.h>
+#include <tdc_pwr_battery.h>
+#include <tdc_shm.h>
+#include <tdc_sys_error.h>
+#include <tdc_fs_event_log.h>
+#include <tdc_fs_map.h>
+#include <tdc_isd.h>
+#include <processorDirective.h>
 #include <tdc_fs_stim_mute.h>
 
 #include <tdc_printf.h>

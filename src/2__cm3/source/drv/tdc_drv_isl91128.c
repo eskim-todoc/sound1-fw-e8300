@@ -2,14 +2,14 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
-#include "board.h"
+#include <board.h>
 
 
 #if defined(Board_is_OTE_VER_1_2)
 
 
-#include "tdc_hal_i2c.h"
-#include "tdc_drv_isl91128.h"
+#include <tdc_hal_i2c.h>
+#include <tdc_drv_isl91128.h>
 
 
 

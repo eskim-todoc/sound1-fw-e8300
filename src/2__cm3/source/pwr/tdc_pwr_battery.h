@@ -2,9 +2,9 @@
 #define __tdc_pwr_battery_h__
 
 #include <stdbool.h>
-#include "processorDirective.h"
-#include "tdc_hal_i2c_isd.h"
-#include "tdc_led_output.h"
+#include <processorDirective.h>
+#include <tdc_hal_i2c_isd.h>
+#include <tdc_led_output.h>
 
 #include <tdc_shm.h>
 #include <tdc_printf.h>

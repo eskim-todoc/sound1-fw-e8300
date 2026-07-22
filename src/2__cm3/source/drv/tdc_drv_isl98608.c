@@ -4,12 +4,12 @@
 #include <string.h>
 #include <stdbool.h>
 
-#include "board.h"
+#include <board.h>
 
 #if defined(Board_is_OTE_VER_1_3)
 
-#include "tdc_hal_i2c.h"
-#include "tdc_drv_isl98608.h"
+#include <tdc_hal_i2c.h>
+#include <tdc_drv_isl98608.h>
 
 
 bool tdc_drv_isl98608_write_register(int registerAddr, int value)

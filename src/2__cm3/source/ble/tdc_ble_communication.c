@@ -1,11 +1,11 @@
 
 
 #include <stdbool.h>
-#include "tdc_hal_spi.h"
-#include "tdc_isd.h"
-#include "tdc_ble_remote.h"
-#include "tdc_ble_mapping.h"
-#include "tdc_ble_communication.h"
+#include <tdc_hal_spi.h>
+#include <tdc_isd.h>
+#include <tdc_ble_remote.h>
+#include <tdc_ble_mapping.h>
+#include <tdc_ble_communication.h>
 
 #include <tdc_pwr_battery.h>
 
@@ -15,7 +15,7 @@
 #include <tdc_hal_timer.h>
 #include <tdc_printf.h>
 
-#include "tdc_shm.h"  // cfx_cm3_sharedMemoryAll (게인 테이블 연동)
+#include <tdc_shm.h>  // cfx_cm3_sharedMemoryAll (게인 테이블 연동)
 
 typedef struct
 {

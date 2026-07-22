@@ -2,22 +2,22 @@
 #include <tdc_isd_pcm.h>
 #include <stdbool.h>
 
-#include "FPGA.h"
-#include "internalStimulationChip.h"
-#include "tdc_isd.h"
+#include <FPGA.h>
+#include <internalStimulationChip.h>
+#include <tdc_isd.h>
 #if 0
-#include "tdc_hal_i2c_cfx.h"
+#include <tdc_hal_i2c_cfx.h>
 #else
-#include "tdc_hal_i2c_isd.h"
+#include <tdc_hal_i2c_isd.h>
 #endif
-#include "tdc_stim_definitions.h"
+#include <tdc_stim_definitions.h>
 
-#include "tdc_isd.h"
-#include "tdc_shm.h"
-#include "tdc_isd_stim_para_setting.h"
-#include "tdc_stim_para_cal.h"
-#include "tdc_stim_indicator.h"
-#include "tdc_sys_error.h"
+#include <tdc_isd.h>
+#include <tdc_shm.h>
+#include <tdc_isd_stim_para_setting.h>
+#include <tdc_stim_para_cal.h>
+#include <tdc_stim_indicator.h>
+#include <tdc_sys_error.h>
 
 // 구조체의 배치되는 주소를 sections.ld 파일을 수정하여 LPDSP32_PRAM5에 위치한다.
 extern ST__CFX_CM3_SharedMemory_ALL cfx_cm3_sharedMemoryAll __attribute__((section(".shared_memory")));

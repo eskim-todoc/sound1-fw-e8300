@@ -2,17 +2,17 @@
 #include <tdc_isd_pcm.h>
 #include <stdbool.h>
 
-#include "board.h"
-#include "internalStimulationChip.h"
-#include "tdc_isd.h"
-#include "tdc_hal_i2c_cfx.h"
-#include "tdc_stim_definitions.h"
+#include <board.h>
+#include <internalStimulationChip.h>
+#include <tdc_isd.h>
+#include <tdc_hal_i2c_cfx.h>
+#include <tdc_stim_definitions.h>
 
-#include "tdc_isd_init_fpga.h"
-#include "tdc_isd.h"
-#include "tdc_shm.h"
-#include "tdc_stim_para_cal.h"
-#include "tdc_sys_error.h"
+#include <tdc_isd_init_fpga.h>
+#include <tdc_isd.h>
+#include <tdc_shm.h>
+#include <tdc_stim_para_cal.h>
+#include <tdc_sys_error.h>
 
 static ST_STIUL_DAC_REGISTER_VALUE stimulationDAC_para;
 

@@ -1,22 +1,22 @@
-#include "tdc_sys_error.h"
-#include "tdc_shm.h"
-#include "tdc_ble_mapping.h"
-#include "tdc_isd.h"
-#include "tdc_isd_stim_para_setting.h"
-#include "tdc_isd_map_specific_stim.h"
-#include "tdc_stim_indicator.h"
+#include <tdc_sys_error.h>
+#include <tdc_shm.h>
+#include <tdc_ble_mapping.h>
+#include <tdc_isd.h>
+#include <tdc_isd_stim_para_setting.h>
+#include <tdc_isd_map_specific_stim.h>
+#include <tdc_stim_indicator.h>
 
-#include "FPGA.h"
-#include "tdc_isd_fpga.h"
-#include "tdc_stim_para_cal.h"
+#include <FPGA.h>
+#include <tdc_isd_fpga.h>
+#include <tdc_stim_para_cal.h>
 
-#include "tdc_isd_stim_standalone.h"
-#include "tdc_isd_map_live.h"
-#include "tdc_pwr_battery.h"
+#include <tdc_isd_stim_standalone.h>
+#include <tdc_isd_map_live.h>
+#include <tdc_pwr_battery.h>
 // live 실행을 받으면 맵 번호 인덱스를 마이너스 값으로 변경하여  CFX에서 맵데이터를 실행한다.
-#include "tdc_sys_error.h"
-#include "electrodeMapping.h"
-#include "tdc_hal_spi.h"
+#include <tdc_sys_error.h>
+#include <electrodeMapping.h>
+#include <tdc_hal_spi.h>
 
 #include <tdc_printf.h>
 

@@ -1,12 +1,12 @@
 #include <hw.h>
 #include <stdbool.h>
-#include "FPGA.h"
-#include "tdc_shm.h"
-#include "tdc_sys_error.h"
-#include "tdc_stim_common.h"
-#include "tdc_isd.h"
+#include <FPGA.h>
+#include <tdc_shm.h>
+#include <tdc_sys_error.h>
+#include <tdc_stim_common.h>
+#include <tdc_isd.h>
 
-#include "tdc_hal_i2c_isd.h"
+#include <tdc_hal_i2c_isd.h>
 
 bool tdc_sys_earpiece_update_status(void)
 {

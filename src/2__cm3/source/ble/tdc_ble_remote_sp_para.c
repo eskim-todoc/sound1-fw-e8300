@@ -1,13 +1,13 @@
 
 
-#include "tdc_ble_remote.h"
-#include "tdc_stim_para_cal.h"
-#include "tdc_hal_spi.h"
-#include "tdc_stim_definitions.h"
-#include "tdc_shm.h"
-#include "board.h" // 디버깅용
-#include "tdc_sys_error.h"
-#include "tdc_isd_init.h"
+#include <tdc_ble_remote.h>
+#include <tdc_stim_para_cal.h>
+#include <tdc_hal_spi.h>
+#include <tdc_stim_definitions.h>
+#include <tdc_shm.h>
+#include <board.h> // 디버깅용
+#include <tdc_sys_error.h>
+#include <tdc_isd_init.h>
 
 void tdc_ble_remote_read_sp_para(bool startFlag, int command)
 {

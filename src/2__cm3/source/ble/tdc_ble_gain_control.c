@@ -10,12 +10,12 @@
  * (0x8F 범용 디버깅 프로토콜 분리 방식과 동일)
  */
 
-#include "tdc_ble_gain_control.h"
+#include <tdc_ble_gain_control.h>
 
 #include <stdbool.h>
 
-#include "tdc_shm.h"  // cfx_cm3_sharedMemoryAll
-#include "tdc_ble_remote.h"         // ST__REMOTECONTROL_PACKET
+#include <tdc_shm.h>  // cfx_cm3_sharedMemoryAll
+#include <tdc_ble_remote.h>         // ST__REMOTECONTROL_PACKET
 #include <tdc_printf.h>
 #include <tdc_fs_gain.h>
 

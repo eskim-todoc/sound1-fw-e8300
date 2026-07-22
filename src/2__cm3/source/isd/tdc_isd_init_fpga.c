@@ -2,36 +2,36 @@
 #include <tdc_isd_pcm.h>
 #include <stdbool.h>
 
-#include "board.h"
-#include "tdc_isd_init_fpga.h"
-#include "internalStimulationChip.h"
-#include "tdc_isd.h"
+#include <board.h>
+#include <tdc_isd_init_fpga.h>
+#include <internalStimulationChip.h>
+#include <tdc_isd.h>
 
 #if 0
-#include "tdc_hal_i2c_cfx.h"
+#include <tdc_hal_i2c_cfx.h>
 #else
-#include "tdc_hal_i2c_isd.h"
+#include <tdc_hal_i2c_isd.h>
 #endif
 
-#include "tdc_stim_definitions.h"
+#include <tdc_stim_definitions.h>
 
-#include "tdc_isd.h"
-#include "tdc_shm.h"
-#include "tdc_isd_fpga.h"
+#include <tdc_isd.h>
+#include <tdc_shm.h>
+#include <tdc_isd_fpga.h>
 
-#include "tdc_sys_error.h"
+#include <tdc_sys_error.h>
 
 // #include "FPGA.h"
 #if defined(Board_is_OTE_VER_1_2)
-#include "tdc_drv_isl91128.h"
+#include <tdc_drv_isl91128.h>
 #elif defined(Board_is_TD_DEV_ver_1_4) || defined(Board_is_OTE_VER_1_4) || defined(Board_is_OTE_VER_1_5)
-#include "tdc_drv_isl9122.h"
+#include <tdc_drv_isl9122.h>
 #elif defined(Board_is_OTE_VER_1_3)
-#include "tdc_drv_isl98608.h"
+#include <tdc_drv_isl98608.h>
 #endif
 
-#include "tdc_stim_common.h"
-#include "tdc_led_output.h"
+#include <tdc_stim_common.h>
+#include <tdc_led_output.h>
 
 static int FPGA_version;
 

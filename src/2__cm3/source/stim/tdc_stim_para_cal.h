@@ -3,9 +3,9 @@
 
 #include <stdbool.h>
 
-#include "tdc_stim_definitions.h"
+#include <tdc_stim_definitions.h>
 
-#include "tdc_printf.h"
+#include <tdc_printf.h>
 
 typedef struct
 {

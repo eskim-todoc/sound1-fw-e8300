@@ -2,13 +2,13 @@
 #include <hw.h>
 #include <stdbool.h>
 
-#include "tdc_hal_dma.h"
-#include "tdc_hal_spi.h"
-#include "tdc_ble_mapping.h"
-#include "processorDirective.h"
-#include "tdc_ble_remote.h"
+#include <tdc_hal_dma.h>
+#include <tdc_hal_spi.h>
+#include <tdc_ble_mapping.h>
+#include <processorDirective.h>
+#include <tdc_ble_remote.h>
 
-#include "board.h"  // 디버깅용
+#include <board.h>  // 디버깅용
 
 #include <tdc_hal_uart.h>
 #include <tdc_printf.h>

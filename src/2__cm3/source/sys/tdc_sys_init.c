@@ -17,40 +17,40 @@
 #include <hw.h>
 #include <stdbool.h>
 
-#include "board.h"
-#include "tdc_hal_spi.h"
-#include "tdc_hal_i2c_cfx.h"
-#include "tdc_hal_i2c.h"
+#include <board.h>
+#include <tdc_hal_spi.h>
+#include <tdc_hal_i2c_cfx.h>
+#include <tdc_hal_i2c.h>
 
-#include "tdc_pwr_battery.h"
+#include <tdc_pwr_battery.h>
 
-#include "tdc_shm.h"
+#include <tdc_shm.h>
 
-#include "tdc_drv_mis2dh.h"
-#include "tdc_sys_error.h"
-#include "tdc_sys_control.h"
+#include <tdc_drv_mis2dh.h>
+#include <tdc_sys_error.h>
+#include <tdc_sys_control.h>
 
-#include "tdc_isd.h"
-#include "tdc_ble_mapping.h"
-#include "tdc_ble_remote.h"
-#include "tdc_ble_gain_control.h"
+#include <tdc_isd.h>
+#include <tdc_ble_mapping.h>
+#include <tdc_ble_remote.h>
+#include <tdc_ble_gain_control.h>
 #include <tdc_fs_gain.h>
 
-#include "tdc_led_output.h"
-#include "tdc_stim_indicator.h"
-#include "tdc_stim_para_cal.h"
+#include <tdc_led_output.h>
+#include <tdc_stim_indicator.h>
+#include <tdc_stim_para_cal.h>
 
 #if defined(Board_is_OTE_VER_1_2)
-#include "tdc_drv_isl91128.h"
+#include <tdc_drv_isl91128.h>
 #elif defined(Board_is_TD_DEV_ver_1_4) || defined(Board_is_OTE_VER_1_4) || defined(Board_is_OTE_VER_1_5)
-#include "tdc_drv_isl9122.h"
+#include <tdc_drv_isl9122.h>
 #elif defined(Board_is_OTE_VER_1_3)
-#include "tdc_drv_isl98608.h"
+#include <tdc_drv_isl98608.h>
 #else
 #error Link PMIC is NOT selected.
 #endif
 
-#include "processorDirective.h"
+#include <processorDirective.h>
 
 #include <tdc_drv_max17262.h>
 

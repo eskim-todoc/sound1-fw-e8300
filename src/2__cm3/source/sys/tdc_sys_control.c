@@ -3,28 +3,28 @@
 #include <hw.h>
 #include <stdbool.h>
 
-#include "tdc_sys_error.h"
-#include "tdc_shm.h"
+#include <tdc_sys_error.h>
+#include <tdc_shm.h>
 
-#include "tdc_drv_mis2dh.h"
-#include "tdc_hal_spi.h"
-#include "tdc_hal_i2c_cfx.h"
-#include "tdc_isd.h"
-#include "tdc_ble_remote.h"
-#include "tdc_ble_mapping.h"
+#include <tdc_drv_mis2dh.h>
+#include <tdc_hal_spi.h>
+#include <tdc_hal_i2c_cfx.h>
+#include <tdc_isd.h>
+#include <tdc_ble_remote.h>
+#include <tdc_ble_mapping.h>
 
-#include "tdc_led_output.h"
-#include "tdc_isd_stim_standalone.h"
-#include "tdc_pwr_battery.h"
-#include "tdc_sys_earpiece.h"
-#include "processorDirective.h"
-#include "tdc_sys_control.h"
+#include <tdc_led_output.h>
+#include <tdc_isd_stim_standalone.h>
+#include <tdc_pwr_battery.h>
+#include <tdc_sys_earpiece.h>
+#include <processorDirective.h>
+#include <tdc_sys_control.h>
 
 #ifdef ENABLE_UI_CMD
-#include "tdc_ui_command.h"
+#include <tdc_ui_command.h>
 #endif
 
-#include "tdc_touch.h"
+#include <tdc_touch.h>
 
 #include <tdc_printf.h>
 
