@@ -1,9 +1,9 @@
 /**
- * @file sdk_ci_boot.h
+ * @file tdc_dfu_sdk_boot.h
  */
 
-#ifndef __sdk_ci_boot_h__
-#define __sdk_ci_boot_h__
+#ifndef __tdc_dfu_sdk_boot_h__
+#define __tdc_dfu_sdk_boot_h__
 
 #include <stdbool.h>
 #include <stdio.h>
@@ -64,4 +64,4 @@ typedef struct __attribute__((packed))
                                  //    total sum: 64 bytes
 } snd_boot_status_t;
 
-#endif // __sdk_ci_boot_h__
+#endif // __tdc_dfu_sdk_boot_h__

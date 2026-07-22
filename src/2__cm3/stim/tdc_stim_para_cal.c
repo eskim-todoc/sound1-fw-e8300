@@ -10,7 +10,7 @@
 
 #include "tdc_isd_init_fpga.h"
 #include "tdc_isd.h"
-#include "cfx_cm3_sharedMemory.h"
+#include "tdc_shm.h"
 #include "tdc_stim_para_cal.h"
 #include "tdc_sys_error.h"
 
@@ -577,9 +577,9 @@ bool tdc_stim_calc_para_and_cfx_share(void)
 
     ST__CFX_CM3_SharedMemory_mapData                    *p_mapdata;
     ST__CFX_CM3_SharedMemory_calculatedStimulPara_byCM3 *p_calculatedStimulPara_byCM3;
-    p_mapdata = getPointerCurrentMapData();
+    p_mapdata = tdc_shm_get_pointer_current_map_data();
 
-    changePcmOutputMode(PcmBitStream_Mode_NopStandby);
+    tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_NopStandby);
 
     frameNumPerOneChannel  = tdc_stim_calc_frame_per_channel(p_mapdata->stimulationPulsePhaseWidth);
     transferableChannelNum = tdc_stim_calc_transferable_channel_num(frameNumPerOneChannel, p_mapdata->numFrequencyBand);
@@ -605,7 +605,7 @@ bool tdc_stim_calc_para_and_cfx_share(void)
     configurationDone = tdc_stim_set_range(p_mapdata->stimulationPulsePhaseWidth, p_mapdata->T_level_uA, p_mapdata->C_level_uA, p_mapdata->numFrequencyBand, T_level_255, C_level_255);
 
     // CFX와 공유
-    p_calculatedStimulPara_byCM3 = getPointerCalculatedStimulPara_byCM3();
+    p_calculatedStimulPara_byCM3 = tdc_shm_get_pointer_calculated_stimul_para_by_cm3();
 
     p_calculatedStimulPara_byCM3->frameNumPerChannel   = frameNumPerOneChannel;
     p_calculatedStimulPara_byCM3->transferableFrameNum = transferableChannelNum;

@@ -9,7 +9,7 @@
 
 #include "tdc_led_output.h"
 #include "tdc_pwr_battery.h"
-#include "cfx_cm3_sharedMemory.h"
+#include "tdc_shm.h"
 #include "tdc_sys_error.h"
 #include "tdc_fs_event_log.h"
 #include "tdc_fs_map.h"
@@ -316,7 +316,7 @@ static int handle_led(int argc, char *argv[])
             output_printf("  [%s] = %s%s\r\n", val_to_str(s_tdc_source_map, src), val_to_str(s_tdc_state_map, state), s_tdc_led_override[src] ? " (override)" : "");
         }
         output_printf("  burst_pending = %d\r\n", tdc_led_is_burst_pending());
-        output_printf("  user_led_off = %d\r\n", (readLED_indicatorOnOff() == 2) ? 1 : 0);
+        output_printf("  user_led_off = %d\r\n", (tdc_shm_read_led_indicator_on_off() == 2) ? 1 : 0);
         output_printf("-------------------------\r\n");
         return 0;
     }
@@ -366,12 +366,12 @@ static int handle_led(int argc, char *argv[])
 
         if (ci_strcasecmp(argv[2], "on") == 0)
         {
-            changeLED_indicatorOnOff(en__PAYLOAD_ON);
+            tdc_shm_change_led_indicator_on_off(en__PAYLOAD_ON);
             output_printf("OK: user LED on\r\n");
         }
         else if (ci_strcasecmp(argv[2], "off") == 0)
         {
-            changeLED_indicatorOnOff(en__PAYLOAD_OFF);
+            tdc_shm_change_led_indicator_on_off(en__PAYLOAD_OFF);
             output_printf("OK: user LED off\r\n");
         }
         else
@@ -616,7 +616,7 @@ static int handle_volume(int argc, char *argv[])
         return -1;
     }
 
-    changeAudioVolume(volume);
+    tdc_shm_change_audio_volume(volume);
     output_printf("OK: volume = %d\r\n", volume);
     return 0;
 }
@@ -666,7 +666,7 @@ static int handle_program(int argc, char *argv[])
         return 0;
     }
 
-    changeProgramMapNum(n);
+    tdc_shm_change_program_map_num(n);
     output_printf("OK: program = %d\r\n", n);
     return 0;
 }

@@ -13,8 +13,8 @@
  * 목록: docs/tasks/cm3/20260720_cm3-full-refactor/분석-데이터/06_공유-인터페이스.md
  * ========================================================================== */
 
-#ifndef cfx_cm3_sharedMemory_H__
-#define cfx_cm3_sharedMemory_H__
+#ifndef __tdc_shm_h__
+#define __tdc_shm_h__
 
 #include <stdbool.h>
 
@@ -268,12 +268,12 @@ typedef struct
  * 해당 '필드'는 CFX AGC 가 사용하므로 구조체에 그대로 있다. */
 void tdc_shared_publish_cm3_heartbeat(int beat);
 
-bool isCFX_EEPROM_data_Loaded(void);
+bool tdc_shm_is_cfx_eeprom_data_loaded(void);
 
 ////
 // 공유 메모리 주속 확인
 
-bool sharedMemoryAddresError(void);
+bool tdc_shm_shared_memory_address_error(void);
 
 // 충전기 상태
 
@@ -283,17 +283,17 @@ bool sharedMemoryAddresError(void);
 ////////////////////////////////////
 // PCM 관련
 
-void changePcmOutputMode(int currentPcmOutputMode);
-int  readCurrentPcmOutputMode(void);
-void changeNextPcmOutputMode(int nextPcmOutputMode);
-void fillSepcificCommndBuffer(int Index, int data);
-int  readConnectionCheckPcmState(void);
-void clearConnectionCheckPcmFiredFlag(void);
+void tdc_shm_change_pcm_output_mode(int currentPcmOutputMode);
+int  tdc_shm_read_current_pcm_output_mode(void);
+void tdc_shm_change_next_pcm_output_mode(int nextPcmOutputMode);
+void tdc_shm_fill_specific_command_buffer(int Index, int data);
+int  tdc_shm_read_connection_check_pcm_state(void);
+void tdc_shm_clear_connection_check_pcm_fired_flag(void);
 
 ///////////////////////////////
 // 내부기 제조 정보 읽기
 
-int read_ISD_manufacture_ID(int index);
+int tdc_shm_read_isd_manufacture_id(int index);
 
 ///////////////////////////////
 // 내부기 수술 위치 읽기
@@ -301,123 +301,123 @@ int read_ISD_manufacture_ID(int index);
 ///////////////////////////////
 // 내부기 사용자 이름 읽기
 
-int *read_recomcon_passkey_connected_ISD(int connected_ISD_Num);
+int *tdc_shm_read_remocon_passkey_connected_isd(int connected_ISD_Num);
 
 // 맵 스템프
-int *readConnected_ISD_MapStamp(void);
+int *tdc_shm_read_connected_isd_map_stamp(void);
 
 ///////////////////
 // 내부기 정보
-void changeConnected_isd_num_CFX(int num);
-int  read_connected_ISD_Num(void);
+void tdc_shm_change_connected_isd_num_cfx(int num);
+int  tdc_shm_read_connected_isd_num(void);
 
 // 연렫된 내부기  환자 이름
-int *readConnected_ISD_userName(int connected_ISD_Num);
+int *tdc_shm_read_connected_isd_user_name(int connected_ISD_Num);
 
 // 연렫된 내부기  수술 위치
-EN__LOCATION_OF_ISD readConnected_ISD_Location(int connected_ISD_Num);
+EN__LOCATION_OF_ISD tdc_shm_read_connected_isd_location(int connected_ISD_Num);
 
 // 열결된 내부기의  맵 요약 정보
 
 // 열결된 내부기의  사용 가능한 맵 갯수
-int readConnected_ISD_usableMapNum(void);
+int tdc_shm_read_connected_isd_usable_map_num(void);
 
 // 열결된 내부기의  사용 가능한 맵 인덱스
-int *readConnected_ISD_usableMapIndex(void);
+int *tdc_shm_read_connected_isd_usable_map_index(void);
 
 // 열결된 내부기의  스템프
-int *readConnected_ISD_MapStamp(void);
+int *tdc_shm_read_connected_isd_map_stamp(void);
 // 열결된 내부기의  맵 생성일자 들
-int *readConnected_ISD_MapDate(int mapNum);
+int *tdc_shm_read_connected_isd_map_date(int mapNum);
 
 //////////////////////////
 // 사용자 설정값
 
-void changeProgramMapNum(int mapNum);
-int  readProgramMapNum(void);
-void changeStimulVolume(int volume);
-int  readStimulVolume(void);
-void changeAudioVolume(int volume);
-int  readAudioVolume(void);
+void tdc_shm_change_program_map_num(int mapNum);
+int  tdc_shm_read_program_map_num(void);
+void tdc_shm_change_stimul_volume(int volume);
+int  tdc_shm_read_stimul_volume(void);
+void tdc_shm_change_audio_volume(int volume);
+int  tdc_shm_read_audio_volume(void);
 
-void changeLED_indicatorOnOff(EN__PAYLOAD_ON_OFF OnOff);
-int  readLED_indicatorOnOff(void);
-void changeTeleCoil_OnOff(EN__PAYLOAD_ON_OFF OnOff);
-int  readTeleCoil_OnOff(void);
-void changeStimulIndicator_OnOff(EN__PAYLOAD_ON_OFF OnOff);
-int  readStimulIndicator_OnOff(void);
+void tdc_shm_change_led_indicator_on_off(EN__PAYLOAD_ON_OFF OnOff);
+int  tdc_shm_read_led_indicator_on_off(void);
+void tdc_shm_change_tele_coil_on_off(EN__PAYLOAD_ON_OFF OnOff);
+int  tdc_shm_read_tele_coil_on_off(void);
+void tdc_shm_change_stimul_indicator_on_off(EN__PAYLOAD_ON_OFF OnOff);
+int  tdc_shm_read_stimul_indicator_on_off(void);
 
 // 사용자 설정값 읽어 들여짐 확인
 
-bool isUserSettingValueLoaded_CFX(void);
+bool tdc_shm_is_user_setting_value_loaded_cfx(void);
 
 /////////////////////
 // 맵데이터
 
-const ST__CFX_CM3_SharedMemory_mapData *readCurrentMapData(void);
-ST__CFX_CM3_SharedMemory_mapData       *getPointerCurrentMapData(void);
-void                                    setReadWriteMapDataFlashCommand(ST__CFX_CM3_SharedMemory_ReadWriteCommand_ForFlash command_ForFlash);
-bool                                    isReadWriteMapDataFlashCommandDone(void);
-int                                    *getPointerRepositoryForReadWriteMapData_isd_info(void);
-int                                    *getPointerRepositoryForReadWriteMapData_userSetting(void);
-int                                    *getPointerRepositoryForReadWriteMapData_stimulPara(void);
+const ST__CFX_CM3_SharedMemory_mapData *tdc_shm_read_current_map_data(void);
+ST__CFX_CM3_SharedMemory_mapData       *tdc_shm_get_pointer_current_map_data(void);
+void                                    tdc_shm_set_read_write_map_data_flash_command(ST__CFX_CM3_SharedMemory_ReadWriteCommand_ForFlash command_ForFlash);
+bool                                    tdc_shm_is_read_write_map_data_flash_command_done(void);
+int                                    *tdc_shm_get_pointer_repository_for_read_write_map_data_isd_info(void);
+int                                    *tdc_shm_get_pointer_repository_for_read_write_map_data_user_setting(void);
+int                                    *tdc_shm_get_pointer_repository_for_read_write_map_data_stimul_para(void);
 
 ///////////////
 // 자극에 필요한 추가 파라미터(CM3에서 계산되어 CFX에 전달되어야 한다.)
 
-ST__CFX_CM3_SharedMemory_calculatedStimulPara_byCM3 *getPointerCalculatedStimulPara_byCM3(void);
+ST__CFX_CM3_SharedMemory_calculatedStimulPara_byCM3 *tdc_shm_get_pointer_calculated_stimul_para_by_cm3(void);
 
 /////
 /// CFX와의 통신
-void setFlag_AudioParametersCalculationDone_Cm3ToCfx(void);  // 파라미터 계산이 완료되었을을 CFX에 알려주는 플레그 (CFX에서 확인 후 자동을 클리어)
+void tdc_shm_set_flag_audio_parameters_calculation_done_cm3_to_cfx(void);  // 파라미터 계산이 완료되었을을 CFX에 알려주는 플레그 (CFX에서 확인 후 자동을 클리어)
 
 /////////////
 // 자극 알림
 
 /*
-int *getCalculatedStimulationIndcatorLevel_byCM3(void);
-int *getPointer_stimulationIndcatorOnOff_byCM3(void);
+int *tdc_shm_get_calculated_stimulation_indicator_level_by_cm3(void);
+int *tdc_shm_get_pointer_stimulation_indicator_on_off_by_cm3(void);
 */
 
-void setCalculatedStimulationIndcatorLevel_byCM3(int stimulationIndicatorLevel_255);
-void setStimulationIndcatorOnOff_byCM3(bool On_Off);
+void tdc_shm_set_calculated_stimulation_indicator_level_by_cm3(int stimulationIndicatorLevel_255);
+void tdc_shm_set_stimulation_indicator_on_off_by_cm3(bool On_Off);
 
 /////////
 // 현재 출력되고 있는 자극 레벨
 
-int *readCurrentStimulLevel_255(void);
-int  readAudioSignalMax(void);
+int *tdc_shm_read_current_stimul_level_255(void);
+int  tdc_shm_read_audio_signal_max(void);
 
 /////
 // 맵데이터 변경관련  CFX와의 통신
 
-bool isMapdateLoaded_CFX(void);
+bool tdc_shm_is_map_data_loaded_cfx(void);
 
 // 맵 번호 변경 명령을 CFX에 전달
-void setCommandMapChange_Cm3ToCfx(void);
+void tdc_shm_set_command_map_change_cm3_to_cfx(void);
 
 // 매핑 프로그램 연결 상태 CFX에 전달.
 
-void shareMappingProgramConnection(bool connection);
+void tdc_shm_share_mapping_program_connection(bool connection);
 
 /////
 // 동작 모드, 가속도 센서, 전원 off명령
-void changeSystemModeFlag(EN__SYSTEM_OP_MODE flag);
-bool isPowerButtonPushed(void);
-void enterLowPowerMode_CM3_to_CFX();
-void OnOff_3V_PMIC_CM3_to_CFX(bool OnOff);
+void tdc_shm_change_system_mode_flag(EN__SYSTEM_OP_MODE flag);
+bool tdc_shm_is_power_button_pushed(void);
+void tdc_shm_enter_low_power_mode_cm3_to_cfx();
+void tdc_shm_on_off_3_v_pmic_cm3_to_cfx(bool OnOff);
 
-void upadateSystemOpModeToCFX(EN__SYSTEM_OP_MODE mode);
+void tdc_shm_update_system_op_mode_to_cfx(EN__SYSTEM_OP_MODE mode);
 
-int readBatteryLevel_FromCFX(void);
+int tdc_shm_read_battery_level_from_cfx(void);
 
-int readBatteryCalibrationValue(void);
+int tdc_shm_read_battery_calibration_value(void);
 
-void updagteBacktelControlValue_toCFX(int value);
+void tdc_shm_update_backtel_control_value_to_cfx(int value);
 
-void updateEarpieceDetectionValue_toCFX(bool detection);
+void tdc_shm_update_earpiece_detection_value_to_cfx(bool detection);
 ///// CFX의 에러
-int readCfxErrorCode(void);
+int tdc_shm_read_cfx_error_code(void);
 
 
 // 구조체의 배치되는 주소를 sections.ld 파일을 수정하여 LPDSP32_PRAM5에 위치한다.

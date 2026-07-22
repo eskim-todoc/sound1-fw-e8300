@@ -12,7 +12,7 @@
 
 #include <hw.h>
 
-#include <cfx_cm3_sharedMemory.h>
+#include <tdc_shm.h>
 #include <tdc_led_output.h>
 
 #include <tdc_fs.h>

@@ -1,9 +1,9 @@
 /**
- * @file otaControl.c
+ * @file tdc_dfu_ota.c
  */
 
 #include <tdc_dfu_ble_ota.h>
-#include <ci_boot.h>
+#include <tdc_boot.h>
 #include <tdc_hal_spi.h>
 #include <tdc_sys_error.h>
 #include <tdc_fs.h>
@@ -78,7 +78,7 @@ static void _handle_command_option_write(int slot_num, int file_type, int *p_pac
     FRESULT           res;
 
     // get boot status
-    if (ci_boot_get_status(&boot_status) != BOOT_RET_TRUE)
+    if (tdc_boot_get_status(&boot_status) != BOOT_RET_TRUE)
     {
         _send_error_packet_boot(1);  // Error : File read
         return;

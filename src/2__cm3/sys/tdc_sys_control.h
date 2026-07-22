@@ -4,7 +4,7 @@
 #include <hw.h>
 #include <stdbool.h>
 #include "board.h"
-#include "cfx_cm3_sharedMemory.h"
+#include "tdc_shm.h"
 #include "tdc_pwr_battery.h"
 #include "tdc_led_output.h"
 #include "tdc_sys_error.h"

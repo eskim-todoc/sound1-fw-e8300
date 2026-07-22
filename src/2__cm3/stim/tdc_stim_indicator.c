@@ -1,4 +1,4 @@
-#include "cfx_cm3_sharedMemory.h"
+#include "tdc_shm.h"
 #include "tdc_stim_para_cal.h"
 #include "tdc_ble_mapping.h"
 #include "internalStimulationChip.h"
@@ -47,11 +47,11 @@ void tdc_stim_indicator_out(int userSettingEnableStimulationIndicator, bool stim
         if (counter < 80)
         {
 
-            setStimulationIndcatorOnOff_byCM3(true);
+            tdc_shm_set_stimulation_indicator_on_off_by_cm3(true);
         }
         else
         {
-            setStimulationIndcatorOnOff_byCM3(false);
+            tdc_shm_set_stimulation_indicator_on_off_by_cm3(false);
         }
 
         if (counter >= 160)
@@ -85,7 +85,7 @@ void tdc_stim_indicator_set_level_255(void)
 
     p_stimulDAC_setting=tdc_stim_read_dac_register_value();
     p_stimulIndicator=getCalculatedStimulationIndcatorLevel();
-    p_mapData=getPointerCurrentMapData();
+    p_mapData=tdc_shm_get_pointer_current_map_data();
 
 
     // offset 값 계산
@@ -138,7 +138,7 @@ void tdc_stim_indicator_set_level_255(void)
     const ST__CFX_CM3_SharedMemory_mapData* p_mapData;
 
     p_stimulDAC_setting = tdc_stim_read_dac_register_value();
-    p_mapData           = getPointerCurrentMapData();
+    p_mapData           = tdc_shm_get_pointer_current_map_data();
 
     stimulation_Channel     = p_mapData->stimulationIndicatorChannelNum;
     tempStimulationLevel_uA = p_mapData->stimulationIndicatorAmplitude_uA;
@@ -154,24 +154,24 @@ void tdc_stim_indicator_set_level_255(void)
     {
         case Stimulation_DAC_A:  //
             temp = stimulationLevel_uA * reciprocal_dividing_QI1F15_Stimulation_DAC_A;
-            setCalculatedStimulationIndcatorLevel_byCM3(temp >> 15);
+            tdc_shm_set_calculated_stimulation_indicator_level_by_cm3(temp >> 15);
             break;
 
         case Stimulation_DAC_B:  //
             temp = stimulationLevel_uA * reciprocal_dividing_QI1F15_Stimulation_DAC_B;
-            setCalculatedStimulationIndcatorLevel_byCM3(temp >> 15);
+            tdc_shm_set_calculated_stimulation_indicator_level_by_cm3(temp >> 15);
             break;
 
         case Stimulation_DAC_C:  //
         {
             temp = stimulationLevel_uA * reciprocal_dividing_QI1F15_Stimulation_DAC_C;
-            setCalculatedStimulationIndcatorLevel_byCM3(temp >> 15);
+            tdc_shm_set_calculated_stimulation_indicator_level_by_cm3(temp >> 15);
         }
         break;
 
         case Stimulation_DAC_D:  //
             temp = stimulationLevel_uA * reciprocal_dividing_QI1F15_Stimulation_DAC_D;
-            setCalculatedStimulationIndcatorLevel_byCM3(temp >> 15);
+            tdc_shm_set_calculated_stimulation_indicator_level_by_cm3(temp >> 15);
             break;
     }
 }

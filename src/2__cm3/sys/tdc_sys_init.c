@@ -24,7 +24,7 @@
 
 #include "tdc_pwr_battery.h"
 
-#include "cfx_cm3_sharedMemory.h"
+#include "tdc_shm.h"
 
 #include "tdc_drv_mis2dh.h"
 #include "tdc_sys_error.h"
@@ -66,7 +66,7 @@
 #include <tdc_pwr_lsad.h>
 #include <tdc_pwr_clock.h>
 #include <tdc_printf.h>
-#include <ci_boot.h>
+#include <tdc_boot.h>
 #include <tdc_hal_timer.h>
 
 #include <tdc_touch.h>
@@ -283,7 +283,7 @@ void tdc_sys_init(void)
     TDC_PRINTF_I("[MILESTONE] LED-GATE-ENTER (TIMER3 ON) \r\n");
 
     /* L2: 공유 메모리 주소 검증 - 에러 시 LED 켜기 전에 무한루프 진입 (R4) */
-    if (sharedMemoryAddresError())
+    if (tdc_shm_shared_memory_address_error())
     {
         TDC_PRINTF_E("[INFO] INVALID SHARED MEMORY ADDRESS \r\n");
 
@@ -312,8 +312,8 @@ void tdc_sys_init(void)
      * 드라이브 1로 변경하여 맵 관련 파일을 사용할 수 있게 설정 */
 
     tdc_util_assert(tdc_fs_fatfs_remount(0));  // 부트 드라이브(0)으로 마운트
-    ci_boot_init_fp(ci_fatfs_get_fp());
-    ci_boot_handle_fsm();
+    tdc_boot_init_fp(ci_fatfs_get_fp());
+    tdc_boot_handle_fsm();
     tdc_util_assert(tdc_fs_fatfs_remount(1));  // 사용자 드라이브(1)로 마운트
 
     TDC_PRINTF_I("[INFO] INIT : BOOT STATUS \r\n");
@@ -353,12 +353,12 @@ void tdc_sys_init(void)
     // 게인 테이블 인덱스를 기본값(유니티)으로 초기화한다.
     // 인덱스 0 이 뮤트이므로, CFX 가 참조하기 전에 반드시 유효값을 넣어야 한다.
     // (아래 enable_CFX_trigger_for_iteration() 보다 앞이어야 한다.)
-    // 연결된 ISD 의 저장값은 changeConnected_isd_num_CFX() 에서 덮어쓴다.
+    // 연결된 ISD 의 저장값은 tdc_shm_change_connected_isd_num_cfx() 에서 덮어쓴다.
     tdc_ble_gain_control_init();
 
     TDC_PRINTF_V("[INFO] COPY ISD INFO FOR ALL MAPS FROM FS_MEM TO SH_MEM \r\n");
 
-    /* tdc_led_turn_off · sharedMemoryAddresError 는 LED 진입 게이트 (P3-Early) 로 이관됨 */
+    /* tdc_led_turn_off · tdc_shm_shared_memory_address_error 는 LED 진입 게이트 (P3-Early) 로 이관됨 */
 
     // NRF 리셋
     tdc_sys_reset_nrf();
@@ -476,7 +476,7 @@ void tdc_sys_init(void)
     cfx_cm3_sharedMemoryAll.systemShare.powerButton_pushed_CFX_to_CM3 = 0;
 
     // 내부기 통신 용 외부전원 끄기
-    OnOff_3V_PMIC_CM3_to_CFX(false);
+    tdc_shm_on_off_3_v_pmic_cm3_to_cfx(false);
 
     // 더 이상 가속도 센서 사용하지 않음
 #if 0

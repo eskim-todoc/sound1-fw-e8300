@@ -16,14 +16,14 @@
 
 #include <tdc_pwr_battery.h>
 #include <tdc_ble_communication.h>
-#include <cfx_cm3_sharedMemory.h>
+#include <tdc_shm.h>
 #include <tdc_fs.h>
 #include <tdc_fs_map.h>
 #include <tdc_fs_fft.h>
 #include <tdc_fs_event_log.h>
 #include <tdc_isd.h>
 #include <tdc_led_output.h>  //ok
-#include <fn_from_cfx_eeprom_erase.h>
+#include <tdc_cfx_eeprom_erase.h>
 
 // 개발 진행 시 부여되는 버전 정보
 #define DEV_FW_VER_BETA    0

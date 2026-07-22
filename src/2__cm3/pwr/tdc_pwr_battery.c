@@ -5,7 +5,7 @@
 #include <stdbool.h>
 #include "FPGA.h"
 
-#include "cfx_cm3_sharedMemory.h"
+#include "tdc_shm.h"
 #include "tdc_pwr_battery.h"
 #include "tdc_stim_common.h"
 #include "tdc_isd.h"
@@ -183,7 +183,7 @@ void tdc_pwr_battery_calculate_boundary(void)
     int tempValueB;
     int mesured4V_value;
 
-    mesured4V_value = readBatteryCalibrationValue();  // 4v 전압을 인가했을 때 측정된 값(보드 교정 시)
+    mesured4V_value = tdc_shm_read_battery_calibration_value();  // 4v 전압을 인가했을 때 측정된 값(보드 교정 시)
 
     ///
 

@@ -1,5 +1,5 @@
 #include "tdc_sys_error.h"
-#include "cfx_cm3_sharedMemory.h"
+#include "tdc_shm.h"
 #include "tdc_ble_mapping.h"
 #include "tdc_isd.h"
 #include "tdc_isd_stim_para_setting.h"
@@ -81,13 +81,13 @@ bool tdc_isd_map_live_step(ST__ISD_STATUS ISD_state)
     {
         case en__allParameter:
         {
-            changePcmOutputMode(PcmBitStream_Mode_NopStandby);
+            tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_NopStandby);
 
-            p_mapDataSharedMemory = getPointerCurrentMapData();
+            p_mapDataSharedMemory = tdc_shm_get_pointer_current_map_data();
 
             // 오디오 볼륨(마이크 감도), 자극 볼륨을 변경하고
-            changeAudioVolume(p_mappingPacket->tdc_isd_map_live_step.audioVolume);
-            changeStimulVolume(p_mappingPacket->tdc_isd_map_live_step.stimulVolume);
+            tdc_shm_change_audio_volume(p_mappingPacket->tdc_isd_map_live_step.audioVolume);
+            tdc_shm_change_stimul_volume(p_mappingPacket->tdc_isd_map_live_step.stimulVolume);
 
             // 매핑에서 받은 데이터를 전달한다.
 
@@ -113,11 +113,11 @@ bool tdc_isd_map_live_step(ST__ISD_STATUS ISD_state)
             // 맵번호를 매핑용 번호로 전달하고// start 중에
             if (toggle_mapNum)
             {
-                changeProgramMapNum(-1);
+                tdc_shm_change_program_map_num(-1);
             }
             else
             {
-                changeProgramMapNum(-2);
+                tdc_shm_change_program_map_num(-2);
             }
 
             toggle_mapNum++;
@@ -135,7 +135,7 @@ bool tdc_isd_map_live_step(ST__ISD_STATUS ISD_state)
         case en__Start:
         {
             // CFX에서 맵데이터의 로딩이 완료될 때까지 로딩
-            if (isMapdateLoaded_CFX())
+            if (tdc_shm_is_map_data_loaded_cfx())
             {
                 // TDC_PRINTF_I("[LIVE] LIVE STIMULATION, EN__START, CFX IS MAPDATA LOADED \r\n");
 
@@ -147,7 +147,7 @@ bool tdc_isd_map_live_step(ST__ISD_STATUS ISD_state)
                     calculationParameter = tdc_stim_calc_para_and_cfx_share();
                     tdc_stim_indicator_set_level_255();  // 자극 알림 크기 uA -> 255레벨로 변환
 
-                    setFlag_AudioParametersCalculationDone_Cm3ToCfx();  // cfx에 파라미터 계산이 완료 되었을을 알려주는 플레그
+                    tdc_shm_set_flag_audio_parameters_calculation_done_cm3_to_cfx();  // cfx에 파라미터 계산이 완료 되었을을 알려주는 플레그
 
                     TDC_PRINTF_I("[LIVE] LIVE STIMULATION, CFX WILL CALCULATE AUDIO PARAMETERS, NOW \r\n");
 
@@ -202,7 +202,7 @@ bool tdc_isd_map_live_step(ST__ISD_STATUS ISD_state)
 
                         p_mappingPacket->tdc_isd_map_live_step.subCommand = en__HoldOn;
 
-                        changePcmOutputMode(PcmBitStream_Mode_LiveStimulation);
+                        tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_LiveStimulation);
                         // 자극 출력
                     }
                 }
@@ -231,7 +231,7 @@ bool tdc_isd_map_live_step(ST__ISD_STATUS ISD_state)
                 // 연결 상태 업데이트
                 tdc_isd_update_link_by_backtel_live();
 
-                changeStimulVolume(p_mappingPacket->tdc_isd_map_live_step.stimulVolume);
+                tdc_shm_change_stimul_volume(p_mappingPacket->tdc_isd_map_live_step.stimulVolume);
 
                 // 송신 데이터 준비
                 // command loop-back
@@ -240,7 +240,7 @@ bool tdc_isd_map_live_step(ST__ISD_STATUS ISD_state)
                 // pay-load 준비
                 bufferForSPI_tx[buffer_tx_index++] = en__StimulationVolumeAdjust;
 
-                bufferForSPI_tx[buffer_tx_index++] = readStimulVolume();
+                bufferForSPI_tx[buffer_tx_index++] = tdc_shm_read_stimul_volume();
 
                 // 송신 데이터 SPI TX버퍼에 복사
                 tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, buffer_tx_index);
@@ -266,7 +266,7 @@ bool tdc_isd_map_live_step(ST__ISD_STATUS ISD_state)
                 // 연결 상태 업데이트
                 tdc_isd_update_link_by_backtel_live();
 
-                changeAudioVolume(p_mappingPacket->tdc_isd_map_live_step.audioVolume);
+                tdc_shm_change_audio_volume(p_mappingPacket->tdc_isd_map_live_step.audioVolume);
 
                 // 송신 데이터 준비
                 // command loop-back
@@ -275,7 +275,7 @@ bool tdc_isd_map_live_step(ST__ISD_STATUS ISD_state)
                 // pay-load 준비
                 bufferForSPI_tx[buffer_tx_index++] = en__MicSensitivityAdjust;
 
-                bufferForSPI_tx[buffer_tx_index++] = readAudioVolume();
+                bufferForSPI_tx[buffer_tx_index++] = tdc_shm_read_audio_volume();
 
                 // 송신 데이터 SPI TX버퍼에 복사
                 tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, buffer_tx_index);
@@ -302,7 +302,7 @@ bool tdc_isd_map_live_step(ST__ISD_STATUS ISD_state)
 
                 if (flowCounter == 0)
                 {
-                    p_mapDataSharedMemory                                   = getPointerCurrentMapData();
+                    p_mapDataSharedMemory                                   = tdc_shm_get_pointer_current_map_data();
                     p_mapDataSharedMemory->stimulationIndicatorChannelNum   = p_mappingPacket->tdc_isd_map_live_step.stimulationIndicatorChannelNum;
                     p_mapDataSharedMemory->stimulationIndicatorAmplitude_uA = p_mappingPacket->tdc_isd_map_live_step.stimulationIndicatorAmplitude_uA;
 
@@ -354,7 +354,7 @@ bool tdc_isd_map_live_step(ST__ISD_STATUS ISD_state)
 
                 stimulDAC_setting = tdc_stim_read_dac_register_value();
 
-                p_cfxStimulLevel_255 = readCurrentStimulLevel_255();
+                p_cfxStimulLevel_255 = tdc_shm_read_current_stimul_level_255();
 
                 // 송신 데이터 준비
                 // command loop-back
@@ -484,13 +484,13 @@ bool tdc_isd_map_live_step(ST__ISD_STATUS ISD_state)
                 {
                     if (reConnectionCounter == 0)
                     {
-                        changePcmOutputMode(PcmBitStream_Mode_NopStandby);
+                        tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_NopStandby);
 
-                        p_mapDataSharedMemory = getPointerCurrentMapData();
+                        p_mapDataSharedMemory = tdc_shm_get_pointer_current_map_data();
 
                         // 오디오 볼륨(마이크 감도), 자극 볼륨을 변경하고
-                        changeAudioVolume(p_mappingPacket->tdc_isd_map_live_step.audioVolume);
-                        changeStimulVolume(p_mappingPacket->tdc_isd_map_live_step.stimulVolume);
+                        tdc_shm_change_audio_volume(p_mappingPacket->tdc_isd_map_live_step.audioVolume);
+                        tdc_shm_change_stimul_volume(p_mappingPacket->tdc_isd_map_live_step.stimulVolume);
 
                         // 매핑에서 받은 데이터를 전달한다.
 
@@ -515,12 +515,12 @@ bool tdc_isd_map_live_step(ST__ISD_STATUS ISD_state)
                         // 맵번호를 매핑용 번호로 전달하고// start 중에
                         if (toggle_mapNum)
                         {
-                            changeProgramMapNum(-1);
+                            tdc_shm_change_program_map_num(-1);
                         }
 
                         else
                         {
-                            changeProgramMapNum(-2);
+                            tdc_shm_change_program_map_num(-2);
                         }
 
                         toggle_mapNum++;
@@ -540,7 +540,7 @@ bool tdc_isd_map_live_step(ST__ISD_STATUS ISD_state)
                                                                 tdc_stim_indicator_set_level_255(); // 자극 알림 크기 uA -> 255레벨로 변환
 
 
-                                                                setFlag_AudioParametersCalculationDone_Cm3ToCfx();  // cfx에 파라미터 계산이 완료 되었을을 알려주는 플레그
+                                                                tdc_shm_set_flag_audio_parameters_calculation_done_cm3_to_cfx();  // cfx에 파라미터 계산이 완료 되었을을 알려주는 플레그
 
 
                                                                 tdc_isd_clear_stim_para_setting_done();
@@ -561,14 +561,14 @@ bool tdc_isd_map_live_step(ST__ISD_STATUS ISD_state)
                                                             }
                                                             else
                                                             {
-                                                                changePcmOutputMode(PcmBitStream_Mode_LiveStimulation);
+                                                                tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_LiveStimulation);
                                                                 //자극 출력
 
                                                                 needResetting=false;
                                                             }
                                                 }
 #else
-                    if (isMapdateLoaded_CFX())
+                    if (tdc_shm_is_map_data_loaded_cfx())
                     {
                         if (tdc_isd_is_new_map_loaded_flag())  // 맵이 변경되어서  계산이 필요한 경우.
                         {
@@ -576,7 +576,7 @@ bool tdc_isd_map_live_step(ST__ISD_STATUS ISD_state)
                             calculationParameter = tdc_stim_calc_para_and_cfx_share();
                             tdc_stim_indicator_set_level_255();  // 자극 알림 크기 uA -> 255레벨로 변환
 
-                            setFlag_AudioParametersCalculationDone_Cm3ToCfx();  // cfx에 파라미터 계산이 완료 되었을을 알려주는 플레그
+                            tdc_shm_set_flag_audio_parameters_calculation_done_cm3_to_cfx();  // cfx에 파라미터 계산이 완료 되었을을 알려주는 플레그
 
                             tdc_isd_clear_new_map_loaded_flag();  // 새로운 맵 데이터의 적용을 위한 처리가 완료되었다.
 
@@ -619,7 +619,7 @@ bool tdc_isd_map_live_step(ST__ISD_STATUS ISD_state)
 #endif
 
                                 // 자극 출력
-                                changePcmOutputMode(PcmBitStream_Mode_LiveStimulation);
+                                tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_LiveStimulation);
 
                                 needResetting = false;
                             }
@@ -638,7 +638,7 @@ bool tdc_isd_map_live_step(ST__ISD_STATUS ISD_state)
                 else
                 {
                     // Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_R);
-                    changePcmOutputMode(PcmBitStream_Mode_LiveStimulation);
+                    tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_LiveStimulation);
                     // 응답 데이터 생성
                     // 연결 상태 업데이트
                     tdc_isd_update_link_by_backtel_live();
@@ -655,7 +655,7 @@ bool tdc_isd_map_live_step(ST__ISD_STATUS ISD_state)
             if (ISD_state.conneded_ISD)
             {
                 // Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_R);
-                changePcmOutputMode(PcmBitStream_Mode_LiveStimulation);
+                tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_LiveStimulation);
                 // 응답 데이터 생성
                 // 연결 상태 업데이트
                 tdc_isd_update_link_by_backtel_live();
@@ -675,13 +675,13 @@ bool tdc_isd_map_live_step(ST__ISD_STATUS ISD_state)
                     if (reConnectionCounter == 0)
                     {
 
-                        changePcmOutputMode(PcmBitStream_Mode_NopStandby);
+                        tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_NopStandby);
 
-                        p_mapDataSharedMemory = getPointerCurrentMapData();
+                        p_mapDataSharedMemory = tdc_shm_get_pointer_current_map_data();
 
                         // 오디오 볼륨(마이크 감도), 자극 볼륨을 변경하고
-                        changeAudioVolume(p_mappingPacket->tdc_isd_map_live_step.audioVolume);
-                        changeStimulVolume(p_mappingPacket->tdc_isd_map_live_step.stimulVolume);
+                        tdc_shm_change_audio_volume(p_mappingPacket->tdc_isd_map_live_step.audioVolume);
+                        tdc_shm_change_stimul_volume(p_mappingPacket->tdc_isd_map_live_step.stimulVolume);
 
                         // 매핑에서 받은 데이터를 전달한다.
 
@@ -705,10 +705,10 @@ bool tdc_isd_map_live_step(ST__ISD_STATUS ISD_state)
 
                         // 맵번호를 매핑용 번호로 전달하고// start 중에
                         if (toggle_mapNum)
-                            changeProgramMapNum(-1);
+                            tdc_shm_change_program_map_num(-1);
 
                         else
-                            changeProgramMapNum(-2);
+                            tdc_shm_change_program_map_num(-2);
 
                         toggle_mapNum++;
                         toggle_mapNum &= 0x1;
@@ -724,7 +724,7 @@ bool tdc_isd_map_live_step(ST__ISD_STATUS ISD_state)
                             calculationParameter = tdc_stim_calc_para_and_cfx_share();
                             tdc_stim_indicator_set_level_255();  // 자극 알림 크기 uA -> 255레벨로 변환
 
-                            setFlag_AudioParametersCalculationDone_Cm3ToCfx();  // cfx에 파라미터 계산이 완료 되었을을 알려주는 플레그
+                            tdc_shm_set_flag_audio_parameters_calculation_done_cm3_to_cfx();  // cfx에 파라미터 계산이 완료 되었을을 알려주는 플레그
 
                             tdc_isd_clear_stim_para_setting_done();
                             tdc_isd_clear_new_map_loaded_flag();
@@ -744,7 +744,7 @@ bool tdc_isd_map_live_step(ST__ISD_STATUS ISD_state)
                         else
                         {
 
-                            changePcmOutputMode(PcmBitStream_Mode_LiveStimulation);
+                            tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_LiveStimulation);
                             // 자극 출력
                         }
                     }
@@ -762,7 +762,7 @@ bool tdc_isd_map_live_step(ST__ISD_STATUS ISD_state)
 
         case en__Stop:
         {
-            changePcmOutputMode(PcmBitStream_Mode_NopStandby);
+            tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_NopStandby);
 
             // 파라미터 초기화
             stimulationCounter_ms = 0;
@@ -786,7 +786,7 @@ bool tdc_isd_map_live_step(ST__ISD_STATUS ISD_state)
         {
             if (ISD_state.conneded_ISD)
             {
-                //changePcmOutputMode(PcmBitStream_Mode_NopStandby);
+                //tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_NopStandby);
 
                 if (ISD_connectionCounter_withMapping == 0)
                 {

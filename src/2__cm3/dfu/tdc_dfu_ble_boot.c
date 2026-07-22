@@ -3,7 +3,7 @@
  */
 
 #include <tdc_dfu_ble_boot.h>
-#include <ci_boot.h>
+#include <tdc_boot.h>
 #include <tdc_hal_spi.h>
 #include <tdc_sys_error.h>
 #include <tdc_fs.h>
@@ -37,7 +37,7 @@ static void _fetch_packet_boot_info(int* p_packet)
     uint8_t                resp_packet[RESP_PKT_SIZE_BOOT_INFO] = {0};
 
     // get boot status
-    if (ci_boot_get_status(&boot_status) != BOOT_RET_TRUE)
+    if (tdc_boot_get_status(&boot_status) != BOOT_RET_TRUE)
     {
         _send_error_packet_boot(PKT_BOOT_ERROR_FILE_READ);
         return;
@@ -61,7 +61,7 @@ static void _fetch_packet_boot_select(int* p_packet)
     uint8_t                resp_packet[RESP_PKT_SIZE_BOOT_SELECT] = {0};
 
     // get boot status
-    if (ci_boot_get_status(&boot_status) != BOOT_RET_TRUE)
+    if (tdc_boot_get_status(&boot_status) != BOOT_RET_TRUE)
     {
         _send_error_packet_boot(PKT_BOOT_ERROR_FILE_READ);
         return;
@@ -101,7 +101,7 @@ static void _fetch_packet_boot_select(int* p_packet)
     resp_packet[RESP_PKT_IDX_BOOT_SELECT_RESULT] = PKT_BOOT_RESULT_ACCEPT;
 
     // update boot status
-    if (ci_boot_update_status(&boot_status) != BOOT_RET_TRUE)
+    if (tdc_boot_update_status(&boot_status) != BOOT_RET_TRUE)
     {
         _send_error_packet_boot(PKT_BOOT_ERROR_FILE_WRITE);
         return;

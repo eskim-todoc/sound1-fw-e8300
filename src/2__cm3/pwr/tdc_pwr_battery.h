@@ -6,7 +6,7 @@
 #include "tdc_hal_i2c_isd.h"
 #include "tdc_led_output.h"
 
-#include <cfx_cm3_sharedMemory.h>
+#include <tdc_shm.h>
 #include <tdc_printf.h>
 #include <tdc_drv_max17262.h>
 

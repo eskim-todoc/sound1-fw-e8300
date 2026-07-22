@@ -1,7 +1,7 @@
 #include <hw.h>
 #include <stdbool.h>
 
-#include "cfx_cm3_sharedMemory.h"
+#include "tdc_shm.h"
 #include "tdc_hal_i2c_state.h"
 #if 1
 #include "board.h"

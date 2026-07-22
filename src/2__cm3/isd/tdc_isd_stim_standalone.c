@@ -13,7 +13,7 @@
 #include "tdc_stim_definitions.h"
 
 #include "tdc_isd.h"
-#include "cfx_cm3_sharedMemory.h"
+#include "tdc_shm.h"
 #include "tdc_isd_stim_para_setting.h"
 #include "tdc_stim_para_cal.h"
 #include "tdc_stim_indicator.h"
@@ -26,7 +26,7 @@ static bool newMapLoadeFlagForStimulParaCalculation = true;
 
 void tdc_isd_set_new_map_loaded_flag(void)
 {
-    changePcmOutputMode(PcmBitStream_Mode_NopStandby);
+    tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_NopStandby);
 
     newMapLoadeFlagForStimulParaCalculation = true;
 
@@ -63,7 +63,7 @@ bool tdc_isd_stim_standalone_step(void)
     // Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_R); //3
 
     // CFX에서 맵데이터의 로딩이 완료될 때까지 로딩
-    if (isMapdateLoaded_CFX())
+    if (tdc_shm_is_map_data_loaded_cfx())
     {
         errorCode = tdc_sys_error_read();
 
@@ -82,7 +82,7 @@ bool tdc_isd_stim_standalone_step(void)
 
                 tdc_stim_indicator_set_level_255();  // 자극 알림 크기 uA -> 255레벨로 변환
 
-                setFlag_AudioParametersCalculationDone_Cm3ToCfx();  // cfx에 파라미터 계산이 완료 되었을을 알려주는 플레그
+                tdc_shm_set_flag_audio_parameters_calculation_done_cm3_to_cfx();  // cfx에 파라미터 계산이 완료 되었을을 알려주는 플레그
 
                 tdc_isd_clear_stim_para_setting_done();
 
@@ -117,7 +117,7 @@ bool tdc_isd_stim_standalone_step(void)
                         TDC_PRINTF_D("[STIMULATION] START LIVE MODE \r\n");
                     }
 
-                    changePcmOutputMode(PcmBitStream_Mode_LiveStimulation);  // 자극 출력 시작
+                    tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_LiveStimulation);  // 자극 출력 시작
 
                     tdc_isd_set_i2c_free();
                 }
@@ -129,12 +129,12 @@ bool tdc_isd_stim_standalone_step(void)
         }
         else
         {
-            changePcmOutputMode(PcmBitStream_Mode_NopStandby);  // 맵이 변경 되는 동안  NOP
+            tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_NopStandby);  // 맵이 변경 되는 동안  NOP
         }
     }
     else
     {
-        changePcmOutputMode(PcmBitStream_Mode_NopStandby);  // 맵이 변경 되는 동안  NOP
+        tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_NopStandby);  // 맵이 변경 되는 동안  NOP
     }
 
     // Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_R); //3

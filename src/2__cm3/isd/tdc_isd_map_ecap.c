@@ -15,7 +15,7 @@
 
 #include "tdc_isd.h"
 #include "tdc_isd_init_fpga.h"
-#include "cfx_cm3_sharedMemory.h"
+#include "tdc_shm.h"
 #include "tdc_ble_mapping.h"
 #include "tdc_hal_spi.h"
 #include "tdc_isd_map_ecap.h"
@@ -179,7 +179,7 @@ void tdc_isd_map_ecap_step(bool startFlag)
 
         case 0:
         {
-            changePcmOutputMode(PcmBitStream_Mode_NopStandby);
+            tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_NopStandby);
 
             // 펄스폭에 따른 자극 프레임 갯수 계산
 
@@ -395,14 +395,14 @@ void tdc_isd_map_ecap_step(bool startFlag)
 
             // 이전에 전송된 자극 파라미터 값이 있을 수 있기 때문에 출력을 내보내기 위하여 설정 파라미터들 전송한다.
 
-            changePcmOutputMode(PcmBitStream_Mode_SepcificCommand);
+            tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_SepcificCommand);
 
             // 펄스 폭 0으로 설정
 
 #if 0
                 w_FPGA_registerValue=0;  // 펄스폭 0
                 w_FPGA_registerValue=(w_FPGA_registerValue|pcm_Mold_PulsePhaseWidth);
-                fillSepcificCommndBuffer(pcm_index++,w_FPGA_registerValue);
+                tdc_shm_fill_specific_command_buffer(pcm_index++,w_FPGA_registerValue);
 #else
 
             tdc_isd_fpga_change_pulse_width_minimum(pcm_index++);
@@ -419,7 +419,7 @@ void tdc_isd_map_ecap_step(bool startFlag)
 
                 w_isd_registerValue = w_isd_registerValue | df_forwardPathCheck_arbitraryValue;
                 w_isd_registerValue = w_isd_registerValue | pcm_Mold_configuration;
-                fillSepcificCommndBuffer(pcm_index++, w_isd_registerValue);
+                tdc_shm_fill_specific_command_buffer(pcm_index++, w_isd_registerValue);
 #else
             // 이전 자극 파라미터를 출력하기 위한 임의의 값 출력
             tdc_isd_fill_pcm_last_stimulation_out(&pcm_index);
@@ -427,11 +427,11 @@ void tdc_isd_map_ecap_step(bool startFlag)
 #endif
             for (; pcm_index < df_MaxNumTransferableChannel;)
             {
-                fillSepcificCommndBuffer(pcm_index++, pcm_Mold_NopStandby);
+                tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopStandby);
             }
 
             // NOP-Standby
-            changeNextPcmOutputMode(PcmBitStream_Mode_NopStandby);
+            tdc_shm_change_next_pcm_output_mode(PcmBitStream_Mode_NopStandby);
 
             if (mappingPacket->eCapMeasurement.stimulatonMode != en__bipolar)
             {
@@ -444,7 +444,7 @@ void tdc_isd_map_ecap_step(bool startFlag)
         {
 
             // PCM 출력 모드 변경
-            changePcmOutputMode(PcmBitStream_Mode_SepcificCommand);
+            tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_SepcificCommand);
 
             // Bipolar 기준전극  FIFO 지우기
             w_isd_registerValue = ISD_registerAddr_cipherDataStatus;
@@ -455,7 +455,7 @@ void tdc_isd_map_ecap_step(bool startFlag)
             w_isd_registerValue = w_isd_registerValue | 0x80; // CHIP_ID_FIFO_RDDATA_INDEXdp 아무값이나 쓰면 FIFO가 지워진다.
             w_isd_registerValue = w_isd_registerValue | pcm_Mold_configuration;
 
-            fillSepcificCommndBuffer(pcm_index++, w_isd_registerValue);
+            tdc_shm_fill_specific_command_buffer(pcm_index++, w_isd_registerValue);
 
             // 기준 전극 번호.
             bipolarFIFO_index = 0;
@@ -479,18 +479,18 @@ void tdc_isd_map_ecap_step(bool startFlag)
 
                 w_isd_registerValue = w_isd_registerValue | pcm_Mold_configuration;
 
-                fillSepcificCommndBuffer(pcm_index++, w_isd_registerValue);
+                tdc_shm_fill_specific_command_buffer(pcm_index++, w_isd_registerValue);
             }
 
             // NOP-Standby
-            changeNextPcmOutputMode(PcmBitStream_Mode_NopStandby);
+            tdc_shm_change_next_pcm_output_mode(PcmBitStream_Mode_NopStandby);
         }
         break;
 
         case 3:
         {
             // PCM 출력 모드 변경
-            changePcmOutputMode(PcmBitStream_Mode_SepcificCommand);
+            tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_SepcificCommand);
 
             for (i = 0; i < 8; i++, bipolarFIFO_index++) // 23~31번 자극전극에 대응하는 기준전극
             {
@@ -511,16 +511,16 @@ void tdc_isd_map_ecap_step(bool startFlag)
 
                 w_isd_registerValue = w_isd_registerValue | pcm_Mold_configuration;
 
-                fillSepcificCommndBuffer(pcm_index++, w_isd_registerValue);
+                tdc_shm_fill_specific_command_buffer(pcm_index++, w_isd_registerValue);
             }
 
             for (; pcm_index < df_MaxNumTransferableChannel;)
             {
-                fillSepcificCommndBuffer(pcm_index++, pcm_Mold_NopStandby);
+                tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopStandby);
             }
 
             // NOP-Standby
-            changeNextPcmOutputMode(PcmBitStream_Mode_NopStandby);
+            tdc_shm_change_next_pcm_output_mode(PcmBitStream_Mode_NopStandby);
         }
         break;
 
@@ -531,7 +531,7 @@ void tdc_isd_map_ecap_step(bool startFlag)
 
             // PCM 출력 모드 변경
 
-            changePcmOutputMode(PcmBitStream_Mode_SepcificCommand);
+            tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_SepcificCommand);
 
 #if 0
 
@@ -616,7 +616,7 @@ void tdc_isd_map_ecap_step(bool startFlag)
 #if 0
                 w_FPGA_registerValue=0;  // 펄스폭 0
                 w_FPGA_registerValue=(w_FPGA_registerValue|pcm_Mold_PulsePhaseWidth);
-                fillSepcificCommndBuffer(pcm_index++,w_FPGA_registerValue);
+                tdc_shm_fill_specific_command_buffer(pcm_index++,w_FPGA_registerValue);
 #else
 
             tdc_isd_fpga_change_pulse_width_minimum(pcm_index++);
@@ -637,18 +637,18 @@ void tdc_isd_map_ecap_step(bool startFlag)
                     // PCM 몰드에 결합
                     w_FPGA_registerValue=(w_FPGA_registerValue| pcm_Mold_BacktelConfiguration);
                     // PCM 출력
-                    fillSepcificCommndBuffer(pcm_index++, w_FPGA_registerValue);
+                    tdc_shm_fill_specific_command_buffer(pcm_index++, w_FPGA_registerValue);
 #else
             tdc_isd_fpga_change_12_bit_backtel_mode(pcm_index++);
 #endif
 
             for (; pcm_index < df_MaxNumTransferableChannel;)
             {
-                fillSepcificCommndBuffer(pcm_index++, pcm_Mold_NopStandby);
+                tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopStandby);
             }
 
             // NOP-Standby
-            changeNextPcmOutputMode(PcmBitStream_Mode_NopStandby);
+            tdc_shm_change_next_pcm_output_mode(PcmBitStream_Mode_NopStandby);
         }
         break;
 
@@ -656,7 +656,7 @@ void tdc_isd_map_ecap_step(bool startFlag)
         {
 
             // PCM 출력 모드 변경
-            changePcmOutputMode(PcmBitStream_Mode_SepcificCommand);
+            tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_SepcificCommand);
 
             // ISD 0x7    - eCAP 측정 갯수
 
@@ -670,7 +670,7 @@ void tdc_isd_map_ecap_step(bool startFlag)
 
             w_isd_registerValue = w_isd_registerValue | pcm_Mold_configuration; // 0x0f20  | 0x50000
 
-            fillSepcificCommndBuffer(pcm_index++, w_isd_registerValue);
+            tdc_shm_fill_specific_command_buffer(pcm_index++, w_isd_registerValue);
 
             // ISD 0xA    - probe 출력 후 측정 시점 딜레이.
 
@@ -690,7 +690,7 @@ void tdc_isd_map_ecap_step(bool startFlag)
 
             w_isd_registerValue = w_isd_registerValue | pcm_Mold_configuration; // 0x1581 | 0x50000
 
-            fillSepcificCommndBuffer(pcm_index++, w_isd_registerValue);
+            tdc_shm_fill_specific_command_buffer(pcm_index++, w_isd_registerValue);
 
             // ISD 0xB or 0xC   - pre-amp Gain
             if (electrodeMap[(mappingPacket->eCapMeasurement.measurementElectrodeNum - 1)] < 16)
@@ -710,7 +710,7 @@ void tdc_isd_map_ecap_step(bool startFlag)
 
             w_isd_registerValue = w_isd_registerValue | pcm_Mold_configuration; // 0x1701 | 0x50000
 
-            fillSepcificCommndBuffer(pcm_index++, w_isd_registerValue);
+            tdc_shm_fill_specific_command_buffer(pcm_index++, w_isd_registerValue);
 
 #if 1
             // ISD 0xF
@@ -722,7 +722,7 @@ void tdc_isd_map_ecap_step(bool startFlag)
             w_isd_registerValue = w_isd_registerValue | 0x2; // NRT_SWON_TIME 5usec
             w_isd_registerValue = w_isd_registerValue | pcm_Mold_configuration;
 
-            fillSepcificCommndBuffer(pcm_index++, w_isd_registerValue);
+            tdc_shm_fill_specific_command_buffer(pcm_index++, w_isd_registerValue);
 
 #endif
 
@@ -744,7 +744,7 @@ void tdc_isd_map_ecap_step(bool startFlag)
 
             w_isd_registerValue = w_isd_registerValue | pcm_Mold_configuration; // 0x1300 | 0x50000
 
-            fillSepcificCommndBuffer(pcm_index++, w_isd_registerValue);
+            tdc_shm_fill_specific_command_buffer(pcm_index++, w_isd_registerValue);
 
             // ISD 0x8    - 측정 채널
 
@@ -758,7 +758,7 @@ void tdc_isd_map_ecap_step(bool startFlag)
 
             w_isd_registerValue = w_isd_registerValue | pcm_Mold_configuration; // 0x1102 | 0x50000
 
-            fillSepcificCommndBuffer(pcm_index++, w_isd_registerValue);
+            tdc_shm_fill_specific_command_buffer(pcm_index++, w_isd_registerValue);
 
             // ISD 0x9    - eCAP 측정 설정
             w_isd_registerValue = ISD_registerAddr_adc_measurement;
@@ -782,7 +782,7 @@ void tdc_isd_map_ecap_step(bool startFlag)
 
             w_isd_registerValue = w_isd_registerValue | pcm_Mold_configuration; // 0x1321 | 0x50000   -40khz
 
-            fillSepcificCommndBuffer(pcm_index++, w_isd_registerValue);
+            tdc_shm_fill_specific_command_buffer(pcm_index++, w_isd_registerValue);
 
             //////////////////
             // 마스커 위치 출력룡 DAC 설정
@@ -804,7 +804,7 @@ void tdc_isd_map_ecap_step(bool startFlag)
                     w_isd_registerValue = w_isd_registerValue | 0; // 마스커 위치에 출력이 없으므로 오프셋 값 0
                     w_isd_registerValue = w_isd_registerValue | pcm_Mold_configuration;
 
-                    fillSepcificCommndBuffer(pcm_index++, w_isd_registerValue); //  0x0b00  | 0x50000
+                    tdc_shm_fill_specific_command_buffer(pcm_index++, w_isd_registerValue); //  0x0b00  | 0x50000
 
                     // ISD 0x6    - 자극 파라미터 설정  쓰기
                     w_isd_registerValue = ISD_registerAddr_StimulationConfig;
@@ -839,7 +839,7 @@ void tdc_isd_map_ecap_step(bool startFlag)
                     w_isd_registerValue = w_isd_registerValue | stimulDAC_offsetValue[masker_index]; // 마스커 인덱스 값
                     w_isd_registerValue = w_isd_registerValue | pcm_Mold_configuration;
 
-                    fillSepcificCommndBuffer(pcm_index++, w_isd_registerValue); //  0x0b00  | 0x50000
+                    tdc_shm_fill_specific_command_buffer(pcm_index++, w_isd_registerValue); //  0x0b00  | 0x50000
 
                     // ISD 0x6    - 자극 파라미터 설정  쓰기
                     w_isd_registerValue = ISD_registerAddr_StimulationConfig;
@@ -904,7 +904,7 @@ void tdc_isd_map_ecap_step(bool startFlag)
 
             w_isd_registerValue = w_isd_registerValue | pcm_Mold_configuration; // 0x0d04  | 0x50000
 
-            fillSepcificCommndBuffer(pcm_index++, w_isd_registerValue);
+            tdc_shm_fill_specific_command_buffer(pcm_index++, w_isd_registerValue);
 
             // 마스커 자극 출력 (선행펄스, 전극, 자극 크기)
 
@@ -936,14 +936,14 @@ void tdc_isd_map_ecap_step(bool startFlag)
 
             w_isd_registerValue = w_isd_registerValue | pcm_Mold_Stimulation; // 0x8400  | 0x40000
 
-            fillSepcificCommndBuffer(pcm_index++, w_isd_registerValue);
+            tdc_shm_fill_specific_command_buffer(pcm_index++, w_isd_registerValue);
 
             // 마스커 출력용  펄스폭 조정
 #if 0
                     w_FPGA_registerValue=(mappingPacket->eCapMeasurement.pulseWidth-FPGA_pulsePhaseWidth_minimum);
                     w_FPGA_registerValue=(w_FPGA_registerValue|pcm_Mold_PulsePhaseWidth);
 
-                    fillSepcificCommndBuffer(pcm_index++,w_FPGA_registerValue);
+                    tdc_shm_fill_specific_command_buffer(pcm_index++,w_FPGA_registerValue);
 #else
             tdc_isd_fpga_change_pulse_width(pcm_index++, mappingPacket->eCapMeasurement.pulseWidth);
             tdc_isd_fpga_update_fpga_pulse_phase_width_written_value(mappingPacket->eCapMeasurement.pulseWidth);
@@ -951,11 +951,11 @@ void tdc_isd_map_ecap_step(bool startFlag)
             // 나머지 버퍼는  NOP-Standby
             for (; pcm_index < df_MaxNumTransferableChannel;)
             {
-                fillSepcificCommndBuffer(pcm_index++, pcm_Mold_NopStandby);
+                tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopStandby);
             }
 
             // NOP-Standby
-            changeNextPcmOutputMode(PcmBitStream_Mode_NopStandby);
+            tdc_shm_change_next_pcm_output_mode(PcmBitStream_Mode_NopStandby);
         }
         break;
 
@@ -1214,15 +1214,15 @@ void tdc_isd_map_ecap_step(bool startFlag)
         {
 
             // PCM 출력 모드 변경
-            changePcmOutputMode(PcmBitStream_Mode_SepcificCommand);
+            tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_SepcificCommand);
 
             for (i = 0; i < df_MaxNumTransferableChannel; i++)
             {
-                fillSepcificCommndBuffer(i, PCM_templete_eCAP[0][i]);
+                tdc_shm_fill_specific_command_buffer(i, PCM_templete_eCAP[0][i]);
             }
 
             // NOP-Standby
-            changeNextPcmOutputMode(PcmBitStream_Mode_NopStandby);
+            tdc_shm_change_next_pcm_output_mode(PcmBitStream_Mode_NopStandby);
         }
         break;
         case 8:
@@ -1230,15 +1230,15 @@ void tdc_isd_map_ecap_step(bool startFlag)
         {
 
             // PCM 출력 모드 변경
-            changePcmOutputMode(PcmBitStream_Mode_SepcificCommand);
+            tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_SepcificCommand);
 
             for (i = 0; i < df_MaxNumTransferableChannel; i++)
             {
-                fillSepcificCommndBuffer(i, PCM_templete_eCAP[1][i]);
+                tdc_shm_fill_specific_command_buffer(i, PCM_templete_eCAP[1][i]);
             }
 
             // NOP-Backtel
-            changeNextPcmOutputMode(PcmBitStream_Mode_NopBacktel);
+            tdc_shm_change_next_pcm_output_mode(PcmBitStream_Mode_NopBacktel);
 
             backtelStart_flowCounter = flowCounter + backtelReceiveTime_ms + 4; // 현재 PCM FIFO에서 실제 출력이 나가서 적용되는 시점의 flowCouter :  현재
                                                                                 // 플로우 카운터 + 측정 샘플 수에 해당하는 백텔 수신 시간 + FIFO 출력 delay
@@ -1252,7 +1252,7 @@ void tdc_isd_map_ecap_step(bool startFlag)
     if (flowCounter == backtelStart_flowCounter)
     {
 
-        changePcmOutputMode(PcmBitStream_Mode_NopStandby);
+        tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_NopStandby);
 
 #if 0
 

@@ -15,7 +15,7 @@
 
 #include "tdc_isd.h"
 #include "tdc_isd_init_fpga.h"
-#include "cfx_cm3_sharedMemory.h"
+#include "tdc_shm.h"
 #include "tdc_ble_mapping.h"
 #include "tdc_hal_spi.h"
 #include "tdc_isd_map_impedance.h"
@@ -109,7 +109,7 @@ void tdc_isd_map_impedance_step(bool startFlag)
     {
         case 0:
         {
-            changePcmOutputMode(PcmBitStream_Mode_NopStandby);
+            tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_NopStandby);
 
             // 펄스폭에 따른 자극 프레임 갯수 계산
 
@@ -242,11 +242,11 @@ void tdc_isd_map_impedance_step(bool startFlag)
 
             for (; pcm_index < df_MaxNumTransferableChannel;)
             {
-                fillSepcificCommndBuffer(pcm_index++, pcm_Mold_NopStandby);
+                tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopStandby);
             }
 
-            changeNextPcmOutputMode(PcmBitStream_Mode_NopStandby);   // NOP-Standby
-            changePcmOutputMode(PcmBitStream_Mode_SepcificCommand);  // PCM 출력 모드 변경
+            tdc_shm_change_next_pcm_output_mode(PcmBitStream_Mode_NopStandby);   // NOP-Standby
+            tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_SepcificCommand);  // PCM 출력 모드 변경
         }
         break;
 
@@ -271,11 +271,11 @@ void tdc_isd_map_impedance_step(bool startFlag)
             // 나머지는 Nop으로 채움.
             for (; pcm_index < df_MaxNumTransferableChannel;)
             {
-                fillSepcificCommndBuffer(pcm_index++, pcm_Mold_NopStandby);
+                tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopStandby);
             }
 
-            changeNextPcmOutputMode(PcmBitStream_Mode_NopStandby);   // NOP-Standby
-            changePcmOutputMode(PcmBitStream_Mode_SepcificCommand);  // PCM 출력 모드 변경
+            tdc_shm_change_next_pcm_output_mode(PcmBitStream_Mode_NopStandby);   // NOP-Standby
+            tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_SepcificCommand);  // PCM 출력 모드 변경
         }
         break;
 
@@ -291,9 +291,9 @@ void tdc_isd_map_impedance_step(bool startFlag)
             w_isd_registerValue = w_isd_registerValue | stimulDAC_offsetValue;
             w_isd_registerValue = w_isd_registerValue | pcm_Mold_configuration;
 
-            fillSepcificCommndBuffer(pcm_index++, w_isd_registerValue);  //  0x0b00  | 0x50000
-            // fillSepcificCommndBuffer(pcm_index++, pcm_Mold_NopStandby);
-            // fillSepcificCommndBuffer(pcm_index++, pcm_Mold_NopStandby);
+            tdc_shm_fill_specific_command_buffer(pcm_index++, w_isd_registerValue);  //  0x0b00  | 0x50000
+            // tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopStandby);
+            // tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopStandby);
 
             // ISD 0x6    - 자극 파라미터 설정  쓰기
             w_isd_registerValue = ISD_registerAddr_StimulationConfig;
@@ -335,9 +335,9 @@ void tdc_isd_map_impedance_step(bool startFlag)
 
             w_isd_registerValue = w_isd_registerValue | pcm_Mold_configuration;  // 0x0d04 | 0x50000
 
-            fillSepcificCommndBuffer(pcm_index++, w_isd_registerValue);
-            // fillSepcificCommndBuffer(pcm_index++, pcm_Mold_NopStandby);
-            // fillSepcificCommndBuffer(pcm_index++, pcm_Mold_NopStandby);
+            tdc_shm_fill_specific_command_buffer(pcm_index++, w_isd_registerValue);
+            // tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopStandby);
+            // tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopStandby);
 
             // ISD 0x9    - 임피던스 측정 설정
             w_isd_registerValue = ISD_registerAddr_adc_measurement;
@@ -361,9 +361,9 @@ void tdc_isd_map_impedance_step(bool startFlag)
 
             w_isd_registerValue = w_isd_registerValue | pcm_Mold_configuration;  // 0x1305 | 0x50000
 
-            fillSepcificCommndBuffer(pcm_index++, w_isd_registerValue);
-            // fillSepcificCommndBuffer(pcm_index++, pcm_Mold_NopStandby);
-            // fillSepcificCommndBuffer(pcm_index++, pcm_Mold_NopStandby);
+            tdc_shm_fill_specific_command_buffer(pcm_index++, w_isd_registerValue);
+            // tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopStandby);
+            // tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopStandby);
 
             // ISD 0x8    - 측정 채널
 
@@ -377,24 +377,24 @@ void tdc_isd_map_impedance_step(bool startFlag)
 
             w_isd_registerValue = w_isd_registerValue | pcm_Mold_configuration;  // 0x1100 | 0x50000
 
-            fillSepcificCommndBuffer(pcm_index++, w_isd_registerValue);
+            tdc_shm_fill_specific_command_buffer(pcm_index++, w_isd_registerValue);
 
             // 나머지 버퍼는  NOP-Backtel
             for (; pcm_index < df_MaxNumTransferableChannel;)
             {
-                fillSepcificCommndBuffer(pcm_index++, pcm_Mold_NopBacktel);
+                tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopBacktel);
             }
 
             // NOP-Standby
-            changeNextPcmOutputMode(PcmBitStream_Mode_NopBacktel);
+            tdc_shm_change_next_pcm_output_mode(PcmBitStream_Mode_NopBacktel);
             // PCM 출력 모드 변경
-            changePcmOutputMode(PcmBitStream_Mode_SepcificCommand);
+            tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_SepcificCommand);
         }
         break;
 
         case 6://4:
         {
-            changePcmOutputMode(PcmBitStream_Mode_NopBacktel);
+            tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_NopBacktel);
         }
         break;
 
@@ -425,13 +425,13 @@ void tdc_isd_map_impedance_step(bool startFlag)
 
             w_isd_registerValue = w_isd_registerValue | pcm_Mold_Stimulation;
 
-            fillSepcificCommndBuffer(pcm_index++, w_isd_registerValue);
+            tdc_shm_fill_specific_command_buffer(pcm_index++, w_isd_registerValue);
 
             // 펄스 폭을 맞추기 위한  Nop-Token
 
             for (numFramePerChannel_index = 1; numFramePerChannel_index < numFramePerChannel; numFramePerChannel_index++)
             {
-                fillSepcificCommndBuffer(pcm_index++, pcm_Mold_NopStandby);
+                tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopStandby);
             }
 
             //
@@ -445,14 +445,14 @@ void tdc_isd_map_impedance_step(bool startFlag)
             {
                 for (i = pcm_index; i < df_MaxNumTransferableChannel; i++)
                 {
-                    fillSepcificCommndBuffer(i, pcm_Mold_NopStandby);
+                    tdc_shm_fill_specific_command_buffer(i, pcm_Mold_NopStandby);
                 }
             }
 
             // NOP-Standby
-            changeNextPcmOutputMode(PcmBitStream_Mode_NopStandby);
+            tdc_shm_change_next_pcm_output_mode(PcmBitStream_Mode_NopStandby);
             // PCM 출력 모드 변경
-            changePcmOutputMode(PcmBitStream_Mode_SepcificCommand);
+            tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_SepcificCommand);
         }
         break;
 
@@ -478,7 +478,7 @@ void tdc_isd_map_impedance_step(bool startFlag)
 
             w_isd_registerValue = w_isd_registerValue | pcm_Mold_configuration;  // 0x1304 | 0x50000
 
-            fillSepcificCommndBuffer(pcm_index++, w_isd_registerValue);
+            tdc_shm_fill_specific_command_buffer(pcm_index++, w_isd_registerValue);
 
 #else
 
@@ -488,19 +488,19 @@ void tdc_isd_map_impedance_step(bool startFlag)
 
             w_isd_registerValue = w_isd_registerValue | pcm_Mold_Stimulation;
 
-            fillSepcificCommndBuffer(pcm_index++, w_isd_registerValue);
+            tdc_shm_fill_specific_command_buffer(pcm_index++, w_isd_registerValue);
 
 #endif
 
             // 펄스 폭을 맞추기 위한  Nop-Token
 #if 0
                         for(numFramePerChannel_index=1; numFramePerChannel_index<numFramePerChannel; numFramePerChannel_index++)
-                            fillSepcificCommndBuffer(pcm_index++,pcm_Mold_NopStandby);
+                            tdc_shm_fill_specific_command_buffer(pcm_index++,pcm_Mold_NopStandby);
 
 #else
             for (numFramePerChannel_index = 1; numFramePerChannel_index < (numFramePerChannel - 1); numFramePerChannel_index++)  // 펄스폭이 넓어질 경우 NOP과 Backtel NOP의 타이밍 문제로 NOP의 개수를 1개 줄이고 Backtel NOP으로 대체
             {
-                fillSepcificCommndBuffer(pcm_index++, pcm_Mold_NopStandby);
+                tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopStandby);
             }
 #endif
             // 나머지 버퍼는  NOP-Backtel
@@ -514,19 +514,19 @@ void tdc_isd_map_impedance_step(bool startFlag)
             {
                 for (i = pcm_index; i < df_MaxNumTransferableChannel; i++)
                 {
-                    fillSepcificCommndBuffer(i, pcm_Mold_NopBacktel);
+                    tdc_shm_fill_specific_command_buffer(i, pcm_Mold_NopBacktel);
                 }
             }
 
-            changeNextPcmOutputMode(PcmBitStream_Mode_NopBacktel);
+            tdc_shm_change_next_pcm_output_mode(PcmBitStream_Mode_NopBacktel);
             // PCM 출력 모드 변경
-            changePcmOutputMode(PcmBitStream_Mode_SepcificCommand);
+            tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_SepcificCommand);
         }
         break;
 
         case 12://10:
         {
-            changePcmOutputMode(PcmBitStream_Mode_NopBacktel);
+            tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_NopBacktel);
         }
         break;
 
@@ -534,7 +534,7 @@ void tdc_isd_map_impedance_step(bool startFlag)
         {
             // Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_R);
 
-            changePcmOutputMode(PcmBitStream_Mode_NopStandby);
+            tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_NopStandby);
 
             if (tdc_isd_fpga_check_fpga_pcm_error(&FPGA_error))
             {

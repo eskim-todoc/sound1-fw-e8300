@@ -1,6 +1,6 @@
 
-#ifndef CFX_CM3_SharedMemory_ADDR_H___
-#define CFX_CM3_SharedMemory_ADDR_H___
+#ifndef __tdc_shm_addr_h__
+#define __tdc_shm_addr_h__
 
 #include <hw.h>
 

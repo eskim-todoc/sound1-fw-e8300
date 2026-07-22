@@ -1,7 +1,7 @@
 #include <tdc_isd_pcm.h>
 #include "tdc_isd_fpga.h"
 #include "tdc_isd.h"
-#include "cfx_cm3_sharedMemory.h"
+#include "tdc_shm.h"
 #include "tdc_isd_fpga.h"
 #include "tdc_sys_error.h"
 #include "FPGA.h"
@@ -36,7 +36,7 @@ void tdc_isd_fpga_reset_fpga_variable(void)
     fpag_lastWrittenRegister.backterConfiguration_value = backterConfiguration_resetValue;
     // fpag_lastWrittenRegister.fpga_optional_configuration_value=fpga_IO_MUX_Configuration_resetValue;
 
-    updagteBacktelControlValue_toCFX(fpag_lastWrittenRegister.backterConfiguration_value);
+    tdc_shm_update_backtel_control_value_to_cfx(fpag_lastWrittenRegister.backterConfiguration_value);
 }
 
 #if 0
@@ -881,7 +881,7 @@ int tdc_isd_fpga_reset_8bit_backtel_config(int pcmIndex)
 
     w_FPGA_registerValue = backterConfiguration_resetValue;
     pcmData              = w_FPGA_registerValue | pcm_Mold_BacktelConfiguration;  // PCM 몰드에 결합.
-    fillSepcificCommndBuffer(pcmIndex, pcmData);
+    tdc_shm_fill_specific_command_buffer(pcmIndex, pcmData);
 
     return w_FPGA_registerValue;
 }
@@ -909,7 +909,7 @@ int tdc_isd_fpga_change_8_bit_backtel_mode(int pcmIndex)
     // PCM 몰드에 결합.
     pcmData = w_FPGA_registerValue | pcm_Mold_BacktelConfiguration;
 
-    fillSepcificCommndBuffer(pcmIndex, pcmData);
+    tdc_shm_fill_specific_command_buffer(pcmIndex, pcmData);
 
     return w_FPGA_registerValue;
 }
@@ -937,7 +937,7 @@ int tdc_isd_fpga_change_12_bit_backtel_mode(int pcmIndex)
     // PCM 몰드에 결합.
     pcmData = w_FPGA_registerValue | pcm_Mold_BacktelConfiguration;
 
-    fillSepcificCommndBuffer(pcmIndex, pcmData);
+    tdc_shm_fill_specific_command_buffer(pcmIndex, pcmData);
 
     return w_FPGA_registerValue;
 }
@@ -962,7 +962,7 @@ int tdc_isd_fpga_disable_backtel(int pcmIndex)
     // PCM 몰드에 결합.
     pcmData = w_FPGA_registerValue | pcm_Mold_BacktelConfiguration;
 
-    fillSepcificCommndBuffer(pcmIndex, pcmData);
+    tdc_shm_fill_specific_command_buffer(pcmIndex, pcmData);
 
     return w_FPGA_registerValue;
 }
@@ -987,7 +987,7 @@ int tdc_isd_fpga_change_backtel_cal(int pcmIndex, int CalValue)
     // PCM 몰드에 결합.
     pcmData = w_FPGA_registerValue | pcm_Mold_BacktelConfiguration;
 
-    fillSepcificCommndBuffer(pcmIndex, pcmData);
+    tdc_shm_fill_specific_command_buffer(pcmIndex, pcmData);
 
     return w_FPGA_registerValue;
 }
@@ -1008,7 +1008,7 @@ void tdc_isd_fpga_change_pulse_width(int pcmIndex, int pulseWidth)
 
     pmcData = (pulsWithValue | pcm_Mold_PulsePhaseWidth);
 
-    fillSepcificCommndBuffer(pcmIndex, pmcData);
+    tdc_shm_fill_specific_command_buffer(pcmIndex, pmcData);
 }
 
 void tdc_isd_fpga_change_pulse_width_minimum(int pcmIndex)
@@ -1016,7 +1016,7 @@ void tdc_isd_fpga_change_pulse_width_minimum(int pcmIndex)
     int pmcData;
     pmcData = ((0) | pcm_Mold_PulsePhaseWidth);
 
-    fillSepcificCommndBuffer(pcmIndex, pmcData);
+    tdc_shm_fill_specific_command_buffer(pcmIndex, pmcData);
 }
 
 void tdc_isd_fpga_update_fpga_pulse_phase_width_written_value(int value)
@@ -1027,7 +1027,7 @@ void tdc_isd_fpga_update_fpga_pulse_phase_width_written_value(int value)
 void tdc_isd_fpga_update_fpga_backtel_config_written_value(int value)
 {
     fpag_lastWrittenRegister.backterConfiguration_value=value;
-    updagteBacktelControlValue_toCFX(fpag_lastWrittenRegister.backterConfiguration_value);
+    tdc_shm_update_backtel_control_value_to_cfx(fpag_lastWrittenRegister.backterConfiguration_value);
 }
 
 

@@ -3,9 +3,9 @@
  */
 
 #include <tdc_fs.h>
-#include <fn_from_cfx_eeprom_read.h>
+#include <tdc_cfx_eeprom_read.h>
 
-void fn_read_All_isd_info(void)
+void tdc_cfx_eeprom_read_all_isd_info(void)
 {
     for (int i = 0; i < MaxNumUser; i++)
     {
@@ -17,7 +17,7 @@ void fn_read_All_isd_info(void)
     }
 }
 
-void fn_copy_MapInfo_toCM3(int isd_num)
+void tdc_cfx_eeprom_copy_map_info_to_cm3(int isd_num)
 {
     TDC_FS_MAP_T *p_isd;
     int                 *p_map_date;
@@ -65,17 +65,17 @@ void fn_copy_MapInfo_toCM3(int isd_num)
     cfx_cm3_sharedMemoryAll.connected_ISD_Map_info.user_usableMapNum = map_cnt;  // 사용자가 사용 가능한 총 맵 (프로그램) 수 업데이트
 }
 
-void fn_copy_userSettingParameters_toCM3(int isd_num)
+void tdc_cfx_eeprom_copy_user_setting_parameters_to_cm3(int isd_num)
 {
     cfx_cm3_sharedMemoryAll.userSettingValue = g_tdc_fs_ptr_entire_map->map[isd_num - 1].user_setting_value;
 }
 
-void fn_copy_MappingData_toCM3(int map_num, int isd_num)
+void tdc_cfx_eeprom_copy_mapping_data_to_cm3(int map_num, int isd_num)
 {
     cfx_cm3_sharedMemoryAll.currentMapData = g_tdc_fs_ptr_entire_map->map[isd_num - 1].map_data[map_num - 1];
 }
 
-void fn_copy_isd_info_to_Repository(void)
+void tdc_cfx_eeprom_copy_isd_info_to_repository(void)
 {
     TDC_FS_MAP_T               *p_isd;
     ST__CFX_CM3_SharedMemory_ISD_info *p_src;
@@ -88,7 +88,7 @@ void fn_copy_isd_info_to_Repository(void)
     *p_dst = *p_src;
 }
 
-void fn_copy_MappingData_to_Repository(void)
+void tdc_cfx_eeprom_copy_mapping_data_to_repository(void)
 {
     int                               isd_num, map_num;
     ST__CFX_CM3_SharedMemory_mapData *p_src, *p_dst;
@@ -102,7 +102,7 @@ void fn_copy_MappingData_to_Repository(void)
     *p_dst = *p_src;
 }
 
-void fn_copy_userSettingParameters_to_Repository(void)
+void tdc_cfx_eeprom_copy_user_setting_parameters_to_repository(void)
 {
     ST__CFX_CM3_SharedMemory_userSettingValue *p_src, *p_dst;
 
@@ -112,7 +112,7 @@ void fn_copy_userSettingParameters_to_Repository(void)
     *p_dst = *p_src;
 }
 
-void fn_copy_mapStamp_to_Repository(void)
+void tdc_cfx_eeprom_copy_map_stamp_to_repository(void)
 {
     ST__MAPPING_DATE *p_src, *p_dst;
 
@@ -122,16 +122,16 @@ void fn_copy_mapStamp_to_Repository(void)
     *p_dst = *p_src;
 }
 
-void fn_Read_Mapdata_mappingApp(void)
+void tdc_cfx_read_mapdata_mapping_app(void)
 {
-    fn_copy_isd_info_to_Repository();
-    fn_copy_userSettingParameters_to_Repository();
-    fn_copy_mapStamp_to_Repository();
+    tdc_cfx_eeprom_copy_isd_info_to_repository();
+    tdc_cfx_eeprom_copy_user_setting_parameters_to_repository();
+    tdc_cfx_eeprom_copy_map_stamp_to_repository();
 
     // 맵 번호가 0일 때는 읽지 맵 데이터를 읽지 않고, 내부기 제조 정보와 사용자 이름까지만 읽는다.
     if (cfx_cm3_sharedMemoryAll.ReadWriteCommand_ForFlash.map_index != 0)
     {
-        fn_copy_MappingData_to_Repository();
+        tdc_cfx_eeprom_copy_mapping_data_to_repository();
     }
 
     cfx_cm3_sharedMemoryAll.ReadWriteCommand_ForFlash.flashCommand = 0; // 명령어 클리어

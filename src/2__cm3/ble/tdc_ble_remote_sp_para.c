@@ -4,7 +4,7 @@
 #include "tdc_stim_para_cal.h"
 #include "tdc_hal_spi.h"
 #include "tdc_stim_definitions.h"
-#include "cfx_cm3_sharedMemory.h"
+#include "tdc_shm.h"
 #include "board.h" // 디버깅용
 #include "tdc_sys_error.h"
 #include "tdc_isd_init.h"
@@ -58,7 +58,7 @@ void tdc_ble_remote_read_sp_para(bool startFlag, int command)
 
             // 입력 ADC 최대값 전송
 
-            adc_inputMax = readAudioSignalMax();
+            adc_inputMax = tdc_shm_read_audio_signal_max();
 
             bufferForSPI_tx[tx_index++] = (char) (adc_inputMax >> 24);
             bufferForSPI_tx[tx_index++] = (char) ((adc_inputMax >> 16) & (0xFF));
@@ -136,7 +136,7 @@ void tdc_ble_remote_read_sp_para(bool startFlag, int command)
 
             // 자극 DAC 레벨 1~18번 채널 값 전송 및 자극출력 전류 uA
 
-            p_cfxStimulLevel_255 = readCurrentStimulLevel_255();
+            p_cfxStimulLevel_255 = tdc_shm_read_current_stimul_level_255();
 
             for (k = 0; k < 18; k++)
             {
@@ -159,7 +159,7 @@ void tdc_ble_remote_read_sp_para(bool startFlag, int command)
             // data index 전송
             bufferForSPI_tx[tx_index++] = flowCounter;
 
-            p_cfxStimulLevel_255 = readCurrentStimulLevel_255();
+            p_cfxStimulLevel_255 = tdc_shm_read_current_stimul_level_255();
             // 자극 DAC 레벨 19~32번 채널 값 전송 및 자자극출력 전류 uA
 
             for (k = 18; k < 32; k++)
