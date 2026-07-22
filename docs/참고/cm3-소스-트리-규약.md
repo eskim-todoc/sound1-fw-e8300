@@ -75,5 +75,14 @@ tags: [cm3, convention, naming, include, source-tree, fsm]
 
 > [!CAUTION]
 > **새 폴더를 만들면 `.cproject` 의 `-I` 에 반드시 등록한다.** flat include 방식이라 `-I` 누락은 곧 빌드 실패다. 경로는 `${workspace_loc:/${ProjName}/source/<폴더>}` 형식.
+>
+> **등록 위치는 도구마다 독립이다.** Eclipse CDT 는 include 경로를 컴파일러·어셈블러·링커가 **각각 따로** 관리한다.
+>
+> | 파일 | 등록할 도구 |
+> |---|---|
+> | `.c` / `.h` | Cross ARM C Compiler → Includes |
+> | `.S` / `.s` | **Cross ARM GCC (Assembler) → Includes** |
+>
+> `<>` 표기는 `-I` 목록만 탐색하므로, `""` 시절 암묵적으로 동작하던 **"자기 디렉터리 우선" 폴백이 없다**. 실제로 소스 루트 분리(2026-07-22) 때 어셈블러 목록이 비어 있어 `SEGGER_RTT_ASM_ARMv7M.S` 가 `<SEGGER_RTT.h>` 를 못 찾아 빌드가 깨졌다.
 
 `-I` 현황: 20건 (`source` + `source/board` + `source/lib/{SEGGER_RTT,tiny-AES-c}` + 도메인 16). 근거: `docs/tasks/cm3/20260722_cm3-source-root/`.
