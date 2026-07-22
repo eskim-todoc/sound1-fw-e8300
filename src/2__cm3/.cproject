@@ -124,7 +124,6 @@
 							</tool>
 						</toolChain>
 					</folderInfo>
-					<fileInfo id="ilg.gnuarmeclipse.managedbuild.cross.config.elf.debug.1150406926.1329280532" name="FPGA_ver2_7_0.h" rcbsApplicability="disable" resourcePath="99_includeBoard/FPGA_ver2_7_0.h" toolsToInvoke=""/>
 					<sourceEntries>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="source"/>
 					</sourceEntries>
