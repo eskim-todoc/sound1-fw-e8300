@@ -1,8 +1,8 @@
 /**
- * @file ci_boot.c
+ * @file tdc_boot.c
  */
 
-#include <ci_boot.h>
+#include <tdc_boot.h>
 #include <tdc_printf.h>
 
 #define _INFINITE_LOOP()                                                                                                                                                                                                                                                                                                       \
@@ -12,7 +12,7 @@
     }
 
 static FIL                   *_g_fp     = NULL;
-static snd_boot_status_t _g_status = {0};
+static tdc_boot_status_t _g_status = {0};
 
 static void _open_status_file(void)
 {
@@ -20,7 +20,7 @@ static void _open_status_file(void)
 
     if (_g_fp == NULL)
     {
-        TDC_PRINTF("[%s] [%s] [%d] [BOOT] ERROR \r\n", "ci_boot.c", __func__, __LINE__);
+        TDC_PRINTF("[%s] [%s] [%d] [BOOT] ERROR \r\n", "tdc_boot.c", __func__, __LINE__);
         _INFINITE_LOOP();
     }
 
@@ -28,7 +28,7 @@ static void _open_status_file(void)
 
     if (res != FR_OK)
     {
-        TDC_PRINTF("[%s] [%s()] [%d] [BOOT] ERROR RES=%d \r\n", "ci_boot.c", __func__, __LINE__, res);
+        TDC_PRINTF("[%s] [%s()] [%d] [BOOT] ERROR RES=%d \r\n", "tdc_boot.c", __func__, __LINE__, res);
         _INFINITE_LOOP();
     }
 }
@@ -39,7 +39,7 @@ static void _close_status_file(void)
 
     if (_g_fp == NULL)
     {
-        TDC_PRINTF("[%s] [%s] [%d] [BOOT] ERROR \r\n", "ci_boot.c", __func__, __LINE__);
+        TDC_PRINTF("[%s] [%s] [%d] [BOOT] ERROR \r\n", "tdc_boot.c", __func__, __LINE__);
         _INFINITE_LOOP();
     }
 
@@ -47,7 +47,7 @@ static void _close_status_file(void)
 
     if (res != FR_OK)
     {
-        TDC_PRINTF("[%s] [%s] [%d] [BOOT] ERROR \r\n", "ci_boot.c", __func__, __LINE__);
+        TDC_PRINTF("[%s] [%s] [%d] [BOOT] ERROR \r\n", "tdc_boot.c", __func__, __LINE__);
         _INFINITE_LOOP();
     }
 }
@@ -59,7 +59,7 @@ static void _load_status(void)
 
     if (_g_fp == NULL)
     {
-        TDC_PRINTF("[%s] [%s] [%d] [BOOT] ERROR \r\n", "ci_boot.c", __func__, __LINE__);
+        TDC_PRINTF("[%s] [%s] [%d] [BOOT] ERROR \r\n", "tdc_boot.c", __func__, __LINE__);
         _INFINITE_LOOP();
     }
 
@@ -67,15 +67,15 @@ static void _load_status(void)
 
     if (result != FR_OK)
     {
-        TDC_PRINTF("[%s] [%s] [%d] [BOOT] ERROR \r\n", "ci_boot.c", __func__, __LINE__);
+        TDC_PRINTF("[%s] [%s] [%d] [BOOT] ERROR \r\n", "tdc_boot.c", __func__, __LINE__);
         _INFINITE_LOOP();
     }
 
-    result = f_read(_g_fp, &_g_status, sizeof(snd_boot_status_t), &byte_read);
+    result = f_read(_g_fp, &_g_status, sizeof(tdc_boot_status_t), &byte_read);
 
-    if ((result != FR_OK) || (byte_read != sizeof(snd_boot_status_t)))
+    if ((result != FR_OK) || (byte_read != sizeof(tdc_boot_status_t)))
     {
-        TDC_PRINTF("[%s] [%s] [%d] [BOOT] ERROR \r\n", "ci_boot.c", __func__, __LINE__);
+        TDC_PRINTF("[%s] [%s] [%d] [BOOT] ERROR \r\n", "tdc_boot.c", __func__, __LINE__);
         _INFINITE_LOOP();
     }
 }
@@ -87,7 +87,7 @@ static void _store_status(void)
 
     if (_g_fp == NULL)
     {
-        TDC_PRINTF("[%s] [%s] [%d] [BOOT] ERROR \r\n", "ci_boot.c", __func__, __LINE__);
+        TDC_PRINTF("[%s] [%s] [%d] [BOOT] ERROR \r\n", "tdc_boot.c", __func__, __LINE__);
         _INFINITE_LOOP();
     }
 
@@ -95,15 +95,15 @@ static void _store_status(void)
 
     if (result != FR_OK)
     {
-        TDC_PRINTF("[%s] [%s] [%d] [BOOT] ERROR \r\n", "ci_boot.c", __func__, __LINE__);
+        TDC_PRINTF("[%s] [%s] [%d] [BOOT] ERROR \r\n", "tdc_boot.c", __func__, __LINE__);
         _INFINITE_LOOP();
     }
 
-    result = f_write(_g_fp, &_g_status, sizeof(snd_boot_status_t), &byte_to_write);
+    result = f_write(_g_fp, &_g_status, sizeof(tdc_boot_status_t), &byte_to_write);
 
-    if ((result != FR_OK) || (byte_to_write != sizeof(snd_boot_status_t)))
+    if ((result != FR_OK) || (byte_to_write != sizeof(tdc_boot_status_t)))
     {
-        TDC_PRINTF("[%s] [%s] [%d] [BOOT] ERROR \r\n", "ci_boot.c", __func__, __LINE__);
+        TDC_PRINTF("[%s] [%s] [%d] [BOOT] ERROR \r\n", "tdc_boot.c", __func__, __LINE__);
         _INFINITE_LOOP();
     }
 
@@ -111,7 +111,7 @@ static void _store_status(void)
 
     if (result != FR_OK)
     {
-        TDC_PRINTF("[%s] [%s] [%d] [BOOT] ERROR \r\n", "ci_boot.c", __func__, __LINE__);
+        TDC_PRINTF("[%s] [%s] [%d] [BOOT] ERROR \r\n", "tdc_boot.c", __func__, __LINE__);
         _INFINITE_LOOP();
     }
 }
@@ -226,22 +226,22 @@ static void _handle_state_alt_boot(void)
     }
 }
 
-void ci_boot_init_fp(FIL *fp)
+void tdc_boot_init_fp(FIL *fp)
 {
     if (fp == NULL)
     {
-        TDC_PRINTF("[%s] [%s] [%d] [BOOT] ERROR \r\n", "ci_boot.c", __func__, __LINE__);
+        TDC_PRINTF("[%s] [%s] [%d] [BOOT] ERROR \r\n", "tdc_boot.c", __func__, __LINE__);
         _INFINITE_LOOP();
     }
 
     _g_fp = fp;
 }
 
-EN__BOOT_RET ci_boot_get_status(snd_boot_status_t *p_status)
+EN__BOOT_RET tdc_boot_get_status(tdc_boot_status_t *p_status)
 {
     if ((_g_fp == NULL) || (p_status == NULL))
     {
-        TDC_PRINTF("[%s] [%s] [%d] [BOOT] ERROR \r\n", "ci_boot.c", __func__, __LINE__);
+        TDC_PRINTF("[%s] [%s] [%d] [BOOT] ERROR \r\n", "tdc_boot.c", __func__, __LINE__);
         return BOOT_RET_FAIL;
     }
 
@@ -258,11 +258,11 @@ EN__BOOT_RET ci_boot_get_status(snd_boot_status_t *p_status)
     return BOOT_RET_TRUE;
 }
 
-EN__BOOT_RET ci_boot_update_status(snd_boot_status_t *p_status)
+EN__BOOT_RET tdc_boot_update_status(tdc_boot_status_t *p_status)
 {
     if ((_g_fp == NULL) || (p_status == NULL))
     {
-        TDC_PRINTF("[%s] [%s] [%d] [BOOT] ERROR \r\n", "ci_boot.c", __func__, __LINE__);
+        TDC_PRINTF("[%s] [%s] [%d] [BOOT] ERROR \r\n", "tdc_boot.c", __func__, __LINE__);
         return BOOT_RET_FAIL;
     }
 
@@ -279,7 +279,7 @@ EN__BOOT_RET ci_boot_update_status(snd_boot_status_t *p_status)
     return BOOT_RET_TRUE;
 }
 
-void ci_boot_handle_fsm(void)
+void tdc_boot_handle_fsm(void)
 {
     uint8_t state;
 

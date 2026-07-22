@@ -1,8 +1,8 @@
 
-#include <fn_from_cfx_eeprom_write.h>
-#include "cfx_cm3_sharedMemory.h"
+#include <tdc_cfx_eeprom_write.h>
+#include "tdc_shm.h"
 #include "tdc_ble_protocol.h"
-#include "cfx_cm3_shared_Memory_Addr.h"
+#include "tdc_shm_addr.h"
 #include "tdc_isd_stim_standalone.h"
 
 #include "tdc_pwr_battery.h"  // 새로 추가
@@ -39,7 +39,7 @@ void tdc_shared_publish_cm3_heartbeat(int beat)
  * 238/259 및 :215/240/261). CM3 쪽 초기화도 stimulationParaCal.c:617~618 에서
  * 직접 대입한다. 필드를 지우면 AGC 가 깨지므로 래퍼만 제거했다. */
 
-bool isCFX_EEPROM_data_Loaded(void)
+bool tdc_shm_is_cfx_eeprom_data_loaded(void)
 {
     if (cfx_cm3_sharedMemoryAll.CFX_EEPROM_data_is_Loaded == 1)
     {
@@ -54,7 +54,7 @@ bool isCFX_EEPROM_data_Loaded(void)
 ////
 // 공유 메모리 주소 확인
 
-bool sharedMemoryAddresError(void)
+bool tdc_shm_shared_memory_address_error(void)
 {
     if (&cfx_cm3_sharedMemoryAll != ((ST__CFX_CM3_SharedMemory_ALL *) StartAddressCM3_sharedVarialbe))
     {
@@ -79,12 +79,12 @@ bool sharedMemoryAddresError(void)
  * DIO_PIN_INDEX_for_* 핀 정의는 tdc_hal_dio.c 의 저전력 모드 설정이 계속 사용하므로 유지.
  * 상세: docs/tasks/main/20260715_systemcontrol-fsm-decompose/분석-부록-sullivan유산.md */
 
-void changeSystemModeFlag(EN__SYSTEM_OP_MODE flag)
+void tdc_shm_change_system_mode_flag(EN__SYSTEM_OP_MODE flag)
 {
     cfx_cm3_sharedMemoryAll.systemShare.system_opMode = flag;
 }
 
-bool isPowerButtonPushed(void)
+bool tdc_shm_is_power_button_pushed(void)
 {
     // 1.5세대에서는 가속도 센서 인터럽트 상태를 CM3가 직접 처리하기 때문에
     // 더이상 공유 메모리의 powerButton_pushed_CFX_to_CM3 변수를 사용하지 않는다.
@@ -123,7 +123,7 @@ bool isPowerButtonPushed(void)
 #endif
 }
 
-void OnOff_3V_PMIC_CM3_to_CFX(bool OnOff)
+void tdc_shm_on_off_3_v_pmic_cm3_to_cfx(bool OnOff)
 {
     // 1세대에서는 RF PMIC 5V를 CM3가 직접 켜기/끄기를 제어할 수 있었지만,
     // 1.5세대에서는 FPGA에서 V_LINK_ON 핀으로 RF PMIC 5V의 켜기/끄기를 제어한다.
@@ -141,24 +141,24 @@ void OnOff_3V_PMIC_CM3_to_CFX(bool OnOff)
     }
 }
 
-void enterLowPowerMode_CM3_to_CFX()
+void tdc_shm_enter_low_power_mode_cm3_to_cfx()
 {
-    OnOff_3V_PMIC_CM3_to_CFX(false);
+    tdc_shm_on_off_3_v_pmic_cm3_to_cfx(false);
     cfx_cm3_sharedMemoryAll.systemShare.enter_ULP_mode_Command_CM3_to_CFX = 1;
 }
 
-int readBatteryCalibrationValue(void)
+int tdc_shm_read_battery_calibration_value(void)
 {
     return cfx_cm3_sharedMemoryAll.batteryCalibrationValue;
 }
 
-int readBatteryLevel_FromCFX(void)
+int tdc_shm_read_battery_level_from_cfx(void)
 {
     tdc_pwr_lsad_update();
     return cfx_cm3_sharedMemoryAll.systemShare.batteryLevel_CfX_to_CM3;
 }
 
-void updateEarpieceDetectionValue_toCFX(bool detection)
+void tdc_shm_update_earpiece_detection_value_to_cfx(bool detection)
 {
     if (detection)
     {
@@ -175,37 +175,37 @@ void updateEarpieceDetectionValue_toCFX(bool detection)
 //
 //
 
-void changePcmOutputMode(int currentPcmOutputMode)
+void tdc_shm_change_pcm_output_mode(int currentPcmOutputMode)
 {
     cfx_cm3_sharedMemoryAll.cfx_PCM_interface.PCM_mode = currentPcmOutputMode;
 }
 
-void changeNextPcmOutputMode(int nextPcmOutputMode)
+void tdc_shm_change_next_pcm_output_mode(int nextPcmOutputMode)
 {
     cfx_cm3_sharedMemoryAll.cfx_PCM_interface.PCM_mode_next = nextPcmOutputMode;
 }
 
-void fillSepcificCommndBuffer(int Index, int data)
+void tdc_shm_fill_specific_command_buffer(int Index, int data)
 {
     cfx_cm3_sharedMemoryAll.cfx_PCM_interface.PCM_specificBuffer[Index] = data;
 }
 
-int readCurrentPcmOutputMode(void)
+int tdc_shm_read_current_pcm_output_mode(void)
 {
     return cfx_cm3_sharedMemoryAll.cfx_PCM_interface.PCM_mode;
 }
 
-int readConnectionCheckPcmState(void)
+int tdc_shm_read_connection_check_pcm_state(void)
 {
     return cfx_cm3_sharedMemoryAll.cfx_PCM_interface.conneded_ISDCheckPCM_state;
 }
 
-void clearConnectionCheckPcmFiredFlag(void)
+void tdc_shm_clear_connection_check_pcm_fired_flag(void)
 {
     cfx_cm3_sharedMemoryAll.cfx_PCM_interface.conneded_ISDCheckPCM_state = BackelCircuitDisabled_FpagFifoCleared_duringLiveStimulation;
 }
 
-bool isUserSettingValueLoaded_CFX(void)
+bool tdc_shm_is_user_setting_value_loaded_cfx(void)
 {
     if (cfx_cm3_sharedMemoryAll.userSettingValueLoadedFlag == 1)
     {
@@ -217,13 +217,13 @@ bool isUserSettingValueLoaded_CFX(void)
     }
 }
 
-void setCommandMapChange_Cm3ToCfx(void)
+void tdc_shm_set_command_map_change_cm3_to_cfx(void)
 {
     cfx_cm3_sharedMemoryAll.mapChangeFlag.cfx_Reloaded_MapdataFlag = 0;
     cfx_cm3_sharedMemoryAll.mapChangeFlag.cm3Command_mapChange     = 1;
 }
 
-bool isMapdateLoaded_CFX(void)
+bool tdc_shm_is_map_data_loaded_cfx(void)
 {
     if (cfx_cm3_sharedMemoryAll.mapChangeFlag.cfx_Reloaded_MapdataFlag == 1)
     {
@@ -235,34 +235,34 @@ bool isMapdateLoaded_CFX(void)
     }
 }
 
-ST__CFX_CM3_SharedMemory_mapData *getPointerCurrentMapData(void)
+ST__CFX_CM3_SharedMemory_mapData *tdc_shm_get_pointer_current_map_data(void)
 {
     return &(cfx_cm3_sharedMemoryAll.currentMapData);
 }
 
-ST__CFX_CM3_SharedMemory_calculatedStimulPara_byCM3 *getPointerCalculatedStimulPara_byCM3(void)
+ST__CFX_CM3_SharedMemory_calculatedStimulPara_byCM3 *tdc_shm_get_pointer_calculated_stimul_para_by_cm3(void)
 {
     return &(cfx_cm3_sharedMemoryAll.calculatedStimulPara_byCM3);
 }
 
 /*
-int *getCalculatedStimulationIndcatorLevel_byCM3(void)
+int *tdc_shm_get_calculated_stimulation_indicator_level_by_cm3(void)
 {
     return &(cfx_cm3_sharedMemoryAll.calculatedStimulationIndcator_byCM3.indicatorStimulLevel_255 );
 }
 
-int *getPointer_stimulationIndcatorOnOff_byCM3(void)
+int *tdc_shm_get_pointer_stimulation_indicator_on_off_by_cm3(void)
 {
     return &(cfx_cm3_sharedMemoryAll.calculatedStimulationIndcator_byCM3.indicatorStimulOutput_OnOff_Coltroled_byCM3 );
 }
 */
 
-void setCalculatedStimulationIndcatorLevel_byCM3(int stimulationIndicatorLevel_255)
+void tdc_shm_set_calculated_stimulation_indicator_level_by_cm3(int stimulationIndicatorLevel_255)
 {
     cfx_cm3_sharedMemoryAll.calculatedStimulationIndcator_byCM3.indicatorStimulLevel_255 = stimulationIndicatorLevel_255;
 }
 
-void setStimulationIndcatorOnOff_byCM3(bool On_Off)
+void tdc_shm_set_stimulation_indicator_on_off_by_cm3(bool On_Off)
 {
     if (On_Off)
     {
@@ -274,7 +274,7 @@ void setStimulationIndcatorOnOff_byCM3(bool On_Off)
     }
 }
 
-void setFlag_AudioParametersCalculationDone_Cm3ToCfx(void)  // 파라미터 계산이 완료되었을을 CFX에 알려주는 플레그 (CFX에서 확인 후 자동을 클리어)
+void tdc_shm_set_flag_audio_parameters_calculation_done_cm3_to_cfx(void)  // 파라미터 계산이 완료되었을을 CFX에 알려주는 플레그 (CFX에서 확인 후 자동을 클리어)
 {
     cfx_cm3_sharedMemoryAll.mapChangeFlag.cm3_audioParameterCalculationDone_Flag = 1;
 
@@ -284,17 +284,17 @@ void setFlag_AudioParametersCalculationDone_Cm3ToCfx(void)  // 파라미터 계�
 #endif
 }
 
-void updagteBacktelControlValue_toCFX(int value)  // 실시간 자극 출력에서 내부기 연결확인용 벡텔을 켜고 끌때 사용하기위해서 공유
+void tdc_shm_update_backtel_control_value_to_cfx(int value)  // 실시간 자극 출력에서 내부기 연결확인용 벡텔을 켜고 끌때 사용하기위해서 공유
 {
     cfx_cm3_sharedMemoryAll.backtelControlRegister = value;
 }
 
-int *readCurrentStimulLevel_255(void)
+int *tdc_shm_read_current_stimul_level_255(void)
 {
     return &(cfx_cm3_sharedMemoryAll.currentOutputStimulLevel_255[0]);
 }
 
-const int readAudioSignalMax(void)
+const int tdc_shm_read_audio_signal_max(void)
 {
     return cfx_cm3_sharedMemoryAll.maxAudioInput;
 }
@@ -304,7 +304,7 @@ const int readAudioSignalMax(void)
 //
 //
 
-int read_ISD_manufacture_ID(int index)
+int tdc_shm_read_isd_manufacture_id(int index)
 {
     int isd_id_onFlash = 0;
 
@@ -319,12 +319,12 @@ int read_ISD_manufacture_ID(int index)
     return isd_id_onFlash;
 }
 
-int *read_recomcon_passkey_connected_ISD(int connected_ISD_Num)
+int *tdc_shm_read_remocon_passkey_connected_isd(int connected_ISD_Num)
 {
     return cfx_cm3_sharedMemoryAll.cfx_ISD_info[connected_ISD_Num - 1].remocon_passkey;
 }
 
-void changeConnected_isd_num_CFX(int isd_num)
+void tdc_shm_change_connected_isd_num_cfx(int isd_num)
 {
     // 1세대에서는 이 함수를 통해 ISD 번호를 변경하면,
     // CFX에서 ISD 번호 변경을 감지 후 해당 번호에 해당하는 맵 데이터를 플래시에서 로드하고 업데이트한다.
@@ -350,8 +350,8 @@ void changeConnected_isd_num_CFX(int isd_num)
         tdc_fs_map_read_map_data(isd_num, 3);         // 프로그램 3 로드
         tdc_fs_map_read_map_data(isd_num, 4);         // 프로그램 4 로드
 
-        fn_copy_MapInfo_toCM3(isd_num);                // #1. 맵 스탬프, 프로그램 별 매핑 일자, 사용 가능한 맵 프로그램 인덱스, 사용 가능한 맵 개수 복사
-        fn_copy_userSettingParameters_toCM3(isd_num);  // #2. 사용자 설정 값 복사
+        tdc_cfx_eeprom_copy_map_info_to_cm3(isd_num);                // #1. 맵 스탬프, 프로그램 별 매핑 일자, 사용 가능한 맵 프로그램 인덱스, 사용 가능한 맵 개수 복사
+        tdc_cfx_eeprom_copy_user_setting_parameters_to_cm3(isd_num);  // #2. 사용자 설정 값 복사
 
         // #3. 게인 설정도 이 ISD 것으로 복원한다.
         //     파일이 없거나 손상되었으면 기본값(유니티)이 채워져 돌아온다.
@@ -369,17 +369,17 @@ void changeConnected_isd_num_CFX(int isd_num)
     cfx_cm3_sharedMemoryAll.connected_ISD_num = isd_num;
 }
 
-int read_connected_ISD_Num(void)
+int tdc_shm_read_connected_isd_num(void)
 {
     return cfx_cm3_sharedMemoryAll.connected_ISD_num;
 }
 
-int *readConnected_ISD_userName(int connected_ISD_Num)
+int *tdc_shm_read_connected_isd_user_name(int connected_ISD_Num)
 {
     return &(cfx_cm3_sharedMemoryAll.cfx_ISD_info[connected_ISD_Num - 1].isd_userName[0]);
 }
 
-EN__LOCATION_OF_ISD readConnected_ISD_Location(int connected_ISD_Num)
+EN__LOCATION_OF_ISD tdc_shm_read_connected_isd_location(int connected_ISD_Num)
 {
     return (cfx_cm3_sharedMemoryAll.cfx_ISD_info[connected_ISD_Num - 1].isd_location_RL);
 }
@@ -387,25 +387,25 @@ EN__LOCATION_OF_ISD readConnected_ISD_Location(int connected_ISD_Num)
 // 열결된 내부기의  맵 요약 정보
 
 // 열결된 내부기의  사용 가능한 맵 갯수
-int readConnected_ISD_usableMapNum(void)
+int tdc_shm_read_connected_isd_usable_map_num(void)
 {
     return (cfx_cm3_sharedMemoryAll.connected_ISD_Map_info.user_usableMapNum);
 }
 
 // 열결된 내부기의  사용 가능한 맵 인덱스
-int *readConnected_ISD_usableMapIndex(void)
+int *tdc_shm_read_connected_isd_usable_map_index(void)
 {
     return (cfx_cm3_sharedMemoryAll.connected_ISD_Map_info.usableMapIndex);
 }
 
 // 열결된 내부기의  맵 생성일자 들
-int *readConnected_ISD_MapStamp(void)
+int *tdc_shm_read_connected_isd_map_stamp(void)
 {
     return ((int *) &(cfx_cm3_sharedMemoryAll.connected_ISD_Map_info.mapStamp));
 }
 
 // 열결된 내부기의  맵 생성일자 들
-int *readConnected_ISD_MapDate(int mapNum)
+int *tdc_shm_read_connected_isd_map_date(int mapNum)
 {
     int *p_mapDate;
 
@@ -436,7 +436,7 @@ int *readConnected_ISD_MapDate(int mapNum)
 //
 //
 
-void changeProgramMapNum(int mapNum)
+void tdc_shm_change_program_map_num(int mapNum)
 {
     if (mapNum <= 5)
     {
@@ -463,11 +463,11 @@ void changeProgramMapNum(int mapNum)
 #if 1  // from CFX to CM3
         if (0 < mapNum)
         {
-            fn_copy_MappingData_toCM3(mapNum, cfx_cm3_sharedMemoryAll.connected_ISD_num);
+            tdc_cfx_eeprom_copy_mapping_data_to_cm3(mapNum, cfx_cm3_sharedMemoryAll.connected_ISD_num);
 
             if (cfx_cm3_sharedMemoryAll.systemShare.system_opMode == en__normalMode)
             {
-                fn_write_userSettingParameters(cfx_cm3_sharedMemoryAll.connected_ISD_num);
+                tdc_cfx_eeprom_write_user_setting_parameters(cfx_cm3_sharedMemoryAll.connected_ISD_num);
             }
         }
 
@@ -479,90 +479,90 @@ void changeProgramMapNum(int mapNum)
 #endif
 
         // cfx에 맵데이터를 eeprom에서 읽어 들이라고 명령한다.
-        setCommandMapChange_Cm3ToCfx();
+        tdc_shm_set_command_map_change_cm3_to_cfx();
 
         // CM3에 새로운 맵으로 자극 관련 파라미터의 계산을 다시 하도록 플레그를 세팅한다.
         tdc_isd_set_new_map_loaded_flag();
     }
 }
 
-int readProgramMapNum(void)
+int tdc_shm_read_program_map_num(void)
 {
     return cfx_cm3_sharedMemoryAll.userSettingValue.mapNum;
 }
 
-void changeStimulVolume(int volume)
+void tdc_shm_change_stimul_volume(int volume)
 {
     cfx_cm3_sharedMemoryAll.userSettingValue.stimulVolume = volume;
 
     if (cfx_cm3_sharedMemoryAll.systemShare.system_opMode == en__normalMode)
     {
-        fn_write_userSettingParameters(cfx_cm3_sharedMemoryAll.connected_ISD_num);
+        tdc_cfx_eeprom_write_user_setting_parameters(cfx_cm3_sharedMemoryAll.connected_ISD_num);
     }
 }
 
-int readStimulVolume(void)
+int tdc_shm_read_stimul_volume(void)
 {
     return cfx_cm3_sharedMemoryAll.userSettingValue.stimulVolume;
 }
 
-void changeAudioVolume(int volume)
+void tdc_shm_change_audio_volume(int volume)
 {
     cfx_cm3_sharedMemoryAll.userSettingValue.audioVolume = volume;
 
     if (cfx_cm3_sharedMemoryAll.systemShare.system_opMode == en__normalMode)
     {
-        fn_write_userSettingParameters(cfx_cm3_sharedMemoryAll.connected_ISD_num);
+        tdc_cfx_eeprom_write_user_setting_parameters(cfx_cm3_sharedMemoryAll.connected_ISD_num);
     }
 }
 
-int readAudioVolume(void)
+int tdc_shm_read_audio_volume(void)
 {
     return cfx_cm3_sharedMemoryAll.userSettingValue.audioVolume;
 }
 
-void changeLED_indicatorOnOff(EN__PAYLOAD_ON_OFF OnOff)
+void tdc_shm_change_led_indicator_on_off(EN__PAYLOAD_ON_OFF OnOff)
 {
 
     cfx_cm3_sharedMemoryAll.userSettingValue.indicatorLED_OnOff = (int) OnOff;
 
     if (cfx_cm3_sharedMemoryAll.systemShare.system_opMode == en__normalMode)
     {
-        fn_write_userSettingParameters(cfx_cm3_sharedMemoryAll.connected_ISD_num);
+        tdc_cfx_eeprom_write_user_setting_parameters(cfx_cm3_sharedMemoryAll.connected_ISD_num);
     }
 }
 
-int readLED_indicatorOnOff(void)
+int tdc_shm_read_led_indicator_on_off(void)
 {
     return cfx_cm3_sharedMemoryAll.userSettingValue.indicatorLED_OnOff;
 }
 
-void changeTeleCoil_OnOff(EN__PAYLOAD_ON_OFF OnOff)
+void tdc_shm_change_tele_coil_on_off(EN__PAYLOAD_ON_OFF OnOff)
 {
     cfx_cm3_sharedMemoryAll.userSettingValue.teleCoil_OnOff = (int) OnOff;
 
     if (cfx_cm3_sharedMemoryAll.systemShare.system_opMode == en__normalMode)
     {
-        fn_write_userSettingParameters(cfx_cm3_sharedMemoryAll.connected_ISD_num);
+        tdc_cfx_eeprom_write_user_setting_parameters(cfx_cm3_sharedMemoryAll.connected_ISD_num);
     }
 }
 
-int readTeleCoil_OnOff(void)
+int tdc_shm_read_tele_coil_on_off(void)
 {
     return cfx_cm3_sharedMemoryAll.userSettingValue.teleCoil_OnOff;
 }
 
-void changeStimulIndicator_OnOff(EN__PAYLOAD_ON_OFF OnOff)
+void tdc_shm_change_stimul_indicator_on_off(EN__PAYLOAD_ON_OFF OnOff)
 {
     cfx_cm3_sharedMemoryAll.userSettingValue.indicatorStimul_OnOff = (int) OnOff;
 
     if (cfx_cm3_sharedMemoryAll.systemShare.system_opMode == en__normalMode)
     {
-        fn_write_userSettingParameters(cfx_cm3_sharedMemoryAll.connected_ISD_num);
+        tdc_cfx_eeprom_write_user_setting_parameters(cfx_cm3_sharedMemoryAll.connected_ISD_num);
     }
 }
 
-int readStimulIndicator_OnOff(void)
+int tdc_shm_read_stimul_indicator_on_off(void)
 {
     return cfx_cm3_sharedMemoryAll.userSettingValue.indicatorStimul_OnOff;
 }
@@ -574,7 +574,7 @@ int readStimulIndicator_OnOff(void)
 
 // 매핑 프로그램 연결 상태 CFX에 전달.
 
-void shareMappingProgramConnection(bool connection)
+void tdc_shm_share_mapping_program_connection(bool connection)
 {
     if (connection)
     {
@@ -586,7 +586,7 @@ void shareMappingProgramConnection(bool connection)
     }
 }
 
-void setReadWriteMapDataFlashCommand(ST__CFX_CM3_SharedMemory_ReadWriteCommand_ForFlash command_ForFlash)
+void tdc_shm_set_read_write_map_data_flash_command(ST__CFX_CM3_SharedMemory_ReadWriteCommand_ForFlash command_ForFlash)
 {
     if (command_ForFlash.flashCommand == flash_Command_Read)
     {
@@ -594,7 +594,7 @@ void setReadWriteMapDataFlashCommand(ST__CFX_CM3_SharedMemory_ReadWriteCommand_F
         cfx_cm3_sharedMemoryAll.ReadWriteCommand_ForFlash.isd_index    = command_ForFlash.isd_index;
         cfx_cm3_sharedMemoryAll.ReadWriteCommand_ForFlash.map_index    = command_ForFlash.map_index;
 
-        fn_Read_Mapdata_mappingApp();
+        tdc_cfx_read_mapdata_mapping_app();
     }
     else if (command_ForFlash.flashCommand == flash_Command_Write)
     {
@@ -602,7 +602,7 @@ void setReadWriteMapDataFlashCommand(ST__CFX_CM3_SharedMemory_ReadWriteCommand_F
         cfx_cm3_sharedMemoryAll.ReadWriteCommand_ForFlash.isd_index    = command_ForFlash.isd_index;
         cfx_cm3_sharedMemoryAll.ReadWriteCommand_ForFlash.map_index    = command_ForFlash.map_index;
 
-        fn_write_Mapdata_mappingApp();
+        tdc_cfx_eeprom_write_mapdata_mapping_app();
     }
     else if (command_ForFlash.flashCommand == flash_Command_Erase)
     {
@@ -610,7 +610,7 @@ void setReadWriteMapDataFlashCommand(ST__CFX_CM3_SharedMemory_ReadWriteCommand_F
         cfx_cm3_sharedMemoryAll.ReadWriteCommand_ForFlash.isd_index    = command_ForFlash.isd_index;
         cfx_cm3_sharedMemoryAll.ReadWriteCommand_ForFlash.map_index    = command_ForFlash.map_index;
 
-        fn_erase_Mapdata_mappingApp();
+        tdc_cfx_eeprom_erase_mapdata_mapping_app();
     }
     else if (command_ForFlash.flashCommand == flash_Command_Recover)
     {
@@ -618,7 +618,7 @@ void setReadWriteMapDataFlashCommand(ST__CFX_CM3_SharedMemory_ReadWriteCommand_F
         cfx_cm3_sharedMemoryAll.ReadWriteCommand_ForFlash.isd_index    = command_ForFlash.isd_index;
         cfx_cm3_sharedMemoryAll.ReadWriteCommand_ForFlash.map_index    = command_ForFlash.map_index;
 
-        fn_recover_Mapdata_mappingApp();
+        tdc_cfx_eeprom_recover_mapdata_mapping_app();
 
         TDC_PRINTF_W("[FLASH] DONE FOR FLASH COMMAND : RECOVER MAPDATA (%u) \r\n", cfx_cm3_sharedMemoryAll.ReadWriteCommand_ForFlash.flashCommand);
     }
@@ -628,7 +628,7 @@ void setReadWriteMapDataFlashCommand(ST__CFX_CM3_SharedMemory_ReadWriteCommand_F
     //
 }
 
-bool isReadWriteMapDataFlashCommandDone(void)
+bool tdc_shm_is_read_write_map_data_flash_command_done(void)
 {
     if (cfx_cm3_sharedMemoryAll.ReadWriteCommand_ForFlash.flashCommand == 0)
     {
@@ -640,22 +640,22 @@ bool isReadWriteMapDataFlashCommandDone(void)
     }
 }
 
-int *getPointerRepositoryForReadWriteMapData_isd_info(void)
+int *tdc_shm_get_pointer_repository_for_read_write_map_data_isd_info(void)
 {
     return ((int *) &(cfx_cm3_sharedMemoryAll.repositoryForReadWriteMapData.ISD_info_mapData));
 }
 
-int *getPointerRepositoryForReadWriteMapData_userSetting(void)
+int *tdc_shm_get_pointer_repository_for_read_write_map_data_user_setting(void)
 {
     return ((int *) &(cfx_cm3_sharedMemoryAll.repositoryForReadWriteMapData.userSettingValue_mapData));
 }
 
-int *getPointerRepositoryForReadWriteMapData_stimulPara(void)
+int *tdc_shm_get_pointer_repository_for_read_write_map_data_stimul_para(void)
 {
     return ((int*) &(cfx_cm3_sharedMemoryAll.repositoryForReadWriteMapData.readWritemapData));
 }
 
-int readCfxErrorCode(void)
+int tdc_shm_read_cfx_error_code(void)
 {
     return cfx_cm3_sharedMemoryAll.CFX_ErrorCode;
 }

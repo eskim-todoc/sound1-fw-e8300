@@ -5,7 +5,7 @@
 #include "tdc_ble_mapping.h"
 #include "board.h"
 #include "internalStimulationChip.h"
-#include "cfx_cm3_sharedMemory.h"
+#include "tdc_shm.h"
 #include "tdc_ble_mapping.h"
 #include "tdc_hal_spi.h"
 #include "tdc_stim_definitions.h"
@@ -29,7 +29,7 @@ void tdc_ble_mapping_clear_command()
     mappingPacket.command                    = en__mapping_IDLE;
     mappingPacket.tdc_isd_map_live_step.subCommand = en__Standby;
 
-    changePcmOutputMode(PcmBitStream_Mode_NopStandby);
+    tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_NopStandby);
 }
 
 void tdc_ble_mapping_change_command_ble_disconnected(void)
@@ -811,7 +811,7 @@ void tdc_ble_mapping_fetch_packet(const int *Rx_dataPacket)  // spi 통신에서
                 {
                     if (mappingPacket.tdc_isd_map_live_step.subCommand == en__HoldOn)
                     {
-                        p_mapDataSharedMemory = getPointerCurrentMapData();
+                        p_mapDataSharedMemory = tdc_shm_get_pointer_current_map_data();
 
                         value = Rx_dataPacket[index++];  // 알림용 자극 채널 번호
 
@@ -973,7 +973,7 @@ void tdc_ble_mapping_fetch_packet(const int *Rx_dataPacket)  // spi 통신에서
 
         case en__mapping_write_original_ISD_N_USER:  // 헤더 0x68 (외부기 최초연결 사용자 이름 등록)
         {
-            p_RepositoryFor_ISD_info = getPointerRepositoryForReadWriteMapData_isd_info();
+            p_RepositoryFor_ISD_info = tdc_shm_get_pointer_repository_for_read_write_map_data_isd_info();
 
             subCommandData_Num_index = Rx_dataPacket[index++];
 
@@ -1172,7 +1172,7 @@ void tdc_ble_mapping_fetch_packet(const int *Rx_dataPacket)  // spi 통신에서
 
         case en__mapping_write_SlotData_ISD_N_USER:  // 헤더 0x6C (맵 프로그램 관리: 쓰기 - 내부기 ID 및 사용자)
         {
-            p_RepositoryFor_ISD_info = getPointerRepositoryForReadWriteMapData_isd_info();
+            p_RepositoryFor_ISD_info = tdc_shm_get_pointer_repository_for_read_write_map_data_isd_info();
 
             subCommandData_Num_index = Rx_dataPacket[index++];
 
@@ -1432,7 +1432,7 @@ void tdc_ble_mapping_fetch_packet(const int *Rx_dataPacket)  // spi 통신에서
 
         case en__mapping_write_Mapdata_STIMUL_PARA:  // 헤더 0x6D (맵 프로그램 관리: 쓰기 - 맵 데이터)
         {
-            p_RepositoryFor_stimulPara = getPointerRepositoryForReadWriteMapData_stimulPara();
+            p_RepositoryFor_stimulPara = tdc_shm_get_pointer_repository_for_read_write_map_data_stimul_para();
 
             subCommandData_Num_index = Rx_dataPacket[index++];
             if (subCommandData_Num_index == 1)
@@ -1960,7 +1960,7 @@ ST__MAPPING_STATE tdc_ble_mapping_step(ST__ISD_STATUS ISD_state)
                         if (tdc_hal_spi_is_tx_buffer_empty())
                         {
                             tdc_ble_mapping_clear_command();
-                            changeSystemModeFlag(en__systemReset);
+                            tdc_shm_change_system_mode_flag(en__systemReset);
 
                             for (int i = 0; i < 100; i++)
                             {
@@ -2167,7 +2167,7 @@ ST__MAPPING_STATE tdc_ble_mapping_step(ST__ISD_STATUS ISD_state)
                                     tdc_ble_remote_clear_command();
                                 }
 
-                                changeSystemModeFlag(en__systemReset);
+                                tdc_shm_change_system_mode_flag(en__systemReset);
 
                                 // NOTE: 강제 리셋
 

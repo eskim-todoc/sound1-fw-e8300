@@ -3,7 +3,7 @@
 
 #include <stdbool.h>
 #include "tdc_stim_definitions.h"
-#include "cfx_cm3_sharedMemory.h"
+#include "tdc_shm.h"
 #include "tdc_isd.h"
 #include "tdc_ble_protocol.h"
 

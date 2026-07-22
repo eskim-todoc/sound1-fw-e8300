@@ -2,8 +2,8 @@
  * @file ota.h
  */
 
-#ifndef __ota_h__
-#define __ota_h__
+#ifndef __tdc_dfu_ota_h__
+#define __tdc_dfu_ota_h__
 
 #include <stdbool.h>
 #include <stdio.h>
@@ -48,6 +48,6 @@ typedef struct
     uint32_t rw;
 } CI_OTA_PREPARE_FILE_T;
 
-void ota_command_parsing(void);
+void tdc_dfu_ota_command_parsing(void);
 
-#endif  // __ota_h__
+#endif  // __tdc_dfu_ota_h__

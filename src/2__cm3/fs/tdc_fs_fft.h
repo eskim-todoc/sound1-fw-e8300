@@ -13,7 +13,7 @@
 #include <hw.h>
 
 #include <FPGA.h>
-#include <cfx_cm3_sharedMemory.h>
+#include <tdc_shm.h>
 #include <tdc_stim_definitions.h>
 
 #include <tdc_fs.h>

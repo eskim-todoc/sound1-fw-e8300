@@ -22,7 +22,7 @@
 
 #include "tdc_ble_protocol.h"
 
-#include <sdk_ci_boot.h>
+#include <tdc_dfu_sdk_boot.h>
 
 #define CI_OTA_PKT_HEADER 0x80
 

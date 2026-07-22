@@ -11,7 +11,7 @@
 
 #include "tdc_pwr_battery.h"  //ok
 
-#include "cfx_cm3_sharedMemory.h"  //ok
+#include "tdc_shm.h"  //ok
 
 #include "tdc_drv_mis2dh.h"  //ok
 #include "tdc_sys_error.h"          //ok
@@ -159,7 +159,7 @@ void update_mapNum(void)
 
     // 사용자 설정 값이 로드 되었다는 의미의 플래그가 설정 된 이후,
     // CM3에서 사용 가능한 맵 번호 판별 과정 등이 완료되면,
-    // CFX에게 맵 번호가 바뀌었다는 정보를 changeProgramMapNum() 함수로 알려준다.
+    // CFX에게 맵 번호가 바뀌었다는 정보를 tdc_shm_change_program_map_num() 함수로 알려준다.
     // 추가로, CM3 스스로에게 새로운 맵으로 자극 관련 파라미터의 계산을 다시 하도록 플레그를 세팅한다.
     // 플래그는 전역변수 newMapLoadeFlagForStimulParaCalculation를 true로 설정하는 것이다.
 
@@ -167,10 +167,10 @@ void update_mapNum(void)
     // 공유 메모리의 cfx_cm3_sharedMemoryAll.mapChangeFlag.cfx_Reloaded_MapdataFlag를 1로 설정한다.
 
     // 여기까지 완료되면, tdc_isd_step() 함수에서, isd_controlState가 en__isdStatus_stimul_10V_Ok인 상태의
-    // tdc_isd_stim_standalone_step() 함수 내부의 if (isMapdateLoaded_CFX()) 블록이 수행되는 구조이다.
+    // tdc_isd_stim_standalone_step() 함수 내부의 if (tdc_shm_is_map_data_loaded_cfx()) 블록이 수행되는 구조이다.
 
     // CFX에서 사용자 설정값 읽어 들여졌는지 확인.
-    userSettingValueLoadedFlag = isUserSettingValueLoaded_CFX();
+    userSettingValueLoadedFlag = tdc_shm_is_user_setting_value_loaded_cfx();
 
     // 사용자 설정값이 eeprom에서 읽혀졌는가
     if (userSettingValueLoadedFlag)
@@ -180,11 +180,11 @@ void update_mapNum(void)
         // 위해서 changeProgramMapNum함수를 실행한다.
         if (prev_userSettingValueLoadedFlag != userSettingValueLoadedFlag)
         {
-            mapNum                         = readProgramMapNum();
-            p_connected_isd_usableMapIndex = readConnected_ISD_usableMapIndex();
+            mapNum                         = tdc_shm_read_program_map_num();
+            p_connected_isd_usableMapIndex = tdc_shm_read_connected_isd_usable_map_index();
             iterNum                        = 0;
 
-            TDC_PRINTF_D("[UPDATE MAP] NUMBER=%d \r\n", readProgramMapNum());
+            TDC_PRINTF_D("[UPDATE MAP] NUMBER=%d \r\n", tdc_shm_read_program_map_num());
             TDC_PRINTF_D("[UPDATE MAP] CONNECTED ISD'S USABLE MAP INDEX=%d (= MAP NUM - 1) \r\n", p_connected_isd_usableMapIndex[mapNum - 1]);
 
             // 설정된 사용자 맵 번호가 사용이 불가능한 맵 번호로 되어 있을 경우.
@@ -206,14 +206,14 @@ void update_mapNum(void)
             if (iterNum < MaxNumMap)
             {
                 TDC_PRINTF_I("[UPDATE MAP] CHANGE PROGRAM MAP NUM (%d)\r\n", mapNum);
-                changeProgramMapNum(mapNum);
+                tdc_shm_change_program_map_num(mapNum);
 
-                // NOTE: 위 changeProgramMapNum() 함수는 전체적으로 아래 코드를 수행하는 꼴임.
+                // NOTE: 위 tdc_shm_change_program_map_num() 함수는 전체적으로 아래 코드를 수행하는 꼴임.
                 // cfx_cm3_sharedMemoryAll.userSettingValue.mapNum                = mapNum;
                 // cfx_cm3_sharedMemoryAll.mapChangeFlag.cm3Command_mapChange     = 1;
                 // cfx_cm3_sharedMemoryAll.mapChangeFlag.cfx_Reloaded_MapdataFlag = 0;
-                // changePcmOutputMode(PcmBitStream_Mode_NopStandby);
-                // newMapLoadeFlagForStimulParaCalculation = true; ← isd_interface_StimulationStandAlone.c의 전역변수
+                // tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_NopStandby);
+                // newMapLoadeFlagForStimulParaCalculation = true; ← tdc_isd_stim_standalone.c의 전역변수
             }
             else
             {
@@ -337,7 +337,7 @@ int main(void)
     // aes128_test();
 
     // AES128 암호화/복호화 키 정보 초기화 (NOTE: 현재 예제 키를 사용하므로, 올바른 키를 생성하여 적용해야함)
-    ci_aes_init();
+    tdc_aes_init();
 
     // JLink RTT를 강제 초기화 시킴 (버퍼 인덱스 이슈 발생 방지 등)
     SEGGER_RTT_Init();
@@ -431,7 +431,7 @@ static bool tdc_led_request_isd(bool isd_conn, tdc_led_state_t batt_st)
         {
             // 내부기 연결 상태에서는 연결된 내부기의 사용자 설정 정보에서 LED 제어 값을 이용해야 한다.
             // LED 표시 설정값: 1=켜기, 2=끄기. (truthy 검사는 2도 참이 되므로 == 1 로 명시 비교)
-            if (readLED_indicatorOnOff() == 1)
+            if (tdc_shm_read_led_indicator_on_off() == 1)
             {
                 // LED 표시 설정이 켜기(1)이면,
                 tdc_led_request(TDC_LED_SRC_ISD, TDC_LED_ST_IN_USE);
@@ -596,7 +596,7 @@ static void tdc_collect_events(tdc_normal_events_t *ev)
     ev->mcu_error    = tdc_sys_error_read();
     ev->charger      = tdc_pwr_charger_get_state();  // QCC 0x34 기반
     ev->batt_percent = tdc_pwr_battery_get_percent();   // QCC 제공. tdc_sys_init 단계에서 수집 완료.
-    ev->power_button = tdc_touch_process();      // isPowerButtonPushed() 대체
+    ev->power_button = tdc_touch_process();      // tdc_shm_is_power_button_pushed() 대체
     ev->batt_timeout = tdc_qcc_has_batt_level_rx_timed_out();
 }
 
@@ -632,13 +632,13 @@ static void tdc_handle_events(const tdc_normal_events_t *ev, tdc_normal_ctx_t *c
 
     ctx->ble_state = tdc_ble_communication_step(ctx->isd_state);
 
-    tdc_stim_indicator_out(readStimulIndicator_OnOff(),  //
+    tdc_stim_indicator_out(tdc_shm_read_stimul_indicator_on_off(),  //
                              ctx->systemState.StimulationIndicatorTriggerLowPower,
                              ctx->ble_state.StimulationIndicatorTrigger  //
     );
 
     // PMIC 켜고/끄기
-    OnOff_3V_PMIC_CM3_to_CFX(ctx->systemState.enablePMIC);
+    tdc_shm_on_off_3_v_pmic_cm3_to_cfx(ctx->systemState.enablePMIC);
 
     tdc_apply_mapping_mode(ctx->ble_state.mappingConnection);
 
@@ -687,13 +687,13 @@ static void tdc_apply_mapping_mode(bool mapping_connected)
 {
     if (mapping_connected)
     {
-        changeSystemModeFlag(en__mappingMode);
-        shareMappingProgramConnection(true);
+        tdc_shm_change_system_mode_flag(en__mappingMode);
+        tdc_shm_share_mapping_program_connection(true);
     }
     else
     {
-        changeSystemModeFlag(en__normalMode);
-        shareMappingProgramConnection(false);
+        tdc_shm_change_system_mode_flag(en__normalMode);
+        tdc_shm_share_mapping_program_connection(false);
         // tdc_sys_earpiece_update_status();
     }
 }
@@ -811,7 +811,7 @@ static bool tdc_qcc_has_batt_level_rx_timed_out(void)
 static void tdc_print_default_isd_info(void)
 {
     /* 6개 필드가 모두 같은 isd_info 를 가리키므로 베이스 포인터 하나로 통일.
-     * 순회 길이는 배열 정의(cfx_cm3_sharedMemory.h)에서 파생 - 크기 변경 시 자동 추종. */
+     * 순회 길이는 배열 정의(cfx_link/tdc_shm.h)에서 파생 - 크기 변경 시 자동 추종. */
     ST__CFX_CM3_SharedMemory_ISD_info *p_isd_info = &g_tdc_fs_ptr_entire_map->map[0].isd_info;
 
     TDC_PRINTF_W("[INFO] BOOT ISD 1 INFO \r\n");
@@ -882,7 +882,7 @@ static void func_cradle_lid_closed_loop(void)
     Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_FPGA_SLEEP);
 
     /* 5. PMIC 끄기 신호 (1.5세대에서 실질 효과 미미, 시퀀스 유지) */
-    OnOff_3V_PMIC_CM3_to_CFX(false);
+    tdc_shm_on_off_3_v_pmic_cm3_to_cfx(false);
 
     /* 6. LED 끄기 */
     tdc_led_turn_off();
@@ -1108,7 +1108,7 @@ int func_sleep(void)
     tdc_sys_control_nrf_off_command();
     tdc_qcc_set_mode(TDC_QCC_MODE_SHUTDOWN);
     Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_FPGA_SLEEP);
-    OnOff_3V_PMIC_CM3_to_CFX(false); /* Disable 3.3V, 1.2V PMIC */
+    tdc_shm_on_off_3_v_pmic_cm3_to_cfx(false); /* Disable 3.3V, 1.2V PMIC */
     tdc_led_turn_off();
 
 #if 1

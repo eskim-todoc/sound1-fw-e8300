@@ -1,5 +1,5 @@
 /*
- * ci_system_mode.h
+ * tdc_fs_stim_mute.h
  */
 
 #ifndef __tdc_fs_stim_mute_h__
@@ -13,7 +13,7 @@
 #include <hw.h>
 
 #include <FPGA.h>
-#include <cfx_cm3_sharedMemory.h>
+#include <tdc_shm.h>
 #include <tdc_stim_definitions.h>
 
 #include <tdc_fs.h>

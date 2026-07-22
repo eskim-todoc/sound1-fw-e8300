@@ -15,7 +15,7 @@
 #include <tdc_hal_timer.h>
 #include <tdc_printf.h>
 
-#include "cfx_cm3_sharedMemory.h"  // cfx_cm3_sharedMemoryAll (게인 테이블 연동)
+#include "tdc_shm.h"  // cfx_cm3_sharedMemoryAll (게인 테이블 연동)
 
 typedef struct
 {
@@ -66,11 +66,11 @@ void setting_nrf_ble_adv_info(void)
         if (isd_status.conneded_ISD)
         {
             // 수술위치
-            connectedISD_num        = read_connected_ISD_Num();
-            Tx_dataBuff[tx_index++] = (int) readConnected_ISD_Location(connectedISD_num);
+            connectedISD_num        = tdc_shm_read_connected_isd_num();
+            Tx_dataBuff[tx_index++] = (int) tdc_shm_read_connected_isd_location(connectedISD_num);
 
             // 사용자 이름
-            p_currentUserName = readConnected_ISD_userName(connectedISD_num);
+            p_currentUserName = tdc_shm_read_connected_isd_user_name(connectedISD_num);
             for (i = 0; i < 10; i++)
             {
                 Tx_dataBuff[tx_index++] = p_currentUserName[i];

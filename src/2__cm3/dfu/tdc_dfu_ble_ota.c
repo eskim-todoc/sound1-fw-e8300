@@ -1,9 +1,9 @@
 /**
- * @file otaControl.c
+ * @file tdc_dfu_ota.c
  */
 
 #include <tdc_dfu_ble_ota.h>
-#include <ci_boot.h>
+#include <tdc_boot.h>
 #include <tdc_hal_spi.h>
 #include <tdc_sys_error.h>
 #include <tdc_fs.h>
@@ -68,7 +68,7 @@ static void _handle_command_option_write(int slot_num, int file_type, int *p_pac
 {
     FILINFO           fno;
     FIL              *fp;
-    snd_boot_status_t boot_status;
+    tdc_boot_status_t boot_status;
     uint8_t           resp_packet[9] = {0};
     int               total_byte;
     int               end_data_index;
@@ -78,7 +78,7 @@ static void _handle_command_option_write(int slot_num, int file_type, int *p_pac
     FRESULT           res;
 
     // get boot status
-    if (ci_boot_get_status(&boot_status) != BOOT_RET_TRUE)
+    if (tdc_boot_get_status(&boot_status) != BOOT_RET_TRUE)
     {
         _send_error_packet_boot(1);  // Error : File read
         return;
@@ -90,8 +90,8 @@ static void _handle_command_option_write(int slot_num, int file_type, int *p_pac
         return;
     }
 
-    // fp = ci_file_system_get_fp();
-    fp = ci_fatfs_get_fp();
+    // fp = tdc_fs_get_fp();
+    fp = tdc_fs_get_fp();
 
     // 쓰기 옵션 첫 데이터 인덱스에서 파일을 준비해야 한다.
     // 드라이브를 1에서 0으로 변경해준다.
@@ -288,8 +288,8 @@ static void _fetch_packet_data(int *p_packet, int data_index)
     FRESULT res;
     FIL    *fp;
 
-    // fp = ci_file_system_get_fp();
-    fp = ci_fatfs_get_fp();
+    // fp = tdc_fs_get_fp();
+    fp = tdc_fs_get_fp();
 
     wbuf[0] = p_packet[0];  // Header
     wbuf[1] = p_packet[1];  // Data index (MSB)

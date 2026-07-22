@@ -1,7 +1,7 @@
 #include <hw.h>
 #include <stdbool.h>
 #include "FPGA.h"
-#include "cfx_cm3_sharedMemory.h"
+#include "tdc_shm.h"
 #include "tdc_sys_error.h"
 #include "tdc_stim_common.h"
 #include "tdc_isd.h"
@@ -40,7 +40,7 @@ bool tdc_sys_earpiece_update_status(void)
                 TDC_PRINTF_D("[EARPIRCE] CONNECTED \r\n");
             }
 
-            updateEarpieceDetectionValue_toCFX(true);
+            tdc_shm_update_earpiece_detection_value_to_cfx(true);
         }
         else
         {
@@ -51,7 +51,7 @@ bool tdc_sys_earpiece_update_status(void)
                 TDC_PRINTF_D("[EARPIECE] DISCONNECTED \r\n");
             }
 
-            updateEarpieceDetectionValue_toCFX(false);
+            tdc_shm_update_earpiece_detection_value_to_cfx(false);
         }
 
         return true;
@@ -77,7 +77,7 @@ bool tdc_sys_earpiece_update_status(void)
                         TDC_PRINTF("[EARPIRCE] CONNECTED \r\n");
                     }
 
-                    updateEarpieceDetectionValue_toCFX(true);
+                    tdc_shm_update_earpiece_detection_value_to_cfx(true);
                 }
                 else
                 {
@@ -88,7 +88,7 @@ bool tdc_sys_earpiece_update_status(void)
                         TDC_PRINTF("[EARPIECE] DISCONNECTED \r\n");
                     }
 
-                    updateEarpieceDetectionValue_toCFX(false);
+                    tdc_shm_update_earpiece_detection_value_to_cfx(false);
                 }
 
                 return true;

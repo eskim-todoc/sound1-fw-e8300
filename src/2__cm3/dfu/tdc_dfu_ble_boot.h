@@ -14,7 +14,7 @@
 
 #include <tdc_ble_protocol.h>
 
-#include <sdk_ci_boot.h>
+#include <tdc_dfu_sdk_boot.h>
 
 // 패킷 헤더
 typedef enum

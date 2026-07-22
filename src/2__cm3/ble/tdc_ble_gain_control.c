@@ -14,7 +14,7 @@
 
 #include <stdbool.h>
 
-#include "cfx_cm3_sharedMemory.h"  // cfx_cm3_sharedMemoryAll
+#include "tdc_shm.h"  // cfx_cm3_sharedMemoryAll
 #include "tdc_ble_remote.h"         // ST__REMOTECONTROL_PACKET
 #include <tdc_printf.h>
 #include <tdc_fs_gain.h>
@@ -126,7 +126,7 @@ static void gc_write_index(int gain_type, int gain_index)
 static bool gc_save_to_file(void)
 {
     tdc_fs_gain_setting_t gain_setting;
-    int                  isd_num = read_connected_ISD_Num();
+    int                  isd_num = tdc_shm_read_connected_isd_num();
 
     // 매핑 모드에서는 ISD 슬롯 번호가 임시 값이라 엉뚱한 사용자 자리에 쓸 수 있다.
     if (cfx_cm3_sharedMemoryAll.systemShare.system_opMode != en__normalMode)

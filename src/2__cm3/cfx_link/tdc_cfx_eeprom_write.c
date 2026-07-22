@@ -3,9 +3,9 @@
  */
 
 #include <tdc_fs.h>
-#include <fn_from_cfx_eeprom_write.h>
+#include <tdc_cfx_eeprom_write.h>
 
-void fn_write_userSettingParameters(int connected_ISD_num)
+void tdc_cfx_eeprom_write_user_setting_parameters(int connected_ISD_num)
 {
     if (0 < cfx_cm3_sharedMemoryAll.userSettingValue.mapNum)  // 초기화 과정이 다 끝나고, 맵 번호가 0이 아닐 때만 수행할 수 있게 한다.
     {
@@ -15,7 +15,7 @@ void fn_write_userSettingParameters(int connected_ISD_num)
     }
 }
 
-void fn_write_userSettingParameters_byMapping(void)
+void tdc_cfx_eeprom_write_user_setting_parameters_by_mapping(void)
 {
     int                                                     isd_num;
     ST__CFX_CM3_SharedMemory_RepositoryForReadWriteMapData* p_repo_for_rw_map_data;
@@ -33,7 +33,7 @@ void fn_write_userSettingParameters_byMapping(void)
     // tdc_fs_map_write_map_stamp(isd_num);          // 신규 코드
 }
 
-void fn_write_mapStmpParameters_byMapping(void)
+void tdc_cfx_eeprom_write_map_stamp_parameters_by_mapping(void)
 {
     int                                                     isd_num;
     ST__CFX_CM3_SharedMemory_RepositoryForReadWriteMapData* p_repo_for_rw_map_data;
@@ -46,7 +46,7 @@ void fn_write_mapStmpParameters_byMapping(void)
     tdc_fs_map_write_map_stamp(isd_num);  // 신규 코드
 }
 
-void fn_write_ISD_info_byMapping(void)
+void tdc_cfx_eeprom_write_isd_info_by_mapping(void)
 {
     int isd_num;
 
@@ -60,7 +60,7 @@ void fn_write_ISD_info_byMapping(void)
     }
 }
 
-void fn_write_mapData_byMapping(void)
+void tdc_cfx_eeprom_write_map_data_by_mapping(void)
 {
     int                               isd_num, map_num;
     ST__CFX_CM3_SharedMemory_mapData *p_src_map_data, *p_dst_map_data;
@@ -76,7 +76,7 @@ void fn_write_mapData_byMapping(void)
     tdc_fs_map_write_map_data(isd_num, map_num);  // 신규 코드
 }
 
-void fn_write_Mapdata_mappingApp(void)
+void tdc_cfx_eeprom_write_mapdata_mapping_app(void)
 {
     int map_num;
 
@@ -84,15 +84,15 @@ void fn_write_Mapdata_mappingApp(void)
 
     if (map_num == 0)  // 맵 번호가 0이면 내부기 정보 및 사용자 설정 정보를 쓰기
     {
-        fn_write_ISD_info_byMapping();
-        fn_write_userSettingParameters_byMapping();
-        fn_write_mapStmpParameters_byMapping();
+        tdc_cfx_eeprom_write_isd_info_by_mapping();
+        tdc_cfx_eeprom_write_user_setting_parameters_by_mapping();
+        tdc_cfx_eeprom_write_map_stamp_parameters_by_mapping();
     }
     else
     {
-        fn_write_mapData_byMapping();
+        tdc_cfx_eeprom_write_map_data_by_mapping();
     }
 
-    fn_read_All_isd_info();
+    tdc_cfx_eeprom_read_all_isd_info();
     cfx_cm3_sharedMemoryAll.ReadWriteCommand_ForFlash.flashCommand = 0;
 }

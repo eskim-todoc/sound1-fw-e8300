@@ -12,7 +12,7 @@ TDC_FS_ENTIRE_MAP_T   *g_tdc_fs_ptr_entire_map;
 FATFS g_tdc_fs_mount;
 FIL   g_tdc_fs_ohdl;
 
-FIL *ci_fatfs_get_fp(void)
+FIL *tdc_fs_get_fp(void)
 {
     return &g_tdc_fs_ohdl;
 }
@@ -322,7 +322,7 @@ int tdc_fs_read_with_crc_and_aes128(char     *p_name,  //
 
         for (int i = 0; i < full_blocks; ++i)
         {
-            ci_aes_decrypt(p);  // 16B block
+            tdc_aes_decrypt(p);  // 16B block
             p += 16;
         }
 
@@ -354,7 +354,7 @@ int tdc_fs_read_with_crc_and_aes128(char     *p_name,  //
         }
 
         // d) 마지막 블록 복호화
-        ci_aes_decrypt(blk);
+        tdc_aes_decrypt(blk);
 
         // e) 평문 재배치: data tail, CRC, PAD
         if (remain > 0)
@@ -606,7 +606,7 @@ int tdc_fs_write_with_crc_and_aes128(char     *p_name,
 
         if (enable_aes)
         {
-            ci_aes_encrypt(blk);  // 16B in-place 암호화
+            tdc_aes_encrypt(blk);  // 16B in-place 암호화
 
 #if 0
             SEGGER_RTT_printf(0, "BLK_[%4d] : ", i);
@@ -655,7 +655,7 @@ int tdc_fs_write_with_crc_and_aes128(char     *p_name,
 
         if (enable_aes)
         {
-            ci_aes_encrypt(last_cipher);
+            tdc_aes_encrypt(last_cipher);
 #if 0
             SEGGER_RTT_printf(0, "BLK_[%4d] : ", full_blocks);
 

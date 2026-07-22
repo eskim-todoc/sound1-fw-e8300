@@ -2,7 +2,7 @@
  * @file ota.c
  */
 
-#include <ci_ota.h>
+#include <tdc_dfu_ota.h>
 
 #define _INFINITE_LOOP()                                                                                                                                                                                                                                                                                                       \
     while (1)                                                                                                                                                                                                                                                                                                                  \
@@ -151,7 +151,7 @@ void ota_update_file(const char *name)
     RTT_printf("File write done. '%s' \r\n", name);
 }
 
-void ota_command_parsing(void)
+void tdc_dfu_ota_command_parsing(void)
 {
     int     len;
     uint8_t boot_val;
@@ -349,7 +349,7 @@ static void _ensure_dir(const char *p_path)
     }
 }
 
-CI_OTA_RET_E ci_ota_prepare_file(CI_OTA_PREPARE_FILE_T *p_prepare)
+CI_OTA_RET_E tdc_dfu_ota_prepare_file(CI_OTA_PREPARE_FILE_T *p_prepare)
 {
     FRESULT res;
     bool    ret;
@@ -373,7 +373,7 @@ CI_OTA_RET_E ci_ota_prepare_file(CI_OTA_PREPARE_FILE_T *p_prepare)
     strcat(path, p_name);
 
     // fp = tdc_fs_get_fp();
-    fp = ci_fatfs_get_fp();
+    fp = tdc_fs_get_fp();
 
     res = f_open(fp, path, (FA_CREATE_ALWAYS | FA_READ | FA_WRITE));
 
@@ -396,7 +396,7 @@ CI_OTA_RET_E ci_ota_prepare_file(CI_OTA_PREPARE_FILE_T *p_prepare)
     return CI_OTA_RET_SUCCESS;
 }
 
-CI_OTA_RET_E ci_ota_write_file(uint8_t *p_data, uint32_t len)
+CI_OTA_RET_E tdc_dfu_ota_write_file(uint8_t *p_data, uint32_t len)
 {
     FIL    *fp;
     FRESULT res;
@@ -404,8 +404,8 @@ CI_OTA_RET_E ci_ota_write_file(uint8_t *p_data, uint32_t len)
     UINT    btw;
 
     btw = len;
-    // fp  = ci_file_system_get_fp();
-    fp  = ci_fatfs_get_fp();
+    // fp  = tdc_fs_get_fp();
+    fp  = tdc_fs_get_fp();
     res = f_write(fp, p_data, btw, &bw);
 
     if ((res != FR_OK) || (bw != len))

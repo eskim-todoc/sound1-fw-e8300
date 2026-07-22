@@ -5,7 +5,7 @@
 #include "processorDirective.h"
 #include "board.h"
 #include "tdc_led_output.h"
-#include "cfx_cm3_sharedMemory.h"
+#include "tdc_shm.h"
 
 #include <tdc_hal_timer.h>
 #include <tdc_util.h>  /* tdc_util_delay_ms */
@@ -650,7 +650,7 @@ static void led_engine_run(tdc_led_state_t st, bool reset)
  * 한 tick 내 두 번 호출되어도 동등 결과. */
 static tdc_led_state_t compute_best_state(void)
 {
-    bool        user_off = (readLED_indicatorOnOff() == 2);
+    bool        user_off = (tdc_shm_read_led_indicator_on_off() == 2);
     tdc_led_state_t best     = TDC_LED_ST_IDLE;
     int         max_p    = -1;
 

@@ -4,7 +4,7 @@
 #include <stdbool.h>
 
 #include "tdc_sys_error.h"
-#include "cfx_cm3_sharedMemory.h"
+#include "tdc_shm.h"
 
 #include "tdc_drv_mis2dh.h"
 #include "tdc_hal_spi.h"
@@ -193,7 +193,7 @@ static void handle_charging(ST__USB_CONNECTOR charger, bool power_button_pushed,
     out_state->BLE_Off    = true;  /* NRF 를 꺼진 상태로 유지 */
     out_state->enablePMIC = false; /* 상시전원 외 전원 차단을 CFX 에 전달 */
 
-    changePcmOutputMode(PcmBitStream_Mode_FillZero);
+    tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_FillZero);
 
     if (charger.carryingCasePluggedIn == df_Connected) /* 충전 케이스(크래들) 연결됨 */
     {

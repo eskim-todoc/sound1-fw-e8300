@@ -8,7 +8,7 @@
 #include "tdc_ble_remote_sp_para.h"
 #include "tdc_hal_spi.h"
 #include "tdc_stim_definitions.h"
-#include "cfx_cm3_sharedMemory.h"
+#include "tdc_shm.h"
 #include "board.h"  // 디버깅용
 
 #include "tdc_stim_para_cal.h"
@@ -111,7 +111,7 @@ void tdc_ble_remote_fetch_packet(const int *Rx_dataPacket)
 
         case en__remoteControl_write_SlotData_ISD_N_USER:  // 0x4C
         {
-            p_RepositoryFor_ISD_info = getPointerRepositoryForReadWriteMapData_isd_info();
+            p_RepositoryFor_ISD_info = tdc_shm_get_pointer_repository_for_read_write_map_data_isd_info();
 
             subCommandData_Num_index = Rx_dataPacket[index++];  // 데이터 인덱스
 
@@ -383,7 +383,7 @@ void tdc_ble_remote_fetch_packet(const int *Rx_dataPacket)
         case en__remoteControl_write_Mapdata_STIMUL_PARA:
         {
 
-            p_RepositoryFor_stimulPara = getPointerRepositoryForReadWriteMapData_stimulPara();
+            p_RepositoryFor_stimulPara = tdc_shm_get_pointer_repository_for_read_write_map_data_stimul_para();
 
             subCommandData_Num_index = Rx_dataPacket[index++];
             if (subCommandData_Num_index == 1)
@@ -683,7 +683,7 @@ ST__REMOTECONTROL_STATE tdc_ble_remote_step(bool isdConnection)  // 연결 상�
     //매핑 명령이 수신되 시접에 내부기 연결 확인용 backtel 전송 명령이 실행 중일 경우에는 백텔 수신이 완료되고 명령을 실행 할 수 있도록 한다.
     if(remoteDataPacket.fetched_command!=en__remoteControl_IDLE)
     {
-        if(readCurrentPcmOutputMode()==BackelCircuitDisabled_FpagFifoCleared_duringLiveStimulation)
+        if(tdc_shm_read_current_pcm_output_mode()==BackelCircuitDisabled_FpagFifoCleared_duringLiveStimulation)
         {
             remoteDataPacket.command=remoteDataPacket.fetched_command;
             remoteDataPacket.fetched_command=en__remoteControl_IDLE;
@@ -723,8 +723,8 @@ ST__REMOTECONTROL_STATE tdc_ble_remote_step(bool isdConnection)  // 연결 상�
 
     if (en__remoteControl_check_isd_passKey == remoteDataPacket.command)
     {
-        connectedISD_num             = read_connected_ISD_Num();
-        p_conectedISD_remoconPasskey = read_recomcon_passkey_connected_ISD(connectedISD_num);
+        connectedISD_num             = tdc_shm_read_connected_isd_num();
+        p_conectedISD_remoconPasskey = tdc_shm_read_remocon_passkey_connected_isd(connectedISD_num);
         remocon_passkey_Match        = true;
 
 #if 0  // IMPORTANT: 패스키 인증을 더 이상 사용하지 않는다.
@@ -816,7 +816,7 @@ ST__REMOTECONTROL_STATE tdc_ble_remote_step(bool isdConnection)  // 연결 상�
 #if 0  // 맵에 들어있는 맵핑일자들에서 최신 맵일자를 전송하는 경우
                     for (i = 0; i < MaxNumMap; i++)
                     {
-                        p_connected_ids_mapDate = readConnected_ISD_MapDate(i + 1);
+                        p_connected_ids_mapDate = tdc_shm_read_connected_isd_map_date(i + 1);
                         for (k = 0; k < 6; k++)
                         {
                             connected_isd_mapDate[i][k] = *p_connected_ids_mapDate++;
@@ -903,7 +903,7 @@ ST__REMOTECONTROL_STATE tdc_ble_remote_step(bool isdConnection)  // 연결 상�
                     }
 
                     // 담겨져 있는 맵 개수
-                    Tx_dataBuff[tx_index++] = readConnected_ISD_usableMapNum();
+                    Tx_dataBuff[tx_index++] = tdc_shm_read_connected_isd_usable_map_num();
 
                     // 송신 데이터 SPI TX버퍼에 복사
 
@@ -920,7 +920,7 @@ ST__REMOTECONTROL_STATE tdc_ble_remote_step(bool isdConnection)  // 연결 상�
 
                     // pay-load 준비
                     // 최신 맵 날짜
-                    p_mapStemp = readConnected_ISD_MapStamp();
+                    p_mapStemp = tdc_shm_read_connected_isd_map_stamp();
 
                     for (k = 0; k < df_lengthOf_mapDate; k++)
                     {
@@ -928,7 +928,7 @@ ST__REMOTECONTROL_STATE tdc_ble_remote_step(bool isdConnection)  // 연결 상�
                     }
 
                     // 담겨져 있는 맵 개수
-                    bufferForSPI_tx[tx_index++] = readConnected_ISD_usableMapNum();
+                    bufferForSPI_tx[tx_index++] = tdc_shm_read_connected_isd_usable_map_num();
 
                     // 송신 데이터 SPI TX버퍼에 복사
                     tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, tx_index);
@@ -946,8 +946,8 @@ ST__REMOTECONTROL_STATE tdc_ble_remote_step(bool isdConnection)  // 연결 상�
                     Tx_dataBuff[tx_index++] = remoteDataPacket.command;
 
                     // pay-load 준비
-                    connectedISD_num  = read_connected_ISD_Num();
-                    p_currentUserName = readConnected_ISD_userName(connectedISD_num);
+                    connectedISD_num  = tdc_shm_read_connected_isd_num();
+                    p_currentUserName = tdc_shm_read_connected_isd_user_name(connectedISD_num);
 
                     for (i = 0; i < todoc_PayloadSize; i++)
                     {
@@ -977,12 +977,12 @@ ST__REMOTECONTROL_STATE tdc_ble_remote_step(bool isdConnection)  // 연결 상�
 
                     bufferForSPI_tx[tx_index++] = remoteDataPacket.command;     // command loop-back
                     bufferForSPI_tx[tx_index++] = value;                        // 배터리 잔량
-                    bufferForSPI_tx[tx_index++] = readProgramMapNum();          // 맵 번호
-                    bufferForSPI_tx[tx_index++] = readStimulVolume();           // 최대 출력
-                    bufferForSPI_tx[tx_index++] = readAudioVolume();            // 볼륨
-                    bufferForSPI_tx[tx_index++] = readLED_indicatorOnOff();     // LED 알림
-                    bufferForSPI_tx[tx_index++] = readTeleCoil_OnOff();         // 텔레코일
-                    bufferForSPI_tx[tx_index++] = readStimulIndicator_OnOff();  // 자극 알림
+                    bufferForSPI_tx[tx_index++] = tdc_shm_read_program_map_num();          // 맵 번호
+                    bufferForSPI_tx[tx_index++] = tdc_shm_read_stimul_volume();           // 최대 출력
+                    bufferForSPI_tx[tx_index++] = tdc_shm_read_audio_volume();            // 볼륨
+                    bufferForSPI_tx[tx_index++] = tdc_shm_read_led_indicator_on_off();     // LED 알림
+                    bufferForSPI_tx[tx_index++] = tdc_shm_read_tele_coil_on_off();         // 텔레코일
+                    bufferForSPI_tx[tx_index++] = tdc_shm_read_stimul_indicator_on_off();  // 자극 알림
 
                     tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, tx_index);  // 송신 데이터 SPI TX버퍼에 복사
                     tdc_ble_remote_clear_command();                      //  명령 종료
@@ -991,9 +991,9 @@ ST__REMOTECONTROL_STATE tdc_ble_remote_step(bool isdConnection)  // 연결 상�
 
                 case en__remoteControl_changeMapNum:
                 {
-                    currenMapIndex                 = readProgramMapNum();
+                    currenMapIndex                 = tdc_shm_read_program_map_num();
                     nextMapIndex                   = currenMapIndex;
-                    p_connected_isd_usableMapIndex = readConnected_ISD_usableMapIndex();
+                    p_connected_isd_usableMapIndex = tdc_shm_read_connected_isd_usable_map_index();
                     value                          = remoteDataPacket.data[0];
                     iterNum                        = 0;
 
@@ -1016,7 +1016,7 @@ ST__REMOTECONTROL_STATE tdc_ble_remote_step(bool isdConnection)  // 연결 상�
 
                         if (iterNum <= MaxNumMap)
                         {
-                            changeProgramMapNum(nextMapIndex);
+                            tdc_shm_change_program_map_num(nextMapIndex);
 
                             // 송신 데이터 준비
                             bufferForSPI_tx[tx_index++] = remoteDataPacket.command;  // command loop-back
@@ -1050,7 +1050,7 @@ ST__REMOTECONTROL_STATE tdc_ble_remote_step(bool isdConnection)  // 연결 상�
 
                         if (iterNum <= MaxNumMap)
                         {
-                            changeProgramMapNum(nextMapIndex);
+                            tdc_shm_change_program_map_num(nextMapIndex);
 
                             // 송신 데이터 준비
                             bufferForSPI_tx[tx_index++] = remoteDataPacket.command;  // command loop-back
@@ -1077,7 +1077,7 @@ ST__REMOTECONTROL_STATE tdc_ble_remote_step(bool isdConnection)  // 연결 상�
                 {
                     if ((remoteDataPacket.data[0] == en__PAYLOAD_INCREASE) || (remoteDataPacket.data[0] == en__PAYLOAD_DECREASE))
                     {
-                        volume = readStimulVolume();
+                        volume = tdc_shm_read_stimul_volume();
 
                         if (remoteDataPacket.data[0] == en__PAYLOAD_INCREASE)
                         {
@@ -1085,7 +1085,7 @@ ST__REMOTECONTROL_STATE tdc_ble_remote_step(bool isdConnection)  // 연결 상�
                             {
                                 volume++;
                             }
-                            changeStimulVolume(volume);
+                            tdc_shm_change_stimul_volume(volume);
                         }
                         else if (remoteDataPacket.data[0] == en__PAYLOAD_DECREASE)
                         {
@@ -1093,12 +1093,12 @@ ST__REMOTECONTROL_STATE tdc_ble_remote_step(bool isdConnection)  // 연결 상�
                             {
                                 volume--;
                             }
-                            changeStimulVolume(volume);
+                            tdc_shm_change_stimul_volume(volume);
                         }
 
                         // 송신 데이터 준비
                         bufferForSPI_tx[tx_index++] = remoteDataPacket.command;  // command loop-back
-                        bufferForSPI_tx[tx_index++] = readStimulVolume();        // pay-load 준비
+                        bufferForSPI_tx[tx_index++] = tdc_shm_read_stimul_volume();        // pay-load 준비
 
                         tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, tx_index);  // 송신 데이터 SPI TX버퍼에 복사
                         tdc_ble_remote_clear_command();                      //  명령 종료
@@ -1115,7 +1115,7 @@ ST__REMOTECONTROL_STATE tdc_ble_remote_step(bool isdConnection)  // 연결 상�
                 {
                     if ((remoteDataPacket.data[0] == en__PAYLOAD_INCREASE) || (remoteDataPacket.data[0] == en__PAYLOAD_DECREASE))
                     {
-                        volume = readAudioVolume();
+                        volume = tdc_shm_read_audio_volume();
 
                         if (remoteDataPacket.data[0] == en__PAYLOAD_INCREASE)
                         {
@@ -1123,7 +1123,7 @@ ST__REMOTECONTROL_STATE tdc_ble_remote_step(bool isdConnection)  // 연결 상�
                             {
                                 volume++;
                             }
-                            changeAudioVolume(volume);
+                            tdc_shm_change_audio_volume(volume);
                         }
                         else if (remoteDataPacket.data[0] == en__PAYLOAD_DECREASE)
                         {
@@ -1131,12 +1131,12 @@ ST__REMOTECONTROL_STATE tdc_ble_remote_step(bool isdConnection)  // 연결 상�
                             {
                                 volume--;
                             }
-                            changeAudioVolume(volume);
+                            tdc_shm_change_audio_volume(volume);
                         }
 
                         // 송신 데이터 준비
                         bufferForSPI_tx[tx_index++] = remoteDataPacket.command;  // command loop-back
-                        bufferForSPI_tx[tx_index++] = readAudioVolume();         // pay-load 준비
+                        bufferForSPI_tx[tx_index++] = tdc_shm_read_audio_volume();         // pay-load 준비
 
                         tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, tx_index);  // 송신 데이터 SPI TX버퍼에 복사
                         tdc_ble_remote_clear_command();                      //  명령 종료
@@ -1153,11 +1153,11 @@ ST__REMOTECONTROL_STATE tdc_ble_remote_step(bool isdConnection)  // 연결 상�
                 {
                     if ((remoteDataPacket.data[0] == en__PAYLOAD_ON) || (remoteDataPacket.data[0] == en__PAYLOAD_OFF))
                     {
-                        changeTeleCoil_OnOff(remoteDataPacket.data[0]);
+                        tdc_shm_change_tele_coil_on_off(remoteDataPacket.data[0]);
 
                         // 송신 데이터 준비
                         bufferForSPI_tx[tx_index++] = remoteDataPacket.command;  // command loop-back
-                        bufferForSPI_tx[tx_index++] = readTeleCoil_OnOff();      // pay-load 준비
+                        bufferForSPI_tx[tx_index++] = tdc_shm_read_tele_coil_on_off();      // pay-load 준비
 
                         tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, tx_index);  // 송신 데이터 SPI TX버퍼에 복사
                         tdc_ble_remote_clear_command();                      //  명령 종료
@@ -1174,11 +1174,11 @@ ST__REMOTECONTROL_STATE tdc_ble_remote_step(bool isdConnection)  // 연결 상�
                 {
                     if ((remoteDataPacket.data[0] == en__PAYLOAD_ON) || (remoteDataPacket.data[0] == en__PAYLOAD_OFF))
                     {
-                        changeStimulIndicator_OnOff(remoteDataPacket.data[0]);
+                        tdc_shm_change_stimul_indicator_on_off(remoteDataPacket.data[0]);
 
                         // 송신 데이터 준비
                         bufferForSPI_tx[tx_index++] = remoteDataPacket.command;     // command loop-back
-                        bufferForSPI_tx[tx_index++] = readStimulIndicator_OnOff();  // pay-load 준비
+                        bufferForSPI_tx[tx_index++] = tdc_shm_read_stimul_indicator_on_off();  // pay-load 준비
 
                         tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, tx_index);  // 송신 데이터 SPI TX버퍼에 복사
                         tdc_ble_remote_clear_command();                      // 명령 종료
@@ -1195,11 +1195,11 @@ ST__REMOTECONTROL_STATE tdc_ble_remote_step(bool isdConnection)  // 연결 상�
                 {
                     if ((remoteDataPacket.data[0] == en__PAYLOAD_ON) || (remoteDataPacket.data[0] == en__PAYLOAD_OFF))
                     {
-                        changeLED_indicatorOnOff(remoteDataPacket.data[0]);
+                        tdc_shm_change_led_indicator_on_off(remoteDataPacket.data[0]);
 
                         // 송신 데이터 준비
                         bufferForSPI_tx[tx_index++] = remoteDataPacket.command;  // command loop-back
-                        bufferForSPI_tx[tx_index++] = readLED_indicatorOnOff();  // pay-load 준비
+                        bufferForSPI_tx[tx_index++] = tdc_shm_read_led_indicator_on_off();  // pay-load 준비
 
                         tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, tx_index);  // 송신 데이터 SPI TX버퍼에 복사
                         tdc_ble_remote_clear_command();                      //  명령 종료
@@ -1295,7 +1295,7 @@ ST__REMOTECONTROL_STATE tdc_ble_remote_step(bool isdConnection)  // 연결 상�
                         {
                             if (tdc_hal_spi_is_tx_buffer_empty())
                             {
-                                // changeSystemModeFlag(en__systemReset);  // 제조용 리모콘에서 페어링키 쓰기 명령을 보낼때 nrf에서 페어링키를 쓰고 리셋을
+                                // tdc_shm_change_system_mode_flag(en__systemReset);  // 제조용 리모콘에서 페어링키 쓰기 명령을 보낼때 nrf에서 페어링키를 쓰고 리셋을
                                 // 한다. 따라서 여기서 리셋하는 경우가 발생하면 전송에러가 발생된다. 명령 종료
                                 if (en__remoteControl_recover_ALL_SlotData_ManufactureData > 0x60)
                                 {

@@ -2,7 +2,7 @@
 #include <stdbool.h>
 
 #include "tdc_sys_error.h"
-#include "cfx_cm3_sharedMemory.h"
+#include "tdc_shm.h"
 #include "tdc_ble_mapping.h"
 #include "tdc_ble_remote.h"
 #include "tdc_hal_spi.h"
@@ -31,19 +31,19 @@ void tdc_isd_map_read_original_info_setting(bool startFlag, int command)
 
         dataPacket_index = 1;
 
-        prevPcmOutputMode = readCurrentPcmOutputMode();
-        changePcmOutputMode(PcmBitStream_Mode_NopStandby);
+        prevPcmOutputMode = tdc_shm_read_current_pcm_output_mode();
+        tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_NopStandby);
 
-        setReadWriteMapDataFlashCommand(FlashCommand);
+        tdc_shm_set_read_write_map_data_flash_command(FlashCommand);
     }
     else
     {
-        if (isReadWriteMapDataFlashCommandDone())  // CFX에서 eeprom 읽기가 완료된 상태
+        if (tdc_shm_is_read_write_map_data_flash_command_done())  // CFX에서 eeprom 읽기가 완료된 상태
         {
 
-            changePcmOutputMode(prevPcmOutputMode);
+            tdc_shm_change_pcm_output_mode(prevPcmOutputMode);
 
-            p_RepositoryFor_ISD_info = getPointerRepositoryForReadWriteMapData_isd_info();
+            p_RepositoryFor_ISD_info = tdc_shm_get_pointer_repository_for_read_write_map_data_isd_info();
 
             // command loop-back
             bufferForSPI_tx[buffer_tx_index++] = command;
@@ -166,15 +166,15 @@ void tdc_isd_map_write_original_info_setting(bool startFlag, int command)
                     FlashCommand.isd_index    = 1;
                     FlashCommand.map_index    = 0;  // 맵 인덱스가 0이면 CFX에서 ISD 정보 및 사용자 설정값을 쓰도록 한다.
 
-                    prevPcmOutputMode = readCurrentPcmOutputMode();
-                    changePcmOutputMode(PcmBitStream_Mode_NopStandby);
+                    prevPcmOutputMode = tdc_shm_read_current_pcm_output_mode();
+                    tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_NopStandby);
 
-                    setReadWriteMapDataFlashCommand(FlashCommand);
+                    tdc_shm_set_read_write_map_data_flash_command(FlashCommand);
 
                     startFlashCommand = true;
                 }
 
-                if (isReadWriteMapDataFlashCommandDone())  // CFX에서 eeprom 쓰기가 완료된 상태
+                if (tdc_shm_is_read_write_map_data_flash_command_done())  // CFX에서 eeprom 쓰기가 완료된 상태
                 {
 
                     startFlashCommand = false;
@@ -230,18 +230,18 @@ void tdc_isd_map_read_info_setting(bool startFlag, int command, int slot_index)
 
         dataPacket_index = 1;
 
-        prevPcmOutputMode = readCurrentPcmOutputMode();
-        changePcmOutputMode(PcmBitStream_Mode_NopStandby);
+        prevPcmOutputMode = tdc_shm_read_current_pcm_output_mode();
+        tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_NopStandby);
 
-        setReadWriteMapDataFlashCommand(FlashCommand);
+        tdc_shm_set_read_write_map_data_flash_command(FlashCommand);
     }
     else
     {
-        if (isReadWriteMapDataFlashCommandDone())  // CFX에서 eeprom 읽기가 완료된 상태
+        if (tdc_shm_is_read_write_map_data_flash_command_done())  // CFX에서 eeprom 읽기가 완료된 상태
         {
-            changePcmOutputMode(prevPcmOutputMode);
+            tdc_shm_change_pcm_output_mode(prevPcmOutputMode);
 
-            p_RepositoryFor_ISD_info = getPointerRepositoryForReadWriteMapData_isd_info();
+            p_RepositoryFor_ISD_info = tdc_shm_get_pointer_repository_for_read_write_map_data_isd_info();
 
             // command loop-back
             bufferForSPI_tx[buffer_tx_index++] = command;
@@ -346,31 +346,31 @@ void tdc_isd_map_write_info_setting(bool startFlag, int command, int slot_index)
         FlashCommand.isd_index    = slot_index;
         FlashCommand.map_index    = 0;  // 맵 인덱스가 0이면 CFX에서 ISD 정보 및 사용자 설정값을 쓰도록 한다.
 
-        prevPcmOutputMode = readCurrentPcmOutputMode();
-        changePcmOutputMode(PcmBitStream_Mode_NopStandby);
+        prevPcmOutputMode = tdc_shm_read_current_pcm_output_mode();
+        tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_NopStandby);
 
-        setReadWriteMapDataFlashCommand(FlashCommand);
+        tdc_shm_set_read_write_map_data_flash_command(FlashCommand);
     }
     else
     {
-        if (isReadWriteMapDataFlashCommandDone())  // CFX에서 eeprom 쓰기가 완료된 상태
+        if (tdc_shm_is_read_write_map_data_flash_command_done())  // CFX에서 eeprom 쓰기가 완료된 상태
         {
 
 #if 0
 
-                                        p_RepositoryFor_buffer= getPointerRepositoryForReadWriteMapData_userSetting();
+                                        p_RepositoryFor_buffer= tdc_shm_get_pointer_repository_for_read_write_map_data_user_setting();
 
 
-                                        changeProgramMapNum(p_RepositoryFor_buffer[0]);
-                                        changeStimulVolume(p_RepositoryFor_buffer[1]);
-                                        changeAudioVolume(p_RepositoryFor_buffer[2]);
-                                        changeLED_indicatorOnOff(p_RepositoryFor_buffer[3]);
-                                        changeStimulIndicator_OnOff(p_RepositoryFor_buffer[4]);
-                                        changeTeleCoil_OnOff(p_RepositoryFor_buffer[5]);
+                                        tdc_shm_change_program_map_num(p_RepositoryFor_buffer[0]);
+                                        tdc_shm_change_stimul_volume(p_RepositoryFor_buffer[1]);
+                                        tdc_shm_change_audio_volume(p_RepositoryFor_buffer[2]);
+                                        tdc_shm_change_led_indicator_on_off(p_RepositoryFor_buffer[3]);
+                                        tdc_shm_change_stimul_indicator_on_off(p_RepositoryFor_buffer[4]);
+                                        tdc_shm_change_tele_coil_on_off(p_RepositoryFor_buffer[5]);
 
 #endif
 
-            changePcmOutputMode(prevPcmOutputMode);
+            tdc_shm_change_pcm_output_mode(prevPcmOutputMode);
 
             // 마지막으로 수신된 명령을 루프백 한다.
 
@@ -424,21 +424,21 @@ void tdc_isd_map_read_stim_para(bool startFlag, int command, int slot_index, int
 
         dataPacket_index = 1;
 
-        prevPcmOutputMode = readCurrentPcmOutputMode();
-        changePcmOutputMode(PcmBitStream_Mode_NopStandby);
+        prevPcmOutputMode = tdc_shm_read_current_pcm_output_mode();
+        tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_NopStandby);
 
-        setReadWriteMapDataFlashCommand(FlashCommand);
+        tdc_shm_set_read_write_map_data_flash_command(FlashCommand);
 
         stimulPara_index = 0;
     }
     else
     {
-        if (isReadWriteMapDataFlashCommandDone())  // CFX에서 eeprom 읽기가 완료된 상태
+        if (tdc_shm_is_read_write_map_data_flash_command_done())  // CFX에서 eeprom 읽기가 완료된 상태
         {
 
-            changePcmOutputMode(prevPcmOutputMode);
+            tdc_shm_change_pcm_output_mode(prevPcmOutputMode);
 
-            p_RepositoryFor_stimulPara = getPointerRepositoryForReadWriteMapData_stimulPara();
+            p_RepositoryFor_stimulPara = tdc_shm_get_pointer_repository_for_read_write_map_data_stimul_para();
 
             // command loop-back
             bufferForSPI_tx[buffer_tx_index++] = command;
@@ -593,17 +593,17 @@ void tdc_isd_map_write_stim_para(bool startFlag, int command, int slot_index, in
         FlashCommand.isd_index    = slot_index;
         FlashCommand.map_index    = map_index;  // 맵 인덱스가 0이면 CFX에서 ISD 정보 및 사용자 설정값을 쓰도록 한다.
 
-        prevPcmOutputMode = readCurrentPcmOutputMode();
-        changePcmOutputMode(PcmBitStream_Mode_NopStandby);
+        prevPcmOutputMode = tdc_shm_read_current_pcm_output_mode();
+        tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_NopStandby);
 
-        setReadWriteMapDataFlashCommand(FlashCommand);
+        tdc_shm_set_read_write_map_data_flash_command(FlashCommand);
     }
     else
     {
-        if (isReadWriteMapDataFlashCommandDone())  // CFX에서 eeprom 쓰기가 완료된 상태
+        if (tdc_shm_is_read_write_map_data_flash_command_done())  // CFX에서 eeprom 쓰기가 완료된 상태
         {
 
-            changePcmOutputMode(prevPcmOutputMode);
+            tdc_shm_change_pcm_output_mode(prevPcmOutputMode);
 
             // 마지막으로 수신된 명령을 루프백 한다.
 
@@ -655,17 +655,17 @@ void tdc_isd_map_reset_nvm_selected(bool startFlag, int command, int slot_index,
             FlashCommand.isd_index    = slot_index;
             FlashCommand.map_index    = 0;  // 맵 인덱스가 0이면 CFX에서 ISD 정보 및 사용자 설정값을 쓰도록 한다.
 
-            prevPcmOutputMode = readCurrentPcmOutputMode();
-            changePcmOutputMode(PcmBitStream_Mode_NopStandby);
+            prevPcmOutputMode = tdc_shm_read_current_pcm_output_mode();
+            tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_NopStandby);
 
-            setReadWriteMapDataFlashCommand(FlashCommand);
+            tdc_shm_set_read_write_map_data_flash_command(FlashCommand);
         }
         else
         {
-            if (isReadWriteMapDataFlashCommandDone())  // CFX에서 eeprom 쓰기가 완료된 상태
+            if (tdc_shm_is_read_write_map_data_flash_command_done())  // CFX에서 eeprom 쓰기가 완료된 상태
             {
 
-                changePcmOutputMode(prevPcmOutputMode);
+                tdc_shm_change_pcm_output_mode(prevPcmOutputMode);
 
                 // 마지막으로 수신된 명령을 루프백 한다.
 
@@ -744,16 +744,16 @@ bool tdc_isd_map_reset_nvm_all(bool startFlag, int command, EN__mapping_ReadWrit
                 FlashCommand.isd_index    = slot_index;
                 FlashCommand.map_index    = 0;  // 맵 인덱스가 0이면 CFX에서 ISD 정보 및 사용자 설정값을 쓰도록 한다.
 
-                prevPcmOutputMode = readCurrentPcmOutputMode();
-                changePcmOutputMode(PcmBitStream_Mode_NopStandby);
+                prevPcmOutputMode = tdc_shm_read_current_pcm_output_mode();
+                tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_NopStandby);
 
                 TDC_PRINTF_I("[FLASH] COMMAND (%d), ISD INDEX (%d), MAP INDEX (%d) \r\n", FlashCommand.flashCommand, FlashCommand.isd_index, FlashCommand.map_index);
-                setReadWriteMapDataFlashCommand(FlashCommand);
+                tdc_shm_set_read_write_map_data_flash_command(FlashCommand);
 
                 break;
 
             default:
-                if (isReadWriteMapDataFlashCommandDone())  // CFX에서 eeprom 쓰기가 완료된 상태
+                if (tdc_shm_is_read_write_map_data_flash_command_done())  // CFX에서 eeprom 쓰기가 완료된 상태
                 {
                     slot_index++;
                     counter = -1;
@@ -765,7 +765,7 @@ bool tdc_isd_map_reset_nvm_all(bool startFlag, int command, EN__mapping_ReadWrit
 
         if (slot_index == 5)
         {
-            changePcmOutputMode(prevPcmOutputMode);
+            tdc_shm_change_pcm_output_mode(prevPcmOutputMode);
 
             // 마지막으로 수신된 명령을 루프백 한다.
 
@@ -827,16 +827,16 @@ void tdc_isd_map_reset_nvm_2to4(bool startFlag, int command, EN__mapping_ReadWri
                 FlashCommand.isd_index    = slot_index;
                 FlashCommand.map_index    = 0;  // 맵 인덱스가 0이면 CFX에서 ISD 정보 및 사용자 설정값을 쓰도록 한다.
 
-                prevPcmOutputMode = readCurrentPcmOutputMode();
-                changePcmOutputMode(PcmBitStream_Mode_NopStandby);
+                prevPcmOutputMode = tdc_shm_read_current_pcm_output_mode();
+                tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_NopStandby);
 
-                setReadWriteMapDataFlashCommand(FlashCommand);
+                tdc_shm_set_read_write_map_data_flash_command(FlashCommand);
 
                 break;
 
             default:
 
-                if (isReadWriteMapDataFlashCommandDone())  // CFX에서 eeprom 쓰기가 완료된 상태
+                if (tdc_shm_is_read_write_map_data_flash_command_done())  // CFX에서 eeprom 쓰기가 완료된 상태
                 {
                     slot_index++;
                     counter = -1;
@@ -848,7 +848,7 @@ void tdc_isd_map_reset_nvm_2to4(bool startFlag, int command, EN__mapping_ReadWri
         if (slot_index == 4)
         {
 
-            changePcmOutputMode(prevPcmOutputMode);
+            tdc_shm_change_pcm_output_mode(prevPcmOutputMode);
 
             // 마지막으로 수신된 명령을 루프백 한다.
 
@@ -915,17 +915,17 @@ void tdc_isd_map_reset_nvm_map_data(bool startFlag, int command, int slot_index,
             FlashCommand.isd_index    = slot_index;
             FlashCommand.map_index    = map_index;  // 맵 인덱스가 0이면 CFX에서 ISD 정보 및 사용자 설정값을 쓰도록 한다.
 
-            prevPcmOutputMode = readCurrentPcmOutputMode();
-            changePcmOutputMode(PcmBitStream_Mode_NopStandby);
+            prevPcmOutputMode = tdc_shm_read_current_pcm_output_mode();
+            tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_NopStandby);
 
-            setReadWriteMapDataFlashCommand(FlashCommand);
+            tdc_shm_set_read_write_map_data_flash_command(FlashCommand);
         }
         else
         {
-            if (isReadWriteMapDataFlashCommandDone())  // CFX에서 eeprom 쓰기가 완료된 상태
+            if (tdc_shm_is_read_write_map_data_flash_command_done())  // CFX에서 eeprom 쓰기가 완료된 상태
             {
 
-                changePcmOutputMode(prevPcmOutputMode);
+                tdc_shm_change_pcm_output_mode(prevPcmOutputMode);
 
                 // 마지막으로 수신된 명령을 루프백 한다.
 

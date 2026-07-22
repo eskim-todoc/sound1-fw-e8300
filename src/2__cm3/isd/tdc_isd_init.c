@@ -15,7 +15,7 @@
 
 #include "tdc_isd.h"
 #include "tdc_isd_init_fpga.h"
-#include "cfx_cm3_sharedMemory.h"
+#include "tdc_shm.h"
 #include "tdc_stim_common.h"
 
 #include "tdc_sys_error.h"
@@ -83,7 +83,7 @@ void tdc_isd_path_open(bool isdControlStateChagedFlag)
 
                 for (i = pcm_index; i < df_MaxNumTransferableChannel; i++)
                 {
-                    fillSepcificCommndBuffer(i, pcm_Mold_NopStandby);
+                    tdc_shm_fill_specific_command_buffer(i, pcm_Mold_NopStandby);
                 }
 
                 // 앞선 tdc_isd_step 함수 과정에서
@@ -91,8 +91,8 @@ void tdc_isd_path_open(bool isdControlStateChagedFlag)
                 // 마지막 PCM 동작 모드는 NopStandby 일 것이다.
                 // 그래서 여기서는 바로 SpecificCommand를 적용시켜도 정상 동작한다.
 
-                changeNextPcmOutputMode(PcmBitStream_Mode_NopStandby);   // 다음 출력 모드 : NopStandby
-                changePcmOutputMode(PcmBitStream_Mode_SepcificCommand);  // 현재 출력 모드 : SepcificCommand
+                tdc_shm_change_next_pcm_output_mode(PcmBitStream_Mode_NopStandby);   // 다음 출력 모드 : NopStandby
+                tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_SepcificCommand);  // 현재 출력 모드 : SepcificCommand
             }
 
             tdc_isd_set_i2c_free();
@@ -129,11 +129,11 @@ void tdc_isd_path_open(bool isdControlStateChagedFlag)
             // 나머지 버퍼는  NOP standby
             for (i = pcm_index; i < df_MaxNumTransferableChannel; i++)
             {
-                fillSepcificCommndBuffer(i, pcm_Mold_NopStandby);
+                tdc_shm_fill_specific_command_buffer(i, pcm_Mold_NopStandby);
             }
 
-            changeNextPcmOutputMode(PcmBitStream_Mode_NopStandby);   // 다음 출력 모드 : NopStandby
-            changePcmOutputMode(PcmBitStream_Mode_SepcificCommand);  // 현재 출력 모드 : SepcificCommand
+            tdc_shm_change_next_pcm_output_mode(PcmBitStream_Mode_NopStandby);   // 다음 출력 모드 : NopStandby
+            tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_SepcificCommand);  // 현재 출력 모드 : SepcificCommand
         }
         break;
 
@@ -183,16 +183,16 @@ void tdc_isd_path_open(bool isdControlStateChagedFlag)
             w_isd_registerValue = w_isd_registerValue | 0x01;  // reset
             w_isd_registerValue = w_isd_registerValue | pcm_Mold_configuration;
 
-            fillSepcificCommndBuffer(pcm_index++, w_isd_registerValue);
+            tdc_shm_fill_specific_command_buffer(pcm_index++, w_isd_registerValue);
 
             // 나머지 버퍼는  NOP standby
             for (i = pcm_index; i < df_MaxNumTransferableChannel; i++)
             {
-                fillSepcificCommndBuffer(i, pcm_Mold_NopStandby);
+                tdc_shm_fill_specific_command_buffer(i, pcm_Mold_NopStandby);
             }
 
-            changeNextPcmOutputMode(PcmBitStream_Mode_NopStandby);   // 다음 출력 모드 : NopStandby
-            changePcmOutputMode(PcmBitStream_Mode_SepcificCommand);  // 현재 출력 모드 : SepcificCommand
+            tdc_shm_change_next_pcm_output_mode(PcmBitStream_Mode_NopStandby);   // 다음 출력 모드 : NopStandby
+            tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_SepcificCommand);  // 현재 출력 모드 : SepcificCommand
         }
         break;
 
@@ -210,7 +210,7 @@ void tdc_isd_path_open(bool isdControlStateChagedFlag)
             w_isd_registerValue = w_isd_registerValue | 0x08;
             w_isd_registerValue = w_isd_registerValue | pcm_Mold_configuration;
 
-            fillSepcificCommndBuffer(pcm_index++, w_isd_registerValue);
+            tdc_shm_fill_specific_command_buffer(pcm_index++, w_isd_registerValue);
 
             w_isd_registerValue = ISD_registerAddr_PPSK_Config;
             w_isd_registerValue = w_isd_registerValue << 1;
@@ -219,7 +219,7 @@ void tdc_isd_path_open(bool isdControlStateChagedFlag)
             w_isd_registerValue = w_isd_registerValue | 0x20;
             w_isd_registerValue = w_isd_registerValue | pcm_Mold_configuration;
 
-            fillSepcificCommndBuffer(pcm_index++, w_isd_registerValue);
+            tdc_shm_fill_specific_command_buffer(pcm_index++, w_isd_registerValue);
 #endif
 
             // ISD SYSCLK_OE 설정
@@ -230,15 +230,15 @@ void tdc_isd_path_open(bool isdControlStateChagedFlag)
             w_isd_registerValue = w_isd_registerValue | 0x08;
             w_isd_registerValue = w_isd_registerValue | pcm_Mold_configuration;
 
-            fillSepcificCommndBuffer(pcm_index++, w_isd_registerValue);
+            tdc_shm_fill_specific_command_buffer(pcm_index++, w_isd_registerValue);
 
             for (i = pcm_index; i < df_MaxNumTransferableChannel; i++)
             {
-                fillSepcificCommndBuffer(i, pcm_Mold_NopStandby);
+                tdc_shm_fill_specific_command_buffer(i, pcm_Mold_NopStandby);
             }
 
-            changeNextPcmOutputMode(PcmBitStream_Mode_NopStandby);   // 다음 출력 모드 : NopStandby
-            changePcmOutputMode(PcmBitStream_Mode_SepcificCommand);  // 현재 출력 모드 : SepcificCommand
+            tdc_shm_change_next_pcm_output_mode(PcmBitStream_Mode_NopStandby);   // 다음 출력 모드 : NopStandby
+            tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_SepcificCommand);  // 현재 출력 모드 : SepcificCommand
         }
         break;
 
@@ -255,8 +255,8 @@ void tdc_isd_path_open(bool isdControlStateChagedFlag)
             w_isd_registerValue = w_isd_registerValue | 0x80;  // CHIP_ID_FIFO_RDDATA_INDEXdp 아무값이나 쓰면 FIFO가 지워진다.
             w_isd_registerValue = w_isd_registerValue | pcm_Mold_configuration;
 
-            fillSepcificCommndBuffer(pcm_index++, w_isd_registerValue);
-            fillSepcificCommndBuffer(pcm_index++, pcm_Mold_NopStandby);
+            tdc_shm_fill_specific_command_buffer(pcm_index++, w_isd_registerValue);
+            tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopStandby);
 
             // ISD id 읽기
             w_isd_registerValue = ISD_registerAddr_chip_ID;
@@ -266,37 +266,37 @@ void tdc_isd_path_open(bool isdControlStateChagedFlag)
             w_isd_registerValue = w_isd_registerValue | pcm_Mold_configuration;
 
             // id 읽기 1byte
-            fillSepcificCommndBuffer(pcm_index++, w_isd_registerValue);
-            fillSepcificCommndBuffer(pcm_index++, pcm_Mold_NopBacktel);
-            fillSepcificCommndBuffer(pcm_index++, pcm_Mold_NopBacktel);
-            fillSepcificCommndBuffer(pcm_index++, pcm_Mold_NopBacktel);
+            tdc_shm_fill_specific_command_buffer(pcm_index++, w_isd_registerValue);
+            tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopBacktel);
+            tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopBacktel);
+            tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopBacktel);
 
             // id 읽기 2byte
-            fillSepcificCommndBuffer(pcm_index++, w_isd_registerValue);
-            fillSepcificCommndBuffer(pcm_index++, pcm_Mold_NopBacktel);
-            fillSepcificCommndBuffer(pcm_index++, pcm_Mold_NopBacktel);
-            fillSepcificCommndBuffer(pcm_index++, pcm_Mold_NopBacktel);
+            tdc_shm_fill_specific_command_buffer(pcm_index++, w_isd_registerValue);
+            tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopBacktel);
+            tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopBacktel);
+            tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopBacktel);
 
             // id 읽기 3byte
-            fillSepcificCommndBuffer(pcm_index++, w_isd_registerValue);
-            fillSepcificCommndBuffer(pcm_index++, pcm_Mold_NopBacktel);
-            fillSepcificCommndBuffer(pcm_index++, pcm_Mold_NopBacktel);
-            fillSepcificCommndBuffer(pcm_index++, pcm_Mold_NopBacktel);
+            tdc_shm_fill_specific_command_buffer(pcm_index++, w_isd_registerValue);
+            tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopBacktel);
+            tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopBacktel);
+            tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopBacktel);
 
             // id 읽기 4byte
-            fillSepcificCommndBuffer(pcm_index++, w_isd_registerValue);
-            fillSepcificCommndBuffer(pcm_index++, pcm_Mold_NopBacktel);
-            fillSepcificCommndBuffer(pcm_index++, pcm_Mold_NopBacktel);
-            fillSepcificCommndBuffer(pcm_index++, pcm_Mold_NopBacktel);
+            tdc_shm_fill_specific_command_buffer(pcm_index++, w_isd_registerValue);
+            tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopBacktel);
+            tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopBacktel);
+            tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopBacktel);
 #endif
             // 나머지 버퍼는  NOP standby
             for (i = pcm_index; i < df_MaxNumTransferableChannel; i++)
             {
-                fillSepcificCommndBuffer(i, pcm_Mold_NopStandby);
+                tdc_shm_fill_specific_command_buffer(i, pcm_Mold_NopStandby);
             }
 
-            changeNextPcmOutputMode(PcmBitStream_Mode_NopStandby);   // 다음 출력 모드 : NopStandby
-            changePcmOutputMode(PcmBitStream_Mode_SepcificCommand);  // 현재 출력 모드 : SepcificCommand
+            tdc_shm_change_next_pcm_output_mode(PcmBitStream_Mode_NopStandby);   // 다음 출력 모드 : NopStandby
+            tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_SepcificCommand);  // 현재 출력 모드 : SepcificCommand
         }
         break;
 
@@ -347,7 +347,7 @@ void tdc_isd_path_open(bool isdControlStateChagedFlag)
                             {
                                 isd_id_match_num = 0;
                                 isNormalUser     = false;
-                                p_userName       = readConnected_ISD_userName(1);  // 첫번째 사용자 이름
+                                p_userName       = tdc_shm_read_connected_isd_user_name(1);  // 첫번째 사용자 이름
 
                                 TDC_PRINTF_V("[ISD] ISD[1] USER NAME : ");
 #if TDC_PRINTF_ENABLE_VERBOSE
@@ -388,7 +388,7 @@ void tdc_isd_path_open(bool isdControlStateChagedFlag)
                                 {
                                     for (i = 0; i < MaxNumUser; i++)
                                     {
-                                        isd_id_onFlash = read_ISD_manufacture_ID(i);
+                                        isd_id_onFlash = tdc_shm_read_isd_manufacture_id(i);
 
                                         if (isd_id == isd_id_onFlash)
                                         {
@@ -483,7 +483,7 @@ void tdc_isd_path_open(bool isdControlStateChagedFlag)
 #ifndef DisalbedBackTel
             if (isNormalUser)
             {
-                isd_id_onFlash = read_ISD_manufacture_ID(isd_id_match_num - 1);
+                isd_id_onFlash = tdc_shm_read_isd_manufacture_id(isd_id_match_num - 1);
                 isd_passKey    = isd_id_onFlash ^ df_encryptionKey;  // passkey 생성
             }
             else
@@ -503,31 +503,31 @@ void tdc_isd_path_open(bool isdControlStateChagedFlag)
             isd_passKeySlice    = isd_passKey & 0x000000FF;
             w_isd_registerValue = w_isd_registerSlice | isd_passKeySlice;
             w_isd_registerValue = w_isd_registerValue | pcm_Mold_configuration;
-            fillSepcificCommndBuffer(pcm_index++, w_isd_registerValue);
+            tdc_shm_fill_specific_command_buffer(pcm_index++, w_isd_registerValue);
 
             // passkey 하위 바이트
             isd_passKeySlice    = isd_passKey & 0x0000FF00;
             isd_passKeySlice    = isd_passKeySlice >> 8;
             w_isd_registerValue = w_isd_registerSlice | isd_passKeySlice;
             w_isd_registerValue = w_isd_registerValue | pcm_Mold_configuration;
-            fillSepcificCommndBuffer(pcm_index++, w_isd_registerValue);
+            tdc_shm_fill_specific_command_buffer(pcm_index++, w_isd_registerValue);
 
             // passkey 상위 바이트
             isd_passKeySlice    = isd_passKey & 0x00FF0000;
             isd_passKeySlice    = isd_passKeySlice >> 16;
             w_isd_registerValue = w_isd_registerSlice | isd_passKeySlice;
             w_isd_registerValue = w_isd_registerValue | pcm_Mold_configuration;
-            fillSepcificCommndBuffer(pcm_index++, w_isd_registerValue);
+            tdc_shm_fill_specific_command_buffer(pcm_index++, w_isd_registerValue);
 
             // passkey 최상위 바이트
             isd_passKeySlice    = isd_passKey >> 24;  // 부호비트의 전달을 방지하기 위해서 쉬프트하고 0x00FF로 AND
             isd_passKeySlice    = isd_passKeySlice & 0x000000FF;
             w_isd_registerValue = w_isd_registerSlice | isd_passKeySlice;
             w_isd_registerValue = w_isd_registerValue | pcm_Mold_configuration;
-            fillSepcificCommndBuffer(pcm_index++, w_isd_registerValue);
+            tdc_shm_fill_specific_command_buffer(pcm_index++, w_isd_registerValue);
 
             // ISD 연산을 위해서 1프레임 쉼
-            fillSepcificCommndBuffer(pcm_index++, pcm_Mold_NopStandby);
+            tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopStandby);
 
             // 내부기 열렸는지 읽기
             tdc_isd_fill_pcm_path_open_normal(&pcm_index);
@@ -535,14 +535,14 @@ void tdc_isd_path_open(bool isdControlStateChagedFlag)
             // 나머지 버퍼는  NOP-Backtel
             for (i = pcm_index; i < df_MaxNumTransferableChannel; i++)
             {
-                fillSepcificCommndBuffer(i, pcm_Mold_NopBacktel);
+                tdc_shm_fill_specific_command_buffer(i, pcm_Mold_NopBacktel);
             }
 
 #else
             isd_passKey = isd_id ^ df_encryptionKey;
 
             // PCM 동작 모드 -  내부기 ID 읽기
-            changePcmOutputMode(PcmBitStream_Mode_SepcificCommand);
+            tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_SepcificCommand);
 
             // PCM 데이터
 
@@ -557,31 +557,31 @@ void tdc_isd_path_open(bool isdControlStateChagedFlag)
             isd_passKeySlice    = isd_passKey & 0x000000FF;
             w_isd_registerValue = w_isd_registerSlice | isd_passKeySlice;
             w_isd_registerValue = w_isd_registerValue | pcm_Mold_configuration;
-            fillSepcificCommndBuffer(pcm_index++, w_isd_registerValue);
+            tdc_shm_fill_specific_command_buffer(pcm_index++, w_isd_registerValue);
 
             // passkey 하위 바이트
             isd_passKeySlice    = isd_passKey & 0x0000FF00;
             isd_passKeySlice    = isd_passKeySlice >> 8;
             w_isd_registerValue = w_isd_registerSlice | isd_passKeySlice;
             w_isd_registerValue = w_isd_registerValue | pcm_Mold_configuration;
-            fillSepcificCommndBuffer(pcm_index++, w_isd_registerValue);
+            tdc_shm_fill_specific_command_buffer(pcm_index++, w_isd_registerValue);
 
             // passkey 상위 바이트
             isd_passKeySlice    = isd_passKey & 0x00FF0000;
             isd_passKeySlice    = isd_passKeySlice >> 16;
             w_isd_registerValue = w_isd_registerSlice | isd_passKeySlice;
             w_isd_registerValue = w_isd_registerValue | pcm_Mold_configuration;
-            fillSepcificCommndBuffer(pcm_index++, w_isd_registerValue);
+            tdc_shm_fill_specific_command_buffer(pcm_index++, w_isd_registerValue);
 
             // passkey 최상위 바이트
             isd_passKeySlice    = isd_passKey >> 24;  // 부호비트의 전달을 방지하기 위해서 쉬프트하고 0x00FF로 AND
             isd_passKeySlice    = isd_passKeySlice & 0x000000FF;
             w_isd_registerValue = w_isd_registerSlice | isd_passKeySlice;
             w_isd_registerValue = w_isd_registerValue | pcm_Mold_configuration;
-            fillSepcificCommndBuffer(pcm_index++, w_isd_registerValue);
+            tdc_shm_fill_specific_command_buffer(pcm_index++, w_isd_registerValue);
 
             // ISD 연산을 위해서 1프레임 쉼
-            fillSepcificCommndBuffer(pcm_index++, pcm_Mold_NopStandby);
+            tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopStandby);
 
             // fill_pcmBuff_writeData_checkPathOpen_normalValue(pcm_index++);
             // fill_pcmBuff_readData_checkPathOpen(pcm_index++);
@@ -589,11 +589,11 @@ void tdc_isd_path_open(bool isdControlStateChagedFlag)
             // 나머지 버퍼는  NOP-Backtel
             for (i = pcm_index; i < df_MaxNumTransferableChannel; i++)
             {
-                fillSepcificCommndBuffer(i, pcm_Mold_NopStandby);
+                tdc_shm_fill_specific_command_buffer(i, pcm_Mold_NopStandby);
             }
 #endif
-            changeNextPcmOutputMode(PcmBitStream_Mode_NopStandby);   // 다음 출력 모드 : NopStandby
-            changePcmOutputMode(PcmBitStream_Mode_SepcificCommand);  // 현재 출력 모드 : SepcificCommand
+            tdc_shm_change_next_pcm_output_mode(PcmBitStream_Mode_NopStandby);   // 다음 출력 모드 : NopStandby
+            tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_SepcificCommand);  // 현재 출력 모드 : SepcificCommand
         }
         break;
 
@@ -613,11 +613,11 @@ void tdc_isd_path_open(bool isdControlStateChagedFlag)
                         // 나머지 버퍼는 NOP backtel
                         for (i = pcm_index; i < df_MaxNumTransferableChannel; i++)
                         {
-                            fillSepcificCommndBuffer(i, pcm_Mold_NopBacktel);
+                            tdc_shm_fill_specific_command_buffer(i, pcm_Mold_NopBacktel);
                         }
 
-                        changeNextPcmOutputMode(PcmBitStream_Mode_NopStandby);   // 다음 출력 모드 : NopStandby
-                        changePcmOutputMode(PcmBitStream_Mode_SepcificCommand);  // 현재 출력 모드 : SepcificCommand
+                        tdc_shm_change_next_pcm_output_mode(PcmBitStream_Mode_NopStandby);   // 다음 출력 모드 : NopStandby
+                        tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_SepcificCommand);  // 현재 출력 모드 : SepcificCommand
                     }
                     else
                     {
@@ -648,7 +648,7 @@ void tdc_isd_path_open(bool isdControlStateChagedFlag)
 #else
             tdc_sys_error_clear_all();
             tdc_isd_change_state(en__isdStatus_ISD_pathOpen_Ok);
-            changeConnected_isd_num_CFX(isd_id_match_num);  // CFX와의 공유 메모리에 연결된 내부기 번호(1~4)를 알려주어서
+            tdc_shm_change_connected_isd_num_cfx(isd_id_match_num);  // CFX와의 공유 메모리에 연결된 내부기 번호(1~4)를 알려주어서
                                                             // CFX에서 해당 맵데이터를 읽어 올 수 있도록 한다.
             update_Connected_ISD_id(isd_id);
 #endif
@@ -674,7 +674,7 @@ void tdc_isd_path_open(bool isdControlStateChagedFlag)
                         //
                         if (cfx_cm3_sharedMemoryAll.systemShare.system_opMode != en__mappingMode)
                         {
-                            changeConnected_isd_num_CFX(isd_id_match_num);
+                            tdc_shm_change_connected_isd_num_cfx(isd_id_match_num);
                         }
                         else
                         {
@@ -771,13 +771,13 @@ void tdc_isd_enable_stimul_10v(bool isdControlStateChagedFlag)
             {
                 tdc_isd_fpga_change_pulse_width_minimum(pcm_index++);
 
-                fillSepcificCommndBuffer(pcm_index++, pcm_Mold_NopStandby);
+                tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopStandby);
 
                 writenBacktelRegisterValue = tdc_isd_fpga_change_8_bit_backtel_mode(pcm_index++);
 
                 for (i = pcm_index; i < df_MaxNumTransferableChannel; i++)
                 {
-                    fillSepcificCommndBuffer(i, pcm_Mold_NopStandby);
+                    tdc_shm_fill_specific_command_buffer(i, pcm_Mold_NopStandby);
                 }
 
                 // 앞선 tdc_isd_step 함수 과정에서
@@ -785,8 +785,8 @@ void tdc_isd_enable_stimul_10v(bool isdControlStateChagedFlag)
                 // 마지막 PCM 동작 모드는 NopStandby 일 것이다.
                 // 그래서 여기서는 바로 SpecificCommand를 적용시켜도 정상 동작한다.
 
-                changeNextPcmOutputMode(PcmBitStream_Mode_NopStandby);   // 다음 출력 모드 : NopStandby
-                changePcmOutputMode(PcmBitStream_Mode_SepcificCommand);  // 현재 출력 모드 : SepcificCommand
+                tdc_shm_change_next_pcm_output_mode(PcmBitStream_Mode_NopStandby);   // 다음 출력 모드 : NopStandby
+                tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_SepcificCommand);  // 현재 출력 모드 : SepcificCommand
             }
         }
         break;
@@ -858,17 +858,17 @@ void tdc_isd_enable_stimul_10v(bool isdControlStateChagedFlag)
             w_isd_registerValue = w_isd_registerValue | 0x0C;  // 01100 : VTG_UP_START, VTG_LOCK_ENABLE
             w_isd_registerValue = w_isd_registerValue | pcm_Mold_configuration;
 
-            fillSepcificCommndBuffer(pcm_index++, w_isd_registerValue);
+            tdc_shm_fill_specific_command_buffer(pcm_index++, w_isd_registerValue);
 
             // 나머지 버퍼는  NOP standby
 
             for (i = pcm_index; i < df_MaxNumTransferableChannel; i++)
             {
-                fillSepcificCommndBuffer(i, pcm_Mold_NopStandby);
+                tdc_shm_fill_specific_command_buffer(i, pcm_Mold_NopStandby);
             }
 
-            changeNextPcmOutputMode(PcmBitStream_Mode_NopStandby);   // 다음 출력 모드 : NopStandby
-            changePcmOutputMode(PcmBitStream_Mode_SepcificCommand);  // 현재 출력 모드 : SepcificCommand
+            tdc_shm_change_next_pcm_output_mode(PcmBitStream_Mode_NopStandby);   // 다음 출력 모드 : NopStandby
+            tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_SepcificCommand);  // 현재 출력 모드 : SepcificCommand
 
             tdc_isd_set_i2c_free();
         }
@@ -887,20 +887,20 @@ void tdc_isd_enable_stimul_10v(bool isdControlStateChagedFlag)
             w_isd_registerValue = w_isd_registerValue << 8;
             w_isd_registerValue = w_isd_registerValue | pcm_Mold_configuration;
 
-            fillSepcificCommndBuffer(pcm_index++, w_isd_registerValue);
+            tdc_shm_fill_specific_command_buffer(pcm_index++, w_isd_registerValue);
 
-            fillSepcificCommndBuffer(pcm_index++, pcm_Mold_NopBacktel);
-            fillSepcificCommndBuffer(pcm_index++, pcm_Mold_NopBacktel);
-            fillSepcificCommndBuffer(pcm_index++, pcm_Mold_NopBacktel);
+            tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopBacktel);
+            tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopBacktel);
+            tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopBacktel);
 
             // 나머지 버퍼는  NOP standby
             for (i = pcm_index; i < df_MaxNumTransferableChannel; i++)
             {
-                fillSepcificCommndBuffer(i, pcm_Mold_NopStandby);
+                tdc_shm_fill_specific_command_buffer(i, pcm_Mold_NopStandby);
             }
 
-            changeNextPcmOutputMode(PcmBitStream_Mode_NopStandby);   // 다음 출력 모드 : NopStandby
-            changePcmOutputMode(PcmBitStream_Mode_SepcificCommand);  // 현재 출력 모드 : SepcificCommand
+            tdc_shm_change_next_pcm_output_mode(PcmBitStream_Mode_NopStandby);   // 다음 출력 모드 : NopStandby
+            tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_SepcificCommand);  // 현재 출력 모드 : SepcificCommand
         }
         break;
 

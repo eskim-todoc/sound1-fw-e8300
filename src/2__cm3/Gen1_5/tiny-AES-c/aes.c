@@ -116,17 +116,17 @@ static const uint8_t Rcon[11] = {0x8d, 0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40,
 static struct AES_ctx s_ci_ctx;
 static const uint8_t  s_ci_key128[16] = {0x2B, 0x7E, 0x15, 0x16, 0x28, 0xAE, 0xD2, 0xA6, 0xAB, 0xF7, 0x15, 0x88, 0x09, 0xCF, 0x4F, 0x3C};
 
-void ci_aes_init(void)
+void tdc_aes_init(void)
 {
     AES_init_ctx(&s_ci_ctx, s_ci_key128);
 }
 
-void ci_aes_encrypt(uint8_t* buf)
+void tdc_aes_encrypt(uint8_t* buf)
 {
     AES_ECB_encrypt(&s_ci_ctx, buf);
 }
 
-void ci_aes_decrypt(uint8_t* buf)
+void tdc_aes_decrypt(uint8_t* buf)
 {
     AES_ECB_decrypt(&s_ci_ctx, buf);
 }

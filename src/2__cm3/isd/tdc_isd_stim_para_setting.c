@@ -1,7 +1,7 @@
 #include <stdbool.h>
 #include <hw.h>
 
-#include <cfx_cm3_sharedMemory.h>
+#include <tdc_shm.h>
 #include <FPGA.h>
 #include <tdc_isd_pcm.h>
 #include <tdc_isd_fpga.h>
@@ -85,17 +85,17 @@ bool tdc_isd_set_stim_para_monopolar(bool isdControlStateChagedFlag)
             {
                 tdc_isd_fpga_change_pulse_width_minimum(pcm_index++);
 
-                fillSepcificCommndBuffer(pcm_index++, pcm_Mold_NopStandby);
+                tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopStandby);
 
                 writenBacktelRegisterValue = tdc_isd_fpga_change_8_bit_backtel_mode(pcm_index++);
 
                 for (i = pcm_index; i < df_MaxNumTransferableChannel; i++)
                 {
-                    fillSepcificCommndBuffer(i, pcm_Mold_NopStandby);
+                    tdc_shm_fill_specific_command_buffer(i, pcm_Mold_NopStandby);
                 }
 
-                changeNextPcmOutputMode(PcmBitStream_Mode_NopStandby);   // 다음 출력 모드 : NopStandby
-                changePcmOutputMode(PcmBitStream_Mode_SepcificCommand);  // 현재 출력 모드 : SepcificCommand
+                tdc_shm_change_next_pcm_output_mode(PcmBitStream_Mode_NopStandby);   // 다음 출력 모드 : NopStandby
+                tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_SepcificCommand);  // 현재 출력 모드 : SepcificCommand
             }
         }
         break;
@@ -159,7 +159,7 @@ bool tdc_isd_set_stim_para_monopolar(bool isdControlStateChagedFlag)
         case 5:  // 자극 파라미터 설정 - 쓰기
         {
             p_stimulDAC_setting = tdc_stim_read_dac_register_value();
-            p_mapdata           = getPointerCurrentMapData();
+            p_mapdata           = tdc_shm_get_pointer_current_map_data();
 
             // ISD - DAC Offset "쓰기" ('h05: slope offset register)
             w_isd_registerValue = ISD_registerAddr_DAC_offsetValue;
@@ -169,7 +169,7 @@ bool tdc_isd_set_stim_para_monopolar(bool isdControlStateChagedFlag)
             w_isd_registerValue = w_isd_registerValue | p_stimulDAC_setting->DAC_offsetLevel_register;
             w_isd_registerValue = w_isd_registerValue | pcm_Mold_configuration;
 
-            fillSepcificCommndBuffer(pcm_index++, w_isd_registerValue);
+            tdc_shm_fill_specific_command_buffer(pcm_index++, w_isd_registerValue);
 
             // ISD - 자극 파라미터 설정 "쓰기" ('h06: stimulation configuration register)
             w_isd_registerValue = ISD_registerAddr_StimulationConfig;
@@ -239,7 +239,7 @@ bool tdc_isd_set_stim_para_monopolar(bool isdControlStateChagedFlag)
             sent_stimulConfig   = w_isd_registerValue & 0xFF;
             w_isd_registerValue = w_isd_registerValue | pcm_Mold_configuration;
 
-            fillSepcificCommndBuffer(pcm_index++, w_isd_registerValue);
+            tdc_shm_fill_specific_command_buffer(pcm_index++, w_isd_registerValue);
 
             /*
               /=================================================================================/
@@ -274,11 +274,11 @@ bool tdc_isd_set_stim_para_monopolar(bool isdControlStateChagedFlag)
             w_isd_registerValue = w_isd_registerValue << 8;
             w_isd_registerValue = w_isd_registerValue | pcm_Mold_configuration;
 
-            fillSepcificCommndBuffer(pcm_index++, w_isd_registerValue);
+            tdc_shm_fill_specific_command_buffer(pcm_index++, w_isd_registerValue);
 
-            fillSepcificCommndBuffer(pcm_index++, pcm_Mold_NopBacktel);
-            fillSepcificCommndBuffer(pcm_index++, pcm_Mold_NopBacktel);
-            fillSepcificCommndBuffer(pcm_index++, pcm_Mold_NopBacktel);
+            tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopBacktel);
+            tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopBacktel);
+            tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopBacktel);
 
             // ISD - 자극 파라미터 설정 "읽기" ('h06: stimulation configuration register)
             w_isd_registerValue = ISD_registerAddr_StimulationConfig;
@@ -287,21 +287,21 @@ bool tdc_isd_set_stim_para_monopolar(bool isdControlStateChagedFlag)
             w_isd_registerValue = w_isd_registerValue << 8;
             w_isd_registerValue = w_isd_registerValue | pcm_Mold_configuration;
 
-            fillSepcificCommndBuffer(pcm_index++, w_isd_registerValue);
+            tdc_shm_fill_specific_command_buffer(pcm_index++, w_isd_registerValue);
 
             for (i = pcm_index; i < df_MaxNumTransferableChannel; i++)
             {
-                fillSepcificCommndBuffer(i, pcm_Mold_NopBacktel);
+                tdc_shm_fill_specific_command_buffer(i, pcm_Mold_NopBacktel);
             }
 #else
             for (i = pcm_index; i < df_MaxNumTransferableChannel; i++)
             {
-                fillSepcificCommndBuffer(i, pcm_Mold_NopStandby);
+                tdc_shm_fill_specific_command_buffer(i, pcm_Mold_NopStandby);
             }
 #endif
 
-            changeNextPcmOutputMode(PcmBitStream_Mode_NopStandby);   // 다음 출력 모드 : NopStandby
-            changePcmOutputMode(PcmBitStream_Mode_SepcificCommand);  // 현재 출력 모드 : SepcificCommand
+            tdc_shm_change_next_pcm_output_mode(PcmBitStream_Mode_NopStandby);   // 다음 출력 모드 : NopStandby
+            tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_SepcificCommand);  // 현재 출력 모드 : SepcificCommand
         }
         break;
 
@@ -345,11 +345,11 @@ bool tdc_isd_set_stim_para_monopolar(bool isdControlStateChagedFlag)
 
             for (i = pcm_index; i < df_MaxNumTransferableChannel; i++)
             {
-                fillSepcificCommndBuffer(i, pcm_Mold_NopStandby);
+                tdc_shm_fill_specific_command_buffer(i, pcm_Mold_NopStandby);
             }
 
-            changeNextPcmOutputMode(PcmBitStream_Mode_NopStandby);   // 다음 출력 모드 : NopStandby
-            changePcmOutputMode(PcmBitStream_Mode_SepcificCommand);  // 현재 출력 모드 : SepcificCommand
+            tdc_shm_change_next_pcm_output_mode(PcmBitStream_Mode_NopStandby);   // 다음 출력 모드 : NopStandby
+            tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_SepcificCommand);  // 현재 출력 모드 : SepcificCommand
         }
         break;
 
@@ -455,11 +455,11 @@ bool tdc_isd_set_stim_para_bipolar(bool isdControlStateChagedFlag)
 
             for (; pcm_index < df_MaxNumTransferableChannel;)
             {
-                fillSepcificCommndBuffer(pcm_index++, pcm_Mold_NopStandby);
+                tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopStandby);
             }
 
-            changeNextPcmOutputMode(PcmBitStream_Mode_NopStandby);   // 다음 출력 모드 : NopStandby
-            changePcmOutputMode(PcmBitStream_Mode_SepcificCommand);  // 현재 출력 모드 : SepcificCommand
+            tdc_shm_change_next_pcm_output_mode(PcmBitStream_Mode_NopStandby);   // 다음 출력 모드 : NopStandby
+            tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_SepcificCommand);  // 현재 출력 모드 : SepcificCommand
         }
         break;
 
@@ -468,7 +468,7 @@ bool tdc_isd_set_stim_para_bipolar(bool isdControlStateChagedFlag)
         case 5:
         {
             p_stimulDAC_setting = tdc_stim_read_dac_register_value();
-            p_mapdata           = getPointerCurrentMapData();
+            p_mapdata           = tdc_shm_get_pointer_current_map_data();
 
             // 바이폴라 기준 전극 버퍼 구성
             for (i = 0; i < df_MaxNumOfElectrode; i++)
@@ -545,15 +545,15 @@ bool tdc_isd_set_stim_para_bipolar(bool isdControlStateChagedFlag)
             w_isd_registerValue = w_isd_registerValue | 0x80;  // CHIP_ID_FIFO_RDDATA_INDEX에 아무값이나 쓰면 FIFO가 지워진다.
             w_isd_registerValue = w_isd_registerValue | pcm_Mold_configuration;
 
-            fillSepcificCommndBuffer(pcm_index++, w_isd_registerValue);
+            tdc_shm_fill_specific_command_buffer(pcm_index++, w_isd_registerValue);
 
             for (; pcm_index < df_MaxNumTransferableChannel;)
             {
-                fillSepcificCommndBuffer(pcm_index++, pcm_Mold_NopStandby);
+                tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopStandby);
             }
 
-            changeNextPcmOutputMode(PcmBitStream_Mode_NopStandby);   // 다음 출력 모드 : NopStandby
-            changePcmOutputMode(PcmBitStream_Mode_SepcificCommand);  // 현재 출력 모드 : SepcificCommand
+            tdc_shm_change_next_pcm_output_mode(PcmBitStream_Mode_NopStandby);   // 다음 출력 모드 : NopStandby
+            tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_SepcificCommand);  // 현재 출력 모드 : SepcificCommand
         }
         break;
 
@@ -572,16 +572,16 @@ bool tdc_isd_set_stim_para_bipolar(bool isdControlStateChagedFlag)
                 w_isd_registerValue = w_isd_registerValue | (0x1F & bipolarReferenceElectrodeNum[i]);
                 w_isd_registerValue = w_isd_registerValue | pcm_Mold_configuration;
 
-                fillSepcificCommndBuffer(pcm_index++, w_isd_registerValue);
+                tdc_shm_fill_specific_command_buffer(pcm_index++, w_isd_registerValue);
             }
 
             for (; pcm_index < df_MaxNumTransferableChannel;)
             {
-                fillSepcificCommndBuffer(pcm_index++, pcm_Mold_NopStandby);
+                tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopStandby);
             }
 
-            changeNextPcmOutputMode(PcmBitStream_Mode_NopStandby);   // 다음 출력 모드 : NopStandby
-            changePcmOutputMode(PcmBitStream_Mode_SepcificCommand);  // 현재 출력 모드 : SepcificCommand
+            tdc_shm_change_next_pcm_output_mode(PcmBitStream_Mode_NopStandby);   // 다음 출력 모드 : NopStandby
+            tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_SepcificCommand);  // 현재 출력 모드 : SepcificCommand
         }
         break;
 
@@ -600,16 +600,16 @@ bool tdc_isd_set_stim_para_bipolar(bool isdControlStateChagedFlag)
                 w_isd_registerValue = w_isd_registerValue | (0x1F & bipolarReferenceElectrodeNum[i]);
                 w_isd_registerValue = w_isd_registerValue | pcm_Mold_configuration;
 
-                fillSepcificCommndBuffer(pcm_index++, w_isd_registerValue);
+                tdc_shm_fill_specific_command_buffer(pcm_index++, w_isd_registerValue);
             }
 
             for (; pcm_index < df_MaxNumTransferableChannel;)
             {
-                fillSepcificCommndBuffer(pcm_index++, pcm_Mold_NopStandby);
+                tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopStandby);
             }
 
-            changeNextPcmOutputMode(PcmBitStream_Mode_NopStandby);   // 다음 출력 모드 : NopStandby
-            changePcmOutputMode(PcmBitStream_Mode_SepcificCommand);  // 현재 출력 모드 : SepcificCommand
+            tdc_shm_change_next_pcm_output_mode(PcmBitStream_Mode_NopStandby);   // 다음 출력 모드 : NopStandby
+            tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_SepcificCommand);  // 현재 출력 모드 : SepcificCommand
         }
         break;
 
@@ -627,19 +627,19 @@ bool tdc_isd_set_stim_para_bipolar(bool isdControlStateChagedFlag)
 
             for (i = 0; i < 6; i++)
             {
-                fillSepcificCommndBuffer(pcm_index++, w_isd_registerValue);
-                fillSepcificCommndBuffer(pcm_index++, pcm_Mold_NopBacktel);
-                fillSepcificCommndBuffer(pcm_index++, pcm_Mold_NopBacktel);
-                fillSepcificCommndBuffer(pcm_index++, pcm_Mold_NopBacktel);
+                tdc_shm_fill_specific_command_buffer(pcm_index++, w_isd_registerValue);
+                tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopBacktel);
+                tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopBacktel);
+                tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopBacktel);
             }
 
             for (; pcm_index < df_MaxNumTransferableChannel;)
             {
-                fillSepcificCommndBuffer(pcm_index++, pcm_Mold_NopStandby);
+                tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopStandby);
             }
 
-            changeNextPcmOutputMode(PcmBitStream_Mode_NopStandby);   // 다음 출력 모드 : NopStandby
-            changePcmOutputMode(PcmBitStream_Mode_SepcificCommand);  // 현재 출력 모드 : SepcificCommand
+            tdc_shm_change_next_pcm_output_mode(PcmBitStream_Mode_NopStandby);   // 다음 출력 모드 : NopStandby
+            tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_SepcificCommand);  // 현재 출력 모드 : SepcificCommand
         }
         break;
 
@@ -656,19 +656,19 @@ bool tdc_isd_set_stim_para_bipolar(bool isdControlStateChagedFlag)
 
             for (i = 0; i < 6; i++)
             {
-                fillSepcificCommndBuffer(pcm_index++, w_isd_registerValue);
-                fillSepcificCommndBuffer(pcm_index++, pcm_Mold_NopBacktel);
-                fillSepcificCommndBuffer(pcm_index++, pcm_Mold_NopBacktel);
-                fillSepcificCommndBuffer(pcm_index++, pcm_Mold_NopBacktel);
+                tdc_shm_fill_specific_command_buffer(pcm_index++, w_isd_registerValue);
+                tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopBacktel);
+                tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopBacktel);
+                tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopBacktel);
             }
 
             for (; pcm_index < df_MaxNumTransferableChannel;)
             {
-                fillSepcificCommndBuffer(pcm_index++, pcm_Mold_NopStandby);
+                tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopStandby);
             }
 
-            changeNextPcmOutputMode(PcmBitStream_Mode_NopStandby);   // 다음 출력 모드 : NopStandby
-            changePcmOutputMode(PcmBitStream_Mode_SepcificCommand);  // 현재 출력 모드 : SepcificCommand
+            tdc_shm_change_next_pcm_output_mode(PcmBitStream_Mode_NopStandby);   // 다음 출력 모드 : NopStandby
+            tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_SepcificCommand);  // 현재 출력 모드 : SepcificCommand
         }
         break;
 
@@ -685,19 +685,19 @@ bool tdc_isd_set_stim_para_bipolar(bool isdControlStateChagedFlag)
 
             for (i = 0; i < 6; i++)
             {
-                fillSepcificCommndBuffer(pcm_index++, w_isd_registerValue);
-                fillSepcificCommndBuffer(pcm_index++, pcm_Mold_NopBacktel);
-                fillSepcificCommndBuffer(pcm_index++, pcm_Mold_NopBacktel);
-                fillSepcificCommndBuffer(pcm_index++, pcm_Mold_NopBacktel);
+                tdc_shm_fill_specific_command_buffer(pcm_index++, w_isd_registerValue);
+                tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopBacktel);
+                tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopBacktel);
+                tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopBacktel);
             }
 
             for (; pcm_index < df_MaxNumTransferableChannel;)
             {
-                fillSepcificCommndBuffer(pcm_index++, pcm_Mold_NopStandby);
+                tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopStandby);
             }
 
-            changeNextPcmOutputMode(PcmBitStream_Mode_NopStandby);   // 다음 출력 모드 : NopStandby
-            changePcmOutputMode(PcmBitStream_Mode_SepcificCommand);  // 현재 출력 모드 : SepcificCommand
+            tdc_shm_change_next_pcm_output_mode(PcmBitStream_Mode_NopStandby);   // 다음 출력 모드 : NopStandby
+            tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_SepcificCommand);  // 현재 출력 모드 : SepcificCommand
         }
         break;
 
@@ -714,19 +714,19 @@ bool tdc_isd_set_stim_para_bipolar(bool isdControlStateChagedFlag)
 
             for (i = 0; i < 6; i++)
             {
-                fillSepcificCommndBuffer(pcm_index++, w_isd_registerValue);
-                fillSepcificCommndBuffer(pcm_index++, pcm_Mold_NopBacktel);
-                fillSepcificCommndBuffer(pcm_index++, pcm_Mold_NopBacktel);
-                fillSepcificCommndBuffer(pcm_index++, pcm_Mold_NopBacktel);
+                tdc_shm_fill_specific_command_buffer(pcm_index++, w_isd_registerValue);
+                tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopBacktel);
+                tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopBacktel);
+                tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopBacktel);
             }
 
             for (; pcm_index < df_MaxNumTransferableChannel;)
             {
-                fillSepcificCommndBuffer(pcm_index++, pcm_Mold_NopStandby);
+                tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopStandby);
             }
 
-            changeNextPcmOutputMode(PcmBitStream_Mode_NopStandby);   // 다음 출력 모드 : NopStandby
-            changePcmOutputMode(PcmBitStream_Mode_SepcificCommand);  // 현재 출력 모드 : SepcificCommand
+            tdc_shm_change_next_pcm_output_mode(PcmBitStream_Mode_NopStandby);   // 다음 출력 모드 : NopStandby
+            tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_SepcificCommand);  // 현재 출력 모드 : SepcificCommand
         }
         break;
 
@@ -743,19 +743,19 @@ bool tdc_isd_set_stim_para_bipolar(bool isdControlStateChagedFlag)
 
             for (i = 0; i < 6; i++)
             {
-                fillSepcificCommndBuffer(pcm_index++, w_isd_registerValue);
-                fillSepcificCommndBuffer(pcm_index++, pcm_Mold_NopBacktel);
-                fillSepcificCommndBuffer(pcm_index++, pcm_Mold_NopBacktel);
-                fillSepcificCommndBuffer(pcm_index++, pcm_Mold_NopBacktel);
+                tdc_shm_fill_specific_command_buffer(pcm_index++, w_isd_registerValue);
+                tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopBacktel);
+                tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopBacktel);
+                tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopBacktel);
             }
 
             for (; pcm_index < df_MaxNumTransferableChannel;)
             {
-                fillSepcificCommndBuffer(pcm_index++, pcm_Mold_NopStandby);
+                tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopStandby);
             }
 
-            changeNextPcmOutputMode(PcmBitStream_Mode_NopStandby);   // 다음 출력 모드 : NopStandby
-            changePcmOutputMode(PcmBitStream_Mode_SepcificCommand);  // 현재 출력 모드 : SepcificCommand
+            tdc_shm_change_next_pcm_output_mode(PcmBitStream_Mode_NopStandby);   // 다음 출력 모드 : NopStandby
+            tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_SepcificCommand);  // 현재 출력 모드 : SepcificCommand
         }
         break;
 
@@ -772,19 +772,19 @@ bool tdc_isd_set_stim_para_bipolar(bool isdControlStateChagedFlag)
 
             for (i = 0; i < 2; i++)
             {
-                fillSepcificCommndBuffer(pcm_index++, w_isd_registerValue);
-                fillSepcificCommndBuffer(pcm_index++, pcm_Mold_NopBacktel);
-                fillSepcificCommndBuffer(pcm_index++, pcm_Mold_NopBacktel);
-                fillSepcificCommndBuffer(pcm_index++, pcm_Mold_NopBacktel);
+                tdc_shm_fill_specific_command_buffer(pcm_index++, w_isd_registerValue);
+                tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopBacktel);
+                tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopBacktel);
+                tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopBacktel);
             }
 
             for (; pcm_index < df_MaxNumTransferableChannel;)
             {
-                fillSepcificCommndBuffer(pcm_index++, pcm_Mold_NopStandby);
+                tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopStandby);
             }
 
-            changeNextPcmOutputMode(PcmBitStream_Mode_NopStandby);   // 다음 출력 모드 : NopStandby
-            changePcmOutputMode(PcmBitStream_Mode_SepcificCommand);  // 현재 출력 모드 : SepcificCommand
+            tdc_shm_change_next_pcm_output_mode(PcmBitStream_Mode_NopStandby);   // 다음 출력 모드 : NopStandby
+            tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_SepcificCommand);  // 현재 출력 모드 : SepcificCommand
         }
         break;
 
@@ -865,11 +865,11 @@ bool tdc_isd_set_stim_para_bipolar(bool isdControlStateChagedFlag)
             w_isd_registerValue = w_isd_registerValue | p_stimulDAC_setting->DAC_offsetLevel_register;
             w_isd_registerValue = w_isd_registerValue | pcm_Mold_configuration;
 
-            fillSepcificCommndBuffer(pcm_index++, w_isd_registerValue);
+            tdc_shm_fill_specific_command_buffer(pcm_index++, w_isd_registerValue);
             // for(i=0; i<mapData->frameNumPerChannel*2; i++)
-            //   fillSepcificCommndBuffer(pcm_index++, pcm_Mold_NopStandby);
-            // fillSepcificCommndBuffer(pcm_index++, pcm_Mold_NopStandby);
-            // fillSepcificCommndBuffer(pcm_index++, pcm_Mold_NopStandby);
+            //   tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopStandby);
+            // tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopStandby);
+            // tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopStandby);
 
             // ISD  - 자극 파라미터 설정  쓰기
             w_isd_registerValue = ISD_registerAddr_StimulationConfig;
@@ -936,7 +936,7 @@ bool tdc_isd_set_stim_para_bipolar(bool isdControlStateChagedFlag)
             sent_stimulConfig   = w_isd_registerValue & 0xFF;
             w_isd_registerValue = w_isd_registerValue | pcm_Mold_configuration;
 
-            fillSepcificCommndBuffer(pcm_index++, w_isd_registerValue);
+            tdc_shm_fill_specific_command_buffer(pcm_index++, w_isd_registerValue);
 
 #ifndef DisalbedBackTel
             // ISD  - DAC Offset 읽기
@@ -947,12 +947,12 @@ bool tdc_isd_set_stim_para_bipolar(bool isdControlStateChagedFlag)
 
             w_isd_registerValue = w_isd_registerValue | pcm_Mold_configuration;
 
-            fillSepcificCommndBuffer(pcm_index++, w_isd_registerValue);
+            tdc_shm_fill_specific_command_buffer(pcm_index++, w_isd_registerValue);
             // for(i=0; i<mapData->frameNumPerChannel*2; i++)
-            //   fillSepcificCommndBuffer(pcm_index++, pcm_Mold_NopBacktel);
-            fillSepcificCommndBuffer(pcm_index++, pcm_Mold_NopBacktel);
-            fillSepcificCommndBuffer(pcm_index++, pcm_Mold_NopBacktel);
-            fillSepcificCommndBuffer(pcm_index++, pcm_Mold_NopBacktel);
+            //   tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopBacktel);
+            tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopBacktel);
+            tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopBacktel);
+            tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopBacktel);
 
             // ISD  - 자극 파라미터 설정  읽기
             w_isd_registerValue = ISD_registerAddr_StimulationConfig;
@@ -962,23 +962,23 @@ bool tdc_isd_set_stim_para_bipolar(bool isdControlStateChagedFlag)
 
             w_isd_registerValue = w_isd_registerValue | pcm_Mold_configuration;
 
-            fillSepcificCommndBuffer(pcm_index++, w_isd_registerValue);
+            tdc_shm_fill_specific_command_buffer(pcm_index++, w_isd_registerValue);
 
             for (i = pcm_index; i < df_MaxNumTransferableChannel; i++)
             {
-                fillSepcificCommndBuffer(i, pcm_Mold_NopBacktel);
+                tdc_shm_fill_specific_command_buffer(i, pcm_Mold_NopBacktel);
             }
 #else
 
             for (i = pcm_index; i < df_MaxNumTransferableChannel; i++)
             {
-                fillSepcificCommndBuffer(i, pcm_Mold_NopStandby);
+                tdc_shm_fill_specific_command_buffer(i, pcm_Mold_NopStandby);
             }
 
 #endif
 
-            changeNextPcmOutputMode(PcmBitStream_Mode_NopStandby);   // 다음 출력 모드 : NopStandby
-            changePcmOutputMode(PcmBitStream_Mode_SepcificCommand);  // 현재 출력 모드 : SepcificCommand
+            tdc_shm_change_next_pcm_output_mode(PcmBitStream_Mode_NopStandby);   // 다음 출력 모드 : NopStandby
+            tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_SepcificCommand);  // 현재 출력 모드 : SepcificCommand
         }
         break;
 
@@ -1048,11 +1048,11 @@ bool tdc_isd_set_stim_para_bipolar(bool isdControlStateChagedFlag)
 
             for (i = pcm_index; i < df_MaxNumTransferableChannel; i++)
             {
-                fillSepcificCommndBuffer(i, pcm_Mold_NopStandby);
+                tdc_shm_fill_specific_command_buffer(i, pcm_Mold_NopStandby);
             }
 
-            changeNextPcmOutputMode(PcmBitStream_Mode_NopStandby);   // 다음 출력 모드 : NopStandby
-            changePcmOutputMode(PcmBitStream_Mode_SepcificCommand);  // 현재 출력 모드 : SepcificCommand
+            tdc_shm_change_next_pcm_output_mode(PcmBitStream_Mode_NopStandby);   // 다음 출력 모드 : NopStandby
+            tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_SepcificCommand);  // 현재 출력 모드 : SepcificCommand
         }
         break;
 
@@ -1122,7 +1122,7 @@ bool tdc_isd_stim_setting_step(bool startTrigger)
     bool error;
 
     error     = false;
-    p_mapdata = getPointerCurrentMapData();
+    p_mapdata = tdc_shm_get_pointer_current_map_data();
 
     if (startTrigger)
     {

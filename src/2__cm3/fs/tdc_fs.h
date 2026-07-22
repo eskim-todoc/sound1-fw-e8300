@@ -17,7 +17,7 @@
 #include <nvmlib.h>
 
 #include <FPGA.h>
-#include <cfx_cm3_sharedMemory.h>
+#include <tdc_shm.h>
 #include <tdc_stim_definitions.h>
 #include <processorDirective.h>
 #include <99_eeprom_address.h>
@@ -119,7 +119,7 @@ extern FIL                           g_tdc_fs_ohdl;
 // function headers
 //
 
-FIL *ci_fatfs_get_fp(void);
+FIL *tdc_fs_get_fp(void);
 
 int tdc_fs_nvm_init(void);
 

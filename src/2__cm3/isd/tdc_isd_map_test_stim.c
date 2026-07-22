@@ -17,7 +17,7 @@
 
 #include "tdc_isd.h"
 #include "tdc_isd_fpga.h"
-#include "cfx_cm3_sharedMemory.h"
+#include "tdc_shm.h"
 #include "tdc_ble_mapping.h"
 #include "tdc_hal_spi.h"
 #include "tdc_stim_para_cal.h"
@@ -102,7 +102,7 @@ bool testStimulation(bool startFlag)
 
             // 이전에 전송된 자극 파라미터 값이 있을 수 있기 때문에 출력을 내보내기 위하여 설정 파라미터들 전송한다.
 
-            changePcmOutputMode(PcmBitStream_Mode_NopStandby);
+            tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_NopStandby);
 
             // 펄스폭에 따른 자극 프레임 갯수 계산
 
@@ -253,7 +253,7 @@ bool testStimulation(bool startFlag)
 
         case 1:
         {
-            changePcmOutputMode(PcmBitStream_Mode_SepcificCommand);
+            tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_SepcificCommand);
 
             // 펄스 폭 0으로 설정
             tdc_isd_fpga_change_pulse_width_minimum(pcm_index++);
@@ -266,7 +266,7 @@ bool testStimulation(bool startFlag)
             tdc_isd_fill_pcm_last_stimulation_out(&pcm_index);
 
             for (; pcm_index < df_MaxNumTransferableChannel;)
-                fillSepcificCommndBuffer(pcm_index++, pcm_Mold_NopStandby);
+                tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopStandby);
 
             if (mappingPacket->testStimulation.stimulatonMode != en__bipolar)
             {
@@ -274,7 +274,7 @@ bool testStimulation(bool startFlag)
             }
 
             // NOP-Standby
-            changeNextPcmOutputMode(PcmBitStream_Mode_NopStandby);
+            tdc_shm_change_next_pcm_output_mode(PcmBitStream_Mode_NopStandby);
         }
         break;
 
@@ -282,7 +282,7 @@ bool testStimulation(bool startFlag)
 
         case 2:
         {
-            changePcmOutputMode(PcmBitStream_Mode_SepcificCommand);
+            tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_SepcificCommand);
 
             // Bipolar 기준전극  FIFO 지우기
             w_isd_registerValue = ISD_registerAddr_cipherDataStatus;
@@ -293,12 +293,12 @@ bool testStimulation(bool startFlag)
             w_isd_registerValue = w_isd_registerValue | 0x80; // CHIP_ID_FIFO_RDDATA_INDEXdp 아무값이나 쓰면 FIFO가 지워진다.
             w_isd_registerValue = w_isd_registerValue | pcm_Mold_configuration;
 
-            fillSepcificCommndBuffer(pcm_index++, w_isd_registerValue);
+            tdc_shm_fill_specific_command_buffer(pcm_index++, w_isd_registerValue);
 
             for (; pcm_index < df_MaxNumTransferableChannel;)
-                fillSepcificCommndBuffer(pcm_index++, pcm_Mold_NopStandby);
+                tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopStandby);
             // NOP-Standby
-            changeNextPcmOutputMode(PcmBitStream_Mode_NopStandby);
+            tdc_shm_change_next_pcm_output_mode(PcmBitStream_Mode_NopStandby);
         }
         break;
 
@@ -306,7 +306,7 @@ bool testStimulation(bool startFlag)
         {
 
             // PCM 출력 모드 변경
-            changePcmOutputMode(PcmBitStream_Mode_SepcificCommand);
+            tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_SepcificCommand);
 
             for (i = 0; i < df_MaxNumTransferableChannel; i++) // 1~24번 자극채널에  대응하는 기준 전극 번호
             {
@@ -318,21 +318,21 @@ bool testStimulation(bool startFlag)
                 w_isd_registerValue = w_isd_registerValue | electrodeMap[bipolarReferenceElectrodeNum[i]];
                 w_isd_registerValue = w_isd_registerValue | pcm_Mold_configuration;
 
-                fillSepcificCommndBuffer(pcm_index++, w_isd_registerValue);
+                tdc_shm_fill_specific_command_buffer(pcm_index++, w_isd_registerValue);
             }
 
             for (; pcm_index < df_MaxNumTransferableChannel;)
-                fillSepcificCommndBuffer(pcm_index++, pcm_Mold_NopStandby);
+                tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopStandby);
 
             // NOP-Standby
-            changeNextPcmOutputMode(PcmBitStream_Mode_NopStandby);
+            tdc_shm_change_next_pcm_output_mode(PcmBitStream_Mode_NopStandby);
         }
         break;
 
         case 4:
         {
             // PCM 출력 모드 변경
-            changePcmOutputMode(PcmBitStream_Mode_SepcificCommand);
+            tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_SepcificCommand);
 
             for (i = 24; i < 32; i++) // 24번~30 자극채널에  대응하는 기준 전극 번호
             {
@@ -344,14 +344,14 @@ bool testStimulation(bool startFlag)
                 w_isd_registerValue = w_isd_registerValue | electrodeMap[bipolarReferenceElectrodeNum[i]];
                 w_isd_registerValue = w_isd_registerValue | pcm_Mold_configuration;
 
-                fillSepcificCommndBuffer(pcm_index++, w_isd_registerValue);
+                tdc_shm_fill_specific_command_buffer(pcm_index++, w_isd_registerValue);
             }
 
             for (; pcm_index < df_MaxNumTransferableChannel;)
-                fillSepcificCommndBuffer(pcm_index++, pcm_Mold_NopStandby);
+                tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopStandby);
 
             // NOP-Standby
-            changeNextPcmOutputMode(PcmBitStream_Mode_NopStandby);
+            tdc_shm_change_next_pcm_output_mode(PcmBitStream_Mode_NopStandby);
         }
         break;
 
@@ -361,7 +361,7 @@ bool testStimulation(bool startFlag)
         {
 
             // PCM 출력 모드 변경
-            changePcmOutputMode(PcmBitStream_Mode_SepcificCommand);
+            tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_SepcificCommand);
 
             w_isd_registerValue = ISD_registerAddr_en__bipolar_referenceElectroldIndex;
             w_isd_registerValue = w_isd_registerValue << 1;
@@ -372,24 +372,24 @@ bool testStimulation(bool startFlag)
 
             for (i = 0; i < 6; i++)
             {
-                fillSepcificCommndBuffer(pcm_index++, w_isd_registerValue);
-                fillSepcificCommndBuffer(pcm_index++, pcm_Mold_NopBacktel);
-                fillSepcificCommndBuffer(pcm_index++, pcm_Mold_NopBacktel);
-                fillSepcificCommndBuffer(pcm_index++, pcm_Mold_NopBacktel);
+                tdc_shm_fill_specific_command_buffer(pcm_index++, w_isd_registerValue);
+                tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopBacktel);
+                tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopBacktel);
+                tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopBacktel);
             }
 
             for (; pcm_index < df_MaxNumTransferableChannel;)
-                fillSepcificCommndBuffer(pcm_index++, pcm_Mold_NopStandby);
+                tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopStandby);
 
             // NOP-Standby
-            changeNextPcmOutputMode(PcmBitStream_Mode_NopStandby);
+            tdc_shm_change_next_pcm_output_mode(PcmBitStream_Mode_NopStandby);
         }
         break;
 
         case 11: // PCM 출력 - 바이폴라 기준 전극 값 확인 - FIFO 값 확인..6~11
         {
             // PCM 출력 모드 변경
-            changePcmOutputMode(PcmBitStream_Mode_SepcificCommand);
+            tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_SepcificCommand);
 
             w_isd_registerValue = ISD_registerAddr_en__bipolar_referenceElectroldIndex;
             w_isd_registerValue = w_isd_registerValue << 1;
@@ -400,24 +400,24 @@ bool testStimulation(bool startFlag)
 
             for (i = 0; i < 6; i++)
             {
-                fillSepcificCommndBuffer(pcm_index++, w_isd_registerValue);
-                fillSepcificCommndBuffer(pcm_index++, pcm_Mold_NopBacktel);
-                fillSepcificCommndBuffer(pcm_index++, pcm_Mold_NopBacktel);
-                fillSepcificCommndBuffer(pcm_index++, pcm_Mold_NopBacktel);
+                tdc_shm_fill_specific_command_buffer(pcm_index++, w_isd_registerValue);
+                tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopBacktel);
+                tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopBacktel);
+                tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopBacktel);
             }
 
             for (; pcm_index < df_MaxNumTransferableChannel;)
-                fillSepcificCommndBuffer(pcm_index++, pcm_Mold_NopStandby);
+                tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopStandby);
 
             // NOP-Standby
-            changeNextPcmOutputMode(PcmBitStream_Mode_NopStandby);
+            tdc_shm_change_next_pcm_output_mode(PcmBitStream_Mode_NopStandby);
         }
         break;
 
         case 12: // PCM 출력 - 바이폴라 기준 전극 값 확인 - FIFO 값 확인..12~17
         {
             // PCM 출력 모드 변경
-            changePcmOutputMode(PcmBitStream_Mode_SepcificCommand);
+            tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_SepcificCommand);
 
             w_isd_registerValue = ISD_registerAddr_en__bipolar_referenceElectroldIndex;
             w_isd_registerValue = w_isd_registerValue << 1;
@@ -428,24 +428,24 @@ bool testStimulation(bool startFlag)
 
             for (i = 0; i < 6; i++)
             {
-                fillSepcificCommndBuffer(pcm_index++, w_isd_registerValue);
-                fillSepcificCommndBuffer(pcm_index++, pcm_Mold_NopBacktel);
-                fillSepcificCommndBuffer(pcm_index++, pcm_Mold_NopBacktel);
-                fillSepcificCommndBuffer(pcm_index++, pcm_Mold_NopBacktel);
+                tdc_shm_fill_specific_command_buffer(pcm_index++, w_isd_registerValue);
+                tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopBacktel);
+                tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopBacktel);
+                tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopBacktel);
             }
 
             for (; pcm_index < df_MaxNumTransferableChannel;)
-                fillSepcificCommndBuffer(pcm_index++, pcm_Mold_NopStandby);
+                tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopStandby);
 
             // NOP-Standby
-            changeNextPcmOutputMode(PcmBitStream_Mode_NopStandby);
+            tdc_shm_change_next_pcm_output_mode(PcmBitStream_Mode_NopStandby);
         }
         break;
 
         case 13: // PCM 출력 - 바이폴라 기준 전극 값 확인 - FIFO 값 확인..18~23
         {
             // PCM 출력 모드 변경
-            changePcmOutputMode(PcmBitStream_Mode_SepcificCommand);
+            tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_SepcificCommand);
 
             pcm_index = 0;
 
@@ -458,24 +458,24 @@ bool testStimulation(bool startFlag)
 
             for (i = 0; i < 6; i++)
             {
-                fillSepcificCommndBuffer(pcm_index++, w_isd_registerValue);
-                fillSepcificCommndBuffer(pcm_index++, pcm_Mold_NopBacktel);
-                fillSepcificCommndBuffer(pcm_index++, pcm_Mold_NopBacktel);
-                fillSepcificCommndBuffer(pcm_index++, pcm_Mold_NopBacktel);
+                tdc_shm_fill_specific_command_buffer(pcm_index++, w_isd_registerValue);
+                tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopBacktel);
+                tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopBacktel);
+                tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopBacktel);
             }
 
             for (; pcm_index < df_MaxNumTransferableChannel;)
-                fillSepcificCommndBuffer(pcm_index++, pcm_Mold_NopStandby);
+                tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopStandby);
 
             // NOP-Standby
-            changeNextPcmOutputMode(PcmBitStream_Mode_NopStandby);
+            tdc_shm_change_next_pcm_output_mode(PcmBitStream_Mode_NopStandby);
         }
         break;
 
         case 14: // PCM 출력 - 바이폴라 기준 전극 값 확인 - FIFO 값 확인..24~29
         {
             // PCM 출력 모드 변경
-            changePcmOutputMode(PcmBitStream_Mode_SepcificCommand);
+            tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_SepcificCommand);
 
             pcm_index = 0;
 
@@ -488,24 +488,24 @@ bool testStimulation(bool startFlag)
 
             for (i = 0; i < 6; i++)
             {
-                fillSepcificCommndBuffer(pcm_index++, w_isd_registerValue);
-                fillSepcificCommndBuffer(pcm_index++, pcm_Mold_NopBacktel);
-                fillSepcificCommndBuffer(pcm_index++, pcm_Mold_NopBacktel);
-                fillSepcificCommndBuffer(pcm_index++, pcm_Mold_NopBacktel);
+                tdc_shm_fill_specific_command_buffer(pcm_index++, w_isd_registerValue);
+                tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopBacktel);
+                tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopBacktel);
+                tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopBacktel);
             }
 
             for (; pcm_index < df_MaxNumTransferableChannel;)
-                fillSepcificCommndBuffer(pcm_index++, pcm_Mold_NopStandby);
+                tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopStandby);
 
             // NOP-Standby
-            changeNextPcmOutputMode(PcmBitStream_Mode_NopStandby);
+            tdc_shm_change_next_pcm_output_mode(PcmBitStream_Mode_NopStandby);
         }
         break;
 
         case 15: // PCM 출력 - 바이폴라 기준 전극 값 확인 - FIFO 값 확인..30~31
         {
             // PCM 출력 모드 변경
-            changePcmOutputMode(PcmBitStream_Mode_SepcificCommand);
+            tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_SepcificCommand);
 
             pcm_index = 0;
 
@@ -518,17 +518,17 @@ bool testStimulation(bool startFlag)
 
             for (i = 0; i < 2; i++)
             {
-                fillSepcificCommndBuffer(pcm_index++, w_isd_registerValue);
-                fillSepcificCommndBuffer(pcm_index++, pcm_Mold_NopBacktel);
-                fillSepcificCommndBuffer(pcm_index++, pcm_Mold_NopBacktel);
-                fillSepcificCommndBuffer(pcm_index++, pcm_Mold_NopBacktel);
+                tdc_shm_fill_specific_command_buffer(pcm_index++, w_isd_registerValue);
+                tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopBacktel);
+                tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopBacktel);
+                tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopBacktel);
             }
 
             for (; pcm_index < df_MaxNumTransferableChannel;)
-                fillSepcificCommndBuffer(pcm_index++, pcm_Mold_NopStandby);
+                tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopStandby);
 
             // NOP-Standby
-            changeNextPcmOutputMode(PcmBitStream_Mode_NopStandby);
+            tdc_shm_change_next_pcm_output_mode(PcmBitStream_Mode_NopStandby);
         }
         break;
 
@@ -591,7 +591,7 @@ bool testStimulation(bool startFlag)
         {
 
             // PCM 출력 모드 변경
-            changePcmOutputMode(PcmBitStream_Mode_SepcificCommand);
+            tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_SepcificCommand);
 
             // 자극 출력 DAC 설정
             // ISD 0x5   - DAC Offset 쓰기
@@ -603,8 +603,8 @@ bool testStimulation(bool startFlag)
             w_isd_registerValue = w_isd_registerValue | mappingPacket->testStimulation.stimulationDacOffset_255;
             w_isd_registerValue = w_isd_registerValue | pcm_Mold_configuration;
 
-            fillSepcificCommndBuffer(pcm_index++, w_isd_registerValue); //      | 0x50000
-            fillSepcificCommndBuffer(pcm_index++, pcm_Mold_NopStandby);
+            tdc_shm_fill_specific_command_buffer(pcm_index++, w_isd_registerValue); //      | 0x50000
+            tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopStandby);
 
             // ISD 0x6    - 자극 파라미터 설정  쓰기
             w_isd_registerValue = ISD_registerAddr_StimulationConfig;
@@ -668,8 +668,8 @@ bool testStimulation(bool startFlag)
             sent_stimulConfig   = w_isd_registerValue & 0xFF;
             w_isd_registerValue = w_isd_registerValue | pcm_Mold_configuration; //  | 0x50000
 
-            fillSepcificCommndBuffer(pcm_index++, w_isd_registerValue);
-            fillSepcificCommndBuffer(pcm_index++, pcm_Mold_NopStandby);
+            tdc_shm_fill_specific_command_buffer(pcm_index++, w_isd_registerValue);
+            tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopStandby);
 
 #ifndef DisalbedBackTel
             // ISD  - DAC Offset 읽기
@@ -680,10 +680,10 @@ bool testStimulation(bool startFlag)
 
             w_isd_registerValue = w_isd_registerValue | pcm_Mold_configuration;
 
-            fillSepcificCommndBuffer(pcm_index++, w_isd_registerValue);
-            fillSepcificCommndBuffer(pcm_index++, pcm_Mold_NopBacktel);
-            fillSepcificCommndBuffer(pcm_index++, pcm_Mold_NopBacktel);
-            fillSepcificCommndBuffer(pcm_index++, pcm_Mold_NopBacktel);
+            tdc_shm_fill_specific_command_buffer(pcm_index++, w_isd_registerValue);
+            tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopBacktel);
+            tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopBacktel);
+            tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopBacktel);
 
             // ISD  - 자극 파라미터 설정  읽기
             w_isd_registerValue = ISD_registerAddr_StimulationConfig;
@@ -693,19 +693,19 @@ bool testStimulation(bool startFlag)
 
             w_isd_registerValue = w_isd_registerValue | pcm_Mold_configuration;
 
-            fillSepcificCommndBuffer(pcm_index++, w_isd_registerValue);
+            tdc_shm_fill_specific_command_buffer(pcm_index++, w_isd_registerValue);
 
             for (i = pcm_index; i < df_MaxNumTransferableChannel; i++)
-                fillSepcificCommndBuffer(i, pcm_Mold_NopBacktel);
+                tdc_shm_fill_specific_command_buffer(i, pcm_Mold_NopBacktel);
 
 #else
 
             for (i = pcm_index; i < df_MaxNumTransferableChannel; i++)
-                fillSepcificCommndBuffer(pcm_index++, pcm_Mold_NopStandby);
+                tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopStandby);
 
 #endif
 
-            changeNextPcmOutputMode(PcmBitStream_Mode_NopStandby);
+            tdc_shm_change_next_pcm_output_mode(PcmBitStream_Mode_NopStandby);
         }
         break;
 
@@ -790,22 +790,22 @@ bool testStimulation(bool startFlag)
         {
 
             // PCM 출력 모드 변경
-            changePcmOutputMode(PcmBitStream_Mode_SepcificCommand);
+            tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_SepcificCommand);
 
             // 펄스 폭 조정
             tdc_isd_fpga_change_pulse_width(pcm_index++, mappingPacket->testStimulation.pulseWidth);
 
             // 나머지 버퍼는  NOP-Standby
             for (; pcm_index < df_MaxNumTransferableChannel;)
-                fillSepcificCommndBuffer(pcm_index++, pcm_Mold_NopStandby);
+                tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopStandby);
 
             // NOP-Standby
-            changeNextPcmOutputMode(PcmBitStream_Mode_NopStandby);
+            tdc_shm_change_next_pcm_output_mode(PcmBitStream_Mode_NopStandby);
 
             // 펄스 폭 .. 설정 PCM 출력으로  FPGA에 전달
 
             // NOP-Standby
-            changeNextPcmOutputMode(PcmBitStream_Mode_NopStandby);
+            tdc_shm_change_next_pcm_output_mode(PcmBitStream_Mode_NopStandby);
         }
         break;
 
@@ -858,7 +858,7 @@ bool testStimulation(bool startFlag)
         {
 
             // 마지막 자극을 위하여 자극 출력
-            changePcmOutputMode(PcmBitStream_Mode_SepcificCommand);
+            tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_SepcificCommand);
 
             tdc_isd_fpga_change_pulse_width_minimum(pcm_index++);
             tdc_isd_fpga_update_fpga_pulse_phase_width_written_value(FPGA_pulsePhaseWidth_minimum);
@@ -869,7 +869,7 @@ bool testStimulation(bool startFlag)
             for (; pcm_index < df_MaxNumTransferableChannel;)
             {
                 // tempBuff[pcm_index]=pcm_Mold_NopStandby;
-                fillSepcificCommndBuffer(pcm_index++, pcm_Mold_NopStandby);
+                tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopStandby);
             }
 
             tdc_isd_fpga_read_fifo_counter(&temp);
@@ -894,19 +894,19 @@ bool testStimulation(bool startFlag)
         {
 
             // PCM 출력 모드 변경
-            changePcmOutputMode(PcmBitStream_Mode_SepcificCommand);
+            tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_SepcificCommand);
 
             for (i = 0; i < TransferabelChannelNum; i++) // 1msec 동안 출력할 수 있는 채널 수
             {
 
                 // tempBuff[pcm_index]=stimulPCM_buff[trasnferChannel_Index];
-                fillSepcificCommndBuffer(pcm_index++, stimulPCM_buff[trasnferChannel_Index++]);
+                tdc_shm_fill_specific_command_buffer(pcm_index++, stimulPCM_buff[trasnferChannel_Index++]);
 
                 // 펄스 폭에 맞추어 NOP
                 for (pulseDurationNop_idex = 1; pulseDurationNop_idex < numFramePerChannel; pulseDurationNop_idex++)
                 {
                     // tempBuff[pcm_index]=pcm_Mold_NopStandby;
-                    fillSepcificCommndBuffer(pcm_index++, pcm_Mold_NopStandby);
+                    tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopStandby);
                 }
 
                 if (mappingPacket->testStimulation.usableElectrodeNum >
@@ -927,13 +927,13 @@ bool testStimulation(bool startFlag)
             for (; pcm_index < df_MaxNumTransferableChannel;)
             {
                 // tempBuff[pcm_index]=pcm_Mold_NopStandby;
-                fillSepcificCommndBuffer(pcm_index++, pcm_Mold_NopStandby);
+                tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopStandby);
             }
 
             stimulationTime_msec++;
         }
         // NOP-Standby
-        changeNextPcmOutputMode(PcmBitStream_Mode_NopStandby);
+        tdc_shm_change_next_pcm_output_mode(PcmBitStream_Mode_NopStandby);
     }
 
     flowControlCounter++;
