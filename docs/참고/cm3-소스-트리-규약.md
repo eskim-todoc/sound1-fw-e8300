@@ -1,3 +1,11 @@
+---
+name: cm3 소스 트리 규약
+purpose: 2__cm3 의 소스 트리 배치·네이밍·include·FSM·파일처리 규약 (루트 코딩 지침의 프로젝트 구체화)
+type: 참고
+applies_to: [Sound1]
+tags: [cm3, convention, naming, include, source-tree, fsm]
+---
+
 # 2__cm3 코딩 규약 (tdc_convention)
 
 **TL;DR**: 루트 지침 `E:\workspace\rules\지침\코딩\`(네이밍 컨벤션 · 구현 패턴 · 밸리데이션 계층화)을 2__cm3 에 구체화한 규약. 전면 리팩토링(2026-07-20 승인, `docs/tasks/cm3/20260720_cm3-full-refactor/`)의 기준 문서다. 상세 근거는 해당 작업의 `계획.md` 참조.
@@ -23,9 +31,9 @@
 
 ## 3. rename 금지 (불가침)
 
-1. **공유 ABI**: `cfx_cm3_sharedMemory.h` 의 타입·필드 전부 (헤더 상단 경고 참조)
-2. **복제 헤더 교차 심볼**: `processorDirective.h` · `definitionsForAlgorithm.h` 중 동결 70종 — `docs/tasks/cm3/20260720_cm3-full-refactor/분석-데이터/08_보류-동결-목록.md`
-3. **외부 라이브러리**: `SEGGER_RTT/` · `tiny-AES-c/` (원형 유지)
+1. **공유 ABI**: `cfx_link/tdc_shm.h` 의 타입·필드 전부 (헤더 상단 경고 참조)
+2. **복제 헤더 교차 심볼**: `board/processorDirective.h` · `stim/tdc_stim_definitions.h` 중 동결 70종 — `docs/tasks/cm3/20260720_cm3-full-refactor/분석-데이터/08_보류-동결-목록.md`
+3. **외부 라이브러리**: `lib/SEGGER_RTT/` · `lib/tiny-AES-c/` — **원본 API 심볼만** 유지. 라이브러리 폴더 안이라도 자작 래퍼는 rename 대상(예: `ci_aes_*` → `tdc_aes_*`)
 4. **SDK 심볼**: `Sys_*` / `SYS_*` / `hw.h` 계열 (ON Semi 제공)
 
 ## 4. FSM 패턴 (루트 `구현 패턴.md` 준수)
@@ -34,8 +42,38 @@
 
 ## 5. 파일 처리 패턴
 
-`tdc_fs_record`: `magic_begin + version + size + payload + magic_end + crc16`, all-or-nothing, 실패 시 기본값 캐시 + 즉시 재기록. (`ci_stim_mute` 패턴 승격)
+`tdc_fs_record`: `magic_begin + version + size + payload + magic_end + crc16`, all-or-nothing, 실패 시 기본값 캐시 + 즉시 재기록. (`tdc_fs_stim_mute` 패턴 승격)
 
 ## 6. 소스 인코딩
 
 주석에 CP949 비호환 문자 금지 (`—` `≈` `µ` `►` 등) — 저장소 루트 `CLAUDE.md` §소스 인코딩 규칙, pre-commit 훅이 차단.
+
+
+## 7. 소스 트리 구조 (2026-07-22 확정)
+
+```
+2__cm3/
+├── sections.ld      링커 -T 스크립트 - 루트 불가침
+├── Debug/           빌드 산출물 (CDT 생성, git 미추적)
+└── source/          모든 소스는 이 아래에만
+    ├── main.c  main.h
+    ├── board/       보드·프로세서 정의 (Board_*.h, processorDirective.h, 99_eeprom_address.h)
+    ├── lib/         외부 라이브러리 (SEGGER_RTT, tiny-AES-c)
+    └── <도메인>/    hal drv led touch ui sys pwr fs ble qcc dfu isd stim cfx_link boot util
+```
+
+**모듈 co-location**: `.c` 와 `.h` 는 같은 도메인 폴더에 둔다. 헤더·소스를 물리 분리하지 않는다.
+
+## 8. include 규약 (2026-07-22 확정)
+
+| 규칙 | 내용 |
+|---|---|
+| 표기 | **`<파일명.h>`** 한 가지. `"..."` 금지 |
+| 경로 | **붙이지 않는다.** `<tdc_hal_i2c.h>` (O) / `<hal/tdc_hal_i2c.h>` (X) |
+| 전제 | **헤더 파일명은 전역 유일**해야 한다. 새 헤더 추가 시 동명 존재 여부를 확인한다 |
+| 구분 | 내것/외부는 `tdc_` 접두어로 구분한다 (`<tdc_shm.h>` vs `<stdint.h>`) |
+
+> [!CAUTION]
+> **새 폴더를 만들면 `.cproject` 의 `-I` 에 반드시 등록한다.** flat include 방식이라 `-I` 누락은 곧 빌드 실패다. 경로는 `${workspace_loc:/${ProjName}/source/<폴더>}` 형식.
+
+`-I` 현황: 20건 (`source` + `source/board` + `source/lib/{SEGGER_RTT,tiny-AES-c}` + 도메인 16). 근거: `docs/tasks/cm3/20260722_cm3-source-root/`.
