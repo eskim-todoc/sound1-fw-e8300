@@ -171,19 +171,25 @@ ST__ISD_STATUS tdc_isd_step(bool isd_enable, bool mappingConnection, EN__ISD_CON
         {
             case en__isdStatus_PowerIC_Reset:
                 // 링크 5V PMIC를 최소 전압에서 최대전압으로 단계적 증가
-                tdc_isd_init_tx_power_ic(s_isd_control_state_chaged_flag);
+                // tdc_isd_init_tx_power_ic(s_isd_control_state_chaged_flag);
+
+                tdc_isd_change_state(en__isdStatus_PowerIC_OK);  // for QCC 1.8V 테스트
                 break;
 
             case en__isdStatus_PowerIC_OK:
                 // FPGA의 소프트웨어 리셋, PCM Abort, Preamble, Nop 패킷 전송 시퀀스 수행 후,
                 // 마지막으로 FPGA에 에러가 없는지 검증한다. (싱크 로스트 등)
-                tdc_isd_init_fpga(s_isd_control_state_chaged_flag);
+                // tdc_isd_init_fpga(s_isd_control_state_chaged_flag);
+
+                tdc_isd_change_state(en__isdStatus_FPGA_Ok);  // for QCC 1.8V 테스트
                 break;
 
             case en__isdStatus_FPGA_Ok:
                 // RF Tx (10Mhz 캐리어 클럭)을 일정기간 죽인 후, 내부기 전송 시작,
                 // 내부기의 전원 안정화 여부는 관계 없이 내부기 칩의 전원 레벨이 읽히는지 여부까지만 수행한다.
-                tdc_isd_init_device(s_isd_control_state_chaged_flag);
+                // tdc_isd_init_device(s_isd_control_state_chaged_flag);
+
+                tdc_isd_change_state(en__isdStatus_ISD_Power_Ok);  //  for QCC 1.8V 테스트
                 break;
 
             case en__isdStatus_ISD_Power_Ok:
@@ -198,13 +204,28 @@ ST__ISD_STATUS tdc_isd_step(bool isd_enable, bool mappingConnection, EN__ISD_CON
                 // 순서 1: 파일 읽고 맵 데이터 메모리 영역에 로드 : ISD 정보, 사용자 설정 값, 매핑 일자, 프로그램 1, 2, 3, 4
                 // 순서 2: 맵 데이터 메모리 영역에서 공유 메모리 영역으로 ISD 번호에 해당하는 정보 모두 복사
                 // 순서 3: 공유 메모리의 현재 연결 중인 ISD 번호 업데이트하여 CFX가 처리하도록 함
-                tdc_isd_path_open(s_isd_control_state_chaged_flag);
+                // tdc_isd_path_open(s_isd_control_state_chaged_flag);
+
+                tdc_isd_change_state(en__isdStatus_ISD_pathOpen_Ok);
+                tdc_shm_change_connected_isd_num_cfx(ManufacturingDefault_ISD_No);
+
+                TDC_PRINTF_V("[ISD] ISD ID MATCH NUM             = %d \r\n", ManufacturingDefault_ISD_No);
+                TDC_PRINTF_V("[ISD] USER SETTING: MAP NUM        = %d \r\n", cfx_cm3_sharedMemoryAll.userSettingValue.mapNum);
+                TDC_PRINTF_V("[ISD] USER SETTING: BLE ON/OFF     = %d \r\n", cfx_cm3_sharedMemoryAll.userSettingValue.Ble_Onff);
+                TDC_PRINTF_V("[ISD] USER SETTING: STIM INDICATOR = %d \r\n", cfx_cm3_sharedMemoryAll.userSettingValue.indicatorStimul_OnOff);
+                TDC_PRINTF_V("[ISD] USER SETTING: LED  INDICATOR = %d \r\n", cfx_cm3_sharedMemoryAll.userSettingValue.indicatorLED_OnOff);
+                TDC_PRINTF_V("[ISD] USER SETTING: TELECOIL       = %d \r\n", cfx_cm3_sharedMemoryAll.userSettingValue.teleCoil_OnOff);
+                TDC_PRINTF_V("[ISD] USER SETTING: AUDIO VOLUME   = %d \r\n", cfx_cm3_sharedMemoryAll.userSettingValue.audioVolume);
+                TDC_PRINTF_V("[ISD] USER SETTING: STIM  VOLUME   = %d \r\n", cfx_cm3_sharedMemoryAll.userSettingValue.stimulVolume);
+
                 break;
 
             case en__isdStatus_ISD_pathOpen_Ok:
                 // 자극 출력을 위한 내부기 칩 외부의 10V를 켜고, 이 10V를 활용하도록 VTG_LOCK_ENABLE을 설정하여
                 // 자극발생부가 잘 활성화 되도록 설정 및 검증하는 단계이다.
-                tdc_isd_enable_stimul_10v(s_isd_control_state_chaged_flag);
+                // tdc_isd_enable_stimul_10v(s_isd_control_state_chaged_flag);
+
+                tdc_isd_change_state(en__isdStatus_stimul_10V_Ok);
                 break;
 
             default:
@@ -239,7 +260,11 @@ ST__ISD_STATUS tdc_isd_step(bool isd_enable, bool mappingConnection, EN__ISD_CON
                 }
                 else
                 {
-                    tdc_isd_update_link_by_backtel_live();
+                    // tdc_isd_update_link_by_backtel_live();
+                    if (BackelCircuitDisabled_readPcmFired_duringLiveStimulation == tdc_shm_read_connection_check_pcm_state())
+                    {
+                        tdc_shm_clear_connection_check_pcm_fired_flag();  // 기록을 지운다.
+                    }
                 }
 #endif
             }
@@ -351,24 +376,24 @@ void tdc_isd_update_link_by_backtel_live(void)
                         if (r_isd_registerValue == NoBacktel || r_isd_registerValue == BackTelNumTooMuch || r_isd_registerValue == ISD_Power_NA)
                         {
                             TDC_PRINTF_V("[LINK] STATE : %s \r\n",                                                     //
-                                      r_isd_registerValue == ISD_Power_LowUnstable    ? "ISD POWER LOW, UNSTABLE"   //
-                                      : r_isd_registerValue == ISD_Power_LowStable    ? "ISD POWER LOW, STABLE"     //
-                                      : r_isd_registerValue == ISD_Power_HighUnstable ? "ISD POWER HIGH, UNSTABLE"  //
-                                      : r_isd_registerValue == ISD_Power_HighStable   ? "ISD POWER HIGH, STABLE"    //
-                                      : r_isd_registerValue == NoBacktel              ? "NO BACKTEL"                //
-                                      : r_isd_registerValue == BackTelNumTooMuch      ? "BACKTEL NUM TOO MUCH"      //
-                                                                                      : "ISD POWER N/A");
+                                         r_isd_registerValue == ISD_Power_LowUnstable    ? "ISD POWER LOW, UNSTABLE"   //
+                                         : r_isd_registerValue == ISD_Power_LowStable    ? "ISD POWER LOW, STABLE"     //
+                                         : r_isd_registerValue == ISD_Power_HighUnstable ? "ISD POWER HIGH, UNSTABLE"  //
+                                         : r_isd_registerValue == ISD_Power_HighStable   ? "ISD POWER HIGH, STABLE"    //
+                                         : r_isd_registerValue == NoBacktel              ? "NO BACKTEL"                //
+                                         : r_isd_registerValue == BackTelNumTooMuch      ? "BACKTEL NUM TOO MUCH"      //
+                                                                                         : "ISD POWER N/A");
                         }
                     }
 #else  // 항상 출력
                     TDC_PRINTF_V("[LINK] STATE : %s \r\n",                                                     //
-                              r_isd_registerValue == ISD_Power_LowUnstable    ? "ISD POWER LOW, UNSTABLE"   //
-                              : r_isd_registerValue == ISD_Power_LowStable    ? "ISD POWER LOW, STABLE"     //
-                              : r_isd_registerValue == ISD_Power_HighUnstable ? "ISD POWER HIGH, UNSTABLE"  //
-                              : r_isd_registerValue == ISD_Power_HighStable   ? "ISD POWER HIGH, STABLE"    //
-                              : r_isd_registerValue == NoBacktel              ? "NO BACKTEL"                //
-                              : r_isd_registerValue == BackTelNumTooMuch      ? "BACKTEL NUM TOO MUCH"      //
-                                                                              : "ISD POWER N/A");
+                                 r_isd_registerValue == ISD_Power_LowUnstable    ? "ISD POWER LOW, UNSTABLE"   //
+                                 : r_isd_registerValue == ISD_Power_LowStable    ? "ISD POWER LOW, STABLE"     //
+                                 : r_isd_registerValue == ISD_Power_HighUnstable ? "ISD POWER HIGH, UNSTABLE"  //
+                                 : r_isd_registerValue == ISD_Power_HighStable   ? "ISD POWER HIGH, STABLE"    //
+                                 : r_isd_registerValue == NoBacktel              ? "NO BACKTEL"                //
+                                 : r_isd_registerValue == BackTelNumTooMuch      ? "BACKTEL NUM TOO MUCH"      //
+                                                                                 : "ISD POWER N/A");
 #endif
                 }
 #endif
@@ -609,7 +634,7 @@ void tdc_isd_update_link_by_backtel_mapping(int connectionCheckCOUNTER)
                 }
 
                 // 다음 순서의 PCM 동작 모드
-                tdc_shm_change_next_pcm_output_mode(PcmBitStream_Mode_NopStandby);   // 다음 출력 모드 : NopStandby
+                tdc_shm_change_next_pcm_output_mode(PcmBitStream_Mode_NopStandby);  // 다음 출력 모드 : NopStandby
                 tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_SepcificCommand);  // 현재 출력 모드 : SepcificCommand
             }
             break;

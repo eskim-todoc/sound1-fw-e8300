@@ -43,7 +43,7 @@ int tdc_hal_dio_configure_normal(void)
 
     // FPGA 활성화 핀
     Sys_DIO_Config(DIO_PIN_INDEX_for_FPGA_SLEEP, DIO_PIN_CFG_FOR_GPIO_OUPUT_NOPULLUP);
-    Sys_GPIO_Set_High(DIO_PIN_INDEX_for_FPGA_SLEEP);
+    Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_FPGA_SLEEP);
 
 #if 0
     Sys_DIO_Config(DIO_PIN_INDEX_for_FPGA_3P3V_ON, DIO_PIN_CFG_FOR_GPIO_OUPUT_NOPULLUP);
@@ -60,7 +60,7 @@ int tdc_hal_dio_configure_normal(void)
     Sys_GPIO_Set_High(NRF_SPI_CS_PIN);
 
     // SPI 통신 핀 설정: Cortex-M3 <-> nRF
-    //Sys_SPI_DIOConfig(SPI1, SPI_SELECT_SLAVE, SPI_DIO_PIN_CFG, NRF_SPI_CLK_PIN, NRF_SPI_CS_PIN, NRF_SPI_MOSI_PIN, NRF_SPI_MISO_PIN);
+    // Sys_SPI_DIOConfig(SPI1, SPI_SELECT_SLAVE, SPI_DIO_PIN_CFG, NRF_SPI_CLK_PIN, NRF_SPI_CS_PIN, NRF_SPI_MOSI_PIN, NRF_SPI_MISO_PIN);
 
     // SPI 통신 보조핀
     Sys_DIO_Config(GPIO_PIN_ReadCommandForSPI_Master, CM3_DIO_PIN_CFG_FOR_GPIO_OUPUT_NOPULLUP);  // nRF 칩에서 풀업 설정함

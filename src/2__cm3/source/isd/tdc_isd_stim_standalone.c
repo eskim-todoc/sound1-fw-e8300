@@ -56,8 +56,8 @@ bool tdc_isd_stim_standalone_step(void)
 {
     bool startSettingTrigger;
 
-    static bool    stimulationSettingIsDone = false;
-    static bool    calculationParameter     = false;
+    static bool          stimulationSettingIsDone = false;
+    static bool          calculationParameter     = false;
     tdc_sys_error_code_t errorCode;
 
     // Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_R); //3
@@ -105,7 +105,9 @@ bool tdc_isd_stim_standalone_step(void)
                 {
                     // 여기서 PCM 프로토콜을 사용하여 내부기 칩을 설정하는 구문을 수행한다.
                     // 대표적으로, 모노폴라, 바이폴라 등이다.
-                    tdc_isd_stim_setting_step(startSettingTrigger);
+                    // tdc_isd_stim_setting_step(startSettingTrigger);
+
+                    done_setting_StimulPara_variable();
 
                     is_need_to_print_message_for_live_stimulation = true;
                 }

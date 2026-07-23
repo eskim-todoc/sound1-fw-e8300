@@ -440,6 +440,7 @@ void tdc_sys_init(void)
     }
 #endif
 
+#if 0
     /* P11 (Rev.4 patch): 터치 센서 초기화 - tdc_hal_spi_init() 직후로 이동.
      * 사유: warm reset (워치독) 후 NRF 의 잔존 SPI 상태가 tdc_hal_spi_init() 전에
      *       CS RISE 를 만들어 DMA TRANSFER_WORD_CNT_SHORT 미스매치 회귀 발생.
@@ -448,7 +449,7 @@ void tdc_sys_init(void)
      * Auto-ATI 대기 (~1.5s) 는 LED 버스트 (~1.8s) 와 병렬 진행 → 체감 시간 0. */
     tdc_touch_init_begin();
     TDC_PRINTF_I("[MILESTONE] TOUCH-INIT-BEGIN t3=%d \r\n", tdc_hal_timer_get_t3_tick());
-
+#endif
     /* 종료 배리어: CFX 트리거 → main_tick · iteration 활성. TIMER3 는 stop 안 함. */
     enable_CFX_trigger_for_iteration();  // CFX_0, FIFO_5 인터럽트 활성화
     TDC_PRINTF_I("[MILESTONE] CFX-ITER-ENABLE t3=%d main=%d \r\n", tdc_hal_timer_get_t3_tick(), tdc_hal_timer_get_tick());
