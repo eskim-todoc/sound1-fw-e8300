@@ -350,7 +350,6 @@ bool tdc_shm_is_user_setting_value_loaded_cfx(void);
 /////////////////////
 // 맵데이터
 
-const ST__CFX_CM3_SharedMemory_mapData *tdc_shm_read_current_map_data(void);
 ST__CFX_CM3_SharedMemory_mapData       *tdc_shm_get_pointer_current_map_data(void);
 void                                    tdc_shm_set_read_write_map_data_flash_command(ST__CFX_CM3_SharedMemory_ReadWriteCommand_ForFlash command_ForFlash);
 bool                                    tdc_shm_is_read_write_map_data_flash_command_done(void);
@@ -400,7 +399,6 @@ void tdc_shm_share_mapping_program_connection(bool connection);
 void tdc_shm_change_system_mode_flag(EN__SYSTEM_OP_MODE flag);
 void tdc_shm_on_off_3_v_pmic_cm3_to_cfx(bool OnOff);
 
-void tdc_shm_update_system_op_mode_to_cfx(EN__SYSTEM_OP_MODE mode);
 
 void tdc_shm_update_backtel_control_value_to_cfx(int value);
 

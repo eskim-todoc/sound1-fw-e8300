@@ -29,10 +29,6 @@ ST__ISD_STATUS tdc_isd_get_state(void);
 ST__ISD_STATUS tdc_isd_step(bool isd_enable, bool mappingConnection, EN__ISD_CONTROL_STATE isdControlCommand);
 void           tdc_isd_change_state(EN__ISD_CONTROL_STATE ISD_controlState);
 void           tdc_isd_clear_control_state_changed_flag(void);
-void           tdc_isd_clear_command_start_flag(void);
-bool           tdc_isd_is_connected(void);
-void           tdc_isd_update_link_connected(void);
-void           tdc_isd_update_link_disconnected(void);
 
 void tdc_isd_fill_pcm_path_open_normal(int *p_pcm_index);
 void tdc_isd_fill_pcm_last_stimulation_out(int *p_pcm_index);

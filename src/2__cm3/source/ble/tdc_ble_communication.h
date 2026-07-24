@@ -16,7 +16,6 @@ typedef struct
 
 } ST__BLE_COMMUNICATION_STATE;
 
-void tdc_ble_communication_reset_globals(void);
 
 ST__BLE_COMMUNICATION_STATE tdc_ble_communication_step(ST__ISD_STATUS isd_state);
 

@@ -168,6 +168,5 @@ void tdc_hal_i2c_clear_hardware_status(void);
 void tdc_hal_i2c_start_write(const int slaveAddress, int *p_sourcedata, const int dataLength);
 void tdc_hal_i2c_start_read(const int slaveAddress, int *p_destination, const int dataLength);
 void I2C_0_IRQHandler(void);
-void tdc_hal_i2c_comm(void);
 
 #endif

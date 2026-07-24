@@ -5,7 +5,6 @@
 #include <tdc_hal_spi.h>
 #include <tdc_stim_definitions.h>
 #include <tdc_shm.h>
-#include <board.h> // 디버깅용
 #include <tdc_sys_error.h>
 #include <tdc_isd_init.h>
 

@@ -132,7 +132,6 @@ typedef struct
 
 void tdc_ble_mapping_clear_command();
 
-bool                tdc_ble_mapping_is_program_connected(void);
 void                tdc_ble_mapping_change_command_ble_disconnected(void);
 void                tdc_ble_mapping_change_command_waiting_ble_off(void);
 // const ST__MAPPING_PACKET *tdc_ble_mapping_get_packet(void);
