@@ -64,51 +64,9 @@ void tdc_printf_file_func_line(const char *file, const char *func, int line);
 #endif
 
 // clang-format off
-#if 1 // RTT 뷰어 사용 시
-#if 0 // 상세 정보 표시 O
-#define TDC_PRINTF(fmt, ...)                                         \
-    SEGGER_RTT_printf(0,                                            \
-                    "\r\n"                                          \
-                    RTT_CTRL_BG_BLUE RTT_CTRL_TEXT_BRIGHT_BLUE      \
-                    "%s"                                            \
-                    RTT_CTRL_RESET                                  \
-                    " "                                             \
-                    RTT_CTRL_BG_CYAN RTT_CTRL_TEXT_BRIGHT_GREEN     \
-                    "%s()"                                          \
-                    RTT_CTRL_RESET                                  \
-                    " "                                             \
-                    RTT_CTRL_BG_CYAN RTT_CTRL_TEXT_BRIGHT_YELLOW    \
-                    "%4d"                                           \
-                    RTT_CTRL_RESET                                  \
-                    "\r\n"                                          \
-                    fmt,                                            \
-                    __SHORT_FILE__,                                 \
-                    __func__,                                       \
-                    __LINE__,                                       \
-                    ##__VA_ARGS__)
-#elif 1
 #define TDC_PRINTF(fmt, ...)                                         \
     /*tdc_printf_file_func_line(__SHORT_FILE__, __func__, __LINE__);   */ \
     SEGGER_RTT_printf(0, fmt, ##__VA_ARGS__)
-#else // 상세 정보 표시 X
-#define TDC_PRINTF(...) SEGGER_RTT_printf(0, __VA_ARGS__)
-#endif
-#else // VT100 기반 터미널 사용 시
-#define TDC_PRINTF(fmt, ...)                       \
-    SEGGER_RTT_printf(0,                          \
-                    "\033[4;36m"      "%s"        \
-                    "\033[4;31m"      " / "       \
-                    "\033[4;32m"      "%s()"      \
-                    "\033[4;31m"      " / "       \
-                    "\033[4;33m"      "%d"        \
-                    "\033[4;31m"      " / "       \
-					"\033[0m\033[37m"             \
-                    fmt,                          \
-                    __SHORT_FILE__,               \
-                    __func__,                     \
-                    __LINE__,                     \
-                    ##__VA_ARGS__)
-#endif
 // clang-format on
 #else
 #define TDC_PRINTF(...)

@@ -27,9 +27,6 @@ typedef enum
     systemResgister_2nd_WRITABLE_BIT  = 0x03,
     backterConfiguration_WRITABLE_BIT = 0x03
 
-#if 0
-            fpga_IO_MUX_Configuration_WRITABLE_BIT=0x3F
-#endif
 } WRITTEN_REGISTER_RW_BIT;
 
 /// 레지스터  비트 위치

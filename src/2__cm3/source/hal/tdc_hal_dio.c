@@ -34,23 +34,12 @@ int tdc_hal_dio_configure_normal(void)
     Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_R);  // R
     Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_G);  // G
     Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_B);  // B
-#else  // 부팅 시간이 길어서 임의로 LED를 켜놓게 해본다.
-    Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_R);   // R
-    Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_G);  // G
-    Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_B);  // B
 #endif
 #endif
 
     // FPGA 활성화 핀
     Sys_DIO_Config(DIO_PIN_INDEX_for_FPGA_SLEEP, DIO_PIN_CFG_FOR_GPIO_OUPUT_NOPULLUP);
     Sys_GPIO_Set_High(DIO_PIN_INDEX_for_FPGA_SLEEP);
-
-#if 0
-    Sys_DIO_Config(DIO_PIN_INDEX_for_FPGA_3P3V_ON, DIO_PIN_CFG_FOR_GPIO_OUPUT_NOPULLUP);
-    Sys_DIO_Config(DIO_PIN_INDEX_for_FPGA_1P2V_ON, DIO_PIN_CFG_FOR_GPIO_OUPUT_NOPULLUP);
-    Sys_GPIO_Set_High(DIO_PIN_INDEX_for_FPGA_3P3V_ON);
-    Sys_GPIO_Set_High(DIO_PIN_INDEX_for_FPGA_1P2V_ON);
-#endif
 
     // I2C 핀
     Sys_I2C_DIOConfig(I2C0, I2C_PIN_CFG_VAL_forDIO, DIO_PIN_INDEX_for_CM3_SCL, DIO_PIN_INDEX_for_CM3_SDA);

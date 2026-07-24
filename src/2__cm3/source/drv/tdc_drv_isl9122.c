@@ -87,24 +87,10 @@ bool tdc_drv_isl9122_reset(void)
 {
     int value;
     int readValue;
-    int temp;
-
-#if 0
-
-    tdc_drv_isl9122_write_register(TDC_DRV_ISL9122_REG_CONV_CFG,TDC_DRV_PMIC_DEFAULTVALUE_CONV_CFG);
-
-    temp=tdc_stim_data_clear_bit(TDC_DRV_PMIC_DEFAULTVALUE_INTFLAG_MAS, TDC_DRV_PMIC_BITPOSITION_OC_FAULT_MODE, TDC_DRV_PMIC_BITLENGTH_OC_FAULT_MODE);
-    value=1;
-    value=(value<<TDC_DRV_PMIC_BITPOSITION_OC_FAULT_MODE)|temp;
-
-    tdc_drv_isl9122_write_register(TDC_DRV_ISL9122_REG_INTFLAG_MASK,value);
-
-#else
 
     tdc_drv_isl9122_write_register(TDC_DRV_ISL9122_REG_CONV_CFG, TDC_DRV_PMIC_DEFAULTVALUE_CONV_CFG);
     // tdc_drv_isl9122_write_register(TDC_DRV_ISL9122_REG_CONV_CFG,0x89);
     tdc_drv_isl9122_read_register(TDC_DRV_ISL9122_REG_CONV_CFG, &readValue);
-#endif
 
     value = TDC_DRV_PMIC_RESET_VOLTAGE_SET_VALUE;
 
