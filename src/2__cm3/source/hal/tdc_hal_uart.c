@@ -3,6 +3,7 @@
  */
 
 #include <tdc_hal_uart.h>
+#include <tdc_shm_debug.h>
 
 static char m_tx_buf[TDC_HAL_UART_TX_BUF_LEN];
 
