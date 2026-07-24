@@ -10,7 +10,6 @@
 
 #include <board.h>  // 디버깅용
 
-#include <tdc_hal_uart.h>
 #include <tdc_printf.h>
 #include <tdc_hal_timer.h>
 

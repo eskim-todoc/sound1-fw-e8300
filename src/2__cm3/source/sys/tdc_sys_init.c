@@ -44,7 +44,6 @@
 
 #include <tdc_hal_dio.h>
 #include <tdc_pwr_clock.h>
-#include <tdc_hal_uart.h>
 #include <tdc_util.h>
 #include <tdc_fs.h>
 #include <tdc_fs_map.h>
@@ -189,11 +188,6 @@ void tdc_sys_uninit(void)
     /* Disable I2C */
     tdc_hal_i2c_enable_interface(false);
 
-    /* Disable UART */
-    tdc_hal_uart_uninit();
-
-    /* Reset DIOs */
-    tdc_hal_dio_configure_sleep();
 }
 
 void error_toggler(int cnt, int msec)

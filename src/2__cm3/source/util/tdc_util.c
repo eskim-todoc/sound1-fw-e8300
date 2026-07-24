@@ -3,7 +3,6 @@
  */
 
 #include <tdc_util.h>
-#include <tdc_hal_uart.h>
 
 static void _critical_error_led_toggler(uint32_t cnt, uint32_t msec)
 {

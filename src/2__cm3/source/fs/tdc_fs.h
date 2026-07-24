@@ -22,7 +22,6 @@
 #include <processorDirective.h>
 #include <99_eeprom_address.h>
 
-#include <tdc_hal_uart.h>
 #include <tdc_printf.h>
 #include <aes.h>
 #include <tdc_crc.h>

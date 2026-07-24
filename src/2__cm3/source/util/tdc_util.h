@@ -15,7 +15,6 @@
 #include <board.h>
 #include <tdc_stim_definitions.h>
 
-#include <tdc_hal_uart.h>
 
 void tdc_util_indicate_critical_error(void);
 void tdc_util_assert(int a);

@@ -79,57 +79,6 @@ int tdc_hal_dio_configure_normal(void)
     return df_True;
 }
 
-int tdc_hal_dio_configure_sleep(void)
-{
-#if 0
-    // Earpiece detection
-    Sys_DIO_Config(DIO_PIN_INDEX_for_EARPIECE_DET_N, OTE_1_5_GEN_DIO_CFG_LP_EARPIECE_DET_N);
-
-    // Power charger detection
-    Sys_DIO_Config(DIO_PIN_INDEX_for_ChargerConnectorPluggedIn, OTE_1_5_GEN_DIO_CFG_LP_CHG_DET_N);
-
-    // Carrying case detection
-    Sys_DIO_Config(DIO_PIN_INDEX_for_CarryingCasePluggedIn, OTE_1_5_GEN_DIO_CFG_LP_CASE_DET);
-
-    // Carrying case cover open detection
-    Sys_DIO_Config(DIO_PIN_INDEX_for_CarryingCaseCoverOpen, OTE_1_5_GEN_DIO_CFG_LP_CASE_OPEN);
-
-    // Acc-sensor interrupt detection
-    Sys_DIO_Config(DIO_PIN_INDEX_for_Accelerometer, OTE_1_5_GEN_DIO_CFG_LP_ACCEL_INT);
-
-    // Configure DIO interrupt for acc-sensor
-    Sys_DIO_IntConfig(0, (DIO_INT_SRC_DIO_34 | DIO_INT_DEBOUNCE_DISABLE | DIO_INT_EVENT_FALLING_EDGE), DIO_DEBOUNCE_SLOWCLK_DIV32, 0);
-
-    // Configure DIO interrupt for carrying case cover open detection
-    Sys_DIO_IntConfig(1, (DIO_INT_SRC_DIO_28 | DIO_INT_DEBOUNCE_DISABLE | DIO_INT_EVENT_RISING_EDGE), DIO_DEBOUNCE_SLOWCLK_DIV32, 0);
-#endif
-
-    /* Reset DIO for LSAD */
-    // Sys_DIO_Config(DIO23, (DIO_8X_DRIVE | DIO_LPF_DISABLE | DIO_250K_PULL_UP | DIO_MODE_DISABLE));
-
-    /* Reset DIOs for SPI */
-    Sys_DIO_Config(NRF_SPI_CS_PIN, (DIO_8X_DRIVE | DIO_LPF_DISABLE | DIO_250K_PULL_UP | DIO_MODE_DISABLE));
-    Sys_DIO_Config(NRF_SPI_CLK_PIN, (DIO_8X_DRIVE | DIO_LPF_DISABLE | DIO_250K_PULL_UP | DIO_MODE_DISABLE));
-    Sys_DIO_Config(NRF_SPI_MOSI_PIN, (DIO_8X_DRIVE | DIO_LPF_DISABLE | DIO_250K_PULL_UP | DIO_MODE_DISABLE));
-    Sys_DIO_Config(NRF_SPI_MISO_PIN, (DIO_8X_DRIVE | DIO_LPF_DISABLE | DIO_250K_PULL_UP | DIO_MODE_DISABLE));
-
-    /* Reset DIOs for I2C */
-    Sys_DIO_Config(DIO_PIN_INDEX_for_CM3_SCL, (DIO_8X_DRIVE | DIO_LPF_DISABLE | DIO_250K_PULL_UP | DIO_MODE_DISABLE));
-    Sys_DIO_Config(DIO_PIN_INDEX_for_CM3_SDA, (DIO_8X_DRIVE | DIO_LPF_DISABLE | DIO_250K_PULL_UP | DIO_MODE_DISABLE));
-
-    /* Reset DIOs for UART */
-    Sys_DIO_Config(TDC_HAL_UART_DIO_TX, (DIO_8X_DRIVE | DIO_LPF_DISABLE | DIO_250K_PULL_UP | DIO_MODE_DISABLE));
-    Sys_DIO_Config(TDC_HAL_UART_DIO_RX, (DIO_8X_DRIVE | DIO_LPF_DISABLE | DIO_250K_PULL_UP | DIO_MODE_DISABLE));
-
-    NVIC_ClearPendingIRQ(DIO_0_IRQn);
-    NVIC_ClearPendingIRQ(DIO_1_IRQn);
-
-    NVIC_EnableIRQ(DIO_0_IRQn);
-    NVIC_EnableIRQ(DIO_1_IRQn);
-
-    return df_True;
-}
-
 /*
  * DIO interrupt handler for acc-sensor
  */

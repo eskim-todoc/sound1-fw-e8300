@@ -38,7 +38,6 @@
 #include <tdc_hal_dio.h>
 #include <tdc_pwr_clock.h>
 #include <tdc_hal_timer.h>
-#include <tdc_hal_uart.h>
 #include <tdc_printf.h>
 #include <tdc_hal_i2c.h>  //ok  - Sleep 진입 시 I2C PRESCALE 런타임 재설정용
 

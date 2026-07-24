@@ -15,7 +15,6 @@
 #include <board.h>
 #include <tdc_hal_spi.h>
 #include <tdc_pwr_clock.h>
-#include <tdc_hal_uart.h>
 #include <processorDirective.h>
 
 #include <tdc_qcc.h>
@@ -45,6 +44,5 @@ void DIO_0_IRQHandler(void);
 void DIO_1_IRQHandler(void);
 
 int tdc_hal_dio_configure_normal(void);
-int tdc_hal_dio_configure_sleep(void);
 
 #endif  // __tdc_hal_dio_h__

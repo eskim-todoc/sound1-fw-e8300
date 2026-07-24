@@ -64,9 +64,6 @@
 // 공용핀
 ////////////////
 
-// CFX UART
-#define DIO_PIN_INDEX_forUART_TX DIO20
-#define DIO_PIN_INDEX_forUART_RX DIO21
 
 #define DIO_PIN_INDEX_for_ChargerConnectorPluggedIn DIO17
 #define DIO_PIN_INDEX_for_CarryingCasePluggedIn     DIO28  // CASE_DET 핀이 25.09.30일 잠수함 패치 회로에서 DIO27에서 DIO28로 변경됨
@@ -114,9 +111,6 @@
 // 공용핀
 ////////////////
 
-// CFX UART
-#define DIO_PIN_INDEX_forUART_TX  DIO17  // DMIC_CLK
-#define DIO_PIN_INDEX_forUART_RX  DIO14  // DMIC_OUT
 
 #define DIO_PIN_INDEX_for_ChargerConnectorPluggedIn DIO27
 #define DIO_PIN_INDEX_for_CarryingCasePluggedIn     DIO23  // DMIC_OUT_QCC

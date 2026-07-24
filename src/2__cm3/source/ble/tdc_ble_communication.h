@@ -1,7 +1,6 @@
 #ifndef __tdc_ble_communication_h__
 #define __tdc_ble_communication_h__
 
-#include <tdc_hal_uart.h>
 #include <stdbool.h>
 
 #include <tdc_isd.h>  //ok

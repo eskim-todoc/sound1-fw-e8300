@@ -12,10 +12,8 @@
 
 #include <hw.h>
 
-#include <tdc_hal_uart.h>
 #include <SEGGER_RTT.h>
 
-#define TDC_PRINTF_INTERFACE_UART       1
 #define TDC_PRINTF_INTERFACE_SEGGER_RTT 2
 
 #define TDC_PRINTF_INTERFACE TDC_PRINTF_INTERFACE_SEGGER_RTT
@@ -31,9 +29,7 @@
 
 void tdc_printf_file_func_line(const char *file, const char *func, int line);
 
-#if (TDC_PRINTF_INTERFACE == TDC_PRINTF_INTERFACE_UART)
-#define TDC_PRINTF(...) tdc_hal_uart_printf(__VA_ARGS__)
-#elif (TDC_PRINTF_INTERFACE == TDC_PRINTF_INTERFACE_SEGGER_RTT)
+#if (TDC_PRINTF_INTERFACE == TDC_PRINTF_INTERFACE_SEGGER_RTT)
 
 #if TDC_PRINTF_ENABLE_ERROR
 #define TDC_PRINTF_E(fmt, ...)                                                                                                                                                                                                                                                                                                    \

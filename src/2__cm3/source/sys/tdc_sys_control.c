@@ -1,5 +1,4 @@
 
-#include <tdc_hal_uart.h>
 #include <hw.h>
 #include <stdbool.h>
 
