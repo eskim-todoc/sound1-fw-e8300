@@ -350,21 +350,6 @@ void tdc_led_set_ind_state(tdc_led_ind_state_t state)
     }
 }
 
-tdc_led_ind_state_t tdc_led_get_ind_state(void)
-{
-    return sg_led_ind_state;
-}
-
-void tdc_led_enable_test_trigger(void)
-{
-    testLED_Trigger = true;
-}
-
-void tdc_led_disable_test_trigger(void)
-{
-    testLED_Trigger = false;
-}
-
 bool tdc_led_is_test_trigger_enabled(void)
 {
     return testLED_Trigger;
@@ -754,30 +739,8 @@ void tdc_led_arbiter_tick(void)
 }
 
 /* ========================================================================
- *  tdc_led_pattern_out -- Legacy 래퍼 (직접 호출 시 하위 호환)
- * ======================================================================== */
-
-void tdc_led_pattern_out(tdc_led_pattern_t ledOutputPattern)
-{
-    /* 새 아키텍처에서는 tdc_led_arbiter_tick()이 모든 처리를 담당.
-     * 이 함수는 기존 호출 지점 호환을 위해 남겨둔 빈 래퍼.
-     * LED 출력은 tdc_led_arbiter_tick() 내에서 이루어진다. */
-    (void) ledOutputPattern;
-}
-
-/* ========================================================================
  *  Direct color / utility (기존 유지)
  * ======================================================================== */
-
-void tdc_led_black(void)
-{
-    LED_outputColor = TDC_LED_COLOR_BLACK;
-}
-
-void tdc_led_white(void)
-{
-    LED_outputColor = TDC_LED_COLOR_WHITE;
-}
 
 void tdc_led_memory_error(void)
 {
@@ -795,25 +758,6 @@ void tdc_led_memory_error(void)
     Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_R);
     Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_G);
     Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_B);
-#endif
-}
-
-void tdc_led_clock_error(void)
-{
-#if defined(LED_IS_ACTIVELOW)
-#if defined(LED_B_pin_CFX_test)
-    Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_R);
-    Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_G);
-#else
-    Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_R);
-    Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_G);
-    Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_B);
-#endif
-
-#else
-    Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_R);
-    Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_G);
-    Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_B);
 #endif
 }
 
@@ -838,63 +782,6 @@ void tdc_led_turn_off(void)
     s_fade_off_state = LED_FADE_OFF_ACTIVE;
     s_fade_off_t     = 0;
     s_fade_off_max   = LED_DIMMING_FADE_MAX_MS;
-}
-
-void tdc_led_turn_on_red(void)
-{
-#if defined(LED_IS_ACTIVELOW)
-#if defined(LED_B_pin_CFX_test)
-    Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_R);
-    Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_G);
-#else
-    Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_R);
-    Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_G);
-    Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_B);
-#endif
-
-#else
-    Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_R);
-    Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_G);
-    Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_B);
-#endif
-}
-
-void tdc_led_turn_on_green(void)
-{
-#if defined(LED_IS_ACTIVELOW)
-#if defined(LED_B_pin_CFX_test)
-    Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_R);
-    Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_G);
-#else
-    Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_R);
-    Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_G);
-    Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_B);
-#endif
-
-#else
-    Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_R);
-    Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_G);
-    Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_B);
-#endif
-}
-
-void tdc_led_turn_on_blue(void)
-{
-#if defined(LED_IS_ACTIVELOW)
-#if defined(LED_B_pin_CFX_test)
-    Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_R);
-    Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_G);
-#else
-    Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_R);
-    Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_G);
-    Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_B);
-#endif
-
-#else
-    Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_R);
-    Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_G);
-    Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_B);
-#endif
 }
 
 /* ========================================================================

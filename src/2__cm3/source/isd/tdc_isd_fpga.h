@@ -36,16 +36,10 @@ void tdc_isd_fpga_reset_fpga_variable(void);
     void tdc_isd_fpga_update_written_value(I2C_ADDR_FPGA index, int value);
 #endif
 
-int tdc_isd_fpga_get_systemregister_1st_written_value(void);
-int tdc_isd_fpga_get_systemregister_2nd_written_value(void);
-int tdc_isd_fpga_get_pulse_phase_width_written_value(void);
-int tdc_isd_fpga_get_backtel_configuration_written_value(void);
-
 bool tdc_isd_fpga_read_version(int* p_readValue);
 bool tdc_isd_fpga_read_systemregister_1st(int* p_readValue);
 bool tdc_isd_fpga_read_tx_power_level(int* p_readValue);
 bool tdc_isd_fpga_check_fpga_pcm_error(bool* isError);
-bool tdc_isd_fpga_read_systemregister_2nd(int* p_readValue);
 
 bool tdc_isd_fpga_check_fpga_fifo_empty(bool* isEmpty);
 
@@ -53,16 +47,13 @@ bool              tdc_isd_fpga_read_system_error_flag(int* p_readValue);
 bool              tdc_isd_fpga_read_backtel_error_flag(int* p_readValue);
 bool              tdc_isd_fpga_read_pulse_width(int* p_readValue);
 bool              tdc_isd_fpga_read_fifo_counter(int* p_readValue);
-bool              tdc_isd_fpga_read_io_mux(int* p_readValue);
 bool              tdc_isd_fpga_read_backtel_config(int* p_readValue);
-bool              tdc_isd_fpga_read_optional_config(int* p_readValue);
 bool              tdc_isd_fpga_read_backtel_fifo(int* p_readValue, int counter);
 bool              tdc_isd_fpga_is_arbitrary_value_matched_normal_value(void);
 bool              tdc_isd_fpga_is_arbitrary_value_matched_duplicate_zero_data(void);
 bool              tdc_isd_fpga_is_rf_tx_enable(void);
 EN_ISD_PowerState tdc_isd_fpga_read_isd_power_state(void);
 
-bool tdc_isd_fpga_write_systemregister_1st(int Value);
 bool tdc_isd_fpga_write_reset(void);
 bool tdc_isd_fpga_write_enable_rf_tx(void);
 bool tdc_isd_fpga_write_disable_rf_tx(void);
@@ -71,15 +62,10 @@ bool tdc_isd_fpga_write_clear_fifo(void);
 int  tdc_isd_fpga_reset_8bit_backtel_config(int pcmIndex);
 int  tdc_isd_fpga_change_8_bit_backtel_mode(int pcmIndex);
 int  tdc_isd_fpga_change_12_bit_backtel_mode(int pcmIndex);
-int  tdc_isd_fpga_get_backtel_configuration_written_value(void);
-int  tdc_isd_fpga_change_backtel_cal(int pcmIndex, int CalValue);
 int  tdc_isd_fpga_disable_backtel(int pcmIndex);
 
 void tdc_isd_fpga_change_pulse_width(int pcmIndex, int pulseWidth);
 void tdc_isd_fpga_change_pulse_width_minimum(int pcmIndex);
-
-bool tdc_isd_fpga_write_systemregister_2nd(int Value);
-bool tdc_isd_fpga_write_backtel_config(int Value);
 
 void tdc_isd_fpga_update_fpga_pulse_phase_width_written_value(int Value);
 void tdc_isd_fpga_update_fpga_backtel_config_written_value(int value);

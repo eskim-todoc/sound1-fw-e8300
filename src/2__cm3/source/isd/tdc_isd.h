@@ -42,7 +42,6 @@ void tdc_isd_update_link_by_backtel_live(void);
 void tdc_isd_update_link_by_backtel_mapping(int connectionCheckCOUNTER);
 bool tdc_isd_is_connection_check_with_mapping(void);
 
-bool tdc_isd_is_i2c_free(void);
 void tdc_isd_set_i2c_busy(void);
 void tdc_isd_set_i2c_free(void);
 

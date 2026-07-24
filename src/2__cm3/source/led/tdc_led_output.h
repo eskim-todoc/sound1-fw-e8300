@@ -149,25 +149,13 @@ void        tdc_led_force_fade_off(void);
  * ======================================================================== */
 
 void                tdc_led_set_ind_state(tdc_led_ind_state_t state);
-tdc_led_ind_state_t tdc_led_get_ind_state(void);
 
-void tdc_led_pattern_out(tdc_led_pattern_t ledOutputPattern);
-
-void tdc_led_enable_test_trigger(void);
-void tdc_led_disable_test_trigger(void);
 bool tdc_led_is_test_trigger_enabled(void);
 
 void tdc_led_out(void);
 
-void tdc_led_black(void);
-void tdc_led_white(void);
 void tdc_led_turn_off(void);
 void tdc_led_memory_error(void);
-void tdc_led_clock_error(void);
-
-void tdc_led_turn_on_red(void);
-void tdc_led_turn_on_green(void);
-void tdc_led_turn_on_blue(void);
 
 void tdc_led_set_isd_conn_state(int state);
 

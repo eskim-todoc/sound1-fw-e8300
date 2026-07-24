@@ -42,11 +42,6 @@ void tdc_ble_mapping_change_command_waiting_ble_off(void)
     mappingPacket.command = en__mapping_waiting_for_BleOff;
 }
 
-EN__MAPPING_COMMAND tdc_ble_mapping_get_command(void)
-{
-    return mappingPacket.command;
-}
-
 // const ST__MAPPING_PACKET *tdc_ble_mapping_get_packet(void)
 ST__MAPPING_PACKET *tdc_ble_mapping_get_packet(void)
 {
@@ -1876,7 +1871,6 @@ ST__MAPPING_STATE tdc_ble_mapping_step(ST__ISD_STATUS ISD_state)
     static EN__MAPPING_COMMAND prev_mppingCommand      = en__mapping_IDLE;
     static int                 connectionCheckCounter  = df_connectionCheckPeriod_ms;
     static int                 delayCounter            = 0;
-    static bool                connectionCheckING_Flag = false;
     static bool                mappingProgramConnected = false;
 
     ST__MAPPING_STATE     mappingStatus     = {en__isdStatus_NA, false, false, false};
@@ -2291,17 +2285,6 @@ ST__MAPPING_STATE tdc_ble_mapping_step(ST__ISD_STATUS ISD_state)
     return mappingStatus;
 }
 
-void tdc_ble_mapping_update_program_connection(bool connection)
-{
-    if (connection)
-    {
-        mappingPacket.fetched_command = en__mapping_connect;
-    }
-    else
-    {
-        mappingPacket.fetched_command = en__mapping_disconnect;
-    }
-}
 /* import_*ForDebug / import_live* 계열 15개 제거(2026-07-22, G6).
  * mapping 프로토콜 수동 주입용 구 디버그 진입점. 정의는 #if 0 블록(396줄) 안에서
  * 죽어 있었고 헤더 선언 16개도 호출처가 0 이었다(import_livePause 는 선언만 있고

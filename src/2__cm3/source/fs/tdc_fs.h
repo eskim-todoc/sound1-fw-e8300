@@ -127,8 +127,6 @@ int tdc_fs_fatfs_remount(int ldrv);
 int tdc_fs_fatfs_mount(int ldrv);
 int tdc_fs_fatfs_unmount(void);
 
-int tdc_fs_mount(void);
-
 int tdc_fs_read_with_crc_and_aes128(char*     p_name,
                                            uint8_t*  p_data,
                                            int       data_size,

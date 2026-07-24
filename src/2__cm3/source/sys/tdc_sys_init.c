@@ -79,22 +79,6 @@ void tdc_sys_reset_nrf(void)
     // Sys_GPIO_Set_High(DIO_NUM_NRF_SWDIO_NRESET);
 }
 
-void reset_interrupt_Disable_PRIMASK(void)
-{
-    // 인터럽트 리셋
-
-    /* Disable exceptions (except NMI and the hard fault exception) and
-     * interrupts before configuring interfaces and peripherals by setting a
-     * 1 to the 1-bit interrupt mask register PRIMASK */
-    __set_PRIMASK(PRIMASK_DISABLE_INTERRUPTS);
-
-    /* Clear the enable for all of the external interrupts. */
-    Sys_NVIC_DisableAllInt();
-
-    /* Clear the pending status for all of the external interrupts. */
-    Sys_NVIC_ClearAllPendingInt();
-}
-
 void reset_DMA_disable(void)
 {
     /* Disable all DMAs */
@@ -138,89 +122,6 @@ void enable_interrupt(void)
     /* Un-mask exceptions and interrupts by setting a 0 to the 1-bit interrupt
      * mask register PRIMASK */
     __set_PRIMASK(PRIMASK_ENABLE_INTERRUPTS);
-}
-
-void tdc_sys_memory_setup_completed(void)
-{
-    // CFX에 인터럽트 발생
-    SYSCTRL_CFX_CMD->CFX_CMD_0_ALIAS = 1;  // CFX에 메모리 초기화가 완료되었음을 알려준다.
-}
-
-void tdc_sys_uninit(void)
-{
-    /* PRIMASK is a 1-bit register. When this is set, it allows NMI and the hard fault exception;
-     * all other interrupts and exceptions are masked;
-     * default is 0 (0: no masking, 1: masking) */
-    __set_PRIMASK(PRIMASK_DISABLE_INTERRUPTS);
-
-    /* FAULTMASK is a 1-bit register.
-     * When this is set, it allows only the NMI, and all interrupts and fault handling exceptions are disabled;
-     * default is 0 (0: no masking, 1: masking) */
-    __set_FAULTMASK(FAULTMASK_ENABLE_INTERRUPTS);
-
-    /* Clear PRIMASK (no masking) */
-    __set_PRIMASK(PRIMASK_ENABLE_INTERRUPTS);
-
-    /* Disable all existing interrupts. */
-    Sys_NVIC_DisableAllInt();
-
-    /* Clear all pending source. */
-    Sys_NVIC_ClearAllPendingInt();
-
-    /* LED arbiter ISR 도 같이 비활성 - tdc_led_turn_off() 가 즉시 OFF 분기로 진입 */
-    tdc_led_isr_active_set(false);
-
-    /* Turn off the LED */
-    tdc_led_turn_off();
-
-    /* Clear all error flags */
-    tdc_sys_error_clear_all();
-
-    /* Disable LSAD */
-    LSAD->CFG = LSAD_DISABLE;
-
-    /* Disable SPI */
-    Sys_SPI_TransferConfig(SPI1, TDC_HAL_SPI_CTRL_DISABLE);
-
-    /* Disable DMA */
-    reset_DMA_disable();
-
-    /* Disable I2C */
-    tdc_hal_i2c_enable_interface(false);
-
-}
-
-void error_toggler(int cnt, int msec)
-{
-    uint32_t msec_1 = (SystemCoreClock / 1000);
-
-    for (volatile int i = 0; i < cnt; i++)
-    {
-        Sys_GPIO_Toggle(DIO_PIN_INDEX_for_LED_color_R);
-        Sys_Delay(msec_1 * msec);
-        SYS_WATCHDOG_REFRESH();
-
-        Sys_GPIO_Toggle(DIO_PIN_INDEX_for_LED_color_R);
-        Sys_Delay(msec_1 * msec);
-        SYS_WATCHDOG_REFRESH();
-    }
-}
-
-void error_blink(void)
-{
-    Sys_DIO_Config(DIO_PIN_INDEX_for_LED_color_R, DIO_PIN_CFG_FOR_GPIO_OUPUT_NOPULLUP);  // R
-    Sys_DIO_Config(DIO_PIN_INDEX_for_LED_color_G, DIO_PIN_CFG_FOR_GPIO_OUPUT_NOPULLUP);  // G
-    Sys_DIO_Config(DIO_PIN_INDEX_for_LED_color_B, DIO_PIN_CFG_FOR_GPIO_OUPUT_NOPULLUP);  // B
-
-    Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_R);  // R
-    Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_G);  // G
-    Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_B);  // B
-
-    while (1)
-    {
-        error_toggler(40, 25);
-        error_toggler(4, 150);
-    }
 }
 
 /* proc_touch(), iqs323_init() → tdc_touch.c 로 이동됨 */

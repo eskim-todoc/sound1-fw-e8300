@@ -39,11 +39,6 @@ void tdc_sys_control_nrf_off_command(void)
     // Sys_GPIO_Set_Low(DIO_NUM_NRF_ON_OFF_COMMAND);
 }
 
-void tdc_sys_control_nrf_on_command(void)
-{
-    // Sys_GPIO_Set_High(DIO_NUM_NRF_ON_OFF_COMMAND);
-}
-
 bool ISD_ConnectionHistory = false;
 
 // 수정 필요함.. 리모콘 쪽 연결 끊김. 리모콘 연결 상태 및 타이머 필요할 듯

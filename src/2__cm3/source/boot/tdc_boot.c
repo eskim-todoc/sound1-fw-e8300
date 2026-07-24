@@ -122,12 +122,6 @@ static void _set_unexpected_sub_state(void)
     _g_status.sub_state = SND_BOOT_SUB_STATE_UNKNOWN;
 }
 
-static void _set_boot_alt_try_success(void)
-{
-    _g_status.sub_state       = SND_BOOT_SUB_STATE_BOOT_TRY_DONE;
-    _g_status.alt_boot_result = SND_BOOT_ALT_BOOT_RESULT_SUCCESS;
-}
-
 static void _handle_state_boot(void)
 {
     uint8_t sub_state;

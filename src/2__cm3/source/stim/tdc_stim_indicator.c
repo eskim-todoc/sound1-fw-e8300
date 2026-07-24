@@ -22,7 +22,6 @@ void clear_stimulationIndicatorTrigger(void)
 
 void tdc_stim_indicator_out(int userSettingEnableStimulationIndicator, bool stimulationTriggerLowPower, bool stimulationTriggerMapping)
 {
-    static int toggle                  = 0;
     static int counter                 = 0;
     static int outputPulseTrainCounter = 0;
 

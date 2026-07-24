@@ -33,11 +33,6 @@
 
 static bool i2c_is_freeS_for_10msec = false;
 
-bool tdc_isd_is_i2c_free(void)
-{
-    return i2c_is_freeS_for_10msec;
-}
-
 void tdc_isd_set_i2c_busy(void)
 {
     i2c_is_freeS_for_10msec = false;

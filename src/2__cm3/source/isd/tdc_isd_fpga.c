@@ -106,26 +106,6 @@ void tdc_isd_fpga_update_written_value(I2C_ADDR_FPGA index, int value)
 }
 #endif
 
-int tdc_isd_fpga_get_systemregister_1st_written_value(void)
-{
-    return fpag_lastWrittenRegister.systemResgister_1st_value;
-}
-
-int tdc_isd_fpga_get_systemregister_2nd_written_value(void)
-{
-    return fpag_lastWrittenRegister.systemResgister_2nd_value;
-}
-
-int tdc_isd_fpga_get_pulse_phase_width_written_value(void)
-{
-    return fpag_lastWrittenRegister.stimulation_PhaseDuration_value;
-}
-
-int tdc_isd_fpga_get_backtel_configuration_written_value(void)
-{
-    return fpag_lastWrittenRegister.backterConfiguration_value;
-}
-
 bool tdc_isd_fpga_read_version(int *p_readValue)
 {
     static int error_cnt = 0;
@@ -166,25 +146,6 @@ bool tdc_isd_fpga_read_systemregister_1st(int *p_readValue)
         // I2C 읽기 실패 - 연속 실패 디바운스
         TDC_ISD_DEBOUNCE_FAIL(error_cnt, "[FPGA]", "read_FPGA_sysReg1st", "RD",
                               en__FPGA_COMMUNICATION_ERROR, en__I2C_FPGA_ReadingError);
-        tdc_isd_change_state(en__isdStatus_PowerIC_OK);
-        return false;
-    }
-}
-
-bool tdc_isd_fpga_read_systemregister_2nd(int *p_readValue)
-{
-#ifdef CM3_I2C_controls_FPAG
-    if (tdc_hal_i2c_isd_read(i2cAddr_FPGA_systemResgister_2nd, p_readValue, 1))
-#else
-    if (tdc_hal_i2c_cfx_read(i2cAddr_FPGA_systemResgister_2nd, p_readValue, 1))
-#endif
-    {
-        return true;
-    }
-    else
-    {
-        // I2C 읽기 실패, FPGA 초기화
-        tdc_sys_error_update(en__FPGA_COMMUNICATION_ERROR, en__I2C_FPGA_ReadingError, __LINE__);
         tdc_isd_change_state(en__isdStatus_PowerIC_OK);
         return false;
     }
@@ -349,25 +310,6 @@ bool tdc_isd_fpga_read_fifo_counter(int *counterFIFO)
     }
 }
 
-bool tdc_isd_fpga_read_io_mux(int *p_readValue)
-{
-#ifdef CM3_I2C_controls_FPAG
-    if (tdc_hal_i2c_isd_read(i2cAddr_FGPA_IO_MUX, p_readValue, 1))
-#else
-    if (tdc_hal_i2c_cfx_read(i2cAddr_FGPA_IO_MUX, p_readValue, 1))
-#endif
-    {
-        return true;
-    }
-    else
-    {
-        // I2C 읽기 실패, FPGA 초기화
-        tdc_sys_error_update(en__FPGA_COMMUNICATION_ERROR, en__I2C_FPGA_ReadingError, __LINE__);
-        tdc_isd_change_state(en__isdStatus_PowerIC_OK);
-        return false;
-    }
-}
-
 bool tdc_isd_fpga_read_backtel_config(int *p_readValue)
 {
     static int error_cnt = 0;
@@ -385,25 +327,6 @@ bool tdc_isd_fpga_read_backtel_config(int *p_readValue)
         // I2C 읽기 실패 - 연속 실패 디바운스
         TDC_ISD_DEBOUNCE_FAIL(error_cnt, "[FPGA]", "read_FPGA_backtelCfg", "RD",
                               en__FPGA_COMMUNICATION_ERROR, en__I2C_FPGA_ReadingError);
-        tdc_isd_change_state(en__isdStatus_PowerIC_OK);
-        return false;
-    }
-}
-
-bool tdc_isd_fpga_read_optional_config(int *p_readValue)
-{
-#ifdef CM3_I2C_controls_FPAG
-    if (tdc_hal_i2c_isd_read(i2cAddr_FPGA_optional_Config, p_readValue, 1))
-#else
-    if (tdc_hal_i2c_cfx_read(i2cAddr_FPGA_optional_Config, p_readValue, 1))
-#endif
-    {
-        return true;
-    }
-    else
-    {
-        // I2C 읽기 실패, FPGA 초기화
-        tdc_sys_error_update(en__FPGA_COMMUNICATION_ERROR, en__I2C_FPGA_ReadingError, __LINE__);
         tdc_isd_change_state(en__isdStatus_PowerIC_OK);
         return false;
     }
@@ -513,69 +436,6 @@ EN_ISD_PowerState tdc_isd_fpga_read_isd_power_state(void)
 }
 
 // write FPGA
-
-bool tdc_isd_fpga_write_systemregister_1st(int value)
-{
-#ifdef CM3_I2C_controls_FPAG
-    if (tdc_hal_i2c_isd_write(i2cAddr_FPGA_systemResgister_1st, &value, 1))
-#else
-    if (tdc_hal_i2c_cfx_write(i2cAddr_FPGA_systemResgister_1st, &value, 1))
-#endif
-    {
-        value                                              = value & systemResgister_1st_WRITABLE_BIT;
-        fpag_lastWrittenRegister.systemResgister_1st_value = value;
-        return true;
-    }
-    else
-    {
-        // I2C 쓰기 실패, FPGA 초기화
-        tdc_sys_error_update(en__FPGA_COMMUNICATION_ERROR, en__I2C_FPGA_WritingError, __LINE__);
-        tdc_isd_change_state(en__isdStatus_PowerIC_OK);
-        return false;
-    }
-}
-
-bool tdc_isd_fpga_write_systemregister_2nd(int value)
-{
-#ifdef CM3_I2C_controls_FPAG
-    if (tdc_hal_i2c_isd_write(i2cAddr_FPGA_systemResgister_2nd, &value, 1))
-#else
-    if (tdc_hal_i2c_cfx_write(i2cAddr_FPGA_systemResgister_2nd, &value, 1))
-#endif
-    {
-        value                                              = value & systemResgister_2nd_WRITABLE_BIT;
-        fpag_lastWrittenRegister.systemResgister_2nd_value = value;
-
-        return true;
-    }
-    else
-    {
-        // I2C 쓰기 실패, FPGA 초기화
-        tdc_sys_error_update(en__FPGA_COMMUNICATION_ERROR, en__I2C_FPGA_WritingError, __LINE__);
-        tdc_isd_change_state(en__isdStatus_PowerIC_OK);
-        return false;
-    }
-}
-bool tdc_isd_fpga_write_backtel_config(int value)
-{
-#ifdef CM3_I2C_controls_FPAG
-    if (tdc_hal_i2c_isd_write(i2cAddr_FPGA_pulsePhaseWidth, &value, 1))
-#else
-    if (tdc_hal_i2c_cfx_write(i2cAddr_FPGA_pulsePhaseWidth, &value, 1))
-#endif
-    {
-        value                                                    = value & backterConfiguration_WRITABLE_BIT;
-        fpag_lastWrittenRegister.stimulation_PhaseDuration_value = value;
-        return true;
-    }
-    else
-    {
-        // I2C 쓰기 실패, FPGA 초기화
-        tdc_sys_error_update(en__FPGA_COMMUNICATION_ERROR, en__I2C_FPGA_WritingError, __LINE__);
-        tdc_isd_change_state(en__isdStatus_PowerIC_OK);
-        return false;
-    }
-}
 
 // 디테일
 //////////////////
@@ -828,31 +688,6 @@ int tdc_isd_fpga_disable_backtel(int pcmIndex)
     w_FPGA_registerValue = (0 << pcm_BitPosition_FPGA_backtel_OnOff);  // 백텔 비활성화
 
     w_FPGA_registerValue = bitClearedRegister | w_FPGA_registerValue;
-
-    // PCM 몰드에 결합.
-    pcmData = w_FPGA_registerValue | pcm_Mold_BacktelConfiguration;
-
-    tdc_shm_fill_specific_command_buffer(pcmIndex, pcmData);
-
-    return w_FPGA_registerValue;
-}
-
-int tdc_isd_fpga_change_backtel_cal(int pcmIndex, int CalValue)
-{
-    int bitReverse;
-    int w_FPGA_registerValue;
-    int previousCalValue;
-    int calValue;
-    int pcmData;
-    int bitClearedRegister;
-
-    // backtel bit 길이 모드
-    bitReverse = (~(0x1F << pcm_BitPosition_FPGA_backtel_calibration));
-
-    bitClearedRegister = bitReverse & fpag_lastWrittenRegister.backterConfiguration_value;  // 설정하고자하는 값이 0이기 때문에 해당 비트를 지운다.
-
-    // 설정하고자 하는 값. ( calibration value)
-    w_FPGA_registerValue = bitClearedRegister | (CalValue << pcm_BitPosition_FPGA_backtel_calibration);  // 백텔 활성화 및 8bit 모드
 
     // PCM 몰드에 결합.
     pcmData = w_FPGA_registerValue | pcm_Mold_BacktelConfiguration;

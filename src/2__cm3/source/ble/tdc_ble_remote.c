@@ -46,16 +46,6 @@ void tdc_ble_remote_clear_command(void)
     remoteDataPacket.command = en__remoteControl_IDLE;
 }
 
-void tdc_ble_remote_change_command_waiting_ble_off(void)
-{
-    remoteDataPacket.command = en__remoteControl_waiting_for_BleOff;
-}
-
-EN__REMOTE_CONTROL_COMMAND tdc_ble_remote_get_command(void)
-{
-    return remoteDataPacket.command;
-}
-
 static int writingStartSlot_index = 0;
 
 void tdc_ble_remote_fetch_packet(const int *Rx_dataPacket)

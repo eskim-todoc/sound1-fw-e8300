@@ -135,17 +135,11 @@ void tdc_ble_mapping_clear_command();
 bool                tdc_ble_mapping_is_program_connected(void);
 void                tdc_ble_mapping_change_command_ble_disconnected(void);
 void                tdc_ble_mapping_change_command_waiting_ble_off(void);
-EN__MAPPING_COMMAND tdc_ble_mapping_get_command(void);
 // const ST__MAPPING_PACKET *tdc_ble_mapping_get_packet(void);
 ST__MAPPING_PACKET *tdc_ble_mapping_get_packet(void);
 
 void tdc_ble_mapping_fetch_packet(const int *Rx_dataPacket);
 
 ST__MAPPING_STATE tdc_ble_mapping_step(ST__ISD_STATUS ISD_state);
-
-
-
-
-void tdc_ble_mapping_update_program_connection(bool connection);
 
 #endif

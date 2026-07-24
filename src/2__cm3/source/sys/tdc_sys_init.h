@@ -17,9 +17,7 @@
 #include <tdc_isd_init_fpga.h>
 #include <tdc_isd_fpga.h>
 
-void tdc_sys_uninit(void);
 void tdc_sys_init(void);
 void tdc_sys_reset_nrf(void);
-void tdc_sys_memory_setup_completed(void);
 
 #endif  // __tdc_sys_init_h__

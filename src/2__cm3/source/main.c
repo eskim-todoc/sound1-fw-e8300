@@ -272,36 +272,6 @@ void load_bss_section(void)
 #endif
 }
 
-// clang-format off
-void aes128_test(void)
-{
-    static uint8_t key128[16] = {0x2B, 0x7E, 0x15, 0x16, 0x28, 0xAE, 0xD2, 0xA6, 0xAB, 0xF7, 0x15, 0x88, 0x09, 0xCF, 0x4F, 0x3C};
-    struct AES_ctx ctx;
-    uint8_t        text[16] = {
-        0xD, /* 1 */ 0xE, /* 2 */ 0xA, /* 3 */ 0xD, /* 4 */ 0xB, /* 5 */ 0xE, /* 6 */ 0xA, /* 7 */
-        0xF, /* 8 */ 0xA, /* 9 */ 0xB, /* 10 */ 0xC, /* 11 */ 0xD, /* 12 */ 0x1, /* 13 */ 0x2, /* 14 */ 0x3, /* 15 */ 0x4, /* 16 */
-    };
-
-    AES_init_ctx(&ctx, key128);
-
-    TDC_PRINTF("[AES] BEFORE ENCRYPT : %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X \r\n",
-            text[0], text[1], text[2], text[3], text[4], text[5], text[6], text[7],
-            text[8], text[9], text[10], text[11], text[12], text[13], text[14], text[15]);
-
-    AES_ECB_encrypt(&ctx, text);
-
-    TDC_PRINTF("[AES] AFTER  ENCRYPT : %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X \r\n",
-            text[0], text[1], text[2], text[3], text[4], text[5], text[6], text[7],
-            text[8], text[9], text[10], text[11], text[12], text[13], text[14], text[15]);
-
-    AES_ECB_decrypt(&ctx, text);
-
-    TDC_PRINTF("[AES] AFTER  DECRYPT : %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X \r\n",
-            text[0], text[1], text[2], text[3], text[4], text[5], text[6], text[7],
-            text[8], text[9], text[10], text[11], text[12], text[13], text[14], text[15]);
-}
-// clang-format on
-
 int main(void)
 {
     /* .data 및 .bss 섹션 데이터가 PRAM에서 올바르게 로드되지 못하는 이슈 발생.
