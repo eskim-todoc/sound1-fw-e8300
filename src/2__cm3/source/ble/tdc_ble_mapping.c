@@ -14,7 +14,6 @@
 #include <tdc_isd_map_specific_stim.h>
 #include <tdc_isd_map_live.h>
 #include <tdc_isd.h>
-#include <tdc_isd_map_test_stim.h>
 #include <tdc_isd_map_data.h>
 #include <tdc_isd_map_live.h>
 #include <tdc_isd_init.h>
@@ -1760,92 +1759,6 @@ void tdc_ble_mapping_fetch_packet(const int *Rx_dataPacket)  // spi 통신에서
         }
         break;
 
-#ifndef RELEASE
-        case en__mapping_testStimulation:
-        {
-
-            subCommandData_Num_index = Rx_dataPacket[index++];
-
-            if (subCommandData_Num_index == 1)
-                prev_subCommandData_Num_index = 0;
-
-            if (subCommandData_Num_index != prev_subCommandData_Num_index + 1)
-            {
-                // 데이터가 순차적으로 들어와야된다. 순차적으로 들어 오지 않으면 에러 전송
-                // 에러 전송
-                tdc_sys_error_send_to_app(en__mapping_testStimulation, en__EN__BLE_PROTOCOL_ERROR, en__DATA_Order,
-                               __LINE__);  // 데이터 범위 벗어남
-
-                prev_subCommandData_Num_index = 0;
-                stimulPara_index              = 0;
-            }
-            else
-            {
-
-                prev_subCommandData_Num_index = subCommandData_Num_index;
-                switch (subCommandData_Num_index)
-                {
-                    case 1:  //
-                    {
-                        mappingPacket.testStimulation.stimulatonMode                = Rx_dataPacket[index++];
-                        trashValue                                                  = Rx_dataPacket[index++];  // 오프셋 필요없음.
-                        mappingPacket.testStimulation.firstPulsePhase               = Rx_dataPacket[index++];
-                        mappingPacket.testStimulation.pulseWidth                    = Rx_dataPacket[index++];
-                        mappingPacket.testStimulation.stimulationDacSlope           = Rx_dataPacket[index++];
-                        mappingPacket.testStimulation.stimulationDacOffsetReslution = Rx_dataPacket[index++];
-                        mappingPacket.testStimulation.stimulationDacOffset_255      = Rx_dataPacket[index++];
-                        mappingPacket.testStimulation.stimulationLevel_255          = Rx_dataPacket[index++];
-                        mappingPacket.testStimulation.stimulationTime_100msec       = Rx_dataPacket[index++];
-                    }
-                    break;
-                    case 2:
-                    {
-                        mappingPacket.testStimulation.usableElectrodeNum = Rx_dataPacket[index++];
-                        for (i = 0; i < 16; i++)
-                            mappingPacket.testStimulation.stimulationElectrodeNum[i] = Rx_dataPacket[index++];
-                    }
-                    case 3:
-                    {
-                        for (i = 16; i < df_MaxNumOfElectrode; i++)
-                            mappingPacket.testStimulation.stimulationElectrodeNum[i] = Rx_dataPacket[index++];
-                    }
-                    break;
-                    case 4:
-
-                    {
-                        for (i = 0; i < 16; i++)
-                            mappingPacket.testStimulation.bipolarReferenceElectrodeNum[i] = Rx_dataPacket[index++];
-                    }
-                    break;
-                    case 5:
-                    {
-                        for (i = 16; i < df_MaxNumOfElectrode; i++)
-                            mappingPacket.testStimulation.bipolarReferenceElectrodeNum[i] = Rx_dataPacket[index++];
-
-                        mappingPacket.fetched_command = en__mapping_testStimulation;
-                    }
-                    break;
-
-                    default:
-                        break;
-                }
-
-                if (subCommandData_Num_index < 5)  // 마지막 데이이타 이전에는 데이터 수신 후 바로 응답을 보내고, 마지막
-                                                   // 데이터는 자극 출력 후 응답을 보낸다.
-                {
-
-                    // command loop-back
-                    bufferForSPI_tx[buffer_tx_index++] = en__mapping_testStimulation;
-
-                    bufferForSPI_tx[buffer_tx_index++] = subCommandData_Num_index;  // payload num 전송
-
-                    // 송신 데이터 SPI TX버퍼에 복사
-                    tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, buffer_tx_index);
-                }
-            }
-        }
-        break;
-#endif
         case en__mapping_read_Connected_ISD_id:
         {
             mappingPacket.fetched_command = tempCommand;
@@ -2204,24 +2117,6 @@ ST__MAPPING_STATE tdc_ble_mapping_step(ST__ISD_STATUS ISD_state)
                 }
                 break;
 
-#ifndef RELEASE
-                case en__mapping_testStimulation:
-                {
-                    connectionCheckCounter = df_connectionCheckPeriod_ms;  // 카운터를 df_connectionCheckPeriod_ms로
-                                                                           // 리셋하여 연결확인 진행하지 않게 한다.
-
-                    if (ISD_state.conneded_ISD)
-                    {
-                        testStimulation(mappingCommandStartFlag);
-                    }
-                    else
-                    {
-                        tdc_sys_error_send_to_app(en__mapping_testStimulation, en__EN__ISD_ERROR, en__ISD_notConnected, __LINE__);
-                        tdc_ble_mapping_clear_command();
-                    }
-                }
-                break;
-#endif
                 case en__mapping_read_Connected_ISD_id:
                 {
                     // 송신 데이터 준비

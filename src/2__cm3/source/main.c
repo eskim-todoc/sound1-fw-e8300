@@ -21,7 +21,6 @@
 
 #include <tdc_led_output.h>           //ok
 #include <tdc_ble_communication.h>   //ok
-#include <tdc_sys_earpiece.h>      //ok
 #include <tdc_stim_indicator.h>   //ok
 #include <tdc_stim_para_cal.h>  //ok
 
@@ -661,7 +660,6 @@ static void tdc_apply_mapping_mode(bool mapping_connected)
     {
         tdc_shm_change_system_mode_flag(en__normalMode);
         tdc_shm_share_mapping_program_connection(false);
-        // tdc_sys_earpiece_update_status();
     }
 }
 

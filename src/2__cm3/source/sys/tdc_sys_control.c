@@ -13,7 +13,6 @@
 #include <tdc_led_output.h>
 #include <tdc_isd_stim_standalone.h>
 #include <tdc_pwr_battery.h>
-#include <tdc_sys_earpiece.h>
 #include <processorDirective.h>
 #include <tdc_sys_control.h>
 
