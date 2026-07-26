@@ -9,8 +9,6 @@
 #include <tdc_pwr_battery.h>  // 새로 추가
 #include <main.h>
 
-#include <tdc_pwr_lsad.h>
-#include <tdc_pwr_lsad.h>
 #include <tdc_hal_dio.h>
 #include <tdc_printf.h>
 #include <tdc_fs_gain.h>  // ISD 별 게인 설정 로드

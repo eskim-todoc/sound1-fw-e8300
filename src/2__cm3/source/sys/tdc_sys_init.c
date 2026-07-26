@@ -50,7 +50,6 @@
 #include <tdc_fs_fft.h>
 #include <tdc_fs_stim_mute.h>
 #include <tdc_fs_event_log.h>
-#include <tdc_pwr_lsad.h>
 #include <tdc_pwr_clock.h>
 #include <tdc_printf.h>
 #include <tdc_boot.h>
@@ -255,7 +254,6 @@ void tdc_sys_init(void)
     // reset_interrupt_Disable_PRIMASK();
 
     // 더 이상 EZ에서 배터리 측정하지 않음
-    // tdc_pwr_lsad_init();  // 배터리 측정을 위한 초기화
 
     // DAM 초기화 및 비활성화
     reset_DMA_disable();
@@ -368,24 +366,6 @@ void tdc_sys_init(void)
     // 더 이상 EZ가 배터리 측정하지 않음
     tdc_pwr_battery_set_state(TDC_PWR_BATTERY_STATE_RESET);
     tdc_pwr_battery_set_percent(0);
-#if 0
-    // LSAD의 측정이 최초 한번은 미정확하다고 하여, 넉넉히 4번 측정이 완료된 후 진행되도록 구현하였다.
-    while (1)
-    {
-    	if (TDC_PWR_LSAD_STABLE_CNT < tdc_pwr_lsad_get_count())
-    	{
-    		break;
-    	}
-
-    	__NOP(); // 최적화 방지 목적의 NOP
-    }
-
-    tdc_pwr_lsad_update();
-
-    TDC_PRINTF_I("[LSAD] END OF INIT, CURRENTLY BATT SAMPLE COUNT=%d, LSAD VALUE=%d \r\n",
-            tdc_pwr_lsad_get_count(),
-            cfx_cm3_sharedMemoryAll.systemShare.batteryLevel_CfX_to_CM3);
-#endif
 
     // USB 충전 상태 초기화
     tdc_pwr_charger_set_state(TDC_PWR_CHARGER_STATE_RESET);
