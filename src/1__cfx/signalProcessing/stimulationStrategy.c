@@ -391,9 +391,9 @@ void stimulationStrategy_NofM_PCM_Write(void)
     // ==========================================
     int _XMEM *p_pcmFIFO = (int _XMEM *) HEAR_ADDR_FIFO_PCM_WRITING;
 #if 1
-    int        stride    = g_pcmFrameNum_per_channel;
+    int stride = g_pcmFrameNum_per_channel;
 #else
-    int        stride    = 3; // IMPORTANT : NofM일 때는 자극 당 3 프레임을 고정 시킴
+    int stride = 3;  // IMPORTANT : NofM일 때는 자극 당 3 프레임을 고정 시킴
 #endif
 
     /* ---------------------------------------------------------
@@ -482,7 +482,7 @@ void stimulationStrategy_CIS(void)
 
             electrodeMap = addr_electrodeMap[electrodIndex] << electrodIndexPositionAtPCM_Mold;
 
-            // 주파수 밴드별 자극 순서에 따른...  자극 레벨 값 읽고, 자극 레벨을 해당 비트로 이동
+        // 주파수 밴드별 자극 순서에 따른...  자극 레벨 값 읽고, 자극 레벨을 해당 비트로 이동
 
 #if 0 /* 기존에 묵음 처리 기능을 CFX에서 상수로 설정하는 경우 */
 
@@ -620,126 +620,161 @@ void stimulationStrategy_CIS(void)
     }
 #endif
 
-    // NOTE: 예) if (32 < 24)
-    if (addr_MapProgramData_FrequencyAnalysisBandNumbers < g_transferableChannelNum_per_1msec)
+    /* ---------------------------------------------------------------
+     * PCM FIFO(24 프레임)에 이번 1msec 분량의 자극 데이터를 채운다.
+     *
+     * 채널 하나는 g_pcmFrameNum_per_channel 개의 프레임을 차지한다.
+     *   [자극 데이터 1개] + [NopStandby (채널당 프레임 수 - 1)개]
+     *
+     * 내보낼 자극 채널 수는 두 값 중 작은 쪽이다.
+     *   - 주파수 밴드 수    : 이보다 많이 내보내면 같은 밴드를 1msec 안에
+     *                        두 번 자극하게 되어 자극률이 올라간다
+     *   - 전송 가능 채널 수 : CM3가 FIFO 24 프레임을 채널당 프레임 수로
+     *                        나누어 계산해 공유메모리로 넘겨준다
+     *
+     * 먼저 24 프레임을 전부 NopStandby로 덮고, 그 위에 자극 데이터만
+     * 채널당 프레임 수 간격으로 얹는다. 채널 내부의 여백과 뒤쪽에 남는
+     * 프레임이 [1]에서 한 번에 정리되므로 따로 채울 필요가 없고,
+     * 자극 데이터가 항상 마지막에 기록되므로 Nop에 덮이지 않는다.
+     * nOFm 경로(stimulationStrategy_nOFm_Phase0)와 같은 방식이다.
+     * --------------------------------------------------------------- */
+
+    int bandNum;
+    int frameNumPerChannel;
+    int stimulChannelNum;
+    int firstRunChannelNum;
+    int secondRunChannelNum;
+    int lastStimulFrameOffset;
+
+    int _XMEM *ptr_FIFO_for_WritingPCM;
+    int _XMEM *ptr_stimulationTempBuff;
+
+    /* 공유메모리에서 온 값을 지역 변수로 한 번만 읽어 둔다.
+     * 아래에서 여러 번 참조하는데, 매번 읽으면 그때마다 메모리 접근이다.
+     * 동시에 자극 데이터 버퍼(addr_stimulationTempBuff)의 크기를 넘지 않게
+     * 잘라 두어, 뒤에서 인덱스가 배열 밖으로 나가지 않도록 한다. */
+    bandNum = addr_MapProgramData_FrequencyAnalysisBandNumbers;
+
+    if (bandNum > df_MaxNumOfElectrode)
     {
-        /////////////////////////////////////////
-        // 사용가능한 주파수 대역 수 < 1msec 동안 전송가능한 채널 수
-        /////////////////////////////////////////
+        bandNum = df_MaxNumOfElectrode;
+    }
 
-        // FreqBand_Is_LessThan_TrasnferbleChannelNum:
+    if (bandNum < 0)
+    {
+        bandNum = 0;
+    }
 
-        int i = 0;
-        int transferred_frame_count;
+    frameNumPerChannel = g_pcmFrameNum_per_channel;
 
-        // 전송 가능한 채널까지는 자극 데이터로 채운다.
+    /* 내보낼 자극 채널 수 */
+    stimulChannelNum = g_transferableChannelNum_per_1msec;
 
-        transferred_frame_count = 0;  // 몇 개의 프레임을 전송했는지 계산하는 것에 사용됨
+    if (stimulChannelNum > bandNum)
+    {
+        stimulChannelNum = bandNum;
+    }
 
-        for (i = 0; i < g_transferableChannelNum_per_1msec; i++)
+    if (stimulChannelNum < 0)
+    {
+        stimulChannelNum = 0;
+    }
+
+    /* 채널당 프레임 수는 CM3의 calculationNumFramePerOneChannle() 이 1에서
+     * 시작해 늘리기만 하므로 정상 상태에서는 1 이상이다. 0이 보인다면
+     * 공유메모리가 아직 채워지지 않은 것이다.
+     *
+     * 이때는 자극을 놓을 간격 자체가 없으므로 없는 파라미터로 자극을 지어내지
+     * 않고, 이번 1msec는 [1]에서 채운 NopStandby 그대로 내보낸다.
+     * 밴드 위치(addr_transferred_index)는 건드리지 않아, 파라미터가 들어오면
+     * 순환이 끊긴 자리에서 이어진다. */
+    if (frameNumPerChannel < 1)
+    {
+        stimulChannelNum = 0;
+    }
+
+    /* 마지막 자극이 놓이는 프레임 오프셋이 FIFO 블록을 벗어나지 않게 자른다.
+     * CM3가 일관된 값을 주면 (전송 가능 채널 수 = 24 / 채널당 프레임 수)
+     * 이 while은 한 번도 돌지 않는다. 한쪽만 바뀌었을 때를 위한 방어다.
+     *
+     * 이 블록에 들어왔다는 것은 채널 수가 1 이상이라는 뜻이고, 그러려면
+     * 프레임 수도 1 이상이어야 한다(바로 위에서 걸러진다). 따라서 이 자르기가
+     * (채널 수 - 1) * 프레임 수 <= 23 을 보장하면 채널 수는 24를 넘지 않으며,
+     * while 도 프레임 수만큼 줄어들어 반드시 끝난다.
+     * 아래 두 루프의 chess_loop_range 상한이 여기에 근거한다. */
+    if (stimulChannelNum > 0)
+    {
+        lastStimulFrameOffset = (stimulChannelNum - 1) * frameNumPerChannel;
+
+        while (lastStimulFrameOffset > (df_MaxNumTransferableChannel - 1))
         {
-            if (addr_transferred_index < addr_MapProgramData_FrequencyAnalysisBandNumbers)
-            {
-                *((int _XMEM *) (HEAR_ADDR_FIFO_PCM_WRITING - i)) = addr_stimulationTempBuff[addr_transferred_index];
-
-                addr_transferred_index++;
-                transferred_frame_count++;
-
-                if ((g_pcmFrameNum_per_channel - 1) != 0)
-                {
-                    for (int k = 0; k < (g_pcmFrameNum_per_channel - 1); k++, i++)
-                    {
-                        *((int _XMEM *) (HEAR_ADDR_FIFO_PCM_WRITING - i)) = pcm_Mold_NopStandby;
-                        transferred_frame_count++;
-                    }
-                }
-            }
-            else
-            {
-                // 1msec 동안 1회의 출력이 완료되어서 자극률 증가를 방지하기 위해 nop으로 출력
-                *((int _XMEM *) (HEAR_ADDR_FIFO_PCM_WRITING - i)) = pcm_Mold_NopStandby;
-                transferred_frame_count++;
-            }
-
-            addr_transferred_index++;
+            stimulChannelNum--;
+            lastStimulFrameOffset -= frameNumPerChannel;
         }
+    }
 
-        // 전송 가능한 채널을 채우고 남은 나머지 프레임은 NOP으로 채운다.
-        for (; transferred_frame_count < df_MaxNumTransferableChannel; i++)
-        {
-            *((int _XMEM *) (HEAR_ADDR_FIFO_PCM_WRITING - i)) = pcm_Mold_NopStandby;
-            transferred_frame_count++;
-        }
-
+    /* 시작 밴드 결정.
+     *   - 모든 밴드가 1msec 안에 들어가면 항상 첫 밴드부터 시작해서
+     *     맵이 지정한 자극 순서를 그대로 유지한다
+     *   - 맵이 바뀌어 밴드 수가 줄면 이전 인덱스가 범위 밖에 남는다 */
+    if ((stimulChannelNum >= bandNum)
+        || (addr_transferred_index >= bandNum)
+        || (addr_transferred_index < 0))
+    {
         addr_transferred_index = 0;
     }
-    // NOTE: 예) if (24 <= 32)
-    else  // when, (addr_transferableChannelNum <= addr_MapProgramData_FrequencyAnalysisBandNumbers)
-    {
-        /////////////////////////////////////////
-        // 1msec 동안 전송가능한 채널 수 <= 사용가능한 주파수 대역 수
-        /////////////////////////////////////////
 
-        // 전송 가능한 채널 개수에 맞추어서 전송할 데이터를 생성한다.
+    /* [1] FIFO 24 프레임을 NopStandby로 채운다. */
+    ptr_FIFO_for_WritingPCM = (int _XMEM *) HEAR_ADDR_FIFO_PCM_WRITING;
 
-        // xp0, HEAR_ADDR_FIFO_PCM_WRITING
-        // xp1, addr_stimulationTempBuff
-
-        int        transferred_frame_count;
-        int _XMEM *ptr_stimulationTempBuff;
-        int _XMEM *ptr_FIFO_for_WritingPCM;
-
-        ptr_stimulationTempBuff = (int _XMEM *) (&addr_stimulationTempBuff[addr_transferred_index]);
-        ptr_FIFO_for_WritingPCM = (int _XMEM *) HEAR_ADDR_FIFO_PCM_WRITING;
-
-        // 전송 가능한 채널까지는 자극 데이터로 채운다.
-
-        transferred_frame_count = 0;  // 몇 개의 프레임을 전송했는지 계산하는 것에 사용됨
-
-        for (int i = 0; i < g_transferableChannelNum_per_1msec; i++)  // 24개
-        {
-            // 첫번째는 자극 데이터로 채우고 나머지는 NOP으로 채움
-
-            // 자극 데이터로 PCM 데이터 채움
-            *ptr_FIFO_for_WritingPCM = *ptr_stimulationTempBuff;
-
-            ptr_FIFO_for_WritingPCM = (int _XMEM *) (ptr_FIFO_for_WritingPCM - 1);
-            ptr_stimulationTempBuff = (int _XMEM *) (ptr_stimulationTempBuff + 1);
-
-            transferred_frame_count++;
-
-            // NOP으로 PCM 데이터 채울지 확인
-            if ((g_pcmFrameNum_per_channel - 1) != 0)
-            {
-                // NOP으로 PCM 데이터 채움
-                for (int k = 0; k < (g_pcmFrameNum_per_channel - 1); k++)
-                {
-                    *ptr_FIFO_for_WritingPCM = pcm_Mold_NopStandby;
-
-                    ptr_FIFO_for_WritingPCM = (int _XMEM*) (ptr_FIFO_for_WritingPCM - 1);
-
-                    transferred_frame_count++;
-                }
-            }
-
-            // 전송 채널 인덱스 증가
-            if ((addr_transferred_index + 1) < addr_MapProgramData_FrequencyAnalysisBandNumbers)
-            {
-                addr_transferred_index = (addr_transferred_index + 1);
-            }
-            else
-            {
-                ptr_stimulationTempBuff = (int _XMEM *) (&addr_stimulationTempBuff[0]);
-                addr_transferred_index = 0;
-            }
-        }
-
-        // 전송 가능한 채널을 채우고 남은 나머지 프레임은 NOP으로 채운다.
-        while (transferred_frame_count < df_MaxNumTransferableChannel)
+    for (register int i = 0; i < df_MaxNumTransferableChannel; i++)
+        chess_loop_range(df_MaxNumTransferableChannel, df_MaxNumTransferableChannel)
         {
             *ptr_FIFO_for_WritingPCM = pcm_Mold_NopStandby;
-            ptr_FIFO_for_WritingPCM  = (int _XMEM *) (ptr_FIFO_for_WritingPCM - 1);
-            transferred_frame_count++;
+            ptr_FIFO_for_WritingPCM--;
         }
+
+    /* [2] 자극 데이터를 채널당 프레임 수 간격으로 얹는다.
+     *     밴드 배열을 원형으로 도는 구간을 미리 두 개로 쪼개 두어서
+     *     루프 안에서 되돌림 판정을 하지 않는다. 내보낼 채널 수가
+     *     밴드 수 이하이므로 되돌림은 많아야 한 번이다. */
+    firstRunChannelNum = bandNum - addr_transferred_index;
+
+    if (firstRunChannelNum > stimulChannelNum)
+    {
+        firstRunChannelNum = stimulChannelNum;
+    }
+
+    secondRunChannelNum = stimulChannelNum - firstRunChannelNum;
+
+    ptr_FIFO_for_WritingPCM = (int _XMEM *) HEAR_ADDR_FIFO_PCM_WRITING;
+    ptr_stimulationTempBuff = (int _XMEM *) (&addr_stimulationTempBuff[addr_transferred_index]);
+
+    for (register int i = 0; i < firstRunChannelNum; i++)
+        chess_loop_range(0, df_MaxNumTransferableChannel)
+        {
+            *ptr_FIFO_for_WritingPCM = *ptr_stimulationTempBuff;
+
+            ptr_FIFO_for_WritingPCM -= frameNumPerChannel;
+            ptr_stimulationTempBuff++;
+        }
+
+    ptr_stimulationTempBuff = (int _XMEM *) (&addr_stimulationTempBuff[0]);
+
+    for (register int i = 0; i < secondRunChannelNum; i++)
+        chess_loop_range(0, df_MaxNumTransferableChannel)
+        {
+            *ptr_FIFO_for_WritingPCM = *ptr_stimulationTempBuff;
+
+            ptr_FIFO_for_WritingPCM -= frameNumPerChannel;
+            ptr_stimulationTempBuff++;
+        }
+
+    /* [3] 다음 1msec가 이어받을 밴드 위치. 되돌림은 많아야 한 번이다. */
+    addr_transferred_index += stimulChannelNum;
+
+    if (addr_transferred_index >= bandNum)
+    {
+        addr_transferred_index -= bandNum;
     }
 }
