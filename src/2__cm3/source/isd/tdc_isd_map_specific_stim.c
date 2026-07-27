@@ -24,7 +24,6 @@
 
 void tdc_isd_map_specific_stim_step(bool startFlag)
 {
-    int last_fpga_settingValue;
     int w_FPGA_registerValue;
     int r_FPGA_registerValue;
     int w_isd_registerValue;
@@ -34,7 +33,7 @@ void tdc_isd_map_specific_stim_step(bool startFlag)
 
     int pcm_index = 0;
 
-    int i, k;
+    int i;
 
     // 계산되는 자극 파라미터
     static int numFramePerChannel;

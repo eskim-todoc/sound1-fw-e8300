@@ -116,7 +116,6 @@ void tdc_isd_map_write_original_info_setting(bool startFlag, int command)
 
     int         bufferForSPI_tx[BLE_DataPacketSize];
     int         buffer_tx_index;
-    int         i;
     static int  prevPcmOutputMode;
     static bool prev_ISD_id_match = false;
     static bool startFlashCommand = false;
@@ -333,7 +332,6 @@ void tdc_isd_map_write_info_setting(bool startFlag, int command, int slot_index)
 
     int        bufferForSPI_tx[BLE_DataPacketSize];
     int        buffer_tx_index;
-    int        i;
     int       *p_RepositoryFor_buffer;
     static int prevPcmOutputMode;
 
@@ -581,7 +579,6 @@ void tdc_isd_map_write_stim_para(bool startFlag, int command, int slot_index, in
 
     int        bufferForSPI_tx[BLE_DataPacketSize];
     int        buffer_tx_index;
-    int        i;
     static int prevPcmOutputMode;
 
     buffer_tx_index = 0;
@@ -641,7 +638,6 @@ void tdc_isd_map_reset_nvm_selected(bool startFlag, int command, int slot_index,
 
     int        bufferForSPI_tx[BLE_DataPacketSize];
     int        buffer_tx_index;
-    int        i;
     static int prevPcmOutputMode;
 
     if ((RecoverOrErase == flash_Command_Erase) || (RecoverOrErase == flash_Command_Recover))
@@ -718,7 +714,6 @@ bool tdc_isd_map_reset_nvm_all(bool startFlag, int command, EN__mapping_ReadWrit
 
     int        bufferForSPI_tx[BLE_DataPacketSize];
     int        buffer_tx_index;
-    int        i;
     static int prevPcmOutputMode;
     static int counter          = 0;
     static int slot_index       = 0;
@@ -802,7 +797,6 @@ void tdc_isd_map_reset_nvm_2to4(bool startFlag, int command, EN__mapping_ReadWri
 
     int        bufferForSPI_tx[BLE_DataPacketSize];
     int        buffer_tx_index;
-    int        i;
     static int prevPcmOutputMode;
     static int counter    = 0;
     static int slot_index = 0;
@@ -901,7 +895,6 @@ void tdc_isd_map_reset_nvm_map_data(bool startFlag, int command, int slot_index,
 
     int        bufferForSPI_tx[BLE_DataPacketSize];
     int        buffer_tx_index;
-    int        i;
     static int prevPcmOutputMode;
 
     if ((RecoverOrErase == flash_Command_Erase) || (RecoverOrErase == flash_Command_Recover))

@@ -103,12 +103,10 @@ void tdc_isd_map_ecap_step(bool startFlag)
     int  w_FPGA_registerValue;
     int  r_FPGA_registerValue;
     int  comparing;
-    int  tempValue;
     bool FPGA_FIFO_empty;
     bool FPGA_error;
 
     int w_isd_registerValue;
-    int r_isd_registerValue;
 
     int last_fpga_settingValue = 0;
     int w_FPGA_VolatileValue;

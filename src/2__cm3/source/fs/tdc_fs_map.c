@@ -20,7 +20,6 @@ int tdc_fs_map_read_isd_info(int isd_num)
 
 int tdc_fs_map_read_user_setting_value(int isd_num)
 {
-    int         ret;
     static char name[TDC_FS_MAP_FILE_NAME_LEN_USER_SETTING_VALUE] = TDC_FS_MAP_FILE_INIT_NAME_USER_SETTING_VALUE;
     name[TDC_FS_MAP_FILE_INDEX_ISD_NUM]                           = (char) ('0' + isd_num);
 
@@ -33,7 +32,6 @@ int tdc_fs_map_read_user_setting_value(int isd_num)
 
 int tdc_fs_map_read_map_stamp(int isd_num)
 {
-    int         ret;
     static char name[TDC_FS_MAP_FILE_NAME_LEN_MAP_STAMP] = TDC_FS_MAP_FILE_INIT_NAME_MAP_STAMP;
     name[TDC_FS_MAP_FILE_INDEX_ISD_NUM]                  = (char) ('0' + isd_num);
 #if 1
@@ -45,7 +43,6 @@ int tdc_fs_map_read_map_stamp(int isd_num)
 
 int tdc_fs_map_read_map_data(int isd_num, int map_num)
 {
-    int         ret;
     static char name[TDC_FS_MAP_FILE_NAME_LEN_MAP_DATA] = TDC_FS_MAP_FILE_INIT_NAME_MAP_DATA;
     name[TDC_FS_MAP_FILE_INDEX_ISD_NUM]                 = (char) ('0' + isd_num);
     name[TDC_FS_MAP_FILE_INDEX_MAP_NUM]                 = (char) ('0' + map_num);
@@ -80,7 +77,6 @@ int tdc_fs_map_write_isd_info(int isd_num)
 
 int tdc_fs_map_write_user_setting_value(int isd_num)
 {
-    int         ret;
     static char name[TDC_FS_MAP_FILE_NAME_LEN_USER_SETTING_VALUE] = TDC_FS_MAP_FILE_INIT_NAME_USER_SETTING_VALUE;
     name[TDC_FS_MAP_FILE_INDEX_ISD_NUM]                           = (char) ('0' + isd_num);
 
@@ -95,7 +91,6 @@ int tdc_fs_map_write_user_setting_value(int isd_num)
 
 int tdc_fs_map_write_map_stamp(int isd_num)
 {
-    int         ret;
     static char name[TDC_FS_MAP_FILE_NAME_LEN_MAP_STAMP] = TDC_FS_MAP_FILE_INIT_NAME_MAP_STAMP;
     name[TDC_FS_MAP_FILE_INDEX_ISD_NUM]                  = (char) ('0' + isd_num);
 
@@ -110,7 +105,6 @@ int tdc_fs_map_write_map_stamp(int isd_num)
 
 int tdc_fs_map_write_map_data(int isd_num, int map_num)
 {
-    int         ret;
     static char name[TDC_FS_MAP_FILE_NAME_LEN_MAP_DATA] = TDC_FS_MAP_FILE_INIT_NAME_MAP_DATA;
     name[TDC_FS_MAP_FILE_INDEX_ISD_NUM]                 = (char) ('0' + isd_num);
     name[TDC_FS_MAP_FILE_INDEX_MAP_NUM]                 = (char) ('0' + map_num);

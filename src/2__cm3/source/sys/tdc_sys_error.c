@@ -148,7 +148,6 @@ void tdc_sys_error_send_to_app(EN__MAPPING_COMMAND command, tdc_sys_error_major_
 {
     int bufferForSPI_tx[BLE_DataPacketSize];
     int buffer_tx_index;
-    int value;
 
     buffer_tx_index = 0;
 

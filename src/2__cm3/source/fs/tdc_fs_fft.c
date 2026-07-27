@@ -578,7 +578,6 @@ int tdc_fs_fft_init_window_coeff(void)
 
 int tdc_fs_fft_read_window_coeff(void)
 {
-    int  ret;
     int *p_memory;
     char name[TDC_FS_FFT_FILE_NAME_LEN_WINDOW_COEFF] = TDC_FS_FFT_FILE_INIT_NAME_WINDOW_COEFF;
 
@@ -589,7 +588,6 @@ int tdc_fs_fft_read_window_coeff(void)
 
 int tdc_fs_fft_write_window_coeff(void)
 {
-    int  ret;
     int *p_memory;
     int  hanning_window_coeff[Half_FFT_Size] = {0,       317,     1268,    2853,    5072,    7924,    11409,   15526,   20275,   25656,   31666,   38306,   45574,   53469,   61991,   71137,   80907,   91298,   102310,  113940,  126187,  139050,  152525,  166612,  181307,  196609,  212516,  229024,  246132,
                                                 263837,  282137,  301027,  320506,  340571,  361219,  382446,  404249,  426626,  449572,  473084,  497159,  521792,  546981,  572722,  599009,  625841,  653212,  681118,  709556,  738520,  768007,  798011,  828530,  859557,  891088,  923119,  955644,  988659,

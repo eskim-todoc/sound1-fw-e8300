@@ -58,7 +58,6 @@ int tdc_fs_fatfs_remount(int ldrv)
 int tdc_fs_fatfs_mount(int ldrv)
 {
     DIR         dir;
-    FRESULT     fr;
     const char *path;
 
     if (ldrv == 0)

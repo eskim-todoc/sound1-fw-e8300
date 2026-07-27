@@ -44,16 +44,10 @@ bool tdc_isd_set_stim_para_monopolar(bool isdControlStateChagedFlag)
     static int writenBacktelRegisterValue;
 
     int  i;
-    int  bitReverse;
-    int  w_FPGA_registerValue;
     int  r_FPGA_registerValue;
     int  w_isd_registerValue;
-    int  r_isd_registerValue;
-    int  fifoCounter;
-    int  compare;
     int  pcm_index = 0;
     int  backtelBuff[64];
-    int  nop = 0;
     bool isdSettingError;
     bool stimulationConfigError = false;
     bool FPGA_FIFO_empty;
@@ -398,13 +392,8 @@ bool tdc_isd_set_stim_para_monopolar(bool isdControlStateChagedFlag)
 bool tdc_isd_set_stim_para_bipolar(bool isdControlStateChagedFlag)
 {
     int i;
-    int w_FPGA_registerValue;
-    int bitReverse;
     int r_FPGA_registerValue;
     int w_isd_registerValue;
-    int r_isd_registerValue;
-    int fifoCounter;
-    int compare;
     int pcm_index = 0;
 
     static const ST__CFX_CM3_SharedMemory_mapData *p_mapdata;

@@ -48,9 +48,8 @@ bool tdc_isd_map_live_step(ST__ISD_STATUS ISD_state)
     int       *p_cfxStimulLevel_255;
     static int flowCounter;
     int        stimulationLevel_uA;
-    int        stimul_255;
     int        offset;
-    int        tempA, tempB;
+    int tempA;
     int        value;
 
     int bufferForSPI_tx[BLE_DataPacketSize];

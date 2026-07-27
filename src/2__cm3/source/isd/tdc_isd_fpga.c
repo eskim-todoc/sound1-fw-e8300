@@ -310,7 +310,6 @@ bool tdc_isd_fpga_read_tx_power_level(int *p_readValue)
 bool tdc_isd_fpga_is_arbitrary_value_matched_normal_value(void)
 {
     int readValue;
-    int tempA, tempB, tempC;
 
     tdc_isd_fpga_read_backtel_fifo(&readValue, 1);
 
@@ -328,7 +327,6 @@ bool tdc_isd_fpga_is_arbitrary_value_matched_normal_value(void)
 bool tdc_isd_fpga_is_arbitrary_value_matched_duplicate_zero_data(void)
 {
     int readValue;
-    int tempA, tempB, tempC;
 
     tdc_isd_fpga_read_backtel_fifo(&readValue, 1);
 
@@ -345,7 +343,6 @@ bool tdc_isd_fpga_is_arbitrary_value_matched_duplicate_zero_data(void)
 EN_ISD_PowerState tdc_isd_fpga_read_isd_power_state(void)
 {
     int readValue;
-    int tempA, tempB, tempC;
 
     tdc_isd_fpga_read_fifo_counter(&readValue);
 
