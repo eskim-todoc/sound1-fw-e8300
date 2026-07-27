@@ -26,7 +26,7 @@ typedef struct
 
 BleSettingPacket bleSettingPacket;
 
-void fetch_readDataForBleSetting(const int *Rx_dataPacket)
+void fetch_readDataForBleSetting(const uint8_t *Rx_dataPacket)
 {
     bleSettingPacket.command = Rx_dataPacket[0];
 
@@ -231,8 +231,8 @@ void setting_nrf_ble_adv_info(void)
 
 ST__BLE_COMMUNICATION_STATE tdc_ble_communication_step(ST__ISD_STATUS isd_state)
 {
-    int         i;
-    static int *p_Rx_dataPacket;
+    int             i;
+    static uint8_t *p_Rx_dataPacket;
 
     tdc_hal_spi_comm_state_t         communicationState;
     ST__MAPPING_STATE           mappingState;

@@ -44,7 +44,7 @@ void                tdc_hal_spi_enable_dma(void);
 void                tdc_hal_spi_init(void);
 tdc_hal_spi_comm_state_t tdc_hal_spi_get_comm_state(void);
 void                tdc_hal_spi_set_comm_state_idle(void);
-int                *tdc_hal_spi_get_rx_packet_addr(void);
+uint8_t            *tdc_hal_spi_get_rx_packet_addr(void);
 // void                tdc_hal_spi_write_tx_buffer(const int source[], int dataSize);
 void       tdc_hal_spi_write_tx_buffer(int *source, int dataSize);
 

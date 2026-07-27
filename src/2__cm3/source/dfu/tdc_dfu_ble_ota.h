@@ -140,8 +140,8 @@ typedef enum
     CI_OTA_RESULT_FAIL    = 1
 } CI_OTA_RESULT_E;
 
-void tdc_dfu_ble_fetch_ota_start_end(int *p_packet);
-void tdc_dfu_ble_fetch_ota(int *p_packet);
+void tdc_dfu_ble_fetch_ota_start_end(const uint8_t *p_packet);
+void tdc_dfu_ble_fetch_ota(const uint8_t *p_packet);
 
 int  tdc_dfu_get_conn_state(void);
 void tdc_dfu_set_conn_state(int state);

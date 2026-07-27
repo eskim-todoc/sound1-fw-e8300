@@ -47,7 +47,7 @@ void tdc_ble_remote_clear_command(void)
 
 static int writingStartSlot_index = 0;
 
-void tdc_ble_remote_fetch_packet(const int *Rx_dataPacket)
+void tdc_ble_remote_fetch_packet(const uint8_t *Rx_dataPacket)
 {
     static int prev_subCommandData_Num_index = 0;
     static int stimulPara_index              = 0;

@@ -49,7 +49,7 @@ ST__MAPPING_PACKET *tdc_ble_mapping_get_packet(void)
 
 static int writingStartSlot_index = 0;
 
-void tdc_ble_mapping_fetch_packet(const int *Rx_dataPacket)  // spi 통신에서 호출 됨
+void tdc_ble_mapping_fetch_packet(const uint8_t *Rx_dataPacket)  // spi 통신에서 호출 됨
 {
     int        i, k, index;
     int        tempCommand;

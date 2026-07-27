@@ -64,7 +64,7 @@ static void _send_error_packet_boot(uint8_t error)
     tdc_sys_error_send_to_app(PKT_HEADER_OTA, en__EN__BLE_PROTOCOL_ERROR, error, __LINE__);
 }
 
-static void _handle_command_option_write(int slot_num, int file_type, int *p_packet)
+static void _handle_command_option_write(int slot_num, int file_type, const uint8_t *p_packet)
 {
     FILINFO           fno;
     FIL              *fp;
@@ -176,7 +176,7 @@ static void _handle_command_option_write(int slot_num, int file_type, int *p_pac
     // 여기서 드라이브1로 되돌리지 않아야 한다.
 }
 
-static void _handle_command_option_read(int slot_num, int file_type, int *p_packet)
+static void _handle_command_option_read(int slot_num, int file_type, const uint8_t *p_packet)
 {
     uint8_t resp_packet[9] = {0};
 
@@ -193,7 +193,7 @@ static void _handle_command_option_read(int slot_num, int file_type, int *p_pack
     _send_resp_packet_boot(resp_packet, 9);
 }
 
-static void _handle_command_option_size(int slot_num, int file_type, int *p_packet)
+static void _handle_command_option_size(int slot_num, int file_type, const uint8_t *p_packet)
 {
     FILINFO fno;
     uint8_t resp_packet[13] = {0};
@@ -237,7 +237,7 @@ static void _handle_command_option_size(int slot_num, int file_type, int *p_pack
     _send_resp_packet_boot(resp_packet, 13);
 }
 
-static void _fetch_packet_command(int *p_packet)
+static void _fetch_packet_command(const uint8_t *p_packet)
 {
     int slot_num;
     int file_type;
@@ -279,7 +279,7 @@ static void _fetch_packet_command(int *p_packet)
     }
 }
 
-static void _fetch_packet_data(int *p_packet, int data_index)
+static void _fetch_packet_data(const uint8_t *p_packet, int data_index)
 {
     UINT    btw;
     UINT    bw;
@@ -369,7 +369,7 @@ static void _fetch_packet_data(int *p_packet, int data_index)
     _send_resp_packet_boot(wbuf, 5);
 }
 
-void tdc_dfu_ble_fetch_ota_start_end(int *p_packet)
+void tdc_dfu_ble_fetch_ota_start_end(const uint8_t *p_packet)
 {
     uint8_t wbuf[16];
 
@@ -388,7 +388,7 @@ void tdc_dfu_ble_fetch_ota_start_end(int *p_packet)
     _send_resp_packet_boot(wbuf, 3);
 }
 
-void tdc_dfu_ble_fetch_ota(int *p_packet)
+void tdc_dfu_ble_fetch_ota(const uint8_t *p_packet)
 {
     int data_index;
 

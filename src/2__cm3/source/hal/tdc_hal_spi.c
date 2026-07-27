@@ -25,12 +25,9 @@
 static uint8_t SPI_Rx_Buffer[TDC_HAL_SPI_COMM_PACKET_SIZE] __attribute__((aligned(4))) = {0};
 static uint8_t SPI_Tx_Buffer[TDC_HAL_SPI_COMM_PACKET_SIZE] __attribute__((aligned(4))) = {21, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1};
 
-/* Rx_DataPacket 은 DMA 가 건드리지 않는 사본이라 int 를 유지한다.
- * 외부 API tdc_hal_spi_get_rx_packet_addr() 가 int* 를 반환하므로
- * 이 타입을 유지하면 호출부를 하나도 고치지 않아도 된다.
- * SPI_Rx_Buffer(uint8_t) 에서 복사할 때 확대 변환이라 값 손실이 없다. */
-static int  Rx_DataPacket[BLE_DataPacketSize];
-static bool TxBufferEmpty = true;
+/* 수신 패킷 사본. 프로토콜이 바이트 단위이므로 uint8_t 로 다룬다 (B2, 2026-07-27). */
+static uint8_t Rx_DataPacket[BLE_DataPacketSize];
+static bool    TxBufferEmpty = true;
 
 void tdc_hal_spi_enable_master_read_command(void)
 {
@@ -51,7 +48,7 @@ bool tdc_hal_spi_is_tx_buffer_empty(void)
     return TxBufferEmpty;
 }
 
-int *tdc_hal_spi_get_rx_packet_addr(void)
+uint8_t *tdc_hal_spi_get_rx_packet_addr(void)
 {
     return &Rx_DataPacket[0];
 }
