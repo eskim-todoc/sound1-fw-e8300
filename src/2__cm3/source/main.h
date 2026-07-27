@@ -34,8 +34,6 @@
 
 #define RX_BATT_LEVEL_TIME_OUT_MS 3000
 
-#define OTE_1_5_GEN_TEST_WITHOUT_CFX 1
-
 #define ENABLE_MAIN_DEBUG_PRINT 1
 
 void CFX_0_IRQHandler(void);
