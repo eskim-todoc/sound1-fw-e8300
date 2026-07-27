@@ -403,7 +403,6 @@ bool tdc_isd_set_stim_para_bipolar(bool isdControlStateChagedFlag)
 
     static int tempCounter            = 0;
     static int sent_stimulConfig      = 0;
-    static int referencElectrod_index = 0;
     static int backtelBuff[df_MaxNumOfElectrode];
     static int bipolarReferenceElectrodeNum[df_MaxNumOfElectrode];
 
@@ -418,7 +417,6 @@ bool tdc_isd_set_stim_para_bipolar(bool isdControlStateChagedFlag)
     if (isdControlStateChagedFlag)
     {
         flowControlCounter     = 0;
-        referencElectrod_index = 0;
 
         tdc_isd_clear_control_state_changed_flag();
     }

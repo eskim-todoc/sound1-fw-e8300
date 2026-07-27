@@ -117,8 +117,7 @@ void tdc_isd_map_ecap_step(bool startFlag)
     static int stimulPattern_index;
 
     int pcm_index;
-    int templeteBuff_index;
-    int i, k;
+    int i;
     int sendingPatternIndex;
 
     // 계산되는 자극 파라미터
@@ -960,8 +959,6 @@ void tdc_isd_map_ecap_step(bool startFlag)
             // [ {프루브용 자극 출력 용 0x05설정,펄스폭 맞춤 NOP},{마스커 프로브 인터벌 (펄스폭 0, 프로브 출력 자극 파라미터, 0x06설정, 펄스폭 설정  , 인터벌
             // 맞춤용 NOP..)} , {프로브 자극 출력용 0x08 설정-펄스 폭에 맞춘 NOP})
 
-            templeteBuff_index = 0;
-            k                  = 0;
 
             // PCM_templete_eCAP[k][templeteBuff_index++]=pcm_Mold_NopStandby;
 

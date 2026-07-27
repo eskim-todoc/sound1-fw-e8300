@@ -601,7 +601,6 @@ void tdc_isd_init_device(bool isdControlStateChagedFlag)
         // 응답이 없거나 많아도 문제인 것이므로 내부기 연결 과정 처음부터 다시 진행한다.
         case 260:
         {
-            static int backtel_cnt_err_cnt = 0;
 
             // FIFO 카운터를 읽어 본다.
             if (tdc_isd_fpga_read_fifo_counter(&r_FPGA_registerValue))
@@ -614,7 +613,6 @@ void tdc_isd_init_device(bool isdControlStateChagedFlag)
                     tdc_sys_error_clear_flag(en__RF_PowerIC_ERROR);
                     tdc_sys_error_clear_flag(en__FPGA_CONFIGUARATION_ERROR);
                     tdc_sys_error_clear_flag(en__EN__ISD_ERROR);
-                    backtel_cnt_err_cnt = 0;
 
                     TDC_PRINTF_D("[FPGA] c260: backtel power-level response OK\r\n");
                 }

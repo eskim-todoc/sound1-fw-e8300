@@ -34,7 +34,6 @@ void tdc_isd_map_impedance_step(bool startFlag)
     static int  iterationNum                = 0;
     static int  electrodeNum                = 0;
     static int  flowCounter                 = 0;
-    static bool monopolarImpedanceCheckDone = false;
     int         pcm_index                   = 0;
     int         i;
 
@@ -90,7 +89,6 @@ void tdc_isd_map_impedance_step(bool startFlag)
 
         ble_transfer_index = 0;
 
-        monopolarImpedanceCheckDone = false;
         toggle_start_end_pulseWidth = true;
     }
 

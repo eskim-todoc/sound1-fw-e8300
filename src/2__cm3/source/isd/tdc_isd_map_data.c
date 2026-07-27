@@ -800,7 +800,6 @@ void tdc_isd_map_reset_nvm_2to4(bool startFlag, int command, EN__mapping_ReadWri
     static int prevPcmOutputMode;
     static int counter    = 0;
     static int slot_index = 0;
-    bool       CommandCompleted;
 
     if ((RecoverOrErase == flash_Command_Erase) || (RecoverOrErase == flash_Command_Recover))
     {
@@ -811,7 +810,6 @@ void tdc_isd_map_reset_nvm_2to4(bool startFlag, int command, EN__mapping_ReadWri
 
             counter          = 0;
             slot_index       = 1;
-            CommandCompleted = false;
         }
 
         switch (counter)

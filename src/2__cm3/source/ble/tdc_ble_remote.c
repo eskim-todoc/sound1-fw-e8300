@@ -643,7 +643,7 @@ ST__REMOTECONTROL_STATE tdc_ble_remote_step(bool isdConnection)  // 연결 상�
     ST__REMOTECONTROL_STATE           RemoteControlState    = {en__isdStatus_NA, false};
 
     int bufferForSPI_tx[BLE_DataPacketSize];
-    int connectedISD_num, volume;
+    int volume;
     int tx_index = 0;
     int i, k;
 
@@ -651,7 +651,6 @@ ST__REMOTECONTROL_STATE tdc_ble_remote_step(bool isdConnection)  // 연결 상�
     int  currenMapIndex, nextMapIndex;
     int  value;
     int  iterNum;
-    int *p_conectedISD_remoconPasskey;
     int *p_mapStemp;
 
     char *p_firmwareInfo;
@@ -696,8 +695,6 @@ ST__REMOTECONTROL_STATE tdc_ble_remote_step(bool isdConnection)  // 연결 상�
 
     if (en__remoteControl_check_isd_passKey == remoteDataPacket.command)
     {
-        connectedISD_num             = tdc_shm_read_connected_isd_num();
-        p_conectedISD_remoconPasskey = tdc_shm_read_remocon_passkey_connected_isd(connectedISD_num);
         remocon_passkey_Match        = true;
 
         /* [보안] 리모콘 패스키 인증은 의도적으로 비활성 상태다.
@@ -708,8 +705,12 @@ ST__REMOTECONTROL_STATE tdc_ble_remote_step(bool isdConnection)  // 연결 상�
          * remoteDataPacket.data[0..3] 을 비교해 하나라도 다르면 Match 를 false 로 만드는
          * 루프가 있었다. 그 루프가 #if 0 으로 죽어 있어 2차 리팩토링에서 제거했다.
          *
-         * 인증을 되살리려면 이 자리에 4바이트 비교를 다시 넣고 아래 경고 로그를 걷어내면 된다.
-         * 공유 메모리의 패스키 저장·조회 경로는 그대로 살아 있다. */
+         * 비교 루프가 없어지면서 그 입력이던 패스키 조회
+         * (connectedISD_num = tdc_shm_read_connected_isd_num() 후
+         *  tdc_shm_read_remocon_passkey_connected_isd(connectedISD_num))도 고아가 되어 함께 지웠다.
+         *
+         * 인증을 되살리려면 위 두 조회를 되살리고 이 자리에 4바이트 비교를 넣은 뒤
+         * 아래 경고 로그를 걷어내면 된다. 공유 메모리 쪽 저장·조회 API 는 그대로 살아 있다. */
 
         TDC_PRINTF_W("[PASSKEY] ALWAYS PATH OPENED. \r\n");
 

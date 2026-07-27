@@ -46,7 +46,6 @@ bool tdc_isd_map_live_step(ST__ISD_STATUS ISD_state)
     static int flowCounter;
     int        stimulationLevel_uA;
     int        offset;
-    int tempA;
     int        value;
 
     int bufferForSPI_tx[BLE_DataPacketSize];
@@ -67,10 +66,6 @@ bool tdc_isd_map_live_step(ST__ISD_STATUS ISD_state)
         flowCounter = 0;
     }
 
-    if (!ISD_state.conneded_ISD)
-    {
-        tempA = 234;
-    }
 
     switch (p_mappingPacket->tdc_isd_map_live_step.subCommand)
     {
