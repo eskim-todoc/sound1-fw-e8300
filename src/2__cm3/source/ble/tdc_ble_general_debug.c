@@ -25,14 +25,14 @@
 #include <tdc_dfu_ble_ota.h>
 #include <tdc_fs_map.h>
 
-static int gd_handle_touch_debug(const ST__REMOTECONTROL_PACKET *packet, int *tx_buf, int tx_index, int option);      // option 1
-static int gd_handle_no_backtel(const ST__REMOTECONTROL_PACKET *packet, int *tx_buf, int tx_index, int option);       // option 2
-static int gd_handle_map_init(const ST__REMOTECONTROL_PACKET *packet, int *tx_buf, int tx_index, int option);         // option 3
+static int gd_handle_touch_debug(const ST__REMOTECONTROL_PACKET *packet, uint8_t *tx_buf, int tx_index, int option);      // option 1
+static int gd_handle_no_backtel(const ST__REMOTECONTROL_PACKET *packet, uint8_t *tx_buf, int tx_index, int option);       // option 2
+static int gd_handle_map_init(const ST__REMOTECONTROL_PACKET *packet, uint8_t *tx_buf, int tx_index, int option);         // option 3
 /* option 4(운영 모드 설정)는 fake sleep mode 제거와 함께 삭제됨(2026-07-20).
  * 미지정 option 은 아래 else 에서 command 만 loop-back 하고 무시된다.
  * 상세: docs/tasks/main/20260720_fake-sleep-removal/ */
 
-int tdc_ble_general_debug_handle(const ST__REMOTECONTROL_PACKET *packet, int *tx_buf, int tx_index)
+int tdc_ble_general_debug_handle(const ST__REMOTECONTROL_PACKET *packet, uint8_t *tx_buf, int tx_index)
 {
     int option = packet->data[0];  // 옵션
 
@@ -59,7 +59,7 @@ int tdc_ble_general_debug_handle(const ST__REMOTECONTROL_PACKET *packet, int *tx
     return tx_index;
 }
 
-static int gd_handle_touch_debug(const ST__REMOTECONTROL_PACKET *packet, int *tx_buf, int tx_index, int option)
+static int gd_handle_touch_debug(const ST__REMOTECONTROL_PACKET *packet, uint8_t *tx_buf, int tx_index, int option)
 {
     uint16_t lta;
     uint16_t count;
@@ -99,7 +99,7 @@ static int gd_handle_touch_debug(const ST__REMOTECONTROL_PACKET *packet, int *tx
     return tx_index;
 }
 
-static int gd_handle_no_backtel(const ST__REMOTECONTROL_PACKET *packet, int *tx_buf, int tx_index, int option)
+static int gd_handle_no_backtel(const ST__REMOTECONTROL_PACKET *packet, uint8_t *tx_buf, int tx_index, int option)
 {
     int noBacktel_mode;
 
@@ -124,7 +124,7 @@ static int gd_handle_no_backtel(const ST__REMOTECONTROL_PACKET *packet, int *tx_
     return tx_index;
 }
 
-static int gd_handle_map_init(const ST__REMOTECONTROL_PACKET *packet, int *tx_buf, int tx_index, int option)
+static int gd_handle_map_init(const ST__REMOTECONTROL_PACKET *packet, uint8_t *tx_buf, int tx_index, int option)
 {
     int RL;  // 옵션 이후 데이터
 

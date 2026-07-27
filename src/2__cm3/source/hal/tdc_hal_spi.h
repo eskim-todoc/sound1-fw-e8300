@@ -45,7 +45,10 @@ void                tdc_hal_spi_init(void);
 tdc_hal_spi_comm_state_t tdc_hal_spi_get_comm_state(void);
 void                tdc_hal_spi_set_comm_state_idle(void);
 uint8_t            *tdc_hal_spi_get_rx_packet_addr(void);
-// void                tdc_hal_spi_write_tx_buffer(const int source[], int dataSize);
+/* 신규 API. 패킷은 바이트 단위이므로 이쪽을 쓴다. */
+void       tdc_hal_spi_write_tx_buffer_u8(const uint8_t *source, int dataSize);
+
+/* 구 API. B3 전환 기간 한정 어댑터이며 전 호출부 이행 후 제거한다. */
 void       tdc_hal_spi_write_tx_buffer(int *source, int dataSize);
 
 void tdc_hal_spi_enable_master_read_command(void);

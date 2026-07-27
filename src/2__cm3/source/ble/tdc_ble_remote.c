@@ -52,7 +52,7 @@ void tdc_ble_remote_fetch_packet(const uint8_t *Rx_dataPacket)
     static int prev_subCommandData_Num_index = 0;
     static int stimulPara_index              = 0;
 
-    int bufferForSPI_tx[BLE_DataPacketSize];
+    uint8_t bufferForSPI_tx[BLE_DataPacketSize];
     int tempCommand;
     int tempValue;
 
@@ -317,7 +317,7 @@ void tdc_ble_remote_fetch_packet(const uint8_t *Rx_dataPacket)
                         bufferForSPI_tx[buffer_tx_index++] = subCommandData_Num_index;  // payload num 전송
 
                         // 송신 데이터 SPI TX버퍼에 복사
-                        tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, buffer_tx_index);
+                        tdc_hal_spi_write_tx_buffer_u8(bufferForSPI_tx, buffer_tx_index);
                     }
                     else  // 모든 데이터를 받은 시점에 Flash에 쓰기를 시작한다.
                     {
@@ -537,7 +537,7 @@ void tdc_ble_remote_fetch_packet(const uint8_t *Rx_dataPacket)
                         bufferForSPI_tx[buffer_tx_index++] = subCommandData_Num_index;  // payload num 전송
 
                         // 송신 데이터 SPI TX버퍼에 복사
-                        tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, buffer_tx_index);
+                        tdc_hal_spi_write_tx_buffer_u8(bufferForSPI_tx, buffer_tx_index);
                     }
                     else  // 모든 데이터를 받은 시점에 Flash에 쓰기를 시작한다.
                     {
@@ -642,7 +642,7 @@ ST__REMOTECONTROL_STATE tdc_ble_remote_step(bool isdConnection)  // 연결 상�
     static int                        disconnectionCounter  = 0;
     ST__REMOTECONTROL_STATE           RemoteControlState    = {en__isdStatus_NA, false};
 
-    int bufferForSPI_tx[BLE_DataPacketSize];
+    uint8_t bufferForSPI_tx[BLE_DataPacketSize];
     int volume;
     int tx_index = 0;
     int i, k;
@@ -759,7 +759,7 @@ ST__REMOTECONTROL_STATE tdc_ble_remote_step(bool isdConnection)  // 연결 상�
         }
 
         // 송신 데이터 SPI TX버퍼에 복사
-        tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, tx_index);
+        tdc_hal_spi_write_tx_buffer_u8(bufferForSPI_tx, tx_index);
 
         //  명령 종료
         tdc_ble_remote_clear_command();
@@ -810,7 +810,7 @@ ST__REMOTECONTROL_STATE tdc_ble_remote_step(bool isdConnection)  // 연결 상�
                     bufferForSPI_tx[tx_index++] = tdc_shm_read_connected_isd_usable_map_num();
 
                     // 송신 데이터 SPI TX버퍼에 복사
-                    tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, tx_index);
+                    tdc_hal_spi_write_tx_buffer_u8(bufferForSPI_tx, tx_index);
 
                     //  명령 종료
                     tdc_ble_remote_clear_command();
@@ -841,7 +841,7 @@ ST__REMOTECONTROL_STATE tdc_ble_remote_step(bool isdConnection)  // 연결 상�
                     bufferForSPI_tx[tx_index++] = tdc_shm_read_tele_coil_on_off();         // 텔레코일
                     bufferForSPI_tx[tx_index++] = tdc_shm_read_stimul_indicator_on_off();  // 자극 알림
 
-                    tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, tx_index);  // 송신 데이터 SPI TX버퍼에 복사
+                    tdc_hal_spi_write_tx_buffer_u8(bufferForSPI_tx, tx_index);  // 송신 데이터 SPI TX버퍼에 복사
                     tdc_ble_remote_clear_command();                      //  명령 종료
                 }
                 break;
@@ -879,7 +879,7 @@ ST__REMOTECONTROL_STATE tdc_ble_remote_step(bool isdConnection)  // 연결 상�
                             bufferForSPI_tx[tx_index++] = remoteDataPacket.command;  // command loop-back
                             bufferForSPI_tx[tx_index++] = nextMapIndex;              // pay-load 준비
 
-                            tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, tx_index);  // 송신 데이터 SPI TX버퍼에 복사
+                            tdc_hal_spi_write_tx_buffer_u8(bufferForSPI_tx, tx_index);  // 송신 데이터 SPI TX버퍼에 복사
                             tdc_ble_remote_clear_command();                      //  명령 종료
                         }
                         else
@@ -913,7 +913,7 @@ ST__REMOTECONTROL_STATE tdc_ble_remote_step(bool isdConnection)  // 연결 상�
                             bufferForSPI_tx[tx_index++] = remoteDataPacket.command;  // command loop-back
                             bufferForSPI_tx[tx_index++] = nextMapIndex;              // pay-load 준비
 
-                            tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, tx_index);  // 송신 데이터 SPI TX버퍼에 복사
+                            tdc_hal_spi_write_tx_buffer_u8(bufferForSPI_tx, tx_index);  // 송신 데이터 SPI TX버퍼에 복사
                             tdc_ble_remote_clear_command();                      //  명령 종료
                         }
                         else
@@ -957,7 +957,7 @@ ST__REMOTECONTROL_STATE tdc_ble_remote_step(bool isdConnection)  // 연결 상�
                         bufferForSPI_tx[tx_index++] = remoteDataPacket.command;  // command loop-back
                         bufferForSPI_tx[tx_index++] = tdc_shm_read_stimul_volume();        // pay-load 준비
 
-                        tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, tx_index);  // 송신 데이터 SPI TX버퍼에 복사
+                        tdc_hal_spi_write_tx_buffer_u8(bufferForSPI_tx, tx_index);  // 송신 데이터 SPI TX버퍼에 복사
                         tdc_ble_remote_clear_command();                      //  명령 종료
                     }
                     else  // 데이터 범위 에러
@@ -995,7 +995,7 @@ ST__REMOTECONTROL_STATE tdc_ble_remote_step(bool isdConnection)  // 연결 상�
                         bufferForSPI_tx[tx_index++] = remoteDataPacket.command;  // command loop-back
                         bufferForSPI_tx[tx_index++] = tdc_shm_read_audio_volume();         // pay-load 준비
 
-                        tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, tx_index);  // 송신 데이터 SPI TX버퍼에 복사
+                        tdc_hal_spi_write_tx_buffer_u8(bufferForSPI_tx, tx_index);  // 송신 데이터 SPI TX버퍼에 복사
                         tdc_ble_remote_clear_command();                      //  명령 종료
                     }
                     else  // 데이터 범위 에러
@@ -1016,7 +1016,7 @@ ST__REMOTECONTROL_STATE tdc_ble_remote_step(bool isdConnection)  // 연결 상�
                         bufferForSPI_tx[tx_index++] = remoteDataPacket.command;  // command loop-back
                         bufferForSPI_tx[tx_index++] = tdc_shm_read_tele_coil_on_off();      // pay-load 준비
 
-                        tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, tx_index);  // 송신 데이터 SPI TX버퍼에 복사
+                        tdc_hal_spi_write_tx_buffer_u8(bufferForSPI_tx, tx_index);  // 송신 데이터 SPI TX버퍼에 복사
                         tdc_ble_remote_clear_command();                      //  명령 종료
                     }
                     else  // 데이터 범위 에러
@@ -1037,7 +1037,7 @@ ST__REMOTECONTROL_STATE tdc_ble_remote_step(bool isdConnection)  // 연결 상�
                         bufferForSPI_tx[tx_index++] = remoteDataPacket.command;     // command loop-back
                         bufferForSPI_tx[tx_index++] = tdc_shm_read_stimul_indicator_on_off();  // pay-load 준비
 
-                        tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, tx_index);  // 송신 데이터 SPI TX버퍼에 복사
+                        tdc_hal_spi_write_tx_buffer_u8(bufferForSPI_tx, tx_index);  // 송신 데이터 SPI TX버퍼에 복사
                         tdc_ble_remote_clear_command();                      // 명령 종료
                     }
                     else  // 데이터 범위 에러
@@ -1058,7 +1058,7 @@ ST__REMOTECONTROL_STATE tdc_ble_remote_step(bool isdConnection)  // 연결 상�
                         bufferForSPI_tx[tx_index++] = remoteDataPacket.command;  // command loop-back
                         bufferForSPI_tx[tx_index++] = tdc_shm_read_led_indicator_on_off();  // pay-load 준비
 
-                        tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, tx_index);  // 송신 데이터 SPI TX버퍼에 복사
+                        tdc_hal_spi_write_tx_buffer_u8(bufferForSPI_tx, tx_index);  // 송신 데이터 SPI TX버퍼에 복사
                         tdc_ble_remote_clear_command();                      //  명령 종료
                     }
                     else  // 데이터 범위 에러
@@ -1089,7 +1089,7 @@ ST__REMOTECONTROL_STATE tdc_ble_remote_step(bool isdConnection)  // 연결 상�
                     }
 
                     // 송신 데이터 SPI TX버퍼에 복사
-                    tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, tx_index);
+                    tdc_hal_spi_write_tx_buffer_u8(bufferForSPI_tx, tx_index);
 
                     //  명령 종료
                     tdc_ble_remote_clear_command();
@@ -1187,7 +1187,7 @@ ST__REMOTECONTROL_STATE tdc_ble_remote_step(bool isdConnection)  // 연결 상�
                 {
                     tx_index = tdc_ble_general_debug_handle(&remoteDataPacket, bufferForSPI_tx, tx_index);
 
-                    tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, tx_index);  // 송신 데이터 SPI TX버퍼에 복사
+                    tdc_hal_spi_write_tx_buffer_u8(bufferForSPI_tx, tx_index);  // 송신 데이터 SPI TX버퍼에 복사
                     tdc_ble_remote_clear_command();                      // 명령 종료
                 }
                 break;
@@ -1201,7 +1201,7 @@ ST__REMOTECONTROL_STATE tdc_ble_remote_step(bool isdConnection)  // 연결 상�
                 {
                     tx_index = tdc_ble_gain_control_handle(&remoteDataPacket, bufferForSPI_tx, tx_index);
 
-                    tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, tx_index);  // 송신 데이터 SPI TX버퍼에 복사
+                    tdc_hal_spi_write_tx_buffer_u8(bufferForSPI_tx, tx_index);  // 송신 데이터 SPI TX버퍼에 복사
                     tdc_ble_remote_clear_command();                      // 명령 종료
                 }
                 break;
@@ -1229,7 +1229,7 @@ ST__REMOTECONTROL_STATE tdc_ble_remote_step(bool isdConnection)  // 연결 상�
 
                             TDC_PRINTF_D("[MUTE] RESPONSE : %02X %02X %02X %02X %02X \r\n", bufferForSPI_tx[0], bufferForSPI_tx[1], bufferForSPI_tx[2], bufferForSPI_tx[3], bufferForSPI_tx[4]);
 
-                            tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, tx_index);  // 송신 데이터 SPI TX버퍼에 복사
+                            tdc_hal_spi_write_tx_buffer_u8(bufferForSPI_tx, tx_index);  // 송신 데이터 SPI TX버퍼에 복사
                             tdc_ble_remote_clear_command();                      // 명령 종료
                         }
                         break;
@@ -1276,7 +1276,7 @@ ST__REMOTECONTROL_STATE tdc_ble_remote_step(bool isdConnection)  // 연결 상�
 
                                                     TDC_PRINTF_D("[MUTE] RESPONSE : %02X %02X %02X %02X %02X \r\n", bufferForSPI_tx[0], bufferForSPI_tx[1], bufferForSPI_tx[2], bufferForSPI_tx[3], bufferForSPI_tx[4]);
 
-                                                    tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, tx_index);  // 송신 데이터 SPI TX버퍼에 복사
+                                                    tdc_hal_spi_write_tx_buffer_u8(bufferForSPI_tx, tx_index);  // 송신 데이터 SPI TX버퍼에 복사
                                                     tdc_ble_remote_clear_command();                      // 명령 종료
                                                 }
                                             }
@@ -1310,7 +1310,7 @@ ST__REMOTECONTROL_STATE tdc_ble_remote_step(bool isdConnection)  // 연결 상�
 
                                                 TDC_PRINTF_D("[MUTE] RESPONSE : %02X %02X %02X %02X %02X \r\n", bufferForSPI_tx[0], bufferForSPI_tx[1], bufferForSPI_tx[2], bufferForSPI_tx[3], bufferForSPI_tx[4]);
 
-                                                tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, tx_index);  // 송신 데이터 SPI TX버퍼에 복사
+                                                tdc_hal_spi_write_tx_buffer_u8(bufferForSPI_tx, tx_index);  // 송신 데이터 SPI TX버퍼에 복사
                                                 tdc_ble_remote_clear_command();                      // 명령 종료
                                             }
                                         }
