@@ -271,15 +271,20 @@ ST__BLE_COMMUNICATION_STATE tdc_ble_communication_step(ST__ISD_STATUS isd_state)
 
             if (print_allowed)
             {
+                /* 인덱스 20 은 출력하지 않는다 (2026-07-27).
+                 * Rx_DataPacket 은 BLE_DataPacketSize(20) 원소라 유효 범위가 [0..19] 다.
+                 * 예전에는 [20] 까지 찍었는데 이는 배열 범위 밖 읽기였고, 수신 데이터가
+                 * 아니라 인접 정적 변수 값이 그대로 출력되던 것이다(전 로그에서 01 고정).
+                 * SPI 로 들어오는 21번째 바이트는 HAL 의 복사 루프가 20개까지만 옮기므로
+                 * CM3 에서는 애초에 보관하지 않는다. TX 방향의 21번째 바이트만 전송 길이로 유효하다. */
                 // clang-format off
                 TDC_PRINTF_V("\r\n\n[SPI RX] (LSB) 0x%02X %02X %02X %02X %02X %02X %02X %02X %02X %02X "
-                          "%02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X (MSB) \r\n",
+                          "%02X %02X %02X %02X %02X %02X %02X %02X %02X %02X (MSB) \r\n",
                           p_Rx_dataPacket[0], p_Rx_dataPacket[1], p_Rx_dataPacket[2], p_Rx_dataPacket[3],
                           p_Rx_dataPacket[4], p_Rx_dataPacket[5], p_Rx_dataPacket[6], p_Rx_dataPacket[7],
                           p_Rx_dataPacket[8], p_Rx_dataPacket[9], p_Rx_dataPacket[10], p_Rx_dataPacket[11],
                           p_Rx_dataPacket[12], p_Rx_dataPacket[13], p_Rx_dataPacket[14], p_Rx_dataPacket[15],
-                          p_Rx_dataPacket[16], p_Rx_dataPacket[17], p_Rx_dataPacket[18], p_Rx_dataPacket[19],
-                          p_Rx_dataPacket[20]);
+                          p_Rx_dataPacket[16], p_Rx_dataPacket[17], p_Rx_dataPacket[18], p_Rx_dataPacket[19]);
                 // clang-format on
             }
 #endif
