@@ -326,24 +326,24 @@ void tdc_isd_update_link_by_backtel_live(void)
                         if (r_isd_registerValue == NoBacktel || r_isd_registerValue == BackTelNumTooMuch || r_isd_registerValue == ISD_Power_NA)
                         {
                             TDC_PRINTF_V("[LINK] STATE : %s \r\n",                                                     //
-                                      r_isd_registerValue == ISD_Power_LowUnstable    ? "ISD POWER LOW, UNSTABLE"   //
-                                      : r_isd_registerValue == ISD_Power_LowStable    ? "ISD POWER LOW, STABLE"     //
-                                      : r_isd_registerValue == ISD_Power_HighUnstable ? "ISD POWER HIGH, UNSTABLE"  //
-                                      : r_isd_registerValue == ISD_Power_HighStable   ? "ISD POWER HIGH, STABLE"    //
-                                      : r_isd_registerValue == NoBacktel              ? "NO BACKTEL"                //
-                                      : r_isd_registerValue == BackTelNumTooMuch      ? "BACKTEL NUM TOO MUCH"      //
-                                                                                      : "ISD POWER N/A");
+                                         r_isd_registerValue == ISD_Power_LowUnstable    ? "ISD POWER LOW, UNSTABLE"   //
+                                         : r_isd_registerValue == ISD_Power_LowStable    ? "ISD POWER LOW, STABLE"     //
+                                         : r_isd_registerValue == ISD_Power_HighUnstable ? "ISD POWER HIGH, UNSTABLE"  //
+                                         : r_isd_registerValue == ISD_Power_HighStable   ? "ISD POWER HIGH, STABLE"    //
+                                         : r_isd_registerValue == NoBacktel              ? "NO BACKTEL"                //
+                                         : r_isd_registerValue == BackTelNumTooMuch      ? "BACKTEL NUM TOO MUCH"      //
+                                                                                         : "ISD POWER N/A");
                         }
                     }
 #else  // 항상 출력
                     TDC_PRINTF_V("[LINK] STATE : %s \r\n",                                                     //
-                              r_isd_registerValue == ISD_Power_LowUnstable    ? "ISD POWER LOW, UNSTABLE"   //
-                              : r_isd_registerValue == ISD_Power_LowStable    ? "ISD POWER LOW, STABLE"     //
-                              : r_isd_registerValue == ISD_Power_HighUnstable ? "ISD POWER HIGH, UNSTABLE"  //
-                              : r_isd_registerValue == ISD_Power_HighStable   ? "ISD POWER HIGH, STABLE"    //
-                              : r_isd_registerValue == NoBacktel              ? "NO BACKTEL"                //
-                              : r_isd_registerValue == BackTelNumTooMuch      ? "BACKTEL NUM TOO MUCH"      //
-                                                                              : "ISD POWER N/A");
+                                 r_isd_registerValue == ISD_Power_LowUnstable    ? "ISD POWER LOW, UNSTABLE"   //
+                                 : r_isd_registerValue == ISD_Power_LowStable    ? "ISD POWER LOW, STABLE"     //
+                                 : r_isd_registerValue == ISD_Power_HighUnstable ? "ISD POWER HIGH, UNSTABLE"  //
+                                 : r_isd_registerValue == ISD_Power_HighStable   ? "ISD POWER HIGH, STABLE"    //
+                                 : r_isd_registerValue == NoBacktel              ? "NO BACKTEL"                //
+                                 : r_isd_registerValue == BackTelNumTooMuch      ? "BACKTEL NUM TOO MUCH"      //
+                                                                                 : "ISD POWER N/A");
 #endif
                 }
 #endif
@@ -353,6 +353,7 @@ void tdc_isd_update_link_by_backtel_live(void)
                 switch (r_isd_registerValue)
                 {
 #if !defined(disable_Tx_PowerControl)
+                    case ISD_Power_HighUnstable:
                     case ISD_Power_HighStable:
                     {
                         // 전송 파워 감소 시킴
@@ -365,24 +366,21 @@ void tdc_isd_update_link_by_backtel_live(void)
 
                             TxPowerLevel--;
 
-                            // TDC_PRINTF_V("[LINK] HIGH, STABLE : TX POWER > MIN POWER (CURR=%4d, NEXT=%4d) \r\n", current_TxPowerLevel, TxPowerLevel);
+                            TDC_PRINTF_V("[LINK] HIGH : TX POWER > MIN POWER (CURR=%4d, NEXT=%4d) : %8d MV \r\n", current_TxPowerLevel, TxPowerLevel, 25 * current_TxPowerLevel);
 
                             tdc_isd_fpga_write_change_tx_power_level(TxPowerLevel);
                         }
                         else
                         {
-                            if (TxPowerLevel_bak != TxPowerLevel)
-                            {
-                                TxPowerLevel_bak = TxPowerLevel;
-                                // TDC_PRINTF_V("[LINK] HIGH, STABLE : TX POWER <= MIN POWER (CURR=%4d) \r\n", TxPowerLevel);
-                            }
+                            TxPowerLevel_bak = TxPowerLevel;
+                            TDC_PRINTF_V("[LINK] HIGH : TX POWER <= MIN POWER (CURR=%4d) : %8d MV \r\n", TxPowerLevel, 25 * TxPowerLevel);
 
                             temp = 0;
                             temp++;
                         }
                     }
                     break;
-
+#if 0
                     case ISD_Power_HighUnstable:
                     {
                         if (TxPowerLevel_bak != TxPowerLevel)
@@ -395,7 +393,8 @@ void tdc_isd_update_link_by_backtel_live(void)
                         temp++;
                     }
                     break;
-
+#endif
+                    case ISD_Power_LowUnstable:
                     case ISD_Power_LowStable:  // 증가가 가능할 때까지 증가. 증가가 더이상 불가능한 경우. 상태 유지
                     {
                         // 전송 파워 감소 시킴
@@ -408,21 +407,18 @@ void tdc_isd_update_link_by_backtel_live(void)
 
                             TxPowerLevel++;
 
-                            // TDC_PRINTF_V("[LINK] LOW, STABLE : TX POWER < MAX CONTROL POWER (CURR=%4d, NEXT=%4d) \r\n", current_TxPowerLevel, TxPowerLevel);
+                            TDC_PRINTF_V("[LINK] LOW : TX POWER < MAX CONTROL POWER (CURR=%4d, NEXT=%4d) : %8d MV \r\n", current_TxPowerLevel, TxPowerLevel, 25 * current_TxPowerLevel);
 
                             tdc_isd_fpga_write_change_tx_power_level(TxPowerLevel);
                         }
                         else
                         {
-                            if (TxPowerLevel_bak != TxPowerLevel)
-                            {
-                                TxPowerLevel_bak = TxPowerLevel;
-                                // TDC_PRINTF_V("[LINK] LOW, STABLE : TX POWER >= MAX CONTROL POWER (CURR=%4d) \r\n", TxPowerLevel);
-                            }
+                            TxPowerLevel_bak = TxPowerLevel;
+                            TDC_PRINTF_V("[LINK] LOW : TX POWER >= MAX CONTROL POWER (CURR=%4d) : %8d MV \r\n", TxPowerLevel, TxPowerLevel * 25);
                         }
                     }
                     break;
-
+#if 0
                     case ISD_Power_LowUnstable:  // 증가가 가능할 때까지 증가. 증가가 더이상 불가능한 경우. 연결 상태 끊고 다시 시작.
                     {
                         if (TxPowerLevel_bak != TxPowerLevel)
@@ -435,6 +431,7 @@ void tdc_isd_update_link_by_backtel_live(void)
                         temp++;
                     }
                     break;
+#endif
 #endif
                     case NoBacktel:
                     {
@@ -568,7 +565,7 @@ void tdc_isd_update_link_by_backtel_mapping(int connectionCheckCOUNTER)
                 }
 
                 // 다음 순서의 PCM 동작 모드
-                tdc_shm_change_next_pcm_output_mode(PcmBitStream_Mode_NopStandby);   // 다음 출력 모드 : NopStandby
+                tdc_shm_change_next_pcm_output_mode(PcmBitStream_Mode_NopStandby);  // 다음 출력 모드 : NopStandby
                 tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_SepcificCommand);  // 현재 출력 모드 : SepcificCommand
             }
             break;
