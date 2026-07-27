@@ -467,6 +467,34 @@ bool tdc_isd_set_stim_para_bipolar(bool isdControlStateChagedFlag)
                 /* electrodeMap[] 을 적용하지 않고 맵 인덱스를 그대로 쓰던 구버전 바이폴라
                  * 기준전극 계산은 제거했다(#if 0 사장). 현재는 아래처럼 electrodeMap[] 으로
                  * 논리 전극번호를 PCB 전극번호로 변환해 넣는다. */
+
+                /* TODO(재측정): 이 방어로 증상은 사라졌으나 인과가 완전히 확정되지 않았다.
+                 * 쓰레기값이 "BIPOLAR REF READ BACKTEL COUNT IS 0" 의 직접 원인인지 미확정.
+                 * 재측정 절차는 docs/참고/ble/재구조화/바이폴라 전극번호 경계 결함.md §5 참조. */
+
+                /* 전극번호 범위 방어 (2026-07-27 추가).
+                 * 매핑 앱은 사용하지 않는 밴드의 전극번호를 99 로 채워 보낸다.
+                 * 이를 거르지 않고 electrodeMap[99 - 1] 을 읽으면 32원소 배열의 범위를
+                 * 벗어나 인접 전역(s_tdc_table)의 값을 집어온다. 실기 로그에서
+                 * "REF ELEC NUM : 99 (PCB : 70378)" 로 관측된 것이 이 미정의 동작이다.
+                 * 그 값이 기준전극으로 내부기 레지스터에 기록되어 바이폴라 설정이 깨졌다.
+                 *
+                 * 미사용 밴드는 바로 위 루프에서 이미 unusedReferenceElectrode_DummyNum(31)
+                 * 으로 초기화돼 있으므로, 여기서 건너뛰면 그 더미값이 그대로 유지된다.
+                 * 구버전(Sullivan1.5)의 #if 0 블록에 있던 99 체크와 같은 취지이며,
+                 * 범위 검사로 일반화해 0 이나 33 이상도 함께 막는다. */
+                if ((p_mapdata->usableStimulationElectrodIndex[i] < 1)                        //
+                    || (df_MaxNumOfElectrode < p_mapdata->usableStimulationElectrodIndex[i])  //
+                    || (p_mapdata->usableReferenceElectrodIndex[i] < 1)                       //
+                    || (df_MaxNumOfElectrode < p_mapdata->usableReferenceElectrodIndex[i]))
+                {
+                    TDC_PRINTF_I("[PARA] (1 BASE), BAND : %2d, STIM ELEC NUM : %2d (PCB : XX), REF ELEC NUM : %2d (PCB : XX), UNUSED \r\n",  //
+                              i + 1,
+                              p_mapdata->usableStimulationElectrodIndex[i],
+                              p_mapdata->usableReferenceElectrodIndex[i]);
+                    continue;
+                }
+
                 bipolarReferenceElectrodeNum[electrodeMap[p_mapdata->usableStimulationElectrodIndex[i] - 1]] =  // 코드가 길어서 강제 줄 바꿈
                     electrodeMap[p_mapdata->usableReferenceElectrodIndex[i] - 1];
 
