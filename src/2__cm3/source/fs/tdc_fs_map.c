@@ -740,27 +740,10 @@ int tdc_fs_map_init_map_data(int isd_num, bool force_init, bool specific_RL, int
             // X min level (32 word)
             for (int k = 0; k < df_MaxNumOfElectrode; k++)
             {
-#if 1
                 p_map_data[i]->audio_input_x_mim[k] = df_minAudioForLogarithm;
-#else
-                //  NOTE: 디버깅을 위해서 넣은 구문이므로, 테스트 후 df_minAudioForLogarithm 하나만 남기면 됨
-                if (i == 0)
-                {
-                    p_map_data[i]->audio_input_x_mim[k] = df_minAudioForLogarithm;
-                }
-                else if (i == 1)
-                {
-                    p_map_data[i]->audio_input_x_mim[k] = df_minAudioForLogarithm + 1;
-                }
-                else if (i == 2)
-                {
-                    p_map_data[i]->audio_input_x_mim[k] = df_minAudioForLogarithm + 2;
-                }
-                else if (i == 3)
-                {
-                    p_map_data[i]->audio_input_x_mim[k] = df_minAudioForLogarithm + 3;
-                }
-#endif
+                /* map 인덱스별로 +0~+3 을 더해 구분하던 디버그 변형은 제거했다.
+                 * 원 주석: "디버깅을 위해서 넣은 구문이므로, 테스트 후
+                 * df_minAudioForLogarithm 하나만 남기면 됨" - 작성자 지시대로 정리. */
             }
 
             // X max level (32 word)

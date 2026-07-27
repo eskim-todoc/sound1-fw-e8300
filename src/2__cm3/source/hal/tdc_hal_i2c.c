@@ -159,11 +159,9 @@ void tdc_hal_i2c_set_master_prescale(uint32_t prescale_mask)
     tdc_hal_i2c_enable_interface(true);
 }
 
-#ifdef TDC_HAL_I2C_USING_ISR
+/* TDC_HAL_I2C_USING_ISR 이 항상 정의돼 있어 아래는 늘 인터럽트 핸들러로 컴파일된다.
+ * #else 쪽의 tdc_hal_i2c_comm() 은 정의될 수 없는 유령 함수여서 제거했다. */
 void I2C_0_IRQHandler(void)
-#else
-void tdc_hal_i2c_comm(void)
-#endif
 {
     static int              i = 0;
     tdc_hal_i2c_status_t i2cStatus;
@@ -228,13 +226,7 @@ void tdc_hal_i2c_comm(void)
             // clang-format on
         }
         break;
-#ifndef TDC_HAL_I2C_USING_ISR
-        case i2c_state_WritingDone:
-        {
-            tdc_hal_i2c_driver_t.i2c_diver_state = i2c_state_Idle;
-        }
-        break;
-#endif
+        /* 위와 같은 이유로 i2c_state_WritingDone 폴링 처리도 제거했다. */
         case i2c_state_ReadTriggerd:
         {
             // clang-format off
@@ -292,13 +284,9 @@ void tdc_hal_i2c_comm(void)
             // clang-format on
         }
         break;
-#ifndef TDC_HAL_I2C_USING_ISR
-        case i2c_state_ReadingDone:
-        {
-            tdc_hal_i2c_driver_t.i2c_diver_state = i2c_state_Idle;
-        }
-        break;
-#endif
+        /* TDC_HAL_I2C_USING_ISR 미정의 시의 폴링 처리(i2c_state_ReadingDone case)는
+         * 제거했다. 이 매크로는 processorDirective.h 와 tdc_hal_i2c.h 양쪽에서 가드 없이
+         * 정의돼 있어 #ifndef 가 영구 거짓이었다. */
         case i2c_state_Error:
         {
             tdc_hal_i2c_init();

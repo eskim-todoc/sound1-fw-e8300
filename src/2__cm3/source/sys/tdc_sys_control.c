@@ -102,15 +102,8 @@ void tdc_sys_control_nrf_on_off(ST__ISD_STATUS isd_state, bool global_BLE_Off, b
     }
 }
 
-#if 0
-void NRF_adv_powerMode(bool mode)
-{
-    if(mode)
-        Sys_GPIO_Set_High(ENABLE_NRF_ADV_LowPower);
-    else
-        Sys_GPIO_Set_Low(ENABLE_NRF_ADV_LowPower);
-}
-#endif
+/* NRF_adv_powerMode() 는 제거했다(#if 0 사장). 함수 전체가 죽은 블록 안이었고
+ * 호출부도 0 이었다. 참조하던 ENABLE_NRF_ADV_LowPower 매크로도 이 함수 안이 유일했다. */
 
 /* conneded_ISD / mappingConnected 는 '지난 tick' 값이다 - tdc_isd_step() 와
  * tdc_ble_communication_step() 이 tdc_sys_control_step() 의 enable_ISD 를 받아 도는 순환 구조라

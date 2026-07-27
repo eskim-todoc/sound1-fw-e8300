@@ -116,8 +116,6 @@ static const FirmWare_Info firmwareInfo = {1, 0, 0, __DATE__};
 static const int devFwVer_type = DEV_FW_VER_RELEASE;  // 내부 개발 버전 (Release)
 static const int devFwVer_num  = 1;                   // 1 (전기기계적안정성시험)
 
-#if 1
-#endif
 
 char *readFirmwareInfo()
 {
@@ -239,12 +237,8 @@ extern uint8_t __data_end__;    // VMA (DRAM .data 끝)
 
 void load_data_section(void)
 {
-#if 0
-    memcpy(&__data_start__,                            // VMA data 영역의 시작부터
-           &__data_init__,                             // LMA data 영역의 값으로
-           (size_t) (&__data_end__ - &__data_start__)  // VMA data 영역의 크기 만큼 초기화
-    );
-#else
+    /* memcpy 로 한 번에 복사하던 구버전은 제거했다(#if 0 사장).
+     * 아래 워드 단위 루프 버전만 쓴다. */
     uint32_t *src = (uint32_t *) &__data_init__;
     uint32_t *dst = (uint32_t *) &__data_start__;
 
@@ -252,22 +246,16 @@ void load_data_section(void)
     {
         *dst++ = *src++;
     }
-#endif
 }
 
 void load_bss_section(void)
 {
-#if 0
-    memset(&__bss_start__,                           // VMA bss 영역의 시작부터
-           0,                                        // 0 값으로
-           (size_t) (&__bss_end__ - &__bss_start__)  // VMA bss 영역의 크기 만큼 초기화
-    );
-#else
+    /* 포인터 뺄셈으로 크기를 구하던 구버전 memset 은 제거했다(#if 0 사장).
+     * 아래 uintptr_t 캐스트 버전만 쓴다. */
     memset(&__bss_start__,                                                   // VMA bss 영역의 시작부터
            0,                                                                // 0 값으로
            (size_t) ((uintptr_t) &__bss_end__ - (uintptr_t) &__bss_start__)  // VMA bss 영역의 크기 만큼 초기화
     );
-#endif
 }
 
 int main(void)
@@ -1075,7 +1063,6 @@ int func_sleep(void)
     tdc_shm_on_off_3_v_pmic_cm3_to_cfx(false); /* Disable 3.3V, 1.2V PMIC */
     tdc_led_turn_off();
 
-#if 1
     while (1) /* CFX ULP 진입 대기 (공유메모리 플래그) */
     {
         if (cfx_cm3_sharedMemoryAll.systemShare.enter_ULP_mode_Command_CM3_to_CFX == 0)
@@ -1084,7 +1071,6 @@ int func_sleep(void)
             break;
         }
     }
-#endif
 
     /* 절전 IQS323 설정은 노말과 동일하게 유지(전용 sleep settings 제거 - 운용 임계 그대로,
      * is_ulp 플래그 미사용). CM3 클럭만 tdc_pwr_clock_sleep 로 절감한다. */

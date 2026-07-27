@@ -34,13 +34,9 @@
 // 동작 환경 선택
 //////////////////
 
-#if 0
-#define EEPROM_LSK_Error
-#endif
-
-#if 0
-#define disable_Tx_PowerControl
-#endif
+/* EEPROM_LSK_Error · disable_Tx_PowerControl 정의 스텁(각각 #if 0 안)은 제거했다.
+ * 둘 다 정의된 적이 없어 이를 보던 분기는 전부 사장이었다.
+ * disable_Tx_PowerControl 은 !defined() 로 쓰여 존치 로직은 그대로 살아 있다. */
 
 #if 1
 #define conneded_ISDCheck_byISDPower

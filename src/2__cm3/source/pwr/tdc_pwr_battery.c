@@ -131,13 +131,8 @@ int tdc_pwr_cradle_get_cover_state(void)
 
 #define df_calibrationVotage 4  // 2^2
 
-#if 0
-#define df_battery_boundary_0per_voltage  3072  //(3.0*df_integerGain)     //0
-#define df_battery_boundary_20per_voltage 3481  //(3.4*df_integerGain)     //20
-#define df_battery_boundary_40per_voltage 3686  //(3.6*df_integerGain)     //40
-#define df_battery_boundary_60per_voltage 3891  //(3.8*df_integerGain)     //60
-#define df_battery_boundary_80per_voltage 3993  //(3.9*df_integerGain)     //80
-#endif
+/* 구 전압분배 계수로 배터리 경계전압을 잡던 값들은 제거했다(#if 0 사장).
+ * 현행 값은 실측 기반이며 아래 주석에 측정치가 적혀 있다. */
 
 // Full : 4.16, 100: 4.12, 80 : 3.92, 60:3.74, 40 : 3.62  20: 3.53 0: 3.36
 

@@ -260,77 +260,9 @@ void tdc_sys_init(void)
     // I2C 초기화
     tdc_hal_i2c_init();
 
-#if 0  // 오직 TX PMIC 테스트를 위한 코드
-    {
-        int tx_power;
-
-        // 인터럽트 활성화
-        enable_interrupt();
-
-        // TX PMIC 초기화
-        if (!tdc_drv_isl9122_reset())
-        {
-            tdc_led_turn_on_red();
-            while (1)
-            {
-                SYS_WATCHDOG_REFRESH();
-            }
-        }
-
-        // 리셋 디폴트로 세팅
-        tdc_isd_fpga_write_change_tx_power_level(TDC_DRV_PMIC_RESET_VOLTAGE_SET_VALUE);
-
-        while (1)
-        {
-            // 읽어본다.
-            if (!tdc_isd_fpga_read_tx_power_level(&tx_power))
-            {
-                while (1)
-                {
-                    SYS_WATCHDOG_REFRESH();
-                }
-            }
-
-            // 최대 값 설정 완료 되면 더 할거 없이 무한루프
-            if (tx_power == TDC_DRV_PMIC_MAX_VOLTAGE_CONTROL_VALUE)
-            {
-                TDC_PRINTF_W("[TEST] PMIC TX POWER SET DONE \r\n");
-                tdc_led_turn_on_green();
-
-                while (1)
-                {
-                    SYS_WATCHDOG_REFRESH();
-                }
-            }
-
-            // 지금 레벨에서 스탭을 더한다.
-            tx_power = tx_power + TDC_DRV_PMIC_VOLTAGE_CONTROL_STEP;
-
-            // 새 레벨이 최대 값을 안 넘으면 이대로 설정
-            if (tx_power <= TDC_DRV_PMIC_MAX_VOLTAGE_CONTROL_VALUE)
-            {
-                if (!tdc_isd_fpga_write_change_tx_power_level(tx_power))
-                {
-                    while (1)
-                    {
-                        SYS_WATCHDOG_REFRESH();
-                    }
-                }
-            }
-            // 새 레벨이 최대 값을 넘으면 최대 값으로 설정
-            else
-            {
-                if (!tdc_isd_fpga_write_change_tx_power_level(TDC_DRV_PMIC_MAX_VOLTAGE_CONTROL_VALUE))
-                {
-                    while (1)
-                    {
-                        SYS_WATCHDOG_REFRESH();
-                    }
-                }
-            }
-        }
-    }
-#endif
+    /* TX PMIC 전압을 리셋 디폴트부터 최대까지 올려보며 확인하던 시험 전용 블록은
+     * 제거했다(#if 0 사장, 71줄). 원 주석: "오직 TX PMIC 테스트를 위한 코드".
+     * 무한루프로 끝나는 구조라 정상 부팅 경로에서는 쓸 수 없었다. */
 
     /* P11 (Rev.4 patch): 터치 센서 초기화 - tdc_hal_spi_init() 직후로 이동.
      * 사유: warm reset (워치독) 후 NRF 의 잔존 SPI 상태가 tdc_hal_spi_init() 전에
