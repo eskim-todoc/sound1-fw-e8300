@@ -9,7 +9,6 @@
 #ifdef CM3_I2C_controls_FPAG
 #include <tdc_hal_i2c_isd.h>
 #else
-#include <tdc_hal_i2c_cfx.h>
 #endif
 
 #include <tdc_drv_isl9122.h>

@@ -7,7 +7,6 @@
 
 #include <board.h>           //ok
 #include <tdc_hal_spi.h>      //ok
-#include <tdc_hal_i2c_cfx.h>  //ok
 
 #include <tdc_pwr_battery.h>  //ok
 

@@ -111,21 +111,8 @@ typedef enum
     systemResgister_1st_resetValue       = 0x00,
     systemResgister_2nd_resetValue       = 0x3E,
     stimulation_PhaseDuration_resetValue = 0,
-#if 0
-            backterConfiguration_resetValue=0x31,           // 백텔 안들어옴 (32, 39, 59, 119, 120, 121), 백텔 값오류(190) 4월 4주차
-#else
-
-    // backterConfiguration_resetValue=0x39, //14
-    // backterConfiguration_resetValue=0x35, //13
-    // backterConfiguration_resetValue=0x31, //12
-    backterConfiguration_resetValue = 0x2D, // 11
-    // backterConfiguration_resetValue=0x29, //10        //  백텔 안들어옴 (32, 39, 59, 119, 120, 121), 백텔 값오류(190)
-    // backterConfiguration_resetValue=0x25, //9
-    // backterConfiguration_resetValue=0x21, //8
-    // backterConfiguration_resetValue=0x1D, //7
-    // backterConfiguration_resetValue=0x19, //6
-
-#endif
+    // 튜닝 이력(후보값 9종·현장실패 개체번호): docs/참고/cm3-백텔-캘리브레이션-이력.md
+    backterConfiguration_resetValue         = 0x2D,
     fpga_IO_MUX_Configuration_resetValue   = 0,
     fpga_optional_configuration_resetValue = 0
 

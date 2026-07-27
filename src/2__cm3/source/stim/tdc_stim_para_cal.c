@@ -5,7 +5,6 @@
 #include <board.h>
 #include <internalStimulationChip.h>
 #include <tdc_isd.h>
-#include <tdc_hal_i2c_cfx.h>
 #include <tdc_stim_definitions.h>
 
 #include <tdc_isd_init_fpga.h>

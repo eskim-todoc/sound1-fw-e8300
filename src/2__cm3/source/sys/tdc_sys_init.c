@@ -19,7 +19,6 @@
 
 #include <board.h>
 #include <tdc_hal_spi.h>
-#include <tdc_hal_i2c_cfx.h>
 #include <tdc_hal_i2c.h>
 
 #include <tdc_pwr_battery.h>

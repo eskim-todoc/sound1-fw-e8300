@@ -5,11 +5,7 @@
 #include <FPGA.h>
 #include <internalStimulationChip.h>
 #include <tdc_isd.h>
-#if 0
-#include <tdc_hal_i2c_cfx.h>
-#else
 #include <tdc_hal_i2c_isd.h>
-#endif
 #include <tdc_stim_definitions.h>
 
 #include <tdc_isd.h>
