@@ -268,8 +268,6 @@ typedef struct
  * 해당 '필드'는 CFX AGC 가 사용하므로 구조체에 그대로 있다. */
 void tdc_shared_publish_cm3_heartbeat(int beat);
 
-bool tdc_shm_is_cfx_eeprom_data_loaded(void);
-
 ////
 // 공유 메모리 주속 확인
 
@@ -327,8 +325,6 @@ int *tdc_shm_read_connected_isd_usable_map_index(void);
 
 // 열결된 내부기의  스템프
 int *tdc_shm_read_connected_isd_map_stamp(void);
-// 열결된 내부기의  맵 생성일자 들
-int *tdc_shm_read_connected_isd_map_date(int mapNum);
 
 //////////////////////////
 // 사용자 설정값
@@ -354,12 +350,10 @@ bool tdc_shm_is_user_setting_value_loaded_cfx(void);
 /////////////////////
 // 맵데이터
 
-const ST__CFX_CM3_SharedMemory_mapData *tdc_shm_read_current_map_data(void);
 ST__CFX_CM3_SharedMemory_mapData       *tdc_shm_get_pointer_current_map_data(void);
 void                                    tdc_shm_set_read_write_map_data_flash_command(ST__CFX_CM3_SharedMemory_ReadWriteCommand_ForFlash command_ForFlash);
 bool                                    tdc_shm_is_read_write_map_data_flash_command_done(void);
 int                                    *tdc_shm_get_pointer_repository_for_read_write_map_data_isd_info(void);
-int                                    *tdc_shm_get_pointer_repository_for_read_write_map_data_user_setting(void);
 int                                    *tdc_shm_get_pointer_repository_for_read_write_map_data_stimul_para(void);
 
 ///////////////
@@ -403,21 +397,10 @@ void tdc_shm_share_mapping_program_connection(bool connection);
 /////
 // 동작 모드, 가속도 센서, 전원 off명령
 void tdc_shm_change_system_mode_flag(EN__SYSTEM_OP_MODE flag);
-bool tdc_shm_is_power_button_pushed(void);
-void tdc_shm_enter_low_power_mode_cm3_to_cfx();
 void tdc_shm_on_off_3_v_pmic_cm3_to_cfx(bool OnOff);
 
-void tdc_shm_update_system_op_mode_to_cfx(EN__SYSTEM_OP_MODE mode);
-
-int tdc_shm_read_battery_level_from_cfx(void);
-
-int tdc_shm_read_battery_calibration_value(void);
 
 void tdc_shm_update_backtel_control_value_to_cfx(int value);
-
-void tdc_shm_update_earpiece_detection_value_to_cfx(bool detection);
-///// CFX의 에러
-int tdc_shm_read_cfx_error_code(void);
 
 
 // 구조체의 배치되는 주소를 sections.ld 파일을 수정하여 LPDSP32_PRAM5에 위치한다.

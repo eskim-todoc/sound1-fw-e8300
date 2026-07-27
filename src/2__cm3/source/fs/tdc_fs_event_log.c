@@ -312,10 +312,7 @@ int tdc_fs_event_log_read(void)
     uint8_t        *p_file_name;
     bool            is_validate;
     int             byte_read;
-    int             byte_written;
     int             ret;
-    uint8_t        *p_entity_src;
-    uint8_t        *p_entity_dst;
 
     fp          = &g_tdc_fs_ohdl;
     p_event_log = (TDC_FS_EVENT_LOG_T *) TDC_FS_BASE_ADDR_FOR_EVENT_LOG;

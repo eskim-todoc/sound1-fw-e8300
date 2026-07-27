@@ -7,11 +7,7 @@
 #include <internalStimulationChip.h>
 #include <tdc_isd.h>
 
-#if 0
-#include <tdc_hal_i2c_cfx.h>
-#else
 #include <tdc_hal_i2c_isd.h>
-#endif
 
 #include <tdc_stim_definitions.h>
 
@@ -551,26 +547,8 @@ void tdc_isd_init_device(bool isdControlStateChagedFlag)
         // 'h10 레지스터의 SYSCLK_OE을 1로 설정하는 패킷을 구성하지만 실제로 출력은 하지 않는다.
         case 255:
         {
-#if defined(EEPROM_LSK_Error)
-            // ISD LSK 설정
-            w_isd_registerValue = ISD_registerAddr_LSK_Clk_Config;
-            w_isd_registerValue = w_isd_registerValue << 1;
-            w_isd_registerValue = w_isd_registerValue | ISD_writeRegister;
-            w_isd_registerValue = w_isd_registerValue << 8;
-
-            w_isd_registerValue = w_isd_registerValue | 0x08;
-            w_isd_registerValue = w_isd_registerValue | pcm_Mold_configuration;
-            tdc_shm_fill_specific_command_buffer(pcm_index++, w_isd_registerValue);
-
-            w_isd_registerValue = ISD_registerAddr_PPSK_Config;
-            w_isd_registerValue = w_isd_registerValue << 1;
-            w_isd_registerValue = w_isd_registerValue | ISD_writeRegister;
-            w_isd_registerValue = w_isd_registerValue << 8;
-
-            w_isd_registerValue = w_isd_registerValue | 0x20;
-            w_isd_registerValue = w_isd_registerValue | pcm_Mold_configuration;
-            tdc_shm_fill_specific_command_buffer(pcm_index++, w_isd_registerValue);
-#endif
+            /* EEPROM_LSK_Error 대응 LSK/PPSK 레지스터 설정은 제거했다(isd_init.c 와 동일).
+             * 이 매크로는 processorDirective.h 에서 #if 0 안에만 있어 정의된 적이 없다. */
             // ISD SYSCLK_OE 설정
             w_isd_registerValue = ISD_registerAddr_IO_Config;
             w_isd_registerValue = w_isd_registerValue << 1;
@@ -623,7 +601,6 @@ void tdc_isd_init_device(bool isdControlStateChagedFlag)
         // 응답이 없거나 많아도 문제인 것이므로 내부기 연결 과정 처음부터 다시 진행한다.
         case 260:
         {
-            static int backtel_cnt_err_cnt = 0;
 
             // FIFO 카운터를 읽어 본다.
             if (tdc_isd_fpga_read_fifo_counter(&r_FPGA_registerValue))
@@ -636,7 +613,6 @@ void tdc_isd_init_device(bool isdControlStateChagedFlag)
                     tdc_sys_error_clear_flag(en__RF_PowerIC_ERROR);
                     tdc_sys_error_clear_flag(en__FPGA_CONFIGUARATION_ERROR);
                     tdc_sys_error_clear_flag(en__EN__ISD_ERROR);
-                    backtel_cnt_err_cnt = 0;
 
                     TDC_PRINTF_D("[FPGA] c260: backtel power-level response OK\r\n");
                 }
@@ -645,11 +621,8 @@ void tdc_isd_init_device(bool isdControlStateChagedFlag)
                     tdc_isd_fpga_read_backtel_error_flag(&r_FPGA_registerValue);
 
                     // 백텔 에러는 발생하지 않았으나 백텔이 들어 오지 않았다. -> 내부기 전송 파워 설정 부터 다시.
-#if 0
-                    backtel_cnt_err_cnt--;
-                    TDC_ISD_DEBOUNCE_FAIL(backtel_cnt_err_cnt, "[ISD]", "tdc_isd_init_device c260bt", "verify",
-                                          en__EN__ISD_ERROR, en__BackTelCounterZero);
-#endif
+                        /* 백텔 카운터 0 에러 시 debounce 실패 매크로만 부르던 디버그 블록은
+                         * 제거했다(#if 0 사장). */
                     tdc_isd_change_state(en__isdStatus_FPGA_Ok);  // RF PMIC MAX POWER 설정을 FPGA_OK 상태에서도 진행한다.
                     // tdc_isd_change_state(en__isdStatus_PowerIC_OK);
 
@@ -662,10 +635,8 @@ void tdc_isd_init_device(bool isdControlStateChagedFlag)
             }
         }
         break;
-#else // if defind(DisalbedBackTel)
-                case 275  :
-                    tdc_isd_change_state(en__isdStatus_ISD_Power_Ok);
-                    break;
+  /* DisalbedBackTel 정의 시의 대안 상태전이(case 275 강제)는 제거했다.
+   * 이 매크로는 트리 전체에서 정의된 적이 없어 영구 사장이었다. */
 #endif
 
                 default :

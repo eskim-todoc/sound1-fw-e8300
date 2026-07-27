@@ -58,7 +58,6 @@ int tdc_fs_fatfs_remount(int ldrv)
 int tdc_fs_fatfs_mount(int ldrv)
 {
     DIR         dir;
-    FRESULT     fr;
     const char *path;
 
     if (ldrv == 0)
@@ -128,36 +127,6 @@ int tdc_fs_fatfs_unmount(void)
         TDC_PRINTF_E("[FATFS] UMOUNT FAILED, DRIVE : '%s' \r\n", path);
         return df_False;
     }
-
-    return df_True;
-}
-
-int tdc_fs_mount(void)
-{
-    int ret;
-
-    ret = f_mount(&g_tdc_fs_mount, TDC_FS_LOGICAL_DRIVE_NUM, TDC_FS_MOUNT_OPTION);
-
-    if (ret != FR_OK)
-    {
-        TDC_PRINTF_E("[FS] FAILED TO MOUNT DRIVE ('%s') \r\n", TDC_FS_LOGICAL_DRIVE_NUM);
-        return df_False;
-    }
-
-    SYS_WATCHDOG_REFRESH();
-
-    ret = f_chdrive(TDC_FS_LOGICAL_DRIVE_NUM);
-
-    if (ret != FR_OK)
-    {
-        TDC_PRINTF_E("[FS] FAILED TO CHANGE DRIVE ('%s') \r\n", TDC_FS_LOGICAL_DRIVE_NUM);
-        return df_False;
-    }
-
-    SYS_WATCHDOG_REFRESH();
-
-    g_tdc_fs_ptr_pass_bin   = (TDC_FS_FFT_PASS_BIN_T *) TDC_FS_BASE_ADDR_FFT_PASS_BIN;
-    g_tdc_fs_ptr_entire_map = (TDC_FS_ENTIRE_MAP_T *) TDC_FS_BASE_ADDR_ENTIRE_MAP;
 
     return df_True;
 }

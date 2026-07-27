@@ -131,13 +131,8 @@ int tdc_pwr_cradle_get_cover_state(void)
 
 #define df_calibrationVotage 4  // 2^2
 
-#if 0
-#define df_battery_boundary_0per_voltage  3072  //(3.0*df_integerGain)     //0
-#define df_battery_boundary_20per_voltage 3481  //(3.4*df_integerGain)     //20
-#define df_battery_boundary_40per_voltage 3686  //(3.6*df_integerGain)     //40
-#define df_battery_boundary_60per_voltage 3891  //(3.8*df_integerGain)     //60
-#define df_battery_boundary_80per_voltage 3993  //(3.9*df_integerGain)     //80
-#endif
+/* 구 전압분배 계수로 배터리 경계전압을 잡던 값들은 제거했다(#if 0 사장).
+ * 현행 값은 실측 기반이며 아래 주석에 측정치가 적혀 있다. */
 
 // Full : 4.16, 100: 4.12, 80 : 3.92, 60:3.74, 40 : 3.62  20: 3.53 0: 3.36
 
@@ -172,113 +167,6 @@ typedef struct
     ST__BATTERY_BOUNDARY chargingBatterBoundary;
 
 } ST__SYSTEM_BATTERY_BOUNDARY;
-
-ST__SYSTEM_BATTERY_BOUNDARY batteryBoundary;
-
-int calculated_3V_value;
-
-void tdc_pwr_battery_calculate_boundary(void)
-{
-    int tempValueA;
-    int tempValueB;
-    int mesured4V_value;
-
-    mesured4V_value = tdc_shm_read_battery_calibration_value();  // 4v 전압을 인가했을 때 측정된 값(보드 교정 시)
-
-    ///
-
-    //    4*df_integerGain : mesured4V_value = boundary_0per_voltag : x
-    //==> x = boundary_0per_voltag*df_integerGain:mesured4V_value/(4*df_integerGain)
-
-    // 충전중이 아닐때 배터리 경계값
-    // battery_boundary_0per
-    tempValueA                                                      = (int) df_battery_boundary_0per_voltage;
-    tempValueB                                                      = tempValueA * mesured4V_value;
-    batteryBoundary.dischargingBatterBoundary.battery_boundary_0per = tempValueB >> 12;  // 1024*4 =2^12
-
-    TDC_PRINTF_V("[LSAD] BATTERY DISCHARGING : 3.3600V (A=%u, B=%u,   0%%=%u) \r\n", tempValueA, tempValueB, batteryBoundary.dischargingBatterBoundary.battery_boundary_0per);
-
-    // battery_boundary_20per
-    tempValueA                                                       = (int) df_battery_boundary_20per_voltage;
-    tempValueB                                                       = tempValueA * mesured4V_value;
-    batteryBoundary.dischargingBatterBoundary.battery_boundary_20per = tempValueB >> 12;  // 1024*4 =2^12
-
-    TDC_PRINTF_V("[LSAD] BATTERY DISCHARGING : 3.5300V (A=%u, B=%u,  20%%=%u) \r\n", tempValueA, tempValueB, batteryBoundary.dischargingBatterBoundary.battery_boundary_20per);
-
-    // battery_boundary_40per
-    tempValueA                                                       = (int) df_battery_boundary_40per_voltage;
-    tempValueB                                                       = tempValueA * mesured4V_value;
-    batteryBoundary.dischargingBatterBoundary.battery_boundary_40per = tempValueB >> 12;  // 1024*4 =2^12
-
-    TDC_PRINTF_V("[LSAD] BATTERY DISCHARGING : 3.6200V (A=%u, B=%u,  40%%=%u) \r\n", tempValueA, tempValueB, batteryBoundary.dischargingBatterBoundary.battery_boundary_40per);
-
-    // battery_boundary_60per
-    tempValueA                                                       = (int) df_battery_boundary_60per_voltage;
-    tempValueB                                                       = tempValueA * mesured4V_value;
-    batteryBoundary.dischargingBatterBoundary.battery_boundary_60per = tempValueB >> 12;  // 1024*4 =2^12
-
-    TDC_PRINTF_V("[LSAD] BATTERY DISCHARGING : 3.7400V (A=%u, B=%u,  60%%=%u) \r\n", tempValueA, tempValueB, batteryBoundary.dischargingBatterBoundary.battery_boundary_60per);
-
-    // battery_boundary_80per
-    tempValueA                                                       = (int) df_battery_boundary_80per_voltage;
-    tempValueB                                                       = tempValueA * mesured4V_value;
-    batteryBoundary.dischargingBatterBoundary.battery_boundary_80per = tempValueB >> 12;  // 1024*4 =2^12
-
-    TDC_PRINTF_V("[LSAD] BATTERY DISCHARGING : 3.9200V (A=%u, B=%u,  80%%=%u) \r\n", tempValueA, tempValueB, batteryBoundary.dischargingBatterBoundary.battery_boundary_80per);
-
-    // battery_boundary_100per
-    tempValueA                                                        = (int) df_battery_boundary_100per_voltage;
-    tempValueB                                                        = tempValueA * mesured4V_value;
-    batteryBoundary.dischargingBatterBoundary.battery_boundary_100per = tempValueB >> 12;  // 1024*4 =2^12
-
-    TDC_PRINTF_V("[LSAD] BATTERY DISCHARGING : 4.0096V (A=%u, B=%u, 100%%=%u) \r\n", tempValueA, tempValueB, batteryBoundary.dischargingBatterBoundary.battery_boundary_100per);
-
-    // 충전중일 때 터리 경계값
-
-    // battery_boundary_0per
-    tempValueA                                                   = (int) df_battery_boundary_0per_voltage_charging;
-    tempValueB                                                   = tempValueA * mesured4V_value;
-    batteryBoundary.chargingBatterBoundary.battery_boundary_0per = tempValueB >> 12;  // 1024*4 =2^12
-
-    TDC_PRINTF_V("[LSAD] BATTERY    CHARGING : 3.5000V (A=%u, B=%u,   0%%=%u) \r\n", tempValueA, tempValueB, batteryBoundary.chargingBatterBoundary.battery_boundary_0per);
-
-    // battery_boundary_20per
-    tempValueA                                                    = (int) df_battery_boundary_20per_voltage_charging;
-    tempValueB                                                    = tempValueA * mesured4V_value;
-    batteryBoundary.chargingBatterBoundary.battery_boundary_20per = tempValueB >> 12;  // 1024*4 =2^12
-
-    TDC_PRINTF_V("[LSAD] BATTERY    CHARGING : 3.6000V (A=%u, B=%u,  20%%=%u) \r\n", tempValueA, tempValueB, batteryBoundary.chargingBatterBoundary.battery_boundary_20per);
-
-    // battery_boundary_40per
-    tempValueA                                                    = (int) df_battery_boundary_40per_voltage_charging;
-    tempValueB                                                    = tempValueA * mesured4V_value;
-    batteryBoundary.chargingBatterBoundary.battery_boundary_40per = tempValueB >> 12;  // 1024*4 =2^12
-
-    TDC_PRINTF_V("[LSAD] BATTERY    CHARGING : 3.6700V (A=%u, B=%u,  40%%=%u) \r\n", tempValueA, tempValueB, batteryBoundary.chargingBatterBoundary.battery_boundary_40per);
-
-    // battery_boundary_60per
-    tempValueA                                                    = (int) df_battery_boundary_60per_voltage_charging;
-    tempValueB                                                    = tempValueA * mesured4V_value;
-    batteryBoundary.chargingBatterBoundary.battery_boundary_60per = tempValueB >> 12;  // 1024*4 =2^12
-
-    TDC_PRINTF_V("[LSAD] BATTERY    CHARGING : 3.7900V (A=%u, B=%u,  60%%=%u) \r\n", tempValueA, tempValueB, batteryBoundary.chargingBatterBoundary.battery_boundary_60per);
-
-    // battery_boundary_80per
-    tempValueA                                                    = (int) df_battery_boundary_80per_voltage_charging;
-    tempValueB                                                    = tempValueA * mesured4V_value;
-    batteryBoundary.chargingBatterBoundary.battery_boundary_80per = tempValueB >> 12;  // 1024*4 =2^12
-
-    TDC_PRINTF_V("[LSAD] BATTERY    CHARGING : 3.9700V (A=%u, B=%u,  80%%=%u) \r\n", tempValueA, tempValueB, batteryBoundary.chargingBatterBoundary.battery_boundary_80per);
-
-    // battery_boundary_100per
-    tempValueA                                                     = (int) df_battery_boundary_100per_voltage_charging;
-    tempValueB                                                     = tempValueA * mesured4V_value;
-    batteryBoundary.chargingBatterBoundary.battery_boundary_100per = tempValueB >> 12;  // 1024*4 =2^12
-
-    TDC_PRINTF_V("[LSAD] BATTERY    CHARGING : 4.1200V (A=%u, B=%u, 100%%=%u) \r\n", tempValueA, tempValueB, batteryBoundary.chargingBatterBoundary.battery_boundary_100per);
-}
-
-int battery_percentage;
 
 int tdc_pwr_battery_read_percentage(void)
 {

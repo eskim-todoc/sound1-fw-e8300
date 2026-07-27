@@ -22,11 +22,9 @@ void clear_stimulationIndicatorTrigger(void)
 
 void tdc_stim_indicator_out(int userSettingEnableStimulationIndicator, bool stimulationTriggerLowPower, bool stimulationTriggerMapping)
 {
-    static int toggle                  = 0;
     static int counter                 = 0;
     static int outputPulseTrainCounter = 0;
 
-    int* p_stimulIndicatorOutOnOff;
 
     if (stimulationTriggerLowPower)
     {
@@ -70,60 +68,9 @@ void tdc_stim_indicator_out(int userSettingEnableStimulationIndicator, bool stim
     }
 }
 
-#if 0
-void tdc_stim_indicator_set_level_255(void)
-{
-
-    int offset;
-    int stimulationLevel_uA;
-    int temp;
-
-    const ST_STIUL_DAC_REGISTER_VALUE *p_stimulDAC_setting;
-    ST__CFX_CM3_SharedMemory_calculatedStimulationIndcator_byCM3 *p_stimulIndicator;
-    const ST__CFX_CM3_SharedMemory_mapData *p_mapData;
-
-
-    p_stimulDAC_setting=tdc_stim_read_dac_register_value();
-    p_stimulIndicator=getCalculatedStimulationIndcatorLevel();
-    p_mapData=tdc_shm_get_pointer_current_map_data();
-
-
-    // offset 값 계산
-    if(p_stimulDAC_setting->DAC_offsetSlope_register==0)    // 2uA 기울기 오프셋
-    {
-        offset=p_stimulDAC_setting->DAC_offsetLevel_register<<1;    //2uA 기울기
-    }
-    else        // 4uA 기울기 오프셋
-    {
-        offset=p_stimulDAC_setting->DAC_offsetLevel_register<<2; //4uA 기울기
-    }
-
-    stimulationLevel_uA=p_mapData->stimulationIndicatorAmplitude_uA-offset;
-
-
-    switch(p_stimulDAC_setting->DAC_offsetSlope_register)
-    {
-        case  0 :   //2uA 기울기
-            p_stimulIndicator->indicatorStimulLevel_255=stimulationLevel_uA>>1;
-        break;
-        case 1 :    // 4uA 기울기
-            p_stimulIndicator->indicatorStimulLevel_255=stimulationLevel_uA>>2;
-        break;
-        case 2  :   // 6uA 기울기      (1536_uA > 동적 영역 > 1024_uA)일 때 적용이 되므로 아래의 계산을 하더라도 오버플로우 발생이 없다.
-        {
-            temp=stimulationLevel_uA*21;  // 최대.. 1536*21=32256  ,,, 21는 1/6을 QI1F7로 표현한 것.
-            p_stimulIndicator->indicatorStimulLevel_255=temp>>8;
-        }
-
-        break;
-        case 3 :    // 8uA 기울기
-            p_stimulIndicator->indicatorStimulLevel_255=stimulationLevel_uA>>3;
-        break;
-
-
-    }
-}
-#else
+/* 자극 알림 레벨 산출의 구버전 구현은 제거했다(#if 0 사장, 53줄).
+ * 구버전이 부르던 getCalculatedStimulationIndcatorLevel() 은 CM3 어디에도 정의가 없어
+ * 되살리면 링크 에러가 난다. 아래 현행 구현만 유효하다. */
 
 void tdc_stim_indicator_set_level_255(void)
 {
@@ -176,4 +123,3 @@ void tdc_stim_indicator_set_level_255(void)
     }
 }
 
-#endif

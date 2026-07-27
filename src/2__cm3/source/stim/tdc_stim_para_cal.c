@@ -5,7 +5,6 @@
 #include <board.h>
 #include <internalStimulationChip.h>
 #include <tdc_isd.h>
-#include <tdc_hal_i2c_cfx.h>
 #include <tdc_stim_definitions.h>
 
 #include <tdc_isd_init_fpga.h>
@@ -59,46 +58,16 @@ int tdc_stim_calc_frame_per_channel(int pulsewidth)
 
 int tdc_stim_calc_transferable_channel_num(int numFramePerChannel, int usableElectrodNum)
 {
-    int entireAllChanelFrameNum, TransferabelChannelNumPerOneMilSec, sumTransferabelChannelNum;
+    int TransferabelChannelNumPerOneMilSec;
 
-    int numFrame;
 
     // 24나누기 채널당 프레임 수...
 
-#if 0
-
-    entireAllChanelFrameNum=usableElectrodNum*numFramePerChannel; // 모든 채널을 전송하는 데 필요한 시간.
-
-        if(entireAllChanelFrameNum<df_MaxNumTransferableChannel) // 모든 채널을 1msec동안 전송할 수 있다.
-        {
-            TransferabelChannelNumPerOneMilSec=usableElectrodNum;
-        }
-        else // 몯든 채널을 1msec 동안 전송이 불가능하다.
-        {
-            TransferabelChannelNumPerOneMilSec=1;
-            sumTransferabelChannelNum=numFramePerChannel;
-            while(true)
-            {
-                if(df_MaxNumTransferableChannel<=sumTransferabelChannelNum)
-                {
-                    numFrame=TransferabelChannelNumPerOneMilSec*numFramePerChannel;
-                    if(numFrame>df_MaxNumTransferableChannel)
-                        TransferabelChannelNumPerOneMilSec--;
-                    break;
-
-
-                }
-                TransferabelChannelNumPerOneMilSec++;
-                sumTransferabelChannelNum+=numFramePerChannel;
-            }
-
-        }
-
-#else
+    /* 프레임 수를 1 씩 늘려가며 반복 계산하던 구버전 채널수 산출은 제거했다(#if 0 사장).
+     * 현재는 아래처럼 나눗셈 1회로 구한다. */
 
     TransferabelChannelNumPerOneMilSec = df_MaxNumTransferableChannel / numFramePerChannel;
 
-#endif
 
     return TransferabelChannelNumPerOneMilSec;
 }
@@ -183,11 +152,8 @@ bool tdc_stim_set_range(int pulseWidth, int *T_level_uA, int *C_level_uA, int Nu
     int maxStimul_uA = 0, minStimul_uA = stimulDAC_D_only_Saturation_uA + offsetDAC_B_Saturation_uA, dynamicRange_uA = 0;
     int DAC_offsetLevel;
 
-    EN_Offset_DAC_Slope      Offset_DAC_Slope;
-    EN_Stimulation_DAC_Slope StimulationDAC_Slope;
 
     int  tempINT;
-    int  reciprocal;
     int  deliveryCharge_pico;
     bool MaxDeliveryChargeOver = false;
     bool configurationError    = false;

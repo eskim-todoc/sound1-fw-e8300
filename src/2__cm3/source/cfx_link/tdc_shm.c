@@ -1,6 +1,7 @@
 
 #include <tdc_cfx_eeprom_write.h>
 #include <tdc_shm.h>
+#include <tdc_shm_debug.h>
 #include <tdc_ble_protocol.h>
 #include <tdc_shm_addr.h>
 #include <tdc_isd_stim_standalone.h>
@@ -8,8 +9,6 @@
 #include <tdc_pwr_battery.h>  // 새로 추가
 #include <main.h>
 
-#include <tdc_pwr_lsad.h>
-#include <tdc_pwr_lsad.h>
 #include <tdc_hal_dio.h>
 #include <tdc_printf.h>
 #include <tdc_fs_gain.h>  // ISD 별 게인 설정 로드
@@ -38,18 +37,6 @@ void tdc_shared_publish_cm3_heartbeat(int beat)
  * tempValue1 을 읽고 tempValue2 에 쓴다(1__cfx/signalProcessing/agc.c:100/213/
  * 238/259 및 :215/240/261). CM3 쪽 초기화도 stimulationParaCal.c:617~618 에서
  * 직접 대입한다. 필드를 지우면 AGC 가 깨지므로 래퍼만 제거했다. */
-
-bool tdc_shm_is_cfx_eeprom_data_loaded(void)
-{
-    if (cfx_cm3_sharedMemoryAll.CFX_EEPROM_data_is_Loaded == 1)
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
-}
 
 ////
 // 공유 메모리 주소 확인
@@ -84,45 +71,6 @@ void tdc_shm_change_system_mode_flag(EN__SYSTEM_OP_MODE flag)
     cfx_cm3_sharedMemoryAll.systemShare.system_opMode = flag;
 }
 
-bool tdc_shm_is_power_button_pushed(void)
-{
-    // 1.5세대에서는 가속도 센서 인터럽트 상태를 CM3가 직접 처리하기 때문에
-    // 더이상 공유 메모리의 powerButton_pushed_CFX_to_CM3 변수를 사용하지 않는다.
-    // 단, 디버깅을 위해 powerButton_pushed_CFX_to_CM3 변수를 활용한다.
-#if 1
-    if (Sys_GPIO_Read(DIO_PIN_INDEX_for_Accelerometer) == 0)  // ACTIVE LOW
-    {
-        if (cfx_cm3_sharedMemoryAll.systemShare.powerButton_pushed_CFX_to_CM3 == 0)
-        {
-            cfx_cm3_sharedMemoryAll.systemShare.powerButton_pushed_CFX_to_CM3 = 1;
-            TDC_PRINTF_V("[ACC] DOUBLE TAP DETECTED \r\n");
-        }
-
-        return true;
-    }
-
-    cfx_cm3_sharedMemoryAll.systemShare.powerButton_pushed_CFX_to_CM3 = 0;
-
-    return false;
-#else  // 1.5세대 레거시 코드
-    if (Sys_GPIO_Read(DIO_PIN_INDEX_for_Accelerometer) == 0)  // ACTIVE LOW
-    {
-        cfx_cm3_sharedMemoryAll.systemShare.powerButton_pushed_CFX_to_CM3 = 1;
-    }
-
-    if (cfx_cm3_sharedMemoryAll.systemShare.powerButton_pushed_CFX_to_CM3 == 1)
-    {
-        cfx_cm3_sharedMemoryAll.systemShare.powerButton_pushed_CFX_to_CM3 = (int) 0;
-        TDC_PRINTF_V("[ACC] INTERRUPT OCCURRED \r\n");
-        return true;
-    }
-    else
-    {
-        return false;
-    }
-#endif
-}
-
 void tdc_shm_on_off_3_v_pmic_cm3_to_cfx(bool OnOff)
 {
     // 1세대에서는 RF PMIC 5V를 CM3가 직접 켜기/끄기를 제어할 수 있었지만,
@@ -138,35 +86,6 @@ void tdc_shm_on_off_3_v_pmic_cm3_to_cfx(bool OnOff)
     else
     {
         cfx_cm3_sharedMemoryAll.systemShare.consumptionPowerControl_Command_CM3_to_CFX = 2;
-    }
-}
-
-void tdc_shm_enter_low_power_mode_cm3_to_cfx()
-{
-    tdc_shm_on_off_3_v_pmic_cm3_to_cfx(false);
-    cfx_cm3_sharedMemoryAll.systemShare.enter_ULP_mode_Command_CM3_to_CFX = 1;
-}
-
-int tdc_shm_read_battery_calibration_value(void)
-{
-    return cfx_cm3_sharedMemoryAll.batteryCalibrationValue;
-}
-
-int tdc_shm_read_battery_level_from_cfx(void)
-{
-    tdc_pwr_lsad_update();
-    return cfx_cm3_sharedMemoryAll.systemShare.batteryLevel_CfX_to_CM3;
-}
-
-void tdc_shm_update_earpiece_detection_value_to_cfx(bool detection)
-{
-    if (detection)
-    {
-        cfx_cm3_sharedMemoryAll.earpieceDetecion = 1;
-    }
-    else
-    {
-        cfx_cm3_sharedMemoryAll.earpieceDetecion = 0;
     }
 }
 
@@ -404,33 +323,6 @@ int *tdc_shm_read_connected_isd_map_stamp(void)
     return ((int *) &(cfx_cm3_sharedMemoryAll.connected_ISD_Map_info.mapStamp));
 }
 
-// 열결된 내부기의  맵 생성일자 들
-int *tdc_shm_read_connected_isd_map_date(int mapNum)
-{
-    int *p_mapDate;
-
-    switch (mapNum)
-    {
-        case 1:
-            p_mapDate = ((int *) &(cfx_cm3_sharedMemoryAll.connected_ISD_Map_info.map_date[0]));
-            break;
-        case 2:
-            p_mapDate = ((int *) &(cfx_cm3_sharedMemoryAll.connected_ISD_Map_info.map_date[1]));
-            break;
-        case 3:
-            p_mapDate = ((int *) &(cfx_cm3_sharedMemoryAll.connected_ISD_Map_info.map_date[2]));
-            break;
-        case 4:
-            p_mapDate = ((int *) &(cfx_cm3_sharedMemoryAll.connected_ISD_Map_info.map_date[3]));
-            break;
-        default:
-            p_mapDate = ((int *) &(cfx_cm3_sharedMemoryAll.connected_ISD_Map_info.map_date[0]));
-            break;
-    }
-
-    return p_mapDate;
-}
-
 //////////////////////////// 사용자 설정 값 관련  //////////////////////////////////
 //
 //
@@ -645,17 +537,7 @@ int *tdc_shm_get_pointer_repository_for_read_write_map_data_isd_info(void)
     return ((int *) &(cfx_cm3_sharedMemoryAll.repositoryForReadWriteMapData.ISD_info_mapData));
 }
 
-int *tdc_shm_get_pointer_repository_for_read_write_map_data_user_setting(void)
-{
-    return ((int *) &(cfx_cm3_sharedMemoryAll.repositoryForReadWriteMapData.userSettingValue_mapData));
-}
-
 int *tdc_shm_get_pointer_repository_for_read_write_map_data_stimul_para(void)
 {
     return ((int*) &(cfx_cm3_sharedMemoryAll.repositoryForReadWriteMapData.readWritemapData));
-}
-
-int tdc_shm_read_cfx_error_code(void)
-{
-    return cfx_cm3_sharedMemoryAll.CFX_ErrorCode;
 }

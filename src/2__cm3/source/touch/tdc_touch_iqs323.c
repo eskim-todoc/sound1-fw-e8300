@@ -38,17 +38,9 @@ static bool g_in_ulp_mode = false;
 /* **********************************************************************
  * ULP 플래그
  */
-void tdc_touch_iqs323_set_ulp(void)
-{
-    g_in_ulp_mode = true;
-}
 void tdc_touch_iqs323_clear_ulp(void)
 {
     g_in_ulp_mode = false;
-}
-bool tdc_touch_iqs323_is_ulp(void)
-{
-    return g_in_ulp_mode;
 }
 
 /* **********************************************************************
@@ -282,14 +274,6 @@ static bool sensor_setup(void)
 }
 
 static bool touch_settings(uint8_t threshold, uint8_t hysteresis)
-{
-    /* 0x62: bits[7:0]=Touch Threshold(LSB), bits[15:12]=Touch Hysteresis(MSB 상위 니블, DS A.17).
-     * hysteresis 4비트값을 MSB 상위 니블에 위치시킨다(<<4). 이전엔 MSB 통째로 써 bits[11:8](미정의)에
-     * 들어가 실제 hysteresis=0 이었던 버그 수정. */
-    return write_register(REG_CH0_TOUCH, threshold, (uint8_t) ((hysteresis & 0x0F) << 4));
-}
-
-bool tdc_touch_iqs323_public_settings(uint8_t threshold, uint8_t hysteresis)
 {
     /* 0x62: bits[7:0]=Touch Threshold(LSB), bits[15:12]=Touch Hysteresis(MSB 상위 니블, DS A.17).
      * hysteresis 4비트값을 MSB 상위 니블에 위치시킨다(<<4). 이전엔 MSB 통째로 써 bits[11:8](미정의)에

@@ -10,7 +10,6 @@
 
 #include <board.h>  // 디버깅용
 
-#include <tdc_hal_uart.h>
 #include <tdc_printf.h>
 #include <tdc_hal_timer.h>
 
@@ -122,10 +121,6 @@ void SPI1_COM_IRQHandler(void)
 
         tdc_hal_spi_clear_master_read_command();  // 송신이 완료되었음을 CM3 및 NRF에서 알수 있도록 한다.
     }
-
-#if 0
-    tdc_hal_spi_enable_dma();
-#endif
 }
 
 // DMA0: SPI 수신
@@ -197,11 +192,6 @@ void DMA1_IRQHandler(void)  // DMA1은 Memory에서 SPI Tx로 패킷 단위의 �
     }
     else
     {
-#if 0  // NOTE: SPI 통신이 끝나면 DMA에서 초기화 하지 말고, SPI의 CS_RISE에서 초기화하도록 수정
-        tdc_hal_spi_clear_tx_buffer();
-        tdc_hal_spi_enable_dma();
-        tdc_hal_spi_clear_master_read_command(); // 송신이 완료되었음을 CM3 및 NRF에서 알수 있도록 한다.
-#endif
     }
 }
 
@@ -261,14 +251,6 @@ void tdc_hal_spi_init(void)
     // Configure the SPI port
     Sys_SPI_Config(SPI1, TDC_HAL_SPI_CONFIG);
 
-#if 0
-    // Clear flags
-    SPI1->STATUS = TDC_HAL_SPI_STATUS;
-
-    // Enable SPI
-    Sys_SPI_TransferConfig(SPI1, TDC_HAL_SPI_CTRL_ENABLE);
-#endif
-
     // NOTE: DMA 활성화 전에 버퍼를 초기화 해야 하는 것으로 보인다.
     //     : DMA 활성화 시점에 TX_DMA 신호가 발생되어 SPI TX 레지스터에 값이 써지는 것으로 보인다.
     //     : 아닐수도 있는데, 일단은 이 순서를 지키는 것으로 마무리 하겠다.
@@ -287,24 +269,6 @@ void tdc_hal_spi_init(void)
 
     // Enable SPI
     Sys_SPI_TransferConfig(SPI1, TDC_HAL_SPI_CTRL_ENABLE);
-#else
-    // DMA0: RX (nRF → Cortex-M3) 설정
-
-    // 입력 순서: dma, cfg, transferLength, counterInt, srcAddr, destAddr
-    Sys_DMA_ChannelConfig(DMA0, TDC_HAL_DMA0_CFG0, TDC_HAL_SPI_COMM_PACKET_SIZE, 0, 0x40000E10, ((uint32_t) SPI_Rx_Buffer));
-    Sys_DMA_Set_Ctrl(DMA0, TDC_HAL_DMA0_CTRL);
-    Sys_DMA_Clear_Status(DMA0, TDC_HAL_DMA0_STATUS);
-
-    // DMA1: RX (Cortex-M3 → nRF) 설정
-
-    // 입력 순서: dma, cfg, transferLength, counterInt, srcAddr, destAddr
-    Sys_DMA_ChannelConfig(DMA1, TDC_HAL_DMA1_CFG0, TDC_HAL_SPI_COMM_PACKET_SIZE, 0, ((uint32_t) SPI_Tx_Buffer), 0x40000E0C);
-    Sys_DMA_Set_Ctrl(DMA1, TDC_HAL_DMA1_CTRL);
-    Sys_DMA_Clear_Status(DMA1, TDC_HAL_DMA1_STATUS);
-
-    // __KIM: DMA의 MODE_ENABLE 설정 시 DMA_ENABLE로 하면 전송 종료 후 자동으로 DMA가 비활성화 상태로 변경된다.
-    Sys_DMA_Mode_Enable(DMA0, DMA_ENABLE);  // DMA0 켜기
-    Sys_DMA_Mode_Enable(DMA1, DMA_ENABLE);  // DMA1 켜기
 #endif
 
     NVIC_ClearPendingIRQ(SPI1_COM_IRQn);
@@ -317,14 +281,6 @@ void tdc_hal_spi_init(void)
 
     // NRF에 전송할 데이터가 없음
     tdc_hal_spi_clear_master_read_command();  // Sys_GPIO_Set_Low(GPIO_PIN_ReadCommandForSPI_Master);
-
-#if 0
-    SPI->TX_DATA = SPI_TX_RESET_VALUE;
-    for (int i = 0; i < TDC_HAL_SPI_COMM_PACKET_SIZE; i++)
-        SPI_Tx_Buffer[i] = SPI_TX_RESET_VALUE;
-#else
-
-#endif
 }
 
 // void tdc_hal_spi_write_tx_buffer(const int source[], int dataSize)

@@ -19,7 +19,6 @@
 
 #include <board.h>
 #include <tdc_hal_spi.h>
-#include <tdc_hal_i2c_cfx.h>
 #include <tdc_hal_i2c.h>
 
 #include <tdc_pwr_battery.h>
@@ -44,14 +43,12 @@
 
 #include <tdc_hal_dio.h>
 #include <tdc_pwr_clock.h>
-#include <tdc_hal_uart.h>
 #include <tdc_util.h>
 #include <tdc_fs.h>
 #include <tdc_fs_map.h>
 #include <tdc_fs_fft.h>
 #include <tdc_fs_stim_mute.h>
 #include <tdc_fs_event_log.h>
-#include <tdc_pwr_lsad.h>
 #include <tdc_pwr_clock.h>
 #include <tdc_printf.h>
 #include <tdc_boot.h>
@@ -78,22 +75,6 @@ void tdc_sys_reset_nrf(void)
     }
 
     // Sys_GPIO_Set_High(DIO_NUM_NRF_SWDIO_NRESET);
-}
-
-void reset_interrupt_Disable_PRIMASK(void)
-{
-    // 인터럽트 리셋
-
-    /* Disable exceptions (except NMI and the hard fault exception) and
-     * interrupts before configuring interfaces and peripherals by setting a
-     * 1 to the 1-bit interrupt mask register PRIMASK */
-    __set_PRIMASK(PRIMASK_DISABLE_INTERRUPTS);
-
-    /* Clear the enable for all of the external interrupts. */
-    Sys_NVIC_DisableAllInt();
-
-    /* Clear the pending status for all of the external interrupts. */
-    Sys_NVIC_ClearAllPendingInt();
 }
 
 void reset_DMA_disable(void)
@@ -141,100 +122,10 @@ void enable_interrupt(void)
     __set_PRIMASK(PRIMASK_ENABLE_INTERRUPTS);
 }
 
-void tdc_sys_memory_setup_completed(void)
-{
-    // CFX에 인터럽트 발생
-    SYSCTRL_CFX_CMD->CFX_CMD_0_ALIAS = 1;  // CFX에 메모리 초기화가 완료되었음을 알려준다.
-}
-
-void tdc_sys_uninit(void)
-{
-    /* PRIMASK is a 1-bit register. When this is set, it allows NMI and the hard fault exception;
-     * all other interrupts and exceptions are masked;
-     * default is 0 (0: no masking, 1: masking) */
-    __set_PRIMASK(PRIMASK_DISABLE_INTERRUPTS);
-
-    /* FAULTMASK is a 1-bit register.
-     * When this is set, it allows only the NMI, and all interrupts and fault handling exceptions are disabled;
-     * default is 0 (0: no masking, 1: masking) */
-    __set_FAULTMASK(FAULTMASK_ENABLE_INTERRUPTS);
-
-    /* Clear PRIMASK (no masking) */
-    __set_PRIMASK(PRIMASK_ENABLE_INTERRUPTS);
-
-    /* Disable all existing interrupts. */
-    Sys_NVIC_DisableAllInt();
-
-    /* Clear all pending source. */
-    Sys_NVIC_ClearAllPendingInt();
-
-    /* LED arbiter ISR 도 같이 비활성 - tdc_led_turn_off() 가 즉시 OFF 분기로 진입 */
-    tdc_led_isr_active_set(false);
-
-    /* Turn off the LED */
-    tdc_led_turn_off();
-
-    /* Clear all error flags */
-    tdc_sys_error_clear_all();
-
-    /* Disable LSAD */
-    LSAD->CFG = LSAD_DISABLE;
-
-    /* Disable SPI */
-    Sys_SPI_TransferConfig(SPI1, TDC_HAL_SPI_CTRL_DISABLE);
-
-    /* Disable DMA */
-    reset_DMA_disable();
-
-    /* Disable I2C */
-    tdc_hal_i2c_enable_interface(false);
-
-    /* Disable UART */
-    tdc_hal_uart_uninit();
-
-    /* Reset DIOs */
-    tdc_hal_dio_configure_sleep();
-}
-
-void error_toggler(int cnt, int msec)
-{
-    uint32_t msec_1 = (SystemCoreClock / 1000);
-
-    for (volatile int i = 0; i < cnt; i++)
-    {
-        Sys_GPIO_Toggle(DIO_PIN_INDEX_for_LED_color_R);
-        Sys_Delay(msec_1 * msec);
-        SYS_WATCHDOG_REFRESH();
-
-        Sys_GPIO_Toggle(DIO_PIN_INDEX_for_LED_color_R);
-        Sys_Delay(msec_1 * msec);
-        SYS_WATCHDOG_REFRESH();
-    }
-}
-
-void error_blink(void)
-{
-    Sys_DIO_Config(DIO_PIN_INDEX_for_LED_color_R, DIO_PIN_CFG_FOR_GPIO_OUPUT_NOPULLUP);  // R
-    Sys_DIO_Config(DIO_PIN_INDEX_for_LED_color_G, DIO_PIN_CFG_FOR_GPIO_OUPUT_NOPULLUP);  // G
-    Sys_DIO_Config(DIO_PIN_INDEX_for_LED_color_B, DIO_PIN_CFG_FOR_GPIO_OUPUT_NOPULLUP);  // B
-
-    Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_R);  // R
-    Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_G);  // G
-    Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_B);  // B
-
-    while (1)
-    {
-        error_toggler(40, 25);
-        error_toggler(4, 150);
-    }
-}
-
 /* proc_touch(), iqs323_init() → tdc_touch.c 로 이동됨 */
 
 void tdc_sys_init(void)
 {
-    int counter = 0;
-    int ret;
 
     // 8MB 플래시를 하위 4MB, 상위 4MB로 분할하여 사용한다.
     // 하위 4MB에는 Boot Info, Manufacture Data, FAT, Manifest, App0, App1, App2로 구성된다.
@@ -360,7 +251,6 @@ void tdc_sys_init(void)
     // reset_interrupt_Disable_PRIMASK();
 
     // 더 이상 EZ에서 배터리 측정하지 않음
-    // tdc_pwr_lsad_init();  // 배터리 측정을 위한 초기화
 
     // DAM 초기화 및 비활성화
     reset_DMA_disable();
@@ -368,77 +258,9 @@ void tdc_sys_init(void)
     // I2C 초기화
     tdc_hal_i2c_init();
 
-#if 0  // 오직 TX PMIC 테스트를 위한 코드
-    {
-        int tx_power;
-
-        // 인터럽트 활성화
-        enable_interrupt();
-
-        // TX PMIC 초기화
-        if (!tdc_drv_isl9122_reset())
-        {
-            tdc_led_turn_on_red();
-            while (1)
-            {
-                SYS_WATCHDOG_REFRESH();
-            }
-        }
-
-        // 리셋 디폴트로 세팅
-        tdc_isd_fpga_write_change_tx_power_level(TDC_DRV_PMIC_RESET_VOLTAGE_SET_VALUE);
-
-        while (1)
-        {
-            // 읽어본다.
-            if (!tdc_isd_fpga_read_tx_power_level(&tx_power))
-            {
-                while (1)
-                {
-                    SYS_WATCHDOG_REFRESH();
-                }
-            }
-
-            // 최대 값 설정 완료 되면 더 할거 없이 무한루프
-            if (tx_power == TDC_DRV_PMIC_MAX_VOLTAGE_CONTROL_VALUE)
-            {
-                TDC_PRINTF_W("[TEST] PMIC TX POWER SET DONE \r\n");
-                tdc_led_turn_on_green();
-
-                while (1)
-                {
-                    SYS_WATCHDOG_REFRESH();
-                }
-            }
-
-            // 지금 레벨에서 스탭을 더한다.
-            tx_power = tx_power + TDC_DRV_PMIC_VOLTAGE_CONTROL_STEP;
-
-            // 새 레벨이 최대 값을 안 넘으면 이대로 설정
-            if (tx_power <= TDC_DRV_PMIC_MAX_VOLTAGE_CONTROL_VALUE)
-            {
-                if (!tdc_isd_fpga_write_change_tx_power_level(tx_power))
-                {
-                    while (1)
-                    {
-                        SYS_WATCHDOG_REFRESH();
-                    }
-                }
-            }
-            // 새 레벨이 최대 값을 넘으면 최대 값으로 설정
-            else
-            {
-                if (!tdc_isd_fpga_write_change_tx_power_level(TDC_DRV_PMIC_MAX_VOLTAGE_CONTROL_VALUE))
-                {
-                    while (1)
-                    {
-                        SYS_WATCHDOG_REFRESH();
-                    }
-                }
-            }
-        }
-    }
-#endif
+    /* TX PMIC 전압을 리셋 디폴트부터 최대까지 올려보며 확인하던 시험 전용 블록은
+     * 제거했다(#if 0 사장, 71줄). 원 주석: "오직 TX PMIC 테스트를 위한 코드".
+     * 무한루프로 끝나는 구조라 정상 부팅 경로에서는 쓸 수 없었다. */
 
     /* P11 (Rev.4 patch): 터치 센서 초기화 - tdc_hal_spi_init() 직후로 이동.
      * 사유: warm reset (워치독) 후 NRF 의 잔존 SPI 상태가 tdc_hal_spi_init() 전에
@@ -473,24 +295,6 @@ void tdc_sys_init(void)
     // 더 이상 EZ가 배터리 측정하지 않음
     tdc_pwr_battery_set_state(TDC_PWR_BATTERY_STATE_RESET);
     tdc_pwr_battery_set_percent(0);
-#if 0
-    // LSAD의 측정이 최초 한번은 미정확하다고 하여, 넉넉히 4번 측정이 완료된 후 진행되도록 구현하였다.
-    while (1)
-    {
-    	if (TDC_PWR_LSAD_STABLE_CNT < tdc_pwr_lsad_get_count())
-    	{
-    		break;
-    	}
-
-    	__NOP(); // 최적화 방지 목적의 NOP
-    }
-
-    tdc_pwr_lsad_update();
-
-    TDC_PRINTF_I("[LSAD] END OF INIT, CURRENTLY BATT SAMPLE COUNT=%d, LSAD VALUE=%d \r\n",
-            tdc_pwr_lsad_get_count(),
-            cfx_cm3_sharedMemoryAll.systemShare.batteryLevel_CfX_to_CM3);
-#endif
 
     // USB 충전 상태 초기화
     tdc_pwr_charger_set_state(TDC_PWR_CHARGER_STATE_RESET);

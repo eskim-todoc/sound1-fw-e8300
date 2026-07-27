@@ -6,11 +6,7 @@
 #include <tdc_isd_fpga.h>
 #include <internalStimulationChip.h>
 #include <tdc_isd.h>
-#if 0
-#include <tdc_hal_i2c_cfx.h>
-#else
 #include <tdc_hal_i2c_isd.h>
-#endif
 #include <tdc_stim_definitions.h>
 
 #include <tdc_isd.h>
@@ -107,12 +103,10 @@ void tdc_isd_map_ecap_step(bool startFlag)
     int  w_FPGA_registerValue;
     int  r_FPGA_registerValue;
     int  comparing;
-    int  tempValue;
     bool FPGA_FIFO_empty;
     bool FPGA_error;
 
     int w_isd_registerValue;
-    int r_isd_registerValue;
 
     int last_fpga_settingValue = 0;
     int w_FPGA_VolatileValue;
@@ -123,8 +117,7 @@ void tdc_isd_map_ecap_step(bool startFlag)
     static int stimulPattern_index;
 
     int pcm_index;
-    int templeteBuff_index;
-    int i, k;
+    int i;
     int sendingPatternIndex;
 
     // 계산되는 자극 파라미터
@@ -140,7 +133,6 @@ void tdc_isd_map_ecap_step(bool startFlag)
 
     int stimulLevel_uA, stimulDAC_offsetValue_uA;
 
-    static bool maskerProbeDAC_diff;
     static int  backtelStart_flowCounter;
     int         maskerProbeIntervalCouter;
     static int  bipolarFIFO_index;
@@ -967,8 +959,6 @@ void tdc_isd_map_ecap_step(bool startFlag)
             // [ {프루브용 자극 출력 용 0x05설정,펄스폭 맞춤 NOP},{마스커 프로브 인터벌 (펄스폭 0, 프로브 출력 자극 파라미터, 0x06설정, 펄스폭 설정  , 인터벌
             // 맞춤용 NOP..)} , {프로브 자극 출력용 0x08 설정-펄스 폭에 맞춘 NOP})
 
-            templeteBuff_index = 0;
-            k                  = 0;
 
             // PCM_templete_eCAP[k][templeteBuff_index++]=pcm_Mold_NopStandby;
 

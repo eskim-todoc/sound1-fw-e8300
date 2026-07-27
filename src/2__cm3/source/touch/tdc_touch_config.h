@@ -16,10 +16,25 @@
 #ifndef TDC_TOUCH_CONFIG_H_
 #define TDC_TOUCH_CONFIG_H_
 
-/* 노말 폴링(200ms)마다 LTA/Counts/임계 계측을 RTT(TDC_PRINTF_D)로 출력 - 실측 튜닝용.
- * 튜닝 완료 후 0 으로 두면 계측 블록이 컴파일 단계에서 완전 제거(런타임 비용 0). */
+/* 터치 디버깅은 '계측'과 '출력'을 따로 켠다 (2026-07-27 분리).
+ *
+ * 예전에는 스위치가 TDC_TOUCH_DEBUG_PRINT_ENABLE 하나뿐이었는데, 정작 RTT 출력만
+ * 소스에서 #if 0 으로 막아 두는 바람에 "계측은 도는데 아무 데도 안 쓰이는" 상태가 됐다.
+ * (main.c 절전 경로에서는 I2C 읽기까지 매 폴링마다 낭비) 그래서 두 개로 나눴다.
+ *
+ *   TDC_TOUCH_DEBUG_MEASURE_ENABLE : LTA/Counts/임계 계측값 수집(s_debug_recent_*).
+ *                                    BLE 범용 디버깅 명령이 이 값을 읽어가므로 기본 ON.
+ *                                    (ble/tdc_ble_general_debug.c 의 accessor 7종)
+ *   TDC_TOUCH_DEBUG_PRINT_ENABLE   : 위 값을 RTT(TDC_PRINTF_D)로 찍는다. 실측 튜닝용.
+ *                                    0 이면 관련 블록이 통째로 컴파일에서 빠진다(런타임 비용 0).
+ *
+ * 둘 다 '블록 전체'를 감싼다. 출력만 따로 막지 말 것 - 그러면 계산이 고아로 남는다. */
+#ifndef TDC_TOUCH_DEBUG_MEASURE_ENABLE
+#  define TDC_TOUCH_DEBUG_MEASURE_ENABLE  1
+#endif
+
 #ifndef TDC_TOUCH_DEBUG_PRINT_ENABLE
-#  define TDC_TOUCH_DEBUG_PRINT_ENABLE  1
+#  define TDC_TOUCH_DEBUG_PRINT_ENABLE  0
 #endif
 
 #endif /* TDC_TOUCH_CONFIG_H_ */

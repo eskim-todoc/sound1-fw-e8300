@@ -20,7 +20,6 @@
  * Sullivan 유산. 충전 상태는 QCC 0x34 기반 tdc_pwr_charger_get_state() 로 단일화됐다.
  * 상세: docs/tasks/main/20260715_systemcontrol-fsm-decompose/분석-부록-sullivan유산.md */
 
-void tdc_pwr_battery_calculate_boundary(void);
 int  tdc_pwr_battery_read_percentage(void);
 
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

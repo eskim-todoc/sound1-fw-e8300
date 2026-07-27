@@ -9,7 +9,6 @@ static tdc_sys_error_code_t errorCode;
 
 void tdc_sys_error_update(tdc_sys_error_major_t majorError, int detailError, int lineNumber)
 {
-    int temp;
 
     switch (majorError)
     {
@@ -59,12 +58,6 @@ void tdc_sys_error_update(tdc_sys_error_major_t majorError, int detailError, int
             break;
     }
 
-#if 0  // 특정 에러 검출 시 해당 라인 번호 설정하고 아래 중단점 적용
-    if(lineNumber!=804)
-    {
-        temp=1;
-    }
-#endif
 }
 
 void tdc_sys_error_update_fpga_system(int value)
@@ -155,7 +148,6 @@ void tdc_sys_error_send_to_app(EN__MAPPING_COMMAND command, tdc_sys_error_major_
 {
     int bufferForSPI_tx[BLE_DataPacketSize];
     int buffer_tx_index;
-    int value;
 
     buffer_tx_index = 0;
 

@@ -46,7 +46,5 @@ void                       tdc_ble_remote_set_passkey_match(void);
 void                       tdc_ble_remote_clear_passkey_match(void);
 bool                       tdc_ble_remote_is_passkey_match(void);
 void                       tdc_ble_remote_clear_command(void);
-void                       tdc_ble_remote_change_command_waiting_ble_off(void);
-EN__REMOTE_CONTROL_COMMAND tdc_ble_remote_get_command(void);
 
 #endif

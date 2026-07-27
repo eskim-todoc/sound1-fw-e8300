@@ -6,11 +6,7 @@
 #include <tdc_isd_fpga.h>
 #include <internalStimulationChip.h>
 #include <tdc_isd.h>
-#if 0
-#include <tdc_hal_i2c_cfx.h>
-#else
 #include <tdc_hal_i2c_isd.h>
-#endif
 #include <tdc_stim_definitions.h>
 
 #include <tdc_isd.h>
@@ -28,24 +24,16 @@ static char impedanceValue[df_maxIterationNum_impedance][2][2];
 
 void tdc_isd_map_impedance_step(bool startFlag)
 {
-    int  w_FPGA_registerValue;
-    int  r_FPGA_registerValue;
-    int  comparing;
     int  pulseWidth;
     bool FPGA_FIFO_empty;
     bool FPGA_error;
     int  backtelCounter;
 
     int w_isd_registerValue;
-    int r_isd_registerValue;
-    int bitReverse;
-    int last_fpga_settingValue = 0;
-    int w_FPGA_VolatileValue;
 
     static int  iterationNum                = 0;
     static int  electrodeNum                = 0;
     static int  flowCounter                 = 0;
-    static bool monopolarImpedanceCheckDone = false;
     int         pcm_index                   = 0;
     int         i;
 
@@ -101,7 +89,6 @@ void tdc_isd_map_impedance_step(bool startFlag)
 
         ble_transfer_index = 0;
 
-        monopolarImpedanceCheckDone = false;
         toggle_start_end_pulseWidth = true;
     }
 

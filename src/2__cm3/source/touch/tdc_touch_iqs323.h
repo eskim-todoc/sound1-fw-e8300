@@ -104,10 +104,6 @@ bool tdc_touch_iqs323_read_debug(tdc_touch_iqs323_debug_t *out);
 /* **********************************************************************
  * 보조
  */
-void tdc_touch_iqs323_set_ulp(void);
 void tdc_touch_iqs323_clear_ulp(void);
-bool tdc_touch_iqs323_is_ulp(void);
-
-bool tdc_touch_iqs323_public_settings(uint8_t threshold, uint8_t hysteresis);
 
 #endif /* TDC_TOUCH_IQS323_H_ */

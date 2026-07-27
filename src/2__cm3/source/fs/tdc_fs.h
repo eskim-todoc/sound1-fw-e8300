@@ -22,7 +22,6 @@
 #include <processorDirective.h>
 #include <99_eeprom_address.h>
 
-#include <tdc_hal_uart.h>
 #include <tdc_printf.h>
 #include <aes.h>
 #include <tdc_crc.h>
@@ -31,7 +30,6 @@
 // The string without drive number means the default drive.
 // #define TDC_FS_LOGICAL_DRIVE_NUM "0:"  // Default drive.
 #define TDC_FS_LOGICAL_DRIVE_NUM                 "1:"
-#define TDC_FS_LOGICAL_DRIVE_NUM_FOR_BOOT_STATUS "0:"
 
 #define SND_FATFS_LDRV_NUM_BOOT      0
 #define SND_FATFS_LDRV_NUM_USER_DATA 1
@@ -39,7 +37,6 @@
 // 0: Do not mount now (to be mounted on the first access to the volume),
 // 1: Force mounted the volume to check if it is ready to work.
 #define TDC_FS_MOUNT_OPTION 1
-#define SND_FATFS_MOUNT_OPTION     1
 
 // FS의 FFT PASS BIN 베이스 주소
 #define TDC_FS_BASE_ADDR_FFT_PASS_BIN DSP_PRAM4_REMAP_BASE
@@ -127,8 +124,6 @@ int tdc_fs_fatfs_init_mem_map(void);
 int tdc_fs_fatfs_remount(int ldrv);
 int tdc_fs_fatfs_mount(int ldrv);
 int tdc_fs_fatfs_unmount(void);
-
-int tdc_fs_mount(void);
 
 int tdc_fs_read_with_crc_and_aes128(char*     p_name,
                                            uint8_t*  p_data,

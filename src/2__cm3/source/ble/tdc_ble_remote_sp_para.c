@@ -5,7 +5,6 @@
 #include <tdc_hal_spi.h>
 #include <tdc_stim_definitions.h>
 #include <tdc_shm.h>
-#include <board.h> // 디버깅용
 #include <tdc_sys_error.h>
 #include <tdc_isd_init.h>
 
@@ -14,8 +13,7 @@ void tdc_ble_remote_read_sp_para(bool startFlag, int command)
     static int     flowCounter = 0;
     int            bufferForSPI_tx[BLE_DataPacketSize];
     int            tx_index = 0;
-    int            i, k, m, n;
-    tdc_sys_error_code_t errorCode;
+    int i, k;
 
     static int  stimulDAC_Slope_QI5F12;
     static int  offset_uA;
@@ -23,7 +21,7 @@ void tdc_ble_remote_read_sp_para(bool startFlag, int command)
     static int  stimulationLevel_uA[df_MaxNumOfElectrode];
 
     ST_STIUL_DAC_REGISTER_VALUE *stimulDAC_setting;
-    int                          connectedISD_num, isd_id;
+    int isd_id;
     int                          adc_inputMax;
     int                          value;
 

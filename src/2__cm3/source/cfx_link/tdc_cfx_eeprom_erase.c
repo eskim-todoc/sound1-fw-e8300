@@ -183,7 +183,7 @@ void tdc_cfx_eeprom_erase_map_data_by_mapping(void)
 
 void tdc_cfx_eeprom_erase_mapdata_mapping_app(void)
 {
-    int isd_num, map_num;
+    int map_num;
 
     map_num = cfx_cm3_sharedMemoryAll.ReadWriteCommand_ForFlash.map_index;
 

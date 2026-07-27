@@ -35,6 +35,4 @@ void tdc_sys_control_nrf_on_off(ST__ISD_STATUS isd_state, bool global_BLE_Off, b
 
 void tdc_sys_control_nrf_off_command(void);
 
-void tdc_sys_control_nrf_on_command(void);
-
 #endif

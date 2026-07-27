@@ -10,7 +10,6 @@
  * 공개 API:
  *   tdc_touch_init_begin()  - POWER_ON 진입 시 1회 (MCLR 트리거)
  *   tdc_touch_process()     - 매 tick 호출 (초기화 진행 + 폴링 + 액션 디스패치)
- *   tdc_touch_get_state()   - 즉시 상태 조회 (ULP 웨이크 판정 등)
  *   tdc_touch_state_name()  - 상태 enum -> 문자열
  */
 
@@ -59,10 +58,6 @@ void tdc_touch_init_begin(void);
  *    TDC_TOUCH_LONG_TOUCH_MS 이상 눌림 지속 시 true 반환 (최초 1회).
  */
 bool tdc_touch_process(void);
-
-/* 현재 터치 상태 즉시 조회.
- * 반환: true = read 성공, *p_state 에 상태 enum 저장. */
-bool tdc_touch_get_state(tdc_touch_state_t *p_state);
 
 /* 상태 enum → 로그용 문자열 변환. */
 const char *tdc_touch_state_name(tdc_touch_state_t s);

@@ -158,88 +158,6 @@ void tdc_touch_init_begin(void)
     s_init_state     = TDC_TOUCH_INIT_MCLR_DONE;
 }
 
-void led_debug_blink_blue(int cnt, int on_ms, int off_ms)
-{
-    int lap_end;
-
-    for (int i = 0; i < cnt; i++)
-    {
-        lap_end = tdc_hal_timer_get_tick() + on_ms;
-        while (tdc_hal_timer_get_tick() < lap_end)
-        {
-            tdc_led_turn_on_blue();
-            SYS_WATCHDOG_REFRESH();
-        }
-
-        lap_end = tdc_hal_timer_get_tick() + off_ms;
-        while (tdc_hal_timer_get_tick() < lap_end)
-        {
-            Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_R);
-            Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_G);
-            Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_B);
-            SYS_WATCHDOG_REFRESH();
-        }
-    }
-
-    Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_R);
-    Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_G);
-    Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_B);
-}
-
-void led_debug_blink_12bits(uint16_t bits)
-{
-    int lap_end;
-
-    for (int i = 0; i < 12; i++)
-    {
-        uint8_t bit = (bits >> (11 - i)) & 1;
-
-        lap_end = tdc_hal_timer_get_tick() + 500;
-
-        while (tdc_hal_timer_get_tick() < lap_end)
-        {
-            if (bit == 0)
-            {
-                tdc_led_turn_on_green();
-                SYS_WATCHDOG_REFRESH();
-            }
-            else
-            {
-                tdc_led_turn_on_red();
-                SYS_WATCHDOG_REFRESH();
-            }
-        }
-
-        lap_end = tdc_hal_timer_get_tick() + 500;
-
-        while (tdc_hal_timer_get_tick() < lap_end)
-        {
-            Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_R);
-            Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_G);
-            Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_B);
-            SYS_WATCHDOG_REFRESH();
-        }
-    }
-}
-
-void tdc_touch_led_debug(uint16_t lta, uint16_t count, uint16_t delta)
-{
-    int lap_start;
-    int lap_end;
-
-    // lta
-    led_debug_blink_blue(1, 1000, 0);
-    led_debug_blink_12bits(lta);
-
-    // count
-    led_debug_blink_blue(2, 600, 300);
-    led_debug_blink_12bits(count);
-
-    // delta
-    led_debug_blink_blue(3, 300, 200);
-    led_debug_blink_12bits(delta);
-}
-
 bool tdc_touch_process(void)
 {
     /* --- init 상태머신 (READY 전) --- */
@@ -278,8 +196,9 @@ bool tdc_touch_process(void)
     in.ati_error  = st.ati_error;
     in.ati_active = st.ati_active;
 
-#if (TDC_TOUCH_DEBUG_PRINT_ENABLE)
-    /* --- 디버그 계측 (LTA/Counts/절대임계/밴드초과) - 실측 튜닝용. read_ok 시에만 --- */
+#if (TDC_TOUCH_DEBUG_MEASURE_ENABLE)
+    /* --- 디버그 계측 (LTA/Counts/절대임계/밴드초과). read_ok 시에만 ---
+     * 수집한 값은 s_debug_recent_* 에 남고 BLE 범용 디버깅 명령이 읽어간다. */
     if (in.read_ok)
     {
         tdc_touch_iqs323_debug_t dbg;
@@ -291,7 +210,7 @@ bool tdc_touch_process(void)
             uint16_t abs_thr  = (uint16_t) (((uint32_t) TDC_TOUCH_IQS323_THRESHOLD * dbg.lta) / 256u);
             uint16_t pabs_thr = (uint16_t) (((uint32_t) TDC_TOUCH_IQS323_PROX_THRESHOLD * dbg.lta) / 256u);
 
-#if 0
+#if (TDC_TOUCH_DEBUG_PRINT_ENABLE)
             TDC_PRINTF_D("[T] LTA=%3u  CNT=%3u  D=%3u  THR=%3u (k=%3u  H=%3u)  %s   PTHR=%3u (pk=%3u)  %s \r\n",  //
                       dbg.lta,
                       dbg.counts,
@@ -400,16 +319,4 @@ bool tdc_touch_process(void)
         return true; /* 절전 트리거 */
     }
     return false;
-}
-
-bool tdc_touch_get_state(tdc_touch_state_t *p_state)
-{
-    tdc_touch_iqs323_status_t st;
-
-    if (!tdc_touch_iqs323_read_status(&st))
-    {
-        return false;
-    }
-    *p_state = st.pressed ? TDC_TOUCH_STATE_TOUCH : TDC_TOUCH_STATE_NOT_TOUCH;
-    return true;
 }

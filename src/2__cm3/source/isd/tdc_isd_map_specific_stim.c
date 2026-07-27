@@ -8,11 +8,7 @@
 #include <tdc_isd_fpga.h>
 #include <internalStimulationChip.h>
 #include <tdc_isd.h>
-#if 0
-#include <tdc_hal_i2c_cfx.h>
-#else
 #include <tdc_hal_i2c_isd.h>
-#endif
 #include <tdc_stim_definitions.h>
 
 #include <tdc_isd.h>
@@ -28,7 +24,6 @@
 
 void tdc_isd_map_specific_stim_step(bool startFlag)
 {
-    int last_fpga_settingValue;
     int w_FPGA_registerValue;
     int r_FPGA_registerValue;
     int w_isd_registerValue;
@@ -38,7 +33,7 @@ void tdc_isd_map_specific_stim_step(bool startFlag)
 
     int pcm_index = 0;
 
-    int i, k;
+    int i;
 
     // 계산되는 자극 파라미터
     static int numFramePerChannel;

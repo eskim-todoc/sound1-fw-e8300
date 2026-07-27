@@ -7,7 +7,6 @@
 
 #include <board.h>           //ok
 #include <tdc_hal_spi.h>      //ok
-#include <tdc_hal_i2c_cfx.h>  //ok
 
 #include <tdc_pwr_battery.h>  //ok
 
@@ -21,7 +20,6 @@
 
 #include <tdc_led_output.h>           //ok
 #include <tdc_ble_communication.h>   //ok
-#include <tdc_sys_earpiece.h>      //ok
 #include <tdc_stim_indicator.h>   //ok
 #include <tdc_stim_para_cal.h>  //ok
 
@@ -38,7 +36,6 @@
 #include <tdc_hal_dio.h>
 #include <tdc_pwr_clock.h>
 #include <tdc_hal_timer.h>
-#include <tdc_hal_uart.h>
 #include <tdc_printf.h>
 #include <tdc_hal_i2c.h>  //ok  - Sleep 진입 시 I2C PRESCALE 런타임 재설정용
 
@@ -119,8 +116,6 @@ static const FirmWare_Info firmwareInfo = {1, 0, 0, __DATE__};
 static const int devFwVer_type = DEV_FW_VER_RELEASE;  // 내부 개발 버전 (Release)
 static const int devFwVer_num  = 1;                   // 1 (전기기계적안정성시험)
 
-#if 1
-#endif
 
 char *readFirmwareInfo()
 {
@@ -242,12 +237,8 @@ extern uint8_t __data_end__;    // VMA (DRAM .data 끝)
 
 void load_data_section(void)
 {
-#if 0
-    memcpy(&__data_start__,                            // VMA data 영역의 시작부터
-           &__data_init__,                             // LMA data 영역의 값으로
-           (size_t) (&__data_end__ - &__data_start__)  // VMA data 영역의 크기 만큼 초기화
-    );
-#else
+    /* memcpy 로 한 번에 복사하던 구버전은 제거했다(#if 0 사장).
+     * 아래 워드 단위 루프 버전만 쓴다. */
     uint32_t *src = (uint32_t *) &__data_init__;
     uint32_t *dst = (uint32_t *) &__data_start__;
 
@@ -255,53 +246,17 @@ void load_data_section(void)
     {
         *dst++ = *src++;
     }
-#endif
 }
 
 void load_bss_section(void)
 {
-#if 0
-    memset(&__bss_start__,                           // VMA bss 영역의 시작부터
-           0,                                        // 0 값으로
-           (size_t) (&__bss_end__ - &__bss_start__)  // VMA bss 영역의 크기 만큼 초기화
-    );
-#else
+    /* 포인터 뺄셈으로 크기를 구하던 구버전 memset 은 제거했다(#if 0 사장).
+     * 아래 uintptr_t 캐스트 버전만 쓴다. */
     memset(&__bss_start__,                                                   // VMA bss 영역의 시작부터
            0,                                                                // 0 값으로
            (size_t) ((uintptr_t) &__bss_end__ - (uintptr_t) &__bss_start__)  // VMA bss 영역의 크기 만큼 초기화
     );
-#endif
 }
-
-// clang-format off
-void aes128_test(void)
-{
-    static uint8_t key128[16] = {0x2B, 0x7E, 0x15, 0x16, 0x28, 0xAE, 0xD2, 0xA6, 0xAB, 0xF7, 0x15, 0x88, 0x09, 0xCF, 0x4F, 0x3C};
-    struct AES_ctx ctx;
-    uint8_t        text[16] = {
-        0xD, /* 1 */ 0xE, /* 2 */ 0xA, /* 3 */ 0xD, /* 4 */ 0xB, /* 5 */ 0xE, /* 6 */ 0xA, /* 7 */
-        0xF, /* 8 */ 0xA, /* 9 */ 0xB, /* 10 */ 0xC, /* 11 */ 0xD, /* 12 */ 0x1, /* 13 */ 0x2, /* 14 */ 0x3, /* 15 */ 0x4, /* 16 */
-    };
-
-    AES_init_ctx(&ctx, key128);
-
-    TDC_PRINTF("[AES] BEFORE ENCRYPT : %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X \r\n",
-            text[0], text[1], text[2], text[3], text[4], text[5], text[6], text[7],
-            text[8], text[9], text[10], text[11], text[12], text[13], text[14], text[15]);
-
-    AES_ECB_encrypt(&ctx, text);
-
-    TDC_PRINTF("[AES] AFTER  ENCRYPT : %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X \r\n",
-            text[0], text[1], text[2], text[3], text[4], text[5], text[6], text[7],
-            text[8], text[9], text[10], text[11], text[12], text[13], text[14], text[15]);
-
-    AES_ECB_decrypt(&ctx, text);
-
-    TDC_PRINTF("[AES] AFTER  DECRYPT : %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X \r\n",
-            text[0], text[1], text[2], text[3], text[4], text[5], text[6], text[7],
-            text[8], text[9], text[10], text[11], text[12], text[13], text[14], text[15]);
-}
-// clang-format on
 
 int main(void)
 {
@@ -692,7 +647,6 @@ static void tdc_apply_mapping_mode(bool mapping_connected)
     {
         tdc_shm_change_system_mode_flag(en__normalMode);
         tdc_shm_share_mapping_program_connection(false);
-        // tdc_sys_earpiece_update_status();
     }
 }
 
@@ -927,8 +881,12 @@ static void func_cradle_lid_closed_loop(void)
 
 /* func_sleep() ULP 루프 헬퍼 - 상태(카운터·게이트)는 전부 포인터로 전달, func_sleep() 소유 유지 */
 
+/* 절전 ULP 계측 로그 (노말 폴링과 동일 포맷) - LTA/Counts/절대임계/밴드초과.
+ *
+ * 이 함수는 '출력'만 한다 - 노말 경로(tdc_touch.c)와 달리 s_debug_recent_* 같은 저장이 없다.
+ * 따라서 출력을 끄면 계산도 I2C 읽기도 전부 불필요하므로, 블록 전체를
+ * TDC_TOUCH_DEBUG_PRINT_ENABLE 하나로 켜고 끈다(출력문만 막지 않는다). */
 #if (TDC_TOUCH_DEBUG_PRINT_ENABLE)
-/* 절전 ULP 계측 (노말 폴링과 동일 포맷) - LTA/Counts/절대임계/밴드초과 */
 static void tdc_touch_sleep_log_debug(bool ok, const tdc_touch_iqs323_status_t *st, tdc_touch_state_t state)
 {
     if (ok)
@@ -940,7 +898,6 @@ static void tdc_touch_sleep_log_debug(bool ok, const tdc_touch_iqs323_status_t *
             uint16_t abs_thr  = (uint16_t) (((uint32_t) TDC_TOUCH_IQS323_THRESHOLD * dbg.lta) / 256u);
             uint16_t pabs_thr = (uint16_t) (((uint32_t) TDC_TOUCH_IQS323_PROX_THRESHOLD * dbg.lta) / 256u);
 
-#if 0
             TDC_PRINTF_D("[TOUCH] LTA=%3u  CNT=%3u  D=%3u  THR=%3u  (k=%3u  H=%3u)  %s   PTHR=%3u (pk=%3u)  %s \r\n",  //
                       dbg.lta,
                       dbg.counts,
@@ -952,7 +909,6 @@ static void tdc_touch_sleep_log_debug(bool ok, const tdc_touch_iqs323_status_t *
                       pabs_thr,
                       TDC_TOUCH_IQS323_PROX_THRESHOLD,
                       st->prox ? "P" : ".");
-#endif
         }
     }
 }
@@ -1109,7 +1065,6 @@ int func_sleep(void)
     tdc_shm_on_off_3_v_pmic_cm3_to_cfx(false); /* Disable 3.3V, 1.2V PMIC */
     tdc_led_turn_off();
 
-#if 1
     while (1) /* CFX ULP 진입 대기 (공유메모리 플래그) */
     {
         if (cfx_cm3_sharedMemoryAll.systemShare.enter_ULP_mode_Command_CM3_to_CFX == 0)
@@ -1118,7 +1073,6 @@ int func_sleep(void)
             break;
         }
     }
-#endif
 
     /* 절전 IQS323 설정은 노말과 동일하게 유지(전용 sleep settings 제거 - 운용 임계 그대로,
      * is_ulp 플래그 미사용). CM3 클럭만 tdc_pwr_clock_sleep 로 절감한다. */

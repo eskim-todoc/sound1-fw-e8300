@@ -232,7 +232,6 @@ void setting_nrf_ble_adv_info(void)
 ST__BLE_COMMUNICATION_STATE tdc_ble_communication_step(ST__ISD_STATUS isd_state)
 {
     int         i;
-    static int  Rx_counter = 1;
     static int *p_Rx_dataPacket;
 
     tdc_hal_spi_comm_state_t         communicationState;
@@ -254,32 +253,10 @@ ST__BLE_COMMUNICATION_STATE tdc_ble_communication_step(ST__ISD_STATUS isd_state)
 
         case TDC_HAL_SPI_COMM_FETCH:
         {
-#if 0
-            // NRF에서 수시된 데이터를 그대로 루프백하고, 마지막 데이터에 수신된 횟수를 추가하여 보낸다.
-            for (i = 0; i < TDC_HAL_SPI_COMM_PACKET_SIZE; i++)
-            {
-                SPI_Tx_Buffer[i] = 0;
-            }
-
-            SPI->TX_DATA = SPI_Rx_Buffer[0];  // 첫번째 byte는 먼저 준비해 놓아야 된다.
-
-            for (i = 0; i < TDC_HAL_SPI_COMM_PACKET_SIZE - 1; i++)
-            {
-                if (SPI_Rx_Buffer[i + 1] != 0)
-                {
-                    SPI_Tx_Buffer[i] = SPI_Rx_Buffer[i + 1];
-                }
-                else
-                {
-                    break;
-                }
-            }
-
-            SPI_Tx_Buffer[i] = Rx_counter;
-
-            tdc_hal_spi_set_comm_state_idle();
-            Rx_counter++;
-#else
+            /* nRF 에서 받은 패킷을 그대로 되돌려 보내고 마지막 바이트에 수신 횟수를 붙이던
+             * 초기 SPI 루프백 검증 코드는 2차 리팩토링에서 제거했다(#if 0 사장).
+             * 현재는 아래처럼 수신 패킷을 실제 커맨드로 파싱해 처리한다.
+             * 루프백 카운터로 쓰던 static Rx_counter 도 함께 제거했다. */
             p_Rx_dataPacket = tdc_hal_spi_get_rx_packet_addr();
 
 #if 1  // nRF SPI 디버깅
@@ -307,12 +284,8 @@ ST__BLE_COMMUNICATION_STATE tdc_ble_communication_step(ST__ISD_STATUS isd_state)
             }
 #endif
 
-#if 0  // Recover 디버깅 용
-            if (p_Rx_dataPacket[0] == en__remoteControl_recover_ALL_SlotData_ManufactureData)
-            {
-            	Sys_GPIO_Set_High(DIO19);
-            }
-#endif
+            /* Recover 명령 수신 시 DIO19 를 High 로 올려 로직분석기로 보던 디버그 코드는
+             * 2차 리팩토링에서 제거했다(#if 0 사장). */
 
             // 명령에 따른 함수 실행
             if (p_Rx_dataPacket[0] == en__bleSetting_ReadConnected_ISD_info)
@@ -373,7 +346,6 @@ ST__BLE_COMMUNICATION_STATE tdc_ble_communication_step(ST__ISD_STATUS isd_state)
 
             tdc_hal_spi_set_comm_state_idle();
 
-#endif
         }
         break;
 

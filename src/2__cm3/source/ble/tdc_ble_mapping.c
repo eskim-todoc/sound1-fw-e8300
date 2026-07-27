@@ -14,7 +14,6 @@
 #include <tdc_isd_map_specific_stim.h>
 #include <tdc_isd_map_live.h>
 #include <tdc_isd.h>
-#include <tdc_isd_map_test_stim.h>
 #include <tdc_isd_map_data.h>
 #include <tdc_isd_map_live.h>
 #include <tdc_isd_init.h>
@@ -40,11 +39,6 @@ void tdc_ble_mapping_change_command_ble_disconnected(void)
 void tdc_ble_mapping_change_command_waiting_ble_off(void)
 {
     mappingPacket.command = en__mapping_waiting_for_BleOff;
-}
-
-EN__MAPPING_COMMAND tdc_ble_mapping_get_command(void)
-{
-    return mappingPacket.command;
 }
 
 // const ST__MAPPING_PACKET *tdc_ble_mapping_get_packet(void)
@@ -79,7 +73,6 @@ void tdc_ble_mapping_fetch_packet(const int *Rx_dataPacket)  // spi 통신에서
 
     bool exceptionCase = false;
     int  tempValue;
-    int  trashValue;
     bool dataRangeError = false;
 
     index           = 0;
@@ -1128,13 +1121,10 @@ void tdc_ble_mapping_fetch_packet(const int *Rx_dataPacket)  // spi 통신에서
                     {
                         prev_subCommandData_Num_index = 0;
 
-#if 0  //  매핑 명령 실행 하는 곳에서 최종 응답을 주게 변경하였다.
-       // 플레쉬에 저장하면서 NRF 광고 이름을 바꾸기 위해서 NRF를 껏다가 켠다. 이러한 이유로 NRF를 끄기전에 수신된 명령을 루프백한다.
-                        bufferForSPI_tx[buffer_tx_index++] = en__mapping_write_original_ISD_N_USER;  // command loop-back
-                        bufferForSPI_tx[buffer_tx_index++] = subCommandData_Num_index;               // payload num 전송
-
-                        tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, buffer_tx_index);  // 송신 데이터 SPI TX버퍼에 복사
-#endif
+                        /* 명령 수신 직후 여기서 곧바로 루프백 응답을 보내던 방식은 제거했다(#if 0 사장).
+                         * 원 주석: "매핑 명령 실행 하는 곳에서 최종 응답을 주게 변경하였다".
+                         * NRF 광고 이름 변경을 위해 NRF 를 껐다 켜야 해서, 끄기 전에 미리 응답하던
+                         * 구조였다. 지금은 명령 실행부가 최종 응답을 보낸다. */
 
                         mappingPacket.command = en__mapping_write_original_ISD_N_USER;
 
@@ -1347,11 +1337,10 @@ void tdc_ble_mapping_fetch_packet(const int *Rx_dataPacket)  // spi 통신에서
                         {
                             dataRangeError = true;
                         }
-#if 0
-                        p_RepositoryFor_ISD_info[i - 1] = tempValue;
-#else  // Telecoil은 현재 버전에서 비활성화 시킨다.
+                        /* 텔레코일 설정은 현재 버전에서 강제 비활성이다(tdc_ble_remote.c 와 동일 처리).
+                         * 리모콘이 보낸 tempValue 를 쓰지 않고 항상 2(꺼짐)를 저장한다.
+                         * 원래 코드는 `= tempValue;` 였고 #if 0 으로 죽어 있어 정리했다. */
                         p_RepositoryFor_ISD_info[i - 1] = 2;
-#endif
                         //  자극 볼륨, 마이크 감도, LED 설정, 자극 알림 설정, 텔레 코일 설정,
 
                         // BLE On/OFF 옵션
@@ -1765,92 +1754,6 @@ void tdc_ble_mapping_fetch_packet(const int *Rx_dataPacket)  // spi 통신에서
         }
         break;
 
-#ifndef RELEASE
-        case en__mapping_testStimulation:
-        {
-
-            subCommandData_Num_index = Rx_dataPacket[index++];
-
-            if (subCommandData_Num_index == 1)
-                prev_subCommandData_Num_index = 0;
-
-            if (subCommandData_Num_index != prev_subCommandData_Num_index + 1)
-            {
-                // 데이터가 순차적으로 들어와야된다. 순차적으로 들어 오지 않으면 에러 전송
-                // 에러 전송
-                tdc_sys_error_send_to_app(en__mapping_testStimulation, en__EN__BLE_PROTOCOL_ERROR, en__DATA_Order,
-                               __LINE__);  // 데이터 범위 벗어남
-
-                prev_subCommandData_Num_index = 0;
-                stimulPara_index              = 0;
-            }
-            else
-            {
-
-                prev_subCommandData_Num_index = subCommandData_Num_index;
-                switch (subCommandData_Num_index)
-                {
-                    case 1:  //
-                    {
-                        mappingPacket.testStimulation.stimulatonMode                = Rx_dataPacket[index++];
-                        trashValue                                                  = Rx_dataPacket[index++];  // 오프셋 필요없음.
-                        mappingPacket.testStimulation.firstPulsePhase               = Rx_dataPacket[index++];
-                        mappingPacket.testStimulation.pulseWidth                    = Rx_dataPacket[index++];
-                        mappingPacket.testStimulation.stimulationDacSlope           = Rx_dataPacket[index++];
-                        mappingPacket.testStimulation.stimulationDacOffsetReslution = Rx_dataPacket[index++];
-                        mappingPacket.testStimulation.stimulationDacOffset_255      = Rx_dataPacket[index++];
-                        mappingPacket.testStimulation.stimulationLevel_255          = Rx_dataPacket[index++];
-                        mappingPacket.testStimulation.stimulationTime_100msec       = Rx_dataPacket[index++];
-                    }
-                    break;
-                    case 2:
-                    {
-                        mappingPacket.testStimulation.usableElectrodeNum = Rx_dataPacket[index++];
-                        for (i = 0; i < 16; i++)
-                            mappingPacket.testStimulation.stimulationElectrodeNum[i] = Rx_dataPacket[index++];
-                    }
-                    case 3:
-                    {
-                        for (i = 16; i < df_MaxNumOfElectrode; i++)
-                            mappingPacket.testStimulation.stimulationElectrodeNum[i] = Rx_dataPacket[index++];
-                    }
-                    break;
-                    case 4:
-
-                    {
-                        for (i = 0; i < 16; i++)
-                            mappingPacket.testStimulation.bipolarReferenceElectrodeNum[i] = Rx_dataPacket[index++];
-                    }
-                    break;
-                    case 5:
-                    {
-                        for (i = 16; i < df_MaxNumOfElectrode; i++)
-                            mappingPacket.testStimulation.bipolarReferenceElectrodeNum[i] = Rx_dataPacket[index++];
-
-                        mappingPacket.fetched_command = en__mapping_testStimulation;
-                    }
-                    break;
-
-                    default:
-                        break;
-                }
-
-                if (subCommandData_Num_index < 5)  // 마지막 데이이타 이전에는 데이터 수신 후 바로 응답을 보내고, 마지막
-                                                   // 데이터는 자극 출력 후 응답을 보낸다.
-                {
-
-                    // command loop-back
-                    bufferForSPI_tx[buffer_tx_index++] = en__mapping_testStimulation;
-
-                    bufferForSPI_tx[buffer_tx_index++] = subCommandData_Num_index;  // payload num 전송
-
-                    // 송신 데이터 SPI TX버퍼에 복사
-                    tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, buffer_tx_index);
-                }
-            }
-        }
-        break;
-#endif
         case en__mapping_read_Connected_ISD_id:
         {
             mappingPacket.fetched_command = tempCommand;
@@ -1876,7 +1779,6 @@ ST__MAPPING_STATE tdc_ble_mapping_step(ST__ISD_STATUS ISD_state)
     static EN__MAPPING_COMMAND prev_mppingCommand      = en__mapping_IDLE;
     static int                 connectionCheckCounter  = df_connectionCheckPeriod_ms;
     static int                 delayCounter            = 0;
-    static bool                connectionCheckING_Flag = false;
     static bool                mappingProgramConnected = false;
 
     ST__MAPPING_STATE     mappingStatus     = {en__isdStatus_NA, false, false, false};
@@ -1886,7 +1788,6 @@ ST__MAPPING_STATE tdc_ble_mapping_step(ST__ISD_STATUS ISD_state)
     int  bufferForSPI_tx[BLE_DataPacketSize];
     int  buffer_tx_index;
     int  i;
-    int *p_variable;
     int  value;
 
     bool mappingCommandStartFlag = false;
@@ -2210,24 +2111,6 @@ ST__MAPPING_STATE tdc_ble_mapping_step(ST__ISD_STATUS ISD_state)
                 }
                 break;
 
-#ifndef RELEASE
-                case en__mapping_testStimulation:
-                {
-                    connectionCheckCounter = df_connectionCheckPeriod_ms;  // 카운터를 df_connectionCheckPeriod_ms로
-                                                                           // 리셋하여 연결확인 진행하지 않게 한다.
-
-                    if (ISD_state.conneded_ISD)
-                    {
-                        testStimulation(mappingCommandStartFlag);
-                    }
-                    else
-                    {
-                        tdc_sys_error_send_to_app(en__mapping_testStimulation, en__EN__ISD_ERROR, en__ISD_notConnected, __LINE__);
-                        tdc_ble_mapping_clear_command();
-                    }
-                }
-                break;
-#endif
                 case en__mapping_read_Connected_ISD_id:
                 {
                     // 송신 데이터 준비
@@ -2254,12 +2137,8 @@ ST__MAPPING_STATE tdc_ble_mapping_step(ST__ISD_STATUS ISD_state)
                 {
                     if (ISD_state.isd_controlState >= en__isdStatus_stimul_10V_Ok)  // 내부기 초기화가 완로되어야 연결 확인이 가능하다.
                     {
-#if 0
-                        if (connectionCheckCounter == 0)
-                        {
-                            TDC_PRINTF_V("\r\n[MAPPING] IDLE, LINK CHECK \r\n");
-                        }
-#endif
+                        /* 링크체크 진입 로그(connectionCheckCounter == 0 일 때 1회 출력)는
+                         * 2차 리팩토링에서 제거했다(#if 0 사장). 단순 디버그 출력이었다. */
                         tdc_isd_update_link_by_backtel_mapping(connectionCheckCounter);  // 체크가 완료되면 flag가 FLASE로 변경
                     }
                 }
@@ -2291,17 +2170,6 @@ ST__MAPPING_STATE tdc_ble_mapping_step(ST__ISD_STATUS ISD_state)
     return mappingStatus;
 }
 
-void tdc_ble_mapping_update_program_connection(bool connection)
-{
-    if (connection)
-    {
-        mappingPacket.fetched_command = en__mapping_connect;
-    }
-    else
-    {
-        mappingPacket.fetched_command = en__mapping_disconnect;
-    }
-}
 /* import_*ForDebug / import_live* 계열 15개 제거(2026-07-22, G6).
  * mapping 프로토콜 수동 주입용 구 디버그 진입점. 정의는 #if 0 블록(396줄) 안에서
  * 죽어 있었고 헤더 선언 16개도 호출처가 0 이었다(import_livePause 는 선언만 있고
