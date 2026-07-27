@@ -196,8 +196,9 @@ bool tdc_touch_process(void)
     in.ati_error  = st.ati_error;
     in.ati_active = st.ati_active;
 
-#if (TDC_TOUCH_DEBUG_PRINT_ENABLE)
-    /* --- 디버그 계측 (LTA/Counts/절대임계/밴드초과) - 실측 튜닝용. read_ok 시에만 --- */
+#if (TDC_TOUCH_DEBUG_MEASURE_ENABLE)
+    /* --- 디버그 계측 (LTA/Counts/절대임계/밴드초과). read_ok 시에만 ---
+     * 수집한 값은 s_debug_recent_* 에 남고 BLE 범용 디버깅 명령이 읽어간다. */
     if (in.read_ok)
     {
         tdc_touch_iqs323_debug_t dbg;
@@ -209,7 +210,7 @@ bool tdc_touch_process(void)
             uint16_t abs_thr  = (uint16_t) (((uint32_t) TDC_TOUCH_IQS323_THRESHOLD * dbg.lta) / 256u);
             uint16_t pabs_thr = (uint16_t) (((uint32_t) TDC_TOUCH_IQS323_PROX_THRESHOLD * dbg.lta) / 256u);
 
-#if 0
+#if (TDC_TOUCH_DEBUG_PRINT_ENABLE)
             TDC_PRINTF_D("[T] LTA=%3u  CNT=%3u  D=%3u  THR=%3u (k=%3u  H=%3u)  %s   PTHR=%3u (pk=%3u)  %s \r\n",  //
                       dbg.lta,
                       dbg.counts,

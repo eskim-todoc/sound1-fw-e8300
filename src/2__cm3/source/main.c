@@ -881,8 +881,12 @@ static void func_cradle_lid_closed_loop(void)
 
 /* func_sleep() ULP 루프 헬퍼 - 상태(카운터·게이트)는 전부 포인터로 전달, func_sleep() 소유 유지 */
 
+/* 절전 ULP 계측 로그 (노말 폴링과 동일 포맷) - LTA/Counts/절대임계/밴드초과.
+ *
+ * 이 함수는 '출력'만 한다 - 노말 경로(tdc_touch.c)와 달리 s_debug_recent_* 같은 저장이 없다.
+ * 따라서 출력을 끄면 계산도 I2C 읽기도 전부 불필요하므로, 블록 전체를
+ * TDC_TOUCH_DEBUG_PRINT_ENABLE 하나로 켜고 끈다(출력문만 막지 않는다). */
 #if (TDC_TOUCH_DEBUG_PRINT_ENABLE)
-/* 절전 ULP 계측 (노말 폴링과 동일 포맷) - LTA/Counts/절대임계/밴드초과 */
 static void tdc_touch_sleep_log_debug(bool ok, const tdc_touch_iqs323_status_t *st, tdc_touch_state_t state)
 {
     if (ok)
@@ -894,7 +898,6 @@ static void tdc_touch_sleep_log_debug(bool ok, const tdc_touch_iqs323_status_t *
             uint16_t abs_thr  = (uint16_t) (((uint32_t) TDC_TOUCH_IQS323_THRESHOLD * dbg.lta) / 256u);
             uint16_t pabs_thr = (uint16_t) (((uint32_t) TDC_TOUCH_IQS323_PROX_THRESHOLD * dbg.lta) / 256u);
 
-#if 0
             TDC_PRINTF_D("[TOUCH] LTA=%3u  CNT=%3u  D=%3u  THR=%3u  (k=%3u  H=%3u)  %s   PTHR=%3u (pk=%3u)  %s \r\n",  //
                       dbg.lta,
                       dbg.counts,
@@ -906,7 +909,6 @@ static void tdc_touch_sleep_log_debug(bool ok, const tdc_touch_iqs323_status_t *
                       pabs_thr,
                       TDC_TOUCH_IQS323_PROX_THRESHOLD,
                       st->prox ? "P" : ".");
-#endif
         }
     }
 }
