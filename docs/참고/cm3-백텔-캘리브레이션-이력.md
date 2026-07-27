@@ -59,12 +59,15 @@ tags: [cm3, fpga, backtel, calibration, 이력, 현장실패]
 - **백텔 값오류 개체번호**: 190
 - 시점: 4월 4주차
 
-## 제거 후 코드
+## 제거 후 코드 (2026-07-27 적용, 커밋 `f2ca126`)
 
-리팩토링 후 `FPGA_ver2_7_0.h` 는 채택값만 남긴다.
+`FPGA_ver2_7_0.h` 는 채택값만 남기고 이 문서를 가리킨다.
 
 ```c
     stimulation_PhaseDuration_resetValue = 0,
-    backterConfiguration_resetValue      = 0x2D,  // 튜닝 이력: docs/참고/cm3-백텔-캘리브레이션-이력.md
+    // 튜닝 이력(후보값 9종·현장실패 개체번호): docs/참고/cm3-백텔-캘리브레이션-이력.md
+    backterConfiguration_resetValue         = 0x2D,
     fpga_IO_MUX_Configuration_resetValue   = 0,
 ```
+
+**동작 무변화**: 채택값 `0x2D` 가 그대로이고, 제거된 것은 `#if 0` 블록과 주석 처리된 후보값뿐이다. 빌드 검증에서 이 파일로 인한 코드 변화는 없었다.
