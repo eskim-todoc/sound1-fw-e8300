@@ -30,80 +30,10 @@ void tdc_isd_fpga_reset_fpga_variable(void)
     tdc_shm_update_backtel_control_value_to_cfx(fpag_lastWrittenRegister.backterConfiguration_value);
 }
 
-#if 0
-int tdc_isd_fpga_get_written_value(I2C_ADDR_FPGA index)
-{
-    int value;
-
-    switch(index)
-    {
-            case i2cAddr_FPGA_systemResgister_1st :
-                value=fpag_lastWrittenRegister.systemResgister_1st_value;
-            break;
-
-            case i2cAddr_FPGA_systemResgister_2nd :
-                value=fpag_lastWrittenRegister.systemResgister_2nd_value;
-            break;
-
-            case i2cAddr_FPGA_pulsePhaseWidth :
-                value=fpag_lastWrittenRegister.stimulation_PhaseDuration_value;
-            break;
-
-            case i2cAddr_FPGA_backtel_Config :
-                value=fpag_lastWrittenRegister.backterConfiguration_value;
-            break;
-
-            case i2cAddr_FGPA_IO_MUX :
-                //value=fpag_lastWrittenRegister.fpga_IO_MUX_Configuration_value;
-            break;
-
-            case i2cAddr_FPGA_optional_Config :
-                //value=fpag_lastWrittenRegister.fpga_optional_configuration_value;
-            break;
-
-            default :
-                value=0;
-                break;
-    }
-
-    return value;
-}
-
-
-
-void tdc_isd_fpga_update_written_value(I2C_ADDR_FPGA index, int value)
-{
-    switch(index)
-    {
-            case i2cAddr_FPGA_systemResgister_1st :
-                fpag_lastWrittenRegister.systemResgister_1st_value=value;
-            break;
-
-            case i2cAddr_FPGA_systemResgister_2nd :
-                fpag_lastWrittenRegister.systemResgister_2nd_value=value;
-            break;
-
-            case i2cAddr_FPGA_pulsePhaseWidth :
-                fpag_lastWrittenRegister.stimulation_PhaseDuration_value=value;
-            break;
-
-            case i2cAddr_FGPA_IO_MUX :
-                //fpag_lastWrittenRegister.fpga_IO_MUX_Configuration_value=value;
-            break;
-
-            case i2cAddr_FPGA_backtel_Config :
-                fpag_lastWrittenRegister.backterConfiguration_value=value;
-            break;
-
-            case i2cAddr_FPGA_optional_Config :
-                //fpag_lastWrittenRegister.fpga_optional_configuration_value=value;
-            break;
-
-            default :
-                break;
-    }
-}
-#endif
+/* tdc_isd_fpga_get_written_value() / tdc_isd_fpga_update_written_value() 는 제거했다.
+ * FPGA 레지스터에 마지막으로 쓴 값을 인덱스로 조회·갱신하던 범용 접근자인데,
+ * 정의 전체가 #if 0 안에 있었고 호출부(isd_map_ecap.c) 도 죽은 블록이었다.
+ * 레지스터별 전용 접근자(update_fpga_pulse_phase_width_written_value 등)만 쓴다. */
 
 bool tdc_isd_fpga_read_version(int *p_readValue)
 {

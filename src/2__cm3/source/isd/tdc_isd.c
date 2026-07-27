@@ -212,9 +212,9 @@ ST__ISD_STATUS tdc_isd_step(bool isd_enable, bool mappingConnection, EN__ISD_CON
                 stimulationParameterSettingIsDone = tdc_isd_stim_standalone_step();
 
                 // OTA DFU 모드에 따른 Link backtel 체크 유무 결정
-#if 0
-                tdc_isd_update_link_by_backtel_live();
-#else
+                /* 조건 없이 tdc_isd_update_link_by_backtel_live() 를 부르던 구버전은
+                 * 제거했다(#if 0 사장). 아래처럼 OTA DFU 연결 중에는 백텔 링크체크를
+                 * 건너뛰고 FIFO clear + 상태 초기화만 반복하도록 바뀌었다. */
                 // OTA DFU 모드 (Link backtel 체크 X) 사용 중일 때는 FIFO clear + 상태 초기화만 반복한다.
                 if (tdc_dfu_get_conn_state() == TDC_DFU_CONN_ST_CONN)
                 {
@@ -232,7 +232,6 @@ ST__ISD_STATUS tdc_isd_step(bool isd_enable, bool mappingConnection, EN__ISD_CON
                 {
                     tdc_isd_update_link_by_backtel_live();
                 }
-#endif
             }
         }
     }
@@ -292,27 +291,12 @@ void tdc_isd_update_link_by_backtel_live(void)
     {
 #ifndef DisalbedBackTel
         // Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_R);
-#if defined(conneded_ISDCheck_byForwardPath)
-
-        if (tdc_isd_fpga_is_arbitrary_value_matched_normal_value())
-        {
-            tdc_isd_update_link_connected();
-            intervalCounter = df_connectionCheckPeriod_ms;
-        }
-        else
-        {
-            tdc_isd_fpga_read_systemregister_1st(&temp);
-            tdc_isd_fpga_read_system_error_flag(&temp);
-            tdc_isd_fpga_read_backtel_error_flag(&temp);
-            tdc_isd_fpga_read_pulse_width(&temp);
-            tdc_isd_fpga_read_fifo_counter(&temp);
-            // tdc_isd_change_state(en__isdStatus_FPGA_Ok); // 내부기 전송 파워 설정 부터 다시.
-            tdc_isd_update_link_disconnected();
-            // Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_B);
-        }
-
-        tdc_shm_clear_connection_check_pcm_fired_flag();  // 기록을 지운다.
-#elif defined(conneded_ISDCheck_byISDPower)
+        /* 내부기 연결 확인을 '순방향 경로(forward path)'로 하던 구현은 제거했다.
+         * conneded_ISDCheck_byForwardPath 가 정의된 적이 없어 영구 사장이었고,
+         * 이 분기가 부르던 tdc_isd_update_link_connected/disconnected 는 정의 자체가
+         * 없는 유령 함수였다(살아 있었다면 링크 에러). 현재는 아래 byISDPower 방식,
+         * 즉 내부기 전원 레벨을 읽어 연결을 판정하는 경로만 쓴다. */
+#if defined(conneded_ISDCheck_byISDPower)
         switch (flowCounter)
         {
             case 0:
@@ -454,24 +438,10 @@ void tdc_isd_update_link_by_backtel_live(void)
 #endif
                     case NoBacktel:
                     {
-#if 0
-                        tdc_isd_fpga_read_systemregister_1st(&temp);
-                        tdc_isd_fpga_read_system_error_flag(&temp);
-                        tdc_isd_fpga_read_backtel_error_flag(&temp);
-                        tdc_isd_fpga_read_pulse_width(&temp);
-                        tdc_isd_fpga_read_fifo_counter(&temp);
-#endif
+                        /* FPGA 레지스터 5종을 읽어 버리기만 하던 디버그 코드는 제거했다(#if 0 사장). */
 
-#if 0
-                        int readValue[6];
-                        tdc_hal_i2c_isd_read(i2cAddr_FPGA_systemResgister_1st, readValue, 6);
-                        TDC_PRINTF_V("system 1st   : 0x%02X \r\n", readValue[0]);
-                        TDC_PRINTF_V("system 2nd   : 0x%02X \r\n", readValue[1]);
-                        TDC_PRINTF_V("Error Flag   : 0x%02X \r\n", readValue[2]);
-                        TDC_PRINTF_V("Backel Error : 0x%02X \r\n", readValue[3]);
-                        TDC_PRINTF_V("Duration     : 0x%02X \r\n", readValue[4]);
-                        TDC_PRINTF_V("FIFO Count   : 0x%02X \r\n", readValue[5]);
-#endif
+                        /* FPGA 레지스터 6종을 I2C 로 한 번에 읽어 RTT 로 찍던 디버그 코드는
+                         * 제거했다(#if 0 사장). */
                         // TDC_PRINTF("CM3_tempValue1 : %u <- must be 2 \r\n", cfx_cm3_sharedMemoryAll.CM3_tempValue1);
                         // TDC_PRINTF("CM3_tempValue2 : %u <- must be 1 \r\n", cfx_cm3_sharedMemoryAll.CM3_tempValue2);
 
@@ -513,10 +483,8 @@ void tdc_isd_update_link_by_backtel_live(void)
 
         flowCounter++;
 #endif
-#else
-        // tdc_isd_update_link_connected();
-        // tdc_isd_update_link_disconnected();
-        tdc_shm_clear_connection_check_pcm_fired_flag();  // 기록을 지운다.
+        /* DisalbedBackTel 정의 시의 대안 경로(PCM fired 플래그만 정리)는 제거했다.
+         * 이 매크로는 트리 전체에서 정의된 적이 없어 #else 가 영구 사장이었다. */
 #endif
         // Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_R);
     }
@@ -657,13 +625,8 @@ void tdc_isd_update_link_by_backtel_mapping(int connectionCheckCOUNTER)
 
                     case NoBacktel:
                     {
-#if 0
-                        tdc_isd_fpga_read_systemregister_1st(&temp);
-                        tdc_isd_fpga_read_system_error_flag(&temp);
-                        tdc_isd_fpga_read_backtel_error_flag(&temp);
-                        tdc_isd_fpga_read_pulse_width(&temp);
-                        tdc_isd_fpga_read_fifo_counter(&temp);
-#endif
+                        /* 백텔 카운터 0 에러 시 FPGA 레지스터 5종을 읽어 버리기만 하던
+                         * 디버그 코드는 제거했다(#if 0 사장). 자극 동작에 관여하지 않았다. */
                         tdc_sys_error_update(en__EN__ISD_ERROR, en__BackTelCounterZero, __LINE__);
                         tdc_isd_change_state(en__isdStatus_FPGA_Ok);  // 내부기 파워 조정 시작
 
@@ -700,10 +663,8 @@ void tdc_isd_update_link_by_backtel_mapping(int connectionCheckCOUNTER)
 
     flowCounter++;
 
-#else
-
-        //tdc_isd_update_link_connected();
-        isINGconnectionCheck_WithMapping=false;
+    /* DisalbedBackTel 정의 시의 대안 경로(연결확인 카운터만 정리)는 제거했다.
+     * 이 매크로는 트리 전체에서 한 번도 정의된 적이 없어 #else 가 영구 사장이었다. */
 #endif
 }
 

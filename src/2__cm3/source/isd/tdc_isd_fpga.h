@@ -32,8 +32,6 @@
 
 void tdc_isd_fpga_reset_fpga_variable(void);
 #if 0
-    int tdc_isd_fpga_get_written_value(I2C_ADDR_FPGA index);
-    void tdc_isd_fpga_update_written_value(I2C_ADDR_FPGA index, int value);
 #endif
 
 bool tdc_isd_fpga_read_version(int* p_readValue);

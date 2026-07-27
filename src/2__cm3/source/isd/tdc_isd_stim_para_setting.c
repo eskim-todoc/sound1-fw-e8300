@@ -481,14 +481,9 @@ bool tdc_isd_set_stim_para_bipolar(bool isdControlStateChagedFlag)
 
             for (i = 0; i < p_mapdata->numFrequencyBand; i++)
             {
-#if 0
-                if (p_mapdata->usableStimulationElectrodIndex[i] != 99)
-                {
-                    stimulElectrodeNum = p_mapdata->usableStimulationElectrodIndex[i] - 1;
-                    if (p_mapdata->usableReferenceElectrodIndex[i] != 99)
-                        bipolarReferenceElectrodeNum[stimulElectrodeNum] = p_mapdata->usableReferenceElectrodIndex[i] - 1;
-                }
-#else
+                /* electrodeMap[] 을 적용하지 않고 맵 인덱스를 그대로 쓰던 구버전 바이폴라
+                 * 기준전극 계산은 제거했다(#if 0 사장). 현재는 아래처럼 electrodeMap[] 으로
+                 * 논리 전극번호를 PCB 전극번호로 변환해 넣는다. */
                 bipolarReferenceElectrodeNum[electrodeMap[p_mapdata->usableStimulationElectrodIndex[i] - 1]] =  // 코드가 길어서 강제 줄 바꿈
                     electrodeMap[p_mapdata->usableReferenceElectrodIndex[i] - 1];
 
@@ -498,7 +493,6 @@ bool tdc_isd_set_stim_para_bipolar(bool isdControlStateChagedFlag)
                           electrodeMap[p_mapdata->usableStimulationElectrodIndex[i] - 1] + 1,
                           p_mapdata->usableReferenceElectrodIndex[i],
                           electrodeMap[p_mapdata->usableReferenceElectrodIndex[i] - 1] + 1);
-#endif
             }
 
             for (i = p_mapdata->numFrequencyBand; i < df_MaxNumOfElectrode; i++)

@@ -197,26 +197,8 @@ void tdc_isd_path_open(bool isdControlStateChagedFlag)
         case 20:  // (앞선 PCM 모드 변경 후 약 4ms 이후, 이 case에서 PCM 모드 변경 예정)
         {
             // LGA 패키지 설정
-#if defined(EEPROM_LSK_Error)
-            // ISD LSK 설정
-            w_isd_registerValue = ISD_registerAddr_LSK_Clk_Config;
-            w_isd_registerValue = w_isd_registerValue << 1;
-            w_isd_registerValue = w_isd_registerValue | ISD_writeRegister;
-            w_isd_registerValue = w_isd_registerValue << 8;
-            w_isd_registerValue = w_isd_registerValue | 0x08;
-            w_isd_registerValue = w_isd_registerValue | pcm_Mold_configuration;
-
-            tdc_shm_fill_specific_command_buffer(pcm_index++, w_isd_registerValue);
-
-            w_isd_registerValue = ISD_registerAddr_PPSK_Config;
-            w_isd_registerValue = w_isd_registerValue << 1;
-            w_isd_registerValue = w_isd_registerValue | ISD_writeRegister;
-            w_isd_registerValue = w_isd_registerValue << 8;
-            w_isd_registerValue = w_isd_registerValue | 0x20;
-            w_isd_registerValue = w_isd_registerValue | pcm_Mold_configuration;
-
-            tdc_shm_fill_specific_command_buffer(pcm_index++, w_isd_registerValue);
-#endif
+            /* EEPROM_LSK_Error 대응 LSK/PPSK 레지스터 설정은 제거했다.
+             * 이 매크로는 processorDirective.h 에서 #if 0 안에만 있어 정의된 적이 없다. */
 
             // ISD SYSCLK_OE 설정
             w_isd_registerValue = ISD_registerAddr_IO_Config;
@@ -464,11 +446,8 @@ void tdc_isd_path_open(bool isdControlStateChagedFlag)
             else
             {
             }
-#else
-            isd_id           = 0x12345678;
-            isd_id           = 0x15910001;
-            isd_id_match_num = 1;
-            connected_ISD_id = isd_id;
+            /* DisalbedBackTel 정의 시 내부기 ID 를 하드코딩(0x15910001)하던 대안 경로는
+             * 제거했다. 이 매크로는 트리 전체에서 정의된 적이 없어 영구 사장이었다. */
 #endif
         }
         break;
@@ -919,9 +898,8 @@ void tdc_isd_enable_stimul_10v(bool isdControlStateChagedFlag)
                     if (tdc_isd_fpga_read_backtel_fifo(&r_isd_registerValue, 1))
                     {
                         vtg_Lock_state = tdc_stim_data_extract_and_rshift(r_isd_registerValue, bitPosition_VTG_LOCK, 1);
-#if 0
-                        vtg_Lock_state=0;
-#endif
+                        /* 시험용으로 vtg_Lock_state 를 0 으로 강제하던 코드는 제거했다(#if 0 사장).
+                         * 실제 전압락 상태를 그대로 쓴다. */
                         if (vtg_Lock_state == 1)
                         {
                             // tdc_led_enable_test_trigger();
