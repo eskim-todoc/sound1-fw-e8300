@@ -4,34 +4,15 @@
 
 #include <tdc_pwr_clock.h>
 
-/* NVM_BOOT_INFO_OFFSET · _OFFSET_OCTETS · _SIZE_OCTETS 는 2차 리팩토링에서 제거했다(참조 0).
- * _SIZE 만 아래 s_boot_info 배열 크기로 쓰이므로 남긴다. */
-#define NVM_BOOT_INFO_SIZE BOOTSTRAP_NVM_BOOTINFORMATION_SIZE
+/* 부팅정보(boot info) 관련 정의는 2차 리팩토링에서 전부 제거했다.
+ *   - bootloader_CRC_calc()  : NVM 부팅정보 영역의 CRC-CCITT 를 계산하던 함수. 호출처 0.
+ *   - s_boot_info[]          : 그 함수에 넘길 부팅정보 버퍼. 읽기·쓰기 0.
+ *   - NVM_BOOT_INFO_SIZE 등  : 위 버퍼 크기·오프셋 매크로.
+ *   - NVM_MANUF_TABLE_SIZE 등: 제조정보 크기 매크로(미참조. 실제 코드는 MANU_TABLE_SIZE 직접 사용).
+ * CM3 는 부팅정보를 직접 읽지 않는다. 부팅정보 처리는 부트로더(0__bootloader) 몫이며
+ * 구조체 원본도 bootloader_internal.h 에 있다. 필요해지면 git 이력에서 복원한다. */
 
-#define NVM_MANUF_TABLE_SIZE        MANU_TABLE_SIZE
-#define NVM_MANUF_TABLE_SIZE_OCTETS MANU_TABLE_SIZE_OCTETS
-
-static uint32_t s_boot_info[NVM_BOOT_INFO_SIZE];
 static uint32_t s_manu_table[MANU_TABLE_SIZE];
-
-uint32_t bootloader_CRC_calc(uint32_t *data, uint32_t size)
-{
-    uint32_t i;
-
-    Sys_Set_CRC_Config(CRC, CRC_LITTLE_ENDIAN | 0 | CRC_BIT_ORDER_STANDARD | CRC_FINAL_XOR_STANDARD);
-
-    Sys_CRC_CCITTInitValue(CRC);
-
-    for (i = 0; i < (size >> 2); i++)
-    {
-        Sys_CRC_Add(CRC, data[i], 32);
-    }
-    for (i = 0; i < (size & 03U); i++)
-    {
-        Sys_CRC_Add(CRC, ((data[size >> 2]) >> ((i & 0x03UL) << 3)) & 0xFFUL, 8);
-    }
-    return Sys_CRC_GetFinalValue(CRC);
-}
 
 // IMPORTANT: 절대 이 함수의 내용을 함부로 수정하지 마십시오.
 // 타이밍 이슈가 커서 코드 수정 시 동작하지 않을 수 있습니다.

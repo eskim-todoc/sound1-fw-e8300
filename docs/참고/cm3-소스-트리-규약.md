@@ -29,6 +29,19 @@ tags: [cm3, convention, naming, include, source-tree, fsm]
 
 **역할 표식**: `tdc_hal_<periph>_`(MCU 내부 페리페럴: SPI/I2C/타이머/UART/DIO) · `tdc_drv_<chip>_`(외부 칩: MIS2DH/MAX17262/REN_ISL*/IQS323)
 
+## 2.1 BLE 프로토콜 정의는 미사용이어도 전량 유지 (2026-07-27 확정)
+
+> [!CAUTION]
+> **`ble/tdc_ble_protocol.h` 의 명령 코드·페이로드 크기·열거형은 CM3 에서 참조가 0 이어도 제거하지 않는다.**
+>
+> 이 헤더는 CM3 만의 코드가 아니라 **앱·리모콘과 주고받는 통신 규약 그 자체**다. CM3 가 어떤 명령을 처리하지 않는다는 것과, 그 명령이 프로토콜에 존재하지 않는다는 것은 전혀 다른 얘기다. 사장 코드 판정 도구(`--print-gc-sections`·grep)는 이 차이를 구분하지 못하므로 **도구 결과를 그대로 따르면 안 된다.**
+>
+> 적용 범위: `ble/tdc_ble_protocol.h` 전체 + `ble/tdc_ble_mapping.h` 의 패킷 페이로드 구조체(`ST__MAPPINGPAYLOAD_*`).
+>
+> 2차 리팩토링(2026-07-27)에서 `en__BLE_COMM_COMMAND_connecteLogDate` · `en__BLE_COMM_COMMAND_REPlY_ERROR_BLE` · `PayloadSize_ExternalDeviceInfo_Size_byte` 3건이 미참조로 검출됐으나 은수님 지시로 전량 존치했다. 같은 이유로 `en__mapping_testStimulation`(핸들러는 제거)과 `ST__MAPPINGPAYLOAD_TEST_STIMULATION` 도 남겼다.
+
+**핸들러는 지워도 프로토콜 정의는 남긴다** — CM3 가 처리하지 않는 명령의 처리 코드는 사장 코드로 제거하되, 그 명령의 존재를 기술하는 열거값·구조체는 유지한다.
+
 ## 3. rename 금지 (불가침)
 
 1. **공유 ABI**: `cfx_link/tdc_shm.h` 의 타입·필드 전부 (헤더 상단 경고 참조)
