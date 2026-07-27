@@ -28,9 +28,7 @@ int counterRX = 0;
 bool tdc_isd_map_live_step(ST__ISD_STATUS ISD_state)
 {
     static EN__LIVE_STIMULATION_SUB_COMMAND prev_subCommand     = en__HoldOn;
-    static int                              programNum_original = 99;  // 매핑 프로그램과 연결되기 전에 단독으로 사용되고 있을 때 설정된 매핑프로그램 번호 저장 용.
 
-    static int stimulationTime_ms    = 0;
     static int stimulationCounter_ms = 0;
 
     ST__CFX_CM3_SharedMemory_mapData         *p_mapDataSharedMemory;
@@ -39,7 +37,6 @@ bool tdc_isd_map_live_step(ST__ISD_STATUS ISD_state)
     static ST__MAPPING_PACKET *p_mappingPacket;
 
     static int  toggle_mapNum                     = 0;
-    static int  evenOdd                           = 0;
     static int  reConnectionCounter               = 0;
     static int  ISD_connectionCounter_withMapping = 0;
     static bool needResetting                     = false;
@@ -55,7 +52,6 @@ bool tdc_isd_map_live_step(ST__ISD_STATUS ISD_state)
     int bufferForSPI_tx[BLE_DataPacketSize];
     int buffer_tx_index;
 
-    static bool ISD_is_connected     = true;
     static bool calculationParameter = false;
 
     bool isdControlStateChagedFlag;

@@ -134,7 +134,6 @@ void tdc_isd_map_ecap_step(bool startFlag)
 
     int stimulLevel_uA, stimulDAC_offsetValue_uA;
 
-    static bool maskerProbeDAC_diff;
     static int  backtelStart_flowCounter;
     int         maskerProbeIntervalCouter;
     static int  bipolarFIFO_index;

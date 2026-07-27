@@ -654,7 +654,6 @@ ST__REMOTECONTROL_STATE tdc_ble_remote_step(bool isdConnection)  // 연결 상�
     int *p_conectedISD_remoconPasskey;
     int *p_mapStemp;
 
-    int tempValue;
     char *p_firmwareInfo;
 
     bool remocon_passkey_Match;

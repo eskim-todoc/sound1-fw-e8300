@@ -24,19 +24,12 @@ static char impedanceValue[df_maxIterationNum_impedance][2][2];
 
 void tdc_isd_map_impedance_step(bool startFlag)
 {
-    int  w_FPGA_registerValue;
-    int  r_FPGA_registerValue;
-    int  comparing;
     int  pulseWidth;
     bool FPGA_FIFO_empty;
     bool FPGA_error;
     int  backtelCounter;
 
     int w_isd_registerValue;
-    int r_isd_registerValue;
-    int bitReverse;
-    int last_fpga_settingValue = 0;
-    int w_FPGA_VolatileValue;
 
     static int  iterationNum                = 0;
     static int  electrodeNum                = 0;
