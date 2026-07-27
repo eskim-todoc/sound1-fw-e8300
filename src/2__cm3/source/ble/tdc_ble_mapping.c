@@ -1122,13 +1122,10 @@ void tdc_ble_mapping_fetch_packet(const int *Rx_dataPacket)  // spi 통신에서
                     {
                         prev_subCommandData_Num_index = 0;
 
-#if 0  //  매핑 명령 실행 하는 곳에서 최종 응답을 주게 변경하였다.
-       // 플레쉬에 저장하면서 NRF 광고 이름을 바꾸기 위해서 NRF를 껏다가 켠다. 이러한 이유로 NRF를 끄기전에 수신된 명령을 루프백한다.
-                        bufferForSPI_tx[buffer_tx_index++] = en__mapping_write_original_ISD_N_USER;  // command loop-back
-                        bufferForSPI_tx[buffer_tx_index++] = subCommandData_Num_index;               // payload num 전송
-
-                        tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, buffer_tx_index);  // 송신 데이터 SPI TX버퍼에 복사
-#endif
+                        /* 명령 수신 직후 여기서 곧바로 루프백 응답을 보내던 방식은 제거했다(#if 0 사장).
+                         * 원 주석: "매핑 명령 실행 하는 곳에서 최종 응답을 주게 변경하였다".
+                         * NRF 광고 이름 변경을 위해 NRF 를 껐다 켜야 해서, 끄기 전에 미리 응답하던
+                         * 구조였다. 지금은 명령 실행부가 최종 응답을 보낸다. */
 
                         mappingPacket.command = en__mapping_write_original_ISD_N_USER;
 
@@ -1341,11 +1338,10 @@ void tdc_ble_mapping_fetch_packet(const int *Rx_dataPacket)  // spi 통신에서
                         {
                             dataRangeError = true;
                         }
-#if 0
-                        p_RepositoryFor_ISD_info[i - 1] = tempValue;
-#else  // Telecoil은 현재 버전에서 비활성화 시킨다.
+                        /* 텔레코일 설정은 현재 버전에서 강제 비활성이다(tdc_ble_remote.c 와 동일 처리).
+                         * 리모콘이 보낸 tempValue 를 쓰지 않고 항상 2(꺼짐)를 저장한다.
+                         * 원래 코드는 `= tempValue;` 였고 #if 0 으로 죽어 있어 정리했다. */
                         p_RepositoryFor_ISD_info[i - 1] = 2;
-#endif
                         //  자극 볼륨, 마이크 감도, LED 설정, 자극 알림 설정, 텔레 코일 설정,
 
                         // BLE On/OFF 옵션
@@ -2143,12 +2139,8 @@ ST__MAPPING_STATE tdc_ble_mapping_step(ST__ISD_STATUS ISD_state)
                 {
                     if (ISD_state.isd_controlState >= en__isdStatus_stimul_10V_Ok)  // 내부기 초기화가 완로되어야 연결 확인이 가능하다.
                     {
-#if 0
-                        if (connectionCheckCounter == 0)
-                        {
-                            TDC_PRINTF_V("\r\n[MAPPING] IDLE, LINK CHECK \r\n");
-                        }
-#endif
+                        /* 링크체크 진입 로그(connectionCheckCounter == 0 일 때 1회 출력)는
+                         * 2차 리팩토링에서 제거했다(#if 0 사장). 단순 디버그 출력이었다. */
                         tdc_isd_update_link_by_backtel_mapping(connectionCheckCounter);  // 체크가 완료되면 flag가 FLASE로 변경
                     }
                 }

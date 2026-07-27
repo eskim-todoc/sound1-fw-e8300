@@ -277,11 +277,11 @@ void tdc_ble_remote_fetch_packet(const int *Rx_dataPacket)
                         }
                         else
                         {
-#if 0
-                            p_RepositoryFor_ISD_info[i - 1] = tempValue;
-#else  // Telecoil은 현재 버전에서 비활성화 시킨다.
+                            /* 텔레코일 설정은 현재 버전에서 강제 비활성이다.
+                             * 리모콘이 보낸 값(tempValue)을 쓰지 않고 항상 2(꺼짐)를 저장한다.
+                             * 원래 코드는 `= tempValue;` 였고 #if 0 으로 죽어 있어 정리했다.
+                             * 되살리려면 아래 대입을 tempValue 로 바꾸면 된다. */
                             p_RepositoryFor_ISD_info[i - 1] = 2;
-#endif
                         }
 
                         //  자극 볼륨, 마이크 감도, LED 설정, 자극 알림 설정, 텔레 코일 설정,
@@ -668,18 +668,10 @@ ST__REMOTECONTROL_STATE tdc_ble_remote_step(bool isdConnection)  // 연결 상�
     bool remoteCommandStartFlag = false;
     bool result;
 
-#if 0  //
-    //매핑 명령이 수신되 시접에 내부기 연결 확인용 backtel 전송 명령이 실행 중일 경우에는 백텔 수신이 완료되고 명령을 실행 할 수 있도록 한다.
-    if(remoteDataPacket.fetched_command!=en__remoteControl_IDLE)
-    {
-        if(tdc_shm_read_current_pcm_output_mode()==BackelCircuitDisabled_FpagFifoCleared_duringLiveStimulation)
-        {
-            remoteDataPacket.command=remoteDataPacket.fetched_command;
-            remoteDataPacket.fetched_command=en__remoteControl_IDLE;
-
-        }
-    }
-#endif
+    /* 매핑 명령 수신 시점에 내부기 연결확인용 백텔 전송이 진행 중이면, 백텔 수신이 끝난 뒤에
+     * 명령을 실행하도록 미루던 로직은 2차 리팩토링에서 제거했다(#if 0 사장).
+     * 현재는 이 대기 없이 바로 처리한다. fetched_command 와
+     * BackelCircuitDisabled_FpagFifoCleared_duringLiveStimulation 을 보던 코드였다. */
 
     if (!isdConnection)
     {
@@ -716,16 +708,16 @@ ST__REMOTECONTROL_STATE tdc_ble_remote_step(bool isdConnection)  // 연결 상�
         p_conectedISD_remoconPasskey = tdc_shm_read_remocon_passkey_connected_isd(connectedISD_num);
         remocon_passkey_Match        = true;
 
-#if 0  // IMPORTANT: 패스키 인증을 더 이상 사용하지 않는다.
-        for (i = 0; i < 4; i++)
-        {
-            if (p_conectedISD_remoconPasskey[i] != remoteDataPacket.data[i])
-            {
-                remocon_passkey_Match = false;
-                break;
-            }
-        }
-#endif
+        /* [보안] 리모콘 패스키 인증은 의도적으로 비활성 상태다.
+         * 바로 위에서 remocon_passkey_Match 를 무조건 true 로 두므로 어떤 패스키든 통과한다.
+         *
+         * 원래 이 자리에는 내부기에 저장된 4바이트 패스키
+         * (tdc_shm_read_remocon_passkey_connected_isd() 가 돌려준 값)와 리모콘이 보낸
+         * remoteDataPacket.data[0..3] 을 비교해 하나라도 다르면 Match 를 false 로 만드는
+         * 루프가 있었다. 그 루프가 #if 0 으로 죽어 있어 2차 리팩토링에서 제거했다.
+         *
+         * 인증을 되살리려면 이 자리에 4바이트 비교를 다시 넣고 아래 경고 로그를 걷어내면 된다.
+         * 공유 메모리의 패스키 저장·조회 경로는 그대로 살아 있다. */
 
         TDC_PRINTF_W("[PASSKEY] ALWAYS PATH OPENED. \r\n");
 
@@ -802,105 +794,10 @@ ST__REMOTECONTROL_STATE tdc_ble_remote_step(bool isdConnection)  // 연결 상�
 
                 case en__remoteControl_readInfoOfMap:
                 {
-#if 0  // 맵에 들어있는 맵핑일자들에서 최신 맵일자를 전송하는 경우
-                    for (i = 0; i < MaxNumMap; i++)
-                    {
-                        p_connected_ids_mapDate = tdc_shm_read_connected_isd_map_date(i + 1);
-                        for (k = 0; k < 6; k++)
-                        {
-                            connected_isd_mapDate[i][k] = *p_connected_ids_mapDate++;
-                        }
-                    }
-
-                    for (i = 0; i < MaxNumMap; i++)
-                    {
-                        numbering[i] = 1;
-                    }
-
-                    for (i = 0; i < df_lengthOf_mapDate; i++)
-                    {
-                        startFlag = true;
-                        for (k = 0; k < MaxNumMap; k++)
-                        {
-                            if (numbering[k] == 1)
-                            {
-                                if (startFlag)  // 새로운 열의 첫 검색 데이터를  최대값으로 설정하고 시작
-                                {
-                                    maxValue  = connected_isd_mapDate[k][i];
-                                    startFlag = false;
-                                }
-                                else
-                                {
-                                    if (connected_isd_mapDate[k][i] > maxValue)  // 새로운 배교값이 이전 최대값 보다 클 경우
-                                    {
-                                        maxValue = connected_isd_mapDate[k][i];
-
-                                        // 이전에 검색된 최대 값 인덱스를 지움
-                                        for (m = 0; m < k; m++)
-                                        {
-                                            numbering[m] = 0;
-                                        }
-                                        // 현재 검색된 인덱스를 최대값으로 선택
-                                        numbering[k] = 1;
-                                    }
-                                    else if (connected_isd_mapDate[k][i] == maxValue)
-                                    {
-                                        // 현재 검색된 인덱스를 최대값으로 추가
-                                        numbering[k] = 1;
-                                    }
-                                    else  // 새로운 배교값이 이전 최대값 보다 작을 경우
-                                    {
-                                        numbering[k] = 0;
-                                    }
-                                }
-                            }
-                        }
-
-                        numOfSame = 0;
-                        for (m = 0; m < MaxNumMap; m++)
-                        {
-                            if (numbering[m] == 1)
-                            {
-                                numOfSame++;
-                            }
-                        }
-
-                        if (numOfSame == 1)
-                        {
-                            break;
-                        }
-                    }
-
-                    // 최대값 인덱스 확인
-                    for (m = 0; m < MaxNumMap; m++)
-                    {
-                        if (numbering[m] == 1)
-                        {
-                            find_index = m;
-                        }
-                    }
-
-                    // 송신 데이터 준비
-                    // command loop-back
-                    Tx_dataBuff[tx_index++] = remoteDataPacket.command;
-
-                    // pay-load 준비
-                    // 최신 맵 날짜
-                    for (k = 0; k < df_lengthOf_mapDate; k++)
-                    {
-                        Tx_dataBuff[tx_index++] = connected_isd_mapDate[find_index][k];
-                    }
-
-                    // 담겨져 있는 맵 개수
-                    Tx_dataBuff[tx_index++] = tdc_shm_read_connected_isd_usable_map_num();
-
-                    // 송신 데이터 SPI TX버퍼에 복사
-
-                    tdc_hal_spi_write_tx_buffer(Tx_dataBuff, tx_index);
-
-                    //  명령 종료
-                    tdc_ble_remote_clear_command();
-#else
+                    /* 맵 4개의 매핑일자를 모두 비교해 가장 최신 것을 보내던 구버전 응답 로직은
+                     * 2차 리팩토링에서 제거했다(#if 0 사장, 약 100줄).
+                     * 현재 응답은 아래와 같이 "연결된 내부기의 맵 스탬프 + 보유 맵 개수" 다.
+                     * 리모콘과 주고받는 응답 형식이 서로 다르므로, 구형식이 필요하면 git 이력 참조. */
                     // 현재 연결된 맵 스템프 전송
 
                     // 송신 데이터 준비
@@ -924,33 +821,11 @@ ST__REMOTECONTROL_STATE tdc_ble_remote_step(bool isdConnection)  // 연결 상�
 
                     //  명령 종료
                     tdc_ble_remote_clear_command();
-#endif
                 }
                 break;
-#if 0
-                case en__remoteControl_readUserName:
-                {
-                    // 송신 데이터 준비
-                    // command loop-back
-                    Tx_dataBuff[tx_index++] = remoteDataPacket.command;
-
-                    // pay-load 준비
-                    connectedISD_num  = tdc_shm_read_connected_isd_num();
-                    p_currentUserName = tdc_shm_read_connected_isd_user_name(connectedISD_num);
-
-                    for (i = 0; i < todoc_PayloadSize; i++)
-                    {
-                        Tx_dataBuff[tx_index++] = p_currentUserName[i];
-                    }
-
-                    // 송신 데이터 SPI TX버퍼에 복사
-                    tdc_hal_spi_write_tx_buffer(Tx_dataBuff, tx_index);
-
-                    //  명령 종료
-                    remoteDataPacket.command = en__remoteControl_IDLE;
-                }
-                break;
-#endif
+                /* en__remoteControl_readUserName 핸들러는 2차 리팩토링에서 제거했다(#if 0 사장).
+                 * 유저명 조회 커맨드가 폐기돼 CM3 는 이 커맨드에 응답하지 않는다.
+                 * 커맨드 코드(en__remoteControl_readUserName)는 프로토콜 열거형에 남아 있다. */
                 case en__remoteControl_readStatusOfExtenalDevice:  // 0x43
                 {
                     value = tdc_pwr_battery_read_percentage();
@@ -1303,29 +1178,12 @@ ST__REMOTECONTROL_STATE tdc_ble_remote_step(bool isdConnection)  // 연결 상�
                 }
                 break;
 
-#if 0  // 프로토콜 3.8부터 삭제되었으나 리모콘 에러시 확인 필요
-                case en__remoteControl_read_Connected_ISD_id:
-                {
-                    // 송신 데이터 준비
-                    // command loop-back
-                    bufferForSPI_tx[tx_index++] = remoteDataPacket.command;
-
-                    // pay-load 준비
-                    value = tdc_isd_read_connected_id();
-
-                    bufferForSPI_tx[tx_index++] = value >> 24;
-                    bufferForSPI_tx[tx_index++] = 0xff & (value >> 16);
-                    bufferForSPI_tx[tx_index++] = 0xff & (value >> 8);
-                    bufferForSPI_tx[tx_index++] = 0xff & (value);
-
-                    // 송신 데이터 SPI TX버퍼에 복사
-                    tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, tx_index);
-
-                    //  명령 종료
-                    tdc_ble_remote_clear_command();
-                }
-                break;
-#endif
+                /* en__remoteControl_read_Connected_ISD_id 핸들러는 2차 리팩토링에서 제거했다.
+                 * 원 주석: "프로토콜 3.8부터 삭제되었으나 리모콘 에러시 확인 필요".
+                 * 연결된 내부기 ID 4바이트를 리모콘에 돌려주던 응답인데, 프로토콜 3.8 이후로는
+                 * 리모콘이 이 커맨드를 보내지 않아 #if 0 으로 죽어 있었다.
+                 * 커맨드 코드는 프로토콜 열거형에 그대로 있고 tdc_isd_read_connected_id() 도
+                 * 살아 있으므로, 디버깅에 다시 필요하면 git 이력에서 이 case 만 복원하면 된다. */
 
 #if 1
                 /**
