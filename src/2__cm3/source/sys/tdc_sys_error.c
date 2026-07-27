@@ -9,7 +9,6 @@ static tdc_sys_error_code_t errorCode;
 
 void tdc_sys_error_update(tdc_sys_error_major_t majorError, int detailError, int lineNumber)
 {
-    int temp;
 
     switch (majorError)
     {

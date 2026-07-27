@@ -176,7 +176,6 @@ static void _handle_state_alt_boot(void)
 {
     uint8_t sub_state;
     uint8_t alt_result;
-    uint8_t temp_slot;
 
     sub_state  = _g_status.sub_state;
     alt_result = _g_status.alt_boot_result;

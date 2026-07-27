@@ -58,9 +58,8 @@ int tdc_stim_calc_frame_per_channel(int pulsewidth)
 
 int tdc_stim_calc_transferable_channel_num(int numFramePerChannel, int usableElectrodNum)
 {
-    int entireAllChanelFrameNum, TransferabelChannelNumPerOneMilSec, sumTransferabelChannelNum;
+    int TransferabelChannelNumPerOneMilSec;
 
-    int numFrame;
 
     // 24나누기 채널당 프레임 수...
 
@@ -153,11 +152,8 @@ bool tdc_stim_set_range(int pulseWidth, int *T_level_uA, int *C_level_uA, int Nu
     int maxStimul_uA = 0, minStimul_uA = stimulDAC_D_only_Saturation_uA + offsetDAC_B_Saturation_uA, dynamicRange_uA = 0;
     int DAC_offsetLevel;
 
-    EN_Offset_DAC_Slope      Offset_DAC_Slope;
-    EN_Stimulation_DAC_Slope StimulationDAC_Slope;
 
     int  tempINT;
-    int  reciprocal;
     int  deliveryCharge_pico;
     bool MaxDeliveryChargeOver = false;
     bool configurationError    = false;

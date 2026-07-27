@@ -407,7 +407,6 @@ bool tdc_isd_set_stim_para_bipolar(bool isdControlStateChagedFlag)
     int compare;
     int pcm_index = 0;
 
-    int                                            en__bipolarRefereceElectorodeIndex = 0;
     static const ST__CFX_CM3_SharedMemory_mapData *p_mapdata;
     static const ST_STIUL_DAC_REGISTER_VALUE      *p_stimulDAC_setting;
 
@@ -420,15 +419,12 @@ bool tdc_isd_set_stim_para_bipolar(bool isdControlStateChagedFlag)
     static int bipolarReferenceElectrodeNum[df_MaxNumOfElectrode];
 
     int nop = 0;
-    int en__bipolarRefer_EelectrodeNum;
-    int stimulElectrodeNum;
 
     bool isdSettingError        = false;
     bool stimulationConfigError = false;
     bool FPGA_FIFO_empty;
 
     tempCounter++;
-    int tempA, tempB, tempC, tempD;
 
     if (isdControlStateChagedFlag)
     {

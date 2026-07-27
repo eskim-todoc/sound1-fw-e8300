@@ -25,7 +25,6 @@ void tdc_stim_indicator_out(int userSettingEnableStimulationIndicator, bool stim
     static int counter                 = 0;
     static int outputPulseTrainCounter = 0;
 
-    int* p_stimulIndicatorOutOnOff;
 
     if (stimulationTriggerLowPower)
     {

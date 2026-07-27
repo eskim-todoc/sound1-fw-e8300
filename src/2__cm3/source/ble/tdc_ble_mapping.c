@@ -73,7 +73,6 @@ void tdc_ble_mapping_fetch_packet(const int *Rx_dataPacket)  // spi 통신에서
 
     bool exceptionCase = false;
     int  tempValue;
-    int  trashValue;
     bool dataRangeError = false;
 
     index           = 0;
@@ -1789,7 +1788,6 @@ ST__MAPPING_STATE tdc_ble_mapping_step(ST__ISD_STATUS ISD_state)
     int  bufferForSPI_tx[BLE_DataPacketSize];
     int  buffer_tx_index;
     int  i;
-    int *p_variable;
     int  value;
 
     bool mappingCommandStartFlag = false;

@@ -126,8 +126,6 @@ void enable_interrupt(void)
 
 void tdc_sys_init(void)
 {
-    int counter = 0;
-    int ret;
 
     // 8MB 플래시를 하위 4MB, 상위 4MB로 분할하여 사용한다.
     // 하위 4MB에는 Boot Info, Manufacture Data, FAT, Manifest, App0, App1, App2로 구성된다.
