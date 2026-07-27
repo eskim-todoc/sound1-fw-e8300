@@ -179,6 +179,27 @@ bool tdc_stim_set_range(int pulseWidth, int *T_level_uA, int *C_level_uA, int Nu
 
     dynamicRange_uA = maxStimul_uA - minStimul_uA;
 
+/* [전하량 초과 검사 - 현재 꺼져 있음. 켜기 전에 아래를 읽을 것]
+ *
+ * 이 #ifdef 가 보는 Df_MaxDeliveryChargeLimitation 은 정의된 적이 없다.
+ * processorDirective.h 에 있는 것은 접미사가 붙은 Df_MaxDeliveryChargeLimitationKKK 이며,
+ * git 이력상 접미사 없는 이름은 한 번도 존재한 적이 없다. 즉 오타가 아니라 의도적 비활성이다.
+ * (KKK 는 교차 프로젝트 복제 동결 심볼이라 임의 rename 불가)
+ *
+ * 수식 자체는 정합하다: uA x us = pC, 임계 df_MaxDeliveryCharge_pC = 75000 (75 nC).
+ *
+ * 다만 지금 이 매크로를 그냥 정의해서 켜면 오히려 더 위험하다.
+ * 초과가 잡히면 아래 if(!MaxDeliveryChargeOver) 를 건너뛰어 DAC 파라미터
+ * (C_level_255[] / T_level_255[] / stimulationDAC_para) 가 미설정으로 남는데,
+ * 그 else 절이 configurationError 를 false 로 두고 함수는 true(성공)를 반환한다.
+ * 호출자는 계산이 성공했다고 믿고 미설정 파라미터로 진행하게 된다.
+ * -> 켜려면 else 절의 configurationError 처리를 먼저 바로잡아야 한다.
+ *
+ * 실질 방어선은 자극이 실제로 나가는 매핑 경로에 살아 있다(초과 시 앱에 에러 전송 +
+ * 매핑 커맨드 리셋): isd_map_impedance.c · isd_map_ecap.c · isd_map_specific_stim.c
+ *
+ * 어떤 방식이 맞을지 미정이라 판단 근거를 남긴 채 #if 구조를 존치한다(2026-07-27 은수님 결정).
+ * 상세: docs/tasks/cm3/20260723_cm3-full-refactor-2nd/분석-데이터/06_전하량-안전검사-분석.md */
 #ifdef Df_MaxDeliveryChargeLimitation
 
     deliveryCharge_pico = maxStimul_uA * pulseWidth;

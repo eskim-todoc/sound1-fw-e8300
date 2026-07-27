@@ -116,7 +116,6 @@ void tdc_isd_map_write_original_info_setting(bool startFlag, int command)
 
     int         bufferForSPI_tx[BLE_DataPacketSize];
     int         buffer_tx_index;
-    static int  prevPcmOutputMode;
     static bool prev_ISD_id_match = false;
     static bool startFlashCommand = false;
 
@@ -165,7 +164,10 @@ void tdc_isd_map_write_original_info_setting(bool startFlag, int command)
                     FlashCommand.isd_index    = 1;
                     FlashCommand.map_index    = 0;  // 맵 인덱스가 0이면 CFX에서 ISD 정보 및 사용자 설정값을 쓰도록 한다.
 
-                    prevPcmOutputMode = tdc_shm_read_current_pcm_output_mode();
+                    /* PCM 모드를 저장해 두지 않는다. 이 함수는 외부기 맵 데이터가 공장 초기화된 상태에서
+                     * 최초 연결 시 사용자 이름을 등록하려고 딱 한 번 쓰는 경로다. 매핑 연결 후에는
+                     * 라이브모드가 아닌 한 NopStandby 가 기본 대기 상태이므로 복원이 필요 없다.
+                     * (형제 함수들은 라이브 중에도 불릴 수 있어 저장·복원을 한다. 2026-07-27 은수님 확인) */
                     tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_NopStandby);
 
                     tdc_shm_set_read_write_map_data_flash_command(FlashCommand);
