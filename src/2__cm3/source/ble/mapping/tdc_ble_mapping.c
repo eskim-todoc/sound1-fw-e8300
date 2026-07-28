@@ -23,6 +23,7 @@
 #include <tdc_ble_map_measure.h>
 #include <tdc_ble_map_flash.h>
 #include <tdc_ble_map_stim.h>
+#include <tdc_ble_reply.h>
 
 static ST__MAPPING_PACKET mappingPacket;
 
@@ -231,9 +232,9 @@ void tdc_ble_mapping_fetch_packet(const uint8_t *Rx_dataPacket)  // spi 통신�
         default:
         {
             // command loop-back
-            bufferForSPI_tx[buffer_tx_index++] = tempCommand;
+            buffer_tx_index = tdc_ble_reply_header(bufferForSPI_tx, buffer_tx_index, tempCommand);
 
-            bufferForSPI_tx[buffer_tx_index++] = en__UndefinedCommand;  //
+            buffer_tx_index = tdc_ble_reply_u8(bufferForSPI_tx, buffer_tx_index, en__UndefinedCommand);  //
 
             // 송신 데이터 SPI TX버퍼에 복사
             tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, buffer_tx_index);
@@ -303,8 +304,8 @@ ST__MAPPING_STATE tdc_ble_mapping_step(ST__ISD_STATUS ISD_state)
         connectionCheckCounter  = 10;  // 연결되고 10msec 이후에 연결 체크(백텔)를 진행하도록 카운터 설정
 
         // 송신 데이터 준비
-        bufferForSPI_tx[buffer_tx_index++] = mappingPacket.command;  // command loop-back
-        bufferForSPI_tx[buffer_tx_index++] = 1;                      // pay-load 준비
+        buffer_tx_index = tdc_ble_reply_header(bufferForSPI_tx, buffer_tx_index, mappingPacket.command);  // command loop-back
+        buffer_tx_index = tdc_ble_reply_u8(bufferForSPI_tx, buffer_tx_index, 1);                      // pay-load 준비
         tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, buffer_tx_index);      // 송신 데이터 SPI TX버퍼에 복사
         mappingPacket.command = en__mapping_IDLE;                    // 명령 종료
     }
@@ -317,8 +318,8 @@ ST__MAPPING_STATE tdc_ble_mapping_step(ST__ISD_STATUS ISD_state)
                 case en__mapping_disconnect:
                 {
                     // 송신 데이터 준비
-                    bufferForSPI_tx[buffer_tx_index++] = mappingPacket.command;  // command loop-back
-                    bufferForSPI_tx[buffer_tx_index++] = 1;                      // pay-load 준비
+                    buffer_tx_index = tdc_ble_reply_header(bufferForSPI_tx, buffer_tx_index, mappingPacket.command);  // command loop-back
+                    buffer_tx_index = tdc_ble_reply_u8(bufferForSPI_tx, buffer_tx_index, 1);                      // pay-load 준비
                     tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, buffer_tx_index);      // 송신 데이터 SPI TX버퍼에 복사
 
 #if 1
@@ -429,27 +430,27 @@ ST__MAPPING_STATE tdc_ble_mapping_step(ST__ISD_STATUS ISD_state)
                 case en__mapping_deviceStatus:
                 {
                     // command loop-back
-                    bufferForSPI_tx[buffer_tx_index++] = en__mapping_deviceStatus;
+                    buffer_tx_index = tdc_ble_reply_header(bufferForSPI_tx, buffer_tx_index, en__mapping_deviceStatus);
 
                     // 내부기 연결 상태
                     if (ISD_state.conneded_ISD)
                     {
-                        bufferForSPI_tx[buffer_tx_index++] = 1;  // 연결됨
+                        buffer_tx_index = tdc_ble_reply_u8(bufferForSPI_tx, buffer_tx_index, 1);  // 연결됨
                     }
                     else
                     {
-                        bufferForSPI_tx[buffer_tx_index++] = 2;  // 끊어짐
+                        buffer_tx_index = tdc_ble_reply_u8(bufferForSPI_tx, buffer_tx_index, 2);  // 끊어짐
                     }
 
                     // 배터리 레벨
-                    bufferForSPI_tx[buffer_tx_index++] = tdc_pwr_battery_read_percentage();
+                    buffer_tx_index = tdc_ble_reply_u8(bufferForSPI_tx, buffer_tx_index, tdc_pwr_battery_read_percentage());
 
                     // tdc_sys_error_code_t 전달
                     errorCode = tdc_sys_error_read();
 
-                    bufferForSPI_tx[buffer_tx_index++] = (int) errorCode.ISD_ErrorFlag;
+                    buffer_tx_index = tdc_ble_reply_u8(bufferForSPI_tx, buffer_tx_index, (int) errorCode.ISD_ErrorFlag);
 
-                    bufferForSPI_tx[buffer_tx_index++] = 0;
+                    buffer_tx_index = tdc_ble_reply_u8(bufferForSPI_tx, buffer_tx_index, 0);
 
                     // NRF에 전달
 
@@ -583,14 +584,11 @@ ST__MAPPING_STATE tdc_ble_mapping_step(ST__ISD_STATUS ISD_state)
                 {
                     // 송신 데이터 준비
                     // command loop-back
-                    bufferForSPI_tx[buffer_tx_index++] = mappingPacket.command;
+                    buffer_tx_index = tdc_ble_reply_header(bufferForSPI_tx, buffer_tx_index, mappingPacket.command);
 
                     // pay-load 준비
                     value                              = tdc_isd_read_connected_id();
-                    bufferForSPI_tx[buffer_tx_index++] = value >> 24;
-                    bufferForSPI_tx[buffer_tx_index++] = 0xff & (value >> 16);
-                    bufferForSPI_tx[buffer_tx_index++] = 0xff & (value >> 8);
-                    bufferForSPI_tx[buffer_tx_index++] = 0xff & (value);
+                    buffer_tx_index = tdc_ble_reply_u32(bufferForSPI_tx, buffer_tx_index, value);
 
                     // 송신 데이터 SPI TX버퍼에 복사
                     tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, buffer_tx_index);

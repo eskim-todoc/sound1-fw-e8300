@@ -24,3 +24,13 @@ int tdc_ble_reply_u16(uint8_t *tx_buf, int tx_index, int value)
 
     return tx_index;
 }
+
+int tdc_ble_reply_u32(uint8_t *tx_buf, int tx_index, int value)
+{
+    tx_buf[tx_index++] = (value >> 24) & 0xFF;
+    tx_buf[tx_index++] = (value >> 16) & 0xFF;
+    tx_buf[tx_index++] = (value >> 8) & 0xFF;
+    tx_buf[tx_index++] = value & 0xFF;
+
+    return tx_index;
+}

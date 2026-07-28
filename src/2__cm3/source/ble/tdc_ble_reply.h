@@ -29,4 +29,8 @@ int tdc_ble_reply_u8(uint8_t *tx_buf, int tx_index, int value);
 // 프로토콜 전 구간이 상위 바이트 먼저이며, 역순인 지점은 없다.
 int tdc_ble_reply_u16(uint8_t *tx_buf, int tx_index, int value);
 
+// 32비트 값을 최상위 -> 최하위 바이트 순으로 저장한다.
+// 내부기 ID(0x91 응답)와 오디오 신호 최대값 등에 쓰인다.
+int tdc_ble_reply_u32(uint8_t *tx_buf, int tx_index, int value);
+
 #endif  // __tdc_ble_reply_h__
