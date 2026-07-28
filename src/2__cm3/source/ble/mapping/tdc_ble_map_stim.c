@@ -755,21 +755,8 @@ void tdc_ble_map_stim_live(const uint8_t *Rx_dataPacket)  // 0x66
 {
     ST__MAPPING_PACKET *p_mappingPacket = tdc_ble_mapping_get_packet();
 
-    int  index = df_payloadStartIndex;
-    int  i;
-    int  value, tempA, tempB;
-    int  liveSubCommand;
-    int  subCommandData_Num_index;
-    bool dataRangeError = false;
-
-    // 알림 자극(하위 명령 5)의 자극 크기 상·하한. 맵 데이터를 훑어 갱신하며
-    // 호출 간에 값을 유지해야 하므로 static 이다(원본 fetch_packet 과 동일).
-    static int max_C_uA = 0, min_T_uA = 1800;
-
-    uint8_t bufferForSPI_tx[BLE_DataPacketSize];
-    int     buffer_tx_index = 0;
-
-    ST__CFX_CM3_SharedMemory_mapData *p_mapDataSharedMemory;
+    int index = df_payloadStartIndex;
+    int liveSubCommand;
 
     // index 1은 하위 명령 1~9에 대한 인덱스
     liveSubCommand = Rx_dataPacket[index++];  // index = 1, index++ = 2
