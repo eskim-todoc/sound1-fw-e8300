@@ -86,7 +86,7 @@ void setting_nrf_ble_adv_info(void)
             tx_index = 0;
         }
 
-        tdc_hal_spi_write_tx_buffer_u8(Tx_dataBuff, tx_index);     // 송신 데이터 SPI TX버퍼에 복사
+        tdc_hal_spi_write_tx_buffer(Tx_dataBuff, tx_index);     // 송신 데이터 SPI TX버퍼에 복사
         bleSettingPacket.command = en__bleSetting_IDLE;  //  명령 종료
     }
     // QCC와 새로 추가한 패킷 (0x33. Battery 정보)
@@ -114,7 +114,7 @@ void setting_nrf_ble_adv_info(void)
         Tx_dataBuff[tx_index++] = batt_percent;
         Tx_dataBuff[tx_index++] = charger_state;  // 0: RESET, 1: CONNECTED, 2: DISCONNECTED
 
-        tdc_hal_spi_write_tx_buffer_u8(Tx_dataBuff, tx_index);     // 송싱 데이터 SPI TX버퍼에 복사
+        tdc_hal_spi_write_tx_buffer(Tx_dataBuff, tx_index);     // 송싱 데이터 SPI TX버퍼에 복사
         bleSettingPacket.command = en__bleSetting_IDLE;  // 명령 종료
     }
     // QCC와 새로 초가한 패킷 (0x34, Power info)
@@ -162,7 +162,7 @@ void setting_nrf_ble_adv_info(void)
         // TDC_PRINTF_W("[BT] BEFORE-WRITE-TX 0x34 t3=%d ms\r\n", tdc_hal_timer_get_t3_tick());
         // TDC_PRINTF_W("[BT] CALL-WRITE-TX TxEmpty=%d\r\n", (int) tdc_hal_spi_is_tx_buffer_empty());
 
-        tdc_hal_spi_write_tx_buffer_u8(Tx_dataBuff, tx_index);     // 송싱 데이터 SPI TX버퍼에 복사
+        tdc_hal_spi_write_tx_buffer(Tx_dataBuff, tx_index);     // 송싱 데이터 SPI TX버퍼에 복사
         bleSettingPacket.command = en__bleSetting_IDLE;  // 명령 종료
     }
     // 끝, else if (bleSettingPacket.command == EN__SND_BT_CMD_SYSTEM_INFO_POWER)
@@ -192,7 +192,7 @@ void setting_nrf_ble_adv_info(void)
         /* 응답 패킷 */
         Tx_dataBuff[tx_index++] = EN__SND_BT_CMD_SYSTEM_INFO_LED_IND;
         Tx_dataBuff[tx_index++] = 1;                     // 수신 확인 응답
-        tdc_hal_spi_write_tx_buffer_u8(Tx_dataBuff, tx_index);     // 송신 데이터 SPI TX버퍼에 복사
+        tdc_hal_spi_write_tx_buffer(Tx_dataBuff, tx_index);     // 송신 데이터 SPI TX버퍼에 복사
         bleSettingPacket.command = en__bleSetting_IDLE;  // 명령 종료
     }
     // 끝, else if (bleSettingPacket.command == EN__SND_BT_CMD_SYSTEM_INFO_LED_IND)
@@ -223,7 +223,7 @@ void setting_nrf_ble_adv_info(void)
         /* 응답 패킷 */
         Tx_dataBuff[tx_index++] = EN__SND_BT_CMD_SYSTEM_INFO_CLASSIC_STATE;
         Tx_dataBuff[tx_index++] = 1;                     // 수신 확인 응답
-        tdc_hal_spi_write_tx_buffer_u8(Tx_dataBuff, tx_index);     // 송신 데이터 SPI TX버퍼에 복사
+        tdc_hal_spi_write_tx_buffer(Tx_dataBuff, tx_index);     // 송신 데이터 SPI TX버퍼에 복사
         bleSettingPacket.command = en__bleSetting_IDLE;  // 명령 종료
     }
     // 끝, else if (bleSettingPacket.command == EN__SND_BT_CMD_SYSTEM_INFO_CLASSIC_STATE)

@@ -258,7 +258,7 @@ void tdc_ble_remote_read_sp_para(bool startFlag, int command)
     if(flowCounter!=0)
     {
     // nrf 전달
-        tdc_hal_spi_write_tx_buffer_u8(bufferForSPI_tx,tx_index);
+        tdc_hal_spi_write_tx_buffer(bufferForSPI_tx,tx_index);
     }
 
     if(flowCounter==7)

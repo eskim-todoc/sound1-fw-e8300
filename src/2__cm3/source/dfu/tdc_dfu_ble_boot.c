@@ -13,7 +13,7 @@
 
 static void _send_resp_packet_boot(uint8_t* packet_data, uint8_t packet_len)
 {
-    int spi_buffer[BLE_DataPacketSize];
+    uint8_t spi_buffer[BLE_DataPacketSize];
     int spi_len;
 
     spi_len = packet_len;

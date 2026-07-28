@@ -290,24 +290,7 @@ void tdc_hal_spi_init(void)
     tdc_hal_spi_clear_master_read_command();  // Sys_GPIO_Set_Low(GPIO_PIN_ReadCommandForSPI_Master);
 }
 
-/* 구 API - int 배열을 받는다 (B3 전환 기간 한정).
- * 호출부를 파일 단위로 옮기려고 남겨 둔 어댑터이며, 전 호출부가
- * tdc_hal_spi_write_tx_buffer_u8() 로 이행하면 제거한다.
- * 캐스팅이 아니라 원소별 변환 복사여야 한다. uint8_t 버퍼를 int* 로
- * 넘기면 호출자가 4바이트씩 읽어 즉시 깨진다. */
-void tdc_hal_spi_write_tx_buffer(int *source, int dataSize)
-{
-    uint8_t tmp[TDC_HAL_SPI_COMM_PACKET_SIZE];
-
-    for (int i = 0; i < dataSize; i++)
-    {
-        tmp[i] = (uint8_t) source[i];
-    }
-
-    tdc_hal_spi_write_tx_buffer_u8(tmp, dataSize);
-}
-
-void tdc_hal_spi_write_tx_buffer_u8(const uint8_t *source, int dataSize)
+void tdc_hal_spi_write_tx_buffer(const uint8_t *source, int dataSize)
 {
     // TDC_PRINTF_W("[TX] ENTER empty=%d t3=%d ms\r\n", (int)tdc_hal_spi_is_tx_buffer_empty(), tdc_hal_timer_get_t3_tick());
 

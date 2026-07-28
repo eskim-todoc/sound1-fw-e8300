@@ -91,7 +91,7 @@ void tdc_isd_map_read_original_info_setting(bool startFlag, int command)
             }
 
             // 송신 데이터 SPI TX버퍼에 복사
-            tdc_hal_spi_write_tx_buffer_u8(bufferForSPI_tx, buffer_tx_index);
+            tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, buffer_tx_index);
 
             if (dataPacket_index == numPacket_readMapData_Original_ISDnSetting)  // 명령 완료
             {
@@ -151,7 +151,7 @@ void tdc_isd_map_write_original_info_setting(bool startFlag, int command)
                 bufferForSPI_tx[buffer_tx_index++] = 2;  // 정상
 
                 // 송신 데이터 SPI TX버퍼에 복사
-                tdc_hal_spi_write_tx_buffer_u8(bufferForSPI_tx, buffer_tx_index);
+                tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, buffer_tx_index);
             }
 
             if (tdc_hal_spi_is_tx_buffer_empty())  // NRF로 응답 명령의 전송이 완료된 상태.
@@ -307,7 +307,7 @@ void tdc_isd_map_read_info_setting(bool startFlag, int command, int slot_index)
             }
 
             // 송신 데이터 SPI TX버퍼에 복사
-            tdc_hal_spi_write_tx_buffer_u8(bufferForSPI_tx, buffer_tx_index);
+            tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, buffer_tx_index);
 
             if (dataPacket_index == numPacket_readMapData_ISDnSetting)  // 명령 완료
             {
@@ -384,7 +384,7 @@ void tdc_isd_map_write_info_setting(bool startFlag, int command, int slot_index)
             // NRF에 전달
 
             // 송신 데이터 SPI TX버퍼에 복사
-            tdc_hal_spi_write_tx_buffer_u8(bufferForSPI_tx, buffer_tx_index);
+            tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, buffer_tx_index);
 
             // 명령 종료
             if (command > 0x60)
@@ -551,7 +551,7 @@ void tdc_isd_map_read_stim_para(bool startFlag, int command, int slot_index, int
             }
 
             // 송신 데이터 SPI TX버퍼에 복사
-            tdc_hal_spi_write_tx_buffer_u8(bufferForSPI_tx, buffer_tx_index);
+            tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, buffer_tx_index);
 
             if (dataPacket_index == numPacket_readMapData_stimulPara)  // 명령 완료
             {
@@ -616,7 +616,7 @@ void tdc_isd_map_write_stim_para(bool startFlag, int command, int slot_index, in
             // NRF에 전달
 
             // 송신 데이터 SPI TX버퍼에 복사
-            tdc_hal_spi_write_tx_buffer_u8(bufferForSPI_tx, buffer_tx_index);
+            tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, buffer_tx_index);
 
             // 명령 종료
             if (command > 0x60)
@@ -677,7 +677,7 @@ void tdc_isd_map_reset_nvm_selected(bool startFlag, int command, int slot_index,
                 // NRF에 전달
 
                 // 송신 데이터 SPI TX버퍼에 복사
-                tdc_hal_spi_write_tx_buffer_u8(bufferForSPI_tx, buffer_tx_index);
+                tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, buffer_tx_index);
 
                 // 명령 종료
                 if (command > 0x60)
@@ -775,7 +775,7 @@ bool tdc_isd_map_reset_nvm_all(bool startFlag, int command, EN__mapping_ReadWrit
             // NRF에 전달
 
             // 송신 데이터 SPI TX버퍼에 복사
-            tdc_hal_spi_write_tx_buffer_u8(bufferForSPI_tx, buffer_tx_index);
+            tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, buffer_tx_index);
 
             // 명령 종료
             CommandCompleted = true;
@@ -856,7 +856,7 @@ void tdc_isd_map_reset_nvm_2to4(bool startFlag, int command, EN__mapping_ReadWri
             // NRF에 전달
 
             // 송신 데이터 SPI TX버퍼에 복사
-            tdc_hal_spi_write_tx_buffer_u8(bufferForSPI_tx, buffer_tx_index);
+            tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, buffer_tx_index);
 
             // 명령 종료
             if (command > 0x60)
@@ -932,7 +932,7 @@ void tdc_isd_map_reset_nvm_map_data(bool startFlag, int command, int slot_index,
                 // NRF에 전달
 
                 // 송신 데이터 SPI TX버퍼에 복사
-                tdc_hal_spi_write_tx_buffer_u8(bufferForSPI_tx, buffer_tx_index);
+                tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, buffer_tx_index);
 
                 // 명령 종료
                 if (command > 0x60)
