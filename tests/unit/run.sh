@@ -125,18 +125,36 @@ mkdir -p "$BUILD"
 
 fail_total=0
 run_total=0
+src_warn_total=0
 
 for name in map_measure map_flash map_stim; do
     test_src="$HERE/test_$name.c"
     [ -f "$test_src" ] || continue
 
     exe="$BUILD/test_$name.exe"
+    log="$BUILD/build_$name.log"
 
     if ! "$CC_BIN" "${CFLAGS[@]}" "${INCLUDES[@]}" \
-            -o "$exe" "$test_src" "${COMMON_SRC[@]}" ${TEST_TARGETS[$name]}; then
+            -o "$exe" "$test_src" "${COMMON_SRC[@]}" ${TEST_TARGETS[$name]} > "$log" 2>&1; then
         echo "빌드 실패: test_$name" >&2
+        cat "$log" >&2
         fail_total=$((fail_total + 1))
         continue
+    fi
+
+    # 경고는 빌드를 막지 않는다. 다만 어느 쪽에서 났는지 구분해 보고한다.
+    # tests/ 경고는 우리 책임이라 0 이어야 하고,
+    # src/ 경고는 프로덕션 코드의 것이라 이 작업에서 고치지 않는다(원칙_4).
+    warn_test=$(grep "warning:" "$log" | grep -c "/tests/" || true)
+    warn_src=$(grep "warning:" "$log" | grep -vc "/tests/" || true)
+
+    if [ "$warn_test" -ne 0 ]; then
+        echo "!! 테스트 코드 경고 $warn_test 건 (0 이어야 함)" >&2
+        grep "warning:" "$log" | grep "/tests/" >&2
+        fail_total=$((fail_total + 1))
+    fi
+    if [ "$warn_src" -ne 0 ]; then
+        src_warn_total=$((src_warn_total + warn_src))
     fi
 
     echo "======== test_$name ========"
@@ -152,6 +170,12 @@ done
 if [ "$run_total" -eq 0 ]; then
     echo "실행된 테스트가 없습니다." >&2
     exit 2
+fi
+
+if [ "$src_warn_total" -ne 0 ]; then
+    echo "참고: src/ 컴파일 경고 $src_warn_total 건 (프로덕션 코드 - 이 러너는 고치지 않는다)"
+    echo "      상세는 $BUILD/build_*.log"
+    echo ""
 fi
 
 if [ "$fail_total" -ne 0 ]; then

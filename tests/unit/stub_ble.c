@@ -116,6 +116,26 @@ ST__CFX_CM3_SharedMemory_mapData *tdc_shm_get_pointer_current_map_data(void)
     return &g_map_data;
 }
 
+// ---- 로그 (map_stim 이 TDC_PRINTF_* 를 쓴다) ----
+//
+// 테스트에서는 아무것도 출력하지 않는다. 로그 문구는 검증 대상이 아니고
+// (실기 로그 대조는 은수님 게이트 소관) 출력이 섞이면 결과를 읽기 어렵다.
+
+int SEGGER_RTT_printf(unsigned BufferIndex, const char *sFormat, ...)
+{
+    (void) BufferIndex;
+    (void) sFormat;
+
+    return 0;
+}
+
+void tdc_printf_file_func_line(const char *file, const char *func, int line)
+{
+    (void) file;
+    (void) func;
+    (void) line;
+}
+
 // ---- 조회 API ----
 
 int stub_error_count(void)        { return g_error_count; }
