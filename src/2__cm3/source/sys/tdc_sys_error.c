@@ -146,7 +146,7 @@ tdc_sys_error_code_t tdc_sys_error_read(void)
 
 void tdc_sys_error_send_to_app(EN__MAPPING_COMMAND command, tdc_sys_error_major_t majorError, int minorError, int lineNumber)
 {
-    int bufferForSPI_tx[BLE_DataPacketSize];
+    uint8_t bufferForSPI_tx[BLE_DataPacketSize];
     int buffer_tx_index;
 
     buffer_tx_index = 0;

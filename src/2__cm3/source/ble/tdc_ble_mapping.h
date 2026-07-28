@@ -137,7 +137,7 @@ void                tdc_ble_mapping_change_command_waiting_ble_off(void);
 // const ST__MAPPING_PACKET *tdc_ble_mapping_get_packet(void);
 ST__MAPPING_PACKET *tdc_ble_mapping_get_packet(void);
 
-void tdc_ble_mapping_fetch_packet(const int *Rx_dataPacket);
+void tdc_ble_mapping_fetch_packet(const uint8_t *Rx_dataPacket);
 
 ST__MAPPING_STATE tdc_ble_mapping_step(ST__ISD_STATUS ISD_state);
 

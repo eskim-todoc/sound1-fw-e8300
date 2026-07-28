@@ -39,7 +39,7 @@ typedef struct
 
 } ST__REMOTECONTROL_STATE;
 
-void                    tdc_ble_remote_fetch_packet(const int *Rx_dataPacket);
+void                    tdc_ble_remote_fetch_packet(const uint8_t *Rx_dataPacket);
 ST__REMOTECONTROL_STATE tdc_ble_remote_step(bool isdConnection);
 
 void                       tdc_ble_remote_set_passkey_match(void);

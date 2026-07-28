@@ -49,7 +49,7 @@ ST__MAPPING_PACKET *tdc_ble_mapping_get_packet(void)
 
 static int writingStartSlot_index = 0;
 
-void tdc_ble_mapping_fetch_packet(const int *Rx_dataPacket)  // spi 통신에서 호출 됨
+void tdc_ble_mapping_fetch_packet(const uint8_t *Rx_dataPacket)  // spi 통신에서 호출 됨
 {
     int        i, k, index;
     int        tempCommand;
@@ -60,7 +60,7 @@ void tdc_ble_mapping_fetch_packet(const int *Rx_dataPacket)  // spi 통신에서
 
     static int max_C_uA = 0, min_T_uA = 1800;
 
-    int bufferForSPI_tx[BLE_DataPacketSize];
+    uint8_t bufferForSPI_tx[BLE_DataPacketSize];
     int buffer_tx_index;
 
     ST__CFX_CM3_SharedMemory_mapData *p_mapDataSharedMemory;
@@ -1189,7 +1189,7 @@ void tdc_ble_mapping_fetch_packet(const int *Rx_dataPacket)  // spi 통신에서
                     {
                         // 슬롯 번호 범위가 맞으면 진행
                         tempValue = Rx_dataPacket[index++];
-                        if ((tempValue >= 0) && (tempValue <= MaxNumUser))
+                        if ((1 <= tempValue) && (tempValue <= MaxNumUser))
                         {
                             mappingPacket.ReadWriteMapData_Flash.slot_index = tempValue;  // 내부기 Num
 
@@ -1393,7 +1393,7 @@ void tdc_ble_mapping_fetch_packet(const int *Rx_dataPacket)  // spi 통신에서
         {
             tempValue = Rx_dataPacket[index++];
 
-            if ((tempValue >= 0) && (tempValue <= MaxNumUser))
+            if ((1 <= tempValue) && (tempValue <= MaxNumUser))
             {
                 mappingPacket.ReadWriteMapData_Flash.slot_index = tempValue;
                 tempValue                                       = Rx_dataPacket[index++];
@@ -1445,7 +1445,7 @@ void tdc_ble_mapping_fetch_packet(const int *Rx_dataPacket)  // spi 통신에서
                     {
                         // 슬롯 범위가 맞아야 진입
                         tempValue = Rx_dataPacket[index++];
-                        if ((tempValue >= 0) && (tempValue <= MaxNumUser))
+                        if ((1 <= tempValue) && (tempValue <= MaxNumUser))
                         {
                             mappingPacket.ReadWriteMapData_Flash.slot_index = tempValue;  // 내부기 Num
 
@@ -1785,7 +1785,7 @@ ST__MAPPING_STATE tdc_ble_mapping_step(ST__ISD_STATUS ISD_state)
     EN__ISD_CONTROL_STATE isdControlCommand = en__isdStatus_NA;
     tdc_sys_error_code_t        errorCode;
 
-    int  bufferForSPI_tx[BLE_DataPacketSize];
+    uint8_t  bufferForSPI_tx[BLE_DataPacketSize];
     int  buffer_tx_index;
     int  i;
     int  value;

@@ -14,7 +14,7 @@ void tdc_isd_map_read_original_info_setting(bool startFlag, int command)
     ST__CFX_CM3_SharedMemory_ReadWriteCommand_ForFlash FlashCommand;
     int                                               *p_RepositoryFor_ISD_info;
 
-    int        bufferForSPI_tx[BLE_DataPacketSize];
+    uint8_t        bufferForSPI_tx[BLE_DataPacketSize];
     int        buffer_tx_index;
     int        i;
     static int prevPcmOutputMode;
@@ -114,7 +114,7 @@ void tdc_isd_map_write_original_info_setting(bool startFlag, int command)
 {
     ST__CFX_CM3_SharedMemory_ReadWriteCommand_ForFlash FlashCommand;
 
-    int         bufferForSPI_tx[BLE_DataPacketSize];
+    uint8_t         bufferForSPI_tx[BLE_DataPacketSize];
     int         buffer_tx_index;
     static bool prev_ISD_id_match = false;
     static bool startFlashCommand = false;
@@ -217,7 +217,7 @@ void tdc_isd_map_read_info_setting(bool startFlag, int command, int slot_index)
 
     ST__CFX_CM3_SharedMemory_ReadWriteCommand_ForFlash FlashCommand;
     int                                               *p_RepositoryFor_ISD_info;
-    int                                                bufferForSPI_tx[BLE_DataPacketSize];
+    uint8_t                                                bufferForSPI_tx[BLE_DataPacketSize];
     int                                                buffer_tx_index;
     int                                                i;
 
@@ -332,7 +332,7 @@ void tdc_isd_map_write_info_setting(bool startFlag, int command, int slot_index)
 
     ST__CFX_CM3_SharedMemory_ReadWriteCommand_ForFlash FlashCommand;
 
-    int        bufferForSPI_tx[BLE_DataPacketSize];
+    uint8_t        bufferForSPI_tx[BLE_DataPacketSize];
     int        buffer_tx_index;
     int       *p_RepositoryFor_buffer;
     static int prevPcmOutputMode;
@@ -405,7 +405,7 @@ void tdc_isd_map_read_stim_para(bool startFlag, int command, int slot_index, int
     ST__CFX_CM3_SharedMemory_ReadWriteCommand_ForFlash FlashCommand;
     int                                               *p_RepositoryFor_stimulPara;
 
-    int        bufferForSPI_tx[BLE_DataPacketSize];
+    uint8_t        bufferForSPI_tx[BLE_DataPacketSize];
     int        buffer_tx_index;
     int        i;
     int        byteFromInt;
@@ -579,7 +579,7 @@ void tdc_isd_map_write_stim_para(bool startFlag, int command, int slot_index, in
 
     ST__CFX_CM3_SharedMemory_ReadWriteCommand_ForFlash FlashCommand;
 
-    int        bufferForSPI_tx[BLE_DataPacketSize];
+    uint8_t        bufferForSPI_tx[BLE_DataPacketSize];
     int        buffer_tx_index;
     static int prevPcmOutputMode;
 
@@ -638,7 +638,7 @@ void tdc_isd_map_reset_nvm_selected(bool startFlag, int command, int slot_index,
 
     ST__CFX_CM3_SharedMemory_ReadWriteCommand_ForFlash FlashCommand;
 
-    int        bufferForSPI_tx[BLE_DataPacketSize];
+    uint8_t        bufferForSPI_tx[BLE_DataPacketSize];
     int        buffer_tx_index;
     static int prevPcmOutputMode;
 
@@ -714,7 +714,7 @@ bool tdc_isd_map_reset_nvm_all(bool startFlag, int command, EN__mapping_ReadWrit
 {
     ST__CFX_CM3_SharedMemory_ReadWriteCommand_ForFlash FlashCommand;
 
-    int        bufferForSPI_tx[BLE_DataPacketSize];
+    uint8_t        bufferForSPI_tx[BLE_DataPacketSize];
     int        buffer_tx_index;
     static int prevPcmOutputMode;
     static int counter          = 0;
@@ -797,7 +797,7 @@ void tdc_isd_map_reset_nvm_2to4(bool startFlag, int command, EN__mapping_ReadWri
 
     ST__CFX_CM3_SharedMemory_ReadWriteCommand_ForFlash FlashCommand;
 
-    int        bufferForSPI_tx[BLE_DataPacketSize];
+    uint8_t        bufferForSPI_tx[BLE_DataPacketSize];
     int        buffer_tx_index;
     static int prevPcmOutputMode;
     static int counter    = 0;
@@ -893,7 +893,7 @@ void tdc_isd_map_reset_nvm_map_data(bool startFlag, int command, int slot_index,
 
     ST__CFX_CM3_SharedMemory_ReadWriteCommand_ForFlash FlashCommand;
 
-    int        bufferForSPI_tx[BLE_DataPacketSize];
+    uint8_t        bufferForSPI_tx[BLE_DataPacketSize];
     int        buffer_tx_index;
     static int prevPcmOutputMode;
 

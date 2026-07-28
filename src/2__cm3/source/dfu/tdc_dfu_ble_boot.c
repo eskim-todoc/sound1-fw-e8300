@@ -13,7 +13,7 @@
 
 static void _send_resp_packet_boot(uint8_t* packet_data, uint8_t packet_len)
 {
-    int spi_buffer[BLE_DataPacketSize];
+    uint8_t spi_buffer[BLE_DataPacketSize];
     int spi_len;
 
     spi_len = packet_len;
@@ -31,7 +31,7 @@ static void _send_error_packet_boot(uint8_t error)
     tdc_sys_error_send_to_app(PKT_HEADER_BOOT, en__EN__BLE_PROTOCOL_ERROR, error, __LINE__);
 }
 
-static void _fetch_packet_boot_info(int* p_packet)
+static void _fetch_packet_boot_info(const uint8_t *p_packet)
 {
     tdc_boot_status_t boot_status;
     uint8_t                resp_packet[RESP_PKT_SIZE_BOOT_INFO] = {0};
@@ -54,7 +54,7 @@ static void _fetch_packet_boot_info(int* p_packet)
     _send_resp_packet_boot(resp_packet, RESP_PKT_SIZE_BOOT_INFO);
 }
 
-static void _fetch_packet_boot_select(int* p_packet)
+static void _fetch_packet_boot_select(const uint8_t *p_packet)
 {
     tdc_boot_status_t boot_status;
     uint8_t                slot_num;
@@ -126,7 +126,7 @@ static void _fetch_packet_boot_select(int* p_packet)
     SYS_WATCHDOG_RESET();
 }
 
-void tdc_dfu_ble_fetch_boot(int* p_packet)
+void tdc_dfu_ble_fetch_boot(const uint8_t *p_packet)
 {
     uint8_t opt;
 

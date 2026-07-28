@@ -17,10 +17,17 @@
  * GLOBAL VARIABLES
  ***********************************************************************/
 
-static int  SPI_Rx_Buffer[TDC_HAL_SPI_COMM_PACKET_SIZE] = {0};
-static int  SPI_Tx_Buffer[TDC_HAL_SPI_COMM_PACKET_SIZE] = {21, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1};
-static int  Rx_DataPacket[BLE_DataPacketSize];
-static bool TxBufferEmpty = true;
+/* DMA 가 직접 읽고 쓰는 버퍼는 워드 크기와 1:1 로 맞춘다 (2026-07-27 8비트 전환).
+ * DMA 워드 크기를 WORD_SIZE_8BITS_TO_8BITS 로 바꿨으므로 (tdc_hal_dma.h) 원소당 1바이트다.
+ * aligned(4) 는 하드웨어 레퍼런스가 §19.4.2.2 에서 "주소는 워드 정렬 필요" 라 하고
+ * §19.4.2.6 에서 "8비트 워드는 바이트 주소 지정 가능" 이라 하여 서술이 엇갈리므로,
+ * 어느 쪽이 맞든 안전하도록 붙여 둔 것이다. 비용은 패딩 최대 3바이트뿐이다. */
+static uint8_t SPI_Rx_Buffer[TDC_HAL_SPI_COMM_PACKET_SIZE] __attribute__((aligned(4))) = {0};
+static uint8_t SPI_Tx_Buffer[TDC_HAL_SPI_COMM_PACKET_SIZE] __attribute__((aligned(4))) = {21, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1};
+
+/* 수신 패킷 사본. 프로토콜이 바이트 단위이므로 uint8_t 로 다룬다 (B2, 2026-07-27). */
+static uint8_t Rx_DataPacket[BLE_DataPacketSize];
+static bool    TxBufferEmpty = true;
 
 void tdc_hal_spi_enable_master_read_command(void)
 {
@@ -41,7 +48,7 @@ bool tdc_hal_spi_is_tx_buffer_empty(void)
     return TxBufferEmpty;
 }
 
-int *tdc_hal_spi_get_rx_packet_addr(void)
+uint8_t *tdc_hal_spi_get_rx_packet_addr(void)
 {
     return &Rx_DataPacket[0];
 }
@@ -258,7 +265,7 @@ void tdc_hal_spi_init(void)
     // DMA 송신 버퍼 초기화 (배열 초기값 설정하여 정의해도 0으로 빌드되는 현상 있음)
     for (int i = 0; i < TDC_HAL_SPI_COMM_PACKET_SIZE; i++)
     {
-        SPI_Tx_Buffer[i] = 1 + i;
+        SPI_Tx_Buffer[i] = (uint8_t) (1 + i);  // 1~21, uint8_t 범위 내
     }
 
 #if 1
@@ -283,8 +290,7 @@ void tdc_hal_spi_init(void)
     tdc_hal_spi_clear_master_read_command();  // Sys_GPIO_Set_Low(GPIO_PIN_ReadCommandForSPI_Master);
 }
 
-// void tdc_hal_spi_write_tx_buffer(const int source[], int dataSize)
-void tdc_hal_spi_write_tx_buffer(int *source, int dataSize)
+void tdc_hal_spi_write_tx_buffer(const uint8_t *source, int dataSize)
 {
     // TDC_PRINTF_W("[TX] ENTER empty=%d t3=%d ms\r\n", (int)tdc_hal_spi_is_tx_buffer_empty(), tdc_hal_timer_get_t3_tick());
 
@@ -302,7 +308,7 @@ void tdc_hal_spi_write_tx_buffer(int *source, int dataSize)
                 SPI_Tx_Buffer[i] = 0;
             }
 
-            SPI_Tx_Buffer[TDC_HAL_SPI_COMM_PACKET_SIZE - 1] = dataSize;  // 21 - 1 = 20, 20 인덱스에 dataSize 기록
+            SPI_Tx_Buffer[TDC_HAL_SPI_COMM_PACKET_SIZE - 1] = (uint8_t) dataSize;  // 21 - 1 = 20, 20 인덱스에 dataSize 기록
 
 #if 1  // nRF SPI 디버깅
        // 라이브모드의 실시간 전류 값을 제외하고 출력 (데이터 양이 너무 많음)

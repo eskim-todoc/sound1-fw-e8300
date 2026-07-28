@@ -4,6 +4,13 @@
 
 #include <tdc_fs.h>
 #include <tdc_cfx_eeprom_write.h>
+#include <tdc_printf.h>
+
+/* 슬롯(isd_num)·맵(map_num) 번호는 1 base 이며 g_tdc_fs_ptr_entire_map->map[n-1] 로 쓰인다.
+ * 0 이 들어오면 map[-1] 이 되어 배열 앞 메모리를 덮어쓴다. BLE 레이어에서도 막지만
+ * 저장 계층에서 한 번 더 막는다(심층 방어, 2026-07-28). */
+#define TDC_EEPROM_IS_VALID_ISD_NUM(n) (((n) >= 1) && ((n) <= MaxNumUser))
+#define TDC_EEPROM_IS_VALID_MAP_NUM(n) (((n) >= 1) && ((n) <= MaxNumMap))
 
 void tdc_cfx_eeprom_write_user_setting_parameters(int connected_ISD_num)
 {
@@ -23,6 +30,12 @@ void tdc_cfx_eeprom_write_user_setting_parameters_by_mapping(void)
     isd_num                = cfx_cm3_sharedMemoryAll.ReadWriteCommand_ForFlash.isd_index;
     p_repo_for_rw_map_data = &cfx_cm3_sharedMemoryAll.repositoryForReadWriteMapData;
 
+    if (!TDC_EEPROM_IS_VALID_ISD_NUM(isd_num))
+    {
+        TDC_PRINTF_E("[EEPROM] INVALID ISD NUM (%d) ON WRITE USER SETTING \r\n", isd_num);
+        return;
+    }
+
     g_tdc_fs_ptr_entire_map->map[isd_num - 1].user_setting_value = p_repo_for_rw_map_data->userSettingValue_mapData;
 
     tdc_fs_map_write_user_setting_value(isd_num);  // 신규 코드
@@ -40,6 +53,12 @@ void tdc_cfx_eeprom_write_map_stamp_parameters_by_mapping(void)
 
     isd_num                = cfx_cm3_sharedMemoryAll.ReadWriteCommand_ForFlash.isd_index;
     p_repo_for_rw_map_data = &cfx_cm3_sharedMemoryAll.repositoryForReadWriteMapData;
+
+    if (!TDC_EEPROM_IS_VALID_ISD_NUM(isd_num))
+    {
+        TDC_PRINTF_E("[EEPROM] INVALID ISD NUM (%d) ON WRITE MAP STAMP \r\n", isd_num);
+        return;
+    }
 
     g_tdc_fs_ptr_entire_map->map[isd_num - 1].map_stamp = p_repo_for_rw_map_data->mapStamp;
 
@@ -67,6 +86,12 @@ void tdc_cfx_eeprom_write_map_data_by_mapping(void)
 
     isd_num = cfx_cm3_sharedMemoryAll.ReadWriteCommand_ForFlash.isd_index;
     map_num = cfx_cm3_sharedMemoryAll.ReadWriteCommand_ForFlash.map_index;
+
+    if ((!TDC_EEPROM_IS_VALID_ISD_NUM(isd_num)) || (!TDC_EEPROM_IS_VALID_MAP_NUM(map_num)))
+    {
+        TDC_PRINTF_E("[EEPROM] INVALID ISD/MAP NUM (%d, %d) ON WRITE MAP DATA \r\n", isd_num, map_num);
+        return;
+    }
 
     p_src_map_data = &cfx_cm3_sharedMemoryAll.repositoryForReadWriteMapData.readWritemapData;
     p_dst_map_data = &(g_tdc_fs_ptr_entire_map->map[isd_num - 1].map_data[map_num - 1]);

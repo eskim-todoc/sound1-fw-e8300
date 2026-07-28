@@ -31,7 +31,7 @@ void tdc_ble_gain_control_init(void)
     cfx_cm3_sharedMemoryAll.is_i2s_source_cradle = 0;
 }
 
-int tdc_ble_gain_control_handle(const ST__REMOTECONTROL_PACKET *packet, int *tx_buf, int tx_index)
+int tdc_ble_gain_control_handle(const ST__REMOTECONTROL_PACKET *packet, uint8_t *tx_buf, int tx_index)
 {
     int control_type = packet->data[0];  // 0 = Read, 1 = Write
     int gain_type    = packet->data[1];  // 1 = Gain_A, 2 = Gain_B

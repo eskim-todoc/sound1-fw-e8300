@@ -58,7 +58,7 @@ void tdc_isd_map_impedance_step(bool startFlag)
 
     static int ble_transfer_index;
     static int flowCounter_SendingSPI = 1000;
-    int        bufferForSPI_tx[BLE_DataPacketSize];
+    uint8_t        bufferForSPI_tx[BLE_DataPacketSize];
     int        buffer_tx_index;
 
     //////////////////////
@@ -630,6 +630,11 @@ void tdc_isd_map_impedance_step(bool startFlag)
 
             bufferForSPI_tx[buffer_tx_index++] = electrodeNum + 1;  // 채널 번호 1~32
 
+            /* impedanceValue 는 char 배열이라(-fsigned-char) 0x80 이상 값이 음수로 담긴다.
+             * 아래 (int) 캐스팅에서 부호 확장이 일어나지만 하위 8비트는 보존되고,
+             * bufferForSPI_tx 가 uint8_t 라 대입 시 그 하위 8비트만 남는다.
+             * 전환 전에는 int 버퍼에 담겼다가 SPI 송신 단계에서 잘렸으므로
+             * 결과 바이트는 동일하다 (2026-07-28 B3b 전환 시 확인). */
             for (i = 0; i < Max_ImpedanceReturnDataSize; i++)  // ble 패킷 사이즈로 인하여..1회 전달 시 최대, 4번 측정한 데이터 전달 가능.
             {
                 if (ble_transfer_index < mappingPacket->impedanceCheck.iterationNum)

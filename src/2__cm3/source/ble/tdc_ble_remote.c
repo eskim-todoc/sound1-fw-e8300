@@ -47,12 +47,12 @@ void tdc_ble_remote_clear_command(void)
 
 static int writingStartSlot_index = 0;
 
-void tdc_ble_remote_fetch_packet(const int *Rx_dataPacket)
+void tdc_ble_remote_fetch_packet(const uint8_t *Rx_dataPacket)
 {
     static int prev_subCommandData_Num_index = 0;
     static int stimulPara_index              = 0;
 
-    int bufferForSPI_tx[BLE_DataPacketSize];
+    uint8_t bufferForSPI_tx[BLE_DataPacketSize];
     int tempCommand;
     int tempValue;
 
@@ -341,7 +341,7 @@ void tdc_ble_remote_fetch_packet(const int *Rx_dataPacket)
         {
 
             tempValue = Rx_dataPacket[index++];
-            if ((tempValue >= 0) && (tempValue <= MaxNumUser))
+            if ((1 <= tempValue) && (tempValue <= MaxNumUser))
             {
 
                 remoteDataPacket.remocon_ReadWriteMapData_Flash.slot_index = tempValue;
@@ -399,7 +399,7 @@ void tdc_ble_remote_fetch_packet(const int *Rx_dataPacket)
                     {
 
                         tempValue = Rx_dataPacket[index++];
-                        if ((tempValue >= 0) && (tempValue <= MaxNumUser))
+                        if ((1 <= tempValue) && (tempValue <= MaxNumUser))
                         {
 
                             remoteDataPacket.remocon_ReadWriteMapData_Flash.slot_index = tempValue;  // 내부기 Num
@@ -642,7 +642,7 @@ ST__REMOTECONTROL_STATE tdc_ble_remote_step(bool isdConnection)  // 연결 상�
     static int                        disconnectionCounter  = 0;
     ST__REMOTECONTROL_STATE           RemoteControlState    = {en__isdStatus_NA, false};
 
-    int bufferForSPI_tx[BLE_DataPacketSize];
+    uint8_t bufferForSPI_tx[BLE_DataPacketSize];
     int volume;
     int tx_index = 0;
     int i, k;

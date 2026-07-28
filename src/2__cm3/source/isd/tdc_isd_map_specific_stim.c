@@ -57,7 +57,7 @@ void tdc_isd_map_specific_stim_step(bool startFlag)
 
     static int channel_index = 0;
 
-    int bufferForSPI_tx[BLE_DataPacketSize];
+    uint8_t bufferForSPI_tx[BLE_DataPacketSize];
     int buffer_tx_index = 0;
 
     static ST__MAPPING_PACKET const *mappingPacket;

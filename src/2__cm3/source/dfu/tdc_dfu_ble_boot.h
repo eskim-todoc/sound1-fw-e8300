@@ -118,6 +118,6 @@ typedef enum
     BOOT_SLOT_NUM_END   = BOOT_SLOT_NUM_2,
 } EN__BOOT_SLOT_NUM;
 
-void tdc_dfu_ble_fetch_boot(int *p_packet);
+void tdc_dfu_ble_fetch_boot(const uint8_t *p_packet);
 
 #endif // __tdc_dfu_ble_boot_h__

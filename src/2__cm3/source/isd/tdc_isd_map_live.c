@@ -48,7 +48,7 @@ bool tdc_isd_map_live_step(ST__ISD_STATUS ISD_state)
     int        offset;
     int        value;
 
-    int bufferForSPI_tx[BLE_DataPacketSize];
+    uint8_t bufferForSPI_tx[BLE_DataPacketSize];
     int buffer_tx_index;
 
     static bool calculationParameter = false;

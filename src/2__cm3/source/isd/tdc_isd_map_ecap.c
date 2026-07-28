@@ -142,7 +142,7 @@ void tdc_isd_map_ecap_step(bool startFlag)
     static int eCAP_mesureStartTime = 0;
 
     static int ble_transfer_index;
-    int        bufferForSPI_tx[BLE_DataPacketSize];
+    uint8_t        bufferForSPI_tx[BLE_DataPacketSize];
     int        buffer_tx_index;
 
     int tempInt;

@@ -11,7 +11,7 @@
 void tdc_ble_remote_read_sp_para(bool startFlag, int command)
 {
     static int     flowCounter = 0;
-    int            bufferForSPI_tx[BLE_DataPacketSize];
+    uint8_t            bufferForSPI_tx[BLE_DataPacketSize];
     int            tx_index = 0;
     int i, k;
 

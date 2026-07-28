@@ -4,6 +4,14 @@
 
 #include <tdc_fs.h>
 #include <tdc_cfx_eeprom_read.h>
+#include <tdc_printf.h>
+
+/* 슬롯(isd_num)·맵(map_num) 번호는 1 base 이며 g_tdc_fs_ptr_entire_map->map[n-1] 로 쓰인다.
+ * 0 이 들어오면 map[-1] 이 되어 배열 앞 메모리를 읽는다. 읽은 값이 BLE 응답으로
+ * 앱에 실려 나가므로 정보 노출로도 이어진다. BLE 레이어에서도 막지만 저장 계층에서
+ * 한 번 더 막는다(심층 방어, 2026-07-28). */
+#define TDC_EEPROM_IS_VALID_ISD_NUM(n) (((n) >= 1) && ((n) <= MaxNumUser))
+#define TDC_EEPROM_IS_VALID_MAP_NUM(n) (((n) >= 1) && ((n) <= MaxNumMap))
 
 void tdc_cfx_eeprom_read_all_isd_info(void)
 {
@@ -72,6 +80,12 @@ void tdc_cfx_eeprom_copy_user_setting_parameters_to_cm3(int isd_num)
 
 void tdc_cfx_eeprom_copy_mapping_data_to_cm3(int map_num, int isd_num)
 {
+    if ((!TDC_EEPROM_IS_VALID_ISD_NUM(isd_num)) || (!TDC_EEPROM_IS_VALID_MAP_NUM(map_num)))
+    {
+        TDC_PRINTF_E("[EEPROM] INVALID ISD/MAP NUM (%d, %d) ON READ MAP DATA TO CM3 \r\n", isd_num, map_num);
+        return;
+    }
+
     cfx_cm3_sharedMemoryAll.currentMapData = g_tdc_fs_ptr_entire_map->map[isd_num - 1].map_data[map_num - 1];
 }
 
@@ -80,8 +94,17 @@ void tdc_cfx_eeprom_copy_isd_info_to_repository(void)
     TDC_FS_MAP_T               *p_isd;
     ST__CFX_CM3_SharedMemory_ISD_info *p_src;
     ST__CFX_CM3_SharedMemory_ISD_info *p_dst;
+    int                                isd_num;
 
-    p_isd = &(g_tdc_fs_ptr_entire_map->map[cfx_cm3_sharedMemoryAll.ReadWriteCommand_ForFlash.isd_index - 1]);
+    isd_num = cfx_cm3_sharedMemoryAll.ReadWriteCommand_ForFlash.isd_index;
+
+    if (!TDC_EEPROM_IS_VALID_ISD_NUM(isd_num))
+    {
+        TDC_PRINTF_E("[EEPROM] INVALID ISD NUM (%d) ON READ ISD INFO \r\n", isd_num);
+        return;
+    }
+
+    p_isd = &(g_tdc_fs_ptr_entire_map->map[isd_num - 1]);
     p_src = &p_isd->isd_info;
     p_dst = &cfx_cm3_sharedMemoryAll.repositoryForReadWriteMapData.ISD_info_mapData;
 
@@ -96,6 +119,12 @@ void tdc_cfx_eeprom_copy_mapping_data_to_repository(void)
     isd_num = cfx_cm3_sharedMemoryAll.ReadWriteCommand_ForFlash.isd_index;
     map_num = cfx_cm3_sharedMemoryAll.ReadWriteCommand_ForFlash.map_index;
 
+    if ((!TDC_EEPROM_IS_VALID_ISD_NUM(isd_num)) || (!TDC_EEPROM_IS_VALID_MAP_NUM(map_num)))
+    {
+        TDC_PRINTF_E("[EEPROM] INVALID ISD/MAP NUM (%d, %d) ON READ MAP DATA \r\n", isd_num, map_num);
+        return;
+    }
+
     p_src = &(g_tdc_fs_ptr_entire_map->map[isd_num - 1].map_data[map_num - 1]);
     p_dst = &(cfx_cm3_sharedMemoryAll.repositoryForReadWriteMapData.readWritemapData);
 
@@ -105,8 +134,17 @@ void tdc_cfx_eeprom_copy_mapping_data_to_repository(void)
 void tdc_cfx_eeprom_copy_user_setting_parameters_to_repository(void)
 {
     ST__CFX_CM3_SharedMemory_userSettingValue *p_src, *p_dst;
+    int                                        isd_num;
 
-    p_src = &(g_tdc_fs_ptr_entire_map->map[cfx_cm3_sharedMemoryAll.ReadWriteCommand_ForFlash.isd_index - 1].user_setting_value);
+    isd_num = cfx_cm3_sharedMemoryAll.ReadWriteCommand_ForFlash.isd_index;
+
+    if (!TDC_EEPROM_IS_VALID_ISD_NUM(isd_num))
+    {
+        TDC_PRINTF_E("[EEPROM] INVALID ISD NUM (%d) ON READ USER SETTING \r\n", isd_num);
+        return;
+    }
+
+    p_src = &(g_tdc_fs_ptr_entire_map->map[isd_num - 1].user_setting_value);
     p_dst = &cfx_cm3_sharedMemoryAll.repositoryForReadWriteMapData.userSettingValue_mapData;
 
     *p_dst = *p_src;
@@ -115,8 +153,17 @@ void tdc_cfx_eeprom_copy_user_setting_parameters_to_repository(void)
 void tdc_cfx_eeprom_copy_map_stamp_to_repository(void)
 {
     ST__MAPPING_DATE *p_src, *p_dst;
+    int               isd_num;
 
-    p_src = &(g_tdc_fs_ptr_entire_map->map[cfx_cm3_sharedMemoryAll.ReadWriteCommand_ForFlash.isd_index - 1].map_stamp);
+    isd_num = cfx_cm3_sharedMemoryAll.ReadWriteCommand_ForFlash.isd_index;
+
+    if (!TDC_EEPROM_IS_VALID_ISD_NUM(isd_num))
+    {
+        TDC_PRINTF_E("[EEPROM] INVALID ISD NUM (%d) ON READ MAP STAMP \r\n", isd_num);
+        return;
+    }
+
+    p_src = &(g_tdc_fs_ptr_entire_map->map[isd_num - 1].map_stamp);
     p_dst = &cfx_cm3_sharedMemoryAll.repositoryForReadWriteMapData.mapStamp;
 
     *p_dst = *p_src;
