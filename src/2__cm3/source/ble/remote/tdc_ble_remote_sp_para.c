@@ -7,6 +7,7 @@
 #include <tdc_shm.h>
 #include <tdc_sys_error.h>
 #include <tdc_isd_init.h>
+#include <tdc_ble_reply.h>
 
 void tdc_ble_remote_read_sp_para(bool startFlag, int command)
 {
@@ -49,26 +50,23 @@ void tdc_ble_remote_read_sp_para(bool startFlag, int command)
 
             // 송신 데이터 준비
             // command loop-back
-            bufferForSPI_tx[tx_index++] = command;
+            tx_index = tdc_ble_reply_header(bufferForSPI_tx, tx_index, command);
 
             // data index 전송
-            bufferForSPI_tx[tx_index++] = flowCounter;
+            tx_index = tdc_ble_reply_u8(bufferForSPI_tx, tx_index, flowCounter);
 
             // 입력 ADC 최대값 전송
 
             adc_inputMax = tdc_shm_read_audio_signal_max();
 
-            bufferForSPI_tx[tx_index++] = (char) (adc_inputMax >> 24);
-            bufferForSPI_tx[tx_index++] = (char) ((adc_inputMax >> 16) & (0xFF));
-            bufferForSPI_tx[tx_index++] = (char) ((adc_inputMax >> 8) & (0xFF));
-            bufferForSPI_tx[tx_index++] = (char) ((adc_inputMax) & (0xFF));
+            tx_index = tdc_ble_reply_u32(bufferForSPI_tx, tx_index, adc_inputMax);
 
             stimulDAC_setting = tdc_stim_read_dac_register_value();
 
             // offset DAC 기울기 전송 및 offset 값 계산
             if (stimulDAC_setting->DAC_offsetSlope_register == 0) // 2uA 기울기 오프셋
             {
-                bufferForSPI_tx[tx_index++] = offsetDAC_A_Slope_QI4F4;
+                tx_index = tdc_ble_reply_u8(bufferForSPI_tx, tx_index, offsetDAC_A_Slope_QI4F4);
 
                 value     = offsetDAC_A_Slope_QI5F12 * stimulDAC_setting->DAC_offsetLevel_register;
                 offset_uA = value >> 12; // offsetDAC_A 기울기
@@ -76,13 +74,13 @@ void tdc_ble_remote_read_sp_para(bool startFlag, int command)
             else // 4uA 기울기 오프셋
             {
 
-                bufferForSPI_tx[tx_index++] = offsetDAC_B_Slope_QI4F4;
+                tx_index = tdc_ble_reply_u8(bufferForSPI_tx, tx_index, offsetDAC_B_Slope_QI4F4);
 
                 value     = offsetDAC_B_Slope_QI5F12 * stimulDAC_setting->DAC_offsetLevel_register;
                 offset_uA = value >> 12; // offsetDAC_B 기울기
             }
             //  offset level 전송
-            bufferForSPI_tx[tx_index++] = stimulDAC_setting->DAC_offsetLevel_register;
+            tx_index = tdc_ble_reply_u8(bufferForSPI_tx, tx_index, stimulDAC_setting->DAC_offsetLevel_register);
 
             // 자극 DAC 기울기 전송
 
@@ -90,24 +88,24 @@ void tdc_ble_remote_read_sp_para(bool startFlag, int command)
             {
                 case 0: // 2uA 기울기
 
-                    bufferForSPI_tx[tx_index++] = DAC_A_Slope_QI4F4;
+                    tx_index = tdc_ble_reply_u8(bufferForSPI_tx, tx_index, DAC_A_Slope_QI4F4);
                     stimulDAC_Slope_QI5F12      = DAC_A_Slope_QI5F12;
 
                     break;
                 case 1: // 4uA 기울기
 
-                    bufferForSPI_tx[tx_index++] = DAC_B_Slope_QI4F4;
+                    tx_index = tdc_ble_reply_u8(bufferForSPI_tx, tx_index, DAC_B_Slope_QI4F4);
 
                     stimulDAC_Slope_QI5F12 = DAC_B_Slope_QI5F12;
                     break;
                 case 2: // 6uA 기울기
 
-                    bufferForSPI_tx[tx_index++] = DAC_C_Slope_QI4F4;
+                    tx_index = tdc_ble_reply_u8(bufferForSPI_tx, tx_index, DAC_C_Slope_QI4F4);
                     stimulDAC_Slope_QI5F12      = DAC_C_Slope_QI5F12;
                     break;
                 case 3: // 8uA 기울기
 
-                    bufferForSPI_tx[tx_index++] = DAC_D_Slope_QI4F4;
+                    tx_index = tdc_ble_reply_u8(bufferForSPI_tx, tx_index, DAC_D_Slope_QI4F4);
                     stimulDAC_Slope_QI5F12      = DAC_D_Slope_QI5F12;
                     break;
             }
@@ -116,10 +114,7 @@ void tdc_ble_remote_read_sp_para(bool startFlag, int command)
 
             isd_id = tdc_isd_read_connected_id();
 
-            bufferForSPI_tx[tx_index++] = (char) (isd_id >> 24);
-            bufferForSPI_tx[tx_index++] = (char) ((isd_id >> 16) & 0xFF);
-            bufferForSPI_tx[tx_index++] = (char) ((isd_id >> 8) & 0xFF);
-            bufferForSPI_tx[tx_index++] = (char) (isd_id & 0xFF);
+            tx_index = tdc_ble_reply_u32(bufferForSPI_tx, tx_index, isd_id);
         }
         break;
         case 2:
@@ -127,10 +122,10 @@ void tdc_ble_remote_read_sp_para(bool startFlag, int command)
 
             // 송신 데이터 준비
             // command loop-back
-            bufferForSPI_tx[tx_index++] = command;
+            tx_index = tdc_ble_reply_header(bufferForSPI_tx, tx_index, command);
 
             // data index 전송
-            bufferForSPI_tx[tx_index++] = flowCounter;
+            tx_index = tdc_ble_reply_u8(bufferForSPI_tx, tx_index, flowCounter);
 
             // 자극 DAC 레벨 1~18번 채널 값 전송 및 자극출력 전류 uA
 
@@ -139,7 +134,7 @@ void tdc_ble_remote_read_sp_para(bool startFlag, int command)
             for (k = 0; k < 18; k++)
             {
 
-                bufferForSPI_tx[tx_index++] = p_cfxStimulLevel_255[k];
+                tx_index = tdc_ble_reply_u8(bufferForSPI_tx, tx_index, p_cfxStimulLevel_255[k]);
 
                 value                  = stimulDAC_Slope_QI5F12 * p_cfxStimulLevel_255[k];
                 stimulationLevel_uA[k] = offset_uA + (value >> 12);
@@ -152,17 +147,17 @@ void tdc_ble_remote_read_sp_para(bool startFlag, int command)
 
             // 송신 데이터 준비
             // command loop-back
-            bufferForSPI_tx[tx_index++] = command;
+            tx_index = tdc_ble_reply_header(bufferForSPI_tx, tx_index, command);
 
             // data index 전송
-            bufferForSPI_tx[tx_index++] = flowCounter;
+            tx_index = tdc_ble_reply_u8(bufferForSPI_tx, tx_index, flowCounter);
 
             p_cfxStimulLevel_255 = tdc_shm_read_current_stimul_level_255();
             // 자극 DAC 레벨 19~32번 채널 값 전송 및 자자극출력 전류 uA
 
             for (k = 18; k < 32; k++)
             {
-                bufferForSPI_tx[tx_index++] = p_cfxStimulLevel_255[k];
+                tx_index = tdc_ble_reply_u8(bufferForSPI_tx, tx_index, p_cfxStimulLevel_255[k]);
 
                 value                  = stimulDAC_Slope_QI5F12 * p_cfxStimulLevel_255[k];
                 stimulationLevel_uA[k] = offset_uA + (value >> 12);
@@ -175,18 +170,17 @@ void tdc_ble_remote_read_sp_para(bool startFlag, int command)
 
             // 송신 데이터 준비
             // command loop-back
-            bufferForSPI_tx[tx_index++] = command;
+            tx_index = tdc_ble_reply_header(bufferForSPI_tx, tx_index, command);
 
             // data index 전송
-            bufferForSPI_tx[tx_index++] = flowCounter;
+            tx_index = tdc_ble_reply_u8(bufferForSPI_tx, tx_index, flowCounter);
 
             // 자극출력 전류 uA 1~8번 채널 값 전송
 
             for (k = 0; k < 8; k++)
             {
 
-                bufferForSPI_tx[tx_index++] = stimulationLevel_uA[k] >> 8;   // 상위 바이트
-                bufferForSPI_tx[tx_index++] = stimulationLevel_uA[k] & 0xFF; // 하위 바이트
+                tx_index = tdc_ble_reply_u16(bufferForSPI_tx, tx_index, stimulationLevel_uA[k]);
             }
         }
         break;
@@ -196,18 +190,17 @@ void tdc_ble_remote_read_sp_para(bool startFlag, int command)
 
             // 송신 데이터 준비
             // command loop-back
-            bufferForSPI_tx[tx_index++] = command;
+            tx_index = tdc_ble_reply_header(bufferForSPI_tx, tx_index, command);
 
             // data index 전송
-            bufferForSPI_tx[tx_index++] = flowCounter;
+            tx_index = tdc_ble_reply_u8(bufferForSPI_tx, tx_index, flowCounter);
 
             // 자극출력 전류 uA 9~16번 채널 값 전송
 
             for (k = 8; k < 16; k++)
             {
 
-                bufferForSPI_tx[tx_index++] = stimulationLevel_uA[k] >> 8;   // 상위 바이트
-                bufferForSPI_tx[tx_index++] = stimulationLevel_uA[k] & 0xFF; // 하위 바이트
+                tx_index = tdc_ble_reply_u16(bufferForSPI_tx, tx_index, stimulationLevel_uA[k]);
             }
         }
         break;
@@ -217,18 +210,17 @@ void tdc_ble_remote_read_sp_para(bool startFlag, int command)
 
             // 송신 데이터 준비
             // command loop-back
-            bufferForSPI_tx[tx_index++] = command;
+            tx_index = tdc_ble_reply_header(bufferForSPI_tx, tx_index, command);
 
             // data index 전송
-            bufferForSPI_tx[tx_index++] = flowCounter;
+            tx_index = tdc_ble_reply_u8(bufferForSPI_tx, tx_index, flowCounter);
 
             // 자극출력 전류 uA 17~24번 채널 값 전송
 
             for (k = 16; k < 24; k++)
             {
 
-                bufferForSPI_tx[tx_index++] = stimulationLevel_uA[k] >> 8;   // 상위 바이트
-                bufferForSPI_tx[tx_index++] = stimulationLevel_uA[k] & 0xFF; // 하위 바이트
+                tx_index = tdc_ble_reply_u16(bufferForSPI_tx, tx_index, stimulationLevel_uA[k]);
             }
         }
         break;
@@ -238,18 +230,17 @@ void tdc_ble_remote_read_sp_para(bool startFlag, int command)
 
             // 송신 데이터 준비
             // command loop-back
-            bufferForSPI_tx[tx_index++] = command;
+            tx_index = tdc_ble_reply_header(bufferForSPI_tx, tx_index, command);
 
             // data index 전송
-            bufferForSPI_tx[tx_index++] = flowCounter;
+            tx_index = tdc_ble_reply_u8(bufferForSPI_tx, tx_index, flowCounter);
 
             // 자극출력 전류 uA 25~32번 채널 값 전송
 
             for (k = 24; k < 32; k++)
             {
 
-                bufferForSPI_tx[tx_index++] = stimulationLevel_uA[k] >> 8;   // 상위 바이트
-                bufferForSPI_tx[tx_index++] = stimulationLevel_uA[k] & 0xFF; // 하위 바이트
+                tx_index = tdc_ble_reply_u16(bufferForSPI_tx, tx_index, stimulationLevel_uA[k]);
             }
         }
         break;
