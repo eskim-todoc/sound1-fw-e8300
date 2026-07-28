@@ -67,6 +67,9 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/source/touch}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/source/ui}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/source/ble}&quot;"/>
+										<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/source/ble/remote}&quot;"/>
+										<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/source/ble/mapping}&quot;"/>
+										<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/source/ble/sound1}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/source/isd}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/source/cfx_link}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/source/boot}&quot;"/>

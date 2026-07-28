@@ -141,4 +141,12 @@ void tdc_ble_mapping_fetch_packet(const uint8_t *Rx_dataPacket);
 
 ST__MAPPING_STATE tdc_ble_mapping_step(ST__ISD_STATUS ISD_state);
 
+// 데이터 인덱스 연속성 검사 카운터 접근자.
+//
+// 여러 패킷에 나눠 도착하는 명령(0x66 하위 1 · 0x68 · 0x6C · 0x6D)에서
+// 데이터 인덱스가 1씩 증가하는지 검사하는 데 쓰인다. 어긋나면 0 으로 리셋한다.
+// 명령별 파싱 파일이 분리되면서 파일 경계를 넘게 되어 접근자로 노출한다.
+int  tdc_ble_mapping_get_seq_index(void);
+void tdc_ble_mapping_set_seq_index(int seqIndex);
+
 #endif
