@@ -20,6 +20,7 @@
 #include <FPGA.h>
 #include <tdc_sys_control.h>
 #include <tdc_ble_remote.h>
+#include <tdc_ble_map_measure.h>
 
 static ST__MAPPING_PACKET mappingPacket;
 
@@ -128,93 +129,19 @@ void tdc_ble_mapping_fetch_packet(const uint8_t *Rx_dataPacket)  // spi 통신�
 
         case en__mapping_impedanceChekck:  // 0x62
         {
-            mappingPacket.impedanceCheck.iterationNum          = Rx_dataPacket[index++];  // index 1 → 2
-            mappingPacket.impedanceCheck.channel               = Rx_dataPacket[index++];  // index 2 → 3
-            mappingPacket.impedanceCheck.pulseWidth_start_usec = Rx_dataPacket[index++];  // index 3 → 4
-            mappingPacket.impedanceCheck.pulseWidth_end_usec   = Rx_dataPacket[index++];  // index 4 → 5
-
-            value                                            = Rx_dataPacket[index++] << 8;     // 자극 uA단위 상위 바이트 // index 5 → 6
-            mappingPacket.impedanceCheck.stimulationLevel_uA = value | Rx_dataPacket[index++];  // 자극 uA단위 하위 바이트 // index 6 → 7
-
-            // 측정 반복 횟수 범위 검사
-            if ((1 <= mappingPacket.impedanceCheck.iterationNum)        // 1 이상
-                && (mappingPacket.impedanceCheck.iterationNum <= 255))  // 255 이하
-            {
-                // 측정 채널 선택 범위 검사
-                if (((1 <= mappingPacket.impedanceCheck.channel)       // 1 이상
-                     && (mappingPacket.impedanceCheck.channel <= 32))  // 32 이하
-                    || (mappingPacket.impedanceCheck.channel == 255))  // 또는 255 (전채널)
-                {
-                    // 좁은 펄스 위상 폭 usec (시작) 범위 검사
-                    if ((13 <= mappingPacket.impedanceCheck.pulseWidth_start_usec)       // 13 이상
-                        && (mappingPacket.impedanceCheck.pulseWidth_start_usec <= 255))  // 255 이하
-                    {
-                        // 넓은 펄스 위상 폭 (최종) 범위 검사
-                        if ((13 <= mappingPacket.impedanceCheck.pulseWidth_end_usec)       // 13 이상
-                            && (mappingPacket.impedanceCheck.pulseWidth_end_usec <= 255))  // 255 이하
-                        {
-                            // 측정용 자극 크기 uA 범위 검사
-                            if ((1 <= mappingPacket.impedanceCheck.stimulationLevel_uA)         // 1 이상
-                                && (mappingPacket.impedanceCheck.stimulationLevel_uA <= 1024))  // 1024 이하
-                            {
-                                mappingPacket.fetched_command = en__mapping_impedanceChekck;
-                                break;
-                            }
-                        }
-                    }
-                }
-            }
-
-            // 데이터 범위를 벗어남
-            tdc_sys_error_send_to_app(en__mapping_impedanceChekck, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);
+            tdc_ble_map_measure_impedance_check(Rx_dataPacket);
         }
         break;
 
         case en__mapping_eCAP_Measurement_masking:  // 헤더 0x063
         {
-            mappingPacket.eCapMeasurement.iterationNum = Rx_dataPacket[index++];
-            mappingPacket.eCapMeasurement.pulseWidth   = Rx_dataPacket[index++];
-
-            mappingPacket.eCapMeasurement.firstPulsePhase              = Rx_dataPacket[index++];
-            mappingPacket.eCapMeasurement.stimulatonMode               = Rx_dataPacket[index++];
-            mappingPacket.eCapMeasurement.stimulationElectrodeNum      = Rx_dataPacket[index++];
-            mappingPacket.eCapMeasurement.bipolarReferenceElectrodeNum = Rx_dataPacket[index++];
-            mappingPacket.eCapMeasurement.measurementElectrodeNum      = Rx_dataPacket[index++];
-
-            value                                                    = Rx_dataPacket[index++] << 8;
-            value                                                    = value | Rx_dataPacket[index++];
-            mappingPacket.eCapMeasurement.stimulationLevel_uA_masker = value;
-
-            value                                                   = Rx_dataPacket[index++] << 8;
-            value                                                   = value | Rx_dataPacket[index++];
-            mappingPacket.eCapMeasurement.stimulationLevel_uA_probe = value;
-
-            mappingPacket.eCapMeasurement.maskerProbeInterval_numFrame = Rx_dataPacket[index++];
-
-            mappingPacket.eCapMeasurement.adcPreampGain        = Rx_dataPacket[index++];
-            mappingPacket.eCapMeasurement.adcSamplingFreq      = Rx_dataPacket[index++];
-            mappingPacket.eCapMeasurement.adcMeasurementDelay  = Rx_dataPacket[index++];
-            mappingPacket.eCapMeasurement.measurementSampleNum = Rx_dataPacket[index++];
-
-            mappingPacket.fetched_command = en__mapping_eCAP_Measurement_masking;
+            tdc_ble_map_measure_ecap_masking(Rx_dataPacket);
         }
         break;
 
         case en__mapping_eCAP_Measurement_alternative:  // 헤더 0x64
         {
-            mappingPacket.eCapMeasurement.iterationNum = Rx_dataPacket[index++];
-            mappingPacket.eCapMeasurement.pulseWidth   = Rx_dataPacket[index++];
-
-            mappingPacket.eCapMeasurement.stimulatonMode               = Rx_dataPacket[index++];
-            mappingPacket.eCapMeasurement.stimulationElectrodeNum      = Rx_dataPacket[index++];
-            mappingPacket.eCapMeasurement.bipolarReferenceElectrodeNum = Rx_dataPacket[index++];
-            mappingPacket.eCapMeasurement.measurementElectrodeNum      = Rx_dataPacket[index++];
-
-            value                                                    = Rx_dataPacket[index++] << 8;
-            value                                                    = value | Rx_dataPacket[index++];
-            mappingPacket.eCapMeasurement.stimulationLevel_uA_masker = value;
-
-            mappingPacket.fetched_command = en__mapping_eCAP_Measurement_alternative;
+            tdc_ble_map_measure_ecap_alternative(Rx_dataPacket);
         }
         break;
 
