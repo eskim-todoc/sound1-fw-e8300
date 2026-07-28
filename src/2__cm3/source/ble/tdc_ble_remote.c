@@ -341,7 +341,7 @@ void tdc_ble_remote_fetch_packet(const uint8_t *Rx_dataPacket)
         {
 
             tempValue = Rx_dataPacket[index++];
-            if ((tempValue >= 0) && (tempValue <= MaxNumUser))
+            if ((1 <= tempValue) && (tempValue <= MaxNumUser))
             {
 
                 remoteDataPacket.remocon_ReadWriteMapData_Flash.slot_index = tempValue;
@@ -399,7 +399,7 @@ void tdc_ble_remote_fetch_packet(const uint8_t *Rx_dataPacket)
                     {
 
                         tempValue = Rx_dataPacket[index++];
-                        if ((tempValue >= 0) && (tempValue <= MaxNumUser))
+                        if ((1 <= tempValue) && (tempValue <= MaxNumUser))
                         {
 
                             remoteDataPacket.remocon_ReadWriteMapData_Flash.slot_index = tempValue;  // 내부기 Num

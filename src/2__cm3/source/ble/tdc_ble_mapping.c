@@ -1189,7 +1189,7 @@ void tdc_ble_mapping_fetch_packet(const uint8_t *Rx_dataPacket)  // spi 통신�
                     {
                         // 슬롯 번호 범위가 맞으면 진행
                         tempValue = Rx_dataPacket[index++];
-                        if ((tempValue >= 0) && (tempValue <= MaxNumUser))
+                        if ((1 <= tempValue) && (tempValue <= MaxNumUser))
                         {
                             mappingPacket.ReadWriteMapData_Flash.slot_index = tempValue;  // 내부기 Num
 
@@ -1393,7 +1393,7 @@ void tdc_ble_mapping_fetch_packet(const uint8_t *Rx_dataPacket)  // spi 통신�
         {
             tempValue = Rx_dataPacket[index++];
 
-            if ((tempValue >= 0) && (tempValue <= MaxNumUser))
+            if ((1 <= tempValue) && (tempValue <= MaxNumUser))
             {
                 mappingPacket.ReadWriteMapData_Flash.slot_index = tempValue;
                 tempValue                                       = Rx_dataPacket[index++];
@@ -1445,7 +1445,7 @@ void tdc_ble_mapping_fetch_packet(const uint8_t *Rx_dataPacket)  // spi 통신�
                     {
                         // 슬롯 범위가 맞아야 진입
                         tempValue = Rx_dataPacket[index++];
-                        if ((tempValue >= 0) && (tempValue <= MaxNumUser))
+                        if ((1 <= tempValue) && (tempValue <= MaxNumUser))
                         {
                             mappingPacket.ReadWriteMapData_Flash.slot_index = tempValue;  // 내부기 Num
 
