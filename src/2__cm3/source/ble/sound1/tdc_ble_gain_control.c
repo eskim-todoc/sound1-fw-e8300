@@ -18,6 +18,7 @@
 #include <tdc_ble_remote.h>         // ST__REMOTECONTROL_PACKET
 #include <tdc_printf.h>
 #include <tdc_fs_gain.h>
+#include <tdc_ble_reply.h>
 
 static bool gc_is_valid_request(int control_type, int gain_type, int gain_index);
 static int  gc_read_index(int gain_type);
@@ -64,11 +65,11 @@ int tdc_ble_gain_control_handle(const ST__REMOTECONTROL_PACKET *packet, uint8_t 
     TDC_PRINTF_I("[GAIN] ctrl: %d, type: %d, idx: %d, rsp: %d \r\n", control_type, gain_type, response_index, rsp_code);
 
     // 송신 데이터 준비
-    tx_buf[tx_index++] = packet->command;  // command : loop-back
-    tx_buf[tx_index++] = rsp_code;
-    tx_buf[tx_index++] = control_type;
-    tx_buf[tx_index++] = gain_type;
-    tx_buf[tx_index++] = response_index;
+    tx_index = tdc_ble_reply_header(tx_buf, tx_index, packet->command);  // command : loop-back
+    tx_index = tdc_ble_reply_u8(tx_buf, tx_index, rsp_code);
+    tx_index = tdc_ble_reply_u8(tx_buf, tx_index, control_type);
+    tx_index = tdc_ble_reply_u8(tx_buf, tx_index, gain_type);
+    tx_index = tdc_ble_reply_u8(tx_buf, tx_index, response_index);
 
     return tx_index;
 }

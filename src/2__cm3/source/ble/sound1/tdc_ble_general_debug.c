@@ -24,6 +24,7 @@
 #include <tdc_printf.h>
 #include <tdc_dfu_ble_ota.h>
 #include <tdc_fs_map.h>
+#include <tdc_ble_reply.h>
 
 static int gd_handle_touch_debug(const ST__REMOTECONTROL_PACKET *packet, uint8_t *tx_buf, int tx_index, int option);      // option 1
 static int gd_handle_no_backtel(const ST__REMOTECONTROL_PACKET *packet, uint8_t *tx_buf, int tx_index, int option);       // option 2
@@ -53,7 +54,7 @@ int tdc_ble_general_debug_handle(const ST__REMOTECONTROL_PACKET *packet, uint8_t
     else
     {
         // 송신 데이터 준비
-        tx_buf[tx_index++] = packet->command;  //     command : loop-back
+        tx_index = tdc_ble_reply_header(tx_buf, tx_index, packet->command);  //     command : loop-back
     }
 
     return tx_index;
@@ -70,7 +71,7 @@ static int gd_handle_touch_debug(const ST__REMOTECONTROL_PACKET *packet, uint8_t
     uint8_t  ati_active;
 
     // 송신 데이터 준비
-    tx_buf[tx_index++] = packet->command;  //     command : loop-back
+    tx_index = tdc_ble_reply_header(tx_buf, tx_index, packet->command);  //     command : loop-back
 
     lta        = tdc_touch_debug_get_recent_lta();
     count      = tdc_touch_debug_get_recent_count();
@@ -83,18 +84,14 @@ static int gd_handle_touch_debug(const ST__REMOTECONTROL_PACKET *packet, uint8_t
     TDC_PRINTF_I("[GD] lta: %4u, count: %4u, delta: %4u, abs_thr: %4u, ", lta, count, delta, abs_thr);
     TDC_PRINTF_I("pressed: %u, ati_error: %u, ati_active: %u \r\n", pressed, ati_error, ati_active);
 
-    tx_buf[tx_index++] = option;
-    tx_buf[tx_index++] = (lta >> 8) & 0x00FF;
-    tx_buf[tx_index++] = lta & 0x00FF;
-    tx_buf[tx_index++] = (count >> 8) & 0x00FF;
-    tx_buf[tx_index++] = count & 0x00FF;
-    tx_buf[tx_index++] = (delta >> 8) & 0x00FF;
-    tx_buf[tx_index++] = delta & 0x00FF;
-    tx_buf[tx_index++] = (abs_thr >> 8) & 0x00FF;
-    tx_buf[tx_index++] = abs_thr & 0x00FF;
-    tx_buf[tx_index++] = pressed;
-    tx_buf[tx_index++] = ati_error;
-    tx_buf[tx_index++] = ati_active;
+    tx_index = tdc_ble_reply_u8(tx_buf, tx_index, option);
+    tx_index = tdc_ble_reply_u16(tx_buf, tx_index, lta);
+    tx_index = tdc_ble_reply_u16(tx_buf, tx_index, count);
+    tx_index = tdc_ble_reply_u16(tx_buf, tx_index, delta);
+    tx_index = tdc_ble_reply_u16(tx_buf, tx_index, abs_thr);
+    tx_index = tdc_ble_reply_u8(tx_buf, tx_index, pressed);
+    tx_index = tdc_ble_reply_u8(tx_buf, tx_index, ati_error);
+    tx_index = tdc_ble_reply_u8(tx_buf, tx_index, ati_active);
 
     return tx_index;
 }
@@ -117,9 +114,9 @@ static int gd_handle_no_backtel(const ST__REMOTECONTROL_PACKET *packet, uint8_t 
     TDC_PRINTF_I("[GD] noBacktel_mode : %d \r\n", noBacktel_mode);
 
     // 송신 데이터 준비
-    tx_buf[tx_index++] = packet->command;  //     command : loop-back
-    tx_buf[tx_index++] = option;
-    tx_buf[tx_index++] = noBacktel_mode;
+    tx_index = tdc_ble_reply_header(tx_buf, tx_index, packet->command);  //     command : loop-back
+    tx_index = tdc_ble_reply_u8(tx_buf, tx_index, option);
+    tx_index = tdc_ble_reply_u8(tx_buf, tx_index, noBacktel_mode);
 
     return tx_index;
 }
@@ -148,9 +145,9 @@ static int gd_handle_map_init(const ST__REMOTECONTROL_PACKET *packet, uint8_t *t
     }
 
     // 송신 데이터 준비
-    tx_buf[tx_index++] = packet->command;  //     command : loop-back
-    tx_buf[tx_index++] = option;
-    tx_buf[tx_index++] = RL;
+    tx_index = tdc_ble_reply_header(tx_buf, tx_index, packet->command);  //     command : loop-back
+    tx_index = tdc_ble_reply_u8(tx_buf, tx_index, option);
+    tx_index = tdc_ble_reply_u8(tx_buf, tx_index, RL);
 
     return tx_index;
 }
