@@ -14,7 +14,7 @@ void tdc_isd_map_read_original_info_setting(bool startFlag, int command)
     ST__CFX_CM3_SharedMemory_ReadWriteCommand_ForFlash FlashCommand;
     int                                               *p_RepositoryFor_ISD_info;
 
-    int        bufferForSPI_tx[BLE_DataPacketSize];
+    uint8_t        bufferForSPI_tx[BLE_DataPacketSize];
     int        buffer_tx_index;
     int        i;
     static int prevPcmOutputMode;
@@ -91,7 +91,7 @@ void tdc_isd_map_read_original_info_setting(bool startFlag, int command)
             }
 
             // 송신 데이터 SPI TX버퍼에 복사
-            tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, buffer_tx_index);
+            tdc_hal_spi_write_tx_buffer_u8(bufferForSPI_tx, buffer_tx_index);
 
             if (dataPacket_index == numPacket_readMapData_Original_ISDnSetting)  // 명령 완료
             {
@@ -114,7 +114,7 @@ void tdc_isd_map_write_original_info_setting(bool startFlag, int command)
 {
     ST__CFX_CM3_SharedMemory_ReadWriteCommand_ForFlash FlashCommand;
 
-    int         bufferForSPI_tx[BLE_DataPacketSize];
+    uint8_t         bufferForSPI_tx[BLE_DataPacketSize];
     int         buffer_tx_index;
     static bool prev_ISD_id_match = false;
     static bool startFlashCommand = false;
@@ -151,7 +151,7 @@ void tdc_isd_map_write_original_info_setting(bool startFlag, int command)
                 bufferForSPI_tx[buffer_tx_index++] = 2;  // 정상
 
                 // 송신 데이터 SPI TX버퍼에 복사
-                tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, buffer_tx_index);
+                tdc_hal_spi_write_tx_buffer_u8(bufferForSPI_tx, buffer_tx_index);
             }
 
             if (tdc_hal_spi_is_tx_buffer_empty())  // NRF로 응답 명령의 전송이 완료된 상태.
@@ -217,7 +217,7 @@ void tdc_isd_map_read_info_setting(bool startFlag, int command, int slot_index)
 
     ST__CFX_CM3_SharedMemory_ReadWriteCommand_ForFlash FlashCommand;
     int                                               *p_RepositoryFor_ISD_info;
-    int                                                bufferForSPI_tx[BLE_DataPacketSize];
+    uint8_t                                                bufferForSPI_tx[BLE_DataPacketSize];
     int                                                buffer_tx_index;
     int                                                i;
 
@@ -307,7 +307,7 @@ void tdc_isd_map_read_info_setting(bool startFlag, int command, int slot_index)
             }
 
             // 송신 데이터 SPI TX버퍼에 복사
-            tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, buffer_tx_index);
+            tdc_hal_spi_write_tx_buffer_u8(bufferForSPI_tx, buffer_tx_index);
 
             if (dataPacket_index == numPacket_readMapData_ISDnSetting)  // 명령 완료
             {
@@ -332,7 +332,7 @@ void tdc_isd_map_write_info_setting(bool startFlag, int command, int slot_index)
 
     ST__CFX_CM3_SharedMemory_ReadWriteCommand_ForFlash FlashCommand;
 
-    int        bufferForSPI_tx[BLE_DataPacketSize];
+    uint8_t        bufferForSPI_tx[BLE_DataPacketSize];
     int        buffer_tx_index;
     int       *p_RepositoryFor_buffer;
     static int prevPcmOutputMode;
@@ -384,7 +384,7 @@ void tdc_isd_map_write_info_setting(bool startFlag, int command, int slot_index)
             // NRF에 전달
 
             // 송신 데이터 SPI TX버퍼에 복사
-            tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, buffer_tx_index);
+            tdc_hal_spi_write_tx_buffer_u8(bufferForSPI_tx, buffer_tx_index);
 
             // 명령 종료
             if (command > 0x60)
@@ -405,7 +405,7 @@ void tdc_isd_map_read_stim_para(bool startFlag, int command, int slot_index, int
     ST__CFX_CM3_SharedMemory_ReadWriteCommand_ForFlash FlashCommand;
     int                                               *p_RepositoryFor_stimulPara;
 
-    int        bufferForSPI_tx[BLE_DataPacketSize];
+    uint8_t        bufferForSPI_tx[BLE_DataPacketSize];
     int        buffer_tx_index;
     int        i;
     int        byteFromInt;
@@ -551,7 +551,7 @@ void tdc_isd_map_read_stim_para(bool startFlag, int command, int slot_index, int
             }
 
             // 송신 데이터 SPI TX버퍼에 복사
-            tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, buffer_tx_index);
+            tdc_hal_spi_write_tx_buffer_u8(bufferForSPI_tx, buffer_tx_index);
 
             if (dataPacket_index == numPacket_readMapData_stimulPara)  // 명령 완료
             {
@@ -579,7 +579,7 @@ void tdc_isd_map_write_stim_para(bool startFlag, int command, int slot_index, in
 
     ST__CFX_CM3_SharedMemory_ReadWriteCommand_ForFlash FlashCommand;
 
-    int        bufferForSPI_tx[BLE_DataPacketSize];
+    uint8_t        bufferForSPI_tx[BLE_DataPacketSize];
     int        buffer_tx_index;
     static int prevPcmOutputMode;
 
@@ -616,7 +616,7 @@ void tdc_isd_map_write_stim_para(bool startFlag, int command, int slot_index, in
             // NRF에 전달
 
             // 송신 데이터 SPI TX버퍼에 복사
-            tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, buffer_tx_index);
+            tdc_hal_spi_write_tx_buffer_u8(bufferForSPI_tx, buffer_tx_index);
 
             // 명령 종료
             if (command > 0x60)
@@ -638,7 +638,7 @@ void tdc_isd_map_reset_nvm_selected(bool startFlag, int command, int slot_index,
 
     ST__CFX_CM3_SharedMemory_ReadWriteCommand_ForFlash FlashCommand;
 
-    int        bufferForSPI_tx[BLE_DataPacketSize];
+    uint8_t        bufferForSPI_tx[BLE_DataPacketSize];
     int        buffer_tx_index;
     static int prevPcmOutputMode;
 
@@ -677,7 +677,7 @@ void tdc_isd_map_reset_nvm_selected(bool startFlag, int command, int slot_index,
                 // NRF에 전달
 
                 // 송신 데이터 SPI TX버퍼에 복사
-                tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, buffer_tx_index);
+                tdc_hal_spi_write_tx_buffer_u8(bufferForSPI_tx, buffer_tx_index);
 
                 // 명령 종료
                 if (command > 0x60)
@@ -714,7 +714,7 @@ bool tdc_isd_map_reset_nvm_all(bool startFlag, int command, EN__mapping_ReadWrit
 {
     ST__CFX_CM3_SharedMemory_ReadWriteCommand_ForFlash FlashCommand;
 
-    int        bufferForSPI_tx[BLE_DataPacketSize];
+    uint8_t        bufferForSPI_tx[BLE_DataPacketSize];
     int        buffer_tx_index;
     static int prevPcmOutputMode;
     static int counter          = 0;
@@ -775,7 +775,7 @@ bool tdc_isd_map_reset_nvm_all(bool startFlag, int command, EN__mapping_ReadWrit
             // NRF에 전달
 
             // 송신 데이터 SPI TX버퍼에 복사
-            tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, buffer_tx_index);
+            tdc_hal_spi_write_tx_buffer_u8(bufferForSPI_tx, buffer_tx_index);
 
             // 명령 종료
             CommandCompleted = true;
@@ -797,7 +797,7 @@ void tdc_isd_map_reset_nvm_2to4(bool startFlag, int command, EN__mapping_ReadWri
 
     ST__CFX_CM3_SharedMemory_ReadWriteCommand_ForFlash FlashCommand;
 
-    int        bufferForSPI_tx[BLE_DataPacketSize];
+    uint8_t        bufferForSPI_tx[BLE_DataPacketSize];
     int        buffer_tx_index;
     static int prevPcmOutputMode;
     static int counter    = 0;
@@ -856,7 +856,7 @@ void tdc_isd_map_reset_nvm_2to4(bool startFlag, int command, EN__mapping_ReadWri
             // NRF에 전달
 
             // 송신 데이터 SPI TX버퍼에 복사
-            tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, buffer_tx_index);
+            tdc_hal_spi_write_tx_buffer_u8(bufferForSPI_tx, buffer_tx_index);
 
             // 명령 종료
             if (command > 0x60)
@@ -893,7 +893,7 @@ void tdc_isd_map_reset_nvm_map_data(bool startFlag, int command, int slot_index,
 
     ST__CFX_CM3_SharedMemory_ReadWriteCommand_ForFlash FlashCommand;
 
-    int        bufferForSPI_tx[BLE_DataPacketSize];
+    uint8_t        bufferForSPI_tx[BLE_DataPacketSize];
     int        buffer_tx_index;
     static int prevPcmOutputMode;
 
@@ -932,7 +932,7 @@ void tdc_isd_map_reset_nvm_map_data(bool startFlag, int command, int slot_index,
                 // NRF에 전달
 
                 // 송신 데이터 SPI TX버퍼에 복사
-                tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, buffer_tx_index);
+                tdc_hal_spi_write_tx_buffer_u8(bufferForSPI_tx, buffer_tx_index);
 
                 // 명령 종료
                 if (command > 0x60)

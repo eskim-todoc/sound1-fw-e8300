@@ -142,7 +142,7 @@ void tdc_isd_map_ecap_step(bool startFlag)
     static int eCAP_mesureStartTime = 0;
 
     static int ble_transfer_index;
-    int        bufferForSPI_tx[BLE_DataPacketSize];
+    uint8_t        bufferForSPI_tx[BLE_DataPacketSize];
     int        buffer_tx_index;
 
     int tempInt;
@@ -1369,7 +1369,7 @@ void tdc_isd_map_ecap_step(bool startFlag)
 
                 // 송신 데이터 SPI TX버퍼에 복사
 
-                tdc_hal_spi_write_tx_buffer(bufferForSPI_tx,buffer_tx_index);
+                tdc_hal_spi_write_tx_buffer_u8(bufferForSPI_tx,buffer_tx_index);
 
 
 
@@ -1489,7 +1489,7 @@ void tdc_isd_map_ecap_step(bool startFlag)
 
                 // 송신 데이터 SPI TX버퍼에 복사
 
-                tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, buffer_tx_index);
+                tdc_hal_spi_write_tx_buffer_u8(bufferForSPI_tx, buffer_tx_index);
 
                 if (sendingPatternIndex == en__switchingArtifact)
                 {

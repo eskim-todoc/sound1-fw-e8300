@@ -48,7 +48,7 @@ bool tdc_isd_map_live_step(ST__ISD_STATUS ISD_state)
     int        offset;
     int        value;
 
-    int bufferForSPI_tx[BLE_DataPacketSize];
+    uint8_t bufferForSPI_tx[BLE_DataPacketSize];
     int buffer_tx_index;
 
     static bool calculationParameter = false;
@@ -188,7 +188,7 @@ bool tdc_isd_map_live_step(ST__ISD_STATUS ISD_state)
                         bufferForSPI_tx[buffer_tx_index++] = en__Start;
 
                         // 송신 데이터 SPI TX버퍼에 복사
-                        tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, buffer_tx_index);
+                        tdc_hal_spi_write_tx_buffer_u8(bufferForSPI_tx, buffer_tx_index);
 
                         p_mappingPacket->tdc_isd_map_live_step.subCommand = en__HoldOn;
 
@@ -233,7 +233,7 @@ bool tdc_isd_map_live_step(ST__ISD_STATUS ISD_state)
                 bufferForSPI_tx[buffer_tx_index++] = tdc_shm_read_stimul_volume();
 
                 // 송신 데이터 SPI TX버퍼에 복사
-                tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, buffer_tx_index);
+                tdc_hal_spi_write_tx_buffer_u8(bufferForSPI_tx, buffer_tx_index);
 
                 // 라이브 자극 유지로 변경
                 p_mappingPacket->tdc_isd_map_live_step.subCommand = en__HoldOn;
@@ -268,7 +268,7 @@ bool tdc_isd_map_live_step(ST__ISD_STATUS ISD_state)
                 bufferForSPI_tx[buffer_tx_index++] = tdc_shm_read_audio_volume();
 
                 // 송신 데이터 SPI TX버퍼에 복사
-                tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, buffer_tx_index);
+                tdc_hal_spi_write_tx_buffer_u8(bufferForSPI_tx, buffer_tx_index);
 
                 // 라이브 자극 유지로 변경
                 p_mappingPacket->tdc_isd_map_live_step.subCommand = en__HoldOn;
@@ -314,7 +314,7 @@ bool tdc_isd_map_live_step(ST__ISD_STATUS ISD_state)
                         bufferForSPI_tx[buffer_tx_index++] = en__mapping_Stimul_indicator;
 
                         // 송신 데이터 SPI TX버퍼에 복사
-                        tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, buffer_tx_index);
+                        tdc_hal_spi_write_tx_buffer_u8(bufferForSPI_tx, buffer_tx_index);
 
                         // 라이브 자극 유지로 변경
                         p_mappingPacket->tdc_isd_map_live_step.subCommand = en__HoldOn;
@@ -408,7 +408,7 @@ bool tdc_isd_map_live_step(ST__ISD_STATUS ISD_state)
                 }
 
                 // 송신 데이터 SPI TX버퍼에 복사
-                tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, buffer_tx_index);
+                tdc_hal_spi_write_tx_buffer_u8(bufferForSPI_tx, buffer_tx_index);
 
                 // 라이브 자극 유지로 변경
                 p_mappingPacket->tdc_isd_map_live_step.subCommand = en__HoldOn;
@@ -452,7 +452,7 @@ bool tdc_isd_map_live_step(ST__ISD_STATUS ISD_state)
 
             // 송신 데이터 SPI TX버퍼에 복사
 
-            tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, buffer_tx_index);
+            tdc_hal_spi_write_tx_buffer_u8(bufferForSPI_tx, buffer_tx_index);
 
             p_mappingPacket->tdc_isd_map_live_step.subCommand = en__HoldOn;
 
@@ -765,7 +765,7 @@ bool tdc_isd_map_live_step(ST__ISD_STATUS ISD_state)
             bufferForSPI_tx[buffer_tx_index++] = en__Stop;
 
             // 송신 데이터 SPI TX버퍼에 복사
-            tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, buffer_tx_index);
+            tdc_hal_spi_write_tx_buffer_u8(bufferForSPI_tx, buffer_tx_index);
 
             // 커맨드 리셋;
             tdc_ble_mapping_clear_command();
