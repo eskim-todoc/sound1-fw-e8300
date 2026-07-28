@@ -9,3 +9,6 @@ docs/plans/*
 
 # cm3_factory — 별도 프로젝트(공장 펌웨어), 추후 추가 예정 (은수님 지시 2026-06-19)
 src/2__cm3_factory/
+
+# 호스트 단위 테스트 빌드 산출물
+tests/unit/build/
