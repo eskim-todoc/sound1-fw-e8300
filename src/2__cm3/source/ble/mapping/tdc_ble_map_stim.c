@@ -15,6 +15,7 @@
 #include <tdc_isd.h>
 #include <tdc_isd_map_data.h>
 #include <tdc_printf.h>
+#include <tdc_ble_reply.h>
 
 // 패킷 인덱스 0 은 헤더(명령)이며 호출자가 이미 읽었다.
 // 따라서 각 파싱 함수는 인덱스 1 부터 시작한다.
@@ -482,12 +483,12 @@ static void tdc_ble_map_stim_live_all_parameter(const uint8_t *Rx_dataPacket, in
         else
         {
             // command loop-back
-            bufferForSPI_tx[buffer_tx_index++] = en__mapping_live_stimulation;
+            buffer_tx_index = tdc_ble_reply_header(bufferForSPI_tx, buffer_tx_index, en__mapping_live_stimulation);
 
             //  sub-command loop-back
-            bufferForSPI_tx[buffer_tx_index++] = en__allParameter;
+            buffer_tx_index = tdc_ble_reply_u8(bufferForSPI_tx, buffer_tx_index, en__allParameter);
 
-            bufferForSPI_tx[buffer_tx_index++] = subCommandData_Num_index;  // payload num 전송
+            buffer_tx_index = tdc_ble_reply_u8(bufferForSPI_tx, buffer_tx_index, subCommandData_Num_index);  // payload num 전송
 
             // 송신 데이터 SPI TX버퍼에 복사
             tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, buffer_tx_index);

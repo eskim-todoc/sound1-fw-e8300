@@ -11,6 +11,7 @@
 #include <tdc_hal_spi.h>
 #include <tdc_stim_definitions.h>
 #include <tdc_isd_map_data.h>  // numPacket_writeMapData_* (패킷 분할 개수)
+#include <tdc_ble_reply.h>
 
 // 패킷 인덱스 0 은 헤더(명령)이며 호출자가 이미 읽었다.
 // 따라서 각 파싱 함수는 인덱스 1 부터 시작한다.
@@ -191,8 +192,8 @@ void tdc_ble_map_flash_write_original_isd_user(const uint8_t *Rx_dataPacket)  //
         {
             if (subCommandData_Num_index != numPacket_writeMapData_Original_ISDnSetting)
             {
-                bufferForSPI_tx[buffer_tx_index++] = en__mapping_write_original_ISD_N_USER;  // command loop-back
-                bufferForSPI_tx[buffer_tx_index++] = subCommandData_Num_index;               // payload num 전송
+                buffer_tx_index = tdc_ble_reply_header(bufferForSPI_tx, buffer_tx_index, en__mapping_write_original_ISD_N_USER);  // command loop-back
+                buffer_tx_index = tdc_ble_reply_u8(bufferForSPI_tx, buffer_tx_index, subCommandData_Num_index);               // payload num 전송
 
                 tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, buffer_tx_index);  // 송신 데이터 SPI TX버퍼에 복사
             }
@@ -461,8 +462,8 @@ void tdc_ble_map_flash_write_slot_data(const uint8_t *Rx_dataPacket)  // 0x6C
         {
             if (subCommandData_Num_index != numPacket_writeMapData_ISDnSetting)
             {
-                bufferForSPI_tx[buffer_tx_index++] = en__mapping_write_SlotData_ISD_N_USER;  // command loop-back
-                bufferForSPI_tx[buffer_tx_index++] = subCommandData_Num_index;               // payload num 전송
+                buffer_tx_index = tdc_ble_reply_header(bufferForSPI_tx, buffer_tx_index, en__mapping_write_SlotData_ISD_N_USER);  // command loop-back
+                buffer_tx_index = tdc_ble_reply_u8(bufferForSPI_tx, buffer_tx_index, subCommandData_Num_index);               // payload num 전송
 
                 tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, buffer_tx_index);  // 송신 데이터 SPI TX버퍼에 복사
             }
@@ -778,11 +779,11 @@ void tdc_ble_map_flash_write_map_data(const uint8_t *Rx_dataPacket)  // 0x6D
             if (subCommandData_Num_index != numPacket_writeMapData_stimulPara)
             {
                 // command loop-back
-                bufferForSPI_tx[buffer_tx_index++] = en__mapping_write_Mapdata_STIMUL_PARA;
+                buffer_tx_index = tdc_ble_reply_header(bufferForSPI_tx, buffer_tx_index, en__mapping_write_Mapdata_STIMUL_PARA);
 
                 // payload num 전송
 
-                bufferForSPI_tx[buffer_tx_index++] = subCommandData_Num_index;  // payload num 전송
+                buffer_tx_index = tdc_ble_reply_u8(bufferForSPI_tx, buffer_tx_index, subCommandData_Num_index);  // payload num 전송
 
                 // 송신 데이터 SPI TX버퍼에 복사
                 tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, buffer_tx_index);
