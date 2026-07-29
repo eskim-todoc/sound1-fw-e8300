@@ -1,9 +1,13 @@
 // 매핑 프로토콜 0x65~0x66 (특정 자극 · 라이브 자극) 파싱 테스트.
 //
-// 0x66 의 하위 명령 8종은 static 이라 직접 호출할 수 없다(단계_1b-3b).
-// 진입점 tdc_ble_map_stim_live() 로 간접 테스트한다 - pkt[1] 에 하위
-// 명령 번호를 넣으면 원하는 분기에 도달한다. 실사용 경로가 어차피
-// 진입점 경유이므로 이쪽이 더 실제에 가깝다.
+// 0x66 은 tdc_ble_cmd_0x66_live.c 로 분리됐으나 테스트는 아직 한 파일에
+// 둔다. 명령별 파일 분리 체계가 확정되면 test_cmd_0x66_live.c 로 나눈다.
+//
+// 0x66 의 하위 명령과 데이터 인덱스 함수는 static 이라 직접 호출할 수
+// 없다. 진입점 tdc_ble_cmd_0x66_live() 로 간접 테스트한다 - pkt[1] 에
+// 하위 명령 번호, pkt[2] 에 데이터 인덱스를 넣으면 원하는 분기에
+// 도달한다. 실사용 경로가 어차피 진입점 경유이므로 이쪽이 더 실제에
+// 가깝다.
 //
 // 하위 3(볼륨)·4(마이크)는 선행 상태 en__HoldOn 을 요구한다.
 // 이는 설계안이 근인_2 로 지목한 "라이브 상태 4층 분산"의 단면이며,
@@ -16,6 +20,7 @@
 #include <tdc_sys_error.h>
 #include <tdc_isd_map_live.h>  // EN__LIVE_STIMULATION_SUB_COMMAND (en__HoldOn 등)
 #include <tdc_ble_map_stim.h>
+#include <tdc_ble_cmd_0x66_live.h>
 
 #include "tdc_test.h"
 #include "stub_ble.h"
@@ -171,12 +176,12 @@ static void feed_upto(uint8_t *pkt, int lastIndex)
     int n;
 
     make_all_param_idx1(pkt);
-    tdc_ble_map_stim_live(pkt);
+    tdc_ble_cmd_0x66_live(pkt);
 
     for (n = 2; n <= lastIndex; n++)
     {
         make_all_param_chunk(pkt, n - 2);
-        tdc_ble_map_stim_live(pkt);
+        tdc_ble_cmd_0x66_live(pkt);
     }
 }
 
@@ -283,18 +288,18 @@ int main(void)
 
     stub_reset();
     make_live(pkt, 0);
-    tdc_ble_map_stim_live(pkt);
+    tdc_ble_cmd_0x66_live(pkt);
     CHECK_EQ("0 은 거부", stub_error_count(), 1);
     CHECK_EQ("minor = OutOfDataRange", stub_error_last_minor(), en__OutOfDataRange);
 
     stub_reset();
     make_live(pkt, 10);
-    tdc_ble_map_stim_live(pkt);
+    tdc_ble_cmd_0x66_live(pkt);
     CHECK_EQ("10 은 거부", stub_error_count(), 1);
 
     stub_reset();
     make_live(pkt, en__Start);
-    tdc_ble_map_stim_live(pkt);
+    tdc_ble_cmd_0x66_live(pkt);
     p = tdc_ble_mapping_get_packet();
     CHECK_EQ("유효 하위 명령은 fetched_command 설정", p->fetched_command, en__mapping_live_stimulation);
 
@@ -303,20 +308,20 @@ int main(void)
 
     stub_reset();
     make_live(pkt, en__Start);
-    tdc_ble_map_stim_live(pkt);
+    tdc_ble_cmd_0x66_live(pkt);
     p = tdc_ble_mapping_get_packet();
     CHECK_EQ("Start -> subCommand", p->tdc_isd_map_live_step.subCommand, en__Start);
     CHECK_EQ("에러 없음", stub_error_count(), 0);
 
     stub_reset();
     make_live(pkt, en__readDeviceStatus);
-    tdc_ble_map_stim_live(pkt);
+    tdc_ble_cmd_0x66_live(pkt);
     p = tdc_ble_mapping_get_packet();
     CHECK_EQ("readDeviceStatus -> subCommand", p->tdc_isd_map_live_step.subCommand, en__readDeviceStatus);
 
     stub_reset();
     make_live(pkt, en__Stop);
-    tdc_ble_map_stim_live(pkt);
+    tdc_ble_cmd_0x66_live(pkt);
     p = tdc_ble_mapping_get_packet();
     CHECK_EQ("Stop -> subCommand", p->tdc_isd_map_live_step.subCommand, en__Stop);
 
@@ -327,7 +332,7 @@ int main(void)
     stub_reset();
     make_live(pkt, en__StimulationVolumeAdjust);
     pkt[2] = 2;
-    tdc_ble_map_stim_live(pkt);
+    tdc_ble_cmd_0x66_live(pkt);
     p = tdc_ble_mapping_get_packet();
     CHECK_EQ("HoldOn 아니면 에러", stub_error_count(), 1);
     CHECK_EQ("minor = Command_Order", stub_error_last_minor(), en__Command_Order);
@@ -338,7 +343,7 @@ int main(void)
     set_hold_on();
     make_live(pkt, en__StimulationVolumeAdjust);
     pkt[2] = 3;
-    tdc_ble_map_stim_live(pkt);
+    tdc_ble_cmd_0x66_live(pkt);
     p = tdc_ble_mapping_get_packet();
     CHECK_EQ("HoldOn 이면 통과", stub_error_count(), 0);
     CHECK_EQ("stimulVolume 적재", p->tdc_isd_map_live_step.stimulVolume, 3);
@@ -349,14 +354,14 @@ int main(void)
     set_hold_on();
     make_live(pkt, en__StimulationVolumeAdjust);
     pkt[2] = 4;
-    tdc_ble_map_stim_live(pkt);
+    tdc_ble_cmd_0x66_live(pkt);
     CHECK_EQ("상한 4 통과", stub_error_count(), 0);
 
     stub_reset();
     set_hold_on();
     make_live(pkt, en__StimulationVolumeAdjust);
     pkt[2] = 5;
-    tdc_ble_map_stim_live(pkt);
+    tdc_ble_cmd_0x66_live(pkt);
     p = tdc_ble_mapping_get_packet();
     CHECK_EQ("5 는 거부", stub_error_count(), 1);
     CHECK_EQ("minor = OutOfDataRange", stub_error_last_minor(), en__OutOfDataRange);
@@ -366,7 +371,7 @@ int main(void)
     set_hold_on();
     make_live(pkt, en__StimulationVolumeAdjust);
     pkt[2] = 0;
-    tdc_ble_map_stim_live(pkt);
+    tdc_ble_cmd_0x66_live(pkt);
     CHECK_EQ("0 은 거부", stub_error_count(), 1);
 
     // ------------------------------------------------------------------
@@ -375,7 +380,7 @@ int main(void)
     stub_reset();
     make_live(pkt, en__MicSensitivityAdjust);
     pkt[2] = 5;
-    tdc_ble_map_stim_live(pkt);
+    tdc_ble_cmd_0x66_live(pkt);
     CHECK_EQ("HoldOn 아니면 에러", stub_error_count(), 1);
     CHECK_EQ("minor = Command_Order", stub_error_last_minor(), en__Command_Order);
 
@@ -383,7 +388,7 @@ int main(void)
     set_hold_on();
     make_live(pkt, en__MicSensitivityAdjust);
     pkt[2] = 10;
-    tdc_ble_map_stim_live(pkt);
+    tdc_ble_cmd_0x66_live(pkt);
     p = tdc_ble_mapping_get_packet();
     CHECK_EQ("상한 10 통과", stub_error_count(), 0);
     CHECK_EQ("audioVolume 적재", p->tdc_isd_map_live_step.audioVolume, 10);
@@ -392,7 +397,7 @@ int main(void)
     set_hold_on();
     make_live(pkt, en__MicSensitivityAdjust);
     pkt[2] = 11;
-    tdc_ble_map_stim_live(pkt);
+    tdc_ble_cmd_0x66_live(pkt);
     CHECK_EQ("11 은 거부", stub_error_count(), 1);
 
     // ------------------------------------------------------------------
@@ -411,7 +416,7 @@ int main(void)
     pkt[10] = 1;     // firstPulsePhase              0~1
     pkt[11] = 30;    // stimulationPulsePhaseWidth
     pkt[12] = 16;    // numFrequencyBand
-    tdc_ble_map_stim_live(pkt);
+    tdc_ble_cmd_0x66_live(pkt);
     p = tdc_ble_mapping_get_packet();
 
     CHECK_EQ("에러 없음", stub_error_count(), 0);
@@ -431,7 +436,7 @@ int main(void)
     stub_reset();
     make_live(pkt, en__allParameter);
     pkt[2] = 3;  // 1 을 건너뜀
-    tdc_ble_map_stim_live(pkt);
+    tdc_ble_cmd_0x66_live(pkt);
     CHECK_EQ("에러 1건", stub_error_count(), 1);
     CHECK_EQ("minor = DATA_Order", stub_error_last_minor(), en__DATA_Order);
     CHECK_EQ("seq 리셋", tdc_ble_mapping_get_seq_index(), 0);
@@ -447,7 +452,7 @@ int main(void)
     pkt[5] = 8;
     pkt[8] = 2;
     pkt[9] = 4;
-    tdc_ble_map_stim_live(pkt);
+    tdc_ble_cmd_0x66_live(pkt);
     CHECK_EQ("stimulVolume 5 는 거부", stub_error_count(), 1);
 
     stub_reset();
@@ -458,7 +463,7 @@ int main(void)
     pkt[5] = 8;
     pkt[8] = 2;
     pkt[9] = 4;
-    tdc_ble_map_stim_live(pkt);
+    tdc_ble_cmd_0x66_live(pkt);
     CHECK_EQ("audioVolume 11 은 거부", stub_error_count(), 1);
 
     stub_reset();
@@ -469,7 +474,7 @@ int main(void)
     pkt[5] = 33;  // indicatorChannel 1~32 초과
     pkt[8] = 2;
     pkt[9] = 4;
-    tdc_ble_map_stim_live(pkt);
+    tdc_ble_cmd_0x66_live(pkt);
     CHECK_EQ("indicatorChannel 33 은 거부", stub_error_count(), 1);
 
     // ==================================================================
@@ -485,7 +490,7 @@ int main(void)
 
     stub_reset();
     make_all_param_idx1(pkt);
-    tdc_ble_map_stim_live(pkt);
+    tdc_ble_cmd_0x66_live(pkt);
 
     for (i = 0; i < CHUNK_COUNT; i++)
     {
@@ -494,7 +499,7 @@ int main(void)
         int        last  = k_chunk[i].arrStart + k_chunk[i].count - 1;
 
         make_all_param_chunk(pkt, i);
-        tdc_ble_map_stim_live(pkt);
+        tdc_ble_cmd_0x66_live(pkt);
 
         p      = tdc_ble_mapping_get_packet();
         target = chunk_target(p, k_chunk[i].dataIndex);
@@ -537,7 +542,7 @@ int main(void)
     pkt[13] = 0x00;  pkt[14] = 0x01;  // 1
     pkt[15] = 0x02;  pkt[16] = 0x2B;  // 555
     pkt[17] = 0x07;  pkt[18] = 0x08;  // 1800
-    tdc_ble_map_stim_live(pkt);
+    tdc_ble_cmd_0x66_live(pkt);
     p = tdc_ble_mapping_get_packet();
 
     CHECK_EQ("0x0708 -> 1800", p->tdc_isd_map_live_step.T_level_uA[0], 1800);
@@ -557,7 +562,7 @@ int main(void)
     feed_upto(pkt, 1);
     make_all_param_chunk(pkt, 0);
     pkt[3] = 100;  // 상한
-    tdc_ble_map_stim_live(pkt);
+    tdc_ble_cmd_0x66_live(pkt);
     CHECK_EQ("상한 100 통과", stub_error_count(), 0);
     CHECK_EQ("100 적재", tdc_ble_mapping_get_packet()->tdc_isd_map_live_step.usableStimulationElectrodIndex[0], 100);
 
@@ -565,7 +570,7 @@ int main(void)
     feed_upto(pkt, 1);
     make_all_param_chunk(pkt, 0);
     pkt[3] = 101;  // 초과
-    tdc_ble_map_stim_live(pkt);
+    tdc_ble_cmd_0x66_live(pkt);
     CHECK_EQ("101 은 거부", stub_error_count(), 1);
     CHECK_EQ("minor = DATA_Order", stub_error_last_minor(), en__DATA_Order);
 
@@ -573,14 +578,14 @@ int main(void)
     feed_upto(pkt, 1);
     make_all_param_chunk(pkt, 0);
     pkt[3] = 0;  // 하한 미만
-    tdc_ble_map_stim_live(pkt);
+    tdc_ble_cmd_0x66_live(pkt);
     CHECK_EQ("0 은 거부", stub_error_count(), 1);
 
     stub_reset();
     feed_upto(pkt, 1);
     make_all_param_chunk(pkt, 0);
     pkt[19] = 0;  // 청크 마지막(17번째) 원소만 위반
-    tdc_ble_map_stim_live(pkt);
+    tdc_ble_cmd_0x66_live(pkt);
     CHECK_EQ("마지막 원소 위반도 잡는다", stub_error_count(), 1);
 
     // ------------------------------------------------------------------
@@ -590,7 +595,7 @@ int main(void)
     feed_upto(pkt, 7);
     make_all_param_chunk(pkt, 6);
     pkt[3] = 0x07;  pkt[4] = 0x08;  // 1800 - 상한
-    tdc_ble_map_stim_live(pkt);
+    tdc_ble_cmd_0x66_live(pkt);
     CHECK_EQ("상한 1800 통과", stub_error_count(), 0);
     CHECK_EQ("1800 적재", tdc_ble_mapping_get_packet()->tdc_isd_map_live_step.T_level_uA[0], 1800);
 
@@ -598,7 +603,7 @@ int main(void)
     feed_upto(pkt, 7);
     make_all_param_chunk(pkt, 6);
     pkt[3] = 0x07;  pkt[4] = 0x09;  // 1801 - 초과
-    tdc_ble_map_stim_live(pkt);
+    tdc_ble_cmd_0x66_live(pkt);
     CHECK_EQ("1801 은 거부", stub_error_count(), 1);
 
     // ------------------------------------------------------------------
@@ -652,7 +657,7 @@ int main(void)
     tdc_ble_mapping_set_seq_index(15);
     make_live(pkt, en__allParameter);
     pkt[2] = 16;
-    tdc_ble_map_stim_live(pkt);
+    tdc_ble_cmd_0x66_live(pkt);
     CHECK_EQ("인덱스 16 은 거부", stub_error_count(), 1);
     CHECK_EQ("minor = DATA_Order", stub_error_last_minor(), en__DATA_Order);
     CHECK_EQ("거부 후 seq 리셋", tdc_ble_mapping_get_seq_index(), 0);
@@ -661,7 +666,7 @@ int main(void)
     tdc_ble_mapping_set_seq_index(34);  // flash 의 최대 데이터 인덱스
     make_live(pkt, en__allParameter);
     pkt[2] = 35;
-    tdc_ble_map_stim_live(pkt);
+    tdc_ble_cmd_0x66_live(pkt);
     CHECK_EQ("인덱스 35 도 거부", stub_error_count(), 1);
     CHECK_EQ("거부 후 seq 리셋", tdc_ble_mapping_get_seq_index(), 0);
 
