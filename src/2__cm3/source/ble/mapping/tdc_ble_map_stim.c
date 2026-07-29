@@ -281,7 +281,6 @@ static void tdc_ble_map_stim_live_all_parameter(const uint8_t *Rx_dataPacket, in
     ST__MAPPING_PACKET *p_mappingPacket = tdc_ble_mapping_get_packet();
 
     int  i;
-    int  value;
     int  subCommandData_Num_index;
     bool dataRangeError = false;
 
@@ -307,112 +306,27 @@ static void tdc_ble_map_stim_live_all_parameter(const uint8_t *Rx_dataPacket, in
     {
         tdc_ble_mapping_set_seq_index(subCommandData_Num_index);
 
-        // 라이브 모드:0x66 -> 하위 명령 1: 전체 파라미터 전달 -> 데이터 인덱스 1~15에 대한 switch
-        switch (subCommandData_Num_index)
+        // 라이브 모드 0x66 -> 하위 명령 1 (전체 파라미터) -> 데이터 인덱스 1~15.
+        //
+        // 인덱스마다의 필드 구성 · 폭 · 범위는 s_live_all_param_fields 에
+        // 데이터로 선언돼 있다. 여기서는 슬롯을 고르기만 한다.
+        //
+        // 범위 밖 인덱스도 여기 도달한다. 데이터 인덱스 카운터를 map_flash 와
+        // 공유하는데 flash 는 34 까지 쓰므로 16 이상이 실제로 들어온다.
+        // 테이블을 인덱싱하기 전에 반드시 걸러야 한다.
+        if ((subCommandData_Num_index < 1) || (Live_AllParameter_payloadNum < subCommandData_Num_index))
         {
-            case 1:  // 헤더 0x66 실시간 자극 -> 하위 명령 1 -> 데이터 인덱스 1
-            {
-                p_mappingPacket->tdc_isd_map_live_step.stimulVolume                     = Rx_dataPacket[index++];          // index++ : 3 → 4
-                p_mappingPacket->tdc_isd_map_live_step.audioVolume                      = Rx_dataPacket[index++];          // index++ : 4 → 5
-                p_mappingPacket->tdc_isd_map_live_step.stimulationIndicatorChannelNum   = Rx_dataPacket[index++];          // index++ : 5 → 6
-                value                                                          = Rx_dataPacket[index++] << 8;     // index++ : 6 → 7
-                value                                                          = value | Rx_dataPacket[index++];  // index++ : 7 → 8
-                p_mappingPacket->tdc_isd_map_live_step.stimulationIndicatorAmplitude_uA = value;
+            dataRangeError = true;
+        }
+        else
+        {
+            int slot = subCommandData_Num_index - 1;
 
-                p_mappingPacket->tdc_isd_map_live_step.stimulationStrategy        = Rx_dataPacket[index++];  // index++ : 8 → 9
-                p_mappingPacket->tdc_isd_map_live_step.stimulationMode            = Rx_dataPacket[index++];  // index++ : 9 → 10
-                p_mappingPacket->tdc_isd_map_live_step.firstPulsePhase            = Rx_dataPacket[index++];  // index++ : 10 → 11
-                p_mappingPacket->tdc_isd_map_live_step.stimulationPulsePhaseWidth = Rx_dataPacket[index++];  // index++ : 11 → 12
-                p_mappingPacket->tdc_isd_map_live_step.numFrequencyBand           = Rx_dataPacket[index++];  // index++ : 12 → 13
-
-                // 자극 볼륨 (p_mappingPacket->tdc_isd_map_live_step.stimulVolume : 1~4)
-                if ((p_mappingPacket->tdc_isd_map_live_step.stimulVolume < 1)      // 1 미만
-                    || (4 < p_mappingPacket->tdc_isd_map_live_step.stimulVolume))  // 4 초과 시 에러
-                {
-                    dataRangeError = true;
-                }
-
-                // 오디오 볼륨 (p_mappingPacket->tdc_isd_map_live_step.audioVolume : 1~10)
-                if ((p_mappingPacket->tdc_isd_map_live_step.audioVolume < 1)       // 1 미만
-                    || (10 < p_mappingPacket->tdc_isd_map_live_step.audioVolume))  // 10 초과 시 에러
-                {
-                    dataRangeError = true;
-                }
-
-                // 알림용 자극 채널 번호 (p_mappingPacket->tdc_isd_map_live_step.stimulationIndicatorChannelNum : 1~32)
-                if ((p_mappingPacket->tdc_isd_map_live_step.stimulationIndicatorChannelNum < 1)       // 1 미만
-                    || (32 < p_mappingPacket->tdc_isd_map_live_step.stimulationIndicatorChannelNum))  // 32 초과 시 에러
-                {
-                    dataRangeError = true;
-                }
-
-                // 알림용 자극 크기 uA (p_mappingPacket->tdc_isd_map_live_step.stimulationIndicatorAmplitude_uA : 1~1800)
-                if ((p_mappingPacket->tdc_isd_map_live_step.stimulationIndicatorAmplitude_uA < 0 /*1*/)   // 0 미만
-                    || (1800 < p_mappingPacket->tdc_isd_map_live_step.stimulationIndicatorAmplitude_uA))  // 1800 초과 시 에러
-                {
-                    dataRangeError = true;
-                }
-
-                // 자극 기법 (p_mappingPacket->tdc_isd_map_live_step.stimulationStrategy : 1~3)
-                if ((p_mappingPacket->tdc_isd_map_live_step.stimulationStrategy < 1)      // 1 미만
-                    || (3 < p_mappingPacket->tdc_isd_map_live_step.stimulationStrategy))  // 3 초과 시 에러
-                {
-                    dataRangeError = true;
-                }
-
-                // 자극 모드 (p_mappingPacket->tdc_isd_map_live_step.stimulationMode : 1~6)
-                if ((p_mappingPacket->tdc_isd_map_live_step.stimulationMode < 1)      // 1 미만
-                    || (6 < p_mappingPacket->tdc_isd_map_live_step.stimulationMode))  // 6 초과 시 에러
-                {
-                    dataRangeError = true;
-                }
-
-                // 선행 펄스 위상 (p_mappingPacket->tdc_isd_map_live_step.firstPulsePhase : 0~1)
-                if ((p_mappingPacket->tdc_isd_map_live_step.firstPulsePhase < 0)      // 0 미만
-                    || (1 < p_mappingPacket->tdc_isd_map_live_step.firstPulsePhase))  // 1 초과 시 에러
-                {
-                    dataRangeError = true;
-                }
-
-                // 펄스 위상 폭 (p_mappingPacket->tdc_isd_map_live_step.stimulationPulsePhaseWidth : 13~255)
-                if ((p_mappingPacket->tdc_isd_map_live_step.stimulationPulsePhaseWidth < 13)       // 13 미만
-                    || (255 < p_mappingPacket->tdc_isd_map_live_step.stimulationPulsePhaseWidth))  // 255 초과 시 에러
-                {
-                    dataRangeError = true;
-                }
-
-                // 주파수 밴드 (p_mappingPacket->tdc_isd_map_live_step.numFrequencyBand : 1~32)
-                if ((p_mappingPacket->tdc_isd_map_live_step.numFrequencyBand < 1)       // 1 미만
-                    || (32 < p_mappingPacket->tdc_isd_map_live_step.numFrequencyBand))  // 32 초과 시 에러
-                {
-                    dataRangeError = true;
-                }
-            }
-            break;
-
-            default:
-            {
-                // 데이터 인덱스 2~15 는 디스크립터 테이블이 처리한다.
-                //
-                // 범위 밖도 여기로 온다. 데이터 인덱스 카운터를 map_flash 와
-                // 공유하는데 flash 는 34 까지 쓰므로 16 이상이 실제로 도달한다.
-                // 테이블을 인덱싱하기 전에 반드시 걸러야 한다.
-                if ((subCommandData_Num_index < 2) || (Live_AllParameter_payloadNum < subCommandData_Num_index))
-                {
-                    dataRangeError = true;
-                }
-                else
-                {
-                    int slot = subCommandData_Num_index - 1;
-
-                    dataRangeError = tdc_ble_desc_parse(&p_mappingPacket->tdc_isd_map_live_step,
-                                                        &s_live_all_param_fields[s_live_all_param_slots[slot].first],
-                                                        s_live_all_param_slots[slot].count,
-                                                        Rx_dataPacket,
-                                                        index);
-                }
-            }
-            break;
+            dataRangeError = tdc_ble_desc_parse(&p_mappingPacket->tdc_isd_map_live_step,
+                                                &s_live_all_param_fields[s_live_all_param_slots[slot].first],
+                                                s_live_all_param_slots[slot].count,
+                                                Rx_dataPacket,
+                                                index);
         }
 
         if (dataRangeError)
