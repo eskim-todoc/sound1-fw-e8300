@@ -1,6 +1,7 @@
 
 #include <hw.h>
 #include <stdbool.h>
+#include <stddef.h>
 #include <stdint.h>
 #include <tdc_ble_map_stim.h>
 #include <tdc_ble_mapping.h>
@@ -112,6 +113,167 @@ void tdc_ble_map_stim_specific(const uint8_t *Rx_dataPacket)  // 0x65
     {
         p_mappingPacket->fetched_command = en__mapping_specific_stimulation;
     }
+}
+
+// ---------------------------------------------------------------------------
+// 0x66 하위 1 (전체 파라미터) 패킷 디스크립터
+//
+// 20바이트 MTU 제약 때문에 파라미터가 데이터 인덱스 1~15 로 쪼개져 도착한다.
+// 인덱스마다 "이 위치에 이 필드가 이 폭 · 이 범위로 온다"를 데이터로 선언하고,
+// 파싱은 테이블을 훑는 단일 루프가 담당한다.
+//
+// 프로토콜 문서 대조 : docs/참고/ble/프로토콜/명령 카탈로그.md 의 0x66 항목
+// ---------------------------------------------------------------------------
+
+#define TDC_LIVE_T ST__MAPPINGPAYLOAD_LIVE_STIMULATION
+
+typedef struct
+{
+    uint16_t dst_offset;  // 페이로드 구조체 기준 바이트 오프셋
+    int16_t  min;         // 이 값 미만이면 범위 에러
+    int16_t  max;         // 이 값 초과면 범위 에러
+    uint8_t  dst_size;    // 대상 필드 폭 - 1 또는 4
+    uint8_t  src_width;   // 패킷에서 읽는 폭 - 1 또는 2 (2는 상위 바이트 먼저)
+    uint8_t  count;       // 연속 원소 수 - 스칼라 1, 배열 청크 8 / 15 / 17
+} tdc_ble_field_desc_t;
+
+// dst_size 를 상수로 적지 않고 sizeof 로 뽑는 이유.
+//
+// stimulationMode 만 EN___STIMULATION_MODE 이고, ARM EABI 는 -fshort-enums 가
+// 기본이라 이 필드가 1바이트다. 반면 오프라인 테스트를 돌리는 호스트
+// 컴파일러에서는 4바이트다. 폭을 손으로 적으면 호스트 테스트는 통과하고
+// 실기에서만 인접 바이트를 덮는다. 컴파일러에게 맡기면 양쪽 다 정확하다.
+#define TDC_BLE_DESC_SCALAR(f, srcw, mn, mx)     \
+    {                                            \
+        offsetof(TDC_LIVE_T, f),                 \
+        (mn),                                    \
+        (mx),                                    \
+        (uint8_t) sizeof(((TDC_LIVE_T *) 0)->f), \
+        (srcw),                                  \
+        1                                        \
+    }
+
+#define TDC_BLE_DESC_ARRAY(f, start, n, srcw, mn, mx)                           \
+    {                                                                           \
+        offsetof(TDC_LIVE_T, f) + ((start) * sizeof(((TDC_LIVE_T *) 0)->f[0])), \
+        (mn),                                                                   \
+        (mx),                                                                   \
+        (uint8_t) sizeof(((TDC_LIVE_T *) 0)->f[0]),                             \
+        (srcw),                                                                 \
+        (n)                                                                     \
+    }
+
+static const tdc_ble_field_desc_t s_live_all_param_fields[] = {
+    // ---- 데이터 인덱스 1 : 스칼라 9필드 ----
+    TDC_BLE_DESC_SCALAR(stimulVolume, 1, 1, 4),                         // 자극 볼륨
+    TDC_BLE_DESC_SCALAR(audioVolume, 1, 1, 10),                         // 오디오 볼륨
+    TDC_BLE_DESC_SCALAR(stimulationIndicatorChannelNum, 1, 1, 32),      // 알림용 자극 채널 번호
+    TDC_BLE_DESC_SCALAR(stimulationIndicatorAmplitude_uA, 2, 0, 1800),  // 알림용 자극 크기 uA
+    TDC_BLE_DESC_SCALAR(stimulationStrategy, 1, 1, 3),                  // 자극 기법
+    TDC_BLE_DESC_SCALAR(stimulationMode, 1, 1, 6),                      // 자극 모드
+    TDC_BLE_DESC_SCALAR(firstPulsePhase, 1, 0, 1),                      // 선행 펄스 위상
+    TDC_BLE_DESC_SCALAR(stimulationPulsePhaseWidth, 1, 13, 255),        // 펄스 위상 폭
+    TDC_BLE_DESC_SCALAR(numFrequencyBand, 1, 1, 32),                    // 주파수 밴드 수
+
+    // ---- 데이터 인덱스 2~7 : u8 배열 청크 ----
+    TDC_BLE_DESC_ARRAY(usableStimulationElectrodIndex, 0, 17, 1, 1, 100),   // 2  자극 전극 [0..16]
+    TDC_BLE_DESC_ARRAY(usableStimulationElectrodIndex, 17, 15, 1, 1, 100),  // 3  자극 전극 [17..31]
+    TDC_BLE_DESC_ARRAY(usableReferenceElectrodIndex, 0, 17, 1, 1, 100),     // 4  기준 전극 [0..16]
+    TDC_BLE_DESC_ARRAY(usableReferenceElectrodIndex, 17, 15, 1, 1, 100),    // 5  기준 전극 [17..31]
+    TDC_BLE_DESC_ARRAY(CIS_FreqBandOrder, 0, 17, 1, 1, 100),                // 6  밴드 출력 순서 [0..16]
+    TDC_BLE_DESC_ARRAY(CIS_FreqBandOrder, 17, 15, 1, 1, 100),               // 7  밴드 출력 순서 [17..31]
+
+    // ---- 데이터 인덱스 8~15 : u16 배열 청크 ----
+    TDC_BLE_DESC_ARRAY(T_level_uA, 0, 8, 2, 0, 1800),   // 8  T 레벨 [0..7]
+    TDC_BLE_DESC_ARRAY(T_level_uA, 8, 8, 2, 0, 1800),   // 9  T 레벨 [8..15]
+    TDC_BLE_DESC_ARRAY(T_level_uA, 16, 8, 2, 0, 1800),  // 10 T 레벨 [16..23]
+    TDC_BLE_DESC_ARRAY(T_level_uA, 24, 8, 2, 0, 1800),  // 11 T 레벨 [24..31]
+    TDC_BLE_DESC_ARRAY(C_level_uA, 0, 8, 2, 0, 1800),   // 12 C 레벨 [0..7]
+    TDC_BLE_DESC_ARRAY(C_level_uA, 8, 8, 2, 0, 1800),   // 13 C 레벨 [8..15]
+    TDC_BLE_DESC_ARRAY(C_level_uA, 16, 8, 2, 0, 1800),  // 14 C 레벨 [16..23]
+    TDC_BLE_DESC_ARRAY(C_level_uA, 24, 8, 2, 0, 1800),  // 15 C 레벨 [24..31]
+};
+
+// 데이터 인덱스 N 은 s_live_all_param_fields[first] 부터 count 개를 쓴다.
+typedef struct
+{
+    uint8_t first;
+    uint8_t count;
+} tdc_ble_desc_slot_t;
+
+static const tdc_ble_desc_slot_t s_live_all_param_slots[Live_AllParameter_payloadNum] = {
+    {0, 9},   // 1  전체 파라미터 스칼라
+    {9, 1},   // 2  자극 전극 [0..16]
+    {10, 1},  // 3  자극 전극 [17..31]
+    {11, 1},  // 4  기준 전극 [0..16]
+    {12, 1},  // 5  기준 전극 [17..31]
+    {13, 1},  // 6  밴드 출력 순서 [0..16]
+    {14, 1},  // 7  밴드 출력 순서 [17..31]
+    {15, 1},  // 8  T 레벨 [0..7]
+    {16, 1},  // 9  T 레벨 [8..15]
+    {17, 1},  // 10 T 레벨 [16..23]
+    {18, 1},  // 11 T 레벨 [24..31]
+    {19, 1},  // 12 C 레벨 [0..7]
+    {20, 1},  // 13 C 레벨 [8..15]
+    {21, 1},  // 14 C 레벨 [16..23]
+    {22, 1},  // 15 C 레벨 [24..31]
+};
+
+_Static_assert(sizeof(int) == 4, "디스크립터는 int 4바이트를 전제한다");
+_Static_assert(sizeof(s_live_all_param_fields) / sizeof(s_live_all_param_fields[0]) == 23,
+               "디스크립터 개수가 23 이 아니다");
+_Static_assert(sizeof(s_live_all_param_slots) / sizeof(s_live_all_param_slots[0]) == Live_AllParameter_payloadNum,
+               "슬롯 테이블 길이가 payloadNum 과 다르다");
+
+// 디스크립터 목록대로 패킷을 파싱해 dst_base 에 적재한다.
+//
+// 범위를 벗어난 값도 일단 적재한다(기존 동작). 위반이 있어도 중단하지 않고
+// 끝까지 돌며 플래그만 세운다 - 첫 위반에서 빠져나오면 구조체에 남는 값이
+// 기존과 달라진다.
+//
+// 반환 : 범위 위반이 하나라도 있으면 true
+static bool tdc_ble_desc_parse(void *dst_base, const tdc_ble_field_desc_t *desc, int desc_count, const uint8_t *packet, int index)
+{
+    bool rangeError = false;
+    int  d;
+    int  e;
+
+    for (d = 0; d < desc_count; d++)
+    {
+        const tdc_ble_field_desc_t *f = &desc[d];
+
+        for (e = 0; e < f->count; e++)
+        {
+            int      value;
+            uint8_t *dst = (uint8_t *) dst_base + f->dst_offset + (e * f->dst_size);
+
+            if (f->src_width == 2)
+            {
+                value = packet[index++] << 8;
+                value = value | packet[index++];
+            }
+            else
+            {
+                value = packet[index++];
+            }
+
+            if (f->dst_size == 1)
+            {
+                *dst = (uint8_t) value;
+            }
+            else
+            {
+                *(int *) dst = value;
+            }
+
+            if ((value < f->min) || (f->max < value))
+            {
+                rangeError = true;
+            }
+        }
+    }
+
+    return rangeError;
 }
 
 static void tdc_ble_map_stim_live_all_parameter(const uint8_t *Rx_dataPacket, int index)  // 하위 명령 - en__allParameter
@@ -228,249 +390,27 @@ static void tdc_ble_map_stim_live_all_parameter(const uint8_t *Rx_dataPacket, in
             }
             break;
 
-            // 헤더 0x66 실시간 자극 -> 하위 명령 1 -> 데이터 인덱스 2
-            case 2:  // 자극 전극 번호
-            {
-                for (i = 0; i < 17; i++)
-                {
-                    p_mappingPacket->tdc_isd_map_live_step.usableStimulationElectrodIndex[i] = Rx_dataPacket[index++];
-
-                    if ((p_mappingPacket->tdc_isd_map_live_step.usableStimulationElectrodIndex[i] < 1)        // 1 미만
-                        || (100 < p_mappingPacket->tdc_isd_map_live_step.usableStimulationElectrodIndex[i]))  // 100 초과 시 에러
-                    {
-                        dataRangeError = true;
-                    }
-                }
-            }
-            break;
-
-            // 헤더 0x66 실시간 자극 -> 하위 명령 1 -> 데이터 인덱스 3
-            case 3:  // 자극 전극 번호
-            {
-                for (i = 17; i < 32; i++)
-                {
-                    p_mappingPacket->tdc_isd_map_live_step.usableStimulationElectrodIndex[i] = Rx_dataPacket[index++];
-
-                    if ((p_mappingPacket->tdc_isd_map_live_step.usableStimulationElectrodIndex[i] < 1)        // 1 미만
-                        || (100 < p_mappingPacket->tdc_isd_map_live_step.usableStimulationElectrodIndex[i]))  // 100 초과 시 에러
-                    {
-                        dataRangeError = true;
-                    }
-                }
-            }
-            break;
-
-            // 헤더 0x66 실시간 자극 -> 하위 명령 1 -> 데이터 인덱스 4
-            case 4:  // 기준 전극 번호
-            {
-                for (i = 0; i < 17; i++)
-                {
-                    p_mappingPacket->tdc_isd_map_live_step.usableReferenceElectrodIndex[i] = Rx_dataPacket[index++];
-
-                    if ((p_mappingPacket->tdc_isd_map_live_step.usableReferenceElectrodIndex[i] < 1)        // 1 미만
-                        || (100 < p_mappingPacket->tdc_isd_map_live_step.usableReferenceElectrodIndex[i]))  // 100 초과 시 에러
-                    {
-                        dataRangeError = true;
-                    }
-                }
-            }
-            break;
-
-            // 헤더 0x66 실시간 자극 -> 하위 명령 1 -> 데이터 인덱스 5
-            case 5:  // 기즌 전극 번호
-            {
-                for (i = 17; i < 32; i++)
-                {
-                    p_mappingPacket->tdc_isd_map_live_step.usableReferenceElectrodIndex[i] = Rx_dataPacket[index++];
-
-                    if ((p_mappingPacket->tdc_isd_map_live_step.usableReferenceElectrodIndex[i] < 1)        // 1 미만
-                        || (100 < p_mappingPacket->tdc_isd_map_live_step.usableReferenceElectrodIndex[i]))  // 100 초과 시 에러
-                    {
-                        dataRangeError = true;
-                    }
-                }
-            }
-            break;
-
-            // 헤더 0x66 실시간 자극 -> 하위 명령 1 -> 데이터 인덱스 6
-            case 6:  // 주파수 밴드 출력 순서
-            {
-                for (i = 0; i < 17; i++)
-                {
-                    p_mappingPacket->tdc_isd_map_live_step.CIS_FreqBandOrder[i] = Rx_dataPacket[index++];
-
-                    if ((p_mappingPacket->tdc_isd_map_live_step.CIS_FreqBandOrder[i] < 1)        // 1 미만
-                        || (100 < p_mappingPacket->tdc_isd_map_live_step.CIS_FreqBandOrder[i]))  // 100 초과 시 에러
-                    {
-                        dataRangeError = true;
-                    }
-                }
-            }
-            break;
-
-            // 헤더 0x66 실시간 자극 -> 하위 명령 1 -> 데이터 인덱스 7
-            case 7:  // 주파수 밴드 출력 순서
-            {
-                for (i = 17; i < 32; i++)
-                {
-                    p_mappingPacket->tdc_isd_map_live_step.CIS_FreqBandOrder[i] = Rx_dataPacket[index++];
-
-                    if ((p_mappingPacket->tdc_isd_map_live_step.CIS_FreqBandOrder[i] < 1)        // 1 미만
-                        || (100 < p_mappingPacket->tdc_isd_map_live_step.CIS_FreqBandOrder[i]))  // 100 초과 시 에러
-                    {
-                        dataRangeError = true;
-                    }
-                }
-            }
-            break;
-
-            // 헤더 0x66 실시간 자극 -> 하위 명령 1 -> 데이터 인덱스 8
-            case 8:  // T 레벨
-            {
-                for (i = 0; i < 8; i++)
-                {
-                    value                                       = Rx_dataPacket[index++] << 8;
-                    value                                       = value | Rx_dataPacket[index++];
-                    p_mappingPacket->tdc_isd_map_live_step.T_level_uA[i] = value;
-
-                    if ((p_mappingPacket->tdc_isd_map_live_step.T_level_uA[i] < 0)         // 0 미만
-                        || (1800 < p_mappingPacket->tdc_isd_map_live_step.T_level_uA[i]))  // 1800 초과 시 에러
-                    {
-                        dataRangeError = true;
-                    }
-                }
-            }
-            break;
-
-            // 헤더 0x66 실시간 자극 -> 하위 명령 1 -> 데이터 인덱스 9
-            case 9:  // T 레벨
-            {
-                for (i = 8; i < 16; i++)
-                {
-                    value                                       = Rx_dataPacket[index++] << 8;
-                    value                                       = value | Rx_dataPacket[index++];
-                    p_mappingPacket->tdc_isd_map_live_step.T_level_uA[i] = value;
-
-                    if ((p_mappingPacket->tdc_isd_map_live_step.T_level_uA[i] < 0)         // 0 미만
-                        || (1800 < p_mappingPacket->tdc_isd_map_live_step.T_level_uA[i]))  // 1800 초과 시 에러
-                    {
-                        dataRangeError = true;
-                    }
-                }
-            }
-            break;
-
-            // 헤더 0x66 실시간 자극 -> 하위 명령 1 -> 데이터 인덱스 10
-            case 10:  // T 레벨
-            {
-                for (i = 16; i < 24; i++)
-                {
-                    value                                       = Rx_dataPacket[index++] << 8;
-                    value                                       = value | Rx_dataPacket[index++];
-                    p_mappingPacket->tdc_isd_map_live_step.T_level_uA[i] = value;
-
-                    if ((p_mappingPacket->tdc_isd_map_live_step.T_level_uA[i] < 0)         // 0 미만
-                        || (1800 < p_mappingPacket->tdc_isd_map_live_step.T_level_uA[i]))  // 1800 초과 시 에러
-                    {
-                        dataRangeError = true;
-                    }
-                }
-            }
-            break;
-
-            // 헤더 0x66 실시간 자극 -> 하위 명령 1 -> 데이터 인덱스 11
-            case 11:  // T 레벨
-            {
-                for (i = 24; i < 32; i++)
-                {
-                    value                                       = Rx_dataPacket[index++] << 8;
-                    value                                       = value | Rx_dataPacket[index++];
-                    p_mappingPacket->tdc_isd_map_live_step.T_level_uA[i] = value;
-
-                    if ((p_mappingPacket->tdc_isd_map_live_step.T_level_uA[i] < 0)         // 0 미만
-                        || (1800 < p_mappingPacket->tdc_isd_map_live_step.T_level_uA[i]))  // 1800 초과 시 에러
-                    {
-                        dataRangeError = true;
-                    }
-                }
-            }
-            break;
-
-            // 헤더 0x66 실시간 자극 -> 하위 명령 1 -> 데이터 인덱스 12
-            case 12:  // C 레벨
-            {
-                for (i = 0; i < 8; i++)
-                {
-                    value                                       = Rx_dataPacket[index++] << 8;
-                    value                                       = value | Rx_dataPacket[index++];
-                    p_mappingPacket->tdc_isd_map_live_step.C_level_uA[i] = value;
-
-                    if ((p_mappingPacket->tdc_isd_map_live_step.C_level_uA[i] < 0)         // 0 미만
-                        || (1800 < p_mappingPacket->tdc_isd_map_live_step.C_level_uA[i]))  // 1800 초과 시 에러
-                    {
-                        dataRangeError = true;
-                    }
-                }
-            }
-            break;
-
-            // 헤더 0x66 실시간 자극 -> 하위 명령 1 -> 데이터 인덱스 13
-            case 13:  // C 레벨
-            {
-                for (i = 8; i < 16; i++)
-                {
-                    value                                       = Rx_dataPacket[index++] << 8;
-                    value                                       = value | Rx_dataPacket[index++];
-                    p_mappingPacket->tdc_isd_map_live_step.C_level_uA[i] = value;
-
-                    if ((p_mappingPacket->tdc_isd_map_live_step.C_level_uA[i] < 0)         // 0 미만
-                        || (1800 < p_mappingPacket->tdc_isd_map_live_step.C_level_uA[i]))  // 1800 초과 시 에러
-                    {
-                        dataRangeError = true;
-                    }
-                }
-            }
-            break;
-
-            // 헤더 0x66 실시간 자극 -> 하위 명령 1 -> 데이터 인덱스 14
-            case 14:  // C 레벨
-            {
-                for (i = 16; i < 24; i++)
-                {
-                    value                                       = Rx_dataPacket[index++] << 8;
-                    value                                       = value | Rx_dataPacket[index++];
-                    p_mappingPacket->tdc_isd_map_live_step.C_level_uA[i] = value;
-
-                    if ((p_mappingPacket->tdc_isd_map_live_step.C_level_uA[i] < 0)         // 0 미만
-                        || (1800 < p_mappingPacket->tdc_isd_map_live_step.C_level_uA[i]))  // 1800 초과 시 에러
-                    {
-                        dataRangeError = true;
-                    }
-                }
-            }
-            break;
-
-            // 헤더 0x66 실시간 자극 -> 하위 명령 1 -> 데이터 인덱스 15
-            case 15:  // C 레벨
-            {
-                for (i = 24; i < 32; i++)
-                {
-                    value                                       = Rx_dataPacket[index++] << 8;
-                    value                                       = value | Rx_dataPacket[index++];
-                    p_mappingPacket->tdc_isd_map_live_step.C_level_uA[i] = value;
-
-                    if ((p_mappingPacket->tdc_isd_map_live_step.C_level_uA[i] < 0)         // 0 미만
-                        || (1800 < p_mappingPacket->tdc_isd_map_live_step.C_level_uA[i]))  // 1800 초과 시 에러
-                    {
-                        dataRangeError = true;
-                    }
-                }
-            }
-            break;
-
             default:
             {
-                dataRangeError = true;
+                // 데이터 인덱스 2~15 는 디스크립터 테이블이 처리한다.
+                //
+                // 범위 밖도 여기로 온다. 데이터 인덱스 카운터를 map_flash 와
+                // 공유하는데 flash 는 34 까지 쓰므로 16 이상이 실제로 도달한다.
+                // 테이블을 인덱싱하기 전에 반드시 걸러야 한다.
+                if ((subCommandData_Num_index < 2) || (Live_AllParameter_payloadNum < subCommandData_Num_index))
+                {
+                    dataRangeError = true;
+                }
+                else
+                {
+                    int slot = subCommandData_Num_index - 1;
+
+                    dataRangeError = tdc_ble_desc_parse(&p_mappingPacket->tdc_isd_map_live_step,
+                                                        &s_live_all_param_fields[s_live_all_param_slots[slot].first],
+                                                        s_live_all_param_slots[slot].count,
+                                                        Rx_dataPacket,
+                                                        index);
+                }
             }
             break;
         }
