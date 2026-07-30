@@ -5,23 +5,24 @@
 #include <tdc_sys_init.h>
 #include <main.h>
 
-#include <board.h>           //ok
-#include <tdc_hal_spi.h>      //ok
+#include <board.h>        //ok
+#include <tdc_hal_spi.h>  //ok
 
 #include <tdc_pwr_battery.h>  //ok
 
-#include <tdc_shm.h>  //ok
-#include <tdc_sys_error.h>          //ok
+#include <tdc_shm.h>          //ok
+#include <tdc_sys_error.h>    //ok
 #include <tdc_sys_control.h>  //ok
 
-#include <tdc_isd.h>   //ok
+#include <tdc_isd.h>          //ok
 #include <tdc_ble_mapping.h>  //ok
 #include <tdc_ble_remote.h>   //ok
 
-#include <tdc_led_output.h>           //ok
-#include <tdc_ble_communication.h>   //ok
-#include <tdc_stim_indicator.h>   //ok
-#include <tdc_stim_para_cal.h>  //ok
+#include <tdc_led_output.h>         //ok
+#include <tdc_test_tx_pmic.h>       // [TEST] TX PMIC 측정 콘솔
+#include <tdc_ble_communication.h>  //ok
+#include <tdc_stim_indicator.h>     //ok
+#include <tdc_stim_para_cal.h>      //ok
 
 #include <tdc_drv_isl9122.h>  //ok
 
@@ -29,7 +30,7 @@
 #include <tdc_touch_iqs323.h> /* 절전 진입 IQS323 직접 호출 */
 
 #include <tdc_isd_stim_standalone.h>  // 신규 추가 for I2S 디버깅
-#include <tdc_isd_init_fpga.h>              // 절전 모드 진입 전 FPGA 리셋 목적
+#include <tdc_isd_init_fpga.h>        // 절전 모드 진입 전 FPGA 리셋 목적
 #include <tdc_isd_fpga.h>
 
 #include <tdc_pwr_clock.h>
@@ -55,7 +56,7 @@
  * iteration 이 갱신하고 루프 후반(타임아웃/크래들/절전 판정)이 읽는 값만 담는다. */
 typedef struct
 {
-    tdc_sys_state_t            systemState;
+    tdc_sys_state_t             systemState;
     volatile ST__ISD_STATUS     isd_state;
     ST__BLE_COMMUNICATION_STATE ble_state;
     bool                        qcc_batt_timeout;
@@ -67,11 +68,11 @@ typedef struct
  * 한 tick 안에서 서로 다른 값을 볼 여지가 있었다. */
 typedef struct
 {
-    tdc_sys_error_code_t    mcu_error;
-    ST__USB_CONNECTOR charger;
-    int               batt_percent;
-    bool              power_button;
-    bool              batt_timeout;
+    tdc_sys_error_code_t mcu_error;
+    ST__USB_CONNECTOR    charger;
+    int                  batt_percent;
+    bool                 power_button;
+    bool                 batt_timeout;
 } tdc_normal_events_t;
 
 static bool tdc_qcc_has_batt_level_rx_timed_out(void);
@@ -115,7 +116,6 @@ static const FirmWare_Info firmwareInfo = {1, 0, 0, __DATE__};
 
 static const int devFwVer_type = DEV_FW_VER_RELEASE;  // 내부 개발 버전 (Release)
 static const int devFwVer_num  = 1;                   // 1 (전기기계적안정성시험)
-
 
 char *readFirmwareInfo()
 {
@@ -296,10 +296,10 @@ int main(void)
     SEGGER_RTT_Init();
 
     TDC_PRINTF_I("[INFO] MODEL : SOUND1 (%u.%u%u / %s) \r\n", /* lf */
-              firmwareInfo.version[0],
-              firmwareInfo.version[1],
-              firmwareInfo.version[2],
-              firmwareInfo.buildData);
+                 firmwareInfo.version[0],
+                 firmwareInfo.version[1],
+                 firmwareInfo.version[2],
+                 firmwareInfo.buildData);
 
     TDC_PRINTF_I("[INFO] DEV   : %d.%d \r\n", devFwVer_type, devFwVer_num);
 
@@ -326,7 +326,7 @@ static void func_cradle_lid_closed_loop(void);
  * 등급 추가/컷 변경은 이 표만 편집하면 된다(매직넘버의 데이터화). */
 typedef struct
 {
-    int         min_pct;
+    int             min_pct;
     tdc_led_state_t state;
 } tdc_batt_led_bin_t;
 
@@ -441,6 +441,7 @@ static void tdc_led_request_mapping(int pct, bool map_conn, bool isd_conn)
     }
 }
 
+
 int func_normal(void)
 {
     /* zero-init 후 필요한 필드만 명시 초기화.
@@ -466,6 +467,12 @@ int func_normal(void)
     ctx.systemState.systemOff = false;
 
     tdc_normal_boot_sequence();
+
+    // [TEST] TX PMIC 전압 측정 콘솔. 측정할 때만 아래 한 줄의 주석을 푼다.
+    //        복귀하지 않으므로 BLE · 터치 · 자극이 전부 멈춘다.
+    //        구현은 source/tests/tdc_test_tx_pmic.c 에 있다.
+    // tdc_test_tx_pmic_console();
+
 
     while (1)
     {
@@ -547,9 +554,9 @@ static void tdc_normal_boot_sequence(void)
 static void tdc_collect_events(tdc_normal_events_t *ev)
 {
     ev->mcu_error    = tdc_sys_error_read();
-    ev->charger      = tdc_pwr_charger_get_state();  // QCC 0x34 기반
-    ev->batt_percent = tdc_pwr_battery_get_percent();   // QCC 제공. tdc_sys_init 단계에서 수집 완료.
-    ev->power_button = tdc_touch_process();      // tdc_shm_is_power_button_pushed() 대체
+    ev->charger      = tdc_pwr_charger_get_state();    // QCC 0x34 기반
+    ev->batt_percent = tdc_pwr_battery_get_percent();  // QCC 제공. tdc_sys_init 단계에서 수집 완료.
+    ev->power_button = tdc_touch_process();            // tdc_shm_is_power_button_pushed() 대체
     ev->batt_timeout = tdc_qcc_has_batt_level_rx_timed_out();
 }
 
@@ -565,18 +572,18 @@ static void tdc_handle_events(const tdc_normal_events_t *ev, tdc_normal_ctx_t *c
     //       df_Default 상태일 때는 아래의 tdc_sys_control_step() 에서 동작하는게 없다.
 
     ctx->systemState = tdc_sys_control_step(ev->mcu_error,
-                                     ev->charger,
-                                     ev->batt_percent,
-                                     ev->power_button,
-                                     ctx->isd_state.conneded_ISD,      // 지난 tick 값 (순환 의존 - tdc_sys_control_step.c 주석 참조)
-                                     ctx->ble_state.mappingConnection  // 지난 tick 값
+                                            ev->charger,
+                                            ev->batt_percent,
+                                            ev->power_button,
+                                            ctx->isd_state.conneded_ISD,      // 지난 tick 값 (순환 의존 - tdc_sys_control_step.c 주석 참조)
+                                            ctx->ble_state.mappingConnection  // 지난 tick 값
     );
 
     update_mapNum();  // 맵데이터 업데이트
 
     ctx->isd_state = tdc_isd_step(ctx->systemState.enable_ISD,  //
-                                   ctx->ble_state.mappingConnection,
-                                   ctx->ble_state.isdControlCommand  //
+                                  ctx->ble_state.mappingConnection,
+                                  ctx->ble_state.isdControlCommand  //
     );
 
     /* 매핑 연결 상태이고,
@@ -586,8 +593,8 @@ static void tdc_handle_events(const tdc_normal_events_t *ev, tdc_normal_ctx_t *c
     ctx->ble_state = tdc_ble_communication_step(ctx->isd_state);
 
     tdc_stim_indicator_out(tdc_shm_read_stimul_indicator_on_off(),  //
-                             ctx->systemState.StimulationIndicatorTriggerLowPower,
-                             ctx->ble_state.StimulationIndicatorTrigger  //
+                           ctx->systemState.StimulationIndicatorTriggerLowPower,
+                           ctx->ble_state.StimulationIndicatorTrigger  //
     );
 
     // PMIC 켜고/끄기
@@ -672,7 +679,7 @@ static void tdc_update_led_requests(int batt_percent, bool isd_conn_default, boo
     bool ovr_batt_active = false;
     int  pct             = batt_percent;
 #endif
-    bool        batt_is_reset_state = (tdc_pwr_battery_get_state() == TDC_PWR_BATTERY_STATE_RESET);
+    bool            batt_is_reset_state = (tdc_pwr_battery_get_state() == TDC_PWR_BATTERY_STATE_RESET);
     tdc_led_state_t batt_st             = tdc_led_request_battery(pct, ovr_batt_active, batt_is_reset_state);
 
 #ifdef ENABLE_UI_CMD
@@ -715,8 +722,8 @@ static bool tdc_handle_qcc_batt_timeout(bool *poweroff_started)
 static bool tdc_can_enter_sleep(bool map_active)
 {
     tdc_led_state_t ble_st      = tdc_led_get_request(TDC_LED_SRC_BLE_IND);
-    bool        pair_active = (ble_st == TDC_LED_ST_PAIR);
-    bool        ota_active  = (ble_st == TDC_LED_ST_OTA_QCC) || (ble_st == TDC_LED_ST_OTA_EZAIRO);
+    bool            pair_active = (ble_st == TDC_LED_ST_PAIR);
+    bool            ota_active  = (ble_st == TDC_LED_ST_OTA_QCC) || (ble_st == TDC_LED_ST_OTA_EZAIRO);
 
     if (map_active || pair_active || ota_active)
     {
@@ -899,16 +906,16 @@ static void tdc_touch_sleep_log_debug(bool ok, const tdc_touch_iqs323_status_t *
             uint16_t pabs_thr = (uint16_t) (((uint32_t) TDC_TOUCH_IQS323_PROX_THRESHOLD * dbg.lta) / 256u);
 
             TDC_PRINTF_D("[TOUCH] LTA=%3u  CNT=%3u  D=%3u  THR=%3u  (k=%3u  H=%3u)  %s   PTHR=%3u (pk=%3u)  %s \r\n",  //
-                      dbg.lta,
-                      dbg.counts,
-                      delta,
-                      abs_thr,
-                      TDC_TOUCH_IQS323_THRESHOLD,
-                      TDC_TOUCH_IQS323_HYSTERESIS,
-                      (state == TDC_TOUCH_STATE_TOUCH) ? "T" : ".",
-                      pabs_thr,
-                      TDC_TOUCH_IQS323_PROX_THRESHOLD,
-                      st->prox ? "P" : ".");
+                         dbg.lta,
+                         dbg.counts,
+                         delta,
+                         abs_thr,
+                         TDC_TOUCH_IQS323_THRESHOLD,
+                         TDC_TOUCH_IQS323_HYSTERESIS,
+                         (state == TDC_TOUCH_STATE_TOUCH) ? "T" : ".",
+                         pabs_thr,
+                         TDC_TOUCH_IQS323_PROX_THRESHOLD,
+                         st->prox ? "P" : ".");
         }
     }
 }

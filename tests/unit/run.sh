@@ -118,7 +118,7 @@ COMMON_SRC=(
 declare -A TEST_TARGETS=(
     [map_measure]="$SRC/ble/mapping/tdc_ble_map_measure.c"
     [map_flash]="$SRC/ble/mapping/tdc_ble_map_flash.c"
-    [map_stim]="$SRC/ble/mapping/tdc_ble_map_stim.c"
+    [map_stim]="$SRC/ble/mapping/tdc_ble_map_stim.c $SRC/ble/mapping/tdc_ble_cmd_0x66_live.c"
 )
 
 mkdir -p "$BUILD"

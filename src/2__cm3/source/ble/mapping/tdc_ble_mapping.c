@@ -23,6 +23,7 @@
 #include <tdc_ble_map_measure.h>
 #include <tdc_ble_map_flash.h>
 #include <tdc_ble_map_stim.h>
+#include <tdc_ble_cmd_0x66_live.h>
 #include <tdc_ble_reply.h>
 
 static ST__MAPPING_PACKET mappingPacket;
@@ -153,7 +154,7 @@ void tdc_ble_mapping_fetch_packet(const uint8_t *Rx_dataPacket)  // spi 통신�
 
         case en__mapping_live_stimulation:  // 헤더 0x66
         {
-            tdc_ble_map_stim_live(Rx_dataPacket);
+            tdc_ble_cmd_0x66_live(Rx_dataPacket);
         }
         break;
 
