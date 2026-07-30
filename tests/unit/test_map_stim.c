@@ -19,7 +19,7 @@
 #include <tdc_ble_mapping.h>
 #include <tdc_sys_error.h>
 #include <tdc_isd_map_live.h>  // EN__LIVE_STIMULATION_SUB_COMMAND (en__HoldOn 등)
-#include <tdc_ble_map_stim.h>
+#include <tdc_ble_cmd_0x65_specific.h>
 #include <tdc_ble_cmd_0x66_live.h>
 
 #include "tdc_test.h"
@@ -264,7 +264,7 @@ int main(void)
 
     stub_reset();
     make_specific_ok(pkt);
-    tdc_ble_map_stim_specific(pkt);
+    tdc_ble_cmd_0x65_specific_stim(pkt);
     p = tdc_ble_mapping_get_packet();
 
     CHECK_EQ("usableElectrodeNum", p->tdc_isd_map_specific_stim_step.usableElectrodeNum, 16);
@@ -282,25 +282,25 @@ int main(void)
     stub_reset();
     make_specific_ok(pkt);
     pkt[1] = 1;
-    tdc_ble_map_stim_specific(pkt);
+    tdc_ble_cmd_0x65_specific_stim(pkt);
     CHECK_EQ("하한 1 통과", stub_error_count(), 0);
 
     stub_reset();
     make_specific_ok(pkt);
     pkt[1] = 32;
-    tdc_ble_map_stim_specific(pkt);
+    tdc_ble_cmd_0x65_specific_stim(pkt);
     CHECK_EQ("상한 32 통과", stub_error_count(), 0);
 
     stub_reset();
     make_specific_ok(pkt);
     pkt[1] = 33;
-    tdc_ble_map_stim_specific(pkt);
+    tdc_ble_cmd_0x65_specific_stim(pkt);
     CHECK_EQ("33 은 거부", stub_error_count(), 1);
 
     stub_reset();
     make_specific_ok(pkt);
     pkt[1] = 0;
-    tdc_ble_map_stim_specific(pkt);
+    tdc_ble_cmd_0x65_specific_stim(pkt);
     CHECK_EQ("0 은 거부", stub_error_count(), 1);
 
     // ------------------------------------------------------------------
@@ -309,13 +309,13 @@ int main(void)
     stub_reset();
     make_specific_ok(pkt);
     pkt[2] = 13;
-    tdc_ble_map_stim_specific(pkt);
+    tdc_ble_cmd_0x65_specific_stim(pkt);
     CHECK_EQ("하한 13 통과", stub_error_count(), 0);
 
     stub_reset();
     make_specific_ok(pkt);
     pkt[2] = 12;
-    tdc_ble_map_stim_specific(pkt);
+    tdc_ble_cmd_0x65_specific_stim(pkt);
     CHECK_EQ("12 는 거부", stub_error_count(), 1);
 
     // ------------------------------------------------------------------
@@ -324,13 +324,13 @@ int main(void)
     stub_reset();
     make_specific_ok(pkt);
     pkt[4] = 6;
-    tdc_ble_map_stim_specific(pkt);
+    tdc_ble_cmd_0x65_specific_stim(pkt);
     CHECK_EQ("상한 6 통과", stub_error_count(), 0);
 
     stub_reset();
     make_specific_ok(pkt);
     pkt[4] = 7;
-    tdc_ble_map_stim_specific(pkt);
+    tdc_ble_cmd_0x65_specific_stim(pkt);
     CHECK_EQ("7 은 거부", stub_error_count(), 1);
 
     // ------------------------------------------------------------------
@@ -340,13 +340,13 @@ int main(void)
     stub_reset();
     make_specific_ok(pkt);
     pkt[6] = 99;
-    tdc_ble_map_stim_specific(pkt);
+    tdc_ble_cmd_0x65_specific_stim(pkt);
     CHECK_EQ("99 는 예외로 통과", stub_error_count(), 0);
 
     stub_reset();
     make_specific_ok(pkt);
     pkt[6] = 33;
-    tdc_ble_map_stim_specific(pkt);
+    tdc_ble_cmd_0x65_specific_stim(pkt);
     CHECK_EQ("33 은 거부", stub_error_count(), 1);
 
     // ------------------------------------------------------------------
