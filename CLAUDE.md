@@ -13,7 +13,18 @@ tags: [project, e8300, firmware, embedded]
 > [!IMPORTANT]
 > **Sound1은 루트 헌법/지침을 절대 우선으로 따른다.** 루트 진입점은 글로벌 `~/.claude/CLAUDE.md`가 지정하는 `E:\workspace\rules\CLAUDE.md`이며, 그 지침 체계(`E:\workspace\rules\지침\`)를 상속한다.
 >
-> **세션 시작 시**: ① 루트 `E:\workspace\rules\CLAUDE.md` 명시 Read → "루트 지침 확인 완료: <한 줄 요약>" 보고, ② 루트 `E:\workspace\rules\지침\작업 규칙.md` 확인.
+> **세션 시작 시**: ① 루트 `E:\workspace\rules\CLAUDE.md` 명시 Read → "루트 지침 확인 완료: <한 줄 요약>" 보고, ② 루트 `E:\workspace\rules\지침\작업 규칙.md` 확인, ③ **[`docs/상시 점검 대장.md`](docs/상시%20점검%20대장.md) Read → §1 «매번 알림» 항목의 현재 상태를 코드로 확인해 첫 응답에 보고.**
+
+> [!CAUTION]
+> **[`docs/상시 점검 대장.md`](docs/상시%20점검%20대장.md) 는 Claude 의 의무 체크리스트다.**
+>
+> | 시점 | 할 일 |
+> |---|---|
+> | 세션 시작 | 대장 Read → §1 «매번 알림» 현재 상태 코드 확인 → 보고 |
+> | **완료 보고마다** | §1 «매번 알림» 항목을 **한 줄이라도 반드시 언급** |
+> | 작업 착수 전 | §2 «잠재 위험» 이 작업 범위와 겹치는지 확인 |
+>
+> 2026-07-30 은수님 지시로 신설. 현재 «매번 알림» 은 `tdc_sys_control.c` 전력소모 측정용 임시 변경 원복 1건(**유지 중**)이고, «잠재 위험» 은 eCAP·impedance 배열 인덱스 3건이다.
 
 E8300 임베디드 펌웨어 프로젝트.
 
