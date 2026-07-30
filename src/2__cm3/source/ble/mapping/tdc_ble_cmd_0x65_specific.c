@@ -2,7 +2,7 @@
 #include <hw.h>
 #include <stdbool.h>
 #include <stdint.h>
-#include <tdc_ble_map_stim.h>
+#include <tdc_ble_cmd_0x65_specific.h>
 #include <tdc_ble_mapping.h>
 #include <tdc_sys_error.h>
 #include <board.h>
@@ -21,7 +21,7 @@
 // 따라서 각 파싱 함수는 인덱스 1 부터 시작한다.
 #define df_payloadStartIndex 1
 
-void tdc_ble_map_stim_specific(const uint8_t *Rx_dataPacket)  // 0x65
+void tdc_ble_cmd_0x65_specific_stim(const uint8_t *Rx_dataPacket)  // 0x65
 {
     ST__MAPPING_PACKET *p_mappingPacket = tdc_ble_mapping_get_packet();
 
