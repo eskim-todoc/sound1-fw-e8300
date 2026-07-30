@@ -169,6 +169,72 @@ static int chunk_last_value(int slot)
     return k_chunk[slot].base + ((k_chunk[slot].count - 1) * k_chunk[slot].step);
 }
 
+// ---------------------------------------------------------------------------
+// 0x66 하위 명령의 선행 상태 계약 (단계_4 대상)
+//
+// 하위 3·4·5·6 은 en__HoldOn 일 때만 수락되고, 1·2·7·8 은 조건이 없다.
+// 이 구분이 지금은 각 함수 안 조건문에만 있어서, 게이트를 공통 가드로
+// 모으면 한 곳이 틀렸을 때 4개 명령이 동시에 깨진다. 그 전에 깔아 두는
+// 안전망이다.
+// ---------------------------------------------------------------------------
+
+// en__HoldOn 을 요구하는 하위 명령
+static const struct
+{
+    int         sub;
+    const char *name;
+} k_gated[] = {
+    {en__StimulationVolumeAdjust, "하위 3 자극 볼륨"},
+    {en__MicSensitivityAdjust, "하위 4 마이크 감도"},
+    {en__mapping_Stimul_indicator, "하위 5 알림 자극"},
+    {en__readEqualizer, "하위 6 이퀄라이저"},
+};
+
+// 선행 상태 조건이 없는 하위 명령
+static const struct
+{
+    int         sub;
+    const char *name;
+} k_ungated[] = {
+    {en__Start, "하위 2 시작"},
+    {en__readDeviceStatus, "하위 7 상태 읽기"},
+    {en__Stop, "하위 8 종료"},
+};
+
+#define GATED_COUNT   ((int) (sizeof(k_gated) / sizeof(k_gated[0])))
+#define UNGATED_COUNT ((int) (sizeof(k_ungated) / sizeof(k_ungated[0])))
+
+// 하위 명령별로 게이트를 통과했을 때 쓰이는 유효 페이로드를 채운다.
+static void make_gated_payload(uint8_t *pkt, int sub)
+{
+    make_live(pkt, sub);
+
+    switch (sub)
+    {
+        case en__StimulationVolumeAdjust:
+            pkt[2] = 3;  // 1~4
+            break;
+
+        case en__MicSensitivityAdjust:
+            pkt[2] = 7;  // 1~10
+            break;
+
+        case en__mapping_Stimul_indicator:
+            pkt[2] = 1;     // 채널 번호
+            pkt[3] = 0x00;  // 크기 상위
+            pkt[4] = 0x64;  // 크기 하위 -> 100
+            break;
+
+        case en__readEqualizer:
+            pkt[2] = 1;  // start index
+            pkt[3] = 4;  // end index
+            break;
+
+        default:
+            break;
+    }
+}
+
 // 데이터 인덱스 1 부터 lastIndex 까지 유효값으로 순차 주입한다.
 // 인덱스는 1씩 증가해야만 수락되므로 중간을 건너뛸 수 없다.
 static void feed_upto(uint8_t *pkt, int lastIndex)
@@ -669,6 +735,88 @@ int main(void)
     tdc_ble_cmd_0x66_live(pkt);
     CHECK_EQ("인덱스 35 도 거부", stub_error_count(), 1);
     CHECK_EQ("거부 후 seq 리셋", tdc_ble_mapping_get_seq_index(), 0);
+
+    // ==================================================================
+    // 선행 상태 계약 (단계_4 대상)
+    //
+    // 게이트가 공통 가드 하나로 수렴하기 "전"에 깔아 두는 안전망이다.
+    // 수렴 후 이 케이스들이 그대로 통과해야 동작 보존이 성립한다.
+    // ==================================================================
+
+    // ------------------------------------------------------------------
+    TEST_GROUP("0x66 선행 상태 - HoldOn 요구 명령은 Standby 에서 거부");
+
+    for (i = 0; i < GATED_COUNT; i++)
+    {
+        stub_reset();  // subCommand = en__Standby 로 시작
+        make_gated_payload(pkt, k_gated[i].sub);
+        tdc_ble_cmd_0x66_live(pkt);
+        p = tdc_ble_mapping_get_packet();
+
+        sprintf(name, "%s - 에러 1건", k_gated[i].name);
+        CHECK_EQ(name, stub_error_count(), 1);
+
+        sprintf(name, "%s - minor = Command_Order", k_gated[i].name);
+        CHECK_EQ(name, stub_error_last_minor(), en__Command_Order);
+
+        sprintf(name, "%s - 거부 후 Standby 유지", k_gated[i].name);
+        CHECK_EQ(name, p->tdc_isd_map_live_step.subCommand, en__Standby);
+    }
+
+    // ------------------------------------------------------------------
+    TEST_GROUP("0x66 선행 상태 - HoldOn 이면 게이트 통과");
+
+    for (i = 0; i < GATED_COUNT; i++)
+    {
+        stub_reset();
+        set_hold_on();
+        make_gated_payload(pkt, k_gated[i].sub);
+        tdc_ble_cmd_0x66_live(pkt);
+
+        // 게이트만 본다. 하위 5 는 스텁 맵데이터가 0 이라 게이트를 통과해도
+        // 범위 검사에서 걸리므로 "에러 0" 이 아니라 minor 로 판정한다.
+        sprintf(name, "%s - Command_Order 아님", k_gated[i].name);
+        CHECK(name, stub_error_last_minor() != en__Command_Order);
+    }
+
+    // ------------------------------------------------------------------
+    TEST_GROUP("0x66 선행 상태 - 조건 없는 명령은 Standby 에서도 수락");
+
+    // 가드를 조건 없는 명령에 잘못 붙이면 여기서 잡힌다.
+    for (i = 0; i < UNGATED_COUNT; i++)
+    {
+        stub_reset();  // subCommand = en__Standby
+        make_live(pkt, k_ungated[i].sub);
+        tdc_ble_cmd_0x66_live(pkt);
+        p = tdc_ble_mapping_get_packet();
+
+        sprintf(name, "%s - Command_Order 없음", k_ungated[i].name);
+        CHECK(name, stub_error_last_minor() != en__Command_Order);
+
+        sprintf(name, "%s - subCommand 전이", k_ungated[i].name);
+        CHECK_EQ(name, p->tdc_isd_map_live_step.subCommand, k_ungated[i].sub);
+    }
+
+    // ------------------------------------------------------------------
+    TEST_GROUP("0x66 선행 상태 - 거부된 명령은 값을 바꾸지 않는다");
+
+    stub_reset();
+    set_hold_on();
+    make_gated_payload(pkt, en__StimulationVolumeAdjust);
+    pkt[2] = 3;
+    tdc_ble_cmd_0x66_live(pkt);
+    p = tdc_ble_mapping_get_packet();
+    CHECK_EQ("HoldOn 에서 볼륨 3 적재", p->tdc_isd_map_live_step.stimulVolume, 3);
+
+    // 성공하면 subCommand 가 en__StimulationVolumeAdjust 로 바뀐다. 즉 더 이상
+    // HoldOn 이 아니므로, 이어서 같은 명령을 보내면 게이트에서 거부돼야 한다.
+    CHECK_EQ("성공 후 subCommand 전이", p->tdc_isd_map_live_step.subCommand, en__StimulationVolumeAdjust);
+
+    make_gated_payload(pkt, en__StimulationVolumeAdjust);
+    pkt[2] = 1;
+    tdc_ble_cmd_0x66_live(pkt);
+    CHECK_EQ("HoldOn 아닌 상태에서는 거부", stub_error_last_minor(), en__Command_Order);
+    CHECK_EQ("거부됐으므로 볼륨 3 유지", p->tdc_isd_map_live_step.stimulVolume, 3);
 
     // ------------------------------------------------------------------
     TEST_GROUP("공통");
