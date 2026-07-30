@@ -422,12 +422,41 @@ static bool tdc_ble_cmd_0x66_sub01_idx15_c_level_24_31(ST__MAPPINGPAYLOAD_LIVE_S
 
 // ===========================================================================
 // 하위 명령 1~8
+//
+// 각 함수 머리에 수락 조건을 한 줄로 적는다. 조건이 없는 명령도 "없음"이라고
+// 적어 둔다 - 침묵하면 조건이 없는 것인지 가드를 빠뜨린 것인지 구분되지 않는다.
 // ===========================================================================
+
+// 라이브 자극 유지 중(en__HoldOn)에만 수락되는 명령인지 확인한다.
+//
+// 하위 명령 3(자극 볼륨) · 4(마이크 감도) · 5(알림 자극) · 6(이퀄라이저 읽기)가
+// 이 전제를 공유한다. 거부할 때는 앱에 명령 순서 에러를 보내고 서브커맨드를
+// Standby 로 되돌린다.
+//
+// lineNumber 를 인자로 받는 이유 : 여기서 __LINE__ 을 쓰면 네 명령이 전부 같은
+// 값을 보내 로그에서 어느 명령이 거부됐는지 구분되지 않는다. 호출 지점 값을
+// 그대로 실어 보낸다.
+//
+// 반환 : 수락 가능하면 true
+static bool tdc_ble_cmd_0x66_require_hold_on(ST__MAPPING_PACKET *p_mappingPacket, int lineNumber)
+{
+    if (p_mappingPacket->tdc_isd_map_live_step.subCommand == en__HoldOn)
+    {
+        return true;
+    }
+
+    // 라이브 자극 중에만 컨트롤 되는 명령어
+    tdc_sys_error_send_to_app(en__mapping_live_stimulation, en__EN__BLE_PROTOCOL_ERROR, en__Command_Order, lineNumber);
+    p_mappingPacket->tdc_isd_map_live_step.subCommand = en__Standby;
+
+    return false;
+}
 
 // 하위 명령 1 - 전체 파라미터 전달 (en__allParameter)
 //
 // 데이터 인덱스 1~15 를 순차로 받는다. 아래 switch 가 이 하위 명령의
 // 목차다 - 어느 인덱스가 무엇을 담는지는 각 함수 이름과 주석에 있다.
+// 수락 조건 : 없음. 다만 데이터 인덱스는 1씩 증가해야 한다.
 static void tdc_ble_cmd_0x66_sub01_all_param(const uint8_t *Rx_dataPacket, int index)
 {
     ST__MAPPING_PACKET                  *p_mappingPacket = tdc_ble_mapping_get_packet();
@@ -537,6 +566,7 @@ static void tdc_ble_cmd_0x66_sub01_all_param(const uint8_t *Rx_dataPacket, int i
 }
 
 // 하위 명령 2 - 라이브 모드 시작 (en__Start)
+// 수락 조건 : 없음. 어느 상태에서도 수락한다.
 static void tdc_ble_cmd_0x66_sub02_start(void)
 {
     ST__MAPPING_PACKET *p_mappingPacket = tdc_ble_mapping_get_packet();
@@ -545,69 +575,64 @@ static void tdc_ble_cmd_0x66_sub02_start(void)
 }
 
 // 하위 명령 3 - 자극 볼륨 조절 (en__StimulationVolumeAdjust)
+// 수락 조건 : 라이브 자극 유지 중(en__HoldOn)에만.
 static void tdc_ble_cmd_0x66_sub03_volume_adjust(const uint8_t *Rx_dataPacket, int index)
 {
     ST__MAPPING_PACKET *p_mappingPacket = tdc_ble_mapping_get_packet();
 
     int value;
 
-    if (p_mappingPacket->tdc_isd_map_live_step.subCommand == en__HoldOn)
+    if (!tdc_ble_cmd_0x66_require_hold_on(p_mappingPacket, __LINE__))
     {
-        value = Rx_dataPacket[index++];
+        return;
+    }
 
-        if ((1 <= value)                                 // 1 이상
-            && (value <= df_maxStimulationVloumeLevel))  // 4 이하
-        {
-            p_mappingPacket->tdc_isd_map_live_step.stimulVolume = value;
-            p_mappingPacket->tdc_isd_map_live_step.subCommand   = en__StimulationVolumeAdjust;
-        }
-        else
-        {
-            // 에러 전송
-            tdc_sys_error_send_to_app(en__mapping_live_stimulation, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);  // 데이터 범위 벗어남
-            p_mappingPacket->tdc_isd_map_live_step.subCommand = en__Standby;
-        }
+    value = Rx_dataPacket[index++];
+
+    if ((1 <= value)                                 // 1 이상
+        && (value <= df_maxStimulationVloumeLevel))  // 4 이하
+    {
+        p_mappingPacket->tdc_isd_map_live_step.stimulVolume = value;
+        p_mappingPacket->tdc_isd_map_live_step.subCommand   = en__StimulationVolumeAdjust;
     }
     else
     {
-        tdc_sys_error_send_to_app(en__mapping_live_stimulation, en__EN__BLE_PROTOCOL_ERROR, en__Command_Order,
-                       __LINE__);  // 라이브 자극 중에만 컨트롤 되는 명령어
-
+        // 에러 전송
+        tdc_sys_error_send_to_app(en__mapping_live_stimulation, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);  // 데이터 범위 벗어남
         p_mappingPacket->tdc_isd_map_live_step.subCommand = en__Standby;
     }
 }
 
 // 하위 명령 4 - 마이크 감도 조절 (en__MicSensitivityAdjust)
+// 수락 조건 : 라이브 자극 유지 중(en__HoldOn)에만.
 static void tdc_ble_cmd_0x66_sub04_mic_sensitivity(const uint8_t *Rx_dataPacket, int index)
 {
     ST__MAPPING_PACKET *p_mappingPacket = tdc_ble_mapping_get_packet();
 
     int value;
 
-    if (p_mappingPacket->tdc_isd_map_live_step.subCommand == en__HoldOn)
+    if (!tdc_ble_cmd_0x66_require_hold_on(p_mappingPacket, __LINE__))
     {
-        value = Rx_dataPacket[index++];
-        if ((1 <= value)                         // 1 이상
-            && (value <= df_maxMicVloumeLevel))  // 10 이하
-        {
-            p_mappingPacket->tdc_isd_map_live_step.audioVolume = value;
-            p_mappingPacket->tdc_isd_map_live_step.subCommand  = en__MicSensitivityAdjust;
-        }
-        else
-        {
-            // 에러 전송
-            tdc_sys_error_send_to_app(en__mapping_live_stimulation, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);  // 데이터 범위 벗어남
-            p_mappingPacket->tdc_isd_map_live_step.subCommand = en__Standby;
-        }
+        return;
+    }
+
+    value = Rx_dataPacket[index++];
+    if ((1 <= value)                         // 1 이상
+        && (value <= df_maxMicVloumeLevel))  // 10 이하
+    {
+        p_mappingPacket->tdc_isd_map_live_step.audioVolume = value;
+        p_mappingPacket->tdc_isd_map_live_step.subCommand  = en__MicSensitivityAdjust;
     }
     else
     {
-        tdc_sys_error_send_to_app(en__mapping_live_stimulation, en__EN__BLE_PROTOCOL_ERROR, en__Command_Order, __LINE__);  // 라이브 자극 중에만 컨트롤 되는 명령어
+        // 에러 전송
+        tdc_sys_error_send_to_app(en__mapping_live_stimulation, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);  // 데이터 범위 벗어남
         p_mappingPacket->tdc_isd_map_live_step.subCommand = en__Standby;
     }
 }
 
 // 하위 명령 5 - 알림 자극 출력 (en__mapping_Stimul_indicator)
+// 수락 조건 : 라이브 자극 유지 중(en__HoldOn)에만.
 static void tdc_ble_cmd_0x66_sub05_indicator(const uint8_t *Rx_dataPacket, int index)
 {
     ST__MAPPING_PACKET *p_mappingPacket = tdc_ble_mapping_get_packet();
@@ -621,84 +646,81 @@ static void tdc_ble_cmd_0x66_sub05_indicator(const uint8_t *Rx_dataPacket, int i
 
     ST__CFX_CM3_SharedMemory_mapData *p_mapDataSharedMemory;
 
-    if (p_mappingPacket->tdc_isd_map_live_step.subCommand == en__HoldOn)
+    if (!tdc_ble_cmd_0x66_require_hold_on(p_mappingPacket, __LINE__))
     {
-        p_mapDataSharedMemory = tdc_shm_get_pointer_current_map_data();
+        return;
+    }
 
-        value = Rx_dataPacket[index++];  // 알림용 자극 채널 번호
+    p_mapDataSharedMemory = tdc_shm_get_pointer_current_map_data();
 
-        if ((value > p_mapDataSharedMemory->numFrequencyBand)  // 알림용 자극 채널 번호가 주파수 밴드 수 보다 크거나
-            || (value < 1))                                    // 1 미만이면 에러
+    value = Rx_dataPacket[index++];  // 알림용 자극 채널 번호
+
+    if ((value > p_mapDataSharedMemory->numFrequencyBand)  // 알림용 자극 채널 번호가 주파수 밴드 수 보다 크거나
+        || (value < 1))                                    // 1 미만이면 에러
+    {
+        // 에러 전송
+        tdc_sys_error_send_to_app(en__mapping_live_stimulation, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);  // 데이터 범위 벗어남
+        p_mappingPacket->tdc_isd_map_live_step.subCommand = en__Standby;
+    }
+    else
+    {
+        p_mappingPacket->tdc_isd_map_live_step.stimulationIndicatorChannelNum = value;
+
+        value = Rx_dataPacket[index++] << 8;     // 알림용 자극 크기 uA (upper)
+        value = value | Rx_dataPacket[index++];  // 알림용 자극 크기 uA (lower)
+
+        // 자극 알림 출력값의 데이터 범위 검사를 위한 자극 범위 계산
+        for (i = 0; i < df_MaxNumOfElectrode; i++)
         {
+            if (p_mapDataSharedMemory->C_level_uA[i] > max_C_uA)
+            {
+                max_C_uA = p_mapDataSharedMemory->C_level_uA[i];
+            }
+
+#if 1  // 1세대에서 사용되던 코드 (min_T_uA가 1800으로 유지되는 버그 있음)
+            if (p_mapDataSharedMemory->T_level_uA[i] != 0)
+            {
+                if (p_mapDataSharedMemory->T_level_uA[i] < min_T_uA)
+                {
+                    min_T_uA = p_mapDataSharedMemory->T_level_uA[i];
+                }
+            }
+#endif
+        }
+
+#if 1
+        // 0x66 라이브모드의 하위 명령 1, 데이터 인덱스 1에서 주파수 밴드 수를 입력 받았다.
+        // 또한, T, C 정보는 사용가능한 전극 번호의 값과는 상관 없이
+        // 매핑 앱의 첫번째 채널에서부터 활성화된 수만큼 앞으로 패딩되어 전달된다.
+        // 즉, 실제 사용 가능한 밴드 수 만큼만 T레벨을 확인하면
+        // 활성화된 밴드들 중에서의 가장 작은 T레벨을 찾을 수 있다.
+        // 그게 비로 0 값이라 하더라도, 해당 밴드는 활성화된 밴드이므로 0이 올바른 T레벨 값일 것이다.
+        for (int li = 0; li < p_mapDataSharedMemory->numFrequencyBand; li++)
+        {
+            if (p_mapDataSharedMemory->T_level_uA[li] < min_T_uA)
+            {
+                min_T_uA = p_mapDataSharedMemory->T_level_uA[li];
+            }
+        }
+#endif
+
+        if ((value > max_C_uA) || (value < min_T_uA))
+        {
+            TDC_PRINTF_E("[MAPPING] VALUE=%d, max_C_uA=%d, min_T_uA=%d \r\n", value, max_C_uA, min_T_uA);
             // 에러 전송
             tdc_sys_error_send_to_app(en__mapping_live_stimulation, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);  // 데이터 범위 벗어남
             p_mappingPacket->tdc_isd_map_live_step.subCommand = en__Standby;
         }
         else
         {
-            p_mappingPacket->tdc_isd_map_live_step.stimulationIndicatorChannelNum = value;
-
-            value = Rx_dataPacket[index++] << 8;     // 알림용 자극 크기 uA (upper)
-            value = value | Rx_dataPacket[index++];  // 알림용 자극 크기 uA (lower)
-
-            // 자극 알림 출력값의 데이터 범위 검사를 위한 자극 범위 계산
-            for (i = 0; i < df_MaxNumOfElectrode; i++)
-            {
-                if (p_mapDataSharedMemory->C_level_uA[i] > max_C_uA)
-                {
-                    max_C_uA = p_mapDataSharedMemory->C_level_uA[i];
-                }
-
-#if 1  // 1세대에서 사용되던 코드 (min_T_uA가 1800으로 유지되는 버그 있음)
-                if (p_mapDataSharedMemory->T_level_uA[i] != 0)
-                {
-                    if (p_mapDataSharedMemory->T_level_uA[i] < min_T_uA)
-                    {
-                        min_T_uA = p_mapDataSharedMemory->T_level_uA[i];
-                    }
-                }
-#endif
-            }
-
-#if 1
-            // 0x66 라이브모드의 하위 명령 1, 데이터 인덱스 1에서 주파수 밴드 수를 입력 받았다.
-            // 또한, T, C 정보는 사용가능한 전극 번호의 값과는 상관 없이
-            // 매핑 앱의 첫번째 채널에서부터 활성화된 수만큼 앞으로 패딩되어 전달된다.
-            // 즉, 실제 사용 가능한 밴드 수 만큼만 T레벨을 확인하면
-            // 활성화된 밴드들 중에서의 가장 작은 T레벨을 찾을 수 있다.
-            // 그게 비로 0 값이라 하더라도, 해당 밴드는 활성화된 밴드이므로 0이 올바른 T레벨 값일 것이다.
-            for (int li = 0; li < p_mapDataSharedMemory->numFrequencyBand; li++)
-            {
-                if (p_mapDataSharedMemory->T_level_uA[li] < min_T_uA)
-                {
-                    min_T_uA = p_mapDataSharedMemory->T_level_uA[li];
-                }
-            }
-#endif
-
-            if ((value > max_C_uA) || (value < min_T_uA))
-            {
-                TDC_PRINTF_E("[MAPPING] VALUE=%d, max_C_uA=%d, min_T_uA=%d \r\n", value, max_C_uA, min_T_uA);
-                // 에러 전송
-                tdc_sys_error_send_to_app(en__mapping_live_stimulation, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);  // 데이터 범위 벗어남
-                p_mappingPacket->tdc_isd_map_live_step.subCommand = en__Standby;
-            }
-            else
-            {
-                p_mappingPacket->tdc_isd_map_live_step.stimulationIndicatorAmplitude_uA = value;
-                p_mappingPacket->tdc_isd_map_live_step.subCommand                       = en__mapping_Stimul_indicator;
-            }
+            p_mappingPacket->tdc_isd_map_live_step.stimulationIndicatorAmplitude_uA = value;
+            p_mappingPacket->tdc_isd_map_live_step.subCommand                       = en__mapping_Stimul_indicator;
         }
-    }
-    else
-    {
-        tdc_sys_error_send_to_app(en__mapping_live_stimulation, en__EN__BLE_PROTOCOL_ERROR, en__Command_Order, __LINE__);  // 라이브 자극 중에만 컨트롤 되는 명령어
-
-        p_mappingPacket->tdc_isd_map_live_step.subCommand = en__Standby;
     }
 }
 
 // 하위 명령 6 - 자극 출력 값 읽기 · 이퀄라이저 (en__readEqualizer)
+// 수락 조건 : 라이브 자극 유지 중(en__HoldOn)에만.
 static void tdc_ble_cmd_0x66_sub06_read_equalizer(const uint8_t *Rx_dataPacket, int index)
 {
     ST__MAPPING_PACKET *p_mappingPacket = tdc_ble_mapping_get_packet();
@@ -706,55 +728,51 @@ static void tdc_ble_cmd_0x66_sub06_read_equalizer(const uint8_t *Rx_dataPacket, 
     int  tempA, tempB;
     bool dataRangeError = false;
 
-    if (p_mappingPacket->tdc_isd_map_live_step.subCommand == en__HoldOn)
+    if (!tdc_ble_cmd_0x66_require_hold_on(p_mappingPacket, __LINE__))
     {
-        tempA = Rx_dataPacket[index++];  // start index
-        tempB = Rx_dataPacket[index++];  // end index
+        return;
+    }
 
-        if ((tempA < 1)       // 1 미만
-            || (32 < tempA))  // 32 초과 시 에러
-        {
-            dataRangeError = true;
-        }
+    tempA = Rx_dataPacket[index++];  // start index
+    tempB = Rx_dataPacket[index++];  // end index
 
-        if ((tempB < 1)       // 1 미만
-            || (32 < tempB))  // 32 초과 시 에러
-        {
-            dataRangeError = true;
-        }
+    if ((tempA < 1)       // 1 미만
+        || (32 < tempA))  // 32 초과 시 에러
+    {
+        dataRangeError = true;
+    }
 
-        if (dataRangeError)
+    if ((tempB < 1)       // 1 미만
+        || (32 < tempB))  // 32 초과 시 에러
+    {
+        dataRangeError = true;
+    }
+
+    if (dataRangeError)
+    {
+        tdc_sys_error_send_to_app(en__mapping_live_stimulation, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);  // 데이터 범위 벗어남
+        p_mappingPacket->tdc_isd_map_live_step.subCommand = en__Standby;
+    }
+    else
+    {
+        if ((tempB - tempA) > 8)
         {
+            // 에러 전송
             tdc_sys_error_send_to_app(en__mapping_live_stimulation, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);  // 데이터 범위 벗어남
             p_mappingPacket->tdc_isd_map_live_step.subCommand = en__Standby;
         }
         else
         {
-            if ((tempB - tempA) > 8)
-            {
-                // 에러 전송
-                tdc_sys_error_send_to_app(en__mapping_live_stimulation, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);  // 데이터 범위 벗어남
-                p_mappingPacket->tdc_isd_map_live_step.subCommand = en__Standby;
-            }
-            else
-            {
-                p_mappingPacket->tdc_isd_map_live_step.equlizer_ReadStart_index = tempA;
-                p_mappingPacket->tdc_isd_map_live_step.equlizer_ReadEnd_index   = tempB;
+            p_mappingPacket->tdc_isd_map_live_step.equlizer_ReadStart_index = tempA;
+            p_mappingPacket->tdc_isd_map_live_step.equlizer_ReadEnd_index   = tempB;
 
-                p_mappingPacket->tdc_isd_map_live_step.subCommand = en__readEqualizer;
-            }
+            p_mappingPacket->tdc_isd_map_live_step.subCommand = en__readEqualizer;
         }
-    }
-    else
-    {
-        tdc_sys_error_send_to_app(en__mapping_live_stimulation, en__EN__BLE_PROTOCOL_ERROR, en__Command_Order,
-                       __LINE__);  // 라이브 자극 중에만 컨트롤 되는 명령어
-
-        p_mappingPacket->tdc_isd_map_live_step.subCommand = en__Standby;
     }
 }
 
 // 하위 명령 7 - 장치 상태 읽기 (en__readDeviceStatus)
+// 수락 조건 : 없음. 어느 상태에서도 수락한다.
 static void tdc_ble_cmd_0x66_sub07_read_device_status(void)
 {
     ST__MAPPING_PACKET *p_mappingPacket = tdc_ble_mapping_get_packet();
@@ -763,6 +781,7 @@ static void tdc_ble_cmd_0x66_sub07_read_device_status(void)
 }
 
 // 하위 명령 8 - 라이브 모드 종료 (en__Stop)
+// 수락 조건 : 없음. 다만 fetch_packet 의 재진입 가드에서 먼저 걸릴 수 있다.
 static void tdc_ble_cmd_0x66_sub08_stop(void)
 {
     ST__MAPPING_PACKET *p_mappingPacket = tdc_ble_mapping_get_packet();
@@ -843,6 +862,9 @@ void tdc_ble_cmd_0x66_live(const uint8_t *Rx_dataPacket)  // 0x66
             tdc_ble_cmd_0x66_sub08_stop();
             break;
 
+        // 하위 9 (en__HoldOn) - 수락 조건 : 앱이 보낼 수 없는 내부 상태값이다.
+        // 위 범위 검사(1~9)는 통과하지만 대응 case 가 없어 여기로 낙하하고,
+        // 서브커맨드를 Standby 로 되돌린다.
         default:
             p_mappingPacket->tdc_isd_map_live_step.subCommand = en__Standby;
             break;
