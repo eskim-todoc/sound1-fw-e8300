@@ -221,8 +221,39 @@ void tdc_isd_map_specific_stim_step(bool startFlag)
                 bipolarReferenceElectrodeNum[i] = unusedReferenceElectrode_DummyNum;
             }
 
-            bipolarReferenceElectrodeNum[electrodeMap[mappingPacket->tdc_isd_map_specific_stim_step.stimulationElectrodeNum - 1]] =  // 코드 길어서 line wrapping
-                electrodeMap[mappingPacket->tdc_isd_map_specific_stim_step.bipolarReferenceElectrodeNum - 1];
+            /* 전극번호 범위 방어 (2026-07-30 추가).
+             * 라이브 경로 tdc_isd_stim_para_setting.c:486 의 방어를 이식한 것이다.
+             * 그쪽은 2026-07-27 에 막혔는데 이 경로는 남아 있었다.
+             *
+             * 매핑 앱은 모노폴라 기준전극을 99 로 보낸다. 0x65 파싱
+             * (tdc_ble_cmd_0x65_specific.c:86)이 이를 stimulatonMode 와 무관하게
+             * 통과시키므로, 바이폴라 + 99 조합이 여기까지 도달한다.
+             * 거르지 않고 electrodeMap[99 - 1] 을 읽으면 32원소 배열의 범위를
+             * 264바이트 벗어나 인접 전역(s_tdc_table, ui/tdc_ui_command.c:120)의
+             * 포인터 값을 집어온다. 실기 로그의 "REF ELEC NUM : 99 (PCB : 70378)"
+             * 이 그 미정의 동작이며 70378 = 0x112EA 는 .text 범위 안 주소다.
+             *
+             * 그 값이 기준전극으로 레지스터에 실리면 비트 [4:0] 을 넘어 ISD 내부
+             * FIFO 클리어를 유발하고 백텔 카운트 0 에러로 이어진다
+             * (case 5 - case 7 의 마스크 주석 참조).
+             *
+             * 바로 위 루프에서 전 원소가 unusedReferenceElectrode_DummyNum(31) 로
+             * 초기화되므로, 여기서 건너뛰면 그 더미값이 그대로 유지된다.
+             * 자극 전극번호도 함께 검사한다 - 좌변 첨자라 범위 밖이면 쓰기가 된다. */
+            if ((mappingPacket->tdc_isd_map_specific_stim_step.stimulationElectrodeNum < 1)                             //
+                || (df_MaxNumOfElectrode < mappingPacket->tdc_isd_map_specific_stim_step.stimulationElectrodeNum)       //
+                || (mappingPacket->tdc_isd_map_specific_stim_step.bipolarReferenceElectrodeNum < 1)                     //
+                || (df_MaxNumOfElectrode < mappingPacket->tdc_isd_map_specific_stim_step.bipolarReferenceElectrodeNum))
+            {
+                TDC_PRINTF_I("[SPEC] STIM ELEC NUM : %d, REF ELEC NUM : %d, OUT OF RANGE - USE DUMMY \r\n",  //
+                          mappingPacket->tdc_isd_map_specific_stim_step.stimulationElectrodeNum,
+                          mappingPacket->tdc_isd_map_specific_stim_step.bipolarReferenceElectrodeNum);
+            }
+            else
+            {
+                bipolarReferenceElectrodeNum[electrodeMap[mappingPacket->tdc_isd_map_specific_stim_step.stimulationElectrodeNum - 1]] =  // 코드 길어서 line wrapping
+                    electrodeMap[mappingPacket->tdc_isd_map_specific_stim_step.bipolarReferenceElectrodeNum - 1];
+            }
 
             // Bipolar 기준전극 FIFO 지우기
             w_isd_registerValue = ISD_registerAddr_cipherDataStatus;
@@ -255,7 +286,8 @@ void tdc_isd_map_specific_stim_step(bool startFlag)
                 w_isd_registerValue = w_isd_registerValue | ISD_writeRegister;
                 w_isd_registerValue = w_isd_registerValue << 8;
 
-                w_isd_registerValue = w_isd_registerValue | bipolarReferenceElectrodeNum[i];
+                // 바이폴러 레퍼런스 전극 번호는 비트 [4:0] 범위, 범위 초과한 값 입력시 FIFO 클리어 발생 -> 이후 백텔 카운트 0 에러 발생할 수 있음
+                w_isd_registerValue = w_isd_registerValue | (0x1F & bipolarReferenceElectrodeNum[i]);
                 w_isd_registerValue = w_isd_registerValue | pcm_Mold_configuration;
 
                 tdc_shm_fill_specific_command_buffer(pcm_index++, w_isd_registerValue);
@@ -281,7 +313,8 @@ void tdc_isd_map_specific_stim_step(bool startFlag)
                 w_isd_registerValue = w_isd_registerValue | ISD_writeRegister;
                 w_isd_registerValue = w_isd_registerValue << 8;
 
-                w_isd_registerValue = w_isd_registerValue | bipolarReferenceElectrodeNum[i];
+                // 바이폴러 레퍼런스 전극 번호는 비트 [4:0] 범위, 범위 초과한 값 입력시 FIFO 클리어 발생 -> 이후 백텔 카운트 0 에러 발생할 수 있음
+                w_isd_registerValue = w_isd_registerValue | (0x1F & bipolarReferenceElectrodeNum[i]);
                 w_isd_registerValue = w_isd_registerValue | pcm_Mold_configuration;
 
                 tdc_shm_fill_specific_command_buffer(pcm_index++, w_isd_registerValue);
