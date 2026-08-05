@@ -360,7 +360,8 @@ void tdc_isd_map_impedance_step(bool startFlag)
             w_isd_registerValue = w_isd_registerValue | ISD_writeRegister;
 
             w_isd_registerValue = w_isd_registerValue << 8;
-            w_isd_registerValue = w_isd_registerValue | electrodeMap[electrodeNum];
+            // 전극 번호는 비트 [4:0] 범위, 범위 초과한 값 입력시 FIFO 클리어 발생 -> 이후 백텔 카운트 0 에러 발생할 수 있음
+            w_isd_registerValue = w_isd_registerValue | (0x1F & electrodeMap[electrodeNum]);
 
             w_isd_registerValue = w_isd_registerValue | pcm_Mold_configuration;  // 0x1100 | 0x50000
 
@@ -407,7 +408,8 @@ void tdc_isd_map_impedance_step(bool startFlag)
             // 자극 출력 파라미터
 
             w_isd_registerValue = positivePulseFirst << firstPulsePhasePositionAtPCM_Mold;                                // Positive Pulse first;
-            w_isd_registerValue = w_isd_registerValue | (electrodeMap[electrodeNum] << electrodIndexPositionAtPCM_Mold);  // 자극 전극 번호
+            // 전극 번호는 비트 [4:0] 범위 (라이브·0x65 경로와 동일한 마스크)
+            w_isd_registerValue = w_isd_registerValue | ((0x1F & electrodeMap[electrodeNum]) << electrodIndexPositionAtPCM_Mold);  // 자극 전극 번호
             w_isd_registerValue = w_isd_registerValue | (stimulLevel_255 << stimulationPositionAtPCM_Mold);               // 자극 출력 크기
 
             w_isd_registerValue = w_isd_registerValue | pcm_Mold_Stimulation;
