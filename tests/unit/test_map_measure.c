@@ -37,6 +37,44 @@ static void make_impedance_ok(uint8_t *pkt)
     pkt[6] = 0x2C;  // 0x012C = 300
 }
 
+// 0x63 eCAP 마스킹: 유효한 기본 패킷을 만든다.
+// 값은 각 필드의 유효 범위 안에서 서로 구분되게 골랐다.
+static void make_ecap_masking_ok(uint8_t *pkt)
+{
+    make_packet(pkt, en__mapping_eCAP_Measurement_masking);
+    pkt[1]  = 4;    // iterationNum                  (1~255)
+    pkt[2]  = 25;   // pulseWidth                    (13~255)
+    pkt[3]  = 1;    // firstPulsePhase               (0~1)
+    pkt[4]  = 2;    // stimulatonMode                (1~6)
+    pkt[5]  = 7;    // stimulationElectrodeNum       (1~32)
+    pkt[6]  = 8;    // bipolarReferenceElectrodeNum  (1~32 또는 99)
+    pkt[7]  = 9;    // measurementElectrodeNum       (1~32)
+    pkt[8]  = 0x02; // masker 상위
+    pkt[9]  = 0x58; // masker 하위 -> 600
+    pkt[10] = 0x01; // probe 상위
+    pkt[11] = 0xF4; // probe 하위 -> 500
+    pkt[12] = 3;    // maskerProbeInterval_numFrame  (검사 없음 - isd 에서 검사)
+    pkt[13] = 11;   // adcPreampGain                 (검사 없음 - 비트폭 미확정)
+    pkt[14] = 5;    // adcSamplingFreq               (0~7)
+    pkt[15] = 13;   // adcMeasurementDelay           (0~15)
+    pkt[16] = 14;   // measurementSampleNum          (검사 없음)
+}
+
+// 0x64 eCAP 교대: 유효한 기본 패킷을 만든다.
+// 0x63 과 달리 firstPulsePhase 가 없어 이후 필드가 한 칸씩 당겨진다.
+static void make_ecap_alternative_ok(uint8_t *pkt)
+{
+    make_packet(pkt, en__mapping_eCAP_Measurement_alternative);
+    pkt[1] = 6;    // iterationNum                  (1~255)
+    pkt[2] = 26;   // pulseWidth                    (13~255)
+    pkt[3] = 3;    // stimulatonMode                (1~6)
+    pkt[4] = 15;   // stimulationElectrodeNum       (1~32)
+    pkt[5] = 16;   // bipolarReferenceElectrodeNum  (1~32 또는 99)
+    pkt[6] = 17;   // measurementElectrodeNum       (1~32)
+    pkt[7] = 0x03; // masker 상위
+    pkt[8] = 0xE8; // masker 하위 -> 1000
+}
+
 int main(void)
 {
     uint8_t             pkt[BLE_DataPacketSize + 1];
@@ -158,23 +196,7 @@ int main(void)
     // ------------------------------------------------------------------
     TEST_GROUP("0x63 eCAP 마스킹 - 전 필드 적재");
 
-    make_packet(pkt, en__mapping_eCAP_Measurement_masking);
-    pkt[1]  = 4;    // iterationNum
-    pkt[2]  = 25;   // pulseWidth
-    pkt[3]  = 1;    // firstPulsePhase
-    pkt[4]  = 2;    // stimulatonMode
-    pkt[5]  = 7;    // stimulationElectrodeNum
-    pkt[6]  = 8;    // bipolarReferenceElectrodeNum
-    pkt[7]  = 9;    // measurementElectrodeNum
-    pkt[8]  = 0x02; // masker 상위
-    pkt[9]  = 0x58; // masker 하위 -> 600
-    pkt[10] = 0x01; // probe 상위
-    pkt[11] = 0xF4; // probe 하위 -> 500
-    pkt[12] = 3;    // maskerProbeInterval_numFrame
-    pkt[13] = 11;   // adcPreampGain
-    pkt[14] = 12;   // adcSamplingFreq
-    pkt[15] = 13;   // adcMeasurementDelay
-    pkt[16] = 14;   // measurementSampleNum
+    make_ecap_masking_ok(pkt);
     tdc_ble_map_measure_ecap_masking(pkt);
     p = tdc_ble_mapping_get_packet();
 
@@ -189,24 +211,237 @@ int main(void)
     CHECK_EQ("probe 500 (16비트)", p->eCapMeasurement.stimulationLevel_uA_probe, 500);
     CHECK_EQ("maskerProbeInterval_numFrame", p->eCapMeasurement.maskerProbeInterval_numFrame, 3);
     CHECK_EQ("adcPreampGain", p->eCapMeasurement.adcPreampGain, 11);
-    CHECK_EQ("adcSamplingFreq", p->eCapMeasurement.adcSamplingFreq, 12);
+    CHECK_EQ("adcSamplingFreq", p->eCapMeasurement.adcSamplingFreq, 5);
     CHECK_EQ("adcMeasurementDelay", p->eCapMeasurement.adcMeasurementDelay, 13);
     CHECK_EQ("measurementSampleNum", p->eCapMeasurement.measurementSampleNum, 14);
     CHECK_EQ("fetched_command", p->fetched_command, en__mapping_eCAP_Measurement_masking);
-    CHECK_EQ("범위 검사가 없어 에러 없음", stub_error_count(), 0);
+    CHECK_EQ("정상 입력은 에러 없음", stub_error_count(), 0);
+    CHECK_EQ("송신 없음", stub_tx_count(), 0);
+
+    // ------------------------------------------------------------------
+    // 아래는 2026-08-05 신설 (상시 점검 대장 위험_1).
+    // 전극 번호는 isd/tdc_isd_map_ecap.c 에서 electrodeMap[32] 인덱스로 쓰이므로
+    // 파싱에서 막지 않으면 배열 범위 밖을 읽는다.
+    // ------------------------------------------------------------------
+    TEST_GROUP("0x63 eCAP 마스킹 - iterationNum 경계 (1~255)");
+
+    make_ecap_masking_ok(pkt);
+    pkt[1] = 1;
+    tdc_ble_map_measure_ecap_masking(pkt);
+    CHECK_EQ("하한 1 통과", stub_error_count(), 0);
+
+    make_ecap_masking_ok(pkt);
+    pkt[1] = 0;
+    tdc_ble_map_measure_ecap_masking(pkt);
+    CHECK_EQ("0 은 거부", stub_error_count(), 1);
+    CHECK_EQ("minor = OutOfDataRange", stub_error_last_minor(), en__OutOfDataRange);
+
+    make_ecap_masking_ok(pkt);
+    pkt[1] = 255;
+    tdc_ble_map_measure_ecap_masking(pkt);
+    CHECK_EQ("상한 255 통과", stub_error_count(), 0);
+
+    // ------------------------------------------------------------------
+    TEST_GROUP("0x63 eCAP 마스킹 - pulseWidth 경계 (13~255)");
+
+    make_ecap_masking_ok(pkt);
+    pkt[2] = 13;
+    tdc_ble_map_measure_ecap_masking(pkt);
+    CHECK_EQ("하한 13 통과", stub_error_count(), 0);
+
+    make_ecap_masking_ok(pkt);
+    pkt[2] = 12;
+    tdc_ble_map_measure_ecap_masking(pkt);
+    CHECK_EQ("12 는 거부 (FPGA 최소 펄스폭 미만)", stub_error_count(), 1);
+
+    make_ecap_masking_ok(pkt);
+    pkt[2] = 255;
+    tdc_ble_map_measure_ecap_masking(pkt);
+    CHECK_EQ("상한 255 통과", stub_error_count(), 0);
+
+    // ------------------------------------------------------------------
+    TEST_GROUP("0x63 eCAP 마스킹 - firstPulsePhase 경계 (0~1)");
+
+    make_ecap_masking_ok(pkt);
+    pkt[3] = 0;
+    tdc_ble_map_measure_ecap_masking(pkt);
+    CHECK_EQ("0 통과", stub_error_count(), 0);
+
+    make_ecap_masking_ok(pkt);
+    pkt[3] = 1;
+    tdc_ble_map_measure_ecap_masking(pkt);
+    CHECK_EQ("1 통과", stub_error_count(), 0);
+
+    make_ecap_masking_ok(pkt);
+    pkt[3] = 2;
+    tdc_ble_map_measure_ecap_masking(pkt);
+    CHECK_EQ("2 는 거부", stub_error_count(), 1);
+
+    // ------------------------------------------------------------------
+    TEST_GROUP("0x63 eCAP 마스킹 - stimulatonMode 경계 (1~6)");
+
+    make_ecap_masking_ok(pkt);
+    pkt[4] = 1;
+    tdc_ble_map_measure_ecap_masking(pkt);
+    CHECK_EQ("하한 1 통과", stub_error_count(), 0);
+
+    make_ecap_masking_ok(pkt);
+    pkt[4] = 0;
+    tdc_ble_map_measure_ecap_masking(pkt);
+    CHECK_EQ("0 (en__referenceNA) 은 거부", stub_error_count(), 1);
+
+    make_ecap_masking_ok(pkt);
+    pkt[4] = 6;
+    tdc_ble_map_measure_ecap_masking(pkt);
+    CHECK_EQ("상한 6 통과", stub_error_count(), 0);
+
+    make_ecap_masking_ok(pkt);
+    pkt[4] = 7;
+    tdc_ble_map_measure_ecap_masking(pkt);
+    CHECK_EQ("7 은 거부", stub_error_count(), 1);
+
+    // ------------------------------------------------------------------
+    TEST_GROUP("0x63 eCAP 마스킹 - stimulationElectrodeNum 경계 (1~32)");
+
+    make_ecap_masking_ok(pkt);
+    pkt[5] = 1;
+    tdc_ble_map_measure_ecap_masking(pkt);
+    CHECK_EQ("하한 1 통과", stub_error_count(), 0);
+
+    make_ecap_masking_ok(pkt);
+    pkt[5] = 0;
+    tdc_ble_map_measure_ecap_masking(pkt);
+    CHECK_EQ("0 은 거부 (electrodeMap[-1] 차단)", stub_error_count(), 1);
+
+    make_ecap_masking_ok(pkt);
+    pkt[5] = 32;
+    tdc_ble_map_measure_ecap_masking(pkt);
+    CHECK_EQ("상한 32 통과", stub_error_count(), 0);
+
+    make_ecap_masking_ok(pkt);
+    pkt[5] = 33;
+    tdc_ble_map_measure_ecap_masking(pkt);
+    CHECK_EQ("33 은 거부", stub_error_count(), 1);
+
+    make_ecap_masking_ok(pkt);
+    pkt[5] = 255;
+    tdc_ble_map_measure_ecap_masking(pkt);
+    CHECK_EQ("255 는 거부 (electrodeMap[254] 차단)", stub_error_count(), 1);
+    CHECK_EQ("거부 시 fetched_command 미설정", tdc_ble_mapping_get_packet()->fetched_command, en__mapping_IDLE);
+
+    // ------------------------------------------------------------------
+    TEST_GROUP("0x63 eCAP 마스킹 - bipolarReferenceElectrodeNum 경계 (1~32 또는 99)");
+
+    make_ecap_masking_ok(pkt);
+    pkt[6] = 1;
+    tdc_ble_map_measure_ecap_masking(pkt);
+    CHECK_EQ("하한 1 통과", stub_error_count(), 0);
+
+    make_ecap_masking_ok(pkt);
+    pkt[6] = 0;
+    tdc_ble_map_measure_ecap_masking(pkt);
+    CHECK_EQ("0 은 거부", stub_error_count(), 1);
+
+    make_ecap_masking_ok(pkt);
+    pkt[6] = 32;
+    tdc_ble_map_measure_ecap_masking(pkt);
+    CHECK_EQ("상한 32 통과", stub_error_count(), 0);
+
+    make_ecap_masking_ok(pkt);
+    pkt[6] = 33;
+    tdc_ble_map_measure_ecap_masking(pkt);
+    CHECK_EQ("33 은 거부", stub_error_count(), 1);
+
+    make_ecap_masking_ok(pkt);
+    pkt[6] = 98;
+    tdc_ble_map_measure_ecap_masking(pkt);
+    CHECK_EQ("98 은 거부", stub_error_count(), 1);
+
+    make_ecap_masking_ok(pkt);
+    pkt[6] = 99;
+    tdc_ble_map_measure_ecap_masking(pkt);
+    CHECK_EQ("99 는 예외로 통과 (0x65 와 동일, for 모노폴라)", stub_error_count(), 0);
+
+    // ------------------------------------------------------------------
+    TEST_GROUP("0x63 eCAP 마스킹 - measurementElectrodeNum 경계 (1~32)");
+
+    make_ecap_masking_ok(pkt);
+    pkt[7] = 1;
+    tdc_ble_map_measure_ecap_masking(pkt);
+    CHECK_EQ("하한 1 통과", stub_error_count(), 0);
+
+    make_ecap_masking_ok(pkt);
+    pkt[7] = 0;
+    tdc_ble_map_measure_ecap_masking(pkt);
+    CHECK_EQ("0 은 거부 (electrodeMap[-1] 차단)", stub_error_count(), 1);
+
+    make_ecap_masking_ok(pkt);
+    pkt[7] = 32;
+    tdc_ble_map_measure_ecap_masking(pkt);
+    CHECK_EQ("상한 32 통과", stub_error_count(), 0);
+
+    make_ecap_masking_ok(pkt);
+    pkt[7] = 33;
+    tdc_ble_map_measure_ecap_masking(pkt);
+    CHECK_EQ("33 은 거부", stub_error_count(), 1);
+
+    make_ecap_masking_ok(pkt);
+    pkt[7] = 255;
+    tdc_ble_map_measure_ecap_masking(pkt);
+    CHECK_EQ("255 는 거부 (electrodeMap[254] 차단)", stub_error_count(), 1);
+    CHECK_EQ("거부 시 fetched_command 미설정", tdc_ble_mapping_get_packet()->fetched_command, en__mapping_IDLE);
+
+    // ------------------------------------------------------------------
+    TEST_GROUP("0x63 eCAP 마스킹 - adcSamplingFreq 경계 (0~7, 레지스터 3비트)");
+
+    make_ecap_masking_ok(pkt);
+    pkt[14] = 0;
+    tdc_ble_map_measure_ecap_masking(pkt);
+    CHECK_EQ("0 통과", stub_error_count(), 0);
+
+    make_ecap_masking_ok(pkt);
+    pkt[14] = 7;
+    tdc_ble_map_measure_ecap_masking(pkt);
+    CHECK_EQ("상한 7 통과", stub_error_count(), 0);
+
+    make_ecap_masking_ok(pkt);
+    pkt[14] = 8;
+    tdc_ble_map_measure_ecap_masking(pkt);
+    CHECK_EQ("8 은 거부 (3비트 초과)", stub_error_count(), 1);
+
+    // ------------------------------------------------------------------
+    TEST_GROUP("0x63 eCAP 마스킹 - adcMeasurementDelay 경계 (0~15, 레지스터 4비트)");
+
+    make_ecap_masking_ok(pkt);
+    pkt[15] = 0;
+    tdc_ble_map_measure_ecap_masking(pkt);
+    CHECK_EQ("0 통과", stub_error_count(), 0);
+
+    make_ecap_masking_ok(pkt);
+    pkt[15] = 15;
+    tdc_ble_map_measure_ecap_masking(pkt);
+    CHECK_EQ("상한 15 통과", stub_error_count(), 0);
+
+    make_ecap_masking_ok(pkt);
+    pkt[15] = 16;
+    tdc_ble_map_measure_ecap_masking(pkt);
+    CHECK_EQ("16 은 거부 (4비트 초과)", stub_error_count(), 1);
+
+    // ------------------------------------------------------------------
+    TEST_GROUP("0x63 eCAP 마스킹 - 검사하지 않는 필드는 통과");
+
+    make_ecap_masking_ok(pkt);
+    pkt[12] = 255;  // maskerProbeInterval_numFrame - isd 에서 검사한다
+    pkt[13] = 255;  // adcPreampGain                - 비트폭 미확정이라 미검사
+    pkt[16] = 255;  // measurementSampleNum         - 하한 근거 없음
+    tdc_ble_map_measure_ecap_masking(pkt);
+    CHECK_EQ("미검사 필드는 255 도 통과", stub_error_count(), 0);
+    CHECK_EQ("fetched_command 설정됨", tdc_ble_mapping_get_packet()->fetched_command, en__mapping_eCAP_Measurement_masking);
 
     // ------------------------------------------------------------------
     TEST_GROUP("0x64 eCAP 교대 - 필드 적재와 오프셋");
 
-    make_packet(pkt, en__mapping_eCAP_Measurement_alternative);
-    pkt[1] = 6;    // iterationNum
-    pkt[2] = 26;   // pulseWidth
-    pkt[3] = 3;    // stimulatonMode      (0x63 과 달리 firstPulsePhase 가 없다)
-    pkt[4] = 15;   // stimulationElectrodeNum
-    pkt[5] = 16;   // bipolarReferenceElectrodeNum
-    pkt[6] = 17;   // measurementElectrodeNum
-    pkt[7] = 0x03; // masker 상위
-    pkt[8] = 0xE8; // masker 하위 -> 1000
+    make_ecap_alternative_ok(pkt);
     tdc_ble_map_measure_ecap_alternative(pkt);
     p = tdc_ble_mapping_get_packet();
 
@@ -223,6 +458,172 @@ int main(void)
     // 직전 0x63 의 값이 남는 것이 현재 동작이며 이를 고정한다.
     CHECK_EQ("firstPulsePhase 는 손대지 않음", p->eCapMeasurement.firstPulsePhase, 0);
     CHECK_EQ("probe 는 손대지 않음", p->eCapMeasurement.stimulationLevel_uA_probe, 0);
+    CHECK_EQ("정상 입력은 에러 없음", stub_error_count(), 0);
+
+    // ------------------------------------------------------------------
+    // 아래는 2026-08-05 신설 (상시 점검 대장 위험_2).
+    // 0x64 는 실행부가 주석 처리돼 있으나 0x63 과 같은 구조체를 쓰므로
+    // 되살리는 순간 같은 범위 밖 읽기가 발생한다. 선제 차단한다.
+    // ------------------------------------------------------------------
+    TEST_GROUP("0x64 eCAP 교대 - iterationNum 경계 (1~255)");
+
+    make_ecap_alternative_ok(pkt);
+    pkt[1] = 1;
+    tdc_ble_map_measure_ecap_alternative(pkt);
+    CHECK_EQ("하한 1 통과", stub_error_count(), 0);
+
+    make_ecap_alternative_ok(pkt);
+    pkt[1] = 0;
+    tdc_ble_map_measure_ecap_alternative(pkt);
+    CHECK_EQ("0 은 거부", stub_error_count(), 1);
+    CHECK_EQ("minor = OutOfDataRange", stub_error_last_minor(), en__OutOfDataRange);
+
+    make_ecap_alternative_ok(pkt);
+    pkt[1] = 255;
+    tdc_ble_map_measure_ecap_alternative(pkt);
+    CHECK_EQ("상한 255 통과", stub_error_count(), 0);
+
+    // ------------------------------------------------------------------
+    TEST_GROUP("0x64 eCAP 교대 - pulseWidth 경계 (13~255)");
+
+    make_ecap_alternative_ok(pkt);
+    pkt[2] = 13;
+    tdc_ble_map_measure_ecap_alternative(pkt);
+    CHECK_EQ("하한 13 통과", stub_error_count(), 0);
+
+    make_ecap_alternative_ok(pkt);
+    pkt[2] = 12;
+    tdc_ble_map_measure_ecap_alternative(pkt);
+    CHECK_EQ("12 는 거부 (FPGA 최소 펄스폭 미만)", stub_error_count(), 1);
+
+    make_ecap_alternative_ok(pkt);
+    pkt[2] = 255;
+    tdc_ble_map_measure_ecap_alternative(pkt);
+    CHECK_EQ("상한 255 통과", stub_error_count(), 0);
+
+    // ------------------------------------------------------------------
+    TEST_GROUP("0x64 eCAP 교대 - stimulatonMode 경계 (1~6)");
+
+    make_ecap_alternative_ok(pkt);
+    pkt[3] = 1;
+    tdc_ble_map_measure_ecap_alternative(pkt);
+    CHECK_EQ("하한 1 통과", stub_error_count(), 0);
+
+    make_ecap_alternative_ok(pkt);
+    pkt[3] = 0;
+    tdc_ble_map_measure_ecap_alternative(pkt);
+    CHECK_EQ("0 (en__referenceNA) 은 거부", stub_error_count(), 1);
+
+    make_ecap_alternative_ok(pkt);
+    pkt[3] = 6;
+    tdc_ble_map_measure_ecap_alternative(pkt);
+    CHECK_EQ("상한 6 통과", stub_error_count(), 0);
+
+    make_ecap_alternative_ok(pkt);
+    pkt[3] = 7;
+    tdc_ble_map_measure_ecap_alternative(pkt);
+    CHECK_EQ("7 은 거부", stub_error_count(), 1);
+
+    // ------------------------------------------------------------------
+    TEST_GROUP("0x64 eCAP 교대 - stimulationElectrodeNum 경계 (1~32)");
+
+    make_ecap_alternative_ok(pkt);
+    pkt[4] = 1;
+    tdc_ble_map_measure_ecap_alternative(pkt);
+    CHECK_EQ("하한 1 통과", stub_error_count(), 0);
+
+    make_ecap_alternative_ok(pkt);
+    pkt[4] = 0;
+    tdc_ble_map_measure_ecap_alternative(pkt);
+    CHECK_EQ("0 은 거부 (electrodeMap[-1] 차단)", stub_error_count(), 1);
+
+    make_ecap_alternative_ok(pkt);
+    pkt[4] = 32;
+    tdc_ble_map_measure_ecap_alternative(pkt);
+    CHECK_EQ("상한 32 통과", stub_error_count(), 0);
+
+    make_ecap_alternative_ok(pkt);
+    pkt[4] = 33;
+    tdc_ble_map_measure_ecap_alternative(pkt);
+    CHECK_EQ("33 은 거부", stub_error_count(), 1);
+
+    make_ecap_alternative_ok(pkt);
+    pkt[4] = 255;
+    tdc_ble_map_measure_ecap_alternative(pkt);
+    CHECK_EQ("255 는 거부 (electrodeMap[254] 차단)", stub_error_count(), 1);
+    CHECK_EQ("거부 시 fetched_command 미설정", tdc_ble_mapping_get_packet()->fetched_command, en__mapping_IDLE);
+
+    // ------------------------------------------------------------------
+    TEST_GROUP("0x64 eCAP 교대 - bipolarReferenceElectrodeNum 경계 (1~32 또는 99)");
+
+    make_ecap_alternative_ok(pkt);
+    pkt[5] = 1;
+    tdc_ble_map_measure_ecap_alternative(pkt);
+    CHECK_EQ("하한 1 통과", stub_error_count(), 0);
+
+    make_ecap_alternative_ok(pkt);
+    pkt[5] = 0;
+    tdc_ble_map_measure_ecap_alternative(pkt);
+    CHECK_EQ("0 은 거부", stub_error_count(), 1);
+
+    make_ecap_alternative_ok(pkt);
+    pkt[5] = 32;
+    tdc_ble_map_measure_ecap_alternative(pkt);
+    CHECK_EQ("상한 32 통과", stub_error_count(), 0);
+
+    make_ecap_alternative_ok(pkt);
+    pkt[5] = 33;
+    tdc_ble_map_measure_ecap_alternative(pkt);
+    CHECK_EQ("33 은 거부", stub_error_count(), 1);
+
+    make_ecap_alternative_ok(pkt);
+    pkt[5] = 98;
+    tdc_ble_map_measure_ecap_alternative(pkt);
+    CHECK_EQ("98 은 거부", stub_error_count(), 1);
+
+    make_ecap_alternative_ok(pkt);
+    pkt[5] = 99;
+    tdc_ble_map_measure_ecap_alternative(pkt);
+    CHECK_EQ("99 는 예외로 통과 (0x65 와 동일)", stub_error_count(), 0);
+
+    // ------------------------------------------------------------------
+    TEST_GROUP("0x64 eCAP 교대 - measurementElectrodeNum 경계 (1~32)");
+
+    make_ecap_alternative_ok(pkt);
+    pkt[6] = 1;
+    tdc_ble_map_measure_ecap_alternative(pkt);
+    CHECK_EQ("하한 1 통과", stub_error_count(), 0);
+
+    make_ecap_alternative_ok(pkt);
+    pkt[6] = 0;
+    tdc_ble_map_measure_ecap_alternative(pkt);
+    CHECK_EQ("0 은 거부 (electrodeMap[-1] 차단)", stub_error_count(), 1);
+
+    make_ecap_alternative_ok(pkt);
+    pkt[6] = 32;
+    tdc_ble_map_measure_ecap_alternative(pkt);
+    CHECK_EQ("상한 32 통과", stub_error_count(), 0);
+
+    make_ecap_alternative_ok(pkt);
+    pkt[6] = 33;
+    tdc_ble_map_measure_ecap_alternative(pkt);
+    CHECK_EQ("33 은 거부", stub_error_count(), 1);
+
+    make_ecap_alternative_ok(pkt);
+    pkt[6] = 255;
+    tdc_ble_map_measure_ecap_alternative(pkt);
+    CHECK_EQ("255 는 거부 (electrodeMap[254] 차단)", stub_error_count(), 1);
+    CHECK_EQ("거부 시 fetched_command 미설정", tdc_ble_mapping_get_packet()->fetched_command, en__mapping_IDLE);
+
+    // ------------------------------------------------------------------
+    TEST_GROUP("0x64 eCAP 교대 - masker 는 검사하지 않는다");
+
+    make_ecap_alternative_ok(pkt);
+    pkt[7] = 0xFF;
+    pkt[8] = 0xFF;  // masker 65535
+    tdc_ble_map_measure_ecap_alternative(pkt);
+    CHECK_EQ("masker 는 상한 근거가 없어 미검사", stub_error_count(), 0);
+    CHECK_EQ("masker 65535 적재", tdc_ble_mapping_get_packet()->eCapMeasurement.stimulationLevel_uA_masker, 65535);
 
     // ------------------------------------------------------------------
     TEST_GROUP("공통");
