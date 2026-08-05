@@ -84,7 +84,7 @@ int main(void)
     TEST_GROUP("0x62 임피던스 - 정상");
 
     make_impedance_ok(pkt);
-    tdc_ble_map_measure_impedance_check(pkt);
+    tdc_ble_cmd_0x62_impedance_check(pkt);
     p = tdc_ble_mapping_get_packet();
 
     CHECK_EQ("iterationNum", p->impedanceCheck.iterationNum, 10);
@@ -101,18 +101,18 @@ int main(void)
 
     make_impedance_ok(pkt);
     pkt[1] = 1;
-    tdc_ble_map_measure_impedance_check(pkt);
+    tdc_ble_cmd_0x62_impedance_check(pkt);
     CHECK_EQ("하한 1 통과", stub_error_count(), 0);
 
     make_impedance_ok(pkt);
     pkt[1] = 0;  // 하한 미만
-    tdc_ble_map_measure_impedance_check(pkt);
+    tdc_ble_cmd_0x62_impedance_check(pkt);
     CHECK_EQ("0 은 거부", stub_error_count(), 1);
     CHECK_EQ("minor = OutOfDataRange", stub_error_last_minor(), en__OutOfDataRange);
 
     make_impedance_ok(pkt);
     pkt[1] = 255;
-    tdc_ble_map_measure_impedance_check(pkt);
+    tdc_ble_cmd_0x62_impedance_check(pkt);
     CHECK_EQ("상한 255 통과", stub_error_count(), 0);
 
     // ------------------------------------------------------------------
@@ -120,27 +120,27 @@ int main(void)
 
     make_impedance_ok(pkt);
     pkt[2] = 1;
-    tdc_ble_map_measure_impedance_check(pkt);
+    tdc_ble_cmd_0x62_impedance_check(pkt);
     CHECK_EQ("하한 1 통과", stub_error_count(), 0);
 
     make_impedance_ok(pkt);
     pkt[2] = 32;
-    tdc_ble_map_measure_impedance_check(pkt);
+    tdc_ble_cmd_0x62_impedance_check(pkt);
     CHECK_EQ("상한 32 통과", stub_error_count(), 0);
 
     make_impedance_ok(pkt);
     pkt[2] = 33;
-    tdc_ble_map_measure_impedance_check(pkt);
+    tdc_ble_cmd_0x62_impedance_check(pkt);
     CHECK_EQ("33 은 거부", stub_error_count(), 1);
 
     make_impedance_ok(pkt);
     pkt[2] = 255;  // 전채널 예외값
-    tdc_ble_map_measure_impedance_check(pkt);
+    tdc_ble_cmd_0x62_impedance_check(pkt);
     CHECK_EQ("255(전채널) 통과", stub_error_count(), 0);
 
     make_impedance_ok(pkt);
     pkt[2] = 0;
-    tdc_ble_map_measure_impedance_check(pkt);
+    tdc_ble_cmd_0x62_impedance_check(pkt);
     CHECK_EQ("0 은 거부", stub_error_count(), 1);
 
     // ------------------------------------------------------------------
@@ -148,22 +148,22 @@ int main(void)
 
     make_impedance_ok(pkt);
     pkt[3] = 13;
-    tdc_ble_map_measure_impedance_check(pkt);
+    tdc_ble_cmd_0x62_impedance_check(pkt);
     CHECK_EQ("start 하한 13 통과", stub_error_count(), 0);
 
     make_impedance_ok(pkt);
     pkt[3] = 12;
-    tdc_ble_map_measure_impedance_check(pkt);
+    tdc_ble_cmd_0x62_impedance_check(pkt);
     CHECK_EQ("start 12 는 거부", stub_error_count(), 1);
 
     make_impedance_ok(pkt);
     pkt[4] = 13;
-    tdc_ble_map_measure_impedance_check(pkt);
+    tdc_ble_cmd_0x62_impedance_check(pkt);
     CHECK_EQ("end 하한 13 통과", stub_error_count(), 0);
 
     make_impedance_ok(pkt);
     pkt[4] = 12;
-    tdc_ble_map_measure_impedance_check(pkt);
+    tdc_ble_cmd_0x62_impedance_check(pkt);
     CHECK_EQ("end 12 는 거부", stub_error_count(), 1);
 
     // ------------------------------------------------------------------
@@ -172,32 +172,32 @@ int main(void)
     make_impedance_ok(pkt);
     pkt[5] = 0x00;
     pkt[6] = 0x01;  // 1
-    tdc_ble_map_measure_impedance_check(pkt);
+    tdc_ble_cmd_0x62_impedance_check(pkt);
     CHECK_EQ("하한 1 통과", stub_error_count(), 0);
 
     make_impedance_ok(pkt);
     pkt[5] = 0x00;
     pkt[6] = 0x00;  // 0
-    tdc_ble_map_measure_impedance_check(pkt);
+    tdc_ble_cmd_0x62_impedance_check(pkt);
     CHECK_EQ("0 은 거부", stub_error_count(), 1);
 
     make_impedance_ok(pkt);
     pkt[5] = 0x04;
     pkt[6] = 0x00;  // 1024
-    tdc_ble_map_measure_impedance_check(pkt);
+    tdc_ble_cmd_0x62_impedance_check(pkt);
     CHECK_EQ("상한 1024 통과", stub_error_count(), 0);
 
     make_impedance_ok(pkt);
     pkt[5] = 0x04;
     pkt[6] = 0x01;  // 1025
-    tdc_ble_map_measure_impedance_check(pkt);
+    tdc_ble_cmd_0x62_impedance_check(pkt);
     CHECK_EQ("1025 는 거부", stub_error_count(), 1);
 
     // ------------------------------------------------------------------
     TEST_GROUP("0x63 eCAP 마스킹 - 전 필드 적재");
 
     make_ecap_masking_ok(pkt);
-    tdc_ble_map_measure_ecap_masking(pkt);
+    tdc_ble_cmd_0x63_ecap_masking(pkt);
     p = tdc_ble_mapping_get_packet();
 
     CHECK_EQ("iterationNum", p->eCapMeasurement.iterationNum, 4);
@@ -227,18 +227,18 @@ int main(void)
 
     make_ecap_masking_ok(pkt);
     pkt[1] = 1;
-    tdc_ble_map_measure_ecap_masking(pkt);
+    tdc_ble_cmd_0x63_ecap_masking(pkt);
     CHECK_EQ("하한 1 통과", stub_error_count(), 0);
 
     make_ecap_masking_ok(pkt);
     pkt[1] = 0;
-    tdc_ble_map_measure_ecap_masking(pkt);
+    tdc_ble_cmd_0x63_ecap_masking(pkt);
     CHECK_EQ("0 은 거부", stub_error_count(), 1);
     CHECK_EQ("minor = OutOfDataRange", stub_error_last_minor(), en__OutOfDataRange);
 
     make_ecap_masking_ok(pkt);
     pkt[1] = 255;
-    tdc_ble_map_measure_ecap_masking(pkt);
+    tdc_ble_cmd_0x63_ecap_masking(pkt);
     CHECK_EQ("상한 255 통과", stub_error_count(), 0);
 
     // ------------------------------------------------------------------
@@ -246,17 +246,17 @@ int main(void)
 
     make_ecap_masking_ok(pkt);
     pkt[2] = 13;
-    tdc_ble_map_measure_ecap_masking(pkt);
+    tdc_ble_cmd_0x63_ecap_masking(pkt);
     CHECK_EQ("하한 13 통과", stub_error_count(), 0);
 
     make_ecap_masking_ok(pkt);
     pkt[2] = 12;
-    tdc_ble_map_measure_ecap_masking(pkt);
+    tdc_ble_cmd_0x63_ecap_masking(pkt);
     CHECK_EQ("12 는 거부 (FPGA 최소 펄스폭 미만)", stub_error_count(), 1);
 
     make_ecap_masking_ok(pkt);
     pkt[2] = 255;
-    tdc_ble_map_measure_ecap_masking(pkt);
+    tdc_ble_cmd_0x63_ecap_masking(pkt);
     CHECK_EQ("상한 255 통과", stub_error_count(), 0);
 
     // ------------------------------------------------------------------
@@ -264,17 +264,17 @@ int main(void)
 
     make_ecap_masking_ok(pkt);
     pkt[3] = 0;
-    tdc_ble_map_measure_ecap_masking(pkt);
+    tdc_ble_cmd_0x63_ecap_masking(pkt);
     CHECK_EQ("0 통과", stub_error_count(), 0);
 
     make_ecap_masking_ok(pkt);
     pkt[3] = 1;
-    tdc_ble_map_measure_ecap_masking(pkt);
+    tdc_ble_cmd_0x63_ecap_masking(pkt);
     CHECK_EQ("1 통과", stub_error_count(), 0);
 
     make_ecap_masking_ok(pkt);
     pkt[3] = 2;
-    tdc_ble_map_measure_ecap_masking(pkt);
+    tdc_ble_cmd_0x63_ecap_masking(pkt);
     CHECK_EQ("2 는 거부", stub_error_count(), 1);
 
     // ------------------------------------------------------------------
@@ -282,22 +282,22 @@ int main(void)
 
     make_ecap_masking_ok(pkt);
     pkt[4] = 1;
-    tdc_ble_map_measure_ecap_masking(pkt);
+    tdc_ble_cmd_0x63_ecap_masking(pkt);
     CHECK_EQ("하한 1 통과", stub_error_count(), 0);
 
     make_ecap_masking_ok(pkt);
     pkt[4] = 0;
-    tdc_ble_map_measure_ecap_masking(pkt);
+    tdc_ble_cmd_0x63_ecap_masking(pkt);
     CHECK_EQ("0 (en__referenceNA) 은 거부", stub_error_count(), 1);
 
     make_ecap_masking_ok(pkt);
     pkt[4] = 6;
-    tdc_ble_map_measure_ecap_masking(pkt);
+    tdc_ble_cmd_0x63_ecap_masking(pkt);
     CHECK_EQ("상한 6 통과", stub_error_count(), 0);
 
     make_ecap_masking_ok(pkt);
     pkt[4] = 7;
-    tdc_ble_map_measure_ecap_masking(pkt);
+    tdc_ble_cmd_0x63_ecap_masking(pkt);
     CHECK_EQ("7 은 거부", stub_error_count(), 1);
 
     // ------------------------------------------------------------------
@@ -305,27 +305,27 @@ int main(void)
 
     make_ecap_masking_ok(pkt);
     pkt[5] = 1;
-    tdc_ble_map_measure_ecap_masking(pkt);
+    tdc_ble_cmd_0x63_ecap_masking(pkt);
     CHECK_EQ("하한 1 통과", stub_error_count(), 0);
 
     make_ecap_masking_ok(pkt);
     pkt[5] = 0;
-    tdc_ble_map_measure_ecap_masking(pkt);
+    tdc_ble_cmd_0x63_ecap_masking(pkt);
     CHECK_EQ("0 은 거부 (electrodeMap[-1] 차단)", stub_error_count(), 1);
 
     make_ecap_masking_ok(pkt);
     pkt[5] = 32;
-    tdc_ble_map_measure_ecap_masking(pkt);
+    tdc_ble_cmd_0x63_ecap_masking(pkt);
     CHECK_EQ("상한 32 통과", stub_error_count(), 0);
 
     make_ecap_masking_ok(pkt);
     pkt[5] = 33;
-    tdc_ble_map_measure_ecap_masking(pkt);
+    tdc_ble_cmd_0x63_ecap_masking(pkt);
     CHECK_EQ("33 은 거부", stub_error_count(), 1);
 
     make_ecap_masking_ok(pkt);
     pkt[5] = 255;
-    tdc_ble_map_measure_ecap_masking(pkt);
+    tdc_ble_cmd_0x63_ecap_masking(pkt);
     CHECK_EQ("255 는 거부 (electrodeMap[254] 차단)", stub_error_count(), 1);
     CHECK_EQ("거부 시 fetched_command 미설정", tdc_ble_mapping_get_packet()->fetched_command, en__mapping_IDLE);
 
@@ -334,32 +334,32 @@ int main(void)
 
     make_ecap_masking_ok(pkt);
     pkt[6] = 1;
-    tdc_ble_map_measure_ecap_masking(pkt);
+    tdc_ble_cmd_0x63_ecap_masking(pkt);
     CHECK_EQ("하한 1 통과", stub_error_count(), 0);
 
     make_ecap_masking_ok(pkt);
     pkt[6] = 0;
-    tdc_ble_map_measure_ecap_masking(pkt);
+    tdc_ble_cmd_0x63_ecap_masking(pkt);
     CHECK_EQ("0 은 거부", stub_error_count(), 1);
 
     make_ecap_masking_ok(pkt);
     pkt[6] = 32;
-    tdc_ble_map_measure_ecap_masking(pkt);
+    tdc_ble_cmd_0x63_ecap_masking(pkt);
     CHECK_EQ("상한 32 통과", stub_error_count(), 0);
 
     make_ecap_masking_ok(pkt);
     pkt[6] = 33;
-    tdc_ble_map_measure_ecap_masking(pkt);
+    tdc_ble_cmd_0x63_ecap_masking(pkt);
     CHECK_EQ("33 은 거부", stub_error_count(), 1);
 
     make_ecap_masking_ok(pkt);
     pkt[6] = 98;
-    tdc_ble_map_measure_ecap_masking(pkt);
+    tdc_ble_cmd_0x63_ecap_masking(pkt);
     CHECK_EQ("98 은 거부", stub_error_count(), 1);
 
     make_ecap_masking_ok(pkt);
     pkt[6] = 99;
-    tdc_ble_map_measure_ecap_masking(pkt);
+    tdc_ble_cmd_0x63_ecap_masking(pkt);
     CHECK_EQ("99 는 예외로 통과 (0x65 와 동일, for 모노폴라)", stub_error_count(), 0);
 
     // ------------------------------------------------------------------
@@ -367,27 +367,27 @@ int main(void)
 
     make_ecap_masking_ok(pkt);
     pkt[7] = 1;
-    tdc_ble_map_measure_ecap_masking(pkt);
+    tdc_ble_cmd_0x63_ecap_masking(pkt);
     CHECK_EQ("하한 1 통과", stub_error_count(), 0);
 
     make_ecap_masking_ok(pkt);
     pkt[7] = 0;
-    tdc_ble_map_measure_ecap_masking(pkt);
+    tdc_ble_cmd_0x63_ecap_masking(pkt);
     CHECK_EQ("0 은 거부 (electrodeMap[-1] 차단)", stub_error_count(), 1);
 
     make_ecap_masking_ok(pkt);
     pkt[7] = 32;
-    tdc_ble_map_measure_ecap_masking(pkt);
+    tdc_ble_cmd_0x63_ecap_masking(pkt);
     CHECK_EQ("상한 32 통과", stub_error_count(), 0);
 
     make_ecap_masking_ok(pkt);
     pkt[7] = 33;
-    tdc_ble_map_measure_ecap_masking(pkt);
+    tdc_ble_cmd_0x63_ecap_masking(pkt);
     CHECK_EQ("33 은 거부", stub_error_count(), 1);
 
     make_ecap_masking_ok(pkt);
     pkt[7] = 255;
-    tdc_ble_map_measure_ecap_masking(pkt);
+    tdc_ble_cmd_0x63_ecap_masking(pkt);
     CHECK_EQ("255 는 거부 (electrodeMap[254] 차단)", stub_error_count(), 1);
     CHECK_EQ("거부 시 fetched_command 미설정", tdc_ble_mapping_get_packet()->fetched_command, en__mapping_IDLE);
 
@@ -396,17 +396,17 @@ int main(void)
 
     make_ecap_masking_ok(pkt);
     pkt[14] = 0;
-    tdc_ble_map_measure_ecap_masking(pkt);
+    tdc_ble_cmd_0x63_ecap_masking(pkt);
     CHECK_EQ("0 통과", stub_error_count(), 0);
 
     make_ecap_masking_ok(pkt);
     pkt[14] = 7;
-    tdc_ble_map_measure_ecap_masking(pkt);
+    tdc_ble_cmd_0x63_ecap_masking(pkt);
     CHECK_EQ("상한 7 통과", stub_error_count(), 0);
 
     make_ecap_masking_ok(pkt);
     pkt[14] = 8;
-    tdc_ble_map_measure_ecap_masking(pkt);
+    tdc_ble_cmd_0x63_ecap_masking(pkt);
     CHECK_EQ("8 은 거부 (3비트 초과)", stub_error_count(), 1);
 
     // ------------------------------------------------------------------
@@ -414,17 +414,17 @@ int main(void)
 
     make_ecap_masking_ok(pkt);
     pkt[15] = 0;
-    tdc_ble_map_measure_ecap_masking(pkt);
+    tdc_ble_cmd_0x63_ecap_masking(pkt);
     CHECK_EQ("0 통과", stub_error_count(), 0);
 
     make_ecap_masking_ok(pkt);
     pkt[15] = 15;
-    tdc_ble_map_measure_ecap_masking(pkt);
+    tdc_ble_cmd_0x63_ecap_masking(pkt);
     CHECK_EQ("상한 15 통과", stub_error_count(), 0);
 
     make_ecap_masking_ok(pkt);
     pkt[15] = 16;
-    tdc_ble_map_measure_ecap_masking(pkt);
+    tdc_ble_cmd_0x63_ecap_masking(pkt);
     CHECK_EQ("16 은 거부 (4비트 초과)", stub_error_count(), 1);
 
     // ------------------------------------------------------------------
@@ -434,7 +434,7 @@ int main(void)
     pkt[12] = 255;  // maskerProbeInterval_numFrame - isd 에서 검사한다
     pkt[13] = 255;  // adcPreampGain                - 비트폭 미확정이라 미검사
     pkt[16] = 255;  // measurementSampleNum         - 하한 근거 없음
-    tdc_ble_map_measure_ecap_masking(pkt);
+    tdc_ble_cmd_0x63_ecap_masking(pkt);
     CHECK_EQ("미검사 필드는 255 도 통과", stub_error_count(), 0);
     CHECK_EQ("fetched_command 설정됨", tdc_ble_mapping_get_packet()->fetched_command, en__mapping_eCAP_Measurement_masking);
 
@@ -442,7 +442,7 @@ int main(void)
     TEST_GROUP("0x64 eCAP 교대 - 필드 적재와 오프셋");
 
     make_ecap_alternative_ok(pkt);
-    tdc_ble_map_measure_ecap_alternative(pkt);
+    tdc_ble_cmd_0x64_ecap_alternative(pkt);
     p = tdc_ble_mapping_get_packet();
 
     CHECK_EQ("iterationNum", p->eCapMeasurement.iterationNum, 6);
@@ -469,18 +469,18 @@ int main(void)
 
     make_ecap_alternative_ok(pkt);
     pkt[1] = 1;
-    tdc_ble_map_measure_ecap_alternative(pkt);
+    tdc_ble_cmd_0x64_ecap_alternative(pkt);
     CHECK_EQ("하한 1 통과", stub_error_count(), 0);
 
     make_ecap_alternative_ok(pkt);
     pkt[1] = 0;
-    tdc_ble_map_measure_ecap_alternative(pkt);
+    tdc_ble_cmd_0x64_ecap_alternative(pkt);
     CHECK_EQ("0 은 거부", stub_error_count(), 1);
     CHECK_EQ("minor = OutOfDataRange", stub_error_last_minor(), en__OutOfDataRange);
 
     make_ecap_alternative_ok(pkt);
     pkt[1] = 255;
-    tdc_ble_map_measure_ecap_alternative(pkt);
+    tdc_ble_cmd_0x64_ecap_alternative(pkt);
     CHECK_EQ("상한 255 통과", stub_error_count(), 0);
 
     // ------------------------------------------------------------------
@@ -488,17 +488,17 @@ int main(void)
 
     make_ecap_alternative_ok(pkt);
     pkt[2] = 13;
-    tdc_ble_map_measure_ecap_alternative(pkt);
+    tdc_ble_cmd_0x64_ecap_alternative(pkt);
     CHECK_EQ("하한 13 통과", stub_error_count(), 0);
 
     make_ecap_alternative_ok(pkt);
     pkt[2] = 12;
-    tdc_ble_map_measure_ecap_alternative(pkt);
+    tdc_ble_cmd_0x64_ecap_alternative(pkt);
     CHECK_EQ("12 는 거부 (FPGA 최소 펄스폭 미만)", stub_error_count(), 1);
 
     make_ecap_alternative_ok(pkt);
     pkt[2] = 255;
-    tdc_ble_map_measure_ecap_alternative(pkt);
+    tdc_ble_cmd_0x64_ecap_alternative(pkt);
     CHECK_EQ("상한 255 통과", stub_error_count(), 0);
 
     // ------------------------------------------------------------------
@@ -506,22 +506,22 @@ int main(void)
 
     make_ecap_alternative_ok(pkt);
     pkt[3] = 1;
-    tdc_ble_map_measure_ecap_alternative(pkt);
+    tdc_ble_cmd_0x64_ecap_alternative(pkt);
     CHECK_EQ("하한 1 통과", stub_error_count(), 0);
 
     make_ecap_alternative_ok(pkt);
     pkt[3] = 0;
-    tdc_ble_map_measure_ecap_alternative(pkt);
+    tdc_ble_cmd_0x64_ecap_alternative(pkt);
     CHECK_EQ("0 (en__referenceNA) 은 거부", stub_error_count(), 1);
 
     make_ecap_alternative_ok(pkt);
     pkt[3] = 6;
-    tdc_ble_map_measure_ecap_alternative(pkt);
+    tdc_ble_cmd_0x64_ecap_alternative(pkt);
     CHECK_EQ("상한 6 통과", stub_error_count(), 0);
 
     make_ecap_alternative_ok(pkt);
     pkt[3] = 7;
-    tdc_ble_map_measure_ecap_alternative(pkt);
+    tdc_ble_cmd_0x64_ecap_alternative(pkt);
     CHECK_EQ("7 은 거부", stub_error_count(), 1);
 
     // ------------------------------------------------------------------
@@ -529,27 +529,27 @@ int main(void)
 
     make_ecap_alternative_ok(pkt);
     pkt[4] = 1;
-    tdc_ble_map_measure_ecap_alternative(pkt);
+    tdc_ble_cmd_0x64_ecap_alternative(pkt);
     CHECK_EQ("하한 1 통과", stub_error_count(), 0);
 
     make_ecap_alternative_ok(pkt);
     pkt[4] = 0;
-    tdc_ble_map_measure_ecap_alternative(pkt);
+    tdc_ble_cmd_0x64_ecap_alternative(pkt);
     CHECK_EQ("0 은 거부 (electrodeMap[-1] 차단)", stub_error_count(), 1);
 
     make_ecap_alternative_ok(pkt);
     pkt[4] = 32;
-    tdc_ble_map_measure_ecap_alternative(pkt);
+    tdc_ble_cmd_0x64_ecap_alternative(pkt);
     CHECK_EQ("상한 32 통과", stub_error_count(), 0);
 
     make_ecap_alternative_ok(pkt);
     pkt[4] = 33;
-    tdc_ble_map_measure_ecap_alternative(pkt);
+    tdc_ble_cmd_0x64_ecap_alternative(pkt);
     CHECK_EQ("33 은 거부", stub_error_count(), 1);
 
     make_ecap_alternative_ok(pkt);
     pkt[4] = 255;
-    tdc_ble_map_measure_ecap_alternative(pkt);
+    tdc_ble_cmd_0x64_ecap_alternative(pkt);
     CHECK_EQ("255 는 거부 (electrodeMap[254] 차단)", stub_error_count(), 1);
     CHECK_EQ("거부 시 fetched_command 미설정", tdc_ble_mapping_get_packet()->fetched_command, en__mapping_IDLE);
 
@@ -558,32 +558,32 @@ int main(void)
 
     make_ecap_alternative_ok(pkt);
     pkt[5] = 1;
-    tdc_ble_map_measure_ecap_alternative(pkt);
+    tdc_ble_cmd_0x64_ecap_alternative(pkt);
     CHECK_EQ("하한 1 통과", stub_error_count(), 0);
 
     make_ecap_alternative_ok(pkt);
     pkt[5] = 0;
-    tdc_ble_map_measure_ecap_alternative(pkt);
+    tdc_ble_cmd_0x64_ecap_alternative(pkt);
     CHECK_EQ("0 은 거부", stub_error_count(), 1);
 
     make_ecap_alternative_ok(pkt);
     pkt[5] = 32;
-    tdc_ble_map_measure_ecap_alternative(pkt);
+    tdc_ble_cmd_0x64_ecap_alternative(pkt);
     CHECK_EQ("상한 32 통과", stub_error_count(), 0);
 
     make_ecap_alternative_ok(pkt);
     pkt[5] = 33;
-    tdc_ble_map_measure_ecap_alternative(pkt);
+    tdc_ble_cmd_0x64_ecap_alternative(pkt);
     CHECK_EQ("33 은 거부", stub_error_count(), 1);
 
     make_ecap_alternative_ok(pkt);
     pkt[5] = 98;
-    tdc_ble_map_measure_ecap_alternative(pkt);
+    tdc_ble_cmd_0x64_ecap_alternative(pkt);
     CHECK_EQ("98 은 거부", stub_error_count(), 1);
 
     make_ecap_alternative_ok(pkt);
     pkt[5] = 99;
-    tdc_ble_map_measure_ecap_alternative(pkt);
+    tdc_ble_cmd_0x64_ecap_alternative(pkt);
     CHECK_EQ("99 는 예외로 통과 (0x65 와 동일)", stub_error_count(), 0);
 
     // ------------------------------------------------------------------
@@ -591,27 +591,27 @@ int main(void)
 
     make_ecap_alternative_ok(pkt);
     pkt[6] = 1;
-    tdc_ble_map_measure_ecap_alternative(pkt);
+    tdc_ble_cmd_0x64_ecap_alternative(pkt);
     CHECK_EQ("하한 1 통과", stub_error_count(), 0);
 
     make_ecap_alternative_ok(pkt);
     pkt[6] = 0;
-    tdc_ble_map_measure_ecap_alternative(pkt);
+    tdc_ble_cmd_0x64_ecap_alternative(pkt);
     CHECK_EQ("0 은 거부 (electrodeMap[-1] 차단)", stub_error_count(), 1);
 
     make_ecap_alternative_ok(pkt);
     pkt[6] = 32;
-    tdc_ble_map_measure_ecap_alternative(pkt);
+    tdc_ble_cmd_0x64_ecap_alternative(pkt);
     CHECK_EQ("상한 32 통과", stub_error_count(), 0);
 
     make_ecap_alternative_ok(pkt);
     pkt[6] = 33;
-    tdc_ble_map_measure_ecap_alternative(pkt);
+    tdc_ble_cmd_0x64_ecap_alternative(pkt);
     CHECK_EQ("33 은 거부", stub_error_count(), 1);
 
     make_ecap_alternative_ok(pkt);
     pkt[6] = 255;
-    tdc_ble_map_measure_ecap_alternative(pkt);
+    tdc_ble_cmd_0x64_ecap_alternative(pkt);
     CHECK_EQ("255 는 거부 (electrodeMap[254] 차단)", stub_error_count(), 1);
     CHECK_EQ("거부 시 fetched_command 미설정", tdc_ble_mapping_get_packet()->fetched_command, en__mapping_IDLE);
 
@@ -621,7 +621,7 @@ int main(void)
     make_ecap_alternative_ok(pkt);
     pkt[7] = 0xFF;
     pkt[8] = 0xFF;  // masker 65535
-    tdc_ble_map_measure_ecap_alternative(pkt);
+    tdc_ble_cmd_0x64_ecap_alternative(pkt);
     CHECK_EQ("masker 는 상한 근거가 없어 미검사", stub_error_count(), 0);
     CHECK_EQ("masker 65535 적재", tdc_ble_mapping_get_packet()->eCapMeasurement.stimulationLevel_uA_masker, 65535);
 

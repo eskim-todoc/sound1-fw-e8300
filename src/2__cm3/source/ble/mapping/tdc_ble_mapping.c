@@ -130,19 +130,19 @@ void tdc_ble_mapping_fetch_packet(const uint8_t *Rx_dataPacket)  // spi 통신�
 
         case en__mapping_impedanceChekck:  // 0x62
         {
-            tdc_ble_map_measure_impedance_check(Rx_dataPacket);
+            tdc_ble_cmd_0x62_impedance_check(Rx_dataPacket);
         }
         break;
 
         case en__mapping_eCAP_Measurement_masking:  // 헤더 0x063
         {
-            tdc_ble_map_measure_ecap_masking(Rx_dataPacket);
+            tdc_ble_cmd_0x63_ecap_masking(Rx_dataPacket);
         }
         break;
 
         case en__mapping_eCAP_Measurement_alternative:  // 헤더 0x64
         {
-            tdc_ble_map_measure_ecap_alternative(Rx_dataPacket);
+            tdc_ble_cmd_0x64_ecap_alternative(Rx_dataPacket);
         }
         break;
 
@@ -166,61 +166,61 @@ void tdc_ble_mapping_fetch_packet(const uint8_t *Rx_dataPacket)  // spi 통신�
 
         case en__mapping_read_original_ISD_N_USER:  // 헤더 0x69 (외부기 원래 내부기 정보 읽어 오기)
         {
-            tdc_ble_map_flash_read_original_isd_user();
+            tdc_ble_cmd_0x69_read_original_isd_user();
         }
         break;
 
         case en__mapping_write_original_ISD_N_USER:  // 헤더 0x68 (외부기 최초연결 사용자 이름 등록)
         {
-            tdc_ble_map_flash_write_original_isd_user(Rx_dataPacket);
+            tdc_ble_cmd_0x68_write_original_isd_user(Rx_dataPacket);
         }
         break;
 
         case en__mapping_read_SlotData_ISD_N_USER:  // 헤더 0x6A (맵 프로그램 관리: 읽기 - 내부기 ID 및 사용자)
         {
-            tdc_ble_map_flash_read_slot_data(Rx_dataPacket);
+            tdc_ble_cmd_0x6A_read_slot_data(Rx_dataPacket);
         }
         break;
 
         case en__mapping_write_SlotData_ISD_N_USER:  // 헤더 0x6C (맵 프로그램 관리: 쓰기 - 내부기 ID 및 사용자)
         {
-            tdc_ble_map_flash_write_slot_data(Rx_dataPacket);
+            tdc_ble_cmd_0x6C_write_slot_data(Rx_dataPacket);
         }
         break;
 
         case en__mapping_read_Mapdata_STIMUL_PARA:  // 헤더 0x6B (맵 프로그램 관리: 읽기 - 맵 데이터)
         {
-            tdc_ble_map_flash_read_map_data(Rx_dataPacket);
+            tdc_ble_cmd_0x6B_read_map_data(Rx_dataPacket);
         }
         break;
 
         case en__mapping_write_Mapdata_STIMUL_PARA:  // 헤더 0x6D (맵 프로그램 관리: 쓰기 - 맵 데이터)
         {
-            tdc_ble_map_flash_write_map_data(Rx_dataPacket);
+            tdc_ble_cmd_0x6D_write_map_data(Rx_dataPacket);
         }
         break;
 
         case en__mapping_erase_SlotData_manufacture:  // 헤더 0x6E (선택한 슬롯의 모든 맵데이터 삭제)
         {
-            tdc_ble_map_flash_erase_slot(tempCommand, Rx_dataPacket);
+            tdc_ble_cmd_0x6E_erase_slot(tempCommand, Rx_dataPacket);
         }
         break;
 
         case en__mapping_erase_mapData_STIMUL_PARA:  // 헤더 0x6F (선택한 맵 삭제)
         {
-            tdc_ble_map_flash_erase_map(tempCommand, Rx_dataPacket);
+            tdc_ble_cmd_0x6F_erase_map(tempCommand, Rx_dataPacket);
         }
         break;
 
         case en__mapping_recover_mppingData_exceptSlot_1:  // 0x70
         {
-            tdc_ble_map_flash_recover_except_slot1(tempCommand, Rx_dataPacket);
+            tdc_ble_cmd_0x70_recover_except_slot1(tempCommand, Rx_dataPacket);
         }
         break;
 
         case en__mapping_recover_ALL_SlotData_ManufactureData:  // 0x71
         {
-            tdc_ble_map_flash_recover_all(tempCommand);
+            tdc_ble_cmd_0x71_recover_all(tempCommand);
         }
         break;
 

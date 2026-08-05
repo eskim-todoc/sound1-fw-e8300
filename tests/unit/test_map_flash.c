@@ -40,7 +40,7 @@ int main(void)
 
     stub_reset();
     make_packet(pkt, en__mapping_read_original_ISD_N_USER);
-    tdc_ble_map_flash_read_original_isd_user();
+    tdc_ble_cmd_0x69_read_original_isd_user();
     p = tdc_ble_mapping_get_packet();
 
     CHECK_EQ("fetched_command", p->fetched_command, en__mapping_read_original_ISD_N_USER);
@@ -53,7 +53,7 @@ int main(void)
     stub_reset();
     make_packet(pkt, en__mapping_read_SlotData_ISD_N_USER);
     pkt[1] = 1;
-    tdc_ble_map_flash_read_slot_data(pkt);
+    tdc_ble_cmd_0x6A_read_slot_data(pkt);
     p = tdc_ble_mapping_get_packet();
     CHECK_EQ("슬롯 1 통과", stub_error_count(), 0);
     CHECK_EQ("slot_index 적재", p->ReadWriteMapData_Flash.slot_index, 1);
@@ -63,20 +63,20 @@ int main(void)
     stub_reset();
     make_packet(pkt, en__mapping_read_SlotData_ISD_N_USER);
     pkt[1] = MaxNumUser;
-    tdc_ble_map_flash_read_slot_data(pkt);
+    tdc_ble_cmd_0x6A_read_slot_data(pkt);
     CHECK_EQ("슬롯 4 통과", stub_error_count(), 0);
 
     stub_reset();
     make_packet(pkt, en__mapping_read_SlotData_ISD_N_USER);
     pkt[1] = MaxNumUser + 1;
-    tdc_ble_map_flash_read_slot_data(pkt);
+    tdc_ble_cmd_0x6A_read_slot_data(pkt);
     CHECK_EQ("슬롯 5 는 거부", stub_error_count(), 1);
     CHECK_EQ("minor = OutOfDataRange", stub_error_last_minor(), en__OutOfDataRange);
 
     stub_reset();
     make_packet(pkt, en__mapping_read_SlotData_ISD_N_USER);
     pkt[1] = 0;
-    tdc_ble_map_flash_read_slot_data(pkt);
+    tdc_ble_cmd_0x6A_read_slot_data(pkt);
     CHECK_EQ("슬롯 0 은 거부", stub_error_count(), 1);
 
     // ------------------------------------------------------------------
@@ -86,7 +86,7 @@ int main(void)
     make_packet(pkt, en__mapping_read_Mapdata_STIMUL_PARA);
     pkt[1] = 2;  // slot
     pkt[2] = 3;  // map
-    tdc_ble_map_flash_read_map_data(pkt);
+    tdc_ble_cmd_0x6B_read_map_data(pkt);
     p = tdc_ble_mapping_get_packet();
     CHECK_EQ("정상 통과", stub_error_count(), 0);
     CHECK_EQ("slot_index", p->ReadWriteMapData_Flash.slot_index, 2);
@@ -96,14 +96,14 @@ int main(void)
     make_packet(pkt, en__mapping_read_Mapdata_STIMUL_PARA);
     pkt[1] = 2;
     pkt[2] = MaxNumMap + 1;
-    tdc_ble_map_flash_read_map_data(pkt);
+    tdc_ble_cmd_0x6B_read_map_data(pkt);
     CHECK_EQ("맵 5 는 거부", stub_error_count(), 1);
 
     stub_reset();
     make_packet(pkt, en__mapping_read_Mapdata_STIMUL_PARA);
     pkt[1] = 0;
     pkt[2] = 1;
-    tdc_ble_map_flash_read_map_data(pkt);
+    tdc_ble_cmd_0x6B_read_map_data(pkt);
     CHECK_EQ("슬롯 0 은 거부", stub_error_count(), 1);
 
     // ------------------------------------------------------------------
@@ -117,7 +117,7 @@ int main(void)
     pkt[4] = 0x01;  // 시리얼 상위
     pkt[5] = 0xF4;  // 시리얼 하위 -> 500
     pkt[6] = 1;     // 수술 위치 (1~2 만 유효)
-    tdc_ble_map_flash_write_original_isd_user(pkt);
+    tdc_ble_cmd_0x68_write_original_isd_user(pkt);
 
     CHECK_EQ("인덱스 1 에러 없음", stub_error_count(), 0);
     CHECK_EQ("seq_index = 1", tdc_ble_mapping_get_seq_index(), 1);
@@ -136,7 +136,7 @@ int main(void)
 
     // 이어서 인덱스 2 (마지막 패킷) -> 명령 확정
     make_chunk(pkt, en__mapping_write_original_ISD_N_USER, 2);
-    tdc_ble_map_flash_write_original_isd_user(pkt);
+    tdc_ble_cmd_0x68_write_original_isd_user(pkt);
 
     CHECK_EQ("인덱스 2 에러 없음", stub_error_count(), 0);
     CHECK_EQ("마지막 패킷은 seq 리셋", tdc_ble_mapping_get_seq_index(), 0);
@@ -149,7 +149,7 @@ int main(void)
 
     stub_reset();
     make_chunk(pkt, en__mapping_write_original_ISD_N_USER, 2);  // 1 을 건너뛰고 2
-    tdc_ble_map_flash_write_original_isd_user(pkt);
+    tdc_ble_cmd_0x68_write_original_isd_user(pkt);
 
     CHECK_EQ("에러 1건", stub_error_count(), 1);
     CHECK_EQ("minor = DATA_Order", stub_error_last_minor(), en__DATA_Order);
@@ -161,7 +161,7 @@ int main(void)
     tdc_ble_mapping_set_seq_index(7);  // 엉뚱한 상태
     make_chunk(pkt, en__mapping_write_original_ISD_N_USER, 1);
     pkt[6] = 1;
-    tdc_ble_map_flash_write_original_isd_user(pkt);
+    tdc_ble_cmd_0x68_write_original_isd_user(pkt);
     CHECK_EQ("인덱스 1 은 상태를 무시하고 시작", stub_error_count(), 0);
     CHECK_EQ("seq_index = 1", tdc_ble_mapping_get_seq_index(), 1);
 
@@ -171,20 +171,20 @@ int main(void)
     stub_reset();
     make_chunk(pkt, en__mapping_write_original_ISD_N_USER, 1);
     pkt[6] = 2;
-    tdc_ble_map_flash_write_original_isd_user(pkt);
+    tdc_ble_cmd_0x68_write_original_isd_user(pkt);
     CHECK_EQ("위치 2 통과", stub_error_count(), 0);
 
     stub_reset();
     make_chunk(pkt, en__mapping_write_original_ISD_N_USER, 1);
     pkt[6] = 3;
-    tdc_ble_map_flash_write_original_isd_user(pkt);
+    tdc_ble_cmd_0x68_write_original_isd_user(pkt);
     CHECK_EQ("위치 3 은 거부", stub_error_count(), 1);
     CHECK_EQ("minor = OutOfDataRange", stub_error_last_minor(), en__OutOfDataRange);
 
     stub_reset();
     make_chunk(pkt, en__mapping_write_original_ISD_N_USER, 1);
     pkt[6] = 0;
-    tdc_ble_map_flash_write_original_isd_user(pkt);
+    tdc_ble_cmd_0x68_write_original_isd_user(pkt);
     CHECK_EQ("위치 0 은 거부", stub_error_count(), 1);
 
     // ------------------------------------------------------------------
@@ -194,7 +194,7 @@ int main(void)
     make_chunk(pkt, en__mapping_write_SlotData_ISD_N_USER, 1);
     pkt[2] = 3;  // 슬롯 번호
     pkt[7] = 1;  // 수술 위치
-    tdc_ble_map_flash_write_slot_data(pkt);
+    tdc_ble_cmd_0x6C_write_slot_data(pkt);
     p = tdc_ble_mapping_get_packet();
     CHECK_EQ("에러 없음", stub_error_count(), 0);
     CHECK_EQ("slot_index", p->ReadWriteMapData_Flash.slot_index, 3);
@@ -203,7 +203,7 @@ int main(void)
     stub_reset();
     make_chunk(pkt, en__mapping_write_SlotData_ISD_N_USER, 1);
     pkt[2] = MaxNumUser + 1;
-    tdc_ble_map_flash_write_slot_data(pkt);
+    tdc_ble_cmd_0x6C_write_slot_data(pkt);
     CHECK_EQ("슬롯 5 는 거부", stub_error_count(), 1);
     CHECK_EQ("minor = OutOfDataRange", stub_error_last_minor(), en__OutOfDataRange);
 
@@ -212,7 +212,7 @@ int main(void)
     make_chunk(pkt, en__mapping_write_SlotData_ISD_N_USER, 1);
     pkt[2] = 1;
     pkt[7] = 1;
-    tdc_ble_map_flash_write_slot_data(pkt);
+    tdc_ble_cmd_0x6C_write_slot_data(pkt);
 
     make_chunk(pkt, en__mapping_write_SlotData_ISD_N_USER, 2);
     pkt[15] = '1';  // 패스키 4자리 (인덱스 30~33 -> repo[29..32])
@@ -220,7 +220,7 @@ int main(void)
     pkt[17] = 'a';
     pkt[18] = 'Z';
     pkt[19] = 1;    // 맵 번호 (1~4)
-    tdc_ble_map_flash_write_slot_data(pkt);
+    tdc_ble_cmd_0x6C_write_slot_data(pkt);
     CHECK_EQ("인덱스 2 에러 없음", stub_error_count(), 0);
 
     make_chunk(pkt, en__mapping_write_SlotData_ISD_N_USER, 3);
@@ -229,7 +229,7 @@ int main(void)
     pkt[4] = 1;  // LED
     pkt[5] = 1;  // 자극 알림
     pkt[6] = 0;  // 텔레코일 (잠수함 패치로 0 허용)
-    tdc_ble_map_flash_write_slot_data(pkt);
+    tdc_ble_cmd_0x6C_write_slot_data(pkt);
 
     CHECK_EQ("3패킷 완주 에러 없음", stub_error_count(), 0);
     CHECK_EQ("완주 후 seq 리셋", tdc_ble_mapping_get_seq_index(), 0);
@@ -247,7 +247,7 @@ int main(void)
     make_chunk(pkt, en__mapping_write_SlotData_ISD_N_USER, 1);
     pkt[2] = 1;
     pkt[7] = 1;
-    tdc_ble_map_flash_write_slot_data(pkt);
+    tdc_ble_cmd_0x6C_write_slot_data(pkt);
 
     make_chunk(pkt, en__mapping_write_SlotData_ISD_N_USER, 2);
     pkt[15] = '!';  // 영숫자가 아님
@@ -255,7 +255,7 @@ int main(void)
     pkt[17] = '3';
     pkt[18] = '4';
     pkt[19] = 1;
-    tdc_ble_map_flash_write_slot_data(pkt);
+    tdc_ble_cmd_0x6C_write_slot_data(pkt);
     CHECK_EQ("패스키에 기호는 거부", stub_error_count(), 1);
 
     // ------------------------------------------------------------------
@@ -273,7 +273,7 @@ int main(void)
     pkt[15] = 8;   // i=11 알람 채널 (1~32)
     pkt[16] = 0x01;
     pkt[17] = 0x2C;  // 알람 크기 300 (0~1800)
-    tdc_ble_map_flash_write_map_data(pkt);
+    tdc_ble_cmd_0x6D_write_map_data(pkt);
 
     CHECK_EQ("에러 없음", stub_error_count(), 0);
     CHECK_EQ("seq_index = 1", tdc_ble_mapping_get_seq_index(), 1);
@@ -297,7 +297,7 @@ int main(void)
     pkt[13] = 20;
     pkt[14] = 16;
     pkt[15] = 8;
-    tdc_ble_map_flash_write_map_data(pkt);
+    tdc_ble_cmd_0x6D_write_map_data(pkt);
     CHECK_EQ("자극 기법 4 는 거부", stub_error_count(), 1);
 
     // 펄스 위상 폭 하한 미만
@@ -311,7 +311,7 @@ int main(void)
     pkt[13] = 12;  // 13 미만
     pkt[14] = 16;
     pkt[15] = 8;
-    tdc_ble_map_flash_write_map_data(pkt);
+    tdc_ble_cmd_0x6D_write_map_data(pkt);
     CHECK_EQ("펄스 폭 12 는 거부", stub_error_count(), 1);
 
     // 데이터 인덱스 2 - 전극 번호 18개 (1~100)
@@ -325,7 +325,7 @@ int main(void)
     pkt[13] = 20;
     pkt[14] = 16;
     pkt[15] = 8;
-    tdc_ble_map_flash_write_map_data(pkt);
+    tdc_ble_cmd_0x6D_write_map_data(pkt);
 
     make_chunk(pkt, en__mapping_write_Mapdata_STIMUL_PARA, 2);
     {
@@ -335,7 +335,7 @@ int main(void)
             pkt[2 + i] = (uint8_t) (i + 1);  // 1~18, 전부 유효
         }
     }
-    tdc_ble_map_flash_write_map_data(pkt);
+    tdc_ble_cmd_0x6D_write_map_data(pkt);
     CHECK_EQ("전극 18개 에러 없음", stub_error_count(), 0);
     repo = stub_stimul_para_repository();
     CHECK_EQ("전극 첫 값", repo[13], 1);
@@ -347,7 +347,7 @@ int main(void)
     stub_reset();
     make_packet(pkt, en__mapping_erase_SlotData_manufacture);
     pkt[1] = 2;
-    tdc_ble_map_flash_erase_slot(en__mapping_erase_SlotData_manufacture, pkt);
+    tdc_ble_cmd_0x6E_erase_slot(en__mapping_erase_SlotData_manufacture, pkt);
     p = tdc_ble_mapping_get_packet();
     CHECK_EQ("슬롯 2 통과", stub_error_count(), 0);
     CHECK_EQ("fetched_command", p->fetched_command, en__mapping_erase_SlotData_manufacture);
@@ -355,7 +355,7 @@ int main(void)
     stub_reset();
     make_packet(pkt, en__mapping_erase_SlotData_manufacture);
     pkt[1] = 5;
-    tdc_ble_map_flash_erase_slot(en__mapping_erase_SlotData_manufacture, pkt);
+    tdc_ble_cmd_0x6E_erase_slot(en__mapping_erase_SlotData_manufacture, pkt);
     p = tdc_ble_mapping_get_packet();
     CHECK_EQ("슬롯 5 는 거부", stub_error_count(), 1);
     CHECK_EQ("거부 시 fetched_command 를 IDLE 로 되돌림", p->fetched_command, en__mapping_IDLE);
@@ -367,14 +367,14 @@ int main(void)
     make_packet(pkt, en__mapping_erase_mapData_STIMUL_PARA);
     pkt[1] = 1;
     pkt[2] = 4;
-    tdc_ble_map_flash_erase_map(en__mapping_erase_mapData_STIMUL_PARA, pkt);
+    tdc_ble_cmd_0x6F_erase_map(en__mapping_erase_mapData_STIMUL_PARA, pkt);
     CHECK_EQ("슬롯 1 맵 4 통과", stub_error_count(), 0);
 
     stub_reset();
     make_packet(pkt, en__mapping_erase_mapData_STIMUL_PARA);
     pkt[1] = 5;  // 슬롯 위반
     pkt[2] = 5;  // 맵 위반
-    tdc_ble_map_flash_erase_map(en__mapping_erase_mapData_STIMUL_PARA, pkt);
+    tdc_ble_cmd_0x6F_erase_map(en__mapping_erase_mapData_STIMUL_PARA, pkt);
     CHECK_EQ("둘 다 위반이면 에러 2건", stub_error_count(), 2);
 
     // ------------------------------------------------------------------
@@ -384,7 +384,7 @@ int main(void)
     make_packet(pkt, en__mapping_recover_mppingData_exceptSlot_1);
     pkt[1] = 2;
     pkt[2] = 3;
-    tdc_ble_map_flash_recover_except_slot1(en__mapping_recover_mppingData_exceptSlot_1, pkt);
+    tdc_ble_cmd_0x70_recover_except_slot1(en__mapping_recover_mppingData_exceptSlot_1, pkt);
     p = tdc_ble_mapping_get_packet();
     CHECK_EQ("0x70 fetched_command", p->fetched_command, en__mapping_recover_mppingData_exceptSlot_1);
     CHECK_EQ("0x70 slot_index", p->ReadWriteMapData_Flash.slot_index, 2);
@@ -392,7 +392,7 @@ int main(void)
     CHECK_EQ("0x70 은 범위 검사가 없다", stub_error_count(), 0);
 
     stub_reset();
-    tdc_ble_map_flash_recover_all(en__mapping_recover_ALL_SlotData_ManufactureData);
+    tdc_ble_cmd_0x71_recover_all(en__mapping_recover_ALL_SlotData_ManufactureData);
     p = tdc_ble_mapping_get_packet();
     CHECK_EQ("0x71 fetched_command", p->fetched_command, en__mapping_recover_ALL_SlotData_ManufactureData);
     CHECK_EQ("0x71 에러 없음", stub_error_count(), 0);
