@@ -594,7 +594,9 @@ bool tdc_isd_set_stim_para_bipolar(bool isdControlStateChagedFlag)
         // 바이폴라, 24~32번 자극 채널에 대응하는 기준 전극 번호 설정
         case 10:
         {
-            for (i = 24; i < 32; i++)  // 24~32번 자극채널에 대응하는 기준 전극 번호
+            // 시작값이 df_MaxNumTransferableChannel 인 것은 case 8 이 0 ~ (그 값 - 1) 을 이미 채웠기 때문이다.
+            // 즉 case 8 과 이 루프가 이어 붙어 df_MaxNumOfElectrode 전체를 빈틈·겹침 없이 덮는다.
+            for (i = df_MaxNumTransferableChannel; i < df_MaxNumOfElectrode; i++)  // 24~32번 자극채널에 대응하는 기준 전극 번호
             {
                 w_isd_registerValue = ISD_registerAddr_en__bipolar_referenceElectroldIndex;
                 w_isd_registerValue = w_isd_registerValue << 1;
