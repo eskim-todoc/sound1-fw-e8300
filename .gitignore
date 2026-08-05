@@ -12,3 +12,6 @@ src/2__cm3_factory/
 
 # 호스트 단위 테스트 빌드 산출물
 tests/unit/build/
+
+# 구조 지표 기준선 (tests/metrics.sh --save) - 작업 중 임시 파일
+tests/.metrics/

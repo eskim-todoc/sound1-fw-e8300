@@ -69,7 +69,7 @@ void tdc_ble_map_measure_ecap_masking(const uint8_t *Rx_dataPacket)
     p_mappingPacket->eCapMeasurement.pulseWidth   = Rx_dataPacket[index++];
 
     p_mappingPacket->eCapMeasurement.firstPulsePhase              = Rx_dataPacket[index++];
-    p_mappingPacket->eCapMeasurement.stimulatonMode               = Rx_dataPacket[index++];
+    p_mappingPacket->eCapMeasurement.stimulationMode               = Rx_dataPacket[index++];
     p_mappingPacket->eCapMeasurement.stimulationElectrodeNum      = Rx_dataPacket[index++];
     p_mappingPacket->eCapMeasurement.bipolarReferenceElectrodeNum = Rx_dataPacket[index++];
     p_mappingPacket->eCapMeasurement.measurementElectrodeNum      = Rx_dataPacket[index++];
@@ -117,8 +117,8 @@ void tdc_ble_map_measure_ecap_masking(const uint8_t *Rx_dataPacket)
     }
 
     // 자극 모드 (EN___STIMULATION_MODE 에서 en__referenceNA(0) 를 뺀 실제 모드 범위)
-    if ((p_mappingPacket->eCapMeasurement.stimulatonMode < 1)      // 1 미만
-        || (6 < p_mappingPacket->eCapMeasurement.stimulatonMode))  // 6 초과 시 에러
+    if ((p_mappingPacket->eCapMeasurement.stimulationMode < 1)      // 1 미만
+        || (6 < p_mappingPacket->eCapMeasurement.stimulationMode))  // 6 초과 시 에러
     {
         dataRangeError = true;
     }
@@ -183,7 +183,7 @@ void tdc_ble_map_measure_ecap_alternative(const uint8_t *Rx_dataPacket)
     p_mappingPacket->eCapMeasurement.iterationNum = Rx_dataPacket[index++];
     p_mappingPacket->eCapMeasurement.pulseWidth   = Rx_dataPacket[index++];
 
-    p_mappingPacket->eCapMeasurement.stimulatonMode               = Rx_dataPacket[index++];
+    p_mappingPacket->eCapMeasurement.stimulationMode               = Rx_dataPacket[index++];
     p_mappingPacket->eCapMeasurement.stimulationElectrodeNum      = Rx_dataPacket[index++];
     p_mappingPacket->eCapMeasurement.bipolarReferenceElectrodeNum = Rx_dataPacket[index++];
     p_mappingPacket->eCapMeasurement.measurementElectrodeNum      = Rx_dataPacket[index++];
@@ -212,8 +212,8 @@ void tdc_ble_map_measure_ecap_alternative(const uint8_t *Rx_dataPacket)
     }
 
     // 자극 모드 (EN___STIMULATION_MODE 에서 en__referenceNA(0) 를 뺀 실제 모드 범위)
-    if ((p_mappingPacket->eCapMeasurement.stimulatonMode < 1)      // 1 미만
-        || (6 < p_mappingPacket->eCapMeasurement.stimulatonMode))  // 6 초과 시 에러
+    if ((p_mappingPacket->eCapMeasurement.stimulationMode < 1)      // 1 미만
+        || (6 < p_mappingPacket->eCapMeasurement.stimulationMode))  // 6 초과 시 에러
     {
         dataRangeError = true;
     }

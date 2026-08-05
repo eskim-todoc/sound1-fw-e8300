@@ -425,7 +425,7 @@ void tdc_isd_map_ecap_step(bool startFlag)
             // NOP-Standby
             tdc_shm_change_next_pcm_output_mode(PcmBitStream_Mode_NopStandby);
 
-            if (mappingPacket->eCapMeasurement.stimulatonMode != en__bipolar)
+            if (mappingPacket->eCapMeasurement.stimulationMode != en__bipolar)
             {
                 flowCounter = flowCounter + 2; // 바이폴라 기준전극 설정 값 전송에 2msec 필요, 해당 루틴 생략
             }
@@ -855,7 +855,7 @@ void tdc_isd_map_ecap_step(bool startFlag)
             // ISD 0x6    - 자극 파라미터 설정  쓰기
             // 모노폴라 출력 모드에서 기준전극 모드 2,3번 비트
             w_isd_registerValue = w_isd_registerValue << 2;
-            switch (mappingPacket->eCapMeasurement.stimulatonMode)
+            switch (mappingPacket->eCapMeasurement.stimulationMode)
             {
                 case en__monopolr_body:
 
@@ -876,7 +876,7 @@ void tdc_isd_map_ecap_step(bool startFlag)
 
             // 자극 출력 모드 0,1번 비트
             w_isd_registerValue = w_isd_registerValue << 2;
-            switch (mappingPacket->eCapMeasurement.stimulatonMode)
+            switch (mappingPacket->eCapMeasurement.stimulationMode)
             {
                 case en__monopolr_body:
                 case en__monopolr_rod:
@@ -1078,7 +1078,7 @@ void tdc_isd_map_ecap_step(bool startFlag)
             // ISD 0x6    - 자극 파라미터 설정  쓰기
             // 모노폴라 출력 모드에서 기준전극 모드 2,3번 비트
             w_isd_registerValue = w_isd_registerValue << 2;
-            switch (mappingPacket->eCapMeasurement.stimulatonMode)
+            switch (mappingPacket->eCapMeasurement.stimulationMode)
             {
                 case en__monopolr_body:
 
@@ -1100,7 +1100,7 @@ void tdc_isd_map_ecap_step(bool startFlag)
             // 자극 출력 모드 0,1번 비트
             w_isd_registerValue = w_isd_registerValue << 2;
 
-            switch (mappingPacket->eCapMeasurement.stimulatonMode)
+            switch (mappingPacket->eCapMeasurement.stimulationMode)
             {
                 case en__monopolr_body:
                 case en__monopolr_rod:

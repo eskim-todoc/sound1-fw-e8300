@@ -20,7 +20,7 @@ typedef struct
 typedef struct
 {
     int firstPulsePhase;
-    int stimulatonMode;
+    int stimulationMode;
     int stimulationElectrodeNum;
     int measurementElectrodeNum;
     int bipolarReferenceElectrodeNum;
@@ -39,7 +39,7 @@ typedef struct
 {
     int usableElectrodeNum;
     int firstPulsePhase;
-    int stimulatonMode;
+    int stimulationMode;
     int stimulationElectrodeNum;
     int bipolarReferenceElectrodeNum;
     int stimulationLevel_uA;
@@ -94,7 +94,7 @@ typedef struct
 
     int pulseWidth;
     int firstPulsePhase;
-    int stimulatonMode;
+    int stimulationMode;
     int usableElectrodeNum;
     int stimulationElectrodeNum[df_MaxNumOfElectrode];
     int bipolarReferenceElectrodeNum[df_MaxNumOfElectrode];
