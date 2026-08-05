@@ -710,7 +710,6 @@ en__remoteControl_ReadSystemError
 */
 
 #define df_lengthOf_mapDate       6
-#define df_DisConnectionCheckTime 180000
 
 extern char *readFirmwareInfo();
 
@@ -1335,8 +1334,13 @@ static void tdc_ble_cmd_0x40_step_check_passkey(void)
 
 ST__REMOTECONTROL_STATE tdc_ble_remote_step(bool isdConnection)  // 연결 상태에 변화에 따라 패스키 리셋
 {
-    static int                        noCommandTime_counter = df_DisConnectionCheckTime;
-    static EN__REMOTE_CONTROL_COMMAND prev_remotegCommand   = en__remoteControl_IDLE;
+    /* noCommandTime_counter 제거 (2026-08-06). 무명령 지속 시간을 세던 카운터인데
+     * 증가·리셋만 하고 읽는 곳이 한 군데도 없었다(선언 1 + 쓰기 2 + 읽기 0).
+     * df_DisConnectionCheckTime(180000) 으로 초기화해 "3분 무명령이면 무언가 한다" 는
+     * 의도였을 것이나 그 판정부가 없다. 되살리려면 이 카운터와 임계 비교를 함께
+     * 넣어야 한다 - 카운터만 두면 지금처럼 조용히 죽는다.
+     * 짝이던 df_DisConnectionCheckTime 도 유일한 사용처가 이것뿐이라 함께 제거했다. */
+    static EN__REMOTE_CONTROL_COMMAND prev_remotegCommand = en__remoteControl_IDLE;
     static int                        disconnectionCounter  = 0;
     ST__REMOTECONTROL_STATE           RemoteControlState    = {en__isdStatus_NA, false};
 
@@ -1391,15 +1395,6 @@ ST__REMOTECONTROL_STATE tdc_ble_remote_step(bool isdConnection)  // 연결 상�
     {
         if (tdc_ble_remote_is_passkey_match())
         {
-            if (remoteDataPacket.command == en__remoteControl_IDLE)
-            {
-                noCommandTime_counter++;
-            }
-            else
-            {
-                noCommandTime_counter = 0;
-            }
-
             switch (remoteDataPacket.command)
             {
                 case en__remoteControl_readInfoOfExtenalDevice:
