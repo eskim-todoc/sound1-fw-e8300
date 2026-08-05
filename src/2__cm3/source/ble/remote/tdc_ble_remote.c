@@ -1074,28 +1074,119 @@ static void tdc_ble_cmd_0x54_step_read_firmware_info(void)
 }
 
 /* 0x59 특정 시스템 동작 설정 - 옵션(data[0])으로 읽기/쓰기 분기 */
-static void tdc_ble_cmd_0x59_step_system_operation(void)
+/* 0x59 하위 분해 (2026-08-06). 옵션(data[0]) -> 세부옵션1(data[1]) ->
+ * 세부옵션2(data[2]) 로 4중 중첩이던 것을 안쪽 세 갈래만 빼내 2중으로 줄였다.
+ * 로직은 그대로 옮겼다. 이름의 sub/idx 는 프로토콜 계층을 그대로 따른다. */
+
+/* 0x59 옵션2(쓰기) - 일반 모드 - 묵음 처리 비활성화 */
+static void tdc_ble_cmd_0x59_sub02_idx02_mute_disable(void)
 {
     uint8_t bufferForSPI_tx[BLE_DataPacketSize];
-    int tx_index = 0;
+    int     tx_index = 0;
 
+// 묵음 처리 비활성화 옵션에서는 세부 옵션 3은 N/A 처리 함
+// 결과적으로 현재 옵션 레벨을 그대로 사용하면 될 것으로 보임
+
+TDC_PRINTF_D("[MUTE] RECEVIED : WRITE NORMAL + DISABLE MUTE \r\n");
+
+// 묵음 처리 파일 및 공유 메모리 값 업데이트
+if (tdc_fs_stim_mute_update(TDC_FS_STIM_MUTE_UNDER_T_LEVEL_DISABLE, cfx_cm3_sharedMemoryAll.mute_stimulation_t_level_offset) != TDC_FS_STIM_MUTE_RET_TRUE)
+{
+    TDC_PRINTF_E("[MUTE] RECEVIED : WRITE NORMAL + DISABLE MUTE, BUT FAILED TO UPDATE FILE \r\n");
+
+    // 실패 시 에러 전송: 데이터 처리 에러 + 사용할 수 없는 맵데이터
+    tdc_sys_error_send_to_app(remoteDataPacket.command, en__dataProcessing_ERROR, en__unusableMapData, __LINE__);
+    tdc_ble_remote_clear_command();
+}
+else  // 묵음 처리 파일 및 공유 메모리 값 업데이트 성공
+{
+    // 송신 데이터 준비
+    tx_index = tdc_ble_reply_header(bufferForSPI_tx, tx_index, remoteDataPacket.command);                                                 //     command : loop-back
+    tx_index = tdc_ble_reply_u8(bufferForSPI_tx, tx_index, 2);                                                                        //      option : write
+    tx_index = tdc_ble_reply_u8(bufferForSPI_tx, tx_index, 1);                                                                        // sub option1 : normal mode
+    tx_index = tdc_ble_reply_u8(bufferForSPI_tx, tx_index, (int) cfx_cm3_sharedMemoryAll.is_enabled_mute_stimulation_under_t_level);  // sub option2 : enable state
+    tx_index = tdc_ble_reply_u8(bufferForSPI_tx, tx_index, (int) cfx_cm3_sharedMemoryAll.mute_stimulation_t_level_offset);            // sub option3 : mute t level offset
+
+    TDC_PRINTF_D("[MUTE] RESPONSE : %02X %02X %02X %02X %02X \r\n", bufferForSPI_tx[0], bufferForSPI_tx[1], bufferForSPI_tx[2], bufferForSPI_tx[3], bufferForSPI_tx[4]);
+
+    tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, tx_index);  // 송신 데이터 SPI TX버퍼에 복사
+    tdc_ble_remote_clear_command();                      // 명령 종료
+}
+}
+
+/* 0x59 옵션2(쓰기) - 일반 모드 - 묵음 처리 활성화 (T 레벨 오프셋 범위 검사 포함) */
+static void tdc_ble_cmd_0x59_sub02_idx01_mute_enable(void)
+{
+    uint8_t bufferForSPI_tx[BLE_DataPacketSize];
+    int     tx_index = 0;
+
+TDC_PRINTF_D("[MUTE] RECEVIED : WRITE NORMAL + ENABLE MUTE + T LEVEL OFFSET %d \r\n", remoteDataPacket.data[3]);
+
+// 설정 가능 범위 초과 시 에러
+if ((remoteDataPacket.data[3] < TDC_FS_STIM_MUTE_T_LEVEL_OFFSET_MIN) || (TDC_FS_STIM_MUTE_T_LEVEL_OFFSET_MAX < remoteDataPacket.data[3]))
+{
+    TDC_PRINTF_E("[MUTE] RECEVIED : WRITE NORMAL + ENABLE MUTE, BUT INVALID T OFFSET LEVEL \r\n");
+
+    tdc_sys_error_send_to_app(remoteDataPacket.command, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);
+    tdc_ble_remote_clear_command();
+}
+else  // 유효한 설정 값인 경우
+{
+    // 묵음 처리 파일 및 공유 메모리 값 업데이트
+    if (tdc_fs_stim_mute_update(TDC_FS_STIM_MUTE_UNDER_T_LEVEL_ENABLE, (uint32_t) remoteDataPacket.data[3]) != TDC_FS_STIM_MUTE_RET_TRUE)
+    {
+        TDC_PRINTF_E("[MUTE] RECEVIED : WRITE NORMAL + ENABLE MUTE, BUT FAILED TO UPDATE FILE \r\n");
+
+        // 실패 시 에러 전송: 데이터 처리 에러 + 사용할 수 없는 맵데이터
+        tdc_sys_error_send_to_app(remoteDataPacket.command, en__dataProcessing_ERROR, en__unusableMapData, __LINE__);
+        tdc_ble_remote_clear_command();
+    }
+    else  // 묵음 처리 파일 및 공유 메모리 값 업데이트 성공
+    {
+        // 송신 데이터 준비
+        tx_index = tdc_ble_reply_header(bufferForSPI_tx, tx_index, remoteDataPacket.command);                                                 //     command : loop-back
+        tx_index = tdc_ble_reply_u8(bufferForSPI_tx, tx_index, 2);                                                                        //      option : write
+        tx_index = tdc_ble_reply_u8(bufferForSPI_tx, tx_index, 1);                                                                        // sub option1 : normal mode
+        tx_index = tdc_ble_reply_u8(bufferForSPI_tx, tx_index, (int) cfx_cm3_sharedMemoryAll.is_enabled_mute_stimulation_under_t_level);  // sub option2 : enable state
+        tx_index = tdc_ble_reply_u8(bufferForSPI_tx, tx_index, (int) cfx_cm3_sharedMemoryAll.mute_stimulation_t_level_offset);            // sub option3 : mute t level offset
+
+        TDC_PRINTF_D("[MUTE] RESPONSE : %02X %02X %02X %02X %02X \r\n", bufferForSPI_tx[0], bufferForSPI_tx[1], bufferForSPI_tx[2], bufferForSPI_tx[3], bufferForSPI_tx[4]);
+
+        tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, tx_index);  // 송신 데이터 SPI TX버퍼에 복사
+        tdc_ble_remote_clear_command();                      // 명령 종료
+    }
+}
+}
+
+/* 0x59 옵션1(읽기) - 현재 묵음 설정 상태를 응답 */
+static void tdc_ble_cmd_0x59_sub01_read_state(void)
+{
+    uint8_t bufferForSPI_tx[BLE_DataPacketSize];
+    int     tx_index = 0;
+
+TDC_PRINTF_D("[MUTE] RECEVIED : READ PACKET \r\n");
+
+// 송신 데이터 준비
+tx_index = tdc_ble_reply_header(bufferForSPI_tx, tx_index, remoteDataPacket.command);                                                 //     command : loop-back
+tx_index = tdc_ble_reply_u8(bufferForSPI_tx, tx_index, 1);                                                                        //      option : read
+tx_index = tdc_ble_reply_u8(bufferForSPI_tx, tx_index, 1);                                                                        // sub option1 : normal mode
+tx_index = tdc_ble_reply_u8(bufferForSPI_tx, tx_index, (int) cfx_cm3_sharedMemoryAll.is_enabled_mute_stimulation_under_t_level);  // sub option2 : enable state
+tx_index = tdc_ble_reply_u8(bufferForSPI_tx, tx_index, (int) cfx_cm3_sharedMemoryAll.mute_stimulation_t_level_offset);            // sub option3 : mute t level offset
+
+TDC_PRINTF_D("[MUTE] RESPONSE : %02X %02X %02X %02X %02X \r\n", bufferForSPI_tx[0], bufferForSPI_tx[1], bufferForSPI_tx[2], bufferForSPI_tx[3], bufferForSPI_tx[4]);
+
+tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, tx_index);  // 송신 데이터 SPI TX버퍼에 복사
+tdc_ble_remote_clear_command();                      // 명령 종료
+}
+
+static void tdc_ble_cmd_0x59_step_system_operation(void)
+{
+    /* 응답 조립은 전부 하위 함수로 내려갔다. 여기는 분기만 남는다. */
     switch (remoteDataPacket.data[0])  // 옵션
     {
         case 1:  // 읽기 (현재 상태 값으로 응답)
         {
-            TDC_PRINTF_D("[MUTE] RECEVIED : READ PACKET \r\n");
-
-            // 송신 데이터 준비
-            tx_index = tdc_ble_reply_header(bufferForSPI_tx, tx_index, remoteDataPacket.command);                                                 //     command : loop-back
-            tx_index = tdc_ble_reply_u8(bufferForSPI_tx, tx_index, 1);                                                                        //      option : read
-            tx_index = tdc_ble_reply_u8(bufferForSPI_tx, tx_index, 1);                                                                        // sub option1 : normal mode
-            tx_index = tdc_ble_reply_u8(bufferForSPI_tx, tx_index, (int) cfx_cm3_sharedMemoryAll.is_enabled_mute_stimulation_under_t_level);  // sub option2 : enable state
-            tx_index = tdc_ble_reply_u8(bufferForSPI_tx, tx_index, (int) cfx_cm3_sharedMemoryAll.mute_stimulation_t_level_offset);            // sub option3 : mute t level offset
-
-            TDC_PRINTF_D("[MUTE] RESPONSE : %02X %02X %02X %02X %02X \r\n", bufferForSPI_tx[0], bufferForSPI_tx[1], bufferForSPI_tx[2], bufferForSPI_tx[3], bufferForSPI_tx[4]);
-
-            tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, tx_index);  // 송신 데이터 SPI TX버퍼에 복사
-            tdc_ble_remote_clear_command();                      // 명령 종료
+            tdc_ble_cmd_0x59_sub01_read_state();
         }
         break;
 
@@ -1109,75 +1200,13 @@ static void tdc_ble_cmd_0x59_step_system_operation(void)
                     {
                         case 1:  // 묵음 처리 활성화
                         {
-                            TDC_PRINTF_D("[MUTE] RECEVIED : WRITE NORMAL + ENABLE MUTE + T LEVEL OFFSET %d \r\n", remoteDataPacket.data[3]);
-
-                            // 설정 가능 범위 초과 시 에러
-                            if ((remoteDataPacket.data[3] < TDC_FS_STIM_MUTE_T_LEVEL_OFFSET_MIN) || (TDC_FS_STIM_MUTE_T_LEVEL_OFFSET_MAX < remoteDataPacket.data[3]))
-                            {
-                                TDC_PRINTF_E("[MUTE] RECEVIED : WRITE NORMAL + ENABLE MUTE, BUT INVALID T OFFSET LEVEL \r\n");
-
-                                tdc_sys_error_send_to_app(remoteDataPacket.command, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);
-                                tdc_ble_remote_clear_command();
-                            }
-                            else  // 유효한 설정 값인 경우
-                            {
-                                // 묵음 처리 파일 및 공유 메모리 값 업데이트
-                                if (tdc_fs_stim_mute_update(TDC_FS_STIM_MUTE_UNDER_T_LEVEL_ENABLE, (uint32_t) remoteDataPacket.data[3]) != TDC_FS_STIM_MUTE_RET_TRUE)
-                                {
-                                    TDC_PRINTF_E("[MUTE] RECEVIED : WRITE NORMAL + ENABLE MUTE, BUT FAILED TO UPDATE FILE \r\n");
-
-                                    // 실패 시 에러 전송: 데이터 처리 에러 + 사용할 수 없는 맵데이터
-                                    tdc_sys_error_send_to_app(remoteDataPacket.command, en__dataProcessing_ERROR, en__unusableMapData, __LINE__);
-                                    tdc_ble_remote_clear_command();
-                                }
-                                else  // 묵음 처리 파일 및 공유 메모리 값 업데이트 성공
-                                {
-                                    // 송신 데이터 준비
-                                    tx_index = tdc_ble_reply_header(bufferForSPI_tx, tx_index, remoteDataPacket.command);                                                 //     command : loop-back
-                                    tx_index = tdc_ble_reply_u8(bufferForSPI_tx, tx_index, 2);                                                                        //      option : write
-                                    tx_index = tdc_ble_reply_u8(bufferForSPI_tx, tx_index, 1);                                                                        // sub option1 : normal mode
-                                    tx_index = tdc_ble_reply_u8(bufferForSPI_tx, tx_index, (int) cfx_cm3_sharedMemoryAll.is_enabled_mute_stimulation_under_t_level);  // sub option2 : enable state
-                                    tx_index = tdc_ble_reply_u8(bufferForSPI_tx, tx_index, (int) cfx_cm3_sharedMemoryAll.mute_stimulation_t_level_offset);            // sub option3 : mute t level offset
-
-                                    TDC_PRINTF_D("[MUTE] RESPONSE : %02X %02X %02X %02X %02X \r\n", bufferForSPI_tx[0], bufferForSPI_tx[1], bufferForSPI_tx[2], bufferForSPI_tx[3], bufferForSPI_tx[4]);
-
-                                    tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, tx_index);  // 송신 데이터 SPI TX버퍼에 복사
-                                    tdc_ble_remote_clear_command();                      // 명령 종료
-                                }
-                            }
+                            tdc_ble_cmd_0x59_sub02_idx01_mute_enable();
                         }
                         break;
 
                         case 2:  // 묵음 처리 비활성화
                         {
-                            // 묵음 처리 비활성화 옵션에서는 세부 옵션 3은 N/A 처리 함
-                            // 결과적으로 현재 옵션 레벨을 그대로 사용하면 될 것으로 보임
-
-                            TDC_PRINTF_D("[MUTE] RECEVIED : WRITE NORMAL + DISABLE MUTE \r\n");
-
-                            // 묵음 처리 파일 및 공유 메모리 값 업데이트
-                            if (tdc_fs_stim_mute_update(TDC_FS_STIM_MUTE_UNDER_T_LEVEL_DISABLE, cfx_cm3_sharedMemoryAll.mute_stimulation_t_level_offset) != TDC_FS_STIM_MUTE_RET_TRUE)
-                            {
-                                TDC_PRINTF_E("[MUTE] RECEVIED : WRITE NORMAL + DISABLE MUTE, BUT FAILED TO UPDATE FILE \r\n");
-
-                                // 실패 시 에러 전송: 데이터 처리 에러 + 사용할 수 없는 맵데이터
-                                tdc_sys_error_send_to_app(remoteDataPacket.command, en__dataProcessing_ERROR, en__unusableMapData, __LINE__);
-                                tdc_ble_remote_clear_command();
-                            }
-                            else  // 묵음 처리 파일 및 공유 메모리 값 업데이트 성공
-                            {
-                                // 송신 데이터 준비
-                                tx_index = tdc_ble_reply_header(bufferForSPI_tx, tx_index, remoteDataPacket.command);                                                 //     command : loop-back
-                                tx_index = tdc_ble_reply_u8(bufferForSPI_tx, tx_index, 2);                                                                        //      option : write
-                                tx_index = tdc_ble_reply_u8(bufferForSPI_tx, tx_index, 1);                                                                        // sub option1 : normal mode
-                                tx_index = tdc_ble_reply_u8(bufferForSPI_tx, tx_index, (int) cfx_cm3_sharedMemoryAll.is_enabled_mute_stimulation_under_t_level);  // sub option2 : enable state
-                                tx_index = tdc_ble_reply_u8(bufferForSPI_tx, tx_index, (int) cfx_cm3_sharedMemoryAll.mute_stimulation_t_level_offset);            // sub option3 : mute t level offset
-
-                                TDC_PRINTF_D("[MUTE] RESPONSE : %02X %02X %02X %02X %02X \r\n", bufferForSPI_tx[0], bufferForSPI_tx[1], bufferForSPI_tx[2], bufferForSPI_tx[3], bufferForSPI_tx[4]);
-
-                                tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, tx_index);  // 송신 데이터 SPI TX버퍼에 복사
-                                tdc_ble_remote_clear_command();                      // 명령 종료
-                            }
+                            tdc_ble_cmd_0x59_sub02_idx02_mute_disable();
                         }
                         break;
 
