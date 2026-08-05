@@ -46,12 +46,12 @@ void tdc_ble_remote_clear_command(void)
     remoteDataPacket.command = en__remoteControl_IDLE;
 }
 
-static int writingStartSlot_index = 0;
+static int writingStartSlot_index         = 0;
+static int prev_subCommandData_Num_index = 0;  /* fetch_packet 지역 static 이었다. 0x4A·0x4C·0x4D 가 공유한다 */
+static int stimulPara_index              = 0;  /* 동. 0x4C·0x4D 가 공유한다 */
 
 void tdc_ble_remote_fetch_packet(const uint8_t *Rx_dataPacket)
 {
-    static int prev_subCommandData_Num_index = 0;
-    static int stimulPara_index              = 0;
 
     uint8_t bufferForSPI_tx[BLE_DataPacketSize];
     int tempCommand;
