@@ -28,9 +28,25 @@
  * 수정해도 여기 원본에는 반영되지 않는다는 점에 유의. */
 static tdc_sys_state_t systemStatus = {false, false, false, false, false, false};
 
-#define LED_OnTime_afterCoverClosed 4501
+/* ===================================================================
+ * 이 파일의 시간 임계 (2026-08-05 상수화. 값은 하나도 바꾸지 않았다)
+ *
+ * 단위는 전부 ms 다. 근거 - tdc_sys_control_step() 은 1 tick 마다 호출되고,
+ * isd_disconnection_counter 는 Df_Disconnection_BLE_Time_ms(2000) 로 초기화되며,
+ * 180000 에 붙어 있던 주석이 "3분" 이다 (180000 ms = 180 초 = 3 분). 세 근거가 일치한다.
+ *
+ * 배터리 퍼센트 임계는 여기가 아니라 tdc_pwr_battery.h 에 모여 있다 (TDC_BATT_*_PCT).
+ * =================================================================== */
 
-#define BLE_OffTimeAfterISD_Disconnected 1000
+#define TDC_SYS_BLE_OFF_DELAY_MS     640    /* ISD 연결 이력 후 재연결 없이 이 시간 경과 -> BLE OFF (약 0.64초) */
+#define TDC_SYS_POWER_BUTTON_GATE_MS 300    /* ISD 미연결이 이 시간 "미만" 이면 최근까지 연결된 것으로 보고 전원버튼 무시 */
+#define TDC_SYS_ISD_LOST_POWEROFF_MS 180000 /* ISD 미연결이 이 시간 지속되면 파워오프 (3분) */
+
+/* 죽은 매크로 2건 제거 (2026-08-05) - 정의만 있고 사용처가 0 이었다.
+ *   LED_OnTime_afterCoverClosed      4501
+ *   BLE_OffTimeAfterISD_Disconnected 1000
+ * 특히 후자는 TDC_SYS_BLE_OFF_DELAY_MS 와 용도가 같은데 값이 달라(1000 vs 640),
+ * 어느 쪽이 실제 동작인지 오해를 부르는 상태였다. 실제로 쓰이는 것은 640 이다. */
 
 void tdc_sys_control_nrf_off_command(void)
 {
@@ -56,7 +72,7 @@ void tdc_sys_control_nrf_on_off(ST__ISD_STATUS isd_state, bool global_BLE_Off, b
         // 연결된 내부기의 id에 해당하는 매핑데이터(내부기 이름)이 읽어 들여진 이후에 nrf를 켜야한다.
         if (isd_state.isd_controlState < en__isdStatus_stimul_10V_Ok)
         {
-            if (deaylCounter > 640)  // 0.6초 후 BLE 끔
+            if (deaylCounter > TDC_SYS_BLE_OFF_DELAY_MS)  // 0.6초 후 BLE 끔
             {
                 BLE_OFF               = true;
                 ISD_ConnectionHistory = false;
@@ -200,11 +216,11 @@ static void handle_charging(ST__USB_CONNECTOR charger, bool power_button_pushed,
     s_sysctl.start_flag = false;
 }
 
-/* 매핑 연결 중 또는 ISD 최근 연결(<300) 시 전원버튼을 무시한다.
+/* 매핑 연결 중 또는 ISD 최근 연결(TDC_SYS_POWER_BUTTON_GATE_MS 미만) 시 전원버튼을 무시한다.
  * 반환: 게이팅 후의 버튼 상태. 호출자가 재대입해야 이후 파워오프 판정에 전파된다. */
 static bool gate_power_button(bool power_button_pushed, bool mapping_connected)
 {
-    if (mapping_connected || (s_sysctl.isd_disconnection_counter < 300))
+    if (mapping_connected || (s_sysctl.isd_disconnection_counter < TDC_SYS_POWER_BUTTON_GATE_MS))
     {
 #if TDC_LED_DBG_LONG_TOUCH_IGNORE
         if (power_button_pushed) { tdc_led_request(TDC_LED_SRC_DBG, TDC_LED_ST_DBG_LONG_TOUCH_IGNORE); }
@@ -245,8 +261,8 @@ static bool handle_running(int battery_percent, bool conneded_ISD, tdc_sys_state
 
     /* LED 판정은 Arbiter 로 이관됨 (Rev.3) - Battery/ISD/Mapping 요청은 main.c 담당 */
 
-    /* 저배터리 자극 알림 (10분 주기) - LED 와 독립된 기능. 20% 미만. */
-    if (conneded_ISD && (battery_percent < 20))
+    /* 저배터리 자극 알림 (10분 주기) - LED 와 독립된 기능. */
+    if (conneded_ISD && (battery_percent < TDC_BATT_STIM_ALERT_PCT))
     {
         if (s_sysctl.low_batt_indicator_counter == 0)
         {
@@ -269,7 +285,7 @@ static bool handle_running(int battery_percent, bool conneded_ISD, tdc_sys_state
         s_sysctl.isd_disconnection_counter++; /* 내부기 미연결 시 해제 카운트 증가 */
     }
 
-    if (s_sysctl.isd_disconnection_counter > 180000) /* 3분 */
+    if (s_sysctl.isd_disconnection_counter > TDC_SYS_ISD_LOST_POWEROFF_MS)
     {
         s_sysctl.isd_disconnection_counter = 0;
 
@@ -311,8 +327,9 @@ static bool handle_discharging(int battery_percent, bool power_button_pushed, bo
     power_button_pushed = gate_power_button(power_button_pushed, mapping_connected);
 
     /* 배터리 방전 상태 확인 (전기기계적안정성 시험을 위해 저전력 범위 변경).
-     * 40% 미만이면 저전력. */
-    bool very_low_battery = (battery_percent < 40);
+     * TDC_BATT_CUTOFF_PCT 미만이면 저전력. 이 값은 handle_poweroff() 의
+     * 탈출 조건에서도 읽히므로, 임계를 바꾸면 진입과 탈출이 함께 움직인다. */
+    bool very_low_battery = (battery_percent < TDC_BATT_CUTOFF_PCT);
 
     /* 전원 끄기 시작 (1회 설정) */
     if ((very_low_battery || power_button_pushed) && !s_sysctl.poweroff_enabled)
