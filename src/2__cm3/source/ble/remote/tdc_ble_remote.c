@@ -714,6 +714,596 @@ en__remoteControl_ReadSystemError
 
 extern char *readFirmwareInfo();
 
+/* ---------------------------------------------------------------------
+ * 실행 계층 - 명령별 함수 (2026-08-05 이월_2 분해)
+ *
+ * tdc_ble_remote_step() 의 switch case 본문을 그대로 옮긴 것이다.
+ * 로직은 손대지 않았다.
+ *
+ * 인자가 없는 것은 입력이 전역 remoteDataPacket 이고 출력이 SPI 송신과
+ * 공유메모리이기 때문이다. 반환 상태(RemoteControlState)는 switch 안에서
+ * 한 번도 대입되지 않으므로 넘길 필요가 없다.
+ *
+ * tx_index 를 각자 0 으로 두는 것은 switch case 가 배타적이라 성립한다
+ * (단계_2 응답 조립 공통화에서 규명한 구조).
+ *
+ * 플래시 6건 · 0x8F · 게인제어 · 본문 없는 case 는 추출하지 않았다.
+ * 각 4줄 이하 위임뿐이라 빼면 한 줄을 감싼 한 줄 함수가 된다.
+ * --------------------------------------------------------------------- */
+
+/* 0x42 맵 정보 읽기 - 사용 가능 맵 목록과 맵 스탬프 응답 */
+static void tdc_ble_cmd_0x42_step_read_map_info(void)
+{
+    uint8_t bufferForSPI_tx[BLE_DataPacketSize];
+    int tx_index = 0;
+    int *p_mapStemp;
+    int k;
+
+    /* 맵 4개의 매핑일자를 모두 비교해 가장 최신 것을 보내던 구버전 응답 로직은
+     * 2차 리팩토링에서 제거했다(#if 0 사장, 약 100줄).
+     * 현재 응답은 아래와 같이 "연결된 내부기의 맵 스탬프 + 보유 맵 개수" 다.
+     * 리모콘과 주고받는 응답 형식이 서로 다르므로, 구형식이 필요하면 git 이력 참조. */
+    // 현재 연결된 맵 스템프 전송
+
+    // 송신 데이터 준비
+    // command loop-back
+    tx_index = tdc_ble_reply_header(bufferForSPI_tx, tx_index, remoteDataPacket.command);
+
+    // pay-load 준비
+    // 최신 맵 날짜
+    p_mapStemp = tdc_shm_read_connected_isd_map_stamp();
+
+    for (k = 0; k < df_lengthOf_mapDate; k++)
+    {
+        tx_index = tdc_ble_reply_u8(bufferForSPI_tx, tx_index, p_mapStemp[k]);
+    }
+
+    // 담겨져 있는 맵 개수
+    tx_index = tdc_ble_reply_u8(bufferForSPI_tx, tx_index, tdc_shm_read_connected_isd_usable_map_num());
+
+    // 송신 데이터 SPI TX버퍼에 복사
+    tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, tx_index);
+
+    //  명령 종료
+    tdc_ble_remote_clear_command();
+}
+
+/* 0x43 외부기기 상태 읽기 - 배터리·볼륨·On/Off 상태 응답 */
+static void tdc_ble_cmd_0x43_step_read_device_status(void)
+{
+    uint8_t bufferForSPI_tx[BLE_DataPacketSize];
+    int tx_index = 0;
+    int value;
+
+    value = tdc_pwr_battery_read_percentage();
+
+    if (value > 100)
+    {
+        value = 100;
+    }
+    else if (value < 0)
+    {
+        value = 0;
+    }
+
+    tx_index = tdc_ble_reply_header(bufferForSPI_tx, tx_index, remoteDataPacket.command);     // command loop-back
+    tx_index = tdc_ble_reply_u8(bufferForSPI_tx, tx_index, value);                        // 배터리 잔량
+    tx_index = tdc_ble_reply_u8(bufferForSPI_tx, tx_index, tdc_shm_read_program_map_num());          // 맵 번호
+    tx_index = tdc_ble_reply_u8(bufferForSPI_tx, tx_index, tdc_shm_read_stimul_volume());           // 최대 출력
+    tx_index = tdc_ble_reply_u8(bufferForSPI_tx, tx_index, tdc_shm_read_audio_volume());            // 볼륨
+    tx_index = tdc_ble_reply_u8(bufferForSPI_tx, tx_index, tdc_shm_read_led_indicator_on_off());     // LED 알림
+    tx_index = tdc_ble_reply_u8(bufferForSPI_tx, tx_index, tdc_shm_read_tele_coil_on_off());         // 텔레코일
+    tx_index = tdc_ble_reply_u8(bufferForSPI_tx, tx_index, tdc_shm_read_stimul_indicator_on_off());  // 자극 알림
+
+    tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, tx_index);  // 송신 데이터 SPI TX버퍼에 복사
+    tdc_ble_remote_clear_command();                      //  명령 종료
+}
+
+/* 0x44 맵 번호 변경 - 사용 가능한 다음 맵을 찾아 전환 */
+static void tdc_ble_cmd_0x44_step_change_map_num(void)
+{
+    uint8_t bufferForSPI_tx[BLE_DataPacketSize];
+    int tx_index = 0;
+    int *p_connected_isd_usableMapIndex;
+    int currenMapIndex;
+    int nextMapIndex;
+    int value;
+    int iterNum;
+
+    currenMapIndex                 = tdc_shm_read_program_map_num();
+    nextMapIndex                   = currenMapIndex;
+    p_connected_isd_usableMapIndex = tdc_shm_read_connected_isd_usable_map_index();
+    value                          = remoteDataPacket.data[0];
+    iterNum                        = 0;
+
+    if (value == 1)  // 맵 번호 증기
+    {
+        do  // 사용가능한 맵에서 회전 시킨다.
+        {
+            nextMapIndex++;
+            if (nextMapIndex > MaxNumMap)
+            {
+                nextMapIndex = 1;
+            }
+
+            iterNum++;
+            if (iterNum > MaxNumMap)
+            {
+                break;
+            }
+        } while (p_connected_isd_usableMapIndex[nextMapIndex - 1] == 0);
+
+        if (iterNum <= MaxNumMap)
+        {
+            tdc_shm_change_program_map_num(nextMapIndex);
+
+            // 송신 데이터 준비
+            tx_index = tdc_ble_reply_header(bufferForSPI_tx, tx_index, remoteDataPacket.command);  // command loop-back
+            tx_index = tdc_ble_reply_u8(bufferForSPI_tx, tx_index, nextMapIndex);              // pay-load 준비
+
+            tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, tx_index);  // 송신 데이터 SPI TX버퍼에 복사
+            tdc_ble_remote_clear_command();                      //  명령 종료
+        }
+        else
+        {
+            tdc_sys_error_send_to_app(remoteDataPacket.command, en__CFX_ERROR, en__unusableMapData, __LINE__);
+            tdc_ble_remote_clear_command();
+        }
+    }
+    else if (value == 2)  // 맵 번호 감소
+    {
+        do
+        {
+            nextMapIndex--;
+            if (nextMapIndex < 1)
+            {
+                nextMapIndex = MaxNumMap;
+            }
+
+            iterNum++;
+            if (iterNum > MaxNumMap)
+            {
+                break;
+            }
+        } while (p_connected_isd_usableMapIndex[nextMapIndex - 1] == 0);
+
+        if (iterNum <= MaxNumMap)
+        {
+            tdc_shm_change_program_map_num(nextMapIndex);
+
+            // 송신 데이터 준비
+            tx_index = tdc_ble_reply_header(bufferForSPI_tx, tx_index, remoteDataPacket.command);  // command loop-back
+            tx_index = tdc_ble_reply_u8(bufferForSPI_tx, tx_index, nextMapIndex);              // pay-load 준비
+
+            tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, tx_index);  // 송신 데이터 SPI TX버퍼에 복사
+            tdc_ble_remote_clear_command();                      //  명령 종료
+        }
+        else
+        {
+            tdc_sys_error_send_to_app(remoteDataPacket.command, en__CFX_ERROR, en__unusableMapData, __LINE__);
+            tdc_ble_remote_clear_command();
+        }
+    }
+    else  // 에러: 입력 데이터 범위 1~2가 아닌 경우
+    {
+        tdc_sys_error_send_to_app(remoteDataPacket.command, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);
+        tdc_ble_remote_clear_command();
+    }
+}
+
+/* 0x45 자극 볼륨 조절 - 1 단계 증감, 상하한에서 유지 */
+static void tdc_ble_cmd_0x45_step_adjust_stim_volume(void)
+{
+    uint8_t bufferForSPI_tx[BLE_DataPacketSize];
+    int volume;
+    int tx_index = 0;
+
+    if ((remoteDataPacket.data[0] == en__PAYLOAD_INCREASE) || (remoteDataPacket.data[0] == en__PAYLOAD_DECREASE))
+    {
+        volume = tdc_shm_read_stimul_volume();
+
+        if (remoteDataPacket.data[0] == en__PAYLOAD_INCREASE)
+        {
+            if (volume < df_maxStimulationVloumeLevel)
+            {
+                volume++;
+            }
+            tdc_shm_change_stimul_volume(volume);
+        }
+        else if (remoteDataPacket.data[0] == en__PAYLOAD_DECREASE)
+        {
+            if (volume > 1)
+            {
+                volume--;
+            }
+            tdc_shm_change_stimul_volume(volume);
+        }
+
+        // 송신 데이터 준비
+        tx_index = tdc_ble_reply_header(bufferForSPI_tx, tx_index, remoteDataPacket.command);  // command loop-back
+        tx_index = tdc_ble_reply_u8(bufferForSPI_tx, tx_index, tdc_shm_read_stimul_volume());        // pay-load 준비
+
+        tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, tx_index);  // 송신 데이터 SPI TX버퍼에 복사
+        tdc_ble_remote_clear_command();                      //  명령 종료
+    }
+    else  // 데이터 범위 에러
+    {
+        tdc_sys_error_send_to_app(remoteDataPacket.command, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);
+        tdc_ble_remote_clear_command();
+    }
+}
+
+/* 0x46 마이크 볼륨 조절 - 1 단계 증감 */
+static void tdc_ble_cmd_0x46_step_adjust_mic_volume(void)
+{
+    uint8_t bufferForSPI_tx[BLE_DataPacketSize];
+    int volume;
+    int tx_index = 0;
+
+    if ((remoteDataPacket.data[0] == en__PAYLOAD_INCREASE) || (remoteDataPacket.data[0] == en__PAYLOAD_DECREASE))
+    {
+        volume = tdc_shm_read_audio_volume();
+
+        if (remoteDataPacket.data[0] == en__PAYLOAD_INCREASE)
+        {
+            if (volume < df_maxMicVloumeLevel)
+            {
+                volume++;
+            }
+            tdc_shm_change_audio_volume(volume);
+        }
+        else if (remoteDataPacket.data[0] == en__PAYLOAD_DECREASE)
+        {
+            if (volume > 1)
+            {
+                volume--;
+            }
+            tdc_shm_change_audio_volume(volume);
+        }
+
+        // 송신 데이터 준비
+        tx_index = tdc_ble_reply_header(bufferForSPI_tx, tx_index, remoteDataPacket.command);  // command loop-back
+        tx_index = tdc_ble_reply_u8(bufferForSPI_tx, tx_index, tdc_shm_read_audio_volume());         // pay-load 준비
+
+        tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, tx_index);  // 송신 데이터 SPI TX버퍼에 복사
+        tdc_ble_remote_clear_command();                      //  명령 종료
+    }
+    else  // 데이터 범위 에러
+    {
+        tdc_sys_error_send_to_app(remoteDataPacket.command, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);
+        tdc_ble_remote_clear_command();
+    }
+}
+
+/* 0x47 텔레코일 On/Off */
+static void tdc_ble_cmd_0x47_step_onoff_telecoil(void)
+{
+    uint8_t bufferForSPI_tx[BLE_DataPacketSize];
+    int tx_index = 0;
+
+    if ((remoteDataPacket.data[0] == en__PAYLOAD_ON) || (remoteDataPacket.data[0] == en__PAYLOAD_OFF))
+    {
+        tdc_shm_change_tele_coil_on_off(remoteDataPacket.data[0]);
+
+        // 송신 데이터 준비
+        tx_index = tdc_ble_reply_header(bufferForSPI_tx, tx_index, remoteDataPacket.command);  // command loop-back
+        tx_index = tdc_ble_reply_u8(bufferForSPI_tx, tx_index, tdc_shm_read_tele_coil_on_off());      // pay-load 준비
+
+        tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, tx_index);  // 송신 데이터 SPI TX버퍼에 복사
+        tdc_ble_remote_clear_command();                      //  명령 종료
+    }
+    else  // 데이터 범위 에러
+    {
+        tdc_sys_error_send_to_app(remoteDataPacket.command, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);
+        tdc_ble_remote_clear_command();
+    }
+}
+
+/* 0x48 자극 인디케이터 On/Off */
+static void tdc_ble_cmd_0x48_step_onoff_stim_indicator(void)
+{
+    uint8_t bufferForSPI_tx[BLE_DataPacketSize];
+    int tx_index = 0;
+
+    if ((remoteDataPacket.data[0] == en__PAYLOAD_ON) || (remoteDataPacket.data[0] == en__PAYLOAD_OFF))
+    {
+        tdc_shm_change_stimul_indicator_on_off(remoteDataPacket.data[0]);
+
+        // 송신 데이터 준비
+        tx_index = tdc_ble_reply_header(bufferForSPI_tx, tx_index, remoteDataPacket.command);     // command loop-back
+        tx_index = tdc_ble_reply_u8(bufferForSPI_tx, tx_index, tdc_shm_read_stimul_indicator_on_off());  // pay-load 준비
+
+        tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, tx_index);  // 송신 데이터 SPI TX버퍼에 복사
+        tdc_ble_remote_clear_command();                      // 명령 종료
+    }
+    else  // 데이터 범위 에러
+    {
+        tdc_sys_error_send_to_app(remoteDataPacket.command, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);
+        tdc_ble_remote_clear_command();
+    }
+}
+
+/* 0x49 LED On/Off */
+static void tdc_ble_cmd_0x49_step_onoff_led(void)
+{
+    uint8_t bufferForSPI_tx[BLE_DataPacketSize];
+    int tx_index = 0;
+
+    if ((remoteDataPacket.data[0] == en__PAYLOAD_ON) || (remoteDataPacket.data[0] == en__PAYLOAD_OFF))
+    {
+        tdc_shm_change_led_indicator_on_off(remoteDataPacket.data[0]);
+
+        // 송신 데이터 준비
+        tx_index = tdc_ble_reply_header(bufferForSPI_tx, tx_index, remoteDataPacket.command);  // command loop-back
+        tx_index = tdc_ble_reply_u8(bufferForSPI_tx, tx_index, tdc_shm_read_led_indicator_on_off());  // pay-load 준비
+
+        tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, tx_index);  // 송신 데이터 SPI TX버퍼에 복사
+        tdc_ble_remote_clear_command();                      //  명령 종료
+    }
+    else  // 데이터 범위 에러
+    {
+        tdc_sys_error_send_to_app(remoteDataPacket.command, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);
+        tdc_ble_remote_clear_command();
+    }
+}
+
+/* 0x54 Ezairo 펌웨어 정보 읽기 */
+static void tdc_ble_cmd_0x54_step_read_firmware_info(void)
+{
+    uint8_t bufferForSPI_tx[BLE_DataPacketSize];
+    int tx_index = 0;
+    char *p_firmwareInfo;
+    int i;
+
+    // 송신 데이터 준비
+    // command loop-back
+    tx_index = tdc_ble_reply_header(bufferForSPI_tx, tx_index, remoteDataPacket.command);
+    p_firmwareInfo              = readFirmwareInfo();
+
+    // pay-load 준비
+    for (i = 0; i < 14; i++)
+    {
+        tx_index = tdc_ble_reply_u8(bufferForSPI_tx, tx_index, p_firmwareInfo[i]);
+    }
+
+    // 송신 데이터 SPI TX버퍼에 복사
+    tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, tx_index);
+
+    //  명령 종료
+    tdc_ble_remote_clear_command();
+}
+
+/* 0x59 특정 시스템 동작 설정 - 옵션(data[0])으로 읽기/쓰기 분기 */
+static void tdc_ble_cmd_0x59_step_system_operation(void)
+{
+    uint8_t bufferForSPI_tx[BLE_DataPacketSize];
+    int tx_index = 0;
+
+    switch (remoteDataPacket.data[0])  // 옵션
+    {
+        case 1:  // 읽기 (현재 상태 값으로 응답)
+        {
+            TDC_PRINTF_D("[MUTE] RECEVIED : READ PACKET \r\n");
+
+            // 송신 데이터 준비
+            tx_index = tdc_ble_reply_header(bufferForSPI_tx, tx_index, remoteDataPacket.command);                                                 //     command : loop-back
+            tx_index = tdc_ble_reply_u8(bufferForSPI_tx, tx_index, 1);                                                                        //      option : read
+            tx_index = tdc_ble_reply_u8(bufferForSPI_tx, tx_index, 1);                                                                        // sub option1 : normal mode
+            tx_index = tdc_ble_reply_u8(bufferForSPI_tx, tx_index, (int) cfx_cm3_sharedMemoryAll.is_enabled_mute_stimulation_under_t_level);  // sub option2 : enable state
+            tx_index = tdc_ble_reply_u8(bufferForSPI_tx, tx_index, (int) cfx_cm3_sharedMemoryAll.mute_stimulation_t_level_offset);            // sub option3 : mute t level offset
+
+            TDC_PRINTF_D("[MUTE] RESPONSE : %02X %02X %02X %02X %02X \r\n", bufferForSPI_tx[0], bufferForSPI_tx[1], bufferForSPI_tx[2], bufferForSPI_tx[3], bufferForSPI_tx[4]);
+
+            tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, tx_index);  // 송신 데이터 SPI TX버퍼에 복사
+            tdc_ble_remote_clear_command();                      // 명령 종료
+        }
+        break;
+
+        case 2:  // 쓰기
+        {
+            switch (remoteDataPacket.data[1])  // 세부 옵션 1
+            {
+                case 1:  // 일반 모드
+                {
+                    switch (remoteDataPacket.data[2])  // 세부 옵션 2
+                    {
+                        case 1:  // 묵음 처리 활성화
+                        {
+                            TDC_PRINTF_D("[MUTE] RECEVIED : WRITE NORMAL + ENABLE MUTE + T LEVEL OFFSET %d \r\n", remoteDataPacket.data[3]);
+
+                            // 설정 가능 범위 초과 시 에러
+                            if ((remoteDataPacket.data[3] < TDC_FS_STIM_MUTE_T_LEVEL_OFFSET_MIN) || (TDC_FS_STIM_MUTE_T_LEVEL_OFFSET_MAX < remoteDataPacket.data[3]))
+                            {
+                                TDC_PRINTF_E("[MUTE] RECEVIED : WRITE NORMAL + ENABLE MUTE, BUT INVALID T OFFSET LEVEL \r\n");
+
+                                tdc_sys_error_send_to_app(remoteDataPacket.command, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);
+                                tdc_ble_remote_clear_command();
+                            }
+                            else  // 유효한 설정 값인 경우
+                            {
+                                // 묵음 처리 파일 및 공유 메모리 값 업데이트
+                                if (tdc_fs_stim_mute_update(TDC_FS_STIM_MUTE_UNDER_T_LEVEL_ENABLE, (uint32_t) remoteDataPacket.data[3]) != TDC_FS_STIM_MUTE_RET_TRUE)
+                                {
+                                    TDC_PRINTF_E("[MUTE] RECEVIED : WRITE NORMAL + ENABLE MUTE, BUT FAILED TO UPDATE FILE \r\n");
+
+                                    // 실패 시 에러 전송: 데이터 처리 에러 + 사용할 수 없는 맵데이터
+                                    tdc_sys_error_send_to_app(remoteDataPacket.command, en__dataProcessing_ERROR, en__unusableMapData, __LINE__);
+                                    tdc_ble_remote_clear_command();
+                                }
+                                else  // 묵음 처리 파일 및 공유 메모리 값 업데이트 성공
+                                {
+                                    // 송신 데이터 준비
+                                    tx_index = tdc_ble_reply_header(bufferForSPI_tx, tx_index, remoteDataPacket.command);                                                 //     command : loop-back
+                                    tx_index = tdc_ble_reply_u8(bufferForSPI_tx, tx_index, 2);                                                                        //      option : write
+                                    tx_index = tdc_ble_reply_u8(bufferForSPI_tx, tx_index, 1);                                                                        // sub option1 : normal mode
+                                    tx_index = tdc_ble_reply_u8(bufferForSPI_tx, tx_index, (int) cfx_cm3_sharedMemoryAll.is_enabled_mute_stimulation_under_t_level);  // sub option2 : enable state
+                                    tx_index = tdc_ble_reply_u8(bufferForSPI_tx, tx_index, (int) cfx_cm3_sharedMemoryAll.mute_stimulation_t_level_offset);            // sub option3 : mute t level offset
+
+                                    TDC_PRINTF_D("[MUTE] RESPONSE : %02X %02X %02X %02X %02X \r\n", bufferForSPI_tx[0], bufferForSPI_tx[1], bufferForSPI_tx[2], bufferForSPI_tx[3], bufferForSPI_tx[4]);
+
+                                    tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, tx_index);  // 송신 데이터 SPI TX버퍼에 복사
+                                    tdc_ble_remote_clear_command();                      // 명령 종료
+                                }
+                            }
+                        }
+                        break;
+
+                        case 2:  // 묵음 처리 비활성화
+                        {
+                            // 묵음 처리 비활성화 옵션에서는 세부 옵션 3은 N/A 처리 함
+                            // 결과적으로 현재 옵션 레벨을 그대로 사용하면 될 것으로 보임
+
+                            TDC_PRINTF_D("[MUTE] RECEVIED : WRITE NORMAL + DISABLE MUTE \r\n");
+
+                            // 묵음 처리 파일 및 공유 메모리 값 업데이트
+                            if (tdc_fs_stim_mute_update(TDC_FS_STIM_MUTE_UNDER_T_LEVEL_DISABLE, cfx_cm3_sharedMemoryAll.mute_stimulation_t_level_offset) != TDC_FS_STIM_MUTE_RET_TRUE)
+                            {
+                                TDC_PRINTF_E("[MUTE] RECEVIED : WRITE NORMAL + DISABLE MUTE, BUT FAILED TO UPDATE FILE \r\n");
+
+                                // 실패 시 에러 전송: 데이터 처리 에러 + 사용할 수 없는 맵데이터
+                                tdc_sys_error_send_to_app(remoteDataPacket.command, en__dataProcessing_ERROR, en__unusableMapData, __LINE__);
+                                tdc_ble_remote_clear_command();
+                            }
+                            else  // 묵음 처리 파일 및 공유 메모리 값 업데이트 성공
+                            {
+                                // 송신 데이터 준비
+                                tx_index = tdc_ble_reply_header(bufferForSPI_tx, tx_index, remoteDataPacket.command);                                                 //     command : loop-back
+                                tx_index = tdc_ble_reply_u8(bufferForSPI_tx, tx_index, 2);                                                                        //      option : write
+                                tx_index = tdc_ble_reply_u8(bufferForSPI_tx, tx_index, 1);                                                                        // sub option1 : normal mode
+                                tx_index = tdc_ble_reply_u8(bufferForSPI_tx, tx_index, (int) cfx_cm3_sharedMemoryAll.is_enabled_mute_stimulation_under_t_level);  // sub option2 : enable state
+                                tx_index = tdc_ble_reply_u8(bufferForSPI_tx, tx_index, (int) cfx_cm3_sharedMemoryAll.mute_stimulation_t_level_offset);            // sub option3 : mute t level offset
+
+                                TDC_PRINTF_D("[MUTE] RESPONSE : %02X %02X %02X %02X %02X \r\n", bufferForSPI_tx[0], bufferForSPI_tx[1], bufferForSPI_tx[2], bufferForSPI_tx[3], bufferForSPI_tx[4]);
+
+                                tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, tx_index);  // 송신 데이터 SPI TX버퍼에 복사
+                                tdc_ble_remote_clear_command();                      // 명령 종료
+                            }
+                        }
+                        break;
+
+                        default:
+                        {
+                            TDC_PRINTF_E("[MUTE] RECEVIED : WRITE NORMAL OPTION, BUT UNDEFINED SUB OPTION 2 PACKET \r\n");
+
+                            tdc_sys_error_send_to_app(remoteDataPacket.command, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);
+                            tdc_ble_remote_clear_command();
+                        }
+                        break;
+                    }  // 끝, switch for 세부 옵션 2
+                }
+                break;
+
+                case 2:  // 진단 모드 (현재는 N/A)
+                {
+                    TDC_PRINTF_E("[MUTE] RECEVIED : WRITE DIAGNOSTICS PACKET, BUT N/A CURRENTLY \r\n");
+
+                    tdc_sys_error_send_to_app(remoteDataPacket.command, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);
+                    tdc_ble_remote_clear_command();
+                }
+                break;
+
+                default:
+                {
+                    TDC_PRINTF_E("[MUTE] RECEVIED : UNDEFINED SUB OPTION 1 PACKET \r\n");
+
+                    tdc_sys_error_send_to_app(remoteDataPacket.command, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);
+                    tdc_ble_remote_clear_command();
+                }
+                break;
+            }  // 끝, switch for 세부 옵션 1
+        }
+        break;
+
+        default:  // 기타 정의되지 않은 옵션
+        {
+            TDC_PRINTF_E("[MUTE] RECEVIED : UNDEFINED OPTOIN PACKET \r\n");
+
+            tdc_sys_error_send_to_app(remoteDataPacket.command, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);
+            tdc_ble_remote_clear_command();
+        }
+        break;
+    }  // 끝, switch for 옵션
+
+}
+
+/* 0x40 패스키 확인 - 패스키 게이트 밖에서 처리된다.
+ * 미인증 상태에서도 응답해야 게이트를 열 수 있기 때문이다. */
+static void tdc_ble_cmd_0x40_step_check_passkey(void)
+{
+    uint8_t bufferForSPI_tx[BLE_DataPacketSize];
+    int     tx_index = 0;
+    bool    remocon_passkey_Match;
+
+    remocon_passkey_Match        = true;
+
+    /* [보안] 리모콘 패스키 인증은 의도적으로 비활성 상태다.
+     * 바로 위에서 remocon_passkey_Match 를 무조건 true 로 두므로 어떤 패스키든 통과한다.
+     *
+     * 원래 이 자리에는 내부기에 저장된 4바이트 패스키
+     * (tdc_shm_read_remocon_passkey_connected_isd() 가 돌려준 값)와 리모콘이 보낸
+     * remoteDataPacket.data[0..3] 을 비교해 하나라도 다르면 Match 를 false 로 만드는
+     * 루프가 있었다. 그 루프가 #if 0 으로 죽어 있어 2차 리팩토링에서 제거했다.
+     *
+     * 비교 루프가 없어지면서 그 입력이던 패스키 조회
+     * (connectedISD_num = tdc_shm_read_connected_isd_num() 후
+     *  tdc_shm_read_remocon_passkey_connected_isd(connectedISD_num))도 고아가 되어 함께 지웠다.
+     *
+     * 인증을 되살리려면 위 두 조회를 되살리고 이 자리에 4바이트 비교를 넣은 뒤
+     * 아래 경고 로그를 걷어내면 된다. 공유 메모리 쪽 저장·조회 API 는 그대로 살아 있다. */
+
+    TDC_PRINTF_W("[PASSKEY] ALWAYS PATH OPENED. \r\n");
+
+    // 송신 데이터 준비
+    // command loop-back
+    tx_index = tdc_ble_reply_header(bufferForSPI_tx, tx_index, remoteDataPacket.command);
+
+    // pay-load 준비
+    if (remocon_passkey_Match)
+    {
+#if 1  // 로그 기능
+        tdc_hal_timer_time_t        time;
+        TDC_FS_EVENT_LOG_BT_ADDR_T bt_addr;
+
+        // 참조 시간 정보
+        time.year  = remoteDataPacket.data[4];
+        time.month = remoteDataPacket.data[5];
+        time.day   = remoteDataPacket.data[6];
+        time.hour  = remoteDataPacket.data[7];
+        time.min   = remoteDataPacket.data[8];
+        time.sec   = remoteDataPacket.data[9];
+
+        tdc_hal_timer_update_reference_time(&time, 0);
+
+        // 블루투스 주소 정보
+        bt_addr.bt_addr[0] = remoteDataPacket.data[10];
+        bt_addr.bt_addr[1] = remoteDataPacket.data[11];
+        bt_addr.bt_addr[2] = remoteDataPacket.data[12];
+        bt_addr.bt_addr[3] = remoteDataPacket.data[13];
+        bt_addr.bt_addr[4] = remoteDataPacket.data[14];
+        bt_addr.bt_addr[5] = remoteDataPacket.data[15];
+
+        tdc_fs_event_log_update_bt_addr(&bt_addr);
+
+        // 로그 쓰기 : 블루투스 연결
+        tdc_fs_event_log_write(TDC_FS_EVENT_LOG_TYPE_CONNECTED);
+#endif
+        tx_index = tdc_ble_reply_u8(bufferForSPI_tx, tx_index, 1);
+
+        // 패스키 매치 업데이트
+        tdc_ble_remote_set_passkey_match();
+    }
+    else
+    {
+        tx_index = tdc_ble_reply_u8(bufferForSPI_tx, tx_index, 2);
+    }
+
+    // 송신 데이터 SPI TX버퍼에 복사
+    tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, tx_index);
+
+    //  명령 종료
+    tdc_ble_remote_clear_command();
+}
+
 ST__REMOTECONTROL_STATE tdc_ble_remote_step(bool isdConnection)  // 연결 상태에 변화에 따라 패스키 리셋
 {
     static int                        noCommandTime_counter = df_DisConnectionCheckTime;
@@ -721,22 +1311,14 @@ ST__REMOTECONTROL_STATE tdc_ble_remote_step(bool isdConnection)  // 연결 상�
     static int                        disconnectionCounter  = 0;
     ST__REMOTECONTROL_STATE           RemoteControlState    = {en__isdStatus_NA, false};
 
-    uint8_t bufferForSPI_tx[BLE_DataPacketSize];
-    int volume;
-    int tx_index = 0;
-    int i, k;
+    /* 남은 지역은 이 함수에 그대로 둔 case 들이 쓰는 것뿐이다. 명령별로
+     * 추출한 본문이 쓰던 지역(volume · p_connected_isd_usableMapIndex ·
+     * p_mapStemp 등)은 각 함수로 함께 옮겨갔다. */
+    uint8_t bufferForSPI_tx[BLE_DataPacketSize];  /* 0x8F · 게인제어 (미추출) */
+    int     tx_index = 0;                         /* 동 */
 
-    int *p_connected_isd_usableMapIndex;
-    int  currenMapIndex, nextMapIndex;
-    int  value;
-    int  iterNum;
-    int *p_mapStemp;
-
-    char *p_firmwareInfo;
-
-    bool remocon_passkey_Match;
-    bool remoteCommandStartFlag = false;
-    bool result;
+    bool remoteCommandStartFlag = false;  /* 플래시 case 들이 그대로 쓴다 */
+    bool result;                          /* 0x57 복구 완료 여부 */
 
     /* 매핑 명령 수신 시점에 내부기 연결확인용 백텔 전송이 진행 중이면, 백텔 수신이 끝난 뒤에
      * 명령을 실행하도록 미루던 로직은 2차 리팩토링에서 제거했다(#if 0 사장).
@@ -774,74 +1356,7 @@ ST__REMOTECONTROL_STATE tdc_ble_remote_step(bool isdConnection)  // 연결 상�
 
     if (en__remoteControl_check_isd_passKey == remoteDataPacket.command)
     {
-        remocon_passkey_Match        = true;
-
-        /* [보안] 리모콘 패스키 인증은 의도적으로 비활성 상태다.
-         * 바로 위에서 remocon_passkey_Match 를 무조건 true 로 두므로 어떤 패스키든 통과한다.
-         *
-         * 원래 이 자리에는 내부기에 저장된 4바이트 패스키
-         * (tdc_shm_read_remocon_passkey_connected_isd() 가 돌려준 값)와 리모콘이 보낸
-         * remoteDataPacket.data[0..3] 을 비교해 하나라도 다르면 Match 를 false 로 만드는
-         * 루프가 있었다. 그 루프가 #if 0 으로 죽어 있어 2차 리팩토링에서 제거했다.
-         *
-         * 비교 루프가 없어지면서 그 입력이던 패스키 조회
-         * (connectedISD_num = tdc_shm_read_connected_isd_num() 후
-         *  tdc_shm_read_remocon_passkey_connected_isd(connectedISD_num))도 고아가 되어 함께 지웠다.
-         *
-         * 인증을 되살리려면 위 두 조회를 되살리고 이 자리에 4바이트 비교를 넣은 뒤
-         * 아래 경고 로그를 걷어내면 된다. 공유 메모리 쪽 저장·조회 API 는 그대로 살아 있다. */
-
-        TDC_PRINTF_W("[PASSKEY] ALWAYS PATH OPENED. \r\n");
-
-        // 송신 데이터 준비
-        // command loop-back
-        tx_index = tdc_ble_reply_header(bufferForSPI_tx, tx_index, remoteDataPacket.command);
-
-        // pay-load 준비
-        if (remocon_passkey_Match)
-        {
-#if 1  // 로그 기능
-            tdc_hal_timer_time_t        time;
-            TDC_FS_EVENT_LOG_BT_ADDR_T bt_addr;
-
-            // 참조 시간 정보
-            time.year  = remoteDataPacket.data[4];
-            time.month = remoteDataPacket.data[5];
-            time.day   = remoteDataPacket.data[6];
-            time.hour  = remoteDataPacket.data[7];
-            time.min   = remoteDataPacket.data[8];
-            time.sec   = remoteDataPacket.data[9];
-
-            tdc_hal_timer_update_reference_time(&time, 0);
-
-            // 블루투스 주소 정보
-            bt_addr.bt_addr[0] = remoteDataPacket.data[10];
-            bt_addr.bt_addr[1] = remoteDataPacket.data[11];
-            bt_addr.bt_addr[2] = remoteDataPacket.data[12];
-            bt_addr.bt_addr[3] = remoteDataPacket.data[13];
-            bt_addr.bt_addr[4] = remoteDataPacket.data[14];
-            bt_addr.bt_addr[5] = remoteDataPacket.data[15];
-
-            tdc_fs_event_log_update_bt_addr(&bt_addr);
-
-            // 로그 쓰기 : 블루투스 연결
-            tdc_fs_event_log_write(TDC_FS_EVENT_LOG_TYPE_CONNECTED);
-#endif
-            tx_index = tdc_ble_reply_u8(bufferForSPI_tx, tx_index, 1);
-
-            // 패스키 매치 업데이트
-            tdc_ble_remote_set_passkey_match();
-        }
-        else
-        {
-            tx_index = tdc_ble_reply_u8(bufferForSPI_tx, tx_index, 2);
-        }
-
-        // 송신 데이터 SPI TX버퍼에 복사
-        tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, tx_index);
-
-        //  명령 종료
-        tdc_ble_remote_clear_command();
+        tdc_ble_cmd_0x40_step_check_passkey();
     }
     else
     {
@@ -866,33 +1381,7 @@ ST__REMOTECONTROL_STATE tdc_ble_remote_step(bool isdConnection)  // 연결 상�
 
                 case en__remoteControl_readInfoOfMap:
                 {
-                    /* 맵 4개의 매핑일자를 모두 비교해 가장 최신 것을 보내던 구버전 응답 로직은
-                     * 2차 리팩토링에서 제거했다(#if 0 사장, 약 100줄).
-                     * 현재 응답은 아래와 같이 "연결된 내부기의 맵 스탬프 + 보유 맵 개수" 다.
-                     * 리모콘과 주고받는 응답 형식이 서로 다르므로, 구형식이 필요하면 git 이력 참조. */
-                    // 현재 연결된 맵 스템프 전송
-
-                    // 송신 데이터 준비
-                    // command loop-back
-                    tx_index = tdc_ble_reply_header(bufferForSPI_tx, tx_index, remoteDataPacket.command);
-
-                    // pay-load 준비
-                    // 최신 맵 날짜
-                    p_mapStemp = tdc_shm_read_connected_isd_map_stamp();
-
-                    for (k = 0; k < df_lengthOf_mapDate; k++)
-                    {
-                        tx_index = tdc_ble_reply_u8(bufferForSPI_tx, tx_index, p_mapStemp[k]);
-                    }
-
-                    // 담겨져 있는 맵 개수
-                    tx_index = tdc_ble_reply_u8(bufferForSPI_tx, tx_index, tdc_shm_read_connected_isd_usable_map_num());
-
-                    // 송신 데이터 SPI TX버퍼에 복사
-                    tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, tx_index);
-
-                    //  명령 종료
-                    tdc_ble_remote_clear_command();
+                    tdc_ble_cmd_0x42_step_read_map_info();
                 }
                 break;
                 /* en__remoteControl_readUserName 핸들러는 2차 리팩토링에서 제거했다(#if 0 사장).
@@ -900,251 +1389,43 @@ ST__REMOTECONTROL_STATE tdc_ble_remote_step(bool isdConnection)  // 연결 상�
                  * 커맨드 코드(en__remoteControl_readUserName)는 프로토콜 열거형에 남아 있다. */
                 case en__remoteControl_readStatusOfExtenalDevice:  // 0x43
                 {
-                    value = tdc_pwr_battery_read_percentage();
-
-                    if (value > 100)
-                    {
-                        value = 100;
-                    }
-                    else if (value < 0)
-                    {
-                        value = 0;
-                    }
-
-                    tx_index = tdc_ble_reply_header(bufferForSPI_tx, tx_index, remoteDataPacket.command);     // command loop-back
-                    tx_index = tdc_ble_reply_u8(bufferForSPI_tx, tx_index, value);                        // 배터리 잔량
-                    tx_index = tdc_ble_reply_u8(bufferForSPI_tx, tx_index, tdc_shm_read_program_map_num());          // 맵 번호
-                    tx_index = tdc_ble_reply_u8(bufferForSPI_tx, tx_index, tdc_shm_read_stimul_volume());           // 최대 출력
-                    tx_index = tdc_ble_reply_u8(bufferForSPI_tx, tx_index, tdc_shm_read_audio_volume());            // 볼륨
-                    tx_index = tdc_ble_reply_u8(bufferForSPI_tx, tx_index, tdc_shm_read_led_indicator_on_off());     // LED 알림
-                    tx_index = tdc_ble_reply_u8(bufferForSPI_tx, tx_index, tdc_shm_read_tele_coil_on_off());         // 텔레코일
-                    tx_index = tdc_ble_reply_u8(bufferForSPI_tx, tx_index, tdc_shm_read_stimul_indicator_on_off());  // 자극 알림
-
-                    tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, tx_index);  // 송신 데이터 SPI TX버퍼에 복사
-                    tdc_ble_remote_clear_command();                      //  명령 종료
+                    tdc_ble_cmd_0x43_step_read_device_status();
                 }
                 break;
 
                 case en__remoteControl_changeMapNum:
                 {
-                    currenMapIndex                 = tdc_shm_read_program_map_num();
-                    nextMapIndex                   = currenMapIndex;
-                    p_connected_isd_usableMapIndex = tdc_shm_read_connected_isd_usable_map_index();
-                    value                          = remoteDataPacket.data[0];
-                    iterNum                        = 0;
-
-                    if (value == 1)  // 맵 번호 증기
-                    {
-                        do  // 사용가능한 맵에서 회전 시킨다.
-                        {
-                            nextMapIndex++;
-                            if (nextMapIndex > MaxNumMap)
-                            {
-                                nextMapIndex = 1;
-                            }
-
-                            iterNum++;
-                            if (iterNum > MaxNumMap)
-                            {
-                                break;
-                            }
-                        } while (p_connected_isd_usableMapIndex[nextMapIndex - 1] == 0);
-
-                        if (iterNum <= MaxNumMap)
-                        {
-                            tdc_shm_change_program_map_num(nextMapIndex);
-
-                            // 송신 데이터 준비
-                            tx_index = tdc_ble_reply_header(bufferForSPI_tx, tx_index, remoteDataPacket.command);  // command loop-back
-                            tx_index = tdc_ble_reply_u8(bufferForSPI_tx, tx_index, nextMapIndex);              // pay-load 준비
-
-                            tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, tx_index);  // 송신 데이터 SPI TX버퍼에 복사
-                            tdc_ble_remote_clear_command();                      //  명령 종료
-                        }
-                        else
-                        {
-                            tdc_sys_error_send_to_app(remoteDataPacket.command, en__CFX_ERROR, en__unusableMapData, __LINE__);
-                            tdc_ble_remote_clear_command();
-                        }
-                    }
-                    else if (value == 2)  // 맵 번호 감소
-                    {
-                        do
-                        {
-                            nextMapIndex--;
-                            if (nextMapIndex < 1)
-                            {
-                                nextMapIndex = MaxNumMap;
-                            }
-
-                            iterNum++;
-                            if (iterNum > MaxNumMap)
-                            {
-                                break;
-                            }
-                        } while (p_connected_isd_usableMapIndex[nextMapIndex - 1] == 0);
-
-                        if (iterNum <= MaxNumMap)
-                        {
-                            tdc_shm_change_program_map_num(nextMapIndex);
-
-                            // 송신 데이터 준비
-                            tx_index = tdc_ble_reply_header(bufferForSPI_tx, tx_index, remoteDataPacket.command);  // command loop-back
-                            tx_index = tdc_ble_reply_u8(bufferForSPI_tx, tx_index, nextMapIndex);              // pay-load 준비
-
-                            tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, tx_index);  // 송신 데이터 SPI TX버퍼에 복사
-                            tdc_ble_remote_clear_command();                      //  명령 종료
-                        }
-                        else
-                        {
-                            tdc_sys_error_send_to_app(remoteDataPacket.command, en__CFX_ERROR, en__unusableMapData, __LINE__);
-                            tdc_ble_remote_clear_command();
-                        }
-                    }
-                    else  // 에러: 입력 데이터 범위 1~2가 아닌 경우
-                    {
-                        tdc_sys_error_send_to_app(remoteDataPacket.command, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);
-                        tdc_ble_remote_clear_command();
-                    }
+                    tdc_ble_cmd_0x44_step_change_map_num();
                 }
                 break;
 
                 case en__remoteControl_adjustStimulationVolume:  // 0x45
                 {
-                    if ((remoteDataPacket.data[0] == en__PAYLOAD_INCREASE) || (remoteDataPacket.data[0] == en__PAYLOAD_DECREASE))
-                    {
-                        volume = tdc_shm_read_stimul_volume();
-
-                        if (remoteDataPacket.data[0] == en__PAYLOAD_INCREASE)
-                        {
-                            if (volume < df_maxStimulationVloumeLevel)
-                            {
-                                volume++;
-                            }
-                            tdc_shm_change_stimul_volume(volume);
-                        }
-                        else if (remoteDataPacket.data[0] == en__PAYLOAD_DECREASE)
-                        {
-                            if (volume > 1)
-                            {
-                                volume--;
-                            }
-                            tdc_shm_change_stimul_volume(volume);
-                        }
-
-                        // 송신 데이터 준비
-                        tx_index = tdc_ble_reply_header(bufferForSPI_tx, tx_index, remoteDataPacket.command);  // command loop-back
-                        tx_index = tdc_ble_reply_u8(bufferForSPI_tx, tx_index, tdc_shm_read_stimul_volume());        // pay-load 준비
-
-                        tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, tx_index);  // 송신 데이터 SPI TX버퍼에 복사
-                        tdc_ble_remote_clear_command();                      //  명령 종료
-                    }
-                    else  // 데이터 범위 에러
-                    {
-                        tdc_sys_error_send_to_app(remoteDataPacket.command, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);
-                        tdc_ble_remote_clear_command();
-                    }
+                    tdc_ble_cmd_0x45_step_adjust_stim_volume();
                 }
                 break;
 
                 case en__remoteControl_adjustMicVolume:  // 0x46
                 {
-                    if ((remoteDataPacket.data[0] == en__PAYLOAD_INCREASE) || (remoteDataPacket.data[0] == en__PAYLOAD_DECREASE))
-                    {
-                        volume = tdc_shm_read_audio_volume();
-
-                        if (remoteDataPacket.data[0] == en__PAYLOAD_INCREASE)
-                        {
-                            if (volume < df_maxMicVloumeLevel)
-                            {
-                                volume++;
-                            }
-                            tdc_shm_change_audio_volume(volume);
-                        }
-                        else if (remoteDataPacket.data[0] == en__PAYLOAD_DECREASE)
-                        {
-                            if (volume > 1)
-                            {
-                                volume--;
-                            }
-                            tdc_shm_change_audio_volume(volume);
-                        }
-
-                        // 송신 데이터 준비
-                        tx_index = tdc_ble_reply_header(bufferForSPI_tx, tx_index, remoteDataPacket.command);  // command loop-back
-                        tx_index = tdc_ble_reply_u8(bufferForSPI_tx, tx_index, tdc_shm_read_audio_volume());         // pay-load 준비
-
-                        tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, tx_index);  // 송신 데이터 SPI TX버퍼에 복사
-                        tdc_ble_remote_clear_command();                      //  명령 종료
-                    }
-                    else  // 데이터 범위 에러
-                    {
-                        tdc_sys_error_send_to_app(remoteDataPacket.command, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);
-                        tdc_ble_remote_clear_command();
-                    }
+                    tdc_ble_cmd_0x46_step_adjust_mic_volume();
                 }
                 break;
 
                 case en__remoteControl_OnOffTelecoil:  // 0x47
                 {
-                    if ((remoteDataPacket.data[0] == en__PAYLOAD_ON) || (remoteDataPacket.data[0] == en__PAYLOAD_OFF))
-                    {
-                        tdc_shm_change_tele_coil_on_off(remoteDataPacket.data[0]);
-
-                        // 송신 데이터 준비
-                        tx_index = tdc_ble_reply_header(bufferForSPI_tx, tx_index, remoteDataPacket.command);  // command loop-back
-                        tx_index = tdc_ble_reply_u8(bufferForSPI_tx, tx_index, tdc_shm_read_tele_coil_on_off());      // pay-load 준비
-
-                        tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, tx_index);  // 송신 데이터 SPI TX버퍼에 복사
-                        tdc_ble_remote_clear_command();                      //  명령 종료
-                    }
-                    else  // 데이터 범위 에러
-                    {
-                        tdc_sys_error_send_to_app(remoteDataPacket.command, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);
-                        tdc_ble_remote_clear_command();
-                    }
+                    tdc_ble_cmd_0x47_step_onoff_telecoil();
                 }
                 break;
 
                 case en__remoteControl_OnOffStimulationIndicator:  // 0x48
                 {
-                    if ((remoteDataPacket.data[0] == en__PAYLOAD_ON) || (remoteDataPacket.data[0] == en__PAYLOAD_OFF))
-                    {
-                        tdc_shm_change_stimul_indicator_on_off(remoteDataPacket.data[0]);
-
-                        // 송신 데이터 준비
-                        tx_index = tdc_ble_reply_header(bufferForSPI_tx, tx_index, remoteDataPacket.command);     // command loop-back
-                        tx_index = tdc_ble_reply_u8(bufferForSPI_tx, tx_index, tdc_shm_read_stimul_indicator_on_off());  // pay-load 준비
-
-                        tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, tx_index);  // 송신 데이터 SPI TX버퍼에 복사
-                        tdc_ble_remote_clear_command();                      // 명령 종료
-                    }
-                    else  // 데이터 범위 에러
-                    {
-                        tdc_sys_error_send_to_app(remoteDataPacket.command, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);
-                        tdc_ble_remote_clear_command();
-                    }
+                    tdc_ble_cmd_0x48_step_onoff_stim_indicator();
                 }
                 break;
 
                 case en__remoteControl_OnOffLED:  // 0x49
                 {
-                    if ((remoteDataPacket.data[0] == en__PAYLOAD_ON) || (remoteDataPacket.data[0] == en__PAYLOAD_OFF))
-                    {
-                        tdc_shm_change_led_indicator_on_off(remoteDataPacket.data[0]);
-
-                        // 송신 데이터 준비
-                        tx_index = tdc_ble_reply_header(bufferForSPI_tx, tx_index, remoteDataPacket.command);  // command loop-back
-                        tx_index = tdc_ble_reply_u8(bufferForSPI_tx, tx_index, tdc_shm_read_led_indicator_on_off());  // pay-load 준비
-
-                        tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, tx_index);  // 송신 데이터 SPI TX버퍼에 복사
-                        tdc_ble_remote_clear_command();                      //  명령 종료
-                    }
-                    else  // 데이터 범위 에러
-                    {
-                        tdc_sys_error_send_to_app(remoteDataPacket.command, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);
-                        tdc_ble_remote_clear_command();
-                    }
+                    tdc_ble_cmd_0x49_step_onoff_led();
                 }
                 break;
 
@@ -1156,22 +1437,7 @@ ST__REMOTECONTROL_STATE tdc_ble_remote_step(bool isdConnection)  // 연결 상�
 
                 case en__remoteControl_read_Ezairo_FirmwareInfo:
                 {
-                    // 송신 데이터 준비
-                    // command loop-back
-                    tx_index = tdc_ble_reply_header(bufferForSPI_tx, tx_index, remoteDataPacket.command);
-                    p_firmwareInfo              = readFirmwareInfo();
-
-                    // pay-load 준비
-                    for (i = 0; i < 14; i++)
-                    {
-                        tx_index = tdc_ble_reply_u8(bufferForSPI_tx, tx_index, p_firmwareInfo[i]);
-                    }
-
-                    // 송신 데이터 SPI TX버퍼에 복사
-                    tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, tx_index);
-
-                    //  명령 종료
-                    tdc_ble_remote_clear_command();
+                    tdc_ble_cmd_0x54_step_read_firmware_info();
                 }
                 break;
 
@@ -1293,151 +1559,7 @@ ST__REMOTECONTROL_STATE tdc_ble_remote_step(bool isdConnection)  // 연결 상�
                  * by 김은수 */
                 case en__remoteControl_specificSystemOperationSetting:
                 {
-                    switch (remoteDataPacket.data[0])  // 옵션
-                    {
-                        case 1:  // 읽기 (현재 상태 값으로 응답)
-                        {
-                            TDC_PRINTF_D("[MUTE] RECEVIED : READ PACKET \r\n");
-
-                            // 송신 데이터 준비
-                            tx_index = tdc_ble_reply_header(bufferForSPI_tx, tx_index, remoteDataPacket.command);                                                 //     command : loop-back
-                            tx_index = tdc_ble_reply_u8(bufferForSPI_tx, tx_index, 1);                                                                        //      option : read
-                            tx_index = tdc_ble_reply_u8(bufferForSPI_tx, tx_index, 1);                                                                        // sub option1 : normal mode
-                            tx_index = tdc_ble_reply_u8(bufferForSPI_tx, tx_index, (int) cfx_cm3_sharedMemoryAll.is_enabled_mute_stimulation_under_t_level);  // sub option2 : enable state
-                            tx_index = tdc_ble_reply_u8(bufferForSPI_tx, tx_index, (int) cfx_cm3_sharedMemoryAll.mute_stimulation_t_level_offset);            // sub option3 : mute t level offset
-
-                            TDC_PRINTF_D("[MUTE] RESPONSE : %02X %02X %02X %02X %02X \r\n", bufferForSPI_tx[0], bufferForSPI_tx[1], bufferForSPI_tx[2], bufferForSPI_tx[3], bufferForSPI_tx[4]);
-
-                            tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, tx_index);  // 송신 데이터 SPI TX버퍼에 복사
-                            tdc_ble_remote_clear_command();                      // 명령 종료
-                        }
-                        break;
-
-                        case 2:  // 쓰기
-                        {
-                            switch (remoteDataPacket.data[1])  // 세부 옵션 1
-                            {
-                                case 1:  // 일반 모드
-                                {
-                                    switch (remoteDataPacket.data[2])  // 세부 옵션 2
-                                    {
-                                        case 1:  // 묵음 처리 활성화
-                                        {
-                                            TDC_PRINTF_D("[MUTE] RECEVIED : WRITE NORMAL + ENABLE MUTE + T LEVEL OFFSET %d \r\n", remoteDataPacket.data[3]);
-
-                                            // 설정 가능 범위 초과 시 에러
-                                            if ((remoteDataPacket.data[3] < TDC_FS_STIM_MUTE_T_LEVEL_OFFSET_MIN) || (TDC_FS_STIM_MUTE_T_LEVEL_OFFSET_MAX < remoteDataPacket.data[3]))
-                                            {
-                                                TDC_PRINTF_E("[MUTE] RECEVIED : WRITE NORMAL + ENABLE MUTE, BUT INVALID T OFFSET LEVEL \r\n");
-
-                                                tdc_sys_error_send_to_app(remoteDataPacket.command, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);
-                                                tdc_ble_remote_clear_command();
-                                            }
-                                            else  // 유효한 설정 값인 경우
-                                            {
-                                                // 묵음 처리 파일 및 공유 메모리 값 업데이트
-                                                if (tdc_fs_stim_mute_update(TDC_FS_STIM_MUTE_UNDER_T_LEVEL_ENABLE, (uint32_t) remoteDataPacket.data[3]) != TDC_FS_STIM_MUTE_RET_TRUE)
-                                                {
-                                                    TDC_PRINTF_E("[MUTE] RECEVIED : WRITE NORMAL + ENABLE MUTE, BUT FAILED TO UPDATE FILE \r\n");
-
-                                                    // 실패 시 에러 전송: 데이터 처리 에러 + 사용할 수 없는 맵데이터
-                                                    tdc_sys_error_send_to_app(remoteDataPacket.command, en__dataProcessing_ERROR, en__unusableMapData, __LINE__);
-                                                    tdc_ble_remote_clear_command();
-                                                }
-                                                else  // 묵음 처리 파일 및 공유 메모리 값 업데이트 성공
-                                                {
-                                                    // 송신 데이터 준비
-                                                    tx_index = tdc_ble_reply_header(bufferForSPI_tx, tx_index, remoteDataPacket.command);                                                 //     command : loop-back
-                                                    tx_index = tdc_ble_reply_u8(bufferForSPI_tx, tx_index, 2);                                                                        //      option : write
-                                                    tx_index = tdc_ble_reply_u8(bufferForSPI_tx, tx_index, 1);                                                                        // sub option1 : normal mode
-                                                    tx_index = tdc_ble_reply_u8(bufferForSPI_tx, tx_index, (int) cfx_cm3_sharedMemoryAll.is_enabled_mute_stimulation_under_t_level);  // sub option2 : enable state
-                                                    tx_index = tdc_ble_reply_u8(bufferForSPI_tx, tx_index, (int) cfx_cm3_sharedMemoryAll.mute_stimulation_t_level_offset);            // sub option3 : mute t level offset
-
-                                                    TDC_PRINTF_D("[MUTE] RESPONSE : %02X %02X %02X %02X %02X \r\n", bufferForSPI_tx[0], bufferForSPI_tx[1], bufferForSPI_tx[2], bufferForSPI_tx[3], bufferForSPI_tx[4]);
-
-                                                    tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, tx_index);  // 송신 데이터 SPI TX버퍼에 복사
-                                                    tdc_ble_remote_clear_command();                      // 명령 종료
-                                                }
-                                            }
-                                        }
-                                        break;
-
-                                        case 2:  // 묵음 처리 비활성화
-                                        {
-                                            // 묵음 처리 비활성화 옵션에서는 세부 옵션 3은 N/A 처리 함
-                                            // 결과적으로 현재 옵션 레벨을 그대로 사용하면 될 것으로 보임
-
-                                            TDC_PRINTF_D("[MUTE] RECEVIED : WRITE NORMAL + DISABLE MUTE \r\n");
-
-                                            // 묵음 처리 파일 및 공유 메모리 값 업데이트
-                                            if (tdc_fs_stim_mute_update(TDC_FS_STIM_MUTE_UNDER_T_LEVEL_DISABLE, cfx_cm3_sharedMemoryAll.mute_stimulation_t_level_offset) != TDC_FS_STIM_MUTE_RET_TRUE)
-                                            {
-                                                TDC_PRINTF_E("[MUTE] RECEVIED : WRITE NORMAL + DISABLE MUTE, BUT FAILED TO UPDATE FILE \r\n");
-
-                                                // 실패 시 에러 전송: 데이터 처리 에러 + 사용할 수 없는 맵데이터
-                                                tdc_sys_error_send_to_app(remoteDataPacket.command, en__dataProcessing_ERROR, en__unusableMapData, __LINE__);
-                                                tdc_ble_remote_clear_command();
-                                            }
-                                            else  // 묵음 처리 파일 및 공유 메모리 값 업데이트 성공
-                                            {
-                                                // 송신 데이터 준비
-                                                tx_index = tdc_ble_reply_header(bufferForSPI_tx, tx_index, remoteDataPacket.command);                                                 //     command : loop-back
-                                                tx_index = tdc_ble_reply_u8(bufferForSPI_tx, tx_index, 2);                                                                        //      option : write
-                                                tx_index = tdc_ble_reply_u8(bufferForSPI_tx, tx_index, 1);                                                                        // sub option1 : normal mode
-                                                tx_index = tdc_ble_reply_u8(bufferForSPI_tx, tx_index, (int) cfx_cm3_sharedMemoryAll.is_enabled_mute_stimulation_under_t_level);  // sub option2 : enable state
-                                                tx_index = tdc_ble_reply_u8(bufferForSPI_tx, tx_index, (int) cfx_cm3_sharedMemoryAll.mute_stimulation_t_level_offset);            // sub option3 : mute t level offset
-
-                                                TDC_PRINTF_D("[MUTE] RESPONSE : %02X %02X %02X %02X %02X \r\n", bufferForSPI_tx[0], bufferForSPI_tx[1], bufferForSPI_tx[2], bufferForSPI_tx[3], bufferForSPI_tx[4]);
-
-                                                tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, tx_index);  // 송신 데이터 SPI TX버퍼에 복사
-                                                tdc_ble_remote_clear_command();                      // 명령 종료
-                                            }
-                                        }
-                                        break;
-
-                                        default:
-                                        {
-                                            TDC_PRINTF_E("[MUTE] RECEVIED : WRITE NORMAL OPTION, BUT UNDEFINED SUB OPTION 2 PACKET \r\n");
-
-                                            tdc_sys_error_send_to_app(remoteDataPacket.command, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);
-                                            tdc_ble_remote_clear_command();
-                                        }
-                                        break;
-                                    }  // 끝, switch for 세부 옵션 2
-                                }
-                                break;
-
-                                case 2:  // 진단 모드 (현재는 N/A)
-                                {
-                                    TDC_PRINTF_E("[MUTE] RECEVIED : WRITE DIAGNOSTICS PACKET, BUT N/A CURRENTLY \r\n");
-
-                                    tdc_sys_error_send_to_app(remoteDataPacket.command, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);
-                                    tdc_ble_remote_clear_command();
-                                }
-                                break;
-
-                                default:
-                                {
-                                    TDC_PRINTF_E("[MUTE] RECEVIED : UNDEFINED SUB OPTION 1 PACKET \r\n");
-
-                                    tdc_sys_error_send_to_app(remoteDataPacket.command, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);
-                                    tdc_ble_remote_clear_command();
-                                }
-                                break;
-                            }  // 끝, switch for 세부 옵션 1
-                        }
-                        break;
-
-                        default:  // 기타 정의되지 않은 옵션
-                        {
-                            TDC_PRINTF_E("[MUTE] RECEVIED : UNDEFINED OPTOIN PACKET \r\n");
-
-                            tdc_sys_error_send_to_app(remoteDataPacket.command, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);
-                            tdc_ble_remote_clear_command();
-                        }
-                        break;
-                    }  // 끝, switch for 옵션
-
+                    tdc_ble_cmd_0x59_step_system_operation();
                 }  // 끝, case en__remoteControl_specificSystemOperationSetting:
                 break;
 #endif
