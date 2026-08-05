@@ -557,6 +557,16 @@ int main(void)
     TEST_GROUP("0x64 eCAP 교대 - bipolarReferenceElectrodeNum 경계 (1~32 또는 99)");
 
     make_ecap_alternative_ok(pkt);
+    pkt[5] = 1;
+    tdc_ble_map_measure_ecap_alternative(pkt);
+    CHECK_EQ("하한 1 통과", stub_error_count(), 0);
+
+    make_ecap_alternative_ok(pkt);
+    pkt[5] = 0;
+    tdc_ble_map_measure_ecap_alternative(pkt);
+    CHECK_EQ("0 은 거부", stub_error_count(), 1);
+
+    make_ecap_alternative_ok(pkt);
     pkt[5] = 32;
     tdc_ble_map_measure_ecap_alternative(pkt);
     CHECK_EQ("상한 32 통과", stub_error_count(), 0);
@@ -565,6 +575,11 @@ int main(void)
     pkt[5] = 33;
     tdc_ble_map_measure_ecap_alternative(pkt);
     CHECK_EQ("33 은 거부", stub_error_count(), 1);
+
+    make_ecap_alternative_ok(pkt);
+    pkt[5] = 98;
+    tdc_ble_map_measure_ecap_alternative(pkt);
+    CHECK_EQ("98 은 거부", stub_error_count(), 1);
 
     make_ecap_alternative_ok(pkt);
     pkt[5] = 99;
@@ -588,6 +603,11 @@ int main(void)
     pkt[6] = 32;
     tdc_ble_map_measure_ecap_alternative(pkt);
     CHECK_EQ("상한 32 통과", stub_error_count(), 0);
+
+    make_ecap_alternative_ok(pkt);
+    pkt[6] = 33;
+    tdc_ble_map_measure_ecap_alternative(pkt);
+    CHECK_EQ("33 은 거부", stub_error_count(), 1);
 
     make_ecap_alternative_ok(pkt);
     pkt[6] = 255;
