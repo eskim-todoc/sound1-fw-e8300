@@ -45,7 +45,7 @@ static void make_specific_ok(uint8_t *pkt)
     pkt[1] = 16;    // usableElectrodeNum          1~32
     pkt[2] = 25;    // pulseWidth                  13~255
     pkt[3] = 0;     // firstPulsePhase             0~1
-    pkt[4] = 3;     // stimulatonMode              1~6
+    pkt[4] = 3;     // stimulationMode              1~6
     pkt[5] = 10;    // stimulationElectrodeNum     1~32
     pkt[6] = 11;    // bipolarReferenceElectrodeNum 1~32 또는 99
     pkt[7] = 0x01;  // level 상위
@@ -269,7 +269,7 @@ int main(void)
 
     CHECK_EQ("usableElectrodeNum", p->tdc_isd_map_specific_stim_step.usableElectrodeNum, 16);
     CHECK_EQ("pulseWidth", p->tdc_isd_map_specific_stim_step.pulseWidth, 25);
-    CHECK_EQ("stimulatonMode", p->tdc_isd_map_specific_stim_step.stimulatonMode, 3);
+    CHECK_EQ("stimulationMode", p->tdc_isd_map_specific_stim_step.stimulationMode, 3);
     CHECK_EQ("stimulationElectrodeNum", p->tdc_isd_map_specific_stim_step.stimulationElectrodeNum, 10);
     CHECK_EQ("bipolarReferenceElectrodeNum", p->tdc_isd_map_specific_stim_step.bipolarReferenceElectrodeNum, 11);
     CHECK_EQ("stimulationLevel_uA (16비트)", p->tdc_isd_map_specific_stim_step.stimulationLevel_uA, 300);

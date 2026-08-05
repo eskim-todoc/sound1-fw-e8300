@@ -203,7 +203,7 @@ void tdc_isd_map_specific_stim_step(bool startFlag)
             tdc_shm_change_next_pcm_output_mode(PcmBitStream_Mode_NopStandby);   // 다음 출력 모드 : NopStandby
             tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_SepcificCommand);  // 현재 출력 모드 : SepcificCommand
 
-            if (mappingPacket->tdc_isd_map_specific_stim_step.stimulatonMode != en__bipolar)
+            if (mappingPacket->tdc_isd_map_specific_stim_step.stimulationMode != en__bipolar)
             {
                 flowCounter = flowCounter + 6;  // 바이폴라 기준전극 설정 값 전송에 6msec 필요, 해당 루틴 생략 (2025.12.17 바이폴라 기능)
 
@@ -226,7 +226,7 @@ void tdc_isd_map_specific_stim_step(bool startFlag)
              * 그쪽은 2026-07-27 에 막혔는데 이 경로는 남아 있었다.
              *
              * 매핑 앱은 모노폴라 기준전극을 99 로 보낸다. 0x65 파싱
-             * (tdc_ble_cmd_0x65_specific.c:86)이 이를 stimulatonMode 와 무관하게
+             * (tdc_ble_cmd_0x65_specific.c:86)이 이를 stimulationMode 와 무관하게
              * 통과시키므로, 바이폴라 + 99 조합이 여기까지 도달한다.
              * 거르지 않고 electrodeMap[99 - 1] 을 읽으면 32원소 배열의 범위를
              * 264바이트 벗어나 인접 전역(s_tdc_table, ui/tdc_ui_command.c:120)의
@@ -365,7 +365,7 @@ void tdc_isd_map_specific_stim_step(bool startFlag)
 
             // 모노폴라 출력 모드에서 기준전극 모드 2,3번 비트
             w_isd_registerValue = w_isd_registerValue << 2;
-            switch (mappingPacket->tdc_isd_map_specific_stim_step.stimulatonMode)  // 리셋값이 3이며, 바이폴라, 공통접지, 동시 자극의 경우는 접지를 끊는다.
+            switch (mappingPacket->tdc_isd_map_specific_stim_step.stimulationMode)  // 리셋값이 3이며, 바이폴라, 공통접지, 동시 자극의 경우는 접지를 끊는다.
             {
                 case en__monopolr_body:
                     w_isd_registerValue = w_isd_registerValue | en__monopolr_body;
@@ -383,7 +383,7 @@ void tdc_isd_map_specific_stim_step(bool startFlag)
 
             // 자극 출력 모드 0,1번 비트
             w_isd_registerValue = w_isd_registerValue << 2;
-            switch (mappingPacket->tdc_isd_map_specific_stim_step.stimulatonMode)
+            switch (mappingPacket->tdc_isd_map_specific_stim_step.stimulationMode)
             {
                 case en__monopolr_body:
                 case en__monopolr_rod:
@@ -471,19 +471,19 @@ void tdc_isd_map_specific_stim_step(bool startFlag)
             TDC_PRINTF_I("[SPEC] OFFSET DAC VALUE : %d \r\n", stimulDAC_offsetValue);
             TDC_PRINTF_I("[SPEC] STIM HOLD TIME (MS)  : %d \r\n", stimulationHoldTime_msec);
             TDC_PRINTF_I("[SPEC] REF CH MODE : %s \r\n",  //
-                      mappingPacket->tdc_isd_map_specific_stim_step.stimulatonMode == en__monopolr_body          ? "MP-B"
-                      : mappingPacket->tdc_isd_map_specific_stim_step.stimulatonMode == en__monopolr_rod         ? "MP-R"
-                      : mappingPacket->tdc_isd_map_specific_stim_step.stimulatonMode == en__monopolr_BothRodBody ? "MP-R&B"
+                      mappingPacket->tdc_isd_map_specific_stim_step.stimulationMode == en__monopolr_body          ? "MP-B"
+                      : mappingPacket->tdc_isd_map_specific_stim_step.stimulationMode == en__monopolr_rod         ? "MP-R"
+                      : mappingPacket->tdc_isd_map_specific_stim_step.stimulationMode == en__monopolr_BothRodBody ? "MP-R&B"
                                                                                                       : "BP, CG, ETC...");
             TDC_PRINTF_I("[SPEC] STIM MODE : %s \r\n",  //
-                      mappingPacket->tdc_isd_map_specific_stim_step.stimulatonMode == en__monopolr_body          ? "MP-B"
-                      : mappingPacket->tdc_isd_map_specific_stim_step.stimulatonMode == en__monopolr_rod         ? "MP-R"
-                      : mappingPacket->tdc_isd_map_specific_stim_step.stimulatonMode == en__monopolr_BothRodBody ? "MP-R&B"
-                      : mappingPacket->tdc_isd_map_specific_stim_step.stimulatonMode == en__bipolar              ? "BP"
-                      : mappingPacket->tdc_isd_map_specific_stim_step.stimulatonMode == en__commonground         ? "CG"
-                      : mappingPacket->tdc_isd_map_specific_stim_step.stimulatonMode == en__semi_simultaneously  ? "SIMULTANEOUSLY"
+                      mappingPacket->tdc_isd_map_specific_stim_step.stimulationMode == en__monopolr_body          ? "MP-B"
+                      : mappingPacket->tdc_isd_map_specific_stim_step.stimulationMode == en__monopolr_rod         ? "MP-R"
+                      : mappingPacket->tdc_isd_map_specific_stim_step.stimulationMode == en__monopolr_BothRodBody ? "MP-R&B"
+                      : mappingPacket->tdc_isd_map_specific_stim_step.stimulationMode == en__bipolar              ? "BP"
+                      : mappingPacket->tdc_isd_map_specific_stim_step.stimulationMode == en__commonground         ? "CG"
+                      : mappingPacket->tdc_isd_map_specific_stim_step.stimulationMode == en__semi_simultaneously  ? "SIMULTANEOUSLY"
                                                                                                       : "INVALID");
-            if (mappingPacket->tdc_isd_map_specific_stim_step.stimulatonMode == en__bipolar)
+            if (mappingPacket->tdc_isd_map_specific_stim_step.stimulationMode == en__bipolar)
             {
                 TDC_PRINTF_I("[SPEC] BIPOLAR REF CH NUM : %d (PCB : %d) \r\n",  //
                           mappingPacket->tdc_isd_map_specific_stim_step.bipolarReferenceElectrodeNum,

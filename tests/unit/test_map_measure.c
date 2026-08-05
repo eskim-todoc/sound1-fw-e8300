@@ -45,7 +45,7 @@ static void make_ecap_masking_ok(uint8_t *pkt)
     pkt[1]  = 4;    // iterationNum                  (1~255)
     pkt[2]  = 25;   // pulseWidth                    (13~255)
     pkt[3]  = 1;    // firstPulsePhase               (0~1)
-    pkt[4]  = 2;    // stimulatonMode                (1~6)
+    pkt[4]  = 2;    // stimulationMode                (1~6)
     pkt[5]  = 7;    // stimulationElectrodeNum       (1~32)
     pkt[6]  = 8;    // bipolarReferenceElectrodeNum  (1~32 또는 99)
     pkt[7]  = 9;    // measurementElectrodeNum       (1~32)
@@ -67,7 +67,7 @@ static void make_ecap_alternative_ok(uint8_t *pkt)
     make_packet(pkt, en__mapping_eCAP_Measurement_alternative);
     pkt[1] = 6;    // iterationNum                  (1~255)
     pkt[2] = 26;   // pulseWidth                    (13~255)
-    pkt[3] = 3;    // stimulatonMode                (1~6)
+    pkt[3] = 3;    // stimulationMode                (1~6)
     pkt[4] = 15;   // stimulationElectrodeNum       (1~32)
     pkt[5] = 16;   // bipolarReferenceElectrodeNum  (1~32 또는 99)
     pkt[6] = 17;   // measurementElectrodeNum       (1~32)
@@ -203,7 +203,7 @@ int main(void)
     CHECK_EQ("iterationNum", p->eCapMeasurement.iterationNum, 4);
     CHECK_EQ("pulseWidth", p->eCapMeasurement.pulseWidth, 25);
     CHECK_EQ("firstPulsePhase", p->eCapMeasurement.firstPulsePhase, 1);
-    CHECK_EQ("stimulatonMode", p->eCapMeasurement.stimulatonMode, 2);
+    CHECK_EQ("stimulationMode", p->eCapMeasurement.stimulationMode, 2);
     CHECK_EQ("stimulationElectrodeNum", p->eCapMeasurement.stimulationElectrodeNum, 7);
     CHECK_EQ("bipolarReferenceElectrodeNum", p->eCapMeasurement.bipolarReferenceElectrodeNum, 8);
     CHECK_EQ("measurementElectrodeNum", p->eCapMeasurement.measurementElectrodeNum, 9);
@@ -278,7 +278,7 @@ int main(void)
     CHECK_EQ("2 는 거부", stub_error_count(), 1);
 
     // ------------------------------------------------------------------
-    TEST_GROUP("0x63 eCAP 마스킹 - stimulatonMode 경계 (1~6)");
+    TEST_GROUP("0x63 eCAP 마스킹 - stimulationMode 경계 (1~6)");
 
     make_ecap_masking_ok(pkt);
     pkt[4] = 1;
@@ -447,7 +447,7 @@ int main(void)
 
     CHECK_EQ("iterationNum", p->eCapMeasurement.iterationNum, 6);
     CHECK_EQ("pulseWidth", p->eCapMeasurement.pulseWidth, 26);
-    CHECK_EQ("stimulatonMode (오프셋 3)", p->eCapMeasurement.stimulatonMode, 3);
+    CHECK_EQ("stimulationMode (오프셋 3)", p->eCapMeasurement.stimulationMode, 3);
     CHECK_EQ("stimulationElectrodeNum", p->eCapMeasurement.stimulationElectrodeNum, 15);
     CHECK_EQ("bipolarReferenceElectrodeNum", p->eCapMeasurement.bipolarReferenceElectrodeNum, 16);
     CHECK_EQ("measurementElectrodeNum", p->eCapMeasurement.measurementElectrodeNum, 17);
@@ -502,7 +502,7 @@ int main(void)
     CHECK_EQ("상한 255 통과", stub_error_count(), 0);
 
     // ------------------------------------------------------------------
-    TEST_GROUP("0x64 eCAP 교대 - stimulatonMode 경계 (1~6)");
+    TEST_GROUP("0x64 eCAP 교대 - stimulationMode 경계 (1~6)");
 
     make_ecap_alternative_ok(pkt);
     pkt[3] = 1;

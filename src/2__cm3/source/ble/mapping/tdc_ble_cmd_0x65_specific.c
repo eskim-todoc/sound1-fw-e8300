@@ -32,7 +32,7 @@ void tdc_ble_cmd_0x65_specific_stim(const uint8_t *Rx_dataPacket)  // 0x65
     p_mappingPacket->tdc_isd_map_specific_stim_step.usableElectrodeNum           = Rx_dataPacket[index++];
     p_mappingPacket->tdc_isd_map_specific_stim_step.pulseWidth                   = Rx_dataPacket[index++];
     p_mappingPacket->tdc_isd_map_specific_stim_step.firstPulsePhase              = Rx_dataPacket[index++];
-    p_mappingPacket->tdc_isd_map_specific_stim_step.stimulatonMode               = Rx_dataPacket[index++];
+    p_mappingPacket->tdc_isd_map_specific_stim_step.stimulationMode               = Rx_dataPacket[index++];
     p_mappingPacket->tdc_isd_map_specific_stim_step.stimulationElectrodeNum      = Rx_dataPacket[index++];
     p_mappingPacket->tdc_isd_map_specific_stim_step.bipolarReferenceElectrodeNum = Rx_dataPacket[index++];
 
@@ -66,8 +66,8 @@ void tdc_ble_cmd_0x65_specific_stim(const uint8_t *Rx_dataPacket)  // 0x65
     }
 
     // 자극 모드
-    if ((p_mappingPacket->tdc_isd_map_specific_stim_step.stimulatonMode < 1)      // 1 미만
-        || (6 < p_mappingPacket->tdc_isd_map_specific_stim_step.stimulatonMode))  // 6 초과 시 에러
+    if ((p_mappingPacket->tdc_isd_map_specific_stim_step.stimulationMode < 1)      // 1 미만
+        || (6 < p_mappingPacket->tdc_isd_map_specific_stim_step.stimulationMode))  // 6 초과 시 에러
     {
         dataRangeError = true;
     }
