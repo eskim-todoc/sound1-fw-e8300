@@ -88,8 +88,10 @@ typedef enum
     en__mapping_connect         = 0x60,                // 60 (리모콘 사용) // 확인 완료: 헤더 only 패킷
     en__mapping_disconnect,                            // 61 // 확인 완료: 헤더 only 패킷
     en__mapping_impedanceChekck,                       // 62 // 확인 완료: 각 멤버의 범위 외에는 en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange 처리
-    en__mapping_eCAP_Measurement_masking,              // 63 // 현재 버전 매핑 앱에서 사용 X
-    en__mapping_eCAP_Measurement_alternative,          // 64 // 현재 버전 매핑 앱에서 사용 X
+    en__mapping_eCAP_Measurement_masking,              // 63 // 현재 버전 매핑 앱에서 사용 X // 확인 완료: 근거가 확정된 9멤버는 범위 외에는
+                                                       // en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange 처리. 자극크기(masker/probe)와 adcPreampGain 은 상한 근거 미확정이라 미검사
+    en__mapping_eCAP_Measurement_alternative,          // 64 // 현재 버전 매핑 앱에서 사용 X // 확인 완료: 파싱하는 7멤버 중 자극크기를 뺀 6멤버는
+                                                       // 범위 외에는 en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange 처리. 실행부는 여전히 주석 처리 상태
     en__mapping_specific_stimulation,                  // 65 // 확인 완료: 각 멤버의 범위 외에는 en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange 처리
     en__mapping_live_stimulation,                      // 66 // 확인 완료: 각 하위 명령 및 데이터 인덱스의 멤버의 범위 외에는 en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange 처리
     en__mapping_deviceStatus,                          // 67 // 환인 완료: 헤더 only 패킷
