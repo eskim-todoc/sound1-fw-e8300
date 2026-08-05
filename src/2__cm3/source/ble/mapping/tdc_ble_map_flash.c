@@ -24,14 +24,14 @@ static int stimulPara_index = 0;
 // 복구 명령(0x70 · 0x71)이 지정하는 쓰기 시작 슬롯.
 static int writingStartSlot_index = 0;
 
-void tdc_ble_map_flash_read_original_isd_user(void)  // 0x69
+void tdc_ble_cmd_0x69_read_original_isd_user(void)  // 0x69
 {
     ST__MAPPING_PACKET *p_mappingPacket = tdc_ble_mapping_get_packet();
 
     p_mappingPacket->fetched_command = en__mapping_read_original_ISD_N_USER;
 }
 
-void tdc_ble_map_flash_write_original_isd_user(const uint8_t *Rx_dataPacket)  // 0x68
+void tdc_ble_cmd_0x68_write_original_isd_user(const uint8_t *Rx_dataPacket)  // 0x68
 {
     ST__MAPPING_PACKET *p_mappingPacket = tdc_ble_mapping_get_packet();
 
@@ -219,7 +219,7 @@ void tdc_ble_map_flash_write_original_isd_user(const uint8_t *Rx_dataPacket)  //
     }
 }
 
-void tdc_ble_map_flash_read_slot_data(const uint8_t *Rx_dataPacket)  // 0x6A
+void tdc_ble_cmd_0x6A_read_slot_data(const uint8_t *Rx_dataPacket)  // 0x6A
 {
     ST__MAPPING_PACKET *p_mappingPacket = tdc_ble_mapping_get_packet();
 
@@ -243,7 +243,7 @@ void tdc_ble_map_flash_read_slot_data(const uint8_t *Rx_dataPacket)  // 0x6A
     }
 }
 
-void tdc_ble_map_flash_write_slot_data(const uint8_t *Rx_dataPacket)  // 0x6C
+void tdc_ble_cmd_0x6C_write_slot_data(const uint8_t *Rx_dataPacket)  // 0x6C
 {
     ST__MAPPING_PACKET *p_mappingPacket = tdc_ble_mapping_get_packet();
 
@@ -484,7 +484,7 @@ void tdc_ble_map_flash_write_slot_data(const uint8_t *Rx_dataPacket)  // 0x6C
     }
 }
 
-void tdc_ble_map_flash_read_map_data(const uint8_t *Rx_dataPacket)  // 0x6B
+void tdc_ble_cmd_0x6B_read_map_data(const uint8_t *Rx_dataPacket)  // 0x6B
 {
     ST__MAPPING_PACKET *p_mappingPacket = tdc_ble_mapping_get_packet();
 
@@ -518,7 +518,7 @@ void tdc_ble_map_flash_read_map_data(const uint8_t *Rx_dataPacket)  // 0x6B
     }
 }
 
-void tdc_ble_map_flash_write_map_data(const uint8_t *Rx_dataPacket)  // 0x6D
+void tdc_ble_cmd_0x6D_write_map_data(const uint8_t *Rx_dataPacket)  // 0x6D
 {
     ST__MAPPING_PACKET *p_mappingPacket = tdc_ble_mapping_get_packet();
 
@@ -817,7 +817,7 @@ void tdc_ble_map_flash_write_map_data(const uint8_t *Rx_dataPacket)  // 0x6D
     }
 }
 
-void tdc_ble_map_flash_erase_slot(int command, const uint8_t *Rx_dataPacket)  // 0x6E
+void tdc_ble_cmd_0x6E_erase_slot(int command, const uint8_t *Rx_dataPacket)  // 0x6E
 {
     ST__MAPPING_PACKET *p_mappingPacket = tdc_ble_mapping_get_packet();
 
@@ -833,7 +833,7 @@ void tdc_ble_map_flash_erase_slot(int command, const uint8_t *Rx_dataPacket)  //
     }
 }
 
-void tdc_ble_map_flash_erase_map(int command, const uint8_t *Rx_dataPacket)  // 0x6F
+void tdc_ble_cmd_0x6F_erase_map(int command, const uint8_t *Rx_dataPacket)  // 0x6F
 {
     ST__MAPPING_PACKET *p_mappingPacket = tdc_ble_mapping_get_packet();
 
@@ -856,7 +856,7 @@ void tdc_ble_map_flash_erase_map(int command, const uint8_t *Rx_dataPacket)  // 
     }
 }
 
-void tdc_ble_map_flash_recover_except_slot1(int command, const uint8_t *Rx_dataPacket)  // 0x70
+void tdc_ble_cmd_0x70_recover_except_slot1(int command, const uint8_t *Rx_dataPacket)  // 0x70
 {
     ST__MAPPING_PACKET *p_mappingPacket = tdc_ble_mapping_get_packet();
 
@@ -868,7 +868,7 @@ void tdc_ble_map_flash_recover_except_slot1(int command, const uint8_t *Rx_dataP
     p_mappingPacket->ReadWriteMapData_Flash.map_index  = Rx_dataPacket[index++];
 }
 
-void tdc_ble_map_flash_recover_all(int command)  // 0x71
+void tdc_ble_cmd_0x71_recover_all(int command)  // 0x71
 {
     ST__MAPPING_PACKET *p_mappingPacket = tdc_ble_mapping_get_packet();
 

@@ -9,7 +9,7 @@
 // 따라서 각 파싱 함수는 인덱스 1 부터 시작한다.
 #define df_payloadStartIndex 1
 
-void tdc_ble_map_measure_impedance_check(const uint8_t *Rx_dataPacket)
+void tdc_ble_cmd_0x62_impedance_check(const uint8_t *Rx_dataPacket)
 {
     ST__MAPPING_PACKET *p_mappingPacket = tdc_ble_mapping_get_packet();
 
@@ -57,7 +57,7 @@ void tdc_ble_map_measure_impedance_check(const uint8_t *Rx_dataPacket)
     tdc_sys_error_send_to_app(en__mapping_impedanceChekck, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);
 }
 
-void tdc_ble_map_measure_ecap_masking(const uint8_t *Rx_dataPacket)
+void tdc_ble_cmd_0x63_ecap_masking(const uint8_t *Rx_dataPacket)
 {
     ST__MAPPING_PACKET *p_mappingPacket = tdc_ble_mapping_get_packet();
 
@@ -172,7 +172,7 @@ void tdc_ble_map_measure_ecap_masking(const uint8_t *Rx_dataPacket)
     }
 }
 
-void tdc_ble_map_measure_ecap_alternative(const uint8_t *Rx_dataPacket)
+void tdc_ble_cmd_0x64_ecap_alternative(const uint8_t *Rx_dataPacket)
 {
     ST__MAPPING_PACKET *p_mappingPacket = tdc_ble_mapping_get_packet();
 
