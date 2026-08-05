@@ -176,8 +176,9 @@ void tdc_ble_map_measure_ecap_alternative(const uint8_t *Rx_dataPacket)
 {
     ST__MAPPING_PACKET *p_mappingPacket = tdc_ble_mapping_get_packet();
 
-    int index = df_payloadStartIndex;
-    int value;
+    int  index = df_payloadStartIndex;
+    int  value;
+    bool dataRangeError = false;
 
     p_mappingPacket->eCapMeasurement.iterationNum = Rx_dataPacket[index++];
     p_mappingPacket->eCapMeasurement.pulseWidth   = Rx_dataPacket[index++];
@@ -191,5 +192,63 @@ void tdc_ble_map_measure_ecap_alternative(const uint8_t *Rx_dataPacket)
     value                                                      = value | Rx_dataPacket[index++];
     p_mappingPacket->eCapMeasurement.stimulationLevel_uA_masker = value;
 
-    p_mappingPacket->fetched_command = en__mapping_eCAP_Measurement_alternative;
+    // 데이터 범위 검사.
+    // 0x64 는 현재 실행부가 주석 처리돼 있으나(tdc_ble_mapping.c:403) 0x63 과 같은
+    // eCapMeasurement 구조체를 쓰므로, 되살리는 순간 같은 범위 밖 읽기가 발생한다.
+    // 검사는 0x64 가 실제로 파싱하는 필드에만 넣는다.
+
+    // 측정 반복 횟수
+    if ((p_mappingPacket->eCapMeasurement.iterationNum < 1)        // 1 미만
+        || (255 < p_mappingPacket->eCapMeasurement.iterationNum))  // 255 초과 시 에러
+    {
+        dataRangeError = true;
+    }
+
+    // 펄스 위상 폭 (13 은 FPGA 최소 펄스폭)
+    if ((p_mappingPacket->eCapMeasurement.pulseWidth < 13)       // 13 미만
+        || (255 < p_mappingPacket->eCapMeasurement.pulseWidth))  // 255 초과 시 에러
+    {
+        dataRangeError = true;
+    }
+
+    // 자극 모드 (EN___STIMULATION_MODE 에서 en__referenceNA(0) 를 뺀 실제 모드 범위)
+    if ((p_mappingPacket->eCapMeasurement.stimulatonMode < 1)      // 1 미만
+        || (6 < p_mappingPacket->eCapMeasurement.stimulatonMode))  // 6 초과 시 에러
+    {
+        dataRangeError = true;
+    }
+
+    // 자극 전극 번호
+    if ((p_mappingPacket->eCapMeasurement.stimulationElectrodeNum < 1)       // 1 미만
+        || (32 < p_mappingPacket->eCapMeasurement.stimulationElectrodeNum))  // 32 초과 시 에러
+    {
+        dataRangeError = true;
+    }
+
+    // 바이폴라 모드일 때, 기준전극 번호
+    if ((p_mappingPacket->eCapMeasurement.bipolarReferenceElectrodeNum < 1)       // 1 미만
+        || (32 < p_mappingPacket->eCapMeasurement.bipolarReferenceElectrodeNum))  // 32 초과 시 에러
+    {
+        if (p_mappingPacket->eCapMeasurement.bipolarReferenceElectrodeNum != 99)  // 99인 경우 예외 (for 모노폴라)
+        {
+            dataRangeError = true;
+        }
+    }
+
+    // 측정 전극 번호
+    if ((p_mappingPacket->eCapMeasurement.measurementElectrodeNum < 1)       // 1 미만
+        || (32 < p_mappingPacket->eCapMeasurement.measurementElectrodeNum))  // 32 초과 시 에러
+    {
+        dataRangeError = true;
+    }
+
+    if (dataRangeError)
+    {
+        // 데이터 범위를 벗어남
+        tdc_sys_error_send_to_app(en__mapping_eCAP_Measurement_alternative, en__EN__BLE_PROTOCOL_ERROR, en__OutOfDataRange, __LINE__);
+    }
+    else
+    {
+        p_mappingPacket->fetched_command = en__mapping_eCAP_Measurement_alternative;
+    }
 }
