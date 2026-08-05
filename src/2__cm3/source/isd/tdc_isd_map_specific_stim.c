@@ -306,7 +306,9 @@ void tdc_isd_map_specific_stim_step(bool startFlag)
         case 7:  // (2025.12.17 바이폴라 기능)
         {
             // 기준 전극 번호.
-            for (i = 24; i < 32; i++)  // 24~32번 자극 전극에 대응하는 기준 전극 번호
+            // 시작값이 df_MaxNumTransferableChannel 인 것은 case 5 가 0 ~ (그 값 - 1) 을 이미 채웠기 때문이다.
+            // 즉 case 5 와 이 루프가 이어 붙어 df_MaxNumOfElectrode 전체를 빈틈·겹침 없이 덮는다.
+            for (i = df_MaxNumTransferableChannel; i < df_MaxNumOfElectrode; i++)  // 24~32번 자극 전극에 대응하는 기준 전극 번호
             {
                 w_isd_registerValue = ISD_registerAddr_en__bipolar_referenceElectroldIndex;
                 w_isd_registerValue = w_isd_registerValue << 1;
