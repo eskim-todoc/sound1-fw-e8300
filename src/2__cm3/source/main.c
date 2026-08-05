@@ -331,13 +331,11 @@ typedef struct
 } tdc_batt_led_bin_t;
 
 static const tdc_batt_led_bin_t s_tdc_batt_led_table[] = {
-    {80, TDC_LED_ST_BATT_READY},   /* pct >= 80         */
-    {10, TDC_LED_ST_BATT_MID},     /* 10 <= pct < 80    */
-    {0, TDC_LED_ST_BATT_CRITICAL}, /* pct <  10 (fallback) */
+    {TDC_BATT_LED_READY_PCT, TDC_LED_ST_BATT_READY},    /* pct >= 80         */
+    {TDC_BATT_LED_CRITICAL_PCT, TDC_LED_ST_BATT_MID},   /* 10 <= pct < 80    */
+    {0, TDC_LED_ST_BATT_CRITICAL},                      /* pct <  10 (fallback) */
 };
 #define TDC_BATT_LED_TABLE_LEN ((int) (sizeof(s_tdc_batt_led_table) / sizeof(s_tdc_batt_led_table[0])))
-
-#define TDC_MAP_LOW_BATT_PCT 20 /* pct <= 20 -> 배터리 LOW (마진 없는 단일 컷) */
 
 /* 배터리 LED 요청. 반환값 batt_st 는 ISD 미연결 시 재송출에 재사용된다. */
 static tdc_led_state_t tdc_led_request_battery(int pct, bool ovr_batt_active, bool batt_is_reset_state)
@@ -411,11 +409,11 @@ static bool tdc_led_request_isd(bool isd_conn, tdc_led_state_t batt_st)
     return isd_conn;
 }
 
-/* 매핑 LED 요청. 배터리 LOW(단일 컷 pct<=TDC_MAP_LOW_BATT_PCT) × ISD 연결 여부 4분기.
+/* 매핑 LED 요청. 배터리 LOW(단일 컷 pct<=TDC_BATT_MAP_LOW_PCT) × ISD 연결 여부 4분기.
  * 마진 제거로 s_map_low_active static 래치를 없애고 매 호출 pct 만으로 판정(순수 계산). */
 static void tdc_led_request_mapping(int pct, bool map_conn, bool isd_conn)
 {
-    bool map_low_active = (pct <= TDC_MAP_LOW_BATT_PCT);
+    bool map_low_active = (pct <= TDC_BATT_MAP_LOW_PCT);
 
 #ifdef ENABLE_UI_CMD
     if (!tdc_ui_command_is_led_override(TDC_LED_SRC_MAPPING))
@@ -668,7 +666,7 @@ static void tdc_apply_mapping_mode(bool mapping_connected)
  * ISD (SS4.6) - 배터리→ISD 순서 의존(미연결 시 batt_st 재송출) + tdc_led_set_isd_conn_state()
  * 봉인(1-tick 잔상 race 방지)은 tdc_led_request_isd() 내부에 유지.
  *
- * Mapping (SS4.4) - 배터리 LOW(단일 컷 pct<=TDC_MAP_LOW_BATT_PCT) × ISD 연결 여부 4분기.
+ * Mapping (SS4.4) - 배터리 LOW(단일 컷 pct<=TDC_BATT_MAP_LOW_PCT) × ISD 연결 여부 4분기.
  * 마진(s_map_low_active 래치) 제거 -> 매 호출 pct 만으로 판정(tdc_led_request_mapping). */
 static void tdc_update_led_requests(int batt_percent, bool isd_conn_default, bool map_conn_default)
 {
