@@ -1,11 +1,16 @@
 #!/usr/bin/env bash
 #
-# ble/mapping 파싱 함수의 오프라인 단위 테스트를 빌드하고 실행한다.
+# ble/ 파싱 함수의 오프라인 단위 테스트를 빌드하고 실행한다.
+# 대상은 ble/mapping (0x62~0x66) 과 ble/remote (0x40~0x59) 다.
 #
 #   bash tests/unit/run.sh
 #
 # 호스트(PC)에서 실제 펌웨어 소스를 그대로 컴파일한다. 사본이 아니다.
-# 하드웨어·공유 메모리 의존은 stub_ble.c 가 대신한다.
+# 하드웨어·공유 메모리 의존은 stub_ble.c · stub_remote.c 가 대신한다.
+#
+# ble/remote 는 SDK 헤더 사슬 때문에 호스트에서 바로 컴파일되지 않아
+# tests/unit 에 shim 헤더 3개를 두어 가린다(src/ 무변경).
+# 경위는 tests/unit/tdc_hal_timer.h 주석 참조.
 #
 # 필요한 것
 #   - C 컴파일러 (MinGW-w64 gcc 등)
@@ -88,10 +93,16 @@ echo "SDK      : $SDK_DIR"
 echo ""
 
 # ---------------------------------------------------------------- 빌드 설정
+# $HERE 가 맨 앞인 것이 중요하다. tests/unit 의 shim 헤더
+# (tdc_fs_event_log.h · tdc_hal_timer.h · tdc_fs_stim_mute.h)가 src/ 의
+# 동명 헤더를 가려야 ble/remote/ 가 호스트에서 컴파일된다.
+# 경위는 tests/unit/tdc_hal_timer.h 주석 참조.
 INCLUDES=(
     -I "$HERE"
     -I "$SRC/ble"
     -I "$SRC/ble/mapping"
+    -I "$SRC/ble/remote"
+    -I "$SRC/ble/sound1"
     -I "$SRC/sys"
     -I "$SRC/hal"
     -I "$SRC/cfx_link"
@@ -100,6 +111,12 @@ INCLUDES=(
     -I "$SRC/board"
     -I "$SRC/util"
     -I "$SRC/lib/SEGGER_RTT"
+    -I "$SRC/pwr"
+    -I "$SRC/dfu"
+    -I "$SRC/fs"
+    -I "$SRC/led"
+    -I "$SRC/ui"
+    -I "$SRC/touch"
     -I "$SRC"
     -I "$SDK_DIR/include/cm3"
     -I "$SDK_DIR/include/shared"
@@ -115,10 +132,16 @@ COMMON_SRC=(
 )
 
 # 테스트 이름 -> 대상 소스
+#
+# remote 는 스텁을 하나 더 쓴다(stub_remote.c). 리모콘은 "설정값을 바꾸고
+# 되읽어 응답" 하는 구조라 공유메모리 스텁이 값을 실제로 보관해야 하고,
+# 그 대상이 ble/mapping 과 겹치지 않아 파일을 나눴다.
+# tdc_ble_remote_sp_para.c 는 스텁이 아니라 실물이다 - 같은 파싱 계통이다.
 declare -A TEST_TARGETS=(
     [map_measure]="$SRC/ble/mapping/tdc_ble_map_measure.c"
     [map_flash]="$SRC/ble/mapping/tdc_ble_map_flash.c"
     [map_stim]="$SRC/ble/mapping/tdc_ble_cmd_0x65_specific.c $SRC/ble/mapping/tdc_ble_cmd_0x66_live.c"
+    [remote]="$HERE/stub_remote.c $SRC/ble/remote/tdc_ble_remote.c $SRC/ble/remote/tdc_ble_remote_sp_para.c"
 )
 
 mkdir -p "$BUILD"
@@ -127,7 +150,7 @@ fail_total=0
 run_total=0
 src_warn_total=0
 
-for name in map_measure map_flash map_stim; do
+for name in map_measure map_flash map_stim remote; do
     test_src="$HERE/test_$name.c"
     [ -f "$test_src" ] || continue
 
