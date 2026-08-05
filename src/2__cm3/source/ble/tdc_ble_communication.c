@@ -46,186 +46,239 @@ void fetch_readDataForBleSetting(const uint8_t *Rx_dataPacket)
     }
 }
 
-void setting_nrf_ble_adv_info(void)
+/* ---------------------------------------------------------------------
+ * Ezairo 설정 명령 - 명령별 함수 (2026-08-06 분해)
+ *
+ * setting_nrf_ble_adv_info() 의 if/else-if 분기 본문을 그대로 옮긴 것이다.
+ * 로직은 손대지 않았다. 이 함수는 이름과 달리 광고 정보만이 아니라
+ * 배터리·전원·LED·클래식 상태 응답을 모두 담고 있었다(단계_3 발견_3).
+ *
+ * 인자가 없는 것은 입력이 전역 bleSettingPacket 이고 출력이 SPI 송신이기
+ * 때문이다. 매핑·리모콘 계층과 같은 규약을 쓴다.
+ * --------------------------------------------------------------------- */
+
+/* 0x30 연결된 내부기 정보 응답 - 수술 위치·사용자 이름 */
+static void tdc_ble_cmd_0x30_read_connected_isd_info(void)
 {
-
     uint8_t Tx_dataBuff[BLE_DataPacketSize];
-
     int  connectedISD_num;
     int *p_currentUserName;
-
     int tx_index = 0;
     int i;
 
+    ST__ISD_STATUS isd_status;
+
+    isd_status = tdc_isd_get_state();
+
+    // ISD가 연결된 상태라면 내부기 정보 전달
+    if (isd_status.conneded_ISD)
+    {
+        // 수술위치
+        connectedISD_num        = tdc_shm_read_connected_isd_num();
+        tx_index = tdc_ble_reply_u8(Tx_dataBuff, tx_index, (uint8_t) tdc_shm_read_connected_isd_location(connectedISD_num));
+
+        // 사용자 이름
+        p_currentUserName = tdc_shm_read_connected_isd_user_name(connectedISD_num);
+        for (i = 0; i < 10; i++)
+        {
+            tx_index = tdc_ble_reply_u8(Tx_dataBuff, tx_index, p_currentUserName[i]);
+        }
+    }
+    // ISD가 연결되지 않은 상태라면 0으로 채운 더미 데이터 전달
+    // TX 크기가 0이면 SPI TX 버퍼에서 알아서 21바이트를 0으로 채워서 전달
+    // 전송 크기가 0이므로 전송 바이트 수를 알려주는 마지막 바이트
+    // 즉, [20] 인덱스도 0으로 채워져서 보내질 것이다.
+    else
+    {
+        TDC_PRINTF_W("[BT] ISD NOT CONNECTED, BUT RESPONSE 0x30 COMMAND \r\n");
+        tx_index = 0;
+    }
+
+    tdc_hal_spi_write_tx_buffer(Tx_dataBuff, tx_index);     // 송신 데이터 SPI TX버퍼에 복사
+    bleSettingPacket.command = en__bleSetting_IDLE;  //  명령 종료
+}
+
+/* 0x33 시스템 정보 - 배터리 잔량·충전 상태 */
+static void tdc_ble_cmd_0x33_system_info_battery(void)
+{
+    uint8_t Tx_dataBuff[BLE_DataPacketSize];
+    int tx_index = 0;
+
+    int batt_percent;
+    int charger_state;
+
+    // 배터리 레벨을 QCC에게 수신한 이후로만 0xFF가 아닌 값을 전송한다.
+    // 사실상 QCC가 배터리 레벨을 측정하기로 한 뒤로 쓸모가 없는 명령이 되었다.
+    if (tdc_pwr_battery_get_state() != TDC_PWR_BATTERY_STATE_RESET)
+    {
+        batt_percent = tdc_pwr_battery_get_percent();
+        TDC_PRINTF_D("[BT] READ BATT LEVEL, %d PERCENT \r\n", batt_percent);
+    }
+    else
+    {
+        batt_percent = 0xFF;
+        TDC_PRINTF_D("[BT] READ BATT LEVEL NOT YET READY \r\n");
+    }
+
+    charger_state = tdc_pwr_charger_get_state().chargerConnectorPluggedIn;
+
+    tx_index = tdc_ble_reply_header(Tx_dataBuff, tx_index, EN__SND_BT_CMD_SYSTEM_INFO_BATTERY);
+    tx_index = tdc_ble_reply_u8(Tx_dataBuff, tx_index, batt_percent);
+    tx_index = tdc_ble_reply_u8(Tx_dataBuff, tx_index, charger_state);  // 0: RESET, 1: CONNECTED, 2: DISCONNECTED
+
+    tdc_hal_spi_write_tx_buffer(Tx_dataBuff, tx_index);     // 송싱 데이터 SPI TX버퍼에 복사
+    bleSettingPacket.command = en__bleSetting_IDLE;  // 명령 종료
+}
+
+/* 0x34 시스템 정보 - 전원·크래들 뚜껑 상태 */
+static void tdc_ble_cmd_0x34_system_info_power(void)
+{
+    uint8_t Tx_dataBuff[BLE_DataPacketSize];
+    int tx_index = 0;
+
+    int battery_level;      // 패킷 인덱스 1 → 헤더 제외 시, 데이터 인덱스 0
+    int charger_connected;  // 패킷 인덱스 2 → 헤더 제외 시, 데이터 인덱스 1
+    int cradle_lid_state;   // 패킷 인덱스 3 → 헤더 제외 시, 데이터 인덱스 2 (1=열림, 2=닫힘, else=열림처리)
+
+    battery_level     = bleSettingPacket.data[0];  // 배터리 레벨
+    charger_connected = bleSettingPacket.data[1];  // 충전기 연결 상태
+    cradle_lid_state  = bleSettingPacket.data[2];  // 크래들 뚜껑 상태
+
+    // 수신한 배터리 정보로 업데이트 한다.
+    tdc_pwr_battery_set_percent(battery_level);
+
+    // 배터리 충전 상태인지 방전 즉, 일반 동작 상태인지는
+    // 충전기 연결 상태에 따라서 배터리 상태 업데이트를 진행해야 한다.
+
+    switch (charger_connected)
+    {
+        case 0:  // Disconnected
+            tdc_pwr_charger_set_state(TDC_PWR_CHARGER_STATE_DISCONNECTED);
+            tdc_pwr_battery_set_state(TDC_PWR_BATTERY_STATE_DISCHARGING);
+            break;
+
+        case 1:  // Connected
+            tdc_pwr_charger_set_state(TDC_PWR_CHARGER_STATE_CONNECTED);
+            tdc_pwr_battery_set_state(TDC_PWR_BATTERY_STATE_CHARGING);
+            break;
+
+        default:
+            TDC_PRINTF_E("[BT] CMD 0x%02X, INVALID CHARGER CONNECTED: %d \r\n", EN__SND_BT_CMD_SYSTEM_INFO_POWER, charger_connected);
+            tdc_pwr_charger_set_state(TDC_PWR_CHARGER_STATE_RESET);
+            tdc_pwr_battery_set_state(TDC_PWR_BATTERY_STATE_RESET);
+            break;
+    }  // 끝, switch
+
+    tdc_pwr_cradle_set_cover_state(cradle_lid_state);
+    TDC_PRINTF_V("[BT] CMD 0x%02X, CHARGER STATE: %d, BATT LEVEL %d PERCENT, LID STATE %d\r\n", EN__SND_BT_CMD_SYSTEM_INFO_POWER, charger_connected, battery_level, cradle_lid_state);
+
+    tx_index = tdc_ble_reply_header(Tx_dataBuff, tx_index, EN__SND_BT_CMD_SYSTEM_INFO_POWER);
+    tx_index = tdc_ble_reply_u8(Tx_dataBuff, tx_index, 1);  // 수신 확인 응답
+
+    // TDC_PRINTF_W("[BT] BEFORE-WRITE-TX 0x34 t3=%d ms\r\n", tdc_hal_timer_get_t3_tick());
+    // TDC_PRINTF_W("[BT] CALL-WRITE-TX TxEmpty=%d\r\n", (int) tdc_hal_spi_is_tx_buffer_empty());
+
+    tdc_hal_spi_write_tx_buffer(Tx_dataBuff, tx_index);     // 송싱 데이터 SPI TX버퍼에 복사
+    bleSettingPacket.command = en__bleSetting_IDLE;  // 명령 종료
+}
+
+/* 0x35 시스템 정보 - LED 인디케이터 설정 */
+static void tdc_ble_cmd_0x35_system_info_led_ind(void)
+{
+    uint8_t Tx_dataBuff[BLE_DataPacketSize];
+    int tx_index = 0;
+
+    int led_ind;  // 패킷 인덱스 1 → 헤더 제외 시, 데이터 인덱스 0
+
+    /* 수신 패킷 파싱 */
+    led_ind = bleSettingPacket.data[0];  // LED 표시 상태
+
+    /* 명령 처리 */
+
+    tdc_led_set_ind_state((tdc_led_ind_state_t) led_ind);  // Arbiter에 LED 표시 상태 반영 (Rev.3)
+
+    if (led_ind == TDC_LED_IND_STATE_OTA_EZAIRO)
+    {
+        tdc_dfu_set_conn_state(TDC_DFU_CONN_ST_CONN);
+    }
+    else
+    {
+        tdc_dfu_set_conn_state(TDC_DFU_CONN_ST_DISCONN);
+    }
+
+    TDC_PRINTF_V("[BT] CMD 0x%02X, LED IND: %d \r\n", EN__SND_BT_CMD_SYSTEM_INFO_LED_IND, led_ind);
+
+    /* 응답 패킷 */
+    tx_index = tdc_ble_reply_header(Tx_dataBuff, tx_index, EN__SND_BT_CMD_SYSTEM_INFO_LED_IND);
+    tx_index = tdc_ble_reply_u8(Tx_dataBuff, tx_index, 1);                     // 수신 확인 응답
+    tdc_hal_spi_write_tx_buffer(Tx_dataBuff, tx_index);     // 송신 데이터 SPI TX버퍼에 복사
+    bleSettingPacket.command = en__bleSetting_IDLE;  // 명령 종료
+}
+
+/* 0x36 시스템 정보 - 클래식 BT 연결 상태 */
+static void tdc_ble_cmd_0x36_system_info_classic_state(void)
+{
+    uint8_t Tx_dataBuff[BLE_DataPacketSize];
+    int tx_index = 0;
+
+    int classic_state;  // 패킷 인덱스 1 →헤더 제외 시, 데이터 인덱스 0
+    int classic_type;   // 패킷 인덱스 2 →헤더 제외 시, 데이터 인덱스 1
+
+    classic_state = bleSettingPacket.data[0];  // 클래식 상태
+    classic_type  = bleSettingPacket.data[1];  // 클래식 종류
+
+    /* 명령 처리 */
+    TDC_PRINTF_W("[BT] CMD 0x%02X, CLASSIC STATE: %s, %s \r\n",  //
+              classic_state == 0   ? "DISCONN"
+              : classic_state == 1 ? "CONN"
+                                   : "INVALID",
+              classic_type == 0   ? "UNKNOWN"
+              : classic_type == 1 ? "CRADLE"
+              : classic_type == 2 ? "OTHER"
+                                  : "INVALID");
+
+    /* I2S 로 들어오는 오디오가 크래들 마이크인지 CFX 에 알려 준다.
+     * CFX 는 이 값이 1 이면 I2S 경로에 Gain_B 를 적용하고,
+     * 0(스트리밍)이면 스마트폰이 볼륨을 제어하므로 게인을 적용하지 않는다. */
+    cfx_cm3_sharedMemoryAll.is_i2s_source_cradle = ((classic_state == 1) && (classic_type == 1)) ? 1 : 0;
+
+    /* 응답 패킷 */
+    tx_index = tdc_ble_reply_header(Tx_dataBuff, tx_index, EN__SND_BT_CMD_SYSTEM_INFO_CLASSIC_STATE);
+    tx_index = tdc_ble_reply_u8(Tx_dataBuff, tx_index, 1);                     // 수신 확인 응답
+    tdc_hal_spi_write_tx_buffer(Tx_dataBuff, tx_index);     // 송신 데이터 SPI TX버퍼에 복사
+    bleSettingPacket.command = en__bleSetting_IDLE;  // 명령 종료
+}
+
+/* 이름과 달리 광고 정보만이 아니라 배터리·전원·LED·클래식 상태 응답을 모두
+ * 담고 있던 183줄 함수였다(단계_3 발견_3). 2026-08-06 에 명령별로 분해해
+ * 여기는 분기만 남는다. 지역 선언도 각 함수로 함께 옮겨갔다. */
+void setting_nrf_ble_adv_info(void)
+{
     if (bleSettingPacket.command == en__bleSetting_ReadConnected_ISD_info)
     {
-        ST__ISD_STATUS isd_status;
-
-        isd_status = tdc_isd_get_state();
-
-        // ISD가 연결된 상태라면 내부기 정보 전달
-        if (isd_status.conneded_ISD)
-        {
-            // 수술위치
-            connectedISD_num        = tdc_shm_read_connected_isd_num();
-            tx_index = tdc_ble_reply_u8(Tx_dataBuff, tx_index, (uint8_t) tdc_shm_read_connected_isd_location(connectedISD_num));
-
-            // 사용자 이름
-            p_currentUserName = tdc_shm_read_connected_isd_user_name(connectedISD_num);
-            for (i = 0; i < 10; i++)
-            {
-                tx_index = tdc_ble_reply_u8(Tx_dataBuff, tx_index, p_currentUserName[i]);
-            }
-        }
-        // ISD가 연결되지 않은 상태라면 0으로 채운 더미 데이터 전달
-        // TX 크기가 0이면 SPI TX 버퍼에서 알아서 21바이트를 0으로 채워서 전달
-        // 전송 크기가 0이므로 전송 바이트 수를 알려주는 마지막 바이트
-        // 즉, [20] 인덱스도 0으로 채워져서 보내질 것이다.
-        else
-        {
-            TDC_PRINTF_W("[BT] ISD NOT CONNECTED, BUT RESPONSE 0x30 COMMAND \r\n");
-            tx_index = 0;
-        }
-
-        tdc_hal_spi_write_tx_buffer(Tx_dataBuff, tx_index);     // 송신 데이터 SPI TX버퍼에 복사
-        bleSettingPacket.command = en__bleSetting_IDLE;  //  명령 종료
+        tdc_ble_cmd_0x30_read_connected_isd_info();
     }
     // QCC와 새로 추가한 패킷 (0x33. Battery 정보)
     else if (bleSettingPacket.command == EN__SND_BT_CMD_SYSTEM_INFO_BATTERY)
     {
-        int batt_percent;
-        int charger_state;
-
-        // 배터리 레벨을 QCC에게 수신한 이후로만 0xFF가 아닌 값을 전송한다.
-        // 사실상 QCC가 배터리 레벨을 측정하기로 한 뒤로 쓸모가 없는 명령이 되었다.
-        if (tdc_pwr_battery_get_state() != TDC_PWR_BATTERY_STATE_RESET)
-        {
-            batt_percent = tdc_pwr_battery_get_percent();
-            TDC_PRINTF_D("[BT] READ BATT LEVEL, %d PERCENT \r\n", batt_percent);
-        }
-        else
-        {
-            batt_percent = 0xFF;
-            TDC_PRINTF_D("[BT] READ BATT LEVEL NOT YET READY \r\n");
-        }
-
-        charger_state = tdc_pwr_charger_get_state().chargerConnectorPluggedIn;
-
-        tx_index = tdc_ble_reply_header(Tx_dataBuff, tx_index, EN__SND_BT_CMD_SYSTEM_INFO_BATTERY);
-        tx_index = tdc_ble_reply_u8(Tx_dataBuff, tx_index, batt_percent);
-        tx_index = tdc_ble_reply_u8(Tx_dataBuff, tx_index, charger_state);  // 0: RESET, 1: CONNECTED, 2: DISCONNECTED
-
-        tdc_hal_spi_write_tx_buffer(Tx_dataBuff, tx_index);     // 송싱 데이터 SPI TX버퍼에 복사
-        bleSettingPacket.command = en__bleSetting_IDLE;  // 명령 종료
+        tdc_ble_cmd_0x33_system_info_battery();
     }
     // QCC와 새로 초가한 패킷 (0x34, Power info)
     else if (bleSettingPacket.command == EN__SND_BT_CMD_SYSTEM_INFO_POWER)
     {
-        int battery_level;      // 패킷 인덱스 1 → 헤더 제외 시, 데이터 인덱스 0
-        int charger_connected;  // 패킷 인덱스 2 → 헤더 제외 시, 데이터 인덱스 1
-        int cradle_lid_state;   // 패킷 인덱스 3 → 헤더 제외 시, 데이터 인덱스 2 (1=열림, 2=닫힘, else=열림처리)
-
-        battery_level     = bleSettingPacket.data[0];  // 배터리 레벨
-        charger_connected = bleSettingPacket.data[1];  // 충전기 연결 상태
-        cradle_lid_state  = bleSettingPacket.data[2];  // 크래들 뚜껑 상태
-
-        // 수신한 배터리 정보로 업데이트 한다.
-        tdc_pwr_battery_set_percent(battery_level);
-
-        // 배터리 충전 상태인지 방전 즉, 일반 동작 상태인지는
-        // 충전기 연결 상태에 따라서 배터리 상태 업데이트를 진행해야 한다.
-
-        switch (charger_connected)
-        {
-            case 0:  // Disconnected
-                tdc_pwr_charger_set_state(TDC_PWR_CHARGER_STATE_DISCONNECTED);
-                tdc_pwr_battery_set_state(TDC_PWR_BATTERY_STATE_DISCHARGING);
-                break;
-
-            case 1:  // Connected
-                tdc_pwr_charger_set_state(TDC_PWR_CHARGER_STATE_CONNECTED);
-                tdc_pwr_battery_set_state(TDC_PWR_BATTERY_STATE_CHARGING);
-                break;
-
-            default:
-                TDC_PRINTF_E("[BT] CMD 0x%02X, INVALID CHARGER CONNECTED: %d \r\n", EN__SND_BT_CMD_SYSTEM_INFO_POWER, charger_connected);
-                tdc_pwr_charger_set_state(TDC_PWR_CHARGER_STATE_RESET);
-                tdc_pwr_battery_set_state(TDC_PWR_BATTERY_STATE_RESET);
-                break;
-        }  // 끝, switch
-
-        tdc_pwr_cradle_set_cover_state(cradle_lid_state);
-        TDC_PRINTF_V("[BT] CMD 0x%02X, CHARGER STATE: %d, BATT LEVEL %d PERCENT, LID STATE %d\r\n", EN__SND_BT_CMD_SYSTEM_INFO_POWER, charger_connected, battery_level, cradle_lid_state);
-
-        tx_index = tdc_ble_reply_header(Tx_dataBuff, tx_index, EN__SND_BT_CMD_SYSTEM_INFO_POWER);
-        tx_index = tdc_ble_reply_u8(Tx_dataBuff, tx_index, 1);  // 수신 확인 응답
-
-        // TDC_PRINTF_W("[BT] BEFORE-WRITE-TX 0x34 t3=%d ms\r\n", tdc_hal_timer_get_t3_tick());
-        // TDC_PRINTF_W("[BT] CALL-WRITE-TX TxEmpty=%d\r\n", (int) tdc_hal_spi_is_tx_buffer_empty());
-
-        tdc_hal_spi_write_tx_buffer(Tx_dataBuff, tx_index);     // 송싱 데이터 SPI TX버퍼에 복사
-        bleSettingPacket.command = en__bleSetting_IDLE;  // 명령 종료
+        tdc_ble_cmd_0x34_system_info_power();
     }
     // 끝, else if (bleSettingPacket.command == EN__SND_BT_CMD_SYSTEM_INFO_POWER)
     // 시작, QCC와 새로 초가한 패킷 (0x35, LED Indication)
     else if (bleSettingPacket.command == EN__SND_BT_CMD_SYSTEM_INFO_LED_IND)
     {
-        int led_ind;  // 패킷 인덱스 1 → 헤더 제외 시, 데이터 인덱스 0
-
-        /* 수신 패킷 파싱 */
-        led_ind = bleSettingPacket.data[0];  // LED 표시 상태
-
-        /* 명령 처리 */
-
-        tdc_led_set_ind_state((tdc_led_ind_state_t) led_ind);  // Arbiter에 LED 표시 상태 반영 (Rev.3)
-
-        if (led_ind == TDC_LED_IND_STATE_OTA_EZAIRO)
-        {
-            tdc_dfu_set_conn_state(TDC_DFU_CONN_ST_CONN);
-        }
-        else
-        {
-            tdc_dfu_set_conn_state(TDC_DFU_CONN_ST_DISCONN);
-        }
-
-        TDC_PRINTF_V("[BT] CMD 0x%02X, LED IND: %d \r\n", EN__SND_BT_CMD_SYSTEM_INFO_LED_IND, led_ind);
-
-        /* 응답 패킷 */
-        tx_index = tdc_ble_reply_header(Tx_dataBuff, tx_index, EN__SND_BT_CMD_SYSTEM_INFO_LED_IND);
-        tx_index = tdc_ble_reply_u8(Tx_dataBuff, tx_index, 1);                     // 수신 확인 응답
-        tdc_hal_spi_write_tx_buffer(Tx_dataBuff, tx_index);     // 송신 데이터 SPI TX버퍼에 복사
-        bleSettingPacket.command = en__bleSetting_IDLE;  // 명령 종료
+        tdc_ble_cmd_0x35_system_info_led_ind();
     }
     // 끝, else if (bleSettingPacket.command == EN__SND_BT_CMD_SYSTEM_INFO_LED_IND)
     // 시작, QCC와 새로 초가한 패킷 (0x36, 클래식 상태 표시)
     else if (bleSettingPacket.command == EN__SND_BT_CMD_SYSTEM_INFO_CLASSIC_STATE)
     {
-        int classic_state;  // 패킷 인덱스 1 →헤더 제외 시, 데이터 인덱스 0
-        int classic_type;   // 패킷 인덱스 2 →헤더 제외 시, 데이터 인덱스 1
-
-        classic_state = bleSettingPacket.data[0];  // 클래식 상태
-        classic_type  = bleSettingPacket.data[1];  // 클래식 종류
-
-        /* 명령 처리 */
-        TDC_PRINTF_W("[BT] CMD 0x%02X, CLASSIC STATE: %s, %s \r\n",  //
-                  classic_state == 0   ? "DISCONN"
-                  : classic_state == 1 ? "CONN"
-                                       : "INVALID",
-                  classic_type == 0   ? "UNKNOWN"
-                  : classic_type == 1 ? "CRADLE"
-                  : classic_type == 2 ? "OTHER"
-                                      : "INVALID");
-
-        /* I2S 로 들어오는 오디오가 크래들 마이크인지 CFX 에 알려 준다.
-         * CFX 는 이 값이 1 이면 I2S 경로에 Gain_B 를 적용하고,
-         * 0(스트리밍)이면 스마트폰이 볼륨을 제어하므로 게인을 적용하지 않는다. */
-        cfx_cm3_sharedMemoryAll.is_i2s_source_cradle = ((classic_state == 1) && (classic_type == 1)) ? 1 : 0;
-
-        /* 응답 패킷 */
-        tx_index = tdc_ble_reply_header(Tx_dataBuff, tx_index, EN__SND_BT_CMD_SYSTEM_INFO_CLASSIC_STATE);
-        tx_index = tdc_ble_reply_u8(Tx_dataBuff, tx_index, 1);                     // 수신 확인 응답
-        tdc_hal_spi_write_tx_buffer(Tx_dataBuff, tx_index);     // 송신 데이터 SPI TX버퍼에 복사
-        bleSettingPacket.command = en__bleSetting_IDLE;  // 명령 종료
+        tdc_ble_cmd_0x36_system_info_classic_state();
     }
     // 끝, else if (bleSettingPacket.command == EN__SND_BT_CMD_SYSTEM_INFO_CLASSIC_STATE)
 }
