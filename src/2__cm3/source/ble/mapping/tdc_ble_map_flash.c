@@ -11,6 +11,7 @@
 #include <tdc_hal_spi.h>
 #include <tdc_stim_definitions.h>
 #include <tdc_isd_map_data.h>  // numPacket_writeMapData_* (패킷 분할 개수)
+#include <tdc_ble_map_field_range.h>
 #include <tdc_ble_reply.h>
 
 // 패킷 인덱스 0 은 헤더(명령)이며 호출자가 이미 읽었다.
@@ -570,53 +571,13 @@ void tdc_ble_cmd_0x6D_write_map_data(const uint8_t *Rx_dataPacket)  // 0x6D
                         p_mappingPacket->ReadWriteMapData_Flash.map_index = tempValue;  // 프로그램 번호
 
                         stimulPara_index = 0;
-                        for (i = 0; i < 12; i++)
+                        for (i = 0; i < TDC_BLE_MAP_FIELD_STIMUL_PARA_NUM; i++)
                         {
                             p_RepositoryFor_stimulPara[stimulPara_index] = Rx_dataPacket[index++];  // 매핑 일자, 자극 펄스 파라미터 들..
 
-                            switch (i)
+                            if (!tdc_ble_map_field_stimul_para_in_range(i, p_RepositoryFor_stimulPara[stimulPara_index]))
                             {
-                                case 6:  // 자극 기법
-                                    if (!((1 <= p_RepositoryFor_stimulPara[stimulPara_index]) && (p_RepositoryFor_stimulPara[stimulPara_index] <= 3)))
-                                    {
-                                        dataRangeError = true;
-                                    }
-                                    break;
-
-                                case 7:  // 선행 펄스 위상
-                                    if (!((0 <= p_RepositoryFor_stimulPara[stimulPara_index]) && (p_RepositoryFor_stimulPara[stimulPara_index] <= 1)))
-                                    {
-                                        dataRangeError = true;
-                                    }
-                                    break;
-
-                                case 8:  // 자극 모드
-                                    if (!((1 <= p_RepositoryFor_stimulPara[stimulPara_index]) && (p_RepositoryFor_stimulPara[stimulPara_index] <= 6)))
-                                    {
-                                        dataRangeError = true;
-                                    }
-                                    break;
-
-                                case 9:  // 펄스 위상 폭
-                                    if (!((13 <= p_RepositoryFor_stimulPara[stimulPara_index]) && (p_RepositoryFor_stimulPara[stimulPara_index] <= 255)))
-                                    {
-                                        dataRangeError = true;
-                                    }
-                                    break;
-
-                                case 10:  // 주파수 밴드 수
-                                    if (!((1 <= p_RepositoryFor_stimulPara[stimulPara_index]) && (p_RepositoryFor_stimulPara[stimulPara_index] <= 32)))
-                                    {
-                                        dataRangeError = true;
-                                    }
-                                    break;
-
-                                case 11:  // 알람용 자극 채널 번호
-                                    if (!((1 <= p_RepositoryFor_stimulPara[stimulPara_index]) && (p_RepositoryFor_stimulPara[stimulPara_index] <= 32)))
-                                    {
-                                        dataRangeError = true;
-                                    }
-                                    break;
+                                dataRangeError = true;
                             }
 
                             stimulPara_index++;
@@ -625,7 +586,8 @@ void tdc_ble_cmd_0x6D_write_map_data(const uint8_t *Rx_dataPacket)  // 0x6D
                         intFromByte                                    = Rx_dataPacket[index++] << 8;           // 자극 알람 크기, 상위 바이트
                         intFromByte                                    = intFromByte | Rx_dataPacket[index++];  // 상위|하위바이트
                         p_RepositoryFor_stimulPara[stimulPara_index++] = intFromByte;
-                        if (!((0 /*1*/ <= intFromByte) && (intFromByte <= 1800)))  // 범위 수정: 26.02.25 김은수
+
+                        if (!tdc_ble_map_field_level_uA_in_range(intFromByte))  // 하한 0 은 26.02.25 김은수 수정분
                         {
                             dataRangeError = true;
                         }
@@ -649,7 +611,7 @@ void tdc_ble_cmd_0x6D_write_map_data(const uint8_t *Rx_dataPacket)  // 0x6D
                 for (i = 0; i < 18; i++)
                 {
                     p_RepositoryFor_stimulPara[stimulPara_index] = Rx_dataPacket[index++];  // 사용가능 전극 번호 18개
-                    if (!((1 <= p_RepositoryFor_stimulPara[stimulPara_index]) && (p_RepositoryFor_stimulPara[stimulPara_index] <= 100)))
+                    if (!tdc_ble_map_field_electrode_in_range(p_RepositoryFor_stimulPara[stimulPara_index]))
                     {
                         dataRangeError = true;
                     }
@@ -663,7 +625,7 @@ void tdc_ble_cmd_0x6D_write_map_data(const uint8_t *Rx_dataPacket)  // 0x6D
                 for (i = 0; i < 14; i++)
                 {
                     p_RepositoryFor_stimulPara[stimulPara_index] = Rx_dataPacket[index++];  // 사용가능 전극 번호 12개
-                    if (!((1 <= p_RepositoryFor_stimulPara[stimulPara_index]) && (p_RepositoryFor_stimulPara[stimulPara_index] <= 100)))
+                    if (!tdc_ble_map_field_electrode_in_range(p_RepositoryFor_stimulPara[stimulPara_index]))
                     {
                         dataRangeError = true;
                     }
@@ -677,7 +639,7 @@ void tdc_ble_cmd_0x6D_write_map_data(const uint8_t *Rx_dataPacket)  // 0x6D
                 for (i = 0; i < 18; i++)
                 {
                     p_RepositoryFor_stimulPara[stimulPara_index] = Rx_dataPacket[index++];  //  바이폴라 기준 전극 18개
-                    if (!((1 <= p_RepositoryFor_stimulPara[stimulPara_index]) && (p_RepositoryFor_stimulPara[stimulPara_index] <= 100)))
+                    if (!tdc_ble_map_field_electrode_in_range(p_RepositoryFor_stimulPara[stimulPara_index]))
                     {
                         dataRangeError = true;
                     }
@@ -691,7 +653,7 @@ void tdc_ble_cmd_0x6D_write_map_data(const uint8_t *Rx_dataPacket)  // 0x6D
                 for (i = 0; i < 14; i++)
                 {
                     p_RepositoryFor_stimulPara[stimulPara_index] = Rx_dataPacket[index++];  //  바이폴라 기준 전극 12개
-                    if (!((1 <= p_RepositoryFor_stimulPara[stimulPara_index]) && (p_RepositoryFor_stimulPara[stimulPara_index] <= 100)))
+                    if (!tdc_ble_map_field_electrode_in_range(p_RepositoryFor_stimulPara[stimulPara_index]))
                     {
                         dataRangeError = true;
                     }
@@ -705,7 +667,7 @@ void tdc_ble_cmd_0x6D_write_map_data(const uint8_t *Rx_dataPacket)  // 0x6D
                 for (i = 0; i < 18; i++)
                 {
                     p_RepositoryFor_stimulPara[stimulPara_index] = Rx_dataPacket[index++];  //  주파수 밴드 출력 순서 18개
-                    if (!((1 <= p_RepositoryFor_stimulPara[stimulPara_index]) && (p_RepositoryFor_stimulPara[stimulPara_index] <= 100)))
+                    if (!tdc_ble_map_field_electrode_in_range(p_RepositoryFor_stimulPara[stimulPara_index]))
                     {
                         dataRangeError = true;
                     }
@@ -719,7 +681,7 @@ void tdc_ble_cmd_0x6D_write_map_data(const uint8_t *Rx_dataPacket)  // 0x6D
                 for (i = 0; i < 14; i++)
                 {
                     p_RepositoryFor_stimulPara[stimulPara_index] = Rx_dataPacket[index++];  //  주파수 밴드 출력 순서 12개
-                    if (!((1 <= p_RepositoryFor_stimulPara[stimulPara_index]) && (p_RepositoryFor_stimulPara[stimulPara_index] <= 100)))
+                    if (!tdc_ble_map_field_electrode_in_range(p_RepositoryFor_stimulPara[stimulPara_index]))
                     {
                         dataRangeError = true;
                     }
@@ -740,7 +702,7 @@ void tdc_ble_cmd_0x6D_write_map_data(const uint8_t *Rx_dataPacket)  // 0x6D
                     intFromByte                                    = intFromByte | Rx_dataPacket[index++];  // 상위|하위바이트
                     p_RepositoryFor_stimulPara[stimulPara_index++] = intFromByte;
 
-                    if (!((0 <= intFromByte) && (intFromByte <= 1800)))
+                    if (!tdc_ble_map_field_level_uA_in_range(intFromByte))
                     {
                         dataRangeError = true;
                     }
@@ -760,7 +722,7 @@ void tdc_ble_cmd_0x6D_write_map_data(const uint8_t *Rx_dataPacket)  // 0x6D
                     intFromByte                                    = intFromByte | Rx_dataPacket[index++];  // 상위|하위바이트
                     p_RepositoryFor_stimulPara[stimulPara_index++] = intFromByte;
 
-                    if (!((0 <= intFromByte) && (intFromByte <= 1800)))
+                    if (!tdc_ble_map_field_level_uA_in_range(intFromByte))
                     {
                         dataRangeError = true;
                     }

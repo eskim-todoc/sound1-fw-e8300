@@ -129,6 +129,7 @@ CFLAGS=(-std=gnu11 -Wall -Wextra -O0 -g)
 COMMON_SRC=(
     "$HERE/stub_ble.c"
     "$SRC/ble/tdc_ble_reply.c"
+    "$SRC/ble/tdc_ble_map_field_range.c"
 )
 
 # 테스트 이름 -> 대상 소스
@@ -142,6 +143,7 @@ declare -A TEST_TARGETS=(
     [map_flash]="$SRC/ble/mapping/tdc_ble_map_flash.c"
     [map_stim]="$SRC/ble/mapping/tdc_ble_cmd_0x65_specific.c $SRC/ble/mapping/tdc_ble_cmd_0x66_live.c"
     [remote]="$HERE/stub_remote.c $SRC/ble/remote/tdc_ble_remote.c $SRC/ble/remote/tdc_ble_remote_sp_para.c"
+    [map_field_range]=""
 )
 
 mkdir -p "$BUILD"
@@ -150,7 +152,7 @@ fail_total=0
 run_total=0
 src_warn_total=0
 
-for name in map_measure map_flash map_stim remote; do
+for name in map_field_range map_measure map_flash map_stim remote; do
     test_src="$HERE/test_$name.c"
     [ -f "$test_src" ] || continue
 

@@ -695,7 +695,8 @@ static void tdc_ble_cmd_0x66_sub05_indicator(const uint8_t *Rx_dataPacket, int i
         // 즉, 실제 사용 가능한 밴드 수 만큼만 T레벨을 확인하면
         // 활성화된 밴드들 중에서의 가장 작은 T레벨을 찾을 수 있다.
         // 그게 비로 0 값이라 하더라도, 해당 밴드는 활성화된 밴드이므로 0이 올바른 T레벨 값일 것이다.
-        for (int li = 0; li < p_mapDataSharedMemory->numFrequencyBand; li++)
+        // 루프 상한 이중 가드 (2026-08-06 추가, 위험_4). T_level_uA 는 df_MaxNumOfElectrode 칸이다.
+        for (int li = 0; (li < p_mapDataSharedMemory->numFrequencyBand) && (li < df_MaxNumOfElectrode); li++)
         {
             if (p_mapDataSharedMemory->T_level_uA[li] < min_T_uA)
             {

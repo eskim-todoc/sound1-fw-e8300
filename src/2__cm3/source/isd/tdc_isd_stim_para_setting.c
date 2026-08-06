@@ -462,7 +462,11 @@ bool tdc_isd_set_stim_para_bipolar(bool isdControlStateChagedFlag)
 
             TDC_PRINTF_I("[PARA] TOTAL NUM FREQ BAND : %d \r\n", p_mapdata->numFrequencyBand);
 
-            for (i = 0; i < p_mapdata->numFrequencyBand; i++)
+            /* 루프 상한 이중 가드 (2026-08-06 추가, 위험_4).
+             * numFrequencyBand 는 맵 데이터에서 오고 배열은 df_MaxNumOfElectrode 칸이다.
+             * 입력 검증이 언젠가 느슨해져도 배열을 넘지 않도록 상한을 함께 건다.
+             * 근거: docs/참고/전극 번호/electrodeMap 99 인덱스 범위 이슈 (이식).md §5-7 */
+            for (i = 0; (i < p_mapdata->numFrequencyBand) && (i < df_MaxNumOfElectrode); i++)
             {
                 /* electrodeMap[] 을 적용하지 않고 맵 인덱스를 그대로 쓰던 구버전 바이폴라
                  * 기준전극 계산은 제거했다(#if 0 사장). 현재는 아래처럼 electrodeMap[] 으로
