@@ -70,7 +70,16 @@ Sound1/
 
 한글 · `·` · `→` · `×` 는 CP949 에 존재하므로 **안전하다**. 문서(`.md`)는 Eclipse 를 거치지 않으므로 이 규칙의 대상이 아니다.
 
-**방어 장치 (3중)**:
+## 코드 포맷 규칙 (신규 코드 작성 시)
+
+> [!IMPORTANT]
+> **새 코드를 쓰기 전 [`docs/참고/clang-format/README.md`](docs/참고/clang-format/README.md) 를 따른다.** 은수님이 정한 조건 11개 중 **clang-format 이 자동 처리하는 것은 4개뿐이고 7개는 작성자 책임**이다.
+>
+> 특히 도구가 만들어 주지 않는 것: **모든 제어문에 `{}`** · **`case` 는 `{}` 블록 안, `break` 와 다음 `case` 사이 공백 줄** · **제어문 바로 위 코드/주석과 제어문 사이 공백 줄** · **`{` 다음에 빈 줄 두지 않기**.
+>
+> 본보기는 `docs/참고/clang-format/example.c` = **`src/2__cm3/source/main.c` 와 바이트 동일**하다.
+
+## 소스 인코딩 - 방어 장치 (3중)
 
 1. `.editorconfig` — `charset=utf-8` (에디터 무관)
 2. `src/<프로젝트>/.settings/org.eclipse.core.resources.prefs` — Eclipse 인코딩 UTF-8 고정
