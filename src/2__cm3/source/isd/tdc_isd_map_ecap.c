@@ -392,32 +392,14 @@ void tdc_isd_map_ecap_step(bool startFlag)
 
             // 펄스 폭 0으로 설정
 
-#if 0
-                w_FPGA_registerValue=0;  // 펄스폭 0
-                w_FPGA_registerValue=(w_FPGA_registerValue|pcm_Mold_PulsePhaseWidth);
-                tdc_shm_fill_specific_command_buffer(pcm_index++,w_FPGA_registerValue);
-#else
 
             tdc_isd_fpga_change_pulse_width_minimum(pcm_index++);
             tdc_isd_fpga_update_fpga_pulse_phase_width_written_value(FPGA_pulsePhaseWidth_minimum);
 
-#endif
 
-#if 0
-                // ISD path 확인용 임의의 값
-                w_isd_registerValue = ISD_registerAddr_forwardPath_check;
-                w_isd_registerValue = w_isd_registerValue << 1;
-                w_isd_registerValue = w_isd_registerValue | ISD_writeRegister;
-                w_isd_registerValue = w_isd_registerValue << 8;
-
-                w_isd_registerValue = w_isd_registerValue | df_forwardPathCheck_arbitraryValue;
-                w_isd_registerValue = w_isd_registerValue | pcm_Mold_configuration;
-                tdc_shm_fill_specific_command_buffer(pcm_index++, w_isd_registerValue);
-#else
             // 이전 자극 파라미터를 출력하기 위한 임의의 값 출력
             tdc_isd_fill_pcm_last_stimulation_out(&pcm_index);
 
-#endif
             for (; pcm_index < df_MaxNumTransferableChannel;)
             {
                 tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopStandby);
@@ -526,68 +508,6 @@ void tdc_isd_map_ecap_step(bool startFlag)
 
             tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_SepcificCommand);
 
-#if 0
-
-            // FPGA 피포 지움
-
-                last_fpga_settingValue=tdc_isd_fpga_get_written_value(i2cAddr_FPGA_systemResgister_2nd);
-
-                w_FPGA_VolatileValue = (1 << FPGA_BitPosition_Clear_FIFO); // 피포를 지운다.
-
-                w_FPGA_VolatileValue = w_FPGA_VolatileValue | last_fpga_settingValue;
-
-                //if (tdc_hal_i2c_cfx_write(df_I2C_ADDR_FPGA_System_State, &w_FPGA_VolatileValue, 1))
-                if (tdc_hal_i2c_isd_write(i2cAddr_FPGA_systemResgister_2nd, &w_FPGA_VolatileValue, 1))
-                {
-
-                    //if (tdc_hal_i2c_cfx_read(df_I2C_ADDR_FPGA_System_State, &r_FPGA_registerValue, 1))
-                    if (tdc_hal_i2c_isd_read(i2cAddr_FPGA_systemResgister_2nd, &r_FPGA_registerValue, 1))
-                    {
-
-
-
-                        comparing = last_fpga_settingValue | (1<<FPGA_BitPosition_FIFO_is_empty); // 에러 플레그 및 설정값을 비교용 값으로 사용한다.
-
-                        if (r_FPGA_registerValue != comparing) // 설정값 확인
-                        {
-                            comparing=0;
-
-#if 0
-                            // I2C 읽기   실패, FPGA 초기화
-                            tdc_isd_change_state(en__isdStatus_PowerIC_OK);
-
-                            // 에러 전송
-                            tdc_sys_error_send_to_app(en__mapping_eCAP_Measurement_masking,en__FPGA_ERROR, en_FIFO_NotCleared, __LINE__);
-                            // 커맨드 리셋;
-                            tdc_ble_mapping_clear_command();
-
-#endif
-                        }
-
-                    }
-                    else
-                    {
-                        // I2C 읽기   실패, FPGA 초기화
-                        tdc_isd_change_state(en__isdStatus_PowerIC_OK);
-
-                        // 에러 전송
-                        tdc_sys_error_send_to_app(en__mapping_eCAP_Measurement_masking,en__I2C_ERROR,en__ReadError, __LINE__);
-                        // 커맨드 리셋;
-                        tdc_ble_mapping_clear_command();
-                    }
-                }
-                else
-                {
-                    // I2C 쓰기   실패, FPGA 초기화
-                    tdc_isd_change_state(en__isdStatus_PowerIC_OK);
-
-                    // 에러 전송
-                    tdc_sys_error_send_to_app(en__mapping_eCAP_Measurement_masking,en__I2C_ERROR,en__WriteError, __LINE__);
-                    // 커맨드 리셋;
-                    tdc_ble_mapping_clear_command();
-                }
-
-#else
 
             if (tdc_isd_fpga_write_clear_fifo())
             {
@@ -602,38 +522,15 @@ void tdc_isd_map_ecap_step(bool startFlag)
                 }
             }
 
-#endif
 
             // 펄스 폭 0으로 변경
 
-#if 0
-                w_FPGA_registerValue=0;  // 펄스폭 0
-                w_FPGA_registerValue=(w_FPGA_registerValue|pcm_Mold_PulsePhaseWidth);
-                tdc_shm_fill_specific_command_buffer(pcm_index++,w_FPGA_registerValue);
-#else
 
             tdc_isd_fpga_change_pulse_width_minimum(pcm_index++);
             tdc_isd_fpga_update_fpga_pulse_phase_width_written_value(FPGA_pulsePhaseWidth_minimum);
 
-#endif
 
-#if 0
-                // FPGA backtel 레지스터 설정
-
-                    w_FPGA_registerValue=tdc_isd_fpga_get_written_value(i2cAddr_FPGA_backtel_Config);
-
-                    // FPGA Backtel- 12bit 레지스터( BitPosition_FPGA_backtel_bitLength 1로 변경)
-                    w_FPGA_registerValue=w_FPGA_registerValue|(1<<pcm_BitPosition_FPGA_backtel_bitLength);
-                    // backtel 활성화
-                    w_FPGA_registerValue=w_FPGA_registerValue|(1<<pcm_BitPosition_FPGA_backtel_OnOff);
-
-                    // PCM 몰드에 결합
-                    w_FPGA_registerValue=(w_FPGA_registerValue| pcm_Mold_BacktelConfiguration);
-                    // PCM 출력
-                    tdc_shm_fill_specific_command_buffer(pcm_index++, w_FPGA_registerValue);
-#else
             tdc_isd_fpga_change_12_bit_backtel_mode(pcm_index++);
-#endif
 
             for (; pcm_index < df_MaxNumTransferableChannel;)
             {
@@ -705,7 +602,6 @@ void tdc_isd_map_ecap_step(bool startFlag)
 
             tdc_shm_fill_specific_command_buffer(pcm_index++, w_isd_registerValue);
 
-#if 1
             // ISD 0xF
             w_isd_registerValue = ISD_registerAddr_SystemClkReset;
             w_isd_registerValue = w_isd_registerValue << 1;
@@ -717,7 +613,6 @@ void tdc_isd_map_ecap_step(bool startFlag)
 
             tdc_shm_fill_specific_command_buffer(pcm_index++, w_isd_registerValue);
 
-#endif
 
             // ISD 0x9    - eCAP 설정 초기화
             w_isd_registerValue = ISD_registerAddr_adc_measurement;
@@ -767,11 +662,7 @@ void tdc_isd_map_ecap_step(bool startFlag)
 
             w_isd_registerValue = w_isd_registerValue << 2;
 
-#if 1
             w_isd_registerValue = w_isd_registerValue | mesurementStart_on_configureADCregister; // adc 측정 시작 시점  :ADC 0x08 레지스터 설정  시점
-#else
-            w_isd_registerValue = w_isd_registerValue | mesurementStart_on_stiulationOut; // adc 측정 시작 시점 : 자극 출력 시점
-#endif
 
             w_isd_registerValue = w_isd_registerValue | pcm_Mold_configuration; // 0x1321 | 0x50000   -40khz
 
@@ -899,15 +790,8 @@ void tdc_isd_map_ecap_step(bool startFlag)
             tdc_shm_fill_specific_command_buffer(pcm_index++, w_isd_registerValue);
 
             // 마스커 출력용  펄스폭 조정
-#if 0
-                    w_FPGA_registerValue=(mappingPacket->eCapMeasurement.pulseWidth-FPGA_pulsePhaseWidth_minimum);
-                    w_FPGA_registerValue=(w_FPGA_registerValue|pcm_Mold_PulsePhaseWidth);
-
-                    tdc_shm_fill_specific_command_buffer(pcm_index++,w_FPGA_registerValue);
-#else
             tdc_isd_fpga_change_pulse_width(pcm_index++, mappingPacket->eCapMeasurement.pulseWidth);
             tdc_isd_fpga_update_fpga_pulse_phase_width_written_value(mappingPacket->eCapMeasurement.pulseWidth);
-#endif
             // 나머지 버퍼는  NOP-Standby
             for (; pcm_index < df_MaxNumTransferableChannel;)
             {
@@ -1179,45 +1063,6 @@ void tdc_isd_map_ecap_step(bool startFlag)
 
         tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_NopStandby);
 
-#if 0
-
-                    // FGPA 상태 확인
-                    //if(tdc_hal_i2c_cfx_read(df_I2C_ADDR_FPGA_System_State, &r_FPGA_registerValue, 1))
-                    if(tdc_hal_i2c_isd_read(i2cAddr_FPGA_systemResgister_1st, &r_FPGA_registerValue, 1))
-                    {
-
-                        comparing=r_FPGA_registerValue&(1<<FPGA_BitPosition_SystemError);   // 에러 비트
-                        if(comparing==0x20)
-                        {
-
-                            //tdc_hal_i2c_cfx_read(df_I2C_ADDR_FPGA_Error_Flag, &r_FPGA_registerValue, 1);
-                            tdc_hal_i2c_isd_read(i2cAddr_FPGA_error_Flag, &r_FPGA_registerValue, 1);
-
-
-
-                            // FPGA 에러 발생, FPGA 초기화
-                            tdc_isd_change_state(en__isdStatus_PowerIC_OK);
-
-                            // 에러 전송
-                            tdc_sys_error_send_to_app(en__mapping_eCAP_Measurement_masking,en__FPGA_ERROR,r_FPGA_registerValue, __LINE__); //FPGA 에러 값을 그대로 전달
-                            // 커맨드 리셋;
-                            tdc_ble_mapping_clear_command();
-
-                        }
-
-                    }
-                    else
-                    {
-                        // I2C 읽기   실패, FPGA 초기화
-                        tdc_isd_change_state(en__isdStatus_PowerIC_OK);
-
-                        // 에러 전송
-                        tdc_sys_error_send_to_app(en__mapping_eCAP_Measurement_masking,en__I2C_ERROR,en__ReadError, __LINE__);
-                        // 커맨드 리셋;
-                        tdc_ble_mapping_clear_command();
-                    }
-
-#else
         if (tdc_isd_fpga_check_fpga_pcm_error(&FPGA_error))
         {
             if (!FPGA_error)
@@ -1263,111 +1108,8 @@ void tdc_isd_map_ecap_step(bool startFlag)
             }
         }
 
-#endif
     }
 
-#if 0
-    if(flowCounter>backtelStart_flowCounter)
-    {
-
-                buffer_tx_index=0;
-
-
-
-             // command loop-back
-                bufferForSPI_tx[buffer_tx_index++]=mappingPacket->command;
-
-             // pay-load 준비
-                bufferForSPI_tx[buffer_tx_index++]=iterationNum+1;      // 측정회차
-
-                bufferForSPI_tx[buffer_tx_index++]=stimulPattern_index; // 측정 패턴
-
-
-                for(i=0; i<Max_eCAP_ReturnDataSize; i++)// ble 패킷 사이즈로 인하여..1회 전달 시 최대, 4번 측정한 데이터 전달 가능.
-                {
-                    if(ble_transfer_index<mappingPacket->eCapMeasurement.measurementSampleNum)
-                    {
-                        bufferForSPI_tx[buffer_tx_index++]=(int)bufferForReading_eCAP[(ble_transfer_index<<1)]; // 상위 바이트
-                        bufferForSPI_tx[buffer_tx_index++]=(int)bufferForReading_eCAP[(ble_transfer_index<<1)+1]; // 하위 바이트
-
-                        ble_transfer_index++;
-                    }
-                    else
-                    {
-                        break;
-                    }
-
-
-                }
-
-
-
-                // 송신 데이터 SPI TX버퍼에 복사
-
-                tdc_hal_spi_write_tx_buffer(bufferForSPI_tx,buffer_tx_index);
-
-
-
-                if(ble_transfer_index>=mappingPacket->eCapMeasurement.measurementSampleNum) // 측정데이터 전송이 완료 되었으면  다음
-                {
-                    ble_transfer_index=0;
-
-                    file_PCM_templete_eCAP(en__clearIndex, 0);
-
-                    // 다음 패턴 인덱스로 변경
-                    stimulPattern_index++;
-
-                    while(1)
-                    {
-                        if(tdc_hal_spi_is_tx_buffer_empty())
-                        {
-
-                            ble_transfer_index=0;
-
-                            break;
-                        }
-                        else
-                        {
-                            __WFE();
-                        }
-                    }
-
-                    // 측정 카운터 리셋하여 다시 측정
-                    flowCounter=eCAP_mesureStartTime-1;
-
-
-                    if(stimulPattern_index>en__switchingArtifact)
-                    {
-                        stimulPattern_index=en__probeAlone;
-                        iterationNum++;
-
-
-                        if(iterationNum>=mappingPacket->eCapMeasurement.iterationNum)
-                        {
-                            // 측정 완료.
-
-
-                            // 커맨드 리셋;
-                            tdc_ble_mapping_clear_command();
-
-
-                        }
-
-                    }
-                }
-
-
-        // 매핑 프로그램으로 데이터 전달.
-
-
-
-
-
-
-
-    }
-
-#endif
 
     if (flowCounter > backtelStart_flowCounter)
     {
@@ -1378,15 +1120,6 @@ void tdc_isd_map_ecap_step(bool startFlag)
         if (stimulPattern_index > en__switchingArtifact)
         {
 
-#if 0
-                                for(k=0;k <256; k++)
-                                    bufferForReading_eCAP[0][k]=0;
-
-                                for(k=0;k <128; k++)
-                                {
-                                    bufferForReading_eCAP[0][k*2+1]=k;
-                                }
-#endif
             sendingPatternIndex = 0;
             ble_transfer_index  = 0;
 
