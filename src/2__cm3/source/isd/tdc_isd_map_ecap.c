@@ -12,6 +12,7 @@
 #include <tdc_isd.h>
 #include <tdc_isd_init_fpga.h>
 #include <tdc_shm.h>
+#include <tdc_isd_stim_mode_encode.h>
 #include <tdc_ble_mapping.h>
 #include <tdc_hal_spi.h>
 #include <tdc_isd_map_ecap.h>
@@ -855,44 +856,11 @@ void tdc_isd_map_ecap_step(bool startFlag)
             // ISD 0x6    - 자극 파라미터 설정  쓰기
             // 모노폴라 출력 모드에서 기준전극 모드 2,3번 비트
             w_isd_registerValue = w_isd_registerValue << 2;
-            switch (mappingPacket->eCapMeasurement.stimulationMode)
-            {
-                case en__monopolr_body:
-
-                    w_isd_registerValue = w_isd_registerValue | en__monopolr_body;
-                    break;
-                case en__monopolr_rod:
-
-                    w_isd_registerValue = w_isd_registerValue | en__monopolr_rod;
-                    break;
-                case en__monopolr_BothRodBody:
-
-                    w_isd_registerValue = w_isd_registerValue | en__monopolr_BothRodBody;
-                    break;
-                default:
-                    w_isd_registerValue = w_isd_registerValue | en__referenceNA; // // 리셋값이 3이며, 바이폴라, 공통접지, 동시 자극의 경우는 접지를 끊는다.
-                    break;
-            }
+            w_isd_registerValue = w_isd_registerValue | tdc_isd_stim_mode_reference_bits(mappingPacket->eCapMeasurement.stimulationMode);
 
             // 자극 출력 모드 0,1번 비트
             w_isd_registerValue = w_isd_registerValue << 2;
-            switch (mappingPacket->eCapMeasurement.stimulationMode)
-            {
-                case en__monopolr_body:
-                case en__monopolr_rod:
-                case en__monopolr_BothRodBody:
-                    w_isd_registerValue = w_isd_registerValue | 0;
-                    break;
-                case en__bipolar:
-                    w_isd_registerValue = w_isd_registerValue | 1;
-                    break;
-                case en__commonground:
-                    w_isd_registerValue = w_isd_registerValue | 2;
-                    break;
-                case en__semi_simultaneously:
-                    w_isd_registerValue = w_isd_registerValue | 3;
-                    break;
-            }
+            w_isd_registerValue = w_isd_registerValue | tdc_isd_stim_mode_output_bits(mappingPacket->eCapMeasurement.stimulationMode);
 
             w_isd_registerValue = w_isd_registerValue | pcm_Mold_configuration; // 0x0d04  | 0x50000
 
@@ -1078,45 +1046,12 @@ void tdc_isd_map_ecap_step(bool startFlag)
             // ISD 0x6    - 자극 파라미터 설정  쓰기
             // 모노폴라 출력 모드에서 기준전극 모드 2,3번 비트
             w_isd_registerValue = w_isd_registerValue << 2;
-            switch (mappingPacket->eCapMeasurement.stimulationMode)
-            {
-                case en__monopolr_body:
-
-                    w_isd_registerValue = w_isd_registerValue | en__monopolr_body;
-                    break;
-                case en__monopolr_rod:
-
-                    w_isd_registerValue = w_isd_registerValue | en__monopolr_rod;
-                    break;
-                case en__monopolr_BothRodBody:
-
-                    w_isd_registerValue = w_isd_registerValue | en__monopolr_BothRodBody;
-                    break;
-                default:
-                    w_isd_registerValue = w_isd_registerValue | en__referenceNA; // 리셋값이 3이며, 바이폴라, 공통접지, 동시 자극의 경우는 접지를 끊는다.
-                    break;
-            }
+            w_isd_registerValue = w_isd_registerValue | tdc_isd_stim_mode_reference_bits(mappingPacket->eCapMeasurement.stimulationMode);
 
             // 자극 출력 모드 0,1번 비트
             w_isd_registerValue = w_isd_registerValue << 2;
 
-            switch (mappingPacket->eCapMeasurement.stimulationMode)
-            {
-                case en__monopolr_body:
-                case en__monopolr_rod:
-                case en__monopolr_BothRodBody:
-                    w_isd_registerValue = w_isd_registerValue | 0;
-                    break;
-                case en__bipolar:
-                    w_isd_registerValue = w_isd_registerValue | 1;
-                    break;
-                case en__commonground:
-                    w_isd_registerValue = w_isd_registerValue | 2;
-                    break;
-                case en__semi_simultaneously:
-                    w_isd_registerValue = w_isd_registerValue | 3;
-                    break;
-            }
+            w_isd_registerValue = w_isd_registerValue | tdc_isd_stim_mode_output_bits(mappingPacket->eCapMeasurement.stimulationMode);
 
             w_isd_registerValue = w_isd_registerValue | pcm_Mold_configuration;
 

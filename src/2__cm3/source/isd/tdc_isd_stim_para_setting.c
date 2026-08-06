@@ -2,6 +2,7 @@
 #include <hw.h>
 
 #include <tdc_shm.h>
+#include <tdc_isd_stim_mode_encode.h>
 #include <FPGA.h>
 #include <tdc_isd_pcm.h>
 #include <tdc_isd_fpga.h>
@@ -186,48 +187,12 @@ bool tdc_isd_set_stim_para_monopolar(bool isdControlStateChagedFlag)
             w_isd_registerValue = w_isd_registerValue << 2;
 
             // 리셋값이 3이며, 바이폴라, 공통접지, 동시 자극의 경우는 접지를 끊는다.
-            switch (p_mapdata->stimulationMode)
-            {
-                case en__monopolr_body:
-                    w_isd_registerValue = w_isd_registerValue | en__monopolr_body;
-                    break;
-
-                case en__monopolr_rod:
-                    w_isd_registerValue = w_isd_registerValue | en__monopolr_rod;
-                    break;
-
-                case en__monopolr_BothRodBody:
-                    w_isd_registerValue = w_isd_registerValue | en__monopolr_BothRodBody;
-                    break;
-
-                default:
-                    w_isd_registerValue = w_isd_registerValue | en__referenceNA;
-                    break;
-            }
+            w_isd_registerValue = w_isd_registerValue | tdc_isd_stim_mode_reference_bits(p_mapdata->stimulationMode);
 
             // 1~0번 STIM_MODE (자극 출력 모드: 모노폴라, 바이폴라, 공통접지, 동시모사)
             w_isd_registerValue = w_isd_registerValue << 2;
 
-            switch (p_mapdata->stimulationMode)
-            {
-                case en__monopolr_body:
-                case en__monopolr_rod:
-                case en__monopolr_BothRodBody:
-                    w_isd_registerValue = w_isd_registerValue | 0;  // monopolar
-                    break;
-
-                case en__bipolar:
-                    w_isd_registerValue = w_isd_registerValue | 1;  // bipolar
-                    break;
-
-                case en__commonground:
-                    w_isd_registerValue = w_isd_registerValue | 2;  // common ground
-                    break;
-
-                case en__semi_simultaneously:
-                    w_isd_registerValue = w_isd_registerValue | 3;  // bipolar + monopolar
-                    break;
-            }
+            w_isd_registerValue = w_isd_registerValue | tdc_isd_stim_mode_output_bits(p_mapdata->stimulationMode);
 
             // 만들어 놓은 패킷을 0xFF로 비트연산 해서 사용하는게 아니고, 나중에 비교하는데 사용한다.
             sent_stimulConfig   = w_isd_registerValue & 0xFF;
@@ -908,47 +873,11 @@ bool tdc_isd_set_stim_para_bipolar(bool isdControlStateChagedFlag)
 
             // 모노폴라 출력 모드에서 기준전극 모드 2,3번 비트
             w_isd_registerValue = w_isd_registerValue << 2;
-            switch (p_mapdata->stimulationMode)
-            {
-                case en__monopolr_body:
-                    w_isd_registerValue = w_isd_registerValue | en__monopolr_body;
-                    break;
-
-                case en__monopolr_rod:
-                    w_isd_registerValue = w_isd_registerValue | en__monopolr_rod;
-                    break;
-
-                case en__monopolr_BothRodBody:
-                    w_isd_registerValue = w_isd_registerValue | en__monopolr_BothRodBody;
-                    break;
-
-                default:
-                    w_isd_registerValue = w_isd_registerValue | en__referenceNA;  // // 리셋값이 3이며, 바이폴라, 공통접지, 동시 자극의 경우는 접지를 끊는다.
-                    break;
-            }
+            w_isd_registerValue = w_isd_registerValue | tdc_isd_stim_mode_reference_bits(p_mapdata->stimulationMode);
 
             // 자극 출력 모드 0,1번 비트 (모노폴라, 바이폴라, 공통접지, 동시모사)
             w_isd_registerValue = w_isd_registerValue << 2;
-            switch (p_mapdata->stimulationMode)
-            {
-                case en__monopolr_body:
-                case en__monopolr_rod:
-                case en__monopolr_BothRodBody:
-                    w_isd_registerValue = w_isd_registerValue | 0;  // mono polar
-                    break;
-
-                case en__bipolar:
-                    w_isd_registerValue = w_isd_registerValue | 1;  // en__bipolar
-                    break;
-
-                case en__commonground:
-                    w_isd_registerValue = w_isd_registerValue | 2;  // common ground
-                    break;
-
-                case en__semi_simultaneously:
-                    w_isd_registerValue = w_isd_registerValue | 3;
-                    break;
-            }
+            w_isd_registerValue = w_isd_registerValue | tdc_isd_stim_mode_output_bits(p_mapdata->stimulationMode);
 
             sent_stimulConfig   = w_isd_registerValue & 0xFF;
             w_isd_registerValue = w_isd_registerValue | pcm_Mold_configuration;

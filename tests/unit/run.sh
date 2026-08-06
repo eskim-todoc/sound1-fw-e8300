@@ -144,6 +144,7 @@ declare -A TEST_TARGETS=(
     [map_stim]="$SRC/ble/mapping/tdc_ble_cmd_0x65_specific.c $SRC/ble/mapping/tdc_ble_cmd_0x66_live.c"
     [remote]="$HERE/stub_remote.c $SRC/ble/remote/tdc_ble_remote.c $SRC/ble/remote/tdc_ble_remote_sp_para.c"
     [map_field_range]=""
+    [stim_mode_encode]="$SRC/isd/tdc_isd_stim_mode_encode.c"
 )
 
 mkdir -p "$BUILD"
@@ -152,7 +153,7 @@ fail_total=0
 run_total=0
 src_warn_total=0
 
-for name in map_field_range map_measure map_flash map_stim remote; do
+for name in map_field_range stim_mode_encode map_measure map_flash map_stim remote; do
     test_src="$HERE/test_$name.c"
     [ -f "$test_src" ] || continue
 
