@@ -150,7 +150,6 @@ static bool tdc_isd_map_live_sub_start(ST__ISD_STATUS ISD_state)
             }
             else
             {
-#if 1
                 tdc_isd_change_state(en__isdStatus_stimul_10V_Ok);
                 //////////////////////////////////////
 
@@ -159,7 +158,6 @@ static bool tdc_isd_map_live_sub_start(ST__ISD_STATUS ISD_state)
                 tdc_sys_error_clear_flag(en__EN__ISD_ERROR);
 
                 TDC_PRINTF_I("[LIVE] LIVE STIMULATION, SUCCESS TO ENABLE STIM 10V BY EN__START \r\n");
-#endif
 
                 // command loop-back
                 bufferForSPI_tx[buffer_tx_index++] = en__mapping_live_stimulation;
@@ -482,7 +480,6 @@ static bool tdc_isd_map_live_sub_hold_on(ST__ISD_STATUS ISD_state)
     bool isdControlStateChagedFlag;
     bool error = false;
 
-#if 1
     if (!ISD_state.conneded_ISD)
     {
         s_needResetting       = true;
@@ -537,47 +534,6 @@ static bool tdc_isd_map_live_sub_hold_on(ST__ISD_STATUS ISD_state)
                 s_toggle_mapNum &= 0x1;
             }
 
-#if 0
-
-
-                                        if(s_reConnectionCounter>2)
-                                        {
-                                                    if(tdc_isd_is_new_map_loaded_flag()) // 맵이 변경되어서  계산이 필요한 경우.
-                                                    {
-
-                                                        //Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_R);
-                                                        s_calculationParameter=tdc_stim_calc_para_and_cfx_share();
-                                                        tdc_stim_indicator_set_level_255(); // 자극 알림 크기 uA -> 255레벨로 변환
-
-
-                                                        tdc_shm_set_flag_audio_parameters_calculation_done_cm3_to_cfx();  // cfx에 파라미터 계산이 완료 되었을을 알려주는 플레그
-
-
-                                                        tdc_isd_clear_stim_para_setting_done();
-                                                        tdc_isd_clear_new_map_loaded_flag();
-
-                                                        isdControlStateChagedFlag=true;
-                                                        //Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_R);
-                                                    }
-                                                    else
-                                                        isdControlStateChagedFlag=false;
-
-
-                                                    if(!tdc_isd_is_stim_para_setting_done())
-                                                    {
-                                                        //Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_R);
-                                                        tdc_isd_stim_setting_step(isdControlStateChagedFlag);
-                                                        //Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_R);
-                                                    }
-                                                    else
-                                                    {
-                                                        tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_LiveStimulation);
-                                                        //자극 출력
-
-                                                        s_needResetting=false;
-                                                    }
-                                        }
-#else
             if (tdc_shm_is_map_data_loaded_cfx())
             {
                 if (tdc_isd_is_new_map_loaded_flag())  // 맵이 변경되어서  계산이 필요한 경우.
@@ -617,7 +573,6 @@ static bool tdc_isd_map_live_sub_hold_on(ST__ISD_STATUS ISD_state)
                     }
                     else
                     {
-#if 1
                         tdc_isd_change_state(en__isdStatus_stimul_10V_Ok);
                         //////////////////////////////////////
 
@@ -626,7 +581,6 @@ static bool tdc_isd_map_live_sub_hold_on(ST__ISD_STATUS ISD_state)
                         tdc_sys_error_clear_flag(en__EN__ISD_ERROR);
 
                         TDC_PRINTF_I("[LIVE] LIVE STIMULATION, SUCCESS TO ENABLE STIM 10V BY EN__HOLDON \r\n");
-#endif
 
                         // 자극 출력
                         tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_LiveStimulation);
@@ -643,7 +597,6 @@ static bool tdc_isd_map_live_sub_hold_on(ST__ISD_STATUS ISD_state)
 
             s_reConnectionCounter++;
 
-#endif
         }
         else
         {
@@ -659,114 +612,6 @@ static bool tdc_isd_map_live_sub_hold_on(ST__ISD_STATUS ISD_state)
         }
     }
 
-#else
-    s_reConnectionCounter++;
-
-    if (ISD_state.conneded_ISD)
-    {
-        // Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_R);
-        tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_LiveStimulation);
-        // 응답 데이터 생성
-        // 연결 상태 업데이트
-        tdc_isd_update_link_by_backtel_live();
-
-        s_stimulationCounter_ms++;
-
-        s_reConnectionCounter = 0;
-
-        // Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_R);
-    }
-    else  // 연결이 뜮어 지면 다시 자극 관련 파라미터를 설정한다.
-    {
-
-        if (ISD_state.isd_controlState >= en__isdStatus_stimul_10V_Ok)
-        {
-
-            if (s_reConnectionCounter == 0)
-            {
-
-                tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_NopStandby);
-
-                p_mapDataSharedMemory = tdc_shm_get_pointer_current_map_data();
-
-                // 오디오 볼륨(마이크 감도), 자극 볼륨을 변경하고
-                tdc_shm_change_audio_volume(s_p_mappingPacket->tdc_isd_map_live_step.audioVolume);
-                tdc_shm_change_stimul_volume(s_p_mappingPacket->tdc_isd_map_live_step.stimulVolume);
-
-                // 매핑에서 받은 데이터를 전달한다.
-
-                p_mapDataSharedMemory->stimulationStrategy            = s_p_mappingPacket->tdc_isd_map_live_step.stimulationStrategy;
-                p_mapDataSharedMemory->firstPulsePhase                = s_p_mappingPacket->tdc_isd_map_live_step.firstPulsePhase;
-                p_mapDataSharedMemory->stimulationMode                = s_p_mappingPacket->tdc_isd_map_live_step.stimulationMode;
-                p_mapDataSharedMemory->stimulationPulsePhaseWidth     = s_p_mappingPacket->tdc_isd_map_live_step.stimulationPulsePhaseWidth;
-                p_mapDataSharedMemory->numFrequencyBand               = s_p_mappingPacket->tdc_isd_map_live_step.numFrequencyBand;
-                p_mapDataSharedMemory->stimulationIndicatorChannelNum = s_p_mappingPacket->tdc_isd_map_live_step.stimulationIndicatorChannelNum;
-
-                for (i = 0; i < df_MaxNumOfElectrode; i++)
-                {
-                    p_mapDataSharedMemory->usableStimulationElectrodIndex[i] = s_p_mappingPacket->tdc_isd_map_live_step.usableStimulationElectrodIndex[i];
-                    p_mapDataSharedMemory->usableReferenceElectrodIndex[i]   = s_p_mappingPacket->tdc_isd_map_live_step.usableReferenceElectrodIndex[i];
-                    p_mapDataSharedMemory->CIS_FreqBandOrder[i]              = s_p_mappingPacket->tdc_isd_map_live_step.CIS_FreqBandOrder[i];
-                    p_mapDataSharedMemory->T_level_uA[i]                     = s_p_mappingPacket->tdc_isd_map_live_step.T_level_uA[i];
-                    p_mapDataSharedMemory->C_level_uA[i]                     = s_p_mappingPacket->tdc_isd_map_live_step.C_level_uA[i];
-                    p_mapDataSharedMemory->audio_input_x_mim[i]              = s_p_mappingPacket->tdc_isd_map_live_step.audio_input_x_mim[i];
-                    p_mapDataSharedMemory->audio_input_x_max[i]              = s_p_mappingPacket->tdc_isd_map_live_step.audio_input_x_max[i];
-                }
-
-                // 맵번호를 매핑용 번호로 전달하고// start 중에
-                if (s_toggle_mapNum)
-                    tdc_shm_change_program_map_num(-1);
-
-                else
-                    tdc_shm_change_program_map_num(-2);
-
-                s_toggle_mapNum++;
-                s_toggle_mapNum &= 0x1;
-            }
-
-            if (s_reConnectionCounter >= 1)
-            {
-                //
-                if (tdc_isd_is_new_map_loaded_flag())  // 맵이 변경되어서  계산이 필요한 경우.
-                {
-
-                    // Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_R);
-                    s_calculationParameter = tdc_stim_calc_para_and_cfx_share();
-                    tdc_stim_indicator_set_level_255();  // 자극 알림 크기 uA -> 255레벨로 변환
-
-                    tdc_shm_set_flag_audio_parameters_calculation_done_cm3_to_cfx();  // cfx에 파라미터 계산이 완료 되었을을 알려주는 플레그
-
-                    tdc_isd_clear_stim_para_setting_done();
-                    tdc_isd_clear_new_map_loaded_flag();
-
-                    isdControlStateChagedFlag = true;
-                    // Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_R);
-                }
-                else
-                    isdControlStateChagedFlag = false;
-
-                if (!tdc_isd_is_stim_para_setting_done())
-                {
-                    // Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_R);
-                    tdc_isd_stim_setting_step(isdControlStateChagedFlag);
-                    // Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_R);
-                }
-                else
-                {
-
-                    tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_LiveStimulation);
-                    // 자극 출력
-                }
-            }
-
-            s_reConnectionCounter++;
-        }
-        else
-        {
-            s_reConnectionCounter = 0;
-        }
-    }
-#endif
 
     return false;
 }
