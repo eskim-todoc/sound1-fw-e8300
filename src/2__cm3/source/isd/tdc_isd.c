@@ -380,20 +380,6 @@ void tdc_isd_update_link_by_backtel_live(void)
                         }
                     }
                     break;
-#if 0
-                    case ISD_Power_HighUnstable:
-                    {
-                        if (TxPowerLevel_bak != TxPowerLevel)
-                        {
-                            TxPowerLevel_bak = TxPowerLevel;
-                            // TDC_PRINTF_V("[LINK] HIGH, UNSTABLE (CURR=%4d) \r\n", TxPowerLevel);
-                        }
-
-                        temp = 0;
-                        temp++;
-                    }
-                    break;
-#endif
                     case ISD_Power_LowUnstable:
                     case ISD_Power_LowStable:  // 증가가 가능할 때까지 증가. 증가가 더이상 불가능한 경우. 상태 유지
                     {
@@ -418,20 +404,6 @@ void tdc_isd_update_link_by_backtel_live(void)
                         }
                     }
                     break;
-#if 0
-                    case ISD_Power_LowUnstable:  // 증가가 가능할 때까지 증가. 증가가 더이상 불가능한 경우. 연결 상태 끊고 다시 시작.
-                    {
-                        if (TxPowerLevel_bak != TxPowerLevel)
-                        {
-                            TxPowerLevel_bak = TxPowerLevel;
-                            // TDC_PRINTF_V("[LINK] LOW, UNSTABLE (CURR=%4d) \r\n", TxPowerLevel);
-                        }
-
-                        temp = 0;
-                        temp++;
-                    }
-                    break;
-#endif
 #endif
                     case NoBacktel:
                     {
@@ -510,12 +482,6 @@ void tdc_isd_update_link_by_backtel_mapping(int connectionCheckCOUNTER)
         isINGconnectionCheck_WithMapping = true;
     }
 
-#if 0
-    if (flowCounter < 7)
-    {
-        TDC_PRINTF_V("[MAPPING] LINK CONNECTION CHECK FLOW COUNTER : %d \r\n", flowCounter);
-    }
-#endif
 
     if (flowCounter < 7)
     {

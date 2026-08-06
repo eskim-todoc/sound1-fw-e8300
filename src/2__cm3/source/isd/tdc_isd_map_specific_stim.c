@@ -184,31 +184,11 @@ static void tdc_isd_map_specific_stim_flow01_reset_pulse(void)
     int pcm_index = 0;
 
     // 펄스 폭 0으로 설정
-#if 0
-                int w_FPGA_registerValue;
-                w_FPGA_registerValue=0;  // 펄스폭 0
-                w_FPGA_registerValue=(w_FPGA_registerValue|pcm_Mold_PulsePhaseWidth);
-                tdc_shm_fill_specific_command_buffer(pcm_index++,w_FPGA_registerValue);
-#else
     tdc_isd_fpga_change_pulse_width_minimum(pcm_index++);
     tdc_isd_fpga_update_fpga_pulse_phase_width_written_value(FPGA_pulsePhaseWidth_minimum);
-#endif
 
-#if 0
-                    int w_isd_registerValue;
-                    // ISD path 확인용 임의의 값
-                    w_isd_registerValue = ISD_registerAddr_forwardPath_check;
-                    w_isd_registerValue = w_isd_registerValue << 1;
-                    w_isd_registerValue = w_isd_registerValue | ISD_writeRegister;
-                    w_isd_registerValue = w_isd_registerValue << 8;
-
-                    w_isd_registerValue = w_isd_registerValue | df_forwardPathCheck_arbitraryValue;
-                    w_isd_registerValue = w_isd_registerValue | pcm_Mold_configuration;
-                    tdc_shm_fill_specific_command_buffer(pcm_index++, w_isd_registerValue);
-#else
     tdc_isd_fpga_change_8_bit_backtel_mode(pcm_index++);  // 8비트 백텔 설정 (2025.12.17 바이폴라 기능)
     tdc_isd_fill_pcm_last_stimulation_out(&pcm_index);    // 이전 자극 파라미터를 출력하기 위한 임의의 값 출력
-#endif
 
     for (; pcm_index < df_MaxNumTransferableChannel;)
     {
@@ -373,15 +353,8 @@ static void tdc_isd_map_specific_stim_flow09_send_stim_para(void)
     tdc_shm_fill_specific_command_buffer(pcm_index++, w_isd_registerValue);
 
     // 펄스 폭 조정
-#if 0
-    int w_FPGA_registerValue;
-    w_FPGA_registerValue=(mappingPacket->tdc_isd_map_specific_stim_step.pulseWidth-FPGA_pulsePhaseWidth_minimum);
-    w_FPGA_registerValue=(w_FPGA_registerValue|pcm_Mold_PulsePhaseWidth);
-    tdc_shm_fill_specific_command_buffer(pcm_index++, w_FPGA_registerValue);
-#else
     tdc_isd_fpga_change_pulse_width(pcm_index++, mappingPacket->tdc_isd_map_specific_stim_step.pulseWidth);
     tdc_isd_fpga_update_fpga_pulse_phase_width_written_value(FPGA_pulsePhaseWidth_minimum);
-#endif
 
     // 나머지 버퍼는 NOP-Standby
     for (; pcm_index < df_MaxNumTransferableChannel;)
@@ -423,7 +396,6 @@ static void tdc_isd_map_specific_stim_flow14_verify_pulse_width(void)
     }
 }
 
-#if 1
 // flow 20 - 어떻게 처리되는 건지 디버그 메시지 출력을 위한 별도의 단계
 static void tdc_isd_map_specific_stim_flow20_log_summary(void)
 {
@@ -464,7 +436,6 @@ static void tdc_isd_map_specific_stim_flow20_log_summary(void)
               mappingPacket->tdc_isd_map_specific_stim_step.stimulationElectrodeNum,
               electrodeMap[(mappingPacket->tdc_isd_map_specific_stim_step.stimulationElectrodeNum - 1)]);
 }
-#endif
 
 // 유지시간이 지났다. 마지막 자극을 내보내고 명령을 종료한다.
 static void tdc_isd_map_specific_stim_output_finish(int pcm_index)
@@ -572,7 +543,6 @@ static void tdc_isd_map_specific_stim_output_fill(int pcm_index)
 
         channel_index++;
 
-#if 1
         if (mappingPacket->tdc_isd_map_specific_stim_step.usableElectrodeNum > TransferabelChannelNum)
         {
             if (channel_index >= mappingPacket->tdc_isd_map_specific_stim_step.usableElectrodeNum)
@@ -587,12 +557,6 @@ static void tdc_isd_map_specific_stim_output_fill(int pcm_index)
                 channel_index = 0;
             }
         }
-#else
-
-                if (channel_index >= mappingPacket->tdc_isd_map_specific_stim_step.usableElectrodeNum)
-                    channel_index = 0;
-
-#endif
     }
 
     //
@@ -664,13 +628,11 @@ void tdc_isd_map_specific_stim_step(bool startFlag)
             break;
         }
 
-#if 1
         case 20:
         {
             tdc_isd_map_specific_stim_flow20_log_summary();
             break;
         }
-#endif
 
         default:
         {

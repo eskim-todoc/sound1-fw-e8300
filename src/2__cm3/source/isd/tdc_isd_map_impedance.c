@@ -137,7 +137,6 @@ static void tdc_isd_map_impedance_flow00_calc_frame_and_dac(void)
         tdc_ble_mapping_clear_command();                                                                       // 커맨드 리셋;
     }
 
-#if 1
     // 가장 출력이 큰 DAC  사용
     s_stimulDAC_slope            = Stimulation_DAC_D;
     s_stimulDAC_offsetResolution = Offset_DAC_A;
@@ -160,29 +159,6 @@ static void tdc_isd_map_impedance_flow00_calc_frame_and_dac(void)
         tempInt         = stimulLevel_uA * reciprocal_dividing_QI1F15_Stimulation_DAC_D;
         s_stimulLevel_255 = tempInt >> 15;  // 기울기 스텝으로 나눈다.
 
-#else
-    // 작은 출력으로 임피던스를 측정하기 때문에.. 가장 해상도가 높게 DAC를 설정해서 사용한다.
-    s_stimulDAC_slope            = Stimulation_DAC_A;
-    s_stimulDAC_offsetResolution = Offset_DAC_A;
-
-    if (s_mappingPacket->impedanceCheck.stimulationLevel_uA < (stimulDAC_A_only_Saturation_uA + offsetDAC_A_Saturation_uA))
-    {
-        if (s_mappingPacket->impedanceCheck.stimulationLevel_uA > stimulDAC_A_only_Saturation_uA)  // 오프셋을 적용하지 않은 상태에서 출력할 수 없으면 오프셋 적용
-        {
-            s_stimulDAC_offsetValue_uA = stimulDAC_A_only_Saturation_uA;  // 510
-        }
-        else
-        {
-            s_stimulDAC_offsetValue_uA = 0;
-        }
-
-        tempInt               = s_stimulDAC_offsetValue_uA * reciprocal_dividing_QI1F15_Offset_DAC_A;
-        s_stimulDAC_offsetValue = tempInt >> 15;
-
-        stimulLevel_uA  = s_mappingPacket->impedanceCheck.stimulationLevel_uA - s_stimulDAC_offsetValue_uA;
-        tempInt         = stimulLevel_uA * reciprocal_dividing_QI1F15_Stimulation_DAC_A;
-        s_stimulLevel_255 = tempInt >> 15;  // 기울기 스텝으로 나눈다.
-#endif
     }
     else  // 최소 기울기에 대해서만 일단 구현.. 모든 범위의 출력을 설정하려면 추가 코딩이 필요하나.. 임피던스는 작은 출력으로 측정하기 때문에 필요가 없을 듯하다.
     {
@@ -286,20 +262,9 @@ static void tdc_isd_map_impedance_flow04_write_stim_para(void)
     // 모노폴라 출력 모드에서 기준전극 모드 2,3번 비트
     w_isd_registerValue = w_isd_registerValue << 2;
 
-#if 1
     // monopolr_mp2 :
     w_isd_registerValue = w_isd_registerValue | en__monopolr_rod;  // en__monopolr_rod =2
 
-#else
-    // monopolr_mp1 :
-    w_isd_registerValue = w_isd_registerValue | en__monopolr_body;  // en__monopolr_body=1
-
-    // monopolr_mp2 :
-    w_isd_registerValue = w_isd_registerValue | en__monopolr_rod;  // en__monopolr_rod =2
-
-    //  monopolr_mp3 :
-    w_isd_registerValue = w_isd_registerValue | monopolr_mp3;  // en__monopolr_BothRodBody =3
-#endif
 
     // 자극 출력 모드 - 모노폴라
     w_isd_registerValue = w_isd_registerValue << 2;
@@ -325,11 +290,7 @@ static void tdc_isd_map_impedance_flow04_write_stim_para(void)
 
     w_isd_registerValue = w_isd_registerValue << 2;
 
-#if 1
     w_isd_registerValue = w_isd_registerValue | mesurementStart_on_configureADCregister;  // adc 측정 시작 시점  :ADC 0x08 레지스터 설정  시점
-#else
-    w_isd_registerValue = w_isd_registerValue | mesurementStart_on_stiulationOut;  // adc 측정 시작 시점 : 자극 출력 시점
-#endif
 
     w_isd_registerValue = w_isd_registerValue | pcm_Mold_configuration;  // 0x1305 | 0x50000
 
@@ -445,7 +406,6 @@ static void tdc_isd_map_impedance_flow10_start_measure(void)
 
     // 측정용 자극 출력 또는 0x09 설정 파라미터
 
-#if 1  // ADC 설정 파라미터 전송시 측정 시작 방법
 
     w_isd_registerValue = ISD_registerAddr_adc_measurement;
 
@@ -465,29 +425,12 @@ static void tdc_isd_map_impedance_flow10_start_measure(void)
 
     tdc_shm_fill_specific_command_buffer(pcm_index++, w_isd_registerValue);
 
-#else
-
-    w_isd_registerValue = 1 << firstPulsePhasePositionAtPCM_Mold;                                    // Positive Pulse first;
-    w_isd_registerValue = w_isd_registerValue | (s_electrodeNum << electrodIndexPositionAtPCM_Mold);   // 자극 전극 번호
-    w_isd_registerValue = w_isd_registerValue | (s_stimulLevel_255 << stimulationPositionAtPCM_Mold);  // 자극 출력 크기
-
-    w_isd_registerValue = w_isd_registerValue | pcm_Mold_Stimulation;
-
-    tdc_shm_fill_specific_command_buffer(pcm_index++, w_isd_registerValue);
-
-#endif
 
     // 펄스 폭을 맞추기 위한  Nop-Token
-#if 0
-                for(numFramePerChannel_index=1; numFramePerChannel_index<s_numFramePerChannel; numFramePerChannel_index++)
-                    tdc_shm_fill_specific_command_buffer(pcm_index++,pcm_Mold_NopStandby);
-
-#else
     for (numFramePerChannel_index = 1; numFramePerChannel_index < (s_numFramePerChannel - 1); numFramePerChannel_index++)  // 펄스폭이 넓어질 경우 NOP과 Backtel NOP의 타이밍 문제로 NOP의 개수를 1개 줄이고 Backtel NOP으로 대체
     {
         tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopStandby);
     }
-#endif
     // 나머지 버퍼는  NOP-Backtel
 
     if (pcm_index >= df_MaxNumTransferableChannel)
@@ -602,17 +545,10 @@ static void tdc_isd_map_impedance_send_or_advance(void)
         if (s_mappingPacket->impedanceCheck.channel == 255)  // 전 채널 측정일 경우 채널을 증가 시키면서 측정한다.
         {
             s_electrodeNum++;
-#if 1
             if (s_electrodeNum >= df_MaxNumOfElectrode)
             {
                 tdc_ble_mapping_clear_command();  // 명령 종료 // 커맨드 리셋;
             }
-#else
-            if (s_electrodeNum >= 16)  // 현재 실험보드에서 16번 전극 이후는 측정하면 에러 발생
-            {
-                tdc_ble_mapping_clear_command();  // 명령 종료 // 커맨드 리셋;
-            }
-#endif
             s_iterationNum = 0;
             s_flowCounter  = 0;
         }

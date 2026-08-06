@@ -356,19 +356,6 @@ void tdc_isd_map_write_info_setting(bool startFlag, int command, int slot_index)
         if (tdc_shm_is_read_write_map_data_flash_command_done())  // CFX에서 eeprom 쓰기가 완료된 상태
         {
 
-#if 0
-
-                                        p_RepositoryFor_buffer= tdc_shm_get_pointer_repository_for_read_write_map_data_user_setting();
-
-
-                                        tdc_shm_change_program_map_num(p_RepositoryFor_buffer[0]);
-                                        tdc_shm_change_stimul_volume(p_RepositoryFor_buffer[1]);
-                                        tdc_shm_change_audio_volume(p_RepositoryFor_buffer[2]);
-                                        tdc_shm_change_led_indicator_on_off(p_RepositoryFor_buffer[3]);
-                                        tdc_shm_change_stimul_indicator_on_off(p_RepositoryFor_buffer[4]);
-                                        tdc_shm_change_tele_coil_on_off(p_RepositoryFor_buffer[5]);
-
-#endif
 
             tdc_shm_change_pcm_output_mode(prevPcmOutputMode);
 
