@@ -3,9 +3,10 @@ Language: Cpp
 IndentWidth: 4
 TabWidth: 4
 UseTab: Never
-ColumnLimit: 320
+ColumnLimit: 160
 BreakBeforeBraces: Allman
 NamespaceIndentation: None
+LineEnding: LF
 
 AllowAllParametersOfDeclarationOnNextLine: false
 BinPackParameters: false
@@ -43,3 +44,12 @@ AlignConsecutiveBitFields: true
 
 SpaceBeforeParens: ControlStatements
 SpaceAfterTemplateKeyword: true
+
+# 조건_2 - 제어문에 모두 {} (clang-format 15+)
+InsertBraces: true
+
+# 조건_5 - { 다음에 의미 없는 빈 줄을 두지 않는다
+# clang-format 19+ 에서 KeepEmptyLinesAtTheStartOfBlocks 가 이 아래로 옮겨졌다.
+# 옛 이름을 쓰면 조용히 무시된다.
+KeepEmptyLines:
+  AtStartOfBlock: false
