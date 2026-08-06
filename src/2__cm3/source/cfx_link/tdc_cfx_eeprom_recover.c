@@ -8,9 +8,9 @@
 
 void tdc_cfx_eeprom_recover_map_data_by_mapping(void)
 {
-    int                  isd_num, map_num;
-    int                  map_num_begin, map_num_end;
-    TDC_FS_MAP_T* p_isd;
+    int           isd_num, map_num;
+    int           map_num_begin, map_num_end;
+    TDC_FS_MAP_T *p_isd;
 
     isd_num = cfx_cm3_sharedMemoryAll.ReadWriteCommand_ForFlash.isd_index;
     map_num = cfx_cm3_sharedMemoryAll.ReadWriteCommand_ForFlash.map_index;
@@ -116,17 +116,17 @@ void tdc_cfx_eeprom_recover_mapdata_mapping_app(void)
     {
         isd_num = cfx_cm3_sharedMemoryAll.ReadWriteCommand_ForFlash.isd_index;
 
-        tdc_cfx_eeprom_erase_isd_info_by_mapping();               // ISD 정보의 메타데이터 항목 제거
+        tdc_cfx_eeprom_erase_isd_info_by_mapping();                 // ISD 정보의 메타데이터 항목 제거
         tdc_cfx_eeprom_erase_user_setting_parameters_by_mapping();  // ISD 정보의 사용자 설정 값 제거
-        tdc_cfx_eeprom_erase_map_stamp_by_mapping();               // ISD 정보의 맵 스탭프 제어
-        tdc_cfx_eeprom_recover_map_data_by_mapping();              // ISD 정보의 모든 맵 데이터 초기화
-        tdc_fs_gain_reset(isd_num);             // ISD 정보의 게인 설정 초기화
-        tdc_cfx_eeprom_read_all_isd_info();                      // 모든 ISD 정보를 다시 불러오기
+        tdc_cfx_eeprom_erase_map_stamp_by_mapping();                // ISD 정보의 맵 스탭프 제어
+        tdc_cfx_eeprom_recover_map_data_by_mapping();               // ISD 정보의 모든 맵 데이터 초기화
+        tdc_fs_gain_reset(isd_num);                                 // ISD 정보의 게인 설정 초기화
+        tdc_cfx_eeprom_read_all_isd_info();                         // 모든 ISD 정보를 다시 불러오기
     }
     else
     {
-        tdc_cfx_eeprom_recover_map_data_by_mapping(); // ISD 정보의 모든 맵 데이터 초기화
+        tdc_cfx_eeprom_recover_map_data_by_mapping();  // ISD 정보의 모든 맵 데이터 초기화
     }
 
-    cfx_cm3_sharedMemoryAll.ReadWriteCommand_ForFlash.flashCommand = 0; // 명령어 플래그 클리어
+    cfx_cm3_sharedMemoryAll.ReadWriteCommand_ForFlash.flashCommand = 0;  // 명령어 플래그 클리어
 }

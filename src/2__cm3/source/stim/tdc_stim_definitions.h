@@ -83,22 +83,17 @@
 #ifdef DisalbedBackTel
 #define df_connectionCheckPeriod_ms 3000
 #else
-    #define df_connectionCheckPeriod_ms     300
+#define df_connectionCheckPeriod_ms 300
 #endif
 
 // 최대 전달 전하량
-    #define df_MaxDeliveryCharge_nC         75
-    #define df_MaxDeliveryCharge_pC         75000
-
-
-
+#define df_MaxDeliveryCharge_nC 75
+#define df_MaxDeliveryCharge_pC 75000
 
 // eCAP 측정시 최대 반복 횟수
-    #define df_maxIterationNum_eCAP                     30
-
+#define df_maxIterationNum_eCAP 30
 
 // 로우배터리 알림 주기
-    #define df_lowbatteryIndicationPeriod_ms            600000
-
+#define df_lowbatteryIndicationPeriod_ms 600000
 
 #endif

@@ -21,8 +21,8 @@ typedef char tdc_gain_file_alignment_check[(((sizeof(tdc_fs_gain_file_t) % 16) +
 static char m_tdc_gain_file_name[] = TDC_FS_GAIN_FILE_NAME;
 
 static tdc_fs_gain_file_t m_tdc_gain_file;
-static uint32_t          m_tdc_gain_crc_ccitt;
-static uint32_t          m_tdc_gain_padding[TDC_FS_GAIN_FILE_PADDING_LEN / 4];
+static uint32_t           m_tdc_gain_crc_ccitt;
+static uint32_t           m_tdc_gain_padding[TDC_FS_GAIN_FILE_PADDING_LEN / 4];
 
 // 파일 내용이 한 번이라도 메모리로 올라왔는지 (저장 시 다른 슬롯 보존에 필요)
 static bool m_is_loaded = false;
@@ -38,10 +38,14 @@ int tdc_fs_gain_init(void)
     int ret = tdc_gain_load_and_repair();
 
     TDC_PRINTF_I("[GAIN] STORAGE INIT : ISD1(%d,%d) ISD2(%d,%d) ISD3(%d,%d) ISD4(%d,%d) \r\n",  //
-              m_tdc_gain_file.setting[0].gain_table_index_a, m_tdc_gain_file.setting[0].gain_table_index_b,
-              m_tdc_gain_file.setting[1].gain_table_index_a, m_tdc_gain_file.setting[1].gain_table_index_b,
-              m_tdc_gain_file.setting[2].gain_table_index_a, m_tdc_gain_file.setting[2].gain_table_index_b,
-              m_tdc_gain_file.setting[3].gain_table_index_a, m_tdc_gain_file.setting[3].gain_table_index_b);
+                 m_tdc_gain_file.setting[0].gain_table_index_a,
+                 m_tdc_gain_file.setting[0].gain_table_index_b,
+                 m_tdc_gain_file.setting[1].gain_table_index_a,
+                 m_tdc_gain_file.setting[1].gain_table_index_b,
+                 m_tdc_gain_file.setting[2].gain_table_index_a,
+                 m_tdc_gain_file.setting[2].gain_table_index_b,
+                 m_tdc_gain_file.setting[3].gain_table_index_a,
+                 m_tdc_gain_file.setting[3].gain_table_index_b);
 
     return ret;
 }
@@ -150,13 +154,13 @@ static int tdc_gain_read_file(void)
     int ret;
 
     ret = tdc_fs_read_with_crc_and_aes128(m_tdc_gain_file_name,          //
-                                                 (uint8_t *) &m_tdc_gain_file,  //
-                                                 sizeof(tdc_fs_gain_file_t),     //
-                                                 &m_tdc_gain_crc_ccitt,         //
-                                                 m_tdc_gain_padding,            //
-                                                 TDC_FS_GAIN_FILE_PADDING_LEN,     //
-                                                 true,                          // CRC 사용
-                                                 false);                        // AES 미사용
+                                          (uint8_t *) &m_tdc_gain_file,  //
+                                          sizeof(tdc_fs_gain_file_t),    //
+                                          &m_tdc_gain_crc_ccitt,         //
+                                          m_tdc_gain_padding,            //
+                                          TDC_FS_GAIN_FILE_PADDING_LEN,  //
+                                          true,                          // CRC 사용
+                                          false);                        // AES 미사용
 
     return ((ret < 0) ? TDC_FS_GAIN_RET_FAIL : TDC_FS_GAIN_RET_OK);
 }
@@ -170,13 +174,13 @@ static int tdc_gain_write_file(void)
     m_tdc_gain_file.ident_end   = TDC_FS_GAIN_FILE_IDENT_END;
 
     ret = tdc_fs_write_with_crc_and_aes128(m_tdc_gain_file_name,          //
-                                                  (uint8_t *) &m_tdc_gain_file,  //
-                                                  sizeof(tdc_fs_gain_file_t),     //
-                                                  &m_tdc_gain_crc_ccitt,         //
-                                                  m_tdc_gain_padding,            //
-                                                  TDC_FS_GAIN_FILE_PADDING_LEN,     //
-                                                  true,                          // CRC 사용
-                                                  false);                        // AES 미사용
+                                           (uint8_t *) &m_tdc_gain_file,  //
+                                           sizeof(tdc_fs_gain_file_t),    //
+                                           &m_tdc_gain_crc_ccitt,         //
+                                           m_tdc_gain_padding,            //
+                                           TDC_FS_GAIN_FILE_PADDING_LEN,  //
+                                           true,                          // CRC 사용
+                                           false);                        // AES 미사용
 
     return ((ret < 0) ? TDC_FS_GAIN_RET_FAIL : TDC_FS_GAIN_RET_OK);
 }

@@ -45,14 +45,14 @@ typedef struct
 {
     int gain_table_index_a;  // 마이크 경로 게인
     int gain_table_index_b;  // I2S 크래들 마이크 경로 게인
-} tdc_fs_gain_setting_t;      // 8 바이트
+} tdc_fs_gain_setting_t;     // 8 바이트
 
 typedef struct
 {
-    uint32_t             ident_begin;
+    uint32_t              ident_begin;
     tdc_fs_gain_setting_t setting[MaxNumUser];  // 슬롯 1~4 -> 인덱스 0~3
-    uint32_t             ident_end;
-} tdc_fs_gain_file_t;                           // 40 바이트
+    uint32_t              ident_end;
+} tdc_fs_gain_file_t;  // 40 바이트
 
 /* 부팅 시 파일을 검사하고 손상되었으면 기본값으로 복구한다.
  * 파일시스템 마운트 이후, CFX iteration 개방 이전에 호출해야 한다. */

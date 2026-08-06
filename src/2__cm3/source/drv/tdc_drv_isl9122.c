@@ -13,8 +13,8 @@
 bool tdc_drv_isl9122_write_register(int registerAddr, int value)
 {
     tdc_hal_i2c_driver_state_t i2cDriverState;
-    int                  transferBuffer[2];
-    bool                 PassFail = false;
+    int                        transferBuffer[2];
+    bool                       PassFail = false;
 
     transferBuffer[0] = (int) registerAddr;
     transferBuffer[1] = (int) value;
@@ -44,8 +44,8 @@ bool tdc_drv_isl9122_write_register(int registerAddr, int value)
 bool tdc_drv_isl9122_read_register(int registerAddr, int *read_value)
 {
     tdc_hal_i2c_driver_state_t i2cDriverState;
-    bool                 PassFail = false;
-    int                  transferBuffer[2];
+    bool                       PassFail = false;
+    int                        transferBuffer[2];
 
     // 읽기 : 선행 명령 전송 (
     transferBuffer[0] = registerAddr;
@@ -107,4 +107,3 @@ bool tdc_drv_isl9122_reset(void)
         return false;
     }
 }
-

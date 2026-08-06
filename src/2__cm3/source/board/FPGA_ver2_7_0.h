@@ -8,14 +8,14 @@
 typedef enum
 {
     i2cAddr_FPGA_version = 0x20,
-    i2cAddr_FPGA_systemResgister_1st, // writable
-    i2cAddr_FPGA_systemResgister_2nd, // writable
+    i2cAddr_FPGA_systemResgister_1st,  // writable
+    i2cAddr_FPGA_systemResgister_2nd,  // writable
     i2cAddr_FPGA_error_Flag,
     i2cAddr_FPGA_backtel_ErrorFlag,
-    i2cAddr_FPGA_pulsePhaseWidth, // writable
+    i2cAddr_FPGA_pulsePhaseWidth,  // writable
     i2cAddr_FPGA_FIFO_counter,
     i2cAddr_FGPA_IO_MUX,
-    i2cAddr_FPGA_backtel_Config, // writable
+    i2cAddr_FPGA_backtel_Config,  // writable
     i2cAddr_FPGA_optional_Config,
     i2cAddr_FPGA_Backtel_FIFO = 0x30
 
@@ -112,7 +112,7 @@ typedef enum
     systemResgister_2nd_resetValue       = 0x3E,
     stimulation_PhaseDuration_resetValue = 0,
     // 튜닝 이력(후보값 9종·현장실패 개체번호): docs/참고/cm3-백텔-캘리브레이션-이력.md
-    backterConfiguration_resetValue         = 0x2D,
+    backterConfiguration_resetValue        = 0x2D,
     fpga_IO_MUX_Configuration_resetValue   = 0,
     fpga_optional_configuration_resetValue = 0
 
@@ -121,16 +121,16 @@ typedef enum
 //
 #define FPGA_TxPower_Max       7
 #define FPGA_TxPower_Min       0
-#define FPGA_TxPower_initValue FPGA_TxPower_Max // 0~7
+#define FPGA_TxPower_initValue FPGA_TxPower_Max  // 0~7
 
 #define FPGA_BacktelCalibrationVal_Max 0x10
 #define FPGA_BacktelCalibrationVal_Min 0x08
 
 // 데이터 전송 관련
-#define FPGA_oneChannelDataTokenTime         41 //  하나의 채널 데이터를  전송가능한 최대로 할당된 시간 단위  41.66usec ... 1ms 동안 24채널을
-#define FPGA_electrodAndStimulLevelTokenTime 10 // 펄스폭을 제외한 자극파라미터(전극번호+자극크기)를 에러가 발생하지 않고 전송가능한 시간 단위 usec
-#define FPGA_interphaseGapTokenTime          4  // 펄스폭을 최소로 했을 때 에러가 발생하지 않고 전송가능한 시간 단위 usec
-#define FPGA_pulsePhaseWidth_minimum         13 // 최소 펄스폭 크기.
+#define FPGA_oneChannelDataTokenTime         41  //  하나의 채널 데이터를  전송가능한 최대로 할당된 시간 단위  41.66usec ... 1ms 동안 24채널을
+#define FPGA_electrodAndStimulLevelTokenTime 10  // 펄스폭을 제외한 자극파라미터(전극번호+자극크기)를 에러가 발생하지 않고 전송가능한 시간 단위 usec
+#define FPGA_interphaseGapTokenTime          4   // 펄스폭을 최소로 했을 때 에러가 발생하지 않고 전송가능한 시간 단위 usec
+#define FPGA_pulsePhaseWidth_minimum         13  // 최소 펄스폭 크기.
 
 // PCM 통신으로 설정하는 값들
 
@@ -138,7 +138,5 @@ typedef enum
 #define df_FPGA_FIFO_buffSize 100
 #define FIPGA_FIFO_index_0    0
 #define FIPGA_FIFO_index_1    1
-
-
 
 #endif

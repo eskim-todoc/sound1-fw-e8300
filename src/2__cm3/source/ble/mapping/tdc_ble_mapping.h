@@ -49,7 +49,6 @@ typedef struct
 
 typedef struct
 {
-
     int subCommand;  // 시작, 중지, 자극 볼륨 조절, 마이크 감도 조절, 알림용 자극  설정
 
     int stimulVolume;
@@ -91,7 +90,6 @@ typedef struct
 
 typedef struct
 {
-
     int pulseWidth;
     int firstPulsePhase;
     int stimulationMode;
@@ -132,8 +130,8 @@ typedef struct
 
 void tdc_ble_mapping_clear_command();
 
-void                tdc_ble_mapping_change_command_ble_disconnected(void);
-void                tdc_ble_mapping_change_command_waiting_ble_off(void);
+void tdc_ble_mapping_change_command_ble_disconnected(void);
+void tdc_ble_mapping_change_command_waiting_ble_off(void);
 // const ST__MAPPING_PACKET *tdc_ble_mapping_get_packet(void);
 ST__MAPPING_PACKET *tdc_ble_mapping_get_packet(void);
 

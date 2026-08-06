@@ -9,9 +9,9 @@
 
 typedef struct
 {
-    int DAC_Slope_register; // cm3에서 계산함
+    int DAC_Slope_register;  // cm3에서 계산함
     int DAC_offsetSlope_register;
-    int DAC_offsetLevel_register; // cm3에서 변경함.
+    int DAC_offsetLevel_register;  // cm3에서 변경함.
 
 } ST_STIUL_DAC_REGISTER_VALUE;
 

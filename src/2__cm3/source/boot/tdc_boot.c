@@ -5,13 +5,13 @@
 #include <tdc_boot.h>
 #include <tdc_printf.h>
 
-#define _INFINITE_LOOP()                                                                                                                                                                                                                                                                                                       \
-    while (1)                                                                                                                                                                                                                                                                                                                  \
-    {                                                                                                                                                                                                                                                                                                                          \
-        (void) 0;                                                                                                                                                                                                                                                                                                              \
+#define _INFINITE_LOOP()                                                                                                                                       \
+    while (1)                                                                                                                                                  \
+    {                                                                                                                                                          \
+        (void) 0;                                                                                                                                              \
     }
 
-static FIL                   *_g_fp     = NULL;
+static FIL              *_g_fp     = NULL;
 static tdc_boot_status_t _g_status = {0};
 
 static void _open_status_file(void)

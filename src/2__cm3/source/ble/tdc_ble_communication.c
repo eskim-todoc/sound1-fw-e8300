@@ -61,10 +61,10 @@ void fetch_readDataForBleSetting(const uint8_t *Rx_dataPacket)
 static void tdc_ble_cmd_0x30_read_connected_isd_info(void)
 {
     uint8_t Tx_dataBuff[BLE_DataPacketSize];
-    int  connectedISD_num;
-    int *p_currentUserName;
-    int tx_index = 0;
-    int i;
+    int     connectedISD_num;
+    int    *p_currentUserName;
+    int     tx_index = 0;
+    int     i;
 
     ST__ISD_STATUS isd_status;
 
@@ -74,8 +74,8 @@ static void tdc_ble_cmd_0x30_read_connected_isd_info(void)
     if (isd_status.conneded_ISD)
     {
         // 수술위치
-        connectedISD_num        = tdc_shm_read_connected_isd_num();
-        tx_index = tdc_ble_reply_u8(Tx_dataBuff, tx_index, (uint8_t) tdc_shm_read_connected_isd_location(connectedISD_num));
+        connectedISD_num = tdc_shm_read_connected_isd_num();
+        tx_index         = tdc_ble_reply_u8(Tx_dataBuff, tx_index, (uint8_t) tdc_shm_read_connected_isd_location(connectedISD_num));
 
         // 사용자 이름
         p_currentUserName = tdc_shm_read_connected_isd_user_name(connectedISD_num);
@@ -94,15 +94,15 @@ static void tdc_ble_cmd_0x30_read_connected_isd_info(void)
         tx_index = 0;
     }
 
-    tdc_hal_spi_write_tx_buffer(Tx_dataBuff, tx_index);     // 송신 데이터 SPI TX버퍼에 복사
-    bleSettingPacket.command = en__bleSetting_IDLE;  //  명령 종료
+    tdc_hal_spi_write_tx_buffer(Tx_dataBuff, tx_index);  // 송신 데이터 SPI TX버퍼에 복사
+    bleSettingPacket.command = en__bleSetting_IDLE;      //  명령 종료
 }
 
 /* 0x33 시스템 정보 - 배터리 잔량·충전 상태 */
 static void tdc_ble_cmd_0x33_system_info_battery(void)
 {
     uint8_t Tx_dataBuff[BLE_DataPacketSize];
-    int tx_index = 0;
+    int     tx_index = 0;
 
     int batt_percent;
     int charger_state;
@@ -126,15 +126,15 @@ static void tdc_ble_cmd_0x33_system_info_battery(void)
     tx_index = tdc_ble_reply_u8(Tx_dataBuff, tx_index, batt_percent);
     tx_index = tdc_ble_reply_u8(Tx_dataBuff, tx_index, charger_state);  // 0: RESET, 1: CONNECTED, 2: DISCONNECTED
 
-    tdc_hal_spi_write_tx_buffer(Tx_dataBuff, tx_index);     // 송싱 데이터 SPI TX버퍼에 복사
-    bleSettingPacket.command = en__bleSetting_IDLE;  // 명령 종료
+    tdc_hal_spi_write_tx_buffer(Tx_dataBuff, tx_index);  // 송싱 데이터 SPI TX버퍼에 복사
+    bleSettingPacket.command = en__bleSetting_IDLE;      // 명령 종료
 }
 
 /* 0x34 시스템 정보 - 전원·크래들 뚜껑 상태 */
 static void tdc_ble_cmd_0x34_system_info_power(void)
 {
     uint8_t Tx_dataBuff[BLE_DataPacketSize];
-    int tx_index = 0;
+    int     tx_index = 0;
 
     int battery_level;      // 패킷 인덱스 1 → 헤더 제외 시, 데이터 인덱스 0
     int charger_connected;  // 패킷 인덱스 2 → 헤더 제외 시, 데이터 인덱스 1
@@ -170,7 +170,11 @@ static void tdc_ble_cmd_0x34_system_info_power(void)
     }  // 끝, switch
 
     tdc_pwr_cradle_set_cover_state(cradle_lid_state);
-    TDC_PRINTF_V("[BT] CMD 0x%02X, CHARGER STATE: %d, BATT LEVEL %d PERCENT, LID STATE %d\r\n", EN__SND_BT_CMD_SYSTEM_INFO_POWER, charger_connected, battery_level, cradle_lid_state);
+    TDC_PRINTF_V("[BT] CMD 0x%02X, CHARGER STATE: %d, BATT LEVEL %d PERCENT, LID STATE %d\r\n",
+                 EN__SND_BT_CMD_SYSTEM_INFO_POWER,
+                 charger_connected,
+                 battery_level,
+                 cradle_lid_state);
 
     tx_index = tdc_ble_reply_header(Tx_dataBuff, tx_index, EN__SND_BT_CMD_SYSTEM_INFO_POWER);
     tx_index = tdc_ble_reply_u8(Tx_dataBuff, tx_index, 1);  // 수신 확인 응답
@@ -178,15 +182,15 @@ static void tdc_ble_cmd_0x34_system_info_power(void)
     // TDC_PRINTF_W("[BT] BEFORE-WRITE-TX 0x34 t3=%d ms\r\n", tdc_hal_timer_get_t3_tick());
     // TDC_PRINTF_W("[BT] CALL-WRITE-TX TxEmpty=%d\r\n", (int) tdc_hal_spi_is_tx_buffer_empty());
 
-    tdc_hal_spi_write_tx_buffer(Tx_dataBuff, tx_index);     // 송싱 데이터 SPI TX버퍼에 복사
-    bleSettingPacket.command = en__bleSetting_IDLE;  // 명령 종료
+    tdc_hal_spi_write_tx_buffer(Tx_dataBuff, tx_index);  // 송싱 데이터 SPI TX버퍼에 복사
+    bleSettingPacket.command = en__bleSetting_IDLE;      // 명령 종료
 }
 
 /* 0x35 시스템 정보 - LED 인디케이터 설정 */
 static void tdc_ble_cmd_0x35_system_info_led_ind(void)
 {
     uint8_t Tx_dataBuff[BLE_DataPacketSize];
-    int tx_index = 0;
+    int     tx_index = 0;
 
     int led_ind;  // 패킷 인덱스 1 → 헤더 제외 시, 데이터 인덱스 0
 
@@ -210,16 +214,16 @@ static void tdc_ble_cmd_0x35_system_info_led_ind(void)
 
     /* 응답 패킷 */
     tx_index = tdc_ble_reply_header(Tx_dataBuff, tx_index, EN__SND_BT_CMD_SYSTEM_INFO_LED_IND);
-    tx_index = tdc_ble_reply_u8(Tx_dataBuff, tx_index, 1);                     // 수신 확인 응답
+    tx_index = tdc_ble_reply_u8(Tx_dataBuff, tx_index, 1);  // 수신 확인 응답
     tdc_hal_spi_write_tx_buffer(Tx_dataBuff, tx_index);     // 송신 데이터 SPI TX버퍼에 복사
-    bleSettingPacket.command = en__bleSetting_IDLE;  // 명령 종료
+    bleSettingPacket.command = en__bleSetting_IDLE;         // 명령 종료
 }
 
 /* 0x36 시스템 정보 - 클래식 BT 연결 상태 */
 static void tdc_ble_cmd_0x36_system_info_classic_state(void)
 {
     uint8_t Tx_dataBuff[BLE_DataPacketSize];
-    int tx_index = 0;
+    int     tx_index = 0;
 
     int classic_state;  // 패킷 인덱스 1 →헤더 제외 시, 데이터 인덱스 0
     int classic_type;   // 패킷 인덱스 2 →헤더 제외 시, 데이터 인덱스 1
@@ -229,13 +233,13 @@ static void tdc_ble_cmd_0x36_system_info_classic_state(void)
 
     /* 명령 처리 */
     TDC_PRINTF_W("[BT] CMD 0x%02X, CLASSIC STATE: %s, %s \r\n",  //
-              classic_state == 0   ? "DISCONN"
-              : classic_state == 1 ? "CONN"
-                                   : "INVALID",
-              classic_type == 0   ? "UNKNOWN"
-              : classic_type == 1 ? "CRADLE"
-              : classic_type == 2 ? "OTHER"
-                                  : "INVALID");
+                 classic_state == 0   ? "DISCONN"
+                 : classic_state == 1 ? "CONN"
+                                      : "INVALID",
+                 classic_type == 0   ? "UNKNOWN"
+                 : classic_type == 1 ? "CRADLE"
+                 : classic_type == 2 ? "OTHER"
+                                     : "INVALID");
 
     /* I2S 로 들어오는 오디오가 크래들 마이크인지 CFX 에 알려 준다.
      * CFX 는 이 값이 1 이면 I2S 경로에 Gain_B 를 적용하고,
@@ -244,9 +248,9 @@ static void tdc_ble_cmd_0x36_system_info_classic_state(void)
 
     /* 응답 패킷 */
     tx_index = tdc_ble_reply_header(Tx_dataBuff, tx_index, EN__SND_BT_CMD_SYSTEM_INFO_CLASSIC_STATE);
-    tx_index = tdc_ble_reply_u8(Tx_dataBuff, tx_index, 1);                     // 수신 확인 응답
+    tx_index = tdc_ble_reply_u8(Tx_dataBuff, tx_index, 1);  // 수신 확인 응답
     tdc_hal_spi_write_tx_buffer(Tx_dataBuff, tx_index);     // 송신 데이터 SPI TX버퍼에 복사
-    bleSettingPacket.command = en__bleSetting_IDLE;  // 명령 종료
+    bleSettingPacket.command = en__bleSetting_IDLE;         // 명령 종료
 }
 
 /* 이름과 달리 광고 정보만이 아니라 배터리·전원·LED·클래식 상태 응답을 모두
@@ -288,7 +292,7 @@ ST__BLE_COMMUNICATION_STATE tdc_ble_communication_step(ST__ISD_STATUS isd_state)
     int             i;
     static uint8_t *p_Rx_dataPacket;
 
-    tdc_hal_spi_comm_state_t         communicationState;
+    tdc_hal_spi_comm_state_t    communicationState;
     ST__MAPPING_STATE           mappingState;
     ST__BLE_COMMUNICATION_STATE ble_communication_state = {en__isdStatus_NA, false, false, false};
     ST__REMOTECONTROL_STATE     remoteControlState      = {en__isdStatus_NA, false};
@@ -404,7 +408,6 @@ ST__BLE_COMMUNICATION_STATE tdc_ble_communication_step(ST__ISD_STATUS isd_state)
             }
 
             tdc_hal_spi_set_comm_state_idle();
-
         }
         break;
 

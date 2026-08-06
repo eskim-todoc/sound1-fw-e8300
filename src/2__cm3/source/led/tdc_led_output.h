@@ -2,7 +2,7 @@
 #define __tdc_led_output_h__
 
 /** 롱터치 무시 케이스 보라색 LED 피드백 (디버깅용) - 0 으로 설정 시 기존 동작(무시만) 복원 */
-#define TDC_LED_DBG_LONG_TOUCH_IGNORE  0
+#define TDC_LED_DBG_LONG_TOUCH_IGNORE 0
 
 #include <stdbool.h>
 #include <stdint.h>
@@ -64,10 +64,10 @@ typedef enum
     TDC_LED_ST_IDLE,
 
     /* 운용 */
-    TDC_LED_ST_BATT_READY,     /* 녹색 지속 ON */
-    TDC_LED_ST_IN_USE,         /* 흰색 지속 ON */
-    TDC_LED_ST_BATT_MID,       /* 노랑 지속 ON */
-    TDC_LED_ST_BATT_CRITICAL,  /* 노랑 ON 1100ms / OFF 1100ms 점멸 */
+    TDC_LED_ST_BATT_READY,    /* 녹색 지속 ON */
+    TDC_LED_ST_IN_USE,        /* 흰색 지속 ON */
+    TDC_LED_ST_BATT_MID,      /* 노랑 지속 ON */
+    TDC_LED_ST_BATT_CRITICAL, /* 노랑 ON 1100ms / OFF 1100ms 점멸 */
 
     /* Mapping (4종 분화 - 배터리 LOW 임계 20% × ISD 연결 여부) */
     TDC_LED_ST_MAPPING_ISD_BATT_READY,    /* 파랑 ON 200ms / OFF 800ms 점멸 (배터리 > 20% & ISD 연결) */
@@ -121,34 +121,34 @@ typedef enum
 typedef struct
 {
     tdc_led_color_t color;
-    uint16_t      on_ms;
-    uint16_t      period_ms;
-    uint8_t       burst_cnt;
+    uint16_t        on_ms;
+    uint16_t        period_ms;
+    uint8_t         burst_cnt;
 } tdc_led_pattern_desc_t;
 
 /* ========================================================================
  *  New API (Arbiter + Engine)
  * ======================================================================== */
 
-void        tdc_led_request(tdc_led_src_t src, tdc_led_state_t st);
-void        tdc_led_arbiter_tick(void);
-bool        tdc_led_is_burst_pending(void);
+void            tdc_led_request(tdc_led_src_t src, tdc_led_state_t st);
+void            tdc_led_arbiter_tick(void);
+bool            tdc_led_is_burst_pending(void);
 tdc_led_state_t tdc_led_get_request(tdc_led_src_t src);
 
 /* CFX / FIFO ISR 활성 여부 통지 - initialize.c 에서 set / clear.
  * tdc_led_turn_off() 가 ISR 의존 fade-off vs. 즉시 OFF 분기 결정에 사용. */
-void        tdc_led_isr_active_set(bool active);
+void tdc_led_isr_active_set(bool active);
 
 /* 절전 진입 직전 1 회 호출. 모든 src TDC_LED_ST_NONE 강제 + cross-fade
  * Phase A 자연 fade-off 보장 (소요 ~ LED_DIMMING_FADE_MAX_MS + 10 ms).
  * 호출 후엔 LED 가 BLACK 상태로 안정 - tdc_led_turn_off() 가 잔상 없이 마무리. */
-void        tdc_led_force_fade_off(void);
+void tdc_led_force_fade_off(void);
 
 /* ========================================================================
  *  Legacy API (호환용 유지)
  * ======================================================================== */
 
-void                tdc_led_set_ind_state(tdc_led_ind_state_t state);
+void tdc_led_set_ind_state(tdc_led_ind_state_t state);
 
 bool tdc_led_is_test_trigger_enabled(void);
 

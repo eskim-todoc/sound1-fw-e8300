@@ -25,7 +25,6 @@ void tdc_stim_indicator_out(int userSettingEnableStimulationIndicator, bool stim
     static int counter                 = 0;
     static int outputPulseTrainCounter = 0;
 
-
     if (stimulationTriggerLowPower)
     {
         if (userSettingEnableStimulationIndicator == 1)
@@ -41,10 +40,8 @@ void tdc_stim_indicator_out(int userSettingEnableStimulationIndicator, bool stim
 
     if (tdc_stim_indicator_is_triggered())
     {
-
         if (counter < 80)
         {
-
             tdc_shm_set_stimulation_indicator_on_off_by_cm3(true);
         }
         else
@@ -80,9 +77,9 @@ void tdc_stim_indicator_set_level_255(void)
     int stimulation_Channel;
     int temp;
 
-    const ST_STIUL_DAC_REGISTER_VALUE* p_stimulDAC_setting;
+    const ST_STIUL_DAC_REGISTER_VALUE *p_stimulDAC_setting;
 
-    const ST__CFX_CM3_SharedMemory_mapData* p_mapData;
+    const ST__CFX_CM3_SharedMemory_mapData *p_mapData;
 
     p_stimulDAC_setting = tdc_stim_read_dac_register_value();
     p_mapData           = tdc_shm_get_pointer_current_map_data();
@@ -122,4 +119,3 @@ void tdc_stim_indicator_set_level_255(void)
             break;
     }
 }
-

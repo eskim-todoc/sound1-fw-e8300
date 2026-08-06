@@ -23,4 +23,4 @@ void tdc_cfx_eeprom_write_user_setting_parameters_by_mapping(void);
 void tdc_cfx_eeprom_write_user_setting_parameters(int connected_ISD_num);
 void tdc_cfx_eeprom_write_map_stamp_parameters_by_mapping(void);
 
-#endif // __tdc_cfx_eeprom_write_h__
+#endif  // __tdc_cfx_eeprom_write_h__

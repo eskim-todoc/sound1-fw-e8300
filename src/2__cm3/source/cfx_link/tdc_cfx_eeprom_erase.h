@@ -26,4 +26,4 @@ void tdc_cfx_eeprom_erase_user_setting_parameters_by_mapping(void);
 void tdc_cfx_eeprom_recover_map_data_by_mapping(void);
 void tdc_cfx_eeprom_recover_mapdata_mapping_app(void);
 
-#endif // __tdc_cfx_eeprom_erase_h__
+#endif  // __tdc_cfx_eeprom_erase_h__

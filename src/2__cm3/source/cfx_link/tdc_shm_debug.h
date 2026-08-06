@@ -33,6 +33,6 @@ typedef struct
     int buffer[512];
 } FS_MEM_UART_T;
 
-#define FS_MEM_UART ((volatile FS_MEM_UART_T*) DSP_PRAM1_REMAP_BASE)
+#define FS_MEM_UART ((volatile FS_MEM_UART_T *) DSP_PRAM1_REMAP_BASE)
 
 #endif  // __tdc_shm_debug_h__

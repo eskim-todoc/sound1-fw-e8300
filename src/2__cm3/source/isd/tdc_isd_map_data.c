@@ -10,11 +10,10 @@
 
 void tdc_isd_map_read_original_info_setting(bool startFlag, int command)
 {
-
     ST__CFX_CM3_SharedMemory_ReadWriteCommand_ForFlash FlashCommand;
     int                                               *p_RepositoryFor_ISD_info;
 
-    uint8_t        bufferForSPI_tx[BLE_DataPacketSize];
+    uint8_t    bufferForSPI_tx[BLE_DataPacketSize];
     int        buffer_tx_index;
     int        i;
     static int prevPcmOutputMode;
@@ -24,7 +23,6 @@ void tdc_isd_map_read_original_info_setting(bool startFlag, int command)
 
     if (startFlag)
     {
-
         FlashCommand.flashCommand = flash_Command_Read;
         FlashCommand.isd_index    = 1;
         FlashCommand.map_index    = 0;  // 맵 인덱스가 0이면 CFX에서 ISD 정보 및 사용자 설정값을 읽도록 한다.
@@ -40,7 +38,6 @@ void tdc_isd_map_read_original_info_setting(bool startFlag, int command)
     {
         if (tdc_shm_is_read_write_map_data_flash_command_done())  // CFX에서 eeprom 읽기가 완료된 상태
         {
-
             tdc_shm_change_pcm_output_mode(prevPcmOutputMode);
 
             p_RepositoryFor_ISD_info = tdc_shm_get_pointer_repository_for_read_write_map_data_isd_info();
@@ -114,7 +111,7 @@ void tdc_isd_map_write_original_info_setting(bool startFlag, int command)
 {
     ST__CFX_CM3_SharedMemory_ReadWriteCommand_ForFlash FlashCommand;
 
-    uint8_t         bufferForSPI_tx[BLE_DataPacketSize];
+    uint8_t     bufferForSPI_tx[BLE_DataPacketSize];
     int         buffer_tx_index;
     static bool prev_ISD_id_match = false;
     static bool startFlashCommand = false;
@@ -136,10 +133,8 @@ void tdc_isd_map_write_original_info_setting(bool startFlag, int command)
 
     if (p_mappingPacket->rx_orignal_ISD_info.id_check_is_completed)
     {
-
         if (p_mappingPacket->rx_orignal_ISD_info.id_match)
         {
-
             if (!prev_ISD_id_match)
             {
                 // 플레쉬에 저장하면서 NRF 광고 이름을 바꾸기 위해서 NRF를 껏다가 켠다. 이러한 이유로 NRF를 끄기전에 수신된 명령을 루프백한다.
@@ -156,7 +151,6 @@ void tdc_isd_map_write_original_info_setting(bool startFlag, int command)
 
             if (tdc_hal_spi_is_tx_buffer_empty())  // NRF로 응답 명령의 전송이 완료된 상태.
             {
-
                 // 1회 동작
                 if (!startFlashCommand)
                 {
@@ -177,7 +171,6 @@ void tdc_isd_map_write_original_info_setting(bool startFlag, int command)
 
                 if (tdc_shm_is_read_write_map_data_flash_command_done())  // CFX에서 eeprom 쓰기가 완료된 상태
                 {
-
                     startFlashCommand = false;
                     tdc_ble_mapping_change_command_waiting_ble_off();
                 }
@@ -185,7 +178,6 @@ void tdc_isd_map_write_original_info_setting(bool startFlag, int command)
         }
         else
         {
-
             // id가 맞지 않는다.
             tdc_sys_error_send_to_app(command, en__EN__ISD_ERROR, en__No_Matched_ISD_ID, __LINE__);
 
@@ -196,7 +188,6 @@ void tdc_isd_map_write_original_info_setting(bool startFlag, int command)
 
     if (counter > 2000)
     {
-
         // id가 0으로 읽혀서 계속 시도 함으으로써 시간 초과
         tdc_sys_error_send_to_app(command, en__EN__ISD_ERROR, en__ISD_EEPROM_ValueZero, __LINE__);
 
@@ -217,7 +208,7 @@ void tdc_isd_map_read_info_setting(bool startFlag, int command, int slot_index)
 
     ST__CFX_CM3_SharedMemory_ReadWriteCommand_ForFlash FlashCommand;
     int                                               *p_RepositoryFor_ISD_info;
-    uint8_t                                                bufferForSPI_tx[BLE_DataPacketSize];
+    uint8_t                                            bufferForSPI_tx[BLE_DataPacketSize];
     int                                                buffer_tx_index;
     int                                                i;
 
@@ -329,10 +320,9 @@ void tdc_isd_map_read_info_setting(bool startFlag, int command, int slot_index)
 
 void tdc_isd_map_write_info_setting(bool startFlag, int command, int slot_index)
 {
-
     ST__CFX_CM3_SharedMemory_ReadWriteCommand_ForFlash FlashCommand;
 
-    uint8_t        bufferForSPI_tx[BLE_DataPacketSize];
+    uint8_t    bufferForSPI_tx[BLE_DataPacketSize];
     int        buffer_tx_index;
     int       *p_RepositoryFor_buffer;
     static int prevPcmOutputMode;
@@ -341,7 +331,6 @@ void tdc_isd_map_write_info_setting(bool startFlag, int command, int slot_index)
 
     if (startFlag)
     {
-
         FlashCommand.flashCommand = flash_Command_Write;
         FlashCommand.isd_index    = slot_index;
         FlashCommand.map_index    = 0;  // 맵 인덱스가 0이면 CFX에서 ISD 정보 및 사용자 설정값을 쓰도록 한다.
@@ -355,8 +344,6 @@ void tdc_isd_map_write_info_setting(bool startFlag, int command, int slot_index)
     {
         if (tdc_shm_is_read_write_map_data_flash_command_done())  // CFX에서 eeprom 쓰기가 완료된 상태
         {
-
-
             tdc_shm_change_pcm_output_mode(prevPcmOutputMode);
 
             // 마지막으로 수신된 명령을 루프백 한다.
@@ -388,11 +375,10 @@ void tdc_isd_map_write_info_setting(bool startFlag, int command, int slot_index)
 
 void tdc_isd_map_read_stim_para(bool startFlag, int command, int slot_index, int map_index)
 {
-
     ST__CFX_CM3_SharedMemory_ReadWriteCommand_ForFlash FlashCommand;
     int                                               *p_RepositoryFor_stimulPara;
 
-    uint8_t        bufferForSPI_tx[BLE_DataPacketSize];
+    uint8_t    bufferForSPI_tx[BLE_DataPacketSize];
     int        buffer_tx_index;
     int        i;
     int        byteFromInt;
@@ -404,7 +390,6 @@ void tdc_isd_map_read_stim_para(bool startFlag, int command, int slot_index, int
 
     if (startFlag)
     {
-
         FlashCommand.flashCommand = flash_Command_Read;
         FlashCommand.isd_index    = slot_index;
         FlashCommand.map_index    = map_index;
@@ -422,7 +407,6 @@ void tdc_isd_map_read_stim_para(bool startFlag, int command, int slot_index, int
     {
         if (tdc_shm_is_read_write_map_data_flash_command_done())  // CFX에서 eeprom 읽기가 완료된 상태
         {
-
             tdc_shm_change_pcm_output_mode(prevPcmOutputMode);
 
             p_RepositoryFor_stimulPara = tdc_shm_get_pointer_repository_for_read_write_map_data_stimul_para();
@@ -542,7 +526,6 @@ void tdc_isd_map_read_stim_para(bool startFlag, int command, int slot_index, int
 
             if (dataPacket_index == numPacket_readMapData_stimulPara)  // 명령 완료
             {
-
                 stimulPara_index = 0;
 
                 // 명령 종료
@@ -563,10 +546,9 @@ void tdc_isd_map_read_stim_para(bool startFlag, int command, int slot_index, int
 
 void tdc_isd_map_write_stim_para(bool startFlag, int command, int slot_index, int map_index)
 {
-
     ST__CFX_CM3_SharedMemory_ReadWriteCommand_ForFlash FlashCommand;
 
-    uint8_t        bufferForSPI_tx[BLE_DataPacketSize];
+    uint8_t    bufferForSPI_tx[BLE_DataPacketSize];
     int        buffer_tx_index;
     static int prevPcmOutputMode;
 
@@ -574,7 +556,6 @@ void tdc_isd_map_write_stim_para(bool startFlag, int command, int slot_index, in
 
     if (startFlag)
     {
-
         FlashCommand.flashCommand = flash_Command_Write;
         FlashCommand.isd_index    = slot_index;
         FlashCommand.map_index    = map_index;  // 맵 인덱스가 0이면 CFX에서 ISD 정보 및 사용자 설정값을 쓰도록 한다.
@@ -588,7 +569,6 @@ void tdc_isd_map_write_stim_para(bool startFlag, int command, int slot_index, in
     {
         if (tdc_shm_is_read_write_map_data_flash_command_done())  // CFX에서 eeprom 쓰기가 완료된 상태
         {
-
             tdc_shm_change_pcm_output_mode(prevPcmOutputMode);
 
             // 마지막으로 수신된 명령을 루프백 한다.
@@ -622,10 +602,9 @@ void tdc_isd_map_write_stim_para(bool startFlag, int command, int slot_index, in
 
 void tdc_isd_map_reset_nvm_selected(bool startFlag, int command, int slot_index, EN__mapping_ReadWriteMap_command RecoverOrErase)
 {
-
     ST__CFX_CM3_SharedMemory_ReadWriteCommand_ForFlash FlashCommand;
 
-    uint8_t        bufferForSPI_tx[BLE_DataPacketSize];
+    uint8_t    bufferForSPI_tx[BLE_DataPacketSize];
     int        buffer_tx_index;
     static int prevPcmOutputMode;
 
@@ -635,7 +614,6 @@ void tdc_isd_map_reset_nvm_selected(bool startFlag, int command, int slot_index,
 
         if (startFlag)
         {
-
             FlashCommand.flashCommand = RecoverOrErase;
             FlashCommand.isd_index    = slot_index;
             FlashCommand.map_index    = 0;  // 맵 인덱스가 0이면 CFX에서 ISD 정보 및 사용자 설정값을 쓰도록 한다.
@@ -649,7 +627,6 @@ void tdc_isd_map_reset_nvm_selected(bool startFlag, int command, int slot_index,
         {
             if (tdc_shm_is_read_write_map_data_flash_command_done())  // CFX에서 eeprom 쓰기가 완료된 상태
             {
-
                 tdc_shm_change_pcm_output_mode(prevPcmOutputMode);
 
                 // 마지막으로 수신된 명령을 루프백 한다.
@@ -680,7 +657,6 @@ void tdc_isd_map_reset_nvm_selected(bool startFlag, int command, int slot_index,
     }
     else
     {
-
         // 에러 전송
         tdc_sys_error_send_to_app(command, en__dataProcessing_ERROR, en_sourceCodeError, __LINE__);  // 소스 코드 에러
 
@@ -701,7 +677,7 @@ bool tdc_isd_map_reset_nvm_all(bool startFlag, int command, EN__mapping_ReadWrit
 {
     ST__CFX_CM3_SharedMemory_ReadWriteCommand_ForFlash FlashCommand;
 
-    uint8_t        bufferForSPI_tx[BLE_DataPacketSize];
+    uint8_t    bufferForSPI_tx[BLE_DataPacketSize];
     int        buffer_tx_index;
     static int prevPcmOutputMode;
     static int counter          = 0;
@@ -731,7 +707,8 @@ bool tdc_isd_map_reset_nvm_all(bool startFlag, int command, EN__mapping_ReadWrit
                 prevPcmOutputMode = tdc_shm_read_current_pcm_output_mode();
                 tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_NopStandby);
 
-                TDC_PRINTF_I("[FLASH] COMMAND (%d), ISD INDEX (%d), MAP INDEX (%d) \r\n", FlashCommand.flashCommand, FlashCommand.isd_index, FlashCommand.map_index);
+                TDC_PRINTF_I(
+                    "[FLASH] COMMAND (%d), ISD INDEX (%d), MAP INDEX (%d) \r\n", FlashCommand.flashCommand, FlashCommand.isd_index, FlashCommand.map_index);
                 tdc_shm_set_read_write_map_data_flash_command(FlashCommand);
 
                 break;
@@ -781,10 +758,9 @@ bool tdc_isd_map_reset_nvm_all(bool startFlag, int command, EN__mapping_ReadWrit
 
 void tdc_isd_map_reset_nvm_2to4(bool startFlag, int command, EN__mapping_ReadWriteMap_command RecoverOrErase)
 {
-
     ST__CFX_CM3_SharedMemory_ReadWriteCommand_ForFlash FlashCommand;
 
-    uint8_t        bufferForSPI_tx[BLE_DataPacketSize];
+    uint8_t    bufferForSPI_tx[BLE_DataPacketSize];
     int        buffer_tx_index;
     static int prevPcmOutputMode;
     static int counter    = 0;
@@ -796,9 +772,8 @@ void tdc_isd_map_reset_nvm_2to4(bool startFlag, int command, EN__mapping_ReadWri
 
         if (startFlag)
         {
-
-            counter          = 0;
-            slot_index       = 1;
+            counter    = 0;
+            slot_index = 1;
         }
 
         switch (counter)
@@ -828,7 +803,6 @@ void tdc_isd_map_reset_nvm_2to4(bool startFlag, int command, EN__mapping_ReadWri
 
         if (slot_index == 4)
         {
-
             tdc_shm_change_pcm_output_mode(prevPcmOutputMode);
 
             // 마지막으로 수신된 명령을 루프백 한다.
@@ -877,10 +851,9 @@ void tdc_isd_map_reset_nvm_2to4(bool startFlag, int command, EN__mapping_ReadWri
 
 void tdc_isd_map_reset_nvm_map_data(bool startFlag, int command, int slot_index, int map_index, EN__mapping_ReadWriteMap_command RecoverOrErase)
 {
-
     ST__CFX_CM3_SharedMemory_ReadWriteCommand_ForFlash FlashCommand;
 
-    uint8_t        bufferForSPI_tx[BLE_DataPacketSize];
+    uint8_t    bufferForSPI_tx[BLE_DataPacketSize];
     int        buffer_tx_index;
     static int prevPcmOutputMode;
 
@@ -890,7 +863,6 @@ void tdc_isd_map_reset_nvm_map_data(bool startFlag, int command, int slot_index,
 
         if (startFlag)
         {
-
             FlashCommand.flashCommand = RecoverOrErase;
             FlashCommand.isd_index    = slot_index;
             FlashCommand.map_index    = map_index;  // 맵 인덱스가 0이면 CFX에서 ISD 정보 및 사용자 설정값을 쓰도록 한다.
@@ -904,7 +876,6 @@ void tdc_isd_map_reset_nvm_map_data(bool startFlag, int command, int slot_index,
         {
             if (tdc_shm_is_read_write_map_data_flash_command_done())  // CFX에서 eeprom 쓰기가 완료된 상태
             {
-
                 tdc_shm_change_pcm_output_mode(prevPcmOutputMode);
 
                 // 마지막으로 수신된 명령을 루프백 한다.
@@ -914,7 +885,7 @@ void tdc_isd_map_reset_nvm_map_data(bool startFlag, int command, int slot_index,
 
                 // payload num 전송
 
-                bufferForSPI_tx[buffer_tx_index++] = en__DONE_OK; // 정상
+                bufferForSPI_tx[buffer_tx_index++] = en__DONE_OK;  // 정상
 
                 // NRF에 전달
 
@@ -936,7 +907,7 @@ void tdc_isd_map_reset_nvm_map_data(bool startFlag, int command, int slot_index,
     else
     {
         // 에러 전송
-        tdc_sys_error_send_to_app(command, en__dataProcessing_ERROR, en_sourceCodeError, __LINE__); // 소스 코드 에러
+        tdc_sys_error_send_to_app(command, en__dataProcessing_ERROR, en_sourceCodeError, __LINE__);  // 소스 코드 에러
 
         // 명령 종료
         if (command > 0x60)

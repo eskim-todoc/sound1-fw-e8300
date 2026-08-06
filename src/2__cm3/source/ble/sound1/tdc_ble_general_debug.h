@@ -18,7 +18,6 @@
  *  - tx_index : 현재 쓰기 오프셋(진입 시점)
  *  - 반환값   : 응답을 채운 뒤의 tx_index
  */
-int tdc_ble_general_debug_handle(const ST__REMOTECONTROL_PACKET *packet,
-                                    uint8_t *tx_buf, int tx_index);
+int tdc_ble_general_debug_handle(const ST__REMOTECONTROL_PACKET *packet, uint8_t *tx_buf, int tx_index);
 
 #endif /* __tdc_ble_general_debug_h__ */

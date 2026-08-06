@@ -3,18 +3,18 @@
  */
 
 #include <tdc_hal_timer.h>
-#include <tdc_led_output.h>  /* tdc_led_arbiter_tick - Timer 3 ISR 직접 구동 */
+#include <tdc_led_output.h> /* tdc_led_arbiter_tick - Timer 3 ISR 직접 구동 */
 
 static bool    _ci_is_leap(uint16_t year);
 static uint8_t _ci_day_in_month(uint8_t year, uint8_t month);
 
 static volatile int g_tdc_hal_timer_main_tick = 1; /* CFX FIFO 가 증가 - 시스템 시간 전담 */
-static volatile int g_tdc_timer_t3_tick  = 0; /* TIMER3 가 증가 - LED · 터치 초기화 동기 전담 */
+static volatile int g_tdc_timer_t3_tick       = 0; /* TIMER3 가 증가 - LED · 터치 초기화 동기 전담 */
 
-static volatile uint32_t        _tdc_hal_timer_elapsed_1msec_counter = 0;
-static volatile uint32_t        _tdc_hal_timer_count_init_value      = 0;
+static volatile uint32_t             _tdc_hal_timer_elapsed_1msec_counter = 0;
+static volatile uint32_t             _tdc_hal_timer_count_init_value      = 0;
 static volatile tdc_hal_timer_time_t _tdc_hal_timer_reference_time        = {0};
-static volatile bool            _tdc_hal_timer_update_flag           = false;
+static volatile bool                 _tdc_hal_timer_update_flag           = false;
 
 void TIMER_3_IRQHandler(void)
 {
@@ -50,8 +50,8 @@ static uint8_t _ci_day_in_month(uint8_t year, uint8_t month)
 void tdc_hal_timer_self_update_with_elapsed_1msec_counter(void)
 {
     tdc_hal_timer_time_t time;
-    uint32_t        cnt;
-    uint8_t         dim;  // day in month;
+    uint32_t             cnt;
+    uint8_t              dim;  // day in month;
 
     cnt  = _tdc_hal_timer_elapsed_1msec_counter;
     time = _tdc_hal_timer_reference_time;
@@ -124,7 +124,14 @@ void tdc_hal_timer_update_reference_time(tdc_hal_timer_time_t *p_time, uint32_t 
 
     _tdc_hal_timer_update_flag = true;
 
-    TDC_PRINTF_V("[TIMER] UPDATE REFERENCE TIME {%02d-%02d-%02d-%02d-%02d-%02d} INIT VALUE {%d} \r\n", _tdc_hal_timer_reference_time.year, _tdc_hal_timer_reference_time.month, _tdc_hal_timer_reference_time.day, _tdc_hal_timer_reference_time.hour, _tdc_hal_timer_reference_time.min, _tdc_hal_timer_reference_time.sec, _tdc_hal_timer_count_init_value);
+    TDC_PRINTF_V("[TIMER] UPDATE REFERENCE TIME {%02d-%02d-%02d-%02d-%02d-%02d} INIT VALUE {%d} \r\n",
+                 _tdc_hal_timer_reference_time.year,
+                 _tdc_hal_timer_reference_time.month,
+                 _tdc_hal_timer_reference_time.day,
+                 _tdc_hal_timer_reference_time.hour,
+                 _tdc_hal_timer_reference_time.min,
+                 _tdc_hal_timer_reference_time.sec,
+                 _tdc_hal_timer_count_init_value);
 }
 
 void tdc_hal_timer_increase_tick(void)

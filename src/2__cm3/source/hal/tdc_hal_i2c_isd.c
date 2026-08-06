@@ -3,11 +3,11 @@
 #include <tdc_hal_i2c_isd.h>
 #include <tdc_printf.h>
 
-bool tdc_hal_i2c_isd_write(int slaveAddr, int* dataBuff, int dataSize)
+bool tdc_hal_i2c_isd_write(int slaveAddr, int *dataBuff, int dataSize)
 {
     tdc_hal_i2c_driver_state_t i2cDriverState;
-    bool                 PassFail = false;
-    volatile int         wait_cnt;
+    bool                       PassFail = false;
+    volatile int               wait_cnt;
 
     if (dataSize == 0)
     {
@@ -51,11 +51,11 @@ bool tdc_hal_i2c_isd_write(int slaveAddr, int* dataBuff, int dataSize)
     }
 }
 
-bool tdc_hal_i2c_isd_read(int slaveAddr, int* dataBuff, int dataSize)
+bool tdc_hal_i2c_isd_read(int slaveAddr, int *dataBuff, int dataSize)
 {
     tdc_hal_i2c_driver_state_t i2cDriverState;
-    bool                 PassFail = false;
-    volatile int         wait_cnt;
+    bool                       PassFail = false;
+    volatile int               wait_cnt;
 
     if (dataSize == 0)
     {

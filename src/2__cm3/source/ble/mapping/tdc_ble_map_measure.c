@@ -21,7 +21,7 @@ void tdc_ble_cmd_0x62_impedance_check(const uint8_t *Rx_dataPacket)
     p_mappingPacket->impedanceCheck.pulseWidth_start_usec = Rx_dataPacket[index++];  // index 3 → 4
     p_mappingPacket->impedanceCheck.pulseWidth_end_usec   = Rx_dataPacket[index++];  // index 4 → 5
 
-    value                                              = Rx_dataPacket[index++] << 8;     // 자극 uA단위 상위 바이트 // index 5 → 6
+    value                                               = Rx_dataPacket[index++] << 8;     // 자극 uA단위 상위 바이트 // index 5 → 6
     p_mappingPacket->impedanceCheck.stimulationLevel_uA = value | Rx_dataPacket[index++];  // 자극 uA단위 하위 바이트 // index 6 → 7
 
     // 측정 반복 횟수 범위 검사
@@ -69,17 +69,17 @@ void tdc_ble_cmd_0x63_ecap_masking(const uint8_t *Rx_dataPacket)
     p_mappingPacket->eCapMeasurement.pulseWidth   = Rx_dataPacket[index++];
 
     p_mappingPacket->eCapMeasurement.firstPulsePhase              = Rx_dataPacket[index++];
-    p_mappingPacket->eCapMeasurement.stimulationMode               = Rx_dataPacket[index++];
+    p_mappingPacket->eCapMeasurement.stimulationMode              = Rx_dataPacket[index++];
     p_mappingPacket->eCapMeasurement.stimulationElectrodeNum      = Rx_dataPacket[index++];
     p_mappingPacket->eCapMeasurement.bipolarReferenceElectrodeNum = Rx_dataPacket[index++];
     p_mappingPacket->eCapMeasurement.measurementElectrodeNum      = Rx_dataPacket[index++];
 
-    value                                                      = Rx_dataPacket[index++] << 8;
-    value                                                      = value | Rx_dataPacket[index++];
+    value                                                       = Rx_dataPacket[index++] << 8;
+    value                                                       = value | Rx_dataPacket[index++];
     p_mappingPacket->eCapMeasurement.stimulationLevel_uA_masker = value;
 
-    value                                                     = Rx_dataPacket[index++] << 8;
-    value                                                     = value | Rx_dataPacket[index++];
+    value                                                      = Rx_dataPacket[index++] << 8;
+    value                                                      = value | Rx_dataPacket[index++];
     p_mappingPacket->eCapMeasurement.stimulationLevel_uA_probe = value;
 
     p_mappingPacket->eCapMeasurement.maskerProbeInterval_numFrame = Rx_dataPacket[index++];
@@ -95,7 +95,7 @@ void tdc_ble_cmd_0x63_ecap_masking(const uint8_t *Rx_dataPacket)
     // adc 계열은 레지스터 비트폭을 넘으면 인접 필드를 오염시킨다.
 
     // 측정 반복 횟수
-    if ((p_mappingPacket->eCapMeasurement.iterationNum < 1)       // 1 미만
+    if ((p_mappingPacket->eCapMeasurement.iterationNum < 1)        // 1 미만
         || (255 < p_mappingPacket->eCapMeasurement.iterationNum))  // 255 초과 시 에러
     {
         dataRangeError = true;
@@ -183,13 +183,13 @@ void tdc_ble_cmd_0x64_ecap_alternative(const uint8_t *Rx_dataPacket)
     p_mappingPacket->eCapMeasurement.iterationNum = Rx_dataPacket[index++];
     p_mappingPacket->eCapMeasurement.pulseWidth   = Rx_dataPacket[index++];
 
-    p_mappingPacket->eCapMeasurement.stimulationMode               = Rx_dataPacket[index++];
+    p_mappingPacket->eCapMeasurement.stimulationMode              = Rx_dataPacket[index++];
     p_mappingPacket->eCapMeasurement.stimulationElectrodeNum      = Rx_dataPacket[index++];
     p_mappingPacket->eCapMeasurement.bipolarReferenceElectrodeNum = Rx_dataPacket[index++];
     p_mappingPacket->eCapMeasurement.measurementElectrodeNum      = Rx_dataPacket[index++];
 
-    value                                                      = Rx_dataPacket[index++] << 8;
-    value                                                      = value | Rx_dataPacket[index++];
+    value                                                       = Rx_dataPacket[index++] << 8;
+    value                                                       = value | Rx_dataPacket[index++];
     p_mappingPacket->eCapMeasurement.stimulationLevel_uA_masker = value;
 
     // 데이터 범위 검사.

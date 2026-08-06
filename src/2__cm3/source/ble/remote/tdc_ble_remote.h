@@ -42,9 +42,9 @@ typedef struct
 void                    tdc_ble_remote_fetch_packet(const uint8_t *Rx_dataPacket);
 ST__REMOTECONTROL_STATE tdc_ble_remote_step(bool isdConnection);
 
-void                       tdc_ble_remote_set_passkey_match(void);
-void                       tdc_ble_remote_clear_passkey_match(void);
-bool                       tdc_ble_remote_is_passkey_match(void);
-void                       tdc_ble_remote_clear_command(void);
+void tdc_ble_remote_set_passkey_match(void);
+void tdc_ble_remote_clear_passkey_match(void);
+bool tdc_ble_remote_is_passkey_match(void);
+void tdc_ble_remote_clear_command(void);
 
 #endif

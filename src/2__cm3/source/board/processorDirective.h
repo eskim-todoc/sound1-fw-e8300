@@ -109,6 +109,3 @@
 #define df_Closed 2
 
 #endif /* DEFINITION_Preprocessor_H__ */
-
-
-

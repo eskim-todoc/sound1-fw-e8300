@@ -29,5 +29,4 @@
 
 #include <Board_OTE_ver1_5.h>
 
-#endif // BOARD_H__
-
+#endif  // BOARD_H__

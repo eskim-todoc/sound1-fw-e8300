@@ -58,25 +58,25 @@
 #define CI_ELEC_NUM_31_INDEX 30
 #define CI_ELEC_NUM_32_INDEX 31
 
-#define TDC_FS_MAP_FILE_INIT_NAME_ISD_INFO                                                                                                                                                                                                                                                                                         \
-    { /* 1    2    3    4    5    6    7    8    9    10   11*/                                                                                                                                                                                                                                                                \
-        '/', 'I', 'S', 'D', '*', '_', 'I', 'N', 'F', 'O', '\0'                                                                                                                                                                                                                                                                 \
-    }
+#define TDC_FS_MAP_FILE_INIT_NAME_ISD_INFO                                                                                                                     \
+    {/* 1    2    3    4    5    6    7    8    9    10   11*/                                                                                                 \
+     '/',                                                                                                                                                      \
+     'I',                                                                                                                                                      \
+     'S',                                                                                                                                                      \
+     'D',                                                                                                                                                      \
+     '*',                                                                                                                                                      \
+     '_',                                                                                                                                                      \
+     'I',                                                                                                                                                      \
+     'N',                                                                                                                                                      \
+     'F',                                                                                                                                                      \
+     'O',                                                                                                                                                      \
+     '\0'}
 
-#define TDC_FS_MAP_FILE_INIT_NAME_USER_SETTING_VALUE                                                                                                                                                                                                                                                                               \
-    {                                                                                                                                                                                                                                                                                                                          \
-        '/', 'I', 'S', 'D', '*', '_', 'U', 'S', 'E', 'R', '_', 'S', 'E', 'T', 'T', 'I', 'N', 'G', '\0'                                                                                                                                                                                                                         \
-    }
+#define TDC_FS_MAP_FILE_INIT_NAME_USER_SETTING_VALUE {'/', 'I', 'S', 'D', '*', '_', 'U', 'S', 'E', 'R', '_', 'S', 'E', 'T', 'T', 'I', 'N', 'G', '\0'}
 
-#define TDC_FS_MAP_FILE_INIT_NAME_MAP_STAMP                                                                                                                                                                                                                                                                                        \
-    {                                                                                                                                                                                                                                                                                                                          \
-        '/', 'I', 'S', 'D', '*', 'S', 'T', 'A', 'M', 'P', '\0'                                                                                                                                                                                                                                                                 \
-    }
+#define TDC_FS_MAP_FILE_INIT_NAME_MAP_STAMP {'/', 'I', 'S', 'D', '*', 'S', 'T', 'A', 'M', 'P', '\0'}
 
-#define TDC_FS_MAP_FILE_INIT_NAME_MAP_DATA                                                                                                                                                                                                                                                                                         \
-    {                                                                                                                                                                                                                                                                                                                          \
-        '/', 'I', 'S', 'D', '*', '_', 'M', 'A', 'P', '*', '\0'                                                                                                                                                                                                                                                                 \
-    }
+#define TDC_FS_MAP_FILE_INIT_NAME_MAP_DATA {'/', 'I', 'S', 'D', '*', '_', 'M', 'A', 'P', '*', '\0'}
 
 #define TDC_FS_MAP_FILE_NAME_LEN_ISD_INFO           11
 #define TDC_FS_MAP_FILE_NAME_LEN_USER_SETTING_VALUE 19

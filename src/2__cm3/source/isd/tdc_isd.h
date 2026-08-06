@@ -41,8 +41,4 @@ bool tdc_isd_is_connection_check_with_mapping(void);
 void tdc_isd_set_i2c_busy(void);
 void tdc_isd_set_i2c_free(void);
 
-
-
-
-
 #endif

@@ -211,7 +211,10 @@ static void handle_charging(ST__USB_CONNECTOR charger, bool power_button_pushed,
     /* 크래들 없이 자극기에 직접 충전기가 꼽힌 경우: 할 일 없음 */
 
 #if TDC_LED_DBG_LONG_TOUCH_IGNORE
-    if (power_button_pushed) { tdc_led_request(TDC_LED_SRC_DBG, TDC_LED_ST_DBG_LONG_TOUCH_IGNORE); }
+    if (power_button_pushed)
+    {
+        tdc_led_request(TDC_LED_SRC_DBG, TDC_LED_ST_DBG_LONG_TOUCH_IGNORE);
+    }
 #endif
     s_sysctl.start_flag = false;
 }
@@ -223,7 +226,10 @@ static bool gate_power_button(bool power_button_pushed, bool mapping_connected)
     if (mapping_connected || (s_sysctl.isd_disconnection_counter < TDC_SYS_POWER_BUTTON_GATE_MS))
     {
 #if TDC_LED_DBG_LONG_TOUCH_IGNORE
-        if (power_button_pushed) { tdc_led_request(TDC_LED_SRC_DBG, TDC_LED_ST_DBG_LONG_TOUCH_IGNORE); }
+        if (power_button_pushed)
+        {
+            tdc_led_request(TDC_LED_SRC_DBG, TDC_LED_ST_DBG_LONG_TOUCH_IGNORE);
+        }
 #endif
         return false;
     }
@@ -300,8 +306,7 @@ static bool handle_running(int battery_percent, bool conneded_ISD, tdc_sys_state
 
 /* 충전기 미연결 상태의 정상 운영 경로.
  * 반환: 자극 트리거 발생 여부. */
-static bool handle_discharging(int battery_percent, bool power_button_pushed, bool conneded_ISD,
-                               bool mapping_connected, tdc_sys_state_t *out_state)
+static bool handle_discharging(int battery_percent, bool power_button_pushed, bool conneded_ISD, bool mapping_connected, tdc_sys_state_t *out_state)
 {
     out_state->BLE_Off = false;
 
@@ -411,8 +416,7 @@ tdc_sys_state_t tdc_sys_control_step(tdc_sys_error_code_t mcuErrorCode,  //
          * 분석-부록-sullivan유산.md */
         if (s_sysctl.prev_carrying_case_state == chargerState.carryingCasePluggedIn)
         {
-            stimulation_trigger = handle_discharging(battery_percent, powerButtonPushed,
-                                                     conneded_ISD, mappingConnected, &systemStatus);
+            stimulation_trigger = handle_discharging(battery_percent, powerButtonPushed, conneded_ISD, mappingConnected, &systemStatus);
         }
     }
 

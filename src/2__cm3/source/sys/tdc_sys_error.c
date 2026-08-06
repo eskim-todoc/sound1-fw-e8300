@@ -9,7 +9,6 @@ static tdc_sys_error_code_t errorCode;
 
 void tdc_sys_error_update(tdc_sys_error_major_t majorError, int detailError, int lineNumber)
 {
-
     switch (majorError)
     {
         case en__dataProcessing_ERROR:
@@ -57,7 +56,6 @@ void tdc_sys_error_update(tdc_sys_error_major_t majorError, int detailError, int
         default:
             break;
     }
-
 }
 
 void tdc_sys_error_update_fpga_system(int value)
@@ -120,7 +118,6 @@ void tdc_sys_error_clear_flag(tdc_sys_error_major_t majorError)
 
 void tdc_sys_error_clear_all(void)
 {
-
     errorCode.dataProcessingErrorFlag = en__NA;
 
     errorCode.accelerometerErrorFlag = en__NA;
@@ -147,7 +144,7 @@ tdc_sys_error_code_t tdc_sys_error_read(void)
 void tdc_sys_error_send_to_app(EN__MAPPING_COMMAND command, tdc_sys_error_major_t majorError, int minorError, int lineNumber)
 {
     uint8_t bufferForSPI_tx[BLE_DataPacketSize];
-    int buffer_tx_index;
+    int     buffer_tx_index;
 
     buffer_tx_index = 0;
 

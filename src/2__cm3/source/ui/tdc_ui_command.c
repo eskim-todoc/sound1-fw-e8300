@@ -109,7 +109,9 @@ void tdc_ui_command_set_mapping_connected(bool connected)
 bool tdc_ui_command_is_led_override(int source)
 {
     if (source < 0 || source >= TDC_LED_SRC__MAX)
+    {
         return false;
+    }
     return s_tdc_led_override[source];
 }
 
@@ -154,7 +156,9 @@ static void output_printf(const char *fmt, ...)
     if (n > 0)
     {
         if (n > (int) sizeof(buf) - 1)
+        {
             n = (int) sizeof(buf) - 1;
+        }
         SEGGER_RTT_Write(0, buf, (unsigned) n);
     }
 }
@@ -169,11 +173,17 @@ static int str_casecmp(const char *a, const char *b)
     {
         char ca = *a, cb = *b;
         if (ca >= 'a' && ca <= 'z')
+        {
             ca -= 32;
+        }
         if (cb >= 'a' && cb <= 'z')
+        {
             cb -= 32;
+        }
         if (ca != cb)
+        {
             return ca - cb;
+        }
         a++;
         b++;
     }
@@ -185,7 +195,9 @@ static int str_to_val(const str_map_t *map, const char *tok)
     for (int i = 0; map[i].name; i++)
     {
         if (str_casecmp(tok, map[i].name) == 0)
+        {
             return map[i].val;
+        }
     }
     return -1;
 }
@@ -195,7 +207,9 @@ static const char *val_to_str(const str_map_t *map, int val)
     for (int i = 0; map[i].name; i++)
     {
         if (map[i].val == val)
+        {
             return map[i].name;
+        }
     }
     return "?";
 }
@@ -204,7 +218,13 @@ static const char *val_to_str(const str_map_t *map, int val)
 /*  String <-> enum maps                                                    */
 /* ======================================================================== */
 
-static const str_map_t s_tdc_source_map[] = {{"power", TDC_LED_SRC_POWER}, {"error", TDC_LED_SRC_ERROR}, {"ble", TDC_LED_SRC_BLE_IND}, {"mapping", TDC_LED_SRC_MAPPING}, {"battery", TDC_LED_SRC_BATTERY}, {"isd", TDC_LED_SRC_ISD}, {NULL, 0}};
+static const str_map_t s_tdc_source_map[] = {{"power", TDC_LED_SRC_POWER},
+                                             {"error", TDC_LED_SRC_ERROR},
+                                             {"ble", TDC_LED_SRC_BLE_IND},
+                                             {"mapping", TDC_LED_SRC_MAPPING},
+                                             {"battery", TDC_LED_SRC_BATTERY},
+                                             {"isd", TDC_LED_SRC_ISD},
+                                             {NULL, 0}};
 
 static const str_map_t s_tdc_state_map[] = {{"none", TDC_LED_ST_NONE},
                                             /* power */
@@ -240,7 +260,9 @@ static const str_map_t s_tdc_state_map[] = {{"none", TDC_LED_ST_NONE},
 static bool register_command(const command_entry_t *entry)
 {
     if (s_tdc_table_cnt >= MAX_HANDLERS)
+    {
         return false;
+    }
 
     s_tdc_table[s_tdc_table_cnt] = *entry;
     s_tdc_table_cnt++;
@@ -277,7 +299,7 @@ static const struct
 {
     tdc_led_src_t   src;
     tdc_led_state_t st;
-    const char *desc;
+    const char     *desc;
 } k_tdc_pattern_table[] = {
     /*  0 */ {TDC_LED_SRC__MAX, TDC_LED_ST_NONE, "all off"},
     /*  1 */ {TDC_LED_SRC_POWER, TDC_LED_ST_POWER_ON, "POWER_ON"},
@@ -304,7 +326,9 @@ static const struct
 static int handle_led(int argc, char *argv[])
 {
     if (argc < 2)
+    {
         return -1;
+    }
 
     /* --led show */
     if (str_casecmp(argv[1], "show") == 0)
@@ -313,7 +337,8 @@ static int handle_led(int argc, char *argv[])
         for (int src = 0; src < TDC_LED_SRC__MAX; src++)
         {
             tdc_led_state_t state = tdc_led_get_request((tdc_led_src_t) src);
-            output_printf("  [%s] = %s%s\r\n", val_to_str(s_tdc_source_map, src), val_to_str(s_tdc_state_map, state), s_tdc_led_override[src] ? " (override)" : "");
+            output_printf(
+                "  [%s] = %s%s\r\n", val_to_str(s_tdc_source_map, src), val_to_str(s_tdc_state_map, state), s_tdc_led_override[src] ? " (override)" : "");
         }
         output_printf("  burst_pending = %d\r\n", tdc_led_is_burst_pending());
         output_printf("  user_led_off = %d\r\n", (tdc_shm_read_led_indicator_on_off() == 2) ? 1 : 0);
@@ -325,7 +350,9 @@ static int handle_led(int argc, char *argv[])
     if (str_casecmp(argv[1], "req") == 0)
     {
         if (argc < 4)
+        {
             return -1;
+        }
 
         int src   = str_to_val(s_tdc_source_map, argv[2]);
         int state = str_to_val(s_tdc_state_map, argv[3]);
@@ -344,7 +371,9 @@ static int handle_led(int argc, char *argv[])
     if (str_casecmp(argv[1], "clr") == 0)
     {
         if (argc < 3)
+        {
             return -1;
+        }
 
         int src = str_to_val(s_tdc_source_map, argv[2]);
         if (src < 0)
@@ -362,7 +391,9 @@ static int handle_led(int argc, char *argv[])
     if (str_casecmp(argv[1], "user") == 0)
     {
         if (argc < 3)
+        {
             return -1;
+        }
 
         if (str_casecmp(argv[2], "on") == 0)
         {
@@ -393,7 +424,9 @@ static int handle_led(int argc, char *argv[])
     if (str_casecmp(argv[1], "pattern") == 0)
     {
         if (argc < 3)
+        {
             return -1;
+        }
 
         int n = atoi(argv[2]);
         if (n < 0 || n >= TDC_PATTERN_TABLE_LEN)
@@ -423,7 +456,9 @@ static int handle_led(int argc, char *argv[])
     if (str_casecmp(argv[1], "burst") == 0)
     {
         if (argc < 3)
+        {
             return -1;
+        }
 
         if (str_casecmp(argv[2], "on") == 0)
         {
@@ -452,16 +487,22 @@ static int handle_led(int argc, char *argv[])
 static int handle_battery(int argc, char *argv[])
 {
     if (argc < 2)
+    {
         return -1;
+    }
 
     /* --batt show */
     if (str_casecmp(argv[1], "show") == 0)
     {
         output_printf("  real  = %d%%\r\n", tdc_pwr_battery_get_percent());
         if (s_tdc_override_battery_active)
+        {
             output_printf("  ovr   = %d%% (active)\r\n", s_tdc_override_battery_percent);
+        }
         else
+        {
             output_printf("  ovr   = inactive\r\n");
+        }
         return 0;
     }
 
@@ -492,13 +533,19 @@ static int handle_battery(int argc, char *argv[])
 static int handle_isd(int argc, char *argv[])
 {
     if (argc < 2)
+    {
         return -1;
+    }
 
     bool val;
     if (str_casecmp(argv[1], "on") == 0)
+    {
         val = true;
+    }
     else if (str_casecmp(argv[1], "off") == 0)
+    {
         val = false;
+    }
     else
     {
         output_printf("invalid: on or off\r\n");
@@ -518,13 +565,19 @@ static int handle_isd(int argc, char *argv[])
 static int handle_map(int argc, char *argv[])
 {
     if (argc < 2)
+    {
         return -1;
+    }
 
     bool val;
     if (str_casecmp(argv[1], "on") == 0)
+    {
         val = true;
+    }
     else if (str_casecmp(argv[1], "off") == 0)
+    {
         val = false;
+    }
     else
     {
         output_printf("invalid: on or off\r\n");
@@ -544,7 +597,9 @@ static int handle_map(int argc, char *argv[])
 static int handle_error(int argc, char *argv[])
 {
     if (argc < 2)
+    {
         return -1;
+    }
 
     if (str_casecmp(argv[1], "clr") == 0)
     {
@@ -600,7 +655,9 @@ static int handle_error(int argc, char *argv[])
 static int handle_volume(int argc, char *argv[])
 {
     if (argc < 2)
+    {
         return -1;
+    }
 
     int         volume = 0;
     const char *p      = argv[1];
@@ -630,7 +687,9 @@ static int handle_volume(int argc, char *argv[])
 static int handle_program(int argc, char *argv[])
 {
     if (argc < 2)
+    {
         return -1;
+    }
 
     int         n = 0;
     const char *p = argv[1];
@@ -752,7 +811,9 @@ static int handle_write_integrity_error(int argc, char *argv[])
 static int handle_gating(int argc, char *argv[])
 {
     if (argc < 2)
+    {
         return -1;
+    }
 
     bool val = false;
 
@@ -819,17 +880,25 @@ static int tokenize(char *line, char *argv[], int max_argc)
     {
         /* skip whitespace */
         while (*p == ' ' || *p == '\t')
+        {
             p++;
+        }
         if (*p == '\0')
+        {
             break;
+        }
 
         argv[argc++] = p;
 
         /* advance to next whitespace or end */
         while (*p && *p != ' ' && *p != '\t')
+        {
             p++;
+        }
         if (*p)
+        {
             *p++ = '\0';
+        }
     }
 
     return argc;
@@ -883,7 +952,9 @@ static void dispatch_literal(const char *literal)
     int  len = (int) strlen(literal);
 
     if (len >= MAX_LINE - SENTINEL_LEN - 1)
+    {
         len = MAX_LINE - SENTINEL_LEN - 1;
+    }
 
     memcpy(buf, SENTINEL, SENTINEL_LEN);
     memcpy(&buf[SENTINEL_LEN], literal, len);

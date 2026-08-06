@@ -212,16 +212,16 @@ bool tdc_touch_process(void)
 
 #if (TDC_TOUCH_DEBUG_PRINT_ENABLE)
             TDC_PRINTF_D("[T] LTA=%3u  CNT=%3u  D=%3u  THR=%3u (k=%3u  H=%3u)  %s   PTHR=%3u (pk=%3u)  %s \r\n",  //
-                      dbg.lta,
-                      dbg.counts,
-                      delta,
-                      abs_thr,
-                      TDC_TOUCH_IQS323_THRESHOLD,
-                      TDC_TOUCH_IQS323_HYSTERESIS,
-                      in.pressed ? "T" : ".",
-                      pabs_thr,
-                      TDC_TOUCH_IQS323_PROX_THRESHOLD,
-                      st.prox ? "P" : ".");
+                         dbg.lta,
+                         dbg.counts,
+                         delta,
+                         abs_thr,
+                         TDC_TOUCH_IQS323_THRESHOLD,
+                         TDC_TOUCH_IQS323_HYSTERESIS,
+                         in.pressed ? "T" : ".",
+                         pabs_thr,
+                         TDC_TOUCH_IQS323_PROX_THRESHOLD,
+                         st.prox ? "P" : ".");
 #endif
             s_debug_recent_lta        = dbg.lta;
             s_debug_recent_count      = dbg.counts;

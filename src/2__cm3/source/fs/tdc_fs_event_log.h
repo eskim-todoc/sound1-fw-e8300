@@ -29,20 +29,20 @@ typedef struct
 
 typedef struct
 {
-    uint8_t                time[6];  // 6 bytes (년, 월, 일, 시, 분, 초)
+    uint8_t                    time[6];  // 6 bytes (년, 월, 일, 시, 분, 초)
     TDC_FS_EVENT_LOG_BT_ADDR_T bt_addr;  // 6 bytes
-    uint32_t               event;    // 4 bytes
+    uint32_t                   event;    // 4 bytes
 } TDC_FS_EVENT_LOG_ENTITY_T;             // total 16 bytes
 
 typedef struct
 {
-    uint8_t               ident[12];                            // 12 bytes
-    uint16_t              write_index;                          // 2 bytes
-    uint16_t              entity_count;                         // 2 bytes
+    uint8_t                   ident[12];                                // 12 bytes
+    uint16_t                  write_index;                              // 2 bytes
+    uint16_t                  entity_count;                             // 2 bytes
     TDC_FS_EVENT_LOG_ENTITY_T entities[TDC_FS_EVENT_LOG_ENTITY_COUNT];  // 16 bytes array
 } TDC_FS_EVENT_LOG_T;
 
-void                   tdc_fs_event_log_update_bt_addr(TDC_FS_EVENT_LOG_BT_ADDR_T *p_bt_addr);
+void                       tdc_fs_event_log_update_bt_addr(TDC_FS_EVENT_LOG_BT_ADDR_T *p_bt_addr);
 TDC_FS_EVENT_LOG_BT_ADDR_T tdc_fs_event_log_get_bt_addr(void);
 
 int tdc_fs_event_log_init(void);

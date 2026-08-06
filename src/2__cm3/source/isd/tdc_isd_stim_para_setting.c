@@ -17,7 +17,6 @@
 #include <electrodeMapping.h>
 #include <tdc_sys_error.h>
 
-
 /*
   두 상태 기계가 각자 진행 상태를 갖는다. 이름이 같아 승격할 때 접두어로 갈랐다.
   합치면 모노폴라 설정 중에 바이폴라 카운터가 밟히는 식으로 서로를 침범한다.
@@ -26,19 +25,19 @@
 // 모노폴라 · 공통접지 경로
 static const ST_STIUL_DAC_REGISTER_VALUE      *s_mono_p_stimulDAC_setting;
 static const ST__CFX_CM3_SharedMemory_mapData *s_mono_p_mapdata;
-static int s_mono_flowControlCounter = 0;
-static int s_mono_tempCounter = 0;
-static int s_mono_sent_stimulConfig = 0;
-static int s_mono_writenBacktelRegisterValue;
+static int                                     s_mono_flowControlCounter = 0;
+static int                                     s_mono_tempCounter        = 0;
+static int                                     s_mono_sent_stimulConfig  = 0;
+static int                                     s_mono_writenBacktelRegisterValue;
 
 // 바이폴라 경로
 static const ST__CFX_CM3_SharedMemory_mapData *s_bi_p_mapdata;
 static const ST_STIUL_DAC_REGISTER_VALUE      *s_bi_p_stimulDAC_setting;
-static int s_bi_flowControlCounter = 0;
-static int s_bi_tempCounter = 0;
-static int s_bi_sent_stimulConfig = 0;
-static int s_bi_backtelBuff[df_MaxNumOfElectrode];
-static int s_bi_bipolarReferenceElectrodeNum[df_MaxNumOfElectrode];
+static int                                     s_bi_flowControlCounter = 0;
+static int                                     s_bi_tempCounter        = 0;
+static int                                     s_bi_sent_stimulConfig  = 0;
+static int                                     s_bi_backtelBuff[df_MaxNumOfElectrode];
+static int                                     s_bi_bipolarReferenceElectrodeNum[df_MaxNumOfElectrode];
 
 static bool stimulationParameterSettingDone = false;
 
@@ -56,7 +55,6 @@ bool tdc_isd_is_stim_para_setting_done(void)
 {
     return stimulationParameterSettingDone;
 }
-
 
 // FPGA 에러 확인 후 펄스폭 최소 설정 · 백텔 8비트 모드
 static bool tdc_isd_stim_para_mono_flow00_init_fpga_and_backtel(void)
@@ -85,7 +83,7 @@ static bool tdc_isd_stim_para_mono_flow00_init_fpga_and_backtel(void)
             tdc_shm_fill_specific_command_buffer(i, pcm_Mold_NopStandby);
         }
 
-        tdc_shm_change_next_pcm_output_mode(PcmBitStream_Mode_NopStandby);   // 다음 출력 모드 : NopStandby
+        tdc_shm_change_next_pcm_output_mode(PcmBitStream_Mode_NopStandby);  // 다음 출력 모드 : NopStandby
         tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_SepcificCommand);  // 현재 출력 모드 : SepcificCommand
     }
 
@@ -154,9 +152,9 @@ static bool tdc_isd_stim_para_mono_flow04_verify_and_clear_fifo(void)
 // 자극 파라미터 레지스터 쓰기
 static bool tdc_isd_stim_para_mono_flow05_write_stim_para(void)
 {
-    int  i;
-    int  w_isd_registerValue;
-    int  pcm_index = 0;
+    int i;
+    int w_isd_registerValue;
+    int pcm_index = 0;
 
     s_mono_p_stimulDAC_setting = tdc_stim_read_dac_register_value();
     s_mono_p_mapdata           = tdc_shm_get_pointer_current_map_data();
@@ -200,8 +198,8 @@ static bool tdc_isd_stim_para_mono_flow05_write_stim_para(void)
     w_isd_registerValue = w_isd_registerValue | tdc_isd_stim_mode_output_bits(s_mono_p_mapdata->stimulationMode);
 
     // 만들어 놓은 패킷을 0xFF로 비트연산 해서 사용하는게 아니고, 나중에 비교하는데 사용한다.
-    s_mono_sent_stimulConfig   = w_isd_registerValue & 0xFF;
-    w_isd_registerValue = w_isd_registerValue | pcm_Mold_configuration;
+    s_mono_sent_stimulConfig = w_isd_registerValue & 0xFF;
+    w_isd_registerValue      = w_isd_registerValue | pcm_Mold_configuration;
 
     tdc_shm_fill_specific_command_buffer(pcm_index++, w_isd_registerValue);
 
@@ -264,7 +262,7 @@ static bool tdc_isd_stim_para_mono_flow05_write_stim_para(void)
     }
 #endif
 
-    tdc_shm_change_next_pcm_output_mode(PcmBitStream_Mode_NopStandby);   // 다음 출력 모드 : NopStandby
+    tdc_shm_change_next_pcm_output_mode(PcmBitStream_Mode_NopStandby);  // 다음 출력 모드 : NopStandby
     tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_SepcificCommand);  // 현재 출력 모드 : SepcificCommand
 
     return false;
@@ -309,8 +307,8 @@ static bool tdc_isd_stim_para_mono_flow09_verify_stim_para(void)
 // 펄스폭을 맵 데이터 값으로 설정
 static bool tdc_isd_stim_para_mono_flow10_set_pulse_width(void)
 {
-    int  i;
-    int  pcm_index = 0;
+    int i;
+    int pcm_index = 0;
 
     // 펄스 폭을 맵 데이터에 해당하는 값으로 다시 설정
     tdc_isd_fpga_change_pulse_width(pcm_index++, s_mono_p_mapdata->stimulationPulsePhaseWidth);
@@ -322,7 +320,7 @@ static bool tdc_isd_stim_para_mono_flow10_set_pulse_width(void)
         tdc_shm_fill_specific_command_buffer(i, pcm_Mold_NopStandby);
     }
 
-    tdc_shm_change_next_pcm_output_mode(PcmBitStream_Mode_NopStandby);   // 다음 출력 모드 : NopStandby
+    tdc_shm_change_next_pcm_output_mode(PcmBitStream_Mode_NopStandby);  // 다음 출력 모드 : NopStandby
     tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_SepcificCommand);  // 현재 출력 모드 : SepcificCommand
 
     return false;
@@ -368,7 +366,7 @@ static bool tdc_isd_stim_para_mono_flow14_verify_pulse_width(void)
 // 펄스폭 최소 설정 · 백텔 8비트 모드
 static bool tdc_isd_stim_para_bi_flow00_init_fpga_and_backtel(void)
 {
-    int  pcm_index = 0;
+    int pcm_index = 0;
 
     tdc_isd_fpga_change_pulse_width_minimum(pcm_index++);  // 펄스 폭 0으로 설정
     tdc_isd_fpga_update_fpga_pulse_phase_width_written_value(FPGA_pulsePhaseWidth_minimum);
@@ -382,7 +380,7 @@ static bool tdc_isd_stim_para_bi_flow00_init_fpga_and_backtel(void)
         tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopStandby);
     }
 
-    tdc_shm_change_next_pcm_output_mode(PcmBitStream_Mode_NopStandby);   // 다음 출력 모드 : NopStandby
+    tdc_shm_change_next_pcm_output_mode(PcmBitStream_Mode_NopStandby);  // 다음 출력 모드 : NopStandby
     tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_SepcificCommand);  // 현재 출력 모드 : SepcificCommand
 
     return false;
@@ -444,9 +442,9 @@ static bool tdc_isd_stim_para_bi_flow05_build_reference(void)
             || (df_MaxNumOfElectrode < s_bi_p_mapdata->usableReferenceElectrodIndex[i]))
         {
             TDC_PRINTF_I("[PARA] (1 BASE), BAND : %2d, STIM ELEC NUM : %2d (PCB : XX), REF ELEC NUM : %2d (PCB : XX), UNUSED \r\n",  //
-                      i + 1,
-                      s_bi_p_mapdata->usableStimulationElectrodIndex[i],
-                      s_bi_p_mapdata->usableReferenceElectrodIndex[i]);
+                         i + 1,
+                         s_bi_p_mapdata->usableStimulationElectrodIndex[i],
+                         s_bi_p_mapdata->usableReferenceElectrodIndex[i]);
             continue;
         }
 
@@ -454,19 +452,19 @@ static bool tdc_isd_stim_para_bi_flow05_build_reference(void)
             electrodeMap[s_bi_p_mapdata->usableReferenceElectrodIndex[i] - 1];
 
         TDC_PRINTF_I("[PARA] (1 BASE), BAND : %2d, STIM ELEC NUM : %2d (PCB : %2d), REF ELEC NUM : %2d (PCB : %2d) \r\n",  //
-                  i + 1,
-                  s_bi_p_mapdata->usableStimulationElectrodIndex[i],
-                  electrodeMap[s_bi_p_mapdata->usableStimulationElectrodIndex[i] - 1] + 1,
-                  s_bi_p_mapdata->usableReferenceElectrodIndex[i],
-                  electrodeMap[s_bi_p_mapdata->usableReferenceElectrodIndex[i] - 1] + 1);
+                     i + 1,
+                     s_bi_p_mapdata->usableStimulationElectrodIndex[i],
+                     electrodeMap[s_bi_p_mapdata->usableStimulationElectrodIndex[i] - 1] + 1,
+                     s_bi_p_mapdata->usableReferenceElectrodIndex[i],
+                     electrodeMap[s_bi_p_mapdata->usableReferenceElectrodIndex[i] - 1] + 1);
     }
 
     for (i = s_bi_p_mapdata->numFrequencyBand; i < df_MaxNumOfElectrode; i++)
     {
         TDC_PRINTF_I("[PARA] (1 BASE), BAND : %2d, STIM ELEC NUM : %2d (PCB : XX), REF ELEC NUM : %2d (PCB : XX) \r\n",  //
-                  i + 1,
-                  s_bi_p_mapdata->usableStimulationElectrodIndex[i],
-                  s_bi_p_mapdata->usableReferenceElectrodIndex[i]);
+                     i + 1,
+                     s_bi_p_mapdata->usableStimulationElectrodIndex[i],
+                     s_bi_p_mapdata->usableReferenceElectrodIndex[i]);
     }
 
     if (tdc_isd_fpga_write_clear_fifo())  // 백텔 FIFO 클리어
@@ -497,8 +495,8 @@ static bool tdc_isd_stim_para_bi_flow05_build_reference(void)
 // 내부기 칩의 바이폴라 기준전극 FIFO 클리어
 static bool tdc_isd_stim_para_bi_flow06_clear_isd_fifo(void)
 {
-    int  w_isd_registerValue;
-    int  pcm_index = 0;
+    int w_isd_registerValue;
+    int pcm_index = 0;
 
     // 내부기 칩 레지스터에서 Bipolar 기준전극 FIFO 지우기
     w_isd_registerValue = ISD_registerAddr_cipherDataStatus;
@@ -516,7 +514,7 @@ static bool tdc_isd_stim_para_bi_flow06_clear_isd_fifo(void)
         tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopStandby);
     }
 
-    tdc_shm_change_next_pcm_output_mode(PcmBitStream_Mode_NopStandby);   // 다음 출력 모드 : NopStandby
+    tdc_shm_change_next_pcm_output_mode(PcmBitStream_Mode_NopStandby);  // 다음 출력 모드 : NopStandby
     tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_SepcificCommand);  // 현재 출력 모드 : SepcificCommand
 
     return false;
@@ -526,9 +524,9 @@ static bool tdc_isd_stim_para_bi_flow06_clear_isd_fifo(void)
 // 두 단계로 나뉜 이유는 한 번에 보낼 수 있는 PCM 채널 수가 32보다 작기 때문이다.
 static bool tdc_isd_stim_para_bi_send_reference_range(int first, int last)
 {
-    int  i;
-    int  w_isd_registerValue;
-    int  pcm_index = 0;
+    int i;
+    int w_isd_registerValue;
+    int pcm_index = 0;
 
     for (i = first; i < last; i++)  // 0~23번 자극채널에 대응하는 기준 전극 번호
     {
@@ -549,7 +547,7 @@ static bool tdc_isd_stim_para_bi_send_reference_range(int first, int last)
         tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopStandby);
     }
 
-    tdc_shm_change_next_pcm_output_mode(PcmBitStream_Mode_NopStandby);   // 다음 출력 모드 : NopStandby
+    tdc_shm_change_next_pcm_output_mode(PcmBitStream_Mode_NopStandby);  // 다음 출력 모드 : NopStandby
     tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_SepcificCommand);  // 현재 출력 모드 : SepcificCommand
 
     return false;
@@ -560,9 +558,9 @@ static bool tdc_isd_stim_para_bi_send_reference_range(int first, int last)
 // 6 x 5 + 2 = 32 로 여섯 단계가 이어 붙어 전 전극을 덮는다.
 static bool tdc_isd_stim_para_bi_read_reference_burst(int count)
 {
-    int  i;
-    int  w_isd_registerValue;
-    int  pcm_index = 0;
+    int i;
+    int w_isd_registerValue;
+    int pcm_index = 0;
 
     w_isd_registerValue = ISD_registerAddr_en__bipolar_referenceElectroldIndex;
     w_isd_registerValue = w_isd_registerValue << 1;
@@ -584,7 +582,7 @@ static bool tdc_isd_stim_para_bi_read_reference_burst(int count)
         tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopStandby);
     }
 
-    tdc_shm_change_next_pcm_output_mode(PcmBitStream_Mode_NopStandby);   // 다음 출력 모드 : NopStandby
+    tdc_shm_change_next_pcm_output_mode(PcmBitStream_Mode_NopStandby);  // 다음 출력 모드 : NopStandby
     tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_SepcificCommand);  // 현재 출력 모드 : SepcificCommand
 
     return false;
@@ -595,7 +593,7 @@ static bool tdc_isd_stim_para_bi_flow29_read_reference_i2c(void)
 {
     int  i;
     int  r_FPGA_registerValue;
-    int  nop = 0;
+    int  nop                    = 0;
     bool stimulationConfigError = false;
 
     for (i = 0; i < df_MaxNumOfElectrode; i++)
@@ -616,23 +614,23 @@ static bool tdc_isd_stim_para_bi_flow29_read_reference_i2c(void)
                 for (i = 0; i < df_MaxNumOfElectrode - 1; i++)
                 {
                     TDC_PRINTF_I("[PARA] CHIP, (0 BASE), INDEX MAP (PCB) [%2d] : (PCB) %d \r\n",  //
-                              i,
-                              ((0x1F) & (s_bi_backtelBuff[i])));
+                                 i,
+                                 ((0x1F) & (s_bi_backtelBuff[i])));
 
                     // if (electrodeMap[s_bi_bipolarReferenceElectrodeNum[i]] != ((0x1F) & (s_bi_backtelBuff[i])))
                     if (s_bi_bipolarReferenceElectrodeNum[i] != ((0x1F) & (s_bi_backtelBuff[i])))
                     {
                         TDC_PRINTF_E("[PARA] PRE-SETTING BIPOLAR REF INDEX : %d, READ REF INDEX : %d \r\n",  //
-                                  s_bi_bipolarReferenceElectrodeNum[i],
-                                  (0x1F) & (s_bi_backtelBuff[i]));
+                                     s_bi_bipolarReferenceElectrodeNum[i],
+                                     (0x1F) & (s_bi_backtelBuff[i]));
                         tdc_isd_change_state(en__isdStatus_FPGA_Ok);  // 내부기 전송 파워 설정 부터 다시.
                         stimulationConfigError = true;
                     }
                 }
 
                 TDC_PRINTF_I("[PARA] CHIP, (0 BASE), INDEX MAP (PCB) [%2d] : (PCB) %d \r\n",  //
-                          df_MaxNumOfElectrode - 1,
-                          ((0x1F) & (s_bi_backtelBuff[df_MaxNumOfElectrode - 1])));
+                             df_MaxNumOfElectrode - 1,
+                             ((0x1F) & (s_bi_backtelBuff[df_MaxNumOfElectrode - 1])));
             }
         }
         else
@@ -656,9 +654,9 @@ static bool tdc_isd_stim_para_bi_flow29_read_reference_i2c(void)
 // 자극 파라미터 레지스터 쓰기
 static bool tdc_isd_stim_para_bi_flow30_write_stim_para(void)
 {
-    int  i;
-    int  w_isd_registerValue;
-    int  pcm_index = 0;
+    int i;
+    int w_isd_registerValue;
+    int pcm_index = 0;
 
     // 펄스 폭 0으로 설정
     tdc_isd_fpga_change_pulse_width_minimum(pcm_index++);
@@ -707,8 +705,8 @@ static bool tdc_isd_stim_para_bi_flow30_write_stim_para(void)
     w_isd_registerValue = w_isd_registerValue << 2;
     w_isd_registerValue = w_isd_registerValue | tdc_isd_stim_mode_output_bits(s_bi_p_mapdata->stimulationMode);
 
-    s_bi_sent_stimulConfig   = w_isd_registerValue & 0xFF;
-    w_isd_registerValue = w_isd_registerValue | pcm_Mold_configuration;
+    s_bi_sent_stimulConfig = w_isd_registerValue & 0xFF;
+    w_isd_registerValue    = w_isd_registerValue | pcm_Mold_configuration;
 
     tdc_shm_fill_specific_command_buffer(pcm_index++, w_isd_registerValue);
 
@@ -751,7 +749,7 @@ static bool tdc_isd_stim_para_bi_flow30_write_stim_para(void)
 
 #endif
 
-    tdc_shm_change_next_pcm_output_mode(PcmBitStream_Mode_NopStandby);   // 다음 출력 모드 : NopStandby
+    tdc_shm_change_next_pcm_output_mode(PcmBitStream_Mode_NopStandby);  // 다음 출력 모드 : NopStandby
     tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_SepcificCommand);  // 현재 출력 모드 : SepcificCommand
 
     return false;
@@ -761,7 +759,7 @@ static bool tdc_isd_stim_para_bi_flow30_write_stim_para(void)
 static bool tdc_isd_stim_para_bi_flow34_verify_stim_para(void)
 {
     int  r_FPGA_registerValue;
-    bool isdSettingError = false;
+    bool isdSettingError        = false;
     bool stimulationConfigError = false;
 
 #ifndef DisalbedBackTel
@@ -779,8 +777,8 @@ static bool tdc_isd_stim_para_bi_flow34_verify_stim_para(void)
                     isdSettingError = true;
 
                     TDC_PRINTF_W("[PARA] SETTING ERROR, SETTING OFFSET DAC LEVEL : %d, READ OFFSET DAC LEVEL : %d \r\n",  //
-                              s_bi_p_stimulDAC_setting->DAC_offsetLevel_register,
-                              s_bi_backtelBuff[0]);
+                                 s_bi_p_stimulDAC_setting->DAC_offsetLevel_register,
+                                 s_bi_backtelBuff[0]);
                 }
 
                 // 자극 설정값 확인
@@ -789,8 +787,8 @@ static bool tdc_isd_stim_para_bi_flow34_verify_stim_para(void)
                     isdSettingError = true;  //
 
                     TDC_PRINTF_W("[PARA] SETTING ERROR, SETTING STIMUL CONFIG : %d, READ STIMUL CONFIG : %d \r\n",  //
-                              s_bi_sent_stimulConfig,
-                              s_bi_backtelBuff[1]);
+                                 s_bi_sent_stimulConfig,
+                                 s_bi_backtelBuff[1]);
                 }
             }
 
@@ -822,8 +820,8 @@ static bool tdc_isd_stim_para_bi_flow34_verify_stim_para(void)
 // 펄스폭을 맵 데이터 값으로 설정
 static bool tdc_isd_stim_para_bi_flow35_set_pulse_width(void)
 {
-    int  i;
-    int  pcm_index = 0;
+    int i;
+    int pcm_index = 0;
 
     // 펄스 폭 .. 설정 PCM 출력으로  FPGA에 전달
     tdc_isd_fpga_change_pulse_width(pcm_index++, s_bi_p_mapdata->stimulationPulsePhaseWidth);
@@ -833,7 +831,7 @@ static bool tdc_isd_stim_para_bi_flow35_set_pulse_width(void)
         tdc_shm_fill_specific_command_buffer(i, pcm_Mold_NopStandby);
     }
 
-    tdc_shm_change_next_pcm_output_mode(PcmBitStream_Mode_NopStandby);   // 다음 출력 모드 : NopStandby
+    tdc_shm_change_next_pcm_output_mode(PcmBitStream_Mode_NopStandby);  // 다음 출력 모드 : NopStandby
     tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_SepcificCommand);  // 현재 출력 모드 : SepcificCommand
 
     return false;
@@ -849,7 +847,8 @@ static bool tdc_isd_stim_para_bi_flow39_verify_pulse_width(void)
     {
         if (r_FPGA_registerValue == s_bi_p_mapdata->stimulationPulsePhaseWidth)
         {
-            tdc_isd_fpga_update_fpga_pulse_phase_width_written_value(s_bi_p_mapdata->stimulationPulsePhaseWidth);  // 실제로는 Fpag 값을 읽어보고 업데이트 해야 된다.
+            tdc_isd_fpga_update_fpga_pulse_phase_width_written_value(
+                s_bi_p_mapdata->stimulationPulsePhaseWidth);  // 실제로는 Fpag 값을 읽어보고 업데이트 해야 된다.
             // 자극 파라미터 설정 완료
             // tdc_isd_update_link_connected();
 
@@ -1079,7 +1078,7 @@ bool tdc_isd_set_stim_para_bipolar(bool isdControlStateChagedFlag)
 bool tdc_isd_stim_setting_step(bool startTrigger)
 {
     ST__CFX_CM3_SharedMemory_mapData *p_mapdata;
-    bool error;
+    bool                              error;
 
     error     = false;
     p_mapdata = tdc_shm_get_pointer_current_map_data();
@@ -1089,7 +1088,7 @@ bool tdc_isd_stim_setting_step(bool startTrigger)
         TDC_PRINTF_V("[STIMULATION] TRIGGER, STIMULATION PARAMETER SETTING \r\n");
     }
 
-    switch(p_mapdata->stimulationMode)
+    switch (p_mapdata->stimulationMode)
     {
         case en__monopolr_body:
         case en__monopolr_rod:
@@ -1122,4 +1121,3 @@ bool tdc_isd_stim_setting_step(bool startTrigger)
 
     return error;
 }
-

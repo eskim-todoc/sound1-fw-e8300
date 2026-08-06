@@ -21,7 +21,7 @@
 
 #include <sk5_map_nvm.h>
 
-void tdc_hal_trims_load_manu_table(uint32_t *p_manu_table);
+void         tdc_hal_trims_load_manu_table(uint32_t *p_manu_table);
 unsigned int tdc_hal_trims_set_vreg_and_lsad();
 unsigned int tdc_hal_trims_set_vddif(unsigned int target);
 unsigned int tdc_hal_trims_set_vdda(unsigned int target);

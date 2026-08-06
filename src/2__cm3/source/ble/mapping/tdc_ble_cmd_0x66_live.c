@@ -245,8 +245,8 @@ static bool tdc_ble_cmd_0x66_sub01_idx08_t_level_0_7(ST__MAPPINGPAYLOAD_LIVE_STI
 
     for (i = 0; i < 8; i++)
     {
-        value              = Rx_dataPacket[index++] << 8;
-        value              = value | Rx_dataPacket[index++];
+        value               = Rx_dataPacket[index++] << 8;
+        value               = value | Rx_dataPacket[index++];
         live->T_level_uA[i] = value;
 
         if ((live->T_level_uA[i] < 0)         // 0 미만
@@ -268,8 +268,8 @@ static bool tdc_ble_cmd_0x66_sub01_idx09_t_level_8_15(ST__MAPPINGPAYLOAD_LIVE_ST
 
     for (i = 8; i < 16; i++)
     {
-        value              = Rx_dataPacket[index++] << 8;
-        value              = value | Rx_dataPacket[index++];
+        value               = Rx_dataPacket[index++] << 8;
+        value               = value | Rx_dataPacket[index++];
         live->T_level_uA[i] = value;
 
         if ((live->T_level_uA[i] < 0)         // 0 미만
@@ -291,8 +291,8 @@ static bool tdc_ble_cmd_0x66_sub01_idx10_t_level_16_23(ST__MAPPINGPAYLOAD_LIVE_S
 
     for (i = 16; i < 24; i++)
     {
-        value              = Rx_dataPacket[index++] << 8;
-        value              = value | Rx_dataPacket[index++];
+        value               = Rx_dataPacket[index++] << 8;
+        value               = value | Rx_dataPacket[index++];
         live->T_level_uA[i] = value;
 
         if ((live->T_level_uA[i] < 0)         // 0 미만
@@ -314,8 +314,8 @@ static bool tdc_ble_cmd_0x66_sub01_idx11_t_level_24_31(ST__MAPPINGPAYLOAD_LIVE_S
 
     for (i = 24; i < 32; i++)
     {
-        value              = Rx_dataPacket[index++] << 8;
-        value              = value | Rx_dataPacket[index++];
+        value               = Rx_dataPacket[index++] << 8;
+        value               = value | Rx_dataPacket[index++];
         live->T_level_uA[i] = value;
 
         if ((live->T_level_uA[i] < 0)         // 0 미만
@@ -337,8 +337,8 @@ static bool tdc_ble_cmd_0x66_sub01_idx12_c_level_0_7(ST__MAPPINGPAYLOAD_LIVE_STI
 
     for (i = 0; i < 8; i++)
     {
-        value              = Rx_dataPacket[index++] << 8;
-        value              = value | Rx_dataPacket[index++];
+        value               = Rx_dataPacket[index++] << 8;
+        value               = value | Rx_dataPacket[index++];
         live->C_level_uA[i] = value;
 
         if ((live->C_level_uA[i] < 0)         // 0 미만
@@ -360,8 +360,8 @@ static bool tdc_ble_cmd_0x66_sub01_idx13_c_level_8_15(ST__MAPPINGPAYLOAD_LIVE_ST
 
     for (i = 8; i < 16; i++)
     {
-        value              = Rx_dataPacket[index++] << 8;
-        value              = value | Rx_dataPacket[index++];
+        value               = Rx_dataPacket[index++] << 8;
+        value               = value | Rx_dataPacket[index++];
         live->C_level_uA[i] = value;
 
         if ((live->C_level_uA[i] < 0)         // 0 미만
@@ -383,8 +383,8 @@ static bool tdc_ble_cmd_0x66_sub01_idx14_c_level_16_23(ST__MAPPINGPAYLOAD_LIVE_S
 
     for (i = 16; i < 24; i++)
     {
-        value              = Rx_dataPacket[index++] << 8;
-        value              = value | Rx_dataPacket[index++];
+        value               = Rx_dataPacket[index++] << 8;
+        value               = value | Rx_dataPacket[index++];
         live->C_level_uA[i] = value;
 
         if ((live->C_level_uA[i] < 0)         // 0 미만
@@ -406,8 +406,8 @@ static bool tdc_ble_cmd_0x66_sub01_idx15_c_level_24_31(ST__MAPPINGPAYLOAD_LIVE_S
 
     for (i = 24; i < 32; i++)
     {
-        value              = Rx_dataPacket[index++] << 8;
-        value              = value | Rx_dataPacket[index++];
+        value               = Rx_dataPacket[index++] << 8;
+        value               = value | Rx_dataPacket[index++];
         live->C_level_uA[i] = value;
 
         if ((live->C_level_uA[i] < 0)         // 0 미만

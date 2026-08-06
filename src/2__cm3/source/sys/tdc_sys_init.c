@@ -126,7 +126,6 @@ void enable_interrupt(void)
 
 void tdc_sys_init(void)
 {
-
     // 8MB 플래시를 하위 4MB, 상위 4MB로 분할하여 사용한다.
     // 하위 4MB에는 Boot Info, Manufacture Data, FAT, Manifest, App0, App1, App2로 구성된다.
     // 상위 4MB에는 MANUF_TABLE, BATT_CAL, FFT Window, FFT Pass Bin 및 내부기 맵 데이터로 구성된다.
@@ -136,10 +135,10 @@ void tdc_sys_init(void)
     // 다시 수행해야 하는 이슈가 있다.
     // 그래서 캘리브레이션을 한 번만 수행하고 이후로는 이 MANUF_TABLE 정보를 활용하도록 구성하였다.
 
-    tdc_util_assert(tdc_fs_nvm_init());  // NVM 인터페이스 초기화
+    tdc_util_assert(tdc_fs_nvm_init());            // NVM 인터페이스 초기화
     tdc_util_assert(tdc_fs_fatfs_init_mem_map());  // FFT 및 맵 관련 공유 메모리 포인터 초기화
     tdc_util_assert(tdc_fs_fatfs_remount(1));      // 사용자 드라이브(1)로 마운트
-    tdc_util_assert(tdc_pwr_clock_normal());         // 전원 및 클럭 설정
+    tdc_util_assert(tdc_pwr_clock_normal());       // 전원 및 클럭 설정
 
     TDC_PRINTF_I("[INIT] POWER NORMAL, CLOCK : %u HZ \r\n", SystemCoreClock);
 

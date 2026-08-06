@@ -87,7 +87,7 @@ void tdc_isd_path_open(bool isdControlStateChagedFlag)
                 // 마지막 PCM 동작 모드는 NopStandby 일 것이다.
                 // 그래서 여기서는 바로 SpecificCommand를 적용시켜도 정상 동작한다.
 
-                tdc_shm_change_next_pcm_output_mode(PcmBitStream_Mode_NopStandby);   // 다음 출력 모드 : NopStandby
+                tdc_shm_change_next_pcm_output_mode(PcmBitStream_Mode_NopStandby);  // 다음 출력 모드 : NopStandby
                 tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_SepcificCommand);  // 현재 출력 모드 : SepcificCommand
             }
 
@@ -128,7 +128,7 @@ void tdc_isd_path_open(bool isdControlStateChagedFlag)
                 tdc_shm_fill_specific_command_buffer(i, pcm_Mold_NopStandby);
             }
 
-            tdc_shm_change_next_pcm_output_mode(PcmBitStream_Mode_NopStandby);   // 다음 출력 모드 : NopStandby
+            tdc_shm_change_next_pcm_output_mode(PcmBitStream_Mode_NopStandby);  // 다음 출력 모드 : NopStandby
             tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_SepcificCommand);  // 현재 출력 모드 : SepcificCommand
         }
         break;
@@ -187,7 +187,7 @@ void tdc_isd_path_open(bool isdControlStateChagedFlag)
                 tdc_shm_fill_specific_command_buffer(i, pcm_Mold_NopStandby);
             }
 
-            tdc_shm_change_next_pcm_output_mode(PcmBitStream_Mode_NopStandby);   // 다음 출력 모드 : NopStandby
+            tdc_shm_change_next_pcm_output_mode(PcmBitStream_Mode_NopStandby);  // 다음 출력 모드 : NopStandby
             tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_SepcificCommand);  // 현재 출력 모드 : SepcificCommand
         }
         break;
@@ -215,7 +215,7 @@ void tdc_isd_path_open(bool isdControlStateChagedFlag)
                 tdc_shm_fill_specific_command_buffer(i, pcm_Mold_NopStandby);
             }
 
-            tdc_shm_change_next_pcm_output_mode(PcmBitStream_Mode_NopStandby);   // 다음 출력 모드 : NopStandby
+            tdc_shm_change_next_pcm_output_mode(PcmBitStream_Mode_NopStandby);  // 다음 출력 모드 : NopStandby
             tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_SepcificCommand);  // 현재 출력 모드 : SepcificCommand
         }
         break;
@@ -273,7 +273,7 @@ void tdc_isd_path_open(bool isdControlStateChagedFlag)
                 tdc_shm_fill_specific_command_buffer(i, pcm_Mold_NopStandby);
             }
 
-            tdc_shm_change_next_pcm_output_mode(PcmBitStream_Mode_NopStandby);   // 다음 출력 모드 : NopStandby
+            tdc_shm_change_next_pcm_output_mode(PcmBitStream_Mode_NopStandby);  // 다음 출력 모드 : NopStandby
             tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_SepcificCommand);  // 현재 출력 모드 : SepcificCommand
         }
         break;
@@ -567,7 +567,7 @@ void tdc_isd_path_open(bool isdControlStateChagedFlag)
                 tdc_shm_fill_specific_command_buffer(i, pcm_Mold_NopStandby);
             }
 #endif
-            tdc_shm_change_next_pcm_output_mode(PcmBitStream_Mode_NopStandby);   // 다음 출력 모드 : NopStandby
+            tdc_shm_change_next_pcm_output_mode(PcmBitStream_Mode_NopStandby);  // 다음 출력 모드 : NopStandby
             tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_SepcificCommand);  // 현재 출력 모드 : SepcificCommand
         }
         break;
@@ -591,7 +591,7 @@ void tdc_isd_path_open(bool isdControlStateChagedFlag)
                             tdc_shm_fill_specific_command_buffer(i, pcm_Mold_NopBacktel);
                         }
 
-                        tdc_shm_change_next_pcm_output_mode(PcmBitStream_Mode_NopStandby);   // 다음 출력 모드 : NopStandby
+                        tdc_shm_change_next_pcm_output_mode(PcmBitStream_Mode_NopStandby);  // 다음 출력 모드 : NopStandby
                         tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_SepcificCommand);  // 현재 출력 모드 : SepcificCommand
                     }
                     else
@@ -624,7 +624,7 @@ void tdc_isd_path_open(bool isdControlStateChagedFlag)
             tdc_sys_error_clear_all();
             tdc_isd_change_state(en__isdStatus_ISD_pathOpen_Ok);
             tdc_shm_change_connected_isd_num_cfx(isd_id_match_num);  // CFX와의 공유 메모리에 연결된 내부기 번호(1~4)를 알려주어서
-                                                            // CFX에서 해당 맵데이터를 읽어 올 수 있도록 한다.
+                                                                     // CFX에서 해당 맵데이터를 읽어 올 수 있도록 한다.
             update_Connected_ISD_id(isd_id);
 #endif
         }
@@ -760,7 +760,7 @@ void tdc_isd_enable_stimul_10v(bool isdControlStateChagedFlag)
                 // 마지막 PCM 동작 모드는 NopStandby 일 것이다.
                 // 그래서 여기서는 바로 SpecificCommand를 적용시켜도 정상 동작한다.
 
-                tdc_shm_change_next_pcm_output_mode(PcmBitStream_Mode_NopStandby);   // 다음 출력 모드 : NopStandby
+                tdc_shm_change_next_pcm_output_mode(PcmBitStream_Mode_NopStandby);  // 다음 출력 모드 : NopStandby
                 tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_SepcificCommand);  // 현재 출력 모드 : SepcificCommand
             }
         }
@@ -842,7 +842,7 @@ void tdc_isd_enable_stimul_10v(bool isdControlStateChagedFlag)
                 tdc_shm_fill_specific_command_buffer(i, pcm_Mold_NopStandby);
             }
 
-            tdc_shm_change_next_pcm_output_mode(PcmBitStream_Mode_NopStandby);   // 다음 출력 모드 : NopStandby
+            tdc_shm_change_next_pcm_output_mode(PcmBitStream_Mode_NopStandby);  // 다음 출력 모드 : NopStandby
             tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_SepcificCommand);  // 현재 출력 모드 : SepcificCommand
 
             tdc_isd_set_i2c_free();
@@ -874,7 +874,7 @@ void tdc_isd_enable_stimul_10v(bool isdControlStateChagedFlag)
                 tdc_shm_fill_specific_command_buffer(i, pcm_Mold_NopStandby);
             }
 
-            tdc_shm_change_next_pcm_output_mode(PcmBitStream_Mode_NopStandby);   // 다음 출력 모드 : NopStandby
+            tdc_shm_change_next_pcm_output_mode(PcmBitStream_Mode_NopStandby);  // 다음 출력 모드 : NopStandby
             tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_SepcificCommand);  // 현재 출력 모드 : SepcificCommand
         }
         break;
@@ -934,18 +934,18 @@ void tdc_isd_enable_stimul_10v(bool isdControlStateChagedFlag)
                     tdc_isd_fpga_read_systemregister_1st(&r_FPGA_registerValue);
                     tdc_isd_fpga_read_backtel_error_flag(&r_FPGA_registerValue);
 
-                    if (r_FPGA_registerValue == 0) // BACKETL 카운트가 1이 아니며, BACKETL 에러 레지스터의 값이 0이다.
+                    if (r_FPGA_registerValue == 0)  // BACKETL 카운트가 1이 아니며, BACKETL 에러 레지스터의 값이 0이다.
                     {
                         tdc_sys_error_update(en__EN__ISD_ERROR, en__BackTelCounterZero, __LINE__);
                         TDC_PRINTF_W("[ISD] FAILED TO ENABLE STIMULATION 10V (COUNT 0) \r\n");
                     }
-                    else // BACKETL 에러 레지스터의 값이 0이 아니다.
+                    else  // BACKETL 에러 레지스터의 값이 0이 아니다.
                     {
                         tdc_sys_error_update(en__EN__ISD_ERROR, en__BackterDataLengthError, __LINE__);
                         TDC_PRINTF_W("[ISD] FAILED TO ENABLE STIMULATION 10V (BACKTEL ERROR) \r\n");
                     }
 
-                    tdc_isd_change_state(en__isdStatus_FPGA_Ok); /// 내부기 전송 파워 설정 부터 다시.
+                    tdc_isd_change_state(en__isdStatus_FPGA_Ok);  /// 내부기 전송 파워 설정 부터 다시.
                 }
             }
 

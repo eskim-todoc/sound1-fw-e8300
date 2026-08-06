@@ -30,11 +30,11 @@
  *
  * 둘 다 '블록 전체'를 감싼다. 출력만 따로 막지 말 것 - 그러면 계산이 고아로 남는다. */
 #ifndef TDC_TOUCH_DEBUG_MEASURE_ENABLE
-#  define TDC_TOUCH_DEBUG_MEASURE_ENABLE  1
+#define TDC_TOUCH_DEBUG_MEASURE_ENABLE 1
 #endif
 
 #ifndef TDC_TOUCH_DEBUG_PRINT_ENABLE
-#  define TDC_TOUCH_DEBUG_PRINT_ENABLE  0
+#define TDC_TOUCH_DEBUG_PRINT_ENABLE 0
 #endif
 
 #endif /* TDC_TOUCH_CONFIG_H_ */

@@ -64,7 +64,6 @@
 // 공용핀
 ////////////////
 
-
 #define DIO_PIN_INDEX_for_ChargerConnectorPluggedIn DIO17
 #define DIO_PIN_INDEX_for_CarryingCasePluggedIn     DIO28  // CASE_DET 핀이 25.09.30일 잠수함 패치 회로에서 DIO27에서 DIO28로 변경됨
 #define DIO_PIN_INDEX_for_CarryingCaseCoverOpen     DIO27  // CASE_OPEN_n 핀이 25.09.30일 잠수함 패치 회로에서 DIO28에서 DIO27로 변경됨
@@ -111,7 +110,6 @@
 // 공용핀
 ////////////////
 
-
 #define DIO_PIN_INDEX_for_ChargerConnectorPluggedIn DIO27
 #define DIO_PIN_INDEX_for_CarryingCasePluggedIn     DIO23  // DMIC_OUT_QCC
 #define DIO_PIN_INDEX_for_CarryingCaseCoverOpen     DIO29  // I2S_FLAG
@@ -124,6 +122,4 @@
 
 #define IO_Shared_CarringCase
 
-#endif // __Board_OTE_1_5gen_Test_board_h__
-
-
+#endif  // __Board_OTE_1_5gen_Test_board_h__

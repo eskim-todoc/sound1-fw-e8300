@@ -25,14 +25,14 @@ static int bufferForReading_eCAP[4][64] = {
     0,
 };
 
-static int PCM_templete_eCAP[2][df_MaxNumTransferableChannel]; // [ {프루브 자극 출력 파라미미터 - pulse폭 에 맞춘 NOP} : {마스커 프로브 인터벌 (펄스폭 0으로
-                                                               // 설정,0x05,0x06 설정, 펄스폭 조정  ,, 인터벌 맞춤용 NOP)} : {프로브 자극 출력용 0x08 설정-펄스
-                                                               // 폭에 맞춘 NOP})
+static int PCM_templete_eCAP[2][df_MaxNumTransferableChannel];  // [ {프루브 자극 출력 파라미미터 - pulse폭 에 맞춘 NOP} : {마스커 프로브 인터벌 (펄스폭 0으로
+                                                                // 설정,0x05,0x06 설정, 펄스폭 조정  ,, 인터벌 맞춤용 NOP)} : {프로브 자극 출력용 0x08 설정-펄스
+                                                                // 폭에 맞춘 NOP})
 
 #define masker_index 0
 #define probe_index  1
 
-#define MinNumFrameForConfigProbe 3 // 마스커와 프로브의 자극 크기가 달라서 DAC 기울기 및 오프셋 값이 동일하지 않을 경우, 4개의 데이터가 필요하고,
+#define MinNumFrameForConfigProbe 3  // 마스커와 프로브의 자극 크기가 달라서 DAC 기울기 및 오프셋 값이 동일하지 않을 경우, 4개의 데이터가 필요하고,
 
 void file_PCM_templete_eCAP(EN__eCAP_Templete dataMode, int data)
 {
@@ -41,7 +41,6 @@ void file_PCM_templete_eCAP(EN__eCAP_Templete dataMode, int data)
 
     switch (dataMode)
     {
-
         case en__clearIndex:
         {
             frameIndex  = 0;
@@ -53,7 +52,6 @@ void file_PCM_templete_eCAP(EN__eCAP_Templete dataMode, int data)
         {
             if (frameIndex < 2)
             {
-
                 PCM_templete_eCAP[frameIndex][bufferIndex++] = data;
 
                 if (bufferIndex >= df_MaxNumTransferableChannel)
@@ -75,12 +73,10 @@ void file_PCM_templete_eCAP(EN__eCAP_Templete dataMode, int data)
 
         case en__fillBackwardData:
         {
-
             while (1)
             {
                 if (frameIndex < 2)
                 {
-
                     PCM_templete_eCAP[frameIndex][bufferIndex++] = data;
 
                     if (bufferIndex >= df_MaxNumTransferableChannel)
@@ -100,7 +96,6 @@ void file_PCM_templete_eCAP(EN__eCAP_Templete dataMode, int data)
 }
 void tdc_isd_map_ecap_step(bool startFlag)
 {
-
     int  w_FPGA_registerValue;
     int  r_FPGA_registerValue;
     int  comparing;
@@ -134,16 +129,16 @@ void tdc_isd_map_ecap_step(bool startFlag)
 
     int stimulLevel_uA, stimulDAC_offsetValue_uA;
 
-    static int  backtelStart_flowCounter;
-    int         maskerProbeIntervalCouter;
-    static int  bipolarFIFO_index;
+    static int backtelStart_flowCounter;
+    int        maskerProbeIntervalCouter;
+    static int bipolarFIFO_index;
 
     static int backtelReceiveTime_ms;
 
     static int eCAP_mesureStartTime = 0;
 
     static int ble_transfer_index;
-    uint8_t        bufferForSPI_tx[BLE_DataPacketSize];
+    uint8_t    bufferForSPI_tx[BLE_DataPacketSize];
     int        buffer_tx_index;
 
     int tempInt;
@@ -153,7 +148,6 @@ void tdc_isd_map_ecap_step(bool startFlag)
 
     if (startFlag)
     {
-
         flowCounter         = 0;
         iterationNum        = 0;
         stimulPattern_index = en__probeAlone;
@@ -169,7 +163,6 @@ void tdc_isd_map_ecap_step(bool startFlag)
 
     switch (flowCounter)
     {
-
         case 0:
         {
             tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_NopStandby);
@@ -210,8 +203,8 @@ void tdc_isd_map_ecap_step(bool startFlag)
             }
 
             deliveryCharge_pico =
-                (mappingPacket->eCapMeasurement.pulseWidth) * stimulLevel_uA; // usec단위.. (time*10^-6}*{level*10^-6) //마스커 자극값을 기준으로 계산한다.
-            if (deliveryCharge_pico > df_MaxDeliveryCharge_pC)                // 전하량 초과
+                (mappingPacket->eCapMeasurement.pulseWidth) * stimulLevel_uA;  // usec단위.. (time*10^-6}*{level*10^-6) //마스커 자극값을 기준으로 계산한다.
+            if (deliveryCharge_pico > df_MaxDeliveryCharge_pC)                 // 전하량 초과
             {
                 // 에러 전송
 
@@ -223,17 +216,15 @@ void tdc_isd_map_ecap_step(bool startFlag)
 
             // 자극 슬로프 및 자극 데이터. 계산  stimulLevel_uA stimulLevel_uA stimulDAC_offsetValue_uA
             // 마스커에 대한 것
-            if (mappingPacket->eCapMeasurement.stimulationLevel_uA_masker <
-                (stimulDAC_A_only_Saturation_uA + offsetDAC_B_Saturation_uA)) // 2uA 기울기로 전달 가능한 범위내. // 1530 보다 작은 경우
+            if (mappingPacket->eCapMeasurement.stimulationLevel_uA_masker
+                < (stimulDAC_A_only_Saturation_uA + offsetDAC_B_Saturation_uA))  // 2uA 기울기로 전달 가능한 범위내. // 1530 보다 작은 경우
             {
-
                 // 자극 DAC 기울기 2uA
                 stimulDAC_slope[masker_index] = Stimulation_DAC_A;
 
-                if (mappingPacket->eCapMeasurement.stimulationLevel_uA_masker >
-                    (stimulDAC_A_only_Saturation_uA + offsetDAC_A_Saturation_uA)) // 1020~1530  - > 1020 오프셋을 적용해야 되는 경우
+                if (mappingPacket->eCapMeasurement.stimulationLevel_uA_masker
+                    > (stimulDAC_A_only_Saturation_uA + offsetDAC_A_Saturation_uA))  // 1020~1530  - > 1020 오프셋을 적용해야 되는 경우
                 {
-
                     stimulDAC_offsetResolution[masker_index] = Offset_DAC_B;
 
                     stimulDAC_offsetValue_uA            = offsetDAC_B_Saturation_uA;
@@ -244,12 +235,11 @@ void tdc_isd_map_ecap_step(bool startFlag)
                     tempInt                       = stimulLevel_uA * reciprocal_dividing_QI1F15_Stimulation_DAC_A;
                     stimulLevel_255[masker_index] = tempInt >> 15;
                 }
-                else // 1020보다 작은 경우
+                else  // 1020보다 작은 경우
                 {
                     //
-                    if (mappingPacket->eCapMeasurement.stimulationLevel_uA_masker > stimulDAC_A_only_Saturation_uA) // 510 ~ 1020 -> 510 오프셋을 적용한다.
+                    if (mappingPacket->eCapMeasurement.stimulationLevel_uA_masker > stimulDAC_A_only_Saturation_uA)  // 510 ~ 1020 -> 510 오프셋을 적용한다.
                     {
-
                         stimulDAC_offsetResolution[masker_index] = Offset_DAC_A;
                         stimulDAC_offsetValue_uA                 = offsetDAC_A_Saturation_uA;
 
@@ -260,10 +250,10 @@ void tdc_isd_map_ecap_step(bool startFlag)
                         tempInt                       = stimulLevel_uA * reciprocal_dividing_QI1F15_Stimulation_DAC_A;
                         stimulLevel_255[masker_index] = tempInt >> 15;
                     }
-                    else // 오프셋 적용을 안해도 되는 경우.
+                    else  // 오프셋 적용을 안해도 되는 경우.
                     {
                         stimulDAC_offsetResolution[masker_index] = Offset_DAC_A;
-                        stimulDAC_offsetValue_uA                 = 0; //
+                        stimulDAC_offsetValue_uA                 = 0;  //
                         stimulDAC_offsetValue[masker_index]      = 0;
 
                         stimulLevel_uA                = mappingPacket->eCapMeasurement.stimulationLevel_uA_masker - stimulDAC_offsetValue_uA;
@@ -272,7 +262,7 @@ void tdc_isd_map_ecap_step(bool startFlag)
                     }
                 }
             }
-            else // 4uA로  자극
+            else  // 4uA로  자극
             {
                 // 자극 DAC 기울기 4uA
                 stimulDAC_slope[masker_index] = Stimulation_DAC_B;
@@ -288,17 +278,15 @@ void tdc_isd_map_ecap_step(bool startFlag)
             }
 
             // 프루브에 대한 것
-            if (mappingPacket->eCapMeasurement.stimulationLevel_uA_probe <
-                (stimulDAC_A_only_Saturation_uA + offsetDAC_B_Saturation_uA)) // 2uA 기울기로 전달 가능한 범위내. // 1530 보다 작은 경우
+            if (mappingPacket->eCapMeasurement.stimulationLevel_uA_probe
+                < (stimulDAC_A_only_Saturation_uA + offsetDAC_B_Saturation_uA))  // 2uA 기울기로 전달 가능한 범위내. // 1530 보다 작은 경우
             {
-
                 // 자극 DAC 기울기 2uA
                 stimulDAC_slope[probe_index] = Stimulation_DAC_A;
 
-                if (mappingPacket->eCapMeasurement.stimulationLevel_uA_probe >
-                    (stimulDAC_A_only_Saturation_uA + offsetDAC_A_Saturation_uA)) // 1020~1530  - > 1020 오프셋을 적용해야 되는 경우
+                if (mappingPacket->eCapMeasurement.stimulationLevel_uA_probe
+                    > (stimulDAC_A_only_Saturation_uA + offsetDAC_A_Saturation_uA))  // 1020~1530  - > 1020 오프셋을 적용해야 되는 경우
                 {
-
                     stimulDAC_offsetResolution[probe_index] = Offset_DAC_B;
                     stimulDAC_offsetValue_uA                = offsetDAC_B_Saturation_uA;
                     tempInt                                 = stimulDAC_offsetValue_uA * reciprocal_dividing_QI1F15_Offset_DAC_B;
@@ -308,14 +296,13 @@ void tdc_isd_map_ecap_step(bool startFlag)
                     tempInt                      = stimulLevel_uA * reciprocal_dividing_QI1F15_Stimulation_DAC_A;
                     stimulLevel_255[probe_index] = tempInt >> 15;
                 }
-                else // 1020보다 작은 경우
+                else  // 1020보다 작은 경우
                 {
                     //
-                    if (mappingPacket->eCapMeasurement.stimulationLevel_uA_probe > stimulDAC_A_only_Saturation_uA) // 510 ~ 1020 -> 510 오프셋을 적용한다.
+                    if (mappingPacket->eCapMeasurement.stimulationLevel_uA_probe > stimulDAC_A_only_Saturation_uA)  // 510 ~ 1020 -> 510 오프셋을 적용한다.
                     {
-
                         stimulDAC_offsetResolution[probe_index] = Offset_DAC_A;
-                        stimulDAC_offsetValue_uA                = offsetDAC_A_Saturation_uA; //
+                        stimulDAC_offsetValue_uA                = offsetDAC_A_Saturation_uA;  //
                         tempInt                                 = stimulDAC_offsetValue_uA * reciprocal_dividing_QI1F15_Offset_DAC_A;
                         stimulDAC_offsetValue[probe_index]      = tempInt >> 15;
 
@@ -323,10 +310,10 @@ void tdc_isd_map_ecap_step(bool startFlag)
                         tempInt                      = stimulLevel_uA * reciprocal_dividing_QI1F15_Stimulation_DAC_A;
                         stimulLevel_255[probe_index] = tempInt >> 15;
                     }
-                    else // 오프셋 적용을 안해도 되는 경우.
+                    else  // 오프셋 적용을 안해도 되는 경우.
                     {
                         stimulDAC_offsetResolution[probe_index] = Offset_DAC_A;
-                        stimulDAC_offsetValue_uA                = 0; //
+                        stimulDAC_offsetValue_uA                = 0;  //
                         stimulDAC_offsetValue[probe_index]      = 0;
 
                         stimulLevel_uA               = mappingPacket->eCapMeasurement.stimulationLevel_uA_probe - stimulDAC_offsetValue_uA;
@@ -335,7 +322,7 @@ void tdc_isd_map_ecap_step(bool startFlag)
                     }
                 }
             }
-            else // 4uA로  자극
+            else  // 4uA로  자극
             {
                 // 자극 DAC 기울기 4uA
                 stimulDAC_slope[probe_index] = Stimulation_DAC_B;
@@ -364,8 +351,8 @@ void tdc_isd_map_ecap_step(bool startFlag)
                 tdc_ble_mapping_clear_command();
             }
 
-            if ((numFramePerChannel << 1) + mappingPacket->eCapMeasurement.maskerProbeInterval_numFrame >
-                48) // 마스커와 프로브 자극 출력과 인터벌의 합이 2msec, 48개를 넘지 않아야 된다.
+            if ((numFramePerChannel << 1) + mappingPacket->eCapMeasurement.maskerProbeInterval_numFrame
+                > 48)  // 마스커와 프로브 자극 출력과 인터벌의 합이 2msec, 48개를 넘지 않아야 된다.
             {
                 // 마스커 출력과 프로브출력 간격을 좁히거나, 펄스 폭을 좁혀야 한다. 2msec 템플릿에 다 들어 가지 못한다.
 
@@ -378,24 +365,21 @@ void tdc_isd_map_ecap_step(bool startFlag)
 
             // 백텔을 수신하는데 필요한 시간.
 
-            backtelReceiveTime_ms = mappingPacket->eCapMeasurement.measurementSampleNum >>
-                                    4; // 1msec 동안 수신할 수 있는 백텍 데이터 샘플수는 약 16개이다.( 4bit shift == 16으로 나누기)
+            backtelReceiveTime_ms = mappingPacket->eCapMeasurement.measurementSampleNum
+                                    >> 4;  // 1msec 동안 수신할 수 있는 백텍 데이터 샘플수는 약 16개이다.( 4bit shift == 16으로 나누기)
         }
         break;
 
         case 1:
         {
-
             // 이전에 전송된 자극 파라미터 값이 있을 수 있기 때문에 출력을 내보내기 위하여 설정 파라미터들 전송한다.
 
             tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_SepcificCommand);
 
             // 펄스 폭 0으로 설정
 
-
             tdc_isd_fpga_change_pulse_width_minimum(pcm_index++);
             tdc_isd_fpga_update_fpga_pulse_phase_width_written_value(FPGA_pulsePhaseWidth_minimum);
-
 
             // 이전 자극 파라미터를 출력하기 위한 임의의 값 출력
             tdc_isd_fill_pcm_last_stimulation_out(&pcm_index);
@@ -410,14 +394,13 @@ void tdc_isd_map_ecap_step(bool startFlag)
 
             if (mappingPacket->eCapMeasurement.stimulationMode != en__bipolar)
             {
-                flowCounter = flowCounter + 2; // 바이폴라 기준전극 설정 값 전송에 2msec 필요, 해당 루틴 생략
+                flowCounter = flowCounter + 2;  // 바이폴라 기준전극 설정 값 전송에 2msec 필요, 해당 루틴 생략
             }
         }
         break;
 
         case 2:
         {
-
             // PCM 출력 모드 변경
             tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_SepcificCommand);
 
@@ -427,22 +410,23 @@ void tdc_isd_map_ecap_step(bool startFlag)
             w_isd_registerValue = w_isd_registerValue | ISD_writeRegister;
             w_isd_registerValue = w_isd_registerValue << 8;
 
-            w_isd_registerValue = w_isd_registerValue | 0x80; // CHIP_ID_FIFO_RDDATA_INDEXdp 아무값이나 쓰면 FIFO가 지워진다.
+            w_isd_registerValue = w_isd_registerValue | 0x80;  // CHIP_ID_FIFO_RDDATA_INDEXdp 아무값이나 쓰면 FIFO가 지워진다.
             w_isd_registerValue = w_isd_registerValue | pcm_Mold_configuration;
 
             tdc_shm_fill_specific_command_buffer(pcm_index++, w_isd_registerValue);
 
             // 기준 전극 번호.
             bipolarFIFO_index = 0;
-            for (i = 0; i < df_MaxNumTransferableChannel; i++, bipolarFIFO_index++) // 0~22번 자극 전극에 대응하는 기준 전극 번호
+            for (i = 0; i < df_MaxNumTransferableChannel; i++, bipolarFIFO_index++)  // 0~22번 자극 전극에 대응하는 기준 전극 번호
             {
                 w_isd_registerValue = ISD_registerAddr_en__bipolar_referenceElectroldIndex;
                 w_isd_registerValue = w_isd_registerValue << 1;
                 w_isd_registerValue = w_isd_registerValue | ISD_writeRegister;
                 w_isd_registerValue = w_isd_registerValue << 8;
 
-                if (bipolarFIFO_index == mappingPacket->eCapMeasurement.bipolarReferenceElectrodeNum -
-                                             1) //  //1~24번 채널 중,매핑에서 받은 기준전극 번호가 있으면 해당 전극번호를 설정하고 나머지는 32번 전극에 설정
+                if (bipolarFIFO_index
+                    == mappingPacket->eCapMeasurement.bipolarReferenceElectrodeNum
+                           - 1)  //  //1~24번 채널 중,매핑에서 받은 기준전극 번호가 있으면 해당 전극번호를 설정하고 나머지는 32번 전극에 설정
 
                 {
                     w_isd_registerValue = (w_isd_registerValue) | (electrodeMap[bipolarFIFO_index]);
@@ -467,15 +451,16 @@ void tdc_isd_map_ecap_step(bool startFlag)
             // PCM 출력 모드 변경
             tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_SepcificCommand);
 
-            for (i = 0; i < 8; i++, bipolarFIFO_index++) // 23~31번 자극전극에 대응하는 기준전극
+            for (i = 0; i < 8; i++, bipolarFIFO_index++)  // 23~31번 자극전극에 대응하는 기준전극
             {
                 w_isd_registerValue = ISD_registerAddr_en__bipolar_referenceElectroldIndex;
                 w_isd_registerValue = w_isd_registerValue << 1;
                 w_isd_registerValue = w_isd_registerValue | ISD_writeRegister;
                 w_isd_registerValue = w_isd_registerValue << 8;
 
-                if (bipolarFIFO_index == mappingPacket->eCapMeasurement.bipolarReferenceElectrodeNum -
-                                             1) // 25~32번 자극전극 mapping에서 수신된 기준전극 번호에 해당하는 번호만 설정하고 다른 것은 32번 채널로 설정.
+                if (bipolarFIFO_index
+                    == mappingPacket->eCapMeasurement.bipolarReferenceElectrodeNum
+                           - 1)  // 25~32번 자극전극 mapping에서 수신된 기준전극 번호에 해당하는 번호만 설정하고 다른 것은 32번 채널로 설정.
                 {
                     w_isd_registerValue = (w_isd_registerValue) | (electrodeMap[bipolarFIFO_index]);
                 }
@@ -501,34 +486,28 @@ void tdc_isd_map_ecap_step(bool startFlag)
 
         case 4:
         {
-
             eCAP_mesureStartTime = flowCounter;
 
             // PCM 출력 모드 변경
 
             tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_SepcificCommand);
 
-
             if (tdc_isd_fpga_write_clear_fifo())
             {
-
                 // FPGA 상태를 읽어 본다.
-                if (tdc_isd_fpga_check_fpga_fifo_empty(&FPGA_FIFO_empty)) // 지워 졌는지 확인.
+                if (tdc_isd_fpga_check_fpga_fifo_empty(&FPGA_FIFO_empty))  // 지워 졌는지 확인.
                 {
                     if (!FPGA_FIFO_empty)
                     {
-                        tdc_isd_change_state(en__isdStatus_PowerIC_OK); //
+                        tdc_isd_change_state(en__isdStatus_PowerIC_OK);  //
                     }
                 }
             }
 
-
             // 펄스 폭 0으로 변경
-
 
             tdc_isd_fpga_change_pulse_width_minimum(pcm_index++);
             tdc_isd_fpga_update_fpga_pulse_phase_width_written_value(FPGA_pulsePhaseWidth_minimum);
-
 
             tdc_isd_fpga_change_12_bit_backtel_mode(pcm_index++);
 
@@ -544,7 +523,6 @@ void tdc_isd_map_ecap_step(bool startFlag)
 
         case 5:
         {
-
             // PCM 출력 모드 변경
             tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_SepcificCommand);
 
@@ -556,9 +534,9 @@ void tdc_isd_map_ecap_step(bool startFlag)
             w_isd_registerValue = w_isd_registerValue | ISD_writeRegister;
 
             w_isd_registerValue = w_isd_registerValue << 8;
-            w_isd_registerValue = w_isd_registerValue | mappingPacket->eCapMeasurement.measurementSampleNum; // 측정 갯수
+            w_isd_registerValue = w_isd_registerValue | mappingPacket->eCapMeasurement.measurementSampleNum;  // 측정 갯수
 
-            w_isd_registerValue = w_isd_registerValue | pcm_Mold_configuration; // 0x0f20  | 0x50000
+            w_isd_registerValue = w_isd_registerValue | pcm_Mold_configuration;  // 0x0f20  | 0x50000
 
             tdc_shm_fill_specific_command_buffer(pcm_index++, w_isd_registerValue);
 
@@ -570,15 +548,15 @@ void tdc_isd_map_ecap_step(bool startFlag)
             w_isd_registerValue = w_isd_registerValue | ISD_writeRegister;
 
             w_isd_registerValue = w_isd_registerValue << 1;
-            w_isd_registerValue = w_isd_registerValue | 1; // NRT_HP_SW_ON
+            w_isd_registerValue = w_isd_registerValue | 1;  // NRT_HP_SW_ON
 
             w_isd_registerValue = w_isd_registerValue << 3;
-            w_isd_registerValue = w_isd_registerValue | 0; // NRT_RST_WAIT_TIME
+            w_isd_registerValue = w_isd_registerValue | 0;  // NRT_RST_WAIT_TIME
 
             w_isd_registerValue = w_isd_registerValue << 4;
-            w_isd_registerValue = w_isd_registerValue | mappingPacket->eCapMeasurement.adcMeasurementDelay; // 프로프 출력 후 딜레이 [3:0]
+            w_isd_registerValue = w_isd_registerValue | mappingPacket->eCapMeasurement.adcMeasurementDelay;  // 프로프 출력 후 딜레이 [3:0]
 
-            w_isd_registerValue = w_isd_registerValue | pcm_Mold_configuration; // 0x1581 | 0x50000
+            w_isd_registerValue = w_isd_registerValue | pcm_Mold_configuration;  // 0x1581 | 0x50000
 
             tdc_shm_fill_specific_command_buffer(pcm_index++, w_isd_registerValue);
 
@@ -596,9 +574,9 @@ void tdc_isd_map_ecap_step(bool startFlag)
             w_isd_registerValue = w_isd_registerValue | ISD_writeRegister;
 
             w_isd_registerValue = w_isd_registerValue << 8;
-            w_isd_registerValue = w_isd_registerValue | mappingPacket->eCapMeasurement.adcPreampGain; // 측정 갯수 [3:0]
+            w_isd_registerValue = w_isd_registerValue | mappingPacket->eCapMeasurement.adcPreampGain;  // 측정 갯수 [3:0]
 
-            w_isd_registerValue = w_isd_registerValue | pcm_Mold_configuration; // 0x1701 | 0x50000
+            w_isd_registerValue = w_isd_registerValue | pcm_Mold_configuration;  // 0x1701 | 0x50000
 
             tdc_shm_fill_specific_command_buffer(pcm_index++, w_isd_registerValue);
 
@@ -608,11 +586,10 @@ void tdc_isd_map_ecap_step(bool startFlag)
             w_isd_registerValue = w_isd_registerValue | ISD_writeRegister;
             w_isd_registerValue = w_isd_registerValue << 8;
 
-            w_isd_registerValue = w_isd_registerValue | 0x2; // NRT_SWON_TIME 5usec
+            w_isd_registerValue = w_isd_registerValue | 0x2;  // NRT_SWON_TIME 5usec
             w_isd_registerValue = w_isd_registerValue | pcm_Mold_configuration;
 
             tdc_shm_fill_specific_command_buffer(pcm_index++, w_isd_registerValue);
-
 
             // ISD 0x9    - eCAP 설정 초기화
             w_isd_registerValue = ISD_registerAddr_adc_measurement;
@@ -621,16 +598,16 @@ void tdc_isd_map_ecap_step(bool startFlag)
             w_isd_registerValue = w_isd_registerValue | ISD_writeRegister;
 
             w_isd_registerValue = w_isd_registerValue << 3;
-            w_isd_registerValue = w_isd_registerValue | adc_measurementMode_impedance; // 임피던스 측정 모드로 세팅
+            w_isd_registerValue = w_isd_registerValue | adc_measurementMode_impedance;  // 임피던스 측정 모드로 세팅
 
             w_isd_registerValue = w_isd_registerValue << 3;
-            w_isd_registerValue = w_isd_registerValue | mappingPacket->eCapMeasurement.adcSamplingFreq; // adc 샘플링 주파수
+            w_isd_registerValue = w_isd_registerValue | mappingPacket->eCapMeasurement.adcSamplingFreq;  // adc 샘플링 주파수
 
             w_isd_registerValue = w_isd_registerValue << 2;
 
-            w_isd_registerValue = w_isd_registerValue | mesurementStart_Disable; // adc 측정 비활성화.
+            w_isd_registerValue = w_isd_registerValue | mesurementStart_Disable;  // adc 측정 비활성화.
 
-            w_isd_registerValue = w_isd_registerValue | pcm_Mold_configuration; // 0x1300 | 0x50000
+            w_isd_registerValue = w_isd_registerValue | pcm_Mold_configuration;  // 0x1300 | 0x50000
 
             tdc_shm_fill_specific_command_buffer(pcm_index++, w_isd_registerValue);
 
@@ -644,7 +621,7 @@ void tdc_isd_map_ecap_step(bool startFlag)
             w_isd_registerValue = w_isd_registerValue << 8;
             w_isd_registerValue = (w_isd_registerValue) | (electrodeMap[(mappingPacket->eCapMeasurement.measurementElectrodeNum - 1)]);
 
-            w_isd_registerValue = w_isd_registerValue | pcm_Mold_configuration; // 0x1102 | 0x50000
+            w_isd_registerValue = w_isd_registerValue | pcm_Mold_configuration;  // 0x1102 | 0x50000
 
             tdc_shm_fill_specific_command_buffer(pcm_index++, w_isd_registerValue);
 
@@ -655,16 +632,16 @@ void tdc_isd_map_ecap_step(bool startFlag)
             w_isd_registerValue = w_isd_registerValue | ISD_writeRegister;
 
             w_isd_registerValue = w_isd_registerValue << 3;
-            w_isd_registerValue = w_isd_registerValue | adc_measurementMode_eCAP; // 측정 모드 eCAP
+            w_isd_registerValue = w_isd_registerValue | adc_measurementMode_eCAP;  // 측정 모드 eCAP
 
             w_isd_registerValue = w_isd_registerValue << 3;
-            w_isd_registerValue = w_isd_registerValue | mappingPacket->eCapMeasurement.adcSamplingFreq; // adc 샘플링 주파수
+            w_isd_registerValue = w_isd_registerValue | mappingPacket->eCapMeasurement.adcSamplingFreq;  // adc 샘플링 주파수
 
             w_isd_registerValue = w_isd_registerValue << 2;
 
-            w_isd_registerValue = w_isd_registerValue | mesurementStart_on_configureADCregister; // adc 측정 시작 시점  :ADC 0x08 레지스터 설정  시점
+            w_isd_registerValue = w_isd_registerValue | mesurementStart_on_configureADCregister;  // adc 측정 시작 시점  :ADC 0x08 레지스터 설정  시점
 
-            w_isd_registerValue = w_isd_registerValue | pcm_Mold_configuration; // 0x1321 | 0x50000   -40khz
+            w_isd_registerValue = w_isd_registerValue | pcm_Mold_configuration;  // 0x1321 | 0x50000   -40khz
 
             tdc_shm_fill_specific_command_buffer(pcm_index++, w_isd_registerValue);
 
@@ -673,7 +650,6 @@ void tdc_isd_map_ecap_step(bool startFlag)
             //////////////////
             switch (stimulPattern_index)
             {
-
                 case en__probeAlone:
                 case en__switchingArtifact:
                 {
@@ -685,10 +661,10 @@ void tdc_isd_map_ecap_step(bool startFlag)
                     w_isd_registerValue = w_isd_registerValue | ISD_writeRegister;
                     w_isd_registerValue = w_isd_registerValue << 8;
 
-                    w_isd_registerValue = w_isd_registerValue | 0; // 마스커 위치에 출력이 없으므로 오프셋 값 0
+                    w_isd_registerValue = w_isd_registerValue | 0;  // 마스커 위치에 출력이 없으므로 오프셋 값 0
                     w_isd_registerValue = w_isd_registerValue | pcm_Mold_configuration;
 
-                    tdc_shm_fill_specific_command_buffer(pcm_index++, w_isd_registerValue); //  0x0b00  | 0x50000
+                    tdc_shm_fill_specific_command_buffer(pcm_index++, w_isd_registerValue);  //  0x0b00  | 0x50000
 
                     // ISD 0x6    - 자극 파라미터 설정  쓰기
                     w_isd_registerValue = ISD_registerAddr_StimulationConfig;
@@ -720,10 +696,10 @@ void tdc_isd_map_ecap_step(bool startFlag)
                     w_isd_registerValue = w_isd_registerValue | ISD_writeRegister;
                     w_isd_registerValue = w_isd_registerValue << 8;
 
-                    w_isd_registerValue = w_isd_registerValue | stimulDAC_offsetValue[masker_index]; // 마스커 인덱스 값
+                    w_isd_registerValue = w_isd_registerValue | stimulDAC_offsetValue[masker_index];  // 마스커 인덱스 값
                     w_isd_registerValue = w_isd_registerValue | pcm_Mold_configuration;
 
-                    tdc_shm_fill_specific_command_buffer(pcm_index++, w_isd_registerValue); //  0x0b00  | 0x50000
+                    tdc_shm_fill_specific_command_buffer(pcm_index++, w_isd_registerValue);  //  0x0b00  | 0x50000
 
                     // ISD 0x6    - 자극 파라미터 설정  쓰기
                     w_isd_registerValue = ISD_registerAddr_StimulationConfig;
@@ -753,7 +729,7 @@ void tdc_isd_map_ecap_step(bool startFlag)
             w_isd_registerValue = w_isd_registerValue << 2;
             w_isd_registerValue = w_isd_registerValue | tdc_isd_stim_mode_output_bits(mappingPacket->eCapMeasurement.stimulationMode);
 
-            w_isd_registerValue = w_isd_registerValue | pcm_Mold_configuration; // 0x0d04  | 0x50000
+            w_isd_registerValue = w_isd_registerValue | pcm_Mold_configuration;  // 0x0d04  | 0x50000
 
             tdc_shm_fill_specific_command_buffer(pcm_index++, w_isd_registerValue);
 
@@ -761,31 +737,29 @@ void tdc_isd_map_ecap_step(bool startFlag)
 
             // 자극 출력 파라미터
 
-            w_isd_registerValue = mappingPacket->eCapMeasurement.firstPulsePhase << firstPulsePhasePositionAtPCM_Mold; // 선행 펄스 ;
-            w_isd_registerValue = w_isd_registerValue | ((electrodeMap[(mappingPacket->eCapMeasurement.stimulationElectrodeNum - 1)])
-                                                         << electrodIndexPositionAtPCM_Mold); // 자극 전극 번호
+            w_isd_registerValue = mappingPacket->eCapMeasurement.firstPulsePhase << firstPulsePhasePositionAtPCM_Mold;  // 선행 펄스 ;
+            w_isd_registerValue =
+                w_isd_registerValue
+                | ((electrodeMap[(mappingPacket->eCapMeasurement.stimulationElectrodeNum - 1)]) << electrodIndexPositionAtPCM_Mold);  // 자극 전극 번호
 
             switch (stimulPattern_index)
             {
-
                 case en__probeAlone:
                 case en__switchingArtifact:
                 {
-
-                    w_isd_registerValue = w_isd_registerValue | (0 << stimulationPositionAtPCM_Mold); // 자극 출력 크기 0
+                    w_isd_registerValue = w_isd_registerValue | (0 << stimulationPositionAtPCM_Mold);  // 자극 출력 크기 0
                 }
                 break;
                 case en__maskerNprobe:
                 case en__maskerAlone:
                 {
-
-                    w_isd_registerValue = w_isd_registerValue | (stimulLevel_255[masker_index] << stimulationPositionAtPCM_Mold); // 자극 출력 크기
+                    w_isd_registerValue = w_isd_registerValue | (stimulLevel_255[masker_index] << stimulationPositionAtPCM_Mold);  // 자극 출력 크기
                 }
                 default:
                     break;
             }
 
-            w_isd_registerValue = w_isd_registerValue | pcm_Mold_Stimulation; // 0x8400  | 0x40000
+            w_isd_registerValue = w_isd_registerValue | pcm_Mold_Stimulation;  // 0x8400  | 0x40000
 
             tdc_shm_fill_specific_command_buffer(pcm_index++, w_isd_registerValue);
 
@@ -805,12 +779,10 @@ void tdc_isd_map_ecap_step(bool startFlag)
 
         case 6:
         {
-
             //  인터벌 적용을 위한 템플릿.
 
             // [ {프루브용 자극 출력 용 0x05설정,펄스폭 맞춤 NOP},{마스커 프로브 인터벌 (펄스폭 0, 프로브 출력 자극 파라미터, 0x06설정, 펄스폭 설정  , 인터벌
             // 맞춤용 NOP..)} , {프로브 자극 출력용 0x08 설정-펄스 폭에 맞춘 NOP})
-
 
             // PCM_templete_eCAP[k][templeteBuff_index++]=pcm_Mold_NopStandby;
 
@@ -819,7 +791,6 @@ void tdc_isd_map_ecap_step(bool startFlag)
             ////////////////
             switch (stimulPattern_index)
             {
-
                 case en__maskerAlone:
                 case en__switchingArtifact:
                 {
@@ -830,7 +801,7 @@ void tdc_isd_map_ecap_step(bool startFlag)
                     w_isd_registerValue = w_isd_registerValue | ISD_writeRegister;
                     w_isd_registerValue = w_isd_registerValue << 8;
 
-                    w_isd_registerValue = w_isd_registerValue | 0; // 오프셋 값 0
+                    w_isd_registerValue = w_isd_registerValue | 0;  // 오프셋 값 0
 
                     w_isd_registerValue = w_isd_registerValue | pcm_Mold_configuration;
 
@@ -849,7 +820,7 @@ void tdc_isd_map_ecap_step(bool startFlag)
                     w_isd_registerValue = w_isd_registerValue | ISD_writeRegister;
                     w_isd_registerValue = w_isd_registerValue << 8;
 
-                    w_isd_registerValue = w_isd_registerValue | stimulDAC_offsetValue[probe_index]; // 프로브 인덱스 값
+                    w_isd_registerValue = w_isd_registerValue | stimulDAC_offsetValue[probe_index];  // 프로브 인덱스 값
 
                     w_isd_registerValue = w_isd_registerValue | pcm_Mold_configuration;
 
@@ -859,9 +830,8 @@ void tdc_isd_map_ecap_step(bool startFlag)
                 break;
             }
 
-            for (i = 1; i < numFramePerChannel; i++) // DAC 0x05  파라미터가 1프레임 출력되었기 때문에 i=1에서 시작한다.
+            for (i = 1; i < numFramePerChannel; i++)  // DAC 0x05  파라미터가 1프레임 출력되었기 때문에 i=1에서 시작한다.
             {
-
                 file_PCM_templete_eCAP(en__fillForwardData, pcm_Mold_NopStandby);
                 // PCM_templete_eCAP[k][templeteBuff_index++]=pcm_Mold_NopStandby;
             }
@@ -870,7 +840,7 @@ void tdc_isd_map_ecap_step(bool startFlag)
             maskerProbeIntervalCouter = 1;
 
             // 펄스 폭  0
-            w_FPGA_registerValue = 0; // 펄스폭 0
+            w_FPGA_registerValue = 0;  // 펄스폭 0
 
             file_PCM_templete_eCAP(en__fillForwardData, (w_FPGA_registerValue | pcm_Mold_PulsePhaseWidth));
             // PCM_templete_eCAP[k][templeteBuff_index++]=(w_FPGA_registerValue|pcm_Mold_PulsePhaseWidth);
@@ -880,11 +850,9 @@ void tdc_isd_map_ecap_step(bool startFlag)
 
             switch (stimulPattern_index)
             {
-
                 case en__maskerAlone:
                 case en__switchingArtifact:
                 {
-
                     // ISD 0x6    - 자극 파라미터 설정  쓰기
                     w_isd_registerValue = ISD_registerAddr_StimulationConfig;
 
@@ -907,7 +875,6 @@ void tdc_isd_map_ecap_step(bool startFlag)
                 case en__probeAlone:
                 case en__maskerNprobe:
                 {
-
                     // ISD 0x6    - 자극 파라미터 설정  쓰기
                     w_isd_registerValue = ISD_registerAddr_StimulationConfig;
 
@@ -945,24 +912,23 @@ void tdc_isd_map_ecap_step(bool startFlag)
 
             // 프로브 자극 출력 파라미터 :
 
-            w_isd_registerValue = mappingPacket->eCapMeasurement.firstPulsePhase << firstPulsePhasePositionAtPCM_Mold; // 선행 펄스 ;
-            w_isd_registerValue = w_isd_registerValue | ((electrodeMap[(mappingPacket->eCapMeasurement.stimulationElectrodeNum - 1)])
-                                                         << electrodIndexPositionAtPCM_Mold); // 자극 전극 번호
+            w_isd_registerValue = mappingPacket->eCapMeasurement.firstPulsePhase << firstPulsePhasePositionAtPCM_Mold;  // 선행 펄스 ;
+            w_isd_registerValue =
+                w_isd_registerValue
+                | ((electrodeMap[(mappingPacket->eCapMeasurement.stimulationElectrodeNum - 1)]) << electrodIndexPositionAtPCM_Mold);  // 자극 전극 번호
 
             switch (stimulPattern_index)
             {
-
                 case en__maskerAlone:
                 case en__switchingArtifact:
                 {
-
-                    w_isd_registerValue = w_isd_registerValue | (0 << stimulationPositionAtPCM_Mold); // 자극 출력 크기 0
+                    w_isd_registerValue = w_isd_registerValue | (0 << stimulationPositionAtPCM_Mold);  // 자극 출력 크기 0
                 }
                 break;
                 case en__maskerNprobe:
                 case en__probeAlone:
                 {
-                    w_isd_registerValue = w_isd_registerValue | (stimulLevel_255[probe_index] << stimulationPositionAtPCM_Mold); // 자극 출력 크기
+                    w_isd_registerValue = w_isd_registerValue | (stimulLevel_255[probe_index] << stimulationPositionAtPCM_Mold);  // 자극 출력 크기
                 }
                 default:
                     break;
@@ -976,7 +942,7 @@ void tdc_isd_map_ecap_step(bool startFlag)
 
             // 펄스폭 조정 (프로브 출력이 나갈 때 적용될)
 
-            w_FPGA_registerValue = (mappingPacket->eCapMeasurement.pulseWidth - FPGA_pulsePhaseWidth_minimum); //
+            w_FPGA_registerValue = (mappingPacket->eCapMeasurement.pulseWidth - FPGA_pulsePhaseWidth_minimum);  //
             file_PCM_templete_eCAP(en__fillForwardData, (w_FPGA_registerValue | pcm_Mold_PulsePhaseWidth));
             // PCM_templete_eCAP[k][templeteBuff_index++]=(w_FPGA_registerValue | pcm_Mold_PulsePhaseWidth);
             maskerProbeIntervalCouter++;
@@ -999,9 +965,9 @@ void tdc_isd_map_ecap_step(bool startFlag)
             w_isd_registerValue = w_isd_registerValue | ISD_writeRegister;
 
             w_isd_registerValue = w_isd_registerValue << 8;
-            w_isd_registerValue = w_isd_registerValue | 0; //
+            w_isd_registerValue = w_isd_registerValue | 0;  //
 
-            w_isd_registerValue = w_isd_registerValue | pcm_Mold_configuration; // 0x1100 | 0x50000
+            w_isd_registerValue = w_isd_registerValue | pcm_Mold_configuration;  // 0x1100 | 0x50000
 
             file_PCM_templete_eCAP(en__fillForwardData, w_isd_registerValue);
             // PCM_templete_eCAP[k][templeteBuff_index++]=w_isd_registerValue;
@@ -1021,7 +987,6 @@ void tdc_isd_map_ecap_step(bool startFlag)
 
         case 7:
         {
-
             // PCM 출력 모드 변경
             tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_SepcificCommand);
 
@@ -1037,7 +1002,6 @@ void tdc_isd_map_ecap_step(bool startFlag)
         case 8:
 
         {
-
             // PCM 출력 모드 변경
             tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_SepcificCommand);
 
@@ -1049,8 +1013,8 @@ void tdc_isd_map_ecap_step(bool startFlag)
             // NOP-Backtel
             tdc_shm_change_next_pcm_output_mode(PcmBitStream_Mode_NopBacktel);
 
-            backtelStart_flowCounter = flowCounter + backtelReceiveTime_ms + 4; // 현재 PCM FIFO에서 실제 출력이 나가서 적용되는 시점의 flowCouter :  현재
-                                                                                // 플로우 카운터 + 측정 샘플 수에 해당하는 백텔 수신 시간 + FIFO 출력 delay
+            backtelStart_flowCounter = flowCounter + backtelReceiveTime_ms + 4;  // 현재 PCM FIFO에서 실제 출력이 나가서 적용되는 시점의 flowCouter :  현재
+                                                                                 // 플로우 카운터 + 측정 샘플 수에 해당하는 백텔 수신 시간 + FIFO 출력 delay
         }
         break;
 
@@ -1060,7 +1024,6 @@ void tdc_isd_map_ecap_step(bool startFlag)
 
     if (flowCounter == backtelStart_flowCounter)
     {
-
         tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_NopStandby);
 
         if (tdc_isd_fpga_check_fpga_pcm_error(&FPGA_error))
@@ -1073,9 +1036,8 @@ void tdc_isd_map_ecap_step(bool startFlag)
                 {
                     if (!FPGA_FIFO_empty)
                     {
-
                         if (tdc_isd_fpga_read_backtel_fifo(&bufferForReading_eCAP[stimulPattern_index - 1][0],
-                                                   mappingPacket->eCapMeasurement.measurementSampleNum << 1))
+                                                           mappingPacket->eCapMeasurement.measurementSampleNum << 1))
                         {
                             // ecap 측정값을 읽어 옴.
                         }
@@ -1083,7 +1045,7 @@ void tdc_isd_map_ecap_step(bool startFlag)
                     else
                     {
                         // 백텔 안들어옴 에러
-                        tdc_isd_change_state(en__isdStatus_FPGA_Ok); // 내부기 전송 파워 설정 부터 다시.
+                        tdc_isd_change_state(en__isdStatus_FPGA_Ok);  // 내부기 전송 파워 설정 부터 다시.
 
                         // 에러 전송
                         tdc_sys_error_send_to_app(en__mapping_eCAP_Measurement_masking, en__EN__ISD_ERROR, en__BackTelCounterZero, __LINE__);
@@ -1094,55 +1056,49 @@ void tdc_isd_map_ecap_step(bool startFlag)
             }
             else
             {
-
                 // FPGA 에러 발생, FPGA 초기화
                 tdc_isd_change_state(en__isdStatus_PowerIC_OK);
 
                 // 에러 전송
                 tdc_sys_error_send_to_app(en__mapping_eCAP_Measurement_masking,
-                               en__FPGA_CONFIGUARATION_ERROR,
-                               r_FPGA_registerValue,
-                               __LINE__); // FPGA 에러 값을 그대로 전달
+                                          en__FPGA_CONFIGUARATION_ERROR,
+                                          r_FPGA_registerValue,
+                                          __LINE__);  // FPGA 에러 값을 그대로 전달
                 // 커맨드 리셋;
                 tdc_ble_mapping_clear_command();
             }
         }
-
     }
-
 
     if (flowCounter > backtelStart_flowCounter)
     {
-
         stimulPattern_index++;
         file_PCM_templete_eCAP(en__clearIndex, 0);
 
         if (stimulPattern_index > en__switchingArtifact)
         {
-
             sendingPatternIndex = 0;
             ble_transfer_index  = 0;
 
             // // 4개 패턴  측정 값 전송
             while (1)
             {
-
                 buffer_tx_index = 0;
 
                 // command loop-back
                 bufferForSPI_tx[buffer_tx_index++] = mappingPacket->command;
 
                 // pay-load 준비
-                bufferForSPI_tx[buffer_tx_index++] = iterationNum + 1; // 측정회차
+                bufferForSPI_tx[buffer_tx_index++] = iterationNum + 1;  // 측정회차
 
-                bufferForSPI_tx[buffer_tx_index++] = sendingPatternIndex + 1; // 측정 패턴
+                bufferForSPI_tx[buffer_tx_index++] = sendingPatternIndex + 1;  // 측정 패턴
 
-                for (i = 0; i < Max_eCAP_ReturnDataSize; i++) // ble 패킷 사이즈로 인하여..1회 전달 시 최대, 4번 측정한 데이터 전달 가능.
+                for (i = 0; i < Max_eCAP_ReturnDataSize; i++)  // ble 패킷 사이즈로 인하여..1회 전달 시 최대, 4번 측정한 데이터 전달 가능.
                 {
                     if (ble_transfer_index < mappingPacket->eCapMeasurement.measurementSampleNum)
                     {
-                        bufferForSPI_tx[buffer_tx_index++] = (int) bufferForReading_eCAP[sendingPatternIndex][(ble_transfer_index << 1)];     // 상위 바이트
-                        bufferForSPI_tx[buffer_tx_index++] = (int) bufferForReading_eCAP[sendingPatternIndex][(ble_transfer_index << 1) + 1]; // 하위 바이트
+                        bufferForSPI_tx[buffer_tx_index++] = (int) bufferForReading_eCAP[sendingPatternIndex][(ble_transfer_index << 1)];      // 상위 바이트
+                        bufferForSPI_tx[buffer_tx_index++] = (int) bufferForReading_eCAP[sendingPatternIndex][(ble_transfer_index << 1) + 1];  // 하위 바이트
 
                         ble_transfer_index++;
                     }

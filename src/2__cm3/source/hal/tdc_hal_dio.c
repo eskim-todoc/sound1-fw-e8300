@@ -83,4 +83,3 @@ void DIO_1_IRQHandler(void)
 {
     tdc_hal_dio_set_int_flag_case_lid_open();
 }
-

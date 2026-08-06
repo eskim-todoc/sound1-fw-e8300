@@ -8,7 +8,7 @@
 #include <tdc_shm.h>
 
 #include <tdc_hal_timer.h>
-#include <tdc_util.h>  /* tdc_util_delay_ms */
+#include <tdc_util.h> /* tdc_util_delay_ms */
 #include <tdc_printf.h>
 
 /* ========================================================================
@@ -33,8 +33,8 @@
  *   - 출처: https://en.wikipedia.org/wiki/Relative_luminance
  *           https://en.wikipedia.org/wiki/Stevens%27s_power_law
  * ======================================================================== */
-#define LED_DIMMING_FADE_MAX_MS  30//15   /* 점멸 패턴 매 cycle fade 시간 상한 (ON 시작 fade-in / ON 끝 fade-out) */
-#define LED_DIMMING_FADE_DIVISOR 3    /* 점멸 fade 자동 조정: on_ms / N */
+#define LED_DIMMING_FADE_MAX_MS  30  //15   /* 점멸 패턴 매 cycle fade 시간 상한 (ON 시작 fade-in / ON 끝 fade-out) */
+#define LED_DIMMING_FADE_DIVISOR 3   /* 점멸 fade 자동 조정: on_ms / N */
 
 /* 색상 전환 cross-fade 시간 (s_tx_phase 의 FADE_OUT / FADE_IN 각각).
  *
@@ -42,7 +42,7 @@
  * burst 내부 fade 의 2 배 → 색상 전환이 "신중한 동작" 으로 인지되어
  * 연속 정보 갱신 (BATT 색 변화 등) 의 부드러움 ↑. 모든 LED 상태 전환 시
  * 1 회 적용 (지속 ON, 점멸, burst 모두 진입 시 동일하게 1 회 fade-out / fade-in). */
-#define LED_DIMMING_TX_FADE_MS   60
+#define LED_DIMMING_TX_FADE_MS 60
 
 /* POWER_ON / POWER_OFF 진입 시 leading OFF 시간 (음악적 쉼표).
  *
@@ -57,10 +57,10 @@
  *   본 매크로 시간 OFF → BLUE burst.
  *
  * 적정 가이드: burst 내부 OFF (180 ms) 의 약 2~3 배 (음악 ~1 박자 휴식). */
-#define LED_POWER_LEAD_OFF_MS    400
-#define LED_DIMMING_PWM_STEPS    10   /* 1ms × 10 = 10ms = 100Hz PWM */
+#define LED_POWER_LEAD_OFF_MS 400
+#define LED_DIMMING_PWM_STEPS 10 /* 1ms × 10 = 10ms = 100Hz PWM */
 
-static uint8_t s_led_pwm_on_count = LED_DIMMING_PWM_STEPS;  /* 0 ~ STEPS */
+static uint8_t s_led_pwm_on_count = LED_DIMMING_PWM_STEPS; /* 0 ~ STEPS */
 
 /* ISR 에서 engine/tdc_led_out 을 일시 정지하는 플래그.
  * tdc_led_turn_off() 처럼 main loop 가 직접 LED state 를 조작하는 구간의
@@ -71,13 +71,13 @@ static volatile bool s_led_isr_suspended = false;
  * ACTIVE 로 전환되며, ISR 의 tdc_led_arbiter_tick() 이 매 tick step 진행. */
 typedef enum
 {
-    LED_FADE_OFF_IDLE   = 0,
+    LED_FADE_OFF_IDLE = 0,
     LED_FADE_OFF_ACTIVE,
 } led_fade_off_state_t;
 
 static volatile led_fade_off_state_t s_fade_off_state = LED_FADE_OFF_IDLE;
 static volatile uint16_t             s_fade_off_t     = 0;
-static volatile uint16_t             s_fade_off_max   = 0;  /* 30 (turnOff) / 40 (force) */
+static volatile uint16_t             s_fade_off_max   = 0; /* 30 (turnOff) / 40 (force) */
 
 /* CFX_0 / FIFO_5 ISR 활성 여부 - initialize.c 에서 set / clear.
  * tdc_led_turn_off() / tdc_led_force_fade_off() 가 ISR 의존 fade-off vs. 즉시 OFF
@@ -116,9 +116,9 @@ typedef enum
     LED_TX_FADE_IN,
 } led_tx_phase_t;
 
-static led_tx_phase_t s_tx_phase      = LED_TX_NONE;
-static tdc_led_color_t  s_tx_prev_color = TDC_LED_COLOR_BLACK;
-static uint16_t       s_tx_ms         = 0;
+static led_tx_phase_t  s_tx_phase      = LED_TX_NONE;
+static tdc_led_color_t s_tx_prev_color = TDC_LED_COLOR_BLACK;
+static uint16_t        s_tx_ms         = 0;
 
 /* CIE 1931 Lightness (L*) → relative luminance LUT.
  *
@@ -135,22 +135,15 @@ static uint16_t       s_tx_ms         = 0;
  * 것처럼 보인다. 단조 증가, LUT[0]=0, LUT[255]=255 보장.
  */
 static const uint8_t k_perceptual_lut[256] = {
-      0,   0,   0,   0,   0,   1,   1,   1,   1,   1,   1,   1,   1,   1,   2,   2,
-      2,   2,   2,   2,   2,   2,   2,   3,   3,   3,   3,   3,   3,   3,   3,   4,
-      4,   4,   4,   4,   4,   5,   5,   5,   5,   5,   6,   6,   6,   6,   6,   7,
-      7,   7,   7,   8,   8,   8,   8,   9,   9,   9,  10,  10,  10,  10,  11,  11,
-     11,  12,  12,  12,  13,  13,  13,  14,  14,  15,  15,  15,  16,  16,  17,  17,
-     17,  18,  18,  19,  19,  20,  20,  21,  21,  22,  22,  23,  23,  24,  24,  25,
-     25,  26,  26,  27,  28,  28,  29,  29,  30,  31,  31,  32,  32,  33,  34,  34,
-     35,  36,  37,  37,  38,  39,  39,  40,  41,  42,  43,  43,  44,  45,  46,  47,
-     47,  48,  49,  50,  51,  52,  53,  54,  54,  55,  56,  57,  58,  59,  60,  61,
-     62,  63,  64,  65,  66,  67,  68,  70,  71,  72,  73,  74,  75,  76,  77,  79,
-     80,  81,  82,  83,  85,  86,  87,  88,  90,  91,  92,  94,  95,  96,  98,  99,
-    100, 102, 103, 105, 106, 108, 109, 110, 112, 113, 115, 116, 118, 120, 121, 123,
-    124, 126, 128, 129, 131, 132, 134, 136, 138, 139, 141, 143, 145, 146, 148, 150,
-    152, 154, 155, 157, 159, 161, 163, 165, 167, 169, 171, 173, 175, 177, 179, 181,
-    183, 185, 187, 189, 191, 193, 196, 198, 200, 202, 204, 207, 209, 211, 214, 216,
-    218, 220, 223, 225, 228, 230, 232, 235, 237, 240, 242, 245, 247, 250, 252, 255,
+    0,   0,   0,   0,   0,   1,   1,   1,   1,   1,   1,   1,   1,   1,   2,   2,   2,   2,   2,   2,   2,   2,   2,   3,   3,   3,   3,   3,   3,
+    3,   3,   4,   4,   4,   4,   4,   4,   5,   5,   5,   5,   5,   6,   6,   6,   6,   6,   7,   7,   7,   7,   8,   8,   8,   8,   9,   9,   9,
+    10,  10,  10,  10,  11,  11,  11,  12,  12,  12,  13,  13,  13,  14,  14,  15,  15,  15,  16,  16,  17,  17,  17,  18,  18,  19,  19,  20,  20,
+    21,  21,  22,  22,  23,  23,  24,  24,  25,  25,  26,  26,  27,  28,  28,  29,  29,  30,  31,  31,  32,  32,  33,  34,  34,  35,  36,  37,  37,
+    38,  39,  39,  40,  41,  42,  43,  43,  44,  45,  46,  47,  47,  48,  49,  50,  51,  52,  53,  54,  54,  55,  56,  57,  58,  59,  60,  61,  62,
+    63,  64,  65,  66,  67,  68,  70,  71,  72,  73,  74,  75,  76,  77,  79,  80,  81,  82,  83,  85,  86,  87,  88,  90,  91,  92,  94,  95,  96,
+    98,  99,  100, 102, 103, 105, 106, 108, 109, 110, 112, 113, 115, 116, 118, 120, 121, 123, 124, 126, 128, 129, 131, 132, 134, 136, 138, 139, 141,
+    143, 145, 146, 148, 150, 152, 154, 155, 157, 159, 161, 163, 165, 167, 169, 171, 173, 175, 177, 179, 181, 183, 185, 187, 189, 191, 193, 196, 198,
+    200, 202, 204, 207, 209, 211, 214, 216, 218, 220, 223, 225, 228, 230, 232, 235, 237, 240, 242, 245, 247, 250, 252, 255,
 };
 
 /* 점멸 패턴 fade 시간 자동 조정 - on_ms / 3, 단 MAX 까지 cap.
@@ -165,11 +158,20 @@ static uint16_t calc_pattern_fade_ms(uint16_t on_ms)
  * fade 시간이 ON 시간에 맞춰 자동 조정되어 정점 도달 보장. */
 static uint8_t calc_perceived_pattern(uint16_t t, uint16_t on_ms, uint16_t period_ms)
 {
-    if (period_ms == 0)  return 255;  /* 지속 ON */
-    if (t >= on_ms)      return 0;    /* OFF 구간 */
+    if (period_ms == 0)
+    {
+        return 255; /* 지속 ON */
+    }
+    if (t >= on_ms)
+    {
+        return 0; /* OFF 구간 */
+    }
 
     uint16_t fade_ms = calc_pattern_fade_ms(on_ms);
-    if (fade_ms == 0)    return 255;  /* on_ms < 3 (이론상 미발생, 안전 가드) */
+    if (fade_ms == 0)
+    {
+        return 255; /* on_ms < 3 (이론상 미발생, 안전 가드) */
+    }
 
     /* fade-in 영역 */
     if (t < fade_ms)
@@ -208,21 +210,21 @@ static uint8_t perceived_to_pwm(uint8_t perceived)
  *   - Factory Reset 테스트 빌드: 본 파일 디폴트를 FACTORY_RESET 으로 변경
  *                                또는 빌드 옵션 -DTDC_FW_VARIANT=TDC_FW_VARIANT_FACTORY_RESET.
  * ======================================================================== */
-#define TDC_FW_VARIANT_APP             0
-#define TDC_FW_VARIANT_FACTORY_RESET   1
+#define TDC_FW_VARIANT_APP           0
+#define TDC_FW_VARIANT_FACTORY_RESET 1
 
 #ifndef TDC_FW_VARIANT
-#define TDC_FW_VARIANT  TDC_FW_VARIANT_APP   /* 디폴트: 운용 (APP) */
+#define TDC_FW_VARIANT TDC_FW_VARIANT_APP /* 디폴트: 운용 (APP) */
 #endif
 
 #if (TDC_FW_VARIANT == TDC_FW_VARIANT_FACTORY_RESET)
-    #define TDC_FW_LED_IN_USE_COLOR    TDC_LED_COLOR_PURPLE
-    #define TDC_FW_LED_POWER_ON_COLOR  TDC_LED_COLOR_WHITE
+#define TDC_FW_LED_IN_USE_COLOR   TDC_LED_COLOR_PURPLE
+#define TDC_FW_LED_POWER_ON_COLOR TDC_LED_COLOR_WHITE
 #elif (TDC_FW_VARIANT == TDC_FW_VARIANT_APP)
-    #define TDC_FW_LED_IN_USE_COLOR    TDC_LED_COLOR_WHITE
-    #define TDC_FW_LED_POWER_ON_COLOR  TDC_LED_COLOR_SKYBLUE
+#define TDC_FW_LED_IN_USE_COLOR   TDC_LED_COLOR_WHITE
+#define TDC_FW_LED_POWER_ON_COLOR TDC_LED_COLOR_SKYBLUE
 #else
-    #error "TDC_FW_VARIANT 미지원 값. TDC_FW_VARIANT_APP 또는 TDC_FW_VARIANT_FACTORY_RESET 만 허용."
+#error "TDC_FW_VARIANT 미지원 값. TDC_FW_VARIANT_APP 또는 TDC_FW_VARIANT_FACTORY_RESET 만 허용."
 #endif
 
 /* ========================================================================
@@ -235,35 +237,35 @@ static uint8_t perceived_to_pwm(uint8_t perceived)
  *   예) { on_ms=1100, period_ms=2200 }  ⇒  ON 1100ms / OFF 1100ms
  *   각 행의 // 주석에 ON/OFF 형식으로 같이 표기. */
 static const tdc_led_pattern_desc_t k_led_patterns[TDC_LED_ST__MAX] = {
-    [TDC_LED_ST_NONE]           = { TDC_LED_COLOR_BLACK,   0,    0,    0 },  // 지속 OFF
-    [TDC_LED_ST_IDLE]           = { TDC_LED_COLOR_BLACK,   0,    0,    0 },  // 지속 OFF
+    [TDC_LED_ST_NONE] = {TDC_LED_COLOR_BLACK, 0, 0, 0},  // 지속 OFF
+    [TDC_LED_ST_IDLE] = {TDC_LED_COLOR_BLACK, 0, 0, 0},  // 지속 OFF
 
-    [TDC_LED_ST_BATT_READY]     = { TDC_LED_COLOR_GREEN,   0,    0,    0 },  // 녹색 지속 ON
-    [TDC_LED_ST_IN_USE]         = { TDC_FW_LED_IN_USE_COLOR, 0,    0,    0 },  // 지속 ON (App=WHITE / FactRst=PURPLE)
-    [TDC_LED_ST_BATT_MID]       = { TDC_LED_COLOR_ORANGE,  0,    0,    0 },  // 노랑 지속 ON
-    [TDC_LED_ST_BATT_CRITICAL]  = { TDC_LED_COLOR_ORANGE,  1100, 2200, 0 },  // 노랑  ON 1100ms / OFF 1100ms
+    [TDC_LED_ST_BATT_READY]    = {TDC_LED_COLOR_GREEN, 0, 0, 0},         // 녹색 지속 ON
+    [TDC_LED_ST_IN_USE]        = {TDC_FW_LED_IN_USE_COLOR, 0, 0, 0},     // 지속 ON (App=WHITE / FactRst=PURPLE)
+    [TDC_LED_ST_BATT_MID]      = {TDC_LED_COLOR_ORANGE, 0, 0, 0},        // 노랑 지속 ON
+    [TDC_LED_ST_BATT_CRITICAL] = {TDC_LED_COLOR_ORANGE, 1100, 2200, 0},  // 노랑  ON 1100ms / OFF 1100ms
 
-    [TDC_LED_ST_MAPPING_ISD_BATT_READY]    = { TDC_LED_COLOR_BLUE,   200, 1000, 0 },  // 파랑  ON 200ms  / OFF 800ms 점멸  (>20%, ISD 연결)
-    [TDC_LED_ST_MAPPING_NO_ISD_BATT_READY] = { TDC_LED_COLOR_BLUE,     0,    0, 0 },  // 파랑 지속 ON                       (>20%, ISD 미연결)
-    [TDC_LED_ST_MAPPING_ISD_BATT_LOW]      = { TDC_LED_COLOR_PURPLE, 200, 1000, 0 },  // 보라  ON 200ms  / OFF 800ms 점멸  (≤20%, ISD 연결)
-    [TDC_LED_ST_MAPPING_NO_ISD_BATT_LOW]   = { TDC_LED_COLOR_PURPLE,   0,    0, 0 },  // 보라 지속 ON                       (≤20%, ISD 미연결)
+    [TDC_LED_ST_MAPPING_ISD_BATT_READY]    = {TDC_LED_COLOR_BLUE, 200, 1000, 0},    // 파랑  ON 200ms  / OFF 800ms 점멸  (>20%, ISD 연결)
+    [TDC_LED_ST_MAPPING_NO_ISD_BATT_READY] = {TDC_LED_COLOR_BLUE, 0, 0, 0},         // 파랑 지속 ON                       (>20%, ISD 미연결)
+    [TDC_LED_ST_MAPPING_ISD_BATT_LOW]      = {TDC_LED_COLOR_PURPLE, 200, 1000, 0},  // 보라  ON 200ms  / OFF 800ms 점멸  (≤20%, ISD 연결)
+    [TDC_LED_ST_MAPPING_NO_ISD_BATT_LOW]   = {TDC_LED_COLOR_PURPLE, 0, 0, 0},       // 보라 지속 ON                       (≤20%, ISD 미연결)
 
-    [TDC_LED_ST_PAIR]           = { TDC_LED_COLOR_BLUE,   500, 1000, 0 },   // 파랑  ON 500ms  / OFF 500ms 점멸 (1주기 1000ms)
-    [TDC_LED_ST_OTA_QCC]        = { TDC_LED_COLOR_GREEN,  1100, 2200, 0 },   // 녹색  ON 1100ms / OFF 1100ms
-    [TDC_LED_ST_OTA_EZAIRO]     = { TDC_LED_COLOR_GREEN,  180,  360,  0 },   // 녹색  ON 180ms  / OFF 180ms
+    [TDC_LED_ST_PAIR]       = {TDC_LED_COLOR_BLUE, 500, 1000, 0},    // 파랑  ON 500ms  / OFF 500ms 점멸 (1주기 1000ms)
+    [TDC_LED_ST_OTA_QCC]    = {TDC_LED_COLOR_GREEN, 1100, 2200, 0},  // 녹색  ON 1100ms / OFF 1100ms
+    [TDC_LED_ST_OTA_EZAIRO] = {TDC_LED_COLOR_GREEN, 180, 360, 0},    // 녹색  ON 180ms  / OFF 180ms
 
-    [TDC_LED_ST_ERROR_MAP]      = { TDC_LED_COLOR_RED,    180,  360,  0 },   // 빨강  ON 180ms  / OFF 180ms
-    [TDC_LED_ST_ERROR_MCU]      = { TDC_LED_COLOR_RED,    180,  360,  0 },   // 빨강  ON 180ms  / OFF 180ms
-    [TDC_LED_ST_ERROR_ACCEL]    = { TDC_LED_COLOR_RED,    180,  360,  0 },   // 빨강  ON 180ms  / OFF 180ms
-    [TDC_LED_ST_ERROR_FPGA]     = { TDC_LED_COLOR_RED,    180,  360,  0 },   // 빨강  ON 180ms  / OFF 180ms
-    [TDC_LED_ST_ERROR_PMIC]     = { TDC_LED_COLOR_RED,    180,  360,  0 },   // 빨강  ON 180ms  / OFF 180ms
+    [TDC_LED_ST_ERROR_MAP]   = {TDC_LED_COLOR_RED, 180, 360, 0},  // 빨강  ON 180ms  / OFF 180ms
+    [TDC_LED_ST_ERROR_MCU]   = {TDC_LED_COLOR_RED, 180, 360, 0},  // 빨강  ON 180ms  / OFF 180ms
+    [TDC_LED_ST_ERROR_ACCEL] = {TDC_LED_COLOR_RED, 180, 360, 0},  // 빨강  ON 180ms  / OFF 180ms
+    [TDC_LED_ST_ERROR_FPGA]  = {TDC_LED_COLOR_RED, 180, 360, 0},  // 빨강  ON 180ms  / OFF 180ms
+    [TDC_LED_ST_ERROR_PMIC]  = {TDC_LED_COLOR_RED, 180, 360, 0},  // 빨강  ON 180ms  / OFF 180ms
 
     /* 게이트 - ON 180ms · OFF 180ms, fade 30 · peak 120 · fade 30 (LED_DIMMING_FADE_MAX_MS) */
-    [TDC_LED_ST_POWER_ON]       = { TDC_FW_LED_POWER_ON_COLOR, 180, 360,  4 },   // ON 180ms / OFF 180ms × 4회 버스트 (App=SKYBLUE / FactRst=WHITE)
-    [TDC_LED_ST_POWER_OFF]      = { TDC_LED_COLOR_BLUE,    180, 360,  4 },   // BLUE    ON 180ms / OFF 180ms × 4회 버스트
+    [TDC_LED_ST_POWER_ON]  = {TDC_FW_LED_POWER_ON_COLOR, 180, 360, 4},  // ON 180ms / OFF 180ms × 4회 버스트 (App=SKYBLUE / FactRst=WHITE)
+    [TDC_LED_ST_POWER_OFF] = {TDC_LED_COLOR_BLUE, 180, 360, 4},         // BLUE    ON 180ms / OFF 180ms × 4회 버스트
 
     /* [DBG] 롱터치 무시 케이스 피드백 */
-    [TDC_LED_ST_DBG_LONG_TOUCH_IGNORE] = { TDC_LED_COLOR_PURPLE, 180, 360, 3 },  // 보라 ON 180ms / OFF 180ms × 3회
+    [TDC_LED_ST_DBG_LONG_TOUCH_IGNORE] = {TDC_LED_COLOR_PURPLE, 180, 360, 3},  // 보라 ON 180ms / OFF 180ms × 3회
 };
 
 /* ========================================================================
@@ -274,40 +276,53 @@ static int led_prio_of(tdc_led_state_t st)
 {
     switch (st)
     {
-        case TDC_LED_ST_POWER_OFF:      return 100;
-        case TDC_LED_ST_POWER_ON:       return 95;
+        case TDC_LED_ST_POWER_OFF:
+            return 100;
+        case TDC_LED_ST_POWER_ON:
+            return 95;
 
         case TDC_LED_ST_ERROR_MAP:
         case TDC_LED_ST_ERROR_MCU:
         case TDC_LED_ST_ERROR_ACCEL:
         case TDC_LED_ST_ERROR_FPGA:
-        case TDC_LED_ST_ERROR_PMIC:     return 90;
+        case TDC_LED_ST_ERROR_PMIC:
+            return 90;
 
         case TDC_LED_ST_OTA_QCC:
-        case TDC_LED_ST_OTA_EZAIRO:     return 80;
+        case TDC_LED_ST_OTA_EZAIRO:
+            return 80;
 
         case TDC_LED_ST_MAPPING_ISD_BATT_READY:
         case TDC_LED_ST_MAPPING_NO_ISD_BATT_READY:
         case TDC_LED_ST_MAPPING_ISD_BATT_LOW:
-        case TDC_LED_ST_MAPPING_NO_ISD_BATT_LOW: return 75;
+        case TDC_LED_ST_MAPPING_NO_ISD_BATT_LOW:
+            return 75;
 
-        case TDC_LED_ST_PAIR:           return 70;
+        case TDC_LED_ST_PAIR:
+            return 70;
 
-        case TDC_LED_ST_BATT_CRITICAL:  return 60;
+        case TDC_LED_ST_BATT_CRITICAL:
+            return 60;
 
-        case TDC_LED_ST_IN_USE:         return 40;
+        case TDC_LED_ST_IN_USE:
+            return 40;
 
-        case TDC_LED_ST_BATT_READY:     return 30;
+        case TDC_LED_ST_BATT_READY:
+            return 30;
 
-        case TDC_LED_ST_BATT_MID:       return 20;
+        case TDC_LED_ST_BATT_MID:
+            return 20;
 
-        case TDC_LED_ST_IDLE:           return 10;
+        case TDC_LED_ST_IDLE:
+            return 10;
 
 #if TDC_LED_DBG_LONG_TOUCH_IGNORE
-        case TDC_LED_ST_DBG_LONG_TOUCH_IGNORE: return 76;  /* [DBG] MAPPING(75)보다 약간 높음 */
+        case TDC_LED_ST_DBG_LONG_TOUCH_IGNORE:
+            return 76; /* [DBG] MAPPING(75)보다 약간 높음 */
 #endif
 
-        default:                    return 0;
+        default:
+            return 0;
     }
 }
 
@@ -366,13 +381,13 @@ static tdc_led_color_t LED_outputColor = TDC_LED_COLOR_BLACK;
  * ======================================================================== */
 
 static tdc_led_state_t s_req[TDC_LED_SRC__MAX];
-static uint32_t    s_pair_latch_until_tick;
+static uint32_t        s_pair_latch_until_tick;
 
 /* burst 패턴 (POWER_ON / POWER_OFF 등 burst_cnt > 0) 의 진행 상태 추적.
  * set 책임: `tdc_led_request()` 가 burst 패턴 요청 즉시 true (외부 호출 시점).
  * clear 책임: `led_engine_run()` 이 burst 자가 해제 시 false (LED 핸들러 내부).
  * 의도: timer/tick 무관 시작·끝 명확화 - tdc_sys_control_step 의 종료 검출 race 회피. */
-static bool        s_tdc_burst_pending;
+static bool s_tdc_burst_pending;
 
 void tdc_led_request(tdc_led_src_t src, tdc_led_state_t st)
 {
@@ -450,7 +465,7 @@ void tdc_led_force_fade_off(void)
      * fade 진행 → tdc_led_turn_off() 진입 시점엔 BLACK 안정 도달 (또는 진행 중). */
     s_fade_off_state = LED_FADE_OFF_ACTIVE;
     s_fade_off_t     = 0;
-    s_fade_off_max   = LED_DIMMING_TX_FADE_MS + 10;  /* cross-fade FADE_OUT 시간 + 10 ms 마진 */
+    s_fade_off_max   = LED_DIMMING_TX_FADE_MS + 10; /* cross-fade FADE_OUT 시간 + 10 ms 마진 */
 
     /* sleep 진입 동안 LED 보호 - fade 완료 후 ISR 차단.
      *
@@ -469,9 +484,9 @@ void tdc_led_force_fade_off(void)
 
 static void led_engine_run(tdc_led_state_t st, bool reset)
 {
-    const tdc_led_pattern_desc_t *p = &k_led_patterns[st];
-    static uint16_t timer_ms       = 0;
-    static uint8_t  burst_done_cnt = 0;
+    const tdc_led_pattern_desc_t *p              = &k_led_patterns[st];
+    static uint16_t               timer_ms       = 0;
+    static uint8_t                burst_done_cnt = 0;
 
     if (reset)
     {
@@ -517,8 +532,7 @@ static void led_engine_run(tdc_led_state_t st, bool reset)
         LED_outputColor = s_tx_prev_color;
 
         /* perceived 255 → 0 으로 선형 감소, LUT 통해 PWM 변환 */
-        uint8_t perceived = (uint8_t) (((LED_DIMMING_TX_FADE_MS - s_tx_ms) * 255UL)
-                                       / LED_DIMMING_TX_FADE_MS);
+        uint8_t perceived  = (uint8_t) (((LED_DIMMING_TX_FADE_MS - s_tx_ms) * 255UL) / LED_DIMMING_TX_FADE_MS);
         s_led_pwm_on_count = perceived_to_pwm(perceived);
 
         s_tx_ms++;
@@ -560,7 +574,7 @@ static void led_engine_run(tdc_led_state_t st, bool reset)
     /* 출력 색상 결정 */
     if (p->period_ms == 0)
     {
-        LED_outputColor = p->color;  /* 지속 ON */
+        LED_outputColor = p->color; /* 지속 ON */
     }
     else
     {
@@ -574,7 +588,7 @@ static void led_engine_run(tdc_led_state_t st, bool reset)
     if (s_tx_phase == LED_TX_FADE_IN)
     {
         uint8_t fade_in_perc = (uint8_t) ((s_tx_ms * 255UL) / LED_DIMMING_TX_FADE_MS);
-        perceived = (uint8_t) (((uint32_t) perceived * fade_in_perc) / 255);
+        perceived            = (uint8_t) (((uint32_t) perceived * fade_in_perc) / 255);
 
         s_tx_ms++;
         if (s_tx_ms >= LED_DIMMING_TX_FADE_MS)
@@ -610,13 +624,15 @@ static void led_engine_run(tdc_led_state_t st, bool reset)
                     }
 
                     /* 게이트 자가 해제: 기존 관례 유지 */
-                    s_req[TDC_LED_SRC_POWER]       = TDC_LED_ST_NONE;
+                    s_req[TDC_LED_SRC_POWER] = TDC_LED_ST_NONE;
 #if TDC_LED_DBG_LONG_TOUCH_IGNORE
                     if (st == TDC_LED_ST_DBG_LONG_TOUCH_IGNORE)
-                        s_req[TDC_LED_SRC_DBG] = TDC_LED_ST_NONE;  /* DBG burst 자가 해제 */
+                    {
+                        s_req[TDC_LED_SRC_DBG] = TDC_LED_ST_NONE; /* DBG burst 자가 해제 */
+                    }
 #endif
-                    s_tdc_burst_pending        = false;
-                    burst_done_cnt             = 0;
+                    s_tdc_burst_pending = false;
+                    burst_done_cnt      = 0;
                 }
             }
         }
@@ -635,13 +651,12 @@ static void led_engine_run(tdc_led_state_t st, bool reset)
  * 한 tick 내 두 번 호출되어도 동등 결과. */
 static tdc_led_state_t compute_best_state(void)
 {
-    bool        user_off = (tdc_shm_read_led_indicator_on_off() == 2);
+    bool            user_off = (tdc_shm_read_led_indicator_on_off() == 2);
     tdc_led_state_t best     = TDC_LED_ST_IDLE;
-    int         max_p    = -1;
+    int             max_p    = -1;
 
     /* PAIR latch 처리: 해제 요청이 와도 latch 동안 유지 */
-    if (s_req[TDC_LED_SRC_BLE_IND] != TDC_LED_ST_PAIR
-        && tdc_hal_timer_get_tick() < s_pair_latch_until_tick)
+    if (s_req[TDC_LED_SRC_BLE_IND] != TDC_LED_ST_PAIR && tdc_hal_timer_get_tick() < s_pair_latch_until_tick)
     {
         s_req[TDC_LED_SRC_BLE_IND] = TDC_LED_ST_PAIR;
     }
@@ -649,15 +664,14 @@ static tdc_led_state_t compute_best_state(void)
     for (int src = 0; src < TDC_LED_SRC__MAX; ++src)
     {
         tdc_led_state_t st = s_req[src];
-        int         p  = led_prio_of(st);
+        int             p  = led_prio_of(st);
 
         /* 사용자 LED off: ERROR / POWER_ON / POWER_OFF 외 전부 억제 */
-        if (user_off && !led_is_error(st)
-            && st != TDC_LED_ST_POWER_ON && st != TDC_LED_ST_POWER_OFF)
+        if (user_off && !led_is_error(st) && st != TDC_LED_ST_POWER_ON && st != TDC_LED_ST_POWER_OFF)
         {
             if (s_isd_conn == 1)
             {
-            continue;
+                continue;
             }
         }
 
@@ -702,8 +716,7 @@ void tdc_led_arbiter_tick(void)
         else
         {
             /* fade-off step 진행 (perceived 선형 감소) */
-            uint8_t perceived = (uint8_t) (((uint32_t) (s_fade_off_max - s_fade_off_t) * 255UL)
-                                            / s_fade_off_max);
+            uint8_t perceived  = (uint8_t) (((uint32_t) (s_fade_off_max - s_fade_off_t) * 255UL) / s_fade_off_max);
             s_led_pwm_on_count = perceived_to_pwm(perceived);
             tdc_led_out();
 
@@ -729,8 +742,8 @@ void tdc_led_arbiter_tick(void)
 
     /* 패턴 엔진 구동 */
     static tdc_led_state_t prev_best = TDC_LED_ST_NONE;
-    bool reset = (prev_best != best);
-    prev_best  = best;
+    bool                   reset     = (prev_best != best);
+    prev_best                        = best;
 
     led_engine_run(best, reset);
 
@@ -807,20 +820,20 @@ void tdc_led_turn_off(void)
 
 typedef struct
 {
-    uint8_t cap_pc_r;  /* 0..100 */
-    uint8_t cap_pc_g;  /* 0..100 */
-    uint8_t cap_pc_b;  /* 0..100 */
+    uint8_t cap_pc_r; /* 0..100 */
+    uint8_t cap_pc_g; /* 0..100 */
+    uint8_t cap_pc_b; /* 0..100 */
 } tdc_led_mix_t;
 
 static const tdc_led_mix_t k_led_mix[] = {
-    [TDC_LED_COLOR_BLACK]   = {   0,   0,   0 },
-    [TDC_LED_COLOR_RED]     = { 100,   0,   0 },  /* 1.0× 기준 */
-    [TDC_LED_COLOR_GREEN]   = {   0,  50,   0 },  /* G 감쇠 - 체감 2× 보정 */
-    [TDC_LED_COLOR_BLUE]    = {   0,   0, 100 },  /* 1.0× 기준 */
-    [TDC_LED_COLOR_ORANGE]  = {  80,  10,   0 },  /* R 우세 + G 최소 → 주황 */
-    [TDC_LED_COLOR_SKYBLUE] = {   0,  30,  40 },  /* 총 광량 감쇠 (원 SKYBLUE 가 최고 밝음) */
-    [TDC_LED_COLOR_PURPLE]  = {  50,   0,  50 },  /* 총 광량 감쇠 */
-    [TDC_LED_COLOR_WHITE]   = {  30,  30,  30 },  /* G 비중 ↑ → 연보라 제거 */
+    [TDC_LED_COLOR_BLACK]   = {0, 0, 0},
+    [TDC_LED_COLOR_RED]     = {100, 0, 0},  /* 1.0× 기준 */
+    [TDC_LED_COLOR_GREEN]   = {0, 50, 0},   /* G 감쇠 - 체감 2× 보정 */
+    [TDC_LED_COLOR_BLUE]    = {0, 0, 100},  /* 1.0× 기준 */
+    [TDC_LED_COLOR_ORANGE]  = {80, 10, 0},  /* R 우세 + G 최소 → 주황 */
+    [TDC_LED_COLOR_SKYBLUE] = {0, 30, 40},  /* 총 광량 감쇠 (원 SKYBLUE 가 최고 밝음) */
+    [TDC_LED_COLOR_PURPLE]  = {50, 0, 50},  /* 총 광량 감쇠 */
+    [TDC_LED_COLOR_WHITE]   = {30, 30, 30}, /* G 비중 ↑ → 연보라 제거 */
 };
 
 /* ========================================================================
@@ -830,23 +843,59 @@ static const tdc_led_mix_t k_led_mix[] = {
 static void tdc_led_write_gpio(bool on_r, bool on_g, bool on_b)
 {
 #if defined(LED_IS_ACTIVELOW)
-    if (on_r) Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_R);
-    else      Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_R);
-    if (on_g) Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_G);
-    else      Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_G);
-  #if !defined(LED_B_pin_CFX_test)
-    if (on_b) Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_B);
-    else      Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_B);
-  #else
+    if (on_r)
+    {
+        Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_R);
+    }
+    else
+    {
+        Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_R);
+    }
+    if (on_g)
+    {
+        Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_G);
+    }
+    else
+    {
+        Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_G);
+    }
+#if !defined(LED_B_pin_CFX_test)
+    if (on_b)
+    {
+        Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_B);
+    }
+    else
+    {
+        Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_B);
+    }
+#else
     (void) on_b;
-  #endif
-#else  /* Active HIGH (Board_OTE_ver1_5 기본) */
-    if (on_r) Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_R);
-    else      Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_R);
-    if (on_g) Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_G);
-    else      Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_G);
-    if (on_b) Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_B);
-    else      Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_B);
+#endif
+#else /* Active HIGH (Board_OTE_ver1_5 기본) */
+    if (on_r)
+    {
+        Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_R);
+    }
+    else
+    {
+        Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_R);
+    }
+    if (on_g)
+    {
+        Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_G);
+    }
+    else
+    {
+        Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_G);
+    }
+    if (on_b)
+    {
+        Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_B);
+    }
+    else
+    {
+        Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_B);
+    }
 #endif
 }
 
@@ -869,8 +918,8 @@ void tdc_led_out(void)
     }
     else
     {
-        static const tdc_led_mix_t k_off = { 0, 0, 0 };
-        mix = &k_off;
+        static const tdc_led_mix_t k_off = {0, 0, 0};
+        mix                              = &k_off;
     }
 
     /* 채널별 감쇠 duty - base × cap / 100 */

@@ -14,8 +14,8 @@
 
 #include <stdbool.h>
 
-#include <tdc_shm.h>  // cfx_cm3_sharedMemoryAll
-#include <tdc_ble_remote.h>         // ST__REMOTECONTROL_PACKET
+#include <tdc_shm.h>         // cfx_cm3_sharedMemoryAll
+#include <tdc_ble_remote.h>  // ST__REMOTECONTROL_PACKET
 #include <tdc_printf.h>
 #include <tdc_fs_gain.h>
 #include <tdc_ble_reply.h>
@@ -38,7 +38,7 @@ int tdc_ble_gain_control_handle(const ST__REMOTECONTROL_PACKET *packet, uint8_t 
     int gain_type    = packet->data[1];  // 1 = Gain_A, 2 = Gain_B
     int gain_index   = packet->data[2];  // 0~255
 
-    int rsp_code      = TDC_BLE_GAIN_RSP_FAILED;
+    int rsp_code       = TDC_BLE_GAIN_RSP_FAILED;
     int response_index = gain_index;  // 실패 시에는 수신값을 그대로 되돌려 준다.
 
     if (gc_is_valid_request(control_type, gain_type, gain_index))
@@ -127,7 +127,7 @@ static void gc_write_index(int gain_type, int gain_index)
 static bool gc_save_to_file(void)
 {
     tdc_fs_gain_setting_t gain_setting;
-    int                  isd_num = tdc_shm_read_connected_isd_num();
+    int                   isd_num = tdc_shm_read_connected_isd_num();
 
     // 매핑 모드에서는 ISD 슬롯 번호가 임시 값이라 엉뚱한 사용자 자리에 쓸 수 있다.
     if (cfx_cm3_sharedMemoryAll.systemShare.system_opMode != en__normalMode)

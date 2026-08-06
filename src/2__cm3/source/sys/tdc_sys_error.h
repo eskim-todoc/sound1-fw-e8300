@@ -133,9 +133,9 @@ typedef struct
     tdc_sys_error_fpga_communication_error_t  FPGA_CommunicationErrorFlag;
     tdc_sys_error_fpga_configuaration_error_t FPGA_ConfiguraionErrorFlag;
     tdc_sys_error_isd_error_t                 ISD_ErrorFlag;
-    int                           FPGA_OR_ISD_ErrorFlag;
-    int                           FPGA_systemError;    // FPGA의 레지스터 값과 동일하게 유지
-    int                           FPGA_backtelError;   // FPGA의 레지스터 값과 동일하게 유지
+    int                                       FPGA_OR_ISD_ErrorFlag;
+    int                                       FPGA_systemError;    // FPGA의 레지스터 값과 동일하게 유지
+    int                                       FPGA_backtelError;   // FPGA의 레지스터 값과 동일하게 유지
     tdc_sys_error_data_logging_error_t        data_logging_error;  // NOTE: 사이버 보안을 고려하여, 검사 기록 생성 실패에 대한 오류 정보 추가
 
 } tdc_sys_error_code_t;

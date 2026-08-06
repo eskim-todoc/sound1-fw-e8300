@@ -45,7 +45,7 @@ void tdc_ble_mapping_set_seq_index(int seqIndex)
 
 void tdc_ble_mapping_clear_command()
 {
-    mappingPacket.command                    = en__mapping_IDLE;
+    mappingPacket.command                          = en__mapping_IDLE;
     mappingPacket.tdc_isd_map_live_step.subCommand = en__Standby;
 
     tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_NopStandby);
@@ -253,12 +253,12 @@ ST__MAPPING_STATE tdc_ble_mapping_step(ST__ISD_STATUS ISD_state)
 
     ST__MAPPING_STATE     mappingStatus     = {en__isdStatus_NA, false, false, false};
     EN__ISD_CONTROL_STATE isdControlCommand = en__isdStatus_NA;
-    tdc_sys_error_code_t        errorCode;
+    tdc_sys_error_code_t  errorCode;
 
-    uint8_t  bufferForSPI_tx[BLE_DataPacketSize];
-    int  buffer_tx_index;
-    int  i;
-    int  value;
+    uint8_t bufferForSPI_tx[BLE_DataPacketSize];
+    int     buffer_tx_index;
+    int     i;
+    int     value;
 
     bool mappingCommandStartFlag = false;
     bool result;
@@ -306,9 +306,9 @@ ST__MAPPING_STATE tdc_ble_mapping_step(ST__ISD_STATUS ISD_state)
 
         // 송신 데이터 준비
         buffer_tx_index = tdc_ble_reply_header(bufferForSPI_tx, buffer_tx_index, mappingPacket.command);  // command loop-back
-        buffer_tx_index = tdc_ble_reply_u8(bufferForSPI_tx, buffer_tx_index, 1);                      // pay-load 준비
-        tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, buffer_tx_index);      // 송신 데이터 SPI TX버퍼에 복사
-        mappingPacket.command = en__mapping_IDLE;                    // 명령 종료
+        buffer_tx_index = tdc_ble_reply_u8(bufferForSPI_tx, buffer_tx_index, 1);                          // pay-load 준비
+        tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, buffer_tx_index);                                    // 송신 데이터 SPI TX버퍼에 복사
+        mappingPacket.command = en__mapping_IDLE;                                                         // 명령 종료
     }
     else
     {
@@ -320,8 +320,8 @@ ST__MAPPING_STATE tdc_ble_mapping_step(ST__ISD_STATUS ISD_state)
                 {
                     // 송신 데이터 준비
                     buffer_tx_index = tdc_ble_reply_header(bufferForSPI_tx, buffer_tx_index, mappingPacket.command);  // command loop-back
-                    buffer_tx_index = tdc_ble_reply_u8(bufferForSPI_tx, buffer_tx_index, 1);                      // pay-load 준비
-                    tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, buffer_tx_index);      // 송신 데이터 SPI TX버퍼에 복사
+                    buffer_tx_index = tdc_ble_reply_u8(bufferForSPI_tx, buffer_tx_index, 1);                          // pay-load 준비
+                    tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, buffer_tx_index);                                    // 송신 데이터 SPI TX버퍼에 복사
 
 #if 1
                     while (1)
@@ -479,37 +479,50 @@ ST__MAPPING_STATE tdc_ble_mapping_step(ST__ISD_STATUS ISD_state)
 
                 case en__mapping_read_SlotData_ISD_N_USER:
                 {
-                    tdc_isd_map_read_info_setting(mappingCommandStartFlag, en__mapping_read_SlotData_ISD_N_USER, mappingPacket.ReadWriteMapData_Flash.slot_index);
+                    tdc_isd_map_read_info_setting(
+                        mappingCommandStartFlag, en__mapping_read_SlotData_ISD_N_USER, mappingPacket.ReadWriteMapData_Flash.slot_index);
                 }
                 break;
 
                 case en__mapping_write_SlotData_ISD_N_USER:
                 {
-                    tdc_isd_map_write_info_setting(mappingCommandStartFlag, en__mapping_write_SlotData_ISD_N_USER, mappingPacket.ReadWriteMapData_Flash.slot_index);
+                    tdc_isd_map_write_info_setting(
+                        mappingCommandStartFlag, en__mapping_write_SlotData_ISD_N_USER, mappingPacket.ReadWriteMapData_Flash.slot_index);
                 }
                 break;
 
                 case en__mapping_read_Mapdata_STIMUL_PARA:
                 {
-                    tdc_isd_map_read_stim_para(mappingCommandStartFlag, en__mapping_read_Mapdata_STIMUL_PARA, mappingPacket.ReadWriteMapData_Flash.slot_index, mappingPacket.ReadWriteMapData_Flash.map_index);
+                    tdc_isd_map_read_stim_para(mappingCommandStartFlag,
+                                               en__mapping_read_Mapdata_STIMUL_PARA,
+                                               mappingPacket.ReadWriteMapData_Flash.slot_index,
+                                               mappingPacket.ReadWriteMapData_Flash.map_index);
                 }
                 break;
 
                 case en__mapping_write_Mapdata_STIMUL_PARA:
                 {
-                    tdc_isd_map_write_stim_para(mappingCommandStartFlag, en__mapping_write_Mapdata_STIMUL_PARA, mappingPacket.ReadWriteMapData_Flash.slot_index, mappingPacket.ReadWriteMapData_Flash.map_index);
+                    tdc_isd_map_write_stim_para(mappingCommandStartFlag,
+                                                en__mapping_write_Mapdata_STIMUL_PARA,
+                                                mappingPacket.ReadWriteMapData_Flash.slot_index,
+                                                mappingPacket.ReadWriteMapData_Flash.map_index);
                 }
                 break;
 
                 case en__mapping_erase_SlotData_manufacture:
                 {
-                    tdc_isd_map_reset_nvm_selected(mappingCommandStartFlag, en__mapping_erase_SlotData_manufacture, mappingPacket.ReadWriteMapData_Flash.slot_index, flash_Command_Erase);
+                    tdc_isd_map_reset_nvm_selected(
+                        mappingCommandStartFlag, en__mapping_erase_SlotData_manufacture, mappingPacket.ReadWriteMapData_Flash.slot_index, flash_Command_Erase);
                 }
                 break;
 
                 case en__mapping_erase_mapData_STIMUL_PARA:
                 {
-                    tdc_isd_map_reset_nvm_map_data(mappingCommandStartFlag, en__mapping_erase_mapData_STIMUL_PARA, mappingPacket.ReadWriteMapData_Flash.slot_index, mappingPacket.ReadWriteMapData_Flash.map_index, flash_Command_Erase);
+                    tdc_isd_map_reset_nvm_map_data(mappingCommandStartFlag,
+                                                   en__mapping_erase_mapData_STIMUL_PARA,
+                                                   mappingPacket.ReadWriteMapData_Flash.slot_index,
+                                                   mappingPacket.ReadWriteMapData_Flash.map_index,
+                                                   flash_Command_Erase);
                 }
                 break;
 
@@ -588,7 +601,7 @@ ST__MAPPING_STATE tdc_ble_mapping_step(ST__ISD_STATUS ISD_state)
                     buffer_tx_index = tdc_ble_reply_header(bufferForSPI_tx, buffer_tx_index, mappingPacket.command);
 
                     // pay-load 준비
-                    value                              = tdc_isd_read_connected_id();
+                    value           = tdc_isd_read_connected_id();
                     buffer_tx_index = tdc_ble_reply_u32(bufferForSPI_tx, buffer_tx_index, value);
 
                     // 송신 데이터 SPI TX버퍼에 복사
@@ -641,23 +654,3 @@ ST__MAPPING_STATE tdc_ble_mapping_step(ST__ISD_STATUS ISD_state)
  * mapping 프로토콜 수동 주입용 구 디버그 진입점. 정의는 #if 0 블록(396줄) 안에서
  * 죽어 있었고 헤더 선언 16개도 호출처가 0 이었다(import_livePause 는 선언만 있고
  * 정의조차 없는 고아였다). 상세: docs/tasks/cm3/20260720_cm3-full-refactor/게이트-노트/G6-ble-qcc.md */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

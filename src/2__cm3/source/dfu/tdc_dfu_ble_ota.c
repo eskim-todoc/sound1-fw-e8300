@@ -47,7 +47,7 @@ char *_get_ota_file_name(int file_type)
 static void _send_resp_packet_boot(uint8_t *packet_data, uint8_t packet_len)
 {
     uint8_t spi_buffer[BLE_DataPacketSize];
-    int spi_len;
+    int     spi_len;
 
     spi_len = packet_len;
 
@@ -122,7 +122,7 @@ static void _handle_command_option_write(int slot_num, int file_type, const uint
     if (res != FR_OK)
     {
         tdc_util_assert(tdc_fs_fatfs_remount(SND_FATFS_LDRV_NUM_USER_DATA));  // NOTE: 디렉토리 생성 실패시 드라이브1로 되돌린다.
-        _send_error_packet_boot(2);                                       // File write
+        _send_error_packet_boot(2);                                           // File write
         return;
     }
 
@@ -137,7 +137,7 @@ static void _handle_command_option_write(int slot_num, int file_type, const uint
     if (res != FR_OK)
     {
         tdc_util_assert(tdc_fs_fatfs_remount(SND_FATFS_LDRV_NUM_USER_DATA));  // NOTE: 파일 오픈 실패시 드라이브1로 되돌린다.
-        _send_error_packet_boot(2);                                       // File write
+        _send_error_packet_boot(2);                                           // File write
         return;
     }
 
@@ -169,7 +169,10 @@ static void _handle_command_option_write(int slot_num, int file_type, const uint
     resp_packet[8] = 1;               // Result: Success
 
     RTT_printf("Slot=%u, File='%s' \r\n", _g_file_write_info.slot_num, path);
-    RTT_printf("Total byte=%u, end data index=%u, end data index byte=%u \r\n", _g_file_write_info.total_byte, _g_file_write_info.end_data_index, _g_file_write_info.end_data_index_byte);
+    RTT_printf("Total byte=%u, end data index=%u, end data index byte=%u \r\n",
+               _g_file_write_info.total_byte,
+               _g_file_write_info.end_data_index,
+               _g_file_write_info.end_data_index_byte);
     _send_resp_packet_boot(resp_packet, 9);
 
     // NOTE: 지금부터 데이터 인덱스 1부터 지금 생성한 파일에 펌웨어 이미지 쓰기를 시작할 것이기 때문에
@@ -354,7 +357,8 @@ static void _fetch_packet_data(const uint8_t *p_packet, int data_index)
         // Sys_GPIO_Set_High(DIO_NUM_OTA_DETAIL_DEBUG);  // NOTE: OTA DEBUG
 
         f_close(fp);
-        tdc_util_assert(tdc_fs_fatfs_remount(SND_FATFS_LDRV_NUM_USER_DATA));  // NOTE: 파일 데이터 쓰기를 마지막 데이터 인덱스까지 모두 성공 했으므로 드라이브0에서 드라이브1로 되돌린다.
+        tdc_util_assert(tdc_fs_fatfs_remount(
+            SND_FATFS_LDRV_NUM_USER_DATA));  // NOTE: 파일 데이터 쓰기를 마지막 데이터 인덱스까지 모두 성공 했으므로 드라이브0에서 드라이브1로 되돌린다.
 
         // Sys_GPIO_Set_Low(DIO_NUM_OTA_DETAIL_DEBUG);  // NOTE: OTA DEBUG
 

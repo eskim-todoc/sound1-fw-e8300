@@ -15,13 +15,13 @@
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 // 배터리 관련
-static volatile int                      s_tdc_pwr_battery_percent = 0;
-static volatile tdc_pwr_battery_state_t  s_tdc_pwr_battery_state   = TDC_PWR_BATTERY_STATE_RESET;
+static volatile int                     s_tdc_pwr_battery_percent = 0;
+static volatile tdc_pwr_battery_state_t s_tdc_pwr_battery_state   = TDC_PWR_BATTERY_STATE_RESET;
 
 // 충전 상태 관련
 /* 구 코드는 충전기 상태를 배터리 enum(EN__SND_BATT_STATE_RESET)으로 초기화했다.
  * 두 enum 모두 RESET=0 이라 동작은 같았으나 타입이 어긋나 있었다 - 정정(2026-07-21). */
-static volatile tdc_pwr_charger_state_t  s_tdc_pwr_charger_state   = TDC_PWR_CHARGER_STATE_RESET;
+static volatile tdc_pwr_charger_state_t s_tdc_pwr_charger_state = TDC_PWR_CHARGER_STATE_RESET;
 
 // 크래들 뚜껑 상태
 static int s_tdc_cradle_cover_state = df_Defalut;
@@ -58,16 +58,16 @@ void tdc_pwr_charger_set_state(tdc_pwr_charger_state_t state)
     if (s_tdc_pwr_charger_state != state)
     {
         TDC_PRINTF_D("[CHARGER] %s -> %s \r\n",
-                  // 이전 상태
-                  (s_tdc_pwr_charger_state == TDC_PWR_CHARGER_STATE_RESET)          ? "RESET"  //
-                  : (s_tdc_pwr_charger_state == TDC_PWR_CHARGER_STATE_CONNECTED)    ? "CONNECTED"
-                  : (s_tdc_pwr_charger_state == TDC_PWR_CHARGER_STATE_DISCONNECTED) ? "DISCONNECTED"
-                                                                                : "INVALID",
-                  // 현재 상태
-                  (state == TDC_PWR_CHARGER_STATE_RESET)          ? "RESET"  //
-                  : (state == TDC_PWR_CHARGER_STATE_CONNECTED)    ? "CONNECTED"
-                  : (state == TDC_PWR_CHARGER_STATE_DISCONNECTED) ? "DISCONNECTED"
-                                                                  : "INVALID");
+                     // 이전 상태
+                     (s_tdc_pwr_charger_state == TDC_PWR_CHARGER_STATE_RESET)          ? "RESET"  //
+                     : (s_tdc_pwr_charger_state == TDC_PWR_CHARGER_STATE_CONNECTED)    ? "CONNECTED"
+                     : (s_tdc_pwr_charger_state == TDC_PWR_CHARGER_STATE_DISCONNECTED) ? "DISCONNECTED"
+                                                                                       : "INVALID",
+                     // 현재 상태
+                     (state == TDC_PWR_CHARGER_STATE_RESET)          ? "RESET"  //
+                     : (state == TDC_PWR_CHARGER_STATE_CONNECTED)    ? "CONNECTED"
+                     : (state == TDC_PWR_CHARGER_STATE_DISCONNECTED) ? "DISCONNECTED"
+                                                                     : "INVALID");
     }
 #endif
 
@@ -105,11 +105,11 @@ void tdc_pwr_cradle_set_cover_state(int state)
 {
     if (state == 2)
     {
-        s_tdc_cradle_cover_state = df_Disconnected;  /* df_Closed == 2 */
+        s_tdc_cradle_cover_state = df_Disconnected; /* df_Closed == 2 */
     }
     else
     {
-        s_tdc_cradle_cover_state = df_Connected;  /* 1=열림, else=열림 처리 */
+        s_tdc_cradle_cover_state = df_Connected; /* 1=열림, else=열림 처리 */
     }
     cfx_cm3_sharedMemoryAll.chargerState.carryingCaseCoverOpen = s_tdc_cradle_cover_state;
     TDC_PRINTF_D("[CRADLE] COVER STATE: %s\r\n", (s_tdc_cradle_cover_state == df_Connected) ? "OPENED" : "CLOSED");
@@ -188,8 +188,3 @@ int tdc_pwr_battery_read_percentage(void)
  * define 이 하나라도 있으면 컴파일되지 않는다(processorDirective.h:10 에서
  * Board_is_OTE_VER_1_5 활성).
  * 상세: docs/tasks/main/20260715_systemcontrol-fsm-decompose/분석-부록-sullivan유산.md */
-
-
-
-
-

@@ -43,7 +43,7 @@
 // 개행이나 방향키가 올 때까지 블로킹하며 워치독을 먹인다.
 static int tdc_tx_pmic_read_input(char *p_line, int maxLen)
 {
-    int  len = 0;
+    int  len      = 0;
     int  escState = 0;  // 0 : 없음, 1 : ESC 수신, 2 : '[' 수신
     char ch;
 
@@ -74,10 +74,14 @@ static int tdc_tx_pmic_read_input(char *p_line, int maxLen)
 
             switch (ch)
             {
-                case 'A': return 1;    // 위
-                case 'B': return -1;   // 아래
-                case 'C': return 10;   // 오른쪽
-                case 'D': return -10;  // 왼쪽
+                case 'A':
+                    return 1;  // 위
+                case 'B':
+                    return -1;  // 아래
+                case 'C':
+                    return 10;  // 오른쪽
+                case 'D':
+                    return -10;  // 왼쪽
 
                 default:
                     // 진단 - 예상 밖 시퀀스가 오면 무엇이 왔는지 보여준다.
@@ -96,10 +100,22 @@ static int tdc_tx_pmic_read_input(char *p_line, int maxLen)
         //
         // RTT Viewer 가 방향키를 자기 입력창에서 커서 이동으로 소비해 버리면
         // 위 이스케이프가 펌웨어까지 오지 않는다. 그때 쓰는 대체 키다.
-        if ((ch == 'w') || (ch == 'W')) { return 1; }
-        if ((ch == 's') || (ch == 'S')) { return -1; }
-        if ((ch == 'd') || (ch == 'D')) { return 10; }
-        if ((ch == 'a') || (ch == 'A')) { return -10; }
+        if ((ch == 'w') || (ch == 'W'))
+        {
+            return 1;
+        }
+        if ((ch == 's') || (ch == 'S'))
+        {
+            return -1;
+        }
+        if ((ch == 'd') || (ch == 'D'))
+        {
+            return 10;
+        }
+        if ((ch == 'a') || (ch == 'A'))
+        {
+            return -10;
+        }
 
         // 진단 - 인쇄 불가 제어문자가 오면 코드를 보여준다. 방향키가 다른
         // 코드로 오는 경우를 여기서 잡는다.
@@ -182,8 +198,11 @@ static void tdc_tx_pmic_run_console(void)
     TDC_PRINTF_I("[PMIC] TX power console. 1 step = %d mV\r\n", TDC_TX_PMIC_MV_PER_STEP);
     TDC_PRINTF_I("[PMIC] no enter : arrow UP/DOWN +-1, LEFT/RIGHT -+10   (or w/s = +-1, a/d = -+10)\r\n");
     TDC_PRINTF_I("[PMIC] w/ enter : +N up / -N down / =N set / r reset / ? read\r\n");
-    TDC_PRINTF_I("[PMIC] range %d ~ %d  (%d ~ %d mV)\r\n", TDC_DRV_PMIC_MIN_TX_POWER_VALUE, TDC_DRV_PMIC_MAX_VOLTAGE_CONTROL_VALUE,
-                 TDC_DRV_PMIC_MIN_TX_POWER_VALUE * TDC_TX_PMIC_MV_PER_STEP, TDC_DRV_PMIC_MAX_VOLTAGE_CONTROL_VALUE * TDC_TX_PMIC_MV_PER_STEP);
+    TDC_PRINTF_I("[PMIC] range %d ~ %d  (%d ~ %d mV)\r\n",
+                 TDC_DRV_PMIC_MIN_TX_POWER_VALUE,
+                 TDC_DRV_PMIC_MAX_VOLTAGE_CONTROL_VALUE,
+                 TDC_DRV_PMIC_MIN_TX_POWER_VALUE * TDC_TX_PMIC_MV_PER_STEP,
+                 TDC_DRV_PMIC_MAX_VOLTAGE_CONTROL_VALUE * TDC_TX_PMIC_MV_PER_STEP);
 
     if (tdc_isd_fpga_read_tx_power_level(&level))
     {

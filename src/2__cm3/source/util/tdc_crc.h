@@ -5,6 +5,6 @@
 #include <hw.h>
 #include <crc.h>
 
-uint16_t tdc_crc_ccitt_calc(void* buf, uint32_t size);
+uint16_t tdc_crc_ccitt_calc(void *buf, uint32_t size);
 
 #endif /* __tdc_crc_h__ */

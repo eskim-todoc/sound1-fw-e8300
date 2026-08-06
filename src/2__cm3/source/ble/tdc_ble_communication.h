@@ -3,9 +3,8 @@
 
 #include <stdbool.h>
 
-#include <tdc_isd.h>  //ok
-#include <tdc_ble_mapping.h> //ok
-
+#include <tdc_isd.h>          //ok
+#include <tdc_ble_mapping.h>  //ok
 
 typedef struct
 {
@@ -15,7 +14,6 @@ typedef struct
     bool                  BLE_Off_Command;
 
 } ST__BLE_COMMUNICATION_STATE;
-
 
 ST__BLE_COMMUNICATION_STATE tdc_ble_communication_step(ST__ISD_STATUS isd_state);
 

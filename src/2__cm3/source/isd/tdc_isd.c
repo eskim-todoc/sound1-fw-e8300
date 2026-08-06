@@ -366,7 +366,10 @@ void tdc_isd_update_link_by_backtel_live(void)
 
                             TxPowerLevel--;
 
-                            TDC_PRINTF_V("[LINK] HIGH : TX POWER > MIN POWER (CURR=%4d, NEXT=%4d) : %8d MV \r\n", current_TxPowerLevel, TxPowerLevel, 25 * current_TxPowerLevel);
+                            TDC_PRINTF_V("[LINK] HIGH : TX POWER > MIN POWER (CURR=%4d, NEXT=%4d) : %8d MV \r\n",
+                                         current_TxPowerLevel,
+                                         TxPowerLevel,
+                                         25 * current_TxPowerLevel);
 
                             tdc_isd_fpga_write_change_tx_power_level(TxPowerLevel);
                         }
@@ -393,7 +396,10 @@ void tdc_isd_update_link_by_backtel_live(void)
 
                             TxPowerLevel++;
 
-                            TDC_PRINTF_V("[LINK] LOW : TX POWER < MAX CONTROL POWER (CURR=%4d, NEXT=%4d) : %8d MV \r\n", current_TxPowerLevel, TxPowerLevel, 25 * current_TxPowerLevel);
+                            TDC_PRINTF_V("[LINK] LOW : TX POWER < MAX CONTROL POWER (CURR=%4d, NEXT=%4d) : %8d MV \r\n",
+                                         current_TxPowerLevel,
+                                         TxPowerLevel,
+                                         25 * current_TxPowerLevel);
 
                             tdc_isd_fpga_write_change_tx_power_level(TxPowerLevel);
                         }
@@ -481,7 +487,6 @@ void tdc_isd_update_link_by_backtel_mapping(int connectionCheckCOUNTER)
         flowCounter                      = 0;
         isINGconnectionCheck_WithMapping = true;
     }
-
 
     if (flowCounter < 7)
     {
@@ -635,6 +640,3 @@ bool tdc_isd_is_connection_check_with_mapping(void)
 {
     return isINGconnectionCheck_WithMapping;
 }
-
-
-

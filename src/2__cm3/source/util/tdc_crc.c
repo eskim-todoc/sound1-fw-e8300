@@ -1,9 +1,9 @@
 
 #include <tdc_crc.h>
 
-uint16_t tdc_crc_ccitt_calc(void* buf, uint32_t size)
+uint16_t tdc_crc_ccitt_calc(void *buf, uint32_t size)
 {
-    uint8_t* p = (uint8_t*) buf;
+    uint8_t *p = (uint8_t *) buf;
 
     Sys_Set_CRC_Config(CRC, CRC_LITTLE_ENDIAN | CRC_CCITT | CRC_BIT_ORDER_STANDARD | CRC_FINAL_XOR_STANDARD);
 

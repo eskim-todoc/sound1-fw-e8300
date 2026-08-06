@@ -19,20 +19,14 @@
 #include <tdc_fs.h>
 #include <tdc_printf.h>
 
-#define TDC_FS_FFT_FILE_INIT_NAME_PASS_BIN                              \
-    {                                                               \
-        '/', 'P', 'A', 'S', 'S', '_', 'B', 'I', 'N', '*', '*', '\0' \
-    }
+#define TDC_FS_FFT_FILE_INIT_NAME_PASS_BIN {'/', 'P', 'A', 'S', 'S', '_', 'B', 'I', 'N', '*', '*', '\0'}
 
 #define TDC_FS_FFT_FILE_NAME_LEN_PASS_BIN 12
 
 #define TDC_FS_FFT_FILE_INDEX_PASS_BIN_NUM_FIRST  9
 #define TDC_FS_FFT_FILE_INDEX_PASS_BIN_NUM_SECOND 10
 
-#define TDC_FS_FFT_FILE_INIT_NAME_WINDOW_COEFF                     \
-    {                                                          \
-        '/', 'W', 'N', 'D', '_', 'C', 'O', 'E', 'F', 'F', '\0' \
-    }
+#define TDC_FS_FFT_FILE_INIT_NAME_WINDOW_COEFF {'/', 'W', 'N', 'D', '_', 'C', 'O', 'E', 'F', 'F', '\0'}
 
 #define TDC_FS_FFT_FILE_NAME_LEN_WINDOW_COEFF 11
 
@@ -78,4 +72,4 @@ int tdc_fs_fft_init_window_coeff(void);
 int tdc_fs_fft_read_window_coeff(void);
 int tdc_fs_fft_write_window_coeff(void);
 
-#endif // __tdc_fs_fft_h__
+#endif  // __tdc_fs_fft_h__

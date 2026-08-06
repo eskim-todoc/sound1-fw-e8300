@@ -3,12 +3,12 @@
 
 int tdc_fs_stim_mute_init(void)
 {
-    FIL           *fp;
-    uint8_t       *fname;
-    bool           is_validated_file;
-    int            br;  // byte read
-    int            bw;  // byte written
-    int            ret;
+    FIL               *fp;
+    uint8_t           *fname;
+    bool               is_validated_file;
+    int                br;  // byte read
+    int                bw;  // byte written
+    int                ret;
     TDC_FS_STIM_MUTE_T stim_mute;
 
     fp    = &g_tdc_fs_ohdl;
@@ -113,9 +113,9 @@ int tdc_fs_stim_mute_init(void)
     if (ret == FR_OK)
     {
         TDC_PRINTF_V("[FS] NAME : %s, TOTAL SIZE : %u BYTES, START CLUSTER : %u \r\n",  //
-                  fno.fname,
-                  fno.fsize,
-                  g_tdc_fs_ohdl.obj.sclust);
+                     fno.fname,
+                     fno.fsize,
+                     g_tdc_fs_ohdl.obj.sclust);
     }
 #endif
 
@@ -132,10 +132,10 @@ int tdc_fs_stim_mute_init(void)
 
 int tdc_fs_stim_mute_update(uint32_t enable, uint32_t level)
 {
-    FIL           *fp;
-    uint8_t       *fname;
-    int            bw;  // byte written
-    int            ret;
+    FIL               *fp;
+    uint8_t           *fname;
+    int                bw;  // byte written
+    int                ret;
     TDC_FS_STIM_MUTE_T stim_mute;
 
     // 매개변수 유효성 확인

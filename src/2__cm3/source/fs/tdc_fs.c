@@ -132,13 +132,13 @@ int tdc_fs_fatfs_unmount(void)
 }
 
 int tdc_fs_read_with_crc_and_aes128(char     *p_name,  //
-                                           uint8_t  *p_data,
-                                           int       data_size,
-                                           uint32_t *p_uint32_crc,
-                                           uint32_t *p_uint32_aes128_padding,
-                                           int       aes128_padding_size,
-                                           bool      enable_crc,
-                                           bool      enable_aes)
+                                    uint8_t  *p_data,
+                                    int       data_size,
+                                    uint32_t *p_uint32_crc,
+                                    uint32_t *p_uint32_aes128_padding,
+                                    int       aes128_padding_size,
+                                    bool      enable_crc,
+                                    bool      enable_aes)
 {
     int      ret = -1;
     FRESULT  fr;
@@ -428,13 +428,13 @@ int tdc_fs_read_with_crc_and_aes128(char     *p_name,  //
 }
 
 int tdc_fs_write_with_crc_and_aes128(char     *p_name,
-                                            uint8_t  *p_data,                   // 평문 데이터(data_size)
-                                            int       data_size,                // 예: 132
-                                            uint32_t *p_uint32_crc,             // 4B (하위 16비트만 유효)
-                                            uint32_t *p_uint32_aes128_padding,  // 패딩 버퍼(쓰기 전용, 0 채움 권장)
-                                            int       aes128_padding_size,      // 예: 8  (remain+4+pad==16 충족)
-                                            bool      enable_crc,
-                                            bool      enable_aes)
+                                     uint8_t  *p_data,                   // 평문 데이터(data_size)
+                                     int       data_size,                // 예: 132
+                                     uint32_t *p_uint32_crc,             // 4B (하위 16비트만 유효)
+                                     uint32_t *p_uint32_aes128_padding,  // 패딩 버퍼(쓰기 전용, 0 채움 권장)
+                                     int       aes128_padding_size,      // 예: 8  (remain+4+pad==16 충족)
+                                     bool      enable_crc,
+                                     bool      enable_aes)
 {
     int ret = -1;
 
@@ -681,9 +681,9 @@ int tdc_fs_write_with_crc_and_aes128(char     *p_name,
     if (fr == FR_OK)
     {
         TDC_PRINTF_V("[FS] NAME : %s, TOTAL SIZE : %u BYTES, START CLUSTER : %u \r\n",  //
-                  fno.fname,
-                  fno.fsize,
-                  g_tdc_fs_ohdl.obj.sclust);
+                     fno.fname,
+                     fno.fsize,
+                     g_tdc_fs_ohdl.obj.sclust);
     }
 #endif
 
@@ -828,9 +828,9 @@ int tdc_fs_write(char *p_name, uint8_t *p_buf, int size)
     if (ret == FR_OK)
     {
         TDC_PRINTF_V("[FS] NAME : %s, TOTAL SIZE : %u BYTES, START CLUSTER : %u \r\n",  //
-                  fno.fname,
-                  fno.fsize,
-                  g_tdc_fs_ohdl.obj.sclust);
+                     fno.fname,
+                     fno.fsize,
+                     g_tdc_fs_ohdl.obj.sclust);
     }
 #endif
 
@@ -861,8 +861,8 @@ int tdc_fs_copy_isd_info_from_filesystem_to_shared_memory(void)
 
     for (int i = 0; i < MaxNumUser; i++)
     {
-        p_dst = (int*) &(cfx_cm3_sharedMemoryAll.cfx_ISD_info[i]);
-        p_src = (int*) &(g_tdc_fs_ptr_entire_map->map[i].isd_info);
+        p_dst = (int *) &(cfx_cm3_sharedMemoryAll.cfx_ISD_info[i]);
+        p_src = (int *) &(g_tdc_fs_ptr_entire_map->map[i].isd_info);
 
         for (int k = 0; k < df_24bitWordLength_ISD_info; k++)
         {

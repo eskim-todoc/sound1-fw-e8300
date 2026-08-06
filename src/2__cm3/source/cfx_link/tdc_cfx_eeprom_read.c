@@ -28,9 +28,9 @@ void tdc_cfx_eeprom_read_all_isd_info(void)
 void tdc_cfx_eeprom_copy_map_info_to_cm3(int isd_num)
 {
     TDC_FS_MAP_T *p_isd;
-    int                 *p_map_date;
-    int                  map_cnt;
-    int                  sum;
+    int          *p_map_date;
+    int           map_cnt;
+    int           sum;
 
     p_isd = &(g_tdc_fs_ptr_entire_map->map[isd_num - 1]);
 
@@ -91,7 +91,7 @@ void tdc_cfx_eeprom_copy_mapping_data_to_cm3(int map_num, int isd_num)
 
 void tdc_cfx_eeprom_copy_isd_info_to_repository(void)
 {
-    TDC_FS_MAP_T               *p_isd;
+    TDC_FS_MAP_T                      *p_isd;
     ST__CFX_CM3_SharedMemory_ISD_info *p_src;
     ST__CFX_CM3_SharedMemory_ISD_info *p_dst;
     int                                isd_num;
@@ -181,5 +181,5 @@ void tdc_cfx_read_mapdata_mapping_app(void)
         tdc_cfx_eeprom_copy_mapping_data_to_repository();
     }
 
-    cfx_cm3_sharedMemoryAll.ReadWriteCommand_ForFlash.flashCommand = 0; // 명령어 클리어
+    cfx_cm3_sharedMemoryAll.ReadWriteCommand_ForFlash.flashCommand = 0;  // 명령어 클리어
 }

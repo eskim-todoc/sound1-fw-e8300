@@ -120,4 +120,4 @@ typedef enum
 
 void tdc_dfu_ble_fetch_boot(const uint8_t *p_packet);
 
-#endif // __tdc_dfu_ble_boot_h__
+#endif  // __tdc_dfu_ble_boot_h__

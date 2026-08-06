@@ -37,9 +37,9 @@
 
 #define df_forwardPathCheck_arbitraryValue 0x83
 
-#define df_duplicateZeroValue 32 // 백텔 안들어옴 (32, 39, 59, 119, 120, 121	0x83
+#define df_duplicateZeroValue 32  // 백텔 안들어옴 (32, 39, 59, 119, 120, 121	0x83
 
-#define unusedReferenceElectrode_DummyNum 31 // 바이폴라 자극 시, 사용하지 않는 기준전극의 dummy 전극 번호
+#define unusedReferenceElectrode_DummyNum 31  // 바이폴라 자극 시, 사용하지 않는 기준전극의 dummy 전극 번호
 
 //
 //
@@ -77,8 +77,8 @@ typedef enum
 #define offsetDAC_B_Slope           4.56
 #define offsetDAC_B_SaturationLevel 130
 
-#define offsetDAC_A_Saturation_uA 295 //(offsetDAC_A_Slope*offsetDAC_A_SaturationLevel)= 2.27*130
-#define offsetDAC_B_Saturation_uA 592 //(offsetDAC_B_Slope*offsetDAC_B_SaturationLevel)= 4.567*130
+#define offsetDAC_A_Saturation_uA 295  //(offsetDAC_A_Slope*offsetDAC_A_SaturationLevel)= 2.27*130
+#define offsetDAC_B_Saturation_uA 592  //(offsetDAC_B_Slope*offsetDAC_B_SaturationLevel)= 4.567*130
 
 #define DAC_A_Slope                 1.57
 #define DAC_A_Slope_SaturationLevel 255
@@ -89,10 +89,10 @@ typedef enum
 #define DAC_D_Slope                 6.30
 #define DAC_D_Slope_SaturationLevel 255
 
-#define stimulDAC_A_only_Saturation_uA 400  //(DAC_A_Slope*DAC_A_Slope_SaturationLevel) = 1.57 *255
-#define stimulDAC_B_only_Saturation_uA 803  //(DAC_B_Slope*DAC_B_Slope_SaturationLevel) = 3.15 *255
-#define stimulDAC_C_only_Saturation_uA 1203 //(DAC_C_Slope*DAC_C_Slope_SaturationLevel) = 4.72 *255
-#define stimulDAC_D_only_Saturation_uA 1606 //(DAC_D_Slope*DAC_D_Slope_SaturationLevel) = 6.30 *255
+#define stimulDAC_A_only_Saturation_uA 400   //(DAC_A_Slope*DAC_A_Slope_SaturationLevel) = 1.57 *255
+#define stimulDAC_B_only_Saturation_uA 803   //(DAC_B_Slope*DAC_B_Slope_SaturationLevel) = 3.15 *255
+#define stimulDAC_C_only_Saturation_uA 1203  //(DAC_C_Slope*DAC_C_Slope_SaturationLevel) = 4.72 *255
+#define stimulDAC_D_only_Saturation_uA 1606  //(DAC_D_Slope*DAC_D_Slope_SaturationLevel) = 6.30 *255
 
 // 자극출력 DAC 관련
 
@@ -101,28 +101,28 @@ typedef enum
 #define stimulDAC_C_dynamicRange_uA stimulDAC_C_only_Saturation_uA
 #define stimulDAC_D_dynamicRange_uA stimulDAC_D_only_Saturation_uA
 
-#define offsetDAC_A_Slope_QI5F12 9297  // 2.27*2^12
-#define offsetDAC_B_Slope_QI5F12 18677 // 4.56*4096
-#define DAC_A_Slope_QI5F12       6430  // 1.57*4096
-#define DAC_B_Slope_QI5F12       12902 // 3.15*4096
-#define DAC_C_Slope_QI5F12       19333 // 4.72*4096
-#define DAC_D_Slope_QI5F12       25804 // 6.30*4096
+#define offsetDAC_A_Slope_QI5F12 9297   // 2.27*2^12
+#define offsetDAC_B_Slope_QI5F12 18677  // 4.56*4096
+#define DAC_A_Slope_QI5F12       6430   // 1.57*4096
+#define DAC_B_Slope_QI5F12       12902  // 3.15*4096
+#define DAC_C_Slope_QI5F12       19333  // 4.72*4096
+#define DAC_D_Slope_QI5F12       25804  // 6.30*4096
 
-#define offsetDAC_A_Slope_QI4F4 36 // 2.27*2^4
-#define offsetDAC_B_Slope_QI4F4 72 // 4.56*16
+#define offsetDAC_A_Slope_QI4F4 36  // 2.27*2^4
+#define offsetDAC_B_Slope_QI4F4 72  // 4.56*16
 
-#define DAC_A_Slope_QI4F4 25  // 1.57*16
-#define DAC_B_Slope_QI4F4 50  // 3.15*16
-#define DAC_C_Slope_QI4F4 75  // 4.72*16
-#define DAC_D_Slope_QI4F4 100 // 6.30*16
+#define DAC_A_Slope_QI4F4 25   // 1.57*16
+#define DAC_B_Slope_QI4F4 50   // 3.15*16
+#define DAC_C_Slope_QI4F4 75   // 4.72*16
+#define DAC_D_Slope_QI4F4 100  // 6.30*16
 
-#define reciprocal_dividing_QI1F15_Stimulation_DAC_A 20871 // (int)((1/DAC_A_Slope)*2^15)  : 1/1.57*2^15
-#define reciprocal_dividing_QI1F15_Stimulation_DAC_B 10402 // (int)((1/DAC_B_Slope)*32768) : 1/3.15*2^15
-#define reciprocal_dividing_QI1F15_Stimulation_DAC_C 6942  //(int)((1/DAC_C_Slope)*32768)	 : 1/4.72*2^15
-#define reciprocal_dividing_QI1F15_Stimulation_DAC_D 5201  //(int)((1/DAC_D_Slope)*32768)   : 1/6.30*2^15
+#define reciprocal_dividing_QI1F15_Stimulation_DAC_A 20871  // (int)((1/DAC_A_Slope)*2^15)  : 1/1.57*2^15
+#define reciprocal_dividing_QI1F15_Stimulation_DAC_B 10402  // (int)((1/DAC_B_Slope)*32768) : 1/3.15*2^15
+#define reciprocal_dividing_QI1F15_Stimulation_DAC_C 6942   //(int)((1/DAC_C_Slope)*32768)	 : 1/4.72*2^15
+#define reciprocal_dividing_QI1F15_Stimulation_DAC_D 5201   //(int)((1/DAC_D_Slope)*32768)   : 1/6.30*2^15
 
-#define reciprocal_dividing_QI1F15_Offset_DAC_A 14435 // (int)((1/offsetDAC_A_Slope)*32768) : 1/2.27*2^15
-#define reciprocal_dividing_QI1F15_Offset_DAC_B 7185  //(int)((1/offsetDAC_B_Slope)*32768)  : 1/4.56*2^15
+#define reciprocal_dividing_QI1F15_Offset_DAC_A 14435  // (int)((1/offsetDAC_A_Slope)*32768) : 1/2.27*2^15
+#define reciprocal_dividing_QI1F15_Offset_DAC_B 7185   //(int)((1/offsetDAC_B_Slope)*32768)  : 1/4.56*2^15
 
 // #define stimulDAC_Slope_4uA_shiftDivider								2
 // #define stimulDAC_Slope_6uA_divisionInverse_QI1F23						1398101
@@ -132,26 +132,18 @@ typedef enum
 
 #define adc_measurementMode_impedance 0
 #define adc_measurementMode_eCAP      1
-#define mesurementStart_on_configureADCregister \
-    1 // ADC_Start_EN // 이 레지스터의 설정이후, ADC를 설정하는 명령이 수신되면,이전(ADC_Start_EN 설정 이후)에 전달된 자극출력 파라미터의 설정값이  출력되고
-      // 측정이 시작된다.
-#define mesurementStart_on_stiulationOut \
-    2 // ADC_Start_EN // 이 레지스터의 설정이후, 자극 출력 명령이 수신되면, 이전(ADC_Start_EN 설정 이후)에 전달된 자극출력 파라미터의 설정값이  출력되고 측정이
-      // 시작된다.
+#define mesurementStart_on_configureADCregister                                                                                                                \
+    1   // ADC_Start_EN // 이 레지스터의 설정이후, ADC를 설정하는 명령이 수신되면,이전(ADC_Start_EN 설정 이후)에 전달된 자극출력 파라미터의 설정값이  출력되고
+        // 측정이 시작된다.
+#define mesurementStart_on_stiulationOut                                                                                                                       \
+    2  // ADC_Start_EN // 이 레지스터의 설정이후, 자극 출력 명령이 수신되면, 이전(ADC_Start_EN 설정 이후)에 전달된 자극출력 파라미터의 설정값이  출력되고 측정이
+        // 시작된다.
 #define mesurementStart_Disable 0
 #define adcSamplingRate40kHz    0
 #define adcSamplingRate20kHz    1
 
 // 자극 출력 파라미터
-	#define	negativePulseFirst												0
-	#define	positivePulseFirst												1
-
-
-
-
-
-
+#define negativePulseFirst 0
+#define positivePulseFirst 1
 
 #endif
-
-

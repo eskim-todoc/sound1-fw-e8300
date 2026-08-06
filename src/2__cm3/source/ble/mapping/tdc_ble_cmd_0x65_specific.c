@@ -32,12 +32,12 @@ void tdc_ble_cmd_0x65_specific_stim(const uint8_t *Rx_dataPacket)  // 0x65
     p_mappingPacket->tdc_isd_map_specific_stim_step.usableElectrodeNum           = Rx_dataPacket[index++];
     p_mappingPacket->tdc_isd_map_specific_stim_step.pulseWidth                   = Rx_dataPacket[index++];
     p_mappingPacket->tdc_isd_map_specific_stim_step.firstPulsePhase              = Rx_dataPacket[index++];
-    p_mappingPacket->tdc_isd_map_specific_stim_step.stimulationMode               = Rx_dataPacket[index++];
+    p_mappingPacket->tdc_isd_map_specific_stim_step.stimulationMode              = Rx_dataPacket[index++];
     p_mappingPacket->tdc_isd_map_specific_stim_step.stimulationElectrodeNum      = Rx_dataPacket[index++];
     p_mappingPacket->tdc_isd_map_specific_stim_step.bipolarReferenceElectrodeNum = Rx_dataPacket[index++];
 
-    value                                                     = Rx_dataPacket[index++] << 8;
-    value                                                     = value | Rx_dataPacket[index++];
+    value                                                                   = Rx_dataPacket[index++] << 8;
+    value                                                                   = value | Rx_dataPacket[index++];
     p_mappingPacket->tdc_isd_map_specific_stim_step.stimulationLevel_uA     = value;
     p_mappingPacket->tdc_isd_map_specific_stim_step.stimulationTime_100msec = Rx_dataPacket[index++];
 
@@ -113,4 +113,3 @@ void tdc_ble_cmd_0x65_specific_stim(const uint8_t *Rx_dataPacket)  // 0x65
         p_mappingPacket->fetched_command = en__mapping_specific_stimulation;
     }
 }
-

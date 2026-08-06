@@ -21,9 +21,9 @@
 #include <hw.h>
 #include <tdc_isd_pcm.h>  //ok
 
-#include <tdc_ble_protocol.h>       //ok
+#include <tdc_ble_protocol.h>         //ok
 #include <board.h>                    //ok
-#include <tdc_stim_definitions.h>  //ok
+#include <tdc_stim_definitions.h>     //ok
 #include <internalStimulationChip.h>  //ok
 
 #include <tdc_printf.h>
@@ -350,11 +350,11 @@ bool tdc_shm_is_user_setting_value_loaded_cfx(void);
 /////////////////////
 // 맵데이터
 
-ST__CFX_CM3_SharedMemory_mapData       *tdc_shm_get_pointer_current_map_data(void);
-void                                    tdc_shm_set_read_write_map_data_flash_command(ST__CFX_CM3_SharedMemory_ReadWriteCommand_ForFlash command_ForFlash);
-bool                                    tdc_shm_is_read_write_map_data_flash_command_done(void);
-int                                    *tdc_shm_get_pointer_repository_for_read_write_map_data_isd_info(void);
-int                                    *tdc_shm_get_pointer_repository_for_read_write_map_data_stimul_para(void);
+ST__CFX_CM3_SharedMemory_mapData *tdc_shm_get_pointer_current_map_data(void);
+void                              tdc_shm_set_read_write_map_data_flash_command(ST__CFX_CM3_SharedMemory_ReadWriteCommand_ForFlash command_ForFlash);
+bool                              tdc_shm_is_read_write_map_data_flash_command_done(void);
+int                              *tdc_shm_get_pointer_repository_for_read_write_map_data_isd_info(void);
+int                              *tdc_shm_get_pointer_repository_for_read_write_map_data_stimul_para(void);
 
 ///////////////
 // 자극에 필요한 추가 파라미터(CM3에서 계산되어 CFX에 전달되어야 한다.)
@@ -399,9 +399,7 @@ void tdc_shm_share_mapping_program_connection(bool connection);
 void tdc_shm_change_system_mode_flag(EN__SYSTEM_OP_MODE flag);
 void tdc_shm_on_off_3_v_pmic_cm3_to_cfx(bool OnOff);
 
-
 void tdc_shm_update_backtel_control_value_to_cfx(int value);
-
 
 // 구조체의 배치되는 주소를 sections.ld 파일을 수정하여 LPDSP32_PRAM5에 위치한다.
 extern ST__CFX_CM3_SharedMemory_ALL cfx_cm3_sharedMemoryAll __attribute__((section(".shared_memory")));

@@ -23,7 +23,8 @@
  * §19.4.2.6 에서 "8비트 워드는 바이트 주소 지정 가능" 이라 하여 서술이 엇갈리므로,
  * 어느 쪽이 맞든 안전하도록 붙여 둔 것이다. 비용은 패딩 최대 3바이트뿐이다. */
 static uint8_t SPI_Rx_Buffer[TDC_HAL_SPI_COMM_PACKET_SIZE] __attribute__((aligned(4))) = {0};
-static uint8_t SPI_Tx_Buffer[TDC_HAL_SPI_COMM_PACKET_SIZE] __attribute__((aligned(4))) = {21, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1};
+static uint8_t SPI_Tx_Buffer[TDC_HAL_SPI_COMM_PACKET_SIZE]
+    __attribute__((aligned(4))) = {21, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1};
 
 /* 수신 패킷 사본. 프로토콜이 바이트 단위이므로 uint8_t 로 다룬다 (B2, 2026-07-27). */
 static uint8_t Rx_DataPacket[BLE_DataPacketSize];
@@ -95,20 +96,19 @@ void SPI1_COM_IRQHandler(void)
             int rx_n = (dma0_cnt > 0 && dma0_cnt <= TDC_HAL_SPI_COMM_PACKET_SIZE) ? dma0_cnt : TDC_HAL_SPI_COMM_PACKET_SIZE;
             int tx_n = (dma1_cnt > 0 && dma1_cnt <= TDC_HAL_SPI_COMM_PACKET_SIZE) ? dma1_cnt : TDC_HAL_SPI_COMM_PACKET_SIZE;
 
-            TDC_PRINTF_W("[SPI] DMA-MISMATCH t3=%d ms / RX_CNT=%d / TX_CNT=%d \r\n",
-                      tdc_hal_timer_get_t3_tick(), dma0_cnt, dma1_cnt);
+            TDC_PRINTF_W("[SPI] DMA-MISMATCH t3=%d ms / RX_CNT=%d / TX_CNT=%d \r\n", tdc_hal_timer_get_t3_tick(), dma0_cnt, dma1_cnt);
 
             TDC_PRINTF_W("[SPI] RX_BUFF (LSB->):");
             for (int i = 0; i < rx_n; i++)
             {
-                TDC_PRINTF_W(" %02X", (unsigned int)(SPI_Rx_Buffer[i] & 0xFF));
+                TDC_PRINTF_W(" %02X", (unsigned int) (SPI_Rx_Buffer[i] & 0xFF));
             }
             TDC_PRINTF_W(" \r\n");
 
             TDC_PRINTF_W("[SPI] TX_BUFF (LSB->):");
             for (int i = 0; i < tx_n; i++)
             {
-                TDC_PRINTF_W(" %02X", (unsigned int)(SPI_Tx_Buffer[i] & 0xFF));
+                TDC_PRINTF_W(" %02X", (unsigned int) (SPI_Tx_Buffer[i] & 0xFF));
             }
             TDC_PRINTF_W(" \r\n");
         }
@@ -144,12 +144,11 @@ void DMA0_IRQHandler(void)  // DMA0은 SPI Rx에서 Memory로 패킷 단위의 �
             int dma0_cnt = DMA0_CNTS->TRANSFER_WORD_CNT_SHORT;
             int rx_n     = (dma0_cnt > 0 && dma0_cnt <= TDC_HAL_SPI_COMM_PACKET_SIZE) ? dma0_cnt : TDC_HAL_SPI_COMM_PACKET_SIZE;
 
-            TDC_PRINTF_W("[DMA] SPI RX ERROR t3=%d ms / RX_CNT=%d \r\n",
-                      tdc_hal_timer_get_t3_tick(), dma0_cnt);
+            TDC_PRINTF_W("[DMA] SPI RX ERROR t3=%d ms / RX_CNT=%d \r\n", tdc_hal_timer_get_t3_tick(), dma0_cnt);
             TDC_PRINTF_W("[DMA] RX_BUFF (LSB->):");
             for (int i = 0; i < rx_n; i++)
             {
-                TDC_PRINTF_W(" %02X", (unsigned int)(SPI_Rx_Buffer[i] & 0xFF));
+                TDC_PRINTF_W(" %02X", (unsigned int) (SPI_Rx_Buffer[i] & 0xFF));
             }
             TDC_PRINTF_W(" \r\n");
         }
@@ -186,12 +185,11 @@ void DMA1_IRQHandler(void)  // DMA1은 Memory에서 SPI Tx로 패킷 단위의 �
             int dma1_cnt = DMA1_CNTS->TRANSFER_WORD_CNT_SHORT;
             int tx_n     = (dma1_cnt > 0 && dma1_cnt <= TDC_HAL_SPI_COMM_PACKET_SIZE) ? dma1_cnt : TDC_HAL_SPI_COMM_PACKET_SIZE;
 
-            TDC_PRINTF_W("[DMA] SPI TX ERROR t3=%d ms / TX_CNT=%d \r\n",
-                      tdc_hal_timer_get_t3_tick(), dma1_cnt);
+            TDC_PRINTF_W("[DMA] SPI TX ERROR t3=%d ms / TX_CNT=%d \r\n", tdc_hal_timer_get_t3_tick(), dma1_cnt);
             TDC_PRINTF_W("[DMA] TX_BUFF (LSB->):");
             for (int i = 0; i < tx_n; i++)
             {
-                TDC_PRINTF_W(" %02X", (unsigned int)(SPI_Tx_Buffer[i] & 0xFF));
+                TDC_PRINTF_W(" %02X", (unsigned int) (SPI_Tx_Buffer[i] & 0xFF));
             }
             TDC_PRINTF_W(" \r\n");
         }
@@ -311,7 +309,7 @@ void tdc_hal_spi_write_tx_buffer(const uint8_t *source, int dataSize)
             SPI_Tx_Buffer[TDC_HAL_SPI_COMM_PACKET_SIZE - 1] = (uint8_t) dataSize;  // 21 - 1 = 20, 20 인덱스에 dataSize 기록
 
 #if 1  // nRF SPI 디버깅
-       // 라이브모드의 실시간 전류 값을 제외하고 출력 (데이터 양이 너무 많음)
+            // 라이브모드의 실시간 전류 값을 제외하고 출력 (데이터 양이 너무 많음)
             bool print_allowed = true;
 
             if (SPI_Tx_Buffer[0] == 0x66)
@@ -327,28 +325,28 @@ void tdc_hal_spi_write_tx_buffer(const uint8_t *source, int dataSize)
                 // TDC_PRINTF_W("[TX] PRINTV-BEFORE\r\n");
 
                 TDC_PRINTF_V("[SPI TX] (LSB) 0x%02X %02X %02X %02X %02X %02X %02X %02X %02X %02X "
-                          "%02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X (MSB) \r\n",
-                          SPI_Tx_Buffer[0],
-                          SPI_Tx_Buffer[1],
-                          SPI_Tx_Buffer[2],
-                          SPI_Tx_Buffer[3],
-                          SPI_Tx_Buffer[4],
-                          SPI_Tx_Buffer[5],
-                          SPI_Tx_Buffer[6],
-                          SPI_Tx_Buffer[7],
-                          SPI_Tx_Buffer[8],
-                          SPI_Tx_Buffer[9],
-                          SPI_Tx_Buffer[10],
-                          SPI_Tx_Buffer[11],
-                          SPI_Tx_Buffer[12],
-                          SPI_Tx_Buffer[13],
-                          SPI_Tx_Buffer[14],
-                          SPI_Tx_Buffer[15],
-                          SPI_Tx_Buffer[16],
-                          SPI_Tx_Buffer[17],
-                          SPI_Tx_Buffer[18],
-                          SPI_Tx_Buffer[19],
-                          SPI_Tx_Buffer[20]);
+                             "%02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X (MSB) \r\n",
+                             SPI_Tx_Buffer[0],
+                             SPI_Tx_Buffer[1],
+                             SPI_Tx_Buffer[2],
+                             SPI_Tx_Buffer[3],
+                             SPI_Tx_Buffer[4],
+                             SPI_Tx_Buffer[5],
+                             SPI_Tx_Buffer[6],
+                             SPI_Tx_Buffer[7],
+                             SPI_Tx_Buffer[8],
+                             SPI_Tx_Buffer[9],
+                             SPI_Tx_Buffer[10],
+                             SPI_Tx_Buffer[11],
+                             SPI_Tx_Buffer[12],
+                             SPI_Tx_Buffer[13],
+                             SPI_Tx_Buffer[14],
+                             SPI_Tx_Buffer[15],
+                             SPI_Tx_Buffer[16],
+                             SPI_Tx_Buffer[17],
+                             SPI_Tx_Buffer[18],
+                             SPI_Tx_Buffer[19],
+                             SPI_Tx_Buffer[20]);
             }
 #endif
 
@@ -377,7 +375,7 @@ void tdc_hal_spi_write_tx_buffer(const uint8_t *source, int dataSize)
             // TDC_PRINTF_W("[TX] WFE-ENTER t3=%d ms\r\n", tdc_hal_timer_get_t3_tick());
             __WFE();
             // TDC_PRINTF_W("[TX] WFE-WAKE t3=%d ms empty=%d\r\n",
-               //       tdc_hal_timer_get_t3_tick(), (int)tdc_hal_spi_is_tx_buffer_empty());
+            //       tdc_hal_timer_get_t3_tick(), (int)tdc_hal_spi_is_tx_buffer_empty());
         }
     }
 }

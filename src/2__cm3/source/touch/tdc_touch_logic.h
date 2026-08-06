@@ -18,45 +18,45 @@
 
 #include <stdbool.h>
 #include <stdint.h>
-#include <tdc_touch.h>       /* tdc_touch_state_t (레이어 중립 상태 enum) */
+#include <tdc_touch.h> /* tdc_touch_state_t (레이어 중립 상태 enum) */
 
 /* 출력 액션 - 연결층이 IQS323 호출로 변환한다. */
 typedef enum
 {
-    TDC_TOUCH_ACT_NONE = 0,   /* 무동작 */
-    TDC_TOUCH_ACT_HOLD,       /* read 실패 hold 이내: 전이/게이트/stuck/롱터치 평가 동결 */
-    TDC_TOUCH_ACT_RE_ATI,     /* Re-ATI 발행 (노터치 게이트 드리프트 또는 stuck stage1) */
-    TDC_TOUCH_ACT_RESEED,     /* RESEED 발행 (stuck stage0) */
-    TDC_TOUCH_ACT_MCLR        /* CM3 재부팅 요청 (stuck stage2) - 연결층이 watchdog reset */
+    TDC_TOUCH_ACT_NONE = 0, /* 무동작 */
+    TDC_TOUCH_ACT_HOLD,     /* read 실패 hold 이내: 전이/게이트/stuck/롱터치 평가 동결 */
+    TDC_TOUCH_ACT_RE_ATI,   /* Re-ATI 발행 (노터치 게이트 드리프트 또는 stuck stage1) */
+    TDC_TOUCH_ACT_RESEED,   /* RESEED 발행 (stuck stage0) */
+    TDC_TOUCH_ACT_MCLR      /* CM3 재부팅 요청 (stuck stage2) - 연결층이 watchdog reset */
 } tdc_touch_act_t;
 
 /* 부팅 무시 이벤트 - 연결층이 로그/LED 분기에 사용 (불리언 3개를 1 enum 으로 압축). */
 typedef enum
 {
-    TDC_TOUCH_BOOT_NONE = 0,  /* 정상 폴링 */
-    TDC_TOUCH_BOOT_IGNORING,  /* 부팅 터치 무시 중 - 상위가 입력 무시 */
-    TDC_TOUCH_BOOT_RELEASED,  /* 이번 step 에 무시 해제 - 연결층 1회 로그 */
-    TDC_TOUCH_BOOT_WARN_5S    /* 5초 경과 1회 - 연결층 1회 로그 + 경고 LED */
+    TDC_TOUCH_BOOT_NONE = 0, /* 정상 폴링 */
+    TDC_TOUCH_BOOT_IGNORING, /* 부팅 터치 무시 중 - 상위가 입력 무시 */
+    TDC_TOUCH_BOOT_RELEASED, /* 이번 step 에 무시 해제 - 연결층 1회 로그 */
+    TDC_TOUCH_BOOT_WARN_5S   /* 5초 경과 1회 - 연결층 1회 로그 + 경고 LED */
 } tdc_touch_boot_event_t;
 
 /* 입력 (연결층이 read 결과를 정규화해 채운다. read_ok=false 면 아래 3개 false). */
 typedef struct
 {
-    uint32_t now_ms;      /* 현재 절대시각 ms (연결층이 tdc_hal_timer 에서 주입) - 시간 판정 단일 소스 */
-    bool     read_ok;     /* read 성공 여부 */
-    bool     pressed;     /* read_ok 시 유효: CH0 터치 눌림 */
-    bool     ati_error;   /* read_ok 시 유효: ATI Error (드리프트 신호) */
-    bool     ati_active;  /* read_ok 시 유효: ATI burst 진행 중 */
+    uint32_t now_ms;     /* 현재 절대시각 ms (연결층이 tdc_hal_timer 에서 주입) - 시간 판정 단일 소스 */
+    bool     read_ok;    /* read 성공 여부 */
+    bool     pressed;    /* read_ok 시 유효: CH0 터치 눌림 */
+    bool     ati_error;  /* read_ok 시 유효: ATI Error (드리프트 신호) */
+    bool     ati_active; /* read_ok 시 유효: ATI burst 진행 중 */
 } tdc_touch_in_t;
 
 /* 출력 (5필드). */
 typedef struct
 {
-    tdc_touch_act_t        action;         /* 발행할 HW 액션 (연결층 -> IQS323) */
-    bool                   long_touch;     /* 롱터치 발동 1회 (절전 트리거) */
-    tdc_touch_state_t      curr_state;     /* 이번 step 산출 상태 (로그/디버그) */
-    bool                   state_changed;  /* prev != curr (STATE 로그 트리거) */
-    tdc_touch_boot_event_t boot_event;     /* 부팅 무시 이벤트 (로그/LED 분기) */
+    tdc_touch_act_t        action;        /* 발행할 HW 액션 (연결층 -> IQS323) */
+    bool                   long_touch;    /* 롱터치 발동 1회 (절전 트리거) */
+    tdc_touch_state_t      curr_state;    /* 이번 step 산출 상태 (로그/디버그) */
+    bool                   state_changed; /* prev != curr (STATE 로그 트리거) */
+    tdc_touch_boot_event_t boot_event;    /* 부팅 무시 이벤트 (로그/LED 분기) */
 } tdc_touch_out_t;
 
 /* 상태 (현 분산 static 통합 - 단일 소유, 연결층이 보관). */
@@ -84,8 +84,6 @@ void tdc_touch_logic_init(tdc_touch_logic_state_t *st, uint32_t now_ms);
 void tdc_touch_logic_set_boot_ignore(tdc_touch_logic_state_t *st, uint32_t now_ms);
 
 /* 순수 step. 전역/HW/timer/printf 접근 0. 연결층이 폴링 tick 1회당 1회 호출. */
-void tdc_touch_logic_step(tdc_touch_logic_state_t *st,
-                          const tdc_touch_in_t    *in,
-                          tdc_touch_out_t         *out);
+void tdc_touch_logic_step(tdc_touch_logic_state_t *st, const tdc_touch_in_t *in, tdc_touch_out_t *out);
 
 #endif /* TDC_TOUCH_LOGIC_H_ */

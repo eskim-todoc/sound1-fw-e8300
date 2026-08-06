@@ -331,9 +331,9 @@ typedef struct
 } tdc_batt_led_bin_t;
 
 static const tdc_batt_led_bin_t s_tdc_batt_led_table[] = {
-    {TDC_BATT_LED_READY_PCT, TDC_LED_ST_BATT_READY},    /* pct >= 80         */
-    {TDC_BATT_LED_CRITICAL_PCT, TDC_LED_ST_BATT_MID},   /* 10 <= pct < 80    */
-    {0, TDC_LED_ST_BATT_CRITICAL},                      /* pct <  10 (fallback) */
+    {TDC_BATT_LED_READY_PCT, TDC_LED_ST_BATT_READY},  /* pct >= 80         */
+    {TDC_BATT_LED_CRITICAL_PCT, TDC_LED_ST_BATT_MID}, /* 10 <= pct < 80    */
+    {0, TDC_LED_ST_BATT_CRITICAL},                    /* pct <  10 (fallback) */
 };
 #define TDC_BATT_LED_TABLE_LEN ((int) (sizeof(s_tdc_batt_led_table) / sizeof(s_tdc_batt_led_table[0])))
 
@@ -439,7 +439,6 @@ static void tdc_led_request_mapping(int pct, bool map_conn, bool isd_conn)
     }
 }
 
-
 int func_normal(void)
 {
     /* zero-init 후 필요한 필드만 명시 초기화.
@@ -470,7 +469,6 @@ int func_normal(void)
     //        복귀하지 않으므로 BLE · 터치 · 자극이 전부 멈춘다.
     //        구현은 source/tests/tdc_test_tx_pmic.c 에 있다.
     // tdc_test_tx_pmic_console();
-
 
     while (1)
     {
@@ -757,7 +755,10 @@ static bool tdc_qcc_has_batt_level_rx_timed_out(void)
         }
         else
         {
-            TDC_PRINTF_D("[BATT] QCC BATT RX %d%% (TICK = %d / WAIT = %d MS) \r\n", tdc_pwr_battery_get_percent(), tdc_hal_timer_get_tick(), (tdc_hal_timer_get_tick() - time_laps));
+            TDC_PRINTF_D("[BATT] QCC BATT RX %d%% (TICK = %d / WAIT = %d MS) \r\n",
+                         tdc_pwr_battery_get_percent(),
+                         tdc_hal_timer_get_tick(),
+                         (tdc_hal_timer_get_tick() - time_laps));
             is_done = true;
         }
     }
@@ -1115,7 +1116,7 @@ int func_sleep(void)
         tdc_touch_sleep_log_state_transition(ok, state, &ulp_state_prev);
     }
 
-    return 0;  /* 도달 불가 - 컴파일러 만족용 */
+    return 0; /* 도달 불가 - 컴파일러 만족용 */
 }
 
 /* EOF */

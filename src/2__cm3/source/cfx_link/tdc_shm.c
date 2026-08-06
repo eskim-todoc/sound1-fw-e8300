@@ -269,7 +269,7 @@ void tdc_shm_change_connected_isd_num_cfx(int isd_num)
         tdc_fs_map_read_map_data(isd_num, 3);         // 프로그램 3 로드
         tdc_fs_map_read_map_data(isd_num, 4);         // 프로그램 4 로드
 
-        tdc_cfx_eeprom_copy_map_info_to_cm3(isd_num);                // #1. 맵 스탬프, 프로그램 별 매핑 일자, 사용 가능한 맵 프로그램 인덱스, 사용 가능한 맵 개수 복사
+        tdc_cfx_eeprom_copy_map_info_to_cm3(isd_num);  // #1. 맵 스탬프, 프로그램 별 매핑 일자, 사용 가능한 맵 프로그램 인덱스, 사용 가능한 맵 개수 복사
         tdc_cfx_eeprom_copy_user_setting_parameters_to_cm3(isd_num);  // #2. 사용자 설정 값 복사
 
         // #3. 게인 설정도 이 ISD 것으로 복원한다.
@@ -415,7 +415,6 @@ int tdc_shm_read_audio_volume(void)
 
 void tdc_shm_change_led_indicator_on_off(EN__PAYLOAD_ON_OFF OnOff)
 {
-
     cfx_cm3_sharedMemoryAll.userSettingValue.indicatorLED_OnOff = (int) OnOff;
 
     if (cfx_cm3_sharedMemoryAll.systemShare.system_opMode == en__normalMode)
@@ -539,5 +538,5 @@ int *tdc_shm_get_pointer_repository_for_read_write_map_data_isd_info(void)
 
 int *tdc_shm_get_pointer_repository_for_read_write_map_data_stimul_para(void)
 {
-    return ((int*) &(cfx_cm3_sharedMemoryAll.repositoryForReadWriteMapData.readWritemapData));
+    return ((int *) &(cfx_cm3_sharedMemoryAll.repositoryForReadWriteMapData.readWritemapData));
 }

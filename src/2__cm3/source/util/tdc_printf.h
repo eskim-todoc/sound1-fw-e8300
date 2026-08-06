@@ -32,8 +32,8 @@ void tdc_printf_file_func_line(const char *file, const char *func, int line);
 #if (TDC_PRINTF_INTERFACE == TDC_PRINTF_INTERFACE_SEGGER_RTT)
 
 #if TDC_PRINTF_ENABLE_ERROR
-#define TDC_PRINTF_E(fmt, ...)                                                                                                                                                                                                                                                                                                    \
-    tdc_printf_file_func_line(__SHORT_FILE__, __func__, __LINE__);                                                                                                                                                                                                                                                               \
+#define TDC_PRINTF_E(fmt, ...)                                                                                                                                 \
+    tdc_printf_file_func_line(__SHORT_FILE__, __func__, __LINE__);                                                                                             \
     SEGGER_RTT_printf(0, RTT_CTRL_TEXT_BRIGHT_RED fmt RTT_CTRL_RESET, ##__VA_ARGS__)
 #else
 #define TDC_PRINTF_E(fmt, ...)

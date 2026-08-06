@@ -15,7 +15,6 @@
 #include <board.h>
 #include <tdc_stim_definitions.h>
 
-
 void tdc_util_indicate_critical_error(void);
 void tdc_util_assert(int a);
 void tdc_util_delay_ms(uint32_t ms);

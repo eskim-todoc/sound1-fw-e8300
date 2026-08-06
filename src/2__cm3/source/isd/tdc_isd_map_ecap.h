@@ -32,6 +32,6 @@ typedef enum
 //
 //  }EN__eCAP_STIMUL_PATTERN;
 
-#define Max_eCAP_ReturnDataSize 8 // b
+#define Max_eCAP_ReturnDataSize 8  // b
 
 #endif

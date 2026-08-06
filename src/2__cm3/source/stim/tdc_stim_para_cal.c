@@ -37,11 +37,11 @@ int tdc_stim_calc_frame_per_channel(int pulsewidth)
     duration = pulsewidth;
     duration += duration;
     // 펄스 위상 반전 간격
-    duration += FPGA_interphaseGapTokenTime; // FPGA_interphaseGapTokenTime : 4
+    duration += FPGA_interphaseGapTokenTime;  // FPGA_interphaseGapTokenTime : 4
     // 자극파라미터 전송 시간
-    duration += FPGA_electrodAndStimulLevelTokenTime; // FPGA_electrodAndStimulLevelTokenTime : 10
+    duration += FPGA_electrodAndStimulLevelTokenTime;  // FPGA_electrodAndStimulLevelTokenTime : 10
 
-    tokenTime          = FPGA_oneChannelDataTokenTime; // FPGA_oneChannelDataTokenTime : 41
+    tokenTime          = FPGA_oneChannelDataTokenTime;  // FPGA_oneChannelDataTokenTime : 41
     numFramePerChannel = 1;
     while (true)
     {
@@ -50,7 +50,7 @@ int tdc_stim_calc_frame_per_channel(int pulsewidth)
             break;
         }
         numFramePerChannel++;
-        tokenTime += FPGA_oneChannelDataTokenTime; // FPGA_oneChannelDataTokenTime : 41
+        tokenTime += FPGA_oneChannelDataTokenTime;  // FPGA_oneChannelDataTokenTime : 41
     }
 
     return numFramePerChannel;
@@ -60,14 +60,12 @@ int tdc_stim_calc_transferable_channel_num(int numFramePerChannel, int usableEle
 {
     int TransferabelChannelNumPerOneMilSec;
 
-
     // 24나누기 채널당 프레임 수...
 
     /* 프레임 수를 1 씩 늘려가며 반복 계산하던 구버전 채널수 산출은 제거했다(#if 0 사장).
      * 현재는 아래처럼 나눗셈 1회로 구한다. */
 
     TransferabelChannelNumPerOneMilSec = df_MaxNumTransferableChannel / numFramePerChannel;
-
 
     return TransferabelChannelNumPerOneMilSec;
 }
@@ -152,7 +150,6 @@ bool tdc_stim_set_range(int pulseWidth, int *T_level_uA, int *C_level_uA, int Nu
     int maxStimul_uA = 0, minStimul_uA = stimulDAC_D_only_Saturation_uA + offsetDAC_B_Saturation_uA, dynamicRange_uA = 0;
     int DAC_offsetLevel;
 
-
     int  tempINT;
     int  deliveryCharge_pico;
     bool MaxDeliveryChargeOver = false;
@@ -204,7 +201,9 @@ bool tdc_stim_set_range(int pulseWidth, int *T_level_uA, int *C_level_uA, int Nu
 
     deliveryCharge_pico = maxStimul_uA * pulseWidth;
     if (deliveryCharge_pico > df_MaxDeliveryCharge_pC)
+    {
         MaxDeliveryChargeOver = true;
+    }
 
 #else
 
@@ -284,7 +283,6 @@ bool tdc_stim_set_range(int pulseWidth, int *T_level_uA, int *C_level_uA, int Nu
         }
         else
         {
-
             if (dynamicRange_uA <= stimulDAC_B_only_Saturation_uA)  // 동적 영역  비교  Stimul DAC B
             {
                 if ((stimulDAC_B_only_Saturation_uA + offsetDAC_A_Saturation_uA) >= maxStimul_uA)  // Stimul DAC B + Offset DAC A
@@ -589,7 +587,8 @@ bool tdc_stim_calc_para_and_cfx_share(void)
     }
 #endif
 
-    configurationDone = tdc_stim_set_range(p_mapdata->stimulationPulsePhaseWidth, p_mapdata->T_level_uA, p_mapdata->C_level_uA, p_mapdata->numFrequencyBand, T_level_255, C_level_255);
+    configurationDone = tdc_stim_set_range(
+        p_mapdata->stimulationPulsePhaseWidth, p_mapdata->T_level_uA, p_mapdata->C_level_uA, p_mapdata->numFrequencyBand, T_level_255, C_level_255);
 
     // CFX와 공유
     p_calculatedStimulPara_byCM3 = tdc_shm_get_pointer_calculated_stimul_para_by_cm3();
@@ -604,10 +603,10 @@ bool tdc_stim_calc_para_and_cfx_share(void)
     cfx_cm3_sharedMemoryAll.CM3_tempValue1 = 0;
     cfx_cm3_sharedMemoryAll.CM3_tempValue2 = 0;
 
-    for(i=0;i<df_MaxNumOfElectrode; i++)
+    for (i = 0; i < df_MaxNumOfElectrode; i++)
     {
-        p_calculatedStimulPara_byCM3->C_level_255[i]=C_level_255[i];
-        p_calculatedStimulPara_byCM3->T_level_255[i]=T_level_255[i];
+        p_calculatedStimulPara_byCM3->C_level_255[i] = C_level_255[i];
+        p_calculatedStimulPara_byCM3->T_level_255[i] = T_level_255[i];
     }
 
     return configurationDone;

@@ -333,5 +333,3 @@ unsigned int tdc_hal_trims_set_adc_offsets()
     return SYS_ERRNO_NO_ERROR;
 }
 // clang-format on
-
-

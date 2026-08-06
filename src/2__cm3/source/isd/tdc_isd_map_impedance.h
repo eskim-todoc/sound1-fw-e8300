@@ -23,4 +23,3 @@ typedef enum
 void tdc_isd_map_impedance_step(bool startFlag);
 
 #endif
-

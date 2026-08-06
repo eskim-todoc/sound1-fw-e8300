@@ -11,8 +11,14 @@ int tdc_fs_map_read_isd_info(int isd_num)
     name[TDC_FS_MAP_FILE_INDEX_ISD_NUM]                 = (char) ('0' + isd_num);
 
 #if 1
-    return tdc_fs_read_with_crc_and_aes128(
-        name, (uint8_t *) &g_tdc_fs_ptr_entire_map->map[isd_num - 1].isd_info, sizeof(ST__CFX_CM3_SharedMemory_ISD_info), &g_tdc_fs_ptr_entire_map->map[isd_num - 1].isd_info_crc_ccitt, g_tdc_fs_ptr_entire_map->map[isd_num - 1].isd_info_aes128_padding, 8, true, true);
+    return tdc_fs_read_with_crc_and_aes128(name,
+                                           (uint8_t *) &g_tdc_fs_ptr_entire_map->map[isd_num - 1].isd_info,
+                                           sizeof(ST__CFX_CM3_SharedMemory_ISD_info),
+                                           &g_tdc_fs_ptr_entire_map->map[isd_num - 1].isd_info_crc_ccitt,
+                                           g_tdc_fs_ptr_entire_map->map[isd_num - 1].isd_info_aes128_padding,
+                                           8,
+                                           true,
+                                           true);
 #else
     return tdc_fs_read(name, (uint8_t *) &g_tdc_fs_ptr_entire_map->map[isd_num - 1].isd_info, sizeof(ST__CFX_CM3_SharedMemory_ISD_info));
 #endif
@@ -24,7 +30,14 @@ int tdc_fs_map_read_user_setting_value(int isd_num)
     name[TDC_FS_MAP_FILE_INDEX_ISD_NUM]                           = (char) ('0' + isd_num);
 
 #if 1
-    return tdc_fs_read_with_crc_and_aes128(name, (uint8_t *) &g_tdc_fs_ptr_entire_map->map[isd_num - 1].user_setting_value, sizeof(ST__CFX_CM3_SharedMemory_userSettingValue), &g_tdc_fs_ptr_entire_map->map[isd_num - 1].user_setting_value_crc_ccitt, NULL, 0, true, false);
+    return tdc_fs_read_with_crc_and_aes128(name,
+                                           (uint8_t *) &g_tdc_fs_ptr_entire_map->map[isd_num - 1].user_setting_value,
+                                           sizeof(ST__CFX_CM3_SharedMemory_userSettingValue),
+                                           &g_tdc_fs_ptr_entire_map->map[isd_num - 1].user_setting_value_crc_ccitt,
+                                           NULL,
+                                           0,
+                                           true,
+                                           false);
 #else
     return tdc_fs_read(name, (uint8_t *) &g_tdc_fs_ptr_entire_map->map[isd_num - 1].user_setting_value, sizeof(ST__CFX_CM3_SharedMemory_userSettingValue));
 #endif
@@ -35,7 +48,14 @@ int tdc_fs_map_read_map_stamp(int isd_num)
     static char name[TDC_FS_MAP_FILE_NAME_LEN_MAP_STAMP] = TDC_FS_MAP_FILE_INIT_NAME_MAP_STAMP;
     name[TDC_FS_MAP_FILE_INDEX_ISD_NUM]                  = (char) ('0' + isd_num);
 #if 1
-    return tdc_fs_read_with_crc_and_aes128(name, (uint8_t *) &g_tdc_fs_ptr_entire_map->map[isd_num - 1].map_stamp, sizeof(ST__MAPPING_DATE), &g_tdc_fs_ptr_entire_map->map[isd_num - 1].map_stamp_crc_ccitt, g_tdc_fs_ptr_entire_map->map[isd_num - 1].map_stamp_aes128_padding, 4, true, false);
+    return tdc_fs_read_with_crc_and_aes128(name,
+                                           (uint8_t *) &g_tdc_fs_ptr_entire_map->map[isd_num - 1].map_stamp,
+                                           sizeof(ST__MAPPING_DATE),
+                                           &g_tdc_fs_ptr_entire_map->map[isd_num - 1].map_stamp_crc_ccitt,
+                                           g_tdc_fs_ptr_entire_map->map[isd_num - 1].map_stamp_aes128_padding,
+                                           4,
+                                           true,
+                                           false);
 #else
     return tdc_fs_read(name, (uint8_t *) &g_tdc_fs_ptr_entire_map->map[isd_num - 1].map_stamp, sizeof(ST__MAPPING_DATE));
 #endif
@@ -49,13 +69,13 @@ int tdc_fs_map_read_map_data(int isd_num, int map_num)
 
 #if 1
     return tdc_fs_read_with_crc_and_aes128(name,
-                                                  (uint8_t *) &g_tdc_fs_ptr_entire_map->map[isd_num - 1].map_data[map_num - 1],
-                                                  sizeof(ST__CFX_CM3_SharedMemory_mapData),
-                                                  &g_tdc_fs_ptr_entire_map->map[isd_num - 1].map_data_crc_ccitt[map_num - 1],
-                                                  &g_tdc_fs_ptr_entire_map->map[isd_num - 1].map_data_aes128_padding[map_num - 1][0],
-                                                  8,
-                                                  true,
-                                                  false);
+                                           (uint8_t *) &g_tdc_fs_ptr_entire_map->map[isd_num - 1].map_data[map_num - 1],
+                                           sizeof(ST__CFX_CM3_SharedMemory_mapData),
+                                           &g_tdc_fs_ptr_entire_map->map[isd_num - 1].map_data_crc_ccitt[map_num - 1],
+                                           &g_tdc_fs_ptr_entire_map->map[isd_num - 1].map_data_aes128_padding[map_num - 1][0],
+                                           8,
+                                           true,
+                                           false);
 #else
     return tdc_fs_read(name, (uint8_t *) &g_tdc_fs_ptr_entire_map->map[isd_num - 1].map_data[map_num - 1], sizeof(ST__CFX_CM3_SharedMemory_mapData));
 #endif
@@ -68,8 +88,14 @@ int tdc_fs_map_write_isd_info(int isd_num)
 
     TDC_PRINTF_D("[MAP] TRY WRITING, FILE : '%s' \r\n", name);
 #if 1
-    return tdc_fs_write_with_crc_and_aes128(
-        name, (uint8_t *) &g_tdc_fs_ptr_entire_map->map[isd_num - 1].isd_info, sizeof(ST__CFX_CM3_SharedMemory_ISD_info), &g_tdc_fs_ptr_entire_map->map[isd_num - 1].isd_info_crc_ccitt, g_tdc_fs_ptr_entire_map->map[isd_num - 1].isd_info_aes128_padding, 8, true, true);
+    return tdc_fs_write_with_crc_and_aes128(name,
+                                            (uint8_t *) &g_tdc_fs_ptr_entire_map->map[isd_num - 1].isd_info,
+                                            sizeof(ST__CFX_CM3_SharedMemory_ISD_info),
+                                            &g_tdc_fs_ptr_entire_map->map[isd_num - 1].isd_info_crc_ccitt,
+                                            g_tdc_fs_ptr_entire_map->map[isd_num - 1].isd_info_aes128_padding,
+                                            8,
+                                            true,
+                                            true);
 #else
     return tdc_fs_write(name, (uint8_t *) &g_tdc_fs_ptr_entire_map->map[isd_num - 1].isd_info, sizeof(ST__CFX_CM3_SharedMemory_ISD_info));
 #endif
@@ -83,7 +109,14 @@ int tdc_fs_map_write_user_setting_value(int isd_num)
     TDC_PRINTF_D("[MAP] TRY WRITING, FILE : '%s' \r\n", name);
 
 #if 1
-    return tdc_fs_write_with_crc_and_aes128(name, (uint8_t *) &g_tdc_fs_ptr_entire_map->map[isd_num - 1].user_setting_value, sizeof(ST__CFX_CM3_SharedMemory_userSettingValue), &g_tdc_fs_ptr_entire_map->map[isd_num - 1].user_setting_value_crc_ccitt, NULL, 0, true, false);
+    return tdc_fs_write_with_crc_and_aes128(name,
+                                            (uint8_t *) &g_tdc_fs_ptr_entire_map->map[isd_num - 1].user_setting_value,
+                                            sizeof(ST__CFX_CM3_SharedMemory_userSettingValue),
+                                            &g_tdc_fs_ptr_entire_map->map[isd_num - 1].user_setting_value_crc_ccitt,
+                                            NULL,
+                                            0,
+                                            true,
+                                            false);
 #else
     return tdc_fs_write(name, (uint8_t *) &g_tdc_fs_ptr_entire_map->map[isd_num - 1].user_setting_value, sizeof(ST__CFX_CM3_SharedMemory_userSettingValue));
 #endif
@@ -97,7 +130,14 @@ int tdc_fs_map_write_map_stamp(int isd_num)
     TDC_PRINTF_D("[MAP] TRY WRITING, FILE : '%s' \r\n", name);
 
 #if 1
-    return tdc_fs_write_with_crc_and_aes128(name, (uint8_t *) &g_tdc_fs_ptr_entire_map->map[isd_num - 1].map_stamp, sizeof(ST__MAPPING_DATE), &g_tdc_fs_ptr_entire_map->map[isd_num - 1].map_stamp_crc_ccitt, g_tdc_fs_ptr_entire_map->map[isd_num - 1].map_stamp_aes128_padding, 4, true, false);
+    return tdc_fs_write_with_crc_and_aes128(name,
+                                            (uint8_t *) &g_tdc_fs_ptr_entire_map->map[isd_num - 1].map_stamp,
+                                            sizeof(ST__MAPPING_DATE),
+                                            &g_tdc_fs_ptr_entire_map->map[isd_num - 1].map_stamp_crc_ccitt,
+                                            g_tdc_fs_ptr_entire_map->map[isd_num - 1].map_stamp_aes128_padding,
+                                            4,
+                                            true,
+                                            false);
 #else
     return tdc_fs_write(name, (uint8_t *) &g_tdc_fs_ptr_entire_map->map[isd_num - 1].map_stamp, sizeof(ST__MAPPING_DATE));
 #endif
@@ -113,13 +153,13 @@ int tdc_fs_map_write_map_data(int isd_num, int map_num)
 
 #if 1
     return tdc_fs_write_with_crc_and_aes128(name,
-                                                   (uint8_t *) &g_tdc_fs_ptr_entire_map->map[isd_num - 1].map_data[map_num - 1],
-                                                   sizeof(ST__CFX_CM3_SharedMemory_mapData),
-                                                   &g_tdc_fs_ptr_entire_map->map[isd_num - 1].map_data_crc_ccitt[map_num - 1],
-                                                   &g_tdc_fs_ptr_entire_map->map[isd_num - 1].map_data_aes128_padding[map_num - 1][0],
-                                                   8,
-                                                   true,
-                                                   false);
+                                            (uint8_t *) &g_tdc_fs_ptr_entire_map->map[isd_num - 1].map_data[map_num - 1],
+                                            sizeof(ST__CFX_CM3_SharedMemory_mapData),
+                                            &g_tdc_fs_ptr_entire_map->map[isd_num - 1].map_data_crc_ccitt[map_num - 1],
+                                            &g_tdc_fs_ptr_entire_map->map[isd_num - 1].map_data_aes128_padding[map_num - 1][0],
+                                            8,
+                                            true,
+                                            false);
 #else
     return tdc_fs_write(name, (uint8_t *) &g_tdc_fs_ptr_entire_map->map[isd_num - 1].map_data[map_num - 1], sizeof(ST__CFX_CM3_SharedMemory_mapData));
 #endif
@@ -554,9 +594,9 @@ int tdc_fs_map_init_map_data(int isd_num, bool force_init, bool specific_RL, int
                 {
                     case TDC_FS_MAP_NUM_3_INDEX:
 #if TDC_MAP_TEST_NOFM_USAGE_TIME
-                        p_map_data[i]->firstPulsePhase = 0; // negative first
+                        p_map_data[i]->firstPulsePhase = 0;  // negative first
 #else
-                        p_map_data[i]->firstPulsePhase = 1; // positive first
+                        p_map_data[i]->firstPulsePhase = 1;  // positive first
 #endif
                         break;
 

@@ -28,4 +28,4 @@ void tdc_cfx_eeprom_copy_user_setting_parameters_to_repository(void);
 void tdc_cfx_eeprom_copy_map_stamp_to_repository(void);
 void tdc_cfx_read_mapdata_mapping_app(void);
 
-#endif // __tdc_cfx_eeprom_read_h__
+#endif  // __tdc_cfx_eeprom_read_h__

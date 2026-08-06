@@ -46,22 +46,22 @@ typedef enum
 
 typedef struct __attribute__((packed))
 {
-    uint8_t  major_ver;          //  1 byte  sum:  1
-    uint8_t  minor_ver;          //  1 byte  sum:  2
-    uint8_t  state;              //  1 byte  sum:  3
-    uint8_t  sub_state;          //  1 byte  sum:  4
-    uint8_t  boot_slot_num;      //  1 byte  sum:  5
-    uint8_t  last_boot_slot_num; //  1 byte  sum:  6
-    uint8_t  alt_boot_slot_num;  //  1 byte  sum:  7
-    uint8_t  alt_boot_try_count; //  1 byte  sum:  8
-    uint8_t  alt_boot_result;    //  1 byte  sum:  9
-    uint8_t  slot_1_state;       //  1 byte  sum: 10
-    uint8_t  slot_2_state;       //  1 byte  sum: 11
-    uint8_t  slot_3_state;       //  1 byte  sum: 12
-    uint8_t  slot_4_state;       //  1 byte  sum: 13
-    uint8_t  reserved[47];       // 47 bytes sum: 60
-    uint32_t crc32;              //  4 bytes sum: 64
-                                 //    total sum: 64 bytes
+    uint8_t  major_ver;           //  1 byte  sum:  1
+    uint8_t  minor_ver;           //  1 byte  sum:  2
+    uint8_t  state;               //  1 byte  sum:  3
+    uint8_t  sub_state;           //  1 byte  sum:  4
+    uint8_t  boot_slot_num;       //  1 byte  sum:  5
+    uint8_t  last_boot_slot_num;  //  1 byte  sum:  6
+    uint8_t  alt_boot_slot_num;   //  1 byte  sum:  7
+    uint8_t  alt_boot_try_count;  //  1 byte  sum:  8
+    uint8_t  alt_boot_result;     //  1 byte  sum:  9
+    uint8_t  slot_1_state;        //  1 byte  sum: 10
+    uint8_t  slot_2_state;        //  1 byte  sum: 11
+    uint8_t  slot_3_state;        //  1 byte  sum: 12
+    uint8_t  slot_4_state;        //  1 byte  sum: 13
+    uint8_t  reserved[47];        // 47 bytes sum: 60
+    uint32_t crc32;               //  4 bytes sum: 64
+                                  //    total sum: 64 bytes
 } tdc_boot_status_t;
 
-#endif // __tdc_dfu_sdk_boot_h__
+#endif  // __tdc_dfu_sdk_boot_h__

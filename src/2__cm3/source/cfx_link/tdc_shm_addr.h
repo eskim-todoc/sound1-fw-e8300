@@ -4,9 +4,9 @@
 
 #include <hw.h>
 
-#include <99_eeprom_address.h>       //ok
-#include <tdc_stim_definitions.h> //ok
-#include <processorDirective.h>      //ok
+#include <99_eeprom_address.h>     //ok
+#include <tdc_stim_definitions.h>  //ok
+#include <processorDirective.h>    //ok
 
 // CM3 DRAM에 cfx-cm3 공유메모리를 할당해서 사용한다.
 
@@ -19,9 +19,11 @@
 // CM3_ELF 파일을 복고 시작 주소를 확인한다.
 
 // #define StartAddressCM3_sharedVarialbe 0x20001578 // ELF 파일에서 cfx_cm3_sharedMemoryAll의 주소값을 확인하여 기록한다.
-#define StartAddressCM3_sharedVarialbe DSP_PRAM5_REMAP_BASE // __KIM: LPDSP32_PRAM5를 사용한다. Cortex-M3 Remapping 주소는 0x70000 값이다. sections.ld 파일도 수정하였음 유념할 것.
+#define StartAddressCM3_sharedVarialbe                                                                                                                         \
+    DSP_PRAM5_REMAP_BASE  // __KIM: LPDSP32_PRAM5를 사용한다. Cortex-M3 Remapping 주소는 0x70000 값이다. sections.ld 파일도 수정하였음 유념할 것.
 
-#define BaseAddr_CM3CFX_SharedVariable (StartAddressCM3_sharedVarialbe - CM3_DataMemoryBaseAddr) // 0x1b8// 0x1a4//0x190 //0x3c //0x30// 0x59c // 0x5a4// 0x14//  0x5a4//  0x1c
+#define BaseAddr_CM3CFX_SharedVariable                                                                                                                         \
+    (StartAddressCM3_sharedVarialbe - CM3_DataMemoryBaseAddr)  // 0x1b8// 0x1a4//0x190 //0x3c //0x30// 0x59c // 0x5a4// 0x14//  0x5a4//  0x1c
 // #define BaseAddr_CM3CFX_SharedVariable              0x1b0//0x1b8// 0x1a4//0x190 //0x3c //0x30// 0x59c // 0x5a4// 0x14//  0x5a4//  0x1c
 
 #define Addr_SharedMem_CFX_EEPROM_data_is_Loaded (CFX_AccessAddrForCM3DataMem + (BaseAddr_CM3CFX_SharedVariable / 4))
@@ -110,12 +112,14 @@
 #define Addr_SharedMem_consumptionPowerControl_Command_CM3_to_CFX (Addr_SharedMem_cuurentMapData + (13 + 10 * df_MaxNumOfElectrode) + 10)
 #define Addr_SharedMem_enter_ULP_mode_Command_CM3_to_CFX          (Addr_SharedMem_cuurentMapData + (13 + 10 * df_MaxNumOfElectrode) + 11)
 
-#define Addr_SharedMem_ReadWriteCommand_command_ForFlash         (Addr_SharedMem_cuurentMapData + (13 + 10 * df_MaxNumOfElectrode) + 12)
-#define Addr_SharedMem_ReadWriteCommand_isd_index_ForFlash       (Addr_SharedMem_cuurentMapData + (13 + 10 * df_MaxNumOfElectrode) + 13)
-#define Addr_SharedMem_ReadWriteCommand_map_index_ForFlash       (Addr_SharedMem_cuurentMapData + (13 + 10 * df_MaxNumOfElectrode) + 14)
-#define Addr_SharedMem_RepositoryForReadWriteMapData_ISD_info    (Addr_SharedMem_cuurentMapData + (13 + 10 * df_MaxNumOfElectrode) + 15)
-#define Addr_SharedMem_RepositoryForReadWriteMapData_usersetting (Addr_SharedMem_cuurentMapData + (13 + 10 * df_MaxNumOfElectrode) + 15 + df_24bitWordLength_ISD_info)
-#define Addr_SharedMem_RepositoryForReadWriteMapData_mapData     (Addr_SharedMem_cuurentMapData + (13 + 10 * df_MaxNumOfElectrode) + 15 + df_24bitWordLength_ISD_info + df_24bitWordLength_UserSettingValues)
+#define Addr_SharedMem_ReadWriteCommand_command_ForFlash      (Addr_SharedMem_cuurentMapData + (13 + 10 * df_MaxNumOfElectrode) + 12)
+#define Addr_SharedMem_ReadWriteCommand_isd_index_ForFlash    (Addr_SharedMem_cuurentMapData + (13 + 10 * df_MaxNumOfElectrode) + 13)
+#define Addr_SharedMem_ReadWriteCommand_map_index_ForFlash    (Addr_SharedMem_cuurentMapData + (13 + 10 * df_MaxNumOfElectrode) + 14)
+#define Addr_SharedMem_RepositoryForReadWriteMapData_ISD_info (Addr_SharedMem_cuurentMapData + (13 + 10 * df_MaxNumOfElectrode) + 15)
+#define Addr_SharedMem_RepositoryForReadWriteMapData_usersetting                                                                                               \
+    (Addr_SharedMem_cuurentMapData + (13 + 10 * df_MaxNumOfElectrode) + 15 + df_24bitWordLength_ISD_info)
+#define Addr_SharedMem_RepositoryForReadWriteMapData_mapData                                                                                                   \
+    (Addr_SharedMem_cuurentMapData + (13 + 10 * df_MaxNumOfElectrode) + 15 + df_24bitWordLength_ISD_info + df_24bitWordLength_UserSettingValues)
 
 #define Addr_SharedMem_batteryCalibarationValue (Addr_SharedMem_RepositoryForReadWriteMapData_mapData + df_24bitWordLength_ProgramData)
 #define Addr_SharedMem_backtelControlRegister   (Addr_SharedMem_batteryCalibarationValue + 1)

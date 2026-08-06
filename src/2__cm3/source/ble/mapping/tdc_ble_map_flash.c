@@ -194,7 +194,7 @@ void tdc_ble_cmd_0x68_write_original_isd_user(const uint8_t *Rx_dataPacket)  // 
             if (subCommandData_Num_index != numPacket_writeMapData_Original_ISDnSetting)
             {
                 buffer_tx_index = tdc_ble_reply_header(bufferForSPI_tx, buffer_tx_index, en__mapping_write_original_ISD_N_USER);  // command loop-back
-                buffer_tx_index = tdc_ble_reply_u8(bufferForSPI_tx, buffer_tx_index, subCommandData_Num_index);               // payload num 전송
+                buffer_tx_index = tdc_ble_reply_u8(bufferForSPI_tx, buffer_tx_index, subCommandData_Num_index);                   // payload num 전송
 
                 tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, buffer_tx_index);  // 송신 데이터 SPI TX버퍼에 복사
             }
@@ -345,7 +345,9 @@ void tdc_ble_cmd_0x6C_write_slot_data(const uint8_t *Rx_dataPacket)  // 0x6C
                         case 31:  // 내부기 패스키
                         case 32:  // 내부기 패스키
                         case 33:  // 내부기 패스키
-                            if (!((('0' <= p_RepositoryFor_ISD_info[i - 1]) && (p_RepositoryFor_ISD_info[i - 1] <= '9')) || (('a' <= p_RepositoryFor_ISD_info[i - 1]) && (p_RepositoryFor_ISD_info[i - 1] <= 'z')) || (('A' <= p_RepositoryFor_ISD_info[i - 1]) && (p_RepositoryFor_ISD_info[i - 1] <= 'Z'))))
+                            if (!((('0' <= p_RepositoryFor_ISD_info[i - 1]) && (p_RepositoryFor_ISD_info[i - 1] <= '9'))
+                                  || (('a' <= p_RepositoryFor_ISD_info[i - 1]) && (p_RepositoryFor_ISD_info[i - 1] <= 'z'))
+                                  || (('A' <= p_RepositoryFor_ISD_info[i - 1]) && (p_RepositoryFor_ISD_info[i - 1] <= 'Z'))))
                             {
                                 dataRangeError = true;
                             }
@@ -464,7 +466,7 @@ void tdc_ble_cmd_0x6C_write_slot_data(const uint8_t *Rx_dataPacket)  // 0x6C
             if (subCommandData_Num_index != numPacket_writeMapData_ISDnSetting)
             {
                 buffer_tx_index = tdc_ble_reply_header(bufferForSPI_tx, buffer_tx_index, en__mapping_write_SlotData_ISD_N_USER);  // command loop-back
-                buffer_tx_index = tdc_ble_reply_u8(bufferForSPI_tx, buffer_tx_index, subCommandData_Num_index);               // payload num 전송
+                buffer_tx_index = tdc_ble_reply_u8(bufferForSPI_tx, buffer_tx_index, subCommandData_Num_index);                   // payload num 전송
 
                 tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, buffer_tx_index);  // 송신 데이터 SPI TX버퍼에 복사
             }
@@ -526,7 +528,7 @@ void tdc_ble_cmd_0x6D_write_map_data(const uint8_t *Rx_dataPacket)  // 0x6D
     int  index = df_payloadStartIndex;
     int  i;
     int  subCommandData_Num_index;
-    int  tempValue      = 0;
+    int  tempValue = 0;
     int  intFromByte;
     bool dataRangeError = false;
 

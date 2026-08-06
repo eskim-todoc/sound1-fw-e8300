@@ -11,10 +11,10 @@
 
 #define _DELAY_MS(ms) Sys_Delay((SystemCoreClock / 1000) * ms)
 
-static void _send_resp_packet_boot(uint8_t* packet_data, uint8_t packet_len)
+static void _send_resp_packet_boot(uint8_t *packet_data, uint8_t packet_len)
 {
     uint8_t spi_buffer[BLE_DataPacketSize];
-    int spi_len;
+    int     spi_len;
 
     spi_len = packet_len;
 
@@ -34,7 +34,7 @@ static void _send_error_packet_boot(uint8_t error)
 static void _fetch_packet_boot_info(const uint8_t *p_packet)
 {
     tdc_boot_status_t boot_status;
-    uint8_t                resp_packet[RESP_PKT_SIZE_BOOT_INFO] = {0};
+    uint8_t           resp_packet[RESP_PKT_SIZE_BOOT_INFO] = {0};
 
     // get boot status
     if (tdc_boot_get_status(&boot_status) != BOOT_RET_TRUE)
@@ -57,8 +57,8 @@ static void _fetch_packet_boot_info(const uint8_t *p_packet)
 static void _fetch_packet_boot_select(const uint8_t *p_packet)
 {
     tdc_boot_status_t boot_status;
-    uint8_t                slot_num;
-    uint8_t                resp_packet[RESP_PKT_SIZE_BOOT_SELECT] = {0};
+    uint8_t           slot_num;
+    uint8_t           resp_packet[RESP_PKT_SIZE_BOOT_SELECT] = {0};
 
     // get boot status
     if (tdc_boot_get_status(&boot_status) != BOOT_RET_TRUE)

@@ -29,7 +29,7 @@
 // Pointer to the null-terminated string that specifies the logical drive.
 // The string without drive number means the default drive.
 // #define TDC_FS_LOGICAL_DRIVE_NUM "0:"  // Default drive.
-#define TDC_FS_LOGICAL_DRIVE_NUM                 "1:"
+#define TDC_FS_LOGICAL_DRIVE_NUM "1:"
 
 #define SND_FATFS_LDRV_NUM_BOOT      0
 #define SND_FATFS_LDRV_NUM_USER_DATA 1
@@ -50,7 +50,7 @@
 #define TDC_FS_BASE_ADDR_FOR_EVENT_LOG                 (TDC_FS_BASE_ADDR_FFT_PASS_BIN + TDC_FS_OFFSET_BYTES_FOR_EVENT_LOG_OFFSET_BYTES)
 
 // FS의 맵 데이터 베이스 주소
-#define TDC_FS_BASE_ADDR_ENTIRE_MAP   DSP_PRAM3_REMAP_BASE
+#define TDC_FS_BASE_ADDR_ENTIRE_MAP          DSP_PRAM3_REMAP_BASE
 #define OTE_1_5_GEN_FS_MAP_DATA_OFFSET_WORDS 994
 #define OTE_1_5_GEN_FS_MAP_DATA_OFFSET_BYTES 3976
 
@@ -107,10 +107,10 @@ typedef struct
 //
 // extern system variables
 //
-extern TDC_FS_FFT_PASS_BIN_T* g_tdc_fs_ptr_pass_bin;
-extern TDC_FS_ENTIRE_MAP_T*   g_tdc_fs_ptr_entire_map;
-extern FATFS                         g_tdc_fs_mount;
-extern FIL                           g_tdc_fs_ohdl;
+extern TDC_FS_FFT_PASS_BIN_T *g_tdc_fs_ptr_pass_bin;
+extern TDC_FS_ENTIRE_MAP_T   *g_tdc_fs_ptr_entire_map;
+extern FATFS                  g_tdc_fs_mount;
+extern FIL                    g_tdc_fs_ohdl;
 
 //
 // function headers
@@ -125,26 +125,26 @@ int tdc_fs_fatfs_remount(int ldrv);
 int tdc_fs_fatfs_mount(int ldrv);
 int tdc_fs_fatfs_unmount(void);
 
-int tdc_fs_read_with_crc_and_aes128(char*     p_name,
-                                           uint8_t*  p_data,
-                                           int       data_size,
-                                           uint32_t* p_uint32_crc,
-                                           uint32_t* p_uint32_aes128_padding,
-                                           int       aes128_padding_size,
-                                           bool      enable_crc,
-                                           bool      enable_aes);
+int tdc_fs_read_with_crc_and_aes128(char     *p_name,
+                                    uint8_t  *p_data,
+                                    int       data_size,
+                                    uint32_t *p_uint32_crc,
+                                    uint32_t *p_uint32_aes128_padding,
+                                    int       aes128_padding_size,
+                                    bool      enable_crc,
+                                    bool      enable_aes);
 
-int tdc_fs_write_with_crc_and_aes128(char*     p_name,
-                                            uint8_t*  p_data,                   // 평문 데이터(data_size)
-                                            int       data_size,                // 예: 132
-                                            uint32_t* p_uint32_crc,             // 4B (하위 16비트만 유효)
-                                            uint32_t* p_uint32_aes128_padding,  // 패딩 버퍼(쓰기 전용, 0 채움 권장)
-                                            int       aes128_padding_size,      // 예: 8  (remain+4+pad==16 충족)
-                                            bool      enable_crc,
-                                            bool      enable_aes);
+int tdc_fs_write_with_crc_and_aes128(char     *p_name,
+                                     uint8_t  *p_data,                   // 평문 데이터(data_size)
+                                     int       data_size,                // 예: 132
+                                     uint32_t *p_uint32_crc,             // 4B (하위 16비트만 유효)
+                                     uint32_t *p_uint32_aes128_padding,  // 패딩 버퍼(쓰기 전용, 0 채움 권장)
+                                     int       aes128_padding_size,      // 예: 8  (remain+4+pad==16 충족)
+                                     bool      enable_crc,
+                                     bool      enable_aes);
 
-int tdc_fs_read(char* p_name, uint8_t* p_buf, int size);
+int tdc_fs_read(char *p_name, uint8_t *p_buf, int size);
 int tdc_fs_write(char *p_name, uint8_t *p_buf, int size);
 int tdc_fs_copy_isd_info_from_filesystem_to_shared_memory(void);
 
-#endif // __tdc_fs_h__
+#endif  // __tdc_fs_h__

@@ -11,10 +11,10 @@
 
 void tdc_ble_remote_read_sp_para(bool startFlag, int command)
 {
-    static int     flowCounter = 0;
-    uint8_t            bufferForSPI_tx[BLE_DataPacketSize];
-    int            tx_index = 0;
-    int i, k;
+    static int flowCounter = 0;
+    uint8_t    bufferForSPI_tx[BLE_DataPacketSize];
+    int        tx_index = 0;
+    int        i, k;
 
     static int  stimulDAC_Slope_QI5F12;
     static int  offset_uA;
@@ -22,13 +22,12 @@ void tdc_ble_remote_read_sp_para(bool startFlag, int command)
     static int  stimulationLevel_uA[df_MaxNumOfElectrode];
 
     ST_STIUL_DAC_REGISTER_VALUE *stimulDAC_setting;
-    int isd_id;
+    int                          isd_id;
     int                          adc_inputMax;
     int                          value;
 
     if (startFlag)
     {
-
         flowCounter = 0;
         for (i = 0; i < df_MaxNumOfElectrode; i++)
         {
@@ -38,7 +37,6 @@ void tdc_ble_remote_read_sp_para(bool startFlag, int command)
 
     switch (flowCounter)
     {
-
         case 0:
         {
         }
@@ -47,7 +45,6 @@ void tdc_ble_remote_read_sp_para(bool startFlag, int command)
 
         case 1:
         {
-
             // 송신 데이터 준비
             // command loop-back
             tx_index = tdc_ble_reply_header(bufferForSPI_tx, tx_index, command);
@@ -64,20 +61,19 @@ void tdc_ble_remote_read_sp_para(bool startFlag, int command)
             stimulDAC_setting = tdc_stim_read_dac_register_value();
 
             // offset DAC 기울기 전송 및 offset 값 계산
-            if (stimulDAC_setting->DAC_offsetSlope_register == 0) // 2uA 기울기 오프셋
+            if (stimulDAC_setting->DAC_offsetSlope_register == 0)  // 2uA 기울기 오프셋
             {
                 tx_index = tdc_ble_reply_u8(bufferForSPI_tx, tx_index, offsetDAC_A_Slope_QI4F4);
 
                 value     = offsetDAC_A_Slope_QI5F12 * stimulDAC_setting->DAC_offsetLevel_register;
-                offset_uA = value >> 12; // offsetDAC_A 기울기
+                offset_uA = value >> 12;  // offsetDAC_A 기울기
             }
-            else // 4uA 기울기 오프셋
+            else  // 4uA 기울기 오프셋
             {
-
                 tx_index = tdc_ble_reply_u8(bufferForSPI_tx, tx_index, offsetDAC_B_Slope_QI4F4);
 
                 value     = offsetDAC_B_Slope_QI5F12 * stimulDAC_setting->DAC_offsetLevel_register;
-                offset_uA = value >> 12; // offsetDAC_B 기울기
+                offset_uA = value >> 12;  // offsetDAC_B 기울기
             }
             //  offset level 전송
             tx_index = tdc_ble_reply_u8(bufferForSPI_tx, tx_index, stimulDAC_setting->DAC_offsetLevel_register);
@@ -86,27 +82,27 @@ void tdc_ble_remote_read_sp_para(bool startFlag, int command)
 
             switch (stimulDAC_setting->DAC_Slope_register)
             {
-                case 0: // 2uA 기울기
+                case 0:  // 2uA 기울기
 
-                    tx_index = tdc_ble_reply_u8(bufferForSPI_tx, tx_index, DAC_A_Slope_QI4F4);
-                    stimulDAC_Slope_QI5F12      = DAC_A_Slope_QI5F12;
+                    tx_index               = tdc_ble_reply_u8(bufferForSPI_tx, tx_index, DAC_A_Slope_QI4F4);
+                    stimulDAC_Slope_QI5F12 = DAC_A_Slope_QI5F12;
 
                     break;
-                case 1: // 4uA 기울기
+                case 1:  // 4uA 기울기
 
                     tx_index = tdc_ble_reply_u8(bufferForSPI_tx, tx_index, DAC_B_Slope_QI4F4);
 
                     stimulDAC_Slope_QI5F12 = DAC_B_Slope_QI5F12;
                     break;
-                case 2: // 6uA 기울기
+                case 2:  // 6uA 기울기
 
-                    tx_index = tdc_ble_reply_u8(bufferForSPI_tx, tx_index, DAC_C_Slope_QI4F4);
-                    stimulDAC_Slope_QI5F12      = DAC_C_Slope_QI5F12;
+                    tx_index               = tdc_ble_reply_u8(bufferForSPI_tx, tx_index, DAC_C_Slope_QI4F4);
+                    stimulDAC_Slope_QI5F12 = DAC_C_Slope_QI5F12;
                     break;
-                case 3: // 8uA 기울기
+                case 3:  // 8uA 기울기
 
-                    tx_index = tdc_ble_reply_u8(bufferForSPI_tx, tx_index, DAC_D_Slope_QI4F4);
-                    stimulDAC_Slope_QI5F12      = DAC_D_Slope_QI5F12;
+                    tx_index               = tdc_ble_reply_u8(bufferForSPI_tx, tx_index, DAC_D_Slope_QI4F4);
+                    stimulDAC_Slope_QI5F12 = DAC_D_Slope_QI5F12;
                     break;
             }
 
@@ -119,7 +115,6 @@ void tdc_ble_remote_read_sp_para(bool startFlag, int command)
         break;
         case 2:
         {
-
             // 송신 데이터 준비
             // command loop-back
             tx_index = tdc_ble_reply_header(bufferForSPI_tx, tx_index, command);
@@ -133,7 +128,6 @@ void tdc_ble_remote_read_sp_para(bool startFlag, int command)
 
             for (k = 0; k < 18; k++)
             {
-
                 tx_index = tdc_ble_reply_u8(bufferForSPI_tx, tx_index, p_cfxStimulLevel_255[k]);
 
                 value                  = stimulDAC_Slope_QI5F12 * p_cfxStimulLevel_255[k];
@@ -144,7 +138,6 @@ void tdc_ble_remote_read_sp_para(bool startFlag, int command)
 
         case 3:
         {
-
             // 송신 데이터 준비
             // command loop-back
             tx_index = tdc_ble_reply_header(bufferForSPI_tx, tx_index, command);
@@ -167,7 +160,6 @@ void tdc_ble_remote_read_sp_para(bool startFlag, int command)
 
         case 4:
         {
-
             // 송신 데이터 준비
             // command loop-back
             tx_index = tdc_ble_reply_header(bufferForSPI_tx, tx_index, command);
@@ -179,7 +171,6 @@ void tdc_ble_remote_read_sp_para(bool startFlag, int command)
 
             for (k = 0; k < 8; k++)
             {
-
                 tx_index = tdc_ble_reply_u16(bufferForSPI_tx, tx_index, stimulationLevel_uA[k]);
             }
         }
@@ -187,7 +178,6 @@ void tdc_ble_remote_read_sp_para(bool startFlag, int command)
 
         case 5:
         {
-
             // 송신 데이터 준비
             // command loop-back
             tx_index = tdc_ble_reply_header(bufferForSPI_tx, tx_index, command);
@@ -199,7 +189,6 @@ void tdc_ble_remote_read_sp_para(bool startFlag, int command)
 
             for (k = 8; k < 16; k++)
             {
-
                 tx_index = tdc_ble_reply_u16(bufferForSPI_tx, tx_index, stimulationLevel_uA[k]);
             }
         }
@@ -207,7 +196,6 @@ void tdc_ble_remote_read_sp_para(bool startFlag, int command)
 
         case 6:
         {
-
             // 송신 데이터 준비
             // command loop-back
             tx_index = tdc_ble_reply_header(bufferForSPI_tx, tx_index, command);
@@ -219,7 +207,6 @@ void tdc_ble_remote_read_sp_para(bool startFlag, int command)
 
             for (k = 16; k < 24; k++)
             {
-
                 tx_index = tdc_ble_reply_u16(bufferForSPI_tx, tx_index, stimulationLevel_uA[k]);
             }
         }
@@ -227,7 +214,6 @@ void tdc_ble_remote_read_sp_para(bool startFlag, int command)
 
         case 7:
         {
-
             // 송신 데이터 준비
             // command loop-back
             tx_index = tdc_ble_reply_header(bufferForSPI_tx, tx_index, command);
@@ -239,24 +225,22 @@ void tdc_ble_remote_read_sp_para(bool startFlag, int command)
 
             for (k = 24; k < 32; k++)
             {
-
                 tx_index = tdc_ble_reply_u16(bufferForSPI_tx, tx_index, stimulationLevel_uA[k]);
             }
         }
         break;
     }
 
-    if(flowCounter!=0)
+    if (flowCounter != 0)
     {
-    // nrf 전달
-        tdc_hal_spi_write_tx_buffer(bufferForSPI_tx,tx_index);
+        // nrf 전달
+        tdc_hal_spi_write_tx_buffer(bufferForSPI_tx, tx_index);
     }
 
-    if(flowCounter==7)
+    if (flowCounter == 7)
     {
         //  명령 종료
         tdc_ble_remote_clear_command();
-
     }
 
     flowCounter++;

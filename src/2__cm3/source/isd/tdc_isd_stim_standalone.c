@@ -52,8 +52,8 @@ bool tdc_isd_stim_standalone_step(void)
 {
     bool startSettingTrigger;
 
-    static bool    stimulationSettingIsDone = false;
-    static bool    calculationParameter     = false;
+    static bool          stimulationSettingIsDone = false;
+    static bool          calculationParameter     = false;
     tdc_sys_error_code_t errorCode;
 
     // Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_R); //3

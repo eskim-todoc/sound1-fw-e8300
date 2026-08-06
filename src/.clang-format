@@ -30,7 +30,8 @@ AlignAfterOpenBracket: Align
 
 SpacesBeforeTrailingComments: 2
 AlignTrailingComments: true
-ReflowComments: true
+# 긴 주석을 다시 흘려 쓰지 않는다 - 켜면 고정점에 도달하지 못한다 (3파일 진동)
+ReflowComments: Never
 
 IncludeBlocks: Regroup
 SortIncludes: false

@@ -14,17 +14,16 @@
 
 /* stuck 3단계 에스컬레이션 (순수). TOUCH 가 STUCK_TIMEOUT_MS 마다 단계 상승.
  * 0->1 RESEED, 1->2 Re-ATI(게이트 우회), 2->재부팅. 노터치/해제 시 리셋. */
-static tdc_touch_act_t stuck_eval(tdc_touch_logic_state_t *st,
-                                  tdc_touch_state_t curr_state, uint32_t now_ms)
+static tdc_touch_act_t stuck_eval(tdc_touch_logic_state_t *st, tdc_touch_state_t curr_state, uint32_t now_ms)
 {
 #if (TDC_TOUCH_STUCK_TIMEOUT_MS > 0)
-    if (curr_state != TDC_TOUCH_STATE_TOUCH)        /* 노터치/해제 -> 리셋 */
+    if (curr_state != TDC_TOUCH_STATE_TOUCH) /* 노터치/해제 -> 리셋 */
     {
         st->stuck_stage     = 0;
         st->stuck_anchor_ms = now_ms;
         return TDC_TOUCH_ACT_NONE;
     }
-    if (st->prev_state != TDC_TOUCH_STATE_TOUCH)    /* TOUCH 진입 엣지 -> anchor 기록 */
+    if (st->prev_state != TDC_TOUCH_STATE_TOUCH) /* TOUCH 진입 엣지 -> anchor 기록 */
     {
         st->stuck_anchor_ms = now_ms;
         st->stuck_stage     = 0;
@@ -32,7 +31,7 @@ static tdc_touch_act_t stuck_eval(tdc_touch_logic_state_t *st,
     }
     if (TDC_TOUCH_STUCK_TIMEOUT_MS <= (now_ms - st->stuck_anchor_ms))
     {
-        st->stuck_anchor_ms = now_ms;               /* 단계마다 재카운트 */
+        st->stuck_anchor_ms = now_ms; /* 단계마다 재카운트 */
         switch (st->stuck_stage)
         {
             case 0:
@@ -76,15 +75,13 @@ void tdc_touch_logic_init(tdc_touch_logic_state_t *st, uint32_t now_ms)
 
 void tdc_touch_logic_set_boot_ignore(tdc_touch_logic_state_t *st, uint32_t now_ms)
 {
-    st->boot_ignore   = true;
-    st->boot_ready_ms = now_ms;
-    st->boot_5s_warned = false;
+    st->boot_ignore      = true;
+    st->boot_ready_ms    = now_ms;
+    st->boot_5s_warned   = false;
     st->boot_release_cnt = 0;
 }
 
-void tdc_touch_logic_step(tdc_touch_logic_state_t *st,
-                          const tdc_touch_in_t    *in,
-                          tdc_touch_out_t         *out)
+void tdc_touch_logic_step(tdc_touch_logic_state_t *st, const tdc_touch_in_t *in, tdc_touch_out_t *out)
 {
     tdc_touch_state_t curr_state;
 
@@ -104,12 +101,12 @@ void tdc_touch_logic_step(tdc_touch_logic_state_t *st,
             out->curr_state = st->prev_state;
             return;
         }
-        curr_state = TDC_TOUCH_STATE_NOT_TOUCH;     /* hold 초과 -> NOT_TOUCH 강제 */
+        curr_state = TDC_TOUCH_STATE_NOT_TOUCH; /* hold 초과 -> NOT_TOUCH 강제 */
     }
     else
     {
         st->read_fail_cnt = 0;
-        curr_state = in->pressed ? TDC_TOUCH_STATE_TOUCH : TDC_TOUCH_STATE_NOT_TOUCH;
+        curr_state        = in->pressed ? TDC_TOUCH_STATE_TOUCH : TDC_TOUCH_STATE_NOT_TOUCH;
     }
 
     out->curr_state    = curr_state;
@@ -134,27 +131,23 @@ void tdc_touch_logic_step(tdc_touch_logic_state_t *st,
                 out->boot_event = TDC_TOUCH_BOOT_IGNORING;
             }
         }
-        else if (curr_state == TDC_TOUCH_STATE_TOUCH
-                 && !st->boot_5s_warned
-                 && TDC_TOUCH_BOOT_WARN_MS <= (in->now_ms - st->boot_ready_ms))
+        else if (curr_state == TDC_TOUCH_STATE_TOUCH && !st->boot_5s_warned && TDC_TOUCH_BOOT_WARN_MS <= (in->now_ms - st->boot_ready_ms))
         {
-            st->boot_release_cnt = 0;               /* 재터치 -> 디바운스 리셋 */
-            st->boot_5s_warned = true;
-            out->boot_event    = TDC_TOUCH_BOOT_WARN_5S;
+            st->boot_release_cnt = 0; /* 재터치 -> 디바운스 리셋 */
+            st->boot_5s_warned   = true;
+            out->boot_event      = TDC_TOUCH_BOOT_WARN_5S;
         }
         else
         {
-            st->boot_release_cnt = 0;               /* TOUCH 지속/재터치 또는 read 실패 -> 리셋 */
-            out->boot_event = TDC_TOUCH_BOOT_IGNORING;
+            st->boot_release_cnt = 0; /* TOUCH 지속/재터치 또는 read 실패 -> 리셋 */
+            out->boot_event      = TDC_TOUCH_BOOT_IGNORING;
         }
-        st->prev_state = curr_state;                /* 그 tick 도 무시 (게이트/stuck/롱터치 0) */
+        st->prev_state = curr_state; /* 그 tick 도 무시 (게이트/stuck/롱터치 0) */
         return;
     }
 
     /* --- Re-ATI 게이트 (노터치 전용, 4조건) --- */
-    if (curr_state == TDC_TOUCH_STATE_NOT_TOUCH
-        && !in->ati_active && in->ati_error
-        && in->now_ms >= st->re_ati_cooldown_until_ms)
+    if (curr_state == TDC_TOUCH_STATE_NOT_TOUCH && !in->ati_active && in->ati_error && in->now_ms >= st->re_ati_cooldown_until_ms)
     {
         out->action                  = TDC_TOUCH_ACT_RE_ATI;
         st->re_ati_cooldown_until_ms = in->now_ms + TDC_TOUCH_RE_ATI_COOLDOWN_MS;
@@ -174,14 +167,13 @@ void tdc_touch_logic_step(tdc_touch_logic_state_t *st,
     {
         if (st->prev_state != TDC_TOUCH_STATE_TOUCH)
         {
-            st->first_touch_ms = in->now_ms;        /* 진입 엣지 -> 기록, 래치 해제 */
+            st->first_touch_ms = in->now_ms; /* 진입 엣지 -> 기록, 래치 해제 */
             st->long_latched   = false;
         }
-        else if (!st->long_latched
-                 && TDC_TOUCH_LONG_TOUCH_MS <= (in->now_ms - st->first_touch_ms))
+        else if (!st->long_latched && TDC_TOUCH_LONG_TOUCH_MS <= (in->now_ms - st->first_touch_ms))
         {
             st->long_latched = true;
-            out->long_touch  = true;                /* 1회 래치 */
+            out->long_touch  = true; /* 1회 래치 */
         }
     }
     else

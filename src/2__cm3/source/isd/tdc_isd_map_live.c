@@ -25,24 +25,23 @@ extern ST__CFX_CM3_SharedMemory_ALL cfx_cm3_sharedMemoryAll __attribute__((secti
 
 int counterRX = 0;
 
-
 // 하위명령 사이로 넘기는 값들. 분해 전에는 함수-지역 static 이었다.
-static EN__LIVE_STIMULATION_SUB_COMMAND s_prev_subCommand = en__HoldOn;
-static int  s_stimulationCounter_ms = 0;
+static EN__LIVE_STIMULATION_SUB_COMMAND   s_prev_subCommand       = en__HoldOn;
+static int                                s_stimulationCounter_ms = 0;
 static const ST_STIUL_DAC_REGISTER_VALUE *s_stimulDAC_setting;
-static ST__MAPPING_PACKET *s_p_mappingPacket;
-static int  s_toggle_mapNum = 0;
-static int  s_reConnectionCounter = 0;
-static int  s_ISD_connectionCounter_withMapping = 0;
-static bool s_needResetting = false;
-static int  s_flowCounter;
-static bool s_calculationParameter = false;
+static ST__MAPPING_PACKET                *s_p_mappingPacket;
+static int                                s_toggle_mapNum                     = 0;
+static int                                s_reConnectionCounter               = 0;
+static int                                s_ISD_connectionCounter_withMapping = 0;
+static bool                               s_needResetting                     = false;
+static int                                s_flowCounter;
+static bool                               s_calculationParameter = false;
 
 // 전체 자극 파라미터 적재
 static bool tdc_isd_map_live_sub_all_parameter(ST__ISD_STATUS ISD_state)
 {
     ST__CFX_CM3_SharedMemory_mapData *p_mapDataSharedMemory;
-    int  i;
+    int                               i;
 
     tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_NopStandby);
 
@@ -100,9 +99,9 @@ static bool tdc_isd_map_live_sub_all_parameter(ST__ISD_STATUS ISD_state)
 static bool tdc_isd_map_live_sub_start(ST__ISD_STATUS ISD_state)
 {
     uint8_t bufferForSPI_tx[BLE_DataPacketSize];
-    int  buffer_tx_index = 0;
-    bool isdControlStateChagedFlag;
-    bool error = false;
+    int     buffer_tx_index = 0;
+    bool    isdControlStateChagedFlag;
+    bool    error = false;
 
     // CFX에서 맵데이터의 로딩이 완료될 때까지 로딩
     if (tdc_shm_is_map_data_loaded_cfx())
@@ -196,11 +195,10 @@ static bool tdc_isd_map_live_sub_start(ST__ISD_STATUS ISD_state)
 static bool tdc_isd_map_live_sub_stim_volume_adjust(ST__ISD_STATUS ISD_state)
 {
     uint8_t bufferForSPI_tx[BLE_DataPacketSize];
-    int  buffer_tx_index = 0;
+    int     buffer_tx_index = 0;
 
     if (ISD_state.conneded_ISD)
     {
-
         // 연결 상태 업데이트
         tdc_isd_update_link_by_backtel_live();
 
@@ -223,7 +221,6 @@ static bool tdc_isd_map_live_sub_stim_volume_adjust(ST__ISD_STATUS ISD_state)
     }
     else
     {
-
         tdc_sys_error_send_to_app(en__mapping_live_stimulation, en__EN__ISD_ERROR, en__ISD_notConnected, __LINE__);
 
         // 라이브 자극 유지로 변경
@@ -237,7 +234,7 @@ static bool tdc_isd_map_live_sub_stim_volume_adjust(ST__ISD_STATUS ISD_state)
 static bool tdc_isd_map_live_sub_mic_sensitivity(ST__ISD_STATUS ISD_state)
 {
     uint8_t bufferForSPI_tx[BLE_DataPacketSize];
-    int  buffer_tx_index = 0;
+    int     buffer_tx_index = 0;
 
     if (ISD_state.conneded_ISD)
     {
@@ -276,9 +273,9 @@ static bool tdc_isd_map_live_sub_mic_sensitivity(ST__ISD_STATUS ISD_state)
 static bool tdc_isd_map_live_sub_stim_indicator(ST__ISD_STATUS ISD_state)
 {
     ST__CFX_CM3_SharedMemory_mapData *p_mapDataSharedMemory;
-    uint8_t bufferForSPI_tx[BLE_DataPacketSize];
-    int  buffer_tx_index = 0;
-    bool sitmulationIndicatorTrigger = false;
+    uint8_t                           bufferForSPI_tx[BLE_DataPacketSize];
+    int                               buffer_tx_index             = 0;
+    bool                              sitmulationIndicatorTrigger = false;
 
     if (ISD_state.conneded_ISD)
     {
@@ -332,13 +329,13 @@ static bool tdc_isd_map_live_sub_stim_indicator(ST__ISD_STATUS ISD_state)
 // 이퀄라이저 설정 읽어 응답
 static bool tdc_isd_map_live_sub_read_equalizer(ST__ISD_STATUS ISD_state)
 {
-    int  i;
-    int *p_cfxStimulLevel_255;
-    int  stimulationLevel_uA;
-    int  offset;
-    int  value;
+    int     i;
+    int    *p_cfxStimulLevel_255;
+    int     stimulationLevel_uA;
+    int     offset;
+    int     value;
     uint8_t bufferForSPI_tx[BLE_DataPacketSize];
-    int  buffer_tx_index = 0;
+    int     buffer_tx_index = 0;
 
     if (ISD_state.conneded_ISD)
     {
@@ -373,9 +370,10 @@ static bool tdc_isd_map_live_sub_read_equalizer(ST__ISD_STATUS ISD_state)
             offset = value >> 12;  // offsetDAC_B 기울기
         }
 
-        for (i = s_p_mappingPacket->tdc_isd_map_live_step.equlizer_ReadStart_index - 1; i <= s_p_mappingPacket->tdc_isd_map_live_step.equlizer_ReadEnd_index - 1; i++)
+        for (i = s_p_mappingPacket->tdc_isd_map_live_step.equlizer_ReadStart_index - 1;
+             i <= s_p_mappingPacket->tdc_isd_map_live_step.equlizer_ReadEnd_index - 1;
+             i++)
         {
-
             if (p_cfxStimulLevel_255[i] != 0)
             {
                 switch (s_stimulDAC_setting->DAC_Slope_register)
@@ -434,9 +432,9 @@ static bool tdc_isd_map_live_sub_read_equalizer(ST__ISD_STATUS ISD_state)
 // 기기 상태 읽어 응답
 static bool tdc_isd_map_live_sub_read_device_status(ST__ISD_STATUS ISD_state)
 {
-    int  value;
+    int     value;
     uint8_t bufferForSPI_tx[BLE_DataPacketSize];
-    int  buffer_tx_index = 0;
+    int     buffer_tx_index = 0;
 
     // 송신 데이터 준비
     // command loop-back
@@ -476,9 +474,9 @@ static bool tdc_isd_map_live_sub_read_device_status(ST__ISD_STATUS ISD_state)
 static bool tdc_isd_map_live_sub_hold_on(ST__ISD_STATUS ISD_state)
 {
     ST__CFX_CM3_SharedMemory_mapData *p_mapDataSharedMemory;
-    int  i;
-    bool isdControlStateChagedFlag;
-    bool error = false;
+    int                               i;
+    bool                              isdControlStateChagedFlag;
+    bool                              error = false;
 
     if (!ISD_state.conneded_ISD)
     {
@@ -596,7 +594,6 @@ static bool tdc_isd_map_live_sub_hold_on(ST__ISD_STATUS ISD_state)
             }
 
             s_reConnectionCounter++;
-
         }
         else
         {
@@ -612,7 +609,6 @@ static bool tdc_isd_map_live_sub_hold_on(ST__ISD_STATUS ISD_state)
         }
     }
 
-
     return false;
 }
 
@@ -620,7 +616,7 @@ static bool tdc_isd_map_live_sub_hold_on(ST__ISD_STATUS ISD_state)
 static bool tdc_isd_map_live_sub_stop(ST__ISD_STATUS ISD_state)
 {
     uint8_t bufferForSPI_tx[BLE_DataPacketSize];
-    int  buffer_tx_index = 0;
+    int     buffer_tx_index = 0;
 
     tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_NopStandby);
 
@@ -744,7 +740,6 @@ bool tdc_isd_map_live_step(ST__ISD_STATUS ISD_state)
             sitmulationIndicatorTrigger = tdc_isd_map_live_sub_standby(ISD_state);
             break;
         }
-
     }
 
     s_flowCounter++;

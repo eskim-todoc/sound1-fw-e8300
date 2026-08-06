@@ -60,8 +60,7 @@ void tdc_isd_init_tx_power_ic(bool isdControlStateChagedFlag)
             if (!tdc_drv_isl9122_reset())
             {
                 TDC_PRINTF_E("[PMIC] c10: PMIC reset failed\r\n");
-                TDC_ISD_DEBOUNCE_FAIL(power_reset_err_cnt, "[PMIC]", "init_txPwr c10", "verify",
-                                      en__RF_PowerIC_ERROR, en__NON_RESETTABLE);
+                TDC_ISD_DEBOUNCE_FAIL(power_reset_err_cnt, "[PMIC]", "init_txPwr c10", "verify", en__RF_PowerIC_ERROR, en__NON_RESETTABLE);
             }
             else
             {
@@ -175,11 +174,13 @@ void tdc_isd_init_fpga(bool isdControlStateChagedFlag)
                         {
                             // FPGA 초기화
                             tdc_isd_change_state(en__isdStatus_PowerIC_OK);
-                            TDC_ISD_DEBOUNCE_FAIL(no_reset_value_error_cnt, "[FPGA]", "tdc_isd_init_fpga c11", "verify",
-                                                  en__FPGA_COMMUNICATION_ERROR, en__FPGA_ResetValueError);
+                            TDC_ISD_DEBOUNCE_FAIL(
+                                no_reset_value_error_cnt, "[FPGA]", "tdc_isd_init_fpga c11", "verify", en__FPGA_COMMUNICATION_ERROR, en__FPGA_ResetValueError);
 
                             TDC_PRINTF_E("[FPGA] c11: not initialized after reset, SYS_STAT1=0x%02X MASKER=0x%02X RESULT=0x%02X\r\n",
-                                      r_FPGA_registerValue, FPGA_Status_FlagIndex, comparing);
+                                         r_FPGA_registerValue,
+                                         FPGA_Status_FlagIndex,
+                                         comparing);
                         }
                         else
                         {
@@ -236,11 +237,11 @@ void tdc_isd_init_fpga(bool isdControlStateChagedFlag)
                 {
                     // FPGA 초기화
                     tdc_isd_change_state(en__isdStatus_PowerIC_OK);
-                    TDC_ISD_DEBOUNCE_FAIL(no_disabled_rf_error_cnt, "[FPGA]", "tdc_isd_init_fpga c20", "verify",
-                                          en__FPGA_CONFIGUARATION_ERROR, en_RegisterConfigError_byPCM);
+                    TDC_ISD_DEBOUNCE_FAIL(
+                        no_disabled_rf_error_cnt, "[FPGA]", "tdc_isd_init_fpga c20", "verify", en__FPGA_CONFIGUARATION_ERROR, en_RegisterConfigError_byPCM);
 
-                    TDC_PRINTF_E("[FPGA] c20: INIT FAILED, SYS_STAT1=0x%02X MASKER=0x%02X RESULT=0x%02X\r\n",
-                              r_FPGA_registerValue, FPGA_Status_FlagIndex, comparing);
+                    TDC_PRINTF_E(
+                        "[FPGA] c20: INIT FAILED, SYS_STAT1=0x%02X MASKER=0x%02X RESULT=0x%02X\r\n", r_FPGA_registerValue, FPGA_Status_FlagIndex, comparing);
                 }
             }
             else
@@ -329,8 +330,8 @@ void tdc_isd_init_device(bool isdControlStateChagedFlag)
                     if (!tdc_isd_fpga_is_rf_tx_enable())
                     {
                         tdc_isd_change_state(en__isdStatus_PowerIC_OK);  // FPGA 초기화
-                        TDC_ISD_DEBOUNCE_FAIL(inner_rf_tx_error_cnt, "[FPGA]", "tdc_isd_init_device c200EN", "verify",
-                                              en__FPGA_CONFIGUARATION_ERROR, en_RF_Tx_enableError);
+                        TDC_ISD_DEBOUNCE_FAIL(
+                            inner_rf_tx_error_cnt, "[FPGA]", "tdc_isd_init_device c200EN", "verify", en__FPGA_CONFIGUARATION_ERROR, en_RF_Tx_enableError);
                         TDC_PRINTF_E("[FPGA] c200: RF_tx not enabled after write\r\n");
                     }
                     else
@@ -348,8 +349,8 @@ void tdc_isd_init_device(bool isdControlStateChagedFlag)
             else
             {
                 tdc_isd_change_state(en__isdStatus_PowerIC_OK);  // FPGA 초기화
-                TDC_ISD_DEBOUNCE_FAIL(outer_rf_tx_error_cnt, "[FPGA]", "tdc_isd_init_device c200DIS", "verify",
-                                      en__FPGA_CONFIGUARATION_ERROR, en_RF_Tx_enableError);
+                TDC_ISD_DEBOUNCE_FAIL(
+                    outer_rf_tx_error_cnt, "[FPGA]", "tdc_isd_init_device c200DIS", "verify", en__FPGA_CONFIGUARATION_ERROR, en_RF_Tx_enableError);
                 TDC_PRINTF_E("[FPGA] c200: RF_tx still enabled (expected off)\r\n");
             }
         }
@@ -367,7 +368,7 @@ void tdc_isd_init_device(bool isdControlStateChagedFlag)
                 tdc_shm_fill_specific_command_buffer(i, pcm_Mold_NopStandby);
             }
 
-            tdc_shm_change_next_pcm_output_mode(PcmBitStream_Mode_NopStandby);   // 다음 출력 모드 : NopStandby
+            tdc_shm_change_next_pcm_output_mode(PcmBitStream_Mode_NopStandby);  // 다음 출력 모드 : NopStandby
             tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_SepcificCommand);  // 현재 출력 모드 : SepcificCommand
         }
         break;
@@ -398,8 +399,8 @@ void tdc_isd_init_device(bool isdControlStateChagedFlag)
                             if (RF_TxPowerValue != TDC_DRV_PMIC_MAX_VOLTAGE_CONTROL_VALUE)
                             {
                                 // R_TxPower 설정 실패, powerIC 초기화
-                                TDC_ISD_DEBOUNCE_FAIL(tx_power_err_cnt, "[PMIC]", "tdc_isd_init_device c205pwr", "verify",
-                                                      en__RF_PowerIC_ERROR, en__writtenReadVlaueIsNotSame);
+                                TDC_ISD_DEBOUNCE_FAIL(
+                                    tx_power_err_cnt, "[PMIC]", "tdc_isd_init_device c205pwr", "verify", en__RF_PowerIC_ERROR, en__writtenReadVlaueIsNotSame);
                                 tdc_isd_change_state(en__isdStatus_PowerIC_Reset);
 
                                 TDC_PRINTF_E("[PMIC] c205: TxPower != MaxVoltage after write\r\n");
@@ -424,8 +425,8 @@ void tdc_isd_init_device(bool isdControlStateChagedFlag)
                 else
                 {
                     // 펄스폭 설정 실패 , FPGA 초기화
-                    TDC_ISD_DEBOUNCE_FAIL(pulse_width_error_cnt, "[FPGA]", "tdc_isd_init_device c205pls", "verify",
-                                          en__FPGA_CONFIGUARATION_ERROR, en_PulseWidthDifferent);
+                    TDC_ISD_DEBOUNCE_FAIL(
+                        pulse_width_error_cnt, "[FPGA]", "tdc_isd_init_device c205pls", "verify", en__FPGA_CONFIGUARATION_ERROR, en_PulseWidthDifferent);
                     tdc_isd_change_state(en__isdStatus_PowerIC_OK);
 
                     TDC_PRINTF_E("[FPGA] c205: pulse width != minimum\r\n");
@@ -451,7 +452,7 @@ void tdc_isd_init_device(bool isdControlStateChagedFlag)
                 tdc_shm_fill_specific_command_buffer(i, pcm_Mold_NopStandby);
             }
 
-            tdc_shm_change_next_pcm_output_mode(PcmBitStream_Mode_NopStandby);   // 다음 출력 모드 : NopStandby
+            tdc_shm_change_next_pcm_output_mode(PcmBitStream_Mode_NopStandby);  // 다음 출력 모드 : NopStandby
             tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_SepcificCommand);  // 현재 출력 모드 : SepcificCommand
         }
         break;
@@ -481,8 +482,8 @@ void tdc_isd_init_device(bool isdControlStateChagedFlag)
                         {
                             if (!FPGA_FIFO_empty)
                             {
-                                TDC_ISD_DEBOUNCE_FAIL(fifo_clear_err_cnt, "[FPGA]", "tdc_isd_init_device c210fifo", "verify",
-                                                      en__FPGA_CONFIGUARATION_ERROR, en_FIFO_NotCleared);
+                                TDC_ISD_DEBOUNCE_FAIL(
+                                    fifo_clear_err_cnt, "[FPGA]", "tdc_isd_init_device c210fifo", "verify", en__FPGA_CONFIGUARATION_ERROR, en_FIFO_NotCleared);
                                 tdc_isd_change_state(en__isdStatus_PowerIC_OK);  //
                                 TDC_PRINTF_E("[FPGA] c210: FIFO not empty after clear\r\n");
                             }
@@ -506,8 +507,8 @@ void tdc_isd_init_device(bool isdControlStateChagedFlag)
                 else
                 {
                     // 백텔 레지스터 설정 오류
-                    TDC_ISD_DEBOUNCE_FAIL(backtel_cfg_err_cnt, "[FPGA]", "tdc_isd_init_device c210bt", "verify",
-                                          en__FPGA_CONFIGUARATION_ERROR, en_RegisterConfigError_byPCM);
+                    TDC_ISD_DEBOUNCE_FAIL(
+                        backtel_cfg_err_cnt, "[FPGA]", "tdc_isd_init_device c210bt", "verify", en__FPGA_CONFIGUARATION_ERROR, en_RegisterConfigError_byPCM);
                     tdc_isd_change_state(en__isdStatus_PowerIC_OK);
 
                     TDC_PRINTF_E("[FPGA] c210: backtel reg mismatch\r\n");
@@ -536,7 +537,7 @@ void tdc_isd_init_device(bool isdControlStateChagedFlag)
                 tdc_shm_fill_specific_command_buffer(i, pcm_Mold_NopStandby);
             }
 
-            tdc_shm_change_next_pcm_output_mode(PcmBitStream_Mode_NopStandby);   // 다음 출력 모드 : NopStandby
+            tdc_shm_change_next_pcm_output_mode(PcmBitStream_Mode_NopStandby);  // 다음 출력 모드 : NopStandby
             tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_SepcificCommand);  // 현재 출력 모드 : SepcificCommand
         }
         break;
@@ -591,7 +592,7 @@ void tdc_isd_init_device(bool isdControlStateChagedFlag)
                 tdc_shm_fill_specific_command_buffer(i, pcm_Mold_NopStandby);
             }
 
-            tdc_shm_change_next_pcm_output_mode(PcmBitStream_Mode_NopStandby);   // 다음 출력 모드 : NopStandby
+            tdc_shm_change_next_pcm_output_mode(PcmBitStream_Mode_NopStandby);  // 다음 출력 모드 : NopStandby
             tdc_shm_change_pcm_output_mode(PcmBitStream_Mode_SepcificCommand);  // 현재 출력 모드 : SepcificCommand
         }
         break;
@@ -601,7 +602,6 @@ void tdc_isd_init_device(bool isdControlStateChagedFlag)
         // 응답이 없거나 많아도 문제인 것이므로 내부기 연결 과정 처음부터 다시 진행한다.
         case 260:
         {
-
             // FIFO 카운터를 읽어 본다.
             if (tdc_isd_fpga_read_fifo_counter(&r_FPGA_registerValue))
             {
@@ -621,7 +621,7 @@ void tdc_isd_init_device(bool isdControlStateChagedFlag)
                     tdc_isd_fpga_read_backtel_error_flag(&r_FPGA_registerValue);
 
                     // 백텔 에러는 발생하지 않았으나 백텔이 들어 오지 않았다. -> 내부기 전송 파워 설정 부터 다시.
-                        /* 백텔 카운터 0 에러 시 debounce 실패 매크로만 부르던 디버그 블록은
+                    /* 백텔 카운터 0 에러 시 debounce 실패 매크로만 부르던 디버그 블록은
                          * 제거했다(#if 0 사장). */
                     tdc_isd_change_state(en__isdStatus_FPGA_Ok);  // RF PMIC MAX POWER 설정을 FPGA_OK 상태에서도 진행한다.
                     // tdc_isd_change_state(en__isdStatus_PowerIC_OK);
@@ -635,12 +635,12 @@ void tdc_isd_init_device(bool isdControlStateChagedFlag)
             }
         }
         break;
-  /* DisalbedBackTel 정의 시의 대안 상태전이(case 275 강제)는 제거했다.
+        /* DisalbedBackTel 정의 시의 대안 상태전이(case 275 강제)는 제거했다.
    * 이 매크로는 트리 전체에서 정의된 적이 없어 영구 사장이었다. */
 #endif
 
-                default :
-                    break;
+        default:
+            break;
     }
 
     flowControlCounter++;

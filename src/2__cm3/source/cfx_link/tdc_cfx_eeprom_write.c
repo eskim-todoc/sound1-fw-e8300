@@ -25,7 +25,7 @@ void tdc_cfx_eeprom_write_user_setting_parameters(int connected_ISD_num)
 void tdc_cfx_eeprom_write_user_setting_parameters_by_mapping(void)
 {
     int                                                     isd_num;
-    ST__CFX_CM3_SharedMemory_RepositoryForReadWriteMapData* p_repo_for_rw_map_data;
+    ST__CFX_CM3_SharedMemory_RepositoryForReadWriteMapData *p_repo_for_rw_map_data;
 
     isd_num                = cfx_cm3_sharedMemoryAll.ReadWriteCommand_ForFlash.isd_index;
     p_repo_for_rw_map_data = &cfx_cm3_sharedMemoryAll.repositoryForReadWriteMapData;
@@ -49,7 +49,7 @@ void tdc_cfx_eeprom_write_user_setting_parameters_by_mapping(void)
 void tdc_cfx_eeprom_write_map_stamp_parameters_by_mapping(void)
 {
     int                                                     isd_num;
-    ST__CFX_CM3_SharedMemory_RepositoryForReadWriteMapData* p_repo_for_rw_map_data;
+    ST__CFX_CM3_SharedMemory_RepositoryForReadWriteMapData *p_repo_for_rw_map_data;
 
     isd_num                = cfx_cm3_sharedMemoryAll.ReadWriteCommand_ForFlash.isd_index;
     p_repo_for_rw_map_data = &cfx_cm3_sharedMemoryAll.repositoryForReadWriteMapData;

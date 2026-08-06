@@ -20,7 +20,7 @@
  * Sullivan 유산. 충전 상태는 QCC 0x34 기반 tdc_pwr_charger_get_state() 로 단일화됐다.
  * 상세: docs/tasks/main/20260715_systemcontrol-fsm-decompose/분석-부록-sullivan유산.md */
 
-int  tdc_pwr_battery_read_percentage(void);
+int tdc_pwr_battery_read_percentage(void);
 
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // Sound1
@@ -65,9 +65,9 @@ typedef enum
 } tdc_pwr_charger_state_t;
 
 tdc_pwr_battery_state_t tdc_pwr_battery_get_state(void);
-void               tdc_pwr_battery_set_state(tdc_pwr_battery_state_t state);
-int                tdc_pwr_battery_get_percent(void);
-void               tdc_pwr_battery_set_percent(int percent);
+void                    tdc_pwr_battery_set_state(tdc_pwr_battery_state_t state);
+int                     tdc_pwr_battery_get_percent(void);
+void                    tdc_pwr_battery_set_percent(int percent);
 
 ST__USB_CONNECTOR tdc_pwr_charger_get_state(void);
 void              tdc_pwr_charger_set_state(tdc_pwr_charger_state_t state);

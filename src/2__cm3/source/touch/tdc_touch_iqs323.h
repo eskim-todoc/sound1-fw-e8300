@@ -43,13 +43,15 @@
  * Beta/Power 레지스터 정수값은 [실측 게이트] - 시험 write 1회 판별 후 고정.
  */
 #ifndef TDC_TOUCH_IQS323_THRESHOLD
-#define TDC_TOUCH_IQS323_THRESHOLD 80 /* 절대임계 = 계수 x LTA / 256 ~ 125 @ LTA399 (터치 D 160~190의 약 78%, 약결합 D~40의 3배+). 수렴에 막혀 158 도달난 → 80으로 하향. 8비트(0~255) */
+#define TDC_TOUCH_IQS323_THRESHOLD                                                                                                                             \
+    80 /* 절대임계 = 계수 x LTA / 256 ~ 125 @ LTA399 (터치 D 160~190의 약 78%, 약결합 D~40의 3배+). 수렴에 막혀 158 도달난 → 80으로 하향. 8비트(0~255) */
 #endif
 #ifndef TDC_TOUCH_IQS323_HYSTERESIS
 #define TDC_TOUCH_IQS323_HYSTERESIS 8 /* Hysteresis 필드값(4비트 0~15, bits[15:12]). 실제 hyst = (H/256) x Threshold - 5cnt */
 #endif
 #ifndef TDC_TOUCH_IQS323_PROX_THRESHOLD
-#define TDC_TOUCH_IQS323_PROX_THRESHOLD 255 /* Prox Threshold 계수. 255 = prox 사실상 무력화(진입점~LTA) → LTA freeze는 touch만 담당. [실측 게이트: prox 단위 절대/계수] */
+#define TDC_TOUCH_IQS323_PROX_THRESHOLD                                                                                                                        \
+    255 /* Prox Threshold 계수. 255 = prox 사실상 무력화(진입점~LTA) → LTA freeze는 touch만 담당. [실측 게이트: prox 단위 절대/계수] */
 #endif
 
 /* **********************************************************************

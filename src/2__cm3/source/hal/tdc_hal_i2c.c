@@ -81,7 +81,9 @@ void tdc_hal_i2c_start_write(const int slaveAddress, int *p_sourcedata, const in
 #ifdef CM3_I2c_TestMode
     I2C_statusRegister_dump[dumpIndex++] = (int) i2cStatus.status;
     if (dumpIndex >= 32)
+    {
         dumpIndex = 0;
+    }
 #endif
 
     // 버스 Free, 라인 Free 그리고 TX 전송이 가능한 상태에서만 I2C 전송
@@ -112,7 +114,9 @@ void tdc_hal_i2c_start_read(const int slaveAddress, int *p_destination, const in
 #ifdef CM3_I2c_TestMode
     I2C_statusRegister_dump[dumpIndex++] = (int) i2cStatus.status;
     if (dumpIndex >= 32)
+    {
         dumpIndex = 0;
+    }
 #endif
 
     if ((i2cStatus.fields.busy == 0) && (i2cStatus.fields.tx_req == 1) && (i2cStatus.fields.line_free == 1))
@@ -163,7 +167,7 @@ void tdc_hal_i2c_set_master_prescale(uint32_t prescale_mask)
  * #else 쪽의 tdc_hal_i2c_comm() 은 정의될 수 없는 유령 함수여서 제거했다. */
 void I2C_0_IRQHandler(void)
 {
-    static int              i = 0;
+    static int           i = 0;
     tdc_hal_i2c_status_t i2cStatus;
 
     NVIC_ClearPendingIRQ(I2C_0_IRQn);
@@ -173,7 +177,9 @@ void I2C_0_IRQHandler(void)
 #ifdef CM3_I2c_TestMode
     I2C_statusRegister_dump[dumpIndex++] = (int) i2cStatus.status;
     if (dumpIndex >= 32)
+    {
         dumpIndex = 0;
+    }
 #endif
 
     switch (i2c_driver.i2c_diver_state)

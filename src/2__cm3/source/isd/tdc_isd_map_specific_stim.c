@@ -48,10 +48,10 @@
 */
 
 // 상태 기계가 단계 사이로 넘기는 값들. 분해 전에는 함수-지역 static 이었다.
-static int flowCounter            = 0;
-static int stimulationTime_msec   = 0;
+static int flowCounter          = 0;
+static int stimulationTime_msec = 0;
 static int stimulationHoldTime_msec;
-static int cofigureDoneCounter    = 100;
+static int cofigureDoneCounter = 100;
 
 // case 0 이 계산해 case 9 · 20 과 출력 단계가 쓴다.
 static int numFramePerChannel;
@@ -83,12 +83,14 @@ static void tdc_isd_map_specific_stim_calc_dac_setting(void)
 
     // 자극 슬로프 및 자극 데이터. 계산 stimulLevel_uA stimulLevel_uA stimulDAC_offsetValue_uA
     // 마스커에 대한 것
-    if (mappingPacket->tdc_isd_map_specific_stim_step.stimulationLevel_uA < (stimulDAC_A_only_Saturation_uA + offsetDAC_B_Saturation_uA))  // 2uA 기울기로 전달 가능한 범위내. // 1530 보다 작은 경우
+    if (mappingPacket->tdc_isd_map_specific_stim_step.stimulationLevel_uA
+        < (stimulDAC_A_only_Saturation_uA + offsetDAC_B_Saturation_uA))  // 2uA 기울기로 전달 가능한 범위내. // 1530 보다 작은 경우
     {
         // 자극 DAC 기울기 2uA
         stimulDAC_slope = Stimulation_DAC_A;
 
-        if (mappingPacket->tdc_isd_map_specific_stim_step.stimulationLevel_uA > (stimulDAC_A_only_Saturation_uA + offsetDAC_A_Saturation_uA))  // 1020~1530  - > 1020 오프셋을 적용해야 되는 경우
+        if (mappingPacket->tdc_isd_map_specific_stim_step.stimulationLevel_uA
+            > (stimulDAC_A_only_Saturation_uA + offsetDAC_A_Saturation_uA))  // 1020~1530  - > 1020 오프셋을 적용해야 되는 경우
         {
             stimulDAC_offsetResolution = Offset_DAC_B;
             stimulDAC_offsetValue_uA   = offsetDAC_B_Saturation_uA;
@@ -169,7 +171,7 @@ static void tdc_isd_map_specific_stim_flow00_calc_para(void)
     if (deliveryCharge_pico > df_MaxDeliveryCharge_pC)  // 전하량 초과
     {
         tdc_sys_error_send_to_app(en__mapping_specific_stimulation, en__EN__ISD_ERROR, en__MaxChargeOver, __LINE__);  // 에러 전송
-        tdc_ble_mapping_clear_command();                                                                            // 커맨드 리셋;
+        tdc_ble_mapping_clear_command();                                                                              // 커맨드 리셋;
     }
 
     tdc_isd_map_specific_stim_calc_dac_setting();
@@ -239,14 +241,14 @@ static void tdc_isd_map_specific_stim_flow03_build_reference(void)
      * 바로 위 루프에서 전 원소가 unusedReferenceElectrode_DummyNum(31) 로
      * 초기화되므로, 여기서 건너뛰면 그 더미값이 그대로 유지된다.
      * 자극 전극번호도 함께 검사한다 - 좌변 첨자라 범위 밖이면 쓰기가 된다. */
-    if ((mappingPacket->tdc_isd_map_specific_stim_step.stimulationElectrodeNum < 1)                             //
-        || (df_MaxNumOfElectrode < mappingPacket->tdc_isd_map_specific_stim_step.stimulationElectrodeNum)       //
-        || (mappingPacket->tdc_isd_map_specific_stim_step.bipolarReferenceElectrodeNum < 1)                     //
+    if ((mappingPacket->tdc_isd_map_specific_stim_step.stimulationElectrodeNum < 1)                        //
+        || (df_MaxNumOfElectrode < mappingPacket->tdc_isd_map_specific_stim_step.stimulationElectrodeNum)  //
+        || (mappingPacket->tdc_isd_map_specific_stim_step.bipolarReferenceElectrodeNum < 1)                //
         || (df_MaxNumOfElectrode < mappingPacket->tdc_isd_map_specific_stim_step.bipolarReferenceElectrodeNum))
     {
         TDC_PRINTF_I("[SPEC] STIM ELEC NUM : %d, REF ELEC NUM : %d, OUT OF RANGE - USE DUMMY \r\n",  //
-                  mappingPacket->tdc_isd_map_specific_stim_step.stimulationElectrodeNum,
-                  mappingPacket->tdc_isd_map_specific_stim_step.bipolarReferenceElectrodeNum);
+                     mappingPacket->tdc_isd_map_specific_stim_step.stimulationElectrodeNum,
+                     mappingPacket->tdc_isd_map_specific_stim_step.bipolarReferenceElectrodeNum);
     }
     else
     {
@@ -405,36 +407,36 @@ static void tdc_isd_map_specific_stim_flow20_log_summary(void)
     TDC_PRINTF_I("[SPEC] TRANSFERABLE CH NUM PER 1 MS : %d \r\n", TransferabelChannelNum);
     TDC_PRINTF_I("[SPEC] STIM LEVEL (UA) : %d \r\n", mappingPacket->tdc_isd_map_specific_stim_step.stimulationLevel_uA);
     TDC_PRINTF_I("[SPEC] DELIVERY CHARGE PICO : %d \r\n",  //
-              (mappingPacket->tdc_isd_map_specific_stim_step.pulseWidth) * mappingPacket->tdc_isd_map_specific_stim_step.stimulationLevel_uA);
+                 (mappingPacket->tdc_isd_map_specific_stim_step.pulseWidth) * mappingPacket->tdc_isd_map_specific_stim_step.stimulationLevel_uA);
     TDC_PRINTF_I("[SPEC] STIM DAC SLOPE : %d \r\n", stimulDAC_slope);
     TDC_PRINTF_I("[SPEC] STIM DAC VALUE : %d \r\n", stimulLevel_255);
     TDC_PRINTF_I("[SPEC] OFFSET DAC RESOLUTION : %d \r\n", stimulDAC_offsetResolution);
     TDC_PRINTF_I("[SPEC] OFFSET DAC VALUE : %d \r\n", stimulDAC_offsetValue);
     TDC_PRINTF_I("[SPEC] STIM HOLD TIME (MS)  : %d \r\n", stimulationHoldTime_msec);
     TDC_PRINTF_I("[SPEC] REF CH MODE : %s \r\n",  //
-              mappingPacket->tdc_isd_map_specific_stim_step.stimulationMode == en__monopolr_body          ? "MP-B"
-              : mappingPacket->tdc_isd_map_specific_stim_step.stimulationMode == en__monopolr_rod         ? "MP-R"
-              : mappingPacket->tdc_isd_map_specific_stim_step.stimulationMode == en__monopolr_BothRodBody ? "MP-R&B"
-                                                                                              : "BP, CG, ETC...");
+                 mappingPacket->tdc_isd_map_specific_stim_step.stimulationMode == en__monopolr_body          ? "MP-B"
+                 : mappingPacket->tdc_isd_map_specific_stim_step.stimulationMode == en__monopolr_rod         ? "MP-R"
+                 : mappingPacket->tdc_isd_map_specific_stim_step.stimulationMode == en__monopolr_BothRodBody ? "MP-R&B"
+                                                                                                             : "BP, CG, ETC...");
     TDC_PRINTF_I("[SPEC] STIM MODE : %s \r\n",  //
-              mappingPacket->tdc_isd_map_specific_stim_step.stimulationMode == en__monopolr_body          ? "MP-B"
-              : mappingPacket->tdc_isd_map_specific_stim_step.stimulationMode == en__monopolr_rod         ? "MP-R"
-              : mappingPacket->tdc_isd_map_specific_stim_step.stimulationMode == en__monopolr_BothRodBody ? "MP-R&B"
-              : mappingPacket->tdc_isd_map_specific_stim_step.stimulationMode == en__bipolar              ? "BP"
-              : mappingPacket->tdc_isd_map_specific_stim_step.stimulationMode == en__commonground         ? "CG"
-              : mappingPacket->tdc_isd_map_specific_stim_step.stimulationMode == en__semi_simultaneously  ? "SIMULTANEOUSLY"
-                                                                                              : "INVALID");
+                 mappingPacket->tdc_isd_map_specific_stim_step.stimulationMode == en__monopolr_body          ? "MP-B"
+                 : mappingPacket->tdc_isd_map_specific_stim_step.stimulationMode == en__monopolr_rod         ? "MP-R"
+                 : mappingPacket->tdc_isd_map_specific_stim_step.stimulationMode == en__monopolr_BothRodBody ? "MP-R&B"
+                 : mappingPacket->tdc_isd_map_specific_stim_step.stimulationMode == en__bipolar              ? "BP"
+                 : mappingPacket->tdc_isd_map_specific_stim_step.stimulationMode == en__commonground         ? "CG"
+                 : mappingPacket->tdc_isd_map_specific_stim_step.stimulationMode == en__semi_simultaneously  ? "SIMULTANEOUSLY"
+                                                                                                             : "INVALID");
 
     if (mappingPacket->tdc_isd_map_specific_stim_step.stimulationMode == en__bipolar)
     {
         TDC_PRINTF_I("[SPEC] BIPOLAR REF CH NUM : %d (PCB : %d) \r\n",  //
-                  mappingPacket->tdc_isd_map_specific_stim_step.bipolarReferenceElectrodeNum,
-                  bipolarReferenceElectrodeNum[electrodeMap[(mappingPacket->tdc_isd_map_specific_stim_step.stimulationElectrodeNum - 1)]]);
+                     mappingPacket->tdc_isd_map_specific_stim_step.bipolarReferenceElectrodeNum,
+                     bipolarReferenceElectrodeNum[electrodeMap[(mappingPacket->tdc_isd_map_specific_stim_step.stimulationElectrodeNum - 1)]]);
     }
 
     TDC_PRINTF_I("[SPEC] STIM CH NUM : %d (PCB : %d ) \r\n",  //
-              mappingPacket->tdc_isd_map_specific_stim_step.stimulationElectrodeNum,
-              electrodeMap[(mappingPacket->tdc_isd_map_specific_stim_step.stimulationElectrodeNum - 1)]);
+                 mappingPacket->tdc_isd_map_specific_stim_step.stimulationElectrodeNum,
+                 electrodeMap[(mappingPacket->tdc_isd_map_specific_stim_step.stimulationElectrodeNum - 1)]);
 }
 
 // 유지시간이 지났다. 마지막 자극을 내보내고 명령을 종료한다.
@@ -520,9 +522,11 @@ static void tdc_isd_map_specific_stim_output_fill(int pcm_index)
     {
         if (channel_index == 0)  // 해당자극 출력
         {
-            w_isd_registerValue = mappingPacket->tdc_isd_map_specific_stim_step.firstPulsePhase << firstPulsePhasePositionAtPCM_Mold;                                                    // 선행 펄스
-            w_isd_registerValue = w_isd_registerValue | (electrodeMap[(mappingPacket->tdc_isd_map_specific_stim_step.stimulationElectrodeNum - 1)] << electrodIndexPositionAtPCM_Mold);  // 자극 전극 번호
-            w_isd_registerValue = w_isd_registerValue | (stimulLevel_255 << stimulationPositionAtPCM_Mold);                                                                   // 자극 출력 크기
+            w_isd_registerValue = mappingPacket->tdc_isd_map_specific_stim_step.firstPulsePhase << firstPulsePhasePositionAtPCM_Mold;  // 선행 펄스
+            w_isd_registerValue = w_isd_registerValue
+                                  | (electrodeMap[(mappingPacket->tdc_isd_map_specific_stim_step.stimulationElectrodeNum - 1)]
+                                     << electrodIndexPositionAtPCM_Mold);                                    // 자극 전극 번호
+            w_isd_registerValue = w_isd_registerValue | (stimulLevel_255 << stimulationPositionAtPCM_Mold);  // 자극 출력 크기
             w_isd_registerValue = w_isd_registerValue | pcm_Mold_Stimulation;
 
             // tempBuff[pcm_index]=w_isd_registerValue;

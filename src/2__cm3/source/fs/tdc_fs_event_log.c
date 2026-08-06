@@ -28,7 +28,13 @@ void tdc_fs_event_log_update_bt_addr(TDC_FS_EVENT_LOG_BT_ADDR_T *p_bt_addr)
         _ci_event_log_bt_addr.bt_addr[5] = p_bt_addr->bt_addr[5];
     }
 
-    TDC_PRINTF_V("[LOG] BT ADDR {%02X:%02X:%02X:%02X:%02X:%02X} \r\n", _ci_event_log_bt_addr.bt_addr[0], _ci_event_log_bt_addr.bt_addr[1], _ci_event_log_bt_addr.bt_addr[2], _ci_event_log_bt_addr.bt_addr[3], _ci_event_log_bt_addr.bt_addr[4], _ci_event_log_bt_addr.bt_addr[5]);
+    TDC_PRINTF_V("[LOG] BT ADDR {%02X:%02X:%02X:%02X:%02X:%02X} \r\n",
+                 _ci_event_log_bt_addr.bt_addr[0],
+                 _ci_event_log_bt_addr.bt_addr[1],
+                 _ci_event_log_bt_addr.bt_addr[2],
+                 _ci_event_log_bt_addr.bt_addr[3],
+                 _ci_event_log_bt_addr.bt_addr[4],
+                 _ci_event_log_bt_addr.bt_addr[5]);
 }
 
 TDC_FS_EVENT_LOG_BT_ADDR_T tdc_fs_event_log_get_bt_addr(void)
@@ -38,13 +44,13 @@ TDC_FS_EVENT_LOG_BT_ADDR_T tdc_fs_event_log_get_bt_addr(void)
 
 int tdc_fs_event_log_init(void)
 {
-    FIL            *fp;
+    FIL                *fp;
     TDC_FS_EVENT_LOG_T *p_event_log;
-    uint8_t        *p_file_name;
-    bool            is_validate;
-    int             byte_read;
-    int             byte_written;
-    int             ret;
+    uint8_t            *p_file_name;
+    bool                is_validate;
+    int                 byte_read;
+    int                 byte_written;
+    int                 ret;
 
     fp          = &g_tdc_fs_ohdl;
     p_event_log = (TDC_FS_EVENT_LOG_T *) TDC_FS_BASE_ADDR_FOR_EVENT_LOG;
@@ -146,9 +152,9 @@ int tdc_fs_event_log_init(void)
     if (ret == FR_OK)
     {
         TDC_PRINTF_V("[FS] NAME : %s, TOTAL SIZE : %u BYTES, START CLUSTER : %u \r\n",  //
-                  fno.fname,
-                  fno.fsize,
-                  g_tdc_fs_ohdl.obj.sclust);
+                     fno.fname,
+                     fno.fsize,
+                     g_tdc_fs_ohdl.obj.sclust);
     }
 #endif
 
@@ -160,16 +166,16 @@ int tdc_fs_event_log_init(void)
 
 int tdc_fs_event_log_write(uint32_t event_type)
 {
-    FIL                   *fp;
+    FIL                       *fp;
     TDC_FS_EVENT_LOG_T        *p_event_log;
-    uint8_t               *p_file_name;
-    bool                   is_validate;
-    int                    byte_read;
-    int                    byte_written;
-    int                    ret;
-    uint8_t               *p_entity_src;
-    uint8_t               *p_entity_dst;
-    tdc_hal_timer_time_t        time;
+    uint8_t                   *p_file_name;
+    bool                       is_validate;
+    int                        byte_read;
+    int                        byte_written;
+    int                        ret;
+    uint8_t                   *p_entity_src;
+    uint8_t                   *p_entity_dst;
+    tdc_hal_timer_time_t       time;
     TDC_FS_EVENT_LOG_BT_ADDR_T bt_addr;
     TDC_FS_EVENT_LOG_ENTITY_T  entity;
 
@@ -307,12 +313,12 @@ int tdc_fs_event_log_write(uint32_t event_type)
 
 int tdc_fs_event_log_read(void)
 {
-    FIL            *fp;
+    FIL                *fp;
     TDC_FS_EVENT_LOG_T *p_event_log;
-    uint8_t        *p_file_name;
-    bool            is_validate;
-    int             byte_read;
-    int             ret;
+    uint8_t            *p_file_name;
+    bool                is_validate;
+    int                 byte_read;
+    int                 ret;
 
     fp          = &g_tdc_fs_ohdl;
     p_event_log = (TDC_FS_EVENT_LOG_T *) TDC_FS_BASE_ADDR_FOR_EVENT_LOG;
@@ -395,21 +401,27 @@ int tdc_fs_event_log_read(void)
         TDC_PRINTF_I("%c", p_event_log->ident[i]);
     }
     TDC_PRINTF_I(", WRITE INDEX=%d, ENTITY COUNT=%d \r\n",  //
-              p_event_log->write_index,
-              p_event_log->entity_count);
+                 p_event_log->write_index,
+                 p_event_log->entity_count);
 
     for (int i = 0; i < p_event_log->entity_count; i++)
     {
         TDC_PRINTF_I("      ");
         TDC_PRINTF_I("<%3d> : ", i);
-        TDC_PRINTF_I("TIME {%02d-%02d-%02d-%02d-%02d-%02d} ", p_event_log->entities[i].time[0], p_event_log->entities[i].time[1], p_event_log->entities[i].time[2], p_event_log->entities[i].time[3], p_event_log->entities[i].time[4], p_event_log->entities[i].time[5]);
+        TDC_PRINTF_I("TIME {%02d-%02d-%02d-%02d-%02d-%02d} ",
+                     p_event_log->entities[i].time[0],
+                     p_event_log->entities[i].time[1],
+                     p_event_log->entities[i].time[2],
+                     p_event_log->entities[i].time[3],
+                     p_event_log->entities[i].time[4],
+                     p_event_log->entities[i].time[5]);
         TDC_PRINTF_I("ADDR {%02X:%02X:%02X:%02X:%02X:%02X} ",
-                  p_event_log->entities[i].bt_addr.bt_addr[0],
-                  p_event_log->entities[i].bt_addr.bt_addr[1],
-                  p_event_log->entities[i].bt_addr.bt_addr[2],
-                  p_event_log->entities[i].bt_addr.bt_addr[3],
-                  p_event_log->entities[i].bt_addr.bt_addr[4],
-                  p_event_log->entities[i].bt_addr.bt_addr[5]);
+                     p_event_log->entities[i].bt_addr.bt_addr[0],
+                     p_event_log->entities[i].bt_addr.bt_addr[1],
+                     p_event_log->entities[i].bt_addr.bt_addr[2],
+                     p_event_log->entities[i].bt_addr.bt_addr[3],
+                     p_event_log->entities[i].bt_addr.bt_addr[4],
+                     p_event_log->entities[i].bt_addr.bt_addr[5]);
         TDC_PRINTF_I("EVENT {%08X} \r\n", p_event_log->entities[i].event);
     }
     TDC_PRINTF_I("\r\n");

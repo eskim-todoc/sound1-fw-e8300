@@ -26,9 +26,9 @@
 #include <tdc_fs_map.h>
 #include <tdc_ble_reply.h>
 
-static int gd_handle_touch_debug(const ST__REMOTECONTROL_PACKET *packet, uint8_t *tx_buf, int tx_index, int option);      // option 1
-static int gd_handle_no_backtel(const ST__REMOTECONTROL_PACKET *packet, uint8_t *tx_buf, int tx_index, int option);       // option 2
-static int gd_handle_map_init(const ST__REMOTECONTROL_PACKET *packet, uint8_t *tx_buf, int tx_index, int option);         // option 3
+static int gd_handle_touch_debug(const ST__REMOTECONTROL_PACKET *packet, uint8_t *tx_buf, int tx_index, int option);  // option 1
+static int gd_handle_no_backtel(const ST__REMOTECONTROL_PACKET *packet, uint8_t *tx_buf, int tx_index, int option);   // option 2
+static int gd_handle_map_init(const ST__REMOTECONTROL_PACKET *packet, uint8_t *tx_buf, int tx_index, int option);     // option 3
 /* option 4(운영 모드 설정)는 fake sleep mode 제거와 함께 삭제됨(2026-07-20).
  * 미지정 option 은 아래 else 에서 command 만 loop-back 하고 무시된다.
  * 상세: docs/tasks/main/20260720_fake-sleep-removal/ */

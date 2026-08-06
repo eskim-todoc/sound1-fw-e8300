@@ -49,7 +49,7 @@ void tdc_touch_iqs323_clear_ulp(void)
 static bool i2c_write(uint8_t *p_buf, int len)
 {
     tdc_hal_i2c_driver_state_t state;
-    static int           buf[3];
+    static int                 buf[3];
 
     if (tdc_hal_i2c_get_driver_status() != i2c_state_Idle)
     {
@@ -81,7 +81,7 @@ static bool i2c_write(uint8_t *p_buf, int len)
 static bool i2c_read(uint8_t *p_buf, int len)
 {
     tdc_hal_i2c_driver_state_t state;
-    int                  buf[4]; /* 최대 4바이트 (0x13+0x14 연속 디버그 read 지원). 호출처 len <= 4 보장 */
+    int                        buf[4]; /* 최대 4바이트 (0x13+0x14 연속 디버그 read 지원). 호출처 len <= 4 보장 */
 
     if (len < 1 || len > (int) (sizeof(buf) / sizeof(buf[0])))
     {
@@ -293,8 +293,11 @@ static bool events_enable(void)
 static bool beta_power_settings(void)
 {
     bool ok = true;
-    ok &= write_register(REG_BETA_COUNTS, 0x02, 0x02);      /* Counts beta NP/LP */
-    ok &= write_register(REG_BETA_LTA_NORMAL, 0x06, 0x06);  /* LTA Normal NP/LP=6 - AZD004 α=1/2^β. τ~12.8s(롱터치 2.4s의 ~5배)로 터치 진입 전 LTA 흡수 최소화 + 약결합 ~13s 흡수 균형. (4=3.2s 너무빠름·터치흡수 / 8=51s 느림) */
+    ok &= write_register(REG_BETA_COUNTS, 0x02, 0x02); /* Counts beta NP/LP */
+    ok &= write_register(
+        REG_BETA_LTA_NORMAL,
+        0x06,
+        0x06); /* LTA Normal NP/LP=6 - AZD004 α=1/2^β. τ~12.8s(롱터치 2.4s의 ~5배)로 터치 진입 전 LTA 흡수 최소화 + 약결합 ~13s 흡수 균형. (4=3.2s 너무빠름·터치흡수 / 8=51s 느림) */
     ok &= write_register(REG_BETA_LTA_FAST, 0x02, 0x02);    /* LTA Fast NP/LP (빠름) */
     ok &= write_register(REG_FAST_FILTER_BAND, 0x0A, 0x00); /* Fast Filter Band 10cnt */
     ok &= write_register(REG_CONV_FREQ, 0x7F, 0x05);        /* 0x057F = 1MHz (self-cap 상한) */

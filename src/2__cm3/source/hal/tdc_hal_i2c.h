@@ -37,35 +37,35 @@
 
 typedef struct
 {
-    uint32_t overrun_clear : 1;
-    uint32_t bus_error_clear : 1;
-    uint32_t stop_detected_clear : 1;
-    uint32_t repeated_start_detected_clear : 1;
-    uint32_t tx_req_set : 1;
-    uint32_t reserved0 : 3;
-    uint32_t overrun : 1;
-    uint32_t ack : 1;
-    uint32_t gen_call : 1;
-    uint32_t read_write : 1;
-    uint32_t addr_data : 1;
-    uint32_t line_free : 1;
-    uint32_t clk_stretch : 1;
-    uint32_t rx_req : 1;
-    uint32_t tx_req : 1;
-    uint32_t data_event : 1;
-    uint32_t stop_detected : 1;
-    uint32_t master_mode : 1;
-    uint32_t start_pending : 1;
-    uint32_t busy : 1;
-    uint32_t bus_error : 1;
-    uint32_t reserved1 : 2;
-    uint32_t repeated_start_detected : 1;
+    uint32_t overrun_clear                   : 1;
+    uint32_t bus_error_clear                 : 1;
+    uint32_t stop_detected_clear             : 1;
+    uint32_t repeated_start_detected_clear   : 1;
+    uint32_t tx_req_set                      : 1;
+    uint32_t reserved0                       : 3;
+    uint32_t overrun                         : 1;
+    uint32_t ack                             : 1;
+    uint32_t gen_call                        : 1;
+    uint32_t read_write                      : 1;
+    uint32_t addr_data                       : 1;
+    uint32_t line_free                       : 1;
+    uint32_t clk_stretch                     : 1;
+    uint32_t rx_req                          : 1;
+    uint32_t tx_req                          : 1;
+    uint32_t data_event                      : 1;
+    uint32_t stop_detected                   : 1;
+    uint32_t master_mode                     : 1;
+    uint32_t start_pending                   : 1;
+    uint32_t busy                            : 1;
+    uint32_t bus_error                       : 1;
+    uint32_t reserved1                       : 2;
+    uint32_t repeated_start_detected         : 1;
     uint32_t stop_or_repeated_start_detected : 1;
 } tdc_hal_i2c_status_bitfield_t;
 
 typedef union
 {
-    uint32_t                          status;
+    uint32_t                      status;
     tdc_hal_i2c_status_bitfield_t fields;
 } tdc_hal_i2c_status_t;
 
@@ -144,11 +144,11 @@ typedef enum
 typedef struct
 {
     tdc_hal_i2c_driver_state_t i2c_diver_state;
-    int                  i2cTxRx_RemaindedDataLength;
-    int*                 p_i2cTx_Source;
-    int *p_i2cRx_Destination;
-	int slaveAddress;
-	tdc_hal_i2c_error_code_t i2c_Error_Code;
+    int                        i2cTxRx_RemaindedDataLength;
+    int                       *p_i2cTx_Source;
+    int                       *p_i2cRx_Destination;
+    int                        slaveAddress;
+    tdc_hal_i2c_error_code_t   i2c_Error_Code;
 } tdc_hal_i2c_driver_t;
 
 void tdc_hal_i2c_enable_interface(bool isEnabled);
@@ -160,13 +160,13 @@ void tdc_hal_i2c_init(void);
 void tdc_hal_i2c_set_master_prescale(uint32_t prescale_mask);
 
 tdc_hal_i2c_driver_state_t tdc_hal_i2c_get_driver_status(void);
-bool tdc_hal_i2c_is_driver_status_idle(void);
-uint32_t tdc_hal_i2c_get_hardware_status(void);
-void tdc_hal_i2c_clear_driver_status(void);
-void tdc_hal_i2c_set_driver_status_idle(void);
-void tdc_hal_i2c_clear_hardware_status(void);
-void tdc_hal_i2c_start_write(const int slaveAddress, int *p_sourcedata, const int dataLength);
-void tdc_hal_i2c_start_read(const int slaveAddress, int *p_destination, const int dataLength);
-void I2C_0_IRQHandler(void);
+bool                       tdc_hal_i2c_is_driver_status_idle(void);
+uint32_t                   tdc_hal_i2c_get_hardware_status(void);
+void                       tdc_hal_i2c_clear_driver_status(void);
+void                       tdc_hal_i2c_set_driver_status_idle(void);
+void                       tdc_hal_i2c_clear_hardware_status(void);
+void                       tdc_hal_i2c_start_write(const int slaveAddress, int *p_sourcedata, const int dataLength);
+void                       tdc_hal_i2c_start_read(const int slaveAddress, int *p_destination, const int dataLength);
+void                       I2C_0_IRQHandler(void);
 
 #endif
