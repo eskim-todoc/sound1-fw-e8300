@@ -32,8 +32,29 @@
 
 #define TDC_DRV_PMIC_RESET_VOLTAGE_SET_VALUE 75  // 0.025*75=1.875V
 
+/* CONV_CFG(0x12) 의 FMODE[3:2] - 동작 모드 선택.
+ * 데이터시트 FN8947 Rev.1.03 Table 5 (p.25). 정리본은
+ * docs/참고/pmic-isl99122a/README.md 에 있다.
+ *
+ * 같은 레지스터에 EN_AND[7] · DISCH[6] · DVSRATE[5:4] · TYPE1[0] 이 함께 살기
+ * 때문에 이 두 비트만 바꾸려면 읽고-고쳐-쓰기를 해야 한다. */
+#define TDC_DRV_ISL9122_CONV_CFG_FMODE_MASK  0x0C
+#define TDC_DRV_ISL9122_CONV_CFG_FMODE_SHIFT 2
+
+typedef enum
+{
+    TDC_DRV_ISL9122_FMODE_NORMAL        = 0,  // 자동 전환 (Buck/Bypass/Boost, PFM/PWM)
+    TDC_DRV_ISL9122_FMODE_RESERVED      = 1,  // 데이터시트가 쓰지 말라고 명시한 값
+    TDC_DRV_ISL9122_FMODE_FORCED_PWM    = 2,  // PFM 없이 항상 PWM. 입력 전류가 는다
+    TDC_DRV_ISL9122_FMODE_FORCED_BYPASS = 3,  // 스위칭 정지. 승압 안 함 · 과전류 보호 없음
+} tdc_drv_isl9122_fmode_t;
+
 bool tdc_drv_isl9122_write_register(int registerAddr, int value);
 bool tdc_drv_isl9122_read_register(int registerAddr, int *read_value);
 bool tdc_drv_isl9122_reset(void);
+
+bool        tdc_drv_isl9122_read_mode(tdc_drv_isl9122_fmode_t *p_mode);
+bool        tdc_drv_isl9122_write_mode(tdc_drv_isl9122_fmode_t mode);
+const char *tdc_drv_isl9122_mode_name(tdc_drv_isl9122_fmode_t mode);
 
 #endif
