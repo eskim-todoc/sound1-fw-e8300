@@ -8,7 +8,7 @@ tags: [ioc, dmic, pdm, 데시메이션, 믹서, 시프트, 배율]
 
 # 02. 입력 경로 - IOC 에서 AGC 까지
 
-**TL;DR**: 마이크 PDM 이 AGC 입력 숫자가 되기까지 **9단계**를 거친다. 배율이 바뀌는 곳은 넷 — **데시메이션 `ADC_GF`(미확정) · 믹서 `>>5` · 믹서 게인 · AGC `<<5`** 이고, **`>>5` 와 `<<5` 는 정확히 상쇄**된다.
+**TL;DR**: 마이크 PDM 이 AGC 입력 숫자가 되기까지 **9단계**를 거친다. 배율이 바뀌는 곳은 셋 — **믹서 `>>5` · 믹서 게인 · AGC `<<5`** 이고, **`>>5` 와 `<<5` 는 정확히 상쇄**된다. **데시메이션 `ADC_GF`(=1092)는 SDK 가 계산한 유니티라 배율이 1 이다.**
 
 ## 1. 전체 흐름
 
@@ -76,17 +76,26 @@ ADC_DEC_CTRL_ADC_GF = 2^(11 + log2(SFCR)) / (SFCR + 1)
 |---|---|---|
 | 샘플레이트 | **16 kHz** | `SYS_SET_ADC_SAMPLE_FREQ_CFG(AUDIO, LIB_AUDIO_SFCR_16K)` (`lib_audio_in.c:25`) |
 | `SFCR` | **29** (`ADC_MODDIV_BY30 = 0x1D`) | SDK `sk5_cfx_hw_flat_cid101.h:4298` |
-| **공식이 주는 유니티** | **1979.7 ≈ 1979** | 위 식에 SFCR=29 대입 |
+| **SDK 가 계산한 유니티** | **1092** | `Sys_Calc_Gain_Factor_Val(29)` |
 | **펌웨어가 쓰는 값** | **1092** | `lib_audio_in.h:112` `#define LIB_SYS_CALC_GF 1092  // 1092//1979` |
 
-> [!CAUTION]
-> **유니티(1979)가 아니라 1092 다. 비율로 −5.17 dB.**
+> [!IMPORTANT]
+> **`1092` 가 유니티다. 밀림은 0 dB 다.**
 >
-> 주석 `// 1092//1979` 가 **두 값을 다 써 봤다**는 흔적이다. `main.h:119` 에는 아직 `#define SYS_CALC_GF 1979` 가 남아 있다(이쪽은 미사용).
+> 데이터시트 p.445 에 인쇄된 식은 `log2` 에 **floor** 가 들어간다. SDK 구현이 그것을 명시한다.
 >
-> **이것이 실재하는 감쇠라면 이 문서 묶음의 모든 SPL 값이 5.17 dB 씩 밀린다.** 판단 근거와 **10분 측정 절차**는 [`07`](07_미확정%20사항과%20측정%20절차.md).
+> ```c
+> // SDK: include/shared/analog_in.h  Sys_Calc_Gain_Factor_Val()
+> /* GF = round[2^(11+floor[log2(sfcr)])/(sfcr+1)] */
+> while (SFCR != 1) { SFCR >>= 1; log2++; }     // 정수 몫 = floor
+> sys_calc_gf = ((((1 << (11 + log2)) * 10) / (SFCR + 1)) + 5) / 10;
+> ```
 >
-> 아래 §3 이후는 **«1092 가 DMIC 경로의 실효 유니티» 라는 가정**으로 쓴다. 그 가정을 받치는 정황은 AGC 게이트가 마이크 잡음 바닥과 0.2 dB 안에서 맞는다는 것이다.
+> `SFCR = 29` → `floor(log2(29)) = 4` → `2^15 / 30 = 1092.3` → **1092**.
+>
+> floor 를 빼고 실수 `log2` 로 읽으면 1979.7 이 나오는데 **그건 오독**이다. `main.h:119` 에 남은 `SYS_CALC_GF 1979` 가 그 오독의 흔적으로 보이며 **현재 미사용 경로**다.
+>
+> 경위와 교훈은 [07](07_미확정%20사항과%20측정%20절차.md) §1.
 
 ### 2.3 ③~④ IOC → FIFO → 버퍼
 
@@ -257,13 +266,13 @@ Addr_SharedMem->maxAudioInput = input_audio_mix_max_value;
 | 단계 | 배율 (dB) | 누적 (dB) | 비고 |
 |---|---|---|---|
 | 마이크 (기준) | 0 | 0 | `0x7FFFFF` = 120 dB SPL |
-| 데시메이션 `ADC_GF` | **−5.17 ?** | −5.17 ? | **미확정** — [07](07_미확정%20사항과%20측정%20절차.md) |
-| 믹서 `>>5` | **−30.10** | −35.27 ? | |
+| 데시메이션 `ADC_GF` (=1092) | **0 (유니티)** | 0 | `Sys_Calc_Gain_Factor_Val(29)` 와 일치 |
+| 믹서 `>>5` | **−30.10** | −30.10 | |
 | 믹서 게인 | −∞ ~ +17.86 | | I2S 경로만 |
 | 빔포밍 `>>1` | −6.02 (2채널 합 +6.02 로 상쇄) | | 실효 0 |
-| AGC `<<5` | **+30.10** | −5.17 ? | **믹서 `>>5` 와 상쇄** |
+| AGC `<<5` | **+30.10** | **0** | **믹서 `>>5` 와 상쇄** |
 
-**미확정분(−5.17)을 빼면 마이크 → AGC 로그 입력의 순 배율은 0 dB, 즉 같은 눈금이다.**
+**마이크 → AGC 로그 입력의 순 배율은 0 dB, 즉 같은 눈금이다.**
 
 ## 4. 근거
 
@@ -273,7 +282,7 @@ Addr_SharedMem->maxAudioInput = input_audio_mix_max_value;
 | 믹서 적용 지점 | `systemControl/audioMixer.c:302` · `:317` · `:341` · `:419` |
 | `NORMALIZE_SHIFT = 5` | `signalProcessing/definitionsForAlgorithm.h:93` |
 | AGC 적용 지점 | `signalProcessing/agc.c:181` |
-| 유니티 게인 공식 | E8300 HW Reference **p.445** |
+| 유니티 게인 공식 (floor 포함) | SDK `include/shared/analog_in.h` `Sys_Calc_Gain_Factor_Val()` · E8300 HW Reference **p.445** |
 | `SFCR = 29` | SDK `sk5_cfx_hw_flat_cid101.h:4298` (`ADC_MODDIV_BY30 = 0x1D`) |
 | `ADC_GF = 1092` | `lib_cfx/lib_audio_in.h:112` |
 | 경로 분기 | `systemControl/main.c:434`·`461`·`480`·`490`·`495`·`500` |
