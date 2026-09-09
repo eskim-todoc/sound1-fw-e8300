@@ -414,9 +414,69 @@ para(doc, u'CFX Core 는 오디오 입력부터 자극 데이터 생성까지의
           u'하드웨어 브링업과 코어 기동은 부트로더가 수행하므로, CFX Core 의 초기화는 '
           u'오디오 경로와 인터페이스 설정부터 시작한다.')
 
+CHECKLIST = TASK + u'/20260909_1419_sddd-sound1/유닛 제외 체크리스트.md'
+
+
+def load_exclusions():
+    """체크리스트에서 제외 대상을 읽는다. 체크(x)된 것이 제외 대상이다."""
+    ex_units = set()
+    ex_items = set()
+    if not os.path.exists(CHECKLIST):
+        return ex_units, ex_items, False
+    import re as _re
+    cur_item = None
+    for line in io.open(CHECKLIST, encoding='utf-8'):
+        m = _re.match(r'\s*-\s*\[([ xX])\]\s*\*\*\[항목\]\s*(\d+\.\d+\.\d+)\.', line)
+        if m:
+            cur_item = m.group(2)
+            if m.group(1).lower() == 'x':
+                ex_items.add(cur_item)
+            continue
+        m = _re.match(r'\s*-\s*\[([ xX])\]\s*`([A-Z0-9]+)-(\d+)`', line)
+        if m and m.group(1).lower() == 'x':
+            ex_units.add((m.group(2), int(m.group(3))))
+    return ex_units, ex_items, True
+
+
+EX_UNITS, EX_ITEMS, HAS_CHECKLIST = load_exclusions()
+
+
 def render_chapter(chap_no, sections, core):
-    nsec = 0
+    # 제외 대상을 걸러 낸 사본을 만든다 (원본 데이터는 건드리지 않는다)
+    kept = []
+    si = 0
     for modname, blocks in sections:
+        si += 1
+        bi = 0
+        keep_blocks = []
+        for blk in blocks:
+            bi += 1
+            key = u'%d.%d.%d' % (chap_no, si, bi)
+            if key in EX_ITEMS:
+                continue
+            units = [u for u in blk['units'] if (core, u['id']) not in EX_UNITS]
+            if not units:
+                continue
+            nb = dict(blk)
+            nb['units'] = units
+            keep_blocks.append(nb)
+        if keep_blocks:
+            kept.append((modname, keep_blocks))
+
+    # 남은 유닛에 연속 번호를 다시 부여한다 (사본에만 적용)
+    seq = 0
+    for _, blocks in kept:
+        for blk in blocks:
+            copies = []
+            for u in blk['units']:
+                seq += 1
+                c = dict(u)
+                c['id'] = seq
+                copies.append(c)
+            blk['units'] = copies
+
+    nsec = 0
+    for modname, blocks in kept:
         nsec += 1
         head(doc, u'%d.%d.' % (chap_no, nsec), modname, 2)
         nblk = 0
@@ -537,4 +597,8 @@ ncfx = sum(len(b['units']) for _, bs in CU.CFX_SECTIONS for b in bs)
 ncm3 = sum(len(b['units']) for _, bs in CM.CM3_SECTIONS for b in bs)
 nbo = sum(len(b['units']) for _, bs in BO.BOOT_SECTIONS for b in bs)
 print(u'SAVED: %s' % path)
-print(u'CFX %d / CM3 %d / BOOT %d / 합계 %d건' % (ncfx, ncm3, nbo, ncfx + ncm3 + nbo))
+print(u'CFX %d / CM3 %d / BOOT %d / 합계 %d건 (원본 기준)' % (ncfx, ncm3, nbo, ncfx + ncm3 + nbo))
+if HAS_CHECKLIST:
+    print(u'체크리스트 반영 - 제외 항목 %d개 · 제외 유닛 %d개' % (len(EX_ITEMS), len(EX_UNITS)))
+else:
+    print(u'체크리스트 없음 - 전체 수록')
