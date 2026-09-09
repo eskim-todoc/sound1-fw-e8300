@@ -6,11 +6,35 @@
 **문서 하나만 보고 시험할 수 있어야 한다.** 그래서 유닛마다 시험 준비, 가정 및 제한,
 시험 절차, 입력과 예상 출력을 모두 갖춘다. 다른 문서를 찾아보게 하지 않는다.
 
-**재현할 수 없는 것은 값을 내지 않는다.** DSP 어셈블리 라이브러리
-(cfx_pwr_to_dB_asm, cfx_dB_to_pwr_asm, Win_DFT_R_Forward, vMag)에 의존하는
-함수는 «라이브러리 출력에 의존» 으로 표기하고 은수님 실측에 맡긴다.
+**«재현할 수 없다» 는 판단을 정정했다 (2026-09-09).** dB 변환은 SDK 헤더에 수식이
+명세되어 있고 Q 포맷 연산은 정수 산술이라 그대로 재현된다. 지어내는 것과 계산하는 것은
+다르다. `cfx_qformat.py` 가 그 계산을 맡는다.
+
+  SDK include/cfx/sk5_cfx_dsp_data_conversions.h
+    cfx_pwr_to_dB(pwr) = 10*log10(abs(pwr))
+    cfx_dB_to_pwr(dB)  = 10^(dB/10)
+
+남는 것은 하드웨어 log2/exp2 유닛의 마지막 자리 오차뿐이고, 1.5세대 SUVR 도 이 계통에는
+«고정소수점 연산 고려» 를 통과 기준에 달았다. 같은 기준을 쓴다.
+
+**HEAR 계통도 재현으로 옮겼다.** HEAR Configurable Accelerator Reference 를 읽어
+확인한 것은 다음과 같다.
+
+  vAbsolute  (p.279) 실수 벡터 각 원소의 절대값. BFP 없음. 정확 연산
+  MaxElement (p.333) 실수 벡터의 최대값. 정확 연산
+  vMag       (p.243) 복소 크기. **제곱근을 테이블 조회로 근사한다.** 출력 24비트(2.22)
+
+더 중요한 것은 접근을 바로잡은 점이다. 이 유닛들의 «입력» 이 곧 HEAR 가 채운 버퍼이므로,
+**그 버퍼에 시험 벡터를 주입하면 HEAR 내부를 재현하지 않아도 출력이 결정된다.**
+«HEAR 출력에 의존하니 기댓값을 못 낸다» 는 판단이 애초에 틀렸다.
+
+남는 실측 유닛은 맵 데이터나 자극 설정에 의존해 입력 자체를 시험용으로 고정하기 어려운
+것들이다.
 """
 import io, os, sys, json
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import cfx_qformat as Q
 
 # ------------------------------------------------------------------ 소스 상수
 # 근거 위치를 함께 적는다. 값을 지어내지 않는다.
@@ -356,6 +380,151 @@ def build_vectors():
                     u'PCM 모드가 대기로 바뀌고 상태가 영 채움으로 되돌아간다.' % (NCH - 1, PRE)},
         ]})
 
+    # ------------------------------------------------- CFX-070 이득 계산 (재현)
+    cases = []
+    for v in (1, 10, 100, 1000, 10000, 100000, 1000000, 8388607):
+        g, reg, db = Q.calculate_agc_gain(v, 0, 0)
+        cases.append({'in': u'agc_input=%d (볼륨 0, 직전 이득 0)' % v,
+                      'out': u'%d  [%s 구간, 입력 %.3f dB]' % (g, reg, db / 65536.0)})
+    for vol in (0, 5, 9):
+        g, reg, db = Q.calculate_agc_gain(100000, vol, 0)
+        cases.append({'in': u'agc_input=100000, 볼륨=%d, 직전 이득 0' % vol,
+                      'out': u'%d  [%s 구간]' % (g, reg)})
+    V.append({
+        'su': 'CFX-070', 'fn': 'calculate_agc_gain', 'kind': u'재현',
+        'note': u'입력을 5 비트 올려 frac48 로 재해석한 뒤 10*log10 을 취해 세 구간으로 나눈다. '
+                u'잡음 게이트 -117.4972 dB 미만은 잡음 구간, 회전점 -94.7472 dB 초과는 감쇠 구간, '
+                u'그 사이는 증폭 구간이다. 구간마다 기울기와 절편이 다르고 볼륨 10 단계로 갈린다. '
+                u'이어서 시정수를 적용하고 라이브러리 정규화 이득을 빼고 되곱해 선형 Q12.12 로 낸다. '
+                u'증폭 구간에서 볼륨 0 이면 절편이 0 이라 이득이 정확히 4096(선형 1.0)이 된다.',
+        'prep': PREP_LIB +
+                u'\n- 시험 전에 m_audio_volume 과 m_prev_agc_10db_gain_Q8_16 을 지정한 값으로 둔다.',
+        'limit': (u'- 직전 이득이 상태로 남으므로 시험마다 0 으로 되돌린다.\n'
+                  u'- 하드웨어 log2/exp2 유닛의 마지막 자리 오차가 있을 수 있다. (고정소수점 연산 고려)\n'
+                  u'- 입력 스케일은 frac48 재해석(2^47)을 전제로 계산했다. '
+                  u'첫 케이스의 구간 판정이 어긋나면 이 전제부터 확인한다.'),
+        'proc': (u'- 중단점에서 agc_input 을 지정한 값으로 바꾸고 함수를 실행시킨다.\n'
+                 u'- 반환된 선형 이득(Q12.12)과 내부 구간 판정을 조회해 기록한다.\n'
+                 u'- 볼륨을 0, 5, 9 로 바꿔 세 번 더 수행한다.'),
+        'cases': cases})
+
+    # ------------------------------------------------- CFX-081 거듭제곱 (재현)
+    cases = []
+    for x in (0, 1, 100, 1000, 10000, 100000):
+        r = Q.calculate_x_power_p(x)
+        tail = u'  (x < 1 이면 0 을 반환한다)' if x == 0 else u'  (실수 %.4f)' % (r / 65536.0)
+        cases.append({'in': u'x = %d' % x, 'out': u'%d%s' % (r, tail)})
+    V.append({
+        'su': 'CFX-081', 'fn': 'calculate_x_power_p', 'kind': u'재현',
+        'note': u'dB 도메인에서 x^p 를 구한다. p = 0.15 (g_coeff_p_Q1_23 = 1258291). '
+                u'입력을 5 비트 올려 10*log10 을 취하고, p 를 곱한 뒤 10^(dB/10) 로 되돌리고, '
+                u'정규화 인자 5163793 을 곱해 Q8.16 으로 낸다. '
+                u'dB 변환 수식이 SDK 헤더에 명세되어 있어 재현된다.',
+        'prep': PREP_CFX,
+        'limit': (LIMIT_HARNESS +
+                  u'\n- 하드웨어 log2/exp2 유닛의 마지막 자리 오차가 있을 수 있다. (고정소수점 연산 고려)\n'
+                  u'- to_lfix(int) 의 스케일을 frac48 재해석(2^47)로 보고 계산했다. '
+                  u'x=1 결과가 크게 어긋나면 이 전제부터 확인한다.'),
+        'proc': (u'- 하네스가 입력 0, 1, 100, 1000, 10000, 100000 을 차례로 넣어 호출한다.\n'
+                 u'- 구분자 -999 와 유닛 번호 81 다음에 «입력, 출력» 짝으로 12 개가 이어진다.'),
+        'cases': cases})
+
+    # ------------------------------------------- HEAR 후단 유닛 (재현)
+    # 이 유닛들의 «입력» 은 HEAR 가 채운 버퍼다. 그 버퍼에 시험 벡터를 주입하면
+    # HEAR 내부를 재현하지 않아도 출력이 결정된다.
+    HEAR_NOTE = (u'HEAR Configurable Accelerator Reference 로 체인 구성을 확인했다. '
+                 u'vAbsolute(p.279)는 실수 벡터의 절대값, MaxElement(p.333)는 최대값이며 '
+                 u'둘 다 정확 연산이다. 이 유닛은 그 결과 버퍼를 입력으로 받으므로 '
+                 u'버퍼에 시험 벡터를 주입하면 출력이 결정된다.')
+
+    # --- CFX-069 자동 이득 제어 실행
+    cases = []
+    for mx in (1, 10, 1000, 100000, 8388607):
+        g, reg, db = Q.calculate_agc_gain(mx, 0, 0)
+        cases.append({'in': u'믹서 절대값 최대 버퍼에 %d 주입 (볼륨 0, 직전 이득 0)' % mx,
+                      'out': u'공유 메모리 maxAudioInput = %d, 산출 이득 = %d [%s 구간]'
+                             % (mx, g, reg)})
+    V.append({
+        'su': 'CFX-069', 'fn': 'audio_agc', 'kind': u'재현',
+        'note': HEAR_NOTE + u' 이 유닛은 최대값을 공유 메모리에 그대로 옮긴 뒤 '
+                            u'이득 계산과 이득 적용을 차례로 부른다.',
+        'prep': PREP_LIB + u'\n- HEAR_ADDR_AUDIO_MIX_ABS_MAX_VALUE 버퍼에 시험 값을 직접 쓴다.'
+                           u'\n- m_audio_volume 을 0, m_prev_agc_10db_gain_Q8_16 을 0 으로 둔다.',
+        'limit': (u'- 직전 이득이 상태로 남으므로 시험마다 0 으로 되돌린다.\n'
+                  u'- 하드웨어 log2/exp2 유닛의 마지막 자리 오차가 있을 수 있다. (고정소수점 연산 고려)'),
+        'proc': (u'- 최대값 버퍼에 시험 값을 쓰고 원 함수를 호출한다.\n'
+                 u'- 공유 메모리의 maxAudioInput 과 이득 계산 반환값을 조회해 기록한다.'),
+        'cases': cases})
+
+    # --- CFX-072 이득 적용
+    mix = [1000, -1000, 4000000, -4000000, 8388607, -8388608,
+           0, 1, -1, 100, -100, 32768, -32768, 500000, -500000, 12345]
+    cases = []
+    for gain in (4096, 2048, 8192):
+        out = Q.apply_agc_gain(mix, gain)
+        cases.append({'in': u'믹서 버퍼 %s, 이득 %d (선형 %.2f)' % (seq(mix[:6]) + u' ...', gain, gain / 4096.0),
+                      'out': seq(out)})
+    V.append({
+        'su': 'CFX-072', 'fn': 'apply_agc_gain', 'kind': u'재현',
+        'note': u'믹서 버퍼 16 표본 각각에 선형 이득(Q12.12)을 곱하고 12 비트 내린 뒤 '
+                u'24 비트로 포화시켜 AGC 출력 버퍼에 넣는다. 정수 연산이라 그대로 재현된다. '
+                u'이득 4096 은 선형 1.0 이므로 포화가 없는 한 입력이 그대로 나와야 한다.',
+        'prep': PREP_LIB + u'\n- HEAR_ADDR_AUDIO_MIX 버퍼 16 칸에 시험 벡터를 직접 쓴다.',
+        'limit': (u'- 24 비트 최대 8388607, 최소 -8388608 에서 잘린다. '
+                  u'이득 2.0 시험이 그 경계를 지난다.\n'
+                  u'- 출력은 m_agc_output_buffer 16 칸이다.'),
+        'proc': (u'- 믹서 버퍼에 시험 벡터를 쓰고 이득을 인자로 넣어 호출한다.\n'
+                 u'- m_agc_output_buffer 16 칸을 조회해 기록한다.\n'
+                 u'- 이득 4096, 2048, 8192 로 세 번 수행한다.'),
+        'cases': cases})
+
+    # --- CFX-073 주파수 분석 입력 갱신
+    agc_out = list(range(1, 17))
+    V.append({
+        'su': 'CFX-073', 'fn': 'update_FFT_inputData', 'kind': u'재현',
+        'note': u'AGC 출력 버퍼를 «역순» 으로 FIFO 에 밀어넣는다. 버퍼 끝에서 시작해 '
+                u'앞으로 오며 하나씩 쓴다. 순서가 뒤집히는 것이 이 유닛의 핵심이다.',
+        'prep': PREP_LIB + u'\n- m_agc_output_buffer 16 칸에 시험 벡터를 직접 쓴다.',
+        'limit': u'- FIFO 에 들어간 순서를 확인해야 하므로 FIFO 를 비운 상태에서 시작한다.',
+        'proc': (u'- AGC 출력 버퍼에 1 부터 16 을 차례로 쓴다.\n'
+                 u'- 원 함수를 호출한다.\n'
+                 u'- FIFO 에 들어간 순서를 조회해 기록한다.'),
+        'cases': [{'in': u'AGC 출력 버퍼 = %s' % seq(agc_out),
+                   'out': u'FIFO 기록 순서 = %s  (역순)' % seq(Q.update_fft_input(agc_out))}]})
+
+    # --- CFX-074 분석 대역 대표값 산출
+    vmag = [0] * 256
+    pbin = [-1] * 256
+    for i in range(256):
+        pbin[i] = i // 8 if i < 256 else -1        # 8 칸씩 한 대역
+    for i, v in ((3, 5000), (10, 8000), (11, 3000), (20, 12000), (250, 700)):
+        vmag[i] = v
+    rep, scaled = Q.find_freq_rep_value(vmag, pbin)
+    nz = [(i, rep[i], scaled[i]) for i in range(32) if rep[i]]
+    V.append({
+        'su': 'CFX-074', 'fn': 'find_freq_rep_value', 'kind': u'재현',
+        'note': HEAR_NOTE.replace(u'vAbsolute(p.279)는 실수 벡터의 절대값, MaxElement(p.333)는 최대값이며 둘 다 정확 연산이다. ',
+                                  u'') +
+                u' 대역 색인이 0 이상인 자리만 보고 그 대역의 최대 크기를 남긴 뒤 '
+                u'4 비트 내려 축소본을 만든다. 대표값 배열을 먼저 0 으로 지우므로 '
+                u'이전 값이 남지 않는다.',
+        'prep': PREP_LIB + u'\n- HEAR_ADDR_VMAG_OUTPUT 버퍼 256 칸과 g_pass_bin_index 에 '
+                           u'시험 벡터를 직접 쓴다.',
+        'limit': (u'- vMag 자체는 제곱근을 테이블로 근사하지만(HEAR Reference p.243), '
+                  u'이 유닛은 그 «출력» 을 입력으로 받으므로 값을 주입하면 결정적이다.\n'
+                  u'- 대역 색인이 음수인 자리는 건너뛴다.'),
+        'proc': (u'- vMag 출력 버퍼 256 칸을 0 으로 채운 뒤 아래 자리에만 값을 넣는다.\n'
+                 u'- 통과 대역 색인을 8 칸마다 한 대역씩(색인 = i / 8) 채운다.\n'
+                 u'- 원 함수를 호출하고 g_freq_rep_values 와 g_freq_rep_values_scaled 를 조회한다.'),
+        'cases': [
+            {'in': u'vMag[3]=5000, vMag[10]=8000, vMag[11]=3000, vMag[20]=12000, '
+                   u'vMag[250]=700, 나머지 0. 대역 색인 = i / 8',
+             'out': u'대표값이 0 이 아닌 대역: ' +
+                    u', '.join(u'대역%d=%d(축소 %d)' % (i, r, s) for i, r, s in nz)},
+            {'in': u'같은 입력에서 대역 1 확인 (vMag 색인 8~15 구간)',
+             'out': u'8000 이 남는다. 같은 대역의 3000 은 최대값이 아니라 버려진다'},
+        ]})
+
     # ---------------------------------------------------------- 실측 유닛
     LIB = [
         ('CFX-075', 'read_FFT_PassBin_index',
@@ -404,31 +573,6 @@ def build_vectors():
          u'채널당 1 프레임 구성으로 검사 프레임을 만든다. 검사 회로 설정에 의존한다.', PCM_PREP,
          (u'- 채널당 프레임 수를 1 로 두고 호출한다.\n'
           u'- PCM 기록 버퍼를 조회해 검사 프레임 구성과 자극 자리 배치를 기록한다.'), None),
-        ('CFX-081', 'calculate_x_power_p',
-         u'cfx_pwr_to_dB_asm 과 cfx_dB_to_pwr_asm 어셈블리 라이브러리를 거친다.',
-         PREP_CFX,
-         (u'- 하네스가 입력 0, 1, 100, 1000, 10000, 100000 을 차례로 넣어 호출한다.\n'
-          u'- 구분자 -999 와 유닛 번호 81 다음에 «입력, 출력» 짝으로 12 개가 이어진다.\n'
-          u'- 각 짝의 출력을 그대로 기록한다.'),
-         [{'in': u'x = 0', 'out': u'0  (x < 1 이면 0 을 반환해야 한다. 이 항만 확인 가능)'},
-          {'in': u'x = 1', 'out': u'(실측 기록)'},
-          {'in': u'x = 100', 'out': u'(실측 기록)'},
-          {'in': u'x = 1000', 'out': u'(실측 기록)'},
-          {'in': u'x = 10000', 'out': u'(실측 기록)'},
-          {'in': u'x = 100000', 'out': u'(실측 기록)'}]),
-        ('CFX-069', 'audio_agc', u'전처리 함수체인이 만든 최대값 버퍼에 의존한다.', PREP_LIB,
-         (u'- 신호를 입력한 상태에서 이 유닛의 진입과 복귀에 중단점을 적용한다.\n'
-          u'- 입력 최대값 버퍼와 출력 이득을 함께 조회해 기록한다.'), None),
-        ('CFX-070', 'calculate_agc_gain',
-         u'입력이 전처리 체인 출력이며 dB 변환 라이브러리를 거친다.', PREP_LIB,
-         (u'- 중단점에서 입력값과 반환 이득을 조회해 기록한다.\n'
-          u'- 잡음 구간, 증폭 구간, 감쇠 구간 각각에서 한 번씩 기록한다.'), None),
-        ('CFX-072', 'apply_agc_gain', u'믹서 출력 버퍼 전체에 적용된다.', PREP_LIB,
-         (u'- 적용 전후의 믹서 출력 버퍼 16 표본을 조회해 기록한다.'), None),
-        ('CFX-073', 'update_FFT_inputData', u'HEAR 함수체인 출력 버퍼에 의존한다.', PREP_LIB,
-         (u'- 호출 전후의 주파수 분석 입력 버퍼를 조회해 자리 이동이 일어나는지 기록한다.'), None),
-        ('CFX-074', 'find_freq_rep_value', u'주파수 변환 체인(vMag) 출력에 의존한다.', PREP_LIB,
-         (u'- 변환 체인 출력과 산출된 대역 대표값을 함께 조회해 기록한다.'), None),
         ('CFX-078', 'calculate_logaritmMapping_coeff', u'dB 변환 라이브러리를 거친다.', PREP_LIB,
          (u'- 호출 후 로그 매핑 계수 A 와 B 를 조회해 기록한다.'), None),
         ('CFX-079', 'calculate_logaritmMapping_coeff_with_audioVolume',

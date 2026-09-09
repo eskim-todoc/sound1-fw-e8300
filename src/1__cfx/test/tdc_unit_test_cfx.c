@@ -23,7 +23,9 @@
 #include <agc.h>
 #include <nonlinearMapping.h>
 #include <stimulationStrategy.h>
+#include <FrequencyAnalysis.h>
 #include <definitionsForAlgorithm.h>
+#include <microcode.h>            /* HEAR_ADDR_AUDIO_MIX */
 
 #define TDC_UT_RESULT_MAX 256
 
@@ -177,11 +179,47 @@ static void tdc_ut_nofm_interleaving(void)
     }
 }
 
+/* ---------------------------------------------------------------- CFX-070
+ * 이득 계산 유닛 (calculate_agc_gain)
+ *
+ * 입력을 여덟 가지로 넣어 세 구간(잡음, 증폭, 감쇠)을 모두 지나가게 한다.
+ * 이어서 볼륨을 0, 5, 9 로 바꿔 절편과 기울기가 갈리는지 본다.
+ * 직전 이득이 상태로 남으므로 시험마다 0 으로 되돌린다.
+ */
+static void tdc_ut_agc_gain(void)
+{
+    static const int in_list[8]  = {1, 10, 100, 1000, 10000, 100000, 1000000, 8388607};
+    static const int vol_list[3] = {0, 5, 9};
+    int i;
+    int saved_volume;
+
+    tdc_ut_mark(70);
+
+    saved_volume   = m_audio_volume;
+    m_audio_volume = 0;
+
+    for (i = 0; i < 8; i++)
+    {
+        m_prev_agc_10db_gain_Q8_16 = 0;
+        tdc_ut_put(calculate_agc_gain(in_list[i]));
+    }
+
+    for (i = 0; i < 3; i++)
+    {
+        m_audio_volume             = vol_list[i];
+        m_prev_agc_10db_gain_Q8_16 = 0;
+        tdc_ut_put(calculate_agc_gain(100000));
+    }
+
+    m_audio_volume             = saved_volume;
+    m_prev_agc_10db_gain_Q8_16 = 0;
+}
+
 /* ---------------------------------------------------------------- CFX-081
  * 거듭제곱 계산 유닛 (calculate_x_power_p)
  *
- * 어셈블리 라이브러리(cfx_pwr_to_dB_asm, cfx_dB_to_pwr_asm)를 거치므로
- * 기댓값을 미리 낼 수 없다. 입력에 대한 출력을 그대로 기록해 둔다.
+ * dB 변환 수식이 SDK 헤더에 명세되어 있어 기댓값을 산출했다.
+ * 하드웨어 log2/exp2 유닛의 마지막 자리 오차만 남는다.
  */
 static void tdc_ut_x_power_p(void)
 {
@@ -197,17 +235,76 @@ static void tdc_ut_x_power_p(void)
     }
 }
 
+/* ---------------------------------------------------------------- CFX-072
+ * 이득 적용 유닛 (apply_agc_gain)
+ *
+ * 믹서 버퍼에 시험 벡터를 넣고 이득 세 가지로 호출한다.
+ * 이득 4096 은 선형 1.0 이므로 포화가 없는 한 입력이 그대로 나와야 한다.
+ * 이득 8192(선형 2.0)에서 24 비트 경계가 잘리는지 함께 본다.
+ */
+static void tdc_ut_apply_agc_gain(void)
+{
+    static const int vec[df_inputADC_DataBuffLength] = {
+        1000, -1000, 4000000, -4000000, 8388607, -8388608,
+        0, 1, -1, 100, -100, 32768, -32768, 500000, -500000, 12345};
+    static const int gain_list[3] = {4096, 2048, 8192};
+    int _XMEM *p_mix = (int _XMEM *) HEAR_ADDR_AUDIO_MIX;
+    int        g, i;
+
+    tdc_ut_mark(72);
+
+    for (g = 0; g < 3; g++)
+    {
+        for (i = 0; i < df_inputADC_DataBuffLength; i++)
+        {
+            p_mix[i] = vec[i];
+        }
+
+        apply_agc_gain(gain_list[g]);
+
+        for (i = 0; i < df_inputADC_DataBuffLength; i++)
+        {
+            tdc_ut_put(m_agc_output_buffer[i]);
+        }
+    }
+}
+
+/* ---------------------------------------------------------------- CFX-073
+ * 주파수 분석 입력 갱신 유닛 (update_FFT_inputData)
+ *
+ * AGC 출력 버퍼에 1 부터 16 을 넣고 호출한다. FIFO 에는 역순으로 들어가야 한다.
+ * 이 시험은 FIFO 를 조회해야 하므로 결과 배열에는 넣은 값만 남긴다.
+ */
+static void tdc_ut_update_fft_input(void)
+{
+    int i;
+
+    tdc_ut_mark(73);
+
+    for (i = 0; i < df_inputADC_DataBuffLength; i++)
+    {
+        m_agc_output_buffer[i] = i + 1;
+        tdc_ut_put(m_agc_output_buffer[i]);
+    }
+
+    update_FFT_inputData();
+    /* FIFO 기록 순서는 디버거에서 D_FIFO_A1_0 를 직접 조회해 확인한다. */
+}
+
 /* ---------------------------------------------------------------- 진입점 */
 void tdc_ut_run_all(void)
 {
     tdc_ut_count = 0;
     tdc_ut_done  = 0;
 
+    tdc_ut_agc_gain();                /* CFX-070 */
+    tdc_ut_apply_agc_gain();          /* CFX-072 */
+    tdc_ut_update_fft_input();        /* CFX-073 */
     tdc_ut_agc_attack_release();      /* CFX-071 */
     tdc_ut_nofm_init_buffers();       /* CFX-086 */
     tdc_ut_nofm_peak_pick();          /* CFX-087 */
     tdc_ut_nofm_interleaving();       /* CFX-088 */
-    tdc_ut_x_power_p();               /* CFX-081 (실측) */
+    tdc_ut_x_power_p();               /* CFX-081 */
 
     tdc_ut_done = 1;                  /* 여기에 중단점을 건다 */
 }
