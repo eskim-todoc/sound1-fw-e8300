@@ -11,6 +11,7 @@ from docx.oxml.ns import qn
 from docx.oxml import OxmlElement
 
 import cfx_units as CU
+import cm3_units as CM
 
 FONT = u'맑은 고딕'
 HDR_BG = 'D9D9D9'
@@ -379,6 +380,12 @@ FLOWMAP = {
     'cfx_dispatch': (u'그림6_CFX_신호디스패치.png', u'< 그림 6. CFX 신호 디스패치 항목 >'),
     'cfx_sp': (u'그림7_CFX_신호처리실행.png', u'< 그림 7. CFX 신호처리 실행 항목 >'),
     'cfx_pcm': (u'그림8_CFX_PCM제어.png', u'< 그림 8. CFX PCM 제어 항목 >'),
+    'cm3_init': (u'그림9_CM3_시스템초기화.png', u'< 그림 9. Cortex-M3 시스템 초기화 항목 >'),
+    'cm3_loop': (u'그림10_CM3_주제어.png', u'< 그림 10. Cortex-M3 주 제어 항목 >'),
+    'cm3_syscontrol': (u'그림11_CM3_시스템상태제어.png', u'< 그림 11. Cortex-M3 시스템 상태 제어 항목 >'),
+    'cm3_sleep': (u'그림12_CM3_저전력대기.png', u'< 그림 12. Cortex-M3 저전력 대기 항목 >'),
+    'cm3_isd': (u'그림13_CM3_내부기실행제어.png', u'< 그림 13. Cortex-M3 내부기 실행 제어 항목 >'),
+    'cm3_ble': (u'그림14_CM3_블루투스통신제어.png', u'< 그림 14. Cortex-M3 블루투스 통신 제어 항목 >'),
 }
 
 head(doc, u'4.', u'CFX Core 소프트웨어 상세 설계', 1)
@@ -386,46 +393,52 @@ para(doc, u'CFX Core 는 오디오 입력부터 자극 데이터 생성까지의
           u'하드웨어 브링업과 코어 기동은 부트로더가 수행하므로, CFX Core 의 초기화는 '
           u'오디오 경로와 인터페이스 설정부터 시작한다.')
 
-nsec = 0
-for modname, blocks in CU.CFX_SECTIONS:
-    nsec += 1
-    head(doc, u'4.%d.' % nsec, modname, 2)
-    nblk = 0
-    for blk in blocks:
-        nblk += 1
-        num = u'4.%d.%d.' % (nsec, nblk)
-        title = (u'%s, %s' % (blk['id'], blk['name'])) if blk['id'] else blk['name']
-        head(doc, num, title, 3)
-        para(doc, blk['intro'], 10, sb=2, sa=6)
-        if blk.get('flow'):
-            fn, cap = FLOWMAP[blk['flow']]
-            picture(doc, IMG + u'/' + fn, 11.4)
-            caption(doc, cap)
-        for k, u in enumerate(blk['units'], 1):
-            head(doc, u'%s%d.' % (num, k),
-                 u'SU-ID-CFX-%03d, %s' % (u['id'], u['name']), 4)
-            field(doc, u'입력 파라미터', u['inp'])
-            field(doc, u'반환 파라미터', u['ret'])
-            field(doc, u'수정 파라미터', u['mod'])
-            if u['xref']:
-                field(doc, u'참조', u['xref'])
-            field(doc, u'기능 및 동작', u'')
-            for dline in u['desc']:
-                bullet(doc, dline)
+def render_chapter(chap_no, sections, core):
+    nsec = 0
+    for modname, blocks in sections:
+        nsec += 1
+        head(doc, u'%d.%d.' % (chap_no, nsec), modname, 2)
+        nblk = 0
+        for blk in blocks:
+            nblk += 1
+            num = u'%d.%d.%d.' % (chap_no, nsec, nblk)
+            title = (u'%s, %s' % (blk['id'], blk['name'])) if blk['id'] else blk['name']
+            head(doc, num, title, 3)
+            para(doc, blk['intro'], 10, sb=2, sa=6)
+            if blk.get('flow'):
+                fn, cap = FLOWMAP[blk['flow']]
+                picture(doc, IMG + u'/' + fn, 11.4)
+                caption(doc, cap)
+            for k, u in enumerate(blk['units'], 1):
+                head(doc, u'%s%d.' % (num, k),
+                     u'SU-ID-%s-%03d, %s' % (core, u['id'], u['name']), 4)
+                field(doc, u'입력 파라미터', u['inp'])
+                field(doc, u'반환 파라미터', u['ret'])
+                field(doc, u'수정 파라미터', u['mod'])
+                if u.get('xref'):
+                    field(doc, u'참조', u['xref'])
+                field(doc, u'기능 및 동작', u'')
+                for dline in u['desc']:
+                    bullet(doc, dline)
+
+
+render_chapter(4, CU.CFX_SECTIONS, 'CFX')
 
 doc.add_page_break()
 
 # ---------------- 5~7 예정 장
-for num, title, note in [
-    (u'5.', u'Cortex-M3 소프트웨어 상세 설계',
-     u'본 장은 후속 단계에서 작성한다. 시스템 제어, 신호처리, 내부 자극 장치 실행, '
-     u'블루투스 통신 네 모듈의 항목과 유닛을 기술한다.'),
-    (u'6.', u'부트로더 소프트웨어 상세 설계',
-     u'본 장은 후속 단계에서 작성한다. 실행 이미지의 무결성 검증과 복호화, 코어 기동, '
-     u'무선 갱신 이미지의 수신과 적용에 관한 항목과 유닛을 기술한다.'),
-]:
-    head(doc, num, title, 1)
-    para(doc, note)
+head(doc, u'5.', u'Cortex-M3 소프트웨어 상세 설계', 1)
+para(doc, u'Cortex-M3 는 시스템 전체의 상태 관리와 외부 장치 제어를 담당한다. 입력을 모아 상태를 전이시키고 '
+          u'그 결과를 전원, 무선, 내부기, 표시에 반영한다. 하드웨어 브링업과 코어 기동은 부트로더가 '
+          u'수행하므로, Cortex-M3 의 초기화는 통신 인터페이스와 보조 장치 설정부터 시작한다.')
+render_chapter(5, CM.CM3_SECTIONS, 'CM3')
+
+doc.add_page_break()
+
+head(doc, u'6.', u'부트로더 소프트웨어 상세 설계', 1)
+para(doc, u'본 장은 후속 단계에서 작성한다. 기동 시 하드웨어 초기 설정과 동작 모드 판정, 실행 이미지의 '
+          u'무결성 검증과 복호화 및 적재, 코어 기동, 무선 갱신 이미지의 적용과 복구에 관한 항목과 유닛을 '
+          u'기술한다.')
 
 head(doc, u'7.', u'블루투스 콤보 칩셋 소프트웨어 상세 설계', 1)
 para(doc, u'블루투스 콤보 칩셋의 펌웨어는 본 문서의 범위에 포함되지 않는다. 해당 펌웨어는 별도의 개발 및 '
@@ -473,6 +486,7 @@ if not os.path.isdir(OUT):
     os.makedirs(OUT)
 path = OUT + u'/[02] %s 소프트웨어 상세 설계서.docx' % DOC_NO
 doc.save(path)
-n = sum(len(b['units']) for _, bs in CU.CFX_SECTIONS for b in bs)
+ncfx = sum(len(b['units']) for _, bs in CU.CFX_SECTIONS for b in bs)
+ncm3 = sum(len(b['units']) for _, bs in CM.CM3_SECTIONS for b in bs)
 print(u'SAVED: %s' % path)
-print(u'CFX 유닛 %d건' % n)
+print(u'CFX 유닛 %d건 / CM3 유닛 %d건 / 합계 %d건' % (ncfx, ncm3, ncfx + ncm3))

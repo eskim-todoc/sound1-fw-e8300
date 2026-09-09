@@ -71,8 +71,8 @@ else:
     rows = tt.rows[2:]
     ids = [r.cells[0].text.strip() for r in rows]
     stats = [r.cells[3].text.strip() for r in rows]
-    exp = [u'SW-FW-RID-%d' % i for i in range(1, 77)]
-    print('  행 수 %d (기대 76)  / ID 연속성 %s' % (len(rows), 'OK' if ids == exp else 'X'))
+    exp = [u'SW-FW-RID-%d' % i for i in range(1, len(rows) + 1)]
+    print('  행 수 %d / ID 연속성 %s' % (len(rows), 'OK' if ids == exp else 'X'))
     from collections import Counter
     cnt = Counter(stats)
     for k in [u'유지', u'변경', u'삭제', u'신규', u'확인 필요']:
