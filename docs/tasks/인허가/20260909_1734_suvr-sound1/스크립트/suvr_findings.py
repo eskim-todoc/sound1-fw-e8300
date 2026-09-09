@@ -489,3 +489,13 @@ import suvr_findings_cm3c as _CM3C
 merge(_CM3C.F)
 import suvr_findings_cm3d as _CM3D
 merge(_CM3D.F)
+import suvr_findings_cm3e as _CM3E
+merge(_CM3E.F)
+import suvr_findings_cm3f as _CM3F
+merge(_CM3F.F)
+import suvr_findings_cm3g as _CM3G
+merge(_CM3G.F)
+import suvr_findings_cm3h as _CM3H
+merge(_CM3H.F)
+import suvr_findings_cm3i as _CM3I
+merge(_CM3I.F)
