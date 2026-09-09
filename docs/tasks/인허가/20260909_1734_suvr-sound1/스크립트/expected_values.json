@@ -1,0 +1,298 @@
+[
+ {
+  "su": "CM3-112",
+  "fn": "data_clearBit",
+  "kind": "재현",
+  "note": "순수 비트 연산이라 전부 재현된다.",
+  "cases": [
+   {
+    "in": "Data=0xFFFF, bitPosition=0, bitLength=4",
+    "out": "0xFFF0"
+   },
+   {
+    "in": "Data=0xFFFF, bitPosition=4, bitLength=4",
+    "out": "0xFF0F"
+   },
+   {
+    "in": "Data=0x00FF, bitPosition=2, bitLength=3",
+    "out": "0x00E3"
+   },
+   {
+    "in": "Data=0x1234, bitPosition=8, bitLength=8",
+    "out": "0x0034"
+   },
+   {
+    "in": "Data=0xAAAA, bitPosition=1, bitLength=1",
+    "out": "0xAAA8"
+   }
+  ]
+ },
+ {
+  "su": "CM3-108",
+  "fn": "calculationNumFramePerOneChannle",
+  "kind": "재현",
+  "note": "duration = 2*pulsewidth + 4 + 10 이 41 의 몇 배인지로 정해진다.",
+  "cases": [
+   {
+    "in": "pulsewidth=10",
+    "out": "1"
+   },
+   {
+    "in": "pulsewidth=20",
+    "out": "2"
+   },
+   {
+    "in": "pulsewidth=25",
+    "out": "2"
+   },
+   {
+    "in": "pulsewidth=30",
+    "out": "2"
+   },
+   {
+    "in": "pulsewidth=40",
+    "out": "3"
+   },
+   {
+    "in": "pulsewidth=50",
+    "out": "3"
+   },
+   {
+    "in": "pulsewidth=60",
+    "out": "4"
+   }
+  ]
+ },
+ {
+  "su": "CM3-109",
+  "fn": "calculationTransferableChanneNum",
+  "kind": "재현",
+  "note": "활성 경로는 24 / numFramePerChannel 뿐이며 둘째 인자를 쓰지 않는다. 둘째 인자를 바꿔도 결과가 같아야 한다.",
+  "cases": [
+   {
+    "in": "numFramePerChannel=1, usableElectrodNum=16",
+    "out": "24"
+   },
+   {
+    "in": "numFramePerChannel=2, usableElectrodNum=16",
+    "out": "12"
+   },
+   {
+    "in": "numFramePerChannel=3, usableElectrodNum=16",
+    "out": "8"
+   },
+   {
+    "in": "numFramePerChannel=4, usableElectrodNum=22",
+    "out": "6"
+   },
+   {
+    "in": "numFramePerChannel=5, usableElectrodNum=22",
+    "out": "4"
+   },
+   {
+    "in": "numFramePerChannel=8, usableElectrodNum=22",
+    "out": "3"
+   }
+  ]
+ },
+ {
+  "su": "CM3-111",
+  "fn": "readDAC_offsetValue",
+  "kind": "상수",
+  "note": "상수 DAC_offset_uA 를 그대로 반환한다. 실기에서 그 값이 나오는지만 확인한다.",
+  "cases": [
+   {
+    "in": "없음",
+    "out": "DAC_offset_uA 정의값과 같아야 한다"
+   }
+  ]
+ },
+ {
+  "su": "CFX-071",
+  "fn": "audio_agc_attack_release",
+  "kind": "재현",
+  "note": "직전 이득이 내부 상태로 남는다. 시험 전에 직전 이득을 지정한 값으로 두어야 한다. 직전 <= 입력이면 릴리즈(계수 655), 아니면 어택(계수 62259) 경로다.",
+  "cases": [
+   {
+    "in": "직전 이득=0, 입력 이득=65536",
+    "out": "655 (릴리즈 경로)"
+   },
+   {
+    "in": "직전 이득=65536, 입력 이득=0",
+    "out": "3276 (어택 경로)"
+   },
+   {
+    "in": "직전 이득=65536, 입력 이득=131072",
+    "out": "66190 (릴리즈 경로)"
+   },
+   {
+    "in": "직전 이득=131072, 입력 이득=65536",
+    "out": "68811 (어택 경로)"
+   },
+   {
+    "in": "직전 이득=0, 입력 이득=0",
+    "out": "0 (릴리즈 경로)"
+   }
+  ]
+ },
+ {
+  "su": "CFX-087",
+  "fn": "stimulationStrategy_NofM_Peak_Pick",
+  "kind": "재현",
+  "note": "점수 = (진폭 << 5) | (31 - 색인). 같은 진폭이면 색인이 작은 쪽이 큰 점수를 가지므로 저주파가 보호된다. 결과는 색인 오름차순으로 나온다.",
+  "cases": [
+   {
+    "in": "진폭[i] = i*10 (0, 10, ... 310)",
+    "out": "[16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31]"
+   },
+   {
+    "in": "진폭 전부 100 (동점)",
+    "out": "[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]  (같은 크기면 저주파가 살아남는다)"
+   },
+   {
+    "in": "짝수 색인 200, 홀수 색인 5",
+    "out": "[0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30]"
+   },
+   {
+    "in": "색인 20 만 1000, 나머지 0",
+    "out": "[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 20]"
+   }
+  ]
+ },
+ {
+  "su": "CFX-088",
+  "fn": "stimulationStrategy_NofM_Interleaving",
+  "kind": "재현",
+  "note": "16 개를 앞 8 개와 뒤 8 개로 나눠 한 칸씩 번갈아 배치한다. 인접 전극이 잇달아 자극되지 않게 하는 처리다.",
+  "cases": [
+   {
+    "in": "입력 [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]",
+    "out": "[0, 8, 1, 9, 2, 10, 3, 11, 4, 12, 5, 13, 6, 14, 7, 15]"
+   },
+   {
+    "in": "앞 시험 «짝수 색인 200» 의 선택 결과 [0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30]",
+    "out": "[0, 16, 2, 18, 4, 20, 6, 22, 8, 24, 10, 26, 12, 28, 14, 30]"
+   }
+  ]
+ },
+ {
+  "su": "CFX-086",
+  "fn": "stimulationStrategy_NofM_Init_Buffers",
+  "kind": "재현",
+  "note": "선택 버퍼와 교차 버퍼 16 칸, 임시 버퍼 32 칸을 모두 -1 로 채운다.",
+  "cases": [
+   {
+    "in": "버퍼에 임의 값을 채워 둔 뒤 호출",
+    "out": "g_NofM_adjacent_BandIndex[0..15] = -1, g_NofM_notAdjacent_BandIndex[0..15] = -1, addr_stimulationTempBuff[0..31] = -1"
+   }
+  ]
+ },
+ {
+  "su": "CFX-081",
+  "fn": "calculate_x_power_p",
+  "kind": "실측",
+  "note": "cfx_pwr_to_dB_asm 과 cfx_dB_to_pwr_asm 어셈블리 라이브러리를 거친다. 기댓값을 지어내지 않는다. 은수님 실측값을 기록한다.",
+  "cases": [
+   {
+    "in": "시험 벡터 주입",
+    "out": "(실측 기록)"
+   }
+  ]
+ },
+ {
+  "su": "CFX-073",
+  "fn": "update_FFT_inputData",
+  "kind": "실측",
+  "note": "HEAR 함수체인 출력 버퍼에 의존한다. 기댓값을 지어내지 않는다. 은수님 실측값을 기록한다.",
+  "cases": [
+   {
+    "in": "시험 벡터 주입",
+    "out": "(실측 기록)"
+   }
+  ]
+ },
+ {
+  "su": "CFX-074",
+  "fn": "find_freq_rep_value",
+  "kind": "실측",
+  "note": "주파수 변환 체인(vMag) 출력에 의존한다. 기댓값을 지어내지 않는다. 은수님 실측값을 기록한다.",
+  "cases": [
+   {
+    "in": "시험 벡터 주입",
+    "out": "(실측 기록)"
+   }
+  ]
+ },
+ {
+  "su": "CFX-069",
+  "fn": "audio_agc",
+  "kind": "실측",
+  "note": "전처리 체인이 만든 최대값 버퍼에 의존한다. 기댓값을 지어내지 않는다. 은수님 실측값을 기록한다.",
+  "cases": [
+   {
+    "in": "시험 벡터 주입",
+    "out": "(실측 기록)"
+   }
+  ]
+ },
+ {
+  "su": "CFX-070",
+  "fn": "calculate_agc_gain",
+  "kind": "실측",
+  "note": "입력이 전처리 체인 출력이며 dB 변환 라이브러리를 거친다. 기댓값을 지어내지 않는다. 은수님 실측값을 기록한다.",
+  "cases": [
+   {
+    "in": "시험 벡터 주입",
+    "out": "(실측 기록)"
+   }
+  ]
+ },
+ {
+  "su": "CFX-072",
+  "fn": "apply_agc_gain",
+  "kind": "실측",
+  "note": "믹서 출력 버퍼 전체에 적용된다. 기댓값을 지어내지 않는다. 은수님 실측값을 기록한다.",
+  "cases": [
+   {
+    "in": "시험 벡터 주입",
+    "out": "(실측 기록)"
+   }
+  ]
+ },
+ {
+  "su": "CFX-078",
+  "fn": "calculate_logaritmMapping_coeff",
+  "kind": "실측",
+  "note": "dB 변환 라이브러리를 거친다. 기댓값을 지어내지 않는다. 은수님 실측값을 기록한다.",
+  "cases": [
+   {
+    "in": "시험 벡터 주입",
+    "out": "(실측 기록)"
+   }
+  ]
+ },
+ {
+  "su": "CFX-079",
+  "fn": "calculate_logaritmMapping_coeff_with_audioVolume",
+  "kind": "실측",
+  "note": "같은 라이브러리를 거친다. 기댓값을 지어내지 않는다. 은수님 실측값을 기록한다.",
+  "cases": [
+   {
+    "in": "시험 벡터 주입",
+    "out": "(실측 기록)"
+   }
+  ]
+ },
+ {
+  "su": "CM3-110",
+  "fn": "setting_stimulationRange",
+  "kind": "실측",
+  "note": "출력단 보정 설정과 맵 데이터에 의존한다. 기댓값을 지어내지 않는다. 은수님 실측값을 기록한다.",
+  "cases": [
+   {
+    "in": "시험 벡터 주입",
+    "out": "(실측 기록)"
+   }
+  ]
+ }
+]
