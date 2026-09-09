@@ -207,6 +207,152 @@ def hear_max_element(vec):
     return max(vec)
 
 
+# ------------------------------------------------------------------ 비선형 매핑
+# 맵 데이터를 시험용 상수로 고정하면 이 계통도 전부 결정적이다.
+
+MAX_OUTPUT_VOLUME_RATIO_Q2_22 = [2936012, 3355443, 3774873, 4194304]   # nonlinearMapping.c:26
+AUDIO_VOLUME_LINEAR_GAIN_Q9_15 = [32768, 46955, 68657, 100391, 146792,
+                                  214639, 313846, 458905, 671011, 981153]  # nonlinearMapping.c:35
+NUM_ELECTRODE = 32
+
+
+def cfx_div_m24p24(dividend_frac24, divisor_frac24):
+    """SDK sk5_cfx_dsp_math_accelerator.h:275.
+
+    frac24 를 frac24 로 나눠 m24p24 로 낸다.
+    frac24 는 값/2^23, m24p24 는 값/2^24 다.
+      몫(실수) = dividend/2^23 / (divisor/2^23) = dividend/divisor
+      m24p24 표현 = 몫 * 2^24
+    """
+    if divisor_frac24 == 0:
+        return 0
+    q = float(dividend_frac24) / float(divisor_frac24)
+    return int(q * (1 << 24))
+
+
+def calculate_newStimulation_maxLevel(c_level, t_level, stimulation_volume):
+    """nonlinearMapping.c:210.
+
+    (C - T) 에 볼륨 비율을 곱해 동적 범위를 구하고 T 를 더해 새 C 를 만든다.
+    새 C 는 원래 C 와 T 사이로 잘린다.
+    """
+    ratio = MAX_OUTPUT_VOLUME_RATIO_Q2_22[stimulation_volume - 1]
+    out = []
+    for i in range(len(c_level)):
+        C, T = c_level[i], t_level[i]
+        acc = ((C - T) * ratio) >> 22
+        acc = sat24(acc)
+        new_C = T + acc
+        if C < new_C:
+            new_C = C
+        elif new_C < T:
+            new_C = T
+        out.append(new_C)
+    return out
+
+
+def calculate_logaritmMapping_coeff(x_min, x_max, c_limit, t_level):
+    """nonlinearMapping.c:268.
+
+    A = (C - T) << 13 을 (xMax^p - xMin^p) 로 나눈 뒤 13 비트 내린 값
+    B = (C << 8) - (A * xMax^p >> 16)
+    반환: (A 배열, B 배열)
+    """
+    A, B = [], []
+    for i in range(len(x_min)):
+        xmax_p = calculate_x_power_p(x_max[i])
+        xmin_p = calculate_x_power_p(x_min[i])
+        xp_diff = xmax_p - xmin_p
+        y_diff = (c_limit[i] - t_level[i]) << 13
+        acc = cfx_div_m24p24(y_diff, xp_diff) >> 13
+        acc = sat24(acc)
+        a = acc
+        acc = (a * xmax_p) >> 16
+        acc = (c_limit[i] << 8) - acc
+        acc = sat24(acc)
+        A.append(a)
+        B.append(acc)
+    return A, B
+
+
+def audio_volume_scaled_xlevel(x_level, audio_volume):
+    """nonlinearMapping.c:372. xMin/xMax 에 오디오 볼륨 선형 이득을 곱하고 15 비트 내린다."""
+    g = AUDIO_VOLUME_LINEAR_GAIN_Q9_15[audio_volume]
+    return [sat24((g * v) >> 15) for v in x_level]
+
+
+# ------------------------------------------------------------------ 자극 패킷
+PCM_MOLD_STIMULATION = 0x40000          # driver_PCM.h:41
+FIRST_PULSE_PHASE_POS = 15              # driver_PCM.h:48
+ELECTRODE_INDEX_POS = 10                # driver_PCM.h:49
+STIMULATION_POS = 2                     # driver_PCM.h:50
+PCM_MOLD_NOP_STANDBY = 0x25555          # driver_PCM.h:35
+STRATEGY_CIS = 1                        # definitionsForAlgorithm.h:155
+STRATEGY_NOFM = 2                       # definitionsForAlgorithm.h:156
+MAX_TRANSFERABLE_CH = 24
+
+
+def prepare_pcm_stimulation_header(first_pulse_phase):
+    """stimulationStrategy.c:36. 자극 몰드에 선행 펄스 위상을 15 비트 자리로 얹는다."""
+    return PCM_MOLD_STIMULATION | (first_pulse_phase << FIRST_PULSE_PHASE_POS)
+
+
+def nofm_packet_start_index(not_adjacent, prev_last_stim):
+    """stimulationStrategy.c:301 의 시작 방향 판정.
+
+    직전 자극 전극에서 교차 배열의 처음과 끝 중 어느 쪽이 먼지 재어,
+    먼 쪽이 끝이면 앞에서(0), 먼 쪽이 처음이면 뒤에서(15) 시작한다.
+    반환: (시작 색인, 갱신될 직전 자극 전극)
+    """
+    max_idx = len(not_adjacent) - 1
+    first_e = not_adjacent[0]
+    last_e = not_adjacent[max_idx]
+    d_first = abs(first_e - prev_last_stim)
+    d_last = abs(last_e - prev_last_stim)
+    start = max_idx if d_last > d_first else 0
+    new_last = last_e if start == 0 else not_adjacent[len(not_adjacent) - 2]
+    return start, new_last
+
+
+def nofm_pcm_write(temp_buff, frame_num_per_channel, transferable_ch,
+                   transferred_index=0, num_nofm=16):
+    """stimulationStrategy.c:387.
+
+    먼저 24 칸을 대기 몰드로 채운 뒤, stride 간격으로 자극을 얹는다.
+    FIFO 는 감소 방향이므로 배열 앞이 FIFO 위쪽이다.
+    반환: (PCM 버퍼 24 칸, 갱신된 전송 색인)
+    """
+    buf = [PCM_MOLD_NOP_STANDBY] * MAX_TRANSFERABLE_CH
+    stride = frame_num_per_channel
+    pos = 0
+    idx = transferred_index
+    if num_nofm < transferable_ch:
+        for _ in range(num_nofm):
+            if 0 <= pos < MAX_TRANSFERABLE_CH:
+                buf[pos] = temp_buff[idx]
+            pos += stride
+            idx += 1
+        idx = 0
+    else:
+        for _ in range(transferable_ch):
+            if 0 <= pos < MAX_TRANSFERABLE_CH:
+                buf[pos] = temp_buff[idx]
+            pos += stride
+            idx += 1
+            if idx >= num_nofm:
+                idx = 0
+    return buf, idx
+
+
+def stimulation_strategy_branch(strategy):
+    """stimulationStrategy.c:42. 맵의 자극 기법으로 갈린다."""
+    if strategy == STRATEGY_CIS:
+        return u'대역 대표값 산출 -> 로그 매핑 -> CIS 자극 기법'
+    if strategy == STRATEGY_NOFM:
+        return u'NofM 자극 기법'
+    return u'아무 것도 하지 않는다'
+
+
 if __name__ == '__main__':
     import io, sys
     sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')

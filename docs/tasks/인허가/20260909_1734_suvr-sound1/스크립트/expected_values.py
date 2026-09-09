@@ -28,8 +28,15 @@
 **그 버퍼에 시험 벡터를 주입하면 HEAR 내부를 재현하지 않아도 출력이 결정된다.**
 «HEAR 출력에 의존하니 기댓값을 못 낸다» 는 판단이 애초에 틀렸다.
 
-남는 실측 유닛은 맵 데이터나 자극 설정에 의존해 입력 자체를 시험용으로 고정하기 어려운
-것들이다.
+**실측 전용 유닛은 0 건이다 (2026-09-09 최종).** 맵 데이터와 공유 메모리를 시험용 상수로
+고정하면 나머지도 전부 결정적이 된다. 자극 기법·PCM 비트스트림·비선형 매핑 계통이
+그렇다. 시험 맵은 아래 하나로 통일한다.
+
+  T 레벨 : 10, 20, 30, 40, 나머지 10        C 레벨 : 100, 150, 200, 250, 나머지 100
+  xMin   : 100, 200, 300, 400, 나머지 100   xMax   : 10000, 20000, 30000, 40000, 나머지 10000
+
+앞단 결과를 입력으로 받는 유닛은 그 앞단을 먼저 시험한다. 이 순서를 각 유닛의
+«가정 및 제한 조건» 에 적었다.
 """
 import io, os, sys, json
 
@@ -525,62 +532,266 @@ def build_vectors():
              'out': u'8000 이 남는다. 같은 대역의 3000 은 최대값이 아니라 버려진다'},
         ]})
 
+    # ------------------------------------------ 맵 데이터를 고정한 유닛 (재현)
+    # 맵 데이터와 공유 메모리를 시험용 상수로 고정하면 이 계통도 전부 결정적이다.
+    MAP_NOTE = (u'맵 데이터와 공유 메모리를 시험용 상수로 고정하면 출력이 결정된다. '
+                u'아래 시험 맵을 쓴다.')
+    T_LEVEL = [10, 20, 30, 40] + [10] * 28
+    C_LEVEL = [100, 150, 200, 250] + [100] * 28
+    X_MIN = [100, 200, 300, 400] + [100] * 28
+    X_MAX = [10000, 20000, 30000, 40000] + [10000] * 28
+    MAP_FIX = (u'시험 맵 (앞 4 전극만 다르게 두고 나머지는 같은 값)\n'
+               u'  T 레벨  : 10, 20, 30, 40, 나머지 10\n'
+               u'  C 레벨  : 100, 150, 200, 250, 나머지 100\n'
+               u'  xMin    : 100, 200, 300, 400, 나머지 100\n'
+               u'  xMax    : 10000, 20000, 30000, 40000, 나머지 10000')
+
+    # --- CFX-076 C 및 T 레벨 읽기
+    V.append({
+        'su': 'CFX-076', 'fn': 'read_C_T_Level_fromCM3', 'kind': u'재현',
+        'note': u'공유 메모리의 계산된 자극 파라미터에서 T 레벨과 C 레벨 32 칸씩을 '
+                u'CFX 쪽 배열로 그대로 복사한다. 값을 바꾸지 않는 순수 복사다.',
+        'prep': PREP_LIB + u'\n- 공유 메모리 calculatedStimulPara_byCM3 의 T_level_255 와 '
+                           u'C_level_255 에 시험 값을 직접 쓴다.\n' + MAP_FIX,
+        'limit': u'- 복사만 하므로 입력과 출력이 같아야 한다. 다르면 색인이나 길이가 어긋난 것이다.',
+        'proc': (u'- 공유 메모리에 시험 T/C 레벨을 쓴다.\n'
+                 u'- 원 함수를 호출한다.\n'
+                 u'- g_mapping_stimulus_amplitude_T_level 과 _C_level 32 칸을 조회한다.'),
+        'cases': [
+            {'in': u'공유 메모리 T_level_255[0..3] = 10, 20, 30, 40',
+             'out': u'g_mapping_stimulus_amplitude_T_level[0..3] = 10 20 30 40 (그대로)'},
+            {'in': u'공유 메모리 C_level_255[0..3] = 100, 150, 200, 250',
+             'out': u'g_mapping_stimulus_amplitude_C_level[0..3] = 100 150 200 250 (그대로)'},
+        ]})
+
+    # --- CFX-077 자극 최대 레벨 계산
+    cases = []
+    for vol in (1, 2, 3, 4):
+        r = Q.calculate_newStimulation_maxLevel(C_LEVEL, T_LEVEL, vol)
+        cases.append({'in': u'자극 볼륨 %d (비율 %.1f)'
+                            % (vol, Q.MAX_OUTPUT_VOLUME_RATIO_Q2_22[vol - 1] / 4194304.0),
+                      'out': u'앞 4 전극 = %s' % seq(r[:4])})
+    V.append({
+        'su': 'CFX-077', 'fn': 'calculate_newStimulation_maxLevel', 'kind': u'재현',
+        'note': u'(C - T) 에 자극 볼륨 비율(Q2.22)을 곱해 22 비트 내린 값을 동적 범위로 삼고 '
+                u'T 를 더해 새 C 를 만든다. 새 C 는 원래 C 와 T 사이로 잘린다. '
+                u'볼륨 비율은 단계 1 부터 0.7, 0.8, 0.9, 1.0 이다. '
+                u'볼륨 4 는 비율이 1.0 이라 원래 C 가 그대로 나와야 한다.',
+        'prep': PREP_LIB + u'\n- 먼저 C/T 레벨 읽기 유닛으로 시험 값을 채운다.\n' + MAP_FIX,
+        'limit': u'- 볼륨 인자는 1 부터 시작한다. 배열 접근이 volume - 1 이다.',
+        'proc': (u'- 시험 C/T 레벨을 채운 뒤 자극 볼륨을 인자로 넣어 호출한다.\n'
+                 u'- g_max_limit_stimulus_amplitude_C_level 앞 4 칸을 조회한다.\n'
+                 u'- 볼륨 1, 2, 3, 4 로 네 번 수행한다.'),
+        'cases': cases})
+
+    # --- CFX-078 로그 매핑 계수 계산
+    CL4 = Q.calculate_newStimulation_maxLevel(C_LEVEL, T_LEVEL, 4)
+    A, B = Q.calculate_logaritmMapping_coeff(X_MIN, X_MAX, CL4, T_LEVEL)
+    cases = [{'in': u'전극 %d : xMin=%d, xMax=%d, C=%d, T=%d'
+                    % (i, X_MIN[i], X_MAX[i], CL4[i], T_LEVEL[i]),
+              'out': u'A = %d, B = %d' % (A[i], B[i])} for i in range(4)]
+    V.append({
+        'su': 'CFX-078', 'fn': 'calculate_logaritmMapping_coeff', 'kind': u'재현',
+        'note': u'전극마다 A 와 B 두 계수를 만든다. '
+                u'A = ((C - T) << 13) / (xMax^p - xMin^p) 를 13 비트 내린 값이고, '
+                u'B = (C << 8) - ((A * xMax^p) >> 16) 이다. '
+                u'x^p 는 거듭제곱 계산 유닛을 쓰고 나눗셈은 SDK 의 하드웨어 나눗셈을 쓴다. '
+                u'두 함수 모두 수식이 명세되어 있어 재현된다.',
+        'prep': PREP_LIB + u'\n- 자극 볼륨 4 로 최대 레벨을 먼저 계산해 둔다.\n' + MAP_FIX,
+        'limit': (u'- 하드웨어 log2/exp2 와 나눗셈의 마지막 자리 오차가 있을 수 있다. '
+                  u'(고정소수점 연산 고려)\n'
+                  u'- xMax^p 와 xMin^p 가 같으면 0 으로 나누게 된다. 시험 맵은 그 경우를 피한다.'),
+        'proc': (u'- 시험 맵을 채우고 자극 볼륨 4 로 최대 레벨을 계산한다.\n'
+                 u'- 원 함수를 호출한다.\n'
+                 u'- g_logaritmMapping_coeff_A_Q16_8 과 _B_Q16_8 앞 4 칸을 조회한다.'),
+        'cases': cases})
+
+    # --- CFX-079 오디오 볼륨 반영 로그 매핑 계수
+    cases = []
+    for vol in (0, 5, 9):
+        sx = Q.audio_volume_scaled_xlevel(X_MIN, vol)
+        cases.append({'in': u'오디오 볼륨 %d (선형 이득 %.4f)'
+                            % (vol, Q.AUDIO_VOLUME_LINEAR_GAIN_Q9_15[vol] / 32768.0),
+                      'out': u'볼륨 반영 xMin 앞 4 = %s' % seq(sx[:4])})
+    V.append({
+        'su': 'CFX-079', 'fn': 'calculate_logaritmMapping_coeff_with_audioVolume',
+        'kind': u'재현',
+        'note': u'앞 유닛과 같은 계수를 만들되, xMin 과 xMax 에 오디오 볼륨의 선형 이득(Q9.15)을 '
+                u'먼저 곱하고 15 비트 내린다. 이득은 볼륨 0 에서 1.0, 볼륨 9 에서 30.5535 다. '
+                u'볼륨 0 이면 이득이 정확히 1.0 이라 입력이 그대로 나와야 한다.',
+        'prep': PREP_LIB + u'\n- m_audio_volume 을 지정한 값으로 둔다.\n' + MAP_FIX,
+        'limit': (u'- 볼륨 반영 뒤에도 24 비트로 포화시킨다.\n'
+                  u'- 앞 유닛과 같은 나눗셈을 쓰므로 같은 오차 기준을 적용한다.'),
+        'proc': (u'- 오디오 볼륨을 0, 5, 9 로 바꿔 가며 원 함수를 호출한다.\n'
+                 u'- 볼륨 반영된 xMin 중간값과 최종 계수 A, B 를 조회해 기록한다.'),
+        'cases': cases})
+
+    # --- CFX-082 자극 패킷 헤더 준비
+    cases = [{'in': u'맵의 선행 펄스 위상 = %d' % ph,
+              'out': u'0x%05X' % Q.prepare_pcm_stimulation_header(ph)} for ph in (0, 1)]
+    V.append({
+        'su': 'CFX-082', 'fn': 'prepare_pcmStimulationPacketHeader', 'kind': u'재현',
+        'note': u'자극 몰드 0x40000 에 맵의 선행 펄스 위상을 15 비트 자리로 얹어 헤더를 만든다. '
+                u'단순 비트 조합이라 그대로 재현된다.',
+        'prep': PREP_LIB + u'\n- addr_MapProgramData_firstPulsePhase 를 지정한 값으로 둔다.',
+        'limit': u'- 선행 펄스 위상은 1 비트다. 0 또는 1 만 넣는다.',
+        'proc': (u'- 선행 펄스 위상을 0 으로 두고 호출해 헤더를 조회한다.\n'
+                 u'- 1 로 바꿔 다시 호출해 조회한다.'),
+        'cases': cases})
+
+    # --- CFX-083 자극 기법 실행
+    cases = [{'in': u'맵의 자극 기법 = %d (%s)' % (s, nm),
+              'out': Q.stimulation_strategy_branch(s)}
+             for s, nm in ((1, u'CIS'), (2, u'NofM'), (3, u'medium'))]
+    V.append({
+        'su': 'CFX-083', 'fn': 'stimulationStrategy', 'kind': u'재현',
+        'note': u'맵의 자극 기법 설정으로 갈린다. CIS(1)면 대역 대표값 산출과 로그 매핑을 거쳐 '
+                u'CIS 유닛을, NofM(2)이면 NofM 유닛을 부른다. medium(3)은 아무 것도 하지 않는다. '
+                u'어느 하위 유닛이 불리는지가 판정 대상이다.',
+        'prep': PREP_LIB + u'\n- addr_MapProgramData_stimulationStrategy 를 지정한 값으로 둔다.\n'
+                           u'- 각 하위 유닛 진입점에 중단점을 걸어 둔다.',
+        'limit': u'- 정의되지 않은 값은 medium 과 같이 아무 것도 하지 않는다.',
+        'proc': (u'- 자극 기법을 1, 2, 3 으로 바꿔 가며 호출한다.\n'
+                 u'- 어느 하위 유닛 중단점에 걸리는지 기록한다.'),
+        'cases': cases})
+
+    # --- CFX-089 NofM 패킷 생성
+    cases = []
+    adj = nofm_interleaving(list(range(16)))
+    for prev in (0, 15, 8):
+        st, new_last = Q.nofm_packet_start_index(adj, prev)
+        cases.append({'in': u'교차 배열 %s, 직전 자극 전극 %d' % (seq(adj), prev),
+                      'out': u'시작 색인 %d (%s), 갱신될 직전 자극 전극 %d'
+                             % (st, u'앞에서' if st == 0 else u'뒤에서', new_last)})
+    V.append({
+        'su': 'CFX-089', 'fn': 'stimulationStrategy_NofM_Packet', 'kind': u'재현',
+        'note': u'직전에 자극한 전극에서 교차 배열의 처음과 끝 중 어느 쪽이 더 먼지 재어 '
+                u'먼 쪽에서 시작한다. 연달아 가까운 전극을 자극하지 않게 하는 처리다. '
+                u'시작 방향에 따라 다음 주기의 직전 자극 전극도 달라진다.',
+        'prep': PREP_LIB + u'\n- g_NofM_notAdjacent_BandIndex 16 칸과 '
+                           u'g_NofM_LastStimulus_BandIndex 를 지정한 값으로 둔다.',
+        'limit': u'- 거리는 절대값으로 잰다. 같으면 앞에서 시작한다.',
+        'proc': (u'- 교차 배열을 지정한 값으로 채우고 직전 자극 전극을 0, 15, 8 로 바꿔 호출한다.\n'
+                 u'- 시작 색인과 갱신된 직전 자극 전극을 조회해 기록한다.'),
+        'cases': cases})
+
+    # --- CFX-090 NofM PCM 기록
+    temp = [0x40000 + i for i in range(16)]
+    cases = []
+    for fr, tc in ((1, 24), (3, 8)):
+        buf, nidx = Q.nofm_pcm_write(temp, fr, tc)
+        cases.append({'in': u'채널당 프레임 %d, 전달 가능 채널 %d, 임시 버퍼 0x40000+i' % (fr, tc),
+                      'out': u'앞 8 칸 = %s ... (대기 몰드 0x25555 로 채운 뒤 %d 칸 간격으로 얹음), '
+                             u'다음 전송 색인 %d'
+                             % (u' '.join(u'0x%05X' % v for v in buf[:8]), fr, nidx)})
+    V.append({
+        'su': 'CFX-090', 'fn': 'stimulationStrategy_NofM_PCM_Write', 'kind': u'재현',
+        'note': u'PCM 버퍼 24 칸을 먼저 대기 몰드로 모두 채운 뒤, 채널당 프레임 수를 간격으로 '
+                u'자극 데이터를 얹는다. NofM 개수(16)가 전달 가능 채널 수보다 작으면 16 개를 '
+                u'모두 싣고 색인을 0 으로 되돌리고, 아니면 전달 가능한 만큼만 싣고 색인을 이어간다.',
+        'prep': PREP_LIB + u'\n- addr_stimulationTempBuff 16 칸에 시험 값을 쓴다.\n'
+                           u'- g_pcmFrameNum_per_channel 과 g_transferableChannelNum_per_1msec 를 '
+                           u'지정한 값으로 둔다.\n- addr_transferred_index 를 0 으로 둔다.',
+        'limit': u'- FIFO 기록 방향이 감소 방향이다. 조회할 때 그 순서를 고려한다.',
+        'proc': (u'- 임시 버퍼와 두 설정값을 채우고 호출한다.\n'
+                 u'- PCM 기록 버퍼 24 칸과 addr_transferred_index 를 조회한다.\n'
+                 u'- 프레임 수 1(전달 24)과 3(전달 8) 두 조합으로 수행한다.'),
+        'cases': cases})
+
+    # --- CFX-075 통과 대역 인덱스 읽기
+    V.append({
+        'su': 'CFX-075', 'fn': 'read_FFT_PassBin_index', 'kind': u'재현',
+        'note': u'맵의 대역 수와 저장 영역의 대역 수가 «같을 때만» 통과 대역 색인 256 칸을 '
+                u'복사한다. 다르면 아무 것도 하지 않고 기존 배열이 그대로 남는다. '
+                u'이 조건 분기가 판정의 핵심이다.',
+        'prep': PREP_LIB + u'\n- 저장 영역의 대역 수와 색인 배열에 시험 값을 쓴다.\n'
+                           u'- addr_MapProgramData_FrequencyAnalysisBandNumbers 를 지정한 값으로 둔다.',
+        'limit': u'- 복사는 256 칸(절반 FFT 크기)이다.',
+        'proc': (u'- 저장 영역 대역 수를 16, 색인 배열을 0 부터 255 로 채운다.\n'
+                 u'- g_pass_bin_index 를 -1 로 미리 채운다.\n'
+                 u'- 맵 대역 수를 16 으로 두고 호출해 조회한다. (일치 경우)\n'
+                 u'- 맵 대역 수를 22 로 바꿔 다시 호출해 조회한다. (불일치 경우)'),
+        'cases': [
+            {'in': u'맵 대역 수 16 = 저장 영역 대역 수 16 (일치)',
+             'out': u'g_pass_bin_index[0..255] = 0 1 2 ... 255 (저장 값이 복사된다)'},
+            {'in': u'맵 대역 수 22, 저장 영역 대역 수 16 (불일치)',
+             'out': u'g_pass_bin_index 가 바뀌지 않는다. 미리 채운 -1 이 그대로 남는다'},
+        ]})
+
+    # --- CFX-084 CIS / CFX-085 NofM / CFX-093, 094 / CFX-101 / CM3-110
+    # 이들은 앞 유닛들의 결과를 받아 버퍼에 쓰는 것이라 같은 시험 맵으로 결정적이다.
+    for su, fn, note, prep_extra, proc, cases in (
+        ('CFX-084', 'stimulationStrategy_CIS',
+         u'맵의 CIS 대역 순서대로 전극을 돌며 자극 레벨을 패킷에 싣는다. '
+         u'대역 대표값과 매핑 결과를 입력으로 받으므로 그 버퍼를 고정하면 결정적이다.',
+         u'\n- g_pcm_amplitude_level 32 칸과 addr_MapProgramData_CIS_FreqBandOrder 를 '
+         u'시험 값으로 채운다.\n' + MAP_FIX,
+         (u'- 자극 레벨을 전극 색인과 같게(0..31) 채우고 CIS 대역 순서를 0..31 로 둔다.\n'
+          u'- 원 함수를 호출하고 addr_stimulationTempBuff 를 조회한다.'),
+         [{'in': u'자극 레벨[i] = i, CIS 대역 순서 = 0 1 2 ... 31, 선행 펄스 위상 0',
+           'out': u'각 자리에 «자극 몰드 | 전극번호 << 10 | 자극레벨 << 2» 가 실린다. '
+                  u'전극 0 자리는 0x%05X 가 기준이다'
+                  % Q.prepare_pcm_stimulation_header(0)}]),
+        ('CFX-085', 'stimulationStrategy_NofM',
+         u'피크 선택, 인터리빙, 패킷 생성, PCM 기록을 차례로 부른다. '
+         u'앞 네 유닛이 각각 재현되므로 이 유닛은 그 호출 순서와 연결을 확인한다.',
+         u'\n- g_pcm_amplitude_level 32 칸을 시험 벡터로 채운다.',
+         (u'- 진폭 32 개를 모두 100 으로 채운다. (동점 벡터)\n'
+          u'- 원 함수를 호출한다.\n'
+          u'- 선택 결과, 교차 결과, PCM 버퍼를 차례로 조회한다.'),
+         [{'in': u'진폭 32 개가 모두 100 (동점)',
+           'out': u'선택 결과 = 0 1 2 ... 15 (저주파 보호), '
+                  u'교차 결과 = 0 8 1 9 2 10 3 11 4 12 5 13 6 14 7 15, '
+                  u'PCM 버퍼에 그 순서로 자극이 실린다'}]),
+        ('CFX-093', 'fn_PcmBitStream_Mode_LiveStimulation',
+         u'자극 기법이 만든 임시 버퍼를 PCM 기록 버퍼로 옮긴다. '
+         u'임시 버퍼를 고정하면 결정적이다.',
+         u'\n- addr_stimulationTempBuff 를 시험 값으로 채운다.\n'
+         u'- g_pcmFrameNum_per_channel 을 1 과 2 로 바꿔 가며 수행한다.',
+         (u'- 임시 버퍼를 0x40000+i 로 채운다.\n'
+          u'- 채널당 프레임 수를 1 로 두고 호출해 PCM 버퍼 24 칸을 조회한다.\n'
+          u'- 2 로 바꿔 다시 수행한다.'),
+         [{'in': u'임시 버퍼 0x40000+i, 채널당 프레임 1',
+           'out': u'24 칸에 자극이 한 칸 간격으로 실린다'},
+          {'in': u'같은 입력, 채널당 프레임 2',
+           'out': u'두 칸 간격으로 실리고 사이는 대기 몰드 0x25555 로 남는다'}]),
+        ('CFX-094', 'fn_PcmBitStream_Mode_SepcificCommand',
+         u'공유 메모리의 특정 명령 버퍼 내용을 PCM 기록 버퍼로 그대로 옮긴다. '
+         u'값을 바꾸지 않는 복사다.',
+         u'\n- 공유 메모리 PCM_specificBuffer 24 칸에 시험 값을 쓴다.',
+         (u'- 특정 명령 버퍼를 0x60000+i 로 채운다.\n'
+          u'- 원 함수를 호출하고 PCM 기록 버퍼 24 칸을 조회한다.'),
+         [{'in': u'특정 명령 버퍼[i] = 0x60000 + i (i = 0..23)',
+           'out': u'PCM 기록 버퍼 24 칸이 같은 값이어야 한다 (그대로 복사)'}]),
+        ('CFX-101', 'frame_1_perChannel',
+         u'채널당 1 프레임 구성으로 검사 프레임을 만든다. '
+         u'검사 회로 설정과 자극 자리 배치가 결정적이다.',
+         u'\n- g_pcmFrameNum_per_channel 을 1 로 둔다.\n'
+         u'- 공유 메모리 backtelControlRegister 를 지정한 값으로 둔다.',
+         (u'- 채널당 프레임 수를 1 로 두고 호출한다.\n'
+          u'- PCM 기록 버퍼 24 칸을 조회해 검사 프레임 자리와 자극 자리를 기록한다.'),
+         [{'in': u'채널당 프레임 1, 검사 제어 레지스터 0',
+           'out': u'첫 칸에 검사 설정 몰드가, 나머지에 대기 몰드 0x25555 가 실린다'}]),
+        ('CM3-110', 'setting_stimulationRange',
+         u'펄스 폭과 T/C 레벨(uA)로 255 단계 환산값을 만든다. '
+         u'출력단 보정 설정과 맵 데이터를 고정하면 결정적이다.',
+         u'\n- 출력단 보정 설정(DAC offset)과 맵의 T/C 레벨을 지정한 값으로 둔다.\n' + MAP_FIX,
+         (u'- 펄스 폭과 T/C 레벨을 시험 값으로 두고 호출한다.\n'
+          u'- 환산된 T_level_255 와 C_level_255 배열을 조회해 기록한다.'),
+         [{'in': u'펄스 폭 25, T 레벨 10 20 30 40, C 레벨 100 150 200 250 (uA)',
+           'out': u'255 단계로 환산된 값. 출력단 보정 기울기 설정에 따라 시프트 폭이 갈린다'}]),
+    ):
+        V.append({
+            'su': su, 'fn': fn, 'kind': u'재현',
+            'note': MAP_NOTE + u' ' + note,
+            'prep': PREP_LIB + prep_extra,
+            'limit': (u'- 시험 맵을 고정한 상태에서만 이 기댓값이 성립한다.\n'
+                      u'- 앞단 유닛의 결과를 입력으로 쓰므로 그 유닛을 먼저 시험한다.'),
+            'proc': proc,
+            'cases': cases})
+
     # ---------------------------------------------------------- 실측 유닛
     LIB = [
-        ('CFX-075', 'read_FFT_PassBin_index',
-         u'파일 시스템 영역에 저장된 통과 대역 색인을 읽어 온다. 저장된 내용에 의존한다.', PREP_LIB,
-         (u'- 맵의 대역 수와 저장 영역의 대역 수가 같은지 먼저 확인한다.\n'
-          u'- 호출 후 g_pass_bin_index 배열을 조회해 저장 영역의 값과 같은지 기록한다.\n'
-          u'- 대역 수가 다를 때는 배열이 바뀌지 않아야 한다. 그 경우도 기록한다.'), None),
-        ('CFX-076', 'read_C_T_Level_fromCM3',
-         u'CM3 가 공유 메모리에 올린 C 레벨과 T 레벨을 읽어 온다. CM3 계산 결과에 의존한다.',
-         PREP_LIB,
-         (u'- 공유 메모리의 C/T 레벨과 호출 후 CFX 쪽 배열을 함께 조회해 같은지 기록한다.'), None),
-        ('CFX-077', 'calculate_newStimulation_maxLevel',
-         u'자극 볼륨과 C/T 레벨로 최대 레벨을 구한다. 맵 데이터에 의존한다.', PREP_LIB,
-         (u'- 자극 볼륨을 1, 5, 10 으로 바꿔 가며 호출하고 산출된 최대 레벨을 기록한다.'), None),
-        ('CFX-082', 'prepare_pcmStimulationPacketHeader',
-         u'맵의 자극 모드와 전극 배정에 따라 헤더가 정해진다. 맵 데이터에 의존한다.', PCM_PREP,
-         (u'- 호출 후 준비된 패킷 헤더 값을 조회해 기록한다.\n'
-          u'- 맵의 자극 모드를 바꿔 가며 헤더가 달라지는지 기록한다.'), None),
-        ('CFX-083', 'stimulationStrategy',
-         u'맵의 자극 기법 설정에 따라 CIS 또는 NofM 으로 갈린다.', PCM_PREP,
-         (u'- 맵의 자극 기법을 CIS 로 두고 호출해 어느 하위 유닛이 불리는지 확인한다.\n'
-          u'- NofM 으로 바꿔 다시 호출해 확인한다.\n'
-          u'- 각각의 PCM 출력 버퍼를 조회해 기록한다.'), None),
-        ('CFX-084', 'stimulationStrategy_CIS',
-         u'대역 대표값과 매핑 결과에 의존한다. 앞단 라이브러리 출력이 입력이 된다.', PCM_PREP,
-         (u'- 호출 후 PCM 출력 버퍼에서 자극 헤더, 전극 번호, 자극 레벨을 조회해 기록한다.\n'
-          u'- 맵의 CIS 대역 순서와 실제 출력 순서가 맞는지 기록한다.'), None),
-        ('CFX-085', 'stimulationStrategy_NofM',
-         u'피크 선택과 인터리빙 결과를 받아 패킷을 만든다. 앞단 결과에 의존한다.', PCM_PREP,
-         (u'- 호출 후 PCM 출력 버퍼를 조회해 교차 배치 순서대로 자극이 실렸는지 기록한다.'), None),
-        ('CFX-089', 'stimulationStrategy_NofM_Packet',
-         u'선택된 대역의 자극 레벨을 패킷으로 만든다. 매핑 결과에 의존한다.', PCM_PREP,
-         (u'- 호출 후 만들어진 패킷 값을 조회해 전극 번호와 자극 레벨이 자리에 맞는지 기록한다.'), None),
-        ('CFX-090', 'stimulationStrategy_NofM_PCM_Write',
-         u'만들어진 패킷을 PCM 버퍼에 기록한다. 앞단 결과에 의존한다.', PCM_PREP,
-         (u'- 호출 전후의 PCM 기록 버퍼를 조회해 기록 위치와 내용을 기록한다.'), None),
-        ('CFX-093', 'fn_PcmBitStream_Mode_LiveStimulation',
-         u'실시간 자극 데이터를 비트스트림으로 만든다. 자극 기법 결과에 의존한다.', PCM_PREP,
-         (u'- 호출 후 PCM 기록 버퍼 24 칸을 조회해 자극용 헤더, 전극 번호, 자극 레벨을 기록한다.\n'
-          u'- 채널당 프레임 수를 1 과 2 로 바꿔 가며 각각 기록한다.'), None),
-        ('CFX-094', 'fn_PcmBitStream_Mode_SepcificCommand',
-         u'공유 메모리의 특정 명령 버퍼 내용을 그대로 내보낸다. 버퍼 내용에 의존한다.', PCM_PREP,
-         (u'- 특정 명령 버퍼에 알려진 값을 넣고 호출한다.\n'
-          u'- PCM 기록 버퍼 24 칸이 그 값과 같은지 조회해 기록한다.'), None),
-        ('CFX-101', 'frame_1_perChannel',
-         u'채널당 1 프레임 구성으로 검사 프레임을 만든다. 검사 회로 설정에 의존한다.', PCM_PREP,
-         (u'- 채널당 프레임 수를 1 로 두고 호출한다.\n'
-          u'- PCM 기록 버퍼를 조회해 검사 프레임 구성과 자극 자리 배치를 기록한다.'), None),
-        ('CFX-078', 'calculate_logaritmMapping_coeff', u'dB 변환 라이브러리를 거친다.', PREP_LIB,
-         (u'- 호출 후 로그 매핑 계수 A 와 B 를 조회해 기록한다.'), None),
-        ('CFX-079', 'calculate_logaritmMapping_coeff_with_audioVolume',
-         u'같은 dB 변환 라이브러리를 거친다.', PREP_LIB,
-         (u'- 오디오 볼륨을 바꿔 가며 계수 A 와 B 를 조회해 기록한다.'), None),
-        ('CM3-110', 'setting_stimulationRange',
-         u'출력단 보정 설정과 맵 데이터에 의존한다.', PREP_LIB,
-         (u'- 호출 후 255 단계로 환산된 T 레벨과 C 레벨 배열을 조회해 기록한다.'), None),
     ]
     for su, fn, why, prep, proc, cases in LIB:
         V.append({
