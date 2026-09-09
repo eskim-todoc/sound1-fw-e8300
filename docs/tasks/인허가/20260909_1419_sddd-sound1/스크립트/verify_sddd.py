@@ -59,11 +59,18 @@ for ch, core in ((4, 'CFX'), (5, 'CM3'), (6, 'BOOT')):
     counts[core] = len(nums)
     ok = nums == list(range(1, len(nums) + 1))
     print(u'  %s 유닛 %d건 / 번호 연속: %s' % (core, len(nums), 'OK' if ok else 'X %s' % nums[:6]))
+    any_head = re.compile(u'^\\d+(\\.\\d+)*\\.\\s')
     for i, pp in enumerate(d.paragraphs):
         if not rx.match(pp.text.strip()):
             continue
-        blk = '\n'.join(x.text for x in d.paragraphs[i + 1:i + 7])
-        for k in (u'입력 파라미터', u'반환 파라미터', u'수정 파라미터', u'기능 및 동작'):
+        seg = []
+        for x in d.paragraphs[i + 1:]:
+            t = x.text.strip()
+            if any_head.match(t):
+                break
+            seg.append(t)
+        blk = '\n'.join(seg)
+        for k in (u'입력 파라미터', u'반환 파라미터', u'수정 파라미터', u'목적', u'기능 및 동작'):
             if k not in blk:
                 missing.append((pp.text.strip()[:40], k))
 print(u'  합계 %d건 / 4요소 누락: %s'
@@ -146,3 +153,21 @@ for core, secs_all in (('CFX', CU.CFX_SECTIONS), ('CM3', CM.CM3_SECTIONS),
                                     u'짝 함수 인자 %d (주 함수 %s)'
                                     % (v['argc'], v1['argc'] if v1 else '-')))
 print(u'  짝 유닛 %d건 / 이상: %s' % (npair, u'없음' if not pairbad else pairbad))
+
+print(u'\n[검증_9] 서술 분량')
+tot_u = tot_s = 0
+for core, secs_all in (('CFX', CU.CFX_SECTIONS), ('CM3', CM.CM3_SECTIONS), ('BOOT', BO.BOOT_SECTIONS)):
+    n = p_ = d_ = w_ = l_ = 0
+    for _, secs in secs_all:
+        for b in secs:
+            for u in b['units']:
+                n += 1
+                p_ += 1 if u.get('purpose') else 0
+                d_ += len(u.get('desc') or [])
+                w_ += len(u.get('why') or [])
+                l_ += len(u.get('limit') or [])
+    print(u'  %-5s 유닛 %3d / 목적 %3d / 동작 %3d / 근거 %3d / 제약 %3d  (유닛당 %.1f줄)'
+          % (core, n, p_, d_, w_, l_, (p_ + d_ + w_ + l_) / float(n)))
+    tot_u += n
+    tot_s += p_ + d_ + w_ + l_
+print(u'  합계  유닛 %d / 서술 %d줄 (유닛당 %.1f줄)' % (tot_u, tot_s, tot_s / float(tot_u)))

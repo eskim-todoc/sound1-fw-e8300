@@ -318,7 +318,22 @@ table(doc, [u'식별자', u'의미', u'번호 부여'], [4.0, 7.0, 6.0],
 para(doc, u'일부 유닛에는 «참조» 항목이 붙는다. 이는 별도로 관리되는 유닛 및 모듈 분해 자산의 라벨이며, '
           u'해당 유닛의 검증 순서와 의존 관계가 그 자산에 정의되어 있음을 뜻한다.', sb=6)
 
-head(doc, u'1.5.', u'적용 범위', 2)
+head(doc, u'1.5.', u'유닛 기술 서식', 2)
+para(doc, u'본 문서는 구현 지시서다. 각 유닛은 구현자가 코드를 보지 않고도 만들 수 있도록 다음 항목으로 기술한다.')
+table(doc, [u'항목', u'무엇을 적는가', u'필수'], [3.4, 11.0, 2.6],
+      [(u'입력 파라미터', u'유닛이 받는 값. 없으면 «없음»', u'필수'),
+       (u'반환 파라미터', u'유닛이 돌려주는 값. 없으면 «없음»', u'필수'),
+       (u'수정 파라미터', u'유닛이 바꾸는 상태. 전역 상태, 레지스터, 공유 메모리를 포함한다', u'필수'),
+       (u'참조', u'별도 유닛 분해 자산의 라벨', u'해당 시'),
+       (u'목적', u'이 유닛이 왜 필요한가. 없애면 무엇이 안 되는가', u'필수'),
+       (u'기능 및 동작', u'무엇을 어떤 순서와 조건으로 하는가. 구현 가능한 수준으로 적는다', u'필수'),
+       (u'설계 근거', u'왜 그 방식을 골랐는가. 다른 방식이 왜 안 되는가', u'해당 시'),
+       (u'예외 및 제약', u'실패했을 때의 처리, 지켜야 할 순서와 경계 조건', u'해당 시')],
+      halign=[L, L, C])
+para(doc, u'«설계 근거»와 «예외 및 제약»은 그 유닛에 판단이 필요한 지점이 있을 때만 붙인다. '
+          u'자명한 유닛에는 붙이지 않는다.', sb=4)
+
+head(doc, u'1.6.', u'적용 범위', 2)
 table(doc, [u'구분', u'대상', u'본 문서에서의 취급'], [3.0, 6.0, 8.0],
       [(u'포함', u'CFX Core', u'항목 및 유닛까지 기술'),
        (u'포함', u'HEAR Core', u'항목 및 유닛까지 기술'),
@@ -330,15 +345,15 @@ table(doc, [u'구분', u'대상', u'본 문서에서의 취급'], [3.0, 6.0, 8.0
         u'SOUP 로 취급하며 유닛으로 분해하지 않음')],
       halign=[C, L, L])
 
-head(doc, u'1.6.', u'관련문서', 2)
-head(doc, u'1.6.1.', u'프로젝트', 3)
+head(doc, u'1.7.', u'관련문서', 2)
+head(doc, u'1.7.1.', u'프로젝트', 3)
 table(doc, [u'No', u'문서번호', u'문서 제목'], [1.6, 5.4, 10.0],
       [(u'1', u'SDP-FW-SND1', u'소프트웨어 개발 계획서'),
        (u'2', u'SGR-FW-SND1', u'소프트웨어 일반 요구사항'),
        (u'3', u'SR-FW-SND1', u'소프트웨어 요구사항'),
        (u'4', u'SAD-FW-SND1', u'소프트웨어 아키텍쳐 기술서')],
       halign=[C, C, L])
-head(doc, u'1.6.2.', u'표준 및 규제', 3)
+head(doc, u'1.7.2.', u'표준 및 규제', 3)
 table(doc, [u'No', u'문서번호', u'문서 제목'], [1.6, 5.4, 10.0],
       [(u'1', u'IEC 62304', u'Medical device software - Software life cycle processes'),
        (u'2', u'ISO 14971', u'Medical devices - Application of risk management to medical devices')],
@@ -423,9 +438,20 @@ def render_chapter(chap_no, sections, core):
                 field(doc, u'수정 파라미터', u['mod'])
                 if u.get('xref'):
                     field(doc, u'참조', u['xref'])
+                if u.get('purpose'):
+                    field(doc, u'목적', u'')
+                    bullet(doc, u['purpose'])
                 field(doc, u'기능 및 동작', u'')
                 for dline in u['desc']:
                     bullet(doc, dline)
+                if u.get('why'):
+                    field(doc, u'설계 근거', u'')
+                    for wline in u['why']:
+                        bullet(doc, wline)
+                if u.get('limit'):
+                    field(doc, u'예외 및 제약', u'')
+                    for lline in u['limit']:
+                        bullet(doc, lline)
 
 
 render_chapter(4, CU.CFX_SECTIONS, 'CFX')
@@ -497,7 +523,16 @@ OUT = u'E:/workspace/projects/sound1-fw-e8300-backup/docs/참고/인허가/사�
 if not os.path.isdir(OUT):
     os.makedirs(OUT)
 path = OUT + u'/[02] %s 소프트웨어 상세 설계서.docx' % DOC_NO
-doc.save(path)
+tmp = path + u'.tmp'
+doc.save(tmp)
+try:
+    if os.path.exists(path):
+        os.remove(path)
+    os.rename(tmp, path)
+except OSError:
+    print(u'[경고] 원본 파일이 열려 있어 교체하지 못했다. 임시 파일로 저장했다:')
+    print(u'       %s' % tmp)
+    path = tmp
 ncfx = sum(len(b['units']) for _, bs in CU.CFX_SECTIONS for b in bs)
 ncm3 = sum(len(b['units']) for _, bs in CM.CM3_SECTIONS for b in bs)
 nbo = sum(len(b['units']) for _, bs in BO.BOOT_SECTIONS for b in bs)
