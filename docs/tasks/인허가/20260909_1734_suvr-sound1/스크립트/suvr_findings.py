@@ -13,7 +13,14 @@ F = {}
 
 
 def add(key, crit, meas):
+    assert key not in F, u'키 중복: %s' % key      # 덮어쓰기 사고 방지
     F[key] = {'crit': crit, 'meas': meas}
+
+
+def merge(other):
+    for k, v in other.items():
+        assert k not in F, u'키 중복: %s' % k
+        F[k] = v
 
 
 # ============================================================ CFX 시스템 제어
@@ -471,3 +478,8 @@ add('CFX-092', [u'- 비선형 매핑 적용 구현'], [
     u'- 비선형 매핑 적용은 자극 기법 유닛 안에서 수행되는 구조임을 확인함.',
     u'- 근거 : main.c HEAR_LiveStimulation_Mode.',
 ])
+
+
+# CM3 는 분량이 커서 별도 파일로 두고 합친다.
+import suvr_findings_cm3 as _CM3
+merge(_CM3.F)

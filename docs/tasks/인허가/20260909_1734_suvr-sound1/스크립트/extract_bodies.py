@@ -40,8 +40,54 @@ def read(p):
     return u''
 
 
-def find_body(text, fn):
-    """함수 정의를 찾아 중괄호 균형으로 본문 끝까지 잘라 낸다."""
+def mask_comments(s):
+    """주석과 문자열을 같은 길이의 공백으로 바꾼다.
+
+    줄 번호와 오프셋이 보존되므로 마스킹본에서 찾은 위치를 원본에 그대로 쓸 수 있다.
+    주석 안에 적힌 «func_name()» 을 정의로 오인하는 것을 막는다.
+    """
+    out = list(s)
+    i, n = 0, len(s)
+    while i < n:
+        c = s[i]
+        if c == '/' and i + 1 < n and s[i + 1] == '*':
+            j = s.find('*/', i + 2)
+            j = n if j < 0 else j + 2
+            for k in range(i, j):
+                if out[k] != '\n':
+                    out[k] = ' '
+            i = j
+        elif c == '/' and i + 1 < n and s[i + 1] == '/':
+            j = s.find('\n', i)
+            j = n if j < 0 else j
+            for k in range(i, j):
+                out[k] = ' '
+            i = j
+        elif c in '"\'':
+            j = i + 1
+            while j < n and s[j] != c:
+                if s[j] == '\\':
+                    j += 1
+                j += 1
+            j = min(j + 1, n)
+            for k in range(i, j):
+                if out[k] != '\n':
+                    out[k] = ' '
+            i = j
+        else:
+            i += 1
+    return ''.join(out)
+
+
+def find_body(text, fn, masked=None):
+    """함수 정의를 찾아 중괄호 균형으로 본문 끝까지 잘라 낸다.
+
+    탐색은 주석/문자열을 지운 마스킹본에서 하고, 잘라내기는 원본에서 한다.
+    """
+    orig = text
+    if masked is None:
+        masked = mask_comments(text)
+    text = masked                     # 위치 계산은 전부 마스킹본 기준
     # 정의부: 반환형 + 이름 + (인자) + { , 선언(;)은 제외
     for m in re.finditer(r'(?<![A-Za-z0-9_])' + re.escape(fn) + r'\s*\(', text):
         i = m.end() - 1
@@ -81,7 +127,7 @@ def find_body(text, fn):
                 if depth == 0:
                     break
             e += 1
-        return text[ls:e + 1], text[:ls].count('\n') + 1
+        return orig[ls:e + 1], text[:ls].count('\n') + 1
     return None, None
 
 
@@ -89,7 +135,10 @@ def main():
     sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
     files = c_files('.c') + c_files('.h')      # .c 우선, 헤더 정의는 뒤로
     print(u'소스 %d개 파일 훑는다 (.c + .h).' % len(files))
-    cache = [(p, read(p)) for p in files]
+    cache = []
+    for p in files:
+        t = read(p)
+        cache.append((p, t, mask_comments(t)))
 
     result = {}
     stat = {}
@@ -104,8 +153,8 @@ def main():
                            'fn': fn or '', 'mod': mod, 'si': blk.get('id') or '',
                            'block': blk['name'], 'found': False}
                     if fn:
-                        for p, txt in cache:
-                            body, ln = find_body(txt, fn)
+                        for p, txt, msk in cache:
+                            body, ln = find_body(txt, fn, msk)
                             if body:
                                 rec.update({'found': True, 'file': p[len(ROOT) + 1:],
                                             'line': ln, 'body': body[:6000],
@@ -118,6 +167,11 @@ def main():
                     result[key] = rec
         stat[core] = (found, miss)
         print(u'  %-5s 본문 확보 %3d / 미확보 %3d' % (core, found, miss))
+
+    # 오추출 검사 - 서명부에 함수명이 없으면 주석이나 다른 구문을 잡은 것이다
+    bad = [k for k, v in result.items()
+           if v.get('found') and v['fn'] not in v['body'].split('{')[0]]
+    print(u'  오추출 검사: %s' % (u'이상 없음' if not bad else u'%d건 %s' % (len(bad), bad)))
 
     out = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'bodies.json')
     io.open(out, 'w', encoding='utf-8').write(
