@@ -8,6 +8,7 @@ from docx.oxml.ns import qn
 sys.path.insert(0, '.')
 import cfx_units as CU
 import cm3_units as CM
+import boot_units as BO
 
 P = (u'E:/workspace/projects/sound1-fw-e8300-backup/docs/참고/인허가/사운드1/'
      u'[02] SDDD-FW-SND1 소프트웨어 상세 설계서.docx')
@@ -50,7 +51,7 @@ print(u'  결과: %s (%d건)' % (u'통과' if not hits else u'실패', len(hits)
 print(u'\n[검증_3] SU-ID 연속성 및 4요소 완비')
 missing = []
 counts = {}
-for ch, core in ((4, 'CFX'), (5, 'CM3')):
+for ch, core in ((4, 'CFX'), (5, 'CM3'), (6, 'BOOT')):
     pat_h = u'^%d\\.\\d+\\.\\d+\\.\\d+\\.\\s+SU-ID-%s-' % (ch, core)
     rx = re.compile(pat_h)
     sus = [t for t in paras if rx.match(t)]
@@ -78,7 +79,8 @@ def kcount(s):
 
 mis = []
 chk = 0
-for core, secs_all in (('CFX', CU.CFX_SECTIONS), ('CM3', CM.CM3_SECTIONS)):
+for core, secs_all in (('CFX', CU.CFX_SECTIONS), ('CM3', CM.CM3_SECTIONS),
+                       ('BOOT', BO.BOOT_SECTIONS)):
     for _, secs in secs_all:
         for b in secs:
             for u in b['units']:
@@ -120,12 +122,13 @@ print(u'  결과: %s (%d건)' % (u'통과' if found == 0 else u'검토 필요', 
 
 print(u'\n[검증_7] 그림')
 imgs = [r for r in d.part.rels.values() if 'image' in r.reltype]
-print(u'  이미지 %d개 (블록도 2 + 순서도 12 = 14 기대)' % len(imgs))
+print(u'  이미지 %d개 (블록도 2 + 순서도 17 = 19 기대)' % len(imgs))
 
 print(u'\n[검증_8] 짝 유닛(fn2) 정합')
 pairbad = []
 npair = 0
-for core, secs_all in (('CFX', CU.CFX_SECTIONS), ('CM3', CM.CM3_SECTIONS)):
+for core, secs_all in (('CFX', CU.CFX_SECTIONS), ('CM3', CM.CM3_SECTIONS),
+                       ('BOOT', BO.BOOT_SECTIONS)):
     for _, secs in secs_all:
         for b in secs:
             for u in b['units']:

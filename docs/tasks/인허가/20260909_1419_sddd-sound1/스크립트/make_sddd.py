@@ -12,6 +12,7 @@ from docx.oxml import OxmlElement
 
 import cfx_units as CU
 import cm3_units as CM
+import boot_units as BO
 
 FONT = u'맑은 고딕'
 HDR_BG = 'D9D9D9'
@@ -386,6 +387,11 @@ FLOWMAP = {
     'cm3_sleep': (u'그림12_CM3_저전력대기.png', u'< 그림 12. Cortex-M3 저전력 대기 항목 >'),
     'cm3_isd': (u'그림13_CM3_내부기실행제어.png', u'< 그림 13. Cortex-M3 내부기 실행 제어 항목 >'),
     'cm3_ble': (u'그림14_CM3_블루투스통신제어.png', u'< 그림 14. Cortex-M3 블루투스 통신 제어 항목 >'),
+    'boot_init': (u'그림15_BOOT_시스템초기화.png', u'< 그림 15. 부트로더 시스템 초기화 항목 >'),
+    'boot_mode': (u'그림16_BOOT_동작모드판정.png', u'< 그림 16. 부트로더 동작 모드 판정 항목 >'),
+    'boot_load': (u'그림17_BOOT_기동실행.png', u'< 그림 17. 부트로더 기동 실행 항목 >'),
+    'boot_verify': (u'그림18_BOOT_무결성검증복호화.png', u'< 그림 18. 부트로더 무결성 검증 및 복호화 항목 >'),
+    'boot_slot': (u'그림19_BOOT_적용대상선택.png', u'< 그림 19. 부트로더 적용 대상 선택 항목 >'),
 }
 
 head(doc, u'4.', u'CFX Core 소프트웨어 상세 설계', 1)
@@ -436,9 +442,15 @@ render_chapter(5, CM.CM3_SECTIONS, 'CM3')
 doc.add_page_break()
 
 head(doc, u'6.', u'부트로더 소프트웨어 상세 설계', 1)
-para(doc, u'본 장은 후속 단계에서 작성한다. 기동 시 하드웨어 초기 설정과 동작 모드 판정, 실행 이미지의 '
-          u'무결성 검증과 복호화 및 적재, 코어 기동, 무선 갱신 이미지의 적용과 복구에 관한 항목과 유닛을 '
-          u'기술한다.')
+para(doc, u'부트로더는 전원 인가 직후 응용 소프트웨어보다 먼저 실행된다. 하드웨어를 초기 상태로 만들고, '
+          u'저장장치에 암호화되어 보관된 실행 이미지를 검증 및 복호화하여 각 코어의 프로그램 메모리에 '
+          u'적재한 뒤 코어를 기동한다. 무선으로 전달된 갱신 이미지는 다음 기동에서 적용하며, 적용에 '
+          u'실패하면 직전에 정상 동작하던 이미지로 되돌린다.')
+para(doc, u'제3자가 제공하는 파일 시스템, 암복호화 라이브러리, 디버그 출력 구성요소는 SOUP 로 취급하여 '
+          u'유닛으로 분해하지 않는다.', sb=2)
+render_chapter(6, BO.BOOT_SECTIONS, 'BOOT')
+
+doc.add_page_break()
 
 head(doc, u'7.', u'블루투스 콤보 칩셋 소프트웨어 상세 설계', 1)
 para(doc, u'블루투스 콤보 칩셋의 펌웨어는 본 문서의 범위에 포함되지 않는다. 해당 펌웨어는 별도의 개발 및 '
@@ -488,5 +500,6 @@ path = OUT + u'/[02] %s 소프트웨어 상세 설계서.docx' % DOC_NO
 doc.save(path)
 ncfx = sum(len(b['units']) for _, bs in CU.CFX_SECTIONS for b in bs)
 ncm3 = sum(len(b['units']) for _, bs in CM.CM3_SECTIONS for b in bs)
+nbo = sum(len(b['units']) for _, bs in BO.BOOT_SECTIONS for b in bs)
 print(u'SAVED: %s' % path)
-print(u'CFX 유닛 %d건 / CM3 유닛 %d건 / 합계 %d건' % (ncfx, ncm3, ncfx + ncm3))
+print(u'CFX %d / CM3 %d / BOOT %d / 합계 %d건' % (ncfx, ncm3, nbo, ncfx + ncm3 + nbo))
