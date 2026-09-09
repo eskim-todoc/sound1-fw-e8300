@@ -140,6 +140,46 @@ def main():
     print(u'  기준·설명에 남은 것: %d건 -> %s' % (bad, u'통과' if bad == 0 else u'실패'))
     print(u'  측정 내용의 코드 잔재 기록: %d건 (의도된 기록)' % rec)
 
+    print(u'\n[검증_9] 실기 유닛이 문서만으로 자립하는가')
+    print(u'  시험관이 다른 문서를 찾아보지 않아도 되어야 한다.')
+    exp = {}
+    ep = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'expected_values.json')
+    if os.path.exists(ep):
+        exp = {v['su']: v for v in json.load(io.open(ep, encoding='utf-8'))}
+    bad = []
+    for d in data:
+        if d['method'] != 'D':
+            continue
+        su = d['su_id'].replace(u'SU-ID-', u'')
+        e = exp.get(su)
+        # 준비 · 제한 · 절차가 NA 로 남아 있으면 자립하지 않는다
+        for lab, key in ((u'시험 준비', 'prep'), (u'가정 제한', 'limit')):
+            pass
+        if not e:
+            bad.append((d['su_id'], u'기댓값 정의 없음'))
+            continue
+        # 케이스가 하나도 빠지지 않고 실렸는가
+        miss = [c for c in e['cases'] if c['in'] not in (d['crit'] or u'')]
+        if miss:
+            bad.append((d['su_id'], u'케이스 %d건 누락' % len(miss)))
+        # 다른 문서를 참조하게 하지 않는가
+        if u'절차서 참조' in (d['crit'] or u''):
+            bad.append((d['su_id'], u'다른 문서 참조'))
+    # 준비 · 제한 열이 NA 로 남은 실기 유닛
+    na = []
+    for d in data:
+        if d['method'] != 'D':
+            continue
+        prep = ws.cell(hdr + 1 + data.index(d), 8).value or u''
+        lim = ws.cell(hdr + 1 + data.index(d), 9).value or u''
+        if prep.strip() == u'NA' or lim.strip() == u'NA':
+            na.append(d['su_id'])
+    ncase = sum(len(exp[s]['cases']) for s in exp)
+    print(u'  D 유닛 %d건 / 케이스 %d건 / 누락·참조: %s'
+          % (len([d for d in data if d['method'] == 'D']), ncase, bad[:5] or u'없음'))
+    print(u'  준비 또는 제한이 NA 인 D 유닛: %s' % (na[:5] or u'없음'))
+    print(u'  결과: %s' % (u'통과' if not bad and not na else u'실패'))
+
     print(u'\n[검증_8] SUVC 와 SUVR 의 기준서 부분이 같은가')
     wc = load_workbook(P_C, data_only=True)
     wsc = wc[u'기준서_유닛 검증']

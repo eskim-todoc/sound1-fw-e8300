@@ -37,18 +37,12 @@ TOP_LEFT = Alignment(horizontal='left', vertical='top', wrap_text=True)
 CENTER = Alignment(horizontal='center', vertical='center', wrap_text=True)
 
 # 열 정의: (제목, 폭)
-COLS_C = [(u'CORE', 8), (u'Module', 11), (u'TEST ID', 27), (u'설명', 24),
-          (u'방법', 6), (u'상세 설계 ID', 17), (u'시험 준비 및 초기 조건', 16),
-          (u'가정 및 제한 조건', 16), (u'시험 절차', 30), (u'통과 기준', 30)]
-COLS_R = COLS_C + [(u'측정/ 검토 내용', 46), (u'결과', 8)]
+COLS_C = [(u'CORE', 7), (u'Module', 10), (u'TEST ID', 26), (u'설명', 22),
+          (u'방법', 5), (u'상세 설계 ID', 16), (u'시험 준비 및 초기 조건', 42),
+          (u'가정 및 제한 조건', 38), (u'시험 절차', 44), (u'통과 기준', 62)]
+COLS_R = COLS_C + [(u'측정/ 검토 내용', 46), (u'결과', 7)]
 
-# 실기 유닛의 시험 절차 (절차서와 짝이 맞는다)
-D_PROC_HARNESS = (u'- 빌드 설정에 TDC_UNIT_TEST 를 정의하고 시험 파일을 빌드에 넣는다.\n'
-                  u'- 디버거에서 시험 진입점을 호출한다.\n'
-                  u'- done 변수에 중단점을 걸고 결과 배열을 조회한다.\n'
-                  u'- 실기 시험 절차서의 기댓값과 대조한다.')
-D_PROC_LIB = (u'- 해당 유닛을 실행시키고 디버깅용 중단점을 적용하여 출력 데이터를 확인한다.\n'
-              u'- 라이브러리 출력에 의존하므로 실측값을 기록한다.')
+# 시험 준비 / 가정 제한 / 절차 / 통과 기준은 expected_values 가 유닛별로 갖는다.
 
 
 def load_expected():
@@ -78,31 +72,56 @@ def criteria(r):
 
 
 def procedure(r):
+    """시험 절차. 실기 유닛은 유닛별 절차를 그대로 싣는다."""
     if r['method'] == 'A':
         return u'코드 분석'
     e = EXP.get(su_key(r))
-    if e and e['kind'] in (u'재현', u'상수'):
-        return D_PROC_HARNESS
-    return D_PROC_LIB
+    if e and e.get('proc'):
+        return e['proc']
+    return (u'- 해당 유닛을 실행시키고 디버깅용 중단점을 적용하여 출력 데이터를 확인한다.\n'
+            u'- 라이브러리 출력에 의존하므로 실측값을 기록한다.')
+
+
+def preparation(r):
+    """시험 준비 및 초기 조건."""
+    if r['method'] == 'A':
+        return u'NA'
+    e = EXP.get(su_key(r))
+    return e['prep'] if e and e.get('prep') else u'NA'
+
+
+def limitation(r):
+    """가정 및 제한 조건."""
+    if r['method'] == 'A':
+        return u'NA'
+    e = EXP.get(su_key(r))
+    return e['limit'] if e and e.get('limit') else u'NA'
 
 
 def pass_criteria(r):
-    """실기 유닛은 기댓값을 통과 기준에 함께 적는다."""
+    """통과 기준.
+
+    실기 유닛은 «입력 -> 예상 출력» 을 하나도 빼지 않고 싣는다.
+    이 문서만 보고 시험할 수 있어야 하므로 다른 문서를 참조하게 하지 않는다.
+    """
     base = criteria(r)
     if r['method'] != 'D':
         return base
     e = EXP.get(su_key(r))
     if not e:
-        return base + u'\n- 실기 시험 절차서의 기댓값과 일치해야 한다.'
+        return base
+    lines = [base, u'', u'[산출 근거] ' + e['note']]
     if e['kind'] == u'실측':
-        return (base + u'\n- ' + e['note'].split(u'.')[0] + u'.'
-                + u'\n- 기댓값을 미리 낼 수 없다. 실측값을 기록한다.'
-                + u'\n- (고정소수점 연산 고려)')
-    lines = [base, u'- 아래 입력에 대해 예상 출력과 일치해야 한다. (고정소수점 연산 고려)']
-    for c in e['cases'][:6]:
-        lines.append(u'  %s -> %s' % (c['in'], c['out']))
-    if len(e['cases']) > 6:
-        lines.append(u'  (나머지는 실기 시험 절차서 참조)')
+        lines.append(u'')
+        lines.append(u'[판정] 기댓값을 미리 낼 수 없다. 아래 항목의 실측값을 기록한다.')
+        lines.append(u'       고정소수점 연산 차이를 고려하여 판정한다.')
+    else:
+        lines.append(u'')
+        lines.append(u'[판정] 아래 입력에 대해 예상 출력과 일치해야 한다. (고정소수점 연산 고려)')
+    lines.append(u'')
+    for i, c in enumerate(e['cases'], 1):
+        lines.append(u'%d) 입력 : %s' % (i, c['in']))
+        lines.append(u'   예상 출력 : %s' % c['out'])
     return u'\n'.join(lines)
 
 
@@ -245,8 +264,8 @@ def sheet_body(ws, rows, cols, with_result, start_row):
             short_name(row['name']),
             row['method'],
             row['su_id'],
-            u'NA',
-            u'NA',
+            preparation(row),
+            limitation(row),
             procedure(row),
             pass_criteria(row),
         ]
@@ -258,6 +277,9 @@ def sheet_body(ws, rows, cols, with_result, start_row):
             c.border = BOX
             c.font = Font(size=9)
             c.alignment = CENTER if i in (0, 1, 4, 11) else TOP_LEFT
+        # 줄 수에 맞춰 행 높이를 준다. 자동 맞춤이 없으므로 직접 계산한다.
+        nl = max(str(v).count('\n') + 1 for v in vals)
+        ws.row_dimensions[r].height = min(12.5 * nl, 640)
         prev_core = row['core']
         prev_mod = (row['core'], row['mod'])
         r += 1
