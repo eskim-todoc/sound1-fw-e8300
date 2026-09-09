@@ -483,3 +483,9 @@ add('CFX-092', [u'- 비선형 매핑 적용 구현'], [
 # CM3 는 분량이 커서 별도 파일로 두고 합친다.
 import suvr_findings_cm3 as _CM3
 merge(_CM3.F)
+import suvr_findings_cm3b as _CM3B
+merge(_CM3B.F)
+import suvr_findings_cm3c as _CM3C
+merge(_CM3C.F)
+import suvr_findings_cm3d as _CM3D
+merge(_CM3D.F)
