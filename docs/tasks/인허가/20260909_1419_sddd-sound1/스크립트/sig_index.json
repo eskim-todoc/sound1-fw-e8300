@@ -1,0 +1,3338 @@
+{
+ "tdc_delay_ms": {
+  "ret": "void",
+  "args": "uint32_t ms",
+  "argc": 1,
+  "file": "0__bootloader/include/main.h"
+ },
+ "tdc_delay_us": {
+  "ret": "void",
+  "args": "uint32_t us",
+  "argc": 1,
+  "file": "0__bootloader/include/main.h"
+ },
+ "bootloader_load_manu_table": {
+  "ret": "int",
+  "args": "uint16_t boot_manu_off",
+  "argc": 1,
+  "file": "0__bootloader/include/bootloader/bootloader.h"
+ },
+ "bootloader_load_app_file": {
+  "ret": "int",
+  "args": "const char *file_name",
+  "argc": 1,
+  "file": "0__bootloader/include/bootloader/bootloader.h"
+ },
+ "bootloader_boot": {
+  "ret": "int",
+  "args": "void",
+  "argc": 0,
+  "file": "0__bootloader/include/bootloader/bootloader.h"
+ },
+ "bootloader_main": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "0__bootloader/include/bootloader/bootloader.h"
+ },
+ "_strcpyW": {
+  "ret": "int",
+  "args": "const char *src, uint16_t *dst",
+  "argc": 2,
+  "file": "0__bootloader/include/bootloader/bootloader_internal.h"
+ },
+ "bootloader_read_nvm_boot_info": {
+  "ret": "int",
+  "args": "uint32_t *buf",
+  "argc": 1,
+  "file": "0__bootloader/include/bootloader/bootloader_internal.h"
+ },
+ "bootloader_load_boot_section": {
+  "ret": "int",
+  "args": "struct data_section_header *section_header, FIL *file_desc, struct boot_section_data *boot_data, uint16_t data_crc",
+  "argc": 4,
+  "file": "0__bootloader/include/bootloader/bootloader_internal.h"
+ },
+ "bootloader_load_sections": {
+  "ret": "BOOTLOADER_LOAD_SECTIONS_RETURN",
+  "args": "FIL *file_desc, struct application_file_header *app_header, struct boot_section_data *cfx_boot_data, struct boot_section_data *cm3_boot_data",
+  "argc": 4,
+  "file": "0__bootloader/include/bootloader/bootloader_internal.h"
+ },
+ "bootloader_get_application_key": {
+  "ret": "uint32_t *",
+  "args": "void",
+  "argc": 0,
+  "file": "0__bootloader/include/bootloader/bootloader_internal.h"
+ },
+ "bootloader_check_header_crc": {
+  "ret": "int",
+  "args": "struct data_section_header *section_header",
+  "argc": 1,
+  "file": "0__bootloader/include/bootloader/bootloader_internal.h"
+ },
+ "bootloader_CRC_calc": {
+  "ret": "uint32_t",
+  "args": "uint8_t *data_in, uint32_t len",
+  "argc": 2,
+  "file": "0__bootloader/include/bootloader/bootloader_internal.h"
+ },
+ "bootloader_transfer_section_data": {
+  "ret": "int",
+  "args": "struct data_section_header *section_header, FIL *file_desc, uint16_t data_crc",
+  "argc": 3,
+  "file": "0__bootloader/include/bootloader/bootloader_internal.h"
+ },
+ "get_app_load_ext": {
+  "ret": "int",
+  "args": "bootloader_boot_information* boot_info, char *result",
+  "argc": 2,
+  "file": "0__bootloader/include/bootloader/bootloader_internal.h"
+ },
+ "bootloader_boot_cm3": {
+  "ret": "int",
+  "args": "uint32_t stack_pointer, uint32_t init_pointer",
+  "argc": 2,
+  "file": "0__bootloader/include/bootloader/bootloader_internal.h"
+ },
+ "bootloader_boot_cfx": {
+  "ret": "int",
+  "args": "uint32_t init_pointer",
+  "argc": 1,
+  "file": "0__bootloader/include/bootloader/bootloader_internal.h"
+ },
+ "bootloader_decrypt_data": {
+  "ret": "int",
+  "args": "struct AES_ctx *aes_context, uint32_t *data, size_t len",
+  "argc": 3,
+  "file": "0__bootloader/include/bootloader/bootloader_internal.h"
+ },
+ "bootloader_initialize_aes_ctx": {
+  "ret": "int",
+  "args": "struct AES_ctx *aes_context, uint32_t *key",
+  "argc": 2,
+  "file": "0__bootloader/include/bootloader/bootloader_internal.h"
+ },
+ "bootloader_read_and_check_file_header": {
+  "ret": "int",
+  "args": "FIL *file_desc, struct application_file_header *app_header, size_t buf_size",
+  "argc": 3,
+  "file": "0__bootloader/include/bootloader/bootloader_internal.h"
+ },
+ "bootloader_lock_pram": {
+  "ret": "void",
+  "args": "struct data_section_header *section_header, uint32_t *dest_addr",
+  "argc": 2,
+  "file": "0__bootloader/include/bootloader/bootloader_internal.h"
+ },
+ "get_manifest_files": {
+  "ret": "int",
+  "args": "char *src, char *dst, int len",
+  "argc": 3,
+  "file": "0__bootloader/include/bootloader/bootloader_internal.h"
+ },
+ "bootloader_process_manifest": {
+  "ret": "int",
+  "args": "FIL *file_desc, struct application_file_header *app_header",
+  "argc": 2,
+  "file": "0__bootloader/include/bootloader/bootloader_internal.h"
+ },
+ "bootloader_process_sections": {
+  "ret": "int",
+  "args": "FIL *file_desc, struct application_file_header *app_header",
+  "argc": 2,
+  "file": "0__bootloader/include/bootloader/bootloader_internal.h"
+ },
+ "bootloader_manifest_open_files": {
+  "ret": "int",
+  "args": "char *file_name",
+  "argc": 1,
+  "file": "0__bootloader/include/bootloader/bootloader_internal.h"
+ },
+ "tdc_boot_get_slot_num": {
+  "ret": "uint8_t",
+  "args": "void",
+  "argc": 0,
+  "file": "0__bootloader/include/bootmgr/ci_boot.h"
+ },
+ "snd_boot_set_fp": {
+  "ret": "void",
+  "args": "FIL *fp",
+  "argc": 1,
+  "file": "0__bootloader/include/bootmgr/ci_boot.h"
+ },
+ "snd_boot_handle_file": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "0__bootloader/include/bootmgr/ci_boot.h"
+ },
+ "tdc_boot_print_boot_file": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "0__bootloader/include/bootmgr/ci_boot.h"
+ },
+ "tdc_boot_storage_init": {
+  "ret": "int",
+  "args": "struct _bootloader_boot_information *out_boot_info",
+  "argc": 1,
+  "file": "0__bootloader/include/bootmgr/ci_boot.h"
+ },
+ "tdc_boot_get_ohdl": {
+  "ret": "FIL *",
+  "args": "void",
+  "argc": 0,
+  "file": "0__bootloader/include/bootmgr/ci_boot.h"
+ },
+ "tdc_boot_led_init": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "0__bootloader/include/led/tdc_boot_led.h"
+ },
+ "tdc_boot_led_start": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "0__bootloader/include/led/tdc_boot_led.h"
+ },
+ "tdc_boot_led_stop": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "0__bootloader/include/led/tdc_boot_led.h"
+ },
+ "tdc_boot_led_is_done": {
+  "ret": "bool",
+  "args": "void",
+  "argc": 0,
+  "file": "0__bootloader/include/led/tdc_boot_led.h"
+ },
+ "tdc_boot_led_elapsed_ms": {
+  "ret": "uint32_t",
+  "args": "void",
+  "argc": 0,
+  "file": "0__bootloader/include/led/tdc_boot_led.h"
+ },
+ "service_main": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "0__bootloader/include/service/service.h"
+ },
+ "tdc_uart_set_enable": {
+  "ret": "void",
+  "args": "bool enable",
+  "argc": 1,
+  "file": "0__bootloader/include/uart/tdc_uart.h"
+ },
+ "tdc_uart_get_enable": {
+  "ret": "bool",
+  "args": "void",
+  "argc": 0,
+  "file": "0__bootloader/include/uart/tdc_uart.h"
+ },
+ "tdc_uart_printf": {
+  "ret": "void",
+  "args": "const char *p_fmt, ...",
+  "argc": 2,
+  "file": "0__bootloader/include/uart/tdc_uart.h"
+ },
+ "tdc_uart_init": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "0__bootloader/include/uart/tdc_uart.h"
+ },
+ "tdc_uart_getch": {
+  "ret": "int",
+  "args": "char *buf",
+  "argc": 1,
+  "file": "0__bootloader/include/uart/tdc_uart.h"
+ },
+ "pcmDataOut": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "1__cfx/internalDevice/driver_PCM.h"
+ },
+ "fn_PcmBitStream_Mode_Preamble": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "1__cfx/internalDevice/driver_PCM.h"
+ },
+ "fn_PcmBitStream_Mode_LiveStimulation": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "1__cfx/internalDevice/driver_PCM.h"
+ },
+ "fn_PcmBitStream_Mode_SepcificCommand": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "1__cfx/internalDevice/driver_PCM.h"
+ },
+ "fn_PcmBitStream_Mode_NopStandby": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "1__cfx/internalDevice/driver_PCM.h"
+ },
+ "fn_PcmBitStream_Mode_NopBacktel": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "1__cfx/internalDevice/driver_PCM.h"
+ },
+ "fn_PcmBitStream_Mode_FillZero": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "1__cfx/internalDevice/driver_PCM.h"
+ },
+ "fn_reset_PCM": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "1__cfx/internalDevice/driver_PCM.h"
+ },
+ "check_link_connection_state": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "1__cfx/internalDevice/driver_PCM_liveStimulation.h"
+ },
+ "Enable_backtelCircuit": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "1__cfx/internalDevice/driver_PCM_liveStimulation.h"
+ },
+ "backtelPcmOut": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "1__cfx/internalDevice/driver_PCM_liveStimulation.h"
+ },
+ "frame_1_perChannel": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "1__cfx/internalDevice/driver_PCM_liveStimulation.h"
+ },
+ "frame_2_perChannel": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "1__cfx/internalDevice/driver_PCM_liveStimulation.h"
+ },
+ "frame_3_perChannel": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "1__cfx/internalDevice/driver_PCM_liveStimulation.h"
+ },
+ "frame_4_perChannel": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "1__cfx/internalDevice/driver_PCM_liveStimulation.h"
+ },
+ "Disable_backtelCircuit": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "1__cfx/internalDevice/driver_PCM_liveStimulation.h"
+ },
+ "shareConnectionCheckFired_DiableBacktel": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "1__cfx/internalDevice/driver_PCM_liveStimulation.h"
+ },
+ "LB_increaseCounter": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "1__cfx/internalDevice/driver_PCM_liveStimulation.h"
+ },
+ "lib_init_PCM": {
+  "ret": "void",
+  "args": "uint32_t dioClk, uint32_t dioFrame, uint32_t dioSero",
+  "argc": 3,
+  "file": "1__cfx/lib_cfx/lib_PCM.h"
+ },
+ "lib_enable_PCM": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "1__cfx/lib_cfx/lib_PCM.h"
+ },
+ "lib_disable_PCM": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "1__cfx/lib_cfx/lib_PCM.h"
+ },
+ "LIB_PCM_DIOConfig": {
+  "ret": "void",
+  "args": "const PCM_Type *pcm, uint32_t slave, uint32_t cfg, uint32_t clk, uint32_t frame, uint32_t sero, uint32_t clksrc",
+  "argc": 7,
+  "file": "1__cfx/lib_cfx/lib_PCM.h"
+ },
+ "lib_init_audio_in_path_ADC": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "1__cfx/lib_cfx/lib_audio_in.h"
+ },
+ "tdc_configure_audio_path_all": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "1__cfx/lib_cfx/lib_audio_in.h"
+ },
+ "enable_AMIC": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "1__cfx/lib_cfx/lib_audio_in.h"
+ },
+ "enable_DMIC": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "1__cfx/lib_cfx/lib_audio_in.h"
+ },
+ "disable_DMIC": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "1__cfx/lib_cfx/lib_audio_in.h"
+ },
+ "clear_FIFO": {
+  "ret": "void",
+  "args": "volatile int _XMEM *p_fifo, int len",
+  "argc": 2,
+  "file": "1__cfx/lib_cfx/lib_audio_in.h"
+ },
+ "clear_FIFO_all": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "1__cfx/lib_cfx/lib_audio_in.h"
+ },
+ "disable_FIFO_all": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "1__cfx/lib_cfx/lib_audio_in.h"
+ },
+ "tdc_get_enabled_DMIC_count": {
+  "ret": "int",
+  "args": "void",
+  "argc": 0,
+  "file": "1__cfx/lib_cfx/lib_audio_in.h"
+ },
+ "tdc_enable_1_DMIC": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "1__cfx/lib_cfx/lib_audio_in.h"
+ },
+ "tdc_enable_2_DMICs": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "1__cfx/lib_cfx/lib_audio_in.h"
+ },
+ "tdc_audio_set_front_mic": {
+  "ret": "void",
+  "args": "int type",
+  "argc": 1,
+  "file": "1__cfx/lib_cfx/lib_audio_in.h"
+ },
+ "tdc_audio_get_front_mic": {
+  "ret": "int",
+  "args": "void",
+  "argc": 0,
+  "file": "1__cfx/lib_cfx/lib_audio_in.h"
+ },
+ "lib_audio_loopback": {
+  "ret": "void",
+  "args": "int _XMEM* sink, int _XMEM* src",
+  "argc": 2,
+  "file": "1__cfx/lib_cfx/lib_audio_mixer.h"
+ },
+ "lib_loopback_AGC_out": {
+  "ret": "void",
+  "args": "int _XMEM* sink, int _XMEM* src",
+  "argc": 2,
+  "file": "1__cfx/lib_cfx/lib_audio_mixer.h"
+ },
+ "lib_init_I2S": {
+  "ret": "void",
+  "args": "uint32_t clk_dio, uint32_t frame_dio, uint32_t seri_dio, uint32_t flag_dio",
+  "argc": 4,
+  "file": "1__cfx/lib_cfx/lib_i2s.h"
+ },
+ "lib_enable_I2S": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "1__cfx/lib_cfx/lib_i2s.h"
+ },
+ "lib_i2s_disable": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "1__cfx/lib_cfx/lib_i2s.h"
+ },
+ "lib_i2s_is_buffer_copy_done": {
+  "ret": "int",
+  "args": "void",
+  "argc": 0,
+  "file": "1__cfx/lib_cfx/lib_i2s.h"
+ },
+ "lib_i2s_clear_buffer_copy_done": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "1__cfx/lib_cfx/lib_i2s.h"
+ },
+ "tdc_i2s_set_streaming_state": {
+  "ret": "void",
+  "args": "int state",
+  "argc": 1,
+  "file": "1__cfx/lib_cfx/lib_i2s.h"
+ },
+ "I2S_isStreaming": {
+  "ret": "int",
+  "args": "void",
+  "argc": 0,
+  "file": "1__cfx/lib_cfx/lib_i2s.h"
+ },
+ "I2S_update_state": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "1__cfx/lib_cfx/lib_i2s.h"
+ },
+ "lib_i2s_copy_data_from_fifo": {
+  "ret": "void",
+  "args": "int _XMEM *p_fifo",
+  "argc": 1,
+  "file": "1__cfx/lib_cfx/lib_i2s.h"
+ },
+ "lib_i2s_clear_data": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "1__cfx/lib_cfx/lib_i2s.h"
+ },
+ "I2S_get_buffer_with_fade_in_process": {
+  "ret": "int _XMEM *",
+  "args": "void",
+  "argc": 0,
+  "file": "1__cfx/lib_cfx/lib_i2s.h"
+ },
+ "I2S_get_buffer_with_fade_out_process": {
+  "ret": "int _XMEM *",
+  "args": "void",
+  "argc": 0,
+  "file": "1__cfx/lib_cfx/lib_i2s.h"
+ },
+ "build_bridge_C1_Q816_cfx": {
+  "ret": "void",
+  "args": "const int D[16], const int E[16], int S1[16], int S2[16]",
+  "argc": 4,
+  "file": "1__cfx/lib_cfx/lib_i2s_bridge.h"
+ },
+ "update_FFT_inputData": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "1__cfx/signalProcessing/FrequencyAnalysis.h"
+ },
+ "find_freq_rep_value": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "1__cfx/signalProcessing/FrequencyAnalysis.h"
+ },
+ "read_FFT_PassBin_index": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "1__cfx/signalProcessing/FrequencyAnalysis.h"
+ },
+ "audio_agc": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "1__cfx/signalProcessing/agc.h"
+ },
+ "audio_agc_attack_release": {
+  "ret": "int",
+  "args": "int current_agc_10db_gain",
+  "argc": 1,
+  "file": "1__cfx/signalProcessing/agc.h"
+ },
+ "fn_agc_function_fixedVolume": {
+  "ret": "int",
+  "args": "int input_max_value",
+  "argc": 1,
+  "file": "1__cfx/signalProcessing/agc.h"
+ },
+ "calculate_agc_gain": {
+  "ret": "int",
+  "args": "int INT__agc_input",
+  "argc": 1,
+  "file": "1__cfx/signalProcessing/agc.h"
+ },
+ "apply_agc_gain": {
+  "ret": "void",
+  "args": "int agc_gain_linear",
+  "argc": 1,
+  "file": "1__cfx/signalProcessing/agc.h"
+ },
+ "get_QI8F16_dB": {
+  "ret": "int",
+  "args": "int pwr",
+  "argc": 1,
+  "file": "1__cfx/signalProcessing/agc.h"
+ },
+ "get_QI1F23_pwr": {
+  "ret": "int",
+  "args": "int QI8F16_dB",
+  "argc": 1,
+  "file": "1__cfx/signalProcessing/agc.h"
+ },
+ "get_QI1F23_linear_gain": {
+  "ret": "int",
+  "args": "int QI8F16_dB",
+  "argc": 1,
+  "file": "1__cfx/signalProcessing/agc.h"
+ },
+ "get_QI1F23_exp2": {
+  "ret": "int",
+  "args": "int in",
+  "argc": 1,
+  "file": "1__cfx/signalProcessing/agc.h"
+ },
+ "logarithmMapping": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "1__cfx/signalProcessing/nonlinearMapping.h"
+ },
+ "read_C_T_Level_fromCM3": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "1__cfx/signalProcessing/nonlinearMapping.h"
+ },
+ "calculate_newStimulation_maxLevel": {
+  "ret": "void",
+  "args": "int stimulationVolume",
+  "argc": 1,
+  "file": "1__cfx/signalProcessing/nonlinearMapping.h"
+ },
+ "calculate_logaritmMapping_coeff": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "1__cfx/signalProcessing/nonlinearMapping.h"
+ },
+ "calculate_logaritmMapping_coeff_with_audioVolume": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "1__cfx/signalProcessing/nonlinearMapping.h"
+ },
+ "calculate_x_power_p": {
+  "ret": "int",
+  "args": "int x",
+  "argc": 1,
+  "file": "1__cfx/signalProcessing/nonlinearMapping.h"
+ },
+ "read_transferableChannelNum_fromCM3": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "1__cfx/signalProcessing/stimulationStrategy.h"
+ },
+ "prepare_pcmStimulationPacketHeader": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "1__cfx/signalProcessing/stimulationStrategy.h"
+ },
+ "stimulationStrategy": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "1__cfx/signalProcessing/stimulationStrategy.h"
+ },
+ "stimulationStrategy_NofM": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "1__cfx/signalProcessing/stimulationStrategy.h"
+ },
+ "stimulationStrategy_NofM_Init_Buffers": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "1__cfx/signalProcessing/stimulationStrategy.h"
+ },
+ "stimulationStrategy_NofM_Peak_Pick": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "1__cfx/signalProcessing/stimulationStrategy.h"
+ },
+ "stimulationStrategy_NofM_Interleaving": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "1__cfx/signalProcessing/stimulationStrategy.h"
+ },
+ "stimulationStrategy_NofM_Packet": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "1__cfx/signalProcessing/stimulationStrategy.h"
+ },
+ "stimulationStrategy_NofM_PCM_Write": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "1__cfx/signalProcessing/stimulationStrategy.h"
+ },
+ "stimulationStrategy_CIS": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "1__cfx/signalProcessing/stimulationStrategy.h"
+ },
+ "tdc_audio_mix_1_buffer": {
+  "ret": "void",
+  "args": "int _XMEM *p_buf1",
+  "argc": 1,
+  "file": "1__cfx/systemControl/audioMixer.h"
+ },
+ "tdc_audio_mix_2_buffers": {
+  "ret": "void",
+  "args": "int _XMEM *p_buf1, int _XMEM *p_buf2",
+  "argc": 2,
+  "file": "1__cfx/systemControl/audioMixer.h"
+ },
+ "tdc_audio_mix_2_buffers_for_beamforming": {
+  "ret": "void",
+  "args": "int _XMEM *p_delay_buf0, int _XMEM *p_delay_buf1, int _XMEM *p_no_delay_buf0",
+  "argc": 3,
+  "file": "1__cfx/systemControl/audioMixer.h"
+ },
+ "tdc_audio_gain_lookup_q8_16": {
+  "ret": "int",
+  "args": "int gain_table_index",
+  "argc": 1,
+  "file": "1__cfx/systemControl/audioMixer.h"
+ },
+ "tdc_audio_mix_2_buffers_with_gain": {
+  "ret": "void",
+  "args": "int _XMEM *p_mic_buf, int _XMEM *p_i2s_buf, int gain_a_q8_16, int gain_b_q8_16",
+  "argc": 4,
+  "file": "1__cfx/systemControl/audioMixer.h"
+ },
+ "app_configure_interrupts": {
+  "ret": "void",
+  "args": "int mode",
+  "argc": 1,
+  "file": "1__cfx/systemControl/interrupt_service_routine.h"
+ },
+ "app_clear_all_interrupt_flags": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "1__cfx/systemControl/interrupt_service_routine.h"
+ },
+ "normal_init": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "1__cfx/systemControl/main.h"
+ },
+ "normal_loop": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "1__cfx/systemControl/main.h"
+ },
+ "normal": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "1__cfx/systemControl/main.h"
+ },
+ "standby": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "1__cfx/systemControl/main.h"
+ },
+ "PCM_LiveStimulation_Mode": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "1__cfx/systemControl/main.h"
+ },
+ "HEAR_LiveStimulation_Mode": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "1__cfx/systemControl/main.h"
+ },
+ "tdc_copy_DMIC_buffers": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "1__cfx/systemControl/main.h"
+ },
+ "LB_Normal_PowerMode": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "1__cfx/systemControl/system_control.h"
+ },
+ "Normal_PowerMode_event_mapChange": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "1__cfx/systemControl/system_control.h"
+ },
+ "Normal_PowerMode_event_audioParameterCalculation": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "1__cfx/systemControl/system_control.h"
+ },
+ "Normal_PowerMode_event_stimulationVolumeChange": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "1__cfx/systemControl/system_control.h"
+ },
+ "Normal_PowerMode_event_both_stimulation_audio_volumeChange": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "1__cfx/systemControl/system_control.h"
+ },
+ "Normal_PowerMode_isdConnected": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "1__cfx/systemControl/system_control.h"
+ },
+ "Normal_PowerMode_isdDisonnected": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "1__cfx/systemControl/system_control.h"
+ },
+ "copy_MappingData": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "1__cfx/systemControl/system_control.h"
+ },
+ "copy_MappingData_without_mappingDate": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "1__cfx/systemControl/system_control.h"
+ },
+ "ci_boot_init_fp": {
+  "ret": "void",
+  "args": "FIL *fp",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/ci_boot.h"
+ },
+ "ci_boot_get_status": {
+  "ret": "EN__BOOT_RET",
+  "args": "snd_boot_status_t *p_status",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/ci_boot.h"
+ },
+ "ci_boot_update_status": {
+  "ret": "EN__BOOT_RET",
+  "args": "snd_boot_status_t *p_status",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/ci_boot.h"
+ },
+ "ci_boot_handle_fsm": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/ci_boot.h"
+ },
+ "update_FPGA_systemError": {
+  "ret": "void",
+  "args": "int value",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/error.h"
+ },
+ "update_FPGA_backtelError": {
+  "ret": "void",
+  "args": "int value",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/error.h"
+ },
+ "clearErrorFlag": {
+  "ret": "void",
+  "args": "EN__MAJOR_ERRORCODE majorError",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/error.h"
+ },
+ "clearAllErrorFlag": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/error.h"
+ },
+ "errorCodeUpdate": {
+  "ret": "void",
+  "args": "EN__MAJOR_ERRORCODE majorError, int detailError, int lineNumber",
+  "argc": 3,
+  "file": "2__cm3/Cortex-M3-src/error.h"
+ },
+ "readErrorCode": {
+  "ret": "ST__ERROR_CODE",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/error.h"
+ },
+ "sendErrorToApp": {
+  "ret": "void",
+  "args": "EN__MAPPING_COMMAND command, EN__MAJOR_ERRORCODE majorError, int minorError, int lineNumber",
+  "argc": 4,
+  "file": "2__cm3/Cortex-M3-src/error.h"
+ },
+ "CFX_0_IRQHandler": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/main.h"
+ },
+ "reset_global_variables_in_main": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/main.h"
+ },
+ "enable_iteration": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/main.h"
+ },
+ "disable_iteration": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/main.h"
+ },
+ "update_mapNum": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/main.h"
+ },
+ "debugging_for_AGC_and_LogMapping": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/main.h"
+ },
+ "func_sleep": {
+  "ret": "int",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/main.h"
+ },
+ "func_normal": {
+  "ret": "int",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/main.h"
+ },
+ "checkCharList": {
+  "ret": "bool",
+  "args": "char *p_inList, int len, char *p_retCh",
+  "argc": 3,
+  "file": "2__cm3/Cortex-M3-src/main.h"
+ },
+ "checkChar": {
+  "ret": "bool",
+  "args": "char in",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/main.h"
+ },
+ "debugMode": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/main.h"
+ },
+ "calculate_48bit_QInFn": {
+  "ret": "bool",
+  "args": "uint32_t QIn, uint32_t Fn, int32_t val_H, int32_t val_L, int *p_ret_QI_H, int *p_ret_F_H, int *p_ret_QI_L, int *p_ret_F_L, bool *p_isMinus",
+  "argc": 9,
+  "file": "2__cm3/Cortex-M3-src/main.h"
+ },
+ "calculate_24bit_QInFn": {
+  "ret": "bool",
+  "args": "uint32_t QIn, uint32_t Fn, int32_t val, int *p_ret_QI, int *p_ret_F, bool *p_isMinus",
+  "argc": 6,
+  "file": "2__cm3/Cortex-M3-src/main.h"
+ },
+ "debugPrint_ADCInput": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/main.h"
+ },
+ "tdc_set_fake_op_mode": {
+  "ret": "void",
+  "args": "int mode",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/main.h"
+ },
+ "tdc_get_fake_op_mode": {
+  "ret": "int",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/main.h"
+ },
+ "fake_func_sleep": {
+  "ret": "int",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/main.h"
+ },
+ "reset_global_variables_in_ble_communication": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/BleCommunication/ble_communication.h"
+ },
+ "bleCommunication": {
+  "ret": "ST__BLE_COMMUNICATION_STATE",
+  "args": "ST__ISD_STATUS isd_state",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/BleCommunication/ble_communication.h"
+ },
+ "ci_ble_fetch_packet_boot": {
+  "ret": "void",
+  "args": "int *p_packet",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/BleCommunication/ci_ble_control_boot.h"
+ },
+ "ci_ble_fetch_packet_ota_start_end": {
+  "ret": "void",
+  "args": "int *p_packet",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/BleCommunication/ci_ble_control_ota.h"
+ },
+ "ci_ble_fetch_packet_ota": {
+  "ret": "void",
+  "args": "int *p_packet",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/BleCommunication/ci_ble_control_ota.h"
+ },
+ "tdc_get_ota_dfu_conn_state": {
+  "ret": "int",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/BleCommunication/ci_ble_control_ota.h"
+ },
+ "tdc_set_ota_dfu_conn_state": {
+  "ret": "void",
+  "args": "int state",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/BleCommunication/ci_ble_control_ota.h"
+ },
+ "clear_mappingCommand": {
+  "ret": "void",
+  "args": "",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/BleCommunication/mappingControl.h"
+ },
+ "isMappingProgramConnected": {
+  "ret": "bool",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/BleCommunication/mappingControl.h"
+ },
+ "changeMappingCommandBleDisconneted": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/BleCommunication/mappingControl.h"
+ },
+ "changeMappingCommandWaitingForBleOff": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/BleCommunication/mappingControl.h"
+ },
+ "getMappingCommand": {
+  "ret": "EN__MAPPING_COMMAND",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/BleCommunication/mappingControl.h"
+ },
+ "getMappingPacket": {
+  "ret": "ST__MAPPING_PACKET *",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/BleCommunication/mappingControl.h"
+ },
+ "fetch_mappingControlPacket": {
+  "ret": "void",
+  "args": "const int *Rx_dataPacket",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/BleCommunication/mappingControl.h"
+ },
+ "mappingControl": {
+  "ret": "ST__MAPPING_STATE",
+  "args": "ST__ISD_STATUS ISD_state",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/BleCommunication/mappingControl.h"
+ },
+ "importMappingConnectForDebug": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/BleCommunication/mappingControl.h"
+ },
+ "importMappingDisconnectForDebug": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/BleCommunication/mappingControl.h"
+ },
+ "importImpedanceDataForDebug": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/BleCommunication/mappingControl.h"
+ },
+ "import_eCapDataForDebug": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/BleCommunication/mappingControl.h"
+ },
+ "import_SpecificStimulationDebug": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/BleCommunication/mappingControl.h"
+ },
+ "updateMappingProgramConnection": {
+  "ret": "void",
+  "args": "bool connection",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/BleCommunication/mappingControl.h"
+ },
+ "import_liveAllParaDebug": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/BleCommunication/mappingControl.h"
+ },
+ "import_liveStart": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/BleCommunication/mappingControl.h"
+ },
+ "import_liveStimulationVolumeAdjust": {
+  "ret": "void",
+  "args": "",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/BleCommunication/mappingControl.h"
+ },
+ "import_liveMicSensitivityAdjust": {
+  "ret": "void",
+  "args": "",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/BleCommunication/mappingControl.h"
+ },
+ "import_liveMapping_Stimul_indicator": {
+  "ret": "void",
+  "args": "",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/BleCommunication/mappingControl.h"
+ },
+ "import_liveReadEqualizer": {
+  "ret": "void",
+  "args": "int start_index, int end_index",
+  "argc": 2,
+  "file": "2__cm3/Cortex-M3-src/BleCommunication/mappingControl.h"
+ },
+ "import_liveReadDeviceStatus": {
+  "ret": "void",
+  "args": "",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/BleCommunication/mappingControl.h"
+ },
+ "import_livePause": {
+  "ret": "void",
+  "args": "",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/BleCommunication/mappingControl.h"
+ },
+ "import_liveStop": {
+  "ret": "void",
+  "args": "",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/BleCommunication/mappingControl.h"
+ },
+ "import_testStimulation": {
+  "ret": "void",
+  "args": "",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/BleCommunication/mappingControl.h"
+ },
+ "import_original_ISD": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/BleCommunication/mappingControl.h"
+ },
+ "fetch_remoteControlPacket": {
+  "ret": "void",
+  "args": "const int *Rx_dataPacket",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/BleCommunication/remoteControl.h"
+ },
+ "remoteControl": {
+  "ret": "ST__REMOTECONTROL_STATE",
+  "args": "bool isdConnection",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/BleCommunication/remoteControl.h"
+ },
+ "set_isd_passKeyMatchResult": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/BleCommunication/remoteControl.h"
+ },
+ "clear_isd_passKeyMatchResult": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/BleCommunication/remoteControl.h"
+ },
+ "is_isd_passKeyMatch": {
+  "ret": "bool",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/BleCommunication/remoteControl.h"
+ },
+ "clearRemoteColtrolCommand": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/BleCommunication/remoteControl.h"
+ },
+ "changeRemoteCommandWaitingForBleOff": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/BleCommunication/remoteControl.h"
+ },
+ "getRemoteCommand": {
+  "ret": "EN__REMOTE_CONTROL_COMMAND",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/BleCommunication/remoteControl.h"
+ },
+ "read_signal_processingPara": {
+  "ret": "void",
+  "args": "bool remoteCommandStartFlag, int command",
+  "argc": 2,
+  "file": "2__cm3/Cortex-M3-src/BleCommunication/remoteControl_read_SP_para.h"
+ },
+ "tdc_remote_gain_control_init": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/BleCommunication/tdc_remote_gain_control.h"
+ },
+ "tdc_remote_gain_control_handle": {
+  "ret": "int",
+  "args": "const ST__REMOTECONTROL_PACKET *packet, int *tx_buf, int tx_index",
+  "argc": 3,
+  "file": "2__cm3/Cortex-M3-src/BleCommunication/tdc_remote_gain_control.h"
+ },
+ "tdc_remote_general_debug_handle": {
+  "ret": "int",
+  "args": "const ST__REMOTECONTROL_PACKET *packet, int *tx_buf, int tx_index",
+  "argc": 3,
+  "file": "2__cm3/Cortex-M3-src/BleCommunication/tdc_remote_general_debug.h"
+ },
+ "write_REN_ISL91128_register_byCM3_I2C": {
+  "ret": "bool",
+  "args": "int registerAddr, int value",
+  "argc": 2,
+  "file": "2__cm3/Cortex-M3-src/internalDevice/driver_REN_ISL91128.h"
+ },
+ "read_REN_ISL91128_register_byCM3_I2C": {
+  "ret": "bool",
+  "args": "int registerAddr, int *read_value",
+  "argc": 2,
+  "file": "2__cm3/Cortex-M3-src/internalDevice/driver_REN_ISL91128.h"
+ },
+ "Reset_REN_ISL91128": {
+  "ret": "bool",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/internalDevice/driver_REN_ISL91128.h"
+ },
+ "write_REN_ISL9122_register_byCM3_I2C": {
+  "ret": "bool",
+  "args": "int registerAddr, int value",
+  "argc": 2,
+  "file": "2__cm3/Cortex-M3-src/internalDevice/driver_REN_ISL9122.h"
+ },
+ "read_REN_ISL9122_register_byCM3_I2C": {
+  "ret": "bool",
+  "args": "int registerAddr, int *read_value",
+  "argc": 2,
+  "file": "2__cm3/Cortex-M3-src/internalDevice/driver_REN_ISL9122.h"
+ },
+ "Reset_REN_ISL9122": {
+  "ret": "bool",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/internalDevice/driver_REN_ISL9122.h"
+ },
+ "write_REN_ISL98608_register_byCM3_I2C": {
+  "ret": "bool",
+  "args": "int registerAddr, int value",
+  "argc": 2,
+  "file": "2__cm3/Cortex-M3-src/internalDevice/driver_REN_ISL98608.h"
+ },
+ "read_REN_ISL98608_register_byCM3_I2C": {
+  "ret": "bool",
+  "args": "int registerAddr, int *read_value",
+  "argc": 2,
+  "file": "2__cm3/Cortex-M3-src/internalDevice/driver_REN_ISL98608.h"
+ },
+ "Reset_REN_ISL98608": {
+  "ret": "bool",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/internalDevice/driver_REN_ISL98608.h"
+ },
+ "Reset_disableOutup_REN_ISL98608": {
+  "ret": "bool",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/internalDevice/driver_REN_ISL98608.h"
+ },
+ "enable_VP_REN_ISL98608": {
+  "ret": "bool",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/internalDevice/driver_REN_ISL98608.h"
+ },
+ "disable_REN_ISL98608": {
+  "ret": "bool",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/internalDevice/driver_REN_ISL98608.h"
+ },
+ "is_Triggered_stimulationIndicator": {
+  "ret": "bool",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/internalDevice/indicatorByStimul.h"
+ },
+ "set_stimulationIndicatorTrigger": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/internalDevice/indicatorByStimul.h"
+ },
+ "stimulation_IndicatorOut": {
+  "ret": "void",
+  "args": "int enableStimulationIndicator, bool stimulationTriggerLowPower, bool stimulationTriggerMapping",
+  "argc": 3,
+  "file": "2__cm3/Cortex-M3-src/internalDevice/indicatorByStimul.h"
+ },
+ "setIndicatoStimlulLevel_255": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/internalDevice/indicatorByStimul.h"
+ },
+ "snd_isd_interface_get_state": {
+  "ret": "ST__ISD_STATUS",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/internalDevice/isd_interface.h"
+ },
+ "isd_interface": {
+  "ret": "ST__ISD_STATUS",
+  "args": "bool isd_enable, bool mappingConnection, EN__ISD_CONTROL_STATE isdControlCommand",
+  "argc": 3,
+  "file": "2__cm3/Cortex-M3-src/internalDevice/isd_interface.h"
+ },
+ "change_isd_state": {
+  "ret": "void",
+  "args": "EN__ISD_CONTROL_STATE ISD_controlState",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/internalDevice/isd_interface.h"
+ },
+ "clearIsdControlStateChagedFlag": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/internalDevice/isd_interface.h"
+ },
+ "clearCommandStartFlag": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/internalDevice/isd_interface.h"
+ },
+ "isIsdConnected": {
+  "ret": "bool",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/internalDevice/isd_interface.h"
+ },
+ "update_isd_Link_is_Connected": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/internalDevice/isd_interface.h"
+ },
+ "update_isd_Link_is_Disconnected": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/internalDevice/isd_interface.h"
+ },
+ "fill_pcmBuff_check_ISD_PathOpen_normalValue": {
+  "ret": "void",
+  "args": "int *p_pcm_index",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/internalDevice/isd_interface.h"
+ },
+ "fill_pcmBuff_lastSimulationOut": {
+  "ret": "void",
+  "args": "int *p_pcm_index",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/internalDevice/isd_interface.h"
+ },
+ "fill_pcmBuff_check_ISD_PathOpen_duplicateZeroData": {
+  "ret": "void",
+  "args": "int *p_pcm_index",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/internalDevice/isd_interface.h"
+ },
+ "update_isd_LinkConnection_byBacktel_withLiveStimulation": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/internalDevice/isd_interface.h"
+ },
+ "update_isd_LinkConnection_byBacktel_withMapping": {
+  "ret": "void",
+  "args": "int connectionCheckCOUNTER",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/internalDevice/isd_interface.h"
+ },
+ "isING_connectionCheckWithMapping": {
+  "ret": "bool",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/internalDevice/isd_interface.h"
+ },
+ "is_i2c_free": {
+  "ret": "bool",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/internalDevice/isd_interface.h"
+ },
+ "change_i2c_is_busy": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/internalDevice/isd_interface.h"
+ },
+ "change_i2c_is_free": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/internalDevice/isd_interface.h"
+ },
+ "reset_Fpga_variable": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/internalDevice/isd_interface_FPGA.h"
+ },
+ "update_last_fpga_written_Value": {
+  "ret": "void",
+  "args": "I2C_ADDR_FPGA index, int value",
+  "argc": 2,
+  "file": "2__cm3/Cortex-M3-src/internalDevice/isd_interface_FPGA.h"
+ },
+ "get_last_fpga_systemResgister_1st_written_Value": {
+  "ret": "int",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/internalDevice/isd_interface_FPGA.h"
+ },
+ "get_last_fpga_systemResgister_2nd_written_Value": {
+  "ret": "int",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/internalDevice/isd_interface_FPGA.h"
+ },
+ "get_last_fpga_pulsePhaseWidth_written_Value": {
+  "ret": "int",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/internalDevice/isd_interface_FPGA.h"
+ },
+ "get_last_fpga_backterConfiguration_written_Value": {
+  "ret": "int",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/internalDevice/isd_interface_FPGA.h"
+ },
+ "read_FPGA_version": {
+  "ret": "bool",
+  "args": "int* p_readValue",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/internalDevice/isd_interface_FPGA.h"
+ },
+ "read_FPGA_systemResgister_1st": {
+  "ret": "bool",
+  "args": "int* p_readValue",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/internalDevice/isd_interface_FPGA.h"
+ },
+ "read_txPowerLevel": {
+  "ret": "bool",
+  "args": "int* p_readValue",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/internalDevice/isd_interface_FPGA.h"
+ },
+ "check_FPGA_PCM_Error": {
+  "ret": "bool",
+  "args": "bool* isError",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/internalDevice/isd_interface_FPGA.h"
+ },
+ "read_FPGA_systemResgister_2nd": {
+  "ret": "bool",
+  "args": "int* p_readValue",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/internalDevice/isd_interface_FPGA.h"
+ },
+ "check_FPGA_FIFO_empty": {
+  "ret": "bool",
+  "args": "bool* isEmpty",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/internalDevice/isd_interface_FPGA.h"
+ },
+ "read_FPGA_systemError_Flag": {
+  "ret": "bool",
+  "args": "int* p_readValue",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/internalDevice/isd_interface_FPGA.h"
+ },
+ "read_FPGA_backtelError_Flag": {
+  "ret": "bool",
+  "args": "int* p_readValue",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/internalDevice/isd_interface_FPGA.h"
+ },
+ "read_FPGA_PulseWidth": {
+  "ret": "bool",
+  "args": "int* p_readValue",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/internalDevice/isd_interface_FPGA.h"
+ },
+ "read_FPGA_FIFO_counter": {
+  "ret": "bool",
+  "args": "int* p_readValue",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/internalDevice/isd_interface_FPGA.h"
+ },
+ "read_FPGA_IO_MUX": {
+  "ret": "bool",
+  "args": "int* p_readValue",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/internalDevice/isd_interface_FPGA.h"
+ },
+ "read_FPGA_backtelConfig": {
+  "ret": "bool",
+  "args": "int* p_readValue",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/internalDevice/isd_interface_FPGA.h"
+ },
+ "read_FPGA_optionalConfig": {
+  "ret": "bool",
+  "args": "int* p_readValue",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/internalDevice/isd_interface_FPGA.h"
+ },
+ "read_FPGA_backtel_FIFO": {
+  "ret": "bool",
+  "args": "int* p_readValue, int counter",
+  "argc": 2,
+  "file": "2__cm3/Cortex-M3-src/internalDevice/isd_interface_FPGA.h"
+ },
+ "is_arbitraryValue_matched_normalValue": {
+  "ret": "bool",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/internalDevice/isd_interface_FPGA.h"
+ },
+ "is_arbitraryValue_matched_duplicateZeroData": {
+  "ret": "bool",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/internalDevice/isd_interface_FPGA.h"
+ },
+ "is_RF_tx_eanble": {
+  "ret": "bool",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/internalDevice/isd_interface_FPGA.h"
+ },
+ "read_isd_Power_State": {
+  "ret": "EN_ISD_PowerState",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/internalDevice/isd_interface_FPGA.h"
+ },
+ "write_FPGA_systemResgister_1st": {
+  "ret": "bool",
+  "args": "int Value",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/internalDevice/isd_interface_FPGA.h"
+ },
+ "write_FPGA_reset": {
+  "ret": "bool",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/internalDevice/isd_interface_FPGA.h"
+ },
+ "write_FPGA_enable_RF_tx": {
+  "ret": "bool",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/internalDevice/isd_interface_FPGA.h"
+ },
+ "write_FPGA_disable_RF_tx": {
+  "ret": "bool",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/internalDevice/isd_interface_FPGA.h"
+ },
+ "write_change_TxPowerLevel": {
+  "ret": "bool",
+  "args": "int txLevel",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/internalDevice/isd_interface_FPGA.h"
+ },
+ "write_FPGA_clear_FIFO": {
+  "ret": "bool",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/internalDevice/isd_interface_FPGA.h"
+ },
+ "Reset_8bitBacktelConfig": {
+  "ret": "int",
+  "args": "int pcmIndex",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/internalDevice/isd_interface_FPGA.h"
+ },
+ "change_8BitBacktel_mode": {
+  "ret": "int",
+  "args": "int pcmIndex",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/internalDevice/isd_interface_FPGA.h"
+ },
+ "change_12BitBacktel_mode": {
+  "ret": "int",
+  "args": "int pcmIndex",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/internalDevice/isd_interface_FPGA.h"
+ },
+ "change_Backtel_cal": {
+  "ret": "int",
+  "args": "int pcmIndex, int CalValue",
+  "argc": 2,
+  "file": "2__cm3/Cortex-M3-src/internalDevice/isd_interface_FPGA.h"
+ },
+ "disable_Backtel": {
+  "ret": "int",
+  "args": "int pcmIndex",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/internalDevice/isd_interface_FPGA.h"
+ },
+ "chang_PulseWidth": {
+  "ret": "void",
+  "args": "int pcmIndex, int pulseWidth",
+  "argc": 2,
+  "file": "2__cm3/Cortex-M3-src/internalDevice/isd_interface_FPGA.h"
+ },
+ "chang_PulseWidth_minimum": {
+  "ret": "void",
+  "args": "int pcmIndex",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/internalDevice/isd_interface_FPGA.h"
+ },
+ "write_FPGA_systemResgister_2nd": {
+  "ret": "bool",
+  "args": "int Value",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/internalDevice/isd_interface_FPGA.h"
+ },
+ "write_FPGA_backtelConfig": {
+  "ret": "bool",
+  "args": "int Value",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/internalDevice/isd_interface_FPGA.h"
+ },
+ "upadte_fpga_pulsePhaseWidth_written_Value": {
+  "ret": "void",
+  "args": "int Value",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/internalDevice/isd_interface_FPGA.h"
+ },
+ "upadte_fpga_backtelConfig_written_Value": {
+  "ret": "void",
+  "args": "int value",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/internalDevice/isd_interface_FPGA.h"
+ },
+ "init_FPGA": {
+  "ret": "void",
+  "args": "bool isdControlStateChagedFlag",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/internalDevice/isd_interface_init_FPGA.h"
+ },
+ "init_txPowerIC": {
+  "ret": "void",
+  "args": "bool isdControlStateChagedFlag",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/internalDevice/isd_interface_init_FPGA.h"
+ },
+ "init_ISD": {
+  "ret": "void",
+  "args": "bool isdControlStateChagedFlag",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/internalDevice/isd_interface_init_FPGA.h"
+ },
+ "isd_path_Open": {
+  "ret": "void",
+  "args": "bool isdControlStateChagedFlag",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/internalDevice/isd_interface_init_ISD.h"
+ },
+ "read_Connected_ISD_id": {
+  "ret": "int",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/internalDevice/isd_interface_init_ISD.h"
+ },
+ "enableStimul_10v": {
+  "ret": "void",
+  "args": "bool isdControlStateChagedFlag",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/internalDevice/isd_interface_init_ISD.h"
+ },
+ "liveStimulation": {
+  "ret": "bool",
+  "args": "ST__ISD_STATUS ISD_state",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/internalDevice/isd_interface_mapping_Live.h"
+ },
+ "specificStimulation": {
+  "ret": "void",
+  "args": "bool startFlag",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/internalDevice/isd_interface_mapping_SepcificStimulation.h"
+ },
+ "eCapMeasurement_masking": {
+  "ret": "void",
+  "args": "bool startFlag",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/internalDevice/isd_interface_mapping_eCAP_Measurement.h"
+ },
+ "impedanceMeasurement": {
+  "ret": "void",
+  "args": "bool startFlag",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/internalDevice/isd_interface_mapping_impedanceMeasurement.h"
+ },
+ "read_Original_isdInfo_N_userSetting_fromFlash": {
+  "ret": "void",
+  "args": "bool startFlag, int command",
+  "argc": 2,
+  "file": "2__cm3/Cortex-M3-src/internalDevice/isd_interface_mapping_readWrtieMapData.h"
+ },
+ "write_Original_isdInfo_N_userSetting_atFlash": {
+  "ret": "void",
+  "args": "bool startFlag, int command",
+  "argc": 2,
+  "file": "2__cm3/Cortex-M3-src/internalDevice/isd_interface_mapping_readWrtieMapData.h"
+ },
+ "read_isdInfo_N_userSetting_fromFlash": {
+  "ret": "void",
+  "args": "bool startFlag, int commnad, int slot_index",
+  "argc": 3,
+  "file": "2__cm3/Cortex-M3-src/internalDevice/isd_interface_mapping_readWrtieMapData.h"
+ },
+ "write_isdInfo_N_userSetting_atFlash": {
+  "ret": "void",
+  "args": "bool startFlag, int commnad, int slot_index",
+  "argc": 3,
+  "file": "2__cm3/Cortex-M3-src/internalDevice/isd_interface_mapping_readWrtieMapData.h"
+ },
+ "read_stimulPara_fromFlash": {
+  "ret": "void",
+  "args": "bool startFlag, int commnad, int slot_index, int map_index",
+  "argc": 4,
+  "file": "2__cm3/Cortex-M3-src/internalDevice/isd_interface_mapping_readWrtieMapData.h"
+ },
+ "write_stimulPara_atFlash": {
+  "ret": "void",
+  "args": "bool startFlag, int commnad, int slot_index, int map_index",
+  "argc": 4,
+  "file": "2__cm3/Cortex-M3-src/internalDevice/isd_interface_mapping_readWrtieMapData.h"
+ },
+ "reset_NVM_Selected_ISD_allData": {
+  "ret": "void",
+  "args": "bool startFlag, int commnad, int slot_index, EN__mapping_ReadWriteMap_command RecoverOrErase",
+  "argc": 4,
+  "file": "2__cm3/Cortex-M3-src/internalDevice/isd_interface_mapping_readWrtieMapData.h"
+ },
+ "reset_NVM_2to4_ISD_allData": {
+  "ret": "void",
+  "args": "bool startFlag, int command, EN__mapping_ReadWriteMap_command RecoverOrErase",
+  "argc": 3,
+  "file": "2__cm3/Cortex-M3-src/internalDevice/isd_interface_mapping_readWrtieMapData.h"
+ },
+ "reset_NVM_All_ISD_allData": {
+  "ret": "bool",
+  "args": "bool startFlag, int command, EN__mapping_ReadWriteMap_command RecoverOrErase",
+  "argc": 3,
+  "file": "2__cm3/Cortex-M3-src/internalDevice/isd_interface_mapping_readWrtieMapData.h"
+ },
+ "reset_NVM_MapData": {
+  "ret": "void",
+  "args": "bool startFlag, int commnad, int slot_index, int map_index, EN__mapping_ReadWriteMap_command RecoverOrErase",
+  "argc": 5,
+  "file": "2__cm3/Cortex-M3-src/internalDevice/isd_interface_mapping_readWrtieMapData.h"
+ },
+ "clear_sitmulationParaSettingDone": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/internalDevice/isd_interface_stimulationParaSetting.h"
+ },
+ "isStimulParaIsSettingDone": {
+  "ret": "bool",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/internalDevice/isd_interface_stimulationParaSetting.h"
+ },
+ "settingStimulPara_monoPolarMode": {
+  "ret": "bool",
+  "args": "bool isdControlStateChagedFlag",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/internalDevice/isd_interface_stimulationParaSetting.h"
+ },
+ "settingStimulPara_biPolarMode": {
+  "ret": "bool",
+  "args": "bool isdControlStateChagedFlag",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/internalDevice/isd_interface_stimulationParaSetting.h"
+ },
+ "settingStimulPara_commonGround": {
+  "ret": "bool",
+  "args": "bool isdControlStateChagedFlag",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/internalDevice/isd_interface_stimulationParaSetting.h"
+ },
+ "stimulationSetting": {
+  "ret": "bool",
+  "args": "bool startTrigger",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/internalDevice/isd_interface_stimulationParaSetting.h"
+ },
+ "stimulationStandAlone": {
+  "ret": "bool",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/internalDevice/isd_interface_stimulationStandAlone.h"
+ },
+ "isNewMapLoadeFlag": {
+  "ret": "bool",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/internalDevice/isd_interface_stimulationStandAlone.h"
+ },
+ "set_newMapLoadeFlagForStimulParaSetting": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/internalDevice/isd_interface_stimulationStandAlone.h"
+ },
+ "clear_newMapLoadeFlag": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/internalDevice/isd_interface_stimulationStandAlone.h"
+ },
+ "snd_qcc_init": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/QCC/snd_qcc.h"
+ },
+ "snd_qcc_set_isd": {
+  "ret": "void",
+  "args": "snd_qcc_isd_t state",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/QCC/snd_qcc.h"
+ },
+ "snd_qcc_set_mode": {
+  "ret": "void",
+  "args": "snd_qcc_mode_t mode",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/QCC/snd_qcc.h"
+ },
+ "data_ExtractionAndRigthShift": {
+  "ret": "int",
+  "args": "int Data, int bitPosition, int bitLength",
+  "argc": 3,
+  "file": "2__cm3/Cortex-M3-src/signalProcessing/commonDataProcessing.h"
+ },
+ "data_clearBit": {
+  "ret": "int",
+  "args": "int Data, int bitPosition, int bitLength",
+  "argc": 3,
+  "file": "2__cm3/Cortex-M3-src/signalProcessing/commonDataProcessing.h"
+ },
+ "calculationStimulParaN_cfxShare": {
+  "ret": "bool",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/signalProcessing/stimulationParaCal.h"
+ },
+ "calculationNumFramePerOneChannle": {
+  "ret": "int",
+  "args": "int pulsewidth",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/signalProcessing/stimulationParaCal.h"
+ },
+ "calculationTransferableChanneNum": {
+  "ret": "int",
+  "args": "int numFramePerChannel, int usableElectrodNum",
+  "argc": 2,
+  "file": "2__cm3/Cortex-M3-src/signalProcessing/stimulationParaCal.h"
+ },
+ "readStimulDAC_RegisterValue": {
+  "ret": "ST_STIUL_DAC_REGISTER_VALUE *",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/signalProcessing/stimulationParaCal.h"
+ },
+ "readDAC_offsetValue": {
+  "ret": "const int",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/signalProcessing/stimulationParaCal.h"
+ },
+ "setting_stimulationRange": {
+  "ret": "bool",
+  "args": "int pulseWidth, int *T_level_uA, int *C_level_uA, int NumCh, int *T_level_255, int *C_level_255",
+  "argc": 6,
+  "file": "2__cm3/Cortex-M3-src/signalProcessing/stimulationParaCal.h"
+ },
+ "led_request": {
+  "ret": "void",
+  "args": "led_src_t src, led_state_t st",
+  "argc": 2,
+  "file": "2__cm3/Cortex-M3-src/systemControl/LedOutput.h"
+ },
+ "led_arbiter_tick": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/systemControl/LedOutput.h"
+ },
+ "tdc_led_is_burst_pending": {
+  "ret": "bool",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/systemControl/LedOutput.h"
+ },
+ "led_get_request": {
+  "ret": "led_state_t",
+  "args": "led_src_t src",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/systemControl/LedOutput.h"
+ },
+ "led_isr_active_set": {
+  "ret": "void",
+  "args": "bool active",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/systemControl/LedOutput.h"
+ },
+ "led_force_fade_off": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/systemControl/LedOutput.h"
+ },
+ "tdc_led_set_ind_state": {
+  "ret": "void",
+  "args": "tdc_led_ind_state_t state",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/systemControl/LedOutput.h"
+ },
+ "tdc_led_get_ind_state": {
+  "ret": "tdc_led_ind_state_t",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/systemControl/LedOutput.h"
+ },
+ "LedPatternOut": {
+  "ret": "void",
+  "args": "EN__LED_PATTERN ledOutputPattern",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/systemControl/LedOutput.h"
+ },
+ "enabletestLED_Trigger": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/systemControl/LedOutput.h"
+ },
+ "disabletestLED_Trigger": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/systemControl/LedOutput.h"
+ },
+ "isTestTriggerEanbled": {
+  "ret": "bool",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/systemControl/LedOutput.h"
+ },
+ "LED_OUT": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/systemControl/LedOutput.h"
+ },
+ "LED_black": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/systemControl/LedOutput.h"
+ },
+ "LED_White": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/systemControl/LedOutput.h"
+ },
+ "turnOffLED": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/systemControl/LedOutput.h"
+ },
+ "LED_Memory_error": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/systemControl/LedOutput.h"
+ },
+ "LED_clock_error": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/systemControl/LedOutput.h"
+ },
+ "turnON_RedLED": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/systemControl/LedOutput.h"
+ },
+ "turnON_GreenLED": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/systemControl/LedOutput.h"
+ },
+ "turnON_BlueLED": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/systemControl/LedOutput.h"
+ },
+ "led_set_isd_conn_state": {
+  "ret": "void",
+  "args": "int state",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/systemControl/LedOutput.h"
+ },
+ "calculationBatteryBoundary": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/systemControl/batteryNPowerControl.h"
+ },
+ "readBatteryPercentage": {
+  "ret": "int",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/systemControl/batteryNPowerControl.h"
+ },
+ "snd_batt_get_state": {
+  "ret": "EN__SND_BATT_STATE",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/systemControl/batteryNPowerControl.h"
+ },
+ "snd_batt_set_state": {
+  "ret": "void",
+  "args": "EN__SND_BATT_STATE state",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/systemControl/batteryNPowerControl.h"
+ },
+ "snd_batt_get_percent": {
+  "ret": "int",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/systemControl/batteryNPowerControl.h"
+ },
+ "snd_batt_set_percent": {
+  "ret": "void",
+  "args": "int percent",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/systemControl/batteryNPowerControl.h"
+ },
+ "snd_charger_get_state": {
+  "ret": "ST__USB_CONNECTOR",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/systemControl/batteryNPowerControl.h"
+ },
+ "snd_charger_set_state": {
+  "ret": "void",
+  "args": "EN__SND_CHARGER_STATE state",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/systemControl/batteryNPowerControl.h"
+ },
+ "tdc_charger_set_cradle_cover_state": {
+  "ret": "void",
+  "args": "int state",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/systemControl/batteryNPowerControl.h"
+ },
+ "tdc_cradle_get_cover_state": {
+  "ret": "int",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/systemControl/batteryNPowerControl.h"
+ },
+ "update_CM3Status_toCFX": {
+  "ret": "void",
+  "args": "int value",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/systemControl/cfx_cm3_sharedMemory.h"
+ },
+ "update_CM3tempValue1_toCFX": {
+  "ret": "void",
+  "args": "int value",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/systemControl/cfx_cm3_sharedMemory.h"
+ },
+ "update_CM3tempValue2_toCFX": {
+  "ret": "void",
+  "args": "int value",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/systemControl/cfx_cm3_sharedMemory.h"
+ },
+ "isCFX_EEPROM_data_Loaded": {
+  "ret": "bool",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/systemControl/cfx_cm3_sharedMemory.h"
+ },
+ "sharedMemoryAddresError": {
+  "ret": "bool",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/systemControl/cfx_cm3_sharedMemory.h"
+ },
+ "changePcmOutputMode": {
+  "ret": "void",
+  "args": "int currentPcmOutputMode",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/systemControl/cfx_cm3_sharedMemory.h"
+ },
+ "readCurrentPcmOutputMode": {
+  "ret": "int",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/systemControl/cfx_cm3_sharedMemory.h"
+ },
+ "changeNextPcmOutputMode": {
+  "ret": "void",
+  "args": "int nextPcmOutputMode",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/systemControl/cfx_cm3_sharedMemory.h"
+ },
+ "fillSepcificCommndBuffer": {
+  "ret": "void",
+  "args": "int Index, int data",
+  "argc": 2,
+  "file": "2__cm3/Cortex-M3-src/systemControl/cfx_cm3_sharedMemory.h"
+ },
+ "readConnectionCheckPcmState": {
+  "ret": "int",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/systemControl/cfx_cm3_sharedMemory.h"
+ },
+ "clearConnectionCheckPcmFiredFlag": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/systemControl/cfx_cm3_sharedMemory.h"
+ },
+ "read_ISD_manufacture_ID": {
+  "ret": "int",
+  "args": "int index",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/systemControl/cfx_cm3_sharedMemory.h"
+ },
+ "read_recomcon_passkey_connected_ISD": {
+  "ret": "int *",
+  "args": "int connected_ISD_Num",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/systemControl/cfx_cm3_sharedMemory.h"
+ },
+ "readConnected_ISD_MapStamp": {
+  "ret": "int *",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/systemControl/cfx_cm3_sharedMemory.h"
+ },
+ "changeConnected_isd_num_CFX": {
+  "ret": "void",
+  "args": "int num",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/systemControl/cfx_cm3_sharedMemory.h"
+ },
+ "read_connected_ISD_Num": {
+  "ret": "int",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/systemControl/cfx_cm3_sharedMemory.h"
+ },
+ "readConnected_ISD_userName": {
+  "ret": "int *",
+  "args": "int connected_ISD_Num",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/systemControl/cfx_cm3_sharedMemory.h"
+ },
+ "readConnected_ISD_Location": {
+  "ret": "EN__LOCATION_OF_ISD",
+  "args": "int connected_ISD_Num",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/systemControl/cfx_cm3_sharedMemory.h"
+ },
+ "readConnected_ISD_usableMapNum": {
+  "ret": "int",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/systemControl/cfx_cm3_sharedMemory.h"
+ },
+ "readConnected_ISD_usableMapIndex": {
+  "ret": "int *",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/systemControl/cfx_cm3_sharedMemory.h"
+ },
+ "readConnected_ISD_MapDate": {
+  "ret": "int *",
+  "args": "int mapNum",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/systemControl/cfx_cm3_sharedMemory.h"
+ },
+ "changeProgramMapNum": {
+  "ret": "void",
+  "args": "int mapNum",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/systemControl/cfx_cm3_sharedMemory.h"
+ },
+ "readProgramMapNum": {
+  "ret": "int",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/systemControl/cfx_cm3_sharedMemory.h"
+ },
+ "changeStimulVolume": {
+  "ret": "void",
+  "args": "int volume",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/systemControl/cfx_cm3_sharedMemory.h"
+ },
+ "readStimulVolume": {
+  "ret": "int",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/systemControl/cfx_cm3_sharedMemory.h"
+ },
+ "changeAudioVolume": {
+  "ret": "void",
+  "args": "int volume",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/systemControl/cfx_cm3_sharedMemory.h"
+ },
+ "readAudioVolume": {
+  "ret": "int",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/systemControl/cfx_cm3_sharedMemory.h"
+ },
+ "changeLED_indicatorOnOff": {
+  "ret": "void",
+  "args": "EN__PAYLOAD_ON_OFF OnOff",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/systemControl/cfx_cm3_sharedMemory.h"
+ },
+ "readLED_indicatorOnOff": {
+  "ret": "int",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/systemControl/cfx_cm3_sharedMemory.h"
+ },
+ "changeTeleCoil_OnOff": {
+  "ret": "void",
+  "args": "EN__PAYLOAD_ON_OFF OnOff",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/systemControl/cfx_cm3_sharedMemory.h"
+ },
+ "readTeleCoil_OnOff": {
+  "ret": "int",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/systemControl/cfx_cm3_sharedMemory.h"
+ },
+ "changeStimulIndicator_OnOff": {
+  "ret": "void",
+  "args": "EN__PAYLOAD_ON_OFF OnOff",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/systemControl/cfx_cm3_sharedMemory.h"
+ },
+ "readStimulIndicator_OnOff": {
+  "ret": "int",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/systemControl/cfx_cm3_sharedMemory.h"
+ },
+ "isUserSettingValueLoaded_CFX": {
+  "ret": "bool",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/systemControl/cfx_cm3_sharedMemory.h"
+ },
+ "readCurrentMapData": {
+  "ret": "const ST__CFX_CM3_SharedMemory_mapData *",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/systemControl/cfx_cm3_sharedMemory.h"
+ },
+ "getPointerCurrentMapData": {
+  "ret": "ST__CFX_CM3_SharedMemory_mapData *",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/systemControl/cfx_cm3_sharedMemory.h"
+ },
+ "setReadWriteMapDataFlashCommand": {
+  "ret": "void",
+  "args": "ST__CFX_CM3_SharedMemory_ReadWriteCommand_ForFlash command_ForFlash",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/systemControl/cfx_cm3_sharedMemory.h"
+ },
+ "isReadWriteMapDataFlashCommandDone": {
+  "ret": "bool",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/systemControl/cfx_cm3_sharedMemory.h"
+ },
+ "getPointerRepositoryForReadWriteMapData_isd_info": {
+  "ret": "int *",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/systemControl/cfx_cm3_sharedMemory.h"
+ },
+ "getPointerRepositoryForReadWriteMapData_userSetting": {
+  "ret": "int *",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/systemControl/cfx_cm3_sharedMemory.h"
+ },
+ "getPointerRepositoryForReadWriteMapData_stimulPara": {
+  "ret": "int *",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/systemControl/cfx_cm3_sharedMemory.h"
+ },
+ "getPointerCalculatedStimulPara_byCM3": {
+  "ret": "ST__CFX_CM3_SharedMemory_calculatedStimulPara_byCM3 *",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/systemControl/cfx_cm3_sharedMemory.h"
+ },
+ "setFlag_AudioParametersCalculationDone_Cm3ToCfx": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/systemControl/cfx_cm3_sharedMemory.h"
+ },
+ "setCalculatedStimulationIndcatorLevel_byCM3": {
+  "ret": "void",
+  "args": "int stimulationIndicatorLevel_255",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/systemControl/cfx_cm3_sharedMemory.h"
+ },
+ "setStimulationIndcatorOnOff_byCM3": {
+  "ret": "void",
+  "args": "bool On_Off",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/systemControl/cfx_cm3_sharedMemory.h"
+ },
+ "readCurrentStimulLevel_255": {
+  "ret": "int *",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/systemControl/cfx_cm3_sharedMemory.h"
+ },
+ "readAudioSignalMax": {
+  "ret": "int",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/systemControl/cfx_cm3_sharedMemory.h"
+ },
+ "isMapdateLoaded_CFX": {
+  "ret": "bool",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/systemControl/cfx_cm3_sharedMemory.h"
+ },
+ "setCommandMapChange_Cm3ToCfx": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/systemControl/cfx_cm3_sharedMemory.h"
+ },
+ "shareMappingProgramConnection": {
+  "ret": "void",
+  "args": "bool connection",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/systemControl/cfx_cm3_sharedMemory.h"
+ },
+ "changeSystemModeFlag": {
+  "ret": "void",
+  "args": "EN__SYSTEM_OP_MODE flag",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/systemControl/cfx_cm3_sharedMemory.h"
+ },
+ "isPowerButtonPushed": {
+  "ret": "bool",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/systemControl/cfx_cm3_sharedMemory.h"
+ },
+ "enterLowPowerMode_CM3_to_CFX": {
+  "ret": "void",
+  "args": "",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/systemControl/cfx_cm3_sharedMemory.h"
+ },
+ "OnOff_3V_PMIC_CM3_to_CFX": {
+  "ret": "void",
+  "args": "bool OnOff",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/systemControl/cfx_cm3_sharedMemory.h"
+ },
+ "upadateSystemOpModeToCFX": {
+  "ret": "void",
+  "args": "EN__SYSTEM_OP_MODE mode",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/systemControl/cfx_cm3_sharedMemory.h"
+ },
+ "readBatteryLevel_FromCFX": {
+  "ret": "int",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/systemControl/cfx_cm3_sharedMemory.h"
+ },
+ "readBatteryCalibrationValue": {
+  "ret": "int",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/systemControl/cfx_cm3_sharedMemory.h"
+ },
+ "updagteBacktelControlValue_toCFX": {
+  "ret": "void",
+  "args": "int value",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/systemControl/cfx_cm3_sharedMemory.h"
+ },
+ "updateEarpieceDetectionValue_toCFX": {
+  "ret": "void",
+  "args": "bool detection",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/systemControl/cfx_cm3_sharedMemory.h"
+ },
+ "readCfxErrorCode": {
+  "ret": "int",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/systemControl/cfx_cm3_sharedMemory.h"
+ },
+ "__attribute__": {
+  "ret": "ST__CFX_CM3_SharedMemory_ALL cfx_cm3_sharedMemoryAll",
+  "args": "(section(\".shared_memory\"))",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/systemControl/cfx_cm3_sharedMemory.h"
+ },
+ "write_ISD_by_CM3_I2C": {
+  "ret": "bool",
+  "args": "int slaveAddr, int *dataBuff, int dataSize",
+  "argc": 3,
+  "file": "2__cm3/Cortex-M3-src/systemControl/dirver_i2c_for_ISD.h"
+ },
+ "read_ISD_by_CM3_I2C": {
+  "ret": "bool",
+  "args": "int slaveAddr, int *dataBuff, int dataSize",
+  "argc": 3,
+  "file": "2__cm3/Cortex-M3-src/systemControl/dirver_i2c_for_ISD.h"
+ },
+ "max17262_get_mv": {
+  "ret": "uint32_t",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/systemControl/driver_MAX17262.h"
+ },
+ "max17262_update_mv": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/systemControl/driver_MAX17262.h"
+ },
+ "updatae_XYZ_Accelation": {
+  "ret": "bool",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/systemControl/driver_MIS2DH.h"
+ },
+ "configure_MIS2DH_asXyzStream": {
+  "ret": "bool",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/systemControl/driver_MIS2DH.h"
+ },
+ "reset_MIS2DH": {
+  "ret": "bool",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/systemControl/driver_MIS2DH.h"
+ },
+ "configure_MIS2DH_asClickMode": {
+  "ret": "bool",
+  "args": "int numActivation",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/systemControl/driver_MIS2DH.h"
+ },
+ "transfer_AccelerationVlaue": {
+  "ret": "void",
+  "args": "bool resultTrue",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/systemControl/driver_MIS2DH.h"
+ },
+ "get_rxBuffer_IRQ": {
+  "ret": "int *",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/systemControl/driver_SPI.h"
+ },
+ "get_rxCheck_IRQ": {
+  "ret": "int *",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/systemControl/driver_SPI.h"
+ },
+ "get_rxIndex_IRQ": {
+  "ret": "int",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/systemControl/driver_SPI.h"
+ },
+ "set_rxIndex_IRQ": {
+  "ret": "void",
+  "args": "int index",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/systemControl/driver_SPI.h"
+ },
+ "getAddr_SPI_Rx_Buffer": {
+  "ret": "int *",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/systemControl/driver_SPI.h"
+ },
+ "getAddr_SPI_Tx_Buffer": {
+  "ret": "int *",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/systemControl/driver_SPI.h"
+ },
+ "SPI_1_RX_IRQHandler": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/systemControl/driver_SPI.h"
+ },
+ "SPI_1_TX_IRQHandler": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/systemControl/driver_SPI.h"
+ },
+ "SPI_1_COM_IRQHandler": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/systemControl/driver_SPI.h"
+ },
+ "ci_SPI_enable_DMA": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/systemControl/driver_SPI.h"
+ },
+ "init_cm3_SPI": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/systemControl/driver_SPI.h"
+ },
+ "get_spi_commu_state": {
+  "ret": "EN__SPI_COMMU_STATE",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/systemControl/driver_SPI.h"
+ },
+ "set_spi_commu_state_IDLE": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/systemControl/driver_SPI.h"
+ },
+ "getAddr_SPI_Rx_DataPacket": {
+  "ret": "int *",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/systemControl/driver_SPI.h"
+ },
+ "writeDataToSpiTxBuff": {
+  "ret": "void",
+  "args": "int *source, int dataSize",
+  "argc": 2,
+  "file": "2__cm3/Cortex-M3-src/systemControl/driver_SPI.h"
+ },
+ "getCommandFromSPI_DataPacket": {
+  "ret": "char",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/systemControl/driver_SPI.h"
+ },
+ "getDataFromSPI_DataPacket": {
+  "ret": "char",
+  "args": "int index",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/systemControl/driver_SPI.h"
+ },
+ "getDataAddr_FromSPI_DataPacket": {
+  "ret": "const int *",
+  "args": "int index",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/systemControl/driver_SPI.h"
+ },
+ "common_spi": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/systemControl/driver_SPI.h"
+ },
+ "set_spi_commu_state": {
+  "ret": "void",
+  "args": "EN__SPI_COMMU_STATE state",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/systemControl/driver_SPI.h"
+ },
+ "enable_ReadCommandForSPI_Master": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/systemControl/driver_SPI.h"
+ },
+ "clear_ReadCommandForSPI_Master": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/systemControl/driver_SPI.h"
+ },
+ "isSpiTxBuffEmpty": {
+  "ret": "bool",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/systemControl/driver_SPI.h"
+ },
+ "clear_SPI_Tx_Buffer": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/systemControl/driver_SPI.h"
+ },
+ "isI2C_done": {
+  "ret": "bool",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/systemControl/driver_cfx_i2c.h"
+ },
+ "cfx_i2c_write": {
+  "ret": "bool",
+  "args": "int slaveAddr, int *dataBuff, int dataSize",
+  "argc": 3,
+  "file": "2__cm3/Cortex-M3-src/systemControl/driver_cfx_i2c.h"
+ },
+ "cfx_i2c_read": {
+  "ret": "bool",
+  "args": "int slaveAddr, int *dataBuff, int dataSize",
+  "argc": 3,
+  "file": "2__cm3/Cortex-M3-src/systemControl/driver_cfx_i2c.h"
+ },
+ "enableI2cInterface": {
+  "ret": "void",
+  "args": "bool isEnabled",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/systemControl/driver_i2c.h"
+ },
+ "init_I2c": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/systemControl/driver_i2c.h"
+ },
+ "i2c_set_master_prescale": {
+  "ret": "void",
+  "args": "uint32_t prescale_mask",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/systemControl/driver_i2c.h"
+ },
+ "get_i2cDriverStatus": {
+  "ret": "EN__I2C_DRIVER_STATE",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/systemControl/driver_i2c.h"
+ },
+ "isI2cDriverStatusIdle": {
+  "ret": "bool",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/systemControl/driver_i2c.h"
+ },
+ "getI2cHardwareStatus": {
+  "ret": "uint32_t",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/systemControl/driver_i2c.h"
+ },
+ "clearI2cDriverStatus": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/systemControl/driver_i2c.h"
+ },
+ "setI2cDriverStatusIdle": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/systemControl/driver_i2c.h"
+ },
+ "clearI2cHardwareStatus": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/systemControl/driver_i2c.h"
+ },
+ "i2c_startWriteData": {
+  "ret": "void",
+  "args": "const int slaveAddress, int *p_sourcedata, const int dataLength",
+  "argc": 3,
+  "file": "2__cm3/Cortex-M3-src/systemControl/driver_i2c.h"
+ },
+ "i2c_startReadData": {
+  "ret": "void",
+  "args": "const int slaveAddress, int *p_destination, const int dataLength",
+  "argc": 3,
+  "file": "2__cm3/Cortex-M3-src/systemControl/driver_i2c.h"
+ },
+ "I2C_0_IRQHandler": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/systemControl/driver_i2c.h"
+ },
+ "i2c_comm": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/systemControl/driver_i2c.h"
+ },
+ "updateEarPieceStatus": {
+  "ret": "bool",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/systemControl/earpieceUpdate.h"
+ },
+ "Uninitialize": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/systemControl/initialize.h"
+ },
+ "Initialize": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/systemControl/initialize.h"
+ },
+ "ResetNRF": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/systemControl/initialize.h"
+ },
+ "cm3MemorySetupCompleted": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/systemControl/initialize.h"
+ },
+ "systemControl": {
+  "ret": "ST__SYSTEM_STATE",
+  "args": "ST__ERROR_CODE mcuErrorCode, ST__USB_CONNECTOR chargerState, int battery_percent, bool powerButtonPushed, bool conneded_ISD, bool mappingConnected",
+  "argc": 6,
+  "file": "2__cm3/Cortex-M3-src/systemControl/systemControl.h"
+ },
+ "NRF_On_OFF": {
+  "ret": "void",
+  "args": "ST__ISD_STATUS isd_state, bool global_BLE_Off, bool mappingConnection, bool Mapping_BLE_Off",
+  "argc": 4,
+  "file": "2__cm3/Cortex-M3-src/systemControl/systemControl.h"
+ },
+ "NRF_Off_Command": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/systemControl/systemControl.h"
+ },
+ "NRF_ON_Command": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/systemControl/systemControl.h"
+ },
+ "tdc_touch_debug_get_recent_lta": {
+  "ret": "uint16_t",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/systemControl/tdc_touch.h"
+ },
+ "tdc_touch_debug_set_recent_lta": {
+  "ret": "void",
+  "args": "uint16_t lta",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/systemControl/tdc_touch.h"
+ },
+ "tdc_touch_debug_get_recent_count": {
+  "ret": "uint16_t",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/systemControl/tdc_touch.h"
+ },
+ "tdc_touch_debug_set_recent_count": {
+  "ret": "void",
+  "args": "uint16_t count",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/systemControl/tdc_touch.h"
+ },
+ "tdc_touch_debug_get_recent_delta": {
+  "ret": "uint16_t",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/systemControl/tdc_touch.h"
+ },
+ "tdc_touch_debug_set_recent_delta": {
+  "ret": "void",
+  "args": "uint16_t delta",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/systemControl/tdc_touch.h"
+ },
+ "tdc_touch_debug_get_recent_abs_thr": {
+  "ret": "uint16_t",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/systemControl/tdc_touch.h"
+ },
+ "tdc_touch_debug_set_recent_abs_thr": {
+  "ret": "void",
+  "args": "uint16_t abs_thr",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/systemControl/tdc_touch.h"
+ },
+ "tdc_touch_debug_get_recent_pressed": {
+  "ret": "uint8_t",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/systemControl/tdc_touch.h"
+ },
+ "tdc_touch_debug_set_recent_pressed": {
+  "ret": "void",
+  "args": "uint8_t pressed",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/systemControl/tdc_touch.h"
+ },
+ "tdc_touch_debug_get_recent_ati_error": {
+  "ret": "uint8_t",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/systemControl/tdc_touch.h"
+ },
+ "tdc_touch_debug_set_recent_ati_error": {
+  "ret": "void",
+  "args": "uint8_t ati_error",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/systemControl/tdc_touch.h"
+ },
+ "tdc_touch_debug_get_recent_ati_active": {
+  "ret": "uint8_t",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/systemControl/tdc_touch.h"
+ },
+ "tdc_touch_debug_set_recent_ati_active": {
+  "ret": "void",
+  "args": "uint8_t ati_active",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/systemControl/tdc_touch.h"
+ },
+ "tdc_touch_init_begin": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/systemControl/tdc_touch.h"
+ },
+ "tdc_touch_process": {
+  "ret": "bool",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/systemControl/tdc_touch.h"
+ },
+ "tdc_touch_get_state": {
+  "ret": "bool",
+  "args": "tdc_touch_state_t *p_state",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/systemControl/tdc_touch.h"
+ },
+ "tdc_touch_state_name": {
+  "ret": "const char *",
+  "args": "tdc_touch_state_t s",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/systemControl/tdc_touch.h"
+ },
+ "tdc_touch_iqs323_read_status": {
+  "ret": "bool",
+  "args": "tdc_touch_iqs323_status_t *out",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/systemControl/tdc_touch_iqs323.h"
+ },
+ "tdc_touch_iqs323_apply_settings": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/systemControl/tdc_touch_iqs323.h"
+ },
+ "tdc_touch_iqs323_re_ati": {
+  "ret": "bool",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/systemControl/tdc_touch_iqs323.h"
+ },
+ "tdc_touch_iqs323_reseed": {
+  "ret": "bool",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/systemControl/tdc_touch_iqs323.h"
+ },
+ "tdc_touch_iqs323_mclr": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/systemControl/tdc_touch_iqs323.h"
+ },
+ "tdc_touch_iqs323_is_ati_done": {
+  "ret": "bool",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/systemControl/tdc_touch_iqs323.h"
+ },
+ "tdc_touch_iqs323_read_debug": {
+  "ret": "bool",
+  "args": "tdc_touch_iqs323_debug_t *out",
+  "argc": 1,
+  "file": "2__cm3/Cortex-M3-src/systemControl/tdc_touch_iqs323.h"
+ },
+ "tdc_touch_iqs323_set_ulp": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/systemControl/tdc_touch_iqs323.h"
+ },
+ "tdc_touch_iqs323_clear_ulp": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/systemControl/tdc_touch_iqs323.h"
+ },
+ "tdc_touch_iqs323_is_ulp": {
+  "ret": "bool",
+  "args": "void",
+  "argc": 0,
+  "file": "2__cm3/Cortex-M3-src/systemControl/tdc_touch_iqs323.h"
+ },
+ "public_touch_settings": {
+  "ret": "bool",
+  "args": "uint8_t threshold, uint8_t hysteresis",
+  "argc": 2,
+  "file": "2__cm3/Cortex-M3-src/systemControl/tdc_touch_iqs323.h"
+ },
+ "tdc_touch_logic_init": {
+  "ret": "void",
+  "args": "tdc_touch_logic_state_t *st, uint32_t now_ms",
+  "argc": 2,
+  "file": "2__cm3/Cortex-M3-src/systemControl/tdc_touch_logic.h"
+ },
+ "tdc_touch_logic_set_boot_ignore": {
+  "ret": "void",
+  "args": "tdc_touch_logic_state_t *st, uint32_t now_ms",
+  "argc": 2,
+  "file": "2__cm3/Cortex-M3-src/systemControl/tdc_touch_logic.h"
+ },
+ "tdc_touch_logic_step": {
+  "ret": "void",
+  "args": "tdc_touch_logic_state_t *st, const tdc_touch_in_t *in, tdc_touch_out_t *out",
+  "argc": 3,
+  "file": "2__cm3/Cortex-M3-src/systemControl/tdc_touch_logic.h"
+ },
+ "SEGGER_RTT_AllocUpBuffer": {
+  "ret": "int",
+  "args": "const char* sName, void* pBuffer, unsigned BufferSize, unsigned Flags",
+  "argc": 4,
+  "file": "5__calibration/include/SEGGER_RTT.h"
+ },
+ "SEGGER_RTT_ConfigUpBuffer": {
+  "ret": "int",
+  "args": "unsigned BufferIndex, const char* sName, void* pBuffer, unsigned BufferSize, unsigned Flags",
+  "argc": 5,
+  "file": "5__calibration/include/SEGGER_RTT.h"
+ },
+ "SEGGER_RTT_ConfigDownBuffer": {
+  "ret": "int",
+  "args": "unsigned BufferIndex, const char* sName, void* pBuffer, unsigned BufferSize, unsigned Flags",
+  "argc": 5,
+  "file": "5__calibration/include/SEGGER_RTT.h"
+ },
+ "SEGGER_RTT_GetKey": {
+  "ret": "int",
+  "args": "void",
+  "argc": 0,
+  "file": "5__calibration/include/SEGGER_RTT.h"
+ },
+ "SEGGER_RTT_HasData": {
+  "ret": "unsigned",
+  "args": "unsigned BufferIndex",
+  "argc": 1,
+  "file": "5__calibration/include/SEGGER_RTT.h"
+ },
+ "SEGGER_RTT_HasKey": {
+  "ret": "int",
+  "args": "void",
+  "argc": 0,
+  "file": "5__calibration/include/SEGGER_RTT.h"
+ },
+ "SEGGER_RTT_HasDataUp": {
+  "ret": "unsigned",
+  "args": "unsigned BufferIndex",
+  "argc": 1,
+  "file": "5__calibration/include/SEGGER_RTT.h"
+ },
+ "SEGGER_RTT_Init": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "5__calibration/include/SEGGER_RTT.h"
+ },
+ "SEGGER_RTT_Read": {
+  "ret": "unsigned",
+  "args": "unsigned BufferIndex, void* pBuffer, unsigned BufferSize",
+  "argc": 3,
+  "file": "5__calibration/include/SEGGER_RTT.h"
+ },
+ "SEGGER_RTT_ReadNoLock": {
+  "ret": "unsigned",
+  "args": "unsigned BufferIndex, void* pData, unsigned BufferSize",
+  "argc": 3,
+  "file": "5__calibration/include/SEGGER_RTT.h"
+ },
+ "SEGGER_RTT_SetNameDownBuffer": {
+  "ret": "int",
+  "args": "unsigned BufferIndex, const char* sName",
+  "argc": 2,
+  "file": "5__calibration/include/SEGGER_RTT.h"
+ },
+ "SEGGER_RTT_SetNameUpBuffer": {
+  "ret": "int",
+  "args": "unsigned BufferIndex, const char* sName",
+  "argc": 2,
+  "file": "5__calibration/include/SEGGER_RTT.h"
+ },
+ "SEGGER_RTT_SetFlagsDownBuffer": {
+  "ret": "int",
+  "args": "unsigned BufferIndex, unsigned Flags",
+  "argc": 2,
+  "file": "5__calibration/include/SEGGER_RTT.h"
+ },
+ "SEGGER_RTT_SetFlagsUpBuffer": {
+  "ret": "int",
+  "args": "unsigned BufferIndex, unsigned Flags",
+  "argc": 2,
+  "file": "5__calibration/include/SEGGER_RTT.h"
+ },
+ "SEGGER_RTT_WaitKey": {
+  "ret": "int",
+  "args": "void",
+  "argc": 0,
+  "file": "5__calibration/include/SEGGER_RTT.h"
+ },
+ "SEGGER_RTT_Write": {
+  "ret": "unsigned",
+  "args": "unsigned BufferIndex, const void* pBuffer, unsigned NumBytes",
+  "argc": 3,
+  "file": "5__calibration/include/SEGGER_RTT.h"
+ },
+ "SEGGER_RTT_WriteNoLock": {
+  "ret": "unsigned",
+  "args": "unsigned BufferIndex, const void* pBuffer, unsigned NumBytes",
+  "argc": 3,
+  "file": "5__calibration/include/SEGGER_RTT.h"
+ },
+ "SEGGER_RTT_WriteSkipNoLock": {
+  "ret": "unsigned",
+  "args": "unsigned BufferIndex, const void* pBuffer, unsigned NumBytes",
+  "argc": 3,
+  "file": "5__calibration/include/SEGGER_RTT.h"
+ },
+ "SEGGER_RTT_ASM_WriteSkipNoLock": {
+  "ret": "unsigned",
+  "args": "unsigned BufferIndex, const void* pBuffer, unsigned NumBytes",
+  "argc": 3,
+  "file": "5__calibration/include/SEGGER_RTT.h"
+ },
+ "SEGGER_RTT_WriteString": {
+  "ret": "unsigned",
+  "args": "unsigned BufferIndex, const char* s",
+  "argc": 2,
+  "file": "5__calibration/include/SEGGER_RTT.h"
+ },
+ "SEGGER_RTT_WriteWithOverwriteNoLock": {
+  "ret": "void",
+  "args": "unsigned BufferIndex, const void* pBuffer, unsigned NumBytes",
+  "argc": 3,
+  "file": "5__calibration/include/SEGGER_RTT.h"
+ },
+ "SEGGER_RTT_PutChar": {
+  "ret": "unsigned",
+  "args": "unsigned BufferIndex, char c",
+  "argc": 2,
+  "file": "5__calibration/include/SEGGER_RTT.h"
+ },
+ "SEGGER_RTT_PutCharSkip": {
+  "ret": "unsigned",
+  "args": "unsigned BufferIndex, char c",
+  "argc": 2,
+  "file": "5__calibration/include/SEGGER_RTT.h"
+ },
+ "SEGGER_RTT_PutCharSkipNoLock": {
+  "ret": "unsigned",
+  "args": "unsigned BufferIndex, char c",
+  "argc": 2,
+  "file": "5__calibration/include/SEGGER_RTT.h"
+ },
+ "SEGGER_RTT_GetAvailWriteSpace": {
+  "ret": "unsigned",
+  "args": "unsigned BufferIndex",
+  "argc": 1,
+  "file": "5__calibration/include/SEGGER_RTT.h"
+ },
+ "SEGGER_RTT_GetBytesInBuffer": {
+  "ret": "unsigned",
+  "args": "unsigned BufferIndex",
+  "argc": 1,
+  "file": "5__calibration/include/SEGGER_RTT.h"
+ },
+ "SEGGER_RTT_ReadUpBuffer": {
+  "ret": "unsigned",
+  "args": "unsigned BufferIndex, void* pBuffer, unsigned BufferSize",
+  "argc": 3,
+  "file": "5__calibration/include/SEGGER_RTT.h"
+ },
+ "SEGGER_RTT_ReadUpBufferNoLock": {
+  "ret": "unsigned",
+  "args": "unsigned BufferIndex, void* pData, unsigned BufferSize",
+  "argc": 3,
+  "file": "5__calibration/include/SEGGER_RTT.h"
+ },
+ "SEGGER_RTT_WriteDownBuffer": {
+  "ret": "unsigned",
+  "args": "unsigned BufferIndex, const void* pBuffer, unsigned NumBytes",
+  "argc": 3,
+  "file": "5__calibration/include/SEGGER_RTT.h"
+ },
+ "SEGGER_RTT_WriteDownBufferNoLock": {
+  "ret": "unsigned",
+  "args": "unsigned BufferIndex, const void* pBuffer, unsigned NumBytes",
+  "argc": 3,
+  "file": "5__calibration/include/SEGGER_RTT.h"
+ },
+ "SEGGER_RTT_SetTerminal": {
+  "ret": "int",
+  "args": "unsigned char TerminalId",
+  "argc": 1,
+  "file": "5__calibration/include/SEGGER_RTT.h"
+ },
+ "SEGGER_RTT_TerminalOut": {
+  "ret": "int",
+  "args": "unsigned char TerminalId, const char* s",
+  "argc": 2,
+  "file": "5__calibration/include/SEGGER_RTT.h"
+ },
+ "SEGGER_RTT_printf": {
+  "ret": "int",
+  "args": "unsigned BufferIndex, const char * sFormat, ...",
+  "argc": 3,
+  "file": "5__calibration/include/SEGGER_RTT.h"
+ },
+ "SEGGER_RTT_vprintf": {
+  "ret": "int",
+  "args": "unsigned BufferIndex, const char * sFormat, va_list * pParamList",
+  "argc": 3,
+  "file": "5__calibration/include/SEGGER_RTT.h"
+ },
+ "volatile": {
+  "ret": "__asm",
+  "args": "\"mrs %0, primask \\n\\t\" \\ \"movs r1, #1 \\n\\t\" \\ \"msr primask, r1 \\n\\t\" \\ : \"=r\" (_SEGGER_RTT__LockState) \\ : \\ : \"r1\", \"cc\" \\",
+  "argc": 5,
+  "file": "5__calibration/include/SEGGER_RTT_Conf.h"
+ },
+ "__asm": {
+  "ret": "register unsigned char _SEGGER_RTT__PRIMASK",
+  "args": "\"primask\"",
+  "argc": 1,
+  "file": "5__calibration/include/SEGGER_RTT_Conf.h"
+ },
+ "OS_SIM_EnterCriticalSection": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "5__calibration/include/SEGGER_RTT_Conf.h"
+ },
+ "OS_SIM_LeaveCriticalSection": {
+  "ret": "void",
+  "args": "void",
+  "argc": 0,
+  "file": "5__calibration/include/SEGGER_RTT_Conf.h"
+ },
+ "NVMInit_local": {
+  "ret": "int",
+  "args": "void",
+  "argc": 0,
+  "file": "5__calibration/include/app_CM3.h"
+ },
+ "ToggleGPIO": {
+  "ret": "void",
+  "args": "uint8_t dio, uint8_t n, uint32_t delay_s",
+  "argc": 3,
+  "file": "5__calibration/include/app_CM3.h"
+ },
+ "Delay": {
+  "ret": "void",
+  "args": "uint32_t delay_ms",
+  "argc": 1,
+  "file": "5__calibration/include/app_CM3.h"
+ },
+ "ExitApp": {
+  "ret": "void",
+  "args": "int status",
+  "argc": 1,
+  "file": "5__calibration/include/app_CM3.h"
+ },
+ "main": {
+  "ret": "int",
+  "args": "void",
+  "argc": 0,
+  "file": "5__calibration/include/app_CM3.h"
+ }
+}
