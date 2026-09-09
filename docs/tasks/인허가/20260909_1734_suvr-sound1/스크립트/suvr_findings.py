@@ -499,3 +499,5 @@ import suvr_findings_cm3h as _CM3H
 merge(_CM3H.F)
 import suvr_findings_cm3i as _CM3I
 merge(_CM3I.F)
+import suvr_findings_boot as _BOOT
+merge(_BOOT.F)
