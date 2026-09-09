@@ -14,7 +14,7 @@ SRC = os.path.join(HERE, u'측정원본.xlsx')
 
 FULL_SCALE = 262143
 ATT_PCB = -3.644
-ATT_JIG = -5.593
+ATT_JIG = -7.500
 
 
 def main():
@@ -79,24 +79,44 @@ def main():
              if a[4] != int(math.floor(FULL_SCALE * 10 ** ((a[0] - 120 + ATT_JIG) / 20.0)))]
     ok_all &= chk(u'PCB 열 = floor(262143 x 10^((dB-120-3.644)/20))',
                   len(bad_p) == 0, u'차이 %d건 %s' % (len(bad_p), bad_p[:3]))
-    ok_all &= chk(u'기구 열 = floor(262143 x 10^((dB-120-5.593)/20))',
+    ok_all &= chk(u'기구 열 = floor(262143 x 10^((dB-120-7.500)/20))',
                   len(bad_j) == 0, u'차이 %d건 %s' % (len(bad_j), bad_j[:3]))
 
-    print(u'\n=== E. 감쇠가 실측 평균과 맞는가 ===')
-    att = an['attenuation']
-    pcb = [att[n]['flat_mean'] for n in (u'501C', u'501D', u'501E', u'501F', u'5020')]
-    jig = [att[n]['flat_mean'] for n in (u'500A', u'500E', u'500F')]
-    pm, jm = sum(pcb) / 5, sum(jig) / 3
-    ok_all &= chk(u'PCB 평균이 %.3f dB 인가' % ATT_PCB, abs(pm - ATT_PCB) < 0.001,
-                  u'실제 %.4f dB' % pm)
-    ok_all &= chk(u'기구 평균이 %.3f dB 인가' % ATT_JIG, abs(jm - ATT_JIG) < 0.001,
-                  u'실제 %.4f dB' % jm)
-    ok_all &= chk(u'제외한 3 시료가 정상군보다 낮은가',
-                  all(att[n]['flat_mean'] < min(jig)
+    print(u'\n=== E. 판정 기준이 목적을 달성하는가 (허용 +-5 dB) ===')
+    att = {k: v['flat_mean'] for k, v in an['attenuation'].items()}
+    PCB = (u'501C', u'501D', u'501E', u'501F', u'5020')
+    JIG = (u'500A', u'500E', u'500F', u'500D', u'500C-2차', u'500C-1차')
+    pm = sum(att[n] for n in PCB) / len(PCB)
+    ok_all &= chk(u'PCB 열이 실측 5 시료 평균 %.3f 인가' % ATT_PCB,
+                  abs(pm - ATT_PCB) < 0.001, u'실제 %.4f dB' % pm)
+
+    # 판정 기준은 «조립 감쇠가 0 인 극단(= PCB 최고)» 과 «실측 최저» 의 중앙이다.
+    # 조립은 감쇠만 시키므로 실기 완제품은 이 두 값 사이에 반드시 들어온다.
+    hi = max(att[n] for n in PCB)
+    lo = min(att[n] for n in JIG)
+    center = (hi + lo) / 2
+    ok_all &= chk(u'기구 열이 상·하한의 중앙 %.3f 인가' % center,
+                  abs(center - ATT_JIG) < 0.01,
+                  u'상한 %.2f / 하한 %.2f' % (hi, lo))
+
+    fail = [(n, round(att[n] - ATT_JIG, 2)) for n in JIG if abs(att[n] - ATT_JIG) > 5]
+    ok_all &= chk(u'기구 조립 6 시료가 전건 통과하는가', len(fail) == 0,
+                  u'탈락 %s' % (fail if fail else u'없음'))
+
+    m_hi = 5 - (hi - ATT_JIG)
+    m_lo = 5 + (lo - ATT_JIG)
+    ok_all &= chk(u'상한 여유가 남는가 (조립 감쇠 0 인 극단 대비)', m_hi > 0,
+                  u'%+.2f dB' % m_hi)
+    ok_all &= chk(u'하한 여유가 남는가 (실측 최저 대비)', m_lo > 0, u'%+.2f dB' % m_lo)
+    ok_all &= chk(u'상·하한 여유가 대칭인가 (차 0.1 dB 이내)', abs(m_hi - m_lo) < 0.1,
+                  u'상 %+.2f / 하 %+.2f' % (m_hi, m_lo))
+    ok_all &= chk(u'제외 3 시료도 이 기준에서는 통과하는가',
+                  all(abs(att[n] - ATT_JIG) <= 5
                       for n in (u'500D', u'500C-2차', u'500C-1차')),
-                  u'제외군 %s / 정상군 최저 %.2f'
-                  % ([round(att[n]['flat_mean'], 2)
-                      for n in (u'500D', u'500C-2차', u'500C-1차')], min(jig)))
+                  u'%s' % [round(att[n] - ATT_JIG, 2)
+                           for n in (u'500D', u'500C-2차', u'500C-1차')])
+    print(u'  통과 하한 %.2f dB - 실측 최저보다 %.2f dB 더 나쁜 조립까지 받아준다'
+          % (ATT_JIG - 5, lo - (ATT_JIG - 5)))
 
     print(u'\n=== F. 측정 원본과의 역산 대조 ===')
     # 표의 PCB 값에서 감쇠를 되돌리면 1.5세대 값이 나와야 한다
@@ -132,7 +152,8 @@ def main():
             mism.append((d, tbl[d][1:], vals))
     ok_all &= chk(u'문서의 표본 표(%d행)가 실제 표와 같은가' % n_parsed,
                   len(mism) == 0 and n_parsed >= 5, str(mism[:2]))
-    for token in (u'-3.644', u'-5.593', u'-1.949', u'6564', u'-11.43', u'-7.48', u'-6.76'):
+    for token in (u'-3.644', u'-7.500', u'-11.43', u'-3.57', u'1.07',
+                  u'-12.50', u'6564', u'-7.48', u'-6.76'):
         ok_all &= chk(u'문서에 «%s» 가 있는가' % token, token in md)
 
     print(u'\n=== H. 원본 88 dB 이상치가 그대로 실렸는가 ===')
