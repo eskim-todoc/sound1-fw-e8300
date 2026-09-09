@@ -6,7 +6,7 @@
   - 실기 유닛의 결과 열이 비어 있는가 (지어낸 통과가 없는가)
   - 작성자와 일자가 비어 있는가
 """
-import io, os, sys, json
+import io, os, re, sys, json
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from openpyxl import load_workbook
@@ -179,6 +179,40 @@ def main():
           % (len([d for d in data if d['method'] == 'D']), ncase, bad[:5] or u'없음'))
     print(u'  준비 또는 제한이 NA 인 D 유닛: %s' % (na[:5] or u'없음'))
     print(u'  결과: %s' % (u'통과' if not bad and not na else u'실패'))
+
+    print(u'\n[검증_10] 기댓값이 준비되지 않은 항목이 없는가')
+    print(u'  «지어내지 않는다» 로 뭉갠 자리가 남아 있으면 시험이 성립하지 않는다.')
+    BADW = [u'지어내', u'실측 기록', u'실측값', u'미리 낼 수 없', u'재현할 수 없',
+            u'재현 불가', u'출력에 의존', u'확인 필요', u'TBD', u'미정', u'추후',
+            u'나중에', u'절차서 참조']
+    found = []
+    for ws2 in wb.worksheets:
+        for row in ws2.iter_rows():
+            for c in row:
+                if not isinstance(c.value, str):
+                    continue
+                for b in BADW:
+                    if b in c.value:
+                        found.append((ws2.title, c.coordinate, b))
+                        break
+    print(u'  미준비 표현: %s' % (found[:5] or u'없음'))
+
+    # 예상 출력에 판정 가능한 값이 있는가
+    novalue = []
+    for su, e in exp.items():
+        for i, c in enumerate(e['cases'], 1):
+            out = c['out'] or u''
+            has_num = bool(re.search(r'0x[0-9A-Fa-f]+|-?\d+', out))
+            # 분기 판정처럼 «어느 유닛이 불리는가» 가 답인 것은 허용한다
+            is_branch = (u'자극 기법' in out or u'하지 않는다' in out or u'매핑' in out)
+            if not has_num and not is_branch:
+                novalue.append((su, i, out[:50]))
+    print(u'  판정 가능한 값이 없는 케이스: %s' % (novalue[:5] or u'없음'))
+    kinds = {}
+    for e in exp.values():
+        kinds[e['kind']] = kinds.get(e['kind'], 0) + 1
+    print(u'  유닛 분류: %s' % kinds)
+    print(u'  결과: %s' % (u'통과' if not found and not novalue else u'실패'))
 
     print(u'\n[검증_8] SUVC 와 SUVR 의 기준서 부분이 같은가')
     wc = load_workbook(P_C, data_only=True)

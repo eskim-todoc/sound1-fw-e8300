@@ -241,16 +241,33 @@ def build_vectors():
         'cases': cases})
 
     # ---------------------------------------------------------- CM3-111
+    cases = [{'in': u'setting_stimulationRange 를 한 번도 부르지 않은 초기 상태',
+              'out': u'0  (static int 초기값)'}]
+    for slope, nm in ((0, u'A'), (1, u'B')):
+        for m in (10, 295, 400, 592, 1000):
+            off, lvl = Q.dac_offset(m, slope)
+            sat = u' [포화]' if off != m else u''
+            cases.append({'in': u'기울기 설정 %s, 최소 자극 전류 %d uA' % (nm, m),
+                          'out': u'%d uA%s  (레지스터 단계 %d)' % (off, sat, lvl)})
     V.append({
-        'su': 'CM3-111', 'fn': 'readDAC_offsetValue', 'kind': u'상수',
-        'note': u'상수 DAC_offset_uA 를 그대로 반환한다.',
-        'prep': PREP_CM3,
-        'limit': LIMIT_HARNESS,
-        'proc': (u'- 하네스가 원 함수를 한 번 호출한다.\n'
-                 u'- 구분자 -999 와 유닛 번호 111 다음에 결과 1 개가 이어진다.\n'
-                 u'- 그 값이 소스의 DAC_offset_uA 정의값과 같은지 확인한다.'),
-        'cases': [{'in': u'인자 없음',
-                   'out': u'소스의 DAC_offset_uA 정의값과 같아야 한다'}]})
+        'su': 'CM3-111', 'fn': 'readDAC_offsetValue', 'kind': u'재현',
+        'note': u'**상수가 아니다.** DAC_offset_uA 는 static 변수이고 '
+                u'setting_stimulationRange 가 조건에 따라 설정한다. 이 유닛은 그 값을 읽어 온다. '
+                u'최소 자극 전류가 포화값 이상이면 포화값으로 잘린다. '
+                u'활성 보드 ISD_Ver_is_112 기준으로 기울기 A 는 295 uA, B 는 592 uA 에서 포화한다. '
+                u'레지스터 단계는 기울기 역수(A 14435, B 7185)를 곱해 15 비트 내린 값이다.',
+        'prep': PREP_CM3 + u'\n- 시험 전에 setting_stimulationRange 를 지정한 조건으로 먼저 부른다.\n'
+                           u'- 기울기 설정(DAC_offsetSlope_register)과 최소 자극 전류를 지정한 값으로 둔다.',
+        'limit': (LIMIT_HARNESS +
+                  u'\n- 이 유닛만 단독으로 부르면 직전 설정값이 그대로 나온다. '
+                  u'첫 케이스는 아무 것도 부르지 않은 초기 상태를 본다.\n'
+                  u'- 포화값은 보드 버전에 따라 다르다. 활성 버전은 ISD_Ver_is_112 다 '
+                  u'(processorDirective.h:21).'),
+        'proc': (u'- 재기동 직후 이 유닛만 불러 초기값을 조회한다.\n'
+                 u'- 기울기 A 로 두고 최소 자극 전류를 10, 295, 400, 592, 1000 으로 바꿔 가며 '
+                 u'setting_stimulationRange 를 부른 뒤 이 유닛으로 읽는다.\n'
+                 u'- 기울기 B 로 바꿔 같은 다섯 값을 반복한다.'),
+        'cases': cases})
 
     # ---------------------------------------------------------- CFX-071
     cases = []
@@ -773,13 +790,23 @@ def build_vectors():
          [{'in': u'채널당 프레임 1, 검사 제어 레지스터 0',
            'out': u'첫 칸에 검사 설정 몰드가, 나머지에 대기 몰드 0x25555 가 실린다'}]),
         ('CM3-110', 'setting_stimulationRange',
-         u'펄스 폭과 T/C 레벨(uA)로 255 단계 환산값을 만든다. '
-         u'출력단 보정 설정과 맵 데이터를 고정하면 결정적이다.',
-         u'\n- 출력단 보정 설정(DAC offset)과 맵의 T/C 레벨을 지정한 값으로 둔다.\n' + MAP_FIX,
-         (u'- 펄스 폭과 T/C 레벨을 시험 값으로 두고 호출한다.\n'
-          u'- 환산된 T_level_255 와 C_level_255 배열을 조회해 기록한다.'),
-         [{'in': u'펄스 폭 25, T 레벨 10 20 30 40, C 레벨 100 150 200 250 (uA)',
-           'out': u'255 단계로 환산된 값. 출력단 보정 기울기 설정에 따라 시프트 폭이 갈린다'}]),
+         u'펄스 폭과 T/C 레벨(uA)로 255 단계 환산값을 만들고, 그 과정에서 '
+         u'출력단 보정값(DAC_offset_uA)과 보정 레지스터 단계를 함께 정한다. '
+         u'활성 보드 ISD_Ver_is_112 기준으로 기울기 A 는 295 uA, B 는 592 uA 에서 포화한다.',
+         u'\n- 기울기 설정(DAC_offsetSlope_register)을 A 또는 B 로 둔다.\n'
+         u'- 맵의 T/C 레벨과 펄스 폭을 시험 값으로 둔다.\n' + MAP_FIX,
+         (u'- 기울기 A 로 두고 시험 맵(T 최소 10 uA)으로 호출한다.\n'
+          u'- DAC_offset_uA 와 DAC_offsetLevel_register 를 조회한다.\n'
+          u'- T 최소를 400 uA 로 올려 다시 호출해 포화가 걸리는지 본다.\n'
+          u'- 기울기 B 로 바꿔 같은 두 경우를 반복한다.'),
+         [{'in': u'기울기 A, 최소 자극 전류 10 uA (시험 맵의 T 최소값)',
+           'out': u'DAC_offset_uA = 10, 보정 레지스터 단계 = 4  (포화 없음)'},
+          {'in': u'기울기 A, 최소 자극 전류 400 uA',
+           'out': u'DAC_offset_uA = 295 [포화], 보정 레지스터 단계 = 129'},
+          {'in': u'기울기 B, 최소 자극 전류 400 uA',
+           'out': u'DAC_offset_uA = 400, 보정 레지스터 단계 = 87  (B 는 592 에서 포화하므로 아직 아님)'},
+          {'in': u'기울기 B, 최소 자극 전류 1000 uA',
+           'out': u'DAC_offset_uA = 592 [포화], 보정 레지스터 단계 = 129'}]),
     ):
         V.append({
             'su': su, 'fn': fn, 'kind': u'재현',

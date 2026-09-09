@@ -344,6 +344,32 @@ def nofm_pcm_write(temp_buff, frame_num_per_channel, transferable_ch,
     return buf, idx
 
 
+# ------------------------------------------------------------------ 출력단 보정
+# 활성 보드는 ISD_Ver_is_112 다 (src/2__cm3/processorDirective.h:21).
+OFFSET_DAC_A_SAT_UA = 295               # isd_ver1_1_2.h:80  (2.27 x 130)
+OFFSET_DAC_B_SAT_UA = 592               # isd_ver1_1_2.h:81  (4.567 x 130)
+RECIP_Q1_15_DAC_A = 14435               # isd_ver1_1_2.h:124 (1/2.27 x 2^15)
+RECIP_Q1_15_DAC_B = 7185                # isd_ver1_1_2.h:125 (1/4.56 x 2^15)
+
+
+def dac_offset(min_stimul_ua, slope_register):
+    """stimulationParaCal.c:427.
+
+    DAC_offset_uA 는 상수가 아니라 setting_stimulationRange 가 설정하는 static 변수다.
+    최소 자극 전류가 포화값 이상이면 포화값으로, 아니면 그 값 그대로 쓴다.
+    이어서 기울기의 역수를 곱하고 15 비트 내려 레지스터 단계값을 만든다.
+
+    반환: (DAC_offset_uA, DAC_offsetLevel)
+    """
+    if slope_register == 0:             # Offset_DAC_A
+        sat, recip = OFFSET_DAC_A_SAT_UA, RECIP_Q1_15_DAC_A
+    else:                               # Offset_DAC_B
+        sat, recip = OFFSET_DAC_B_SAT_UA, RECIP_Q1_15_DAC_B
+    off = sat if min_stimul_ua >= sat else min_stimul_ua
+    level = (off * recip) >> 15
+    return off, level
+
+
 def stimulation_strategy_branch(strategy):
     """stimulationStrategy.c:42. 맵의 자극 기법으로 갈린다."""
     if strategy == STRATEGY_CIS:
