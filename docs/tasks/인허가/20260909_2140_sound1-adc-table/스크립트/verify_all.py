@@ -162,7 +162,21 @@ def main():
                   u'-13.29', u'0.27', u'6564', u'-7.48', u'-6.76'):
         ok_all &= chk(u'문서에 «%s» 가 있는가' % token, token in md)
 
-    print(u'\n=== H. 원본 88 dB 이상치가 그대로 실렸는가 ===')
+    print(u'\n=== H. 표 시트 머리 설명문이 실제와 맞는가 ===')
+    # 값만 보고 설명문을 읽지 않아 옛 기준의 문구가 남았던 적이 있다.
+    note = ws.cell(4, 2).value or u''
+    ok_all &= chk(u'설명문이 있는가', len(note) > 50, u'%d 자' % len(note))
+    ok_all &= chk(u'내림을 floor 라 적었는가 (round 아님)',
+                  u'floor(262143' in note and u'round(262143' not in note)
+    ok_all &= chk(u'PCB %.3f 를 «5 시료 평균» 이라 적었는가' % ATT_PCB,
+                  (u'%.3f' % ATT_PCB) in note and u'5 시료 평균' in note)
+    ok_all &= chk(u'기구 %.3f 를 «6 시료의 상·하한 중앙» 이라 적었는가' % ATT_JIG,
+                  (u'%.3f' % ATT_JIG) in note and u'6 시료' in note and u'중앙' in note,
+                  u'' if u'6 시료' in note else u'옛 문구(3 시료 평균)가 남았다')
+    ok_all &= chk(u'옛 기준값(-7.500 / -5.593)이 남아 있지 않은가',
+                  u'-7.500' not in note and u'-5.593' not in note)
+
+    print(u'\n=== I. 원본 88 dB 이상치가 그대로 실렸는가 ===')
     ok_all &= chk(u'표의 88 dB 미적용 값이 원본 6564 인가', tbl[88][1] == 6564,
                   u'실제 %s' % tbl[88][1])
 

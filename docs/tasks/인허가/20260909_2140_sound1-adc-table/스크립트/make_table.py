@@ -157,15 +157,18 @@ def write_xlsx(rows, meta):
     ws.row_dimensions[2].height = 26
 
     note = (u'1.5세대와 Sound1 은 같은 스펙의 마이크를 쓴다. 그래서 1.5세대 테이블의 '
-            u'생성 규칙을 그대로 두고 Sound1 의 실측 감쇠만 반영했다.\n'
-            u'ADC = round(262143 x 10^((dB SPL - 120 + 감쇠) / 20)),  262143 = 2^18 - 1\n'
-            u'감쇠는 고음압 평탄 구간(80~110 dB SPL) 실측 평균이다. '
-            u'PCB 상태 %.3f dB (5 시료), 기구 조립 %.3f dB (3 시료).'
+            u'생성 규칙을 그대로 두고 Sound1 의 감쇠만 반영했다.\n'
+            u'ADC = floor(262143 x 10^((dB SPL - 120 + 감쇠) / 20)),  262143 = 2^18 - 1  '
+            u'(1.5세대 표가 내림으로 만들어져 있다)\n'
+            u'감쇠는 고음압 평탄 구간(80~110 dB SPL) 실측에서 구했다.  '
+            u'PCB 상태 %.3f dB = 5 시료 평균 (참조용, 시험 대상이 아니다)\n'
+            u'기구 조립 %.3f dB = 실측 6 시료의 상·하한 중앙 (판정용).  '
+            u'시험 허용 오차 +-5 dB 는 이 표에서 정확히 한 칸 위/아래다.'
             % (meta['att_pcb'], meta['att_jig']))
     ws['B4'] = note
     ws['B4'].alignment = LEFT
     ws.merge_cells('B4:F6')
-    ws.row_dimensions[4].height = 52
+    ws.row_dimensions[4].height = 68
 
     hdr_row = 8
     heads = [u'음압\ndB SPL', u'1.5세대 ADC\n(멤브레인 미적용)', u'1.5세대 ADC\n(멤브레인 고려)',

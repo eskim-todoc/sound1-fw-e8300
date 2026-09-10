@@ -51,9 +51,9 @@ def main():
         u'B17=%s AD18=%s' % (ws['B17'].value, ws['AD18'].value))
     chk(u'AD > AE (기구 조립이 더 감쇠)',
         all(ws.cell(r, 30).value > ws.cell(r, 31).value for r in range(5, 19)))
-    chk(u'AF 열 이후는 비어 있는가',
-        all(ws.cell(r, c).value is None for r in range(1, 19) for c in range(32, 36)))
-
+    # AF~AI 는 +-5 dB 범위 열이다 (verify_range.py 가 본다). 그 뒤가 비어야 한다.
+    chk(u'AJ 열 이후는 비어 있는가',
+        all(ws.cell(r, c).value is None for r in range(1, 19) for c in range(36, 40)))
     print(u'\n=== C. 차트 계열 ===')
     z = zipfile.ZipFile(tgt)
     want_ser = {u'AD': u'Sound1 산출 기준 (PCB 상태)',
