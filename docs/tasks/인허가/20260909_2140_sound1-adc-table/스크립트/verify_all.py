@@ -14,7 +14,7 @@ SRC = os.path.join(HERE, u'측정원본.xlsx')
 
 FULL_SCALE = 262143
 ATT_PCB = -3.644
-ATT_JIG = -7.500
+ATT_JIG = -8.293
 
 
 def main():
@@ -79,7 +79,7 @@ def main():
              if a[4] != int(math.floor(FULL_SCALE * 10 ** ((a[0] - 120 + ATT_JIG) / 20.0)))]
     ok_all &= chk(u'PCB 열 = floor(262143 x 10^((dB-120-3.644)/20))',
                   len(bad_p) == 0, u'차이 %d건 %s' % (len(bad_p), bad_p[:3]))
-    ok_all &= chk(u'기구 열 = floor(262143 x 10^((dB-120-7.500)/20))',
+    ok_all &= chk(u'기구 열 = floor(262143 x 10^((dB-120-8.293)/20))',
                   len(bad_j) == 0, u'차이 %d건 %s' % (len(bad_j), bad_j[:3]))
 
     print(u'\n=== E. 판정 기준이 목적을 달성하는가 (허용 +-5 dB) ===')
@@ -90,14 +90,13 @@ def main():
     ok_all &= chk(u'PCB 열이 실측 5 시료 평균 %.3f 인가' % ATT_PCB,
                   abs(pm - ATT_PCB) < 0.001, u'실제 %.4f dB' % pm)
 
-    # 판정 기준은 «조립 감쇠가 0 인 극단(= PCB 최고)» 과 «실측 최저» 의 중앙이다.
-    # 조립은 감쇠만 시키므로 실기 완제품은 이 두 값 사이에 반드시 들어온다.
-    hi = max(att[n] for n in PCB)
+    # 판정 기준은 «시험 대상(기구 조립) 실측» 의 중앙이다.
+    hi = max(att[n] for n in JIG)
     lo = min(att[n] for n in JIG)
     center = (hi + lo) / 2
-    ok_all &= chk(u'기구 열이 상·하한의 중앙 %.3f 인가' % center,
+    ok_all &= chk(u'기구 열이 실측 상·하한의 중앙 %.3f 인가' % center,
                   abs(center - ATT_JIG) < 0.01,
-                  u'상한 %.2f / 하한 %.2f' % (hi, lo))
+                  u'상한 %.2f(최고) / 하한 %.2f(최저)' % (hi, lo))
 
     fail = [(n, round(att[n] - ATT_JIG, 2)) for n in JIG if abs(att[n] - ATT_JIG) > 5]
     ok_all &= chk(u'기구 조립 6 시료가 전건 통과하는가', len(fail) == 0,
@@ -105,9 +104,16 @@ def main():
 
     m_hi = 5 - (hi - ATT_JIG)
     m_lo = 5 + (lo - ATT_JIG)
-    ok_all &= chk(u'상한 여유가 남는가 (조립 감쇠 0 인 극단 대비)', m_hi > 0,
-                  u'%+.2f dB' % m_hi)
+    ok_all &= chk(u'상한 여유가 남는가 (실측 최고 대비)', m_hi > 0, u'%+.2f dB' % m_hi)
     ok_all &= chk(u'하한 여유가 남는가 (실측 최저 대비)', m_lo > 0, u'%+.2f dB' % m_lo)
+
+    # 조립 감쇠가 0 인 물리적 극단(= PCB 최고)도 담겨야 안전망이 산다
+    pcb_hi = max(att[n] for n in PCB)
+    m_pcb = 5 - (pcb_hi - ATT_JIG)
+    ok_all &= chk(u'조립 감쇠 0 인 극단(PCB 최고)도 담기는가', m_pcb > 0,
+                  u'%+.2f dB' % m_pcb)
+    ok_all &= chk(u'아래 여유가 위 여유보다 좁지 않은가 (위험은 아래로만 흩어진다)',
+                  m_lo >= m_pcb, u'아래 %+.2f / PCB극단 %+.2f' % (m_lo, m_pcb))
     ok_all &= chk(u'상·하한 여유가 대칭인가 (차 0.1 dB 이내)', abs(m_hi - m_lo) < 0.1,
                   u'상 %+.2f / 하 %+.2f' % (m_hi, m_lo))
     ok_all &= chk(u'제외 3 시료도 이 기준에서는 통과하는가',
@@ -152,8 +158,8 @@ def main():
             mism.append((d, tbl[d][1:], vals))
     ok_all &= chk(u'문서의 표본 표(%d행)가 실제 표와 같은가' % n_parsed,
                   len(mism) == 0 and n_parsed >= 5, str(mism[:2]))
-    for token in (u'-3.644', u'-7.500', u'-11.43', u'-3.57', u'1.07',
-                  u'-12.50', u'6564', u'-7.48', u'-6.76'):
+    for token in (u'-3.644', u'-8.293', u'-11.43', u'-5.15', u'1.86',
+                  u'-13.29', u'0.27', u'6564', u'-7.48', u'-6.76'):
         ok_all &= chk(u'문서에 «%s» 가 있는가' % token, token in md)
 
     print(u'\n=== H. 원본 88 dB 이상치가 그대로 실렸는가 ===')
