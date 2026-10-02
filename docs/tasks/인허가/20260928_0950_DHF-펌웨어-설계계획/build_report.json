@@ -1,0 +1,1418 @@
+[
+  {
+    "source": "SCCP-FW-TD20B 소프트웨어 변경관리 계획서.docx",
+    "target": "SCCP-FW-TD24A 소프트웨어 변경관리 계획서.docx",
+    "source_sha256": "dfd7ef6564ec269aa68cdccecafda06ad65dabc29e5e348e5f80f07de2e7d4db",
+    "target_sha256": "3dfb2816180a2fe0a9a1bae726faac7e596cec5b7852f6ec61733b6bdb7b0949",
+    "changed_parts": [
+      "word/document.xml",
+      "word/_rels/document.xml.rels",
+      "word/header1.xml",
+      "word/footer1.xml",
+      "word/footer2.xml",
+      "word/settings.xml",
+      "docProps/core.xml"
+    ],
+    "removed_parts": [
+      "word/media/image1.png",
+      "word/media/image2.png"
+    ],
+    "changes": [
+      {
+        "location": "표지·개정 이력·머리말 또는 공통 제품·문서 식별",
+        "part": "word/document.xml",
+        "paragraph": 6,
+        "before": "(TD20B-A-EXT)  ",
+        "after": "(TD24A-A-EXT)  ",
+        "reason": "Sound1 식별 전환 및 사용자 지정 작성자 반영; 날짜·검토·승인 공란"
+      },
+      {
+        "location": "표지·개정 이력·머리말 또는 공통 제품·문서 식별",
+        "part": "word/document.xml",
+        "paragraph": 20,
+        "before": "임정우",
+        "after": "김은수",
+        "reason": "Sound1 식별 전환 및 사용자 지정 작성자 반영; 날짜·검토·승인 공란"
+      },
+      {
+        "location": "표지·개정 이력·머리말 또는 공통 제품·문서 식별",
+        "part": "word/document.xml",
+        "paragraph": 22,
+        "before": "이호승",
+        "after": "",
+        "reason": "Sound1 식별 전환 및 사용자 지정 작성자 반영; 날짜·검토·승인 공란"
+      },
+      {
+        "location": "표지·개정 이력·머리말 또는 공통 제품·문서 식별",
+        "part": "word/document.xml",
+        "paragraph": 24,
+        "before": "사업부장",
+        "after": "수석연구원",
+        "reason": "Sound1 식별 전환 및 사용자 지정 작성자 반영; 날짜·검토·승인 공란"
+      },
+      {
+        "location": "표지·개정 이력·머리말 또는 공통 제품·문서 식별",
+        "part": "word/document.xml",
+        "paragraph": 26,
+        "before": "기술이사",
+        "after": "",
+        "reason": "Sound1 식별 전환 및 사용자 지정 작성자 반영; 날짜·검토·승인 공란"
+      },
+      {
+        "location": "표지·개정 이력·머리말 또는 공통 제품·문서 식별",
+        "part": "word/document.xml",
+        "paragraph": 28,
+        "before": "2020.09.22",
+        "after": "",
+        "reason": "Sound1 식별 전환 및 사용자 지정 작성자 반영; 날짜·검토·승인 공란"
+      },
+      {
+        "location": "표지·개정 이력·머리말 또는 공통 제품·문서 식별",
+        "part": "word/document.xml",
+        "paragraph": 30,
+        "before": "2020.09.22",
+        "after": "",
+        "reason": "Sound1 식별 전환 및 사용자 지정 작성자 반영; 날짜·검토·승인 공란"
+      },
+      {
+        "location": "표지·개정 이력·머리말 또는 공통 제품·문서 식별",
+        "part": "word/document.xml",
+        "paragraph": 46,
+        "before": "2020.09.22",
+        "after": "",
+        "reason": "Sound1 식별 전환 및 사용자 지정 작성자 반영; 날짜·검토·승인 공란"
+      },
+      {
+        "location": "표지·개정 이력·머리말 또는 공통 제품·문서 식별",
+        "part": "word/document.xml",
+        "paragraph": 142,
+        "before": "TD20B-A-EXT 제품의 펌웨어 개발 프로젝트에 참여하는 모든 구성원은 이 계획서에 규정된 절차에 따라 소프트웨어의 변경을 진행하여야 한다.",
+        "after": "TD24A-A-EXT 제품의 펌웨어 개발 프로젝트에 참여하는 모든 구성원은 이 계획서에 규정된 절차에 따라 소프트웨어의 변경을 진행하여야 한다.",
+        "reason": "Sound1 식별 전환 및 사용자 지정 작성자 반영; 날짜·검토·승인 공란"
+      },
+      {
+        "location": "3.1 변경 요청",
+        "part": "word/document.xml",
+        "paragraph": 182,
+        "before": "변경이 필요한 소프트웨어 형상항목을 식별하여 변경 요청서에 기록해야 한다.",
+        "after": "변경이 필요한 소프트웨어 형상항목을 식별하여 변경 요청서에 기록해야 한다. Sound1의 코어·부트로더, 맵·보정 데이터 변경도 포함한다.",
+        "reason": "원문 절차·필드를 유지하고 Sound1 적용 대상만 추가"
+      },
+      {
+        "location": "3.2 변경 영향",
+        "part": "word/document.xml",
+        "paragraph": 187,
+        "before": "소프트웨어 구조, 인터페이스",
+        "after": "소프트웨어 구조, 인터페이스 Sound1의 공유 메모리 및 자극 파라미터 영향을 포함한다.",
+        "reason": "원문 절차·필드를 유지하고 Sound1 적용 대상만 추가"
+      },
+      {
+        "location": "3.2 변경 영향",
+        "part": "word/document.xml",
+        "paragraph": 188,
+        "before": "시스템의 다른 소프트웨어에 발생될 영향",
+        "after": "시스템의 다른 소프트웨어에 발생될 영향 QCC5181 SPI/I2S, FPGA·내부기 및 무선 갱신과의 호환성을 포함한다.",
+        "reason": "원문 절차·필드를 유지하고 Sound1 적용 대상만 추가"
+      },
+      {
+        "location": "표지·개정 이력·머리말 또는 공통 제품·문서 식별",
+        "part": "word/header1.xml",
+        "paragraph": 3,
+        "before": "SCCP-FW-TD20B",
+        "after": "SCCP-FW-TD24A",
+        "reason": "Sound1 식별 전환 및 사용자 지정 작성자 반영; 날짜·검토·승인 공란"
+      },
+      {
+        "location": "표지·개정 이력·머리말 또는 공통 제품·문서 식별",
+        "part": "word/header1.xml",
+        "paragraph": 7,
+        "before": "2020.09.22",
+        "after": "",
+        "reason": "Sound1 식별 전환 및 사용자 지정 작성자 반영; 날짜·검토·승인 공란"
+      },
+      {
+        "location": "표지·개정 이력·머리말 또는 공통 제품·문서 식별",
+        "part": "word/header1.xml",
+        "paragraph": 9,
+        "before": "TD20B-A-EXT",
+        "after": "TD24A-A-EXT",
+        "reason": "Sound1 식별 전환 및 사용자 지정 작성자 반영; 날짜·검토·승인 공란"
+      }
+    ],
+    "preservation": "section/paragraph/run/table properties, styles, numbering, fonts, themes preserved"
+  },
+  {
+    "source": "SCMP-FW-TD20B 소프트웨어 형상관리 계획서.docx",
+    "target": "SCMP-FW-TD24A 소프트웨어 형상관리 계획서.docx",
+    "source_sha256": "0d9d6a17c40e8149616d50c194c52084ceaebe23bca622ad41952f82b4225792",
+    "target_sha256": "20db612c581007233e8d6a2ac5123d55e9b27e72b788022834c895a731398cf3",
+    "changed_parts": [
+      "word/document.xml",
+      "word/_rels/document.xml.rels",
+      "word/header1.xml",
+      "word/footer1.xml",
+      "word/footer2.xml",
+      "word/settings.xml",
+      "docProps/core.xml"
+    ],
+    "removed_parts": [
+      "word/media/image1.png",
+      "word/media/image2.png"
+    ],
+    "changes": [
+      {
+        "location": "표지·개정 이력·머리말 또는 공통 제품·문서 식별",
+        "part": "word/document.xml",
+        "paragraph": 6,
+        "before": "(TD20B-A-EXT) ",
+        "after": "(TD24A-A-EXT) ",
+        "reason": "Sound1 식별 전환 및 사용자 지정 작성자 반영; 날짜·검토·승인 공란"
+      },
+      {
+        "location": "표지·개정 이력·머리말 또는 공통 제품·문서 식별",
+        "part": "word/document.xml",
+        "paragraph": 16,
+        "before": "임정우",
+        "after": "김은수",
+        "reason": "Sound1 식별 전환 및 사용자 지정 작성자 반영; 날짜·검토·승인 공란"
+      },
+      {
+        "location": "표지·개정 이력·머리말 또는 공통 제품·문서 식별",
+        "part": "word/document.xml",
+        "paragraph": 18,
+        "before": "이호승",
+        "after": "",
+        "reason": "Sound1 식별 전환 및 사용자 지정 작성자 반영; 날짜·검토·승인 공란"
+      },
+      {
+        "location": "표지·개정 이력·머리말 또는 공통 제품·문서 식별",
+        "part": "word/document.xml",
+        "paragraph": 20,
+        "before": "사업부장",
+        "after": "수석연구원",
+        "reason": "Sound1 식별 전환 및 사용자 지정 작성자 반영; 날짜·검토·승인 공란"
+      },
+      {
+        "location": "표지·개정 이력·머리말 또는 공통 제품·문서 식별",
+        "part": "word/document.xml",
+        "paragraph": 22,
+        "before": "기술이사",
+        "after": "",
+        "reason": "Sound1 식별 전환 및 사용자 지정 작성자 반영; 날짜·검토·승인 공란"
+      },
+      {
+        "location": "표지·개정 이력·머리말 또는 공통 제품·문서 식별",
+        "part": "word/document.xml",
+        "paragraph": 24,
+        "before": "2020.09.21",
+        "after": "",
+        "reason": "Sound1 식별 전환 및 사용자 지정 작성자 반영; 날짜·검토·승인 공란"
+      },
+      {
+        "location": "표지·개정 이력·머리말 또는 공통 제품·문서 식별",
+        "part": "word/document.xml",
+        "paragraph": 26,
+        "before": "2020.09.21",
+        "after": "",
+        "reason": "Sound1 식별 전환 및 사용자 지정 작성자 반영; 날짜·검토·승인 공란"
+      },
+      {
+        "location": "표지·개정 이력·머리말 또는 공통 제품·문서 식별",
+        "part": "word/document.xml",
+        "paragraph": 41,
+        "before": "2020.09.21",
+        "after": "",
+        "reason": "Sound1 식별 전환 및 사용자 지정 작성자 반영; 날짜·검토·승인 공란"
+      },
+      {
+        "location": "표지·개정 이력·머리말 또는 공통 제품·문서 식별",
+        "part": "word/document.xml",
+        "paragraph": 153,
+        "before": "TD20B-A-EXT 제품의 펌웨어 개발 프로젝트에 참여하는 모든 구성원은 이 계획서에 규정된 절차에 따라 소프트웨어 형상항목을 관리해야 한다.",
+        "after": "TD24A-A-EXT 제품의 펌웨어 개발 프로젝트에 참여하는 모든 구성원은 이 계획서에 규정된 절차에 따라 소프트웨어 형상항목을 관리해야 한다.",
+        "reason": "Sound1 식별 전환 및 사용자 지정 작성자 반영; 날짜·검토·승인 공란"
+      },
+      {
+        "location": "4 형상관리 도구",
+        "part": "word/document.xml",
+        "paragraph": 201,
+        "before": "소프트웨어 형상 아이템은 전용 프로그램을 사용하여 관리한다. SVN, GIT 등을 이용할 수 있으며 프로젝트의 개발 인력의 구성에 따라라 적합한 프로그램 도구를 선택한다.",
+        "after": "소프트웨어 형상 아이템은 전용 프로그램을 사용하여 관리한다. SVN, GIT 등을 이용할 수 있으며 프로젝트의 개발 인력의 구성에 따라라 적합한 프로그램 도구를 선택한다. Sound1은 Git을 사용하며 QCC5181 펌웨어는 별도 관리하고 연동 버전을 식별한다.",
+        "reason": "원문 절차·필드를 유지하고 Sound1 적용 대상만 추가"
+      },
+      {
+        "location": "5 형상관리 원칙",
+        "part": "word/document.xml",
+        "paragraph": 205,
+        "before": "형상관리 툴을 사용하여 이력을 관리하는 방식은 아래 그림과 같다.",
+        "after": "형상관리 툴을 사용하여 이력을 관리하는 방식은 아래 그림과 같다. 그림은 분기 구성의 예시이며, Sound1에서는 NRF 대신 QCC5181을 사용한다. Ezairo의 각 코어는 같은 저장소 내 프로젝트로 구분한다.",
+        "reason": "원문 절차·필드를 유지하고 Sound1 적용 대상만 추가"
+      },
+      {
+        "location": "6.1.8 배포 형상",
+        "part": "word/document.xml",
+        "paragraph": 263,
+        "before": "배포되는 소프트웨어 바이너리 코드 ",
+        "after": "배포되는 소프트웨어 바이너리 코드 Sound1의 무선 갱신 이미지, 맵 및 보정 데이터도 포함한다.",
+        "reason": "원문 절차·필드를 유지하고 Sound1 적용 대상만 추가"
+      },
+      {
+        "location": "6.4 개발 환경",
+        "part": "word/document.xml",
+        "paragraph": 280,
+        "before": "소프트웨어 개발용 프로그램의 설치 파일, 소프트웨어 개발 환경 설정 값 등",
+        "after": "소프트웨어 개발용 프로그램의 설치 파일, 소프트웨어 개발 환경 설정 값 등 Sound1의 SDK·컴파일러·HEAR 도구와 빌드 설정을 포함한다.",
+        "reason": "원문 절차·필드를 유지하고 Sound1 적용 대상만 추가"
+      },
+      {
+        "location": "7.1 코드네임 예시",
+        "part": "word/document.xml",
+        "paragraph": 294,
+        "before": "예) DevBoard_1st",
+        "after": "예) Sound1 / TD24A-A-EXT",
+        "reason": "개발보드 예시를 실제 제품으로 변경"
+      },
+      {
+        "location": "표지·개정 이력·머리말 또는 공통 제품·문서 식별",
+        "part": "word/header1.xml",
+        "paragraph": 3,
+        "before": "SCMP-FW-TD20",
+        "after": "SCMP-FW-TD24A",
+        "reason": "Sound1 식별 전환 및 사용자 지정 작성자 반영; 날짜·검토·승인 공란"
+      },
+      {
+        "location": "표지·개정 이력·머리말 또는 공통 제품·문서 식별",
+        "part": "word/header1.xml",
+        "paragraph": 7,
+        "before": "2020.09.21",
+        "after": "",
+        "reason": "Sound1 식별 전환 및 사용자 지정 작성자 반영; 날짜·검토·승인 공란"
+      },
+      {
+        "location": "표지·개정 이력·머리말 또는 공통 제품·문서 식별",
+        "part": "word/header1.xml",
+        "paragraph": 9,
+        "before": "TD20B-A-EXT",
+        "after": "TD24A-A-EXT",
+        "reason": "Sound1 식별 전환 및 사용자 지정 작성자 반영; 날짜·검토·승인 공란"
+      }
+    ],
+    "preservation": "section/paragraph/run/table properties, styles, numbering, fonts, themes preserved"
+  },
+  {
+    "source": "SDP-FW-TD20B 소프트웨어 개발 계획서.docx",
+    "target": "SDP-FW-TD24A 소프트웨어 개발 계획서.docx",
+    "source_sha256": "00ec8746e807c6740c87aa0a1e0014ed5e52ad04c95e4ea559482ba2b0935d13",
+    "target_sha256": "7410a1c6f2151c7b233826498bc114636b86b2463fffc0cb811dc4fa1add6eb5",
+    "changed_parts": [
+      "word/document.xml",
+      "word/_rels/document.xml.rels",
+      "word/header1.xml",
+      "word/footer1.xml",
+      "word/footer2.xml",
+      "word/settings.xml",
+      "docProps/core.xml"
+    ],
+    "removed_parts": [
+      "word/media/image1.png",
+      "word/media/image2.png"
+    ],
+    "changes": [
+      {
+        "location": "표지·개정 이력·머리말 또는 공통 제품·문서 식별",
+        "part": "word/document.xml",
+        "paragraph": 5,
+        "before": "(TD20B-A-EXT) ",
+        "after": "(TD24A-A-EXT) ",
+        "reason": "Sound1 식별 전환 및 사용자 지정 작성자 반영; 날짜·검토·승인 공란"
+      },
+      {
+        "location": "표지·개정 이력·머리말 또는 공통 제품·문서 식별",
+        "part": "word/document.xml",
+        "paragraph": 26,
+        "before": "임정우",
+        "after": "김은수",
+        "reason": "Sound1 식별 전환 및 사용자 지정 작성자 반영; 날짜·검토·승인 공란"
+      },
+      {
+        "location": "표지·개정 이력·머리말 또는 공통 제품·문서 식별",
+        "part": "word/document.xml",
+        "paragraph": 28,
+        "before": "이호승",
+        "after": "",
+        "reason": "Sound1 식별 전환 및 사용자 지정 작성자 반영; 날짜·검토·승인 공란"
+      },
+      {
+        "location": "표지·개정 이력·머리말 또는 공통 제품·문서 식별",
+        "part": "word/document.xml",
+        "paragraph": 30,
+        "before": "사업부장",
+        "after": "수석연구원",
+        "reason": "Sound1 식별 전환 및 사용자 지정 작성자 반영; 날짜·검토·승인 공란"
+      },
+      {
+        "location": "표지·개정 이력·머리말 또는 공통 제품·문서 식별",
+        "part": "word/document.xml",
+        "paragraph": 32,
+        "before": "기술이사",
+        "after": "",
+        "reason": "Sound1 식별 전환 및 사용자 지정 작성자 반영; 날짜·검토·승인 공란"
+      },
+      {
+        "location": "표지·개정 이력·머리말 또는 공통 제품·문서 식별",
+        "part": "word/document.xml",
+        "paragraph": 34,
+        "before": "2020.09.24",
+        "after": "",
+        "reason": "Sound1 식별 전환 및 사용자 지정 작성자 반영; 날짜·검토·승인 공란"
+      },
+      {
+        "location": "표지·개정 이력·머리말 또는 공통 제품·문서 식별",
+        "part": "word/document.xml",
+        "paragraph": 36,
+        "before": "2020.09.24",
+        "after": "",
+        "reason": "Sound1 식별 전환 및 사용자 지정 작성자 반영; 날짜·검토·승인 공란"
+      },
+      {
+        "location": "표지·개정 이력·머리말 또는 공통 제품·문서 식별",
+        "part": "word/document.xml",
+        "paragraph": 50,
+        "before": "2020.09.24",
+        "after": "",
+        "reason": "Sound1 식별 전환 및 사용자 지정 작성자 반영; 날짜·검토·승인 공란"
+      },
+      {
+        "location": "1.3 대상",
+        "part": "word/document.xml",
+        "paragraph": 163,
+        "before": "OTE 인공와우 제품의 수명주기에 관여된 모든 인원을 대상으로 한다.",
+        "after": "Sound1 인공와우 제품의 수명주기에 관여된 모든 인원을 대상으로 한다. Sound1의 대상은 Ezairo 8300의 CFX·HEAR·Cortex-M3 및 부트로더이며, 별도 QCC5181 펌웨어와의 SPI/I2S 연동을 포함한다.",
+        "reason": "원문 절차·필드를 유지하고 Sound1 적용 대상만 추가"
+      },
+      {
+        "location": "표지·개정 이력·머리말 또는 공통 제품·문서 식별",
+        "part": "word/document.xml",
+        "paragraph": 171,
+        "before": "SRMP-FW-TD20B",
+        "after": "SRMP-FW-TD24A",
+        "reason": "Sound1 식별 전환 및 사용자 지정 작성자 반영; 날짜·검토·승인 공란"
+      },
+      {
+        "location": "표지·개정 이력·머리말 또는 공통 제품·문서 식별",
+        "part": "word/document.xml",
+        "paragraph": 174,
+        "before": "SPRP-FW-TD20B",
+        "after": "SPRP-FW-TD24A",
+        "reason": "Sound1 식별 전환 및 사용자 지정 작성자 반영; 날짜·검토·승인 공란"
+      },
+      {
+        "location": "표지·개정 이력·머리말 또는 공통 제품·문서 식별",
+        "part": "word/document.xml",
+        "paragraph": 177,
+        "before": "SCCP-FW-TD20B",
+        "after": "SCCP-FW-TD24A",
+        "reason": "Sound1 식별 전환 및 사용자 지정 작성자 반영; 날짜·검토·승인 공란"
+      },
+      {
+        "location": "표지·개정 이력·머리말 또는 공통 제품·문서 식별",
+        "part": "word/document.xml",
+        "paragraph": 180,
+        "before": "SCMP-FW-TD20B",
+        "after": "SCMP-FW-TD24A",
+        "reason": "Sound1 식별 전환 및 사용자 지정 작성자 반영; 날짜·검토·승인 공란"
+      },
+      {
+        "location": "표지·개정 이력·머리말 또는 공통 제품·문서 식별",
+        "part": "word/document.xml",
+        "paragraph": 183,
+        "before": "SMP-FW-TD20B",
+        "after": "SMP-FW-TD24A",
+        "reason": "Sound1 식별 전환 및 사용자 지정 작성자 반영; 날짜·검토·승인 공란"
+      },
+      {
+        "location": "3.1.2 요구사항 분석",
+        "part": "word/document.xml",
+        "paragraph": 222,
+        "before": "시스템의 설계/개발 입력 요구사항 참조하여 소프트웨어 요구사항을 분석하고 소프트웨어 요구사항 사양서를 작성하고, 이를 시험할 수 있는 시험 계획(기준)을 수립한다.",
+        "after": "시스템의 설계/개발 입력 요구사항 참조하여 소프트웨어 요구사항을 분석하고 소프트웨어 요구사항 사양서를 작성하고, 이를 시험할 수 있는 시험 계획(기준)을 수립한다. Sound1에서는 2마이크 빔포밍, CIS/NofM, 터치 입력, 맵·볼륨 및 무선 갱신을 포함한다.",
+        "reason": "원문 절차·필드를 유지하고 Sound1 적용 대상만 추가"
+      },
+      {
+        "location": "3.1.3 아키텍쳐 설계",
+        "part": "word/document.xml",
+        "paragraph": 227,
+        "before": "소프트웨어 요구사항 사양서에 기술된 요구사항의 실현이 가능하도록 소프트웨어 아키텍쳐를 설계한다.",
+        "after": "소프트웨어 요구사항 사양서에 기술된 요구사항의 실현이 가능하도록 소프트웨어 아키텍쳐를 설계한다. CFX·HEAR·Cortex-M3·부트로더와 공유 메모리, QCC5181·FPGA 인터페이스를 포함한다.",
+        "reason": "원문 절차·필드를 유지하고 Sound1 적용 대상만 추가"
+      },
+      {
+        "location": "3.1.3 종료 기준",
+        "part": "word/document.xml",
+        "paragraph": 230,
+        "before": "활동의 종료 : 소프트웨어 아키텍쳐 기술서 검토 환료.",
+        "after": "활동의 종료 : 소프트웨어 아키텍쳐 기술서 검토 완료.",
+        "reason": "원문 환료 오자 수정"
+      },
+      {
+        "location": "4 개발 표준·도구",
+        "part": "word/document.xml",
+        "paragraph": 290,
+        "before": "필요에 따라 아래의 표준을 소프트웨어 요구사항 구현의 방법 및 툴로 사용할 것이다.",
+        "after": "필요에 따라 아래의 표준을 소프트웨어 요구사항 구현의 방법 및 툴로 사용할 것이다. Sound1 개발 도구는 Ezairo SDK·컴파일러·HEAR 도구를 사용한다.",
+        "reason": "원문 절차·필드를 유지하고 Sound1 적용 대상만 추가"
+      },
+      {
+        "location": "5.1 통합 계획",
+        "part": "word/document.xml",
+        "paragraph": 301,
+        "before": "소프트웨어 상세 설계 기술서와 소프트웨어 아키텍쳐 기술서를 참조하여 소프트웨어 항목을 구성하는 유닛들의 통합 계획과 소프트웨어 모듈(항목)의 통합 계획을 작성한다.",
+        "after": "소프트웨어 상세 설계 기술서와 소프트웨어 아키텍쳐 기술서를 참조하여 소프트웨어 항목을 구성하는 유닛들의 통합 계획과 소프트웨어 모듈(항목)의 통합 계획을 작성한다. Sound1 통합 대상은 CFX·HEAR·Cortex-M3·부트로더 및 QCC5181 SPI/I2S·FPGA 인터페이스이다.",
+        "reason": "원문 절차·필드를 유지하고 Sound1 적용 대상만 추가"
+      },
+      {
+        "location": "5.2 통합 시험",
+        "part": "word/document.xml",
+        "paragraph": 304,
+        "before": "소프트웨어 상세 설계 기술서와 소프트웨어 아키텍쳐 기술서 및 소프트웨어 통합 계획서를 참조하여 소프트웨어 통합 시험 기준서를 작성하고 이에 따라 시험을 진행한다.",
+        "after": "소프트웨어 상세 설계 기술서와 소프트웨어 아키텍쳐 기술서 및 소프트웨어 통합 계획서를 참조하여 소프트웨어 통합 시험 기준서를 작성하고 이에 따라 시험을 진행한다. Sound1의 빔포밍·CIS/NofM, 맵·볼륨, 터치·전원 상태 및 무선 갱신 기능을 포함한다.",
+        "reason": "원문 절차·필드를 유지하고 Sound1 적용 대상만 추가"
+      },
+      {
+        "location": "표지·개정 이력·머리말 또는 공통 제품·문서 식별",
+        "part": "word/document.xml",
+        "paragraph": 518,
+        "before": "소프트웨어 위험관리계획서(SRMP-FW-TD20B) 참조",
+        "after": "소프트웨어 위험관리계획서(SRMP-FW-TD24A) 참조",
+        "reason": "Sound1 식별 전환 및 사용자 지정 작성자 반영; 날짜·검토·승인 공란"
+      },
+      {
+        "location": "8 문제해결 계획",
+        "part": "word/document.xml",
+        "paragraph": 521,
+        "before": "소프트웨어 문제해결 계획서(PRP-FW-TD20B) 참조",
+        "after": "소프트웨어 문제해결 계획서(SPRP-FW-TD24A) 참조",
+        "reason": "원문 PRP와 실제 SPRP 문서번호 불일치 수정"
+      },
+      {
+        "location": "표지·개정 이력·머리말 또는 공통 제품·문서 식별",
+        "part": "word/document.xml",
+        "paragraph": 524,
+        "before": "소프트웨어 변경관리 계획서(SCCP-FW-TD20B) 참조",
+        "after": "소프트웨어 변경관리 계획서(SCCP-FW-TD24A) 참조",
+        "reason": "Sound1 식별 전환 및 사용자 지정 작성자 반영; 날짜·검토·승인 공란"
+      },
+      {
+        "location": "표지·개정 이력·머리말 또는 공통 제품·문서 식별",
+        "part": "word/document.xml",
+        "paragraph": 527,
+        "before": "소프트웨어 형상관리계획서(SCMP-FW-TD20B) 참조",
+        "after": "소프트웨어 형상관리계획서(SCMP-FW-TD24A) 참조",
+        "reason": "Sound1 식별 전환 및 사용자 지정 작성자 반영; 날짜·검토·승인 공란"
+      },
+      {
+        "location": "표지·개정 이력·머리말 또는 공통 제품·문서 식별",
+        "part": "word/document.xml",
+        "paragraph": 530,
+        "before": "소프트웨어 유지보수 계획서(SMP-FW-TD20B) 참조",
+        "after": "소프트웨어 유지보수 계획서(SMP-FW-TD24A) 참조",
+        "reason": "Sound1 식별 전환 및 사용자 지정 작성자 반영; 날짜·검토·승인 공란"
+      },
+      {
+        "location": "표지·개정 이력·머리말 또는 공통 제품·문서 식별",
+        "part": "word/document.xml",
+        "paragraph": 542,
+        "before": "SDP-FW-TD20B",
+        "after": "SDP-FW-TD24A",
+        "reason": "Sound1 식별 전환 및 사용자 지정 작성자 반영; 날짜·검토·승인 공란"
+      },
+      {
+        "location": "표지·개정 이력·머리말 또는 공통 제품·문서 식별",
+        "part": "word/document.xml",
+        "paragraph": 545,
+        "before": "SRMP-FW-TD20B",
+        "after": "SRMP-FW-TD24A",
+        "reason": "Sound1 식별 전환 및 사용자 지정 작성자 반영; 날짜·검토·승인 공란"
+      },
+      {
+        "location": "표지·개정 이력·머리말 또는 공통 제품·문서 식별",
+        "part": "word/document.xml",
+        "paragraph": 548,
+        "before": "SCCP-FW-TD20B",
+        "after": "SCCP-FW-TD24A",
+        "reason": "Sound1 식별 전환 및 사용자 지정 작성자 반영; 날짜·검토·승인 공란"
+      },
+      {
+        "location": "표지·개정 이력·머리말 또는 공통 제품·문서 식별",
+        "part": "word/document.xml",
+        "paragraph": 551,
+        "before": "SCMP-FW-TD20B",
+        "after": "SCMP-FW-TD24A",
+        "reason": "Sound1 식별 전환 및 사용자 지정 작성자 반영; 날짜·검토·승인 공란"
+      },
+      {
+        "location": "표지·개정 이력·머리말 또는 공통 제품·문서 식별",
+        "part": "word/document.xml",
+        "paragraph": 554,
+        "before": "SMP-FW-TD20B",
+        "after": "SMP-FW-TD24A",
+        "reason": "Sound1 식별 전환 및 사용자 지정 작성자 반영; 날짜·검토·승인 공란"
+      },
+      {
+        "location": "표지·개정 이력·머리말 또는 공통 제품·문서 식별",
+        "part": "word/document.xml",
+        "paragraph": 557,
+        "before": "SPRP-FW-TD20B",
+        "after": "SPRP-FW-TD24A",
+        "reason": "Sound1 식별 전환 및 사용자 지정 작성자 반영; 날짜·검토·승인 공란"
+      },
+      {
+        "location": "표지·개정 이력·머리말 또는 공통 제품·문서 식별",
+        "part": "word/document.xml",
+        "paragraph": 560,
+        "before": "SGR-FW-TD20B",
+        "after": "SGR-FW-TD24A",
+        "reason": "Sound1 식별 전환 및 사용자 지정 작성자 반영; 날짜·검토·승인 공란"
+      },
+      {
+        "location": "표지·개정 이력·머리말 또는 공통 제품·문서 식별",
+        "part": "word/document.xml",
+        "paragraph": 563,
+        "before": "SR-FW-TD20B",
+        "after": "SR-FW-TD24A",
+        "reason": "Sound1 식별 전환 및 사용자 지정 작성자 반영; 날짜·검토·승인 공란"
+      },
+      {
+        "location": "표 1 문서 목록 일련번호",
+        "part": "word/document.xml",
+        "paragraph": 565,
+        "before": "7",
+        "after": "9",
+        "reason": "원본의 7 중복 및 뒤따르는 일련번호를 1~27로 정정"
+      },
+      {
+        "location": "표지·개정 이력·머리말 또는 공통 제품·문서 식별",
+        "part": "word/document.xml",
+        "paragraph": 566,
+        "before": "SRS-FW-TD20B",
+        "after": "SRS-FW-TD24A",
+        "reason": "Sound1 식별 전환 및 사용자 지정 작성자 반영; 날짜·검토·승인 공란"
+      },
+      {
+        "location": "표 1 문서 목록 일련번호",
+        "part": "word/document.xml",
+        "paragraph": 568,
+        "before": "9",
+        "after": "10",
+        "reason": "앞선 중복 번호 정정에 따른 일련번호 연결"
+      },
+      {
+        "location": "표지·개정 이력·머리말 또는 공통 제품·문서 식별",
+        "part": "word/document.xml",
+        "paragraph": 569,
+        "before": "SSTC-FW-TD20B",
+        "after": "SSTC-FW-TD24A",
+        "reason": "Sound1 식별 전환 및 사용자 지정 작성자 반영; 날짜·검토·승인 공란"
+      },
+      {
+        "location": "표 1 문서 목록 일련번호",
+        "part": "word/document.xml",
+        "paragraph": 571,
+        "before": "10",
+        "after": "11",
+        "reason": "앞선 중복 번호 정정에 따른 일련번호 연결"
+      },
+      {
+        "location": "12 아키텍쳐 문서번호",
+        "part": "word/document.xml",
+        "paragraph": 572,
+        "before": "SADD-FW-TD20B",
+        "after": "SAD-FW-TD24A",
+        "reason": "기존 Sound1 SAD 문서 명칭과 일치"
+      },
+      {
+        "location": "표 1 문서 목록 일련번호",
+        "part": "word/document.xml",
+        "paragraph": 574,
+        "before": "11",
+        "after": "12",
+        "reason": "앞선 중복 번호 정정에 따른 일련번호 연결"
+      },
+      {
+        "location": "표지·개정 이력·머리말 또는 공통 제품·문서 식별",
+        "part": "word/document.xml",
+        "paragraph": 575,
+        "before": "SDDD-FW-TD20B",
+        "after": "SDDD-FW-TD24A",
+        "reason": "Sound1 식별 전환 및 사용자 지정 작성자 반영; 날짜·검토·승인 공란"
+      },
+      {
+        "location": "표 1 문서 목록 일련번호",
+        "part": "word/document.xml",
+        "paragraph": 577,
+        "before": "12",
+        "after": "13",
+        "reason": "앞선 중복 번호 정정에 따른 일련번호 연결"
+      },
+      {
+        "location": "표지·개정 이력·머리말 또는 공통 제품·문서 식별",
+        "part": "word/document.xml",
+        "paragraph": 578,
+        "before": "SIP-FW-TD20B",
+        "after": "SIP-FW-TD24A",
+        "reason": "Sound1 식별 전환 및 사용자 지정 작성자 반영; 날짜·검토·승인 공란"
+      },
+      {
+        "location": "표 1 문서 목록 일련번호",
+        "part": "word/document.xml",
+        "paragraph": 580,
+        "before": "13",
+        "after": "14",
+        "reason": "앞선 중복 번호 정정에 따른 일련번호 연결"
+      },
+      {
+        "location": "표지·개정 이력·머리말 또는 공통 제품·문서 식별",
+        "part": "word/document.xml",
+        "paragraph": 581,
+        "before": "SUVC-FW-TD20B",
+        "after": "SUVC-FW-TD24A",
+        "reason": "Sound1 식별 전환 및 사용자 지정 작성자 반영; 날짜·검토·승인 공란"
+      },
+      {
+        "location": "표 1 문서 목록 일련번호",
+        "part": "word/document.xml",
+        "paragraph": 583,
+        "before": "14",
+        "after": "15",
+        "reason": "앞선 중복 번호 정정에 따른 일련번호 연결"
+      },
+      {
+        "location": "표지·개정 이력·머리말 또는 공통 제품·문서 식별",
+        "part": "word/document.xml",
+        "paragraph": 584,
+        "before": "SUVR-FW-TD20B",
+        "after": "SUVR-FW-TD24A",
+        "reason": "Sound1 식별 전환 및 사용자 지정 작성자 반영; 날짜·검토·승인 공란"
+      },
+      {
+        "location": "표 1 문서 목록 일련번호",
+        "part": "word/document.xml",
+        "paragraph": 586,
+        "before": "15",
+        "after": "16",
+        "reason": "앞선 중복 번호 정정에 따른 일련번호 연결"
+      },
+      {
+        "location": "표지·개정 이력·머리말 또는 공통 제품·문서 식별",
+        "part": "word/document.xml",
+        "paragraph": 587,
+        "before": "SITC-FW-TD20B",
+        "after": "SITC-FW-TD24A",
+        "reason": "Sound1 식별 전환 및 사용자 지정 작성자 반영; 날짜·검토·승인 공란"
+      },
+      {
+        "location": "표 1 문서 목록 일련번호",
+        "part": "word/document.xml",
+        "paragraph": 589,
+        "before": "16",
+        "after": "17",
+        "reason": "앞선 중복 번호 정정에 따른 일련번호 연결"
+      },
+      {
+        "location": "표지·개정 이력·머리말 또는 공통 제품·문서 식별",
+        "part": "word/document.xml",
+        "paragraph": 590,
+        "before": "SITR-FW-TD20B",
+        "after": "SITR-FW-TD24A",
+        "reason": "Sound1 식별 전환 및 사용자 지정 작성자 반영; 날짜·검토·승인 공란"
+      },
+      {
+        "location": "표 1 문서 목록 일련번호",
+        "part": "word/document.xml",
+        "paragraph": 592,
+        "before": "17",
+        "after": "18",
+        "reason": "앞선 중복 번호 정정에 따른 일련번호 연결"
+      },
+      {
+        "location": "표지·개정 이력·머리말 또는 공통 제품·문서 식별",
+        "part": "word/document.xml",
+        "paragraph": 593,
+        "before": "SSTR-FW-TD20B",
+        "after": "SSTR-FW-TD24A",
+        "reason": "Sound1 식별 전환 및 사용자 지정 작성자 반영; 날짜·검토·승인 공란"
+      },
+      {
+        "location": "표 1 문서 목록 일련번호",
+        "part": "word/document.xml",
+        "paragraph": 595,
+        "before": "18",
+        "after": "19",
+        "reason": "앞선 중복 번호 정정에 따른 일련번호 연결"
+      },
+      {
+        "location": "표지·개정 이력·머리말 또는 공통 제품·문서 식별",
+        "part": "word/document.xml",
+        "paragraph": 596,
+        "before": "SRRH-FW-TD20B",
+        "after": "SRRH-FW-TD24A",
+        "reason": "Sound1 식별 전환 및 사용자 지정 작성자 반영; 날짜·검토·승인 공란"
+      },
+      {
+        "location": "표 1 문서 목록 일련번호",
+        "part": "word/document.xml",
+        "paragraph": 598,
+        "before": "19",
+        "after": "20",
+        "reason": "앞선 중복 번호 정정에 따른 일련번호 연결"
+      },
+      {
+        "location": "표지·개정 이력·머리말 또는 공통 제품·문서 식별",
+        "part": "word/document.xml",
+        "paragraph": 599,
+        "before": "SFR-FW-TD20B",
+        "after": "SFR-FW-TD24A",
+        "reason": "Sound1 식별 전환 및 사용자 지정 작성자 반영; 날짜·검토·승인 공란"
+      },
+      {
+        "location": "표 1 문서 목록 일련번호",
+        "part": "word/document.xml",
+        "paragraph": 601,
+        "before": "20",
+        "after": "21",
+        "reason": "앞선 중복 번호 정정에 따른 일련번호 연결"
+      },
+      {
+        "location": "표지·개정 이력·머리말 또는 공통 제품·문서 식별",
+        "part": "word/document.xml",
+        "paragraph": 602,
+        "before": "SFAR-FW-TD20B",
+        "after": "SFAR-FW-TD24A",
+        "reason": "Sound1 식별 전환 및 사용자 지정 작성자 반영; 날짜·검토·승인 공란"
+      },
+      {
+        "location": "표 1 문서 목록 일련번호",
+        "part": "word/document.xml",
+        "paragraph": 604,
+        "before": "21",
+        "after": "22",
+        "reason": "앞선 중복 번호 정정에 따른 일련번호 연결"
+      },
+      {
+        "location": "표지·개정 이력·머리말 또는 공통 제품·문서 식별",
+        "part": "word/document.xml",
+        "paragraph": 605,
+        "before": "SCR-FW-TD20B",
+        "after": "SCR-FW-TD24A",
+        "reason": "Sound1 식별 전환 및 사용자 지정 작성자 반영; 날짜·검토·승인 공란"
+      },
+      {
+        "location": "표 1 문서 목록 일련번호",
+        "part": "word/document.xml",
+        "paragraph": 607,
+        "before": "22",
+        "after": "23",
+        "reason": "앞선 중복 번호 정정에 따른 일련번호 연결"
+      },
+      {
+        "location": "표지·개정 이력·머리말 또는 공통 제품·문서 식별",
+        "part": "word/document.xml",
+        "paragraph": 608,
+        "before": "SCA-FW-TD20B",
+        "after": "SCA-FW-TD24A",
+        "reason": "Sound1 식별 전환 및 사용자 지정 작성자 반영; 날짜·검토·승인 공란"
+      },
+      {
+        "location": "표 1 문서 목록 일련번호",
+        "part": "word/document.xml",
+        "paragraph": 610,
+        "before": "23",
+        "after": "24",
+        "reason": "앞선 중복 번호 정정에 따른 일련번호 연결"
+      },
+      {
+        "location": "표지·개정 이력·머리말 또는 공통 제품·문서 식별",
+        "part": "word/document.xml",
+        "paragraph": 611,
+        "before": "SCCR-FW-TD20B",
+        "after": "SCCR-FW-TD24A",
+        "reason": "Sound1 식별 전환 및 사용자 지정 작성자 반영; 날짜·검토·승인 공란"
+      },
+      {
+        "location": "표 1 문서 목록 일련번호",
+        "part": "word/document.xml",
+        "paragraph": 613,
+        "before": "24",
+        "after": "25",
+        "reason": "앞선 중복 번호 정정에 따른 일련번호 연결"
+      },
+      {
+        "location": "표지·개정 이력·머리말 또는 공통 제품·문서 식별",
+        "part": "word/document.xml",
+        "paragraph": 614,
+        "before": "SPR-FW-TD20B",
+        "after": "SPR-FW-TD24A",
+        "reason": "Sound1 식별 전환 및 사용자 지정 작성자 반영; 날짜·검토·승인 공란"
+      },
+      {
+        "location": "표 1 문서 목록 일련번호",
+        "part": "word/document.xml",
+        "paragraph": 616,
+        "before": "25",
+        "after": "26",
+        "reason": "앞선 중복 번호 정정에 따른 일련번호 연결"
+      },
+      {
+        "location": "표지·개정 이력·머리말 또는 공통 제품·문서 식별",
+        "part": "word/document.xml",
+        "paragraph": 617,
+        "before": "SPIR-FW-TD20B",
+        "after": "SPIR-FW-TD24A",
+        "reason": "Sound1 식별 전환 및 사용자 지정 작성자 반영; 날짜·검토·승인 공란"
+      },
+      {
+        "location": "표 1 문서 목록 일련번호",
+        "part": "word/document.xml",
+        "paragraph": 619,
+        "before": "26",
+        "after": "27",
+        "reason": "앞선 중복 번호 정정에 따른 일련번호 연결"
+      },
+      {
+        "location": "표지·개정 이력·머리말 또는 공통 제품·문서 식별",
+        "part": "word/document.xml",
+        "paragraph": 620,
+        "before": "SPRR-FW-TD20B",
+        "after": "SPRR-FW-TD24A",
+        "reason": "Sound1 식별 전환 및 사용자 지정 작성자 반영; 날짜·검토·승인 공란"
+      },
+      {
+        "location": "표지·개정 이력·머리말 또는 공통 제품·문서 식별",
+        "part": "word/header1.xml",
+        "paragraph": 3,
+        "before": "SDP-FW-TD20B",
+        "after": "SDP-FW-TD24A",
+        "reason": "Sound1 식별 전환 및 사용자 지정 작성자 반영; 날짜·검토·승인 공란"
+      },
+      {
+        "location": "표지·개정 이력·머리말 또는 공통 제품·문서 식별",
+        "part": "word/header1.xml",
+        "paragraph": 7,
+        "before": "2020.09.24",
+        "after": "",
+        "reason": "Sound1 식별 전환 및 사용자 지정 작성자 반영; 날짜·검토·승인 공란"
+      },
+      {
+        "location": "표지·개정 이력·머리말 또는 공통 제품·문서 식별",
+        "part": "word/header1.xml",
+        "paragraph": 9,
+        "before": "TD20B-A-EXT",
+        "after": "TD24A-A-EXT",
+        "reason": "Sound1 식별 전환 및 사용자 지정 작성자 반영; 날짜·검토·승인 공란"
+      }
+    ],
+    "preservation": "section/paragraph/run/table properties, styles, numbering, fonts, themes preserved"
+  },
+  {
+    "source": "SMP-FW-TD20B 소프트웨어 유지보수 계획서.docx",
+    "target": "SMP-FW-TD24A 소프트웨어 유지보수 계획서.docx",
+    "source_sha256": "5bd89d0aa2d819dc5bf4cbbe8f65348a46303e1ac4c732e837b1978845f229f6",
+    "target_sha256": "ec9661bf57debfe7f60c15ecbc08a71a431ba35707ce1b0956eaa3a337f381b6",
+    "changed_parts": [
+      "word/document.xml",
+      "word/_rels/document.xml.rels",
+      "word/header1.xml",
+      "word/footer1.xml",
+      "word/header2.xml",
+      "word/settings.xml",
+      "docProps/core.xml"
+    ],
+    "removed_parts": [
+      "word/media/image1.png",
+      "word/media/image2.png"
+    ],
+    "changes": [
+      {
+        "location": "표지·개정 이력·머리말 또는 공통 제품·문서 식별",
+        "part": "word/document.xml",
+        "paragraph": 6,
+        "before": "(TD20B-A-EXT)  ",
+        "after": "(TD24A-A-EXT)  ",
+        "reason": "Sound1 식별 전환 및 사용자 지정 작성자 반영; 날짜·검토·승인 공란"
+      },
+      {
+        "location": "표지·개정 이력·머리말 또는 공통 제품·문서 식별",
+        "part": "word/document.xml",
+        "paragraph": 20,
+        "before": "임정우",
+        "after": "김은수",
+        "reason": "Sound1 식별 전환 및 사용자 지정 작성자 반영; 날짜·검토·승인 공란"
+      },
+      {
+        "location": "표지·개정 이력·머리말 또는 공통 제품·문서 식별",
+        "part": "word/document.xml",
+        "paragraph": 22,
+        "before": "이호승",
+        "after": "",
+        "reason": "Sound1 식별 전환 및 사용자 지정 작성자 반영; 날짜·검토·승인 공란"
+      },
+      {
+        "location": "표지·개정 이력·머리말 또는 공통 제품·문서 식별",
+        "part": "word/document.xml",
+        "paragraph": 24,
+        "before": "사업부장",
+        "after": "수석연구원",
+        "reason": "Sound1 식별 전환 및 사용자 지정 작성자 반영; 날짜·검토·승인 공란"
+      },
+      {
+        "location": "표지·개정 이력·머리말 또는 공통 제품·문서 식별",
+        "part": "word/document.xml",
+        "paragraph": 26,
+        "before": "기술이사",
+        "after": "",
+        "reason": "Sound1 식별 전환 및 사용자 지정 작성자 반영; 날짜·검토·승인 공란"
+      },
+      {
+        "location": "표지·개정 이력·머리말 또는 공통 제품·문서 식별",
+        "part": "word/document.xml",
+        "paragraph": 28,
+        "before": "2020.09.21",
+        "after": "",
+        "reason": "Sound1 식별 전환 및 사용자 지정 작성자 반영; 날짜·검토·승인 공란"
+      },
+      {
+        "location": "표지·개정 이력·머리말 또는 공통 제품·문서 식별",
+        "part": "word/document.xml",
+        "paragraph": 30,
+        "before": "2020.09.21",
+        "after": "",
+        "reason": "Sound1 식별 전환 및 사용자 지정 작성자 반영; 날짜·검토·승인 공란"
+      },
+      {
+        "location": "표지·개정 이력·머리말 또는 공통 제품·문서 식별",
+        "part": "word/document.xml",
+        "paragraph": 44,
+        "before": "2020.09.21",
+        "after": "",
+        "reason": "Sound1 식별 전환 및 사용자 지정 작성자 반영; 날짜·검토·승인 공란"
+      },
+      {
+        "location": "표지·개정 이력·머리말 또는 공통 제품·문서 식별",
+        "part": "word/document.xml",
+        "paragraph": 137,
+        "before": "TD20B-A-EXT 제품 펌웨어 개발 프로젝트에 참여하는 모든 구성원은 이 계획서에 규정된 절차에 따라 소프트웨어를 유지보수 한다.",
+        "after": "TD24A-A-EXT 제품 펌웨어 개발 프로젝트에 참여하는 모든 구성원은 이 계획서에 규정된 절차에 따라 소프트웨어를 유지보수 한다.",
+        "reason": "Sound1 식별 전환 및 사용자 지정 작성자 반영; 날짜·검토·승인 공란"
+      },
+      {
+        "location": "3.1 피드백 수집",
+        "part": "word/document.xml",
+        "paragraph": 177,
+        "before": "사용자의 피드백을 수집하여 피드백 보고서를 작성한다.",
+        "after": "사용자의 피드백을 수집하여 피드백 보고서를 작성한다. Sound1의 맵·볼륨·입력 조건과 펌웨어 버전을 함께 기록한다.",
+        "reason": "원문 절차·필드를 유지하고 Sound1 적용 대상만 추가"
+      },
+      {
+        "location": "3.1 협력사 정보",
+        "part": "word/document.xml",
+        "paragraph": 179,
+        "before": "자사 내부 또는 관련 협력사로부터 소프트웨어의 관련 의견을 수집하여 피드백 보고서를 작성한다.",
+        "after": "자사 내부 또는 관련 협력사로부터 소프트웨어의 관련 의견을 수집하여 피드백 보고서를 작성한다. QCC5181·SDK·라이브러리 관련 정보도 포함한다.",
+        "reason": "원문 절차·필드를 유지하고 Sound1 적용 대상만 추가"
+      },
+      {
+        "location": "3.2 피드백 분석",
+        "part": "word/document.xml",
+        "paragraph": 182,
+        "before": "피드백 보고서의 내용을 분석하여 소프트웨어 문제가 발견되면 소프트웨어 문제해결 프로세스에서 처리를 하고, 성능의 개선/보완 등의 소프트웨어의 변경이 필요하면 소프트웨어 변경프로세스에서 처리한다.",
+        "after": "피드백 보고서의 내용을 분석하여 소프트웨어 문제가 발견되면 소프트웨어 문제해결 프로세스에서 처리를 하고, 성능의 개선/보완 등의 소프트웨어의 변경이 필요하면 소프트웨어 변경프로세스에서 처리한다. Sound1의 빔포밍·CIS/NofM, 터치, 배터리·충전 상태 연동 및 무선 갱신을 포함한다.",
+        "reason": "원문 절차·필드를 유지하고 Sound1 적용 대상만 추가"
+      },
+      {
+        "location": "표지·개정 이력·머리말 또는 공통 제품·문서 식별",
+        "part": "word/header1.xml",
+        "paragraph": 3,
+        "before": "SMP-FW-TD20B",
+        "after": "SMP-FW-TD24A",
+        "reason": "Sound1 식별 전환 및 사용자 지정 작성자 반영; 날짜·검토·승인 공란"
+      },
+      {
+        "location": "표지·개정 이력·머리말 또는 공통 제품·문서 식별",
+        "part": "word/header1.xml",
+        "paragraph": 7,
+        "before": "2020.09.21",
+        "after": "",
+        "reason": "Sound1 식별 전환 및 사용자 지정 작성자 반영; 날짜·검토·승인 공란"
+      },
+      {
+        "location": "표지·개정 이력·머리말 또는 공통 제품·문서 식별",
+        "part": "word/header1.xml",
+        "paragraph": 9,
+        "before": "TD20B-A-EXT",
+        "after": "TD24A-A-EXT",
+        "reason": "Sound1 식별 전환 및 사용자 지정 작성자 반영; 날짜·검토·승인 공란"
+      },
+      {
+        "location": "표지·개정 이력·머리말 또는 공통 제품·문서 식별",
+        "part": "word/header2.xml",
+        "paragraph": 3,
+        "before": "SMP-FW-TD20B",
+        "after": "SMP-FW-TD24A",
+        "reason": "Sound1 식별 전환 및 사용자 지정 작성자 반영; 날짜·검토·승인 공란"
+      },
+      {
+        "location": "표지·개정 이력·머리말 또는 공통 제품·문서 식별",
+        "part": "word/header2.xml",
+        "paragraph": 7,
+        "before": "2020.11.05",
+        "after": "",
+        "reason": "Sound1 식별 전환 및 사용자 지정 작성자 반영; 날짜·검토·승인 공란"
+      },
+      {
+        "location": "표지·개정 이력·머리말 또는 공통 제품·문서 식별",
+        "part": "word/header2.xml",
+        "paragraph": 9,
+        "before": "TD20B-A-EXT",
+        "after": "TD24A-A-EXT",
+        "reason": "Sound1 식별 전환 및 사용자 지정 작성자 반영; 날짜·검토·승인 공란"
+      }
+    ],
+    "preservation": "section/paragraph/run/table properties, styles, numbering, fonts, themes preserved"
+  },
+  {
+    "source": "SPRP-FW-TD20B 소프트웨어 문제해결 계획서.docx",
+    "target": "SPRP-FW-TD24A 소프트웨어 문제해결 계획서.docx",
+    "source_sha256": "a70e5b295037837d64934568ed24ebce254aff2c3826bd761c11ed3564000eda",
+    "target_sha256": "70f14952abae4c1c92d3fcc62111e29656d7aefd032887332b3b905f13a8af6e",
+    "changed_parts": [
+      "word/document.xml",
+      "word/_rels/document.xml.rels",
+      "word/header1.xml",
+      "word/header2.xml",
+      "word/footer1.xml",
+      "word/footer2.xml",
+      "word/header3.xml",
+      "word/footer3.xml",
+      "word/footer4.xml",
+      "word/settings.xml",
+      "docProps/core.xml"
+    ],
+    "removed_parts": [
+      "word/media/image1.png",
+      "word/media/image2.png"
+    ],
+    "changes": [
+      {
+        "location": "표지·개정 이력·머리말 또는 공통 제품·문서 식별",
+        "part": "word/document.xml",
+        "paragraph": 5,
+        "before": "(TD20B-A-EXT)  ",
+        "after": "(TD24A-A-EXT)  ",
+        "reason": "Sound1 식별 전환 및 사용자 지정 작성자 반영; 날짜·검토·승인 공란"
+      },
+      {
+        "location": "표지·개정 이력·머리말 또는 공통 제품·문서 식별",
+        "part": "word/document.xml",
+        "paragraph": 19,
+        "before": "임정우",
+        "after": "김은수",
+        "reason": "Sound1 식별 전환 및 사용자 지정 작성자 반영; 날짜·검토·승인 공란"
+      },
+      {
+        "location": "표지·개정 이력·머리말 또는 공통 제품·문서 식별",
+        "part": "word/document.xml",
+        "paragraph": 21,
+        "before": "이호승",
+        "after": "",
+        "reason": "Sound1 식별 전환 및 사용자 지정 작성자 반영; 날짜·검토·승인 공란"
+      },
+      {
+        "location": "표지·개정 이력·머리말 또는 공통 제품·문서 식별",
+        "part": "word/document.xml",
+        "paragraph": 23,
+        "before": "사업부장",
+        "after": "수석연구원",
+        "reason": "Sound1 식별 전환 및 사용자 지정 작성자 반영; 날짜·검토·승인 공란"
+      },
+      {
+        "location": "표지·개정 이력·머리말 또는 공통 제품·문서 식별",
+        "part": "word/document.xml",
+        "paragraph": 25,
+        "before": "기술이사",
+        "after": "",
+        "reason": "Sound1 식별 전환 및 사용자 지정 작성자 반영; 날짜·검토·승인 공란"
+      },
+      {
+        "location": "표지·개정 이력·머리말 또는 공통 제품·문서 식별",
+        "part": "word/document.xml",
+        "paragraph": 27,
+        "before": "2020.09.22",
+        "after": "",
+        "reason": "Sound1 식별 전환 및 사용자 지정 작성자 반영; 날짜·검토·승인 공란"
+      },
+      {
+        "location": "표지·개정 이력·머리말 또는 공통 제품·문서 식별",
+        "part": "word/document.xml",
+        "paragraph": 29,
+        "before": "2020.09.22",
+        "after": "",
+        "reason": "Sound1 식별 전환 및 사용자 지정 작성자 반영; 날짜·검토·승인 공란"
+      },
+      {
+        "location": "표지·개정 이력·머리말 또는 공통 제품·문서 식별",
+        "part": "word/document.xml",
+        "paragraph": 43,
+        "before": "2020.09.22",
+        "after": "",
+        "reason": "Sound1 식별 전환 및 사용자 지정 작성자 반영; 날짜·검토·승인 공란"
+      },
+      {
+        "location": "표지·개정 이력·머리말 또는 공통 제품·문서 식별",
+        "part": "word/document.xml",
+        "paragraph": 136,
+        "before": "TD20B-A-EXT 제품의 펌웨어 개발 프로젝트에 참여하는 모든 구성원은 이 계획서에 규정된 절차에 따라 소프트웨어 문제를 해결해야 한다.",
+        "after": "TD24A-A-EXT 제품의 펌웨어 개발 프로젝트에 참여하는 모든 구성원은 이 계획서에 규정된 절차에 따라 소프트웨어 문제를 해결해야 한다.",
+        "reason": "Sound1 식별 전환 및 사용자 지정 작성자 반영; 날짜·검토·승인 공란"
+      },
+      {
+        "location": "3.1 버전 식별",
+        "part": "word/document.xml",
+        "paragraph": 177,
+        "before": "배포버전, 개발 중 버전을 분류하고 해당 버전을 기록한다.",
+        "after": "배포버전, 개발 중 버전을 분류하고 해당 버전을 기록한다. Sound1은 Ezairo·QCC5181·FPGA 버전을 포함한다.",
+        "reason": "원문 절차·필드를 유지하고 Sound1 적용 대상만 추가"
+      },
+      {
+        "location": "3.1 적용 범위",
+        "part": "word/document.xml",
+        "paragraph": 183,
+        "before": "영향을 받는 기기, 액세서리, 변경 시점 등을 확인한다.",
+        "after": "영향을 받는 기기, 액세서리, 변경 시점 등을 확인한다. 시료·내부기·맵·볼륨 및 입력 신호 조건을 포함한다.",
+        "reason": "원문 절차·필드를 유지하고 Sound1 적용 대상만 추가"
+      },
+      {
+        "location": "3.3 원인 조사",
+        "part": "word/document.xml",
+        "paragraph": 195,
+        "before": "발견된 소프트웨어 문제를 조사하고 그 원인을 식별한다.",
+        "after": "발견된 소프트웨어 문제를 조사하고 그 원인을 식별한다. Sound1은 오디오 처리·자극 출력, CM3·공유 메모리, QCC5181 통신 및 부트·갱신 경로를 포함한다.",
+        "reason": "원문 절차·필드를 유지하고 Sound1 적용 대상만 추가"
+      },
+      {
+        "location": "표지·개정 이력·머리말 또는 공통 제품·문서 식별",
+        "part": "word/header2.xml",
+        "paragraph": 3,
+        "before": "SPRP-FW-TD20B",
+        "after": "SPRP-FW-TD24A",
+        "reason": "Sound1 식별 전환 및 사용자 지정 작성자 반영; 날짜·검토·승인 공란"
+      },
+      {
+        "location": "표지·개정 이력·머리말 또는 공통 제품·문서 식별",
+        "part": "word/header2.xml",
+        "paragraph": 7,
+        "before": "2020.09.22",
+        "after": "",
+        "reason": "Sound1 식별 전환 및 사용자 지정 작성자 반영; 날짜·검토·승인 공란"
+      },
+      {
+        "location": "표지·개정 이력·머리말 또는 공통 제품·문서 식별",
+        "part": "word/header2.xml",
+        "paragraph": 9,
+        "before": "TD20B-A-EXT",
+        "after": "TD24A-A-EXT",
+        "reason": "Sound1 식별 전환 및 사용자 지정 작성자 반영; 날짜·검토·승인 공란"
+      }
+    ],
+    "preservation": "section/paragraph/run/table properties, styles, numbering, fonts, themes preserved"
+  },
+  {
+    "source": "SRMP-FW-TD20B 소프트웨어 위험관리 계획서.docx",
+    "target": "SRMP-FW-TD24A 소프트웨어 위험관리 계획서.docx",
+    "source_sha256": "a1580d80e47c29ea2de125b2fbfa967c09fb5772a0c47caccb18b225b0a97c69",
+    "target_sha256": "5bac3db2dfd2bb163142cfd2acaee8971cf6719f213dec6be086fffb4e13f58b",
+    "changed_parts": [
+      "word/document.xml",
+      "word/_rels/document.xml.rels",
+      "word/header1.xml",
+      "word/footer1.xml",
+      "word/header2.xml",
+      "word/settings.xml",
+      "docProps/core.xml"
+    ],
+    "removed_parts": [
+      "word/media/image1.png",
+      "word/media/image2.png"
+    ],
+    "changes": [
+      {
+        "location": "표지·개정 이력·머리말 또는 공통 제품·문서 식별",
+        "part": "word/document.xml",
+        "paragraph": 4,
+        "before": "(TD20B-A-EXT)",
+        "after": "(TD24A-A-EXT)",
+        "reason": "Sound1 식별 전환 및 사용자 지정 작성자 반영; 날짜·검토·승인 공란"
+      },
+      {
+        "location": "표지·개정 이력·머리말 또는 공통 제품·문서 식별",
+        "part": "word/document.xml",
+        "paragraph": 20,
+        "before": "임정우",
+        "after": "김은수",
+        "reason": "Sound1 식별 전환 및 사용자 지정 작성자 반영; 날짜·검토·승인 공란"
+      },
+      {
+        "location": "표지·개정 이력·머리말 또는 공통 제품·문서 식별",
+        "part": "word/document.xml",
+        "paragraph": 22,
+        "before": "이호승",
+        "after": "",
+        "reason": "Sound1 식별 전환 및 사용자 지정 작성자 반영; 날짜·검토·승인 공란"
+      },
+      {
+        "location": "표지·개정 이력·머리말 또는 공통 제품·문서 식별",
+        "part": "word/document.xml",
+        "paragraph": 24,
+        "before": "사업부장",
+        "after": "수석연구원",
+        "reason": "Sound1 식별 전환 및 사용자 지정 작성자 반영; 날짜·검토·승인 공란"
+      },
+      {
+        "location": "표지·개정 이력·머리말 또는 공통 제품·문서 식별",
+        "part": "word/document.xml",
+        "paragraph": 26,
+        "before": "기술이사",
+        "after": "",
+        "reason": "Sound1 식별 전환 및 사용자 지정 작성자 반영; 날짜·검토·승인 공란"
+      },
+      {
+        "location": "표지·개정 이력·머리말 또는 공통 제품·문서 식별",
+        "part": "word/document.xml",
+        "paragraph": 28,
+        "before": "2020.09.18",
+        "after": "",
+        "reason": "Sound1 식별 전환 및 사용자 지정 작성자 반영; 날짜·검토·승인 공란"
+      },
+      {
+        "location": "표지·개정 이력·머리말 또는 공통 제품·문서 식별",
+        "part": "word/document.xml",
+        "paragraph": 30,
+        "before": "2020.09.18",
+        "after": "",
+        "reason": "Sound1 식별 전환 및 사용자 지정 작성자 반영; 날짜·검토·승인 공란"
+      },
+      {
+        "location": "표지·개정 이력·머리말 또는 공통 제품·문서 식별",
+        "part": "word/document.xml",
+        "paragraph": 44,
+        "before": "2020.09.18",
+        "after": "",
+        "reason": "Sound1 식별 전환 및 사용자 지정 작성자 반영; 날짜·검토·승인 공란"
+      },
+      {
+        "location": "1.2 적용범위",
+        "part": "word/document.xml",
+        "paragraph": 133,
+        "before": "OTE 펌웨어 개발단계부터 소프트웨어 유지보수 단계를 포함한 소프트웨어 수명주기의 전 기간에 적용된다.",
+        "after": "Sound1 펌웨어 개발단계부터 소프트웨어 유지보수 단계를 포함한 소프트웨어 수명주기의 전 기간에 적용된다. Sound1은 Ezairo 8300 CFX·HEAR·Cortex-M3·부트로더 및 QCC5181·FPGA 인터페이스를 포함한다.",
+        "reason": "원문 절차·필드를 유지하고 Sound1 적용 대상만 추가"
+      },
+      {
+        "location": "표지·개정 이력·머리말 또는 공통 제품·문서 식별",
+        "part": "word/document.xml",
+        "paragraph": 151,
+        "before": "RMP-TD20B",
+        "after": "RMP-TD24A",
+        "reason": "Sound1 식별 전환 및 사용자 지정 작성자 반영; 날짜·검토·승인 공란"
+      },
+      {
+        "location": "요구사항 단계 위험 식별",
+        "part": "word/document.xml",
+        "paragraph": 319,
+        "before": "소프트웨어 부분을 포함한 제품의 생명 주기에서 발생할 수 있는 모든 잠재적 위험을 식별하고 추정해야 하며, 식별된 위험 상황 및 위해를 기술해야 한다.",
+        "after": "소프트웨어 부분을 포함한 제품의 생명 주기에서 발생할 수 있는 모든 잠재적 위험을 식별하고 추정해야 하며, 식별된 위험 상황 및 위해를 기술해야 한다. Sound1의 빔포밍·CIS/NofM, 맵·T/C·펄스폭, 공유 메모리·통신 및 무선 갱신의 위험을 포함한다.",
+        "reason": "원문 절차·필드를 유지하고 Sound1 적용 대상만 추가"
+      },
+      {
+        "location": "표지·개정 이력·머리말 또는 공통 제품·문서 식별",
+        "part": "word/document.xml",
+        "paragraph": 343,
+        "before": "※ 위험관리 계획서(RMP-TD20B)의 ‘관리 및 권한’을 참조",
+        "after": "※ 위험관리 계획서(RMP-TD24A)의 ‘관리 및 권한’을 참조",
+        "reason": "Sound1 식별 전환 및 사용자 지정 작성자 반영; 날짜·검토·승인 공란"
+      },
+      {
+        "location": "표지·개정 이력·머리말 또는 공통 제품·문서 식별",
+        "part": "word/document.xml",
+        "paragraph": 404,
+        "before": "위험관리 계획서(RMP-TD20B)의 ‘검증 활동’을 참조",
+        "after": "위험관리 계획서(RMP-TD24A)의 ‘검증 활동’을 참조",
+        "reason": "Sound1 식별 전환 및 사용자 지정 작성자 반영; 날짜·검토·승인 공란"
+      },
+      {
+        "location": "표지·개정 이력·머리말 또는 공통 제품·문서 식별",
+        "part": "word/document.xml",
+        "paragraph": 406,
+        "before": "위험관리 계획서(RMP-TD20B)의 ‘위험 허용기준’을 참조",
+        "after": "위험관리 계획서(RMP-TD24A)의 ‘위험 허용기준’을 참조",
+        "reason": "Sound1 식별 전환 및 사용자 지정 작성자 반영; 날짜·검토·승인 공란"
+      },
+      {
+        "location": "표지·개정 이력·머리말 또는 공통 제품·문서 식별",
+        "part": "word/document.xml",
+        "paragraph": 408,
+        "before": "위험관리 계획서(RMP-TD20B)의 ‘생산 및 생산 후 정보 수집 활동’을 참조",
+        "after": "위험관리 계획서(RMP-TD24A)의 ‘생산 및 생산 후 정보 수집 활동’을 참조",
+        "reason": "Sound1 식별 전환 및 사용자 지정 작성자 반영; 날짜·검토·승인 공란"
+      },
+      {
+        "location": "표지·개정 이력·머리말 또는 공통 제품·문서 식별",
+        "part": "word/header1.xml",
+        "paragraph": 3,
+        "before": "SRMP-FW-TD20B",
+        "after": "SRMP-FW-TD24A",
+        "reason": "Sound1 식별 전환 및 사용자 지정 작성자 반영; 날짜·검토·승인 공란"
+      },
+      {
+        "location": "표지·개정 이력·머리말 또는 공통 제품·문서 식별",
+        "part": "word/header1.xml",
+        "paragraph": 7,
+        "before": "2020.09.18",
+        "after": "",
+        "reason": "Sound1 식별 전환 및 사용자 지정 작성자 반영; 날짜·검토·승인 공란"
+      },
+      {
+        "location": "표지·개정 이력·머리말 또는 공통 제품·문서 식별",
+        "part": "word/header1.xml",
+        "paragraph": 9,
+        "before": "TD20B-A-EXT",
+        "after": "TD24A-A-EXT",
+        "reason": "Sound1 식별 전환 및 사용자 지정 작성자 반영; 날짜·검토·승인 공란"
+      },
+      {
+        "location": "표지·개정 이력·머리말 또는 공통 제품·문서 식별",
+        "part": "word/header2.xml",
+        "paragraph": 3,
+        "before": "SRMP-FW-TD20B",
+        "after": "SRMP-FW-TD24A",
+        "reason": "Sound1 식별 전환 및 사용자 지정 작성자 반영; 날짜·검토·승인 공란"
+      },
+      {
+        "location": "표지·개정 이력·머리말 또는 공통 제품·문서 식별",
+        "part": "word/header2.xml",
+        "paragraph": 7,
+        "before": "2020.11.06",
+        "after": "",
+        "reason": "Sound1 식별 전환 및 사용자 지정 작성자 반영; 날짜·검토·승인 공란"
+      },
+      {
+        "location": "표지·개정 이력·머리말 또는 공통 제품·문서 식별",
+        "part": "word/header2.xml",
+        "paragraph": 9,
+        "before": "TD20B-A-EXT",
+        "after": "TD24A-A-EXT",
+        "reason": "Sound1 식별 전환 및 사용자 지정 작성자 반영; 날짜·검토·승인 공란"
+      }
+    ],
+    "preservation": "section/paragraph/run/table properties, styles, numbering, fonts, themes preserved"
+  }
+]

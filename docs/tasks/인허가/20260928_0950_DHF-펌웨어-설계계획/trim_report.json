@@ -1,0 +1,143 @@
+[
+  {
+    "file": "SCCP-FW-TD24A 소프트웨어 변경관리 계획서.docx",
+    "changes": [
+      {
+        "location": "3.1 변경 요청",
+        "removed": " Sound1의 코어·부트로더, 맵·보정 데이터 변경도 포함한다.",
+        "retained": "변경이 필요한 소프트웨어 형상항목을 식별하여 변경 요청서에 기록해야 한다."
+      },
+      {
+        "location": "3.2 변경 영향",
+        "removed": " Sound1의 공유 메모리 및 자극 파라미터 영향을 포함한다.",
+        "retained": "소프트웨어 구조, 인터페이스"
+      },
+      {
+        "location": "3.2 변경 영향",
+        "removed": " QCC5181 SPI/I2S, FPGA·내부기 및 무선 갱신과의 호환성을 포함한다.",
+        "retained": "시스템의 다른 소프트웨어에 발생될 영향"
+      }
+    ],
+    "remaining_insertions": 4
+  },
+  {
+    "file": "SCMP-FW-TD24A 소프트웨어 형상관리 계획서.docx",
+    "changes": [
+      {
+        "location": "4 형상관리 도구",
+        "removed": " Sound1은 Git을 사용하며 QCC5181 펌웨어는 별도 관리하고 연동 버전을 식별한다.",
+        "retained": "소프트웨어 형상 아이템은 전용 프로그램을 사용하여 관리한다. SVN, GIT 등을 이용할 수 있으며 프로젝트의 개발 인력의 구성에 따라라 적합한 프로그램 도구를 선택한다."
+      },
+      {
+        "location": "5 형상관리 원칙",
+        "removed": " Ezairo의 각 코어는 같은 저장소 내 프로젝트로 구분한다.",
+        "retained": "형상관리 툴을 사용하여 이력을 관리하는 방식은 아래 그림과 같다. 그림은 분기 구성의 예시이며, Sound1에서는 NRF 대신 QCC5181을 사용한다."
+      },
+      {
+        "location": "6.1.8 배포 형상",
+        "removed": "Sound1의 무선 갱신 이미지, 맵 및 보정 데이터도 포함한다.",
+        "retained": "배포되는 소프트웨어 바이너리 코드 "
+      },
+      {
+        "location": "6.4 개발 환경",
+        "removed": " Sound1의 SDK·컴파일러·HEAR 도구와 빌드 설정을 포함한다.",
+        "retained": "소프트웨어 개발용 프로그램의 설치 파일, 소프트웨어 개발 환경 설정 값 등"
+      }
+    ],
+    "remaining_insertions": 6
+  },
+  {
+    "file": "SDP-FW-TD24A 소프트웨어 개발 계획서.docx",
+    "changes": [
+      {
+        "location": "1.3 대상",
+        "removed": " Sound1의 대상은 Ezairo 8300의 CFX·HEAR·Cortex-M3 및 부트로더이며, 별도 QCC5181 펌웨어와의 SPI/I2S 연동을 포함한다.",
+        "retained": "Sound1 인공와우 제품의 수명주기에 관여된 모든 인원을 대상으로 한다."
+      },
+      {
+        "location": "3.1.2 요구사항 분석",
+        "removed": " Sound1에서는 2마이크 빔포밍, CIS/NofM, 터치 입력, 맵·볼륨 및 무선 갱신을 포함한다.",
+        "retained": "시스템의 설계/개발 입력 요구사항 참조하여 소프트웨어 요구사항을 분석하고 소프트웨어 요구사항 사양서를 작성하고, 이를 시험할 수 있는 시험 계획(기준)을 수립한다."
+      },
+      {
+        "location": "3.1.3 아키텍쳐 설계",
+        "removed": " CFX·HEAR·Cortex-M3·부트로더와 공유 메모리, QCC5181·FPGA 인터페이스를 포함한다.",
+        "retained": "소프트웨어 요구사항 사양서에 기술된 요구사항의 실현이 가능하도록 소프트웨어 아키텍쳐를 설계한다."
+      },
+      {
+        "location": "4 개발 표준·도구",
+        "removed": " Sound1 개발 도구는 Ezairo SDK·컴파일러·HEAR 도구를 사용한다.",
+        "retained": "필요에 따라 아래의 표준을 소프트웨어 요구사항 구현의 방법 및 툴로 사용할 것이다."
+      },
+      {
+        "location": "5.1 통합 계획",
+        "removed": " Sound1 통합 대상은 CFX·HEAR·Cortex-M3·부트로더 및 QCC5181 SPI/I2S·FPGA 인터페이스이다.",
+        "retained": "소프트웨어 상세 설계 기술서와 소프트웨어 아키텍쳐 기술서를 참조하여 소프트웨어 항목을 구성하는 유닛들의 통합 계획과 소프트웨어 모듈(항목)의 통합 계획을 작성한다."
+      },
+      {
+        "location": "5.2 통합 시험",
+        "removed": " Sound1의 빔포밍·CIS/NofM, 맵·볼륨, 터치·전원 상태 및 무선 갱신 기능을 포함한다.",
+        "retained": "소프트웨어 상세 설계 기술서와 소프트웨어 아키텍쳐 기술서 및 소프트웨어 통합 계획서를 참조하여 소프트웨어 통합 시험 기준서를 작성하고 이에 따라 시험을 진행한다."
+      }
+    ],
+    "remaining_insertions": 63
+  },
+  {
+    "file": "SMP-FW-TD24A 소프트웨어 유지보수 계획서.docx",
+    "changes": [
+      {
+        "location": "3.1 피드백 수집",
+        "removed": " Sound1의 맵·볼륨·입력 조건과 펌웨어 버전을 함께 기록한다.",
+        "retained": "사용자의 피드백을 수집하여 피드백 보고서를 작성한다."
+      },
+      {
+        "location": "3.1 협력사 정보",
+        "removed": " QCC5181·SDK·라이브러리 관련 정보도 포함한다.",
+        "retained": "자사 내부 또는 관련 협력사로부터 소프트웨어의 관련 의견을 수집하여 피드백 보고서를 작성한다."
+      },
+      {
+        "location": "3.2 피드백 분석",
+        "removed": " Sound1의 빔포밍·CIS/NofM, 터치, 배터리·충전 상태 연동 및 무선 갱신을 포함한다.",
+        "retained": "피드백 보고서의 내용을 분석하여 소프트웨어 문제가 발견되면 소프트웨어 문제해결 프로세스에서 처리를 하고, 성능의 개선/보완 등의 소프트웨어의 변경이 필요하면 소프트웨어 변경프로세스에서 처리한다."
+      }
+    ],
+    "remaining_insertions": 4
+  },
+  {
+    "file": "SPRP-FW-TD24A 소프트웨어 문제해결 계획서.docx",
+    "changes": [
+      {
+        "location": "3.1 버전 식별",
+        "removed": " Sound1은 Ezairo·QCC5181·FPGA 버전을 포함한다.",
+        "retained": "배포버전, 개발 중 버전을 분류하고 해당 버전을 기록한다."
+      },
+      {
+        "location": "3.1 적용 범위",
+        "removed": " 시료·내부기·맵·볼륨 및 입력 신호 조건을 포함한다.",
+        "retained": "영향을 받는 기기, 액세서리, 변경 시점 등을 확인한다."
+      },
+      {
+        "location": "3.3 원인 조사",
+        "removed": " Sound1은 오디오 처리·자극 출력, CM3·공유 메모리, QCC5181 통신 및 부트·갱신 경로를 포함한다.",
+        "retained": "발견된 소프트웨어 문제를 조사하고 그 원인을 식별한다."
+      }
+    ],
+    "remaining_insertions": 4
+  },
+  {
+    "file": "SRMP-FW-TD24A 소프트웨어 위험관리 계획서.docx",
+    "changes": [
+      {
+        "location": "1.2 적용범위",
+        "removed": " Sound1은 Ezairo 8300 CFX·HEAR·Cortex-M3·부트로더 및 QCC5181·FPGA 인터페이스를 포함한다.",
+        "retained": "Sound1 펌웨어 개발단계부터 소프트웨어 유지보수 단계를 포함한 소프트웨어 수명주기의 전 기간에 적용된다."
+      },
+      {
+        "location": "요구사항 단계 위험 식별",
+        "removed": " Sound1의 빔포밍·CIS/NofM, 맵·T/C·펄스폭, 공유 메모리·통신 및 무선 갱신의 위험을 포함한다.",
+        "retained": "소프트웨어 부분을 포함한 제품의 생명 주기에서 발생할 수 있는 모든 잠재적 위험을 식별하고 추정해야 하며, 식별된 위험 상황 및 위해를 기술해야 한다."
+      }
+    ],
+    "remaining_insertions": 9
+  }
+]

@@ -1,0 +1,38 @@
+[
+  {
+    "file": "SCCP-FW-TD24A 소프트웨어 변경관리 계획서_변경추적.docx",
+    "insertions": 9,
+    "deletions": 14,
+    "accepted_body_equals_current": true
+  },
+  {
+    "file": "SCMP-FW-TD24A 소프트웨어 형상관리 계획서_변경추적.docx",
+    "insertions": 11,
+    "deletions": 15,
+    "accepted_body_equals_current": true
+  },
+  {
+    "file": "SDP-FW-TD24A 소프트웨어 개발 계획서_변경추적.docx",
+    "insertions": 71,
+    "deletions": 73,
+    "accepted_body_equals_current": true
+  },
+  {
+    "file": "SMP-FW-TD24A 소프트웨어 유지보수 계획서_변경추적.docx",
+    "insertions": 11,
+    "deletions": 17,
+    "accepted_body_equals_current": true
+  },
+  {
+    "file": "SPRP-FW-TD24A 소프트웨어 문제해결 계획서_변경추적.docx",
+    "insertions": 9,
+    "deletions": 14,
+    "accepted_body_equals_current": true
+  },
+  {
+    "file": "SRMP-FW-TD24A 소프트웨어 위험관리 계획서_변경추적.docx",
+    "insertions": 15,
+    "deletions": 22,
+    "accepted_body_equals_current": true
+  }
+]
