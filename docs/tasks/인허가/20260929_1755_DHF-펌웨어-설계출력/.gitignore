@@ -1,0 +1,6 @@
+qa/
+revised/
+node_modules/
+__pycache__/
+*-authored.xlsx
+*.inspect.ndjson

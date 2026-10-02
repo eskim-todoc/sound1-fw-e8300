@@ -1,0 +1,77 @@
+{
+  "compiler": "gcc.EXE (MinGW-W64 x86_64-ucrt-posix-seh, built by Brecht Sanders, r3) 16.1.0",
+  "source_sha256": {
+    "E:\\workspace\\projects\\sound1-fw-e8300-backup\\src\\0__bootloader\\tiny-AES-c\\aes.c": "a157cfe01cb5463e17d8f27dddc5554187b5661d444c92e7825eeb263f70c8f9",
+    "E:\\workspace\\projects\\sound1-fw-e8300-backup\\src\\0__bootloader\\tiny-AES-c\\aes.h": "bcdcd7fa768aef1e5b53846750585352f461746e303585a09c3933589b69aee6",
+    "E:\\workspace\\projects\\sound1-fw-e8300-backup\\src\\2__cm3\\Gen1_5\\tiny-AES-c\\aes.c": "5fc1769762840f03f8428b4a92c4f7b8bcb68283265512350c4af5669d9b7328",
+    "E:\\workspace\\projects\\sound1-fw-e8300-backup\\src\\2__cm3\\Gen1_5\\tiny-AES-c\\aes.h": "6bd63cc22a0befd7152c3946fa9b189d913db287334934c004363769c574fcc6",
+    "E:\\workspace\\projects\\sound1-fw-e8300-backup\\src\\0__bootloader\\source\\bootloader.c": "25bbc2cb43bd9fdcaae3ae8318a464b3d81fb9dd5c2bd3e3abfb6e41067fafb7",
+    "E:\\workspace\\projects\\sound1-fw-e8300-backup\\src\\0__bootloader\\source\\bootloader_crc.c": "c8b34142fa648f24d858e259d68bdac6fde3cb632faf73f5a921d53307539d8f",
+    "E:\\workspace\\projects\\sound1-fw-e8300-backup\\src\\0__bootloader\\source\\bootmgr\\ci_boot.c": "1df58e7bce22b6021af92789f382665fc719582bcc04c38f940958e51d7f13fc",
+    "E:\\workspace\\projects\\sound1-fw-e8300-backup\\src\\2__cm3\\Gen1_5\\crc\\ci_crc.c": "d181da58e13267e3e46902ac0a5533439160eb3ff24829b316ffac1a78fa1f37",
+    "E:\\workspace\\projects\\sound1-fw-e8300-backup\\src\\2__cm3\\Gen1_5\\FS\\ci_filesystem.c": "4fd76c82346ed5f01c4aae5fcd5c68f00787e8332b74f666e4bf0655fe67255e",
+    "E:\\workspace\\projects\\sound1-fw-e8300-backup\\src\\2__cm3\\Gen1_5\\FS\\ci_map.c": "9e776a6445f79aa01c282df51a5e237f5292b1c84a61a3eccd18167019786b43",
+    "E:\\workspace\\projects\\sound1-fw-e8300-backup\\src\\2__cm3\\Cortex-M3-src\\BleCommunication\\ci_ble_control_ota.c": "ed3bbca8e3faaf070b529254ea4df8d72e6f2d374fd0f77909445a3ad5b6ebde",
+    "E:\\workspace\\projects\\sound1-fw-e8300-backup\\src\\2__cm3\\Gen1_5\\ui\\tdc_ui_command.c": "3f33f6ab47db1d06e0fe40967bb8cf344b85e60a16b69240b1255dc73a79bf40",
+    "E:\\workspace\\projects\\sound1-fw-e8300-backup\\src\\2__cm3\\Cortex-M3-src\\main.c": "9b3fa2b1ba48f37f9f01da6bf807edd7cf1e7542c89fcbe4820cfc1ce8316ba8",
+    "E:\\workspace\\projects\\sound1-fw-e8300-backup\\src\\0__bootloader\\source\\segger_rtt\\SEGGER_RTT.c": "46a6b725b4910021f3462081e3dd8cb02ee83bc08ed84bd534d441a66d9f2ffb",
+    "E:\\workspace\\projects\\sound1-fw-e8300-backup\\src\\0__bootloader\\include\\segger_rtt\\SEGGER_RTT_Conf.h": "7171ada70903ab510775b8d0aadbd94b99d621373b87d6ff5defa71b649c4c9d",
+    "E:\\workspace\\projects\\sound1-fw-e8300-backup\\src\\2__cm3\\Gen1_5\\SEGGER_RTT\\SEGGER_RTT.c": "f06b06c6e0d4cd7754f8f2e4fca33b0110d0ea1179a3f341e3ba4310de521829",
+    "E:\\workspace\\projects\\sound1-fw-e8300-backup\\src\\2__cm3\\Gen1_5\\SEGGER_RTT\\SEGGER_RTT_Conf.h": "fa13094bf1c12fc68aaddf1d265e8e9eab417d1aca7218178e8204395eba7d59",
+    "E:\\workspace\\projects\\sound1-fw-e8300-backup\\src\\2__cm3\\Gen1_5\\SEGGER_RTT\\SEGGER_RTT_Wrapper.c": "e42effe51d598bb5eecd3f05334e779e99064dc790a066ec482d6c8bcb99c5a6",
+    "E:\\workspace\\projects\\sound1-fw-e8300-backup\\src\\0__bootloader\\.cproject": "31e66112f104ca259396145891c77d55f0d2d6544e0cfed2ae44e0650f1b013b",
+    "E:\\workspace\\projects\\sound1-fw-e8300-backup\\src\\2__cm3\\.cproject": "ce4da840694f50741a3d718ee024295145499f4b9d5e1ae4b6c3ecb20f458095",
+    "E:\\workspace\\projects\\sound1-fw-e8300-backup\\src\\0__bootloader\\Debug\\0__bootloader.map": "d32a9d7fc5b93bab9cb6e4a38030c5e52b7e85565f9ec4cc69b1ca1f1293011d",
+    "E:\\workspace\\projects\\sound1-fw-e8300-backup\\src\\2__cm3\\Debug\\2__cm3.map": "f3fcd1ba5514bd8ae93210e10e418c39a758dcf37bf3b5b55c08d53da25ad7b9",
+    "C:\\Program Files (x86)\\ON Semiconductor\\Ezairo 8300 SDK\\REVISION": "12b1760262523c59af9e39789998815c6de0a6426bde3b687f0e61cdd96a3cc7",
+    "C:\\Program Files (x86)\\ON Semiconductor\\Ezairo 8300 SDK\\source\\Cortex-M3\\fatfs\\code\\ff.c": "cd849b935e2c41f294e1f5420754a61df92a96044fd885d0346cf33c4a755ef8",
+    "C:\\Program Files (x86)\\ON Semiconductor\\Ezairo 8300 SDK\\source\\Cortex-M3\\fatfs\\include\\ffconf.h": "31f433950f86c3108ac997ea7a16239a7b82154b3c787a6ab7d0a7e20be3445e",
+    "C:\\Program Files (x86)\\ON Semiconductor\\Ezairo 8300 SDK\\include\\cm3\\ff.h": "d8a6671be75cc8ce2e4ebf79edd3bcc37a28676060a90de5d43604208464e3f9",
+    "C:\\Program Files (x86)\\ON Semiconductor\\Ezairo 8300 SDK\\include\\cm3\\ffconf.h": "a8dab68fc3ac7b019517dc4960fcca7e10525a23163e644988de01c5a493dba0",
+    "C:\\Program Files (x86)\\ON Semiconductor\\Ezairo 8300 SDK\\include\\shared\\crc.h": "ebb4f23bad09d544eaa87823d2e6ca94d72ed7ddd7700c43746146b75a933fd7",
+    "C:\\Program Files (x86)\\ON Semiconductor\\Ezairo 8300 SDK\\include\\shared\\version.h": "8dc25829810f0f8f57624af4d5f55cde987c2f1de9036477b84a76c0f7520607",
+    "C:\\Program Files (x86)\\ON Semiconductor\\Ezairo 8300 SDK\\lib\\cm3\\libfatfs.a": "9663a183d3e13ab8a2b5b283629bb7aac2fa06f56a34fe6396c5691f0d3881e7"
+  },
+  "tests": [
+    {
+      "component": "BOOT",
+      "command": [
+        "C:\\Users\\EUNSU\\AppData\\Local\\Microsoft\\WinGet\\Packages\\BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe\\mingw64\\bin\\gcc.EXE",
+        "-std=c99",
+        "-O2",
+        "-Wall",
+        "-Wextra",
+        "-I",
+        "E:\\workspace\\projects\\sound1-fw-e8300-backup\\src\\0__bootloader\\tiny-AES-c",
+        "E:\\workspace\\projects\\sound1-fw-e8300-backup\\src\\0__bootloader\\tiny-AES-c\\aes.c",
+        "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20260929_1755_DHF-펌웨어-설계출력\\soup_aes_kat.c",
+        "-o",
+        "aes-BOOT.exe"
+      ],
+      "build_output": "",
+      "exit": 0,
+      "output": "PASS AES128 ECB: 4 encrypt + 4 decrypt NIST vectors"
+    },
+    {
+      "component": "CM3",
+      "command": [
+        "C:\\Users\\EUNSU\\AppData\\Local\\Microsoft\\WinGet\\Packages\\BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe\\mingw64\\bin\\gcc.EXE",
+        "-std=c99",
+        "-O2",
+        "-Wall",
+        "-Wextra",
+        "-I",
+        "E:\\workspace\\projects\\sound1-fw-e8300-backup\\src\\2__cm3\\Gen1_5\\tiny-AES-c",
+        "E:\\workspace\\projects\\sound1-fw-e8300-backup\\src\\2__cm3\\Gen1_5\\tiny-AES-c\\aes.c",
+        "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20260929_1755_DHF-펌웨어-설계출력\\soup_aes_kat.c",
+        "-o",
+        "aes-CM3.exe"
+      ],
+      "build_output": "",
+      "exit": 0,
+      "output": "PASS AES128 ECB: 4 encrypt + 4 decrypt NIST vectors"
+    }
+  ],
+  "scope": "Host AES core only. No target, filesystem, CRC peripheral, RTT or product safety test.",
+  "inputs_unchanged": true
+}

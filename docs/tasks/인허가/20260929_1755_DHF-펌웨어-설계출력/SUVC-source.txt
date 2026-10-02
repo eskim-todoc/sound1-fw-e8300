@@ -1,0 +1,291 @@
+표지 row 1: 
+표지 row 2: J=문서번호 | L=SUVC-FW-TD20B
+표지 row 3: J=버전 | L=Rev. 1
+표지 row 4: 
+표지 row 5: B=소프트웨어 유닛 검증 기준서
+(TD20B-A-EXT)
+표지 row 6: 
+표지 row 7: 
+표지 row 8: 
+표지 row 9: 
+표지 row 10: 
+표지 row 11: D=소속/부서 | H=성명 | J=서명 | M=일자
+표지 row 12: B=작성 | D=토닥/인공와우사업부 | H=임정우 | M=2021.09.04
+표지 row 13: 
+표지 row 14: B=검토
+표지 row 15: 
+표지 row 16: B=승인 | D=토닥 | H=이호승 | M=2021.09.04
+표지 row 17: 
+표지 row 18: 
+표지 row 19: 
+표지 row 20: 
+표지 row 21: 
+표지 row 22: B=개정이력
+표지 row 23: B=개정번호 | D=개정날짜 | F=개정내용
+표지 row 24: B=0 | D=2021.09.04 | F=최초 작성
+표지 row 25: 
+표지 row 26: 
+표지 row 27: 
+표지 row 28: 
+표지 row 29: 
+표지 row 30: 
+표지 row 31: 
+기준서_유닛 검증 row 1: 
+기준서_유닛 검증 row 2: B=유닛 시험 기준서
+인공달팽이관 외부장치 펌웨어 
+기준서_유닛 검증 row 3: 
+기준서_유닛 검증 row 4: 
+기준서_유닛 검증 row 5: B=1. 시험 대상 소프트웨어
+기준서_유닛 검증 row 6: 
+기준서_유닛 검증 row 7: C=소프트웨어 식별 이름 : | D=OTE_GEN1_Proto3
+기준서_유닛 검증 row 8: C=소프트웨어 버전 : | D=1.0.0
+기준서_유닛 검증 row 9: 
+기준서_유닛 검증 row 10: B=2. 동작 하드웨어 
+기준서_유닛 검증 row 11: C=인공달팽이과 외부기 시제품 3차(OTE 시제품 버전 3)
+기준서_유닛 검증 row 12: 
+기준서_유닛 검증 row 13: B=3. 필요 장비 및 지그
+기준서_유닛 검증 row 14: 
+기준서_유닛 검증 row 15: C=장비 및 지그, 소프트웨어 툴 | D=사용목적
+기준서_유닛 검증 row 16: C=I2C 디버거(AMIS CCA) | D=Ezairo system 디버깅 장치
+기준서_유닛 검증 row 17: C=EDK Ezairo | D=Ezairo system 코딩, 컴파일, 링크, 다운로드 및 디버깅 프로그램 툴
+기준서_유닛 검증 row 18: C=J-Link 디버거 | D=NRF 디버깅 장치
+기준서_유닛 검증 row 19: C=Keil uVison5 | D=NRF 코딩, 컴파일, 링크, 다운로드 및 디버깅 프로그램 툴
+기준서_유닛 검증 row 20: C=스피커 | D=소리(음파)를 생성한다.
+기준서_유닛 검증 row 21: C=피에조 고장난 스피커 | D=소리에 해당하는 전자기장을 발생시킨다.
+기준서_유닛 검증 row 22: C=이어폰 | D=신호처리 과정의 소리를 청취한다.
+기준서_유닛 검증 row 23: C=음악 재생기(PC) | D=   음악 파일을 재생한다.
+기준서_유닛 검증 row 24: C=음악 파일 | D=시험에 필요한 특정 주파수 및 음악 신호 파일
+기준서_유닛 검증 row 25: 
+기준서_유닛 검증 row 26: 
+기준서_유닛 검증 row 27: B=4. 시험 내용
+기준서_유닛 검증 row 28: B=CORE | C=Module | D=TEST ID | E=설명 | F=방법 | G=상세 설계 ID | H=시험 준비 및 초기 조건 | I=가정 및 제한 조건 | J=시험 절차 | K=통과 기준
+기준서_유닛 검증 row 29: 
+기준서_유닛 검증 row 30: B=CFX | C=시스템
+제어
+모듈 | D=SW-FW-UnitTest-CFX-ID-1 | E=DIO 설정  1차 | F=A | G=SU-ID-CFX-001 | H=NA | I=NA | J=코드 분석 | K=- DIO 설정 코드 구현
+기준서_유닛 검증 row 31: D=SW-FW-UnitTest-CFX-ID-2 | E=타이머 중지 | F=A | G=SU-ID-CFX-002 | H=NA | I=NA | J=코드 분석 | K=- 타이머 중지 구현
+기준서_유닛 검증 row 32: D=SW-FW-UnitTest-CFX-ID-3 | E=인터럽트 초기화 | F=A | G=SU-ID-CFX-003 | H=NA | I=NA | J=코드 분석 | K=- 인터럽트 초기화 구현
+기준서_유닛 검증 row 33: D=SW-FW-UnitTest-CFX-ID-4 | E=저전력 모드 비활성화 | F=A | G=SU-ID-CFX-004 | H=NA | I=NA | J=코드 분석 | K=- 저전력 모드 비활성화 구현
+기준서_유닛 검증 row 34: D=SW-FW-UnitTest-CFX-ID-5 | E=전원 안정화 대기 | F=A | G=SU-ID-CFX-005 | H=NA | I=NA | J=코드 분석 | K=- 전원 안정화 대기 구현
+기준서_유닛 검증 row 35: D=SW-FW-UnitTest-CFX-ID-6 | E=MCU 리셋 및 중지 | F=A | G=SU-ID-CFX-006 | H=NA | I=NA | J=코드 분석 | K=- MCU 리셋 및 중지 구현
+기준서_유닛 검증 row 36: D=SW-FW-UnitTest-CFX-ID-7 | E=동작 클럭 설정 | F=A | G=SU-ID-CFX-007 | H=NA | I=NA | J=코드 분석 | K=- 동작 클럭 설정 구현
+기준서_유닛 검증 row 37: D=SW-FW-UnitTest-CFX-ID-8 | E=메인 MCU 초기화 | F=A | G=SU-ID-CFX-008 | H=NA | I=NA | J=코드 분석 | K=- 메인 MCU 초기화 구현
+기준서_유닛 검증 row 38: D=SW-FW-UnitTest-CFX-ID-9 | E=입/출력단 비활성화 | F=A | G=SU-ID-CFX-009 | H=NA | I=NA | J=코드 분석 | K=- 입/출력단 비활성화 구현
+기준서_유닛 검증 row 39: D=SW-FW-UnitTest-CFX-ID-10 | E=FIFO 초기화 | F=A | G=SU-ID-CFX-010 | H=NA | I=NA | J=코드 분석 | K=- FIFO 초기화 구현
+기준서_유닛 검증 row 40: D=SW-FW-UnitTest-CFX-ID-11 | E=IOC 설정 | F=A | G=SU-ID-CFX-011 | H=NA | I=NA | J=코드 분석 | K=- IOC 설정 구현
+기준서_유닛 검증 row 41: D=SW-FW-UnitTest-CFX-ID-12 | E=오디오 MUX 설정 | F=A | G=SU-ID-CFX-012 | H=NA | I=NA | J=코드 분석 | K=- 오디오 MUX 설정 구현
+기준서_유닛 검증 row 42: D=SW-FW-UnitTest-CFX-ID-13 | E=ADC 설정 | F=A | G=SU-ID-CFX-013 | H=NA | I=NA | J=코드 분석 | K=- ADC 설정 구현
+기준서_유닛 검증 row 43: D=SW-FW-UnitTest-CFX-ID-14 | E=DAC 설정 | F=A | G=SU-ID-CFX-014 | H=NA | I=NA | J=코드 분석 | K=- DAC 설정 구현
+기준서_유닛 검증 row 44: D=SW-FW-UnitTest-CFX-ID-15 | E=LSAD 설정 | F=A | G=SU-ID-CFX-015 | H=NA | I=NA | J=코드 분석 | K=- LSAD 설정 구현
+기준서_유닛 검증 row 45: D=SW-FW-UnitTest-CFX-ID-16 | E=Hear Core, Fuction chain 활성화 | F=A | G=SU-ID-CFX-015 | H=NA | I=NA | J=코드 분석 | K=- Hear Core, Fuction chain 활성화 구현
+기준서_유닛 검증 row 46: D=SW-FW-UnitTest-CFX-ID-17 | E=인터럽트 설정 1차 | F=A | G=SU-ID-CFX-016 | H=NA | I=NA | J=코드 분석 | K=- 인터럽트 설정 1차 구현
+기준서_유닛 검증 row 47: D=SW-FW-UnitTest-CFX-ID-18 | E=DIO 설정  2차 | F=A | G=SU-ID-CFX-017 | H=NA | I=NA | J=코드 분석 | K=- DIO 설정  2차 구현
+기준서_유닛 검증 row 48: D=SW-FW-UnitTest-CFX-ID-19 | E=MCU 시작 | F=A | G=SU-ID-CFX-018 | H=NA | I=NA | J=코드 분석 | K=- MCU 시작 구현
+기준서_유닛 검증 row 49: D=SW-FW-UnitTest-CFX-ID-20 | E=메모리 초기화 대기 | F=A | G=SU-ID-CFX-019 | H=NA | I=NA | J=코드 분석 | K=- 메모리 초기화 대기 구현
+기준서_유닛 검증 row 50: D=SW-FW-UnitTest-CFX-ID-21 | E=DIO 설정 3차 | F=A | G=SU-ID-CFX-020 | H=NA | I=NA | J=코드 분석 | K=- DIO 설정 코드 구현
+기준서_유닛 검증 row 51: D=SW-FW-UnitTest-CFX-ID-22 | E=인터럽트 설정 2차 | F=A | G=SU-ID-CFX-021 | H=NA | I=NA | J=코드 분석 | K=- 인터럽트 설정 2차 구현
+기준서_유닛 검증 row 52: D=SW-FW-UnitTest-CFX-ID-23 | E=인터럽트 서비스 루틴 | F=A | G=SU-ID-CFX-022 | H=NA | I=NA | J=코드 분석 | K=- 인터럽트 서비스 루틴 구현
+기준서_유닛 검증 row 53: D=SW-FW-UnitTest-CFX-ID-24 | E=저전력 모드 전환,  입/출력단 비활성화 | F=A | G=SU-ID-CFX-024 | H=NA | I=NA | J=코드 분석 | K=- 저전력 모드 전환,  입/출력단 비활성화 구현
+기준서_유닛 검증 row 54: D=SW-FW-UnitTest-CFX-ID-25 | E=저전력 모드 전환, IOC 비활성화 | F=A | G=SU-ID-CFX-025 | H=NA | I=NA | J=코드 분석 | K=- 저전력 모드 전환, IOC 비활성화 구현
+기준서_유닛 검증 row 55: D=SW-FW-UnitTest-CFX-ID-26 | E=저전력 모드 전환, FIFO 비활성화 | F=A | G=SU-ID-CFX-026 | H=NA | I=NA | J=코드 분석 | K=- 저전력 모드 전환, FIFO 비활성화 구현
+기준서_유닛 검증 row 56: D=SW-FW-UnitTest-CFX-ID-27 | E=저전력 모드 전환, FIFO 버퍼 초기화 | F=A | G=SU-ID-CFX-027 | H=NA | I=NA | J=코드 분석 | K=- 저전력 모드 전환, FIFO 버퍼 초기화 구현
+기준서_유닛 검증 row 57: D=SW-FW-UnitTest-CFX-ID-28 | E=저전력 모드 전환,  모드 DIO 설정 | F=A | G=SU-ID-CFX-028 | H=NA | I=NA | J=코드 분석 | K=- 저전력 모드 전환,  모드 DIO 설정 구현
+기준서_유닛 검증 row 58: D=SW-FW-UnitTest-CFX-ID-29 | E=저전력 모드 전환, 인터럽트 설정 | F=A | G=SU-ID-CFX-029 | H=NA | I=NA | J=코드 분석 | K=- 저전력 모드 전환, 인터럽트 설정 구현
+기준서_유닛 검증 row 59: D=SW-FW-UnitTest-CFX-ID-30 | E=저전력 모드전환 | F=A | G=SU-ID-CFX-030 | H=NA | I=NA | J=코드 분석 | K=- 저전력 모드전환 구현
+기준서_유닛 검증 row 60: D=SW-FW-UnitTest-CFX-ID-31 | E=저전력 모드 전환, 클럭 조정 | F=A | G=SU-ID-CFX-031 | H=NA | I=NA | J=코드 분석 | K=- 저전력 모드 전환, 클럭 조정 구현
+기준서_유닛 검증 row 61: D=SW-FW-UnitTest-CFX-ID-32 | E=저전력 모드 전환,  타이머 설정 | F=A | G=SU-ID-CFX-032 | H=NA | I=NA | J=코드 분석 | K=- 저전력 모드 전환,  타이머 설정 구현
+기준서_유닛 검증 row 62: D=SW-FW-UnitTest-CFX-ID-33 | E=windowing 계수 읽기 | F=A | G=SU-ID-CFX-033 | H=NA | I=NA | J=코드 분석 | K=- windowing 계수 읽기 구현
+기준서_유닛 검증 row 63: D=SW-FW-UnitTest-CFX-ID-34 | E=내부기 정보 읽기  | F=A | G=SU-ID-CFX-034 | H=NA | I=NA | J=코드 분석 | K=- 내부기 정보 읽기  구현
+기준서_유닛 검증 row 64: D=SW-FW-UnitTest-CFX-ID-35 | E=배터리 전압 교정값 읽기 | F=A | G=SU-ID-CFX-035 | H=NA | I=NA | J=코드 분석 | K=- 배터리 전압 교정값 읽기 구현
+기준서_유닛 검증 row 65: D=SW-FW-UnitTest-CFX-ID-36 | E=맵 정보 읽기 | F=A | G=SU-ID-CFX-036 | H=NA | I=NA | J=코드 분석 | K=- 맵 정보 읽기 구현
+기준서_유닛 검증 row 66: D=SW-FW-UnitTest-CFX-ID-37 | E=사용자 설정값 읽기 | F=A | G=SU-ID-CFX-037 | H=NA | I=NA | J=코드 분석 | K=- 사용자 설정값 읽기 구현
+기준서_유닛 검증 row 67: D=SW-FW-UnitTest-CFX-ID-38 | E=매핑 데이터 읽기 | F=A | G=SU-ID-CFX-038 | H=NA | I=NA | J=코드 분석 | K=- 매핑 데이터 읽기 구현
+기준서_유닛 검증 row 68: D=SW-FW-UnitTest-CFX-ID-39 | E=통과 대역 밴드 읽기 | F=A | G=SU-ID-CFX-039 | H=NA | I=NA | J=코드 분석 | K=- 통과 대역 밴드 읽기 구현
+기준서_유닛 검증 row 69: D=SW-FW-UnitTest-CFX-ID-40 | E=사용자 설정값 저장 | F=A | G=SU-ID-CFX-040 | H=NA | I=NA | J=코드 분석 | K=- 사용자 설정값 저장 구현
+기준서_유닛 검증 row 70: D=SW-FW-UnitTest-CFX-ID-41 | E=매핑 데이터 저장, 매핑 통신 | F=A | G=SU-ID-CFX-041 | H=NA | I=NA | J=코드 분석 | K=- 매핑 데이터 저장, 매핑 통신 구현
+기준서_유닛 검증 row 71: D=SW-FW-UnitTest-CFX-ID-42 | E=매핑 데이터 읽기, 매핑 통신 | F=A | G=SU-ID-CFX-042 | H=NA | I=NA | J=코드 분석 | K=- 매핑 데이터 읽기, 매핑 통신 구현
+기준서_유닛 검증 row 72: D=SW-FW-UnitTest-CFX-ID-43 | E=매핑 데이터 삭제, 매핑 통신 | F=A | G=SU-ID-CFX-043 | H=NA | I=NA | J=코드 분석 | K=- 매핑 데이터 삭제, 매핑 통신 구현
+기준서_유닛 검증 row 73: D=SW-FW-UnitTest-CFX-ID-44 | E=배터리 잔량 업데이트 | F=T | G=SU-ID-CFX-044 | H=NA | I=NA | J=코드 분석 | K=- 배터리 잔량 업데이트 구현
+기준서_유닛 검증 row 74: D=SW-FW-UnitTest-CFX-ID-45 | E=가속도 센서 입력 업데이트 | F=A | G=SU-ID-CFX-045 | H=NA | I=NA | J=코드 분석 | K=- 가속도 센서 입력 업데이트 구현
+기준서_유닛 검증 row 75: D=SW-FW-UnitTest-CFX-ID-46 | E=USB 커넥터용 DIO 설정 | F=A | G=SU-ID-CFX-046 | H=NA | I=NA | J=코드 분석 | K=- USB 커넥터용 DIO 설정 구현
+기준서_유닛 검증 row 76: D=SW-FW-UnitTest-CFX-ID-47 | E=가속도 센서 및 PCM용 DIO 설정 | F=A | G=SU-ID-CFX-047 | H=NA | I=NA | J=코드 분석 | K=- 가속도 센서 및 PCM용 DIO 설정 구현
+기준서_유닛 검증 row 77: C=신호처리
+모듈 | D=SW-FW-UnitTest-CFX-ID-48 | E=텔레코일 입력 절대값 | F=D | G=SU-ID-CFX-048 | H=NA | I=- 디버깅 모드
+- 텔레코일 입력 FIFO 비활성화
+- 입력 데이터를 테스트 벡터로 대체 | J=해당 유닛을 실행시키고 디버깅용 중단점을 적용하여 출력 데이터를 데이터를 확인한다. | K=- 입력 테스트 벡터의 절대값이 확인되어야한다.
+기준서_유닛 검증 row 78: D=SW-FW-UnitTest-CFX-ID-49 | E=텔레 코일 입력 감지 | F=D | G=SU-ID-CFX-049 | H=NA | I=- 디버깅 모드
+- 피에조가 제거된 스피커를 사용하여 전자기장만을 발생시킨다. | J=- 스피커에 음악을 재생시킨 상태에서 텔레코일에 스피커를 가까이 놓았다 멀리 떼는 동작을 반복한다.
+- 디버깅용 중단점을 적용하여 파라미터 값을 확인한다. | K=- 이어폰이 근접하면 텔레코일 감지 플래그가 활성화 되고, 이어폰이 멀어지면 텔레코일 감지 플래그가 비활성화 되어야한다.
+기준서_유닛 검증 row 79: D=SW-FW-UnitTest-CFX-ID-50 | E=오디오 신호 혼합 | F=D | G=SU-ID-CFX-050 | H=NA | I=- 디버깅 모드
+- 피에조가 제거된 스피커를 사용하여 전자기장만을 발생시킨다. | J=- 텔레코일 사용 플래그를 활성화하고, 스피커에 음악을 재생시킨 상태에서 텔레코일에 스피커를 가까이 놓았다 멀리 떼는 동작을 반복한다.
+- 텔레코일 사용 플래그를 활성화하고, 스피커에 음악을 재생시킨 상태에서 텔레코일에 스피커를 가까이 놓았다 멀리 떼는 동작을 반복한다.
+- Ezairo DAC 출력에 이어폰을 연결하여 소리를 청취한다. | K=- 텔레코일 사용 플래그가 활성화 된 경우, 스피커가 텔레코일 가까이 가면 음악과 마이크의 주변소리가 같이 들려야 하며, 떨어지면 마이크의 주변 소리만 들려야 한다.
+- 텔레코일 사용 플래그가 비활성화 된 경우, 스피커의 거리에 상관없이 마이크 주번 소리만 이어폰으로 들려야한다.
+기준서_유닛 검증 row 80: D=SW-FW-UnitTest-CFX-ID-51 | E=AGC 입력 최대 값 | F=D | G=SU-ID-CFX-051 | H=NA | I=- 디버깅 모드
+- 입력 데이터를 테스트 벡터로 대체 | J=- 해당 유닛을 실행시키고 디버깅용 중단점을 적용하여 출력 데이터를 데이터를 확인한다. | K=- 입력 테스트 벡터의 최대값이 확인되어야한다.
+기준서_유닛 검증 row 81: D=SW-FW-UnitTest-CFX-ID-52 | E=AGC 적용 | F=D | G=SU-ID-CFX-052 | H=NA | I=- 디버깅 모드
+- 입력 데이터를 테스트 벡터로 대체 | J=- 해당 유닛을 실행시키고 디버깅용 중단점을 적용하여 출력 데이터를 확인한다. | K=- AGC 출력 데이터가 테스트 벡터 출력과 비슷한 양상을 보여야 한다.(고정소수점 연산 고려)
+기준서_유닛 검증 row 82: D=SW-FW-UnitTest-CFX-ID-53 | E=입력 데이터 업데이트 | F=D | G=SU-ID-CFX-053 | H=NA | I=- 디버깅 모드
+- 입력 데이터를 테스트 벡터로 대체 | J=- 해당 유닛을 실행시키고 디버깅용 중단점을 적용하여 출력 데이터를 확인한다. | K=- 데이터 업데이트 확인
+기준서_유닛 검증 row 83: D=SW-FW-UnitTest-CFX-ID-54 | E=FFT 변환 및 주파수 영역 크기 구하기 | F=D | G=SU-ID-CFX-054 | H=NA | I=- 디버깅 모드
+- 입력 데이터를 테스트 벡터로 대체 | J=- 해당 유닛을 실행시키고 디버깅용 중단점을 적용하여 출력 데이터를 확인한다. | K=- 주파수 영역의 크기기 테스트 벡터 출력과 비슷한 양상을 보여야한다.(고정소수점 연산 고려)
+기준서_유닛 검증 row 84: D=SW-FW-UnitTest-CFX-ID-55 | E=분석 대역별 대표값 구하기 | F=D | G=SU-ID-CFX-055 | H=NA | I=- 디버깅 모드
+- 입력 데이터를 테스트 벡터로 대체 | J=- 해당 유닛을 실행시키고 디버깅용 중단점을 적용하여 출력 데이터를 확인한다. | K=- 주파수 영역의 크기기 테스트 벡터 출력과 비슷한 양상을 보여야한다.(고정소수점 연산 고려)
+기준서_유닛 검증 row 85: D=SW-FW-UnitTest-CFX-ID-56 | E=시간 영역의 크기 값 구하기 | F=D | G=SU-ID-CFX-056 | H=NA | I=- 디버깅 모드
+- 입력 데이터를 테스트 벡터로 대체 | J=- 해당 유닛을 실행시키고 디버깅용 중단점을 적용하여 출력 데이터를 확인한다. | K=- 시간 영역의 주파수 밴드별 크기가 테스트 벡터 출력과 비슷한 양상을 보여야한다.(고정소수점 연산 고려)
+기준서_유닛 검증 row 86: D=SW-FW-UnitTest-CFX-ID-57 | E=신호처리용 계수 전처리, C 값 계산 | F=D | G=SU-ID-CFX-058 | H=NA | I=- 디버깅 모드
+- 입력 데이터를 테스트 벡터로 대체 | J=- 해당 유닛을 실행시키고 디버깅용 중단점을 적용하여 출력 데이터를 확인한다. | K=- 자극볼륨이 적용된 C 값이 테스트 벡터 출력과 비슷한 양상을 보여야한다.(고정소수점 연산 고려)
+기준서_유닛 검증 row 87: D=SW-FW-UnitTest-CFX-ID-58 | E=신호처리용 계수 전처리, 로그 매핑 계수 계산 | F=D | G=SU-ID-CFX-059 | H=NA | I=- 디버깅 모드
+- 입력 데이터를 테스트 벡터로 대체 | J=- 해당 유닛을 실행시키고 디버깅용 중단점을 적용하여 출력 데이터를 확인한다. | K=- 로그 매핑 계수 A, B 값이 테스트 벡터 출력과 비슷한 양상을 보여야한다.(고정소수점 연산 고려)
+기준서_유닛 검증 row 88: D=SW-FW-UnitTest-CFX-ID-59 | E=비선형 매핑  | F=D | G=SU-ID-CFX-057 | H=NA | I=- 디버깅 모드
+- 입력 데이터를 테스트 벡터로 대체
+- 신호처리 계수 전처리 유닛들의 검증 이후 | J=- 해당 유닛을 실행시키고 디버깅용 중단점을 적용하여 출력 데이터를 확인한다. | K=- 비선형 매핑(전기 자극 레벨)이 테스트 벡터 출력과 비슷한 양상을 보여야한다.(고정소수점 연산 고려)
+기준서_유닛 검증 row 89: C=내부기 
+실행 
+제어
+모듈 | D=SW-FW-UnitTest-CFX-ID-60 | E=실시간 자극 출력 PCM 생성 | F=D | G=SU-ID-CFX-060 | H=NA | I=- 디버깅 모드
+- 자극 펄스 파라미터 및 자극 레벨 테스트 벡터로 대체
+- PCM 출력 버퍼 복사본 생성 | J=- 해당 유닛을 실행시키고 PCM 출력 버퍼의 데이터를 확인한다. | K=- PCM 출력 버퍼 복사본의 데이터에서 자극 펄스 파라미터 , 자극 레벨이 확인되어야한다.
+- 설정된 순서에 맞게 자극 채널 출력이 확인되어야 한다.
+기준서_유닛 검증 row 90: D=SW-FW-UnitTest-CFX-ID-61 | E=내부기 연결 검사 PCM 생성 | F=D | G=SU-ID-CFX-061 | H=NA | I=- 디버깅 모드
+- PCM 출력 버퍼 복사본 생성 | J=- 채널당 프레임 개수를 변경하면서 해당 유닛을 실행시키고 디버깅용 중단점을 적용하여 출력 데이터를 확인한다. | K=- 카운터에 맞게 분기 되어야 하며, PCM 출력 버퍼 복사본의 데이터가 설계 사양서와 동일해야한다.
+기준서_유닛 검증 row 91: B=CM3 | C=시스템
+제어
+모듈 | D=SW-FW-UnitTest-CM3-ID-1 | E=LED 출력 끄기 | F=A | G=SU-ID-CM3-001 | H=NA | I=NA | J=코드 분석 | K=- LED 끄기 구현
+기준서_유닛 검증 row 92: D=SW-FW-UnitTest-CM3-ID-2 | E=메모리 에러 LED  출력 | F=A | G=SU-ID-CM3-002 | H=NA | I=NA | J=코드 분석 | K=- 메모리 에러 LED  출력 구현
+기준서_유닛 검증 row 93: D=SW-FW-UnitTest-CM3-ID-3 | E=NRF 리셋 | F=A | G=SU-ID-CM3-003 | H=NA | I=NA | J=코드 분석 | K=- NRF 리셋 구현
+기준서_유닛 검증 row 94: D=SW-FW-UnitTest-CM3-ID-4 | E=NRF Off 명령  | F=A | G=SU-ID-CM3-004 | H=NA | I=NA | J=코드 분석 | K=- NRF Off 명령  구현
+기준서_유닛 검증 row 95: D=SW-FW-UnitTest-CM3-ID-5 | E=인터럽트 리셋 | F=A | G=SU-ID-CM3-005 | H=NA | I=NA | J=코드 분석 | K=- 인터럽트 리셋 구현
+기준서_유닛 검증 row 96: D=SW-FW-UnitTest-CM3-ID-6 | E=DMA 리셋 | F=A | G=SU-ID-CM3-006 | H=NA | I=NA | J=코드 분석 | K=- DMA 리셋 구현
+기준서_유닛 검증 row 97: D=SW-FW-UnitTest-CM3-ID-7 | E=I2C 설정 | F=A | G=SU-ID-CM3-007 | H=NA | I=NA | J=코드 분석 | K=- I2C 설정 구현
+기준서_유닛 검증 row 98: D=SW-FW-UnitTest-CM3-ID-8 | E=SPI 설정 | F=A | G=SU-ID-CM3-008 | H=NA | I=NA | J=코드 분석 | K=- SPI 설정 구현
+기준서_유닛 검증 row 99: D=SW-FW-UnitTest-CM3-ID-9 | E=주기 반복용 인터럽트 설정 | F=A | G=SU-ID-CM3-009 | H=NA | I=NA | J=코드 분석 | K=- 주기 반복용 인터럽트 설정 구현
+기준서_유닛 검증 row 100: D=SW-FW-UnitTest-CM3-ID-10 | E=인터럽트 활성화 | F=A | G=SU-ID-CM3-010 | H=NA | I=NA | J=코드 분석 | K=- 인터럽트 활성화 구현
+기준서_유닛 검증 row 101: D=SW-FW-UnitTest-CM3-ID-11 | E=사용 준비 상태 전송 | F=A | G=SU-ID-CM3-011 | H=NA | I=NA | J=코드 분석 | K=- 사용 준비 상태 전송 구현
+기준서_유닛 검증 row 102: D=SW-FW-UnitTest-CM3-ID-12 | E=PMIC 전원 끔 | F=A | G=SU-ID-CM3-012 | H=NA | I=NA | J=코드 분석 | K=- PMIC 전원 끔 구현
+기준서_유닛 검증 row 103: D=SW-FW-UnitTest-CM3-ID-13 | E=가속도 센서 초기화 | F=A | G=SU-ID-CM3-013 | H=NA | I=NA | J=코드 분석 | K=- 가속도 센서 초기화 구현
+기준서_유닛 검증 row 104: D=SW-FW-UnitTest-CM3-ID-14 | E=CFX 초기화 에러 LED 출력 | F=A | G=SU-ID-CM3-014 | H=NA | I=NA | J=코드 분석 | K=- CFX 초기화 에러 LED 출력 구현
+기준서_유닛 검증 row 105: D=SW-FW-UnitTest-CM3-ID-15 | E=배터리 모니터링 경계 값 | F=A | G=SU-ID-CM3-015 | H=NA | I=NA | J=코드 분석 | K=- 배터리 모니터링 경계 값 구현
+기준서_유닛 검증 row 106: D=SW-FW-UnitTest-CM3-ID-16 | E=에러 플래그 제거 | F=A | G=SU-ID-CM3-016 | H=NA | I=NA | J=코드 분석 | K=- 에러 플래그 제거 구현
+기준서_유닛 검증 row 107: D=SW-FW-UnitTest-CM3-ID-17 | E=인터럽트 서비스 루틴, I2C | F=A | G=SU-ID-CM3-017 | H=NA | I=NA | J=코드 분석 | K=- 인터럽트 서비스 루틴, I2C 구현
+기준서_유닛 검증 row 108: D=SW-FW-UnitTest-CM3-ID-18 | E=인터럽트 서비스 루틴, SPI 에러 | F=A | G=SU-ID-CM3-018 | H=NA | I=NA | J=코드 분석 | K=- 인터럽트 서비스 루틴, SPI 에러 구현
+기준서_유닛 검증 row 109: D=SW-FW-UnitTest-CM3-ID-19 | E=인터럽트 서비스 루틴, DMA 0 | F=A | G=SU-ID-CM3-019 | H=NA | I=NA | J=코드 분석 | K=- 인터럽트 서비스 루틴, DMA 0 구현
+기준서_유닛 검증 row 110: D=SW-FW-UnitTest-CM3-ID-20 | E=인터럽트 서비스 루틴, DMA 1 | F=A | G=SU-ID-CM3-020 | H=NA | I=NA | J=코드 분석 | K=- 인터럽트 서비스 루틴, DMA 1 구현
+기준서_유닛 검증 row 111: D=SW-FW-UnitTest-CM3-ID-21 | E=에러 확인  | F=A | G=SU-ID-CM3-021 | H=NA | I=NA | J=코드 분석 | K=- 에러 확인  구현
+기준서_유닛 검증 row 112: D=SW-FW-UnitTest-CM3-ID-22 | E=LED 출력 상태 확인 | F=A | G=SU-ID-CM3-022 | H=NA | I=NA | J=코드 분석 | K=- LED 출력 상태 확인 구현
+기준서_유닛 검증 row 113: D=SW-FW-UnitTest-CM3-ID-23 | E=배터리 잔량 업데이트 | F=A | G=SU-ID-CM3-023 | H=NA | I=NA | J=코드 분석 | K=- 배터리 잔량 업데이트 구현
+기준서_유닛 검증 row 114: D=SW-FW-UnitTest-CM3-ID-24 | E=사용자 인터페이스 제어 | F=A | G=SU-ID-CM3-024 | H=NA | I=NA | J=코드 분석 | K=- 사용자 인터페이스 제어 구현
+기준서_유닛 검증 row 115: D=SW-FW-UnitTest-CM3-ID-25 | E=맵 번호 업데이트  | F=A | G=SU-ID-CM3-025 | H=NA | I=NA | J=코드 분석 | K=- 맵 번호 업데이트  구현
+기준서_유닛 검증 row 116: D=SW-FW-UnitTest-CM3-ID-26 | E=자극 알림 출력 | F=A | G=SU-ID-CM3-026 | H=NA | I=NA | J=코드 분석 | K=- 자극 알림 출력 구현
+기준서_유닛 검증 row 117: D=SW-FW-UnitTest-CM3-ID-27 | E=PMIC On/Off  | F=A | G=SU-ID-CM3-027 | H=NA | I=NA | J=코드 분석 | K=- PMIC On/Off  구현
+기준서_유닛 검증 row 118: D=SW-FW-UnitTest-CM3-ID-28 | E=LED 패턴 출력  | F=A | G=SU-ID-CM3-028 | H=NA | I=NA | J=코드 분석 | K=- LED 패턴 출력  구현
+기준서_유닛 검증 row 119: D=SW-FW-UnitTest-CM3-ID-29 | E=NRF On/Off | F=A | G=SU-ID-CM3-029 | H=NA | I=NA | J=코드 분석 | K=- NRF On/Off 구현
+기준서_유닛 검증 row 120: D=SW-FW-UnitTest-CM3-ID-30 | E=공유메모리 접근, USB 커넥터 상태 읽기 | F=A | G=SU-ID-CM3-030 | H=NA | I=NA | J=코드 분석 | K=- 공유메모리 접근, USB 커넥터 상태 읽기 구현
+기준서_유닛 검증 row 121: D=SW-FW-UnitTest-CM3-ID-31 | E=공유메모리 접근, 전원 버튼 상태 읽기 | F=A | G=SU-ID-CM3-031 | H=NA | I=NA | J=코드 분석 | K=- 공유메모리 접근, 전원 버튼 상태 읽기 구현
+기준서_유닛 검증 row 122: D=SW-FW-UnitTest-CM3-ID-32 | E=공유메모리 접근, PMIC On/Off | F=A | G=SU-ID-CM3-032 | H=NA | I=NA | J=코드 분석 | K=- 공유메모리 접근, PMIC On/Off 구현
+기준서_유닛 검증 row 123: D=SW-FW-UnitTest-CM3-ID-33 | E=공유메모리 접근, 저전력 모드 진입 | F=A | G=SU-ID-CM3-033 | H=NA | I=NA | J=코드 분석 | K=- 공유메모리 접근, 저전력 모드 진입 구현
+기준서_유닛 검증 row 124: D=SW-FW-UnitTest-CM3-ID-34 | E=공유메모리 접근, 배터리 전압 교정값 읽기 | F=A | G=SU-ID-CM3-034 | H=NA | I=NA | J=코드 분석 | K=- 공유메모리 접근, 배터리 전압 교정값 읽기 구현
+기준서_유닛 검증 row 125: D=SW-FW-UnitTest-CM3-ID-35 | E=공유메모리 접근, 배터리 전압 값 읽기 | F=A | G=SU-ID-CM3-035 | H=NA | I=NA | J=코드 분석 | K=- 공유메모리 접근, 배터리 전압 값 읽기 구현
+기준서_유닛 검증 row 126: D=SW-FW-UnitTest-CM3-ID-36 | E=공유메모리 접근, PCM 출력 모드 변경 | F=A | G=SU-ID-CM3-036 | H=NA | I=NA | J=코드 분석 | K=- 공유메모리 접근, PCM 출력 모드 변경 구현
+기준서_유닛 검증 row 127: D=SW-FW-UnitTest-CM3-ID-37 | E=공유메모리 접근, next PCM 출력 모드 변경 | F=A | G=SU-ID-CM3-037 | H=NA | I=NA | J=코드 분석 | K=- 공유메모리 접근, next PCM 출력 모드 변경 구현
+기준서_유닛 검증 row 128: D=SW-FW-UnitTest-CM3-ID-38 | E=공유메모리 접근, PCM 출력 버퍼 데이터 채우기 | F=A | G=SU-ID-CM3-038 | H=NA | I=NA | J=코드 분석 | K=- 공유메모리 접근, PCM 출력 버퍼 데이터 채우기 구현
+기준서_유닛 검증 row 129: D=SW-FW-UnitTest-CM3-ID-39 | E=공유메모리 접근, PCM 출력 모드 읽기 | F=A | G=SU-ID-CM3-039 | H=NA | I=NA | J=코드 분석 | K=- 공유메모리 접근, PCM 출력 모드 읽기 구현
+기준서_유닛 검증 row 130: D=SW-FW-UnitTest-CM3-ID-40 | E=공유메모리 접근, 내부기 연결 검사용 PCM 출력 상태 읽기 | F=A | G=SU-ID-CM3-040 | H=NA | I=NA | J=코드 분석 | K=- 공유메모리 접근, 내부기 연결 검사용 PCM 출력 상태 읽기 구현
+기준서_유닛 검증 row 131: D=SW-FW-UnitTest-CM3-ID-41 | E=공유메모리 접근, 내부기 연결 검사용 PCM 출력 상태 지우기 | F=A | G=SU-ID-CM3-041 | H=NA | I=NA | J=코드 분석 | K=- 공유메모리 접근, 내부기 연결 검사용 PCM 출력 상태 지우기 구현
+기준서_유닛 검증 row 132: D=SW-FW-UnitTest-CM3-ID-42 | E=공유메모리 접근, 사용자 설정 값 로딩 여부 확인 | F=A | G=SU-ID-CM3-042 | H=NA | I=NA | J=코드 분석 | K=- 공유메모리 접근, 사용자 설정 값 로딩 여부 확인 구현
+기준서_유닛 검증 row 133: D=SW-FW-UnitTest-CM3-ID-43 | E=공유메모리 접근, 맵 변경 명령 전달 | F=A | G=SU-ID-CM3-043 | H=NA | I=NA | J=코드 분석 | K=- 공유메모리 접근, 맵 변경 명령 전달 구현
+기준서_유닛 검증 row 134: D=SW-FW-UnitTest-CM3-ID-44 | E=공유메모리 접근, 맵 데이터 로딩여부 확인 | F=A | G=SU-ID-CM3-044 | H=NA | I=NA | J=코드 분석 | K=- 공유메모리 접근, 맵 데이터 로딩여부 확인 구현
+기준서_유닛 검증 row 135: D=SW-FW-UnitTest-CM3-ID-45 | E=공유메모리 접근, 현재 맵 데이터 주소 반환 | F=A | G=SU-ID-CM3-045 | H=NA | I=NA | J=코드 분석 | K=- 공유메모리 접근, 현재 맵 데이터 주소 반환 구현
+기준서_유닛 검증 row 136: D=SW-FW-UnitTest-CM3-ID-46 | E=공유메모리 접근, CM3 계산된 자극 파라미터 주소 반환 | F=A | G=SU-ID-CM3-046 | H=NA | I=NA | J=코드 분석 | K=- 공유메모리 접근, CM3 계산된 자극 파라미터 주소 반환 구현
+기준서_유닛 검증 row 137: D=SW-FW-UnitTest-CM3-ID-47 | E=공유메모리 접근, 계산된 자극 알림 크기 전달 | F=A | G=SU-ID-CM3-047 | H=NA | I=NA | J=코드 분석 | K=- 공유메모리 접근, 계산된 자극 알림 크기 전달 구현
+기준서_유닛 검증 row 138: D=SW-FW-UnitTest-CM3-ID-48 | E=공유메모리 접근,자극 알림 신호 On/Off 전달 | F=A | G=SU-ID-CM3-048 | H=NA | I=NA | J=코드 분석 | K=- 공유메모리 접근,자극 알림 신호 On/Off 전달 구현
+기준서_유닛 검증 row 139: D=SW-FW-UnitTest-CM3-ID-49 | E=공유메모리 접근, CM3 오디오 신호처리 파라미터 계산 완료 전달 | F=A | G=SU-ID-CM3-049 | H=NA | I=NA | J=코드 분석 | K=- 공유메모리 접근, CM3 오디오 신호처리 파라미터 계산 완료 전달 구현
+기준서_유닛 검증 row 140: D=SW-FW-UnitTest-CM3-ID-50 | E=공유메모리 접근, 백텔 설정 값 전달 | F=A | G=SU-ID-CM3-050 | H=NA | I=NA | J=코드 분석 | K=- 공유메모리 접근, 백텔 설정 값 전달 구현
+기준서_유닛 검증 row 141: D=SW-FW-UnitTest-CM3-ID-51 | E=공유메모리 접근, 현재 자극 출력 값 읽기 | F=A | G=SU-ID-CM3-051 | H=NA | I=NA | J=코드 분석 | K=- 공유메모리 접근, 현재 자극 출력 값 읽기 구현
+기준서_유닛 검증 row 142: D=SW-FW-UnitTest-CM3-ID-52 | E=공유메모리 접근, 오디오 입력(ADC) 최대값 읽기 | F=A | G=SU-ID-CM3-052 | H=NA | I=NA | J=코드 분석 | K=- 공유메모리 접근, 오디오 입력(ADC) 최대값 읽기 구현
+기준서_유닛 검증 row 143: D=SW-FW-UnitTest-CM3-ID-53 | E=공유메모리 접근, 내부기 ID 읽기 | F=A | G=SU-ID-CM3-053 | H=NA | I=NA | J=코드 분석 | K=- 공유메모리 접근, 내부기 ID 읽기 구현
+기준서_유닛 검증 row 144: D=SW-FW-UnitTest-CM3-ID-54 | E=공유메모리 접근, 연결된 내부기 리콘용 접속 키 읽기 | F=A | G=SU-ID-CM3-054 | H=NA | I=NA | J=코드 분석 | K=- 공유메모리 접근, 연결된 내부기 리콘용 접속 키 읽기 구현
+기준서_유닛 검증 row 145: D=SW-FW-UnitTest-CM3-ID-55 | E=공유메모리 접근, 연결된 내부기 번호 전달 | F=A | G=SU-ID-CM3-055 | H=NA | I=NA | J=코드 분석 | K=- 공유메모리 접근, 연결된 내부기 번호 전달 구현
+기준서_유닛 검증 row 146: D=SW-FW-UnitTest-CM3-ID-56 | E=공유메모리 접근, 연결된 내부기 번호 읽기 | F=A | G=SU-ID-CM3-056 | H=NA | I=NA | J=코드 분석 | K=- 공유메모리 접근, 연결된 내부기 번호 읽기 구현
+기준서_유닛 검증 row 147: D=SW-FW-UnitTest-CM3-ID-57 | E=공유메모리 접근, 연결된 내부기 사용자 이름 읽기 | F=A | G=SU-ID-CM3-057 | H=NA | I=NA | J=코드 분석 | K=- 공유메모리 접근, 연결된 내부기 사용자 이름 읽기 구현
+기준서_유닛 검증 row 148: D=SW-FW-UnitTest-CM3-ID-58 | E=공유메모리 접근, 연결된 내부기 수술위치 읽기 | F=A | G=SU-ID-CM3-058 | H=NA | I=NA | J=코드 분석 | K=- 공유메모리 접근, 연결된 내부기 수술위치 읽기 구현
+기준서_유닛 검증 row 149: D=SW-FW-UnitTest-CM3-ID-59 | E=공유메모리 접근, 연결된 내부기의 사용가능한 맵 개수 읽기 | F=A | G=SU-ID-CM3-059 | H=NA | I=NA | J=코드 분석 | K=- 공유메모리 접근, 연결된 내부기의 사용가능한 맵 개수 읽기 구현
+기준서_유닛 검증 row 150: D=SW-FW-UnitTest-CM3-ID-60 | E=공유메모리 접근, 연결된 내부기의 사용 가능한 맵 인덱스 읽기 | F=A | G=SU-ID-CM3-060 | H=NA | I=NA | J=코드 분석 | K=- 공유메모리 접근, 연결된 내부기의 사용 가능한 맵 인덱스 읽기 구현
+기준서_유닛 검증 row 151: D=SW-FW-UnitTest-CM3-ID-61 | E=공유메모리 접근, 연결된 내부기의 맵 스탬프 읽기 | F=A | G=SU-ID-CM3-061 | H=NA | I=NA | J=코드 분석 | K=- 공유메모리 접근, 연결된 내부기의 맵 스탬프 읽기 구현
+기준서_유닛 검증 row 152: D=SW-FW-UnitTest-CM3-ID-62 | E=공유메모리 접근, 연결된 내부기 맵 생성일자 읽기 | F=A | G=SU-ID-CM3-062 | H=NA | I=NA | J=코드 분석 | K=- 공유메모리 접근, 연결된 내부기 맵 생성일자 읽기 구현
+기준서_유닛 검증 row 153: D=SW-FW-UnitTest-CM3-ID-63 | E=공유메모리 접근, 맵 번호 변경 | F=A | G=SU-ID-CM3-063 | H=NA | I=NA | J=코드 분석 | K=- 공유메모리 접근, 맵 번호 변경 구현
+기준서_유닛 검증 row 154: D=SW-FW-UnitTest-CM3-ID-64 | E=공유메모리 접근, 맵 번호 읽기 | F=A | G=SU-ID-CM3-064 | H=NA | I=NA | J=코드 분석 | K=- 공유메모리 접근, 맵 번호 읽기 구현
+기준서_유닛 검증 row 155: D=SW-FW-UnitTest-CM3-ID-65 | E=공유메모리 접근, 자극 볼륨 변경 | F=A | G=SU-ID-CM3-065 | H=NA | I=NA | J=코드 분석 | K=- 공유메모리 접근, 자극 볼륨 변경 구현
+기준서_유닛 검증 row 156: D=SW-FW-UnitTest-CM3-ID-66 | E=공유메모리 접근, 자극 볼륨 읽기 | F=A | G=SU-ID-CM3-066 | H=NA | I=NA | J=코드 분석 | K=- 공유메모리 접근, 자극 볼륨 읽기 구현
+기준서_유닛 검증 row 157: D=SW-FW-UnitTest-CM3-ID-67 | E=공유메모리 접근, 오디오 볼륨 변경 | F=A | G=SU-ID-CM3-067 | H=NA | I=NA | J=코드 분석 | K=- 공유메모리 접근, 오디오 볼륨 변경 구현
+기준서_유닛 검증 row 158: D=SW-FW-UnitTest-CM3-ID-68 | E=공유메모리 접근, 오디오 볼륨 읽기 | F=A | G=SU-ID-CM3-068 | H=NA | I=NA | J=코드 분석 | K=- 공유메모리 접근, 오디오 볼륨 읽기 구현
+기준서_유닛 검증 row 159: D=SW-FW-UnitTest-CM3-ID-69 | E=공유메모리 접근, LED 알림 설정 변경 | F=A | G=SU-ID-CM3-069 | H=NA | I=NA | J=코드 분석 | K=- 공유메모리 접근, LED 알림 설정 변경 구현
+기준서_유닛 검증 row 160: D=SW-FW-UnitTest-CM3-ID-70 | E=공유메모리 접근, LED 알림 설정 읽기 | F=A | G=SU-ID-CM3-070 | H=NA | I=NA | J=코드 분석 | K=- 공유메모리 접근, LED 알림 설정 읽기 구현
+기준서_유닛 검증 row 161: D=SW-FW-UnitTest-CM3-ID-71 | E=공유메모리 접근, 자극 알림 설정 변경 | F=A | G=SU-ID-CM3-071 | H=NA | I=NA | J=코드 분석 | K=- 공유메모리 접근, 자극 알림 설정 변경 구현
+기준서_유닛 검증 row 162: D=SW-FW-UnitTest-CM3-ID-72 | E=공유메모리 접근, 자극 알림 설정 읽기 | F=A | G=SU-ID-CM3-072 | H=NA | I=NA | J=코드 분석 | K=- 공유메모리 접근, 자극 알림 설정 읽기 구현
+기준서_유닛 검증 row 163: D=SW-FW-UnitTest-CM3-ID-73 | E=I2C 데이터 쓰기 시작 | F=A | G=SU-ID-CM3-073 | H=NA | I=NA | J=코드 분석 | K=- I2C 데이터 쓰기 시작 구현
+기준서_유닛 검증 row 164: D=SW-FW-UnitTest-CM3-ID-74 | E=I2C 데이터 읽기 시작 | F=A | G=SU-ID-CM3-074 | H=NA | I=NA | J=코드 분석 | K=- I2C 데이터 읽기 시작 구현
+기준서_유닛 검증 row 165: D=SW-FW-UnitTest-CM3-ID-75 | E=I2C 드라이버 상태 읽기 | F=A | G=SU-ID-CM3-075 | H=NA | I=NA | J=코드 분석 | K=- I2C 드라이버 상태 읽기 구현
+기준서_유닛 검증 row 166: D=SW-FW-UnitTest-CM3-ID-76 | E=SPI 송신 데이터 쓰기 | F=A | G=SU-ID-CM3-076 | H=NA | I=NA | J=코드 분석 | K=- SPI 송신 데이터 쓰기 구현
+기준서_유닛 검증 row 167: D=SW-FW-UnitTest-CM3-ID-77 | E=SPI 송신 데이터 준비 완료 전달 | F=A | G=SU-ID-CM3-077 | H=NA | I=NA | J=코드 분석 | K=- SPI 송신 데이터 준비 완료 전달 구현
+기준서_유닛 검증 row 168: D=SW-FW-UnitTest-CM3-ID-78 | E=SPI 송신 완료 전달 | F=A | G=SU-ID-CM3-078 | H=NA | I=NA | J=코드 분석 | K=- SPI 송신 완료 전달 구현
+기준서_유닛 검증 row 169: C=신호처리 모듈 | D=SW-FW-UnitTest-CM3-ID-79 | E=자극 DAC 선택 및 C ,T 레벨 계산  | F=A | G=SU-ID-CM3-079 | H=NA | I=NA | J=코드 분석 | K=- 자극 DAC 선택 및 C ,T 레벨 계산  구현
+기준서_유닛 검증 row 170: C=내부기 
+실행 
+제어
+모듈 | D=SW-FW-UnitTest-CM3-ID-80 | E=I2C 사용 가능 업데이트  | F=A | G=SU-ID-CM3-080 | H=NA | I=NA | J=코드 분석 | K=- I2C 사용 가능 업데이트  구현
+기준서_유닛 검증 row 171: D=SW-FW-UnitTest-CM3-ID-81 | E=I2C 사용 불가능 업데이트 | F=A | G=SU-ID-CM3-081 | H=NA | I=NA | J=코드 분석 | K=- I2C 사용 불가능 업데이트 구현
+기준서_유닛 검증 row 172: D=SW-FW-UnitTest-CM3-ID-82 | E=I2C 사용 가능 상태 읽기 | F=A | G=SU-ID-CM3-082 | H=NA | I=NA | J=코드 분석 | K=- I2C 사용 가능 상태 읽기 구현
+기준서_유닛 검증 row 173: D=SW-FW-UnitTest-CM3-ID-83 | E=PMIC 레지스터 쓰기 | F=A | G=SU-ID-CM3-083 | H=NA | I=NA | J=코드 분석 | K=- PMIC 레지스터 쓰기 구현
+기준서_유닛 검증 row 174: D=SW-FW-UnitTest-CM3-ID-84 | E=PMIC 레지스터 읽기 | F=A | G=SU-ID-CM3-084 | H=NA | I=NA | J=코드 분석 | K=- PMIC 레지스터 읽기 구현
+기준서_유닛 검증 row 175: D=SW-FW-UnitTest-CM3-ID-85 | E=FPGA 레지스터 쓰기 | F=A | G=SU-ID-CM3-085 | H=NA | I=NA | J=코드 분석 | K=- FPGA 레지스터 쓰기 구현
+기준서_유닛 검증 row 176: D=SW-FW-UnitTest-CM3-ID-86 | E=FPGA 레지스터 읽기 | F=A | G=SU-ID-CM3-086 | H=NA | I=NA | J=코드 분석 | K=- FPGA 레지스터 읽기 구현
+기준서_유닛 검증 row 177: D=SW-FW-UnitTest-CM3-ID-87 | E=FPGA FIFO 읽기 | F=A | G=SU-ID-CM3-087 | H=NA | I=NA | J=코드 분석 | K=- FPGA FIFO 읽기 구현
+기준서_유닛 검증 row 178: D=SW-FW-UnitTest-CM3-ID-88 | E=내부기 제어 상태 변경 | F=A | G=SU-ID-CM3-088 | H=NA | I=NA | J=코드 분석 | K=- 내부기 제어 상태 변경 구현
+기준서_유닛 검증 row 179: D=SW-FW-UnitTest-CM3-ID-89 | E=내부기 제어 상태 변경 플래그 삭제 | F=A | G=SU-ID-CM3-089 | H=NA | I=NA | J=코드 분석 | K=- 내부기 제어 상태 변경 플래그 삭제 구현
+기준서_유닛 검증 row 180: D=SW-FW-UnitTest-CM3-ID-90 | E=Tx PMIC 초기화 | F=A | G=SU-ID-CM3-090 | H=NA | I=NA | J=코드 분석 | K=- Tx PMIC 초기화 구현
+기준서_유닛 검증 row 181: D=SW-FW-UnitTest-CM3-ID-91 | E=FPGA 초기화 | F=A | G=SU-ID-CM3-091 | H=NA | I=NA | J=코드 분석 | K=- FPGA 초기화 구현
+기준서_유닛 검증 row 182: D=SW-FW-UnitTest-CM3-ID-92 | E=내부기 초기화 | F=A | G=SU-ID-CM3-092 | H=NA | I=NA | J=코드 분석 | K=- 내부기 초기화 구현
+기준서_유닛 검증 row 183: D=SW-FW-UnitTest-CM3-ID-93 | E=내부기 통신 통로 확보 | F=A | G=SU-ID-CM3-093 | H=NA | I=NA | J=코드 분석 | K=- 내부기 통신 통로 확보 구현
+기준서_유닛 검증 row 184: D=SW-FW-UnitTest-CM3-ID-94 | E=내부기 자극용 10v 활성화 | F=A | G=SU-ID-CM3-094 | H=NA | I=NA | J=코드 분석 | K=- 내부기 자극용 10v 활성화 구현
+기준서_유닛 검증 row 185: D=SW-FW-UnitTest-CM3-ID-95 | E=내부기 자극 출력 제어  | F=A | G=SU-ID-CM3-095 | H=NA | I=NA | J=코드 분석 | K=- 내부기 자극 출력 제어  구현
+기준서_유닛 검증 row 186: D=SW-FW-UnitTest-CM3-ID-96 | E=내부기 자극 파라미터 설정 | F=A | G=SU-ID-CM3-096 | H=NA | I=NA | J=코드 분석 | K=- 내부기 자극 파라미터 설정 구현
+기준서_유닛 검증 row 187: D=SW-FW-UnitTest-CM3-ID-97 | E=내부기 연결 확인(실시간 자극)  | F=A | G=SU-ID-CM3-097 | H=NA | I=NA | J=코드 분석 | K=- 내부기 연결 확인(실시간 자극)  구현
+기준서_유닛 검증 row 188: D=SW-FW-UnitTest-CM3-ID-98 | E=내부기 연결 확인(매핑 연결)  | F=A | G=SU-ID-CM3-098 | H=NA | I=NA | J=코드 분석 | K=- 내부기 연결 확인(매핑 연결)  구현
+기준서_유닛 검증 row 189: C=블루투스 통신 모듈 | D=SW-FW-UnitTest-CM3-ID-99 | E=BLE 설정 수신 데이터 인출 | F=A | G=SU-ID-CM3-099 | H=NA | I=NA | J=코드 분석 | K=- BLE 설정 수신 데이터 인출 구현
+기준서_유닛 검증 row 190: D=SW-FW-UnitTest-CM3-ID-100 | E=리모콘 수신 데이터 인출 | F=A | G=SU-ID-CM3-100 | H=NA | I=NA | J=코드 분석 | K=- 리모콘 수신 데이터 인출 구현
+기준서_유닛 검증 row 191: D=SW-FW-UnitTest-CM3-ID-101 | E=매핑 수신 데이터 인출 | F=A | G=SU-ID-CM3-101 | H=NA | I=NA | J=코드 분석 | K=- 매핑 수신 데이터 인출 구현
+기준서_유닛 검증 row 192: D=SW-FW-UnitTest-CM3-ID-102 | E=블루투스 광고 이름 설정  | F=A | G=SU-ID-CM3-102 | H=NA | I=NA | J=코드 분석 | K=- 블루투스 광고 이름 설정  구현
+기준서_유닛 검증 row 193: D=SW-FW-UnitTest-CM3-ID-103 | E=리모콘 제어  | F=A | G=SU-ID-CM3-103 | H=NA | I=NA | J=코드 분석 | K=- 리모콘 제어  구현
+기준서_유닛 검증 row 194: D=SW-FW-UnitTest-CM3-ID-104 | E=리모콘 명령 수행 완료 | F=A | G=SU-ID-CM3-104 | H=NA | I=NA | J=코드 분석 | K=- 리모콘 명령 수행 완료 구현
+기준서_유닛 검증 row 195: D=SW-FW-UnitTest-CM3-ID-105 | E=특정 자극 출력 | F=A | G=SU-ID-CM3-105 | H=NA | I=NA | J=코드 분석 | K=- 특정 자극 출력 구현
+기준서_유닛 검증 row 196: D=SW-FW-UnitTest-CM3-ID-106 | E=실시간 자극 출력  | F=A | G=SU-ID-CM3-106 | H=NA | I=NA | J=코드 분석 | K=- 실시간 자극 출력  구현
+기준서_유닛 검증 row 197: D=SW-FW-UnitTest-CM3-ID-107 | E=매핑 명령 수행 완료 | F=A | G=SU-ID-CM3-107 | H=NA | I=NA | J=코드 분석 | K=- 매핑 명령 수행 완료 구현
+기준서_유닛 검증 row 198: B=NRF | C=시스템
+제어
+모듈 | D=SW-FW-UnitTest-NRF-ID-1 | E=클럭 설정 | F=A | G=SU-ID-NRF-001 | H=NA | I=NA | J=코드 분석 | K=- 클럭 설정 구현
+기준서_유닛 검증 row 199: D=SW-FW-UnitTest-NRF-ID-2 | E=전원 제어용 핀 설정 | F=A | G=SU-ID-NRF-002 | H=NA | I=NA | J=코드 분석 | K=- 전원 제어용 핀 설정 구현
+기준서_유닛 검증 row 200: D=SW-FW-UnitTest-NRF-ID-3 | E=SPI 설정 | F=A | G=SU-ID-NRF-003 | H=NA | I=NA | J=코드 분석 | K=- SPI 설정 구현
+기준서_유닛 검증 row 201: D=SW-FW-UnitTest-NRF-ID-4 | E=Log Data 읽기 | F=A | G=SU-ID-NRF-004 | H=NA | I=NA | J=코드 분석 | K=- Log Data 읽기 구현
+기준서_유닛 검증 row 202: D=SW-FW-UnitTest-NRF-ID-5 | E=주기반복 타이머 설정 | F=A | G=SU-ID-NRF-005 | H=NA | I=NA | J=코드 분석 | K=- 주기반복 타이머 설정 구현
+기준서_유닛 검증 row 203: D=SW-FW-UnitTest-NRF-ID-6 | E=Off Command 확인  | F=A | G=SU-ID-NRF-006 | H=NA | I=NA | J=코드 분석 | K=- Off Command 확인  구현
+기준서_유닛 검증 row 204: D=SW-FW-UnitTest-NRF-ID-7 | E=장치 정보 파라미터 읽기 | F=D | G=SU-ID-NRF-007 | H=NA | I=NA | J=코드 분석 | K=- 장치 정보 파라미터 읽기 구현
+기준서_유닛 검증 row 205: D=SW-FW-UnitTest-NRF-ID-8 | E=BLE 광고 이름 설정  | F=A | G=SU-ID-NRF-008 | H=NA | I=NA | J=코드 분석 | K=- BLE 광고 이름 설정  구현
+기준서_유닛 검증 row 206: D=SW-FW-UnitTest-NRF-ID-9 | E=타이머 설정 비활성화 | F=A | G=SU-ID-NRF-009 | H=NA | I=NA | J=코드 분석 | K=- 타이머 설정 비활성화 구현
+기준서_유닛 검증 row 207: D=SW-FW-UnitTest-NRF-ID-10 | E=블루투스 스택 초기화 | F=A | G=SU-ID-NRF-010 | H=NA | I=NA | J=코드 분석 | K=- 블루투스 스택 초기화 구현
+기준서_유닛 검증 row 208: D=SW-FW-UnitTest-NRF-ID-11 | E=저전력 모드 진입 | F=A | G=SU-ID-NRF-011 | H=NA | I=NA | J=코드 분석 | K=- 저전력 모드 진입 구현
+기준서_유닛 검증 row 209: D=SW-FW-UnitTest-NRF-ID-12 | E=BLE 본딩 데이터 저장 | F=A | G=SU-ID-NRF-012 | H=NA | I=NA | J=코드 분석 | K=- BLE 본딩 데이터 저장 구현
+기준서_유닛 검증 row 210: D=SW-FW-UnitTest-NRF-ID-13 | E=SPI 송신 데이터 쓰기 | F=A | G=SU-ID-NRF-013 | H=NA | I=NA | J=코드 분석 | K=- SPI 송신 데이터 쓰기 구현
+기준서_유닛 검증 row 211: D=SW-FW-UnitTest-NRF-ID-14 | E=SPI 송신 | F=A | G=SU-ID-NRF-014 | H=NA | I=NA | J=코드 분석 | K=- SPI 송신 구현
+기준서_유닛 검증 row 212: D=SW-FW-UnitTest-NRF-ID-15 | E=SPI 슬레이브 장치 데이터 송신 알림 읽기   | F=A | G=SU-ID-NRF-015 | H=NA | I=NA | J=코드 분석 | K=- SPI 슬레이브 장치 데이터 송신 알림 읽기   구현
+기준서_유닛 검증 row 213: D=SW-FW-UnitTest-NRF-ID-16 | E=SPI 수신  | F=A | G=SU-ID-NRF-016 | H=NA | I=NA | J=코드 분석 | K=- SPI 수신  구현
+기준서_유닛 검증 row 214: D=SW-FW-UnitTest-NRF-ID-17 | E=SPI 수신 데이터 복사 | F=A | G=SU-ID-NRF-017 | H=NA | I=NA | J=코드 분석 | K=- SPI 수신 데이터 복사 구현
+기준서_유닛 검증 row 215: C=블루투스 통신 모듈 | D=SW-FW-UnitTest-NRF-ID-18 | E=블루투스 데이터 수신 | F=A | G=SU-ID-NRF-018 | H=NA | I=NA | J=코드 분석 | K=- 블루투스 데이터 수신 구현
+기준서_유닛 검증 row 216: 
+기준서_유닛 검증 row 217: 
+기준서_유닛 검증 row 218: B=5. 기준서 검증
+기준서_유닛 검증 row 219: C=- 전략, 방법 및 절차가 확립 되었는가?
+기준서_유닛 검증 row 220: C= : 예
+기준서_유닛 검증 row 221: 
+기준서_유닛 검증 row 222: C=- 시험 절차가 정확한가?
+기준서_유닛 검증 row 223: C= : 예

@@ -1,0 +1,36 @@
+{
+  "SUVC": {
+    "tests": 325,
+    "physical_rows": 346,
+    "comparison_rows": 532,
+    "saved_values_match": true,
+    "height_limit_rows": []
+  },
+  "SITC": {
+    "tests": 17,
+    "physical_rows": 17,
+    "comparison_rows": 31,
+    "saved_values_match": true,
+    "height_limit_rows": []
+  },
+  "SSTC": {
+    "tests": 81,
+    "physical_rows": 81,
+    "comparison_rows": 149,
+    "saved_values_match": true,
+    "height_limit_rows": []
+  },
+  "SAD-FW-TD24A 소프트웨어 아키텍쳐 기술서.docx": {
+    "revisions": 614,
+    "tracking_enabled": true
+  },
+  "SDDD-FW-TD24A 소프트웨어 상세 설계서.docx": {
+    "revisions": 10644,
+    "tracking_enabled": true
+  },
+  "SIP-FW-TD24A 소프트웨어 통합 계획서.docx": {
+    "revisions": 182,
+    "tracking_enabled": true
+  },
+  "source_unchanged": true
+}

@@ -1,0 +1,123 @@
+표지 row 1: 
+표지 row 2: J=문서번호 | L=SITC-FW-TD20B
+표지 row 3: J=버전 | L=Rev. 1
+표지 row 4: 
+표지 row 5: B=소프트웨어 통합 테스트 기준서
+(TD20B-A-EXT)
+표지 row 6: 
+표지 row 7: 
+표지 row 8: 
+표지 row 9: 
+표지 row 10: 
+표지 row 11: D=소속/부서 | H=성명 | J=서명 | M=일자
+표지 row 12: B=작성 | D=토닥/인공와우사업부 | H=임정우 | M=2021.09.30
+표지 row 13: 
+표지 row 14: B=검토
+표지 row 15: 
+표지 row 16: B=승인 | D=토닥 | H=이호승 | M=2021.09.30
+표지 row 17: 
+표지 row 18: 
+표지 row 19: 
+표지 row 20: 
+표지 row 21: 
+표지 row 22: B=개정이력
+표지 row 23: B=개정번호 | D=개정날짜 | F=개정내용
+표지 row 24: B=0 | D=2021.09.30 | F=최초 작성
+표지 row 25: 
+표지 row 26: 
+표지 row 27: 
+표지 row 28: 
+표지 row 29: 
+표지 row 30: 
+표지 row 31: 
+표지 row 32: 
+기준서_통합 시험 row 1: 
+기준서_통합 시험 row 2: B=통합 시험 기준서
+인공달팽이관 외부장치 펌웨어 
+기준서_통합 시험 row 3: 
+기준서_통합 시험 row 4: 
+기준서_통합 시험 row 5: B=1. 시험 대상 소프트웨어
+기준서_통합 시험 row 6: 
+기준서_통합 시험 row 7: C=소프트웨어 식별 이름 : | D=OTE_GEN1_Proto3
+기준서_통합 시험 row 8: C=소프트웨어 버전 : | D=1.0.0
+기준서_통합 시험 row 9: 
+기준서_통합 시험 row 10: B=2. 동작 하드웨어 
+기준서_통합 시험 row 11: C=인공달팽이과 외부기 시제품 3차(OTE 시제품 버전 3)
+기준서_통합 시험 row 12: 
+기준서_통합 시험 row 13: B=3. 필요 장비 및 지그
+기준서_통합 시험 row 14: 
+기준서_통합 시험 row 15: C=장비 및 지그, 소프트웨어 툴 | D=사용목적
+기준서_통합 시험 row 16: C=I2C 디버거(AMIS CCA) | D=Ezairo system 디버깅 장치
+기준서_통합 시험 row 17: C=EDK Ezairo | D=Ezairo system 코딩, 컴파일, 링크, 다운로드 및 디버깅 프로그램 툴
+기준서_통합 시험 row 18: C=J-Link 디버거 | D=NRF 디버깅 장치
+기준서_통합 시험 row 19: C=Keil uVison5 | D=NRF 코딩 코딩, 컴파일, 링크, 다운로드 및 디버깅 프로그램 툴
+기준서_통합 시험 row 20: 
+기준서_통합 시험 row 21: 
+기준서_통합 시험 row 22: B=4. 시험 내용
+기준서_통합 시험 row 23: B=CORE | C=TEST ID | D=검증할 소프트웨 항목 ID | F=통합된 유닛, 항목 확인 | I=방법 | J=시험 준비 및 초기 조건 | K=가정 및 제한 조건 | L=시험 절차 | M=통과 기준
+기준서_통합 시험 row 24: F=소프트웨어 유닛 | G=하드웨어 항목 및 지원 | H=소프트웨어 항목
+기준서_통합 시험 row 25: B=CFX | C=SW-FW-IntegrationTest-ID-001 | D=SI-ID-CFX-001 | E=시스템 초기화 항목 | F=SDS-ID-CFX-001~023 | H=없음 | I=D | J=NA | K=-CM3 메모리 초기화 완료에 해당하는 인터럽트 서비스 루틴의 플래그 임의 설정
+- CM3에서 제어되는 PCM 출력 모드를 실시간 자극 모드로 임의 설정 | L=- 디버깅용 중단점을 시헝할 항목의 시작과 끝에 위치시키고 실행한다. | M=- 각 중단점에서 중단이 확인되어야한다.
+(시스템 초기화 항목의 유닛들은 개별적으로 검증이 완료되었으며, 시스템 초기화 항목이 실행되는 상태에서 다른 모듈들의 유닛들이 검증되었으며, 다른 항목들의 검증이 추가적으로 진행 되게 된다.)
+기준서_통합 시험 row 26: C=SW-FW-IntegrationTest-ID-002 | D=SI-ID-CFX-004 | E=저전력 동작 전환 항목 | F=SDS-ID-CFX-001~023,
+SDS-ID-CFX-024~032 | H=SI-ID-CFX-001 | I=D | J=NA | K=- 전원 공급기로 Ezario 시스템에 전원을 공급한다. | L=- 정상 모드에서 저전력 모드로 진입하는 과정에서 소모 전류의 변화를 확인한다.
+- 저젼럭 모드에서 가속도 인터럽트 입력에 할당된 핀에 임의로 값을 인가한다. | M=- 정상 모드에서 저전력 모드로 진입하면 Eziro 소모 전력이 확연히 줄어들어야 한다.
+- 가속도 인터럽트 입력 핀의 상태가 변하면 저전력 모드에서 빠져나와야한다.
+기준서_통합 시험 row 27: C=SW-FW-IntegrationTest-ID-003 | D=SI-ID-CFX-005 | E=USB 연결 상태 업데이트 항목 | F=SDS-ID-CFX-001~023,
+SDS-ID-CFX-046~047 | G=USB 충전 커넥터 값 | H=SI-ID-CFX-001 | I=D | J=NA | K=NA | L=- USB 커넥터 및 휴대 보관함 연결 감지 입력 핀의 값을 변경하면서 실행 분기를 확인한다. | M=-흐름도에 맞게 분기해야한다.
+기준서_통합 시험 row 28: C=SW-FW-IntegrationTest-ID-004 | D=SI-ID-CFX-006 | E=PCM 제어 항목 | F=SDS-ID-CFX-001~023,
+SDS-ID-CFX-060~061 | H=SI-ID-CFX-001 | I=D | J=NA | K=- CM3에서 제어되는 Flag 값을 임의로 설정한다. | L=- CM3에서 제어되는 Flag 값을 CFX에서 임의로 변경하면서 실행 분기를 확인한다. | M=- 흐름도에 맞게 분기해야한다.
+기준서_통합 시험 row 29: C=SW-FW-IntegrationTest-ID-005 | D=SI-ID-CFX-003 | E=주 제어 항목 | F=SDS-ID-CFX-001~023,
+SDS-ID-CFX-024~032,
+SDS-ID-CFX-033~043,
+SDS-ID-CFX-044~045,
+SDS-ID-CFX-046~047,
+SDS-ID-CFX-058~059 | H=SI-ID-CFX-001,
+SI-ID-CFX-005,
+SI-ID-CFX-004, | I=D | J=NA | K=- CM3에서 제어되는 Flag 값을 임의로 설정한다. | L=- CM3에서 제어되는 Flag 값을 CFX에서 임의로 변경하면서 실행 분기를 확인한다. | M=- 흐름도에 맞게 분기해야한다.
+기준서_통합 시험 row 30: C=SW-FW-IntegrationTest-ID-006 | D=SI-ID-CFX-002 | E=시스템 제어 항목 | F=SDS-ID-CFX-001~023,
+SDS-ID-CFX-024~032,
+SDS-ID-CFX-033~043,
+SDS-ID-CFX-044~045,
+SDS-ID-CFX-046~047,
+SDS-ID-CFX-048~057,
+SDS-ID-CFX-058~059,
+SDS-ID-CFX-060~061 | H=SI-ID-CFX-001,
+SI-ID-CFX-005,
+SI-ID-CFX-004,
+SI-ID-CFX-006,
+SI-ID-CFX-003 | I=D | J=NA | K=-주 제어 항목에서, CM3에서 제어되는 Flag 값을 임의로 설정하여 신호처리 및 내부기 실행 파라미터가 초기화 되어야 한다. | L=- PCM 모드에 따라 실행 분기를 확인한다. | M=- 흐름도에 맞게 분기해야한다.
+기준서_통합 시험 row 31: B=CM3 | C=SW-FW-IntegrationTest-ID-007 | D=SI-ID-CM3-001 | E=시스템 초기화 항목 | F=SDS-ID-CM3-001~020 | H=없음 | I=D | J=NA | K=- CFX에서 제어되는 Flag 값을 임의로 설정한다. | L=- CFX에서 제어되는 Flag 값을 CM3에서 임의로 변경하면서 실행 분기를 확인한다. | M=- 흐름도에 맞게 분기해야한다.
+기준서_통합 시험 row 32: C=SW-FW-IntegrationTest-ID-008 | D=SI-ID-CM3-003 | E=내부기 실행 제어 항목 | F=SDS-ID-CM3-001~020,
+SDS-ID-CM3-030~078,
+SDS-ID-CM3-079,
+SDS-ID-CM3-080~087,
+SDS-ID-CM3-088~098 | H=SI-ID-CM3-001 | I=A | J=NA | K=NA | L=- 제어 상태 파라미터를 변경하면서 실행 분기를 확인한다. | M=- 흐름도에 맞게 분기해야한다.
+기준서_통합 시험 row 33: C=SW-FW-IntegrationTest-ID-009 | D=SI-ID-CM3-005 | E=매핑 제어 항목 | F=SDS-ID-CM3-001~020
+SDS-ID-CM3-030~078,
+SDS-ID-CM3-105~107 | H=SI-ID-CM3-001 | I=D | J=NA | K=NA | L=- 내부기 제어 상태 파라미터 및  매핑 수신 데이터를 변경하면서 실행 분기를 확인한다. | M=- 흐름도에 맞게 분기해야한다.
+기준서_통합 시험 row 34: C=SW-FW-IntegrationTest-ID-010 | D=SI-ID-CM3-004 | E=블루투스 통신 제어 항목 | F=SDS-ID-CM3-001~020,
+SDS-ID-CM3-030~078,
+SDS-ID-CM3-099~104,
+SDS-ID-CM3-105~107 | H=SI-ID-CM3-001,
+SI-ID-CM3-005 | I=D | J=NA | K=NA | L=- SPI 수신 버퍼의 데이터를 변경하면서 실행 분기를 확인한다. | M=- 흐름도에 맞게 분기해야한다.
+기준서_통합 시험 row 35: C=SW-FW-IntegrationTest-ID-011 | D=SI-ID-CM3-002 | E=시스템 제어 항목 | F=SDS-ID-CM3-001~020,
+SDS-ID-CM3-021~029,
+SDS-ID-CM3-030~078,
+SDS-ID-CM3-079,
+SDS-ID-CM3-080~087,
+SDS-ID-CM3-088~098,
+SDS-ID-CM3-099~104,
+SDS-ID-CM3-105~107 | H=SI-ID-CM3-001,
+SI-ID-CM3-005,
+SI-ID-CM3-004,
+SI-ID-CM3-003 | I=D | J=NA | K=- CFX에서 제어되는 Flag 값을 임의로 설정한다. | L=- CM3에서 제어되는 Flag 값을 변경하면서 해당 분기점에서 디버깅용 중단점을 설정하고 분기를 확인한다. | M=- 흐름도에 맞게 분기해야한다.
+기준서_통합 시험 row 36: B=NRF | C=SW-FW-IntegrationTest-ID-012 | D=SI-ID-NRF-001 | E=시스템 초기화 항목 | F=SDS-ID-NRF-001~011 | H=없음 | I=D | J=NA | K=- CM3에서 제어되는 Flag 값을 임의로 설정한다. | L=- CM3에서 제어되는 Flag 값을 NRF에서 임의로 변경하면서 실행 분기를 확인한다. | M=- 흐름도에 맞게 분기해야한다.
+기준서_통합 시험 row 37: C=SW-FW-IntegrationTest-ID-013 | D=SI-ID-NRF-003 | E=블루투스 통신 제어 항목 | F=SDS-ID-NRF-001~011,
+SDS-ID-NRF-013~017,
+SDS-ID-NRF-018 | H=SI-ID-NRF-001 | I=D | J=- BLE Central 장치 연결 | K=NA | L=- BLE 상태 Flag 값을 변경하면서 해당 분기점에서 디버깅용 중단점을 설정하고 분기를 확인한다. | M=- 흐름도에 맞게 분기해야한다.
+기준서_통합 시험 row 38: C=SW-FW-IntegrationTest-ID-014 | D=SI-ID-NRF-002 | E=시스템 제어 항목 | F=SDS-ID-NRF-001~011,
+SDS-ID-NRF-012
+SDS-ID-NRF-013~017,
+SDS-ID-NRF-018 | H=SI-ID-NRF-001,
+SI-ID-NRF-003 | I=D | J=NA | K=- CM3에서 제어되는 Flag 값을 임의로 설정한다. | L=- CM3에서 제어되는 Flag 값을 변경하면서 해당 분기점에서 디버깅용 중단점을 설정하고 분기를 확인한다. | M=- 흐름도에 맞게 분기해야한다.

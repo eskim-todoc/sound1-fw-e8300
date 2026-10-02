@@ -1,0 +1,232 @@
+{
+  "review_date": "2026-10-02",
+  "scope": "Selected normal entry/cross-core paths and conditional unit-test/RTT boundaries; not whole-file correctness or device acceptance.",
+  "git_head": "f24d0d39ed4a227529e68f10b76fa30daabd5d6c",
+  "basis": "Working tree bytes including existing local modifications",
+  "files": [
+    {
+      "path": "src/0__bootloader/.cproject",
+      "sha256": "31e66112f104ca259396145891c77d55f0d2d6544e0cfed2ae44e0650f1b013b"
+    },
+    {
+      "path": "src/0__bootloader/main.c",
+      "sha256": "91125f5c8e006f8a5dee9b543ab43756519fcdbaa48c648a16edd91c4ea554e8"
+    },
+    {
+      "path": "src/0__bootloader/source/bootloader.c",
+      "sha256": "c772cdc3c717d65cc36f6e01ae7fedc855c8ed52dc5c0bc1354f7e9ce912dadf"
+    },
+    {
+      "path": "src/0__bootloader/source/bootmgr/ci_boot.c",
+      "sha256": "1b055bd70a921b2d3d707a6d795b2d6691234f84299c24c54934a586d81ac410"
+    },
+    {
+      "path": "src/1__cfx/.cproject",
+      "sha256": "264646858226320063778fae4a2298a02e26dc53b1f50ec50ecdd023f719ba49"
+    },
+    {
+      "path": "src/1__cfx/systemControl/main.c",
+      "sha256": "69be0ae2ec3529b5e6d17c011bb9d4ad80c431d9ec5b9ca67a4ba12c56cfb62f"
+    },
+    {
+      "path": "src/1__cfx/systemControl/interrupt_service_routine.c",
+      "sha256": "e270d4ba0ecb6e41bd9cea32bec98d2b1edca849852e69fa569104e4e3c8600b"
+    },
+    {
+      "path": "src/1__cfx/systemControl/system_control.c",
+      "sha256": "e32d67b9ce222220c2f82830f47db7933c71839bc8edeb4b03e1481101a719b3"
+    },
+    {
+      "path": "src/1__cfx/systemControl/audioMixer.c",
+      "sha256": "eb7524acaf5a6402d3065b747fadcc7fa4f68b597df7dac189be76ecfd2b071e"
+    },
+    {
+      "path": "src/1__cfx/systemControl/audioMixer.h",
+      "sha256": "479cf252e2b2224104c743ef2cdef420524fd66baf3a02400afd4b2b4ecd07ed"
+    },
+    {
+      "path": "src/1__cfx/signalProcessing/agc.c",
+      "sha256": "68fd6e1ddbc1fd0db0ee38c76a36aa6bb47eedcb849ba7bb106be76625f47944"
+    },
+    {
+      "path": "src/1__cfx/signalProcessing/stimulationStrategy.c",
+      "sha256": "9911ccb8ab242efdb46b37e1925baa14580db899ddbdf6a3a901151c5779dcd4"
+    },
+    {
+      "path": "src/1__cfx/signalProcessing/definitionsForAlgorithm.h",
+      "sha256": "620aab19b24a75dce9070baf3d175041b7d76c7ff2b7fe7a77bbb6839dd2457d"
+    },
+    {
+      "path": "src/1__cfx/internalDevice/driver_PCM.c",
+      "sha256": "c5fc3732ccd0247bccf331dbb66706e2a679079955ee6834573edb2861ba2464"
+    },
+    {
+      "path": "src/1__cfx/lib_cfx/lib_audio_in.h",
+      "sha256": "1e8d8b0e196d12cd52510c89c4a7b67d24e054b3c739e975d6002a2f4d579391"
+    },
+    {
+      "path": "src/1__cfx/hear/microcode.h",
+      "sha256": "c58840da11f2f65ff4c6fff5e2bab9ff9eae7a0c97e2dfbe2d0cb6ce1d333221"
+    },
+    {
+      "path": "src/2__cm3/.cproject",
+      "sha256": "ce4da840694f50741a3d718ee024295145499f4b9d5e1ae4b6c3ecb20f458095"
+    },
+    {
+      "path": "src/2__cm3/Cortex-M3-src/main.c",
+      "sha256": "9f4700b8ed5dd6acb22fbf61d6f91801effbb401ad156e6c25421b51b8b52896"
+    },
+    {
+      "path": "src/2__cm3/Cortex-M3-src/systemControl/initialize.c",
+      "sha256": "df550e14ef93904ceb2fd1683a622c1d634a79ff8c106a383fcca2507ba0611b"
+    },
+    {
+      "path": "src/2__cm3/Cortex-M3-src/systemControl/driver_timmer.c",
+      "sha256": "49c5473e9c76f1b68078d6b2f703ef469ff4e642bd569d56d6faa04d4b465db1"
+    },
+    {
+      "path": "src/2__cm3/Cortex-M3-src/systemControl/driver_SPI.h",
+      "sha256": "f9f6bc9b4261d29a332bceafbbb205ab1fac1660d1099d0aa7928b77c0400113"
+    },
+    {
+      "path": "src/2__cm3/Cortex-M3-src/systemControl/cfx_cm3_sharedMemory.c",
+      "sha256": "9035d1fde58d18ec1360c44aadc7b42a52b02c1f9bee3be1115351efd14c4345"
+    },
+    {
+      "path": "src/2__cm3/Cortex-M3-src/signalProcessing/stimulationParaCal.c",
+      "sha256": "4bfbba41099f76d4e47245b6368f8d24a0979c152f9937edffe30f51f18543e9"
+    },
+    {
+      "path": "src/2__cm3/Cortex-M3-src/internalDevice/isd_interface.c",
+      "sha256": "cd35baa120846e1caaac3934b91fd112918277515789492076c81138f3e4b921"
+    },
+    {
+      "path": "src/2__cm3/Cortex-M3-src/internalDevice/isd_interface_stimulationStandAlone.c",
+      "sha256": "876be8330831f2587e711cf6c0760d9f7915e14520f4fd53a75df0dd2246b571"
+    },
+    {
+      "path": "src/2__cm3/Cortex-M3-src/internalDevice/isd_interface_stimulationParaSetting.c",
+      "sha256": "b0fe895d5d3a77ae448032cad0afa230ba2a81e524122cb7b4753c3f8e994c30"
+    },
+    {
+      "path": "src/2__cm3/Cortex-M3-src/BleCommunication/ble_communication.c",
+      "sha256": "4f64ce10102c59caeefef239fe3c56fc32aacc100992709f831892197f57e2eb"
+    },
+    {
+      "path": "src/2__cm3/Cortex-M3-src/BleCommunication/ci_ble_control_ota.c",
+      "sha256": "a0f76f90d7425e068d15c85a90483722012011d85a3bbe3f5618022457098923"
+    },
+    {
+      "path": "src/2__cm3/Cortex-M3-src/QCC/snd_qcc.c",
+      "sha256": "9f759ae752f68e3c7d6b24f9206af5acb08869c226008ec9429541e38f9ad230"
+    },
+    {
+      "path": "src/2__cm3/Gen1_5/common/ci_timer.c",
+      "sha256": "b4e0f47587edfbcc161537db75a836fcbf9dcbea96adbb3c1277af1738a83f5c"
+    },
+    {
+      "path": "src/3__hear/microcode.hct",
+      "sha256": "c201e8a884892c4637e0686ccadd081593cbff83b68159cfab6a3088d994c313"
+    },
+    {
+      "path": "src/0__bootloader/source/segger_rtt/rtt_printf.c",
+      "sha256": "8c1e5f28631a1f8d5214cfabee691f723fa2c479db7e9e0c2b3928c19b5dfa22"
+    },
+    {
+      "path": "src/2__cm3/Gen1_5/SEGGER_RTT/SEGGER_RTT_Wrapper.c",
+      "sha256": "cf588abe7c753c91314221fe86ef8fc5e374060ceab29874de5cc7d4031b7337"
+    },
+    {
+      "path": "src/test/tdc_ut_log.c",
+      "sha256": "806dd9ab969ef5ae99098edb5c6358e66bfb6618fc320dafae20fd438ca8ae5d"
+    },
+    {
+      "path": "src/test/tdc_ut_log.h",
+      "sha256": "f295984d19cf8c2b9f0c0ac3e6fd546f52f1f68e394c8eaf26108f74da9809bf"
+    },
+    {
+      "path": "src/2__cm3/Cortex-M3-src/test/tdc_ut_report.c",
+      "sha256": "4f65aec81d7da4272c63b3f5126a0dac29989d5c0a085d7678e03b20ab2f0982"
+    },
+    {
+      "path": "src/1__cfx/test/tdc_ut_io_cfx.c",
+      "sha256": "2fa5ee021bcdc30f7a368fcc61455cafeb0b65b2f8ac9a085714fc1f10cbeebd"
+    },
+    {
+      "path": "src/1__cfx/test/tdc_ut_vectors_cfx.c",
+      "sha256": "cf2b3f36a00903a82aec3b3f0c2a25af2cd2cec31368692b98b482d82510578a"
+    },
+    {
+      "path": "src/2__cm3/Cortex-M3-src/test/tdc_ut_io_cm3.c",
+      "sha256": "05f2c22f8d55040b477246fb8711ba74a58f8f4df2b37789beebf36b32641d16"
+    },
+    {
+      "path": "src/2__cm3/Cortex-M3-src/test/tdc_ut_vectors_cm3.c",
+      "sha256": "93dbae7286f28ab8f030cbdb32d4a89b5b1436c5f6880ede55a5a4e239a5da4b"
+    },
+    {
+      "path": "src/0__bootloader/source/test/tdc_ut_boot.c",
+      "sha256": "9f0c3fe409ed9f4d5399504cd2dc6522207ec04714ec0e23e9ce8832c43406db"
+    },
+    {
+      "path": "src/0__bootloader/source/test/tdc_ut_boot_report.c",
+      "sha256": "b0091db39c0eab4762e78526b41412ab2836541bc87b3cd7681690ee9e1d7e04"
+    },
+    {
+      "path": "src/2__cm3/Cortex-M3-src/internalDevice/isd_interface.h",
+      "sha256": "3d56eb0b67189b79d74018f463046a855bd3013d6d9a1194a6d94e7c719250ec"
+    },
+    {
+      "path": "src/2__cm3/Cortex-M3-src/test/tdc_ut_vectors_cm3.h",
+      "sha256": "cee22af6052c928fef9c9ef190cbaeafc83a170805ee9b1104b9194fef457ad2"
+    },
+    {
+      "path": "src/2__cm3/Cortex-M3-src/test/tdc_ut_coordination_cm3.c",
+      "sha256": "d114ae1c2562cae96575a2759f1187ce4685f8a1691f798f707cfd65b2cea724"
+    },
+    {
+      "path": "src/2__cm3/Cortex-M3-src/test/tdc_ut_coordination_cm3.h",
+      "sha256": "0ff5cbf5c3db55a332e86948c82d313f8bd9ea2c4495cd3ccdb37eb5a42a95f6"
+    },
+    {
+      "path": "src/2__cm3/Cortex-M3-src/test/tdc_ut_state_cm3.c",
+      "sha256": "589ff686f8dc40bebf4b9970ce91ea73bb8c1ade0fa9a5f51abbd62940a78fe5"
+    },
+    {
+      "path": "src/2__cm3/Cortex-M3-src/test/tdc_ut_state_cm3.h",
+      "sha256": "5f93790b195dcdb9772ea5c88e9edb07fa61c7d7a4ff75acc86d5d61cdb03f76"
+    },
+    {
+      "path": "src/0__bootloader/sections.ld",
+      "sha256": "34cee2e479e43a309dd6197eed77eaabd14464768c0ccdaf7e169ba1b6d2f9b0"
+    },
+    {
+      "path": "src/0__bootloader/source/test/tdc_ut_boot.h",
+      "sha256": "ae5ceac7b78fd9688fe23ff35267851af3a88a37d97184817ff907ffb5a55363"
+    },
+    {
+      "path": "src/1__cfx/test/tdc_ut_io_cfx.h",
+      "sha256": "e6d9e8943a88ddbced95a8f26eec56f4b49e121d0fe9f47e858d81923704652c"
+    },
+    {
+      "path": "src/1__cfx/test/tdc_ut_numeric_reference_cfx.h",
+      "sha256": "729db769780be52a43611ff7096112c3b31da735d99953f77d213217f15b6334"
+    },
+    {
+      "path": "src/1__cfx/test/tdc_ut_hear_reference.h",
+      "sha256": "3dd6ec7fccce2d04f95f810554f98d13e26eb87a758d148c7e3eb10aa8e893e0"
+    },
+    {
+      "path": "src/2__cm3/Cortex-M3-src/test/tdc_ut_report.h",
+      "sha256": "f29e20595eecae1e16d0a3497603492f22fe18a1b5b8f7327b9a182b5f2d6bae"
+    },
+    {
+      "path": "src/2__cm3/Cortex-M3-src/test/tdc_ut_io_cm3.h",
+      "sha256": "fb92a78102eb7d435deb6e09c1c8d7fa89137d88bf26d54ad8b0dc47d96ab0ad"
+    },
+    {
+      "path": "src/2__cm3/processorDirective.h",
+      "sha256": "a052dd6089b0aa9a75ff5e7815b2c6ed857eed9c1503067ae01a986fa23d88a1"
+    }
+  ]
+}
