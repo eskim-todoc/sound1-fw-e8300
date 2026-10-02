@@ -1,0 +1,33 @@
+{
+  "input_cells": 1012,
+  "output_cells": 2024,
+  "map": 1,
+  "audio_volumes": [
+    1,
+    10
+  ],
+  "stimulation_volume": 4,
+  "bands": {
+    "100": 1,
+    "1048": 15,
+    "1438": 18,
+    "1500": 18,
+    "1593": 18,
+    "2869": 24,
+    "3038": 24,
+    "3217": 25,
+    "3815": 26,
+    "4037": 26,
+    "7900": 32
+  },
+  "method": "Legacy host DSP model; explicit ADC peak; lower median of 1000 PCM values",
+  "source_sha256": {
+    "docs/참고/인허가/사운드1/ADC 테이블 합체.md": "7375f889373223ca663a0e4fce532cfc67833d640479e955ba4adbf6375a9886",
+    "docs/tasks/인허가/20260914_32채널-시험표/스크립트/simulate.py": "f6dd180c9d82c17c6bd587ee76f12f79f861810f89f2c1c805b854bbf68d4d72",
+    "src/1__cfx/signalProcessing/agc.c": "971ce48681fecdb3dff1764bae94af439e964fc210f33a0d924544d85c48ddd9",
+    "src/1__cfx/signalProcessing/nonlinearMapping.c": "98bd7ba61cdb7afb01bee7b14a7ff6ebd25c9c76fe8b5b5fbd57831d5423dcec",
+    "src/2__cm3/Gen1_5/FS/ci_map.c": "9e776a6445f79aa01c282df51a5e237f5292b1c84a61a3eccd18167019786b43",
+    "src/2__cm3/Gen1_5/FS/ci_fft.c": "d5c0c49d1b3a4993e4a15f2e9aef1b9a0e15b9fe2040c599c0f0664c409c82da",
+    "src/2__cm3/Cortex-M3-src/signalProcessing/stimulationParaCal.c": "ebbe288bce62554634a2e14696e3bc165448b870ccf1a31cf86a7cc502fd8d1c"
+  }
+}
