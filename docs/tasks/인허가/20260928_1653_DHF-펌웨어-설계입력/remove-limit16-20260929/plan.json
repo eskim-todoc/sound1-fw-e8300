@@ -1,0 +1,17 @@
+{
+  "target": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\DHF\\02_설계 입력\\SW\\펌웨어\\SSTC-FW-TD24A 소프트웨어 시스템 시험 기준서.xlsx",
+  "edits": [
+    {
+      "sheet": "기준서_시스템 시험",
+      "index": 2,
+      "addr": "H40",
+      "value": null
+    },
+    {
+      "sheet": "기준서_시스템 시험_변경 비교",
+      "index": 3,
+      "addr": "H56",
+      "value": null
+    }
+  ]
+}

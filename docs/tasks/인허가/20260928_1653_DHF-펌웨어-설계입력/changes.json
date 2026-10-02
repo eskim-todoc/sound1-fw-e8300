@@ -1,0 +1,4559 @@
+[
+  {
+    "file": "SGR-FW-TD20B 소프트웨어 일반요구사항.docx",
+    "location": "word/document.xml p5",
+    "before": "(TD20B-A-EXT)",
+    "after": "(TD24A-A-EXT)",
+    "reason": "Sound1 식별/현행 설계 반영 또는 과거 승인 기록 제거"
+  },
+  {
+    "file": "SGR-FW-TD20B 소프트웨어 일반요구사항.docx",
+    "location": "word/document.xml p20",
+    "before": "임정우",
+    "after": "김은수",
+    "reason": "Sound1 식별/현행 설계 반영 또는 과거 승인 기록 제거"
+  },
+  {
+    "file": "SGR-FW-TD20B 소프트웨어 일반요구사항.docx",
+    "location": "word/document.xml p22",
+    "before": "이호승",
+    "after": "",
+    "reason": "Sound1 식별/현행 설계 반영 또는 과거 승인 기록 제거"
+  },
+  {
+    "file": "SGR-FW-TD20B 소프트웨어 일반요구사항.docx",
+    "location": "word/document.xml p24",
+    "before": "사업부장",
+    "after": "수석연구원",
+    "reason": "Sound1 식별/현행 설계 반영 또는 과거 승인 기록 제거"
+  },
+  {
+    "file": "SGR-FW-TD20B 소프트웨어 일반요구사항.docx",
+    "location": "word/document.xml p26",
+    "before": "기술이사",
+    "after": "",
+    "reason": "Sound1 식별/현행 설계 반영 또는 과거 승인 기록 제거"
+  },
+  {
+    "file": "SGR-FW-TD20B 소프트웨어 일반요구사항.docx",
+    "location": "word/document.xml p28",
+    "before": "2020.11.13",
+    "after": "",
+    "reason": "Sound1 식별/현행 설계 반영 또는 과거 승인 기록 제거"
+  },
+  {
+    "file": "SGR-FW-TD20B 소프트웨어 일반요구사항.docx",
+    "location": "word/document.xml p30",
+    "before": "2020.11.13",
+    "after": "",
+    "reason": "Sound1 식별/현행 설계 반영 또는 과거 승인 기록 제거"
+  },
+  {
+    "file": "SGR-FW-TD20B 소프트웨어 일반요구사항.docx",
+    "location": "word/document.xml p70",
+    "before": "2020.11.13",
+    "after": "",
+    "reason": "Sound1 식별/현행 설계 반영 또는 과거 승인 기록 제거"
+  },
+  {
+    "file": "SGR-FW-TD20B 소프트웨어 일반요구사항.docx",
+    "location": "word/document.xml p71",
+    "before": "1",
+    "after": "",
+    "reason": "Sound1 식별/현행 설계 반영 또는 과거 승인 기록 제거"
+  },
+  {
+    "file": "SGR-FW-TD20B 소프트웨어 일반요구사항.docx",
+    "location": "word/document.xml p75",
+    "before": "2",
+    "after": "",
+    "reason": "Sound1 식별/현행 설계 반영 또는 과거 승인 기록 제거"
+  },
+  {
+    "file": "SGR-FW-TD20B 소프트웨어 일반요구사항.docx",
+    "location": "word/document.xml p79",
+    "before": "3",
+    "after": "",
+    "reason": "Sound1 식별/현행 설계 반영 또는 과거 승인 기록 제거"
+  },
+  {
+    "file": "SGR-FW-TD20B 소프트웨어 일반요구사항.docx",
+    "location": "word/document.xml p83",
+    "before": "4",
+    "after": "",
+    "reason": "Sound1 식별/현행 설계 반영 또는 과거 승인 기록 제거"
+  },
+  {
+    "file": "SGR-FW-TD20B 소프트웨어 일반요구사항.docx",
+    "location": "word/document.xml p87",
+    "before": "5",
+    "after": "",
+    "reason": "Sound1 식별/현행 설계 반영 또는 과거 승인 기록 제거"
+  },
+  {
+    "file": "SGR-FW-TD20B 소프트웨어 일반요구사항.docx",
+    "location": "word/document.xml p91",
+    "before": "6",
+    "after": "",
+    "reason": "Sound1 식별/현행 설계 반영 또는 과거 승인 기록 제거"
+  },
+  {
+    "file": "SGR-FW-TD20B 소프트웨어 일반요구사항.docx",
+    "location": "word/document.xml p95",
+    "before": "7",
+    "after": "",
+    "reason": "Sound1 식별/현행 설계 반영 또는 과거 승인 기록 제거"
+  },
+  {
+    "file": "SGR-FW-TD20B 소프트웨어 일반요구사항.docx",
+    "location": "word/document.xml p99",
+    "before": "8",
+    "after": "",
+    "reason": "Sound1 식별/현행 설계 반영 또는 과거 승인 기록 제거"
+  },
+  {
+    "file": "SGR-FW-TD20B 소프트웨어 일반요구사항.docx",
+    "location": "word/document.xml p103",
+    "before": "9",
+    "after": "",
+    "reason": "Sound1 식별/현행 설계 반영 또는 과거 승인 기록 제거"
+  },
+  {
+    "file": "SGR-FW-TD20B 소프트웨어 일반요구사항.docx",
+    "location": "word/document.xml p107",
+    "before": "10",
+    "after": "",
+    "reason": "Sound1 식별/현행 설계 반영 또는 과거 승인 기록 제거"
+  },
+  {
+    "file": "SGR-FW-TD20B 소프트웨어 일반요구사항.docx",
+    "location": "word/document.xml p111",
+    "before": "11",
+    "after": "",
+    "reason": "Sound1 식별/현행 설계 반영 또는 과거 승인 기록 제거"
+  },
+  {
+    "file": "SGR-FW-TD20B 소프트웨어 일반요구사항.docx",
+    "location": "word/document.xml p115",
+    "before": "12",
+    "after": "",
+    "reason": "Sound1 식별/현행 설계 반영 또는 과거 승인 기록 제거"
+  },
+  {
+    "file": "SGR-FW-TD20B 소프트웨어 일반요구사항.docx",
+    "location": "word/document.xml p119",
+    "before": "13",
+    "after": "",
+    "reason": "Sound1 식별/현행 설계 반영 또는 과거 승인 기록 제거"
+  },
+  {
+    "file": "SGR-FW-TD20B 소프트웨어 일반요구사항.docx",
+    "location": "word/document.xml p123",
+    "before": "14",
+    "after": "",
+    "reason": "Sound1 식별/현행 설계 반영 또는 과거 승인 기록 제거"
+  },
+  {
+    "file": "SGR-FW-TD20B 소프트웨어 일반요구사항.docx",
+    "location": "word/document.xml p127",
+    "before": "15",
+    "after": "",
+    "reason": "Sound1 식별/현행 설계 반영 또는 과거 승인 기록 제거"
+  },
+  {
+    "file": "SGR-FW-TD20B 소프트웨어 일반요구사항.docx",
+    "location": "word/document.xml p131",
+    "before": "16",
+    "after": "",
+    "reason": "Sound1 식별/현행 설계 반영 또는 과거 승인 기록 제거"
+  },
+  {
+    "file": "SGR-FW-TD20B 소프트웨어 일반요구사항.docx",
+    "location": "word/document.xml p139",
+    "before": "본 문서는 TD20B-A-EXT 제품의 소프트웨어에 대하여 심각도를 분류하고 소프트웨어의 일반적인 요구사항을 정의한다.",
+    "after": "본 문서는 TD24A-A-EXT 제품의 소프트웨어에 대하여 심각도를 분류하고 소프트웨어의 일반적인 요구사항을 정의한다.",
+    "reason": "Sound1 식별/현행 설계 반영 또는 과거 승인 기록 제거"
+  },
+  {
+    "file": "SGR-FW-TD20B 소프트웨어 일반요구사항.docx",
+    "location": "word/document.xml p143",
+    "before": "TD20B-A-EXT 펌웨어 개발 프로젝트에 참여하는 모든 구성원은 이 문서를 참고하도록 한다.",
+    "after": "TD24A-A-EXT 펌웨어 개발 프로젝트에 참여하는 모든 구성원은 이 문서를 참고하도록 한다.",
+    "reason": "Sound1 식별/현행 설계 반영 또는 과거 승인 기록 제거"
+  },
+  {
+    "file": "SGR-FW-TD20B 소프트웨어 일반요구사항.docx",
+    "location": "word/document.xml p145",
+    "before": "본 문서는 인공 달팽이관 외부장치(TD20B-A-EXT) 펌웨어에 적용된다.",
+    "after": "본 문서는 인공 달팽이관 외부장치(TD24A-A-EXT) 펌웨어에 적용된다.",
+    "reason": "Sound1 식별/현행 설계 반영 또는 과거 승인 기록 제거"
+  },
+  {
+    "file": "SGR-FW-TD20B 소프트웨어 일반요구사항.docx",
+    "location": "word/document.xml p152",
+    "before": "SDP-FW-TD20B",
+    "after": "SDP-FW-TD24A",
+    "reason": "Sound1 식별/현행 설계 반영 또는 과거 승인 기록 제거"
+  },
+  {
+    "file": "SGR-FW-TD20B 소프트웨어 일반요구사항.docx",
+    "location": "word/document.xml p290",
+    "before": "없음.",
+    "after": "E8300 펌웨어는 별도 운영체제 없이 동작한다.",
+    "reason": "Sound1 식별/현행 설계 반영 또는 과거 승인 기록 제거"
+  },
+  {
+    "file": "SGR-FW-TD20B 소프트웨어 일반요구사항.docx",
+    "location": "word/document.xml p292",
+    "before": "없음.",
+    "after": "onsemi E8300 SDK와 제조사 제공 라이브러리를 사용한다.",
+    "reason": "Sound1 식별/현행 설계 반영 또는 과거 승인 기록 제거"
+  },
+  {
+    "file": "SGR-FW-TD20B 소프트웨어 일반요구사항.docx",
+    "location": "word/header1.xml p3",
+    "before": "SGR-FW-TD20B",
+    "after": "SGR-FW-TD24A",
+    "reason": "Sound1 식별/현행 설계 반영 또는 과거 승인 기록 제거"
+  },
+  {
+    "file": "SGR-FW-TD20B 소프트웨어 일반요구사항.docx",
+    "location": "word/header1.xml p7",
+    "before": "2020.11.13",
+    "after": "",
+    "reason": "Sound1 식별/현행 설계 반영 또는 과거 승인 기록 제거"
+  },
+  {
+    "file": "SGR-FW-TD20B 소프트웨어 일반요구사항.docx",
+    "location": "word/header1.xml p9",
+    "before": "TD20B-A-EXT",
+    "after": "TD24A-A-EXT",
+    "reason": "Sound1 식별/현행 설계 반영 또는 과거 승인 기록 제거"
+  },
+  {
+    "file": "SR-FW-TD20B 소프트웨어 요구사항.docx",
+    "location": "word/document.xml p5",
+    "before": "(TD20B-A-EXT)",
+    "after": "(TD24A-A-EXT)",
+    "reason": "Sound1 식별/현행 설계 반영 또는 과거 승인 기록 제거"
+  },
+  {
+    "file": "SR-FW-TD20B 소프트웨어 요구사항.docx",
+    "location": "word/document.xml p23",
+    "before": "임정우",
+    "after": "김은수",
+    "reason": "Sound1 식별/현행 설계 반영 또는 과거 승인 기록 제거"
+  },
+  {
+    "file": "SR-FW-TD20B 소프트웨어 요구사항.docx",
+    "location": "word/document.xml p25",
+    "before": "이호승",
+    "after": "",
+    "reason": "Sound1 식별/현행 설계 반영 또는 과거 승인 기록 제거"
+  },
+  {
+    "file": "SR-FW-TD20B 소프트웨어 요구사항.docx",
+    "location": "word/document.xml p27",
+    "before": "사업부장",
+    "after": "수석연구원",
+    "reason": "Sound1 식별/현행 설계 반영 또는 과거 승인 기록 제거"
+  },
+  {
+    "file": "SR-FW-TD20B 소프트웨어 요구사항.docx",
+    "location": "word/document.xml p29",
+    "before": "기술이사",
+    "after": "",
+    "reason": "Sound1 식별/현행 설계 반영 또는 과거 승인 기록 제거"
+  },
+  {
+    "file": "SR-FW-TD20B 소프트웨어 요구사항.docx",
+    "location": "word/document.xml p31",
+    "before": "2020.11.27",
+    "after": "",
+    "reason": "Sound1 식별/현행 설계 반영 또는 과거 승인 기록 제거"
+  },
+  {
+    "file": "SR-FW-TD20B 소프트웨어 요구사항.docx",
+    "location": "word/document.xml p33",
+    "before": "2020.11.27",
+    "after": "",
+    "reason": "Sound1 식별/현행 설계 반영 또는 과거 승인 기록 제거"
+  },
+  {
+    "file": "SR-FW-TD20B 소프트웨어 요구사항.docx",
+    "location": "word/document.xml p53",
+    "before": "4.1.소프트웨어 입력 요구사항 사양서(SRS-FW-TD20B) 참조6",
+    "after": "4.1.소프트웨어 입력 요구사항 사양서(SRS-FW-TD24A) 참조6",
+    "reason": "Sound1 식별/현행 설계 반영 또는 과거 승인 기록 제거"
+  },
+  {
+    "file": "SR-FW-TD20B 소프트웨어 요구사항.docx",
+    "location": "word/document.xml p66",
+    "before": "2021.02.22",
+    "after": "",
+    "reason": "Sound1 식별/현행 설계 반영 또는 과거 승인 기록 제거"
+  },
+  {
+    "file": "SR-FW-TD20B 소프트웨어 요구사항.docx",
+    "location": "word/document.xml p67",
+    "before": "1",
+    "after": "",
+    "reason": "Sound1 식별/현행 설계 반영 또는 과거 승인 기록 제거"
+  },
+  {
+    "file": "SR-FW-TD20B 소프트웨어 요구사항.docx",
+    "location": "word/document.xml p71",
+    "before": "2",
+    "after": "",
+    "reason": "Sound1 식별/현행 설계 반영 또는 과거 승인 기록 제거"
+  },
+  {
+    "file": "SR-FW-TD20B 소프트웨어 요구사항.docx",
+    "location": "word/document.xml p75",
+    "before": "3",
+    "after": "",
+    "reason": "Sound1 식별/현행 설계 반영 또는 과거 승인 기록 제거"
+  },
+  {
+    "file": "SR-FW-TD20B 소프트웨어 요구사항.docx",
+    "location": "word/document.xml p79",
+    "before": "4",
+    "after": "",
+    "reason": "Sound1 식별/현행 설계 반영 또는 과거 승인 기록 제거"
+  },
+  {
+    "file": "SR-FW-TD20B 소프트웨어 요구사항.docx",
+    "location": "word/document.xml p83",
+    "before": "5",
+    "after": "",
+    "reason": "Sound1 식별/현행 설계 반영 또는 과거 승인 기록 제거"
+  },
+  {
+    "file": "SR-FW-TD20B 소프트웨어 요구사항.docx",
+    "location": "word/document.xml p87",
+    "before": "6",
+    "after": "",
+    "reason": "Sound1 식별/현행 설계 반영 또는 과거 승인 기록 제거"
+  },
+  {
+    "file": "SR-FW-TD20B 소프트웨어 요구사항.docx",
+    "location": "word/document.xml p91",
+    "before": "7",
+    "after": "",
+    "reason": "Sound1 식별/현행 설계 반영 또는 과거 승인 기록 제거"
+  },
+  {
+    "file": "SR-FW-TD20B 소프트웨어 요구사항.docx",
+    "location": "word/document.xml p95",
+    "before": "8",
+    "after": "",
+    "reason": "Sound1 식별/현행 설계 반영 또는 과거 승인 기록 제거"
+  },
+  {
+    "file": "SR-FW-TD20B 소프트웨어 요구사항.docx",
+    "location": "word/document.xml p99",
+    "before": "9",
+    "after": "",
+    "reason": "Sound1 식별/현행 설계 반영 또는 과거 승인 기록 제거"
+  },
+  {
+    "file": "SR-FW-TD20B 소프트웨어 요구사항.docx",
+    "location": "word/document.xml p103",
+    "before": "10",
+    "after": "",
+    "reason": "Sound1 식별/현행 설계 반영 또는 과거 승인 기록 제거"
+  },
+  {
+    "file": "SR-FW-TD20B 소프트웨어 요구사항.docx",
+    "location": "word/document.xml p107",
+    "before": "11",
+    "after": "",
+    "reason": "Sound1 식별/현행 설계 반영 또는 과거 승인 기록 제거"
+  },
+  {
+    "file": "SR-FW-TD20B 소프트웨어 요구사항.docx",
+    "location": "word/document.xml p111",
+    "before": "12",
+    "after": "",
+    "reason": "Sound1 식별/현행 설계 반영 또는 과거 승인 기록 제거"
+  },
+  {
+    "file": "SR-FW-TD20B 소프트웨어 요구사항.docx",
+    "location": "word/document.xml p115",
+    "before": "13",
+    "after": "",
+    "reason": "Sound1 식별/현행 설계 반영 또는 과거 승인 기록 제거"
+  },
+  {
+    "file": "SR-FW-TD20B 소프트웨어 요구사항.docx",
+    "location": "word/document.xml p119",
+    "before": "14",
+    "after": "",
+    "reason": "Sound1 식별/현행 설계 반영 또는 과거 승인 기록 제거"
+  },
+  {
+    "file": "SR-FW-TD20B 소프트웨어 요구사항.docx",
+    "location": "word/document.xml p123",
+    "before": "15",
+    "after": "",
+    "reason": "Sound1 식별/현행 설계 반영 또는 과거 승인 기록 제거"
+  },
+  {
+    "file": "SR-FW-TD20B 소프트웨어 요구사항.docx",
+    "location": "word/document.xml p127",
+    "before": "16",
+    "after": "",
+    "reason": "Sound1 식별/현행 설계 반영 또는 과거 승인 기록 제거"
+  },
+  {
+    "file": "SR-FW-TD20B 소프트웨어 요구사항.docx",
+    "location": "word/document.xml p136",
+    "before": "본 문서는 TD20B-A-EXT 제품의 펌웨어를 개발하기 위한 소프트웨어의 요구사항을 정의한다.",
+    "after": "본 문서는 TD24A-A-EXT 제품의 펌웨어를 개발하기 위한 소프트웨어의 요구사항을 정의한다.",
+    "reason": "Sound1 식별/현행 설계 반영 또는 과거 승인 기록 제거"
+  },
+  {
+    "file": "SR-FW-TD20B 소프트웨어 요구사항.docx",
+    "location": "word/document.xml p142",
+    "before": "TD20B-A-EXT 제품의 펌웨어 개발 프로젝트에 참여하는 모든 구성원은 이 문서를 참고하도록 한다.",
+    "after": "TD24A-A-EXT 제품의 펌웨어 개발 프로젝트에 참여하는 모든 구성원은 이 문서를 참고하도록 한다.",
+    "reason": "Sound1 식별/현행 설계 반영 또는 과거 승인 기록 제거"
+  },
+  {
+    "file": "SR-FW-TD20B 소프트웨어 요구사항.docx",
+    "location": "word/document.xml p150",
+    "before": "SDP-FW-TD20B",
+    "after": "SDP-FW-TD24A",
+    "reason": "Sound1 식별/현행 설계 반영 또는 과거 승인 기록 제거"
+  },
+  {
+    "file": "SR-FW-TD20B 소프트웨어 요구사항.docx",
+    "location": "word/document.xml p153",
+    "before": "SGR-FW-TD20B",
+    "after": "SGR-FW-TD24A",
+    "reason": "Sound1 식별/현행 설계 반영 또는 과거 승인 기록 제거"
+  },
+  {
+    "file": "SR-FW-TD20B 소프트웨어 요구사항.docx",
+    "location": "word/document.xml p156",
+    "before": "SRS-FW-TD20B",
+    "after": "SRS-FW-TD24A",
+    "reason": "Sound1 식별/현행 설계 반영 또는 과거 승인 기록 제거"
+  },
+  {
+    "file": "SR-FW-TD20B 소프트웨어 요구사항.docx",
+    "location": "word/document.xml p181",
+    "before": "Ezairo7150 chip 그림 3와 같이 4개의 core가 합쳐진 시스템으로 구성되어 있다.",
+    "after": "Ezairo 8300은 CFX, ARM Cortex-M3, HEAR, Filter Engine, LPDSP32, NNA를 포함한다. Sound1의 신호처리와 제어는 CFX, HEAR, Cortex-M3를 중심으로 구성한다.",
+    "reason": "Sound1 식별/현행 설계 반영 또는 과거 승인 기록 제거"
+  },
+  {
+    "file": "SR-FW-TD20B 소프트웨어 요구사항.docx",
+    "location": "word/document.xml p182",
+    "before": "- CFX : 주 processor, 신호처리",
+    "after": "- CFX : 오디오 입력, 빔포밍 및 자극 데이터 생성",
+    "reason": "Sound1 식별/현행 설계 반영 또는 과거 승인 기록 제거"
+  },
+  {
+    "file": "SR-FW-TD20B 소프트웨어 요구사항.docx",
+    "location": "word/document.xml p183",
+    "before": "- HEAR : digital signal processing Library 전용 ",
+    "after": "- HEAR : FFT 등 신호처리 연산",
+    "reason": "Sound1 식별/현행 설계 반영 또는 과거 승인 기록 제거"
+  },
+  {
+    "file": "SR-FW-TD20B 소프트웨어 요구사항.docx",
+    "location": "word/document.xml p184",
+    "before": "- Filter Engine : 오디오 신호의 전/후처리",
+    "after": "- Filter Engine, LPDSP32, NNA : 칩 내 제공 기능으로, 사용 여부는 펌웨어 설계에 따른다.",
+    "reason": "Sound1 식별/현행 설계 반영 또는 과거 승인 기록 제거"
+  },
+  {
+    "file": "SR-FW-TD20B 소프트웨어 요구사항.docx",
+    "location": "word/document.xml p185",
+    "before": "- ARM : Bluetooth(NRF51822) : 범용 MCU",
+    "after": "- ARM Cortex-M3 : 시스템 제어 및 QCC5181과 통신. QCC5181은 별도의 Bluetooth 칩이다.",
+    "reason": "Sound1 식별/현행 설계 반영 또는 과거 승인 기록 제거"
+  },
+  {
+    "file": "SR-FW-TD20B 소프트웨어 요구사항.docx",
+    "location": "word/document.xml p187",
+    "before": "< 그림 3. Ezario7150 Chip 블록도 >",
+    "after": "< 그림 3. Ezairo 8300 Chip 블록도 >",
+    "reason": "Sound1 식별/현행 설계 반영 또는 과거 승인 기록 제거"
+  },
+  {
+    "file": "SR-FW-TD20B 소프트웨어 요구사항.docx",
+    "location": "word/document.xml p190",
+    "before": "하드디스크와 같은 메모리 장치는 없으며, Ezario7150 system 내부에 2Mbits크기의 EEPROM이 부착되어 있다.",
+    "after": "프로그램과 맵 데이터는 외부 비휘발성 메모리에 저장하며, Ezairo 8300 내부 RAM에서 프로그램을 실행한다.",
+    "reason": "Sound1 식별/현행 설계 반영 또는 과거 승인 기록 제거"
+  },
+  {
+    "file": "SR-FW-TD20B 소프트웨어 요구사항.docx",
+    "location": "word/document.xml p191",
+    "before": "칩 내부의 메모리 구조는 아래 그림 4와 같다. RAM 메모리는 데이터용과 프로그램용으로 나누어져 있다.(그림 5, 6 참조)",
+    "after": "RAM은 프로그램용, 데이터용 및 코어 간 공유 영역으로 구분한다. 메모리 배치는 각 프로젝트의 링커 설정을 따른다.",
+    "reason": "Sound1 식별/현행 설계 반영 또는 과거 승인 기록 제거"
+  },
+  {
+    "file": "SR-FW-TD20B 소프트웨어 요구사항.docx",
+    "location": "word/document.xml p192",
+    "before": "프로그램이 동작하기 위한 코드와 데이터는 EEPROM에 저장이 되어 있으며 System이 부팅되면 EEPROM에서 이를 RAM으로 읽어 들여서 사용한다. 각 메모리의 사이즈는 다음과 같다.",
+    "after": "부팅 시 부트로더가 저장된 프로그램과 데이터를 RAM으로 적재한다. 아래 값은 현재 CM3 프로젝트 링커에서 선언한 영역 크기이며, 실제 사용량은 빌드 결과로 확인한다.",
+    "reason": "Sound1 식별/현행 설계 반영 또는 과거 승인 기록 제거"
+  },
+  {
+    "file": "SR-FW-TD20B 소프트웨어 요구사항.docx",
+    "location": "word/document.xml p193",
+    "before": "- EEPROM Size ",
+    "after": "- 비휘발성 메모리",
+    "reason": "Sound1 식별/현행 설계 반영 또는 과거 승인 기록 제거"
+  },
+  {
+    "file": "SR-FW-TD20B 소프트웨어 요구사항.docx",
+    "location": "word/document.xml p194",
+    "before": " 2Mbits or 2048kb or 262,144Bytes or 256kBtyes",
+    "after": "프로그램, 맵 데이터 및 설정 데이터를 저장할 수 있어야 한다.",
+    "reason": "Sound1 식별/현행 설계 반영 또는 과거 승인 기록 제거"
+  },
+  {
+    "file": "SR-FW-TD20B 소프트웨어 요구사항.docx",
+    "location": "word/document.xml p195",
+    "before": "- 프로그램 메모리 Size",
+    "after": "- 프로그램 메모리",
+    "reason": "Sound1 식별/현행 설계 반영 또는 과거 승인 기록 제거"
+  },
+  {
+    "file": "SR-FW-TD20B 소프트웨어 요구사항.docx",
+    "location": "word/document.xml p196",
+    "before": " 48kBytes~72kBytes",
+    "after": "CFX : 128 kBytes, ARM Cortex-M3 : 384 kBytes",
+    "reason": "Sound1 식별/현행 설계 반영 또는 과거 승인 기록 제거"
+  },
+  {
+    "file": "SR-FW-TD20B 소프트웨어 요구사항.docx",
+    "location": "word/document.xml p197",
+    "before": "- 데이터 메모리 Size",
+    "after": "- 데이터 메모리",
+    "reason": "Sound1 식별/현행 설계 반영 또는 과거 승인 기록 제거"
+  },
+  {
+    "file": "SR-FW-TD20B 소프트웨어 요구사항.docx",
+    "location": "word/document.xml p198",
+    "before": "X memory : 36kByte",
+    "after": "ARM Cortex-M3 DRAM : 96 kBytes",
+    "reason": "Sound1 식별/현행 설계 반영 또는 과거 승인 기록 제거"
+  },
+  {
+    "file": "SR-FW-TD20B 소프트웨어 요구사항.docx",
+    "location": "word/document.xml p199",
+    "before": "공유 메모리 : 58.5kBytes",
+    "after": "공유 메모리 : 신호처리 버퍼와 코어 간 공유 데이터 영역을 중복 없이 배치한다.",
+    "reason": "Sound1 식별/현행 설계 반영 또는 과거 승인 기록 제거"
+  },
+  {
+    "file": "SR-FW-TD20B 소프트웨어 요구사항.docx",
+    "location": "word/document.xml p201",
+    "before": "< 그림 4. Ezairo7150 내부 RAM 메모리 구조>",
+    "after": "",
+    "reason": "Sound1 식별/현행 설계 반영 또는 과거 승인 기록 제거"
+  },
+  {
+    "file": "SR-FW-TD20B 소프트웨어 요구사항.docx",
+    "location": "word/document.xml p204",
+    "before": "< 그림 5. 프로그램용 RAM >",
+    "after": "",
+    "reason": "Sound1 식별/현행 설계 반영 또는 과거 승인 기록 제거"
+  },
+  {
+    "file": "SR-FW-TD20B 소프트웨어 요구사항.docx",
+    "location": "word/document.xml p207",
+    "before": "< 그림 6. 데이터용 RAM >",
+    "after": "",
+    "reason": "Sound1 식별/현행 설계 반영 또는 과거 승인 기록 제거"
+  },
+  {
+    "file": "SR-FW-TD20B 소프트웨어 요구사항.docx",
+    "location": "word/document.xml p210",
+    "before": "마이크를 이용하여 소리를 입력 받고, 가속도 센서를 이용하여 버튼 입력을 받는다.",
+    "after": "디지털 마이크 2개로 소리를 입력 받고, IQS323 터치 센서로 사용자 입력을 받는다.",
+    "reason": "Sound1 식별/현행 설계 반영 또는 과거 승인 기록 제거"
+  },
+  {
+    "file": "SR-FW-TD20B 소프트웨어 요구사항.docx",
+    "location": "word/document.xml p214",
+    "before": "NA",
+    "after": "시동과 종료 중에는 자극 출력을 생성하지 않으며, 맵에서 정한 자극 크기와 펄스폭 범위를 지켜야 한다.",
+    "reason": "Sound1 식별/현행 설계 반영 또는 과거 승인 기록 제거"
+  },
+  {
+    "file": "SR-FW-TD20B 소프트웨어 요구사항.docx",
+    "location": "word/document.xml p217",
+    "before": "인공달팽이관 외부장치의 코일에서 인공달팽이관 내부장치의 코일로 10MHz ASK(Amplitude Shift Keying) 방식으로 전력 및 데이터를 송신하고, LSK(Load shift keying) 방식으로 데이터를 수신한다. 이 기능은 FPGA가 담당하고 있으며, Ezairo7150 chip은 FPGA에 PCM interface를 사용하여 bitstream을 전달한다.",
+    "after": "인공달팽이관 외부장치의 코일에서 인공달팽이관 내부장치의 코일로 10MHz ASK(Amplitude Shift Keying) 방식으로 전력 및 데이터를 송신하고, LSK(Load shift keying) 방식으로 데이터를 수신한다. 이 기능은 FPGA가 담당하고 있으며, Ezairo 8300 chip은 FPGA에 PCM interface를 사용하여 bitstream을 전달한다.",
+    "reason": "Sound1 식별/현행 설계 반영 또는 과거 승인 기록 제거"
+  },
+  {
+    "file": "SR-FW-TD20B 소프트웨어 요구사항.docx",
+    "location": "word/document.xml p218",
+    "before": "Bluetooth LE : ",
+    "after": "Bluetooth Classic / LE :",
+    "reason": "Sound1 식별/현행 설계 반영 또는 과거 승인 기록 제거"
+  },
+  {
+    "file": "SR-FW-TD20B 소프트웨어 요구사항.docx",
+    "location": "word/document.xml p219",
+    "before": "스마트폰 앱의 제어 명령을 수신하여 수행하고 응답 데이터를 송신한다.",
+    "after": "QCC5181을 통해 오디오를 수신하고, 리모콘 앱과 매핑 프로그램의 제어 명령 및 응답 데이터를 송수신한다.",
+    "reason": "Sound1 식별/현행 설계 반영 또는 과거 승인 기록 제거"
+  },
+  {
+    "file": "SR-FW-TD20B 소프트웨어 요구사항.docx",
+    "location": "word/document.xml p226",
+    "before": "- CFX core, Hear Core : Assembly Language",
+    "after": "- CFX : C language, Assembly language / HEAR : Microcode",
+    "reason": "Sound1 식별/현행 설계 반영 또는 과거 승인 기록 제거"
+  },
+  {
+    "file": "SR-FW-TD20B 소프트웨어 요구사항.docx",
+    "location": "word/document.xml p227",
+    "before": "- ARM core : C language ",
+    "after": "- ARM Cortex-M3 : C language",
+    "reason": "Sound1 식별/현행 설계 반영 또는 과거 승인 기록 제거"
+  },
+  {
+    "file": "SR-FW-TD20B 소프트웨어 요구사항.docx",
+    "location": "word/document.xml p229",
+    "before": "- 72kBytes 이하",
+    "after": "- 각 코어의 실행 코드와 데이터가 링커에서 할당한 메모리 범위를 넘지 않아야 한다.",
+    "reason": "Sound1 식별/현행 설계 반영 또는 과거 승인 기록 제거"
+  },
+  {
+    "file": "SR-FW-TD20B 소프트웨어 요구사항.docx",
+    "location": "word/document.xml p234",
+    "before": "소프트웨어 입력 요구사항 사양서(SRS-FW-TD20B) 참조",
+    "after": "소프트웨어 입력 요구사항 사양서(SRS-FW-TD24A) 참조",
+    "reason": "Sound1 식별/현행 설계 반영 또는 과거 승인 기록 제거"
+  },
+  {
+    "file": "SR-FW-TD20B 소프트웨어 요구사항.docx",
+    "location": "word/document.xml p241",
+    "before": "예. 소프트웨어 요구사항으로 입력된 시스템 요구사항(설계 입력 요구사항)이 위험 관리에 의해 생성되었음.",
+    "after": "검토 결과 :",
+    "reason": "Sound1 식별/현행 설계 반영 또는 과거 승인 기록 제거"
+  },
+  {
+    "file": "SR-FW-TD20B 소프트웨어 요구사항.docx",
+    "location": "word/document.xml p245",
+    "before": "예.",
+    "after": "검토 결과 :",
+    "reason": "Sound1 식별/현행 설계 반영 또는 과거 승인 기록 제거"
+  },
+  {
+    "file": "SR-FW-TD20B 소프트웨어 요구사항.docx",
+    "location": "word/document.xml p249",
+    "before": "예.",
+    "after": "검토 결과 :",
+    "reason": "Sound1 식별/현행 설계 반영 또는 과거 승인 기록 제거"
+  },
+  {
+    "file": "SR-FW-TD20B 소프트웨어 요구사항.docx",
+    "location": "word/document.xml p253",
+    "before": "예.",
+    "after": "검토 결과 :",
+    "reason": "Sound1 식별/현행 설계 반영 또는 과거 승인 기록 제거"
+  },
+  {
+    "file": "SR-FW-TD20B 소프트웨어 요구사항.docx",
+    "location": "word/document.xml p257",
+    "before": "예.",
+    "after": "검토 결과 :",
+    "reason": "Sound1 식별/현행 설계 반영 또는 과거 승인 기록 제거"
+  },
+  {
+    "file": "SR-FW-TD20B 소프트웨어 요구사항.docx",
+    "location": "word/document.xml p261",
+    "before": "예. 소프트웨어 요구사항 사양서 -> 설계 입력 요구사항 -> 위험 통제 조치",
+    "after": "검토 결과 :",
+    "reason": "Sound1 식별/현행 설계 반영 또는 과거 승인 기록 제거"
+  },
+  {
+    "file": "SR-FW-TD20B 소프트웨어 요구사항.docx",
+    "location": "word/document.xml p267",
+    "before": "소프트웨어 요구사항 확립에 따라 위험분석을 다시 실시하였으나, 새로운 위해요인이 발견되나 위험 산정에 변화가 발생되지 않았다.",
+    "after": "소프트웨어 요구사항 확정 후 위험분석을 재평가하여 새로운 위해요인 및 위험 산정의 변경 여부를 기록한다.",
+    "reason": "Sound1 식별/현행 설계 반영 또는 과거 승인 기록 제거"
+  },
+  {
+    "file": "SR-FW-TD20B 소프트웨어 요구사항.docx",
+    "location": "그림 2",
+    "before": "word/media/image5.png",
+    "after": "media/sound1-178.png",
+    "reason": "구형 하드웨어 그림을 현행 구조로 교체"
+  },
+  {
+    "file": "SR-FW-TD20B 소프트웨어 요구사항.docx",
+    "location": "그림 3",
+    "before": "word/media/image6.png",
+    "after": "media/sound1-186.png",
+    "reason": "구형 하드웨어 그림을 현행 구조로 교체"
+  },
+  {
+    "file": "SR-FW-TD20B 소프트웨어 요구사항.docx",
+    "location": "p200 구형 RAM 그림",
+    "before": "Ezairo7150 RAM 그림",
+    "after": "",
+    "reason": "E8300 링커 영역 설명으로 대체"
+  },
+  {
+    "file": "SR-FW-TD20B 소프트웨어 요구사항.docx",
+    "location": "p203 구형 RAM 그림",
+    "before": "Ezairo7150 RAM 그림",
+    "after": "",
+    "reason": "E8300 링커 영역 설명으로 대체"
+  },
+  {
+    "file": "SR-FW-TD20B 소프트웨어 요구사항.docx",
+    "location": "p206 구형 RAM 그림",
+    "before": "Ezairo7150 RAM 그림",
+    "after": "",
+    "reason": "E8300 링커 영역 설명으로 대체"
+  },
+  {
+    "file": "SR-FW-TD20B 소프트웨어 요구사항.docx",
+    "location": "word/header1.xml p3",
+    "before": "SR-FW-TD20B",
+    "after": "SR-FW-TD24A",
+    "reason": "Sound1 식별/현행 설계 반영 또는 과거 승인 기록 제거"
+  },
+  {
+    "file": "SR-FW-TD20B 소프트웨어 요구사항.docx",
+    "location": "word/header1.xml p7",
+    "before": "2020.11.27",
+    "after": "",
+    "reason": "Sound1 식별/현행 설계 반영 또는 과거 승인 기록 제거"
+  },
+  {
+    "file": "SR-FW-TD20B 소프트웨어 요구사항.docx",
+    "location": "word/header1.xml p9",
+    "before": "TD20B-A-EXT",
+    "after": "TD24A-A-EXT",
+    "reason": "Sound1 식별/현행 설계 반영 또는 과거 승인 기록 제거"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "표지!L2",
+    "before": "SRS-FW-TD20B",
+    "after": "SRS-FW-TD24A",
+    "reason": "Sound1 문서 식별"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "표지!B5",
+    "before": "소프트웨어 요구사항 사양서\n(TD20B-A-EXT)",
+    "after": "소프트웨어 요구사항 사양서\n(TD24A-A-EXT)",
+    "reason": "Sound1 문서 식별"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "표지!D12",
+    "before": "토닥/인공와우사업부",
+    "after": "토닥 / 수석연구원",
+    "reason": "작성자/개정 0, 날짜/서명/검토/승인 빈칸"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "표지!H12",
+    "before": "임정우",
+    "after": "김은수",
+    "reason": "작성자/개정 0, 날짜/서명/검토/승인 빈칸"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "표지!M12",
+    "before": "2020.11.27",
+    "after": null,
+    "reason": "작성자/개정 0, 날짜/서명/검토/승인 빈칸"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "표지!D16",
+    "before": "토닥",
+    "after": null,
+    "reason": "작성자/개정 0, 날짜/서명/검토/승인 빈칸"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "표지!H16",
+    "before": "이호승",
+    "after": null,
+    "reason": "작성자/개정 0, 날짜/서명/검토/승인 빈칸"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "표지!M16",
+    "before": "2020.11.27",
+    "after": null,
+    "reason": "작성자/개정 0, 날짜/서명/검토/승인 빈칸"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "표지!D24",
+    "before": "2020.10.16",
+    "after": null,
+    "reason": "작성자/개정 0, 날짜/서명/검토/승인 빈칸"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!H6",
+    "before": "SYS-RID-FW:2",
+    "after": "SYS-RID-FW-2",
+    "reason": "현행 매트릭스 식별자 연결"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!H8",
+    "before": "SYS-RID-FW:1",
+    "after": "SYS-RID-FW-1",
+    "reason": "현행 매트릭스 식별자 연결"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!H9",
+    "before": "SYS-RID-FW:4",
+    "after": "SYS-RID-FW-4",
+    "reason": "현행 매트릭스 식별자 연결"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!H10",
+    "before": "SYS-RID-FW:5",
+    "after": "SYS-RID-FW-5",
+    "reason": "현행 매트릭스 식별자 연결"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!H11",
+    "before": "SYS-RID-FW:3",
+    "after": "SYS-RID-FW-3",
+    "reason": "현행 매트릭스 식별자 연결"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!H13",
+    "before": "SYS-RID-FW:7",
+    "after": "SYS-RID-FW-6",
+    "reason": "현행 매트릭스 식별자 연결"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!H14",
+    "before": "SYS-RID-FW:8",
+    "after": "SYS-RID-FW-7",
+    "reason": "현행 매트릭스 식별자 연결"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!H15",
+    "before": "SYS-RID-FW:9",
+    "after": "SYS-RID-FW-8",
+    "reason": "현행 매트릭스 식별자 연결"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!H16",
+    "before": "SYS-RID-FW:10",
+    "after": "SYS-RID-FW-9",
+    "reason": "현행 매트릭스 식별자 연결"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!H17",
+    "before": "SYS-RID-FW:11",
+    "after": "SYS-RID-FW-10",
+    "reason": "현행 매트릭스 식별자 연결"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!H18",
+    "before": "SYS-RID-FW:12",
+    "after": "SYS-RID-FW-11",
+    "reason": "현행 매트릭스 식별자 연결"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!H19",
+    "before": "SYS-RID-FW:13",
+    "after": "SYS-RID-FW-12",
+    "reason": "현행 매트릭스 식별자 연결"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!H49",
+    "before": "SYS-RID-FW:14",
+    "after": "SYS-RID-FW-13",
+    "reason": "현행 매트릭스 식별자 연결"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!H50",
+    "before": "SYS-RID-FW:15",
+    "after": "SYS-RID-FW-14",
+    "reason": "현행 매트릭스 식별자 연결"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!H52",
+    "before": "SYS-RID-FW:16",
+    "after": "SYS-RID-FW-17",
+    "reason": "현행 매트릭스 식별자 연결"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!F52",
+    "before": "등록된 내부이식장치와만 근접 무선 통신을 연결한다.",
+    "after": "외부장치는 링크를 통해 내부장치의 식별정보를 확인하고, 사전 등록된 정보와 일치하지 않을 경우 전기 자극 출력을 차단. 불일치 상태는 LED 및 앱을 통해 사용자에게 즉시 통지.",
+    "reason": "현행 요구사항 반영"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!H53",
+    "before": "SYS-RID-FW:17",
+    "after": "SYS-RID-FW-22",
+    "reason": "현행 매트릭스 식별자 연결"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!F53",
+    "before": "내부기와 연결된 상태에서만 블루투스 통신을 활성화한다.(광고시간 축소)",
+    "after": "일정시간 동안 제어 명령이 수신되지 않으면, BLE 연결을 해제한다.",
+    "reason": "현행 요구사항 반영"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!H54",
+    "before": "SYS-RID-FW:18",
+    "after": "SYS-RID-FW-18",
+    "reason": "현행 매트릭스 식별자 연결"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!F54",
+    "before": "블투투스 통신에 페어링 기능을 적용하여 기기의 접근 통제 및 인증",
+    "after": "1. BLE Pairing 기능을  사용하여 인가된 장치와 연결\n2. BLE 연결 후 별도의 자체 인증 방식, CRA(Challenge-Response Authentication),을 사용하여 적법한 장치를 확인",
+    "reason": "현행 요구사항 반영"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!H55",
+    "before": "SYS-RID-FW:19",
+    "after": "SYS-RID-FW-26",
+    "reason": "현행 매트릭스 식별자 연결"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!F55",
+    "before": "블투투스 통신에 페어링 기능을 적용하여 통신 데이터 보안 구축(bluettoth 4.2 AES-128)",
+    "after": "BLE 페어링이 완료된 상태에서 데이터를 송/수신한다. - 무결성\n\nAES-CCM (Counter with CBC-MAC)을 사용함으로써 기밀성, 무결성, 인증  세 가지의 기능이 제공됨\n(Bluetooth Core specification LE Link Layer 참조)",
+    "reason": "현행 요구사항 반영"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!H56",
+    "before": "SYS-RID-FW:20",
+    "after": "SYS-RID-FW-23",
+    "reason": "현행 매트릭스 식별자 연결"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!F56",
+    "before": "통신과 관련된 시스템 로그를 저장한다.",
+    "after": "감사기록을 생성한다.",
+    "reason": "현행 요구사항 반영"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!H57",
+    "before": "SYS-RID-FW:21",
+    "after": "SYS-RID-FW-27",
+    "reason": "현행 매트릭스 식별자 연결"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!F57",
+    "before": "펌웨어 실행 시, 설정 데이터가 유효 범위를 벗어 날 경우 에러 모드 진입",
+    "after": "설정파일을 읽을 때, 파일의 무결성을 확인한다.",
+    "reason": "현행 요구사항 반영"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!H58",
+    "before": "SYS-RID-FW:22",
+    "after": "SYS-RID-FW-19",
+    "reason": "현행 매트릭스 식별자 연결"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!F58",
+    "before": "내부기 제어 passkey가 매칭되어야 리모콘 제어 패스 활성화",
+    "after": "1. CRA 인증에서 기기제어를 위한 통신과 매핑을 의한 통신을 구분하여 별도의  인증 키와 인증방식을 사용\n2. CRA 인증에 사용되는 각 키의 크기는 16 bytes (128 bits)이므로 충분히 안전한 보안을 제공한다.",
+    "reason": "현행 요구사항 반영"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!H59",
+    "before": "SYS-RID-FW:23",
+    "after": "SYS-RID-FW-30, SYS-RID-FW-31",
+    "reason": "현행 매트릭스 식별자 연결"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!F59",
+    "before": "소프트웨어 유지보수 절차를 따른다.",
+    "after": "소프트웨어 업데이트가 필요할 경우 기존 제품을 회수하고 업데이트된 제품을 생산하여 교체한다.\n품질관리시스템 절차에 따라, 인가된 인원이 펌웨어를 생성하여 배포한다.",
+    "reason": "현행 요구사항 반영"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!H60",
+    "before": "SYS-RID-FW:24",
+    "after": "SYS-RID-FW-32",
+    "reason": "현행 매트릭스 식별자 연결"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!F60",
+    "before": "배포버전의 CM3 실행코드 사이즈를 18430 words 이하로 한다.",
+    "after": "1. 칩셋에서 부팅 과정에서 실행파일의 CRC 체크 기능 활성화\n2. 칩셋에서 제공하는 무결성 방식을 사용하여 검사",
+    "reason": "현행 요구사항 반영"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!H61",
+    "before": "SYS-RID-FW:32",
+    "after": "SYS-RID-FW-48",
+    "reason": "현행 매트릭스 식별자 연결"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!H62",
+    "before": "SYS-RID-FW:31",
+    "after": "SYS-RID-FW-47",
+    "reason": "현행 매트릭스 식별자 연결"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!H68",
+    "before": "SYS-RID-FW:25",
+    "after": "SYS-RID-FW-39, SYS-RID-FW-40",
+    "reason": "현행 매트릭스 식별자 연결"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!H69",
+    "before": "SYS-RID-FW:26",
+    "after": "SYS-RID-FW-41",
+    "reason": "현행 매트릭스 식별자 연결"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!H70",
+    "before": "SYS-RID-FW:27",
+    "after": "SYS-RID-FW-28",
+    "reason": "현행 매트릭스 식별자 연결"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!H71",
+    "before": "SYS-RID-FW:28",
+    "after": "SYS-RID-FW-42",
+    "reason": "현행 매트릭스 식별자 연결"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!H72",
+    "before": "SYS-RID-FW:29",
+    "after": "SYS-RID-FW-43",
+    "reason": "현행 매트릭스 식별자 연결"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!H73",
+    "before": "SYS-RID-FW:30",
+    "after": "SYS-RID-FW-44",
+    "reason": "현행 매트릭스 식별자 연결"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!H75",
+    "before": "SYS-RID-FW:34",
+    "after": "SYS-RID-FW-45",
+    "reason": "현행 매트릭스 식별자 연결"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!H76",
+    "before": "SYS-RID-FW:35",
+    "after": "SYS-RID-FW-46",
+    "reason": "현행 매트릭스 식별자 연결"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!H77",
+    "before": "SYS-RID-FW:36",
+    "after": "SYS-RID-FW-37",
+    "reason": "현행 매트릭스 식별자 연결"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!F77",
+    "before": "이어피스가 연결되면 이어피스 연결 상태가 확인되어야 한다.",
+    "after": "BLE 통신 연결 장애 발생 시, 정상 동작이 되어야 한다.",
+    "reason": "현행 요구사항 반영"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!H78",
+    "before": "SYS-RID-FW:37",
+    "after": "SYS-RID-FW-49",
+    "reason": "현행 매트릭스 식별자 연결"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!H79",
+    "before": "SYS-RID-FW:38",
+    "after": "SYS-RID-FW-50",
+    "reason": "현행 매트릭스 식별자 연결"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!H80",
+    "before": null,
+    "after": "SYS-RID-FW-15",
+    "reason": "현행 매트릭스 식별자 연결"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!F80",
+    "before": null,
+    "after": "Bluetooth Classic 오디오 통신",
+    "reason": "현행 요구사항 반영"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!H81",
+    "before": null,
+    "after": "SYS-RID-FW-16",
+    "reason": "현행 매트릭스 식별자 연결"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!F81",
+    "before": null,
+    "after": "BLE data 통신",
+    "reason": "현행 요구사항 반영"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!H82",
+    "before": null,
+    "after": "SYS-RID-FW-20",
+    "reason": "현행 매트릭스 식별자 연결"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!F82",
+    "before": null,
+    "after": "- CRA 인증 결과에서 인증정보를 유추할 만한 피드백이 없음: 성공, 실패, 진행중, 타임아웃",
+    "reason": "현행 요구사항 반영"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!H83",
+    "before": null,
+    "after": "SYS-RID-FW-21",
+    "reason": "현행 매트릭스 식별자 연결"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!F83",
+    "before": null,
+    "after": "CRA 인증 5회 연속 실패 시, 일정 시간동안 연결을 제한한다.",
+    "reason": "현행 요구사항 반영"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!H84",
+    "before": null,
+    "after": "SYS-RID-FW-24",
+    "reason": "현행 매트릭스 식별자 연결"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!F84",
+    "before": null,
+    "after": "감사기록 생성 실패를 오류 정보에 포함한다.",
+    "reason": "현행 요구사항 반영"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!H85",
+    "before": null,
+    "after": "SYS-RID-FW-25",
+    "reason": "현행 매트릭스 식별자 연결"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!F85",
+    "before": null,
+    "after": "감사기록은 타임 스탬프를 포함한다.",
+    "reason": "현행 요구사항 반영"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!H86",
+    "before": null,
+    "after": "SYS-RID-FW-29",
+    "reason": "현행 매트릭스 식별자 연결"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!F86",
+    "before": null,
+    "after": "오류 메시지에 보안과 관련되 정보를 직접 표시하지 않는다.",
+    "reason": "현행 요구사항 반영"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!H87",
+    "before": null,
+    "after": "SYS-RID-FW-33",
+    "reason": "현행 매트릭스 식별자 연결"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!F87",
+    "before": null,
+    "after": "1. 데이터의 송수신은 BLE 페어링과 CRA 인증 이후에 활성화 함. - 기밀화\n2. CRA 인증 키들은 생산시에 암호화하여 저장한다.",
+    "reason": "현행 요구사항 반영"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!H88",
+    "before": null,
+    "after": "SYS-RID-FW-34",
+    "reason": "현행 매트릭스 식별자 연결"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!F88",
+    "before": null,
+    "after": "내부장치 제조번호, 사용자 이니셜 값은 암호화 하여 저장한다.",
+    "reason": "현행 요구사항 반영"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!H89",
+    "before": null,
+    "after": "SYS-RID-FW-35",
+    "reason": "현행 매트릭스 식별자 연결"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!F89",
+    "before": null,
+    "after": "무결성, 암호화에 사용되는 알고리즘은 사이버보안 규격에서 권고하는 알고리즘을 사용한다.",
+    "reason": "현행 요구사항 반영"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!H90",
+    "before": null,
+    "after": "SYS-RID-FW-36",
+    "reason": "현행 매트릭스 식별자 연결"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!F90",
+    "before": null,
+    "after": "외부에서 로그 정보의 접근은 인가자만 가능해야 하며, 외부 전송을 할경우 기밀성이 보호되어야 한다.",
+    "reason": "현행 요구사항 반영"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!H91",
+    "before": null,
+    "after": "SYS-RID-FW-38",
+    "reason": "현행 매트릭스 식별자 연결"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!F91",
+    "before": null,
+    "after": "설정파일의 무결성이 확인되지 않으면, 설정파일을 공장초기화 한다.",
+    "reason": "현행 요구사항 반영"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!F6",
+    "before": "전채널 동시에 자극률은 20kHz이상이어야 한다.(32채널 사용)",
+    "after": "전채널 최대 자극률은 24 kHz이어야 한다. 32채널 사용 시 채널당 750 Hz로 자극한다.",
+    "reason": "Sound1 하드웨어/필수성능 반영"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!F7",
+    "before": "채널별 최대 자극률은 1000Hz 이상이어야 한다.(24채널 사용)",
+    "after": "24채널 사용 시 채널당 1000 Hz로 자극한다.",
+    "reason": "Sound1 하드웨어/필수성능 반영"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!F11",
+    "before": "자극 펄스 폭은 13~255usec 범위에서 1usec 단위로 조정이 가능해야한다.",
+    "after": "자극 펄스폭은 13~255 us 범위에서 1 us 단위로 조정할 수 있어야 한다.",
+    "reason": "Sound1 하드웨어/필수성능 반영"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!F16",
+    "before": "필수 : CIS, 옵션 : N-of-M",
+    "after": "CIS 및 NofM 자극 기법을 사용할 수 있어야 한다. 선택된 맵의 채널 수와 자극 순서를 따른다.",
+    "reason": "Sound1 하드웨어/필수성능 반영"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!F17",
+    "before": "1msec",
+    "after": "사운드 처리 주기는 1 ms 이하이어야 한다.",
+    "reason": "Sound1 하드웨어/필수성능 반영"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!F20",
+    "before": "2개 이상의 오디오 소스를 입력 받을 수 있어야 한다.",
+    "after": "디지털 마이크 2개와 Bluetooth 오디오를 입력 받을 수 있어야 한다.",
+    "reason": "Sound1 하드웨어/필수성능 반영"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!F21",
+    "before": "8kHz 오디오 신호를 입력 받을 수 있어야 한다.",
+    "after": "16 kHz 표본화로 8 kHz 미만의 오디오 신호를 입력 받을 수 있어야 한다.",
+    "reason": "Sound1 하드웨어/필수성능 반영"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!F24",
+    "before": "가속도 센서를 출력을 입력받아 전원 모드를 변경한다.",
+    "after": "터치 센서의 입력에 따라 전원 모드와 사용자 제어를 처리한다.",
+    "reason": "Sound1 하드웨어/필수성능 반영"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!F47",
+    "before": "I2C를 프로토콜을 사용하여 가속도 센서와 데이터 송/수신이 가능해야한다.",
+    "after": "I2C 프로토콜을 사용하여 IQS323 터치 센서와 데이터를 송수신할 수 있어야 한다.",
+    "reason": "Sound1 하드웨어/필수성능 반영"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!F61",
+    "before": "배터리 저전압을 주기적으로 반복하여 자극출력으로 알린다.",
+    "after": "배터리 저전압을 주기적으로 반복하여 자극 출력과 LED로 알린다.",
+    "reason": "Sound1 하드웨어/필수성능 반영"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!F50",
+    "before": "리모콘 앱이 실행되는 스마트폰과 블루투스를 사용하여 데이터 통신이 가능해야한다.",
+    "after": "매핑 프로그램이 실행되는 기기와 Bluetooth LE로 데이터 통신이 가능해야 한다.",
+    "reason": "Sound1 하드웨어/필수성능 반영"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!F62",
+    "before": "볼륨 증가를 단계적으로 진행되로록 설계한다.(soft increase)",
+    "after": "자극 볼륨은 단계적으로 증가하도록 설계한다.(soft increase)",
+    "reason": "Sound1 하드웨어/필수성능 반영"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!G6",
+    "before": "=IF(COUNTA(F6),_xlfn.CONCAT(\"SW-FW-RID-\",COUNTA(F$6:F6)),\"\")",
+    "after": "=IF(COUNTA(F6),\"SW-FW-RID-\"&COUNTA(F$6:F6),\"\")",
+    "reason": "기존 식별 순서 유지, CONCAT/#REF! 오류 제거"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!G7",
+    "before": "=IF(COUNTA(F7),_xlfn.CONCAT(\"SW-FW-RID-\",COUNTA(F$6:F7)),\"\")",
+    "after": "=IF(COUNTA(F7),\"SW-FW-RID-\"&COUNTA(F$6:F7),\"\")",
+    "reason": "기존 식별 순서 유지, CONCAT/#REF! 오류 제거"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!G8",
+    "before": "=IF(COUNTA(F8),_xlfn.CONCAT(\"SW-FW-RID-\",COUNTA(F$6:F8)),\"\")",
+    "after": "=IF(COUNTA(F8),\"SW-FW-RID-\"&COUNTA(F$6:F8),\"\")",
+    "reason": "기존 식별 순서 유지, CONCAT/#REF! 오류 제거"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!G9",
+    "before": "=IF(COUNTA(F9),_xlfn.CONCAT(\"SW-FW-RID-\",COUNTA(F$6:F9)),\"\")",
+    "after": "=IF(COUNTA(F9),\"SW-FW-RID-\"&COUNTA(F$6:F9),\"\")",
+    "reason": "기존 식별 순서 유지, CONCAT/#REF! 오류 제거"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!G10",
+    "before": "=IF(COUNTA(F10),_xlfn.CONCAT(\"SW-FW-RID-\",COUNTA(F$6:F10)),\"\")",
+    "after": "=IF(COUNTA(F10),\"SW-FW-RID-\"&COUNTA(F$6:F10),\"\")",
+    "reason": "기존 식별 순서 유지, CONCAT/#REF! 오류 제거"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!G11",
+    "before": "=IF(COUNTA(F11),_xlfn.CONCAT(\"SW-FW-RID-\",COUNTA(F$6:F11)),\"\")",
+    "after": "=IF(COUNTA(F11),\"SW-FW-RID-\"&COUNTA(F$6:F11),\"\")",
+    "reason": "기존 식별 순서 유지, CONCAT/#REF! 오류 제거"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!G12",
+    "before": "=IF(COUNTA(F12),_xlfn.CONCAT(\"SW-FW-RID-\",COUNTA(F$6:F12)),\"\")",
+    "after": "=IF(COUNTA(F12),\"SW-FW-RID-\"&COUNTA(F$6:F12),\"\")",
+    "reason": "기존 식별 순서 유지, CONCAT/#REF! 오류 제거"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!G13",
+    "before": "=IF(COUNTA(F13),_xlfn.CONCAT(\"SW-FW-RID-\",COUNTA(F$6:F13)),\"\")",
+    "after": "=IF(COUNTA(F13),\"SW-FW-RID-\"&COUNTA(F$6:F13),\"\")",
+    "reason": "기존 식별 순서 유지, CONCAT/#REF! 오류 제거"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!G14",
+    "before": "=IF(COUNTA(F14),_xlfn.CONCAT(\"SW-FW-RID-\",COUNTA(F$6:F14)),\"\")",
+    "after": "=IF(COUNTA(F14),\"SW-FW-RID-\"&COUNTA(F$6:F14),\"\")",
+    "reason": "기존 식별 순서 유지, CONCAT/#REF! 오류 제거"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!G15",
+    "before": "=IF(COUNTA(F15),_xlfn.CONCAT(\"SW-FW-RID-\",COUNTA(F$6:F15)),\"\")",
+    "after": "=IF(COUNTA(F15),\"SW-FW-RID-\"&COUNTA(F$6:F15),\"\")",
+    "reason": "기존 식별 순서 유지, CONCAT/#REF! 오류 제거"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!G16",
+    "before": "=IF(COUNTA(F16),_xlfn.CONCAT(\"SW-FW-RID-\",COUNTA(F$6:F16)),\"\")",
+    "after": "=IF(COUNTA(F16),\"SW-FW-RID-\"&COUNTA(F$6:F16),\"\")",
+    "reason": "기존 식별 순서 유지, CONCAT/#REF! 오류 제거"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!G17",
+    "before": "=IF(COUNTA(F17),_xlfn.CONCAT(\"SW-FW-RID-\",COUNTA(F$6:F17)),\"\")",
+    "after": "=IF(COUNTA(F17),\"SW-FW-RID-\"&COUNTA(F$6:F17),\"\")",
+    "reason": "기존 식별 순서 유지, CONCAT/#REF! 오류 제거"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!G18",
+    "before": "=IF(COUNTA(F18),_xlfn.CONCAT(\"SW-FW-RID-\",COUNTA(F$6:F18)),\"\")",
+    "after": "=IF(COUNTA(F18),\"SW-FW-RID-\"&COUNTA(F$6:F18),\"\")",
+    "reason": "기존 식별 순서 유지, CONCAT/#REF! 오류 제거"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!G19",
+    "before": "=IF(COUNTA(F19),_xlfn.CONCAT(\"SW-FW-RID-\",COUNTA(F$6:F19)),\"\")",
+    "after": "=IF(COUNTA(F19),\"SW-FW-RID-\"&COUNTA(F$6:F19),\"\")",
+    "reason": "기존 식별 순서 유지, CONCAT/#REF! 오류 제거"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!G20",
+    "before": "=IF(COUNTA(F20),_xlfn.CONCAT(\"SW-FW-RID-\",COUNTA(F$6:F20)),\"\")",
+    "after": "=IF(COUNTA(F20),\"SW-FW-RID-\"&COUNTA(F$6:F20),\"\")",
+    "reason": "기존 식별 순서 유지, CONCAT/#REF! 오류 제거"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!G21",
+    "before": "=IF(COUNTA(F21),_xlfn.CONCAT(\"SW-FW-RID-\",COUNTA(F$6:F21)),\"\")",
+    "after": "=IF(COUNTA(F21),\"SW-FW-RID-\"&COUNTA(F$6:F21),\"\")",
+    "reason": "기존 식별 순서 유지, CONCAT/#REF! 오류 제거"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!G22",
+    "before": "=IF(COUNTA(F22),_xlfn.CONCAT(\"SW-FW-RID-\",COUNTA(F$6:F22)),\"\")",
+    "after": "=IF(COUNTA(F22),\"SW-FW-RID-\"&COUNTA(F$6:F22),\"\")",
+    "reason": "기존 식별 순서 유지, CONCAT/#REF! 오류 제거"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!G23",
+    "before": "=IF(COUNTA(F23),_xlfn.CONCAT(\"SW-FW-RID-\",COUNTA(F$6:F23)),\"\")",
+    "after": "=IF(COUNTA(F23),\"SW-FW-RID-\"&COUNTA(F$6:F23),\"\")",
+    "reason": "기존 식별 순서 유지, CONCAT/#REF! 오류 제거"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!G24",
+    "before": "=IF(COUNTA(F24),_xlfn.CONCAT(\"SW-FW-RID-\",COUNTA(F$6:F24)),\"\")",
+    "after": "=IF(COUNTA(F24),\"SW-FW-RID-\"&COUNTA(F$6:F24),\"\")",
+    "reason": "기존 식별 순서 유지, CONCAT/#REF! 오류 제거"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!G25",
+    "before": "=IF(COUNTA(F25),_xlfn.CONCAT(\"SW-FW-RID-\",COUNTA(F$6:F25)),\"\")",
+    "after": "=IF(COUNTA(F25),\"SW-FW-RID-\"&COUNTA(F$6:F25),\"\")",
+    "reason": "기존 식별 순서 유지, CONCAT/#REF! 오류 제거"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!G26",
+    "before": "=IF(COUNTA(F26),_xlfn.CONCAT(\"SW-FW-RID-\",COUNTA(F$6:F26)),\"\")",
+    "after": "=IF(COUNTA(F26),\"SW-FW-RID-\"&COUNTA(F$6:F26),\"\")",
+    "reason": "기존 식별 순서 유지, CONCAT/#REF! 오류 제거"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!G27",
+    "before": "=IF(COUNTA(F27),_xlfn.CONCAT(\"SW-FW-RID-\",COUNTA(F$6:F27)),\"\")",
+    "after": "=IF(COUNTA(F27),\"SW-FW-RID-\"&COUNTA(F$6:F27),\"\")",
+    "reason": "기존 식별 순서 유지, CONCAT/#REF! 오류 제거"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!G28",
+    "before": "=IF(COUNTA(F28),_xlfn.CONCAT(\"SW-FW-RID-\",COUNTA(F$6:F28)),\"\")",
+    "after": "=IF(COUNTA(F28),\"SW-FW-RID-\"&COUNTA(F$6:F28),\"\")",
+    "reason": "기존 식별 순서 유지, CONCAT/#REF! 오류 제거"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!G29",
+    "before": "=IF(COUNTA(F29),_xlfn.CONCAT(\"SW-FW-RID-\",COUNTA(F$6:F29)),\"\")",
+    "after": "=IF(COUNTA(F29),\"SW-FW-RID-\"&COUNTA(F$6:F29),\"\")",
+    "reason": "기존 식별 순서 유지, CONCAT/#REF! 오류 제거"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!G30",
+    "before": "=IF(COUNTA(F30),_xlfn.CONCAT(\"SW-FW-RID-\",COUNTA(F$6:F30)),\"\")",
+    "after": "=IF(COUNTA(F30),\"SW-FW-RID-\"&COUNTA(F$6:F30),\"\")",
+    "reason": "기존 식별 순서 유지, CONCAT/#REF! 오류 제거"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!G31",
+    "before": "=IF(COUNTA(F31),_xlfn.CONCAT(\"SW-FW-RID-\",COUNTA(F$6:F31)),\"\")",
+    "after": "=IF(COUNTA(F31),\"SW-FW-RID-\"&COUNTA(F$6:F31),\"\")",
+    "reason": "기존 식별 순서 유지, CONCAT/#REF! 오류 제거"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!G32",
+    "before": "=IF(COUNTA(F32),_xlfn.CONCAT(\"SW-FW-RID-\",COUNTA(F$6:F32)),\"\")",
+    "after": "=IF(COUNTA(F32),\"SW-FW-RID-\"&COUNTA(F$6:F32),\"\")",
+    "reason": "기존 식별 순서 유지, CONCAT/#REF! 오류 제거"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!G33",
+    "before": "=IF(COUNTA(F33),_xlfn.CONCAT(\"SW-FW-RID-\",COUNTA(F$6:F33)),\"\")",
+    "after": "=IF(COUNTA(F33),\"SW-FW-RID-\"&COUNTA(F$6:F33),\"\")",
+    "reason": "기존 식별 순서 유지, CONCAT/#REF! 오류 제거"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!G34",
+    "before": "=IF(COUNTA(F34),_xlfn.CONCAT(\"SW-FW-RID-\",COUNTA(F$6:F34)),\"\")",
+    "after": "=IF(COUNTA(F34),\"SW-FW-RID-\"&COUNTA(F$6:F34),\"\")",
+    "reason": "기존 식별 순서 유지, CONCAT/#REF! 오류 제거"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!G35",
+    "before": "=IF(COUNTA(F35),_xlfn.CONCAT(\"SW-FW-RID-\",COUNTA(F$6:F35)),\"\")",
+    "after": "=IF(COUNTA(F35),\"SW-FW-RID-\"&COUNTA(F$6:F35),\"\")",
+    "reason": "기존 식별 순서 유지, CONCAT/#REF! 오류 제거"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!G36",
+    "before": "=IF(COUNTA(F36),_xlfn.CONCAT(\"SW-FW-RID-\",COUNTA(F$6:F36)),\"\")",
+    "after": "=IF(COUNTA(F36),\"SW-FW-RID-\"&COUNTA(F$6:F36),\"\")",
+    "reason": "기존 식별 순서 유지, CONCAT/#REF! 오류 제거"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!G37",
+    "before": "=IF(COUNTA(F37),_xlfn.CONCAT(\"SW-FW-RID-\",COUNTA(F$6:F37)),\"\")",
+    "after": "=IF(COUNTA(F37),\"SW-FW-RID-\"&COUNTA(F$6:F37),\"\")",
+    "reason": "기존 식별 순서 유지, CONCAT/#REF! 오류 제거"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!G38",
+    "before": "=IF(COUNTA(F38),_xlfn.CONCAT(\"SW-FW-RID-\",COUNTA(F$6:F38)),\"\")",
+    "after": "=IF(COUNTA(F38),\"SW-FW-RID-\"&COUNTA(F$6:F38),\"\")",
+    "reason": "기존 식별 순서 유지, CONCAT/#REF! 오류 제거"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!G39",
+    "before": "=IF(COUNTA(F39),_xlfn.CONCAT(\"SW-FW-RID-\",COUNTA(F$6:F39)),\"\")",
+    "after": "=IF(COUNTA(F39),\"SW-FW-RID-\"&COUNTA(F$6:F39),\"\")",
+    "reason": "기존 식별 순서 유지, CONCAT/#REF! 오류 제거"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!G40",
+    "before": "=IF(COUNTA(F40),_xlfn.CONCAT(\"SW-FW-RID-\",COUNTA(F$6:F40)),\"\")",
+    "after": "=IF(COUNTA(F40),\"SW-FW-RID-\"&COUNTA(F$6:F40),\"\")",
+    "reason": "기존 식별 순서 유지, CONCAT/#REF! 오류 제거"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!G41",
+    "before": "=IF(COUNTA(F41),_xlfn.CONCAT(\"SW-FW-RID-\",COUNTA(F$6:F41)),\"\")",
+    "after": "=IF(COUNTA(F41),\"SW-FW-RID-\"&COUNTA(F$6:F41),\"\")",
+    "reason": "기존 식별 순서 유지, CONCAT/#REF! 오류 제거"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!G42",
+    "before": "=IF(COUNTA(F42),_xlfn.CONCAT(\"SW-FW-RID-\",COUNTA(F$6:F42)),\"\")",
+    "after": "=IF(COUNTA(F42),\"SW-FW-RID-\"&COUNTA(F$6:F42),\"\")",
+    "reason": "기존 식별 순서 유지, CONCAT/#REF! 오류 제거"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!G43",
+    "before": "=IF(COUNTA(F43),_xlfn.CONCAT(\"SW-FW-RID-\",COUNTA(F$6:F43)),\"\")",
+    "after": "=IF(COUNTA(F43),\"SW-FW-RID-\"&COUNTA(F$6:F43),\"\")",
+    "reason": "기존 식별 순서 유지, CONCAT/#REF! 오류 제거"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!G44",
+    "before": "=IF(COUNTA(F44),_xlfn.CONCAT(\"SW-FW-RID-\",COUNTA(F$6:F44)),\"\")",
+    "after": "=IF(COUNTA(F44),\"SW-FW-RID-\"&COUNTA(F$6:F44),\"\")",
+    "reason": "기존 식별 순서 유지, CONCAT/#REF! 오류 제거"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!G45",
+    "before": "=IF(COUNTA(F45),_xlfn.CONCAT(\"SW-FW-RID-\",COUNTA(F$6:F45)),\"\")",
+    "after": "=IF(COUNTA(F45),\"SW-FW-RID-\"&COUNTA(F$6:F45),\"\")",
+    "reason": "기존 식별 순서 유지, CONCAT/#REF! 오류 제거"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!G46",
+    "before": "=IF(COUNTA(F46),_xlfn.CONCAT(\"SW-FW-RID-\",COUNTA(F$6:F46)),\"\")",
+    "after": "=IF(COUNTA(F46),\"SW-FW-RID-\"&COUNTA(F$6:F46),\"\")",
+    "reason": "기존 식별 순서 유지, CONCAT/#REF! 오류 제거"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!G47",
+    "before": "=IF(COUNTA(F47),_xlfn.CONCAT(\"SW-FW-RID-\",COUNTA(F$6:F47)),\"\")",
+    "after": "=IF(COUNTA(F47),\"SW-FW-RID-\"&COUNTA(F$6:F47),\"\")",
+    "reason": "기존 식별 순서 유지, CONCAT/#REF! 오류 제거"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!G48",
+    "before": "=IF(COUNTA(F48),_xlfn.CONCAT(\"SW-FW-RID-\",COUNTA(F$6:F48)),\"\")",
+    "after": "=IF(COUNTA(F48),\"SW-FW-RID-\"&COUNTA(F$6:F48),\"\")",
+    "reason": "기존 식별 순서 유지, CONCAT/#REF! 오류 제거"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!G49",
+    "before": "=IF(COUNTA(F49),_xlfn.CONCAT(\"SW-FW-RID-\",COUNTA(F$6:F49)),\"\")",
+    "after": "=IF(COUNTA(F49),\"SW-FW-RID-\"&COUNTA(F$6:F49),\"\")",
+    "reason": "기존 식별 순서 유지, CONCAT/#REF! 오류 제거"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!G50",
+    "before": "=IF(COUNTA(F50),_xlfn.CONCAT(\"SW-FW-RID-\",COUNTA(F$6:F50)),\"\")",
+    "after": "=IF(COUNTA(F50),\"SW-FW-RID-\"&COUNTA(F$6:F50),\"\")",
+    "reason": "기존 식별 순서 유지, CONCAT/#REF! 오류 제거"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!G51",
+    "before": "=IF(COUNTA(F51),_xlfn.CONCAT(\"SW-FW-RID-\",COUNTA(F$6:F51)),\"\")",
+    "after": "=IF(COUNTA(F51),\"SW-FW-RID-\"&COUNTA(F$6:F51),\"\")",
+    "reason": "기존 식별 순서 유지, CONCAT/#REF! 오류 제거"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!G52",
+    "before": "=IF(COUNTA(F52),_xlfn.CONCAT(\"SW-FW-RID-\",COUNTA(F$6:F52)),\"\")",
+    "after": "=IF(COUNTA(F52),\"SW-FW-RID-\"&COUNTA(F$6:F52),\"\")",
+    "reason": "기존 식별 순서 유지, CONCAT/#REF! 오류 제거"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!G53",
+    "before": "=IF(COUNTA(F53),_xlfn.CONCAT(\"SW-FW-RID-\",COUNTA(F$6:F53)),\"\")",
+    "after": "=IF(COUNTA(F53),\"SW-FW-RID-\"&COUNTA(F$6:F53),\"\")",
+    "reason": "기존 식별 순서 유지, CONCAT/#REF! 오류 제거"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!G54",
+    "before": "=IF(COUNTA(F54),_xlfn.CONCAT(\"SW-FW-RID-\",COUNTA(F$6:F54)),\"\")",
+    "after": "=IF(COUNTA(F54),\"SW-FW-RID-\"&COUNTA(F$6:F54),\"\")",
+    "reason": "기존 식별 순서 유지, CONCAT/#REF! 오류 제거"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!G55",
+    "before": "=IF(COUNTA(F55),_xlfn.CONCAT(\"SW-FW-RID-\",COUNTA(F$6:F55)),\"\")",
+    "after": "=IF(COUNTA(F55),\"SW-FW-RID-\"&COUNTA(F$6:F55),\"\")",
+    "reason": "기존 식별 순서 유지, CONCAT/#REF! 오류 제거"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!G56",
+    "before": "=IF(COUNTA(F56),_xlfn.CONCAT(\"SW-FW-RID-\",COUNTA(F$6:F56)),\"\")",
+    "after": "=IF(COUNTA(F56),\"SW-FW-RID-\"&COUNTA(F$6:F56),\"\")",
+    "reason": "기존 식별 순서 유지, CONCAT/#REF! 오류 제거"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!G57",
+    "before": "=IF(COUNTA(F57),_xlfn.CONCAT(\"SW-FW-RID-\",COUNTA(F$6:F57)),\"\")",
+    "after": "=IF(COUNTA(F57),\"SW-FW-RID-\"&COUNTA(F$6:F57),\"\")",
+    "reason": "기존 식별 순서 유지, CONCAT/#REF! 오류 제거"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!G58",
+    "before": "=IF(COUNTA(F58),_xlfn.CONCAT(\"SW-FW-RID-\",COUNTA(F$6:F58)),\"\")",
+    "after": "=IF(COUNTA(F58),\"SW-FW-RID-\"&COUNTA(F$6:F58),\"\")",
+    "reason": "기존 식별 순서 유지, CONCAT/#REF! 오류 제거"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!G59",
+    "before": "=IF(COUNTA(F59),_xlfn.CONCAT(\"SW-FW-RID-\",COUNTA(F$6:F59)),\"\")",
+    "after": "=IF(COUNTA(F59),\"SW-FW-RID-\"&COUNTA(F$6:F59),\"\")",
+    "reason": "기존 식별 순서 유지, CONCAT/#REF! 오류 제거"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!G60",
+    "before": "=IF(COUNTA(F60),_xlfn.CONCAT(\"SW-FW-RID-\",COUNTA(F$6:F60)),\"\")",
+    "after": "=IF(COUNTA(F60),\"SW-FW-RID-\"&COUNTA(F$6:F60),\"\")",
+    "reason": "기존 식별 순서 유지, CONCAT/#REF! 오류 제거"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!G61",
+    "before": "=IF(COUNTA(#REF!),_xlfn.CONCAT(\"SW-FW-RID-\",COUNTA(F$6:F61)),\"\")",
+    "after": "=IF(COUNTA(F61),\"SW-FW-RID-\"&COUNTA(F$6:F61),\"\")",
+    "reason": "기존 식별 순서 유지, CONCAT/#REF! 오류 제거"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!G62",
+    "before": "=IF(COUNTA(F62),_xlfn.CONCAT(\"SW-FW-RID-\",COUNTA(F$6:F62)),\"\")",
+    "after": "=IF(COUNTA(F62),\"SW-FW-RID-\"&COUNTA(F$6:F62),\"\")",
+    "reason": "기존 식별 순서 유지, CONCAT/#REF! 오류 제거"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!G63",
+    "before": "=IF(COUNTA(F63),_xlfn.CONCAT(\"SW-FW-RID-\",COUNTA(F$6:F63)),\"\")",
+    "after": "=IF(COUNTA(F63),\"SW-FW-RID-\"&COUNTA(F$6:F63),\"\")",
+    "reason": "기존 식별 순서 유지, CONCAT/#REF! 오류 제거"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!G64",
+    "before": "=IF(COUNTA(F64),_xlfn.CONCAT(\"SW-FW-RID-\",COUNTA(F$6:F64)),\"\")",
+    "after": "=IF(COUNTA(F64),\"SW-FW-RID-\"&COUNTA(F$6:F64),\"\")",
+    "reason": "기존 식별 순서 유지, CONCAT/#REF! 오류 제거"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!G65",
+    "before": "=IF(COUNTA(F65),_xlfn.CONCAT(\"SW-FW-RID-\",COUNTA(F$6:F65)),\"\")",
+    "after": "=IF(COUNTA(F65),\"SW-FW-RID-\"&COUNTA(F$6:F65),\"\")",
+    "reason": "기존 식별 순서 유지, CONCAT/#REF! 오류 제거"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!G66",
+    "before": "=IF(COUNTA(F66),_xlfn.CONCAT(\"SW-FW-RID-\",COUNTA(F$6:F66)),\"\")",
+    "after": "=IF(COUNTA(F66),\"SW-FW-RID-\"&COUNTA(F$6:F66),\"\")",
+    "reason": "기존 식별 순서 유지, CONCAT/#REF! 오류 제거"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!G67",
+    "before": "=IF(COUNTA(F67),_xlfn.CONCAT(\"SW-FW-RID-\",COUNTA(F$6:F67)),\"\")",
+    "after": "=IF(COUNTA(F67),\"SW-FW-RID-\"&COUNTA(F$6:F67),\"\")",
+    "reason": "기존 식별 순서 유지, CONCAT/#REF! 오류 제거"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!G68",
+    "before": "=IF(COUNTA(F68),_xlfn.CONCAT(\"SW-FW-RID-\",COUNTA(F$6:F68)),\"\")",
+    "after": "=IF(COUNTA(F68),\"SW-FW-RID-\"&COUNTA(F$6:F68),\"\")",
+    "reason": "기존 식별 순서 유지, CONCAT/#REF! 오류 제거"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!G69",
+    "before": "=IF(COUNTA(F69),_xlfn.CONCAT(\"SW-FW-RID-\",COUNTA(F$6:F69)),\"\")",
+    "after": "=IF(COUNTA(F69),\"SW-FW-RID-\"&COUNTA(F$6:F69),\"\")",
+    "reason": "기존 식별 순서 유지, CONCAT/#REF! 오류 제거"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!G70",
+    "before": "=IF(COUNTA(F70),_xlfn.CONCAT(\"SW-FW-RID-\",COUNTA(F$6:F70)),\"\")",
+    "after": "=IF(COUNTA(F70),\"SW-FW-RID-\"&COUNTA(F$6:F70),\"\")",
+    "reason": "기존 식별 순서 유지, CONCAT/#REF! 오류 제거"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!G71",
+    "before": "=IF(COUNTA(F71),_xlfn.CONCAT(\"SW-FW-RID-\",COUNTA(F$6:F71)),\"\")",
+    "after": "=IF(COUNTA(F71),\"SW-FW-RID-\"&COUNTA(F$6:F71),\"\")",
+    "reason": "기존 식별 순서 유지, CONCAT/#REF! 오류 제거"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!G72",
+    "before": "=IF(COUNTA(F72),_xlfn.CONCAT(\"SW-FW-RID-\",COUNTA(F$6:F72)),\"\")",
+    "after": "=IF(COUNTA(F72),\"SW-FW-RID-\"&COUNTA(F$6:F72),\"\")",
+    "reason": "기존 식별 순서 유지, CONCAT/#REF! 오류 제거"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!G73",
+    "before": "=IF(COUNTA(F73),_xlfn.CONCAT(\"SW-FW-RID-\",COUNTA(F$6:F73)),\"\")",
+    "after": "=IF(COUNTA(F73),\"SW-FW-RID-\"&COUNTA(F$6:F73),\"\")",
+    "reason": "기존 식별 순서 유지, CONCAT/#REF! 오류 제거"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!G74",
+    "before": "=IF(COUNTA(F74),_xlfn.CONCAT(\"SW-FW-RID-\",COUNTA(F$6:F74)),\"\")",
+    "after": "=IF(COUNTA(F74),\"SW-FW-RID-\"&COUNTA(F$6:F74),\"\")",
+    "reason": "기존 식별 순서 유지, CONCAT/#REF! 오류 제거"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!G75",
+    "before": "=IF(COUNTA(F75),_xlfn.CONCAT(\"SW-FW-RID-\",COUNTA(F$6:F75)),\"\")",
+    "after": "=IF(COUNTA(F75),\"SW-FW-RID-\"&COUNTA(F$6:F75),\"\")",
+    "reason": "기존 식별 순서 유지, CONCAT/#REF! 오류 제거"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!G76",
+    "before": "=IF(COUNTA(F76),_xlfn.CONCAT(\"SW-FW-RID-\",COUNTA(F$6:F76)),\"\")",
+    "after": "=IF(COUNTA(F76),\"SW-FW-RID-\"&COUNTA(F$6:F76),\"\")",
+    "reason": "기존 식별 순서 유지, CONCAT/#REF! 오류 제거"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!G77",
+    "before": "=IF(COUNTA(F77),_xlfn.CONCAT(\"SW-FW-RID-\",COUNTA(F$6:F77)),\"\")",
+    "after": "=IF(COUNTA(F77),\"SW-FW-RID-\"&COUNTA(F$6:F77),\"\")",
+    "reason": "기존 식별 순서 유지, CONCAT/#REF! 오류 제거"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!G78",
+    "before": "=IF(COUNTA(F78),_xlfn.CONCAT(\"SW-FW-RID-\",COUNTA(F$6:F78)),\"\")",
+    "after": "=IF(COUNTA(F78),\"SW-FW-RID-\"&COUNTA(F$6:F78),\"\")",
+    "reason": "기존 식별 순서 유지, CONCAT/#REF! 오류 제거"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!G79",
+    "before": "=IF(COUNTA(F79),_xlfn.CONCAT(\"SW-FW-RID-\",COUNTA(F$6:F79)),\"\")",
+    "after": "=IF(COUNTA(F79),\"SW-FW-RID-\"&COUNTA(F$6:F79),\"\")",
+    "reason": "기존 식별 순서 유지, CONCAT/#REF! 오류 제거"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!G80",
+    "before": null,
+    "after": "=IF(COUNTA(F80),\"SW-FW-RID-\"&COUNTA(F$6:F80),\"\")",
+    "reason": "기존 식별 순서 유지, CONCAT/#REF! 오류 제거"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!G81",
+    "before": null,
+    "after": "=IF(COUNTA(F81),\"SW-FW-RID-\"&COUNTA(F$6:F81),\"\")",
+    "reason": "기존 식별 순서 유지, CONCAT/#REF! 오류 제거"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!G82",
+    "before": null,
+    "after": "=IF(COUNTA(F82),\"SW-FW-RID-\"&COUNTA(F$6:F82),\"\")",
+    "reason": "기존 식별 순서 유지, CONCAT/#REF! 오류 제거"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!G83",
+    "before": null,
+    "after": "=IF(COUNTA(F83),\"SW-FW-RID-\"&COUNTA(F$6:F83),\"\")",
+    "reason": "기존 식별 순서 유지, CONCAT/#REF! 오류 제거"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!G84",
+    "before": null,
+    "after": "=IF(COUNTA(F84),\"SW-FW-RID-\"&COUNTA(F$6:F84),\"\")",
+    "reason": "기존 식별 순서 유지, CONCAT/#REF! 오류 제거"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!G85",
+    "before": null,
+    "after": "=IF(COUNTA(F85),\"SW-FW-RID-\"&COUNTA(F$6:F85),\"\")",
+    "reason": "기존 식별 순서 유지, CONCAT/#REF! 오류 제거"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!G86",
+    "before": null,
+    "after": "=IF(COUNTA(F86),\"SW-FW-RID-\"&COUNTA(F$6:F86),\"\")",
+    "reason": "기존 식별 순서 유지, CONCAT/#REF! 오류 제거"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!G87",
+    "before": null,
+    "after": "=IF(COUNTA(F87),\"SW-FW-RID-\"&COUNTA(F$6:F87),\"\")",
+    "reason": "기존 식별 순서 유지, CONCAT/#REF! 오류 제거"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!G88",
+    "before": null,
+    "after": "=IF(COUNTA(F88),\"SW-FW-RID-\"&COUNTA(F$6:F88),\"\")",
+    "reason": "기존 식별 순서 유지, CONCAT/#REF! 오류 제거"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!G89",
+    "before": null,
+    "after": "=IF(COUNTA(F89),\"SW-FW-RID-\"&COUNTA(F$6:F89),\"\")",
+    "reason": "기존 식별 순서 유지, CONCAT/#REF! 오류 제거"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!G90",
+    "before": null,
+    "after": "=IF(COUNTA(F90),\"SW-FW-RID-\"&COUNTA(F$6:F90),\"\")",
+    "reason": "기존 식별 순서 유지, CONCAT/#REF! 오류 제거"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!G91",
+    "before": null,
+    "after": "=IF(COUNTA(F91),\"SW-FW-RID-\"&COUNTA(F$6:F91),\"\")",
+    "reason": "기존 식별 순서 유지, CONCAT/#REF! 오류 제거"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!B80",
+    "before": null,
+    "after": "c) 시스템 연계",
+    "reason": "누락 요구사항을 기존 필드로 추가"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!C80",
+    "before": null,
+    "after": "Bluetooth",
+    "reason": "기존 분류 적용"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!B81",
+    "before": null,
+    "after": "c) 시스템 연계",
+    "reason": "누락 요구사항을 기존 필드로 추가"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!C81",
+    "before": null,
+    "after": "Bluetooth",
+    "reason": "기존 분류 적용"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!B82",
+    "before": null,
+    "after": "e) 보안 요구사항",
+    "reason": "누락 요구사항을 기존 필드로 추가"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!C82",
+    "before": null,
+    "after": "사이버 보안",
+    "reason": "기존 분류 적용"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!B83",
+    "before": null,
+    "after": "e) 보안 요구사항",
+    "reason": "누락 요구사항을 기존 필드로 추가"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!C83",
+    "before": null,
+    "after": "사이버 보안",
+    "reason": "기존 분류 적용"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!B84",
+    "before": null,
+    "after": "e) 보안 요구사항",
+    "reason": "누락 요구사항을 기존 필드로 추가"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!C84",
+    "before": null,
+    "after": "사이버 보안",
+    "reason": "기존 분류 적용"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!B85",
+    "before": null,
+    "after": "e) 보안 요구사항",
+    "reason": "누락 요구사항을 기존 필드로 추가"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!C85",
+    "before": null,
+    "after": "사이버 보안",
+    "reason": "기존 분류 적용"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!B86",
+    "before": null,
+    "after": "e) 보안 요구사항",
+    "reason": "누락 요구사항을 기존 필드로 추가"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!C86",
+    "before": null,
+    "after": "사이버 보안",
+    "reason": "기존 분류 적용"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!B87",
+    "before": null,
+    "after": "e) 보안 요구사항",
+    "reason": "누락 요구사항을 기존 필드로 추가"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!C87",
+    "before": null,
+    "after": "사이버 보안",
+    "reason": "기존 분류 적용"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!B88",
+    "before": null,
+    "after": "e) 보안 요구사항",
+    "reason": "누락 요구사항을 기존 필드로 추가"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!C88",
+    "before": null,
+    "after": "사이버 보안",
+    "reason": "기존 분류 적용"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!B89",
+    "before": null,
+    "after": "e) 보안 요구사항",
+    "reason": "누락 요구사항을 기존 필드로 추가"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!C89",
+    "before": null,
+    "after": "사이버 보안",
+    "reason": "기존 분류 적용"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!B90",
+    "before": null,
+    "after": "e) 보안 요구사항",
+    "reason": "누락 요구사항을 기존 필드로 추가"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!C90",
+    "before": null,
+    "after": "사이버 보안",
+    "reason": "기존 분류 적용"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!B91",
+    "before": null,
+    "after": "e) 보안 요구사항",
+    "reason": "누락 요구사항을 기존 필드로 추가"
+  },
+  {
+    "file": "SRS-FW-TD20B 소프트웨어 요구사항 사양서.xlsx",
+    "location": "소프트웨어 입력 요구사항 사양서!C91",
+    "before": null,
+    "after": "사이버 보안",
+    "reason": "기존 분류 적용"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "표지!L2",
+    "before": "SSTC-FW-TD20B",
+    "after": "SSTC-FW-TD24A",
+    "reason": "Sound1 문서 식별"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "표지!B5",
+    "before": "소프트웨어 시스템 테스트 기준서\n(TD20B-A-EXT)",
+    "after": "소프트웨어 시스템 테스트 기준서\n(TD24A-A-EXT)",
+    "reason": "Sound1 문서 식별"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "표지!L3",
+    "before": "Rev. 1",
+    "after": "Rev. 0",
+    "reason": "작성자/개정 0, 날짜/서명/검토/승인 빈칸"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "표지!D12",
+    "before": "토닥/인공와우사업부",
+    "after": "토닥 / 수석연구원",
+    "reason": "작성자/개정 0, 날짜/서명/검토/승인 빈칸"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "표지!H12",
+    "before": "임정우",
+    "after": "김은수",
+    "reason": "작성자/개정 0, 날짜/서명/검토/승인 빈칸"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "표지!M12",
+    "before": "2020.11.30",
+    "after": null,
+    "reason": "작성자/개정 0, 날짜/서명/검토/승인 빈칸"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "표지!D16",
+    "before": "토닥",
+    "after": null,
+    "reason": "작성자/개정 0, 날짜/서명/검토/승인 빈칸"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "표지!H16",
+    "before": "이호승",
+    "after": null,
+    "reason": "작성자/개정 0, 날짜/서명/검토/승인 빈칸"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "표지!M16",
+    "before": "2020.11.30",
+    "after": null,
+    "reason": "작성자/개정 0, 날짜/서명/검토/승인 빈칸"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "표지!D24",
+    "before": "2020.11.30",
+    "after": null,
+    "reason": "작성자/개정 0, 날짜/서명/검토/승인 빈칸"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!D7",
+    "before": "미정",
+    "after": "TD24A-A-EXT",
+    "reason": "대상 제품 식별"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!D8",
+    "before": "1.0.0",
+    "after": null,
+    "reason": "시험 버전은 실제 시험 시 기록"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!E25",
+    "before": "='[1]소프트웨어 입력 요구사항 사양서'!$G$7",
+    "after": "SW-FW-RID-1",
+    "reason": "깨진 외부 파일 참조를 확정 식별자로 연결"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!D25",
+    "before": "T",
+    "after": "Test",
+    "reason": "매트릭스의 검증 방법"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!I25",
+    "before": null,
+    "after": "사용 가능한 채널 수를 32, 24가 적용된 맵 데이터를 실행하여 자극률을 측정한다.",
+    "reason": "매트릭스의 시험 입력/절차"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!J25",
+    "before": "24kHz, 허용오차 5%",
+    "after": "32채널 자극 시 : 채널당 750Hz, 24채널 자극 시 : 채널당 1000Hz",
+    "reason": "매트릭스의 예상 결과/합격 기준"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!F25",
+    "before": " -",
+    "after": "SYS-RID-FW-2",
+    "reason": "시험별 발생원 추적"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!E26",
+    "before": "='[1]소프트웨어 입력 요구사항 사양서'!$G$8",
+    "after": "SW-FW-RID-2",
+    "reason": "깨진 외부 파일 참조를 확정 식별자로 연결"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!D26",
+    "before": "T",
+    "after": "Test",
+    "reason": "매트릭스의 검증 방법"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!I26",
+    "before": null,
+    "after": "사용 가능한 채널 수를 32, 24가 적용된 맵 데이터를 실행하여 자극률을 측정한다.",
+    "reason": "매트릭스의 시험 입력/절차"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!J26",
+    "before": "1000Hz, 허용오차 5%",
+    "after": "32채널 자극 시 : 채널당 750Hz, 24채널 자극 시 : 채널당 1000Hz",
+    "reason": "매트릭스의 예상 결과/합격 기준"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!F26",
+    "before": null,
+    "after": "SYS-RID-FW-2",
+    "reason": "시험별 발생원 추적"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!E27",
+    "before": "='[1]소프트웨어 입력 요구사항 사양서'!$G$9",
+    "after": "SW-FW-RID-3",
+    "reason": "깨진 외부 파일 참조를 확정 식별자로 연결"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!D27",
+    "before": "D",
+    "after": "Test",
+    "reason": "매트릭스의 검증 방법"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!I27",
+    "before": null,
+    "after": "출력 펄스 파라미터를 측정한다.",
+    "reason": "매트릭스의 시험 입력/절차"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!J27",
+    "before": "자극 출력이 확인되어야 한다.",
+    "after": "모노폴라 전극 배치에서 출력파형 확인 되어야 한다.",
+    "reason": "매트릭스의 예상 결과/합격 기준"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!F27",
+    "before": null,
+    "after": "SYS-RID-FW-1",
+    "reason": "시험별 발생원 추적"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!E28",
+    "before": "='[1]소프트웨어 입력 요구사항 사양서'!$G$10",
+    "after": "SW-FW-RID-4",
+    "reason": "깨진 외부 파일 참조를 확정 식별자로 연결"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!D28",
+    "before": "D",
+    "after": "Test",
+    "reason": "매트릭스의 검증 방법"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!I28",
+    "before": null,
+    "after": "선행 펄스 모양 : negative, positive가 젹용된 맵 데이터를 실행하여 선행펄스 모양을 확인한다.",
+    "reason": "매트릭스의 시험 입력/절차"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!J28",
+    "before": "맵 데이터 적용된 선행펄스 위상과 동일한 방향이 확인되어야 한다.",
+    "after": "네거티브, 포지티프 선행 위상이 확인되어야 한다.",
+    "reason": "매트릭스의 예상 결과/합격 기준"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!F28",
+    "before": null,
+    "after": "SYS-RID-FW-4",
+    "reason": "시험별 발생원 추적"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!E29",
+    "before": "='[1]소프트웨어 입력 요구사항 사양서'!$G$11",
+    "after": "SW-FW-RID-5",
+    "reason": "깨진 외부 파일 참조를 확정 식별자로 연결"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!D29",
+    "before": "T",
+    "after": "Test",
+    "reason": "매트릭스의 검증 방법"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!I29",
+    "before": null,
+    "after": "모노폴라 모드, C/T(uA)가 적용된 맵 데이터를 실행하고, 소리 입력에 따른 자극 출력을 확인한다.",
+    "reason": "매트릭스의 시험 입력/절차"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!J29",
+    "before": "측정된 전압을 전류로 변환하여 자극칩의 전류범위와 동일해야 한다. 오차율 10%",
+    "after": "자극 펄스 크기 범위 C/T uA",
+    "reason": "매트릭스의 예상 결과/합격 기준"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!F29",
+    "before": null,
+    "after": "SYS-RID-FW-5",
+    "reason": "시험별 발생원 추적"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!E30",
+    "before": "='[1]소프트웨어 입력 요구사항 사양서'!$G$12",
+    "after": "SW-FW-RID-6",
+    "reason": "깨진 외부 파일 참조를 확정 식별자로 연결"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!D30",
+    "before": "T",
+    "after": "Test",
+    "reason": "매트릭스의 검증 방법"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!I30",
+    "before": null,
+    "after": "극 펄스 위상폭 13, 14, 255가 적용된 맵 데이터를 실행하여 펄스 위상폭을 측정한다..",
+    "reason": "매트릭스의 시험 입력/절차"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!J30",
+    "before": "13~255usec,  허용오차 5%",
+    "after": "자극 펄스 폭 범위 12~255usec, 변화폭 1usec (오차율 5%)",
+    "reason": "매트릭스의 예상 결과/합격 기준"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!I30",
+    "before": null,
+    "after": "펄스폭을 13, 14, 255 us로 설정하고 출력 펄스폭을 측정한다.",
+    "reason": "설계 입력값 기준"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!J30",
+    "before": "13~255usec,  허용오차 5%",
+    "after": "각 설정 펄스폭의 ±5% 이내. 매트릭스 합격 기준의 하한 12 us와 설계 입력의 13 us 불일치는 확정 전 검토한다.",
+    "reason": "원본 매트릭스 불일치 명시"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!F30",
+    "before": null,
+    "after": "SYS-RID-FW-3",
+    "reason": "시험별 발생원 추적"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!E31",
+    "before": "='[1]소프트웨어 입력 요구사항 사양서'!$G$13",
+    "after": "SW-FW-RID-7",
+    "reason": "깨진 외부 파일 참조를 확정 식별자로 연결"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!E32",
+    "before": "='[1]소프트웨어 입력 요구사항 사양서'!$G$14",
+    "after": "SW-FW-RID-8",
+    "reason": "깨진 외부 파일 참조를 확정 식별자로 연결"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!D32",
+    "before": "D",
+    "after": "Demonstration",
+    "reason": "매트릭스의 검증 방법"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!I32",
+    "before": null,
+    "after": "마이크 감도를 조절하면서 내부기 자극 출력을 관찰한다.",
+    "reason": "매트릭스의 시험 입력/절차"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!J32",
+    "before": "스피커 출력으로 볼륨의 변화를 확인 할 수 있어야 한다.",
+    "after": "마이크 감도에 따라 자극 출력 크기의 변화가 10단계로 관찰되어야한다.",
+    "reason": "매트릭스의 예상 결과/합격 기준"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!F32",
+    "before": null,
+    "after": "SYS-RID-FW-6",
+    "reason": "시험별 발생원 추적"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!E33",
+    "before": "='[1]소프트웨어 입력 요구사항 사양서'!$G$15",
+    "after": "SW-FW-RID-9",
+    "reason": "깨진 외부 파일 참조를 확정 식별자로 연결"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!D33",
+    "before": "A",
+    "after": "Demonstration",
+    "reason": "매트릭스의 검증 방법"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!I33",
+    "before": null,
+    "after": "test vector를 사용하여 데이터 입출력을 비교한다.",
+    "reason": "매트릭스의 시험 입력/절차"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!J33",
+    "before": "FFT 방식으로 주파수 성분 분석이 구현되어함.",
+    "after": "테스트 벡터와 동일하게 입출력되어야 한다.",
+    "reason": "매트릭스의 예상 결과/합격 기준"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!F33",
+    "before": null,
+    "after": "SYS-RID-FW-7",
+    "reason": "시험별 발생원 추적"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!E34",
+    "before": "='[1]소프트웨어 입력 요구사항 사양서'!$G$16",
+    "after": "SW-FW-RID-10",
+    "reason": "깨진 외부 파일 참조를 확정 식별자로 연결"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!D34",
+    "before": "D",
+    "after": "Demonstration",
+    "reason": "매트릭스의 검증 방법"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!I34",
+    "before": null,
+    "after": "특정 주파수의 사운드 신호를 입력하고 채널별 출력을 확인한다.",
+    "reason": "매트릭스의 시험 입력/절차"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!J34",
+    "before": "음향 신호의 주파수에 해당하는 내부기 채널의 출력이 확인되어야한다.\n(7068, 7473)",
+    "after": "특정 주파수에 해당하는 채널에 자극 파라미터가 확인되어야 한다.",
+    "reason": "매트릭스의 예상 결과/합격 기준"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!F34",
+    "before": null,
+    "after": "SYS-RID-FW-8",
+    "reason": "시험별 발생원 추적"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!E35",
+    "before": "='[1]소프트웨어 입력 요구사항 사양서'!$G$17",
+    "after": "SW-FW-RID-11",
+    "reason": "깨진 외부 파일 참조를 확정 식별자로 연결"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!D35",
+    "before": "T",
+    "after": "Test",
+    "reason": "매트릭스의 검증 방법"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!I35",
+    "before": null,
+    "after": "내부기 채널별 자극 출력의 순서를 관찰한다.",
+    "reason": "매트릭스의 시험 입력/절차"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!J35",
+    "before": "오실로스코프로 관찰되는재널별 자극 순서가 맵데이터에 설정된 채널별 자극 순서와 동일해야한다.",
+    "after": "인접한 전극의 자극 출력의 연속 출력이 관찰되지 않아야한다.",
+    "reason": "매트릭스의 예상 결과/합격 기준"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!I35",
+    "before": null,
+    "after": "CIS 맵과 NofM 맵을 각각 적용한다. NofM은 선택 채널 수보다 많은 대역의 합성음을 입력하고 32채널 테스트 내부기에서 각 전극 출력을 확인한다.",
+    "reason": "NofM 시험 승계"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!J35",
+    "before": "오실로스코프로 관찰되는재널별 자극 순서가 맵데이터에 설정된 채널별 자극 순서와 동일해야한다.",
+    "after": "CIS는 맵의 자극 순서를 따른다. NofM은 설정된 N개 채널이 선택되고, 선택되지 않은 채널에는 자극이 없어야 하며 맵의 자극 순서를 따라야 한다.",
+    "reason": "선택 채널과 출력 순서 확인"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!F35",
+    "before": null,
+    "after": "SYS-RID-FW-9",
+    "reason": "시험별 발생원 추적"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!E36",
+    "before": "='[1]소프트웨어 입력 요구사항 사양서'!$G$18",
+    "after": "SW-FW-RID-12",
+    "reason": "깨진 외부 파일 참조를 확정 식별자로 연결"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!D36",
+    "before": "T",
+    "after": "Test",
+    "reason": "매트릭스의 검증 방법"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!I36",
+    "before": null,
+    "after": "테스트 프로그램의 통해서 사운드 처리 완료 시점을 확인한다.",
+    "reason": "매트릭스의 시험 입력/절차"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!J36",
+    "before": "- 1msec, 오차율 5%",
+    "after": "1msec 이하의 시간에 완료되어야 한다.",
+    "reason": "매트릭스의 예상 결과/합격 기준"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!F36",
+    "before": null,
+    "after": "SYS-RID-FW-10",
+    "reason": "시험별 발생원 추적"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!E37",
+    "before": "='[1]소프트웨어 입력 요구사항 사양서'!$G$19",
+    "after": "SW-FW-RID-13",
+    "reason": "깨진 외부 파일 참조를 확정 식별자로 연결"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!D37",
+    "before": "D",
+    "after": "Demonstration",
+    "reason": "매트릭스의 검증 방법"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!I37",
+    "before": null,
+    "after": "프로그램을 변경하면서 내부기의 자극 출력을 확인한다.",
+    "reason": "매트릭스의 시험 입력/절차"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!J37",
+    "before": "- 맵이 변경되면 자극 출력도 변경되는 것이 확인 되어야한다.",
+    "after": "4개의 맵에 대하여 출력이 다르게 확인되어야 한다.",
+    "reason": "매트릭스의 예상 결과/합격 기준"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!F37",
+    "before": null,
+    "after": "SYS-RID-FW-11",
+    "reason": "시험별 발생원 추적"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!E38",
+    "before": "='[1]소프트웨어 입력 요구사항 사양서'!$G$20",
+    "after": "SW-FW-RID-14",
+    "reason": "깨진 외부 파일 참조를 확정 식별자로 연결"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!D38",
+    "before": "D",
+    "after": "Demonstration",
+    "reason": "매트릭스의 검증 방법"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!I38",
+    "before": null,
+    "after": "자극 볼륨을 조정하면서 내부기 출력을 확인한다.",
+    "reason": "매트릭스의 시험 입력/절차"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!J38",
+    "before": "- 자극 볼륨이 4단계로 변경됨에 따라 자극 출력의 크기도 4단계로 변경되어야 한다.",
+    "after": "자극 볼륨의 변화에 따라 내부기 출력 자극이 4단계로 변화하여야 한다.",
+    "reason": "매트릭스의 예상 결과/합격 기준"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!F38",
+    "before": null,
+    "after": "SYS-RID-FW-12",
+    "reason": "시험별 발생원 추적"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!E39",
+    "before": "='[1]소프트웨어 입력 요구사항 사양서'!$G$21",
+    "after": "SW-FW-RID-15",
+    "reason": "깨진 외부 파일 참조를 확정 식별자로 연결"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!C39",
+    "before": "입력 오디오 개수",
+    "after": "오디오 소스 입력",
+    "reason": "Sound1 입력 구성"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!I39",
+    "before": null,
+    "after": "디지털 마이크와 Bluetooth 오디오를 각각 입력한다.",
+    "reason": "실제 입력 경로"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!J39",
+    "before": "- 주변 소리와 음악소리가 보드의 출력으로 들려야한다.",
+    "after": "선택된 입력 소스에 따라 자극 출력이 발생해야 한다.",
+    "reason": "스피커 출력 대신 내부기 자극 확인"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!E40",
+    "before": "='[1]소프트웨어 입력 요구사항 사양서'!$G$22",
+    "after": "SW-FW-RID-16",
+    "reason": "깨진 외부 파일 참조를 확정 식별자로 연결"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!C40",
+    "before": "입력 오디오 주파수",
+    "after": "오디오 입력 대역",
+    "reason": "Sound1 입력 구성"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!I40",
+    "before": null,
+    "after": "필수성능시험 기준서의 저주파/중간/고주파 순음을 입력한다.",
+    "reason": "실제 입력 경로"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!J40",
+    "before": "- 오디오 데이터가 들려야한다.",
+    "after": "입력 주파수에 해당하는 채널의 자극 출력이 확인되어야 한다.",
+    "reason": "스피커 출력 대신 내부기 자극 확인"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!E41",
+    "before": "='[1]소프트웨어 입력 요구사항 사양서'!$G$23",
+    "after": "SW-FW-RID-17",
+    "reason": "깨진 외부 파일 참조를 확정 식별자로 연결"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!E42",
+    "before": "='[1]소프트웨어 입력 요구사항 사양서'!$G$24",
+    "after": "SW-FW-RID-18",
+    "reason": "깨진 외부 파일 참조를 확정 식별자로 연결"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!E43",
+    "before": "='[1]소프트웨어 입력 요구사항 사양서'!$G$25",
+    "after": "SW-FW-RID-19",
+    "reason": "깨진 외부 파일 참조를 확정 식별자로 연결"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!C43",
+    "before": "가속도 센서 입력",
+    "after": "터치 입력 및 제어",
+    "reason": "가속도 센서 대신 터치 센서"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!I43",
+    "before": null,
+    "after": "터치 센서를 조작하고 입력 상태 및 제어 동작을 확인한다.",
+    "reason": "Sound1 사용자 입력"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!J43",
+    "before": "두드림에 반응하여 전원이 켜지고 꺼져야 한다.",
+    "after": "터치 상태를 정상적으로 읽고, 설정된 터치 동작에 따라 제어되어야 한다.",
+    "reason": "터치 입력 검증"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!E44",
+    "before": "='[1]소프트웨어 입력 요구사항 사양서'!$G$26",
+    "after": "SW-FW-RID-20",
+    "reason": "깨진 외부 파일 참조를 확정 식별자로 연결"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!E45",
+    "before": "='[1]소프트웨어 입력 요구사항 사양서'!$G$27",
+    "after": "SW-FW-RID-21",
+    "reason": "깨진 외부 파일 참조를 확정 식별자로 연결"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!E46",
+    "before": "='[1]소프트웨어 입력 요구사항 사양서'!$G$28",
+    "after": "SW-FW-RID-22",
+    "reason": "깨진 외부 파일 참조를 확정 식별자로 연결"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!E47",
+    "before": "='[1]소프트웨어 입력 요구사항 사양서'!$G$29",
+    "after": "SW-FW-RID-23",
+    "reason": "깨진 외부 파일 참조를 확정 식별자로 연결"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!E48",
+    "before": "='[1]소프트웨어 입력 요구사항 사양서'!$G$30",
+    "after": "SW-FW-RID-24",
+    "reason": "깨진 외부 파일 참조를 확정 식별자로 연결"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!E49",
+    "before": "='[1]소프트웨어 입력 요구사항 사양서'!$G$31",
+    "after": "SW-FW-RID-25",
+    "reason": "깨진 외부 파일 참조를 확정 식별자로 연결"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!E50",
+    "before": "='[1]소프트웨어 입력 요구사항 사양서'!$G$32",
+    "after": "SW-FW-RID-26",
+    "reason": "깨진 외부 파일 참조를 확정 식별자로 연결"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!E51",
+    "before": "='[1]소프트웨어 입력 요구사항 사양서'!$G$33",
+    "after": "SW-FW-RID-27",
+    "reason": "깨진 외부 파일 참조를 확정 식별자로 연결"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!E52",
+    "before": "='[1]소프트웨어 입력 요구사항 사양서'!$G$34",
+    "after": "SW-FW-RID-28",
+    "reason": "깨진 외부 파일 참조를 확정 식별자로 연결"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!E53",
+    "before": "='[1]소프트웨어 입력 요구사항 사양서'!$G$35",
+    "after": "SW-FW-RID-29",
+    "reason": "깨진 외부 파일 참조를 확정 식별자로 연결"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!E54",
+    "before": "='[1]소프트웨어 입력 요구사항 사양서'!$G$36",
+    "after": "SW-FW-RID-30",
+    "reason": "깨진 외부 파일 참조를 확정 식별자로 연결"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!E55",
+    "before": "='[1]소프트웨어 입력 요구사항 사양서'!$G$37",
+    "after": "SW-FW-RID-31",
+    "reason": "깨진 외부 파일 참조를 확정 식별자로 연결"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!E56",
+    "before": "='[1]소프트웨어 입력 요구사항 사양서'!$G$38",
+    "after": "SW-FW-RID-32",
+    "reason": "깨진 외부 파일 참조를 확정 식별자로 연결"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!E57",
+    "before": "='[1]소프트웨어 입력 요구사항 사양서'!$G$39",
+    "after": "SW-FW-RID-33",
+    "reason": "깨진 외부 파일 참조를 확정 식별자로 연결"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!E58",
+    "before": "='[1]소프트웨어 입력 요구사항 사양서'!$G$40",
+    "after": "SW-FW-RID-34",
+    "reason": "깨진 외부 파일 참조를 확정 식별자로 연결"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!E59",
+    "before": "='[1]소프트웨어 입력 요구사항 사양서'!$G$41",
+    "after": "SW-FW-RID-35",
+    "reason": "깨진 외부 파일 참조를 확정 식별자로 연결"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!E60",
+    "before": "='[1]소프트웨어 입력 요구사항 사양서'!$G$42",
+    "after": "SW-FW-RID-36",
+    "reason": "깨진 외부 파일 참조를 확정 식별자로 연결"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!E61",
+    "before": "='[1]소프트웨어 입력 요구사항 사양서'!$G$43",
+    "after": "SW-FW-RID-37",
+    "reason": "깨진 외부 파일 참조를 확정 식별자로 연결"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!E62",
+    "before": "='[1]소프트웨어 입력 요구사항 사양서'!$G$44",
+    "after": "SW-FW-RID-38",
+    "reason": "깨진 외부 파일 참조를 확정 식별자로 연결"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!E63",
+    "before": "='[1]소프트웨어 입력 요구사항 사양서'!$G$45",
+    "after": "SW-FW-RID-39",
+    "reason": "깨진 외부 파일 참조를 확정 식별자로 연결"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!E64",
+    "before": "='[1]소프트웨어 입력 요구사항 사양서'!$G$46",
+    "after": "SW-FW-RID-40",
+    "reason": "깨진 외부 파일 참조를 확정 식별자로 연결"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!E65",
+    "before": "='[1]소프트웨어 입력 요구사항 사양서'!$G$47",
+    "after": "SW-FW-RID-41",
+    "reason": "깨진 외부 파일 참조를 확정 식별자로 연결"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!E66",
+    "before": "='[1]소프트웨어 입력 요구사항 사양서'!$G$48",
+    "after": "SW-FW-RID-42",
+    "reason": "깨진 외부 파일 참조를 확정 식별자로 연결"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!C66",
+    "before": "가속도 센서와 I2C 통신",
+    "after": "IQS323 I2C 통신",
+    "reason": "가속도 센서 대신 터치 센서"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!I66",
+    "before": null,
+    "after": "터치 센서를 조작하고 입력 상태 및 제어 동작을 확인한다.",
+    "reason": "Sound1 사용자 입력"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!J66",
+    "before": "- 녹색등이 점멸하고, 자극 출력이 관찰되어야한다.\n(전원이 켜진 것은 가속도 센서가 I2C통신으로 설정된 상태)",
+    "after": "터치 상태를 정상적으로 읽고, 설정된 터치 동작에 따라 제어되어야 한다.",
+    "reason": "터치 입력 검증"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!E67",
+    "before": "='[1]소프트웨어 입력 요구사항 사양서'!$G$49",
+    "after": "SW-FW-RID-43",
+    "reason": "깨진 외부 파일 참조를 확정 식별자로 연결"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!E68",
+    "before": "='[1]소프트웨어 입력 요구사항 사양서'!$G$50",
+    "after": "SW-FW-RID-44",
+    "reason": "깨진 외부 파일 참조를 확정 식별자로 연결"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!D68",
+    "before": "A",
+    "after": "Analysis",
+    "reason": "매트릭스의 검증 방법"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!I68",
+    "before": null,
+    "after": "사용자 인터페이스(리모컨 앱 통신) 요구사항 구현이 되었는지 확인한다.",
+    "reason": "매트릭스의 시험 입력/절차"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!J68",
+    "before": "- SW-FW-SYS-Test-ID-25~SW-FW-SYS-Test-ID-34의 시험 결과가 통과되어야 한다.",
+    "after": "사용자 인터페이스(리모컨 앱 통신) 요구사항 검증 기준",
+    "reason": "매트릭스의 예상 결과/합격 기준"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!F68",
+    "before": null,
+    "after": "SYS-RID-FW-13",
+    "reason": "시험별 발생원 추적"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!E69",
+    "before": "='[1]소프트웨어 입력 요구사항 사양서'!$G$51",
+    "after": "SW-FW-RID-45",
+    "reason": "깨진 외부 파일 참조를 확정 식별자로 연결"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!D69",
+    "before": "A",
+    "after": "Analysis",
+    "reason": "매트릭스의 검증 방법"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!I69",
+    "before": null,
+    "after": "사용자 인터페이스(매핑 프로그램 통신) 요구사항 구현이 되었는지 확인한다.",
+    "reason": "매트릭스의 시험 입력/절차"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!J69",
+    "before": "- SW-FW-SYS-Test-ID-35~SW-FW-SYS-Test-ID-40의 시험 결과가 통과되어야 한다.",
+    "after": "사용자 인터페이스(매핑 프로그램 통신) 요구사항 검증 기준",
+    "reason": "매트릭스의 예상 결과/합격 기준"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!F69",
+    "before": null,
+    "after": "SYS-RID-FW-14",
+    "reason": "시험별 발생원 추적"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!E70",
+    "before": "='[1]소프트웨어 입력 요구사항 사양서'!$G$53",
+    "after": "SW-FW-RID-46",
+    "reason": "깨진 외부 파일 참조를 확정 식별자로 연결"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!D70",
+    "before": "D",
+    "after": "Demonstration",
+    "reason": "매트릭스의 검증 방법"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!I70",
+    "before": null,
+    "after": "외부기에 등록된 내부기와 등록되지 않은 내부기를 각각 준비하고, 외부기를 각각의 내부기와 결합하여 동작 상태를 학인한다.",
+    "reason": "매트릭스의 시험 입력/절차"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!J70",
+    "before": "- 등록된 내부기와 외부기가 결합되면 외부기의 녹색 LED가 점멸해야한다.\n- 등록되지 않은 내부기와 외부기가 결합되면 외부기의 녹색 LED가 점등되어야 한다.",
+    "after": "등록된 내부기와는 연결이 정상적으로 되어야 하며, 등록되지 않은 내부기와는 연결이 되지 않아야 한다.",
+    "reason": "매트릭스의 예상 결과/합격 기준"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!F70",
+    "before": null,
+    "after": "SYS-RID-FW-17",
+    "reason": "시험별 발생원 추적"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!E71",
+    "before": "='[1]소프트웨어 입력 요구사항 사양서'!$G$54",
+    "after": "SW-FW-RID-47",
+    "reason": "깨진 외부 파일 참조를 확정 식별자로 연결"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!D71",
+    "before": "D",
+    "after": "Demonstration",
+    "reason": "매트릭스의 검증 방법"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!I71",
+    "before": null,
+    "after": "블루투스 central 장치에서 페어링 이후에 30분 동안 데이터 송신하지 않고 대기한다.",
+    "reason": "매트릭스의 시험 입력/절차"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!J71",
+    "before": "- 내부기와 연결되지 않은 상태에서 블루투스 광고가 검색 되지 않아야 하며, 내부기와 연결되면 블루투스 광고가 확인되어야 한다.",
+    "after": "일정시간 동안 제어 명령이 수신되지 않으면, 외부기에서 블루투스 연결을 해제해야한다.",
+    "reason": "매트릭스의 예상 결과/합격 기준"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!C71",
+    "before": "내부기와 연결된 상태에서만 블루투스 활성화",
+    "after": "무조작 Bluetooth 세션 종료",
+    "reason": "현행 요구사항"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!F71",
+    "before": null,
+    "after": "SYS-RID-FW-22",
+    "reason": "시험별 발생원 추적"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!E72",
+    "before": "='[1]소프트웨어 입력 요구사항 사양서'!$G$55",
+    "after": "SW-FW-RID-48",
+    "reason": "깨진 외부 파일 참조를 확정 식별자로 연결"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!D72",
+    "before": "D",
+    "after": "Demonstration",
+    "reason": "매트릭스의 검증 방법"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!I72",
+    "before": null,
+    "after": "외부기의 블루투스 페어링 과정을 확인한다.",
+    "reason": "매트릭스의 시험 입력/절차"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!J72",
+    "before": "- 페어링 키가 맞지 않으면 페어링이 진행되지 않아야 한다.",
+    "after": "GAP 연결상태에서 명령을 전송하면 에러가 발행해야하며, 페어링 키가 일치하는 경우에만 페어링이 완료되어야 한다.",
+    "reason": "매트릭스의 예상 결과/합격 기준"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!F72",
+    "before": null,
+    "after": "SYS-RID-FW-18",
+    "reason": "시험별 발생원 추적"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!E73",
+    "before": "='[1]소프트웨어 입력 요구사항 사양서'!$G$56",
+    "after": "SW-FW-RID-49",
+    "reason": "깨진 외부 파일 참조를 확정 식별자로 연결"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!D73",
+    "before": "A",
+    "after": "Demonstration",
+    "reason": "매트릭스의 검증 방법"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!I73",
+    "before": null,
+    "after": "블루투스 central 장치에서 블루투스 페어링 과정을 진행하지 않고 데이터를 송신한다.",
+    "reason": "매트릭스의 시험 입력/절차"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!J73",
+    "before": "- SW-FW-SYS-Test-ID-25~SW-FW-SYS-Test-ID-39의 시험 결과가 통과되어야 한다.",
+    "after": "블루투스 오류가 발생해야된다.",
+    "reason": "매트릭스의 예상 결과/합격 기준"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!F73",
+    "before": null,
+    "after": "SYS-RID-FW-26",
+    "reason": "시험별 발생원 추적"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!E74",
+    "before": "='[1]소프트웨어 입력 요구사항 사양서'!$G$57",
+    "after": "SW-FW-RID-50",
+    "reason": "깨진 외부 파일 참조를 확정 식별자로 연결"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!D74",
+    "before": "D",
+    "after": "Demonstration",
+    "reason": "매트릭스의 검증 방법"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!I74",
+    "before": null,
+    "after": "감사로그 정보를 확인한다.",
+    "reason": "매트릭스의 시험 입력/절차"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!J74",
+    "before": "- 블루투스로 연결된 리모콘의 정보가 확인 되어야 한다.",
+    "after": "블루투스 페어링 연결/해제, 무결성 손상 이벤트가 확인되어야 한다.",
+    "reason": "매트릭스의 예상 결과/합격 기준"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!F74",
+    "before": null,
+    "after": "SYS-RID-FW-23",
+    "reason": "시험별 발생원 추적"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!E75",
+    "before": "='[1]소프트웨어 입력 요구사항 사양서'!$G$58",
+    "after": "SW-FW-RID-51",
+    "reason": "깨진 외부 파일 참조를 확정 식별자로 연결"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!D75",
+    "before": "D",
+    "after": "Demonstration",
+    "reason": "매트릭스의 검증 방법"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!I75",
+    "before": null,
+    "after": "임의로 무결성이 손상된 설정파일을 사용하고, 감사기록을 확인한다.",
+    "reason": "매트릭스의 시험 입력/절차"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!J75",
+    "before": "- 에러 표시가 확인되어야 한다.",
+    "after": "감사 기록에 무결성 손상 정보가 확인 되어야 한다.",
+    "reason": "매트릭스의 예상 결과/합격 기준"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!F75",
+    "before": null,
+    "after": "SYS-RID-FW-27",
+    "reason": "시험별 발생원 추적"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!E76",
+    "before": "='[1]소프트웨어 입력 요구사항 사양서'!$G$59",
+    "after": "SW-FW-RID-52",
+    "reason": "깨진 외부 파일 참조를 확정 식별자로 연결"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!D76",
+    "before": "D",
+    "after": "Demonstration",
+    "reason": "매트릭스의 검증 방법"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!I76",
+    "before": null,
+    "after": "블루투스 페어링 이후에 2차 인증 과정을 확인한다.",
+    "reason": "매트릭스의 시험 입력/절차"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!J76",
+    "before": "- 리모콘 해당 내부기(외부기 조합)의 제어가 불가능해야 한다.",
+    "after": "프로토콜에 맞게 동작해야한다.\n - 인증키 전송전 다른 명령 전송 : 에러 응답\n - 인증키 불일치 : 에러 응답\n - 인증키 일치 : 정상 응답\n - 인증키 일치 후 다른 명령 전송 : 정상 응답",
+    "reason": "매트릭스의 예상 결과/합격 기준"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!F76",
+    "before": null,
+    "after": "SYS-RID-FW-19",
+    "reason": "시험별 발생원 추적"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!E77",
+    "before": "='[1]소프트웨어 입력 요구사항 사양서'!$G$60",
+    "after": "SW-FW-RID-53",
+    "reason": "깨진 외부 파일 참조를 확정 식별자로 연결"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!D77",
+    "before": "I",
+    "after": "Inspection\nInspection",
+    "reason": "매트릭스의 검증 방법"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!I77",
+    "before": null,
+    "after": "고객불만처리 절차 또는 A/S 처리 방침 확인.\n소프트웨어 배포 이력서 확인",
+    "reason": "매트릭스의 시험 입력/절차"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!J77",
+    "before": "- 사이버보안 취약성 확인데 따른 업데이트 절차가 있어야한다.",
+    "after": "기존 제품을 회수하고 새제품을 교환한다는 내용이 있어야 한다.\n인가된 인원에 의해서 펌웨어가 배포되어야 한다.",
+    "reason": "매트릭스의 예상 결과/합격 기준"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!C77",
+    "before": "소프트웨어 유지 보수 절차를 따른다.",
+    "after": "소프트웨어 유지보수 및 배포 관리",
+    "reason": "현행 관리 요구사항"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!F77",
+    "before": null,
+    "after": "SYS-RID-FW-30, SYS-RID-FW-31",
+    "reason": "시험별 발생원 추적"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!E78",
+    "before": "='[1]소프트웨어 입력 요구사항 사양서'!$G$61",
+    "after": "SW-FW-RID-54",
+    "reason": "깨진 외부 파일 참조를 확정 식별자로 연결"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!D78",
+    "before": "I",
+    "after": "Demonstration",
+    "reason": "매트릭스의 검증 방법"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!I78",
+    "before": null,
+    "after": "무결성이 손상된 실행파일과 정상인 실행파일을 사용하여 부팅을 확인한다.",
+    "reason": "매트릭스의 시험 입력/절차"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!J78",
+    "before": "- CM3  실행코드 사이즈가 18430word를 초과하지 않아야한다.",
+    "after": "무결성이 손상된 실행파일로는 부팅이 되지 않아야하고, 정상인 실행파일은 부팅이 되어야 한다.",
+    "reason": "매트릭스의 예상 결과/합격 기준"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!C78",
+    "before": "실행코드 사이즈",
+    "after": "부팅 시 펌웨어 무결성 검사",
+    "reason": "구형 CM3 크기 제한 대체"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!F78",
+    "before": null,
+    "after": "SYS-RID-FW-32",
+    "reason": "시험별 발생원 추적"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!E79",
+    "before": "='[1]소프트웨어 입력 요구사항 사양서'!$G$62",
+    "after": "SW-FW-RID-55",
+    "reason": "깨진 외부 파일 참조를 확정 식별자로 연결"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!D79",
+    "before": "D",
+    "after": "Demonstration",
+    "reason": "매트릭스의 검증 방법"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!I79",
+    "before": null,
+    "after": "배터리 잔량이 얼마 남지 않은 배터리를 외부기에 연결하고 LED 출력을 확인한다.",
+    "reason": "매트릭스의 시험 입력/절차"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!J79",
+    "before": "- 10분 간격으로 자극 알림 출력이 관찰되어야 한다.",
+    "after": "배터리 저전압 알림 및 LED 패턴이 확인 가능해야 한다.",
+    "reason": "매트릭스의 예상 결과/합격 기준"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!F79",
+    "before": null,
+    "after": "SYS-RID-FW-48",
+    "reason": "시험별 발생원 추적"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!E80",
+    "before": "='[1]소프트웨어 입력 요구사항 사양서'!$G$68",
+    "after": "SW-FW-RID-56",
+    "reason": "깨진 외부 파일 참조를 확정 식별자로 연결"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!D80",
+    "before": "D",
+    "after": "Demonstration",
+    "reason": "매트릭스의 검증 방법"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!I80",
+    "before": null,
+    "after": "테스트용 프로그램을 사용하여 자극 볼륨을 빠르게 증가시키는 명령을 실행하고 자극 출력 값을 확인한다..",
+    "reason": "매트릭스의 시험 입력/절차"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!J80",
+    "before": "- 오디오 볼륨이 10의로 설정되지 않아야 한다.",
+    "after": "최소 증가 시간보다 빨리 증가되지 않아야 한다.",
+    "reason": "매트릭스의 예상 결과/합격 기준"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!F80",
+    "before": null,
+    "after": "SYS-RID-FW-47",
+    "reason": "시험별 발생원 추적"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!E81",
+    "before": "='[1]소프트웨어 입력 요구사항 사양서'!$G$69",
+    "after": "SW-FW-RID-57",
+    "reason": "깨진 외부 파일 참조를 확정 식별자로 연결"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!D81",
+    "before": "A",
+    "after": "Analysis\nTest",
+    "reason": "매트릭스의 검증 방법"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!I81",
+    "before": null,
+    "after": "필수 성능 검사 기준서 참조\n필수 성능 검사 기준서 참조",
+    "reason": "매트릭스의 시험 입력/절차"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!J81",
+    "before": "- 외부기 필수 성능 시험 결과가 통과 되어야 한다.",
+    "after": "해당 시험 기준\n해당 시험 기준",
+    "reason": "매트릭스의 예상 결과/합격 기준"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!F81",
+    "before": null,
+    "after": "SYS-RID-FW-39, SYS-RID-FW-40",
+    "reason": "시험별 발생원 추적"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!E82",
+    "before": "='[1]소프트웨어 입력 요구사항 사양서'!$G$70",
+    "after": "SW-FW-RID-58",
+    "reason": "깨진 외부 파일 참조를 확정 식별자로 연결"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!D82",
+    "before": "D",
+    "after": "Test",
+    "reason": "매트릭스의 검증 방법"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!I82",
+    "before": null,
+    "after": "신호처리 모듈의 연산시간을 측정하고, 전체 반복 실행 주기를 측정한다.",
+    "reason": "매트릭스의 시험 입력/절차"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!J82",
+    "before": " 1msec 안에 신호처리가 완료되어야 한다.",
+    "after": "설정한 반복 주기안에 작업이 완료되어야 한다.",
+    "reason": "매트릭스의 예상 결과/합격 기준"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!F82",
+    "before": null,
+    "after": "SYS-RID-FW-41",
+    "reason": "시험별 발생원 추적"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!E83",
+    "before": "='[1]소프트웨어 입력 요구사항 사양서'!$G$71",
+    "after": "SW-FW-RID-59",
+    "reason": "깨진 외부 파일 참조를 확정 식별자로 연결"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!D83",
+    "before": "D",
+    "after": "Demonstration",
+    "reason": "매트릭스의 검증 방법"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!I83",
+    "before": null,
+    "after": "블루투스 central 장치에서 통신 프로토콜에 정의된 범위의 데이터와 범위를 벗어나는 데이터를 외부기에 전송하고, 응답을 확인한다.",
+    "reason": "매트릭스의 시험 입력/절차"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!J83",
+    "before": "- 에러 메시지가 리모콘 앱으로 수신되어야 한다.",
+    "after": "정의된 범위 내의 데이터를 송신하면 정상 응답이 수신되고, 범위 밖의 데이터를 송신하면 오류 응답이 수신되어야 한다.",
+    "reason": "매트릭스의 예상 결과/합격 기준"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!F83",
+    "before": null,
+    "after": "SYS-RID-FW-28",
+    "reason": "시험별 발생원 추적"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!E84",
+    "before": "='[1]소프트웨어 입력 요구사항 사양서'!$G$72",
+    "after": "SW-FW-RID-60",
+    "reason": "깨진 외부 파일 참조를 확정 식별자로 연결"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!D84",
+    "before": "A",
+    "after": "Inspection",
+    "reason": "매트릭스의 검증 방법"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!I84",
+    "before": null,
+    "after": "무선 통신 규격을 확인한다.",
+    "reason": "매트릭스의 시험 입력/절차"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!J84",
+    "before": "- SW-FW-SYS-Test-ID-25~SW-FW-SYS-Test-ID-34의 시험 결과가 통과되어야 한다.\n(블루투스 LE 통신은 CRC 적용 프로토콜)",
+    "after": "CRC  또는 무결성 확인 기능이 있어야한다.",
+    "reason": "매트릭스의 예상 결과/합격 기준"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!F84",
+    "before": null,
+    "after": "SYS-RID-FW-42",
+    "reason": "시험별 발생원 추적"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!E85",
+    "before": "='[1]소프트웨어 입력 요구사항 사양서'!$G$73",
+    "after": "SW-FW-RID-61",
+    "reason": "깨진 외부 파일 참조를 확정 식별자로 연결"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!D85",
+    "before": "D",
+    "after": "Demonstration",
+    "reason": "매트릭스의 검증 방법"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!I85",
+    "before": null,
+    "after": "전원을 켜고 준비상태가 표시되는지 확인한다.",
+    "reason": "매트릭스의 시험 입력/절차"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!J85",
+    "before": "- 내부기와 연결되지 않은 상태에서 녹색 LED가 점등되어야 한다.",
+    "after": "LED가 녹색으로 점등되어야 한다.",
+    "reason": "매트릭스의 예상 결과/합격 기준"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!F85",
+    "before": null,
+    "after": "SYS-RID-FW-43",
+    "reason": "시험별 발생원 추적"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!E86",
+    "before": "='[1]소프트웨어 입력 요구사항 사양서'!$G$74",
+    "after": "SW-FW-RID-62",
+    "reason": "깨진 외부 파일 참조를 확정 식별자로 연결"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!D86",
+    "before": "D",
+    "after": "Demonstration",
+    "reason": "매트릭스의 검증 방법"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!I86",
+    "before": null,
+    "after": "충전 커넥터를 외부기에 연결하고 LED를 확인한다.",
+    "reason": "매트릭스의 시험 입력/절차"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!J86",
+    "before": null,
+    "after": "LED가 백색으로 점멸 또는 점등 되어야 한다.",
+    "reason": "매트릭스의 예상 결과/합격 기준"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!F86",
+    "before": null,
+    "after": "SYS-RID-FW-44",
+    "reason": "시험별 발생원 추적"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!E87",
+    "before": "='[1]소프트웨어 입력 요구사항 사양서'!$G$75",
+    "after": "SW-FW-RID-63",
+    "reason": "깨진 외부 파일 참조를 확정 식별자로 연결"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!E88",
+    "before": "='[1]소프트웨어 입력 요구사항 사양서'!$G$76",
+    "after": "SW-FW-RID-64",
+    "reason": "깨진 외부 파일 참조를 확정 식별자로 연결"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!D88",
+    "before": "D",
+    "after": "Inspection",
+    "reason": "매트릭스의 검증 방법"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!I88",
+    "before": null,
+    "after": "외부기의 LED 패턴들을 확인한다.",
+    "reason": "매트릭스의 시험 입력/절차"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!J88",
+    "before": "- 쉽게 구분이 가능해야한다.",
+    "after": "패턴이 비슷하여 구분이 힘든 LED 패턴이 발견되지 않아야 한다.",
+    "reason": "매트릭스의 예상 결과/합격 기준"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!F88",
+    "before": null,
+    "after": "SYS-RID-FW-45",
+    "reason": "시험별 발생원 추적"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!E89",
+    "before": "='[1]소프트웨어 입력 요구사항 사양서'!$G$77",
+    "after": "SW-FW-RID-65",
+    "reason": "깨진 외부 파일 참조를 확정 식별자로 연결"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!D89",
+    "before": "A",
+    "after": "Inspection",
+    "reason": "매트릭스의 검증 방법"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!I89",
+    "before": null,
+    "after": "LED 패턴 색상과 해당 상태를 확인한다.",
+    "reason": "매트릭스의 시험 입력/절차"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!J89",
+    "before": "- 에러 및 고장은 붉은색, 주의갈 필요한 사항에는 주황색이 적용되어야한다.",
+    "after": "녹색 계열은 정상적인 상태;  노란색 계열은 주의가 필요한 상태, 빨간색 계열은 경고 및 고장 상태를 표현해야 한다.",
+    "reason": "매트릭스의 예상 결과/합격 기준"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!F89",
+    "before": null,
+    "after": "SYS-RID-FW-46",
+    "reason": "시험별 발생원 추적"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!E90",
+    "before": "='[1]소프트웨어 입력 요구사항 사양서'!$G$78",
+    "after": "SW-FW-RID-66",
+    "reason": "깨진 외부 파일 참조를 확정 식별자로 연결"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!D90",
+    "before": "A",
+    "after": "Demonstration",
+    "reason": "매트릭스의 검증 방법"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!I90",
+    "before": null,
+    "after": "정상 동작하는 상태에서 블루투스 central 장치에서 블루투스 연결을 강제로 종료한다.",
+    "reason": "매트릭스의 시험 입력/절차"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!J90",
+    "before": "- 이어피스가 연결되면 파란색 LED가 점멸되고, 다시 원래 LED 패턴으로 변경되어야 한다.",
+    "after": "외부기는 정상적으로 동작해야한다.",
+    "reason": "매트릭스의 예상 결과/합격 기준"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!C90",
+    "before": "이어피스 연결 상태 표시",
+    "after": "Bluetooth 연결 해제 시 기본 동작",
+    "reason": "이어피스 항목 대체"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!F90",
+    "before": null,
+    "after": "SYS-RID-FW-37",
+    "reason": "시험별 발생원 추적"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!E91",
+    "before": "='[1]소프트웨어 입력 요구사항 사양서'!$G$79",
+    "after": "SW-FW-RID-67",
+    "reason": "깨진 외부 파일 참조를 확정 식별자로 연결"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!D91",
+    "before": "D",
+    "after": "Test",
+    "reason": "매트릭스의 검증 방법"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!I91",
+    "before": null,
+    "after": "시동과정에서 자극 출력을 확인한다.",
+    "reason": "매트릭스의 시험 입력/절차"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!J91",
+    "before": "- 외부기와 내부기가 부착되는 과정에서 이상 출력이 확인되지 않아야 한다.",
+    "after": "시동절차가 완료되기 전까지 자극 출력이 생성되지 않아야 한다.",
+    "reason": "매트릭스의 예상 결과/합격 기준"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!F91",
+    "before": null,
+    "after": "SYS-RID-FW-49",
+    "reason": "시험별 발생원 추적"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!E92",
+    "before": "='[1]소프트웨어 입력 요구사항 사양서'!$G$80",
+    "after": "SW-FW-RID-68",
+    "reason": "깨진 외부 파일 참조를 확정 식별자로 연결"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!D92",
+    "before": "D",
+    "after": "Test",
+    "reason": "매트릭스의 검증 방법"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!I92",
+    "before": null,
+    "after": "종료과정에서 자극 출력을 확인한다.",
+    "reason": "매트릭스의 시험 입력/절차"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!J92",
+    "before": "- 외부기와 내부기가 탈착되는 과정에서 이상 출력이 확인되지 않아야 한다.",
+    "after": "종료절차가 완료된 이후에는 자극 출력이 생성되지 않아야 한다.",
+    "reason": "매트릭스의 예상 결과/합격 기준"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!F92",
+    "before": null,
+    "after": "SYS-RID-FW-50",
+    "reason": "시험별 발생원 추적"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!E93",
+    "before": null,
+    "after": "SW-FW-RID-69",
+    "reason": "깨진 외부 파일 참조를 확정 식별자로 연결"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!C93",
+    "before": null,
+    "after": "Bluetooth Classic 오디오 통신",
+    "reason": "누락 요구사항 시험 추가"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!D93",
+    "before": null,
+    "after": "Test",
+    "reason": "매트릭스의 검증 방법"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!I93",
+    "before": null,
+    "after": "",
+    "reason": "매트릭스의 시험 입력/절차"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!J93",
+    "before": null,
+    "after": "요구사항에 정한 동작이 확인되어야 한다.",
+    "reason": "매트릭스의 예상 결과/합격 기준"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!D93",
+    "before": null,
+    "after": "Test",
+    "reason": "기존 시험 방법 적용"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!I93",
+    "before": null,
+    "after": "Bluetooth Classic 오디오 송신 기기를 연결하고 1048 Hz 순음을 재생한다. 오디오 입력 상태와 해당 주파수 대역의 자극 출력을 확인한다.",
+    "reason": "입력/출력 절차 보충"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!J93",
+    "before": null,
+    "after": "오디오 스트리밍 연결과 데이터 수신이 유지되고, 입력 주파수에 대응하는 자극 출력이 확인되어야 한다.",
+    "reason": "오디오 통신 요구사항의 동작 확인"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!F93",
+    "before": null,
+    "after": "SYS-RID-FW-15",
+    "reason": "시험별 발생원 추적"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!B93",
+    "before": null,
+    "after": "SW-FW-SYS-Test-ID-69",
+    "reason": "기존 시험 번호 다음 번호"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!E94",
+    "before": null,
+    "after": "SW-FW-RID-70",
+    "reason": "깨진 외부 파일 참조를 확정 식별자로 연결"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!C94",
+    "before": null,
+    "after": "BLE data 통신",
+    "reason": "누락 요구사항 시험 추가"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!D94",
+    "before": null,
+    "after": "Test",
+    "reason": "매트릭스의 검증 방법"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!I94",
+    "before": null,
+    "after": "",
+    "reason": "매트릭스의 시험 입력/절차"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!J94",
+    "before": null,
+    "after": "요구사항에 정한 동작이 확인되어야 한다.",
+    "reason": "매트릭스의 예상 결과/합격 기준"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!D94",
+    "before": null,
+    "after": "Test",
+    "reason": "기존 시험 방법 적용"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!I94",
+    "before": null,
+    "after": "Bluetooth LE 연결과 인증 후 앱에서 맵 번호를 읽고 1~4번으로 변경한다. 응답과 적용된 맵 번호를 확인한다.",
+    "reason": "입력/출력 절차 보충"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!J94",
+    "before": null,
+    "after": "읽기/변경 명령에 정상 응답하며 응답한 맵 번호와 실제 적용된 번호가 일치해야 한다.",
+    "reason": "데이터 통신 요구사항의 동작 확인"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!F94",
+    "before": null,
+    "after": "SYS-RID-FW-16",
+    "reason": "시험별 발생원 추적"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!B94",
+    "before": null,
+    "after": "SW-FW-SYS-Test-ID-70",
+    "reason": "기존 시험 번호 다음 번호"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!E95",
+    "before": null,
+    "after": "SW-FW-RID-71",
+    "reason": "깨진 외부 파일 참조를 확정 식별자로 연결"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!C95",
+    "before": null,
+    "after": "- CRA 인증 결과에서 인증정보를 유추할 만한 피드백이 없음: 성공, 실패, 진행중, 타임아웃",
+    "reason": "누락 요구사항 시험 추가"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!D95",
+    "before": null,
+    "after": "Demonstration",
+    "reason": "매트릭스의 검증 방법"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!I95",
+    "before": null,
+    "after": "블루투스 페어링 및 2차 인증의 오류 응답 데이터를 확인한다.",
+    "reason": "매트릭스의 시험 입력/절차"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!J95",
+    "before": null,
+    "after": "텍스트 기반의 응답이 없어야 한다.",
+    "reason": "매트릭스의 예상 결과/합격 기준"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!F95",
+    "before": null,
+    "after": "SYS-RID-FW-20",
+    "reason": "시험별 발생원 추적"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!B95",
+    "before": null,
+    "after": "SW-FW-SYS-Test-ID-71",
+    "reason": "기존 시험 번호 다음 번호"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!E96",
+    "before": null,
+    "after": "SW-FW-RID-72",
+    "reason": "깨진 외부 파일 참조를 확정 식별자로 연결"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!C96",
+    "before": null,
+    "after": "CRA 인증 5회 연속 실패 시, 일정 시간동안 연결을 제한한다.",
+    "reason": "누락 요구사항 시험 추가"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!D96",
+    "before": null,
+    "after": "Demonstration",
+    "reason": "매트릭스의 검증 방법"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!I96",
+    "before": null,
+    "after": "블루투스 central 장치에서 블루투스 페어링 키를 5회 이상 틀리게 입력하고 페어링을 시도한다.",
+    "reason": "매트릭스의 시험 입력/절차"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!J96",
+    "before": null,
+    "after": "6회 시도부터는 일정 시간동안 페어링 절차를 중지해야한다.",
+    "reason": "매트릭스의 예상 결과/합격 기준"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!H96",
+    "before": null,
+    "after": "인증 실패 5회와 페어링 실패 5회가 매트릭스에서 혼용되어 있으므로 인증 단계와 잠금 시간을 확정한 후 시험한다.",
+    "reason": "시험 조건 불일치 기록"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!F96",
+    "before": null,
+    "after": "SYS-RID-FW-21",
+    "reason": "시험별 발생원 추적"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!B96",
+    "before": null,
+    "after": "SW-FW-SYS-Test-ID-72",
+    "reason": "기존 시험 번호 다음 번호"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!E97",
+    "before": null,
+    "after": "SW-FW-RID-73",
+    "reason": "깨진 외부 파일 참조를 확정 식별자로 연결"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!C97",
+    "before": null,
+    "after": "감사기록 생성 실패를 오류 정보에 포함한다.",
+    "reason": "누락 요구사항 시험 추가"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!D97",
+    "before": null,
+    "after": "Demonstration",
+    "reason": "매트릭스의 검증 방법"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!I97",
+    "before": null,
+    "after": "임의로 감사기록 생성이 실패하도록 하고 외부기의 상태를 확인한다.",
+    "reason": "매트릭스의 시험 입력/절차"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!J97",
+    "before": null,
+    "after": "LED로 에러상태가 표시되어야 한다.",
+    "reason": "매트릭스의 예상 결과/합격 기준"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!F97",
+    "before": null,
+    "after": "SYS-RID-FW-24",
+    "reason": "시험별 발생원 추적"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!B97",
+    "before": null,
+    "after": "SW-FW-SYS-Test-ID-73",
+    "reason": "기존 시험 번호 다음 번호"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!E98",
+    "before": null,
+    "after": "SW-FW-RID-74",
+    "reason": "깨진 외부 파일 참조를 확정 식별자로 연결"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!C98",
+    "before": null,
+    "after": "감사기록은 타임 스탬프를 포함한다.",
+    "reason": "누락 요구사항 시험 추가"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!D98",
+    "before": null,
+    "after": "Demonstration",
+    "reason": "매트릭스의 검증 방법"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!I98",
+    "before": null,
+    "after": "감사 기록을 확인한다.",
+    "reason": "매트릭스의 시험 입력/절차"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!J98",
+    "before": null,
+    "after": "감사 기록에 시간 정보가 표시되어야 한다.",
+    "reason": "매트릭스의 예상 결과/합격 기준"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!F98",
+    "before": null,
+    "after": "SYS-RID-FW-25",
+    "reason": "시험별 발생원 추적"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!B98",
+    "before": null,
+    "after": "SW-FW-SYS-Test-ID-74",
+    "reason": "기존 시험 번호 다음 번호"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!E99",
+    "before": null,
+    "after": "SW-FW-RID-75",
+    "reason": "깨진 외부 파일 참조를 확정 식별자로 연결"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!C99",
+    "before": null,
+    "after": "오류 메시지에 보안과 관련되 정보를 직접 표시하지 않는다.",
+    "reason": "누락 요구사항 시험 추가"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!D99",
+    "before": null,
+    "after": "Inspection",
+    "reason": "매트릭스의 검증 방법"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!I99",
+    "before": null,
+    "after": "정의된 오류 메시지를 확인한다.",
+    "reason": "매트릭스의 시험 입력/절차"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!J99",
+    "before": null,
+    "after": "텍스트로 정의된 오류 메시지가 없어야 한다.",
+    "reason": "매트릭스의 예상 결과/합격 기준"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!F99",
+    "before": null,
+    "after": "SYS-RID-FW-29",
+    "reason": "시험별 발생원 추적"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!B99",
+    "before": "6. 최종 통과 기준",
+    "after": "SW-FW-SYS-Test-ID-75",
+    "reason": "기존 시험 번호 다음 번호"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!E100",
+    "before": null,
+    "after": "SW-FW-RID-76",
+    "reason": "깨진 외부 파일 참조를 확정 식별자로 연결"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!C100",
+    "before": null,
+    "after": "1. 데이터의 송수신은 BLE 페어링과 CRA 인증 이후에 활성화 함. - 기밀화\n2. CRA 인증 키들은 생산시에 암호화하여 저장한다.",
+    "reason": "누락 요구사항 시험 추가"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!D100",
+    "before": null,
+    "after": "Demonstration",
+    "reason": "매트릭스의 검증 방법"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!I100",
+    "before": null,
+    "after": "블루투스 central 장치에서 블루투스 페어링 과정을 진행하지 않고 데이터를 송신한다.",
+    "reason": "매트릭스의 시험 입력/절차"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!J100",
+    "before": null,
+    "after": "블루투스 오류가 발생해야된다.",
+    "reason": "매트릭스의 예상 결과/합격 기준"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!F100",
+    "before": null,
+    "after": "SYS-RID-FW-33",
+    "reason": "시험별 발생원 추적"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!B100",
+    "before": ": 모든 시험 항목의 합격/불합격을 반영하여 판단 결론을 내려야한다.",
+    "after": "SW-FW-SYS-Test-ID-76",
+    "reason": "기존 시험 번호 다음 번호"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!E101",
+    "before": null,
+    "after": "SW-FW-RID-77",
+    "reason": "깨진 외부 파일 참조를 확정 식별자로 연결"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!C101",
+    "before": null,
+    "after": "내부장치 제조번호, 사용자 이니셜 값은 암호화 하여 저장한다.",
+    "reason": "누락 요구사항 시험 추가"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!D101",
+    "before": null,
+    "after": "Inspection",
+    "reason": "매트릭스의 검증 방법"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!I101",
+    "before": null,
+    "after": "내부장치 제조번호, 사요자 이니셜 값의 저장하고 읽는 코드를 확인한다.",
+    "reason": "매트릭스의 시험 입력/절차"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!J101",
+    "before": null,
+    "after": "암호화 및 복호화 코드가 적용되어 있어야 한다.",
+    "reason": "매트릭스의 예상 결과/합격 기준"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!F101",
+    "before": null,
+    "after": "SYS-RID-FW-34",
+    "reason": "시험별 발생원 추적"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!B101",
+    "before": null,
+    "after": "SW-FW-SYS-Test-ID-77",
+    "reason": "기존 시험 번호 다음 번호"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!E102",
+    "before": null,
+    "after": "SW-FW-RID-78",
+    "reason": "깨진 외부 파일 참조를 확정 식별자로 연결"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!C102",
+    "before": null,
+    "after": "무결성, 암호화에 사용되는 알고리즘은 사이버보안 규격에서 권고하는 알고리즘을 사용한다.",
+    "reason": "누락 요구사항 시험 추가"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!D102",
+    "before": null,
+    "after": "Inspection",
+    "reason": "매트릭스의 검증 방법"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!I102",
+    "before": null,
+    "after": "무결성 및 암호화에 사용되는 알고리즘 코드를 확인한다.",
+    "reason": "매트릭스의 시험 입력/절차"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!J102",
+    "before": null,
+    "after": "권고하는 알고리즘이 확인되어야 된다.",
+    "reason": "매트릭스의 예상 결과/합격 기준"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!F102",
+    "before": null,
+    "after": "SYS-RID-FW-35",
+    "reason": "시험별 발생원 추적"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!B102",
+    "before": null,
+    "after": "SW-FW-SYS-Test-ID-78",
+    "reason": "기존 시험 번호 다음 번호"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!E103",
+    "before": null,
+    "after": "SW-FW-RID-79",
+    "reason": "깨진 외부 파일 참조를 확정 식별자로 연결"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!C103",
+    "before": null,
+    "after": "외부에서 로그 정보의 접근은 인가자만 가능해야 하며, 외부 전송을 할경우 기밀성이 보호되어야 한다.",
+    "reason": "누락 요구사항 시험 추가"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!D103",
+    "before": null,
+    "after": "Demonstration",
+    "reason": "매트릭스의 검증 방법"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!I103",
+    "before": null,
+    "after": "외부에서 감사기록의 편집이 가능한지 확인한다.",
+    "reason": "매트릭스의 시험 입력/절차"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!J103",
+    "before": null,
+    "after": "외부에서 감사 기록의 편집 기능은 없어야 된다.",
+    "reason": "매트릭스의 예상 결과/합격 기준"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!I103",
+    "before": null,
+    "after": "권한이 있는 연결과 권한이 없는 연결에서 감사 기록 읽기를 시도한다. 전송 보호 적용 여부와 원격 수정 거부를 확인한다.",
+    "reason": "열람 권한/기밀성 요구사항에 맞춰 기존 절차 보충"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!F103",
+    "before": null,
+    "after": "SYS-RID-FW-36",
+    "reason": "시험별 발생원 추적"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!B103",
+    "before": "7. 시험 기준 검증",
+    "after": "SW-FW-SYS-Test-ID-79",
+    "reason": "기존 시험 번호 다음 번호"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!E104",
+    "before": null,
+    "after": "SW-FW-RID-80",
+    "reason": "깨진 외부 파일 참조를 확정 식별자로 연결"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!C104",
+    "before": "- 시험자가 실벽 되는가?",
+    "after": "설정파일의 무결성이 확인되지 않으면, 설정파일을 공장초기화 한다.",
+    "reason": "누락 요구사항 시험 추가"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!D104",
+    "before": null,
+    "after": "Demonstration",
+    "reason": "매트릭스의 검증 방법"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!I104",
+    "before": null,
+    "after": "임의로 무결성이 손상된 설정파일을 사용하여 부팅을 진행한다.",
+    "reason": "매트릭스의 시험 입력/절차"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!J104",
+    "before": null,
+    "after": "공장 초기화된 설정으로 외부기가 동작해야 한다.",
+    "reason": "매트릭스의 예상 결과/합격 기준"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!F104",
+    "before": null,
+    "after": "SYS-RID-FW-38",
+    "reason": "시험별 발생원 추적"
+  },
+  {
+    "file": "SSTC-FW-TD20B 소프트웨어 시스템 시험 기준서_ver1.xlsx",
+    "location": "기준서_시스템 시험!B104",
+    "before": null,
+    "after": "SW-FW-SYS-Test-ID-80",
+    "reason": "기존 시험 번호 다음 번호"
+  },
+  {
+    "file": "인공달팽이관 시스템 구성도.pptx",
+    "location": "ppt/slides/slide2.xml",
+    "before": "외부장치",
+    "after": "외부장치 Sound1",
+    "reason": "Sound1 제품/부품 구성 반영"
+  },
+  {
+    "file": "인공달팽이관 시스템 구성도.pptx",
+    "location": "ppt/slides/slide4.xml",
+    "before": "DSP",
+    "after": "E8300 / QCC5181",
+    "reason": "Sound1 제품/부품 구성 반영"
+  },
+  {
+    "file": "인공달팽이관 시스템 구성도.pptx",
+    "location": "ppt/slides/slide4.xml",
+    "before": "가속도센서",
+    "after": "터치센서",
+    "reason": "Sound1 제품/부품 구성 반영"
+  },
+  {
+    "file": "인공달팽이관 시스템 구성도.pptx",
+    "location": "ppt/slides/slide4.xml",
+    "before": "마이크로폰",
+    "after": "마이크 2개",
+    "reason": "Sound1 제품/부품 구성 반영"
+  }
+]

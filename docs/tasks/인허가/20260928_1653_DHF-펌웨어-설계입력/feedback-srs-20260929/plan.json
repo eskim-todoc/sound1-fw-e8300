@@ -1,0 +1,3285 @@
+{
+  "target": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\DHF\\02_설계 입력\\SW\\펌웨어\\SRS-FW-TD24A 소프트웨어 요구사항 사양서.xlsx",
+  "hash": "c428ea226b1888e3e3b95b383096fc5ab75ad64fad6fc9051880c253cbf81384",
+  "sheet": "소프트웨어 입력 요구사항 사양서",
+  "diffname": "소프트웨어 입력 요구사항 사양서_변경 비교",
+  "edits": {
+    "SW-FW-RID-1": "전채널 동시에 자극률은 20kHz이상이어야 한다.(32채널 사용)",
+    "SW-FW-RID-2": "채널별 최대 자극률은 1000Hz 이상이어야 한다.(24채널 사용)",
+    "SW-FW-RID-6": "자극 펄스 폭은 13~255usec 범위에서 1usec 단위로 조정이 가능해야한다.",
+    "SW-FW-RID-11": "필수 : CIS, 옵션 : N-of-M",
+    "SW-FW-RID-15": "[E8300/QCC 각각 확인, 향후 I2S] 2개 이상의 오디오 소스를 입력 받을 수 있어야 한다.",
+    "SW-FW-RID-16": "8kHz 오디오 신호를 입력 받을 수 있어야 한다.",
+    "SW-FW-RID-46": "등록된 내부이식장치와만 근접 무선 통신을 연결한다.",
+    "SW-FW-RID-42": "I2C 프로토콜을 사용하여 터치 센서와 데이터를 송수신할 수 있어야 한다.",
+    "SW-FW-RID-45": "[E8300/QCC 연계] 매핑 프로그램이 실행되는 기기와 블루투스를 사용하여 데이터 통신이 가능해야 한다.",
+    "SW-FW-RID-53": "소프트웨어 업데이트가 필요할 경우 기존 제품을 회수하고 업데이트된 제품을 생산하여 교체한다.",
+    "SW-FW-RID-44": "[E8300/QCC 연계] 리모콘 앱이 실행되는 스마트폰과 블루투스를 사용하여 데이터 통신이 가능해야한다.",
+    "SW-FW-RID-69": "[E8300/QCC 연계] Bluetooth Classic 오디오 통신",
+    "SW-FW-RID-70": "[E8300/QCC 연계] BLE data 통신",
+    "SW-FW-RID-47": "[QCC 단독] 일정시간 동안 제어 명령이 수신되지 않으면, BLE 연결을 해제한다.",
+    "SW-FW-RID-48": "[QCC 단독] 1. BLE Pairing 기능을  사용하여 인가된 장치와 연결\n2. BLE 연결 후 별도의 자체 인증 방식, CRA(Challenge-Response Authentication),을 사용하여 적법한 장치를 확인",
+    "SW-FW-RID-49": "[QCC 단독] BLE 페어링이 완료된 상태에서 데이터를 송/수신한다. - 무결성\n\nAES-CCM (Counter with CBC-MAC)을 사용함으로써 기밀성, 무결성, 인증  세 가지의 기능이 제공됨\n(Bluetooth Core specification LE Link Layer 참조)",
+    "SW-FW-RID-52": "[QCC 단독] 1. CRA 인증에서 기기제어를 위한 통신과 매핑을 의한 통신을 구분하여 별도의  인증 키와 인증방식을 사용\n2. CRA 인증에 사용되는 각 키의 크기는 16 bytes (128 bits)이므로 충분히 안전한 보안을 제공한다.",
+    "SW-FW-RID-71": "[QCC 단독] - CRA 인증 결과에서 인증정보를 유추할 만한 피드백이 없음: 성공, 실패, 진행중, 타임아웃",
+    "SW-FW-RID-72": "[QCC 단독] CRA 인증 5회 연속 실패 시, 일정 시간동안 연결을 제한한다.",
+    "SW-FW-RID-76": "[QCC 단독] 1. 데이터의 송수신은 BLE 페어링과 CRA 인증 이후에 활성화 함. - 기밀화\n2. CRA 인증 키들은 생산시에 암호화하여 저장한다."
+  },
+  "newtext": "품질관리시스템 절차에 따라, 인가된 인원이 펌웨어를 생성하여 배포한다.",
+  "body": [
+    {
+      "row": 6,
+      "sourceRow": 6,
+      "values": [
+        "a) 기능 및 성능 요구사항\nfunctional and capability requirements",
+        "자극 출력 조정",
+        "자극율 ",
+        "전채널 최대",
+        "전채널 동시에 자극률은 20kHz이상이어야 한다.(32채널 사용)",
+        "SW-FW-RID-1",
+        "SYS-RID-FW-2",
+        null
+      ]
+    },
+    {
+      "row": 7,
+      "sourceRow": 7,
+      "values": [
+        null,
+        null,
+        null,
+        "채널별 최대",
+        "채널별 최대 자극률은 1000Hz 이상이어야 한다.(24채널 사용)",
+        "SW-FW-RID-2",
+        null,
+        null
+      ]
+    },
+    {
+      "row": 8,
+      "sourceRow": 8,
+      "values": [
+        null,
+        null,
+        "자극 모드",
+        null,
+        "모노폴라 자극 모드 출력이 가능해야한다.",
+        "SW-FW-RID-3",
+        "SYS-RID-FW-1",
+        null
+      ]
+    },
+    {
+      "row": 9,
+      "sourceRow": 9,
+      "values": [
+        null,
+        null,
+        "선행 펄스 모양",
+        null,
+        "negative/positive phase 선택이 가능해야 한다.",
+        "SW-FW-RID-4",
+        "SYS-RID-FW-4",
+        null
+      ]
+    },
+    {
+      "row": 10,
+      "sourceRow": 10,
+      "values": [
+        null,
+        null,
+        "자극 크기 ",
+        null,
+        "내부 자극칩 출력 범위 내에서 조정이 가능해야 한다.",
+        "SW-FW-RID-5",
+        "SYS-RID-FW-5",
+        null
+      ]
+    },
+    {
+      "row": 11,
+      "sourceRow": 11,
+      "values": [
+        null,
+        null,
+        "자극 펄스폭  ",
+        null,
+        "자극 펄스 폭은 13~255usec 범위에서 1usec 단위로 조정이 가능해야한다.",
+        "SW-FW-RID-6",
+        "SYS-RID-FW-3",
+        null
+      ]
+    },
+    {
+      "row": 12,
+      "sourceRow": 12,
+      "values": [
+        null,
+        null,
+        "자극 크기/펄스폭 관계",
+        null,
+        "인공와우 내부기 시스템의 전극에서 출력되는 최대 전하량이 안전치를 초과하지 않도록 펄스폭에 따라 최종 자극 크기의 제한이 필요하다.",
+        "SW-FW-RID-7",
+        null,
+        null
+      ]
+    },
+    {
+      "row": 13,
+      "sourceRow": 13,
+      "values": [
+        null,
+        "사운드  처리",
+        "전처리",
+        "마이크 감도 \n조절 기능",
+        "AGC를 사용한 감도 조절 10단계",
+        "SW-FW-RID-8",
+        "SYS-RID-FW-6",
+        null
+      ]
+    },
+    {
+      "row": 14,
+      "sourceRow": 14,
+      "values": [
+        null,
+        null,
+        "주파수 분석 방법",
+        null,
+        "FFT 방식으로 신호의 주파수를 성분을 분석한다.",
+        "SW-FW-RID-9",
+        "SYS-RID-FW-7",
+        null
+      ]
+    },
+    {
+      "row": 15,
+      "sourceRow": 15,
+      "values": [
+        null,
+        null,
+        "주파수 분석 대역수",
+        null,
+        "1~32채널의 대역수로 주파수 분석이 가능해야한다.",
+        "SW-FW-RID-10",
+        "SYS-RID-FW-8",
+        null
+      ]
+    },
+    {
+      "row": 16,
+      "sourceRow": 16,
+      "values": [
+        null,
+        null,
+        "자극 기법",
+        null,
+        "필수 : CIS, 옵션 : N-of-M",
+        "SW-FW-RID-11",
+        "SYS-RID-FW-9",
+        null
+      ]
+    },
+    {
+      "row": 17,
+      "sourceRow": 17,
+      "values": [
+        null,
+        null,
+        "사운드 처리 주기",
+        null,
+        "사운드 처리 주기는 1 ms 이하이어야 한다.",
+        "SW-FW-RID-12",
+        "SYS-RID-FW-10",
+        null
+      ]
+    },
+    {
+      "row": 18,
+      "sourceRow": 18,
+      "values": [
+        null,
+        "기능",
+        "프로그램 수",
+        null,
+        "4개의 맵 데이터를 사용할 수 있어야 한다.",
+        "SW-FW-RID-13",
+        "SYS-RID-FW-11",
+        null
+      ]
+    },
+    {
+      "row": 19,
+      "sourceRow": 19,
+      "values": [
+        null,
+        null,
+        "자극 볼륨 조절",
+        null,
+        "자극 볼륨은 4단계로 조정 가능해야한다.",
+        "SW-FW-RID-14",
+        "SYS-RID-FW-12",
+        null
+      ]
+    },
+    {
+      "row": 20,
+      "sourceRow": 20,
+      "values": [
+        "b) 소프트웨어 시스템 입력과 출력\n(SOFTWARE SYSTEM inputs and outputs)",
+        "사운드  처리",
+        "입력단",
+        null,
+        "[E8300/QCC 각각 확인, 향후 I2S] 2개 이상의 오디오 소스를 입력 받을 수 있어야 한다.",
+        "SW-FW-RID-15",
+        null,
+        null
+      ]
+    },
+    {
+      "row": 21,
+      "sourceRow": 21,
+      "values": [
+        null,
+        null,
+        null,
+        null,
+        "8kHz 오디오 신호를 입력 받을 수 있어야 한다.",
+        "SW-FW-RID-16",
+        null,
+        null
+      ]
+    },
+    {
+      "row": 22,
+      "sourceRow": 22,
+      "values": [
+        null,
+        null,
+        "출력단",
+        null,
+        "오디오 신호처리의 최종 출력은 PCM 데이터로 변환되어 FPGA에 전달되어야 한다.",
+        "SW-FW-RID-17",
+        null,
+        null
+      ]
+    },
+    {
+      "row": 23,
+      "sourceRow": 23,
+      "values": [
+        null,
+        null,
+        "매핑 데이터",
+        null,
+        "매핑 데이터에 기반하여 최종 자극 파라미터가 생성되어야 한다.",
+        "SW-FW-RID-18",
+        null,
+        null
+      ]
+    },
+    {
+      "row": 24,
+      "sourceRow": 24,
+      "values": [
+        null,
+        "사용자 인터페이스\n(외부기 자체)",
+        "입력",
+        null,
+        "터치 센서의 입력에 따라 전원 모드와 사용자 제어를 처리한다.",
+        "SW-FW-RID-19",
+        null,
+        null
+      ]
+    },
+    {
+      "row": 25,
+      "sourceRow": 25,
+      "values": [
+        null,
+        null,
+        "출력",
+        "LED 출력",
+        "외부기 동작 상태를 표시한다.",
+        "SW-FW-RID-20",
+        null,
+        null
+      ]
+    },
+    {
+      "row": 26,
+      "sourceRow": 26,
+      "values": [
+        null,
+        null,
+        null,
+        null,
+        "전원 커넥터 연결 상태를 표시한다.",
+        "SW-FW-RID-21",
+        null,
+        null
+      ]
+    },
+    {
+      "row": 27,
+      "sourceRow": 27,
+      "values": [
+        null,
+        null,
+        null,
+        null,
+        "배터리 저전압 상태를  표시한다.",
+        "SW-FW-RID-22",
+        null,
+        null
+      ]
+    },
+    {
+      "row": 28,
+      "sourceRow": 28,
+      "values": [
+        null,
+        null,
+        null,
+        "자극 출력",
+        "배터리 저전압 상태를 자극으로 출력한다.",
+        "SW-FW-RID-23",
+        null,
+        null
+      ]
+    },
+    {
+      "row": 29,
+      "sourceRow": 29,
+      "values": [
+        null,
+        "사용자 인터페이스\n(리모콘 앱 통신)",
+        "입력(수신)",
+        null,
+        "프로그램 변경하기",
+        "SW-FW-RID-24",
+        null,
+        null
+      ]
+    },
+    {
+      "row": 30,
+      "sourceRow": 30,
+      "values": [
+        null,
+        null,
+        null,
+        null,
+        "오디오 볼륨 조절하기",
+        "SW-FW-RID-25",
+        null,
+        null
+      ]
+    },
+    {
+      "row": 31,
+      "sourceRow": 31,
+      "values": [
+        null,
+        null,
+        null,
+        null,
+        "자극 볼륨 조절하기",
+        "SW-FW-RID-26",
+        null,
+        null
+      ]
+    },
+    {
+      "row": 32,
+      "sourceRow": 32,
+      "values": [
+        null,
+        null,
+        null,
+        null,
+        "LED 알림 켜기/끄기",
+        "SW-FW-RID-27",
+        null,
+        null
+      ]
+    },
+    {
+      "row": 33,
+      "sourceRow": 33,
+      "values": [
+        null,
+        null,
+        null,
+        null,
+        "자극 알림 켜기/끄기",
+        "SW-FW-RID-28",
+        null,
+        null
+      ]
+    },
+    {
+      "row": 34,
+      "sourceRow": 34,
+      "values": [
+        null,
+        null,
+        "출력(송신)",
+        null,
+        "배터리 상태",
+        "SW-FW-RID-29",
+        null,
+        null
+      ]
+    },
+    {
+      "row": 35,
+      "sourceRow": 35,
+      "values": [
+        null,
+        null,
+        null,
+        null,
+        "선택된 맵 번호",
+        "SW-FW-RID-30",
+        null,
+        null
+      ]
+    },
+    {
+      "row": 36,
+      "sourceRow": 36,
+      "values": [
+        null,
+        null,
+        null,
+        null,
+        "오디오 볼륨 단계",
+        "SW-FW-RID-31",
+        null,
+        null
+      ]
+    },
+    {
+      "row": 37,
+      "sourceRow": 37,
+      "values": [
+        null,
+        null,
+        null,
+        null,
+        "자극 볼륨 단계",
+        "SW-FW-RID-32",
+        null,
+        null
+      ]
+    },
+    {
+      "row": 38,
+      "sourceRow": 38,
+      "values": [
+        null,
+        null,
+        null,
+        null,
+        "LED 알림 설정 상태",
+        "SW-FW-RID-33",
+        null,
+        null
+      ]
+    },
+    {
+      "row": 39,
+      "sourceRow": 39,
+      "values": [
+        null,
+        null,
+        null,
+        null,
+        "자극 알림 설정 상태",
+        "SW-FW-RID-34",
+        null,
+        null
+      ]
+    },
+    {
+      "row": 40,
+      "sourceRow": 40,
+      "values": [
+        null,
+        "사용자 인터페이스\n(매핑 앱 통신)",
+        "입력(수신)",
+        null,
+        "시스템 상태 확인",
+        "SW-FW-RID-35",
+        null,
+        null
+      ]
+    },
+    {
+      "row": 41,
+      "sourceRow": 41,
+      "values": [
+        null,
+        null,
+        null,
+        null,
+        "특정 자극 출력",
+        "SW-FW-RID-36",
+        null,
+        null
+      ]
+    },
+    {
+      "row": 42,
+      "sourceRow": 42,
+      "values": [
+        null,
+        null,
+        null,
+        null,
+        "실시간 자극 출력 진행 ",
+        "SW-FW-RID-37",
+        null,
+        null
+      ]
+    },
+    {
+      "row": 43,
+      "sourceRow": 43,
+      "values": [
+        null,
+        null,
+        "출력(송신)",
+        null,
+        "시스템 상태 ",
+        "SW-FW-RID-38",
+        null,
+        null
+      ]
+    },
+    {
+      "row": 44,
+      "sourceRow": 44,
+      "values": [
+        null,
+        null,
+        null,
+        null,
+        "특정 자극 출력 결과",
+        "SW-FW-RID-39",
+        null,
+        null
+      ]
+    },
+    {
+      "row": 45,
+      "sourceRow": 45,
+      "values": [
+        null,
+        null,
+        null,
+        null,
+        "실시간 자극 진행 상태",
+        "SW-FW-RID-40",
+        null,
+        null
+      ]
+    },
+    {
+      "row": 46,
+      "sourceRow": 46,
+      "values": [
+        null,
+        "기기 인터페이스",
+        "FPGA ",
+        null,
+        "I2C 프로토콜을 사용하여 FPGA와 데이터 송/수신이 가능해야한다.",
+        "SW-FW-RID-41",
+        null,
+        null
+      ]
+    },
+    {
+      "row": 47,
+      "sourceRow": 47,
+      "values": [
+        null,
+        null,
+        "센서",
+        null,
+        "I2C 프로토콜을 사용하여 터치 센서와 데이터를 송수신할 수 있어야 한다.",
+        "SW-FW-RID-42",
+        null,
+        null
+      ]
+    },
+    {
+      "row": 48,
+      "sourceRow": 48,
+      "values": [
+        null,
+        null,
+        "PMIC",
+        null,
+        "I2C를 프로토콜을 사용하여 PMIC의 조정이 가능해야한다.",
+        "SW-FW-RID-43",
+        null,
+        null
+      ]
+    },
+    {
+      "row": 49,
+      "sourceRow": 49,
+      "values": [
+        "c) 소프트웨어 시스템과 다른 소프트웨어 사이의 연계성\n(interfaces between the SOFTWARE SYSTEM and other SYSTEMS)",
+        "리모콘",
+        null,
+        null,
+        "[E8300/QCC 연계] 리모콘 앱이 실행되는 스마트폰과 블루투스를 사용하여 데이터 통신이 가능해야한다.",
+        "SW-FW-RID-44",
+        "SYS-RID-FW-13",
+        null
+      ]
+    },
+    {
+      "row": 50,
+      "sourceRow": 50,
+      "values": [
+        null,
+        "매핑",
+        null,
+        null,
+        "[E8300/QCC 연계] 매핑 프로그램이 실행되는 기기와 블루투스를 사용하여 데이터 통신이 가능해야 한다.",
+        "SW-FW-RID-45",
+        "SYS-RID-FW-14",
+        null
+      ]
+    },
+    {
+      "row": 51,
+      "sourceRow": 51,
+      "values": [
+        null,
+        "Bluetooth",
+        null,
+        null,
+        "[E8300/QCC 연계] Bluetooth Classic 오디오 통신",
+        "SW-FW-RID-69",
+        "SYS-RID-FW-15",
+        null
+      ]
+    },
+    {
+      "row": 52,
+      "sourceRow": 52,
+      "values": [
+        null,
+        null,
+        null,
+        null,
+        "[E8300/QCC 연계] BLE data 통신",
+        "SW-FW-RID-70",
+        "SYS-RID-FW-16",
+        null
+      ]
+    },
+    {
+      "row": 53,
+      "sourceRow": 53,
+      "values": [
+        "d) 소프트웨어 구동 경보, 경고 및 운영자 메시지\n(software-driven alarms, warnings, and operator messages)",
+        "NA",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "row": 54,
+      "sourceRow": 54,
+      "values": [
+        "e) 보안 요구사항\n(SECURITY requirements)",
+        "사이버 보안",
+        null,
+        null,
+        "등록된 내부이식장치와만 근접 무선 통신을 연결한다.",
+        "SW-FW-RID-46",
+        "SYS-RID-FW-17",
+        null
+      ]
+    },
+    {
+      "row": 55,
+      "sourceRow": 55,
+      "values": [
+        null,
+        null,
+        null,
+        null,
+        "[QCC 단독] 일정시간 동안 제어 명령이 수신되지 않으면, BLE 연결을 해제한다.",
+        "SW-FW-RID-47",
+        "SYS-RID-FW-22",
+        null
+      ]
+    },
+    {
+      "row": 56,
+      "sourceRow": 56,
+      "values": [
+        null,
+        null,
+        null,
+        null,
+        "[QCC 단독] 1. BLE Pairing 기능을  사용하여 인가된 장치와 연결\n2. BLE 연결 후 별도의 자체 인증 방식, CRA(Challenge-Response Authentication),을 사용하여 적법한 장치를 확인",
+        "SW-FW-RID-48",
+        "SYS-RID-FW-18",
+        null
+      ]
+    },
+    {
+      "row": 57,
+      "sourceRow": 57,
+      "values": [
+        null,
+        null,
+        null,
+        null,
+        "[QCC 단독] BLE 페어링이 완료된 상태에서 데이터를 송/수신한다. - 무결성\n\nAES-CCM (Counter with CBC-MAC)을 사용함으로써 기밀성, 무결성, 인증  세 가지의 기능이 제공됨\n(Bluetooth Core specification LE Link Layer 참조)",
+        "SW-FW-RID-49",
+        "SYS-RID-FW-26",
+        null
+      ]
+    },
+    {
+      "row": 58,
+      "sourceRow": 58,
+      "values": [
+        null,
+        null,
+        null,
+        null,
+        "감사기록을 생성한다.",
+        "SW-FW-RID-50",
+        "SYS-RID-FW-23",
+        null
+      ]
+    },
+    {
+      "row": 59,
+      "sourceRow": 59,
+      "values": [
+        null,
+        null,
+        null,
+        null,
+        "설정파일을 읽을 때, 파일의 무결성을 확인한다.",
+        "SW-FW-RID-51",
+        "SYS-RID-FW-27",
+        null
+      ]
+    },
+    {
+      "row": 60,
+      "sourceRow": 60,
+      "values": [
+        null,
+        null,
+        null,
+        null,
+        "[QCC 단독] 1. CRA 인증에서 기기제어를 위한 통신과 매핑을 의한 통신을 구분하여 별도의  인증 키와 인증방식을 사용\n2. CRA 인증에 사용되는 각 키의 크기는 16 bytes (128 bits)이므로 충분히 안전한 보안을 제공한다.",
+        "SW-FW-RID-52",
+        "SYS-RID-FW-19",
+        null
+      ]
+    },
+    {
+      "row": 61,
+      "sourceRow": 61,
+      "values": [
+        null,
+        null,
+        null,
+        null,
+        "소프트웨어 업데이트가 필요할 경우 기존 제품을 회수하고 업데이트된 제품을 생산하여 교체한다.",
+        "SW-FW-RID-53",
+        "SYS-RID-FW-30",
+        null
+      ]
+    },
+    {
+      "row": 62,
+      "sourceRow": 61,
+      "values": [
+        null,
+        null,
+        null,
+        null,
+        "품질관리시스템 절차에 따라, 인가된 인원이 펌웨어를 생성하여 배포한다.",
+        "SW-FW-RID-81",
+        "SYS-RID-FW-31",
+        null
+      ]
+    },
+    {
+      "row": 63,
+      "sourceRow": 62,
+      "values": [
+        null,
+        null,
+        null,
+        null,
+        "1. 칩셋에서 부팅 과정에서 실행파일의 CRC 체크 기능 활성화\n2. 칩셋에서 제공하는 무결성 방식을 사용하여 검사",
+        "SW-FW-RID-54",
+        "SYS-RID-FW-32",
+        null
+      ]
+    },
+    {
+      "row": 64,
+      "sourceRow": 63,
+      "values": [
+        null,
+        null,
+        null,
+        null,
+        "[QCC 단독] - CRA 인증 결과에서 인증정보를 유추할 만한 피드백이 없음: 성공, 실패, 진행중, 타임아웃",
+        "SW-FW-RID-71",
+        "SYS-RID-FW-20",
+        null
+      ]
+    },
+    {
+      "row": 65,
+      "sourceRow": 64,
+      "values": [
+        null,
+        null,
+        null,
+        null,
+        "[QCC 단독] CRA 인증 5회 연속 실패 시, 일정 시간동안 연결을 제한한다.",
+        "SW-FW-RID-72",
+        "SYS-RID-FW-21",
+        null
+      ]
+    },
+    {
+      "row": 66,
+      "sourceRow": 65,
+      "values": [
+        null,
+        null,
+        null,
+        null,
+        "감사기록 생성 실패를 오류 정보에 포함한다.",
+        "SW-FW-RID-73",
+        "SYS-RID-FW-24",
+        null
+      ]
+    },
+    {
+      "row": 67,
+      "sourceRow": 66,
+      "values": [
+        null,
+        null,
+        null,
+        null,
+        "감사기록은 타임 스탬프를 포함한다.",
+        "SW-FW-RID-74",
+        "SYS-RID-FW-25",
+        null
+      ]
+    },
+    {
+      "row": 68,
+      "sourceRow": 67,
+      "values": [
+        null,
+        null,
+        null,
+        null,
+        "오류 메시지에 보안과 관련되 정보를 직접 표시하지 않는다.",
+        "SW-FW-RID-75",
+        "SYS-RID-FW-29",
+        null
+      ]
+    },
+    {
+      "row": 69,
+      "sourceRow": 68,
+      "values": [
+        null,
+        null,
+        null,
+        null,
+        "[QCC 단독] 1. 데이터의 송수신은 BLE 페어링과 CRA 인증 이후에 활성화 함. - 기밀화\n2. CRA 인증 키들은 생산시에 암호화하여 저장한다.",
+        "SW-FW-RID-76",
+        "SYS-RID-FW-33",
+        null
+      ]
+    },
+    {
+      "row": 70,
+      "sourceRow": 69,
+      "values": [
+        null,
+        null,
+        null,
+        null,
+        "내부장치 제조번호, 사용자 이니셜 값은 암호화 하여 저장한다.",
+        "SW-FW-RID-77",
+        "SYS-RID-FW-34",
+        null
+      ]
+    },
+    {
+      "row": 71,
+      "sourceRow": 70,
+      "values": [
+        null,
+        null,
+        null,
+        null,
+        "무결성, 암호화에 사용되는 알고리즘은 사이버보안 규격에서 권고하는 알고리즘을 사용한다.",
+        "SW-FW-RID-78",
+        "SYS-RID-FW-35",
+        null
+      ]
+    },
+    {
+      "row": 72,
+      "sourceRow": 71,
+      "values": [
+        null,
+        null,
+        null,
+        null,
+        "외부에서 로그 정보의 접근은 인가자만 가능해야 하며, 외부 전송을 할경우 기밀성이 보호되어야 한다.",
+        "SW-FW-RID-79",
+        "SYS-RID-FW-36",
+        null
+      ]
+    },
+    {
+      "row": 73,
+      "sourceRow": 72,
+      "values": [
+        null,
+        null,
+        null,
+        null,
+        "설정파일의 무결성이 확인되지 않으면, 설정파일을 공장초기화 한다.",
+        "SW-FW-RID-80",
+        "SYS-RID-FW-38",
+        null
+      ]
+    },
+    {
+      "row": 74,
+      "sourceRow": 73,
+      "values": [
+        "f) 사람에 의해 발생하는 오류와 훈련에 민감한 사용성 공학 요구사항\n(usability engineering requirements that are sensitive to human errors and training)",
+        "주의부족, 기억력 감퇴",
+        null,
+        null,
+        "배터리 저전압을 주기적으로 반복하여 자극 출력과 LED로 알린다.",
+        "SW-FW-RID-55",
+        "SYS-RID-FW-48",
+        null
+      ]
+    },
+    {
+      "row": 75,
+      "sourceRow": 74,
+      "values": [
+        null,
+        "중복실수",
+        null,
+        null,
+        "자극 볼륨은 단계적으로 증가하도록 설계한다.(soft increase)",
+        "SW-FW-RID-56",
+        "SYS-RID-FW-47",
+        null
+      ]
+    },
+    {
+      "row": 76,
+      "sourceRow": 75,
+      "values": [
+        "g) 데이터 정의 및 데이터 베이스 요구사항\n(data definition and database requirements)",
+        "NA",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "row": 77,
+      "sourceRow": 76,
+      "values": [
+        "h) 운영 및 유지보수 현장에 인도된 의료기기 소프트웨어의 설치 및 인수 요구사항\n(installation and acceptance requirements of the delivered MEDICAL DEVICE SOFTWARE at the operation and maintenance site or sites)",
+        "NA",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "row": 78,
+      "sourceRow": 77,
+      "values": [
+        "i) 운영 및 유지보수 방법에 관련된 요구사항\nrequirements related to methods of operation and maintenance",
+        "NA",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "row": 79,
+      "sourceRow": 78,
+      "values": [
+        "j) 개발할 사용자 설명서\n(user documentation to be developed)",
+        "NA",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "row": 80,
+      "sourceRow": 79,
+      "values": [
+        "k) 사용자 유지보수 요구사항\n(user maintenance requirements)",
+        "NA",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "row": 81,
+      "sourceRow": 80,
+      "values": [
+        "l) 규제적 요구사항\n(regulatory requirements)",
+        "IEC 60601-1\n(IEC 62304에 포함되지 않은 사항)",
+        null,
+        null,
+        "필수 성능 시험을 진행한다.",
+        "SW-FW-RID-57",
+        "SYS-RID-FW-39, SYS-RID-FW-40",
+        null
+      ]
+    },
+    {
+      "row": 82,
+      "sourceRow": 81,
+      "values": [
+        null,
+        null,
+        null,
+        null,
+        "실시간 신호처리가 가능하도록 설계한다.",
+        "SW-FW-RID-58",
+        "SYS-RID-FW-41",
+        null
+      ]
+    },
+    {
+      "row": 83,
+      "sourceRow": 82,
+      "values": [
+        null,
+        null,
+        null,
+        null,
+        "제어 명령이 프로토콜에 맞게 전송되어야 실행한다.",
+        "SW-FW-RID-59",
+        "SYS-RID-FW-28",
+        null
+      ]
+    },
+    {
+      "row": 84,
+      "sourceRow": 83,
+      "values": [
+        null,
+        null,
+        null,
+        null,
+        "CRC 기능이 있는 통신 프로토콜을 사용한다.",
+        "SW-FW-RID-60",
+        "SYS-RID-FW-42",
+        null
+      ]
+    },
+    {
+      "row": 85,
+      "sourceRow": 84,
+      "values": [
+        null,
+        null,
+        null,
+        null,
+        "정상사용을 위한 준비상태를 표시하도록 설계한다.",
+        "SW-FW-RID-61",
+        "SYS-RID-FW-43",
+        null
+      ]
+    },
+    {
+      "row": 86,
+      "sourceRow": 85,
+      "values": [
+        null,
+        null,
+        null,
+        null,
+        "전원커넥터가 연결되면 연결을 확인할 수 있어야한다.(충전모드 표시).",
+        "SW-FW-RID-62",
+        "SYS-RID-FW-44",
+        null
+      ]
+    },
+    {
+      "row": 87,
+      "sourceRow": 86,
+      "values": [
+        null,
+        null,
+        null,
+        null,
+        "배터리 잔량을 표시할 수 있어야 한다.",
+        "SW-FW-RID-63",
+        null,
+        null
+      ]
+    },
+    {
+      "row": 88,
+      "sourceRow": 87,
+      "values": [
+        null,
+        null,
+        null,
+        null,
+        "구분이 쉽도록 LED 패턴을 생성한다.",
+        "SW-FW-RID-64",
+        "SYS-RID-FW-45",
+        null
+      ]
+    },
+    {
+      "row": 89,
+      "sourceRow": 88,
+      "values": [
+        null,
+        null,
+        null,
+        null,
+        "사회 통념적으로 사용되는 색상을 사용하여 인공와우 외부기 상태를 표시한다.",
+        "SW-FW-RID-65",
+        "SYS-RID-FW-46",
+        null
+      ]
+    },
+    {
+      "row": 90,
+      "sourceRow": 89,
+      "values": [
+        null,
+        null,
+        null,
+        null,
+        "BLE 통신 연결 장애 발생 시, 정상 동작이 되어야 한다.",
+        "SW-FW-RID-66",
+        "SYS-RID-FW-37",
+        null
+      ]
+    },
+    {
+      "row": 91,
+      "sourceRow": 90,
+      "values": [
+        null,
+        null,
+        null,
+        null,
+        "시동과정에서는 출력을 생성하지 않게 한다",
+        "SW-FW-RID-67",
+        "SYS-RID-FW-49",
+        null
+      ]
+    },
+    {
+      "row": 92,
+      "sourceRow": 91,
+      "values": [
+        null,
+        null,
+        null,
+        null,
+        "종료과정에서는 출력을 생성하지 않게 한다.",
+        "SW-FW-RID-68",
+        "SYS-RID-FW-50",
+        null
+      ]
+    }
+  ],
+  "entries": [
+    {
+      "mark": "",
+      "values": [
+        "a) 기능 및 성능 요구사항\nfunctional and capability requirements",
+        "자극 출력 조정",
+        "자극율 ",
+        "전채널 최대",
+        "전채널 동시에 자극률은 20kHz이상이어야 한다.(32채널 사용)",
+        "SW-FW-RID-1",
+        "SYS-RID-FW-2",
+        null
+      ],
+      "bodyrow": 6
+    },
+    {
+      "mark": "",
+      "values": [
+        null,
+        null,
+        null,
+        "채널별 최대",
+        "채널별 최대 자극률은 1000Hz 이상이어야 한다.(24채널 사용)",
+        "SW-FW-RID-2",
+        null,
+        null
+      ],
+      "bodyrow": 7
+    },
+    {
+      "mark": "",
+      "values": [
+        null,
+        null,
+        "자극 모드",
+        null,
+        "모노폴라 자극 모드 출력이 가능해야한다.",
+        "SW-FW-RID-3",
+        "SYS-RID-FW-1",
+        null
+      ],
+      "bodyrow": 8
+    },
+    {
+      "mark": "",
+      "values": [
+        null,
+        null,
+        "선행 펄스 모양",
+        null,
+        "negative/positive phase 선택이 가능해야 한다.",
+        "SW-FW-RID-4",
+        "SYS-RID-FW-4",
+        null
+      ],
+      "bodyrow": 9
+    },
+    {
+      "mark": "",
+      "values": [
+        null,
+        null,
+        "자극 크기 ",
+        null,
+        "내부 자극칩 출력 범위 내에서 조정이 가능해야 한다.",
+        "SW-FW-RID-5",
+        "SYS-RID-FW-5",
+        null
+      ],
+      "bodyrow": 10
+    },
+    {
+      "mark": "",
+      "values": [
+        null,
+        null,
+        "자극 펄스폭  ",
+        null,
+        "자극 펄스 폭은 13~255usec 범위에서 1usec 단위로 조정이 가능해야한다.",
+        "SW-FW-RID-6",
+        "SYS-RID-FW-3",
+        null
+      ],
+      "bodyrow": 11
+    },
+    {
+      "mark": "",
+      "values": [
+        null,
+        null,
+        "자극 크기/펄스폭 관계",
+        null,
+        "인공와우 내부기 시스템의 전극에서 출력되는 최대 전하량이 안전치를 초과하지 않도록 펄스폭에 따라 최종 자극 크기의 제한이 필요하다.",
+        "SW-FW-RID-7",
+        null,
+        null
+      ],
+      "bodyrow": 12
+    },
+    {
+      "mark": "[-]",
+      "values": [
+        null,
+        "사운드  처리",
+        "전처리",
+        "마이크 감도 \n조절 기능",
+        "AGC를 사용한 감도 조절 10단계",
+        "SW-FW-RID-8",
+        "SYS-RID-FW:7",
+        null
+      ],
+      "bodyrow": 13
+    },
+    {
+      "mark": "[+]",
+      "values": [
+        null,
+        "사운드  처리",
+        "전처리",
+        "마이크 감도 \n조절 기능",
+        "AGC를 사용한 감도 조절 10단계",
+        "SW-FW-RID-8",
+        "SYS-RID-FW-6",
+        null
+      ],
+      "bodyrow": 13
+    },
+    {
+      "mark": "[-]",
+      "values": [
+        null,
+        null,
+        "주파수 분석 방법",
+        null,
+        "FFT 방식으로 신호의 주파수를 성분을 분석한다.",
+        "SW-FW-RID-9",
+        "SYS-RID-FW:8",
+        null
+      ],
+      "bodyrow": 14
+    },
+    {
+      "mark": "[+]",
+      "values": [
+        null,
+        null,
+        "주파수 분석 방법",
+        null,
+        "FFT 방식으로 신호의 주파수를 성분을 분석한다.",
+        "SW-FW-RID-9",
+        "SYS-RID-FW-7",
+        null
+      ],
+      "bodyrow": 14
+    },
+    {
+      "mark": "[-]",
+      "values": [
+        null,
+        null,
+        "주파수 분석 대역수",
+        null,
+        "1~32채널의 대역수로 주파수 분석이 가능해야한다.",
+        "SW-FW-RID-10",
+        "SYS-RID-FW:9",
+        null
+      ],
+      "bodyrow": 15
+    },
+    {
+      "mark": "[+]",
+      "values": [
+        null,
+        null,
+        "주파수 분석 대역수",
+        null,
+        "1~32채널의 대역수로 주파수 분석이 가능해야한다.",
+        "SW-FW-RID-10",
+        "SYS-RID-FW-8",
+        null
+      ],
+      "bodyrow": 15
+    },
+    {
+      "mark": "[-]",
+      "values": [
+        null,
+        null,
+        "자극 기법",
+        null,
+        "필수 : CIS, 옵션 : N-of-M",
+        "SW-FW-RID-11",
+        "SYS-RID-FW:10",
+        null
+      ],
+      "bodyrow": 16
+    },
+    {
+      "mark": "[+]",
+      "values": [
+        null,
+        null,
+        "자극 기법",
+        null,
+        "필수 : CIS, 옵션 : N-of-M",
+        "SW-FW-RID-11",
+        "SYS-RID-FW-9",
+        null
+      ],
+      "bodyrow": 16
+    },
+    {
+      "mark": "[-]",
+      "values": [
+        null,
+        null,
+        "사운드 처리 주기",
+        null,
+        "1msec",
+        "SW-FW-RID-12",
+        "SYS-RID-FW:11",
+        null
+      ],
+      "bodyrow": 17
+    },
+    {
+      "mark": "[+]",
+      "values": [
+        null,
+        null,
+        "사운드 처리 주기",
+        null,
+        "사운드 처리 주기는 1 ms 이하이어야 한다.",
+        "SW-FW-RID-12",
+        "SYS-RID-FW-10",
+        null
+      ],
+      "bodyrow": 17
+    },
+    {
+      "mark": "[-]",
+      "values": [
+        null,
+        "기능",
+        "프로그램 수",
+        null,
+        "4개의 맵 데이터를 사용할 수 있어야 한다.",
+        "SW-FW-RID-13",
+        "SYS-RID-FW:12",
+        null
+      ],
+      "bodyrow": 18
+    },
+    {
+      "mark": "[+]",
+      "values": [
+        null,
+        "기능",
+        "프로그램 수",
+        null,
+        "4개의 맵 데이터를 사용할 수 있어야 한다.",
+        "SW-FW-RID-13",
+        "SYS-RID-FW-11",
+        null
+      ],
+      "bodyrow": 18
+    },
+    {
+      "mark": "[-]",
+      "values": [
+        null,
+        null,
+        "자극 볼륨 조절",
+        null,
+        "자극 볼륨은 4단계로 조정 가능해야한다.",
+        "SW-FW-RID-14",
+        "SYS-RID-FW:13",
+        null
+      ],
+      "bodyrow": 19
+    },
+    {
+      "mark": "[+]",
+      "values": [
+        null,
+        null,
+        "자극 볼륨 조절",
+        null,
+        "자극 볼륨은 4단계로 조정 가능해야한다.",
+        "SW-FW-RID-14",
+        "SYS-RID-FW-12",
+        null
+      ],
+      "bodyrow": 19
+    },
+    {
+      "mark": "[-]",
+      "values": [
+        "b) 소프트웨어 시스템 입력과 출력\n(SOFTWARE SYSTEM inputs and outputs)",
+        "사운드  처리",
+        "입력단",
+        null,
+        "2개 이상의 오디오 소스를 입력 받을 수 있어야 한다.",
+        "SW-FW-RID-15",
+        null,
+        null
+      ],
+      "bodyrow": 20
+    },
+    {
+      "mark": "[+]",
+      "values": [
+        "b) 소프트웨어 시스템 입력과 출력\n(SOFTWARE SYSTEM inputs and outputs)",
+        "사운드  처리",
+        "입력단",
+        null,
+        "[E8300/QCC 각각 확인, 향후 I2S] 2개 이상의 오디오 소스를 입력 받을 수 있어야 한다.",
+        "SW-FW-RID-15",
+        null,
+        null
+      ],
+      "bodyrow": 20
+    },
+    {
+      "mark": "",
+      "values": [
+        null,
+        null,
+        null,
+        null,
+        "8kHz 오디오 신호를 입력 받을 수 있어야 한다.",
+        "SW-FW-RID-16",
+        null,
+        null
+      ],
+      "bodyrow": 21
+    },
+    {
+      "mark": "",
+      "values": [
+        null,
+        null,
+        "출력단",
+        null,
+        "오디오 신호처리의 최종 출력은 PCM 데이터로 변환되어 FPGA에 전달되어야 한다.",
+        "SW-FW-RID-17",
+        null,
+        null
+      ],
+      "bodyrow": 22
+    },
+    {
+      "mark": "",
+      "values": [
+        null,
+        null,
+        "매핑 데이터",
+        null,
+        "매핑 데이터에 기반하여 최종 자극 파라미터가 생성되어야 한다.",
+        "SW-FW-RID-18",
+        null,
+        null
+      ],
+      "bodyrow": 23
+    },
+    {
+      "mark": "[-]",
+      "values": [
+        null,
+        "사용자 인터페이스\n(외부기 자체)",
+        "입력",
+        null,
+        "가속도 센서를 출력을 입력받아 전원 모드를 변경한다.",
+        "SW-FW-RID-19",
+        null,
+        null
+      ],
+      "bodyrow": 24
+    },
+    {
+      "mark": "[+]",
+      "values": [
+        null,
+        "사용자 인터페이스\n(외부기 자체)",
+        "입력",
+        null,
+        "터치 센서의 입력에 따라 전원 모드와 사용자 제어를 처리한다.",
+        "SW-FW-RID-19",
+        null,
+        null
+      ],
+      "bodyrow": 24
+    },
+    {
+      "mark": "",
+      "values": [
+        null,
+        null,
+        "출력",
+        "LED 출력",
+        "외부기 동작 상태를 표시한다.",
+        "SW-FW-RID-20",
+        null,
+        null
+      ],
+      "bodyrow": 25
+    },
+    {
+      "mark": "",
+      "values": [
+        null,
+        null,
+        null,
+        null,
+        "전원 커넥터 연결 상태를 표시한다.",
+        "SW-FW-RID-21",
+        null,
+        null
+      ],
+      "bodyrow": 26
+    },
+    {
+      "mark": "",
+      "values": [
+        null,
+        null,
+        null,
+        null,
+        "배터리 저전압 상태를  표시한다.",
+        "SW-FW-RID-22",
+        null,
+        null
+      ],
+      "bodyrow": 27
+    },
+    {
+      "mark": "",
+      "values": [
+        null,
+        null,
+        null,
+        "자극 출력",
+        "배터리 저전압 상태를 자극으로 출력한다.",
+        "SW-FW-RID-23",
+        null,
+        null
+      ],
+      "bodyrow": 28
+    },
+    {
+      "mark": "",
+      "values": [
+        null,
+        "사용자 인터페이스\n(리모콘 앱 통신)",
+        "입력(수신)",
+        null,
+        "프로그램 변경하기",
+        "SW-FW-RID-24",
+        null,
+        null
+      ],
+      "bodyrow": 29
+    },
+    {
+      "mark": "",
+      "values": [
+        null,
+        null,
+        null,
+        null,
+        "오디오 볼륨 조절하기",
+        "SW-FW-RID-25",
+        null,
+        null
+      ],
+      "bodyrow": 30
+    },
+    {
+      "mark": "",
+      "values": [
+        null,
+        null,
+        null,
+        null,
+        "자극 볼륨 조절하기",
+        "SW-FW-RID-26",
+        null,
+        null
+      ],
+      "bodyrow": 31
+    },
+    {
+      "mark": "",
+      "values": [
+        null,
+        null,
+        null,
+        null,
+        "LED 알림 켜기/끄기",
+        "SW-FW-RID-27",
+        null,
+        null
+      ],
+      "bodyrow": 32
+    },
+    {
+      "mark": "",
+      "values": [
+        null,
+        null,
+        null,
+        null,
+        "자극 알림 켜기/끄기",
+        "SW-FW-RID-28",
+        null,
+        null
+      ],
+      "bodyrow": 33
+    },
+    {
+      "mark": "",
+      "values": [
+        null,
+        null,
+        "출력(송신)",
+        null,
+        "배터리 상태",
+        "SW-FW-RID-29",
+        null,
+        null
+      ],
+      "bodyrow": 34
+    },
+    {
+      "mark": "",
+      "values": [
+        null,
+        null,
+        null,
+        null,
+        "선택된 맵 번호",
+        "SW-FW-RID-30",
+        null,
+        null
+      ],
+      "bodyrow": 35
+    },
+    {
+      "mark": "",
+      "values": [
+        null,
+        null,
+        null,
+        null,
+        "오디오 볼륨 단계",
+        "SW-FW-RID-31",
+        null,
+        null
+      ],
+      "bodyrow": 36
+    },
+    {
+      "mark": "",
+      "values": [
+        null,
+        null,
+        null,
+        null,
+        "자극 볼륨 단계",
+        "SW-FW-RID-32",
+        null,
+        null
+      ],
+      "bodyrow": 37
+    },
+    {
+      "mark": "",
+      "values": [
+        null,
+        null,
+        null,
+        null,
+        "LED 알림 설정 상태",
+        "SW-FW-RID-33",
+        null,
+        null
+      ],
+      "bodyrow": 38
+    },
+    {
+      "mark": "",
+      "values": [
+        null,
+        null,
+        null,
+        null,
+        "자극 알림 설정 상태",
+        "SW-FW-RID-34",
+        null,
+        null
+      ],
+      "bodyrow": 39
+    },
+    {
+      "mark": "",
+      "values": [
+        null,
+        "사용자 인터페이스\n(매핑 앱 통신)",
+        "입력(수신)",
+        null,
+        "시스템 상태 확인",
+        "SW-FW-RID-35",
+        null,
+        null
+      ],
+      "bodyrow": 40
+    },
+    {
+      "mark": "",
+      "values": [
+        null,
+        null,
+        null,
+        null,
+        "특정 자극 출력",
+        "SW-FW-RID-36",
+        null,
+        null
+      ],
+      "bodyrow": 41
+    },
+    {
+      "mark": "",
+      "values": [
+        null,
+        null,
+        null,
+        null,
+        "실시간 자극 출력 진행 ",
+        "SW-FW-RID-37",
+        null,
+        null
+      ],
+      "bodyrow": 42
+    },
+    {
+      "mark": "",
+      "values": [
+        null,
+        null,
+        "출력(송신)",
+        null,
+        "시스템 상태 ",
+        "SW-FW-RID-38",
+        null,
+        null
+      ],
+      "bodyrow": 43
+    },
+    {
+      "mark": "",
+      "values": [
+        null,
+        null,
+        null,
+        null,
+        "특정 자극 출력 결과",
+        "SW-FW-RID-39",
+        null,
+        null
+      ],
+      "bodyrow": 44
+    },
+    {
+      "mark": "",
+      "values": [
+        null,
+        null,
+        null,
+        null,
+        "실시간 자극 진행 상태",
+        "SW-FW-RID-40",
+        null,
+        null
+      ],
+      "bodyrow": 45
+    },
+    {
+      "mark": "",
+      "values": [
+        null,
+        "기기 인터페이스",
+        "FPGA ",
+        null,
+        "I2C 프로토콜을 사용하여 FPGA와 데이터 송/수신이 가능해야한다.",
+        "SW-FW-RID-41",
+        null,
+        null
+      ],
+      "bodyrow": 46
+    },
+    {
+      "mark": "[-]",
+      "values": [
+        null,
+        null,
+        "센서",
+        null,
+        "I2C를 프로토콜을 사용하여 가속도 센서와 데이터 송/수신이 가능해야한다.",
+        "SW-FW-RID-42",
+        null,
+        null
+      ],
+      "bodyrow": 47
+    },
+    {
+      "mark": "[+]",
+      "values": [
+        null,
+        null,
+        "센서",
+        null,
+        "I2C 프로토콜을 사용하여 터치 센서와 데이터를 송수신할 수 있어야 한다.",
+        "SW-FW-RID-42",
+        null,
+        null
+      ],
+      "bodyrow": 47
+    },
+    {
+      "mark": "",
+      "values": [
+        null,
+        null,
+        "PMIC",
+        null,
+        "I2C를 프로토콜을 사용하여 PMIC의 조정이 가능해야한다.",
+        "SW-FW-RID-43",
+        null,
+        null
+      ],
+      "bodyrow": 48
+    },
+    {
+      "mark": "[-]",
+      "values": [
+        "c) 소프트웨어 시스템과 다른 소프트웨어 사이의 연계성\n(interfaces between the SOFTWARE SYSTEM and other SYSTEMS)",
+        "리모콘",
+        null,
+        null,
+        "리모콘 앱이 실행되는 스마트폰과 블루투스를 사용하여 데이터 통신이 가능해야한다.",
+        "SW-FW-RID-44",
+        "SYS-RID-FW:14",
+        null
+      ],
+      "bodyrow": 49
+    },
+    {
+      "mark": "[+]",
+      "values": [
+        "c) 소프트웨어 시스템과 다른 소프트웨어 사이의 연계성\n(interfaces between the SOFTWARE SYSTEM and other SYSTEMS)",
+        "리모콘",
+        null,
+        null,
+        "[E8300/QCC 연계] 리모콘 앱이 실행되는 스마트폰과 블루투스를 사용하여 데이터 통신이 가능해야한다.",
+        "SW-FW-RID-44",
+        "SYS-RID-FW-13",
+        null
+      ],
+      "bodyrow": 49
+    },
+    {
+      "mark": "[-]",
+      "values": [
+        null,
+        "매핑",
+        null,
+        null,
+        "리모콘 앱이 실행되는 스마트폰과 블루투스를 사용하여 데이터 통신이 가능해야한다.",
+        "SW-FW-RID-45",
+        "SYS-RID-FW:15",
+        null
+      ],
+      "bodyrow": 50
+    },
+    {
+      "mark": "[+]",
+      "values": [
+        null,
+        "매핑",
+        null,
+        null,
+        "[E8300/QCC 연계] 매핑 프로그램이 실행되는 기기와 블루투스를 사용하여 데이터 통신이 가능해야 한다.",
+        "SW-FW-RID-45",
+        "SYS-RID-FW-14",
+        null
+      ],
+      "bodyrow": 50
+    },
+    {
+      "mark": "[+]",
+      "values": [
+        null,
+        "Bluetooth",
+        null,
+        null,
+        "[E8300/QCC 연계] Bluetooth Classic 오디오 통신",
+        "SW-FW-RID-69",
+        "SYS-RID-FW-15",
+        null
+      ],
+      "bodyrow": 51
+    },
+    {
+      "mark": "[+]",
+      "values": [
+        null,
+        null,
+        null,
+        null,
+        "[E8300/QCC 연계] BLE data 통신",
+        "SW-FW-RID-70",
+        "SYS-RID-FW-16",
+        null
+      ],
+      "bodyrow": 52
+    },
+    {
+      "mark": "",
+      "values": [
+        "d) 소프트웨어 구동 경보, 경고 및 운영자 메시지\n(software-driven alarms, warnings, and operator messages)",
+        "NA",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "bodyrow": 53
+    },
+    {
+      "mark": "[-]",
+      "values": [
+        "e) 보안 요구사항\n(SECURITY requirements)",
+        "사이버 보안",
+        null,
+        null,
+        "등록된 내부이식장치와만 근접 무선 통신을 연결한다.",
+        "SW-FW-RID-46",
+        "SYS-RID-FW:16",
+        null
+      ],
+      "bodyrow": 54
+    },
+    {
+      "mark": "[+]",
+      "values": [
+        "e) 보안 요구사항\n(SECURITY requirements)",
+        "사이버 보안",
+        null,
+        null,
+        "등록된 내부이식장치와만 근접 무선 통신을 연결한다.",
+        "SW-FW-RID-46",
+        "SYS-RID-FW-17",
+        null
+      ],
+      "bodyrow": 54
+    },
+    {
+      "mark": "[-]",
+      "values": [
+        null,
+        null,
+        null,
+        null,
+        "내부기와 연결된 상태에서만 블루투스 통신을 활성화한다.(광고시간 축소)",
+        "SW-FW-RID-47",
+        "SYS-RID-FW:17",
+        null
+      ],
+      "bodyrow": 55
+    },
+    {
+      "mark": "[+]",
+      "values": [
+        null,
+        null,
+        null,
+        null,
+        "[QCC 단독] 일정시간 동안 제어 명령이 수신되지 않으면, BLE 연결을 해제한다.",
+        "SW-FW-RID-47",
+        "SYS-RID-FW-22",
+        null
+      ],
+      "bodyrow": 55
+    },
+    {
+      "mark": "[-]",
+      "values": [
+        null,
+        null,
+        null,
+        null,
+        "블투투스 통신에 페어링 기능을 적용하여 기기의 접근 통제 및 인증",
+        "SW-FW-RID-48",
+        "SYS-RID-FW:18",
+        null
+      ],
+      "bodyrow": 56
+    },
+    {
+      "mark": "[+]",
+      "values": [
+        null,
+        null,
+        null,
+        null,
+        "[QCC 단독] 1. BLE Pairing 기능을  사용하여 인가된 장치와 연결\n2. BLE 연결 후 별도의 자체 인증 방식, CRA(Challenge-Response Authentication),을 사용하여 적법한 장치를 확인",
+        "SW-FW-RID-48",
+        "SYS-RID-FW-18",
+        null
+      ],
+      "bodyrow": 56
+    },
+    {
+      "mark": "[-]",
+      "values": [
+        null,
+        null,
+        null,
+        null,
+        "블투투스 통신에 페어링 기능을 적용하여 통신 데이터 보안 구축(bluettoth 4.2 AES-128)",
+        "SW-FW-RID-49",
+        "SYS-RID-FW:19",
+        null
+      ],
+      "bodyrow": 57
+    },
+    {
+      "mark": "[+]",
+      "values": [
+        null,
+        null,
+        null,
+        null,
+        "[QCC 단독] BLE 페어링이 완료된 상태에서 데이터를 송/수신한다. - 무결성\n\nAES-CCM (Counter with CBC-MAC)을 사용함으로써 기밀성, 무결성, 인증  세 가지의 기능이 제공됨\n(Bluetooth Core specification LE Link Layer 참조)",
+        "SW-FW-RID-49",
+        "SYS-RID-FW-26",
+        null
+      ],
+      "bodyrow": 57
+    },
+    {
+      "mark": "[-]",
+      "values": [
+        null,
+        null,
+        null,
+        null,
+        "통신과 관련된 시스템 로그를 저장한다.",
+        "SW-FW-RID-50",
+        "SYS-RID-FW:20",
+        null
+      ],
+      "bodyrow": 58
+    },
+    {
+      "mark": "[+]",
+      "values": [
+        null,
+        null,
+        null,
+        null,
+        "감사기록을 생성한다.",
+        "SW-FW-RID-50",
+        "SYS-RID-FW-23",
+        null
+      ],
+      "bodyrow": 58
+    },
+    {
+      "mark": "[-]",
+      "values": [
+        null,
+        null,
+        null,
+        null,
+        "펌웨어 실행 시, 설정 데이터가 유효 범위를 벗어 날 경우 에러 모드 진입",
+        "SW-FW-RID-51",
+        "SYS-RID-FW:21",
+        null
+      ],
+      "bodyrow": 59
+    },
+    {
+      "mark": "[+]",
+      "values": [
+        null,
+        null,
+        null,
+        null,
+        "설정파일을 읽을 때, 파일의 무결성을 확인한다.",
+        "SW-FW-RID-51",
+        "SYS-RID-FW-27",
+        null
+      ],
+      "bodyrow": 59
+    },
+    {
+      "mark": "[-]",
+      "values": [
+        null,
+        null,
+        null,
+        null,
+        "내부기 제어 passkey가 매칭되어야 리모콘 제어 패스 활성화",
+        "SW-FW-RID-52",
+        "SYS-RID-FW:22",
+        null
+      ],
+      "bodyrow": 60
+    },
+    {
+      "mark": "[+]",
+      "values": [
+        null,
+        null,
+        null,
+        null,
+        "[QCC 단독] 1. CRA 인증에서 기기제어를 위한 통신과 매핑을 의한 통신을 구분하여 별도의  인증 키와 인증방식을 사용\n2. CRA 인증에 사용되는 각 키의 크기는 16 bytes (128 bits)이므로 충분히 안전한 보안을 제공한다.",
+        "SW-FW-RID-52",
+        "SYS-RID-FW-19",
+        null
+      ],
+      "bodyrow": 60
+    },
+    {
+      "mark": "[-]",
+      "values": [
+        null,
+        null,
+        null,
+        null,
+        "소프트웨어 유지보수 절차를 따른다.",
+        "SW-FW-RID-53",
+        "SYS-RID-FW:23",
+        null
+      ],
+      "bodyrow": 61
+    },
+    {
+      "mark": "[+]",
+      "values": [
+        null,
+        null,
+        null,
+        null,
+        "소프트웨어 업데이트가 필요할 경우 기존 제품을 회수하고 업데이트된 제품을 생산하여 교체한다.",
+        "SW-FW-RID-53",
+        "SYS-RID-FW-30",
+        null
+      ],
+      "bodyrow": 61
+    },
+    {
+      "mark": "[+]",
+      "values": [
+        null,
+        null,
+        null,
+        null,
+        "품질관리시스템 절차에 따라, 인가된 인원이 펌웨어를 생성하여 배포한다.",
+        "SW-FW-RID-81",
+        "SYS-RID-FW-31",
+        null
+      ],
+      "bodyrow": 62
+    },
+    {
+      "mark": "[-]",
+      "values": [
+        null,
+        null,
+        null,
+        null,
+        "배포버전의 CM3 실행코드 사이즈를 18430 words 이하로 한다.",
+        "SW-FW-RID-54",
+        "SYS-RID-FW:24",
+        null
+      ],
+      "bodyrow": 63
+    },
+    {
+      "mark": "[+]",
+      "values": [
+        null,
+        null,
+        null,
+        null,
+        "1. 칩셋에서 부팅 과정에서 실행파일의 CRC 체크 기능 활성화\n2. 칩셋에서 제공하는 무결성 방식을 사용하여 검사",
+        "SW-FW-RID-54",
+        "SYS-RID-FW-32",
+        null
+      ],
+      "bodyrow": 63
+    },
+    {
+      "mark": "[+]",
+      "values": [
+        null,
+        null,
+        null,
+        null,
+        "[QCC 단독] - CRA 인증 결과에서 인증정보를 유추할 만한 피드백이 없음: 성공, 실패, 진행중, 타임아웃",
+        "SW-FW-RID-71",
+        "SYS-RID-FW-20",
+        null
+      ],
+      "bodyrow": 64
+    },
+    {
+      "mark": "[+]",
+      "values": [
+        null,
+        null,
+        null,
+        null,
+        "[QCC 단독] CRA 인증 5회 연속 실패 시, 일정 시간동안 연결을 제한한다.",
+        "SW-FW-RID-72",
+        "SYS-RID-FW-21",
+        null
+      ],
+      "bodyrow": 65
+    },
+    {
+      "mark": "[+]",
+      "values": [
+        null,
+        null,
+        null,
+        null,
+        "감사기록 생성 실패를 오류 정보에 포함한다.",
+        "SW-FW-RID-73",
+        "SYS-RID-FW-24",
+        null
+      ],
+      "bodyrow": 66
+    },
+    {
+      "mark": "[+]",
+      "values": [
+        null,
+        null,
+        null,
+        null,
+        "감사기록은 타임 스탬프를 포함한다.",
+        "SW-FW-RID-74",
+        "SYS-RID-FW-25",
+        null
+      ],
+      "bodyrow": 67
+    },
+    {
+      "mark": "[+]",
+      "values": [
+        null,
+        null,
+        null,
+        null,
+        "오류 메시지에 보안과 관련되 정보를 직접 표시하지 않는다.",
+        "SW-FW-RID-75",
+        "SYS-RID-FW-29",
+        null
+      ],
+      "bodyrow": 68
+    },
+    {
+      "mark": "[+]",
+      "values": [
+        null,
+        null,
+        null,
+        null,
+        "[QCC 단독] 1. 데이터의 송수신은 BLE 페어링과 CRA 인증 이후에 활성화 함. - 기밀화\n2. CRA 인증 키들은 생산시에 암호화하여 저장한다.",
+        "SW-FW-RID-76",
+        "SYS-RID-FW-33",
+        null
+      ],
+      "bodyrow": 69
+    },
+    {
+      "mark": "[+]",
+      "values": [
+        null,
+        null,
+        null,
+        null,
+        "내부장치 제조번호, 사용자 이니셜 값은 암호화 하여 저장한다.",
+        "SW-FW-RID-77",
+        "SYS-RID-FW-34",
+        null
+      ],
+      "bodyrow": 70
+    },
+    {
+      "mark": "[+]",
+      "values": [
+        null,
+        null,
+        null,
+        null,
+        "무결성, 암호화에 사용되는 알고리즘은 사이버보안 규격에서 권고하는 알고리즘을 사용한다.",
+        "SW-FW-RID-78",
+        "SYS-RID-FW-35",
+        null
+      ],
+      "bodyrow": 71
+    },
+    {
+      "mark": "[+]",
+      "values": [
+        null,
+        null,
+        null,
+        null,
+        "외부에서 로그 정보의 접근은 인가자만 가능해야 하며, 외부 전송을 할경우 기밀성이 보호되어야 한다.",
+        "SW-FW-RID-79",
+        "SYS-RID-FW-36",
+        null
+      ],
+      "bodyrow": 72
+    },
+    {
+      "mark": "[+]",
+      "values": [
+        null,
+        null,
+        null,
+        null,
+        "설정파일의 무결성이 확인되지 않으면, 설정파일을 공장초기화 한다.",
+        "SW-FW-RID-80",
+        "SYS-RID-FW-38",
+        null
+      ],
+      "bodyrow": 73
+    },
+    {
+      "mark": "[-]",
+      "values": [
+        "f) 사람에 의해 발생하는 오류와 훈련에 민감한 사용성 공학 요구사항\n(usability engineering requirements that are sensitive to human errors and training)",
+        "주의부족, 기억력 감퇴",
+        null,
+        null,
+        "배터리 저전압을 주기적으로 반복하여 자극출력으로 알린다.",
+        "SW-FW-RID-55",
+        "SYS-RID-FW:32",
+        null
+      ],
+      "bodyrow": 74
+    },
+    {
+      "mark": "[+]",
+      "values": [
+        "f) 사람에 의해 발생하는 오류와 훈련에 민감한 사용성 공학 요구사항\n(usability engineering requirements that are sensitive to human errors and training)",
+        "주의부족, 기억력 감퇴",
+        null,
+        null,
+        "배터리 저전압을 주기적으로 반복하여 자극 출력과 LED로 알린다.",
+        "SW-FW-RID-55",
+        "SYS-RID-FW-48",
+        null
+      ],
+      "bodyrow": 74
+    },
+    {
+      "mark": "[-]",
+      "values": [
+        null,
+        "중복실수",
+        null,
+        null,
+        "볼륨 증가를 단계적으로 진행되로록 설계한다.(soft increase)",
+        "SW-FW-RID-56",
+        "SYS-RID-FW:31",
+        null
+      ],
+      "bodyrow": 75
+    },
+    {
+      "mark": "[+]",
+      "values": [
+        null,
+        "중복실수",
+        null,
+        null,
+        "자극 볼륨은 단계적으로 증가하도록 설계한다.(soft increase)",
+        "SW-FW-RID-56",
+        "SYS-RID-FW-47",
+        null
+      ],
+      "bodyrow": 75
+    },
+    {
+      "mark": "",
+      "values": [
+        "g) 데이터 정의 및 데이터 베이스 요구사항\n(data definition and database requirements)",
+        "NA",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "bodyrow": 76
+    },
+    {
+      "mark": "",
+      "values": [
+        "h) 운영 및 유지보수 현장에 인도된 의료기기 소프트웨어의 설치 및 인수 요구사항\n(installation and acceptance requirements of the delivered MEDICAL DEVICE SOFTWARE at the operation and maintenance site or sites)",
+        "NA",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "bodyrow": 77
+    },
+    {
+      "mark": "",
+      "values": [
+        "i) 운영 및 유지보수 방법에 관련된 요구사항\nrequirements related to methods of operation and maintenance",
+        "NA",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "bodyrow": 78
+    },
+    {
+      "mark": "",
+      "values": [
+        "j) 개발할 사용자 설명서\n(user documentation to be developed)",
+        "NA",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "bodyrow": 79
+    },
+    {
+      "mark": "",
+      "values": [
+        "k) 사용자 유지보수 요구사항\n(user maintenance requirements)",
+        "NA",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "bodyrow": 80
+    },
+    {
+      "mark": "[-]",
+      "values": [
+        "l) 규제적 요구사항\n(regulatory requirements)",
+        "IEC 60601-1\n(IEC 62304에 포함되지 않은 사항)",
+        null,
+        null,
+        "필수 성능 시험을 진행한다.",
+        "SW-FW-RID-57",
+        "SYS-RID-FW:25",
+        null
+      ],
+      "bodyrow": 81
+    },
+    {
+      "mark": "[+]",
+      "values": [
+        "l) 규제적 요구사항\n(regulatory requirements)",
+        "IEC 60601-1\n(IEC 62304에 포함되지 않은 사항)",
+        null,
+        null,
+        "필수 성능 시험을 진행한다.",
+        "SW-FW-RID-57",
+        "SYS-RID-FW-39, SYS-RID-FW-40",
+        null
+      ],
+      "bodyrow": 81
+    },
+    {
+      "mark": "[-]",
+      "values": [
+        null,
+        null,
+        null,
+        null,
+        "실시간 신호처리가 가능하도록 설계한다.",
+        "SW-FW-RID-58",
+        "SYS-RID-FW:26",
+        null
+      ],
+      "bodyrow": 82
+    },
+    {
+      "mark": "[+]",
+      "values": [
+        null,
+        null,
+        null,
+        null,
+        "실시간 신호처리가 가능하도록 설계한다.",
+        "SW-FW-RID-58",
+        "SYS-RID-FW-41",
+        null
+      ],
+      "bodyrow": 82
+    },
+    {
+      "mark": "[-]",
+      "values": [
+        null,
+        null,
+        null,
+        null,
+        "제어 명령이 프로토콜에 맞게 전송되어야 실행한다.",
+        "SW-FW-RID-59",
+        "SYS-RID-FW:27",
+        null
+      ],
+      "bodyrow": 83
+    },
+    {
+      "mark": "[+]",
+      "values": [
+        null,
+        null,
+        null,
+        null,
+        "제어 명령이 프로토콜에 맞게 전송되어야 실행한다.",
+        "SW-FW-RID-59",
+        "SYS-RID-FW-28",
+        null
+      ],
+      "bodyrow": 83
+    },
+    {
+      "mark": "[-]",
+      "values": [
+        null,
+        null,
+        null,
+        null,
+        "CRC 기능이 있는 통신 프로토콜을 사용한다.",
+        "SW-FW-RID-60",
+        "SYS-RID-FW:28",
+        null
+      ],
+      "bodyrow": 84
+    },
+    {
+      "mark": "[+]",
+      "values": [
+        null,
+        null,
+        null,
+        null,
+        "CRC 기능이 있는 통신 프로토콜을 사용한다.",
+        "SW-FW-RID-60",
+        "SYS-RID-FW-42",
+        null
+      ],
+      "bodyrow": 84
+    },
+    {
+      "mark": "[-]",
+      "values": [
+        null,
+        null,
+        null,
+        null,
+        "정상사용을 위한 준비상태를 표시하도록 설계한다.",
+        "SW-FW-RID-61",
+        "SYS-RID-FW:29",
+        null
+      ],
+      "bodyrow": 85
+    },
+    {
+      "mark": "[+]",
+      "values": [
+        null,
+        null,
+        null,
+        null,
+        "정상사용을 위한 준비상태를 표시하도록 설계한다.",
+        "SW-FW-RID-61",
+        "SYS-RID-FW-43",
+        null
+      ],
+      "bodyrow": 85
+    },
+    {
+      "mark": "[-]",
+      "values": [
+        null,
+        null,
+        null,
+        null,
+        "전원커넥터가 연결되면 연결을 확인할 수 있어야한다.(충전모드 표시).",
+        "SW-FW-RID-62",
+        "SYS-RID-FW:30",
+        null
+      ],
+      "bodyrow": 86
+    },
+    {
+      "mark": "[+]",
+      "values": [
+        null,
+        null,
+        null,
+        null,
+        "전원커넥터가 연결되면 연결을 확인할 수 있어야한다.(충전모드 표시).",
+        "SW-FW-RID-62",
+        "SYS-RID-FW-44",
+        null
+      ],
+      "bodyrow": 86
+    },
+    {
+      "mark": "[-]",
+      "values": [
+        null,
+        null,
+        null,
+        null,
+        "배터리 잔량을 표시할 수 있어야 한다.",
+        "SW-FW-RID-63",
+        "SYS-RID-FW:33",
+        null
+      ],
+      "bodyrow": 87
+    },
+    {
+      "mark": "[+]",
+      "values": [
+        null,
+        null,
+        null,
+        null,
+        "배터리 잔량을 표시할 수 있어야 한다.",
+        "SW-FW-RID-63",
+        null,
+        null
+      ],
+      "bodyrow": 87
+    },
+    {
+      "mark": "[-]",
+      "values": [
+        null,
+        null,
+        null,
+        null,
+        "구분이 쉽도록 LED 패턴을 생성한다.",
+        "SW-FW-RID-64",
+        "SYS-RID-FW:34",
+        null
+      ],
+      "bodyrow": 88
+    },
+    {
+      "mark": "[+]",
+      "values": [
+        null,
+        null,
+        null,
+        null,
+        "구분이 쉽도록 LED 패턴을 생성한다.",
+        "SW-FW-RID-64",
+        "SYS-RID-FW-45",
+        null
+      ],
+      "bodyrow": 88
+    },
+    {
+      "mark": "[-]",
+      "values": [
+        null,
+        null,
+        null,
+        null,
+        "사회 통념적으로 사용되는 색상을 사용하여 인공와우 외부기 상태를 표시한다.",
+        "SW-FW-RID-65",
+        "SYS-RID-FW:35",
+        null
+      ],
+      "bodyrow": 89
+    },
+    {
+      "mark": "[+]",
+      "values": [
+        null,
+        null,
+        null,
+        null,
+        "사회 통념적으로 사용되는 색상을 사용하여 인공와우 외부기 상태를 표시한다.",
+        "SW-FW-RID-65",
+        "SYS-RID-FW-46",
+        null
+      ],
+      "bodyrow": 89
+    },
+    {
+      "mark": "[-]",
+      "values": [
+        null,
+        null,
+        null,
+        null,
+        "이어피스가 연결되면 이어피스 연결 상태가 확인되어야 한다.",
+        "SW-FW-RID-66",
+        "SYS-RID-FW:36",
+        null
+      ],
+      "bodyrow": 90
+    },
+    {
+      "mark": "[+]",
+      "values": [
+        null,
+        null,
+        null,
+        null,
+        "BLE 통신 연결 장애 발생 시, 정상 동작이 되어야 한다.",
+        "SW-FW-RID-66",
+        "SYS-RID-FW-37",
+        null
+      ],
+      "bodyrow": 90
+    },
+    {
+      "mark": "[-]",
+      "values": [
+        null,
+        null,
+        null,
+        null,
+        "시동과정에서는 출력을 생성하지 않게 한다",
+        "SW-FW-RID-67",
+        "SYS-RID-FW:37",
+        null
+      ],
+      "bodyrow": 91
+    },
+    {
+      "mark": "[+]",
+      "values": [
+        null,
+        null,
+        null,
+        null,
+        "시동과정에서는 출력을 생성하지 않게 한다",
+        "SW-FW-RID-67",
+        "SYS-RID-FW-49",
+        null
+      ],
+      "bodyrow": 91
+    },
+    {
+      "mark": "[-]",
+      "values": [
+        null,
+        null,
+        null,
+        null,
+        "종료과정에서는 출력을 생성하지 않게 한다.",
+        "SW-FW-RID-68",
+        "SYS-RID-FW:38",
+        null
+      ],
+      "bodyrow": 92
+    },
+    {
+      "mark": "[+]",
+      "values": [
+        null,
+        null,
+        null,
+        null,
+        "종료과정에서는 출력을 생성하지 않게 한다.",
+        "SW-FW-RID-68",
+        "SYS-RID-FW-50",
+        null
+      ],
+      "bodyrow": 92
+    }
+  ],
+  "merges": [
+    [
+      50,
+      50,
+      3,
+      5
+    ],
+    [
+      10,
+      10,
+      4,
+      5
+    ],
+    [
+      29,
+      33,
+      4,
+      5
+    ],
+    [
+      19,
+      19,
+      4,
+      5
+    ],
+    [
+      76,
+      76,
+      3,
+      5
+    ],
+    [
+      6,
+      19,
+      2,
+      2
+    ],
+    [
+      20,
+      23,
+      3,
+      3
+    ],
+    [
+      6,
+      7,
+      8,
+      8
+    ],
+    [
+      46,
+      46,
+      4,
+      5
+    ],
+    [
+      81,
+      92,
+      2,
+      2
+    ],
+    [
+      22,
+      22,
+      4,
+      5
+    ],
+    [
+      74,
+      75,
+      2,
+      2
+    ],
+    [
+      29,
+      39,
+      3,
+      3
+    ],
+    [
+      40,
+      42,
+      4,
+      5
+    ],
+    [
+      77,
+      77,
+      3,
+      5
+    ],
+    [
+      13,
+      17,
+      3,
+      3
+    ],
+    [
+      25,
+      27,
+      5,
+      5
+    ],
+    [
+      11,
+      11,
+      4,
+      5
+    ],
+    [
+      46,
+      48,
+      3,
+      3
+    ],
+    [
+      20,
+      21,
+      4,
+      5
+    ],
+    [
+      87,
+      92,
+      3,
+      5
+    ],
+    [
+      48,
+      48,
+      4,
+      5
+    ],
+    [
+      17,
+      17,
+      4,
+      5
+    ],
+    [
+      47,
+      47,
+      4,
+      5
+    ],
+    [
+      16,
+      16,
+      4,
+      5
+    ],
+    [
+      20,
+      48,
+      2,
+      2
+    ],
+    [
+      6,
+      7,
+      4,
+      4
+    ],
+    [
+      53,
+      53,
+      3,
+      5
+    ],
+    [
+      25,
+      28,
+      4,
+      4
+    ],
+    [
+      24,
+      28,
+      3,
+      3
+    ],
+    [
+      49,
+      49,
+      3,
+      5
+    ],
+    [
+      79,
+      79,
+      3,
+      5
+    ],
+    [
+      40,
+      45,
+      3,
+      3
+    ],
+    [
+      6,
+      12,
+      3,
+      3
+    ],
+    [
+      18,
+      18,
+      4,
+      5
+    ],
+    [
+      78,
+      78,
+      3,
+      5
+    ],
+    [
+      9,
+      9,
+      4,
+      5
+    ],
+    [
+      49,
+      52,
+      2,
+      2
+    ],
+    [
+      12,
+      12,
+      4,
+      5
+    ],
+    [
+      8,
+      8,
+      4,
+      5
+    ],
+    [
+      43,
+      45,
+      4,
+      5
+    ],
+    [
+      54,
+      73,
+      3,
+      5
+    ],
+    [
+      24,
+      24,
+      4,
+      5
+    ],
+    [
+      75,
+      75,
+      3,
+      5
+    ],
+    [
+      15,
+      15,
+      4,
+      5
+    ],
+    [
+      34,
+      39,
+      4,
+      5
+    ],
+    [
+      81,
+      86,
+      3,
+      5
+    ],
+    [
+      80,
+      80,
+      3,
+      5
+    ],
+    [
+      23,
+      23,
+      4,
+      5
+    ],
+    [
+      74,
+      74,
+      3,
+      5
+    ],
+    [
+      14,
+      14,
+      4,
+      5
+    ],
+    [
+      51,
+      52,
+      3,
+      5
+    ],
+    [
+      18,
+      19,
+      3,
+      3
+    ],
+    [
+      54,
+      73,
+      2,
+      2
+    ]
+  ]
+}

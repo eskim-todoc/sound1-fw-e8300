@@ -1,0 +1,347 @@
+[
+  {
+    "srs_row": 6,
+    "id": "SW-FW-RID-1",
+    "fw": [
+      2
+    ]
+  },
+  {
+    "srs_row": 7,
+    "id": "SW-FW-RID-2",
+    "fw": [
+      2
+    ]
+  },
+  {
+    "srs_row": 8,
+    "id": "SW-FW-RID-3",
+    "fw": [
+      1
+    ]
+  },
+  {
+    "srs_row": 9,
+    "id": "SW-FW-RID-4",
+    "fw": [
+      4
+    ]
+  },
+  {
+    "srs_row": 10,
+    "id": "SW-FW-RID-5",
+    "fw": [
+      5
+    ]
+  },
+  {
+    "srs_row": 11,
+    "id": "SW-FW-RID-6",
+    "fw": [
+      3
+    ]
+  },
+  {
+    "srs_row": 13,
+    "id": "SW-FW-RID-8",
+    "fw": [
+      6
+    ]
+  },
+  {
+    "srs_row": 14,
+    "id": "SW-FW-RID-9",
+    "fw": [
+      7
+    ]
+  },
+  {
+    "srs_row": 15,
+    "id": "SW-FW-RID-10",
+    "fw": [
+      8
+    ]
+  },
+  {
+    "srs_row": 16,
+    "id": "SW-FW-RID-11",
+    "fw": [
+      9
+    ]
+  },
+  {
+    "srs_row": 17,
+    "id": "SW-FW-RID-12",
+    "fw": [
+      10
+    ]
+  },
+  {
+    "srs_row": 18,
+    "id": "SW-FW-RID-13",
+    "fw": [
+      11
+    ]
+  },
+  {
+    "srs_row": 19,
+    "id": "SW-FW-RID-14",
+    "fw": [
+      12
+    ]
+  },
+  {
+    "srs_row": 49,
+    "id": "SW-FW-RID-44",
+    "fw": [
+      13
+    ]
+  },
+  {
+    "srs_row": 50,
+    "id": "SW-FW-RID-45",
+    "fw": [
+      14
+    ]
+  },
+  {
+    "srs_row": 52,
+    "id": "SW-FW-RID-46",
+    "fw": [
+      17
+    ]
+  },
+  {
+    "srs_row": 53,
+    "id": "SW-FW-RID-47",
+    "fw": [
+      22
+    ]
+  },
+  {
+    "srs_row": 54,
+    "id": "SW-FW-RID-48",
+    "fw": [
+      18
+    ]
+  },
+  {
+    "srs_row": 55,
+    "id": "SW-FW-RID-49",
+    "fw": [
+      26
+    ]
+  },
+  {
+    "srs_row": 56,
+    "id": "SW-FW-RID-50",
+    "fw": [
+      23
+    ]
+  },
+  {
+    "srs_row": 57,
+    "id": "SW-FW-RID-51",
+    "fw": [
+      27
+    ]
+  },
+  {
+    "srs_row": 58,
+    "id": "SW-FW-RID-52",
+    "fw": [
+      19
+    ]
+  },
+  {
+    "srs_row": 59,
+    "id": "SW-FW-RID-53",
+    "fw": [
+      30,
+      31
+    ]
+  },
+  {
+    "srs_row": 60,
+    "id": "SW-FW-RID-54",
+    "fw": [
+      32
+    ]
+  },
+  {
+    "srs_row": 61,
+    "id": "SW-FW-RID-55",
+    "fw": [
+      48
+    ]
+  },
+  {
+    "srs_row": 62,
+    "id": "SW-FW-RID-56",
+    "fw": [
+      47
+    ]
+  },
+  {
+    "srs_row": 68,
+    "id": "SW-FW-RID-57",
+    "fw": [
+      39,
+      40
+    ]
+  },
+  {
+    "srs_row": 69,
+    "id": "SW-FW-RID-58",
+    "fw": [
+      41
+    ]
+  },
+  {
+    "srs_row": 70,
+    "id": "SW-FW-RID-59",
+    "fw": [
+      28
+    ]
+  },
+  {
+    "srs_row": 71,
+    "id": "SW-FW-RID-60",
+    "fw": [
+      42
+    ]
+  },
+  {
+    "srs_row": 72,
+    "id": "SW-FW-RID-61",
+    "fw": [
+      43
+    ]
+  },
+  {
+    "srs_row": 73,
+    "id": "SW-FW-RID-62",
+    "fw": [
+      44
+    ]
+  },
+  {
+    "srs_row": 75,
+    "id": "SW-FW-RID-64",
+    "fw": [
+      45
+    ]
+  },
+  {
+    "srs_row": 76,
+    "id": "SW-FW-RID-65",
+    "fw": [
+      46
+    ]
+  },
+  {
+    "srs_row": 77,
+    "id": "SW-FW-RID-66",
+    "fw": [
+      37
+    ]
+  },
+  {
+    "srs_row": 78,
+    "id": "SW-FW-RID-67",
+    "fw": [
+      49
+    ]
+  },
+  {
+    "srs_row": 79,
+    "id": "SW-FW-RID-68",
+    "fw": [
+      50
+    ]
+  },
+  {
+    "srs_row": 80,
+    "id": "SW-FW-RID-69",
+    "fw": [
+      15
+    ]
+  },
+  {
+    "srs_row": 81,
+    "id": "SW-FW-RID-70",
+    "fw": [
+      16
+    ]
+  },
+  {
+    "srs_row": 82,
+    "id": "SW-FW-RID-71",
+    "fw": [
+      20
+    ]
+  },
+  {
+    "srs_row": 83,
+    "id": "SW-FW-RID-72",
+    "fw": [
+      21
+    ]
+  },
+  {
+    "srs_row": 84,
+    "id": "SW-FW-RID-73",
+    "fw": [
+      24
+    ]
+  },
+  {
+    "srs_row": 85,
+    "id": "SW-FW-RID-74",
+    "fw": [
+      25
+    ]
+  },
+  {
+    "srs_row": 86,
+    "id": "SW-FW-RID-75",
+    "fw": [
+      29
+    ]
+  },
+  {
+    "srs_row": 87,
+    "id": "SW-FW-RID-76",
+    "fw": [
+      33
+    ]
+  },
+  {
+    "srs_row": 88,
+    "id": "SW-FW-RID-77",
+    "fw": [
+      34
+    ]
+  },
+  {
+    "srs_row": 89,
+    "id": "SW-FW-RID-78",
+    "fw": [
+      35
+    ]
+  },
+  {
+    "srs_row": 90,
+    "id": "SW-FW-RID-79",
+    "fw": [
+      36
+    ]
+  },
+  {
+    "srs_row": 91,
+    "id": "SW-FW-RID-80",
+    "fw": [
+      38
+    ]
+  }
+]

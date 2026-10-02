@@ -1,0 +1,159 @@
+{
+  "schemaVersion": "presentation-finalization.v1",
+  "finalSha256": "d9faa2d72b5d590d85eb517dcfc62eb25b5a5b9bd58abcd36236b50077bab674",
+  "byteCount": 77560,
+  "packageIntegrity": {
+    "chart_count": 0,
+    "claim_boundary": "Structural package checks only; no slide text, notes, formulas, chart values, or native PowerPoint execution were inspected.",
+    "finding_count": 0,
+    "findings": [],
+    "notes_parts_skipped": 0,
+    "relationship_part_count": 21,
+    "slide_count": 7,
+    "status": "pass",
+    "exitCode": 0,
+    "findingCount": 0,
+    "warnings": []
+  },
+  "presentationLayout": {
+    "finding_count": 0,
+    "findings": [],
+    "slide_count": 7,
+    "slide_size_in": [
+      13.3333,
+      7.5
+    ],
+    "warning_count": 9,
+    "warnings": [
+      {
+        "connector_id": "57",
+        "connector_z": 16,
+        "kind": "connector_over_text",
+        "slide": 3,
+        "text_object_id": "54",
+        "text_z": 15
+      },
+      {
+        "connector_id": "44",
+        "connector_z": 19,
+        "kind": "connector_over_text",
+        "slide": 4,
+        "text_object_id": "7",
+        "text_z": 4
+      },
+      {
+        "connector_id": "53",
+        "connector_z": 23,
+        "kind": "connector_over_text",
+        "slide": 4,
+        "text_object_id": "52",
+        "text_z": 22
+      },
+      {
+        "kind": "object_outside_slide_boundary",
+        "object_id": "4",
+        "object_kind": "sp",
+        "slide": 4
+      },
+      {
+        "connector_id": "3",
+        "connector_z": 17,
+        "kind": "connector_over_text",
+        "slide": 5,
+        "text_object_id": "11",
+        "text_z": 6
+      },
+      {
+        "connector_id": "15",
+        "connector_z": 19,
+        "kind": "connector_over_text",
+        "slide": 5,
+        "text_object_id": "11",
+        "text_z": 6
+      },
+      {
+        "connector_id": "30",
+        "connector_z": 21,
+        "kind": "connector_over_text",
+        "slide": 5,
+        "text_object_id": "11",
+        "text_z": 6
+      },
+      {
+        "kind": "substantial_text_frame_overlap",
+        "left_object_id": "11",
+        "overlap_height_in": 0.3271,
+        "overlap_width_in": 0.7465,
+        "right_object_id": "13",
+        "slide": 5
+      },
+      {
+        "kind": "object_outside_slide_boundary",
+        "object_id": "4",
+        "object_kind": "sp",
+        "slide": 5
+      }
+    ],
+    "exitCode": 0,
+    "findingCount": 0
+  },
+  "fontSelection": {
+    "basis": "unspecified",
+    "approvedFamilies": [],
+    "scriptFonts": {},
+    "referenceSha256": null,
+    "referenceFontsVerifiedInEncodedText": false
+  },
+  "firstPartyImport": {
+    "performed": true,
+    "passed": true,
+    "slideCount": 7,
+    "sha256": "d9faa2d72b5d590d85eb517dcfc62eb25b5a5b9bd58abcd36236b50077bab674",
+    "runtimeNodeModules": "C:/Users/EUNSU/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules",
+    "nodeExecutable": "C:\\Users\\EUNSU\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe"
+  },
+  "nativeTableArithmetic": {
+    "performed": true,
+    "checked_column_count": 0,
+    "checks": [],
+    "claim_boundary": "Displayed-value arithmetic with rounding tolerance; not source-data verification.",
+    "eligible_table_count": 0,
+    "finding_count": 0,
+    "findings": [],
+    "native_table_count": 0,
+    "passed": true,
+    "schema_version": "presentation-native-table-arithmetic.v1",
+    "skipped_tables": [],
+    "slide_count": 7,
+    "warning_count": 0,
+    "warnings": []
+  },
+  "nativeChartTitles": {
+    "performed": true,
+    "checks": [],
+    "finding_count": 0,
+    "findings": [],
+    "native_chart_count": 0,
+    "native_powerpoint_verified": false,
+    "passed": true,
+    "presentation_sha256": "d9faa2d72b5d590d85eb517dcfc62eb25b5a5b9bd58abcd36236b50077bab674",
+    "schema_version": "presentation-native-chart-titles.v1",
+    "slide_count": 7,
+    "source_text_emitted": false,
+    "unresolved_linked_title_count": 0
+  },
+  "sourceDerivedPolicyFlags": [
+    "--cover-role",
+    "none",
+    "--expected-slide-count",
+    "7"
+  ],
+  "nativeChartValidation": {
+    "detectedOwnerSlides": [],
+    "detectedChartCount": 0,
+    "targetApplication": null,
+    "sourceChartOwnersExplicitlyDeclared": false,
+    "validatorRan": false,
+    "passed": true
+  }
+}

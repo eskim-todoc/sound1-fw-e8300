@@ -1,0 +1,27 @@
+{
+  "changedCells": 56,
+  "tests": 81,
+  "softwareRequirements": 81,
+  "systemRequirements": 50,
+  "untouchedCells": "preserved",
+  "comparisonRows": 149,
+  "restoredIds": [
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    50,
+    56,
+    57,
+    58,
+    59,
+    61,
+    64,
+    65
+  ]
+}

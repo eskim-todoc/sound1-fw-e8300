@@ -1,0 +1,11 @@
+{
+  "cover_unchanged": true,
+  "all_body_cells_verified": true,
+  "IDs_1_to_80_preserved": true,
+  "new_ID": 81,
+  "split": {
+    "53": "SYS-RID-FW-30",
+    "81": "SYS-RID-FW-31"
+  },
+  "diff_verified": true
+}

@@ -1,0 +1,705 @@
+{
+  "target": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\DHF\\02_설계 입력\\SW\\펌웨어\\SSTC-FW-TD24A 소프트웨어 시스템 시험 기준서.xlsx",
+  "edits": [
+    {
+      "sheet": "기준서_시스템 시험",
+      "index": 2,
+      "addr": "D25",
+      "old": "Test",
+      "value": "T"
+    },
+    {
+      "sheet": "기준서_시스템 시험",
+      "index": 2,
+      "addr": "D26",
+      "old": "Test",
+      "value": "T"
+    },
+    {
+      "sheet": "기준서_시스템 시험",
+      "index": 2,
+      "addr": "D27",
+      "old": "Test",
+      "value": "T"
+    },
+    {
+      "sheet": "기준서_시스템 시험",
+      "index": 2,
+      "addr": "D28",
+      "old": "Test",
+      "value": "T"
+    },
+    {
+      "sheet": "기준서_시스템 시험",
+      "index": 2,
+      "addr": "D29",
+      "old": "Test",
+      "value": "T"
+    },
+    {
+      "sheet": "기준서_시스템 시험",
+      "index": 2,
+      "addr": "D30",
+      "old": "Test",
+      "value": "T"
+    },
+    {
+      "sheet": "기준서_시스템 시험",
+      "index": 2,
+      "addr": "D32",
+      "old": "Demonstration",
+      "value": "D"
+    },
+    {
+      "sheet": "기준서_시스템 시험",
+      "index": 2,
+      "addr": "D33",
+      "old": "Demonstration",
+      "value": "D"
+    },
+    {
+      "sheet": "기준서_시스템 시험",
+      "index": 2,
+      "addr": "D34",
+      "old": "Demonstration",
+      "value": "D"
+    },
+    {
+      "sheet": "기준서_시스템 시험",
+      "index": 2,
+      "addr": "D35",
+      "old": "Test",
+      "value": "T"
+    },
+    {
+      "sheet": "기준서_시스템 시험",
+      "index": 2,
+      "addr": "D36",
+      "old": "Test",
+      "value": "T"
+    },
+    {
+      "sheet": "기준서_시스템 시험",
+      "index": 2,
+      "addr": "D37",
+      "old": "Demonstration",
+      "value": "D"
+    },
+    {
+      "sheet": "기준서_시스템 시험",
+      "index": 2,
+      "addr": "D38",
+      "old": "Demonstration",
+      "value": "D"
+    },
+    {
+      "sheet": "기준서_시스템 시험",
+      "index": 2,
+      "addr": "D68",
+      "old": "Analysis",
+      "value": "A"
+    },
+    {
+      "sheet": "기준서_시스템 시험",
+      "index": 2,
+      "addr": "D69",
+      "old": "Analysis",
+      "value": "A"
+    },
+    {
+      "sheet": "기준서_시스템 시험",
+      "index": 2,
+      "addr": "D70",
+      "old": "Test",
+      "value": "T"
+    },
+    {
+      "sheet": "기준서_시스템 시험",
+      "index": 2,
+      "addr": "D71",
+      "old": "Test",
+      "value": "T"
+    },
+    {
+      "sheet": "기준서_시스템 시험",
+      "index": 2,
+      "addr": "D72",
+      "old": "Demonstration",
+      "value": "D"
+    },
+    {
+      "sheet": "기준서_시스템 시험",
+      "index": 2,
+      "addr": "D73",
+      "old": "Demonstration",
+      "value": "D"
+    },
+    {
+      "sheet": "기준서_시스템 시험",
+      "index": 2,
+      "addr": "D74",
+      "old": "Demonstration",
+      "value": "D"
+    },
+    {
+      "sheet": "기준서_시스템 시험",
+      "index": 2,
+      "addr": "D75",
+      "old": "Demonstration",
+      "value": "D"
+    },
+    {
+      "sheet": "기준서_시스템 시험",
+      "index": 2,
+      "addr": "D76",
+      "old": "Demonstration",
+      "value": "D"
+    },
+    {
+      "sheet": "기준서_시스템 시험",
+      "index": 2,
+      "addr": "D77",
+      "old": "Demonstration",
+      "value": "D"
+    },
+    {
+      "sheet": "기준서_시스템 시험",
+      "index": 2,
+      "addr": "D78",
+      "old": "Demonstration",
+      "value": "D"
+    },
+    {
+      "sheet": "기준서_시스템 시험",
+      "index": 2,
+      "addr": "D79",
+      "old": "Inspection",
+      "value": "I"
+    },
+    {
+      "sheet": "기준서_시스템 시험",
+      "index": 2,
+      "addr": "D80",
+      "old": "Inspection",
+      "value": "I"
+    },
+    {
+      "sheet": "기준서_시스템 시험",
+      "index": 2,
+      "addr": "D81",
+      "old": "Demonstration",
+      "value": "D"
+    },
+    {
+      "sheet": "기준서_시스템 시험",
+      "index": 2,
+      "addr": "D82",
+      "old": "Demonstration",
+      "value": "D"
+    },
+    {
+      "sheet": "기준서_시스템 시험",
+      "index": 2,
+      "addr": "D83",
+      "old": "Demonstration",
+      "value": "D"
+    },
+    {
+      "sheet": "기준서_시스템 시험",
+      "index": 2,
+      "addr": "D84",
+      "old": "Demonstration",
+      "value": "D"
+    },
+    {
+      "sheet": "기준서_시스템 시험",
+      "index": 2,
+      "addr": "D85",
+      "old": "Demonstration",
+      "value": "D"
+    },
+    {
+      "sheet": "기준서_시스템 시험",
+      "index": 2,
+      "addr": "D86",
+      "old": "Inspection",
+      "value": "I"
+    },
+    {
+      "sheet": "기준서_시스템 시험",
+      "index": 2,
+      "addr": "D87",
+      "old": "Demonstration",
+      "value": "D"
+    },
+    {
+      "sheet": "기준서_시스템 시험",
+      "index": 2,
+      "addr": "D88",
+      "old": "Inspection",
+      "value": "I"
+    },
+    {
+      "sheet": "기준서_시스템 시험",
+      "index": 2,
+      "addr": "D89",
+      "old": "Inspection",
+      "value": "I"
+    },
+    {
+      "sheet": "기준서_시스템 시험",
+      "index": 2,
+      "addr": "D90",
+      "old": "Demonstration",
+      "value": "D"
+    },
+    {
+      "sheet": "기준서_시스템 시험",
+      "index": 2,
+      "addr": "D91",
+      "old": "Demonstration",
+      "value": "D"
+    },
+    {
+      "sheet": "기준서_시스템 시험",
+      "index": 2,
+      "addr": "D92",
+      "old": "Demonstration",
+      "value": "D"
+    },
+    {
+      "sheet": "기준서_시스템 시험",
+      "index": 2,
+      "addr": "D93",
+      "old": "Demonstration",
+      "value": "D"
+    },
+    {
+      "sheet": "기준서_시스템 시험",
+      "index": 2,
+      "addr": "D94",
+      "old": "Analysis\nTest",
+      "value": "A\nT"
+    },
+    {
+      "sheet": "기준서_시스템 시험",
+      "index": 2,
+      "addr": "D95",
+      "old": "Test",
+      "value": "T"
+    },
+    {
+      "sheet": "기준서_시스템 시험",
+      "index": 2,
+      "addr": "D96",
+      "old": "Demonstration",
+      "value": "D"
+    },
+    {
+      "sheet": "기준서_시스템 시험",
+      "index": 2,
+      "addr": "D97",
+      "old": "Inspection",
+      "value": "I"
+    },
+    {
+      "sheet": "기준서_시스템 시험",
+      "index": 2,
+      "addr": "D98",
+      "old": "Demonstration",
+      "value": "D"
+    },
+    {
+      "sheet": "기준서_시스템 시험",
+      "index": 2,
+      "addr": "D99",
+      "old": "Demonstration",
+      "value": "D"
+    },
+    {
+      "sheet": "기준서_시스템 시험",
+      "index": 2,
+      "addr": "D101",
+      "old": "Inspection",
+      "value": "I"
+    },
+    {
+      "sheet": "기준서_시스템 시험",
+      "index": 2,
+      "addr": "D102",
+      "old": "Inspection",
+      "value": "I"
+    },
+    {
+      "sheet": "기준서_시스템 시험",
+      "index": 2,
+      "addr": "D103",
+      "old": "Demonstration",
+      "value": "D"
+    },
+    {
+      "sheet": "기준서_시스템 시험",
+      "index": 2,
+      "addr": "D104",
+      "old": "Test",
+      "value": "T"
+    },
+    {
+      "sheet": "기준서_시스템 시험",
+      "index": 2,
+      "addr": "D105",
+      "old": "Test",
+      "value": "T"
+    },
+    {
+      "sheet": "기준서_시스템 시험_변경 비교",
+      "index": 3,
+      "addr": "D26",
+      "old": "Test",
+      "value": "T"
+    },
+    {
+      "sheet": "기준서_시스템 시험_변경 비교",
+      "index": 3,
+      "addr": "D28",
+      "old": "Test",
+      "value": "T"
+    },
+    {
+      "sheet": "기준서_시스템 시험_변경 비교",
+      "index": 3,
+      "addr": "D30",
+      "old": "Test",
+      "value": "T"
+    },
+    {
+      "sheet": "기준서_시스템 시험_변경 비교",
+      "index": 3,
+      "addr": "D32",
+      "old": "Test",
+      "value": "T"
+    },
+    {
+      "sheet": "기준서_시스템 시험_변경 비교",
+      "index": 3,
+      "addr": "D34",
+      "old": "Test",
+      "value": "T"
+    },
+    {
+      "sheet": "기준서_시스템 시험_변경 비교",
+      "index": 3,
+      "addr": "D36",
+      "old": "Test",
+      "value": "T"
+    },
+    {
+      "sheet": "기준서_시스템 시험_변경 비교",
+      "index": 3,
+      "addr": "D40",
+      "old": "Demonstration",
+      "value": "D"
+    },
+    {
+      "sheet": "기준서_시스템 시험_변경 비교",
+      "index": 3,
+      "addr": "D42",
+      "old": "Demonstration",
+      "value": "D"
+    },
+    {
+      "sheet": "기준서_시스템 시험_변경 비교",
+      "index": 3,
+      "addr": "D44",
+      "old": "Demonstration",
+      "value": "D"
+    },
+    {
+      "sheet": "기준서_시스템 시험_변경 비교",
+      "index": 3,
+      "addr": "D46",
+      "old": "Test",
+      "value": "T"
+    },
+    {
+      "sheet": "기준서_시스템 시험_변경 비교",
+      "index": 3,
+      "addr": "D48",
+      "old": "Test",
+      "value": "T"
+    },
+    {
+      "sheet": "기준서_시스템 시험_변경 비교",
+      "index": 3,
+      "addr": "D50",
+      "old": "Demonstration",
+      "value": "D"
+    },
+    {
+      "sheet": "기준서_시스템 시험_변경 비교",
+      "index": 3,
+      "addr": "D52",
+      "old": "Demonstration",
+      "value": "D"
+    },
+    {
+      "sheet": "기준서_시스템 시험_변경 비교",
+      "index": 3,
+      "addr": "D112",
+      "old": "Analysis",
+      "value": "A"
+    },
+    {
+      "sheet": "기준서_시스템 시험_변경 비교",
+      "index": 3,
+      "addr": "D114",
+      "old": "Analysis",
+      "value": "A"
+    },
+    {
+      "sheet": "기준서_시스템 시험_변경 비교",
+      "index": 3,
+      "addr": "D115",
+      "old": "Test",
+      "value": "T"
+    },
+    {
+      "sheet": "기준서_시스템 시험_변경 비교",
+      "index": 3,
+      "addr": "D116",
+      "old": "Test",
+      "value": "T"
+    },
+    {
+      "sheet": "기준서_시스템 시험_변경 비교",
+      "index": 3,
+      "addr": "D118",
+      "old": "Demonstration",
+      "value": "D"
+    },
+    {
+      "sheet": "기준서_시스템 시험_변경 비교",
+      "index": 3,
+      "addr": "D120",
+      "old": "Demonstration",
+      "value": "D"
+    },
+    {
+      "sheet": "기준서_시스템 시험_변경 비교",
+      "index": 3,
+      "addr": "D122",
+      "old": "Demonstration",
+      "value": "D"
+    },
+    {
+      "sheet": "기준서_시스템 시험_변경 비교",
+      "index": 3,
+      "addr": "D124",
+      "old": "Demonstration",
+      "value": "D"
+    },
+    {
+      "sheet": "기준서_시스템 시험_변경 비교",
+      "index": 3,
+      "addr": "D126",
+      "old": "Demonstration",
+      "value": "D"
+    },
+    {
+      "sheet": "기준서_시스템 시험_변경 비교",
+      "index": 3,
+      "addr": "D128",
+      "old": "Demonstration",
+      "value": "D"
+    },
+    {
+      "sheet": "기준서_시스템 시험_변경 비교",
+      "index": 3,
+      "addr": "D130",
+      "old": "Demonstration",
+      "value": "D"
+    },
+    {
+      "sheet": "기준서_시스템 시험_변경 비교",
+      "index": 3,
+      "addr": "D132",
+      "old": "Inspection",
+      "value": "I"
+    },
+    {
+      "sheet": "기준서_시스템 시험_변경 비교",
+      "index": 3,
+      "addr": "D133",
+      "old": "Inspection",
+      "value": "I"
+    },
+    {
+      "sheet": "기준서_시스템 시험_변경 비교",
+      "index": 3,
+      "addr": "D135",
+      "old": "Demonstration",
+      "value": "D"
+    },
+    {
+      "sheet": "기준서_시스템 시험_변경 비교",
+      "index": 3,
+      "addr": "D136",
+      "old": "Demonstration",
+      "value": "D"
+    },
+    {
+      "sheet": "기준서_시스템 시험_변경 비교",
+      "index": 3,
+      "addr": "D137",
+      "old": "Demonstration",
+      "value": "D"
+    },
+    {
+      "sheet": "기준서_시스템 시험_변경 비교",
+      "index": 3,
+      "addr": "D138",
+      "old": "Demonstration",
+      "value": "D"
+    },
+    {
+      "sheet": "기준서_시스템 시험_변경 비교",
+      "index": 3,
+      "addr": "D139",
+      "old": "Demonstration",
+      "value": "D"
+    },
+    {
+      "sheet": "기준서_시스템 시험_변경 비교",
+      "index": 3,
+      "addr": "D140",
+      "old": "Inspection",
+      "value": "I"
+    },
+    {
+      "sheet": "기준서_시스템 시험_변경 비교",
+      "index": 3,
+      "addr": "D141",
+      "old": "Demonstration",
+      "value": "D"
+    },
+    {
+      "sheet": "기준서_시스템 시험_변경 비교",
+      "index": 3,
+      "addr": "D142",
+      "old": "Inspection",
+      "value": "I"
+    },
+    {
+      "sheet": "기준서_시스템 시험_변경 비교",
+      "index": 3,
+      "addr": "D143",
+      "old": "Inspection",
+      "value": "I"
+    },
+    {
+      "sheet": "기준서_시스템 시험_변경 비교",
+      "index": 3,
+      "addr": "D144",
+      "old": "Demonstration",
+      "value": "D"
+    },
+    {
+      "sheet": "기준서_시스템 시험_변경 비교",
+      "index": 3,
+      "addr": "D145",
+      "old": "Demonstration",
+      "value": "D"
+    },
+    {
+      "sheet": "기준서_시스템 시험_변경 비교",
+      "index": 3,
+      "addr": "D147",
+      "old": "Demonstration",
+      "value": "D"
+    },
+    {
+      "sheet": "기준서_시스템 시험_변경 비교",
+      "index": 3,
+      "addr": "D149",
+      "old": "Demonstration",
+      "value": "D"
+    },
+    {
+      "sheet": "기준서_시스템 시험_변경 비교",
+      "index": 3,
+      "addr": "D151",
+      "old": "Analysis\nTest",
+      "value": "A\nT"
+    },
+    {
+      "sheet": "기준서_시스템 시험_변경 비교",
+      "index": 3,
+      "addr": "D153",
+      "old": "Test",
+      "value": "T"
+    },
+    {
+      "sheet": "기준서_시스템 시험_변경 비교",
+      "index": 3,
+      "addr": "D155",
+      "old": "Demonstration",
+      "value": "D"
+    },
+    {
+      "sheet": "기준서_시스템 시험_변경 비교",
+      "index": 3,
+      "addr": "D157",
+      "old": "Inspection",
+      "value": "I"
+    },
+    {
+      "sheet": "기준서_시스템 시험_변경 비교",
+      "index": 3,
+      "addr": "D159",
+      "old": "Demonstration",
+      "value": "D"
+    },
+    {
+      "sheet": "기준서_시스템 시험_변경 비교",
+      "index": 3,
+      "addr": "D161",
+      "old": "Demonstration",
+      "value": "D"
+    },
+    {
+      "sheet": "기준서_시스템 시험_변경 비교",
+      "index": 3,
+      "addr": "D165",
+      "old": "Inspection",
+      "value": "I"
+    },
+    {
+      "sheet": "기준서_시스템 시험_변경 비교",
+      "index": 3,
+      "addr": "D167",
+      "old": "Inspection",
+      "value": "I"
+    },
+    {
+      "sheet": "기준서_시스템 시험_변경 비교",
+      "index": 3,
+      "addr": "D169",
+      "old": "Demonstration",
+      "value": "D"
+    },
+    {
+      "sheet": "기준서_시스템 시험_변경 비교",
+      "index": 3,
+      "addr": "D171",
+      "old": "Test",
+      "value": "T"
+    },
+    {
+      "sheet": "기준서_시스템 시험_변경 비교",
+      "index": 3,
+      "addr": "D173",
+      "old": "Test",
+      "value": "T"
+    }
+  ]
+}

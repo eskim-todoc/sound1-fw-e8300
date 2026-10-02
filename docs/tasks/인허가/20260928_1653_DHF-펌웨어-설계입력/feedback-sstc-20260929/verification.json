@@ -1,0 +1,631 @@
+{
+  "requirements": 81,
+  "tests": 81,
+  "missing_SW": [],
+  "wrong_SYS_links": [],
+  "SYS_coverage": 50,
+  "SRS_local_requirements_without_SYS": [
+    7,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    63
+  ],
+  "SRS_unchanged": true,
+  "cover_and_non_test_sections_preserved": true,
+  "trace": [
+    {
+      "SW": 1,
+      "TEST": "SW-FW-SYS-Test-ID-1",
+      "SYS": [
+        "2"
+      ],
+      "row": 25
+    },
+    {
+      "SW": 2,
+      "TEST": "SW-FW-SYS-Test-ID-2",
+      "SYS": [
+        "2"
+      ],
+      "row": 26
+    },
+    {
+      "SW": 3,
+      "TEST": "SW-FW-SYS-Test-ID-3",
+      "SYS": [
+        "1"
+      ],
+      "row": 27
+    },
+    {
+      "SW": 4,
+      "TEST": "SW-FW-SYS-Test-ID-4",
+      "SYS": [
+        "4"
+      ],
+      "row": 28
+    },
+    {
+      "SW": 5,
+      "TEST": "SW-FW-SYS-Test-ID-5",
+      "SYS": [
+        "5"
+      ],
+      "row": 29
+    },
+    {
+      "SW": 6,
+      "TEST": "SW-FW-SYS-Test-ID-6",
+      "SYS": [
+        "3"
+      ],
+      "row": 30
+    },
+    {
+      "SW": 7,
+      "TEST": "SW-FW-SYS-Test-ID-7",
+      "SYS": [],
+      "row": 31
+    },
+    {
+      "SW": 8,
+      "TEST": "SW-FW-SYS-Test-ID-8",
+      "SYS": [
+        "6"
+      ],
+      "row": 32
+    },
+    {
+      "SW": 9,
+      "TEST": "SW-FW-SYS-Test-ID-9",
+      "SYS": [
+        "7"
+      ],
+      "row": 33
+    },
+    {
+      "SW": 10,
+      "TEST": "SW-FW-SYS-Test-ID-10",
+      "SYS": [
+        "8"
+      ],
+      "row": 34
+    },
+    {
+      "SW": 11,
+      "TEST": "SW-FW-SYS-Test-ID-11",
+      "SYS": [
+        "9"
+      ],
+      "row": 35
+    },
+    {
+      "SW": 12,
+      "TEST": "SW-FW-SYS-Test-ID-12",
+      "SYS": [
+        "10"
+      ],
+      "row": 36
+    },
+    {
+      "SW": 13,
+      "TEST": "SW-FW-SYS-Test-ID-13",
+      "SYS": [
+        "11"
+      ],
+      "row": 37
+    },
+    {
+      "SW": 14,
+      "TEST": "SW-FW-SYS-Test-ID-14",
+      "SYS": [
+        "12"
+      ],
+      "row": 38
+    },
+    {
+      "SW": 15,
+      "TEST": "SW-FW-SYS-Test-ID-15",
+      "SYS": [],
+      "row": 39
+    },
+    {
+      "SW": 16,
+      "TEST": "SW-FW-SYS-Test-ID-16",
+      "SYS": [],
+      "row": 40
+    },
+    {
+      "SW": 17,
+      "TEST": "SW-FW-SYS-Test-ID-17",
+      "SYS": [],
+      "row": 41
+    },
+    {
+      "SW": 18,
+      "TEST": "SW-FW-SYS-Test-ID-18",
+      "SYS": [],
+      "row": 42
+    },
+    {
+      "SW": 19,
+      "TEST": "SW-FW-SYS-Test-ID-19",
+      "SYS": [],
+      "row": 43
+    },
+    {
+      "SW": 20,
+      "TEST": "SW-FW-SYS-Test-ID-20",
+      "SYS": [],
+      "row": 44
+    },
+    {
+      "SW": 21,
+      "TEST": "SW-FW-SYS-Test-ID-21",
+      "SYS": [],
+      "row": 45
+    },
+    {
+      "SW": 22,
+      "TEST": "SW-FW-SYS-Test-ID-22",
+      "SYS": [],
+      "row": 46
+    },
+    {
+      "SW": 23,
+      "TEST": "SW-FW-SYS-Test-ID-23",
+      "SYS": [],
+      "row": 47
+    },
+    {
+      "SW": 24,
+      "TEST": "SW-FW-SYS-Test-ID-24",
+      "SYS": [],
+      "row": 48
+    },
+    {
+      "SW": 25,
+      "TEST": "SW-FW-SYS-Test-ID-25",
+      "SYS": [],
+      "row": 49
+    },
+    {
+      "SW": 26,
+      "TEST": "SW-FW-SYS-Test-ID-26",
+      "SYS": [],
+      "row": 50
+    },
+    {
+      "SW": 27,
+      "TEST": "SW-FW-SYS-Test-ID-27",
+      "SYS": [],
+      "row": 51
+    },
+    {
+      "SW": 28,
+      "TEST": "SW-FW-SYS-Test-ID-28",
+      "SYS": [],
+      "row": 52
+    },
+    {
+      "SW": 29,
+      "TEST": "SW-FW-SYS-Test-ID-29",
+      "SYS": [],
+      "row": 53
+    },
+    {
+      "SW": 30,
+      "TEST": "SW-FW-SYS-Test-ID-30",
+      "SYS": [],
+      "row": 54
+    },
+    {
+      "SW": 31,
+      "TEST": "SW-FW-SYS-Test-ID-31",
+      "SYS": [],
+      "row": 55
+    },
+    {
+      "SW": 32,
+      "TEST": "SW-FW-SYS-Test-ID-32",
+      "SYS": [],
+      "row": 56
+    },
+    {
+      "SW": 33,
+      "TEST": "SW-FW-SYS-Test-ID-33",
+      "SYS": [],
+      "row": 57
+    },
+    {
+      "SW": 34,
+      "TEST": "SW-FW-SYS-Test-ID-34",
+      "SYS": [],
+      "row": 58
+    },
+    {
+      "SW": 35,
+      "TEST": "SW-FW-SYS-Test-ID-35",
+      "SYS": [],
+      "row": 59
+    },
+    {
+      "SW": 36,
+      "TEST": "SW-FW-SYS-Test-ID-36",
+      "SYS": [],
+      "row": 60
+    },
+    {
+      "SW": 37,
+      "TEST": "SW-FW-SYS-Test-ID-37",
+      "SYS": [],
+      "row": 61
+    },
+    {
+      "SW": 38,
+      "TEST": "SW-FW-SYS-Test-ID-38",
+      "SYS": [],
+      "row": 62
+    },
+    {
+      "SW": 39,
+      "TEST": "SW-FW-SYS-Test-ID-39",
+      "SYS": [],
+      "row": 63
+    },
+    {
+      "SW": 40,
+      "TEST": "SW-FW-SYS-Test-ID-40",
+      "SYS": [],
+      "row": 64
+    },
+    {
+      "SW": 41,
+      "TEST": "SW-FW-SYS-Test-ID-41",
+      "SYS": [],
+      "row": 65
+    },
+    {
+      "SW": 42,
+      "TEST": "SW-FW-SYS-Test-ID-42",
+      "SYS": [],
+      "row": 66
+    },
+    {
+      "SW": 43,
+      "TEST": "SW-FW-SYS-Test-ID-43",
+      "SYS": [],
+      "row": 67
+    },
+    {
+      "SW": 44,
+      "TEST": "SW-FW-SYS-Test-ID-44",
+      "SYS": [
+        "13"
+      ],
+      "row": 68
+    },
+    {
+      "SW": 45,
+      "TEST": "SW-FW-SYS-Test-ID-45",
+      "SYS": [
+        "14"
+      ],
+      "row": 69
+    },
+    {
+      "SW": 69,
+      "TEST": "SW-FW-SYS-Test-ID-69",
+      "SYS": [
+        "15"
+      ],
+      "row": 70
+    },
+    {
+      "SW": 70,
+      "TEST": "SW-FW-SYS-Test-ID-70",
+      "SYS": [
+        "16"
+      ],
+      "row": 71
+    },
+    {
+      "SW": 46,
+      "TEST": "SW-FW-SYS-Test-ID-46",
+      "SYS": [
+        "17"
+      ],
+      "row": 72
+    },
+    {
+      "SW": 47,
+      "TEST": "SW-FW-SYS-Test-ID-47",
+      "SYS": [
+        "22"
+      ],
+      "row": 73
+    },
+    {
+      "SW": 48,
+      "TEST": "SW-FW-SYS-Test-ID-48",
+      "SYS": [
+        "18"
+      ],
+      "row": 74
+    },
+    {
+      "SW": 49,
+      "TEST": "SW-FW-SYS-Test-ID-49",
+      "SYS": [
+        "26"
+      ],
+      "row": 75
+    },
+    {
+      "SW": 50,
+      "TEST": "SW-FW-SYS-Test-ID-50",
+      "SYS": [
+        "23"
+      ],
+      "row": 76
+    },
+    {
+      "SW": 51,
+      "TEST": "SW-FW-SYS-Test-ID-51",
+      "SYS": [
+        "27"
+      ],
+      "row": 77
+    },
+    {
+      "SW": 52,
+      "TEST": "SW-FW-SYS-Test-ID-52",
+      "SYS": [
+        "19"
+      ],
+      "row": 78
+    },
+    {
+      "SW": 53,
+      "TEST": "SW-FW-SYS-Test-ID-53",
+      "SYS": [
+        "30"
+      ],
+      "row": 79
+    },
+    {
+      "SW": 81,
+      "TEST": "SW-FW-SYS-Test-ID-81",
+      "SYS": [
+        "31"
+      ],
+      "row": 80
+    },
+    {
+      "SW": 54,
+      "TEST": "SW-FW-SYS-Test-ID-54",
+      "SYS": [
+        "32"
+      ],
+      "row": 81
+    },
+    {
+      "SW": 71,
+      "TEST": "SW-FW-SYS-Test-ID-71",
+      "SYS": [
+        "20"
+      ],
+      "row": 82
+    },
+    {
+      "SW": 72,
+      "TEST": "SW-FW-SYS-Test-ID-72",
+      "SYS": [
+        "21"
+      ],
+      "row": 83
+    },
+    {
+      "SW": 73,
+      "TEST": "SW-FW-SYS-Test-ID-73",
+      "SYS": [
+        "24"
+      ],
+      "row": 84
+    },
+    {
+      "SW": 74,
+      "TEST": "SW-FW-SYS-Test-ID-74",
+      "SYS": [
+        "25"
+      ],
+      "row": 85
+    },
+    {
+      "SW": 75,
+      "TEST": "SW-FW-SYS-Test-ID-75",
+      "SYS": [
+        "29"
+      ],
+      "row": 86
+    },
+    {
+      "SW": 76,
+      "TEST": "SW-FW-SYS-Test-ID-76",
+      "SYS": [
+        "33"
+      ],
+      "row": 87
+    },
+    {
+      "SW": 77,
+      "TEST": "SW-FW-SYS-Test-ID-77",
+      "SYS": [
+        "34"
+      ],
+      "row": 88
+    },
+    {
+      "SW": 78,
+      "TEST": "SW-FW-SYS-Test-ID-78",
+      "SYS": [
+        "35"
+      ],
+      "row": 89
+    },
+    {
+      "SW": 79,
+      "TEST": "SW-FW-SYS-Test-ID-79",
+      "SYS": [
+        "36"
+      ],
+      "row": 90
+    },
+    {
+      "SW": 80,
+      "TEST": "SW-FW-SYS-Test-ID-80",
+      "SYS": [
+        "38"
+      ],
+      "row": 91
+    },
+    {
+      "SW": 55,
+      "TEST": "SW-FW-SYS-Test-ID-55",
+      "SYS": [
+        "48"
+      ],
+      "row": 92
+    },
+    {
+      "SW": 56,
+      "TEST": "SW-FW-SYS-Test-ID-56",
+      "SYS": [
+        "47"
+      ],
+      "row": 93
+    },
+    {
+      "SW": 57,
+      "TEST": "SW-FW-SYS-Test-ID-57",
+      "SYS": [
+        "39",
+        "40"
+      ],
+      "row": 94
+    },
+    {
+      "SW": 58,
+      "TEST": "SW-FW-SYS-Test-ID-58",
+      "SYS": [
+        "41"
+      ],
+      "row": 95
+    },
+    {
+      "SW": 59,
+      "TEST": "SW-FW-SYS-Test-ID-59",
+      "SYS": [
+        "28"
+      ],
+      "row": 96
+    },
+    {
+      "SW": 60,
+      "TEST": "SW-FW-SYS-Test-ID-60",
+      "SYS": [
+        "42"
+      ],
+      "row": 97
+    },
+    {
+      "SW": 61,
+      "TEST": "SW-FW-SYS-Test-ID-61",
+      "SYS": [
+        "43"
+      ],
+      "row": 98
+    },
+    {
+      "SW": 62,
+      "TEST": "SW-FW-SYS-Test-ID-62",
+      "SYS": [
+        "44"
+      ],
+      "row": 99
+    },
+    {
+      "SW": 63,
+      "TEST": "SW-FW-SYS-Test-ID-63",
+      "SYS": [],
+      "row": 100
+    },
+    {
+      "SW": 64,
+      "TEST": "SW-FW-SYS-Test-ID-64",
+      "SYS": [
+        "45"
+      ],
+      "row": 101
+    },
+    {
+      "SW": 65,
+      "TEST": "SW-FW-SYS-Test-ID-65",
+      "SYS": [
+        "46"
+      ],
+      "row": 102
+    },
+    {
+      "SW": 66,
+      "TEST": "SW-FW-SYS-Test-ID-66",
+      "SYS": [
+        "37"
+      ],
+      "row": 103
+    },
+    {
+      "SW": 67,
+      "TEST": "SW-FW-SYS-Test-ID-67",
+      "SYS": [
+        "49"
+      ],
+      "row": 104
+    },
+    {
+      "SW": 68,
+      "TEST": "SW-FW-SYS-Test-ID-68",
+      "SYS": [
+        "50"
+      ],
+      "row": 105
+    }
+  ]
+}

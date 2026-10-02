@@ -1,0 +1,13 @@
+import fs from 'node:fs/promises';
+import path from 'node:path';
+import {fileURLToPath} from 'node:url';
+import {Workbook,SpreadsheetFile} from '@oai/artifact-tool';
+const q=path.join(path.dirname(fileURLToPath(import.meta.url)),'criteria-feedback-20260929');
+const j=JSON.parse(await fs.readFile(path.join(q,'plan.json'),'utf8'));
+const w=Workbook.create(),s=w.worksheets.add('시험'),d=w.worksheets.add('비교');
+s.getRange('B25').write(j.body.map(x=>x.values));
+d.getRange('A25').write(j.entries.map(x=>[x.mark,...x.values]));
+j.entries.forEach((e,i)=>{if(e.mark)d.getRange(`A${i+25}:J${i+25}`).format.fill=e.mark==='[-]'?'#FCE4D6':'#E2F0D9';});
+w.recalculate();
+console.log((await w.inspect({kind:'table',range:'시험!I45:J46',include:'values',tableMaxRows:2,tableMaxCols:2,maxChars:1500})).ndjson);
+await(await SpreadsheetFile.exportXlsx(w)).save(path.join(q,'authored.xlsx'));
