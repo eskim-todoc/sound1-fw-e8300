@@ -10,3 +10,26 @@ docs/plans/*
 # cm3_factory — 별도 프로젝트(공장 펌웨어), 추후 추가 예정 (은수님 지시 2026-06-19)
 src/2__cm3_factory/
 __pycache__/
+
+# 장비 로컬 의존성과 재생성 가능한 실행 중간물
+node_modules/
+/tmp/
+/outputs/
+~$*
+
+# SV 문서 작업 중간 사본과 렌더링 결과. 원본 자료는 docs/참고에 보존한다.
+# 생성/검증 스크립트와 JSON 요약은 추적한다.
+/docs/tasks/인허가/**/*.docx
+/docs/tasks/인허가/**/*.xlsx
+/docs/tasks/인허가/**/*.pptx
+/docs/tasks/인허가/**/*.pdf
+/docs/tasks/인허가/**/*.png
+/docs/tasks/인허가/**/*.jpg
+/docs/tasks/인허가/**/*.jpeg
+/docs/tasks/인허가/**/*.xml
+/docs/tasks/인허가/**/*.ndjson
+/docs/tasks/인허가/**/*.tmp
+
+# Office 내부 상태를 통째로 저장한 대용량 검사 덤프
+/docs/tasks/인허가/20261012_2102_QCC-설계문서-반영/qa/review-20261013/qcc_requirements/inspection.json
+/docs/tasks/인허가/20261012_2102_QCC-설계문서-반영/qa/review-20261013/qcc_design/sad-native-page3-5.json

@@ -1,0 +1,496 @@
+{
+  "device_execution": false,
+  "meaning": "harness checks, not product acceptance",
+  "status": "HARNESS_ERROR",
+  "results": [
+    {
+      "name": "suite-runner-checker",
+      "command": [
+        "C:\\Users\\EUNSU\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "tests/unit/check_suite_runner_test.py"
+      ],
+      "returncode": 0,
+      "seconds": 1.36,
+      "log": "tmp\\unit-tests\\suite\\suite-runner-checker.log"
+    },
+    {
+      "name": "source-preservation-checker",
+      "command": [
+        "C:\\Users\\EUNSU\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "tests/unit/check_source_preservation_test.py"
+      ],
+      "returncode": 0,
+      "seconds": 0.14,
+      "log": "tmp\\unit-tests\\suite\\source-preservation-checker.log"
+    },
+    {
+      "name": "log-build",
+      "command": [
+        "gcc",
+        "-std=c99",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-DTDC_UNIT_TEST",
+        "tests/unit/tdc_ut_log_test.c",
+        "src/test/tdc_ut_log.c",
+        "-o",
+        "C:\\Users\\EUNSU\\AppData\\Local\\Temp\\sound1-git-publish-20261019-test\\tmp\\unit-tests\\suite\\log.exe"
+      ],
+      "returncode": 0,
+      "seconds": 0.282,
+      "log": "tmp\\unit-tests\\suite\\log-build.log"
+    },
+    {
+      "name": "log",
+      "command": [
+        "C:\\Users\\EUNSU\\AppData\\Local\\Temp\\sound1-git-publish-20261019-test\\tmp\\unit-tests\\suite\\log.exe"
+      ],
+      "returncode": 0,
+      "seconds": 0.078,
+      "log": "tmp\\unit-tests\\suite\\log.log"
+    },
+    {
+      "name": "report-build",
+      "command": [
+        "gcc",
+        "-std=c99",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-DTDC_UNIT_TEST",
+        "-Itests/unit/tdc_ut_report_host",
+        "tests/unit/tdc_ut_report_test.c",
+        "-o",
+        "C:\\Users\\EUNSU\\AppData\\Local\\Temp\\sound1-git-publish-20261019-test\\tmp\\unit-tests\\suite\\report.exe"
+      ],
+      "returncode": 0,
+      "seconds": 0.203,
+      "log": "tmp\\unit-tests\\suite\\report-build.log"
+    },
+    {
+      "name": "report",
+      "command": [
+        "C:\\Users\\EUNSU\\AppData\\Local\\Temp\\sound1-git-publish-20261019-test\\tmp\\unit-tests\\suite\\report.exe"
+      ],
+      "returncode": 0,
+      "seconds": 0.078,
+      "log": "tmp\\unit-tests\\suite\\report.log"
+    },
+    {
+      "name": "boot-report-build",
+      "command": [
+        "gcc",
+        "-std=c99",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-DTDC_UNIT_TEST",
+        "-Itests/unit/tdc_ut_report_host",
+        "-Itests/unit/tdc_ut_boot_mock",
+        "-Isrc/0__bootloader/include",
+        "tests/unit/tdc_ut_boot_report_test.c",
+        "-o",
+        "C:\\Users\\EUNSU\\AppData\\Local\\Temp\\sound1-git-publish-20261019-test\\tmp\\unit-tests\\suite\\boot-report.exe"
+      ],
+      "returncode": 0,
+      "seconds": 0.203,
+      "log": "tmp\\unit-tests\\suite\\boot-report-build.log"
+    },
+    {
+      "name": "boot-report",
+      "command": [
+        "C:\\Users\\EUNSU\\AppData\\Local\\Temp\\sound1-git-publish-20261019-test\\tmp\\unit-tests\\suite\\boot-report.exe"
+      ],
+      "returncode": 0,
+      "seconds": 0.078,
+      "log": "tmp\\unit-tests\\suite\\boot-report.log"
+    },
+    {
+      "name": "check_rtt_wrappers",
+      "command": [
+        "C:\\Users\\EUNSU\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "tests/unit/check_rtt_wrappers.py"
+      ],
+      "returncode": 0,
+      "seconds": 0.375,
+      "log": "tmp\\unit-tests\\suite\\check_rtt_wrappers.log"
+    },
+    {
+      "name": "check_cfx_analysis",
+      "command": [
+        "C:\\Users\\EUNSU\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "tests/unit/check_cfx_analysis.py"
+      ],
+      "returncode": 0,
+      "seconds": 0.11,
+      "log": "tmp\\unit-tests\\suite\\check_cfx_analysis.log"
+    },
+    {
+      "name": "check_cfx_vectors",
+      "command": [
+        "C:\\Users\\EUNSU\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "tests/unit/check_cfx_vectors.py"
+      ],
+      "returncode": 0,
+      "seconds": 0.437,
+      "log": "tmp\\unit-tests\\suite\\check_cfx_vectors.log"
+    },
+    {
+      "name": "check_cfx_numeric_reference",
+      "command": [
+        "C:\\Users\\EUNSU\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "tests/unit/check_cfx_numeric_reference.py"
+      ],
+      "returncode": 0,
+      "seconds": 9.094,
+      "log": "tmp\\unit-tests\\suite\\check_cfx_numeric_reference.log"
+    },
+    {
+      "name": "tdc_ut_hear_reference_check",
+      "command": [
+        "C:\\Users\\EUNSU\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "tests/unit/tdc_ut_hear_reference_check.py"
+      ],
+      "returncode": 0,
+      "seconds": 0.531,
+      "log": "tmp\\unit-tests\\suite\\tdc_ut_hear_reference_check.log"
+    },
+    {
+      "name": "tdc_ut_cfx_io_check",
+      "command": [
+        "C:\\Users\\EUNSU\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "tests/unit/tdc_ut_cfx_io_check.py"
+      ],
+      "returncode": 0,
+      "seconds": 0.61,
+      "log": "tmp\\unit-tests\\suite\\tdc_ut_cfx_io_check.log"
+    },
+    {
+      "name": "tdc_ut_cm3_run",
+      "command": [
+        "C:\\Users\\EUNSU\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "tests/unit/tdc_ut_cm3_run.py"
+      ],
+      "returncode": 1,
+      "seconds": 0.593,
+      "log": "tmp\\unit-tests\\suite\\tdc_ut_cm3_run.log"
+    },
+    {
+      "name": "tdc_ut_boot_check",
+      "command": [
+        "C:\\Users\\EUNSU\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "tests/unit/tdc_ut_boot_check.py"
+      ],
+      "returncode": 1,
+      "seconds": 0.188,
+      "log": "tmp\\unit-tests\\suite\\tdc_ut_boot_check.log"
+    },
+    {
+      "name": "cm3-io",
+      "command": [
+        "C:\\Users\\EUNSU\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "tests/unit/tdc_ut_io_cm3_build.py",
+        "--check-known-findings"
+      ],
+      "returncode": 0,
+      "seconds": 8.125,
+      "log": "tmp\\unit-tests\\suite\\cm3-io.log"
+    },
+    {
+      "name": "cm3-io-ram",
+      "command": [
+        "C:\\Users\\EUNSU\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "tests/unit/tdc_ut_io_cm3_build.py",
+        "--ram",
+        "--check-known-findings"
+      ],
+      "returncode": 0,
+      "seconds": 5.109,
+      "log": "tmp\\unit-tests\\suite\\cm3-io-ram.log"
+    },
+    {
+      "name": "cm3-state",
+      "command": [
+        "C:\\Users\\EUNSU\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "tests/unit/check_cm3_state.py"
+      ],
+      "returncode": 0,
+      "seconds": 3.094,
+      "log": "tmp\\unit-tests\\suite\\cm3-state.log"
+    },
+    {
+      "name": "cm3-extra",
+      "command": [
+        "C:\\Users\\EUNSU\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "tests/unit/tdc_ut_cm3_extra_run.py"
+      ],
+      "returncode": 1,
+      "seconds": 0.125,
+      "log": "tmp\\unit-tests\\suite\\cm3-extra.log"
+    },
+    {
+      "name": "event-log",
+      "command": [
+        "C:\\Users\\EUNSU\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "tests/unit/check_event_log.py"
+      ],
+      "returncode": 0,
+      "seconds": 0.812,
+      "log": "tmp\\unit-tests\\suite\\event-log.log"
+    },
+    {
+      "name": "event-log-checker",
+      "command": [
+        "C:\\Users\\EUNSU\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "tests/unit/check_event_log_test.py"
+      ],
+      "returncode": 0,
+      "seconds": 0.125,
+      "log": "tmp\\unit-tests\\suite\\event-log-checker.log"
+    },
+    {
+      "name": "remaining-analysis",
+      "command": [
+        "C:\\Users\\EUNSU\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "tests/unit/check_remaining_analysis.py"
+      ],
+      "returncode": 2,
+      "seconds": 1.454,
+      "log": "tmp\\unit-tests\\suite\\remaining-analysis.log"
+    },
+    {
+      "name": "coverage",
+      "command": [
+        "C:\\Users\\EUNSU\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "tests/unit/build_coverage.py"
+      ],
+      "returncode": 1,
+      "seconds": 0.484,
+      "log": "tmp\\unit-tests\\suite\\coverage.log"
+    },
+    {
+      "name": "check_test_console",
+      "command": [
+        "C:\\Users\\EUNSU\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "tests/unit/check_test_console.py"
+      ],
+      "returncode": 0,
+      "seconds": 0.359,
+      "log": "tmp\\unit-tests\\suite\\check_test_console.log"
+    },
+    {
+      "name": "check_collect_rtt",
+      "command": [
+        "C:\\Users\\EUNSU\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "tests/unit/check_collect_rtt.py"
+      ],
+      "returncode": 0,
+      "seconds": 0.172,
+      "log": "tmp\\unit-tests\\suite\\check_collect_rtt.log"
+    },
+    {
+      "name": "check_cm3_batch",
+      "command": [
+        "C:\\Users\\EUNSU\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "tests/unit/check_cm3_batch.py"
+      ],
+      "returncode": 0,
+      "seconds": 5.688,
+      "log": "tmp\\unit-tests\\suite\\check_cm3_batch.log"
+    },
+    {
+      "name": "check_boot_batch",
+      "command": [
+        "C:\\Users\\EUNSU\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "tests/unit/check_boot_batch.py"
+      ],
+      "returncode": 0,
+      "seconds": 6.75,
+      "log": "tmp\\unit-tests\\suite\\check_boot_batch.log"
+    },
+    {
+      "name": "check_cfx_batch",
+      "command": [
+        "C:\\Users\\EUNSU\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "tests/unit/check_cfx_batch.py"
+      ],
+      "returncode": 0,
+      "seconds": 1.343,
+      "log": "tmp\\unit-tests\\suite\\check_cfx_batch.log"
+    },
+    {
+      "name": "check_console_adapters",
+      "command": [
+        "C:\\Users\\EUNSU\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "tests/unit/check_console_adapters.py"
+      ],
+      "returncode": 0,
+      "seconds": 1.329,
+      "log": "tmp\\unit-tests\\suite\\check_console_adapters.log"
+    },
+    {
+      "name": "check_prepare_batch_debug",
+      "command": [
+        "C:\\Users\\EUNSU\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "tests/unit/check_prepare_batch_debug.py"
+      ],
+      "returncode": 0,
+      "seconds": 2.046,
+      "log": "tmp\\unit-tests\\suite\\check_prepare_batch_debug.log"
+    }
+  ],
+  "sources": {
+    "tests\\unit\\boot_batch_ram_fixture.c": "71a3e2e7cf3145940b098b36fc01723068b97905469c047b3d740eba5e7d8cdb",
+    "tests\\unit\\boot_batch_state_fixture.c": "c4a48fee44e7171dd6c6e3a866ab1d8efd1dbc6130074a25914ea90918717b2d",
+    "tests\\unit\\boot_coverage.json": "3d721f16e77c23d42fa90676889306b9699a245a1a1a30e7ca1ab36c0173a9ee",
+    "tests\\unit\\build_coverage.py": "36aa3a9b685dff5c0c7d375777cc3ac66e55f6fa38265c02612cdfe387299303",
+    "tests\\unit\\build_target_tests.py": "2115ad8e1b83d73c2f11c9dffb0de12793e3a54b17779778a632985cbaac7a41",
+    "tests\\unit\\cfx_numeric_reference.py": "81acd4d348f1f49d4a7b50a48f997e8432e7cffb0e744358a6d743012577c6f2",
+    "tests\\unit\\check_boot_batch.py": "5eede2553b29a030ce2a63527463a8f2c632228e5f946828d5b3f9a24aa62d08",
+    "tests\\unit\\check_cfx_analysis.py": "0dbf3e4c38021e483d9f5ab79d5484dd4cb0ce2052a002aed7bee66df1983e3b",
+    "tests\\unit\\check_cfx_batch.py": "30e4312cfff9db256c05ec28146cce0b6c93959ae0d7f2423aefa04934081c8a",
+    "tests\\unit\\check_cfx_numeric_reference.py": "cbfef3fc6a55e0d96a10b86b2b191469077839f3370dba4aeb36e4aa442c7c6f",
+    "tests\\unit\\check_cfx_vectors.py": "77c19727d5f87e43bdccc155138337d1d23f9f08777539d0ba7aa46ff3f6f79e",
+    "tests\\unit\\check_cm3_batch.py": "7c4a2561ec0294b53b4d4d4a3e23f3a8afb735ea55434506d23f308f7f8c61ae",
+    "tests\\unit\\check_cm3_state.py": "562fa2ee44880e747a2d7999c37f54f3eb8abe41f58a47a71017651f206d4e04",
+    "tests\\unit\\check_collect_rtt.py": "6b35e4811c1c51698dc7d2dc20be1fccce6ec223708877afcd184b356109c46b",
+    "tests\\unit\\check_console_adapters.py": "5a438ed75656a357f09ad982ada348e2d44cbcab67a54d6ccb70b365e134e527",
+    "tests\\unit\\check_event_log.py": "b9f4f394dc1734161e84f61b1aa0204568edbb851797962adb88494eb63f90c3",
+    "tests\\unit\\check_event_log_test.py": "885eea03f0822b78431d4d637c90d3c69c46811041165ab87ef6e2dc810f8e2b",
+    "tests\\unit\\check_prepare_batch_debug.py": "be23d599990aa6c21f89cdf74da04efd7f6d1bb63d8089a0a7cba02b5ca0c912",
+    "tests\\unit\\check_remaining_analysis.py": "560f1e556c1c6e5f487b8be74e43e404325705dba6cfd7f227e30426d2ce202d",
+    "tests\\unit\\check_rtt_wrappers.py": "7cb55569d88b100786ad1d0c877648d3491b5be67db425450d243b6c292b12ac",
+    "tests\\unit\\check_source_preservation.py": "564258e6fdf8c931eb159364f55f77a0c7546df0532638ba61efb39bcca806b3",
+    "tests\\unit\\check_source_preservation_test.py": "3ca6a631f250e5e4854447ddd3fe01505f0510a032d94f9d793a4b069e23fcf8",
+    "tests\\unit\\check_stack_budget.py": "fd539ae888af74389443c12578d8cea5a22d2f595f9cc882a52590a1fa87cb06",
+    "tests\\unit\\check_suite_runner_test.py": "1a91129839ea3c76c8631e91720c96301137230379994ba5dfc32de802c8bd2a",
+    "tests\\unit\\check_target_artifacts.py": "616eb9f9979932ff269da8ed65ba8dde7c7687162111f29025577ea98a116c55",
+    "tests\\unit\\check_test_console.py": "93e0e0a063a63f49f1297febbd5f338f116e249d366945858b8768b7ab012426",
+    "tests\\unit\\cm3_batch_host_test.c": "bb339f8e9fe7267c2f020b00af48a3fa0569a794a1a0dbddac7f2637ef9edf18",
+    "tests\\unit\\cm3_batch_io_test.c": "0d2baff1ed78ce6a30c8c4c8b69ba45778e15c33cd7e122fe438f674f0cf9cd3",
+    "tests\\unit\\cm3_pure_control_coverage.json": "f453f7bc9b9b11e3bcec0cf600a4c4e20a43c8aa72f3185872366f57cff2239d",
+    "tests\\unit\\cm3_state_coverage.json": "654455b52f936e5fefb71ba7030c3978b9665f323b92ccf10695f8d4b946fbd5",
+    "tests\\unit\\collect_rtt.py": "016782928bc197f9a9aa97504601beff531298e0686afd30bbb617fbd1bd90f4",
+    "tests\\unit\\console_adapter_bridge_semantics.c": "877c8102acd7782028f6851692a472d87454c911197438143b673560cab5c36d",
+    "tests\\unit\\console_adapter_host_test.c": "f52aa62ca65bfefad5bc0b5b26d9f7b1807a98609e6b398c91524470da592d76",
+    "tests\\unit\\prepare_batch_debug.py": "2f2a149ad0e33c1434c1699a84e206df7acbec43ad5849e43be9954d211a864e",
+    "tests\\unit\\remaining_analysis_coverage.json": "ad169f8336d1899fd27097c16767747ee366e830a4418a4bc2af9dcac781a130",
+    "tests\\unit\\run_suite.py": "eb3e33a4f4525c660391086b0eabb2b7274d47f97613e0eadfcbd3849d661337",
+    "tests\\unit\\tdc_ut_boot_check.py": "f668e1a3c42a8203a9458889498931ad9d5c0885bae0cb74ba6c328ffae0ffc3",
+    "tests\\unit\\tdc_ut_boot_host.c": "b69969036c3ec19638d87ebdb0a37f93331d9840088ca3cb13deb6776e847993",
+    "tests\\unit\\tdc_ut_boot_host.h": "f73ba21ad40493cc76f22dd23aea427b65519eae17a81061c30f83a3836c25f7",
+    "tests\\unit\\tdc_ut_boot_report_test.c": "fd219928943990f88092df141d8d52090eb48fe5f4305bd3c0ec495ac2aa671c",
+    "tests\\unit\\tdc_ut_cfx_io_build.ps1": "502f40cc943974a9f13e5015314cbf438a86e388d61c57ab2bbcc7887de0d2eb",
+    "tests\\unit\\tdc_ut_cfx_io_cases.c": "15cefd5502c6c4fe6eb3a227f7921728d3290afa243687e4eb6f4c9abc82cc0f",
+    "tests\\unit\\tdc_ut_cfx_io_check.py": "ee3599c600cfb9cf452dec9020770209e36585a96896f01af19d5d4f4c860cff",
+    "tests\\unit\\tdc_ut_cfx_io_coverage.json": "89934d4440b0a3b4893b159c65eb588dff813879daf9b5850d87ac9f388d2e1e",
+    "tests\\unit\\tdc_ut_cfx_io_criteria.json": "184cbb948fc9aafdb930828465443ba5ee92c8dfd60a3192197ac5c51896bcda",
+    "tests\\unit\\tdc_ut_cfx_io_criteria.py": "b86d735d4b46989936aa7082295d7d070651b886dedf3769e0209ee914e44605",
+    "tests\\unit\\tdc_ut_cm3_extra_host.c": "b8de467645fffe7fed75b6ac69032e0821aeab87dc52d79cc3028d79eb49c35b",
+    "tests\\unit\\tdc_ut_cm3_extra_run.py": "122a81a90cae3d37f0e78ed34558620cb62299eed49aef52bf436d02f6ce66cd",
+    "tests\\unit\\tdc_ut_cm3_host.c": "0e0a6c784b046e272f8875622308b5624494703d151f4859436234a169d20810",
+    "tests\\unit\\tdc_ut_cm3_host_prelude.h": "5e81e356bd05a063a438b13a6c3d603b3ab301c1aee3b26ec770bd366492ec27",
+    "tests\\unit\\tdc_ut_cm3_run.py": "ce0cc4e9a8fc17571dfd7548501dbd65bdb52d5cc311e89c58e035b5fcb4edff",
+    "tests\\unit\\tdc_ut_console_test.c": "2b8a72e05e27e5dff675af0852147cb0b5160b4133e8aec95e070b90768f125e",
+    "tests\\unit\\tdc_ut_event_log_host.c": "76a247c1bbcaf02d7b4f688548dc608f377daac2e4eb02ff350b44d021032a3f",
+    "tests\\unit\\tdc_ut_hear_reference.json": "6ecfef84f1deb02b737b567f0b27991ee34d6e33bfb3234bf3d10f5b21af8c65",
+    "tests\\unit\\tdc_ut_hear_reference.py": "37851ea903470c7168dbf406d86032f0094e37a75fbc8dd6cc216e08d2adae73",
+    "tests\\unit\\tdc_ut_hear_reference_check.py": "ab6d9cae91c6054445a971b5c5a9935d6248ab28c785bdced88db92dce039e50",
+    "tests\\unit\\tdc_ut_io_cm3_build.py": "bcd0f39d5c7f60518f25d875387d609353041b42f30b0cfa74926044eb7591ce",
+    "tests\\unit\\tdc_ut_io_cm3_coverage.json": "09d24ec4c252b5e70b42f0603d695fbe1c280df7a2f29f342a9add6ec066f359",
+    "tests\\unit\\tdc_ut_io_cm3_criteria.json": "acbcfabdd49922dba1c92ba43345edd8b17e3d6af619bac4dd27bca8467f7abe",
+    "tests\\unit\\tdc_ut_io_cm3_extended.c": "972ff3959a125e2935754f463057016502b49cc0e81c85113c50a6f2c3dff033",
+    "tests\\unit\\tdc_ut_io_cm3_host.c": "42a01b2d48727ca616618d341a227c9797998dbdf352f203612f1cb3c41d9098",
+    "tests\\unit\\tdc_ut_io_cm3_host_fixture.h": "08df618905450d5dcc1c3c224d1e639b212dd6bcd882b6889ed0f9a74f05a266",
+    "tests\\unit\\tdc_ut_io_cm3_legacy_12.c": "ff975937f710ee1f988319cbdb19d4076b3d0b8dd4052218cd861f16daa14eea",
+    "tests\\unit\\tdc_ut_io_cm3_legacy_13.c": "9c541120dbc805add208207d956bb166a7836aea144754e565562491f6224d2b",
+    "tests\\unit\\tdc_ut_io_cm3_touch_init.c": "92f969e3fc0afe7128e022d55281cb9bb10d747798d8364737415aaba885276d",
+    "tests\\unit\\tdc_ut_log_test.c": "295005613adfe85558d6ac60bbbf40e3107e7ea0672264cab90561f8a5b8004e",
+    "tests\\unit\\tdc_ut_report_test.c": "eb4839c4a0bab8a054a5e2d954b30165dd439b2e243c3b27dc50794558bbda55",
+    "tests\\unit\\tdc_ut_state_cm3_test.c": "a7f4855bc66f000c71429644aa12829fb8ee50c2053abe40b8e6fcdc31fe0940",
+    "tests\\unit\\cfx_batch_fixture\\hw.h": "53d487b0cfc9151d82848271c350fc87c9a1726672f0120d11c3aeafe045de0b",
+    "tests\\unit\\cfx_batch_fixture\\protocol_test.c": "9d8edee4cd6188ef1699417baa5c34b6831fede617890f218c323b26c41ee6b1",
+    "tests\\unit\\cfx_batch_fixture\\SEGGER_RTT.h": "ca93fdd8fcc656d2900680931a00d0de0271e6655380117402605ed35b57b192",
+    "tests\\unit\\cm3_batch_host\\cfx_cm3_sharedMemory.h": "82143251fd4cb2b853945095a98372eba143045e8c994e048460f51c8b992940",
+    "tests\\unit\\cm3_batch_host\\driver_SPI.h": "78e27ea33ac4fcfd1015891156432fe3933370953d66de595a36d875004481fe",
+    "tests\\unit\\cm3_batch_host\\hw.h": "0b6e55ccc55bdda538c903a6d6cecfaaa6a3c072c5699e31f32255c171dde987",
+    "tests\\unit\\cm3_batch_host\\SEGGER_RTT.h": "8819421ecfe97ce647f64c88a7ce925684bf7a9f46e9299e2bd7e3e7e585cee3",
+    "tests\\unit\\cm3_batch_io_host\\hw.h": "d6b00b76a756a4d74251ee8d7a57abab9902b35b046e0a59ae44259269c3e093",
+    "tests\\unit\\console_adapter_host\\cfx_cm3_sharedMemory.h": "a6b4e8b3bf8813d5eacc2c85d9710230dbe474ce17ce9dc324b8af7aea6dda8a",
+    "tests\\unit\\console_adapter_host\\hw.h": "2c45fa68a5eee3474ec2fce9b7734094f5ee0fbcfad3eba3a786cc0d7291cc20",
+    "tests\\unit\\console_adapter_host\\SEGGER_RTT.h": "920c6a38caf42ae3cc43703776bca7532eaefc060b37381856bd26b8faec68da",
+    "tests\\unit\\tdc_ut_boot_mock\\crc.h": "c6be3bcaf732613221eea1d2398bbfe2dceb091c11c955b268643967f120b279",
+    "tests\\unit\\tdc_ut_boot_mock\\ff.h": "e512ff863e5afe94dd0c96da95fc45f9946d1a2ed133c892ef643fb2041dbf5b",
+    "tests\\unit\\tdc_ut_boot_mock\\hw.h": "f387f5e944edf2ffd5621f9e22ecf26005997c292d2da9318bffe7f28ffd3d99",
+    "tests\\unit\\tdc_ut_boot_mock\\nvmctrl.h": "440aa78dbec8e371d288568a35f38660e7fc4da076509bacea1796869fbed068",
+    "tests\\unit\\tdc_ut_boot_mock\\sk5_sys.h": "c3eab72165a4fd2f0cba81bb882d444ee8712dbbd2fcbd6d7465bf9c9b1fbc1d",
+    "tests\\unit\\tdc_ut_boot_mock\\sk5_sys_calib.h": "5bfe824f6d5edc59fd8106d0647e8320904ae34daf66c8de6ebf1f349e4253a8",
+    "tests\\unit\\tdc_ut_boot_mock\\trims.h": "edd1a80f22805c3161463574df62db837b7ab2bfedd9ffee0f75fc16bcd43bd0",
+    "tests\\unit\\tdc_ut_cfx_io_host\\hw.h": "2352da23e4d8e770e42c973fac7f20c6813e87b6fd423963cadf174e25dfbd58",
+    "tests\\unit\\tdc_ut_cfx_io_host\\sk5_cfx_dsp_data_conversions.h": "0ec1262cea7d514fa98b569350f54ef57bce7cb5ef11b5ebc048e2bd0eaf40ef",
+    "tests\\unit\\tdc_ut_cfx_io_host\\sk5_cfx_dsp_math_accelerator.h": "cb50de5cc76fd4451f304b6214e042a2321b70b7373972417d1a5a4a0861fb18",
+    "tests\\unit\\tdc_ut_cfx_io_host\\sk5_cfx_dsp_types.h": "63d2e3a5c65e5b64fa52920d5b6d881b39a209031507c9eb9e2e9795d7c78b5c",
+    "tests\\unit\\tdc_ut_cfx_io_host\\sk5_cfx_dsp_type_conversions.h": "0ec1262cea7d514fa98b569350f54ef57bce7cb5ef11b5ebc048e2bd0eaf40ef",
+    "tests\\unit\\tdc_ut_console_host\\SEGGER_RTT.h": "5e0a2fcc5a73dffb3e2ab7bc771ea43ebcc0dd04bee9814913014a8f367539a0",
+    "tests\\unit\\tdc_ut_io_cm3_host\\ff.h": "73e9bbe912a0df10fe13182d9cb3d3072126528373d2c296f61ad194d0b330a9",
+    "tests\\unit\\tdc_ut_io_cm3_host\\hw.h": "2780494947fe65494f55c6e1fe77fb4faccd0954024129159e906a85565f6130",
+    "tests\\unit\\tdc_ut_report_host\\hw.h": "ed9965163b63d528002e11e43dee3c92e7a9e2f86e05c5bc2a99ebfc7b49b55c",
+    "tests\\unit\\tdc_ut_report_host\\SEGGER_RTT.h": "8819421ecfe97ce647f64c88a7ce925684bf7a9f46e9299e2bd7e3e7e585cee3",
+    "src\\test\\tdc_ut_console.c": "b3d36073745a3a52783d0aac07fbb74271b58e6c6ec633847bae7273be6495f8",
+    "src\\test\\tdc_ut_console.h": "401ebc3cecd3733739641dcec3690f05375217b78e11248dc0e9171022393683",
+    "src\\test\\tdc_ut_log.c": "806dd9ab969ef5ae99098edb5c6358e66bfb6618fc320dafae20fd438ca8ae5d",
+    "src\\test\\tdc_ut_log.h": "f295984d19cf8c2b9f0c0ac3e6fd546f52f1f68e394c8eaf26108f74da9809bf",
+    "src\\0__bootloader\\source\\test\\tdc_ut_batch_boot.c": "84953ec22481a976a106110e1239a60d59648e1602da0cc937e0024185a372f4",
+    "src\\0__bootloader\\source\\test\\tdc_ut_batch_boot.h": "b7afbee8b3179efed28e13507022bef8f746b7668aa56d21135d74ea258c5a16",
+    "src\\0__bootloader\\source\\test\\tdc_ut_boot.c": "934d1980c50fa722cb1f062105e75d3eca9151e0fac256d30b5bdaf2ac59afe2",
+    "src\\0__bootloader\\source\\test\\tdc_ut_boot.h": "ae5ceac7b78fd9688fe23ff35267851af3a88a37d97184817ff907ffb5a55363",
+    "src\\0__bootloader\\source\\test\\tdc_ut_boot_report.c": "8e226926f554a34c596ef4792228e5bb7979dffb207718c07fe3b76b082eaf02",
+    "src\\0__bootloader\\source\\test\\tdc_ut_boot_report.h": "d12a6b1a1be63ae95995b45e234789f335c6509820e1b1fefe30b3f7560fa7be",
+    "src\\0__bootloader\\source\\test\\tdc_ut_console_boot.c": "3d580c462ac5e2b02c69d21ce395c2be66cfe11eaac2f81c353eaf140a3519e1",
+    "src\\1__cfx\\test\\tdc_sys_test_config.h": "c343de31242c423251bc75da67b7b3ba545b1dc990c9ff0d28078456fd950749",
+    "src\\1__cfx\\test\\tdc_unit_test_cfx.c": "41a7d4ad1a8469b62ad0b2bf86a169e76cf2e4197a12e9599ee2500442165b90",
+    "src\\1__cfx\\test\\tdc_ut_batch_cfx.c": "cdf4e629a7139a846de0934b93c6397ada7be1d4c2da1e65d93e65cc8c68669b",
+    "src\\1__cfx\\test\\tdc_ut_batch_cfx.h": "0a49d1a645b5f6acc7eac04923b1a7aefda95c51e35a46a451109fd69205864b",
+    "src\\1__cfx\\test\\tdc_ut_hear_reference.h": "3dd6ec7fccce2d04f95f810554f98d13e26eb87a758d148c7e3eb10aa8e893e0",
+    "src\\1__cfx\\test\\tdc_ut_hooks.h": "218f4327f6a35568dc4a70c2ae3b3aae90bf9f88406d60f0084faf381b12b9e5",
+    "src\\1__cfx\\test\\tdc_ut_io_cfx.c": "84f98f3a07f496482f95ef6cb3a2d0bc021d5f5f86fc2b2a8dd6f4c159e30d84",
+    "src\\1__cfx\\test\\tdc_ut_io_cfx.h": "9df7427c464c5138add026b5039e0fdd6f2beb7f12160382b982b5c39725fdee",
+    "src\\1__cfx\\test\\tdc_ut_numeric_reference_cfx.h": "729db769780be52a43611ff7096112c3b31da735d99953f77d213217f15b6334",
+    "src\\1__cfx\\test\\tdc_ut_vectors_cfx.c": "cf2b3f36a00903a82aec3b3f0c2a25af2cd2cec31368692b98b482d82510578a",
+    "src\\1__cfx\\test\\tdc_ut_vectors_cfx.h": "681dbafa7b0c3cc4ec35d00fd6eb1f1fdf98aecbe283b5247b0ec6e07a2d0cd7",
+    "src\\2__cm3\\Cortex-M3-src\\test\\tdc_sys_test_23.c": "a8bd1f9c446901d1620c452229eaf0376a6191faf9007d3510a90eabd5965fe7",
+    "src\\2__cm3\\Cortex-M3-src\\test\\tdc_sys_test_23.h": "c246955e114393365f155fe8d04866776e2261e9faa8cd8183caa36abc5fb68d",
+    "src\\2__cm3\\Cortex-M3-src\\test\\tdc_sys_test_54.c": "5046a1e0d0d736ce538cd001016bfb818a4e56092e6465e361928064c10c7938",
+    "src\\2__cm3\\Cortex-M3-src\\test\\tdc_sys_test_54.h": "ae69fcc1d9a22c05313867febfc1fe0438946b29a7981646a56a73d0dc3313bc",
+    "src\\2__cm3\\Cortex-M3-src\\test\\tdc_sys_test_7.c": "ac4080e7fba50ff38d5271c479c22107ea41eed99bf31617a081e5b7a4a23987",
+    "src\\2__cm3\\Cortex-M3-src\\test\\tdc_sys_test_7.h": "370fd228ab0a45053f933bda19d11030946461485c0f2024bee03ceb326d29de",
+    "src\\2__cm3\\Cortex-M3-src\\test\\tdc_sys_test_73.c": "bafdc25b9fc0888d7469fb54bc50a9d0544a18f811cd52f767cd6e124059e295",
+    "src\\2__cm3\\Cortex-M3-src\\test\\tdc_sys_test_73.h": "6f7a552d5a8a61030ecd1cafa077a0e38f5b4b6862bc01522bab41be70add693",
+    "src\\2__cm3\\Cortex-M3-src\\test\\tdc_sys_test_77.c": "305849604d2826ff40b213ba56c58da833d0ce9c7be28d2cd2f1a6caab2a526e",
+    "src\\2__cm3\\Cortex-M3-src\\test\\tdc_sys_test_77.h": "0989ec57bca6410c46ec98d22b3be07333e52a1e1885bdd7c5b45763c63b7ee9",
+    "src\\2__cm3\\Cortex-M3-src\\test\\tdc_sys_test_80.c": "3b3b26f73233efa45e5e9d933d676fb094ea49850c8db1d91cb53232ecadceb8",
+    "src\\2__cm3\\Cortex-M3-src\\test\\tdc_sys_test_80.h": "95c778381a4289bb341d72f2d811f224aceaa233d8998304a683cdfe416ee4bf",
+    "src\\2__cm3\\Cortex-M3-src\\test\\tdc_sys_test_audit.c": "2fc1d48130bc0d0498b96bcc74a529afa80ceeab6dd93639dd462d92c16f07fc",
+    "src\\2__cm3\\Cortex-M3-src\\test\\tdc_sys_test_audit.h": "a7eaf6186a1a31167292bc8cc6a42b566e325800d15cf9030938f9bf51f7b1d5",
+    "src\\2__cm3\\Cortex-M3-src\\test\\tdc_sys_test_storage.c": "001676a3fa85783561a552a7fe81884b8360159b3c9edebc119b870f30e1153d",
+    "src\\2__cm3\\Cortex-M3-src\\test\\tdc_sys_test_storage.h": "46709e4b1269d520729367a921e9a1f693aad25e16253bcffd6c2556601a23b8",
+    "src\\2__cm3\\Cortex-M3-src\\test\\tdc_unit_test_cm3.c": "4cd51d4d7642f7a98acb0de430a12acb5efb84c03e152c6b5dcd5753773b112b",
+    "src\\2__cm3\\Cortex-M3-src\\test\\tdc_ut_batch_cfx_bridge.c": "3a436c58b7c4db380d7ae6a36ea20c8c8712aeeb01eb9ffaf34766236942db69",
+    "src\\2__cm3\\Cortex-M3-src\\test\\tdc_ut_batch_cfx_bridge.h": "c800352d444c3a52359c128308ad3fb246391758c259defa7c5de0df90f7977c",
+    "src\\2__cm3\\Cortex-M3-src\\test\\tdc_ut_batch_cm3.c": "d234214ade05a1a13a323e1e1c92d61c6d4f7de4218e4b8fc9f9eee430cd45b5",
+    "src\\2__cm3\\Cortex-M3-src\\test\\tdc_ut_batch_cm3.h": "17fd61bfe0fd0387ff0bc20a51a0f296d10f54a717023c2e5d58473a9d660bee",
+    "src\\2__cm3\\Cortex-M3-src\\test\\tdc_ut_console_cm3.c": "b19b1db03dfc43d7c54f053d02df3d26baba019aa835905ab0845855de6f0ab5",
+    "src\\2__cm3\\Cortex-M3-src\\test\\tdc_ut_coordination_cm3.c": "d114ae1c2562cae96575a2759f1187ce4685f8a1691f798f707cfd65b2cea724",
+    "src\\2__cm3\\Cortex-M3-src\\test\\tdc_ut_coordination_cm3.h": "0ff5cbf5c3db55a332e86948c82d313f8bd9ea2c4495cd3ccdb37eb5a42a95f6",
+    "src\\2__cm3\\Cortex-M3-src\\test\\tdc_ut_entry.c": "27cd92109b3bd9d89e56449ab4e9cac6819a9ce4242a2d8f90bd4c77a474cb20",
+    "src\\2__cm3\\Cortex-M3-src\\test\\tdc_ut_io_cm3.c": "6017074c7170588826a8b583f1de0923c1c5907e2d9e8a40c51715bb5c4d3a27",
+    "src\\2__cm3\\Cortex-M3-src\\test\\tdc_ut_io_cm3.h": "fb92a78102eb7d435deb6e09c1c8d7fa89137d88bf26d54ad8b0dc47d96ab0ad",
+    "src\\2__cm3\\Cortex-M3-src\\test\\tdc_ut_report.c": "4f65aec81d7da4272c63b3f5126a0dac29989d5c0a085d7678e03b20ab2f0982",
+    "src\\2__cm3\\Cortex-M3-src\\test\\tdc_ut_report.h": "f29e20595eecae1e16d0a3497603492f22fe18a1b5b8f7327b9a182b5f2d6bae",
+    "src\\2__cm3\\Cortex-M3-src\\test\\tdc_ut_state_cm3.c": "589ff686f8dc40bebf4b9970ce91ea73bb8c1ade0fa9a5f51abbd62940a78fe5",
+    "src\\2__cm3\\Cortex-M3-src\\test\\tdc_ut_state_cm3.h": "5f93790b195dcdb9772ea5c88e9edb07fa61c7d7a4ff75acc86d5d61cdb03f76",
+    "src\\2__cm3\\Cortex-M3-src\\test\\tdc_ut_vectors_cm3.c": "93dbae7286f28ab8f030cbdb32d4a89b5b1436c5f6880ede55a5a4e239a5da4b",
+    "src\\2__cm3\\Cortex-M3-src\\test\\tdc_ut_vectors_cm3.h": "cee22af6052c928fef9c9ef190cbaeafc83a170805ee9b1104b9194fef457ad2"
+  }
+}

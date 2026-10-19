@@ -1,0 +1,99 @@
+suite-runner-checker: HARNESS_OK
+source-preservation-checker: HARNESS_OK
+log-build: HARNESS_OK
+log: HARNESS_OK
+report-build: HARNESS_OK
+report: HARNESS_OK
+boot-report-build: HARNESS_OK
+boot-report: HARNESS_OK
+check_rtt_wrappers: HARNESS_OK
+check_cfx_analysis: HARNESS_OK
+check_cfx_vectors: HARNESS_OK
+check_cfx_numeric_reference: HARNESS_OK
+tdc_ut_hear_reference_check: HARNESS_OK
+tdc_ut_cfx_io_check: HARNESS_OK
+tdc_ut_cm3_run: HARNESS_ERROR
+CHARGE source gate_active=0 mismatched_name_defined=1 limit_pC=75000
+Traceback (most recent call last):
+  File "C:\Users\EUNSU\AppData\Local\Temp\sound1-git-publish-20261019-test\tests\unit\tdc_ut_cm3_run.py", line 207, in <module>
+    main()
+  File "C:\Users\EUNSU\AppData\Local\Temp\sound1-git-publish-20261019-test\tests\unit\tdc_ut_cm3_run.py", line 153, in main
+    before = source_hashes(inputs)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\EUNSU\AppData\Local\Temp\sound1-git-publish-20261019-test\tests\unit\tdc_ut_cm3_run.py", line 63, in source_hashes
+    return {str(p.relative_to(ROOT)).replace("\\", "/"): hashlib.sha256(p.read_bytes()).hexdigest()
+                                                                        ^^^^^^^^^^^^^^
+  File "C:\Users\EUNSU\AppData\Local\Programs\Python\Python312\Lib\pathlib.py", line 1019, in read_bytes
+    with self.open(mode='rb') as f:
+         ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\EUNSU\AppData\Local\Programs\Python\Python312\Lib\pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\EUNSU\\AppData\\Local\\Temp\\sound1-git-publish-20261019-test\\docs\\참고\\인허가\\사운드1\\DHF\\03_설계 출력\\SW\\펌웨어\\SUVC-FW-TD24A 소프트웨어 유닛 검증 기준서.xlsx'
+
+tdc_ut_boot_check: HARNESS_ERROR
+EVIDENCE C:\Users\EUNSU\AppData\Local\Temp\sound1-git-publish-20261019-test\tmp\unit-tests\boot\checks.json
+Traceback (most recent call last):
+  File "C:\Users\EUNSU\AppData\Local\Temp\sound1-git-publish-20261019-test\tests\unit\tdc_ut_boot_check.py", line 272, in <module>
+    summary = check(args.sdk, args.arm, args.raw)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\EUNSU\AppData\Local\Temp\sound1-git-publish-20261019-test\tests\unit\tdc_ut_boot_check.py", line 160, in check
+    EVIDENCE["inputs"] = {str(p.relative_to(ROOT)): hashlib.sha256(p.read_bytes()).hexdigest()
+                                                                   ^^^^^^^^^^^^^^
+  File "C:\Users\EUNSU\AppData\Local\Programs\Python\Python312\Lib\pathlib.py", line 1019, in read_bytes
+    with self.open(mode='rb') as f:
+         ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\EUNSU\AppData\Local\Programs\Python\Python312\Lib\pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\EUNSU\\AppData\\Local\\Temp\\sound1-git-publish-20261019-test\\docs\\참고\\인허가\\사운드1\\DHF\\03_설계 출력\\SW\\펌웨어\\SUVC-FW-TD24A 소프트웨어 유닛 검증 기준서.xlsx'
+
+
+cm3-io: HARNESS_OK
+cm3-io-ram: HARNESS_OK
+cm3-state: HARNESS_OK
+cm3-extra: HARNESS_ERROR
+Traceback (most recent call last):
+  File "C:\Users\EUNSU\AppData\Local\Temp\sound1-git-publish-20261019-test\tests\unit\tdc_ut_cm3_extra_run.py", line 229, in <module>
+    main()
+  File "C:\Users\EUNSU\AppData\Local\Temp\sound1-git-publish-20261019-test\tests\unit\tdc_ut_cm3_extra_run.py", line 176, in main
+    before = source_hashes(inputs)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\EUNSU\AppData\Local\Temp\sound1-git-publish-20261019-test\tests\unit\tdc_ut_cm3_run.py", line 63, in source_hashes
+    return {str(p.relative_to(ROOT)).replace("\\", "/"): hashlib.sha256(p.read_bytes()).hexdigest()
+                                                                        ^^^^^^^^^^^^^^
+  File "C:\Users\EUNSU\AppData\Local\Programs\Python\Python312\Lib\pathlib.py", line 1019, in read_bytes
+    with self.open(mode='rb') as f:
+         ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\EUNSU\AppData\Local\Programs\Python\Python312\Lib\pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\EUNSU\\AppData\\Local\\Temp\\sound1-git-publish-20261019-test\\docs\\참고\\인허가\\사운드1\\DHF\\03_설계 출력\\SW\\펌웨어\\SUVC-FW-TD24A 소프트웨어 유닛 검증 기준서.xlsx'
+
+event-log: HARNESS_OK
+event-log-checker: HARNESS_OK
+remaining-analysis: HARNESS_ERROR
+ANALYSIS_CHECK_ERROR: [Errno 2] No such file or directory: 'C:\\Users\\EUNSU\\AppData\\Local\\Temp\\sound1-git-publish-20261019-test\\docs\\참고\\인허가\\사운드1\\DHF\\03_설계 출력\\SW\\펌웨어\\SUVC-FW-TD24A 소프트웨어 유닛 검증 기준서.xlsx'
+
+coverage: HARNESS_ERROR
+Traceback (most recent call last):
+  File "C:\Users\EUNSU\AppData\Local\Temp\sound1-git-publish-20261019-test\tests\unit\build_coverage.py", line 163, in <module>
+    main()
+  File "C:\Users\EUNSU\AppData\Local\Temp\sound1-git-publish-20261019-test\tests\unit\build_coverage.py", line 29, in main
+    sha = hashlib.sha256(CRITERION.read_bytes()).hexdigest()
+                         ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\EUNSU\AppData\Local\Programs\Python\Python312\Lib\pathlib.py", line 1019, in read_bytes
+    with self.open(mode='rb') as f:
+         ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\EUNSU\AppData\Local\Programs\Python\Python312\Lib\pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\EUNSU\\AppData\\Local\\Temp\\sound1-git-publish-20261019-test\\docs\\참고\\인허가\\사운드1\\DHF\\03_설계 출력\\SW\\펌웨어\\SUVC-FW-TD24A 소프트웨어 유닛 검증 기준서.xlsx'
+
+check_test_console: HARNESS_OK
+check_collect_rtt: HARNESS_OK
+check_cm3_batch: HARNESS_OK
+check_boot_batch: HARNESS_OK
+check_cfx_batch: HARNESS_OK
+check_console_adapters: HARNESS_OK
+check_prepare_batch_debug: HARNESS_OK

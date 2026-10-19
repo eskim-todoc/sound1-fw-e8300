@@ -1,0 +1,169 @@
+{
+  "schema_version": 2,
+  "complete": true,
+  "device_executed": false,
+  "boundary_checks_pass": true,
+  "product_system_test_pass": false,
+  "started_at_utc": "2026-10-19T04:36:48.555775+00:00",
+  "run_command": [
+    "C:\\Users\\EUNSU\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+    "tests/system/check_sys80.py"
+  ],
+  "commands": [
+    {
+      "stage": "host_compile",
+      "command": [
+        "C:\\Users\\EUNSU\\AppData\\Local\\Microsoft\\WinGet\\Packages\\BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe\\mingw64\\bin\\gcc.EXE",
+        "-std=c11",
+        "-O1",
+        "-g",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wno-unused-variable",
+        "-Wno-unused-function",
+        "-I",
+        "C:\\Users\\EUNSU\\AppData\\Local\\Temp\\sound1-git-publish-20261019-test\\tests\\system\\sys80_host",
+        "-I",
+        "C:\\Users\\EUNSU\\AppData\\Local\\Temp\\sound1-git-publish-20261019-test\\tmp\\system-tests\\sys80\\host-build-c3ytdmnl",
+        "-I",
+        "C:\\Users\\EUNSU\\AppData\\Local\\Temp\\sound1-git-publish-20261019-test\\src\\2__cm3\\Cortex-M3-src",
+        "C:\\Users\\EUNSU\\AppData\\Local\\Temp\\sound1-git-publish-20261019-test\\tests\\system\\sys80_host.c",
+        "C:\\Users\\EUNSU\\AppData\\Local\\Temp\\sound1-git-publish-20261019-test\\tmp\\system-tests\\sys80\\host-build-c3ytdmnl\\product_reader.c",
+        "C:\\Users\\EUNSU\\AppData\\Local\\Temp\\sound1-git-publish-20261019-test\\src\\2__cm3\\Gen1_5\\crc\\ci_crc.c",
+        "-o",
+        "C:\\Users\\EUNSU\\AppData\\Local\\Temp\\sound1-git-publish-20261019-test\\tmp\\system-tests\\sys80\\host-build-c3ytdmnl\\sys80_host.exe"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "stage": "host_execute",
+      "command": [
+        "C:\\Users\\EUNSU\\AppData\\Local\\Temp\\sound1-git-publish-20261019-test\\tmp\\system-tests\\sys80\\host-build-c3ytdmnl\\sys80_host.exe"
+      ],
+      "returncode": 0,
+      "stdout": "CRC VECTORS: pre=84F6 corrupt=A062 defaults=33F7 check123456789=29B1\nNORMAL ARM LOG (actual host execution):\n[SYS-080] FILE=1:/SYS80.TST\n\n[SYS-080] READ pre rc=0 expect=0\n\n[SYS-080] SAVE CRC=84F6 VERIFIED\n\n[SYS-080] PRE=2,2,5,2,2,1,2 verified\n\n[SYS-080] READ corrupt rc=-1 expect=-1\n\n[SYS-080] FAULT offset=0 xor=01; CRC unchanged\n\n[SYS-080] ARMED; run --sys80 check; no reboot needed\n\nNORMAL CHECK LOG (actual host execution):\n[SYS-080] FILE=1:/SYS80.TST\n\n[SYS-080] CRC STORED=84F6 CALC=A062\n\n[SYS-080] READ check rc=-1 expect=-1\n\n[SYS-080] CRC=MISMATCH; FACTORY_RESET=START\n\n[SYS-080] MAP:3->1\n\n[SYS-080] STIM_VOL:2->4\n\n[SYS-080] AUDIO_VOL:5->1\n\n[SYS-080] LED:2->1\n\n[SYS-080] STIM_ALERT:2->1\n\n[SYS-080] TELECOIL:1->2\n\n[SYS-080] BLE:2->1\n\n[SYS-080] RESET CRC STORED=33F7 CALC=33F7\n\n[SYS-080] READ reset rc=0 expect=0\n\n[SYS-080] DEFAULTS=MATCH; SAVE=VERIFIED\n\n[SYS-080] CHECK=PASS; test file defaults restored\n\nPRIVATE ROUND TRIP: real arm/check/clear; original and backup untouched; no reboot\nPRIVATE INPUTS: collisions, missing/foreign/truncated files, valid CRC, data/CRC damage\nLEGACY RESTORE: independent CRC32 fixtures; full 32/97/4096B and high CRC bits/tail preserved\nFAULT MATRIX arm: 42 error/short/seek boundaries; cleanup closes checked\nFAULT MATRIX check: 41 error/short/seek boundaries; cleanup closes checked\nFAULT MATRIX valid: 14 error/short/seek boundaries; cleanup closes checked\nFAULT MATRIX clear: 7 error/short/seek boundaries; cleanup closes checked\nFAULT MATRIX owned-clear: 1 error/short/seek boundaries; cleanup closes checked\nFAULT MATRIX restore: 35 error/short/seek boundaries; cleanup closes checked\nACTUAL COMMON LOGGER: body47=59B body48=60B body49=REJECT\nCLOSE GUARD: reader=6 direct=13 error_cleanup=52; no later FS IO; backup retained\nSYS80 HOST PASS: scenarios=318 assertions=48597 module_max_row=54B max_reply=15+1 lines\nSCOPE: RAM FatFs, real reader/CRC byte feed/log; CRC MMIO modeled\nSCOPE: actual private-file recovery; no boot/default-install model or ci_map init\nNOT TESTED: hardware CRC, flash durability, UI/application, real reboot\n",
+      "stderr": ""
+    },
+    {
+      "stage": "off_compile",
+      "command": [
+        "C:\\Users\\EUNSU\\AppData\\Local\\Microsoft\\WinGet\\Packages\\BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe\\mingw64\\bin\\gcc.EXE",
+        "-std=c11",
+        "-O1",
+        "-g",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wno-unused-variable",
+        "-Wno-unused-function",
+        "-I",
+        "C:\\Users\\EUNSU\\AppData\\Local\\Temp\\sound1-git-publish-20261019-test\\tests\\system\\sys80_host",
+        "-I",
+        "C:\\Users\\EUNSU\\AppData\\Local\\Temp\\sound1-git-publish-20261019-test\\tmp\\system-tests\\sys80\\host-build-c3ytdmnl",
+        "-I",
+        "C:\\Users\\EUNSU\\AppData\\Local\\Temp\\sound1-git-publish-20261019-test\\src\\2__cm3\\Cortex-M3-src",
+        "-DTDC_SYS_TEST_80_ENABLE=0",
+        "-c",
+        "C:\\Users\\EUNSU\\AppData\\Local\\Temp\\sound1-git-publish-20261019-test\\src\\2__cm3\\Cortex-M3-src\\test\\tdc_sys_test_80.c",
+        "-o",
+        "C:\\Users\\EUNSU\\AppData\\Local\\Temp\\sound1-git-publish-20261019-test\\tmp\\system-tests\\sys80\\host-build-c3ytdmnl\\sys80_off.o"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "stage": "off_symbols",
+      "command": [
+        "C:\\Users\\EUNSU\\AppData\\Local\\Microsoft\\WinGet\\Packages\\BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe\\mingw64\\bin\\nm.EXE",
+        "C:\\Users\\EUNSU\\AppData\\Local\\Temp\\sound1-git-publish-20261019-test\\tmp\\system-tests\\sys80\\host-build-c3ytdmnl\\sys80_off.o"
+      ],
+      "returncode": 0,
+      "stdout": "0000000000000000 b .bss\n0000000000000000 d .data\n0000000000000000 N .debug_line_str\n0000000000000000 r .rdata$zzz\n0000000000000000 t .text\n",
+      "stderr": ""
+    }
+  ],
+  "input_hashes": {
+    "src/2__cm3/Gen1_5/FS/ci_filesystem.c": "307747382bcdabc4ad1c6286bf241e944b6b43a06776afd68da86f73ae42fb27",
+    "src/2__cm3/Gen1_5/FS/ci_filesystem.h": "ba6daa4ead21508ee349b946c2bc194b953a8ffd8316a175ea8a9a8aa9f31bd9",
+    "src/2__cm3/Gen1_5/crc/ci_crc.c": "d181da58e13267e3e46902ac0a5533439160eb3ff24829b316ffac1a78fa1f37",
+    "src/2__cm3/Cortex-M3-src/test/tdc_sys_test_80.c": "3b3b26f73233efa45e5e9d933d676fb094ea49850c8db1d91cb53232ecadceb8",
+    "src/2__cm3/Cortex-M3-src/test/tdc_sys_test_80.h": "95c778381a4289bb341d72f2d811f224aceaa233d8998304a683cdfe416ee4bf",
+    "src/2__cm3/Cortex-M3-src/test/tdc_sys_test_storage.c": "001676a3fa85783561a552a7fe81884b8360159b3c9edebc119b870f30e1153d",
+    "src/2__cm3/Cortex-M3-src/test/tdc_sys_test_storage.h": "46709e4b1269d520729367a921e9a1f693aad25e16253bcffd6c2556601a23b8",
+    "tests/system/check_sys80.py": "aba1517e581e2d13058df327e781b72372d4bfc2bff8d8b6c9bb929eda138eab",
+    "src/2__cm3/Gen1_5/FS/ci_map.c": "9e776a6445f79aa01c282df51a5e237f5292b1c84a61a3eccd18167019786b43",
+    "tests/system/sys80_host.c": "209f65c2a0873c897a1c01745f0b629a9f123faee8b9d5536fb315fcfaba3421",
+    "tests/system/sys80_host/ci_crc.h": "641433c5a78ac4d1b4590c0689ac54836ffb0c1f57c9d795318214feff249366",
+    "tests/system/sys80_host/ci_filesystem.h": "63c1318c013c0054627e79477e74e793e9e976eec74b143d2e4e93e887417eaa",
+    "tests/system/sys80_host/ff.h": "e8d6c682d4a9859c74611701932bc2f4abf59e91732a5fd8bca96022dde3d1af",
+    "tests/system/sys80_host/processorDirective.h": "ac88a9cc1d2beb06fc4bbd9423c03fd9f0ba5764d24a2c6b49a68210ddd947f2"
+  },
+  "input_hashes_after": {
+    "src/2__cm3/Gen1_5/FS/ci_filesystem.c": "307747382bcdabc4ad1c6286bf241e944b6b43a06776afd68da86f73ae42fb27",
+    "src/2__cm3/Gen1_5/FS/ci_filesystem.h": "ba6daa4ead21508ee349b946c2bc194b953a8ffd8316a175ea8a9a8aa9f31bd9",
+    "src/2__cm3/Gen1_5/crc/ci_crc.c": "d181da58e13267e3e46902ac0a5533439160eb3ff24829b316ffac1a78fa1f37",
+    "src/2__cm3/Cortex-M3-src/test/tdc_sys_test_80.c": "3b3b26f73233efa45e5e9d933d676fb094ea49850c8db1d91cb53232ecadceb8",
+    "src/2__cm3/Cortex-M3-src/test/tdc_sys_test_80.h": "95c778381a4289bb341d72f2d811f224aceaa233d8998304a683cdfe416ee4bf",
+    "src/2__cm3/Cortex-M3-src/test/tdc_sys_test_storage.c": "001676a3fa85783561a552a7fe81884b8360159b3c9edebc119b870f30e1153d",
+    "src/2__cm3/Cortex-M3-src/test/tdc_sys_test_storage.h": "46709e4b1269d520729367a921e9a1f693aad25e16253bcffd6c2556601a23b8",
+    "tests/system/check_sys80.py": "aba1517e581e2d13058df327e781b72372d4bfc2bff8d8b6c9bb929eda138eab",
+    "src/2__cm3/Gen1_5/FS/ci_map.c": "9e776a6445f79aa01c282df51a5e237f5292b1c84a61a3eccd18167019786b43",
+    "tests/system/sys80_host.c": "209f65c2a0873c897a1c01745f0b629a9f123faee8b9d5536fb315fcfaba3421",
+    "tests/system/sys80_host/ci_crc.h": "641433c5a78ac4d1b4590c0689ac54836ffb0c1f57c9d795318214feff249366",
+    "tests/system/sys80_host/ci_filesystem.h": "63c1318c013c0054627e79477e74e793e9e976eec74b143d2e4e93e887417eaa",
+    "tests/system/sys80_host/ff.h": "e8d6c682d4a9859c74611701932bc2f4abf59e91732a5fd8bca96022dde3d1af",
+    "tests/system/sys80_host/processorDirective.h": "ac88a9cc1d2beb06fc4bbd9423c03fd9f0ba5764d24a2c6b49a68210ddd947f2"
+  },
+  "inputs_unchanged": true,
+  "reader_body_sha256": "97ec8c3817527525a53f5b48737054d9aa79ef09fa607e497f8adce506263ac9",
+  "observer_source_sha256": "47b52066dff3a48c8a4999321748721cede3960f5762f30a765a90d4f2314e76",
+  "observer_header_sha256": "23978d577985baa1c36aeb64cdf63260a61db125c9c8e07b8c3134928380cafe",
+  "stdout": "CRC VECTORS: pre=84F6 corrupt=A062 defaults=33F7 check123456789=29B1\nNORMAL ARM LOG (actual host execution):\n[SYS-080] FILE=1:/SYS80.TST\n\n[SYS-080] READ pre rc=0 expect=0\n\n[SYS-080] SAVE CRC=84F6 VERIFIED\n\n[SYS-080] PRE=2,2,5,2,2,1,2 verified\n\n[SYS-080] READ corrupt rc=-1 expect=-1\n\n[SYS-080] FAULT offset=0 xor=01; CRC unchanged\n\n[SYS-080] ARMED; run --sys80 check; no reboot needed\n\nNORMAL CHECK LOG (actual host execution):\n[SYS-080] FILE=1:/SYS80.TST\n\n[SYS-080] CRC STORED=84F6 CALC=A062\n\n[SYS-080] READ check rc=-1 expect=-1\n\n[SYS-080] CRC=MISMATCH; FACTORY_RESET=START\n\n[SYS-080] MAP:3->1\n\n[SYS-080] STIM_VOL:2->4\n\n[SYS-080] AUDIO_VOL:5->1\n\n[SYS-080] LED:2->1\n\n[SYS-080] STIM_ALERT:2->1\n\n[SYS-080] TELECOIL:1->2\n\n[SYS-080] BLE:2->1\n\n[SYS-080] RESET CRC STORED=33F7 CALC=33F7\n\n[SYS-080] READ reset rc=0 expect=0\n\n[SYS-080] DEFAULTS=MATCH; SAVE=VERIFIED\n\n[SYS-080] CHECK=PASS; test file defaults restored\n\nPRIVATE ROUND TRIP: real arm/check/clear; original and backup untouched; no reboot\nPRIVATE INPUTS: collisions, missing/foreign/truncated files, valid CRC, data/CRC damage\nLEGACY RESTORE: independent CRC32 fixtures; full 32/97/4096B and high CRC bits/tail preserved\nFAULT MATRIX arm: 42 error/short/seek boundaries; cleanup closes checked\nFAULT MATRIX check: 41 error/short/seek boundaries; cleanup closes checked\nFAULT MATRIX valid: 14 error/short/seek boundaries; cleanup closes checked\nFAULT MATRIX clear: 7 error/short/seek boundaries; cleanup closes checked\nFAULT MATRIX owned-clear: 1 error/short/seek boundaries; cleanup closes checked\nFAULT MATRIX restore: 35 error/short/seek boundaries; cleanup closes checked\nACTUAL COMMON LOGGER: body47=59B body48=60B body49=REJECT\nCLOSE GUARD: reader=6 direct=13 error_cleanup=52; no later FS IO; backup retained\nSYS80 HOST PASS: scenarios=318 assertions=48597 module_max_row=54B max_reply=15+1 lines\nSCOPE: RAM FatFs, real reader/CRC byte feed/log; CRC MMIO modeled\nSCOPE: actual private-file recovery; no boot/default-install model or ci_map init\nNOT TESTED: hardware CRC, flash durability, UI/application, real reboot\n",
+  "stderr": "",
+  "returncode": 0,
+  "scope": [
+    "SYS80 private-file arm/check/clear in the same session on RAM FatFs",
+    "Current product reader body, gated observer and public observer declarations verbatim",
+    "Actual ci_crc.c byte feed with CCITT MMIO model",
+    "Actual common logger, 59/60-byte acceptance and over-limit rejection",
+    "ci_map recovery default drift detection against the seven-field contract",
+    "Injected failures, short IO, foreign/partial files and private-file isolation",
+    "Independent legacy CRC32 backup fixtures and exact 32/97/4096-byte restoration",
+    "Every reachable close failure rejects all later FS IO and false success"
+  ],
+  "limitations": [
+    "No physical device commands were executed",
+    "No reboot/default-install model or ci_map_init_map_data_all execution",
+    "CRC MMIO and FatFs are host models, not hardware/SDK filesystem validation",
+    "Flash power-loss durability, actual reboot and UI/application remain untested",
+    "Production return handling is unchanged; extra close rejection is test-gated",
+    "Main shared command guard integration and full call-chain stack are not covered"
+  ],
+  "defaults_source_verified": {
+    "mapNum": 1,
+    "stimulVolume": 4,
+    "audioVolume": 1,
+    "indicatorLED_OnOff": 1,
+    "indicatorStimul_OnOff": 1,
+    "teleCoil_OnOff": 2,
+    "Ble_Onff": 1
+  },
+  "log_body_sha256": "d6d79fccaed5c37aef7d7a1ba16a2c30546aea8a74d14177f7ec5ace749a500c",
+  "metrics": {
+    "scenarios": 318,
+    "assertions": 48597,
+    "module_max_row_bytes": 54,
+    "module_max_reply_lines": 15,
+    "common_extra_lines": 1,
+    "reader_close_failures_rejected": 6,
+    "direct_close_failures_rejected": 13,
+    "error_cleanup_close_failures_rejected": 52
+  },
+  "gate_off_symbols_absent": true,
+  "cp949_round_trip_pass": true,
+  "finished_at_utc": "2026-10-19T04:36:50.972497+00:00"
+}
