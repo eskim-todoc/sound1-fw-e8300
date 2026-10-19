@@ -44,7 +44,7 @@ int main(void) {
 
 def main():
     paths = [("src/0__bootloader/source/segger_rtt/rtt_printf.c", "rtt_printf"),
-             ("src/2__cm3/Gen1_5/SEGGER_RTT/SEGGER_RTT_Wrapper.c", "SEGGER_RTT_Wrapper_printf")]
+             ("src/2__cm3/source/lib/SEGGER_RTT/SEGGER_RTT_Wrapper.c", "SEGGER_RTT_Wrapper_printf")]
     bodies = [function((ROOT / p).read_text(encoding="utf-8-sig"), n).replace("vsnprintf(", "host_vsnprintf(") for p, n in paths]
     OUT.mkdir(parents=True, exist_ok=True)
     source = OUT / "wrappers.c"

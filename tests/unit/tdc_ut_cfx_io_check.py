@@ -1,7 +1,7 @@
 """Run exact current CFX I/O function bodies with RAM hardware boundaries.
 
 No HEAR emulation: start/poll must return TARGET_REQUIRED on the host. Known
-criterion mismatches (15 completion flag and 33 sparse CIS output) remain failures.
+criterion mismatch (15 completion flag) remains a failure; CIS keeps its original expected vectors.
 Generated translation units are build artifacts; source SHA256s are recorded.
 """
 import hashlib
@@ -103,7 +103,7 @@ int main(void)
             assert(tdc_ut_cfx_io_run_unit(ids[u])==0);
             assert(g_tdc_ut_cfx_io_done && !g_tdc_ut_cfx_io_overflow);
             check_record_format();
-            int known=ids[u]==15 ? 1 : ids[u]==33 ? 21 : 0;
+            int known=ids[u]==15 ? 1 : 0;
             if (g_tdc_ut_cfx_io_failed!=known)
                 for (int i=0; i<g_tdc_ut_cfx_io_count; i++)
                     if (g_tdc_ut_cfx_io_actual[i]!=g_tdc_ut_cfx_io_expected[i])
@@ -127,7 +127,7 @@ int main(void)
             assert(!memcmp(immutable,g_tdc_ut_cfx_io_actual,sizeof(immutable)));
             assert(tdc_ut_cfx_io_release()==0);
         }
-        printf("CFX-%02d %s mismatches=%d values=%d\n",ids[u],ids[u]==15 || ids[u]==33 ? "CRITERIA_MISMATCH" : "HOST_VECTOR_PASS",g_tdc_ut_cfx_io_failed,g_tdc_ut_cfx_io_count);
+        printf("CFX-%02d %s mismatches=%d values=%d\n",ids[u],ids[u]==15 ? "CRITERIA_MISMATCH" : "HOST_VECTOR_PASS",g_tdc_ut_cfx_io_failed,g_tdc_ut_cfx_io_count);
         for (int i=0; i<g_tdc_ut_cfx_io_count; i++)
             if (g_tdc_ut_cfx_io_actual[i]!=g_tdc_ut_cfx_io_expected[i])
                 printf("  actual[%d]=%d expected=%d\n",i,g_tdc_ut_cfx_io_actual[i],g_tdc_ut_cfx_io_expected[i]);
@@ -319,7 +319,7 @@ def main() -> None:
             (case, repeat) for case in range(100, 112) for repeat in range(2)}
         for case in extensions:
             assert case["actual"] == case["expected"] and case["actual"]
-        known_offsets = {15: [23], 33: [199, 200, 230, 231, *range(259, 272), 273, 275, 277, 279]}
+        known_offsets = {15: [23]}
         assert len(captures) == len(criteria) == 12
         for capture in captures:
             criterion = criteria[capture["unit"]]
@@ -332,7 +332,7 @@ def main() -> None:
     evidence = {"scope": "actual C function bodies; RAM hardware boundary; no HEAR execution",
                 "build": command, "build_exit_code": built.returncode,
                 "exit_code": ran.returncode, "stdout": summary, "units": captures,
-                "criteria_failures": [15, 33],
+                "criteria_failures": [15],
                 "host_only_cases": extensions,
                 "host_only_comparisons": sum(len(case["actual"]) for case in extensions),
                 "coverage": str(coverage_path.relative_to(ROOT)),

@@ -1,8 +1,8 @@
 #include <assert.h>
 #include <stdio.h>
 #include <string.h>
-#include <isd_interface.h>
-#include <cfx_cm3_sharedMemory.h>
+#include <tdc_isd.h>
+#include <tdc_shm.h>
 #include <tdc_ut_state_cm3.h>
 
 static ST__CFX_CM3_SharedMemory_ALL s_tdc_ut_expected_shared;

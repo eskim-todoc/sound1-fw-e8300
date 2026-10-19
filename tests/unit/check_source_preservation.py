@@ -14,7 +14,7 @@ import subprocess
 ROOT = Path(__file__).resolve().parents[2]
 TEST_ROOTS = (
     "src/test/", "src/0__bootloader/source/test/", "src/1__cfx/test/",
-    "src/2__cm3/Cortex-M3-src/test/",
+    "src/2__cm3/source/tests/",
 )
 
 

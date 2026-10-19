@@ -9,7 +9,7 @@ def rows(*paths):
 
 class PreservationTest(unittest.TestCase):
     def test_existing_user_edit_is_baseline(self):
-        before = rows(("src/2__cm3/Gen1_5/FS/ci_map.c", "a"))
+        before = rows(("src/2__cm3/source/fs/tdc_fs_map.c", "a"))
         self.assertTrue(compare(before, before)["product_source_preserved"])
 
     def test_product_edit_remove_and_add_are_all_rejected(self):

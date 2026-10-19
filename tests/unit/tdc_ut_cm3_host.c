@@ -4,18 +4,18 @@
 #include <string.h>
 #include <tdc_ut_vectors_cm3.h>
 #include <tdc_ut_coordination_cm3.h>
-#include <cfx_cm3_sharedMemory.h>
-#include <error.h>
-#include <stimulationParaCal.h>
-#include <LedOutput.h>
+#include <tdc_shm.h>
+#include <tdc_sys_error.h>
+#include <tdc_stim_para_cal.h>
+#include <tdc_led_output.h>
 
-extern void tdc_ut_cm3_error_exchange(ST__ERROR_CODE *state);
+extern void tdc_ut_cm3_error_exchange(tdc_sys_error_code_t *state);
 extern int tdc_ut_cm3_dac_offset_exchange(int offset);
 extern int tdc_ut_cm3_frame_duration_exchange(int duration);
 extern int tdc_ut_cm3_last_frame_duration(void);
 extern void tdc_ut_cm3_battery_exchange(int state[4]);
 extern void tdc_ut_cm3_indicator_exchange(int state[3]);
-extern void tdc_ut_cm3_led_exchange(int state[LED_SRC__MAX + 3]);
+extern void tdc_ut_cm3_led_exchange(int state[TDC_LED_SRC__MAX + 3]);
 extern void tdc_ut_cm3_system_exchange(int state[16]);
 
 /* Pure-only host link has no IO runner. Match its zero-default drain flag. */
@@ -29,21 +29,21 @@ int SEGGER_RTT_printf(unsigned buffer, const char *format, ...)
     ++legacy_rtt_calls;
     return 0;
 }
-int ci_timer_get_tick(void) { return 10000; }
+int tdc_hal_timer_get_tick(void) { return 10000; }
 
 /* These references remain in shared-memory setters but must never execute.
  * A persistence regression fails immediately instead of silently touching files. */
-void fn_write_userSettingParameters(int isd_num)
+void tdc_cfx_eeprom_write_user_setting_parameters(int isd_num)
 {
     (void)isd_num;
     fputs("FORBIDDEN persistence boundary\n", stderr);
     abort();
 }
-void fn_copy_MappingData_toCM3(int map, int isd) {(void)map; (void)isd; abort();}
-int ci_fft_read_pass_bin(int bands) {(void)bands; abort();}
-int ci_fft_init_pass_bin(int bands) {(void)bands; abort();}
+void tdc_cfx_eeprom_copy_mapping_data_to_cm3(int map, int isd) {(void)map; (void)isd; abort();}
+int tdc_fs_fft_read_pass_bin(int bands) {(void)bands; abort();}
+int tdc_fs_fft_init_pass_bin(int bands) {(void)bands; abort();}
 static const tdc_ut_cm3_map_ops_t forbidden_map_ops = {
-    fn_copy_MappingData_toCM3, ci_fft_read_pass_bin, ci_fft_init_pass_bin};
+    tdc_cfx_eeprom_copy_mapping_data_to_cm3, tdc_fs_fft_read_pass_bin, tdc_fs_fft_init_pass_bin};
 
 static void assert_record_headers(unsigned unit)
 {
@@ -137,9 +137,9 @@ static void assert_io_busy(unsigned unit);
 static void assert_failure_observation(unsigned pass)
 {
     ST__CFX_CM3_SharedMemory_ALL saved = cfx_cm3_sharedMemoryAll;
-    ST__ERROR_CODE previous_error = readErrorCode();
-    ST_STIUL_DAC_REGISTER_VALUE previous_dac = *readStimulDAC_RegisterValue();
-    int previous_offset = readDAC_offsetValue();
+    tdc_sys_error_code_t previous_error = tdc_sys_error_read();
+    ST_STIUL_DAC_REGISTER_VALUE previous_dac = *tdc_stim_read_dac_register_value();
+    int previous_offset = tdc_stim_read_dac_offset_value();
     assert(tdc_ut_cm3_vectors_observe_calculation_failure()==TDC_UT_CM3_VECTOR_OBSERVED);
     assert(g_tdc_ut_cm3_vector_done && !g_tdc_ut_cm3_vector_overflow);
     assert(g_tdc_ut_cm3_vector_observed && tdc_ut_cm3_vectors_expected()==NULL);
@@ -165,10 +165,10 @@ static void assert_failure_observation(unsigned pass)
                91+vector, values[0],values[1],values[2],values[6],values[7]);
     }
     assert(!memcmp(&saved,&cfx_cm3_sharedMemoryAll,sizeof(saved)));
-    ST__ERROR_CODE current_error = readErrorCode();
+    tdc_sys_error_code_t current_error = tdc_sys_error_read();
     assert(!memcmp(&previous_error,&current_error,sizeof(current_error)));
-    assert(!memcmp(&previous_dac,readStimulDAC_RegisterValue(),sizeof(previous_dac)));
-    assert(readDAC_offsetValue()==previous_offset);
+    assert(!memcmp(&previous_dac,tdc_stim_read_dac_register_value(),sizeof(previous_dac)));
+    assert(tdc_stim_read_dac_offset_value()==previous_offset);
     assert(g_tdc_ut_cm3_calculation_before_copy==forbidden_copy_callback);
     assert(g_tdc_ut_cm3_map_ops==&forbidden_map_ops);
     int actual[TDC_UT_CM3_VECTOR_CAPACITY], expected[TDC_UT_CM3_VECTOR_CAPACITY];
@@ -190,7 +190,7 @@ static void assert_failure_observation(unsigned pass)
  * Restore: second exchange restores the inspected state; never use product setters. */
 static void assert_internal_state(void (*exchange)(int *), const int *expected, unsigned count)
 {
-    int observed[LED_SRC__MAX + 16] = {0};
+    int observed[TDC_LED_SRC__MAX + 16] = {0};
     assert(count <= sizeof(observed) / sizeof(observed[0]));
     exchange(observed);
     assert(!memcmp(observed, expected, count * sizeof(int)));
@@ -231,25 +231,25 @@ int main(void)
     const int battery_fixture[4] = {53, 0, 0, 0};
     const int indicator_fixture[3] = {1, 53, 2};
     const int system_fixture[16] = {3, 7, 11, 13, 0, 97, 101, 2, 1, 0, 1, 0, 1, 0, 1, 0};
-    int led_fixture[LED_SRC__MAX + 3] = {0};
-    int saved_battery[4], saved_indicator[3], saved_system[16], saved_led[LED_SRC__MAX + 3];
+    int led_fixture[TDC_LED_SRC__MAX + 3] = {0};
+    int saved_battery[4], saved_indicator[3], saved_system[16], saved_led[TDC_LED_SRC__MAX + 3];
     memcpy(saved_battery, battery_fixture, sizeof(saved_battery));
     memcpy(saved_indicator, indicator_fixture, sizeof(saved_indicator));
     memcpy(saved_system, system_fixture, sizeof(saved_system));
-    led_fixture[LED_SRC_BATTERY] = LED_ST_BATT_READY;
-    led_fixture[LED_SRC__MAX] = 12345;
-    led_fixture[LED_SRC__MAX + 1] = 1;
-    led_fixture[LED_SRC__MAX + 2] = 1;
+    led_fixture[TDC_LED_SRC_BATTERY] = TDC_LED_ST_BATT_READY;
+    led_fixture[TDC_LED_SRC__MAX] = 12345;
+    led_fixture[TDC_LED_SRC__MAX + 1] = 1;
+    led_fixture[TDC_LED_SRC__MAX + 2] = 1;
     memcpy(saved_led, led_fixture, sizeof(saved_led));
     tdc_ut_cm3_battery_exchange(saved_battery);
     tdc_ut_cm3_indicator_exchange(saved_indicator);
     tdc_ut_cm3_system_exchange(saved_system);
     tdc_ut_cm3_led_exchange(saved_led);
-    ST__ERROR_CODE saved_error = {0};
+    tdc_sys_error_code_t saved_error = {0};
     saved_error.dataProcessingErrorFlag = en__unusableMapData;
     tdc_ut_cm3_error_exchange(&saved_error);
-    ST_STIUL_DAC_REGISTER_VALUE saved_dac = *readStimulDAC_RegisterValue();
-    *readStimulDAC_RegisterValue() = (ST_STIUL_DAC_REGISTER_VALUE){3, 1, 77};
+    ST_STIUL_DAC_REGISTER_VALUE saved_dac = *tdc_stim_read_dac_register_value();
+    *tdc_stim_read_dac_register_value() = (ST_STIUL_DAC_REGISTER_VALUE){3, 1, 77};
     int saved_offset = tdc_ut_cm3_dac_offset_exchange(123);
     int saved_duration = tdc_ut_cm3_frame_duration_exchange(73);
     assert(!g_tdc_ut_cm3_expected_shared_address && !g_tdc_ut_cm3_suppress_uart_flag && !g_tdc_ut_cm3_suppress_diagnostics);
@@ -296,9 +296,9 @@ int main(void)
     for (unsigned pass = 1; pass <= 2; ++pass)
     for (unsigned i = 0; i < sizeof(units) / sizeof(units[0]); ++i)
     {
-        ST__ERROR_CODE previous_error = readErrorCode();
-        ST_STIUL_DAC_REGISTER_VALUE previous_dac = *readStimulDAC_RegisterValue();
-        int previous_offset = readDAC_offsetValue();
+        tdc_sys_error_code_t previous_error = tdc_sys_error_read();
+        ST_STIUL_DAC_REGISTER_VALUE previous_dac = *tdc_stim_read_dac_register_value();
+        int previous_offset = tdc_stim_read_dac_offset_value();
         int previous_duration = tdc_ut_cm3_last_frame_duration();
         int result = tdc_ut_cm3_vectors_run_unit(units[i]);
         assert(result == TDC_UT_CM3_VECTOR_OK || result == TDC_UT_CM3_VECTOR_PARTIAL);
@@ -306,10 +306,10 @@ int main(void)
         assert(!g_tdc_ut_cm3_vector_observed);
         assert(tdc_ut_cm3_vectors_expected() == g_tdc_ut_cm3_vector_expected);
         assert(!memcmp(&saved, &cfx_cm3_sharedMemoryAll, sizeof(saved)));
-        ST__ERROR_CODE current_error = readErrorCode();
+        tdc_sys_error_code_t current_error = tdc_sys_error_read();
         assert(!memcmp(&previous_error, &current_error, sizeof(current_error)));
-        assert(!memcmp(&previous_dac, readStimulDAC_RegisterValue(), sizeof(previous_dac)));
-        assert(readDAC_offsetValue() == previous_offset);
+        assert(!memcmp(&previous_dac, tdc_stim_read_dac_register_value(), sizeof(previous_dac)));
+        assert(tdc_stim_read_dac_offset_value() == previous_offset);
         assert(tdc_ut_cm3_last_frame_duration() == previous_duration);
         assert(g_tdc_ut_cm3_expected_shared_address == 0x1234 && g_tdc_ut_cm3_suppress_uart_flag == 7);
         assert(g_tdc_ut_cm3_suppress_diagnostics == 7 && legacy_rtt_calls == 0);
@@ -319,7 +319,7 @@ int main(void)
         assert_internal_state(tdc_ut_cm3_battery_exchange, battery_fixture, 4);
         assert_internal_state(tdc_ut_cm3_indicator_exchange, indicator_fixture, 3);
         assert_internal_state(tdc_ut_cm3_system_exchange, system_fixture, 16);
-        assert_internal_state(tdc_ut_cm3_led_exchange, led_fixture, LED_SRC__MAX + 3);
+        assert_internal_state(tdc_ut_cm3_led_exchange, led_fixture, TDC_LED_SRC__MAX + 3);
         unsigned count = g_tdc_ut_cm3_vector_count;
         int actual[TDC_UT_CM3_VECTOR_CAPACITY], expected[TDC_UT_CM3_VECTOR_CAPACITY];
         memcpy(actual, g_tdc_ut_cm3_vector_actual, sizeof(actual));
@@ -353,7 +353,7 @@ int main(void)
     tdc_ut_cm3_system_exchange(saved_system);
     tdc_ut_cm3_led_exchange(saved_led);
     tdc_ut_cm3_error_exchange(&saved_error);
-    *readStimulDAC_RegisterValue() = saved_dac;
+    *tdc_stim_read_dac_register_value() = saved_dac;
     (void)tdc_ut_cm3_dac_offset_exchange(saved_offset);
     (void)tdc_ut_cm3_frame_duration_exchange(saved_duration);
     g_tdc_ut_cm3_expected_shared_address = 0;

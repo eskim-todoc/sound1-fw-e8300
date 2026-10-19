@@ -15,7 +15,7 @@ import tempfile
 ROOT = Path(__file__).resolve().parents[2]
 TEST = ROOT / "tests/unit"
 WRAPPERS = {
-    "CM3": ROOT / "src/2__cm3/Cortex-M3-src/test/tdc_ut_console_cm3.c",
+    "CM3": ROOT / "src/2__cm3/source/tests/tdc_ut_console_cm3.c",
     "BOOT": ROOT / "src/0__bootloader/source/test/tdc_ut_console_boot.c",
 }
 
@@ -35,13 +35,13 @@ def main() -> None:
     gcc = shutil.which("gcc")
     if not gcc:
         raise RuntimeError("Host gcc is required")
-    bridge = ROOT / "src/2__cm3/Cortex-M3-src/test/tdc_ut_batch_cfx_bridge.c"
+    bridge = ROOT / "src/2__cm3/source/tests/tdc_ut_batch_cfx_bridge.c"
     inputs = [Path(__file__), TEST / "console_adapter_host_test.c", *WRAPPERS.values(), bridge,
               TEST / "console_adapter_bridge_semantics.c",
-              ROOT / "src/2__cm3/Cortex-M3-src/test/tdc_ut_report.h",
+              ROOT / "src/2__cm3/source/tests/tdc_ut_report.h",
               ROOT / "src/test/tdc_ut_console.c", ROOT / "src/test/tdc_ut_console.h",
-              ROOT / "src/2__cm3/Cortex-M3-src/test/tdc_ut_batch_cm3.h",
-              ROOT / "src/2__cm3/Cortex-M3-src/test/tdc_ut_batch_cfx_bridge.h",
+              ROOT / "src/2__cm3/source/tests/tdc_ut_batch_cm3.h",
+              ROOT / "src/2__cm3/source/tests/tdc_ut_batch_cfx_bridge.h",
               ROOT / "src/1__cfx/test/tdc_ut_batch_cfx.h",
               ROOT / "src/0__bootloader/source/test/tdc_ut_batch_boot.h",
               *sorted((TEST / "console_adapter_host").glob("*.h"))]

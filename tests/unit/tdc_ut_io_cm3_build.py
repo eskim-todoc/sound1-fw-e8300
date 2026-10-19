@@ -20,27 +20,29 @@ ROOT = Path(__file__).resolve().parents[2]
 CM3 = ROOT / "src/2__cm3"
 SDK = Path(os.environ.get("TDC_E8300_SDK", "C:/Program Files (x86)/ON Semiconductor/Ezairo 8300 SDK"))
 PRODUCTS = [
-    "Cortex-M3-src/systemControl/driver_i2c.c",
-    "Cortex-M3-src/systemControl/driver_SPI.c",
-    "Cortex-M3-src/systemControl/tdc_touch_iqs323.c",
-    "Cortex-M3-src/systemControl/dirver_i2c_for_ISD.c",
-    "Cortex-M3-src/internalDevice/isd_interface_FPGA.c",
-    "Cortex-M3-src/internalDevice/driver_REN_ISL9122.c",
-    "Cortex-M3-src/BleCommunication/tdc_remote_gain_control.c",
-    "Cortex-M3-src/BleCommunication/ci_ble_control_ota.c",
-    "Cortex-M3-src/BleCommunication/ci_ble_control_boot.c",
-    "Cortex-M3-src/BleCommunication/ble_communication.c",
-    "Cortex-M3-src/BleCommunication/mappingControl.c",
-    "Cortex-M3-src/BleCommunication/remoteControl.c",
-    "Gen1_5/FS/tdc_gain_storage.c",
+    "source/ble/tdc_ble_reply.c",
+    "source/ble/tdc_ble_map_field_range.c",
+    "source/hal/tdc_hal_i2c.c",
+    "source/hal/tdc_hal_spi.c",
+    "source/touch/tdc_touch_iqs323.c",
+    "source/hal/tdc_hal_i2c_isd.c",
+    "source/isd/tdc_isd_fpga.c",
+    "source/drv/tdc_drv_isl9122.c",
+    "source/ble/sound1/tdc_ble_gain_control.c",
+    "source/dfu/tdc_dfu_ble_ota.c",
+    "source/dfu/tdc_dfu_ble_boot.c",
+    "source/ble/tdc_ble_communication.c",
+    "source/ble/mapping/tdc_ble_mapping.c",
+    "source/ble/remote/tdc_ble_remote.c",
+    "source/fs/tdc_fs_gain.c",
 ]
-RUNNER = CM3 / "Cortex-M3-src/test/tdc_ut_io_cm3.c"
+RUNNER = CM3 / "source/tests/tdc_ut_io_cm3.c"
 FIXTURE = ROOT / "tests/unit/tdc_ut_io_cm3_host.c"
 HOST_EXTENDED = [
-    CM3 / "Cortex-M3-src/systemControl/tdc_touch_logic.c",
-    CM3 / "Gen1_5/FS/ci_map.c",
-    *[CM3 / f"Gen1_5/fn_fromCFX/fn_from_cfx_eeprom_{name}.c" for name in ("read", "write", "erase", "recover")],
-    CM3 / "Cortex-M3-src/internalDevice/isd_interface_mapping_readWrtieMapData.c",
+    CM3 / "source/touch/tdc_touch_logic.c",
+    CM3 / "source/fs/tdc_fs_map.c",
+    *[CM3 / f"source/cfx_link/tdc_cfx_eeprom_{name}.c" for name in ("read", "write", "erase", "recover")],
+    CM3 / "source/isd/tdc_isd_map_data.c",
     *[ROOT / f"tests/unit/tdc_ut_io_cm3_{name}.c" for name in ("legacy_12", "legacy_13", "touch_init", "extended")],
 ]
 
@@ -48,7 +50,7 @@ HOST_EXTENDED = [
 def includes() -> list[Path]:
     tree = ET.parse(CM3 / ".cproject")
     option = next(e for e in tree.iter("option") if e.get("superClass") == "ilg.gnuarmeclipse.managedbuild.cross.option.c.compiler.include.paths")
-    paths = [CM3 / "Cortex-M3-src/test", ROOT / "tests/unit"]
+    paths = [CM3 / "source/tests", ROOT / "tests/unit"]
     for entry in option:
         value = entry.get("value", "").strip('"')
         prefix = "${workspace_loc:/${ProjName}"
@@ -78,8 +80,8 @@ def source_hashes(sources: list[Path]) -> dict[str, str]:
     # Wrapper includes and transitive local headers are recorded too. A superset
     # is intentional: compiler include dependencies are not inferred from logs.
     paths = set(sources) | set(CM3.rglob("*.h"))
-    paths |= set((CM3 / "Cortex-M3-src/internalDevice").glob("driver_REN_ISL*.c"))
-    paths.add(CM3 / "Cortex-M3-src/systemControl/tdc_touch.c")
+    paths |= set((CM3 / "source/drv").glob("tdc_drv_isl*.c"))
+    paths.add(CM3 / "source/touch/tdc_touch.c")
     paths |= set((ROOT / "tests/unit").glob("tdc_ut_io_cm3*.*"))
     paths |= set((ROOT / "tests/unit/tdc_ut_io_cm3_host").glob("*.h"))
     paths.add(CM3 / ".cproject")
@@ -177,7 +179,7 @@ def main() -> None:
             print(f"ARM COMPILE OK: {len(sources)} translation units; TDC_UNIT_TEST={not args.no_unit_test}")
         else:
             # Actual shared-state accessors and bit extraction; no output-value mocks.
-            sources += [CM3 / "Cortex-M3-src/systemControl/cfx_cm3_sharedMemory.c", CM3 / "Cortex-M3-src/signalProcessing/commonDataProcessing.c", CM3 / "Cortex-M3-src/internalDevice/isd_interface.c", CM3 / "Cortex-M3-src/internalDevice/isd_interface_stimulationParaSetting.c", CM3 / "Cortex-M3-src/systemControl/batteryNPowerControl.c", CM3 / "Cortex-M3-src/systemControl/LedOutput.c", CM3 / "Cortex-M3-src/error.c", CM3 / "Cortex-M3-src/QCC/snd_qcc.c", FIXTURE]
+            sources += [CM3 / "source/cfx_link/tdc_shm.c", CM3 / "source/stim/tdc_stim_common.c", CM3 / "source/isd/tdc_isd.c", CM3 / "source/isd/tdc_isd_stim_para_setting.c", CM3 / "source/pwr/tdc_pwr_battery.c", CM3 / "source/led/tdc_led_output.c", CM3 / "source/sys/tdc_sys_error.c", CM3 / "source/qcc/tdc_qcc.c", FIXTURE]
             executable = build / "tdc_ut_io_cm3.exe"
             if not args.ram:
                 sources += HOST_EXTENDED

@@ -33,3 +33,9 @@ node_modules/
 # Office 내부 상태를 통째로 저장한 대용량 검사 덤프
 /docs/tasks/인허가/20261012_2102_QCC-설계문서-반영/qa/review-20261013/qcc_requirements/inspection.json
 /docs/tasks/인허가/20261012_2102_QCC-설계문서-반영/qa/review-20261013/qcc_design/sad-native-page3-5.json
+
+# 호스트 단위 테스트 빌드 산출물
+tests/unit/build/
+
+# 구조 지표 기준선 (tests/metrics.sh --save) - 작업 중 임시 파일
+tests/.metrics/

@@ -27,7 +27,7 @@ SDK = Path(os.environ.get("TDC_E8300_SDK", r"C:\Program Files (x86)\ON Semicondu
 
 
 def source_window() -> list[int]:
-    text = (ROOT / "src/2__cm3/Gen1_5/FS/ci_fft.c").read_text(encoding="utf-8-sig")
+    text = (ROOT / "src/2__cm3/source/fs/tdc_fs_fft.c").read_text(encoding="utf-8-sig")
     match = re.search(r"hanning_window_coeff\[Half_FFT_Size\]\s*=\s*\{([^}]+)\}", text)
     if match is None:
         raise ValueError("Hann INPUT coefficients unavailable")
@@ -124,7 +124,7 @@ def build() -> tuple[str, dict]:
         "#endif", ""])
     manifest = {
         "scope": "independent mathematical references; no HEAR/CFX device execution",
-        "input_source": "src/2__cm3/Gen1_5/FS/ci_fft.c: hanning_window_coeff INPUT array",
+        "input_source": "src/2__cm3/source/fs/tdc_fs_fft.c: hanning_window_coeff INPUT array",
         "window_formula": "round((0.5-0.5*cos(2*pi*n/511))*2^23); stored coefficients within 2 LSB",
         "dft_formula": "X[k]=sum(x[n]*w[n]/2^23*exp(-j*2*pi*k*n/512))",
         "representation": "BFP exponent E is total right shifts. Compare FFT raw*2^E against X; vMag raw*2^(E+1) against magnitude because vMag 2.22 versus input 1.23. Word0/1 packs DC/Nyquist.",

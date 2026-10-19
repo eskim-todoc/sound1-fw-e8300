@@ -4,25 +4,25 @@
  */
 #if defined(TDC_UNIT_TEST) && defined(TDC_UT_IO_CM3_HOST) && !defined(TDC_UT_IO_CM3_RAM_ONLY)
 #include "tdc_ut_io_cm3_host_fixture.h"
-#include <ci_map.h>
-#include <mappingControl.h>
-#include <remoteControl.h>
-#include <driver_SPI.h>
-#include <isd_interface_mapping_readWrtieMapData.h>
+#include <tdc_fs_map.h>
+#include <tdc_ble_mapping.h>
+#include <tdc_ble_remote.h>
+#include <tdc_hal_spi.h>
+#include <tdc_isd_map_data.h>
 #include <tdc_touch_iqs323.h>
 #include <tdc_touch.h>
-#include <error.h>
-#include <isd_interface_mapping_impedanceMeasurement.h>
-#include <isd_interface_mapping_eCAP_Measurement.h>
-#include <isd_interface_mapping_SepcificStimulation.h>
-#include <isd_interface_mapping_Live.h>
-#include <isd_interface_init_ISD.h>
-#include <ci_fft.h>
-#include <ci_event_log.h>
-#include <ci_stim_mute.h>
-#include <remoteControl_read_SP_para.h>
-#include <tdc_remote_general_debug.h>
-#include <isd_interface_stimulationStandAlone.h>
+#include <tdc_sys_error.h>
+#include <tdc_isd_map_impedance.h>
+#include <tdc_isd_map_ecap.h>
+#include <tdc_isd_map_specific_stim.h>
+#include <tdc_isd_map_live.h>
+#include <tdc_isd_init.h>
+#include <tdc_fs_fft.h>
+#include <tdc_fs_event_log.h>
+#include <tdc_fs_stim_mute.h>
+#include <tdc_ble_remote_sp_para.h>
+#include <tdc_ble_general_debug.h>
+#include <tdc_isd_stim_standalone.h>
 
 extern ST__REMOTECONTROL_PACKET remoteDataPacket;
 /* 구형 보드 헤더의 상충 매크로는 해당 wrapper TU 안으로 제한한다. */
@@ -37,26 +37,26 @@ bool enable_VP_REN_ISL98608(void);
 bool disable_REN_ISL98608(void);
 
 /* 이 시험의 입력이 자극 실행/실장 ID 읽기로 빠지면 즉시 실패한다. */
-void impedanceMeasurement(bool start) { (void)start; abort(); }
-void eCapMeasurement_masking(bool start) { (void)start; abort(); }
-void specificStimulation(bool start) { (void)start; abort(); }
-bool liveStimulation(ST__ISD_STATUS status) { (void)status; abort(); }
-int read_Connected_ISD_id(void) { abort(); }
-int ci_fft_read_pass_bin(int bands) { (void)bands; abort(); }
-int ci_fft_init_pass_bin(int bands) { (void)bands; abort(); }
-void set_newMapLoadeFlagForStimulParaSetting(void) { abort(); }
-void ci_timer_update_reference_time(CI_TIMER_TIME_T *time, uint32_t count) { (void)time; (void)count; abort(); }
-void ci_event_log_update_bt_addr(CI_EVENT_LOG_BT_ADDR_T *addr) { (void)addr; abort(); }
-int ci_event_log_write(uint32_t type) { (void)type; abort(); }
-void read_signal_processingPara(bool start, int command) { (void)start; (void)command; abort(); }
+void tdc_isd_map_impedance_step(bool start) { (void)start; abort(); }
+void tdc_isd_map_ecap_step(bool start) { (void)start; abort(); }
+void tdc_isd_map_specific_stim_step(bool start) { (void)start; abort(); }
+bool tdc_isd_map_live_step(ST__ISD_STATUS status) { (void)status; abort(); }
+int tdc_isd_read_connected_id(void) { abort(); }
+int tdc_fs_fft_read_pass_bin(int bands) { (void)bands; abort(); }
+int tdc_fs_fft_init_pass_bin(int bands) { (void)bands; abort(); }
+void tdc_isd_set_new_map_loaded_flag(void) { abort(); }
+void tdc_hal_timer_update_reference_time(tdc_hal_timer_time_t *time, uint32_t count) { (void)time; (void)count; abort(); }
+void tdc_fs_event_log_update_bt_addr(TDC_FS_EVENT_LOG_BT_ADDR_T *addr) { (void)addr; abort(); }
+int tdc_fs_event_log_write(uint32_t type) { (void)type; abort(); }
+void tdc_ble_remote_read_sp_para(bool start, int command) { (void)start; (void)command; abort(); }
 char *readFirmwareInfo(void) { abort(); }
-int ci_stim_mute_update(uint32_t enable, uint32_t level) { (void)enable; (void)level; abort(); }
-void delay_ms(uint32_t milliseconds) { (void)milliseconds; abort(); }
-int tdc_remote_general_debug_handle(const ST__REMOTECONTROL_PACKET *packet, int *tx, int index)
+int tdc_fs_stim_mute_update(uint32_t enable, uint32_t level) { (void)enable; (void)level; abort(); }
+void tdc_util_delay_ms(uint32_t milliseconds) { (void)milliseconds; abort(); }
+int tdc_ble_general_debug_handle(const ST__REMOTECONTROL_PACKET *packet, int *tx, int index)
 { (void)packet; (void)tx; (void)index; abort(); }
 
-static CI_FILESYSTEM_ENTIRE_MAP_T s_tdc_map;
-CI_FILESYSTEM_ENTIRE_MAP_T *g_ci_filesystem_ptr_entire_map = &s_tdc_map;
+static TDC_FS_ENTIRE_MAP_T s_tdc_map;
+TDC_FS_ENTIRE_MAP_T *g_tdc_fs_ptr_entire_map = &s_tdc_map;
 typedef struct { char name[32]; unsigned char data[1024]; int length; bool crc, aes; } tdc_ut_io_cm3_file_t;
 static tdc_ut_io_cm3_file_t s_tdc_files[32];
 static int s_tdc_read_fault, s_tdc_write_fault;
@@ -133,17 +133,17 @@ static int finish(void)
     tdc_ut_io_cm3_host_restore();
     return s_tdc_failures;
 }
-static void next(void) { s_tdc_case++; clear_ReadCommandForSPI_Master(); clear_SPI_Tx_Buffer(); }
-static void response(int header, int error)
+static void next(void) { s_tdc_case++; tdc_hal_spi_clear_master_read_command(); tdc_hal_spi_clear_tx_buffer(); }
+static void response(int header, int tdc_sys_error)
 {
-    int tx[SPI_COMM_PACKET_SIZE];
-    tdc_ut_io_cm3_spi_snapshot(tx, SPI_COMM_PACKET_SIZE);
+    int tx[TDC_HAL_SPI_COMM_PACKET_SIZE];
+    tdc_ut_io_cm3_spi_snapshot(tx, TDC_HAL_SPI_COMM_PACKET_SIZE);
     check("header", tx[0], header);
-    if (header == en__ERROR_Response) check("error", tx[3], error);
+    if (header == en__ERROR_Response) check("tdc_sys_error", tx[3], tdc_sys_error);
 }
 static void bus_reset(int fault)
 {
-    clearI2cDriverStatus(); tdc_ut_io_cm3_host_i2c_reset();
+    tdc_hal_i2c_clear_driver_status(); tdc_ut_io_cm3_host_i2c_reset();
     g_tdc_ut_io_cm3_transfer_count = 0; g_tdc_ut_io_cm3_bus_error = fault;
     g_tdc_ut_io_cm3_bus_error_transfer = 0;
 }
@@ -229,8 +229,8 @@ static int legacy_pmic(int unit)
     next(); bus_reset(0); tdc_ut_io_cm3_host_rx(&rx, 1);
     check("read", read_reg(1, &value), 1); check("read-data", value, rx);
     check("read-address", g_tdc_ut_io_cm3_transfer[1].addr, unit == 38 ? 0x1C : 0x29);
-    next(); bus_reset(1); check("write-error", write_reg(1, 0xA5), 0); check("idle-after-error", isI2cDriverStatusIdle(), 1);
-    next(); bus_reset(1); value = 123; check("read-error", read_reg(1, &value), 0); check("output-unwritten-observation", value, 123);
+    next(); bus_reset(1); check("write-tdc_sys_error", write_reg(1, 0xA5), 0); check("idle-after-tdc_sys_error", tdc_hal_i2c_is_driver_status_idle(), 1);
+    next(); bus_reset(1); value = 123; check("read-tdc_sys_error", read_reg(1, &value), 0); check("output-unwritten-observation", value, 123);
     if (unit == 38)
     {
         for (int match = 0; match < 2; match++)
@@ -256,8 +256,8 @@ static int legacy_pmic(int unit)
         }
     }
     next(); bus_reset(0); g_tdc_ut_io_cm3_bus_error_transfer=2; value=123;
-    check("read-data-phase-error",read_reg(1,&value),0); check("read-output-unwritten-observation",value,123);
-    check("read-error-idle",isI2cDriverStatusIdle(),1);
+    check("read-data-phase-tdc_sys_error",read_reg(1,&value),0); check("read-output-unwritten-observation",value,123);
+    check("read-tdc_sys_error-idle",tdc_hal_i2c_is_driver_status_idle(),1);
     return finish();
 }
 
@@ -272,11 +272,11 @@ static void seed_maps(void)
             ST__CFX_CM3_SharedMemory_mapData *data = &s_tdc_map.map[slot-1].map_data[map-1];
             data->mappingDate.mapping_year = slot * 10 + map;
             for (int i = 0; i < 32; i++) { data->T_level_uA[i] = 100*slot + 10*map + i; data->C_level_uA[i] = 500*slot + 10*map + i; }
-            assert(ci_map_write_map_data(slot,map) == sizeof(*data));
+            assert(tdc_fs_map_write_map_data(slot,map) == sizeof(*data));
         }
         s_tdc_map.map[slot-1].isd_info.isd_serial = 1000 + slot;
         s_tdc_map.map[slot-1].user_setting_value.mapNum = slot;
-        assert(ci_map_write_isd_info(slot) > 0 && ci_map_write_user_setting_value(slot) > 0 && ci_map_write_map_stamp(slot) > 0);
+        assert(tdc_fs_map_write_isd_info(slot) > 0 && tdc_fs_map_write_user_setting_value(slot) > 0 && tdc_fs_map_write_map_stamp(slot) > 0);
     }
 }
 static int storage(void)
@@ -287,29 +287,29 @@ static int storage(void)
     {
         int slot=pairs[p][0], map=pairs[p][1];
         ST__CFX_CM3_SharedMemory_mapData *data=&s_tdc_map.map[slot-1].map_data[map-1];
-        next(); memset(data, 0, sizeof(*data)); check("read-count",ci_map_read_map_data(slot,map),sizeof(*data));
+        next(); memset(data, 0, sizeof(*data)); check("read-count",tdc_fs_map_read_map_data(slot,map),sizeof(*data));
         ST__CFX_CM3_SharedMemory_ReadWriteCommand_ForFlash command={flash_Command_Read,slot,map};
-        setReadWriteMapDataFlashCommand(command);
+        tdc_shm_set_read_write_map_data_flash_command(command);
         for(int i=0;i<32;i++)
         {
             check("T-element",cfx_cm3_sharedMemoryAll.repositoryForReadWriteMapData.readWritemapData.T_level_uA[i],100*slot+10*map+i);
             check("C-element",cfx_cm3_sharedMemoryAll.repositoryForReadWriteMapData.readWritemapData.C_level_uA[i],500*slot+10*map+i);
         }
     }
-    next(); check("info-length",ci_map_read_isd_info(2),sizeof(ST__CFX_CM3_SharedMemory_ISD_info));
+    next(); check("info-length",tdc_fs_map_read_isd_info(2),sizeof(ST__CFX_CM3_SharedMemory_ISD_info));
     check("info-slot",s_tdc_map.map[1].isd_info.isd_serial,1002);
     check("info-CRC-request",file_at("/ISD2_INFO",false)->crc,1); check("info-AES-request",file_at("/ISD2_INFO",false)->aes,1);
-    next(); s_tdc_read_fault=1; check("read-error-or-rejected-CRC",ci_map_read_map_data(1,1),-1);
-    next(); s_tdc_read_fault=2; check("short-read-propagated",ci_map_read_map_data(1,1),sizeof(ST__CFX_CM3_SharedMemory_mapData)-1);
+    next(); s_tdc_read_fault=1; check("read-tdc_sys_error-or-rejected-CRC",tdc_fs_map_read_map_data(1,1),-1);
+    next(); s_tdc_read_fault=2; check("short-read-propagated",tdc_fs_map_read_map_data(1,1),sizeof(ST__CFX_CM3_SharedMemory_mapData)-1);
     s_tdc_read_fault=0;
-    next(); s_tdc_write_fault=1; check("write-error",ci_map_write_map_data(1,1),-1);
+    next(); s_tdc_write_fault=1; check("write-tdc_sys_error",tdc_fs_map_write_map_data(1,1),-1);
     s_tdc_write_fault=0;
     next();
     ST__CFX_CM3_SharedMemory_mapData *repository=&cfx_cm3_sharedMemoryAll.repositoryForReadWriteMapData.readWritemapData;
     for(int i=0;i<32;i++) { repository->T_level_uA[i]=300+i; repository->C_level_uA[i]=800+i; }
-    write_stimulPara_atFlash(true,0x6D,2,2); write_stimulPara_atFlash(false,0x6D,2,2); response(0x6D,0);
+    tdc_isd_map_write_stim_para(true,0x6D,2,2); tdc_isd_map_write_stim_para(false,0x6D,2,2); response(0x6D,0);
     memset(&s_tdc_map.map[1].map_data[1],0,sizeof(*repository));
-    check("write-reload",ci_map_read_map_data(2,2),sizeof(*repository));
+    check("write-reload",tdc_fs_map_read_map_data(2,2),sizeof(*repository));
     for(int i=0;i<32;i++)
     {
         check("stored-T",s_tdc_map.map[1].map_data[1].T_level_uA[i],300+i);
@@ -317,8 +317,8 @@ static int storage(void)
         check("unselected-map-kept",s_tdc_map.map[0].map_data[1].T_level_uA[i],120+i);
     }
     next(); s_tdc_write_fault=1;
-    write_stimulPara_atFlash(true,0x6D,2,2); write_stimulPara_atFlash(false,0x6D,2,2);
-    int tx[SPI_COMM_PACKET_SIZE]; tdc_ut_io_cm3_spi_snapshot(tx,SPI_COMM_PACKET_SIZE);
+    tdc_isd_map_write_stim_para(true,0x6D,2,2); tdc_isd_map_write_stim_para(false,0x6D,2,2);
+    int tx[TDC_HAL_SPI_COMM_PACKET_SIZE]; tdc_ut_io_cm3_spi_snapshot(tx,TDC_HAL_SPI_COMM_PACKET_SIZE);
     known("failed-save-normal-ACK",tx[0],en__ERROR_Response,0x6D);
     s_tdc_write_fault=0;
     return finish();
@@ -326,29 +326,29 @@ static int storage(void)
 static int erase_scope(void)
 {
     begin(43); seed_maps();
-    next(); reset_NVM_MapData(true,0x6F,1,1,flash_Command_Erase); reset_NVM_MapData(false,0x6F,1,1,flash_Command_Erase);
+    next(); tdc_isd_map_reset_nvm_map_data(true,0x6F,1,1,flash_Command_Erase); tdc_isd_map_reset_nvm_map_data(false,0x6F,1,1,flash_Command_Erase);
     check("target-erased",s_tdc_map.map[0].map_data[0].T_level_uA[31],0);
     check("other-map-kept",s_tdc_map.map[0].map_data[1].T_level_uA[31],151);
     check("other-slot-kept",s_tdc_map.map[1].map_data[0].T_level_uA[31],241); response(0x6F,0);
-    next(); seed_maps(); reset_NVM_Selected_ISD_allData(true,0x6E,2,flash_Command_Erase); reset_NVM_Selected_ISD_allData(false,0x6E,2,flash_Command_Erase);
+    next(); seed_maps(); tdc_isd_map_reset_nvm_selected(true,0x6E,2,flash_Command_Erase); tdc_isd_map_reset_nvm_selected(false,0x6E,2,flash_Command_Erase);
     for(int map=0;map<4;map++) check("selected-slot-map-erased",s_tdc_map.map[1].map_data[map].T_level_uA[31],0);
     check("other-slot-kept",s_tdc_map.map[0].map_data[0].T_level_uA[31],141);
     check("selected-info-cleared",s_tdc_map.map[1].isd_info.isd_serial,0); response(0x6E,0);
-    next(); reset_NVM_MapData(true,0x6F,1,1,flash_Command_Read); response(en__ERROR_Response,en_sourceCodeError);
+    next(); tdc_isd_map_reset_nvm_map_data(true,0x6F,1,1,flash_Command_Read); response(en__ERROR_Response,en_sourceCodeError);
     next(); seed_maps();
-    bool done=reset_NVM_All_ISD_allData(true,0x71,flash_Command_Erase);
+    bool done=tdc_isd_map_reset_nvm_all(true,0x71,flash_Command_Erase);
     check("not-done-at-first-slot",done,0);
-    for(int tick=0;tick<7;tick++) done=reset_NVM_All_ISD_allData(false,0x71,flash_Command_Erase);
+    for(int tick=0;tick<7;tick++) done=tdc_isd_map_reset_nvm_all(false,0x71,flash_Command_Erase);
     check("done-after-all-slots",done,1);
     for(int slot=0;slot<4;slot++) for(int map=0;map<4;map++)
         check("all-target-maps-erased",s_tdc_map.map[slot].map_data[map].T_level_uA[31],0);
     response(0x71,0);
     next(); seed_maps(); s_tdc_write_fault=1;
-    reset_NVM_MapData(true,0x6F,1,1,flash_Command_Erase); reset_NVM_MapData(false,0x6F,1,1,flash_Command_Erase);
-    int tx[SPI_COMM_PACKET_SIZE]; tdc_ut_io_cm3_spi_snapshot(tx,SPI_COMM_PACKET_SIZE);
+    tdc_isd_map_reset_nvm_map_data(true,0x6F,1,1,flash_Command_Erase); tdc_isd_map_reset_nvm_map_data(false,0x6F,1,1,flash_Command_Erase);
+    int tx[TDC_HAL_SPI_COMM_PACKET_SIZE]; tdc_ut_io_cm3_spi_snapshot(tx,TDC_HAL_SPI_COMM_PACKET_SIZE);
     known("failed-save-normal-ACK",tx[0],en__ERROR_Response,0x6F);
     s_tdc_write_fault=0; memset(&s_tdc_map.map[0].map_data[0],0,sizeof(ST__CFX_CM3_SharedMemory_mapData));
-    check("reload-old-file",ci_map_read_map_data(1,1),sizeof(ST__CFX_CM3_SharedMemory_mapData));
+    check("reload-old-file",tdc_fs_map_read_map_data(1,1),sizeof(ST__CFX_CM3_SharedMemory_mapData));
     check("failed-file-write-did-not-erase-store",s_tdc_map.map[0].map_data[0].T_level_uA[31],141);
     return finish();
 }
@@ -360,62 +360,62 @@ static int remote_parser(void)
     const int slots[]={1,4,0,5};
     for(int i=0;i<4;i++)
     {
-        next(); clearRemoteColtrolCommand(); packet[0]=0x4A; packet[1]=slots[i]; fetch_remoteControlPacket(packet);
-        check("read-slot-command",getRemoteCommand(),i<2?0x4A:en__remoteControl_IDLE);
+        next(); tdc_ble_remote_clear_command(); packet[0]=0x4A; packet[1]=slots[i]; tdc_ble_remote_fetch_packet(packet);
+        check("read-slot-command",tdc_ble_remote_get_command(),i<2?0x4A:en__remoteControl_IDLE);
         if(i<2) check("slot",remoteDataPacket.remocon_ReadWriteMapData_Flash.slot_index,slots[i]);
         else response(en__ERROR_Response,en__OutOfDataRange);
     }
-    next(); clearRemoteColtrolCommand(); packet[0]=0x4B; packet[1]=0; packet[2]=1; fetch_remoteControlPacket(packet);
-    known("zero-slot-must-be-rejected-before-storage",getRemoteCommand(),en__remoteControl_IDLE,0x4B);
-    next(); clearRemoteColtrolCommand(); packet[0]=0x4B; packet[1]=1; packet[2]=5; fetch_remoteControlPacket(packet);
-    check("invalid-map-cleared",getRemoteCommand(),en__remoteControl_IDLE); response(en__ERROR_Response,en__OutOfDataRange);
-    next(); clearRemoteColtrolCommand(); packet[0]=0x4A; packet[1]=1; fetch_remoteControlPacket(packet);
-    packet[1]=2; fetch_remoteControlPacket(packet); response(en__ERROR_Response,en__PreviouCommnadIsNotCompleted);
-    known("busy-command-retained",getRemoteCommand(),0x4A,en__remoteControl_IDLE);
-    next(); clearRemoteColtrolCommand(); packet[0]=0x4D; packet[1]=3; fetch_remoteControlPacket(packet);
-    check("out-of-order-cleared",getRemoteCommand(),en__remoteControl_IDLE); response(en__ERROR_Response,en__DATA_Order);
-    next(); clearRemoteColtrolCommand(); clear_isd_passKeyMatchResult(); packet[0]=0x49; packet[1]=1;
-    fetch_remoteControlPacket(packet); remoteControl(true); response(en__ERROR_Response,en__NO_SECURITY);
-    check("unauthorized-cleared",getRemoteCommand(),en__remoteControl_IDLE);
+    next(); tdc_ble_remote_clear_command(); packet[0]=0x4B; packet[1]=0; packet[2]=1; tdc_ble_remote_fetch_packet(packet);
+    known("zero-slot-must-be-rejected-before-storage",tdc_ble_remote_get_command(),en__remoteControl_IDLE,0x4B);
+    next(); tdc_ble_remote_clear_command(); packet[0]=0x4B; packet[1]=1; packet[2]=5; tdc_ble_remote_fetch_packet(packet);
+    check("invalid-map-cleared",tdc_ble_remote_get_command(),en__remoteControl_IDLE); response(en__ERROR_Response,en__OutOfDataRange);
+    next(); tdc_ble_remote_clear_command(); packet[0]=0x4A; packet[1]=1; tdc_ble_remote_fetch_packet(packet);
+    packet[1]=2; tdc_ble_remote_fetch_packet(packet); response(en__ERROR_Response,en__PreviouCommnadIsNotCompleted);
+    known("busy-command-retained",tdc_ble_remote_get_command(),0x4A,en__remoteControl_IDLE);
+    next(); tdc_ble_remote_clear_command(); packet[0]=0x4D; packet[1]=3; tdc_ble_remote_fetch_packet(packet);
+    check("out-of-order-cleared",tdc_ble_remote_get_command(),en__remoteControl_IDLE); response(en__ERROR_Response,en__DATA_Order);
+    next(); tdc_ble_remote_clear_command(); tdc_ble_remote_clear_passkey_match(); packet[0]=0x49; packet[1]=1;
+    tdc_ble_remote_fetch_packet(packet); remoteControl(true); response(en__ERROR_Response,en__NO_SECURITY);
+    check("unauthorized-cleared",tdc_ble_remote_get_command(),en__remoteControl_IDLE);
     const int volume_cases[][4]={{0x45,1,1,2},{0x45,4,1,4},{0x45,2,2,1},{0x45,1,2,1},
                                     {0x46,1,1,2},{0x46,10,1,10},{0x46,2,2,1},{0x46,1,2,1}};
     for(unsigned i=0;i<sizeof(volume_cases)/sizeof(volume_cases[0]);i++)
     {
-        next(); set_isd_passKeyMatchResult();
-        changeStimulVolume(volume_cases[i][1]); changeAudioVolume(volume_cases[i][1]);
-        packet[0]=volume_cases[i][0]; packet[1]=volume_cases[i][2]; fetch_remoteControlPacket(packet); remoteControl(true);
-        int tx[SPI_COMM_PACKET_SIZE]; tdc_ut_io_cm3_spi_snapshot(tx,SPI_COMM_PACKET_SIZE);
+        next(); tdc_ble_remote_set_passkey_match();
+        tdc_shm_change_stimul_volume(volume_cases[i][1]); tdc_shm_change_audio_volume(volume_cases[i][1]);
+        packet[0]=volume_cases[i][0]; packet[1]=volume_cases[i][2]; tdc_ble_remote_fetch_packet(packet); remoteControl(true);
+        int tx[TDC_HAL_SPI_COMM_PACKET_SIZE]; tdc_ut_io_cm3_spi_snapshot(tx,TDC_HAL_SPI_COMM_PACKET_SIZE);
         check("volume-header",tx[0],packet[0]); check("volume",tx[1],volume_cases[i][3]);
-        check("volume-state",packet[0]==0x45?readStimulVolume():readAudioVolume(),volume_cases[i][3]);
-        check("volume-command-cleared",getRemoteCommand(),en__remoteControl_IDLE);
+        check("volume-state",packet[0]==0x45?tdc_shm_read_stimul_volume():tdc_shm_read_audio_volume(),volume_cases[i][3]);
+        check("volume-command-cleared",tdc_ble_remote_get_command(),en__remoteControl_IDLE);
     }
-    next(); packet[0]=0x45; packet[1]=3; fetch_remoteControlPacket(packet); remoteControl(true);
-    response(en__ERROR_Response,en__OutOfDataRange); check("invalid-volume-cleared",getRemoteCommand(),en__remoteControl_IDLE);
-    clearRemoteColtrolCommand();
-    clear_isd_passKeyMatchResult();
+    next(); packet[0]=0x45; packet[1]=3; tdc_ble_remote_fetch_packet(packet); remoteControl(true);
+    response(en__ERROR_Response,en__OutOfDataRange); check("invalid-volume-cleared",tdc_ble_remote_get_command(),en__remoteControl_IDLE);
+    tdc_ble_remote_clear_command();
+    tdc_ble_remote_clear_passkey_match();
     return finish();
 }
 static int mapping_parser(void)
 {
-    begin(49); int packet[BLE_DataPacketSize]={0}; ST__MAPPING_PACKET *state=getMappingPacket();
+    begin(49); int packet[BLE_DataPacketSize]={0}; ST__MAPPING_PACKET *state=tdc_ble_mapping_get_packet();
     const int cases[][3]={{0x6B,1,1},{0x6B,4,4},{0x6B,0,1},{0x6B,1,5},{0x6E,2,0},{0x6E,5,0},{0x6F,1,2},{0x6F,1,0}};
     for(unsigned i=0;i<sizeof(cases)/sizeof(cases[0]);i++)
     {
-        next(); memset(state,0,sizeof(*state)); memcpy(packet,cases[i],sizeof(cases[i])); fetch_mappingControlPacket(packet);
+        next(); memset(state,0,sizeof(*state)); memcpy(packet,cases[i],sizeof(cases[i])); tdc_ble_mapping_fetch_packet(packet);
         bool valid=i==0||i==1||i==4||i==6;
         if(i==2) known("zero-slot-must-be-rejected-before-storage",state->fetched_command,en__mapping_IDLE,0x6B);
         else check("fetched",state->fetched_command,valid?cases[i][0]:en__mapping_IDLE);
         if(valid) check("slot",state->ReadWriteMapData_Flash.slot_index,cases[i][1]);
         else if(i!=2) response(en__ERROR_Response,en__OutOfDataRange);
     }
-    next(); memset(state,0,sizeof(*state)); state->command=0x62; packet[0]=0x67; fetch_mappingControlPacket(packet);
+    next(); memset(state,0,sizeof(*state)); state->command=0x62; packet[0]=0x67; tdc_ble_mapping_fetch_packet(packet);
     check("busy-retained",state->command,0x62); check("no-new-command",state->fetched_command,en__mapping_IDLE);
-    int tx[SPI_COMM_PACKET_SIZE]; tdc_ut_io_cm3_spi_snapshot(tx,SPI_COMM_PACKET_SIZE);
-    known("busy-error-header-overwritten",tx[0],en__ERROR_Response,0);
-    known("busy-error-detail-overwritten",tx[3],en__PreviouCommnadIsNotCompleted,0);
-    next(); packet[0]=0x61; fetch_mappingControlPacket(packet); check("disconnect-exception-queued",state->fetched_command,0x61);
-    next(); memset(state,0,sizeof(*state)); packet[0]=0x60; fetch_mappingControlPacket(packet); check("connect-queued",state->fetched_command,0x60);
-    next(); memset(state,0,sizeof(*state)); packet[0]=0x6D; packet[1]=3; fetch_mappingControlPacket(packet);
+    int tx[TDC_HAL_SPI_COMM_PACKET_SIZE]; tdc_ut_io_cm3_spi_snapshot(tx,TDC_HAL_SPI_COMM_PACKET_SIZE);
+    known("busy-tdc_sys_error-header-overwritten",tx[0],en__ERROR_Response,0);
+    known("busy-tdc_sys_error-detail-overwritten",tx[3],en__PreviouCommnadIsNotCompleted,0);
+    next(); packet[0]=0x61; tdc_ble_mapping_fetch_packet(packet); check("disconnect-exception-queued",state->fetched_command,0x61);
+    next(); memset(state,0,sizeof(*state)); packet[0]=0x60; tdc_ble_mapping_fetch_packet(packet); check("connect-queued",state->fetched_command,0x60);
+    next(); memset(state,0,sizeof(*state)); packet[0]=0x6D; packet[1]=3; tdc_ble_mapping_fetch_packet(packet);
     response(en__ERROR_Response,en__DATA_Order); check("out-of-order-cleared",state->command,en__mapping_IDLE);
     memset(state,0,sizeof(*state));
     return finish();
@@ -424,16 +424,16 @@ static int mapping_connection(void)
 {
     begin(48); int packet[BLE_DataPacketSize]={0};
     ST__ISD_STATUS device={0}; ST__MAPPING_STATE state;
-    memset(getMappingPacket(),0,sizeof(ST__MAPPING_PACKET));
+    memset(tdc_ble_mapping_get_packet(),0,sizeof(ST__MAPPING_PACKET));
     next(); state=mappingControl(device); check("initial-disconnected",state.mappingConnection,0);
-    next(); packet[0]=0x67; fetch_mappingControlPacket(packet); state=mappingControl(device);
+    next(); packet[0]=0x67; tdc_ble_mapping_fetch_packet(packet); state=mappingControl(device);
     response(en__ERROR_Response,en__Command_Order); check("rejected-before-connect",state.mappingConnection,0);
-    next(); packet[0]=0x60; fetch_mappingControlPacket(packet); state=mappingControl(device);
-    check("connected",state.mappingConnection,1); response(0x60,0); check("command-cleared",getMappingCommand(),en__mapping_IDLE);
+    next(); packet[0]=0x60; tdc_ble_mapping_fetch_packet(packet); state=mappingControl(device);
+    check("connected",state.mappingConnection,1); response(0x60,0); check("command-cleared",tdc_ble_mapping_get_command(),en__mapping_IDLE);
     next(); state=mappingControl(device); check("connected-idle",state.mappingConnection,1);
-    next(); changeMappingCommandBleDisconneted(); state=mappingControl(device);
+    next(); tdc_ble_mapping_change_command_ble_disconnected(); state=mappingControl(device);
     check("BLE-disconnected",state.mappingConnection,0); check("power-reset-request-only",state.isdControlCommand,en__isdStatus_PowerIC_Reset);
-    check("command-cleared",getMappingCommand(),en__mapping_IDLE); check("no-reset",g_tdc_ut_io_cm3_reset_count,0);
+    check("command-cleared",tdc_ble_mapping_get_command(),en__mapping_IDLE); check("no-reset",g_tdc_ut_io_cm3_reset_count,0);
     next(); state=mappingControl(device); check("stays-disconnected",state.mappingConnection,0);
     /* 0x61은 watchdog reset 뒤 무한루프이므로 입력 분류만 다른 시험에서 확인한다. */
     return finish();

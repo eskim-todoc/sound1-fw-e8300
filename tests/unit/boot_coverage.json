@@ -2,7 +2,7 @@
   "scope": "BOOT20",
   "checked_on": "2026-10-02",
   "criteria": {
-    "path": "docs/참고/인허가/사운드1/DHF/03_설계 출력/SW/펌웨어/SUVC-FW-TD24A 소프트웨어 유닛 검증 기준서.xlsx",
+    "path": "docs/tasks/인허가/20260929_1755_DHF-펌웨어-설계출력/qa/evidence-collection/unit-criterion-before.xlsx",
     "sha256": "89967fa692c4f51e3be916c73270d75859b4f692c96928c2d73da0cc6c5096fd",
     "sheet": "기준서_유닛 검증",
     "rows": [125, 144],

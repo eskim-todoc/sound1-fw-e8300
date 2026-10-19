@@ -1,12 +1,12 @@
 /* Real bridge lifecycle on synthetic mailbox memory. No HEAR execution.
- * Proves the exact busy/restored/error contract consumed by the adapter tests.
+ * Proves the exact busy/restored/tdc_sys_error contract consumed by the adapter tests.
  */
 #include <assert.h>
 #include <stdint.h>
 #include <stdio.h>
 #include <string.h>
-#include "../../src/2__cm3/Cortex-M3-src/test/tdc_ut_batch_cfx_bridge.h"
-#include "../../src/2__cm3/Cortex-M3-src/test/tdc_ut_report.h"
+#include "../../src/2__cm3/source/tests/tdc_ut_batch_cfx_bridge.h"
+#include "../../src/2__cm3/source/tests/tdc_ut_report.h"
 uint32_t g_console_adapter_xram[0x14000];
 static char output[2048];
 static unsigned output_count;
@@ -59,7 +59,7 @@ int main(void)
     assert(tdc_ut_cfx_bridge_error()==UTB_TIMEOUT);
     assert(strstr(output,"ERROR E=5 RESTORED=0\r\n") && !strstr(output," END "));
     assert(tdc_ut_cfx_bridge_configure(0x4000,77)==-UTB_NOT_READY);
-    /* Late completion clears producer leases, not the previous error code. */
+    /* Late completion clears producer leases, not the previous tdc_sys_error code. */
     mb[UTB_STATE]=UTB_ABORTED;mb[UTB_RESTORED]=1;
     assert(tdc_ut_cfx_bridge_restored() && tdc_ut_cfx_bridge_error()==UTB_TIMEOUT);
     assert(tdc_ut_cfx_bridge_ram_safe());

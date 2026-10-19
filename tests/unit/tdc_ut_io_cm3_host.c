@@ -4,13 +4,13 @@
  */
 #if defined(TDC_UNIT_TEST) && defined(TDC_UT_IO_CM3_HOST)
 #include "tdc_ut_io_cm3_host_fixture.h"
-#include <cfx_cm3_sharedMemory.h>
+#include <tdc_shm.h>
 #include <tdc_touch_iqs323.h>
-#include <snd_qcc.h>
-#include <tdc_gain_storage.h>
-#include <driver_SPI.h>
-#include <batteryNPowerControl.h>
-#include <LedOutput.h>
+#include <tdc_qcc.h>
+#include <tdc_fs_gain.h>
+#include <tdc_hal_spi.h>
+#include <tdc_pwr_battery.h>
+#include <tdc_led_output.h>
 #include <assert.h>
 #include <stdarg.h>
 
@@ -36,7 +36,7 @@ int g_tdc_ut_io_cm3_fs_close_count;
 char g_tdc_ut_io_cm3_fs_path[32];
 unsigned char g_tdc_ut_io_cm3_fs_bytes[256];
 unsigned g_tdc_ut_io_cm3_fs_length;
-snd_boot_status_t g_tdc_ut_io_cm3_boot_status;
+tdc_boot_status_t g_tdc_ut_io_cm3_boot_status;
 int g_tdc_ut_io_cm3_boot_error;
 
 static ST__CFX_CM3_SharedMemory_ALL s_tdc_saved_shared;
@@ -45,12 +45,12 @@ static int s_tdc_rx[256], s_tdc_rx_count, s_tdc_rx_index;
 static int s_tdc_tick, s_tdc_window_reads;
 static FIL s_tdc_file;
 static unsigned s_tdc_file_offset;
-static ST__TDC_GAIN_FILE s_tdc_gain_file;
+static tdc_fs_gain_file_t s_tdc_gain_file;
 static int s_tdc_gain_present;
 
 extern void tdc_ut_cm3_battery_exchange(int state[4]);
-extern void tdc_ut_cm3_led_exchange(int state[LED_SRC__MAX + 3]);
-extern void tdc_ut_cm3_error_exchange(ST__ERROR_CODE *state);
+extern void tdc_ut_cm3_led_exchange(int state[TDC_LED_SRC__MAX + 3]);
+extern void tdc_ut_cm3_error_exchange(tdc_sys_error_code_t *state);
 extern int g_tdc_ut_cm3_suppress_diagnostics;
 
 /* 복원 회귀 시험은 기본값 0만 비교하지 않는다. 실제 private 상태에 식별값을
@@ -60,11 +60,11 @@ extern int g_tdc_ut_cm3_suppress_diagnostics;
 typedef struct
 {
     ST__CFX_CM3_SharedMemory_ALL shared;
-    ST__I2C_DRIVER i2c;
+    tdc_hal_i2c_driver_t i2c;
     ST__OTA_FILE_WRITE_INFO ota;
-    ST__ERROR_CODE error;
+    tdc_sys_error_code_t tdc_sys_error;
     int i2c_cache[41], ble[1 + todoc_PayloadSize], battery[4];
-    int led[LED_SRC__MAX + 3], tx[SPI_COMM_PACKET_SIZE], fpga[4];
+    int led[TDC_LED_SRC__MAX + 3], tx[TDC_HAL_SPI_COMM_PACKET_SIZE], fpga[4];
     int tx_empty, ulp, dfu, led_ind, diagnostics;
     const tdc_ut_io_cm3_i2c_ops_t *i2c_ops;
     const tdc_ut_io_cm3_ota_ops_t *ota_ops;
@@ -80,9 +80,9 @@ static void capture_product_ram(tdc_ut_io_cm3_saved_ram_t *out)
 {
     memset(out, 0, sizeof(*out));
     out->shared = cfx_cm3_sharedMemoryAll;
-    out->tx_empty = isSpiTxBuffEmpty();
+    out->tx_empty = tdc_hal_spi_is_tx_buffer_empty();
     out->ulp = tdc_touch_iqs323_is_ulp();
-    out->dfu = tdc_get_ota_dfu_conn_state();
+    out->dfu = tdc_dfu_get_conn_state();
     out->led_ind = tdc_led_get_ind_state();
     out->diagnostics = g_tdc_ut_cm3_suppress_diagnostics;
     out->i2c_ops = g_tdc_ut_io_cm3_i2c_ops;
@@ -93,11 +93,11 @@ static void capture_product_ram(tdc_ut_io_cm3_saved_ram_t *out)
     out->pmic = g_tdc_ut_io_cm3_pmic_bus_hook;
     out->touch = g_tdc_ut_io_cm3_touch_bus_hook;
     out->gain = g_tdc_ut_io_cm3_gain_save_hook;
-    tdc_ut_io_cm3_spi_snapshot(out->tx, SPI_COMM_PACKET_SIZE);
+    tdc_ut_io_cm3_spi_snapshot(out->tx, TDC_HAL_SPI_COMM_PACKET_SIZE);
     tdc_ut_io_cm3_fpga_cache(out->fpga, 0);
     /* exchange가 실제 상태를 바꾸므로 읽은 사본을 다시 교환해 즉시 복원한다. */
     tdc_ut_io_cm3_i2c_exchange(&out->i2c, out->i2c_cache);
-    ST__I2C_DRIVER i2c = out->i2c; int cache[41];
+    tdc_hal_i2c_driver_t i2c = out->i2c; int cache[41];
     memcpy(cache, out->i2c_cache, sizeof(cache));
     tdc_ut_io_cm3_i2c_exchange(&i2c, cache);
     tdc_ut_io_cm3_ota_exchange(&out->ota);
@@ -110,16 +110,16 @@ static void capture_product_ram(tdc_ut_io_cm3_saved_ram_t *out)
     int battery[4]; memcpy(battery, out->battery, sizeof(battery));
     tdc_ut_cm3_battery_exchange(battery);
     tdc_ut_cm3_led_exchange(out->led);
-    int led[LED_SRC__MAX + 3]; memcpy(led, out->led, sizeof(led));
+    int led[TDC_LED_SRC__MAX + 3]; memcpy(led, out->led, sizeof(led));
     tdc_ut_cm3_led_exchange(led);
-    tdc_ut_cm3_error_exchange(&out->error);
-    ST__ERROR_CODE error = out->error;
-    tdc_ut_cm3_error_exchange(&error);
+    tdc_ut_cm3_error_exchange(&out->tdc_sys_error);
+    tdc_sys_error_code_t tdc_sys_error = out->tdc_sys_error;
+    tdc_ut_cm3_error_exchange(&tdc_sys_error);
 }
 
 static void seed_product_ram(void)
 {
-    ST__I2C_DRIVER i2c = {0}; int cache[41];
+    tdc_hal_i2c_driver_t i2c = {0}; int cache[41];
     i2c.i2c_diver_state = i2c_state_Idle;
     i2c.slaveAddress = 0x22;
     for (int i = 0; i < 41; i++) cache[i] = 0x60 + i;
@@ -132,11 +132,11 @@ static void seed_product_ram(void)
     tdc_ut_io_cm3_ble_exchange(ble, 1 + todoc_PayloadSize);
     int battery[4] = {83, 1, 2, 2}; tdc_ut_cm3_battery_exchange(battery);
     tdc_led_set_ind_state(TDC_LED_IND_STATE_PAIR);
-    int led[LED_SRC__MAX + 3] = {0};
-    led[LED_SRC_BLE_IND] = LED_ST_PAIR;
-    led[LED_SRC__MAX] = 1357; led[LED_SRC__MAX + 1] = 1; led[LED_SRC__MAX + 2] = 1;
+    int led[TDC_LED_SRC__MAX + 3] = {0};
+    led[TDC_LED_SRC_BLE_IND] = TDC_LED_ST_PAIR;
+    led[TDC_LED_SRC__MAX] = 1357; led[TDC_LED_SRC__MAX + 1] = 1; led[TDC_LED_SRC__MAX + 2] = 1;
     tdc_ut_cm3_led_exchange(led);
-    tdc_set_ota_dfu_conn_state(1);
+    tdc_dfu_set_conn_state(1);
     tdc_touch_iqs323_set_ulp();
     g_tdc_ut_cm3_suppress_diagnostics = 0;
 }
@@ -157,8 +157,8 @@ void tdc_ut_io_cm3_host_rx(const int *data, int count)
 /* 각 poll은 실제 ISR 한 번을 실행한다. TX 데이터와 RX 길이는 제품 상태에서 관측한다. */
 void tdc_ut_io_cm3_host_pump(void)
 {
-    ST__I2C_DRIVER driver;
-    OTE_1_5gen_I2C_STATUS_T status = {0};
+    tdc_hal_i2c_driver_t driver;
+    tdc_hal_i2c_status_t status = {0};
     tdc_ut_io_cm3_transfer_t *transfer;
     tdc_ut_io_cm3_i2c_snapshot(&driver);
     if (driver.i2c_diver_state != i2c_state_WriteTriggered && driver.i2c_diver_state != i2c_state_ReadTriggerd) return;
@@ -205,31 +205,31 @@ void tdc_ut_io_cm3_host_i2c_start(int addr, int read)
 
 void tdc_ut_io_cm3_host_i2c_reset(void)
 {
-    OTE_1_5gen_I2C_STATUS_T status = {0};
+    tdc_hal_i2c_status_t status = {0};
     status.fields.line_free = 1;
     status.fields.tx_req = 1;
     reg_write(&I2C0->STATUS, status.status);
 }
 
-void tdc_ut_io_cm3_host_delay(uint32_t cycles) { (void)cycles; s_tdc_tick++; tdc_ut_io_cm3_host_pump(); clear_ReadCommandForSPI_Master(); }
+void tdc_ut_io_cm3_host_delay(uint32_t cycles) { (void)cycles; s_tdc_tick++; tdc_ut_io_cm3_host_pump(); tdc_hal_spi_clear_master_read_command(); }
 void tdc_ut_io_cm3_host_gpio(int pin, int value) { assert(pin >= 0 && pin < 32); g_tdc_ut_io_cm3_gpio[pin] = value; }
 int tdc_ut_io_cm3_host_gpio_read(int pin) { return pin == TDC_TOUCH_IQS323_RDY_PIN ? (s_tdc_window_reads++ & 1) : g_tdc_ut_io_cm3_gpio[pin]; }
 void tdc_ut_io_cm3_host_reset_request(void) { g_tdc_ut_io_cm3_reset_count++; }
-void tdc_ut_io_cm3_host_ack(void) { clear_ReadCommandForSPI_Master(); }
+void tdc_ut_io_cm3_host_ack(void) { tdc_hal_spi_clear_master_read_command(); }
 int tdc_ut_io_cm3_host_tick(void) { return s_tdc_tick; }
 void tdc_ut_io_cm3_host_advance(int milliseconds) { assert(milliseconds >= 0); s_tdc_tick += milliseconds; }
-int ci_timer_get_tick(void) { return s_tdc_tick++; }
-int tdc_timer_get_t3_tick(void) { return s_tdc_tick; }
+int tdc_hal_timer_get_tick(void) { return s_tdc_tick++; }
+int tdc_hal_timer_get_t3_tick(void) { return s_tdc_tick; }
 int SEGGER_RTT_printf(unsigned channel, const char *format, ...) { (void)channel; (void)format; return 0; }
 int SEGGER_RTT_Wrapper_printf(unsigned channel, const char *format, ...) { (void)channel; (void)format; return 0; }
-void ci_print_file_func_line(const char *file, const char *function, int line) { (void)file; (void)function; (void)line; }
+void tdc_printf_file_func_line(const char *file, const char *function, int line) { (void)file; (void)function; (void)line; }
 int RTT_printf(const char *format, ...) { (void)format; return 0; }
-void ci_util_assert(int value) { assert(value); }
+void tdc_util_assert(int value) { assert(value); }
 
-FIL *ci_fatfs_get_fp(void) { return &s_tdc_file; }
-int snd_fatfs_remount(int drive) { g_tdc_ut_io_cm3_fs_drive = drive; return 1; }
-EN__BOOT_RET ci_boot_get_status(snd_boot_status_t *out) { if (g_tdc_ut_io_cm3_boot_error) return BOOT_RET_FAIL; *out = g_tdc_ut_io_cm3_boot_status; return BOOT_RET_TRUE; }
-EN__BOOT_RET ci_boot_update_status(snd_boot_status_t *status) { if (g_tdc_ut_io_cm3_fs_error) return BOOT_RET_FAIL; g_tdc_ut_io_cm3_boot_status = *status; return BOOT_RET_TRUE; }
+FIL *tdc_fs_get_fp(void) { return &s_tdc_file; }
+int tdc_fs_fatfs_remount(int drive) { g_tdc_ut_io_cm3_fs_drive = drive; return 1; }
+EN__BOOT_RET tdc_boot_get_status(tdc_boot_status_t *out) { if (g_tdc_ut_io_cm3_boot_error) return BOOT_RET_FAIL; *out = g_tdc_ut_io_cm3_boot_status; return BOOT_RET_TRUE; }
+EN__BOOT_RET tdc_boot_update_status(tdc_boot_status_t *status) { if (g_tdc_ut_io_cm3_fs_error) return BOOT_RET_FAIL; g_tdc_ut_io_cm3_boot_status = *status; return BOOT_RET_TRUE; }
 
 FRESULT f_stat(const TCHAR *path, FILINFO *info) { (void)path; memset(info, 0, sizeof(*info)); info->fsize = g_tdc_ut_io_cm3_fs_length; return g_tdc_ut_io_cm3_fs_error ? FR_DISK_ERR : FR_OK; }
 FRESULT f_mkdir(const TCHAR *path) { (void)path; return g_tdc_ut_io_cm3_fs_error ? FR_DISK_ERR : FR_OK; }
@@ -250,25 +250,25 @@ FRESULT f_write(FIL *file, const void *data, UINT count, UINT *written)
 }
 
 /* 게인 시험의 저장 경계다. CRC/AES 구현의 정확성은 이 fixture의 시험 범위가 아니다. */
-int ci_filesystem_read_with_crc_and_aes128(char *name, uint8_t *data, int count, uint32_t *crc, uint32_t *padding, int padding_count, bool enable_crc, bool enable_aes)
+int tdc_fs_read_with_crc_and_aes128(char *name, uint8_t *data, int count, uint32_t *crc, uint32_t *padding, int padding_count, bool enable_crc, bool enable_aes)
 {
     (void)crc; (void)padding; (void)padding_count; (void)enable_crc; (void)enable_aes;
 #if !defined(TDC_UT_IO_CM3_RAM_ONLY)
-    if (strcmp(name, TDC_GAIN_FILE_NAME) != 0)
+    if (strcmp(name, TDC_FS_GAIN_FILE_NAME) != 0)
         return tdc_ut_io_cm3_store_read(name, data, count, enable_crc, enable_aes);
 #endif
-    assert(strcmp(name, TDC_GAIN_FILE_NAME) == 0 && count == sizeof(s_tdc_gain_file));
+    assert(strcmp(name, TDC_FS_GAIN_FILE_NAME) == 0 && count == sizeof(s_tdc_gain_file));
     if (!s_tdc_gain_present || g_tdc_ut_io_cm3_fs_error) return -1;
     memcpy(data, &s_tdc_gain_file, (size_t)count); return count;
 }
-int ci_filesystem_write_with_crc_and_aes128(char *name, uint8_t *data, int count, uint32_t *crc, uint32_t *padding, int padding_count, bool enable_crc, bool enable_aes)
+int tdc_fs_write_with_crc_and_aes128(char *name, uint8_t *data, int count, uint32_t *crc, uint32_t *padding, int padding_count, bool enable_crc, bool enable_aes)
 {
     (void)crc; (void)padding; (void)padding_count; (void)enable_crc; (void)enable_aes;
 #if !defined(TDC_UT_IO_CM3_RAM_ONLY)
-    if (strcmp(name, TDC_GAIN_FILE_NAME) != 0)
+    if (strcmp(name, TDC_FS_GAIN_FILE_NAME) != 0)
         return tdc_ut_io_cm3_store_write(name, data, count, enable_crc, enable_aes);
 #endif
-    assert(strcmp(name, TDC_GAIN_FILE_NAME) == 0 && count == sizeof(s_tdc_gain_file));
+    assert(strcmp(name, TDC_FS_GAIN_FILE_NAME) == 0 && count == sizeof(s_tdc_gain_file));
     if (g_tdc_ut_io_cm3_fs_error || g_tdc_ut_io_cm3_fs_short) return -1;
     memcpy(&s_tdc_gain_file, data, (size_t)count); s_tdc_gain_present = 1; return count;
 }
@@ -295,14 +295,14 @@ void tdc_ut_io_cm3_host_setup(void)
     g_tdc_ut_io_cm3_boot_error = 0;
     s_tdc_tick = s_tdc_window_reads = 0;
     tdc_ut_io_cm3_host_rx(NULL, 0);
-    clearI2cDriverStatus(); tdc_ut_io_cm3_host_i2c_reset();
-    clear_SPI_Tx_Buffer(); clear_ReadCommandForSPI_Master();
+    tdc_hal_i2c_clear_driver_status(); tdc_ut_io_cm3_host_i2c_reset();
+    tdc_hal_spi_clear_tx_buffer(); tdc_hal_spi_clear_master_read_command();
     g_tdc_ut_io_cm3_i2c_poll_hook = tdc_ut_io_cm3_host_pump;
 }
 void tdc_ut_io_cm3_host_restore(void)
 {
     g_tdc_ut_io_cm3_i2c_poll_hook = s_tdc_saved_hook;
-    clearI2cDriverStatus(); clear_SPI_Tx_Buffer(); clear_ReadCommandForSPI_Master();
+    tdc_hal_i2c_clear_driver_status(); tdc_hal_spi_clear_tx_buffer(); tdc_hal_spi_clear_master_read_command();
     cfx_cm3_sharedMemoryAll = s_tdc_saved_shared;
 }
 
@@ -379,8 +379,8 @@ int main(void)
     assert(tdc_ut_io_cm3_observe_unit(999,1)==TDC_UT_IO_CM3_UNSUPPORTED);
     assert(tdc_ut_io_cm3_observe_unit(32,0)==TDC_UT_IO_CM3_INVALID);
     ST__CFX_CM3_SharedMemory_ALL saved_shared=cfx_cm3_sharedMemoryAll;
-    int saved_tx[SPI_COMM_PACKET_SIZE], tx[SPI_COMM_PACKET_SIZE];
-    tdc_ut_io_cm3_spi_snapshot(saved_tx,SPI_COMM_PACKET_SIZE);
+    int saved_tx[TDC_HAL_SPI_COMM_PACKET_SIZE], tx[TDC_HAL_SPI_COMM_PACKET_SIZE];
+    tdc_ut_io_cm3_spi_snapshot(saved_tx,TDC_HAL_SPI_COMM_PACKET_SIZE);
     for(unsigned u=0;u<sizeof(observed_units)/sizeof(observed_units[0]);u++)
     {
         assert(tdc_ut_io_cm3_observe_unit(observed_units[u],100)==TDC_UT_IO_CM3_OK);
@@ -389,7 +389,7 @@ int main(void)
         assert(g_tdc_ut_io_cm3_actual[2]==100 && g_tdc_ut_io_cm3_actual[3]+4==g_tdc_ut_io_cm3_count);
         assert(tdc_ut_io_cm3_observe_unit(observed_units[u],101)==TDC_UT_IO_CM3_BUSY);
         assert(memcmp(&saved_shared,&cfx_cm3_sharedMemoryAll,sizeof(saved_shared))==0);
-        tdc_ut_io_cm3_spi_snapshot(tx,SPI_COMM_PACKET_SIZE);
+        tdc_ut_io_cm3_spi_snapshot(tx,TDC_HAL_SPI_COMM_PACKET_SIZE);
         assert(memcmp(tx,saved_tx,sizeof(tx))==0);
         assert(g_tdc_ut_io_cm3_reset_count==0);
         assert(tdc_ut_io_cm3_release()==TDC_UT_IO_CM3_OK);

@@ -1,0 +1,13 @@
+{
+  "scope": "Historical board driver host regressions only; not current product source coverage",
+  "source_commit": "f9fa45ff",
+  "source_directory": "src/2__cm3/Cortex-M3-src/internalDevice",
+  "originals": {
+    "driver_REN_ISL91128.c": "930355faa73bf356e6e39c50ad0b68da18977b360ee8cc2897b3397c1a6dff44",
+    "driver_REN_ISL91128.h": "4a87e931087e4aa41ef80d6f61ae8aed6004bd2fc8773a677fc4f63bf99f197f",
+    "driver_REN_ISL98608.c": "739ad9cbb2da1cee05ba769ee6e48a64813e774744c855810a00fa62efc22504",
+    "driver_REN_ISL98608.h": "611aaa47cf9a9a91ca8e1171e66215852df41fde43d03185cff97ec4cad12bfb"
+  },
+  "adaptation": "tdc_drv_isl*.inc/.h retain historical implementation with header and identifier renames from integration map; never included by product .cproject",
+  "device_execution": false
+}

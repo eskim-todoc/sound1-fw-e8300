@@ -11,9 +11,9 @@ import tempfile
 from tdc_ut_cm3_run import CM3, INCLUDES, ROOT, SDK_DEFAULT
 
 SOURCES = (
-    "Cortex-M3-src/internalDevice/isd_interface.c",
-    "Cortex-M3-src/systemControl/cfx_cm3_sharedMemory.c",
-    "Cortex-M3-src/test/tdc_ut_state_cm3.c",
+    "source/isd/tdc_isd.c",
+    "source/cfx_link/tdc_shm.c",
+    "source/tests/tdc_ut_state_cm3.c",
 )
 
 
@@ -35,7 +35,7 @@ def main() -> None:
     parser.add_argument("--sdk", type=pathlib.Path, default=SDK_DEFAULT)
     args = parser.parse_args()
     if args.normal and not args.target:
-        parser.error("--normal requires --target")
+        parser.tdc_sys_error("--normal requires --target")
     compiler = args.sdk / "arm_tools/bin/arm-none-eabi-gcc.exe" if args.target else shutil.which("gcc")
     if not compiler:
         raise RuntimeError("gcc unavailable")

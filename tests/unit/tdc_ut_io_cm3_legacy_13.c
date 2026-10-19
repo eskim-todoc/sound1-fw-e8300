@@ -2,8 +2,8 @@
 #if defined(TDC_UNIT_TEST) && defined(TDC_UT_IO_CM3_HOST)
 #include <hw.h>
 #include <board.h>
-#include <driver_i2c.h>
+#include <tdc_hal_i2c.h>
 #undef Board_is_OTE_VER_1_5
 #define Board_is_OTE_VER_1_3
-#include "../../src/2__cm3/Cortex-M3-src/internalDevice/driver_REN_ISL98608.c"
+#include "legacy/tdc_drv_isl98608.inc"
 #endif

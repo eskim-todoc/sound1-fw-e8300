@@ -9,8 +9,8 @@
 #include "../../../src/1__cfx/test/tdc_ut_batch_cfx.h"
 #include "../../../src/1__cfx/test/tdc_ut_vectors_cfx.h"
 #include "../../../src/1__cfx/test/tdc_ut_io_cfx.h"
-#include "../../../src/2__cm3/Cortex-M3-src/test/tdc_ut_batch_cfx_bridge.h"
-#include "../../../src/2__cm3/Cortex-M3-src/test/tdc_ut_report.h"
+#include "../../../src/2__cm3/source/tests/tdc_ut_batch_cfx_bridge.h"
+#include "../../../src/2__cm3/source/tests/tdc_ut_report.h"
 
 uint32_t g_tdc_ut_batch_fixture_xram[0x14000];
 int g_tdc_ut_cfx_vector_actual[528], g_tdc_ut_cfx_vector_expected[528];

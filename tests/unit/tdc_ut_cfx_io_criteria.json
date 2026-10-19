@@ -537,8 +537,8 @@
     "nop_decimal": 152917,
     "nop_evidence": [
       "src/1__cfx/internalDevice/driver_PCM.h: pcm_Mold_NopStandby",
-      "src/2__cm3/isdExecution/dirver_PCM.h: pcm_Mold_NopStandby",
-      "src/2__cm3/Cortex-M3-src/internalDevice/isd_interface.c: 남은 버퍼 fillSepcificCommndBuffer(i, pcm_Mold_NopStandby)"
+      "src/2__cm3/source/isd/tdc_isd_pcm.h: pcm_Mold_NopStandby",
+      "src/2__cm3/source/isd/tdc_isd.c: 남은 버퍼 fillSepcificCommndBuffer(i, pcm_Mold_NopStandby)"
     ],
     "cases": [
       {
@@ -671,7 +671,7 @@
     "criterion": "vAbsolute 중간값은 A로 microcode와 SDK를 대조한다. 실제 CMD0 완료(Event0) 후에는 MaxElement가 word0에 써 놓은 100을 포함한 최종 16단어를 T로 비교한다. 실행 시점을 섞지 않는다."
   },
   "HEAR-002": {
-    "window_coefficients": "src/2__cm3/Gen1_5/FS/ci_fft.c: hanning_window_coeff INPUT array",
+    "window_coefficients": "src/2__cm3/source/fs/tdc_fs_fft.c: hanning_window_coeff INPUT array",
     "window_formula": "round((0.5-0.5*cos(2*pi*n/511))*2^23); stored coefficients within 2 LSB",
     "exact_window_512": [
       0,

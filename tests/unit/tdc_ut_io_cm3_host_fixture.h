@@ -2,7 +2,7 @@
 #define TDC_UT_IO_CM3_HOST_FIXTURE_H
 #if defined(TDC_UNIT_TEST) && defined(TDC_UT_IO_CM3_HOST)
 #include <tdc_ut_io_cm3.h>
-#include <ci_boot.h>
+#include <tdc_boot.h>
 
 typedef struct
 {
@@ -27,7 +27,7 @@ extern int g_tdc_ut_io_cm3_fs_close_count;
 extern char g_tdc_ut_io_cm3_fs_path[32];
 extern unsigned char g_tdc_ut_io_cm3_fs_bytes[256];
 extern unsigned g_tdc_ut_io_cm3_fs_length;
-extern snd_boot_status_t g_tdc_ut_io_cm3_boot_status;
+extern tdc_boot_status_t g_tdc_ut_io_cm3_boot_status;
 extern int g_tdc_ut_io_cm3_boot_error;
 void tdc_ut_io_cm3_host_setup(void);
 void tdc_ut_io_cm3_host_restore(void);

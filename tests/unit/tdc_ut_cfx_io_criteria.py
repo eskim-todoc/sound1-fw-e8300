@@ -73,7 +73,7 @@ def main() -> None:
                     "limit": "CIS 패킷/분할 출력의 실제 함수 호출. 전략 선택 및 앞단 FFT/로그매핑 전체 연속 실행은 이 IO 벡터의 결과가 아니다."},
         "CFX-040": {"input": "고정 길이 24단어 버퍼. 벡터1은 아래 3데이터+21 NOP. 벡터2는 아래 서로 다른 24단어. 초기 읽기 인덱스17, 읽기 중 플래그0, 요청 모드 SpecificCommand, 다음 모드 NopStandby.",
                     "nop_hex": "0x25555", "nop_decimal": 0x25555,
-                    "nop_evidence": ["src/1__cfx/internalDevice/driver_PCM.h: pcm_Mold_NopStandby", "src/2__cm3/isdExecution/dirver_PCM.h: pcm_Mold_NopStandby", "src/2__cm3/Cortex-M3-src/internalDevice/isd_interface.c: 남은 버퍼 fillSepcificCommndBuffer(i, pcm_Mold_NopStandby)"],
+                    "nop_evidence": ["src/1__cfx/internalDevice/driver_PCM.h: pcm_Mold_NopStandby", "src/2__cm3/source/isd/tdc_isd_pcm.h: pcm_Mold_NopStandby", "src/2__cm3/source/isd/tdc_isd.c: 남은 버퍼 fillSepcificCommndBuffer(i, pcm_Mold_NopStandby)"],
                     "cases": [{"case": 1, "input_and_expected_words": specific}, {"case": 2, "input_and_expected_words": specific_full}],
                     "expected": "각 호출에서 24개 단어를 버퍼 순서대로 출력한다. 쓰기 중 읽기 플래그는 매번1이다. 쓰기 순간 인덱스는 [17,0,1,...,22], 완료 후 인덱스23/플래그0/모드 NopStandby이며 입력 24단어는 바뀌지 않는다.",
                     "length_contract": "길이=3이라는 인자는 없다. reader가 padding을 생성하는 것도 아니다. 호출자가 구성한 24단어 전체를 전송한다.",

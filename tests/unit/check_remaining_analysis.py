@@ -17,23 +17,22 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[2]
 CRITERION = ROOT / (
-    "docs/참고/인허가/사운드1/DHF/03_설계 출력/SW/펌웨어/"
-    "SUVC-FW-TD24A 소프트웨어 유닛 검증 기준서.xlsx"
+    'docs/tasks/인허가/20260929_1755_DHF-펌웨어-설계출력/qa/evidence-collection/unit-criterion-before.xlsx'
 )
 CRITERION_SHA = "89967fa692c4f51e3be916c73270d75859b4f692c96928c2d73da0cc6c5096fd"
 SHEET = "기준서_유닛 검증"
 OUTPUT = Path(__file__).with_name("remaining_analysis_coverage.json")
 SELECTED = {("CM3", n) for n in (1, 3, 5, 8, 15)} | {("CFX", 14)}
 PATHS = {
-    "init": "src/2__cm3/Cortex-M3-src/systemControl/initialize.c",
-    "spi": "src/2__cm3/Cortex-M3-src/systemControl/driver_SPI.c",
-    "spi_h": "src/2__cm3/Cortex-M3-src/systemControl/driver_SPI.h",
-    "i2c": "src/2__cm3/Cortex-M3-src/systemControl/driver_i2c.c",
-    "main": "src/2__cm3/Cortex-M3-src/main.c",
-    "qcc": "src/2__cm3/Cortex-M3-src/QCC/snd_qcc.c",
-    "qcc_h": "src/2__cm3/Cortex-M3-src/QCC/snd_qcc.h",
-    "dio": "src/2__cm3/Gen1_5/common/ci_dio.c",
-    "power": "src/2__cm3/Gen1_5/common/ci_power.c",
+    "init": "src/2__cm3/source/sys/tdc_sys_init.c",
+    "spi": "src/2__cm3/source/hal/tdc_hal_spi.c",
+    "spi_h": "src/2__cm3/source/hal/tdc_hal_spi.h",
+    "i2c": "src/2__cm3/source/hal/tdc_hal_i2c.c",
+    "main": "src/2__cm3/source/main.c",
+    "qcc": "src/2__cm3/source/qcc/tdc_qcc.c",
+    "qcc_h": "src/2__cm3/source/qcc/tdc_qcc.h",
+    "dio": "src/2__cm3/source/hal/tdc_hal_dio.c",
+    "power": "src/2__cm3/source/pwr/tdc_pwr_clock.c",
     "audio": "src/1__cfx/lib_cfx/lib_audio_in.c",
     "fifo_h": "src/1__cfx/hear/microcode.h",
     "cfx_main": "src/1__cfx/systemControl/main.c",
@@ -232,33 +231,33 @@ def run_checks(units: dict, clean: dict) -> None:
             "observed_source_fact": observed or (expected if result else "required source structure not found"),
         })
 
-    init = body("init", "Initialize")
+    init = body("init", "tdc_sys_init")
     boot = body("main", "tdc_normal_boot_sequence")
-    spi = body("spi", "init_cm3_SPI")
-    dma = body("spi", "ci_SPI_enable_DMA")
-    check("CM3", 1, "initialization_before_QCC_request", "init", "Initialize",
-          ordered(init, ["reset_DMA_disable();", "init_I2c();", "init_cm3_SPI();", "snd_qcc_set_mode(SND_QCC_MODE_NORMAL);"]),
+    spi = body("spi", "tdc_hal_spi_init")
+    dma = body("spi", "tdc_hal_spi_enable_dma")
+    check("CM3", 1, "initialization_before_QCC_request", "init", "tdc_sys_init",
+          ordered(init, ["reset_DMA_disable();", "tdc_hal_i2c_init();", "tdc_hal_spi_init();", "snd_qcc_set_mode(SND_QCC_MODE_NORMAL);"]),
           "DMA reset, I2C and SPI initialization precede QCC normal request")
     check("CM3", 1, "software_permission_after_Initialize", "main", "tdc_normal_boot_sequence",
-          ordered(boot, ["tdc_wait_for_cfx_start();", "Initialize();", "is_enabled_CFX_iteration=1;"]),
-          "CFX start wait and complete Initialize precede shared CFX iteration permission")
-    check("CM3", 1, "IRQ_enable_separate_from_CFX_permission", "init", "Initialize",
-          ordered(init, ["enable_CFX_trigger_for_iteration();", "init_cm3_SPI();"])
+          ordered(boot, ["tdc_wait_for_cfx_start();", "tdc_sys_init();", "is_enabled_CFX_iteration=1;"]),
+          "CFX start wait and complete tdc_sys_init precede shared CFX iteration permission")
+    check("CM3", 1, "IRQ_enable_separate_from_CFX_permission", "init", "tdc_sys_init",
+          ordered(init, ["enable_CFX_trigger_for_iteration();", "tdc_hal_spi_init();"])
           and "is_enabled_CFX_iteration=1;" not in init,
           "CM3 CFX/FIFO IRQ enable is earlier than SPI init, but is not shared CFX iteration permission")
-    check("CM3", 1, "I2C_reset_config_clear_before_enable", "i2c", "init_I2c",
-          ordered(body("i2c", "init_I2c"), ["Sys_I2C_Reset(I2C0);", "Sys_I2C_Config(I2C0,CM3_I2C_CFG_VAL_AsMaster);", "clearI2cDriverStatus();", "enableI2cInterface(true);"]),
+    check("CM3", 1, "I2C_reset_config_clear_before_enable", "i2c", "tdc_hal_i2c_init",
+          ordered(body("i2c", "tdc_hal_i2c_init"), ["Sys_I2C_Reset(I2C0);", "Sys_I2C_Config(I2C0,CM3_I2C_CFG_VAL_AsMaster);", "tdc_hal_i2c_clear_driver_status();", "tdc_hal_i2c_enable_interface(true);"]),
           "I2C reset/configuration/software state clear precede I2C enable")
     reset = body("init", "reset_DMA_disable")
     check("CM3", 1, "all_eight_DMA_channels_reset", "init", "reset_DMA_disable",
           all(f"Sys_DMA_Mode_Enable(DMA{n},DMA_DISABLE);" in reset and
               f"Sys_DMA_Clear_Status(DMA{n},(DMA_COMPLETE_INT_CLEAR|DMA_CNT_INT_CLEAR));" in reset for n in range(8)),
           "DMA0..7 are disabled and completion/count interrupt status cleared")
-    check("CM3", 1, "SPI_buffer_DMA_before_enable", "spi", "init_cm3_SPI",
-          ordered(spi, ["Sys_SPI_DIOConfig(SPI1,SPI_SELECT_SLAVE,SPI_DIO_PIN_CFG,NRF_SPI_CLK_PIN,NRF_SPI_CS_PIN,NRF_SPI_MOSI_PIN,NRF_SPI_MISO_PIN);", "Sys_SPI_TransferConfig(SPI1,DRIVER_SPI_CTRL_DISABLE);", "Sys_SPI_Config(SPI1,DRIVER_SPI_CONFIG);", "SPI_Tx_Buffer[i]=1+i;", "ci_SPI_enable_DMA();", "Sys_SPI_TransferConfig(SPI1,DRIVER_SPI_CTRL_ENABLE);"]),
+    check("CM3", 1, "SPI_buffer_DMA_before_enable", "spi", "tdc_hal_spi_init",
+          ordered(spi, ["Sys_SPI_DIOConfig(SPI1,SPI_SELECT_SLAVE,SPI_DIO_PIN_CFG,NRF_SPI_CLK_PIN,NRF_SPI_CS_PIN,NRF_SPI_MOSI_PIN,NRF_SPI_MISO_PIN);", "Sys_SPI_TransferConfig(SPI1,TDC_HAL_SPI_CTRL_DISABLE);", "Sys_SPI_Config(SPI1,TDC_HAL_SPI_CONFIG);", "SPI_Tx_Buffer[i]=1+i;", "tdc_hal_spi_enable_dma();", "Sys_SPI_TransferConfig(SPI1,TDC_HAL_SPI_CTRL_ENABLE);"]),
           "SPI pins/disable/config/TX buffer initialization/DMA preparation precede SPI enable")
-    dma_tokens = ["Sys_DMA_Mode_Enable(DMA0,DMA_DISABLE);", "Sys_DMA_ChannelConfig(DMA0,DRIVER_DMA0_CFG0,SPI_COMM_PACKET_SIZE,0,0x40000E10,((uint32_t)SPI_Rx_Buffer));", "Sys_DMA_Set_Ctrl(DMA0,DRIVER_DMA0_CTRL);", "Sys_DMA_Clear_Status(DMA0,DRIVER_DMA0_STATUS);", "Sys_DMA_Mode_Enable(DMA1,DMA_DISABLE);", "Sys_DMA_ChannelConfig(DMA1,DRIVER_DMA1_CFG0,SPI_COMM_PACKET_SIZE,0,((uint32_t)SPI_Tx_Buffer),0x40000E0C);", "Sys_DMA_Set_Ctrl(DMA1,DRIVER_DMA1_CTRL);", "Sys_DMA_Clear_Status(DMA1,DRIVER_DMA1_STATUS);", "Sys_DMA_Mode_Enable(DMA0,DMA_ENABLE);", "Sys_DMA_Mode_Enable(DMA1,DMA_ENABLE);"]
-    check("CM3", 1, "DMA_direction_length_configuration_order", "spi", "ci_SPI_enable_DMA",
+    dma_tokens = ["Sys_DMA_Mode_Enable(DMA0,DMA_DISABLE);", "Sys_DMA_ChannelConfig(DMA0,DRIVER_DMA0_CFG0,TDC_HAL_SPI_COMM_PACKET_SIZE,0,0x40000E10,((uint32_t)SPI_Rx_Buffer));", "Sys_DMA_Set_Ctrl(DMA0,TDC_HAL_DMA0_CTRL);", "Sys_DMA_Clear_Status(DMA0,TDC_HAL_DMA0_STATUS);", "Sys_DMA_Mode_Enable(DMA1,DMA_DISABLE);", "Sys_DMA_ChannelConfig(DMA1,DRIVER_DMA1_CFG0,TDC_HAL_SPI_COMM_PACKET_SIZE,0,((uint32_t)SPI_Tx_Buffer),0x40000E0C);", "Sys_DMA_Set_Ctrl(DMA1,TDC_HAL_DMA1_CTRL);", "Sys_DMA_Clear_Status(DMA1,TDC_HAL_DMA1_STATUS);", "Sys_DMA_Mode_Enable(DMA0,DMA_ENABLE);", "Sys_DMA_Mode_Enable(DMA1,DMA_ENABLE);"]
+    check("CM3", 1, "DMA_direction_length_configuration_order", "spi", "tdc_hal_spi_enable_dma",
           ordered(dma, dma_tokens), "RX DMA0: SPI read register to RX buffer; TX DMA1: TX buffer to SPI write register, packet-sized, configured before enable")
     spi_header = compact(clean["spi_h"])
     check("CM3", 1, "SPI_DMA_and_interrupt_configuration_tokens", "spi_h", "<file>",
@@ -269,8 +268,8 @@ def run_checks(units: dict, clean: dict) -> None:
           all(ordered(irq, [f"NVIC_ClearPendingIRQ({name});", f"NVIC_SetPriority({name},3);", f"NVIC_EnableIRQ({name});"]) for name in ("CFX_0_IRQn", "FIFO_5_IRQn")),
           "CFX_0 and FIFO_5 IRQ pending clear and priority 3 precede enable")
 
-    qcc_init = body("qcc", "snd_qcc_init")
-    check("CM3", 3, "two_GPIO_outputs_before_initial_values", "qcc", "snd_qcc_init",
+    qcc_init = body("qcc", "tdc_qcc_init")
+    check("CM3", 3, "two_GPIO_outputs_before_initial_values", "qcc", "tdc_qcc_init",
           ordered(qcc_init, ["Sys_DIO_Config(SND_QCC_DIO_QCC_CTRL,SND_QCC_DIO_CFG_GPIO_OUT);", "Sys_DIO_Config(SND_QCC_DIO_ISD_CHECK,SND_QCC_DIO_CFG_GPIO_OUT);", "snd_qcc_set_isd(SND_QCC_ISD_DISCONNECTED);", "snd_qcc_set_mode(SND_QCC_MODE_SHUTDOWN);"]),
           "QCC_CTRL/ISD_CHECK configured as outputs before disconnected/shutdown setters")
     for unit in (3, 8):
@@ -280,10 +279,10 @@ def run_checks(units: dict, clean: dict) -> None:
         check("CM3", unit, "ISD_GPIO_truth_table", "qcc", "snd_qcc_set_isd",
               gpio_mapping(body("qcc", "snd_qcc_set_isd"), "state", "SND_QCC_ISD_CONNECTED", "SND_QCC_ISD_DISCONNECTED", "SND_QCC_DIO_ISD_CHECK"),
               "ISD_CHECK High only for CONNECTED, Low for DISCONNECTED and default")
-    check("CM3", 3, "pin_definitions_and_initialization_reachable", "dio", "ci_dio_configure_normal",
-          "snd_qcc_init();" in body("dio", "ci_dio_configure_normal") and "ci_dio_configure_normal();" in init
+    check("CM3", 3, "pin_definitions_and_initialization_reachable", "dio", "tdc_hal_dio_configure_normal",
+          "tdc_qcc_init();" in body("dio", "tdc_hal_dio_configure_normal") and "tdc_hal_dio_configure_normal();" in init
           and all(t in compact(clean["qcc_h"]) for t in ["#defineSND_QCC_DIO_QCC_CTRLDIO24", "#defineSND_QCC_DIO_ISD_CHECKDIO13", "DIO_MODE_GPIO_OUT"]),
-          "Initialize calls normal DIO initialization, which calls snd_qcc_init; current pin definitions are DIO24/DIO13")
+          "tdc_sys_init calls normal DIO initialization, which calls tdc_qcc_init; current pin definitions are DIO24/DIO13")
 
     normal = body("main", "func_normal")
     iteration = body("main", "tdc_normal_iteration")
@@ -297,29 +296,29 @@ def run_checks(units: dict, clean: dict) -> None:
           and "iterationFlag=false;" in body("main", "disable_iteration"),
           "collect inputs, handle inputs, then consume iteration flag")
     check("CM3", 5, "control_map_ISD_BLE_order", "main", "tdc_handle_events",
-          ordered(handle, ["ctx->systemState=systemControl(", "update_mapNum();", "ctx->isd_state=isd_interface(", "ctx->ble_state=bleCommunication("]),
-          "systemControl, map update, isd_interface, bleCommunication in that order")
+          ordered(handle, ["ctx->systemState=systemControl(", "update_mapNum();", "ctx->isd_state=isd_interface(", "ctx->ble_state=tdc_ble_communication_step("]),
+          "systemControl, map update, isd_interface, tdc_ble_communication_step in that order")
     collect = body("main", "tdc_collect_events")
     check("CM3", 5, "touch_and_timeout_inputs_collected_once", "main", "tdc_collect_events",
-          all(collect.count(t) == 1 for t in ["readErrorCode()", "snd_charger_get_state()", "snd_batt_get_percent()", "tdc_touch_process()", "tdc_qcc_has_batt_level_rx_timed_out()"]),
-          "each error/charger/battery/touch/timeout input read appears once per input collection")
+          all(collect.count(t) == 1 for t in ["tdc_sys_error_read()", "tdc_pwr_charger_get_state()", "tdc_pwr_battery_get_percent()", "tdc_touch_process()", "tdc_qcc_has_batt_level_rx_timed_out()"]),
+          "each tdc_sys_error/charger/battery/touch/timeout input read appears once per input collection")
     check("CM3", 5, "normal_exit_is_sleep_guarded", "main", "func_normal",
-          "if(ctx.systemState.systemOff==true){if(tdc_can_enter_sleep(ctx.ble_state.mappingConnection)){led_force_fade_off();break;}ctx.systemState.systemOff=false;}" in normal
+          "if(ctx.systemState.systemOff==true){if(tdc_can_enter_sleep(ctx.ble_state.mappingConnection)){tdc_led_force_fade_off();break;}ctx.systemState.systemOff=false;}" in normal
           and ordered(body("main", "main"), ["while(1)", "func_normal();", "func_sleep();"]),
           "accepted systemOff exits normal loop to sleep; rejected sleep request resets systemOff")
 
     sleep = body("main", "func_sleep")
     flag = "cfx_cm3_sharedMemoryAll.systemShare.enter_ULP_mode_Command_CM3_to_CFX"
-    wait = "while(1){if(" + flag + "==0){ci_printd();break;}}"
+    wait = "while(1){if(" + flag + "==0){TDC_PRINTF_D();break;}}"
     check("CM3", 15, "CFX_clear_wait_before_low_clock", "main", "func_sleep",
-          ordered(sleep, [flag + "=1;", wait, "ci_power_sleep();", "i2c_set_master_prescale(I2C_MASTER_PRESCALE_6);", "ci_timer_init_prescaled(TDC_TOUCH_ULP_TIMER_PRESCALE,TDC_TOUCH_ULP_TIMER_TIMEOUT_VALUE);"]),
+          ordered(sleep, [flag + "=1;", wait, "tdc_pwr_clock_sleep();", "tdc_hal_i2c_set_master_prescale(I2C_MASTER_PRESCALE_6);", "tdc_hal_timer_init_prescaled(TDC_TOUCH_ULP_TIMER_PRESCALE,TDC_TOUCH_ULP_TIMER_TIMEOUT_VALUE);"]),
           "request=1; wait until CFX clears request to 0; only then lower clock and configure sleep I2C/timer")
     check("CM3", 15, "CFX_ack_after_cleanup", "cfx_main", "standby",
           ordered(body("cfx_main", "standby"), ["lib_disable_PCM(", "lib_i2s_disable(", "disable_DMIC(", "disable_FIFO_all(", "SYS_HEAR_PAUSE", "app_configure_interrupts(CFX_INT_STANDBY);", "enter_ULP_mode_Command_CM3_to_CFX=0;", "SYS_WAIT_FOR_INTERRUPT;"]),
           "CFX standby clears ULP request after input/output/FIFO/HEAR cleanup and standby interrupt configuration")
-    check("CM3", 15, "sleep_clock_and_I2C_idle_boundary", "power", "ci_power_sleep",
-          "tdc_Trims_SetOperatingFrequency(SYS_FREQ_2M56);" in body("power", "ci_power_sleep")
-          and ordered(body("i2c", "i2c_set_master_prescale"), ["while(!isI2cDriverStatusIdle())", "enableI2cInterface(false);", "I2C0->CFG=cfg;", "enableI2cInterface(true);"]),
+    check("CM3", 15, "sleep_clock_and_I2C_idle_boundary", "power", "tdc_pwr_clock_sleep",
+          "tdc_hal_trims_set_operating_frequency(SYS_FREQ_2M56);" in body("power", "tdc_pwr_clock_sleep")
+          and ordered(body("i2c", "tdc_hal_i2c_set_master_prescale"), ["while(!tdc_hal_i2c_is_driver_status_idle())", "tdc_hal_i2c_enable_interface(false);", "I2C0->CFG=cfg;", "tdc_hal_i2c_enable_interface(true);"]),
           "sleep selects SYS_FREQ_2M56; I2C prescale update waits for idle and disables/re-enables I2C")
     check("CM3", 15, "wake_monitor_and_touch_reboot", "main", "func_sleep",
           ordered(sleep, ["SYS_WAIT_FOR_INTERRUPT;", "tdc_touch_iqs323_read_status(&st);", "if(sleep_ignore)", "tdc_touch_sleep_handle_notouch_gate(", "else{tdc_touch_sleep_handle_touch_reboot("])
@@ -328,8 +327,8 @@ def run_checks(units: dict, clean: dict) -> None:
           "sleep waits for interrupts, reads touch, gates initial no-touch state, then sustained valid touch triggers watchdog reset")
     check("CM3", 15, "normal_recovery_is_reinitialization_not_fallthrough", "main", "main",
           ordered(body("main", "main"), ["load_data_section();", "load_bss_section();", "func_normal();"])
-          and "ci_util_assert(ci_power_normal());" in init and "init_I2c();" in init and "init_cm3_SPI();" in init,
-          "wake reset re-enters main/normal Initialize, restoring power and communication configuration; func_sleep does not return normally")
+          and "tdc_util_assert(tdc_pwr_clock_normal());" in init and "tdc_hal_i2c_init();" in init and "tdc_hal_spi_init();" in init,
+          "wake reset re-enters main/normal tdc_sys_init, restoring power and communication configuration; func_sleep does not return normally")
     criterion_input = units["CM3", 15]["input"]
     criterion_expected = units["CM3", 15]["expected"]
     assert "enter_ULP_mode_Command_CM3_to_CFX" in criterion_input

@@ -93,7 +93,7 @@ def main():
             print(output[-6000:], flush=True)
     sources = list((ROOT / "tests/unit").rglob("*"))
     for folder in ("src/test", "src/0__bootloader/source/test", "src/1__cfx/test",
-                   "src/2__cm3/Cortex-M3-src/test"):
+                   "src/2__cm3/source/tests"):
         sources += list((ROOT / folder).rglob("*"))
     result = {"device_execution": False, "meaning": "harness checks, not product acceptance",
               "status": "HARNESS_ERROR" if any(r["returncode"] for r in results) else "HARNESS_OK", "results": results,

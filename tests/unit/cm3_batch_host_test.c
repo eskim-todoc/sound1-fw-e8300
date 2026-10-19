@@ -4,7 +4,7 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <string.h>
-#include "cm3_batch_host/cfx_cm3_sharedMemory.h"
+#include "cm3_batch_host/tdc_shm.h"
 #define TDC_UT_IO_CM3_H
 #define TDC_UT_VECTORS_CM3_H
 #define TDC_UT_IO_CM3_CAPACITY 512
@@ -24,8 +24,8 @@ static int spi_idle=1, i2c_idle=1, fault, input_step=73;
 static unsigned history[128], history_count, releases, snapshot_calls;
 static char output[131072];
 static unsigned output_count, writes, limit=7, blocked, pulse_block=1;
-int isSpiTxBuffEmpty(void) { return spi_idle; }
-int isI2cDriverStatusIdle(void) { return i2c_idle; }
+int tdc_hal_spi_is_tx_buffer_empty(void) { return spi_idle; }
+int tdc_hal_i2c_is_driver_status_idle(void) { return i2c_idle; }
 unsigned SEGGER_RTT_Write(unsigned channel,const void *data,unsigned n)
 {
     assert(channel==0 && n<=60 && !g_batch_ipsr);
@@ -81,8 +81,8 @@ int tdc_ut_io_cm3_observe_unit(int unit,int case_id)
     return rc;
 }
 int tdc_ut_io_cm3_release(void) {g_tdc_ut_io_cm3_done=0;++releases;return 0;}
-#include "../../src/2__cm3/Cortex-M3-src/test/tdc_ut_report.c"
-#include "../../src/2__cm3/Cortex-M3-src/test/tdc_ut_batch_cm3.c"
+#include "../../src/2__cm3/source/tests/tdc_ut_report.c"
+#include "../../src/2__cm3/source/tests/tdc_ut_batch_cm3.c"
 
 static void clear_capture(void)
 {
@@ -224,6 +224,6 @@ int main(void)
 {
     assert(tdc_ut_batch_cm3_poll()==TDC_UT_BATCH_CM3_IDLE);
     rejection();all_runs();cancellation();errors();captures();
-    puts("CM3_BATCH PASS: groups/order/repeat, 60B/partial/backpressure, cancel/error, snapshots; no device execution");
+    puts("CM3_BATCH PASS: groups/order/repeat, 60B/partial/backpressure, cancel/tdc_sys_error, snapshots; no device execution");
     return 0;
 }

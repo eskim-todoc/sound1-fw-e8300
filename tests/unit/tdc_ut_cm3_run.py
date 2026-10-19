@@ -18,31 +18,25 @@ from check_cfx_vectors import function
 ROOT = pathlib.Path(__file__).resolve().parents[2]
 CM3 = ROOT / "src/2__cm3"
 SDK_DEFAULT = pathlib.Path(r"C:\Program Files (x86)\ON Semiconductor\Ezairo 8300 SDK")
-INCLUDES = (
-    "", "Gen1_5", "Gen1_5/fn_fromCFX", "Gen1_5/FS", "Gen1_5/common",
-    "Gen1_5/SEGGER_RTT", "Gen1_5/tiny-AES-c", "Gen1_5/crc", "Gen1_5/dfu",
-    "Gen1_5/ui", "99_includeBoard", "Cortex-M3-src", "Cortex-M3-src/test",
-    "Cortex-M3-src/BleCommunication", "Cortex-M3-src/internalDevice",
-    "Cortex-M3-src/QCC", "Cortex-M3-src/signalProcessing",
-    "Cortex-M3-src/systemControl", "isdExecution", "signalProcessing", "systemControl",
-)
+INCLUDES = ("", "source", *tuple(str(p.relative_to(CM3)).replace("\\", "/") for p in (CM3 / "source").rglob("*") if p.is_dir()))
+
 SOURCES = (
-    "Cortex-M3-src/test/tdc_ut_vectors_cm3.c",
-    "Cortex-M3-src/test/tdc_ut_coordination_cm3.c",
-    "Cortex-M3-src/test/tdc_ut_state_cm3.c",
-    "Cortex-M3-src/systemControl/cfx_cm3_sharedMemory.c",
-    "Cortex-M3-src/systemControl/tdc_touch_logic.c",
-    "Cortex-M3-src/systemControl/batteryNPowerControl.c",
-    "Cortex-M3-src/systemControl/LedOutput.c",
-    "Cortex-M3-src/systemControl/systemControl.c",
-    "Cortex-M3-src/signalProcessing/stimulationParaCal.c",
-    "Cortex-M3-src/signalProcessing/commonDataProcessing.c",
-    "Cortex-M3-src/internalDevice/indicatorByStimul.c",
-    "Cortex-M3-src/error.c",
-    "Gen1_5/ui/tdc_ui_command.c",
-    "Gen1_5/common/ci_printf.c",
-    "Cortex-M3-src/internalDevice/isd_interface.c",
-    "Cortex-M3-src/internalDevice/isd_interface_stimulationStandAlone.c",
+    "source/tests/tdc_ut_vectors_cm3.c",
+    "source/tests/tdc_ut_coordination_cm3.c",
+    "source/tests/tdc_ut_state_cm3.c",
+    "source/cfx_link/tdc_shm.c",
+    "source/touch/tdc_touch_logic.c",
+    "source/pwr/tdc_pwr_battery.c",
+    "source/led/tdc_led_output.c",
+    "source/sys/tdc_sys_control.c",
+    "source/stim/tdc_stim_para_cal.c",
+    "source/stim/tdc_stim_common.c",
+    "source/stim/tdc_stim_indicator.c",
+    "source/sys/tdc_sys_error.c",
+    "source/ui/tdc_ui_command.c",
+    "source/util/tdc_printf.c",
+    "source/isd/tdc_isd.c",
+    "source/isd/tdc_isd_stim_standalone.c",
 )
 
 
@@ -104,7 +98,7 @@ def inspect_charge_configuration(compiler: str, flags: list[str]) -> None:
     A future product policy change must update and review these vectors separately.
     """
     result = subprocess.run([compiler, *flags, "-dM", "-E",
-                             str(CM3 / "Cortex-M3-src/signalProcessing/stimulationParaCal.c")],
+                             str(CM3 / "source/stim/tdc_stim_para_cal.c")],
                             cwd=ROOT, capture_output=True, text=True,
                             encoding="utf-8", errors="replace", timeout=60, check=True)
     macros = dict(re.findall(r"^#define[ \t]+(\w+)[ \t]*(.*)$", result.stdout, re.MULTILINE))
@@ -123,7 +117,7 @@ def main() -> None:
     parser.add_argument("--sdk", type=pathlib.Path, default=SDK_DEFAULT)
     args = parser.parse_args()
     if args.normal and not args.target:
-        parser.error("--normal requires --target; host fixtures are test-only")
+        parser.tdc_sys_error("--normal requires --target; host fixtures are test-only")
     compiler = args.sdk / "arm_tools/bin/arm-none-eabi-gcc.exe" if args.target else shutil.which("gcc")
     if not compiler:
         raise RuntimeError("gcc is unavailable")
@@ -145,7 +139,7 @@ def main() -> None:
     # conservative dependencies; hashes are source identity, never acceptance.
     inputs = [CM3 / source for source in SOURCES]
     inputs += list(CM3.rglob("*.h"))
-    inputs += [CM3 / "Cortex-M3-src/main.c", pathlib.Path(__file__),
+    inputs += [CM3 / "source/main.c", pathlib.Path(__file__),
                ROOT / "tests/unit/tdc_ut_cm3_host.c", ROOT / "tests/unit/tdc_ut_cm3_host_prelude.h",
                ROOT / "tests/unit/check_cfx_vectors.py"]
     criterion = ROOT / json.loads((ROOT / "tests/unit/cm3_pure_control_coverage.json").read_text(encoding="utf-8"))["criterion"]["path"]
@@ -171,14 +165,14 @@ def main() -> None:
         else:
             # Retain the actual boot function body, not a rewritten test copy.
             # Its device boundaries abort unless the RAM-input ops are active.
-            source = (CM3 / "Cortex-M3-src/main.c").read_text(encoding="utf-8")
+            source = (CM3 / "source/main.c").read_text(encoding="utf-8")
             fragment = directory / "boot_body.c"
             prefix = '''#include <stdlib.h>
-#include <cfx_cm3_sharedMemory.h>
+#include <tdc_shm.h>
 #include <tdc_ut_coordination_cm3.h>
 const tdc_ut_cm3_boot_ops_t *g_tdc_ut_cm3_boot_ops;
 static void tdc_wait_for_cfx_start(void) {abort();}
-void Initialize(void) {abort();}
+void tdc_sys_init(void) {abort();}
 static void tdc_print_default_isd_info(void) {abort();}
 #define tdc_ui_command_init tdc_ut_forbidden_ui
 static void tdc_ut_forbidden_ui(void) {abort();}

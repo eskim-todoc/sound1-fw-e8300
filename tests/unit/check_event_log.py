@@ -14,10 +14,10 @@ import traceback
 
 ROOT = Path(__file__).resolve().parents[2]
 OUT = ROOT / "tmp/unit-tests/event-log"
-FS = ROOT / "src/2__cm3/Gen1_5/FS"
-SOURCES = [FS / "ci_event_log.c", FS / "ci_event_log.h",
-           ROOT / "src/2__cm3/Gen1_5/common/ci_timer.h",
-           ROOT / "src/2__cm3/Cortex-M3-src/error.h",
+FS = ROOT / "src/2__cm3/source/fs"
+SOURCES = [FS / "tdc_fs_event_log.c", FS / "tdc_fs_event_log.h",
+           ROOT / "src/2__cm3/source/hal/tdc_hal_timer.h",
+           ROOT / "src/2__cm3/source/sys/tdc_sys_error.h",
            ROOT / "tests/unit/tdc_ut_event_log_host.c"]
 
 # 입력 조건에서 정한 전체 비교 목록이다. 출력 레코드가 누락되거나
@@ -81,15 +81,15 @@ def main() -> None:
     # A failed new run must not leave an earlier successful result as evidence.
     (OUT / "checks.json").write_text(json.dumps({"status": "RUNNING", "device_execution": False}), encoding="utf-8")
     raw = {p: p.read_bytes() for p in SOURCES}
-    source, header, timer, error = [raw[p].decode("utf-8-sig") for p in SOURCES[:4]]
+    source, header, timer, tdc_sys_error = [raw[p].decode("utf-8-sig") for p in SOURCES[:4]]
     sdk = Path(os.environ.get("TDC_E8300_SDK", "C:/Program Files (x86)/ON Semiconductor/Ezairo 8300 SDK"))
     config = sdk / "include/cm3/ffconf.h"
     config_bytes = config.read_bytes()
     sector = re.search(rb"^#define\s+FF_MAX_SS\s+(\d+)", config_bytes, re.MULTILINE)
     assert sector and int(sector[1]) == 4096, "Review changed FatFs sector/record capacity"
-    types = "#define FF_MAX_SS 4096\n" + declaration(timer, "struct", "CI_TIMER_TIME_T") + "\n"
-    for name in ("EN__DATA_LOGGING_ERROR", "EN__MAJOR_ERRORCODE"):
-        types += declaration(error, "enum", name) + "\n"
+    types = "#define FF_MAX_SS 4096\n" + declaration(timer, "struct", "tdc_hal_timer_time_t") + "\n"
+    for name in ("tdc_sys_error_data_logging_error_t", "tdc_sys_error_major_t"):
+        types += declaration(tdc_sys_error, "enum", name) + "\n"
     types += without_includes(header)
     (OUT / "event_log_types.inc").write_text(types, encoding="utf-8")
     (OUT / "event_log_product.inc").write_text(without_includes(source), encoding="utf-8")
@@ -134,5 +134,5 @@ if __name__ == "__main__":
     except Exception:
         OUT.mkdir(parents=True, exist_ok=True)
         (OUT / "checks.json").write_text(json.dumps({"status": "HARNESS_ERROR", "device_execution": False,
-                                                    "error": traceback.format_exc()}, indent=2), encoding="utf-8")
+                                                    "tdc_sys_error": traceback.format_exc()}, indent=2), encoding="utf-8")
         raise

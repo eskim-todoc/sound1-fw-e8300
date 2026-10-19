@@ -14,8 +14,8 @@ ROOT = Path(__file__).resolve().parents[2]
 OUT = ROOT / "tmp/unit-tests/cfx-batch"
 SOURCES = [
     "src/1__cfx/test/tdc_ut_batch_cfx.c",
-    "src/2__cm3/Cortex-M3-src/test/tdc_ut_batch_cfx_bridge.c",
-    "src/2__cm3/Cortex-M3-src/test/tdc_ut_report.c",
+    "src/2__cm3/source/tests/tdc_ut_batch_cfx_bridge.c",
+    "src/2__cm3/source/tests/tdc_ut_report.c",
     "tests/unit/cfx_batch_fixture/protocol_test.c",
 ]
 
@@ -61,7 +61,7 @@ def main() -> int:
         print(exc)
     finally:
         inputs = SOURCES + ["src/1__cfx/test/tdc_ut_batch_cfx.h",
-                            "src/2__cm3/Cortex-M3-src/test/tdc_ut_batch_cfx_bridge.h",
+                            "src/2__cm3/source/tests/tdc_ut_batch_cfx_bridge.h",
                             "src/test/tdc_ut_log.c", "src/test/tdc_ut_log.h",
                             "tests/unit/cfx_batch_fixture/hw.h",
                             "tests/unit/cfx_batch_fixture/SEGGER_RTT.h",

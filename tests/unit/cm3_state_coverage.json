@@ -15,7 +15,7 @@
   "cases": [
     {
       "id": 1,
-      "input": "A=PowerIC_Reset, connected=1, changed=0; actual change_isd_state(A)",
+      "input": "A=PowerIC_Reset, connected=1, changed=0; actual tdc_isd_change_state(A)",
       "expected": [
         1,
         1,
@@ -25,7 +25,7 @@
     },
     {
       "id": 2,
-      "input": "independent A seed; actual change_isd_state(B=PowerIC_OK)",
+      "input": "independent A seed; actual tdc_isd_change_state(B=PowerIC_OK)",
       "expected": [
         2,
         1,
@@ -35,7 +35,7 @@
     },
     {
       "id": 3,
-      "input": "actual clearIsdControlStateChagedFlag() after B",
+      "input": "actual tdc_isd_clear_control_state_changed_flag() after B",
       "expected": [
         2,
         1,
@@ -62,11 +62,11 @@
     }
   ],
   "functions_executed": [
-    "change_isd_state",
-    "clearIsdControlStateChagedFlag",
-    "snd_isd_interface_get_state",
-    "changePcmOutputMode",
-    "readCurrentPcmOutputMode"
+    "tdc_isd_change_state",
+    "tdc_isd_clear_control_state_changed_flag",
+    "tdc_isd_get_state",
+    "tdc_shm_change_pcm_output_mode",
+    "tdc_shm_read_current_pcm_output_mode"
   ],
   "private_query": "tdc_ut_cm3_isd_state_changed: original private flag read only; no existing is_isd_state_changed product API exists",
   "restoration": "Two nondefault private/PCM/shared-RAM seeds, whole shared object byte comparison, private snapshot byte comparison, capacity canaries",

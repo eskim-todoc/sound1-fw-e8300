@@ -5,10 +5,10 @@
 #include <assert.h>
 #include <stdio.h>
 #include <string.h>
-#include "console_adapter_host/cfx_cm3_sharedMemory.h"
+#include "console_adapter_host/tdc_shm.h"
 #include "../../src/test/tdc_ut_console.h"
-#include "../../src/2__cm3/Cortex-M3-src/test/tdc_ut_batch_cm3.h"
-#include "../../src/2__cm3/Cortex-M3-src/test/tdc_ut_batch_cfx_bridge.h"
+#include "../../src/2__cm3/source/tests/tdc_ut_batch_cm3.h"
+#include "../../src/2__cm3/source/tests/tdc_ut_batch_cfx_bridge.h"
 #include "../../src/0__bootloader/source/test/tdc_ut_batch_boot.h"
 
 unsigned g_console_adapter_ipsr;
@@ -289,12 +289,12 @@ static int late_cleanup_guard(const char *scenario)
     }
     if(accepted)
     {
-        printf("CONSOLE_ADAPTER_GUARD FAIL: %s accepted with bridge busy=0 restored=0 error=%u; late HEAR cleanup pending\n",
+        printf("CONSOLE_ADAPTER_GUARD FAIL: %s accepted with bridge busy=0 restored=0 tdc_sys_error=%u; late HEAR cleanup pending\n",
                scenario,tdc_ut_cfx_bridge_error());
         return 1;
     }
-    /* A late completion changes restored to 1 even though the previous error
-     * code is retained. Recovery must not be permanently blocked by error!=0. */
+    /* A late completion changes restored to 1 even though the previous tdc_sys_error
+     * code is retained. Recovery must not be permanently blocked by tdc_sys_error!=0. */
     bridge_restored=1;
     if(!strcmp(scenario,"late-open"))assert(console_open(1)==0);
     feed(!strcmp(scenario,"late-observe")?"ut observe 1 18\n":"ut cm3 1\n");

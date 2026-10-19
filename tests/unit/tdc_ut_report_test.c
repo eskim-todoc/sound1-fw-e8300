@@ -17,7 +17,7 @@ unsigned SEGGER_RTT_Write(unsigned channel, const void *data, unsigned bytes)
     s_tdc_ut_bytes += accepted; s_tdc_ut_capture[s_tdc_ut_bytes] = 0;
     return accepted;
 }
-#include "../../src/2__cm3/Cortex-M3-src/test/tdc_ut_report.c"
+#include "../../src/2__cm3/source/tests/tdc_ut_report.c"
 static void drain(void)
 {
     int rc=0;

@@ -14,7 +14,7 @@ from openpyxl import load_workbook
 
 ROOT = Path(__file__).resolve().parents[2]
 TASK = ROOT / "docs/tasks/인허가/20260929_1755_DHF-펌웨어-설계출력"
-CRITERION = ROOT / "docs/참고/인허가/사운드1/DHF/03_설계 출력/SW/펌웨어/SUVC-FW-TD24A 소프트웨어 유닛 검증 기준서.xlsx"
+CRITERION = ROOT / "docs/tasks/인허가/20260929_1755_DHF-펌웨어-설계출력/qa/evidence-collection/unit-criterion-before.xlsx"
 EXPECTED_SHA = "89967fa692c4f51e3be916c73270d75859b4f692c96928c2d73da0cc6c5096fd"
 PURE_CFX = {8,13,16,17,18,20,22,23,24,25,28,29,30,31,32,34,35}
 ANALYSIS_CFX = {1,2,3,4,5,6,9,21,38,39,41,42}
@@ -105,7 +105,7 @@ def main():
                          remaining="Code path checked; no electrical or complete device execution proof")
         elif core=="CM3" and number==14:
             entry.update(kind="visual_required", target="manual_visual", host="not_applicable",
-                         inventory="src/2__cm3/Cortex-M3-src/systemControl/LedOutput.c",
+                         inventory="src/2__cm3/source/led/tdc_led_output.c",
                          evidence=None, remaining="Operator must observe the actual LED indication and retain image if required")
         elif core=="BOOT" and number in boot:
             data=boot[number]

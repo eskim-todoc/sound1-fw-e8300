@@ -2,7 +2,7 @@
   "schema_version": 1,
   "kind": "bounded_source_analysis",
   "script": "tests/unit/check_remaining_analysis.py",
-  "criterion": "docs/참고/인허가/사운드1/DHF/03_설계 출력/SW/펌웨어/SUVC-FW-TD24A 소프트웨어 유닛 검증 기준서.xlsx",
+  "criterion": "docs/tasks/인허가/20260929_1755_DHF-펌웨어-설계출력/qa/evidence-collection/unit-criterion-before.xlsx",
   "criterion_sha256": "89967fa692c4f51e3be916c73270d75859b4f692c96928c2d73da0cc6c5096fd",
   "criterion_sheet": "기준서_유닛 검증",
   "device_execution": false,
@@ -107,7 +107,7 @@
         {
           "name": "initialization_before_QCC_request",
           "matched": true,
-          "path": "src/2__cm3/Cortex-M3-src/systemControl/initialize.c",
+          "path": "src/2__cm3/source/sys/tdc_sys_init.c",
           "symbol": "Initialize",
           "definition_line": 247,
           "expected_source_fact": "DMA reset, I2C and SPI initialization precede QCC normal request",
@@ -116,7 +116,7 @@
         {
           "name": "software_permission_after_Initialize",
           "matched": true,
-          "path": "src/2__cm3/Cortex-M3-src/main.c",
+          "path": "src/2__cm3/source/main.c",
           "symbol": "tdc_normal_boot_sequence",
           "definition_line": 597,
           "expected_source_fact": "CFX start wait and complete Initialize precede shared CFX iteration permission",
@@ -125,7 +125,7 @@
         {
           "name": "IRQ_enable_separate_from_CFX_permission",
           "matched": true,
-          "path": "src/2__cm3/Cortex-M3-src/systemControl/initialize.c",
+          "path": "src/2__cm3/source/sys/tdc_sys_init.c",
           "symbol": "Initialize",
           "definition_line": 247,
           "expected_source_fact": "CM3 CFX/FIFO IRQ enable is earlier than SPI init, but is not shared CFX iteration permission",
@@ -134,7 +134,7 @@
         {
           "name": "I2C_reset_config_clear_before_enable",
           "matched": true,
-          "path": "src/2__cm3/Cortex-M3-src/systemControl/driver_i2c.c",
+          "path": "src/2__cm3/source/hal/tdc_hal_i2c.c",
           "symbol": "init_I2c",
           "definition_line": 212,
           "expected_source_fact": "I2C reset/configuration/software state clear precede I2C enable",
@@ -143,7 +143,7 @@
         {
           "name": "all_eight_DMA_channels_reset",
           "matched": true,
-          "path": "src/2__cm3/Cortex-M3-src/systemControl/initialize.c",
+          "path": "src/2__cm3/source/sys/tdc_sys_init.c",
           "symbol": "reset_DMA_disable",
           "definition_line": 112,
           "expected_source_fact": "DMA0..7 are disabled and completion/count interrupt status cleared",
@@ -152,7 +152,7 @@
         {
           "name": "SPI_buffer_DMA_before_enable",
           "matched": true,
-          "path": "src/2__cm3/Cortex-M3-src/systemControl/driver_SPI.c",
+          "path": "src/2__cm3/source/hal/tdc_hal_spi.c",
           "symbol": "init_cm3_SPI",
           "definition_line": 302,
           "expected_source_fact": "SPI pins/disable/config/TX buffer initialization/DMA preparation precede SPI enable",
@@ -161,7 +161,7 @@
         {
           "name": "DMA_direction_length_configuration_order",
           "matched": true,
-          "path": "src/2__cm3/Cortex-M3-src/systemControl/driver_SPI.c",
+          "path": "src/2__cm3/source/hal/tdc_hal_spi.c",
           "symbol": "ci_SPI_enable_DMA",
           "definition_line": 277,
           "expected_source_fact": "RX DMA0: SPI read register to RX buffer; TX DMA1: TX buffer to SPI write register, packet-sized, configured before enable",
@@ -170,7 +170,7 @@
         {
           "name": "SPI_DMA_and_interrupt_configuration_tokens",
           "matched": true,
-          "path": "src/2__cm3/Cortex-M3-src/systemControl/driver_SPI.h",
+          "path": "src/2__cm3/source/hal/tdc_hal_spi.h",
           "symbol": "<file>",
           "definition_line": 1,
           "expected_source_fact": "SPI header requests slave, 8-bit words, CS-rise interrupt, RX/TX DMA and packet length BLE payload + 1",
@@ -179,7 +179,7 @@
         {
           "name": "CFX_FIFO_IRQ_configuration_order",
           "matched": true,
-          "path": "src/2__cm3/Cortex-M3-src/systemControl/initialize.c",
+          "path": "src/2__cm3/source/sys/tdc_sys_init.c",
           "symbol": "enable_CFX_trigger_for_iteration",
           "definition_line": 135,
           "expected_source_fact": "CFX_0 and FIFO_5 IRQ pending clear and priority 3 precede enable",
@@ -198,11 +198,11 @@
       "mismatch_count": 0,
       "host_mismatch_count": null,
       "sources": [
-        "src/2__cm3/Cortex-M3-src/main.c",
-        "src/2__cm3/Cortex-M3-src/systemControl/driver_SPI.c",
-        "src/2__cm3/Cortex-M3-src/systemControl/driver_SPI.h",
-        "src/2__cm3/Cortex-M3-src/systemControl/driver_i2c.c",
-        "src/2__cm3/Cortex-M3-src/systemControl/initialize.c"
+        "src/2__cm3/source/main.c",
+        "src/2__cm3/source/hal/tdc_hal_spi.c",
+        "src/2__cm3/source/hal/tdc_hal_spi.h",
+        "src/2__cm3/source/hal/tdc_hal_i2c.c",
+        "src/2__cm3/source/sys/tdc_sys_init.c"
       ]
     },
     {
@@ -223,7 +223,7 @@
         {
           "name": "two_GPIO_outputs_before_initial_values",
           "matched": true,
-          "path": "src/2__cm3/Cortex-M3-src/QCC/snd_qcc.c",
+          "path": "src/2__cm3/source/qcc/tdc_qcc.c",
           "symbol": "snd_qcc_init",
           "definition_line": 13,
           "expected_source_fact": "QCC_CTRL/ISD_CHECK configured as outputs before disconnected/shutdown setters",
@@ -232,7 +232,7 @@
         {
           "name": "mode_GPIO_truth_table",
           "matched": true,
-          "path": "src/2__cm3/Cortex-M3-src/QCC/snd_qcc.c",
+          "path": "src/2__cm3/source/qcc/tdc_qcc.c",
           "symbol": "snd_qcc_set_mode",
           "definition_line": 58,
           "expected_source_fact": "QCC_CTRL High only for NORMAL, Low for SHUTDOWN and default",
@@ -241,7 +241,7 @@
         {
           "name": "ISD_GPIO_truth_table",
           "matched": true,
-          "path": "src/2__cm3/Cortex-M3-src/QCC/snd_qcc.c",
+          "path": "src/2__cm3/source/qcc/tdc_qcc.c",
           "symbol": "snd_qcc_set_isd",
           "definition_line": 22,
           "expected_source_fact": "ISD_CHECK High only for CONNECTED, Low for DISCONNECTED and default",
@@ -250,7 +250,7 @@
         {
           "name": "pin_definitions_and_initialization_reachable",
           "matched": true,
-          "path": "src/2__cm3/Gen1_5/common/ci_dio.c",
+          "path": "src/2__cm3/source/hal/tdc_hal_dio.c",
           "symbol": "ci_dio_configure_normal",
           "definition_line": 41,
           "expected_source_fact": "Initialize calls normal DIO initialization, which calls snd_qcc_init; current pin definitions are DIO24/DIO13",
@@ -269,10 +269,10 @@
       "mismatch_count": 0,
       "host_mismatch_count": null,
       "sources": [
-        "src/2__cm3/Cortex-M3-src/QCC/snd_qcc.c",
+        "src/2__cm3/source/qcc/tdc_qcc.c",
         "src/2__cm3/Cortex-M3-src/QCC/snd_qcc.h",
-        "src/2__cm3/Cortex-M3-src/systemControl/initialize.c",
-        "src/2__cm3/Gen1_5/common/ci_dio.c"
+        "src/2__cm3/source/sys/tdc_sys_init.c",
+        "src/2__cm3/source/hal/tdc_hal_dio.c"
       ]
     },
     {
@@ -293,7 +293,7 @@
         {
           "name": "tick_gate_and_consumption",
           "matched": true,
-          "path": "src/2__cm3/Cortex-M3-src/main.c",
+          "path": "src/2__cm3/source/main.c",
           "symbol": "func_normal",
           "definition_line": 505,
           "expected_source_fact": "normal iteration processing is called once at its iterationFlag==true gate",
@@ -302,7 +302,7 @@
         {
           "name": "collect_before_handle_before_disable",
           "matched": true,
-          "path": "src/2__cm3/Cortex-M3-src/main.c",
+          "path": "src/2__cm3/source/main.c",
           "symbol": "tdc_normal_iteration",
           "definition_line": 710,
           "expected_source_fact": "collect inputs, handle inputs, then consume iteration flag",
@@ -311,7 +311,7 @@
         {
           "name": "control_map_ISD_BLE_order",
           "matched": true,
-          "path": "src/2__cm3/Cortex-M3-src/main.c",
+          "path": "src/2__cm3/source/main.c",
           "symbol": "tdc_handle_events",
           "definition_line": 657,
           "expected_source_fact": "systemControl, map update, isd_interface, bleCommunication in that order",
@@ -320,7 +320,7 @@
         {
           "name": "touch_and_timeout_inputs_collected_once",
           "matched": true,
-          "path": "src/2__cm3/Cortex-M3-src/main.c",
+          "path": "src/2__cm3/source/main.c",
           "symbol": "tdc_collect_events",
           "definition_line": 645,
           "expected_source_fact": "each error/charger/battery/touch/timeout input read appears once per input collection",
@@ -329,7 +329,7 @@
         {
           "name": "normal_exit_is_sleep_guarded",
           "matched": true,
-          "path": "src/2__cm3/Cortex-M3-src/main.c",
+          "path": "src/2__cm3/source/main.c",
           "symbol": "func_normal",
           "definition_line": 505,
           "expected_source_fact": "accepted systemOff exits normal loop to sleep; rejected sleep request resets systemOff",
@@ -348,7 +348,7 @@
       "mismatch_count": 0,
       "host_mismatch_count": null,
       "sources": [
-        "src/2__cm3/Cortex-M3-src/main.c"
+        "src/2__cm3/source/main.c"
       ]
     },
     {
@@ -369,7 +369,7 @@
         {
           "name": "mode_GPIO_truth_table",
           "matched": true,
-          "path": "src/2__cm3/Cortex-M3-src/QCC/snd_qcc.c",
+          "path": "src/2__cm3/source/qcc/tdc_qcc.c",
           "symbol": "snd_qcc_set_mode",
           "definition_line": 58,
           "expected_source_fact": "QCC_CTRL High only for NORMAL, Low for SHUTDOWN and default",
@@ -378,7 +378,7 @@
         {
           "name": "ISD_GPIO_truth_table",
           "matched": true,
-          "path": "src/2__cm3/Cortex-M3-src/QCC/snd_qcc.c",
+          "path": "src/2__cm3/source/qcc/tdc_qcc.c",
           "symbol": "snd_qcc_set_isd",
           "definition_line": 22,
           "expected_source_fact": "ISD_CHECK High only for CONNECTED, Low for DISCONNECTED and default",
@@ -397,7 +397,7 @@
       "mismatch_count": 0,
       "host_mismatch_count": null,
       "sources": [
-        "src/2__cm3/Cortex-M3-src/QCC/snd_qcc.c"
+        "src/2__cm3/source/qcc/tdc_qcc.c"
       ]
     },
     {
@@ -418,7 +418,7 @@
         {
           "name": "CFX_clear_wait_before_low_clock",
           "matched": true,
-          "path": "src/2__cm3/Cortex-M3-src/main.c",
+          "path": "src/2__cm3/source/main.c",
           "symbol": "func_sleep",
           "definition_line": 1342,
           "expected_source_fact": "request=1; wait until CFX clears request to 0; only then lower clock and configure sleep I2C/timer",
@@ -436,7 +436,7 @@
         {
           "name": "sleep_clock_and_I2C_idle_boundary",
           "matched": true,
-          "path": "src/2__cm3/Gen1_5/common/ci_power.c",
+          "path": "src/2__cm3/source/pwr/tdc_pwr_clock.c",
           "symbol": "ci_power_sleep",
           "definition_line": 177,
           "expected_source_fact": "sleep selects SYS_FREQ_2M56; I2C prescale update waits for idle and disables/re-enables I2C",
@@ -445,7 +445,7 @@
         {
           "name": "wake_monitor_and_touch_reboot",
           "matched": true,
-          "path": "src/2__cm3/Cortex-M3-src/main.c",
+          "path": "src/2__cm3/source/main.c",
           "symbol": "func_sleep",
           "definition_line": 1342,
           "expected_source_fact": "sleep waits for interrupts, reads touch, gates initial no-touch state, then sustained valid touch triggers watchdog reset",
@@ -454,7 +454,7 @@
         {
           "name": "normal_recovery_is_reinitialization_not_fallthrough",
           "matched": true,
-          "path": "src/2__cm3/Cortex-M3-src/main.c",
+          "path": "src/2__cm3/source/main.c",
           "symbol": "main",
           "definition_line": 322,
           "expected_source_fact": "wake reset re-enters main/normal Initialize, restoring power and communication configuration; func_sleep does not return normally",
@@ -475,25 +475,25 @@
       "host_mismatch_count": null,
       "sources": [
         "src/1__cfx/systemControl/main.c",
-        "src/2__cm3/Cortex-M3-src/main.c",
-        "src/2__cm3/Cortex-M3-src/systemControl/driver_i2c.c",
-        "src/2__cm3/Cortex-M3-src/systemControl/initialize.c",
-        "src/2__cm3/Gen1_5/common/ci_power.c"
+        "src/2__cm3/source/main.c",
+        "src/2__cm3/source/hal/tdc_hal_i2c.c",
+        "src/2__cm3/source/sys/tdc_sys_init.c",
+        "src/2__cm3/source/pwr/tdc_pwr_clock.c"
       ]
     }
   ],
   "mismatch_count": 0,
   "criterion_issue_count": 0,
   "sources": {
-    "src/2__cm3/Cortex-M3-src/systemControl/initialize.c": "df550e14ef93904ceb2fd1683a622c1d634a79ff8c106a383fcca2507ba0611b",
-    "src/2__cm3/Cortex-M3-src/systemControl/driver_SPI.c": "01ec3a522c858b9f3035025ded1dfc442b29e56a06e5cf748fd28b4a8ee15545",
-    "src/2__cm3/Cortex-M3-src/systemControl/driver_SPI.h": "f9f6bc9b4261d29a332bceafbbb205ab1fac1660d1099d0aa7928b77c0400113",
-    "src/2__cm3/Cortex-M3-src/systemControl/driver_i2c.c": "9712755dafd35248d1236d0b9c8b8d97b598b817230e24b40c9971dc69d09428",
-    "src/2__cm3/Cortex-M3-src/main.c": "9f4700b8ed5dd6acb22fbf61d6f91801effbb401ad156e6c25421b51b8b52896",
-    "src/2__cm3/Cortex-M3-src/QCC/snd_qcc.c": "9f759ae752f68e3c7d6b24f9206af5acb08869c226008ec9429541e38f9ad230",
+    "src/2__cm3/source/sys/tdc_sys_init.c": "df550e14ef93904ceb2fd1683a622c1d634a79ff8c106a383fcca2507ba0611b",
+    "src/2__cm3/source/hal/tdc_hal_spi.c": "01ec3a522c858b9f3035025ded1dfc442b29e56a06e5cf748fd28b4a8ee15545",
+    "src/2__cm3/source/hal/tdc_hal_spi.h": "f9f6bc9b4261d29a332bceafbbb205ab1fac1660d1099d0aa7928b77c0400113",
+    "src/2__cm3/source/hal/tdc_hal_i2c.c": "9712755dafd35248d1236d0b9c8b8d97b598b817230e24b40c9971dc69d09428",
+    "src/2__cm3/source/main.c": "9f4700b8ed5dd6acb22fbf61d6f91801effbb401ad156e6c25421b51b8b52896",
+    "src/2__cm3/source/qcc/tdc_qcc.c": "9f759ae752f68e3c7d6b24f9206af5acb08869c226008ec9429541e38f9ad230",
     "src/2__cm3/Cortex-M3-src/QCC/snd_qcc.h": "d99dd921b80c8ab3484f1485f4b9114e46e2d7a8004bc875f508b5835066f44c",
-    "src/2__cm3/Gen1_5/common/ci_dio.c": "f9882e5c86417819c494f6a1063ec3b0ef871193b08bb2f0290f454eb1300502",
-    "src/2__cm3/Gen1_5/common/ci_power.c": "a67ced9ac2a855e308eeef7cd0ffde6a2d09130d7feedbb1518b00069fcf2521",
+    "src/2__cm3/source/hal/tdc_hal_dio.c": "f9882e5c86417819c494f6a1063ec3b0ef871193b08bb2f0290f454eb1300502",
+    "src/2__cm3/source/pwr/tdc_pwr_clock.c": "a67ced9ac2a855e308eeef7cd0ffde6a2d09130d7feedbb1518b00069fcf2521",
     "src/1__cfx/lib_cfx/lib_audio_in.c": "51c613b93e3a2d5b35c9c937bf586d92de4b2ca32c26658d731df661f47a77eb",
     "src/1__cfx/hear/microcode.h": "c58840da11f2f65ff4c6fff5e2bab9ff9eae7a0c97e2dfbe2d0cb6ce1d333221",
     "src/1__cfx/systemControl/main.c": "69be0ae2ec3529b5e6d17c011bb9d4ad80c431d9ec5b9ca67a4ba12c56cfb62f"

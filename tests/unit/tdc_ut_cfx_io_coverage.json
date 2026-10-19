@@ -9,12 +9,12 @@
     "target_link_owner": "main task; this worker compiles standalone normal/test objects only",
     "host_only_fixture": "tests/unit/tdc_ut_cfx_io_cases.c included after exact current product function bodies; no copied/reimplemented map, strategy, frequency or mapping algorithms",
     "comparisons": {"target_capable_flat_words_per_pass": 2976, "target_capable_payload_words_per_pass": 2780, "regular_passes": 2, "host_only_cases_per_pass": 12, "host_only_comparisons_two_passes": 12082},
-    "new_product_failure": "CFX-033 cases20/21/22: 21 mismatches; product packet order/spacing contract retained. Case23 equal-band boundary and cases30..32 exact workbook input pass.",
+    "new_product_failure": "CFX-033 prior cases20/21/22 mismatches resolved by remote develop CIS changes; original packet order/spacing expected values retained.",
     "unresolved_policy": ["Map FS band mismatch still acknowledges reload with old bins", "Positive out-of-range stimulation/audio volume lacks upper-bound checks before fixed-table access", "Medium/unknown strategy performs no PCM write; safe output policy is undefined"],
     "hardware": "Board/flash/HEAR execution deferred as requested; no source hooks or linker/project edits added"
   },
   "criterion": {
-    "path": "docs/참고/인허가/사운드1/DHF/03_설계 출력/SW/펌웨어/SUVC-FW-TD24A 소프트웨어 유닛 검증 기준서.xlsx",
+    "path": "docs/tasks/인허가/20260929_1755_DHF-펌웨어-설계출력/qa/evidence-collection/unit-criterion-before.xlsx",
     "sheet": "기준서_유닛 검증",
     "columns": {"core": "B", "test_id": "D", "method": "F", "input": "H", "expected": "K"},
     "authority": "Current workbook methods/inputs/expected values; reconciliation model used only for names and source locators",
@@ -23,9 +23,9 @@
   "owned_units": {"CFX": [7, 10, 11, 12, 14, 15, 19, 26, 27, 33, 36, 37, 40], "HEAR": [1, 2]},
   "summary": {
     "host_executed_cfx_units": [7, 10, 11, 12, 15, 19, 26, 27, 33, 36, 37, 40],
-    "host_zero_mismatch_units": [7, 10, 11, 12, 19, 26, 27, 36, 37, 40],
-    "host_criteria_mismatch_units": [15, 33],
-    "host_mismatch_count_per_pass": 22,
+    "host_zero_mismatch_units": [7, 10, 11, 12, 19, 26, 27, 33, 36, 37, 40],
+    "host_criteria_mismatch_units": [15],
+    "host_mismatch_count_per_pass": 1,
     "host_passes_per_unit": 2,
     "analysis_only_cfx_units": [14],
     "partial_criterion_cfx_units": [11, 33],
@@ -94,12 +94,12 @@
       "command": "$env:PYTHONIOENCODING='utf8'; & 'C:/Users/EUNSU/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe' tests/unit/tdc_ut_cfx_io_check.py",
       "exit_code": 0,
       "checks": "tmp/unit-tests/cfx-io/checks.json",
-      "result": "12 real-product-function vector units executed twice: 10 zero-mismatch; 15 retains one mismatch; 33 sparse CIS inputs retain 21 mismatches per execution. Host-only map/calculation/dispatch extension has 12 cases executed twice with complete state restoration.",
+      "result": "12 real-product-function vector units executed twice: 11 zero-mismatch; 15 retains one mismatch; 33 sparse CIS inputs now pass unchanged expected vectors. Host-only map/calculation/dispatch extension has 12 cases executed twice with complete state restoration.",
       "record_evidence": "checks.json units has name/status/host_mismatch_count, separate full actual/expected arrays, mismatch offsets, exact GCC command and product source hashes",
       "boundary": "RAM DMIC/FIFO/FS/shared-memory/UART fixtures; SDK register/IRQ boundary declarations; no HEAR software execution",
       "arithmetic": "CFX long intermediates widened to host long long for bounded vectors because Windows long is 32 bits. Division boundary adapter uses integer arithmetic. Power override used only for x=2; forbidden approximate math calls assert. Target 24/48-bit ABI, saturation and hardware timing not certified.",
       "checks_performed": ["all flat metadata/payload comparisons", "exact raw I2S RESET restored", "shared structure and selected arrays/counters/UART restored", "override disabled after run", "one unit per run", "busy does not overwrite actual/expected", "pure done and HEAR pending/done cross guards", "release blocked while HEAR pending", "explicit unsupported IDs", "HEAR start/poll return target required and do not set done"],
-      "overall_exit_meaning": "Harness asserts exact mismatches for CFX-15 and CFX-33; exit 0 does not mean product PASS"
+      "overall_exit_meaning": "Harness asserts the exact mismatch for CFX-15; exit 0 does not mean product PASS"
     },
     {
       "id": "asip_objects",
@@ -208,17 +208,17 @@
     },
     {
       "core": "CFX", "unit": 33, "test_id": "SW-FW-UnitTest-CFX-ID-33", "name": "CIS 전략과 전략 선택", "method": "T",
-      "status": "CRITERIA_MISMATCH", "host_mismatch_count": 21, "word_count": 498, "scope": "partial_criterion",
-      "supported_input_mismatches": 19,
-      "inconsistent_cm3_input_mismatches": 2,
+      "status": "HOST_VECTOR_PASS", "host_mismatch_count": 0, "word_count": 498, "scope": "partial_criterion",
+      "supported_input_mismatches": 0,
+      "inconsistent_cm3_input_mismatches": 0,
       "criterion_32_band_mismatches": 0,
       "input_contract_review": "Cases20/22 (1/11 bands, stride2, transferable12) can be produced by the active CM3 calculation for pulse width14..33us; mapping Live validates bands1..32 and pulse width13..255us. Case21 (3 bands, stride1, transferable12) is a robustness input, not CM3-generated: stride1 produces transferable24. The criterion explicitly uses32 bands; cases30..32 pass. No actual mapping-app selection or device output was tested.",
       "functions": ["stimulationStrategy_CIS", "prepare_pcmStimulationPacketHeader"], "source": "src/1__cfx/signalProcessing/stimulationStrategy.c",
       "input": "Existing 32-channel reverse-order wrap cases plus ascending CIS band/stride pairs (1,2),(3,1),(11,2),(12,2), transferable12. Cases30..32 execute exact criterion amplitude100/ascending32-band input through three blocks. Host-only cases108..111 run actual dispatch/frequency/mapping/CIS/NofM functions for CIS, NofM phase0/1/0, medium and invalid99.",
       "expected": "Original32-channel packets/wrap unchanged. Sparse CIS outputs each available channel once, proper NOP spacing and rest of24 words NOP; equality12/12 wraps index0. Host pipeline uses vMag32 -> scaled2 and bounded power override2, coefficients A256/B=(100-i)*256 -> amplitude102-i. NofM selects0..15/interleaves0,8,...7,15; phase1 preserves prior computation despite changed vMag.",
-      "mismatch_cases": [{"case":20,"count":2,"meaning":"one band, stride2: pulse overwritten by NOP and next word unwritten"},{"case":21,"count":2,"meaning":"three bands, stride1: channel1 skipped"},{"case":22,"count":17,"meaning":"eleven bands, stride2: double index advance, pulse overwritten and six words unwritten"}],
+      "mismatch_cases": [],
       "target_needed": true, "missing": "Actual strategy dispatch and pipeline are PC-only because find_freq_rep_value directly reads HEAR_ADDR_VMAG_OUTPUT with no owned target memory hook. Host remaps input address and restores frequency/mapping/NofM/shared state; this is not actual HEAR/SDK execution. Medium/invalid99 no-op is characterization, not guaranteed safe NOP output.",
-      "review_required": "CIS sparse branch increments transferred index twice and writes padding at the same offset as the pulse. Expected packet order/24-frame initialization retained; product not modified. Reject invalid band/order/frame inputs before direct array access requires separate product fix authority."
+      "review_required": "Remote develop CIS fixes sparse writes, initializes all 24 words, bounds packet layout and wraps indices. Original expected packet order and PCM vectors retained; host vectors pass after merge. Device waveform is not verified."
     },
     {
       "core": "CFX", "unit": 36, "test_id": "SW-FW-UnitTest-CFX-ID-36", "name": "자극 패킷 헤더 구성", "method": "T",
@@ -243,7 +243,7 @@
       "input": "Vector1 prefix[0x11,0x22,0x33] +21 NOP0x25555. Vector2 distinct24 words0x50000|(i<<9)|(0x80+i). Initial read index17, modeSpecificCommand/nextNopStandby; actual fixed24 API.",
       "expected": "24 offsets/data/reading1/prior-index[17,0..22] exact; complete reading0/index23/modeNopStandby; all24 input buffer words unchanged",
       "target_needed": true, "limitation": "CFX reader bookkeeping covered. No unsupported busy-reject contract invented; concurrent CM3 writer overwrite prevention not proven. Parent reconciles SUVC040/SITC004 to actual fixed24.",
-      "nop_evidence": "driver_PCM.h and CM3 isdExecution/dirver_PCM.h define0x25555; isd_interface.c explicitly fills remaining frames with that NOP"
+      "nop_evidence": "driver_PCM.h and CM3 source/isd/tdc_isd_pcm.h define0x25555; isd_interface.c explicitly fills remaining frames with that NOP"
     },
     {
       "core": "HEAR", "unit": 1, "test_id": "SW-FW-UnitTest-HEAR-ID-1", "name": "오디오 절대값 최대값 연산", "method": "T",

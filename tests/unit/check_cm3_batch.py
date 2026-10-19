@@ -12,7 +12,7 @@ import tdc_ut_io_cm3_build as io_build
 
 ROOT = Path(__file__).resolve().parents[2]
 TEST = ROOT / "tests/unit"
-SOURCE = ROOT / "src/2__cm3/Cortex-M3-src/test"
+SOURCE = ROOT / "src/2__cm3/source/tests"
 
 
 def run(argv: list[str]) -> str:
@@ -60,13 +60,13 @@ def main() -> None:
             flags += ["-isystem", str(io_build.SDK / path)]
         sources = [io_build.CM3 / name for name in io_build.PRODUCTS] + [io_build.RUNNER]
         sources += [io_build.CM3 / name for name in (
-            "Cortex-M3-src/systemControl/cfx_cm3_sharedMemory.c",
-            "Cortex-M3-src/signalProcessing/commonDataProcessing.c",
-            "Cortex-M3-src/internalDevice/isd_interface.c",
-            "Cortex-M3-src/internalDevice/isd_interface_stimulationParaSetting.c",
-            "Cortex-M3-src/systemControl/batteryNPowerControl.c",
-            "Cortex-M3-src/systemControl/LedOutput.c", "Cortex-M3-src/error.c",
-            "Cortex-M3-src/QCC/snd_qcc.c")]
+            "source/cfx_link/tdc_shm.c",
+            "source/stim/tdc_stim_common.c",
+            "source/isd/tdc_isd.c",
+            "source/isd/tdc_isd_stim_para_setting.c",
+            "source/pwr/tdc_pwr_battery.c",
+            "source/led/tdc_led_output.c", "source/sys/tdc_sys_error.c",
+            "source/qcc/tdc_qcc.c")]
         sources += [SOURCE / "tdc_ut_batch_cm3.c", SOURCE / "tdc_ut_report.c", TEST / "cm3_batch_io_test.c"]
         io_inputs += sources
         io_before = io_build.source_hashes(io_inputs)

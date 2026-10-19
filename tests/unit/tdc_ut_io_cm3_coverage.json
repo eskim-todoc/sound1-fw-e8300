@@ -3,8 +3,8 @@
   "scope": "CM3 I/O and communications",
   "changed_paths": {
     "new": [
-      "src/2__cm3/Cortex-M3-src/test/tdc_ut_io_cm3.c",
-      "src/2__cm3/Cortex-M3-src/test/tdc_ut_io_cm3.h",
+      "src/2__cm3/source/tests/tdc_ut_io_cm3.c",
+      "src/2__cm3/source/tests/tdc_ut_io_cm3.h",
       "tests/unit/tdc_ut_io_cm3_build.py",
       "tests/unit/tdc_ut_io_cm3_host.c",
       "tests/unit/tdc_ut_io_cm3_host_fixture.h",
@@ -18,21 +18,21 @@
       "tests/unit/tdc_ut_io_cm3_touch_init.c"
     ],
     "test_gated_product_seams": [
-      "src/2__cm3/Cortex-M3-src/systemControl/driver_i2c.c",
-      "src/2__cm3/Cortex-M3-src/systemControl/driver_SPI.c",
-      "src/2__cm3/Cortex-M3-src/systemControl/tdc_touch_iqs323.c",
-      "src/2__cm3/Cortex-M3-src/systemControl/dirver_i2c_for_ISD.c",
-      "src/2__cm3/Cortex-M3-src/internalDevice/isd_interface_FPGA.c",
-      "src/2__cm3/Cortex-M3-src/internalDevice/driver_REN_ISL9122.c",
-      "src/2__cm3/Cortex-M3-src/BleCommunication/tdc_remote_gain_control.c",
-      "src/2__cm3/Cortex-M3-src/BleCommunication/ble_communication.c",
-      "src/2__cm3/Cortex-M3-src/BleCommunication/mappingControl.c",
-      "src/2__cm3/Cortex-M3-src/BleCommunication/ci_ble_control_ota.c"
+      "src/2__cm3/source/hal/tdc_hal_i2c.c",
+      "src/2__cm3/source/hal/tdc_hal_spi.c",
+      "src/2__cm3/source/touch/tdc_touch_iqs323.c",
+      "src/2__cm3/source/hal/tdc_hal_i2c_isd.c",
+      "src/2__cm3/source/isd/tdc_isd_fpga.c",
+      "src/2__cm3/source/drv/tdc_drv_isl9122.c",
+      "src/2__cm3/source/ble/sound1/tdc_ble_gain_control.c",
+      "src/2__cm3/source/ble/tdc_ble_communication.c",
+      "src/2__cm3/source/ble/mapping/tdc_ble_mapping.c",
+      "src/2__cm3/source/dfu/tdc_dfu_ble_ota.c"
     ],
     "existing_product_seams_unchanged_this_extension": true
   },
   "criteria": {
-    "path": "docs/참고/인허가/사운드1/DHF/03_설계 출력/SW/펌웨어/SUVC-FW-TD24A 소프트웨어 유닛 검증 기준서.xlsx",
+    "path": "docs/tasks/인허가/20260929_1755_DHF-펌웨어-설계출력/qa/evidence-collection/unit-criterion-before.xlsx",
     "sheet": "기준서_유닛 검증",
     "columns": {
       "core": "B",
@@ -178,8 +178,8 @@
     "full-project link by this worker"
   ],
   "api": {
-    "header": "src/2__cm3/Cortex-M3-src/test/tdc_ut_io_cm3.h",
-    "runner": "src/2__cm3/Cortex-M3-src/test/tdc_ut_io_cm3.c",
+    "header": "src/2__cm3/source/tests/tdc_ut_io_cm3.h",
+    "runner": "src/2__cm3/source/tests/tdc_ut_io_cm3.c",
     "automatic": "tdc_ut_io_cm3_run_unit(unit)",
     "observe": "tdc_ut_io_cm3_observe_unit(unit, positive_case_id)",
     "release": "tdc_ut_io_cm3_release()",
@@ -237,7 +237,7 @@
       "Judge external responses/files against criterion separately; OBSERVED alone is not acceptance"
     ],
     "root_dependencies": [
-      "Existing tdc_ut_cm3_error_exchange from error.c; this worker did not edit error.c",
+      "Existing tdc_ut_cm3_error_exchange from tdc_sys_error.c; this worker did not edit tdc_sys_error.c",
       "Root-owned tdc_ut_report_begin/poll; this worker did not edit reporter or main",
       "Existing g_tdc_ut_cm3_vector_done from pure runner; isolated IO host defines test-only stub",
       "Existing tdc_ut_cm3_battery_exchange, tdc_ut_cm3_led_exchange and g_tdc_ut_cm3_suppress_diagnostics; this worker did not edit their source files"
@@ -264,7 +264,7 @@
     ],
     "41": [
       "stimulationMode",
-      "isStimulParaIsSettingDone",
+      "tdc_isd_is_stim_para_setting_done",
       "cm3Command_mapChange",
       "cfx_Reloaded_MapdataFlag",
       "cm3_audioParameterCalculationDone_Flag",
@@ -279,10 +279,10 @@
       "bleSettingPacket.data[0]",
       "data[1]",
       "data[2]",
-      "snd_batt_get_percent",
+      "tdc_pwr_battery_get_percent",
       "snd_batt_get_state",
-      "snd_charger_get_state.chargerConnectorPluggedIn",
-      "tdc_cradle_get_cover_state",
+      "tdc_pwr_charger_get_state.chargerConnectorPluggedIn",
+      "tdc_pwr_cradle_get_cover_state",
       "tdc_led_get_ind_state",
       "DFU_connection_state",
       "is_i2s_source_cradle",
@@ -292,7 +292,7 @@
     ],
     "46": [
       "is_isd_passKeyMatch_processing_permission_not_crypto",
-      "getRemoteCommand",
+      "tdc_ble_remote_get_command",
       "system_opMode",
       "gain_table_index_a",
       "gain_table_index_b",
@@ -310,9 +310,9 @@
     "31_32_33": [
       "isd_controlState",
       "conneded_ISD",
-      "readConnectionCheckPcmState",
-      "isING_connectionCheckWithMapping",
-      "is_i2c_free",
+      "tdc_shm_read_connection_check_pcm_state",
+      "tdc_isd_is_connection_check_with_mapping",
+      "tdc_isd_is_i2c_free",
       "PCM_mode",
       "i2c_state",
       "i2c_error",
@@ -342,7 +342,7 @@
       "flashCommand",
       "isd_index",
       "map_index",
-      "isReadWriteMapDataFlashCommandDone",
+      "tdc_shm_is_read_write_map_data_flash_command_done",
       "connected_ISD_num",
       "repository.userSetting.mapNum",
       "repository.userSetting.stimulVolume",
@@ -353,7 +353,7 @@
     "48_49": [
       "mappingPacket.fetched_command",
       "mappingPacket.command",
-      "liveStimulation.subCommand",
+      "tdc_isd_map_live_step.subCommand",
       "ReadWriteMapData_Flash.slot_index",
       "ReadWriteMapData_Flash.map_index",
       "actual_mappingControl_return_sample_count",
@@ -363,8 +363,8 @@
       "last_connectionCheckCounter",
       "last_delayCounter",
       "last_isdControlCommand",
-      "specificStimulation.stimulationElectrodeNum",
-      "specificStimulation.stimulationLevel_uA",
+      "tdc_isd_map_specific_stim_step.stimulationElectrodeNum",
+      "tdc_isd_map_specific_stim_step.stimulationLevel_uA",
       "PCM_mode",
       "SPI_Tx[0]",
       "SPI_Tx[1]",
@@ -494,7 +494,7 @@
       "Fake FatFs/boot persistence in RAM; actual OTA/boot parser runs",
       "No device/NVM/filesystem image linked or reset executed",
       "Legacy PMIC original TUs selected only inside host wrappers; product board macros untouched",
-      "Original map command / ci_map TUs with path-keyed RAM filesystem; CRC/AES boundary faults injected; actual NVM not linked",
+      "Original map command / tdc_fs_map TUs with path-keyed RAM filesystem; CRC/AES boundary faults injected; actual NVM not linked",
       "Unsupported stimulation/clock/audit/debug calls abort rather than claiming success",
       "Actual tdc_touch.c included for private READY observation; timeout failed-init observations not PASS"
     ],
@@ -608,7 +608,7 @@
         "case": 9,
         "actual": 0,
         "expected": 240,
-        "field": "busy-error-header-overwritten",
+        "field": "busy-tdc_sys_error-header-overwritten",
         "runner": "host_extension"
       },
       {
@@ -616,7 +616,7 @@
         "case": 9,
         "actual": 0,
         "expected": 1,
-        "field": "busy-error-detail-overwritten",
+        "field": "busy-tdc_sys_error-detail-overwritten",
         "runner": "host_extension"
       }
     ],
@@ -641,7 +641,7 @@
         "tdc_touch_iqs323_reseed",
         "tdc_touch_iqs323_is_ati_done"
       ],
-      "source": "Cortex-M3-src/systemControl/tdc_touch_iqs323.c",
+      "source": "source/touch/tdc_touch_iqs323.c",
       "host_cases": 3,
       "host_words": 20,
       "host_mismatches": 0,
@@ -666,13 +666,13 @@
         "tdc_touch_iqs323_reseed",
         "tdc_touch_iqs323_read_debug"
       ],
-      "source": "Cortex-M3-src/systemControl/tdc_touch_iqs323.c",
+      "source": "source/touch/tdc_touch_iqs323.c",
       "host_cases": 8,
       "host_words": 64,
       "ram_cases": 9,
       "ram_words": 88,
       "mismatches": 0,
-      "tested": "ATI active/done/error, pressed/prox, EEEE glitch, read/write failure, ULP, reATI C0 54 07, reseed C0 58 07, little-endian counts/LTA",
+      "tested": "ATI active/done/tdc_sys_error, pressed/prox, EEEE glitch, read/write failure, ULP, reATI C0 54 07, reseed C0 58 07, little-endian counts/LTA",
       "missing": "Real RDY timing/timeout and sensor calibration performance not verified. RAM substitutes raw I2C and ready window, not status interpretation.",
       "observer": "2_10"
     },
@@ -681,20 +681,20 @@
       "method": "T",
       "status": "target_ram_and_host_actual_isr",
       "actual_functions": [
-        "i2c_startWriteData",
-        "i2c_startReadData",
+        "tdc_hal_i2c_start_write",
+        "tdc_hal_i2c_start_read",
         "I2C_0_IRQHandler",
-        "get_i2cDriverStatus",
-        "setI2cDriverStatusIdle",
-        "init_I2c"
+        "tdc_hal_i2c_get_driver_status",
+        "tdc_hal_i2c_set_driver_status_idle",
+        "tdc_hal_i2c_init"
       ],
-      "source": "Cortex-M3-src/systemControl/driver_i2c.c",
+      "source": "source/hal/tdc_hal_i2c.c",
       "host_cases": 4,
       "host_words": 26,
       "ram_cases": 4,
       "ram_words": 39,
       "mismatches": 0,
-      "tested": "TX 56 78, RX 12 34, ACK/NACK/STOP, stop-done/error, busy refusal, idle cleanup; actual start and ISR state branches execute through RAM MMIO/IRQ boundary",
+      "tested": "TX 56 78, RX 12 34, ACK/NACK/STOP, stop-done/tdc_sys_error, busy refusal, idle cleanup; actual start and ISR state branches execute through RAM MMIO/IRQ boundary",
       "missing": "Physical IRQ/NVIC, clock/register initialization and electrical timing not verified. RAM reset action is not actual hardware initialization.",
       "observer": "25",
       "operator": "RAM automatic vectors safe with quiesced cores; physical bus checks remain separate."
@@ -704,13 +704,13 @@
       "method": "T",
       "status": "target_ram_and_host",
       "actual_functions": [
-        "writeDataToSpiTxBuff",
-        "enable_ReadCommandForSPI_Master",
-        "clear_ReadCommandForSPI_Master",
-        "clear_SPI_Tx_Buffer",
-        "isSpiTxBuffEmpty"
+        "tdc_hal_spi_write_tx_buffer",
+        "tdc_hal_spi_enable_master_read_command",
+        "tdc_hal_spi_clear_master_read_command",
+        "tdc_hal_spi_clear_tx_buffer",
+        "tdc_hal_spi_is_tx_buffer_empty"
       ],
-      "source": "Cortex-M3-src/systemControl/driver_SPI.c",
+      "source": "source/hal/tdc_hal_spi.c",
       "host_cases": 2,
       "host_words": 37,
       "ram_cases": 2,
@@ -726,9 +726,9 @@
       "status": "analysis_available_target_observer",
       "actual_functions": [],
       "source": [
-        "Cortex-M3-src/internalDevice/isd_interface.c:isd_interface",
-        "Cortex-M3-src/internalDevice/isd_interface_init_FPGA.c:init_txPowerIC/init_FPGA/init_ISD",
-        "Cortex-M3-src/internalDevice/isd_interface_init_ISD.c:isd_path_Open/enableStimul_10v/read_Connected_ISD_id"
+        "source/isd/tdc_isd.c:isd_interface",
+        "source/isd/tdc_isd_init_fpga.c:tdc_isd_init_tx_power_ic/tdc_isd_init_fpga/tdc_isd_init_device",
+        "source/isd/tdc_isd_init.c:tdc_isd_path_open/tdc_isd_enable_stimul_10v/tdc_isd_read_connected_id"
       ],
       "analysis": "isd_interface sequences PowerIC_Reset -> PowerIC_OK -> FPGA_OK -> ISD_Power_OK -> pathOpen_OK -> stimul_10V_OK; counter phases issue PMIC/FPGA setup and verify received values before later states.",
       "analysis_checks": [
@@ -736,7 +736,7 @@
         "Review failed read/write return handling and state rollback",
         "Do not equate transmitted PCM or requested state with received link success"
       ],
-      "analysis_limit": "Reset_REN_ISL9122 does not check each individual I/O return; init_txPowerIC advances its counter after a reset failure. Analysis is not a runtime PASS or a blanket failure-path acceptance.",
+      "analysis_limit": "tdc_drv_isl9122_reset does not check each individual I/O return; tdc_isd_init_tx_power_ic advances its counter after a reset failure. Analysis is not a runtime PASS or a blanket failure-path acceptance.",
       "missing": "Automatic multi-tick initialization vectors not implemented; no real power/reset sequence is run.",
       "observer": "31_32_33"
     },
@@ -745,23 +745,23 @@
       "method": "D",
       "status": "target_observer_manual_not_runtime_verified",
       "actual_functions": [],
-      "source": "Cortex-M3-src/internalDevice/isd_interface.c:update_isd_LinkConnection_byBacktel_withLiveStimulation",
+      "source": "source/isd/tdc_isd.c:tdc_isd_update_link_by_backtel_live",
       "observed_sources": [
-        "s_isd_state via snd_isd_interface_get_state",
-        "readConnectionCheckPcmState",
-        "is_i2c_free",
+        "s_isd_state via tdc_isd_get_state",
+        "tdc_shm_read_connection_check_pcm_state",
+        "tdc_isd_is_i2c_free",
         "actual I2C state/trace"
       ],
       "missing": "Multi-tick live backtel/power-feedback and debounce sequence not automatically injected; snapshot does not execute the link function.",
       "observer": "31_32_33",
-      "operator": "Prepare normal/no-response/error independently; invoke actual live check, record connection and PCM fired flag before/after cleanup."
+      "operator": "Prepare normal/no-response/tdc_sys_error independently; invoke actual live check, record connection and PCM fired flag before/after cleanup."
     },
     {
       "id": 33,
       "method": "D",
       "status": "target_observer_manual_not_runtime_verified",
       "actual_functions": [],
-      "source": "Cortex-M3-src/internalDevice/isd_interface.c:update_isd_LinkConnection_byBacktel_withMapping/isING_connectionCheckWithMapping",
+      "source": "source/isd/tdc_isd.c:tdc_isd_update_link_by_backtel_mapping/tdc_isd_is_connection_check_with_mapping",
       "observed_sources": [
         "isINGconnectionCheck_WithMapping",
         "s_isd_state",
@@ -769,19 +769,19 @@
       ],
       "missing": "Connection-check counter/start/progress/end and FPGA/ISD response sequence not scripted; no unsafe device loop run.",
       "observer": "31_32_33",
-      "operator": "Actual mapping check with independent normal/error fixture; capture start/progress/end and ensure progress flag clears."
+      "operator": "Actual mapping check with independent normal/tdc_sys_error fixture; capture start/progress/end and ensure progress flag clears."
     },
     {
       "id": 34,
       "method": "A",
       "status": "analysis_and_target_ram_and_host",
       "actual_functions": [
-        "write_FPGA_systemResgister_1st",
-        "write_FPGA_enable_RF_tx",
-        "write_FPGA_disable_RF_tx",
-        "write_FPGA_reset"
+        "tdc_isd_fpga_write_systemregister_1st",
+        "tdc_isd_fpga_write_enable_rf_tx",
+        "tdc_isd_fpga_write_disable_rf_tx",
+        "tdc_isd_fpga_write_reset"
       ],
-      "source": "Cortex-M3-src/internalDevice/isd_interface_FPGA.c",
+      "source": "source/isd/tdc_isd_fpga.c",
       "host_cases": 2,
       "host_words": 16,
       "ram_cases": 1,
@@ -797,18 +797,18 @@
       "method": "A",
       "status": "analysis_and_target_ram_and_host",
       "actual_functions": [
-        "write_change_TxPowerLevel",
-        "read_txPowerLevel",
+        "tdc_isd_fpga_write_change_tx_power_level",
+        "tdc_isd_fpga_read_tx_power_level",
         "write_REN_ISL9122_register_byCM3_I2C",
         "read_REN_ISL9122_register_byCM3_I2C"
       ],
-      "source": "Cortex-M3-src/internalDevice/isd_interface_FPGA.c and driver_REN_ISL9122.c",
+      "source": "source/isd/tdc_isd_fpga.c and tdc_drv_isl9122.c",
       "host_cases": 2,
       "host_words": 16,
       "ram_cases": 2,
       "ram_words": 20,
       "mismatches": 0,
-      "analysis": "Current Board_1_5 writes raw code to ISL9122 VoltageSet. MinTxPowerValue/MaxVoltageControlValue are checked, not a fabricated old-board step lookup. Functions have no T/C array writes.",
+      "analysis": "Current Board_1_5 writes raw code to ISL9122 VoltageSet. TDC_DRV_PMIC_MIN_TX_POWER_VALUE/TDC_DRV_PMIC_MAX_VOLTAGE_CONTROL_VALUE are checked, not a fabricated old-board step lookup. Functions have no T/C array writes.",
       "tested": "Minimum/maximum codes, PMIC address 18 and register, same read code",
       "missing": "Actual voltage measurement not run; observer cache is not a real PMIC register reading.",
       "observer": "34_35_36_37_40"
@@ -818,19 +818,19 @@
       "method": "T",
       "status": "partial_target_ram_and_host",
       "actual_functions": [
-        "check_FPGA_PCM_Error",
-        "check_FPGA_FIFO_empty",
-        "read_FPGA_backtel_FIFO",
-        "read_FPGA_version"
+        "tdc_isd_fpga_check_fpga_pcm_error",
+        "tdc_isd_fpga_check_fpga_fifo_empty",
+        "tdc_isd_fpga_read_backtel_fifo",
+        "tdc_isd_fpga_read_version"
       ],
-      "source": "Cortex-M3-src/internalDevice/isd_interface_FPGA.c",
+      "source": "source/isd/tdc_isd_fpga.c",
       "host_cases": 9,
       "host_words": 54,
       "ram_cases": 10,
       "ram_words": 71,
       "mismatches": 0,
-      "tested": "No error and bits 0..4 individually, FIFO empty 0/1, RX 12 34 length 2, raw A5 version on RAM path; host read failure",
-      "missing": "Version-nibble display in init_FPGA ((raw>>4)&0F, raw&0F) is source analysis only, not executed by these vectors. All individual exported error-state fields and physical FIFO timing not verified.",
+      "tested": "No tdc_sys_error and bits 0..4 individually, FIFO empty 0/1, RX 12 34 length 2, raw A5 version on RAM path; host read failure",
+      "missing": "Version-nibble display in tdc_isd_init_fpga ((raw>>4)&0F, raw&0F) is source analysis only, not executed by these vectors. All individual exported tdc_sys_error-state fields and physical FIFO timing not verified.",
       "observer": "34_35_36_37_40"
     },
     {
@@ -838,12 +838,12 @@
       "method": "A",
       "status": "analysis_and_target_ram_and_host",
       "actual_functions": [
-        "chang_PulseWidth",
-        "chang_PulseWidth_minimum",
-        "change_8BitBacktel_mode",
-        "disable_Backtel"
+        "tdc_isd_fpga_change_pulse_width",
+        "tdc_isd_fpga_change_pulse_width_minimum",
+        "tdc_isd_fpga_change_8_bit_backtel_mode",
+        "tdc_isd_fpga_disable_backtel"
       ],
-      "source": "Cortex-M3-src/internalDevice/isd_interface_FPGA.c",
+      "source": "source/isd/tdc_isd_fpga.c",
       "host_cases": 2,
       "host_words": 15,
       "ram_cases": 2,
@@ -863,14 +863,14 @@
         "read_REN_ISL91128_register_byCM3_I2C",
         "Reset_REN_ISL91128"
       ],
-      "source": "Cortex-M3-src/internalDevice/driver_REN_ISL91128.c",
+      "source": "source/drv/tdc_drv_isl91128.c",
       "missing": "Failed reset read consumes uninitialized local readValue; not executed. No board voltage/physical I2C; current Board_1_5 target remains inactive.",
       "observer": "38_39",
       "operator": "Host legacy selection is local to test wrapper; original processorDirective and project unchanged. Not a supported current-target test.",
       "extended_cases": 7,
       "extended_payload_comparisons": 20,
       "host_mismatches": 0,
-      "tested": "Original TU included under host-only Board_1_2: slave 0x1C, write bytes, read value, preamble/data-phase bus error and idle, matching/nonmatching reset readback."
+      "tested": "Original TU included under host-only Board_1_2: slave 0x1C, write bytes, read value, preamble/data-phase bus tdc_sys_error and idle, matching/nonmatching reset readback."
     },
     {
       "id": 39,
@@ -884,14 +884,14 @@
         "Reset_disableOutup_REN_ISL98608",
         "Reset_REN_ISL98608"
       ],
-      "source": "Cortex-M3-src/internalDevice/driver_REN_ISL98608.c:enable_VP_REN_ISL98608/disable_REN_ISL98608/Reset_disableOutup_REN_ISL98608",
+      "source": "source/drv/tdc_drv_isl98608.c:enable_VP_REN_ISL98608/disable_REN_ISL98608/Reset_disableOutup_REN_ISL98608",
       "missing": "0x05 disable write is raw characterization, not proof of output disabled. Inactive alternative readback branch and real electrical output not tested.",
       "observer": "38_39",
       "operator": "Legacy wrapper only. Failures recorded; current Board_1_5 target remains inactive.",
       "extended_cases": 13,
       "extended_payload_comparisons": 34,
       "host_mismatches": 4,
-      "tested": "Original Board_1_3 TU with header-selected Error_ISL98608_ReadByte; write/read, both error phases, enable/disable/reset raw writes. Four high-level operations return 1 when I2C fails, expected 0."
+      "tested": "Original Board_1_3 TU with header-selected TDC_DRV_ISL98608_ERR_READ_BYTE; write/read, both tdc_sys_error phases, enable/disable/reset raw writes. Four high-level operations return 1 when I2C fails, expected 0."
     },
     {
       "id": 40,
@@ -899,9 +899,9 @@
       "status": "target_ram_and_host",
       "actual_functions": [
         "read_REN_ISL9122_register_byCM3_I2C",
-        "Reset_REN_ISL9122"
+        "tdc_drv_isl9122_reset"
       ],
-      "source": "Cortex-M3-src/internalDevice/driver_REN_ISL9122.c",
+      "source": "source/drv/tdc_drv_isl9122.c",
       "host_cases": 3,
       "host_words": 18,
       "ram_cases": 3,
@@ -916,7 +916,7 @@
       "method": "D",
       "status": "target_observer_manual_not_runtime_verified",
       "actual_functions": [],
-      "source": "Cortex-M3-src/internalDevice/isd_interface_stimulationParaSetting.c:settingStimulPara_monoPolarMode/settingStimulPara_biPolarMode/stimulationSetting/isStimulParaIsSettingDone",
+      "source": "source/isd/tdc_isd_stim_para_setting.c:tdc_isd_set_stim_para_monopolar/tdc_isd_set_stim_para_bipolar/tdc_isd_stim_setting_step/tdc_isd_is_stim_para_setting_done",
       "observed_sources": [
         "stimulationParameterSettingDone",
         "currentMapData.stimulationMode",
@@ -933,43 +933,43 @@
       "method": "T",
       "status": "partial_host_storage_known_contract_fail_target_observer",
       "actual_functions": [
-        "ci_map_read_map_data",
-        "ci_map_write_map_data",
-        "ci_map_read_isd_info",
-        "ci_map_write_isd_info",
-        "setReadWriteMapDataFlashCommand",
-        "write_stimulPara_atFlash"
+        "tdc_fs_map_read_map_data",
+        "tdc_fs_map_write_map_data",
+        "tdc_fs_map_read_isd_info",
+        "tdc_fs_map_write_isd_info",
+        "tdc_shm_set_read_write_map_data_flash_command",
+        "tdc_isd_map_write_stim_para"
       ],
       "source": [
-        "Cortex-M3-src/internalDevice/isd_interface_mapping_readWrtieMapData.c",
-        "Cortex-M3-src/systemControl/cfx_cm3_sharedMemory.c:setReadWriteMapDataFlashCommand",
-        "Gen1_5/FS/ci_map.c (read locator only; forbidden user-dirty file was not edited)"
+        "source/isd/tdc_isd_map_data.c",
+        "source/cfx_link/tdc_shm.c:tdc_shm_set_read_write_map_data_flash_command",
+        "source/fs/tdc_fs_map.c (read locator only; forbidden user-dirty file was not edited)"
       ],
       "observed_sources": [
         "ReadWriteCommand_ForFlash",
-        "isReadWriteMapDataFlashCommandDone",
+        "tdc_shm_is_read_write_map_data_flash_command_done",
         "repositoryForReadWriteMapData.userSettingValue_mapData"
       ],
-      "missing": "CRC/AES function boundary returns injected failure; cryptography/CRC implementation, physical FatFs/NVM persistence and power loss not tested. Read command copies loaded RAM; explicit ci_map reload proves RAM-file roundtrip separately.",
+      "missing": "CRC/AES function boundary returns injected failure; cryptography/CRC implementation, physical FatFs/NVM persistence and power loss not tested. Read command copies loaded RAM; explicit tdc_fs_map reload proves RAM-file roundtrip separately.",
       "observer": "42_43",
-      "operator": "Host-only link of actual ci_map and fn_from_cfx_eeprom_*; no product source modification or target automatic extension.",
+      "operator": "Host-only link of actual tdc_fs_map and fn_from_cfx_eeprom_*; no product source modification or target automatic extension.",
       "extended_cases": 10,
       "extended_payload_comparisons": 366,
       "host_mismatches": 1,
-      "tested": "RAM path-keyed files for all slots/maps. Four read pairs and 32 T/C elements each; actual write command and file reload; unselected map retained; info CRC/AES request; read error, short read, write error. Failed write still normal 0x6D ACK."
+      "tested": "RAM path-keyed files for all slots/maps. Four read pairs and 32 T/C elements each; actual write command and file reload; unselected map retained; info CRC/AES request; read tdc_sys_error, short read, write tdc_sys_error. Failed write still normal 0x6D ACK."
     },
     {
       "id": 43,
       "method": "D",
       "status": "partial_host_storage_known_contract_fail_target_observer",
       "actual_functions": [
-        "reset_NVM_MapData",
-        "reset_NVM_Selected_ISD_allData",
-        "reset_NVM_All_ISD_allData",
-        "fn_erase_Mapdata_mappingApp",
-        "ci_map_write_map_data"
+        "tdc_isd_map_reset_nvm_map_data",
+        "tdc_isd_map_reset_nvm_selected",
+        "tdc_isd_map_reset_nvm_all",
+        "tdc_cfx_eeprom_erase_mapdata_mapping_app",
+        "tdc_fs_map_write_map_data"
       ],
-      "source": "Cortex-M3-src/internalDevice/isd_interface_mapping_readWrtieMapData.c:reset_NVM_MapData/reset_NVM_Selected_ISD_allData/reset_NVM_All_ISD_allData",
+      "source": "source/isd/tdc_isd_map_data.c:tdc_isd_map_reset_nvm_map_data/tdc_isd_map_reset_nvm_selected/tdc_isd_map_reset_nvm_all",
       "observed_sources": [
         "ReadWriteCommand_ForFlash.flashCommand/isd_index/map_index",
         "SPI header/length"
@@ -990,14 +990,14 @@
         "fetch_readDataForBleSetting",
         "setting_nrf_ble_adv_info"
       ],
-      "source": "Cortex-M3-src/BleCommunication/ble_communication.c",
+      "source": "source/ble/tdc_ble_communication.c",
       "host_cases": 9,
       "host_words": 89,
       "ram_cases": 9,
       "ram_words": 89,
       "mismatches": 0,
       "tested": "34 power percent/charger/cover, 35 LED and actual DFU flag, 36 cradle/other I2S source; actual ACK/status/length and command cleanup. Invalid charger/source/cover inputs included.",
-      "missing": "Full bleCommunication SPI distribution plus remote/mapping state machines and QCC internals not run. LED request is not physical LED output.",
+      "missing": "Full tdc_ble_communication_step SPI distribution plus remote/mapping state machines and QCC internals not run. LED request is not physical LED output.",
       "observer": "45",
       "operator": "Use concrete E8300 packet cases in criteria JSON; system integration evidence remains separate."
     },
@@ -1006,13 +1006,13 @@
       "method": "D",
       "status": "partial_host_actual_dispatch_known_contract_fail_target_observer",
       "actual_functions": [
-        "fetch_remoteControlPacket",
+        "tdc_ble_remote_fetch_packet",
         "remoteControl",
-        "getRemoteCommand",
-        "clear_isd_passKeyMatchResult",
-        "set_isd_passKeyMatchResult"
+        "tdc_ble_remote_get_command",
+        "tdc_ble_remote_clear_passkey_match",
+        "tdc_ble_remote_set_passkey_match"
       ],
-      "source": "Cortex-M3-src/BleCommunication/remoteControl.c:fetch_remoteControlPacket/remoteControl/is_isd_passKeyMatch/getRemoteCommand",
+      "source": "source/ble/remote/tdc_ble_remote.c:tdc_ble_remote_fetch_packet/remoteControl/tdc_ble_remote_is_passkey_match/tdc_ble_remote_get_command",
       "observed_sources": [
         "isd_PassKeyMatchResult via getter",
         "remoteDataPacket.command",
@@ -1032,10 +1032,10 @@
       "method": "D",
       "status": "target_ram_and_host",
       "actual_functions": [
-        "tdc_remote_gain_control_init",
-        "tdc_remote_gain_control_handle"
+        "tdc_ble_gain_control_init",
+        "tdc_ble_gain_control_handle"
       ],
-      "source": "Cortex-M3-src/BleCommunication/tdc_remote_gain_control.c",
+      "source": "source/ble/sound1/tdc_ble_gain_control.c",
       "host_cases": 10,
       "host_words": 114,
       "ram_cases": 10,
@@ -1051,10 +1051,10 @@
       "status": "partial_host_actual_mapping_state_target_observer",
       "actual_functions": [
         "mappingControl",
-        "fetch_mappingControlPacket",
-        "changeMappingCommandBleDisconneted"
+        "tdc_ble_mapping_fetch_packet",
+        "tdc_ble_mapping_change_command_ble_disconnected"
       ],
-      "source": "Cortex-M3-src/BleCommunication/mappingControl.c:updateMappingProgramConnection/changeMappingCommandBleDisconneted/changeMappingCommandWaitingForBleOff/mappingControl",
+      "source": "source/ble/mapping/tdc_ble_mapping.c:tdc_ble_mapping_update_program_connection/tdc_ble_mapping_change_command_ble_disconnected/tdc_ble_mapping_change_command_waiting_ble_off/mappingControl",
       "observed_sources": [
         "mappingPacket.fetched_command versus command",
         "actual mappingControl return snapshot with sample_count",
@@ -1073,9 +1073,9 @@
       "method": "D",
       "status": "partial_host_actual_parser_known_contract_fail_target_observer",
       "actual_functions": [
-        "fetch_mappingControlPacket"
+        "tdc_ble_mapping_fetch_packet"
       ],
-      "source": "Cortex-M3-src/BleCommunication/mappingControl.c:fetch_mappingControlPacket/mappingControl",
+      "source": "source/ble/mapping/tdc_ble_mapping.c:tdc_ble_mapping_fetch_packet/mappingControl",
       "observed_sources": [
         "actual fetched/active command",
         "live subCommand",
@@ -1089,20 +1089,20 @@
       "extended_cases": 12,
       "extended_payload_comparisons": 27,
       "host_mismatches": 3,
-      "tested": "Read and erase slot/map boundaries, busy behavior, disconnect exception, connect queue, out-of-order map data. Zero-slot map accepted. Busy protocol error is overwritten by default response."
+      "tested": "Read and erase slot/map boundaries, busy behavior, disconnect exception, connect queue, out-of-order map data. Zero-slot map accepted. Busy protocol tdc_sys_error is overwritten by default response."
     },
     {
       "id": 50,
       "method": "D",
       "status": "partial_target_ram_and_host",
       "actual_functions": [
-        "ci_ble_fetch_packet_ota_start_end",
+        "tdc_dfu_ble_fetch_ota_start_end",
         "fetch_readDataForBleSetting",
         "setting_nrf_ble_adv_info",
-        "tdc_get_ota_dfu_conn_state",
-        "tdc_set_ota_dfu_conn_state"
+        "tdc_dfu_get_conn_state",
+        "tdc_dfu_set_conn_state"
       ],
-      "source": "Cortex-M3-src/BleCommunication/ci_ble_control_ota.c and ble_communication.c",
+      "source": "source/dfu/tdc_dfu_ble_ota.c and tdc_ble_communication.c",
       "host_cases": 4,
       "host_words": 36,
       "ram_cases": 4,
@@ -1117,17 +1117,17 @@
       "method": "D",
       "status": "partial_target_ram_and_host_contract_fail",
       "actual_functions": [
-        "ci_ble_fetch_packet_ota",
-        "ci_ble_fetch_packet_boot (host-only)"
+        "tdc_dfu_ble_fetch_ota",
+        "tdc_dfu_ble_fetch_boot (host-only)"
       ],
-      "source": "Cortex-M3-src/BleCommunication/ci_ble_control_ota.c and ci_ble_control_boot.c",
+      "source": "source/dfu/tdc_dfu_ble_ota.c and tdc_dfu_ble_boot.c",
       "host_cases": 23,
       "host_words": 196,
       "ram_cases": 23,
       "ram_words": 228,
       "mismatches": 4,
       "tested": "Both slots/all four file types, exact /slot/name, 2-byte completion, drive/close cleanup, invalid slot3/file5 READ, out-of-order index, short/write/open failures and current-slot rejection on RAM target branches. Host additionally boot info/current/invalid slot rejection/status write failure without reset.",
-      "missing": "Actual persistence, accepted boot/reset, all I/O failures, malformed lengths and CRC/AES not tested. Tail>16 and invalid file WRITE intentionally not run due existing unsafe bounds/path behavior. Invalid READ selection error is overwritten by ACK and remains FAIL.",
+      "missing": "Actual persistence, accepted boot/reset, all I/O failures, malformed lengths and CRC/AES not tested. Tail>16 and invalid file WRITE intentionally not run due existing unsafe bounds/path behavior. Invalid READ selection tdc_sys_error is overwritten by ACK and remains FAIL.",
       "observer": "50_51"
     }
   ]
