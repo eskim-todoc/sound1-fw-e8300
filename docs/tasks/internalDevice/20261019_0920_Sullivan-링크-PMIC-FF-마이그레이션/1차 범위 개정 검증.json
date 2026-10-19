@@ -1,0 +1,159 @@
+{
+  "checkedAt": "2026-10-19T05:45:00.479Z",
+  "kind": "Planning document checks and read-only source evidence; not firmware/hardware tests",
+  "userTargets": {
+    "allowedOperationalMinimum": 112,
+    "normalDefaultMinimum": 140,
+    "mappingDefaultMinimum": 172,
+    "defaultMaximum": 214,
+    "periodUnitMs": 100,
+    "defaultPeriod": 3,
+    "coinDefault": 1,
+    "ffImplemented": false
+  },
+  "sources": [
+    {
+      "repository": "Sound1",
+      "path": "E:/workspace/projects/sound1-fw-e8300-backup/src/2__cm3/Cortex-M3-src/BleCommunication/mappingControl.c",
+      "sha256": "96d4023fe54e79fbd8c006672e6d1726ac610751d7abdd086a5c55258f763c08",
+      "bytes": 126698
+    },
+    {
+      "repository": "Sound1",
+      "path": "E:/workspace/projects/sound1-fw-e8300-backup/src/2__cm3/Cortex-M3-src/internalDevice/isd_interface_mapping_Live.c",
+      "sha256": "d2452498848074c9e2611a00ed8f0519aa101b7cb8e1e2bbc56cb2dff2b67e38",
+      "bytes": 36021
+    },
+    {
+      "repository": "Sullivan",
+      "path": "E:/workspace/projects/sullivan-1-5-fw-hw-test-link-pwr-bt-period/Sullivan1_5__CM3/Cortex-M3-src/BleCommunication/mappingControl.c",
+      "sha256": "53962f8d968bf0954c09bf8067561e311b8af4747173c1ee0b14e6015505b2f8",
+      "bytes": 130586
+    },
+    {
+      "repository": "Sullivan",
+      "path": "E:/workspace/projects/sullivan-1-5-fw-hw-test-link-pwr-bt-period/Sullivan1_5__CM3/Cortex-M3-src/internalDevice/isd_interface_mapping_Live.c",
+      "sha256": "f6e2d97a58a4b0541664257a4f78494e8cd4ccc39c18aeb6fbc87af170931652",
+      "bytes": 37902
+    },
+    {
+      "repository": "Sullivan",
+      "path": "E:/workspace/projects/sullivan-1-5-fw-hw-test-link-pwr-bt-period/Sullivan1_5__CM3/Cortex-M3-src/internalDevice/isd_interface.c",
+      "sha256": "ab90883de32af146254e391610e1462927cb7d2db1f3293e20eef51aa794e1e7",
+      "bytes": 148846
+    },
+    {
+      "repository": "Sullivan",
+      "path": "E:/workspace/projects/sullivan-1-5-fw-hw-test-link-pwr-bt-period/Sullivan1_5__CM3/Cortex-M3-src/internalDevice/driver_REN_ISL9122.h",
+      "sha256": "df90a7b3a44627ca8be01293c34dcb67192a60566dd0d434b16be4a00ced57aa",
+      "bytes": 3581
+    }
+  ],
+  "checks": [
+    {
+      "name": "PMIC code 112",
+      "pass": true,
+      "actual": {
+        "code": 112,
+        "volts": 2.8
+      }
+    },
+    {
+      "name": "PMIC code 140",
+      "pass": true,
+      "actual": {
+        "code": 140,
+        "volts": 3.5
+      }
+    },
+    {
+      "name": "PMIC code 172",
+      "pass": true,
+      "actual": {
+        "code": 172,
+        "volts": 4.3
+      }
+    },
+    {
+      "name": "PMIC code 214",
+      "pass": true,
+      "actual": {
+        "code": 214,
+        "volts": 5.35
+      }
+    },
+    {
+      "name": "PMIC code 75",
+      "pass": true,
+      "actual": {
+        "code": 75,
+        "volts": 1.875
+      }
+    },
+    {
+      "name": "user values in source plan",
+      "pass": true
+    },
+    {
+      "name": "old 164 recommendation removed",
+      "pass": true
+    },
+    {
+      "name": "FF excluded, not merely switched OFF",
+      "pass": true
+    },
+    {
+      "name": "phase-one completes without FF",
+      "pass": true
+    },
+    {
+      "name": "normal minimum and init exception separated",
+      "pass": true
+    },
+    {
+      "name": "donor actual normal 140",
+      "pass": true
+    },
+    {
+      "name": "donor actual mapping 172",
+      "pass": true
+    },
+    {
+      "name": "donor coin1 and step4",
+      "pass": true
+    },
+    {
+      "name": "donor settings lower 72 differs from new112",
+      "pass": true
+    },
+    {
+      "name": "both mapping idle reload constant",
+      "pass": true
+    },
+    {
+      "name": "both mapping standby hardcoded300",
+      "pass": true
+    },
+    {
+      "name": "donor dedicated mapping no coin",
+      "pass": true
+    },
+    {
+      "name": "mapping coin difference stated",
+      "pass": true
+    },
+    {
+      "name": "mapping schedulers and measurement exclusion in plan",
+      "pass": true
+    },
+    {
+      "name": "FF unsupported protocol reserved",
+      "pass": true
+    },
+    {
+      "name": "no unexpected CJK or replacement text",
+      "pass": true
+    }
+  ],
+  "failures": []
+}

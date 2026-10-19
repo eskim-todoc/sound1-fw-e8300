@@ -1,0 +1,959 @@
+{
+  "checkedAt": "2026-10-19T06:31:35.737Z",
+  "checks": [
+    {
+      "name": "initial tab state",
+      "pass": true,
+      "actual": "panel-overview"
+    },
+    {
+      "name": "nine tab panels",
+      "pass": true,
+      "actual": 9
+    },
+    {
+      "name": "fourteen source anchors",
+      "pass": true,
+      "actual": 14
+    },
+    {
+      "name": "nine native HTML diagrams",
+      "pass": true,
+      "actual": 9
+    },
+    {
+      "name": "no zoom dialog or button",
+      "pass": true
+    },
+    {
+      "name": "KoPubWorld Batang actual render",
+      "pass": true,
+      "actual": [
+        {
+          "selector": ".lead h2",
+          "fonts": [
+            {
+              "familyName": "KoPubWorldBatang",
+              "postScriptName": "KoPubWorldBatangBold",
+              "isCustomFont": false,
+              "glyphCount": 28
+            }
+          ]
+        },
+        {
+          "selector": ".lead>p",
+          "fonts": [
+            {
+              "familyName": "KoPubWorldBatang",
+              "postScriptName": "KoPubWorldBatangMedium",
+              "isCustomFont": false,
+              "glyphCount": 84
+            }
+          ]
+        },
+        {
+          "selector": ".tabs button[aria-selected=true] .tab-text b",
+          "fonts": [
+            {
+              "familyName": "KoPubWorldBatang",
+              "postScriptName": "KoPubWorldBatangBold",
+              "isCustomFont": false,
+              "glyphCount": 2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "select tab overview",
+      "pass": true,
+      "actual": "panel-overview"
+    },
+    {
+      "name": "select tab link",
+      "pass": true,
+      "actual": "panel-link"
+    },
+    {
+      "name": "select tab pmic",
+      "pass": true,
+      "actual": "panel-pmic"
+    },
+    {
+      "name": "select tab ff1",
+      "pass": true,
+      "actual": "panel-ff1"
+    },
+    {
+      "name": "select tab ff3",
+      "pass": true,
+      "actual": "panel-ff3"
+    },
+    {
+      "name": "select tab protocol",
+      "pass": true,
+      "actual": "panel-protocol"
+    },
+    {
+      "name": "select tab shared",
+      "pass": true,
+      "actual": "panel-shared"
+    },
+    {
+      "name": "select tab plan",
+      "pass": true,
+      "actual": "panel-plan"
+    },
+    {
+      "name": "select tab evidence",
+      "pass": true,
+      "actual": "panel-evidence"
+    },
+    {
+      "name": "vertical ArrowDown",
+      "pass": true
+    },
+    {
+      "name": "End selects last",
+      "pass": true
+    },
+    {
+      "name": "Home selects first",
+      "pass": true
+    },
+    {
+      "name": "six viewport widths / nine panels reflow",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "horizontal ArrowRight",
+      "pass": true
+    },
+    {
+      "name": "responsive tab orientation",
+      "pass": true
+    },
+    {
+      "name": "continuous reading shows all panels",
+      "pass": true
+    },
+    {
+      "name": "continuous reading expands all details",
+      "pass": true
+    },
+    {
+      "name": "continuous reading semantic regions",
+      "pass": true
+    },
+    {
+      "name": "return to tab state",
+      "pass": true
+    },
+    {
+      "name": "search hidden source content",
+      "pass": true,
+      "actual": "14개 결과"
+    },
+    {
+      "name": "search navigates to link panel",
+      "pass": true
+    },
+    {
+      "name": "search reveals detailed source",
+      "pass": true
+    },
+    {
+      "name": "search text does not create HTML",
+      "pass": true
+    },
+    {
+      "name": "Escape closes search",
+      "pass": true
+    },
+    {
+      "name": "ledger preset first",
+      "pass": true,
+      "actual": {
+        "actual": [
+          12,
+          192,
+          12,
+          12
+        ],
+        "expected": [
+          12,
+          192,
+          12,
+          12
+        ]
+      }
+    },
+    {
+      "name": "ledger preset next",
+      "pass": true,
+      "actual": {
+        "actual": [
+          8,
+          200,
+          20,
+          20
+        ],
+        "expected": [
+          8,
+          200,
+          20,
+          20
+        ]
+      }
+    },
+    {
+      "name": "ledger preset cap",
+      "pass": true,
+      "actual": {
+        "actual": [
+          4,
+          214,
+          4,
+          12
+        ],
+        "expected": [
+          4,
+          214,
+          4,
+          12
+        ]
+      }
+    },
+    {
+      "name": "ledger preset repeat",
+      "pass": true,
+      "actual": {
+        "actual": [
+          0,
+          200,
+          20,
+          20
+        ],
+        "expected": [
+          0,
+          200,
+          20,
+          20
+        ]
+      }
+    },
+    {
+      "name": "ledger preset reclaim",
+      "pass": true,
+      "actual": {
+        "actual": [
+          0,
+          199,
+          19,
+          20
+        ],
+        "expected": [
+          0,
+          199,
+          19,
+          20
+        ]
+      }
+    },
+    {
+      "name": "empty calculation input clears result",
+      "pass": true
+    },
+    {
+      "name": "C greater than S rejected",
+      "pass": true
+    },
+    {
+      "name": "native diagrams reflow and remain readable",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "mobile state graph is one column",
+      "pass": true
+    },
+    {
+      "name": "wide state graph has multiple columns",
+      "pass": true
+    },
+    {
+      "name": "every state/flow edge has its condition and destination",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "state return link moves to its destination",
+      "pass": true
+    },
+    {
+      "name": "state links preserve continuous reading",
+      "pass": true
+    },
+    {
+      "name": "native diagram actual KoPubWorld Batang font",
+      "pass": true,
+      "actual": [
+        {
+          "familyName": "KoPubWorldBatang",
+          "postScriptName": "KoPubWorldBatangMedium",
+          "isCustomFont": false,
+          "glyphCount": 27
+        }
+      ]
+    },
+    {
+      "name": "all internal hash links resolve",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "local evidence links exist",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "sampled text contrast at least 4.5",
+      "pass": true,
+      "actual": [
+        {
+          "name": "body",
+          "fg": "rgb(32, 45, 64)",
+          "bg": "rgb(241, 244, 248)",
+          "ratio": 12.599851271441588
+        },
+        {
+          "name": "lead",
+          "fg": "rgb(64, 81, 102)",
+          "bg": "rgb(241, 244, 248)",
+          "ratio": 7.358767098694282
+        },
+        {
+          "name": "tab-active",
+          "fg": "rgb(23, 59, 103)",
+          "bg": "rgb(234, 241, 249)",
+          "ratio": 9.929916522435336
+        },
+        {
+          "name": "tab-inactive",
+          "fg": "rgb(196, 210, 226)",
+          "bg": "rgb(20, 40, 61)",
+          "ratio": 9.755492253840172
+        },
+        {
+          "name": "notice",
+          "fg": "rgb(120, 69, 17)",
+          "bg": "rgb(255, 245, 231)",
+          "ratio": 7.323996774298465
+        },
+        {
+          "name": "blue-tag",
+          "fg": "rgb(37, 76, 131)",
+          "bg": "rgb(230, 238, 249)",
+          "ratio": 7.36107046528723
+        },
+        {
+          "name": "teal-tag",
+          "fg": "rgb(35, 90, 86)",
+          "bg": "rgb(229, 240, 237)",
+          "ratio": 6.752790117866272
+        }
+      ]
+    },
+    {
+      "name": "print shows all panels",
+      "pass": true
+    },
+    {
+      "name": "print expands all detailed analysis",
+      "pass": true
+    },
+    {
+      "name": "print width fits",
+      "pass": true,
+      "actual": {
+        "viewport": 794,
+        "scroll": 794
+      }
+    },
+    {
+      "name": "after print restores tab view",
+      "pass": true
+    },
+    {
+      "name": "zero page errors",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "offline / zero external requests",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "zero failed requests",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "full source paragraphs and table rows preserved",
+      "pass": true,
+      "actual": {
+        "expectedParagraphsAndRows": 432,
+        "missing": []
+      }
+    },
+    {
+      "name": "ARIA ID references resolve",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "all document IDs unique",
+      "pass": true,
+      "actual": []
+    }
+  ],
+  "failures": [],
+  "screenshots": [
+    "C:\\Users\\EUNSU\\AppData\\Local\\Temp\\codex-sullivan-sound1-migration-20261019\\html-overview-desktop.png",
+    "C:\\Users\\EUNSU\\AppData\\Local\\Temp\\codex-sullivan-sound1-migration-20261019\\html-link-desktop.png",
+    "C:\\Users\\EUNSU\\AppData\\Local\\Temp\\codex-sullivan-sound1-migration-20261019\\html-pmic-desktop.png",
+    "C:\\Users\\EUNSU\\AppData\\Local\\Temp\\codex-sullivan-sound1-migration-20261019\\html-ff1-desktop.png",
+    "C:\\Users\\EUNSU\\AppData\\Local\\Temp\\codex-sullivan-sound1-migration-20261019\\html-ff3-desktop.png",
+    "C:\\Users\\EUNSU\\AppData\\Local\\Temp\\codex-sullivan-sound1-migration-20261019\\html-protocol-desktop.png",
+    "C:\\Users\\EUNSU\\AppData\\Local\\Temp\\codex-sullivan-sound1-migration-20261019\\html-shared-desktop.png",
+    "C:\\Users\\EUNSU\\AppData\\Local\\Temp\\codex-sullivan-sound1-migration-20261019\\html-plan-desktop.png",
+    "C:\\Users\\EUNSU\\AppData\\Local\\Temp\\codex-sullivan-sound1-migration-20261019\\html-evidence-desktop.png",
+    "C:\\Users\\EUNSU\\AppData\\Local\\Temp\\codex-sullivan-sound1-migration-20261019\\html-overview-390.png",
+    "C:\\Users\\EUNSU\\AppData\\Local\\Temp\\codex-sullivan-sound1-migration-20261019\\html-ff3-390.png",
+    "C:\\Users\\EUNSU\\AppData\\Local\\Temp\\codex-sullivan-sound1-migration-20261019\\html-protocol-390.png",
+    "C:\\Users\\EUNSU\\AppData\\Local\\Temp\\codex-sullivan-sound1-migration-20261019\\html-overview-320.png",
+    "C:\\Users\\EUNSU\\AppData\\Local\\Temp\\codex-sullivan-sound1-migration-20261019\\html-ff3-320.png",
+    "C:\\Users\\EUNSU\\AppData\\Local\\Temp\\codex-sullivan-sound1-migration-20261019\\html-protocol-320.png",
+    "C:\\Users\\EUNSU\\AppData\\Local\\Temp\\codex-sullivan-sound1-migration-20261019\\html-calculator.png",
+    "C:\\Users\\EUNSU\\AppData\\Local\\Temp\\codex-sullivan-sound1-migration-20261019\\native-diagram-1-1440.png",
+    "C:\\Users\\EUNSU\\AppData\\Local\\Temp\\codex-sullivan-sound1-migration-20261019\\native-diagram-2-1440.png",
+    "C:\\Users\\EUNSU\\AppData\\Local\\Temp\\codex-sullivan-sound1-migration-20261019\\native-diagram-3-1440.png",
+    "C:\\Users\\EUNSU\\AppData\\Local\\Temp\\codex-sullivan-sound1-migration-20261019\\native-diagram-4-1440.png",
+    "C:\\Users\\EUNSU\\AppData\\Local\\Temp\\codex-sullivan-sound1-migration-20261019\\native-diagram-6-1440.png",
+    "C:\\Users\\EUNSU\\AppData\\Local\\Temp\\codex-sullivan-sound1-migration-20261019\\native-diagram-7-1440.png",
+    "C:\\Users\\EUNSU\\AppData\\Local\\Temp\\codex-sullivan-sound1-migration-20261019\\native-diagram-8-1440.png",
+    "C:\\Users\\EUNSU\\AppData\\Local\\Temp\\codex-sullivan-sound1-migration-20261019\\native-diagram-9-1440.png",
+    "C:\\Users\\EUNSU\\AppData\\Local\\Temp\\codex-sullivan-sound1-migration-20261019\\native-diagram-1-390.png",
+    "C:\\Users\\EUNSU\\AppData\\Local\\Temp\\codex-sullivan-sound1-migration-20261019\\native-diagram-2-390.png",
+    "C:\\Users\\EUNSU\\AppData\\Local\\Temp\\codex-sullivan-sound1-migration-20261019\\native-diagram-3-390.png",
+    "C:\\Users\\EUNSU\\AppData\\Local\\Temp\\codex-sullivan-sound1-migration-20261019\\native-diagram-4-390.png",
+    "C:\\Users\\EUNSU\\AppData\\Local\\Temp\\codex-sullivan-sound1-migration-20261019\\native-diagram-6-390.png",
+    "C:\\Users\\EUNSU\\AppData\\Local\\Temp\\codex-sullivan-sound1-migration-20261019\\native-diagram-7-390.png",
+    "C:\\Users\\EUNSU\\AppData\\Local\\Temp\\codex-sullivan-sound1-migration-20261019\\native-diagram-8-390.png",
+    "C:\\Users\\EUNSU\\AppData\\Local\\Temp\\codex-sullivan-sound1-migration-20261019\\native-diagram-9-390.png",
+    "C:\\Users\\EUNSU\\AppData\\Local\\Temp\\codex-sullivan-sound1-migration-20261019\\html-print-preview.png"
+  ],
+  "pageErrors": [],
+  "externalRequests": [],
+  "failedRequests": [],
+  "actualFonts": [
+    {
+      "selector": ".lead h2",
+      "fonts": [
+        {
+          "familyName": "KoPubWorldBatang",
+          "postScriptName": "KoPubWorldBatangBold",
+          "isCustomFont": false,
+          "glyphCount": 28
+        }
+      ]
+    },
+    {
+      "selector": ".lead>p",
+      "fonts": [
+        {
+          "familyName": "KoPubWorldBatang",
+          "postScriptName": "KoPubWorldBatangMedium",
+          "isCustomFont": false,
+          "glyphCount": 84
+        }
+      ]
+    },
+    {
+      "selector": ".tabs button[aria-selected=true] .tab-text b",
+      "fonts": [
+        {
+          "familyName": "KoPubWorldBatang",
+          "postScriptName": "KoPubWorldBatangBold",
+          "isCustomFont": false,
+          "glyphCount": 2
+        }
+      ]
+    }
+  ],
+  "reflowCases": 54,
+  "nativeDiagramLayouts": [
+    {
+      "viewport": 1440,
+      "id": "figure-1",
+      "width": 1084,
+      "scroll": 1084,
+      "minFont": 17,
+      "columns": null,
+      "paths": 0
+    },
+    {
+      "viewport": 1440,
+      "id": "figure-2",
+      "width": 1084,
+      "scroll": 1084,
+      "minFont": 17,
+      "columns": 2,
+      "paths": 8
+    },
+    {
+      "viewport": 1440,
+      "id": "figure-7",
+      "width": 1084,
+      "scroll": 1084,
+      "minFont": 17,
+      "columns": 2,
+      "paths": 6
+    },
+    {
+      "viewport": 1440,
+      "id": "figure-8",
+      "width": 1084,
+      "scroll": 1084,
+      "minFont": 17,
+      "columns": 2,
+      "paths": 6
+    },
+    {
+      "viewport": 1440,
+      "id": "figure-3",
+      "width": 1084,
+      "scroll": 1084,
+      "minFont": 17,
+      "columns": 2,
+      "paths": 6
+    },
+    {
+      "viewport": 1440,
+      "id": "figure-4",
+      "width": 1084,
+      "scroll": 1084,
+      "minFont": 17,
+      "columns": 2,
+      "paths": 7
+    },
+    {
+      "viewport": 1440,
+      "id": "figure-5",
+      "width": 1084,
+      "scroll": 1084,
+      "minFont": 17,
+      "columns": 2,
+      "paths": 4
+    },
+    {
+      "viewport": 1440,
+      "id": "figure-6",
+      "width": 1084,
+      "scroll": 1084,
+      "minFont": 17,
+      "columns": null,
+      "paths": 0
+    },
+    {
+      "viewport": 1440,
+      "id": "figure-9",
+      "width": 1084,
+      "scroll": 1084,
+      "minFont": 17,
+      "columns": 2,
+      "paths": 5
+    },
+    {
+      "viewport": 1024,
+      "id": "figure-1",
+      "width": 734,
+      "scroll": 734,
+      "minFont": 17,
+      "columns": null,
+      "paths": 0
+    },
+    {
+      "viewport": 1024,
+      "id": "figure-2",
+      "width": 734,
+      "scroll": 734,
+      "minFont": 17,
+      "columns": 2,
+      "paths": 8
+    },
+    {
+      "viewport": 1024,
+      "id": "figure-7",
+      "width": 734,
+      "scroll": 734,
+      "minFont": 17,
+      "columns": 2,
+      "paths": 6
+    },
+    {
+      "viewport": 1024,
+      "id": "figure-8",
+      "width": 734,
+      "scroll": 734,
+      "minFont": 17,
+      "columns": 2,
+      "paths": 6
+    },
+    {
+      "viewport": 1024,
+      "id": "figure-3",
+      "width": 734,
+      "scroll": 734,
+      "minFont": 17,
+      "columns": 2,
+      "paths": 6
+    },
+    {
+      "viewport": 1024,
+      "id": "figure-4",
+      "width": 734,
+      "scroll": 734,
+      "minFont": 17,
+      "columns": 2,
+      "paths": 7
+    },
+    {
+      "viewport": 1024,
+      "id": "figure-5",
+      "width": 734,
+      "scroll": 734,
+      "minFont": 17,
+      "columns": 2,
+      "paths": 4
+    },
+    {
+      "viewport": 1024,
+      "id": "figure-6",
+      "width": 734,
+      "scroll": 734,
+      "minFont": 17,
+      "columns": null,
+      "paths": 0
+    },
+    {
+      "viewport": 1024,
+      "id": "figure-9",
+      "width": 734,
+      "scroll": 734,
+      "minFont": 17,
+      "columns": 2,
+      "paths": 5
+    },
+    {
+      "viewport": 768,
+      "id": "figure-1",
+      "width": 702,
+      "scroll": 702,
+      "minFont": 17,
+      "columns": null,
+      "paths": 0
+    },
+    {
+      "viewport": 768,
+      "id": "figure-2",
+      "width": 702,
+      "scroll": 702,
+      "minFont": 17,
+      "columns": 2,
+      "paths": 8
+    },
+    {
+      "viewport": 768,
+      "id": "figure-7",
+      "width": 702,
+      "scroll": 702,
+      "minFont": 17,
+      "columns": 2,
+      "paths": 6
+    },
+    {
+      "viewport": 768,
+      "id": "figure-8",
+      "width": 702,
+      "scroll": 702,
+      "minFont": 17,
+      "columns": 2,
+      "paths": 6
+    },
+    {
+      "viewport": 768,
+      "id": "figure-3",
+      "width": 702,
+      "scroll": 702,
+      "minFont": 17,
+      "columns": 2,
+      "paths": 6
+    },
+    {
+      "viewport": 768,
+      "id": "figure-4",
+      "width": 702,
+      "scroll": 702,
+      "minFont": 17,
+      "columns": 2,
+      "paths": 7
+    },
+    {
+      "viewport": 768,
+      "id": "figure-5",
+      "width": 702,
+      "scroll": 702,
+      "minFont": 17,
+      "columns": 2,
+      "paths": 4
+    },
+    {
+      "viewport": 768,
+      "id": "figure-6",
+      "width": 702,
+      "scroll": 702,
+      "minFont": 17,
+      "columns": null,
+      "paths": 0
+    },
+    {
+      "viewport": 768,
+      "id": "figure-9",
+      "width": 702,
+      "scroll": 702,
+      "minFont": 17,
+      "columns": 2,
+      "paths": 5
+    },
+    {
+      "viewport": 390,
+      "id": "figure-1",
+      "width": 348,
+      "scroll": 348,
+      "minFont": 17,
+      "columns": null,
+      "paths": 0
+    },
+    {
+      "viewport": 390,
+      "id": "figure-2",
+      "width": 348,
+      "scroll": 348,
+      "minFont": 17,
+      "columns": 1,
+      "paths": 8
+    },
+    {
+      "viewport": 390,
+      "id": "figure-7",
+      "width": 348,
+      "scroll": 348,
+      "minFont": 17,
+      "columns": 1,
+      "paths": 6
+    },
+    {
+      "viewport": 390,
+      "id": "figure-8",
+      "width": 348,
+      "scroll": 348,
+      "minFont": 17,
+      "columns": 1,
+      "paths": 6
+    },
+    {
+      "viewport": 390,
+      "id": "figure-3",
+      "width": 348,
+      "scroll": 348,
+      "minFont": 17,
+      "columns": 1,
+      "paths": 6
+    },
+    {
+      "viewport": 390,
+      "id": "figure-4",
+      "width": 348,
+      "scroll": 348,
+      "minFont": 17,
+      "columns": 1,
+      "paths": 7
+    },
+    {
+      "viewport": 390,
+      "id": "figure-5",
+      "width": 348,
+      "scroll": 348,
+      "minFont": 17,
+      "columns": 1,
+      "paths": 4
+    },
+    {
+      "viewport": 390,
+      "id": "figure-6",
+      "width": 348,
+      "scroll": 348,
+      "minFont": 17,
+      "columns": null,
+      "paths": 0
+    },
+    {
+      "viewport": 390,
+      "id": "figure-9",
+      "width": 348,
+      "scroll": 348,
+      "minFont": 17,
+      "columns": 1,
+      "paths": 5
+    },
+    {
+      "viewport": 320,
+      "id": "figure-1",
+      "width": 286,
+      "scroll": 286,
+      "minFont": 17,
+      "columns": null,
+      "paths": 0
+    },
+    {
+      "viewport": 320,
+      "id": "figure-2",
+      "width": 286,
+      "scroll": 286,
+      "minFont": 17,
+      "columns": 1,
+      "paths": 8
+    },
+    {
+      "viewport": 320,
+      "id": "figure-7",
+      "width": 286,
+      "scroll": 286,
+      "minFont": 17,
+      "columns": 1,
+      "paths": 6
+    },
+    {
+      "viewport": 320,
+      "id": "figure-8",
+      "width": 286,
+      "scroll": 286,
+      "minFont": 17,
+      "columns": 1,
+      "paths": 6
+    },
+    {
+      "viewport": 320,
+      "id": "figure-3",
+      "width": 286,
+      "scroll": 286,
+      "minFont": 17,
+      "columns": 1,
+      "paths": 6
+    },
+    {
+      "viewport": 320,
+      "id": "figure-4",
+      "width": 286,
+      "scroll": 286,
+      "minFont": 17,
+      "columns": 1,
+      "paths": 7
+    },
+    {
+      "viewport": 320,
+      "id": "figure-5",
+      "width": 286,
+      "scroll": 286,
+      "minFont": 17,
+      "columns": 1,
+      "paths": 4
+    },
+    {
+      "viewport": 320,
+      "id": "figure-6",
+      "width": 286,
+      "scroll": 286,
+      "minFont": 17,
+      "columns": null,
+      "paths": 0
+    },
+    {
+      "viewport": 320,
+      "id": "figure-9",
+      "width": 286,
+      "scroll": 286,
+      "minFont": 17,
+      "columns": 1,
+      "paths": 5
+    }
+  ],
+  "nativeGraphEdges": 63,
+  "contrast": [
+    {
+      "name": "body",
+      "fg": "rgb(32, 45, 64)",
+      "bg": "rgb(241, 244, 248)",
+      "ratio": 12.599851271441588
+    },
+    {
+      "name": "lead",
+      "fg": "rgb(64, 81, 102)",
+      "bg": "rgb(241, 244, 248)",
+      "ratio": 7.358767098694282
+    },
+    {
+      "name": "tab-active",
+      "fg": "rgb(23, 59, 103)",
+      "bg": "rgb(234, 241, 249)",
+      "ratio": 9.929916522435336
+    },
+    {
+      "name": "tab-inactive",
+      "fg": "rgb(196, 210, 226)",
+      "bg": "rgb(20, 40, 61)",
+      "ratio": 9.755492253840172
+    },
+    {
+      "name": "notice",
+      "fg": "rgb(120, 69, 17)",
+      "bg": "rgb(255, 245, 231)",
+      "ratio": 7.323996774298465
+    },
+    {
+      "name": "blue-tag",
+      "fg": "rgb(37, 76, 131)",
+      "bg": "rgb(230, 238, 249)",
+      "ratio": 7.36107046528723
+    },
+    {
+      "name": "teal-tag",
+      "fg": "rgb(35, 90, 86)",
+      "bg": "rgb(229, 240, 237)",
+      "ratio": 6.752790117866272
+    }
+  ],
+  "historicalSourceComparison": {
+    "status": "changed_since_analysis",
+    "changedFiles": [
+      "src/2__cm3/processorDirective.h",
+      "src/1__cfx/test/tdc_sys_test_config.h"
+    ],
+    "scope": "Historical firmware evidence only; outside this HTML rendering change. Original baseline and external source edits preserved."
+  },
+  "total": 57,
+  "passed": 57
+}

@@ -1,0 +1,124 @@
+{
+  "checkedAt": "2026-10-19T06:29:37.161Z",
+  "scope": "Diagram model equivalence and declared representative path, not firmware execution.",
+  "diagram9": "Intentionally replaced historical full roadmap with revised chapters11.1/11.5: phase-one0–5, FF separately.",
+  "checks": [
+    {
+      "diagram": 1,
+      "kind": "original-graph-edge-preservation",
+      "expected": 11,
+      "actual": 11,
+      "missing": [],
+      "additional": [],
+      "pass": true
+    },
+    {
+      "diagram": 2,
+      "kind": "original-graph-edge-preservation",
+      "expected": 9,
+      "actual": 9,
+      "missing": [],
+      "additional": [],
+      "pass": true
+    },
+    {
+      "diagram": 3,
+      "kind": "original-graph-edge-preservation",
+      "expected": 10,
+      "actual": 10,
+      "missing": [],
+      "additional": [],
+      "pass": true
+    },
+    {
+      "diagram": 4,
+      "kind": "original-graph-edge-preservation",
+      "expected": 11,
+      "actual": 11,
+      "missing": [],
+      "additional": [],
+      "pass": true
+    },
+    {
+      "diagram": 5,
+      "kind": "original-graph-edge-preservation",
+      "expected": 7,
+      "actual": 7,
+      "missing": [],
+      "additional": [],
+      "pass": true
+    },
+    {
+      "diagram": 6,
+      "kind": "sequence-message-count",
+      "expected": 16,
+      "actual": 16,
+      "pass": true
+    },
+    {
+      "diagram": 7,
+      "kind": "original-graph-edge-preservation",
+      "expected": 9,
+      "actual": 9,
+      "missing": [],
+      "additional": [],
+      "pass": true
+    },
+    {
+      "diagram": 8,
+      "kind": "original-graph-edge-preservation",
+      "expected": 11,
+      "actual": 11,
+      "missing": [],
+      "additional": [],
+      "pass": true
+    },
+    {
+      "diagram": 2,
+      "kind": "drawn-primary-arrows-follow-real-edges",
+      "pass": true,
+      "missing": []
+    },
+    {
+      "diagram": 3,
+      "kind": "drawn-primary-arrows-follow-real-edges",
+      "pass": true,
+      "missing": []
+    },
+    {
+      "diagram": 4,
+      "kind": "drawn-primary-arrows-follow-real-edges",
+      "pass": true,
+      "missing": []
+    },
+    {
+      "diagram": 5,
+      "kind": "drawn-primary-arrows-follow-real-edges",
+      "pass": true,
+      "missing": []
+    },
+    {
+      "diagram": 7,
+      "kind": "drawn-primary-arrows-follow-real-edges",
+      "pass": true,
+      "missing": []
+    },
+    {
+      "diagram": 8,
+      "kind": "drawn-primary-arrows-follow-real-edges",
+      "pass": true,
+      "missing": []
+    },
+    {
+      "diagram": 9,
+      "kind": "drawn-primary-arrows-follow-real-edges",
+      "pass": true,
+      "missing": []
+    },
+    {
+      "kind": "no-unexpected-ideograph-or-replacement",
+      "pass": true
+    }
+  ],
+  "failures": []
+}
