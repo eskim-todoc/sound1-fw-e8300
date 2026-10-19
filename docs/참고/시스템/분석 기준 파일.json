@@ -1,13 +1,13 @@
 {
   "review_date": "2026-10-02",
   "scope": "Selected normal entry/cross-core paths and conditional unit-test/RTT boundaries; not whole-file correctness or device acceptance. Reviewed test-only batch/console mailbox, result lifecycle, RAM observation and SPI completion boundaries on 2026-10-02; no device execution.",
-  "git_head": "f24d0d39ed4a227529e68f10b76fa30daabd5d6c",
+  "git_head": "30c7227121fb6d0045e23745432730debab404af",
   "basis": "Working tree bytes including existing local modifications",
   "audit_addendum_review_date": "2026-10-12",
   "audit_addendum_scope": "CM3 audit initialization, connection/time/address recording, ring storage and RTT query/access boundary. Existing matching file hashes retained; newly reviewed files appended. PC/RAM evidence is not device acceptance.",
   "hardware_clarification_date": "2026-10-13",
   "hardware_clarification_basis": "Direct user confirmation, recorded in Sound1 시스템 구조.md sections 1 and 6.2. Wiring clarification is not derived from the E8300 source hashes and does not confirm QCC pin/clock/codec settings or device acceptance.",
-  "source_identity_recheck_date": "2026-10-16",
+  "source_identity_recheck_date": "2026-10-19",
   "system_test_audit_review_date": "2026-10-15",
   "system_test_audit_scope": "Default-off SYS-050/051 RTT display of fixed 2026-05-29 RAM vectors, TEST provenance on every row, no event-file/time/address writes or automatic-hook changes. Existing SYS7/SYS23/DIO35=1 preserved. PC display checks and SDK builds do not establish actual connection, corruption detection or system-test acceptance.",
   "system_test_23_review_date": "2026-10-14",
@@ -19,6 +19,474 @@
   "system_test_storage_review_date": "2026-10-16",
   "system_test_storage_scope": "SYS54 read-only unencrypted FEZ/CRC with RAM faults (not boot execution); SYS73 actual audit functions with isolated RAM I/O; SYS77 synthetic actual CRC/AES scratch-file roundtrip. SYS80 arm/check/clear use SYS80.TST only: actual CRC mismatch triggers test-file factory defaults from ci_map.c and reread verification without reboot. Legacy restore alone writes ISD1 from a verified old backup. FS sync/close failures stop subsequent tests on uncertain file lifetime; product return/error policy retained. User switches 54/73/77/80=1 preserved on 2026-10-16. Host/SDK checks are not device or boot acceptance.",
   "files": [
+    {
+      "path": "src/0__bootloader/.cproject",
+      "sha256": "31e66112f104ca259396145891c77d55f0d2d6544e0cfed2ae44e0650f1b013b"
+    },
+    {
+      "path": "src/0__bootloader/main.c",
+      "sha256": "91125f5c8e006f8a5dee9b543ab43756519fcdbaa48c648a16edd91c4ea554e8"
+    },
+    {
+      "path": "src/0__bootloader/sections.ld",
+      "sha256": "34cee2e479e43a309dd6197eed77eaabd14464768c0ccdaf7e169ba1b6d2f9b0"
+    },
+    {
+      "path": "src/0__bootloader/source/bootloader.c",
+      "sha256": "c772cdc3c717d65cc36f6e01ae7fedc855c8ed52dc5c0bc1354f7e9ce912dadf"
+    },
+    {
+      "path": "src/0__bootloader/source/bootmgr/ci_boot.c",
+      "sha256": "1b055bd70a921b2d3d707a6d795b2d6691234f84299c24c54934a586d81ac410"
+    },
+    {
+      "path": "src/0__bootloader/source/segger_rtt/rtt_printf.c",
+      "sha256": "8c1e5f28631a1f8d5214cfabee691f723fa2c479db7e9e0c2b3928c19b5dfa22"
+    },
+    {
+      "path": "src/0__bootloader/source/test/tdc_ut_batch_boot.c",
+      "sha256": "84953ec22481a976a106110e1239a60d59648e1602da0cc937e0024185a372f4"
+    },
+    {
+      "path": "src/0__bootloader/source/test/tdc_ut_batch_boot.h",
+      "sha256": "b7afbee8b3179efed28e13507022bef8f746b7668aa56d21135d74ea258c5a16"
+    },
+    {
+      "path": "src/0__bootloader/source/test/tdc_ut_boot.c",
+      "sha256": "934d1980c50fa722cb1f062105e75d3eca9151e0fac256d30b5bdaf2ac59afe2"
+    },
+    {
+      "path": "src/0__bootloader/source/test/tdc_ut_boot.h",
+      "sha256": "ae5ceac7b78fd9688fe23ff35267851af3a88a37d97184817ff907ffb5a55363"
+    },
+    {
+      "path": "src/0__bootloader/source/test/tdc_ut_boot_report.c",
+      "sha256": "8e226926f554a34c596ef4792228e5bb7979dffb207718c07fe3b76b082eaf02"
+    },
+    {
+      "path": "src/0__bootloader/source/test/tdc_ut_console_boot.c",
+      "sha256": "3d580c462ac5e2b02c69d21ce395c2be66cfe11eaac2f81c353eaf140a3519e1"
+    },
+    {
+      "path": "src/1__cfx/.cproject",
+      "sha256": "93cb0b8aa37476cc076126e084dd03719c35145da7b54ed946efeb02e938bb70"
+    },
+    {
+      "path": "src/1__cfx/hear/microcode.h",
+      "sha256": "c58840da11f2f65ff4c6fff5e2bab9ff9eae7a0c97e2dfbe2d0cb6ce1d333221"
+    },
+    {
+      "path": "src/1__cfx/internalDevice/driver_PCM.c",
+      "sha256": "52f8d2d6b4252230d0e3629874702374081cf218e7e09e26ac77a6dcb7326589"
+    },
+    {
+      "path": "src/1__cfx/internalDevice/driver_PCM_liveStimulation.c",
+      "sha256": "cb06595fe7c69be5f9ed8cd1eb5a4cae3c1221f74467ccc85d8e81ea109db2d5"
+    },
+    {
+      "path": "src/1__cfx/internalDevice/driver_PCM_liveStimulation.h",
+      "sha256": "ba58f2b679c66ae3782582e08ac9656507d888e3f6a28bb7eecbfadb323a46f5"
+    },
+    {
+      "path": "src/1__cfx/lib_cfx/lib_audio_in.h",
+      "sha256": "1e8d8b0e196d12cd52510c89c4a7b67d24e054b3c739e975d6002a2f4d579391"
+    },
+    {
+      "path": "src/1__cfx/signalProcessing/agc.c",
+      "sha256": "68fd6e1ddbc1fd0db0ee38c76a36aa6bb47eedcb849ba7bb106be76625f47944"
+    },
+    {
+      "path": "src/1__cfx/signalProcessing/definitionsForAlgorithm.h",
+      "sha256": "620aab19b24a75dce9070baf3d175041b7d76c7ff2b7fe7a77bbb6839dd2457d"
+    },
+    {
+      "path": "src/1__cfx/signalProcessing/nonlinearMapping.c",
+      "sha256": "cc66da44bdb242f493a1359b9a6b10d64466f34484edbac1c996d88956b749c6"
+    },
+    {
+      "path": "src/1__cfx/signalProcessing/stimulationStrategy.c",
+      "sha256": "b1303fd7a956ce3012c57d9761176ae8a7f4751c38026c1684feaa9bc95f756f"
+    },
+    {
+      "path": "src/1__cfx/systemControl/audioMixer.c",
+      "sha256": "eb7524acaf5a6402d3065b747fadcc7fa4f68b597df7dac189be76ecfd2b071e"
+    },
+    {
+      "path": "src/1__cfx/systemControl/audioMixer.h",
+      "sha256": "479cf252e2b2224104c743ef2cdef420524fd66baf3a02400afd4b2b4ecd07ed"
+    },
+    {
+      "path": "src/1__cfx/systemControl/interrupt_service_routine.c",
+      "sha256": "556088d56d40fb398f5659bda16050f400cee25bf16c6f79a0e26fa51b44e38f"
+    },
+    {
+      "path": "src/1__cfx/systemControl/main.c",
+      "sha256": "69be0ae2ec3529b5e6d17c011bb9d4ad80c431d9ec5b9ca67a4ba12c56cfb62f"
+    },
+    {
+      "path": "src/1__cfx/systemControl/system_control.c",
+      "sha256": "6870f3aa3b8055be6cf08d17430c564ddc4b4d0e9856c757dc18dbac00db38ca"
+    },
+    {
+      "path": "src/1__cfx/test/tdc_sys_test_config.h",
+      "sha256": "3ff80f87b77ff88c97fd3b24a29eca1a9661db2343f662e43094b2ace9ca4116"
+    },
+    {
+      "path": "src/1__cfx/test/tdc_ut_batch_cfx.c",
+      "sha256": "cdf4e629a7139a846de0934b93c6397ada7be1d4c2da1e65d93e65cc8c68669b"
+    },
+    {
+      "path": "src/1__cfx/test/tdc_ut_batch_cfx.h",
+      "sha256": "0a49d1a645b5f6acc7eac04923b1a7aefda95c51e35a46a451109fd69205864b"
+    },
+    {
+      "path": "src/1__cfx/test/tdc_ut_hear_reference.h",
+      "sha256": "ffa0e3516f5e8c8d1697b288629873c0132f1ab03a90141ee3ac685c22dd7f21"
+    },
+    {
+      "path": "src/1__cfx/test/tdc_ut_io_cfx.c",
+      "sha256": "84f98f3a07f496482f95ef6cb3a2d0bc021d5f5f86fc2b2a8dd6f4c159e30d84"
+    },
+    {
+      "path": "src/1__cfx/test/tdc_ut_io_cfx.h",
+      "sha256": "9df7427c464c5138add026b5039e0fdd6f2beb7f12160382b982b5c39725fdee"
+    },
+    {
+      "path": "src/1__cfx/test/tdc_ut_numeric_reference_cfx.h",
+      "sha256": "6de6ef3b828d987a28a201484d8328664c8f8b1b48b44944441572b51e549197"
+    },
+    {
+      "path": "src/1__cfx/test/tdc_ut_vectors_cfx.c",
+      "sha256": "cf2b3f36a00903a82aec3b3f0c2a25af2cd2cec31368692b98b482d82510578a"
+    },
+    {
+      "path": "src/2__cm3/.cproject",
+      "sha256": "447d31d2b964a35822ab53f12b7391799a54796ed9f98097f9bfb82527159aef"
+    },
+    {
+      "path": "src/2__cm3/source/ble/mapping/tdc_ble_mapping.c",
+      "sha256": "a10cfa406521b35f08e1d46f59f88fa805cbd1cd3d8525b4ac4fecaf66af29d4"
+    },
+    {
+      "path": "src/2__cm3/source/ble/remote/tdc_ble_remote.c",
+      "sha256": "58376fe806fb4c08cabd205e064ee2ad12a305c6f3fc45e368a56b451e8be72c"
+    },
+    {
+      "path": "src/2__cm3/source/ble/sound1/tdc_ble_general_debug.c",
+      "sha256": "fdd8e11742ea735390811f9e6f7c9c39d38819ae9ecd75b7f5fd903b3035a4da"
+    },
+    {
+      "path": "src/2__cm3/source/ble/sound1/tdc_ble_link_debug.c",
+      "sha256": "bfa3c273f503986dd1e9bbf5312be2309e5539fd25ee187444ce40d8b03d13cf"
+    },
+    {
+      "path": "src/2__cm3/source/ble/sound1/tdc_ble_link_debug.h",
+      "sha256": "6111a67350d3655728e2850c60f0ec8d08849d5e96aea6d9902749b67cb9726c"
+    },
+    {
+      "path": "src/2__cm3/source/ble/tdc_ble_communication.c",
+      "sha256": "4acaa6fb4a118e28b54917f944a5c88d40234045080754386a45f15eb2f8d610"
+    },
+    {
+      "path": "src/2__cm3/source/board/processorDirective.h",
+      "sha256": "3126d7d37e4132928a3c5d0bf0d458dc7c30bffcefd66e43912e5be5267b3a35"
+    },
+    {
+      "path": "src/2__cm3/source/cfx_link/tdc_shm.c",
+      "sha256": "ff4155ed6be46dc2b40b6e3dfac03edf9c2820c7c95e47d97fc9aa1c3a72ccc4"
+    },
+    {
+      "path": "src/2__cm3/source/dfu/tdc_dfu_ble_ota.c",
+      "sha256": "c21762768bbac657044474458bfbcdd490682e6cc1a6a7339795e784e8176392"
+    },
+    {
+      "path": "src/2__cm3/source/fs/tdc_fs.c",
+      "sha256": "bf9f3f168cffa709d7f7c9d09e3ec7513761188ed325010dd7874135a90f9652"
+    },
+    {
+      "path": "src/2__cm3/source/fs/tdc_fs.h",
+      "sha256": "eddb77c7cdca73e03560fcce807cf0b8566702894117fe4053d389ca9b1fdff9"
+    },
+    {
+      "path": "src/2__cm3/source/fs/tdc_fs_event_log.c",
+      "sha256": "9e1bcd59ce72e7b31e924cc1e4596a06f2b0bb15e7cab42028f7516801845c6d"
+    },
+    {
+      "path": "src/2__cm3/source/fs/tdc_fs_event_log.h",
+      "sha256": "b580424f626e6a896fec4046bc7ab8dc012ef9a9ed5c86e049fd599a2b6afc28"
+    },
+    {
+      "path": "src/2__cm3/source/hal/tdc_hal_cfx_tick.c",
+      "sha256": "8018dc5da4c9c6c992ae06ecd1133bea807659ed5a2ca40f3dec2e69f483b361"
+    },
+    {
+      "path": "src/2__cm3/source/hal/tdc_hal_dio.c",
+      "sha256": "2ebab3534d0d37a8f869a7384f764a44f9a71a51e0cd229c6968a79284ebf0da"
+    },
+    {
+      "path": "src/2__cm3/source/hal/tdc_hal_spi.h",
+      "sha256": "76863ecbc7755ad6f82b6e07d71d61c82f51e99ee0609db80a17860968fd7056"
+    },
+    {
+      "path": "src/2__cm3/source/hal/tdc_hal_timer.c",
+      "sha256": "446611c35fbee36eb55167c62afda376ca579abc4d6c0c9377f78f1648daef92"
+    },
+    {
+      "path": "src/2__cm3/source/isd/tdc_isd.c",
+      "sha256": "d079d2a1914c990c2a95fce0c9b0beec782ec9051221ecd12531364be1dfd314"
+    },
+    {
+      "path": "src/2__cm3/source/isd/tdc_isd.h",
+      "sha256": "0737a6fde75e2b565795e779ec8d13cfd4f023b841adfd031527d81beb29101a"
+    },
+    {
+      "path": "src/2__cm3/source/isd/tdc_isd_init_fpga.c",
+      "sha256": "b63f11390d0b59dfdc92e6bf7ca5ec1676a8294bcd4ca0ae633281da09b2839b"
+    },
+    {
+      "path": "src/2__cm3/source/isd/tdc_isd_map_live.c",
+      "sha256": "4608833274819b7b524e5bbd7c60f0bb4c0b2134f813b0c8dbf543e906483c16"
+    },
+    {
+      "path": "src/2__cm3/source/isd/tdc_isd_stim_para_setting.c",
+      "sha256": "929e0d1110db391ef2c3d21782d2df6f04f5a88f03300524a5107340ba8f9eec"
+    },
+    {
+      "path": "src/2__cm3/source/isd/tdc_isd_stim_standalone.c",
+      "sha256": "5ee7d68cc79401d9dd6d60546f138c11dfe5bdd24ce9775eb5fb6874078edc07"
+    },
+    {
+      "path": "src/2__cm3/source/isd/tdc_link_config.c",
+      "sha256": "7262863ca27d799628234d47e50ad88f7712ea57a7a6200c32e90881d5af9404"
+    },
+    {
+      "path": "src/2__cm3/source/isd/tdc_link_config.h",
+      "sha256": "875f1ca2c9460295a1e1e5562aa9b371d1e4c221d2b2ea1cf4c158033e2e006f"
+    },
+    {
+      "path": "src/2__cm3/source/isd/tdc_link_control.c",
+      "sha256": "13b17987e27b24ca32bc26f536cbc1d78158ad7c9548d12e240d72b74515e54d"
+    },
+    {
+      "path": "src/2__cm3/source/isd/tdc_link_control.h",
+      "sha256": "f25ab5e14f4a4322c338b936258b84b5b500cae9336dcede811866e139b0208f"
+    },
+    {
+      "path": "src/2__cm3/source/lib/SEGGER_RTT/SEGGER_RTT_Wrapper.c",
+      "sha256": "cf588abe7c753c91314221fe86ef8fc5e374060ceab29874de5cc7d4031b7337"
+    },
+    {
+      "path": "src/2__cm3/source/main.c",
+      "sha256": "cefee6c3fe8a3ce8edf1a8c79491c4db0786b6d21a7bc8cb570313e86980ff2f"
+    },
+    {
+      "path": "src/2__cm3/source/pwr/tdc_pwr_battery.c",
+      "sha256": "d31064201104265043f6608b296da79ad15724714f626ea9c55be00e5baf7d8f"
+    },
+    {
+      "path": "src/2__cm3/source/qcc/tdc_qcc.c",
+      "sha256": "3684011d571b22c9d264f1526c7b79371c22abdf094c329b909f5228d295a617"
+    },
+    {
+      "path": "src/2__cm3/source/stim/tdc_stim_indicator.c",
+      "sha256": "6affa2012e1681970dd9b1d0232bb98285572dce7b4fc42e472a49d2d2884a07"
+    },
+    {
+      "path": "src/2__cm3/source/stim/tdc_stim_para_cal.c",
+      "sha256": "a3e156f3a82db9b783d956325f74260c812df42b8ede85074a9e215cfa5429ae"
+    },
+    {
+      "path": "src/2__cm3/source/sys/tdc_sys_control.c",
+      "sha256": "3e95bc3dc91aefd5288faa044064e79dd8b0b5616f15ca6cfd739af163d5f46c"
+    },
+    {
+      "path": "src/2__cm3/source/sys/tdc_sys_init.c",
+      "sha256": "15d010bbdb8660ed7a4704f16c0ca9fdd85c8f94c039ea8c36021559e18a3453"
+    },
+    {
+      "path": "src/2__cm3/source/tests/tdc_sys_test_23.c",
+      "sha256": "e538971f9995e35107cda92e2e35fd46996556127fe8fa5dcf04e2f5f87633e8"
+    },
+    {
+      "path": "src/2__cm3/source/tests/tdc_sys_test_23.h",
+      "sha256": "4cb6e128273db58d236d7db66eaaacdba185ba82a99d88b81130d7aece7b1baf"
+    },
+    {
+      "path": "src/2__cm3/source/tests/tdc_sys_test_54.c",
+      "sha256": "3dcdb06e606f20b33cb41c95dbfe22bda5e22796e87835d4f03265306fce556d"
+    },
+    {
+      "path": "src/2__cm3/source/tests/tdc_sys_test_54.h",
+      "sha256": "4a09020934318d64fec4329a243a57cdce0c8ecbc4a6ea1b3fff15076ba95760"
+    },
+    {
+      "path": "src/2__cm3/source/tests/tdc_sys_test_7.c",
+      "sha256": "ab8a0e0e5d6b5b12e63366a5daee8e6dee65f44af1d75e3681fa767e68cc6254"
+    },
+    {
+      "path": "src/2__cm3/source/tests/tdc_sys_test_7.h",
+      "sha256": "7591268f82c092b8f656f022b115bc532d512340203379c1114843ef26651a5c"
+    },
+    {
+      "path": "src/2__cm3/source/tests/tdc_sys_test_73.c",
+      "sha256": "05a1744026438b59943f9fa9e9e1d3f8cb1d59afb10b108ac8e7b1cae01cd344"
+    },
+    {
+      "path": "src/2__cm3/source/tests/tdc_sys_test_73.h",
+      "sha256": "2f2c24e34ea716ea49c7b2707ae5bfb948af1ddbe79bbc7c20ce80cbfc4ed126"
+    },
+    {
+      "path": "src/2__cm3/source/tests/tdc_sys_test_77.c",
+      "sha256": "5c950fd0ebf3c3923c8589b66d85c08b60bfff56d7f46e1f2eff6ed48d9e6ba7"
+    },
+    {
+      "path": "src/2__cm3/source/tests/tdc_sys_test_77.h",
+      "sha256": "b48f7a2bbcee9e0308aedb0619503682866203315aef03889d7cfe18905dde2c"
+    },
+    {
+      "path": "src/2__cm3/source/tests/tdc_sys_test_80.c",
+      "sha256": "10346b468c105bbf2c8d059cd78936de644d51ffe8786d430d99f02f64922286"
+    },
+    {
+      "path": "src/2__cm3/source/tests/tdc_sys_test_80.h",
+      "sha256": "c47ba673760bf65b511670dc9fdd5ed1e733c7cc90e8eee14289ccc0347b898c"
+    },
+    {
+      "path": "src/2__cm3/source/tests/tdc_sys_test_audit.c",
+      "sha256": "60a77e4df25b0efb1fb837111e2916bb31e7757e7573ba19bae25c4925686794"
+    },
+    {
+      "path": "src/2__cm3/source/tests/tdc_sys_test_audit.h",
+      "sha256": "72a15dd17d220e10b6bf6363639332464befcde7284451a6568c6068c6a367f3"
+    },
+    {
+      "path": "src/2__cm3/source/tests/tdc_sys_test_storage.c",
+      "sha256": "7b6142be225a30baaf39af9515512b3cead348136904c6ca13e77e792c021bc0"
+    },
+    {
+      "path": "src/2__cm3/source/tests/tdc_sys_test_storage.h",
+      "sha256": "f3c2465907036ad98e8945c8ebabae469dcca23c818a657b1562b2767b12681a"
+    },
+    {
+      "path": "src/2__cm3/source/tests/tdc_ut_batch_cfx_bridge.c",
+      "sha256": "f2eb27deb1c6c7ab409795f3a6d8f475cb9f7122393812a01fde79a772d518a3"
+    },
+    {
+      "path": "src/2__cm3/source/tests/tdc_ut_batch_cfx_bridge.h",
+      "sha256": "402341d353a6ddd68103358048b6f38919f000c5d8070a825ead70e3c6afbe36"
+    },
+    {
+      "path": "src/2__cm3/source/tests/tdc_ut_batch_cm3.c",
+      "sha256": "57da77ce1ea384e9faa989b991ae940ab1926a32105608b8bb94f16617e007f1"
+    },
+    {
+      "path": "src/2__cm3/source/tests/tdc_ut_batch_cm3.h",
+      "sha256": "7eee01b60f70cdc2437812cb7d4b68d5ad4db093a20afc8d1ea41b7ddc6c63c4"
+    },
+    {
+      "path": "src/2__cm3/source/tests/tdc_ut_console_cm3.c",
+      "sha256": "9f90082ebae3acf55c03330a3682b0dd3f0c13e2e127ace32837649a6402401e"
+    },
+    {
+      "path": "src/2__cm3/source/tests/tdc_ut_coordination_cm3.c",
+      "sha256": "0602d388f7a321695171d475282e6a3a9fdbd38b9808fed687e198c054d35a95"
+    },
+    {
+      "path": "src/2__cm3/source/tests/tdc_ut_coordination_cm3.h",
+      "sha256": "99bcd9ae156435428f0a140ab077efec1d5cedf8b26881105f29ec82e7b47152"
+    },
+    {
+      "path": "src/2__cm3/source/tests/tdc_ut_entry.c",
+      "sha256": "27cd92109b3bd9d89e56449ab4e9cac6819a9ce4242a2d8f90bd4c77a474cb20"
+    },
+    {
+      "path": "src/2__cm3/source/tests/tdc_ut_io_cm3.c",
+      "sha256": "87287471591dd4464864c630e5f591dabdbbc1b1ac9a05a222ae9cd70ac08268"
+    },
+    {
+      "path": "src/2__cm3/source/tests/tdc_ut_io_cm3.h",
+      "sha256": "9ba59fc8dbe617c0c8956762bc7167d7bb29bc23bb33528205b19eb972e9cdc6"
+    },
+    {
+      "path": "src/2__cm3/source/tests/tdc_ut_report.c",
+      "sha256": "0c481c8f940c86cc1b9f117e168cebd20c9b2846e03ff03309c8f72d4d982afc"
+    },
+    {
+      "path": "src/2__cm3/source/tests/tdc_ut_report.h",
+      "sha256": "f29e20595eecae1e16d0a3497603492f22fe18a1b5b8f7327b9a182b5f2d6bae"
+    },
+    {
+      "path": "src/2__cm3/source/tests/tdc_ut_state_cm3.c",
+      "sha256": "c2b0359c2db882515f66383397e64cdf55cffb405b8acdf6b9df0a477ec5cc64"
+    },
+    {
+      "path": "src/2__cm3/source/tests/tdc_ut_state_cm3.h",
+      "sha256": "5f93790b195dcdb9772ea5c88e9edb07fa61c7d7a4ff75acc86d5d61cdb03f76"
+    },
+    {
+      "path": "src/2__cm3/source/tests/tdc_ut_vectors_cm3.c",
+      "sha256": "36e98cc93f350320dd2cf5d7739b3ccbf8b292360ed09f06d01f4cdc7d0317d4"
+    },
+    {
+      "path": "src/2__cm3/source/tests/tdc_ut_vectors_cm3.h",
+      "sha256": "cee22af6052c928fef9c9ef190cbaeafc83a170805ee9b1104b9194fef457ad2"
+    },
+    {
+      "path": "src/2__cm3/source/ui/tdc_ui_command.c",
+      "sha256": "a344d17055647e92d26d2dc09c561b21cfbf36014088e9a373c3d9a59fefe3f8"
+    },
+    {
+      "path": "src/3__hear/microcode.hct",
+      "sha256": "c201e8a884892c4637e0686ccadd081593cbff83b68159cfab6a3088d994c313"
+    },
+    {
+      "path": "src/test/tdc_ut_console.c",
+      "sha256": "b3d36073745a3a52783d0aac07fbb74271b58e6c6ec633847bae7273be6495f8"
+    },
+    {
+      "path": "src/test/tdc_ut_console.h",
+      "sha256": "401ebc3cecd3733739641dcec3690f05375217b78e11248dc0e9171022393683"
+    },
+    {
+      "path": "src/test/tdc_ut_log.c",
+      "sha256": "806dd9ab969ef5ae99098edb5c6358e66bfb6618fc320dafae20fd438ca8ae5d"
+    },
+    {
+      "path": "src/test/tdc_ut_log.h",
+      "sha256": "f295984d19cf8c2b9f0c0ac3e6fd546f52f1f68e394c8eaf26108f74da9809bf"
+    }
+  ],
+  "qcc_design_review_date": "2026-10-12",
+  "qcc_design_review_scope": "Provided QCC design documents, full text/tables/embedded diagrams and E8300 SPI/GPIO/I2S interface comparison. Four modules and fourteen design units; no QCC source/build/device execution. See Sound1 시스템 구조.md section 6.2.",
+  "cfx_configuration_review": "2026-10-12: current .cproject differs from Git HEAD only by test sourcePath inclusion; inspected sourceEntries and retained the existing test-only/normal-build boundary explanation. No toolchain/macro/optimization change shown by this diff and no firmware edit in this document task.",
+  "qcc_document_evidence": [
+    {
+      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\02_설계 입력\\SW\\외부기\\서석일_작성\\QCC_SRS-FW-TD24A 소프트웨어 요구사항 사양서_byssi.docx",
+      "sha256": "64ddecba6c1b718ecd31881f45fec163f4e5cdd88807455fa6b019c370bfe078",
+      "basis": "Provided design/criteria, not implementation or execution result"
+    },
+    {
+      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\서석일_작성\\QCC_SIP-FW-TD24A 소프트웨어 통합 계획서_byssi.docx",
+      "sha256": "0037a200031568bbee5d044b40bd4647ade513bf13c1b227ba4ee67da4c0dabf",
+      "basis": "Provided design/criteria, not implementation or execution result"
+    },
+    {
+      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\서석일_작성\\QCC_SDDD-FW-TD24A 소프트웨어 상세 설계서_byssi.docx",
+      "sha256": "49982c995f78064613f47f4d97a262c70394fc937b66cf4e6f38925e4fb5e1ce",
+      "basis": "Provided design/criteria, not implementation or execution result"
+    },
+    {
+      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\서석일_작성\\QCC_SAD-FW-TD24A 소프트웨어 아키텍쳐 기술서_byssi.docx",
+      "sha256": "49ebebcf56d3835b0db3365c5ba996909a1f59490e50468c2fe76d44974b8878",
+      "basis": "Provided design/criteria, not implementation or execution result"
+    },
+    {
+      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\서석일_작성\\QCC_SUVC-FW-TD24A 유닛 테스트 기준서_byssi.docx",
+      "sha256": "072aa94ef6c48846c78a81dea104a65adcf19def60f5484a8f33c3677afcab5a",
+      "basis": "Provided design/criteria, not implementation or execution result"
+    }
+  ],
+  "historical_files_20261016": [
     {
       "path": "src/2__cm3/Gen1_5/FS/ci_event_log.h",
       "sha256": "99d718df2f81f4562dfd22b55ee888038bfdd6f566da360aa39f645d28b45075"
@@ -408,34 +876,6 @@
       "sha256": "cc66da44bdb242f493a1359b9a6b10d64466f34484edbac1c996d88956b749c6"
     }
   ],
-  "qcc_design_review_date": "2026-10-12",
-  "qcc_design_review_scope": "Provided QCC design documents, full text/tables/embedded diagrams and E8300 SPI/GPIO/I2S interface comparison. Four modules and fourteen design units; no QCC source/build/device execution. See Sound1 시스템 구조.md section 6.2.",
-  "cfx_configuration_review": "2026-10-12: current .cproject differs from Git HEAD only by test sourcePath inclusion; inspected sourceEntries and retained the existing test-only/normal-build boundary explanation. No toolchain/macro/optimization change shown by this diff and no firmware edit in this document task.",
-  "qcc_document_evidence": [
-    {
-      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\02_설계 입력\\SW\\외부기\\서석일_작성\\QCC_SRS-FW-TD24A 소프트웨어 요구사항 사양서_byssi.docx",
-      "sha256": "64ddecba6c1b718ecd31881f45fec163f4e5cdd88807455fa6b019c370bfe078",
-      "basis": "Provided design/criteria, not implementation or execution result"
-    },
-    {
-      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\서석일_작성\\QCC_SIP-FW-TD24A 소프트웨어 통합 계획서_byssi.docx",
-      "sha256": "0037a200031568bbee5d044b40bd4647ade513bf13c1b227ba4ee67da4c0dabf",
-      "basis": "Provided design/criteria, not implementation or execution result"
-    },
-    {
-      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\서석일_작성\\QCC_SDDD-FW-TD24A 소프트웨어 상세 설계서_byssi.docx",
-      "sha256": "49982c995f78064613f47f4d97a262c70394fc937b66cf4e6f38925e4fb5e1ce",
-      "basis": "Provided design/criteria, not implementation or execution result"
-    },
-    {
-      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\서석일_작성\\QCC_SAD-FW-TD24A 소프트웨어 아키텍쳐 기술서_byssi.docx",
-      "sha256": "49ebebcf56d3835b0db3365c5ba996909a1f59490e50468c2fe76d44974b8878",
-      "basis": "Provided design/criteria, not implementation or execution result"
-    },
-    {
-      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\서석일_작성\\QCC_SUVC-FW-TD24A 유닛 테스트 기준서_byssi.docx",
-      "sha256": "072aa94ef6c48846c78a81dea104a65adcf19def60f5484a8f33c3677afcab5a",
-      "basis": "Provided design/criteria, not implementation or execution result"
-    }
-  ]
+  "link_migration_review_scope": "CM3 source topology integration and current test/RTT boundary preservation, unchanged core startup/normal ordering, CFX 24-word backtel sequence, operational PMIC policy, I2C error recovery, link-only persistence/protocol, paired shared tail. Host/SDK evidence does not establish physical behavior, atomic FAT recovery or FF support. Historical descriptions/records retained separately.",
+  "link_test_state_review": "2026-10-19: TDC_UNIT_TEST-only nine-field private-state exchange and vectors/IO restore reviewed; nondefault seeded host tests and CM3 normal/test builds passed. No device test."
 }

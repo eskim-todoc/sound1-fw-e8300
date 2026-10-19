@@ -1,0 +1,144 @@
+{
+  "status": "PASS",
+  "scope": "Updated implementation notice and inline guide; browser layout checks, not firmware or device tests",
+  "cases": [
+    {
+      "width": 1440,
+      "tab": "tab-overview",
+      "passed": true
+    },
+    {
+      "width": 1440,
+      "tab": "tab-link",
+      "passed": true
+    },
+    {
+      "width": 1440,
+      "tab": "tab-pmic",
+      "passed": true
+    },
+    {
+      "width": 1440,
+      "tab": "tab-ff1",
+      "passed": true
+    },
+    {
+      "width": 1440,
+      "tab": "tab-ff3",
+      "passed": true
+    },
+    {
+      "width": 1440,
+      "tab": "tab-protocol",
+      "passed": true
+    },
+    {
+      "width": 1440,
+      "tab": "tab-shared",
+      "passed": true
+    },
+    {
+      "width": 1440,
+      "tab": "tab-plan",
+      "passed": true
+    },
+    {
+      "width": 1440,
+      "tab": "tab-evidence",
+      "passed": true
+    },
+    {
+      "width": 390,
+      "tab": "tab-overview",
+      "passed": true
+    },
+    {
+      "width": 390,
+      "tab": "tab-link",
+      "passed": true
+    },
+    {
+      "width": 390,
+      "tab": "tab-pmic",
+      "passed": true
+    },
+    {
+      "width": 390,
+      "tab": "tab-ff1",
+      "passed": true
+    },
+    {
+      "width": 390,
+      "tab": "tab-ff3",
+      "passed": true
+    },
+    {
+      "width": 390,
+      "tab": "tab-protocol",
+      "passed": true
+    },
+    {
+      "width": 390,
+      "tab": "tab-shared",
+      "passed": true
+    },
+    {
+      "width": 390,
+      "tab": "tab-plan",
+      "passed": true
+    },
+    {
+      "width": 390,
+      "tab": "tab-evidence",
+      "passed": true
+    },
+    {
+      "width": 320,
+      "tab": "tab-overview",
+      "passed": true
+    },
+    {
+      "width": 320,
+      "tab": "tab-link",
+      "passed": true
+    },
+    {
+      "width": 320,
+      "tab": "tab-pmic",
+      "passed": true
+    },
+    {
+      "width": 320,
+      "tab": "tab-ff1",
+      "passed": true
+    },
+    {
+      "width": 320,
+      "tab": "tab-ff3",
+      "passed": true
+    },
+    {
+      "width": 320,
+      "tab": "tab-protocol",
+      "passed": true
+    },
+    {
+      "width": 320,
+      "tab": "tab-shared",
+      "passed": true
+    },
+    {
+      "width": 320,
+      "tab": "tab-plan",
+      "passed": true
+    },
+    {
+      "width": 320,
+      "tab": "tab-evidence",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "external": [],
+  "unique_ids": 987
+}

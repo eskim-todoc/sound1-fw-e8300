@@ -4,6 +4,8 @@ Sound1(TD24A-A-EXT)은 E8300의 CM3, CFX, HEAR가 자극 처리의 역할을 나
 
 이 문서는 SAD/SDDD/시험 문서를 작성하거나 펌웨어를 변경할 때 먼저 읽는 구조 설명이다. 코드를 대체하는 명세나 실기 검증 보고서는 아니다. 2026-09-29 작업 트리의 실제 진입점, 호출, 공유 변수와 활성 조건부 코드를 대조했다. 검토 파일 목록과 변경 감지는 [분석 기준 파일](분석%20기준%20파일.json), [확인 도구](구조%20근거%20확인.py)를 사용한다. 해시 일치는 내용의 정확성이나 시험 통과를 뜻하지 않는다.
 
+2026-10-19 기준 통합에서는 원격 CM3의 `source` 배치에 현재 시험·RTT 변경을 연결했다. 아래 링크와 주요 진입점 이름을 현재 파일에 맞추고, 링크·PMIC 변경은9절에 반영했다. 이전 분석 기준은 JSON의 역사 항목에 보존하며 새 해시는 코드 검토/호스트/SDK 검사 범위의 식별자다. 실기 검증을 뜻하지 않는다.
+
 ## 1 외부장치와 내부장치의 경계
 
 ![Sound1 외부장치 안의 E8300과 QCC 및 내부 이식장치의 연결](../인허가/사운드1/DHF/03_설계%20출력/SW/펌웨어/이미지%20참조/시스템%20블록도.png)
@@ -19,10 +21,10 @@ CFX의 자극 패킷은 PCM으로 FPGA에 전달되고, CM3는 I2C로 FPGA 상�
 | DMIC 2개 → E8300 | PDM 입력, FIFO 블록 | CFX 오디오 경로 및 두 마이크 버퍼 |
 | DMIC2 → QCC → 통화 상대 | 통화 마이크 입력과 Bluetooth 통화 송신 | DMIC2의 양쪽 연결과 QCC의 통화 수음은 은수님 확인. QCC 내부 처리/핀/클록/프로파일/코덱의 세부 계약과 실측은 별도 확인 |
 | QCC → CFX | I2S 오디오, 입력 유효 GPIO | `normal_loop`, `PCM_LiveStimulation_Mode` |
-| QCC ↔ CM3 | SPI 명령/응답 | CM3 SPI slave/DMA, `bleCommunication` |
+| QCC ↔ CM3 | SPI 명령/응답 | CM3 SPI slave/DMA, `tdc_ble_communication_step` |
 | CM3 → QCC | 동작 요청, 내부기 연결 표시 | `QCC_CTRL`, `ISD_CHECK` |
 | CFX → FPGA | PCM 자극/설정/NOP 패킷 | `pcmDataOut` |
-| CM3 ↔ FPGA/TX PMIC | 설정, 상태, 백텔 읽기, 송신 전원 조정 | `isd_interface` 하위 상태 처리 |
+| CM3 ↔ FPGA/TX PMIC | 설정, 상태, 백텔 읽기, 송신 전원 조정 | `tdc_isd_step` 하위 상태 처리 |
 | CM3 ↔ 터치 센서 / CM3 → LED | 터치 입력 / 표시 | `tdc_touch_process`, LED 요청/중재 |
 | 부트로더/CM3 ↔ 비휘발성 저장장치 | 이미지, 맵, 사용자 설정 | NVM/FatFs, `ci_map_*`, OTA 파일 쓰기 |
 
@@ -50,10 +52,10 @@ CFX의 자극 패킷은 PCM으로 FPGA에 전달되고, CM3는 I2C로 FPGA 상�
 1. [부트로더 main](../../../src/0__bootloader/main.c)이 초기 GPIO와 디버그 조건을 설정한다. CAL 입력에 따라 서비스 모드 또는 일반 부트로더로 분기한다.
 2. [이미지 적재](../../../src/0__bootloader/source/bootloader.c)의 `bootloader_boot`가 저장장치를 준비하고 부트 상태에 따라 이미지를 선택한다. 파일/섹션 검사, 필요한 복호화와 메모리 적재 후 CFX와 CM3 응용 프로그램의 시작 위치로 연결한다. HEAR 코드/데이터 적재와 런타임 함수체인 시작은 다른 단계다.
 3. CFX `main`은 자체 우선순위/메모리 중재/루프 스택/포화 연산/인터럽트를 설정하고 `is_CFX_started`를 게시한다. **CFX 초기화가 전부 부트로더로 이동한 것은 아니다.**
-4. [CM3 main](../../../src/2__cm3/Cortex-M3-src/main.c)의 `tdc_normal_boot_sequence`가 CFX 시작을 기다리고 `Initialize`를 실행한 뒤 `is_enabled_CFX_iteration`을 설정한다.
+4. [CM3 main](../../../src/2__cm3/source/main.c)의 `tdc_normal_boot_sequence`가 CFX 시작을 기다리고 `tdc_sys_init`를 실행한 뒤 `is_enabled_CFX_iteration`을 설정한다.
 5. CFX `normal_init`이 HEAR, 오디오, PCM, I2S를 준비한다. CM3는 내부기 설정과 맵 적용을 진행하고, 준비 완료 후 Live 자극 모드로 전환한다.
 
-부트 상태의 기본/대체 슬롯 선택과 재시도는 [부트 상태 관리](../../../src/0__bootloader/source/bootmgr/ci_boot.c)의 `snd_boot_determine_slot_num`에서 확인한다. 슬롯 상태 필드는 1~4를 표현하지만 [CM3 OTA 수신](../../../src/2__cm3/Cortex-M3-src/BleCommunication/ci_ble_control_ota.c)의 명령 처리는 1~2 범위를 검사한다. 이를 근거 없이 모든 경로에서 동일한 A/B 슬롯 계약이라고 단순화하지 않는다. 이번에는 슬롯 경계 오류 처리의 완전성까지 검증하지 않았다.
+부트 상태의 기본/대체 슬롯 선택과 재시도는 [부트 상태 관리](../../../src/0__bootloader/source/bootmgr/ci_boot.c)의 `snd_boot_determine_slot_num`에서 확인한다. 슬롯 상태 필드는 1~4를 표현하지만 [CM3 OTA 수신](../../../src/2__cm3/source/dfu/tdc_dfu_ble_ota.c)의 명령 처리는 1~2 범위를 검사한다. 이를 근거 없이 모든 경로에서 동일한 A/B 슬롯 계약이라고 단순화하지 않는다. 이번에는 슬롯 경계 오류 처리의 완전성까지 검증하지 않았다.
 
 ## 4 음성 입력에서 전극 자극까지
 
@@ -88,7 +90,7 @@ CFX의 FIFO ISR은 `mic0`, `mic1`, `pcm_out`, `dac1` 등의 준비 플래그를 
 
 근거: [HEAR 함수체인](../../../src/3__hear/microcode.hct), [AGC](../../../src/1__cfx/signalProcessing/agc.c), [PCM 분기](../../../src/1__cfx/internalDevice/driver_PCM.c), [자극 전략](../../../src/1__cfx/signalProcessing/stimulationStrategy.c).
 
-`maxAudioInput`은 ADC 전체 범위의 장시간 최대나 RMS가 아니라 **혼합 후 AGC 전의 최근 16표본 절대값 최대**다. CM3 `readAudioSignalMax`는 이 값을 읽는다. 앱 폴링 사이의 모든 블록 최댓값을 보관하는 peak hold로 설명하면 안 된다.
+`maxAudioInput`은 ADC 전체 범위의 장시간 최대나 RMS가 아니라 **혼합 후 AGC 전의 최근 16표본 절대값 최대**다. CM3 `tdc_shm_read_audio_signal_max`는 이 값을 읽는다. 앱 폴링 사이의 모든 블록 최댓값을 보관하는 peak hold로 설명하면 안 된다.
 
 OD 관찰 출력도 정수 배열과 물리 출력을 구분한다. `HEAR_LiveStimulation_Mode`는 AGC 출력에 `lib_loopback_AGC_out`의 64배 확대/24비트 포화를 적용해 DAC1 FIFO로 보낸다. [출력 설정](../../../src/1__cfx/systemControl/main.h)은 `SD_2_LEVEL`, `OD1_ENABLE`이며 OD1_P/OD1_N은 차동 PDM 출력이다. 핀에서 직접 아날로그 사인파를 찾지 않고 청취 수신기 또는 측정용 저역통과 필터 후 차동 출력을 확인한다. CFX-020 시험 코드는 RAM 목적지로 증가 배열/포화 경계 배열을 계산할 뿐 연속 사인파를 재생하지 않는다. 정상 오디오 경로의 순음/무음 청취와 RAM 시험 통과를 같은 결과로 취급하지 않는다.
 
@@ -96,7 +98,7 @@ OD 관찰 출력도 정수 배열과 물리 출력을 구분한다. `HEAR_LiveSt
 
 CIS는 CM3가 펄스폭에서 계산한 프레임 수/전송 가능량을 사용한다. NofM은 현재 CM3 계산에서 정상 밴드 수 조건일 때 자극당 3프레임, 1 ms당 8채널로 설정한다. CFX는 16개 선택 결과를 두 phase에 걸쳐 전송하며 phase 0에서 대역 분석/매핑/선택/배치/패킷 생성을 갱신한다. **기본 CIS 맵의 2프레임을 NofM에도 그대로 적용하지 않는다.**
 
-근거: [CM3 계산](../../../src/2__cm3/Cortex-M3-src/signalProcessing/stimulationParaCal.c) `calculationStimulParaN_cfxShare`, CFX `stimulationStrategy_NofM`, `stimulationStrategy_NofM_PCM_Write`. 16개 미만 밴드 조건은 오류 로그가 있지만 그 사실만으로 안전한 차단이 보장된다고 판단하지 않는다. 실제 스코프 파형에는 패킷 수신/내부기 출력 지연도 포함되므로 별도 내부기 계약과 시험 근거가 필요하다.
+근거: [CM3 계산](../../../src/2__cm3/source/stim/tdc_stim_para_cal.c) `tdc_stim_calc_para_and_cfx_share`, CFX `stimulationStrategy_NofM`, `stimulationStrategy_NofM_PCM_Write`. 16개 미만 밴드 조건은 오류 로그가 있지만 그 사실만으로 안전한 차단이 보장된다고 판단하지 않는다. 실제 스코프 파형에는 패킷 수신/내부기 출력 지연도 포함되므로 별도 내부기 계약과 시험 근거가 필요하다.
 
 2026-09-30 상세설계 대조에서 선택 후 순서도 확인했다. `(크기 << 5) | (31 - 인덱스)` 점수는 같은 크기일 때 낮은 인덱스를 우선한다. 선택 인덱스를 오름차순으로 정렬한 뒤 하위 8개와 상위 8개를 교차한다. 예를 들어 0~15가 선택되면 `0,8,1,9,...,7,15`다. `stimulationStrategy_NofM_Packet`은 직전 마지막 전극과 이번 배열 양 끝의 거리를 비교하며, 끝이 더 멀면 **마지막 한 개만 맨 앞으로 옮긴다.** 전체 배열을 역순으로 뒤집는 것이 아니다. 해당 경로는 위 [자극 전략](../../../src/1__cfx/signalProcessing/stimulationStrategy.c)의 선택/교차 배치/패킷 함수에서 확인한다.
 
@@ -111,7 +113,7 @@ CIS는 CM3가 펄스폭에서 계산한 프레임 수/전송 가능량을 사용
 | 5 | CM3 → CFX | 계산 완료 플래그를 게시, CFX는 T/C 및 전송량을 반영하고 완료 플래그를 지움 |
 | 6 | CM3 + CFX | 내부기 설정/읽기 확인 완료 후 Live PCM 모드 요청과 출력 |
 
-근거: [공유 메모리 접근](../../../src/2__cm3/Cortex-M3-src/systemControl/cfx_cm3_sharedMemory.c) `changeConnected_isd_num_CFX`, `changeProgramMapNum`, [CFX 맵 이벤트](../../../src/1__cfx/systemControl/system_control.c), [CM3 독립 자극 실행](../../../src/2__cm3/Cortex-M3-src/internalDevice/isd_interface_stimulationStandAlone.c).
+근거: [공유 메모리 접근](../../../src/2__cm3/source/cfx_link/tdc_shm.c) `tdc_shm_change_connected_isd_num_cfx`, `tdc_shm_change_program_map_num`, [CFX 맵 이벤트](../../../src/1__cfx/systemControl/system_control.c), [CM3 독립 자극 실행](../../../src/2__cm3/source/isd/tdc_isd_stim_standalone.c).
 
 2026-10-02 실패 경로 대조에서는 위 정상 순서와 별도로 미확정 처리를 발견했다. CM3의 전하량 제한 조건은 현재 정의한 매크로 이름과 달라 활성화되지 않는다. DAC 범위 초과 시 `calculationStimulParaN_cfxShare()`는 false를 반환하지만 초기화되지 않은 지역 T/C 배열을 공유 영역으로 복사하려는 경로가 남고, 독립 자극 실행 호출자는 성공 여부 분기 없이 완료를 게시한다. 실패 후 기존 값 보존/안전값 변경/출력 차단 중 어느 정책인지 여기서 임의로 정하지 않는다. 시험용 관찰에서는 미정의 배열 읽기만 생략하며 이를 제품의 실패 후 보존 동작으로 해석하지 않는다.
 
@@ -121,7 +123,7 @@ CIS는 CM3가 펄스폭에서 계산한 프레임 수/전송 가능량을 사용
 
 CM3 `tdc_normal_iteration`은 입력 수집 후 `systemControl → update_mapNum → isd_interface → bleCommunication` 순서로 처리한다. 시스템 제어는 일부 지난 tick의 내부기/매핑 상태를 받고 다음 상태를 만든다. 이 순서를 바꾸면 같은 데이터라도 반영 시점이 달라질 수 있다.
 
-정상 루프의 iteration과 시스템 tick은 [CFX/FIFO 인터럽트 처리](../../../src/2__cm3/Cortex-M3-src/systemControl/driver_timmer.c)에서 열고, [TIMER3](../../../src/2__cm3/Gen1_5/common/ci_timer.c)는 LED 중재와 자체 tick을 담당한다. 타이머 세 개가 있다는 식의 옛 주석이나 “CM3에 타이머가 없다”는 잔존 주석을 현재 하드웨어 설명으로 옮기지 않는다. 불리언 iteration 플래그는 이벤트 누적 큐가 아니므로 블로킹 중의 tick 횟수 보존도 별도 확인 사항이다.
+정상 루프의 iteration과 시스템 tick은 [CFX/FIFO 인터럽트 처리](../../../src/2__cm3/source/hal/tdc_hal_cfx_tick.c)에서 열고, [TIMER3](../../../src/2__cm3/source/hal/tdc_hal_timer.c)는 LED 중재와 자체 tick을 담당한다. 타이머 세 개가 있다는 식의 옛 주석이나 “CM3에 타이머가 없다”는 잔존 주석을 현재 하드웨어 설명으로 옮기지 않는다. 불리언 iteration 플래그는 이벤트 누적 큐가 아니므로 블로킹 중의 tick 횟수 보존도 별도 확인 사항이다.
 
 | QCC 경로 | CM3/CFX가 실제 사용하는 정보 |
 |---|---|
@@ -133,22 +135,22 @@ CM3 `tdc_normal_iteration`은 입력 수집 후 `systemControl → update_mapNum
 | I2S + 유효 플래그 | CFX의 입력 상태와 혼합 경로 |
 | ISD_CHECK / QCC_CTRL | CM3가 QCC에 연결 상태/동작 모드를 출력 |
 
-근거: [BLE 명령 처리](../../../src/2__cm3/Cortex-M3-src/BleCommunication/ble_communication.c), [QCC 핀 제어](../../../src/2__cm3/Cortex-M3-src/QCC/snd_qcc.c), [SPI 설정](../../../src/2__cm3/Cortex-M3-src/systemControl/driver_SPI.h).
+근거: [BLE 명령 처리](../../../src/2__cm3/source/ble/tdc_ble_communication.c), [QCC 핀 제어](../../../src/2__cm3/source/qcc/tdc_qcc.c), [SPI 설정](../../../src/2__cm3/source/hal/tdc_hal_spi.h).
 
-`NRF_On_OFF`, `setting_nrf_ble_adv_info`는 남아 있는 함수 이름이다. 이름을 QCC로 치환하는 것만으로 동작을 설명하지 말고 호출과 실제 GPIO/SPI 처리를 확인한다. E8300의 송수신 계약은 현재 코드에 근거하고, 제공된 QCC 설계의 대응과 미확인은 6.2절에서 구분한다.
+`tdc_sys_control_nrf_on_off`, `setting_nrf_ble_adv_info`는 남아 있는 함수 이름이다. 이름을 QCC로 치환하는 것만으로 동작을 설명하지 말고 호출과 실제 GPIO/SPI 처리를 확인한다. E8300의 송수신 계약은 현재 코드에 근거하고, 제공된 QCC 설계의 대응과 미확인은 6.2절에서 구분한다.
 
-OTA의 시작/종료 명령은 ACK를 만들며 그 자체로 DFU 연결 플래그를 바꾸지 않는다. DFU 상태는 SPI 0x35의 입력 상태 4(OTA_EZAIRO)/0(NONE)을 받아 연결 플래그 1/0으로 반영한다. 명령 응답과 상태 통보를 한 경로로 설명하지 않는다. 근거는 위 BLE 명령 처리와 [OTA 처리](../../../src/2__cm3/Cortex-M3-src/BleCommunication/ci_ble_control_ota.c)다.
+OTA의 시작/종료 명령은 ACK를 만들며 그 자체로 DFU 연결 플래그를 바꾸지 않는다. DFU 상태는 SPI 0x35의 입력 상태 4(OTA_EZAIRO)/0(NONE)을 받아 연결 플래그 1/0으로 반영한다. 명령 응답과 상태 통보를 한 경로로 설명하지 않는다. 근거는 위 BLE 명령 처리와 [OTA 처리](../../../src/2__cm3/source/dfu/tdc_dfu_ble_ota.c)다.
 
-절전도 한 종류로 묶지 않는다. CM3 일반 절전, 크래들 뚜껑 닫힘 경로, 시험용 fake sleep이 별도로 있다. CFX는 CM3의 ULP 요청을 받아 입출력을 정지하고 wake-up 인터럽트를 기다린다. 특정 경로의 시간이나 복귀 조건을 문서에 넣을 때는 해당 함수와 현재 설정을 다시 확인한다.
+절전도 한 종류로 묶지 않는다. CM3 일반 절전과 크래들 뚜껑 닫힘 경로를 각각 확인한다. 시험용 fake sleep은 통합한 원격 develop에서 제거되어 현재 실행 경로가 아니다. CFX는 CM3의 ULP 요청을 받아 입출력을 정지하고 wake-up 인터럽트를 기다린다. 특정 경로의 시간이나 복귀 조건을 문서에 넣을 때는 해당 함수와 현재 설정을 다시 확인한다.
 
 ### 6.1 감사기록의 생성과 조회
 
 2026-10-12 확인. 감사기록 기능은 별도 코어가 아니라 CM3의 초기화, 리모콘 명령 처리와 정상 반복 경로에 나뉜다. 상세 설계의 기존 CM3-001/046/005에 각각 포함한다.
 
-- [초기화](../../../src/2__cm3/Cortex-M3-src/systemControl/initialize.c)의 `ci_event_log_init()`는 유효한 기존 기록을 보존하고 파일이 없거나 관리 정보가 잘못된 경우 초기화한다.
-- [리모콘 명령 처리](../../../src/2__cm3/Cortex-M3-src/BleCommunication/remoteControl.c)의 연결 확인 명령은 받은 시간, 블루투스 주소를 갱신한 뒤 연결 이벤트 `0x40`을 기록한다. 일반 명령의 처리 허용 플래그는 암호학적 인증 결과와 구분한다. 연결 해제 기록 호출은 주석 처리되어 있어 자동 기록한다고 설명하지 않는다.
-- [기록 저장/조회](../../../src/2__cm3/Gen1_5/FS/ci_event_log.c)는 4,096바이트 파일에 관리 정보 16바이트와 기록 16바이트 최대 255개를 둔다. 기록은 시간 6바이트, 주소 6바이트와 이벤트 4바이트다. 배열의 끝에 도달하면 처음으로 돌아간다. [시간 처리](../../../src/2__cm3/Gen1_5/common/ci_timer.c)는 받은 기준 시간에 1ms tick의 경과 시간을 반영한다.
-- 정상 반복에서 [개발/점검 명령](../../../src/2__cm3/Gen1_5/ui/tdc_ui_command.c)의 `--dump_log`를 처리하면 기록을 읽어 RTT로 출력한다. 이 경로에는 인가자 확인이나 암호화 처리가 없으며, QCC 무선 암호화와 다른 경로다. 조회 완료 안내만으로 읽기 성공을 판정하지 않고 실제 반환값/출력 내용을 확인한다. 출하 시 디버그 접근 제한은 별도 확인 대상이다.
+- [초기화](../../../src/2__cm3/source/sys/tdc_sys_init.c)의 `ci_event_log_init()`는 유효한 기존 기록을 보존하고 파일이 없거나 관리 정보가 잘못된 경우 초기화한다.
+- [리모콘 명령 처리](../../../src/2__cm3/source/ble/remote/tdc_ble_remote.c)의 연결 확인 명령은 받은 시간, 블루투스 주소를 갱신한 뒤 연결 이벤트 `0x40`을 기록한다. 일반 명령의 처리 허용 플래그는 암호학적 인증 결과와 구분한다. 연결 해제 기록 호출은 주석 처리되어 있어 자동 기록한다고 설명하지 않는다.
+- [기록 저장/조회](../../../src/2__cm3/source/fs/tdc_fs_event_log.c)는 4,096바이트 파일에 관리 정보 16바이트와 기록 16바이트 최대 255개를 둔다. 기록은 시간 6바이트, 주소 6바이트와 이벤트 4바이트다. 배열의 끝에 도달하면 처음으로 돌아간다. [시간 처리](../../../src/2__cm3/source/hal/tdc_hal_timer.c)는 받은 기준 시간에 1ms tick의 경과 시간을 반영한다.
+- 정상 반복에서 [개발/점검 명령](../../../src/2__cm3/source/ui/tdc_ui_command.c)의 `--dump_log`를 처리하면 기록을 읽어 RTT로 출력한다. 이 경로에는 인가자 확인이나 암호화 처리가 없으며, QCC 무선 암호화와 다른 경로다. 조회 완료 안내만으로 읽기 성공을 판정하지 않고 실제 반환값/출력 내용을 확인한다. 출하 시 디버그 접근 제한은 별도 확인 대상이다.
 
 제품 함수와 RAM 파일을 사용한 보충 실행에서 초기화 중 `f_sync` 실패와 기록 중 `f_close` 실패를 넣어도 반환값이 0인 경우를 확인했다. 이는 실기 시험 결과가 아니며 오류 반환 보완 대상으로 남긴다. 입력/실행 증거와 문서 반영 범위는 [설계 출력 작업의 감사기록 보완 항목](../../tasks/인허가/20260929_1755_DHF-펌웨어-설계출력/작업.md)에 연결한다. 현재 통합 시험에는 감사기록 입력에서 저장/조회까지의 연속 경로가 명시되어 있지 않다.
 
@@ -196,18 +198,18 @@ E8300의 신호처리·내부기 제어 모듈과 QCC의 네 모듈은 서로 �
 
 ### 7.1 시험 코드와 정상 펌웨어의 경계
 
-2026-10-16에 추가한 SYS-054/073/077/080은 CM3의 시험별 `TDC_SYS_TEST_번호_ENABLE`로 선택한다. 신규 기본값은 모두 0이다. [시스템 시험 통합 사용방법](../../../tests/system/README.md)에 SYS-007/012/023/050/051을 포함한 준비, 명령, 확인값과 원복 순서를 둔다. 관련 코드의 진입점은 [저장 시험 공통 제어](../../../src/2__cm3/Cortex-M3-src/test/tdc_sys_test_storage.c)이며 UI에서 한 명령씩 실행한다. 내부기/매핑 분리, 기존 오류/LED 강제 설정을 확인한 뒤 정상 전경 제어 대신 현재/다음 PCM의 NOP를 유지한다. Timer 3/CFX IRQ/워치독은 유지한다. `stop`은 남은 로그를 취소할 뿐 파일/오류를 원복하거나 자극을 재개하지 않는다. 물리적 무자극과 실제 LED는 별도 확인 대상이다.
+2026-10-16에 추가한 SYS-054/073/077/080은 CM3의 시험별 `TDC_SYS_TEST_번호_ENABLE`로 선택한다. 신규 기본값은 모두 0이다. [시스템 시험 통합 사용방법](../../../tests/system/README.md)에 SYS-007/012/023/050/051을 포함한 준비, 명령, 확인값과 원복 순서를 둔다. 관련 코드의 진입점은 [저장 시험 공통 제어](../../../src/2__cm3/source/tests/tdc_sys_test_storage.c)이며 UI에서 한 명령씩 실행한다. 내부기/매핑 분리, 기존 오류/LED 강제 설정을 확인한 뒤 정상 전경 제어 대신 현재/다음 PCM의 NOP를 유지한다. Timer 3/CFX IRQ/워치독은 유지한다. `stop`은 남은 로그를 취소할 뿐 파일/오류를 원복하거나 자극을 재개하지 않는다. 물리적 무자극과 실제 LED는 별도 확인 대상이다.
 
-- [SYS-054](../../../src/2__cm3/Cortex-M3-src/test/tdc_sys_test_54.c): 부트 드라이브의 비암호화 FEZ를 읽고 파일/섹션 CRC와 길이를 검사한다. 손상은 읽은 RAM에만 주입한다. 실제 부트로더와 같은 헤더 정의/CRC 규칙을 참조하지만 적재/실행/기동 거부를 수행하지 않는다. 암호화 FEZ는 미지원, VOLATILE 예외는 부분 검사로 구분한다.
-- [SYS-073](../../../src/2__cm3/Cortex-M3-src/test/tdc_sys_test_73.c): 실제 감사 init/write를 호출하되 파일 연산과 작업 버퍼를 시험 전용 RAM으로 연결한다. 오류를 받은 제품 함수가 갱신한 오류 코드와 기존 LED 요청을 관찰한다. 제품이 오류를 알리지 않으면 불일치를 보존한다. 직접 LED 오류 주입은 별도 명령이며 실제 저장 실패 검출과 구분한다. 실제 감사 파일/제품 감사 버퍼/시각/주소는 변경하지 않는다.
-- [SYS-077](../../../src/2__cm3/Cortex-M3-src/test/tdc_sys_test_77.c): 가상 ISD 정보만 별도 파일에 실제 CRC/AES 래퍼로 저장하고 암호문/복원문을 읽는다. 실제 개인정보/키는 출력하지 않는다. 기존 시험 파일을 덮어쓰지 않으며 닫기/동기화 실패는 성공 왕복과 구분한다. 전원 차단 후 저장 유지까지 확인하는 기능은 아니다.
-- [SYS-080](../../../src/2__cm3/Cortex-M3-src/test/tdc_sys_test_80.c): 시험 전용 `SYS80.TST`에 설정과 제품 CRC를 저장/검증한 뒤 CRC는 유지하고 데이터 한 바이트만 손상시킨다. `check`가 두 CRC와 제품 읽기 함수의 반환을 확인하고, 불일치일 때 `ci_map.c`의 사용자 설정 기본값으로 시험 파일을 저장/재검증한다. `arm/check/clear`는 재부팅이나 실제 사용자 설정 변경 없이 실행한다. `clear`는 식별된 시험 파일만 제거한다. 이전 방식의 백업을 가진 사용자를 위한 `restore`만 실제 ISD1 설정 전체를 원복하며 재확인 후 백업을 제거한다. 함수 안의 파일 복구와 실제 부팅/맵/알림/BLE 적용 시험은 구분한다(2026-10-16 후속 요청 반영).
+- [SYS-054](../../../src/2__cm3/source/tests/tdc_sys_test_54.c): 부트 드라이브의 비암호화 FEZ를 읽고 파일/섹션 CRC와 길이를 검사한다. 손상은 읽은 RAM에만 주입한다. 실제 부트로더와 같은 헤더 정의/CRC 규칙을 참조하지만 적재/실행/기동 거부를 수행하지 않는다. 암호화 FEZ는 미지원, VOLATILE 예외는 부분 검사로 구분한다.
+- [SYS-073](../../../src/2__cm3/source/tests/tdc_sys_test_73.c): 실제 감사 init/write를 호출하되 파일 연산과 작업 버퍼를 시험 전용 RAM으로 연결한다. 오류를 받은 제품 함수가 갱신한 오류 코드와 기존 LED 요청을 관찰한다. 제품이 오류를 알리지 않으면 불일치를 보존한다. 직접 LED 오류 주입은 별도 명령이며 실제 저장 실패 검출과 구분한다. 실제 감사 파일/제품 감사 버퍼/시각/주소는 변경하지 않는다.
+- [SYS-077](../../../src/2__cm3/source/tests/tdc_sys_test_77.c): 가상 ISD 정보만 별도 파일에 실제 CRC/AES 래퍼로 저장하고 암호문/복원문을 읽는다. 실제 개인정보/키는 출력하지 않는다. 기존 시험 파일을 덮어쓰지 않으며 닫기/동기화 실패는 성공 왕복과 구분한다. 전원 차단 후 저장 유지까지 확인하는 기능은 아니다.
+- [SYS-080](../../../src/2__cm3/source/tests/tdc_sys_test_80.c): 시험 전용 `SYS80.TST`에 설정과 제품 CRC를 저장/검증한 뒤 CRC는 유지하고 데이터 한 바이트만 손상시킨다. `check`가 두 CRC와 제품 읽기 함수의 반환을 확인하고, 불일치일 때 `ci_map.c`의 사용자 설정 기본값으로 시험 파일을 저장/재검증한다. `arm/check/clear`는 재부팅이나 실제 사용자 설정 변경 없이 실행한다. `clear`는 식별된 시험 파일만 제거한다. 이전 방식의 백업을 가진 사용자를 위한 `restore`만 실제 ISD1 설정 전체를 원복하며 재확인 후 백업을 제거한다. 함수 안의 파일 복구와 실제 부팅/맵/알림/BLE 적용 시험은 구분한다(2026-10-16 후속 요청 반영).
 
 이 시험 경계는 기존 파일 래퍼의 실패 반환 누락, 감사 init/sync/close 오류 처리와 부트 CRC 예외를 수정하는 기능이 아니다. 시험 빌드의 파일 진단 출력은 HOLD 구간에서 제한하고 결과를 60바이트 이내 행으로 보관/재시도한다. OFF에서는 새 경계와 UI/main 분기를 제거한다. PC 재현/SDK 빌드는 실제 LED, NVM 전원 차단 유지, 부팅 거부나 시스템 시험 합격을 의미하지 않는다.
 
 2026-10-15에 추가한 [SYS-050/051 감사기록 표시](../../../tests/system/audit.md)는 CM3 `TDC_SYS_TEST_AUDIT_ENABLE`로 선택한다. `--sys50/51`은 2026-05-29의 고정 시간과 가상 주소를 기존 이벤트 구조의 읽기 전용 RAM 벡터로 구성하여 RTT로만 보낸다. TIME/ADDR/EVENT 필드는 보존하되 60바이트 제한 때문에 같은 기록 번호의 세 행으로 나누고 매 행 TEST로 출처를 표시한다. 실제 감사 파일, 기준 시간, 주소, 연결/오류 상태와 정상 전원 경로는 변경하지 않는다. 이 출력은 6.1절의 해제 기록 미연결과 무결성 오류 자동 기록 미확인을 보완하거나 통과시킨 결과가 아니다. 시작 시 SYS-023 상수가 1로 변경된 것을 확인하고 기존 SYS-007/DIO35 설정과 함께 보존했다.
 
-2026-10-14에 추가한 [SYS-023 저전력 알람 시험](../../../tests/system/sys23.md)은 CM3 `TDC_SYS_TEST_23_ENABLE`로 선택한다. `--sys23 start`는 정상 전경을 계속 실행하면서 `systemControl`의 저배터리 알람 비교에만 19%를 사용한다. QCC 잔량, 전원 종료/충전/오류 판단, LED 표시, 맵과 NVM은 바꾸지 않는다. 기존 `--batt`는 LED 전용이다. 현재 제품의 40% 미만 종료가 20% 미만 알람보다 먼저라는 불일치를 수정하거나 시험으로 감추지 않는다.
+2026-10-14에 추가한 [SYS-023 저전력 알람 시험](../../../tests/system/sys23.md)은 CM3 `TDC_SYS_TEST_23_ENABLE`로 선택한다. `--sys23 start`는 정상 전경을 계속 실행하면서 `tdc_sys_control_step`의 저배터리 알람 비교에만 19%를 사용한다. QCC 잔량, 전원 종료/충전/오류 판단, LED 표시, 맵과 NVM은 바꾸지 않는다. 기존 `--batt`는 LED 전용이다. 현재 제품의 40% 미만 종료가 20% 미만 알람보다 먼저라는 불일치를 수정하거나 시험으로 감추지 않는다.
 
 시험은 실제 잔량 40~100%, 방전/충전기 미연결, 내부기 Live 연결, 매핑 미연결과 알림 사용 설정에서 시작한다. 기존 `stimulation_IndicatorOut`과 CFX의 알림 공유 경로를 사용하고 직접 트리거를 세우거나 알람 전류를 바꾸지 않는다. 한 회차 종료/stop/5초/준비 조건 상실 시 시험 입력만 해제한다. 진행 중 알람은 기존 함수가 끝내므로 stop은 물리적 자극 정지가 아니다. CM3 로그의 요청/게이트/완료와 실제 전극 출력 검증을 구분한다. 정상 잔량 19%에서의 전체 시스템 동작을 통과시킨 시험은 아니다. 이번 작업 시작 시 사용자가 켠 DIO35의 CM3/CFX 값은 모두 1이며 그대로 보존했다.
 
@@ -246,3 +248,17 @@ FatFs/AES/CRC/RTT의 출처, 사용 경로와 검증 범위는 [Sound1 SOUP 사�
 핵심 근거는 위 각 절의 링크와 심볼이다. CFX는 `src/1__cfx/.cproject`의 ASIP Designer 도구 체인, CM3/부트로더는 각 `.cproject`의 Cross ARM GCC 구성에서 출발했다. HEAR 함수체인 원본은 `src/3__hear/microcode.hct`, CFX가 사용하는 크기/주소 정의는 `src/1__cfx/hear/microcode.h`다. 생성물과 원본의 일치 여부는 HEAR 변경 작업에서 재생성/빌드로 추가 확인해야 한다.
 
 현재 문서는 E8300 주요 정상 경로의 정적 분석과 6.2절의 QCC 제공 설계 대조 결과다. 전체 유닛의 정확성, 공유 메모리의 모든 경쟁 조건, 최악 실행시간, 실제 RF 회로/음향 성능, OTA 보안성이나 실기 시험 통과를 검증한 결과가 아니다. QCC 자료의 내부 상충과 구현/측정 미비를 보존하며, 위에서 표시한 매핑 마이크 전환 및 비정상 NofM 밴드 조건은 관련 상세 설계/수정 시 재확인한다.
+
+## 9 2026-10-19 링크·백텔·PMIC 확장
+
+[CFX Live PCM](../../../src/1__cfx/internalDevice/driver_PCM_liveStimulation.c)은 채널당 프레임1~9에서 ForwardCheck → 안정 NOP → 필요 시 최소 Duration → 백텔 읽기 → 수신 NOP → Duration 복원 순서로24워드를 채운다. 프레임10~12는 기존 읽기 배치를 유지한다. 실제 읽기를 내보낸 경우에만 완료 상태를 CM3에 게시하며 프레임 범위 밖에서는 오통보하지 않는다. 시퀀스는 호스트 기대 벡터와 비교한 코드상 배치로, 실측 PCM 파형은 아니다.
+
+[CM3 링크 정책](../../../src/2__cm3/source/isd/tdc_link_control.c)은 원본 Sullivan의 모드0 전원 상태/모드1 수신 여부, 코인·가속·고정 전압·무한 시험 설정을 분리한다. 모드1은 Normal Live에 적용하고 두 Mapping 경로는 전원 상태 정책을 유지한다. Normal/Live 모드0은 유효한 백텔로 코인을 재충전한다. 전용 Mapping은 코인 없이 미수신/과다 백텔에서 재초기화하며 무한 플래그도 이 실패 판정을 막지 않는다. 이는 원본의 경로 차이를 보존한 것이다.
+
+[PMIC/FPGA 접근](../../../src/2__cm3/source/isd/tdc_isd_fpga.c)은 읽기·쓰기 성공 때만 성공 관측값을 갱신한다. I2C 실패를 백텔 값으로 사용하지 않으며 호출부는 버스를 해제하고 복구 상태를 보존한다. Reset 뒤 프로토콜의 레벨0은 캐시 무효/미확인이다. 요청한 전압이나 실측0V를 뜻하지 않는다. 초기화 코드75와 기존 상승 절차는 유지하고, 운용 설정의 하한은112 이상, Normal/Mapping 기본 하한은140/172, 기본 상한은214다. 하한은 고정 출력이나 부팅 전압과 다르다. 최초 내부기 연결 전 기동 상한214를 유지하며 연결 후에도 설정 변경만으로 현재 출력을 급락시키지 않는다.
+
+[설정 모듈](../../../src/2__cm3/source/isd/tdc_link_config.c)은 LINKPARM 기본40바이트의 저장·복원과 범위 관계를 검사한다. 전체 파일 연산과 되읽기에 성공해야 RAM과 CFX 주기를 게시한다. 전경 전용이며 독립 FIL 객체를 사용한다. 파일 형식은 전원 차단 원자성이나 FAT 복구를 제공하지 않는다. [새 범용 명령](../../../src/2__cm3/source/ble/sound1/tdc_ble_link_debug.c)은 기존0x8F에0x20 도메인과 버전 조회를 추가하고, 응답 송신은 기존 리모콘 호출부 한 곳에서 수행한다. 실제 RX 길이가 제공되지 않는 기존20바이트 경계는 유지했다.
+
+CFX/CM3 공유 구조체에는 주기와 유효 안정 NOP 두 워드만 끝에 추가했다. 실제 ARM/ASIP 컴파일로 신규 전체 크기4060바이트/1015워드, 기존 주요 필드의 위치 유지와 신규 필드의 대응을 확인했다. Calibration의 기존 헤더는 이미 이전 공통 prefix까지만 갖고 있으며 이번 추가로 그 prefix의 위치를 바꾸지 않는다. CM3/CFX의 응용 이미지는 같은 버전의 쌍으로 사용한다. FF 감지/요청/장부, TIMER0와 AUDIOFF 저장은 실행 코드에 추가하지 않았다.
+
+주기는100ms 단위, 기본3이며 전용 Mapping 대기/Mapping Live 대기 재시작에도 적용한다. 진행 중 시퀀스를 중간 취소하지 않는다. 기존 카운터의0~300 포함 방식 때문에 설정300ms는301회 호출에 대응하며, 정확한 벽시계 시간이나 마감 상한을 실측한 결과가 아니다. 패킷·설정·빌드와 실기 확인 절차는 [이식본 사용방법](../../tasks/internalDevice/20261019_0920_Sullivan-링크-PMIC-FF-마이그레이션/빌드와%20실기%20확인.md), 수행 근거는 같은 작업의 상태 원본에서 확인한다.
