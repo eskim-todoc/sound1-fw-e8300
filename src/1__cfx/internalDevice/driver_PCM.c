@@ -4,6 +4,8 @@
 
 #include <driver_PCM.h>
 #include <main.h>
+#include "../test/tdc_ut_io_cfx.h"
+#include "../test/tdc_sys_test_config.h"
 
 int _XMEM g_pcmPreambleState = PCM_PREAMBLE_STATE_FILL_ZERO;
 
@@ -36,19 +38,24 @@ void pcmDataOut(void)
             break;
     }
 
+#if TDC_SYSTEM_TEST_DIO35_ENABLE
+    /* SYS-012 종료: 계산/PCM FIFO 기록 완료. 실제 직렬 전송 완료는 아니다.
+     * 모드 전환 중 파형은 제외하고 안정된 Live Stimulation에서 측정한다. */
+    Sys_GPIO_Set_Low(DIO35);
+#endif
     return;
 }
 
 void fn_PcmBitStream_Mode_Preamble(void)
 {
-    int _XMEM *p_pcmBuffer = (int _XMEM *) HEAR_ADDR_FIFO_PCM_WRITING;
+    int _XMEM *p_pcmBuffer = TDC_UT_PCM_TOP();
 
     if (g_pcmPreambleState == PCM_PREAMBLE_STATE_FILL_ZERO)  // fill with zero
     {
         for (register int i = 0; i < df_MaxNumTransferableChannel; i++)
             chess_loop_range(df_MaxNumTransferableChannel, df_MaxNumTransferableChannel)
             {
-                *p_pcmBuffer = 0;
+                TDC_UT_PCM_WRITE(p_pcmBuffer, 0);
                 p_pcmBuffer--;
             }
 
@@ -59,11 +66,11 @@ void fn_PcmBitStream_Mode_Preamble(void)
         for (register int i = 0; i < (df_MaxNumTransferableChannel - 1); i++)
             chess_loop_range((df_MaxNumTransferableChannel - 1), (df_MaxNumTransferableChannel - 1))
             {
-                *p_pcmBuffer = 0xFFFFF;
+                TDC_UT_PCM_WRITE(p_pcmBuffer, 0xFFFFF);
                 p_pcmBuffer--;
             }
 
-        *p_pcmBuffer = pcm_Mold_Preamble;  // 마지막 word는 preamble 데이터
+        TDC_UT_PCM_WRITE(p_pcmBuffer, pcm_Mold_Preamble);  // 마지막 word는 preamble 데이터
 
         // PCM 모드가 preable로 유지되어 있으면 다시 0이 출력된다. 모드를 NopStandby로 변경한다.
         Addr_SharedMem->cfx_PCM_interface.PCM_mode = PcmBitStream_Mode_NopStandby;
@@ -89,12 +96,12 @@ void fn_PcmBitStream_Mode_SepcificCommand(void)
 
     Addr_SharedMem->is_pcm_specific_command_reading = 1;  // CM3와의 SpecificCommand 경쟁 상태 방지를 위한 코드 by 김은수
 
-    p_pcmBuffer = (int chess_storage(XMEM) *) HEAR_ADDR_FIFO_PCM_WRITING;
+    p_pcmBuffer = TDC_UT_PCM_TOP();
 
     for (register int i = 0; i < df_MaxNumTransferableChannel; i++)
         chess_loop_range(df_MaxNumTransferableChannel, df_MaxNumTransferableChannel)
         {
-            *p_pcmBuffer = Addr_SharedMem->cfx_PCM_interface.PCM_specificBuffer[i];
+            TDC_UT_PCM_WRITE(p_pcmBuffer, Addr_SharedMem->cfx_PCM_interface.PCM_specificBuffer[i]);
             p_pcmBuffer--;
 
             Addr_SharedMem->pcm_specific_command_read_index = i;  // CM3와의 SpecificCommand 경쟁 상태 방지를 위한 코드 by 김은수
@@ -111,12 +118,12 @@ void fn_PcmBitStream_Mode_NopStandby(void)
 {
     int chess_storage(XMEM) * p_pcmBuffer;
 
-    p_pcmBuffer = (int chess_storage(XMEM) *) HEAR_ADDR_FIFO_PCM_WRITING;
+    p_pcmBuffer = TDC_UT_PCM_TOP();
 
     for (register int i = 0; i < df_MaxNumTransferableChannel; i++)
         chess_loop_range(df_MaxNumTransferableChannel, df_MaxNumTransferableChannel)
         {
-            *p_pcmBuffer = pcm_Mold_NopStandby;
+            TDC_UT_PCM_WRITE(p_pcmBuffer, pcm_Mold_NopStandby);
             p_pcmBuffer--;
         }
 }
@@ -129,12 +136,12 @@ void fn_PcmBitStream_Mode_NopBacktel(void)
 
     int chess_storage(XMEM) * p_pcmBuffer;
 
-    p_pcmBuffer = (int chess_storage(XMEM) *) HEAR_ADDR_FIFO_PCM_WRITING;
+    p_pcmBuffer = TDC_UT_PCM_TOP();
 
     for (register int i = 0; i < df_MaxNumTransferableChannel; i++)
         chess_loop_range(df_MaxNumTransferableChannel, df_MaxNumTransferableChannel)
         {
-            *p_pcmBuffer = pcm_Mold_NopBacktel;
+            TDC_UT_PCM_WRITE(p_pcmBuffer, pcm_Mold_NopBacktel);
             p_pcmBuffer--;
         }
 }
@@ -143,12 +150,12 @@ void fn_PcmBitStream_Mode_FillZero(void)
 {
     int chess_storage(XMEM) * p_pcmBuffer;
 
-    p_pcmBuffer = (int chess_storage(XMEM) *) HEAR_ADDR_FIFO_PCM_WRITING;
+    p_pcmBuffer = TDC_UT_PCM_TOP();
 
     for (register int i = 0; i < df_MaxNumTransferableChannel; i++)
         chess_loop_range(df_MaxNumTransferableChannel, df_MaxNumTransferableChannel)
         {
-            *p_pcmBuffer = 0;
+            TDC_UT_PCM_WRITE(p_pcmBuffer, 0);
             p_pcmBuffer--;
         }
 }

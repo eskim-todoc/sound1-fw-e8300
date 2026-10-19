@@ -13,6 +13,10 @@
 #include "cfx_cm3_sharedMemory.h"
 #include "stimulationParaCal.h"
 #include "error.h"
+#include "test/tdc_sys_test_7.h"
+#if defined(TDC_UNIT_TEST)
+#include "test/tdc_ut_vectors_cm3.h"
+#endif
 
 static ST_STIUL_DAC_REGISTER_VALUE stimulationDAC_para;
 
@@ -23,6 +27,29 @@ ST_STIUL_DAC_REGISTER_VALUE *readStimulDAC_RegisterValue(void)
 }
 
 static int DAC_offset_uA;
+
+#if defined(TDC_UNIT_TEST)
+static int s_tdc_ut_frame_duration;
+/* NULL은 제품 경로. 시험에서 실패 배열의 미정의 읽기를 피하기 위한 관찰 경계다.
+ * 계산 결과/공유 앞부분 대입/반환값은 원래대로 유지한다. */
+int (*g_tdc_ut_cm3_calculation_before_copy)(int calculation_done);
+/* Input/output: 원래 계산 함수의 중간 시간값을 관측한다. 계산식은 대체하지 않는다.
+ * Restore: 시험 전 값을 exchange로 보관하고 실행 후 같은 함수로 복원한다. */
+int tdc_ut_cm3_frame_duration_exchange(int duration)
+{
+    int saved = s_tdc_ut_frame_duration;
+    s_tdc_ut_frame_duration = duration;
+    return saved;
+}
+int tdc_ut_cm3_last_frame_duration(void) { return s_tdc_ut_frame_duration; }
+/* 계산 상태 보존/복원. 계산식이나 상수에는 개입하지 않는다. */
+int tdc_ut_cm3_dac_offset_exchange(int offset)
+{
+    int saved = DAC_offset_uA;
+    DAC_offset_uA = offset;
+    return saved;
+}
+#endif
 
 const int readDAC_offsetValue(void)
 {
@@ -41,6 +68,10 @@ int calculationNumFramePerOneChannle(int pulsewidth)
     duration += FPGA_interphaseGapTokenTime; // FPGA_interphaseGapTokenTime : 4
     // 자극파라미터 전송 시간
     duration += FPGA_electrodAndStimulLevelTokenTime; // FPGA_electrodAndStimulLevelTokenTime : 10
+
+#if defined(TDC_UNIT_TEST)
+    s_tdc_ut_frame_duration = duration;
+#endif
 
     tokenTime          = FPGA_oneChannelDataTokenTime; // FPGA_oneChannelDataTokenTime : 41
     numFramePerChannel = 1;
@@ -568,6 +599,33 @@ bool setting_stimulationRange(int pulseWidth, int *T_level_uA, int *C_level_uA, 
     }
 }
 
+#if TDC_SYS_TEST_7_ENABLE
+bool tdc_sys_test_7_calculate(int pulse_width_us, int t_uA, int c_uA)
+{
+    /* 4 x 32개 배열은 시험 빌드의 정적 RAM을 사용한다. ISR/재진입 호출 금지.
+     * 실패 경로에서 출력 배열을 쓰지 않아도, 미초기화 값을 읽거나 공유하지 않는다. */
+    static int s_tdc_t_uA[df_MaxNumOfElectrode];
+    static int s_tdc_c_uA[df_MaxNumOfElectrode];
+    static int s_tdc_t_code[df_MaxNumOfElectrode];
+    static int s_tdc_c_code[df_MaxNumOfElectrode];
+    const ST_STIUL_DAC_REGISTER_VALUE saved_dac = stimulationDAC_para;
+    const int saved_offset = DAC_offset_uA;
+
+    for (int i = 0; i < df_MaxNumOfElectrode; ++i)
+    {
+        s_tdc_t_uA[i] = t_uA;
+        s_tdc_c_uA[i] = c_uA;
+        s_tdc_t_code[i] = 0;
+        s_tdc_c_code[i] = 0;
+    }
+    const bool result = setting_stimulationRange(pulse_width_us, s_tdc_t_uA, s_tdc_c_uA,
+                                                df_MaxNumOfElectrode, s_tdc_t_code, s_tdc_c_code);
+    stimulationDAC_para = saved_dac;
+    DAC_offset_uA = saved_offset;
+    return result;
+}
+#endif
+
 bool calculationStimulParaN_cfxShare(void)
 {
     int  T_level_255[df_MaxNumOfElectrode], C_level_255[df_MaxNumOfElectrode];
@@ -590,14 +648,24 @@ bool calculationStimulParaN_cfxShare(void)
     {
         if (p_mapdata->numFrequencyBand < 16)
         {
-            ci_printe("[PARAM] [NofM] NOT AVAILABLE! 'BAND NUM < 16' !! \r\n");
+#if defined(TDC_UNIT_TEST)
+            if (!g_tdc_ut_cm3_suppress_diagnostics)
+#endif
+            {
+                ci_printe("[PARAM] [NofM] NOT AVAILABLE! 'BAND NUM < 16' !! \r\n");
+            }
         }
         else
         {
             frameNumPerOneChannel  = 3;  // 채널 당 3 프레임
             transferableChannelNum = 8;  // 1 밀리초에 최대 8 채널 자극
-            ci_printw("[PARAM] [NofM] FRAME NUM PER 1 CH  : 3 \r\n");
-            ci_printw("[PARAM] [NofM] TRANSFERABLE CH NUM : 8 \r\n");
+#if defined(TDC_UNIT_TEST)
+            if (!g_tdc_ut_cm3_suppress_diagnostics)
+#endif
+            {
+                ci_printw("[PARAM] [NofM] FRAME NUM PER 1 CH  : 3 \r\n");
+                ci_printw("[PARAM] [NofM] TRANSFERABLE CH NUM : 8 \r\n");
+            }
         }
     }
 #endif
@@ -610,13 +678,25 @@ bool calculationStimulParaN_cfxShare(void)
     p_calculatedStimulPara_byCM3->frameNumPerChannel   = frameNumPerOneChannel;
     p_calculatedStimulPara_byCM3->transferableFrameNum = transferableChannelNum;
 
-    ci_printd("[PARAM] PULSE PHASE WIDTH            : %d \r\n", p_mapdata->stimulationPulsePhaseWidth);
-    ci_printd("[PARAM] FRAME NUMBER PER ONE CHANNEL : %d \r\n", frameNumPerOneChannel);
-    ci_printd("[PARAM] TRANSFERABLE CHANNEL NUMBER  : %d \r\n", transferableChannelNum);
+#if defined(TDC_UNIT_TEST)
+    if (!g_tdc_ut_cm3_suppress_diagnostics)
+#endif
+    {
+        ci_printd("[PARAM] PULSE PHASE WIDTH            : %d \r\n", p_mapdata->stimulationPulsePhaseWidth);
+        ci_printd("[PARAM] FRAME NUMBER PER ONE CHANNEL : %d \r\n", frameNumPerOneChannel);
+        ci_printd("[PARAM] TRANSFERABLE CHANNEL NUMBER  : %d \r\n", transferableChannelNum);
+    }
 
     cfx_cm3_sharedMemoryAll.CM3_tempValue1 = 0;
     cfx_cm3_sharedMemoryAll.CM3_tempValue2 = 0;
 
+#if defined(TDC_UNIT_TEST)
+    /* 실패 배열을 읽기 전에 복사 시도를 관측한다. 기본 NULL은 아래 원래 복사다.
+     * 시험 callback이 생략해도 제품에 실패 후 값 보존 정책이 생기는 것은 아니다. */
+    if (g_tdc_ut_cm3_calculation_before_copy &&
+        g_tdc_ut_cm3_calculation_before_copy(configurationDone))
+        return configurationDone;
+#endif
     for(i=0;i<df_MaxNumOfElectrode; i++)
     {
         p_calculatedStimulPara_byCM3->C_level_255[i]=C_level_255[i];

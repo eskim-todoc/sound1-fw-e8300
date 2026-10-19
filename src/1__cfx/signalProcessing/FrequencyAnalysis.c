@@ -3,6 +3,7 @@
  */
 
 #include <FrequencyAnalysis.h>
+#include "../test/tdc_ut_io_cfx.h"
 
 /* 파일 시스템으로 부터 읽어온 정보이다.
  * "FFT_Size/2"에 대하여 즉, Pass bin 별로 채널 0부터 31 중 어디로 매핑할 것인지에 대한 정보가 있다. */
@@ -18,6 +19,14 @@ void read_FFT_PassBin_index(void)
 
     int _IOMEM* p_FS_num_of_freqBand = (int _IOMEM*) ADDR_NUM_OF_FREQ_BAND_IN_FS_MEM;
     int _IOMEM* p_FS_indexPassBin    = (int _IOMEM*) ADDR_FFT_PASS_BIN_IN_FS_MEM;
+
+#if defined(TDC_UNIT_TEST)
+    if (g_tdc_ut_io_override_enabled)
+    {
+        p_FS_num_of_freqBand = &g_tdc_ut_io_fs_band_count;
+        p_FS_indexPassBin = g_tdc_ut_io_fs_bins;
+    }
+#endif
 
     if (addr_MapProgramData_FrequencyAnalysisBandNumbers == (*p_FS_num_of_freqBand))
     {
@@ -38,7 +47,7 @@ void update_FFT_inputData(void)
     for (register int i = 0; i < df_inputADC_DataBuffLength; i++)
         chess_loop_range(df_inputADC_DataBuffLength, df_inputADC_DataBuffLength)
         {
-            D_FIFO_A1_0->ACCESS = *p_agcOutput_Top--;
+            TDC_UT_FFT_WRITE(*p_agcOutput_Top--);
         }
 }
 

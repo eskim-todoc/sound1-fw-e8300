@@ -9,6 +9,9 @@
 #include "batteryNPowerControl.h"
 #include "commonDataProcessing.h"
 #include "isd_interface.h"
+#if defined(TDC_UNIT_TEST)
+#include "test/tdc_ut_vectors_cm3.h"
+#endif
 
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // Sound1
@@ -23,6 +26,20 @@ volatile EN__SND_CHARGER_STATE s_snd_charger_state = EN__SND_BATT_STATE_RESET;
 
 // 크래들 뚜껑 상태
 static int s_tdc_cradle_cover_state = df_Defalut;
+
+#if defined(TDC_UNIT_TEST)
+/* 초기 미수신 값까지 정확히 복원한다. setter의 정상화로 복원하지 않는다. */
+void tdc_ut_cm3_battery_exchange(int state[4])
+{
+    int saved[4] = {s_snd_batt_percent, s_snd_batt_state,
+                    s_snd_charger_state, s_tdc_cradle_cover_state};
+    s_snd_batt_percent = state[0];
+    s_snd_batt_state = state[1];
+    s_snd_charger_state = state[2];
+    s_tdc_cradle_cover_state = state[3];
+    for (int i = 0; i < 4; ++i) state[i] = saved[i];
+}
+#endif
 
 EN__SND_BATT_STATE snd_batt_get_state(void)
 {
@@ -53,7 +70,11 @@ void snd_charger_set_state(EN__SND_CHARGER_STATE state)
 {
     // 충전 케이블 연결 상태 디버깅 메시지 출력
 #if 1
-    if (s_snd_charger_state != state)
+    if (s_snd_charger_state != state
+#if defined(TDC_UNIT_TEST)
+        && !g_tdc_ut_cm3_suppress_diagnostics
+#endif
+       )
     {
         ci_printd("[CHARGER] %s -> %s \r\n",
                   // 이전 상태
@@ -110,7 +131,10 @@ void tdc_charger_set_cradle_cover_state(int state)
         s_tdc_cradle_cover_state = df_Connected;  /* 1=열림, else=열림 처리 */
     }
     cfx_cm3_sharedMemoryAll.chargerState.carryingCaseCoverOpen = s_tdc_cradle_cover_state;
-    ci_printd("[CRADLE] COVER STATE: %s\r\n", (s_tdc_cradle_cover_state == df_Connected) ? "OPENED" : "CLOSED");
+#if defined(TDC_UNIT_TEST)
+    if (!g_tdc_ut_cm3_suppress_diagnostics)
+#endif
+        ci_printd("[CRADLE] COVER STATE: %s\r\n", (s_tdc_cradle_cover_state == df_Connected) ? "OPENED" : "CLOSED");
 }
 
 int tdc_cradle_get_cover_state(void)
@@ -298,8 +322,6 @@ int readBatteryPercentage(void)
  * define 이 하나라도 있으면 컴파일되지 않는다(processorDirective.h:10 에서
  * Board_is_OTE_VER_1_5 활성).
  * 상세: docs/tasks/main/20260715_systemcontrol-fsm-decompose/분석-부록-sullivan유산.md */
-
-
 
 
 

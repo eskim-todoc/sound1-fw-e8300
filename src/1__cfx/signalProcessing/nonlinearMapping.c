@@ -5,6 +5,9 @@
 #include <nonlinearMapping.h>
 
 #include <OTE_1_5_gen_UART.h>
+#if defined(TDC_UNIT_TEST)
+#include "../test/tdc_ut_hooks.h"
+#endif
 
 // p 값
 int chess_storage(XMEM) g_coeff_p_Q1_23 = 1258291;  // p = 0.15의 Q-format 표현, QI1F23
@@ -605,6 +608,14 @@ void calculate_logaritmMapping_coeff_with_audioVolume(void)
 
 int calculate_x_power_p(int x)
 {
+#if defined(TDC_UNIT_TEST)
+    /* The coefficient vector fixes power outputs to Q8.16 1 and 2.
+     * Only this dependency is substituted; division/coefficient code runs.
+     * This vector does not verify the DSP power approximation itself.
+     */
+    if (g_tdc_ut_power_override_enabled && (x == 1 || x == 2))
+        return x * 65536;
+#endif
     int  normalized_x;
     int  normalized_x_db_m8p16;
     int  normalized_p_x_db_Q9_16;

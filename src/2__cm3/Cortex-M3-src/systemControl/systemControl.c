@@ -19,6 +19,7 @@
 #include "earpieceUpdate.h"
 #include "processorDirective.h"
 #include "systemControl.h"
+#include "test/tdc_sys_test_23.h"
 
 #ifdef ENABLE_UI_CMD
 #include "tdc_ui_command.h"
@@ -32,6 +33,36 @@
  * systemControl() 은 이 값을 갱신한 뒤 복사본을 반환한다 - 호출자가 반환값을
  * 수정해도 여기 원본에는 반영되지 않는다는 점에 유의. */
 static ST__SYSTEM_STATE systemStatus = {false, false, false, false, false, false};
+
+#if defined(TDC_UNIT_TEST)
+static int s_tdc_ut_system_state[10] = {0, 0, 0, 0, 0, Df_Disconnection_BLE_Time_ms, 0, df_Defalut, 0, 0};
+/* Setup: 카운터 경계값 주입. Output: 실제 systemControl의 상태.
+ * Restore: 원래 카운터/시스템 플래그를 교환하여 복원한다. */
+void tdc_ut_cm3_system_exchange(int state[16])
+{
+    int saved[16];
+    for (int i = 0; i < 10; ++i)
+    {
+        saved[i] = s_tdc_ut_system_state[i];
+        s_tdc_ut_system_state[i] = state[i];
+    }
+    saved[10] = systemStatus.enable_ISD;
+    saved[11] = systemStatus.enablePMIC;
+    saved[12] = systemStatus.BLE_Off;
+    saved[13] = systemStatus.StimulationIndicatorTriggerLowPower;
+    saved[14] = systemStatus.systemOff;
+    saved[15] = systemStatus.cradleLidClosed;
+    systemStatus.enable_ISD = state[10];
+    systemStatus.enablePMIC = state[11];
+    systemStatus.BLE_Off = state[12];
+    systemStatus.StimulationIndicatorTriggerLowPower = state[13];
+    systemStatus.systemOff = state[14];
+    systemStatus.cradleLidClosed = state[15];
+    for (int i = 0; i < 16; ++i) state[i] = saved[i];
+}
+int tdc_ut_cm3_disconnection_counter(void) { return s_tdc_ut_system_state[5]; }
+int tdc_ut_cm3_poweroff_requested(void) { return s_tdc_ut_system_state[9]; }
+#endif
 
 #define LED_OnTime_afterCoverClosed 4501
 
@@ -135,6 +166,18 @@ ST__SYSTEM_STATE systemControl(ST__ERROR_CODE    mcuErrorCode,  //
                                bool              conneded_ISD,
                                bool              mappingConnected)
 {
+#if defined(TDC_UNIT_TEST)
+#define PowerOn_StartCounter s_tdc_ut_system_state[0]
+#define PowerOff_StartCounter s_tdc_ut_system_state[1]
+#define normalModeCounter s_tdc_ut_system_state[2]
+#define CounterAfterCoverClosed s_tdc_ut_system_state[3]
+#define s_tdc_cradle_cover_closed_edge s_tdc_ut_system_state[4]
+#define ISD_Disconnection_counter s_tdc_ut_system_state[5]
+#define lowBatteryIndicatorCounter s_tdc_ut_system_state[6]
+#define prev_batteryChargerConnectionStatus s_tdc_ut_system_state[7]
+#define StartFlag s_tdc_ut_system_state[8]
+#define isPowerOffEnabled s_tdc_ut_system_state[9]
+#else
     static int PowerOn_StartCounter                = 0;
     static int PowerOff_StartCounter               = 0;
     static int normalModeCounter                   = 0;
@@ -146,6 +189,7 @@ ST__SYSTEM_STATE systemControl(ST__ERROR_CODE    mcuErrorCode,  //
 
     static bool StartFlag         = false;
     static bool isPowerOffEnabled = false;
+#endif
 
     bool veryLowBattery     = false;
     bool stimulationTrigger = false;
@@ -325,7 +369,14 @@ ST__SYSTEM_STATE systemControl(ST__ERROR_CODE    mcuErrorCode,  //
 
                             /* 저배터리 자극 알림 (10분 주기) -- LED와 독립된 기능 */
                             /* 20per 미만 (구: batteryLevel <= en__batteryPower_0btw20 → percent 직접 비교) */
-                            if (conneded_ISD && battery_percent < 20)
+#if TDC_SYS_TEST_23_ENABLE
+                            /* SYS-023은 이 알람 입력만 19%로 바꾼다. 위 전원 종료
+                             * 판단은 실제 battery_percent를 사용하므로 보호를 우회하지 않는다. */
+                            const int alarm_battery_percent = tdc_sys_test_23_alarm_percent(battery_percent);
+#else
+#define alarm_battery_percent battery_percent
+#endif
+                            if (conneded_ISD && alarm_battery_percent < 20)
                             {
                                 if (lowBatteryIndicatorCounter == 0)
                                 {
@@ -338,6 +389,9 @@ ST__SYSTEM_STATE systemControl(ST__ERROR_CODE    mcuErrorCode,  //
                             {
                                 lowBatteryIndicatorCounter = 0;
                             }
+#if !TDC_SYS_TEST_23_ENABLE
+#undef alarm_battery_percent
+#endif
 
                             if (conneded_ISD)
                             {
@@ -409,5 +463,17 @@ ST__SYSTEM_STATE systemControl(ST__ERROR_CODE    mcuErrorCode,  //
 
     systemStatus.StimulationIndicatorTriggerLowPower = stimulationTrigger;
 
+#if defined(TDC_UNIT_TEST)
+#undef PowerOn_StartCounter
+#undef PowerOff_StartCounter
+#undef normalModeCounter
+#undef CounterAfterCoverClosed
+#undef s_tdc_cradle_cover_closed_edge
+#undef ISD_Disconnection_counter
+#undef lowBatteryIndicatorCounter
+#undef prev_batteryChargerConnectionStatus
+#undef StartFlag
+#undef isPowerOffEnabled
+#endif
     return systemStatus;
 }

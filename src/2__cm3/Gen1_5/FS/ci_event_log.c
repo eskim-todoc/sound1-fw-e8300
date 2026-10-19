@@ -2,6 +2,55 @@
 #include <ci_printf.h>
 #include <error.h>
 
+#if TDC_SYS_TEST_73_ENABLE
+static const tdc_event_log_test_ops_t *s_tdc_event_log_test_ops;
+
+bool tdc_event_log_test_begin(const tdc_event_log_test_ops_t *ops)
+{
+    if (s_tdc_event_log_test_ops != NULL || ops == NULL || ops->file == NULL || ops->buffer == NULL ||
+        ops->open == NULL || ops->read == NULL || ops->write == NULL || ops->seek == NULL ||
+        ops->sync == NULL || ops->close == NULL || ops->stat == NULL)
+        return false;
+    s_tdc_event_log_test_ops = ops;
+    return true;
+}
+
+void tdc_event_log_test_end(void)
+{
+    s_tdc_event_log_test_ops = NULL;
+}
+
+static FIL *tdc_event_log_file(void)
+{
+    return s_tdc_event_log_test_ops ? s_tdc_event_log_test_ops->file : &g_ci_filesystem_ohdl;
+}
+
+static CI_EVENT_LOG_T *tdc_event_log_buffer(void)
+{
+    return s_tdc_event_log_test_ops ? s_tdc_event_log_test_ops->buffer :
+           (CI_EVENT_LOG_T *)CI_FILESYSTEM_BASE_ADDR_FOR_EVENT_LOG;
+}
+
+/* 이 번역 단위에서만 리다이렉트한다. 결함을 소비한 뒤에도 end까지 RAM
+ * 경계를 유지하여 후속 write/sync/close가 실제 NVM에 도달하지 않게 한다.
+ * 비활성 분기의 같은 이름은 C 전처리기의 자기 재확장 금지로 원래 함수다. */
+#define f_open(...)  (s_tdc_event_log_test_ops ? s_tdc_event_log_test_ops->open(__VA_ARGS__) : f_open(__VA_ARGS__))
+#define f_read(...)  (s_tdc_event_log_test_ops ? s_tdc_event_log_test_ops->read(__VA_ARGS__) : f_read(__VA_ARGS__))
+#define f_write(...) (s_tdc_event_log_test_ops ? s_tdc_event_log_test_ops->write(__VA_ARGS__) : f_write(__VA_ARGS__))
+#define f_lseek(...) (s_tdc_event_log_test_ops ? s_tdc_event_log_test_ops->seek(__VA_ARGS__) : f_lseek(__VA_ARGS__))
+#define f_sync(...)  (s_tdc_event_log_test_ops ? s_tdc_event_log_test_ops->sync(__VA_ARGS__) : f_sync(__VA_ARGS__))
+#define f_close(...) (s_tdc_event_log_test_ops ? s_tdc_event_log_test_ops->close(__VA_ARGS__) : f_close(__VA_ARGS__))
+#define f_stat(...)  (s_tdc_event_log_test_ops ? s_tdc_event_log_test_ops->stat(__VA_ARGS__) : f_stat(__VA_ARGS__))
+#define g_ci_filesystem_ohdl (*tdc_event_log_file())
+#undef CI_FILESYSTEM_BASE_ADDR_FOR_EVENT_LOG
+#define CI_FILESYSTEM_BASE_ADDR_FOR_EVENT_LOG tdc_event_log_buffer()
+
+/* 제품 진단의 긴 행/주소 dump는 RAM 시험 동안만 억제한다. 제품 분기와
+ * 오류 갱신은 그대로 실행하고 시험 호출자가 반환/실제 오류를 요약한다. */
+#define SEGGER_RTT_printf(...) (s_tdc_event_log_test_ops ? 0 : SEGGER_RTT_printf(__VA_ARGS__))
+#define ci_print_file_func_line(...) do { if (s_tdc_event_log_test_ops == NULL) ci_print_file_func_line(__VA_ARGS__); } while (0)
+#endif
+
 static CI_EVENT_LOG_BT_ADDR_T _ci_event_log_bt_addr = {0};
 
 void ci_event_log_update_bt_addr(CI_EVENT_LOG_BT_ADDR_T *p_bt_addr)
@@ -241,8 +290,17 @@ int ci_event_log_write(uint32_t event_type)
     // 모든 정보가 유효하면 데이터를 저장
 
     entity.event   = event_type;
+#if TDC_SYS_TEST_73_ENABLE
+    entity.bt_addr = s_tdc_event_log_test_ops ? s_tdc_event_log_test_ops->address : ci_event_log_get_bt_addr();
+    time = s_tdc_event_log_test_ops ? (CI_TIMER_TIME_T){
+        s_tdc_event_log_test_ops->time[0], s_tdc_event_log_test_ops->time[1],
+        s_tdc_event_log_test_ops->time[2], s_tdc_event_log_test_ops->time[3],
+        s_tdc_event_log_test_ops->time[4], s_tdc_event_log_test_ops->time[5]
+    } : ci_timer_get_reference_time_after_self_update();
+#else
     entity.bt_addr = ci_event_log_get_bt_addr();
     time           = ci_timer_get_reference_time_after_self_update();
+#endif
     // memcpy(&entity.time[0], &time, sizeof(CI_TIMER_TIME_T));
     entity.time[0] = time.year;
     entity.time[1] = time.month;

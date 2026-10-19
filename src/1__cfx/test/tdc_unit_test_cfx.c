@@ -1,6 +1,11 @@
 /* tdc_unit_test_cfx.c - CFX 유닛 검증 시험 하네스
  *
- * 소프트웨어 유닛 검증 보고서(SUVR-FW-SND1)의 실기 시험용 코드다.
+ * 기존 run_all은 이전 SND1 보고서의 시험 벡터를 보존한다.
+ * 현재 TD24A 기준은 tdc_ut_cfx_run_current()로 실행한다.
+ * 현재 경로는 CFX-024/025/034/035의 직접 호출 시험만 지원한다.
+ * 다른 유닛까지 준비되었거나 실제 시험을 통과했다는 뜻은 아니다.
+ * current_result/current_expected를 비교하고 done, failed, overflow를 확인한다.
+ * current 경로는 115개 결과 원소를 기록한다. 구분자/메타데이터도 포함된다.
  *
  * 원칙
  *   1. 기존 소스를 수정하지 않는다. 이 파일에서 원 함수를 그대로 호출한다.
@@ -15,7 +20,8 @@
  *   다. tdc_ut_done 에 중단점이 걸리면 tdc_ut_result 를 조회한다.
  *   라. 시험 절차서의 기댓값과 대조한다.
  *
- * 주의: 시험은 전역 상태를 바꾼다. 시험 후에는 재기동한다.
+ * 주의: 정상 오디오/HEAR/PCM 처리가 멈춘 별도 시험 환경에서 호출한다.
+ * 현재 경로는 사용한 상태를 복원하지만 시험 후에는 재기동한다.
  */
 
 #if defined(TDC_UNIT_TEST)
@@ -27,18 +33,24 @@
 #include <definitionsForAlgorithm.h>
 #include <microcode.h>            /* HEAR_ADDR_AUDIO_MIX */
 
-#define TDC_UT_RESULT_MAX 256
+/* 이전 전체 경로는 구분자를 포함해 284개 값을 기록한다. */
+#define TDC_UT_RESULT_MAX 384
 
 int _XMEM          tdc_ut_result[TDC_UT_RESULT_MAX];
 int _XMEM          tdc_ut_count;
 volatile int _XMEM tdc_ut_done;
 int _XMEM          tdc_ut_case;
+int _XMEM          g_tdc_ut_cfx_legacy_overflow;
 
 static void tdc_ut_put(int value)
 {
     if (tdc_ut_count < TDC_UT_RESULT_MAX)
     {
         tdc_ut_result[tdc_ut_count++] = value;
+    }
+    else
+    {
+        g_tdc_ut_cfx_legacy_overflow = 1;
     }
 }
 
@@ -296,6 +308,7 @@ void tdc_ut_run_all(void)
 {
     tdc_ut_count = 0;
     tdc_ut_done  = 0;
+    g_tdc_ut_cfx_legacy_overflow = 0;
 
     tdc_ut_agc_gain();                /* CFX-070 */
     tdc_ut_apply_agc_gain();          /* CFX-072 */
@@ -307,6 +320,173 @@ void tdc_ut_run_all(void)
     tdc_ut_x_power_p();               /* CFX-081 */
 
     tdc_ut_done = 1;                  /* 여기에 중단점을 건다 */
+}
+
+/* 현재 결과 형식: [-999, 현재 유닛 번호, 벡터 번호, 출력 개수, 출력...].
+ * expected 배열의 같은 위치와 대조한다. failed는 불일치 원소 수다.
+ * done은 실행 종료이며 합격 표시가 아니다. overflow도 0이어야 한다.
+ * CFX 결과의 CM3 RTT 전달은 아직 구현하지 않았다. ISR에서 출력하지 않는다.
+ */
+#define TDC_UT_CFX_CURRENT_MAX 160
+
+int _XMEM g_tdc_ut_cfx_current_result[TDC_UT_CFX_CURRENT_MAX];
+int _XMEM g_tdc_ut_cfx_current_expected[TDC_UT_CFX_CURRENT_MAX];
+int _XMEM g_tdc_ut_cfx_current_count;
+int _XMEM g_tdc_ut_cfx_current_failed;
+volatile int _XMEM g_tdc_ut_cfx_current_done;
+int _XMEM g_tdc_ut_cfx_current_overflow;
+
+static int _XMEM s_tdc_ut_saved_mix[df_inputADC_DataBuffLength];
+static int _XMEM s_tdc_ut_saved_agc[df_inputADC_DataBuffLength];
+static int _XMEM s_tdc_ut_saved_amplitude[df_MaxNumOfElectrode];
+static int _XMEM s_tdc_ut_saved_temp[df_MaxNumOfElectrode];
+static int _XMEM s_tdc_ut_saved_adjacent[df_MaxNum_NofM];
+static int _XMEM s_tdc_ut_saved_not_adjacent[df_MaxNum_NofM];
+
+static void current_put(int actual, int expected)
+{
+    int idx = g_tdc_ut_cfx_current_count;
+    if (idx >= TDC_UT_CFX_CURRENT_MAX)
+    {
+        g_tdc_ut_cfx_current_overflow = 1;
+        return;
+    }
+    g_tdc_ut_cfx_current_result[idx] = actual;
+    g_tdc_ut_cfx_current_expected[idx] = expected;
+    g_tdc_ut_cfx_current_count = idx + 1;
+    if (actual != expected)
+    {
+        g_tdc_ut_cfx_current_failed++;
+    }
+}
+
+static void current_mark(int unit, int vector, int length)
+{
+    current_put(-999, -999);
+    current_put(unit, unit);
+    current_put(vector, vector);
+    current_put(length, length);
+}
+
+void tdc_ut_cfx_run_current(void)
+{
+    static const int input[df_inputADC_DataBuffLength] = {
+        -10, 0, 10, 8388607, -8388608, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    static const int doubled[df_inputADC_DataBuffLength] = {
+        -20, 0, 20, 8388607, -8388608, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    static const int gains[2] = {4096, 8192};
+    static const int interleaved[16] = {0, 8, 1, 9, 2, 10, 3, 11, 4, 12, 5, 13, 6, 14, 7, 15};
+    int _XMEM *p_mix = (int _XMEM *) HEAR_ADDR_AUDIO_MIX;
+    int saved_prev = m_prev_agc_10db_gain_Q8_16;
+    int saved_attack = m_attack_coeff_Q8_16;
+    int saved_release = m_release_coeff_Q8_16;
+    int saved_one_minus_attack = m_one_minus_attack_coeff_Q8_16;
+    int saved_one_minus_release = m_one_minus_release_coeff_Q8_16;
+    int i, vector;
+
+    g_tdc_ut_cfx_current_done = 0;
+    g_tdc_ut_cfx_current_count = 0;
+    g_tdc_ut_cfx_current_failed = 0;
+    g_tdc_ut_cfx_current_overflow = 0;
+    /* 현재 기준은 16표본/32대역에서 16개 선택이다. 다른 구성은 실패로 남긴다. */
+    if (df_inputADC_DataBuffLength != 16 || df_MaxNumOfElectrode != 32 || df_MaxNum_NofM != 16)
+    {
+        g_tdc_ut_cfx_current_failed = 1;
+        g_tdc_ut_cfx_current_done = 1;
+        return;
+    }
+
+    for (i = 0; i < df_inputADC_DataBuffLength; i++)
+    {
+        s_tdc_ut_saved_mix[i] = p_mix[i];
+        s_tdc_ut_saved_agc[i] = m_agc_output_buffer[i];
+    }
+    for (i = 0; i < df_MaxNumOfElectrode; i++)
+    {
+        s_tdc_ut_saved_amplitude[i] = g_pcm_amplitude_level[i];
+        s_tdc_ut_saved_temp[i] = addr_stimulationTempBuff[i];
+    }
+    for (i = 0; i < df_MaxNum_NofM; i++)
+    {
+        s_tdc_ut_saved_adjacent[i] = g_NofM_adjacent_BandIndex[i];
+        s_tdc_ut_saved_not_adjacent[i] = g_NofM_notAdjacent_BandIndex[i];
+    }
+
+    /* 기준서 기대값에 사용한 기본 계수를 고정하고 실행 뒤 복원한다. */
+    m_attack_coeff_Q8_16 = 62259;
+    m_release_coeff_Q8_16 = 655;
+    m_one_minus_attack_coeff_Q8_16 = 3276;
+    m_one_minus_release_coeff_Q8_16 = 64880;
+    current_mark(24, 1, 1);
+    m_prev_agc_10db_gain_Q8_16 = 0;
+    current_put(audio_agc_attack_release(65536), 655);
+    current_mark(24, 2, 1);
+    m_prev_agc_10db_gain_Q8_16 = 65536;
+    current_put(audio_agc_attack_release(0), 3276);
+    /* 직전 결과 3276을 이어받는 연속 호출이다. */
+    current_mark(24, 3, 1);
+    current_put(audio_agc_attack_release(0), 163);
+
+    for (vector = 0; vector < 2; vector++)
+    {
+        current_mark(25, vector + 1, 16);
+        for (i = 0; i < df_inputADC_DataBuffLength; i++)
+        {
+            p_mix[i] = input[i];
+        }
+        apply_agc_gain(gains[vector]);
+        for (i = 0; i < df_inputADC_DataBuffLength; i++)
+        {
+            current_put(m_agc_output_buffer[i], vector == 0 ? input[i] : doubled[i]);
+        }
+    }
+
+    for (vector = 0; vector < 2; vector++)
+    {
+        current_mark(34, vector + 1, 16);
+        for (i = 0; i < df_MaxNumOfElectrode; i++)
+        {
+            g_pcm_amplitude_level[i] = vector == 0 ? 100 : i;
+        }
+        stimulationStrategy_NofM_Peak_Pick();
+        for (i = 0; i < df_MaxNum_NofM; i++)
+        {
+            current_put(g_NofM_adjacent_BandIndex[i], vector == 0 ? i : i + 16);
+        }
+    }
+
+    current_mark(35, 1, 16);
+    for (i = 0; i < df_MaxNum_NofM; i++)
+    {
+        g_NofM_adjacent_BandIndex[i] = i;
+    }
+    stimulationStrategy_NofM_Interleaving();
+    for (i = 0; i < df_MaxNum_NofM; i++)
+    {
+        current_put(g_NofM_notAdjacent_BandIndex[i], interleaved[i]);
+    }
+
+    for (i = 0; i < df_inputADC_DataBuffLength; i++)
+    {
+        p_mix[i] = s_tdc_ut_saved_mix[i];
+        m_agc_output_buffer[i] = s_tdc_ut_saved_agc[i];
+    }
+    for (i = 0; i < df_MaxNumOfElectrode; i++)
+    {
+        g_pcm_amplitude_level[i] = s_tdc_ut_saved_amplitude[i];
+        addr_stimulationTempBuff[i] = s_tdc_ut_saved_temp[i];
+    }
+    for (i = 0; i < df_MaxNum_NofM; i++)
+    {
+        g_NofM_adjacent_BandIndex[i] = s_tdc_ut_saved_adjacent[i];
+        g_NofM_notAdjacent_BandIndex[i] = s_tdc_ut_saved_not_adjacent[i];
+    }
+    m_prev_agc_10db_gain_Q8_16 = saved_prev;
+    m_attack_coeff_Q8_16 = saved_attack;
+    m_release_coeff_Q8_16 = saved_release;
+    m_one_minus_attack_coeff_Q8_16 = saved_one_minus_attack;
+    m_one_minus_release_coeff_Q8_16 = saved_one_minus_release;
+    g_tdc_ut_cfx_current_done = 1;
 }
 
 #endif /* TDC_UNIT_TEST */

@@ -49,9 +49,17 @@
 
 #include <snd_qcc.h>
 
+#if defined(TDC_UNIT_TEST)
+#include "test/tdc_ut_coordination_cm3.h"
+const tdc_ut_cm3_boot_ops_t *g_tdc_ut_cm3_boot_ops;
+#endif
+
 #if defined(ENABLE_UI_CMD)
 #include "tdc_ui_command.h"
 #endif
+#include "test/tdc_sys_test_7.h"
+#include "test/tdc_sys_test_23.h"
+#include "test/tdc_sys_test_storage.h"
 
 /* 배열 원소 개수. 배열 정의가 바뀌어도 순회 길이가 자동 추종한다(매직넘버 방지). */
 #define TDC_ARRAY_LEN(arr) (sizeof(arr) / sizeof((arr)[0]))
@@ -524,13 +532,53 @@ int func_normal(void)
 
     while (1)
     {
+#if TDC_SYS_TEST_STORAGE_ENABLE
+        if (tdc_sys_storage_is_active())
+        {
+            /* 저장 시험 중 일반 맵/OTA/절전 전경을 실행하지 않는다.
+             * 파일 손상 시험은 명시적 복원/재부팅까지 자동 복귀하지 않는다. */
+            tdc_ui_command_poll();
+            disable_iteration();
+            main_counter++;
+            update_CM3Status_toCFX(main_counter);
+            SYS_WATCHDOG_REFRESH();
+            SYS_WAIT_FOR_INTERRUPT;
+            continue;
+        }
+#endif
+#if TDC_SYS_TEST_7_ENABLE
+        if (tdc_sys_test_7_is_active())
+        {
+            /* 시험 입력이 정상 ISD 설정/Live 경로로 들어가지 않게 전경을 분리한다.
+             * Timer 3/CFX IRQ는 유지하여 LED 점멸과 기존 NOP 송신을 계속한다. */
+            tdc_sys_test_7_poll();
+            tdc_ui_command_poll();
+            disable_iteration();
+            main_counter++;
+            update_CM3Status_toCFX(main_counter);
+            SYS_WATCHDOG_REFRESH();
+            SYS_WAIT_FOR_INTERRUPT;
+            continue;
+        }
+#endif
         if ((iterationFlag == true))
         {
             tdc_normal_iteration(&ctx);
         }  // 끝, iteration
 
+#if TDC_SYS_TEST_7_ENABLE
+        /* 해당 iteration 끝에서 명령을 받았다면 크래들/절전 처리도 건너뛴다. */
+        if (tdc_sys_test_7_is_active())
+            continue;
+#endif
+
         main_counter++;
         update_CM3Status_toCFX(main_counter);
+
+#if TDC_SYS_TEST_STORAGE_ENABLE
+        if (tdc_sys_storage_is_active())
+            continue;
+#endif
 
         /* QCC 배터리 타임아웃 → 파워오프 패턴 후 절전.
          * QCC 미수신 시 systemControl 은 df_Default 게이트(en__LED_NA)에 막혀 자체
@@ -590,11 +638,30 @@ int func_normal(void)
  * ISD Information을 FS 메모리에서 공유 메모리로 복사하고 CFX_EEPROM_data_is_Loaded = 1; 을 적용한다. */
 static void tdc_normal_boot_sequence(void)
 {
-    tdc_wait_for_cfx_start();  // CFX가 자체적으로 플래그를 설정할 때까지 대기
-
-    Initialize();
+#if defined(TDC_UNIT_TEST)
+    /* 시험 입력은 대기/장치 초기화 경계에만 적용한다. 실행 허용 대입은 아래
+     * 원래 코드로 수행한다. 정상 빌드에는 이 분기나 callback이 없다. */
+    if (g_tdc_ut_cm3_boot_ops)
+    {
+        g_tdc_ut_cm3_boot_ops->wait_for_cfx();
+        g_tdc_ut_cm3_boot_ops->initialize();
+    }
+    else
+#endif
+    {
+        tdc_wait_for_cfx_start();  // CFX가 자체적으로 플래그를 설정할 때까지 대기
+        Initialize();
+    }
 
     cfx_cm3_sharedMemoryAll.is_enabled_CFX_iteration = 1;  // CFX 동작 활성화
+
+#if defined(TDC_UNIT_TEST)
+    if (g_tdc_ut_cm3_boot_ops)
+    {
+        g_tdc_ut_cm3_boot_ops->post_initialize();
+        return;
+    }
+#endif
 
 #ifdef ENABLE_UI_CMD
     tdc_ui_command_init();
@@ -602,6 +669,17 @@ static void tdc_normal_boot_sequence(void)
 
     tdc_print_default_isd_info();  // default ISD 정보 출력
 }
+
+#if defined(TDC_UNIT_TEST)
+/* callback 미설정 상태로 제품 초기화를 잘못 실행하지 않도록 직접 진입은 거부한다.
+ * main은 원래 tdc_normal_boot_sequence를 호출하므로 정상 기동 경로는 그대로다. */
+void tdc_ut_cm3_boot_sequence(void)
+{
+    if (!g_tdc_ut_cm3_boot_ops || !g_tdc_ut_cm3_boot_ops->wait_for_cfx ||
+        !g_tdc_ut_cm3_boot_ops->initialize || !g_tdc_ut_cm3_boot_ops->post_initialize) return;
+    tdc_normal_boot_sequence();
+}
+#endif
 
 /* 입력 수집 - 부작용 없이 읽기만 한다.
  * 예외: tdc_touch_process() 와 tdc_qcc_has_batt_level_rx_timed_out() 은 내부에
@@ -621,6 +699,11 @@ static void tdc_collect_events(tdc_normal_events_t *ev)
 static void tdc_handle_events(const tdc_normal_events_t *ev, tdc_normal_ctx_t *ctx)
 {
     ctx->qcc_batt_timeout = ev->batt_timeout;
+
+#if TDC_SYS_TEST_23_ENABLE
+    /* 정상 제어는 계속 실행한다. 시험값은 systemControl의 알람 비교에만 사용한다. */
+    tdc_sys_test_23_prepare(ctx->ble_state.mappingConnection);
+#endif
 
     // NOTE: QCC에게 0x34(Power info) 프로토콜 수신 전까지는
     //       charger.chargerConnectorPluggedIn == df_Default; 상태이다.
@@ -651,6 +734,10 @@ static void tdc_handle_events(const tdc_normal_events_t *ev, tdc_normal_ctx_t *c
                              ctx->systemState.StimulationIndicatorTriggerLowPower,
                              ctx->ble_state.StimulationIndicatorTrigger  //
     );
+
+#if TDC_SYS_TEST_23_ENABLE
+    tdc_sys_test_23_observe(ctx->systemState.StimulationIndicatorTriggerLowPower);
+#endif
 
     // PMIC 켜고/끄기
     OnOff_3V_PMIC_CM3_to_CFX(ctx->systemState.enablePMIC);

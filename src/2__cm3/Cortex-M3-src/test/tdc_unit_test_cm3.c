@@ -1,6 +1,10 @@
 /* tdc_unit_test_cm3.c - Cortex-M3 유닛 검증 시험 하네스
  *
- * 소프트웨어 유닛 검증 보고서(SUVR-FW-SND1)의 실기 시험용 코드다.
+ * 기존 run_all은 이전 SND1 보고서의 시험 벡터를 보존한다.
+ * 현재 TD24A 기준은 tdc_ut_cm3_run_current()로 실행한다.
+ * 현재 경로는 CM3-027의 직접 호출 시험만 지원한다.
+ * 완료 후 tdc_ut_cm3_print_current(-1)로 요약을 출력한다.
+ * 이어서 같은 함수를 0부터 11까지 한 줄씩 호출해 RTT 결과를 확인한다.
  *
  * 원칙
  *   1. 기존 소스를 수정하지 않는다. 이 파일에서 원 함수를 그대로 호출한다.
@@ -20,6 +24,7 @@
 
 #include <stimulationParaCal.h>
 #include <commonDataProcessing.h>
+#include <ci_printf.h>
 
 #define TDC_UT_CM3_RESULT_MAX 128
 
@@ -130,6 +135,95 @@ void tdc_ut_cm3_run_all(void)
     tdc_ut_cm3_dac_offset();          /* CM3-111 */
 
     tdc_ut_cm3_done = 1;              /* 여기에 중단점을 건다 */
+}
+
+/* 현재 CM3-027: [-999, 유닛 번호, 벡터 번호, 출력 개수, 출력...].
+ * expected의 같은 위치와 비교한다. done은 실행 종료이며 합격이 아니다.
+ * 출력은 실제 전극 자극이나 GPIO 제어를 수행하지 않는 계산 결과다.
+ */
+#define TDC_UT_CM3_CURRENT_MAX 32
+
+int g_tdc_ut_cm3_current_result[TDC_UT_CM3_CURRENT_MAX];
+int g_tdc_ut_cm3_current_expected[TDC_UT_CM3_CURRENT_MAX];
+int g_tdc_ut_cm3_current_count;
+int g_tdc_ut_cm3_current_failed;
+volatile int g_tdc_ut_cm3_current_done;
+int g_tdc_ut_cm3_current_overflow;
+
+static void current_put(int actual, int expected)
+{
+    int idx = g_tdc_ut_cm3_current_count;
+    if (idx >= TDC_UT_CM3_CURRENT_MAX)
+    {
+        g_tdc_ut_cm3_current_overflow = 1;
+        return;
+    }
+    g_tdc_ut_cm3_current_result[idx] = actual;
+    g_tdc_ut_cm3_current_expected[idx] = expected;
+    g_tdc_ut_cm3_current_count = idx + 1;
+    if (actual != expected)
+    {
+        g_tdc_ut_cm3_current_failed++;
+    }
+}
+
+void tdc_ut_cm3_run_current(void)
+{
+    static const int pulsewidths[2] = {13, 14};
+    static const int frames[2] = {1, 2};
+    static const int channels[2] = {24, 12};
+    int vector, frame;
+
+    g_tdc_ut_cm3_current_done = 0;
+    g_tdc_ut_cm3_current_count = 0;
+    g_tdc_ut_cm3_current_failed = 0;
+    g_tdc_ut_cm3_current_overflow = 0;
+    for (vector = 0; vector < 2; vector++)
+    {
+        current_put(-999, -999);
+        current_put(27, 27);
+        current_put(vector + 1, vector + 1);
+        current_put(2, 2);
+        frame = calculationNumFramePerOneChannle(pulsewidths[vector]);
+        current_put(frame, frames[vector]);
+        /* 잘못된 반환값을 다음 나눗셈에 넘기지 않는다. 실패는 이미 기록했다. */
+        if (frame <= 0)
+        {
+            current_put(-1, channels[vector]);
+        }
+        else
+        {
+            current_put(calculationTransferableChanneNum(frame, 32), channels[vector]);
+        }
+    }
+    g_tdc_ut_cm3_current_done = 1;
+}
+
+/* 완료 후 비-ISR 시험 호출 위치에서 한 줄씩 출력한다.
+ * index=-1은 요약, 0부터 count-1은 결과 원소다. RTT 출력 누락 시 재호출한다.
+ * 반환 0은 줄 출력 요청 성공, -1은 미완료 또는 잘못된 인덱스다.
+ * 실제 RTT 호스트 수신까지 보장하는 반환값은 아니다.
+ */
+int tdc_ut_cm3_print_current(int index)
+{
+    if (g_tdc_ut_cm3_current_done == 0)
+    {
+        return -1;
+    }
+    if (index == -1)
+    {
+        ci_printi("[UT CM3 CURRENT] count=%d failed=%d overflow=%d\r\n",
+                  g_tdc_ut_cm3_current_count, g_tdc_ut_cm3_current_failed,
+                  g_tdc_ut_cm3_current_overflow);
+        return 0;
+    }
+    if (index < 0 || index >= g_tdc_ut_cm3_current_count || index >= TDC_UT_CM3_CURRENT_MAX)
+    {
+        return -1;
+    }
+    ci_printi("[UT CM3 CURRENT] index=%d actual=%d expected=%d\r\n", index,
+              g_tdc_ut_cm3_current_result[index], g_tdc_ut_cm3_current_expected[index]);
+    return 0;
 }
 
 #endif /* TDC_UNIT_TEST */

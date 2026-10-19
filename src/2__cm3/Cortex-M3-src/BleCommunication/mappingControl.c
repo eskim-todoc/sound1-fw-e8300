@@ -23,6 +23,23 @@
 #include "remoteControl.h"
 
 static ST__MAPPING_PACKET mappingPacket;
+#if defined(TDC_UNIT_TEST)
+#include "../test/tdc_ut_io_cm3.h"
+static int s_tdc_io_mapping_last[7]; /* valid count, connected, BLE off, checking, counter, delay, ISD request */
+/* 요청은 현재 packet에서, 완료 상태는 실제 mappingControl의 마지막 반환에서 읽는다. */
+int tdc_ut_io_cm3_mapping_snapshot(int *values, int capacity)
+{
+    if (values == 0 || capacity < 14) return TDC_UT_IO_CM3_INVALID;
+    values[0] = mappingPacket.fetched_command; values[1] = mappingPacket.command;
+    values[2] = mappingPacket.liveStimulation.subCommand;
+    values[3] = mappingPacket.ReadWriteMapData_Flash.slot_index;
+    values[4] = mappingPacket.ReadWriteMapData_Flash.map_index;
+    for (int idx=0; idx<7; idx++) values[5+idx] = s_tdc_io_mapping_last[idx];
+    values[12] = mappingPacket.specificStimulation.stimulationElectrodeNum;
+    values[13] = mappingPacket.specificStimulation.stimulationLevel_uA;
+    return 14;
+}
+#endif
 
 void clear_mappingCommand()
 {
@@ -2287,6 +2304,16 @@ ST__MAPPING_STATE mappingControl(ST__ISD_STATUS ISD_state)
     mappingStatus.BLE_Off                     = BLE_Off_mapping;
     mappingStatus.mappingConnection           = mappingProgramConnected;
     mappingStatus.isdControlCommand           = isdControlCommand;
+#if defined(TDC_UNIT_TEST)
+    /* 실제 분기 종료의 관찰만 추가하며 제어 변수는 변경하지 않는다. */
+    if (s_tdc_io_mapping_last[0] < 2147483647) s_tdc_io_mapping_last[0]++;
+    s_tdc_io_mapping_last[1] = mappingProgramConnected;
+    s_tdc_io_mapping_last[2] = BLE_Off_mapping;
+    s_tdc_io_mapping_last[3] = connectionCheckING_Flag;
+    s_tdc_io_mapping_last[4] = connectionCheckCounter;
+    s_tdc_io_mapping_last[5] = delayCounter;
+    s_tdc_io_mapping_last[6] = isdControlCommand;
+#endif
 
     return mappingStatus;
 }
@@ -2699,8 +2726,6 @@ void import_testStimulation()
 
 
 #endif
-
-
 
 
 

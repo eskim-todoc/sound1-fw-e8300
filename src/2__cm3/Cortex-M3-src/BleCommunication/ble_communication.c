@@ -25,6 +25,35 @@ typedef struct
 } BleSettingPacket;
 
 BleSettingPacket bleSettingPacket;
+#if defined(TDC_UNIT_TEST)
+#include "../test/tdc_ut_io_cm3.h"
+int tdc_ut_io_cm3_ble_exchange(int *packet, int capacity)
+{
+    if (packet == NULL || capacity < 1 + todoc_PayloadSize) return TDC_UT_IO_CM3_INVALID;
+    int previous = bleSettingPacket.command;
+    bleSettingPacket.command = packet[0];
+    packet[0] = previous;
+    for (int idx = 0; idx < todoc_PayloadSize; idx++)
+    {
+        previous = bleSettingPacket.data[idx];
+        bleSettingPacket.data[idx] = packet[1 + idx];
+        packet[1 + idx] = previous;
+    }
+    return 1 + todoc_PayloadSize;
+}
+/* 명시적 관찰: 수신된 payload와 실제 제어 저장값만 읽는다. */
+int tdc_ut_io_cm3_ble_snapshot(int *values, int capacity)
+{
+    if (values == 0 || capacity < 11) return TDC_UT_IO_CM3_INVALID;
+    values[0] = bleSettingPacket.command;
+    for (int idx=0; idx<3; idx++) values[idx+1] = bleSettingPacket.data[idx];
+    values[4] = snd_batt_get_percent(); values[5] = snd_batt_get_state();
+    values[6] = snd_charger_get_state().chargerConnectorPluggedIn;
+    values[7] = tdc_cradle_get_cover_state(); values[8] = tdc_led_get_ind_state();
+    values[9] = tdc_get_ota_dfu_conn_state(); values[10] = cfx_cm3_sharedMemoryAll.is_i2s_source_cradle;
+    return 11;
+}
+#endif
 
 void fetch_readDataForBleSetting(const int *Rx_dataPacket)
 {

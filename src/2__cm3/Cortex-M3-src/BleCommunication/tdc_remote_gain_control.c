@@ -19,6 +19,11 @@
 #include <ci_printf.h>
 #include <tdc_gain_storage.h>
 
+#if defined(TDC_UNIT_TEST)
+#include "../test/tdc_ut_io_cm3.h"
+int (*g_tdc_ut_io_cm3_gain_save_hook)(int slot, int gain_a, int gain_b) = NULL;
+#endif
+
 static bool gc_is_valid_request(int control_type, int gain_type, int gain_index);
 static int  gc_read_index(int gain_type);
 static void gc_write_index(int gain_type, int gain_index);
@@ -146,5 +151,12 @@ static bool gc_save_to_file(void)
     gain_setting.gain_table_index_a = cfx_cm3_sharedMemoryAll.gain_table_index_a;
     gain_setting.gain_table_index_b = cfx_cm3_sharedMemoryAll.gain_table_index_b;
 
+#if defined(TDC_UNIT_TEST)
+    if (g_tdc_ut_io_cm3_gain_save_hook != NULL)
+    {
+        return g_tdc_ut_io_cm3_gain_save_hook(isd_num, gain_setting.gain_table_index_a,
+                                             gain_setting.gain_table_index_b) == TDC_GAIN_STORAGE_RET_OK;
+    }
+#endif
     return (tdc_gain_storage_save(isd_num, &gain_setting) == TDC_GAIN_STORAGE_RET_OK);
 }

@@ -4,6 +4,12 @@
 #include <ci_boot.h>      // tdc_boot_storage_init, tdc_boot_get_ohdl
 #include <rtt_printf.h>   // rtt_printf, rtt_getch
 #include <ff.h>           // FATFS
+#if defined(TDC_UNIT_TEST)
+#include "../test/tdc_ut_boot.h"
+#endif
+#if defined(TDC_UNIT_TEST) && defined(TDC_UNIT_TEST_HOST)
+#include "tdc_ut_boot_host.h"
+#endif
 
 //
 // private macros
@@ -92,7 +98,13 @@ void service_main(void)
     int  idx     = 0;
     char ch;
 
+    /* 입력: 호스트 RTT 큐. 출력: 실제 파서/덤프/LED/재시작 호출 기록.
+     * 호스트에서만 큐 소진 뒤 반환하여 시험 종료와 상태 복원을 허용한다. */
+#if defined(TDC_UNIT_TEST) && defined(TDC_UNIT_TEST_HOST)
+    while (tdc_ut_boot_host_service_continue())
+#else
     while (1)
+#endif
     {
         SYS_WATCHDOG_REFRESH();
         s_tdc_service_led_tick();
@@ -168,6 +180,10 @@ static void s_tdc_service_led_tick(void)
         Sys_GPIO_Write(DIO_NUM_LED_R_UART_TX_E8300, !((s_tdc_service_led_color >> 0) & 0x01));
         Sys_GPIO_Write(DIO_NUM_LED_G_UART_RX_E8300, !((s_tdc_service_led_color >> 1) & 0x01));
         Sys_GPIO_Write(DIO_NUM_LED_B,               !((s_tdc_service_led_color >> 2) & 0x01));
+#if defined(TDC_UNIT_TEST)
+        const uint32_t observed[1] = {s_tdc_service_led_color};
+        tdc_ut_boot_observe(TDC_UT_BOOT_OBSERVE_SERVICE_LED, observed, 1);
+#endif
     }
 }
 
@@ -258,10 +274,32 @@ static void s_tdc_service_reboot(void)
         tdc_delay_ms(1);
     }
 
+#if defined(TDC_UNIT_TEST)
+    const uint32_t observed[1] = {1};
+    tdc_ut_boot_observe(TDC_UT_BOOT_OBSERVE_REBOOT, observed, 1);
+#endif
     SYS_WATCHDOG_RESET();   /* 즉시 HW reset → main() 재진입 */
+
+#if defined(TDC_UNIT_TEST) && defined(TDC_UNIT_TEST_HOST)
+    return; /* 호스트 reset 경계는 호출 횟수만 기록한다. */
+#endif
 
     while (1)
     {
         ;   /* unreachable, 안전망 */
     }
 }
+
+#if defined(TDC_UNIT_TEST)
+/* 설정/복원: 서비스 시험 전후 정적 표시 카운터를 보존한다. I/O 없음. */
+void tdc_ut_boot_service_snapshot(uint32_t *iter, uint8_t *color)
+{
+    *iter = s_tdc_service_led_iter;
+    *color = s_tdc_service_led_color;
+}
+void tdc_ut_boot_service_restore(uint32_t iter, uint8_t color)
+{
+    s_tdc_service_led_iter = iter;
+    s_tdc_service_led_color = color;
+}
+#endif

@@ -15,6 +15,10 @@
 #include "ci_map.h"
 #include "isd_interface.h"
 #include "processorDirective.h"
+#include "test/tdc_sys_test_7.h"
+#include "test/tdc_sys_test_23.h"
+#include "test/tdc_sys_test_audit.h"
+#include "test/tdc_sys_test_storage.h"
 #include <ci_stim_mute.h>
 
 #include <ci_printf.h>
@@ -122,6 +126,10 @@ static uint8_t         s_tdc_table_cnt;
 
 static char    s_tdc_line[MAX_LINE];
 static uint8_t s_tdc_line_len;
+#if TDC_SYS_TEST_7_ENABLE || TDC_SYS_TEST_23_ENABLE || TDC_SYS_TEST_AUDIT_ENABLE || TDC_SYS_TEST_STORAGE_ENABLE
+/* 긴 행/문자열 중간 NUL을 잘라 유효한 시험 명령으로 실행하지 않는다. */
+static bool s_tdc_line_invalid;
+#endif
 
 /* ======================================================================== */
 /*  Low-level I/O                                                           */
@@ -129,11 +137,44 @@ static uint8_t s_tdc_line_len;
 
 static void echo_char(char ch)
 {
+#if TDC_SYS_TEST_STORAGE_ENABLE
+    if (tdc_sys_storage_is_active() || tdc_sys_storage_pending())
+        return;
+#endif
+#if TDC_SYS_TEST_AUDIT_ENABLE
+    if (tdc_sys_test_audit_pending())
+        return;
+#endif
+#if TDC_SYS_TEST_23_ENABLE
+    if (tdc_sys_test_23_is_active() || tdc_sys_test_23_log_pending())
+        return;
+#endif
+#if TDC_SYS_TEST_7_ENABLE
+    /* 시험 로그 앞에 입력 중 문자나 프롬프트가 붙지 않게 한다. 명령 수신은 유지한다. */
+    if (tdc_sys_test_7_is_active() || tdc_sys_test_7_log_pending())
+        return;
+#endif
     SEGGER_RTT_Write(0, &ch, 1);
 }
 
 static void echo_string(const char *s)
 {
+#if TDC_SYS_TEST_STORAGE_ENABLE
+    if (tdc_sys_storage_is_active() || tdc_sys_storage_pending())
+        return;
+#endif
+#if TDC_SYS_TEST_AUDIT_ENABLE
+    if (tdc_sys_test_audit_pending())
+        return;
+#endif
+#if TDC_SYS_TEST_23_ENABLE
+    if (tdc_sys_test_23_is_active() || tdc_sys_test_23_log_pending())
+        return;
+#endif
+#if TDC_SYS_TEST_7_ENABLE
+    if (tdc_sys_test_7_is_active() || tdc_sys_test_7_log_pending())
+        return;
+#endif
     SEGGER_RTT_Write(0, s, (unsigned) strlen(s));
 }
 
@@ -791,7 +832,96 @@ static int handle_gating(int argc, char *argv[])
 /*  Registration table                                                      */
 /* ======================================================================== */
 
+#if TDC_SYS_TEST_7_ENABLE
+static int handle_sys7(int argc, char *argv[])
+{
+    const int result = tdc_sys_test_7_command(argc, argv, s_tdc_actual_mapping_connected);
+    if (result == 1)
+        output_printf("[SYS-007] BUSY: wait for log output\r\n");
+    if (result < 0)
+    {
+        output_printf("[SYS-007] INPUT ERROR: t=100 c=300 w=251\r\n");
+        output_printf("[SYS-007] Integers: 0<=t<=c<=65535; 1<=c,w<=65535\r\n");
+        output_printf("[SYS-007] Or: charge|dac|led|status|stop\r\n");
+        return 0; /* 긴 일반 usage 대신 제한 길이의 시험 안내를 사용한다. */
+    }
+    return result;
+}
+#endif
+
+#if TDC_SYS_TEST_23_ENABLE
+static int handle_sys23(int argc, char *argv[])
+{
+    const int result = tdc_sys_test_23_command(argc, argv, s_tdc_actual_mapping_connected);
+    if (result == 1)
+        output_printf("[SYS-023] BUSY: wait for log output\r\n");
+    if (result < 0)
+        output_printf("[SYS-023] INPUT ERROR: --sys23 start|status|stop\r\n");
+    return 0;
+}
+#endif
+
+#if TDC_SYS_TEST_AUDIT_ENABLE
+static int handle_sys_audit(unsigned test_id, int argc, char *argv[])
+{
+    const int result = tdc_sys_test_audit_command(test_id, argc, argv);
+    if (result == 1)
+        output_printf("[SYS-%03u][TEST] BUSY: wait or stop current output\r\n", test_id);
+    else if (result < 0)
+        output_printf("[SYS-%03u][TEST] INPUT ERROR: --sys%u [show|stop]\r\n", test_id, test_id);
+    return 0;
+}
+static int handle_sys50(int argc, char *argv[]) { return handle_sys_audit(50u, argc, argv); }
+static int handle_sys51(int argc, char *argv[]) { return handle_sys_audit(51u, argc, argv); }
+#endif
+
+#if TDC_SYS_TEST_STORAGE_ENABLE
+static int handle_sys_storage(unsigned id, int argc, char *argv[])
+{
+    const int result = tdc_sys_storage_command(id, argc, argv, s_tdc_actual_mapping_connected);
+    if (result == 1)
+        output_printf("[SYS-%03u] BUSY: wait for output or stop\r\n", id);
+    if (result < 0)
+        output_printf("[SYS-%03u] INPUT ERROR: use --help\r\n", id);
+    return 0;
+}
+#if TDC_SYS_TEST_54_ENABLE
+static int handle_sys54(int argc, char *argv[]) { return handle_sys_storage(54u, argc, argv); }
+#endif
+#if TDC_SYS_TEST_73_ENABLE
+static int handle_sys73(int argc, char *argv[]) { return handle_sys_storage(73u, argc, argv); }
+#endif
+#if TDC_SYS_TEST_77_ENABLE
+static int handle_sys77(int argc, char *argv[]) { return handle_sys_storage(77u, argc, argv); }
+#endif
+#if TDC_SYS_TEST_80_ENABLE
+static int handle_sys80(int argc, char *argv[]) { return handle_sys_storage(80u, argc, argv); }
+#endif
+#endif
+
 static const command_entry_t s_tdc_commands[] = {
+#if TDC_SYS_TEST_54_ENABLE
+    {"sys54", handle_sys54, "--sys54 check|header|data <slot:0-4> <app:0-2>"},
+#endif
+#if TDC_SYS_TEST_73_ENABLE
+    {"sys73", handle_sys73, "--sys73 init|write <fault> / led / status"},
+#endif
+#if TDC_SYS_TEST_77_ENABLE
+    {"sys77", handle_sys77, "--sys77 run (synthetic information only)"},
+#endif
+#if TDC_SYS_TEST_80_ENABLE
+    {"sys80", handle_sys80, "--sys80 arm|check|clear (test file); restore (old backup)"},
+#endif
+#if TDC_SYS_TEST_AUDIT_ENABLE
+    {"sys50", handle_sys50, "--sys50 [show|stop] (RAM audit records)"},
+    {"sys51", handle_sys51, "--sys51 [show|stop] (RAM integrity record)"},
+#endif
+#if TDC_SYS_TEST_23_ENABLE
+    {"sys23", handle_sys23, "--sys23 start|status|stop"},
+#endif
+#if TDC_SYS_TEST_7_ENABLE
+    {"sys7", handle_sys7, "--sys7 t=<uA> c=<uA> w=<us> (or charge/dac/led/status/stop)"},
+#endif
     {"help", handle_help, "--help"},
     {"led", handle_led, "--led show|req|clr|user|pair|burst|pattern"},
     {"batt", handle_battery, "--batt show|<0~100>"},
@@ -860,6 +990,43 @@ static void dispatch(char *line)
         return;
     }
 
+#if TDC_SYS_TEST_7_ENABLE
+    /* 시험 중 prog/err/gating 등의 명령이 보호 정지나 시험 오류를 바꾸지 못하게 한다. */
+    if (tdc_sys_test_7_is_active() && strcmp(argv[0], "sys7") != 0 && strcmp(argv[0], "help") != 0)
+    {
+        output_printf("[SYS-007] HOLD: use --sys7 or reboot\r\n");
+        return;
+    }
+#endif
+
+#if TDC_SYS_TEST_23_ENABLE
+    /* 맵/오류/LED 강제 명령이나 SYS-007로 관찰 조건을 바꾸지 않는다. */
+    if (tdc_sys_test_23_is_active() && strcmp(argv[0], "sys23") != 0 && strcmp(argv[0], "help") != 0)
+    {
+        output_printf("[SYS-023] ACTIVE: use --sys23 stop first\r\n");
+        return;
+    }
+#endif
+
+#if TDC_SYS_TEST_AUDIT_ENABLE
+    /* 출력 중 다른 시험/설정 명령을 섞지 않는다. 기존 시스템 제어는 계속 실행한다. */
+    if (tdc_sys_test_audit_pending() && strcmp(argv[0], "sys50") != 0 &&
+        strcmp(argv[0], "sys51") != 0 && strcmp(argv[0], "help") != 0)
+    {
+        output_printf("[AUDIT][TEST] Wait for output or use --sys50/51 stop\r\n");
+        return;
+    }
+#endif
+
+#if TDC_SYS_TEST_STORAGE_ENABLE
+    if ((tdc_sys_storage_is_active() || tdc_sys_storage_pending()) &&
+        !tdc_sys_storage_command_allowed(argv[0]))
+    {
+        output_printf("[SYS] HOLD: use storage tests or reboot\r\n");
+        return;
+    }
+#endif
+
     /* linear search */
     for (int i = 0; i < s_tdc_table_cnt; i++)
     {
@@ -900,6 +1067,9 @@ void tdc_ui_command_init(void)
 {
     s_tdc_table_cnt = 0;
     s_tdc_line_len  = 0;
+#if TDC_SYS_TEST_7_ENABLE || TDC_SYS_TEST_23_ENABLE || TDC_SYS_TEST_AUDIT_ENABLE || TDC_SYS_TEST_STORAGE_ENABLE
+    s_tdc_line_invalid = false;
+#endif
 
     for (int i = 0; i < (int) (sizeof(s_tdc_commands) / sizeof(s_tdc_commands[0])); i++)
     {
@@ -915,7 +1085,13 @@ void tdc_ui_command_poll(void)
     char        ch;
     static bool s_prev_was_cr = false;
 
+#if TDC_SYS_TEST_7_ENABLE || TDC_SYS_TEST_23_ENABLE || TDC_SYS_TEST_AUDIT_ENABLE || TDC_SYS_TEST_STORAGE_ENABLE
+    /* 시험 빌드의 연속 입력도 전경을 독점하지 않도록 한 poll의 읽기 양을 제한한다. */
+    unsigned input_budget = MAX_LINE;
+    while (input_budget-- > 0u && SEGGER_RTT_Read(0, &ch, 1) > 0)
+#else
     while (SEGGER_RTT_Read(0, &ch, 1) > 0)
+#endif
     {
         if (ch == '\n' && s_prev_was_cr)
         {
@@ -928,6 +1104,20 @@ void tdc_ui_command_poll(void)
         {
             echo_string("\r\n");
 
+#if TDC_SYS_TEST_7_ENABLE || TDC_SYS_TEST_23_ENABLE || TDC_SYS_TEST_AUDIT_ENABLE || TDC_SYS_TEST_STORAGE_ENABLE
+            if (s_tdc_line_invalid)
+            {
+                s_tdc_line_invalid = false;
+                s_tdc_line_len = 0;
+#if TDC_SYS_TEST_23_ENABLE || TDC_SYS_TEST_AUDIT_ENABLE || TDC_SYS_TEST_STORAGE_ENABLE
+                output_printf("[UI] INPUT ERROR: invalid or overlong line\r\n");
+#else
+                output_printf("[SYS-007] INPUT ERROR: invalid or overlong line\r\n");
+#endif
+                print_prompt();
+                continue;
+            }
+#endif
             if (s_tdc_line_len == 0)
             {
                 /* 빈 라인 -> --led show 자동 */
@@ -941,6 +1131,12 @@ void tdc_ui_command_poll(void)
             }
             print_prompt();
         }
+#if TDC_SYS_TEST_7_ENABLE || TDC_SYS_TEST_23_ENABLE || TDC_SYS_TEST_AUDIT_ENABLE || TDC_SYS_TEST_STORAGE_ENABLE
+        else if (s_tdc_line_invalid || ch == '\0')
+        {
+            s_tdc_line_invalid = true; /* 다음 줄 종결까지 폐기. 백스페이스로 복구하지 않는다. */
+        }
+#endif
         else if (ch == 0x08 || ch == 0x7F) /* BS / DEL */
         {
             if (s_tdc_line_len > 0)
@@ -954,5 +1150,23 @@ void tdc_ui_command_poll(void)
             s_tdc_line[s_tdc_line_len++] = ch;
             echo_char(ch);
         }
+#if TDC_SYS_TEST_7_ENABLE || TDC_SYS_TEST_23_ENABLE || TDC_SYS_TEST_AUDIT_ENABLE || TDC_SYS_TEST_STORAGE_ENABLE
+        else
+            s_tdc_line_invalid = true;
+#endif
     }
+
+#if TDC_SYS_TEST_AUDIT_ENABLE
+    tdc_sys_test_audit_poll();
+#endif
+#if TDC_SYS_TEST_STORAGE_ENABLE
+    tdc_sys_storage_poll();
+#endif
+#if TDC_SYS_TEST_23_ENABLE
+    tdc_sys_test_23_poll();
+#endif
+#if TDC_SYS_TEST_7_ENABLE
+    /* 거절/status 로그도 시험 진입 여부와 관계없이 비차단으로 배출한다. */
+    tdc_sys_test_7_poll();
+#endif
 }

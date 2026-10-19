@@ -1,0 +1,302 @@
+{
+  "schema_version": 1,
+  "scope": "CFX remaining I/O and HEAR observation bounded worker",
+  "updated_on": "2026-10-02",
+  "test_only_continuation": {
+    "changed_files": ["src/1__cfx/test/tdc_ut_io_cfx.c", "src/1__cfx/test/tdc_ut_io_cfx.h", "tests/unit/tdc_ut_cfx_io_check.py", "tests/unit/tdc_ut_cfx_io_cases.c", "tests/unit/tdc_ut_cfx_io_host/hw.h", "tests/unit/tdc_ut_cfx_io_coverage.json"],
+    "product_source_changes": false,
+    "common_runner_or_workbook_changes": false,
+    "target_link_owner": "main task; this worker compiles standalone normal/test objects only",
+    "host_only_fixture": "tests/unit/tdc_ut_cfx_io_cases.c included after exact current product function bodies; no copied/reimplemented map, strategy, frequency or mapping algorithms",
+    "comparisons": {"target_capable_flat_words_per_pass": 2976, "target_capable_payload_words_per_pass": 2780, "regular_passes": 2, "host_only_cases_per_pass": 12, "host_only_comparisons_two_passes": 12082},
+    "new_product_failure": "CFX-033 cases20/21/22: 21 mismatches; product packet order/spacing contract retained. Case23 equal-band boundary and cases30..32 exact workbook input pass.",
+    "unresolved_policy": ["Map FS band mismatch still acknowledges reload with old bins", "Positive out-of-range stimulation/audio volume lacks upper-bound checks before fixed-table access", "Medium/unknown strategy performs no PCM write; safe output policy is undefined"],
+    "hardware": "Board/flash/HEAR execution deferred as requested; no source hooks or linker/project edits added"
+  },
+  "criterion": {
+    "path": "docs/참고/인허가/사운드1/DHF/03_설계 출력/SW/펌웨어/SUVC-FW-TD24A 소프트웨어 유닛 검증 기준서.xlsx",
+    "sheet": "기준서_유닛 검증",
+    "columns": {"core": "B", "test_id": "D", "method": "F", "input": "H", "expected": "K"},
+    "authority": "Current workbook methods/inputs/expected values; reconciliation model used only for names and source locators",
+    "workbook_modified": false
+  },
+  "owned_units": {"CFX": [7, 10, 11, 12, 14, 15, 19, 26, 27, 33, 36, 37, 40], "HEAR": [1, 2]},
+  "summary": {
+    "host_executed_cfx_units": [7, 10, 11, 12, 15, 19, 26, 27, 33, 36, 37, 40],
+    "host_zero_mismatch_units": [7, 10, 11, 12, 19, 26, 27, 36, 37, 40],
+    "host_criteria_mismatch_units": [15, 33],
+    "host_mismatch_count_per_pass": 22,
+    "host_passes_per_unit": 2,
+    "analysis_only_cfx_units": [14],
+    "partial_criterion_cfx_units": [11, 33],
+    "target_only_hear_units": [1, 2],
+    "whole_unit_pass_claimed": false,
+    "target_executed": false,
+    "product_corrected_to_force_pass": false,
+    "expected_values_weakened": false,
+    "criterion_reconciliation": "Parent authorized CFX40 actual fixed24 API instead of fictitious length3; added 21 explicit NOP padding checks, second distinct24 sequence and all read-index/buffer bookkeeping checks. Not merely a changed failure count.",
+    "candidate_criteria": "tests/unit/tdc_ut_cfx_io_criteria.json"
+  },
+  "status_definitions": {
+    "HOST_VECTOR_PASS": "Implemented RAM-boundary vectors actually executed with zero mismatches; not device/whole-unit PASS",
+    "CRITERIA_MISMATCH": "Actual product call executed and differing actual/expected values preserved; harness success is not criterion success",
+    "ANALYSIS_ONLY_UNSUPPORTED": "Current method A reviewed at source level; runtime API explicitly returns -1 rather than fabricating execution",
+    "TARGET_REQUIRED_NOT_EXECUTED": "Target start/poll implemented and compiled; host returns -4 without running or emulating HEAR",
+    "OBSERVED": "Raw hardware-produced capture only; not an equality PASS against a fabricated reference"
+  },
+  "api": {
+    "header": "src/1__cfx/test/tdc_ut_io_cfx.h",
+    "cfx_entry": "tdc_ut_cfx_io_run_unit(int unit)",
+    "cfx_release": "tdc_ut_cfx_io_release()",
+    "actual": "g_tdc_ut_cfx_io_actual",
+    "expected": "g_tdc_ut_cfx_io_expected",
+    "count": "g_tdc_ut_cfx_io_count",
+    "mismatches": "g_tdc_ut_cfx_io_failed",
+    "capacity": 768,
+    "done": "g_tdc_ut_cfx_io_done",
+    "overflow": "g_tdc_ut_cfx_io_overflow",
+    "record_format": "[-999, unit, case, length, values...] in separate actual and expected buffers",
+    "return_codes": {"0": "execution completed, not PASS", "-1": "unsupported", "-2": "busy, immutable capture retained", "-3": "overflow", "-4": "actual target required", "-5": "HEAR timeout, still pending", "-6": "Hann window differs; no request issued"},
+    "hear_entry": "tdc_ut_hear_start(unit, vector, hardware_ready)",
+    "hear_poll": "tdc_ut_hear_poll()",
+    "hear_release": "tdc_ut_hear_release()",
+    "hear_aliases": {"g_tdc_ut_hear_actual": "macro alias to g_tdc_ut_cfx_io_actual", "g_tdc_ut_hear_expected": "macro alias to g_tdc_ut_cfx_io_expected"},
+    "hear_capture": "g_tdc_ut_hear_vmag[256], g_tdc_ut_hear_fft[512], their counts and g_tdc_ut_hear_block_exp; only populated after real CMD1 completion; raw OBSERVED with separate independent numeric comparisons, not device PASS before execution",
+    "hear_status": ["g_tdc_ut_hear_count", "g_tdc_ut_hear_failed", "g_tdc_ut_hear_overflow", "g_tdc_ut_hear_done", "g_tdc_ut_hear_pending", "g_tdc_ut_hear_target_needed", "g_tdc_ut_hear_timed_out"],
+    "cross_runner_guard": "I/O run and HEAR start refuse pure g_tdc_ut_cfx_vector_done, I/O done, and HEAR pending/done; root pure runner uses the reciprocal guards",
+    "drain": "Root reads CFX words through CM3 mapping, supplies core CFX or HEAR to its reporter, drains all records/raw observations, then calls matching release",
+    "shared_abi_changed": false,
+    "i2s_restore": "tdc_ut_i2s_raw_state() returns exact static state including RESET; bool I2S_isStreaming is not used for restoration"
+  },
+  "safety": {
+    "conditional": "All new runners/state are TDC_UNIT_TEST only. Normal macros expand original pointer/write operations. Test override default zero keeps normal hardware path.",
+    "zero_default_override": "g_tdc_ut_io_override_enabled",
+    "required_setup": "Caller must quiesce all audio/PCM producers, CFX normal iteration, ISR consumers and CM3 shared-memory writers before invoking vectors. No automatic disabling/reset is performed.",
+    "hear_preconditions": "hardware_ready=1 only after caller verifies HEAR idle, ISR/events ready, no old completion flags and normal 512-point Hanning window. The runner neither initializes HEAR nor reconfigures FIFO/registers.",
+    "restored": ["shared map/user settings/PCM/map flags and selected shared scalars", "all seven local map arrays and six date words", "T/C/Cnew/log coefficients/PCM amplitudes", "DMIC histories and I2S buffers/output/state including raw RESET", "AGC input/output relevant buffers", "FFT pass-bin table", "strategy packet/order/index/header/phase state and physical electrode map", "unit 11 UART debug buffer 224 words"],
+    "hear_restore": "Input/output/vMag or mix/absolute memories and completion flags restored only after actual completion. H01/H23 are chain scratch and require normal processing restart; no scratch-restoration claim.",
+    "hear_timeout": "Each poll performs one bounded check. After 100000 unsuccessful polls it returns -5, preserves pending and refuses release/start/run. Late real completion captures a timeout mismatch instead of overwriting timeout as PASS.",
+    "storage": "Static backups, inputs and result arrays; no hundreds-word automatic arrays. Done means completed execution, not PASS. Result and raw vMag capture retained until drain/release.",
+    "concurrency_limit": "Guards are sequential lifecycle guards, not atomic locking. Explicit caller quiescence remains required.",
+    "not_performed": ["device flashing/execution", "NVM writes", "reset", "RF stimulation success check", "real FIFO/register configuration", "Word/Excel/EPTC edits", "Git ref changes", "central task.md writes", "user ci_map.c edits"]
+  },
+  "evidence": [
+    {
+      "id": "hear_independent_reference_and_comparator",
+      "commands": ["python tests/unit/tdc_ut_hear_reference.py", "python tests/unit/tdc_ut_hear_reference_check.py"],
+      "exit_code": 0,
+      "checks": "tmp/unit-tests/hear-reference/checks.json",
+      "result": "5 direct-DFT fixed references fresh; synthetic comparison/lifecycle fixture rejects wrong Hann, scale, side-bin magnitude, negative magnitude and invalid exponent. Pending timeout/late-event and memory restoration checked.",
+      "limitation": "Synthetic fixture events are test inputs, not real HEAR completion. Accelerator not executed; no device PASS. Numerical tolerances need target confirmation."
+    },
+    {
+      "id": "host_io",
+      "command": "$env:PYTHONIOENCODING='utf8'; & 'C:/Users/EUNSU/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe' tests/unit/tdc_ut_cfx_io_check.py",
+      "exit_code": 0,
+      "checks": "tmp/unit-tests/cfx-io/checks.json",
+      "result": "12 real-product-function vector units executed twice: 10 zero-mismatch; 15 retains one mismatch; 33 sparse CIS inputs retain 21 mismatches per execution. Host-only map/calculation/dispatch extension has 12 cases executed twice with complete state restoration.",
+      "record_evidence": "checks.json units has name/status/host_mismatch_count, separate full actual/expected arrays, mismatch offsets, exact GCC command and product source hashes",
+      "boundary": "RAM DMIC/FIFO/FS/shared-memory/UART fixtures; SDK register/IRQ boundary declarations; no HEAR software execution",
+      "arithmetic": "CFX long intermediates widened to host long long for bounded vectors because Windows long is 32 bits. Division boundary adapter uses integer arithmetic. Power override used only for x=2; forbidden approximate math calls assert. Target 24/48-bit ABI, saturation and hardware timing not certified.",
+      "checks_performed": ["all flat metadata/payload comparisons", "exact raw I2S RESET restored", "shared structure and selected arrays/counters/UART restored", "override disabled after run", "one unit per run", "busy does not overwrite actual/expected", "pure done and HEAR pending/done cross guards", "release blocked while HEAR pending", "explicit unsupported IDs", "HEAR start/poll return target required and do not set done"],
+      "overall_exit_meaning": "Harness asserts exact mismatches for CFX-15 and CFX-33; exit 0 does not mean product PASS"
+    },
+    {
+      "id": "asip_objects",
+      "command": "pwsh -NoProfile -File tests/unit/tdc_ut_cfx_io_build.ps1",
+      "checks": "tmp/unit-tests/cfx-io/asip/checks.json",
+      "compiler": "C:/Program Files (x86)/ON Semiconductor/Ezairo 8300 SDK/ASIP Programmer/U-2023.06-SP1/win64/bin/WINbin/chesscc.exe",
+      "mode": "cf624c; SDK cf624c-a20_vU-2023.06/lib model; 7 sources with TDC_UNIT_TEST and the same 7 without it",
+      "result": "14 object compilations exit 0",
+      "execution": "Compilation only; not hardware execution"
+    },
+    {
+      "id": "root_full_link_checkpoint",
+      "command": "$env:PYTHONIOENCODING='utf8'; & 'C:/Users/EUNSU/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe' tests/unit/build_target_tests.py CFX",
+      "owner": "root",
+      "checks": "tmp/unit-tests/target/CFX/test/checks.json",
+      "map": "tmp/unit-tests/target/CFX/test/test_image.map",
+      "result": "Reviewed root evidence: 21 compilations returncode 0, link returncode 0 with +Wbridge,+s",
+      "retained_symbols_observed": ["tdc_ut_i2s_raw_state", "tdc_ut_cfx_io_run_unit", "tdc_ut_hear_start", "tdc_ut_hear_poll", "tdc_ut_cfx_run_unit"],
+      "checkpoint_limit": "This root link checkpoint preceded the final cross-runner guard and vMag count additions. Current standalone object build covers those additions; root must regenerate its final full-link evidence.",
+      "normal_path": "Root +Wbridge,+s is test-only; worker did not change link scripts/main entry"
+    },
+    {
+      "id": "root_pure_regression",
+      "command": "$env:PYTHONIOENCODING='utf8'; & 'C:/Users/EUNSU/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe' tests/unit/check_cfx_vectors.py",
+      "exit_code": 0,
+      "checks": "tmp/unit-tests/cfx-vectors/checks.json",
+      "result": "Existing root 17 pure CFX vector IDs report HOST_PASS after I/O guard/header changes",
+      "ownership": "Root script and pure runner read/run only; not modified by this worker"
+    }
+  ],
+  "units": [
+    {
+      "core": "CFX", "unit": 7, "test_id": "SW-FW-UnitTest-CFX-ID-7", "name": "마이크 블록 수집", "method": "T",
+      "status": "HOST_VECTOR_PASS", "host_mismatch_count": 0, "word_count": 68, "scope": "implemented_vectors",
+      "functions": ["tdc_copy_DMIC_buffers"], "source": "src/1__cfx/systemControl/main.c",
+      "input": "Two sequential 16-word blocks, mic0 A=i/B=100+i, mic1 A=1000+i/B=1100+i",
+      "expected": "Both latest histories are B and prior histories A with independent mic channels",
+      "target_needed": true, "limitation": "Actual software copy/history shift tested; physical sampling, 1 ms timing and multicore atomicity not tested"
+    },
+    {
+      "core": "CFX", "unit": 10, "test_id": "SW-FW-UnitTest-CFX-ID-10", "name": "내부기 연결 상태 반영", "method": "D",
+      "status": "HOST_VECTOR_PASS", "host_mismatch_count": 0, "word_count": 16, "scope": "implemented_vectors",
+      "functions": ["LB_Normal_PowerMode", "Normal_PowerMode_isdConnected", "Normal_PowerMode_isdDisonnected"], "source": "src/1__cfx/systemControl/system_control.c",
+      "input": "connected_ISD_num 1 then 0, unchanged volumes, no map/calculation command",
+      "expected": "Current/previous ISD and user-setting-loaded 1/1/1 then 0/0/0, AGC previous gain 0, connection counter -df_connectionCheckPeriod_ms",
+      "target_needed": true, "limitation": "Shared state/branch response only; no RF connection or stimulation success claim"
+    },
+    {
+      "core": "CFX", "unit": 11, "test_id": "SW-FW-UnitTest-CFX-ID-11", "name": "맵 및 볼륨 변경 처리", "method": "T",
+      "status": "HOST_VECTOR_PASS", "host_mismatch_count": 0, "word_count": 754, "scope": "partial_criterion",
+      "functions": ["Normal_PowerMode_event_both_stimulation_audio_volumeChange", "calculate_newStimulation_maxLevel", "calculate_logaritmMapping_coeff_with_audioVolume"], "source": "src/1__cfx/systemControl/system_control.c",
+      "input": "32 channels T=50/C=150, xmin=0/xmax=2. Stimulation/audio pairs (1,1),(4,10),(4,1),(1,1),(1,1), rejected (0,1),(-1,1),(1,0),(1,-1), recovery (2,1),(3,1). Existing power override only during bounded math cases.",
+      "expected": "Cnew119/150 at endpoints and129/139 at intermediate stages; T50, A8832/12800/10112/11392, B12800; nonpositive requests preserve all32 channel coefficients/previous volume and perform no PCM writes; valid recovery updates state.",
+      "target_needed": true, "missing": "Host-only cases100..106 execute real map event for left/right/unknown ear, I2S streaming, mapping Live/date preservation, no command and FS band mismatch. Case107 executes real calculation-ready/T-C read/vMag clear then volume update. Target map event is excluded: tdc_enable_1_DMIC/2_DMICs and SYS_SET_ADC_DEC_CTRL have no RAM hook and hardware configuration/private DMIC state cannot be restored by the owned runner. Calculation-ready directly clears HEAR_ADDR_VMAG_OUTPUT without a hook; host remaps only that address.",
+      "error_policy_review": "stim>4/audio>10 remain unsafe product inputs: event checks only >0 then indexes fixed4/10 tables. Not executed because that would be undefined out-of-bounds access. FS band mismatch preserves prior bins yet map event clears command and acknowledges reload; case106 characterizes this observation, not a safe-rejection PASS. Product policy and validation require main-task review.",
+      "boundary_note": "Legacy debug-buffer writes from actual coefficient function are captured/restored using real UART memory, not skipped"
+    },
+    {
+      "core": "CFX", "unit": 12, "test_id": "SW-FW-UnitTest-CFX-ID-12", "name": "공유 맵 데이터 복사", "method": "T",
+      "status": "HOST_VECTOR_PASS", "host_mismatch_count": 0, "word_count": 482, "scope": "implemented_vectors",
+      "functions": ["copy_MappingData", "copy_MappingData_without_mappingDate"], "source": "src/1__cfx/systemControl/system_control.c",
+      "input": "Distinct values for all seven 32-word arrays, seven map scalars, six date words; destination date seeded separately",
+      "expected": "Full copy includes date, without-date copy leaves destination date 70..75; all 224 arrays/scalars copied exactly",
+      "target_needed": true, "limitation": "Quiesced real shared structure fixture, not live CM3 write/read atomicity"
+    },
+    {
+      "core": "CFX", "unit": 14, "test_id": "SW-FW-UnitTest-CFX-ID-14", "name": "오디오 FIFO 초기화", "method": "A",
+      "status": "ANALYSIS_ONLY_UNSUPPORTED", "host_mismatch_count": null, "scope": "source_analysis",
+      "functions": ["clear_FIFO", "clear_FIFO_all"], "source": "src/1__cfx/lib_cfx/lib_audio_in.c",
+      "analysis": "clear_FIFO writes zero to exactly len successive memory words. clear_FIFO_all calls it for A0_0..A0_6 and A1_0 using generated HCT lengths 32,32,32,32,64,32,32,512 from src/1__cfx/hear/microcode.h.",
+      "runtime": "tdc_ut_cfx_io_run_unit(14) returns -1. Whole-hardware FIFO clear/configuration is deliberately not executed automatically.",
+      "limitation": "No runtime result/zero-mismatch count fabricated for analysis method; FIFO pointer and configuration register restoration not certified"
+    },
+    {
+      "core": "CFX", "unit": 15, "test_id": "SW-FW-UnitTest-CFX-ID-15", "name": "I2S 수신 버퍼 관리", "method": "T",
+      "status": "CRITERIA_MISMATCH", "host_mismatch_count": 1, "word_count": 45, "scope": "implemented_vectors",
+      "functions": ["lib_i2s_copy_data_from_fifo", "lib_i2s_is_buffer_copy_done", "lib_i2s_clear_buffer_copy_done", "lib_i2s_clear_data"], "source": "src/1__cfx/lib_cfx/lib_i2s.c",
+      "input": "FIFO words 100..115; interrupt flag=1, in position/copy count=0, INIT state, copy_done=0; then clear copy_done and output",
+      "expected": "16 words copied, in position/copy count=1, interrupt flag=0, copy_done=1, then copy_done/output cleared to 0",
+      "mismatches": [{"flat_offset": 23, "case": 1, "payload_offset": 19, "actual": 0, "expected": 1, "meaning": "Current product copy function never sets lib_g_i2s_buffer_copy_done"}],
+      "target_needed": true, "review_required": "Criterion versus current unused copy-done contract must be logically reviewed; neither expected nor product changed to force PASS"
+    },
+    {
+      "core": "CFX", "unit": 19, "test_id": "SW-FW-UnitTest-CFX-ID-19", "name": "I2S 시작과 중단의 완만한 전환", "method": "T",
+      "status": "HOST_VECTOR_PASS", "host_mismatch_count": 0, "word_count": 100, "scope": "implemented_vectors",
+      "functions": ["I2S_get_buffer_with_fade_in_process", "I2S_get_buffer_with_fade_out_process"], "source": "src/1__cfx/lib_cfx/lib_i2s.c",
+      "input": "Fresh all-65536 block per case; 4-step fade first and last steps plus terminal fadeout state",
+      "expected": "Reversed output[15-i] equals independent Q16 coefficients; last fadeout endpoint and next state all zero",
+      "target_needed": true, "limitation": "Waveform transition vectors only; other build-time step counts and physical transient/acoustic measurements not tested"
+    },
+    {
+      "core": "CFX", "unit": 26, "test_id": "SW-FW-UnitTest-CFX-ID-26", "name": "주파수 분석 입력 갱신", "method": "T",
+      "status": "HOST_VECTOR_PASS", "host_mismatch_count": 0, "word_count": 21, "scope": "implemented_vectors",
+      "functions": ["update_FFT_inputData"], "source": "src/1__cfx/signalProcessing/FrequencyAnalysis.c",
+      "input": "AGC block [0..15]",
+      "expected": "Actual FIFO ACCESS write trace has 16 writes in reverse order [15..0]",
+      "target_needed": true, "limitation": "Write order/count captured at RAM hardware boundary; real FIFO pointer advancement and HEAR completion not tested"
+    },
+    {
+      "core": "CFX", "unit": 27, "test_id": "SW-FW-UnitTest-CFX-ID-27", "name": "FFT 대역 인덱스 읽기", "method": "T",
+      "status": "HOST_VECTOR_PASS", "host_mismatch_count": 0, "word_count": 520, "scope": "implemented_vectors",
+      "functions": ["read_FFT_PassBin_index"], "source": "src/1__cfx/signalProcessing/FrequencyAnalysis.c",
+      "input": "Map band count32, FS band count31 then32, 256 FS values i%32, destination=-1",
+      "expected": "Count mismatch preserves all old values; equal count copies all 256 values",
+      "target_needed": true, "limitation": "RAM FS boundary only; CM3/FS transaction and mutable concurrent map write not tested"
+    },
+    {
+      "core": "CFX", "unit": 33, "test_id": "SW-FW-UnitTest-CFX-ID-33", "name": "CIS 전략과 전략 선택", "method": "T",
+      "status": "CRITERIA_MISMATCH", "host_mismatch_count": 21, "word_count": 498, "scope": "partial_criterion",
+      "supported_input_mismatches": 19,
+      "inconsistent_cm3_input_mismatches": 2,
+      "criterion_32_band_mismatches": 0,
+      "input_contract_review": "Cases20/22 (1/11 bands, stride2, transferable12) can be produced by the active CM3 calculation for pulse width14..33us; mapping Live validates bands1..32 and pulse width13..255us. Case21 (3 bands, stride1, transferable12) is a robustness input, not CM3-generated: stride1 produces transferable24. The criterion explicitly uses32 bands; cases30..32 pass. No actual mapping-app selection or device output was tested.",
+      "functions": ["stimulationStrategy_CIS", "prepare_pcmStimulationPacketHeader"], "source": "src/1__cfx/signalProcessing/stimulationStrategy.c",
+      "input": "Existing 32-channel reverse-order wrap cases plus ascending CIS band/stride pairs (1,2),(3,1),(11,2),(12,2), transferable12. Cases30..32 execute exact criterion amplitude100/ascending32-band input through three blocks. Host-only cases108..111 run actual dispatch/frequency/mapping/CIS/NofM functions for CIS, NofM phase0/1/0, medium and invalid99.",
+      "expected": "Original32-channel packets/wrap unchanged. Sparse CIS outputs each available channel once, proper NOP spacing and rest of24 words NOP; equality12/12 wraps index0. Host pipeline uses vMag32 -> scaled2 and bounded power override2, coefficients A256/B=(100-i)*256 -> amplitude102-i. NofM selects0..15/interleaves0,8,...7,15; phase1 preserves prior computation despite changed vMag.",
+      "mismatch_cases": [{"case":20,"count":2,"meaning":"one band, stride2: pulse overwritten by NOP and next word unwritten"},{"case":21,"count":2,"meaning":"three bands, stride1: channel1 skipped"},{"case":22,"count":17,"meaning":"eleven bands, stride2: double index advance, pulse overwritten and six words unwritten"}],
+      "target_needed": true, "missing": "Actual strategy dispatch and pipeline are PC-only because find_freq_rep_value directly reads HEAR_ADDR_VMAG_OUTPUT with no owned target memory hook. Host remaps input address and restores frequency/mapping/NofM/shared state; this is not actual HEAR/SDK execution. Medium/invalid99 no-op is characterization, not guaranteed safe NOP output.",
+      "review_required": "CIS sparse branch increments transferred index twice and writes padding at the same offset as the pulse. Expected packet order/24-frame initialization retained; product not modified. Reject invalid band/order/frame inputs before direct array access requires separate product fix authority."
+    },
+    {
+      "core": "CFX", "unit": 36, "test_id": "SW-FW-UnitTest-CFX-ID-36", "name": "자극 패킷 헤더 구성", "method": "T",
+      "status": "HOST_VECTOR_PASS", "host_mismatch_count": 0, "word_count": 58, "scope": "implemented_vectors",
+      "functions": ["prepare_pcmStimulationPacketHeader", "stimulationStrategy_CIS"], "source": "src/1__cfx/signalProcessing/stimulationStrategy.c",
+      "input": "firstPulsePhase0/1, assigned electrodes1/2/17/32, identity physical map, amplitudes0/1/127/255, mute off",
+      "expected": "Headers0x40000/0x48000; each complete word plus type4, phase, physical electrode0/1/16/31, amplitude and lowbits00 all independently checked",
+      "target_needed": true, "limitation": "Fixed type/low bits checked in actual assembled packet, not exposed as fictitious variable API fields. Complete candidate words in criteria JSON."
+    },
+    {
+      "core": "CFX", "unit": 37, "test_id": "SW-FW-UnitTest-CFX-ID-37", "name": "NofM 패킷 구성과 분할 출력", "method": "T",
+      "status": "HOST_VECTOR_PASS", "host_mismatch_count": 0, "word_count": 158, "scope": "implemented_vectors",
+      "functions": ["stimulationStrategy_NofM_Packet", "stimulationStrategy_NofM_PCM_Write"], "source": "src/1__cfx/signalProcessing/stimulationStrategy.c",
+      "input": "Order [0,8,1,9,...7,15], previous last15 then0, assigned electrodes32-i, physical map(i*7)%32, amplitude0/1/127/255 repeated, phase0/1, mute off, stride3, transferable8, two blocks per case",
+      "expected": "Previous15 retains order/newlast15; previous0 rotates last15 to first/newlast7; blocks index8 then0 with every unused position NOP",
+      "target_needed": true, "limitation": "Actual packet/write functions only, not strategy peak-pick/dispatch or physical pulse timing"
+    },
+    {
+      "core": "CFX", "unit": 40, "test_id": "SW-FW-UnitTest-CFX-ID-40", "name": "지정 명령 PCM 출력", "method": "T",
+      "status": "HOST_VECTOR_PASS", "host_mismatch_count": 0, "word_count": 256, "scope": "implemented_vectors",
+      "functions": ["fn_PcmBitStream_Mode_SepcificCommand"], "source": "src/1__cfx/internalDevice/driver_PCM.c",
+      "input": "Vector1 prefix[0x11,0x22,0x33] +21 NOP0x25555. Vector2 distinct24 words0x50000|(i<<9)|(0x80+i). Initial read index17, modeSpecificCommand/nextNopStandby; actual fixed24 API.",
+      "expected": "24 offsets/data/reading1/prior-index[17,0..22] exact; complete reading0/index23/modeNopStandby; all24 input buffer words unchanged",
+      "target_needed": true, "limitation": "CFX reader bookkeeping covered. No unsupported busy-reject contract invented; concurrent CM3 writer overwrite prevention not proven. Parent reconciles SUVC040/SITC004 to actual fixed24.",
+      "nop_evidence": "driver_PCM.h and CM3 isdExecution/dirver_PCM.h define0x25555; isd_interface.c explicitly fills remaining frames with that NOP"
+    },
+    {
+      "core": "HEAR", "unit": 1, "test_id": "SW-FW-UnitTest-HEAR-ID-1", "name": "오디오 절대값 최대값 연산", "method": "T",
+      "status": "TARGET_REQUIRED_NOT_EXECUTED", "host_mismatch_count": null, "scope": "target_observation_implemented",
+      "source": "src/3__hear/microcode.hct", "functions": ["CMD0 HEAR_FC_agc_preprocessing", "vAbsolute", "MaxElement", "Event(0)"],
+      "api": "tdc_ut_hear_start(1,1,1), then bounded tdc_ut_hear_poll()",
+      "input": "Prepared idle target audio mix [0,-32,17,-100,99,remaining0]",
+      "expected": "After actual Event0 completion, absolute buffer [100,32,17,100,99,remaining0], chain0=1/chain1=0",
+      "flat_words_when_executed": 22,
+      "target_needed": true, "timing_split": "vAbsolute intermediate[0,32,17,100,99] is an analysis check against microcode/SDK. Runtime event0 compares MaxElement-final[100,32,17,100,99]. No microcode rewrite or intermediate runtime observation claim."
+    },
+    {
+      "core": "HEAR", "unit": 2, "test_id": "SW-FW-UnitTest-HEAR-ID-2", "name": "창 적용 FFT와 크기 연산", "method": "T",
+      "status": "TARGET_REQUIRED_NOT_EXECUTED", "host_mismatch_count": null, "scope": "target_observation_implemented",
+      "source": "src/3__hear/microcode.hct", "functions": ["CMD1 HEAR_FC_fft_vmag", "Win_DFT_R_Forward", "vMag", "Event(1)"],
+      "api": "tdc_ut_hear_start(2,1..5,1), poll/drain/release each vector separately",
+      "input": "Exact512 Hann must match reference, never changed. Zero, period16bin32, period8bin64, DC32768 and alternating +/-32768 Nyquist. Exact inputs and window in criteria JSON.",
+      "expected": "Zero: all512 FFT and256 vMag exact0. Other vectors: 9 packed FFT complex bins and all256 vMag compare against independent unscaled DFT after undoing actual BFP E and vMag2.22. FFT tolerance64+ceil(abs(ref)/1000); vMag64+ceil(ref/100). Peak bins32/64/0/0 and event flags exact.",
+      "flat_words_per_vector_when_executed": [8,282,282,282,282],
+      "observed": "Raw FFT512/vMag256 and actual block exponent captured separately from Boolean numeric range comparisons; reference header/JSON are fixed mathematical expectations, not copied device output",
+      "target_needed": true, "missing": "No real accelerator execution. Tolerances are predeclared engineering checks, not a manufacturer-guaranteed limit; require target validation. FFT complex checks sample9 bins; vMag checks all256. Synthetic RAM fixtures test comparison/lifecycle code only.",
+      "numeric_reference": "tests/unit/tdc_ut_hear_reference.py/.json and src/1__cfx/test/tdc_ut_hear_reference.h",
+      "comparison_qa": "tests/unit/tdc_ut_hear_reference_check.py, evidence tmp/unit-tests/hear-reference/checks.json"
+    }
+  ],
+  "changed_paths": [
+    "src/1__cfx/test/tdc_ut_hear_reference.h",
+    "tests/unit/tdc_ut_hear_reference.py",
+    "tests/unit/tdc_ut_hear_reference.json",
+    "tests/unit/tdc_ut_hear_reference_check.py",
+    "tests/unit/tdc_ut_cfx_io_criteria.py",
+    "tests/unit/tdc_ut_cfx_io_criteria.json",
+    "src/1__cfx/test/tdc_ut_io_cfx.c",
+    "src/1__cfx/test/tdc_ut_io_cfx.h",
+    "src/1__cfx/systemControl/main.c",
+    "src/1__cfx/signalProcessing/FrequencyAnalysis.c",
+    "src/1__cfx/signalProcessing/stimulationStrategy.c",
+    "src/1__cfx/internalDevice/driver_PCM.c",
+    "src/1__cfx/lib_cfx/lib_i2s.c",
+    "tests/unit/tdc_ut_cfx_io_check.py",
+    "tests/unit/tdc_ut_cfx_io_build.ps1",
+    "tests/unit/tdc_ut_cfx_io_coverage.json",
+    "tests/unit/tdc_ut_cfx_io_host/hw.h",
+    "tests/unit/tdc_ut_cfx_io_host/sk5_cfx_dsp_data_conversions.h",
+    "tests/unit/tdc_ut_cfx_io_host/sk5_cfx_dsp_math_accelerator.h",
+    "tests/unit/tdc_ut_cfx_io_host/sk5_cfx_dsp_type_conversions.h",
+    "tests/unit/tdc_ut_cfx_io_host/sk5_cfx_dsp_types.h"
+  ],
+  "ownership_notes": [
+    "Current review iteration modified only io runner/header, generated HEAR reference header, cfx_io checker/coverage/criteria and HEAR reference tools/data. Historical normal-path test seams listed above were NOT changed in this iteration.",
+    "main.c changes listed are only the pre-existing worker DMIC test include/override seams; no changes after root requested main ownership",
+    "system_control.c product calls used and compiled, but not modified by this worker",
+    "Root owns reporter/core/values bridge, pure runner/hooks, build-script retention and final full link",
+    "All unit statuses distinguish source analysis, observed mismatch, implemented host vectors and actual target required"
+  ]
+}

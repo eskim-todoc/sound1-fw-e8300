@@ -1,0 +1,209 @@
+{
+  "schema_version": 1,
+  "scope": "CM3 I/O RAM 시험 추가 기준과 미실행 항목",
+  "checked_date": "2026-10-02",
+  "evidence_type": "실제 제품 함수를 링크한 PC 실행, ARM 개별 소스 컴파일, 소스 분석",
+  "device_run": false,
+  "production_behavior_changed": false,
+  "expected_source": "통신 명령/상태 계약, 입력 데이터 보존, 오류 시 정리 조건. actual 값을 복사해 expected로 사용하지 않는다.",
+  "framing": "actual/expected 각각 [-999,unit,case,payload_count,payload...]이며 payload field는 0부터 시작한다.",
+  "automatic_entry": "tdc_ut_io_cm3_run_unit(unit) -> RTT 비교/출력 완료 -> tdc_ut_io_cm3_release()",
+  "automatic_limits": [
+    "다른 코어와 IRQ 사용자를 정지하고 CFX iteration을 금지한다. SPI/I2C는 idle이어야 한다.",
+    "MMIO/FatFs/부트 상태 응답만 RAM으로 대신한다. 파싱, 판정, 상태 전이와 응답 생성은 실제 함수를 실행한다.",
+    "실제 파일/NVM 쓰기, 삭제, 장치 초기화, 자극, 리셋, 부트 슬롯 변경은 자동 시험에서 실행하지 않는다.",
+    "done은 시험 종료, OBSERVED는 관측 종료다. 어느 것도 시험 통과를 뜻하지 않는다.",
+    "기댓값 불일치는 실패로 남긴다. --check-known-findings의 exit 0은 알려진 결함 재현 확인일 뿐 제품 PASS가 아니다."
+  ],
+  "added_target_ram_tests": [
+    {
+      "unit": 25,
+      "actual_functions": ["i2c_startWriteData", "i2c_startReadData", "I2C_0_IRQHandler", "get_i2cDriverStatus", "init_I2c"],
+      "ram_cases": 4,
+      "flat_words": 39,
+      "cases": [
+        {"case": 1, "input": "idle/line_free, slave=0x44, TX=[0x56,0x78], length=2. tx_req/clk_stretch 상태로 ISR 2회 후 stop_detected ISR 1회.", "expected_fields": ["WriteTriggered", "write start action=2", "slave=68", "전송 수=2", "첫 값=86", "둘째 값=120", "CTRL=I2C_LAST_DATA", "WritingDone"]},
+        {"case": 2, "input": "idle/line_free, slave=0x44, RX length=2. RX_DATA를 0x12,0x34로 주입하고 각각 ISR 실행 후 stop_detected ISR 실행.", "expected_fields": ["ReadTriggerd", "read start action=3", "slave=68", "첫 CTRL=I2C_ACK", "마지막 CTRL=I2C_NACK|I2C_STOP", "ReadingDone", "첫 수신 값=18", "둘째 수신 값=52"]},
+        {"case": 3, "input": "2바이트 read 시작 후 데이터 이전에 bus_error와 stop_detected. 이어서 init_I2c 호출.", "expected_fields": ["Error", "I2C_SLAVE_DEVICE_NO_REACTION", "idle=1", "RAM reset action 수=1"]},
+        {"case": 4, "input": "line_free=0/busy=1에서 2바이트 write 시작. 이어서 init_I2c 호출.", "expected_fields": ["Error", "새 start action 없음=0", "idle=1"]}
+      ],
+      "not_proved": "실제 IRQ 발생, NVIC 설정, I2C 전압/타이밍, 클럭/분주 설정. RAM reset action은 실제 레지스터 초기화 확인이 아니다."
+    },
+    {
+      "unit": 45,
+      "actual_functions": ["fetch_readDataForBleSetting", "setting_nrf_ble_adv_info"],
+      "ram_cases": 9,
+      "flat_words": 89,
+      "cases": [
+        {"case": 1, "input_packet": [52,37,1,1], "expected": {"battery_percent":37,"battery_state":"CHARGING=2","charger":"CONNECTED=1","cover":"열림=1","ack":[52,1],"length":2,"command_after":"IDLE","stored_percent":37}},
+        {"case": 2, "input_packet": [52,72,0,2], "expected": {"battery_percent":72,"battery_state":"DISCHARGING=1","charger":"DISCONNECTED=2","cover":"닫힘=2","ack":[52,1],"length":2,"command_after":"IDLE","stored_percent":72}},
+        {"case": 3, "input_packet": [52,0,9,0], "expected": {"battery_percent":0,"battery_state":"RESET=0","charger":"RESET=0","cover":"잘못된 값은 열림=1","ack":[52,1],"length":2,"command_after":"IDLE","stored_percent":0}},
+        {"case": 4, "input_packet": [54,1,1], "expected": {"is_i2s_source_cradle":1,"ack":[54,1],"length":2}},
+        {"case": 5, "input_packet": [54,1,2], "expected": {"is_i2s_source_cradle":0,"ack":[54,1],"length":2}},
+        {"case": 6, "input_packet": [54,0,1], "expected": {"is_i2s_source_cradle":0,"ack":[54,1],"length":2}},
+        {"case": 7, "input_packet": [54,9,1], "expected": {"is_i2s_source_cradle":0,"ack":[54,1],"length":2}},
+        {"case": 8, "input_packet": [53,4], "expected": {"led_ind":"OTA_EZAIRO=4","dfu_connected":1,"ack":[53,1],"length":2}},
+        {"case": 9, "input_packet": [53,0], "expected": {"led_ind":"NONE=0","dfu_connected":0,"ack":[53,1],"length":2}}
+      ],
+      "not_proved": "bleCommunication 전체의 SPI 수신/분배, 원격/매핑 상태기계, QCC 내부 무선 처리와 실제 LED 발광. 실제 fetch/적용 함수의 E8300 입력/응답만 확인한다."
+    },
+    {
+      "unit": 50,
+      "actual_functions": ["ci_ble_fetch_packet_ota_start_end", "fetch_readDataForBleSetting", "setting_nrf_ble_adv_info"],
+      "ram_cases": 4,
+      "flat_words": 36,
+      "cases": [
+        {"case":1,"input_packet":[192,0,7],"prior_dfu":0,"expected_fields":[192,0,7,3,0],"field_names":["ACK header","ACK status","echoed MCU byte","SPI length","DFU flag unchanged"]},
+        {"case":2,"input_packet":[193,9],"prior_dfu":1,"expected_fields":[193,0,9,3,1],"field_names":["ACK header","ACK status","echoed MCU byte","SPI length","DFU flag unchanged"]},
+        {"case":3,"input_packet":[53,4],"expected_fields":[53,1,2,1,4],"field_names":["ACK header","ACK status","SPI length","DFU connected","LED OTA_EZAIRO"]},
+        {"case":4,"input_packet":[53,0],"expected_fields":[53,1,2,0,0],"field_names":["ACK header","ACK status","SPI length","DFU disconnected","LED NONE"]}
+      ],
+      "contract_change": {
+        "authority": "parent 요청: START/END ACK와 QCC 0x35 DFU 링크 플래그를 별도 시험으로 구분",
+        "old_criterion": "START/END만으로 DFU가 1/0으로 바뀐다고 가정했던 두 field",
+        "old_actual": [0,1],
+        "old_expected": [1,0],
+        "corrected_expected": [0,1],
+        "reason": "수신/상태 갱신 책임을 분리한 입력 조건 정정이다. 제품 코드가 상태를 바꾸도록 수정한 것이 아니다.",
+        "wire_detail": "0x35 수신 payload는 LED 상태다. OTA_EZAIRO=4가 내부 DFU 플래그 1로, NONE=0이 플래그 0으로 변환된다. 수신 값 1과 DFU 플래그 1을 혼동하지 않는다."
+      },
+      "not_proved": "QCC가 실제 START/0x35/데이터/END를 전달하는 전체 무선 세션"
+    },
+    {
+      "unit": 51,
+      "actual_functions": ["ci_ble_fetch_packet_ota"],
+      "ram_cases": 23,
+      "flat_words": 228,
+      "case_groups": [
+        {"cases":[1,3,5,7,9,11,13,15],"input":"slot=1/2, file_type=1/2/3/4, option=WRITE(1), data_index=0, total_byte=2, end_data_index=1, end_data_index_byte=2. boot_slot은 쓰기 대상과 반대 슬롯.", "expected":"ACK header=0xC3, slot/file_type echo, result=1, length=9, BOOT drive. 정확한 경로 /1 또는 /2 아래 MANIFEST.TXT / APP000.FEZ / APP001.FEZ / APP002.FEZ."},
+        {"cases":[2,4,6,8,10,12,14,16],"input":"직전 WRITE 설정에 대해 data_index=1, data=[0x12,0x34].", "expected":"ACK result=1, RAM bytes=[18,52], size=2, file_type=0으로 종료, USER_DATA drive 복귀. close는 각각 1회로 누계 1~8."},
+        {"cases":[17],"input":"READ option=2, slot=3, file_type=1, data_index=0","expected_fields":[240,3],"actual_fields":[195,0],"status":"FAIL: invalid slot error overwritten by normal ACK"},
+        {"cases":[18],"input":"READ option=2, slot=2, file_type=5, data_index=0","expected_fields":[240,4],"actual_fields":[195,0],"status":"FAIL: invalid file type error overwritten by normal ACK"},
+        {"cases":[19],"input":"2바이트 WRITE 설정 후 예상 index=1에 대해 data_index=2","expected":"ACK header=0xC3/result=2, file_type=0, USER_DATA drive, close 1회"},
+        {"cases":[20],"input":"2바이트 WRITE에 대해 f_write가 FR_OK / written=1 반환","expected":"error header=0xF0/code=2, file_type=0, USER_DATA drive, close 1회"},
+        {"cases":[21],"input":"2바이트 WRITE에 대해 f_write가 FR_DISK_ERR 반환","expected":"error header=0xF0/code=2, file_type=0, USER_DATA drive, close 1회"},
+        {"cases":[22],"input":"WRITE 시작 시 f_open이 FR_DISK_ERR 반환","expected":"error header=0xF0/code=2, USER_DATA drive"},
+        {"cases":[23],"input":"현재 boot_slot과 같은 slot을 WRITE 대상으로 지정","expected_fields":[240,3]}
+      ],
+      "unexecuted_unsafe_inputs": [
+        "tail length>16: parser의 지역 fbuf[16] 범위 검사가 없어 자동 target 시험에서는 실행하지 않는다.",
+        "invalid file type WRITE: 파일명 NULL 이용 위험이 있어 자동 target 시험에서는 실행하지 않는다."
+      ],
+      "not_proved": "실제 저장/전원 차단/영속성, accepted boot selection/reset, 전체 파일 I/O 실패 단계, CRC/AES. RAM 데이터 도달만으로 영속 저장을 입증하지 않는다."
+    }
+  ],
+  "host_extension_criteria": {
+    "entry": "tests/unit/tdc_ut_io_cm3_extended.c:tdc_ut_io_cm3_extended_run",
+    "reports": [
+      "tmp/unit-tests/cm3-io/checks.json",
+      "tmp/unit-tests/cm3-io/ram-checks.json"
+    ],
+    "scope": "호스트 전용 확장. 기존 run_unit 타깃 지원과 별도. 제품 소스/보드 설정/저장장치를 수정하지 않는다.",
+    "expected_contracts": [
+      "슬롯은 1..4, 맵은 1..4이며 0번 슬롯을 실제 저장 접근으로 넘기지 않는다.",
+      "미완료 명령 중 새 명령은 오류로 거절한다. 기존 명령 보존 및 오류 응답 유지를 별도로 비교한다.",
+      "파일/I2C 작업 실패를 정상 성공 응답으로 표시하지 않는다. 정확한 재시도/롤백/출력 차단 정책은 정의하지 않는다.",
+      "저장 입력 T/C 32요소 전체를 독립 패턴으로 비교한다. 파일 이름으로 슬롯/맵을 분리한다.",
+      "CM3-002 시간 초과 뒤 READY와 CM3-039 disable raw=0x05는 관찰이다. 안전한 완료/물리 출력 차단으로 판정하지 않는다."
+    ],
+    "units": [
+      {
+        "unit": 2,
+        "cases": 12,
+        "payload_comparisons": 26,
+        "observation_only": 2,
+        "tested": "Original ISR trace plus required setup commands, repeat settings, failed writes/read, pre-begin no-op, ATI-active wait, failed-read wait, success READY, restart, failed-init timeout observation.",
+        "remaining": "Host executes actual initialization FSM and private READY observation through include fixture. Timeout with all bus operations failed reaches READY=1 (observation, policy unresolved). Real sensor ATI completion, timings, GPIO and target isolation remain unverified."
+      },
+      {
+        "unit": 38,
+        "cases": 7,
+        "payload_comparisons": 20,
+        "observation_only": 0,
+        "tested": "Original TU included under host-only Board_1_2: slave 0x1C, write bytes, read value, preamble/data-phase bus error and idle, matching/nonmatching reset readback.",
+        "remaining": "Failed reset read consumes uninitialized local readValue; not executed. No board voltage/physical I2C; current Board_1_5 target remains inactive."
+      },
+      {
+        "unit": 39,
+        "cases": 13,
+        "payload_comparisons": 34,
+        "observation_only": 0,
+        "tested": "Original Board_1_3 TU with header-selected Error_ISL98608_ReadByte; write/read, both error phases, enable/disable/reset raw writes. Four high-level operations return 1 when I2C fails, expected 0.",
+        "remaining": "0x05 disable write is raw characterization, not proof of output disabled. Inactive alternative readback branch and real electrical output not tested."
+      },
+      {
+        "unit": 42,
+        "cases": 10,
+        "payload_comparisons": 366,
+        "observation_only": 0,
+        "tested": "RAM path-keyed files for all slots/maps. Four read pairs and 32 T/C elements each; actual write command and file reload; unselected map retained; info CRC/AES request; read error, short read, write error. Failed write still normal 0x6D ACK.",
+        "remaining": "CRC/AES function boundary returns injected failure; cryptography/CRC implementation, physical FatFs/NVM persistence and power loss not tested. Read command copies loaded RAM; explicit ci_map reload proves RAM-file roundtrip separately."
+      },
+      {
+        "unit": 43,
+        "cases": 5,
+        "payload_comparisons": 35,
+        "observation_only": 0,
+        "tested": "Independent seeded RAM files per erase scope: one map, selected ISD, all four ISDs, invalid operation. Selected markers reset and other markers retained. Failed file write still 0x6F ACK; reload retrieves old file.",
+        "remaining": "All fields/bytes of reset defaults, recovery 2-to-4 path, physical deletion/persistence and target-safe filesystem boundary remain unverified."
+      },
+      {
+        "unit": 46,
+        "cases": 18,
+        "payload_comparisons": 58,
+        "observation_only": 0,
+        "tested": "Read slot 1/4/0/5, read map invalid/zero slot, busy, out-of-order, gate=false NO_SECURITY, actual volume increments/decrements/saturation for stimulation and microphone, invalid volume option. Zero slot accepted; busy input clears prior command.",
+        "remaining": "Full packet families, passkey-check/clock/audit path, long disconnection, real storage/reset side effects and target automatic execution remain out of scope. Gate setup is not authentication proof."
+      },
+      {
+        "unit": 48,
+        "cases": 6,
+        "payload_comparisons": 13,
+        "observation_only": 0,
+        "tested": "Initial disconnected, device status rejected before connect, connect ACK/actual returned connection, connected idle, BLE disconnect/reset request, stable disconnected. No actual reset invoked.",
+        "remaining": "0x61 disconnect watchdog infinite loop, BLE off waiting and backtel checks after device initialization not executed."
+      },
+      {
+        "unit": 49,
+        "cases": 12,
+        "payload_comparisons": 27,
+        "observation_only": 0,
+        "tested": "Read and erase slot/map boundaries, busy behavior, disconnect exception, connect queue, out-of-order map data. Zero-slot map accepted. Busy protocol error is overwritten by default response.",
+        "remaining": "Specific/live stimulation and all packet payload families not executed. Storage command function coverage belongs to 42/43; no physical output."
+      }
+    ],
+    "known_failure_results": "자동 결과 JSON의 failed_comparisons와 known_findings에 유닛/사례/field/actual/expected를 기록한다. exit 0이어도 product_contract_pass=false일 수 있다.",
+    "undefined_not_executed": [
+      "ISL91128 reset read 실패 후 미초기화 지역변수 사용",
+      "범위 밖 슬롯을 실제 저장 함수까지 전달",
+      "0x61 disconnect의 watchdog/reset 무한 루프",
+      "잘린 패킷과 NULL: 현재 파서에 길이 계약 없음"
+    ],
+    "storage_boundary": "ci_map / fn_from_cfx_eeprom_* / 상위 저장 명령은 실제 제품 함수. ci_filesystem CRC/AES 아래 전체를 path-keyed RAM 파일로 대체한다. short/error/CRC reject 반환만 주입하므로 CRC/AES 자체나 파일 내구성은 검증하지 않는다.",
+    "repeat_restore": "기존 13개 IO run_unit만 private-state 복원/2회 반복을 검사한다. 새 확장은 별도 호스트 프로세스 수명으로 격리하며 복원을 주장하지 않는다."
+  },
+  "remaining_target_automatic_unavailable": [
+    {"unit":2,"status":"호스트 확장 실행; 타깃 자동 입력은 미지원","input":"MCLR과 설정 적용","expected":"reset command C0 01 00, FullATI command 36 0C 04, ULP=0","remaining":"Host executes actual initialization FSM and private READY observation through include fixture. Timeout with all bus operations failed reaches READY=1 (observation, policy unresolved). Real sensor ATI completion, timings, GPIO and target isolation remain unverified."},
+    {"unit":31,"status":"소스 분석/상태 관측","input":"초기화 시작, 각 단계의 정상 응답 또는 read/write 실패","expected":"전원/FPGA/ISD 준비 전에 다음 상태로 진행하지 않는다. 실패를 연결 완료로 처리하지 않는다.","remaining":"다중 tick 상태기계 fixture 미구현. PMIC Reset의 개별 실패 확인 부족은 기존 코드의 차이."},
+    {"unit":32,"status":"상태 관측만 가능","input":"live check의 정상 backtel, 무응답, 수신 오류","expected":"정상 수신으로 연결이 성립한다. 무응답/오류를 정상 연결로 처리하지 않는다. 처리 후 PCM fired/free 상태가 복귀한다.","remaining":"backtel/power feedback fixture 미구현."},
+    {"unit":33,"status":"상태 관측만 가능","input":"mapping 연결 확인 시작, 정상/비정상 응답, 종료","expected":"시작/진행/종료를 구분하고 종료/실패 후 checking flag가 남지 않는다.","remaining":"실제 다중 tick 완료 분기 자동 실행 미구현."},
+    {"unit":38,"status":"호스트 확장 실행; 타깃 자동 입력은 미지원","input":"ISL91128 read/write/reset","expected":"별도 대응 board fixture의 독립 주소/데이터/반환값","remaining":"Failed reset read consumes uninitialized local readValue; not executed. No board voltage/physical I2C; current Board_1_5 target remains inactive."},
+    {"unit":39,"status":"호스트 확장 실행; 타깃 자동 입력은 미지원","input":"ISL98608 VP enable/disable/reset","expected":"대응 board fixture의 VP 설정과 독립 출력 관측","remaining":"0x05 disable write is raw characterization, not proof of output disabled. Inactive alternative readback branch and real electrical output not tested."},
+    {"unit":41,"status":"상태 관측만 가능","input":"mono/bipolar 및 신규 map/동일 map 설정 시작","expected":"최종 필요 명령 완료 전 settingDone=false, 필요한 모든 응답 후 true. map change/PCM 상태를 구분한다.","remaining":"다중 tick 설정/응답 fixture 미구현. 실제 자극은 자동 실행하지 않는다."},
+    {"unit":42,"status":"호스트 확장 실행; 타깃 자동 입력은 미지원","input":"격리 RAM store에서 A map1을 32요소 패턴, B map1과 A map2를 다른 패턴으로 쓰고 읽는다. 짧은 read/CRC 손상은 별도 사례.","expected":"정상은 전체 요소 일치, A/B/map1/map2를 혼동하지 않는다. 짧은 read/손상은 성공으로 처리하지 않는다.","remaining":"CRC/AES function boundary returns injected failure; cryptography/CRC implementation, physical FatFs/NVM persistence and power loss not tested. Read command copies loaded RAM; explicit ci_map reload proves RAM-file roundtrip separately."},
+    {"unit":43,"status":"호스트 확장 실행; 타깃 자동 입력은 미지원","input":"각 사례마다 격리 store에 A/B map1/map2를 새로 배치. 개별 map/선택 ISD/전체 ISD reset을 별도로 실행.","expected":"지정한 대상만 삭제되고 남길 대상의 경로/전체 bytes가 변하지 않는다.","remaining":"All fields/bytes of reset defaults, recovery 2-to-4 path, physical deletion/persistence and target-safe filesystem boundary remain unverified."},
+    {"unit":46,"status":"호스트 확장 실행; 타깃 자동 입력은 미지원","input":"처리 허용 flag=false/true에서 일반 read/write, 연결 확인 명령, 처리 종료.","expected":"false의 일반 명령은 NO_SECURITY error. 허용한 입력은 규정 응답 후 IDLE. 연결 확인을 암호 인증이라 부르지 않는다.","remaining":"Full packet families, passkey-check/clock/audit path, long disconnection, real storage/reset side effects and target automatic execution remain out of scope. Gate setup is not authentication proof."},
+    {"unit":48,"status":"호스트 확장 실행; 타깃 자동 입력은 미지원","input":"연결 요청 true/false, BLE 끊김, BLE off 대기를 별도로 실행.","expected":"요청 fetched_command와 실제 mappingConnection/BLE_Off를 구분. 연결 요청을 쓴 것만으로 연결 완료라 하지 않는다.","remaining":"0x61 disconnect watchdog infinite loop, BLE off waiting and backtel checks after device initialization not executed."},
+    {"unit":49,"status":"호스트 확장 실행; 타깃 자동 입력은 미지원","input":"격리한 자극/저장 경계에서 specific/live/read-write commands 실행. 정상/불법 범위/중도 종료를 별도로 시험.","expected":"각 command/payload 범위를 판정하고 성공/오류 응답과 종료 상태가 일치. 지정 외 자극/저장/삭제는 발생하지 않는다.","remaining":"Specific/live stimulation and all packet payload families not executed. Storage command function coverage belongs to 42/43; no physical output."}
+  ],
+  "security_source_review": [
+    {"requirements":[50],"status":"implementation_present_partial_gap","paths":["Cortex-M3-src/BleCommunication/remoteControl.c:remoteControl","Cortex-M3-src/BleCommunication/ble_communication.c:bleCommunication","Gen1_5/FS/ci_event_log.c:ci_event_log_write"],"observed":"연결 확인에서 외부 입력의 시각/BT address를 설정하고 CONNECTED 기록. DISCONNECTED 쓰기는 주석 처리되어 있다.","required_evidence":"정의한 이벤트가 실제로 기록된 결과. 접속 기록만으로 전체 이벤트 기록을 입증하지 않는다."},
+    {"requirements":[51],"status":"integrity_detection_present_audit_gap","paths":["Gen1_5/FS/ci_filesystem.c:ci_filesystem_read_with_crc_and_aes128","Gen1_5/FS/ci_map.c:ci_map_init_map_data","Gen1_5/ui/tdc_ui_command.c:handle_write_integrity_error"],"observed":"CRC 불일치는 -1, ci_map은 읽기 실패로 기본값 초기화. INTEGRITY_ERROR ci_event_log_write 호출은 수동 UI에만 있고 자동 설정 읽기/복구 경로에는 찾지 못했다.","required_evidence":"손상 입력으로 자동 감사 기록 생성. 수동 UI 기록을 자동 기록 시험의 결과로 쓰지 않는다."},
+    {"requirements":[73],"status":"implementation_present_not_runtime_tested","paths":["Gen1_5/FS/ci_event_log.c:ci_event_log_write","Cortex-M3-src/error.c:errorCodeUpdate"],"observed":"open/read/구조 오류/write 실패가 DATA_LOGGING_ERROR 및 개별 minor code로 연결된다.","required_evidence":"RAM store에서 각 실패를 주입해 실제 error state와 LED 요청 경로 확인. 이 worker는 해당 storage/LED 실행 결과를 만들지 않았다."},
+    {"requirements":[74],"status":"implementation_present_not_runtime_tested","paths":["Cortex-M3-src/BleCommunication/remoteControl.c:remoteControl","Gen1_5/FS/ci_event_log.c:ci_event_log_write"],"observed":"수신한 기준 시각을 ci_timer에 설정하고 entity에 year/month/day/hour/min/sec를 복사한다. 시각 신뢰성/불법 범위 검증은 별도다.","required_evidence":"고정 시각 입력과 경과 시간에 대한 기록 비교. 시각 표시만으로 정확성을 입증하지 않는다."},
+    {"requirements":[75],"status":"protocol_error_and_debug_channels_must_be_separated","paths":["Cortex-M3-src/error.c:sendErrorToApp","Gen1_5/FS/ci_event_log.c:ci_event_log_read","Gen1_5/common/ci_printf.h","Gen1_5/FS/ci_map.c:ci_map_init_map_data"],"observed":"앱 응답은 숫자 오류 packet. RTT는 INFO/DEBUG/VERBOSE 활성 상태로 감사 읽기의 BT address/시각을 평문 출력한다. ci_map의 이름/serial/passkey 표시 블록은 현재 사용자 변경으로 #if0이며 현재 실행 누출로 취급하지 않는다.","required_evidence":"허용한 오류/RTT 채널별 기밀 정보 기준. 숫자 packet 확인만으로 다른 출력 경로의 비노출을 입증하지 않는다."},
+    {"requirements":[77],"status":"encryption_path_present_not_runtime_tested_here","paths":["Gen1_5/FS/ci_map.c:ci_map_read_isd_info/ci_map_write_isd_info","Gen1_5/FS/ci_filesystem.c:ci_filesystem_read_with_crc_and_aes128/ci_filesystem_write_with_crc_and_aes128"],"observed":"제조번호/사용자명을 포함한 isd_info에 enable_crc=true/enable_aes=true 지정. 다른 user_setting/map 파일의 AES 비활성을 isd_info 암호화 없음으로 혼동하지 않는다.","required_evidence":"알려진 입력의 암호화 저장 bytes와 실제 복호화 결과, 다른 slot 분리, 손상 검출. 저장 후 read 일치만으로 암호화를 입증하지 않는다."},
+    {"requirements":[79],"status":"e8300_local_authorization_protection_gap_qcc_system_evidence_pending","paths":["Gen1_5/FS/ci_event_log.c:ci_event_log_read","Gen1_5/ui/tdc_ui_command.c:handle_dump_log","Cortex-M3-src/BleCommunication/remoteControl.c:remoteControl"],"observed":"E8300 감사 읽기/UI 경계에 인가/비인가 판정이나 출력 암호화가 없고 BT address/시각을 RTT에 출력한다. remoteControl의 과거 passkey 비교는 #if0. QCC의 무선 인증/암호 전송 자료는 미확보다.","required_evidence":"인가/비인가 접근, 허용한 전체 출력 채널의 보호 및 무선 측 전체 확인. 편집 명령이 없다는 것만으로 통과시키지 않는다.","no_test_fake":true},
+    {"requirements":[80],"status":"default_recovery_path_present_not_runtime_tested_here","paths":["Gen1_5/FS/ci_map.c:ci_map_init_map_data"],"observed":"isd_info/user_setting/map_stamp/각 map_data 읽기 실패를 개별 판정해 기본값 생성. force_init 경로도 존재한다.","required_evidence":"격리 store에 손상 설정을 준비하고 실제 초기화의 전체 값과 재저장 확인. 실제 사용자 NVM을 훼손해 시험하지 않는다."}
+  ]
+}

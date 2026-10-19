@@ -1,0 +1,501 @@
+{
+  "schema_version": 1,
+  "kind": "bounded_source_analysis",
+  "script": "tests/unit/check_remaining_analysis.py",
+  "criterion": "docs/참고/인허가/사운드1/DHF/03_설계 출력/SW/펌웨어/SUVC-FW-TD24A 소프트웨어 유닛 검증 기준서.xlsx",
+  "criterion_sha256": "89967fa692c4f51e3be916c73270d75859b4f692c96928c2d73da0cc6c5096fd",
+  "criterion_sheet": "기준서_유닛 검증",
+  "device_execution": false,
+  "whole_unit_pass": false,
+  "source_stable_during_run": true,
+  "criterion_stable_during_run": true,
+  "self_checks": {
+    "offsets_and_newlines_preserved": true,
+    "prototype_skipped_and_typedef_return_supported": true,
+    "comments_literals_and_inactive_test_hidden": true,
+    "literal_else_selected": true,
+    "missing_order_token_rejected": true,
+    "reversed_order_rejected": true,
+    "correct_gpio_mapping_accepted": true,
+    "wrong_default_gpio_rejected": true
+  },
+  "units": [
+    {
+      "core": "CFX",
+      "unit": 14,
+      "name": "오디오 FIFO 초기화",
+      "method": "A",
+      "test_id": "SW-FW-UnitTest-CFX-ID-14",
+      "su_id": "SU-ID-CFX-014",
+      "row": 43,
+      "criterion_range": "B43:K43",
+      "input": "- 시험 FIFO 기록에 [1,2,3,4]를 넣고 단일 FIFO 초기화와 전체 초기화를 각각 실행하는 조건을 검토한다.",
+      "limitations": "코드 분석으로 판정한다. 실제 핀 파형, 전원, 처리 시간 및 전극 전류의 실측과 구분한다.",
+      "procedure": "- 준비한 각 입력과 초기 상태에 대해 조건 분기, 호출 순서, 인자, 반환값 및 상태 변경을 코드에서 확인한다. 아래 예상 결과와 대조하고 검토한 조건 및 근거를 기록한다.",
+      "expected": "- 지정 FIFO의 리셋/초기화 설정이 적용된다. 단일 초기화는 다른 FIFO를 변경하지 않고 전체 초기화는 설계에서 지정한 모든 FIFO를 초기화한다.",
+      "status": "SOURCE_CHECKS_MATCHED",
+      "checks": [
+        {
+          "name": "selected_FIFO_bounded_zero_write",
+          "matched": true,
+          "path": "src/1__cfx/lib_cfx/lib_audio_in.c",
+          "symbol": "clear_FIFO",
+          "definition_line": 230,
+          "expected_source_fact": "selected FIFO function writes zero only through p_fifo[0..len-1], with positive valid length/pointer as caller precondition",
+          "observed_source_fact": "selected FIFO function writes zero only through p_fifo[0..len-1], with positive valid length/pointer as caller precondition"
+        },
+        {
+          "name": "complete_FIFO_target_list",
+          "matched": true,
+          "path": "src/1__cfx/lib_cfx/lib_audio_in.c",
+          "symbol": "clear_FIFO_all",
+          "definition_line": 239,
+          "expected_source_fact": "all FIFO clear calls exactly A0_0..A0_6 and A1_0 with corresponding declared lengths",
+          "observed_source_fact": "all FIFO clear calls exactly A0_0..A0_6 and A1_0 with corresponding declared lengths"
+        },
+        {
+          "name": "declared_FIFO_lengths",
+          "matched": true,
+          "path": "src/1__cfx/hear/microcode.h",
+          "symbol": "<file>",
+          "definition_line": 1,
+          "expected_source_fact": "current FIFO lengths: 32/32/32/32/64/32/32/512 words",
+          "observed_source_fact": "current FIFO lengths: 32/32/32/32/64/32/32/512 words"
+        },
+        {
+          "name": "FIFO_zeroing_is_not_hardware_reset",
+          "matched": true,
+          "path": "src/1__cfx/lib_cfx/lib_audio_in.c",
+          "symbol": "clear_FIFO",
+          "definition_line": 230,
+          "expected_source_fact": "clear_FIFO and clear_FIFO_all clear backing words, not FIFO hardware pointers/configuration",
+          "observed_source_fact": "clear_FIFO and clear_FIFO_all clear backing words, not FIFO hardware pointers/configuration"
+        }
+      ],
+      "criterion_issues": [],
+      "device_execution": false,
+      "whole_unit_pass": false,
+      "scope": "Reviewed source statements/call order only; no C execution, runtime trace, timing or whole-unit/device PASS.",
+      "limits": [
+        "This is not a full C preprocessor/AST or control-flow proof; unknown build-condition branches remain visible.",
+        "Hardware state, register bit encoding, pin levels and interrupt races are not measured.",
+        "Matching selected checks does not validate every condition in the criterion.",
+        "No FIFO memory is written here. Zeroing [1,2,3,4] is source reasoning, not an executed FIFO reset; pointer/length validity, FIFO boundaries/overlap and concurrent access remain untested."
+      ],
+      "mismatch_count": 0,
+      "host_mismatch_count": null,
+      "sources": [
+        "src/1__cfx/hear/microcode.h",
+        "src/1__cfx/lib_cfx/lib_audio_in.c"
+      ]
+    },
+    {
+      "core": "CM3",
+      "unit": 1,
+      "name": "CM3 주변장치 초기화",
+      "method": "A",
+      "test_id": "SW-FW-UnitTest-CM3-ID-1",
+      "su_id": "SU-ID-CM3-001",
+      "row": 74,
+      "criterion_range": "B74:K74",
+      "input": "- 초기 주변장치 상태에서 Initialize와 I2C/SPI/DMA 설정 순서를 분석한다.",
+      "limitations": "코드 분석으로 판정한다. 실제 핀 파형, 전원, 처리 시간 및 전극 전류의 실측과 구분한다.",
+      "procedure": "- 준비한 각 입력과 초기 상태에 대해 조건 분기, 호출 순서, 인자, 반환값 및 상태 변경을 코드에서 확인한다. 아래 예상 결과와 대조하고 검토한 조건 및 근거를 기록한다.",
+      "expected": "- 보드 정의의 인터페이스/인터럽트/DMA 설정을 적용하고 사용 전에 초기화한다. CFX 실행 허가와 주변장치 준비 순서를 혼동하지 않는다.",
+      "status": "SOURCE_CHECKS_MATCHED",
+      "checks": [
+        {
+          "name": "initialization_before_QCC_request",
+          "matched": true,
+          "path": "src/2__cm3/Cortex-M3-src/systemControl/initialize.c",
+          "symbol": "Initialize",
+          "definition_line": 247,
+          "expected_source_fact": "DMA reset, I2C and SPI initialization precede QCC normal request",
+          "observed_source_fact": "DMA reset, I2C and SPI initialization precede QCC normal request"
+        },
+        {
+          "name": "software_permission_after_Initialize",
+          "matched": true,
+          "path": "src/2__cm3/Cortex-M3-src/main.c",
+          "symbol": "tdc_normal_boot_sequence",
+          "definition_line": 597,
+          "expected_source_fact": "CFX start wait and complete Initialize precede shared CFX iteration permission",
+          "observed_source_fact": "CFX start wait and complete Initialize precede shared CFX iteration permission"
+        },
+        {
+          "name": "IRQ_enable_separate_from_CFX_permission",
+          "matched": true,
+          "path": "src/2__cm3/Cortex-M3-src/systemControl/initialize.c",
+          "symbol": "Initialize",
+          "definition_line": 247,
+          "expected_source_fact": "CM3 CFX/FIFO IRQ enable is earlier than SPI init, but is not shared CFX iteration permission",
+          "observed_source_fact": "CM3 CFX/FIFO IRQ enable is earlier than SPI init, but is not shared CFX iteration permission"
+        },
+        {
+          "name": "I2C_reset_config_clear_before_enable",
+          "matched": true,
+          "path": "src/2__cm3/Cortex-M3-src/systemControl/driver_i2c.c",
+          "symbol": "init_I2c",
+          "definition_line": 212,
+          "expected_source_fact": "I2C reset/configuration/software state clear precede I2C enable",
+          "observed_source_fact": "I2C reset/configuration/software state clear precede I2C enable"
+        },
+        {
+          "name": "all_eight_DMA_channels_reset",
+          "matched": true,
+          "path": "src/2__cm3/Cortex-M3-src/systemControl/initialize.c",
+          "symbol": "reset_DMA_disable",
+          "definition_line": 112,
+          "expected_source_fact": "DMA0..7 are disabled and completion/count interrupt status cleared",
+          "observed_source_fact": "DMA0..7 are disabled and completion/count interrupt status cleared"
+        },
+        {
+          "name": "SPI_buffer_DMA_before_enable",
+          "matched": true,
+          "path": "src/2__cm3/Cortex-M3-src/systemControl/driver_SPI.c",
+          "symbol": "init_cm3_SPI",
+          "definition_line": 302,
+          "expected_source_fact": "SPI pins/disable/config/TX buffer initialization/DMA preparation precede SPI enable",
+          "observed_source_fact": "SPI pins/disable/config/TX buffer initialization/DMA preparation precede SPI enable"
+        },
+        {
+          "name": "DMA_direction_length_configuration_order",
+          "matched": true,
+          "path": "src/2__cm3/Cortex-M3-src/systemControl/driver_SPI.c",
+          "symbol": "ci_SPI_enable_DMA",
+          "definition_line": 277,
+          "expected_source_fact": "RX DMA0: SPI read register to RX buffer; TX DMA1: TX buffer to SPI write register, packet-sized, configured before enable",
+          "observed_source_fact": "RX DMA0: SPI read register to RX buffer; TX DMA1: TX buffer to SPI write register, packet-sized, configured before enable"
+        },
+        {
+          "name": "SPI_DMA_and_interrupt_configuration_tokens",
+          "matched": true,
+          "path": "src/2__cm3/Cortex-M3-src/systemControl/driver_SPI.h",
+          "symbol": "<file>",
+          "definition_line": 1,
+          "expected_source_fact": "SPI header requests slave, 8-bit words, CS-rise interrupt, RX/TX DMA and packet length BLE payload + 1",
+          "observed_source_fact": "SPI header requests slave, 8-bit words, CS-rise interrupt, RX/TX DMA and packet length BLE payload + 1"
+        },
+        {
+          "name": "CFX_FIFO_IRQ_configuration_order",
+          "matched": true,
+          "path": "src/2__cm3/Cortex-M3-src/systemControl/initialize.c",
+          "symbol": "enable_CFX_trigger_for_iteration",
+          "definition_line": 135,
+          "expected_source_fact": "CFX_0 and FIFO_5 IRQ pending clear and priority 3 precede enable",
+          "observed_source_fact": "CFX_0 and FIFO_5 IRQ pending clear and priority 3 precede enable"
+        }
+      ],
+      "criterion_issues": [],
+      "device_execution": false,
+      "whole_unit_pass": false,
+      "scope": "Reviewed source statements/call order only; no C execution, runtime trace, timing or whole-unit/device PASS.",
+      "limits": [
+        "This is not a full C preprocessor/AST or control-flow proof; unknown build-condition branches remain visible.",
+        "Hardware state, register bit encoding, pin levels and interrupt races are not measured.",
+        "Matching selected checks does not validate every condition in the criterion."
+      ],
+      "mismatch_count": 0,
+      "host_mismatch_count": null,
+      "sources": [
+        "src/2__cm3/Cortex-M3-src/main.c",
+        "src/2__cm3/Cortex-M3-src/systemControl/driver_SPI.c",
+        "src/2__cm3/Cortex-M3-src/systemControl/driver_SPI.h",
+        "src/2__cm3/Cortex-M3-src/systemControl/driver_i2c.c",
+        "src/2__cm3/Cortex-M3-src/systemControl/initialize.c"
+      ]
+    },
+    {
+      "core": "CM3",
+      "unit": 3,
+      "name": "QCC 제어 핀 초기화",
+      "method": "A",
+      "test_id": "SW-FW-UnitTest-CM3-ID-3",
+      "su_id": "SU-ID-CM3-003",
+      "row": 76,
+      "criterion_range": "B76:K76",
+      "input": "- snd_qcc_init 후 두 출력 핀의 초기값을 관찰한다.",
+      "limitations": "코드 분석으로 판정한다. 실제 핀 파형, 전원, 처리 시간 및 전극 전류의 실측과 구분한다.",
+      "procedure": "- 준비한 각 입력과 초기 상태에 대해 조건 분기, 호출 순서, 인자, 반환값 및 상태 변경을 코드에서 확인한다. 아래 예상 결과와 대조하고 검토한 조건 및 근거를 기록한다.",
+      "expected": "- QCC_CTRL과 ISD_CHECK가 모두 Low여야 한다.",
+      "status": "SOURCE_CHECKS_MATCHED",
+      "checks": [
+        {
+          "name": "two_GPIO_outputs_before_initial_values",
+          "matched": true,
+          "path": "src/2__cm3/Cortex-M3-src/QCC/snd_qcc.c",
+          "symbol": "snd_qcc_init",
+          "definition_line": 13,
+          "expected_source_fact": "QCC_CTRL/ISD_CHECK configured as outputs before disconnected/shutdown setters",
+          "observed_source_fact": "QCC_CTRL/ISD_CHECK configured as outputs before disconnected/shutdown setters"
+        },
+        {
+          "name": "mode_GPIO_truth_table",
+          "matched": true,
+          "path": "src/2__cm3/Cortex-M3-src/QCC/snd_qcc.c",
+          "symbol": "snd_qcc_set_mode",
+          "definition_line": 58,
+          "expected_source_fact": "QCC_CTRL High only for NORMAL, Low for SHUTDOWN and default",
+          "observed_source_fact": "QCC_CTRL High only for NORMAL, Low for SHUTDOWN and default"
+        },
+        {
+          "name": "ISD_GPIO_truth_table",
+          "matched": true,
+          "path": "src/2__cm3/Cortex-M3-src/QCC/snd_qcc.c",
+          "symbol": "snd_qcc_set_isd",
+          "definition_line": 22,
+          "expected_source_fact": "ISD_CHECK High only for CONNECTED, Low for DISCONNECTED and default",
+          "observed_source_fact": "ISD_CHECK High only for CONNECTED, Low for DISCONNECTED and default"
+        },
+        {
+          "name": "pin_definitions_and_initialization_reachable",
+          "matched": true,
+          "path": "src/2__cm3/Gen1_5/common/ci_dio.c",
+          "symbol": "ci_dio_configure_normal",
+          "definition_line": 41,
+          "expected_source_fact": "Initialize calls normal DIO initialization, which calls snd_qcc_init; current pin definitions are DIO24/DIO13",
+          "observed_source_fact": "Initialize calls normal DIO initialization, which calls snd_qcc_init; current pin definitions are DIO24/DIO13"
+        }
+      ],
+      "criterion_issues": [],
+      "device_execution": false,
+      "whole_unit_pass": false,
+      "scope": "Reviewed source statements/call order only; no C execution, runtime trace, timing or whole-unit/device PASS.",
+      "limits": [
+        "This is not a full C preprocessor/AST or control-flow proof; unknown build-condition branches remain visible.",
+        "Hardware state, register bit encoding, pin levels and interrupt races are not measured.",
+        "Matching selected checks does not validate every condition in the criterion."
+      ],
+      "mismatch_count": 0,
+      "host_mismatch_count": null,
+      "sources": [
+        "src/2__cm3/Cortex-M3-src/QCC/snd_qcc.c",
+        "src/2__cm3/Cortex-M3-src/QCC/snd_qcc.h",
+        "src/2__cm3/Cortex-M3-src/systemControl/initialize.c",
+        "src/2__cm3/Gen1_5/common/ci_dio.c"
+      ]
+    },
+    {
+      "core": "CM3",
+      "unit": 5,
+      "name": "정상 반복 처리",
+      "method": "A",
+      "test_id": "SW-FW-UnitTest-CM3-ID-5",
+      "su_id": "SU-ID-CM3-005",
+      "row": 78,
+      "criterion_range": "B78:K78",
+      "input": "- tick 1 회를 입력하고 각 반복 처리 함수의 호출 수/순서를 기록한다.",
+      "limitations": "코드 분석으로 판정한다. 실제 핀 파형, 전원, 처리 시간 및 전극 전류의 실측과 구분한다.",
+      "procedure": "- 준비한 각 입력과 초기 상태에 대해 조건 분기, 호출 순서, 인자, 반환값 및 상태 변경을 코드에서 확인한다. 아래 예상 결과와 대조하고 검토한 조건 및 근거를 기록한다.",
+      "expected": "- 해당 tick에서 시스템 제어→맵 반영→내부기 처리→통신 처리가 설계 순서로 호출된다. 반복 금지 조건에는 정상 처리를 시작하지 않는다.",
+      "status": "SOURCE_CHECKS_MATCHED",
+      "checks": [
+        {
+          "name": "tick_gate_and_consumption",
+          "matched": true,
+          "path": "src/2__cm3/Cortex-M3-src/main.c",
+          "symbol": "func_normal",
+          "definition_line": 505,
+          "expected_source_fact": "normal iteration processing is called once at its iterationFlag==true gate",
+          "observed_source_fact": "normal iteration processing is called once at its iterationFlag==true gate"
+        },
+        {
+          "name": "collect_before_handle_before_disable",
+          "matched": true,
+          "path": "src/2__cm3/Cortex-M3-src/main.c",
+          "symbol": "tdc_normal_iteration",
+          "definition_line": 710,
+          "expected_source_fact": "collect inputs, handle inputs, then consume iteration flag",
+          "observed_source_fact": "collect inputs, handle inputs, then consume iteration flag"
+        },
+        {
+          "name": "control_map_ISD_BLE_order",
+          "matched": true,
+          "path": "src/2__cm3/Cortex-M3-src/main.c",
+          "symbol": "tdc_handle_events",
+          "definition_line": 657,
+          "expected_source_fact": "systemControl, map update, isd_interface, bleCommunication in that order",
+          "observed_source_fact": "systemControl, map update, isd_interface, bleCommunication in that order"
+        },
+        {
+          "name": "touch_and_timeout_inputs_collected_once",
+          "matched": true,
+          "path": "src/2__cm3/Cortex-M3-src/main.c",
+          "symbol": "tdc_collect_events",
+          "definition_line": 645,
+          "expected_source_fact": "each error/charger/battery/touch/timeout input read appears once per input collection",
+          "observed_source_fact": "each error/charger/battery/touch/timeout input read appears once per input collection"
+        },
+        {
+          "name": "normal_exit_is_sleep_guarded",
+          "matched": true,
+          "path": "src/2__cm3/Cortex-M3-src/main.c",
+          "symbol": "func_normal",
+          "definition_line": 505,
+          "expected_source_fact": "accepted systemOff exits normal loop to sleep; rejected sleep request resets systemOff",
+          "observed_source_fact": "accepted systemOff exits normal loop to sleep; rejected sleep request resets systemOff"
+        }
+      ],
+      "criterion_issues": [],
+      "device_execution": false,
+      "whole_unit_pass": false,
+      "scope": "Reviewed source statements/call order only; no C execution, runtime trace, timing or whole-unit/device PASS.",
+      "limits": [
+        "This is not a full C preprocessor/AST or control-flow proof; unknown build-condition branches remain visible.",
+        "Hardware state, register bit encoding, pin levels and interrupt races are not measured.",
+        "Matching selected checks does not validate every condition in the criterion."
+      ],
+      "mismatch_count": 0,
+      "host_mismatch_count": null,
+      "sources": [
+        "src/2__cm3/Cortex-M3-src/main.c"
+      ]
+    },
+    {
+      "core": "CM3",
+      "unit": 8,
+      "name": "QCC 동작 및 내부기 상태 통보",
+      "method": "A",
+      "test_id": "SW-FW-UnitTest-CM3-ID-8",
+      "su_id": "SU-ID-CM3-008",
+      "row": 81,
+      "criterion_range": "B81:K81",
+      "input": "- 정상/종료/그 밖의 모드, 연결/미연결/그 밖의 상태를 각각 입력한다.",
+      "limitations": "코드 분석으로 판정한다. 실제 핀 파형, 전원, 처리 시간 및 전극 전류의 실측과 구분한다.",
+      "procedure": "- 준비한 각 입력과 초기 상태에 대해 조건 분기, 호출 순서, 인자, 반환값 및 상태 변경을 코드에서 확인한다. 아래 예상 결과와 대조하고 검토한 조건 및 근거를 기록한다.",
+      "expected": "- QCC_CTRL은 정상만 High, ISD_CHECK는 연결만 High이다. 나머지는 모두 Low다.",
+      "status": "SOURCE_CHECKS_MATCHED",
+      "checks": [
+        {
+          "name": "mode_GPIO_truth_table",
+          "matched": true,
+          "path": "src/2__cm3/Cortex-M3-src/QCC/snd_qcc.c",
+          "symbol": "snd_qcc_set_mode",
+          "definition_line": 58,
+          "expected_source_fact": "QCC_CTRL High only for NORMAL, Low for SHUTDOWN and default",
+          "observed_source_fact": "QCC_CTRL High only for NORMAL, Low for SHUTDOWN and default"
+        },
+        {
+          "name": "ISD_GPIO_truth_table",
+          "matched": true,
+          "path": "src/2__cm3/Cortex-M3-src/QCC/snd_qcc.c",
+          "symbol": "snd_qcc_set_isd",
+          "definition_line": 22,
+          "expected_source_fact": "ISD_CHECK High only for CONNECTED, Low for DISCONNECTED and default",
+          "observed_source_fact": "ISD_CHECK High only for CONNECTED, Low for DISCONNECTED and default"
+        }
+      ],
+      "criterion_issues": [],
+      "device_execution": false,
+      "whole_unit_pass": false,
+      "scope": "Reviewed source statements/call order only; no C execution, runtime trace, timing or whole-unit/device PASS.",
+      "limits": [
+        "This is not a full C preprocessor/AST or control-flow proof; unknown build-condition branches remain visible.",
+        "Hardware state, register bit encoding, pin levels and interrupt races are not measured.",
+        "Matching selected checks does not validate every condition in the criterion."
+      ],
+      "mismatch_count": 0,
+      "host_mismatch_count": null,
+      "sources": [
+        "src/2__cm3/Cortex-M3-src/QCC/snd_qcc.c"
+      ]
+    },
+    {
+      "core": "CM3",
+      "unit": 15,
+      "name": "CM3 저전력 진입과 복귀",
+      "method": "A",
+      "test_id": "SW-FW-UnitTest-CM3-ID-15",
+      "su_id": "SU-ID-CM3-015",
+      "row": 88,
+      "criterion_range": "B88:K88",
+      "input": "저전력 진입 요청 플래그(enter_ULP_mode_Command_CM3_to_CFX)를 1(요청/정리 대기)과 0(CFX 정리 후 요청 해제)로 나누어 절전 진입/복귀 분기를 검토한다.",
+      "limitations": "코드 분석으로 판정한다. 실제 핀 파형, 전원, 처리 시간 및 전극 전류의 실측과 구분한다.",
+      "procedure": "- 준비한 각 입력과 초기 상태에 대해 조건 분기, 호출 순서, 인자, 반환값 및 상태 변경을 코드에서 확인한다. 아래 예상 결과와 대조하고 검토한 조건 및 근거를 기록한다.",
+      "expected": "요청 플래그가 1인 동안 CM3는 CFX 정리를 기다린다. CFX가 주변장치를 정리한 뒤 0으로 해제하면 저클럭 전환/절전 진입을 진행한다. 복귀는 재기동/초기화를 거쳐 정상 처리를 준비한다.",
+      "status": "SOURCE_CHECKS_MATCHED",
+      "checks": [
+        {
+          "name": "CFX_clear_wait_before_low_clock",
+          "matched": true,
+          "path": "src/2__cm3/Cortex-M3-src/main.c",
+          "symbol": "func_sleep",
+          "definition_line": 1342,
+          "expected_source_fact": "request=1; wait until CFX clears request to 0; only then lower clock and configure sleep I2C/timer",
+          "observed_source_fact": "request=1; wait until CFX clears request to 0; only then lower clock and configure sleep I2C/timer"
+        },
+        {
+          "name": "CFX_ack_after_cleanup",
+          "matched": true,
+          "path": "src/1__cfx/systemControl/main.c",
+          "symbol": "standby",
+          "definition_line": 243,
+          "expected_source_fact": "CFX standby clears ULP request after input/output/FIFO/HEAR cleanup and standby interrupt configuration",
+          "observed_source_fact": "CFX standby clears ULP request after input/output/FIFO/HEAR cleanup and standby interrupt configuration"
+        },
+        {
+          "name": "sleep_clock_and_I2C_idle_boundary",
+          "matched": true,
+          "path": "src/2__cm3/Gen1_5/common/ci_power.c",
+          "symbol": "ci_power_sleep",
+          "definition_line": 177,
+          "expected_source_fact": "sleep selects SYS_FREQ_2M56; I2C prescale update waits for idle and disables/re-enables I2C",
+          "observed_source_fact": "sleep selects SYS_FREQ_2M56; I2C prescale update waits for idle and disables/re-enables I2C"
+        },
+        {
+          "name": "wake_monitor_and_touch_reboot",
+          "matched": true,
+          "path": "src/2__cm3/Cortex-M3-src/main.c",
+          "symbol": "func_sleep",
+          "definition_line": 1342,
+          "expected_source_fact": "sleep waits for interrupts, reads touch, gates initial no-touch state, then sustained valid touch triggers watchdog reset",
+          "observed_source_fact": "sleep waits for interrupts, reads touch, gates initial no-touch state, then sustained valid touch triggers watchdog reset"
+        },
+        {
+          "name": "normal_recovery_is_reinitialization_not_fallthrough",
+          "matched": true,
+          "path": "src/2__cm3/Cortex-M3-src/main.c",
+          "symbol": "main",
+          "definition_line": 322,
+          "expected_source_fact": "wake reset re-enters main/normal Initialize, restoring power and communication configuration; func_sleep does not return normally",
+          "observed_source_fact": "wake reset re-enters main/normal Initialize, restoring power and communication configuration; func_sleep does not return normally"
+        }
+      ],
+      "criterion_issues": [],
+      "device_execution": false,
+      "whole_unit_pass": false,
+      "scope": "Reviewed source statements/call order only; no C execution, runtime trace, timing or whole-unit/device PASS.",
+      "limits": [
+        "This is not a full C preprocessor/AST or control-flow proof; unknown build-condition branches remain visible.",
+        "Hardware state, register bit encoding, pin levels and interrupt races are not measured.",
+        "Matching selected checks does not validate every condition in the criterion.",
+        "Watchdog wake/reboot and normal configuration restoration are source paths only; no physical wake, clock/SCL measurement or complete reset-chain execution."
+      ],
+      "mismatch_count": 0,
+      "host_mismatch_count": null,
+      "sources": [
+        "src/1__cfx/systemControl/main.c",
+        "src/2__cm3/Cortex-M3-src/main.c",
+        "src/2__cm3/Cortex-M3-src/systemControl/driver_i2c.c",
+        "src/2__cm3/Cortex-M3-src/systemControl/initialize.c",
+        "src/2__cm3/Gen1_5/common/ci_power.c"
+      ]
+    }
+  ],
+  "mismatch_count": 0,
+  "criterion_issue_count": 0,
+  "sources": {
+    "src/2__cm3/Cortex-M3-src/systemControl/initialize.c": "df550e14ef93904ceb2fd1683a622c1d634a79ff8c106a383fcca2507ba0611b",
+    "src/2__cm3/Cortex-M3-src/systemControl/driver_SPI.c": "01ec3a522c858b9f3035025ded1dfc442b29e56a06e5cf748fd28b4a8ee15545",
+    "src/2__cm3/Cortex-M3-src/systemControl/driver_SPI.h": "f9f6bc9b4261d29a332bceafbbb205ab1fac1660d1099d0aa7928b77c0400113",
+    "src/2__cm3/Cortex-M3-src/systemControl/driver_i2c.c": "9712755dafd35248d1236d0b9c8b8d97b598b817230e24b40c9971dc69d09428",
+    "src/2__cm3/Cortex-M3-src/main.c": "9f4700b8ed5dd6acb22fbf61d6f91801effbb401ad156e6c25421b51b8b52896",
+    "src/2__cm3/Cortex-M3-src/QCC/snd_qcc.c": "9f759ae752f68e3c7d6b24f9206af5acb08869c226008ec9429541e38f9ad230",
+    "src/2__cm3/Cortex-M3-src/QCC/snd_qcc.h": "d99dd921b80c8ab3484f1485f4b9114e46e2d7a8004bc875f508b5835066f44c",
+    "src/2__cm3/Gen1_5/common/ci_dio.c": "f9882e5c86417819c494f6a1063ec3b0ef871193b08bb2f0290f454eb1300502",
+    "src/2__cm3/Gen1_5/common/ci_power.c": "a67ced9ac2a855e308eeef7cd0ffde6a2d09130d7feedbb1518b00069fcf2521",
+    "src/1__cfx/lib_cfx/lib_audio_in.c": "51c613b93e3a2d5b35c9c937bf586d92de4b2ca32c26658d731df661f47a77eb",
+    "src/1__cfx/hear/microcode.h": "c58840da11f2f65ff4c6fff5e2bab9ff9eae7a0c97e2dfbe2d0cb6ce1d333221",
+    "src/1__cfx/systemControl/main.c": "69be0ae2ec3529b5e6d17c011bb9d4ad80c431d9ec5b9ca67a4ba12c56cfb62f"
+  }
+}

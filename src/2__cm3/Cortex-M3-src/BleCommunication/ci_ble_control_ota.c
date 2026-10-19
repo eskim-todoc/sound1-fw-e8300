@@ -12,6 +12,42 @@
 
 static ST__OTA_FILE_WRITE_INFO _g_file_write_info       = {0};
 static int                     s_tdc_ota_dfu_conn_state = TDC_OTA_DFU_CONN_ST_DISCONN;
+#if defined(TDC_UNIT_TEST)
+#include "../test/tdc_ut_io_cm3.h"
+const tdc_ut_io_cm3_ota_ops_t *g_tdc_ut_io_cm3_ota_ops = NULL;
+void tdc_ut_io_cm3_ota_exchange(ST__OTA_FILE_WRITE_INFO *state)
+{
+    ST__OTA_FILE_WRITE_INFO previous = _g_file_write_info;
+    _g_file_write_info = *state;
+    *state = previous;
+}
+
+/* 시험에서 파일/부트 상태 경계만 RAM으로 분리한다. NULL은 원래 호출 경로다.
+ * 자기 이름을 사용하는 fallback은 함수이며 매크로 재확장되지 않는다.
+ * 슬롯 판정, 데이터 인덱스, 응답 생성, 실패 후 정리는 아래 실제 코드가 처리한다.
+ */
+#define ci_boot_get_status(out) (g_tdc_ut_io_cm3_ota_ops ? g_tdc_ut_io_cm3_ota_ops->boot_status(out) : ci_boot_get_status(out))
+#define ci_fatfs_get_fp() (g_tdc_ut_io_cm3_ota_ops ? g_tdc_ut_io_cm3_ota_ops->file_pointer() : ci_fatfs_get_fp())
+#define snd_fatfs_remount(drive) (g_tdc_ut_io_cm3_ota_ops ? g_tdc_ut_io_cm3_ota_ops->remount(drive) : snd_fatfs_remount(drive))
+#define f_stat(path,info) (g_tdc_ut_io_cm3_ota_ops ? g_tdc_ut_io_cm3_ota_ops->stat(path,info) : f_stat(path,info))
+#define f_mkdir(path) (g_tdc_ut_io_cm3_ota_ops ? g_tdc_ut_io_cm3_ota_ops->mkdir(path) : f_mkdir(path))
+#define f_open(file,path,mode) (g_tdc_ut_io_cm3_ota_ops ? g_tdc_ut_io_cm3_ota_ops->open(file,path,mode) : f_open(file,path,mode))
+#define f_lseek(file,offset) (g_tdc_ut_io_cm3_ota_ops ? g_tdc_ut_io_cm3_ota_ops->seek(file,offset) : f_lseek(file,offset))
+#define f_close(file) (g_tdc_ut_io_cm3_ota_ops ? g_tdc_ut_io_cm3_ota_ops->close(file) : f_close(file))
+#define f_write(file,data,count,written) (g_tdc_ut_io_cm3_ota_ops ? g_tdc_ut_io_cm3_ota_ops->write(file,data,count,written) : f_write(file,data,count,written))
+/* 파일을 열지 않는 실제 OTA 세션의 안전 관측. */
+int tdc_ut_io_cm3_ota_snapshot(int *values, int capacity)
+{
+    if (values == 0 || capacity < 10) return TDC_UT_IO_CM3_INVALID;
+    values[0] = s_tdc_ota_dfu_conn_state;
+    values[1] = _g_file_write_info.data_index; values[2] = _g_file_write_info.slot_num;
+    values[3] = _g_file_write_info.file_type; values[4] = _g_file_write_info.option;
+    values[5] = _g_file_write_info.total_byte; values[6] = _g_file_write_info.end_data_index;
+    values[7] = _g_file_write_info.end_data_index_byte;
+    values[8] = _g_file_write_info.expected_next_data_index; values[9] = _g_file_write_info.recv_total_byte;
+    return 10;
+}
+#endif
 
 int tdc_get_ota_dfu_conn_state(void)
 {

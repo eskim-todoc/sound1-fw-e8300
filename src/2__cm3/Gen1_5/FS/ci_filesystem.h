@@ -154,4 +154,19 @@ int ci_filesystem_read(char* p_name, uint8_t* p_buf, int size);
 int ci_filesystem_write(char *p_name, uint8_t *p_buf, int size);
 int ci_filesystem_copy_isd_info_from_filesystem_to_shared_memory(void);
 
+#if TDC_SYS_TEST_77_ENABLE || TDC_SYS_TEST_80_ENABLE
+/* 동기 전경의 실제 sync/close 결과만 관찰한다. 반환/제품 상태는 바꾸지 않는다.
+ * 호출자는 begin부터 end까지 관찰 객체를 유지하고 다른 파일 작업을 섞지 않는다.
+ * count=0은 미실행이며, result는 최초 실패 또는 모든 관찰이 성공한 FR_OK다. */
+typedef struct
+{
+    unsigned sync_count;
+    unsigned close_count;
+    FRESULT sync_result;
+    FRESULT close_result;
+} tdc_fs_test_observation_t;
+bool tdc_fs_test_observe_begin(tdc_fs_test_observation_t *observation);
+void tdc_fs_test_observe_end(void);
+#endif
+
 #endif // __OTE_1_5_gen_FS_h__

@@ -205,6 +205,7 @@ SECTIONS
         . = ALIGN(4);
 
         *(.text .text.*)            /* all remaining code */
+        KEEP(*(.tdc_ut_entry))      /* opt-in debugger test entry references */
         *(.rodata .rodata.*)        /* read-only data (constants) */
 
         . = ALIGN(4);

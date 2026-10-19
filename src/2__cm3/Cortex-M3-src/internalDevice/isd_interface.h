@@ -29,6 +29,17 @@ ST__ISD_STATUS snd_isd_interface_get_state(void);
 ST__ISD_STATUS isd_interface(bool isd_enable, bool mappingConnection, EN__ISD_CONTROL_STATE isdControlCommand);
 void           change_isd_state(EN__ISD_CONTROL_STATE ISD_controlState);
 void           clearIsdControlStateChagedFlag(void);
+#if defined(TDC_UNIT_TEST)
+/* 실제 setter 시험 전후의 private RAM 상태 교환. ISR/정상 루프 정지 후 호출한다. */
+typedef struct
+{
+    ST__ISD_STATUS state;
+    bool changed;
+    bool i2c_free;
+} tdc_ut_cm3_isd_state_t;
+void tdc_ut_cm3_isd_state_exchange(tdc_ut_cm3_isd_state_t *state);
+bool tdc_ut_cm3_isd_state_changed(void);
+#endif
 void           clearCommandStartFlag(void);
 bool           isIsdConnected(void);
 void           update_isd_Link_is_Connected(void);

@@ -1,0 +1,743 @@
+{
+  "schema_version": 1,
+  "scope": "CM3 pure/control worker plus root-integrated safe boot/map/state input paths",
+  "updated_on": "2026-10-02",
+  "worker_files_frozen": true,
+  "source_preserving_extension": {
+    "date": "2026-10-02",
+    "changed_paths": [
+      "tests/unit/tdc_ut_cm3_host.c",
+      "tests/unit/tdc_ut_cm3_run.py",
+      "tests/unit/tdc_ut_cm3_extra_host.c",
+      "tests/unit/tdc_ut_cm3_extra_run.py",
+      "tests/unit/cm3_pure_control_coverage.json"
+    ],
+    "product_source_modified": false,
+    "criterion_modified": false,
+    "device_executed": false,
+    "existing_vectors": {
+      "command": "python tests/unit/tdc_ut_cm3_run.py",
+      "evidence": "tmp/unit-tests/cm3-vectors/checks.json",
+      "passes": 2,
+      "payload_comparisons": 1158,
+      "failed_values": 16,
+      "contract_failed_values": 14,
+      "interpretation_failed_values": 2,
+      "observed_values": 64,
+      "note": "Raw unit/case/actual/expected records and source/header/criterion SHA256 are saved. Metadata and restoration assertions are additional checks, not counted as payload comparisons. CM3-006 contract mismatch remains separate from CM3-030 interpretation review. Harness reproduction PASS is not expectation PASS."
+    },
+    "extra_host": {
+      "command": "python tests/unit/tdc_ut_cm3_extra_run.py",
+      "evidence": "tmp/unit-tests/cm3-extra/checks.json",
+      "scenario_count": 21,
+      "passes": 2,
+      "payload_comparisons": 1222,
+      "failed_values": 2,
+      "observed_values": 6,
+      "record_contract": "Each scenario requires its fixed record count and ordered unit/case/field keys, scalar comparison shape, declared expected=null observations and exact known-failure marker. Only caller-dac-fail/unit29/case6/completion_publication actual1/expected0 is a reproducible known mismatch. Missing, duplicate, reordered, unexpected or misclassified records fail the harness; mismatches and observations remain in checks.json.",
+      "record_contract_validation": "21 scenario manifests passed on each of 2 real runs; 175 in-memory truncated/duplicate/reordered/wrong-key/unexpected-mismatch/observation/known-finding mutations were rejected. save_records preserved actual/expected, OBSERVED rows and independent harness/expectation verdicts for complete and partial failing evidence.",
+      "scope": "PC only; 12 intact product translation units plus an unchanged read_FPGA_backtel_FIFO function body. The exact read wrapper retains its failure-induced state transition; only its I2C transfer dependency is replaced.",
+      "reset": "Each scenario starts in a fresh process so product-local statics have their real C initial values. This is process isolation, not a target RAM restore API.",
+      "boundaries": "RAM file inputs/copy boundaries, FPGA/PMIC results, virtual tick and RTT sink. Real shared-memory, error, state, initialization, connection, calculation and parameter-setting functions execute. No device/flash/file persistence.",
+      "units": [
+        {"unit": 21, "method": "D", "scope": "host_partial", "functions": ["changeConnected_isd_num_CFX", "read_ISD_manufacture_ID", "readConnected_ISD_userName", "readConnected_ISD_Location", "read_recomcon_passkey_connected_ISD"], "input": "A/B/A selection, synthetic 25-word names and 4-word passkeys, different gain settings", "covered": "Actual selector publishes the connected number after all 10 file/copy/gain boundaries; every synthetic identity field matches the selected input", "remaining": "Actual file parsing/loading/decryption is mocked; target selector needs an isolated storage boundary"},
+        {"unit": 22, "method": "D", "scope": "host_partial", "functions": ["changeConnected_isd_num_CFX", "changeProgramMapNum", "readConnected_ISD_usableMapNum", "readConnected_ISD_usableMapIndex", "readConnected_ISD_MapStamp", "readConnected_ISD_MapDate"], "input": "A has maps1/2, B has map3, A/B/A selections and actual program setter", "covered": "Counts, all4 availability entries/dates, stamp, selected program, preservation of other list entries", "remaining": "File/copy implementations are fixture boundaries; actual persistent map data not verified"},
+        {"unit": 29, "method": "T", "scope": "host_partial", "functions": ["stimulationStandAlone", "calculationStimulParaN_cfxShare", "setFlag_AudioParametersCalculationDone_Cm3ToCfx"], "input": "Not loaded/loaded, valid map and DAC-failing C2500uA/T100uA/25us", "covered": "Not-loaded input does not calculate; valid caller sets up stimulation. DAC failure returns through the real caller and publishes done=1 versus expected0", "remaining": "Uninitialized local T/C reads are skipped by the existing test callback. Retention/zeroing/output policy is still unchosen. No claim about actual failed-call T/C data"},
+        {"unit": 31, "method": "A", "scope": "host_partial", "functions": ["init_txPowerIC", "init_FPGA"], "input": "Virtual calls with normal PMIC/FPGA responses, reset failure at step10, terminal FPGA status error", "covered": "Power off/on preparation, bounded ramp, no early ready state, terminal FPGA ready/retry state", "remaining": "init_ISD, isd_path_Open, enableStimul_10v and actual RF/power/identity handshakes not executed. Method remains A; these executable checks supplement analysis"},
+        {"unit": 32, "method": "D", "scope": "host_partial", "functions": ["update_isd_LinkConnection_byBacktel_withLiveStimulation"], "input": "No completion, high/low stable response, no backtel, excess backtel, FIFO-clear failure", "covered": "No read before completion; read/adjust/recovery state and error; completion cleared and I2C released", "remaining": "Power-state classification/peripheral driver replies are fixtures. Top-level isd_interface connected boolean and actual CFX/RF timing not tested"},
+        {"unit": 33, "method": "D", "scope": "host_partial", "functions": ["update_isd_LinkConnection_byBacktel_withMapping", "isING_connectionCheckWithMapping"], "input": "Start/steps0..6/end/restart with stable/no/excess backtel and FIFO-clear failure", "covered": "Progress true through step5 and false at6/after end; restart true; response recovery/error and I2C release", "remaining": "Actual PMIC/backtel/PCM timing and outer connected-state publication are not tested"},
+        {"unit": 41, "method": "D", "scope": "host_partial", "functions": ["stimulationSetting", "settingStimulPara_monoPolarMode", "settingStimulPara_biPolarMode", "read_FPGA_backtel_FIFO", "stimulationStandAlone"], "input": "Monopolar/body and bipolar32-electrode map; initial/final steps; new-map/no-new-map; final FIFO-clear failure, read-transfer failure and mismatching readback", "covered": "DAC/configuration words, all32 bipolar-reference write words, completion before/after last step; real read-wrapper failure and value mismatch return to initialization without completion; real caller consumes/restarts new map", "remaining": "Physical register programming, timing and all failure permutations remain unverified. A preliminary bool-only readback mock omitted driver recovery and was rejected; it is not a product defect. Packet expectations use header enum codes body1/referenceNA0; electrical polarity not certified"}
+      ],
+      "known_findings": [
+        {"unit": 29, "scenario": "caller-dac-fail", "case": 6, "field": "completion_publication", "actual": 1, "expected": 0, "classification": "contract_mismatch", "source": "src/2__cm3/Cortex-M3-src/internalDevice/isd_interface_stimulationStandAlone.c:95,99", "reason": "Caller publishes calculation complete without branching on calculation success. It subsequently records unusable-map error. Expected0 follows criterion row102; no failed T/C retention policy is inferred."}
+      ]
+    },
+    "parent_integration": "Add tests/unit/tdc_ut_cm3_extra_run.py to the main suite. Teach build_coverage.py that source_preserving_extension.extra_host.units adds PC-only partial evidence for31/32/33/41 and extends21/22/29. Do not add these to target RAM vector IDs; no target seams were introduced. Common runner/coverage builder/README/task records remain parent-owned.",
+    "source_guard": "python tests/unit/check_source_preservation.py tmp/unit-tests/source-preservation/before-complete.json: PASS, 279 product files identical, product_changes empty. The parent reconciled the earlier six-file inventory-scope difference; this worker did not change the guard or baseline. Unrelated test-only changes belong to other workers."
+  },
+  "review_followup_changed_paths": [
+    "src/2__cm3/Cortex-M3-src/test/tdc_ut_vectors_cm3.c",
+    "src/2__cm3/Cortex-M3-src/test/tdc_ut_vectors_cm3.h",
+    "src/2__cm3/Cortex-M3-src/signalProcessing/stimulationParaCal.c",
+    "tests/unit/tdc_ut_cm3_host.c",
+    "tests/unit/tdc_ut_cm3_run.py",
+    "tests/unit/cm3_pure_control_coverage.json"
+  ],
+  "criterion": {
+    "path": "docs/참고/인허가/사운드1/DHF/03_설계 출력/SW/펌웨어/SUVC-FW-TD24A 소프트웨어 유닛 검증 기준서.xlsx",
+    "sheet": "기준서_유닛 검증",
+    "columns": {
+      "core": "B",
+      "unit": "D",
+      "method": "F",
+      "input": "H",
+      "expected": "K"
+    },
+    "authority": "Current workbook, not older reconciliation model methods",
+    "workbook_modified": false
+  },
+  "test_id_format": "SW-FW-UnitTest-CM3-ID-{unit}",
+  "criterion_rows": {
+    "4": 77,
+    "6": 79,
+    "7": 80,
+    "9": 82,
+    "11": 84,
+    "12": 85,
+    "13": 86,
+    "16": 89,
+    "17": 90,
+    "18": 91,
+    "19": 92,
+    "20": 93,
+    "21": 94,
+    "22": 95,
+    "23": 96,
+    "24": 97,
+    "27": 100,
+    "28": 101,
+    "29": 102,
+    "30": 103,
+    "44": 117
+  },
+  "owned_units": [
+    4,
+    6,
+    7,
+    9,
+    11,
+    12,
+    13,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    27,
+    28,
+    29,
+    30,
+    44
+  ],
+  "progress": {
+    "implemented_vector_units": [
+      4,
+      6,
+      7,
+      9,
+      11,
+      12,
+      13,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      27,
+      28,
+      29,
+      30,
+      44
+    ],
+    "partial_units": [
+      4,
+      21,
+      22,
+      29
+    ],
+    "observer_units": [],
+    "observer_input_callback_not_configured": [],
+    "criterion_input_sequences_not_executed_units": [],
+    "not_implemented_units": [],
+    "whole_unit_pass_claimed": false,
+    "status": "Review follow-up adds CM3-28/29 charge boundaries 74700/75000/75300pC and safe CM3-29 failure observation. 21 IDs twice, known mismatches CM3-6 five, CM3-30 one, CM3-28 one and CM3-29 one (8/pass). LED13 current request/priority criterion is covered; physical pattern belongs14. A/B21 full synthetic fields and 22 real program setter expanded. Boot4/21/22/29 remain partial; no device or whole-unit acceptance."
+  },
+  "api": {
+    "header": "src/2__cm3/Cortex-M3-src/test/tdc_ut_vectors_cm3.h",
+    "entry": "tdc_ut_cm3_vectors_run_unit(unsigned unit)",
+    "release": "tdc_ut_cm3_vectors_release()",
+    "actual": "g_tdc_ut_cm3_vector_actual",
+    "expected": "g_tdc_ut_cm3_vector_expected",
+    "count": "g_tdc_ut_cm3_vector_count",
+    "capacity": 256,
+    "done": "g_tdc_ut_cm3_vector_done",
+    "overflow": "g_tdc_ut_cm3_vector_overflow",
+    "observed": "g_tdc_ut_cm3_vector_observed",
+    "expected_pointer": "tdc_ut_cm3_vectors_expected(): expected array for default vectors, NULL for optional manual observer and explicit calculation-failure observation",
+    "calculation_failure_observation": {
+      "entry": "tdc_ut_cm3_vectors_observe_calculation_failure()",
+      "unit": 29,
+      "cases": [91, 92],
+      "input": "25us,32 electrodes,T100/C2500uA. Q62500pC below75000 but exceeds DAC2198uA. Previous shared T[0..31]=600..631,C=700..731,frames17/channels18; initial complete flag0 or1; CFX permission0.",
+      "payload_order": ["return", "copy_attempts", "uninitialized_read_skipped", "frames", "transferable_channels", "PCM_mode", "complete_before", "complete_after", "CFX_permission", "data_error", "T0", "T31", "C0", "C31", "temp1", "temp2"],
+      "words": 40,
+      "expected": null,
+      "report": "OBSERVED, never PASS",
+      "limitation": "NULL-default TDC-only pre-copy callback prevents reading uninitialized local arrays. Remaining T/C sentinels are test-boundary effects, not product preservation evidence. Caller completion publication and failure-state policy remain design decisions."
+    },
+    "record": "[-999, unit, case, length, values...]",
+    "returns": {
+      "0": "executed implemented vectors, not PASS",
+      "1": "executed partial vectors, not whole-unit PASS",
+      "2": "OBSERVED with successful configured gateway; never PASS",
+      "3": "OBSERVED_NO_INPUT: missing/failed gateway, actual current values recorded without PASS",
+      "-1": "unsupported unit outside this scope, no result record",
+      "-2": "busy while pure or IO done is nonzero; no result mutation",
+      "-3": "unsafe CFX permission enabled",
+      "-4": "record overflow"
+    },
+    "observer_gateway": {
+      "symbol": "g_tdc_ut_cm3_observer_ops",
+      "default": "NULL",
+      "required": [
+        "begin(unsigned unit)",
+        "apply(unsigned unit,unsigned case_id,int requested)",
+        "restore(unsigned unit)"
+      ],
+      "optional": "sample_extra(unsigned unit,int values[4]) returns count0..4; use for real private changed flag",
+      "begin_restore_status_cases": [
+        90,
+        99
+      ],
+      "not_configured_value": -5,
+      "safety": "Gateway must use actual product logic, isolated RAM/storage boundary and private-state restoration; no infinite main/UART or device/NVM/reset calls"
+    },
+    "retention": "Arrays remain immutable until caller drains root reporter then calls release; release only clears done",
+    "integration": "Default 4/6/30 execute safe actual boot/map/state input paths. Root owns logger/link retention; manual gateway remains optional. No automatic startup test.",
+    "root_retain_required": [
+      "tdc_ut_cm3_vectors_expected",
+      "tdc_ut_io_cm3_observe_unit",
+      "tdc_ut_cm3_vectors_observe_calculation_failure"
+    ],
+    "root_retain_checkpoint": "Parent owns entry/link retention. New explicit calculation-failure observer must be retained in tdc_ut_entry.c; this worker did not edit it.",
+    "io_coordination": "IO source already declares volatile int g_tdc_ut_cm3_vector_done and rejects it in run/observe. Pure source now declares matching volatile int g_tdc_ut_io_cm3_done and rejects it before touching state. Descartes direct messaging surface was not identifiable; coordination result is handed to root."
+  },
+  "safety": {
+    "test_gate": "All added C APIs/state are conditional TDC_UNIT_TEST; host fixtures additionally require TDC_UT_CM3_HOST",
+    "zero_default_overrides": [
+      "g_tdc_ut_cm3_expected_shared_address",
+      "g_tdc_ut_cm3_suppress_uart_flag",
+      "g_tdc_ut_cm3_suppress_diagnostics",
+      "g_tdc_ut_cm3_observer_ops",
+      "g_tdc_ut_cm3_calculation_before_copy"
+    ],
+    "diagnostic_seam": {
+      "definition": "src/2__cm3/Cortex-M3-src/systemControl/cfx_cm3_sharedMemory.c:24, int g_tdc_ut_cm3_suppress_diagnostics under TDC_UNIT_TEST",
+      "declaration": "test/tdc_ut_vectors_cm3.h",
+      "default": 0,
+      "capture_restore": "run_unit saves old value, sets1 only during vector/observer execution, restores old value before done",
+      "guarded_boundary": "Battery charger/lid and calculation parameter legacy ci_printf diagnostics only; actual setters/calculation logic still execute",
+      "host_verification": "Original RTT sink increments a call counter; final 18-vector/two-pass run asserts legacy_rtt_calls==0 and nonzero prior diagnostic value restored"
+    },
+    "required_setup": "Caller must quiesce normal CM3 iteration, CFX execution, LED ISR and other shared-state writers before invoking vectors",
+    "reciprocal_io_drain_guard": {
+      "symbol": "g_tdc_ut_io_cm3_done",
+      "declaration": "extern volatile int under TDC_UNIT_TEST, matches IO owner",
+      "target_definition": "test/tdc_ut_io_cm3.c",
+      "host_definition": "tests/unit/tdc_ut_cm3_host.c: volatile int, zero-initialized, pure-only fixture",
+      "contract": "Either pending done returns BUSY before arrays or product state are changed. Caller performs drain/release separately. This is not a lock or proof of concurrent-run exclusion."
+    },
+    "cfX_permission_guard": "Rejects is_enabled_CFX_iteration != 0; never automatically disables a device/core",
+    "persistence": "Shared-memory fixture uses en__mappingMode, never en__normalMode; host persistence boundary aborts if reached",
+    "hardware": "No sensor reset, MCLR, NVM, GPIO stimulation, PMIC/FPGA transactions or device flashing performed",
+    "restored": [
+      "entire shared-memory structure",
+      "CM3 error structure",
+      "DAC registers",
+      "DAC offset",
+      "frame-duration observation trace",
+      "battery/charger/lid state",
+      "LED request/latch/burst/connection state",
+      "systemControl counters and six flags",
+      "indicator trigger/train counters",
+      "address/UART/diagnostic overrides"
+    ],
+    "not_proven": "Backup/restore does not provide multicore/ISR atomicity; caller quiescence is mandatory"
+  },
+  "evidence": [
+    {
+      "stage": "2026-10-02 final follow-up source hygiene",
+      "checks": ["Strict UTF8 decode and CP949 encode: four changed C/H files PASS", "Targeted git diff --check: exit0", "Coverage JSON parsed: units21, partial4/21/22/29", "Fresh host repeat after output-array sentinel initialization: exit0, same8 known mismatches/pass, unexpected0"],
+      "not_proven": "git diff --check does not inspect untracked files; explicit encoding checks include new untracked sources. No firmware/device acceptance claim."
+    },
+    {
+      "stage": "2026-10-02 review follow-up ARM objects; narrow worker checks only",
+      "commands": ["python tests/unit/tdc_ut_cm3_run.py --target", "python tests/unit/tdc_ut_cm3_run.py --target --normal"],
+      "exit_codes": [0, 0],
+      "actual_summary": "ARM compile complete: 16 objects in each mode; normal nm contains no tdc_ut_cm3 API/state symbols",
+      "charge_preprocessor": "gate_active=0, mismatched_name_defined=1, limit_pC=75000; no macro changed/enabled",
+      "execution": "No firmware link, target execution or physical device measurement; parent owns full SDK links and retention",
+      "warnings": "Existing product qualifier/enum/unused warnings remain; no all-source -Werror claim"
+    },
+    {
+      "stage": "2026-10-02 review follow-up; supersedes historical worker summaries below",
+      "command": "python tests/unit/tdc_ut_cm3_run.py",
+      "exit_code": 0,
+      "actual_summary": "HOST complete vector_units=21 passes=2 known_findings=8/pass unexpected=0; failure_observations=4 not product acceptance",
+      "checks": ["CM3-28 words122/6cases, overcharge return atindex121 actual1 expected0", "CM3-29 words174/5cases, overcharge return atindex173 actual1 expected0", "Failure observer40words/cases91,92: false return, copy_attempt1, read_skipped1, initial completion0/1 unchanged; OBSERVED only", "CM3-13 request precedence and full request clearing15words/2cases", "CM3-21 full A/B/A synthetic names25words and passkey4words,108words/3cases", "CM3-22 actual changeProgramMapNum with RAM file boundary and list preservation,35words/3cases", "Shared/error/DAC/offset/callback/map-flag nondefault state restored", "46 IO-done BUSY checks preserve result records", "Inactive charge macro configuration inspected by preprocessor; macro not changed or enabled"],
+      "not_proven": "Device/physical DAC, normal product failed-call T/C values, failure completion policy and upstream output permission gating"
+    },
+    {
+      "command": "$env:PYTHONIOENCODING='utf8'; & 'C:/Users/EUNSU/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe' tests/unit/tdc_ut_cm3_run.py",
+      "exit_code": 0,
+      "actual_summary": "HOST complete vector_units=18 observer_units=3 passes=2 mismatches=0",
+      "build": "13 real CM3/product C translation units compiled and linked with host GCC; tested logic not replaced",
+      "host_boundary_stubs": [
+        "SEGGER_RTT_printf sink",
+        "ci_timer_get_tick fixed virtual tick",
+        "fn_write_userSettingParameters abort-only persistence sentinel",
+        "IO drain flag zero-default stub; IO runner is not linked into pure-only host"
+      ],
+      "checks": [
+        "flat metadata and every payload compared for 18 vector units only",
+        "nondefault shared/error/DAC/offset/frame-trace and battery/system/LED/indicator internal states restored each call",
+        "nonzero address/UART/diagnostic override restoration",
+        "legacy RTT diagnostic calls=0 during tested vectors",
+        "done and no overflow each call",
+        "busy/release preserve both full arrays",
+        "42 IO-done=1 BUSY checks after pure release preserve both arrays/count/overflow/observed/done and shared state, including observer records",
+        "unsupported outside scope and unsafe return explicit errors",
+        "4/6/30 default gateway produces OBSERVED_NO_INPUT and NULL expected; no comparisons or unit PASS"
+      ],
+      "io_guard_actual_summary": "IO done guard: 42 BUSY checks; released vector/observer records and shared state immutable",
+      "final_current_file_verification": "Fresh run after root reported an earlier mid-update diagnostic-symbol link failure completed with exit0; definition is in the real compiled cfx_cm3_sharedMemory.c. Earlier failure cause not independently established.",
+      "observer_words": {
+        "4": 40,
+        "6": 36,
+        "30": 52
+      },
+      "observer_actual_input_execution": "Not executed: callback defaults NULL; host proves live getter observation and explicit missing-input status, not D-criterion completion",
+      "unit_29_words_each_run": 144,
+      "unit_29_capacity": 256,
+      "unit_29_overflow_each_run": 0,
+      "whole_unit_pass": false
+    },
+    {
+      "command": "$env:PYTHONIOENCODING='utf8'; & 'C:/Users/EUNSU/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe' tests/unit/tdc_ut_cm3_run.py --target",
+      "exit_code": 0,
+      "actual_summary": "ARM compile complete: 13 objects; mode=unit-test; execution/link not performed",
+      "compiler": "C:/Program Files (x86)/ON Semiconductor/Ezairo 8300 SDK/arm_tools/bin/arm-none-eabi-gcc.exe",
+      "flags": [
+        "-mcpu=cortex-m3",
+        "-mthumb",
+        "-std=gnu11",
+        "-DTDC_UNIT_TEST",
+        "-DSK5_CID=101",
+        "SDK include/cm3 and include/shared via -isystem"
+      ],
+      "checkpoint": "Final current sources include reciprocal IO-done extern/guard, A/B unit22 getters, observer bridge and definitive diagnostic seam; actual ui/printf/isd_interface dependencies compiled read-only",
+      "execution": "Not performed on ARM or device; this is compilation evidence only",
+      "warnings": "Existing product warnings (qualifiers, enum conversions, unused locals); not an all-source -Werror build"
+    },
+    {
+      "command": "$env:PYTHONIOENCODING='utf8'; & 'C:/Users/EUNSU/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe' tests/unit/tdc_ut_cm3_run.py --target --normal",
+      "exit_code": 0,
+      "actual_summary": "ARM compile complete: 13 objects; mode=normal; execution/link not performed",
+      "symbols": "Normal symbol check: no tdc_ut_cm3 API/state symbols",
+      "execution": "Compilation and ARM nm inspection only; no firmware link or device execution"
+    },
+    {
+      "command": "PowerShell UTF8 read + strict CP949 encoding on 11 owned changed C/H files; targeted git diff --check",
+      "exit_code": 0,
+      "actual_summary": "UTF8/CP949 source check: 11 files PASS; coverage owned=21/unit entries=21; max_words144/capacity256; git diff --check no findings"
+    }
+  ],
+  "units": [
+    {
+      "unit": 4,
+      "method": "D",
+      "scope": "partial",
+      "report": "PARTIAL",
+      "words": 11,
+      "cases": 1,
+      "host_mismatches": 0,
+      "functions": [
+        "tdc_normal_boot_sequence",
+        "sharedMemoryAddresError"
+      ],
+      "input": "Wait/init boundary RAM callbacks: allow=0, address mismatch; prepare address/map then allow; disable input",
+      "expected": "allow before wait/init 0, address error1/0, allow after init1, bands32, disable0",
+      "missing": "Real Initialize peripherals and CFX lookup/producer not run; data-readiness gating robustness needs real integration",
+      "evidence": "tmp/unit-tests/suite/tdc_ut_cm3_run.log"
+    },
+    {
+      "unit": 6,
+      "method": "D",
+      "scope": "implemented_vectors",
+      "words": 26,
+      "cases": 2,
+      "host_mismatches": 5,
+      "functions": [
+        "changeProgramMapNum",
+        "setCommandMapChange_Cm3ToCfx",
+        "set_newMapLoadeFlagForStimulParaSetting",
+        "update_CM3Status_toCFX",
+        "OnOff_3V_PMIC_CM3_to_CFX"
+      ],
+      "input": "Independent map1/request1 and map1/request2; status17/power1; filesystem copy/FFT boundary callbacks only; mapping mode prevents persistence",
+      "expected": "Same map no request/recalc/reload; changed map2/request1/recalc1/reloaded0; status17/power1 preserved",
+      "finding": "Same map actually sets request/recalc, clears reloaded and calls file-copy/read boundaries; five exact mismatches retained, contract review needed",
+      "limitation": "Actual file content/storage and CFX consumer not executed",
+      "evidence": "tmp/unit-tests/suite/tdc_ut_cm3_run.log"
+    },
+    {
+      "unit": 7,
+      "method": "T",
+      "scope": "implemented_vectors",
+      "words": 24,
+      "cases": 3,
+      "functions": [
+        "systemControl",
+        "led_request",
+        "led_get_request"
+      ],
+      "input": "Independent seeds 179999, 180000 disconnected and 180000 connected",
+      "expected": "180000 no shutdown; next tick shutdown/counter=0/enable_ISD=0/power-off LED request; connected counter=0",
+      "limitation": "Virtual counter boundaries, not 3-minute wall-clock/device shutdown"
+    },
+    {
+      "unit": 9,
+      "method": "T",
+      "scope": "implemented_vectors",
+      "words": 72,
+      "cases": 5,
+      "functions": [
+        "tdc_touch_logic_init",
+        "tdc_touch_logic_set_boot_ignore",
+        "tdc_touch_logic_step"
+      ],
+      "input": "2399/2400/2401 ms, release/rearm, three boot-release samples, 1..21 read failures, 30/60/90 seconds stuck",
+      "expected": "One-shot 0/1/0; rearm; ignore clears on third; HOLD first 20 then NOT_TOUCH; RESEED/RE_ATI/MCLR request",
+      "limitation": "Pure FSM only; physical sensor/reset actions never run"
+    },
+    {
+      "unit": 11,
+      "method": "D",
+      "scope": "implemented_vectors",
+      "words": 12,
+      "cases": 1,
+      "functions": [
+        "snd_batt_set_percent",
+        "snd_batt_get_percent",
+        "readBatteryPercentage",
+        "snd_charger_set_state",
+        "snd_charger_get_state",
+        "tdc_charger_set_cradle_cover_state",
+        "tdc_cradle_get_cover_state"
+      ],
+      "input": "Battery 40 then 70; charger and lid connected/disconnected",
+      "expected": "Latest getter values and shared read path match",
+      "limitation": "No physical QCC packet parsing or remote-control packet encoding"
+    },
+    {
+      "unit": 12,
+      "method": "D",
+      "scope": "implemented_vectors",
+      "words": 11,
+      "cases": 1,
+      "functions": [
+        "OnOff_3V_PMIC_CM3_to_CFX",
+        "enterLowPowerMode_CM3_to_CFX"
+      ],
+      "input": "On/off/ULP requests with unrelated battery/status sentinels",
+      "expected": "PMIC request 1/2; ULP 1; unrelated sentinels unchanged",
+      "analysis_note": "ULP function also explicitly requests PMIC off; vector records that actual contract",
+      "limitation": "No PMIC hardware transaction"
+    },
+    {
+      "unit": 13,
+      "method": "D",
+      "scope": "implemented_vectors",
+      "words": 15,
+      "cases": 2,
+      "functions": [
+        "led_request",
+        "led_get_request",
+        "compute_best_state via test-only selector"
+      ],
+      "input": "Battery ready and MCU error requests; then clear error",
+      "expected": "Error priority followed by remaining battery request; clearing all requests yields NONE",
+      "limitation": "Request/priority criterion only. LED engine/pattern/GPIO belong CM3-14 and are not certified here."
+    },
+    {
+      "unit": 16,
+      "method": "T",
+      "scope": "implemented_vectors",
+      "words": 13,
+      "cases": 1,
+      "functions": [
+        "errorCodeUpdate",
+        "clearAllErrorFlag",
+        "readErrorCode",
+        "readCfxErrorCode",
+        "sharedMemoryAddresError",
+        "isCFX_EEPROM_data_Loaded"
+      ],
+      "input": "CM3 error/CFX error=7; matching and mismatching injected address; EEPROM loaded 0/1",
+      "expected": "Independent error domains, address 0/1, load flag 0/1",
+      "limitation": "Default address is characterized against actual linker placement; no full linked firmware/address-placement certification"
+    },
+    {
+      "unit": 17,
+      "method": "T",
+      "scope": "implemented_vectors",
+      "words": 9,
+      "cases": 1,
+      "functions": [
+        "changePcmOutputMode",
+        "changeNextPcmOutputMode",
+        "fillSepcificCommndBuffer",
+        "readCurrentPcmOutputMode"
+      ],
+      "input": "Current=1, next=2, command words [1,2,3]",
+      "expected": "Corresponding shared fields only",
+      "limitation": "No CFX consumption or PCM output"
+    },
+    {
+      "unit": 18,
+      "method": "D",
+      "scope": "implemented_vectors",
+      "words": 6,
+      "cases": 1,
+      "functions": [
+        "readConnectionCheckPcmState",
+        "clearConnectionCheckPcmFiredFlag"
+      ],
+      "input": "Connection PCM state=1 then clear",
+      "expected": "Original then BackelCircuitDisabled_FpagFifoCleared_duringLiveStimulation",
+      "limitation": "No real backtelemetry or FIFO action"
+    },
+    {
+      "unit": 19,
+      "method": "T",
+      "scope": "implemented_vectors",
+      "words": 37,
+      "cases": 1,
+      "functions": [
+        "readAudioSignalMax",
+        "readCurrentStimulLevel_255"
+      ],
+      "input": "Recent shared max=1234, channel values=0..31",
+      "expected": "Direct reads, no peak-hold",
+      "limitation": "CFX audio/stimulation producer not run"
+    },
+    {
+      "unit": 20,
+      "method": "D",
+      "scope": "implemented_vectors",
+      "words": 14,
+      "cases": 1,
+      "functions": [
+        "getPointerCalculatedStimulPara_byCM3",
+        "setFlag_AudioParametersCalculationDone_Cm3ToCfx",
+        "setCommandMapChange_Cm3ToCfx",
+        "isMapdateLoaded_CFX",
+        "shareMappingProgramConnection",
+        "isUserSettingValueLoaded_CFX"
+      ],
+      "input": "Calculation flag 0/1; map request 0/1; T[0]=31; mapping true/false; user-setting load=1",
+      "expected": "Pointer and flags match real shared structure; requesting map clears loaded flag",
+      "limitation": "UART debug flag suppressed by zero-default gated boundary override, not CFX application"
+    },
+    {
+      "unit": 21,
+      "method": "D",
+      "scope": "partial",
+      "report": "PARTIAL",
+      "words": 108,
+      "cases": 3,
+      "functions": [
+        "read_connected_ISD_Num",
+        "read_ISD_manufacture_ID",
+        "readConnected_ISD_userName",
+        "readConnected_ISD_Location",
+        "read_recomcon_passkey_connected_ISD"
+      ],
+      "input": "Both synthetic A/B manufacturing IDs/left-right/name25/passkey4 prepared before A/B/A read. No real privacy/key values.",
+      "expected": "IDs0x14010065/0x15020066; all25 name and4 passkey slots from requested fixture, no cross-slot mixing",
+      "missing": "File loading and changeConnected_isd_num_CFX orchestration not executed"
+    },
+    {
+      "unit": 22,
+      "method": "D",
+      "scope": "partial",
+      "report": "PARTIAL",
+      "words": 35,
+      "cases": 3,
+      "functions": [
+        "readConnected_ISD_usableMapNum",
+        "readConnected_ISD_usableMapIndex",
+        "readConnected_ISD_MapStamp",
+        "readConnected_ISD_MapDate",
+        "readProgramMapNum",
+        "changeProgramMapNum"
+      ],
+      "input": "Received RAM fixtures: A maps1/2 stamp26 days1/2, selected1 then2; B map3 stamp25 day3 selected3",
+      "expected": "A count2/[1,1,0,0]/dates1,2/selected1,2; B count1/[0,0,1,0]/date3/selected3",
+      "missing": "Actual ISD selection/file loading remains outside fixture. Program selection now executes real setter; RAM copy/FFT boundary only and private recalculate flag restored."
+    },
+    {
+      "unit": 23,
+      "method": "D",
+      "scope": "implemented_vectors",
+      "words": 10,
+      "cases": 1,
+      "functions": [
+        "changeAudioVolume",
+        "changeStimulVolume",
+        "readAudioVolume",
+        "readStimulVolume"
+      ],
+      "input": "Audio 1 then 10; stimulation 1 then 4; en__mappingMode fixture",
+      "expected": "Volumes independent, [1,1], [10,1], [10,4]",
+      "limitation": "Normal-mode persistence deliberately not executed"
+    },
+    {
+      "unit": 24,
+      "method": "D",
+      "scope": "implemented_vectors",
+      "words": 8,
+      "cases": 1,
+      "functions": [
+        "changeLED_indicatorOnOff",
+        "changeStimulIndicator_OnOff",
+        "readLED_indicatorOnOff",
+        "readStimulIndicator_OnOff"
+      ],
+      "input": "[LED,stimulation] [1,2] then [2,1]; en__mappingMode fixture",
+      "expected": "Independent flags",
+      "limitation": "Normal-mode persistence deliberately not executed"
+    },
+    {
+      "unit": 27,
+      "method": "T",
+      "scope": "implemented_vectors",
+      "words": 14,
+      "cases": 2,
+      "functions": [
+        "calculationNumFramePerOneChannle",
+        "calculationTransferableChanneNum",
+        "test-only trace of actual local duration"
+      ],
+      "input": "Pulse widths 13/14us and 32 channels",
+      "expected": "Actual intermediate durations40/42; frames1/2; transferable channels24/12",
+      "limitation": "Calculation only, no actual frame transmission"
+    },
+    {
+      "unit": 28,
+      "method": "T",
+      "scope": "implemented_vectors",
+      "words": 122,
+      "cases": 6,
+      "host_mismatches": 1,
+      "functions": [
+        "setting_stimulationRange",
+        "readStimulDAC_RegisterValue",
+        "readDAC_offsetValue",
+        "data_clearBit"
+      ],
+      "input": "Current internal-device constants;25us,32channels T100/C300uA; C2500 at25us DAC failure(Q62500pC); bit clear0xFFFF offset4 length4;300uA at249/250/251us=>74700/75000/75300pC",
+      "expected": "DAC A/offset A/100uA/register44,T0/C127; unsupported DAC false;0xFF0F; charge74700/75000 accepted,75300 rejected(false)",
+      "finding": "Overcharge actualtrue/expectedfalse atindex121. Defined Df_MaxDeliveryChargeLimitationKKK does not activate tested #ifdef Df_MaxDeliveryChargeLimitation. Normal macro/configuration unchanged; other stimulation-path protection not judged. Failed T/C state policy is not assumed.",
+      "limitation": "No physical DAC programming or measured current"
+    },
+    {
+      "unit": 29,
+      "method": "T",
+      "scope": "partial",
+      "report": "PARTIAL",
+      "words": 174,
+      "cases": 5,
+      "host_mismatches": 1,
+      "functions": [
+        "calculationStimulParaN_cfxShare"
+      ],
+      "input": "25us,32channels T100/C300,CIS/NofM; CIS300uA at249/250/251us charge boundaries",
+      "expected": "Frames/channels2/12 or3/8,T0/C127,complete flag0; at249/250us13frames/1channel and success;251us returnfalse",
+      "finding": "Overcharge return actualtrue/expectedfalse atindex173 retained. DAC failure is safe separate OBSERVED40word API, not PASS.",
+      "missing": "Product failed-call sharedT/C/completion/output state policy and upstream caller completion gating. Actual uninitialized local-array values cannot be safely read.",
+      "capacity_check": "Host two passes174<=256 words overflow0; separate failure observer40<=256. NULL-default TDC callback skips failed local-array read and restores previous callback."
+    },
+    {
+      "unit": 30,
+      "method": "D",
+      "scope": "implemented_vectors",
+      "words": 30,
+      "cases": 4,
+      "host_mismatches": 1,
+      "functions": [
+        "change_isd_state",
+        "clearIsdControlStateChagedFlag",
+        "snd_isd_interface_get_state",
+        "changePcmOutputMode"
+      ],
+      "input": "A PowerIC_Reset same A; independent A to B PowerIC_OK; clear changed; restore all RAM/private state",
+      "expected": "last state A/B/B, connected1, standby PCM; changed0/1/0 under new-entry interpretation; restore1/1",
+      "finding": "Actual same-A changed1 vs interpreted expected0. Criterion does not explicitly assign same-A changed value: interpretation review, not confirmed defect",
+      "limitation": "Real ISD FSM/PMIC/RF output not run",
+      "detail": "tests/unit/cm3_state_coverage.json",
+      "evidence": "tmp/unit-tests/suite/tdc_ut_cm3_run.log"
+    },
+    {
+      "unit": 44,
+      "method": "D",
+      "scope": "implemented_vectors",
+      "words": 12,
+      "cases": 1,
+      "functions": [
+        "setIndicatoStimlulLevel_255",
+        "set_stimulationIndicatorTrigger",
+        "stimulation_IndicatorOut",
+        "is_Triggered_stimulationIndicator"
+      ],
+      "input": "Channel1, 300uA with T=100/C=300; 481 virtual ticks",
+      "expected": "Level127, output on tick1/80 and off81, three ON rising transitions, trigger cleared/off at481",
+      "limitation": "Shared flags only; no physical stimulation or threshold-clamp branch",
+      "analysis_note": "Threshold branch indexes T[channel] after comparing T[channel-1]; potential existing off-by-one not corrected"
+    }
+  ],
+  "changed_paths": [
+    "src/2__cm3/Cortex-M3-src/test/tdc_ut_vectors_cm3.c",
+    "src/2__cm3/Cortex-M3-src/test/tdc_ut_vectors_cm3.h",
+    "src/2__cm3/Cortex-M3-src/systemControl/cfx_cm3_sharedMemory.c",
+    "src/2__cm3/Cortex-M3-src/systemControl/batteryNPowerControl.c",
+    "src/2__cm3/Cortex-M3-src/systemControl/systemControl.c",
+    "src/2__cm3/Cortex-M3-src/systemControl/LedOutput.c",
+    "src/2__cm3/Cortex-M3-src/signalProcessing/stimulationParaCal.c",
+    "src/2__cm3/Cortex-M3-src/internalDevice/indicatorByStimul.c",
+    "src/2__cm3/Cortex-M3-src/error.c",
+    "tests/unit/tdc_ut_cm3_host.c",
+    "tests/unit/tdc_ut_cm3_host_prelude.h",
+    "tests/unit/tdc_ut_cm3_run.py",
+    "tests/unit/cm3_pure_control_coverage.json",
+    "src/2__cm3/Cortex-M3-src/main.c",
+    "src/2__cm3/Cortex-M3-src/test/tdc_ut_coordination_cm3.c",
+    "src/2__cm3/Cortex-M3-src/test/tdc_ut_coordination_cm3.h",
+    "src/2__cm3/Cortex-M3-src/test/tdc_ut_state_cm3.c",
+    "src/2__cm3/Cortex-M3-src/test/tdc_ut_state_cm3.h",
+    "src/2__cm3/Cortex-M3-src/internalDevice/isd_interface.c",
+    "src/2__cm3/Cortex-M3-src/internalDevice/isd_interface.h",
+    "src/2__cm3/Cortex-M3-src/internalDevice/isd_interface_stimulationStandAlone.c"
+  ],
+  "limitations": [
+    "CM3-28/29 75300pC return actualtrue/expectedfalse is retained. Charge limit is75000pC (75nC), distinct from DAC current maximum2198uA. Other path protection is not certified.",
+    "CM3-29 failed local-array read is deliberately skipped by a NULL-default TDC boundary. Observed T/C sentinel retention is not product retention evidence. Completion/output failure policy remains pending, not an invented acceptance contract.",
+    "The original vector runner does not execute the caller. The source-preserving extra host now executes stimulationStandAlone and reproduces failed-calculation done publication1/expected0. T/C preservation and physical output policy are not certified; parent owns design/criterion reconciliation.",
+    "done means completed execution, not PASS; partial vectors cannot certify whole-unit PASS",
+    "Reciprocal done guards protect pending result drain only, not atomic cross-run locking. Required caller quiescence remains explicit; target test link must include the IO owner's flag definition",
+    "No normal-mode persistence, sensor reset, real GPIO, power-control transaction or device testing",
+    "No tested logic replaced by host mocks and no existing product bug corrected to force PASS",
+    "No Word/Excel/EPTC, user ci_map.c, central task.md, Git refs or other worker drivers changed",
+    "Root default 4/6/30 paths supersede the earlier unconfigured observer scope. Optional user gateways are not covered by default vector evidence.",
+    "CM3-4 is partial boot boundary/order proof; CM3-6 known contract mismatch and CM3-30 same-state flag interpretation remain unaccepted. No device execution.",
+    "Final SDK links and current source checks are recorded by tests/unit/run_suite.py --sdk, not this inventory's historical worker object checks."
+  ]
+}

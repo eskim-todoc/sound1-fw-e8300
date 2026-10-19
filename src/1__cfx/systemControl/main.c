@@ -4,6 +4,7 @@
 #include <agc.h>
 #include <driver_PCM_liveStimulation.h>
 #include <main.h>
+#include "../test/tdc_ut_io_cfx.h"
 
 volatile int _XMEM g_break_point = 0;
 volatile int _XMEM g_pcm_mode; /* default : PcmBitStream_Mode_FillZero */
@@ -337,7 +338,12 @@ void tdc_copy_DMIC_buffers(void)
                     g_lib_dmic_in_buffers[LIB_DMIC_IDX_DMIC1][(LIB_AUDIO_IN_BUF_MAX_CNT - 1) - j][i] = g_lib_dmic_in_buffers[LIB_DMIC_IDX_DMIC1][(LIB_AUDIO_IN_BUF_MAX_CNT - 2) - j][i];
                 }
 
-            g_lib_dmic_in_buffers[LIB_DMIC_IDX_DMIC1][0][i] = ((int _XMEM *) &HCT_A0_0)[i];
+#if defined(TDC_UNIT_TEST)
+            if (g_tdc_ut_io_override_enabled)
+                g_lib_dmic_in_buffers[LIB_DMIC_IDX_DMIC1][0][i] = g_tdc_ut_io_dmic_fifo[0][i];
+            else
+#endif
+                g_lib_dmic_in_buffers[LIB_DMIC_IDX_DMIC1][0][i] = ((int _XMEM *) &HCT_A0_0)[i];
         }
 
     // DMIC2 (QCC, FIFO MIC1 = HCT_A0_1)
@@ -350,7 +356,12 @@ void tdc_copy_DMIC_buffers(void)
                     g_lib_dmic_in_buffers[LIB_DMIC_IDX_DMIC2][(LIB_AUDIO_IN_BUF_MAX_CNT - 1) - j][i] = g_lib_dmic_in_buffers[LIB_DMIC_IDX_DMIC2][(LIB_AUDIO_IN_BUF_MAX_CNT - 2) - j][i];
                 }
 
-            g_lib_dmic_in_buffers[LIB_DMIC_IDX_DMIC2][0][i] = ((int _XMEM *) &HCT_A0_1)[i];
+#if defined(TDC_UNIT_TEST)
+            if (g_tdc_ut_io_override_enabled)
+                g_lib_dmic_in_buffers[LIB_DMIC_IDX_DMIC2][0][i] = g_tdc_ut_io_dmic_fifo[1][i];
+            else
+#endif
+                g_lib_dmic_in_buffers[LIB_DMIC_IDX_DMIC2][0][i] = ((int _XMEM *) &HCT_A0_1)[i];
         }
 }
 

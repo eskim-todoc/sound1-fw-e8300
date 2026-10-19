@@ -2,6 +2,10 @@
 
 #include "dirver_i2c_for_ISD.h"
 #include <ci_printf.h>
+#if defined(TDC_UNIT_TEST)
+#include "../test/tdc_ut_io_cm3.h"
+int (*g_tdc_ut_io_cm3_isd_bus_hook)(int read, int addr, int *data, int count) = 0;
+#endif
 
 bool write_ISD_by_CM3_I2C(int slaveAddr, int* dataBuff, int dataSize)
 {
@@ -15,6 +19,9 @@ bool write_ISD_by_CM3_I2C(int slaveAddr, int* dataBuff, int dataSize)
     }
     else
     {
+#if defined(TDC_UNIT_TEST)
+        if (g_tdc_ut_io_cm3_isd_bus_hook != 0) return g_tdc_ut_io_cm3_isd_bus_hook(0, slaveAddr, dataBuff, dataSize) != 0;
+#endif
         i2c_startWriteData(slaveAddr, dataBuff, dataSize);
 
         wait_cnt = 5000;  // total 5 sec
@@ -63,6 +70,9 @@ bool read_ISD_by_CM3_I2C(int slaveAddr, int* dataBuff, int dataSize)
     }
     else
     {
+#if defined(TDC_UNIT_TEST)
+        if (g_tdc_ut_io_cm3_isd_bus_hook != 0) return g_tdc_ut_io_cm3_isd_bus_hook(1, slaveAddr, dataBuff, dataSize) != 0;
+#endif
         i2c_startReadData(slaveAddr, dataBuff, dataSize);
 
         wait_cnt = 5000;  // total 5 sec

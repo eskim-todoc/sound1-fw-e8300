@@ -389,6 +389,27 @@ static uint32_t    s_pair_latch_until_tick;
  * 의도: timer/tick 무관 시작·끝 명확화 - systemControl 의 종료 검출 race 회피. */
 static bool        s_tdc_burst_pending;
 
+#if defined(TDC_UNIT_TEST)
+/* LED request/우선순위 시험은 엔진/GPIO를 실행하지 않는다.
+ * request와 선택이 바꾸는 상태를 보관/복원하며 LED ISR 정지는 호출자 책임이다. */
+void tdc_ut_cm3_led_exchange(int state[LED_SRC__MAX + 3])
+{
+    int saved[LED_SRC__MAX + 3];
+    for (int i = 0; i < LED_SRC__MAX; ++i)
+    {
+        saved[i] = s_req[i];
+        s_req[i] = state[i];
+    }
+    saved[LED_SRC__MAX] = (int)s_pair_latch_until_tick;
+    saved[LED_SRC__MAX + 1] = s_tdc_burst_pending;
+    saved[LED_SRC__MAX + 2] = s_isd_conn;
+    s_pair_latch_until_tick = (uint32_t)state[LED_SRC__MAX];
+    s_tdc_burst_pending = state[LED_SRC__MAX + 1];
+    s_isd_conn = state[LED_SRC__MAX + 2];
+    for (int i = 0; i < LED_SRC__MAX + 3; ++i) state[i] = saved[i];
+}
+#endif
+
 void led_request(led_src_t src, led_state_t st)
 {
     if (src >= LED_SRC__MAX)
@@ -685,6 +706,14 @@ static led_state_t compute_best_state(void)
 
     return best;
 }
+
+#if defined(TDC_UNIT_TEST)
+/* arbiter가 실제 사용하는 선택 함수를 호출한다. GPIO/tick 엔진 시험은 별도다. */
+int tdc_ut_cm3_led_select(void)
+{
+    return compute_best_state();
+}
+#endif
 
 void led_arbiter_tick(void)
 {

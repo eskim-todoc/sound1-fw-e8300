@@ -5,6 +5,21 @@
 
 static bool stimulationIndicatorTrigger = false;
 
+#if defined(TDC_UNIT_TEST)
+static int s_tdc_ut_indicator_counter;
+static int s_tdc_ut_indicator_train_counter;
+/* Setup/restore: 독립 RAM fixture의 알림 tick 상태만 교환한다. */
+void tdc_ut_cm3_indicator_exchange(int state[3])
+{
+    int saved[3] = {stimulationIndicatorTrigger, s_tdc_ut_indicator_counter,
+                    s_tdc_ut_indicator_train_counter};
+    stimulationIndicatorTrigger = state[0];
+    s_tdc_ut_indicator_counter = state[1];
+    s_tdc_ut_indicator_train_counter = state[2];
+    for (int i = 0; i < 3; ++i) state[i] = saved[i];
+}
+#endif
+
 bool is_Triggered_stimulationIndicator(void)
 {
     return stimulationIndicatorTrigger;
@@ -22,9 +37,14 @@ void clear_stimulationIndicatorTrigger(void)
 
 void stimulation_IndicatorOut(int userSettingEnableStimulationIndicator, bool stimulationTriggerLowPower, bool stimulationTriggerMapping)
 {
+#if defined(TDC_UNIT_TEST)
+#define counter s_tdc_ut_indicator_counter
+#define outputPulseTrainCounter s_tdc_ut_indicator_train_counter
+#else
     static int toggle                  = 0;
     static int counter                 = 0;
     static int outputPulseTrainCounter = 0;
+#endif
 
     int* p_stimulIndicatorOutOnOff;
 
@@ -68,6 +88,10 @@ void stimulation_IndicatorOut(int userSettingEnableStimulationIndicator, bool st
 
         counter++;
     }
+#if defined(TDC_UNIT_TEST)
+#undef counter
+#undef outputPulseTrainCounter
+#endif
 }
 
 #if 0

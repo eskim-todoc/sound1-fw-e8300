@@ -1,0 +1,240 @@
+{
+  "scope": "BOOT20",
+  "checked_on": "2026-10-02",
+  "criteria": {
+    "path": "docs/참고/인허가/사운드1/DHF/03_설계 출력/SW/펌웨어/SUVC-FW-TD24A 소프트웨어 유닛 검증 기준서.xlsx",
+    "sha256": "89967fa692c4f51e3be916c73270d75859b4f692c96928c2d73da0cc6c5096fd",
+    "sheet": "기준서_유닛 검증",
+    "rows": [125, 144],
+    "columns": {"core": "B", "test_id": "D", "method": "F", "input": "H", "expected": "K"},
+    "method_counts": {"A": 9, "D": 5, "T": 6}
+  },
+  "implementation": {
+    "runner": "src/0__bootloader/source/test/tdc_ut_boot.c",
+    "header": "src/0__bootloader/source/test/tdc_ut_boot.h",
+    "host": "tests/unit/tdc_ut_boot_host.c",
+    "checker": "tests/unit/tdc_ut_boot_check.py",
+    "guards": ["TDC_UNIT_TEST", "TDC_UNIT_TEST_HOST", "TDC_UNIT_TEST_RAM_ONLY (host QA only)"],
+    "record_format": "[-999,unit,case,length,actual...] and separate expected with identical metadata",
+    "array_capacity_each": 128,
+    "array_bytes_total_on_arm": 1024,
+    "runner_bss_bytes_measured": 5176,
+    "scratch_backup_bytes_on_arm": 4080,
+    "ram_file_workspace": "One SDK FIL, 4136 bytes in NOLOAD .tdc_ut_boot_workspace at0x200000a8 after unchanged RTT control. Explicitly zeroed before every fixture; no normal object. Host uses a separate static mock FIL. Four former automatic SDK FIL frames exceeded4KB; current selected ARM maximum frame1184, total call-chain/IRQ depth unverified.",
+    "max_host_record_words_measured": 125,
+    "lifetime": "run_unit returns BUSY until release. Caller drains common RTT reporter before release.",
+    "return_values": {"0": "executed, not PASS", "-1": "runner error/overflow", "-2": "unsupported, done=0", "-3": "previous output pending"},
+    "zero_defaults": ["file read override", "file open/close/stat/write/seek/sync/chdir overrides", "NVM read override", "public application key override", "hardware observer callback"],
+    "file_fixture_policy": "Host supplemental tests create only temporary, rooted files. Target subcases use RAM-only file callbacks, run real ci_boot.c, and inspect the resulting 64-byte RAM record. Logical 4096-byte preallocation is modeled without a real allocation. No target NVM writes, erase, image DMA, RF or reset is automatically run.",
+    "hardware_boundary": "Host uses SDK register/memory constants and product data structures. File/NVM/DMA/CRC/GPIO/timer/reset boundaries are modeled. Product AES, CRC word/remainder loop, header/manifest/section logic, service RTT parser and slot state machine run unchanged.",
+    "host_byte_count_abi": "Mock FatFs UINT is host size_t to preserve full counts for product size_t out parameters on 64-bit Windows. ARM checks use actual SDK UINT/ABI.",
+    "target_read_fixture": "Subcases 101+ explicitly replace file/read or NVM read interfaces with RAM callbacks. 8 covers boot-info read/CRC, not manufacturing calibration. 10 covers normal/encrypted header parsing; 11 covers boot-data section parsing and two-core boot flags without image DMA; 12 calls manifest opening through RAM file/directory boundaries and zero-section apps. 19/20 run real slot-file/state logic against RAM, not physical filesystem/NVM.",
+    "target_crc_fixture": "13 uses public key and actual SDK hardware CRC. Caller must own foreground CRC engine; runner restores CFG/VALUE and previous key/read override.",
+    "target_cleanup": "Runner exchanges all 1020 scratch words before/after execution, including unsupported return. File/read/NVM/key/slot context is restored by each fixture. RAM-only host QA seeds nonzero callbacks, scratch pattern, CRC registers, slot/private FIL, boot error and core boot-data/flags, then checks unchanged values after each execution and after BUSY/release/repeat.",
+    "ram_diagnostic_boundary": "During an explicit RAM read override only, process_manifest skips existing diagnostics which directly read SYSVAR_MANU_TABLE. With no override and in normal builds the original diagnostics run. File logic/expected return values are unchanged.",
+    "target_observer": "Explicit observer can copy transfer type/address/word mode/count, PRAM lock, boot LED elapsed/phase/duty, service LED color and reset request. IRQ callback must only copy RAM; observations alone are not PASS."
+  },
+  "verification": {
+    "command": "python tests/unit/tdc_ut_boot_check.py --arm",
+    "evidence_json": "tmp/unit-tests/boot/checks.json",
+    "evidence_contents": "UTC times, invocation, all BOOT source/header/linker/project and fixture/criteria SHA256 values, commands/return codes/stdout/stderr, O0/O2 per-case actual/expected/status, known failures, oracle guards, ARM stack frames. Error traceback and incomplete command/run remain saved if compilation, execution or comparison fails. --output selects a separate history path.",
+    "raw_output_command_suffix": "--raw",
+    "host_compiler": "gcc on PATH, x86_64-w64-mingw32",
+    "host_flags": ["-std=gnu11", "-O0 and -O2", "-Wall", "-Wextra", "-Wno-unused-parameter", "-DTDC_UNIT_TEST", "-DTDC_UNIT_TEST_HOST", "-DTDC_BOOT_LED_ENABLE=1", "-DSK5_CID=101", "-Dchess_storage(a)="],
+    "arm_compiler": "C:/Program Files (x86)/ON Semiconductor/Ezairo 8300 SDK/arm_tools/bin/arm-none-eabi-gcc.exe",
+    "arm_flags": ["-mcpu=cortex-m3", "-mthumb", "-std=gnu11", "-O0", "-Wall", "-Wextra", "-DSK5_CID=101", "-Dchess_storage(a)=", "-DTDC_UNIT_TEST for enabled half", "SDK include/cm3 and include/shared as -isystem", "-Werror for new runner"],
+    "arm_translation_units": 16,
+    "arm_units": "8 source files compiled with/without TDC_UNIT_TEST. Normal runner object has no global test symbols. Runner -fstack-usage maximum frame1184 bytes, unchanged4136-byte FIL section and5176-byte BSS are checked. No link/RTT address relocation occurs here; sections.ld is unchanged.",
+    "host_comparison_records": 198,
+    "matched_records": 192,
+    "failed_records": 6,
+    "checker_exit_code": 0,
+    "exit_meaning": "Regression checker accepts exactly six failing records (BOOT7 C6/C17; BOOT11 C6/C108/C109/C110). Exit0 is exact reproduction, not product PASS. Missing/changed known failures, duplicate cases and unpaired/truncated logs are rejected. Python -O is rejected because it disables checker assertions.",
+    "immutability_checked": "Run while pending returns -3 and both full arrays/count stay unchanged. All zero-default hooks restored in full host run. RAM-only QA checks nonzero previous contexts/state, repeat stability, no fixture files and no NVM/reinit/GPIO/config/timer/trim/delay/file/image DMA/core/reset boundary calls. Service restores static counters and detects unclosed files; delay restores the injected clock.",
+    "host_optimizations": ["-O0", "-O2"],
+    "ram_only_host_comparison_records": 80,
+    "ram_only_host_matched_records": 77,
+    "ram_only_host_failed_records": 3,
+    "ram_only_host_optimizations": ["-O0", "-O2"],
+    "ram_only_is_not_target_execution": true,
+    "target_executed": false,
+    "full_target_link_done_here": false,
+    "warnings": ["Existing bootloader_load_sections compares unsigned bytes_read < 0", "Existing boot_speed compares unsigned value < BOOT_SPEED_AUTO (0)"]
+  },
+  "known_product_failures": [
+    {
+      "unit": 7, "case": 6, "actual": [0], "expected": [-1],
+      "source": "src/0__bootloader/source/bootloader.c:tdc_boot_storage_init",
+      "finding": "bootloader_load_manu_table returns CRC error, but storage initialization ignores the return and proceeds to mount/success.",
+      "product_fix_applied": false
+    },
+    {
+      "unit": 11, "case": 6, "actual": [0], "expected": [-1],
+      "source": "src/0__bootloader/source/bootloader.c:bootloader_load_sections",
+      "finding": "crc_table_size=1 with zero actual section headers returns success. Read status/count/completeness are not validated after the loop.",
+      "product_fix_applied": false
+    },
+    {
+      "unit": 11, "case": 108, "actual": [0], "expected": [-1],
+      "source": "src/0__bootloader/source/bootloader.c:bootloader_load_sections",
+      "finding": "Same missing-declared-section defect as host C6, independently exercised by RAM-only target-compatible fixture with two declared sections and empty input.",
+      "product_fix_applied": false
+    },
+    {
+      "unit": 7, "case": 17, "actual": [0,0,0], "expected": [-9,1,0],
+      "source": "src/0__bootloader/source/bootloader.c:tdc_boot_storage_init",
+      "fields": ["return", "output_equals_pre_call_sentinel", "NVM_reinit_count"],
+      "finding": "Boot-info read succeeds; manufacturing NVMReadBytes fails with -9. The caller ignores the loader error, returns0 and publishes output. The requested preparation/error contract requires failure propagation and no success output publication.",
+      "handling_needed": "Check manufacturing loader return before UART/mount/output publication; preserve a failure result for the caller. Product fix requires separate authority.",
+      "product_fix_applied": false
+    },
+    {
+      "unit": 11, "case": 109, "actual": [0], "expected": [-1],
+      "source": "src/0__bootloader/source/bootloader.c:bootloader_load_sections",
+      "finding": "Two sections declared; first header read returns FR_DISK_ERR with zero bytes. Read result is ignored and no-section success0 is returned.",
+      "handling_needed": "Reject failed header reads and incomplete declared sections before exposing load flags. CRC alone does not establish input completeness.",
+      "product_fix_applied": false
+    },
+    {
+      "unit": 11, "case": 110, "actual": [1], "expected": [-1],
+      "source": "src/0__bootloader/source/bootloader.c:bootloader_load_sections",
+      "finding": "After valid CFX boot data, the next header read returns FR_DISK_ERR with zero bytes while the CM3 section remains declared. Function returns CFX-loaded flag1 instead of error. The RAM fixture never transfers an image or starts a core.",
+      "handling_needed": "Separate partial-load observations from the final success decision and propagate later read failures. Policy for discarding already parsed boot data remains a product decision.",
+      "product_fix_applied": false
+    }
+  ],
+  "coverage": [
+    {
+      "unit": 1, "method": "A", "host": "UNSUPPORTED", "target": "UNSUPPORTED", "records": 0,
+      "evidence": ["src/0__bootloader/main.c:main", "src/0__bootloader/source/bootloader.c:bootloader_boot"],
+      "analysis": "main masks interrupts, clears NVIC state, configures QCC/CAL/UART and clears shared PRAM5[0] before bootloader_main in normal mode. Storage/image load happens before application core calls.",
+      "manual_remaining": "Confirm actual hardware/shared memory readiness and start order on an authorized board run.",
+      "not_implemented": "Finite host trace of the complete main initialization entry point."
+    },
+    {
+      "unit": 2, "method": "A", "host": "RUNNABLE_SUPPLEMENTAL_TRACE", "target": "UNSUPPORTED", "records": 12,
+      "evidence": ["src/0__bootloader/source/tdc_util.c:tdc_delay_us"],
+      "implemented": "12 records call real tdc_delay_us/ms for0/1/999/1000 at30.72MHz and1000us/1ms at32MHz; expected cycles derive from units and the documented integer-truncation characterization. Injected clock is restored. Sys_Delay is a PC capture only.",
+      "analysis": "Integer SystemCoreClock/1000000 truncates before multiplication. Trace validates calculation, not exact elapsed time.",
+      "manual_remaining": "Optional pin timing and toggle overhead measurement.",
+      "target_not_implemented": "Actual Sys_Delay waits on hardware. A target argument-only trace requires an explicit tdc_util.c delay boundary outside this worker scope. No fabricated timing or surrogate arithmetic test is reported as real delay execution."
+    },
+    {
+      "unit": 3, "method": "A", "host": "UNSUPPORTED", "target": "UNSUPPORTED", "records": 0,
+      "evidence": ["src/0__bootloader/main.c:main"],
+      "analysis": "Two active CAL reads enter service_main only; inactive first read clears shared state and enters bootloader_main. First active then second inactive falls through main, so stable condition is required by the two specified cases.",
+      "manual_remaining": "CAL false/true branch observation in authorized setup.",
+      "not_implemented": "Finite host invocation of main."
+    },
+    {
+      "unit": 4, "method": "T", "host": "RUNNABLE", "target": "OBSERVATION_ONLY", "records": 5,
+      "evidence": ["src/0__bootloader/source/led/tdc_boot_led.c:TIMER_2_IRQHandler"],
+      "implemented": "Real init/start/ISR/stop with timer/GPIO boundary. 40 IRQ/ms, elapsed=100 then 361, completion, stopped timer and 361 observer events.",
+      "analysis": "Current phase machine reaches OFF at 360 ms and DONE on the next 1 ms phase tick.",
+      "manual_remaining": "Electrical PWM/time measurement and application LED separation; safe runner does not start target timer."
+    },
+    {
+      "unit": 5, "method": "A", "host": "UNSUPPORTED", "target": "UNSUPPORTED", "records": 0,
+      "evidence": ["src/0__bootloader/source/bootloader_boot_cores.c:bootloader_boot_cm3", "src/0__bootloader/source/bootloader_boot_cores.c:bootloader_boot_cfx"],
+      "analysis": "CM3 sets SP then BX init_pointer. CFX checks PCREQ/start range, sets memory access/remap, publishes init_pointer/PCKEY then CFX_CMD_0. Calls occur after processing sections in load_app_file.",
+      "manual_remaining": "Core start/mailbox and image start-address observation; no automatic jump.",
+      "not_implemented": "Execution of real core start functions; host jump stubs only protect file tests."
+    },
+    {
+      "unit": 6, "method": "A", "host": "UNSUPPORTED", "target": "UNSUPPORTED", "records": 0,
+      "evidence": ["src/0__bootloader/source/bootloader.c:bootloader_boot", "src/0__bootloader/source/bootloader.c:bootloader_load_app_file"],
+      "analysis": "Negative header/section errors exit before core calls. Storage initializer can return positive FatFs errors, while bootloader_boot tests ret<0; complete error propagation is therefore not established. MANU error is reproduced in BOOT7. f_unmount failure is logged but does not stop core start.",
+      "manual_remaining": "Authorized success/failure boot trace after resolving error propagation findings.",
+      "not_implemented": "Finite complete bootloader_boot success path trace."
+    },
+    {
+      "unit": 7, "method": "D", "host": "RUNNABLE_WITH_KNOWN_FAILURE", "target": "HOST_ONLY", "records": 18,
+      "implemented": "18 records: real storage init with public NVM fixture; init/mount/boot-info read/invalid speed/chdrive/opendir/closedir/sync faults, AUTO QSPI-to-DSPI/default fallback, explicit DSPI/QSPI reread failure, normal recovery and output publication. Reinit counts and failure output sentinel are checked. Manufacturing CRC and read failures remain known mismatches.",
+      "manual_remaining": "Physical NVM/mount behavior; MANU CRC failure is an unresolved product failure.",
+      "target_not_implemented": "Storage initializer invokes NVM configuration, clock/manufacturing voltage trims, UART and mount/sync. Read/file RAM hooks alone cannot isolate these effects. Broader hardware boundary design is required before safe automatic target execution."
+    },
+    {
+      "unit": 8, "method": "A", "host": "RUNNABLE_SUPPLEMENTAL_TRACE", "target": "RUNNABLE_RAM_PARTIAL", "records": 12,
+      "implemented": "RAM C101..106 invoke actual packed boot-info read/CRC: 32-byte info with boot_addr=0x12345678, manu offset1024/length64, corrupted CRC, NVM read error-7, null output without read and successful recovery/full512-byte read comparison. Host supplemental tests invoke manufacturing loader with public Reserved[0]=0x11223344.",
+      "manual_remaining": "All manufacturing trim-field mapping/calibration behavior; tests use only public fixture data. Target RAM subcases do not invoke the manufacturing loader because it applies voltage/clock calibration."
+    },
+    {
+      "unit": 9, "method": "T", "host": "RUNNABLE", "target": "RUNNABLE_RAM", "records": 5,
+      "implemented": "Real get_app_load_ext produces test.app/length 8; empty name/extension and null input/output return -1.",
+      "manual_remaining": "Target execution not performed here."
+    },
+    {
+      "unit": 10, "method": "D", "host": "RUNNABLE", "target": "RUNNABLE_RAM_PARTIAL", "records": 22,
+      "implemented": "RAM C101..113: real header parser normal/short/read-error/CRC, encrypted20-byte header and short/error, oversized255-entry table; exact12-byte single-entry table,11-byte output capacity with canary, short second read, second-read error and recovery. Host adds load_app_file paths and zero transfers/core calls. Output capacities below the initial8-byte header or encrypted20-byte read remain untested unsafe product boundaries.",
+      "manual_remaining": "Actual filesystem/open/error behavior and core progression; target RAM cases do not cover f_open/load_app_file."
+    },
+    {
+      "unit": 11, "method": "A", "host": "RUNNABLE_WITH_KNOWN_FAILURE", "target": "RUNNABLE_RAM_PARTIAL", "records": 20,
+      "implemented": "RAM C101..114: boot-data extraction, short/CRC/null errors; real load_sections CFX+CM3 flags; missing section and first/later read-error mismatches with expected-1; null output without read; public-key encrypted boot data,15-byte short block and bad CRC leave output unchanged. No image transfer/jump in RAM. Host adds transfer/type/range/AES-length boundaries. Short partial section headers are not injected because the product can read uninitialized header bytes.",
+      "manual_remaining": "Physical memory/DMA, missing-section and header-read error propagation fixes, minimum header length validation and partial-output policy."
+    },
+    {
+      "unit": 12, "method": "D", "host": "RUNNABLE", "target": "RUNNABLE_RAM_PARTIAL", "records": 17,
+      "implemented": "Target cases 101..105 execute actual RAM list splitting/null/zero length. C106..111 invoke actual process_manifest/manifest_open_files with RAM callbacks and empty valid app sections: A then B exactly once, initial read error, missing B, bad manifest CRC, nested manifest rejection and chdir error. Host supplements actual rooted filesystem, error and null-header tests.",
+      "analysis": "Current process_manifest closes its input then attempts another read; that trailing read error is ignored. Short fixtures do not prove multi-block manifest behavior.",
+      "manual_remaining": "Filesystem lifecycle, larger/encrypted manifest contract and nested-list edge cases."
+    },
+    {
+      "unit": 13, "method": "A", "host": "RUNNABLE", "target": "RUNNABLE_RAM_WITH_HARDWARE_CRC", "records": 25,
+      "implemented": "First CRC success, encrypted header success, encrypted flag absent, decrypted bad CRC and null header; real bootloader_CRC_calc lengths 0/1/3/4/5 and host CRC byte counts. Public key only.",
+      "manual_remaining": "Actual CRC peripheral execution and register restore; AES error injection inside header check is not implemented (null AES init is covered in 14)."
+    },
+    {
+      "unit": 14, "method": "T", "host": "RUNNABLE", "target": "RUNNABLE_RAM", "records": 4,
+      "implemented": "Real initialize/decrypt using the specified NIST vector; len=3 returns -1 and leaves data unchanged; null context/key init returns -1. ECB has no IV.",
+      "manual_remaining": "Target execution not performed here."
+    },
+    {
+      "unit": 15, "method": "T", "host": "RUNNABLE", "target": "OBSERVATION_ONLY", "records": 12,
+      "implemented": "Real transfer function for CFX X/Y/P, CM3 P and IOMEM using input words 11/22/33/44; validates destination, unit conversion, order/count/data and observer values. Empty section writes zero in DMA boundary model.",
+      "manual_remaining": "Physical transfer/address/bank and byte-to-24-bit packing; host model captures issued DMA and source bytes, not silicon packing."
+    },
+    {
+      "unit": 16, "method": "A", "host": "RUNNABLE_SUPPLEMENTAL_TRACE", "target": "OBSERVATION_ONLY", "records": 2,
+      "implemented": "Real CFX PRAM transfer unlocks, performs DMA, then applies CFX_PRAM0 lock. Trace distinguishes unlock and final lock.",
+      "manual_remaining": "Other PRAM banks/range and physical security lock behavior."
+    },
+    {
+      "unit": 17, "method": "T", "host": "RUNNABLE", "target": "HOST_ONLY", "records": 16,
+      "implemented": "16 records invoke real service_main: dump/unknown/open/read faults; exact file blocks of0/1/15/16/17/33 bytes, CRLF, empty line, backspace,62-character buffer limit and following command, two commands, late read error after16 bytes with marker/next-file continuity, then successful retry. Host detects open handle leaks and restores service counters. No stimulation/core call.",
+      "manual_remaining": "Real RTT transport/output drain and filesystem errors.",
+      "target_not_implemented": "service_main configures GPIO/RTT/NVM and runs a command loop which can request reset. Read/file hooks do not isolate this entry point. A bounded command-dispatch design in service.c is required before automatic target vectors; it is outside this worker ownership."
+    },
+    {
+      "unit": 18, "method": "D", "host": "RUNNABLE", "target": "OBSERVATION_ONLY", "records": 1,
+      "implemented": "Real service parser/tick/reboot path with mocked reset count=1 and GPIO progress; host guard returns after reset boundary, static service state restored.",
+      "manual_remaining": "Target service LED/electrical behavior. Observer records request before real watchdog reset; safe runner never sends reboot on target."
+    },
+    {
+      "unit": 19, "method": "D", "host": "RUNNABLE", "target": "RUNNABLE_RAM_PARTIAL", "records": 14,
+      "implemented": "RAM C101..110: real handler for absent/3-byte/read-error/valid state;0/1/63/64/4096-byte size boundaries compare all64 record bytes, default slot255 or valid slot4, closed handles and a second call without rewrite. Nonzero CRC preservation is characterization, not integrity PASS. Host supplements temp-file reopen/read.",
+      "manual_remaining": "Actual FatFs durability/error/power-loss behavior; fixture flush/reopen is not NVM atomicity proof."
+    },
+    {
+      "unit": 20, "method": "T", "host": "RUNNABLE", "target": "RUNNABLE_RAM_PARTIAL", "records": 13,
+      "implemented": "Target C101..107 run real RAM file-backed state machine: BOOT slot1; TRY counts2/3 become3/4 slots2/1; fallback BOOT/TRY_DONE/FAIL; DONE success slot2; failure/unsupported substate UNKNOWN slot1; unsupported overall state99 remains99 with UNKNOWN/slot1. Slot/tries/substate/state/result/closed handles are compared to independent expectations. Host supplemental cases reopen persisted temp records.",
+      "analysis": "Slot selector uses stored slot numbers without a 1..4 range check. OTA caller range is a distinct contract. CRC field is not validated here.",
+      "manual_remaining": "Real NVM reset/retry/fallback and power interruption behavior."
+    }
+  ],
+  "remaining_summary": {
+    "host_runnable_ids": [2,4,7,8,9,10,11,12,13,14,15,16,17,18,19,20],
+    "target_runnable_ids": [8,9,10,11,12,13,14,19,20],
+    "target_complete_fixed_vectors_ids": [9,14],
+    "target_partial_or_crc_ids": [8,10,11,12,13,19,20],
+    "target_host_only_ids": [2,7,17],
+    "target_observation_only_ids": [4,15,16,18],
+    "analysis_only_ids": [1,3,5,6],
+    "unsupported_analysis_ids_are_not_skipped_as_pass": true,
+    "target_execution_remaining": true,
+    "full_link_and_common_reporter_integration_owner": "main task",
+    "product_error_fixes_remaining": ["BOOT7 C6/C17 manufacturing failure propagation/output publication", "BOOT11 C6/C108 missing sections", "BOOT11 C109/C110 header-read error propagation"],
+    "worker_freeze": "Test-only extension ready for main integration. Host198 records per O0/O2, RAM80 per O0/O2, normal/UT ARM16 translation units; full SDK link belongs to main. No product source/header/linker/project, Word/Excel, common runner, task document or Git refs changed. No board/flash/NVM/trim/timer/reset execution.",
+    "safety_limit": "RAM read/file boundaries cannot establish physical storage durability, trim calibration, timing, RTT transport, transfer packing or core startup. Host-only/analysis/observation remain explicitly incomplete; no all115done claim."
+  }
+}

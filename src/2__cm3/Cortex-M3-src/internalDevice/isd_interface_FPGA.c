@@ -26,6 +26,29 @@
 #include <ci_printf.h>
 
 static LAST_WRITTEN_REGISTER fpag_lastWrittenRegister;
+#if defined(TDC_UNIT_TEST)
+#include "../test/tdc_ut_io_cm3.h"
+/* 시험 설정과 복원 전용. 레지스터를 쓰지 않으며 캐시 4개만 보존한다. */
+int tdc_ut_io_cm3_fpga_cache(int *values, int restore)
+{
+    if (values == 0) return TDC_UT_IO_CM3_INVALID;
+    if (restore)
+    {
+        fpag_lastWrittenRegister.systemResgister_1st_value = values[0];
+        fpag_lastWrittenRegister.systemResgister_2nd_value = values[1];
+        fpag_lastWrittenRegister.stimulation_PhaseDuration_value = values[2];
+        fpag_lastWrittenRegister.backterConfiguration_value = values[3];
+    }
+    else
+    {
+        values[0] = fpag_lastWrittenRegister.systemResgister_1st_value;
+        values[1] = fpag_lastWrittenRegister.systemResgister_2nd_value;
+        values[2] = fpag_lastWrittenRegister.stimulation_PhaseDuration_value;
+        values[3] = fpag_lastWrittenRegister.backterConfiguration_value;
+    }
+    return TDC_UT_IO_CM3_OK;
+}
+#endif
 
 void reset_Fpga_variable(void)
 {
@@ -1029,5 +1052,4 @@ void upadte_fpga_backtelConfig_written_Value(int value)
     fpag_lastWrittenRegister.backterConfiguration_value=value;
     updagteBacktelControlValue_toCFX(fpag_lastWrittenRegister.backterConfiguration_value);
 }
-
 

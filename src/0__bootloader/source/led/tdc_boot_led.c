@@ -29,6 +29,9 @@
 
 #include <hw.h>
 #include <tdc_boot_led.h>
+#if defined(TDC_UNIT_TEST)
+#include "../test/tdc_ut_boot.h"
+#endif
 
 /* SW PWM 매개변수 - 분석.md D-2/D-5 + Step 3 보정 (Timer 40 kHz 기반) */
 
@@ -175,6 +178,15 @@ void TIMER_2_IRQHandler(void)
         phase_tick();
     }
     s_tdc_boot_led_isr_in_ms = isr_in_ms;
+#if defined(TDC_UNIT_TEST)
+    /* IRQ 관찰: callback은 RAM 복사만 수행한다. 출력은 전경 RTT poll이 맡는다. */
+    if(isr_in_ms == 0)
+    {
+        const uint32_t observed[4] = {s_tdc_boot_led_elapsed_ms, s_tdc_boot_led_phase,
+                                      s_tdc_boot_led_duty_g, s_tdc_boot_led_duty_b};
+        tdc_ut_boot_observe(TDC_UT_BOOT_OBSERVE_LED, observed, 4);
+    }
+#endif
 }
 
 void tdc_boot_led_init(void)

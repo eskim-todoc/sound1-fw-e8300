@@ -1,0 +1,161 @@
+"""Generate independent windowed-DFT references; never emulate HEAR completion.
+
+The stored Hann coefficients are INPUT data, not product FFT outputs. A direct
+double-precision mathematical DFT provides unscaled integer-domain references.
+The SDK documents total BFP right shifts, packed DC/Nyquist, and vMag 2.22.
+Target comparisons undo those declared representations. Error limits are
+predeclared engineering checks, not manufacturer accuracy guarantees.
+"""
+from __future__ import annotations
+
+import argparse
+import hashlib
+import json
+import math
+import os
+import re
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[2]
+HEADER = ROOT / "src/1__cfx/test/tdc_ut_hear_reference.h"
+MANIFEST = ROOT / "tests/unit/tdc_ut_hear_reference.json"
+SINE = [0, 25080, 46341, 60547, 65536, 60547, 46341, 25080,
+        0, -25080, -46341, -60547, -65536, -60547, -46341, -25080]
+FFT_BINS = [0, 1, 31, 32, 33, 63, 64, 65, 255]
+SIZE = 512
+SDK = Path(os.environ.get("TDC_E8300_SDK", r"C:\Program Files (x86)\ON Semiconductor\Ezairo 8300 SDK"))
+
+
+def source_window() -> list[int]:
+    text = (ROOT / "src/2__cm3/Gen1_5/FS/ci_fft.c").read_text(encoding="utf-8-sig")
+    match = re.search(r"hanning_window_coeff\[Half_FFT_Size\]\s*=\s*\{([^}]+)\}", text)
+    if match is None:
+        raise ValueError("Hann INPUT coefficients unavailable")
+    half = [int(word) for word in re.findall(r"\d+", match.group(1))]
+    assert len(half) == 256 and all(0 <= value < 2**23 for value in half)
+    window = half + half[::-1]
+    # Independent formula checks the coefficient data/expansion, not FFT code.
+    ideal = [round((0.5 - 0.5 * math.cos(2 * math.pi * n / 511)) * 2**23)
+             for n in range(SIZE)]
+    assert max(abs(a - b) for a, b in zip(window, ideal)) <= 2
+    assert window[0] == window[-1] == 0 and window == window[::-1]
+    return window
+
+
+def samples(vector: int) -> list[int]:
+    if vector == 1:
+        return [0] * SIZE
+    if vector in (2, 3):
+        stride = vector - 1
+        return [SINE[(stride * n) % 16] for n in range(SIZE)]
+    if vector == 4:
+        return [32768] * SIZE
+    if vector == 5:
+        return [32768 if n % 2 == 0 else -32768 for n in range(SIZE)]
+    raise ValueError(vector)
+
+
+def dft(values: list[int], window: list[int]) -> list[complex]:
+    weighted = [value * coeff / 2**23 for value, coeff in zip(values, window)]
+    result = []
+    for k in range(257):
+        angle = -2 * math.pi * k / SIZE
+        real = math.fsum(value * math.cos(angle * n) for n, value in enumerate(weighted))
+        imag = math.fsum(value * math.sin(angle * n) for n, value in enumerate(weighted))
+        result.append(complex(real, imag))
+    return result
+
+
+def c_array(name: str, values: list[list[int]], width: int) -> str:
+    lines = [f"static const int _XMEM {name}[{len(values)}][{width}] = {{"]
+    for row in values:
+        lines.append("    {")
+        for start in range(0, len(row), 12):
+            lines.append("        " + ",".join(str(x) for x in row[start:start + 12]) + ",")
+        lines.append("    },")
+    return "\n".join(lines + ["};"])
+
+
+def build() -> tuple[str, dict]:
+    window = source_window()
+    spectra = [dft(samples(vector), window) for vector in range(1, 6)]
+    # Real FFT packs X(0) and X(256) in words 0/1, NOT Re/Im of bin zero.
+    magnitude = [[round(math.hypot(spectrum[0].real, spectrum[256].real))]
+                 + [round(abs(value)) for value in spectrum[1:256]] for spectrum in spectra]
+    components = []
+    for spectrum in spectra:
+        row = []
+        for k in FFT_BINS:
+            row.extend([round(spectrum[k].real),
+                        round(spectrum[256].real if k == 0 else spectrum[k].imag)])
+        components.append(row)
+    for vector, peak in [(2, 32), (3, 64)]:
+        assert max(range(256), key=magnitude[vector - 1].__getitem__) == peak
+        # Independent Hann coherent-gain estimate: integer rounding introduces
+        # only a small finite difference; broad failure catches wrong FFT scale.
+        estimate = 65536 * sum(window) / (2 * 2**23)
+        assert abs(magnitude[vector - 1][peak] - estimate) < 128
+    coherent_dc = round(32768 * sum(window) / 2**23)
+    assert components[3][0] == coherent_dc and components[4][1] == coherent_dc
+    assert all(value == 0 for value in magnitude[0])
+    assert max(max(row) for row in magnitude) < 2**23
+    docs = ["hear_Modules_Transforms.htm", "hear_Usage_SysCfgUse.htm",
+            "hear_ModRef_vMag.htm", "hear_ModRef_vAbsolute.htm", "hear_ModRef_MaxElement.htm"]
+    base = SDK / "documentation/ezairo8300_html/Content/hear_reference_ezairo8300"
+    doc_evidence = []
+    for name in docs:
+        path = base / name
+        if not path.is_file():
+            raise FileNotFoundError(path)
+        doc_evidence.append({"path": str(path), "sha256": hashlib.sha256(path.read_bytes()).hexdigest()})
+    header = "\n".join([
+        "/* Generated by tests/unit/tdc_ut_hear_reference.py; independent DFT, not HW results. */",
+        "#ifndef TDC_UT_HEAR_REFERENCE_H", "#define TDC_UT_HEAR_REFERENCE_H",
+        "#define TDC_UT_HEAR_REFERENCE_VECTORS 5",
+        "#define TDC_UT_HEAR_FFT_REFERENCE_BINS 9",
+        "#define TDC_UT_HEAR_FFT_ERROR_DIVISOR 1000",  # 0.1 percent
+        "#define TDC_UT_HEAR_VMAG_ERROR_DIVISOR 100",  # 1 percent
+        "#define TDC_UT_HEAR_ERROR_FLOOR 64",
+        "#define TDC_UT_HEAR_MAX_BLOCK_EXP 13",
+        "static const int s_tdc_ut_hear_reference_bins[9] = {" + ",".join(map(str, FFT_BINS)) + "};",
+        c_array("s_tdc_ut_hear_window_reference", [window], SIZE),
+        c_array("s_tdc_ut_hear_vmag_reference", magnitude, 256),
+        c_array("s_tdc_ut_hear_fft_reference", components, 18),
+        "#endif", ""])
+    manifest = {
+        "scope": "independent mathematical references; no HEAR/CFX device execution",
+        "input_source": "src/2__cm3/Gen1_5/FS/ci_fft.c: hanning_window_coeff INPUT array",
+        "window_formula": "round((0.5-0.5*cos(2*pi*n/511))*2^23); stored coefficients within 2 LSB",
+        "dft_formula": "X[k]=sum(x[n]*w[n]/2^23*exp(-j*2*pi*k*n/512))",
+        "representation": "BFP exponent E is total right shifts. Compare FFT raw*2^E against X; vMag raw*2^(E+1) against magnitude because vMag 2.22 versus input 1.23. Word0/1 packs DC/Nyquist.",
+        "tolerance": {"fft_components": "64 integer-domain LSB + ceil(abs(reference)/1000), 0.1%",
+                      "vmag": "64 integer-domain LSB + ceil(reference/100), 1%",
+                      "zero_vector": "exact zero", "maximum_block_exponent": 13,
+                      "basis": "Predeclared engineering checks for 24-bit window/twiddle rounding and table-lookup sqrt, sufficient to reject omitted Hann or factor-two scale errors. SDK describes representation/approximation but does NOT publish these accuracy bounds; these are not manufacturer guarantees and need target validation before report PASS."},
+        "hear1_timing": {"input": [0, -32, 17, -100, 99] + [0] * 11,
+                         "after_vabsolute_analysis_only": [0, 32, 17, 100, 99] + [0] * 11,
+                         "after_maxelement_event0_execution_expected": [100, 32, 17, 100, 99] + [0] * 11},
+        "documents": doc_evidence,
+        "vectors": [{"vector": i, "samples": samples(i), "vmag_unscaled": magnitude[i - 1],
+                     "fft_reference_bins": FFT_BINS, "fft_unscaled_packed_re_im": components[i - 1],
+                     "peak_bin": max(range(256), key=magnitude[i - 1].__getitem__)} for i in range(1, 6)]}
+    return header, manifest
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--write", action="store_true", help="regenerate checked-in reference data")
+    args = parser.parse_args()
+    header, manifest = build()
+    encoded = json.dumps(manifest, ensure_ascii=False, indent=2) + "\n"
+    if args.write:
+        HEADER.write_text(header, encoding="utf-8")
+        MANIFEST.write_text(encoded, encoding="utf-8")
+    else:
+        assert HEADER.read_text(encoding="utf-8") == header, "reference header stale"
+        assert MANIFEST.read_text(encoding="utf-8") == encoded, "reference manifest stale"
+    print("HEAR_REFERENCE_OK: 5 fixed vectors, 512 window coefficients, independent DFT; device not executed")
+
+
+if __name__ == "__main__":
+    main()

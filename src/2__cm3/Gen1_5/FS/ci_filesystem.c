@@ -6,6 +6,59 @@
 
 #include <ff.h>
 
+#if TDC_SYS_TEST_STORAGE_ENABLE
+#include "test/tdc_sys_test_storage.h"
+/* HOLD 중 긴 제품 진단만 억제한다. 평상시 출력과 제품 함수 반환은 유지한다. */
+#define SEGGER_RTT_printf(...) (tdc_sys_storage_is_active() ? 0 : SEGGER_RTT_printf(__VA_ARGS__))
+#define ci_print_file_func_line(...) do { if (!tdc_sys_storage_is_active()) ci_print_file_func_line(__VA_ARGS__); } while (0)
+#endif
+
+#if TDC_SYS_TEST_77_ENABLE || TDC_SYS_TEST_80_ENABLE
+static tdc_fs_test_observation_t *s_tdc_fs_observation;
+
+bool tdc_fs_test_observe_begin(tdc_fs_test_observation_t *observation)
+{
+    if (observation == NULL || s_tdc_fs_observation != NULL || !tdc_sys_storage_is_active())
+        return false;
+    memset(observation, 0, sizeof(*observation));
+    s_tdc_fs_observation = observation;
+    return true;
+}
+
+void tdc_fs_test_observe_end(void)
+{
+    s_tdc_fs_observation = NULL;
+}
+
+static FRESULT tdc_fs_test_sync(FIL *file)
+{
+    const FRESULT result = f_sync(file);
+    if (s_tdc_fs_observation != NULL)
+    {
+        ++s_tdc_fs_observation->sync_count;
+        if (s_tdc_fs_observation->sync_result == FR_OK)
+            s_tdc_fs_observation->sync_result = result;
+    }
+    return result;
+}
+
+static FRESULT tdc_fs_test_close(FIL *file)
+{
+    const FRESULT result = f_close(file);
+    if (s_tdc_fs_observation != NULL)
+    {
+        ++s_tdc_fs_observation->close_count;
+        if (s_tdc_fs_observation->close_result == FR_OK)
+            s_tdc_fs_observation->close_result = result;
+    }
+    return result;
+}
+
+/* 이 번역 단위의 호출만 감싼다. 함수 본문 추출 시험에는 의존성을 추가하지 않는다. */
+#define f_sync(file) tdc_fs_test_sync(file)
+#define f_close(file) tdc_fs_test_close(file)
+#endif
+
 CI_FILESYSTEM_FFT_PASS_BIN_T *g_ci_filesystem_ptr_pass_bin;
 CI_FILESYSTEM_ENTIRE_MAP_T   *g_ci_filesystem_ptr_entire_map;
 

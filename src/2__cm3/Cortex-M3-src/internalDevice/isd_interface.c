@@ -160,6 +160,29 @@ void clearIsdControlStateChagedFlag(void)
     s_isd_control_state_chaged_flag = false;
 }
 
+#if defined(TDC_UNIT_TEST)
+/* 상태 전이 함수는 대체하지 않는다. 비공개 RAM만 교환하며 I/O를 호출하지 않는다. */
+#include <string.h>
+void tdc_ut_cm3_isd_state_exchange(tdc_ut_cm3_isd_state_t *state)
+{
+    tdc_ut_cm3_isd_state_t previous;
+    if (state == NULL) return;
+    memset(&previous, 0, sizeof(previous));
+    memcpy(&previous.state, &s_isd_state, sizeof(s_isd_state));
+    previous.changed = s_isd_control_state_chaged_flag;
+    previous.i2c_free = i2c_is_freeS_for_10msec;
+    memcpy(&s_isd_state, &state->state, sizeof(s_isd_state));
+    s_isd_control_state_chaged_flag = state->changed;
+    i2c_is_freeS_for_10msec = state->i2c_free;
+    memcpy(state, &previous, sizeof(previous));
+}
+
+bool tdc_ut_cm3_isd_state_changed(void)
+{
+    return s_isd_control_state_chaged_flag;
+}
+#endif
+
 ST__ISD_STATUS isd_interface(bool isd_enable, bool mappingConnection, EN__ISD_CONTROL_STATE isdControlCommand)
 {
     bool stimulationParameterSettingIsDone = false;
@@ -728,6 +751,5 @@ bool isING_connectionCheckWithMapping(void)
 {
     return isINGconnectionCheck_WithMapping;
 }
-
 
 

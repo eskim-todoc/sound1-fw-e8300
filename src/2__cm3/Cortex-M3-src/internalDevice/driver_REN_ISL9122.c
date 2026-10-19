@@ -10,6 +10,10 @@
 
 #include "driver_REN_ISL9122.h"
 #include "commonDataProcessing.h"
+#if defined(TDC_UNIT_TEST)
+#include "../test/tdc_ut_io_cm3.h"
+int (*g_tdc_ut_io_cm3_pmic_bus_hook)(int read, int addr, int *data, int count) = 0;
+#endif
 
 bool write_REN_ISL9122_register_byCM3_I2C(int registerAddr, int value)
 {
@@ -19,6 +23,9 @@ bool write_REN_ISL9122_register_byCM3_I2C(int registerAddr, int value)
 
     transferBuffer[0] = (int) registerAddr;
     transferBuffer[1] = (int) value;
+#if defined(TDC_UNIT_TEST)
+    if (g_tdc_ut_io_cm3_pmic_bus_hook != 0) return g_tdc_ut_io_cm3_pmic_bus_hook(0, REN_ISL9122_SlaveAddr, transferBuffer, 2) != 0;
+#endif
     i2c_startWriteData(REN_ISL9122_SlaveAddr, transferBuffer, 2);
 
     while (1)
@@ -50,6 +57,15 @@ bool read_REN_ISL9122_register_byCM3_I2C(int registerAddr, int *read_value)
 
     // 읽기 : 선행 명령 전송 (
     transferBuffer[0] = registerAddr;
+#if defined(TDC_UNIT_TEST)
+    if (g_tdc_ut_io_cm3_pmic_bus_hook != 0)
+    {
+        if (!g_tdc_ut_io_cm3_pmic_bus_hook(0, REN_ISL9122_SlaveAddr, transferBuffer, 1)) return false;
+        if (!g_tdc_ut_io_cm3_pmic_bus_hook(1, REN_ISL9122_SlaveAddr, &transferBuffer[1], 1)) return false;
+        *read_value = transferBuffer[1];
+        return true;
+    }
+#endif
     i2c_startWriteData(REN_ISL9122_SlaveAddr, transferBuffer, 1);
 
     while (1)

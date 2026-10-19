@@ -113,6 +113,7 @@ SECTIONS
         . = ALIGN(4);
 
         *(.text .text.*)            /* all remaining code */
+        KEEP(*(.tdc_ut_entry))      /* opt-in debugger test entry references */
         *(.rodata .rodata.*)        /* read-only data (constants) */
 
         . = ALIGN(4);
@@ -203,5 +204,12 @@ SECTIONS
     .segger_rtt 0x20000000 : ALIGN(4)
     {
         KEEP(*(.segger_rtt))
+    } > LPDSP32_BRAM
+
+    /* Optional test FIL workspace; no normal-build object. Explicitly reset
+     * by the runner before use. Keep the existing RTT control address intact. */
+    .tdc_ut_boot_workspace (NOLOAD) : ALIGN(8)
+    {
+        *(.tdc_ut_boot_workspace)
     } > LPDSP32_BRAM
 }

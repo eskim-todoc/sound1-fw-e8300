@@ -7,6 +7,16 @@
 
 static ST__ERROR_CODE errorCode;
 
+#if defined(TDC_UNIT_TEST)
+/* 시험 전 오류 전체를 보관하고 시험 후 원상 복원하기 위한 교환이다. */
+void tdc_ut_cm3_error_exchange(ST__ERROR_CODE *state)
+{
+    ST__ERROR_CODE saved = errorCode;
+    errorCode = *state;
+    *state = saved;
+}
+#endif
+
 void errorCodeUpdate(EN__MAJOR_ERRORCODE majorError, int detailError, int lineNumber)
 {
     int temp;

@@ -96,6 +96,13 @@ int ci_dio_configure_normal(void)
     // 부팅하기 때문에 사실상 큰 의미 없다.
     snd_qcc_init();
 
+#if TDC_SYSTEM_TEST_DIO35_ENABLE
+    /* 출력 전환 전에 래치를 Low로 준비하여 초기 High 펄스를 방지한다.
+     * CFX 정상 루프 허용 전의 초기화 단계이며 다른 GPIO 값은 보존한다. */
+    Sys_GPIO_Set_Low(DIO35);
+    Sys_DIO_Config(DIO35, (DIO_1X_DRIVE | DIO_LPF_DISABLE | DIO_NO_PULL | DIO_MODE_GPIO_OUT));
+#endif
+
     return df_True;
 }
 

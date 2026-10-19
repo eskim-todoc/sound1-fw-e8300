@@ -3,14 +3,46 @@
 #include <stdbool.h>
 #include <stddef.h>
 
+#if defined(TDC_UNIT_TEST)
+#include "../test/tdc_ut_io_cm3.h"
+void (*g_tdc_ut_io_cm3_i2c_poll_hook)(void) = NULL;
+const tdc_ut_io_cm3_i2c_ops_t *g_tdc_ut_io_cm3_i2c_ops = NULL;
+static int s_tdc_io_i2c_trace[8]; /* addr, read, requested, transferred, first 4 bytes */
+
+/* IRQ 주입 fixture가 상태를 관측한다. 호출 자체는 상태를 변경하지 않는다. */
+void tdc_ut_io_cm3_i2c_snapshot(ST__I2C_DRIVER *out);
+#endif
+
 #define CM3_I2c_TestMode
 
 static ST__I2C_DRIVER i2c_driver;
 
 EN__I2C_DRIVER_STATE get_i2cDriverStatus(void)
 {
+#if defined(TDC_UNIT_TEST)
+    if (g_tdc_ut_io_cm3_i2c_poll_hook != NULL)
+    {
+        g_tdc_ut_io_cm3_i2c_poll_hook();
+    }
+#endif
     return i2c_driver.i2c_diver_state;
 }
+
+#if defined(TDC_UNIT_TEST)
+void tdc_ut_io_cm3_i2c_snapshot(ST__I2C_DRIVER *out)
+{
+    if (out != NULL)
+    {
+        *out = i2c_driver;
+    }
+}
+int tdc_ut_io_cm3_i2c_trace(int *values, int capacity)
+{
+    if (values == NULL || capacity < 8) return TDC_UT_IO_CM3_INVALID;
+    for (int idx = 0; idx < 8; idx++) values[idx] = s_tdc_io_i2c_trace[idx];
+    return 8;
+}
+#endif
 
 bool isI2cDriverStatusIdle(void)
 {
@@ -41,12 +73,34 @@ void clearI2cDriverStatus(void)
 
 uint32_t getI2cHardwareStatus(void)
 {
+#if defined(TDC_UNIT_TEST)
+    if (g_tdc_ut_io_cm3_i2c_ops != NULL) return g_tdc_ut_io_cm3_i2c_ops->status();
+#endif
     return I2C0->STATUS;
 }
 
 #ifdef CM3_I2c_TestMode
 int I2C_statusRegister_dump[32];
 int dumpIndex = 0;
+#endif
+
+#if defined(TDC_UNIT_TEST)
+void tdc_ut_io_cm3_i2c_exchange(ST__I2C_DRIVER *state, int cache[41])
+{
+    ST__I2C_DRIVER previous = i2c_driver;
+    i2c_driver = *state; *state = previous;
+    for (int idx = 0; idx < 8; idx++)
+    {
+        int value = s_tdc_io_i2c_trace[idx];
+        s_tdc_io_i2c_trace[idx] = cache[idx]; cache[idx] = value;
+    }
+    int value = dumpIndex; dumpIndex = cache[8]; cache[8] = value;
+    for (int idx = 0; idx < 32; idx++)
+    {
+        value = I2C_statusRegister_dump[idx];
+        I2C_statusRegister_dump[idx] = cache[idx + 9]; cache[idx + 9] = value;
+    }
+}
 #endif
 
 void enableI2cInterface(bool isEnabled)
@@ -64,12 +118,24 @@ void enableI2cInterface(bool isEnabled)
 
 void clearI2cHardwareStatus(void)
 {
+#if defined(TDC_UNIT_TEST)
+    if (g_tdc_ut_io_cm3_i2c_ops != NULL)
+    {
+        g_tdc_ut_io_cm3_i2c_ops->action(1, df__clearI2cHardwareStatus);
+        return;
+    }
+#endif
     I2C0->STATUS = df__clearI2cHardwareStatus;
     NVIC_ClearPendingIRQ(I2C_0_IRQn);
 }
 
 void i2c_startWriteData(const int slaveAddress, int *p_sourcedata, const int dataLength)
 {
+#if defined(TDC_UNIT_TEST)
+    s_tdc_io_i2c_trace[0] = slaveAddress; s_tdc_io_i2c_trace[1] = 0;
+    s_tdc_io_i2c_trace[2] = dataLength; s_tdc_io_i2c_trace[3] = 0;
+    for (int idx = 0; idx < 4; idx++) s_tdc_io_i2c_trace[4 + idx] = 0;
+#endif
     OTE_1_5gen_I2C_STATUS_T i2cStatus;
 
     i2c_driver.slaveAddress                = slaveAddress;
@@ -90,6 +156,10 @@ void i2c_startWriteData(const int slaveAddress, int *p_sourcedata, const int dat
         i2c_driver.i2c_diver_state = i2c_state_WriteTriggered;
 
         clearI2cHardwareStatus();
+#if defined(TDC_UNIT_TEST)
+        if (g_tdc_ut_io_cm3_i2c_ops != NULL) g_tdc_ut_io_cm3_i2c_ops->action(2, i2c_driver.slaveAddress);
+        else
+#endif
         Sys_I2C_StartWrite(I2C0, i2c_driver.slaveAddress);
     }
     else
@@ -101,6 +171,11 @@ void i2c_startWriteData(const int slaveAddress, int *p_sourcedata, const int dat
 
 void i2c_startReadData(const int slaveAddress, int *p_destination, const int dataLength)
 {
+#if defined(TDC_UNIT_TEST)
+    s_tdc_io_i2c_trace[0] = slaveAddress; s_tdc_io_i2c_trace[1] = 1;
+    s_tdc_io_i2c_trace[2] = dataLength; s_tdc_io_i2c_trace[3] = 0;
+    for (int idx = 0; idx < 4; idx++) s_tdc_io_i2c_trace[4 + idx] = 0;
+#endif
     OTE_1_5gen_I2C_STATUS_T i2cStatus;
 
     i2c_driver.slaveAddress                = slaveAddress;
@@ -120,6 +195,10 @@ void i2c_startReadData(const int slaveAddress, int *p_destination, const int dat
         i2c_driver.i2c_diver_state = i2c_state_ReadTriggerd;
 
         clearI2cHardwareStatus();
+#if defined(TDC_UNIT_TEST)
+        if (g_tdc_ut_io_cm3_i2c_ops != NULL) g_tdc_ut_io_cm3_i2c_ops->action(3, i2c_driver.slaveAddress);
+        else
+#endif
         Sys_I2C_StartRead(I2C0, i2c_driver.slaveAddress);
     }
     else
@@ -131,6 +210,14 @@ void i2c_startReadData(const int slaveAddress, int *p_destination, const int dat
 
 void init_I2c(void)
 {
+#if defined(TDC_UNIT_TEST)
+    if (g_tdc_ut_io_cm3_i2c_ops != NULL)
+    {
+        g_tdc_ut_io_cm3_i2c_ops->action(6, 0);
+        clearI2cDriverStatus();
+        return;
+    }
+#endif
     Sys_I2C_Reset(I2C0);
     Sys_I2C_Config(I2C0, CM3_I2C_CFG_VAL_AsMaster);
     clearI2cDriverStatus();
@@ -168,6 +255,9 @@ void i2c_comm(void)
     static int              i = 0;
     OTE_1_5gen_I2C_STATUS_T i2cStatus;
 
+#if defined(TDC_UNIT_TEST)
+    if (g_tdc_ut_io_cm3_i2c_ops == NULL)
+#endif
     NVIC_ClearPendingIRQ(I2C_0_IRQn);
 
     i2cStatus.status = getI2cHardwareStatus();
@@ -199,12 +289,24 @@ void i2c_comm(void)
              {
                  if (0 < i2c_driver.i2cTxRx_RemaindedDataLength)
                  {
+#if defined(TDC_UNIT_TEST)
+                     if (g_tdc_ut_io_cm3_i2c_ops != NULL) g_tdc_ut_io_cm3_i2c_ops->action(4, *(i2c_driver.p_i2cTx_Source++));
+                     else
+#endif
                      I2C0->TX_DATA = *(i2c_driver.p_i2cTx_Source++);
+#if defined(TDC_UNIT_TEST)
+                     int trace_index = s_tdc_io_i2c_trace[3]++;
+                     if (trace_index < 4) s_tdc_io_i2c_trace[4 + trace_index] = *(i2c_driver.p_i2cTx_Source - 1);
+#endif
                      i2c_driver.i2cTxRx_RemaindedDataLength--;
                  }
 
                  if (i2c_driver.i2cTxRx_RemaindedDataLength == 0)
                  {
+#if defined(TDC_UNIT_TEST)
+                     if (g_tdc_ut_io_cm3_i2c_ops != NULL) g_tdc_ut_io_cm3_i2c_ops->action(5, I2C_LAST_DATA);
+                     else
+#endif
                      I2C0->CTRL = I2C_LAST_DATA;
                  }
              }
@@ -218,6 +320,10 @@ void i2c_comm(void)
                  else
                  {
                      i2c_driver.i2c_diver_state = i2c_state_WritingDone;
+#if defined(TDC_UNIT_TEST)
+                     if (g_tdc_ut_io_cm3_i2c_ops != NULL) g_tdc_ut_io_cm3_i2c_ops->action(1, df__clearI2cHardwareStatus);
+                     else
+#endif
                      I2C0->STATUS = df__clearI2cHardwareStatus;
                  }
              }
@@ -248,6 +354,10 @@ void i2c_comm(void)
                  && (i2cStatus.fields.rx_req        == 0)
                  && (i2cStatus.fields.ack           == 0))
              {
+#if defined(TDC_UNIT_TEST)
+                 if (g_tdc_ut_io_cm3_i2c_ops != NULL) g_tdc_ut_io_cm3_i2c_ops->action(5, I2C_ACK);
+                 else
+#endif
                  I2C0->CTRL = I2C_ACK;
              }
              // 데이터 수신했을 때
@@ -261,14 +371,30 @@ void i2c_comm(void)
              {
                  if ((i2c_driver.i2cTxRx_RemaindedDataLength - 1) == 0)
                  {
+#if defined(TDC_UNIT_TEST)
+                     if (g_tdc_ut_io_cm3_i2c_ops != NULL) g_tdc_ut_io_cm3_i2c_ops->action(5, I2C_NACK | I2C_STOP);
+                     else
+#endif
                      I2C0->CTRL = I2C_NACK | I2C_STOP;
                  }
                  else
                  {
+#if defined(TDC_UNIT_TEST)
+                     if (g_tdc_ut_io_cm3_i2c_ops != NULL) g_tdc_ut_io_cm3_i2c_ops->action(5, I2C_ACK);
+                     else
+#endif
                      I2C0->CTRL = I2C_ACK;
                  }
 
+#if defined(TDC_UNIT_TEST)
+                 if (g_tdc_ut_io_cm3_i2c_ops != NULL) *(i2c_driver.p_i2cRx_Destination) = g_tdc_ut_io_cm3_i2c_ops->rx();
+                 else
+#endif
                  *(i2c_driver.p_i2cRx_Destination) = I2C0->RX_DATA;
+#if defined(TDC_UNIT_TEST)
+                 int trace_index = s_tdc_io_i2c_trace[3]++;
+                 if (trace_index < 4) s_tdc_io_i2c_trace[4 + trace_index] = *(i2c_driver.p_i2cRx_Destination);
+#endif
                  i2c_driver.p_i2cRx_Destination++;
                  i2c_driver.i2cTxRx_RemaindedDataLength--;
              }
@@ -282,6 +408,10 @@ void i2c_comm(void)
                  else
                  {
                      i2c_driver.i2c_diver_state = i2c_state_ReadingDone;
+#if defined(TDC_UNIT_TEST)
+                     if (g_tdc_ut_io_cm3_i2c_ops != NULL) g_tdc_ut_io_cm3_i2c_ops->action(1, df__clearI2cHardwareStatus);
+                     else
+#endif
                      I2C0->STATUS = df__clearI2cHardwareStatus;
                  }
              }

@@ -5,6 +5,9 @@
 #include <agc.h>
 #include <audioMixer.h>
 #include <main.h>
+#if defined(TDC_UNIT_TEST)
+#include "../test/tdc_ut_hooks.h"
+#endif
 
 // 감쇠 영역 Gain 10dB 직선의 y 절편 값 (Q-format 형식)
 int chess_storage(XMEM) m_attenuation_region_ybias_db_Q8_16[10] = {
@@ -173,6 +176,9 @@ int calculate_agc_gain(int agc_input)
     {
         agc_input = 1;
     }
+#if defined(TDC_UNIT_TEST)
+    g_tdc_ut_agc_clamped_input = agc_input;
+#endif
 
     /* cfx_pwr_to_dB() : 입력 m1p47, 출력 m8p16
      *                   단, 23 이상부터 정상적인 계산 가능
@@ -184,6 +190,10 @@ int calculate_agc_gain(int agc_input)
      * cfx_pwr_to_dB는 24비트 결과를 출력하기 때문에,
      * to_int 적용 후 >> 연산을 수행해도 음수/양수 변환 에러는 발생하지 않는다. */
     agc_input_db_Q8_16  = to_int(cfx_pwr_to_dB(cfx_as_frac48(normalized_agc_input)).v);
+#if defined(TDC_UNIT_TEST)
+    if (g_tdc_ut_agc_override_enabled)
+        agc_input_db_Q8_16 = g_tdc_ut_agc_input_db;
+#endif
     agc_input_db_Q12_12 = agc_input_db_Q8_16 >> 4;
 
     // sensitivity Level에 따라 AGC 파라미터들의 값이 달라지므로, 먼저 sensitivity level을 읽어들인다.
@@ -273,6 +283,9 @@ int calculate_agc_gain(int agc_input)
     }
 
     agc_gain_db_Q8_16 = (int) long_acc;
+#if defined(TDC_UNIT_TEST)
+    g_tdc_ut_agc_goal_db = agc_gain_db_Q8_16;
+#endif
 
 #if 1  // attack, release
     attack_release_agc_gain_db_Q8_16     = audio_agc_attack_release(agc_gain_db_Q8_16);

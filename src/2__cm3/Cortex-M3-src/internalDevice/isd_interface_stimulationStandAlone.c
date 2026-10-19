@@ -24,13 +24,27 @@ extern ST__CFX_CM3_SharedMemory_ALL cfx_cm3_sharedMemoryAll __attribute__((secti
 
 static bool newMapLoadeFlagForStimulParaCalculation = true;
 
+#if defined(TDC_UNIT_TEST)
+extern int g_tdc_ut_cm3_suppress_diagnostics;
+/* 공유 RAM과 별개인 재계산 요청도 비기본값까지 보관/복원한다. */
+int tdc_ut_cm3_map_flag_exchange(int value)
+{
+    int previous = newMapLoadeFlagForStimulParaCalculation;
+    newMapLoadeFlagForStimulParaCalculation = value != 0;
+    return previous;
+}
+#endif
+
 void set_newMapLoadeFlagForStimulParaSetting(void)
 {
     changePcmOutputMode(PcmBitStream_Mode_NopStandby);
 
     newMapLoadeFlagForStimulParaCalculation = true;
 
-    ci_printv("[INDICATE] NEW MAP LOADED, SO CALCULATE STIMUL PARAMETERS \r\n");
+#if defined(TDC_UNIT_TEST)
+    if (!g_tdc_ut_cm3_suppress_diagnostics)
+#endif
+        ci_printv("[INDICATE] NEW MAP LOADED, SO CALCULATE STIMUL PARAMETERS \r\n");
 }
 
 void clear_newMapLoadeFlag(void)

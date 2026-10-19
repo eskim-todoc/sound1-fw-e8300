@@ -23,9 +23,56 @@ static int  SPI_Tx_Buffer[SPI_COMM_PACKET_SIZE] = {21, 20, 19, 18, 17, 16, 15, 1
 static int  Rx_DataPacket[BLE_DataPacketSize];
 static bool TxBufferEmpty = true;
 
+#if defined(TDC_UNIT_TEST)
+#include "../test/tdc_ut_io_cm3.h"
+int (*g_tdc_ut_io_cm3_spi_hw_hook)(int phase) = NULL;
+
+/* 설정/입력: 시험 IRQ 직전에 완전한 수신 패킷을 주입한다.
+ * 출력: DMA0_IRQHandler의 실제 분기 결과. 완료/오류 비트는 fixture 소유다.
+ * 복원: 시험 종료 때 원 수신 패킷을 다시 주입하고 idle로 정리한다.
+ */
+int tdc_ut_io_cm3_spi_inject(const int *input, int count)
+{
+    if (input == NULL || count != SPI_COMM_PACKET_SIZE)
+    {
+        return TDC_UT_IO_CM3_INVALID;
+    }
+    for (int idx = 0; idx < count; idx++)
+    {
+        SPI_Rx_Buffer[idx] = input[idx];
+    }
+    return TDC_UT_IO_CM3_OK;
+}
+
+int tdc_ut_io_cm3_spi_snapshot(int *out, int capacity)
+{
+    if (out == NULL || capacity < SPI_COMM_PACKET_SIZE)
+    {
+        return TDC_UT_IO_CM3_INVALID;
+    }
+    for (int idx = 0; idx < SPI_COMM_PACKET_SIZE; idx++)
+    {
+        out[idx] = SPI_Tx_Buffer[idx];
+    }
+    return SPI_COMM_PACKET_SIZE;
+}
+
+/* RAM 시험 종료 때 기존 데이터/idle만 복원하며 GPIO/DMA에는 접근하지 않는다. */
+int tdc_ut_io_cm3_spi_restore(const int *input, int count, int empty)
+{
+    if (input == NULL || count != SPI_COMM_PACKET_SIZE) return TDC_UT_IO_CM3_INVALID;
+    for (int idx = 0; idx < count; idx++) SPI_Tx_Buffer[idx] = input[idx];
+    TxBufferEmpty = empty != 0;
+    return TDC_UT_IO_CM3_OK;
+}
+#endif
+
 void enable_ReadCommandForSPI_Master(void)
 {
     TxBufferEmpty = false;
+#if defined(TDC_UNIT_TEST)
+    if (g_tdc_ut_io_cm3_spi_hw_hook != NULL && g_tdc_ut_io_cm3_spi_hw_hook(1)) return;
+#endif
     Sys_GPIO_Set_High(GPIO_PIN_ReadCommandForSPI_Master);
     // 마스터 장치에...  slave 장치에서 데이터가 준비되었으니깐 읽어 갈 수 있음을 알려준다.
 }
@@ -33,6 +80,9 @@ void enable_ReadCommandForSPI_Master(void)
 void clear_ReadCommandForSPI_Master(void)
 {
     TxBufferEmpty = true;
+#if defined(TDC_UNIT_TEST)
+    if (g_tdc_ut_io_cm3_spi_hw_hook != NULL && g_tdc_ut_io_cm3_spi_hw_hook(0)) return;
+#endif
     Sys_GPIO_Set_Low(GPIO_PIN_ReadCommandForSPI_Master);
     // 마스터 장치에서 데이터를 다 읽어 갔다.
 }
@@ -392,6 +442,14 @@ void writeDataToSpiTxBuff(int *source, int dataSize)
 
             // ci_printw("[TX] DMA-CYCLE-START\r\n");
 
+#if defined(TDC_UNIT_TEST)
+            /* 준비한 실제 버퍼는 유지하고 DMA/핀 경계만 RAM fixture에 넘긴다. */
+            if (g_tdc_ut_io_cm3_spi_hw_hook != NULL && g_tdc_ut_io_cm3_spi_hw_hook(2))
+            {
+                enable_ReadCommandForSPI_Master();
+                break;
+            }
+#endif
             Sys_DMA_Mode_Enable(DMA0, DMA_DISABLE);  // DMA0 끄기
             Sys_DMA_Mode_Enable(DMA1, DMA_DISABLE);  // DMA1 끄기
 

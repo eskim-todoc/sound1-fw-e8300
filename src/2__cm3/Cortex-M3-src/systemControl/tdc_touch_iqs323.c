@@ -12,6 +12,10 @@
  */
 
 #include <tdc_touch_iqs323.h>
+#if defined(TDC_UNIT_TEST)
+#include "../test/tdc_ut_io_cm3.h"
+int (*g_tdc_ut_io_cm3_touch_bus_hook)(int read, unsigned char *data, int count) = 0;
+#endif
 
 /* 레지스터 주소 (단일채널이라 최소). */
 #define REG_SYSTEM_STATUS     0x10
@@ -56,6 +60,9 @@ bool tdc_touch_iqs323_is_ulp(void)
  */
 static bool i2c_write(uint8_t *p_buf, int len)
 {
+#if defined(TDC_UNIT_TEST)
+    if (g_tdc_ut_io_cm3_touch_bus_hook != 0) return g_tdc_ut_io_cm3_touch_bus_hook(0, p_buf, len) != 0;
+#endif
     EN__I2C_DRIVER_STATE state;
     static int           buf[3];
 
@@ -95,6 +102,9 @@ static bool i2c_read(uint8_t *p_buf, int len)
     {
         return false;
     }
+#if defined(TDC_UNIT_TEST)
+    if (g_tdc_ut_io_cm3_touch_bus_hook != 0) return g_tdc_ut_io_cm3_touch_bus_hook(1, p_buf, len) != 0;
+#endif
     if (get_i2cDriverStatus() != i2c_state_Idle)
     {
         return false;
@@ -127,6 +137,9 @@ static bool i2c_read(uint8_t *p_buf, int len)
  */
 static bool wait_window_closed(int max_ms)
 {
+#if defined(TDC_UNIT_TEST)
+    if (g_tdc_ut_io_cm3_touch_bus_hook != 0) return true;
+#endif
     int tick_old = ci_timer_get_tick();
 
     while (1)
@@ -144,6 +157,9 @@ static bool wait_window_closed(int max_ms)
 
 static bool force_window_open(void)
 {
+#if defined(TDC_UNIT_TEST)
+    if (g_tdc_ut_io_cm3_touch_bus_hook != 0) return true;
+#endif
     uint8_t force_comm = 0xFF;
 
     if (Sys_GPIO_Read(TDC_TOUCH_IQS323_RDY_PIN) == TDC_TOUCH_IQS323_WIN_OPEN)

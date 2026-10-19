@@ -17,6 +17,15 @@
 // 구조체의 배치되는 주소를 sections.ld 파일을 수정하여 LPDSP32_PRAM5에 위치한다.
 ST__CFX_CM3_SharedMemory_ALL cfx_cm3_sharedMemoryAll __attribute__((section(".shared_memory")));
 
+#if defined(TDC_UNIT_TEST)
+#include <stdint.h>
+#include "../test/tdc_ut_coordination_cm3.h"
+const tdc_ut_cm3_map_ops_t *g_tdc_ut_cm3_map_ops;
+uintptr_t g_tdc_ut_cm3_expected_shared_address;
+int g_tdc_ut_cm3_suppress_uart_flag;
+int g_tdc_ut_cm3_suppress_diagnostics;
+#endif
+
 void update_CM3Status_toCFX(int value)
 {
     cfx_cm3_sharedMemoryAll.CM3_status = value;
@@ -49,6 +58,13 @@ bool isCFX_EEPROM_data_Loaded(void)
 
 bool sharedMemoryAddresError(void)
 {
+#if defined(TDC_UNIT_TEST)
+    /* 주소 확인 로직의 입력만 주입한다. 0이면 기존 링커 주소를 확인한다. */
+    if (g_tdc_ut_cm3_expected_shared_address != 0)
+    {
+        return (uintptr_t)&cfx_cm3_sharedMemoryAll != g_tdc_ut_cm3_expected_shared_address;
+    }
+#endif
     if (&cfx_cm3_sharedMemoryAll != ((ST__CFX_CM3_SharedMemory_ALL *) StartAddressCM3_sharedVarialbe))
     {
         return true;
@@ -273,7 +289,10 @@ void setFlag_AudioParametersCalculationDone_Cm3ToCfx(void)  // 파라미터 계�
 
 #if 1
     /* NOTE: 로그매핑 오디오 볼륨 게인 적용된 A, B 계수 테스트 코드 */
-    FS_MEM_UART->flag[0] = 1;
+#if defined(TDC_UNIT_TEST)
+    if (!g_tdc_ut_cm3_suppress_uart_flag)
+#endif
+        FS_MEM_UART->flag[0] = 1;
 #endif
 }
 
@@ -456,7 +475,12 @@ void changeProgramMapNum(int mapNum)
 #if 1  // from CFX to CM3
         if (0 < mapNum)
         {
-            fn_copy_MappingData_toCM3(mapNum, cfx_cm3_sharedMemoryAll.connected_ISD_num);
+#if defined(TDC_UNIT_TEST)
+            if (g_tdc_ut_cm3_map_ops)
+                g_tdc_ut_cm3_map_ops->copy_map(mapNum, cfx_cm3_sharedMemoryAll.connected_ISD_num);
+            else
+#endif
+                fn_copy_MappingData_toCM3(mapNum, cfx_cm3_sharedMemoryAll.connected_ISD_num);
 
             if (cfx_cm3_sharedMemoryAll.systemShare.system_opMode == en__normalMode)
             {
@@ -464,11 +488,32 @@ void changeProgramMapNum(int mapNum)
             }
         }
 
+#if defined(TDC_UNIT_TEST)
+        /* 파일 입력 경계만 RAM callback으로 바꾼다. 실패 시 초기화/재읽기 분기는
+         * 원래 조건과 순서를 유지하며 NULL은 제품 파일 경로를 사용한다. */
+        int fft_result = g_tdc_ut_cm3_map_ops
+            ? g_tdc_ut_cm3_map_ops->read_fft(cfx_cm3_sharedMemoryAll.currentMapData.numFrequencyBand)
+            : ci_fft_read_pass_bin(cfx_cm3_sharedMemoryAll.currentMapData.numFrequencyBand);
+        if (fft_result < 0)
+        {
+            if (g_tdc_ut_cm3_map_ops)
+            {
+                g_tdc_ut_cm3_map_ops->init_fft(cfx_cm3_sharedMemoryAll.currentMapData.numFrequencyBand);
+                g_tdc_ut_cm3_map_ops->read_fft(cfx_cm3_sharedMemoryAll.currentMapData.numFrequencyBand);
+            }
+            else
+            {
+                ci_fft_init_pass_bin(cfx_cm3_sharedMemoryAll.currentMapData.numFrequencyBand);
+                ci_fft_read_pass_bin(cfx_cm3_sharedMemoryAll.currentMapData.numFrequencyBand);
+            }
+        }
+#else
         if (ci_fft_read_pass_bin(cfx_cm3_sharedMemoryAll.currentMapData.numFrequencyBand) < 0)
         {
             ci_fft_init_pass_bin(cfx_cm3_sharedMemoryAll.currentMapData.numFrequencyBand);
             ci_fft_read_pass_bin(cfx_cm3_sharedMemoryAll.currentMapData.numFrequencyBand);
         }
+#endif
 #endif
 
         // cfx에 맵데이터를 eeprom에서 읽어 들이라고 명령한다.

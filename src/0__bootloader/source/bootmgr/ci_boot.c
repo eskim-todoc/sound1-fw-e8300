@@ -3,6 +3,17 @@
 #include <ci_initialize.h>
 #include <rtt_printf.h>
 #include <tdc_uart.h>
+#if defined(TDC_UNIT_TEST)
+#include "../test/tdc_ut_boot.h"
+/* 기본 NULL은 원래 FatFs를 호출한다. 명시적인 RAM 시험에서만 격리한다. */
+#define f_stat tdc_ut_boot_stat
+#define f_open tdc_ut_boot_open
+#define f_close tdc_ut_boot_close
+#define f_read tdc_ut_boot_read
+#define f_write tdc_ut_boot_write
+#define f_lseek tdc_ut_boot_seek
+#define f_sync tdc_ut_boot_sync
+#endif
 
 //
 // private macros
@@ -29,6 +40,24 @@ static void snd_boot_validate_alt_boot(void);
 static uint8_t           sg_slot_num    = 0;
 static snd_boot_status_t sg_boot_status = {0};
 static FIL              *sg_fp;
+
+#if defined(TDC_UNIT_TEST)
+/* 설정: 시험 전 정적 상태를 저장한다. 입력/출력: 상태와 슬롯 스냅샷.
+ * 복원: 시험 후 동일 값으로 호출한다. 이 API는 파일/NVM에 접근하지 않는다. */
+void tdc_ut_boot_slot_snapshot(snd_boot_status_t *status, uint8_t *slot, FIL **fp)
+{
+    *status = sg_boot_status;
+    *slot = sg_slot_num;
+    *fp = sg_fp;
+}
+
+void tdc_ut_boot_slot_restore(const snd_boot_status_t *status, uint8_t slot, FIL *fp)
+{
+    sg_boot_status = *status;
+    sg_slot_num = slot;
+    sg_fp = fp;
+}
+#endif
 
 //
 // functions
@@ -357,4 +386,3 @@ static void snd_boot_validate_alt_boot(void)
         break;
     }
 }
-

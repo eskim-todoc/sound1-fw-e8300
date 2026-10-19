@@ -39,6 +39,22 @@
 #include <rtt_printf.h>
 #include <tdc_boot_led.h>
 #include <tdc_uart.h>
+#if defined(TDC_UNIT_TEST)
+#include "test/tdc_ut_boot.h"
+/* 기본 hook은 0이다. 명시적으로 설치한 RAM 파일 입력만 f_read를 대체한다. */
+#define f_read tdc_ut_boot_read
+#define NVMReadBytes tdc_ut_boot_nvm_read
+#define f_open tdc_ut_boot_open
+#define f_close tdc_ut_boot_close
+#define f_chdir tdc_ut_boot_chdir
+#endif
+
+/* 호스트 DMA 경계에만 포인터 폭을 보존한다. 타깃의 전송 계약은 32비트다. */
+#if defined(TDC_UNIT_TEST) && defined(TDC_UNIT_TEST_HOST)
+#define TDC_UT_BOOT_DMA_ADDR(p) ((uintptr_t) (p))
+#else
+#define TDC_UT_BOOT_DMA_ADDR(p) ((uint32_t) (p))
+#endif
 
 #define SHOULD_BOOT 0xA5
 
@@ -52,6 +68,17 @@ static uint32_t _data_temp_buffer[_DATA_TEMP_BUFFER_SIZE];
 static FIL      ohdl;
 static FATFS    fsmount;
 static DIR      dir;
+
+#if defined(TDC_UNIT_TEST)
+/* 정지 상태에서 시험 전후 scratch RAM을 교환한다. NVM/주변장치 접근 없음. */
+void tdc_ut_boot_scratch_exchange(uint32_t data[TDC_UT_BOOT_SCRATCH_WORDS])
+{
+    for (unsigned i=0;i<_DATA_TEMP_BUFFER_SIZE;++i)
+    {
+        uint32_t value=_data_temp_buffer[i]; _data_temp_buffer[i]=data[i]; data[i]=value;
+    }
+}
+#endif
 
 int bootloader_initialize_aes_ctx(struct AES_ctx *aes_context, uint32_t *key)
 {
@@ -146,6 +173,11 @@ void bootloader_lock_pram(struct data_section_header *section_header, uint32_t *
         }
     }
     Sys_PRAMSec_SetLock(lock_value);
+#if defined(TDC_UNIT_TEST)
+    /* 출력: 실제 적용한 잠금 값과 대상. observer가 없으면 아무것도 기록하지 않는다. */
+    const uint32_t observed[3] = {section_header->type, (uint32_t)(uintptr_t)dest_addr, lock_value};
+    tdc_ut_boot_observe(TDC_UT_BOOT_OBSERVE_LOCK, observed, 3);
+#endif
 }
 
 typedef struct
@@ -420,8 +452,8 @@ int bootloader_transfer_section_data(struct data_section_header *section_header,
                                       | DMA_LITTLE_ENDIAN,
                                   read_size,
                                   0,
-                                  (uint32_t) _data_temp_buffer,
-                                  (uint32_t) & (CRC->ADD_32));
+                                  TDC_UT_BOOT_DMA_ADDR(_data_temp_buffer),
+                                  TDC_UT_BOOT_DMA_ADDR(&(CRC->ADD_32)));
             Sys_DMA_Set_Ctrl(CRC_CALCULATION_DMA, DMA_CLEAR_CNTS | DMA_CLEAR_BUFFER);
             Sys_DMA_Mode_Enable(CRC_CALCULATION_DMA, DMA_ENABLE);
 
@@ -449,10 +481,16 @@ int bootloader_transfer_section_data(struct data_section_header *section_header,
                               DMA_COMPLETE_INT_DISABLE | DMA_CNT_INT_DISABLE | DMA_DEST_ADDR_LSB_TOGGLE_DISABLE | DMA_SRC_ADDR_LSB_TOGGLE_DISABLE | DMA_DEST_ADDR_INCR_1 | dma_src_inc | word_size | DMA_DEST_ALWAYS_ON | DMA_SRC_ALWAYS_ON | DMA_PRIORITY_0 | SRC_TRANS_LENGTH_SEL | DMA_LITTLE_ENDIAN,
                               read_size << dma_len_mul,
                               0,
-                              (uint32_t) _data_temp_buffer,
-                              (uint32_t) dest_addr);
+                              TDC_UT_BOOT_DMA_ADDR(_data_temp_buffer),
+                              TDC_UT_BOOT_DMA_ADDR(dest_addr));
         Sys_DMA_Set_Ctrl(SECTION_TRANSFER_DMA, DMA_CLEAR_CNTS | DMA_CLEAR_BUFFER);
         Sys_DMA_Mode_Enable(SECTION_TRANSFER_DMA, DMA_ENABLE);
+#if defined(TDC_UNIT_TEST)
+        /* 데이터 자체/키를 로그에 넣지 않고 DMA의 대상/단위/길이만 관찰한다. */
+        const uint32_t observed[4] = {section_header->type, (uint32_t)(uintptr_t)dest_addr,
+                                      word_size, (uint32_t)(read_size << dma_len_mul)};
+        tdc_ut_boot_observe(TDC_UT_BOOT_OBSERVE_TRANSFER, observed, 4);
+#endif
 
         Nop();
         /* Wait for data transfer and CRC calculation to complete. */
@@ -740,6 +778,12 @@ int bootloader_load_boot_section(struct data_section_header *section_header, FIL
 
 uint32_t *bootloader_get_application_key(void)
 {
+#if defined(TDC_UNIT_TEST)
+    if (tdc_ut_boot_public_key() != NULL)
+    {
+        return tdc_ut_boot_public_key();
+    }
+#endif
     return (uint32_t *) SYSVAR_KEY_START; /* Cast to the correct type */
 }
 
@@ -1131,6 +1175,12 @@ int bootloader_process_manifest(FIL *file_desc, struct application_file_header *
     f_close(file_desc);  // 김은수 추가
 
 #if 1
+#if defined(TDC_UNIT_TEST)
+    /* RAM 파일 시험에서는 실제 제조 영역을 읽는 진단 덤프를 실행하지 않는다.
+     * hook이 없으면 기존 진단 출력 경로를 그대로 사용한다. */
+    if (!tdc_ut_boot_read_override_active())
+    {
+#endif
     tdc_uart_printf("\r\n\nafter, read manifest_contents \r\n");
     tdc_uart_printf("SYSVAR_MANU_TABLE = \r\n");
     for (int i = 0; i < MANU_TABLE_SIZE; i++)
@@ -1143,6 +1193,9 @@ int bootloader_process_manifest(FIL *file_desc, struct application_file_header *
     }
     tdc_uart_printf("\r\n");
     tdc_uart_printf("==================================================\r\n");
+#if defined(TDC_UNIT_TEST)
+    }
+#endif
 #endif
 
     while (read_len > 0)
@@ -1196,6 +1249,10 @@ int bootloader_process_manifest(FIL *file_desc, struct application_file_header *
                 return ret;
             }
 #if 1
+#if defined(TDC_UNIT_TEST)
+            if (!tdc_ut_boot_read_override_active())
+            {
+#endif
             tdc_uart_printf("\r\n\nafter, load file: '%s' \r\n", file_name);
             tdc_uart_printf("SYSVAR_MANU_TABLE = \r\n");
             for (int i = 0; i < MANU_TABLE_SIZE; i++)
@@ -1208,6 +1265,9 @@ int bootloader_process_manifest(FIL *file_desc, struct application_file_header *
             }
             tdc_uart_printf("\r\n");
             tdc_uart_printf("==================================================\r\n");
+#if defined(TDC_UNIT_TEST)
+            }
+#endif
 #endif
 
             pos += i + 1;

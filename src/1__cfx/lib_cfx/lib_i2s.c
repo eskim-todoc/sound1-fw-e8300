@@ -3,6 +3,7 @@
  */
 
 #include <lib_i2s.h>
+#include "../test/tdc_ut_io_cfx.h"
 
 static volatile int _XMEM lib_g_i2s_state = 0;
 
@@ -187,6 +188,14 @@ int I2S_isStreaming(void)
     return lib_g_i2s_state == LIB_I2S_STATE_ENABLED;
 }
 
+#if defined(TDC_UNIT_TEST)
+/* 시험 복원용 원시 상태. RESET도 그대로 보존한다. */
+int tdc_ut_i2s_raw_state(void)
+{
+    return lib_g_i2s_state;
+}
+#endif
+
 /* [DEAD] 미사용 - I2S 스트리밍 검출이 normal_loop(main.c) 인라인 로직으로 대체됨.
  *        호출부 없음(main.c:419 주석). 물리 삭제는 후속 일괄 - git 이력 보존. */
 void I2S_update_state(void)
@@ -277,18 +286,27 @@ void lib_i2s_copy_data_from_fifo(int _XMEM *p_fifo)
     // Race Condition, Interrupt Harzard, Shared Variable Conflict라고 불리는
     // 인터럽트 사용시 값이 꼬이는 버그 상황을 고려한 방식
 
-    disable_interrupts();
+#if defined(TDC_UNIT_TEST)
+    if (!g_tdc_ut_io_override_enabled)
+#endif
+        disable_interrupts();
 
     if (!lib_g_i2s_interrupt_flag)
     {
         // I2S 인터럽트가 발생되지 않았다면 바로 리턴
-        enable_interrupts();
+#if defined(TDC_UNIT_TEST)
+        if (!g_tdc_ut_io_override_enabled)
+#endif
+            enable_interrupts();
         return;
     }
 
     lib_g_i2s_interrupt_flag = 0;
 
-    enable_interrupts();
+#if defined(TDC_UNIT_TEST)
+    if (!g_tdc_ut_io_override_enabled)
+#endif
+        enable_interrupts();
 
     p_dst = (int *) &lib_g_i2s_buffers[lib_g_i2s_buffer_in_pos][0];
     p_src = (int *) p_fifo;
@@ -434,4 +452,3 @@ int _XMEM *I2S_get_buffer_with_fade_out_process(void)
 }
 
 /* EOF */
-

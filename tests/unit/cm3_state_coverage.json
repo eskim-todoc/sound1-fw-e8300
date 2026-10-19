@@ -1,0 +1,112 @@
+{
+  "core": "CM3",
+  "unit": 30,
+  "method": "D",
+  "criterion_row": 103,
+  "api": "tdc_ut_cm3_state_run(int *actual,int *expected,unsigned capacity,unsigned *count)",
+  "word_capacity": 30,
+  "record_format": "[-999,30,case,length,values...]",
+  "case_values": [
+    "control state",
+    "connected",
+    "private changed flag",
+    "PCM mode"
+  ],
+  "cases": [
+    {
+      "id": 1,
+      "input": "A=PowerIC_Reset, connected=1, changed=0; actual change_isd_state(A)",
+      "expected": [
+        1,
+        1,
+        0,
+        4
+      ]
+    },
+    {
+      "id": 2,
+      "input": "independent A seed; actual change_isd_state(B=PowerIC_OK)",
+      "expected": [
+        2,
+        1,
+        1,
+        4
+      ]
+    },
+    {
+      "id": 3,
+      "input": "actual clearIsdControlStateChagedFlag() after B",
+      "expected": [
+        2,
+        1,
+        0,
+        4
+      ]
+    },
+    {
+      "id": 99,
+      "input": "restore original private state and complete shared RAM",
+      "expected": [
+        1,
+        1
+      ]
+    }
+  ],
+  "known_findings": [
+    {
+      "case": 1,
+      "actual_changed": 1,
+      "expected_changed": 0,
+      "status": "criterion interpretation review required; product setter unchanged",
+      "reason": "A-maintained vs B-new-entry interpreted as no new-entry flag for A. Existing setter unconditionally raises changed even for same state. Criterion does not explicitly give same-A flag value; do not claim confirmed product defect or whole-unit PASS."
+    }
+  ],
+  "functions_executed": [
+    "change_isd_state",
+    "clearIsdControlStateChagedFlag",
+    "snd_isd_interface_get_state",
+    "changePcmOutputMode",
+    "readCurrentPcmOutputMode"
+  ],
+  "private_query": "tdc_ut_cm3_isd_state_changed: original private flag read only; no existing is_isd_state_changed product API exists",
+  "restoration": "Two nondefault private/PCM/shared-RAM seeds, whole shared object byte comparison, private snapshot byte comparison, capacity canaries",
+  "safety": "Caller must quiesce normal CM3 loop/ISR and CFX producers. CFX-enabled guard returns -3. Only RAM setters, no ISD FSM, PMIC, QCC, storage, reset, stimulation or auto-run.",
+  "commands": [
+    "python tests/unit/check_cm3_state.py",
+    "python tests/unit/check_cm3_state.py --target",
+    "python tests/unit/check_cm3_state.py --target --normal"
+  ],
+  "whole_unit_pass": false,
+  "device_executed": false,
+  "root_runner_integration": "Integrated into default tdc_ut_cm3_vectors_run_unit(30); shared reporter receives actual/expected records. Final root SDK suite and standalone current host checks verified; no device execution.",
+  "frozen": false,
+  "checks_executed": {
+    "host": {
+      "command": "python tests/unit/check_cm3_state.py",
+      "exit_code": 0,
+      "result": "HARNESS_OK: two nondefault passes, one same-A flag mismatch per pass retained; B/clear/restore/capacity/canary checks passed"
+    },
+    "arm_test": {
+      "command": "python tests/unit/check_cm3_state.py --target",
+      "exit_code": 0,
+      "result": "3 actual source objects compiled, no link/device execution"
+    },
+    "arm_normal": {
+      "command": "python tests/unit/check_cm3_state.py --target --normal",
+      "exit_code": 0,
+      "result": "3 objects compiled; no new state seam/run symbols in normal objects"
+    },
+    "encoding": "Three actual C sources decoded UTF8, CP949 encoding succeeded, forbidden source characters absent"
+  },
+  "root_review": {
+    "date": "2026-10-02",
+    "fix": "Reject count/output overlap before any write, including one NULL result buffer",
+    "regressions": "All 30 active elements of both result buffers, NULL opposite buffer, unchanged canaries/shared/private state",
+    "commands": [
+      "python tests/unit/check_cm3_state.py",
+      "python tests/unit/tdc_ut_cm3_run.py",
+      "python tests/unit/run_suite.py --sdk"
+    ],
+    "device_executed": false
+  }
+}

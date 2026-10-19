@@ -3,6 +3,7 @@
  */
 
 #include <interrupt_service_routine.h>
+#include "../test/tdc_sys_test_config.h"
 
 volatile app_interrupt_flag_t chess_storage(XMEM) g_interrupt_flags = {
         .read_isd_info   = 0,
@@ -100,6 +101,11 @@ extern "C" void FIFO_3_ISR() property(isr)
 
 extern "C" void FIFO_4_ISR() property(isr)
 {
+#if TDC_SYSTEM_TEST_DIO35_ENABLE
+    /* SYS-012 시작: PCM 출력 FIFO 요청부터 pcmDataOut 완료까지 표시한다.
+     * 대기/HEAR 처리도 포함한다. ISR에는 RTT 출력이나 지연을 넣지 않는다. */
+    Sys_GPIO_Set_High(DIO35);
+#endif
     g_interrupt_flags.pcm_out = 1;
 }
 

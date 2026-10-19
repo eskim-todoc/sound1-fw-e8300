@@ -3,6 +3,7 @@
  */
 
 #include <stimulationStrategy.h>
+#include "../test/tdc_ut_io_cfx.h"
 
 int _XMEM g_pcm_stimulation_packet_header                = 0;    // 최초값은 0이어야 한다.
 int _XMEM g_transferableChannelNum_per_1msec             = 0;    // 펄스폭에 따라 계산된 하나의 채널당 프레임 개숫에의해 24프레임 동안 보낼수 있는 차즉 채널 수.
@@ -389,7 +390,7 @@ void stimulationStrategy_NofM_PCM_Write(void)
     // ==========================================
     // STEP 8: PCM WRITING
     // ==========================================
-    int _XMEM *p_pcmFIFO = (int _XMEM *) HEAR_ADDR_FIFO_PCM_WRITING;
+    int _XMEM *p_pcmFIFO = TDC_UT_PCM_TOP();
 #if 1
     int        stride    = g_pcmFrameNum_per_channel;
 #else
@@ -404,7 +405,8 @@ void stimulationStrategy_NofM_PCM_Write(void)
     for (register int i = 0; i < df_MaxNumTransferableChannel; i++)
         chess_loop_range(0, df_MaxNumTransferableChannel)
         {
-            *p_pcmFIFO-- = pcm_Mold_NopStandby;
+            TDC_UT_PCM_WRITE(p_pcmFIFO, pcm_Mold_NopStandby);
+            p_pcmFIFO--;
         }
 
     /* ---------------------------------------------------------
@@ -413,7 +415,7 @@ void stimulationStrategy_NofM_PCM_Write(void)
      * Inject the generated stimulation packets into the FIFO at specific strided
      * intervals, directly overwriting the previously laid NOPs.
      * 앞서 채워둔 NOP 패킷 위에 계산된 간격(stride)에 맞춰 생성된 자극 패킷을 덮어쓴다. */
-    int _XMEM *pulse_ptr = (int _XMEM *) HEAR_ADDR_FIFO_PCM_WRITING;
+    int _XMEM *pulse_ptr = TDC_UT_PCM_TOP();
 
     /* Case A: The total number of pulses (N) fits within the 1msec hardware transfer limit.
      * Write all pulses and reset the tracking index to 0 for the next frame.
@@ -424,7 +426,7 @@ void stimulationStrategy_NofM_PCM_Write(void)
         for (register int i = 0; i < df_MaxNum_NofM; i++)
             chess_loop_range(0, df_MaxNum_NofM)
             {
-                *pulse_ptr = addr_stimulationTempBuff[addr_transferred_index];
+                TDC_UT_PCM_WRITE(pulse_ptr, addr_stimulationTempBuff[addr_transferred_index]);
                 pulse_ptr -= stride;  // Move pointer backward by stride (간격만큼 포인터 이동)
                 addr_transferred_index++;
             }
@@ -441,7 +443,7 @@ void stimulationStrategy_NofM_PCM_Write(void)
         for (register int i = 0; i < g_transferableChannelNum_per_1msec; i++)
             chess_loop_range(0, 24)
             {
-                *pulse_ptr = addr_stimulationTempBuff[addr_transferred_index];
+                TDC_UT_PCM_WRITE(pulse_ptr, addr_stimulationTempBuff[addr_transferred_index]);
                 pulse_ptr -= stride;
 
                 addr_transferred_index++;
@@ -640,7 +642,7 @@ void stimulationStrategy_CIS(void)
         {
             if (addr_transferred_index < addr_MapProgramData_FrequencyAnalysisBandNumbers)
             {
-                *((int _XMEM *) (HEAR_ADDR_FIFO_PCM_WRITING - i)) = addr_stimulationTempBuff[addr_transferred_index];
+                TDC_UT_PCM_WRITE(TDC_UT_PCM_TOP() - i, addr_stimulationTempBuff[addr_transferred_index]);
 
                 addr_transferred_index++;
                 transferred_frame_count++;
@@ -649,7 +651,7 @@ void stimulationStrategy_CIS(void)
                 {
                     for (int k = 0; k < (g_pcmFrameNum_per_channel - 1); k++, i++)
                     {
-                        *((int _XMEM *) (HEAR_ADDR_FIFO_PCM_WRITING - i)) = pcm_Mold_NopStandby;
+                        TDC_UT_PCM_WRITE(TDC_UT_PCM_TOP() - i, pcm_Mold_NopStandby);
                         transferred_frame_count++;
                     }
                 }
@@ -657,7 +659,7 @@ void stimulationStrategy_CIS(void)
             else
             {
                 // 1msec 동안 1회의 출력이 완료되어서 자극률 증가를 방지하기 위해 nop으로 출력
-                *((int _XMEM *) (HEAR_ADDR_FIFO_PCM_WRITING - i)) = pcm_Mold_NopStandby;
+                TDC_UT_PCM_WRITE(TDC_UT_PCM_TOP() - i, pcm_Mold_NopStandby);
                 transferred_frame_count++;
             }
 
@@ -667,7 +669,7 @@ void stimulationStrategy_CIS(void)
         // 전송 가능한 채널을 채우고 남은 나머지 프레임은 NOP으로 채운다.
         for (; transferred_frame_count < df_MaxNumTransferableChannel; i++)
         {
-            *((int _XMEM *) (HEAR_ADDR_FIFO_PCM_WRITING - i)) = pcm_Mold_NopStandby;
+            TDC_UT_PCM_WRITE(TDC_UT_PCM_TOP() - i, pcm_Mold_NopStandby);
             transferred_frame_count++;
         }
 
@@ -690,7 +692,7 @@ void stimulationStrategy_CIS(void)
         int _XMEM *ptr_FIFO_for_WritingPCM;
 
         ptr_stimulationTempBuff = (int _XMEM *) (&addr_stimulationTempBuff[addr_transferred_index]);
-        ptr_FIFO_for_WritingPCM = (int _XMEM *) HEAR_ADDR_FIFO_PCM_WRITING;
+        ptr_FIFO_for_WritingPCM = TDC_UT_PCM_TOP();
 
         // 전송 가능한 채널까지는 자극 데이터로 채운다.
 
@@ -701,7 +703,7 @@ void stimulationStrategy_CIS(void)
             // 첫번째는 자극 데이터로 채우고 나머지는 NOP으로 채움
 
             // 자극 데이터로 PCM 데이터 채움
-            *ptr_FIFO_for_WritingPCM = *ptr_stimulationTempBuff;
+            TDC_UT_PCM_WRITE(ptr_FIFO_for_WritingPCM, *ptr_stimulationTempBuff);
 
             ptr_FIFO_for_WritingPCM = (int _XMEM *) (ptr_FIFO_for_WritingPCM - 1);
             ptr_stimulationTempBuff = (int _XMEM *) (ptr_stimulationTempBuff + 1);
@@ -714,7 +716,7 @@ void stimulationStrategy_CIS(void)
                 // NOP으로 PCM 데이터 채움
                 for (int k = 0; k < (g_pcmFrameNum_per_channel - 1); k++)
                 {
-                    *ptr_FIFO_for_WritingPCM = pcm_Mold_NopStandby;
+                    TDC_UT_PCM_WRITE(ptr_FIFO_for_WritingPCM, pcm_Mold_NopStandby);
 
                     ptr_FIFO_for_WritingPCM = (int _XMEM*) (ptr_FIFO_for_WritingPCM - 1);
 
@@ -737,7 +739,7 @@ void stimulationStrategy_CIS(void)
         // 전송 가능한 채널을 채우고 남은 나머지 프레임은 NOP으로 채운다.
         while (transferred_frame_count < df_MaxNumTransferableChannel)
         {
-            *ptr_FIFO_for_WritingPCM = pcm_Mold_NopStandby;
+            TDC_UT_PCM_WRITE(ptr_FIFO_for_WritingPCM, pcm_Mold_NopStandby);
             ptr_FIFO_for_WritingPCM  = (int _XMEM *) (ptr_FIFO_for_WritingPCM - 1);
             transferred_frame_count++;
         }
