@@ -62,6 +62,8 @@
 #include <ci_map.h>
 #include <ci_fft.h>
 #include <ci_stim_mute.h>
+#include <tdc_link_config.h>
+#include <tdc_link_control.h>
 #include <ci_event_log.h>
 #include <ci_battery.h>
 #include <ci_power.h>
@@ -333,6 +335,9 @@ void Initialize(void)
     ci_printi("[INFO] INIT : FFT WINDOW COEFF \r\n");
 
     ci_stim_mute_init();
+    tdc_link_control_map_changed(0);
+    if (tdc_link_config_init() != TDC_LINK_CONFIG_OK)
+        ci_printw("[WARN] LINKPARM load/save failed; RAM settings retained. \r\n");
     ci_printi("[INFO] INIT : STIM MUTE \r\n");
 
     ci_event_log_init();

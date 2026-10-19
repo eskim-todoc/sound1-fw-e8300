@@ -20,6 +20,7 @@ ROOT = Path(__file__).resolve().parents[2]
 CM3 = ROOT / "src/2__cm3"
 SDK = Path(os.environ.get("TDC_E8300_SDK", "C:/Program Files (x86)/ON Semiconductor/Ezairo 8300 SDK"))
 PRODUCTS = [
+    "Cortex-M3-src/internalDevice/tdc_link_control.c",
     "Cortex-M3-src/systemControl/driver_i2c.c",
     "Cortex-M3-src/systemControl/driver_SPI.c",
     "Cortex-M3-src/systemControl/tdc_touch_iqs323.c",
@@ -177,6 +178,7 @@ def main() -> None:
             print(f"ARM COMPILE OK: {len(sources)} translation units; TDC_UNIT_TEST={not args.no_unit_test}")
         else:
             # Actual shared-state accessors and bit extraction; no output-value mocks.
+            sources.append(ROOT / "tests/unit/tdc_ut_link_config_default.c")
             sources += [CM3 / "Cortex-M3-src/systemControl/cfx_cm3_sharedMemory.c", CM3 / "Cortex-M3-src/signalProcessing/commonDataProcessing.c", CM3 / "Cortex-M3-src/internalDevice/isd_interface.c", CM3 / "Cortex-M3-src/internalDevice/isd_interface_stimulationParaSetting.c", CM3 / "Cortex-M3-src/systemControl/batteryNPowerControl.c", CM3 / "Cortex-M3-src/systemControl/LedOutput.c", CM3 / "Cortex-M3-src/error.c", CM3 / "Cortex-M3-src/QCC/snd_qcc.c", FIXTURE]
             executable = build / "tdc_ut_io_cm3.exe"
             if not args.ram:

@@ -13,6 +13,7 @@
 #include <error.h>
 #include <LedOutput.h>
 #include <isd_interface.h>
+#include <tdc_link_control.h>
 #include "tdc_ut_coordination_cm3.h"
 #include "tdc_ut_state_cm3.h"
 
@@ -639,6 +640,10 @@ static int run_unit(unsigned unit, int failure_observation)
     /* Setup: CFX 중지와 격리된 비normal fixture를 전제로 한다. 전체 상태 백업은
      * ISR/다른 코어 경쟁을 해결하지 못하므로 호출자는 시험 전용 정지점을 사용한다. */
     s_tdc_ut_saved_shared = cfx_cm3_sharedMemoryAll;
+    tdc_ut_link_control_state_t saved_link = {0};
+    tdc_ut_link_control_exchange(&saved_link);
+    tdc_ut_link_control_state_t saved_link_copy = saved_link;
+    tdc_ut_link_control_exchange(&saved_link_copy);
     ST__ERROR_CODE saved_error = {0};
     tdc_ut_cm3_error_exchange(&saved_error);
     ST_STIUL_DAC_REGISTER_VALUE saved_dac = *readStimulDAC_RegisterValue();
@@ -701,6 +706,7 @@ static int run_unit(unsigned unit, int failure_observation)
         default: run_shared(unit); break;
     }
     /* Restore: 보고용 배열만 유지하고 시험에서 바꾼 제품 상태는 모두 되돌린다. */
+    tdc_ut_link_control_exchange(&saved_link);
     cfx_cm3_sharedMemoryAll = s_tdc_ut_saved_shared;
     tdc_ut_cm3_error_exchange(&saved_error);
     *readStimulDAC_RegisterValue() = saved_dac;

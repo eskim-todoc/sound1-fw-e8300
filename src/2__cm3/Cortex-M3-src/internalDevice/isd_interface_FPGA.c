@@ -1,3 +1,4 @@
+#include <tdc_link_control.h>
 #include <isdExecution/dirver_PCM.h>
 #include "isd_interface_FPGA.h"
 #include "isd_interface.h"
@@ -491,6 +492,9 @@ bool read_txPowerLevel(int *p_readValue)
     if (read_REN_ISL9122_register_byCM3_I2C(REN_ISL9122_registerAddr_VoltageSet, &readValue))
     {
         *p_readValue = (readValue);
+#if defined(Board_is_OTE_VER_1_5)
+        tdc_link_control_note_level(readValue);
+#endif
         error_cnt    = 0;
         return true;
     }
@@ -547,7 +551,7 @@ bool is_arbitraryValue_matched_normalValue(void)
     int readValue;
     int tempA, tempB, tempC;
 
-    read_FPGA_backtel_FIFO(&readValue, 1);
+    if (!read_FPGA_backtel_FIFO(&readValue, 1)) return false;
 
     if (readValue == df_forwardPathCheck_arbitraryValue)
     {
@@ -565,7 +569,7 @@ bool is_arbitraryValue_matched_duplicateZeroData(void)
     int readValue;
     int tempA, tempB, tempC;
 
-    read_FPGA_backtel_FIFO(&readValue, 1);
+    if (!read_FPGA_backtel_FIFO(&readValue, 1)) return false;
 
     if (readValue == df_duplicateZeroValue)
     {
@@ -582,7 +586,7 @@ EN_ISD_PowerState read_isd_Power_State(void)
     int readValue;
     int tempA, tempB, tempC;
 
-    read_FPGA_FIFO_counter(&readValue);
+    if (!read_FPGA_FIFO_counter(&readValue)) return ISD_Power_NA;
 
     if (readValue == 0)
     {
@@ -590,7 +594,7 @@ EN_ISD_PowerState read_isd_Power_State(void)
     }
     if (readValue == 1)
     {
-        read_FPGA_backtel_FIFO(&readValue, 1);
+        if (!read_FPGA_backtel_FIFO(&readValue, 1)) return ISD_Power_NA;
         return data_ExtractionAndRigthShift(readValue, bitPosition_isd_PowerState, bitLength_isd_PowerState);
     }
     else
@@ -814,11 +818,17 @@ bool write_change_TxPowerLevel(int txLevel)
 #elif defined(Board_is_TD_DEV_ver_1_4) || defined(Board_is_OTE_VER_1_4) || defined(Board_is_OTE_VER_1_5)
 bool write_change_TxPowerLevel(int txLevel)
 {
+#if defined(Board_is_OTE_VER_1_5)
+    if (txLevel < ResetVoltageSetValue || txLevel > MaxVoltageControlValue) return false;
+#endif
     static int error_cnt = 0;
 
     if (write_REN_ISL9122_register_byCM3_I2C(REN_ISL9122_registerAddr_VoltageSet, txLevel))
     {
         error_cnt = 0;
+#if defined(Board_is_OTE_VER_1_5)
+        tdc_link_control_note_level(txLevel);
+#endif
         return true;
     }
     else

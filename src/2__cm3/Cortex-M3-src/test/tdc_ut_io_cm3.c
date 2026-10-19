@@ -11,6 +11,7 @@
 #include <driver_REN_ISL9122.h>
 #include <tdc_touch_iqs323.h>
 #include <isd_interface.h>
+#include <tdc_link_control.h>
 #include <isd_interface_stimulationParaSetting.h>
 #include <mappingControl.h>
 #include <ble_communication.h>
@@ -679,6 +680,10 @@ int tdc_ut_io_cm3_run_unit(int unit)
     if (cfx_cm3_sharedMemoryAll.is_enabled_CFX_iteration || !isSpiTxBuffEmpty() || !isI2cDriverStatusIdle()) return TDC_UT_IO_CM3_BUSY;
 #endif
     s_tdc_saved_shared = cfx_cm3_sharedMemoryAll;
+    tdc_ut_link_control_state_t saved_link = {0};
+    tdc_ut_link_control_exchange(&saved_link);
+    tdc_ut_link_control_state_t saved_link_copy = saved_link;
+    tdc_ut_link_control_exchange(&saved_link_copy);
     int saved_cache[4], saved_tx[SPI_COMM_PACKET_SIZE], saved_empty=isSpiTxBuffEmpty();
     int saved_ulp=tdc_touch_iqs323_is_ulp();
     ST__OTA_FILE_WRITE_INFO saved_ota = {0};
@@ -763,6 +768,7 @@ int tdc_ut_io_cm3_run_unit(int unit)
     g_tdc_ut_cm3_suppress_diagnostics = saved_diagnostics;
     if(saved_ulp) tdc_touch_iqs323_set_ulp(); else tdc_touch_iqs323_clear_ulp();
     tdc_ut_io_cm3_fpga_cache(saved_cache,1);
+    tdc_ut_link_control_exchange(&saved_link);
     cfx_cm3_sharedMemoryAll = s_tdc_saved_shared;
     tdc_ut_cm3_error_exchange(&saved_error);
     tdc_ut_io_cm3_spi_restore(saved_tx,SPI_COMM_PACKET_SIZE,saved_empty);

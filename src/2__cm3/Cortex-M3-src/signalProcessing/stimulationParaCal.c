@@ -1,3 +1,4 @@
+#include <tdc_link_control.h>
 #include <hw.h>
 #include <isdExecution/dirver_PCM.h>
 #include <stdbool.h>
@@ -677,6 +678,7 @@ bool calculationStimulParaN_cfxShare(void)
 
     p_calculatedStimulPara_byCM3->frameNumPerChannel   = frameNumPerOneChannel;
     p_calculatedStimulPara_byCM3->transferableFrameNum = transferableChannelNum;
+    tdc_link_control_map_changed(p_calculatedStimulPara_byCM3->frameNumPerChannel);
 
 #if defined(TDC_UNIT_TEST)
     if (!g_tdc_ut_cm3_suppress_diagnostics)

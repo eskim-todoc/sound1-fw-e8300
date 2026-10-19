@@ -13,6 +13,7 @@
  */
 
 #include "tdc_remote_general_debug.h"
+#include <tdc_ble_link_debug.h>
 
 #include <stdint.h>
 #include <stdbool.h>
@@ -36,7 +37,13 @@ int tdc_remote_general_debug_handle(const ST__REMOTECONTROL_PACKET *packet, int 
 
     ci_printd("[GD] opt: %d \r\n", option);
 
-    if (option == 1)  // 터치센서 디버깅 프로토콜
+    if (option == 0x20 || option == 0xFF)
+    {
+        uint8_t response[20];
+        int length = tdc_ble_link_debug_handle(packet->command, packet->data, response);
+        for (int i = 0; i < length; ++i) tx_buf[tx_index++] = response[i];
+    }
+    else if (option == 1)  // 터치센서 디버깅 프로토콜
     {
         tx_index = gd_handle_touch_debug(packet, tx_buf, tx_index, option);
     }

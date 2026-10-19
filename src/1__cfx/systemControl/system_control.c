@@ -3,6 +3,7 @@
  */
 
 #include <system_control.h>
+#include <driver_PCM_liveStimulation.h>
 
 /* 내부기가 새로 연결되거나, 리모콘 앱을 통해 맵 번호가 변경되는 등의 이벤트 발생 시,
  * CM3가 공유 메모리에 매핑 데이터를 업데이트 한다.
@@ -254,7 +255,7 @@ void Normal_PowerMode_isdDisonnected(void)
     /* 연결된 ISD가 없을 때, Mapping app 연결 상태가 아닌 경우에는 Link connection check counter를 초기화 한다. */
     if (Addr_SharedMem->isMappingProgramConneted != 1)
     {
-        m_link_connection_check_counter = -df_connectionCheckPeriod_ms; /* Init link connection check timer */
+        m_link_connection_check_counter = -tdc_link_backtel_period_ms(); /* 다음 링크 확인부터 설정 주기 적용 */
 
         /* 연결된 상태가 아닐 때는 Check 상태를 초기화 시킨다. */
         Addr_SharedMem->cfx_PCM_interface.conneded_ISDCheckPCM_state = BackelCircuitDisabled_FpagFifoCleared_duringLiveStimulation;

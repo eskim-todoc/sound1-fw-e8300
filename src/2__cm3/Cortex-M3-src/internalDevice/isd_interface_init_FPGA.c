@@ -1,3 +1,4 @@
+#include <tdc_link_control.h>
 #include <hw.h>
 #include <isdExecution/dirver_PCM.h>
 #include <stdbool.h>
@@ -88,7 +89,7 @@ void init_txPowerIC(bool isdControlStateChagedFlag)
 
         case 12:  // 전압 제어 범위 중 최소 값으로 시작.
         {
-            write_change_TxPowerLevel(ResetVoltageSetValue);
+            if (!write_change_TxPowerLevel(ResetVoltageSetValue)) return;
         }
         break;
 
@@ -100,9 +101,9 @@ void init_txPowerIC(bool isdControlStateChagedFlag)
                 tempValue = RF_TxPowerValue + VoltageControlStep;
 
                 // 큰 step 으로 전압을 올릴 수 있을 때
-                if (tempValue <= MaxVoltageControlValue)
+                if (tempValue <= tdc_link_control_effective_max())
                 {
-                    write_change_TxPowerLevel(tempValue);
+                    if (!write_change_TxPowerLevel(tempValue)) return;
 
                     flowControlCounter = 12;  // 함수 종료 전 flowControlCounter++; → 실제로 case 13을 반복
                 }
@@ -110,9 +111,9 @@ void init_txPowerIC(bool isdControlStateChagedFlag)
                 {
                     tempValue = RF_TxPowerValue + 1;
 
-                    if (tempValue <= MaxVoltageControlValue)
+                    if (tempValue <= tdc_link_control_effective_max())
                     {
-                        write_change_TxPowerLevel(tempValue);  // 함수 종료 전 flowControlCounter++; → 실제로 case 13을 반복
+                        if (!write_change_TxPowerLevel(tempValue)) return;  // 함수 종료 전 flowControlCounter++; → 실제로 case 13을 반복
                         flowControlCounter = 12;
                     }
                     else
@@ -309,7 +310,7 @@ void init_ISD(bool isdControlStateChagedFlag)
             else
             {
                 write_FPGA_disable_RF_tx();
-                write_change_TxPowerLevel(MaxVoltageControlValue);
+                if (!write_change_TxPowerLevel(tdc_link_control_effective_max())) return;
 
                 // ci_printv("[FPGA] TRY TO DISABLE XFR(RF) \r\n");
             }
@@ -402,11 +403,11 @@ void init_ISD(bool isdControlStateChagedFlag)
 
                     clearErrorFlag(en__FPGA_CONFIGUARATION_ERROR);
 
-                    if (write_change_TxPowerLevel(MaxVoltageControlValue))
+                    if (write_change_TxPowerLevel(tdc_link_control_effective_max()))
                     {
                         if (read_txPowerLevel(&RF_TxPowerValue))
                         {
-                            if (RF_TxPowerValue != MaxVoltageControlValue)
+                            if (RF_TxPowerValue != tdc_link_control_effective_max())
                             {
                                 // R_TxPower 설정 실패, powerIC 초기화
                                 TDC_ISD_DEBOUNCE_FAIL(tx_power_err_cnt, "[PMIC]", "init_ISD c205pwr", "verify",

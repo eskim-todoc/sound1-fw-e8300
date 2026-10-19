@@ -2,6 +2,8 @@
 #ifndef cfx_cm3_sharedMemory_H__
 #define cfx_cm3_sharedMemory_H__
 
+#define TDC_LINK_SHARED_ABI_VERSION 1
+
 #include <stdbool.h>
 
 #include <hw.h>
@@ -246,6 +248,9 @@ typedef struct
     int gain_table_index_a;    // 0~255, 마이크 경로 게인 (128 = 0 dB)
     int gain_table_index_b;    // 0~255, I2S 크래들 마이크 경로 게인 (128 = 0 dB)
     int is_i2s_source_cradle;  // 1 = Mic (Case), 0 = Streaming 또는 미연결
+    /* CFX/CM3 동일 버전으로 빌드한다. 기존 필드의 위치는 유지한다. */
+    int tdc_backtel_period_100ms;
+    int tdc_power_stable_nop_count;
 } ST__CFX_CM3_SharedMemory_ALL;
 
 void update_CM3Status_toCFX(int value);

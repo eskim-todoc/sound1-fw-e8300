@@ -12,6 +12,21 @@
 #include <batteryNPowerControl.h>
 #include <LedOutput.h>
 #include <assert.h>
+#include <tdc_link_control.h>
+
+static void assert_link_state_restored(void)
+{
+    tdc_ut_link_control_state_t state = {0};
+    tdc_ut_link_control_exchange(&state);
+    tdc_ut_link_control_state_t observed = state;
+    tdc_ut_link_control_exchange(&state);
+    assert(observed.actual_level==187 && observed.level_valid);
+    assert(observed.force_level==0 && !observed.infinite && observed.nop_override);
+    assert(observed.connected_once && observed.nop_default==6);
+    assert(observed.coin_balance==2 && observed.fail_count==3);
+}
+
+#include <assert.h>
 #include <stdarg.h>
 
 I2C_Type g_tdc_ut_io_cm3_i2c;
@@ -310,6 +325,10 @@ int main(void)
 {
     setvbuf(stdout, NULL, _IONBF, 0);
     seed_product_ram();
+    tdc_link_control_map_changed(6);
+    assert(tdc_link_control_set_nop(19));
+    tdc_ut_link_control_state_t link_seed = {187, true, 0, false, true, true, 6, 2, 3};
+    tdc_ut_link_control_exchange(&link_seed);
     g_tdc_ut_cm3_vector_done=1;
     assert(tdc_ut_io_cm3_run_unit(26)==TDC_UT_IO_CM3_BUSY);
     assert(tdc_ut_io_cm3_observe_unit(32,1)==TDC_UT_IO_CM3_BUSY);
@@ -329,6 +348,7 @@ int main(void)
         assert(ret == TDC_UT_IO_CM3_OK && g_tdc_ut_io_cm3_done && !g_tdc_ut_io_cm3_overflow);
         capture_product_ram(&after);
         assert(memcmp(&before, &after, sizeof(before)) == 0);
+        assert_link_state_restored();
         assert(tdc_ut_io_cm3_run_unit(units[u]) == TDC_UT_IO_CM3_BUSY);
         assert(!g_tdc_ut_io_cm3_observed);
         int cursor=0, cases=0, word_case[TDC_UT_IO_CM3_CAPACITY], word_field[TDC_UT_IO_CM3_CAPACITY];

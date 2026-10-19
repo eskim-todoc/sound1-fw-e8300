@@ -27,6 +27,7 @@ INCLUDES = (
     "Cortex-M3-src/systemControl", "isdExecution", "signalProcessing", "systemControl",
 )
 SOURCES = (
+    "Cortex-M3-src/internalDevice/tdc_link_control.c",
     "Cortex-M3-src/test/tdc_ut_vectors_cm3.c",
     "Cortex-M3-src/test/tdc_ut_coordination_cm3.c",
     "Cortex-M3-src/test/tdc_ut_state_cm3.c",
@@ -147,6 +148,7 @@ def main() -> None:
     inputs += list(CM3.rglob("*.h"))
     inputs += [CM3 / "Cortex-M3-src/main.c", pathlib.Path(__file__),
                ROOT / "tests/unit/tdc_ut_cm3_host.c", ROOT / "tests/unit/tdc_ut_cm3_host_prelude.h",
+               ROOT / "tests/unit/tdc_ut_link_config_default.c",
                ROOT / "tests/unit/check_cfx_vectors.py"]
     criterion = ROOT / json.loads((ROOT / "tests/unit/cm3_pure_control_coverage.json").read_text(encoding="utf-8"))["criterion"]["path"]
     inputs.append(criterion)
@@ -187,6 +189,7 @@ static void tdc_ut_forbidden_ui(void) {abort();}
                                 function(source,"tdc_ut_cm3_boot_sequence"),encoding="utf-8")
             executable = directory / "tdc_ut_cm3_host.exe"
             run([str(compiler), *flags, str(fragment), str(ROOT / "tests/unit/tdc_ut_cm3_host.c"),
+                 str(ROOT / "tests/unit/tdc_ut_link_config_default.c"),
                  *objects, "-Wl,--gc-sections,--exclude-all-symbols", "-o", str(executable)])
             result = subprocess.run([str(executable)], cwd=ROOT, capture_output=True, text=True,
                                     encoding="utf-8", errors="replace", timeout=60)

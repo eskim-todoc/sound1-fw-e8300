@@ -1,3 +1,4 @@
+#include <tdc_link_control.h>
 #include "error.h"
 #include "cfx_cm3_sharedMemory.h"
 #include "mappingControl.h"
@@ -42,6 +43,7 @@ bool liveStimulation(ST__ISD_STATUS ISD_state)
     static int  evenOdd                           = 0;
     static int  reConnectionCounter               = 0;
     static int  ISD_connectionCounter_withMapping = 0;
+    static int s_tdc_mapping_period_ms = 300;
     static bool needResetting                     = false;
 
     int        i;
@@ -790,6 +792,7 @@ bool liveStimulation(ST__ISD_STATUS ISD_state)
 
                 if (ISD_connectionCounter_withMapping == 0)
                 {
+                    s_tdc_mapping_period_ms = tdc_link_control_period_ms();
                     ci_printv("\r\n[MAPPING] LINK CHECK TRIGGERED (LIVE, STANDBY) \r\n");
                 }
 
@@ -797,7 +800,7 @@ bool liveStimulation(ST__ISD_STATUS ISD_state)
 
                 ISD_connectionCounter_withMapping++;
 
-                if (ISD_connectionCounter_withMapping > 300)
+                if (ISD_connectionCounter_withMapping > s_tdc_mapping_period_ms)
                 {
                     ISD_connectionCounter_withMapping = 0;
                 }
