@@ -1,3 +1,4 @@
+#include <tdc_link_control.h>
 #include <hw.h>
 #include <tdc_isd_pcm.h>
 #include <stdbool.h>
@@ -76,7 +77,7 @@ void tdc_isd_init_tx_power_ic(bool isdControlStateChagedFlag)
 
         case 12:  // 전압 제어 범위 중 최소 값으로 시작.
         {
-            tdc_isd_fpga_write_change_tx_power_level(TDC_DRV_PMIC_RESET_VOLTAGE_SET_VALUE);
+            if (!tdc_isd_fpga_write_change_tx_power_level(TDC_DRV_PMIC_RESET_VOLTAGE_SET_VALUE)) return;
         }
         break;
 
@@ -88,9 +89,9 @@ void tdc_isd_init_tx_power_ic(bool isdControlStateChagedFlag)
                 tempValue = RF_TxPowerValue + TDC_DRV_PMIC_VOLTAGE_CONTROL_STEP;
 
                 // 큰 step 으로 전압을 올릴 수 있을 때
-                if (tempValue <= TDC_DRV_PMIC_MAX_VOLTAGE_CONTROL_VALUE)
+                if (tempValue <= tdc_link_control_effective_max())
                 {
-                    tdc_isd_fpga_write_change_tx_power_level(tempValue);
+                    if (!tdc_isd_fpga_write_change_tx_power_level(tempValue)) return;
 
                     flowControlCounter = 12;  // 함수 종료 전 flowControlCounter++; → 실제로 case 13을 반복
                 }
@@ -98,9 +99,9 @@ void tdc_isd_init_tx_power_ic(bool isdControlStateChagedFlag)
                 {
                     tempValue = RF_TxPowerValue + 1;
 
-                    if (tempValue <= TDC_DRV_PMIC_MAX_VOLTAGE_CONTROL_VALUE)
+                    if (tempValue <= tdc_link_control_effective_max())
                     {
-                        tdc_isd_fpga_write_change_tx_power_level(tempValue);  // 함수 종료 전 flowControlCounter++; → 실제로 case 13을 반복
+                        if (!tdc_isd_fpga_write_change_tx_power_level(tempValue)) return;  // 함수 종료 전 flowControlCounter++; → 실제로 case 13을 반복
                         flowControlCounter = 12;
                     }
                     else
@@ -299,7 +300,7 @@ void tdc_isd_init_device(bool isdControlStateChagedFlag)
             else
             {
                 tdc_isd_fpga_write_disable_rf_tx();
-                tdc_isd_fpga_write_change_tx_power_level(TDC_DRV_PMIC_MAX_VOLTAGE_CONTROL_VALUE);
+                if (!tdc_isd_fpga_write_change_tx_power_level(tdc_link_control_effective_max())) return;
 
                 // TDC_PRINTF_V("[FPGA] TRY TO DISABLE XFR(RF) \r\n");
             }
@@ -392,11 +393,11 @@ void tdc_isd_init_device(bool isdControlStateChagedFlag)
 
                     tdc_sys_error_clear_flag(en__FPGA_CONFIGUARATION_ERROR);
 
-                    if (tdc_isd_fpga_write_change_tx_power_level(TDC_DRV_PMIC_MAX_VOLTAGE_CONTROL_VALUE))
+                    if (tdc_isd_fpga_write_change_tx_power_level(tdc_link_control_effective_max()))
                     {
                         if (tdc_isd_fpga_read_tx_power_level(&RF_TxPowerValue))
                         {
-                            if (RF_TxPowerValue != TDC_DRV_PMIC_MAX_VOLTAGE_CONTROL_VALUE)
+                            if (RF_TxPowerValue != tdc_link_control_effective_max())
                             {
                                 // R_TxPower 설정 실패, powerIC 초기화
                                 TDC_ISD_DEBOUNCE_FAIL(

@@ -1,3 +1,4 @@
+#include <tdc_link_control.h>
 #include <tdc_isd_pcm.h>
 #include <tdc_isd_fpga.h>
 #include <tdc_isd.h>
@@ -305,6 +306,7 @@ bool tdc_isd_fpga_read_tx_power_level(int *p_readValue)
     if (tdc_drv_isl9122_read_register(TDC_DRV_ISL9122_REG_VOLTAGESET, &readValue))
     {
         *p_readValue = (readValue);
+        tdc_link_control_note_level(readValue);
         error_cnt    = 0;
         return true;
     }
@@ -323,7 +325,7 @@ bool tdc_isd_fpga_is_arbitrary_value_matched_normal_value(void)
 {
     int readValue;
 
-    tdc_isd_fpga_read_backtel_fifo(&readValue, 1);
+    if (!tdc_isd_fpga_read_backtel_fifo(&readValue, 1)) return false;
 
     if (readValue == df_forwardPathCheck_arbitraryValue)
     {
@@ -339,7 +341,7 @@ bool tdc_isd_fpga_is_arbitrary_value_matched_duplicate_zero_data(void)
 {
     int readValue;
 
-    tdc_isd_fpga_read_backtel_fifo(&readValue, 1);
+    if (!tdc_isd_fpga_read_backtel_fifo(&readValue, 1)) return false;
 
     if (readValue == df_duplicateZeroValue)
     {
@@ -355,7 +357,7 @@ EN_ISD_PowerState tdc_isd_fpga_read_isd_power_state(void)
 {
     int readValue;
 
-    tdc_isd_fpga_read_fifo_counter(&readValue);
+    if (!tdc_isd_fpga_read_fifo_counter(&readValue)) return ISD_Power_NA;
 
     if (readValue == 0)
     {
@@ -363,7 +365,7 @@ EN_ISD_PowerState tdc_isd_fpga_read_isd_power_state(void)
     }
     if (readValue == 1)
     {
-        tdc_isd_fpga_read_backtel_fifo(&readValue, 1);
+        if (!tdc_isd_fpga_read_backtel_fifo(&readValue, 1)) return ISD_Power_NA;
         return tdc_stim_data_extract_and_rshift(readValue, bitPosition_isd_PowerState, bitLength_isd_PowerState);
     }
     else
@@ -493,11 +495,16 @@ bool tdc_isd_fpga_write_disable_rf_tx(void)
 
 bool tdc_isd_fpga_write_change_tx_power_level(int txLevel)
 {
+    /* Reset/ramp75..111 is an initialization-only path. Feedback/force use
+     * the operational112 floor; every path shares the hardware214 ceiling. */
+    if (txLevel < TDC_DRV_PMIC_RESET_VOLTAGE_SET_VALUE || txLevel > TDC_DRV_PMIC_MAX_VOLTAGE_CONTROL_VALUE)
+        return false;
     static int error_cnt = 0;
 
     if (tdc_drv_isl9122_write_register(TDC_DRV_ISL9122_REG_VOLTAGESET, txLevel))
     {
         error_cnt = 0;
+        tdc_link_control_note_level(txLevel);
         return true;
     }
     else

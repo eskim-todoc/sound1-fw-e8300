@@ -1,3 +1,4 @@
+#include <tdc_link_control.h>
 
 #include <hw.h>
 #include <stdbool.h>
@@ -382,7 +383,7 @@ ST__MAPPING_STATE tdc_ble_mapping_step(ST__ISD_STATUS ISD_state)
                 case en__mapping_impedanceChekck:
                 {
                     // 카운터를 df_connectionCheckPeriod_ms로 리셋하여 연결확인 진행하지 않게 한다.
-                    connectionCheckCounter = df_connectionCheckPeriod_ms;
+                    connectionCheckCounter = tdc_link_control_period_ms();
 
                     if (ISD_state.conneded_ISD)
                     {
@@ -400,7 +401,7 @@ ST__MAPPING_STATE tdc_ble_mapping_step(ST__ISD_STATUS ISD_state)
                 case en__mapping_eCAP_Measurement_masking:
                 {
                     // 카운터를 df_connectionCheckPeriod_ms로 리셋하여 연결확인 진행하지 않게 한다.
-                    connectionCheckCounter = df_connectionCheckPeriod_ms;
+                    connectionCheckCounter = tdc_link_control_period_ms();
                     if (ISD_state.conneded_ISD)
                     {
                         tdc_isd_map_ecap_step(mappingCommandStartFlag);
@@ -416,7 +417,7 @@ ST__MAPPING_STATE tdc_ble_mapping_step(ST__ISD_STATUS ISD_state)
                 case en__mapping_eCAP_Measurement_alternative:
                 {
                     // 카운터를 df_connectionCheckPeriod_ms로 리셋하여 연결확인 진행하지 않게 한다.
-                    connectionCheckCounter = df_connectionCheckPeriod_ms;
+                    connectionCheckCounter = tdc_link_control_period_ms();
                     // tdc_isd_map_ecap_step(mappingCommandStartFlag);
                 }
                 break;
@@ -424,7 +425,7 @@ ST__MAPPING_STATE tdc_ble_mapping_step(ST__ISD_STATUS ISD_state)
                 case en__mapping_specific_stimulation:
                 {
                     // 카운터를 df_connectionCheckPeriod_ms로 리셋하여 연결확인 진행하지 않게 한다.
-                    connectionCheckCounter = df_connectionCheckPeriod_ms;
+                    connectionCheckCounter = tdc_link_control_period_ms();
                     if (ISD_state.conneded_ISD)
                     {
                         tdc_isd_map_specific_stim_step(mappingCommandStartFlag);
@@ -439,7 +440,7 @@ ST__MAPPING_STATE tdc_ble_mapping_step(ST__ISD_STATUS ISD_state)
 
                 case en__mapping_live_stimulation:
                 {
-                    connectionCheckCounter      = df_connectionCheckPeriod_ms;
+                    connectionCheckCounter = tdc_link_control_period_ms();
                     sitmulationIndicatorTrigger = tdc_isd_map_live_step(ISD_state);
                     // 카운터를 df_connectionCheckPeriod_ms로 리셋하여 연결확인 진행하지 않게 한다.
                 }
@@ -646,7 +647,7 @@ ST__MAPPING_STATE tdc_ble_mapping_step(ST__ISD_STATUS ISD_state)
 
             if (connectionCheckCounter < 0)
             {
-                connectionCheckCounter = df_connectionCheckPeriod_ms;
+                connectionCheckCounter = tdc_link_control_period_ms();
             }
         }
         else

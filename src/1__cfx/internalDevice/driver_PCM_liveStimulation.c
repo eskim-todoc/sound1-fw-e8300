@@ -3,6 +3,24 @@
  */
 
 #include <driver_PCM_liveStimulation.h>
+#include "../test/tdc_ut_io_cfx.h"
+
+/* 읽기 단계가 실제로 PCM을 만든 뒤에만 CM3 완료 통보를 허용한다.
+ * 맵 변경으로 읽기 때의 프레임 수가 무효였다가 통보 전에 복귀할 수 있다. */
+static bool s_tdc_link_backtel_read_fired;
+static void write_link_backtel_sequence(int frame_num);
+
+static bool link_frame_available(int frame_num)
+{
+    return frame_num >= 1 && frame_num <= 12;
+}
+
+int tdc_link_backtel_period_ms(void)
+{
+    int period = (int) Addr_SharedMem->tdc_backtel_period_100ms;
+    if (period < 1 || period > 255) return df_connectionCheckPeriod_ms;
+    return period * 100;
+}
 
 int _XMEM m_link_connection_check_counter = -df_connectionCheckPeriod_ms;
 
@@ -31,11 +49,18 @@ void check_link_connection_state(void)
 // FPGA Backtel 회로 켜기
 void Enable_backtelCircuit(void)
 {
+    s_tdc_link_backtel_read_fired = false;
     register int backtelControlRegister;
     register int backtelConfiguration;
     int _XMEM   *p_pcmFifo_Top;
 
-    p_pcmFifo_Top = (int _XMEM *) HEAR_ADDR_FIFO_PCM_WRITING;
+    p_pcmFifo_Top = TDC_UT_PCM_TOP();
+
+    if (!link_frame_available(g_pcmFrameNum_per_channel))
+    {
+        LB_increaseCounter();
+        return;
+    }
 
     // 현재 설정되어 있는 backtel 제어 레지스터 값을 읽어 들여 백텔 회로를 켜는 값만 수정해서 PCM으로 보낸다.
     backtelControlRegister                 = ((int) Addr_SharedMem->backtelControlRegister) | 1;  // Enable backtel
@@ -43,27 +68,48 @@ void Enable_backtelCircuit(void)
 
     backtelConfiguration = backtelControlRegister | pcm_Mold_BacktelConfiguration;
 
-    // PCM 첫번째 출력 인덱스 (버퍼상 상위 주소)에 backtelConfiguration 패킷 입력
-    *p_pcmFifo_Top = backtelConfiguration;
+    /* F1..9는 뒤쪽 슬롯19에서 켜고 다음 블록에서 읽는다.
+     * 먼저 여백을 채워 슬롯19의 설정이 NOP에 덮이지 않게 한다.
+     * F10..12는 원래 슬롯0 설정을 그대로 사용한다. */
+    if (g_pcmFrameNum_per_channel > 9)
+        TDC_UT_PCM_WRITE(p_pcmFifo_Top, backtelConfiguration);
     p_pcmFifo_Top--;
 
     // 펄스폭 고려(rate error 방지) PCM 데이터 채움
 
     for (register int i = 1; i < g_pcmFrameNum_per_channel; i++)
     {
-        *p_pcmFifo_Top = pcm_Mold_NopStandby;
+        TDC_UT_PCM_WRITE(p_pcmFifo_Top, pcm_Mold_NopStandby);
         p_pcmFifo_Top--;
     }
 
+    if (g_pcmFrameNum_per_channel <= 9)
+        TDC_UT_PCM_WRITE((TDC_UT_PCM_TOP() - TDC_LINK_BACKTEL_ENABLE_SLOT), backtelConfiguration);
+
     // 연결 체크용 PCM이 시작되었음
     Addr_SharedMem->cfx_PCM_interface.conneded_ISDCheckPCM_state = BackelCircuitEnabled_duringLiveStimulation;
-
     LB_increaseCounter();
 }
 
 // 자극 출력 데이터로 저장되어 있는 FIFO 데이터를 연결 검사 데이터로 덮어 쓴다.
 void backtelPcmOut(void)
 {
+    s_tdc_link_backtel_read_fired = false;
+    if (!link_frame_available(g_pcmFrameNum_per_channel))
+    {
+        LB_increaseCounter();
+        return;
+    }
+    /* 새 배치는 확인된 F1..9 범위에만 적용한다. F10..12는 기존
+     * 두 채널 분량의 읽기 배치와 완료 게시 조건을 유지한다. */
+    if (g_pcmFrameNum_per_channel >= 1 && g_pcmFrameNum_per_channel <= 9)
+    {
+        write_link_backtel_sequence(g_pcmFrameNum_per_channel);
+        s_tdc_link_backtel_read_fired = true;
+        LB_increaseCounter();
+        return;
+    }
+
     // xp0, HEAR_ADDR_FIFO_PCM_WRITING
 
     // FPGA에서 백텔을 사용해 데이터를 읽을 때 한 사이클에 Backtel NOP이 3개 필요하다.
@@ -90,7 +136,84 @@ void backtelPcmOut(void)
             break;
     }
 
+    s_tdc_link_backtel_read_fired = true;
     LB_increaseCounter();
+}
+
+
+/* Sullivan의 24워드 배치. 마지막 자극은 [A]의 원래 Duration으로 끝낸다.
+ * [P]는 다음 패킷부터 최소 Duration을 적용하며 [R]에서 반드시 복구한다.
+ * 이 함수는 F1..9만 받아 FIFO 안에 쓰기를 끝낸다. */
+static void write_link_backtel_sequence(int frame_num)
+{
+    int count = (int) Addr_SharedMem->tdc_power_stable_nop_count;
+    int use_swap = frame_num >= 4;
+    int room = use_swap ? (24 - frame_num - 6) : (24 - 2 * frame_num - 3);
+    int used;
+    int aligned;
+    int read_packet;
+    int width;
+    int _XMEM *pcm = TDC_UT_PCM_TOP();
+
+    if (count < 0) count = 2;
+    if (count > 19) count = 19;
+    if (count > room) count = room;
+#if defined(conneded_ISDCheck_byForwardPath)
+    read_packet = pcm_Mold_connectionCheck_ForwardPath;
+#elif defined(conneded_ISDCheck_byISDPower)
+    read_packet = pcm_Mold_connectionCheck_ReadISDPower;
+#endif
+
+    TDC_UT_PCM_WRITE(pcm, TDC_LINK_BACKTEL_WRITE_FORWARD);
+    pcm--;
+    for (int i = 1; i < frame_num; i++)
+    {
+        TDC_UT_PCM_WRITE(pcm, pcm_Mold_NopStandby);
+        pcm--;
+    }
+    for (int i = 0; i < count; i++)
+    {
+        TDC_UT_PCM_WRITE(pcm, pcm_Mold_NopStandby);
+        pcm--;
+    }
+    if (use_swap)
+    {
+        TDC_UT_PCM_WRITE(pcm, pcm_Mold_PulsePhaseWidth);
+        pcm--;
+    }
+    TDC_UT_PCM_WRITE(pcm, read_packet);
+    pcm--;
+    if (!use_swap)
+    {
+        for (int i = 1; i < frame_num; i++)
+        {
+            TDC_UT_PCM_WRITE(pcm, pcm_Mold_NopBacktel);
+            pcm--;
+        }
+    }
+    for (int i = 0; i < 3; i++)
+    {
+        TDC_UT_PCM_WRITE(pcm, pcm_Mold_NopBacktel);
+        pcm--;
+    }
+    if (use_swap)
+    {
+        /* CM3 FPGA_ver2_7_0.h의 최소 펄스폭13과 같은 값이다.
+         * 복구 패킷이 빠지면 후속 자극도 최소 펄스폭으로 잘린다. */
+        width = (int) Addr_SharedMem->currentMapData.stimulationPulsePhaseWidth - TDC_LINK_BACKTEL_MIN_PULSE_WIDTH_US;
+        if (width < 0) width = 0;
+        TDC_UT_PCM_WRITE(pcm, pcm_Mold_PulsePhaseWidth | width);
+        pcm--;
+    }
+    used = use_swap ? frame_num + count + 6 : 2 * frame_num + count + 3;
+    aligned = frame_num;
+    while (aligned < used) aligned += frame_num;
+    if (aligned > 24 || (24 - aligned) < frame_num) aligned = 24;
+    for (int i = used; i < aligned; i++)
+    {
+        TDC_UT_PCM_WRITE(pcm, pcm_Mold_NopBacktel);
+        pcm--;
+    }
 }
 
 void frame_1_perChannel(void)
@@ -105,12 +228,12 @@ void frame_1_perChannel(void)
 #endif
 
     // 첫 번째 채널 데이터
-    *((int _XMEM *) HEAR_ADDR_FIFO_PCM_WRITING) = pcm_Mold_connectionCheck;
+    TDC_UT_PCM_WRITE((TDC_UT_PCM_TOP()), pcm_Mold_connectionCheck);
 
     // Backtel NOP 1, 2, 3
-    *((int _XMEM *) HEAR_ADDR_FIFO_PCM_WRITING - 1) = pcm_Mold_NopBacktel;  // 두 번째 채널 데이터
-    *((int _XMEM *) HEAR_ADDR_FIFO_PCM_WRITING - 2) = pcm_Mold_NopBacktel;  // 세 번째 채널 데이터
-    *((int _XMEM *) HEAR_ADDR_FIFO_PCM_WRITING - 3) = pcm_Mold_NopBacktel;  // 네 번째 채널 데이터
+    TDC_UT_PCM_WRITE((TDC_UT_PCM_TOP() - 1), pcm_Mold_NopBacktel);  // 두 번째 채널 데이터
+    TDC_UT_PCM_WRITE((TDC_UT_PCM_TOP() - 2), pcm_Mold_NopBacktel);  // 세 번째 채널 데이터
+    TDC_UT_PCM_WRITE((TDC_UT_PCM_TOP() - 3), pcm_Mold_NopBacktel);  // 네 번째 채널 데이터
 }
 
 void frame_2_perChannel(void)
@@ -127,18 +250,18 @@ void frame_2_perChannel(void)
 #endif
 
     // 첫 번째 채널 데이터
-    *((int _XMEM *) HEAR_ADDR_FIFO_PCM_WRITING)     = pcm_Mold_connectionCheck;
-    *((int _XMEM *) HEAR_ADDR_FIFO_PCM_WRITING - 1) = pcm_Mold_NopBacktel;  // pcm_Mold_NopStandby;
+    TDC_UT_PCM_WRITE((TDC_UT_PCM_TOP()), pcm_Mold_connectionCheck);
+    TDC_UT_PCM_WRITE((TDC_UT_PCM_TOP() - 1), pcm_Mold_NopBacktel);  // pcm_Mold_NopStandby;
 
     // Backtel NOP 1, 2, 3, 4
-    *((int _XMEM *) HEAR_ADDR_FIFO_PCM_WRITING - 2) = pcm_Mold_NopBacktel;  // 두 번째 채널 데이터 1
-    *((int _XMEM *) HEAR_ADDR_FIFO_PCM_WRITING - 3) = pcm_Mold_NopBacktel;  // 두 번째 채널 데이터 2
-    *((int _XMEM *) HEAR_ADDR_FIFO_PCM_WRITING - 4) = pcm_Mold_NopBacktel;  // 세 번째 채널 데이터 1
-    *((int _XMEM *) HEAR_ADDR_FIFO_PCM_WRITING - 5) = pcm_Mold_NopBacktel;  // 세 번째 채널 데이터 2
+    TDC_UT_PCM_WRITE((TDC_UT_PCM_TOP() - 2), pcm_Mold_NopBacktel);  // 두 번째 채널 데이터 1
+    TDC_UT_PCM_WRITE((TDC_UT_PCM_TOP() - 3), pcm_Mold_NopBacktel);  // 두 번째 채널 데이터 2
+    TDC_UT_PCM_WRITE((TDC_UT_PCM_TOP() - 4), pcm_Mold_NopBacktel);  // 세 번째 채널 데이터 1
+    TDC_UT_PCM_WRITE((TDC_UT_PCM_TOP() - 5), pcm_Mold_NopBacktel);  // 세 번째 채널 데이터 2
 
     // 2개 더 추가해본다.
-    *((int _XMEM *) HEAR_ADDR_FIFO_PCM_WRITING - 6) = pcm_Mold_NopBacktel;  // 세 번째 채널 데이터 1
-    *((int _XMEM *) HEAR_ADDR_FIFO_PCM_WRITING - 7) = pcm_Mold_NopBacktel;  // 세 번째 채널 데이터 2
+    TDC_UT_PCM_WRITE((TDC_UT_PCM_TOP() - 6), pcm_Mold_NopBacktel);  // 세 번째 채널 데이터 1
+    TDC_UT_PCM_WRITE((TDC_UT_PCM_TOP() - 7), pcm_Mold_NopBacktel);  // 세 번째 채널 데이터 2
 
     // Addr_SharedMem->CM3_tempValue2 = 1;
 }
@@ -159,20 +282,20 @@ void frame_3_perChannel(void)
      * 백텔 수신 실패의 경우가 없도록 한다. */
 
     // 첫 번째 채널 데이터
-    *((int _XMEM *) HEAR_ADDR_FIFO_PCM_WRITING)     = pcm_Mold_connectionCheck;
-    *((int _XMEM *) HEAR_ADDR_FIFO_PCM_WRITING - 1) = pcm_Mold_NopBacktel;  // pcm_Mold_NopStandby;
-    *((int _XMEM *) HEAR_ADDR_FIFO_PCM_WRITING - 2) = pcm_Mold_NopBacktel;  // pcm_Mold_NopStandby;
+    TDC_UT_PCM_WRITE((TDC_UT_PCM_TOP()), pcm_Mold_connectionCheck);
+    TDC_UT_PCM_WRITE((TDC_UT_PCM_TOP() - 1), pcm_Mold_NopBacktel);  // pcm_Mold_NopStandby;
+    TDC_UT_PCM_WRITE((TDC_UT_PCM_TOP() - 2), pcm_Mold_NopBacktel);  // pcm_Mold_NopStandby;
 
     // Backtel NOP 1, 2, 3
-    *((int _XMEM *) HEAR_ADDR_FIFO_PCM_WRITING - 3) = pcm_Mold_NopBacktel;  // 두 번째 채널 데이터 1
-    *((int _XMEM *) HEAR_ADDR_FIFO_PCM_WRITING - 4) = pcm_Mold_NopBacktel;  // 두 번째 채널 데이터 2
-    *((int _XMEM *) HEAR_ADDR_FIFO_PCM_WRITING - 5) = pcm_Mold_NopBacktel;  // 두 번째 채널 데이터 3
+    TDC_UT_PCM_WRITE((TDC_UT_PCM_TOP() - 3), pcm_Mold_NopBacktel);  // 두 번째 채널 데이터 1
+    TDC_UT_PCM_WRITE((TDC_UT_PCM_TOP() - 4), pcm_Mold_NopBacktel);  // 두 번째 채널 데이터 2
+    TDC_UT_PCM_WRITE((TDC_UT_PCM_TOP() - 5), pcm_Mold_NopBacktel);  // 두 번째 채널 데이터 3
 
     // standby NOP 1, 2 (채널의 남는 데이터는 일반 NOP으로 채움, Backtel NOP도 무방)
     // load x0, pcm_Mold_NopStandby
-    *((int _XMEM *) HEAR_ADDR_FIFO_PCM_WRITING - 6) = pcm_Mold_NopBacktel;
-    *((int _XMEM *) HEAR_ADDR_FIFO_PCM_WRITING - 7) = pcm_Mold_NopBacktel;
-    *((int _XMEM *) HEAR_ADDR_FIFO_PCM_WRITING - 8) = pcm_Mold_NopBacktel;
+    TDC_UT_PCM_WRITE((TDC_UT_PCM_TOP() - 6), pcm_Mold_NopBacktel);
+    TDC_UT_PCM_WRITE((TDC_UT_PCM_TOP() - 7), pcm_Mold_NopBacktel);
+    TDC_UT_PCM_WRITE((TDC_UT_PCM_TOP() - 8), pcm_Mold_NopBacktel);
 }
 
 void frame_4_perChannel(void)
@@ -189,22 +312,22 @@ void frame_4_perChannel(void)
     pcm_Mold_connectionCheck = pcm_Mold_connectionCheck_ReadISDPower;
 #endif
 
-    ptr_FIFO_for_WritingPCM = (int _XMEM *) HEAR_ADDR_FIFO_PCM_WRITING;
+    ptr_FIFO_for_WritingPCM = TDC_UT_PCM_TOP();
 
     // 첫 번째 채널 데이터
-    *ptr_FIFO_for_WritingPCM = pcm_Mold_connectionCheck;
+    TDC_UT_PCM_WRITE(ptr_FIFO_for_WritingPCM, pcm_Mold_connectionCheck);
     ptr_FIFO_for_WritingPCM--;
 
     for (int i = 1; i < g_pcmFrameNum_per_channel; i++)
     {
-        *ptr_FIFO_for_WritingPCM = pcm_Mold_NopBacktel;  // pcm_Mold_NopStandby;  // 프레임 에러 방지를 위해 NOP으로 채우기
+        TDC_UT_PCM_WRITE(ptr_FIFO_for_WritingPCM, pcm_Mold_NopBacktel);  // pcm_Mold_NopStandby;  // 프레임 에러 방지를 위해 NOP으로 채우기
         ptr_FIFO_for_WritingPCM--;
     }
 
     // backtel NOP 1, 2, 3, 4, ...
     for (int i = 0; i < g_pcmFrameNum_per_channel; i++)
     {
-        *ptr_FIFO_for_WritingPCM = pcm_Mold_NopBacktel;  // 백텔 수신을 위해 백텔NOP으로 채우기
+        TDC_UT_PCM_WRITE(ptr_FIFO_for_WritingPCM, pcm_Mold_NopBacktel);  // 백텔 수신을 위해 백텔NOP으로 채우기
         ptr_FIFO_for_WritingPCM--;
     }
 }
@@ -215,7 +338,13 @@ void Disable_backtelCircuit(void)
     int        backtelConfiguration;
     int _XMEM *ptr_FIFO_for_WritingPCM;
 
-    ptr_FIFO_for_WritingPCM = (int _XMEM *) HEAR_ADDR_FIFO_PCM_WRITING;
+    ptr_FIFO_for_WritingPCM = TDC_UT_PCM_TOP();
+
+    if (!link_frame_available(g_pcmFrameNum_per_channel))
+    {
+        LB_increaseCounter();
+        return;
+    }
 
     // 현재 설정되어 있는 backtel 제어 레지스터 값을 읽어 들여 backtel 회로를 끄는 값만 수정해서 PCM으로 보낸다.
 
@@ -225,15 +354,19 @@ void Disable_backtelCircuit(void)
 
     backtelConfiguration = backtelControlRegister | pcm_Mold_BacktelConfiguration;
 
-    // PCM 버퍼 첫번째에 backtelConfiguration 패킷 입력
-    *ptr_FIFO_for_WritingPCM = backtelConfiguration;
+    /* F1..9는 슬롯1에서 끄며 슬롯0의 자극을 보존한다. */
+    int disable_slot = (g_pcmFrameNum_per_channel <= 9) ? TDC_LINK_BACKTEL_DISABLE_SLOT : 0;
+    ptr_FIFO_for_WritingPCM -= disable_slot;
+
+    // PCM 버퍼의 지정 슬롯에 backtelConfiguration 패킷 입력
+    TDC_UT_PCM_WRITE(ptr_FIFO_for_WritingPCM, backtelConfiguration);
     ptr_FIFO_for_WritingPCM--;
 
     // 펄스폭 고려(rate error 방지) PCM 데이터 채움
-    for (register int i = 1; i < g_pcmFrameNum_per_channel; i++)
+    for (register int i = disable_slot + 1; i < g_pcmFrameNum_per_channel; i++)
         chess_loop_range(0, 24)
         {
-            *ptr_FIFO_for_WritingPCM = pcm_Mold_NopStandby;
+            TDC_UT_PCM_WRITE(ptr_FIFO_for_WritingPCM, pcm_Mold_NopStandby);
             ptr_FIFO_for_WritingPCM--;
         }
 
@@ -243,7 +376,7 @@ void Disable_backtelCircuit(void)
 void shareConnectionCheckFired_DiableBacktel(void)
 {
     // 하나의 채널 데이터가 12개 프레임 초과인 경우 (500usec) 1msec안에 backtel 수신이 불가능하여 연결 체크를 생략하게 되므로, CM3에 공유를 생략한다.
-    if (12 < g_pcmFrameNum_per_channel)
+    if (!s_tdc_link_backtel_read_fired || !link_frame_available(g_pcmFrameNum_per_channel))
     {
         Addr_SharedMem->cfx_PCM_interface.conneded_ISDCheckPCM_state = BackelCircuitDisabled_FpagFifoCleared_duringLiveStimulation;
     }
@@ -253,13 +386,14 @@ void shareConnectionCheckFired_DiableBacktel(void)
         Addr_SharedMem->cfx_PCM_interface.conneded_ISDCheckPCM_state = BackelCircuitDisabled_readPcmFired_duringLiveStimulation;
     }
 
+    s_tdc_link_backtel_read_fired = false;
     LB_increaseCounter();
 }
 
 void LB_increaseCounter(void)
 {
 #if 1
-    if (m_link_connection_check_counter < df_connectionCheckPeriod_ms)
+    if (m_link_connection_check_counter < tdc_link_backtel_period_ms())
     {
         m_link_connection_check_counter++;
     }

@@ -1,3 +1,4 @@
+#include <tdc_link_control.h>
 
 #include <hw.h>
 #include <tdc_isd_pcm.h>
@@ -118,6 +119,17 @@ void tdc_isd_fill_pcm_path_open_dup_zero(int *p_pcm_index)
 
 static ST__ISD_STATUS s_isd_state                     = {en__isdStatus_PowerIC_Reset, false};
 static bool           s_isd_control_state_chaged_flag = true;
+static int s_tdc_live_link_flow;
+static bool s_tdc_live_link_busy;
+
+static void reset_live_link_cycle(void)
+{
+    if (s_tdc_live_link_busy) tdc_isd_set_i2c_free();
+    s_tdc_live_link_busy = false;
+    s_tdc_live_link_flow = 0;
+    tdc_shm_clear_connection_check_pcm_fired_flag();
+}
+
 
 ST__ISD_STATUS tdc_isd_get_state(void)
 {
@@ -126,6 +138,7 @@ ST__ISD_STATUS tdc_isd_get_state(void)
 
 void tdc_isd_change_state(EN__ISD_CONTROL_STATE ISD_controlState)
 {
+    if (ISD_controlState == en__isdStatus_PowerIC_Reset) tdc_link_control_invalidate_level();
     int i                           = 0;
     s_isd_state.isd_controlState    = ISD_controlState;
     s_isd_control_state_chaged_flag = true;
@@ -168,6 +181,15 @@ bool tdc_ut_cm3_isd_state_changed(void)
 
 ST__ISD_STATUS tdc_isd_step(bool isd_enable, bool mappingConnection, EN__ISD_CONTROL_STATE isdControlCommand)
 {
+    static bool previous_mapping;
+    if (!isd_enable || mappingConnection != previous_mapping ||
+        s_isd_state.isd_controlState < en__isdStatus_stimul_10V_Ok)
+    {
+        reset_live_link_cycle();
+        tdc_link_control_reset_feedback();
+    }
+    previous_mapping = mappingConnection;
+
     bool stimulationParameterSettingIsDone = false;
 
     if (isd_enable)
@@ -295,18 +317,15 @@ ST__ISD_STATUS tdc_isd_step(bool isd_enable, bool mappingConnection, EN__ISD_CON
         }
     }
 
+    if (s_isd_state.conneded_ISD) tdc_link_control_connected();
     return s_isd_state;
 }
 
 void tdc_isd_update_link_by_backtel_live(void)
 {
-    static int link_connection_success_counter = 0;
     static int r_isd_registerValue             = 0;
     static int TxPowerLevel;
-    static int TxPowerLevel_bak = 0;
-    static int flowCounter      = 0;
 
-    int temp;
 
     // CFX에서 주기적으로 연결확인용 PCM을 출력하고 출력이 완료되었음을 공유메모리에 기록한다.
     // CFX에서 PCM 모드가 실시간 자극일 때, 자동으로 업데이트 된다.
@@ -320,18 +339,34 @@ void tdc_isd_update_link_by_backtel_live(void)
          * 없는 유령 함수였다(살아 있었다면 링크 에러). 현재는 아래 byISDPower 방식,
          * 즉 내부기 전원 레벨을 읽어 연결을 판정하는 경로만 쓴다. */
 #if defined(conneded_ISDCheck_byISDPower)
-        switch (flowCounter)
+        switch (s_tdc_live_link_flow)
         {
             case 0:
             {
                 tdc_isd_set_i2c_busy();
+                s_tdc_live_link_busy = true;
                 r_isd_registerValue = tdc_isd_fpga_read_isd_power_state();
+                if (s_isd_state.isd_controlState != en__isdStatus_stimul_10V_Ok)
+                {
+                    tdc_isd_set_i2c_free();
+                    s_tdc_live_link_busy = false;
+                    tdc_shm_clear_connection_check_pcm_fired_flag();
+                    s_tdc_live_link_flow = 0;
+                    return;
+                }
             }
             break;
 
             case 1:
             {
-                tdc_isd_fpga_read_tx_power_level(&TxPowerLevel);
+                if (!tdc_isd_fpga_read_tx_power_level(&TxPowerLevel))
+                {
+                    tdc_isd_set_i2c_free();
+                    s_tdc_live_link_busy = false;
+                    tdc_shm_clear_connection_check_pcm_fired_flag();
+                    s_tdc_live_link_flow = 0;
+                    return;
+                }
             }
             break;
 
@@ -371,95 +406,19 @@ void tdc_isd_update_link_by_backtel_live(void)
                 }
 #endif
 
-                link_connection_success_counter++;
-
-                switch (r_isd_registerValue)
+                bool mapping = cfx_cm3_sharedMemoryAll.systemShare.system_opMode == en__mappingMode;
+                if (!tdc_link_control_feedback(r_isd_registerValue, TxPowerLevel, mapping, false))
                 {
-#if !defined(disable_Tx_PowerControl)
-                    case ISD_Power_HighUnstable:
-                    case ISD_Power_HighStable:
-                    {
-                        // 전송 파워 감소 시킴
-                        if (TxPowerLevel > TDC_DRV_PMIC_MIN_TX_POWER_VALUE)
-                        {
-                            int current_TxPowerLevel;
-
-                            current_TxPowerLevel = TxPowerLevel;
-                            TxPowerLevel_bak     = TxPowerLevel;
-
-                            TxPowerLevel--;
-
-                            TDC_PRINTF_V("[LINK] HIGH : TX POWER > MIN POWER (CURR=%4d, NEXT=%4d) : %8d MV \r\n",
-                                         current_TxPowerLevel,
-                                         TxPowerLevel,
-                                         25 * current_TxPowerLevel);
-
-                            tdc_isd_fpga_write_change_tx_power_level(TxPowerLevel);
-                        }
-                        else
-                        {
-                            TxPowerLevel_bak = TxPowerLevel;
-                            TDC_PRINTF_V("[LINK] HIGH : TX POWER <= MIN POWER (CURR=%4d) : %8d MV \r\n", TxPowerLevel, 25 * TxPowerLevel);
-
-                            temp = 0;
-                            temp++;
-                        }
-                    }
-                    break;
-                    case ISD_Power_LowUnstable:
-                    case ISD_Power_LowStable:  // 증가가 가능할 때까지 증가. 증가가 더이상 불가능한 경우. 상태 유지
-                    {
-                        // 전송 파워 감소 시킴
-                        if (TxPowerLevel < TDC_DRV_PMIC_MAX_VOLTAGE_CONTROL_VALUE)
-                        {
-                            int current_TxPowerLevel;
-
-                            current_TxPowerLevel = TxPowerLevel;
-                            TxPowerLevel_bak     = TxPowerLevel;
-
-                            TxPowerLevel++;
-
-                            TDC_PRINTF_V("[LINK] LOW : TX POWER < MAX CONTROL POWER (CURR=%4d, NEXT=%4d) : %8d MV \r\n",
-                                         current_TxPowerLevel,
-                                         TxPowerLevel,
-                                         25 * current_TxPowerLevel);
-
-                            tdc_isd_fpga_write_change_tx_power_level(TxPowerLevel);
-                        }
-                        else
-                        {
-                            TxPowerLevel_bak = TxPowerLevel;
-                            TDC_PRINTF_V("[LINK] LOW : TX POWER >= MAX CONTROL POWER (CURR=%4d) : %8d MV \r\n", TxPowerLevel, TxPowerLevel * 25);
-                        }
-                    }
-                    break;
-#endif
-                    case NoBacktel:
-                    {
-                        /* FPGA 레지스터 5종을 읽어 버리기만 하던 디버그 코드는 제거했다(#if 0 사장). */
-
-                        /* FPGA 레지스터 6종을 I2C 로 한 번에 읽어 RTT 로 찍던 디버그 코드는
-                         * 제거했다(#if 0 사장). */
-                        // TDC_PRINTF("CM3_tempValue1 : %u <- must be 2 \r\n", cfx_cm3_sharedMemoryAll.CM3_tempValue1);
-                        // TDC_PRINTF("CM3_tempValue2 : %u <- must be 1 \r\n", cfx_cm3_sharedMemoryAll.CM3_tempValue2);
-
-                        TDC_PRINTF_W("[LINK] DISCONNECTED, NO BACKTEL, LINK CONNECTION SUCCESS COUNTER : %d \r\n", link_connection_success_counter - 1);
-                        link_connection_success_counter = 0;
-
-                        tdc_sys_error_update(en__EN__ISD_ERROR, en__BackTelCounterZero, __LINE__);
-                        tdc_isd_change_state(en__isdStatus_FPGA_Ok);  // 내부기 파워 조정 시작
-                    }
-                    break;
-
-                    case BackTelNumTooMuch:
-                    {
-                        TDC_PRINTF_W("[LINK] DISCONNECTED, TOO MUCH BACKTEL, LINK CONNECTION SUCCESS COUNTER : %d \r\n", link_connection_success_counter - 1);
-                        link_connection_success_counter = 0;
-
-                        tdc_sys_error_update(en__EN__ISD_ERROR, en__BackterDataLengthError, __LINE__);
-                        tdc_isd_change_state(en__isdStatus_FPGA_Ok);  // 내부기 파워 조정 시작
-                    }
-                    break;
+                    /* A decoded link failure retains the original FIFO cleanup;
+                     * a failed PMIC write is already in PowerIC_Reset. */
+                    if (s_isd_state.isd_controlState == en__isdStatus_FPGA_Ok &&
+                        !tdc_isd_fpga_write_clear_fifo())
+                        tdc_isd_change_state(en__isdStatus_PowerIC_OK);
+                    tdc_isd_set_i2c_free();
+                    s_tdc_live_link_busy = false;
+                    tdc_shm_clear_connection_check_pcm_fired_flag();
+                    s_tdc_live_link_flow = 0;
+                    return;
                 }
 
                 if (!tdc_isd_fpga_write_clear_fifo())
@@ -468,6 +427,7 @@ void tdc_isd_update_link_by_backtel_live(void)
                 }
 
                 tdc_isd_set_i2c_free();
+                s_tdc_live_link_busy = false;
 
                 tdc_shm_clear_connection_check_pcm_fired_flag();  // 기록을 지운다.
             }
@@ -479,7 +439,7 @@ void tdc_isd_update_link_by_backtel_live(void)
             break;
         }
 
-        flowCounter++;
+        s_tdc_live_link_flow++;
 #endif
         /* DisalbedBackTel 정의 시의 대안 경로(PCM fired 플래그만 정리)는 제거했다.
          * 이 매크로는 트리 전체에서 정의된 적이 없어 #else 가 영구 사장이었다. */
@@ -488,7 +448,7 @@ void tdc_isd_update_link_by_backtel_live(void)
     }
     else
     {
-        flowCounter = 0;
+        reset_live_link_cycle();
     }
 }
 
@@ -526,7 +486,13 @@ void tdc_isd_update_link_by_backtel_mapping(int connectionCheckCOUNTER)
             {
                 tdc_isd_set_i2c_busy();
 
-                tdc_isd_fpga_read_tx_power_level(&TxPowerLevel);
+                if (!tdc_isd_fpga_read_tx_power_level(&TxPowerLevel))
+                {
+                    tdc_isd_set_i2c_free();
+                    isINGconnectionCheck_WithMapping = false;
+                    flowCounter = 7;
+                    return;
+                }
 
                 // 펄스폭 최소화
                 tdc_isd_fpga_change_pulse_width_minimum(pcm_index++);
@@ -542,6 +508,10 @@ void tdc_isd_update_link_by_backtel_mapping(int connectionCheckCOUNTER)
                 w_isd_registerValue = w_isd_registerValue << 8;
                 w_isd_registerValue = w_isd_registerValue | pcm_Mold_configuration;
 
+                /* Dedicated mapping uses the donor's fixed3 settling NOPs;
+                 * the runtime S setting belongs to the CFX Live sequence. */
+                for (int settle = 0; settle < 3; ++settle)
+                    tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopStandby);
                 tdc_shm_fill_specific_command_buffer(pcm_index++, w_isd_registerValue);
                 tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopBacktel);
                 tdc_shm_fill_specific_command_buffer(pcm_index++, pcm_Mold_NopBacktel);
@@ -564,74 +534,25 @@ void tdc_isd_update_link_by_backtel_mapping(int connectionCheckCOUNTER)
             }
             break;
 
-            case 5:
-            {
-                r_isd_registerValue = tdc_isd_fpga_read_isd_power_state();
-            }
-            break;
-
             case 6:
             {
-                switch (r_isd_registerValue)
+                r_isd_registerValue = tdc_isd_fpga_read_isd_power_state();
+                if (s_isd_state.isd_controlState != en__isdStatus_stimul_10V_Ok)
                 {
-#if !defined(disable_Tx_PowerControl)
-                    case ISD_Power_HighStable:
-                    {
-                        // 전송 파워 감소 시킴
-                        if (TxPowerLevel > TDC_DRV_PMIC_MIN_TX_POWER_VALUE)
-                        {
-                            TxPowerLevel--;
-
-                            // Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_R);
-                            tdc_isd_fpga_write_change_tx_power_level(TxPowerLevel);
-                            // Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_R);
-                        }
-                    }
-                    break;
-
-                    case ISD_Power_HighUnstable:
-                    {
-                    }
-                    break;
-
-                    case ISD_Power_LowStable:  // 증가가 가능할 때까지 증가. 증가가 더이상 불가능한 경우. 상태 유지
-                    {
-                        // 전송 파워 감소 시킴
-                        if (TxPowerLevel < TDC_DRV_PMIC_MAX_VOLTAGE_CONTROL_VALUE)
-                        {
-                            TxPowerLevel++;
-
-                            // Sys_GPIO_Set_Low(DIO_PIN_INDEX_for_LED_color_R);
-                            tdc_isd_fpga_write_change_tx_power_level(TxPowerLevel);
-                            // Sys_GPIO_Set_High(DIO_PIN_INDEX_for_LED_color_R);
-                        }
-                    }
-                    break;
-
-                    case ISD_Power_LowUnstable:  // 증가가 가능할 때까지 증가. 증가가 더이상 불가능한 경우. 연결 상태 끊고 다시 시작.
-                    {
-                    }
-                    break;
-#endif
-
-                    case NoBacktel:
-                    {
-                        /* 백텔 카운터 0 에러 시 FPGA 레지스터 5종을 읽어 버리기만 하던
-                         * 디버그 코드는 제거했다(#if 0 사장). 자극 동작에 관여하지 않았다. */
-                        tdc_sys_error_update(en__EN__ISD_ERROR, en__BackTelCounterZero, __LINE__);
-                        tdc_isd_change_state(en__isdStatus_FPGA_Ok);  // 내부기 파워 조정 시작
-
-                        TDC_PRINTF_W("[MAPPING] NO BACKTEL DURING MAPPING LINK CONNECTION \r\n");
-                    }
-                    break;
-
-                    case BackTelNumTooMuch:
-                    {
-                        tdc_sys_error_update(en__EN__ISD_ERROR, en__BackterDataLengthError, __LINE__);
-                        tdc_isd_change_state(en__isdStatus_FPGA_Ok);  // 내부기 파워 조정 시작
-                        TDC_PRINTF_W("[MAPPING] BACKTEL TOO MUCH DURING MAPPING LINK CONNECTOIN \r\n");
-                    }
-                    break;
+                    tdc_isd_set_i2c_free();
+                    isINGconnectionCheck_WithMapping = false;
+                    flowCounter = 7;
+                    return;
+                }
+                if (!tdc_link_control_feedback(r_isd_registerValue, TxPowerLevel, true, true))
+                {
+                    if (s_isd_state.isd_controlState == en__isdStatus_FPGA_Ok &&
+                        !tdc_isd_fpga_write_clear_fifo())
+                        tdc_isd_change_state(en__isdStatus_PowerIC_OK);
+                    tdc_isd_set_i2c_free();
+                    isINGconnectionCheck_WithMapping = false;
+                    flowCounter = 7;
+                    return;
                 }
 
                 if (!tdc_isd_fpga_write_clear_fifo())

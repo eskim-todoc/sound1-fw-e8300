@@ -48,6 +48,8 @@
 #include <tdc_fs_map.h>
 #include <tdc_fs_fft.h>
 #include <tdc_fs_stim_mute.h>
+#include <tdc_link_config.h>
+#include <tdc_link_control.h>
 #include <tdc_fs_event_log.h>
 #include <tdc_pwr_clock.h>
 #include <tdc_printf.h>
@@ -211,6 +213,11 @@ void tdc_sys_init(void)
     TDC_PRINTF_I("[INFO] INIT : FFT WINDOW COEFF \r\n");
 
     tdc_fs_stim_mute_init();
+    tdc_link_control_map_changed(0);
+    if (tdc_link_config_init() != TDC_LINK_CONFIG_OK)
+    {
+        TDC_PRINTF_W("[LINK] SETTINGS NOT RESTORED, KEEP RAM SETTINGS\r\n");
+    }
     TDC_PRINTF_I("[INFO] INIT : STIM MUTE \r\n");
 
     tdc_fs_event_log_init();

@@ -25,6 +25,7 @@
 #include <tdc_dfu_ble_ota.h>
 #include <tdc_fs_map.h>
 #include <tdc_ble_reply.h>
+#include <tdc_ble_link_debug.h>
 
 static int gd_handle_touch_debug(const ST__REMOTECONTROL_PACKET *packet, uint8_t *tx_buf, int tx_index, int option);  // option 1
 static int gd_handle_no_backtel(const ST__REMOTECONTROL_PACKET *packet, uint8_t *tx_buf, int tx_index, int option);   // option 2
@@ -50,6 +51,10 @@ int tdc_ble_general_debug_handle(const ST__REMOTECONTROL_PACKET *packet, uint8_t
     else if (option == 3)  // 맵 초기화 디버깅 프로토콜
     {
         tx_index = gd_handle_map_init(packet, tx_buf, tx_index, option);
+    }
+    else if (option == 0x20 || option == 0xFF)
+    {
+        tx_index = tdc_ble_link_debug_handle(packet->command, packet->data, tx_buf);
     }
     else
     {

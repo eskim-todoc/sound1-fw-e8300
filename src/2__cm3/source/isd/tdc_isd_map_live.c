@@ -1,3 +1,4 @@
+#include <tdc_link_control.h>
 #include <tdc_sys_error.h>
 #include <tdc_shm.h>
 #include <tdc_ble_mapping.h>
@@ -33,6 +34,7 @@ static ST__MAPPING_PACKET                *s_p_mappingPacket;
 static int                                s_toggle_mapNum                     = 0;
 static int                                s_reConnectionCounter               = 0;
 static int                                s_ISD_connectionCounter_withMapping = 0;
+static int s_tdc_mapping_period_ms = 300;
 static bool                               s_needResetting                     = false;
 static int                                s_flowCounter;
 static bool                               s_calculationParameter = false;
@@ -648,6 +650,7 @@ static bool tdc_isd_map_live_sub_standby(ST__ISD_STATUS ISD_state)
 
         if (s_ISD_connectionCounter_withMapping == 0)
         {
+            s_tdc_mapping_period_ms = tdc_link_control_period_ms();
             TDC_PRINTF_V("\r\n[MAPPING] LINK CHECK TRIGGERED (LIVE, STANDBY) \r\n");
         }
 
@@ -655,7 +658,7 @@ static bool tdc_isd_map_live_sub_standby(ST__ISD_STATUS ISD_state)
 
         s_ISD_connectionCounter_withMapping++;
 
-        if (s_ISD_connectionCounter_withMapping > 300)
+        if (s_ISD_connectionCounter_withMapping > s_tdc_mapping_period_ms)
         {
             s_ISD_connectionCounter_withMapping = 0;
         }
