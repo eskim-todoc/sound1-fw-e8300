@@ -39,7 +39,7 @@ void SEGGER_RTT_Wrapper_Init(void)
 
 void SEGGER_RTT_Wrapper_printf(const char *p_fmt, ...)
 {
-    static char buf[SEGGER_RTT_PRINTF_BUFFER_SIZE];
+    char        buf[SEGGER_RTT_PRINTF_BUFFER_SIZE];
     int         len;
     va_list     ap;
 
@@ -49,7 +49,19 @@ void SEGGER_RTT_Wrapper_printf(const char *p_fmt, ...)
 
     va_end(ap);
 
-    SEGGER_RTT_Write(0, buf, len);
+    /* Required length can exceed the bytes actually stored by vsnprintf.
+     * A call-local buffer also prevents an interrupt from replacing the
+     * foreground message before RTT copies it. Delivery remains best-effort.
+     */
+    if (len > 0)
+    {
+        unsigned stored = (unsigned) len;
+        if (stored >= sizeof(buf))
+        {
+            stored = sizeof(buf) - 1U;
+        }
+        SEGGER_RTT_Write(0, buf, stored);
+    }
 }
 
 int SEGGER_RTT_Wrapper_getch(char *p_buf)
