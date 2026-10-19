@@ -1,0 +1,18 @@
+flowchart TB
+    A["FF3 snapshot 수신"] --> B{"설정 / 세션 / 시각 / 표본<br/>유효하고 실행 gate가 열렸는가?"}
+    B -->|"아니요"| X["적용하지 않음<br/>원인 / 종결 상태 기록"]
+    B -->|"예"| C["유효한 PMIC 성공값 cache<br/>요청 S, 처리 C, 잔량 R, budget G 확인"]
+    C --> D["추가량 계산<br/>min: S−C, min(S,G)−R, Pmax−P"]
+    D --> E{"유효한 양수 Δ ?"}
+    E -->|"0"| Z["0 적용으로 요청 종결<br/>C=S, 자동 재충전 금지"]
+    E -->|"무효"| X
+    E -->|"양수"| W["PMIC 쓰기 / 성공 확인"]
+    W --> K{"성공했는가?"}
+    K -->|"예"| OK["성공량만 R에 가산, C=S<br/>부분 적용도 이번 요청 종결"]
+    K -->|"아니요"| ERR["성공 cache / 가산 금지<br/>장부 무효화 / 오류 복귀"]
+    classDef work fill:#e9f1fa,color:#17324d,stroke:#3b6eaa;
+    classDef good fill:#e6f4ee,color:#204f3a,stroke:#398164;
+    classDef bad fill:#fff0ec,color:#752e24,stroke:#ba604e;
+    class A,B,C,D,E,W,K work;
+    class Z,OK good;
+    class X,ERR bad;

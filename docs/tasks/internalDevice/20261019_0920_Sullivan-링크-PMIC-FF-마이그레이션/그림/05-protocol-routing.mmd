@@ -1,0 +1,16 @@
+flowchart TB
+    S["Sullivan<br/>59 20 access index value<br/>59 FF 버전 조회"]
+    T["Sound1 기존 계약<br/>59 01/02 묵음<br/>8F 01~04 기존 디버그<br/>8C Gain"]
+    S -->|"도메인 / index 의미를 이식"| A["Sound1 신규 제안<br/>8F 20 링크 / PMIC / FF<br/>8F FF 독립 버전 / 지원 조회"]
+    T -->|"기존 바이트 / 동작 보존"| D["Sound1 8F 디스패처"]
+    A --> D
+    D --> O["기존 옵션 1~4<br/>원래 handler"]
+    D --> N["새 옵션 0x20 / 0xFF<br/>검증 / 서비스 요청 / 응답 생성"]
+    N --> TX["호출자가 한 번만 송신 / 명령 정리"]
+    O --> TX
+    classDef work fill:#e9f1fa,color:#17324d,stroke:#3b6eaa;
+    classDef good fill:#e6f4ee,color:#204f3a,stroke:#398164;
+    classDef old fill:#f1f3f5,color:#243746,stroke:#8293a2;
+    class S,A,N work;
+    class T,O old;
+    class D,TX good;

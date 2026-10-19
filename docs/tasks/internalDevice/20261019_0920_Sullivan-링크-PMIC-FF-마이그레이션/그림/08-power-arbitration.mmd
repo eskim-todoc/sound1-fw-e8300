@@ -1,0 +1,18 @@
+flowchart TB
+    A["CM3 전경의 PMIC 서비스 경계"] --> S{"정지 / 오류 / 초기화인가?"}
+    S -->|"예"| INIT["기존 상태 전환 / reset / ramp 우선<br/>pending FF 취소"]
+    S -->|"아니요"| M{"매핑 / OTA / 모드 제약인가?"}
+    M -->|"예"| MAP["해당 기존 경로와 직렬화<br/>FF gate 닫기"]
+    M -->|"아니요"| F{"강제 고정인가?"}
+    F -->|"예"| FIX["허용 고정값 적용<br/>성공값만 게시, FF3 금지"]
+    F -->|"아니요"| I{"무한 / hold 시험인가?"}
+    I -->|"예"| HOLD["출력 동결<br/>정상 링크 판정과 구분"]
+    I -->|"아니요"| NORMAL["Normal<br/>FF3 → 최신 백텔 → FF1"]
+    NORMAL --> C["하나의 적용 경계<br/>범위 / I2C / 성공 / 되읽기 확인"]
+    FIX --> C
+    classDef work fill:#e9f1fa,color:#17324d,stroke:#3b6eaa;
+    classDef test fill:#fff1e8,color:#733d18,stroke:#b96b35;
+    classDef good fill:#e6f4ee,color:#204f3a,stroke:#398164;
+    class A,S,M,F,I work;
+    class INIT,MAP,FIX,HOLD test;
+    class NORMAL,C good;

@@ -1,0 +1,382 @@
+{
+  "checked_at": "2026-10-19T09:41:15+09:00",
+  "scope": "Current working-tree sources, including existing changes; not a flashed-image or hardware identity claim.",
+  "repositories": [
+    {
+      "path": "E:/workspace/projects/sound1-fw-e8300-backup",
+      "head": "57d71179ebe7d3ea537918ab7385734327e9673c",
+      "branch": "claude_feature_sound1-eptc"
+    },
+    {
+      "path": "E:/workspace/projects/sullivan-1-5-fw-hw-test-link-pwr-bt-period",
+      "head": "e73fa77b66dd5b5af51fce29524ff791df4070a8",
+      "branch": "Develop"
+    }
+  ],
+  "files": [
+    {
+      "repository": "Sound1-backup",
+      "path": "docs/참고/시스템/Sound1 시스템 구조.md",
+      "bytes": 43458,
+      "sha256": "df97d16dd0371ba2af1f59a4e456fe7ff415f6cebada60c5ef884c96d9110423",
+      "status": "M \"docs/참고/시스템/Sound1 시스템 구조.md\""
+    },
+    {
+      "repository": "Sound1-backup",
+      "path": "src/2__cm3/Cortex-M3-src/main.c",
+      "bytes": 58904,
+      "sha256": "52b5f455e9d102dcab7f284db6ea58b93c7cbf577bbbbe552e6234fbe7cd106e",
+      "status": "M src/2__cm3/Cortex-M3-src/main.c"
+    },
+    {
+      "repository": "Sound1-backup",
+      "path": "src/2__cm3/Cortex-M3-src/internalDevice/isd_interface.c",
+      "bytes": 29587,
+      "sha256": "cd35baa120846e1caaac3934b91fd112918277515789492076c81138f3e4b921",
+      "status": "M src/2__cm3/Cortex-M3-src/internalDevice/isd_interface.c"
+    },
+    {
+      "repository": "Sound1-backup",
+      "path": "src/2__cm3/Cortex-M3-src/internalDevice/isd_interface_FPGA.c",
+      "bytes": 30162,
+      "sha256": "2982987a54e0df97d171d03fc387c1ee3ed9558994a45198286b6862cc858888",
+      "status": "M src/2__cm3/Cortex-M3-src/internalDevice/isd_interface_FPGA.c"
+    },
+    {
+      "repository": "Sound1-backup",
+      "path": "src/1__cfx/internalDevice/driver_PCM_liveStimulation.c",
+      "bytes": 10499,
+      "sha256": "4adae465ede8e41c6720755be80ef0d4397ca9149980237848cc38a64f1e103a",
+      "status": "clean"
+    },
+    {
+      "repository": "Sound1-backup",
+      "path": "src/2__cm3/Cortex-M3-src/internalDevice/driver_REN_ISL9122.h",
+      "bytes": 1399,
+      "sha256": "50683fdee6d5769cefe6a73f516e8bbc41a103a05ebdd83b9eceea75c19d714a",
+      "status": "clean"
+    },
+    {
+      "repository": "Sound1-backup",
+      "path": "src/1__cfx/signalProcessing/stimulationStrategy.c",
+      "bytes": 33868,
+      "sha256": "9911ccb8ab242efdb46b37e1925baa14580db899ddbdf6a3a901151c5779dcd4",
+      "status": "M src/1__cfx/signalProcessing/stimulationStrategy.c"
+    },
+    {
+      "repository": "Sound1-backup",
+      "path": "src/1__cfx/signalProcessing/agc.c",
+      "bytes": 13410,
+      "sha256": "68fd6e1ddbc1fd0db0ee38c76a36aa6bb47eedcb849ba7bb106be76625f47944",
+      "status": "M src/1__cfx/signalProcessing/agc.c"
+    },
+    {
+      "repository": "Sound1-backup",
+      "path": "src/1__cfx/environment/shared_memory.h",
+      "bytes": 8924,
+      "sha256": "50482773f20f7eafbf2968fd3f03c761b760d6591002497cbc339621f7837b73",
+      "status": "clean"
+    },
+    {
+      "repository": "Sound1-backup",
+      "path": "src/2__cm3/Cortex-M3-src/BleCommunication/tdc_remote_general_debug.c",
+      "bytes": 6262,
+      "sha256": "a9c1c9306e4834a4d849dcc3135d7d9faae41e3c77a87304de53f13a89bc206a",
+      "status": "clean"
+    },
+    {
+      "repository": "Sound1-backup",
+      "path": "src/2__cm3/Cortex-M3-src/BleCommunication/remoteControl.c",
+      "bytes": 69197,
+      "sha256": "31972e618598dfa72e11876b829d41e2daf3f6ec6ee0c8972935b6fb8f9b8a46",
+      "status": "clean"
+    },
+    {
+      "repository": "Sound1-backup",
+      "path": "src/2__cm3/Cortex-M3-src/BleCommunication/ble_commonProtocol.h",
+      "bytes": 7790,
+      "sha256": "9544e7e0175d3d5af5787a3bdc430806494d1edf43c8b11d0658c3e8237639eb",
+      "status": "clean"
+    },
+    {
+      "repository": "Sound1-backup",
+      "path": "src/2__cm3/Cortex-M3-src/systemControl/driver_SPI.c",
+      "bytes": 16349,
+      "sha256": "01ec3a522c858b9f3035025ded1dfc442b29e56a06e5cf748fd28b4a8ee15545",
+      "status": "M src/2__cm3/Cortex-M3-src/systemControl/driver_SPI.c"
+    },
+    {
+      "repository": "Sound1-backup",
+      "path": "src/2__cm3/Gen1_5/common/ci_timer.c",
+      "bytes": 5046,
+      "sha256": "b4e0f47587edfbcc161537db75a836fcbf9dcbea96adbb3c1277af1738a83f5c",
+      "status": "clean"
+    },
+    {
+      "repository": "Sound1-backup",
+      "path": "src/2__cm3/Gen1_5/common/ci_power.c",
+      "bytes": 8459,
+      "sha256": "a67ced9ac2a855e308eeef7cd0ffde6a2d09130d7feedbb1518b00069fcf2521",
+      "status": "clean"
+    },
+    {
+      "repository": "Sullivan",
+      "path": "Sullivan1_5__CM3/Cortex-M3-src/internalDevice/isd_interface.c",
+      "bytes": 148846,
+      "sha256": "ab90883de32af146254e391610e1462927cb7d2db1f3293e20eef51aa794e1e7",
+      "status": "clean"
+    },
+    {
+      "repository": "Sullivan",
+      "path": "Sullivan1_5__CM3/Cortex-M3-src/internalDevice/isd_interface_FPGA.c",
+      "bytes": 27890,
+      "sha256": "23de8a73db0da891e157bb230867624831834188b46c39212ac6087fe2be0dd1",
+      "status": "clean"
+    },
+    {
+      "repository": "Sullivan",
+      "path": "Sullivan1_5__CFX/internalDevice/driver_PCM_liveStimulation.c",
+      "bytes": 24704,
+      "sha256": "ea2d6496b9c7b506fa6a1fce53253ea79a8b99c31843be00d4e1fe961ec3f427",
+      "status": "clean"
+    },
+    {
+      "repository": "Sullivan",
+      "path": "Sullivan1_5__CM3/Cortex-M3-src/internalDevice/driver_REN_ISL9122.h",
+      "bytes": 3581,
+      "sha256": "df90a7b3a44627ca8be01293c34dcb67192a60566dd0d434b16be4a00ced57aa",
+      "status": "M Sullivan1_5__CM3/Cortex-M3-src/internalDevice/driver_REN_ISL9122.h"
+    },
+    {
+      "repository": "Sullivan",
+      "path": "Sullivan1_5__CFX/signalProcessing/stimulationStrategy.c",
+      "bytes": 43260,
+      "sha256": "d4ce460f24bb8c4d66351bbeca8e839a5e8ac1074766143366bbfadadf4c3889",
+      "status": "clean"
+    },
+    {
+      "repository": "Sullivan",
+      "path": "Sullivan1_5__CFX/signalProcessing/agc.c",
+      "bytes": 27043,
+      "sha256": "35decd28507ca1d4cc3594c8e65d44d07f2a72b0047c33ae7d97f8582209309d",
+      "status": "clean"
+    },
+    {
+      "repository": "Sullivan",
+      "path": "Sullivan1_5__CFX/environment/shared_memory.h",
+      "bytes": 12622,
+      "sha256": "29e0f016feb0988f4fba5cd9429aae48fe0e08285b442a1db5140df5755a9566",
+      "status": "clean"
+    },
+    {
+      "repository": "Sullivan",
+      "path": "Sullivan1_5__CM3/Cortex-M3-src/BleCommunication/remoteControl_protocol.c",
+      "bytes": 33152,
+      "sha256": "9356556743c3b9f08aa8e7057661eb9009df806ab0442f0c30c0eabfe18714f1",
+      "status": "clean"
+    },
+    {
+      "repository": "Sullivan",
+      "path": "Sullivan1_5__CM3/Cortex-M3-src/BleCommunication/tdc_rc_protocol.h",
+      "bytes": 13081,
+      "sha256": "d917b819000536cb93a92f735af549d84cfa4badf8d31da91a9921b2b1baa0a7",
+      "status": "clean"
+    },
+    {
+      "repository": "Sullivan",
+      "path": "Sullivan1_5__CM3/Gen1_5/FS/tdc_file_link_param.c",
+      "bytes": 58724,
+      "sha256": "230304b33676af53177901fe13ccc9644882820d39a7a1eefec020d5a4d3888d",
+      "status": "clean"
+    },
+    {
+      "repository": "Sullivan",
+      "path": "Sullivan1_5__CM3/Gen1_5/common/ci_timer.c",
+      "bytes": 6562,
+      "sha256": "ca4662649b8d94eb5662459aa0c8003b1e93cd0255a99d1b0f6eed665f558bc3",
+      "status": "clean"
+    },
+    {
+      "repository": "Sound1-backup",
+      "path": "src/2__cm3/processorDirective.h",
+      "bytes": 7181,
+      "sha256": "a9bc67c9bf364224a7d51957fbbba1be47a84bbefa249af47c94ca10d7acfcb3",
+      "status": "M src/2__cm3/processorDirective.h"
+    },
+    {
+      "repository": "Sound1-backup",
+      "path": "src/2__cm3/Cortex-M3-src/internalDevice/isd_interface_init_FPGA.c",
+      "bytes": 26343,
+      "sha256": "01538471b0635ffff2c80397f082d3e01a6bfa1eae9e752393b1f467fe0190a7",
+      "status": "clean"
+    },
+    {
+      "repository": "Sound1-backup",
+      "path": "src/2__cm3/Cortex-M3-src/internalDevice/isd_interface.h",
+      "bytes": 2123,
+      "sha256": "3d56eb0b67189b79d74018f463046a855bd3013d6d9a1194a6d94e7c719250ec",
+      "status": "M src/2__cm3/Cortex-M3-src/internalDevice/isd_interface.h"
+    },
+    {
+      "repository": "Sound1-backup",
+      "path": "src/2__cm3/Cortex-M3-src/systemControl/cfx_cm3_sharedMemory.h",
+      "bytes": 13398,
+      "sha256": "f4269cb15a632031c272589c797547276b0a1ee1987c85dcd3f25eb7416344aa",
+      "status": "clean"
+    },
+    {
+      "repository": "Sound1-backup",
+      "path": "src/2__cm3/Cortex-M3-src/systemControl/cfx_cm3_sharedMemory.c",
+      "bytes": 23542,
+      "sha256": "9035d1fde58d18ec1360c44aadc7b42a52b02c1f9bee3be1115351efd14c4345",
+      "status": "M src/2__cm3/Cortex-M3-src/systemControl/cfx_cm3_sharedMemory.c"
+    },
+    {
+      "repository": "Sound1-backup",
+      "path": "src/2__cm3/Cortex-M3-src/systemControl/initialize.c",
+      "bytes": 18699,
+      "sha256": "df550e14ef93904ceb2fd1683a622c1d634a79ff8c106a383fcca2507ba0611b",
+      "status": "clean"
+    },
+    {
+      "repository": "Sound1-backup",
+      "path": "src/2__cm3/Cortex-M3-src/BleCommunication/mappingControl.c",
+      "bytes": 126698,
+      "sha256": "96d4023fe54e79fbd8c006672e6d1726ac610751d7abdd086a5c55258f763c08",
+      "status": "M src/2__cm3/Cortex-M3-src/BleCommunication/mappingControl.c"
+    },
+    {
+      "repository": "Sound1-backup",
+      "path": "src/2__cm3/Cortex-M3-src/BleCommunication/ble_communication.c",
+      "bytes": 21746,
+      "sha256": "4f64ce10102c59caeefef239fe3c56fc32aacc100992709f831892197f57e2eb",
+      "status": "M src/2__cm3/Cortex-M3-src/BleCommunication/ble_communication.c"
+    },
+    {
+      "repository": "Sound1-backup",
+      "path": "src/1__cfx/systemControl/main.c",
+      "bytes": 22779,
+      "sha256": "69be0ae2ec3529b5e6d17c011bb9d4ad80c431d9ec5b9ca67a4ba12c56cfb62f",
+      "status": "M src/1__cfx/systemControl/main.c"
+    },
+    {
+      "repository": "Sound1-backup",
+      "path": "src/1__cfx/systemControl/interrupt_service_routine.c",
+      "bytes": 3888,
+      "sha256": "556088d56d40fb398f5659bda16050f400cee25bf16c6f79a0e26fa51b44e38f",
+      "status": "M src/1__cfx/systemControl/interrupt_service_routine.c"
+    },
+    {
+      "repository": "Sound1-backup",
+      "path": "src/1__cfx/systemControl/system_control.c",
+      "bytes": 16249,
+      "sha256": "e32d67b9ce222220c2f82830f47db7933c71839bc8edeb4b03e1481101a719b3",
+      "status": "clean"
+    },
+    {
+      "repository": "Sound1-backup",
+      "path": "src/1__cfx/internalDevice/driver_PCM.c",
+      "bytes": 5454,
+      "sha256": "52f8d2d6b4252230d0e3629874702374081cf218e7e09e26ac77a6dcb7326589",
+      "status": "M src/1__cfx/internalDevice/driver_PCM.c"
+    },
+    {
+      "repository": "Sound1-backup",
+      "path": "src/1__cfx/signalProcessing/definitionsForAlgorithm.h",
+      "bytes": 5521,
+      "sha256": "620aab19b24a75dce9070baf3d175041b7d76c7ff2b7fe7a77bbb6839dd2457d",
+      "status": "clean"
+    },
+    {
+      "repository": "Sound1-backup",
+      "path": "src/1__cfx/test/tdc_sys_test_config.h",
+      "bytes": 679,
+      "sha256": "c343de31242c423251bc75da67b7b3ba545b1dc990c9ff0d28078456fd950749",
+      "status": "?? src/1__cfx/test/tdc_sys_test_config.h"
+    },
+    {
+      "repository": "Sound1-backup",
+      "path": "src/2__cm3/Gen1_5/common/ci_timer.h",
+      "bytes": 2247,
+      "sha256": "bd4f8a7e901a08548b30d88431d47434f88faaa9f9ce20ed77e9bd8aef2aa2ec",
+      "status": "clean"
+    },
+    {
+      "repository": "Sound1-backup",
+      "path": "src/2__cm3/sections.ld",
+      "bytes": 8581,
+      "sha256": "8dcbe146f3d2451827a7f04fa4ffa3f9a22a4ef619941601867b35cfe513b5c6",
+      "status": "M src/2__cm3/sections.ld"
+    },
+    {
+      "repository": "Sullivan",
+      "path": "Sullivan1_5__CM3/processorDirective.h",
+      "bytes": 6719,
+      "sha256": "b40487064c15c82443be9eb49f0204d4d7d6be830b7f1507225b648c591843da",
+      "status": "clean"
+    },
+    {
+      "repository": "Sullivan",
+      "path": "Sullivan1_5__CM3/Cortex-M3-src/internalDevice/isd_interface.h",
+      "bytes": 17246,
+      "sha256": "e03bfcb053ef22bd8ef5cff42c4a5319d5e765ea813701bada602e3d05568eb3",
+      "status": "M Sullivan1_5__CM3/Cortex-M3-src/internalDevice/isd_interface.h"
+    },
+    {
+      "repository": "Sullivan",
+      "path": "Sullivan1_5__CM3/Cortex-M3-src/internalDevice/isd_interface_init_FPGA.c",
+      "bytes": 25051,
+      "sha256": "a1fb62ec9f8506538f35cbee39aaea34d5e64fbcc794827b41912d5c4b6972f7",
+      "status": "clean"
+    },
+    {
+      "repository": "Sullivan",
+      "path": "Sullivan1_5__CM3/Cortex-M3-src/systemControl/cfx_cm3_sharedMemory.h",
+      "bytes": 17776,
+      "sha256": "472d6d837e8e0ae63a233b08195b16b736d9f0ac2897f6cd9b19fcd91c81bcf2",
+      "status": "clean"
+    },
+    {
+      "repository": "Sullivan",
+      "path": "Sullivan1_5__CM3/Cortex-M3-src/systemControl/initialize.c",
+      "bytes": 14403,
+      "sha256": "4b25d6193ff404128ce91c8be4ac7e980c39bc186a12541d2a472752fdd0d38e",
+      "status": "M Sullivan1_5__CM3/Cortex-M3-src/systemControl/initialize.c"
+    },
+    {
+      "repository": "Sullivan",
+      "path": "Sullivan1_5__CM3/Gen1_5/FS/tdc_file_link_param.h",
+      "bytes": 10027,
+      "sha256": "b9dc5c6a0772d09352a60fe958483ffd43819af88f140981233d73e4e599c1f3",
+      "status": "clean"
+    },
+    {
+      "repository": "Sullivan",
+      "path": "Sullivan1_5__CM3/Gen1_5/common/ci_power.c",
+      "bytes": 8679,
+      "sha256": "aef9b0c85b55273173530bb9de7d175f93c10ee4d39ef228c796059032f3c638",
+      "status": "clean"
+    },
+    {
+      "repository": "Sullivan",
+      "path": "Sullivan1_5__CFX/systemControl/main.c",
+      "bytes": 13459,
+      "sha256": "b0f664a6aa716b42f5b08797399f2cc80498d1ecc6658f8e58889132038adc64",
+      "status": "clean"
+    },
+    {
+      "repository": "Sullivan",
+      "path": "Sullivan1_5__CFX/systemControl/interrupt_service_routine.c",
+      "bytes": 6966,
+      "sha256": "3075882c8a7fdb5ccb40d4a00be83029350596824cc57a5a5d2a060d6b882795",
+      "status": "clean"
+    },
+    {
+      "repository": "Sullivan",
+      "path": "Sullivan1_5__CFX/systemControl/system_control.c",
+      "bytes": 14130,
+      "sha256": "afc16a5934e126ef906fddd59eb72b4d621dbd9ff2f67809967157c518cf0357",
+      "status": "clean"
+    }
+  ]
+}

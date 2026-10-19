@@ -1,0 +1,31 @@
+flowchart TB
+    APP["앱 / 시험 도구"]
+    subgraph OTE["Sound1 외부장치"]
+        Q["QCC<br/>무선 / SPI 중계"]
+        subgraph EZ["E8300"]
+            H["HEAR<br/>입력 peak / 신호 연산"]
+            C["CFX<br/>자극 / 백텔 PCM<br/>FF 관측과 요청"]
+            M["CM3<br/>연결 상태 / PMIC 중재<br/>프로토콜 / 파일 설정"]
+            H -->|"블록 관측값"| C
+            C -->|"공유 요청 / 백텔 ready"| M
+            M -->|"설정 token / 적용 상태"| C
+        end
+        F["FPGA<br/>PCM 전달 / 백텔 FIFO"]
+        P["TX PMIC<br/>링크 전원"]
+        R(["무선 링크 / 송신 경로<br/>기능 구분, 칩 표기 아님"])
+        Q <-->|"SPI 명령 / 응답"| M
+        C -->|"PCM"| F
+        M <-->|"I2C 판독 / 설정"| F
+        M -->|"I2C 레벨 설정"| P
+        P -->|"송신 전원"| R
+        F <-->|"전달 / 수신"| R
+    end
+    I["내부 이식장치<br/>자극 실행 / 백텔 반환"]
+    APP <--> Q
+    R <-->|"전달 / 백텔"| I
+    classDef core fill:#e9f1fa,color:#17324d,stroke:#3b6eaa;
+    classDef hw fill:#edf4ef,color:#204f3a,stroke:#398164;
+    classDef outside fill:#f1f3f5,color:#243746,stroke:#8293a2;
+    class H,C,M core;
+    class F,P,R hw;
+    class APP,Q,I outside;

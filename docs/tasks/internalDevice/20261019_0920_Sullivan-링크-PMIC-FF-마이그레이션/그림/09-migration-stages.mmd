@@ -1,0 +1,14 @@
+flowchart TB
+    P0["0. 현재 기준 고정<br/>dirty / 시험 설정 / 기존 동작"]
+    P1["1. 오류와 적용 경계<br/>유효 표본 / 성공값 / single TX"]
+    P2["2. 링크 / PMIC<br/>새 백텔 / 주기 / 재시도 / 모드"]
+    P3["3. 프로토콜 / 설정 저장<br/>8F20 / staging / 파일 / ACK"]
+    P4["4. FF1<br/>자극값 급증 / 고정 step"]
+    P5["5. FF3 관측<br/>시계 / profile / session / snapshot"]
+    P6["6. FF3 실제 적용<br/>장부 / 상한 / 최신 백텔 중재"]
+    P7["7. 통합 검증<br/>QCC / 매핑 / OTA / sleep / 제품 빌드"]
+    P0 --> P1 --> P2 --> P3 --> P4 --> P5 --> P6 --> P7
+    classDef work fill:#e9f1fa,color:#17324d,stroke:#3b6eaa;
+    classDef good fill:#e6f4ee,color:#204f3a,stroke:#398164;
+    class P0,P1,P2,P3,P4,P5,P6 work;
+    class P7 good;

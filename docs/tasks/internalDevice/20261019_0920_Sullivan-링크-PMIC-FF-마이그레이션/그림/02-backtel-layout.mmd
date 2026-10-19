@@ -1,0 +1,15 @@
+flowchart TB
+    H["Sullivan 백텔 읽기 시퀀스<br/>F = 채널당 프레임 수, S = 안정 NOP"]
+    H --> A["A: ForwardCheck F슬롯<br/>직전 자극을 원래 폭으로 종료"]
+    A --> S["S: 전원 안정 NOP"]
+    S --> Q{"F ≥ 4 ?"}
+    Q -->|"예"| P["P: Duration 최소값 적용"]
+    Q -->|"아니요"| B["B: Power 백텔 읽기"]
+    P --> B
+    B --> C["C: 수신 NOP 3개"]
+    C --> R["R: 변경한 Duration 원복"]
+    R --> D["D: 프레임 경계 padding<br/>다음 정상 자극으로 연결"]
+    classDef work fill:#e9f1fa,color:#17324d,stroke:#3b6eaa;
+    classDef key fill:#fff1e8,color:#733d18,stroke:#b96b35;
+    class H,S,Q,B,C,D work;
+    class A,P,R key;

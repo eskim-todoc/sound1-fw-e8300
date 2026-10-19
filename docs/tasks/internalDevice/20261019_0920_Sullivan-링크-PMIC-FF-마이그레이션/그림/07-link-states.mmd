@@ -1,0 +1,23 @@
+stateDiagram-v2
+    direction TB
+    state "PowerIC_Reset<br/>PMIC 초기화 / ramp" as P0
+    state "PowerIC_OK<br/>FPGA 초기화" as P1
+    state "FPGA_Ok<br/>내부기 전원 / 응답 확인" as P2
+    state "ISD_Power_Ok<br/>ID / 맵 / passkey / 경로 확인" as P3
+    state "ISD_pathOpen_Ok<br/>자극용 10V 준비" as P4
+    state "stimul_10V_Ok<br/>자극 설정 / Live 준비" as P5
+    state "운용<br/>주기 백텔 / PMIC / 조건부 FF" as RUN
+    [*] --> P0
+    P0 --> P1: PMIC 준비
+    P1 --> P2: FPGA 준비
+    P2 --> P3: 전원 확인
+    P3 --> P4: 경로 확인
+    P4 --> P5: 10V 확인
+    P5 --> RUN: 맵 / 자극 준비
+    RUN --> P2: 백텔 실패 / 재시도 소진
+    RUN --> P1: FPGA clear 오류
+    RUN --> P0: PMIC 오류 / 사용 해제
+    note right of P0
+        상태 변경 때 NOP와 이전 요청 정리
+        FF 장부는 실제 초기화 완료로 복원
+    end note

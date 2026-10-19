@@ -1,0 +1,12 @@
+{
+  "status": "passed",
+  "source_files": 52,
+  "local_links_and_images": 107,
+  "explicit_anchors": 14,
+  "images": 9,
+  "packet_examples": 22,
+  "arithmetic_examples": "PMIC, counter, PCM budget, retry count, FF ledger, clock and payload length checked",
+  "bytes": 70301,
+  "lines": 848,
+  "failures": []
+}

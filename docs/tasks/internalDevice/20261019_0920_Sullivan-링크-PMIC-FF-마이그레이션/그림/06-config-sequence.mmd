@@ -1,0 +1,23 @@
+sequenceDiagram
+    participant A as 앱
+    participant M as CM3 설정 서비스
+    participant F as 파일 저장
+    participant C as CFX
+    A->>M: FF OFF / BEGIN
+    M-->>A: staging 편집 시작 ACK
+    A->>M: scalar / 구간표 개별 편집
+    M-->>A: 개별 저장 ACK
+    A->>M: VALIDATE
+    M-->>A: 전체 관계 검사 결과
+    A->>M: SAVE_APPLY
+    M->>F: 직렬화 / 쓰기 / sync / close / 되읽기
+    F-->>M: 길이 / CRC / 전체 값 확인
+    M->>C: 설정 전체와 새 token 게시
+    M-->>A: SAVE_APPLY 응답
+    Note over A,C: 이 응답만으로 CFX 적용 완료는 아님
+    C->>C: 같은 token의 설정 수신
+    C-->>M: config ACK
+    A->>M: 파일 / ACK / 장부 / 준비 조회
+    M-->>A: 각 상태와 미완료 원인
+    A->>M: 준비 확인 후 mode3 선택
+    Note over M,C: 새 session / warmup / 실행 gate 확인

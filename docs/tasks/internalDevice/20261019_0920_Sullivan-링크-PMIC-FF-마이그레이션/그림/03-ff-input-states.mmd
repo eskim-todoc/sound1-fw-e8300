@@ -1,0 +1,24 @@
+stateDiagram-v2
+    direction TB
+    state "초기 / 소스 연속성 재설정" as INIT
+    state "현재 입력을 baseline으로 설정<br/>Warmup" as WARM
+    state "새 상승을 기다림<br/>Ready" as READY
+    state "최고 구간 / revision 갱신<br/>상승 요청 게시" as RISE
+    state "지속 입력 유지<br/>같은 양 반복 요청 금지" as HOLD
+    state "낮아짐 확인<br/>hold / hysteresis / low-confirm" as LOW
+    state "이전 요청 종결 / 필요한 High 확인<br/>새 baseline과 event, R은 보존" as REBASE
+    [*] --> INIT
+    INIT --> WARM
+    WARM --> READY: warmup / 설정 준비
+    READY --> RISE: 유효한 새 상승
+    RISE --> HOLD
+    HOLD --> RISE: 같은 사건의 더 높은 구간
+    HOLD --> LOW: 입력 하강
+    LOW --> HOLD: 다시 상승 / 유지 조건 미충족
+    LOW --> REBASE: 하강 및 재무장 조건 충족
+    REBASE --> READY
+    READY --> INIT: 소스 누락 / 세션 변경
+    note right of INIT
+        소스 누락 / 세션 재시작은
+        모든 상태의 공통 취소 조건
+    end note
