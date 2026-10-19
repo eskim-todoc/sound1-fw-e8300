@@ -358,7 +358,7 @@ int ci_map_init_map_data(int isd_num, bool force_init, bool specific_RL, int val
 
             /* 양이 사용자에 대한 경우 */
             // 왼쪽
-#if 1
+#if 0
             p_info->isd_location_RL = 1;  //  ISD info (left/right)
 
             // 오른쪽
