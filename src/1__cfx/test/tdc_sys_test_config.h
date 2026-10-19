@@ -6,7 +6,7 @@
  * CM3는 초기화만 하고 측정 중에는 CFX만 이 핀을 제어한다.
  * 실제 보드에서 미사용 핀임을 확인한다. EXTCLK 입력과 함께 쓸 수 없다. */
 #ifndef TDC_SYSTEM_TEST_DIO35_ENABLE
-#define TDC_SYSTEM_TEST_DIO35_ENABLE 1
+#define TDC_SYSTEM_TEST_DIO35_ENABLE 0
 #endif
 
 #if (TDC_SYSTEM_TEST_DIO35_ENABLE != 0) && (TDC_SYSTEM_TEST_DIO35_ENABLE != 1)
