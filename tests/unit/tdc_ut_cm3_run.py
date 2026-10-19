@@ -21,6 +21,7 @@ SDK_DEFAULT = pathlib.Path(r"C:\Program Files (x86)\ON Semiconductor\Ezairo 8300
 INCLUDES = ("", "source", *tuple(str(p.relative_to(CM3)).replace("\\", "/") for p in (CM3 / "source").rglob("*") if p.is_dir()))
 
 SOURCES = (
+    "source/isd/tdc_link_control.c",
     "source/tests/tdc_ut_vectors_cm3.c",
     "source/tests/tdc_ut_coordination_cm3.c",
     "source/tests/tdc_ut_state_cm3.c",
@@ -140,6 +141,7 @@ def main() -> None:
     inputs = [CM3 / source for source in SOURCES]
     inputs += list(CM3.rglob("*.h"))
     inputs += [CM3 / "source/main.c", pathlib.Path(__file__),
+               ROOT / "tests/unit/tdc_ut_link_config_default.c",
                ROOT / "tests/unit/tdc_ut_cm3_host.c", ROOT / "tests/unit/tdc_ut_cm3_host_prelude.h",
                ROOT / "tests/unit/check_cfx_vectors.py"]
     criterion = ROOT / json.loads((ROOT / "tests/unit/cm3_pure_control_coverage.json").read_text(encoding="utf-8"))["criterion"]["path"]
@@ -181,6 +183,7 @@ static void tdc_ut_forbidden_ui(void) {abort();}
                                 function(source,"tdc_ut_cm3_boot_sequence"),encoding="utf-8")
             executable = directory / "tdc_ut_cm3_host.exe"
             run([str(compiler), *flags, str(fragment), str(ROOT / "tests/unit/tdc_ut_cm3_host.c"),
+                 str(ROOT / "tests/unit/tdc_ut_link_config_default.c"),
                  *objects, "-Wl,--gc-sections,--exclude-all-symbols", "-o", str(executable)])
             result = subprocess.run([str(executable)], cwd=ROOT, capture_output=True, text=True,
                                     encoding="utf-8", errors="replace", timeout=60)

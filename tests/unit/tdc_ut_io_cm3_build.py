@@ -20,6 +20,7 @@ ROOT = Path(__file__).resolve().parents[2]
 CM3 = ROOT / "src/2__cm3"
 SDK = Path(os.environ.get("TDC_E8300_SDK", "C:/Program Files (x86)/ON Semiconductor/Ezairo 8300 SDK"))
 PRODUCTS = [
+    "source/isd/tdc_link_control.c",
     "source/ble/tdc_ble_reply.c",
     "source/ble/tdc_ble_map_field_range.c",
     "source/hal/tdc_hal_i2c.c",
@@ -179,6 +180,7 @@ def main() -> None:
             print(f"ARM COMPILE OK: {len(sources)} translation units; TDC_UNIT_TEST={not args.no_unit_test}")
         else:
             # Actual shared-state accessors and bit extraction; no output-value mocks.
+            sources.append(ROOT / "tests/unit/tdc_ut_link_config_default.c")
             sources += [CM3 / "source/cfx_link/tdc_shm.c", CM3 / "source/stim/tdc_stim_common.c", CM3 / "source/isd/tdc_isd.c", CM3 / "source/isd/tdc_isd_stim_para_setting.c", CM3 / "source/pwr/tdc_pwr_battery.c", CM3 / "source/led/tdc_led_output.c", CM3 / "source/sys/tdc_sys_error.c", CM3 / "source/qcc/tdc_qcc.c", FIXTURE]
             executable = build / "tdc_ut_io_cm3.exe"
             if not args.ram:

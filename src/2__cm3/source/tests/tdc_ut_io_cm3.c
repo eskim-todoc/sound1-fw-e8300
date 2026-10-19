@@ -11,6 +11,7 @@
 #include <tdc_drv_isl9122.h>
 #include <tdc_touch_iqs323.h>
 #include <tdc_isd.h>
+#include <tdc_link_control.h>
 #include <tdc_isd_stim_para_setting.h>
 #include <tdc_ble_mapping.h>
 #include <tdc_ble_communication.h>
@@ -684,6 +685,11 @@ int tdc_ut_io_cm3_run_unit(int unit)
     if (cfx_cm3_sharedMemoryAll.is_enabled_CFX_iteration || !tdc_hal_spi_is_tx_buffer_empty() || !tdc_hal_i2c_is_driver_status_idle()) return TDC_UT_IO_CM3_BUSY;
 #endif
     s_tdc_saved_shared = cfx_cm3_sharedMemoryAll;
+    /* 시험 입력은 유지하고 PMIC 접근/상태 변경이 건드리는 private RAM도 보존한다. */
+    tdc_ut_link_control_state_t saved_link = {0};
+    tdc_ut_link_control_exchange(&saved_link);
+    tdc_ut_link_control_state_t active_link = saved_link;
+    tdc_ut_link_control_exchange(&active_link);
     int saved_cache[4], saved_tx[TDC_HAL_SPI_COMM_PACKET_SIZE], saved_empty=tdc_hal_spi_is_tx_buffer_empty();
     int saved_ulp=tdc_touch_iqs323_is_ulp();
     ST__OTA_FILE_WRITE_INFO saved_ota = {0};
@@ -769,6 +775,7 @@ int tdc_ut_io_cm3_run_unit(int unit)
     if(saved_ulp) tdc_touch_iqs323_set_ulp(); else tdc_touch_iqs323_clear_ulp();
     tdc_ut_io_cm3_fpga_cache(saved_cache,1);
     cfx_cm3_sharedMemoryAll = s_tdc_saved_shared;
+    tdc_ut_link_control_exchange(&saved_link);
     tdc_ut_cm3_error_exchange(&saved_error);
     tdc_ut_io_cm3_spi_restore(saved_tx,TDC_HAL_SPI_COMM_PACKET_SIZE,saved_empty);
     s_tdc_io_running = 0; g_tdc_ut_io_cm3_done = 1;

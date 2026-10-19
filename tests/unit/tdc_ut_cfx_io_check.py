@@ -40,6 +40,9 @@ D_FIFO_Type g_tdc_ut_host_fifo;
 volatile app_interrupt_flag_t g_interrupt_flags;
 volatile int HCT_A0_0[32], HCT_A0_1[32];
 int m_link_connection_check_counter;
+/* Original vectors use the 300ms boundary; actual getter/period behavior is
+ * independently exercised by tests/link_pmic/cfx_check.py. */
+int tdc_link_backtel_period_ms(void) {return 300;}
 int g_tdc_ut_agc_override_enabled, g_tdc_ut_power_override_enabled;
 volatile int g_tdc_ut_cfx_vector_done;
 typedef struct {long long v;} m8p16_t;

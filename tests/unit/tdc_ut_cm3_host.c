@@ -8,6 +8,19 @@
 #include <tdc_sys_error.h>
 #include <tdc_stim_para_cal.h>
 #include <tdc_led_output.h>
+#include <tdc_link_control.h>
+
+static void assert_link_state_restored(void)
+{
+    tdc_ut_link_control_state_t state = {0};
+    tdc_ut_link_control_exchange(&state);
+    tdc_ut_link_control_state_t observed = state;
+    tdc_ut_link_control_exchange(&state);
+    assert(observed.actual_level==187 && observed.level_valid);
+    assert(observed.force_level==0 && !observed.infinite && observed.nop_override);
+    assert(observed.connected_once && observed.nop_default==6);
+    assert(observed.coin_balance==2 && observed.fail_count==3);
+}
 
 extern void tdc_ut_cm3_error_exchange(tdc_sys_error_code_t *state);
 extern int tdc_ut_cm3_dac_offset_exchange(int offset);
@@ -263,6 +276,11 @@ int main(void)
     int previous_map_flag=tdc_ut_cm3_map_flag_exchange(1);
     memset(&cfx_cm3_sharedMemoryAll, 0x35, sizeof(cfx_cm3_sharedMemoryAll));
     cfx_cm3_sharedMemoryAll.is_enabled_CFX_iteration = 0;
+    tdc_link_control_map_changed(6);
+    assert(tdc_link_control_set_nop(19));
+    tdc_link_control_note_level(187);
+    tdc_ut_link_control_state_t link_seed = {187, true, 0, false, true, true, 6, 2, 3};
+    tdc_ut_link_control_exchange(&link_seed);
     /* Fixture restore must preserve unrelated bytes, not just default zeros. */
     saved = cfx_cm3_sharedMemoryAll;
     int short_actual[26], short_expected[26];
@@ -306,6 +324,9 @@ int main(void)
         assert(!g_tdc_ut_cm3_vector_observed);
         assert(tdc_ut_cm3_vectors_expected() == g_tdc_ut_cm3_vector_expected);
         assert(!memcmp(&saved, &cfx_cm3_sharedMemoryAll, sizeof(saved)));
+        assert(tdc_link_control_get_nop()==19 && tdc_link_control_get_override()==1);
+        assert(tdc_link_control_get_level()==187);
+        assert_link_state_restored();
         tdc_sys_error_code_t current_error = tdc_sys_error_read();
         assert(!memcmp(&previous_error, &current_error, sizeof(current_error)));
         assert(!memcmp(&previous_dac, tdc_stim_read_dac_register_value(), sizeof(previous_dac)));

@@ -171,3 +171,25 @@ bool tdc_link_control_feedback(int power_state, int current, bool mapping, bool 
     }
     return true;
 }
+
+#if defined(TDC_UNIT_TEST)
+void tdc_ut_link_control_exchange(tdc_ut_link_control_state_t *state)
+{
+    if (state == 0) return;
+    tdc_ut_link_control_state_t previous = {
+        s_tdc_actual_level, s_tdc_level_valid, s_tdc_force_level,
+        s_tdc_infinite, s_tdc_nop_override, s_tdc_connected_once,
+        s_tdc_nop_default, s_tdc_coin_balance, s_tdc_fail_count
+    };
+    s_tdc_actual_level = state->actual_level;
+    s_tdc_level_valid = state->level_valid;
+    s_tdc_force_level = state->force_level;
+    s_tdc_infinite = state->infinite;
+    s_tdc_nop_override = state->nop_override;
+    s_tdc_connected_once = state->connected_once;
+    s_tdc_nop_default = state->nop_default;
+    s_tdc_coin_balance = state->coin_balance;
+    s_tdc_fail_count = state->fail_count;
+    *state = previous;
+}
+#endif
