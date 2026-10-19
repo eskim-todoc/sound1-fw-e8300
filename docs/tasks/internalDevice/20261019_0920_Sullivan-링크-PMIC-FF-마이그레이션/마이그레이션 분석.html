@@ -22,16 +22,16 @@ dialog{border:1px solid #aabccc;border-radius:12px;padding:26px;background:#fff;
 @media print{.rd-figure{container-type:normal;break-inside:auto!important;page-break-inside:auto!important;padding:15px 17px}.rd-figure>h3{font-size:15pt}.rd-wires{display:none!important}.rd-main,.rd-extra,.rd-cores,.rd-hardware,.rd-connections>ul{grid-template-columns:minmax(0,1fr)!important;gap:12px}.rd-node{break-inside:avoid;page-break-inside:avoid;padding:14px 17px}.rd-node h4{font-size:13pt}.rd-node p,.rd-reading,.rd-note{font-size:10pt}.rd-transitions a{font-size:10pt;min-height:0;padding:7px 9px}.rd-transitions a>span,.rd-kind,.rd-index{font-size:9pt}.rd-transitions{gap:6px;padding-top:9px}.rd-boundary{break-inside:auto;padding:14px}.rd-boundary-title{font-size:13pt}.rd-connections li,.rd-messages>li{break-inside:avoid}.rd-connection-path{font-size:11pt}.rd-connections li>p{font-size:10pt}.rd-participants>span{font-size:11pt}.rd-messages>li{display:grid;grid-template-columns:25px minmax(0,1fr);padding:13px}.rd-message-path{grid-column:2;font-size:11pt}.rd-messages p{grid-column:2;grid-row:auto;font-size:10pt}.rd-message-note{grid-column:2;font-size:10pt}.rd-figure figcaption{font-size:10pt}.rd-reflow-label{display:none}}
 </style></head>
 <body><a class="skip-link" href="#main">본문으로 건너뛰기</a>
-<aside class="sidebar"><a href="#overview" class="brand" aria-label="Sound1 마이그레이션 개요"><span class="brand-mark" aria-hidden="true">S1</span><span>Sound1<small>FIRMWARE ENGINEERING</small></span></a><div class="side-title"><span class="eyebrow">Sullivan → Sound1</span><strong>마이그레이션<br>분석과 계획</strong></div><div class="side-divider"></div><span class="nav-label" id="nav-label">기능별 탐색</span><div class="tabs" role="tablist" aria-labelledby="nav-label" aria-orientation="vertical"><button type="button" role="tab" id="tab-overview" aria-controls="panel-overview" aria-selected="true" tabindex="0" data-tab="overview"><span class="tab-number" aria-hidden="true">01</span><span class="tab-text"><b>개요</b><small>전체 관계와 권장안</small></span><span class="tab-arrow" aria-hidden="true">›</span></button><button type="button" role="tab" id="tab-link" aria-controls="panel-link" aria-selected="false" tabindex="-1" data-tab="link"><span class="tab-number" aria-hidden="true">02</span><span class="tab-text"><b>링크·백텔</b><small>PCM · 주기 · 상태</small></span><span class="tab-arrow" aria-hidden="true">›</span></button><button type="button" role="tab" id="tab-pmic" aria-controls="panel-pmic" aria-selected="false" tabindex="-1" data-tab="pmic"><span class="tab-number" aria-hidden="true">03</span><span class="tab-text"><b>PMIC·전원</b><small>레벨 · 정책 · 중재</small></span><span class="tab-arrow" aria-hidden="true">›</span></button><button type="button" role="tab" id="tab-ff1" aria-controls="panel-ff1" aria-selected="false" tabindex="-1" data-tab="ff1"><span class="tab-number" aria-hidden="true">04</span><span class="tab-text"><b>FF1</b><small>후속 확장 · 1차 미구현</small></span><span class="tab-arrow" aria-hidden="true">›</span></button><button type="button" role="tab" id="tab-ff3" aria-controls="panel-ff3" aria-selected="false" tabindex="-1" data-tab="ff3"><span class="tab-number" aria-hidden="true">05</span><span class="tab-text"><b>FF3</b><small>후속 확장 · 계산 예시</small></span><span class="tab-arrow" aria-hidden="true">›</span></button><button type="button" role="tab" id="tab-protocol" aria-controls="panel-protocol" aria-selected="false" tabindex="-1" data-tab="protocol"><span class="tab-number" aria-hidden="true">06</span><span class="tab-text"><b>프로토콜</b><small>헤더 · 인덱스 · 응답</small></span><span class="tab-arrow" aria-hidden="true">›</span></button><button type="button" role="tab" id="tab-shared" aria-controls="panel-shared" aria-selected="false" tabindex="-1" data-tab="shared"><span class="tab-number" aria-hidden="true">07</span><span class="tab-text"><b>공유·저장</b><small>시간 · ACK · 영속성</small></span><span class="tab-arrow" aria-hidden="true">›</span></button><button type="button" role="tab" id="tab-plan" aria-controls="panel-plan" aria-selected="false" tabindex="-1" data-tab="plan"><span class="tab-number" aria-hidden="true">08</span><span class="tab-text"><b>이식·검증</b><small>단계 · 파일 · 시험</small></span><span class="tab-arrow" aria-hidden="true">›</span></button><button type="button" role="tab" id="tab-evidence" aria-controls="panel-evidence" aria-selected="false" tabindex="-1" data-tab="evidence"><span class="tab-number" aria-hidden="true">09</span><span class="tab-text"><b>근거·읽기 안내</b><small>기준 · 상세 · 디자인</small></span><span class="tab-arrow" aria-hidden="true">›</span></button></div><div class="side-footer"><span class="side-dot"></span>개정 계획 · 펌웨어 미반영<small>기준일 2026.10.19<br>대상 sound1-fw-e8300-backup</small></div></aside>
-<div class="workspace"><header class="topbar"><div class="breadcrumbs"><span>기술 검토 문서</span><b id="current-tab">개요</b></div><div class="toolbar"><button type="button" id="search-open" aria-haspopup="dialog">검색 <kbd>/</kbd></button><button type="button" id="all-toggle" aria-pressed="false">전체 보기</button><button type="button" id="print-all">전체 인쇄</button></div></header><main id="main" tabindex="-1"><div class="document-heading"><div><span class="eyebrow">MIGRATION STUDY / 2026.10.19</span><h1>링크·PMIC·FF 이식 분석</h1></div><span class="document-state">1차 링크·PMIC / FF 후속</span></div><section class="tab-panel" role="tabpanel" tabindex="0" id="panel-overview" aria-labelledby="tab-overview" data-label="개요" ><div class="print-panel-title">개요 · 전체 관계와 권장안</div>
-<div class="lead"><span class="tag proposal">권장 이식안</span><h2>기존 연결 제어 위에,<br>링크·전원을 먼저 병합합니다.</h2><p>Sound1에도 백텔 확인과 PMIC 조정의 골격이 있습니다. 현재 흐름을 보존하면서 링크·백텔·PMIC만 먼저 옮기고, FF는 확장할 경계만 남깁니다.</p></div>
-<div class="summary-grid"><article><span class="card-number">01</span><h3>연결 흐름 보존</h3><p>내부기 초기화, 맵 적용, QCC 알림과 Live 진입 순서를 유지합니다.</p></article><article><span class="card-number">02</span><h3>PMIC 적용은 CM3</h3><p>CFX가 필요를 계산하고 CM3가 조건과 우선순위를 판단해 전원을 씁니다.</p></article><article><span class="card-number">03</span><h3>FF는 후속 확장</h3><p>감지·장부·전용 타이머는 구현하지 않습니다. PMIC 적용 경계와 번호·공유 확장만 준비합니다.</p></article></div>
-<div class="table-scroll" tabindex="0" role="region" aria-label="사용자 지정 · 아직 펌웨어 미반영"><table><caption>사용자 지정 · 아직 펌웨어 미반영</caption><thead><tr><th scope="col">1차 설정</th><th scope="col">기본값 / 범위</th><th scope="col">의미</th></tr></thead><tbody><tr><th scope="row">운영 설정 최저</th><td><b>2.8V · 코드112</b></td><td>Normal/Mapping 하한과 고정값의 설정 최저. reset/ramp 예외</td></tr><tr><th scope="row">Normal 하한</th><td><b>3.5V · 코드140</b></td><td>전원 여유 시 하강을 멈추는 기본값</td></tr><tr><th scope="row">Mapping 하한</th><td><b>4.3V · 코드172</b></td><td>전용/Live 조정 경로에 함께 적용</td></tr><tr><th scope="row">백텔 주기</th><td><b>기본300ms · 100ms 단위</b></td><td>1–255 설정. Mapping 검사 재시작에도 반영</td></tr><tr><th scope="row">재시도</th><td><b>Normal/Live 모드0 기본1coin</b></td><td>정상 백텔로 재충전. Mapping 전용은 원본처럼 실패 시 재초기화</td></tr></tbody></table></div>
+<aside class="sidebar"><a href="#overview" class="brand" aria-label="Sound1 마이그레이션 개요"><span class="brand-mark" aria-hidden="true">S1</span><span>Sound1<small>FIRMWARE ENGINEERING</small></span></a><div class="side-title"><span class="eyebrow">Sullivan → Sound1</span><strong>마이그레이션<br>분석과 계획</strong></div><div class="side-divider"></div><span class="nav-label" id="nav-label">기능별 탐색</span><div class="tabs" role="tablist" aria-labelledby="nav-label" aria-orientation="vertical"><button type="button" role="tab" id="tab-overview" aria-controls="panel-overview" aria-selected="true" tabindex="0" data-tab="overview"><span class="tab-number" aria-hidden="true">01</span><span class="tab-text"><b>개요</b><small>전체 관계와 권장안</small></span><span class="tab-arrow" aria-hidden="true">›</span></button><button type="button" role="tab" id="tab-link" aria-controls="panel-link" aria-selected="false" tabindex="-1" data-tab="link"><span class="tab-number" aria-hidden="true">02</span><span class="tab-text"><b>링크·백텔</b><small>PCM · 주기 · 상태</small></span><span class="tab-arrow" aria-hidden="true">›</span></button><button type="button" role="tab" id="tab-pmic" aria-controls="panel-pmic" aria-selected="false" tabindex="-1" data-tab="pmic"><span class="tab-number" aria-hidden="true">03</span><span class="tab-text"><b>PMIC·전원</b><small>레벨 · 정책 · 중재</small></span><span class="tab-arrow" aria-hidden="true">›</span></button><button type="button" role="tab" id="tab-ff1" aria-controls="panel-ff1" aria-selected="false" tabindex="-1" data-tab="ff1"><span class="tab-number" aria-hidden="true">04</span><span class="tab-text"><b>FF1</b><small>후속 확장 · 1차 미구현</small></span><span class="tab-arrow" aria-hidden="true">›</span></button><button type="button" role="tab" id="tab-ff3" aria-controls="panel-ff3" aria-selected="false" tabindex="-1" data-tab="ff3"><span class="tab-number" aria-hidden="true">05</span><span class="tab-text"><b>FF3</b><small>후속 확장 · 계산 예시</small></span><span class="tab-arrow" aria-hidden="true">›</span></button><button type="button" role="tab" id="tab-protocol" aria-controls="panel-protocol" aria-selected="false" tabindex="-1" data-tab="protocol"><span class="tab-number" aria-hidden="true">06</span><span class="tab-text"><b>프로토콜</b><small>헤더 · 인덱스 · 응답</small></span><span class="tab-arrow" aria-hidden="true">›</span></button><button type="button" role="tab" id="tab-shared" aria-controls="panel-shared" aria-selected="false" tabindex="-1" data-tab="shared"><span class="tab-number" aria-hidden="true">07</span><span class="tab-text"><b>공유·저장</b><small>시간 · ACK · 영속성</small></span><span class="tab-arrow" aria-hidden="true">›</span></button><button type="button" role="tab" id="tab-plan" aria-controls="panel-plan" aria-selected="false" tabindex="-1" data-tab="plan"><span class="tab-number" aria-hidden="true">08</span><span class="tab-text"><b>이식·검증</b><small>단계 · 파일 · 시험</small></span><span class="tab-arrow" aria-hidden="true">›</span></button><button type="button" role="tab" id="tab-evidence" aria-controls="panel-evidence" aria-selected="false" tabindex="-1" data-tab="evidence"><span class="tab-number" aria-hidden="true">09</span><span class="tab-text"><b>근거·읽기 안내</b><small>기준 · 상세 · 디자인</small></span><span class="tab-arrow" aria-hidden="true">›</span></button></div><div class="side-footer"><span class="side-dot"></span>1차 코드 완료 · 실기 대기<small>기준일 2026.10.20<br>대상 sound1-fw-e8300-backup</small></div></aside>
+<div class="workspace"><header class="topbar"><div class="breadcrumbs"><span>기술 검토 문서</span><b id="current-tab">개요</b></div><div class="toolbar"><button type="button" id="search-open" aria-haspopup="dialog">검색 <kbd>/</kbd></button><button type="button" id="all-toggle" aria-pressed="false">전체 보기</button><button type="button" id="print-all">전체 인쇄</button></div></header><main id="main" tabindex="-1"><div class="document-heading"><div><span class="eyebrow">MIGRATION STUDY / 2026.10.19</span><h1>링크·PMIC·FF 이식 분석</h1></div><span class="document-state">1차 링크·PMIC / FF 후속</span></div><aside class="notice "><strong>현재 구현 상태</strong><p>원래 backup <code>f9fa45ff</code>에서 만든 <code>develop_backup</code>에 폴더 구조를 유지하며 FF 제외 링크·백텔·PMIC만 재이식했습니다. 이전 원격 develop 병합 결과는 이번 기준이 아닙니다. SDK 빌드·호스트·공유 ABI 검사는 통과했고 실제 장치 시험은 미실행입니다. <a href="빌드와%20실기%20확인.md">현재 빌드·실기 확인 방법</a>을 먼저 읽어 주세요. 아래 원본14장은 구현 전 분석과 후속 FF 설계도 포함합니다.</p></aside><section class="tab-panel" role="tabpanel" tabindex="0" id="panel-overview" aria-labelledby="tab-overview" data-label="개요" ><div class="print-panel-title">개요 · 전체 관계와 권장안</div>
+<div class="lead"><span class="tag proposal">1차 구현 · 실기 대기</span><h2>링크·PMIC를 이식하고,<br>SDK·호스트 검사를 마쳤습니다.</h2><p>Sound1에도 백텔 확인과 PMIC 조정의 골격이 있습니다. 현재 흐름을 보존하며 링크·백텔·PMIC를 먼저 옮겼고, FF는 확장할 경계만 남겼습니다.</p></div>
+<div class="summary-grid"><article><span class="card-number">01</span><h3>연결 흐름 보존</h3><p>내부기 초기화, 맵 적용, QCC 알림과 Live 진입 순서를 유지합니다.</p></article><article><span class="card-number">02</span><h3>PMIC 적용은 CM3</h3><p>CFX는 백텔 PCM을 만들고 CM3는 돌아온 상태와 정책으로 전원을 조정합니다.</p></article><article><span class="card-number">03</span><h3>FF는 후속 확장</h3><p>감지·장부·전용 타이머는 구현하지 않습니다. PMIC 적용 경계와 번호·공유 확장만 준비합니다.</p></article></div>
+<div class="table-scroll" tabindex="0" role="region" aria-label="1차 구현값 · 유효 저장값 우선 / 실기 미실행"><table><caption>1차 구현값 · 유효 저장값 우선 / 실기 미실행</caption><thead><tr><th scope="col">1차 설정</th><th scope="col">기본값 / 범위</th><th scope="col">의미</th></tr></thead><tbody><tr><th scope="row">운영 설정 최저</th><td><b>2.8V · 코드112</b></td><td>Normal/Mapping 하한과 고정값의 설정 최저. reset/ramp 예외</td></tr><tr><th scope="row">Normal 하한</th><td><b>3.5V · 코드140</b></td><td>전원 여유 시 하강을 멈추는 기본값</td></tr><tr><th scope="row">Mapping 하한</th><td><b>4.3V · 코드172</b></td><td>전용/Live 조정 경로에 함께 적용</td></tr><tr><th scope="row">백텔 주기</th><td><b>기본300ms · 100ms 단위</b></td><td>1–255 설정. Mapping 검사 재시작에도 반영</td></tr><tr><th scope="row">재시도</th><td><b>Normal/Live 모드0 기본1coin</b></td><td>정상 백텔로 재충전. Mapping 전용은 원본처럼 실패 시 재초기화</td></tr></tbody></table></div>
 <section class="section"><div class="section-heading"><span class="eyebrow">기능 관계</span><h3>백텔은 돌아온 상태를 보고, FF는 커지는 신호를 봅니다.</h3></div>
 <div class="system-map"><div class="chip cfx"><span class="eyebrow">E8300 · CFX / HEAR</span><h4>신호 처리와 요청 생성</h4><div class="chip-row"><span>입력 peak<br><b>FF3 · 후속</b></span><span>자극값 급증<br><b>FF1 · 후속</b></span><span>백텔 조회<br><b>PCM 생성</b></span></div><p>공유 메모리로 요청·표본·설정을 교환</p></div><div class="connector" aria-hidden="true">↓</div><div class="chip cm3"><span class="eyebrow">E8300 · CM3</span><h4>연결 상태와 PMIC 제어</h4><p>요청 유효성 → 우선순위 → I2C 쓰기 → 성공값/장부 갱신</p><div class="chip-row"><span>FPGA FIFO<br><b>백텔 수신</b></span><span>PMIC<br><b>출력 레벨</b></span></div></div><p class="map-note">FPGA/무선 링크를 통해 내부기에 명령을 보내고 백텔을 받습니다. PMIC는 무선 송신 경로의 전원을 조절합니다.</p></div>
 </section>
 <div class="table-scroll" tabindex="0" role="region" aria-label="기능별 차이"><table><caption>기능별 차이</caption><thead><tr><th scope="col">기능</th><th scope="col">무엇을 보는가</th><th scope="col">언제 조정하는가</th><th scope="col">이식의 핵심</th></tr></thead><tbody><tr><th scope="row">링크·백텔</th><td>내부기가 돌려준 전원 상태 / 수신 여부</td><td>백텔 판독 후</td><td>1차 · PCM 순서·주기·프레임 가드·유효 표본</td></tr><tr><th scope="row">PMIC</th><td>상태·설정·유효한 실제 성공값</td><td>CM3의 공통 적용 경계</td><td>초기화와 Normal 범위 분리, 실패 전파</td></tr><tr><th scope="row">FF1 · 후속</th><td>계산된 자극 amplitude 합의 증가</td><td>급증 flag를 CM3가 소비할 때</td><td>감지·쿨다운·보류·상한 처리</td></tr><tr><th scope="row">FF3 · 후속</th><td>AGC 전 혼합 입력 16표본 peak</td><td>유효한 새 상승 요청일 때</td><td>입력 보정·시계·snapshot·ACK·보상 장부</td></tr></tbody></table></div>
-<aside class="notice important"><strong>이번 결과의 범위</strong><p>2026-10-19 현재 작업본의 분석과 <b>미구현 제안</b>입니다. 펌웨어 수정·타깃 빌드·장치 송수신·전압/링크 실측을 수행한 결과는 아닙니다.</p></aside>
+<aside class="notice important"><strong>이번 결과의 범위</strong><p>원본14장은 2026-10-19의 분석·설계 제안을 보존한 자료입니다. 현재 구현과 차이는 상단 안내와 이식·검증 탭의 현재 안내를 따릅니다. 장치 송수신·전압/링크 실측은 미실행입니다.</p></aside>
 <figure class="diagram rd-figure" id="figure-1" data-renderer="html"><div class="figure-top"><span class="eyebrow">도해 01</span><span class="rd-reflow-label">창 너비에 맞춰 재배치</span></div><h3>CFX·CM3·FPGA·PMIC의 역할</h3><div class="rd-diagram"><div class="rd-architecture"><div class="rd-endpoint"><article class="rd-node" id="rd-1-APP" data-node="APP"><h4>앱 / 시험 도구</h4><p>명령과 응답</p></article></div><div class="rd-inline-arrow" aria-hidden="true">⇅</div><section class="rd-boundary"><h4 class="rd-boundary-title">Sound1 외부장치</h4><article class="rd-node" id="rd-1-Q" data-node="Q"><h4>QCC</h4><p>무선 / SPI 중계</p></article><section class="rd-boundary rd-core-boundary"><h4 class="rd-boundary-title">E8300 · 코어와 처리 유닛</h4><div class="rd-cores"><article class="rd-node" id="rd-1-H" data-node="H"><h4>HEAR</h4><p>입력 peak / 신호 연산</p></article><article class="rd-node" id="rd-1-C" data-node="C"><h4>CFX</h4><p>자극 / 백텔 PCM. FF 관측·요청은 후속</p></article><article class="rd-node" id="rd-1-M" data-node="M"><h4>CM3</h4><p>연결 상태 / PMIC 중재 / 프로토콜·파일</p></article></div></section><div class="rd-hardware"><article class="rd-node" id="rd-1-F" data-node="F"><h4>FPGA</h4><p>PCM 전달 / 백텔 FIFO</p></article><article class="rd-node" id="rd-1-P" data-node="P"><h4>TX PMIC</h4><p>링크 송신 전원</p></article><article class="rd-node" id="rd-1-R" data-node="R"><h4>무선 링크 / 송신 경로</h4><p>기능 경로이며 별도 칩을 뜻하지 않음</p></article></div></section><div class="rd-inline-arrow" aria-hidden="true">⇅</div><div class="rd-endpoint"><article class="rd-node" id="rd-1-I" data-node="I"><h4>내부 이식장치</h4><p>자극 실행 / 백텔 반환</p></article></div></div><section class="rd-connections"><h4>누가 누구에게 무엇을 전달하는가</h4><ul><li><div class="rd-connection-path"><a href="#rd-1-APP">앱 / 시험 도구</a><span aria-hidden="true">⇄</span><a href="#rd-1-Q">QCC</a></div><p>앱 명령 / 응답</p></li><li><div class="rd-connection-path"><a href="#rd-1-H">HEAR</a><span aria-hidden="true">→</span><a href="#rd-1-C">CFX</a></div><p>블록 관측값</p></li><li><div class="rd-connection-path"><a href="#rd-1-C">CFX</a><span aria-hidden="true">→</span><a href="#rd-1-M">CM3</a></div><p>공유 요청 / 백텔 ready</p></li><li><div class="rd-connection-path"><a href="#rd-1-M">CM3</a><span aria-hidden="true">→</span><a href="#rd-1-C">CFX</a></div><p>설정 / 적용 상태, FF token은 후속</p></li><li><div class="rd-connection-path"><a href="#rd-1-Q">QCC</a><span aria-hidden="true">⇄</span><a href="#rd-1-M">CM3</a></div><p>SPI 명령 / 응답</p></li><li><div class="rd-connection-path"><a href="#rd-1-C">CFX</a><span aria-hidden="true">→</span><a href="#rd-1-F">FPGA</a></div><p>PCM</p></li><li><div class="rd-connection-path"><a href="#rd-1-M">CM3</a><span aria-hidden="true">⇄</span><a href="#rd-1-F">FPGA</a></div><p>I2C 판독 / 설정</p></li><li><div class="rd-connection-path"><a href="#rd-1-M">CM3</a><span aria-hidden="true">→</span><a href="#rd-1-P">TX PMIC</a></div><p>I2C 레벨 설정</p></li><li><div class="rd-connection-path"><a href="#rd-1-P">TX PMIC</a><span aria-hidden="true">→</span><a href="#rd-1-R">무선 링크 / 송신 경로</a></div><p>송신 전원</p></li><li><div class="rd-connection-path"><a href="#rd-1-F">FPGA</a><span aria-hidden="true">⇄</span><a href="#rd-1-R">무선 링크 / 송신 경로</a></div><p>전달 / 수신</p></li><li><div class="rd-connection-path"><a href="#rd-1-R">무선 링크 / 송신 경로</a><span aria-hidden="true">⇄</span><a href="#rd-1-I">내부 이식장치</a></div><p>전달 / 백텔</p></li></ul></section></div><figcaption>전체 확장 위치를 나타낸 구조도. 1차는 링크·PMIC이며 FF 모듈은 후속 구현 대상입니다.</figcaption></figure>
 <details class="analysis-detail"><summary><span>상세 분석 · 1–2장: 이식 범위와 코어별 역할</span><small>현재 코드·조건·예외·근거를 모두 보기</small></summary><div class="source-content"><p><a id="scope"></a></p>
 <h3>1. 이식 범위와 기준</h3>
@@ -191,6 +191,8 @@ dialog{border:1px solid #aabccc;border-radius:12px;padding:26px;background:#fff;
 <p>Sullivan과 동일하게 옮기는 것과 원본의 미비까지 그대로 두는 것은 다르다. 원본도 Mapping 전용 백텔에는 coin이 없고 IDLE/Standby 주기는 일부 고정300ms다. 이번 기본 계획은 <strong>Normal/Live coin 동작은 원본과 동일</strong>, <strong>Mapping 전용 실패는 원본처럼 재초기화</strong>, <strong>설정 주기는 Mapping 진입점에도 일관되게 반영</strong>하는 안이다. Mapping 전용에도1coin을 적용하는 것은 별도 정책 변경이며 확정된 요구로 취급하지 않는다. 임피던스/eCAP 등의 측정 동안 별도 주기 검사를 쉬는 기존 동작은 보존한다.</p>
 <p><a id="architecture"></a></p>
 <h3>2. 전체 구조: CFX는 필요를 계산하고 CM3는 전원을 조정한다</h3>
+<p><img src="%EA%B7%B8%EB%A6%BC/01-architecture.png" alt="CFX와 CM3의 역할 및 FPGA, PMIC, 내부기의 연결"></p>
+<p>그림 1. 현재 역할과 이식할 기능의 위치. FF 모듈은 이식 대상이며 그림이 구현 완료를 뜻하지 않는다.</p>
 <p>백텔은 내부기가 돌려보내는 정보다. CFX가 PCM에 조회 시퀀스를 넣으면 FPGA/무선 링크를 거쳐 내부기로 전달되고, CM3는 FPGA의 백텔 FIFO를 읽는다. 이 백텔의 내부기 전원 상태는 QCC가 알려주는 외부장치 배터리 잔량과 다른 정보다.</p>
 <p>FF는 백텔 응답을 기다리는 제어보다 앞에서 전원 상승의 필요를 추정한다. 그래도 PMIC를 쓰는 주체는 CM3다. CFX의 오디오 처리에서 직접 I2C 쓰기를 추가하는 방식으로 옮기지 않는다.</p>
 <div class="table-scroll" tabindex="0" role="region" aria-label="상세 분석 표"><table>
@@ -278,6 +280,8 @@ dialog{border:1px solid #aabccc;border-radius:12px;padding:26px;background:#fff;
 <p>CM3는 ready를 보고 FPGA FIFO/내부기 전원 상태를 읽고, PMIC를 읽은 뒤 조절하고 FIFO와 ready를 정리한다. 현재는 여러 CM3 회차에 나누어 처리한다.</p>
 <p>Sound1의 주기 상수는 300이지만 증가식이 <code>0..300</code>을 돌기 때문에 enable 사이에는 <strong>301회의 Live 함수 호출</strong>이 있다. Live가 매 1ms에 한 번 실행된다는 전제에서는 약301ms다. 호출 누락이나 대기가 있으면 벽시계 시간과 다르다. Sullivan도 이 증가식이 있어 runtime 300ms 설정을 정확히300ms 실측 보장으로 설명하면 안 된다.</p>
 <h4>3.2 Sullivan의 PCM 배치</h4>
+<p><img src="%EA%B7%B8%EB%A6%BC/02-backtel-layout.png" alt="백텔 프레임 안의 ForwardCheck, 안정 NOP, Duration 변경 및 복원 순서"></p>
+<p>그림 2. Sullivan 최신 시퀀스의 코드상 순서. 실제 파형이나 측정 화면이 아니다.</p>
 <p>Sullivan은 단순히 읽기 요청과 NOP만 넣지 않는다. <code>F</code>를 채널당 자극 프레임 수, <code>S</code>를 전원 안정 NOP 개수라 하면 다음 순서다.</p>
 <ol>
 <li><strong>ForwardCheck, F슬롯:</strong> 직전 자극을 원래 펄스폭으로 끝내는 경계를 보존한다.</li>
@@ -384,6 +388,8 @@ dialog{border:1px solid #aabccc;border-radius:12px;padding:26px;background:#fff;
 <h3>10. Sound1에서 유지할 상태와 새로 넣을 중재</h3>
 <p>1차에서는 기존 초기화 상태와 링크/PMIC 중재를 구현한다. 아래 FF3→백텔→FF1 순서와 FF 수명 처리는 후속을 포함한 전체 설계이며, 현재는 해당 FF 생산자/서비스가 없다.</p>
 <h4>10.1 내부기 초기화 상태는 기존 것을 유지</h4>
+<p><img src="%EA%B7%B8%EB%A6%BC/07-link-states.png" alt="Sound1 내부기 초기화와 운용 상태, 실패 시 복귀"></p>
+<p>그림 7. 기존 초기화 순서와 이식 후 보존할 실패 복귀를 요약한 상태도. 신규 전원/FF 제어는 준비 완료 뒤에 연결한다.</p>
 <p>기존 순서는 <code>PowerIC_Reset → PowerIC_OK → FPGA_Ok → ISD_Power_Ok → ISD_pathOpen_Ok → stimul_10V_Ok</code>다. 전원 상태를 읽을 수 있음, 내부기 ID/키와 경로가 맞음, 맵을 적용함, 자극을 허용함을 하나의 연결 boolean으로 합치지 않는다.</p>
 <p>현재의 상태 전환 시 PCM NOP 처리를 보존하고, 이식 후에는 이전 검사/FF 요청 취소까지 같은 경계에 연결한다. 매핑 연결 판정, QCC의 ISD_CHECK 표시 및 실제 Live 준비가 같은 시점이라고 가정하지 않는다.</p>
 </div></details><div class="panel-end"><span>링크·백텔</span><button type="button" class="next-panel" data-go="pmic">다음 · PMIC·전원 <span aria-hidden="true">→</span></button></div></section><section class="tab-panel" role="tabpanel" tabindex="0" id="panel-pmic" aria-labelledby="tab-pmic" data-label="PMIC·전원" hidden><div class="print-panel-title">PMIC·전원 · 레벨 · 정책 · 중재</div>
@@ -509,6 +515,8 @@ dialog{border:1px solid #aabccc;border-radius:12px;padding:26px;background:#fff;
 <p>Sullivan safe boot는 첫 연결까지 파일에 저장된 낮은 상한을 무시하고214로 초기화한다. 최초 연결 후 파일 상한을 허용하지만 그 순간 현재 전압을 갑자기 낮추지는 않는다. Sound1에서는 이식 여부와 함께 재연결/재부팅 시 고정값과 runtime 상한의 수명을 명시해야 한다.</p>
 <p>1차 기본 조합은 <strong>전원 상태 모드0, 고정 해제, 무한 해제, FF 미구현/비활성</strong>, 설정 최저112, Normal 기본140, Mapping 기본172, 상한214다. 기존164 기반 동작은 변경 전 회귀 기준으로 기록하고, 새 기본값에서의 결과와 의도된 차이를 비교한다. Mapping 진입 때 현재 성공값이172보다 낮으면 해당 경로에서 하한까지 올리고 성공/오류를 확인하며, Normal 복귀 때140으로 즉시 강제 하강시키지 않는다.</p>
 <h4>10.2 PMIC 요청은 한 논리적 소유자에서 순서를 결정</h4>
+<p><img src="%EA%B7%B8%EB%A6%BC/08-power-arbitration.png" alt="초기화, 매핑, 시험 고정, Normal FF/백텔의 중재 흐름"></p>
+<p>그림 8. 제안한 PMIC 중재 흐름. 모든 분기에 I2C 성공/실패와 실제값 확인을 공통 적용한다.</p>
 <div class="table-scroll" tabindex="0" role="region" aria-label="상세 분석 표"><table>
 <thead>
 <tr>
@@ -665,6 +673,8 @@ dialog{border:1px solid #aabccc;border-radius:12px;padding:26px;background:#fff;
 </tbody></table></div>
 <p>주요 시간/판정값은 warmup32ms, filter MA2, release EMA의N32, background250ms, soft/hard rise6/12dB, 상승 확인2블록, low-confirm24ms, 하강 hysteresis1dB다. 요청/heartbeat TTL은 각각4ms, 쓰기 최소 간격1ms, 보상 budget20, High 정보 최대 나이400ms다. 각 설정의 단위를 그대로 보존해야 한다. <code>N32</code>는32라는 필터 계수이며 모든 상태 지연을 정확히32ms로 보장하는 값이 아니다.</p>
 <h4>6.3 CFX 입력 상태기계</h4>
+<p><img src="%EA%B7%B8%EB%A6%BC/03-ff-input-states.png" alt="FF3 입력의 warmup, 상승 사건, 유지 및 재무장 상태도"></p>
+<p>그림 3. Sullivan FF3 입력 상태를 이해하기 위한 요약. 예외/검증은 본문과 코드 근거를 함께 따른다.</p>
 <p>시작할 때 이미 큰 소리가 들어오면 그 소리를 baseline으로 삼아 warmup한다. 무음에서 새로 커진 사건으로 즉시 보정하지 않는다. 준비 후 최고 구간이 올라가면 revision을 갱신해 상승 요청을 낸다. 큰 상승/무음 탈출과 작은 상승의 확인 조건은 다르다.</p>
 <p>지속 소음에서는 매ms 같은 양을 반복 가산하지 않는다. 충분히 낮아지고 hold/hysteresis/low-confirm 및 필요한 최신 High 확인을 통과하면 새 baseline과 event로 재무장한다. 1ms source tick이 연속되지 않으면 이전 사건/요청을 이어 쓰지 않고 새 event/revision과 warmup으로 이동한다. <strong>재무장은 다음 상승을 새 사건으로 인정하는 과정이며, PMIC를 낮추는 동작은 아니다.</strong> <a href="file:///E:/workspace/projects/sullivan-1-5-fw-hw-test-link-pwr-bt-period/Sullivan1_5__CFX/signalProcessing/agc.c">근거: FF3 입력 상태기계</a></p>
 <h4>6.4 CM3는 요청을 그대로 더하지 않는다</h4>
@@ -745,6 +755,8 @@ dialog{border:1px solid #aabccc;border-radius:12px;padding:26px;background:#fff;
 여유가 없거나 요청이 이미 처리됐으면 Δ=0
 값/상태가 무효이면 적용하지 않고 별도 오류로 처리
 </code></pre>
+<p><img src="%EA%B7%B8%EB%A6%BC/04-ff-ledger-flow.png" alt="FF 요청의 신선도 검사와 장부/전원 상한을 거친 쓰기 흐름"></p>
+<p>그림 4. FF3의 핵심 적용 흐름. 무효 요청, 통신 실패, 0적용의 의미를 구분한다.</p>
 <p><strong>계산 예1, 같은 사건의 연속 상승:</strong> P180, R0, C0, G20, Pmax214에서 구간3의 S12를 받으면 Δ12다. 실제 쓰기 성공 후 P192, R12, C12가 된다. 같은 사건에서 구간5의 S20으로 오르면 차액8만 적용해 P200, R20, C20이 된다. 같은 구간5가 계속돼도 추가량은0이다. 코드식 전압은4.50→4.80→5.00V이며, 실제 측정 예가 아니다.</p>
 <p><strong>계산 예2, 상한 때문에 부분 적용:</strong> P210, R0, C0에서 S12를 받아도 상한214 때문에4만 올린다. 성공 후 R4가 되지만 <strong>C는12로 종결</strong>한다. 나중에 전압 여유가 생겨도 같은 요청의 나머지8을 자동으로 재충전하지 않는다.</p>
 <p><strong>계산 예3, High로 잔량을 회수:</strong> 예1 뒤에 Normal High에 의해 P200→199의 쓰기가 실제 성공하면 R20→19가 된다. 같은 사건의 C20은 그대로이므로 동일 요청이 다시1을 채우지 않는다. 새 사건이 시작돼도 R을0으로 지우지 않는다.</p>
@@ -753,17 +765,19 @@ dialog{border:1px solid #aabccc;border-radius:12px;padding:26px;background:#fff;
 <p>Sullivan 서비스 순서는 FF3 → 백텔 → FF1이다. FF3 백텔 처리에서는 PMIC 읽기와 조정을 같은 phase 호출에 둔다. 이전 회차에서 읽은 낮은 값으로 방금 올린 전압을 덮어쓰지 않기 위해서다.</p>
 <p>같은 백텔 회차에 FF3가 실제 상승했다면, 상승 전 조건의 High 정보로 즉시−1하지 않는다. 이 경우 High를 이용한 R 회수/ACK도 하지 않는다. 이 순서와 신선도 검사를 함께 옮겨야 하며, 단순히 모든 High를 무시하는 기능으로 바꾸면 안 된다.</p>
 </div></details><div class="panel-end"><span>FF3</span><button type="button" class="next-panel" data-go="protocol">다음 · 프로토콜 <span aria-hidden="true">→</span></button></div></section><section class="tab-panel" role="tabpanel" tabindex="0" id="panel-protocol" aria-labelledby="tab-protocol" data-label="프로토콜" hidden><div class="print-panel-title">프로토콜 · 헤더 · 인덱스 · 응답</div>
-<div class="lead"><span class="tag proposal">미구현 제안</span><h2>헤더 하나를 치환하는 이식이 아니라,<br>기존 명령 안에 새 도메인을 추가합니다.</h2><p>Sound1의 0x8F 범용 디버그와 기존 옵션1–4를 유지합니다. Sullivan의 0x59 전체 의미를 덮어씌우면 기존 앱의 명령이 다른 동작을 시킬 수 있습니다.</p></div>
+<div class="lead"><span class="tag proposal">Sound1 프로파일1.0 · FF 예약</span><h2>헤더 하나를 치환하는 이식이 아니라,<br>기존 명령 안에 새 도메인을 추가합니다.</h2><p>Sound1의 0x8F 범용 디버그와 기존 옵션1–4를 유지합니다. backup의4번 fake sleep도 그대로 보존합니다. Sullivan의 0x59 전체 의미를 덮어씌우면 기존 앱의 명령이 다른 동작을 시킬 수 있습니다.</p></div>
 <div class="protocol-banner"><div><small>Sullivan</small><code>59 <b>20</b> …</code></div><span aria-hidden="true">→</span><div><small>Sound1 권장</small><code>8F <b>20</b> …</code></div></div>
 <div class="table-scroll" tabindex="0" role="region" aria-label="호환 경계"><table><caption>호환 경계</caption><thead><tr><th scope="col">계약</th><th scope="col">보존 또는 제안</th></tr></thead><tbody><tr><th scope="row">기존 명령 보존</th><td><code>59 01/02</code> 묵음 · <code>8F 01..04</code> 기존 디버그 · <code>8C</code> Gain</td></tr><tr><th scope="row">주의할 기존 옵션</th><td><code>8F 02</code>는 OTA 상태 강제/백텔 우회. 무한 coin으로 재해석하지 않음</td></tr><tr><th scope="row">신규 기능 도메인</th><td><code>8F 20 access index [value]</code></td></tr><tr><th scope="row">버전 조회</th><td><code>8F FF 00 00</code> · 독립 Sound1 프로파일 제안</td></tr><tr><th scope="row">응답 책임</th><td>handler는 응답 버퍼/결과 반환 → 호출자 한 곳에서 TX/clear</td></tr><tr><th scope="row">에러 / 요청 순서</th><td><code>F0 8F …</code>에는 index가 없으므로 요청 하나씩 종결 후 다음 요청</td></tr></tbody></table></div>
 <section class="section"><div class="section-heading"><span class="eyebrow">바이트 구조</span><h3>논리 요청 4/5바이트와 SPI 21바이트를 구분합니다.</h3></div><div class="packet"><div><span class="byte command">8F<small>명령</small></span><span class="byte domain">20<small>도메인</small></span><span class="byte">00/01<small>읽기/쓰기</small></span><span class="byte">index<small>인덱스</small></span><span class="byte optional">value<small>쓰기만</small></span></div><p>읽기 4B · 쓰기 5B · 응답은 <code>8F 20 access index L payload…</code>로 5+L≤20B</p></div></section>
 <aside class="notice important"><strong>RX 끝 바이트가 길이라는 가정은 아직 금지</strong><p>TX의 SPI [20]은 논리 길이입니다. RX에도 같은 계약이 있는지는 확인되지 않았습니다. QCC의 실제 길이 전달 또는 20바이트 패딩 계약부터 확정합니다.</p></aside>
 <section class="section"><h3>인덱스 묶음으로 찾기</h3><p>1차는0–16을 구현합니다.17은 OFF/미지원 표시만 제공하며 FF 모드1/3은 거부합니다.18 이후 FF 영역과 schema/편집은 예약·미지원으로 두고 실제 기능을 광고하지 않습니다.</p><div class="index-map"><div><code>0–16</code><span>링크·PMIC</span></div><div><code>17–26</code><span>FF mode·FF1 · 후속</span></div><div><code>37–39</code><span>편집·schema·상태</span></div><div><code>40–60</code><span>FF3 scalar</span></div><div><code>64–111</code><span>구간·증가량·hold</span></div><div><code>112–118</code><span>진단 페이지</span></div><div><code>120–135</code><span>누적 요구표 S</span></div></div><p class="caption">인덱스는 10진수입니다. 120–135는 active/staging 누적 요구표이며 runtime 잔량 R이 아닙니다. 폐기·예약 영역은 상세표에서 확인합니다.</p></section>
-<figure class="diagram rd-figure" id="figure-5" data-renderer="html"><div class="figure-top"><span class="eyebrow">도해 05</span><span class="rd-reflow-label">창 너비에 맞춰 재배치</span></div><h3>기존 명령과 신규 도메인</h3><div class="rd-diagram"><p class="rd-reading">기본 진행은 연결선을 따릅니다. 분기·반복·복귀는 각 상자 아래의 <b>조건 → 목적지</b>로 표시하며, 목적지를 누르면 해당 상태로 이동합니다.</p><div class="rd-graph" data-graph="5"><svg class="rd-wires" aria-hidden="true" focusable="false"></svg><div class="rd-main"><article class="rd-node rd-work" id="rd-5-S" data-node="S"><div class="rd-node-top"><span class="rd-index">01</span><span class="rd-kind">처리 / 상태</span></div><h4>Sullivan 원본</h4><p>59 20 access index value / 59 FF 버전 조회</p><ul class="rd-transitions"><li><a href="#rd-5-A"><span>도메인·index 의미를 이식</span><b><span aria-hidden="true">→ </span>신규 명령</b></a></li></ul></article><article class="rd-node rd-work" id="rd-5-A" data-node="A"><div class="rd-node-top"><span class="rd-index">02</span><span class="rd-kind">처리 / 상태</span></div><h4>Sound1 신규 제안</h4><p>8F 20 링크·PMIC / 8F FF 독립 버전·지원 조회. FF 번호는 후속 예약입니다.</p><ul class="rd-transitions"><li><a href="#rd-5-D"><span>분기 등록</span><b><span aria-hidden="true">→ </span>명령 분기</b></a></li></ul></article><article class="rd-node rd-decision" id="rd-5-D" data-node="D"><div class="rd-node-top"><span class="rd-index">03</span><span class="rd-kind">조건</span></div><h4>Sound1 8F 디스패처</h4><p>기존 옵션과 신규 도메인을 구분합니다.</p><ul class="rd-transitions"><li><a href="#rd-5-O"><span>기존 옵션1~4</span><b><span aria-hidden="true">→ </span>기존 handler</b></a></li><li><a href="#rd-5-N"><span>새 옵션0x20 / 0xFF</span><b><span aria-hidden="true">→ </span>신규 handler</b></a></li></ul></article><article class="rd-node rd-work" id="rd-5-N" data-node="N"><div class="rd-node-top"><span class="rd-index">04</span><span class="rd-kind">처리 / 상태</span></div><h4>신규 서비스 / 응답 생성</h4><p>범위와 권한을 검사하고 검증된 서비스 요청을 만듭니다.</p><ul class="rd-transitions"><li><a href="#rd-5-TX"><span>응답 반환</span><b><span aria-hidden="true">→ </span>단일 송신</b></a></li></ul></article><article class="rd-node rd-success" id="rd-5-TX" data-node="TX"><div class="rd-node-top"><span class="rd-index">05</span><span class="rd-kind">완료 / 진행</span></div><h4>호출자가 한 번만 송신</h4><p>응답 송신과 명령 정리를 한 곳에서 수행합니다.</p><span class="rd-terminal">이 분기 종료</span></article></div></div><section class="rd-outcomes" aria-label="조건에 따른 별도 분기"><h4 class="rd-outcome-title">조건별 분기 / 후속 범위</h4><div class="rd-extra"><article class="rd-node rd-neutral" id="rd-5-T" data-node="T"><div class="rd-node-top"><span class="rd-index">06</span><span class="rd-kind">별도 분기</span></div><h4>현재 Sound1 계약 보존</h4><p>59 01/02 묵음, 8F 01~04 기존 디버그, 8C Gain을 보존합니다.</p><ul class="rd-transitions"><li><a href="#rd-5-D"><span>기존8F 분기 유지</span><b><span aria-hidden="true">→ </span>명령 분기</b></a></li></ul></article><article class="rd-node rd-neutral" id="rd-5-O" data-node="O"><div class="rd-node-top"><span class="rd-index">07</span><span class="rd-kind">별도 분기</span></div><h4>기존 handler</h4><p>기존 옵션1~4의 의미·응답·부수효과를 유지합니다.</p><ul class="rd-transitions"><li><a href="#rd-5-TX"><span>응답 반환</span><b><span aria-hidden="true">→ </span>단일 송신</b></a></li></ul></article></div></section></div><figcaption>Sound1의 0x8F를 유지하고 0x20 도메인을 추가하는 미구현 제안입니다.</figcaption></figure>
+<figure class="diagram rd-figure" id="figure-5" data-renderer="html"><div class="figure-top"><span class="eyebrow">도해 05</span><span class="rd-reflow-label">창 너비에 맞춰 재배치</span></div><h3>기존 명령과 신규 도메인</h3><div class="rd-diagram"><p class="rd-reading">기본 진행은 연결선을 따릅니다. 분기·반복·복귀는 각 상자 아래의 <b>조건 → 목적지</b>로 표시하며, 목적지를 누르면 해당 상태로 이동합니다.</p><div class="rd-graph" data-graph="5"><svg class="rd-wires" aria-hidden="true" focusable="false"></svg><div class="rd-main"><article class="rd-node rd-work" id="rd-5-S" data-node="S"><div class="rd-node-top"><span class="rd-index">01</span><span class="rd-kind">처리 / 상태</span></div><h4>Sullivan 원본</h4><p>59 20 access index value / 59 FF 버전 조회</p><ul class="rd-transitions"><li><a href="#rd-5-A"><span>도메인·index 의미를 이식</span><b><span aria-hidden="true">→ </span>신규 명령</b></a></li></ul></article><article class="rd-node rd-work" id="rd-5-A" data-node="A"><div class="rd-node-top"><span class="rd-index">02</span><span class="rd-kind">처리 / 상태</span></div><h4>Sound1 신규 제안</h4><p>8F 20 링크·PMIC / 8F FF 독립 버전·지원 조회. FF 번호는 후속 예약입니다.</p><ul class="rd-transitions"><li><a href="#rd-5-D"><span>분기 등록</span><b><span aria-hidden="true">→ </span>명령 분기</b></a></li></ul></article><article class="rd-node rd-decision" id="rd-5-D" data-node="D"><div class="rd-node-top"><span class="rd-index">03</span><span class="rd-kind">조건</span></div><h4>Sound1 8F 디스패처</h4><p>기존 옵션과 신규 도메인을 구분합니다.</p><ul class="rd-transitions"><li><a href="#rd-5-O"><span>기존 옵션1~4</span><b><span aria-hidden="true">→ </span>기존 handler</b></a></li><li><a href="#rd-5-N"><span>새 옵션0x20 / 0xFF</span><b><span aria-hidden="true">→ </span>신규 handler</b></a></li></ul></article><article class="rd-node rd-work" id="rd-5-N" data-node="N"><div class="rd-node-top"><span class="rd-index">04</span><span class="rd-kind">처리 / 상태</span></div><h4>신규 서비스 / 응답 생성</h4><p>범위와 권한을 검사하고 검증된 서비스 요청을 만듭니다.</p><ul class="rd-transitions"><li><a href="#rd-5-TX"><span>응답 반환</span><b><span aria-hidden="true">→ </span>단일 송신</b></a></li></ul></article><article class="rd-node rd-success" id="rd-5-TX" data-node="TX"><div class="rd-node-top"><span class="rd-index">05</span><span class="rd-kind">완료 / 진행</span></div><h4>호출자가 한 번만 송신</h4><p>응답 송신과 명령 정리를 한 곳에서 수행합니다.</p><span class="rd-terminal">이 분기 종료</span></article></div></div><section class="rd-outcomes" aria-label="조건에 따른 별도 분기"><h4 class="rd-outcome-title">조건별 분기 / 후속 범위</h4><div class="rd-extra"><article class="rd-node rd-neutral" id="rd-5-T" data-node="T"><div class="rd-node-top"><span class="rd-index">06</span><span class="rd-kind">별도 분기</span></div><h4>현재 Sound1 계약 보존</h4><p>59 01/02 묵음, 8F 01~04 기존 디버그, 8C Gain을 보존합니다.</p><ul class="rd-transitions"><li><a href="#rd-5-D"><span>기존8F 분기 유지</span><b><span aria-hidden="true">→ </span>명령 분기</b></a></li></ul></article><article class="rd-node rd-neutral" id="rd-5-O" data-node="O"><div class="rd-node-top"><span class="rd-index">07</span><span class="rd-kind">별도 분기</span></div><h4>기존 handler</h4><p>기존 옵션1~4의 의미·응답·부수효과를 유지합니다.</p><ul class="rd-transitions"><li><a href="#rd-5-TX"><span>응답 반환</span><b><span aria-hidden="true">→ </span>단일 송신</b></a></li></ul></article></div></section></div><figcaption>1차에 구현한 Sound1 0x8F/0x20과 후속 FF 도메인 예약을 구분합니다.</figcaption></figure>
 <details class="analysis-detail"><summary><span>상세 분석 · 8장: 전체 인덱스·단위·권한·가상 패킷 예시</span><small>현재 코드·조건·예외·근거를 모두 보기</small></summary><div class="source-content"><p><a id="protocol"></a></p>
 <h3>8. 범용 디버깅 프로토콜은 헤더만 바꾸어 옮길 수 없다</h3>
 <p>1차 구현은 <code>8F20</code>의 링크/PMIC index0~16과 독립 버전/지원 조회가 중심이다. index17은 FF 미지원 상태를 읽기0으로 알리되 OFF 쓰기만 허용하고1/2/3은 거부하는 안을 사용한다. index18 이후 FF 설정/편집/schema/진단은 예약·미지원으로 명시하여 FF를 지원하는 것처럼 응답하지 않는다. 아래 전체 FF 인덱스와 schema3은 후속 확장의 번호/계약 참고다.</p>
 <h4>8.1 현재 명령의 의미</h4>
+<p><img src="%EA%B7%B8%EB%A6%BC/05-protocol-routing.png" alt="Sullivan 명령 도메인과 기존 Sound1 명령, 신규 확장의 대응"></p>
+<p>그림 5. 기존 명령을 보존하는 신규 도메인 제안. 신규 Sound1 명령은 아직 구현되지 않았다.</p>
 <div class="table-scroll" tabindex="0" role="region" aria-label="상세 분석 표"><table>
 <thead>
 <tr>
@@ -1258,6 +1272,8 @@ TX  8F 20 01 11 01 03
 <p><a id="config"></a></p>
 <h3>9. 설정 편집, 저장, CFX 적용은 서로 다른 완료다</h3>
 <p>1차에서는 LINKPARM 계열의 링크/PMIC 값만 추출해 저장/복원하고 읽기·쓰기 길이와 seek/sync/close 결과를 검사한다. <strong>AUDIOFF 파일과 아래 FF staging/편집 명령은 후속 범위</strong>다. 큰 donor 파일을 통째로 복사해 FF 의존성을 끌어오지 않는다. 영속값이 없을 때 Normal/Mapping 기본140/172와 상한214를 사용하고, 복원 시 설정 최저112와 상·하한 관계를 전체 검증한다. reset75는 사용자 설정 파일로 덮어쓰는 값이 아니다.</p>
+<p><img src="%EA%B7%B8%EB%A6%BC/06-config-sequence.png" alt="앱의 편집부터 파일 확인과 CFX ACK까지의 설정 반영 순서"></p>
+<p>그림 6. 권장 설정 반영 순서. SAVE_APPLY 응답 뒤에도 CFX ACK와 실행 gate를 확인한다.</p>
 <h4>9.1 staging은 반쪽 설정이 실행되는 것을 막는다</h4>
 <p>FF OFF에서 BEGIN으로 active 사본을 staging에 만든다. 개별 scalar/배열 쓰기는 staging만 바꾼다. VALIDATE는 구간 순서, 개수, 누적량, budget, 시간 단위/관계를 전체로 검사한다. SAVE_APPLY는 검증된 파일을 기록/되읽고 active와 공유 설정을 갱신한다. ABORT는 staging을 버린다.</p>
 <p>재BEGIN이 미완료 편집을 조용히 덮지 않게 하고, BLE 연결 해제/편집 timeout에서는 명시적으로 취소한다. 응답을 잃은 SAVE_APPLY를 무조건 재전송하기보다 재연결 후 generation/CRC/값을 읽어 성공 여부를 확인한다.</p>
@@ -1371,8 +1387,292 @@ TX  8F 20 01 11 01 03
 </tr>
 </tbody></table></div>
 </div></details><div class="panel-end"><span>공유·저장</span><button type="button" class="next-panel" data-go="plan">다음 · 이식·검증 <span aria-hidden="true">→</span></button></div></section><section class="tab-panel" role="tabpanel" tabindex="0" id="panel-plan" aria-labelledby="tab-plan" data-label="이식·검증" hidden><div class="print-panel-title">이식·검증 · 단계 · 파일 · 시험</div>
-<div class="lead"><span class="tag proposal">실행 전 계획</span><h2>기능을 한꺼번에 켜지 않고,<br>실패 원인이 보이는 단위로 진행합니다.</h2><p>첫 작업은 오류 반환, PMIC 성공값 관리, 응답 송신 책임과 실제 길이 계약입니다. 1차는 링크·PMIC와 그 설정/검증으로 완료하며 FF를 구현하지 않습니다.</p></div>
-<ol class="roadmap"><li><span>0</span><div><h3>기준 고정</h3><p>기존164 기반과 실제 빌드·시험 hook 식별</p></div></li><li><span>1</span><div><h3>오류·공통 적용</h3><p>I2C 실패 전파·성공값·single TX</p></div></li><li><span>2</span><div><h3>PMIC·정책</h3><p>설정최저112·Normal140·Mapping172·상한214·coin1</p></div></li><li><span>3</span><div><h3>백텔·주기</h3><p>PCM·안정 NOP·100ms 단위·Mapping IDLE/Standby</p></div></li><li><span>4</span><div><h3>프로토콜·저장·확장</h3><p>8F20 링크/PMIC·LINKPARM·FF 미지원·공유 tail</p></div></li><li><span>5</span><div><h3>1차 통합 완료</h3><p>Normal/Mapping/QCC/OTA/sleep·빌드와실기 검증</p></div></li></ol>
+<details class="analysis-detail"><summary><span>현재 구현 · 빌드와 실기 확인 / 프로토콜 예</span><small>현재 코드·조건·예외·근거를 모두 보기</small></summary><div class="source-content"><h3>링크·백텔·PMIC 이식본 빌드와 실기 확인</h3>
+<p>현재 작업 브랜치는 <code>develop_backup</code>이다. 원래 backup 브랜치 <code>claude_feature_sound1-eptc</code>의 <code>f9fa45ff</code>에서 시작했다. 이전 원격 develop 구조 병합은 사용하지 않았으며 기존 폴더/함수/빌드 설정을 유지했다. FF 감지·보정·전용 타이머·AUDIOFF 저장은 구현하지 않는다. 아래 실기 항목은 실행 절차와 예상 결과이며, 실제 측정 결과가 아니다. 수행한 검사와 현재 상태는 <a href="%EC%9E%91%EC%97%85.md">작업 기록</a>에 둔다.</p>
+<h3>1. 빌드와 시험 시작 순서</h3>
+<ol>
+<li>저장소 <code>E:\workspace\projects\sound1-fw-e8300-backup</code>에서 브랜치를 확인한다. 이식본은 <code>develop_backup</code>에 있다. 이전 <code>claude_feature_sound1-link-pmic</code> 결과와 혼동하지 않는다.</li>
+<li>Eclipse에서 프로젝트를 Refresh한다. CM3의 기존 <code>Cortex-M3-src</code>, <code>Gen1_5</code>, <code>systemControl</code> 등 폴더와 <code>.cproject</code>는 그대로다. 신규 모듈은 기존 <code>Cortex-M3-src/internalDevice</code> 및 <code>BleCommunication</code>에 추가했다. Refresh 후 기존 설정으로 Clean Build한다. CFX도 함께 빌드한다.</li>
+<li>CM3와 CFX는 같은 브랜치의 이미지 쌍을 사용한다. 공유 구조체 끝에 링크 주기와 안정 NOP의 두 워드를 추가했으므로 한쪽만 예전 이미지와 섞지 않는다. 기존 필드의 순서는 유지했다.</li>
+<li>기존 패키징·다운로드 절차를 사용한다. 이 작업에서는 SDK로 분리 이미지의 컴파일/링크만 실행했으며 장치에 다운로드하거나 실제 전압·자극을 측정하지 않았다.</li>
+<li>먼저 버전·설정 조회와 기존 명령의 응답을 확인한 뒤 Normal, Mapping 대기, Mapping Live, 링크 손실과 재연결 순서로 확인한다.</li>
+</ol>
+<p>현재 CM3의 DIO35, SYS7/23/AUDIT/54/73/77/80 스위치와 CFX DIO35는 모두0이다. 시험 코드를 포함한 기능은 보존했으며 사용자가 꺼 둔 값을 유지했다. 실기 시험용 빌드에서 필요한 스위치만 기존 시험 사용방법에 따라 선택한다.</p>
+<h3>2. 새 설정과 기본값</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="상세 분석 표"><table>
+<thead>
+<tr>
+<th scope="col">항목</th>
+<th scope="col">값</th>
+<th scope="col">해석</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>운영 설정 최저</td>
+<td>112 = 2.8V</td>
+<td>두 하한과 강제 고정값의 설정 최저</td>
+</tr>
+<tr>
+<td>Normal 기본 하한</td>
+<td>140 = 3.5V</td>
+<td>유효한 저장 설정이 있으면 저장값 우선</td>
+</tr>
+<tr>
+<td>Mapping 기본 하한</td>
+<td>172 = 4.3V</td>
+<td>전용 검사와 Mapping Live 모두 적용</td>
+</tr>
+<tr>
+<td>기본 상한</td>
+<td>214 = 5.35V</td>
+<td>두 하한보다 커야 함. 최초 연결 전 기동 상한은214 유지</td>
+</tr>
+<tr>
+<td>상승/하강</td>
+<td>기본 +4 / -1</td>
+<td>레벨1은25mV. 상승 step은1~40 설정</td>
+</tr>
+<tr>
+<td>백텔 주기</td>
+<td>기본3, 범위1~255</td>
+<td>100ms 단위 설정. Normal/Mapping에 공통 적용</td>
+</tr>
+<tr>
+<td>재시도 코인</td>
+<td>기본1, 범위0~100</td>
+<td>정상 전원 백텔을 받으면 재충전. 소진 뒤 다음 실패는 재초기화</td>
+</tr>
+<tr>
+<td>링크 모드/가속</td>
+<td>기본0 / 0</td>
+<td>모드0 전원 상태, 모드1 수신 여부. 가속은 모드1에 적용</td>
+</tr>
+<tr>
+<td>force/infinite/NOP override</td>
+<td>휘발성</td>
+<td>재부팅 때 자동 복원하지 않음. 맵 재계산 시 NOP는 자동표로 복귀</td>
+</tr>
+</tbody></table></div>
+<p>3.5V와4.3V는 고정 출력이나 부팅 시작 전압이 아니다. 초기화의 코드75(1.875V)와 기존 +5/+1 상승 절차는 별도로 유지한다. 실제 출력은 백텔, 하한·상한 및 시험용 force에 따라 달라진다. 전압 코드는 설정/레지스터 값이며 실측 전압과 구분한다.</p>
+<p>CFX와 Mapping의 기존 카운터 증가/감소 방식을 유지했다. 설정3은 명목300ms이고 CFX는0~300의301회 호출로 한 주기가 된다. 정확한 벽시계300ms나 지터 상한을 보장한 것으로 해석하지 않는다. 실행 중인 백텔 순서는 주기 변경으로 중간 취소하지 않는다.</p>
+<h3>3. 프로토콜 조회와 예</h3>
+<p>기존 <code>8F 01/02/03/04</code>, <code>59 01/02</code>, <code>8C</code>는 기준 브랜치의 의미를 유지한다. <code>8F 04</code> fake sleep은 backup에 있던 구현을 그대로 유지한다. <code>8F 02</code>는 기존 OTA 상태 강제/백텔 우회이지 무한 코인 설정이 아니다.</p>
+<p>요청은 <code>8F 20 access index [value]</code>, 정상 응답은 <code>8F 20 access index L payload</code>이다. access는0 읽기/1 쓰기이며 번호는 아래 표에서10진수다. 패킷 예는16진수다. 새 Sound1 프로파일은1.0이며 Sullivan 전체4.6 호환을 뜻하지 않는다.</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="상세 분석 표"><table>
+<thead>
+<tr>
+<th align="right">index</th>
+<th scope="col">값</th>
+<th scope="col">쓰기</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">0</td>
+<td>index1~15의15바이트 묶음</td>
+<td>불가</td>
+</tr>
+<tr>
+<td align="right">1</td>
+<td>마지막 성공 PMIC 읽기/쓰기의 레벨, Reset 이후0은 미확인</td>
+<td>불가</td>
+</tr>
+<tr>
+<td align="right">2</td>
+<td>주기1~255, 100ms 단위</td>
+<td>저장</td>
+</tr>
+<tr>
+<td align="right">3 / 4</td>
+<td>Normal / Mapping 하한112 이상, 상한 미만</td>
+<td>저장</td>
+</tr>
+<tr>
+<td align="right">5</td>
+<td>상승 step1~40</td>
+<td>저장</td>
+</tr>
+<tr>
+<td align="right">6</td>
+<td>force0 해제 또는112~214</td>
+<td>휘발성</td>
+</tr>
+<tr>
+<td align="right">7</td>
+<td>코인0~100, 255는 무한 시험 모드</td>
+<td>개수만 저장. 0~100 쓰기 성공 시 무한 해제</td>
+</tr>
+<tr>
+<td align="right">8</td>
+<td>무한0/1</td>
+<td>휘발성. index7의255와 같은 상태</td>
+</tr>
+<tr>
+<td align="right">9 / 10</td>
+<td>링크 mode0/1 / 가속0/1</td>
+<td>저장</td>
+</tr>
+<tr>
+<td align="right">11</td>
+<td>안정 NOP0~19</td>
+<td>휘발성. 쓰면 override 활성</td>
+</tr>
+<tr>
+<td align="right">12</td>
+<td>현재 펄스폭, 개별 읽기는2바이트 big-endian</td>
+<td>불가</td>
+</tr>
+<tr>
+<td align="right">13</td>
+<td>실제 채널당 프레임 수</td>
+<td>불가</td>
+</tr>
+<tr>
+<td align="right">14</td>
+<td>NOP override0/1</td>
+<td>0은 현재 프레임의 자동표로 복귀</td>
+</tr>
+<tr>
+<td align="right">15</td>
+<td>현재 자극 전략</td>
+<td>불가</td>
+</tr>
+<tr>
+<td align="right">16</td>
+<td>설정 상한, 두 하한보다 크고214 이하</td>
+<td>저장</td>
+</tr>
+<tr>
+<td align="right">17</td>
+<td>FF OFF=0</td>
+<td>0만 허용. 1/2/3 거부</td>
+</tr>
+<tr>
+<td align="right">18 이상</td>
+<td>FF 확장을 위한 예약/미지원</td>
+<td>거부</td>
+</tr>
+</tbody></table></div>
+<p>index0의 묶음은 원본과 같이 각 값의 하위8비트만 보낸다. 펄스폭이255us를 넘을 때는 반드시 개별 index12의2바이트 응답을 사용한다. 예를 들어268us는 <code>01 0C</code>다. 묶음의 해당 한 바이트는 <code>0C</code>이므로 전체 펄스폭으로 해석하면 안 된다. 이 개별 조회 형식은 Sound1 프로파일의 명시적 차이다.</p>
+<pre><code class="language-text">버전/지원 옵션 읽기
+RX  8F FF 00 00
+TX  8F FF 00 00 0A 01 00 1E 00 00 00 01 00 00 00
+
+Normal 하한 읽기 (저장값이 없는 초기 기본값 예)
+RX  8F 20 00 03
+TX  8F 20 00 03 01 8C
+
+Mapping 하한 읽기 (초기 기본값 예)
+RX  8F 20 00 04
+TX  8F 20 00 04 01 AC
+
+주기를 기본300ms로 저장
+RX  8F 20 01 02 03
+TX  8F 20 01 02 01 03
+
+Normal 하한을2.8V로 저장 (이후 기본3.5V로 돌리려면 값8C)
+RX  8F 20 01 03 70
+TX  8F 20 01 03 01 70
+
+force 해제
+RX  8F 20 01 06 00
+TX  8F 20 01 06 01 00
+
+펄스폭 개별 읽기 (현재268us라는 가상 예)
+RX  8F 20 00 0C
+TX  8F 20 00 0C 02 01 0C
+
+FF OFF 확인
+RX  8F 20 00 11
+TX  8F 20 00 11 01 00
+</code></pre>
+<p>정상 응답은 최대20바이트다. 오류는 기존 형태인 <code>F0 8F major minor lineHi lineLo</code>의6바이트이며, 행 번호는 빌드마다 달라질 수 있다. 범위/미지원 요청은 major8/minor6, 설정 저장 I/O 실패는 major10/minor2로 전달한다. 새 핸들러는 송신을 직접 하지 않고 기존 호출자가 한 번만 송신한다.</p>
+<p>SPI 수신 경계는 논리 데이터20바이트를 제공하며 실제 BLE 논리 길이는 상위 파서에 전달하지 않는다. 이번 구현은 SPI 마지막 바이트를 길이라고 새로 가정하지 않는다. 따라서 패딩 때문에 사라진 누락 값과 의도적으로 보낸0을 항상 구별할 수 있는 것은 아니다. 앱은 읽기4바이트/쓰기5바이트의 올바른 요청을 보내고 응답을 받은 후 다음 요청을 보낸다.</p>
+<p>force 쓰기 ACK는 설정 수락이며 그 순간 실제 전압을 썼다는 뜻이 아니다. 다음 백텔 처리에서 PMIC 쓰기를 시도하고 성공한 값만 관측값에 반영한다. index1=0일 때는0V를 측정했다는 뜻이 아니라 캐시가 무효라는 뜻이다.</p>
+<h3>4. 실기에서 비교할 동작</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="상세 분석 표"><table>
+<thead>
+<tr>
+<th align="right">순서</th>
+<th scope="col">입력/조건</th>
+<th scope="col">예상 결과</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">1</td>
+<td>기존 명령과 새 버전/기본값 조회</td>
+<td>기존 응답 유지, 새 응답 길이/값/지원 옵션 일치</td>
+</tr>
+<tr>
+<td align="right">2</td>
+<td>Normal의 LowStable/LowUnstable</td>
+<td>기본 +4, 상한214 clamp. High 두 상태는 -1, 하한에서 정지</td>
+</tr>
+<tr>
+<td align="right">3</td>
+<td>Normal 레벨140에서 Mapping 진입</td>
+<td>Mapping 하한172 미만이면 보정. I2C 실패 시 성공 처리 없이 복구</td>
+</tr>
+<tr>
+<td align="right">4</td>
+<td>Mapping에서 Normal 복귀</td>
+<td>바로140으로 떨어뜨리지 않고 기존 백텔 제어에 따라 하강</td>
+</tr>
+<tr>
+<td align="right">5</td>
+<td>정상 백텔 뒤 연속 미수신</td>
+<td>Normal/Live 모드0은 첫 실패에 코인 소모/재시도, 다음 실패에 재초기화. 정상 응답 뒤 재충전</td>
+</tr>
+<tr>
+<td align="right">6</td>
+<td>Mapping 전용 검사에서 미수신/과다 백텔</td>
+<td>원본처럼 코인 없이 재초기화. 무한 플래그도 이 전용 경로의 실패 판정을 막지 않음</td>
+</tr>
+<tr>
+<td align="right">7</td>
+<td>모드1/가속 선택</td>
+<td>Normal Live에만 수신 여부 정책. Mapping 전용/Mapping Live는 전원 상태 정책 유지</td>
+</tr>
+<tr>
+<td align="right">8</td>
+<td>주기1/3/255와 검사 도중 변경</td>
+<td>공통 설정 적용, 진행 중 검사 완결. 연결 직후 기존10회 준비 유지</td>
+</tr>
+<tr>
+<td align="right">9</td>
+<td>Mapping eCAP/임피던스/특정 자극</td>
+<td>측정 도중 주기 백텔을 별도로 끼워 넣지 않음</td>
+</tr>
+<tr>
+<td align="right">10</td>
+<td>CFX 프레임1<del>9 및10</del>12</td>
+<td>1<del>9 새 순서의 Duration 복원,10</del>12 기존 순서 유지. 범위 밖에서 읽기 완료 오통보 없음</td>
+</tr>
+<tr>
+<td align="right">11</td>
+<td>재부팅 후 설정 재조회</td>
+<td>저장된 유효값 복원, force/infinite/override는 자동 복원하지 않음</td>
+</tr>
+<tr>
+<td align="right">12</td>
+<td>FF 활성/예약 명령 및 기존 QCC/OTA/sleep</td>
+<td>FF 활성 거부. 기존 제품 기능 회귀 확인</td>
+</tr>
+</tbody></table></div>
+<p>레지스터 실패와 전원 손실을 실제 장치에 주입하는 시험은 여기서 실행하지 않았다. 호스트 시험은 RAM 경계에서 오류를 주입한 결과다. 실제 시험에서는 장치·계측·복구 준비를 확인하고 기존 장비 시험 절차를 사용한다.</p>
+<h3>5. 저장과 빌드 범위의 한계</h3>
+<p>링크 설정은 <code>LINKPARM.TXT</code>의 기본40바이트를 원본과 같은 순서/리틀엔디언으로 저장한다. 파일 공간4096바이트를 확보하되 뒤쪽 확장 데이터는 덮어쓰거나 잘라내지 않는다. 유효한 기존 설정이 우선하며 잘못된/짧은 파일은 자동 삭제하지 않는다. 새 파일을 만들거나 설정을 쓸 때 seek/tell/write 길이/sync/close/되읽기를 모두 확인한 다음 RAM 설정과 CFX 주기를 갱신한다. 닫기 실패 뒤 해당 모듈의 파일 객체를 재사용하지 않으며 재기동 전 추가 쓰기를 거부한다.</p>
+<p>이 형식은 IDENT와 값 범위를 검사하며 CRC/전원 차단 원자성을 제공하지 않는다. 범위 안의 값으로 손상된 경우까지 검출하거나 FAT 자체를 복구하는 기능은 이번 이식에 포함하지 않는다. 기존 FAT A/B 복구 논의는 별도 개선 범위다. 저장 실패가 나면 성공 ACK를 보내지 않으며 기존 RAM 설정은 유지하지만, 이미 수행된 디스크 쓰기가 이전 상태로 자동 복원된다는 뜻은 아니다.</p>
+<p>호스트 재검사 명령은 저장소 루트에서 다음과 같다.</p>
+<pre><code class="language-powershell">python -X utf8 tests/link_pmic/run_host.py
+python -X utf8 tests/link_pmic/cfx_check.py
+python -X utf8 tests/unit/build_target_tests.py CM3 --normal
+python -X utf8 tests/unit/build_target_tests.py CM3
+python -X utf8 tests/unit/build_target_tests.py CFX --normal
+</code></pre>
+<p>분리 SDK 빌드는 장치 접근 없이 <code>tmp/unit-tests/target</code>에 실행 이미지·map·입력 해시와 검사 결과를 만든다. 과거 유닛 시험의 알려진 제품 불일치를 이번 기능 시험 통과로 지우지 않는다. 실제 Eclipse 배포 빌드와 장치 시험 결과는 아직 미실행이다.</p>
+</div></details>
+<div class="lead"><span class="tag proposal">1차 코드·빌드 완료 / 실기 대기</span><h2>기능을 한꺼번에 켜지 않고,<br>실패 원인이 보이는 단위로 진행합니다.</h2><p>첫 작업은 오류 반환, PMIC 성공값 관리, 응답 송신 책임과 실제 길이 계약입니다. 1차는 링크·PMIC와 그 설정/검증으로 완료하며 FF를 구현하지 않습니다.</p></div>
+<ol class="roadmap"><li><span>0</span><div><h3>기준 고정</h3><p>현재 자료·원격 CM3 구조·시험 hook을 함께 보존</p></div></li><li><span>1</span><div><h3>오류·공통 적용</h3><p>I2C 실패 전파·성공값·single TX</p></div></li><li><span>2</span><div><h3>PMIC·정책</h3><p>설정최저112·Normal140·Mapping172·상한214·coin1</p></div></li><li><span>3</span><div><h3>백텔·주기</h3><p>PCM·안정 NOP·100ms 단위·Mapping IDLE/Standby</p></div></li><li><span>4</span><div><h3>프로토콜·저장·확장</h3><p>8F20 링크/PMIC·LINKPARM·FF 미지원·공유 tail</p></div></li><li><span>5</span><div><h3>1차 통합 완료</h3><p>코드 통합·SDK/호스트 검사 완료, 실제 장치 회귀는 미실행</p></div></li></ol>
 <aside class="notice "><strong>FF는 이 단계들의 완료 조건이 아닙니다</strong><p>후속에 FF1 또는 FF3를 연결할 PMIC 공통 적용 경계·예약 번호·공유 ABI 확장 규칙만 준비합니다. 감지·장부·TIMER0·AUDIOFF를 지금 구현할 필요는 없습니다.</p></aside>
 <section class="section"><h3>코드를 옮기기 전에 함께 바로잡을 결함</h3><div class="table-scroll" tabindex="0" role="region" aria-label="확인한 소스 결함과 대응"><table><caption>확인한 소스 결함과 대응</caption><thead><tr><th scope="col">문제</th><th scope="col">이식 시 보완</th></tr></thead><tbody><tr><th scope="row">고정 해제 0을 validator가 거부</th><td><code>8F 20 01 06 00</code>의 정상 해제 시험</td></tr><tr><th scope="row">I2C 실패를 정상 표본처럼 분류</th><td>성공/표본/실패를 별도 반환</td></tr><tr><th scope="row">실패한 force 쓰기로 cache 갱신</th><td>성공 확인 뒤에만 갱신</td></tr><tr><th scope="row">donor handler의 자체 TX</th><td>target 호출자 한 곳에서 송신</td></tr><tr><th scope="row">LINKPARM 기본 writer의 반환 누락</th><td>seek·write 길이·sync·close 모두 검사</td></tr><tr><th scope="row">설정 손상 시 복구 의미 불명</th><td>FF OFF fallback 또는 별도 영속성 설계</td></tr></tbody></table></div>
 </section>
@@ -1382,6 +1682,8 @@ TX  8F 20 01 11 01 03
 <details class="analysis-detail"><summary><span>상세 분석 · 11–13장: 파일별 책임·회귀 시험·남은 결정</span><small>현재 코드·조건·예외·근거를 모두 보기</small></summary><div class="source-content"><p><a id="implementation"></a></p>
 <h3>11. 단계별 구현 계획과 파일 책임</h3>
 <p>아래는 아직 실행하지 않은 개정 계획이다. <strong>1차 완료는 링크·백텔·PMIC와 그 설정/검증까지이며 FF의 구현을 기다리지 않는다.</strong> 전체 로드맵 그림9는 FF 후속까지 포함한 참조이며 실제 1차 단계/파일은 다음 표와11.5절을 우선한다.</p>
+<p><img src="%EA%B7%B8%EB%A6%BC/09-migration-stages.png" alt="기준 확보부터 FF3와 배포 검증까지의 이식 순서"></p>
+<p>그림 9. 권장 구현 순서. FF3까지 완료해야 하는 큰 복사 작업 하나로 묶지 않는다.</p>
 <h4>11.1 단계와 완료 기준</h4>
 <div class="table-scroll" tabindex="0" role="region" aria-label="상세 분석 표"><table>
 <thead>
@@ -1962,7 +2264,7 @@ TX  8F 20 01 11 01 03
 <section class="section"><h3>도표와 표시의 의미</h3><div class="legend"><span class="tag current">현재 코드</span><span>Sound1에서 확인한 동작</span><span class="tag source">Sullivan 동작</span><span>옮길 원본의 동작과 시험 설정</span><span class="tag proposal">제안 / 미구현</span><span>권장 설계와 앞으로의 검증</span></div><p>수치 예시와 상태도는 코드/설계 설명입니다. 실제 장치 로그나 실측 화면으로 해석하지 않습니다. 모든 계산 도구는 이 문서 안에서만 동작하며 장치와 연결하지 않습니다.</p></section>
 <section class="section"><h3>탐색과 인쇄</h3><ul class="read-list"><li>탭에서 위/아래 방향키(좁은 화면은 좌/우), Home/End로 이동할 수 있습니다.</li><li>문서 검색은 숨겨진 상세 분석까지 찾고 해당 탭을 엽니다.</li><li>‘전체 보기’는 모든 탭과 상세를 펼칩니다. 브라우저 찾기와 연속 읽기에 사용합니다.</li><li>‘전체 인쇄’는 모든 기능과 상세를 인쇄합니다. 계산 예시는 현재 선택한 값으로 출력됩니다.</li><li>도해는 글자 크기를 유지하며 창 너비에 맞춰 재배치됩니다. 조건 → 목적지 링크로 분기·반복·복귀 상태를 따라갈 수 있습니다.</li></ul></section>
 <section class="section design-notes"><h3>UI/UX 조사에서 적용한 원칙</h3><p>네이비 탐색 영역과 밝은 본문을 나누고, 파랑은 선택·이동, 청록은 관계 설명, 황갈색은 주의할 조건에 사용했습니다. 의미는 색과 함께 문구로 표시합니다.</p><ul><li><a href="https://www.w3.org/WAI/ARIA/apg/patterns/tabs/" target="_blank" rel="noopener noreferrer">W3C APG · Tabs</a>: 선택 상태와 탭-패널 관계를 표시하고, 방향키·Home/End 탐색을 적용했습니다.</li><li><a href="https://www.w3.org/WAI/WCAG22/Understanding/reflow.html" target="_blank" rel="noopener noreferrer">WCAG 2.2 · Reflow</a>: 좁은 화면에서 본문을 한 열로 재배치하고 넓은 표만 내부에서 스크롤합니다.</li><li><a href="https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html" target="_blank" rel="noopener noreferrer">WCAG 2.2 · Contrast</a>: 본문과 표지·탭의 주요 색 조합을 검사하고, 선택·주의를 색만으로 전달하지 않습니다.</li><li><a href="https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum.html" target="_blank" rel="noopener noreferrer">WCAG 2.2 · Target Size</a>: 주요 버튼과 탭에 충분한 높이와 간격을 확보했습니다.</li></ul><p class="caption">일부 자동/수동 검사를 수행한 문서이며 전체 접근성 인증이나 실제 사용자 시험을 뜻하지 않습니다.</p><p class="caption">본문·탭의 기본 글꼴은 설치된 KoPubWorld바탕체입니다. 다른 PC에서는 해당 서체를 설치하면 같은 글꼴로 읽을 수 있습니다. 도해의 상자·라벨도 본문과 같은 글꼴입니다. 코드만 구문을 구분하기 위한 별도 글꼴을 사용합니다.</p></section>
-<section class="section"><h3>원본과 검증 기록</h3><div class="reference-links"><a href="분석과%20계획.md">원본 Markdown</a><a href="작업.md">작업 기록</a><a href="분석%20기준.json">파일 해시 기준</a><a href="HTML%20검증.json">HTML 검증 결과</a></div><p class="caption">내용 원본 SHA-256: <code>045711b1a4bcffa9cccc20c8496016f9ea49fbbb83b776e08f61027fcfaffaac</code></p></section>
+<section class="section"><h3>원본과 검증 기록</h3><div class="reference-links"><a href="분석과%20계획.md">원본 Markdown</a><a href="작업.md">작업 기록</a><a href="분석%20기준.json">파일 해시 기준</a><a href="HTML%20검증.json">HTML 검증 결과</a></div><p class="caption">내용 원본 SHA-256: <code>db539bacecf35336f5fa8bd50e2209d53ca78be5e6a2778b067404d76f2677db</code></p></section>
 <details class="analysis-detail"><summary><span>상세 분석 · 14장: 대상·원본의 근거 파일</span><small>현재 코드·조건·예외·근거를 모두 보기</small></summary><div class="source-content"><p><a id="evidence"></a></p>
 <h3>14. 근거와 이번 문서의 검증 범위</h3>
 <h4>14.1 따라갈 핵심 파일</h4>

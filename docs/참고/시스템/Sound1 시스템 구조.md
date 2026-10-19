@@ -246,3 +246,17 @@ FatFs/AES/CRC/RTT의 출처, 사용 경로와 검증 범위는 [Sound1 SOUP 사�
 핵심 근거는 위 각 절의 링크와 심볼이다. CFX는 `src/1__cfx/.cproject`의 ASIP Designer 도구 체인, CM3/부트로더는 각 `.cproject`의 Cross ARM GCC 구성에서 출발했다. HEAR 함수체인 원본은 `src/3__hear/microcode.hct`, CFX가 사용하는 크기/주소 정의는 `src/1__cfx/hear/microcode.h`다. 생성물과 원본의 일치 여부는 HEAR 변경 작업에서 재생성/빌드로 추가 확인해야 한다.
 
 현재 문서는 E8300 주요 정상 경로의 정적 분석과 6.2절의 QCC 제공 설계 대조 결과다. 전체 유닛의 정확성, 공유 메모리의 모든 경쟁 조건, 최악 실행시간, 실제 RF 회로/음향 성능, OTA 보안성이나 실기 시험 통과를 검증한 결과가 아니다. QCC 자료의 내부 상충과 구현/측정 미비를 보존하며, 위에서 표시한 매핑 마이크 전환 및 비정상 NofM 밴드 조건은 관련 상세 설계/수정 시 재확인한다.
+
+## 9 backup 구조를 유지한 링크·PMIC 이식 (2026-10-20)
+
+이번 기준은 `claude_feature_sound1-eptc`의 `f9fa45ff`에서 생성한 `develop_backup`이다. 기존 `Cortex-M3-src`, `Gen1_5`, `isdExecution`, `systemControl` 등과 원래 함수 이름을 유지한다. 이전 원격 develop의 `source/` 구조 개편을 포함하지 않는다.
+
+CFX의 기존 [PCM Live](../../../src/1__cfx/internalDevice/driver_PCM_liveStimulation.c)에 F1~9 백텔 시퀀스·안정 NOP와 공통 주기를 적용했다. F10~12는 기존 시퀀스다. CFX가 PCM을 만들고 CM3가 전원 백텔과 PMIC를 판단한다. 새 CM3 [정책 모듈](../../../src/2__cm3/Cortex-M3-src/internalDevice/tdc_link_control.c)은 기존 `isd_interface` 및 Mapping 전용/Live 흐름에 연결되며, 저수준 PMIC 호출과 다른 보드 분기는 기존 파일에 남는다. I2C 실패를 성공한 관측으로 사용하지 않고 복구 상태를 보존한다.
+
+운영 설정 최저112(2.8V), Normal 기본 하한140(3.5V), Mapping 기본 하한172(4.3V), 상한 기본214(5.35V), 상승4/하강1, 주기 기본3×100ms, Normal/Live 기본1coin을 사용한다. 최초 연결 전 상한214와 reset75/+5/+1 기동 절차를 유지한다. 전용 Mapping은 원본 Sullivan처럼 NoBacktel/TooMuch에 재초기화하며 coin/infinite로 우회하지 않는다. mode1 수신 여부 정책은 Normal Live에만 적용한다. 실제 출력과 시간은 실기 미측정이다.
+
+새 [설정 모듈](../../../src/2__cm3/Cortex-M3-src/internalDevice/tdc_link_config.c)은 LINKPARM.TXT 앞40바이트를 명시적 리틀엔디언으로 읽고 쓰며 뒤의 확장 공간은 보존한다. 유효한 저장값이 기본값보다 우선한다. 쓰기/sync/close/readback 성공 뒤 RAM과 공유 주기를 게시한다. 실패 후 디스크 이전값 복원이나 FAT의 전원 차단 원자성은 제공하지 않는다.
+
+[기존 범용 디버그](../../../src/2__cm3/Cortex-M3-src/BleCommunication/tdc_remote_general_debug.c)는 옵션1~4를 유지하고 신규0x20/0xFF만 [새 핸들러](../../../src/2__cm3/Cortex-M3-src/BleCommunication/tdc_ble_link_debug.c)로 보낸다. 핸들러가 만든 byte 응답을 기존 int 송신 버퍼에 복사하며 송신·명령 해제 책임은 원래 remoteControl 경로에 있다. Force 응답은 설정 수락으로, 다음 피드백의 물리 쓰기 성공과 구분한다. FF는 OFF만 조회·허용하며 검출/장부/타이머/AUDIOFF 기능은 구현하지 않는다.
+
+CM3/CFX 공유 구조의 기존 끝에 주기와 NOP 두 필드만 추가한다. ARM 크기는4052→4060바이트, CFX는1015워드이며 이전 필드 위치는 유지한다. 양쪽은 같은 브랜치로 함께 빌드해야 한다. 자세한 설정/명령·실기 절차는 [빌드와 실기 확인](../../tasks/internalDevice/20261019_0920_Sullivan-링크-PMIC-FF-마이그레이션/빌드와%20실기%20확인.md)에 둔다. 호스트·SDK 빌드 통과와 제품 장치 시험 통과를 구분한다.
