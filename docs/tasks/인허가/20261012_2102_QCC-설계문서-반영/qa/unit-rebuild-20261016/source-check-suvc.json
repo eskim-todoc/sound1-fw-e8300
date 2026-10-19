@@ -1,0 +1,1364 @@
+{
+  "status": "COMPLETED_SCOPED_READ_ONLY_WITH_DIFFERENCES",
+  "reviewAt": "2026-10-16T19:30:09.862699+09:00",
+  "scope": "서석일 QCC SUVC 원문 시험 대항목/소항목과 현재 재작성 유닛 보고서의 개수 및 내용 대응 조사. 수정/COM/제품시험 없음.",
+  "sources": {
+    "word": {
+      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\서석일_작성\\QCC_SUVC-FW-TD24A 유닛 테스트 기준서_byssi.docx",
+      "sha256": "CF08AE540A9029FCDD341C94B63FA780233B7786ABFFA142CBC9880DA911E627",
+      "lastWriteTime": "2026-10-16T12:28:30.174000+09:00",
+      "sha256After": "CF08AE540A9029FCDD341C94B63FA780233B7786ABFFA142CBC9880DA911E627",
+      "unchangedDuringReview": true,
+      "part": "word/document.xml",
+      "tocExcluded": true,
+      "deletedContentExcluded": true
+    },
+    "currentRebuiltWorkbook": {
+      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\04_설계 검증\\SW\\외부기\\[E8300-QCC] SUVR-FW-TD24A 소프트웨어 유닛 검증 보고서_재작성.xlsx",
+      "sha256": "1BB7A560EB304364D905CD76F076A123D43D9A3929BB29453461773620E49935",
+      "sha256After": "1BB7A560EB304364D905CD76F076A123D43D9A3929BB29453461773620E49935",
+      "unchangedDuringThisFinalRead": true,
+      "sheet": "보고서_유닛 시험",
+      "currentQccRows": [
+        1726,
+        1763
+      ]
+    },
+    "parentWorkbookProof": {
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\unit-rebuild-20261016\\source-check-workbook.json",
+      "recordedSHA256": "208F00BDB1C1B91636610C3D0B4DE7C3B679004A593782D1DBE104ADE2EED89C",
+      "scope": "이전 판본에서 기존 QCC 보고서 B1727:M1764와 전셀 동일, 재작성 시 신규 분할/추가 없음. 현재 사용자 편집 후 행이 1행 앞당겨진 상태와 분리."
+    }
+  },
+  "counts": {
+    "sourceTestGroups": 15,
+    "sourceNumberedSubitems": 42,
+    "currentTestGroups": 15,
+    "currentConditions": 38,
+    "currentUnitCount": 14,
+    "currentUnits": [
+      "SU-ID-QCC-001",
+      "SU-ID-QCC-002",
+      "SU-ID-QCC-003",
+      "SU-ID-QCC-004",
+      "SU-ID-QCC-005",
+      "SU-ID-QCC-006",
+      "SU-ID-QCC-007",
+      "SU-ID-QCC-008",
+      "SU-ID-QCC-009",
+      "SU-ID-QCC-010",
+      "SU-ID-QCC-011",
+      "SU-ID-QCC-012",
+      "SU-ID-QCC-013",
+      "SU-ID-QCC-014"
+    ]
+  },
+  "conclusion": {
+    "all15CurrentGroupsHaveSourceGroup": true,
+    "newTestGroupsWithoutSource": [],
+    "rebuildDidNotCreateAdditionalQccTests": "부모의 별도 전셀 비교 근거; 본 원문 개수 대조와 구분",
+    "oneDesignUnitDoesNotEqualOneTestGroup": "14개 유닛은 설계 구성 수이고 15개 시험은 검증 대항목 수. 시스템 초기화/상태, Bluetooth 활성화/연결 등 동일 유닛이 둘 이상 시험그룹에 연결된다.",
+    "notSimpleMerge": "42→38은 단순 병합으로 단정하지 않는다. BLE/CRA 각 첫2개 원문 소항목이 현재 해당 대항목에 별도 조건으로 전사되지 않았다.",
+    "missingIndependentConditions": [
+      {
+        "sourceTestID": "SW-FW-TEST-U-03-005",
+        "sourceSubitems": [
+          1,
+          2
+        ],
+        "titles": [
+          "BLE 통신 데이터 - GAIA 설정",
+          "BLE 통신 데이터 – 송수신"
+        ],
+        "currentTestID": "SW-FW-UnitTest-QCC-ID-12",
+        "currentConditionCount": 2
+      },
+      {
+        "sourceTestID": "SW-FW-TEST-U-04-001",
+        "sourceSubitems": [
+          1,
+          2
+        ],
+        "titles": [
+          "BLE Secure connection",
+          "BLE 데이터 통신 (Pairing 전후 GAIA characteristic 보안)"
+        ],
+        "currentTestID": "SW-FW-UnitTest-QCC-ID-13",
+        "currentConditionCount": 5
+      }
+    ],
+    "openQuestion": "위4개 소항목의 전체 누락인지 다른 시험에 중복되어 제외됐는지는 이번 제한 조사에서 확정하지 않음.",
+    "productTestStatus": "원문의 기준 문서를 실제 시험 실행/통과 근거로 확대하지 않음. 현재 QCC 결과는 미실행/판정 대기."
+  },
+  "groups": [
+    {
+      "currentTestID": "SW-FW-UnitTest-QCC-ID-1",
+      "currentIDCell": "D1726",
+      "currentRange": "B1726:M1727",
+      "currentUnitIDs": [
+        "SU-ID-QCC-005"
+      ],
+      "currentConditionCount": 2,
+      "currentConditions": [
+        {
+          "condition": 1,
+          "row": 1726,
+          "expectedCell": "K1726",
+          "procedureCell": "J1726",
+          "observedCell": "L1726",
+          "verdictCell": "M1726"
+        },
+        {
+          "condition": 2,
+          "row": 1727,
+          "expectedCell": "K1727",
+          "procedureCell": "J1727",
+          "observedCell": "L1727",
+          "verdictCell": "M1727"
+        }
+      ],
+      "sourceTestID": "SW-FW-TEST-U-01-001",
+      "sourceHeading": "SW-FW-TEST-U-01-001(PIO 포트 초기화 설정과 제어)",
+      "sourceHeadingParagraphOrdinal": 189,
+      "sourceSubitemCount": 2,
+      "sourceSubitems": [
+        {
+          "sourceSubitem": 1,
+          "title": "PIO 초기화와 초기 설정",
+          "sourceLocation": {
+            "documentPart": "word/document.xml",
+            "allTableOrdinalIncludingNested": 7,
+            "outerTableHeaderRow": 1,
+            "detailsRow": 2
+          },
+          "sourceMethodAndCriteria": "방법HW 회로도에 표시한 대로, MCU의 PIO의 초기화를 설정한다.사용하는 각 PIO는 입력, 출력과 주변장치로 구분해 설정한다.PIO가 출력으로 설정될 경우, 초기값을 설정되는지 확인한다.기준System에 전원이 들어오고 초기화 과정이 진행되는 동안, PIO 초기화와 설정이 제대로 되는지 확인한다.Application 초기화 전에 tdPio_preInit()이 실행되는지 확인한다.장치의 로그창에 “TD: TD: tdPio_init()”와 “TD: tdPio_init() end”가 출력되는지 확인한다.",
+          "currentConditions": [
+            1
+          ],
+          "assessment": "대항목과 소항목 순서 대응; 문장별 완전 동일성은 본 조사 판정 범위 아님"
+        },
+        {
+          "sourceSubitem": 2,
+          "title": "사운드 처리기 상태 알림",
+          "sourceLocation": {
+            "documentPart": "word/document.xml",
+            "allTableOrdinalIncludingNested": 7,
+            "outerTableHeaderRow": 3,
+            "detailsRow": 4
+          },
+          "sourceMethodAndCriteria": "방법사운드 처리기의 shutdown_ind의 상태가 변할 때 마다 알린다.사운드 처리기의 inter_dev_conn_ind의 상태가 변할 때 마다 알린다.기준PIO 초기화 중에 초기 shutdown_ind와 inter_dev_conn_ind의 상태를 “TD_MSG_PIO_CHANGED” 메시지로 전송하는지 확인하고, 장치의 로그 창에 “TD_MSG_PIO_CHANGED“ 출력되는지 확인한다.동작 중에 현재 shutdown_ind와 inter_dev_conn_ind상태가 변할 때마다 “TD_MSG_PIO_CHANGED” 메시지가 전송하는지 확인하고, 장치의 로그 창에 “TD_MSG_PIO_CHANGED“ 출력되는지 확인한다.",
+          "currentConditions": [
+            2
+          ],
+          "assessment": "대항목과 소항목 순서 대응; 문장별 완전 동일성은 본 조사 판정 범위 아님"
+        }
+      ]
+    },
+    {
+      "currentTestID": "SW-FW-UnitTest-QCC-ID-2",
+      "currentIDCell": "D1728",
+      "currentRange": "B1728:M1731",
+      "currentUnitIDs": [
+        "SU-ID-QCC-006"
+      ],
+      "currentConditionCount": 4,
+      "currentConditions": [
+        {
+          "condition": 1,
+          "row": 1728,
+          "expectedCell": "K1728",
+          "procedureCell": "J1728",
+          "observedCell": "L1728",
+          "verdictCell": "M1728"
+        },
+        {
+          "condition": 2,
+          "row": 1729,
+          "expectedCell": "K1729",
+          "procedureCell": "J1729",
+          "observedCell": "L1729",
+          "verdictCell": "M1729"
+        },
+        {
+          "condition": 3,
+          "row": 1730,
+          "expectedCell": "K1730",
+          "procedureCell": "J1730",
+          "observedCell": "L1730",
+          "verdictCell": "M1730"
+        },
+        {
+          "condition": 4,
+          "row": 1731,
+          "expectedCell": "K1731",
+          "procedureCell": "J1731",
+          "observedCell": "L1731",
+          "verdictCell": "M1731"
+        }
+      ],
+      "sourceTestID": "SW-FW-TEST-U-01-002",
+      "sourceHeading": "SW-FW-TEST-U-01-002(전원 관리)",
+      "sourceHeadingParagraphOrdinal": 215,
+      "sourceSubitemCount": 4,
+      "sourceSubitems": [
+        {
+          "sourceSubitem": 1,
+          "title": "배터리 관리",
+          "sourceLocation": {
+            "documentPart": "word/document.xml",
+            "allTableOrdinalIncludingNested": 8,
+            "outerTableHeaderRow": 1,
+            "detailsRow": 2
+          },
+          "sourceMethodAndCriteria": "방법장치 초기화 설정에 사용하는 배터리 특성을 설정한다.ADC로 배터리 전압을 읽고 Percentage로 변환하도록 한다.기준장치 초기화 설정에 배터리 특성이 제대로 설정되었는지 확인한다.주기적으로 배터리 전압을 읽어 Percentage로 변환하는지 확인한다.",
+          "currentConditions": [
+            1
+          ],
+          "assessment": "대항목과 소항목 순서 대응; 문장별 완전 동일성은 본 조사 판정 범위 아님"
+        },
+        {
+          "sourceSubitem": 2,
+          "title": "충전 관리",
+          "sourceLocation": {
+            "documentPart": "word/document.xml",
+            "allTableOrdinalIncludingNested": 8,
+            "outerTableHeaderRow": 3,
+            "detailsRow": 4
+          },
+          "sourceMethodAndCriteria": "방법장치에 충전 케이블을 연결하여 충전상태를 유지한다.장치에 충전 케이블을 연결해제 하여 충전상태를 중지한다.기준장치 내부에서 충전 케이블이 연결과 연결해제를 인식하는지 확인한다.충전상태에서 배터리 레벨이 증가하는지 확인한다.",
+          "currentConditions": [
+            2
+          ],
+          "assessment": "대항목과 소항목 순서 대응; 문장별 완전 동일성은 본 조사 판정 범위 아님"
+        },
+        {
+          "sourceSubitem": 3,
+          "title": "배터리 잔량에 따른 상태 변화",
+          "sourceLocation": {
+            "documentPart": "word/document.xml",
+            "allTableOrdinalIncludingNested": 8,
+            "outerTableHeaderRow": 5,
+            "detailsRow": 6
+          },
+          "sourceMethodAndCriteria": "방법배터리 전압 제어를 위해 외부장치의 전원 공급을 PPK2로 공급하여, 배터리 전압을 조절한다.장치에 충전 케이블을 연결하여 충전 상태에로 한다.기준PPK2로 배터리의 전압을 측정하면서 장치의 로그 화면에 배터리 상태가 출력되는지 확인한다. (오차 허용범위 10%)공급 전압 값배터리 레벨 (%)배터리 상태4.2V 이상100Full3.95V80-3.75V60-3.475V40-3.35V20-3.0V0EmptyEmpty 상태에서 장치는 모든 동작을 멈추고 저전압 모드로 진입한다.",
+          "currentConditions": [
+            3
+          ],
+          "assessment": "대항목과 소항목 순서 대응; 문장별 완전 동일성은 본 조사 판정 범위 아님"
+        },
+        {
+          "sourceSubitem": 4,
+          "title": "저전압 모드",
+          "sourceLocation": {
+            "documentPart": "word/document.xml",
+            "allTableOrdinalIncludingNested": 8,
+            "outerTableHeaderRow": 7,
+            "detailsRow": 8
+          },
+          "sourceMethodAndCriteria": "방법shutdown_ind 신호에 따라 저전압 모드에 들어가는지 확인한다.기준shutdown_ind = 0 이면, 저전압 모드에 들어간다.shutdown_ind = 1 이면, 저전압 모드에서 깨어난다.",
+          "currentConditions": [
+            4
+          ],
+          "assessment": "대항목과 소항목 순서 대응; 문장별 완전 동일성은 본 조사 판정 범위 아님"
+        }
+      ]
+    },
+    {
+      "currentTestID": "SW-FW-UnitTest-QCC-ID-3",
+      "currentIDCell": "D1732",
+      "currentRange": "B1732:M1732",
+      "currentUnitIDs": [
+        "SU-ID-QCC-007"
+      ],
+      "currentConditionCount": 1,
+      "currentConditions": [
+        {
+          "condition": 1,
+          "row": 1732,
+          "expectedCell": "K1732",
+          "procedureCell": "J1732",
+          "observedCell": "L1732",
+          "verdictCell": "M1732"
+        }
+      ],
+      "sourceTestID": "SW-FW-TEST-U-01-003",
+      "sourceHeading": "SW-FW-TEST-U-01-003(NVM 처리)",
+      "sourceHeadingParagraphOrdinal": 283,
+      "sourceSubitemCount": 1,
+      "sourceSubitems": [
+        {
+          "sourceSubitem": 1,
+          "title": "NVM 데이터 처리",
+          "sourceLocation": {
+            "documentPart": "word/document.xml",
+            "allTableOrdinalIncludingNested": 10,
+            "outerTableHeaderRow": 1,
+            "detailsRow": 2
+          },
+          "sourceMethodAndCriteria": "방법시스템내 PS(Persistent Storage)의 application 영역에 다음 데이터를 매핑한다.Application dataDescriptionTD_PS_KEY_EX_DEV_SERIAL_NUNM외부장치 일련번호NVM Read와 Write 인터페이스를 구현한다.기준프로젝트 소스 코드내에서 application PS 영역에 매핑과 Read와 Write 인터페이스가 추가되는지 확인한다.쓰기 기능이 되는지 확인한다.읽기 기능이 되는지 확인한다.",
+          "currentConditions": [
+            1
+          ],
+          "assessment": "대항목과 소항목 순서 대응; 문장별 완전 동일성은 본 조사 판정 범위 아님"
+        }
+      ]
+    },
+    {
+      "currentTestID": "SW-FW-UnitTest-QCC-ID-4",
+      "currentIDCell": "D1733",
+      "currentRange": "B1733:M1734",
+      "currentUnitIDs": [
+        "SU-ID-QCC-001",
+        "SU-ID-QCC-002"
+      ],
+      "currentConditionCount": 2,
+      "currentConditions": [
+        {
+          "condition": 1,
+          "row": 1733,
+          "expectedCell": "K1733",
+          "procedureCell": "J1733",
+          "observedCell": "L1733",
+          "verdictCell": "M1733"
+        },
+        {
+          "condition": 2,
+          "row": 1734,
+          "expectedCell": "K1734",
+          "procedureCell": "J1734",
+          "observedCell": "L1734",
+          "verdictCell": "M1734"
+        }
+      ],
+      "sourceTestID": "SW-FW-TEST-U-02-001",
+      "sourceHeading": "SW-FW-TEST-U-02-001(시스템 초기화와 상태 처리) ",
+      "sourceHeadingParagraphOrdinal": 303,
+      "sourceSubitemCount": 2,
+      "sourceSubitems": [
+        {
+          "sourceSubitem": 1,
+          "title": "시스템 초기화",
+          "sourceLocation": {
+            "documentPart": "word/document.xml",
+            "allTableOrdinalIncludingNested": 12,
+            "outerTableHeaderRow": 1,
+            "detailsRow": 2
+          },
+          "sourceMethodAndCriteria": "방법시스템 초기화에서 다음을 추가한다:Initializationmain - 시스템 초기화 시작BatteryChargingPowerBluetooth ClassicBluetooth LE충전 케이스 통신외부장치 Application(TD) 초기화가 시스템 초기화에 추가한다.기준프로젝트 소스 코드내에서 초기화가 추가되었는지 확인한다.",
+          "currentConditions": [
+            1
+          ],
+          "assessment": "대항목과 소항목 순서 대응; 문장별 완전 동일성은 본 조사 판정 범위 아님"
+        },
+        {
+          "sourceSubitem": 2,
+          "title": "사운드 처리기 SPI  통신",
+          "sourceLocation": {
+            "documentPart": "word/document.xml",
+            "allTableOrdinalIncludingNested": 12,
+            "outerTableHeaderRow": 3,
+            "detailsRow": 4
+          },
+          "sourceMethodAndCriteria": "방법초기화 후에 shutdown_ind = 0이 되면 배터리 상태를 SPI를 통해 사운드처리기에 알리고 응답을 받는지 확인한다.내부 배터리를 읽을 때마다 배터리 상태를 SPI를 통해 사운드처리기에 알리고 응답을 받는지 확인한다.기준배터리 상태를 전송할 때 다음 데이터를 SPI를 통해 보낸다.Power state ind message길이0x34 0xmm 0xnn 0xpp 0x00 … 0x02 21 bytes여기서 0xmm은 배터리 레벨이고, 0xnn은 충전상태, 0xpp는 스마트 케이스의 Lid 상태이다.SPI로부터 다음 응답 메시지를 받는지 확인한다.Response message길이0x34 0x01 0x00 … 0x00 0x0221 bytes",
+          "currentConditions": [
+            2
+          ],
+          "assessment": "대항목과 소항목 순서 대응; 문장별 완전 동일성은 본 조사 판정 범위 아님"
+        }
+      ]
+    },
+    {
+      "currentTestID": "SW-FW-UnitTest-QCC-ID-5",
+      "currentIDCell": "D1735",
+      "currentRange": "B1735:M1735",
+      "currentUnitIDs": [
+        "SU-ID-QCC-002"
+      ],
+      "currentConditionCount": 1,
+      "currentConditions": [
+        {
+          "condition": 1,
+          "row": 1735,
+          "expectedCell": "K1735",
+          "procedureCell": "J1735",
+          "observedCell": "L1735",
+          "verdictCell": "M1735"
+        }
+      ],
+      "sourceTestID": "SW-FW-TEST-U-02-002",
+      "sourceHeading": "SW-FW-TEST-U-02-002(시스템 상태 처리)",
+      "sourceHeadingParagraphOrdinal": 345,
+      "sourceSubitemCount": 1,
+      "sourceSubitems": [
+        {
+          "sourceSubitem": 1,
+          "title": "시스템 상태 확인",
+          "sourceLocation": {
+            "documentPart": "word/document.xml",
+            "allTableOrdinalIncludingNested": 16,
+            "outerTableHeaderRow": 1,
+            "detailsRow": 2
+          },
+          "sourceMethodAndCriteria": "방법다음과 같은 상태를 저장하거나 확인가능한 기능을 시스템 상태에 추가한다:System stateshutdown_ind 상태inter_dev_conn_ind배터리 상태충전 상태Bluetooth Classic 연결 상태Bluetooth LE 연결 상태기준프로젝트 소스 코드내에 위와 같은 상태를 확인할 수 있는 방법이 구현되어 있는지 확인한다.장치 로그 창에서 실제 상태에 따라 시스템 상태가 변하는지 확인한다.",
+          "currentConditions": [
+            1
+          ],
+          "assessment": "대항목과 소항목 순서 대응; 문장별 완전 동일성은 본 조사 판정 범위 아님"
+        }
+      ]
+    },
+    {
+      "currentTestID": "SW-FW-UnitTest-QCC-ID-6",
+      "currentIDCell": "D1736",
+      "currentRange": "B1736:M1736",
+      "currentUnitIDs": [
+        "SU-ID-QCC-003"
+      ],
+      "currentConditionCount": 1,
+      "currentConditions": [
+        {
+          "condition": 1,
+          "row": 1736,
+          "expectedCell": "K1736",
+          "procedureCell": "J1736",
+          "observedCell": "L1736",
+          "verdictCell": "M1736"
+        }
+      ],
+      "sourceTestID": "SW-FW-TEST-U-02-003",
+      "sourceHeading": "SW-FW-TEST-U-02-003(장치 상태 처리)",
+      "sourceHeadingParagraphOrdinal": 366,
+      "sourceSubitemCount": 1,
+      "sourceSubitems": [
+        {
+          "sourceSubitem": 1,
+          "title": "장치 상태 처리",
+          "sourceLocation": {
+            "documentPart": "word/document.xml",
+            "allTableOrdinalIncludingNested": 18,
+            "outerTableHeaderRow": 1,
+            "detailsRow": 2
+          },
+          "sourceMethodAndCriteria": "방법장치 타입에 따라 장치를 설정하는지 확인한다.장치 타입설명Standalone편이 모드TWS양이 모드기준프로젝트 소스 코드내에 위와 같은 상태를 확인할 수 있는 방법이 구현되어 있는지 확인한다.장치 로그 창에서 장치 상태에 따라 시스템을 설정하는지 확인한다 .",
+          "currentConditions": [
+            1
+          ],
+          "assessment": "대항목과 소항목 순서 대응; 문장별 완전 동일성은 본 조사 판정 범위 아님"
+        }
+      ]
+    },
+    {
+      "currentTestID": "SW-FW-UnitTest-QCC-ID-7",
+      "currentIDCell": "D1737",
+      "currentRange": "B1737:M1738",
+      "currentUnitIDs": [
+        "SU-ID-QCC-004"
+      ],
+      "currentConditionCount": 2,
+      "currentConditions": [
+        {
+          "condition": 1,
+          "row": 1737,
+          "expectedCell": "K1737",
+          "procedureCell": "J1737",
+          "observedCell": "L1737",
+          "verdictCell": "M1737"
+        },
+        {
+          "condition": 2,
+          "row": 1738,
+          "expectedCell": "K1738",
+          "procedureCell": "J1738",
+          "observedCell": "L1738",
+          "verdictCell": "M1738"
+        }
+      ],
+      "sourceTestID": "SW-FW-TEST-U-02-004",
+      "sourceHeading": "SW-FW-TEST-U-02-004(블루투스 상태 처리)",
+      "sourceHeadingParagraphOrdinal": 385,
+      "sourceSubitemCount": 2,
+      "sourceSubitems": [
+        {
+          "sourceSubitem": 1,
+          "title": "블루투스 활성화",
+          "sourceLocation": {
+            "documentPart": "word/document.xml",
+            "allTableOrdinalIncludingNested": 20,
+            "outerTableHeaderRow": 1,
+            "detailsRow": 2
+          },
+          "sourceMethodAndCriteria": "방법inter_dev_conn_ind의 상태 변화에 따라 블루투스를 활성화하거나 비활성화 하는지 확인한다.inter_dev_conn_ind블루투스 상태0비활성화1활성화기준프로젝트 소스 코드내에 위와 같은 상태를 확인할 수 있는 방법이 구현되어 있는지 확인한다.장치 로그 창에서 실제 상태에 따라 블루투스 상태를 Enable이나 Disable 하는지 확인한다.",
+          "currentConditions": [
+            1
+          ],
+          "assessment": "대항목과 소항목 순서 대응; 문장별 완전 동일성은 본 조사 판정 범위 아님"
+        },
+        {
+          "sourceSubitem": 2,
+          "title": "블루투스 장치 이름",
+          "sourceLocation": {
+            "documentPart": "word/document.xml",
+            "allTableOrdinalIncludingNested": 20,
+            "outerTableHeaderRow": 3,
+            "detailsRow": 4
+          },
+          "sourceMethodAndCriteria": "방법inter_dev_conn_ind = 1이 되면, 사운드 처리기로부터 내부장치 정보를 읽어 오는지 확인한다.내부장치 정보와 외부장치 식별번호로 다음과 같은 형태의 블루투스 장치 이름을 만드는지 확인한다.장치 이름 구성설 명전체 장치 이름TD_L__SOUND_ UserName_ExternalDeviceInfoL내부장치 수술 위치: ‘L’ or ‘R’UserName사용자 이름 또는 IDExternalDeviceInfo외부장치 식별 정보기준inter_dev_conn_ind = 1이 되면, 사운드 처리기로부터 내부장치의 정보를 읽어 오는 부분이 프로젝트로 구현되어 있는지 확인하고, 장치 로그 창으로 확인한다.프로젝트 소스 코드내에서 블루투스 장치 이름을 구성하는 부분이 구현되어 있는지 확인한다.",
+          "currentConditions": [
+            2
+          ],
+          "assessment": "대항목과 소항목 순서 대응; 문장별 완전 동일성은 본 조사 판정 범위 아님"
+        }
+      ]
+    },
+    {
+      "currentTestID": "SW-FW-UnitTest-QCC-ID-8",
+      "currentIDCell": "D1739",
+      "currentRange": "B1739:M1742",
+      "currentUnitIDs": [
+        "SU-ID-QCC-004",
+        "SU-ID-QCC-008",
+        "SU-ID-QCC-009"
+      ],
+      "currentConditionCount": 4,
+      "currentConditions": [
+        {
+          "condition": 1,
+          "row": 1739,
+          "expectedCell": "K1739",
+          "procedureCell": "J1739",
+          "observedCell": "L1739",
+          "verdictCell": "M1739"
+        },
+        {
+          "condition": 2,
+          "row": 1740,
+          "expectedCell": "K1740",
+          "procedureCell": "J1740",
+          "observedCell": "L1740",
+          "verdictCell": "M1740"
+        },
+        {
+          "condition": 3,
+          "row": 1741,
+          "expectedCell": "K1741",
+          "procedureCell": "J1741",
+          "observedCell": "L1741",
+          "verdictCell": "M1741"
+        },
+        {
+          "condition": 4,
+          "row": 1742,
+          "expectedCell": "K1742",
+          "procedureCell": "J1742",
+          "observedCell": "L1742",
+          "verdictCell": "M1742"
+        }
+      ],
+      "sourceTestID": "SW-FW-TEST-U-03-001",
+      "sourceHeading": "SW-FW-TEST-U-03-001(Bluetooth 활성화와 기능 동작)",
+      "sourceHeadingParagraphOrdinal": 427,
+      "sourceSubitemCount": 4,
+      "sourceSubitems": [
+        {
+          "sourceSubitem": 1,
+          "title": "BLE활성화",
+          "sourceLocation": {
+            "documentPart": "word/document.xml",
+            "allTableOrdinalIncludingNested": 23,
+            "outerTableHeaderRow": 1,
+            "detailsRow": 2
+          },
+          "sourceMethodAndCriteria": "방법내부장치를 부착한 상태에서 nRFConnect에서 BLE 검색한다.내부장치를 탈착한 상태에서 nRFConnect에서 BLE 검색한다.기준내부장치를 부착한 상태에서 외부장치가 검색되는 것을 확인한다.외부장치가 검색되는 블루투스 장치 이름이 장치 로그창에 표시되는 것과 nRFConnect에서 검색되는 이름이 같은지 확인한다.내부장치를 탈착한 상태에서 외부장치가 검색되지 않는 것을 확인한다.BLE가 비활성화된 상태에서 내부장치를 부착하면, 외부장치가 다시 검색되는 것을 확인한다.",
+          "currentConditions": [
+            1
+          ],
+          "assessment": "대항목과 소항목 순서 대응; 문장별 완전 동일성은 본 조사 판정 범위 아님"
+        },
+        {
+          "sourceSubitem": 2,
+          "title": "BLE 연결 제어",
+          "sourceLocation": {
+            "documentPart": "word/document.xml",
+            "allTableOrdinalIncludingNested": 23,
+            "outerTableHeaderRow": 3,
+            "detailsRow": 4
+          },
+          "sourceMethodAndCriteria": "방법내부장치를 부착한 상태에서 nRFConnect에서 BLE 검색하고 연결한다.연결 상태에서 1분을 기다린 후에, 내부장치를 탈착한다.기준내부장치를 부착한 상태에서 외부장치가 연결된 후에, 내부장치를 탈착하면 BLE 연결이 해제되는 것을 확인한다.",
+          "currentConditions": [
+            2
+          ],
+          "assessment": "대항목과 소항목 순서 대응; 문장별 완전 동일성은 본 조사 판정 범위 아님"
+        },
+        {
+          "sourceSubitem": 3,
+          "title": "Bluetooth Cassic 활성화",
+          "sourceLocation": {
+            "documentPart": "word/document.xml",
+            "allTableOrdinalIncludingNested": 23,
+            "outerTableHeaderRow": 5,
+            "detailsRow": 6
+          },
+          "sourceMethodAndCriteria": "방법외부장치를 Bluetooth Classic 페어링 상태로 변경한다.내부장치를 부착한 상태에서 스마트폰에서 블루투스 장치를 검색한다.내부장치를 탈착한 상태에서 스마트폰에서 블루투스 장치를 검색한다.기준내부장치를 부착한 상태에서 외부장치가 검색되는 것을 확인한다.외부장치가 검색되는 블루투스 장치 이름이 장치 로그창에 표시되는 것과 스마트폰에서 검색되는 이름이 같은지 확인한다.내부장치를 탈착한 상태에서 외부장치가 검색되지 않는 것을 확인한다.Bluetooth Classic이 비활성화된 상태에서 내부장치를 부착하면, 외부장치가 다시 검색되는 것을 확인한다.",
+          "currentConditions": [
+            3
+          ],
+          "assessment": "대항목과 소항목 순서 대응; 문장별 완전 동일성은 본 조사 판정 범위 아님"
+        },
+        {
+          "sourceSubitem": 4,
+          "title": "Bluetooth Classic연결 제어",
+          "sourceLocation": {
+            "documentPart": "word/document.xml",
+            "allTableOrdinalIncludingNested": 23,
+            "outerTableHeaderRow": 7,
+            "detailsRow": 8
+          },
+          "sourceMethodAndCriteria": "방법내부장치를 부착한 상태에서 스마트폰에서 블루투스 장치를 검색하고 연결한다.연결 상태에서 1분을 기다린 후에, 내부장치를 탈착한다.기준내부장치를 부착한 상태에서 외부장치가 연결된 후에, 내부장치를 탈착하면 Bluetooth Classic 연결이 해제되는 것을 확인한다.",
+          "currentConditions": [
+            4
+          ],
+          "assessment": "대항목과 소항목 순서 대응; 문장별 완전 동일성은 본 조사 판정 범위 아님"
+        }
+      ]
+    },
+    {
+      "currentTestID": "SW-FW-UnitTest-QCC-ID-9",
+      "currentIDCell": "D1743",
+      "currentRange": "B1743:M1744",
+      "currentUnitIDs": [
+        "SU-ID-QCC-009"
+      ],
+      "currentConditionCount": 2,
+      "currentConditions": [
+        {
+          "condition": 1,
+          "row": 1743,
+          "expectedCell": "K1743",
+          "procedureCell": "J1743",
+          "observedCell": "L1743",
+          "verdictCell": "M1743"
+        },
+        {
+          "condition": 2,
+          "row": 1744,
+          "expectedCell": "K1744",
+          "procedureCell": "J1744",
+          "observedCell": "L1744",
+          "verdictCell": "M1744"
+        }
+      ],
+      "sourceTestID": "SW-FW-TEST-U-03-002",
+      "sourceHeading": "SW-FW-TEST-U-03-002(BLE 연결 처리)",
+      "sourceHeadingParagraphOrdinal": 483,
+      "sourceSubitemCount": 2,
+      "sourceSubitems": [
+        {
+          "sourceSubitem": 1,
+          "title": "BLE ADV data",
+          "sourceLocation": {
+            "documentPart": "word/document.xml",
+            "allTableOrdinalIncludingNested": 24,
+            "outerTableHeaderRow": 1,
+            "detailsRow": 2
+          },
+          "sourceMethodAndCriteria": "방법BLE Advertising data에 Bluetooth 장치 이름이 포함되는지 확인한다.BLE Scan response data에 Bluetooth 현재 장치의 배터리 레벨이 포함되는지 확인한다.기준프로젝트 소스내에서 Bluetooth 장치 이름이 BLE Advertising 데이터에 포함하게 하는지 확인한다.프로젝트 소스내에서 배터리 레벨이 변할 때마다 BLE Scan response 데이터를 변경하는지 확인한다.내부 장치를 부착하여, 장치의 로그 창에 출력되는 내용와 nRFConnect에서 외부장치를 검색하여 Advertising/Scan response data가 같은지 확인한다.",
+          "currentConditions": [
+            1
+          ],
+          "assessment": "대항목과 소항목 순서 대응; 문장별 완전 동일성은 본 조사 판정 범위 아님"
+        },
+        {
+          "sourceSubitem": 2,
+          "title": "BLE 연결 상태",
+          "sourceLocation": {
+            "documentPart": "word/document.xml",
+            "allTableOrdinalIncludingNested": 24,
+            "outerTableHeaderRow": 3,
+            "detailsRow": 4
+          },
+          "sourceMethodAndCriteria": "방법외부장치에 내부장치를 부착하고, nRFConnect에서 외부장치를 연결하면, 연결 상태가 인식되는지 확인한다.위의 상태에서 nRFConnect에서 외부장치의 연결을 해제하면, 해제 상태가 인식되는지 확인한다.기준BLE 연결 상태가 변경될 때마다, 장치 로그창에 변경된 상태가 출력되는지 확인한다 .",
+          "currentConditions": [
+            2
+          ],
+          "assessment": "대항목과 소항목 순서 대응; 문장별 완전 동일성은 본 조사 판정 범위 아님"
+        }
+      ]
+    },
+    {
+      "currentTestID": "SW-FW-UnitTest-QCC-ID-10",
+      "currentIDCell": "D1745",
+      "currentRange": "B1745:M1749",
+      "currentUnitIDs": [
+        "SU-ID-QCC-008"
+      ],
+      "currentConditionCount": 5,
+      "currentConditions": [
+        {
+          "condition": 1,
+          "row": 1745,
+          "expectedCell": "K1745",
+          "procedureCell": "J1745",
+          "observedCell": "L1745",
+          "verdictCell": "M1745"
+        },
+        {
+          "condition": 2,
+          "row": 1746,
+          "expectedCell": "K1746",
+          "procedureCell": "J1746",
+          "observedCell": "L1746",
+          "verdictCell": "M1746"
+        },
+        {
+          "condition": 3,
+          "row": 1747,
+          "expectedCell": "K1747",
+          "procedureCell": "J1747",
+          "observedCell": "L1747",
+          "verdictCell": "M1747"
+        },
+        {
+          "condition": 4,
+          "row": 1748,
+          "expectedCell": "K1748",
+          "procedureCell": "J1748",
+          "observedCell": "L1748",
+          "verdictCell": "M1748"
+        },
+        {
+          "condition": 5,
+          "row": 1749,
+          "expectedCell": "K1749",
+          "procedureCell": "J1749",
+          "observedCell": "L1749",
+          "verdictCell": "M1749"
+        }
+      ],
+      "sourceTestID": "SW-FW-TEST-U-03-003",
+      "sourceHeading": "SW-FW-TEST-U-03-003(Bluetooth Classic 기능 처리)",
+      "sourceHeadingParagraphOrdinal": 506,
+      "sourceSubitemCount": 5,
+      "sourceSubitems": [
+        {
+          "sourceSubitem": 1,
+          "title": "Bluetooth Classic 페어링 상태",
+          "sourceLocation": {
+            "documentPart": "word/document.xml",
+            "allTableOrdinalIncludingNested": 25,
+            "outerTableHeaderRow": 1,
+            "detailsRow": 2
+          },
+          "sourceMethodAndCriteria": "방법내부기를 외부기에 부착한다.스마트폰의 블루투스 설정에서 외부장치가 검색되지 않는지 확인한다. nRFConnect와  외부장치와 BLE 연결한다.nRFConnect에서 메시지 구조에 맞게 다음 데이터들을 전송한다.Message typeDataPair request0x19 0x04 0x02 0x01 0x80 0x80nRFConnect에서 전송한 각 메시지의 응답을 확인한다.스마트폰의 블루투스 설정에서 외부장치가 검색되는지 확인한다.기준장치 로그창에서 데이터 수신이 출력되고, 해당 메시지로 인식하는지 확인한다.nRFConnect에서 수신된 응답이 다음과 같은지 확인한다.Message typeDataPair request0x19 0x04 0x04 0x01 0x80 0x01장치 로그 창에서 Pairing 명령이 실행되는지 확인한다.스마트폰의 블루투스 설정에서 외부장치가 검색되는지 확인한다.",
+          "currentConditions": [
+            1
+          ],
+          "assessment": "대항목과 소항목 순서 대응; 문장별 완전 동일성은 본 조사 판정 범위 아님"
+        },
+        {
+          "sourceSubitem": 2,
+          "title": "Bluetooth Classic 연결 상태",
+          "sourceLocation": {
+            "documentPart": "word/document.xml",
+            "allTableOrdinalIncludingNested": 25,
+            "outerTableHeaderRow": 3,
+            "detailsRow": 4
+          },
+          "sourceMethodAndCriteria": "방법스마트폰의 블루투스 설정에서 외부장치를 검색하고 연결하면, 연결 상태가 인식되는지 확인한다.연결 상태에서 스마트폰에서 외부장치의 연결을 해제하면, 해제 상태가 인식되는지 확인한다.기준Bluetooth Classic 연결 상태가 변경될 때마다, 장치 로그창에 변경된 상태가 출력되는지 확인한다.",
+          "currentConditions": [
+            2
+          ],
+          "assessment": "대항목과 소항목 순서 대응; 문장별 완전 동일성은 본 조사 판정 범위 아님"
+        },
+        {
+          "sourceSubitem": 3,
+          "title": "Bluetooth Classic 오디오 연결 – 스피커 출력",
+          "sourceLocation": {
+            "documentPart": "word/document.xml",
+            "allTableOrdinalIncludingNested": 25,
+            "outerTableHeaderRow": 5,
+            "detailsRow": 6
+          },
+          "sourceMethodAndCriteria": "방법Bluetooth Audio 출력이 스피커로 되는 외부장치를 준비한다.스마트폰의 블루투스 설정에서 외부장치를 검색하고 연결한다.스마트폰에서 음악을 재생하면, 외부장치에 연결된 스피커로 오디오가 출력되는 지 확인한다.기준장치 로그 창에서 오디오 연결이 되면 인식되는지 확인한다.스마트폰의 음악 재생 중에 외부장치에 연결된 스피커로 소리가 들리는지 확인한다.",
+          "currentConditions": [
+            3
+          ],
+          "assessment": "대항목과 소항목 순서 대응; 문장별 완전 동일성은 본 조사 판정 범위 아님"
+        },
+        {
+          "sourceSubitem": 4,
+          "title": "Bluetooth Classic 오디오 연결 – 양이 모드",
+          "sourceLocation": {
+            "documentPart": "word/document.xml",
+            "allTableOrdinalIncludingNested": 25,
+            "outerTableHeaderRow": 7,
+            "detailsRow": 8
+          },
+          "sourceMethodAndCriteria": "방법위 시험 3처럼 테스트를 수행한다. 다만, 외부장치 2대를 양이 모드로 설정한다.스마트폰에서 음악을 재생하면, 외부장치 2대 모두에서 스피커로 오디오가 출력되는 지 확인한다.기준스마트폰의 음악 재생 중에 외부장치 2대에 모두에 연결된 스피커에서 소리가 들리는지 확인한다.",
+          "currentConditions": [
+            4
+          ],
+          "assessment": "대항목과 소항목 순서 대응; 문장별 완전 동일성은 본 조사 판정 범위 아님"
+        },
+        {
+          "sourceSubitem": 5,
+          "title": "Bluetooth Classic 오디오 연결 – I2S 출력",
+          "sourceLocation": {
+            "documentPart": "word/document.xml",
+            "allTableOrdinalIncludingNested": 25,
+            "outerTableHeaderRow": 9,
+            "detailsRow": 10
+          },
+          "sourceMethodAndCriteria": "방법Bluetooth Audio 출력이 I2S로 되는 외부장치를 준비한다.스마트폰의 블루투스 설정에서 외부장치를 검색하고 연결한다.스마트폰에서 음악을 재생하면, 외부장치에 연결된 스피커로 오디오가 출력되는 지 확인한다.기준장치 로그 창에서 오디오 연결이 되면 인식되는지 확인한다.스마트폰의 음악 재생 중에 외부장치에 연결된 스피커로 소리가 않 들리는지 확인한다.장치 로그 창에서 I2S가 활성화되는 것을 확인한다.",
+          "currentConditions": [
+            5
+          ],
+          "assessment": "대항목과 소항목 순서 대응; 문장별 완전 동일성은 본 조사 판정 범위 아님"
+        }
+      ]
+    },
+    {
+      "currentTestID": "SW-FW-UnitTest-QCC-ID-11",
+      "currentIDCell": "D1750",
+      "currentRange": "B1750:M1751",
+      "currentUnitIDs": [
+        "SU-ID-QCC-010"
+      ],
+      "currentConditionCount": 2,
+      "currentConditions": [
+        {
+          "condition": 1,
+          "row": 1750,
+          "expectedCell": "K1750",
+          "procedureCell": "J1750",
+          "observedCell": "L1750",
+          "verdictCell": "M1750"
+        },
+        {
+          "condition": 2,
+          "row": 1751,
+          "expectedCell": "K1751",
+          "procedureCell": "J1751",
+          "observedCell": "L1751",
+          "verdictCell": "M1751"
+        }
+      ],
+      "sourceTestID": "SW-FW-TEST-U-03-004",
+      "sourceHeading": "SW-FW-TEST-U-03-004(AUTH service 데이터 처리)",
+      "sourceHeadingParagraphOrdinal": 578,
+      "sourceSubitemCount": 2,
+      "sourceSubitems": [
+        {
+          "sourceSubitem": 1,
+          "title": "AUTH service 정의 및 등록",
+          "sourceLocation": {
+            "documentPart": "word/document.xml",
+            "allTableOrdinalIncludingNested": 28,
+            "outerTableHeaderRow": 1,
+            "detailsRow": 2
+          },
+          "sourceMethodAndCriteria": "방법AUTH service가 외부장치의 BLE에 포함되어 있는지 확인한다.기준AUTH service가 정의 파일이 프로젝트에 포함시키고, 전체 BLE service에 등록되었는지 확인한다.장치 로그창으로AUTH service 초기화 함수 tdGattAuthServer_init()이 실행되는지 확인한다.내부장치를 외부장치에 부착시키고, nRFConnect와 외부장치를 연결하고 BLE Service를 검색하면, AUTH service가 등록된 정의대로 BLE Service에 포함되었는지 확인한다.",
+          "currentConditions": [
+            1
+          ],
+          "assessment": "대항목과 소항목 순서 대응; 문장별 완전 동일성은 본 조사 판정 범위 아님"
+        },
+        {
+          "sourceSubitem": 2,
+          "title": "AUTH service 데이터 처리",
+          "sourceLocation": {
+            "documentPart": "word/document.xml",
+            "allTableOrdinalIncludingNested": 28,
+            "outerTableHeaderRow": 3,
+            "detailsRow": 4
+          },
+          "sourceMethodAndCriteria": "방법내부장치를 외부장치에 부착시키고, nRFConnect와 외부장치를 연결하고 BLE Service를 검색한다.nRFConnect에서 Auth service의 Challenge characteristic에 데이터를 쓰면 외부장치에서 인식되는지 확인한다.외부장치에에서 Auth service의 Response characteristic에 데이터를 쓰면 nRFConnect에서 인식되는지 확인한다.nRFConnect에서 Auth service의 Confirm characteristic에 데이터를 쓰면 외부장치에서 인식되는지 확인한다.외부장치에에서 Auth service의 Status characteristic에 데이터를 쓰면 nRFConnect에서 인식되는지 확인한다.기준nRFConnect와 외부장치를 연결하고 BLE Service를 검색하면, AUTH service가 검색되는지 확인한다.nRFConnect에서 Auth service의 Challenge characteristic에 다음 데이터를 쓰면 외부장치에서 인식되는지 확인한다.Data0x00 0x01 0x02 0x03 0x04 0x05 0x06 0x07 0x08 0x09 0x0A 0x0B 0xC0x0D 0x0E 0x0F 0x10 0x11 0x12 0x13 0x14 0x15 0x16 0x17외부장치에에서 Auth service의 Response characteristic에 다음 데이터를 쓰면 nRFConnect에서 인식되는지 확인한다.Data0x10 0x11 0x12 0x13 0x14 0x15 0x16 0x17 0x18 0x19 0x1A 0x1B 0x1C0x1D 0x1E 0x1F 0x20 0x21 0x22 0x23 0x24 0x25 0x26 0x27 0x28 0x290x2A 0x2B 0x2C 0x2D 0x2E 0x2FnRFConnect에서 Auth service의 Confirm characteristic에 데이터를 쓰면 외부장치에서 인식되는지 확인한다.Data0x20 0x21 0x22 0x23 0x24 0x25 0x26 0x27 0x28 0x29 0x2A 0x2B 0x2C0X2D 0x2E 0x2F외부장치에에서 Auth service의 Status characteristic에 데이터를 쓰면 nRFConnect에서 인식되는지 확인한다.Data0x30",
+          "currentConditions": [
+            2
+          ],
+          "assessment": "대항목과 소항목 순서 대응; 문장별 완전 동일성은 본 조사 판정 범위 아님"
+        }
+      ]
+    },
+    {
+      "currentTestID": "SW-FW-UnitTest-QCC-ID-12",
+      "currentIDCell": "D1752",
+      "currentRange": "B1752:M1753",
+      "currentUnitIDs": [
+        "SU-ID-QCC-011"
+      ],
+      "currentConditionCount": 2,
+      "currentConditions": [
+        {
+          "condition": 1,
+          "row": 1752,
+          "expectedCell": "K1752",
+          "procedureCell": "J1752",
+          "observedCell": "L1752",
+          "verdictCell": "M1752"
+        },
+        {
+          "condition": 2,
+          "row": 1753,
+          "expectedCell": "K1753",
+          "procedureCell": "J1753",
+          "observedCell": "L1753",
+          "verdictCell": "M1753"
+        }
+      ],
+      "sourceTestID": "SW-FW-TEST-U-03-005",
+      "sourceHeading": "SW-FW-TEST-U-03-005(BLE data 처리)",
+      "sourceHeadingParagraphOrdinal": 622,
+      "sourceSubitemCount": 4,
+      "sourceSubitems": [
+        {
+          "sourceSubitem": 1,
+          "title": "BLE 통신 데이터 - GAIA 설정",
+          "sourceLocation": {
+            "documentPart": "word/document.xml",
+            "allTableOrdinalIncludingNested": 33,
+            "outerTableHeaderRow": 1,
+            "detailsRow": 2
+          },
+          "sourceMethodAndCriteria": "방법Built-in BLE Protocol인  GAIA에 외부장치 전용 메시지 Addressing을 소스 코드에 추가한다.Built-in BLE Protocol인  GAIA에 외부장치 전용 메시지 Handler를 소스 코드에 추가한다기준장치 로그창에서 시스템 초기화 중에 GAIA 외부장치 전용 설정이 정상적으로 실행되는지 확인한다 .",
+          "currentConditions": [],
+          "assessment": "현재 해당 대항목에 독립 조건 없음; 다른 시험 중복 여부 추가 확인 필요"
+        },
+        {
+          "sourceSubitem": 2,
+          "title": "BLE 통신 데이터 – 송수신",
+          "sourceLocation": {
+            "documentPart": "word/document.xml",
+            "allTableOrdinalIncludingNested": 33,
+            "outerTableHeaderRow": 3,
+            "detailsRow": 4
+          },
+          "sourceMethodAndCriteria": "방법외부장치와 nRFConnect Tool을 BLE 연결을 수행한다.nRFConnect에서 다음과 같은 데이터를 송신한다.Addressing headerData0x19 0x04 0x02 0x020x00 0x01 0x02외부장치 서 위의 데이터를 수신하면 같은 값을 송신한다.nRFConnect에서 수신된 데이터를 확인한다기준외부장치의 수신 데이터가 다음과 같은지를 확인한다.Data0x00 0x01 0x02nRFConnect에서 수신된 데이터가 다음과 같은지를 확인한다.Addressing headerData0x19 0x04 0x03 0x010x00 0x01 0x02",
+          "currentConditions": [],
+          "assessment": "현재 해당 대항목에 독립 조건 없음; 다른 시험 중복 여부 추가 확인 필요"
+        },
+        {
+          "sourceSubitem": 3,
+          "title": "BLE data 통신 처리 – 편이",
+          "sourceLocation": {
+            "documentPart": "word/document.xml",
+            "allTableOrdinalIncludingNested": 33,
+            "outerTableHeaderRow": 5,
+            "detailsRow": 6
+          },
+          "sourceMethodAndCriteria": "방법외부장치를 편이로 설정한다.내부장치를 외부장치에 부착시키고, nRFConnect와 외부장치를 연결한다.nRFConnect에서 메시지 구조에 맞게 다음 데이터들을 전송한다.Message typeDataPair request0x19 0x04 0x02 0x01 0x80 0x80State request0x19 0x04 0x02 0x01 0x81 0x00 0x01nRFConnect에서 전송한 각 메시지의 응답을 확인한다.기준장치 로그창에서 데이터 수신이 출력되고, 해당 메시지로 인식하는지 확인한다.nRFConnect에서 수신된 응답이 다음과 같은지 확인한다.Message typeDataPair request0x19 0x04 0x04 0x01 0x80 0x01State request0x19 0x04 0x03 0x01 0x84 0x01 0xaa 0xbb 0x00 0x00 여기서 0xaa은 내부장치 이식위치이고 0xbb는 배터리 레벨이다.이식위치는 0 = Left이고 1 = Right이다.",
+          "currentConditions": [
+            1
+          ],
+          "assessment": "편이/양이 기능 대응; 문구/시험벡터는 원문 그대로 전사가 아님"
+        },
+        {
+          "sourceSubitem": 4,
+          "title": "BLE data 통신 처리 – 양이",
+          "sourceLocation": {
+            "documentPart": "word/document.xml",
+            "allTableOrdinalIncludingNested": 33,
+            "outerTableHeaderRow": 7,
+            "detailsRow": 8
+          },
+          "sourceMethodAndCriteria": "방법외부장치를 양이로 설정한다.내부장치를 외부장치에 부착시키고, nRFConnect와 외부장치를 연결한다.nRFConnect에서 메시지 구조에 맞게 다음 데이터들을 전송한다.Message typeDataBluetooth ver info – Left0x19 0x04 0x02 0x01 0x01 0x82 0x82Bluetooth ver info – Right0x19 0x04 0x02 0x01 0x02 0x82 0x82nRFConnect에서 전송한 각 메시지의 응답을 확인한다.기준장치 로그창에서 데이터 수신이 출력되고, 해당 메시지로 인식하는지 확인한다.nRFConnect에서 수신된 응답이 다음과 같은지 확인한다.Message typeDataBluetooth ver info – Left0x19 0x04 0x03 0x01 0x01 0x82 …Bluetooth ver info – Right0x19 0x04 0x03 0x01 0x02 0x82 …여기서 밑줄은 내부장치 이식 위치이고 0x83 이후는 Bluetooth version 정보이다.",
+          "currentConditions": [
+            2
+          ],
+          "assessment": "편이/양이 기능 대응; 문구/시험벡터는 원문 그대로 전사가 아님"
+        }
+      ]
+    },
+    {
+      "currentTestID": "SW-FW-UnitTest-QCC-ID-13",
+      "currentIDCell": "D1754",
+      "currentRange": "B1754:M1758",
+      "currentUnitIDs": [
+        "SU-ID-QCC-012"
+      ],
+      "currentConditionCount": 5,
+      "currentConditions": [
+        {
+          "condition": 1,
+          "row": 1754,
+          "expectedCell": "K1754",
+          "procedureCell": "J1754",
+          "observedCell": "L1754",
+          "verdictCell": "M1754"
+        },
+        {
+          "condition": 2,
+          "row": 1755,
+          "expectedCell": "K1755",
+          "procedureCell": "J1755",
+          "observedCell": "L1755",
+          "verdictCell": "M1755"
+        },
+        {
+          "condition": 3,
+          "row": 1756,
+          "expectedCell": "K1756",
+          "procedureCell": "J1756",
+          "observedCell": "L1756",
+          "verdictCell": "M1756"
+        },
+        {
+          "condition": 4,
+          "row": 1757,
+          "expectedCell": "K1757",
+          "procedureCell": "J1757",
+          "observedCell": "L1757",
+          "verdictCell": "M1757"
+        },
+        {
+          "condition": 5,
+          "row": 1758,
+          "expectedCell": "K1758",
+          "procedureCell": "J1758",
+          "observedCell": "L1758",
+          "verdictCell": "M1758"
+        }
+      ],
+      "sourceTestID": "SW-FW-TEST-U-04-001",
+      "sourceHeading": "SW-FW-TEST-U-04-001(CRA 인증 절차)",
+      "sourceHeadingParagraphOrdinal": 717,
+      "sourceSubitemCount": 7,
+      "sourceSubitems": [
+        {
+          "sourceSubitem": 1,
+          "title": "BLE Secure connection",
+          "sourceLocation": {
+            "documentPart": "word/document.xml",
+            "allTableOrdinalIncludingNested": 41,
+            "outerTableHeaderRow": 1,
+            "detailsRow": 2
+          },
+          "sourceMethodAndCriteria": "방법Bluetooth 초기화에서 BLE는 항상 Secure connection으로 동작 하도록 설정한다.기준장치 디버그창에서 시스템 초기화 중에 BLE 초기화가 정상적으로 실행되는지 확인한다.",
+          "currentConditions": [],
+          "assessment": "현재 해당 대항목에 독립 조건 없음; 다른 시험 중복 여부 추가 확인 필요"
+        },
+        {
+          "sourceSubitem": 2,
+          "title": "BLE 데이터 통신",
+          "sourceLocation": {
+            "documentPart": "word/document.xml",
+            "allTableOrdinalIncludingNested": 41,
+            "outerTableHeaderRow": 3,
+            "detailsRow": 4
+          },
+          "sourceMethodAndCriteria": "방법BLE 통신은 GAIA service의 characteristic으로 서로 통신을 수행한다. 이러한 characteristic에 보안 설정을 추가한다.외부장치와 nRFConnect Tool을 BLE 연결하고, Pairing을 하지 않고 데이터를 송수신한다.외부장치와 nRFConnect Tool을 BLE 연결하고, Pairing을 수행 후 데이터를 송수신한다.기준GAIA service definition에서 characteristic이 보안 설정으로 되어있는지 확인한다.Pairing을 수행해야, 데이터가 장치가 송수신이 됨을 확인한다.",
+          "currentConditions": [],
+          "assessment": "현재 해당 대항목에 독립 조건 없음; 다른 시험 중복 여부 추가 확인 필요"
+        },
+        {
+          "sourceSubitem": 3,
+          "title": "BLE1:1연결",
+          "sourceLocation": {
+            "documentPart": "word/document.xml",
+            "allTableOrdinalIncludingNested": 41,
+            "outerTableHeaderRow": 5,
+            "detailsRow": 6
+          },
+          "sourceMethodAndCriteria": "방법내부장치를 외부장치에 부착한다.CRA 인증이 구현된 테스트 앱에서 외부장치를 검색하고 BLE 연결을 한다. 그리고, nRFConnect에서 BLE 장치를 검색한다.테스트 앱과 외부장치의 BLE연결을 해제하고,  nRFConnect에서 BLE 장치를 검색한다.기준테스트 앱과 연결되면 nRFConnect에서 외부장치가 검색되지 말아야 한다.테스트 앱과 연결이 해제되면 nRFConnect에서 외부장치가 검색되어야 한다.",
+          "currentConditions": [
+            1
+          ],
+          "assessment": "CRA 기능/순서 대응; 세부 문구 완전 동일성은 별도 확인 대상"
+        },
+        {
+          "sourceSubitem": 4,
+          "title": "BLE CRA 인증 타임아웃",
+          "sourceLocation": {
+            "documentPart": "word/document.xml",
+            "allTableOrdinalIncludingNested": 41,
+            "outerTableHeaderRow": 7,
+            "detailsRow": 8
+          },
+          "sourceMethodAndCriteria": "방법BLE CRA 인증 타임아웃을 30초로 설정한다.내부장치를 외부장치에 부착한 후, nrfConnect와 연결한다.기준nRFConnect와 연결된 후에 30초후에 BLE 연결이 해제되는지 확인한다.",
+          "currentConditions": [
+            2
+          ],
+          "assessment": "CRA 기능/순서 대응; 세부 문구 완전 동일성은 별도 확인 대상"
+        },
+        {
+          "sourceSubitem": 5,
+          "title": "BLE CRA 인증 성공",
+          "sourceLocation": {
+            "documentPart": "word/document.xml",
+            "allTableOrdinalIncludingNested": 41,
+            "outerTableHeaderRow": 9,
+            "detailsRow": 10
+          },
+          "sourceMethodAndCriteria": "방법auth_type을 다음과 같이 설정한다.값설명1리모콘 앱 연결2매핑 앱  연결인증에 사용하는 키를 모두 16 byte ‘0x00’로 한다.BLE CRA 인증 타임아웃을 30초로 설정한다.내부장치를 외부장치에 부착한다리모콘 테스트 앱으로 외부장치를 검색하여 연결한다.리모콘 테스트 앱과 연결을 해제하고, 매핑 앱으로 검색하여 외부장치를 연결한다.기준리모콘 테스트 앱과 연결이 이루어지고 30초가 지나도 연결이 해제되지 않는 것을 확인한다. 또한, 장치 로그창으로  CRA 인증 절차가 진행되는 정의대로 진행되는 것을 확인한다.매핑 테스트 앱과 연결이 이루어지고 30초가 지나도 연결이 해제되지 않는 것을 확인한다. 또한, 장치 로그창으로  CRA 인증 절차가 진행되는 정의대로 진행되는 것을 확인한다.",
+          "currentConditions": [
+            3
+          ],
+          "assessment": "CRA 기능/순서 대응; 세부 문구 완전 동일성은 별도 확인 대상"
+        },
+        {
+          "sourceSubitem": 6,
+          "title": "BLE CRA 인증 실패 – 인증 키",
+          "sourceLocation": {
+            "documentPart": "word/document.xml",
+            "allTableOrdinalIncludingNested": 41,
+            "outerTableHeaderRow": 11,
+            "detailsRow": 12
+          },
+          "sourceMethodAndCriteria": "방법실험 3의 조건에서, 인증에 사용하는 키를 모두 16 byte ‘0x01’로 한다.리모콘 테스트 앱으로 외부장치를 검색하여 연결한다.리모콘 테스트 앱과 연결을 해제하고, 매핑 앱으로 검색하여 외부장치를 연결한다.기준리모콘 테스트 앱과 연결이 인증 실패되는 것을 확인하고, 장치 로그창으로 인증 절차의 진행을 확인하고 리모콘 앱에서 연결을 해제하는 것을 확인한다. 또한 앱으로부터 어떤 결과도 받지 않았음을 확인한다.매핑 테스트 앱과 연결이 인증 실패되는 것을 확인하고, 장치 로그창으로 인증 절차의 진행을 확인하고 매팽 앱에서 연결을 해제하는 것을 확인한다. 또한 앱으로부터 어떤 결과도 받지 않았음을 확인한다.",
+          "currentConditions": [
+            4
+          ],
+          "assessment": "CRA 기능/순서 대응; 세부 문구 완전 동일성은 별도 확인 대상"
+        },
+        {
+          "sourceSubitem": 7,
+          "title": "BLE CRA인증 실패 – auth_type",
+          "sourceLocation": {
+            "documentPart": "word/document.xml",
+            "allTableOrdinalIncludingNested": 41,
+            "outerTableHeaderRow": 13,
+            "detailsRow": 14
+          },
+          "sourceMethodAndCriteria": "방법실험 3의 조건에서, auth_type을 다음과 같이 설정한다.값설명1매핑 앱 연결2리모콘 앱  연결리모콘 테스트 앱으로 외부장치를 검색하여 연결한다.리모콘 테스트 앱과 연결을 해제하고, 매핑 앱으로 검색하여 외부장치를 연결한다.기준리모콘 테스트 앱과 연결이 인증 실패되는 것을 확인하고, 장치 로그창으로 인증 절차의 진행을 확인하고 리모콘 앱에서 연결을 해제하는 것을 확인한다. 또한 앱으로부터 어떤 결과도 받지 않았음을 확인한다.매핑 테스트 앱과 연결이 인증 실패되는 것을 확인하고, 장치 로그창으로 인증 절차의 진행을 확인하고 매팽 앱에서 연결을 해제하는 것을 확인한다. 또한 앱으로부터 어떤 결과도 받지 않았음을 확인한다..",
+          "currentConditions": [
+            5
+          ],
+          "assessment": "CRA 기능/순서 대응; 세부 문구 완전 동일성은 별도 확인 대상"
+        }
+      ]
+    },
+    {
+      "currentTestID": "SW-FW-UnitTest-QCC-ID-14",
+      "currentIDCell": "D1759",
+      "currentRange": "B1759:M1761",
+      "currentUnitIDs": [
+        "SU-ID-QCC-013"
+      ],
+      "currentConditionCount": 3,
+      "currentConditions": [
+        {
+          "condition": 1,
+          "row": 1759,
+          "expectedCell": "K1759",
+          "procedureCell": "J1759",
+          "observedCell": "L1759",
+          "verdictCell": "M1759"
+        },
+        {
+          "condition": 2,
+          "row": 1760,
+          "expectedCell": "K1760",
+          "procedureCell": "J1760",
+          "observedCell": "L1760",
+          "verdictCell": "M1760"
+        },
+        {
+          "condition": 3,
+          "row": 1761,
+          "expectedCell": "K1761",
+          "procedureCell": "J1761",
+          "observedCell": "L1761",
+          "verdictCell": "M1761"
+        }
+      ],
+      "sourceTestID": "SW-FW-TEST-U-04-002",
+      "sourceHeading": "SW-FW-TEST-U-04-002(보안 툴박스)",
+      "sourceHeadingParagraphOrdinal": 818,
+      "sourceSubitemCount": 3,
+      "sourceSubitems": [
+        {
+          "sourceSubitem": 1,
+          "title": "인증 키 – 리모콘 앱",
+          "sourceLocation": {
+            "documentPart": "word/document.xml",
+            "allTableOrdinalIncludingNested": 44,
+            "outerTableHeaderRow": 1,
+            "detailsRow": 2
+          },
+          "sourceMethodAndCriteria": "방법auth_type을 다음과 같이 설정한다.값설명1리모콘 앱 연결2매핑 앱  연결인증에 사용하는 키를 모두 16 byte ‘0x00’로 한다.내부장치를 외부장치에 부착한다.리모콘 테스트 앱에서 외부장치를 검색하고 BLE 연결을 한다.기준장치 로그창으로 리모콘 테스트 앱과의 인증 과정이 정상적으로 진행되는 것을 확인한다.인증 키 값을 NVM으로부터 TD_PS_KEY_AUTH_SHARED_SERVICE_KEY을 읽어 AES-CMAC에 적용하여 HMAC을 생성하는 확인한다.",
+          "currentConditions": [
+            1
+          ],
+          "assessment": "대항목과 소항목 순서 대응; 문장별 완전 동일성은 본 조사 판정 범위 아님"
+        },
+        {
+          "sourceSubitem": 2,
+          "title": "인증키 – 매핑 앱",
+          "sourceLocation": {
+            "documentPart": "word/document.xml",
+            "allTableOrdinalIncludingNested": 44,
+            "outerTableHeaderRow": 3,
+            "detailsRow": 4
+          },
+          "sourceMethodAndCriteria": "방법위 시험 1의 조건에서 테스트를 수행한다.내부장치를 외부장치에 부착한 후, 매핑 테스트 앱에서 외부장치를 검색하고 BLE 연결을 한다.기준장치 로그창으로 리모콘 테스트 앱과의 인증 과정이 정상적으로 진행되는 것을 확인한다.인증 키 값을 NVM으로부터 TD_PS_KEY_AUTH_CLINIC_MASTER_KEY을 읽어 SHA-256을 사용해 키를 생성해서 HMAC을 생성하는 확인한다.",
+          "currentConditions": [
+            2
+          ],
+          "assessment": "대항목과 소항목 순서 대응; 문장별 완전 동일성은 본 조사 판정 범위 아님"
+        },
+        {
+          "sourceSubitem": 3,
+          "title": "NVM 암호화",
+          "sourceLocation": {
+            "documentPart": "word/document.xml",
+            "allTableOrdinalIncludingNested": 44,
+            "outerTableHeaderRow": 5,
+            "detailsRow": 6
+          },
+          "sourceMethodAndCriteria": "방법시험 1과 같다.기준장치 로그창으로 인증 과정 중에 장치 로그창으로 NVM으로부터 TD_PS_KEY_AUTH_SET_RAND을 먼저 읽어 BD_ADDR 조합하여 키을 생성하는 확인한다.TD_PS_KEY_AUTH_SHARED_SERVICE_KEY을 읽어, 위 생성된 키로 AES-128로 복호화 하면 키 값이 16 byte의 ‘0x00’이 되는지 확인한다.",
+          "currentConditions": [
+            3
+          ],
+          "assessment": "대항목과 소항목 순서 대응; 문장별 완전 동일성은 본 조사 판정 범위 아님"
+        }
+      ]
+    },
+    {
+      "currentTestID": "SW-FW-UnitTest-QCC-ID-15",
+      "currentIDCell": "D1762",
+      "currentRange": "B1762:M1763",
+      "currentUnitIDs": [
+        "SU-ID-QCC-014"
+      ],
+      "currentConditionCount": 2,
+      "currentConditions": [
+        {
+          "condition": 1,
+          "row": 1762,
+          "expectedCell": "K1762",
+          "procedureCell": "J1762",
+          "observedCell": "L1762",
+          "verdictCell": "M1762"
+        },
+        {
+          "condition": 2,
+          "row": 1763,
+          "expectedCell": "K1763",
+          "procedureCell": "J1763",
+          "observedCell": "L1763",
+          "verdictCell": "M1763"
+        }
+      ],
+      "sourceTestID": "SW-FW-TEST-U-04-003",
+      "sourceHeading": "SW-FW-TEST-U-04-003(보안 NVM 접근)",
+      "sourceHeadingParagraphOrdinal": 860,
+      "sourceSubitemCount": 2,
+      "sourceSubitems": [
+        {
+          "sourceSubitem": 1,
+          "title": "NVM 보안 데이터",
+          "sourceLocation": {
+            "documentPart": "word/document.xml",
+            "allTableOrdinalIncludingNested": 46,
+            "outerTableHeaderRow": 1,
+            "detailsRow": 2
+          },
+          "sourceMethodAndCriteria": "방법이미 NVM에 다음과 같은 값들이 정상적으로 해당위치에 저장되어 있는지 확인한다.값길이위치PS_KEY_AUTH_SET_RAND10 bytesPS_USR40PS_KEY_AUTH_CLINIC_MASTER_KEY16 bytesPS_USR43PS_KEY_AUTH_SHARED_SERVICE_KEY16 bytesPS_USR44위 보안에 쓰이는 값들은 프로그램에서는 읽을 수 만 있고 쓸 수 없음을 확인한다.기준외부장치에 디버거를 연결하여 Qualcomm으로 제공하는 ConfigApp.exe을 실행하여 해당 위치에 값들이 있는 것을 확인한다.프로젝트 소스 내에서 보안 관련된 NVM 접근 인터페이스에는 Write가 없는 것을 확인한다.",
+          "currentConditions": [
+            1
+          ],
+          "assessment": "대항목과 소항목 순서 대응; 문장별 완전 동일성은 본 조사 판정 범위 아님"
+        },
+        {
+          "sourceSubitem": 2,
+          "title": "NVM 암호화",
+          "sourceLocation": {
+            "documentPart": "word/document.xml",
+            "allTableOrdinalIncludingNested": 46,
+            "outerTableHeaderRow": 3,
+            "detailsRow": 4
+          },
+          "sourceMethodAndCriteria": "방법auth_type을 다음과 같이 설정한다.값설명1리모컨 앱 연결2매핑 앱  연결인증에 사용하는 키를 모두 16 byte ‘0x00’로 한다.내부장치를 외부장치에 부착한다.리모콘 테스트 앱에서 외부장치를 검색하고 BLE 연결을 한다기준장치 로그창으로 리모콘 테스트 앱과의 인증 과정이 정상적으로 진행되는 것을 확인한다.NVM으로부터 TD_PS_KEY_AUTH_SET_RAND을 먼저 읽어 BD_ADDR 조합하여 키를 생성하는 확인한다.TD_PS_KEY_AUTH_SHARED_SERVICE_KEY을 읽어, 위 생성된 키로 AES-128로 복호화 하면 키 값이 16 byte의 ‘0x00’이 되는지 확인한다.외부장치에 디버거를 연결하여 Qualcomm으로 제공하는 ConfigApp.exe을 실행하여 해당 키 값들과 복호화한 값이 다른 것을 확인한다.",
+          "currentConditions": [
+            2
+          ],
+          "assessment": "대항목과 소항목 순서 대응; 문장별 완전 동일성은 본 조사 판정 범위 아님"
+        }
+      ]
+    }
+  ],
+  "confirmedVoltageDifference": {
+    "sourceTestID": "SW-FW-TEST-U-01-002",
+    "sourceSubitem": 3,
+    "sourceTitle": "배터리 잔량에 따른 상태 변화",
+    "sourceLocation": "word/document.xml 전체표(중첩 포함) 8번표의 6행3열 안 중첩 전압표(전체표9번), 4행1열=3.75V / 4행2열=60",
+    "sourceTableRows": [
+      [
+        "공급 전압 값",
+        "배터리 레벨 (%)",
+        "배터리 상태"
+      ],
+      [
+        "4.2V 이상",
+        "100",
+        "Full"
+      ],
+      [
+        "3.95V",
+        "80",
+        "-"
+      ],
+      [
+        "3.75V",
+        "60",
+        "-"
+      ],
+      [
+        "3.475V",
+        "40",
+        "-"
+      ],
+      [
+        "3.35V",
+        "20",
+        "-"
+      ],
+      [
+        "3.0V",
+        "0",
+        "Empty"
+      ]
+    ],
+    "currentTestID": "SW-FW-UnitTest-QCC-ID-2",
+    "currentConditions": [
+      1,
+      3
+    ],
+    "currentExpectedCells": [
+      "K1728",
+      "K1730"
+    ],
+    "currentValues": "3.7→60",
+    "currentRelatedCells": [
+      {
+        "cell": "J1728",
+        "text": "\n입력: 배터리 특성 설정과 전압4.2/3.95/3.7/3.475/3.35/3.0 V\n1. 배터리 특성의 최소/최대 전압과 충전 설정을 분석한다.\n2. 지정 전압을 독립 적용하고 ADC 주기 읽기, 변환값 및 저장 잔량을 비교한다.\n"
+      },
+      {
+        "cell": "K1728",
+        "text": "\n조건 [1]\n입력: 배터리 특성 설정과 전압4.2/3.95/3.7/3.475/3.35/3.0 V\n통과 기준: 전압[V]→잔량[%]: 4.2 이상→100,3.95→80,3.7→60,3.475→40,3.35→20,3.0→0. 주기 읽기와 변환/저장 경로가 연결되어야 한다. 주기 수치 및10% 허용오차의 상대오차/%p 의미는 미확정.\n"
+      },
+      {
+        "cell": "L1728",
+        "text": "\n검증 [1]\n입력: 배터리 특성 설정과 전압4.2/3.95/3.7/3.475/3.35/3.0 V\n실행 상태: 미실행.\n관찰: 공급/ADC 전압, 읽기 시각, 변환/저장 잔량 미수집/미제공.\n[QCC 자료 입력] 이 조건의 실제 실행 결과와 관찰 근거.\n"
+      },
+      {
+        "cell": "J1730",
+        "text": "\n입력: 외부 충전 Enable, 공급 전압4.2 V 이상/3.95/3.7/3.475/3.35/3.0 V\n1. PPK2로 각 전압을 독립 공급하고 실제 공급/ADC 전압을 기록한다.\n2. 같은 입력의 잔량/배터리 상태와 동작 정지/저전압 진입을 비교한다.\n"
+      },
+      {
+        "cell": "K1730",
+        "text": "\n조건 [3]\n입력: 외부 충전 Enable, 공급 전압4.2 V 이상/3.95/3.7/3.475/3.35/3.0 V\n통과 기준: 전압[V]→잔량[%]/상태: 4.2 이상→100/Full,3.95→80,3.7→60,3.475→40,3.35→20,3.0→0/Empty. Empty에서는 모든 동작 정지/저전압 진입. 충전 중 deep sleep 금지 조건과 Empty 우선순위가 미확정이면 그 범위의 판정은 대기한다. 10%의 상대오차/%p 기준이 미확정인 수치 판정도 대기한다.\n"
+      },
+      {
+        "cell": "L1730",
+        "text": "\n검증 [3]\n입력: 외부 충전 Enable, 공급 전압4.2 V 이상/3.95/3.7/3.475/3.35/3.0 V\n실행 상태: 미실행.\n관찰: 각 공급/ADC 전압과 잔량/상태, Empty 동작 및 충전 상태 미수집/미제공.\n[QCC 자료 입력] 이 조건의 실제 실행 결과와 관찰 근거.\n"
+      }
+    ],
+    "historicalAttribution": "현재 원문은 2026-10-16 수정 이력이 있으므로 과거 작성 당시 오기인지 이후 원문 갱신 차이인지 단정하지 않음. 이번은 질문 대응이며 문서 수정 없음."
+  },
+  "limitations": [
+    "SDDD 유닛14개 정의의 원문 대조는 다른 담당의 독립 증거로 연결한다.",
+    "시험 상세 벡터/문자열/보안 알고리즘의 전체 원문 충실도 심사는 이번 종료 범위 밖이다.",
+    "이 파일 외 원본/산출물/공동 기록에 쓰지 않았다."
+  ]
+}

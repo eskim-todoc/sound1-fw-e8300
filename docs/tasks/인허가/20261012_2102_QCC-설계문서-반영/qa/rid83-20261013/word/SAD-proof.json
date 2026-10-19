@@ -1,0 +1,39 @@
+{
+  "code": "SAD",
+  "source": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SAD-FW-TD24A 소프트웨어 아키텍쳐 기술서.docx",
+  "before_backup": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\rid83-20261013\\word\\backups\\[E8300-QCC] SAD-FW-TD24A 소프트웨어 아키텍쳐 기술서.docx",
+  "candidate": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\rid83-20261013\\word\\candidates\\[E8300-QCC] SAD-FW-TD24A 소프트웨어 아키텍쳐 기술서.docx",
+  "source_sha256": "84f592a7f7988a78eb73fa718268cc22ddf20a5bac796358b971aba0d23ccc68",
+  "candidate_sha256": "4e71a6b7d696c7e5e21804eff3182f4a9f2f5bb6991e4b441ee6cbf5874119b1",
+  "paraId": "32A0D308",
+  "before_current_paragraph": "상위 요구사항: SYS-RID-ACDOC-17 / SYS-RID-ACDOC-18 / SYS-RID-ACDOC-20.\n제품 문서 항목 / 실행 유닛 배정 대상 아님\n[E8300 보완] 제품 사용 설명서의 안전/작동법/동작방법 및 문제 해결 내용, 배포 대상과 검토 결과를 확인해야 한다.\n",
+  "after_current_paragraph": "제품 문서 항목 / 실행 유닛 배정 대상 아님\n[E8300 보완] 제품 사용 설명서의 안전/작동법/동작방법 및 문제 해결 내용, 배포 대상과 검토 결과를 확인해야 한다.\n",
+  "old": "상위 요구사항: SYS-RID-ACDOC-17 / SYS-RID-ACDOC-18 / SYS-RID-ACDOC-20.",
+  "new": "",
+  "new_revision_ids": [
+    "4915"
+  ],
+  "new_revision_types": [
+    "del"
+  ],
+  "new_revision_author": "김은수",
+  "new_revision_date": "2026-10-13T06:53:41Z",
+  "replacement_unit": "Only upper-ID sentence and its attached line break",
+  "checks": {
+    "new_only_reject_c14n_exact_before": true,
+    "only_planned_current_text_difference": true,
+    "active_acdoc_count": 0,
+    "existing_revision_text_author_date_preserved": true,
+    "all_other_package_parts_byte_identical": true,
+    "all_styles_numbering_images_fields_relationships_preserved": true,
+    "paragraph_properties_byte_semantically_unchanged": true,
+    "paragraph_table_row_counts_unchanged": true,
+    "new_insertions_not_nested": true,
+    "G_source_unchanged": true
+  },
+  "retained_notice": "Existing [E8300 보완] product manual content / distribution target / review result notice unchanged",
+  "native_open_accept_reject_render": "미실행: root serialized native validation pending",
+  "publication": "Local candidate only; G unchanged",
+  "status": "통과",
+  "status_scope": "Saved package, active XML and exact new-only rejection verification only"
+}

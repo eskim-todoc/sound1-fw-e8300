@@ -1,0 +1,12 @@
+{
+  "status": "Known failed QA process stopped; temporary profile values removed for Office account defaults",
+  "oldExactProfileKnown": false,
+  "removedTemporaryUserName": "QCCNativeParagraphProbe20261013",
+  "removedTemporaryInitials": "QA",
+  "processId": 16312,
+  "processStart": "2026-10-13 10:15:17",
+  "originalGUnchanged": true,
+  "noClaimOfExactOldInitialsRestoration": true,
+  "userClarificationRequested": true,
+  "checkedAt": "2026-10-13T10:28:59.8097850+09:00"
+}

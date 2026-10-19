@@ -1,0 +1,313 @@
+{
+  "checkedAt": "2026-10-13T05:03:32.279422+00:00",
+  "reviewer": "qcc_design",
+  "status": "통과",
+  "scope": "SV 별칭과 Excel 본문/_비교 분리 정책의 읽기 전용 내용 정합성 검토. 실제 DHF 수정/COM/제품 시험/산출물의 전체 native 검증은 수행하거나 주장하지 않는다.",
+  "inputs": [
+    {
+      "file": "E:\\workspace\\rules-for-codex\\지침\\운영\\문서 기본 서식.md",
+      "sha256_before": "0b9c7d03e86cd9bd4e6a233bc9e699f77a3911d46c3e2bf872c4177f2229b24f",
+      "sha256_after": "0b9c7d03e86cd9bd4e6a233bc9e699f77a3911d46c3e2bf872c4177f2229b24f",
+      "unchanged": true,
+      "full_text_reviewed": true,
+      "read_method": "PowerShell7 Get-Content -Raw -Encoding UTF8 | ConvertTo-Json -EscapeHandling EscapeNonAscii; decoded once; truncated aggregate output recovered with successful individual full reads"
+    },
+    {
+      "file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\AGENTS.md",
+      "sha256_before": "a35da4fbe314873a675fa12bd8e6376ada4f0b44f7287fc3aa91a584bfba5792",
+      "sha256_after": "a35da4fbe314873a675fa12bd8e6376ada4f0b44f7287fc3aa91a584bfba5792",
+      "unchanged": true,
+      "full_text_reviewed": true,
+      "read_method": "PowerShell7 Get-Content -Raw -Encoding UTF8 | ConvertTo-Json -EscapeHandling EscapeNonAscii; decoded once; truncated aggregate output recovered with successful individual full reads"
+    },
+    {
+      "file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\SW 밸리데이션 문서 작성·검증 지침.md",
+      "sha256_before": "53608227b9e0412b0d7902e544ca5e66625a39c5ce53903dc3562c0458b02843",
+      "sha256_after": "53608227b9e0412b0d7902e544ca5e66625a39c5ce53903dc3562c0458b02843",
+      "unchanged": true,
+      "full_text_reviewed": true,
+      "read_method": "PowerShell7 Get-Content -Raw -Encoding UTF8 | ConvertTo-Json -EscapeHandling EscapeNonAscii; decoded once; truncated aggregate output recovered with successful individual full reads"
+    }
+  ],
+  "checks": [
+    {
+      "id": "sv_alias",
+      "status": "통과",
+      "finding": "세 원본 모두 SV 문서를 Software Validation/소프트웨어 밸리데이션 문서로 해석한다. 기존 문서명/ID/적용 범위를 변경하는 별칭이 아니다.",
+      "evidence": [
+        {
+          "file": "E:\\workspace\\rules-for-codex\\지침\\운영\\문서 기본 서식.md",
+          "lines": [
+            45
+          ],
+          "matched_text": "은수님이 말하는 `SV 문서`"
+        },
+        {
+          "file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\AGENTS.md",
+          "lines": [
+            30
+          ],
+          "matched_text": "`SV 문서`는 소프트웨어 밸리데이션"
+        },
+        {
+          "file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\SW 밸리데이션 문서 작성·검증 지침.md",
+          "lines": [
+            3
+          ],
+          "matched_text": "`SV 문서`는 은수님이"
+        }
+      ]
+    },
+    {
+      "id": "current_body_vs_edit_history",
+      "status": "통과",
+      "finding": "본문에는 적용된 현재 내용만 남기고 문구 변경 전후의 빨간 [-] 원문/초록 [+] 수정문은 원래 시트명_비교에 둔다. 기존 비교 이력 보존과 본문/비교 수정 후 내용 일치를 함께 요구한다.",
+      "evidence": [
+        {
+          "file": "E:\\workspace\\rules-for-codex\\지침\\운영\\문서 기본 서식.md",
+          "lines": [
+            47
+          ],
+          "matched_text": "SV Excel 문서는 기존 본문 시트에"
+        },
+        {
+          "file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\SW 밸리데이션 문서 작성·검증 지침.md",
+          "lines": [
+            205
+          ],
+          "matched_text": "기존 본문 시트는 변경이 적용된 현재 내용만 표시하고"
+        }
+      ]
+    },
+    {
+      "id": "expected_vs_actual_stays_in_body",
+      "status": "통과",
+      "finding": "문서 변경 이력과 시험값 비교를 명확히 구분한다. 예상값/허용 범위/실제 관찰값/결과 판정은 기존 시험 본문의 같은 조건 행에 유지하며 _비교 시트로 대신 옮기지 않는다. 13/14/16/17 원칙과 AGENTS의 같은 행 비교 규칙을 유지한다.",
+      "evidence": [
+        {
+          "file": "E:\\workspace\\rules-for-codex\\지침\\운영\\문서 기본 서식.md",
+          "lines": [
+            49
+          ],
+          "matched_text": "시험의 예상값과 실제 관찰값 비교는 기존 시험 본문에 유지한다."
+        },
+        {
+          "file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\AGENTS.md",
+          "lines": [
+            40
+          ],
+          "matched_text": "같은 입력 조건의 구체적인 예상값과 시험 결과값을 같은 시험 행에서 비교한다."
+        },
+        {
+          "file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\SW 밸리데이션 문서 작성·검증 지침.md",
+          "lines": [
+            207
+          ],
+          "matched_text": "13번의 예상값/실제 관찰값 비교는 시험 본문의 같은 행에 유지한다."
+        },
+        {
+          "file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\SW 밸리데이션 문서 작성·검증 지침.md",
+          "lines": [
+            131
+          ],
+          "matched_text": "입력 조건별 원소의 예상값/허용 범위와 실제 관찰값"
+        }
+      ]
+    },
+    {
+      "id": "Word_track_boundary",
+      "status": "통과",
+      "finding": "본문/_비교 분리는 SV Excel 규칙이다. Word의 실제 수락/거부 가능한 변경추적, 지정 작성자, 기존 이력 보존과 명시적 최종본 예외를 제거하거나 Excel 방식으로 대체하지 않는다.",
+      "evidence": [
+        {
+          "file": "E:\\workspace\\rules-for-codex\\지침\\운영\\문서 기본 서식.md",
+          "lines": [
+            78
+          ],
+          "matched_text": "### Word 원본 기반 수정의 변경 추적"
+        },
+        {
+          "file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\SW 밸리데이션 문서 작성·검증 지침.md",
+          "lines": [
+            211
+          ],
+          "matched_text": "### 26. Word 본 파일에 실제 수락/거부 가능한 변경 추적을 남긴다"
+        },
+        {
+          "file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\SW 밸리데이션 문서 작성·검증 지침.md",
+          "lines": [
+            213
+          ],
+          "matched_text": "사용자가 최종본이나 추적 없는 문서를 명시적으로 요청하면"
+        }
+      ]
+    },
+    {
+      "id": "identity_formulas_common_rows",
+      "status": "통과",
+      "finding": "기존 본문 시트명/ID/수식/참조/시험결과 및 기준서-보고서 공통 내용/행/병합을 보존한다. _비교는 실제 원래 항목과 대응하므로 현재 시험 식별이나 요구 상위 추적을 새로 생성하지 않는다.",
+      "evidence": [
+        {
+          "file": "E:\\workspace\\rules-for-codex\\지침\\운영\\문서 기본 서식.md",
+          "lines": [
+            49
+          ],
+          "matched_text": "본문의 수식, ID, 참조, 시험 결과와 필요한 미비 표시의 의미 및 서식은 보존한다."
+        },
+        {
+          "file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\SW 밸리데이션 문서 작성·검증 지침.md",
+          "lines": [
+            207
+          ],
+          "matched_text": "원래 시트명, ID, 수식/참조, 기준서/보고서의 공통 행"
+        },
+        {
+          "file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\SW 밸리데이션 문서 작성·검증 지침.md",
+          "lines": [
+            125
+          ],
+          "matched_text": "ID, 방법, 준비 조건, 제한 조건, 절차와 통과 기준은 두 문서에서"
+        }
+      ]
+    },
+    {
+      "id": "notice_semantics_and_format",
+      "status": "통과",
+      "finding": "되돌릴 색상은 변경 비교용 색상에 한정한다. 담당 미비 접두어/색상/기본+2pt/밑줄/주변 굵기는 AGENTS 원본대로 보존한다. 자료 수신 후 유지하는 QCC/공동 접두어도 사용자 해제 전 유지하며 실제 반영/판정 상태와 구분한다.",
+      "evidence": [
+        {
+          "file": "E:\\workspace\\rules-for-codex\\지침\\운영\\문서 기본 서식.md",
+          "lines": [
+            49
+          ],
+          "matched_text": "변경 비교용 색상만 본문 기본 서식으로 되돌린다."
+        },
+        {
+          "file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\SW 밸리데이션 문서 작성·검증 지침.md",
+          "lines": [
+            207
+          ],
+          "matched_text": "미비 접두어 및 지정 서식도 보존한다."
+        },
+        {
+          "file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\AGENTS.md",
+          "lines": [
+            66
+          ],
+          "matched_text": "자료를 받거나 문서에 반영한 뒤에도 은수님이 제거를 지시할 때까지"
+        }
+      ]
+    },
+    {
+      "id": "on_demand_checks_and_authority",
+      "status": "통과",
+      "finding": "작성/수정/병합/검토/재개/compact 후 온디맨드 적용과 시작-작성 중-최종 저장 검사가 유지된다. 적용 여부는 29개 전부 판단하고 무관한 항목은 이유 있는 해당없음으로 남긴다. 단순 경로/상태 질문이나 지침 등록만으로 보류된 산출물 수정을 시작하지 않는다.",
+      "evidence": [
+        {
+          "file": "E:\\workspace\\rules-for-codex\\지침\\운영\\문서 기본 서식.md",
+          "lines": [
+            53
+          ],
+          "matched_text": "작업 시작, 작성 중, 최종 저장 후에 적용한다"
+        },
+        {
+          "file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\AGENTS.md",
+          "lines": [
+            33
+          ],
+          "matched_text": "작업 시작 시 29개 원칙의 적용 대상과 현재 파일을 확인하고"
+        },
+        {
+          "file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\SW 밸리데이션 문서 작성·검증 지침.md",
+          "lines": [
+            7
+          ],
+          "matched_text": "시작할 때 29개 항목 모두의 적용 여부를 판단하고"
+        },
+        {
+          "file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\SW 밸리데이션 문서 작성·검증 지침.md",
+          "lines": [
+            7
+          ],
+          "matched_text": "단순한 경로/상태 조회는 읽기 전용으로 답하며"
+        }
+      ]
+    },
+    {
+      "id": "saved_verification_and_registry",
+      "status": "통과",
+      "finding": "25번 검사/판정은 비교 시트 수정 후 내용과 본문 일치, 무변경 값/수식/참조/결과/미비 서식 보존, 추가 시트의 실제 열기/표시를 검사하도록 정의한다. 중앙 위치 목록은 _비교의 과거 문구가 아니라 기존 현재 본문 위치를 기준으로 유지한다. 읽음만 통과/새 시험결과 생성/새 승인 단계는 도입하지 않는다.",
+      "evidence": [
+        {
+          "file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\SW 밸리데이션 문서 작성·검증 지침.md",
+          "lines": [
+            209
+          ],
+          "matched_text": "추가 시트도 실제 열기와 표시를 검증하며 중앙 목록은 기존 본문의 현재 위치를 기준으로 유지한다."
+        },
+        {
+          "file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\AGENTS.md",
+          "lines": [
+            33
+          ],
+          "matched_text": "읽었다는 사실만으로 검사 통과를 기록하지 않는다."
+        },
+        {
+          "file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\SW 밸리데이션 문서 작성·검증 지침.md",
+          "lines": [
+            39
+          ],
+          "matched_text": "문서 검사가 통과해도 미실행 제품 시험은 통과로 바뀌지 않는다."
+        }
+      ]
+    }
+  ],
+  "check_count": 8,
+  "findings": [],
+  "numbering": {
+    "found": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29
+    ],
+    "missing": [],
+    "duplicates": [],
+    "status": "통과"
+  },
+  "invariants": [
+    "시험의 예상값/실제관찰 비교는 현재 본문 같은 조건 행",
+    "변경 전후 문구 이력만 _비교",
+    "Word 실제 변경추적은 별도 유지",
+    "기존 ID/수식/참조/공통 시험행 보존",
+    "담당 미비 접두어/서식/실제 대기 구분 유지",
+    "시작/작성 중/최종 저장 검증 유지"
+  ],
+  "writes": "Only this policy-review.json. No input policy, G artifact, firmware or COM changes.",
+  "artifact_execution_status": "해당없음: 정책 검토만 위임됨"
+}

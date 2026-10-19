@@ -1,0 +1,3913 @@
+{
+  "scope": "SR/SGR/SAD final PDF and PNG independent QA",
+  "phase": "final saved SAD closeout PASS",
+  "reviewer": "qcc_requirements",
+  "SR_body_heading_style_correction": {
+    "file": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\02_설계 입력\\SW\\외부기\\[E8300-QCC] SR-FW-TD24A 소프트웨어 요구사항.docx",
+    "old_sha256": "572C0B06A4E033A13D0DACC648AF758EF678FCD8EDB78CFC7FEDCC1E3944838F",
+    "new_sha256": "5856BAAA2B482928367770D91DD7FBEF84E4552A3F1A5B46629F94494A35C7C6",
+    "edits": [
+      {
+        "text": "E8300 및 QCC의 요구사항은 소프트웨어 요구사항 사양서의 SW-FW-RID-1~83으로 식별한다. QCC 자료의 원문 CC 식별 번호는 사양서의 발생원 추적에 남기고, 중복된 번호는 해당 주제와 함께 구분한다.",
+        "old_style": "2 (heading 2)",
+        "new_style": "a",
+        "direct_outline_removed": true,
+        "direct_numbering_removed": true,
+        "expected_TOC_inclusion": false,
+        "paragraph_insert_revision_preserved": true
+      },
+      {
+        "text": "사용 설명서의 안전 예방조치/사용/문제 해결 요구는 SW-FW-RID-83에 따른다. IEC 62304 개발 절차와 ISO 14971 위험관리 적용은 본 문서와 소프트웨어 일반 요구사항의 규제 요구를 유지한다.",
+        "old_style": "2 (heading 2)",
+        "new_style": "a",
+        "direct_outline_removed": true,
+        "direct_numbering_removed": true,
+        "expected_TOC_inclusion": false,
+        "paragraph_insert_revision_preserved": true
+      }
+    ],
+    "all_visible_deleted_and_field_text_preserved": true,
+    "all_revision_attributes_preserved": true,
+    "only_part_changed": "word/document.xml",
+    "TOC_cache_refresh_owner": "root"
+  },
+  "SGR_style_audit": {
+    "file": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\02_설계 입력\\SW\\외부기\\[E8300-QCC] SGR-FW-TD24A 소프트웨어 일반요구사항.docx",
+    "new_body_paragraphs_checked": 7,
+    "heading_inheritance_found": false,
+    "editing_needed": false
+  },
+  "retracted_early_finding": {
+    "SAD_table7_stale_text": "All 7 rows were deletion-marked trPr/w:del; excluded from current-body assessment. No SAD edit requested."
+  },
+  "structural_current_body_audit": {
+    "SR": {
+      "file": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\02_설계 입력\\SW\\외부기\\[E8300-QCC] SR-FW-TD24A 소프트웨어 요구사항.docx",
+      "source_sha256": "5856BAAA2B482928367770D91DD7FBEF84E4552A3F1A5B46629F94494A35C7C6",
+      "deleted_rows_excluded": 0,
+      "current_legacy_markers": [],
+      "actual_measurement_claim_not_added": true,
+      "render_visual_verification": "all full pages reviewed, passed after paragraph formatting",
+      "current_G_sha256": "8237F9E97E7D868FB87D09661FA546E51E69DE0D83C9F2DDB75148ECC56F6F63"
+    },
+    "SGR": {
+      "file": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\02_설계 입력\\SW\\외부기\\[E8300-QCC] SGR-FW-TD24A 소프트웨어 일반요구사항.docx",
+      "source_sha256": "1F85F51DC6AC7C055C1ADFC74C9559C4E7521B1EAC8D87FE101E66A53D3ECF53",
+      "deleted_rows_excluded": 0,
+      "current_legacy_markers": [],
+      "actual_measurement_claim_not_added": true,
+      "render_visual_verification": "all full pages reviewed, passed after paragraph formatting",
+      "current_G_sha256": "2B04B70CAF90E42E3CB829EF8AD7FD860D9DCFD589FB4333E7749B62BE48F049"
+    },
+    "SAD": {
+      "file": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SAD-FW-TD24A 소프트웨어 아키텍쳐 기술서.docx",
+      "source_sha256": "DE0EF070E2F565F778A723A4D8C1403DEB5D16BBAAEE59BE03B7C08468EE976E",
+      "deleted_rows_excluded": 78,
+      "current_legacy_markers": [],
+      "actual_measurement_claim_not_added": true,
+      "render_visual_verification": "all full pages reviewed; SAD page4 exception open",
+      "QCC_modules": [
+        "SI-ID-QCC-001",
+        "SI-ID-QCC-002",
+        "SI-ID-QCC-003",
+        "SI-ID-QCC-004"
+      ],
+      "QCC_units": [
+        "SU-ID-QCC-001",
+        "SU-ID-QCC-002",
+        "SU-ID-QCC-003",
+        "SU-ID-QCC-004",
+        "SU-ID-QCC-005",
+        "SU-ID-QCC-006",
+        "SU-ID-QCC-007",
+        "SU-ID-QCC-008",
+        "SU-ID-QCC-009",
+        "SU-ID-QCC-010",
+        "SU-ID-QCC-011",
+        "SU-ID-QCC-012",
+        "SU-ID-QCC-013",
+        "SU-ID-QCC-014"
+      ],
+      "requirement_ids": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        81,
+        82,
+        83
+      ],
+      "architecture_scope_4_modules_14_units_83_requirements": true,
+      "current_G_sha256": "DE0EF070E2F565F778A723A4D8C1403DEB5D16BBAAEE59BE03B7C08468EE976E"
+    }
+  },
+  "early_checks_complete": true,
+  "orphan_missing_notice_fix": [
+    {
+      "code": "SR",
+      "file": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\02_설계 입력\\SW\\외부기\\[E8300-QCC] SR-FW-TD24A 소프트웨어 요구사항.docx",
+      "old_sha256": "65791EBB11E86472160E68B38D5EE56CAA9ECAABD26B2D15A651F62CDB471572",
+      "new_sha256": "2097758EC4E82206FB4887B0675C4024B3F6360E5907591355086BAE897E92C6",
+      "text": "[QCC/E8300 자료 입력] 이번 QCC 자료 반영에 따른 위험분석 재평가와 변경 영향의 검토 결과를 입력한다.",
+      "keepLines": true,
+      "visible_deleted_field_text_unchanged": true,
+      "revision_attributes_unchanged": true,
+      "only_package_part_changed": "word/document.xml",
+      "native_rerender_owner": "root"
+    },
+    {
+      "code": "SGR",
+      "file": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\02_설계 입력\\SW\\외부기\\[E8300-QCC] SGR-FW-TD24A 소프트웨어 일반요구사항.docx",
+      "old_sha256": "1F85F51DC6AC7C055C1ADFC74C9559C4E7521B1EAC8D87FE101E66A53D3ECF53",
+      "new_sha256": "95D8100EC0525A1D86C7DF0250243D2DB8B5B54E1EAC50C2EADCB06BD249CB8E",
+      "text": "[QCC 자료 입력] QCC의 실제 ADK/실행 환경, scheduler 구성과 사용 버전을 입력한다.",
+      "keepLines": true,
+      "visible_deleted_field_text_unchanged": true,
+      "revision_attributes_unchanged": true,
+      "only_package_part_changed": "word/document.xml",
+      "native_rerender_owner": "root"
+    }
+  ],
+  "native_review_state": "closed: no remaining findings in reviewer scope",
+  "native_visual_round1": {
+    "PDFs": {
+      "SR": {
+        "file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\final-word\\SR.pdf",
+        "sha256": "26E237D74D3A2EC6F59F82B34499818544177F8600D6C81EE3BF43EEA55BD74C",
+        "page_count": 11
+      },
+      "SGR": {
+        "file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\final-word\\SGR.pdf",
+        "sha256": "1E098A60F51B803E1824F9ED90E9E696A2E7AAB5B3E94A2CB1B401D80A935023",
+        "page_count": 10
+      },
+      "SAD": {
+        "file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\final-word\\SAD.pdf",
+        "sha256": "2F9ABAEDBDFB05D08861D64A8A04F71CCCDD9C50A701CE1129192AD51B352337",
+        "page_count": 48
+      }
+    },
+    "all_contacts_reviewed": {
+      "SR": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "SGR": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "SAD": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48
+      ]
+    },
+    "full_PNGs_reviewed": {
+      "SR": [],
+      "SGR": [],
+      "SAD": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48
+      ]
+    },
+    "findings": [
+      {
+        "document": "SR",
+        "page": 11,
+        "finding": "One-line continuation of joint missing notice",
+        "status": "resolved and verified latest full PNG; whole missing notice two lines together on last page"
+      },
+      {
+        "document": "SGR",
+        "page": 10,
+        "finding": "One-line continuation of ADK missing notice",
+        "status": "resolved and verified latest full PNG; whole missing notice two lines together on last page"
+      },
+      {
+        "document": "SAD",
+        "page": 4,
+        "finding": "New blank header-only page after TOC",
+        "target_body_block": 32,
+        "status": "resolved; final native47p PDF and directly rendered PNG pages3/4 verified; old deleted manual break untouched",
+        "previous_cause_retracted": "TOC runs to y787.22pt; empty page-break paragraph immediately after TOC moves to page4 and breaks to intro5. Intro itself has pageBreakBefore.",
+        "previous_proposal_retracted": "Tracked deletion of empty page-break paragraph, preserving intro pageBreakBefore.",
+        "cause_retraction_reason": "The manual page break and paragraph mark at block32 were old tracked deletions. They must not be diagnosed as active content.",
+        "corrected_owner_cause": "Active TOC sdt field-end blank paragraph(paraId34E32455) had12pt line240auto, spilling onto its own page. Owner tracked pPrChange to1pt line20exact. Existing tracked-deleted manual break left untouched."
+      }
+    ],
+    "current_layout_no_clipping_or_overlap_elsewhere": "contact pages and listed full PNGs checked; remaining full long-table pages in progress"
+  },
+  "native_visual_round2": {
+    "SR": {
+      "pdf_file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\final-word\\SR.pdf",
+      "pdf_sha256": "AABCEB840A1B136DDF0438E3C61F79B7D83D46EB203A6262D23E3BA38AA87362",
+      "page_count": 11,
+      "pages_manifest_sha256": "D237CDAF67028C527B477AB71173E468B64FFA67BF75B22FEF539F46C642FA50",
+      "full_PNGs_reviewed": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "visual_overlap_or_clipping_found": false,
+      "heading_cache_review": "SR long newly added paragraphs excluded from TOC; existing headings/table references reviewed",
+      "native_missing_prefix_occurrences": {
+        "[QCC 자료 입력]": 2,
+        "[E8300 보완]": 1,
+        "[QCC/E8300 자료 입력]": 2
+      },
+      "new_actual_measurement_or_test_pass_claim": false,
+      "one_line_missing_notice_continuation_resolved": true,
+      "last_missing_note_page": 11,
+      "last_missing_note_lines": 2,
+      "missing_notice_whole_paragraph_on_one_page": true
+    },
+    "SGR": {
+      "pdf_file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\final-word\\SGR.pdf",
+      "pdf_sha256": "4766BE04312782DC09568434060B3DC8B0D664F273E4808B5D780C21D7AF22CA",
+      "page_count": 10,
+      "pages_manifest_sha256": "38B0E9E541ED029AC3531DD6A284819B6992242AD0F716F1CE101F592A69A1FC",
+      "full_PNGs_reviewed": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "visual_overlap_or_clipping_found": false,
+      "heading_cache_review": "current TOC and body page references reviewed",
+      "native_missing_prefix_occurrences": {
+        "[QCC 자료 입력]": 2,
+        "[E8300 보완]": 0,
+        "[QCC/E8300 자료 입력]": 0
+      },
+      "new_actual_measurement_or_test_pass_claim": false,
+      "one_line_missing_notice_continuation_resolved": true,
+      "last_missing_note_page": 10,
+      "last_missing_note_lines": 2,
+      "missing_notice_whole_paragraph_on_one_page": true
+    },
+    "SAD": {
+      "pdf_file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\final-word\\SAD.pdf",
+      "pdf_sha256": "2F9ABAEDBDFB05D08861D64A8A04F71CCCDD9C50A701CE1129192AD51B352337",
+      "page_count": 48,
+      "pages_manifest_sha256": "86DC47748F1E29F2C722C352B1355B611F8C3DC1EAC5495A0930F1CC47622281",
+      "full_PNGs_reviewed": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48
+      ],
+      "visual_overlap_or_clipping_found": false,
+      "heading_cache_review": "current TOC and body page references reviewed",
+      "native_missing_prefix_occurrences": {
+        "[QCC 자료 입력]": 19,
+        "[E8300 보완]": 2,
+        "[QCC/E8300 자료 입력]": 1
+      },
+      "new_actual_measurement_or_test_pass_claim": false,
+      "known_layout_exception": {
+        "page": 4,
+        "finding": "header-only blank page; root/design diagnosing current AcceptAll layout",
+        "status": "resolved in final47p native PDF and in-memory PNG verification"
+      },
+      "native_requirement_ids": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        81,
+        82,
+        83
+      ],
+      "all_83_RIDs_visible": true,
+      "native_modules": [
+        "SI-ID-QCC-001",
+        "SI-ID-QCC-002",
+        "SI-ID-QCC-003",
+        "SI-ID-QCC-004"
+      ],
+      "native_units": [
+        "SU-ID-QCC-001",
+        "SU-ID-QCC-002",
+        "SU-ID-QCC-003",
+        "SU-ID-QCC-004",
+        "SU-ID-QCC-005",
+        "SU-ID-QCC-006",
+        "SU-ID-QCC-007",
+        "SU-ID-QCC-008",
+        "SU-ID-QCC-009",
+        "SU-ID-QCC-010",
+        "SU-ID-QCC-011",
+        "SU-ID-QCC-012",
+        "SU-ID-QCC-013",
+        "SU-ID-QCC-014"
+      ],
+      "supplemental_reference_finding": {
+        "page": 5,
+        "heading": "1.4.1 프로젝트",
+        "text": "SDP-FW-TD20B",
+        "comparison": "SR/SGR use SDP-FW-TD24A; original stale reference likely",
+        "owner_notified": "qcc_design",
+        "status": "resolved; final4p reference SDP-FW-TD24A visually verified"
+      },
+      "PDF_ID_normalization": "Normalize extraction line break/space and U+FFFE replacing wrapped hyphen; visually validated against full table pages."
+    }
+  },
+  "native_missing_notice_font_confirmation": {
+    "SR": {
+      "PDF_sha256": "AABCEB840A1B136DDF0438E3C61F79B7D83D46EB203A6262D23E3BA38AA87362",
+      "font_size_bold_histograms": {
+        "purple": [
+          {
+            "font_size_pt": 12.0,
+            "bold": false,
+            "nonspace_chars": 130
+          }
+        ],
+        "red": [
+          {
+            "font_size_pt": 12.0,
+            "bold": false,
+            "nonspace_chars": 90
+          }
+        ],
+        "blue": [
+          {
+            "font_size_pt": 12.0,
+            "bold": false,
+            "nonspace_chars": 53
+          }
+        ]
+      },
+      "colored_text_pages": {
+        "purple": [
+          8,
+          11
+        ],
+        "red": [
+          8,
+          9
+        ],
+        "blue": [
+          10
+        ]
+      },
+      "all_missing_color_text_12pt_and_nonbold": true,
+      "scope": "Native PDF color-matched text confirms current ordinary-body missing notice sizing; colored headings or graphics may fall outside text; actual current DOCX run check is primary."
+    },
+    "SGR": {
+      "PDF_sha256": "4766BE04312782DC09568434060B3DC8B0D664F273E4808B5D780C21D7AF22CA",
+      "font_size_bold_histograms": {
+        "red": [
+          {
+            "font_size_pt": 12.0,
+            "bold": false,
+            "nonspace_chars": 88
+          }
+        ]
+      },
+      "colored_text_pages": {
+        "red": [
+          10
+        ]
+      },
+      "all_missing_color_text_12pt_and_nonbold": true,
+      "scope": "Native PDF color-matched text confirms current ordinary-body missing notice sizing; colored headings or graphics may fall outside text; actual current DOCX run check is primary."
+    },
+    "SAD": {
+      "PDF_sha256": "2F9ABAEDBDFB05D08861D64A8A04F71CCCDD9C50A701CE1129192AD51B352337",
+      "font_size_bold_histograms": {
+        "red": [
+          {
+            "font_size_pt": 12.0,
+            "bold": false,
+            "nonspace_chars": 1458
+          }
+        ],
+        "purple": [
+          {
+            "font_size_pt": 12.0,
+            "bold": false,
+            "nonspace_chars": 67
+          }
+        ],
+        "blue": [
+          {
+            "font_size_pt": 12.0,
+            "bold": false,
+            "nonspace_chars": 89
+          }
+        ]
+      },
+      "colored_text_pages": {
+        "red": [
+          12,
+          20,
+          29,
+          30,
+          31,
+          32,
+          33,
+          36,
+          39,
+          40,
+          41,
+          42,
+          43,
+          46,
+          47
+        ],
+        "purple": [
+          31
+        ],
+        "blue": [
+          43,
+          46
+        ]
+      },
+      "all_missing_color_text_12pt_and_nonbold": true,
+      "scope": "Native PDF color-matched text confirms current ordinary-body missing notice sizing; colored headings or graphics may fall outside text; actual current DOCX run check is primary."
+    },
+    "SDDD": {
+      "PDF_sha256": "C67D93E2B42D7A5CB700C57A8F9A0B408EE8D4D88155B341510DD44F4006FAE5",
+      "font_size_bold_histograms": {
+        "red": [
+          {
+            "font_size_pt": 12.0,
+            "bold": false,
+            "nonspace_chars": 2288
+          }
+        ],
+        "purple": [
+          {
+            "font_size_pt": 12.0,
+            "bold": false,
+            "nonspace_chars": 91
+          }
+        ]
+      },
+      "colored_text_pages": {
+        "red": [
+          150,
+          151,
+          152,
+          153,
+          154,
+          155,
+          156,
+          157,
+          158,
+          159,
+          160,
+          161,
+          162,
+          163,
+          164
+        ],
+        "purple": [
+          165
+        ]
+      },
+      "all_missing_color_text_12pt_and_nonbold": true,
+      "scope": "Native PDF color-matched text confirms current ordinary-body missing notice sizing; colored headings or graphics may fall outside text; actual current DOCX run check is primary."
+    },
+    "SIP": {
+      "PDF_sha256": "33A437961FA85AA5107E0244EFF9FFFEAAF93034D00C6899FECBDECD879C827A",
+      "font_size_bold_histograms": {
+        "red": [
+          {
+            "font_size_pt": 12.0,
+            "bold": false,
+            "nonspace_chars": 621
+          }
+        ]
+      },
+      "colored_text_pages": {
+        "red": [
+          8,
+          14,
+          15
+        ]
+      },
+      "all_missing_color_text_12pt_and_nonbold": true,
+      "scope": "Native PDF color-matched text confirms current ordinary-body missing notice sizing; colored headings or graphics may fall outside text; actual current DOCX run check is primary."
+    }
+  },
+  "before_design_targeted_update_missing_notice_format_audit": {
+    "SR": {
+      "file": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\02_설계 입력\\SW\\외부기\\[E8300-QCC] SR-FW-TD24A 소프트웨어 요구사항.docx",
+      "sha256_before": "8237F9E97E7D868FB87D09661FA546E51E69DE0D83C9F2DDB75148ECC56F6F63",
+      "sha256_after": "8237F9E97E7D868FB87D09661FA546E51E69DE0D83C9F2DDB75148ECC56F6F63",
+      "input_stable_during_read": true,
+      "deleted_rows_excluded": 0,
+      "TOC_moveFrom_deleted_text_excluded": true,
+      "note_count": 5,
+      "all_notes_pass": true,
+      "notes": [
+        {
+          "current_paragraph_index": 218,
+          "text": "[QCC/E8300 자료 입력] 3분 무송수신의 감시/갱신 범위와 기존 제어 명령 미수신 조건의 정합성, 마이크의 QCC 입력 경로 및 연결/프로파일별 오디오 송수신 조건을 확인한다.",
+          "prefixes": [
+            "[QCC/E8300 자료 입력]"
+          ],
+          "paragraph_style": "a8",
+          "base_normal_pt": 10,
+          "note_pt": 12,
+          "expected_color": "7030A0",
+          "base_bold": false,
+          "all_visible_text_run_count": 1,
+          "unique_current_run_properties": [
+            {
+              "color": "7030A0",
+              "sz_halfpt": "24",
+              "szCs_halfpt": "24",
+              "underline": "single",
+              "effective_bold": false,
+              "direct_bold": null
+            }
+          ],
+          "whole_description_format_pass": true
+        },
+        {
+          "current_paragraph_index": 228,
+          "text": "[QCC 자료 입력] 실제 QCC 개발 환경, 라이브러리/ADK 버전과 빌드 구성을 입력한다.",
+          "prefixes": [
+            "[QCC 자료 입력]"
+          ],
+          "paragraph_style": "a",
+          "base_normal_pt": 10,
+          "note_pt": 12,
+          "expected_color": "C00000",
+          "base_bold": false,
+          "all_visible_text_run_count": 1,
+          "unique_current_run_properties": [
+            {
+              "color": "C00000",
+              "sz_halfpt": "24",
+              "szCs_halfpt": "24",
+              "underline": "single",
+              "effective_bold": false,
+              "direct_bold": null
+            }
+          ],
+          "whole_description_format_pass": true
+        },
+        {
+          "current_paragraph_index": 233,
+          "text": "[QCC 자료 입력] QCC의 실제 메모리 배치, 실행 이미지/데이터 사용량과 부트 이미지 검사 설정을 입력한다.",
+          "prefixes": [
+            "[QCC 자료 입력]"
+          ],
+          "paragraph_style": "a",
+          "base_normal_pt": 10,
+          "note_pt": 12,
+          "expected_color": "C00000",
+          "base_bold": false,
+          "all_visible_text_run_count": 1,
+          "unique_current_run_properties": [
+            {
+              "color": "C00000",
+              "sz_halfpt": "24",
+              "szCs_halfpt": "24",
+              "underline": "single",
+              "effective_bold": false,
+              "direct_bold": null
+            }
+          ],
+          "whole_description_format_pass": true
+        },
+        {
+          "current_paragraph_index": 268,
+          "text": "[E8300 보완] SW-FW-RID-83의 정식 상위 요구사항 식별과 제품 사용 설명서 파일의 해당 내용을 등록한다.",
+          "prefixes": [
+            "[E8300 보완]"
+          ],
+          "paragraph_style": "a8",
+          "base_normal_pt": 10,
+          "note_pt": 12,
+          "expected_color": "0070C0",
+          "base_bold": false,
+          "all_visible_text_run_count": 1,
+          "unique_current_run_properties": [
+            {
+              "color": "0070C0",
+              "sz_halfpt": "24",
+              "szCs_halfpt": "24",
+              "underline": "single",
+              "effective_bold": false,
+              "direct_bold": null
+            }
+          ],
+          "whole_description_format_pass": true
+        },
+        {
+          "current_paragraph_index": 275,
+          "text": "[QCC/E8300 자료 입력] 이번 QCC 자료 반영에 따른 위험분석 재평가와 변경 영향의 검토 결과를 입력한다.",
+          "prefixes": [
+            "[QCC/E8300 자료 입력]"
+          ],
+          "paragraph_style": "a",
+          "base_normal_pt": 10,
+          "note_pt": 12,
+          "expected_color": "7030A0",
+          "base_bold": false,
+          "all_visible_text_run_count": 1,
+          "unique_current_run_properties": [
+            {
+              "color": "7030A0",
+              "sz_halfpt": "24",
+              "szCs_halfpt": "24",
+              "underline": "single",
+              "effective_bold": false,
+              "direct_bold": null
+            }
+          ],
+          "whole_description_format_pass": true
+        }
+      ],
+      "base_point_evidence": "Surrounding regular body style complex-script size20 halfpt where present; native body renders9.96pt rounded10pt. Notes direct sz/szCs24 halfpt=12pt; native colored notes12.0pt.",
+      "status": "snapshot before design targeted reference/diagram/layout edits; repeat hash validation after owner final save"
+    },
+    "SGR": {
+      "file": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\02_설계 입력\\SW\\외부기\\[E8300-QCC] SGR-FW-TD24A 소프트웨어 일반요구사항.docx",
+      "sha256_before": "2B04B70CAF90E42E3CB829EF8AD7FD860D9DCFD589FB4333E7749B62BE48F049",
+      "sha256_after": "2B04B70CAF90E42E3CB829EF8AD7FD860D9DCFD589FB4333E7749B62BE48F049",
+      "input_stable_during_read": true,
+      "deleted_rows_excluded": 0,
+      "TOC_moveFrom_deleted_text_excluded": true,
+      "note_count": 2,
+      "all_notes_pass": true,
+      "notes": [
+        {
+          "current_paragraph_index": 270,
+          "text": "[QCC 자료 입력] QCC의 실제 ADK/실행 환경, scheduler 구성과 사용 버전을 입력한다.",
+          "prefixes": [
+            "[QCC 자료 입력]"
+          ],
+          "paragraph_style": "a",
+          "base_normal_pt": 10,
+          "note_pt": 12,
+          "expected_color": "C00000",
+          "base_bold": false,
+          "all_visible_text_run_count": 1,
+          "unique_current_run_properties": [
+            {
+              "color": "C00000",
+              "sz_halfpt": "24",
+              "szCs_halfpt": "24",
+              "underline": "single",
+              "effective_bold": false,
+              "direct_bold": null
+            }
+          ],
+          "whole_description_format_pass": true
+        },
+        {
+          "current_paragraph_index": 274,
+          "text": "[QCC 자료 입력] QCC 제조사 소프트웨어의 식별/버전, 사용 범위와 검토 근거를 입력한다.",
+          "prefixes": [
+            "[QCC 자료 입력]"
+          ],
+          "paragraph_style": "a",
+          "base_normal_pt": 10,
+          "note_pt": 12,
+          "expected_color": "C00000",
+          "base_bold": false,
+          "all_visible_text_run_count": 1,
+          "unique_current_run_properties": [
+            {
+              "color": "C00000",
+              "sz_halfpt": "24",
+              "szCs_halfpt": "24",
+              "underline": "single",
+              "effective_bold": false,
+              "direct_bold": null
+            }
+          ],
+          "whole_description_format_pass": true
+        }
+      ],
+      "base_point_evidence": "Surrounding regular body style complex-script size20 halfpt where present; native body renders9.96pt rounded10pt. Notes direct sz/szCs24 halfpt=12pt; native colored notes12.0pt.",
+      "status": "snapshot before design targeted reference/diagram/layout edits; repeat hash validation after owner final save"
+    },
+    "SAD": {
+      "file": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SAD-FW-TD24A 소프트웨어 아키텍쳐 기술서.docx",
+      "sha256_before": "DE0EF070E2F565F778A723A4D8C1403DEB5D16BBAAEE59BE03B7C08468EE976E",
+      "sha256_after": "DE0EF070E2F565F778A723A4D8C1403DEB5D16BBAAEE59BE03B7C08468EE976E",
+      "input_stable_during_read": true,
+      "deleted_rows_excluded": 78,
+      "TOC_moveFrom_deleted_text_excluded": true,
+      "note_count": 22,
+      "all_notes_pass": true,
+      "notes": [
+        {
+          "current_paragraph_index": 278,
+          "text": "[QCC 자료 입력] QCC shutdown_ind의 on/off 본문·그림이 상충한다. 실제 PIO 번호·전압·논리 반전, 기동/종료 대기와 I2S enable→I2S_FLAG Low 유효의 물리 대응을 확인해야 한다.",
+          "prefixes": [
+            "[QCC 자료 입력]"
+          ],
+          "paragraph_style": "TDC20",
+          "base_normal_pt": 10,
+          "note_pt": 12,
+          "expected_color": "C00000",
+          "base_bold": false,
+          "all_visible_text_run_count": 39,
+          "unique_current_run_properties": [
+            {
+              "color": "C00000",
+              "sz_halfpt": "24",
+              "szCs_halfpt": "24",
+              "underline": "single",
+              "effective_bold": false,
+              "direct_bold": null
+            }
+          ],
+          "whole_description_format_pass": true
+        },
+        {
+          "current_paragraph_index": 279,
+          "text": "[QCC 자료 입력] 충전 미연결/연결/충전 중/비충전의 4상태를 0x34 충전기 연결 0/1로 변환하는 표, 0x34~0x36 통보 시점/길이/오류 응답과 GAIA addressing·type별 데이터 정의를 제출해야 한다.",
+          "prefixes": [
+            "[QCC 자료 입력]"
+          ],
+          "paragraph_style": "TDC20",
+          "base_normal_pt": 10,
+          "note_pt": 12,
+          "expected_color": "C00000",
+          "base_bold": false,
+          "all_visible_text_run_count": 49,
+          "unique_current_run_properties": [
+            {
+              "color": "C00000",
+              "sz_halfpt": "24",
+              "szCs_halfpt": "24",
+              "underline": "single",
+              "effective_bold": false,
+              "direct_bold": null
+            }
+          ],
+          "whole_description_format_pass": true
+        },
+        {
+          "current_paragraph_index": 280,
+          "text": "[QCC 자료 입력] 24bit·16kHz의 QCC 출력 설정, I2S 클럭/프레임·좌우 배정과 시작/중단 시 유효 신호 파형을 확인해야 한다. E8300 정적 수신 설정과 제공 설계의 대응만 확인했으며 실제 오디오/핀 파형 측정은 미제공이다.",
+          "prefixes": [
+            "[QCC 자료 입력]"
+          ],
+          "paragraph_style": "TDC20",
+          "base_normal_pt": 10,
+          "note_pt": 12,
+          "expected_color": "C00000",
+          "base_bold": false,
+          "all_visible_text_run_count": 61,
+          "unique_current_run_properties": [
+            {
+              "color": "C00000",
+              "sz_halfpt": "24",
+              "szCs_halfpt": "24",
+              "underline": "single",
+              "effective_bold": false,
+              "direct_bold": null
+            }
+          ],
+          "whole_description_format_pass": true
+        },
+        {
+          "current_paragraph_index": 282,
+          "text": "[QCC 자료 입력] 인증 전 데이터 차단/앱별 권한, 실제 AUTH UUID와 characteristic 길이, CRA 알고리즘·키 역할, NVM 보호·난수 bootstrap, 무통신/실패 제한 경계, QCC 자체 OTA와 기동 이미지 무결성의 상세 설계 및 구현 근거가 필요하다.",
+          "prefixes": [
+            "[QCC 자료 입력]"
+          ],
+          "paragraph_style": "TDC20",
+          "base_normal_pt": 10,
+          "note_pt": 12,
+          "expected_color": "C00000",
+          "base_bold": false,
+          "all_visible_text_run_count": 63,
+          "unique_current_run_properties": [
+            {
+              "color": "C00000",
+              "sz_halfpt": "24",
+              "szCs_halfpt": "24",
+              "underline": "single",
+              "effective_bold": false,
+              "direct_bold": null
+            }
+          ],
+          "whole_description_format_pass": true
+        },
+        {
+          "current_paragraph_index": 423,
+          "text": "[QCC 자료 입력] 24bit·16kHz I2S 클럭/프레임·유효 신호의 실제 설정과 파형 자료가 필요하다.",
+          "prefixes": [
+            "[QCC 자료 입력]"
+          ],
+          "paragraph_style": "TDC20",
+          "base_normal_pt": 10,
+          "note_pt": 12,
+          "expected_color": "C00000",
+          "base_bold": false,
+          "all_visible_text_run_count": 23,
+          "unique_current_run_properties": [
+            {
+              "color": "C00000",
+              "sz_halfpt": "24",
+              "szCs_halfpt": "24",
+              "underline": "single",
+              "effective_bold": false,
+              "direct_bold": null
+            }
+          ],
+          "whole_description_format_pass": true
+        },
+        {
+          "current_paragraph_index": 624,
+          "text": "[QCC 자료 입력] 리모콘 AUTH 접근 권한과 GAIA 주소·명령별 데이터/응답의 실제 계약 및 실행 자료가 필요하다.",
+          "prefixes": [
+            "[QCC 자료 입력]"
+          ],
+          "paragraph_style": "TDC20",
+          "base_normal_pt": 10,
+          "note_pt": 12,
+          "expected_color": "C00000",
+          "base_bold": false,
+          "all_visible_text_run_count": 31,
+          "unique_current_run_properties": [
+            {
+              "color": "C00000",
+              "sz_halfpt": "24",
+              "szCs_halfpt": "24",
+              "underline": "single",
+              "effective_bold": false,
+              "direct_bold": null
+            }
+          ],
+          "whole_description_format_pass": true
+        },
+        {
+          "current_paragraph_index": 635,
+          "text": "[QCC 자료 입력] 매핑 권한·키 역할, AUTH UUID 및 GAIA 주소·명령별 데이터/응답의 실제 계약과 실행 자료가 필요하다.",
+          "prefixes": [
+            "[QCC 자료 입력]"
+          ],
+          "paragraph_style": "TDC20",
+          "base_normal_pt": 10,
+          "note_pt": 12,
+          "expected_color": "C00000",
+          "base_bold": false,
+          "all_visible_text_run_count": 33,
+          "unique_current_run_properties": [
+            {
+              "color": "C00000",
+              "sz_halfpt": "24",
+              "szCs_halfpt": "24",
+              "underline": "single",
+              "effective_bold": false,
+              "direct_bold": null
+            }
+          ],
+          "whole_description_format_pass": true
+        },
+        {
+          "current_paragraph_index": 648,
+          "text": "[QCC/E8300 자료 입력] 기존 무제어명령 조건과 BLE 무송수신180초 조건의 범위·타이머 리셋 및 허용오차/경계 처리를 함께 확인해야 한다.",
+          "prefixes": [
+            "[QCC/E8300 자료 입력]"
+          ],
+          "paragraph_style": "TDC20",
+          "base_normal_pt": 10,
+          "note_pt": 12,
+          "expected_color": "7030A0",
+          "base_bold": false,
+          "all_visible_text_run_count": 37,
+          "unique_current_run_properties": [
+            {
+              "color": "7030A0",
+              "sz_halfpt": "24",
+              "szCs_halfpt": "24",
+              "underline": "single",
+              "effective_bold": false,
+              "direct_bold": null
+            }
+          ],
+          "whole_description_format_pass": true
+        },
+        {
+          "current_paragraph_index": 652,
+          "text": "[QCC 자료 입력] BLE pairing 이후 AUTH 접근과 인증 전 데이터 차단의 실제 UUID/권한 설정 및 조건별 실행 자료가 필요하다.",
+          "prefixes": [
+            "[QCC 자료 입력]"
+          ],
+          "paragraph_style": "TDC20",
+          "base_normal_pt": 10,
+          "note_pt": 12,
+          "expected_color": "C00000",
+          "base_bold": false,
+          "all_visible_text_run_count": 33,
+          "unique_current_run_properties": [
+            {
+              "color": "C00000",
+              "sz_halfpt": "24",
+              "szCs_halfpt": "24",
+              "underline": "single",
+              "effective_bold": false,
+              "direct_bold": null
+            }
+          ],
+          "whole_description_format_pass": true
+        },
+        {
+          "current_paragraph_index": 656,
+          "text": "[QCC 자료 입력] BLE 버전·암호화 활성 설정과 라이브러리/프로파일, AES-CCM 보호 범위 및 실제 링크 검증 자료가 필요하다. CRA 인증 설계를 전송 암호화의 근거로 사용하지 않는다.",
+          "prefixes": [
+            "[QCC 자료 입력]"
+          ],
+          "paragraph_style": "TDC20",
+          "base_normal_pt": 10,
+          "note_pt": 12,
+          "expected_color": "C00000",
+          "base_bold": false,
+          "all_visible_text_run_count": 47,
+          "unique_current_run_properties": [
+            {
+              "color": "C00000",
+              "sz_halfpt": "24",
+              "szCs_halfpt": "24",
+              "underline": "single",
+              "effective_bold": false,
+              "direct_bold": null
+            }
+          ],
+          "whole_description_format_pass": true
+        },
+        {
+          "current_paragraph_index": 669,
+          "text": "[QCC 자료 입력] SHA-256의 매핑 키 생성과 AES-CMAC의 인증값 계산 역할, 원문 HMAC/ENC 명칭 및 입력 직렬화/태그 길이의 정합성을 확정해야 한다.",
+          "prefixes": [
+            "[QCC 자료 입력]"
+          ],
+          "paragraph_style": "TDC20",
+          "base_normal_pt": 10,
+          "note_pt": 12,
+          "expected_color": "C00000",
+          "base_bold": false,
+          "all_visible_text_run_count": 41,
+          "unique_current_run_properties": [
+            {
+              "color": "C00000",
+              "sz_halfpt": "24",
+              "szCs_halfpt": "24",
+              "underline": "single",
+              "effective_bold": false,
+              "direct_bold": null
+            }
+          ],
+          "whole_description_format_pass": true
+        },
+        {
+          "current_paragraph_index": 725,
+          "text": "[QCC 자료 입력] BLE/GAIA CRC의 실제 알고리즘·적용 바이트·저장 순서와 오류 응답/검증 자료가 필요하다.",
+          "prefixes": [
+            "[QCC 자료 입력]"
+          ],
+          "paragraph_style": "TDC20",
+          "base_normal_pt": 10,
+          "note_pt": 12,
+          "expected_color": "C00000",
+          "base_bold": false,
+          "all_visible_text_run_count": 29,
+          "unique_current_run_properties": [
+            {
+              "color": "C00000",
+              "sz_halfpt": "24",
+              "szCs_halfpt": "24",
+              "underline": "single",
+              "effective_bold": false,
+              "direct_bold": null
+            }
+          ],
+          "whole_description_format_pass": true
+        },
+        {
+          "current_paragraph_index": 798,
+          "text": "[QCC 자료 입력] Classic 프로파일/코덱·좌우 배정, 오디오/I2S 시작·중단과 상태통보 타이밍 및 실행 자료가 필요하다.",
+          "prefixes": [
+            "[QCC 자료 입력]"
+          ],
+          "paragraph_style": "TDC20",
+          "base_normal_pt": 10,
+          "note_pt": 12,
+          "expected_color": "C00000",
+          "base_bold": false,
+          "all_visible_text_run_count": 31,
+          "unique_current_run_properties": [
+            {
+              "color": "C00000",
+              "sz_halfpt": "24",
+              "szCs_halfpt": "24",
+              "underline": "single",
+              "effective_bold": false,
+              "direct_bold": null
+            }
+          ],
+          "whole_description_format_pass": true
+        },
+        {
+          "current_paragraph_index": 808,
+          "text": "[QCC 자료 입력] 실제 BLE 광고/연결 구성과 주소·회사ID·바이트 길이, 편이/양이 데이터 배정 및 실행 자료가 필요하다.",
+          "prefixes": [
+            "[QCC 자료 입력]"
+          ],
+          "paragraph_style": "TDC20",
+          "base_normal_pt": 10,
+          "note_pt": 12,
+          "expected_color": "C00000",
+          "base_bold": false,
+          "all_visible_text_run_count": 37,
+          "unique_current_run_properties": [
+            {
+              "color": "C00000",
+              "sz_halfpt": "24",
+              "szCs_halfpt": "24",
+              "underline": "single",
+              "effective_bold": false,
+              "direct_bold": null
+            }
+          ],
+          "whole_description_format_pass": true
+        },
+        {
+          "current_paragraph_index": 812,
+          "text": "[QCC 자료 입력] 인증4상태의 실제 응답, 미완료30초 타이머 시작/리셋·허용오차 및 정보 미노출 결과가 필요하다.",
+          "prefixes": [
+            "[QCC 자료 입력]"
+          ],
+          "paragraph_style": "TDC20",
+          "base_normal_pt": 10,
+          "note_pt": 12,
+          "expected_color": "C00000",
+          "base_bold": false,
+          "all_visible_text_run_count": 35,
+          "unique_current_run_properties": [
+            {
+              "color": "C00000",
+              "sz_halfpt": "24",
+              "szCs_halfpt": "24",
+              "underline": "single",
+              "effective_bold": false,
+              "direct_bold": null
+            }
+          ],
+          "whole_description_format_pass": true
+        },
+        {
+          "current_paragraph_index": 816,
+          "text": "[QCC 자료 입력] 연속5회 실패 누적/초기화·전원 재기동, 60초 제한의 시작/해제·재접속과 시간 경계 결과가 필요하다.",
+          "prefixes": [
+            "[QCC 자료 입력]"
+          ],
+          "paragraph_style": "TDC20",
+          "base_normal_pt": 10,
+          "note_pt": 12,
+          "expected_color": "C00000",
+          "base_bold": false,
+          "all_visible_text_run_count": 37,
+          "unique_current_run_properties": [
+            {
+              "color": "C00000",
+              "sz_halfpt": "24",
+              "szCs_halfpt": "24",
+              "underline": "single",
+              "effective_bold": false,
+              "direct_bold": null
+            }
+          ],
+          "whole_description_format_pass": true
+        },
+        {
+          "current_paragraph_index": 834,
+          "text": "[QCC 자료 입력] 설치 shared_service_key/clinician_master_key와 생성 clinic_service_key, NVM ID/길이·암호화/접근 제한과 난수 bootstrap 및 실제 보호 결과가 필요하다.",
+          "prefixes": [
+            "[QCC 자료 입력]"
+          ],
+          "paragraph_style": "TDC20",
+          "base_normal_pt": 10,
+          "note_pt": 12,
+          "expected_color": "C00000",
+          "base_bold": false,
+          "all_visible_text_run_count": 31,
+          "unique_current_run_properties": [
+            {
+              "color": "C00000",
+              "sz_halfpt": "24",
+              "szCs_halfpt": "24",
+              "underline": "single",
+              "effective_bold": false,
+              "direct_bold": null
+            }
+          ],
+          "whole_description_format_pass": true
+        },
+        {
+          "current_paragraph_index": 861,
+          "text": "[QCC 자료 입력] 외부기 마이크의 QCC 입력 경로·Classic 송신 프로파일/코덱·상대 장치·동시 송수신과 실제 자료가 필요하다.",
+          "prefixes": [
+            "[QCC 자료 입력]"
+          ],
+          "paragraph_style": "TDC20",
+          "base_normal_pt": 10,
+          "note_pt": 12,
+          "expected_color": "C00000",
+          "base_bold": false,
+          "all_visible_text_run_count": 33,
+          "unique_current_run_properties": [
+            {
+              "color": "C00000",
+              "sz_halfpt": "24",
+              "szCs_halfpt": "24",
+              "underline": "single",
+              "effective_bold": false,
+              "direct_bold": null
+            }
+          ],
+          "whole_description_format_pass": true
+        },
+        {
+          "current_paragraph_index": 865,
+          "text": "[E8300 보완] 제품 사용 설명서 파일과 정식 상위 요구사항 식별/추적을 보완해야 한다.",
+          "prefixes": [
+            "[E8300 보완]"
+          ],
+          "paragraph_style": "TDC20",
+          "base_normal_pt": 10,
+          "note_pt": 12,
+          "expected_color": "0070C0",
+          "base_bold": false,
+          "all_visible_text_run_count": 25,
+          "unique_current_run_properties": [
+            {
+              "color": "0070C0",
+              "sz_halfpt": "24",
+              "szCs_halfpt": "24",
+              "underline": "single",
+              "effective_bold": false,
+              "direct_bold": null
+            }
+          ],
+          "whole_description_format_pass": true
+        },
+        {
+          "current_paragraph_index": 916,
+          "text": "[QCC 자료 입력] SW-FW-RID-82 마이크의 QCC 입력 경로, Classic 프로파일/코덱, 상대 장치와 동시 송수신·I2S 방향 및 설계·검증 자료가 필요하다.",
+          "prefixes": [
+            "[QCC 자료 입력]"
+          ],
+          "paragraph_style": "TDC20",
+          "base_normal_pt": 10,
+          "note_pt": 12,
+          "expected_color": "C00000",
+          "base_bold": false,
+          "all_visible_text_run_count": 35,
+          "unique_current_run_properties": [
+            {
+              "color": "C00000",
+              "sz_halfpt": "24",
+              "szCs_halfpt": "24",
+              "underline": "single",
+              "effective_bold": false,
+              "direct_bold": null
+            }
+          ],
+          "whole_description_format_pass": true
+        },
+        {
+          "current_paragraph_index": 917,
+          "text": "[E8300 보완] SW-FW-RID-83 제품 사용 설명서 파일과 정식 상위 요구사항 연결을 보완해야 한다.",
+          "prefixes": [
+            "[E8300 보완]"
+          ],
+          "paragraph_style": "TDC20",
+          "base_normal_pt": 10,
+          "note_pt": 12,
+          "expected_color": "0070C0",
+          "base_bold": false,
+          "all_visible_text_run_count": 23,
+          "unique_current_run_properties": [
+            {
+              "color": "0070C0",
+              "sz_halfpt": "24",
+              "szCs_halfpt": "24",
+              "underline": "single",
+              "effective_bold": false,
+              "direct_bold": null
+            }
+          ],
+          "whole_description_format_pass": true
+        },
+        {
+          "current_paragraph_index": 940,
+          "text": "[QCC 자료 입력] Qualcomm ADK/BSP와 Classic/TWS/BLE/GAIA/암호·NVM 라이브러리의 정확한 제품명·버전·구성·API, 알려진 문제 및 사용 검토 자료를 SOUP 목록에 연결해야 한다.",
+          "prefixes": [
+            "[QCC 자료 입력]"
+          ],
+          "paragraph_style": "TDC20",
+          "base_normal_pt": 10,
+          "note_pt": 12,
+          "expected_color": "C00000",
+          "base_bold": false,
+          "all_visible_text_run_count": 37,
+          "unique_current_run_properties": [
+            {
+              "color": "C00000",
+              "sz_halfpt": "24",
+              "szCs_halfpt": "24",
+              "underline": "single",
+              "effective_bold": false,
+              "direct_bold": null
+            }
+          ],
+          "whole_description_format_pass": true
+        }
+      ],
+      "base_point_evidence": "Surrounding regular body style complex-script size20 halfpt where present; native body renders9.96pt rounded10pt. Notes direct sz/szCs24 halfpt=12pt; native colored notes12.0pt.",
+      "status": "snapshot before design targeted reference/diagram/layout edits; repeat hash validation after owner final save"
+    },
+    "SDDD": {
+      "file": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SDDD-FW-TD24A 소프트웨어 상세 설계서.docx",
+      "sha256_before": "E013E3A58C9B15F3CF1CE078CCC6A13A29BD2CE80BDCD52C8A9CAE0E92608752",
+      "sha256_after": "E013E3A58C9B15F3CF1CE078CCC6A13A29BD2CE80BDCD52C8A9CAE0E92608752",
+      "input_stable_during_read": true,
+      "deleted_rows_excluded": 87,
+      "TOC_moveFrom_deleted_text_excluded": true,
+      "note_count": 20,
+      "all_notes_pass": true,
+      "notes": [
+        {
+          "current_paragraph_index": 4407,
+          "text": "[QCC 자료 입력] QCC shutdown_ind의 on/off 본문·그림이 상충한다. 실제 PIO 번호·전압·논리 반전, 기동/종료 대기와 I2S enable→I2S_FLAG Low 유효의 물리 대응을 확인해야 한다.",
+          "prefixes": [
+            "[QCC 자료 입력]"
+          ],
+          "paragraph_style": "TDC20",
+          "base_normal_pt": 10,
+          "note_pt": 12,
+          "expected_color": "C00000",
+          "base_bold": false,
+          "all_visible_text_run_count": 39,
+          "unique_current_run_properties": [
+            {
+              "color": "C00000",
+              "sz_halfpt": "24",
+              "szCs_halfpt": "24",
+              "underline": "single",
+              "effective_bold": false,
+              "direct_bold": null
+            }
+          ],
+          "whole_description_format_pass": true
+        },
+        {
+          "current_paragraph_index": 4408,
+          "text": "[QCC 자료 입력] 충전 미연결/연결/충전 중/비충전의 4상태를 0x34 충전기 연결 0/1로 변환하는 표, 0x34~0x36 통보 시점/길이/오류 응답과 GAIA addressing·type별 데이터 정의를 제출해야 한다.",
+          "prefixes": [
+            "[QCC 자료 입력]"
+          ],
+          "paragraph_style": "TDC20",
+          "base_normal_pt": 10,
+          "note_pt": 12,
+          "expected_color": "C00000",
+          "base_bold": false,
+          "all_visible_text_run_count": 49,
+          "unique_current_run_properties": [
+            {
+              "color": "C00000",
+              "sz_halfpt": "24",
+              "szCs_halfpt": "24",
+              "underline": "single",
+              "effective_bold": false,
+              "direct_bold": null
+            }
+          ],
+          "whole_description_format_pass": true
+        },
+        {
+          "current_paragraph_index": 4409,
+          "text": "[QCC 자료 입력] 24bit·16kHz의 QCC 출력 설정, I2S 클럭/프레임·좌우 배정과 시작/중단 시 유효 신호 파형을 확인해야 한다. E8300 정적 수신 설정과 제공 설계의 대응만 확인했으며 실제 오디오/핀 파형 측정은 미제공이다.",
+          "prefixes": [
+            "[QCC 자료 입력]"
+          ],
+          "paragraph_style": "TDC20",
+          "base_normal_pt": 10,
+          "note_pt": 12,
+          "expected_color": "C00000",
+          "base_bold": false,
+          "all_visible_text_run_count": 61,
+          "unique_current_run_properties": [
+            {
+              "color": "C00000",
+              "sz_halfpt": "24",
+              "szCs_halfpt": "24",
+              "underline": "single",
+              "effective_bold": false,
+              "direct_bold": null
+            }
+          ],
+          "whole_description_format_pass": true
+        },
+        {
+          "current_paragraph_index": 4430,
+          "text": "[QCC 자료 입력] SPI 속도, QCC 핀 번호, 초기값, 초기화 실패 처리와 시간 한도; AUTH UUID 및 GATT 보안 설정의 실제 값; I2S 24bit/16kHz는 QCC SRS 근거를 연결해야 하며 본 유닛 원문에는 수치 없음.",
+          "prefixes": [
+            "[QCC 자료 입력]"
+          ],
+          "paragraph_style": "TDC20",
+          "base_normal_pt": 10,
+          "note_pt": 12,
+          "expected_color": "C00000",
+          "base_bold": false,
+          "all_visible_text_run_count": 51,
+          "unique_current_run_properties": [
+            {
+              "color": "C00000",
+              "sz_halfpt": "24",
+              "szCs_halfpt": "24",
+              "underline": "single",
+              "effective_bold": false,
+              "direct_bold": null
+            }
+          ],
+          "whole_description_format_pass": true
+        },
+        {
+          "current_paragraph_index": 4446,
+          "text": "[QCC 자료 입력] shutdown_ind off/on의 본문·그림 상충; 기동 대기 및 종료 대기 수치; SPI 0x34/35/36의 필드/응답/순서 및 오류 계약; 내부장치정보 명령과 유효한 응답 필드.",
+          "prefixes": [
+            "[QCC 자료 입력]"
+          ],
+          "paragraph_style": "TDC20",
+          "base_normal_pt": 10,
+          "note_pt": 12,
+          "expected_color": "C00000",
+          "base_bold": false,
+          "all_visible_text_run_count": 49,
+          "unique_current_run_properties": [
+            {
+              "color": "C00000",
+              "sz_halfpt": "24",
+              "szCs_halfpt": "24",
+              "underline": "single",
+              "effective_bold": false,
+              "direct_bold": null
+            }
+          ],
+          "whole_description_format_pass": true
+        },
+        {
+          "current_paragraph_index": 4462,
+          "text": "[QCC 자료 입력] TWS 구성값, 좌우 배정, 파트너 연결/해제/단독 복귀의 구체 계약; 내부장치정보에서 받아 사용하는 편이/양이 정보와 생산 설정의 우선순위.",
+          "prefixes": [
+            "[QCC 자료 입력]"
+          ],
+          "paragraph_style": "TDC20",
+          "base_normal_pt": 10,
+          "note_pt": 12,
+          "expected_color": "C00000",
+          "base_bold": false,
+          "all_visible_text_run_count": 43,
+          "unique_current_run_properties": [
+            {
+              "color": "C00000",
+              "sz_halfpt": "24",
+              "szCs_halfpt": "24",
+              "underline": "single",
+              "effective_bold": false,
+              "direct_bold": null
+            }
+          ],
+          "whole_description_format_pass": true
+        },
+        {
+          "current_paragraph_index": 4478,
+          "text": "[QCC 자료 입력] 해제 디바운스 시간, 실제 장치명 바이트 길이/인코딩/정보조회 응답; 일반 BLE 기동/광고/매핑이 내부장치 미연결 때 허용되는지.",
+          "prefixes": [
+            "[QCC 자료 입력]"
+          ],
+          "paragraph_style": "TDC20",
+          "base_normal_pt": 10,
+          "note_pt": 12,
+          "expected_color": "C00000",
+          "base_bold": false,
+          "all_visible_text_run_count": 41,
+          "unique_current_run_properties": [
+            {
+              "color": "C00000",
+              "sz_halfpt": "24",
+              "szCs_halfpt": "24",
+              "underline": "single",
+              "effective_bold": false,
+              "direct_bold": null
+            }
+          ],
+          "whole_description_format_pass": true
+        },
+        {
+          "current_paragraph_index": 4496,
+          "text": "[QCC 자료 입력] QCC PIO 번호/전압/극성과 E8300 핀의 실제 연결; I2S enable과 E8300 DIO29 Low=유효의 대응; HW reset 회로 대상, 리셋 펄스폭, 충전 시작 시 리셋 동작의 근거; 온도센서 값이 사용되는 상태/한도는 원문에 없음.",
+          "prefixes": [
+            "[QCC 자료 입력]"
+          ],
+          "paragraph_style": "TDC20",
+          "base_normal_pt": 10,
+          "note_pt": 12,
+          "expected_color": "C00000",
+          "base_bold": false,
+          "all_visible_text_run_count": 57,
+          "unique_current_run_properties": [
+            {
+              "color": "C00000",
+              "sz_halfpt": "24",
+              "szCs_halfpt": "24",
+              "underline": "single",
+              "effective_bold": false,
+              "direct_bold": null
+            }
+          ],
+          "whole_description_format_pass": true
+        },
+        {
+          "current_paragraph_index": 4512,
+          "text": "[QCC 자료 입력] 배터리 기준값, 전압-잔량 변환표, 주기, 오차와 실패 시 정책; 4종 충전 상태→E8300 0x34 charger_connected0/1 변환 계약; 원문은 empty이면 무조건 sleep이라고도 쓰므로 충전예외와 우선순위 명확화 필요; 종료 신호극성, wake-up source 및 시간; 표270은 NVM 데이터 제목인데 충전상태표를 중복한 잔존 오류.",
+          "prefixes": [
+            "[QCC 자료 입력]"
+          ],
+          "paragraph_style": "TDC20",
+          "base_normal_pt": 10,
+          "note_pt": 12,
+          "expected_color": "C00000",
+          "base_bold": false,
+          "all_visible_text_run_count": 78,
+          "unique_current_run_properties": [
+            {
+              "color": "C00000",
+              "sz_halfpt": "24",
+              "szCs_halfpt": "24",
+              "underline": "single",
+              "effective_bold": false,
+              "direct_bold": null
+            }
+          ],
+          "whole_description_format_pass": true
+        },
+        {
+          "current_paragraph_index": 4528,
+          "text": "[QCC 자료 입력] 주소/ID/길이/원자성/오류 및 기본값 계약; AUTH_CLLINC_KEY/AUTH_SHARED_KEY와 보안유닛의 AUTH_SERVICE_KEY/AUTH_CLINIC_MASTER_KEY 명칭·역할 대응.",
+          "prefixes": [
+            "[QCC 자료 입력]"
+          ],
+          "paragraph_style": "TDC20",
+          "base_normal_pt": 10,
+          "note_pt": 12,
+          "expected_color": "C00000",
+          "base_bold": false,
+          "all_visible_text_run_count": 29,
+          "unique_current_run_properties": [
+            {
+              "color": "C00000",
+              "sz_halfpt": "24",
+              "szCs_halfpt": "24",
+              "underline": "single",
+              "effective_bold": false,
+              "direct_bold": null
+            }
+          ],
+          "whole_description_format_pass": true
+        },
+        {
+          "current_paragraph_index": 4546,
+          "text": "[QCC 자료 입력] 프로파일/코덱/QCC 라이브러리 버전/페어링 시간; I2S 실제24bit/16kHz 출력 및 L/R 처리의 세부; 0x36 오디오 연결/종류 통보 순서와 I2S_FLAG 타이밍; RID-82 마이크 입력·Classic 송신 프로파일/코덱·상대장치·동시 송수신과 검증 자료.",
+          "prefixes": [
+            "[QCC 자료 입력]"
+          ],
+          "paragraph_style": "TDC20",
+          "base_normal_pt": 10,
+          "note_pt": 12,
+          "expected_color": "C00000",
+          "base_bold": false,
+          "all_visible_text_run_count": 59,
+          "unique_current_run_properties": [
+            {
+              "color": "C00000",
+              "sz_halfpt": "24",
+              "szCs_halfpt": "24",
+              "underline": "single",
+              "effective_bold": false,
+              "direct_bold": null
+            }
+          ],
+          "whole_description_format_pass": true
+        },
+        {
+          "current_paragraph_index": 4562,
+          "text": "[QCC 자료 입력] 광고 바이트 배치, 회사ID/Appearance값/길이/광고주기; BLE 링크의 실제 암호화 설정·인증전 데이터차단; 동시연결1개 및 무통신3분 제어는 SRS 근거를 추가 연결.",
+          "prefixes": [
+            "[QCC 자료 입력]"
+          ],
+          "paragraph_style": "TDC20",
+          "base_normal_pt": 10,
+          "note_pt": 12,
+          "expected_color": "C00000",
+          "base_bold": false,
+          "all_visible_text_run_count": 49,
+          "unique_current_run_properties": [
+            {
+              "color": "C00000",
+              "sz_halfpt": "24",
+              "szCs_halfpt": "24",
+              "underline": "single",
+              "effective_bold": false,
+              "direct_bold": null
+            }
+          ],
+          "whole_description_format_pass": true
+        },
+        {
+          "current_paragraph_index": 4578,
+          "text": "[QCC 자료 입력] Primary/Characteristic 실제 UUID값, 바이트 길이/엔디언/일치검사; Primary Service의 read property 표기는 GATT service/characteristic 구분 검토; 그림의 Confirm notify 표기는 본문의 client write와 상충; AUTH 서비스는 BLE pairing 후에만 접근 가능함을 GATT설정과 대조.",
+          "prefixes": [
+            "[QCC 자료 입력]"
+          ],
+          "paragraph_style": "TDC20",
+          "base_normal_pt": 10,
+          "note_pt": 12,
+          "expected_color": "C00000",
+          "base_bold": false,
+          "all_visible_text_run_count": 47,
+          "unique_current_run_properties": [
+            {
+              "color": "C00000",
+              "sz_halfpt": "24",
+              "szCs_halfpt": "24",
+              "underline": "single",
+              "effective_bold": false,
+              "direct_bold": null
+            }
+          ],
+          "whole_description_format_pass": true
+        },
+        {
+          "current_paragraph_index": 4594,
+          "text": "[QCC 자료 입력] GAIA addressing의 실제 값, type별 데이터 정의/길이/응답/CRC; 인증 완료 전과 권한별 메시지 허용범위; SPI21byte 프레임과 BLE최대20byte 메시지의 변환/길이검사; GAIA의 스마트케이스 전용 addressing 문구는 실제 외부기 주소로 확인 필요.",
+          "prefixes": [
+            "[QCC 자료 입력]"
+          ],
+          "paragraph_style": "TDC20",
+          "base_normal_pt": 10,
+          "note_pt": 12,
+          "expected_color": "C00000",
+          "base_bold": false,
+          "all_visible_text_run_count": 61,
+          "unique_current_run_properties": [
+            {
+              "color": "C00000",
+              "sz_halfpt": "24",
+              "szCs_halfpt": "24",
+              "underline": "single",
+              "effective_bold": false,
+              "direct_bold": null
+            }
+          ],
+          "whole_description_format_pass": true
+        },
+        {
+          "current_paragraph_index": 4612,
+          "text": "[QCC 자료 입력] 인증타이머 구체30초는 QCC 시험기준 근거로 추가 필요; 무통신3분 및 연속5회 실패1분제한의 카운터/시간/초기화 정책 원문 SDDD에 없음; HMAC 명칭과 AES-CMAC 실제알고리즘 명칭 상충; 그림의 auth is required→in_progress후 End AUTH가 진행설명과 상충.",
+          "prefixes": [
+            "[QCC 자료 입력]"
+          ],
+          "paragraph_style": "TDC20",
+          "base_normal_pt": 10,
+          "note_pt": 12,
+          "expected_color": "C00000",
+          "base_bold": false,
+          "all_visible_text_run_count": 65,
+          "unique_current_run_properties": [
+            {
+              "color": "C00000",
+              "sz_halfpt": "24",
+              "szCs_halfpt": "24",
+              "underline": "single",
+              "effective_bold": false,
+              "direct_bold": null
+            }
+          ],
+          "whole_description_format_pass": true
+        },
+        {
+          "current_paragraph_index": 4628,
+          "text": "[QCC 자료 입력] HMAC와 CMAC명칭, ENC표기의 정확한 알고리즘/바이트결합/태그길이; SHA256 입력 직렬화/길이/엔디언과 clinician 명칭 오기; AES-128 모드/IV/무결성/쓰기실패 계약; 난수 생성원·품질·재사용 방지 및 보안NVM의 rand_num 복호화 부트스트랩.",
+          "prefixes": [
+            "[QCC 자료 입력]"
+          ],
+          "paragraph_style": "TDC20",
+          "base_normal_pt": 10,
+          "note_pt": 12,
+          "expected_color": "C00000",
+          "base_bold": false,
+          "all_visible_text_run_count": 59,
+          "unique_current_run_properties": [
+            {
+              "color": "C00000",
+              "sz_halfpt": "24",
+              "szCs_halfpt": "24",
+              "underline": "single",
+              "effective_bold": false,
+              "direct_bold": null
+            }
+          ],
+          "whole_description_format_pass": true
+        },
+        {
+          "current_paragraph_index": 4644,
+          "text": "[QCC 자료 입력] AUTH_CLINIC_MASTER_KEY 설명이 리모콘이라고 적혀 toolbox의 매핑역할과 상충; 보안NVM의 모든데이터 암호화 주장과 랜덤을 키재료로 읽는 부트스트랩; 데이터길이/위치/기본값/손상검출/접근실패 및키읽기실패 차단.",
+          "prefixes": [
+            "[QCC 자료 입력]"
+          ],
+          "paragraph_style": "TDC20",
+          "base_normal_pt": 10,
+          "note_pt": 12,
+          "expected_color": "C00000",
+          "base_bold": false,
+          "all_visible_text_run_count": 49,
+          "unique_current_run_properties": [
+            {
+              "color": "C00000",
+              "sz_halfpt": "24",
+              "szCs_halfpt": "24",
+              "underline": "single",
+              "effective_bold": false,
+              "direct_bold": null
+            }
+          ],
+          "whole_description_format_pass": true
+        },
+        {
+          "current_paragraph_index": 4658,
+          "text": "[QCC 자료 입력] 실제 AUTH service/characteristic UUID, Challenge/Response/Confirm/Status 길이·엔디언·접근 권한을 입력해야 한다. Confirm은 제공 표/본문의 client write를 설계 대응으로 적되 그림의 notify와 상충을 해소해야 한다.",
+          "prefixes": [
+            "[QCC 자료 입력]"
+          ],
+          "paragraph_style": "TDC20",
+          "base_normal_pt": 10,
+          "note_pt": 12,
+          "expected_color": "C00000",
+          "base_bold": false,
+          "all_visible_text_run_count": 45,
+          "unique_current_run_properties": [
+            {
+              "color": "C00000",
+              "sz_halfpt": "24",
+              "szCs_halfpt": "24",
+              "underline": "single",
+              "effective_bold": false,
+              "direct_bold": null
+            }
+          ],
+          "whole_description_format_pass": true
+        },
+        {
+          "current_paragraph_index": 4659,
+          "text": "[QCC 자료 입력] QCC 자체 OTA의 이미지/인증/실패 복구와 E8300 이미지 전달 경로를 분리한 설계, QCC 기동 이미지 무결성의 알고리즘·검사 실패 처리·대상 범위 및 구현 근거가 필요하다. E8300 CRC/암호화 검사를 QCC 검사의 근거로 사용하지 않는다.",
+          "prefixes": [
+            "[QCC 자료 입력]"
+          ],
+          "paragraph_style": "TDC20",
+          "base_normal_pt": 10,
+          "note_pt": 12,
+          "expected_color": "C00000",
+          "base_bold": false,
+          "all_visible_text_run_count": 65,
+          "unique_current_run_properties": [
+            {
+              "color": "C00000",
+              "sz_halfpt": "24",
+              "szCs_halfpt": "24",
+              "underline": "single",
+              "effective_bold": false,
+              "direct_bold": null
+            }
+          ],
+          "whole_description_format_pass": true
+        },
+        {
+          "current_paragraph_index": 4660,
+          "text": "[QCC/E8300 자료 입력] 무제어 명령 180초와 BLE 무송수신 180초의 타이머 리셋 범위, 인증 실패 누적·연결 해제/재접속·60초 제한 종료의 경계와 E8300 통보 영향을 함께 확인해야 한다.",
+          "prefixes": [
+            "[QCC/E8300 자료 입력]"
+          ],
+          "paragraph_style": "TDC20",
+          "base_normal_pt": 10,
+          "note_pt": 12,
+          "expected_color": "7030A0",
+          "base_bold": false,
+          "all_visible_text_run_count": 51,
+          "unique_current_run_properties": [
+            {
+              "color": "7030A0",
+              "sz_halfpt": "24",
+              "szCs_halfpt": "24",
+              "underline": "single",
+              "effective_bold": false,
+              "direct_bold": null
+            }
+          ],
+          "whole_description_format_pass": true
+        }
+      ],
+      "base_point_evidence": "Surrounding regular body style complex-script size20 halfpt where present; native body renders9.96pt rounded10pt. Notes direct sz/szCs24 halfpt=12pt; native colored notes12.0pt.",
+      "status": "snapshot before design targeted reference/diagram/layout edits; repeat hash validation after owner final save"
+    },
+    "SIP": {
+      "file": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SIP-FW-TD24A 소프트웨어 통합 계획서.docx",
+      "sha256_before": "F106C5B496DF7D5DF478C8715D7E418F9A559AAFB7BC8AC2AFC91E4B6738F0B4",
+      "sha256_after": "F106C5B496DF7D5DF478C8715D7E418F9A559AAFB7BC8AC2AFC91E4B6738F0B4",
+      "input_stable_during_read": true,
+      "deleted_rows_excluded": 0,
+      "TOC_moveFrom_deleted_text_excluded": true,
+      "note_count": 6,
+      "all_notes_pass": true,
+      "notes": [
+        {
+          "current_paragraph_index": 229,
+          "text": "[QCC 자료 입력] 실제 QCC 소스/빌드·ADK/BSP 버전과 단위 실행 로그를 제출해야 한다. 아래 단계는 통합 계획이며 구현/단위시험이 완료된 것으로 가정하지 않는다.",
+          "prefixes": [
+            "[QCC 자료 입력]"
+          ],
+          "paragraph_style": "TDC30",
+          "base_normal_pt": 10,
+          "note_pt": 12,
+          "expected_color": "C00000",
+          "base_bold": false,
+          "all_visible_text_run_count": 43,
+          "unique_current_run_properties": [
+            {
+              "color": "C00000",
+              "sz_halfpt": "24",
+              "szCs_halfpt": "24",
+              "underline": "single",
+              "effective_bold": false,
+              "direct_bold": null
+            }
+          ],
+          "whole_description_format_pass": true
+        },
+        {
+          "current_paragraph_index": 311,
+          "text": "[QCC 자료 입력] QCC shutdown_ind의 on/off 본문·그림이 상충한다. 실제 PIO 번호·전압·논리 반전, 기동/종료 대기와 I2S enable→I2S_FLAG Low 유효의 물리 대응을 확인해야 한다.",
+          "prefixes": [
+            "[QCC 자료 입력]"
+          ],
+          "paragraph_style": "TDC30",
+          "base_normal_pt": 10,
+          "note_pt": 12,
+          "expected_color": "C00000",
+          "base_bold": false,
+          "all_visible_text_run_count": 39,
+          "unique_current_run_properties": [
+            {
+              "color": "C00000",
+              "sz_halfpt": "24",
+              "szCs_halfpt": "24",
+              "underline": "single",
+              "effective_bold": false,
+              "direct_bold": null
+            }
+          ],
+          "whole_description_format_pass": true
+        },
+        {
+          "current_paragraph_index": 312,
+          "text": "[QCC 자료 입력] 충전 미연결/연결/충전 중/비충전의 4상태를 0x34 충전기 연결 0/1로 변환하는 표, 0x34~0x36 통보 시점/길이/오류 응답과 GAIA addressing·type별 데이터 정의를 제출해야 한다.",
+          "prefixes": [
+            "[QCC 자료 입력]"
+          ],
+          "paragraph_style": "TDC30",
+          "base_normal_pt": 10,
+          "note_pt": 12,
+          "expected_color": "C00000",
+          "base_bold": false,
+          "all_visible_text_run_count": 49,
+          "unique_current_run_properties": [
+            {
+              "color": "C00000",
+              "sz_halfpt": "24",
+              "szCs_halfpt": "24",
+              "underline": "single",
+              "effective_bold": false,
+              "direct_bold": null
+            }
+          ],
+          "whole_description_format_pass": true
+        },
+        {
+          "current_paragraph_index": 313,
+          "text": "[QCC 자료 입력] 24bit·16kHz의 QCC 출력 설정, I2S 클럭/프레임·좌우 배정과 시작/중단 시 유효 신호 파형을 확인해야 한다. E8300 정적 수신 설정과 제공 설계의 대응만 확인했으며 실제 오디오/핀 파형 측정은 미제공이다.",
+          "prefixes": [
+            "[QCC 자료 입력]"
+          ],
+          "paragraph_style": "TDC30",
+          "base_normal_pt": 10,
+          "note_pt": 12,
+          "expected_color": "C00000",
+          "base_bold": false,
+          "all_visible_text_run_count": 61,
+          "unique_current_run_properties": [
+            {
+              "color": "C00000",
+              "sz_halfpt": "24",
+              "szCs_halfpt": "24",
+              "underline": "single",
+              "effective_bold": false,
+              "direct_bold": null
+            }
+          ],
+          "whole_description_format_pass": true
+        },
+        {
+          "current_paragraph_index": 317,
+          "text": "[QCC 자료 입력] QCC 통합 실행 로그, 실제 입력/응답 전체 메시지, 오디오/핀 파형·장비/빌드 식별 및 시험자 확인 기록이 필요하다. 미해소 설계 상충은 시험 판정에도 유지한다.",
+          "prefixes": [
+            "[QCC 자료 입력]"
+          ],
+          "paragraph_style": "TDC30",
+          "base_normal_pt": 10,
+          "note_pt": 12,
+          "expected_color": "C00000",
+          "base_bold": false,
+          "all_visible_text_run_count": 55,
+          "unique_current_run_properties": [
+            {
+              "color": "C00000",
+              "sz_halfpt": "24",
+              "szCs_halfpt": "24",
+              "underline": "single",
+              "effective_bold": false,
+              "direct_bold": null
+            }
+          ],
+          "whole_description_format_pass": true
+        },
+        {
+          "current_paragraph_index": 323,
+          "text": "[QCC 자료 입력] QCC 자체 펌웨어 갱신과 E8300 이미지 전달의 명령·버퍼·순서·재시도·인증·오류/중단 복구를 각각 정의하고 구현/통합 결과를 제출해야 한다. E8300 OTA 슬롯1~2와 부트 상태 슬롯1~4, 0x35 갱신 연결 통보를 구분하며 QCC 기동 이미지 무결성 검사 범위·알고리즘·실패 처리도 별도로 확인해야 한다.",
+          "prefixes": [
+            "[QCC 자료 입력]"
+          ],
+          "paragraph_style": "TDC33",
+          "base_normal_pt": 10,
+          "note_pt": 12,
+          "expected_color": "C00000",
+          "base_bold": false,
+          "all_visible_text_run_count": 85,
+          "unique_current_run_properties": [
+            {
+              "color": "C00000",
+              "sz_halfpt": "24",
+              "szCs_halfpt": "24",
+              "underline": "single",
+              "effective_bold": false,
+              "direct_bold": null
+            }
+          ],
+          "whole_description_format_pass": true
+        }
+      ],
+      "base_point_evidence": "Surrounding regular body style complex-script size20 halfpt where present; native body renders9.96pt rounded10pt. Notes direct sz/szCs24 halfpt=12pt; native colored notes12.0pt.",
+      "status": "snapshot before design targeted reference/diagram/layout edits; repeat hash validation after owner final save"
+    }
+  },
+  "current_saved_missing_notice_format_audit": {
+    "SR": {
+      "file": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\02_설계 입력\\SW\\외부기\\[E8300-QCC] SR-FW-TD24A 소프트웨어 요구사항.docx",
+      "sha256_before": "8237F9E97E7D868FB87D09661FA546E51E69DE0D83C9F2DDB75148ECC56F6F63",
+      "sha256_after": "8237F9E97E7D868FB87D09661FA546E51E69DE0D83C9F2DDB75148ECC56F6F63",
+      "input_stable_during_read": true,
+      "owner_expected_sha256": null,
+      "matches_owner_stable_hash": null,
+      "deleted_rows_excluded": 0,
+      "TOC_moveFrom_deleted_text_excluded": true,
+      "note_count": 5,
+      "all_notes_pass": true,
+      "notes": [
+        {
+          "current_paragraph_index": 218,
+          "text": "[QCC/E8300 자료 입력] 3분 무송수신의 감시/갱신 범위와 기존 제어 명령 미수신 조건의 정합성, 마이크의 QCC 입력 경로 및 연결/프로파일별 오디오 송수신 조건을 확인한다.",
+          "prefixes": [
+            "[QCC/E8300 자료 입력]"
+          ],
+          "paragraph_style": "a8",
+          "base_normal_pt": 10,
+          "note_pt": 12,
+          "expected_color": "7030A0",
+          "base_bold": false,
+          "all_visible_text_run_count": 1,
+          "unique_current_run_properties": [
+            {
+              "color": "7030A0",
+              "sz_halfpt": "24",
+              "szCs_halfpt": "24",
+              "underline": "single",
+              "effective_bold": false,
+              "direct_bold": null
+            }
+          ],
+          "whole_description_format_pass": true
+        },
+        {
+          "current_paragraph_index": 228,
+          "text": "[QCC 자료 입력] 실제 QCC 개발 환경, 라이브러리/ADK 버전과 빌드 구성을 입력한다.",
+          "prefixes": [
+            "[QCC 자료 입력]"
+          ],
+          "paragraph_style": "a",
+          "base_normal_pt": 10,
+          "note_pt": 12,
+          "expected_color": "C00000",
+          "base_bold": false,
+          "all_visible_text_run_count": 1,
+          "unique_current_run_properties": [
+            {
+              "color": "C00000",
+              "sz_halfpt": "24",
+              "szCs_halfpt": "24",
+              "underline": "single",
+              "effective_bold": false,
+              "direct_bold": null
+            }
+          ],
+          "whole_description_format_pass": true
+        },
+        {
+          "current_paragraph_index": 233,
+          "text": "[QCC 자료 입력] QCC의 실제 메모리 배치, 실행 이미지/데이터 사용량과 부트 이미지 검사 설정을 입력한다.",
+          "prefixes": [
+            "[QCC 자료 입력]"
+          ],
+          "paragraph_style": "a",
+          "base_normal_pt": 10,
+          "note_pt": 12,
+          "expected_color": "C00000",
+          "base_bold": false,
+          "all_visible_text_run_count": 1,
+          "unique_current_run_properties": [
+            {
+              "color": "C00000",
+              "sz_halfpt": "24",
+              "szCs_halfpt": "24",
+              "underline": "single",
+              "effective_bold": false,
+              "direct_bold": null
+            }
+          ],
+          "whole_description_format_pass": true
+        },
+        {
+          "current_paragraph_index": 268,
+          "text": "[E8300 보완] SW-FW-RID-83의 정식 상위 요구사항 식별과 제품 사용 설명서 파일의 해당 내용을 등록한다.",
+          "prefixes": [
+            "[E8300 보완]"
+          ],
+          "paragraph_style": "a8",
+          "base_normal_pt": 10,
+          "note_pt": 12,
+          "expected_color": "0070C0",
+          "base_bold": false,
+          "all_visible_text_run_count": 1,
+          "unique_current_run_properties": [
+            {
+              "color": "0070C0",
+              "sz_halfpt": "24",
+              "szCs_halfpt": "24",
+              "underline": "single",
+              "effective_bold": false,
+              "direct_bold": null
+            }
+          ],
+          "whole_description_format_pass": true
+        },
+        {
+          "current_paragraph_index": 275,
+          "text": "[QCC/E8300 자료 입력] 이번 QCC 자료 반영에 따른 위험분석 재평가와 변경 영향의 검토 결과를 입력한다.",
+          "prefixes": [
+            "[QCC/E8300 자료 입력]"
+          ],
+          "paragraph_style": "a",
+          "base_normal_pt": 10,
+          "note_pt": 12,
+          "expected_color": "7030A0",
+          "base_bold": false,
+          "all_visible_text_run_count": 1,
+          "unique_current_run_properties": [
+            {
+              "color": "7030A0",
+              "sz_halfpt": "24",
+              "szCs_halfpt": "24",
+              "underline": "single",
+              "effective_bold": false,
+              "direct_bold": null
+            }
+          ],
+          "whole_description_format_pass": true
+        }
+      ],
+      "base_point_evidence": "Surrounding regular body10pt; original native body renders9.96pt rounded10pt. Notes direct sz/szCs24 halfpt=12pt; original native color-matched notes12.0pt. New SAD SOUP note same TDC20 body style; final native rendering by root pending.",
+      "status": "final authored current body independent run audit complete; root Office field/cache refresh may change ZIP hash"
+    },
+    "SGR": {
+      "file": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\02_설계 입력\\SW\\외부기\\[E8300-QCC] SGR-FW-TD24A 소프트웨어 일반요구사항.docx",
+      "sha256_before": "2B04B70CAF90E42E3CB829EF8AD7FD860D9DCFD589FB4333E7749B62BE48F049",
+      "sha256_after": "2B04B70CAF90E42E3CB829EF8AD7FD860D9DCFD589FB4333E7749B62BE48F049",
+      "input_stable_during_read": true,
+      "owner_expected_sha256": null,
+      "matches_owner_stable_hash": null,
+      "deleted_rows_excluded": 0,
+      "TOC_moveFrom_deleted_text_excluded": true,
+      "note_count": 2,
+      "all_notes_pass": true,
+      "notes": [
+        {
+          "current_paragraph_index": 270,
+          "text": "[QCC 자료 입력] QCC의 실제 ADK/실행 환경, scheduler 구성과 사용 버전을 입력한다.",
+          "prefixes": [
+            "[QCC 자료 입력]"
+          ],
+          "paragraph_style": "a",
+          "base_normal_pt": 10,
+          "note_pt": 12,
+          "expected_color": "C00000",
+          "base_bold": false,
+          "all_visible_text_run_count": 1,
+          "unique_current_run_properties": [
+            {
+              "color": "C00000",
+              "sz_halfpt": "24",
+              "szCs_halfpt": "24",
+              "underline": "single",
+              "effective_bold": false,
+              "direct_bold": null
+            }
+          ],
+          "whole_description_format_pass": true
+        },
+        {
+          "current_paragraph_index": 274,
+          "text": "[QCC 자료 입력] QCC 제조사 소프트웨어의 식별/버전, 사용 범위와 검토 근거를 입력한다.",
+          "prefixes": [
+            "[QCC 자료 입력]"
+          ],
+          "paragraph_style": "a",
+          "base_normal_pt": 10,
+          "note_pt": 12,
+          "expected_color": "C00000",
+          "base_bold": false,
+          "all_visible_text_run_count": 1,
+          "unique_current_run_properties": [
+            {
+              "color": "C00000",
+              "sz_halfpt": "24",
+              "szCs_halfpt": "24",
+              "underline": "single",
+              "effective_bold": false,
+              "direct_bold": null
+            }
+          ],
+          "whole_description_format_pass": true
+        }
+      ],
+      "base_point_evidence": "Surrounding regular body10pt; original native body renders9.96pt rounded10pt. Notes direct sz/szCs24 halfpt=12pt; original native color-matched notes12.0pt. New SAD SOUP note same TDC20 body style; final native rendering by root pending.",
+      "status": "final authored current body independent run audit complete; root Office field/cache refresh may change ZIP hash"
+    },
+    "SAD": {
+      "file": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SAD-FW-TD24A 소프트웨어 아키텍쳐 기술서.docx",
+      "sha256_before": "DA8AA3DDE9FC369139B077CF36A9D82888341F13E9F29BB8193FE71E8EDDE205",
+      "sha256_after": "DA8AA3DDE9FC369139B077CF36A9D82888341F13E9F29BB8193FE71E8EDDE205",
+      "input_stable_during_read": true,
+      "owner_expected_sha256": "DA8AA3DDE9FC369139B077CF36A9D82888341F13E9F29BB8193FE71E8EDDE205",
+      "matches_owner_stable_hash": true,
+      "deleted_rows_excluded": 78,
+      "TOC_moveFrom_deleted_text_excluded": true,
+      "note_count": 23,
+      "all_notes_pass": true,
+      "notes": [
+        {
+          "current_paragraph_index": 278,
+          "text": "[QCC 자료 입력] QCC shutdown_ind의 on/off 본문·그림이 상충한다. 실제 PIO 번호·전압·논리 반전, 기동/종료 대기와 I2S enable→I2S_FLAG Low 유효의 물리 대응을 확인해야 한다.",
+          "prefixes": [
+            "[QCC 자료 입력]"
+          ],
+          "paragraph_style": "TDC20",
+          "base_normal_pt": 10,
+          "note_pt": 12,
+          "expected_color": "C00000",
+          "base_bold": false,
+          "all_visible_text_run_count": 39,
+          "unique_current_run_properties": [
+            {
+              "color": "C00000",
+              "sz_halfpt": "24",
+              "szCs_halfpt": "24",
+              "underline": "single",
+              "effective_bold": false,
+              "direct_bold": null
+            }
+          ],
+          "whole_description_format_pass": true
+        },
+        {
+          "current_paragraph_index": 279,
+          "text": "[QCC 자료 입력] 충전 미연결/연결/충전 중/비충전의 4상태를 0x34 충전기 연결 0/1로 변환하는 표, 0x34~0x36 통보 시점/길이/오류 응답과 GAIA addressing·type별 데이터 정의를 제출해야 한다.",
+          "prefixes": [
+            "[QCC 자료 입력]"
+          ],
+          "paragraph_style": "TDC20",
+          "base_normal_pt": 10,
+          "note_pt": 12,
+          "expected_color": "C00000",
+          "base_bold": false,
+          "all_visible_text_run_count": 49,
+          "unique_current_run_properties": [
+            {
+              "color": "C00000",
+              "sz_halfpt": "24",
+              "szCs_halfpt": "24",
+              "underline": "single",
+              "effective_bold": false,
+              "direct_bold": null
+            }
+          ],
+          "whole_description_format_pass": true
+        },
+        {
+          "current_paragraph_index": 280,
+          "text": "[QCC 자료 입력] 24bit·16kHz의 QCC 출력 설정, I2S 클럭/프레임·좌우 배정과 시작/중단 시 유효 신호 파형을 확인해야 한다. E8300 정적 수신 설정과 제공 설계의 대응만 확인했으며 실제 오디오/핀 파형 측정은 미제공이다.",
+          "prefixes": [
+            "[QCC 자료 입력]"
+          ],
+          "paragraph_style": "TDC20",
+          "base_normal_pt": 10,
+          "note_pt": 12,
+          "expected_color": "C00000",
+          "base_bold": false,
+          "all_visible_text_run_count": 61,
+          "unique_current_run_properties": [
+            {
+              "color": "C00000",
+              "sz_halfpt": "24",
+              "szCs_halfpt": "24",
+              "underline": "single",
+              "effective_bold": false,
+              "direct_bold": null
+            }
+          ],
+          "whole_description_format_pass": true
+        },
+        {
+          "current_paragraph_index": 282,
+          "text": "[QCC 자료 입력] 인증 전 데이터 차단/앱별 권한, 실제 AUTH UUID와 characteristic 길이, CRA 알고리즘·키 역할, NVM 보호·난수 bootstrap, 무통신/실패 제한 경계, QCC 자체 OTA와 기동 이미지 무결성의 상세 설계 및 구현 근거가 필요하다.",
+          "prefixes": [
+            "[QCC 자료 입력]"
+          ],
+          "paragraph_style": "TDC20",
+          "base_normal_pt": 10,
+          "note_pt": 12,
+          "expected_color": "C00000",
+          "base_bold": false,
+          "all_visible_text_run_count": 63,
+          "unique_current_run_properties": [
+            {
+              "color": "C00000",
+              "sz_halfpt": "24",
+              "szCs_halfpt": "24",
+              "underline": "single",
+              "effective_bold": false,
+              "direct_bold": null
+            }
+          ],
+          "whole_description_format_pass": true
+        },
+        {
+          "current_paragraph_index": 423,
+          "text": "[QCC 자료 입력] 24bit·16kHz I2S 클럭/프레임·유효 신호의 실제 설정과 파형 자료가 필요하다.",
+          "prefixes": [
+            "[QCC 자료 입력]"
+          ],
+          "paragraph_style": "TDC20",
+          "base_normal_pt": 10,
+          "note_pt": 12,
+          "expected_color": "C00000",
+          "base_bold": false,
+          "all_visible_text_run_count": 23,
+          "unique_current_run_properties": [
+            {
+              "color": "C00000",
+              "sz_halfpt": "24",
+              "szCs_halfpt": "24",
+              "underline": "single",
+              "effective_bold": false,
+              "direct_bold": null
+            }
+          ],
+          "whole_description_format_pass": true
+        },
+        {
+          "current_paragraph_index": 624,
+          "text": "[QCC 자료 입력] 리모콘 AUTH 접근 권한과 GAIA 주소·명령별 데이터/응답의 실제 계약 및 실행 자료가 필요하다.",
+          "prefixes": [
+            "[QCC 자료 입력]"
+          ],
+          "paragraph_style": "TDC20",
+          "base_normal_pt": 10,
+          "note_pt": 12,
+          "expected_color": "C00000",
+          "base_bold": false,
+          "all_visible_text_run_count": 31,
+          "unique_current_run_properties": [
+            {
+              "color": "C00000",
+              "sz_halfpt": "24",
+              "szCs_halfpt": "24",
+              "underline": "single",
+              "effective_bold": false,
+              "direct_bold": null
+            }
+          ],
+          "whole_description_format_pass": true
+        },
+        {
+          "current_paragraph_index": 635,
+          "text": "[QCC 자료 입력] 매핑 권한·키 역할, AUTH UUID 및 GAIA 주소·명령별 데이터/응답의 실제 계약과 실행 자료가 필요하다.",
+          "prefixes": [
+            "[QCC 자료 입력]"
+          ],
+          "paragraph_style": "TDC20",
+          "base_normal_pt": 10,
+          "note_pt": 12,
+          "expected_color": "C00000",
+          "base_bold": false,
+          "all_visible_text_run_count": 33,
+          "unique_current_run_properties": [
+            {
+              "color": "C00000",
+              "sz_halfpt": "24",
+              "szCs_halfpt": "24",
+              "underline": "single",
+              "effective_bold": false,
+              "direct_bold": null
+            }
+          ],
+          "whole_description_format_pass": true
+        },
+        {
+          "current_paragraph_index": 648,
+          "text": "[QCC/E8300 자료 입력] 기존 무제어명령 조건과 BLE 무송수신180초 조건의 범위·타이머 리셋 및 허용오차/경계 처리를 함께 확인해야 한다.",
+          "prefixes": [
+            "[QCC/E8300 자료 입력]"
+          ],
+          "paragraph_style": "TDC20",
+          "base_normal_pt": 10,
+          "note_pt": 12,
+          "expected_color": "7030A0",
+          "base_bold": false,
+          "all_visible_text_run_count": 37,
+          "unique_current_run_properties": [
+            {
+              "color": "7030A0",
+              "sz_halfpt": "24",
+              "szCs_halfpt": "24",
+              "underline": "single",
+              "effective_bold": false,
+              "direct_bold": null
+            }
+          ],
+          "whole_description_format_pass": true
+        },
+        {
+          "current_paragraph_index": 652,
+          "text": "[QCC 자료 입력] BLE pairing 이후 AUTH 접근과 인증 전 데이터 차단의 실제 UUID/권한 설정 및 조건별 실행 자료가 필요하다.",
+          "prefixes": [
+            "[QCC 자료 입력]"
+          ],
+          "paragraph_style": "TDC20",
+          "base_normal_pt": 10,
+          "note_pt": 12,
+          "expected_color": "C00000",
+          "base_bold": false,
+          "all_visible_text_run_count": 33,
+          "unique_current_run_properties": [
+            {
+              "color": "C00000",
+              "sz_halfpt": "24",
+              "szCs_halfpt": "24",
+              "underline": "single",
+              "effective_bold": false,
+              "direct_bold": null
+            }
+          ],
+          "whole_description_format_pass": true
+        },
+        {
+          "current_paragraph_index": 656,
+          "text": "[QCC 자료 입력] BLE 버전·암호화 활성 설정과 라이브러리/프로파일, AES-CCM 보호 범위 및 실제 링크 검증 자료가 필요하다. CRA 인증 설계를 전송 암호화의 근거로 사용하지 않는다.",
+          "prefixes": [
+            "[QCC 자료 입력]"
+          ],
+          "paragraph_style": "TDC20",
+          "base_normal_pt": 10,
+          "note_pt": 12,
+          "expected_color": "C00000",
+          "base_bold": false,
+          "all_visible_text_run_count": 47,
+          "unique_current_run_properties": [
+            {
+              "color": "C00000",
+              "sz_halfpt": "24",
+              "szCs_halfpt": "24",
+              "underline": "single",
+              "effective_bold": false,
+              "direct_bold": null
+            }
+          ],
+          "whole_description_format_pass": true
+        },
+        {
+          "current_paragraph_index": 669,
+          "text": "[QCC 자료 입력] SHA-256의 매핑 키 생성과 AES-CMAC의 인증값 계산 역할, 원문 HMAC/ENC 명칭 및 입력 직렬화/태그 길이의 정합성을 확정해야 한다.",
+          "prefixes": [
+            "[QCC 자료 입력]"
+          ],
+          "paragraph_style": "TDC20",
+          "base_normal_pt": 10,
+          "note_pt": 12,
+          "expected_color": "C00000",
+          "base_bold": false,
+          "all_visible_text_run_count": 41,
+          "unique_current_run_properties": [
+            {
+              "color": "C00000",
+              "sz_halfpt": "24",
+              "szCs_halfpt": "24",
+              "underline": "single",
+              "effective_bold": false,
+              "direct_bold": null
+            }
+          ],
+          "whole_description_format_pass": true
+        },
+        {
+          "current_paragraph_index": 725,
+          "text": "[QCC 자료 입력] BLE/GAIA CRC의 실제 알고리즘·적용 바이트·저장 순서와 오류 응답/검증 자료가 필요하다.",
+          "prefixes": [
+            "[QCC 자료 입력]"
+          ],
+          "paragraph_style": "TDC20",
+          "base_normal_pt": 10,
+          "note_pt": 12,
+          "expected_color": "C00000",
+          "base_bold": false,
+          "all_visible_text_run_count": 29,
+          "unique_current_run_properties": [
+            {
+              "color": "C00000",
+              "sz_halfpt": "24",
+              "szCs_halfpt": "24",
+              "underline": "single",
+              "effective_bold": false,
+              "direct_bold": null
+            }
+          ],
+          "whole_description_format_pass": true
+        },
+        {
+          "current_paragraph_index": 798,
+          "text": "[QCC 자료 입력] Classic 프로파일/코덱·좌우 배정, 오디오/I2S 시작·중단과 상태통보 타이밍 및 실행 자료가 필요하다.",
+          "prefixes": [
+            "[QCC 자료 입력]"
+          ],
+          "paragraph_style": "TDC20",
+          "base_normal_pt": 10,
+          "note_pt": 12,
+          "expected_color": "C00000",
+          "base_bold": false,
+          "all_visible_text_run_count": 31,
+          "unique_current_run_properties": [
+            {
+              "color": "C00000",
+              "sz_halfpt": "24",
+              "szCs_halfpt": "24",
+              "underline": "single",
+              "effective_bold": false,
+              "direct_bold": null
+            }
+          ],
+          "whole_description_format_pass": true
+        },
+        {
+          "current_paragraph_index": 808,
+          "text": "[QCC 자료 입력] 실제 BLE 광고/연결 구성과 주소·회사ID·바이트 길이, 편이/양이 데이터 배정 및 실행 자료가 필요하다.",
+          "prefixes": [
+            "[QCC 자료 입력]"
+          ],
+          "paragraph_style": "TDC20",
+          "base_normal_pt": 10,
+          "note_pt": 12,
+          "expected_color": "C00000",
+          "base_bold": false,
+          "all_visible_text_run_count": 37,
+          "unique_current_run_properties": [
+            {
+              "color": "C00000",
+              "sz_halfpt": "24",
+              "szCs_halfpt": "24",
+              "underline": "single",
+              "effective_bold": false,
+              "direct_bold": null
+            }
+          ],
+          "whole_description_format_pass": true
+        },
+        {
+          "current_paragraph_index": 812,
+          "text": "[QCC 자료 입력] 인증4상태의 실제 응답, 미완료30초 타이머 시작/리셋·허용오차 및 정보 미노출 결과가 필요하다.",
+          "prefixes": [
+            "[QCC 자료 입력]"
+          ],
+          "paragraph_style": "TDC20",
+          "base_normal_pt": 10,
+          "note_pt": 12,
+          "expected_color": "C00000",
+          "base_bold": false,
+          "all_visible_text_run_count": 35,
+          "unique_current_run_properties": [
+            {
+              "color": "C00000",
+              "sz_halfpt": "24",
+              "szCs_halfpt": "24",
+              "underline": "single",
+              "effective_bold": false,
+              "direct_bold": null
+            }
+          ],
+          "whole_description_format_pass": true
+        },
+        {
+          "current_paragraph_index": 816,
+          "text": "[QCC 자료 입력] 연속5회 실패 누적/초기화·전원 재기동, 60초 제한의 시작/해제·재접속과 시간 경계 결과가 필요하다.",
+          "prefixes": [
+            "[QCC 자료 입력]"
+          ],
+          "paragraph_style": "TDC20",
+          "base_normal_pt": 10,
+          "note_pt": 12,
+          "expected_color": "C00000",
+          "base_bold": false,
+          "all_visible_text_run_count": 37,
+          "unique_current_run_properties": [
+            {
+              "color": "C00000",
+              "sz_halfpt": "24",
+              "szCs_halfpt": "24",
+              "underline": "single",
+              "effective_bold": false,
+              "direct_bold": null
+            }
+          ],
+          "whole_description_format_pass": true
+        },
+        {
+          "current_paragraph_index": 834,
+          "text": "[QCC 자료 입력] 설치 shared_service_key/clinician_master_key와 생성 clinic_service_key, NVM ID/길이·암호화/접근 제한과 난수 bootstrap 및 실제 보호 결과가 필요하다.",
+          "prefixes": [
+            "[QCC 자료 입력]"
+          ],
+          "paragraph_style": "TDC20",
+          "base_normal_pt": 10,
+          "note_pt": 12,
+          "expected_color": "C00000",
+          "base_bold": false,
+          "all_visible_text_run_count": 31,
+          "unique_current_run_properties": [
+            {
+              "color": "C00000",
+              "sz_halfpt": "24",
+              "szCs_halfpt": "24",
+              "underline": "single",
+              "effective_bold": false,
+              "direct_bold": null
+            }
+          ],
+          "whole_description_format_pass": true
+        },
+        {
+          "current_paragraph_index": 861,
+          "text": "[QCC 자료 입력] 외부기 마이크의 QCC 입력 경로·Classic 송신 프로파일/코덱·상대 장치·동시 송수신과 실제 자료가 필요하다.",
+          "prefixes": [
+            "[QCC 자료 입력]"
+          ],
+          "paragraph_style": "TDC20",
+          "base_normal_pt": 10,
+          "note_pt": 12,
+          "expected_color": "C00000",
+          "base_bold": false,
+          "all_visible_text_run_count": 33,
+          "unique_current_run_properties": [
+            {
+              "color": "C00000",
+              "sz_halfpt": "24",
+              "szCs_halfpt": "24",
+              "underline": "single",
+              "effective_bold": false,
+              "direct_bold": null
+            }
+          ],
+          "whole_description_format_pass": true
+        },
+        {
+          "current_paragraph_index": 865,
+          "text": "[E8300 보완] 제품 사용 설명서 파일과 정식 상위 요구사항 식별/추적을 보완해야 한다.",
+          "prefixes": [
+            "[E8300 보완]"
+          ],
+          "paragraph_style": "TDC20",
+          "base_normal_pt": 10,
+          "note_pt": 12,
+          "expected_color": "0070C0",
+          "base_bold": false,
+          "all_visible_text_run_count": 25,
+          "unique_current_run_properties": [
+            {
+              "color": "0070C0",
+              "sz_halfpt": "24",
+              "szCs_halfpt": "24",
+              "underline": "single",
+              "effective_bold": false,
+              "direct_bold": null
+            }
+          ],
+          "whole_description_format_pass": true
+        },
+        {
+          "current_paragraph_index": 916,
+          "text": "[QCC 자료 입력] SW-FW-RID-82 마이크의 QCC 입력 경로, Classic 프로파일/코덱, 상대 장치와 동시 송수신·I2S 방향 및 설계·검증 자료가 필요하다.",
+          "prefixes": [
+            "[QCC 자료 입력]"
+          ],
+          "paragraph_style": "TDC20",
+          "base_normal_pt": 10,
+          "note_pt": 12,
+          "expected_color": "C00000",
+          "base_bold": false,
+          "all_visible_text_run_count": 35,
+          "unique_current_run_properties": [
+            {
+              "color": "C00000",
+              "sz_halfpt": "24",
+              "szCs_halfpt": "24",
+              "underline": "single",
+              "effective_bold": false,
+              "direct_bold": null
+            }
+          ],
+          "whole_description_format_pass": true
+        },
+        {
+          "current_paragraph_index": 917,
+          "text": "[E8300 보완] SW-FW-RID-83 제품 사용 설명서 파일과 정식 상위 요구사항 연결을 보완해야 한다.",
+          "prefixes": [
+            "[E8300 보완]"
+          ],
+          "paragraph_style": "TDC20",
+          "base_normal_pt": 10,
+          "note_pt": 12,
+          "expected_color": "0070C0",
+          "base_bold": false,
+          "all_visible_text_run_count": 23,
+          "unique_current_run_properties": [
+            {
+              "color": "0070C0",
+              "sz_halfpt": "24",
+              "szCs_halfpt": "24",
+              "underline": "single",
+              "effective_bold": false,
+              "direct_bold": null
+            }
+          ],
+          "whole_description_format_pass": true
+        },
+        {
+          "current_paragraph_index": 940,
+          "text": "[QCC 자료 입력] Qualcomm ADK/BSP와 Classic/TWS/BLE/GAIA/암호·NVM 라이브러리의 정확한 제품명·버전·구성·API, 알려진 문제 및 사용 검토 자료를 SOUP 목록에 연결해야 한다.",
+          "prefixes": [
+            "[QCC 자료 입력]"
+          ],
+          "paragraph_style": "TDC20",
+          "base_normal_pt": 10,
+          "note_pt": 12,
+          "expected_color": "C00000",
+          "base_bold": false,
+          "all_visible_text_run_count": 37,
+          "unique_current_run_properties": [
+            {
+              "color": "C00000",
+              "sz_halfpt": "24",
+              "szCs_halfpt": "24",
+              "underline": "single",
+              "effective_bold": false,
+              "direct_bold": null
+            }
+          ],
+          "whole_description_format_pass": true
+        },
+        {
+          "current_paragraph_index": 950,
+          "text": "기존 E8300의 지원 소프트웨어 식별·관리 범위는 유지한다. QCC는 제공설계 수준을 반영했으며 지원 소프트웨어의 정확한 제품·버전과 운영 검토 완료는 확인되지 않았다.[QCC 자료 입력] QCC 지원 소프트웨어의 정확한 제품·버전, 사용 구성·API 및 운영 검토 자료를 제출해야 한다.",
+          "prefixes": [
+            "[QCC 자료 입력]"
+          ],
+          "paragraph_style": "TDC10",
+          "base_normal_pt": 10,
+          "note_pt": 12,
+          "expected_color": "C00000",
+          "base_bold": false,
+          "all_visible_text_run_count": 1,
+          "unique_current_run_properties": [
+            {
+              "color": "C00000",
+              "sz_halfpt": "24",
+              "szCs_halfpt": "24",
+              "underline": "single",
+              "effective_bold": false,
+              "direct_bold": null
+            }
+          ],
+          "whole_description_format_pass": true,
+          "span_start_offset": 95,
+          "normal_lead_text": "기존 E8300의 지원 소프트웨어 식별·관리 범위는 유지한다. QCC는 제공설계 수준을 반영했으며 지원 소프트웨어의 정확한 제품·버전과 운영 검토 완료는 확인되지 않았다.",
+          "missing_notice_description": "[QCC 자료 입력] QCC 지원 소프트웨어의 정확한 제품·버전, 사용 구성·API 및 운영 검토 자료를 제출해야 한다.",
+          "check_scope": "Only prefix and following missing explanation; preceding ordinary explanatory text excluded."
+        }
+      ],
+      "base_point_evidence": "Surrounding regular body10pt; original native body renders9.96pt rounded10pt. Notes direct sz/szCs24 halfpt=12pt; original native color-matched notes12.0pt. New SAD SOUP note same TDC20 body style; final native rendering by root pending.",
+      "status": "final authored current body independent run audit complete; root Office field/cache refresh may change ZIP hash"
+    },
+    "SDDD": {
+      "file": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SDDD-FW-TD24A 소프트웨어 상세 설계서.docx",
+      "sha256_before": "490BC2E342353825BF8E053111BBFAFD23EC103EC17452DECDD0320FC3B499C7",
+      "sha256_after": "490BC2E342353825BF8E053111BBFAFD23EC103EC17452DECDD0320FC3B499C7",
+      "input_stable_during_read": true,
+      "owner_expected_sha256": "490BC2E342353825BF8E053111BBFAFD23EC103EC17452DECDD0320FC3B499C7",
+      "matches_owner_stable_hash": true,
+      "deleted_rows_excluded": 87,
+      "TOC_moveFrom_deleted_text_excluded": true,
+      "note_count": 20,
+      "all_notes_pass": true,
+      "notes": [
+        {
+          "current_paragraph_index": 4407,
+          "text": "[QCC 자료 입력] QCC shutdown_ind의 on/off 본문·그림이 상충한다. 실제 PIO 번호·전압·논리 반전, 기동/종료 대기와 I2S enable→I2S_FLAG Low 유효의 물리 대응을 확인해야 한다.",
+          "prefixes": [
+            "[QCC 자료 입력]"
+          ],
+          "paragraph_style": "TDC20",
+          "base_normal_pt": 10,
+          "note_pt": 12,
+          "expected_color": "C00000",
+          "base_bold": false,
+          "all_visible_text_run_count": 39,
+          "unique_current_run_properties": [
+            {
+              "color": "C00000",
+              "sz_halfpt": "24",
+              "szCs_halfpt": "24",
+              "underline": "single",
+              "effective_bold": false,
+              "direct_bold": null
+            }
+          ],
+          "whole_description_format_pass": true
+        },
+        {
+          "current_paragraph_index": 4408,
+          "text": "[QCC 자료 입력] 충전 미연결/연결/충전 중/비충전의 4상태를 0x34 충전기 연결 0/1로 변환하는 표, 0x34~0x36 통보 시점/길이/오류 응답과 GAIA addressing·type별 데이터 정의를 제출해야 한다.",
+          "prefixes": [
+            "[QCC 자료 입력]"
+          ],
+          "paragraph_style": "TDC20",
+          "base_normal_pt": 10,
+          "note_pt": 12,
+          "expected_color": "C00000",
+          "base_bold": false,
+          "all_visible_text_run_count": 49,
+          "unique_current_run_properties": [
+            {
+              "color": "C00000",
+              "sz_halfpt": "24",
+              "szCs_halfpt": "24",
+              "underline": "single",
+              "effective_bold": false,
+              "direct_bold": null
+            }
+          ],
+          "whole_description_format_pass": true
+        },
+        {
+          "current_paragraph_index": 4409,
+          "text": "[QCC 자료 입력] 24bit·16kHz의 QCC 출력 설정, I2S 클럭/프레임·좌우 배정과 시작/중단 시 유효 신호 파형을 확인해야 한다. E8300 정적 수신 설정과 제공 설계의 대응만 확인했으며 실제 오디오/핀 파형 측정은 미제공이다.",
+          "prefixes": [
+            "[QCC 자료 입력]"
+          ],
+          "paragraph_style": "TDC20",
+          "base_normal_pt": 10,
+          "note_pt": 12,
+          "expected_color": "C00000",
+          "base_bold": false,
+          "all_visible_text_run_count": 61,
+          "unique_current_run_properties": [
+            {
+              "color": "C00000",
+              "sz_halfpt": "24",
+              "szCs_halfpt": "24",
+              "underline": "single",
+              "effective_bold": false,
+              "direct_bold": null
+            }
+          ],
+          "whole_description_format_pass": true
+        },
+        {
+          "current_paragraph_index": 4430,
+          "text": "[QCC 자료 입력] SPI 속도, QCC 핀 번호, 초기값, 초기화 실패 처리와 시간 한도; AUTH UUID 및 GATT 보안 설정의 실제 값; I2S 24bit/16kHz는 QCC SRS 근거를 연결해야 하며 본 유닛 원문에는 수치 없음.",
+          "prefixes": [
+            "[QCC 자료 입력]"
+          ],
+          "paragraph_style": "TDC20",
+          "base_normal_pt": 10,
+          "note_pt": 12,
+          "expected_color": "C00000",
+          "base_bold": false,
+          "all_visible_text_run_count": 51,
+          "unique_current_run_properties": [
+            {
+              "color": "C00000",
+              "sz_halfpt": "24",
+              "szCs_halfpt": "24",
+              "underline": "single",
+              "effective_bold": false,
+              "direct_bold": null
+            }
+          ],
+          "whole_description_format_pass": true
+        },
+        {
+          "current_paragraph_index": 4446,
+          "text": "[QCC 자료 입력] shutdown_ind off/on의 본문·그림 상충; 기동 대기 및 종료 대기 수치; SPI 0x34/35/36의 필드/응답/순서 및 오류 계약; 내부장치정보 명령과 유효한 응답 필드.",
+          "prefixes": [
+            "[QCC 자료 입력]"
+          ],
+          "paragraph_style": "TDC20",
+          "base_normal_pt": 10,
+          "note_pt": 12,
+          "expected_color": "C00000",
+          "base_bold": false,
+          "all_visible_text_run_count": 49,
+          "unique_current_run_properties": [
+            {
+              "color": "C00000",
+              "sz_halfpt": "24",
+              "szCs_halfpt": "24",
+              "underline": "single",
+              "effective_bold": false,
+              "direct_bold": null
+            }
+          ],
+          "whole_description_format_pass": true
+        },
+        {
+          "current_paragraph_index": 4462,
+          "text": "[QCC 자료 입력] TWS 구성값, 좌우 배정, 파트너 연결/해제/단독 복귀의 구체 계약; 내부장치정보에서 받아 사용하는 편이/양이 정보와 생산 설정의 우선순위.",
+          "prefixes": [
+            "[QCC 자료 입력]"
+          ],
+          "paragraph_style": "TDC20",
+          "base_normal_pt": 10,
+          "note_pt": 12,
+          "expected_color": "C00000",
+          "base_bold": false,
+          "all_visible_text_run_count": 43,
+          "unique_current_run_properties": [
+            {
+              "color": "C00000",
+              "sz_halfpt": "24",
+              "szCs_halfpt": "24",
+              "underline": "single",
+              "effective_bold": false,
+              "direct_bold": null
+            }
+          ],
+          "whole_description_format_pass": true
+        },
+        {
+          "current_paragraph_index": 4478,
+          "text": "[QCC 자료 입력] 해제 디바운스 시간, 실제 장치명 바이트 길이/인코딩/정보조회 응답; 일반 BLE 기동/광고/매핑이 내부장치 미연결 때 허용되는지.",
+          "prefixes": [
+            "[QCC 자료 입력]"
+          ],
+          "paragraph_style": "TDC20",
+          "base_normal_pt": 10,
+          "note_pt": 12,
+          "expected_color": "C00000",
+          "base_bold": false,
+          "all_visible_text_run_count": 41,
+          "unique_current_run_properties": [
+            {
+              "color": "C00000",
+              "sz_halfpt": "24",
+              "szCs_halfpt": "24",
+              "underline": "single",
+              "effective_bold": false,
+              "direct_bold": null
+            }
+          ],
+          "whole_description_format_pass": true
+        },
+        {
+          "current_paragraph_index": 4496,
+          "text": "[QCC 자료 입력] QCC PIO 번호/전압/극성과 E8300 핀의 실제 연결; I2S enable과 E8300 DIO29 Low=유효의 대응; HW reset 회로 대상, 리셋 펄스폭, 충전 시작 시 리셋 동작의 근거; 온도센서 값이 사용되는 상태/한도는 원문에 없음.",
+          "prefixes": [
+            "[QCC 자료 입력]"
+          ],
+          "paragraph_style": "TDC20",
+          "base_normal_pt": 10,
+          "note_pt": 12,
+          "expected_color": "C00000",
+          "base_bold": false,
+          "all_visible_text_run_count": 57,
+          "unique_current_run_properties": [
+            {
+              "color": "C00000",
+              "sz_halfpt": "24",
+              "szCs_halfpt": "24",
+              "underline": "single",
+              "effective_bold": false,
+              "direct_bold": null
+            }
+          ],
+          "whole_description_format_pass": true
+        },
+        {
+          "current_paragraph_index": 4512,
+          "text": "[QCC 자료 입력] 배터리 기준값, 전압-잔량 변환표, 주기, 오차와 실패 시 정책; 4종 충전 상태→E8300 0x34 charger_connected0/1 변환 계약; 원문은 empty이면 무조건 sleep이라고도 쓰므로 충전예외와 우선순위 명확화 필요; 종료 신호극성, wake-up source 및 시간; 표270은 NVM 데이터 제목인데 충전상태표를 중복한 잔존 오류.",
+          "prefixes": [
+            "[QCC 자료 입력]"
+          ],
+          "paragraph_style": "TDC20",
+          "base_normal_pt": 10,
+          "note_pt": 12,
+          "expected_color": "C00000",
+          "base_bold": false,
+          "all_visible_text_run_count": 78,
+          "unique_current_run_properties": [
+            {
+              "color": "C00000",
+              "sz_halfpt": "24",
+              "szCs_halfpt": "24",
+              "underline": "single",
+              "effective_bold": false,
+              "direct_bold": null
+            }
+          ],
+          "whole_description_format_pass": true
+        },
+        {
+          "current_paragraph_index": 4528,
+          "text": "[QCC 자료 입력] 주소/ID/길이/원자성/오류 및 기본값 계약; AUTH_CLLINC_KEY/AUTH_SHARED_KEY와 보안유닛의 AUTH_SERVICE_KEY/AUTH_CLINIC_MASTER_KEY 명칭·역할 대응.",
+          "prefixes": [
+            "[QCC 자료 입력]"
+          ],
+          "paragraph_style": "TDC20",
+          "base_normal_pt": 10,
+          "note_pt": 12,
+          "expected_color": "C00000",
+          "base_bold": false,
+          "all_visible_text_run_count": 29,
+          "unique_current_run_properties": [
+            {
+              "color": "C00000",
+              "sz_halfpt": "24",
+              "szCs_halfpt": "24",
+              "underline": "single",
+              "effective_bold": false,
+              "direct_bold": null
+            }
+          ],
+          "whole_description_format_pass": true
+        },
+        {
+          "current_paragraph_index": 4546,
+          "text": "[QCC 자료 입력] 프로파일/코덱/QCC 라이브러리 버전/페어링 시간; I2S 실제24bit/16kHz 출력 및 L/R 처리의 세부; 0x36 오디오 연결/종류 통보 순서와 I2S_FLAG 타이밍; RID-82 마이크 입력·Classic 송신 프로파일/코덱·상대장치·동시 송수신과 검증 자료.",
+          "prefixes": [
+            "[QCC 자료 입력]"
+          ],
+          "paragraph_style": "TDC20",
+          "base_normal_pt": 10,
+          "note_pt": 12,
+          "expected_color": "C00000",
+          "base_bold": false,
+          "all_visible_text_run_count": 59,
+          "unique_current_run_properties": [
+            {
+              "color": "C00000",
+              "sz_halfpt": "24",
+              "szCs_halfpt": "24",
+              "underline": "single",
+              "effective_bold": false,
+              "direct_bold": null
+            }
+          ],
+          "whole_description_format_pass": true
+        },
+        {
+          "current_paragraph_index": 4562,
+          "text": "[QCC 자료 입력] 광고 바이트 배치, 회사ID/Appearance값/길이/광고주기; BLE 링크의 실제 암호화 설정·인증전 데이터차단; 동시연결1개 및 무통신3분 제어는 SRS 근거를 추가 연결.",
+          "prefixes": [
+            "[QCC 자료 입력]"
+          ],
+          "paragraph_style": "TDC20",
+          "base_normal_pt": 10,
+          "note_pt": 12,
+          "expected_color": "C00000",
+          "base_bold": false,
+          "all_visible_text_run_count": 49,
+          "unique_current_run_properties": [
+            {
+              "color": "C00000",
+              "sz_halfpt": "24",
+              "szCs_halfpt": "24",
+              "underline": "single",
+              "effective_bold": false,
+              "direct_bold": null
+            }
+          ],
+          "whole_description_format_pass": true
+        },
+        {
+          "current_paragraph_index": 4578,
+          "text": "[QCC 자료 입력] Primary/Characteristic 실제 UUID값, 바이트 길이/엔디언/일치검사; Primary Service의 read property 표기는 GATT service/characteristic 구분 검토; 그림의 Confirm notify 표기는 본문의 client write와 상충; AUTH 서비스는 BLE pairing 후에만 접근 가능함을 GATT설정과 대조.",
+          "prefixes": [
+            "[QCC 자료 입력]"
+          ],
+          "paragraph_style": "TDC20",
+          "base_normal_pt": 10,
+          "note_pt": 12,
+          "expected_color": "C00000",
+          "base_bold": false,
+          "all_visible_text_run_count": 47,
+          "unique_current_run_properties": [
+            {
+              "color": "C00000",
+              "sz_halfpt": "24",
+              "szCs_halfpt": "24",
+              "underline": "single",
+              "effective_bold": false,
+              "direct_bold": null
+            }
+          ],
+          "whole_description_format_pass": true
+        },
+        {
+          "current_paragraph_index": 4594,
+          "text": "[QCC 자료 입력] GAIA addressing의 실제 값, type별 데이터 정의/길이/응답/CRC; 인증 완료 전과 권한별 메시지 허용범위; SPI21byte 프레임과 BLE최대20byte 메시지의 변환/길이검사; GAIA의 스마트케이스 전용 addressing 문구는 실제 외부기 주소로 확인 필요.",
+          "prefixes": [
+            "[QCC 자료 입력]"
+          ],
+          "paragraph_style": "TDC20",
+          "base_normal_pt": 10,
+          "note_pt": 12,
+          "expected_color": "C00000",
+          "base_bold": false,
+          "all_visible_text_run_count": 61,
+          "unique_current_run_properties": [
+            {
+              "color": "C00000",
+              "sz_halfpt": "24",
+              "szCs_halfpt": "24",
+              "underline": "single",
+              "effective_bold": false,
+              "direct_bold": null
+            }
+          ],
+          "whole_description_format_pass": true
+        },
+        {
+          "current_paragraph_index": 4612,
+          "text": "[QCC 자료 입력] 인증타이머 구체30초는 QCC 시험기준 근거로 추가 필요; 무통신3분 및 연속5회 실패1분제한의 카운터/시간/초기화 정책 원문 SDDD에 없음; HMAC 명칭과 AES-CMAC 실제알고리즘 명칭 상충; 그림의 auth is required→in_progress후 End AUTH가 진행설명과 상충.",
+          "prefixes": [
+            "[QCC 자료 입력]"
+          ],
+          "paragraph_style": "TDC20",
+          "base_normal_pt": 10,
+          "note_pt": 12,
+          "expected_color": "C00000",
+          "base_bold": false,
+          "all_visible_text_run_count": 65,
+          "unique_current_run_properties": [
+            {
+              "color": "C00000",
+              "sz_halfpt": "24",
+              "szCs_halfpt": "24",
+              "underline": "single",
+              "effective_bold": false,
+              "direct_bold": null
+            }
+          ],
+          "whole_description_format_pass": true
+        },
+        {
+          "current_paragraph_index": 4628,
+          "text": "[QCC 자료 입력] HMAC와 CMAC명칭, ENC표기의 정확한 알고리즘/바이트결합/태그길이; SHA256 입력 직렬화/길이/엔디언과 clinician 명칭 오기; AES-128 모드/IV/무결성/쓰기실패 계약; 난수 생성원·품질·재사용 방지 및 보안NVM의 rand_num 복호화 부트스트랩.",
+          "prefixes": [
+            "[QCC 자료 입력]"
+          ],
+          "paragraph_style": "TDC20",
+          "base_normal_pt": 10,
+          "note_pt": 12,
+          "expected_color": "C00000",
+          "base_bold": false,
+          "all_visible_text_run_count": 59,
+          "unique_current_run_properties": [
+            {
+              "color": "C00000",
+              "sz_halfpt": "24",
+              "szCs_halfpt": "24",
+              "underline": "single",
+              "effective_bold": false,
+              "direct_bold": null
+            }
+          ],
+          "whole_description_format_pass": true
+        },
+        {
+          "current_paragraph_index": 4644,
+          "text": "[QCC 자료 입력] AUTH_CLINIC_MASTER_KEY 설명이 리모콘이라고 적혀 toolbox의 매핑역할과 상충; 보안NVM의 모든데이터 암호화 주장과 랜덤을 키재료로 읽는 부트스트랩; 데이터길이/위치/기본값/손상검출/접근실패 및키읽기실패 차단.",
+          "prefixes": [
+            "[QCC 자료 입력]"
+          ],
+          "paragraph_style": "TDC20",
+          "base_normal_pt": 10,
+          "note_pt": 12,
+          "expected_color": "C00000",
+          "base_bold": false,
+          "all_visible_text_run_count": 49,
+          "unique_current_run_properties": [
+            {
+              "color": "C00000",
+              "sz_halfpt": "24",
+              "szCs_halfpt": "24",
+              "underline": "single",
+              "effective_bold": false,
+              "direct_bold": null
+            }
+          ],
+          "whole_description_format_pass": true
+        },
+        {
+          "current_paragraph_index": 4658,
+          "text": "[QCC 자료 입력] 실제 AUTH service/characteristic UUID, Challenge/Response/Confirm/Status 길이·엔디언·접근 권한을 입력해야 한다. Confirm은 제공 표/본문의 client write를 설계 대응으로 적되 그림의 notify와 상충을 해소해야 한다.",
+          "prefixes": [
+            "[QCC 자료 입력]"
+          ],
+          "paragraph_style": "TDC20",
+          "base_normal_pt": 10,
+          "note_pt": 12,
+          "expected_color": "C00000",
+          "base_bold": false,
+          "all_visible_text_run_count": 45,
+          "unique_current_run_properties": [
+            {
+              "color": "C00000",
+              "sz_halfpt": "24",
+              "szCs_halfpt": "24",
+              "underline": "single",
+              "effective_bold": false,
+              "direct_bold": null
+            }
+          ],
+          "whole_description_format_pass": true
+        },
+        {
+          "current_paragraph_index": 4659,
+          "text": "[QCC 자료 입력] QCC 자체 OTA의 이미지/인증/실패 복구와 E8300 이미지 전달 경로를 분리한 설계, QCC 기동 이미지 무결성의 알고리즘·검사 실패 처리·대상 범위 및 구현 근거가 필요하다. E8300 CRC/암호화 검사를 QCC 검사의 근거로 사용하지 않는다.",
+          "prefixes": [
+            "[QCC 자료 입력]"
+          ],
+          "paragraph_style": "TDC20",
+          "base_normal_pt": 10,
+          "note_pt": 12,
+          "expected_color": "C00000",
+          "base_bold": false,
+          "all_visible_text_run_count": 65,
+          "unique_current_run_properties": [
+            {
+              "color": "C00000",
+              "sz_halfpt": "24",
+              "szCs_halfpt": "24",
+              "underline": "single",
+              "effective_bold": false,
+              "direct_bold": null
+            }
+          ],
+          "whole_description_format_pass": true
+        },
+        {
+          "current_paragraph_index": 4660,
+          "text": "[QCC/E8300 자료 입력] 무제어 명령 180초와 BLE 무송수신 180초의 타이머 리셋 범위, 인증 실패 누적·연결 해제/재접속·60초 제한 종료의 경계와 E8300 통보 영향을 함께 확인해야 한다.",
+          "prefixes": [
+            "[QCC/E8300 자료 입력]"
+          ],
+          "paragraph_style": "TDC20",
+          "base_normal_pt": 10,
+          "note_pt": 12,
+          "expected_color": "7030A0",
+          "base_bold": false,
+          "all_visible_text_run_count": 51,
+          "unique_current_run_properties": [
+            {
+              "color": "7030A0",
+              "sz_halfpt": "24",
+              "szCs_halfpt": "24",
+              "underline": "single",
+              "effective_bold": false,
+              "direct_bold": null
+            }
+          ],
+          "whole_description_format_pass": true
+        }
+      ],
+      "base_point_evidence": "Surrounding regular body10pt; original native body renders9.96pt rounded10pt. Notes direct sz/szCs24 halfpt=12pt; original native color-matched notes12.0pt. New SAD SOUP note same TDC20 body style; final native rendering by root pending.",
+      "status": "final authored current body independent run audit complete; root Office field/cache refresh may change ZIP hash"
+    },
+    "SIP": {
+      "file": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SIP-FW-TD24A 소프트웨어 통합 계획서.docx",
+      "sha256_before": "3C9FF2237625C78416F3C501D12196E477615DB15625624E7E391572EDCD2C47",
+      "sha256_after": "3C9FF2237625C78416F3C501D12196E477615DB15625624E7E391572EDCD2C47",
+      "input_stable_during_read": true,
+      "owner_expected_sha256": "3C9FF2237625C78416F3C501D12196E477615DB15625624E7E391572EDCD2C47",
+      "matches_owner_stable_hash": true,
+      "deleted_rows_excluded": 0,
+      "TOC_moveFrom_deleted_text_excluded": true,
+      "note_count": 6,
+      "all_notes_pass": true,
+      "notes": [
+        {
+          "current_paragraph_index": 229,
+          "text": "[QCC 자료 입력] 실제 QCC 소스/빌드·ADK/BSP 버전과 단위 실행 로그를 제출해야 한다. 아래 단계는 통합 계획이며 구현/단위시험이 완료된 것으로 가정하지 않는다.",
+          "prefixes": [
+            "[QCC 자료 입력]"
+          ],
+          "paragraph_style": "TDC30",
+          "base_normal_pt": 10,
+          "note_pt": 12,
+          "expected_color": "C00000",
+          "base_bold": false,
+          "all_visible_text_run_count": 43,
+          "unique_current_run_properties": [
+            {
+              "color": "C00000",
+              "sz_halfpt": "24",
+              "szCs_halfpt": "24",
+              "underline": "single",
+              "effective_bold": false,
+              "direct_bold": null
+            }
+          ],
+          "whole_description_format_pass": true
+        },
+        {
+          "current_paragraph_index": 311,
+          "text": "[QCC 자료 입력] QCC shutdown_ind의 on/off 본문·그림이 상충한다. 실제 PIO 번호·전압·논리 반전, 기동/종료 대기와 I2S enable→I2S_FLAG Low 유효의 물리 대응을 확인해야 한다.",
+          "prefixes": [
+            "[QCC 자료 입력]"
+          ],
+          "paragraph_style": "TDC30",
+          "base_normal_pt": 10,
+          "note_pt": 12,
+          "expected_color": "C00000",
+          "base_bold": false,
+          "all_visible_text_run_count": 39,
+          "unique_current_run_properties": [
+            {
+              "color": "C00000",
+              "sz_halfpt": "24",
+              "szCs_halfpt": "24",
+              "underline": "single",
+              "effective_bold": false,
+              "direct_bold": null
+            }
+          ],
+          "whole_description_format_pass": true
+        },
+        {
+          "current_paragraph_index": 312,
+          "text": "[QCC 자료 입력] 충전 미연결/연결/충전 중/비충전의 4상태를 0x34 충전기 연결 0/1로 변환하는 표, 0x34~0x36 통보 시점/길이/오류 응답과 GAIA addressing·type별 데이터 정의를 제출해야 한다.",
+          "prefixes": [
+            "[QCC 자료 입력]"
+          ],
+          "paragraph_style": "TDC30",
+          "base_normal_pt": 10,
+          "note_pt": 12,
+          "expected_color": "C00000",
+          "base_bold": false,
+          "all_visible_text_run_count": 49,
+          "unique_current_run_properties": [
+            {
+              "color": "C00000",
+              "sz_halfpt": "24",
+              "szCs_halfpt": "24",
+              "underline": "single",
+              "effective_bold": false,
+              "direct_bold": null
+            }
+          ],
+          "whole_description_format_pass": true
+        },
+        {
+          "current_paragraph_index": 313,
+          "text": "[QCC 자료 입력] 24bit·16kHz의 QCC 출력 설정, I2S 클럭/프레임·좌우 배정과 시작/중단 시 유효 신호 파형을 확인해야 한다. E8300 정적 수신 설정과 제공 설계의 대응만 확인했으며 실제 오디오/핀 파형 측정은 미제공이다.",
+          "prefixes": [
+            "[QCC 자료 입력]"
+          ],
+          "paragraph_style": "TDC30",
+          "base_normal_pt": 10,
+          "note_pt": 12,
+          "expected_color": "C00000",
+          "base_bold": false,
+          "all_visible_text_run_count": 61,
+          "unique_current_run_properties": [
+            {
+              "color": "C00000",
+              "sz_halfpt": "24",
+              "szCs_halfpt": "24",
+              "underline": "single",
+              "effective_bold": false,
+              "direct_bold": null
+            }
+          ],
+          "whole_description_format_pass": true
+        },
+        {
+          "current_paragraph_index": 317,
+          "text": "[QCC 자료 입력] QCC 통합 실행 로그, 실제 입력/응답 전체 메시지, 오디오/핀 파형·장비/빌드 식별 및 시험자 확인 기록이 필요하다. 미해소 설계 상충은 시험 판정에도 유지한다.",
+          "prefixes": [
+            "[QCC 자료 입력]"
+          ],
+          "paragraph_style": "TDC30",
+          "base_normal_pt": 10,
+          "note_pt": 12,
+          "expected_color": "C00000",
+          "base_bold": false,
+          "all_visible_text_run_count": 55,
+          "unique_current_run_properties": [
+            {
+              "color": "C00000",
+              "sz_halfpt": "24",
+              "szCs_halfpt": "24",
+              "underline": "single",
+              "effective_bold": false,
+              "direct_bold": null
+            }
+          ],
+          "whole_description_format_pass": true
+        },
+        {
+          "current_paragraph_index": 323,
+          "text": "[QCC 자료 입력] QCC 자체 펌웨어 갱신과 E8300 이미지 전달의 명령·버퍼·순서·재시도·인증·오류/중단 복구를 각각 정의하고 구현/통합 결과를 제출해야 한다. E8300 OTA 슬롯1~2와 부트 상태 슬롯1~4, 0x35 갱신 연결 통보를 구분하며 QCC 기동 이미지 무결성 검사 범위·알고리즘·실패 처리도 별도로 확인해야 한다.",
+          "prefixes": [
+            "[QCC 자료 입력]"
+          ],
+          "paragraph_style": "TDC33",
+          "base_normal_pt": 10,
+          "note_pt": 12,
+          "expected_color": "C00000",
+          "base_bold": false,
+          "all_visible_text_run_count": 85,
+          "unique_current_run_properties": [
+            {
+              "color": "C00000",
+              "sz_halfpt": "24",
+              "szCs_halfpt": "24",
+              "underline": "single",
+              "effective_bold": false,
+              "direct_bold": null
+            }
+          ],
+          "whole_description_format_pass": true
+        }
+      ],
+      "base_point_evidence": "Surrounding regular body10pt; original native body renders9.96pt rounded10pt. Notes direct sz/szCs24 halfpt=12pt; original native color-matched notes12.0pt. New SAD SOUP note same TDC20 body style; final native rendering by root pending.",
+      "status": "final authored current body independent run audit complete; root Office field/cache refresh may change ZIP hash"
+    }
+  },
+  "missing_format_total_current_notes": 56,
+  "all_5_Word_current_notice_formats_pass": true,
+  "native_post_targeted_SAD_text_check": {
+    "file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\final-word\\SAD.pdf",
+    "sha256": "137C9B48DD1F2D7937C0AFBAEB0DDE882CD97DA620FDC94F3CEA75DB062EB547",
+    "page_count": 47,
+    "page4_starts_intro": true,
+    "page4_SDP_TD24A_reference": true,
+    "last_page_SOUP_not_complete": true,
+    "new_last_page_notice": "[QCC 자료 입력] QCC 지원 소프트웨어의 정확한 제품·버전, 사용 구성·API 및 운영 검토 자료를 제출해야 한다.",
+    "visual_PNG_status": "changed pages directly rendered in memory from verified latest native PDF, no G/QA image files written",
+    "new_SOUP_notice_native_red_font_confirmation": {
+      "page": 47,
+      "red_font_size_bold": [
+        {
+          "point": 12.0,
+          "bold": false,
+          "chars": 52
+        }
+      ],
+      "all_new_red_note_12pt_nonbold": true
+    },
+    "in_memory_PNG_pages_reviewed": [
+      3,
+      4,
+      5,
+      6,
+      46,
+      47
+    ],
+    "render_engine": "pypdfium2 scale1.5,893x1263 PNG (native PDF exact source hash137C9B48...)",
+    "no_clipping_or_overlap": true,
+    "TOC_page_references_consistent": true,
+    "blank_page_removed_visual_verified": true,
+    "QCC_4_modules_14_units_diagram_visual_verified": true,
+    "SOUP_pending_status_and_missing_notice_visual_verified": true,
+    "latest_native_requirement_ids": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      57,
+      58,
+      59,
+      60,
+      61,
+      62,
+      63,
+      64,
+      65,
+      66,
+      67,
+      68,
+      69,
+      70,
+      71,
+      72,
+      73,
+      74,
+      75,
+      76,
+      77,
+      78,
+      79,
+      80,
+      81,
+      82,
+      83
+    ],
+    "all_83_RIDs_visible": true,
+    "remaining_layout_findings": []
+  },
+  "latest_current_saved_notice_recheck": {
+    "SR": {
+      "file": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\02_설계 입력\\SW\\외부기\\[E8300-QCC] SR-FW-TD24A 소프트웨어 요구사항.docx",
+      "sha256": "8237F9E97E7D868FB87D09661FA546E51E69DE0D83C9F2DDB75148ECC56F6F63",
+      "stable_read": true,
+      "note_count": 5,
+      "all_note_texts_equal_authored_audit": true,
+      "all_current_prefix_description_run_formats_pass": true,
+      "changed_since_authored_snapshot": false
+    },
+    "SGR": {
+      "file": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\02_설계 입력\\SW\\외부기\\[E8300-QCC] SGR-FW-TD24A 소프트웨어 일반요구사항.docx",
+      "sha256": "2B04B70CAF90E42E3CB829EF8AD7FD860D9DCFD589FB4333E7749B62BE48F049",
+      "stable_read": true,
+      "note_count": 2,
+      "all_note_texts_equal_authored_audit": true,
+      "all_current_prefix_description_run_formats_pass": true,
+      "changed_since_authored_snapshot": false
+    },
+    "SAD": {
+      "file": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SAD-FW-TD24A 소프트웨어 아키텍쳐 기술서.docx",
+      "sha256": "DA8AA3DDE9FC369139B077CF36A9D82888341F13E9F29BB8193FE71E8EDDE205",
+      "stable_read": true,
+      "note_count": 23,
+      "all_note_texts_equal_authored_audit": true,
+      "all_current_prefix_description_run_formats_pass": true,
+      "changed_since_authored_snapshot": false
+    },
+    "SDDD": {
+      "file": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SDDD-FW-TD24A 소프트웨어 상세 설계서.docx",
+      "sha256": "490BC2E342353825BF8E053111BBFAFD23EC103EC17452DECDD0320FC3B499C7",
+      "stable_read": true,
+      "note_count": 20,
+      "all_note_texts_equal_authored_audit": true,
+      "all_current_prefix_description_run_formats_pass": true,
+      "changed_since_authored_snapshot": false
+    },
+    "SIP": {
+      "file": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SIP-FW-TD24A 소프트웨어 통합 계획서.docx",
+      "sha256": "3C9FF2237625C78416F3C501D12196E477615DB15625624E7E391572EDCD2C47",
+      "stable_read": true,
+      "note_count": 6,
+      "all_note_texts_equal_authored_audit": true,
+      "all_current_prefix_description_run_formats_pass": true,
+      "changed_since_authored_snapshot": false
+    }
+  },
+  "final_review_status": "completed and recertified after final G SAD saved field/cache update. All5Word56 current missing texts/formats invariant; actual final native SAD3/4/47 PNG and47p headers verified.",
+  "actual_measurement_or_test_pass_claims_expanded": false,
+  "final_closeout_after_saved_SAD_field_refresh": {
+    "root_proof_file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\final-word\\SAD-candidate-proof.json",
+    "root_proof_sha256": "7678FE3C1BB6BC1DADE30C60430329F8022222530CCDC10D17F40E8E261D9C6E",
+    "root_proof_checks": {
+      "accept": true,
+      "reject": true,
+      "body_revision_fingerprints": true,
+      "current_notice_text": true
+    },
+    "root_proof_pass": true,
+    "G_SAD_matches_saved_candidate": true,
+    "expected_G_SAD_sha256": "47B8FB9A30EB01470730A096E38A74B986AB2956BB7E69623ACCCA17E0197117",
+    "current_5_Word_notice_recertification": {
+      "SR": {
+        "file": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\02_설계 입력\\SW\\외부기\\[E8300-QCC] SR-FW-TD24A 소프트웨어 요구사항.docx",
+        "sha256": "8237F9E97E7D868FB87D09661FA546E51E69DE0D83C9F2DDB75148ECC56F6F63",
+        "stable_read": true,
+        "note_count": 5,
+        "all_note_texts_equal_before_fields": true,
+        "all_prefix_description_run_formats_pass": true,
+        "font_points": 12,
+        "base_normal_points": 10,
+        "bold_inheritance_preserved": true,
+        "failures": []
+      },
+      "SGR": {
+        "file": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\02_설계 입력\\SW\\외부기\\[E8300-QCC] SGR-FW-TD24A 소프트웨어 일반요구사항.docx",
+        "sha256": "2B04B70CAF90E42E3CB829EF8AD7FD860D9DCFD589FB4333E7749B62BE48F049",
+        "stable_read": true,
+        "note_count": 2,
+        "all_note_texts_equal_before_fields": true,
+        "all_prefix_description_run_formats_pass": true,
+        "font_points": 12,
+        "base_normal_points": 10,
+        "bold_inheritance_preserved": true,
+        "failures": []
+      },
+      "SAD": {
+        "file": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SAD-FW-TD24A 소프트웨어 아키텍쳐 기술서.docx",
+        "sha256": "47B8FB9A30EB01470730A096E38A74B986AB2956BB7E69623ACCCA17E0197117",
+        "stable_read": true,
+        "note_count": 23,
+        "all_note_texts_equal_before_fields": true,
+        "all_prefix_description_run_formats_pass": true,
+        "font_points": 12,
+        "base_normal_points": 10,
+        "bold_inheritance_preserved": true,
+        "failures": []
+      },
+      "SDDD": {
+        "file": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SDDD-FW-TD24A 소프트웨어 상세 설계서.docx",
+        "sha256": "490BC2E342353825BF8E053111BBFAFD23EC103EC17452DECDD0320FC3B499C7",
+        "stable_read": true,
+        "note_count": 20,
+        "all_note_texts_equal_before_fields": true,
+        "all_prefix_description_run_formats_pass": true,
+        "font_points": 12,
+        "base_normal_points": 10,
+        "bold_inheritance_preserved": true,
+        "failures": []
+      },
+      "SIP": {
+        "file": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SIP-FW-TD24A 소프트웨어 통합 계획서.docx",
+        "sha256": "3C9FF2237625C78416F3C501D12196E477615DB15625624E7E391572EDCD2C47",
+        "stable_read": true,
+        "note_count": 6,
+        "all_note_texts_equal_before_fields": true,
+        "all_prefix_description_run_formats_pass": true,
+        "font_points": 12,
+        "base_normal_points": 10,
+        "bold_inheritance_preserved": true,
+        "failures": []
+      }
+    },
+    "total_current_missing_notices": 56,
+    "all_56_current_missing_note_text_and_format_invariant": true,
+    "final_PDF_sha256": "A0D656DED9E8E39C61FE772CBA093F4E06E665DDECBA93DE28683A286EDB11A0",
+    "final_PDF_page_count": 47,
+    "pages_manifest_sha256": "5C77440A8401D1274056F4FC195F41A9DA25EB20FF11849AE525EC0AF2D83388",
+    "manifest_page_count": 47,
+    "final_native_PNGs_reviewed": [
+      {
+        "page": 3,
+        "file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\final-word\\SAD\\page-003.png",
+        "sha256": "536A089F65A74F0B195E61B9FF376ADFCA948DAD2A23544ED73B7141013D2ECB"
+      },
+      {
+        "page": 4,
+        "file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\final-word\\SAD\\page-004.png",
+        "sha256": "0C88C12B20420BF3114474F329F47E130EA49B2FF4B4370EE11ABEB5E001AFB0"
+      },
+      {
+        "page": 47,
+        "file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\final-word\\SAD\\page-047.png",
+        "sha256": "63C0DFF48D5DA3E126F1AC9EC8CE7C46CD69639FAE18E4545CF1D9C62D959FD6"
+      }
+    ],
+    "toc_intro_page4": true,
+    "SOUP_pending_text_preserved": true,
+    "visual_page_headers": "3/47,4/47,47/47 verified",
+    "blank_page_absent": true,
+    "no_clipping_overlap_on_closeout_pages": true,
+    "new_approval_or_measurement_pass_claim": false,
+    "status": "PASS"
+  }
+}

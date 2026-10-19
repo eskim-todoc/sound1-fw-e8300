@@ -1,0 +1,17 @@
+{
+  "saved": true,
+  "output": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\04_설계 검증\\SW\\외부기\\[E8300-QCC] SUVR-FW-TD24A 소프트웨어 유닛 검증 보고서_재작성.xlsx",
+  "outputSHA": "037CF72A05B276DE25FD21B7EE457A655736BE8FB6D4AE14B67C881F0E3EBEF4",
+  "baseUnchanged": true,
+  "qccUnchanged": true,
+  "existingTests": 115,
+  "addedTests": 15,
+  "addedUnits": 14,
+  "addedConditions": 38,
+  "newRange": "보고서_유닛 시험!1727:1764",
+  "validation": [
+    "validation.json",
+    "content-final.json",
+    "layout-final.json"
+  ]
+}

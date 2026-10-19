@@ -1,0 +1,24 @@
+[
+  {
+    "code": "SR",
+    "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\fields-candidate\\[E8300-QCC] SR-FW-TD24A 소프트웨어 요구사항.docx",
+    "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\final-word\\SR-layout.pdf",
+    "pages": 13,
+    "revisions": 239,
+    "sourceSHA256": "FA08A1F90789F5A789423BBAFF7462DBB35781D0E2680F7A05CF3562E751813D",
+    "sourceUnchanged": true,
+    "scope": "Read-only in-memory accepted preview; deliverable revisions preserved",
+    "checkedAt": "2026-10-13T09:16:46.4794424+09:00"
+  },
+  {
+    "code": "SGR",
+    "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\fields-candidate\\[E8300-QCC] SGR-FW-TD24A 소프트웨어 일반요구사항.docx",
+    "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\final-word\\SGR-layout.pdf",
+    "pages": 12,
+    "revisions": 240,
+    "sourceSHA256": "92AAC0E24260DE06967FCF483548CAF5C51F7FB96209C2A6B6DAF90CE389B922",
+    "sourceUnchanged": true,
+    "scope": "Read-only in-memory accepted preview; deliverable revisions preserved",
+    "checkedAt": "2026-10-13T09:16:49.1449748+09:00"
+  }
+]

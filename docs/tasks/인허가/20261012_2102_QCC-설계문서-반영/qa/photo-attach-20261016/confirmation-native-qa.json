@@ -1,0 +1,50 @@
+[
+  {
+    "code": "confirm-main",
+    "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\photo-attach-20261016\\confirmation-after.xlsx",
+    "sheet": "보고서_시스템 시험",
+    "range": "J158:L159",
+    "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\photo-attach-20261016\\confirmation-native-28.pdf",
+    "sourceSHA256": "7B504381D27351438D4FEAB62B9F1E0D4EB15E396CA2D1023A06B5B51604A4E4",
+    "sourceUnchanged": true,
+    "originalPrintArea": "$B$2:$L$311",
+    "scope": "Read-only Excel preview; source print settings preserved",
+    "checkedAt": "2026-10-16T15:35:05.3124080+09:00"
+  },
+  {
+    "code": "confirm-main",
+    "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\photo-attach-20261016\\confirmation-after.xlsx",
+    "sheet": "보고서_시스템 시험",
+    "range": "J169:L171",
+    "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\photo-attach-20261016\\confirmation-native-32.pdf",
+    "sourceSHA256": "7B504381D27351438D4FEAB62B9F1E0D4EB15E396CA2D1023A06B5B51604A4E4",
+    "sourceUnchanged": true,
+    "originalPrintArea": "$B$2:$L$311",
+    "scope": "Read-only Excel preview; source print settings preserved",
+    "checkedAt": "2026-10-16T15:35:05.6903790+09:00"
+  },
+  {
+    "code": "confirm-support",
+    "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\photo-attach-20261016\\confirmation-after.xlsx",
+    "sheet": "시험 보조자료",
+    "range": "A109:D111",
+    "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\photo-attach-20261016\\confirmation-native-aux28.pdf",
+    "sourceSHA256": "7B504381D27351438D4FEAB62B9F1E0D4EB15E396CA2D1023A06B5B51604A4E4",
+    "sourceUnchanged": true,
+    "originalPrintArea": null,
+    "scope": "Read-only Excel preview; source print settings preserved",
+    "checkedAt": "2026-10-16T15:35:06.7875647+09:00"
+  },
+  {
+    "code": "confirm-support",
+    "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\photo-attach-20261016\\confirmation-after.xlsx",
+    "sheet": "시험 보조자료",
+    "range": "A124:D126",
+    "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\photo-attach-20261016\\confirmation-native-aux32.pdf",
+    "sourceSHA256": "7B504381D27351438D4FEAB62B9F1E0D4EB15E396CA2D1023A06B5B51604A4E4",
+    "sourceUnchanged": true,
+    "originalPrintArea": null,
+    "scope": "Read-only Excel preview; source print settings preserved",
+    "checkedAt": "2026-10-16T15:35:06.9892916+09:00"
+  }
+]

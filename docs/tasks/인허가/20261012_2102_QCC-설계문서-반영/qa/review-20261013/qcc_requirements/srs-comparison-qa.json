@@ -1,0 +1,1080 @@
+{
+  "target": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\02_설계 입력\\SW\\외부기\\[E8300-QCC] SRS-FW-TD24A 소프트웨어 요구사항 사양서.xlsx",
+  "sha256": "A568B4996AC13053D55973E5E59E59ACB6E18FAB5E41C4A7423DEF49596B93E4",
+  "comparison_cells": [
+    {
+      "cell": "F6",
+      "order": "old_then_new",
+      "old_before_new": true,
+      "color_pass": true,
+      "failures": []
+    },
+    {
+      "cell": "F8",
+      "order": "old_then_new",
+      "old_before_new": true,
+      "color_pass": true,
+      "failures": []
+    },
+    {
+      "cell": "F9",
+      "order": "old_then_new",
+      "old_before_new": true,
+      "color_pass": true,
+      "failures": []
+    },
+    {
+      "cell": "F10",
+      "order": "old_then_new",
+      "old_before_new": true,
+      "color_pass": true,
+      "failures": []
+    },
+    {
+      "cell": "F11",
+      "order": "old_then_new",
+      "old_before_new": true,
+      "color_pass": true,
+      "failures": []
+    },
+    {
+      "cell": "F13",
+      "order": "old_then_new",
+      "old_before_new": true,
+      "color_pass": true,
+      "failures": []
+    },
+    {
+      "cell": "F14",
+      "order": "old_then_new",
+      "old_before_new": true,
+      "color_pass": true,
+      "failures": []
+    },
+    {
+      "cell": "F15",
+      "order": "old_then_new",
+      "old_before_new": true,
+      "color_pass": true,
+      "failures": []
+    },
+    {
+      "cell": "F16",
+      "order": "old_then_new",
+      "old_before_new": true,
+      "color_pass": true,
+      "failures": []
+    },
+    {
+      "cell": "F17",
+      "order": "old_then_new",
+      "old_before_new": true,
+      "color_pass": true,
+      "failures": []
+    },
+    {
+      "cell": "F18",
+      "order": "old_then_new",
+      "old_before_new": true,
+      "color_pass": true,
+      "failures": []
+    },
+    {
+      "cell": "F19",
+      "order": "old_then_new",
+      "old_before_new": true,
+      "color_pass": true,
+      "failures": []
+    },
+    {
+      "cell": "F20",
+      "order": "old_then_new",
+      "old_before_new": true,
+      "color_pass": true,
+      "failures": []
+    },
+    {
+      "cell": "I20",
+      "order": "old_then_new",
+      "old_before_new": true,
+      "color_pass": true,
+      "failures": []
+    },
+    {
+      "cell": "F21",
+      "order": "new_continuation",
+      "old_before_new": true,
+      "color_pass": true,
+      "failures": []
+    },
+    {
+      "cell": "F22",
+      "order": "old_then_new",
+      "old_before_new": true,
+      "color_pass": true,
+      "failures": []
+    },
+    {
+      "cell": "I22",
+      "order": "old_then_new",
+      "old_before_new": true,
+      "color_pass": true,
+      "failures": []
+    },
+    {
+      "cell": "F50",
+      "order": "retired_old_only",
+      "old_before_new": true,
+      "color_pass": true,
+      "failures": []
+    },
+    {
+      "cell": "G50",
+      "order": "retired_old_only",
+      "old_before_new": true,
+      "color_pass": true,
+      "failures": []
+    },
+    {
+      "cell": "H50",
+      "order": "retired_old_only",
+      "old_before_new": true,
+      "color_pass": true,
+      "failures": []
+    },
+    {
+      "cell": "I50",
+      "order": "retired_old_only",
+      "old_before_new": true,
+      "color_pass": true,
+      "failures": []
+    },
+    {
+      "cell": "F51",
+      "order": "old_then_new",
+      "old_before_new": true,
+      "color_pass": true,
+      "failures": []
+    },
+    {
+      "cell": "I51",
+      "order": "old_then_new",
+      "old_before_new": true,
+      "color_pass": true,
+      "failures": []
+    },
+    {
+      "cell": "F52",
+      "order": "new_continuation",
+      "old_before_new": true,
+      "color_pass": true,
+      "failures": []
+    },
+    {
+      "cell": "F53",
+      "order": "old_then_new",
+      "old_before_new": true,
+      "color_pass": true,
+      "failures": []
+    },
+    {
+      "cell": "I53",
+      "order": "old_then_new",
+      "old_before_new": true,
+      "color_pass": true,
+      "failures": []
+    },
+    {
+      "cell": "F54",
+      "order": "new_continuation",
+      "old_before_new": true,
+      "color_pass": true,
+      "failures": []
+    },
+    {
+      "cell": "F55",
+      "order": "old_then_new",
+      "old_before_new": true,
+      "color_pass": true,
+      "failures": []
+    },
+    {
+      "cell": "I55",
+      "order": "old_then_new",
+      "old_before_new": true,
+      "color_pass": true,
+      "failures": []
+    },
+    {
+      "cell": "F56",
+      "order": "new_continuation",
+      "old_before_new": true,
+      "color_pass": true,
+      "failures": []
+    },
+    {
+      "cell": "F57",
+      "order": "old_then_new",
+      "old_before_new": true,
+      "color_pass": true,
+      "failures": []
+    },
+    {
+      "cell": "I57",
+      "order": "old_then_new",
+      "old_before_new": true,
+      "color_pass": true,
+      "failures": []
+    },
+    {
+      "cell": "F59",
+      "order": "old_then_new",
+      "old_before_new": true,
+      "color_pass": true,
+      "failures": []
+    },
+    {
+      "cell": "F60",
+      "order": "old_then_new",
+      "old_before_new": true,
+      "color_pass": true,
+      "failures": []
+    },
+    {
+      "cell": "I60",
+      "order": "old_then_new",
+      "old_before_new": true,
+      "color_pass": true,
+      "failures": []
+    },
+    {
+      "cell": "F61",
+      "order": "new_continuation",
+      "old_before_new": true,
+      "color_pass": true,
+      "failures": []
+    },
+    {
+      "cell": "F62",
+      "order": "retired_old_only",
+      "old_before_new": true,
+      "color_pass": true,
+      "failures": []
+    },
+    {
+      "cell": "I62",
+      "order": "old_then_new",
+      "old_before_new": true,
+      "color_pass": true,
+      "failures": []
+    },
+    {
+      "cell": "F63",
+      "order": "new_continuation",
+      "old_before_new": true,
+      "color_pass": true,
+      "failures": []
+    },
+    {
+      "cell": "F64",
+      "order": "old_then_new",
+      "old_before_new": true,
+      "color_pass": true,
+      "failures": []
+    },
+    {
+      "cell": "I64",
+      "order": "old_then_new",
+      "old_before_new": true,
+      "color_pass": true,
+      "failures": []
+    },
+    {
+      "cell": "F65",
+      "order": "new_continuation",
+      "old_before_new": true,
+      "color_pass": true,
+      "failures": []
+    },
+    {
+      "cell": "F68",
+      "order": "retired_old_only",
+      "old_before_new": true,
+      "color_pass": true,
+      "failures": []
+    },
+    {
+      "cell": "I68",
+      "order": "old_then_new",
+      "old_before_new": true,
+      "color_pass": true,
+      "failures": []
+    },
+    {
+      "cell": "F69",
+      "order": "new_continuation",
+      "old_before_new": true,
+      "color_pass": true,
+      "failures": []
+    },
+    {
+      "cell": "F72",
+      "order": "old_then_new",
+      "old_before_new": true,
+      "color_pass": true,
+      "failures": []
+    },
+    {
+      "cell": "I72",
+      "order": "old_then_new",
+      "old_before_new": true,
+      "color_pass": true,
+      "failures": []
+    },
+    {
+      "cell": "F73",
+      "order": "new_continuation",
+      "old_before_new": true,
+      "color_pass": true,
+      "failures": []
+    },
+    {
+      "cell": "F74",
+      "order": "old_then_new",
+      "old_before_new": true,
+      "color_pass": true,
+      "failures": []
+    },
+    {
+      "cell": "I74",
+      "order": "old_then_new",
+      "old_before_new": true,
+      "color_pass": true,
+      "failures": []
+    },
+    {
+      "cell": "F75",
+      "order": "new_continuation",
+      "old_before_new": true,
+      "color_pass": true,
+      "failures": []
+    },
+    {
+      "cell": "F76",
+      "order": "old_then_new",
+      "old_before_new": true,
+      "color_pass": true,
+      "failures": []
+    },
+    {
+      "cell": "I76",
+      "order": "old_then_new",
+      "old_before_new": true,
+      "color_pass": true,
+      "failures": []
+    },
+    {
+      "cell": "F77",
+      "order": "new_continuation",
+      "old_before_new": true,
+      "color_pass": true,
+      "failures": []
+    },
+    {
+      "cell": "F80",
+      "order": "old_then_new",
+      "old_before_new": true,
+      "color_pass": true,
+      "failures": []
+    },
+    {
+      "cell": "F81",
+      "order": "retired_old_only",
+      "old_before_new": true,
+      "color_pass": true,
+      "failures": []
+    },
+    {
+      "cell": "I81",
+      "order": "old_then_new",
+      "old_before_new": true,
+      "color_pass": true,
+      "failures": []
+    },
+    {
+      "cell": "F82",
+      "order": "new_continuation",
+      "old_before_new": true,
+      "color_pass": true,
+      "failures": []
+    },
+    {
+      "cell": "F84",
+      "order": "old_then_new",
+      "old_before_new": true,
+      "color_pass": true,
+      "failures": []
+    },
+    {
+      "cell": "I84",
+      "order": "old_then_new",
+      "old_before_new": true,
+      "color_pass": true,
+      "failures": []
+    },
+    {
+      "cell": "F85",
+      "order": "new_continuation",
+      "old_before_new": true,
+      "color_pass": true,
+      "failures": []
+    },
+    {
+      "cell": "F88",
+      "order": "old_then_new",
+      "old_before_new": true,
+      "color_pass": true,
+      "failures": []
+    },
+    {
+      "cell": "F89",
+      "order": "old_then_new",
+      "old_before_new": true,
+      "color_pass": true,
+      "failures": []
+    },
+    {
+      "cell": "F93",
+      "order": "old_then_new",
+      "old_before_new": true,
+      "color_pass": true,
+      "failures": []
+    },
+    {
+      "cell": "H93",
+      "order": "old_then_new",
+      "old_before_new": true,
+      "color_pass": true,
+      "failures": []
+    },
+    {
+      "cell": "I93",
+      "order": "old_then_new",
+      "old_before_new": true,
+      "color_pass": true,
+      "failures": []
+    },
+    {
+      "cell": "F94",
+      "order": "new_continuation",
+      "old_before_new": true,
+      "color_pass": true,
+      "failures": []
+    },
+    {
+      "cell": "F96",
+      "order": "old_then_new",
+      "old_before_new": true,
+      "color_pass": true,
+      "failures": []
+    },
+    {
+      "cell": "F97",
+      "order": "old_then_new",
+      "old_before_new": true,
+      "color_pass": true,
+      "failures": []
+    },
+    {
+      "cell": "F98",
+      "order": "old_then_new",
+      "old_before_new": true,
+      "color_pass": true,
+      "failures": []
+    },
+    {
+      "cell": "F99",
+      "order": "old_then_new",
+      "old_before_new": true,
+      "color_pass": true,
+      "failures": []
+    }
+  ],
+  "all_markers_order_color_pass": true,
+  "matrix_literal_blocks": [
+    {
+      "rid": 1,
+      "matrix_rows": [
+        101
+      ],
+      "literal_base_match": true,
+      "next_block_begins_on_new_line": true,
+      "details_separator": true
+    },
+    {
+      "rid": 3,
+      "matrix_rows": [
+        100
+      ],
+      "literal_base_match": true,
+      "next_block_begins_on_new_line": true,
+      "details_separator": true
+    },
+    {
+      "rid": 4,
+      "matrix_rows": [
+        103
+      ],
+      "literal_base_match": true,
+      "next_block_begins_on_new_line": true,
+      "details_separator": true
+    },
+    {
+      "rid": 5,
+      "matrix_rows": [
+        104
+      ],
+      "literal_base_match": true,
+      "next_block_begins_on_new_line": true,
+      "details_separator": true
+    },
+    {
+      "rid": 6,
+      "matrix_rows": [
+        102
+      ],
+      "literal_base_match": true,
+      "next_block_begins_on_new_line": true,
+      "details_separator": true
+    },
+    {
+      "rid": 8,
+      "matrix_rows": [
+        105
+      ],
+      "literal_base_match": true,
+      "next_block_begins_on_new_line": true,
+      "details_separator": true
+    },
+    {
+      "rid": 9,
+      "matrix_rows": [
+        106
+      ],
+      "literal_base_match": true,
+      "next_block_begins_on_new_line": true,
+      "details_separator": true
+    },
+    {
+      "rid": 10,
+      "matrix_rows": [
+        107
+      ],
+      "literal_base_match": true,
+      "next_block_begins_on_new_line": true,
+      "details_separator": true
+    },
+    {
+      "rid": 11,
+      "matrix_rows": [
+        108
+      ],
+      "literal_base_match": true,
+      "next_block_begins_on_new_line": true,
+      "details_separator": true
+    },
+    {
+      "rid": 12,
+      "matrix_rows": [
+        109
+      ],
+      "literal_base_match": true,
+      "next_block_begins_on_new_line": true,
+      "details_separator": true
+    },
+    {
+      "rid": 13,
+      "matrix_rows": [
+        110
+      ],
+      "literal_base_match": true,
+      "next_block_begins_on_new_line": true,
+      "details_separator": true
+    },
+    {
+      "rid": 14,
+      "matrix_rows": [
+        111
+      ],
+      "literal_base_match": true,
+      "next_block_begins_on_new_line": true,
+      "details_separator": true
+    },
+    {
+      "rid": 44,
+      "matrix_rows": [
+        112
+      ],
+      "literal_base_match": true,
+      "next_block_begins_on_new_line": true,
+      "details_separator": true
+    },
+    {
+      "rid": 45,
+      "matrix_rows": [
+        113
+      ],
+      "literal_base_match": true,
+      "next_block_begins_on_new_line": true,
+      "details_separator": true
+    },
+    {
+      "rid": 69,
+      "matrix_rows": [
+        114
+      ],
+      "literal_base_match": true,
+      "next_block_begins_on_new_line": true,
+      "details_separator": true
+    },
+    {
+      "rid": 70,
+      "matrix_rows": [
+        115
+      ],
+      "literal_base_match": true,
+      "next_block_begins_on_new_line": true,
+      "details_separator": true
+    },
+    {
+      "rid": 46,
+      "matrix_rows": [
+        116
+      ],
+      "literal_base_match": true,
+      "next_block_begins_on_new_line": true,
+      "details_separator": true
+    },
+    {
+      "rid": 47,
+      "matrix_rows": [
+        121
+      ],
+      "literal_base_match": true,
+      "next_block_begins_on_new_line": true,
+      "details_separator": true
+    },
+    {
+      "rid": 48,
+      "matrix_rows": [
+        117
+      ],
+      "literal_base_match": true,
+      "next_block_begins_on_new_line": true,
+      "details_separator": true
+    },
+    {
+      "rid": 49,
+      "matrix_rows": [
+        125
+      ],
+      "literal_base_match": true,
+      "next_block_begins_on_new_line": true,
+      "details_separator": null
+    },
+    {
+      "rid": 50,
+      "matrix_rows": [
+        122
+      ],
+      "literal_base_match": true,
+      "next_block_begins_on_new_line": true,
+      "details_separator": null
+    },
+    {
+      "rid": 51,
+      "matrix_rows": [
+        126
+      ],
+      "literal_base_match": true,
+      "next_block_begins_on_new_line": true,
+      "details_separator": null
+    },
+    {
+      "rid": 52,
+      "matrix_rows": [
+        118
+      ],
+      "literal_base_match": true,
+      "next_block_begins_on_new_line": true,
+      "details_separator": true
+    },
+    {
+      "rid": 53,
+      "matrix_rows": [
+        129
+      ],
+      "literal_base_match": true,
+      "next_block_begins_on_new_line": true,
+      "details_separator": null
+    },
+    {
+      "rid": 81,
+      "matrix_rows": [
+        130
+      ],
+      "literal_base_match": true,
+      "next_block_begins_on_new_line": true,
+      "details_separator": null
+    },
+    {
+      "rid": 54,
+      "matrix_rows": [
+        131
+      ],
+      "literal_base_match": true,
+      "next_block_begins_on_new_line": true,
+      "details_separator": true
+    },
+    {
+      "rid": 71,
+      "matrix_rows": [
+        119
+      ],
+      "literal_base_match": true,
+      "next_block_begins_on_new_line": true,
+      "details_separator": true
+    },
+    {
+      "rid": 72,
+      "matrix_rows": [
+        120
+      ],
+      "literal_base_match": true,
+      "next_block_begins_on_new_line": true,
+      "details_separator": true
+    },
+    {
+      "rid": 73,
+      "matrix_rows": [
+        123
+      ],
+      "literal_base_match": true,
+      "next_block_begins_on_new_line": true,
+      "details_separator": null
+    },
+    {
+      "rid": 74,
+      "matrix_rows": [
+        124
+      ],
+      "literal_base_match": true,
+      "next_block_begins_on_new_line": true,
+      "details_separator": null
+    },
+    {
+      "rid": 75,
+      "matrix_rows": [
+        128
+      ],
+      "literal_base_match": true,
+      "next_block_begins_on_new_line": true,
+      "details_separator": true
+    },
+    {
+      "rid": 76,
+      "matrix_rows": [
+        132
+      ],
+      "literal_base_match": true,
+      "next_block_begins_on_new_line": true,
+      "details_separator": true
+    },
+    {
+      "rid": 77,
+      "matrix_rows": [
+        133
+      ],
+      "literal_base_match": true,
+      "next_block_begins_on_new_line": true,
+      "details_separator": null
+    },
+    {
+      "rid": 78,
+      "matrix_rows": [
+        134
+      ],
+      "literal_base_match": true,
+      "next_block_begins_on_new_line": true,
+      "details_separator": true
+    },
+    {
+      "rid": 79,
+      "matrix_rows": [
+        135
+      ],
+      "literal_base_match": true,
+      "next_block_begins_on_new_line": true,
+      "details_separator": null
+    },
+    {
+      "rid": 80,
+      "matrix_rows": [
+        137
+      ],
+      "literal_base_match": true,
+      "next_block_begins_on_new_line": true,
+      "details_separator": null
+    },
+    {
+      "rid": 55,
+      "matrix_rows": [
+        147
+      ],
+      "literal_base_match": true,
+      "next_block_begins_on_new_line": true,
+      "details_separator": true
+    },
+    {
+      "rid": 56,
+      "matrix_rows": [
+        146
+      ],
+      "literal_base_match": true,
+      "next_block_begins_on_new_line": true,
+      "details_separator": true
+    },
+    {
+      "rid": 83,
+      "matrix_rows": [
+        348,
+        349,
+        351
+      ],
+      "literal_base_match": true,
+      "next_block_begins_on_new_line": true,
+      "details_separator": true
+    },
+    {
+      "rid": 57,
+      "matrix_rows": [
+        138,
+        139
+      ],
+      "literal_base_match": true,
+      "next_block_begins_on_new_line": true,
+      "details_separator": true
+    },
+    {
+      "rid": 58,
+      "matrix_rows": [
+        140
+      ],
+      "literal_base_match": true,
+      "next_block_begins_on_new_line": true,
+      "details_separator": true
+    },
+    {
+      "rid": 59,
+      "matrix_rows": [
+        127
+      ],
+      "literal_base_match": true,
+      "next_block_begins_on_new_line": true,
+      "details_separator": true
+    },
+    {
+      "rid": 60,
+      "matrix_rows": [
+        141
+      ],
+      "literal_base_match": true,
+      "next_block_begins_on_new_line": true,
+      "details_separator": null
+    },
+    {
+      "rid": 61,
+      "matrix_rows": [
+        142
+      ],
+      "literal_base_match": true,
+      "next_block_begins_on_new_line": true,
+      "details_separator": null
+    },
+    {
+      "rid": 62,
+      "matrix_rows": [
+        143
+      ],
+      "literal_base_match": true,
+      "next_block_begins_on_new_line": true,
+      "details_separator": null
+    },
+    {
+      "rid": 64,
+      "matrix_rows": [
+        144
+      ],
+      "literal_base_match": true,
+      "next_block_begins_on_new_line": true,
+      "details_separator": null
+    },
+    {
+      "rid": 65,
+      "matrix_rows": [
+        145
+      ],
+      "literal_base_match": true,
+      "next_block_begins_on_new_line": true,
+      "details_separator": null
+    },
+    {
+      "rid": 66,
+      "matrix_rows": [
+        136
+      ],
+      "literal_base_match": true,
+      "next_block_begins_on_new_line": true,
+      "details_separator": null
+    },
+    {
+      "rid": 67,
+      "matrix_rows": [
+        148
+      ],
+      "literal_base_match": true,
+      "next_block_begins_on_new_line": true,
+      "details_separator": null
+    },
+    {
+      "rid": 68,
+      "matrix_rows": [
+        149
+      ],
+      "literal_base_match": true,
+      "next_block_begins_on_new_line": true,
+      "details_separator": null
+    }
+  ],
+  "all_matrix_blocks_pass": true,
+  "protected_sources": [
+    {
+      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\04_설계 검증\\SW\\외부기\\[E8300] SSTR-FW-TD24A 소프트웨어 시스템 시험 보고서.xlsx",
+      "sha256": "522C9970C8CF6130A9350CC60C50F578E61E25F7171608EF577F01B17D426660",
+      "unchanged": true
+    },
+    {
+      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\04_설계 검증\\SW\\외부기\\[E8300] SITR-FW-TD24A 소프트웨어 통합시험 보고서.xlsx",
+      "sha256": "EF9797101BA6FBE803C58FEFCDC81F829090C5D199A145FE79F61103207A7085",
+      "unchanged": true
+    },
+    {
+      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\04_설계 검증\\SW\\외부기\\[E8300] SUVR-FW-TD24A 소프트웨어 유닛 검증 보고서.xlsx",
+      "sha256": "05495AED7973BAF02E03C03AACE158AE233CEC419CF2308CCF3F9950DFAF21B5",
+      "unchanged": true
+    },
+    {
+      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\02_설계 입력\\SW\\외부기\\[E8300] SR-FW-TD24A 소프트웨어 요구사항.docx",
+      "sha256": "6F8F005BB1F311752FDE1E8AA14A75F3E716A48167072261DA630061864231C6",
+      "unchanged": true
+    },
+    {
+      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\02_설계 입력\\SW\\외부기\\[E8300] SGR-FW-TD24A 소프트웨어 일반요구사항.docx",
+      "sha256": "2D81FC0FCE22B8DC57A73C6C3B71F0B3989404BA60289E346E0670A7B1D593F3",
+      "unchanged": true
+    },
+    {
+      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\02_설계 입력\\SW\\외부기\\[E8300] SRS-FW-TD24A 소프트웨어 요구사항 사양서.xlsx",
+      "sha256": "F41DF6E3478CA642565EB569228E58CB75D7653260FFF613FDFEA74E95BF7D0B",
+      "unchanged": true
+    },
+    {
+      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\01_설계 계획\\SW\\외부기\\[E8300] SPRP-FW-TD24A 소프트웨어 문제해결 계획서.docx",
+      "sha256": "1DFD64FB5E6F92C0CA6234B9E54924DD08BAA153BD52A7DEBA706B19068F9628",
+      "unchanged": true
+    },
+    {
+      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\01_설계 계획\\SW\\외부기\\[E8300] SMP-FW-TD24A 소프트웨어 유지보수 계획서.docx",
+      "sha256": "C7B90B1250D9602207C6EA9C847832BC768B42AE9C047A8DDF661B08EB034C50",
+      "unchanged": true
+    },
+    {
+      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\01_설계 계획\\SW\\외부기\\[E8300] SDP-FW-TD24A 소프트웨어 개발 계획서.docx",
+      "sha256": "A019C578175F16B61CE9B3E2C355BB7186D8AA352E6035D9A15F8FD955C24EED",
+      "unchanged": true
+    },
+    {
+      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\01_설계 계획\\SW\\외부기\\[E8300] SCMP-FW-TD24A 소프트웨어 형상관리 계획서.docx",
+      "sha256": "CE6D5E0F308EB791FA3627241DE9313982B464C621CCAA9BEA89AB870A6AC9B8",
+      "unchanged": true
+    },
+    {
+      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\01_설계 계획\\SW\\외부기\\[E8300] SCCP-FW-TD24A 소프트웨어 변경관리 계획서.docx",
+      "sha256": "024EC477EE05BE5DDD15E10BCFAAE1F0A7DECCCE8E6FF4274B395271C051CF3D",
+      "unchanged": true
+    },
+    {
+      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\01_설계 계획\\SW\\외부기\\[E8300] SRMP-FW-TD24A 소프트웨어 위험관리 계획서.docx",
+      "sha256": "0C088019B722F8A055A931E1FA0ECC80C2974171D74CE5F868B931177E2E587F",
+      "unchanged": true
+    },
+    {
+      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300] SSTC-FW-TD24A 소프트웨어 시스템 시험 기준서.xlsx",
+      "sha256": "5DC280315BB6FDE189E7D10670A3603143EA1F3F42E92DCE7D2A671CB8A5CFF2",
+      "unchanged": true
+    },
+    {
+      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300] SITC-FW-TD24A 소프트웨어 통합시험 기준서.xlsx",
+      "sha256": "26E9CAD65570E11BB472235FF35A32637F785EA948255B694B2DB16222495C7F",
+      "unchanged": true
+    },
+    {
+      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300] SIP-FW-TD24A 소프트웨어 통합 계획서.docx",
+      "sha256": "7EB0438F5AF2BF991BB06BA843D4A6040A38683CD53F6DBFE58F9DDEC2305D02",
+      "unchanged": true
+    },
+    {
+      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300] SDDD-FW-TD24A 소프트웨어 상세 설계서.docx",
+      "sha256": "C95A3405788121F8DDBDB8F296A49ECD41C28947044635EA9B7B432EB99D289C",
+      "unchanged": true
+    },
+    {
+      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300] SAD-FW-TD24A 소프트웨어 아키텍쳐 기술서.docx",
+      "sha256": "7B79A7D3F17AD78E02366FF79E6AD5A9E0FCB03F989AB4C337A2792097BA48B5",
+      "unchanged": true
+    },
+    {
+      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300] SUVC-FW-TD24A 소프트웨어 유닛 검증 기준서.xlsx",
+      "sha256": "12ED6CFD93A937E4A13618C7F5730D45493586A3A3E005BD5701C85529946A3E",
+      "unchanged": true
+    },
+    {
+      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\02_설계 입력\\SW\\외부기\\서석일_작성\\QCC_SRS-FW-TD24A 소프트웨어 요구사항 사양서_byssi.docx",
+      "sha256": "64DDECBA6C1B718ECD31881F45FEC163F4E5CDD88807455FA6B019C370BFE078",
+      "unchanged": true
+    },
+    {
+      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\서석일_작성\\QCC_SIP-FW-TD24A 소프트웨어 통합 계획서_byssi.docx",
+      "sha256": "0037A200031568BBEE5D044B40BD4647ADE513BF13C1B227BA4EE67DA4C0DABF",
+      "unchanged": true
+    },
+    {
+      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\서석일_작성\\QCC_SDDD-FW-TD24A 소프트웨어 상세 설계서_byssi.docx",
+      "sha256": "49982C995F78064613F47F4D97A262C70394FC937B66CF4E6F38925E4FB5E1CE",
+      "unchanged": true
+    },
+    {
+      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\서석일_작성\\QCC_SAD-FW-TD24A 소프트웨어 아키텍쳐 기술서_byssi.docx",
+      "sha256": "49EBEBCF56D3835B0DB3365C5BA996909A1F59490E50468C2FE76D44974B8878",
+      "unchanged": true
+    },
+    {
+      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\서석일_작성\\QCC_SUVC-FW-TD24A 유닛 테스트 기준서_byssi.docx",
+      "sha256": "072AA94EF6C48846C78A81DEA104A65ADCF19DEF60F5484A8F33C3677AFCAB5A",
+      "unchanged": true
+    }
+  ],
+  "protected_source_count": 23,
+  "all_protected_unchanged": true,
+  "row_height_limit": true
+}

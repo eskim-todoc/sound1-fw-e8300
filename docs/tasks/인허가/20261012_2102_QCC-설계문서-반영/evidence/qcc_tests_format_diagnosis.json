@@ -1,0 +1,181 @@
+{
+  "nativebase": {
+    "1": [
+      "dimension",
+      "sheetViews",
+      "sheetFormatPr",
+      "cols",
+      "sheetData",
+      "mergeCells",
+      "phoneticPr",
+      "pageMargins"
+    ],
+    "2": [
+      "sheetPr",
+      "dimension",
+      "sheetViews",
+      "sheetFormatPr",
+      "cols",
+      "sheetData",
+      "mergeCells",
+      "phoneticPr",
+      "pageMargins",
+      "pageSetup"
+    ],
+    "3": [
+      "dimension",
+      "sheetViews",
+      "sheetFormatPr",
+      "cols",
+      "sheetData",
+      "phoneticPr",
+      "pageMargins"
+    ],
+    "4": [
+      "dimension",
+      "sheetViews",
+      "sheetFormatPr",
+      "cols",
+      "sheetData",
+      "phoneticPr",
+      "pageMargins",
+      "drawing"
+    ],
+    "5": [
+      "dimension",
+      "sheetViews",
+      "sheetFormatPr",
+      "cols",
+      "sheetData",
+      "mergeCells",
+      "phoneticPr",
+      "pageMargins",
+      "pageSetup"
+    ],
+    "styles": {
+      "fonts": [
+        "33",
+        33
+      ],
+      "fills": [
+        "13",
+        13
+      ],
+      "borders": [
+        "41",
+        41
+      ],
+      "cellStyleXfs": [
+        "3",
+        3
+      ],
+      "cellXfs": [
+        "162",
+        162
+      ],
+      "cellStyles": [
+        "1",
+        1
+      ],
+      "dxfs": [
+        "0",
+        0
+      ],
+      "tableStyles": [
+        "0",
+        0
+      ]
+    },
+    "history_merge": null
+  },
+  "current": {
+    "1": [
+      "dimension",
+      "sheetViews",
+      "sheetFormatPr",
+      "cols",
+      "sheetData",
+      "mergeCells",
+      "phoneticPr",
+      "pageMargins"
+    ],
+    "2": [
+      "sheetPr",
+      "dimension",
+      "sheetViews",
+      "sheetFormatPr",
+      "cols",
+      "sheetData",
+      "mergeCells",
+      "phoneticPr",
+      "pageMargins",
+      "pageSetup"
+    ],
+    "3": [
+      "dimension",
+      "sheetViews",
+      "sheetFormatPr",
+      "cols",
+      "sheetData",
+      "phoneticPr",
+      "mergeCells",
+      "pageMargins"
+    ],
+    "4": [
+      "dimension",
+      "sheetViews",
+      "sheetFormatPr",
+      "cols",
+      "sheetData",
+      "phoneticPr",
+      "pageMargins",
+      "drawing"
+    ],
+    "5": [
+      "dimension",
+      "sheetViews",
+      "sheetFormatPr",
+      "cols",
+      "sheetData",
+      "mergeCells",
+      "phoneticPr",
+      "pageMargins",
+      "pageSetup"
+    ],
+    "styles": {
+      "fonts": [
+        "61",
+        61
+      ],
+      "fills": [
+        "13",
+        13
+      ],
+      "borders": [
+        "42",
+        42
+      ],
+      "cellStyleXfs": [
+        "3",
+        3
+      ],
+      "cellXfs": [
+        "190",
+        190
+      ],
+      "cellStyles": [
+        "1",
+        1
+      ],
+      "dxfs": [
+        "0",
+        0
+      ],
+      "tableStyles": [
+        "0",
+        0
+      ]
+    },
+    "history_merge": "<mergeCells xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:x14ac=\"http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac\" xmlns:xr=\"http://schemas.microsoft.com/office/spreadsheetml/2014/revision\" xmlns:xr2=\"http://schemas.microsoft.com/office/spreadsheetml/2015/revision2\" xmlns:xr3=\"http://schemas.microsoft.com/office/spreadsheetml/2016/revision3\" count=\"1\"><mergeCell ref=\"A2:D2\"/></mergeCells>"
+  }
+}

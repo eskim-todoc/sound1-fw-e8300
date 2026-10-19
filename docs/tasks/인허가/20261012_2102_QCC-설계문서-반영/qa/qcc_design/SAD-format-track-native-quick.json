@@ -1,0 +1,122 @@
+[
+  {
+    "case": "current",
+    "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SAD-FW-TD24A 소프트웨어 아키텍쳐 기술서.docx",
+    "sha256": "47B8FB9A30EB01470730A096E38A74B986AB2956BB7E69623ACCCA17E0197117",
+    "revision_count": 751,
+    "items": [
+      {
+        "index": 37,
+        "type": 2,
+        "author": "김은수",
+        "date": "10/01/2026 16:27:00",
+        "start": 312,
+        "end": 313,
+        "text": "\t",
+        "range_is_null": false
+      },
+      {
+        "index": 38,
+        "type": null,
+        "author": null,
+        "date": "",
+        "start": null,
+        "end": null,
+        "text": null,
+        "range_is_null": true
+      },
+      {
+        "index": 39,
+        "type": null,
+        "author": null,
+        "date": "",
+        "start": null,
+        "end": null,
+        "text": null,
+        "range_is_null": true
+      }
+    ],
+    "read_only": true,
+    "saved": false
+  },
+  {
+    "case": "before_targeted",
+    "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\qcc_design\\SAD-before-final-targeted.docx",
+    "sha256": "DE0EF070E2F565F778A723A4D8C1403DEB5D16BBAAEE59BE03B7C08468EE976E",
+    "revision_count": 748,
+    "items": [
+      {
+        "index": 37,
+        "type": 2,
+        "author": "김은수",
+        "date": "10/01/2026 16:27:00",
+        "start": 312,
+        "end": 313,
+        "text": "\t",
+        "range_is_null": false
+      },
+      {
+        "index": 38,
+        "type": 2,
+        "author": "김은수",
+        "date": "10/01/2026 06:57:00",
+        "start": 2982,
+        "end": 2984,
+        "text": "\f\r",
+        "range_is_null": false
+      },
+      {
+        "index": 39,
+        "type": 10,
+        "author": "김은수",
+        "date": "10/01/2026 06:57:00",
+        "start": 2982,
+        "end": 2984,
+        "text": null,
+        "range_is_null": false
+      }
+    ],
+    "read_only": true,
+    "saved": false
+  },
+  {
+    "case": "diagnostic_without_tail_format_revision",
+    "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\qcc_design\\SAD-diagnostic-no-tail-format-track.docx",
+    "sha256": "EC8D892FE88C27BAFB4CFB916D597D7DED61391EDD0A094F75DC4E277C66E307",
+    "revision_count": 750,
+    "items": [
+      {
+        "index": 37,
+        "type": 2,
+        "author": "김은수",
+        "date": "10/01/2026 16:27:00",
+        "start": 312,
+        "end": 313,
+        "text": "\t",
+        "range_is_null": false
+      },
+      {
+        "index": 38,
+        "type": 2,
+        "author": "김은수",
+        "date": "10/01/2026 06:57:00",
+        "start": 2982,
+        "end": 2984,
+        "text": "\f\r",
+        "range_is_null": false
+      },
+      {
+        "index": 39,
+        "type": 10,
+        "author": "김은수",
+        "date": "10/01/2026 06:57:00",
+        "start": 2982,
+        "end": 2984,
+        "text": null,
+        "range_is_null": false
+      }
+    ],
+    "read_only": true,
+    "saved": false
+  }
+]

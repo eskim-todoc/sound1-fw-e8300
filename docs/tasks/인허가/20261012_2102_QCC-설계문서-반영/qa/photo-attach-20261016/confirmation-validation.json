@@ -1,0 +1,12 @@
+{
+  "beforeSHA": "EB8699A7A95382F9D9A372CA425F6228EC5651A18AE7543A651B2FF1D80EB713",
+  "afterSHA": "7B504381D27351438D4FEAB62B9F1E0D4EB15E396CA2D1023A06B5B51604A4E4",
+  "changedCells": 15,
+  "preservedMediaDrawingParts": 136,
+  "errors": [],
+  "sourceEvidence": {
+    "test28": "알림 사용(ON), 알림용 자극 출력 확인",
+    "test32": "2에서 3으로 증가"
+  },
+  "scope": "사용자 확인 결과 반영 및 문서 검증. 새 제품 측정 실행 아님."
+}

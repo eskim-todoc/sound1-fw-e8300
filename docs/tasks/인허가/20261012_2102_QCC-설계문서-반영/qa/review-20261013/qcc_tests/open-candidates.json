@@ -1,0 +1,20 @@
+[
+  {
+    "mode": "canonical-rich",
+    "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\SUVC-probe-canonical-rich.xlsx",
+    "sha256": "3831ba5d08a42bbb96723f16df3b5d828fe94bfa1ae0ccf8f23247ac87e9dba1",
+    "changed_part": "xl/worksheets/sheet2.xml"
+  },
+  {
+    "mode": "plain-inline",
+    "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\SUVC-probe-plain-inline.xlsx",
+    "sha256": "0465803a1a102a48bce83c431e20c24a47055fb98f5a9eab678e902c0419b686",
+    "changed_part": "xl/worksheets/sheet2.xml"
+  },
+  {
+    "mode": "restored-sheet",
+    "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\SUVC-probe-restored-sheet.xlsx",
+    "sha256": "13b24a4ba19b7cbdab2c223571cb26563c0b28131608153271d1f69c00acb76b",
+    "changed_part": "xl/worksheets/sheet2.xml"
+  }
+]

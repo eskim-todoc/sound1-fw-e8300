@@ -1,0 +1,796 @@
+[
+  {
+    "id": "SW-FW-UnitTest-CFX-ID-7",
+    "rows": [
+      54,
+      58
+    ],
+    "expected_lines": 10,
+    "observed_lines": 10,
+    "missing_expected_lines": [],
+    "extra_observed_lines": []
+  },
+  {
+    "id": "SW-FW-UnitTest-CFX-ID-8",
+    "rows": [
+      59,
+      63
+    ],
+    "expected_lines": 2,
+    "observed_lines": 2,
+    "missing_expected_lines": [],
+    "extra_observed_lines": []
+  },
+  {
+    "id": "SW-FW-UnitTest-CFX-ID-10",
+    "rows": [
+      67,
+      71
+    ],
+    "expected_lines": 4,
+    "observed_lines": 4,
+    "missing_expected_lines": [],
+    "extra_observed_lines": []
+  },
+  {
+    "id": "SW-FW-UnitTest-CFX-ID-11",
+    "rows": [
+      72,
+      100
+    ],
+    "expected_lines": 116,
+    "observed_lines": 116,
+    "missing_expected_lines": [],
+    "extra_observed_lines": []
+  },
+  {
+    "id": "SW-FW-UnitTest-CFX-ID-12",
+    "rows": [
+      101,
+      115
+    ],
+    "expected_lines": 52,
+    "observed_lines": 52,
+    "missing_expected_lines": [],
+    "extra_observed_lines": []
+  },
+  {
+    "id": "SW-FW-UnitTest-CFX-ID-13",
+    "rows": [
+      116,
+      120
+    ],
+    "expected_lines": 2,
+    "observed_lines": 2,
+    "missing_expected_lines": [],
+    "extra_observed_lines": []
+  },
+  {
+    "id": "SW-FW-UnitTest-CFX-ID-15",
+    "rows": [
+      124,
+      130
+    ],
+    "expected_lines": 6,
+    "observed_lines": 6,
+    "missing_expected_lines": [],
+    "extra_observed_lines": []
+  },
+  {
+    "id": "SW-FW-UnitTest-CFX-ID-16",
+    "rows": [
+      131,
+      137
+    ],
+    "expected_lines": 5,
+    "observed_lines": 5,
+    "missing_expected_lines": [],
+    "extra_observed_lines": []
+  },
+  {
+    "id": "SW-FW-UnitTest-CFX-ID-17",
+    "rows": [
+      138,
+      143
+    ],
+    "expected_lines": 3,
+    "observed_lines": 3,
+    "missing_expected_lines": [],
+    "extra_observed_lines": []
+  },
+  {
+    "id": "SW-FW-UnitTest-CFX-ID-18",
+    "rows": [
+      144,
+      148
+    ],
+    "expected_lines": 3,
+    "observed_lines": 3,
+    "missing_expected_lines": [],
+    "extra_observed_lines": []
+  },
+  {
+    "id": "SW-FW-UnitTest-CFX-ID-19",
+    "rows": [
+      149,
+      159
+    ],
+    "expected_lines": 18,
+    "observed_lines": 18,
+    "missing_expected_lines": [],
+    "extra_observed_lines": []
+  },
+  {
+    "id": "SW-FW-UnitTest-CFX-ID-20",
+    "rows": [
+      160,
+      167
+    ],
+    "expected_lines": 7,
+    "observed_lines": 7,
+    "missing_expected_lines": [],
+    "extra_observed_lines": []
+  },
+  {
+    "id": "SW-FW-UnitTest-CFX-ID-22",
+    "rows": [
+      175,
+      181
+    ],
+    "expected_lines": 4,
+    "observed_lines": 4,
+    "missing_expected_lines": [],
+    "extra_observed_lines": []
+  },
+  {
+    "id": "SW-FW-UnitTest-CFX-ID-23",
+    "rows": [
+      182,
+      267
+    ],
+    "expected_lines": 29,
+    "observed_lines": 29,
+    "missing_expected_lines": [],
+    "extra_observed_lines": []
+  },
+  {
+    "id": "SW-FW-UnitTest-CFX-ID-24",
+    "rows": [
+      268,
+      277
+    ],
+    "expected_lines": 6,
+    "observed_lines": 6,
+    "missing_expected_lines": [],
+    "extra_observed_lines": []
+  },
+  {
+    "id": "SW-FW-UnitTest-CFX-ID-25",
+    "rows": [
+      278,
+      284
+    ],
+    "expected_lines": 6,
+    "observed_lines": 6,
+    "missing_expected_lines": [],
+    "extra_observed_lines": []
+  },
+  {
+    "id": "SW-FW-UnitTest-CFX-ID-26",
+    "rows": [
+      285,
+      288
+    ],
+    "expected_lines": 3,
+    "observed_lines": 3,
+    "missing_expected_lines": [],
+    "extra_observed_lines": []
+  },
+  {
+    "id": "SW-FW-UnitTest-CFX-ID-27",
+    "rows": [
+      289,
+      297
+    ],
+    "expected_lines": 49,
+    "observed_lines": 49,
+    "missing_expected_lines": [],
+    "extra_observed_lines": []
+  },
+  {
+    "id": "SW-FW-UnitTest-CFX-ID-28",
+    "rows": [
+      298,
+      303
+    ],
+    "expected_lines": 5,
+    "observed_lines": 5,
+    "missing_expected_lines": [],
+    "extra_observed_lines": []
+  },
+  {
+    "id": "SW-FW-UnitTest-CFX-ID-29",
+    "rows": [
+      304,
+      308
+    ],
+    "expected_lines": 8,
+    "observed_lines": 8,
+    "missing_expected_lines": [],
+    "extra_observed_lines": []
+  },
+  {
+    "id": "SW-FW-UnitTest-CFX-ID-30",
+    "rows": [
+      309,
+      321
+    ],
+    "expected_lines": 32,
+    "observed_lines": 32,
+    "missing_expected_lines": [],
+    "extra_observed_lines": []
+  },
+  {
+    "id": "SW-FW-UnitTest-CFX-ID-31",
+    "rows": [
+      322,
+      400
+    ],
+    "expected_lines": 20,
+    "observed_lines": 20,
+    "missing_expected_lines": [],
+    "extra_observed_lines": []
+  },
+  {
+    "id": "SW-FW-UnitTest-CFX-ID-32",
+    "rows": [
+      401,
+      558
+    ],
+    "expected_lines": 45,
+    "observed_lines": 45,
+    "missing_expected_lines": [],
+    "extra_observed_lines": []
+  },
+  {
+    "id": "SW-FW-UnitTest-CFX-ID-33",
+    "rows": [
+      559,
+      577
+    ],
+    "expected_lines": 121,
+    "observed_lines": 121,
+    "missing_expected_lines": [],
+    "extra_observed_lines": []
+  },
+  {
+    "id": "SW-FW-UnitTest-CFX-ID-34",
+    "rows": [
+      578,
+      584
+    ],
+    "expected_lines": 6,
+    "observed_lines": 6,
+    "missing_expected_lines": [],
+    "extra_observed_lines": []
+  },
+  {
+    "id": "SW-FW-UnitTest-CFX-ID-35",
+    "rows": [
+      585,
+      588
+    ],
+    "expected_lines": 3,
+    "observed_lines": 3,
+    "missing_expected_lines": [],
+    "extra_observed_lines": []
+  },
+  {
+    "id": "SW-FW-UnitTest-CFX-ID-36",
+    "rows": [
+      589,
+      594
+    ],
+    "expected_lines": 8,
+    "observed_lines": 8,
+    "missing_expected_lines": [],
+    "extra_observed_lines": []
+  },
+  {
+    "id": "SW-FW-UnitTest-CFX-ID-37",
+    "rows": [
+      595,
+      608
+    ],
+    "expected_lines": 38,
+    "observed_lines": 38,
+    "missing_expected_lines": [],
+    "extra_observed_lines": []
+  },
+  {
+    "id": "SW-FW-UnitTest-CFX-ID-40",
+    "rows": [
+      624,
+      632
+    ],
+    "expected_lines": 36,
+    "observed_lines": 36,
+    "missing_expected_lines": [],
+    "extra_observed_lines": []
+  },
+  {
+    "id": "SW-FW-UnitTest-HEAR-ID-1",
+    "rows": [
+      644,
+      649
+    ],
+    "expected_lines": 3,
+    "observed_lines": 4,
+    "missing_expected_lines": [],
+    "extra_observed_lines": [
+      "[UT-HEAR-001] C99 로그 출력 없음."
+    ]
+  },
+  {
+    "id": "SW-FW-UnitTest-HEAR-ID-2",
+    "rows": [
+      650,
+      788
+    ],
+    "expected_lines": 131,
+    "observed_lines": 131,
+    "missing_expected_lines": [],
+    "extra_observed_lines": []
+  },
+  {
+    "id": "SW-FW-UnitTest-CM3-ID-4",
+    "rows": [
+      802,
+      808
+    ],
+    "expected_lines": 2,
+    "observed_lines": 2,
+    "missing_expected_lines": [],
+    "extra_observed_lines": []
+  },
+  {
+    "id": "SW-FW-UnitTest-CM3-ID-6",
+    "rows": [
+      812,
+      823
+    ],
+    "expected_lines": 4,
+    "observed_lines": 4,
+    "missing_expected_lines": [],
+    "extra_observed_lines": []
+  },
+  {
+    "id": "SW-FW-UnitTest-CM3-ID-7",
+    "rows": [
+      824,
+      833
+    ],
+    "expected_lines": 6,
+    "observed_lines": 6,
+    "missing_expected_lines": [],
+    "extra_observed_lines": []
+  },
+  {
+    "id": "SW-FW-UnitTest-CM3-ID-9",
+    "rows": [
+      839,
+      859
+    ],
+    "expected_lines": 12,
+    "observed_lines": 12,
+    "missing_expected_lines": [],
+    "extra_observed_lines": []
+  },
+  {
+    "id": "SW-FW-UnitTest-CM3-ID-10",
+    "rows": [
+      860,
+      875
+    ],
+    "expected_lines": 18,
+    "observed_lines": 18,
+    "missing_expected_lines": [],
+    "extra_observed_lines": []
+  },
+  {
+    "id": "SW-FW-UnitTest-CM3-ID-11",
+    "rows": [
+      876,
+      882
+    ],
+    "expected_lines": 2,
+    "observed_lines": 2,
+    "missing_expected_lines": [],
+    "extra_observed_lines": []
+  },
+  {
+    "id": "SW-FW-UnitTest-CM3-ID-12",
+    "rows": [
+      883,
+      888
+    ],
+    "expected_lines": 2,
+    "observed_lines": 2,
+    "missing_expected_lines": [],
+    "extra_observed_lines": []
+  },
+  {
+    "id": "SW-FW-UnitTest-CM3-ID-13",
+    "rows": [
+      889,
+      896
+    ],
+    "expected_lines": 4,
+    "observed_lines": 4,
+    "missing_expected_lines": [],
+    "extra_observed_lines": []
+  },
+  {
+    "id": "SW-FW-UnitTest-CM3-ID-17",
+    "rows": [
+      915,
+      919
+    ],
+    "expected_lines": 2,
+    "observed_lines": 2,
+    "missing_expected_lines": [],
+    "extra_observed_lines": []
+  },
+  {
+    "id": "SW-FW-UnitTest-CM3-ID-18",
+    "rows": [
+      920,
+      924
+    ],
+    "expected_lines": 2,
+    "observed_lines": 2,
+    "missing_expected_lines": [],
+    "extra_observed_lines": []
+  },
+  {
+    "id": "SW-FW-UnitTest-CM3-ID-19",
+    "rows": [
+      925,
+      933
+    ],
+    "expected_lines": 4,
+    "observed_lines": 4,
+    "missing_expected_lines": [],
+    "extra_observed_lines": []
+  },
+  {
+    "id": "SW-FW-UnitTest-CM3-ID-20",
+    "rows": [
+      934,
+      941
+    ],
+    "expected_lines": 2,
+    "observed_lines": 2,
+    "missing_expected_lines": [],
+    "extra_observed_lines": []
+  },
+  {
+    "id": "SW-FW-UnitTest-CM3-ID-21",
+    "rows": [
+      942,
+      963
+    ],
+    "expected_lines": 15,
+    "observed_lines": 15,
+    "missing_expected_lines": [],
+    "extra_observed_lines": []
+  },
+  {
+    "id": "SW-FW-UnitTest-CM3-ID-22",
+    "rows": [
+      964,
+      975
+    ],
+    "expected_lines": 6,
+    "observed_lines": 6,
+    "missing_expected_lines": [],
+    "extra_observed_lines": []
+  },
+  {
+    "id": "SW-FW-UnitTest-CM3-ID-23",
+    "rows": [
+      976,
+      981
+    ],
+    "expected_lines": 2,
+    "observed_lines": 2,
+    "missing_expected_lines": [],
+    "extra_observed_lines": []
+  },
+  {
+    "id": "SW-FW-UnitTest-CM3-ID-24",
+    "rows": [
+      982,
+      986
+    ],
+    "expected_lines": 2,
+    "observed_lines": 2,
+    "missing_expected_lines": [],
+    "extra_observed_lines": []
+  },
+  {
+    "id": "SW-FW-UnitTest-CM3-ID-25",
+    "rows": [
+      987,
+      995
+    ],
+    "expected_lines": 8,
+    "observed_lines": 8,
+    "missing_expected_lines": [],
+    "extra_observed_lines": []
+  },
+  {
+    "id": "SW-FW-UnitTest-CM3-ID-26",
+    "rows": [
+      996,
+      1002
+    ],
+    "expected_lines": 5,
+    "observed_lines": 5,
+    "missing_expected_lines": [],
+    "extra_observed_lines": []
+  },
+  {
+    "id": "SW-FW-UnitTest-CM3-ID-27",
+    "rows": [
+      1003,
+      1009
+    ],
+    "expected_lines": 4,
+    "observed_lines": 4,
+    "missing_expected_lines": [],
+    "extra_observed_lines": []
+  },
+  {
+    "id": "SW-FW-UnitTest-CM3-ID-28",
+    "rows": [
+      1010,
+      1039
+    ],
+    "expected_lines": 20,
+    "observed_lines": 20,
+    "missing_expected_lines": [],
+    "extra_observed_lines": []
+  },
+  {
+    "id": "SW-FW-UnitTest-CM3-ID-29",
+    "rows": [
+      1040,
+      1087
+    ],
+    "expected_lines": 22,
+    "observed_lines": 22,
+    "missing_expected_lines": [],
+    "extra_observed_lines": []
+  },
+  {
+    "id": "SW-FW-UnitTest-CM3-ID-30",
+    "rows": [
+      1088,
+      1099
+    ],
+    "expected_lines": 8,
+    "observed_lines": 8,
+    "missing_expected_lines": [],
+    "extra_observed_lines": []
+  },
+  {
+    "id": "SW-FW-UnitTest-CM3-ID-34",
+    "rows": [
+      1114,
+      1118
+    ],
+    "expected_lines": 2,
+    "observed_lines": 2,
+    "missing_expected_lines": [],
+    "extra_observed_lines": []
+  },
+  {
+    "id": "SW-FW-UnitTest-CM3-ID-35",
+    "rows": [
+      1119,
+      1123
+    ],
+    "expected_lines": 4,
+    "observed_lines": 4,
+    "missing_expected_lines": [],
+    "extra_observed_lines": []
+  },
+  {
+    "id": "SW-FW-UnitTest-CM3-ID-36",
+    "rows": [
+      1124,
+      1141
+    ],
+    "expected_lines": 20,
+    "observed_lines": 20,
+    "missing_expected_lines": [],
+    "extra_observed_lines": []
+  },
+  {
+    "id": "SW-FW-UnitTest-CM3-ID-37",
+    "rows": [
+      1142,
+      1147
+    ],
+    "expected_lines": 4,
+    "observed_lines": 4,
+    "missing_expected_lines": [],
+    "extra_observed_lines": []
+  },
+  {
+    "id": "SW-FW-UnitTest-CM3-ID-40",
+    "rows": [
+      1159,
+      1164
+    ],
+    "expected_lines": 6,
+    "observed_lines": 6,
+    "missing_expected_lines": [],
+    "extra_observed_lines": []
+  },
+  {
+    "id": "SW-FW-UnitTest-CM3-ID-44",
+    "rows": [
+      1185,
+      1191
+    ],
+    "expected_lines": 2,
+    "observed_lines": 2,
+    "missing_expected_lines": [],
+    "extra_observed_lines": []
+  },
+  {
+    "id": "SW-FW-UnitTest-CM3-ID-45",
+    "rows": [
+      1192,
+      1207
+    ],
+    "expected_lines": 18,
+    "observed_lines": 18,
+    "missing_expected_lines": [],
+    "extra_observed_lines": []
+  },
+  {
+    "id": "SW-FW-UnitTest-CM3-ID-47",
+    "rows": [
+      1214,
+      1229
+    ],
+    "expected_lines": 20,
+    "observed_lines": 20,
+    "missing_expected_lines": [],
+    "extra_observed_lines": []
+  },
+  {
+    "id": "SW-FW-UnitTest-CM3-ID-50",
+    "rows": [
+      1243,
+      1251
+    ],
+    "expected_lines": 8,
+    "observed_lines": 8,
+    "missing_expected_lines": [],
+    "extra_observed_lines": []
+  },
+  {
+    "id": "SW-FW-UnitTest-CM3-ID-51",
+    "rows": [
+      1252,
+      1283
+    ],
+    "expected_lines": 46,
+    "observed_lines": 46,
+    "missing_expected_lines": [],
+    "extra_observed_lines": []
+  },
+  {
+    "id": "SW-FW-UnitTest-BOOT-ID-8",
+    "rows": [
+      1365,
+      1390
+    ],
+    "expected_lines": 12,
+    "observed_lines": 12,
+    "missing_expected_lines": [],
+    "extra_observed_lines": []
+  },
+  {
+    "id": "SW-FW-UnitTest-BOOT-ID-9",
+    "rows": [
+      1391,
+      1408
+    ],
+    "expected_lines": 10,
+    "observed_lines": 10,
+    "missing_expected_lines": [],
+    "extra_observed_lines": []
+  },
+  {
+    "id": "SW-FW-UnitTest-BOOT-ID-10",
+    "rows": [
+      1409,
+      1451
+    ],
+    "expected_lines": 26,
+    "observed_lines": 26,
+    "missing_expected_lines": [],
+    "extra_observed_lines": []
+  },
+  {
+    "id": "SW-FW-UnitTest-BOOT-ID-11",
+    "rows": [
+      1452,
+      1496
+    ],
+    "expected_lines": 28,
+    "observed_lines": 28,
+    "missing_expected_lines": [],
+    "extra_observed_lines": []
+  },
+  {
+    "id": "SW-FW-UnitTest-BOOT-ID-12",
+    "rows": [
+      1497,
+      1533
+    ],
+    "expected_lines": 22,
+    "observed_lines": 22,
+    "missing_expected_lines": [],
+    "extra_observed_lines": []
+  },
+  {
+    "id": "SW-FW-UnitTest-BOOT-ID-13",
+    "rows": [
+      1534,
+      1576
+    ],
+    "expected_lines": 20,
+    "observed_lines": 20,
+    "missing_expected_lines": [],
+    "extra_observed_lines": []
+  },
+  {
+    "id": "SW-FW-UnitTest-BOOT-ID-14",
+    "rows": [
+      1577,
+      1589
+    ],
+    "expected_lines": 9,
+    "observed_lines": 9,
+    "missing_expected_lines": [],
+    "extra_observed_lines": []
+  },
+  {
+    "id": "SW-FW-UnitTest-BOOT-ID-19",
+    "rows": [
+      1649,
+      1685
+    ],
+    "expected_lines": 20,
+    "observed_lines": 20,
+    "missing_expected_lines": [],
+    "extra_observed_lines": []
+  },
+  {
+    "id": "SW-FW-UnitTest-BOOT-ID-20",
+    "rows": [
+      1686,
+      1726
+    ],
+    "expected_lines": 14,
+    "observed_lines": 14,
+    "missing_expected_lines": [],
+    "extra_observed_lines": []
+  }
+]

@@ -1,0 +1,3847 @@
+[
+  {
+    "code": "SUVC-main",
+    "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SUVC-FW-TD24A 소프트웨어 유닛 검증 기준서.xlsx",
+    "sheet": "기준서_유닛 검증",
+    "range": "B2:K1772",
+    "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVC-main.pdf",
+    "sourceSHA256": "97ABF9DF8329EAF1EA00C93C7E136A18C79A865D0F09A22F3C9297EE88BB69F3",
+    "sourceUnchanged": true,
+    "originalPrintArea": "$B$2:$K$1772",
+    "scope": "Supporting native PDF text positions, not visible glyph proof. Sparse pages require actual pixel review; retained long merged fields may have identifiers on another page.",
+    "checkedAt": "2026-10-13T10:06:35.2023708+09:00",
+    "pdf_sha256": "02f038526acb37d1ecb96b4ee57ae9f4587395742c97e4de706a8150eb407b32",
+    "pages": 305,
+    "id_positions": [
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-1",
+        "start_row": 30,
+        "literal_text_pages": [
+          2
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-2",
+        "start_row": 35,
+        "literal_text_pages": [
+          3
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-3",
+        "start_row": 39,
+        "literal_text_pages": [
+          4
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-4",
+        "start_row": 43,
+        "literal_text_pages": [
+          5
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-5",
+        "start_row": 47,
+        "literal_text_pages": [
+          6
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-6",
+        "start_row": 51,
+        "literal_text_pages": [
+          7
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-7",
+        "start_row": 54,
+        "literal_text_pages": [
+          8
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-8",
+        "start_row": 59,
+        "literal_text_pages": [
+          9
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-9",
+        "start_row": 64,
+        "literal_text_pages": [
+          10
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-10",
+        "start_row": 67,
+        "literal_text_pages": [
+          11
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-11",
+        "start_row": 72,
+        "literal_text_pages": [
+          12,
+          13,
+          14,
+          15
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-12",
+        "start_row": 101,
+        "literal_text_pages": [
+          16,
+          17
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-13",
+        "start_row": 116,
+        "literal_text_pages": [
+          18
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-14",
+        "start_row": 121,
+        "literal_text_pages": [
+          19
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-15",
+        "start_row": 124,
+        "literal_text_pages": [
+          20
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-16",
+        "start_row": 131,
+        "literal_text_pages": [
+          21
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-17",
+        "start_row": 138,
+        "literal_text_pages": [
+          22
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-18",
+        "start_row": 144,
+        "literal_text_pages": [
+          23
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-19",
+        "start_row": 149,
+        "literal_text_pages": [
+          24,
+          25
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-20",
+        "start_row": 160,
+        "literal_text_pages": [
+          26,
+          27
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-21",
+        "start_row": 168,
+        "literal_text_pages": [
+          28
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-22",
+        "start_row": 175,
+        "literal_text_pages": [
+          29
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-23",
+        "start_row": 182,
+        "literal_text_pages": [
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-24",
+        "start_row": 268,
+        "literal_text_pages": [
+          41
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-25",
+        "start_row": 278,
+        "literal_text_pages": [
+          42
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-26",
+        "start_row": 285,
+        "literal_text_pages": [
+          43
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-27",
+        "start_row": 289,
+        "literal_text_pages": [
+          44,
+          45
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-28",
+        "start_row": 298,
+        "literal_text_pages": [
+          46
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-29",
+        "start_row": 304,
+        "literal_text_pages": [
+          47
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-30",
+        "start_row": 309,
+        "literal_text_pages": [
+          48,
+          49
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-31",
+        "start_row": 322,
+        "literal_text_pages": [
+          50,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          57,
+          58
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-32",
+        "start_row": 401,
+        "literal_text_pages": [
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65,
+          66,
+          67,
+          68,
+          69,
+          70,
+          71,
+          72,
+          73,
+          74,
+          75,
+          76,
+          77
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-33",
+        "start_row": 559,
+        "literal_text_pages": [
+          78,
+          79,
+          80,
+          81
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-34",
+        "start_row": 578,
+        "literal_text_pages": [
+          82
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-35",
+        "start_row": 585,
+        "literal_text_pages": [
+          83
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-36",
+        "start_row": 589,
+        "literal_text_pages": [
+          84
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-37",
+        "start_row": 595,
+        "literal_text_pages": [
+          85,
+          86,
+          87
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-38",
+        "start_row": 609,
+        "literal_text_pages": [
+          88
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-39",
+        "start_row": 614,
+        "literal_text_pages": [
+          89
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-40",
+        "start_row": 624,
+        "literal_text_pages": [
+          90,
+          91
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-41",
+        "start_row": 633,
+        "literal_text_pages": [
+          92
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-42",
+        "start_row": 638,
+        "literal_text_pages": [
+          93
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-HEAR-ID-1",
+        "start_row": 644,
+        "literal_text_pages": [
+          94
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-HEAR-ID-2",
+        "start_row": 650,
+        "literal_text_pages": [
+          95,
+          96,
+          97,
+          98,
+          99,
+          100,
+          101,
+          102,
+          103,
+          104,
+          105,
+          106,
+          107,
+          108,
+          109,
+          110,
+          111,
+          112,
+          113,
+          114,
+          115,
+          116,
+          117,
+          118,
+          119,
+          120,
+          121,
+          122,
+          123,
+          124
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-1",
+        "start_row": 789,
+        "literal_text_pages": [
+          125
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-2",
+        "start_row": 793,
+        "literal_text_pages": [
+          126
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-3",
+        "start_row": 799,
+        "literal_text_pages": [
+          127
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-4",
+        "start_row": 802,
+        "literal_text_pages": [
+          128
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-5",
+        "start_row": 809,
+        "literal_text_pages": [
+          129
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-6",
+        "start_row": 812,
+        "literal_text_pages": [
+          130,
+          131
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-7",
+        "start_row": 824,
+        "literal_text_pages": [
+          132,
+          133
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-8",
+        "start_row": 834,
+        "literal_text_pages": [
+          134
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-9",
+        "start_row": 839,
+        "literal_text_pages": [
+          135,
+          136,
+          137,
+          138,
+          139
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-10",
+        "start_row": 860,
+        "literal_text_pages": [
+          140,
+          141
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-11",
+        "start_row": 876,
+        "literal_text_pages": [
+          142
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-12",
+        "start_row": 883,
+        "literal_text_pages": [
+          143
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-13",
+        "start_row": 889,
+        "literal_text_pages": [
+          144
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-14",
+        "start_row": 897,
+        "literal_text_pages": [
+          145
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-15",
+        "start_row": 904,
+        "literal_text_pages": [
+          146
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-16",
+        "start_row": 908,
+        "literal_text_pages": [
+          147
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-17",
+        "start_row": 915,
+        "literal_text_pages": [
+          148
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-18",
+        "start_row": 920,
+        "literal_text_pages": [
+          149
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-19",
+        "start_row": 925,
+        "literal_text_pages": [
+          150,
+          151,
+          152
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-20",
+        "start_row": 934,
+        "literal_text_pages": [
+          153,
+          154
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-21",
+        "start_row": 942,
+        "literal_text_pages": [
+          155,
+          156,
+          157,
+          158,
+          159,
+          160
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-22",
+        "start_row": 964,
+        "literal_text_pages": [
+          161,
+          162,
+          163
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-23",
+        "start_row": 976,
+        "literal_text_pages": [
+          164
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-24",
+        "start_row": 982,
+        "literal_text_pages": [
+          165
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-25",
+        "start_row": 987,
+        "literal_text_pages": [
+          166
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-26",
+        "start_row": 996,
+        "literal_text_pages": [
+          167
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-27",
+        "start_row": 1003,
+        "literal_text_pages": [
+          168
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-28",
+        "start_row": 1010,
+        "literal_text_pages": [
+          169,
+          170,
+          171,
+          172,
+          173,
+          174,
+          175,
+          176
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-29",
+        "start_row": 1040,
+        "literal_text_pages": [
+          177,
+          178,
+          179,
+          180,
+          181,
+          182,
+          183,
+          184,
+          185,
+          186,
+          187,
+          188,
+          189
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-30",
+        "start_row": 1088,
+        "literal_text_pages": [
+          190,
+          191
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-31",
+        "start_row": 1100,
+        "literal_text_pages": [
+          192
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-32",
+        "start_row": 1104,
+        "literal_text_pages": [
+          193
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-33",
+        "start_row": 1109,
+        "literal_text_pages": [
+          194
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-34",
+        "start_row": 1114,
+        "literal_text_pages": [
+          195
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-35",
+        "start_row": 1119,
+        "literal_text_pages": [
+          196
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-36",
+        "start_row": 1124,
+        "literal_text_pages": [
+          197,
+          198
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-37",
+        "start_row": 1142,
+        "literal_text_pages": [
+          199
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-38",
+        "start_row": 1148,
+        "literal_text_pages": [
+          200
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-39",
+        "start_row": 1154,
+        "literal_text_pages": [
+          201
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-40",
+        "start_row": 1159,
+        "literal_text_pages": [
+          202
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-41",
+        "start_row": 1165,
+        "literal_text_pages": [
+          203
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-42",
+        "start_row": 1175,
+        "literal_text_pages": [
+          204
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-43",
+        "start_row": 1181,
+        "literal_text_pages": [
+          205
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-44",
+        "start_row": 1185,
+        "literal_text_pages": [
+          206
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-45",
+        "start_row": 1192,
+        "literal_text_pages": [
+          207,
+          208
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-46",
+        "start_row": 1208,
+        "literal_text_pages": [
+          209,
+          210
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-47",
+        "start_row": 1214,
+        "literal_text_pages": [
+          211,
+          212
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-48",
+        "start_row": 1230,
+        "literal_text_pages": [
+          213
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-49",
+        "start_row": 1235,
+        "literal_text_pages": [
+          214
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-50",
+        "start_row": 1243,
+        "literal_text_pages": [
+          215
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-51",
+        "start_row": 1252,
+        "literal_text_pages": [
+          216,
+          217,
+          218,
+          219,
+          220
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-BOOT-ID-1",
+        "start_row": 1284,
+        "literal_text_pages": [
+          221
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-BOOT-ID-2",
+        "start_row": 1288,
+        "literal_text_pages": [
+          222,
+          223
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-BOOT-ID-3",
+        "start_row": 1305,
+        "literal_text_pages": [
+          224
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-BOOT-ID-4",
+        "start_row": 1308,
+        "literal_text_pages": [
+          225,
+          226
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-BOOT-ID-5",
+        "start_row": 1319,
+        "literal_text_pages": [
+          227
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-BOOT-ID-6",
+        "start_row": 1323,
+        "literal_text_pages": [
+          228
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-BOOT-ID-7",
+        "start_row": 1329,
+        "literal_text_pages": [
+          229,
+          230,
+          231,
+          232,
+          233,
+          234
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-BOOT-ID-8",
+        "start_row": 1365,
+        "literal_text_pages": [
+          235,
+          236,
+          237,
+          238
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-BOOT-ID-9",
+        "start_row": 1391,
+        "literal_text_pages": [
+          239,
+          240
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-BOOT-ID-10",
+        "start_row": 1409,
+        "literal_text_pages": [
+          241,
+          242,
+          243,
+          244,
+          245
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-BOOT-ID-11",
+        "start_row": 1452,
+        "literal_text_pages": [
+          246,
+          247,
+          248,
+          249,
+          250,
+          251
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-BOOT-ID-12",
+        "start_row": 1497,
+        "literal_text_pages": [
+          252,
+          253,
+          254,
+          255,
+          256
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-BOOT-ID-13",
+        "start_row": 1534,
+        "literal_text_pages": [
+          257,
+          258,
+          259,
+          260,
+          261
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-BOOT-ID-14",
+        "start_row": 1577,
+        "literal_text_pages": [
+          262,
+          263
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-BOOT-ID-15",
+        "start_row": 1590,
+        "literal_text_pages": [
+          264,
+          265,
+          266,
+          267,
+          268
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-BOOT-ID-16",
+        "start_row": 1616,
+        "literal_text_pages": [
+          269
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-BOOT-ID-17",
+        "start_row": 1623,
+        "literal_text_pages": [
+          270,
+          271,
+          272,
+          273
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-BOOT-ID-18",
+        "start_row": 1644,
+        "literal_text_pages": [
+          274
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-BOOT-ID-19",
+        "start_row": 1649,
+        "literal_text_pages": [
+          275,
+          276,
+          277,
+          278,
+          279,
+          280
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-BOOT-ID-20",
+        "start_row": 1686,
+        "literal_text_pages": [
+          281,
+          282,
+          283,
+          284,
+          285,
+          286,
+          287
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-QCC-ID-1",
+        "start_row": 1727,
+        "literal_text_pages": [
+          288
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-QCC-ID-2",
+        "start_row": 1729,
+        "literal_text_pages": [
+          289,
+          290
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-QCC-ID-3",
+        "start_row": 1733,
+        "literal_text_pages": [
+          291
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-QCC-ID-4",
+        "start_row": 1734,
+        "literal_text_pages": [
+          292
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-QCC-ID-5",
+        "start_row": 1736,
+        "literal_text_pages": [
+          293
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-QCC-ID-6",
+        "start_row": 1737,
+        "literal_text_pages": [
+          294
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-QCC-ID-7",
+        "start_row": 1738,
+        "literal_text_pages": [
+          295
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-QCC-ID-8",
+        "start_row": 1740,
+        "literal_text_pages": [
+          296
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-QCC-ID-9",
+        "start_row": 1744,
+        "literal_text_pages": [
+          297
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-QCC-ID-10",
+        "start_row": 1746,
+        "literal_text_pages": [
+          298,
+          299
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-QCC-ID-11",
+        "start_row": 1751,
+        "literal_text_pages": [
+          300
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-QCC-ID-12",
+        "start_row": 1753,
+        "literal_text_pages": [
+          301
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-QCC-ID-13",
+        "start_row": 1755,
+        "literal_text_pages": [
+          302,
+          303
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-QCC-ID-14",
+        "start_row": 1760,
+        "literal_text_pages": [
+          304
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-QCC-ID-15",
+        "start_row": 1763,
+        "literal_text_pages": [
+          305
+        ]
+      }
+    ],
+    "missing_literal_id_labels": [],
+    "sparse_page_candidates": []
+  },
+  {
+    "code": "SUVR-main",
+    "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\04_설계 검증\\SW\\외부기\\[E8300-QCC] SUVR-FW-TD24A 소프트웨어 유닛 검증 보고서.xlsx",
+    "sheet": "보고서_유닛 시험",
+    "range": "B2:M1772",
+    "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVR-main.pdf",
+    "sourceSHA256": "C2AA80C2D85439B07FEAEAE05DB2C460EF6E2F7F1CB32103C0A328763B0DE2BA",
+    "sourceUnchanged": true,
+    "originalPrintArea": "$B$2:$M$1772",
+    "scope": "Supporting native PDF text positions, not visible glyph proof. Sparse pages require actual pixel review; retained long merged fields may have identifiers on another page.",
+    "checkedAt": "2026-10-13T10:07:43.7274391+09:00",
+    "pdf_sha256": "a26592b8875ac8c1079a9a1d1a02e4892f8e0448e4b8fba15faafcd0eda922a0",
+    "pages": 260,
+    "id_positions": [
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-1",
+        "start_row": 30,
+        "literal_text_pages": [
+          1,
+          2
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-2",
+        "start_row": 35,
+        "literal_text_pages": [
+          3
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-3",
+        "start_row": 39,
+        "literal_text_pages": [
+          4
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-4",
+        "start_row": 43,
+        "literal_text_pages": [
+          5
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-5",
+        "start_row": 47,
+        "literal_text_pages": [
+          6
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-6",
+        "start_row": 51,
+        "literal_text_pages": [
+          7
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-7",
+        "start_row": 54,
+        "literal_text_pages": [
+          8
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-8",
+        "start_row": 59,
+        "literal_text_pages": [
+          9
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-9",
+        "start_row": 64,
+        "literal_text_pages": [
+          10
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-10",
+        "start_row": 67,
+        "literal_text_pages": [
+          11
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-11",
+        "start_row": 72,
+        "literal_text_pages": [
+          12,
+          13,
+          14,
+          15
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-12",
+        "start_row": 101,
+        "literal_text_pages": [
+          16,
+          17
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-13",
+        "start_row": 116,
+        "literal_text_pages": [
+          18
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-14",
+        "start_row": 121,
+        "literal_text_pages": [
+          19
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-15",
+        "start_row": 124,
+        "literal_text_pages": [
+          20
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-16",
+        "start_row": 131,
+        "literal_text_pages": [
+          21
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-17",
+        "start_row": 138,
+        "literal_text_pages": [
+          22
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-18",
+        "start_row": 144,
+        "literal_text_pages": [
+          23
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-19",
+        "start_row": 149,
+        "literal_text_pages": [
+          24,
+          25
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-20",
+        "start_row": 160,
+        "literal_text_pages": [
+          26
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-21",
+        "start_row": 168,
+        "literal_text_pages": [
+          27
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-22",
+        "start_row": 175,
+        "literal_text_pages": [
+          28
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-23",
+        "start_row": 182,
+        "literal_text_pages": [
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-24",
+        "start_row": 268,
+        "literal_text_pages": [
+          37
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-25",
+        "start_row": 278,
+        "literal_text_pages": [
+          38
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-26",
+        "start_row": 285,
+        "literal_text_pages": [
+          39
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-27",
+        "start_row": 289,
+        "literal_text_pages": [
+          40
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-28",
+        "start_row": 298,
+        "literal_text_pages": [
+          41
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-29",
+        "start_row": 304,
+        "literal_text_pages": [
+          42
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-30",
+        "start_row": 309,
+        "literal_text_pages": [
+          43,
+          44
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-31",
+        "start_row": 322,
+        "literal_text_pages": [
+          45,
+          46,
+          47,
+          48,
+          49,
+          50,
+          51
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-32",
+        "start_row": 401,
+        "literal_text_pages": [
+          52,
+          53,
+          54,
+          55,
+          56,
+          57,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-33",
+        "start_row": 559,
+        "literal_text_pages": [
+          66,
+          67,
+          68,
+          69
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-34",
+        "start_row": 578,
+        "literal_text_pages": [
+          70
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-35",
+        "start_row": 585,
+        "literal_text_pages": [
+          71
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-36",
+        "start_row": 589,
+        "literal_text_pages": [
+          72
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-37",
+        "start_row": 595,
+        "literal_text_pages": [
+          73,
+          74
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-38",
+        "start_row": 609,
+        "literal_text_pages": [
+          75
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-39",
+        "start_row": 614,
+        "literal_text_pages": [
+          76
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-40",
+        "start_row": 624,
+        "literal_text_pages": [
+          77
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-41",
+        "start_row": 633,
+        "literal_text_pages": [
+          78
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-42",
+        "start_row": 638,
+        "literal_text_pages": [
+          79
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-HEAR-ID-1",
+        "start_row": 644,
+        "literal_text_pages": [
+          80
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-HEAR-ID-2",
+        "start_row": 650,
+        "literal_text_pages": [
+          81,
+          82,
+          83,
+          84,
+          85,
+          86,
+          87,
+          88,
+          89,
+          90,
+          91,
+          92,
+          93,
+          94,
+          95,
+          96,
+          97,
+          98,
+          99,
+          100,
+          101,
+          102,
+          103,
+          104
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-1",
+        "start_row": 789,
+        "literal_text_pages": [
+          105
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-2",
+        "start_row": 793,
+        "literal_text_pages": [
+          106
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-3",
+        "start_row": 799,
+        "literal_text_pages": [
+          107
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-4",
+        "start_row": 802,
+        "literal_text_pages": [
+          108
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-5",
+        "start_row": 809,
+        "literal_text_pages": [
+          109
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-6",
+        "start_row": 812,
+        "literal_text_pages": [
+          110,
+          111
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-7",
+        "start_row": 824,
+        "literal_text_pages": [
+          112,
+          113
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-8",
+        "start_row": 834,
+        "literal_text_pages": [
+          114
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-9",
+        "start_row": 839,
+        "literal_text_pages": [
+          115,
+          116,
+          117,
+          118
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-10",
+        "start_row": 860,
+        "literal_text_pages": [
+          119,
+          120
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-11",
+        "start_row": 876,
+        "literal_text_pages": [
+          121
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-12",
+        "start_row": 883,
+        "literal_text_pages": [
+          122
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-13",
+        "start_row": 889,
+        "literal_text_pages": [
+          123
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-14",
+        "start_row": 897,
+        "literal_text_pages": [
+          124
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-15",
+        "start_row": 904,
+        "literal_text_pages": [
+          125
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-16",
+        "start_row": 908,
+        "literal_text_pages": [
+          126
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-17",
+        "start_row": 915,
+        "literal_text_pages": [
+          127
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-18",
+        "start_row": 920,
+        "literal_text_pages": [
+          128
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-19",
+        "start_row": 925,
+        "literal_text_pages": [
+          129,
+          130
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-20",
+        "start_row": 934,
+        "literal_text_pages": [
+          131
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-21",
+        "start_row": 942,
+        "literal_text_pages": [
+          132,
+          133,
+          134,
+          135,
+          136
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-22",
+        "start_row": 964,
+        "literal_text_pages": [
+          137,
+          138
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-23",
+        "start_row": 976,
+        "literal_text_pages": [
+          139
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-24",
+        "start_row": 982,
+        "literal_text_pages": [
+          140
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-25",
+        "start_row": 987,
+        "literal_text_pages": [
+          141
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-26",
+        "start_row": 996,
+        "literal_text_pages": [
+          142
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-27",
+        "start_row": 1003,
+        "literal_text_pages": [
+          143
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-28",
+        "start_row": 1010,
+        "literal_text_pages": [
+          144,
+          145,
+          146,
+          147,
+          148,
+          149
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-29",
+        "start_row": 1040,
+        "literal_text_pages": [
+          150,
+          151,
+          152,
+          153,
+          154,
+          155,
+          156,
+          157,
+          158,
+          159,
+          160
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-30",
+        "start_row": 1088,
+        "literal_text_pages": [
+          161,
+          162
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-31",
+        "start_row": 1100,
+        "literal_text_pages": [
+          163
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-32",
+        "start_row": 1104,
+        "literal_text_pages": [
+          164
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-33",
+        "start_row": 1109,
+        "literal_text_pages": [
+          165
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-34",
+        "start_row": 1114,
+        "literal_text_pages": [
+          166
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-35",
+        "start_row": 1119,
+        "literal_text_pages": [
+          167
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-36",
+        "start_row": 1124,
+        "literal_text_pages": [
+          168,
+          169
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-37",
+        "start_row": 1142,
+        "literal_text_pages": [
+          170
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-38",
+        "start_row": 1148,
+        "literal_text_pages": [
+          171
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-39",
+        "start_row": 1154,
+        "literal_text_pages": [
+          172
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-40",
+        "start_row": 1159,
+        "literal_text_pages": [
+          173
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-41",
+        "start_row": 1165,
+        "literal_text_pages": [
+          174
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-42",
+        "start_row": 1175,
+        "literal_text_pages": [
+          175
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-43",
+        "start_row": 1181,
+        "literal_text_pages": [
+          176
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-44",
+        "start_row": 1185,
+        "literal_text_pages": [
+          177
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-45",
+        "start_row": 1192,
+        "literal_text_pages": [
+          178,
+          179
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-46",
+        "start_row": 1208,
+        "literal_text_pages": [
+          180
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-47",
+        "start_row": 1214,
+        "literal_text_pages": [
+          181,
+          182
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-48",
+        "start_row": 1230,
+        "literal_text_pages": [
+          183
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-49",
+        "start_row": 1235,
+        "literal_text_pages": [
+          184
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-50",
+        "start_row": 1243,
+        "literal_text_pages": [
+          185
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-51",
+        "start_row": 1252,
+        "literal_text_pages": [
+          186,
+          187,
+          188,
+          189
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-BOOT-ID-1",
+        "start_row": 1284,
+        "literal_text_pages": [
+          190
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-BOOT-ID-2",
+        "start_row": 1288,
+        "literal_text_pages": [
+          191,
+          192
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-BOOT-ID-3",
+        "start_row": 1305,
+        "literal_text_pages": [
+          193
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-BOOT-ID-4",
+        "start_row": 1308,
+        "literal_text_pages": [
+          194
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-BOOT-ID-5",
+        "start_row": 1319,
+        "literal_text_pages": [
+          195
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-BOOT-ID-6",
+        "start_row": 1323,
+        "literal_text_pages": [
+          196
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-BOOT-ID-7",
+        "start_row": 1329,
+        "literal_text_pages": [
+          197,
+          198,
+          199,
+          200
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-BOOT-ID-8",
+        "start_row": 1365,
+        "literal_text_pages": [
+          201,
+          202,
+          203
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-BOOT-ID-9",
+        "start_row": 1391,
+        "literal_text_pages": [
+          204,
+          205
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-BOOT-ID-10",
+        "start_row": 1409,
+        "literal_text_pages": [
+          206,
+          207,
+          208,
+          209
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-BOOT-ID-11",
+        "start_row": 1452,
+        "literal_text_pages": [
+          210,
+          211,
+          212,
+          213,
+          214
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-BOOT-ID-12",
+        "start_row": 1497,
+        "literal_text_pages": [
+          215,
+          216,
+          217,
+          218
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-BOOT-ID-13",
+        "start_row": 1534,
+        "literal_text_pages": [
+          219,
+          220,
+          221,
+          222
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-BOOT-ID-14",
+        "start_row": 1577,
+        "literal_text_pages": [
+          223,
+          224
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-BOOT-ID-15",
+        "start_row": 1590,
+        "literal_text_pages": [
+          225,
+          226,
+          227,
+          228
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-BOOT-ID-16",
+        "start_row": 1616,
+        "literal_text_pages": [
+          229
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-BOOT-ID-17",
+        "start_row": 1623,
+        "literal_text_pages": [
+          230,
+          231,
+          232
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-BOOT-ID-18",
+        "start_row": 1644,
+        "literal_text_pages": [
+          233
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-BOOT-ID-19",
+        "start_row": 1649,
+        "literal_text_pages": [
+          234,
+          235,
+          236,
+          237,
+          238
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-BOOT-ID-20",
+        "start_row": 1686,
+        "literal_text_pages": [
+          239,
+          240,
+          241,
+          242,
+          243,
+          244
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-QCC-ID-1",
+        "start_row": 1727,
+        "literal_text_pages": [
+          245
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-QCC-ID-2",
+        "start_row": 1729,
+        "literal_text_pages": [
+          246
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-QCC-ID-3",
+        "start_row": 1733,
+        "literal_text_pages": [
+          247
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-QCC-ID-4",
+        "start_row": 1734,
+        "literal_text_pages": [
+          248
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-QCC-ID-5",
+        "start_row": 1736,
+        "literal_text_pages": [
+          249
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-QCC-ID-6",
+        "start_row": 1737,
+        "literal_text_pages": [
+          250
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-QCC-ID-7",
+        "start_row": 1738,
+        "literal_text_pages": [
+          251
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-QCC-ID-8",
+        "start_row": 1740,
+        "literal_text_pages": [
+          252
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-QCC-ID-9",
+        "start_row": 1744,
+        "literal_text_pages": [
+          253
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-QCC-ID-10",
+        "start_row": 1746,
+        "literal_text_pages": [
+          254
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-QCC-ID-11",
+        "start_row": 1751,
+        "literal_text_pages": [
+          255
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-QCC-ID-12",
+        "start_row": 1753,
+        "literal_text_pages": [
+          256
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-QCC-ID-13",
+        "start_row": 1755,
+        "literal_text_pages": [
+          257,
+          258
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-QCC-ID-14",
+        "start_row": 1760,
+        "literal_text_pages": [
+          259
+        ]
+      },
+      {
+        "id": "SW-FW-UnitTest-QCC-ID-15",
+        "start_row": 1763,
+        "literal_text_pages": [
+          260
+        ]
+      }
+    ],
+    "missing_literal_id_labels": [],
+    "sparse_page_candidates": []
+  },
+  {
+    "code": "SITC-main",
+    "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SITC-FW-TD24A 소프트웨어 통합시험 기준서.xlsx",
+    "sheet": "기준서_통합 시험",
+    "range": "B2:M144",
+    "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SITC-main.pdf",
+    "sourceSHA256": "DF1B43F304EA7E438A3BDDEF86FA2E3770D0F1FEF829D536166A51E86C5FCAF6",
+    "sourceUnchanged": true,
+    "originalPrintArea": "$B$2:$M$144",
+    "scope": "Supporting native PDF text positions, not visible glyph proof. Sparse pages require actual pixel review; retained long merged fields may have identifiers on another page.",
+    "checkedAt": "2026-10-13T10:07:46.2656981+09:00",
+    "pdf_sha256": "83bd00bd92ad2b0c334439caf2ef4c5aad3611cbb1305a12460430d88693fbaa",
+    "pages": 25,
+    "id_positions": [
+      {
+        "id": "SW-FW-IntegrationTest-ID-001",
+        "start_row": 25,
+        "literal_text_pages": [
+          1
+        ]
+      },
+      {
+        "id": "SW-FW-IntegrationTest-ID-002",
+        "start_row": 29,
+        "literal_text_pages": [
+          2
+        ]
+      },
+      {
+        "id": "SW-FW-IntegrationTest-ID-003",
+        "start_row": 32,
+        "literal_text_pages": [
+          3
+        ]
+      },
+      {
+        "id": "SW-FW-IntegrationTest-ID-004",
+        "start_row": 37,
+        "literal_text_pages": [
+          4
+        ]
+      },
+      {
+        "id": "SW-FW-IntegrationTest-ID-005",
+        "start_row": 43,
+        "literal_text_pages": [
+          5
+        ]
+      },
+      {
+        "id": "SW-FW-IntegrationTest-ID-006",
+        "start_row": 52,
+        "literal_text_pages": [
+          6
+        ]
+      },
+      {
+        "id": "SW-FW-IntegrationTest-ID-007",
+        "start_row": 58,
+        "literal_text_pages": [
+          7
+        ]
+      },
+      {
+        "id": "SW-FW-IntegrationTest-ID-008",
+        "start_row": 62,
+        "literal_text_pages": [
+          8
+        ]
+      },
+      {
+        "id": "SW-FW-IntegrationTest-ID-009",
+        "start_row": 67,
+        "literal_text_pages": [
+          9
+        ]
+      },
+      {
+        "id": "SW-FW-IntegrationTest-ID-010",
+        "start_row": 73,
+        "literal_text_pages": [
+          10
+        ]
+      },
+      {
+        "id": "SW-FW-IntegrationTest-ID-011",
+        "start_row": 78,
+        "literal_text_pages": [
+          11
+        ]
+      },
+      {
+        "id": "SW-FW-IntegrationTest-ID-012",
+        "start_row": 83,
+        "literal_text_pages": [
+          12
+        ]
+      },
+      {
+        "id": "SW-FW-IntegrationTest-ID-013",
+        "start_row": 92,
+        "literal_text_pages": [
+          13
+        ]
+      },
+      {
+        "id": "SW-FW-IntegrationTest-ID-014",
+        "start_row": 98,
+        "literal_text_pages": [
+          14
+        ]
+      },
+      {
+        "id": "SW-FW-IntegrationTest-ID-015",
+        "start_row": 102,
+        "literal_text_pages": [
+          15,
+          16
+        ]
+      },
+      {
+        "id": "SW-FW-IntegrationTest-ID-016",
+        "start_row": 112,
+        "literal_text_pages": [
+          17
+        ]
+      },
+      {
+        "id": "SW-FW-IntegrationTest-ID-017",
+        "start_row": 119,
+        "literal_text_pages": [
+          18
+        ]
+      },
+      {
+        "id": "SW-FW-IntegrationTest-ID-018",
+        "start_row": 131,
+        "literal_text_pages": [
+          19
+        ]
+      },
+      {
+        "id": "SW-FW-IntegrationTest-ID-019",
+        "start_row": 134,
+        "literal_text_pages": [
+          20
+        ]
+      },
+      {
+        "id": "SW-FW-IntegrationTest-ID-020",
+        "start_row": 136,
+        "literal_text_pages": [
+          21
+        ]
+      },
+      {
+        "id": "SW-FW-IntegrationTest-ID-021",
+        "start_row": 137,
+        "literal_text_pages": [
+          22
+        ]
+      },
+      {
+        "id": "SW-FW-IntegrationTest-ID-022",
+        "start_row": 141,
+        "literal_text_pages": [
+          23
+        ]
+      },
+      {
+        "id": "SW-FW-IntegrationTest-ID-023",
+        "start_row": 142,
+        "literal_text_pages": [
+          24
+        ]
+      },
+      {
+        "id": "SW-FW-IntegrationTest-ID-024",
+        "start_row": 144,
+        "literal_text_pages": [
+          25
+        ]
+      }
+    ],
+    "missing_literal_id_labels": [],
+    "sparse_page_candidates": []
+  },
+  {
+    "code": "SITR-main",
+    "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\04_설계 검증\\SW\\외부기\\[E8300-QCC] SITR-FW-TD24A 소프트웨어 통합시험 보고서.xlsx",
+    "sheet": "보고서_통합시험",
+    "range": "B2:O144",
+    "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SITR-main.pdf",
+    "sourceSHA256": "8FD7824CD36F174A970950DE20602B8C5C5308B7350FEB346C97EB3AC19C57EF",
+    "sourceUnchanged": true,
+    "originalPrintArea": "$B$2:$O$144",
+    "scope": "Supporting native PDF text positions, not visible glyph proof. Sparse pages require actual pixel review; retained long merged fields may have identifiers on another page.",
+    "checkedAt": "2026-10-13T10:07:51.0804393+09:00",
+    "pdf_sha256": "de4166da813dffb6213fc737053183078bdbc58c04732c2a5026c4f8f3c47f7c",
+    "pages": 25,
+    "id_positions": [
+      {
+        "id": "SW-FW-IntegrationTest-ID-001",
+        "start_row": 25,
+        "literal_text_pages": [
+          1
+        ]
+      },
+      {
+        "id": "SW-FW-IntegrationTest-ID-002",
+        "start_row": 29,
+        "literal_text_pages": [
+          2
+        ]
+      },
+      {
+        "id": "SW-FW-IntegrationTest-ID-003",
+        "start_row": 32,
+        "literal_text_pages": [
+          3
+        ]
+      },
+      {
+        "id": "SW-FW-IntegrationTest-ID-004",
+        "start_row": 37,
+        "literal_text_pages": [
+          4
+        ]
+      },
+      {
+        "id": "SW-FW-IntegrationTest-ID-005",
+        "start_row": 43,
+        "literal_text_pages": [
+          5
+        ]
+      },
+      {
+        "id": "SW-FW-IntegrationTest-ID-006",
+        "start_row": 52,
+        "literal_text_pages": [
+          6
+        ]
+      },
+      {
+        "id": "SW-FW-IntegrationTest-ID-007",
+        "start_row": 58,
+        "literal_text_pages": [
+          7
+        ]
+      },
+      {
+        "id": "SW-FW-IntegrationTest-ID-008",
+        "start_row": 62,
+        "literal_text_pages": [
+          8
+        ]
+      },
+      {
+        "id": "SW-FW-IntegrationTest-ID-009",
+        "start_row": 67,
+        "literal_text_pages": [
+          9
+        ]
+      },
+      {
+        "id": "SW-FW-IntegrationTest-ID-010",
+        "start_row": 73,
+        "literal_text_pages": [
+          10
+        ]
+      },
+      {
+        "id": "SW-FW-IntegrationTest-ID-011",
+        "start_row": 78,
+        "literal_text_pages": [
+          11
+        ]
+      },
+      {
+        "id": "SW-FW-IntegrationTest-ID-012",
+        "start_row": 83,
+        "literal_text_pages": [
+          12
+        ]
+      },
+      {
+        "id": "SW-FW-IntegrationTest-ID-013",
+        "start_row": 92,
+        "literal_text_pages": [
+          13
+        ]
+      },
+      {
+        "id": "SW-FW-IntegrationTest-ID-014",
+        "start_row": 98,
+        "literal_text_pages": [
+          14
+        ]
+      },
+      {
+        "id": "SW-FW-IntegrationTest-ID-015",
+        "start_row": 102,
+        "literal_text_pages": [
+          15,
+          16
+        ]
+      },
+      {
+        "id": "SW-FW-IntegrationTest-ID-016",
+        "start_row": 112,
+        "literal_text_pages": [
+          17
+        ]
+      },
+      {
+        "id": "SW-FW-IntegrationTest-ID-017",
+        "start_row": 119,
+        "literal_text_pages": [
+          18
+        ]
+      },
+      {
+        "id": "SW-FW-IntegrationTest-ID-018",
+        "start_row": 131,
+        "literal_text_pages": [
+          19
+        ]
+      },
+      {
+        "id": "SW-FW-IntegrationTest-ID-019",
+        "start_row": 134,
+        "literal_text_pages": [
+          20
+        ]
+      },
+      {
+        "id": "SW-FW-IntegrationTest-ID-020",
+        "start_row": 136,
+        "literal_text_pages": [
+          21
+        ]
+      },
+      {
+        "id": "SW-FW-IntegrationTest-ID-021",
+        "start_row": 137,
+        "literal_text_pages": [
+          22
+        ]
+      },
+      {
+        "id": "SW-FW-IntegrationTest-ID-022",
+        "start_row": 141,
+        "literal_text_pages": [
+          23
+        ]
+      },
+      {
+        "id": "SW-FW-IntegrationTest-ID-023",
+        "start_row": 142,
+        "literal_text_pages": [
+          24
+        ]
+      },
+      {
+        "id": "SW-FW-IntegrationTest-ID-024",
+        "start_row": 144,
+        "literal_text_pages": [
+          25
+        ]
+      }
+    ],
+    "missing_literal_id_labels": [],
+    "sparse_page_candidates": []
+  },
+  {
+    "code": "SSTC-main",
+    "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SSTC-FW-TD24A 소프트웨어 시스템 시험 기준서.xlsx",
+    "sheet": "기준서_시스템 시험",
+    "range": "B2:J303",
+    "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SSTC-main.pdf",
+    "sourceSHA256": "C4DCAAA772F4BE959F2431BE5BBAED6EDEA2F2C1C132598FD020A694613EEBA8",
+    "sourceUnchanged": true,
+    "originalPrintArea": "$B$2:$J$303",
+    "scope": "Supporting native PDF text positions, not visible glyph proof. Sparse pages require actual pixel review; retained long merged fields may have identifiers on another page.",
+    "checkedAt": "2026-10-13T10:21:46.2677206+09:00",
+    "pdf_sha256": "5b9a29779e26f1b77b5880e5d73611b29434be6f517cb99542e152239766baa6",
+    "pages": 72,
+    "id_positions": [
+      {
+        "id": "SW-FW-SYS-Test-ID-1",
+        "start_row": 34,
+        "literal_text_pages": [
+          2,
+          18
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-2",
+        "start_row": 35,
+        "literal_text_pages": [
+          3,
+          18
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-3",
+        "start_row": 38,
+        "literal_text_pages": [
+          4,
+          18
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-4",
+        "start_row": 39,
+        "literal_text_pages": [
+          5,
+          18
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-5",
+        "start_row": 41,
+        "literal_text_pages": [
+          6,
+          18
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-6",
+        "start_row": 44,
+        "literal_text_pages": [
+          7,
+          18
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-7",
+        "start_row": 48,
+        "literal_text_pages": [
+          8,
+          18
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-8",
+        "start_row": 50,
+        "literal_text_pages": [
+          9
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-9",
+        "start_row": 53,
+        "literal_text_pages": [
+          9
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-10",
+        "start_row": 54,
+        "literal_text_pages": [
+          10
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-11",
+        "start_row": 64,
+        "literal_text_pages": [
+          11
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-12",
+        "start_row": 68,
+        "literal_text_pages": [
+          12
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-13",
+        "start_row": 70,
+        "literal_text_pages": [
+          13
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-14",
+        "start_row": 74,
+        "literal_text_pages": [
+          14
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-15",
+        "start_row": 78,
+        "literal_text_pages": [
+          15
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-16",
+        "start_row": 82,
+        "literal_text_pages": [
+          16
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-17",
+        "start_row": 84,
+        "literal_text_pages": [
+          17
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-18",
+        "start_row": 86,
+        "literal_text_pages": [
+          18
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-19",
+        "start_row": 93,
+        "literal_text_pages": [
+          18
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-20",
+        "start_row": 96,
+        "literal_text_pages": [
+          18
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-21",
+        "start_row": 98,
+        "literal_text_pages": [
+          19
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-22",
+        "start_row": 106,
+        "literal_text_pages": [
+          20
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-23",
+        "start_row": 114,
+        "literal_text_pages": [
+          21
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-24",
+        "start_row": 116,
+        "literal_text_pages": [
+          22
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-25",
+        "start_row": 121,
+        "literal_text_pages": [
+          23,
+          40,
+          41,
+          64,
+          65
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-26",
+        "start_row": 124,
+        "literal_text_pages": [
+          24,
+          40,
+          64
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-27",
+        "start_row": 128,
+        "literal_text_pages": [
+          25,
+          40,
+          64
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-28",
+        "start_row": 130,
+        "literal_text_pages": [
+          26,
+          40,
+          64
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-29",
+        "start_row": 132,
+        "literal_text_pages": [
+          27,
+          40,
+          64
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-30",
+        "start_row": 134,
+        "literal_text_pages": [
+          28,
+          40,
+          64
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-31",
+        "start_row": 138,
+        "literal_text_pages": [
+          29,
+          40,
+          65
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-32",
+        "start_row": 141,
+        "literal_text_pages": [
+          30,
+          40,
+          65
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-33",
+        "start_row": 144,
+        "literal_text_pages": [
+          31,
+          41,
+          65
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-34",
+        "start_row": 146,
+        "literal_text_pages": [
+          32,
+          41,
+          64,
+          65
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-35",
+        "start_row": 148,
+        "literal_text_pages": [
+          33,
+          41
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-36",
+        "start_row": 151,
+        "literal_text_pages": [
+          34,
+          41
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-37",
+        "start_row": 152,
+        "literal_text_pages": [
+          35,
+          41
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-38",
+        "start_row": 155,
+        "literal_text_pages": [
+          36,
+          41
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-39",
+        "start_row": 157,
+        "literal_text_pages": [
+          37,
+          41
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-40",
+        "start_row": 159,
+        "literal_text_pages": [
+          38,
+          41
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-41",
+        "start_row": 162,
+        "literal_text_pages": [
+          39
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-42",
+        "start_row": 164,
+        "literal_text_pages": [
+          39
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-43",
+        "start_row": 166,
+        "literal_text_pages": [
+          40
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-44",
+        "start_row": 168,
+        "literal_text_pages": [
+          40,
+          41
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-45",
+        "start_row": 178,
+        "literal_text_pages": [
+          41
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-69",
+        "start_row": 184,
+        "literal_text_pages": [
+          42,
+          71
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-70",
+        "start_row": 186,
+        "literal_text_pages": [
+          42
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-46",
+        "start_row": 188,
+        "literal_text_pages": [
+          43
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-47",
+        "start_row": 190,
+        "literal_text_pages": [
+          44
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-48",
+        "start_row": 191,
+        "literal_text_pages": [
+          45
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-49",
+        "start_row": 194,
+        "literal_text_pages": [
+          46
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-50",
+        "start_row": 195,
+        "literal_text_pages": [
+          46
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-51",
+        "start_row": 197,
+        "literal_text_pages": [
+          47
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-52",
+        "start_row": 199,
+        "literal_text_pages": [
+          48,
+          49
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-53",
+        "start_row": 203,
+        "literal_text_pages": [
+          49
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-81",
+        "start_row": 204,
+        "literal_text_pages": [
+          49
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-54",
+        "start_row": 206,
+        "literal_text_pages": [
+          50,
+          51
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-71",
+        "start_row": 210,
+        "literal_text_pages": [
+          52
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-72",
+        "start_row": 212,
+        "literal_text_pages": [
+          53
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-73",
+        "start_row": 215,
+        "literal_text_pages": [
+          54
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-74",
+        "start_row": 217,
+        "literal_text_pages": [
+          55
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-75",
+        "start_row": 219,
+        "literal_text_pages": [
+          56
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-76",
+        "start_row": 222,
+        "literal_text_pages": [
+          57
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-77",
+        "start_row": 225,
+        "literal_text_pages": [
+          58
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-78",
+        "start_row": 227,
+        "literal_text_pages": [
+          59
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-79",
+        "start_row": 230,
+        "literal_text_pages": [
+          60
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-80",
+        "start_row": 234,
+        "literal_text_pages": [
+          60
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-55",
+        "start_row": 237,
+        "literal_text_pages": [
+          61
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-56",
+        "start_row": 239,
+        "literal_text_pages": [
+          62
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-57",
+        "start_row": 243,
+        "literal_text_pages": [
+          62
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-58",
+        "start_row": 244,
+        "literal_text_pages": [
+          63
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-59",
+        "start_row": 247,
+        "literal_text_pages": [
+          64
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-60",
+        "start_row": 249,
+        "literal_text_pages": [
+          64,
+          65
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-61",
+        "start_row": 260,
+        "literal_text_pages": [
+          66
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-62",
+        "start_row": 261,
+        "literal_text_pages": [
+          67
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-63",
+        "start_row": 269,
+        "literal_text_pages": [
+          68
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-64",
+        "start_row": 272,
+        "literal_text_pages": [
+          68
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-65",
+        "start_row": 274,
+        "literal_text_pages": [
+          68
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-66",
+        "start_row": 276,
+        "literal_text_pages": [
+          68
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-67",
+        "start_row": 278,
+        "literal_text_pages": [
+          69
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-68",
+        "start_row": 280,
+        "literal_text_pages": [
+          70
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-82",
+        "start_row": 282,
+        "literal_text_pages": [
+          71
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-83",
+        "start_row": 285,
+        "literal_text_pages": [
+          72
+        ]
+      }
+    ],
+    "missing_literal_id_labels": [],
+    "sparse_page_candidates": []
+  },
+  {
+    "code": "SSTC-cyber",
+    "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SSTC-FW-TD24A 소프트웨어 시스템 시험 기준서.xlsx",
+    "sheet": "사이버보안 시험 연계",
+    "range": "A1:J39",
+    "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SSTC-cyber.pdf",
+    "sourceSHA256": "C4DCAAA772F4BE959F2431BE5BBAED6EDEA2F2C1C132598FD020A694613EEBA8",
+    "sourceUnchanged": true,
+    "originalPrintArea": "$A$1:$J$39",
+    "scope": "Supporting native PDF text positions, not visible glyph proof. Sparse pages require actual pixel review; retained long merged fields may have identifiers on another page.",
+    "checkedAt": "2026-10-13T10:21:47.6316301+09:00",
+    "pdf_sha256": "eb464a7929b793c37c4533565e35b32a1151b0b479e62088dc7119d892f085a4",
+    "pages": 18,
+    "id_positions": [],
+    "missing_literal_id_labels": [],
+    "sparse_page_candidates": []
+  },
+  {
+    "code": "SSTR-main",
+    "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\04_설계 검증\\SW\\외부기\\[E8300-QCC] SSTR-FW-TD24A 소프트웨어 시스템 시험 보고서.xlsx",
+    "sheet": "보고서_시스템 시험",
+    "range": "B2:L303",
+    "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SSTR-main.pdf",
+    "sourceSHA256": "1134D83842123D80F4086D961017914E9E657EB526ACE85817F877C3100C1E5A",
+    "sourceUnchanged": true,
+    "originalPrintArea": "$B$2:$L$303",
+    "scope": "Supporting native PDF text positions, not visible glyph proof. Sparse pages require actual pixel review; retained long merged fields may have identifiers on another page.",
+    "checkedAt": "2026-10-13T10:21:57.2705534+09:00",
+    "pdf_sha256": "f4c66ba8a50a0ad113ac559e7b6a6771104def4c8b55b418beb37bcd98f45666",
+    "pages": 71,
+    "id_positions": [
+      {
+        "id": "SW-FW-SYS-Test-ID-1",
+        "start_row": 34,
+        "literal_text_pages": [
+          2,
+          18
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-2",
+        "start_row": 35,
+        "literal_text_pages": [
+          3,
+          18
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-3",
+        "start_row": 38,
+        "literal_text_pages": [
+          4,
+          18
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-4",
+        "start_row": 39,
+        "literal_text_pages": [
+          5,
+          18
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-5",
+        "start_row": 41,
+        "literal_text_pages": [
+          6,
+          18
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-6",
+        "start_row": 44,
+        "literal_text_pages": [
+          7,
+          18
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-7",
+        "start_row": 48,
+        "literal_text_pages": [
+          8,
+          18
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-8",
+        "start_row": 50,
+        "literal_text_pages": [
+          9
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-9",
+        "start_row": 53,
+        "literal_text_pages": [
+          9
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-10",
+        "start_row": 54,
+        "literal_text_pages": [
+          10
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-11",
+        "start_row": 64,
+        "literal_text_pages": [
+          11
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-12",
+        "start_row": 68,
+        "literal_text_pages": [
+          12
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-13",
+        "start_row": 70,
+        "literal_text_pages": [
+          13
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-14",
+        "start_row": 74,
+        "literal_text_pages": [
+          14
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-15",
+        "start_row": 78,
+        "literal_text_pages": [
+          15
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-16",
+        "start_row": 82,
+        "literal_text_pages": [
+          16
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-17",
+        "start_row": 84,
+        "literal_text_pages": [
+          17
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-18",
+        "start_row": 86,
+        "literal_text_pages": [
+          18
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-19",
+        "start_row": 93,
+        "literal_text_pages": [
+          18
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-20",
+        "start_row": 96,
+        "literal_text_pages": [
+          18
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-21",
+        "start_row": 98,
+        "literal_text_pages": [
+          19
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-22",
+        "start_row": 106,
+        "literal_text_pages": [
+          20
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-23",
+        "start_row": 114,
+        "literal_text_pages": [
+          21
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-24",
+        "start_row": 116,
+        "literal_text_pages": [
+          22
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-25",
+        "start_row": 121,
+        "literal_text_pages": [
+          23,
+          40,
+          63,
+          64
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-26",
+        "start_row": 124,
+        "literal_text_pages": [
+          24,
+          40,
+          63
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-27",
+        "start_row": 128,
+        "literal_text_pages": [
+          25,
+          40,
+          63
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-28",
+        "start_row": 130,
+        "literal_text_pages": [
+          26,
+          40,
+          63
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-29",
+        "start_row": 132,
+        "literal_text_pages": [
+          27,
+          40,
+          63
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-30",
+        "start_row": 134,
+        "literal_text_pages": [
+          28,
+          40,
+          63
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-31",
+        "start_row": 138,
+        "literal_text_pages": [
+          29,
+          40,
+          63
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-32",
+        "start_row": 141,
+        "literal_text_pages": [
+          30,
+          40,
+          63
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-33",
+        "start_row": 144,
+        "literal_text_pages": [
+          31,
+          40,
+          64
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-34",
+        "start_row": 146,
+        "literal_text_pages": [
+          32,
+          40,
+          63,
+          64
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-35",
+        "start_row": 148,
+        "literal_text_pages": [
+          33,
+          41
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-36",
+        "start_row": 151,
+        "literal_text_pages": [
+          34,
+          41
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-37",
+        "start_row": 152,
+        "literal_text_pages": [
+          35,
+          41
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-38",
+        "start_row": 155,
+        "literal_text_pages": [
+          36,
+          41
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-39",
+        "start_row": 157,
+        "literal_text_pages": [
+          37,
+          41
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-40",
+        "start_row": 159,
+        "literal_text_pages": [
+          38,
+          41
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-41",
+        "start_row": 162,
+        "literal_text_pages": [
+          39
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-42",
+        "start_row": 164,
+        "literal_text_pages": [
+          39
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-43",
+        "start_row": 166,
+        "literal_text_pages": [
+          40
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-44",
+        "start_row": 168,
+        "literal_text_pages": [
+          40
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-45",
+        "start_row": 178,
+        "literal_text_pages": [
+          41
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-69",
+        "start_row": 184,
+        "literal_text_pages": [
+          41,
+          70
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-70",
+        "start_row": 186,
+        "literal_text_pages": [
+          41,
+          42
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-46",
+        "start_row": 188,
+        "literal_text_pages": [
+          43
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-47",
+        "start_row": 190,
+        "literal_text_pages": [
+          44
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-48",
+        "start_row": 191,
+        "literal_text_pages": [
+          45
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-49",
+        "start_row": 194,
+        "literal_text_pages": [
+          46
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-50",
+        "start_row": 195,
+        "literal_text_pages": [
+          46
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-51",
+        "start_row": 197,
+        "literal_text_pages": [
+          47
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-52",
+        "start_row": 199,
+        "literal_text_pages": [
+          48
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-53",
+        "start_row": 203,
+        "literal_text_pages": [
+          49
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-81",
+        "start_row": 204,
+        "literal_text_pages": [
+          49
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-54",
+        "start_row": 206,
+        "literal_text_pages": [
+          50
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-71",
+        "start_row": 210,
+        "literal_text_pages": [
+          51
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-72",
+        "start_row": 212,
+        "literal_text_pages": [
+          52
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-73",
+        "start_row": 215,
+        "literal_text_pages": [
+          53
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-74",
+        "start_row": 217,
+        "literal_text_pages": [
+          54
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-75",
+        "start_row": 219,
+        "literal_text_pages": [
+          55
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-76",
+        "start_row": 222,
+        "literal_text_pages": [
+          56
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-77",
+        "start_row": 225,
+        "literal_text_pages": [
+          57
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-78",
+        "start_row": 227,
+        "literal_text_pages": [
+          58
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-79",
+        "start_row": 230,
+        "literal_text_pages": [
+          59
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-80",
+        "start_row": 234,
+        "literal_text_pages": [
+          59
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-55",
+        "start_row": 237,
+        "literal_text_pages": [
+          60
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-56",
+        "start_row": 239,
+        "literal_text_pages": [
+          61
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-57",
+        "start_row": 243,
+        "literal_text_pages": [
+          61
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-58",
+        "start_row": 244,
+        "literal_text_pages": [
+          62
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-59",
+        "start_row": 247,
+        "literal_text_pages": [
+          63
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-60",
+        "start_row": 249,
+        "literal_text_pages": [
+          63,
+          64
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-61",
+        "start_row": 260,
+        "literal_text_pages": [
+          65
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-62",
+        "start_row": 261,
+        "literal_text_pages": [
+          66
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-63",
+        "start_row": 269,
+        "literal_text_pages": [
+          67
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-64",
+        "start_row": 272,
+        "literal_text_pages": [
+          67
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-65",
+        "start_row": 274,
+        "literal_text_pages": [
+          67
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-66",
+        "start_row": 276,
+        "literal_text_pages": [
+          67
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-67",
+        "start_row": 278,
+        "literal_text_pages": [
+          68
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-68",
+        "start_row": 280,
+        "literal_text_pages": [
+          69
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-82",
+        "start_row": 282,
+        "literal_text_pages": [
+          70
+        ]
+      },
+      {
+        "id": "SW-FW-SYS-Test-ID-83",
+        "start_row": 285,
+        "literal_text_pages": [
+          71
+        ]
+      }
+    ],
+    "missing_literal_id_labels": [],
+    "sparse_page_candidates": []
+  },
+  {
+    "code": "SSTR-cyber",
+    "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\04_설계 검증\\SW\\외부기\\[E8300-QCC] SSTR-FW-TD24A 소프트웨어 시스템 시험 보고서.xlsx",
+    "sheet": "사이버보안 시험 연계",
+    "range": "A1:L39",
+    "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SSTR-cyber.pdf",
+    "sourceSHA256": "1134D83842123D80F4086D961017914E9E657EB526ACE85817F877C3100C1E5A",
+    "sourceUnchanged": true,
+    "originalPrintArea": "$A$1:$L$39",
+    "scope": "Supporting native PDF text positions, not visible glyph proof. Sparse pages require actual pixel review; retained long merged fields may have identifiers on another page.",
+    "checkedAt": "2026-10-13T10:21:58.8805559+09:00",
+    "pdf_sha256": "585046ef281c3bf400d56a72b8c9b1829ba833decb85ea525cf8ae395da5c8b7",
+    "pages": 12,
+    "id_positions": [],
+    "missing_literal_id_labels": [],
+    "sparse_page_candidates": []
+  }
+]

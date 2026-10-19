@@ -1,0 +1,944 @@
+{
+  "checkedAt": "2026-10-13T10:40:53.897927+09:00",
+  "status": "PASS_SCOPED",
+  "scope": "Independent read-only verification of the 125 omitted new pPrChange snapshots. This does not establish native new-only rejection, accepted cell preservation, final G publication or full visual PASS.",
+  "inputs_before_sha256": {
+    "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_design\\native-trace-probe-v2\\SAD-native-probe-author.docx": "AFA120B7A38105FCF4264DC47CF0BDC39C430330F259E07A627FAB51AFF8CB19",
+    "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_design\\native-trace-probe-v2\\candidate-history.xml": "3C415BDDF2ED0781A2124FC85FC7883065E0478FC54EF7746B407543CA16AEB4",
+    "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_design\\native-trace-probe-v2\\reject-allmarkup\\initial-history.xml": "1297D3788B01E3279EDF74BF21B39DC9FF2E2A538C161BD67A50A7B194C4723D",
+    "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_design\\native-trace-probe-v2\\reject-allmarkup\\open-normalization-format-detail.json": "17518823A51AA66DAB49BF701CA7A35A1F1D77BC1FBCDEADD8BEC9D698F91E5B"
+  },
+  "inputs_after_sha256": {
+    "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_design\\native-trace-probe-v2\\SAD-native-probe-author.docx": "AFA120B7A38105FCF4264DC47CF0BDC39C430330F259E07A627FAB51AFF8CB19",
+    "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_design\\native-trace-probe-v2\\candidate-history.xml": "3C415BDDF2ED0781A2124FC85FC7883065E0478FC54EF7746B407543CA16AEB4",
+    "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_design\\native-trace-probe-v2\\reject-allmarkup\\initial-history.xml": "1297D3788B01E3279EDF74BF21B39DC9FF2E2A538C161BD67A50A7B194C4723D",
+    "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_design\\native-trace-probe-v2\\reject-allmarkup\\open-normalization-format-detail.json": "17518823A51AA66DAB49BF701CA7A35A1F1D77BC1FBCDEADD8BEC9D698F91E5B"
+  },
+  "readonly_unchanged": true,
+  "new_revision_counts": {
+    "raw": {
+      "del": 183,
+      "pPrChange": 177
+    },
+    "saved_native_xml": {
+      "del": 183,
+      "pPrChange": 177
+    },
+    "reopened_native_xml": {
+      "del": 183,
+      "pPrChange": 52
+    }
+  },
+  "paragraph_count_each": 1435,
+  "missing125_ordinals_confirmed_against_design_diff": true,
+  "effective_property_verification": {
+    "checked_count": 125,
+    "all_raw_saved_current_equal": true,
+    "all_saved_reopened_current_equal": true,
+    "all_stored_old_current_equal_excluding_only_paragraph_mark_ins_del": true,
+    "revision_ID_renumbered_count": 124,
+    "method": "Namespace-qualified element names and all property attributes/values/children compared recursively. Ignore only pPrChange wrappers and revision w:id renumbering for saved/reopen; for old/current format equivalence ignore paragraph-mark ins/del plus a resulting empty rPr. No font/spacing/indent/style/numbering or pagination property is ignored.",
+    "rows": [
+      {
+        "paragraph_ordinal": 755,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": false,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 759,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 760,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 761,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 762,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 763,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 764,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 765,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 766,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 775,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 776,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 812,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 817,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 818,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 824,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 825,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 829,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 833,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 834,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 838,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 844,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 845,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 850,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 855,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 856,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 861,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 866,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 867,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 870,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 875,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 876,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 880,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 884,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 885,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 888,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 891,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 892,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 895,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 898,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 899,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 902,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 905,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 906,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 909,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 912,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 913,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 916,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 919,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 920,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 923,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 926,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 927,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 930,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 934,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 935,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 940,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 945,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 946,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 950,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 956,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 957,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 960,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 964,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 965,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 968,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 972,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 973,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 976,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 981,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 982,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 1005,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 1009,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 1010,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 1011,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 1017,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 1021,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 1022,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 1023,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 1024,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 1030,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 1036,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 1037,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 1042,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 1048,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 1054,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 1069,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 1083,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 1090,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 1091,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 1121,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 1122,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 1126,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 1130,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 1142,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 1147,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 1148,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 1151,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 1156,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 1157,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 1169,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 1174,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 1175,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 1179,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 1187,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 1188,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 1193,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 1200,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 1201,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 1206,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 1210,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 1211,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 1212,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 1213,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 1214,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 1215,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 1221,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 1225,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 1226,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 1227,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 1234,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 1240,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 1260,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 1267,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 1272,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      },
+      {
+        "paragraph_ordinal": 1273,
+        "raw_vs_saved_current_properties_equal": true,
+        "saved_vs_reopened_current_properties_equal_excluding_revision_ids_only": true,
+        "revision_ids_renumbered": true,
+        "stored_old_vs_current_format_equal_excluding_only_paragraph_mark_ins_del": true
+      }
+    ]
+  },
+  "new183_paragraph_mark_deletions": {
+    "all_present": true,
+    "same_paragraph_ordinals_author_date_dateUtc": true,
+    "revision_ids_renumbered_count": 181,
+    "count": 183
+  },
+  "historical_nonempty_revision_text": {
+    "raw_saved_reopened_exact": true,
+    "signature_count": 1936,
+    "same_tag_author_date_text_multiplicity": true
+  },
+  "styles_saved_vs_reopened_structurally_equal": true,
+  "additional_raw_to_saved_native_history_normalization": {
+    "missing_empty_historical_format_node": [
+      {
+        "paragraph_ordinal": 1435,
+        "id": "5214",
+        "author": "김은수",
+        "date": "2026-10-01T06:57:00Z",
+        "text_length": 0
+      }
+    ],
+    "limitation": "One pre-existing empty-text pPrChange snapshot is absent already in saved Content.WordOpenXML, before the new125 omission on reopen. Historical ordinary revision text equality does not assert every historical format revision node is identical. This node is outside the new125 scoped equivalence finding."
+  },
+  "interpretation": "All 125 omitted new snapshots are redundant for current format after paragraph-mark revision metadata is removed. The current properties and all183 paragraph-mark deletion revisions are retained. A native new-only reject test still needs its own baseline comparison and is not inferred from this result."
+}

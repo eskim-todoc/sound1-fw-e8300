@@ -1,9 +1,92 @@
 {
   "review_date": "2026-10-02",
-  "scope": "Selected normal entry/cross-core paths and conditional unit-test/RTT boundaries; not whole-file correctness or device acceptance.",
+  "scope": "Selected normal entry/cross-core paths and conditional unit-test/RTT boundaries; not whole-file correctness or device acceptance. Reviewed test-only batch/console mailbox, result lifecycle, RAM observation and SPI completion boundaries on 2026-10-02; no device execution.",
   "git_head": "f24d0d39ed4a227529e68f10b76fa30daabd5d6c",
   "basis": "Working tree bytes including existing local modifications",
+  "audit_addendum_review_date": "2026-10-12",
+  "audit_addendum_scope": "CM3 audit initialization, connection/time/address recording, ring storage and RTT query/access boundary. Existing matching file hashes retained; newly reviewed files appended. PC/RAM evidence is not device acceptance.",
+  "hardware_clarification_date": "2026-10-13",
+  "hardware_clarification_basis": "Direct user confirmation, recorded in Sound1 시스템 구조.md sections 1 and 6.2. Wiring clarification is not derived from the E8300 source hashes and does not confirm QCC pin/clock/codec settings or device acceptance.",
+  "source_identity_recheck_date": "2026-10-16",
+  "system_test_audit_review_date": "2026-10-15",
+  "system_test_audit_scope": "Default-off SYS-050/051 RTT display of fixed 2026-05-29 RAM vectors, TEST provenance on every row, no event-file/time/address writes or automatic-hook changes. Existing SYS7/SYS23/DIO35=1 preserved. PC display checks and SDK builds do not establish actual connection, corruption detection or system-test acceptance.",
+  "system_test_23_review_date": "2026-10-14",
+  "system_test_23_scope": "Default-off CM3 RTT alarm-only 19-percent injection, actual battery/power protections retained. Existing alarm request and gate observed, bounded one-cycle/5-second input, no NVM/map changes. Four SDK images and PC checks, not device acceptance. Existing DIO35 CM3/CFX=1 and SYS7=1 preserved.",
+  "system_test_dio35_review_date": "2026-10-14",
+  "system_test_dio35_scope": "CM3 GPIO35 low-latch/init and CFX FIFO4-to-pcmDataOut timing markers, initially both default-off. SDK CID101 SET/CLR and boot ordering checked, no normal processing/shared-layout change. User confirmed the current board's DIO35 is an unused pin/test pad suitable for GPIO output on 2026-10-14; see Sound1 시스템 구조.md section 7.1. Follow-up found only the CFX header default changed from 0 to 1, with CM3 still 0; preserved without editing source or rerunning builds. Both must be 1 for SYS-012. Other board revisions need a new wiring check. Waveform/deadline acceptance remains unmeasured; no device execution.",
+  "system_test_7_review_date": "2026-10-13",
+  "system_test_7_scope": "Compile-time-gated RTT command and isolated CM3 foreground hold. User-enabled header value 1 preserved. Parameter input uses a test-only C*width charge check and existing error/LED path; legacy commands still expose actual product calculation. Product charge guard and failed-result publication policies are preserved. SDK OFF/ON and host checks do not establish physical LED or system acceptance.",
+  "system_test_storage_review_date": "2026-10-16",
+  "system_test_storage_scope": "SYS54 read-only unencrypted FEZ/CRC with RAM faults (not boot execution); SYS73 actual audit functions with isolated RAM I/O; SYS77 synthetic actual CRC/AES scratch-file roundtrip. SYS80 arm/check/clear use SYS80.TST only: actual CRC mismatch triggers test-file factory defaults from ci_map.c and reread verification without reboot. Legacy restore alone writes ISD1 from a verified old backup. FS sync/close failures stop subsequent tests on uncertain file lifetime; product return/error policy retained. User switches 54/73/77/80=1 preserved on 2026-10-16. Host/SDK checks are not device or boot acceptance.",
   "files": [
+    {
+      "path": "src/2__cm3/Gen1_5/FS/ci_event_log.h",
+      "sha256": "99d718df2f81f4562dfd22b55ee888038bfdd6f566da360aa39f645d28b45075"
+    },
+    {
+      "path": "src/2__cm3/Gen1_5/FS/ci_filesystem.c",
+      "sha256": "307747382bcdabc4ad1c6286bf241e944b6b43a06776afd68da86f73ae42fb27"
+    },
+    {
+      "path": "src/2__cm3/Gen1_5/FS/ci_filesystem.h",
+      "sha256": "ba6daa4ead21508ee349b946c2bc194b953a8ffd8316a175ea8a9a8aa9f31bd9"
+    },
+    {
+      "path": "src/2__cm3/Cortex-M3-src/test/tdc_sys_test_storage.c",
+      "sha256": "001676a3fa85783561a552a7fe81884b8360159b3c9edebc119b870f30e1153d"
+    },
+    {
+      "path": "src/2__cm3/Cortex-M3-src/test/tdc_sys_test_storage.h",
+      "sha256": "46709e4b1269d520729367a921e9a1f693aad25e16253bcffd6c2556601a23b8"
+    },
+    {
+      "path": "src/2__cm3/Cortex-M3-src/test/tdc_sys_test_54.c",
+      "sha256": "5046a1e0d0d736ce538cd001016bfb818a4e56092e6465e361928064c10c7938"
+    },
+    {
+      "path": "src/2__cm3/Cortex-M3-src/test/tdc_sys_test_54.h",
+      "sha256": "ae69fcc1d9a22c05313867febfc1fe0438946b29a7981646a56a73d0dc3313bc"
+    },
+    {
+      "path": "src/2__cm3/Cortex-M3-src/test/tdc_sys_test_73.c",
+      "sha256": "bafdc25b9fc0888d7469fb54bc50a9d0544a18f811cd52f767cd6e124059e295"
+    },
+    {
+      "path": "src/2__cm3/Cortex-M3-src/test/tdc_sys_test_73.h",
+      "sha256": "6f7a552d5a8a61030ecd1cafa077a0e38f5b4b6862bc01522bab41be70add693"
+    },
+    {
+      "path": "src/2__cm3/Cortex-M3-src/test/tdc_sys_test_77.c",
+      "sha256": "305849604d2826ff40b213ba56c58da833d0ce9c7be28d2cd2f1a6caab2a526e"
+    },
+    {
+      "path": "src/2__cm3/Cortex-M3-src/test/tdc_sys_test_77.h",
+      "sha256": "0989ec57bca6410c46ec98d22b3be07333e52a1e1885bdd7c5b45763c63b7ee9"
+    },
+    {
+      "path": "src/2__cm3/Cortex-M3-src/test/tdc_sys_test_80.c",
+      "sha256": "3b3b26f73233efa45e5e9d933d676fb094ea49850c8db1d91cb53232ecadceb8"
+    },
+    {
+      "path": "src/2__cm3/Cortex-M3-src/test/tdc_sys_test_80.h",
+      "sha256": "95c778381a4289bb341d72f2d811f224aceaa233d8998304a683cdfe416ee4bf"
+    },
+    {
+      "path": "src/2__cm3/Cortex-M3-src/test/tdc_sys_test_audit.c",
+      "sha256": "2fc1d48130bc0d0498b96bcc74a529afa80ceeab6dd93639dd462d92c16f07fc"
+    },
+    {
+      "path": "src/2__cm3/Cortex-M3-src/test/tdc_sys_test_audit.h",
+      "sha256": "a7eaf6186a1a31167292bc8cc6a42b566e325800d15cf9030938f9bf51f7b1d5"
+    },
+    {
+      "path": "src/2__cm3/Cortex-M3-src/test/tdc_sys_test_7.c",
+      "sha256": "ac4080e7fba50ff38d5271c479c22107ea41eed99bf31617a081e5b7a4a23987"
+    },
+    {
+      "path": "src/2__cm3/Cortex-M3-src/test/tdc_sys_test_7.h",
+      "sha256": "370fd228ab0a45053f933bda19d11030946461485c0f2024bee03ceb326d29de"
+    },
     {
       "path": "src/0__bootloader/.cproject",
       "sha256": "31e66112f104ca259396145891c77d55f0d2d6544e0cfed2ae44e0650f1b013b"
@@ -22,7 +105,7 @@
     },
     {
       "path": "src/1__cfx/.cproject",
-      "sha256": "264646858226320063778fae4a2298a02e26dc53b1f50ec50ecdd023f719ba49"
+      "sha256": "93cb0b8aa37476cc076126e084dd03719c35145da7b54ed946efeb02e938bb70"
     },
     {
       "path": "src/1__cfx/systemControl/main.c",
@@ -30,7 +113,7 @@
     },
     {
       "path": "src/1__cfx/systemControl/interrupt_service_routine.c",
-      "sha256": "e270d4ba0ecb6e41bd9cea32bec98d2b1edca849852e69fa569104e4e3c8600b"
+      "sha256": "556088d56d40fb398f5659bda16050f400cee25bf16c6f79a0e26fa51b44e38f"
     },
     {
       "path": "src/1__cfx/systemControl/system_control.c",
@@ -58,7 +141,7 @@
     },
     {
       "path": "src/1__cfx/internalDevice/driver_PCM.c",
-      "sha256": "c5fc3732ccd0247bccf331dbb66706e2a679079955ee6834573edb2861ba2464"
+      "sha256": "52f8d2d6b4252230d0e3629874702374081cf218e7e09e26ac77a6dcb7326589"
     },
     {
       "path": "src/1__cfx/lib_cfx/lib_audio_in.h",
@@ -74,7 +157,7 @@
     },
     {
       "path": "src/2__cm3/Cortex-M3-src/main.c",
-      "sha256": "9f4700b8ed5dd6acb22fbf61d6f91801effbb401ad156e6c25421b51b8b52896"
+      "sha256": "52b5f455e9d102dcab7f284db6ea58b93c7cbf577bbbbe552e6234fbe7cd106e"
     },
     {
       "path": "src/2__cm3/Cortex-M3-src/systemControl/initialize.c",
@@ -94,7 +177,7 @@
     },
     {
       "path": "src/2__cm3/Cortex-M3-src/signalProcessing/stimulationParaCal.c",
-      "sha256": "4bfbba41099f76d4e47245b6368f8d24a0979c152f9937edffe30f51f18543e9"
+      "sha256": "e0aaddac122828f93b25690078b90aff6ed476e0d02237f8e3249436ec0024f9"
     },
     {
       "path": "src/2__cm3/Cortex-M3-src/internalDevice/isd_interface.c",
@@ -150,7 +233,7 @@
     },
     {
       "path": "src/1__cfx/test/tdc_ut_io_cfx.c",
-      "sha256": "2fa5ee021bcdc30f7a368fcc61455cafeb0b65b2f8ac9a085714fc1f10cbeebd"
+      "sha256": "84f98f3a07f496482f95ef6cb3a2d0bc021d5f5f86fc2b2a8dd6f4c159e30d84"
     },
     {
       "path": "src/1__cfx/test/tdc_ut_vectors_cfx.c",
@@ -158,7 +241,7 @@
     },
     {
       "path": "src/2__cm3/Cortex-M3-src/test/tdc_ut_io_cm3.c",
-      "sha256": "05f2c22f8d55040b477246fb8711ba74a58f8f4df2b37789beebf36b32641d16"
+      "sha256": "6017074c7170588826a8b583f1de0923c1c5907e2d9e8a40c51715bb5c4d3a27"
     },
     {
       "path": "src/2__cm3/Cortex-M3-src/test/tdc_ut_vectors_cm3.c",
@@ -166,11 +249,11 @@
     },
     {
       "path": "src/0__bootloader/source/test/tdc_ut_boot.c",
-      "sha256": "9f0c3fe409ed9f4d5399504cd2dc6522207ec04714ec0e23e9ce8832c43406db"
+      "sha256": "934d1980c50fa722cb1f062105e75d3eca9151e0fac256d30b5bdaf2ac59afe2"
     },
     {
       "path": "src/0__bootloader/source/test/tdc_ut_boot_report.c",
-      "sha256": "b0091db39c0eab4762e78526b41412ab2836541bc87b3cd7681690ee9e1d7e04"
+      "sha256": "8e226926f554a34c596ef4792228e5bb7979dffb207718c07fe3b76b082eaf02"
     },
     {
       "path": "src/2__cm3/Cortex-M3-src/internalDevice/isd_interface.h",
@@ -206,7 +289,7 @@
     },
     {
       "path": "src/1__cfx/test/tdc_ut_io_cfx.h",
-      "sha256": "e6d9e8943a88ddbced95a8f26eec56f4b49e121d0fe9f47e858d81923704652c"
+      "sha256": "9df7427c464c5138add026b5039e0fdd6f2beb7f12160382b982b5c39725fdee"
     },
     {
       "path": "src/1__cfx/test/tdc_ut_numeric_reference_cfx.h",
@@ -226,7 +309,133 @@
     },
     {
       "path": "src/2__cm3/processorDirective.h",
-      "sha256": "a052dd6089b0aa9a75ff5e7815b2c6ed857eed9c1503067ae01a986fa23d88a1"
+      "sha256": "a9bc67c9bf364224a7d51957fbbba1be47a84bbefa249af47c94ca10d7acfcb3"
+    },
+    {
+      "sha256": "84953ec22481a976a106110e1239a60d59648e1602da0cc937e0024185a372f4",
+      "path": "src/0__bootloader/source/test/tdc_ut_batch_boot.c"
+    },
+    {
+      "sha256": "b7afbee8b3179efed28e13507022bef8f746b7668aa56d21135d74ea258c5a16",
+      "path": "src/0__bootloader/source/test/tdc_ut_batch_boot.h"
+    },
+    {
+      "sha256": "3d580c462ac5e2b02c69d21ce395c2be66cfe11eaac2f81c353eaf140a3519e1",
+      "path": "src/0__bootloader/source/test/tdc_ut_console_boot.c"
+    },
+    {
+      "sha256": "cdf4e629a7139a846de0934b93c6397ada7be1d4c2da1e65d93e65cc8c68669b",
+      "path": "src/1__cfx/test/tdc_ut_batch_cfx.c"
+    },
+    {
+      "sha256": "0a49d1a645b5f6acc7eac04923b1a7aefda95c51e35a46a451109fd69205864b",
+      "path": "src/1__cfx/test/tdc_ut_batch_cfx.h"
+    },
+    {
+      "sha256": "3a436c58b7c4db380d7ae6a36ea20c8c8712aeeb01eb9ffaf34766236942db69",
+      "path": "src/2__cm3/Cortex-M3-src/test/tdc_ut_batch_cfx_bridge.c"
+    },
+    {
+      "sha256": "c800352d444c3a52359c128308ad3fb246391758c259defa7c5de0df90f7977c",
+      "path": "src/2__cm3/Cortex-M3-src/test/tdc_ut_batch_cfx_bridge.h"
+    },
+    {
+      "sha256": "d234214ade05a1a13a323e1e1c92d61c6d4f7de4218e4b8fc9f9eee430cd45b5",
+      "path": "src/2__cm3/Cortex-M3-src/test/tdc_ut_batch_cm3.c"
+    },
+    {
+      "sha256": "17fd61bfe0fd0387ff0bc20a51a0f296d10f54a717023c2e5d58473a9d660bee",
+      "path": "src/2__cm3/Cortex-M3-src/test/tdc_ut_batch_cm3.h"
+    },
+    {
+      "sha256": "b19b1db03dfc43d7c54f053d02df3d26baba019aa835905ab0845855de6f0ab5",
+      "path": "src/2__cm3/Cortex-M3-src/test/tdc_ut_console_cm3.c"
+    },
+    {
+      "sha256": "27cd92109b3bd9d89e56449ab4e9cac6819a9ce4242a2d8f90bd4c77a474cb20",
+      "path": "src/2__cm3/Cortex-M3-src/test/tdc_ut_entry.c"
+    },
+    {
+      "sha256": "b3d36073745a3a52783d0aac07fbb74271b58e6c6ec633847bae7273be6495f8",
+      "path": "src/test/tdc_ut_console.c"
+    },
+    {
+      "sha256": "401ebc3cecd3733739641dcec3690f05375217b78e11248dc0e9171022393683",
+      "path": "src/test/tdc_ut_console.h"
+    },
+    {
+      "path": "src/2__cm3/Cortex-M3-src/BleCommunication/remoteControl.c",
+      "sha256": "31972e618598dfa72e11876b829d41e2daf3f6ec6ee0c8972935b6fb8f9b8a46"
+    },
+    {
+      "path": "src/2__cm3/Gen1_5/FS/ci_event_log.c",
+      "sha256": "80d2853d0213ce884a5c2077276270fbcdc571d5a3d7b574cad295d13202d955"
+    },
+    {
+      "path": "src/2__cm3/Gen1_5/ui/tdc_ui_command.c",
+      "sha256": "98db83589452e7e9e6dd925630280c9927476cc0ecc8ccdd6b0f5aeeea465728"
+    },
+    {
+      "path": "src/2__cm3/Gen1_5/common/ci_dio.c",
+      "sha256": "27d9a0c1a236d863457e71fc9da94e4fce95be9be7408db467fe3c5935c251a4"
+    },
+    {
+      "path": "src/1__cfx/test/tdc_sys_test_config.h",
+      "sha256": "c343de31242c423251bc75da67b7b3ba545b1dc990c9ff0d28078456fd950749"
+    },
+    {
+      "path": "src/2__cm3/Cortex-M3-src/systemControl/systemControl.c",
+      "sha256": "bc55b1fcabf4a9b7a0197ca9f0a0a72fe755d808d954bec16d2e6d4974357195"
+    },
+    {
+      "path": "src/2__cm3/Cortex-M3-src/systemControl/batteryNPowerControl.c",
+      "sha256": "cbbb4abba43d05c0e9339ee3a13f1328e762f7526bff928c7dc629552bf7d280"
+    },
+    {
+      "path": "src/2__cm3/Cortex-M3-src/internalDevice/indicatorByStimul.c",
+      "sha256": "8b51c6f630f087dddd1a5a1b84bd44330743c8f4a10ae3eb942f2811941e1537"
+    },
+    {
+      "path": "src/2__cm3/Cortex-M3-src/test/tdc_sys_test_23.c",
+      "sha256": "a8bd1f9c446901d1620c452229eaf0376a6191faf9007d3510a90eabd5965fe7"
+    },
+    {
+      "path": "src/2__cm3/Cortex-M3-src/test/tdc_sys_test_23.h",
+      "sha256": "c246955e114393365f155fe8d04866776e2261e9faa8cd8183caa36abc5fb68d"
+    },
+    {
+      "path": "src/1__cfx/signalProcessing/nonlinearMapping.c",
+      "sha256": "cc66da44bdb242f493a1359b9a6b10d64466f34484edbac1c996d88956b749c6"
+    }
+  ],
+  "qcc_design_review_date": "2026-10-12",
+  "qcc_design_review_scope": "Provided QCC design documents, full text/tables/embedded diagrams and E8300 SPI/GPIO/I2S interface comparison. Four modules and fourteen design units; no QCC source/build/device execution. See Sound1 시스템 구조.md section 6.2.",
+  "cfx_configuration_review": "2026-10-12: current .cproject differs from Git HEAD only by test sourcePath inclusion; inspected sourceEntries and retained the existing test-only/normal-build boundary explanation. No toolchain/macro/optimization change shown by this diff and no firmware edit in this document task.",
+  "qcc_document_evidence": [
+    {
+      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\02_설계 입력\\SW\\외부기\\서석일_작성\\QCC_SRS-FW-TD24A 소프트웨어 요구사항 사양서_byssi.docx",
+      "sha256": "64ddecba6c1b718ecd31881f45fec163f4e5cdd88807455fa6b019c370bfe078",
+      "basis": "Provided design/criteria, not implementation or execution result"
+    },
+    {
+      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\서석일_작성\\QCC_SIP-FW-TD24A 소프트웨어 통합 계획서_byssi.docx",
+      "sha256": "0037a200031568bbee5d044b40bd4647ade513bf13c1b227ba4ee67da4c0dabf",
+      "basis": "Provided design/criteria, not implementation or execution result"
+    },
+    {
+      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\서석일_작성\\QCC_SDDD-FW-TD24A 소프트웨어 상세 설계서_byssi.docx",
+      "sha256": "49982c995f78064613f47f4d97a262c70394fc937b66cf4e6f38925e4fb5e1ce",
+      "basis": "Provided design/criteria, not implementation or execution result"
+    },
+    {
+      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\서석일_작성\\QCC_SAD-FW-TD24A 소프트웨어 아키텍쳐 기술서_byssi.docx",
+      "sha256": "49ebebcf56d3835b0db3365c5ba996909a1f59490e50468c2fe76d44974b8878",
+      "basis": "Provided design/criteria, not implementation or execution result"
+    },
+    {
+      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\서석일_작성\\QCC_SUVC-FW-TD24A 유닛 테스트 기준서_byssi.docx",
+      "sha256": "072aa94ef6c48846c78a81dea104a65adcf19def60f5484a8f33c3677afcab5a",
+      "basis": "Provided design/criteria, not implementation or execution result"
     }
   ]
 }

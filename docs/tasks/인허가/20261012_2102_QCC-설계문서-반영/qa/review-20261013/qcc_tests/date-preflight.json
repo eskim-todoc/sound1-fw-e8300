@@ -1,0 +1,132 @@
+{
+  "write": false,
+  "files": [
+    {
+      "key": "SUVC",
+      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SUVC-FW-TD24A 소프트웨어 유닛 검증 기준서.xlsx",
+      "sha256_before": "682c33599fb54515db2b8b8eb4652c14b166713d62778d100d88d131a82feb1f",
+      "member": "xl/worksheets/sheet2.xml",
+      "cells": [
+        "K1212",
+        "E1727",
+        "E1729",
+        "E1737",
+        "E1740",
+        "E1744",
+        "E1746",
+        "E1753",
+        "E1755",
+        "E1763",
+        "I1727",
+        "K1737",
+        "I1737",
+        "K1744",
+        "J1754",
+        "K1757",
+        "K1760",
+        "I1760",
+        "K1762"
+      ],
+      "height_changes": {},
+      "all_other_package_parts_unchanged": true
+    },
+    {
+      "key": "SUVR",
+      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\04_설계 검증\\SW\\외부기\\[E8300-QCC] SUVR-FW-TD24A 소프트웨어 유닛 검증 보고서.xlsx",
+      "sha256_before": "f17845595231355efa8627c0689738173c7fbd58cd4987a7dd0980075c9a6b11",
+      "member": "xl/worksheets/sheet2.xml",
+      "cells": [
+        "K1212",
+        "E1727",
+        "E1729",
+        "E1737",
+        "E1740",
+        "E1744",
+        "E1746",
+        "E1753",
+        "E1755",
+        "E1763",
+        "I1727",
+        "K1737",
+        "I1737",
+        "L1739",
+        "K1744",
+        "L1747",
+        "L1751",
+        "J1754",
+        "K1757",
+        "L1757",
+        "K1760",
+        "I1760",
+        "K1762"
+      ],
+      "height_changes": {},
+      "all_other_package_parts_unchanged": true
+    },
+    {
+      "key": "SSTC",
+      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SSTC-FW-TD24A 소프트웨어 시스템 시험 기준서.xlsx",
+      "sha256_before": "0aa291b57bdba35572aadd9d6f7d175d43022ffa65a86c818f59f9c4b42084f9",
+      "member": "xl/worksheets/sheet2.xml",
+      "cells": [
+        "J218",
+        "D217"
+      ],
+      "height_changes": {
+        "218": 172
+      },
+      "all_other_package_parts_unchanged": true
+    },
+    {
+      "key": "SSTR",
+      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\04_설계 검증\\SW\\외부기\\[E8300-QCC] SSTR-FW-TD24A 소프트웨어 시스템 시험 보고서.xlsx",
+      "sha256_before": "34c4a22bb4d50e4880c3714c729d5d24da129bce5de9a3d4c8f2a504c595817b",
+      "member": "xl/worksheets/sheet2.xml",
+      "cells": [
+        "J218",
+        "D217",
+        "K218",
+        "L217"
+      ],
+      "height_changes": {
+        "218": 191
+      },
+      "all_other_package_parts_unchanged": true
+    },
+    {
+      "key": "SITC",
+      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SITC-FW-TD24A 소프트웨어 통합시험 기준서.xlsx",
+      "sha256_before": "ad494cbbc096ddc26f88807974bfbf58f365b74b9b9b37f3332281c6d83b820d",
+      "member": "xl/worksheets/sheet2.xml",
+      "cells": [
+        "L134",
+        "L135",
+        "M136",
+        "L140",
+        "M142",
+        "M144",
+        "E134"
+      ],
+      "height_changes": {},
+      "all_other_package_parts_unchanged": true
+    },
+    {
+      "key": "SITR",
+      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\04_설계 검증\\SW\\외부기\\[E8300-QCC] SITR-FW-TD24A 소프트웨어 통합시험 보고서.xlsx",
+      "sha256_before": "bdb79a625040afcdc2df209c0efdd6679e82f1666b575d5fe8340345e76045cd",
+      "member": "xl/worksheets/sheet2.xml",
+      "cells": [
+        "L134",
+        "L135",
+        "M136",
+        "L140",
+        "M142",
+        "M144",
+        "E134"
+      ],
+      "height_changes": {},
+      "all_other_package_parts_unchanged": true
+    }
+  ],
+  "split_candidates": []
+}

@@ -1,0 +1,28 @@
+{
+  "output": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\04_설계 검증\\SW\\외부기\\[E8300-QCC] SSTR-FW-TD24A 소프트웨어 시스템 시험 보고서_자료첨부.xlsx",
+  "outputSHA256": "64E7636993431C36BA9D9FF4A5A1C0CBC38EF23EB1889DDDBC8C6574EB77C90C",
+  "baseSHA256": "E1643A377713825A7545451B1D01BC599B01FE5A9F1D8A5745F9E66CEF6E8595",
+  "personalSHA256": "FF6A53930D975A5A7F0683B1F1D0AA9651A605B396D8F6D940DD5BFAC93217F2",
+  "sourcesUnchanged": true,
+  "saved": true,
+  "history": [
+    {
+      "outputSHA256": "EB8699A7A95382F9D9A372CA425F6228EC5651A18AE7543A651B2FF1D80EB713",
+      "scope": "시험28/32 사용자 확인 전 자료첨부본"
+    },
+    {
+      "outputSHA256": "7B504381D27351438D4FEAB62B9F1E0D4EB15E396CA2D1023A06B5B51604A4E4",
+      "userSavedBaselineSHA256": "01353E812C3AE3C391079A46FBAD19B4F863F51698AEA72131D243D7EE71C02C",
+      "scope": "핑크 시험 전체 내용 및 서식 정리 전"
+    }
+  ],
+  "confirmedTests": [
+    28,
+    32
+  ],
+  "confirmationEvidence": {
+    "test28": "알림 사용(ON), 알림용 자극 출력 확인",
+    "test32": "2에서 3으로 증가"
+  },
+  "styleRevision": "34~293행 10pt/외곽 빈 줄 범위 제한/핑크70 시험 전체 내용 반영"
+}

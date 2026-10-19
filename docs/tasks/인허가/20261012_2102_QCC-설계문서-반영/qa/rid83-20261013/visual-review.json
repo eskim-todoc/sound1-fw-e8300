@@ -1,0 +1,33 @@
+{
+  "checked_at": "2026-10-13T16:13:29.320032+09:00",
+  "status": "PASS_SCOPED",
+  "excel": {
+    "native": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\rid83-20261013\\native-checks.json",
+    "full_main_PDF_text_checks": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\rid83-20261013\\render-checks.json",
+    "all_pages_visually_rechecked": false,
+    "SRS_directly_reviewed": [
+      "views/SRS-0-main/page-024.png",
+      "views/SRS-0-compare/page-001.png"
+    ],
+    "system_test_directly_reviewed_pages": 8,
+    "independent_review": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\rid83-20261013\\tests-final-review.json",
+    "finding": "Current text and appended comparison history readable; SRS row heights and SSTR comparison K285:K286 height/merge corrected to show entire history"
+  },
+  "word": {
+    "full_native_pages_rendered": 68,
+    "pixel_identical_to_previously_validated_pages": 64,
+    "changed_pages_directly_reviewed": {
+      "SR": [
+        13
+      ],
+      "SAD": [
+        51,
+        52,
+        53
+      ]
+    },
+    "finding": "No clipped text, table-width drift, extra pages, or unrelated visual changes in revised current views",
+    "render_evidence": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\rid83-20261013\\word\\render-checks.json"
+  },
+  "meaning": "Document display QA only; draft manual inspection and final distribution-manual verdict remain separate"
+}

@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "blocks": 130,
+  "cells": 20808,
+  "onlyChangedParts": [
+    "xl/worksheets/sheet2.xml",
+    "xl/styles.xml"
+  ],
+  "contentFormulasMergesDimensionsNonFillStyles": "unchanged",
+  "otherPartsByteIdentical": true,
+  "candidateSHA": "6FA732E9AAAAFDE64975327C7A9A13542B08BA7D487E3B35959A60CE6ADC40A2"
+}

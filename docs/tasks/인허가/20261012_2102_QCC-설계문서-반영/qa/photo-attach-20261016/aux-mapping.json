@@ -1,0 +1,1500 @@
+{
+  "mapped": [
+    {
+      "aux": 6,
+      "test": 1,
+      "main": 34,
+      "originalId": 1
+    },
+    {
+      "aux": 7,
+      "test": 2,
+      "main": 35,
+      "originalId": 2
+    },
+    {
+      "aux": 8,
+      "test": 2,
+      "main": 36,
+      "originalId": 2
+    },
+    {
+      "aux": 10,
+      "test": 3,
+      "main": 38,
+      "originalId": 3
+    },
+    {
+      "aux": 11,
+      "test": 4,
+      "main": 39,
+      "originalId": 4
+    },
+    {
+      "aux": 12,
+      "test": 4,
+      "main": 40,
+      "originalId": 4
+    },
+    {
+      "aux": 13,
+      "test": 5,
+      "main": 41,
+      "originalId": 5
+    },
+    {
+      "aux": 14,
+      "test": 5,
+      "main": 42,
+      "originalId": 5
+    },
+    {
+      "aux": 17,
+      "test": 6,
+      "main": 45,
+      "originalId": 6
+    },
+    {
+      "aux": 18,
+      "test": 6,
+      "main": 46,
+      "originalId": 6
+    },
+    {
+      "aux": 19,
+      "test": 6,
+      "main": 47,
+      "originalId": 6
+    },
+    {
+      "aux": 20,
+      "test": 7,
+      "main": 48,
+      "originalId": 7
+    },
+    {
+      "aux": 21,
+      "test": 7,
+      "main": 49,
+      "originalId": 7
+    },
+    {
+      "aux": 27,
+      "test": 10,
+      "main": 54,
+      "originalId": 10
+    },
+    {
+      "aux": 28,
+      "test": 10,
+      "main": 56,
+      "originalId": 10
+    },
+    {
+      "aux": 29,
+      "test": 10,
+      "main": 57,
+      "originalId": 10
+    },
+    {
+      "aux": 30,
+      "test": 10,
+      "main": 58,
+      "originalId": 10
+    },
+    {
+      "aux": 31,
+      "test": 10,
+      "main": 59,
+      "originalId": 10
+    },
+    {
+      "aux": 32,
+      "test": 10,
+      "main": 60,
+      "originalId": 10
+    },
+    {
+      "aux": 33,
+      "test": 10,
+      "main": 61,
+      "originalId": 10
+    },
+    {
+      "aux": 34,
+      "test": 10,
+      "main": 62,
+      "originalId": 10
+    },
+    {
+      "aux": 35,
+      "test": 10,
+      "main": 63,
+      "originalId": 10
+    },
+    {
+      "aux": 37,
+      "test": 11,
+      "main": 65,
+      "originalId": 11
+    },
+    {
+      "aux": 38,
+      "test": 11,
+      "main": 66,
+      "originalId": 11
+    },
+    {
+      "aux": 39,
+      "test": 11,
+      "main": 67,
+      "originalId": 11
+    },
+    {
+      "aux": 40,
+      "test": 12,
+      "main": 68,
+      "originalId": 12
+    },
+    {
+      "aux": 42,
+      "test": 13,
+      "main": 70,
+      "originalId": 13
+    },
+    {
+      "aux": 43,
+      "test": 13,
+      "main": 71,
+      "originalId": 13
+    },
+    {
+      "aux": 44,
+      "test": 13,
+      "main": 72,
+      "originalId": 13
+    },
+    {
+      "aux": 45,
+      "test": 13,
+      "main": 73,
+      "originalId": 13
+    },
+    {
+      "aux": 47,
+      "test": 14,
+      "main": 74,
+      "originalId": 14
+    },
+    {
+      "aux": 48,
+      "test": 14,
+      "main": 75,
+      "originalId": 14
+    },
+    {
+      "aux": 49,
+      "test": 14,
+      "main": 76,
+      "originalId": 14
+    },
+    {
+      "aux": 50,
+      "test": 14,
+      "main": 77,
+      "originalId": 14
+    },
+    {
+      "aux": 52,
+      "test": 15,
+      "main": 78,
+      "originalId": 15
+    },
+    {
+      "aux": 53,
+      "test": 15,
+      "main": 79,
+      "originalId": 15
+    },
+    {
+      "aux": 55,
+      "test": 15,
+      "main": 81,
+      "originalId": 15
+    },
+    {
+      "aux": 57,
+      "test": 16,
+      "main": 82,
+      "originalId": 16
+    },
+    {
+      "aux": 59,
+      "test": 17,
+      "main": 84,
+      "originalId": 17
+    },
+    {
+      "aux": 60,
+      "test": 17,
+      "main": 85,
+      "originalId": 17
+    },
+    {
+      "aux": 61,
+      "test": 18,
+      "main": 86,
+      "originalId": 18
+    },
+    {
+      "aux": 62,
+      "test": 18,
+      "main": 87,
+      "originalId": 18
+    },
+    {
+      "aux": 63,
+      "test": 18,
+      "main": 88,
+      "originalId": 18
+    },
+    {
+      "aux": 64,
+      "test": 18,
+      "main": 89,
+      "originalId": 18
+    },
+    {
+      "aux": 65,
+      "test": 18,
+      "main": 90,
+      "originalId": 18
+    },
+    {
+      "aux": 66,
+      "test": 18,
+      "main": 91,
+      "originalId": 18
+    },
+    {
+      "aux": 67,
+      "test": 18,
+      "main": 92,
+      "originalId": 18
+    },
+    {
+      "aux": 68,
+      "test": 19,
+      "main": 93,
+      "originalId": 19
+    },
+    {
+      "aux": 69,
+      "test": 19,
+      "main": 94,
+      "originalId": 19
+    },
+    {
+      "aux": 70,
+      "test": 19,
+      "main": 95,
+      "originalId": 19
+    },
+    {
+      "aux": 71,
+      "test": 20,
+      "main": 96,
+      "originalId": 20
+    },
+    {
+      "aux": 72,
+      "test": 20,
+      "main": 97,
+      "originalId": 20
+    },
+    {
+      "aux": 74,
+      "test": 21,
+      "main": 98,
+      "originalId": 21
+    },
+    {
+      "aux": 75,
+      "test": 21,
+      "main": 99,
+      "originalId": 21
+    },
+    {
+      "aux": 76,
+      "test": 21,
+      "main": 100,
+      "originalId": 21
+    },
+    {
+      "aux": 77,
+      "test": 21,
+      "main": 101,
+      "originalId": 21
+    },
+    {
+      "aux": 78,
+      "test": 21,
+      "main": 102,
+      "originalId": 21
+    },
+    {
+      "aux": 79,
+      "test": 21,
+      "main": 103,
+      "originalId": 21
+    },
+    {
+      "aux": 80,
+      "test": 15,
+      "main": 80,
+      "originalId": 21
+    },
+    {
+      "aux": 81,
+      "test": 21,
+      "main": 105,
+      "originalId": 21
+    },
+    {
+      "aux": 83,
+      "test": 16,
+      "main": 83,
+      "originalId": 22
+    },
+    {
+      "aux": 84,
+      "test": 22,
+      "main": 107,
+      "originalId": 22
+    },
+    {
+      "aux": 85,
+      "test": 22,
+      "main": 108,
+      "originalId": 22
+    },
+    {
+      "aux": 86,
+      "test": 22,
+      "main": 109,
+      "originalId": 22
+    },
+    {
+      "aux": 87,
+      "test": 22,
+      "main": 110,
+      "originalId": 22
+    },
+    {
+      "aux": 88,
+      "test": 22,
+      "main": 111,
+      "originalId": 22
+    },
+    {
+      "aux": 89,
+      "test": 22,
+      "main": 112,
+      "originalId": 22
+    },
+    {
+      "aux": 90,
+      "test": 22,
+      "main": 113,
+      "originalId": 22
+    },
+    {
+      "aux": 92,
+      "test": 23,
+      "main": 114,
+      "originalId": 23
+    },
+    {
+      "aux": 93,
+      "test": 23,
+      "main": 115,
+      "originalId": 23
+    },
+    {
+      "aux": 95,
+      "test": 24,
+      "main": 116,
+      "originalId": 24
+    },
+    {
+      "aux": 96,
+      "test": 24,
+      "main": 117,
+      "originalId": 24
+    },
+    {
+      "aux": 97,
+      "test": 24,
+      "main": 118,
+      "originalId": 24
+    },
+    {
+      "aux": 98,
+      "test": 24,
+      "main": 119,
+      "originalId": 24
+    },
+    {
+      "aux": 99,
+      "test": 24,
+      "main": 120,
+      "originalId": 24
+    },
+    {
+      "aux": 101,
+      "test": 25,
+      "main": 121,
+      "originalId": 25
+    },
+    {
+      "aux": 102,
+      "test": 25,
+      "main": 122,
+      "originalId": 25
+    },
+    {
+      "aux": 103,
+      "test": 25,
+      "main": 123,
+      "originalId": 25
+    },
+    {
+      "aux": 105,
+      "test": 26,
+      "main": 124,
+      "originalId": 26
+    },
+    {
+      "aux": 106,
+      "test": 26,
+      "main": 125,
+      "originalId": 26
+    },
+    {
+      "aux": 107,
+      "test": 26,
+      "main": 126,
+      "originalId": 26
+    },
+    {
+      "aux": 108,
+      "test": 26,
+      "main": 127,
+      "originalId": 26
+    },
+    {
+      "aux": 110,
+      "test": 27,
+      "main": 128,
+      "originalId": 27
+    },
+    {
+      "aux": 111,
+      "test": 27,
+      "main": 129,
+      "originalId": 27
+    },
+    {
+      "aux": 113,
+      "test": 28,
+      "main": 130,
+      "originalId": 28
+    },
+    {
+      "aux": 114,
+      "test": 28,
+      "main": 131,
+      "originalId": 28
+    },
+    {
+      "aux": 116,
+      "test": 29,
+      "main": 132,
+      "originalId": 29
+    },
+    {
+      "aux": 117,
+      "test": 29,
+      "main": 133,
+      "originalId": 29
+    },
+    {
+      "aux": 119,
+      "test": 30,
+      "main": 134,
+      "originalId": 30
+    },
+    {
+      "aux": 120,
+      "test": 30,
+      "main": 135,
+      "originalId": 30
+    },
+    {
+      "aux": 121,
+      "test": 30,
+      "main": 136,
+      "originalId": 30
+    },
+    {
+      "aux": 122,
+      "test": 30,
+      "main": 137,
+      "originalId": 30
+    },
+    {
+      "aux": 124,
+      "test": 31,
+      "main": 138,
+      "originalId": 31
+    },
+    {
+      "aux": 125,
+      "test": 31,
+      "main": 139,
+      "originalId": 31
+    },
+    {
+      "aux": 126,
+      "test": 31,
+      "main": 140,
+      "originalId": 31
+    },
+    {
+      "aux": 128,
+      "test": 32,
+      "main": 141,
+      "originalId": 32
+    },
+    {
+      "aux": 129,
+      "test": 32,
+      "main": 142,
+      "originalId": 32
+    },
+    {
+      "aux": 130,
+      "test": 32,
+      "main": 143,
+      "originalId": 32
+    },
+    {
+      "aux": 132,
+      "test": 33,
+      "main": 144,
+      "originalId": 33
+    },
+    {
+      "aux": 133,
+      "test": 33,
+      "main": 145,
+      "originalId": 33
+    },
+    {
+      "aux": 135,
+      "test": 34,
+      "main": 146,
+      "originalId": 34
+    },
+    {
+      "aux": 136,
+      "test": 34,
+      "main": 147,
+      "originalId": 34
+    },
+    {
+      "aux": 138,
+      "test": 35,
+      "main": 148,
+      "originalId": 35
+    },
+    {
+      "aux": 139,
+      "test": 35,
+      "main": 149,
+      "originalId": 35
+    },
+    {
+      "aux": 140,
+      "test": 35,
+      "main": 150,
+      "originalId": 35
+    },
+    {
+      "aux": 142,
+      "test": 36,
+      "main": 151,
+      "originalId": 36
+    },
+    {
+      "aux": 144,
+      "test": 37,
+      "main": 152,
+      "originalId": 37
+    },
+    {
+      "aux": 145,
+      "test": 37,
+      "main": 153,
+      "originalId": 37
+    },
+    {
+      "aux": 146,
+      "test": 37,
+      "main": 154,
+      "originalId": 37
+    },
+    {
+      "aux": 148,
+      "test": 38,
+      "main": 155,
+      "originalId": 38
+    },
+    {
+      "aux": 149,
+      "test": 38,
+      "main": 156,
+      "originalId": 38
+    },
+    {
+      "aux": 151,
+      "test": 39,
+      "main": 157,
+      "originalId": 39
+    },
+    {
+      "aux": 152,
+      "test": 39,
+      "main": 158,
+      "originalId": 39
+    },
+    {
+      "aux": 154,
+      "test": 40,
+      "main": 159,
+      "originalId": 40
+    },
+    {
+      "aux": 155,
+      "test": 40,
+      "main": 160,
+      "originalId": 40
+    },
+    {
+      "aux": 156,
+      "test": 40,
+      "main": 161,
+      "originalId": 40
+    },
+    {
+      "aux": 158,
+      "test": 41,
+      "main": 162,
+      "originalId": 41
+    },
+    {
+      "aux": 159,
+      "test": 41,
+      "main": 163,
+      "originalId": 41
+    },
+    {
+      "aux": 160,
+      "test": 42,
+      "main": 164,
+      "originalId": 42
+    },
+    {
+      "aux": 161,
+      "test": 42,
+      "main": 165,
+      "originalId": 42
+    },
+    {
+      "aux": 162,
+      "test": 43,
+      "main": 166,
+      "originalId": 43
+    },
+    {
+      "aux": 163,
+      "test": 43,
+      "main": 167,
+      "originalId": 43
+    },
+    {
+      "aux": 164,
+      "test": 44,
+      "main": 168,
+      "originalId": 44
+    },
+    {
+      "aux": 165,
+      "test": 44,
+      "main": 169,
+      "originalId": 44
+    },
+    {
+      "aux": 166,
+      "test": 44,
+      "main": 170,
+      "originalId": 44
+    },
+    {
+      "aux": 167,
+      "test": 44,
+      "main": 171,
+      "originalId": 44
+    },
+    {
+      "aux": 168,
+      "test": 44,
+      "main": 172,
+      "originalId": 44
+    },
+    {
+      "aux": 169,
+      "test": 44,
+      "main": 173,
+      "originalId": 44
+    },
+    {
+      "aux": 170,
+      "test": 44,
+      "main": 174,
+      "originalId": 44
+    },
+    {
+      "aux": 171,
+      "test": 44,
+      "main": 175,
+      "originalId": 44
+    },
+    {
+      "aux": 172,
+      "test": 44,
+      "main": 176,
+      "originalId": 44
+    },
+    {
+      "aux": 173,
+      "test": 44,
+      "main": 177,
+      "originalId": 44
+    },
+    {
+      "aux": 175,
+      "test": 45,
+      "main": 178,
+      "originalId": 45
+    },
+    {
+      "aux": 176,
+      "test": 45,
+      "main": 179,
+      "originalId": 45
+    },
+    {
+      "aux": 177,
+      "test": 45,
+      "main": 180,
+      "originalId": 45
+    },
+    {
+      "aux": 178,
+      "test": 45,
+      "main": 181,
+      "originalId": 45
+    },
+    {
+      "aux": 179,
+      "test": 45,
+      "main": 182,
+      "originalId": 45
+    },
+    {
+      "aux": 180,
+      "test": 45,
+      "main": 183,
+      "originalId": 45
+    },
+    {
+      "aux": 183,
+      "test": 69,
+      "main": 185,
+      "originalId": 69
+    },
+    {
+      "aux": 184,
+      "test": 69,
+      "main": 184,
+      "originalId": 69
+    },
+    {
+      "aux": 185,
+      "test": 69,
+      "main": 185,
+      "originalId": 70
+    },
+    {
+      "aux": 186,
+      "test": 70,
+      "main": 187,
+      "originalId": 70
+    },
+    {
+      "aux": 188,
+      "test": 46,
+      "main": 188,
+      "originalId": 46
+    },
+    {
+      "aux": 189,
+      "test": 46,
+      "main": 189,
+      "originalId": 46
+    },
+    {
+      "aux": 190,
+      "test": 47,
+      "main": 190,
+      "originalId": 47
+    },
+    {
+      "aux": 192,
+      "test": 48,
+      "main": 191,
+      "originalId": 48
+    },
+    {
+      "aux": 193,
+      "test": 48,
+      "main": 192,
+      "originalId": 48
+    },
+    {
+      "aux": 194,
+      "test": 48,
+      "main": 193,
+      "originalId": 48
+    },
+    {
+      "aux": 196,
+      "test": 49,
+      "main": 194,
+      "originalId": 49
+    },
+    {
+      "aux": 198,
+      "test": 50,
+      "main": 195,
+      "originalId": 50
+    },
+    {
+      "aux": 206,
+      "test": 54,
+      "main": 206,
+      "originalId": 52
+    },
+    {
+      "aux": 207,
+      "test": 54,
+      "main": 207,
+      "originalId": 52
+    },
+    {
+      "aux": 208,
+      "test": 54,
+      "main": 208,
+      "originalId": 53
+    },
+    {
+      "aux": 209,
+      "test": 54,
+      "main": 209,
+      "originalId": 81
+    },
+    {
+      "aux": 210,
+      "test": 71,
+      "main": 210,
+      "originalId": 81
+    },
+    {
+      "aux": 211,
+      "test": 71,
+      "main": 211,
+      "originalId": 54
+    },
+    {
+      "aux": 212,
+      "test": 72,
+      "main": 212,
+      "originalId": 54
+    },
+    {
+      "aux": 213,
+      "test": 72,
+      "main": 213,
+      "originalId": 54
+    },
+    {
+      "aux": 214,
+      "test": 72,
+      "main": 214,
+      "originalId": 54
+    },
+    {
+      "aux": 215,
+      "test": 71,
+      "main": 210,
+      "originalId": 71
+    },
+    {
+      "aux": 222,
+      "test": 76,
+      "main": 222,
+      "originalId": 73
+    },
+    {
+      "aux": 223,
+      "test": 76,
+      "main": 223,
+      "originalId": 73
+    },
+    {
+      "aux": 224,
+      "test": 76,
+      "main": 224,
+      "originalId": 74
+    },
+    {
+      "aux": 227,
+      "test": 78,
+      "main": 227,
+      "originalId": 75
+    },
+    {
+      "aux": 228,
+      "test": 78,
+      "main": 228,
+      "originalId": 75
+    },
+    {
+      "aux": 229,
+      "test": 78,
+      "main": 229,
+      "originalId": 75
+    },
+    {
+      "aux": 231,
+      "test": 76,
+      "main": 222,
+      "originalId": 76
+    },
+    {
+      "aux": 232,
+      "test": 76,
+      "main": 223,
+      "originalId": 76
+    },
+    {
+      "aux": 235,
+      "test": 77,
+      "main": 225,
+      "originalId": 77
+    },
+    {
+      "aux": 236,
+      "test": 77,
+      "main": 226,
+      "originalId": 77
+    },
+    {
+      "aux": 237,
+      "test": 78,
+      "main": 227,
+      "originalId": 78
+    },
+    {
+      "aux": 238,
+      "test": 78,
+      "main": 228,
+      "originalId": 78
+    },
+    {
+      "aux": 240,
+      "test": 79,
+      "main": 230,
+      "originalId": 79
+    },
+    {
+      "aux": 241,
+      "test": 79,
+      "main": 231,
+      "originalId": 79
+    },
+    {
+      "aux": 242,
+      "test": 79,
+      "main": 232,
+      "originalId": 79
+    },
+    {
+      "aux": 245,
+      "test": 80,
+      "main": 234,
+      "originalId": 80
+    },
+    {
+      "aux": 246,
+      "test": 80,
+      "main": 235,
+      "originalId": 80
+    },
+    {
+      "aux": 247,
+      "test": 80,
+      "main": 236,
+      "originalId": 80
+    },
+    {
+      "aux": 248,
+      "test": 55,
+      "main": 237,
+      "originalId": 55
+    },
+    {
+      "aux": 249,
+      "test": 55,
+      "main": 238,
+      "originalId": 55
+    },
+    {
+      "aux": 252,
+      "test": 56,
+      "main": 240,
+      "originalId": 56
+    },
+    {
+      "aux": 253,
+      "test": 56,
+      "main": 241,
+      "originalId": 56
+    },
+    {
+      "aux": 255,
+      "test": 58,
+      "main": 244,
+      "originalId": 58
+    },
+    {
+      "aux": 257,
+      "test": 58,
+      "main": 246,
+      "originalId": 58
+    },
+    {
+      "aux": 261,
+      "test": 60,
+      "main": 249,
+      "originalId": 60
+    },
+    {
+      "aux": 262,
+      "test": 60,
+      "main": 250,
+      "originalId": 60
+    },
+    {
+      "aux": 263,
+      "test": 60,
+      "main": 251,
+      "originalId": 60
+    },
+    {
+      "aux": 264,
+      "test": 60,
+      "main": 252,
+      "originalId": 60
+    },
+    {
+      "aux": 265,
+      "test": 60,
+      "main": 253,
+      "originalId": 60
+    },
+    {
+      "aux": 266,
+      "test": 60,
+      "main": 254,
+      "originalId": 60
+    },
+    {
+      "aux": 267,
+      "test": 60,
+      "main": 255,
+      "originalId": 60
+    },
+    {
+      "aux": 268,
+      "test": 60,
+      "main": 256,
+      "originalId": 60
+    },
+    {
+      "aux": 269,
+      "test": 60,
+      "main": 257,
+      "originalId": 60
+    },
+    {
+      "aux": 270,
+      "test": 60,
+      "main": 258,
+      "originalId": 60
+    },
+    {
+      "aux": 273,
+      "test": 61,
+      "main": 260,
+      "originalId": 61
+    },
+    {
+      "aux": 275,
+      "test": 62,
+      "main": 262,
+      "originalId": 62
+    },
+    {
+      "aux": 276,
+      "test": 62,
+      "main": 263,
+      "originalId": 62
+    },
+    {
+      "aux": 277,
+      "test": 62,
+      "main": 264,
+      "originalId": 62
+    },
+    {
+      "aux": 278,
+      "test": 62,
+      "main": 265,
+      "originalId": 62
+    },
+    {
+      "aux": 279,
+      "test": 62,
+      "main": 266,
+      "originalId": 62
+    },
+    {
+      "aux": 280,
+      "test": 62,
+      "main": 267,
+      "originalId": 62
+    },
+    {
+      "aux": 281,
+      "test": 62,
+      "main": 268,
+      "originalId": 62
+    },
+    {
+      "aux": 283,
+      "test": 63,
+      "main": 269,
+      "originalId": 63
+    },
+    {
+      "aux": 284,
+      "test": 63,
+      "main": 270,
+      "originalId": 63
+    },
+    {
+      "aux": 285,
+      "test": 63,
+      "main": 271,
+      "originalId": 63
+    },
+    {
+      "aux": 287,
+      "test": 64,
+      "main": 272,
+      "originalId": 64
+    },
+    {
+      "aux": 288,
+      "test": 64,
+      "main": 273,
+      "originalId": 64
+    },
+    {
+      "aux": 290,
+      "test": 65,
+      "main": 274,
+      "originalId": 65
+    },
+    {
+      "aux": 292,
+      "test": 66,
+      "main": 276,
+      "originalId": 66
+    },
+    {
+      "aux": 293,
+      "test": 66,
+      "main": 277,
+      "originalId": 66
+    },
+    {
+      "aux": 295,
+      "test": 67,
+      "main": 278,
+      "originalId": 67
+    },
+    {
+      "aux": 296,
+      "test": 67,
+      "main": 279,
+      "originalId": 67
+    },
+    {
+      "aux": 297,
+      "test": 68,
+      "main": 280,
+      "originalId": 68
+    },
+    {
+      "aux": 298,
+      "test": 68,
+      "main": 281,
+      "originalId": 68
+    }
+  ],
+  "unmatched": [
+    {
+      "row": 9,
+      "test": "2",
+      "hits": [],
+      "text": "조건 [3] 측정 채널: 17, 18, 19, 20, 21, 22, 23, 24\n채널별 자"
+    },
+    {
+      "row": 15,
+      "test": "5",
+      "hits": [],
+      "text": "조건 [3] 설정 전류 1,500 uA, 펄스폭 25 us\n허용오차 ±10%\n측정 전류가 "
+    },
+    {
+      "row": 16,
+      "test": "6",
+      "hits": [],
+      "text": "조건 [1] 설정 펄스폭 13 us, 허용오차 ±5%\n음극과 양극 펄스의 폭이 각각 12."
+    },
+    {
+      "row": 22,
+      "test": "8",
+      "hits": [],
+      "text": "조건 [1] 오디오 볼륨 1\n조회한 볼륨이 1이어야 한다.\n볼륨 변경에 따른 출력 소리 크"
+    },
+    {
+      "row": 23,
+      "test": "8",
+      "hits": [],
+      "text": "조건 [2] 오디오 볼륨 5\n조회한 볼륨이 5이어야 한다.\n볼륨 변경에 따른 출력 소리 크"
+    },
+    {
+      "row": 24,
+      "test": "8",
+      "hits": [],
+      "text": "조건 [3] 오디오 볼륨 10\n조회한 볼륨이 10이어야 한다.\n볼륨 변경에 따른 출력 소리"
+    },
+    {
+      "row": 26,
+      "test": "9",
+      "hits": [],
+      "text": "조건 [1]\n512개 샘플에 해닝 윈도우를 적용하여 실수 FFT를 수행하고, 256개 주파"
+    },
+    {
+      "row": 36,
+      "test": "11",
+      "hits": [],
+      "text": "조건 [1] CIS, 대역과 전극을 1:1로 설정\n자극 순서가 맵 설정과 같아야 한다.\n예"
+    },
+    {
+      "row": 41,
+      "test": "12",
+      "hits": [],
+      "text": "조건 [2]\nRTT로 읽은 시작 시각이 저장된 시각과 같아야 한다."
+    },
+    {
+      "row": 54,
+      "test": "15",
+      "hits": [],
+      "text": "조건 [3] 외부 음원이 없는 상태에서 QCC I2S를 OFF→ON→OFF로 변경한다.\nI"
+    },
+    {
+      "row": 58,
+      "test": "16",
+      "hits": [],
+      "text": "조건 [2] 8000 Hz 순음 입력\nOD1 수신기에서 입력에 따른 소리가 들려야 한다."
+    },
+    {
+      "row": 182,
+      "test": "69",
+      "hits": [],
+      "text": "조건 [1] Bluetooth Classic 스트리밍을 시작하고 지그에 연결된 내부기의 전"
+    },
+    {
+      "row": 199,
+      "test": "50",
+      "hits": [],
+      "text": "조건 [1] 페어링 후 2차 인증키 전송 전에 다른 제어 명령 전송.\n통신 규칙에 따른 오"
+    },
+    {
+      "row": 200,
+      "test": "50",
+      "hits": [],
+      "text": "조건 [2] 페어링 후 불일치 2차 인증키 전송.\n오류 응답이 와야 한다.\n리모콘/매핑 각"
+    },
+    {
+      "row": 201,
+      "test": "51",
+      "hits": [],
+      "text": "조건 [3] 페어링 후 일치하는 2차 인증키 전송.\n정상 응답이 와야 한다.\n리모콘 AES"
+    },
+    {
+      "row": 202,
+      "test": "51",
+      "hits": [],
+      "text": "조건 [4] 2차 인증 성공 후 다른 내부기 제어 명령 전송.\n정상 응답과 허용된 제어 동"
+    },
+    {
+      "row": 203,
+      "test": "52",
+      "hits": [],
+      "text": "조건 [1] 페어링 후 2차 인증키 전송 전에 다른 제어 명령 전송.\n통신 규칙에 따른 오"
+    },
+    {
+      "row": 204,
+      "test": "52",
+      "hits": [],
+      "text": "조건 [2] 페어링 후 불일치 2차 인증키 전송.\n오류 응답이 와야 한다."
+    },
+    {
+      "row": 205,
+      "test": "52",
+      "hits": [],
+      "text": "조건 [3] 페어링 후 일치하는 2차 인증키 전송.\n정상 응답이 와야 한다."
+    },
+    {
+      "row": 216,
+      "test": "71",
+      "hits": [],
+      "text": "조건 [2] CRA 성공/실패/진행중/타임아웃의 응답을 각각 확인한다.\n보안 정보를 드러내"
+    },
+    {
+      "row": 218,
+      "test": "72",
+      "hits": [],
+      "text": "조건 [1] CRA 인증/페어링 중 제한 적용 단계와 제한 시간을 확인한다.\nQCC 규격 "
+    },
+    {
+      "row": 219,
+      "test": "72",
+      "hits": [],
+      "text": "조건 [2] 같은 대상에 잘못된 페어링 키로 1~5회 연속 시도한다.\n각 시도가 실패해야 "
+    },
+    {
+      "row": 220,
+      "test": "72",
+      "hits": [],
+      "text": "조건 [3] 같은 대상에 6회째 및 제한 시간 중 다시 시도한다.\n6회 시도부터 확인된 제"
+    },
+    {
+      "row": 225,
+      "test": "74",
+      "hits": [],
+      "text": "조건 [2] 유닛 보조 시험의 고정 입력: 시간=[26,5,2,13,14,15], 주소=["
+    },
+    {
+      "row": 233,
+      "test": "76",
+      "hits": [],
+      "text": "조건 [3] 생산 시 CRA 키 저장 및 보호 자료를 확인한다.\nCRA 인증키가 암호화되어"
+    },
+    {
+      "row": 239,
+      "test": "78",
+      "hits": [],
+      "text": "조건 [3] AES-128 ECB와 CRC의 모드 및 사용 목적을 적용 규격의 개정판/권고"
+    },
+    {
+      "row": 243,
+      "test": "79",
+      "hits": [],
+      "text": "조건 [4] ENABLE_UI_CMD 빌드의 로컬 RTT --dump_log/--write"
+    },
+    {
+      "row": 251,
+      "test": "56",
+      "hits": [],
+      "text": "조건 [1] 정상 내부기와 리모콘을 연결하고 오디오 볼륨을 고정한 채 자극 볼륨을 낮은 단"
+    },
+    {
+      "row": 254,
+      "test": "57",
+      "hits": [],
+      "text": "조건 [1] 필수성능시험 보고서의 항목별 측정값과 판정을 확인한다.\nEPTC-TD24A의 "
+    },
+    {
+      "row": 256,
+      "test": "58",
+      "hits": [],
+      "text": "조건 [2] 블록별 처리 완료 시각과 다음 시작 시각 비교\n모든 블록이 다음 블록의 시작 "
+    },
+    {
+      "row": 258,
+      "test": "59",
+      "hits": [],
+      "text": "조건 [1] 정상 내부기와 리모콘을 연결하고 필수 데이터보다 짧은 명령을 보낸다.\n리모콘 "
+    },
+    {
+      "row": 259,
+      "test": "59",
+      "hits": [],
+      "text": "조건 [2] 0x45 자극 볼륨 명령의 방향 데이터 1바이트를 뺀 [0x45]만 무선으로 "
+    },
+    {
+      "row": 271,
+      "test": "60",
+      "hits": [],
+      "text": "조건 [11] 리모콘 시험 연결의 통신 규칙을 확인한다.\nCRC가 적용된 Bluetooth"
+    },
+    {
+      "row": 274,
+      "test": "62",
+      "hits": [],
+      "text": "조건 [1] LED 알림 켜짐, 내부기/매핑 미연결, 오류/OTA 표시 없음, 크래들 열림"
+    },
+    {
+      "row": 291,
+      "test": "65",
+      "hits": [],
+      "text": "조건 [2] 주의 상태를 발생시킨다.\n주황색 LED로 표시되어야 한다."
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+[
+  {
+    "page": 1,
+    "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\excel-native\\SRS-H49-fixed\\page-001.png",
+    "size": [
+      1263,
+      893
+    ],
+    "text": "외부기는 마이크에서 수집한 오디오를 Bluetooth\r\nClassic을 통해 다른 블루투스 장치로 전송할 수 있어\r\n야 한다.\r\nQCC 설계 연결: Bluetooth Classic 유닛(SU-ID-QCC￾008).\r\n[QCC 자료 입력] 마이크의 QCC 입력 경로,\r\n프로파일/코덱/상대 장치, 동시 송수신 조건\r\n과 실제 시험 자료를 입력한다.\r\nSW-FW-RID-82 SYS-RID-SP-HW-11\r\nQCC SRS\r\nRI-10\r\n오디오 출력\r\nBluetooth 오디오 송신"
+  }
+]

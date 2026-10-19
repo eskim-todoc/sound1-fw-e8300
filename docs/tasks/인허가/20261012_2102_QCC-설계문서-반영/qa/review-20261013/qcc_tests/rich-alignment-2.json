@@ -1,0 +1,27 @@
+{
+  "reason": "SITC common rich text scheme=minor vs SITR missing; exact criteria rich text applied to report changed common cells",
+  "key": "SITR",
+  "before": "5dffc94a90cb48a471c50f87cdb651aeb7e730613dbe44dcd15bf7c9f7d15a06",
+  "after": "0bd19ff7c1da654e7fb0376582bf3c93044fe0019aaef5591f750e390eda748a",
+  "sheet": "보고서_통합시험",
+  "cells": [
+    "K131",
+    "K132",
+    "K133",
+    "K134",
+    "K135",
+    "K136",
+    "K137",
+    "K138",
+    "K139",
+    "K140",
+    "K141",
+    "K142",
+    "K143",
+    "K144"
+  ],
+  "members": [
+    "xl/worksheets/sheet2.xml"
+  ],
+  "values_merges_rows": "unchanged"
+}

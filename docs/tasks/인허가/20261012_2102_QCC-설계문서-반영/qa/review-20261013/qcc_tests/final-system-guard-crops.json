@@ -1,0 +1,52 @@
+[
+  {
+    "key": "SSTC",
+    "id": "SW-FW-SYS-Test-ID-52",
+    "row": 199,
+    "page": 48,
+    "sourceSHA256": "C4DCAAA772F4BE959F2431BE5BBAED6EDEA2F2C1C132598FD020A694613EEBA8",
+    "pdf_sha256": "5b9a29779e26f1b77b5880e5d73611b29434be6f517cb99542e152239766baa6",
+    "crop": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\final-system-guard-crops\\SSTC-SYS52-p48.png",
+    "sha256": "47a1b832bf946efccb75ebd1a25b0988fdb46f0169d34a7390fdfd61c910abd6"
+  },
+  {
+    "key": "SSTC",
+    "id": "SW-FW-SYS-Test-ID-52",
+    "row": 199,
+    "page": 49,
+    "sourceSHA256": "C4DCAAA772F4BE959F2431BE5BBAED6EDEA2F2C1C132598FD020A694613EEBA8",
+    "pdf_sha256": "5b9a29779e26f1b77b5880e5d73611b29434be6f517cb99542e152239766baa6",
+    "crop": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\final-system-guard-crops\\SSTC-SYS52-p49.png",
+    "sha256": "331a22724ced6fafd443c4fdadc3119500b210d8341af91fa41e856653cece67"
+  },
+  {
+    "key": "SSTC",
+    "id": "SW-FW-SYS-Test-ID-75",
+    "row": 219,
+    "page": 56,
+    "sourceSHA256": "C4DCAAA772F4BE959F2431BE5BBAED6EDEA2F2C1C132598FD020A694613EEBA8",
+    "pdf_sha256": "5b9a29779e26f1b77b5880e5d73611b29434be6f517cb99542e152239766baa6",
+    "crop": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\final-system-guard-crops\\SSTC-SYS75-p56.png",
+    "sha256": "51af021e92e54db0b93f50ef6eb533fc6c562c4657f3131724679da20243ec40"
+  },
+  {
+    "key": "SSTR",
+    "id": "SW-FW-SYS-Test-ID-52",
+    "row": 199,
+    "page": 48,
+    "sourceSHA256": "1134D83842123D80F4086D961017914E9E657EB526ACE85817F877C3100C1E5A",
+    "pdf_sha256": "f4c66ba8a50a0ad113ac559e7b6a6771104def4c8b55b418beb37bcd98f45666",
+    "crop": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\final-system-guard-crops\\SSTR-SYS52-p48.png",
+    "sha256": "edded0010154aa794939246e65b136bdbf64be016f4ec2adf2fd258a420590bb"
+  },
+  {
+    "key": "SSTR",
+    "id": "SW-FW-SYS-Test-ID-75",
+    "row": 219,
+    "page": 55,
+    "sourceSHA256": "1134D83842123D80F4086D961017914E9E657EB526ACE85817F877C3100C1E5A",
+    "pdf_sha256": "f4c66ba8a50a0ad113ac559e7b6a6771104def4c8b55b418beb37bcd98f45666",
+    "crop": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\final-system-guard-crops\\SSTR-SYS75-p55.png",
+    "sha256": "74f4111059eb479c16d80d80d251c5a18e1b119f79230c945a39216e24cfa7df"
+  }
+]

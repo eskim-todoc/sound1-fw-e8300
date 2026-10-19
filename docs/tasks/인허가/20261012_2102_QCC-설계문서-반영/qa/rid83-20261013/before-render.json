@@ -1,0 +1,23 @@
+[
+  {
+    "code": "SSTR",
+    "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sv-clean-20261013\\native-final\\SSTR-main.pdf",
+    "page": 71,
+    "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\rid83-20261013\\before-SSTR-71.png",
+    "text": "독립 공통\r\nTEST ID 설명 방법 시험 준비 및 초기 조건 가정 및 제한 조건 시험 절차 통과 기준 시험/측정 내용 및 결과 통과 여부\r\n소프트웨어 요구사항 사양 ID\r\nSW-FW-SYS-Test-ID-83 사용자 설명서의 안전·사용·문제 해결 정보 I SW-FW-RID-83\r\nSYS-RID-ACDOC-17\r\nSYS-RID-ACDOC-18\r\nSYS-RID-ACDOC-20\r\n사용자 배포용 외부기 설명서의 현재 파일/버전/언\r\n어/대상제품. 안전/사용/문제 해결 정보를 검토할 제\r\n품 사용 흐름과 검토 기준.\r\n[E8300 보완] 제품 사용 설명서의\r\n실제 해당 절/내용, 배포 대상 및\r\n검토 결과. 상위 ACDOC-17/18/20\r\n추적은 반영함.\r\n배포 설명서의 안전 예방조치·사용 방법·문제 해결 방법을 실\r\n제 본문에서 찾아 위치/내용/제품 적합성을 검토한다.\r\n조건 [1]\r\n입력: 사용자에게 배포될 외부기 설명서 현재본.\r\n통과 기준: 경고/안전사항, 안전한 작동법, 자세한 동작방법이 포함되고 안전 예방\r\n조치/사용/문제 해결 방법이 대상 제품의 실제 사용 흐름과 맞아야 한다. 각 내용의\r\n실제 위치/본문과 제품 적합성을 확인한다.\r\n검증 [1]\r\n실행 상태: 미실행.\r\n관찰: 사용자 배포 설명서 현재본/버전과 경고/안전사항/작동법/동작방법 및 문제\r\n해결의 실제 내용/위치 미제공.\r\n[E8300 보완] 제품 설명서 현재본과 실제 검토 결과.\r\n미실행\r\n판정 대기\r\n6. 최종 통과 기준\r\n : 모든 시험 항목의 합격/불합격을 반영하여 판단 결론을 내려야한다. \r\n7. 시험 기준 검증\r\n- 시험자가 식별되는가?\r\n: 예\r\n: 예\r\n: 예\r\n: 예\r\n- 사용한 검증 전략과 시험절차가 적절한가?\r\n- 시스템 시험이 모든 소프트웨어 요구사항을 포함해야 하고, 추적이 가능한가?\r\n- 모든 결과를 반영한 최종 합격/불합격 판단을 포함하는가?"
+  },
+  {
+    "code": "SRS",
+    "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sv-clean-20261013\\native-srs-final\\SRS-main.pdf",
+    "page": 24,
+    "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\rid83-20261013\\before-SRS-24.png",
+    "text": "j) 개발할 사용자 설명서\r\n(user documentation to\r\nbe developed)\r\n사용설명서에 경고 및 안전사항을 기재한다.\r\n사용설명서에 안전하게 사용하는 작동법을 기재한다.\r\n사용설명서에 동작방법을 자세히 기재한다.\r\n상세: 안전 예방조치, 사용 방법과 문제 해결 방법을\r\n제품 사용 설명서에 포함한다.\r\n[E8300 보완] 제품 사용 설명서의 해당 절과\r\n내용, 배포 대상 및 검토 결과를 확인한다.\r\nk) 사용자 유지보수 요구사\r\n항\r\n(user maintenance\r\nrequirements)\r\n필수 성능 조건을 설계에 반영한다.\r\n필수 성능 시험을 진행한다.\r\n상세: 필수 성능 시험을 진행한다.\r\nSW-FW-RID-57\r\nSYS-RID-SP-FW-39,\r\nSYS-RID-SP-FW-40\r\nSW-FW-RID-83\r\nSYS-RID-ACDOC￾17, SYS-RID￾ACDOC-18, SYS￾RID-ACDOC-20\r\nl) 규제적 요구사항\r\n(regulatory requirements)\r\nIEC 60601-1\r\n(IEC 62304에 포함되지 않은 사항)\r\nNA\r\n사용 설명서"
+  },
+  {
+    "code": "SSTC",
+    "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sv-clean-20261013\\native-final\\SSTC-main.pdf",
+    "page": 72,
+    "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\rid83-20261013\\before-SSTC-72.png",
+    "text": "독립 공통\r\nTEST ID 설명 방법 시험 준비 및 초기 조건 가정 및 제한 조건 시험 절차 통과 기준\r\n소프트웨어 요구사항 사양 ID\r\nSW-FW-SYS-Test-ID-83 사용자 설명서의 안전·사용·문제 해결 정보 I SW-FW-RID-83\r\nSYS-RID-ACDOC-17\r\nSYS-RID-ACDOC-18\r\nSYS-RID-ACDOC-20\r\n사용자 배포용 외부기 설명서의 현재 파일/버전/언\r\n어/대상제품. 안전/사용/문제 해결 정보를 검토할\r\n제품 사용 흐름과 검토 기준.\r\n[E8300 보완] 제품 사용 설명서의\r\n실제 해당 절/내용, 배포 대상 및\r\n검토 결과. 상위 ACDOC￾17/18/20 추적은 반영함.\r\n배포 설명서의 안전 예방조치·사용 방법·문제 해결 방법을\r\n실제 본문에서 찾아 위치/내용/제품 적합성을 검토한다.\r\n조건 [1]\r\n입력: 사용자에게 배포될 외부기 설명서 현재본.\r\n통과 기준: 경고/안전사항, 안전한 작동법, 자세한 동작방법이 포함되고 안전\r\n예방조치/사용/문제 해결 방법이 대상 제품의 실제 사용 흐름과 맞아야 한다.\r\n각 내용의 실제 위치/본문과 제품 적합성을 확인한다.\r\n 6. 최종 통과 기준 \r\n : 모든 시험 항목의 합격/불합격을 반영하여 판단 결론을 내려야한다. \r\n 7. 시험 기준 검증 \r\n - 시험자가 식별되는가? \r\n : 예 \r\n : 예 \r\n : 예 \r\n : 예 \r\n - 사용한 검증 전략과 시험절차가 적절한가? \r\n - 시스템 시험이 모든 소프트웨어 요구사항을 포함해야 하고, 추적이 가능한가? \r\n - 모든 결과를 반영한 최종 합격/불합격 판단을 포함하는가? "
+  }
+]

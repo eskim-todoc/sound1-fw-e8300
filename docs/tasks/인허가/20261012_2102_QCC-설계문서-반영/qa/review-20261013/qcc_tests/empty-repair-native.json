@@ -1,0 +1,72 @@
+[
+  {
+    "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\SUVC-empty-run-repair.xlsx",
+    "mode": "SUVC-empty-run-repair",
+    "opened": true,
+    "readOnly": true,
+    "error": null,
+    "sheets": [
+      "표지",
+      "기준서_유닛 검증"
+    ]
+  },
+  {
+    "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\SUVR-empty-run-repair.xlsx",
+    "mode": "SUVR-empty-run-repair",
+    "opened": true,
+    "readOnly": true,
+    "error": null,
+    "sheets": [
+      "표지",
+      "보고서_유닛 시험"
+    ]
+  },
+  {
+    "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\SITC-empty-run-repair.xlsx",
+    "mode": "SITC-empty-run-repair",
+    "opened": true,
+    "readOnly": true,
+    "error": null,
+    "sheets": [
+      "표지",
+      "기준서_통합 시험"
+    ]
+  },
+  {
+    "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\SITR-empty-run-repair.xlsx",
+    "mode": "SITR-empty-run-repair",
+    "opened": true,
+    "readOnly": true,
+    "error": null,
+    "sheets": [
+      "표지",
+      "보고서_통합시험"
+    ]
+  },
+  {
+    "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\SSTC-empty-run-repair.xlsx",
+    "mode": "SSTC-empty-run-repair",
+    "opened": true,
+    "readOnly": true,
+    "error": null,
+    "sheets": [
+      "표지",
+      "기준서_시스템 시험",
+      "사이버보안 시험 연계"
+    ]
+  },
+  {
+    "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\SSTR-empty-run-repair.xlsx",
+    "mode": "SSTR-empty-run-repair",
+    "opened": true,
+    "readOnly": true,
+    "error": null,
+    "sheets": [
+      "표지",
+      "보고서_시스템 시험",
+      "시험 보조자료",
+      "예상 그림",
+      "사이버보안 시험 연계"
+    ]
+  }
+]

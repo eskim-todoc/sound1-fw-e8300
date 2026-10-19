@@ -1,0 +1,54 @@
+{
+  "status": "통과",
+  "completed_at": "2026-10-16T19:08:11.314982+09:00",
+  "candidate": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\integration-banding-20261016\\candidate.xlsx",
+  "candidate_sha256": "04409C6107A7BEE9F21428904274718A2C2E835F88A9598964216B8534EB18EC",
+  "scope": "보고서_통합시험 B25:O144 채우기 변경만",
+  "native_checks": {
+    "ids_001_024_complete": true,
+    "groups": 24,
+    "rows": 120,
+    "cells_covered_by_uniform_row_color": 1680,
+    "odd_rgb": "FFFFFF",
+    "even_rgb": "F5F5F5",
+    "same_test_all_rows_uniform": true,
+    "row_color_failures": [],
+    "opened_normally_without_repair_request": true,
+    "readonly": true,
+    "saved": false,
+    "closed_without_saving": true,
+    "source_unchanged": true
+  },
+  "visual_checks": {
+    "status": "통과",
+    "direct_full_pngs": [
+      {
+        "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\integration-banding-20261016\\native-front-p001.png",
+        "sha256": "55C3A481EC2906EA508A4F1B6585B4011D7CDE5DB00D02BDBCF7348C30FB8A17",
+        "direct_viewed": true,
+        "verdict": "통과"
+      },
+      {
+        "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\integration-banding-20261016\\native-end-p002.png",
+        "sha256": "3BAE5ADA66EBA0DC5CD206CD826553493AFF78418E6ED6C5DC12E79CBEA683BF",
+        "direct_viewed": true,
+        "verdict": "통과"
+      }
+    ],
+    "findings": "앞001 흰색 / 끝024 연회색 정상. 머리행 / 테두리 / 본문 / 결과칸이 유지되고 채우기로 인한 대비 / 잘림 / 겹침 회귀 없음.",
+    "scope_limit": "대표2 PNG만 직접 확인. 끝 범위 PDF는 기존 인쇄 페이지 나눔으로2쪽이나 마지막024가 있는2쪽을 대표로 검토. 전체 내용 감사 / 전페이지 시각 검토는 실시하지 않음."
+  },
+  "preservation_scope": "값 / 수식 / 채우기 외 스타일 / 병합 / 행높이 / 열폭 / 인쇄설정 / 타 ZIP parts 보존은 루트 전셀 비교 PASS 근거와 구분. 본 QA가 원본을 저장하거나 편집하지 않음.",
+  "evidence": {
+    "native-check.json": {
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\integration-banding-20261016\\native-check.json",
+      "sha256": "950F763046F9ED6C0B79E1D975AE9CC712465E5866E576325BA0575633E62FD9"
+    },
+    "native-render.json": {
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\integration-banding-20261016\\native-render.json",
+      "sha256": "DACC9CED31EBE9E5136B35B64746B3929505771E9971BD54474301A45F3A363C"
+    }
+  },
+  "outstanding_defects": [],
+  "product_verdict": "시험 결과 / 판정 변경 없이 채우기 색만 검사."
+}

@@ -1,0 +1,44 @@
+[
+  {
+    "code": "SUVC",
+    "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SUVC-FW-TD24A 소프트웨어 유닛 검증 기준서.xlsx",
+    "opened": false,
+    "error": "Workbooks 클래스 중 Open 속성을 구할 수 없습니다."
+  },
+  {
+    "code": "SUVR",
+    "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\04_설계 검증\\SW\\외부기\\[E8300-QCC] SUVR-FW-TD24A 소프트웨어 유닛 검증 보고서.xlsx",
+    "opened": false,
+    "error": "Workbooks 클래스 중 Open 속성을 구할 수 없습니다."
+  },
+  {
+    "code": "SITC",
+    "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SITC-FW-TD24A 소프트웨어 통합시험 기준서.xlsx",
+    "opened": false,
+    "error": "Workbooks 클래스 중 Open 속성을 구할 수 없습니다."
+  },
+  {
+    "code": "SITR",
+    "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\04_설계 검증\\SW\\외부기\\[E8300-QCC] SITR-FW-TD24A 소프트웨어 통합시험 보고서.xlsx",
+    "opened": false,
+    "error": "Workbooks 클래스 중 Open 속성을 구할 수 없습니다."
+  },
+  {
+    "code": "SSTC",
+    "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SSTC-FW-TD24A 소프트웨어 시스템 시험 기준서.xlsx",
+    "opened": false,
+    "error": "Workbooks 클래스 중 Open 속성을 구할 수 없습니다."
+  },
+  {
+    "code": "SSTR",
+    "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\04_설계 검증\\SW\\외부기\\[E8300-QCC] SSTR-FW-TD24A 소프트웨어 시스템 시험 보고서.xlsx",
+    "opened": false,
+    "error": "Workbooks 클래스 중 Open 속성을 구할 수 없습니다."
+  },
+  {
+    "code": "SUVC-before",
+    "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\before\\[E8300-QCC] SUVC-FW-TD24A 소프트웨어 유닛 검증 기준서.xlsx",
+    "opened": true,
+    "sheets": 2
+  }
+]

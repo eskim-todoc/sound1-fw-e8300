@@ -1,0 +1,790 @@
+{
+  "status": "읽기 전용 조사 완료 / 실제 편집과 native 검증은 루트 담당",
+  "recordedAt": "2026-10-13T17:27:37.663958+09:00",
+  "scope": [
+    "현재 G SR/SGR의 활성 본문 QCC/공동 안내 6개",
+    "현재 G SRS의 관련 요구/미비 문구",
+    "실제 QCC 입력 SRS 및 일반 실행환경 근거인 QCC SAD/SDDD/SUVC"
+  ],
+  "authority": "현재 사용자 지시는 SR/SGR의 입력 요청 문구 제거와 확인된 QCC 내용의 굵은 빨강 강조다. 이전 접두어 보존 원칙의 일반 범위를 타 문서까지 해제하지 않는다.",
+  "extractionPolicy": "삭제/이동 이력 조상, 삭제 표 행/셀과 TOC 이력을 현재 본문으로 세지 않는다. 본문 paragraphIndex0Based는 원래 //w:body//w:p 순서를 유지한다. SGR에는 paraId가 없으므로 고정 소스 SHA256+XPath+현재 정확한 문구로 지정한다.",
+  "inputs": [
+    {
+      "code": "SR",
+      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\02_설계 입력\\SW\\외부기\\[E8300-QCC] SR-FW-TD24A 소프트웨어 요구사항.docx",
+      "sha256AtRead": "FB0F0A4ED73E0712E79D499097C0B635B8EA6446F65B5DDFFF840EDD2253B019",
+      "sha256After": "FB0F0A4ED73E0712E79D499097C0B635B8EA6446F65B5DDFFF840EDD2253B019",
+      "unchanged": true
+    },
+    {
+      "code": "SGR",
+      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\02_설계 입력\\SW\\외부기\\[E8300-QCC] SGR-FW-TD24A 소프트웨어 일반요구사항.docx",
+      "sha256AtRead": "92AAC0E24260DE06967FCF483548CAF5C51F7FB96209C2A6B6DAF90CE389B922",
+      "sha256After": "92AAC0E24260DE06967FCF483548CAF5C51F7FB96209C2A6B6DAF90CE389B922",
+      "unchanged": true
+    },
+    {
+      "code": "SRS",
+      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\02_설계 입력\\SW\\외부기\\[E8300-QCC] SRS-FW-TD24A 소프트웨어 요구사항 사양서.xlsx",
+      "sha256AtRead": "73C05216CF1272FA0982A4139758B9CFDFE8D6820730B925B4FDEF7C00FE60FF",
+      "sha256After": "73C05216CF1272FA0982A4139758B9CFDFE8D6820730B925B4FDEF7C00FE60FF",
+      "unchanged": true
+    },
+    {
+      "code": "QCC_SRS",
+      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\02_설계 입력\\SW\\외부기\\서석일_작성\\QCC_SRS-FW-TD24A 소프트웨어 요구사항 사양서_byssi.docx",
+      "sha256AtRead": "64DDECBA6C1B718ECD31881F45FEC163F4E5CDD88807455FA6B019C370BFE078",
+      "sha256After": "64DDECBA6C1B718ECD31881F45FEC163F4E5CDD88807455FA6B019C370BFE078",
+      "unchanged": true
+    },
+    {
+      "code": "QCC_SAD",
+      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\서석일_작성\\QCC_SAD-FW-TD24A 소프트웨어 아키텍쳐 기술서_byssi.docx",
+      "sha256AtRead": "49EBEBCF56D3835B0DB3365C5BA996909A1F59490E50468C2FE76D44974B8878",
+      "sha256After": "49EBEBCF56D3835B0DB3365C5BA996909A1F59490E50468C2FE76D44974B8878",
+      "unchanged": true
+    },
+    {
+      "code": "QCC_SDDD",
+      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\서석일_작성\\QCC_SDDD-FW-TD24A 소프트웨어 상세 설계서_byssi.docx",
+      "sha256AtRead": "49982C995F78064613F47F4D97A262C70394FC937B66CF4E6F38925E4FB5E1CE",
+      "sha256After": "49982C995F78064613F47F4D97A262C70394FC937B66CF4E6F38925E4FB5E1CE",
+      "unchanged": true
+    },
+    {
+      "code": "QCC_SUVC",
+      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\서석일_작성\\QCC_SUVC-FW-TD24A 유닛 테스트 기준서_byssi.docx",
+      "sha256AtRead": "072AA94EF6C48846C78A81DEA104A65ADCF19DEF60F5484A8F33C3677AFCAB5A",
+      "sha256After": "072AA94EF6C48846C78A81DEA104A65ADCF19DEF60F5484A8F33C3677AFCAB5A",
+      "unchanged": true
+    }
+  ],
+  "guideline": {
+    "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\SW 밸리데이션 문서 작성·검증 지침.md",
+    "sha256": "B3A84794DBD723F47226BCA758CE5761A4D22AD08AE86181262B83122CED3B2B",
+    "all29Read": true,
+    "applicable": [
+      1,
+      4,
+      7,
+      18,
+      22,
+      23,
+      26,
+      27,
+      28,
+      29
+    ],
+    "scopedFindings": "실제 반영 정보와 미확정 정보를 분리하고 최신 사용자 해제 범위를 따른다. 이번 담당은 서식/문서 저장을 하지 않았으므로 26/28/29의 최종 작성/native 결과는 미실행이다. 나머지 원칙의 실제 요구/설계/시험 전체 재검사는 이 읽기 전용 서식 분류 범위에 해당하지 않는다."
+  },
+  "noticeCount": {
+    "SR_QCC": 2,
+    "SR_joint": 2,
+    "SGR_QCC": 2,
+    "SGR_joint": 0,
+    "total": 6
+  },
+  "noticeClassifications": [
+    {
+      "part": "word/document.xml",
+      "paragraphIndex0Based": 250,
+      "xpath": "(//w:body//w:p)[251]",
+      "paraId": "0C2E9C27",
+      "currentText": "[QCC/E8300 자료 입력] DMIC2가 E8300과 QCC에 함께 연결되는 경로는 확인되었다. 3분 무송수신의 감시/갱신 범위와 제어 명령 미수신 조건의 정합성, QCC 마이크 핀/클록, 연결 상대 및 프로파일/코덱별 송수신과 동시 동작 조건 및 시험 결과를 확인한다.",
+      "document": "SR",
+      "classification": "확인된 사실과 미확정 사항 혼합",
+      "alreadyReflectedFacts": [
+        "DMIC2는 E8300과 QCC 양쪽에 연결되며 QCC 통화 상향 수음에 사용한다. SR237/248과 SRS F21/F56에 반영됨."
+      ],
+      "stillMissingOrUnconfirmed": [
+        "무송수신 감시/타이머 갱신 범위와 제어 명령 미수신 조건의 관계",
+        "QCC 마이크 핀/클록",
+        "연결 상대, 프로파일/코덱별 송수신과 동시 동작 조건",
+        "해당 조건의 실제 시험 결과"
+      ],
+      "proposedOrdinaryBlackText": "3분 무송수신의 감시/갱신 범위와 제어 명령 미수신 조건의 정합성, QCC 마이크 핀/클록, 프로파일/코덱별 송수신과 동시 동작 조건 및 시험 결과는 미확정이다.",
+      "emphasizeNoticeItself": false,
+      "evidence": [
+        {
+          "source": "사용자 확인",
+          "fact": "2026-10-13 DMIC2 양쪽 연결 및 QCC 통화 수음 지시"
+        },
+        {
+          "document": "SRS",
+          "sheet": "소프트웨어 입력 요구사항 사양서",
+          "cells": [
+            "F21",
+            "F56",
+            "F61"
+          ]
+        }
+      ]
+    },
+    {
+      "part": "word/document.xml",
+      "paragraphIndex0Based": 260,
+      "xpath": "(//w:body//w:p)[261]",
+      "paraId": "217E0D60",
+      "currentText": "[QCC 자료 입력] 실제 QCC 개발 환경, 라이브러리/ADK 버전과 빌드 구성을 입력한다.",
+      "document": "SR",
+      "classification": "일반 실행환경은 반영, 구체 식별/버전/빌드는 미확정",
+      "alreadyReflectedFacts": [
+        "C language",
+        "제조사 Built-in library/system software 및 scheduler 사용에 관한 설계 설명"
+      ],
+      "stillMissingOrUnconfirmed": [
+        "실제 QCC 개발 환경",
+        "라이브러리/ADK 버전",
+        "빌드 구성"
+      ],
+      "proposedOrdinaryBlackText": "QCC의 실제 개발 환경, 라이브러리/ADK 버전과 빌드 구성은 미확정이다.",
+      "emphasizeNoticeItself": false,
+      "evidence": [
+        {
+          "document": "QCC_SRS",
+          "bodyBlockIndex0Based": 112,
+          "text": "C language "
+        },
+        {
+          "document": "QCC_SAD",
+          "bodyBlockIndex0Based": 126,
+          "text": "블루투스 펌웨어는 크게 외부장치 Application과 MCU 제조사인 Qualcomm에서 제공하는 Built-in library와 system software가 있다. 제조사에서 제공하는 부분은 Application을 구현하는데 바탕이 되며, 별도의 수정 없이 제공되는 API만을 사용하므로, 여기서는 외부 Application만을 설명한다."
+        },
+        {
+          "document": "QCC_SDDD",
+          "bodyBlockIndex0Based": 102,
+          "text": "Built-in library 초기화"
+        },
+        {
+          "document": "QCC_SDDD",
+          "bodyBlockIndex0Based": 103,
+          "text": "System scheduler 초기화"
+        }
+      ]
+    },
+    {
+      "part": "word/document.xml",
+      "paragraphIndex0Based": 265,
+      "xpath": "(//w:body//w:p)[266]",
+      "paraId": "14849979",
+      "currentText": "[QCC 자료 입력] QCC의 실제 메모리 배치, 실행 이미지/데이터 사용량과 부트 이미지 검사 설정을 입력한다.",
+      "document": "SR",
+      "classification": "메모리 한계 준수 요구는 반영, 실제 배치/사용량/검사 설정은 미확정",
+      "alreadyReflectedFacts": [
+        "QCC 실행 이미지와 저장 데이터가 할당 메모리 범위를 넘지 않아야 한다는 설계 요구"
+      ],
+      "stillMissingOrUnconfirmed": [
+        "실제 메모리 배치",
+        "실행 이미지/데이터 사용량",
+        "부트 이미지 검사 설정"
+      ],
+      "proposedOrdinaryBlackText": "QCC의 실제 메모리 배치, 실행 이미지/데이터 사용량과 부트 이미지 검사 설정은 미확정이다.",
+      "emphasizeNoticeItself": false,
+      "evidence": [
+        {
+          "document": "QCC_SRS",
+          "bodyBlockIndex0Based": 114,
+          "text": "- Application 영역 약 2 Mbytes"
+        },
+        {
+          "document": "QCC_SRS",
+          "bodyBlockIndex0Based": 178,
+          "text": "요구사항 식별Requirement IDSW-CC-RI-18주제Subject블루투수 소프트웨어 무결성(Bluetooth software integrity)설명DescriptionBluetooth 소프트웨어는 전원이 인가되고 부팅되는 동안에, 칩셋에서 제공하는 방식으로 FW image의 무결성을 검사한다.Bluetooth software integrityChipset supported다른 발생원 추적Traceable to other sourceSystem RequirementRCM-CYBER-SP-FW-16: SI-11부트 프로세스 무결성 검증VersionNo.1.0개정사유initially prepared"
+        },
+        {
+          "document": "SRS",
+          "sheet": "소프트웨어 입력 요구사항 사양서",
+          "cells": [
+            "F72",
+            "F73"
+          ]
+        }
+      ]
+    },
+    {
+      "part": "word/document.xml",
+      "paragraphIndex0Based": 307,
+      "xpath": "(//w:body//w:p)[308]",
+      "paraId": "09CDA595",
+      "currentText": "[QCC/E8300 자료 입력] 오디오 송수신, 연결/인증, 키 관리 및 펌웨어 보호에 대한 위험분석 재평가와 변경 영향의 검토 결과를 확인한다.",
+      "document": "SR",
+      "classification": "위험분석 수행/검토 결과 미확정",
+      "alreadyReflectedFacts": [
+        "오디오 송수신, 연결/인증, 키 관리, 펌웨어 보호 요구와 재평가 대상은 본문에 정의되어 있다."
+      ],
+      "stillMissingOrUnconfirmed": [
+        "위험분석 재평가 결과",
+        "변경 영향 검토 결과"
+      ],
+      "proposedOrdinaryBlackText": "오디오 송수신, 연결/인증, 키 관리 및 펌웨어 보호에 대한 위험분석 재평가와 변경 영향의 검토 결과는 미확정이다.",
+      "emphasizeNoticeItself": false,
+      "evidence": [
+        {
+          "document": "SR",
+          "paragraphIndex0Based": 306
+        },
+        {
+          "document": "SRS",
+          "sheet": "소프트웨어 입력 요구사항 사양서",
+          "cells": [
+            "F61",
+            "F69",
+            "F73",
+            "F75",
+            "F77",
+            "F82",
+            "F85"
+          ]
+        }
+      ]
+    },
+    {
+      "part": "word/document.xml",
+      "paragraphIndex0Based": 297,
+      "xpath": "(//w:body//w:p)[298]",
+      "paraId": null,
+      "currentText": "[QCC 자료 입력] QCC의 실제 ADK/실행 환경, scheduler 구성과 사용 버전을 입력한다.",
+      "document": "SGR",
+      "classification": "일반 실행환경은 반영, 구체 실행환경/구성/버전은 미확정",
+      "alreadyReflectedFacts": [
+        "제조사 Built-in library/system software 사용",
+        "System scheduler 초기화에 관한 설계 내용"
+      ],
+      "stillMissingOrUnconfirmed": [
+        "실제 ADK/실행 환경",
+        "scheduler 구성 상세",
+        "사용 버전"
+      ],
+      "proposedOrdinaryBlackText": "QCC의 실제 ADK/실행 환경, scheduler 구성과 사용 버전은 미확정이다.",
+      "emphasizeNoticeItself": false,
+      "evidence": [
+        {
+          "document": "QCC_SAD",
+          "bodyBlockIndex0Based": 126,
+          "text": "블루투스 펌웨어는 크게 외부장치 Application과 MCU 제조사인 Qualcomm에서 제공하는 Built-in library와 system software가 있다. 제조사에서 제공하는 부분은 Application을 구현하는데 바탕이 되며, 별도의 수정 없이 제공되는 API만을 사용하므로, 여기서는 외부 Application만을 설명한다."
+        },
+        {
+          "document": "QCC_SDDD",
+          "bodyBlockIndex0Based": 102,
+          "text": "Built-in library 초기화"
+        },
+        {
+          "document": "QCC_SDDD",
+          "bodyBlockIndex0Based": 103,
+          "text": "System scheduler 초기화"
+        }
+      ]
+    },
+    {
+      "part": "word/document.xml",
+      "paragraphIndex0Based": 301,
+      "xpath": "(//w:body//w:p)[302]",
+      "paraId": null,
+      "currentText": "[QCC 자료 입력] QCC 제조사 소프트웨어의 식별/버전, 사용 범위와 검토 근거를 입력한다.",
+      "document": "SGR",
+      "classification": "제조사 소프트웨어 사용은 반영, 식별/버전/상세 사용범위/검토 근거는 미확정",
+      "alreadyReflectedFacts": [
+        "Bluetooth Classic 처리는 Built-in library로 수행한다는 설계 설명",
+        "제조사 Bluetooth stack/Built-in library 사용이라는 일반 내용"
+      ],
+      "stillMissingOrUnconfirmed": [
+        "제조사 소프트웨어의 정확한 식별/버전",
+        "제품에 적용한 사용 범위",
+        "검토 근거"
+      ],
+      "proposedOrdinaryBlackText": "QCC 제조사 소프트웨어의 식별/버전, 사용 범위와 검토 근거는 미확정이다.",
+      "emphasizeNoticeItself": false,
+      "evidence": [
+        {
+          "document": "QCC_SAD",
+          "bodyBlockIndex0Based": 126,
+          "text": "블루투스 펌웨어는 크게 외부장치 Application과 MCU 제조사인 Qualcomm에서 제공하는 Built-in library와 system software가 있다. 제조사에서 제공하는 부분은 Application을 구현하는데 바탕이 되며, 별도의 수정 없이 제공되는 API만을 사용하므로, 여기서는 외부 Application만을 설명한다."
+        },
+        {
+          "document": "QCC_SDDD",
+          "bodyBlockIndex0Based": 310,
+          "text": "<그림 6>은 Bluetooth module의 전체적인 흐름도를 나타낸 것이다. Bluetooth Transport는 Classic과 BLE로 나누어지며, 별도의 처리가 요구된다. Bluetooth Classic의 Data는 표준 Bluetooth 규격에 정의된 사항만 처리하므로, 이는 Built-in Library에서 처리되고 외부장치의 처리 대상이 아니다. BLE의 데이터에서는 외부장치의 주요 정보(상태, Bluetooth 제어 명령)를 처리해야 하므로 별도의 추가 처리가 요구된다."
+        }
+      ]
+    }
+  ],
+  "highlightProposals": [
+    {
+      "part": "word/document.xml",
+      "paragraphIndex0Based": 206,
+      "xpath": "(//w:body//w:p)[207]",
+      "paraId": "0535BC52",
+      "currentText": "- QCC5181 : Bluetooth Classic 오디오 송수신과 BLE 연결/인증을 처리한다. 수신 오디오를 I2S로 E8300에 전달하고 전화 통화 시 DMIC2의 음성을 수음하여 통화 상대에게 송신한다. E8300의 명령/응답 데이터는 SPI로 중계한다. QCC의 내부 구성은 소프트웨어 아키텍쳐 기술서와 상세 설계서에서 정의한다.",
+      "document": "SR",
+      "span": "- QCC5181 : Bluetooth Classic 오디오 송수신과 BLE 연결/인증을 처리한다. 수신 오디오를 I2S로 E8300에 전달하고 전화 통화 시 DMIC2의 음성을 수음하여 통화 상대에게 송신한다. E8300의 명령/응답 데이터는 SPI로 중계한다. QCC의 내부 구성은 소프트웨어 아키텍쳐 기술서와 상세 설계서에서 정의한다.",
+      "spanStart": 0,
+      "spanEndExclusive": 190,
+      "classification": "QCC 기능 및 문서 역할 정의",
+      "evidence": [
+        {
+          "document": "QCC_SRS",
+          "bodyBlockIndex0Based": 135,
+          "text": "요구사항 식별Requirement IDSW-CC-RI-09주제SubjectI2S 오디오 입력I2S audio input설명Description외부장치의 블루투스 소프트웨어는 사운드 처리기로 I2S를 통해 블루투스 오디오 데이터를 전송할 수 있어야 한다. 사용되는 I2S 인터페이스 패러미터는 다음과 같다I2S audio input24bit data, 16000 sample rate다른 발생원 추적Traceable to other sourceSystem RequirementSYS-RID-SP-HW-06: 블루투스 오디오VersionNo.1.0개정사유initially prepared"
+        },
+        {
+          "document": "QCC_SRS",
+          "bodyBlockIndex0Based": 138,
+          "text": "요구사항 식별Requirement IDSW-CC-RI-10주제Subject블루투스 오디오 출력 소스Bluetooth audio output source설명Description외부장치의 블루투스 소프트웨어는 마이크의 소리를 다른 블루투스 장치로 출력할 수 있어야 한다.Audio output sourcesBluetooth classic audio data다른 발생원 추적Traceable to other sourceSystem RequirementSYS-RID-SP-HW-11: 블루투스 사운드 출력 소스VersionNo.1.0개정사유initially prepared"
+        },
+        {
+          "document": "QCC_SRS",
+          "bodyBlockIndex0Based": 148,
+          "text": "요구사항 식별Requirement IDSW-CC-RI-11주제Subject블루투스 클래식 오디오 통신Bluetooth classic audio communication설명Description Bluetooth Classic을 통해 오디오 통신을 지원해야 한다.Bluetooth Classic communicationAudio다른 발생원 추적Traceable to other sourceSystem RequirementSYS-RID-FW-15: 블루투스 클래식 오디오 통신VersionNo.1.0개정사유initially prepared"
+        },
+        {
+          "document": "QCC_SRS",
+          "bodyBlockIndex0Based": 151,
+          "text": "요구사항 식별Requirement IDSW-CC-RI-12주제SubjectBLE 데이터 통신BLE data communication설명Description  BLE를 통해 데이터 통신을 지원해야 한다.BLE communicationData다른 발생원 추적Traceable to other sourceSystem RequirementSYS-RID-FW-16: BLE data 통신VersionNo.1.0개정사유initially prepared"
+        },
+        {
+          "source": "사용자 확인",
+          "fact": "DMIC2 양쪽 연결과 QCC 통화 수음"
+        }
+      ],
+      "interpretationLimit": "원문 설계 요구와 사용자 확인을 반영한 기능 설명이다. QCC 실제 제품 시험 통과를 의미하지 않는다.",
+      "proposedFormatting": {
+        "bold": true,
+        "color": "C00000",
+        "fontSizePt": 10,
+        "underlined": false,
+        "fontSizeBasis": "一般본문 기본 10pt 유지, 미비 안내 +2pt 서식을 이식하지 않는다."
+      }
+    },
+    {
+      "part": "word/document.xml",
+      "paragraphIndex0Based": 237,
+      "xpath": "(//w:body//w:p)[238]",
+      "paraId": "7D5BCC6D",
+      "currentText": "오디오 입력은 DMIC1/DMIC2의 디지털 마이크와 QCC5181에서 전달하는 I2S 오디오를 사용한다. DMIC2는 E8300과 QCC5181에 함께 연결되며, QCC5181은 전화 통화 상향 음성의 수음에 사용한다. IQS323 터치 센서는 사용자 입력을 감지한다.",
+      "document": "SR",
+      "span": "오디오 입력은 DMIC1/DMIC2의 디지털 마이크와 QCC5181에서 전달하는 I2S 오디오를 사용한다. DMIC2는 E8300과 QCC5181에 함께 연결되며, QCC5181은 전화 통화 상향 음성의 수음에 사용한다.",
+      "spanStart": 0,
+      "spanEndExclusive": 123,
+      "classification": "QCC/E8300 오디오 경로 정의",
+      "evidence": [
+        {
+          "document": "QCC_SRS",
+          "bodyBlockIndex0Based": 135,
+          "text": "요구사항 식별Requirement IDSW-CC-RI-09주제SubjectI2S 오디오 입력I2S audio input설명Description외부장치의 블루투스 소프트웨어는 사운드 처리기로 I2S를 통해 블루투스 오디오 데이터를 전송할 수 있어야 한다. 사용되는 I2S 인터페이스 패러미터는 다음과 같다I2S audio input24bit data, 16000 sample rate다른 발생원 추적Traceable to other sourceSystem RequirementSYS-RID-SP-HW-06: 블루투스 오디오VersionNo.1.0개정사유initially prepared"
+        },
+        {
+          "document": "SRS",
+          "sheet": "소프트웨어 입력 요구사항 사양서",
+          "cells": [
+            "F21",
+            "F56"
+          ]
+        }
+      ],
+      "interpretationLimit": "IQS323 터치 센서 문장은 강조 대상에서 제외한다. QCC 마이크 입력 프로토콜/핀/클록은 확정하지 않는다.",
+      "proposedFormatting": {
+        "bold": true,
+        "color": "C00000",
+        "fontSizePt": 10,
+        "underlined": false,
+        "fontSizeBasis": "一般본문 기본 10pt 유지, 미비 안내 +2pt 서식을 이식하지 않는다."
+      }
+    },
+    {
+      "part": "word/document.xml",
+      "paragraphIndex0Based": 247,
+      "xpath": "(//w:body//w:p)[248]",
+      "paraId": "4E3454C1",
+      "currentText": "QCC5181을 통해 Bluetooth Classic 오디오를 송수신하고, 리모콘 앱과 매핑 프로그램의 제어 명령 및 응답 데이터를 송수신한다.",
+      "document": "SR",
+      "span": "QCC5181을 통해 Bluetooth Classic 오디오를 송수신하고, 리모콘 앱과 매핑 프로그램의 제어 명령 및 응답 데이터를 송수신한다.",
+      "spanStart": 0,
+      "spanEndExclusive": 80,
+      "classification": "현재 기입된 QCC 기능/정의",
+      "evidence": [
+        {
+          "document": "QCC_SRS",
+          "bodyBlockIndex0Based": 148,
+          "text": "요구사항 식별Requirement IDSW-CC-RI-11주제Subject블루투스 클래식 오디오 통신Bluetooth classic audio communication설명Description Bluetooth Classic을 통해 오디오 통신을 지원해야 한다.Bluetooth Classic communicationAudio다른 발생원 추적Traceable to other sourceSystem RequirementSYS-RID-FW-15: 블루투스 클래식 오디오 통신VersionNo.1.0개정사유initially prepared"
+        },
+        {
+          "document": "QCC_SRS",
+          "bodyBlockIndex0Based": 151,
+          "text": "요구사항 식별Requirement IDSW-CC-RI-12주제SubjectBLE 데이터 통신BLE data communication설명Description  BLE를 통해 데이터 통신을 지원해야 한다.BLE communicationData다른 발생원 추적Traceable to other sourceSystem RequirementSYS-RID-FW-16: BLE data 통신VersionNo.1.0개정사유initially prepared"
+        },
+        {
+          "document": "QCC_SRS",
+          "bodyBlockIndex0Based": 155,
+          "text": "요구사항 식별Requirement IDSW-CC-RI-12주제Subject사용자 인터페이스(리모컨 앱)user interface (Remocon app)설명Description외부장치는 리모컨 앱과 BLE 연결이 가능하며, 다음과 같은 데이터를 송수신한다.Remocon app communicationCharging and battery stateBluetooth controlData input to sound processData output from sound process다른 발생원 추적Traceable to other sourceSystem RequirementSYS-RID-FW-13: 리모컨 앱과의 연동VersionNo.1.0개정사유initially prepared"
+        },
+        {
+          "document": "QCC_SRS",
+          "bodyBlockIndex0Based": 158,
+          "text": "요구사항 식별Requirement IDSW-CC-RI-14주제Subject사용자 인터페이스(매핑 프로그램)user interface (mapping program)설명Description외부장치는 매핑 프로그램과 BLE 연결이 가능하며, 다음과 같은 데이터를 송수신한다.Mapping program communicationStart mappingEnd mappingData input to sound processData output from sound process다른 발생원 추적Traceable to other sourceSystem RequirementSYS-RID-CC-FW-14: 매핑 프로그램과의 연동VersionNo.1.0개정사유initially prepared"
+        }
+      ],
+      "interpretationLimit": "현재 문서에 입력된 설계 요구/일반 실행환경을 강조한다. 타이머 경계, 실제 버전과 시험 결과의 완비를 주장하지 않는다.",
+      "proposedFormatting": {
+        "bold": true,
+        "color": "C00000",
+        "fontSizePt": 10,
+        "underlined": false,
+        "fontSizeBasis": "一般본문 기본 10pt 유지, 미비 안내 +2pt 서식을 이식하지 않는다."
+      }
+    },
+    {
+      "part": "word/document.xml",
+      "paragraphIndex0Based": 248,
+      "xpath": "(//w:body//w:p)[249]",
+      "paraId": "48A45E08",
+      "currentText": "QCC의 Bluetooth 수신 오디오는 I2S 24비트, 샘플링 주파수 16kHz로 E8300에 전달한다. DMIC2는 E8300과 QCC에 함께 연결되며, 전화 통화 시 QCC가 DMIC2의 음성을 수음하여 통화 상대에게 송신한다. 통화 상향 마이크 입력과 QCC에서 E8300으로 전달하는 I2S 오디오는 서로 다른 경로이며, Bluetooth Classic 송수신 기능은 SW-FW-RID-69에 따른다.",
+      "document": "SR",
+      "span": "QCC의 Bluetooth 수신 오디오는 I2S 24비트, 샘플링 주파수 16kHz로 E8300에 전달한다. DMIC2는 E8300과 QCC에 함께 연결되며, 전화 통화 시 QCC가 DMIC2의 음성을 수음하여 통화 상대에게 송신한다. 통화 상향 마이크 입력과 QCC에서 E8300으로 전달하는 I2S 오디오는 서로 다른 경로이며, Bluetooth Classic 송수신 기능은 SW-FW-RID-69에 따른다.",
+      "spanStart": 0,
+      "spanEndExclusive": 230,
+      "classification": "현재 기입된 QCC 기능/정의",
+      "evidence": [
+        {
+          "document": "QCC_SRS",
+          "bodyBlockIndex0Based": 135,
+          "text": "요구사항 식별Requirement IDSW-CC-RI-09주제SubjectI2S 오디오 입력I2S audio input설명Description외부장치의 블루투스 소프트웨어는 사운드 처리기로 I2S를 통해 블루투스 오디오 데이터를 전송할 수 있어야 한다. 사용되는 I2S 인터페이스 패러미터는 다음과 같다I2S audio input24bit data, 16000 sample rate다른 발생원 추적Traceable to other sourceSystem RequirementSYS-RID-SP-HW-06: 블루투스 오디오VersionNo.1.0개정사유initially prepared"
+        },
+        {
+          "document": "QCC_SRS",
+          "bodyBlockIndex0Based": 138,
+          "text": "요구사항 식별Requirement IDSW-CC-RI-10주제Subject블루투스 오디오 출력 소스Bluetooth audio output source설명Description외부장치의 블루투스 소프트웨어는 마이크의 소리를 다른 블루투스 장치로 출력할 수 있어야 한다.Audio output sourcesBluetooth classic audio data다른 발생원 추적Traceable to other sourceSystem RequirementSYS-RID-SP-HW-11: 블루투스 사운드 출력 소스VersionNo.1.0개정사유initially prepared"
+        },
+        {
+          "document": "SRS",
+          "sheet": "소프트웨어 입력 요구사항 사양서",
+          "cells": [
+            "F21",
+            "F55",
+            "F56"
+          ]
+        }
+      ],
+      "interpretationLimit": "현재 문서에 입력된 설계 요구/일반 실행환경을 강조한다. 타이머 경계, 실제 버전과 시험 결과의 완비를 주장하지 않는다.",
+      "proposedFormatting": {
+        "bold": true,
+        "color": "C00000",
+        "fontSizePt": 10,
+        "underlined": false,
+        "fontSizeBasis": "一般본문 기본 10pt 유지, 미비 안내 +2pt 서식을 이식하지 않는다."
+      }
+    },
+    {
+      "part": "word/document.xml",
+      "paragraphIndex0Based": 249,
+      "xpath": "(//w:body//w:p)[250]",
+      "paraId": "64B844A7",
+      "currentText": "BLE의 리모콘/매핑 데이터는 QCC와 E8300 사이에서 SPI로 중계한다. 보호 대상 접근에는 페어링과 CRA 인증을 요구하며, 3분 무송수신/인증 실패 5회 후 1분 연결 제한/인증 30초 시간 제한의 정의와 미비 사항은 소프트웨어 요구사항 사양서에 따른다.",
+      "document": "SR",
+      "span": "BLE의 리모콘/매핑 데이터는 QCC와 E8300 사이에서 SPI로 중계한다. 보호 대상 접근에는 페어링과 CRA 인증을 요구하며, 3분 무송수신/인증 실패 5회 후 1분 연결 제한/인증 30초 시간 제한의 정의와 미비 사항은 소프트웨어 요구사항 사양서에 따른다.",
+      "spanStart": 0,
+      "spanEndExclusive": 147,
+      "classification": "현재 기입된 QCC 기능/정의",
+      "evidence": [
+        {
+          "document": "QCC_SRS",
+          "bodyBlockIndex0Based": 163,
+          "text": "요구사항 식별Requirement IDSW-CC-RI-14주제SubjectBLE 페어링(BLE pairing)설명DescriptionBLE Pairing이 요구되는 과정은 다음과 같다:BLE pairing requirementBLE connectionBLE data access다른 발생원 추적Traceable to other sourceSystem RequirementRCM-CYBER-SP-FW-02: IA-01 사용자 식별 및 인증RCM-CYBER-SP-FW-10: SI-01 통신에 대한 무결성 보장RCM-CYBER-SP-FW-17: DC-01 정보에 대한 기밀성 보장VersionNo.1.0개정사유initially prepared"
+        },
+        {
+          "document": "QCC_SRS",
+          "bodyBlockIndex0Based": 166,
+          "text": "요구사항 식별Requirement IDSW-CC-RI-14주제SubjectBLE 인증 서비스 – 접근(BLE Authentication service - access)설명DescriptionBLE 데이터 접근에 별도의 자체적인 BLE 인증 서비스를 사용하여 사용자의 인증을 요구한다.BLE Auth service characteristicsChallengeResponseConfirmStatus다른 발생원 추적Traceable to other sourceSystem RequirementRCM-CYBER-SP-FW-02: IA-01 사용자 식별 및 인증RCM-CYBER-SP-FW-03: IA-01 사용자 식별 및 인증RCM-CYBER-SP-FW-04: IA-06 인증정보에 대한 피드백RCM-CYBER-SP-FW-17: DC-01 정보에 대한 기밀성 보장VersionNo.1.0개정사유initially prepared"
+        },
+        {
+          "document": "QCC_SRS",
+          "bodyBlockIndex0Based": 169,
+          "text": "요구사항 식별Requirement IDSW-CC-RI-15주제SubjectBLE 인증 서비스 – 인증방식(BLE Authentication service - authentication)설명DescriptionAuth service는 다음 인증 방식을 사용한다AuthenticationCRA(Challenge-Response Authentication)CRA Authentication keySize: 128 bitsCRA Authentication ResultFailSuccessIn progressTimeout다른 발생원 추적Traceable to other sourceSystem RequirementRCM-CYBER-SP-FW-02: IA-01 사용자 식별 및 인증RCM-CYBER-SP-FW-03: IA-01 사용자 식별 및 인증RCM-CYBER-SP-FW-04: IA-06 인증정보에 대한 피드백RCM-CYBER-SP-FW-17: DC-01 정보에 대한 기밀성 보장VersionNo.1.0개정사유initially prepared"
+        },
+        {
+          "document": "QCC_SRS",
+          "bodyBlockIndex0Based": 175,
+          "text": "요구사항 식별Requirement IDSW-CC-RI-17주제SubjectBLE 연결 제어(BLE connection control)설명DescriptionBLE 연결은 상황에 따라 접근을 제한한다.BLE connection prohibitedCRA authentication failure 5 timesLimits for 1 minBLE connection releaseThere are no transmission and reception for 3 min다른 발생원 추적Traceable to other sourceSystem RequirementRCM-CYBER-SP-FW-05: IA-07 연속적인 로그인 시도 실패 시 로그인 제한RCM-CYBER-SP-FW-06: UC-03 세션 잠금VersionNo.1.0개정사유initially prepared"
+        },
+        {
+          "document": "QCC_SUVC",
+          "bodyBlockIndex0Based": 88,
+          "text": "BLE CRA 인증 타임아웃을 30초로 설정한다."
+        }
+      ],
+      "interpretationLimit": "현재 문서에 입력된 설계 요구/일반 실행환경을 강조한다. 타이머 경계, 실제 버전과 시험 결과의 완비를 주장하지 않는다.",
+      "proposedFormatting": {
+        "bold": true,
+        "color": "C00000",
+        "fontSizePt": 10,
+        "underlined": false,
+        "fontSizeBasis": "一般본문 기본 10pt 유지, 미비 안내 +2pt 서식을 이식하지 않는다."
+      }
+    },
+    {
+      "part": "word/document.xml",
+      "paragraphIndex0Based": 259,
+      "xpath": "(//w:body//w:p)[260]",
+      "paraId": "4614A801",
+      "currentText": "- QCC5181 : C language 및 제조사 제공 Bluetooth stack/Built-in library와 scheduler를 사용하는 펌웨어로 구성한다.",
+      "document": "SR",
+      "span": "- QCC5181 : C language 및 제조사 제공 Bluetooth stack/Built-in library와 scheduler를 사용하는 펌웨어로 구성한다.",
+      "spanStart": 0,
+      "spanEndExclusive": 92,
+      "classification": "현재 기입된 QCC 기능/정의",
+      "evidence": [
+        {
+          "document": "QCC_SRS",
+          "bodyBlockIndex0Based": 112,
+          "text": "C language "
+        },
+        {
+          "document": "QCC_SAD",
+          "bodyBlockIndex0Based": 126,
+          "text": "블루투스 펌웨어는 크게 외부장치 Application과 MCU 제조사인 Qualcomm에서 제공하는 Built-in library와 system software가 있다. 제조사에서 제공하는 부분은 Application을 구현하는데 바탕이 되며, 별도의 수정 없이 제공되는 API만을 사용하므로, 여기서는 외부 Application만을 설명한다."
+        },
+        {
+          "document": "QCC_SDDD",
+          "bodyBlockIndex0Based": 102,
+          "text": "Built-in library 초기화"
+        },
+        {
+          "document": "QCC_SDDD",
+          "bodyBlockIndex0Based": 103,
+          "text": "System scheduler 초기화"
+        }
+      ],
+      "interpretationLimit": "현재 문서에 입력된 설계 요구/일반 실행환경을 강조한다. 타이머 경계, 실제 버전과 시험 결과의 완비를 주장하지 않는다.",
+      "proposedFormatting": {
+        "bold": true,
+        "color": "C00000",
+        "fontSizePt": 10,
+        "underlined": false,
+        "fontSizeBasis": "一般본문 기본 10pt 유지, 미비 안내 +2pt 서식을 이식하지 않는다."
+      }
+    },
+    {
+      "part": "word/document.xml",
+      "paragraphIndex0Based": 264,
+      "xpath": "(//w:body//w:p)[265]",
+      "paraId": "7765B95A",
+      "currentText": "QCC의 실행 이미지와 저장 데이터는 QCC에 할당한 메모리 영역의 범위를 넘지 않아야 한다. E8300 코어의 메모리 값과 QCC 메모리 값은 구분한다.",
+      "document": "SR",
+      "span": "QCC의 실행 이미지와 저장 데이터는 QCC에 할당한 메모리 영역의 범위를 넘지 않아야 한다. E8300 코어의 메모리 값과 QCC 메모리 값은 구분한다.",
+      "spanStart": 0,
+      "spanEndExclusive": 86,
+      "classification": "메모리 한계 준수의 설계 요구",
+      "evidence": [
+        {
+          "document": "QCC_SRS",
+          "bodyBlockIndex0Based": 114,
+          "text": "- Application 영역 약 2 Mbytes"
+        }
+      ],
+      "interpretationLimit": "할당 영역을 넘지 않아야 한다는 규칙이며 실제 배치/사용량이 입력된 것은 아니다. 약 2 Mbytes 선언을 실제 이미지 사용량으로 추가하지 않는다.",
+      "proposedFormatting": {
+        "bold": true,
+        "color": "C00000",
+        "fontSizePt": 10,
+        "underlined": false,
+        "fontSizeBasis": "一般본문 기본 10pt 유지, 미비 안내 +2pt 서식을 이식하지 않는다."
+      }
+    },
+    {
+      "part": "word/document.xml",
+      "paragraphIndex0Based": 145,
+      "xpath": "(//w:body//w:p)[146]",
+      "paraId": null,
+      "currentText": "적용 범위에는 자극 처리와 장치 제어를 담당하는 E8300 펌웨어 및 Bluetooth 통신/인증과 E8300 전달 경로를 담당하는 QCC5181 펌웨어가 함께 포함된다.",
+      "document": "SGR",
+      "span": "적용 범위에는 자극 처리와 장치 제어를 담당하는 E8300 펌웨어 및 Bluetooth 통신/인증과 E8300 전달 경로를 담당하는 QCC5181 펌웨어가 함께 포함된다.",
+      "spanStart": 0,
+      "spanEndExclusive": 95,
+      "classification": "E8300/QCC 통합 적용 범위",
+      "evidence": [
+        {
+          "document": "SR",
+          "paragraphIndex0Based": 152
+        },
+        {
+          "document": "QCC_SRS",
+          "bodyBlockIndex0Based": 135,
+          "text": "요구사항 식별Requirement IDSW-CC-RI-09주제SubjectI2S 오디오 입력I2S audio input설명Description외부장치의 블루투스 소프트웨어는 사운드 처리기로 I2S를 통해 블루투스 오디오 데이터를 전송할 수 있어야 한다. 사용되는 I2S 인터페이스 패러미터는 다음과 같다I2S audio input24bit data, 16000 sample rate다른 발생원 추적Traceable to other sourceSystem RequirementSYS-RID-SP-HW-06: 블루투스 오디오VersionNo.1.0개정사유initially prepared"
+        },
+        {
+          "document": "QCC_SRS",
+          "bodyBlockIndex0Based": 166,
+          "text": "요구사항 식별Requirement IDSW-CC-RI-14주제SubjectBLE 인증 서비스 – 접근(BLE Authentication service - access)설명DescriptionBLE 데이터 접근에 별도의 자체적인 BLE 인증 서비스를 사용하여 사용자의 인증을 요구한다.BLE Auth service characteristicsChallengeResponseConfirmStatus다른 발생원 추적Traceable to other sourceSystem RequirementRCM-CYBER-SP-FW-02: IA-01 사용자 식별 및 인증RCM-CYBER-SP-FW-03: IA-01 사용자 식별 및 인증RCM-CYBER-SP-FW-04: IA-06 인증정보에 대한 피드백RCM-CYBER-SP-FW-17: DC-01 정보에 대한 기밀성 보장VersionNo.1.0개정사유initially prepared"
+        }
+      ],
+      "interpretationLimit": "적용 범위의 정의다. 구현/검증/정식 승인 완료를 나타내지 않는다.",
+      "proposedFormatting": {
+        "bold": true,
+        "color": "C00000",
+        "fontSizePt": 10,
+        "underlined": false,
+        "fontSizeBasis": "一般본문 기본 10pt 유지, 미비 안내 +2pt 서식을 이식하지 않는다."
+      }
+    },
+    {
+      "part": "word/document.xml",
+      "paragraphIndex0Based": 284,
+      "xpath": "(//w:body//w:p)[285]",
+      "paraId": null,
+      "currentText": "√ QCC5181은 Bluetooth Classic 수신 오디오를 I2S로 E8300에 전달하고, 전화 통화 시 DMIC2의 음성을 수음하여 통화 상대에게 송신한다. DMIC2는 E8300과 QCC에 함께 연결되며, 통화 상향 마이크 입력과 I2S 수신 오디오는 서로 다른 경로다. BLE의 리모콘/매핑 명령과 응답은 SPI로 E8300에 중계한다.",
+      "document": "SGR",
+      "span": "√ QCC5181은 Bluetooth Classic 수신 오디오를 I2S로 E8300에 전달하고, 전화 통화 시 DMIC2의 음성을 수음하여 통화 상대에게 송신한다. DMIC2는 E8300과 QCC에 함께 연결되며, 통화 상향 마이크 입력과 I2S 수신 오디오는 서로 다른 경로다. BLE의 리모콘/매핑 명령과 응답은 SPI로 E8300에 중계한다.",
+      "spanStart": 0,
+      "spanEndExclusive": 195,
+      "classification": "QCC 오디오 및 명령/응답 경로 정의",
+      "evidence": [
+        {
+          "document": "QCC_SRS",
+          "bodyBlockIndex0Based": 135,
+          "text": "요구사항 식별Requirement IDSW-CC-RI-09주제SubjectI2S 오디오 입력I2S audio input설명Description외부장치의 블루투스 소프트웨어는 사운드 처리기로 I2S를 통해 블루투스 오디오 데이터를 전송할 수 있어야 한다. 사용되는 I2S 인터페이스 패러미터는 다음과 같다I2S audio input24bit data, 16000 sample rate다른 발생원 추적Traceable to other sourceSystem RequirementSYS-RID-SP-HW-06: 블루투스 오디오VersionNo.1.0개정사유initially prepared"
+        },
+        {
+          "document": "QCC_SRS",
+          "bodyBlockIndex0Based": 138,
+          "text": "요구사항 식별Requirement IDSW-CC-RI-10주제Subject블루투스 오디오 출력 소스Bluetooth audio output source설명Description외부장치의 블루투스 소프트웨어는 마이크의 소리를 다른 블루투스 장치로 출력할 수 있어야 한다.Audio output sourcesBluetooth classic audio data다른 발생원 추적Traceable to other sourceSystem RequirementSYS-RID-SP-HW-11: 블루투스 사운드 출력 소스VersionNo.1.0개정사유initially prepared"
+        },
+        {
+          "document": "QCC_SRS",
+          "bodyBlockIndex0Based": 151,
+          "text": "요구사항 식별Requirement IDSW-CC-RI-12주제SubjectBLE 데이터 통신BLE data communication설명Description  BLE를 통해 데이터 통신을 지원해야 한다.BLE communicationData다른 발생원 추적Traceable to other sourceSystem RequirementSYS-RID-FW-16: BLE data 통신VersionNo.1.0개정사유initially prepared"
+        },
+        {
+          "source": "사용자 확인",
+          "fact": "DMIC2 양쪽 연결과 QCC 통화 수음"
+        }
+      ],
+      "interpretationLimit": "통화 상향 입력과 I2S 하향 오디오는 별도 경로다. QCC 마이크 입력 프로토콜은 미확정이다.",
+      "proposedFormatting": {
+        "bold": true,
+        "color": "C00000",
+        "fontSizePt": 10,
+        "underlined": false,
+        "fontSizeBasis": "一般본문 기본 10pt 유지, 미비 안내 +2pt 서식을 이식하지 않는다."
+      }
+    },
+    {
+      "part": "word/document.xml",
+      "paragraphIndex0Based": 285,
+      "xpath": "(//w:body//w:p)[286]",
+      "paraId": null,
+      "currentText": "√ 보호 대상 BLE 데이터 접근에는 페어링과 CRA 인증을 요구한다. 오디오 송신, 연결 제한 및 인증/키 관리 조건은 소프트웨어 요구사항 사양서에 따른다.",
+      "document": "SGR",
+      "span": "√ 보호 대상 BLE 데이터 접근에는 페어링과 CRA 인증을 요구한다. 오디오 송신, 연결 제한 및 인증/키 관리 조건은 소프트웨어 요구사항 사양서에 따른다.",
+      "spanStart": 0,
+      "spanEndExclusive": 88,
+      "classification": "BLE 보호 접근 설계 요구",
+      "evidence": [
+        {
+          "document": "QCC_SRS",
+          "bodyBlockIndex0Based": 163,
+          "text": "요구사항 식별Requirement IDSW-CC-RI-14주제SubjectBLE 페어링(BLE pairing)설명DescriptionBLE Pairing이 요구되는 과정은 다음과 같다:BLE pairing requirementBLE connectionBLE data access다른 발생원 추적Traceable to other sourceSystem RequirementRCM-CYBER-SP-FW-02: IA-01 사용자 식별 및 인증RCM-CYBER-SP-FW-10: SI-01 통신에 대한 무결성 보장RCM-CYBER-SP-FW-17: DC-01 정보에 대한 기밀성 보장VersionNo.1.0개정사유initially prepared"
+        },
+        {
+          "document": "QCC_SRS",
+          "bodyBlockIndex0Based": 166,
+          "text": "요구사항 식별Requirement IDSW-CC-RI-14주제SubjectBLE 인증 서비스 – 접근(BLE Authentication service - access)설명DescriptionBLE 데이터 접근에 별도의 자체적인 BLE 인증 서비스를 사용하여 사용자의 인증을 요구한다.BLE Auth service characteristicsChallengeResponseConfirmStatus다른 발생원 추적Traceable to other sourceSystem RequirementRCM-CYBER-SP-FW-02: IA-01 사용자 식별 및 인증RCM-CYBER-SP-FW-03: IA-01 사용자 식별 및 인증RCM-CYBER-SP-FW-04: IA-06 인증정보에 대한 피드백RCM-CYBER-SP-FW-17: DC-01 정보에 대한 기밀성 보장VersionNo.1.0개정사유initially prepared"
+        },
+        {
+          "document": "QCC_SRS",
+          "bodyBlockIndex0Based": 169,
+          "text": "요구사항 식별Requirement IDSW-CC-RI-15주제SubjectBLE 인증 서비스 – 인증방식(BLE Authentication service - authentication)설명DescriptionAuth service는 다음 인증 방식을 사용한다AuthenticationCRA(Challenge-Response Authentication)CRA Authentication keySize: 128 bitsCRA Authentication ResultFailSuccessIn progressTimeout다른 발생원 추적Traceable to other sourceSystem RequirementRCM-CYBER-SP-FW-02: IA-01 사용자 식별 및 인증RCM-CYBER-SP-FW-03: IA-01 사용자 식별 및 인증RCM-CYBER-SP-FW-04: IA-06 인증정보에 대한 피드백RCM-CYBER-SP-FW-17: DC-01 정보에 대한 기밀성 보장VersionNo.1.0개정사유initially prepared"
+        }
+      ],
+      "interpretationLimit": "페어링과 CRA 요구이며 실제 접근 차단/암호화 시험 통과를 뜻하지 않는다.",
+      "proposedFormatting": {
+        "bold": true,
+        "color": "C00000",
+        "fontSizePt": 10,
+        "underlined": false,
+        "fontSizeBasis": "一般본문 기본 10pt 유지, 미비 안내 +2pt 서식을 이식하지 않는다."
+      }
+    },
+    {
+      "part": "word/document.xml",
+      "paragraphIndex0Based": 296,
+      "xpath": "(//w:body//w:p)[297]",
+      "paraId": null,
+      "currentText": "QCC5181은 제조사 제공 Built-in library와 scheduler를 사용하는 펌웨어로 구성한다. QCC의 실행 환경은 E8300의 운영체제 사용 여부와 별도로 정의한다.",
+      "document": "SGR",
+      "span": "QCC5181은 제조사 제공 Built-in library와 scheduler를 사용하는 펌웨어로 구성한다. QCC의 실행 환경은 E8300의 운영체제 사용 여부와 별도로 정의한다.",
+      "spanStart": 0,
+      "spanEndExclusive": 101,
+      "classification": "QCC 일반 실행환경 설명",
+      "evidence": [
+        {
+          "document": "QCC_SAD",
+          "bodyBlockIndex0Based": 126,
+          "text": "블루투스 펌웨어는 크게 외부장치 Application과 MCU 제조사인 Qualcomm에서 제공하는 Built-in library와 system software가 있다. 제조사에서 제공하는 부분은 Application을 구현하는데 바탕이 되며, 별도의 수정 없이 제공되는 API만을 사용하므로, 여기서는 외부 Application만을 설명한다."
+        },
+        {
+          "document": "QCC_SDDD",
+          "bodyBlockIndex0Based": 102,
+          "text": "Built-in library 초기화"
+        },
+        {
+          "document": "QCC_SDDD",
+          "bodyBlockIndex0Based": 103,
+          "text": "System scheduler 초기화"
+        }
+      ],
+      "interpretationLimit": "scheduler 사용/초기화의 자료가 있다. 실제 ADK 버전과 scheduler 구성 상세는 아직 없다.",
+      "proposedFormatting": {
+        "bold": true,
+        "color": "C00000",
+        "fontSizePt": 10,
+        "underlined": false,
+        "fontSizeBasis": "一般본문 기본 10pt 유지, 미비 안내 +2pt 서식을 이식하지 않는다."
+      }
+    },
+    {
+      "part": "word/document.xml",
+      "paragraphIndex0Based": 300,
+      "xpath": "(//w:body//w:p)[301]",
+      "paraId": null,
+      "currentText": "QCC5181은 제조사 제공 Bluetooth stack과 Built-in library를 사용한다.",
+      "document": "SGR",
+      "span": "QCC5181은 제조사 제공 Bluetooth stack과 Built-in library를 사용한다.",
+      "spanStart": 0,
+      "spanEndExclusive": 56,
+      "classification": "QCC 제조사 소프트웨어 사용 설명",
+      "evidence": [
+        {
+          "document": "QCC_SAD",
+          "bodyBlockIndex0Based": 126,
+          "text": "블루투스 펌웨어는 크게 외부장치 Application과 MCU 제조사인 Qualcomm에서 제공하는 Built-in library와 system software가 있다. 제조사에서 제공하는 부분은 Application을 구현하는데 바탕이 되며, 별도의 수정 없이 제공되는 API만을 사용하므로, 여기서는 외부 Application만을 설명한다."
+        },
+        {
+          "document": "QCC_SDDD",
+          "bodyBlockIndex0Based": 310,
+          "text": "<그림 6>은 Bluetooth module의 전체적인 흐름도를 나타낸 것이다. Bluetooth Transport는 Classic과 BLE로 나누어지며, 별도의 처리가 요구된다. Bluetooth Classic의 Data는 표준 Bluetooth 규격에 정의된 사항만 처리하므로, 이는 Built-in Library에서 처리되고 외부장치의 처리 대상이 아니다. BLE의 데이터에서는 외부장치의 주요 정보(상태, Bluetooth 제어 명령)를 처리해야 하므로 별도의 추가 처리가 요구된다."
+        }
+      ],
+      "interpretationLimit": "제조사 라이브러리를 사용한다는 범위만 확인한다. 개별 SOUP 식별/버전/검토 결과가 있다는 주장으로 확대하지 않는다.",
+      "proposedFormatting": {
+        "bold": true,
+        "color": "C00000",
+        "fontSizePt": 10,
+        "underlined": false,
+        "fontSizeBasis": "一般본문 기본 10pt 유지, 미비 안내 +2pt 서식을 이식하지 않는다."
+      }
+    }
+  ],
+  "criticalDecisions": [
+    "입력 요청은 제거해도 실제 미확정 대상은 간결한 일반 검정 본문으로 남긴다.",
+    "SR250의 확인된 DMIC2 첫 문장은 SR237/248과 중복되므로 안내 수정 시 반복하지 않는다.",
+    "SR264는 메모리 한계 준수의 규범 요구다. actual usage는 아니다.",
+    "ADK/라이브러리 버전, QCC 메모리 사용량, 부트 검사 설정, 프로파일/코덱 상세와 위험분석 검토 결과를 만들어 넣지 않는다.",
+    "현재 SR의 RID83은 자체 요구이며 SRS H93은 공란이다. 이 후속은 RID83/E8300 보완 안내를 자동 제거하는 범위가 아니다.",
+    "원문 스마트케이스/CC 표기는 사용자 지시로 외부기 QCC 문맥에서 읽으며 충전/뚜껑 등 무관한 잔존 본문을 실제 외부기 기능으로 추가하지 않는다."
+  ],
+  "notVerified": [
+    "native Word 표시 및 실제 수락/거부는 이번 담당이 수행하지 않았다.",
+    "QCC 제품 시험/실측/검토 승인 완료는 확인하지 않았다.",
+    "보호 원본 전체23개 불변은 루트의 최종 출판 증거 대상이며 이 감사는 직접 읽은 7개만 시작/종료 해시 대조했다."
+  ],
+  "ownership": "qcc-audit.json만 새로 작성했다. G/원문/후보/기존QA/MD/Office/COM 수정 및 조작 없음."
+}

@@ -1,0 +1,510 @@
+[
+  {
+    "key": "SUVC",
+    "sheet": "기준서_유닛 검증",
+    "cell": "E1727",
+    "changed_new_paragraphs": [
+      2
+    ],
+    "scope": "only status=new prose; old/keep strings intact"
+  },
+  {
+    "key": "SUVC",
+    "sheet": "기준서_유닛 검증",
+    "cell": "E1729",
+    "changed_new_paragraphs": [
+      2
+    ],
+    "scope": "only status=new prose; old/keep strings intact"
+  },
+  {
+    "key": "SUVC",
+    "sheet": "기준서_유닛 검증",
+    "cell": "E1737",
+    "changed_new_paragraphs": [
+      2
+    ],
+    "scope": "only status=new prose; old/keep strings intact"
+  },
+  {
+    "key": "SUVC",
+    "sheet": "기준서_유닛 검증",
+    "cell": "E1740",
+    "changed_new_paragraphs": [
+      2,
+      5
+    ],
+    "scope": "only status=new prose; old/keep strings intact"
+  },
+  {
+    "key": "SUVC",
+    "sheet": "기준서_유닛 검증",
+    "cell": "E1744",
+    "changed_new_paragraphs": [
+      2
+    ],
+    "scope": "only status=new prose; old/keep strings intact"
+  },
+  {
+    "key": "SUVC",
+    "sheet": "기준서_유닛 검증",
+    "cell": "E1746",
+    "changed_new_paragraphs": [
+      2
+    ],
+    "scope": "only status=new prose; old/keep strings intact"
+  },
+  {
+    "key": "SUVC",
+    "sheet": "기준서_유닛 검증",
+    "cell": "E1753",
+    "changed_new_paragraphs": [
+      2
+    ],
+    "scope": "only status=new prose; old/keep strings intact"
+  },
+  {
+    "key": "SUVC",
+    "sheet": "기준서_유닛 검증",
+    "cell": "E1755",
+    "changed_new_paragraphs": [
+      2
+    ],
+    "scope": "only status=new prose; old/keep strings intact"
+  },
+  {
+    "key": "SUVC",
+    "sheet": "기준서_유닛 검증",
+    "cell": "E1763",
+    "changed_new_paragraphs": [
+      2
+    ],
+    "scope": "only status=new prose; old/keep strings intact"
+  },
+  {
+    "key": "SUVC",
+    "sheet": "기준서_유닛 검증",
+    "cell": "I1727",
+    "changed_new_paragraphs": [
+      2
+    ],
+    "scope": "only status=new prose; old/keep strings intact"
+  },
+  {
+    "key": "SUVC",
+    "sheet": "기준서_유닛 검증",
+    "cell": "K1737",
+    "changed_new_paragraphs": [
+      4
+    ],
+    "scope": "only status=new prose; old/keep strings intact"
+  },
+  {
+    "key": "SUVC",
+    "sheet": "기준서_유닛 검증",
+    "cell": "I1737",
+    "changed_new_paragraphs": [
+      2
+    ],
+    "scope": "only status=new prose; old/keep strings intact"
+  },
+  {
+    "key": "SUVC",
+    "sheet": "기준서_유닛 검증",
+    "cell": "K1744",
+    "changed_new_paragraphs": [
+      4
+    ],
+    "scope": "only status=new prose; old/keep strings intact"
+  },
+  {
+    "key": "SUVC",
+    "sheet": "기준서_유닛 검증",
+    "cell": "J1754",
+    "changed_new_paragraphs": [
+      0
+    ],
+    "scope": "only status=new prose; old/keep strings intact"
+  },
+  {
+    "key": "SUVC",
+    "sheet": "기준서_유닛 검증",
+    "cell": "K1757",
+    "changed_new_paragraphs": [
+      4
+    ],
+    "scope": "only status=new prose; old/keep strings intact"
+  },
+  {
+    "key": "SUVC",
+    "sheet": "기준서_유닛 검증",
+    "cell": "K1760",
+    "changed_new_paragraphs": [
+      4
+    ],
+    "scope": "only status=new prose; old/keep strings intact"
+  },
+  {
+    "key": "SUVC",
+    "sheet": "기준서_유닛 검증",
+    "cell": "I1760",
+    "changed_new_paragraphs": [
+      4
+    ],
+    "scope": "only status=new prose; old/keep strings intact"
+  },
+  {
+    "key": "SUVC",
+    "sheet": "기준서_유닛 검증",
+    "cell": "K1762",
+    "changed_new_paragraphs": [
+      4
+    ],
+    "scope": "only status=new prose; old/keep strings intact"
+  },
+  {
+    "key": "SUVC",
+    "sheet": "기준서_유닛 검증",
+    "cell": "K1212",
+    "changed_new_paragraphs": [
+      14
+    ],
+    "scope": "only status=new prose; old/keep strings intact"
+  },
+  {
+    "key": "SUVR",
+    "sheet": "보고서_유닛 시험",
+    "cell": "E1727",
+    "changed_new_paragraphs": [
+      2
+    ],
+    "scope": "only status=new prose; old/keep strings intact"
+  },
+  {
+    "key": "SUVR",
+    "sheet": "보고서_유닛 시험",
+    "cell": "E1729",
+    "changed_new_paragraphs": [
+      2
+    ],
+    "scope": "only status=new prose; old/keep strings intact"
+  },
+  {
+    "key": "SUVR",
+    "sheet": "보고서_유닛 시험",
+    "cell": "E1737",
+    "changed_new_paragraphs": [
+      2
+    ],
+    "scope": "only status=new prose; old/keep strings intact"
+  },
+  {
+    "key": "SUVR",
+    "sheet": "보고서_유닛 시험",
+    "cell": "E1740",
+    "changed_new_paragraphs": [
+      2,
+      5
+    ],
+    "scope": "only status=new prose; old/keep strings intact"
+  },
+  {
+    "key": "SUVR",
+    "sheet": "보고서_유닛 시험",
+    "cell": "E1744",
+    "changed_new_paragraphs": [
+      2
+    ],
+    "scope": "only status=new prose; old/keep strings intact"
+  },
+  {
+    "key": "SUVR",
+    "sheet": "보고서_유닛 시험",
+    "cell": "E1746",
+    "changed_new_paragraphs": [
+      2
+    ],
+    "scope": "only status=new prose; old/keep strings intact"
+  },
+  {
+    "key": "SUVR",
+    "sheet": "보고서_유닛 시험",
+    "cell": "E1753",
+    "changed_new_paragraphs": [
+      2
+    ],
+    "scope": "only status=new prose; old/keep strings intact"
+  },
+  {
+    "key": "SUVR",
+    "sheet": "보고서_유닛 시험",
+    "cell": "E1755",
+    "changed_new_paragraphs": [
+      2
+    ],
+    "scope": "only status=new prose; old/keep strings intact"
+  },
+  {
+    "key": "SUVR",
+    "sheet": "보고서_유닛 시험",
+    "cell": "E1763",
+    "changed_new_paragraphs": [
+      2
+    ],
+    "scope": "only status=new prose; old/keep strings intact"
+  },
+  {
+    "key": "SUVR",
+    "sheet": "보고서_유닛 시험",
+    "cell": "I1727",
+    "changed_new_paragraphs": [
+      2
+    ],
+    "scope": "only status=new prose; old/keep strings intact"
+  },
+  {
+    "key": "SUVR",
+    "sheet": "보고서_유닛 시험",
+    "cell": "K1737",
+    "changed_new_paragraphs": [
+      4
+    ],
+    "scope": "only status=new prose; old/keep strings intact"
+  },
+  {
+    "key": "SUVR",
+    "sheet": "보고서_유닛 시험",
+    "cell": "I1737",
+    "changed_new_paragraphs": [
+      2
+    ],
+    "scope": "only status=new prose; old/keep strings intact"
+  },
+  {
+    "key": "SUVR",
+    "sheet": "보고서_유닛 시험",
+    "cell": "L1739",
+    "changed_new_paragraphs": [
+      8
+    ],
+    "scope": "only status=new prose; old/keep strings intact"
+  },
+  {
+    "key": "SUVR",
+    "sheet": "보고서_유닛 시험",
+    "cell": "K1744",
+    "changed_new_paragraphs": [
+      4
+    ],
+    "scope": "only status=new prose; old/keep strings intact"
+  },
+  {
+    "key": "SUVR",
+    "sheet": "보고서_유닛 시험",
+    "cell": "L1747",
+    "changed_new_paragraphs": [
+      8
+    ],
+    "scope": "only status=new prose; old/keep strings intact"
+  },
+  {
+    "key": "SUVR",
+    "sheet": "보고서_유닛 시험",
+    "cell": "L1751",
+    "changed_new_paragraphs": [
+      8
+    ],
+    "scope": "only status=new prose; old/keep strings intact"
+  },
+  {
+    "key": "SUVR",
+    "sheet": "보고서_유닛 시험",
+    "cell": "J1754",
+    "changed_new_paragraphs": [
+      0
+    ],
+    "scope": "only status=new prose; old/keep strings intact"
+  },
+  {
+    "key": "SUVR",
+    "sheet": "보고서_유닛 시험",
+    "cell": "K1757",
+    "changed_new_paragraphs": [
+      4
+    ],
+    "scope": "only status=new prose; old/keep strings intact"
+  },
+  {
+    "key": "SUVR",
+    "sheet": "보고서_유닛 시험",
+    "cell": "L1757",
+    "changed_new_paragraphs": [
+      8
+    ],
+    "scope": "only status=new prose; old/keep strings intact"
+  },
+  {
+    "key": "SUVR",
+    "sheet": "보고서_유닛 시험",
+    "cell": "K1760",
+    "changed_new_paragraphs": [
+      4
+    ],
+    "scope": "only status=new prose; old/keep strings intact"
+  },
+  {
+    "key": "SUVR",
+    "sheet": "보고서_유닛 시험",
+    "cell": "I1760",
+    "changed_new_paragraphs": [
+      4
+    ],
+    "scope": "only status=new prose; old/keep strings intact"
+  },
+  {
+    "key": "SUVR",
+    "sheet": "보고서_유닛 시험",
+    "cell": "K1762",
+    "changed_new_paragraphs": [
+      4
+    ],
+    "scope": "only status=new prose; old/keep strings intact"
+  },
+  {
+    "key": "SUVR",
+    "sheet": "보고서_유닛 시험",
+    "cell": "K1212",
+    "changed_new_paragraphs": [
+      14
+    ],
+    "scope": "only status=new prose; old/keep strings intact"
+  },
+  {
+    "key": "SITC",
+    "sheet": "기준서_통합 시험",
+    "cell": "L134",
+    "changed_new_paragraphs": [
+      4
+    ],
+    "scope": "only status=new prose; old/keep strings intact"
+  },
+  {
+    "key": "SITC",
+    "sheet": "기준서_통합 시험",
+    "cell": "L135",
+    "changed_new_paragraphs": [
+      4
+    ],
+    "scope": "only status=new prose; old/keep strings intact"
+  },
+  {
+    "key": "SITC",
+    "sheet": "기준서_통합 시험",
+    "cell": "M136",
+    "changed_new_paragraphs": [
+      3
+    ],
+    "scope": "only status=new prose; old/keep strings intact"
+  },
+  {
+    "key": "SITC",
+    "sheet": "기준서_통합 시험",
+    "cell": "L140",
+    "changed_new_paragraphs": [
+      3,
+      4
+    ],
+    "scope": "only status=new prose; old/keep strings intact"
+  },
+  {
+    "key": "SITC",
+    "sheet": "기준서_통합 시험",
+    "cell": "M142",
+    "changed_new_paragraphs": [
+      3
+    ],
+    "scope": "only status=new prose; old/keep strings intact"
+  },
+  {
+    "key": "SITC",
+    "sheet": "기준서_통합 시험",
+    "cell": "M144",
+    "changed_new_paragraphs": [
+      3
+    ],
+    "scope": "only status=new prose; old/keep strings intact"
+  },
+  {
+    "key": "SITC",
+    "sheet": "기준서_통합 시험",
+    "cell": "E134",
+    "changed_new_paragraphs": [
+      2
+    ],
+    "scope": "only status=new prose; old/keep strings intact"
+  },
+  {
+    "key": "SITR",
+    "sheet": "보고서_통합시험",
+    "cell": "L134",
+    "changed_new_paragraphs": [
+      4
+    ],
+    "scope": "only status=new prose; old/keep strings intact"
+  },
+  {
+    "key": "SITR",
+    "sheet": "보고서_통합시험",
+    "cell": "L135",
+    "changed_new_paragraphs": [
+      4
+    ],
+    "scope": "only status=new prose; old/keep strings intact"
+  },
+  {
+    "key": "SITR",
+    "sheet": "보고서_통합시험",
+    "cell": "M136",
+    "changed_new_paragraphs": [
+      3
+    ],
+    "scope": "only status=new prose; old/keep strings intact"
+  },
+  {
+    "key": "SITR",
+    "sheet": "보고서_통합시험",
+    "cell": "L140",
+    "changed_new_paragraphs": [
+      3,
+      4
+    ],
+    "scope": "only status=new prose; old/keep strings intact"
+  },
+  {
+    "key": "SITR",
+    "sheet": "보고서_통합시험",
+    "cell": "M142",
+    "changed_new_paragraphs": [
+      3
+    ],
+    "scope": "only status=new prose; old/keep strings intact"
+  },
+  {
+    "key": "SITR",
+    "sheet": "보고서_통합시험",
+    "cell": "M144",
+    "changed_new_paragraphs": [
+      3
+    ],
+    "scope": "only status=new prose; old/keep strings intact"
+  },
+  {
+    "key": "SITR",
+    "sheet": "보고서_통합시험",
+    "cell": "E134",
+    "changed_new_paragraphs": [
+      2
+    ],
+    "scope": "only status=new prose; old/keep strings intact"
+  }
+]

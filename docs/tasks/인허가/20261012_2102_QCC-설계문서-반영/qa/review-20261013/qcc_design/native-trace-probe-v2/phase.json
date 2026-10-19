@@ -1,0 +1,13 @@
+{
+  "phase": "FAIL Native selective rejection left new probe revisions",
+  "at": "2026-10-13T10:30:26.2653118+09:00",
+  "source": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_design\\final-sad-trace-flow\\SAD-before.docx",
+  "sourceSha256": "8af46ef971b15ec6815cb5aed66e25580a4c9494d43dcdf4925852cb38c50515",
+  "candidate": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_design\\native-trace-probe-v2\\SAD-native-probe-author.docx",
+  "lastStableCandidateSha256": "AFA120B7A38105FCF4264DC47CF0BDC39C430330F259E07A627FAB51AFF8CB19",
+  "rootCreatedWordPIDCandidates": [
+    4284
+  ],
+  "optionsBefore": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_design\\native-trace-probe-v2\\options-before.json",
+  "GModified": false
+}

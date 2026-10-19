@@ -1,0 +1,62 @@
+{
+  "before_sha256": "D87A445328E501D48A481D57FC3C3CCC5B502B27D640930D3398B55F4F078E4D",
+  "after_sha256": "A568B4996AC13053D55973E5E59E59ACB6E18FAB5E41C4A7423DEF49596B93E4",
+  "changes": [
+    {
+      "cell": "C18",
+      "old_style": 126,
+      "new_style": 227,
+      "vertical": "top"
+    },
+    {
+      "cell": "D26",
+      "old_style": 126,
+      "new_style": 227,
+      "vertical": "top"
+    },
+    {
+      "cell": "I51",
+      "old_style": 194,
+      "new_style": 228,
+      "vertical": "top"
+    },
+    {
+      "cell": "I55",
+      "old_style": 194,
+      "new_style": 228,
+      "vertical": "top"
+    },
+    {
+      "cell": "I60",
+      "old_style": 194,
+      "new_style": 228,
+      "vertical": "top"
+    },
+    {
+      "cell": "I62",
+      "old_style": 194,
+      "new_style": 228,
+      "vertical": "top"
+    },
+    {
+      "cell": "I68",
+      "old_style": 194,
+      "new_style": 228,
+      "vertical": "top"
+    },
+    {
+      "cell": "I72",
+      "old_style": 194,
+      "new_style": 228,
+      "vertical": "top"
+    },
+    {
+      "row": 61,
+      "old_height": "225",
+      "new_height": "260"
+    }
+  ],
+  "content_formula_rich_text_merge_print_area_unchanged": true,
+  "requirement_and_upper_ids_center_preserved": true,
+  "native_recheck": "대기"
+}

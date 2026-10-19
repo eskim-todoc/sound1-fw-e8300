@@ -1,0 +1,304 @@
+{
+  "status": "PASS_APPLICABLE_DOCUMENT_SCOPE",
+  "checked_at": "2026-10-13T17:54:15.993848+09:00",
+  "owner": "root; qcc_design initial scoping read, final evidence integration by root after ownership handoff",
+  "scope": "Only design-input SR/SGR Word formatting, QCC request wording and completed file names; not full product validation",
+  "policy_source": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\SW 밸리데이션 문서 작성·검증 지침.md",
+  "policy_sha256": "257D900D9ADC827F5166FA7BD1AC8D80AC8B9A5CE03F95BA0C2773BCF14DCD8D",
+  "entries": [
+    {
+      "id": 1,
+      "title": "E8300과 QCC의 같은 요구사항을 하나로 완성한다",
+      "status": "PASS",
+      "scope_and_result": "SR/SGR을 독립적으로 읽히는 통합 문서로 유지. 자료 요청 문구를 실제 미확정 사실로 바꾸고 기존 QCC 설명을 표시. 별도 QCC 요구사항 체계 생성 없음.",
+      "evidence": [
+        "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\qcc-audit.json",
+        "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\content-saved-review.json"
+      ]
+    },
+    {
+      "id": 2,
+      "title": "SRS 내용상세의 기본 문구를 매트릭스와 맞춘다",
+      "status": "NA",
+      "scope_and_result": "SRS Excel/매트릭스 문구 및 추적 수정 요청이 아니므로 변경하지 않음. 최신 외부 편집도 보존.",
+      "evidence": [
+        "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\published.json"
+      ]
+    },
+    {
+      "id": 3,
+      "title": "요구사항부터 실제 설계와 시험 ID/이름까지 연결한다",
+      "status": "PASS",
+      "scope_and_result": "현재 Word에 있는 RID69/83과 문서 연결 이름/ID는 보존 검사 범위. 전체 추적 관계 재검증은 이번 범위 밖.",
+      "evidence": [
+        "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\content-saved-review.json",
+        "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\SR-field-compare.json"
+      ]
+    },
+    {
+      "id": 4,
+      "title": "실제 문서 내용과 미갱신 표기를 확인한다",
+      "status": "PASS",
+      "scope_and_result": "QCC 참고 및 현재 문서 7개를 실제 읽어 반영 사실과 미확정 안내를 구분. 미갱신 표기만으로 기능을 재해석하지 않음.",
+      "evidence": [
+        "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\qcc-audit.json"
+      ]
+    },
+    {
+      "id": 5,
+      "title": "실제 시스템 구조와 전달 경로를 먼저 이해한다",
+      "status": "NA",
+      "scope_and_result": "구조/코드/그림 변경은 하지 않음. 기존 DMIC2 양쪽 연결 설명과 그림을 보존했으며 구조 재분석으로 확대하지 않음.",
+      "evidence": [
+        "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\content-saved-review.json",
+        "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\SR-field-compare.json"
+      ]
+    },
+    {
+      "id": 6,
+      "title": "권장 순서로 시작하고 양방향으로 반복한다",
+      "status": "PASS",
+      "scope_and_result": "내용 대조→서식 적용→native 전체 표시→빈 페이지/탭 들여쓰기 수정→재출력/내용 재검사의 반복을 완료. 요구/시험 내용은 그대로.",
+      "evidence": [
+        "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\layout-refinement.json",
+        "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\SGR-visual-review.json",
+        "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\SGR-visual-final-review.json"
+      ]
+    },
+    {
+      "id": 7,
+      "title": "E8300 본문의 형식과 설명 수준으로 QCC를 넣는다",
+      "status": "PASS",
+      "scope_and_result": "기존 E8300 문서 구조와 설명을 기반으로 공통 스타일을 적용하여 E8300/QCC 본문 크기와 계층을 일치시킴. 지정 QCC만 굵은 빨강.",
+      "evidence": [
+        "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\authored.json",
+        "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\native-font-check.json"
+      ]
+    },
+    {
+      "id": 8,
+      "title": "상세설계 본문만으로 구현 조건을 이해하게 한다",
+      "status": "NA",
+      "scope_and_result": "상세설계 본문/함수/유닛 조건은 수정하지 않음.",
+      "evidence": [
+        "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\published.json"
+      ]
+    },
+    {
+      "id": 9,
+      "title": "I/A/D/T 방법과 정의를 정확히 쓴다",
+      "status": "NA",
+      "scope_and_result": "시험 방법 I/A/D/T 선택을 변경하는 작업이 아님.",
+      "evidence": [
+        "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\published.json"
+      ]
+    },
+    {
+      "id": 10,
+      "title": "도구 이름이 아니라 통과 증거로 방법을 정한다",
+      "status": "NA",
+      "scope_and_result": "시험 방법 또는 통과 증거의 재분류 없음.",
+      "evidence": [
+        "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\published.json"
+      ]
+    },
+    {
+      "id": 11,
+      "title": "제3자가 수행할 준비와 절차를 쓴다",
+      "status": "NA",
+      "scope_and_result": "시험 준비/조건/절차를 새로 작성하지 않음.",
+      "evidence": [
+        "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\published.json"
+      ]
+    },
+    {
+      "id": 12,
+      "title": "기준서와 보고서의 공통 열과 행을 동일하게 유지한다",
+      "status": "NA",
+      "scope_and_result": "기준서/보고서 행과 공통 열을 변경하지 않음.",
+      "evidence": [
+        "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\published.json"
+      ]
+    },
+    {
+      "id": 13,
+      "title": "같은 입력의 예상값과 관찰값을 본문 같은 행에서 비교한다",
+      "status": "NA",
+      "scope_and_result": "예상값/관찰값/판정 행을 작성하거나 변경하지 않음.",
+      "evidence": [
+        "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\published.json"
+      ]
+    },
+    {
+      "id": 14,
+      "title": "RTT의 전체 문자열과 증거 종류를 구분한다",
+      "status": "NA",
+      "scope_and_result": "RTT 로그를 생성하거나 기록하지 않음.",
+      "evidence": [
+        "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\published.json"
+      ]
+    },
+    {
+      "id": 15,
+      "title": "조건 번호와 검증 번호를 빠짐없이 대응시킨다",
+      "status": "NA",
+      "scope_and_result": "시험 조건/검증 번호 편집 없음.",
+      "evidence": [
+        "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\published.json"
+      ]
+    },
+    {
+      "id": 16,
+      "title": "결과 칸에는 실제 입력/출력/관찰과 근거를 쓴다",
+      "status": "NA",
+      "scope_and_result": "결과 칸에 새로운 시험 결과를 입력하지 않음.",
+      "evidence": [
+        "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\published.json"
+      ]
+    },
+    {
+      "id": 17,
+      "title": "사용자에게 확인된 시험자 결과의 근거 범위를 지킨다",
+      "status": "NA",
+      "scope_and_result": "시험자 확인 결과의 신규 반영 없음. 기존 설명/미확정 상태 보존만 확인.",
+      "evidence": [
+        "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\content-saved-review.json"
+      ]
+    },
+    {
+      "id": 18,
+      "title": "기존 통과를 새 조건이나 다른 시험 단계로 확대하지 않는다",
+      "status": "PASS",
+      "scope_and_result": "확인된 설계 내용 강조와 실제 시험 통과를 구분. 6개 미확정 사실 유지, _완료는 편집 완료임을 기록.",
+      "evidence": [
+        "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\content-saved-review.json",
+        "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\post-publish-checks.json"
+      ]
+    },
+    {
+      "id": 19,
+      "title": "과거 지정된 시험자 확인 결과의 수치 처리만 재사용한다",
+      "status": "NA",
+      "scope_and_result": "과거 지정 수치 처리/재생성 없음.",
+      "evidence": [
+        "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\published.json"
+      ]
+    },
+    {
+      "id": 20,
+      "title": "예상 도식과 실제 사진을 구분하고 지정 삭제를 유지한다",
+      "status": "PASS",
+      "scope_and_result": "새 예상/실측 그림 생성 없이 기존 그림을 보존. native 표시의 그림/캡션 배치 확인.",
+      "evidence": [
+        "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\SR-field-compare.json",
+        "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\SGR-field-compare.json",
+        "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\SR-visual-final-review.json",
+        "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\SGR-visual-final-review.json"
+      ]
+    },
+    {
+      "id": 21,
+      "title": "일반 시간 시험의 날짜와 경계 입력을 구분한다",
+      "status": "NA",
+      "scope_and_result": "일반 시간 시험/경계 입력/과거 승인 날짜 편집 없음.",
+      "evidence": [
+        "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\published.json"
+      ]
+    },
+    {
+      "id": 22,
+      "title": "담당별 표시를 적용하고 자료 수신 뒤에도 지정 접두어를 유지한다",
+      "status": "PASS",
+      "scope_and_result": "사용자의 이번 해제 지시를 SR/SGR 두 Word에만 적용. QCC/공동 안내 6개를 해제하고 실제 내용12개 C00000 굵게 10pt/밑줄없음. 미확정6개 검정10pt, E8300 보완 표시 보존. SV22에 해제 범위 기록.",
+      "evidence": [
+        "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\content-saved-review.json",
+        "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\native-font-check.json",
+        "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\post-publish-checks.json"
+      ]
+    },
+    {
+      "id": 23,
+      "title": "중앙 QCC 위치 목록을 저장본과 함께 갱신한다",
+      "status": "PASS",
+      "scope_and_result": "최종 G 저장본에서 제목/검색 문구를 재수집하여 중앙 목록의 완료본 경로/반영12곳/미확정6곳/확인일 갱신. 전체12개 링크 존재 확인.",
+      "evidence": [
+        "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\current-positions.json",
+        "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\post-publish-checks.json"
+      ]
+    },
+    {
+      "id": 24,
+      "title": "Excel의 정렬과 행/병합/테두리를 실제 표시로 확인한다",
+      "status": "NA",
+      "scope_and_result": "Excel 서식은 편집하지 않음.",
+      "evidence": [
+        "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\published.json"
+      ]
+    },
+    {
+      "id": 25,
+      "title": "Excel 본문은 적용 내용만 두고 변경 비교는 별도 시트에 작성한다",
+      "status": "NA",
+      "scope_and_result": "Excel 본문/비교 시트를 변경하지 않음.",
+      "evidence": [
+        "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\published.json"
+      ]
+    },
+    {
+      "id": 26,
+      "title": "Word 본 파일에 실제 수락/거부 가능한 변경 추적을 남긴다",
+      "status": "PASS",
+      "scope_and_result": "6개 안내 문구의 실제 김은수 삭제/삽입과 새 변경의 native 수락/거부 검증. 기존 이력/그림 보존. 현재 서식은 직접 조정하고 기존 format snapshot을 보존했으며 중첩 새 서식 추적을 만들지 않은 범위를 명시.",
+      "evidence": [
+        "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\native-projection.json",
+        "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\content-final-review.json",
+        "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\content-saved-review.json",
+        "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\SR-field-compare.json",
+        "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\SGR-field-compare.json"
+      ]
+    },
+    {
+      "id": 27,
+      "title": "원본, 산출물 경로와 작성/승인 정보를 보존한다",
+      "status": "PASS",
+      "scope_and_result": "같은 G 입력 폴더에 기존 접두어+_완료로 게시하고 로컬 이전 사본 보관. 보호원본23/다른현재10 게시 직전후 불변. SRS/SUVR 외부 해시 변경은 보존하며 이전 검증을 새현재본 검증으로 오인하지 않게 기록.",
+      "evidence": [
+        "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\published.json",
+        "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\post-publish-checks.json"
+      ]
+    },
+    {
+      "id": 28,
+      "title": "최종 저장 내용과 전체 표시를 검증한다",
+      "status": "PASS",
+      "scope_and_result": "최종 fields 저장본 SHA와 G 게시본 일치. Word native 11+11쪽 전체 직접 열람/빈 페이지·잘림·목차 검토, 정확 문구/실제 RangeFont18곳 검사. 최초 size속성생략 FAIL은 실제Word값으로 재판정.",
+      "evidence": [
+        "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\content-saved-review.json",
+        "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\native-font-check.json",
+        "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\SR-visual-final-review.json",
+        "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\SGR-visual-final-review.json",
+        "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\post-publish-checks.json"
+      ]
+    },
+    {
+      "id": 29,
+      "title": "우리의 Word 공통 형식을 같은 본문 체계로 적용한다",
+      "status": "PASS",
+      "scope_and_result": "실제 공통 DOTX 기준의59 TDC 스타일/지원참조를 보존하고 제목·목록·본문 기준선/번호굵기/본문10pt·1.25배·뒤8pt/표·그림·목차를 검사. 빈 페이지와 메모리2탭을 수정해 최종 표시 확인.",
+      "evidence": [
+        "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\authored.json",
+        "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\layout-refinement.json",
+        "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\native-font-check.json",
+        "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\SR-visual-final-review.json",
+        "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\SGR-visual-final-review.json"
+      ]
+    }
+  ],
+  "counts": {
+    "PASS": 13,
+    "NA": 16
+  },
+  "unresolved_requested_edit_checks": [],
+  "product_tests_executed": false,
+  "actual_QCC_data_still_unconfirmed": 6
+}

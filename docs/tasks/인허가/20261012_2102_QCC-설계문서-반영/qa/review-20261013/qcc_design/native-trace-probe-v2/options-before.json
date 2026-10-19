@@ -1,0 +1,12 @@
+{
+  "at": "2026-10-13T10:29:45.6985153+09:00",
+  "UserName": "QCCNativeParagraphProbe20261013",
+  "UserInitials": "QA",
+  "UseLocalUserInfo": false,
+  "ScreenUpdating": true,
+  "rootCreatedWordPIDCandidates": [
+    4284
+  ],
+  "sourceSHA256": "8af46ef971b15ec6815cb5aed66e25580a4c9494d43dcdf4925852cb38c50515",
+  "scope": "Exact v2 starting values only; does not claim recovery of unrecorded pre-v1 profile values"
+}

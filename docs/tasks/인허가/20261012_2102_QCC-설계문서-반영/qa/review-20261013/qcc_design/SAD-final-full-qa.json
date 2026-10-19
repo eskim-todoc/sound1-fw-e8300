@@ -1,0 +1,114 @@
+{
+  "sourceSHA256": "84f592a7f7988a78eb73fa718268cc22ddf20a5bac796358b971aba0d23ccc68",
+  "source": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SAD-FW-TD24A 소프트웨어 아키텍쳐 기술서.docx",
+  "scope": "Assigned physical pages43..55: each full original-size PNG opened directly with view_image; no contact-only judgment. Page4 standard-title query was an additional read-only content check. Document verification only.",
+  "pages": [
+    {
+      "page": 43,
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\final-word\\SAD\\page-043.png",
+      "sha256": "55f9c5f0a542d413c472335b38f74c018afd049ea497bd4c0c3b02cf88bf8ba8",
+      "direct_original_size_viewed": true,
+      "verdict": "통과"
+    },
+    {
+      "page": 44,
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\final-word\\SAD\\page-044.png",
+      "sha256": "40a0accda83fed2ed48f059410d087fb1e32d6d5304096f4a6eb35fb31f01623",
+      "direct_original_size_viewed": true,
+      "verdict": "통과"
+    },
+    {
+      "page": 45,
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\final-word\\SAD\\page-045.png",
+      "sha256": "a7f1d70fe478d4e94ac6ba6bd425cff05df5291dd28a85abe2f3c7ae13f5297d",
+      "direct_original_size_viewed": true,
+      "verdict": "통과"
+    },
+    {
+      "page": 46,
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\final-word\\SAD\\page-046.png",
+      "sha256": "ea8e8e656350544b374d4e0217f4dff334ba937011cb3f6c54aef49b9d5b6a0d",
+      "direct_original_size_viewed": true,
+      "verdict": "통과"
+    },
+    {
+      "page": 47,
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\final-word\\SAD\\page-047.png",
+      "sha256": "4936c79e6fae377b701ef4a14812e0797ecec1ae3c3134502dfa0558cff83f69",
+      "direct_original_size_viewed": true,
+      "verdict": "통과"
+    },
+    {
+      "page": 48,
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\final-word\\SAD\\page-048.png",
+      "sha256": "d7da6c1e23f657cf360f55e7fcc724f6bd16143831006c13956b7f7c95002236",
+      "direct_original_size_viewed": true,
+      "verdict": "통과"
+    },
+    {
+      "page": 49,
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\final-word\\SAD\\page-049.png",
+      "sha256": "baeadd2b440d7bbf4838a0a2ad1272c9f1b127c7b65ade68b8045cd57e1f38c8",
+      "direct_original_size_viewed": true,
+      "verdict": "통과"
+    },
+    {
+      "page": 50,
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\final-word\\SAD\\page-050.png",
+      "sha256": "1736ef8200d2b9c749d0b52584f29349184bbf0ead4f7f0b46f27283a8a9aa16",
+      "direct_original_size_viewed": true,
+      "verdict": "통과"
+    },
+    {
+      "page": 51,
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\final-word\\SAD\\page-051.png",
+      "sha256": "518f1d3c153f0fea1ff12619df82746de109792c8d5609d83e552ed7b250eb1f",
+      "direct_original_size_viewed": true,
+      "verdict": "통과"
+    },
+    {
+      "page": 52,
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\final-word\\SAD\\page-052.png",
+      "sha256": "ffaa9fb5976a661ab41813c687e9c2c02aa49d3bc38462c376f267bca9381c6f",
+      "direct_original_size_viewed": true,
+      "verdict": "통과"
+    },
+    {
+      "page": 53,
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\final-word\\SAD\\page-053.png",
+      "sha256": "a5fc408244163ae1067100a5339fc05f43750106134d65e682502675dd35336b",
+      "direct_original_size_viewed": true,
+      "verdict": "통과"
+    },
+    {
+      "page": 54,
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\final-word\\SAD\\page-054.png",
+      "sha256": "9fe596f98351884fee33de38de32a1e69151cf16cfc005ab621106038b324924",
+      "direct_original_size_viewed": true,
+      "verdict": "통과"
+    },
+    {
+      "page": 55,
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\final-word\\SAD\\page-055.png",
+      "sha256": "bcccb0133ac3d82233951f0c7d90fa107734571d98c5668363a2ee6140df87d7",
+      "direct_original_size_viewed": true,
+      "verdict": "통과"
+    }
+  ],
+  "status": "통과",
+  "observations": [
+    {
+      "page": 46,
+      "item": "Long RID69 trace row uses native full-page layout without repeated header on its first page; following page47 repeats header. Native tblHeader remains set; all unit names/IDs/notice text readable and no clipping. Root independently confirmed content/clip PASS.",
+      "classification": "native long-row layout observation, not content loss"
+    },
+    {
+      "page": 4,
+      "item": "ISO14971 English title ends at medical in protected E original,8AF baseline,and final native accepted cell. No fixed row-height entry and no trailing hidden devices.",
+      "classification": "unchanged original title wording, not new clipping"
+    }
+  ],
+  "native_final_accepted_cells": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\final-word\\SAD-native-accepted-cells.json",
+  "native_final_accepted_cells_sha256": "f77889e4f52b640ff85bb3a36f40288c9a0ec02278a2983ef61ed0cee2baf107",
+  "pending_product_verdict": "QCC実제품 시험은 미실행 / 판정 대기; this visual review is not product test pass"
+}

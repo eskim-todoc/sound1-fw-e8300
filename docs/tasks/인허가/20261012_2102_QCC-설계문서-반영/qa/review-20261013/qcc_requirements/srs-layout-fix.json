@@ -1,0 +1,9 @@
+{
+  "before_sha256": "E7DFB3B707E7F60241CB3D6752A9F93370A42CF4DF7C35014D991573E476A1B5",
+  "after_sha256": "468F5E305AD1386DD0A02868F3C1EB3C6D290F53406F4601BFB11C26CB337D30",
+  "row": 56,
+  "old_height": "160",
+  "new_height": 200,
+  "reason": "실제 Excel 전체 인쇄 10쪽에서 F56 첫 줄이 잘린 현상을 행 높이로 보완. 내용/추적/병합/서식은 유지.",
+  "native_recheck": "대기"
+}

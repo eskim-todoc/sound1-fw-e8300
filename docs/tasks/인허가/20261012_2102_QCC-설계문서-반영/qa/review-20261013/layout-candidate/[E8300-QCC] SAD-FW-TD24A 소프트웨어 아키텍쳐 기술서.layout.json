@@ -1,0 +1,19 @@
+{
+  "code": "SAD",
+  "source": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SAD-FW-TD24A 소프트웨어 아키텍쳐 기술서.docx",
+  "candidate": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\layout-candidate\\[E8300-QCC] SAD-FW-TD24A 소프트웨어 아키텍쳐 기술서.docx",
+  "source_sha256": "381ffb1d8ee99f596c907e9ed1b932c4101737417354a53c25675527ce22783b",
+  "candidate_sha256": "2ce9616ba54e222b09b0f1802d77c08375d87373491e2c3a8d45ee4e0f72fa1d",
+  "repairs": [
+    {
+      "paragraph_id": "34E32455",
+      "before_spacing": {
+        "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}after": "0",
+        "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}line": "20",
+        "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}lineRule": "exact"
+      },
+      "repair": "Normal 10pt/automatic TOC end paragraph; computed TOC only, existing pPrChange history preserved"
+    }
+  ],
+  "scope": "QA candidate only; no revisions accepted/rejected"
+}

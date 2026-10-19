@@ -1,0 +1,29 @@
+{
+  "baselineSHA": "01353E812C3AE3C391079A46FBAD19B4F863F51698AEA72131D243D7EE71C02C",
+  "candidateSHA": "64E7636993431C36BA9D9FF4A5A1C0CBC38EF23EB1889DDDBC8C6574EB77C90C",
+  "counts": {
+    "bodyStyle10": 2967,
+    "bodyRun10": 1367,
+    "bodyPadding": 1109,
+    "outsideTextCells": 13435,
+    "pinkTestIDs": 70
+  },
+  "errors": [],
+  "testIDs": 83,
+  "mainRows": [
+    34,
+    293
+  ],
+  "pureQCCPendingPreserved": [
+    54,
+    59
+  ],
+  "verdictSourceTests": [
+    15,
+    16,
+    69,
+    74,
+    78
+  ],
+  "newProductMeasurementsPerformed": false
+}

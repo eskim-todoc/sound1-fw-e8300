@@ -1,0 +1,3657 @@
+{
+  "checkedAt": "2026-10-13T09:36:21.613951+09:00",
+  "owner": "qcc_requirements / 독립 읽기 전용 검토",
+  "scope": "SUVC/SUVR 마지막 QCC 38조건 전체 표시와 긴 RTT/정량 표본. 유닛 전체 461쪽 검토로 확대하지 않는다.",
+  "sources": [
+    {
+      "code": "SUVC-main",
+      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SUVC-FW-TD24A 소프트웨어 유닛 검증 기준서.xlsx",
+      "sheet": "기준서_유닛 검증",
+      "range": "B2:K1772",
+      "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVC-main.pdf",
+      "sourceSHA256": "3AC014BFEC9A87FFA92A12DFA01497A48FCFF5E94C792289916E71CFA1CC257B",
+      "sourceUnchanged": true,
+      "originalPrintArea": "$B$2:$K$1772",
+      "scope": "Read-only Excel preview; source print settings preserved",
+      "checkedAt": "2026-10-13T09:30:56.3919903+09:00",
+      "read_only_before": "3AC014BFEC9A87FFA92A12DFA01497A48FCFF5E94C792289916E71CFA1CC257B",
+      "read_only_after": "3AC014BFEC9A87FFA92A12DFA01497A48FCFF5E94C792289916E71CFA1CC257B",
+      "unchanged": true,
+      "current_matches_native_metadata": true
+    },
+    {
+      "code": "SUVR-main",
+      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\04_설계 검증\\SW\\외부기\\[E8300-QCC] SUVR-FW-TD24A 소프트웨어 유닛 검증 보고서.xlsx",
+      "sheet": "보고서_유닛 시험",
+      "range": "B2:M1772",
+      "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVR-main.pdf",
+      "sourceSHA256": "F4DBAE9DBF3CAD87F66C28C85846D289C6160378847B9A8152A39A6457A898F6",
+      "sourceUnchanged": true,
+      "originalPrintArea": "$B$2:$M$1772",
+      "scope": "Read-only Excel preview; source print settings preserved",
+      "checkedAt": "2026-10-13T09:31:52.6501166+09:00",
+      "read_only_before": "F4DBAE9DBF3CAD87F66C28C85846D289C6160378847B9A8152A39A6457A898F6",
+      "read_only_after": "F4DBAE9DBF3CAD87F66C28C85846D289C6160378847B9A8152A39A6457A898F6",
+      "unchanged": true,
+      "current_matches_native_metadata": true
+    }
+  ],
+  "common": {
+    "range": "B30:K1764",
+    "cells_checked": 17350,
+    "value_rich_formula_differences": [],
+    "common_merges_equal": true,
+    "new38style_differences": [],
+    "new38heights_equal": true,
+    "new38height_max": 409.5
+  },
+  "groups": [
+    {
+      "id": "SW-FW-UnitTest-QCC-ID-1",
+      "unit": "SU-ID-QCC-005\n(PIO)",
+      "rows": [
+        1727,
+        1728
+      ],
+      "conditions": [
+        1,
+        2
+      ],
+      "validations": [
+        1,
+        2
+      ],
+      "states": [
+        {
+          "row": 1727,
+          "expected": "\n조건 [1]\n입력: 초기 PIO 설정과 입출력/주변장치 매핑\n통과 기준: tdPio_preInit()이 Application 초기화보다 먼저 실행되고 PIO 방향/출력 초기값이 설정과 같아야 한다. 확인 문자열: TD: TD: tdPio_init() / TD: PIO init end. 두 문자열 외 전체 QCC RTT 형식은 미확정.\n",
+          "result": "\n검증 [1]\n입력: 초기 PIO 설정과 입출력/주변장치 매핑\n실행 상태: 미실행.\n관찰: PIO 방향/출력 초기값, preInit/Application 호출 순서와 전체 로그 미수집/미제공.\n[QCC 자료 입력] 이 조건의 실제 실행 결과와 관찰 근거.\n",
+          "verdict": "\n미실행\n판정 대기\n",
+          "same_condition": true,
+          "actual_unexecuted": true
+        },
+        {
+          "row": 1728,
+          "expected": "\n조건 [2]\n입력: shutdown_ind/inter_dev_conn_ind 각각 초기값0/1 및 0→1,1→0\n통과 기준: 초기 상태와 각 변화에 TD_MSG_PIO_CHANGED가 전달되고 장치 로그에 같은 이벤트가 나타나야 한다. 입력 하나의 변화로 다른 입력 상태가 바뀌지 않아야 한다.\n",
+          "result": "\n검증 [2]\n입력: shutdown_ind/inter_dev_conn_ind 각각 초기값0/1 및 0→1,1→0\n실행 상태: 미실행.\n관찰: 두 PIO 신호, 초기/변화 이벤트와 상태 로그 미수집/미제공.\n[QCC 자료 입력] 이 조건의 실제 실행 결과와 관찰 근거.\n",
+          "verdict": "\n미실행\n판정 대기\n",
+          "same_condition": true,
+          "actual_unexecuted": true
+        }
+      ]
+    },
+    {
+      "id": "SW-FW-UnitTest-QCC-ID-2",
+      "unit": "SU-ID-QCC-006\n(Power)",
+      "rows": [
+        1729,
+        1732
+      ],
+      "conditions": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "validations": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "states": [
+        {
+          "row": 1729,
+          "expected": "\n조건 [1]\n입력: 배터리 특성 설정과 전압4.2/3.95/3.7/3.475/3.35/3.0 V\n통과 기준: 전압[V]→잔량[%]: 4.2 이상→100,3.95→80,3.7→60,3.475→40,3.35→20,3.0→0. 주기 읽기와 변환/저장 경로가 연결되어야 한다. 주기 수치 및10% 허용오차의 상대오차/%p 의미는 미확정.\n",
+          "result": "\n검증 [1]\n입력: 배터리 특성 설정과 전압4.2/3.95/3.7/3.475/3.35/3.0 V\n실행 상태: 미실행.\n관찰: 공급/ADC 전압, 읽기 시각, 변환/저장 잔량 미수집/미제공.\n[QCC 자료 입력] 이 조건의 실제 실행 결과와 관찰 근거.\n",
+          "verdict": "\n미실행\n판정 대기\n",
+          "same_condition": true,
+          "actual_unexecuted": true
+        },
+        {
+          "row": 1730,
+          "expected": "\n조건 [2]\n입력: 충전 케이블 연결→분리, 동일 배터리 상태\n통과 기준: 연결과 분리를 각각 인식하고 충전 중 잔량 증가를 보여야 한다. 연결됨/미연결/충전 중/비충전 상태는 서로 구분한다.\n",
+          "result": "\n검증 [2]\n입력: 충전 케이블 연결→분리, 동일 배터리 상태\n실행 상태: 미실행.\n관찰: 연결/분리 시각, 충전 상태 및 잔량 변화 미수집/미제공.\n[QCC 자료 입력] 이 조건의 실제 실행 결과와 관찰 근거.\n",
+          "verdict": "\n미실행\n판정 대기\n",
+          "same_condition": true,
+          "actual_unexecuted": true
+        },
+        {
+          "row": 1731,
+          "expected": "\n조건 [3]\n입력: 외부 충전 Enable, 공급 전압4.2 V 이상/3.95/3.7/3.475/3.35/3.0 V\n통과 기준: 전압[V]→잔량[%]/상태: 4.2 이상→100/Full,3.95→80,3.7→60,3.475→40,3.35→20,3.0→0/Empty. Empty에서는 모든 동작 정지/저전압 진입. 충전 중 deep sleep 금지 조건과 Empty 우선순위가 미확정이면 그 범위의 판정은 대기한다. 10%의 상대오차/%p 기준이 미확정인 수치 판정도 대기한다.\n",
+          "result": "\n검증 [3]\n입력: 외부 충전 Enable, 공급 전압4.2 V 이상/3.95/3.7/3.475/3.35/3.0 V\n실행 상태: 미실행.\n관찰: 각 공급/ADC 전압과 잔량/상태, Empty 동작 및 충전 상태 미수집/미제공.\n[QCC 자료 입력] 이 조건의 실제 실행 결과와 관찰 근거.\n",
+          "verdict": "\n미실행\n판정 대기\n",
+          "same_condition": true,
+          "actual_unexecuted": true
+        },
+        {
+          "row": 1732,
+          "expected": "\n조건 [4]\n입력: shutdown_ind=0/1, 충전 중/비충전 상태 구분\n통과 기준: QCC 논리 조건0=저전압 진입,1=깨움. E8300 QCC_CTRL은 High=정상/Low=종료 요청이다. 논리 입력과 물리 핀의 반전/매핑 및 충전 중 동작이 확정되지 않은 부분은 판정 대기.\n",
+          "result": "\n검증 [4]\n입력: shutdown_ind=0/1, 충전 중/비충전 상태 구분\n실행 상태: 미실행.\n관찰: 논리 입력/물리 핀, 충전 상태, 절전/깨움 및 마지막 SPI 시각 미수집/미제공.\n[QCC 자료 입력] 이 조건의 실제 실행 결과와 관찰 근거.\n",
+          "verdict": "\n미실행\n판정 대기\n",
+          "same_condition": true,
+          "actual_unexecuted": true
+        }
+      ]
+    },
+    {
+      "id": "SW-FW-UnitTest-QCC-ID-3",
+      "unit": "SU-ID-QCC-007\n(NVM)",
+      "rows": [
+        1733,
+        1733
+      ],
+      "conditions": [
+        1
+      ],
+      "validations": [
+        1
+      ],
+      "states": [
+        {
+          "row": 1733,
+          "expected": "\n조건 [1]\n입력: Application PS 키 TD_PS_KEY_EX_DEV_SERIAL_NUNM의 격리된 시험 일련번호\n통과 기준: 키 매핑과 읽기/쓰기 인터페이스가 존재하고 읽기 전량 값이 같은 조건에서 쓴 시험 번호와 정확히 같아야 한다. 일련번호 형식/길이가 미확정이면 구체 시험 번호와 기대 전바이트를 확정할 때까지 판정 대기.\n",
+          "result": "\n검증 [1]\n입력: Application PS 키 TD_PS_KEY_EX_DEV_SERIAL_NUNM의 격리된 시험 일련번호\n실행 상태: 미실행.\n관찰: PS 위치/길이, 시험 번호의 쓰기/읽기 전량 미수집/미제공.\n[QCC 자료 입력] 이 조건의 실제 실행 결과와 관찰 근거.\n",
+          "verdict": "\n미실행\n판정 대기\n",
+          "same_condition": true,
+          "actual_unexecuted": true
+        }
+      ]
+    },
+    {
+      "id": "SW-FW-UnitTest-QCC-ID-4",
+      "unit": "SU-ID-QCC-001\n(초기화/설정)\nSU-ID-QCC-002\n(시스템 상태/SPI)",
+      "rows": [
+        1734,
+        1735
+      ],
+      "conditions": [
+        1,
+        2
+      ],
+      "validations": [
+        1,
+        2
+      ],
+      "states": [
+        {
+          "row": 1734,
+          "expected": "\n조건 [1]\n입력: 초기 설정 완료 후 시스템 기동\n통과 기준: 초기 설정이 초기화 전에 끝나고 Application은 선행 시스템 부분의 초기화 후 수행되어야 한다. Application 이전 PIO preInit과 HW 초기화 중 PIO 설정을 구분한다. Battery/Charging/Power/Classic/BLE/충전케이스 통신 초기화가 동작 경로에 포함되어야 한다.\n",
+          "result": "\n검증 [1]\n입력: 초기 설정 완료 후 시스템 기동\n실행 상태: 미실행.\n관찰: 설정 완료 시점, 각 초기화/Application 호출 순서 미수집/미제공.\n[QCC 자료 입력] 이 조건의 실제 실행 결과와 관찰 근거.\n",
+          "verdict": "\n미실행\n판정 대기\n",
+          "same_condition": true,
+          "actual_unexecuted": true
+        },
+        {
+          "row": 1735,
+          "expected": "\n조건 [2]\n입력: 기동 후 shutdown_ind=0, 이후 배터리 주기 읽기. 잔량80/충전1/뚜껑1과잔량40/충전0/뚜껑2\n예상/판정: 입력 A: 잔량80%, charger_connected=1, lid=1. 논리 메시지 버퍼20byte(hex)=34 50 01 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n입력 B: 잔량40%, charger_connected=0, lid=2. 논리 메시지 버퍼20byte(hex)=34 28 00 02 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n각 입력의 E8300 응답 저장배열21byte(hex)=34 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 02; 마지막 index20=응답길이2, 유효 ACK=34 01.\nE8300 전체 예상 RTT A: [BT] CMD 0x34, CHARGER STATE: 1, BATT LEVEL 80 PERCENT, LID STATE 1\n전체 예상 RTT B: [BT] CMD 0x34, CHARGER STATE: 0, BATT LEVEL 40 PERCENT, LID STATE 2\n위 RTT는 E8300 구현 출력의 예상 문자열이며 QCC 실측 로그가 아니다. 각 상태80→40, charger1→0, lid1→2. shutdown_ind 전송 시점은 미확정.\n전송 경계: type+payload는최대20byte이며 위 hex는논리20byte버퍼(미사용00포함)이다. 실제SPI물리프레임은20byte+별도length1byte=21byte로구분한다.\n[QCC/E8300 자료 입력] 실제QCC 송신의length필드 값/위치 및논리메시지→SPI21byte변환 자료. E8300 응답index20=2와구분한다.\n",
+          "result": "\n검증 [2]\n입력: 기동 후 shutdown_ind=0, 이후 배터리 주기 읽기. 잔량80/충전1/뚜껑1과잔량40/충전0/뚜껑2\n실행 상태: 미실행.\n관찰: 입력/수신 전량 바이트, 저장 상태/전체 RTT 미수집/미제공.\n[QCC 자료 입력] 이 조건의 실제 실행 결과와 관찰 근거.\n",
+          "verdict": "\n미실행\n판정 대기\n",
+          "same_condition": true,
+          "actual_unexecuted": true
+        }
+      ]
+    },
+    {
+      "id": "SW-FW-UnitTest-QCC-ID-5",
+      "unit": "SU-ID-QCC-002\n(시스템 상태/SPI)",
+      "rows": [
+        1736,
+        1736
+      ],
+      "conditions": [
+        1
+      ],
+      "validations": [
+        1
+      ],
+      "states": [
+        {
+          "row": 1736,
+          "expected": "\n조건 [1]\n입력: 다른 상태는 고정, shutdown_ind/inter_dev_conn_ind=0→1→0, 잔량40→80, 충전 분리→연결, Classic/BLE 연결→해제\n통과 기준: 두 PIO의 조회값0→1→0, 잔량40→80, 충전 연결/분리 및 Classic/BLE 연결/해제가 실제 입력과 같고 다른 상태의 저장값에 혼선이 없어야 한다.\n",
+          "result": "\n검증 [1]\n입력: 다른 상태는 고정, shutdown_ind/inter_dev_conn_ind=0→1→0, 잔량40→80, 충전 분리→연결, Classic/BLE 연결→해제\n실행 상태: 미실행.\n관찰: 여섯 입력/저장/조회값 및 전체 상태 로그 미수집/미제공.\n[QCC 자료 입력] 이 조건의 실제 실행 결과와 관찰 근거.\n",
+          "verdict": "\n미실행\n판정 대기\n",
+          "same_condition": true,
+          "actual_unexecuted": true
+        }
+      ]
+    },
+    {
+      "id": "SW-FW-UnitTest-QCC-ID-6",
+      "unit": "SU-ID-QCC-003\n(장치 상태(Standalone/TWS))",
+      "rows": [
+        1737,
+        1737
+      ],
+      "conditions": [
+        1
+      ],
+      "validations": [
+        1
+      ],
+      "states": [
+        {
+          "row": 1737,
+          "expected": "\n조건 [1]\n입력: 생산 구성: A=Standalone1대, B=TWS2대1세트, C=TWS 구성의1대 단독 사용\n통과 기준: A:1대에서L/R 오디오 모두 처리하고 데이터는 별도 위치 구분 없이 처리. B:2대가 각각L/R 오디오와 위치별 데이터를 처리. C:TWS 구성도1대 단독 사용 가능. 모드는 생산 시 결정되며 동작 중 바뀌지 않아야 한다. 정확한 모드 코드/좌우 배정/peer 전달 / 복구 계약은 미확정.\n",
+          "result": "\n검증 [1]\n입력: 생산 구성: A=Standalone1대, B=TWS2대1세트, C=TWS 구성의1대 단독 사용\n실행 상태: 미실행.\n관찰: 생산 모드/동작 중 유지, A/B/C별 오디오/데이터 및 peer 상태 미수집/미제공.\n[QCC 자료 입력] 이 조건의 실제 실행 결과와 관찰 근거.\n",
+          "verdict": "\n미실행\n판정 대기\n",
+          "same_condition": true,
+          "actual_unexecuted": true
+        }
+      ]
+    },
+    {
+      "id": "SW-FW-UnitTest-QCC-ID-7",
+      "unit": "SU-ID-QCC-004\n(Bluetooth 상태/활성/장치명)",
+      "rows": [
+        1738,
+        1739
+      ],
+      "conditions": [
+        1,
+        2
+      ],
+      "validations": [
+        1,
+        2
+      ],
+      "states": [
+        {
+          "row": 1738,
+          "expected": "\n조건 [1]\n입력: inter_dev_conn_ind=0→1→0\n통과 기준: 0=Bluetooth 비활성,1=활성. 다시0이면 비활성으로 돌아가야 한다. 이 입력은 E8300 내부기 연결 표시이며 등록 신원/RF 검증 결과와 구분한다.\n",
+          "result": "\n검증 [1]\n입력: inter_dev_conn_ind=0→1→0\n실행 상태: 미실행.\n관찰: 연결 표시, 활성 상태, 검색/연결 상태 미수집/미제공.\n[QCC 자료 입력] 이 조건의 실제 실행 결과와 관찰 근거.\n",
+          "verdict": "\n미실행\n판정 대기\n",
+          "same_condition": true,
+          "actual_unexecuted": true
+        },
+        {
+          "row": 1739,
+          "expected": "\n조건 [2]\n입력: 연결 표시1, 수술위치L/R, 시험 사용자TEST01, 외부기 시험 식별번호\n통과 기준: 장치명은TD_<L 또는 R>__SOUND_<UserName>_<ExternalDeviceInfo> 구성으로 위치/사용자/외부기 식별을 반영하고 생성값/로그/검색값이 같아야 한다. 구분자/공백 및 식별번호 직렬화가 미확정이면 기대 문자열 확정 전 판정 대기.\n",
+          "result": "\n검증 [2]\n입력: 연결 표시1, 수술위치L/R, 시험 사용자TEST01, 외부기 시험 식별번호\n실행 상태: 미실행.\n관찰: 정보 요청/응답, L/R별 생성 이름 / 로그 / 스캔 전량 미수집/미제공.\n[QCC 자료 입력] 이 조건의 실제 실행 결과와 관찰 근거.\n",
+          "verdict": "\n미실행\n판정 대기\n",
+          "same_condition": true,
+          "actual_unexecuted": true
+        }
+      ]
+    },
+    {
+      "id": "SW-FW-UnitTest-QCC-ID-8",
+      "unit": "SU-ID-QCC-004\n(Bluetooth 상태/활성/장치명)\nSU-ID-QCC-008\n(Bluetooth Classic)\nSU-ID-QCC-009\n(BLE)",
+      "rows": [
+        1740,
+        1743
+      ],
+      "conditions": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "validations": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "states": [
+        {
+          "row": 1740,
+          "expected": "\n조건 [1]\n입력: 내부기 미부착→부착→탈착→재부착, nRFConnect 검색\n통과 기준: 미부착/탈착은 미검색, 부착/재부착은 검색 가능. 검색 이름과 생성/로그 이름이 같아야 한다.\n",
+          "result": "\n검증 [1]\n입력: 내부기 미부착→부착→탈착→재부착, nRFConnect 검색\n실행 상태: 미실행.\n관찰: 각 부착 상태의 PIO/광고/검색 이름 미수집/미제공.\n[QCC 자료 입력] 이 조건의 실제 실행 결과와 관찰 근거.\n",
+          "verdict": "\n미실행\n판정 대기\n",
+          "same_condition": true,
+          "actual_unexecuted": true
+        },
+        {
+          "row": 1741,
+          "expected": "\n조건 [2]\n입력: 내부기 부착, BLE 연결 후1분 유지→탈착\n통과 기준: 탈착하면 BLE 연결이 해제되어야 한다. 1분은 탈착 전 유지 시간이며 해제 지연의 허용상한이 아니다.\n",
+          "result": "\n검증 [2]\n입력: 내부기 부착, BLE 연결 후1분 유지→탈착\n실행 상태: 미실행.\n관찰: 유지 시작/탈착/해제 시각, 연결 상태 및 해제 주체 미수집/미제공.\n[QCC 자료 입력] 이 조건의 실제 실행 결과와 관찰 근거.\n",
+          "verdict": "\n미실행\n판정 대기\n",
+          "same_condition": true,
+          "actual_unexecuted": true
+        },
+        {
+          "row": 1742,
+          "expected": "\n조건 [3]\n입력: Classic 페어링 준비, 미부착→부착→탈착→재부착\n통과 기준: 미부착/탈착은 미검색, 부착/재부착은 검색 가능. 스마트폰 이름과 생성/로그 이름이 같아야 한다.\n",
+          "result": "\n검증 [3]\n입력: Classic 페어링 준비, 미부착→부착→탈착→재부착\n실행 상태: 미실행.\n관찰: 각 부착 상태의 Classic 검색/장치명 미수집/미제공.\n[QCC 자료 입력] 이 조건의 실제 실행 결과와 관찰 근거.\n",
+          "verdict": "\n미실행\n판정 대기\n",
+          "same_condition": true,
+          "actual_unexecuted": true
+        },
+        {
+          "row": 1743,
+          "expected": "\n조건 [4]\n입력: 내부기 부착, Classic 연결 후1분 유지→탈착\n통과 기준: 탈착하면 Classic 연결이 해제되어야 한다. 1분은 탈착 전 유지 시간이다.\n",
+          "result": "\n검증 [4]\n입력: 내부기 부착, Classic 연결 후1분 유지→탈착\n실행 상태: 미실행.\n관찰: 유지 시작/탈착/해제 시각, 프로파일 상태 및 해제 주체 미수집/미제공.\n[QCC 자료 입력] 이 조건의 실제 실행 결과와 관찰 근거.\n",
+          "verdict": "\n미실행\n판정 대기\n",
+          "same_condition": true,
+          "actual_unexecuted": true
+        }
+      ]
+    },
+    {
+      "id": "SW-FW-UnitTest-QCC-ID-9",
+      "unit": "SU-ID-QCC-009\n(BLE)",
+      "rows": [
+        1744,
+        1745
+      ],
+      "conditions": [
+        1,
+        2
+      ],
+      "validations": [
+        1,
+        2
+      ],
+      "states": [
+        {
+          "row": 1744,
+          "expected": "\n조건 [1]\n입력: 부착/양이peer 구성, 현재잔량37→72%, peer72→37%\n통과 기준: Advertising은장치명/시리얼번호/Flags, ScanResponse는Appearance/Flags 및현재/peer잔량 / 충전상태를 포함해야 한다. 현재/peer 잔량쌍(37,72)→(72,37)이 갱신되어야 한다. UUID/AD형식/필드 위치가 미확정이면 기대 전바이트를 확정하기 전 판정 대기.\n",
+          "result": "\n검증 [1]\n입력: 부착/양이peer 구성, 현재잔량37→72%, peer72→37%\n실행 상태: 미실행.\n관찰: 잔량쌍, Advertising/ScanResponse 생성/수신 전바이트 및 전체 로그 미수집/미제공.\n[QCC 자료 입력] 이 조건의 실제 실행 결과와 관찰 근거.\n",
+          "verdict": "\n미실행\n판정 대기\n",
+          "same_condition": true,
+          "actual_unexecuted": true
+        },
+        {
+          "row": 1745,
+          "expected": "\n조건 [2]\n입력: 내부기 부착, nRFConnect BLE 연결→해제\n통과 기준: 연결/해제마다 해당 상태를 저장/조회하고 장치 로그가 실제 상태에 대응해야 한다.\n",
+          "result": "\n검증 [2]\n입력: 내부기 부착, nRFConnect BLE 연결→해제\n실행 상태: 미실행.\n관찰: 연결/해제 시각, 저장/조회 상태 및 전체 로그 미수집/미제공.\n[QCC 자료 입력] 이 조건의 실제 실행 결과와 관찰 근거.\n",
+          "verdict": "\n미실행\n판정 대기\n",
+          "same_condition": true,
+          "actual_unexecuted": true
+        }
+      ]
+    },
+    {
+      "id": "SW-FW-UnitTest-QCC-ID-10",
+      "unit": "SU-ID-QCC-008\n(Bluetooth Classic)",
+      "rows": [
+        1746,
+        1750
+      ],
+      "conditions": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "validations": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "states": [
+        {
+          "row": 1746,
+          "expected": "\n조건 [1]\n입력: 내부기 부착/BLE 연결, Pair 요청19 04 02 01 80 80\n통과 기준: 응답6byte(hex)=19 04 04 01 80 01. 요청을Pairing 명령으로 처리하고 요청 후 스마트폰에서 검색 가능해야 한다.\n",
+          "result": "\n검증 [1]\n입력: 내부기 부착/BLE 연결, Pair 요청19 04 02 01 80 80\n실행 상태: 미실행.\n관찰: 요청/응답6byte, Pairing 처리와 전후 검색 상태 미수집/미제공.\n[QCC 자료 입력] 이 조건의 실제 실행 결과와 관찰 근거.\n",
+          "verdict": "\n미실행\n판정 대기\n",
+          "same_condition": true,
+          "actual_unexecuted": true
+        },
+        {
+          "row": 1747,
+          "expected": "\n조건 [2]\n입력: 스마트폰 Classic 연결→해제\n통과 기준: Classic 연결/해제마다 저장/조회 상태와 로그가 실제 상태를 반영해야 한다.\n",
+          "result": "\n검증 [2]\n입력: 스마트폰 Classic 연결→해제\n실행 상태: 미실행.\n관찰: 프로파일 연결/해제와 저장/조회 상태 / 전체 로그 미수집/미제공.\n[QCC 자료 입력] 이 조건의 실제 실행 결과와 관찰 근거.\n",
+          "verdict": "\n미실행\n판정 대기\n",
+          "same_condition": true,
+          "actual_unexecuted": true
+        },
+        {
+          "row": 1748,
+          "expected": "\n조건 [3]\n입력: Classic 시험 스피커 출력 구성, 스마트폰 음악 재생\n통과 기준: 오디오 연결을 인식하고 시험 스피커에서 입력 음악에 대응하는 소리를 들어야 한다. 이 시험 스피커 경로는 제품 전극 자극 출력의 판정과 구분한다.\n",
+          "result": "\n검증 [3]\n입력: Classic 시험 스피커 출력 구성, 스마트폰 음악 재생\n실행 상태: 미실행.\n관찰: 오디오 연결 상태/로그와 시험 스피커 청취 미수집/미제공.\n[QCC 자료 입력] 이 조건의 실제 실행 결과와 관찰 근거.\n",
+          "verdict": "\n미실행\n판정 대기\n",
+          "same_condition": true,
+          "actual_unexecuted": true
+        },
+        {
+          "row": 1749,
+          "expected": "\n조건 [4]\n입력: 시험 스피커 구성2대, TWS 양이 설정, 같은 스마트폰 음악\n통과 기준: 두 외부기의 시험 스피커에서 입력 음악에 대응하는 소리를 들어야 한다. 양이 위치/peer 라우팅은 설정과 같아야 한다.\n",
+          "result": "\n검증 [4]\n입력: 시험 스피커 구성2대, TWS 양이 설정, 같은 스마트폰 음악\n실행 상태: 미실행.\n관찰: 두 장치의 peer/오디오 상태 및 개별 청취 미수집/미제공.\n[QCC 자료 입력] 이 조건의 실제 실행 결과와 관찰 근거.\n",
+          "verdict": "\n미실행\n판정 대기\n",
+          "same_condition": true,
+          "actual_unexecuted": true
+        },
+        {
+          "row": 1750,
+          "expected": "\n조건 [5]\n입력: Classic 수신/I2S 하향 구성, 스마트폰 시험 음악, I2S OFF→ON→OFF\n통과 기준: I2S 활성 로그와 시험 스피커 무음 외에 QCC I2S24bit/16kHz 유효 데이터와 E8300 수신이 확인되어야 한다. DIO29 Low=유효. 전극 자극/혼합은 SW-FW-SYS-Test-ID-69(Classic 수신 자극) 및 SW-FW-IntegrationTest-ID-013(I2S/마이크 혼합)의 별도 범위. DMIC2→QCC 통화 상향 송신과 구분한다.\n",
+          "result": "\n검증 [5]\n입력: Classic 수신/I2S 하향 구성, 스마트폰 시험 음악, I2S OFF→ON→OFF\n실행 상태: 미실행.\n관찰: Classic 연결, BCLK/LRCLK/샘플 전량, DIO29 및 E8300 수신 버퍼 미수집/미제공.\n[QCC 자료 입력] 이 조건의 실제 실행 결과와 관찰 근거.\n",
+          "verdict": "\n미실행\n판정 대기\n",
+          "same_condition": true,
+          "actual_unexecuted": true
+        }
+      ]
+    },
+    {
+      "id": "SW-FW-UnitTest-QCC-ID-11",
+      "unit": "SU-ID-QCC-010\n(AUTH service)",
+      "rows": [
+        1751,
+        1752
+      ],
+      "conditions": [
+        1,
+        2
+      ],
+      "validations": [
+        1,
+        2
+      ],
+      "states": [
+        {
+          "row": 1751,
+          "expected": "\n조건 [1]\n입력: 내부기 부착/BLE 연결 후 AUTH 서비스 탐색\n통과 기준: AUTH 서비스 등록과초기화가 실행되어야 한다. Challenge/Confirm=write, Response/Status=read,notify를 정의와 탐색에서 확인. pairing 완료 후 AUTH 접근을 구분한다. UUID와 세부 권한 미확정 부분은 판정 대기.\n",
+          "result": "\n검증 [1]\n입력: 내부기 부착/BLE 연결 후 AUTH 서비스 탐색\n실행 상태: 미실행.\n관찰: AUTH 등록/초기화, 서비스/characteristic 속성 / 권한 미수집/미제공.\n[QCC 자료 입력] 이 조건의 실제 실행 결과와 관찰 근거.\n",
+          "verdict": "\n미실행\n판정 대기\n",
+          "same_condition": true,
+          "actual_unexecuted": true
+        },
+        {
+          "row": 1752,
+          "expected": "\n조건 [2]\n입력: Challenge00..0B,Response10..1B,Confirm20..2B 각12byte 및Status30\n통과 기준: Challenge central→QCC12byte=00 01 02 03 04 05 06 07 08 09 0A 0B\nResponse QCC→central12byte=10 11 12 13 14 15 16 17 18 19 1A 1B\nConfirm central→QCC12byte=20 21 22 23 24 25 26 27 28 29 2A 2B\nStatus QCC→central1byte=30\n각 방향/길이/전량 값 일치. 중계 시험의12byte/Status30은 실제CRA의16byte nonce/상태코드0..3과 별개 시험 패턴이다.\n",
+          "result": "\n검증 [2]\n입력: Challenge00..0B,Response10..1B,Confirm20..2B 각12byte 및Status30\n실행 상태: 미실행.\n관찰: 네 교환의 실제 방향/길이/전량 바이트 미수집/미제공.\n[QCC 자료 입력] 이 조건의 실제 실행 결과와 관찰 근거.\n",
+          "verdict": "\n미실행\n판정 대기\n",
+          "same_condition": true,
+          "actual_unexecuted": true
+        }
+      ]
+    },
+    {
+      "id": "SW-FW-UnitTest-QCC-ID-12",
+      "unit": "SU-ID-QCC-011\n(BLE Data(GAIA))",
+      "rows": [
+        1753,
+        1754
+      ],
+      "conditions": [
+        1,
+        2
+      ],
+      "validations": [
+        1,
+        2
+      ],
+      "states": [
+        {
+          "row": 1753,
+          "expected": "\n조건 [1]\n입력: 편이 설정; Pair=19 04 02 01 80 80, State=19 04 02 01 81 00 01. 시험 A Left/37%, B Right/72%.\n통과 기준: Pair 응답6byte(hex)=19 04 04 01 80 01.\nState A 응답10byte=19 04 03 01 84 01 00 25 00 00; State B=19 04 03 01 84 01 01 48 00 00. aa는 편이 정의0=Left/1=Right, bb는37(25h)/72(48h). 위 값은 재현용 예상값이며 측정값이 아니다. 실제 프레이밍/길이필드는 확정 자료와 대조.\n",
+          "result": "\n검증 [1]\n입력: 편이 설정; Pair=19 04 02 01 80 80, State=19 04 02 01 81 00 01. 시험 A Left/37%, B Right/72%.\n실행 상태: 미실행.\n관찰: 입력/수신 전량 바이트, 저장 상태/전체 RTT 미수집/미제공.\n[QCC 자료 입력] 이 조건의 실제 실행 결과와 관찰 근거.\n",
+          "verdict": "\n미실행\n판정 대기\n",
+          "same_condition": true,
+          "actual_unexecuted": true
+        },
+        {
+          "row": 1754,
+          "expected": "\n조건 [2]\n입력: 양이 설정; Pair=19 04 02 01 03 80 80, State=19 04 02 01 03 81 00 01. 양쪽 nn/aa/잔량37·72를 구별해 준비.\n통과 기준: Pair 응답 template=19 04 04 01 nn 80 01. State 응답 template=19 04 03 01 nn 84 01 aa bb 00 00. bb=37(25h) 또는72(48h). nn 외부기 위치와 aa는 양이1=Left/0=Right와0=Left/1=Right의정의이 충돌한다. 확정된 위치별 기대 전바이트가 마련되기 전 판정 대기. BLE 메시지를20byte SPI로 자동 변환하지 않는다.\n",
+          "result": "\n검증 [2]\n입력: 양이 설정; Pair=19 04 02 01 03 80 80, State=19 04 02 01 03 81 00 01. 양쪽 nn/aa/잔량37·72를 구별해 준비.\n실행 상태: 미실행.\n관찰: 입력/수신 전량 바이트, 저장 상태/전체 RTT 미수집/미제공.\n[QCC 자료 입력] 이 조건의 실제 실행 결과와 관찰 근거.\n",
+          "verdict": "\n미실행\n판정 대기\n",
+          "same_condition": true,
+          "actual_unexecuted": true
+        }
+      ]
+    },
+    {
+      "id": "SW-FW-UnitTest-QCC-ID-13",
+      "unit": "SU-ID-QCC-012\n(CRA 인증)",
+      "rows": [
+        1755,
+        1759
+      ],
+      "conditions": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "validations": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "states": [
+        {
+          "row": 1755,
+          "expected": "\n조건 [1]\n입력: 내부기 부착/CRA앱 BLE 연결, 별도nRFConnect 검색; 앱 해제와내부기 탈착\n통과 기준: 앱 연결 중 미검색이고 해제 후 탈착 상태에서도 미검색이어야 한다. 1:1/검색 조건이며 인증 계산 성공과 구분한다.\n",
+          "result": "\n검증 [1]\n입력: 내부기 부착/CRA앱 BLE 연결, 별도nRFConnect 검색; 앱 해제와내부기 탈착\n실행 상태: 미실행.\n관찰: 앱 연결/해제, 부착 상태 및 검색 결과 미수집/미제공.\n[QCC 자료 입력] 이 조건의 실제 실행 결과와 관찰 근거.\n",
+          "verdict": "\n미실행\n판정 대기\n",
+          "same_condition": true,
+          "actual_unexecuted": true
+        },
+        {
+          "row": 1756,
+          "expected": "\n조건 [2]\n입력: CRA 인증 완료 없는 BLE 연결, timeout30초\n통과 기준: CRA 미완료 상태가30초에타임아웃되어 BLE 해제되어야 한다. 시작/reset/허용오차 미확정 범위는 판정 대기. 180초 무송수신/60초연결제한과 구분한다.\n",
+          "result": "\n검증 [2]\n입력: CRA 인증 완료 없는 BLE 연결, timeout30초\n실행 상태: 미실행.\n관찰: 연결/타이머 시작/타임아웃/해제 시각과Status 미수집/미제공.\n[QCC 자료 입력] 이 조건의 실제 실행 결과와 관찰 근거.\n",
+          "verdict": "\n미실행\n판정 대기\n",
+          "same_condition": true,
+          "actual_unexecuted": true
+        },
+        {
+          "row": 1757,
+          "expected": "\n조건 [3]\n입력: 리모콘auth_type1/매핑2, 각시험키00×16, timeout30초\n통과 기준: 리모콘/매핑 각각 정의된CRA가 성공하고 Status1, 진행 중Status2를 구분해야 한다. 30초 이후 연결 유지/탈착 후 미검색. 앱별 키역할/직렬화 / 독립 계산 벡터가 미확정이면 암호 계산 판정 대기. 연결 유지 자체만으로 계산 통과를 판정하지 않는다.\n",
+          "result": "\n검증 [3]\n입력: 리모콘auth_type1/매핑2, 각시험키00×16, timeout30초\n실행 상태: 미실행.\n관찰: 앱유형/전체 인증값 / Status, 인증완료/연결유지/탈착/검색 미수집/미제공.\n[QCC 자료 입력] 이 조건의 실제 실행 결과와 관찰 근거.\n",
+          "verdict": "\n미실행\n판정 대기\n",
+          "same_condition": true,
+          "actual_unexecuted": true
+        },
+        {
+          "row": 1758,
+          "expected": "\n조건 [4]\n입력: QCC시험키00×16 유지, client만01×16; 타입1리모콘/2매핑\n통과 기준: 인증 실패이며 앱이 연결을 해제하고 앱에서 추가 인증 성공 결과를 보내지 않아야 한다. 실제 키역할/변경 대상 확인이 미확정이면 실행/판정 대기. 양쪽 키를같게바꾼 조건과 구분한다.\n",
+          "result": "\n검증 [4]\n입력: QCC시험키00×16 유지, client만01×16; 타입1리모콘/2매핑\n실행 상태: 미실행.\n관찰: 양쪽 시험키 역할/타입, 실패Status/반환값과해제 주체 미수집/미제공.\n[QCC 자료 입력] 이 조건의 실제 실행 결과와 관찰 근거.\n",
+          "verdict": "\n미실행\n판정 대기\n",
+          "same_condition": true,
+          "actual_unexecuted": true
+        },
+        {
+          "row": 1759,
+          "expected": "\n조건 [5]\n입력: 시험키00×16, auth_type1=매핑/2=리모콘의 타입불일치\n통과 기준: 타입 불일치가 인증 실패로 처리되고 QCC가 연결을 해제해야 한다. Status0(실패)만 알리며 인증 비밀을 노출하지 않아야 한다.\n",
+          "result": "\n검증 [5]\n입력: 시험키00×16, auth_type1=매핑/2=리모콘의 타입불일치\n실행 상태: 미실행.\n관찰: 실제 앱유형/auth_type, 실패Status 및 QCC해제 미수집/미제공.\n[QCC 자료 입력] 이 조건의 실제 실행 결과와 관찰 근거.\n",
+          "verdict": "\n미실행\n판정 대기\n",
+          "same_condition": true,
+          "actual_unexecuted": true
+        }
+      ]
+    },
+    {
+      "id": "SW-FW-UnitTest-QCC-ID-14",
+      "unit": "SU-ID-QCC-013\n(보안 toolbox)",
+      "rows": [
+        1760,
+        1762
+      ],
+      "conditions": [
+        1,
+        2,
+        3
+      ],
+      "validations": [
+        1,
+        2,
+        3
+      ],
+      "states": [
+        {
+          "row": 1760,
+          "expected": "\n조건 [1]\n입력: 리모콘auth_type1, 공개 시험shared_service_key00×16\n통과 기준: TD_PS_KEY_AUTH_SHARED_SERVICE_KEY의16byte키를AES-CMAC인증계산에 사용하고 CRA가정의된순서로 진행되어야 한다. 실제nonce/계산입력 / 독립CMAC벡터가 미확정이면 구체 계산값 판정 대기.\n",
+          "result": "\n검증 [1]\n입력: 리모콘auth_type1, 공개 시험shared_service_key00×16\n실행 상태: 미실행.\n관찰: NVM키 역할/길이, nonce/계산입력 및 전체CMAC/인증상태 미수집/미제공.\n[QCC 자료 입력] 이 조건의 실제 실행 결과와 관찰 근거.\n",
+          "verdict": "\n미실행\n판정 대기\n",
+          "same_condition": true,
+          "actual_unexecuted": true
+        },
+        {
+          "row": 1761,
+          "expected": "\n조건 [2]\n입력: 매핑auth_type2, 공개 clinician_master_key00×16와시험serial_num, timeout30초\n통과 기준: clinic_service_key=[0:15] of SHA256(clinician_master_key,serial_num). 인증값계산은AES-CMAC으로 구분한다. 키/일련번호 직렬화와SRS 알고리즘역할 정합성이 미확정이면 digest/CMAC의구체 계산판정 대기.\n",
+          "result": "\n검증 [2]\n입력: 매핑auth_type2, 공개 clinician_master_key00×16와시험serial_num, timeout30초\n실행 상태: 미실행.\n관찰: 전체입력 직렬화,32byte digest/16byte파생키 및 전체CMAC/인증상태 미수집/미제공.\n[QCC 자료 입력] 이 조건의 실제 실행 결과와 관찰 근거.\n",
+          "verdict": "\n미실행\n판정 대기\n",
+          "same_condition": true,
+          "actual_unexecuted": true
+        },
+        {
+          "row": 1762,
+          "expected": "\n조건 [3]\n입력: NVM시험RAND10byte,BD_ADDR6byte,암호화된shared_service_key의평문00×16\n통과 기준: 복호화 결과16byte=00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00. BD_ADDR직렬화/AES모드 / IV/암호문이 미확정이면 계산판정 대기.\n",
+          "result": "\n검증 [3]\n입력: NVM시험RAND10byte,BD_ADDR6byte,암호화된shared_service_key의평문00×16\n실행 상태: 미실행.\n관찰: RAND/BD_ADDR 직렬화, 암호문/도출키 및16byte복호화값 미수집/미제공.\n[QCC 자료 입력] 이 조건의 실제 실행 결과와 관찰 근거.\n",
+          "verdict": "\n미실행\n판정 대기\n",
+          "same_condition": true,
+          "actual_unexecuted": true
+        }
+      ]
+    },
+    {
+      "id": "SW-FW-UnitTest-QCC-ID-15",
+      "unit": "SU-ID-QCC-014\n(보안 NVM)",
+      "rows": [
+        1763,
+        1764
+      ],
+      "conditions": [
+        1,
+        2
+      ],
+      "validations": [
+        1,
+        2
+      ],
+      "states": [
+        {
+          "row": 1763,
+          "expected": "\n조건 [1]\n입력: 격리 시험PS_USR40/43/44와보안NVM접근 인터페이스\n통과 기준: PS_USR40=RAND10byte,43=clinician_master_key16byte,44=shared_service_key16byte. 펌웨어보안NVM접근은읽기만지원. 생산설치키와파생clinic_service_key를구분한다. 펌웨어읽기전용이 PSTool/디버거접근차단을뜻하지 않는다.\n",
+          "result": "\n검증 [1]\n입력: 격리 시험PS_USR40/43/44와보안NVM접근 인터페이스\n실행 상태: 미실행.\n관찰: PS위치/길이/값존재, 인터페이스 및 저장대상/접근권한 미수집/미제공.\n[QCC 자료 입력] 이 조건의 실제 실행 결과와 관찰 근거.\n",
+          "verdict": "\n미실행\n판정 대기\n",
+          "same_condition": true,
+          "actual_unexecuted": true
+        },
+        {
+          "row": 1764,
+          "expected": "\n조건 [2]\n입력: 리모콘auth_type1,시험키00×16,시험RAND/BD_ADDR와PS저장암호문\n통과 기준: 복호화평문16byte=00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00. 저장암호문은평문과달라야 하며그차이만으로AES모드/보호완료를판정하지않는다. 실제암호문/직렬화/독립벡터미확정 범위는판정대기.\n",
+          "result": "\n검증 [2]\n입력: 리모콘auth_type1,시험키00×16,시험RAND/BD_ADDR와PS저장암호문\n실행 상태: 미실행.\n관찰: PS저장암호문, RAND/주소/도출경계 및16byte평문 미수집/미제공.\n[QCC 자료 입력] 이 조건의 실제 실행 결과와 관찰 근거.\n",
+          "verdict": "\n미실행\n판정 대기\n",
+          "same_condition": true,
+          "actual_unexecuted": true
+        }
+      ]
+    }
+  ],
+  "group_count": 15,
+  "condition_count": 38,
+  "units": [
+    "SU-ID-QCC-001",
+    "SU-ID-QCC-002",
+    "SU-ID-QCC-003",
+    "SU-ID-QCC-004",
+    "SU-ID-QCC-005",
+    "SU-ID-QCC-006",
+    "SU-ID-QCC-007",
+    "SU-ID-QCC-008",
+    "SU-ID-QCC-009",
+    "SU-ID-QCC-010",
+    "SU-ID-QCC-011",
+    "SU-ID-QCC-012",
+    "SU-ID-QCC-013",
+    "SU-ID-QCC-014"
+  ],
+  "page_count": 44,
+  "pages": [
+    {
+      "code": "SUVC-main",
+      "page": 239,
+      "range": "QCC 38조건",
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVC-main\\page-239.png",
+      "sha256": "C130AD23A7B99DBDEDE0A8EFA3654C02A970CF32737BE5DEF547CAF309A1CCC0",
+      "pixelSHA256": "AAE0F28C1FB01CDD0E9841B2E8C4CE77A9E9C94351AE33A83184127A3519F3E5",
+      "size": [
+        1263,
+        893
+      ],
+      "mtime": "2026-10-13T09:36:11.633831+09:00",
+      "direct_original_size_viewed": true,
+      "clipped_text_or_border": "없음",
+      "condition_and_result_scope": "동일 조건/현재 판정 대기 유지"
+    },
+    {
+      "code": "SUVC-main",
+      "page": 240,
+      "range": "QCC 38조건",
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVC-main\\page-240.png",
+      "sha256": "AC9087B3AC9B2B3ABDE6FE32613370A5CBCBFE57DB89CFFD235CB0008867056C",
+      "pixelSHA256": "E2E544704CBCB4F363713283D99A3825B964755B8729CFE3F7CCACB0E357B38C",
+      "size": [
+        1263,
+        893
+      ],
+      "mtime": "2026-10-13T09:36:11.699696+09:00",
+      "direct_original_size_viewed": true,
+      "clipped_text_or_border": "없음",
+      "condition_and_result_scope": "동일 조건/현재 판정 대기 유지"
+    },
+    {
+      "code": "SUVC-main",
+      "page": 241,
+      "range": "QCC 38조건",
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVC-main\\page-241.png",
+      "sha256": "942F24CE971A8F43EBB4125AD9AC55CF19ABF5F5974C038608DCE39E4BF0A40D",
+      "pixelSHA256": "054B7AD07B8AC85AFAAB24C9C7B0ACD7E7F147C817F3A0A72CAF2E57EDFB8AF2",
+      "size": [
+        1263,
+        893
+      ],
+      "mtime": "2026-10-13T09:36:11.738583+09:00",
+      "direct_original_size_viewed": true,
+      "clipped_text_or_border": "없음",
+      "condition_and_result_scope": "동일 조건/현재 판정 대기 유지"
+    },
+    {
+      "code": "SUVC-main",
+      "page": 242,
+      "range": "QCC 38조건",
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVC-main\\page-242.png",
+      "sha256": "61DBF375B00462C83BE6359AEBF77D38F00A062A53FCF78332BCC9E97A181CDD",
+      "pixelSHA256": "DFF84CE3D716FAA17BAD75C6D906098A34E77F8D1993D8CF7C1D7824DAC1EBEF",
+      "size": [
+        1263,
+        893
+      ],
+      "mtime": "2026-10-13T09:36:11.774292+09:00",
+      "direct_original_size_viewed": true,
+      "clipped_text_or_border": "없음",
+      "condition_and_result_scope": "동일 조건/현재 판정 대기 유지"
+    },
+    {
+      "code": "SUVC-main",
+      "page": 243,
+      "range": "QCC 38조건",
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVC-main\\page-243.png",
+      "sha256": "5CA7B8F46D778F8EEC08FDF5019C9E78DD0D6B7DF9ACBE874F84143E92CD270B",
+      "pixelSHA256": "9217C866D167E9941E6CAA557B4B2EA037230A13A7F30FB0D8054ECCB8B5FF5E",
+      "size": [
+        1263,
+        893
+      ],
+      "mtime": "2026-10-13T09:36:11.822131+09:00",
+      "direct_original_size_viewed": true,
+      "clipped_text_or_border": "없음",
+      "condition_and_result_scope": "동일 조건/현재 판정 대기 유지"
+    },
+    {
+      "code": "SUVC-main",
+      "page": 244,
+      "range": "QCC 38조건",
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVC-main\\page-244.png",
+      "sha256": "1BA79F7422AF16018574C6B40F085B10927EEFFB3C7C1EA1A1134876B27FF066",
+      "pixelSHA256": "F0E99B1AB47DC44817F919D204A39E78CA5126B45316A8AEEF14EF535F818764",
+      "size": [
+        1263,
+        893
+      ],
+      "mtime": "2026-10-13T09:36:11.859799+09:00",
+      "direct_original_size_viewed": true,
+      "clipped_text_or_border": "없음",
+      "condition_and_result_scope": "동일 조건/현재 판정 대기 유지"
+    },
+    {
+      "code": "SUVC-main",
+      "page": 245,
+      "range": "QCC 38조건",
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVC-main\\page-245.png",
+      "sha256": "14EF62FED19DC0148684C916603FAF8D17B86FA4751AB01FD04D9F9239675922",
+      "pixelSHA256": "F303C47FB798440238FC2D98A3E3784E5507C6D74962B03EFAF62158537C6E21",
+      "size": [
+        1263,
+        893
+      ],
+      "mtime": "2026-10-13T09:36:11.897369+09:00",
+      "direct_original_size_viewed": true,
+      "clipped_text_or_border": "없음",
+      "condition_and_result_scope": "동일 조건/현재 판정 대기 유지"
+    },
+    {
+      "code": "SUVC-main",
+      "page": 246,
+      "range": "QCC 38조건",
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVC-main\\page-246.png",
+      "sha256": "AAB6234A4E2A5F09CD1E4B715EEA7A7044285CDC8AE47C36FE375654A29CF6CA",
+      "pixelSHA256": "724268AADA36E069B3C7EB44FE1039822DE69D45A1494D4E14C52F90F040FE8B",
+      "size": [
+        1263,
+        893
+      ],
+      "mtime": "2026-10-13T09:36:11.943051+09:00",
+      "direct_original_size_viewed": true,
+      "clipped_text_or_border": "없음",
+      "condition_and_result_scope": "동일 조건/현재 판정 대기 유지"
+    },
+    {
+      "code": "SUVC-main",
+      "page": 247,
+      "range": "QCC 38조건",
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVC-main\\page-247.png",
+      "sha256": "A3895205E882C6531ABEB440CBF2CF99ABDD8AEC2F9C7830379E01A1AD68E475",
+      "pixelSHA256": "4507C636771547B84D7CE48D42A80EE7970428F264A747D3AF5A4323AFCDB5F7",
+      "size": [
+        1263,
+        893
+      ],
+      "mtime": "2026-10-13T09:36:11.971657+09:00",
+      "direct_original_size_viewed": true,
+      "clipped_text_or_border": "없음",
+      "condition_and_result_scope": "동일 조건/현재 판정 대기 유지"
+    },
+    {
+      "code": "SUVC-main",
+      "page": 248,
+      "range": "QCC 38조건",
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVC-main\\page-248.png",
+      "sha256": "612016620973D3669AFA54BC10C2E4362C0F63F94D71264D687A2DA5145076CF",
+      "pixelSHA256": "330F90C2C7011D64E53E75016745D2E2CA1AF7D74561E940C8661BA4A3F69AF1",
+      "size": [
+        1263,
+        893
+      ],
+      "mtime": "2026-10-13T09:36:12.027836+09:00",
+      "direct_original_size_viewed": true,
+      "clipped_text_or_border": "없음",
+      "condition_and_result_scope": "동일 조건/현재 판정 대기 유지"
+    },
+    {
+      "code": "SUVC-main",
+      "page": 249,
+      "range": "QCC 38조건",
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVC-main\\page-249.png",
+      "sha256": "8903E39C48076E0D0A732E1B8510C83376F7F9A29A8DCFDFDBE8685D6BD034AB",
+      "pixelSHA256": "09BC22A530AC83812044588715AD1E2D337780151038759BFA14ED0D3F8DDAEA",
+      "size": [
+        1263,
+        893
+      ],
+      "mtime": "2026-10-13T09:36:12.078114+09:00",
+      "direct_original_size_viewed": true,
+      "clipped_text_or_border": "없음",
+      "condition_and_result_scope": "동일 조건/현재 판정 대기 유지"
+    },
+    {
+      "code": "SUVC-main",
+      "page": 250,
+      "range": "QCC 38조건",
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVC-main\\page-250.png",
+      "sha256": "263685826FD9241983A2A11444C04AA5BC1D47BAA4F5BA5BEF51E602D1C619CB",
+      "pixelSHA256": "810A1DF62A6E0DD8FFE0FCD20DB499E458E101385941877F14060686C009DD43",
+      "size": [
+        1263,
+        893
+      ],
+      "mtime": "2026-10-13T09:36:12.110204+09:00",
+      "direct_original_size_viewed": true,
+      "clipped_text_or_border": "없음",
+      "condition_and_result_scope": "동일 조건/현재 판정 대기 유지"
+    },
+    {
+      "code": "SUVC-main",
+      "page": 251,
+      "range": "QCC 38조건",
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVC-main\\page-251.png",
+      "sha256": "D8ED8391991D17867D7A6FC17A1D1F0743AE01F5972ACCD4297F20405511CCDD",
+      "pixelSHA256": "CC514672F34CC417B364BA3F591FD57A2A9D536023AE4E055972D299D4EAF3C6",
+      "size": [
+        1263,
+        893
+      ],
+      "mtime": "2026-10-13T09:36:12.152430+09:00",
+      "direct_original_size_viewed": true,
+      "clipped_text_or_border": "없음",
+      "condition_and_result_scope": "동일 조건/현재 판정 대기 유지"
+    },
+    {
+      "code": "SUVC-main",
+      "page": 252,
+      "range": "QCC 38조건",
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVC-main\\page-252.png",
+      "sha256": "D461DBE664E35005BC6CD28A9BDA248A090CB8EB5434BFD28DB694EAF48062CF",
+      "pixelSHA256": "D4BED580AC027731AFB41D4EA3FA5F8C623EDE44522C5DE4C0EDCBAAA988CC92",
+      "size": [
+        1263,
+        893
+      ],
+      "mtime": "2026-10-13T09:36:12.197686+09:00",
+      "direct_original_size_viewed": true,
+      "clipped_text_or_border": "없음",
+      "condition_and_result_scope": "동일 조건/현재 판정 대기 유지"
+    },
+    {
+      "code": "SUVC-main",
+      "page": 253,
+      "range": "QCC 38조건",
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVC-main\\page-253.png",
+      "sha256": "D2F2B5E22C3614A73E7F38BB37D506AF5CC782016498F208B744B773FDD68023",
+      "pixelSHA256": "656528A535DB8D1CD586B478EABCDEF548D7D98F7222BAB6F201761E7D4B09F0",
+      "size": [
+        1263,
+        893
+      ],
+      "mtime": "2026-10-13T09:36:12.236942+09:00",
+      "direct_original_size_viewed": true,
+      "clipped_text_or_border": "없음",
+      "condition_and_result_scope": "동일 조건/현재 판정 대기 유지"
+    },
+    {
+      "code": "SUVC-main",
+      "page": 254,
+      "range": "QCC 38조건",
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVC-main\\page-254.png",
+      "sha256": "25E68D1DB4DFC6E068766040AD732B1D0F9727F0A7E5DE9375F7B77977497331",
+      "pixelSHA256": "20CD7264A34F0EC2C77271FC48217067E09711753AFEBC363501B4DB237A3FB3",
+      "size": [
+        1263,
+        893
+      ],
+      "mtime": "2026-10-13T09:36:12.274393+09:00",
+      "direct_original_size_viewed": true,
+      "clipped_text_or_border": "없음",
+      "condition_and_result_scope": "동일 조건/현재 판정 대기 유지"
+    },
+    {
+      "code": "SUVC-main",
+      "page": 255,
+      "range": "QCC 38조건",
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVC-main\\page-255.png",
+      "sha256": "E3C9E9EA75F4C7A9E425033A5DA825B446F337917FDCA2673DEFE83B772B8E56",
+      "pixelSHA256": "9E8BCCF9F3137BA2F457972C94324CF56D380225E3531BB387C9B1C48B2263F5",
+      "size": [
+        1263,
+        893
+      ],
+      "mtime": "2026-10-13T09:36:12.327061+09:00",
+      "direct_original_size_viewed": true,
+      "clipped_text_or_border": "없음",
+      "condition_and_result_scope": "동일 조건/현재 판정 대기 유지"
+    },
+    {
+      "code": "SUVC-main",
+      "page": 256,
+      "range": "QCC 38조건",
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVC-main\\page-256.png",
+      "sha256": "1D582B4D3DC771A3C4C75A31E0E1C2FC8C3374222D6CED20411FDB24ABC2FDC8",
+      "pixelSHA256": "764E2AA221D6033BEBDC0D6B4F775E73579A9A49B785C366232A757A0276EA2C",
+      "size": [
+        1263,
+        893
+      ],
+      "mtime": "2026-10-13T09:36:12.366931+09:00",
+      "direct_original_size_viewed": true,
+      "clipped_text_or_border": "없음",
+      "condition_and_result_scope": "동일 조건/현재 판정 대기 유지"
+    },
+    {
+      "code": "SUVC-main",
+      "page": 4,
+      "range": "긴 RTT/정량 기준 표본",
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVC-main\\page-004.png",
+      "sha256": "3E89C1FB676B43EE1532C4C726F76FE1DBCDE48A0BD6A9286C65AA40E53BE4B3",
+      "pixelSHA256": "38B3DBEAE58881743104395D9A64EF74B8368CEEDC68A3417F528FA9C42C8FEB",
+      "size": [
+        1263,
+        893
+      ],
+      "mtime": "2026-10-13T09:36:03.422381+09:00",
+      "direct_original_size_viewed": true,
+      "clipped_text_or_border": "없음",
+      "condition_and_result_scope": "기존 E8300 관찰 범위 유지"
+    },
+    {
+      "code": "SUVC-main",
+      "page": 102,
+      "range": "긴 RTT/정량 기준 표본",
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVC-main\\page-102.png",
+      "sha256": "46E25285B2C35C559408CE9387C9B21A3078F0B4CF8ABE97A4E7F85990007F4C",
+      "pixelSHA256": "A23B8246135981451988A9B7F92390FF4E4ABCDF0542F3C829B3D60FF915D2D7",
+      "size": [
+        1263,
+        893
+      ],
+      "mtime": "2026-10-13T09:36:06.327413+09:00",
+      "direct_original_size_viewed": true,
+      "clipped_text_or_border": "없음",
+      "condition_and_result_scope": "기존 E8300 관찰 범위 유지"
+    },
+    {
+      "code": "SUVC-main",
+      "page": 103,
+      "range": "긴 RTT/정량 기준 표본",
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVC-main\\page-103.png",
+      "sha256": "92668D244421A9606B699789EEE713B30407591DFD7461C1628F723CA78A8DBA",
+      "pixelSHA256": "A3B8CA369247F2DA64EB9558B30402CF36C6F7061B635C1CCA7B496EA09B3FC1",
+      "size": [
+        1263,
+        893
+      ],
+      "mtime": "2026-10-13T09:36:06.378329+09:00",
+      "direct_original_size_viewed": true,
+      "clipped_text_or_border": "없음",
+      "condition_and_result_scope": "기존 E8300 관찰 범위 유지"
+    },
+    {
+      "code": "SUVC-main",
+      "page": 109,
+      "range": "긴 RTT/정량 기준 표본",
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVC-main\\page-109.png",
+      "sha256": "E4DF5158F797D60032188410478AB320BB2FDB2EBBD4AAA4A554DCE6D3342B6C",
+      "pixelSHA256": "8D2C7E94DE0DFCD5B70BBB89B2B9E7AF3AC15FEE7791DE170E1BDE9A9EA40B57",
+      "size": [
+        1263,
+        893
+      ],
+      "mtime": "2026-10-13T09:36:06.610383+09:00",
+      "direct_original_size_viewed": true,
+      "clipped_text_or_border": "없음",
+      "condition_and_result_scope": "기존 E8300 관찰 범위 유지"
+    },
+    {
+      "code": "SUVC-main",
+      "page": 136,
+      "range": "긴 RTT/정량 기준 표본",
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVC-main\\page-136.png",
+      "sha256": "8CCFF8A9B1F3D0E95F8053D6036CD788F8C3A0D8E0A0C9287CE379D16930CAD7",
+      "pixelSHA256": "3D71DD189ACB7C0463E038BB960832E249867D8E20D31E056B89AB7436C9A8D7",
+      "size": [
+        1263,
+        893
+      ],
+      "mtime": "2026-10-13T09:36:07.564265+09:00",
+      "direct_original_size_viewed": true,
+      "clipped_text_or_border": "없음",
+      "condition_and_result_scope": "기존 E8300 관찰 범위 유지"
+    },
+    {
+      "code": "SUVR-main",
+      "page": 190,
+      "range": "QCC 38조건",
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVR-main\\page-190.png",
+      "sha256": "C9EB284BEACC61C37A79CDC16F3336A48005AA76779D091C15DBC3DA18125E87",
+      "pixelSHA256": "37DA9A31B4999FE6E5C080855E183D67ECA19AABAB476D705C294A8D60A0C974",
+      "size": [
+        1263,
+        893
+      ],
+      "mtime": "2026-10-13T09:36:20.681225+09:00",
+      "direct_original_size_viewed": true,
+      "clipped_text_or_border": "없음",
+      "condition_and_result_scope": "동일 조건/현재 판정 대기 유지"
+    },
+    {
+      "code": "SUVR-main",
+      "page": 191,
+      "range": "QCC 38조건",
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVR-main\\page-191.png",
+      "sha256": "DF7C104A49F4858D6A5E602E00AF495BAB65E7BC23664532E4B8D1B1ABCC5D99",
+      "pixelSHA256": "2F1A9AB9BC4E2370A40836F87ECD8B3F9E5A3ED19327610003EAF6CEBEF26739",
+      "size": [
+        1263,
+        893
+      ],
+      "mtime": "2026-10-13T09:36:20.748230+09:00",
+      "direct_original_size_viewed": true,
+      "clipped_text_or_border": "없음",
+      "condition_and_result_scope": "동일 조건/현재 판정 대기 유지"
+    },
+    {
+      "code": "SUVR-main",
+      "page": 192,
+      "range": "QCC 38조건",
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVR-main\\page-192.png",
+      "sha256": "803AEE398C4B800579E8B43685596EA8E6A1FA3BA2DFAFB669D7C57EEABCB6B2",
+      "pixelSHA256": "9DD36F23A2BF68574A4A8BCF8C3F58A1BFCE5DFE051FF24B0F43D6D6042B7201",
+      "size": [
+        1263,
+        893
+      ],
+      "mtime": "2026-10-13T09:36:20.794161+09:00",
+      "direct_original_size_viewed": true,
+      "clipped_text_or_border": "없음",
+      "condition_and_result_scope": "동일 조건/현재 판정 대기 유지"
+    },
+    {
+      "code": "SUVR-main",
+      "page": 193,
+      "range": "QCC 38조건",
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVR-main\\page-193.png",
+      "sha256": "6D3D1F681ECAC895A43F27DFBB7E75BAEB4BDAD1B4439072E532D61921802AE3",
+      "pixelSHA256": "349F2BC18E371DDBDD86EC80CE75F01D42C13B998E672F93ADC8A81B0554BA56",
+      "size": [
+        1263,
+        893
+      ],
+      "mtime": "2026-10-13T09:36:20.838844+09:00",
+      "direct_original_size_viewed": true,
+      "clipped_text_or_border": "없음",
+      "condition_and_result_scope": "동일 조건/현재 판정 대기 유지"
+    },
+    {
+      "code": "SUVR-main",
+      "page": 194,
+      "range": "QCC 38조건",
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVR-main\\page-194.png",
+      "sha256": "0FD71DE9135A3605339E7EAFE3553DEF080B6E0F4B910687E65CF2AE1910F947",
+      "pixelSHA256": "82715ACB61772665975E4D7D3A1E72683F8F98037FF4234F3C93603425CF1827",
+      "size": [
+        1263,
+        893
+      ],
+      "mtime": "2026-10-13T09:36:20.878010+09:00",
+      "direct_original_size_viewed": true,
+      "clipped_text_or_border": "없음",
+      "condition_and_result_scope": "동일 조건/현재 판정 대기 유지"
+    },
+    {
+      "code": "SUVR-main",
+      "page": 195,
+      "range": "QCC 38조건",
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVR-main\\page-195.png",
+      "sha256": "C53185108F95AEAE8AC2CD55D5CA8032CA1440FFF10E41009D7B4DB10CD8CD8C",
+      "pixelSHA256": "E7E91EE9BCD7424E9286BA8C5EB1900FB9F40D391A49675B0D2120CDE917FF5A",
+      "size": [
+        1263,
+        893
+      ],
+      "mtime": "2026-10-13T09:36:20.910582+09:00",
+      "direct_original_size_viewed": true,
+      "clipped_text_or_border": "없음",
+      "condition_and_result_scope": "동일 조건/현재 판정 대기 유지"
+    },
+    {
+      "code": "SUVR-main",
+      "page": 196,
+      "range": "QCC 38조건",
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVR-main\\page-196.png",
+      "sha256": "5B0230EEAF8B8C4F2C8E1F4B27BC6CCEA5CF9BA0CBD9325774E7447208E07BD0",
+      "pixelSHA256": "AE1A42B56736B90A634C93990DBC7F103220E95D958950A7EF9FFC977539052B",
+      "size": [
+        1263,
+        893
+      ],
+      "mtime": "2026-10-13T09:36:20.957364+09:00",
+      "direct_original_size_viewed": true,
+      "clipped_text_or_border": "없음",
+      "condition_and_result_scope": "동일 조건/현재 판정 대기 유지"
+    },
+    {
+      "code": "SUVR-main",
+      "page": 197,
+      "range": "QCC 38조건",
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVR-main\\page-197.png",
+      "sha256": "2C88098C01F2E9DF8EE99DAB9375C78EF63F6E201FB52C18BFD025475C93389A",
+      "pixelSHA256": "435B9038110F81883E2DD3538B20DDEEF07BF59398C223B4FAA56EB26A5B8417",
+      "size": [
+        1263,
+        893
+      ],
+      "mtime": "2026-10-13T09:36:21.008035+09:00",
+      "direct_original_size_viewed": true,
+      "clipped_text_or_border": "없음",
+      "condition_and_result_scope": "동일 조건/현재 판정 대기 유지"
+    },
+    {
+      "code": "SUVR-main",
+      "page": 198,
+      "range": "QCC 38조건",
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVR-main\\page-198.png",
+      "sha256": "35DBE7F266169AC592325B50F2B9018313553A43DBD38E7D33CCFB522CEBA558",
+      "pixelSHA256": "A23B7977483E513A9E871AA012C806F0DCC20A70E4551A93617D54FE5FCD98BE",
+      "size": [
+        1263,
+        893
+      ],
+      "mtime": "2026-10-13T09:36:21.058103+09:00",
+      "direct_original_size_viewed": true,
+      "clipped_text_or_border": "없음",
+      "condition_and_result_scope": "동일 조건/현재 판정 대기 유지"
+    },
+    {
+      "code": "SUVR-main",
+      "page": 199,
+      "range": "QCC 38조건",
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVR-main\\page-199.png",
+      "sha256": "A7EF7CB5CD84B2E1F1192C3F0044340C6CBE603D073E3A3016F55FF500FC044B",
+      "pixelSHA256": "093DEC08277F2CACD8FB36780BA392EF50FBE6E211BC0FC26965A201287742BC",
+      "size": [
+        1263,
+        893
+      ],
+      "mtime": "2026-10-13T09:36:21.128603+09:00",
+      "direct_original_size_viewed": true,
+      "clipped_text_or_border": "없음",
+      "condition_and_result_scope": "동일 조건/현재 판정 대기 유지"
+    },
+    {
+      "code": "SUVR-main",
+      "page": 200,
+      "range": "QCC 38조건",
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVR-main\\page-200.png",
+      "sha256": "CDD5545F6AA67C58221458DA3ECD905F79ACFF59EF0A84F93B0DFC3E4E14AD94",
+      "pixelSHA256": "E429A4E9C00A194DCE222AA3BA44B9F87974695A51E7F0DEF63EE947093B9AA3",
+      "size": [
+        1263,
+        893
+      ],
+      "mtime": "2026-10-13T09:36:21.177385+09:00",
+      "direct_original_size_viewed": true,
+      "clipped_text_or_border": "없음",
+      "condition_and_result_scope": "동일 조건/현재 판정 대기 유지"
+    },
+    {
+      "code": "SUVR-main",
+      "page": 201,
+      "range": "QCC 38조건",
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVR-main\\page-201.png",
+      "sha256": "9E142718F8BF8ED8E1D7EDCE628061A0D684A33968685F3A1E7CC7346960D94E",
+      "pixelSHA256": "543CF4E8A1DAA35D6C72DF9A36E6E2AB21D1ED49ED911C58010BA8B7475C15CC",
+      "size": [
+        1263,
+        893
+      ],
+      "mtime": "2026-10-13T09:36:21.219865+09:00",
+      "direct_original_size_viewed": true,
+      "clipped_text_or_border": "없음",
+      "condition_and_result_scope": "동일 조건/현재 판정 대기 유지"
+    },
+    {
+      "code": "SUVR-main",
+      "page": 202,
+      "range": "QCC 38조건",
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVR-main\\page-202.png",
+      "sha256": "A510C4CFFBCACF10F58D2A8FE382D48FA3B8816BDC6D65264E20E8632606F256",
+      "pixelSHA256": "05D2CC052CEB0F396F6A5549E711618A4B327204798BF266A6A7E57FD7B0A644",
+      "size": [
+        1263,
+        893
+      ],
+      "mtime": "2026-10-13T09:36:21.284594+09:00",
+      "direct_original_size_viewed": true,
+      "clipped_text_or_border": "없음",
+      "condition_and_result_scope": "동일 조건/현재 판정 대기 유지"
+    },
+    {
+      "code": "SUVR-main",
+      "page": 203,
+      "range": "QCC 38조건",
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVR-main\\page-203.png",
+      "sha256": "79EC08F6F7DFFBE2DFD5663E49C9DE0C49421BACB204EF6ED1F86CC9B9839520",
+      "pixelSHA256": "702ACC304B52DB599C5D37DE89CDA775BABDAAFE875A2A06AE34E1902EE3B0BA",
+      "size": [
+        1263,
+        893
+      ],
+      "mtime": "2026-10-13T09:36:21.326316+09:00",
+      "direct_original_size_viewed": true,
+      "clipped_text_or_border": "없음",
+      "condition_and_result_scope": "동일 조건/현재 판정 대기 유지"
+    },
+    {
+      "code": "SUVR-main",
+      "page": 204,
+      "range": "QCC 38조건",
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVR-main\\page-204.png",
+      "sha256": "5E4C284E3143A8C810AC288559AA3E3F0D8ACF0C40E7593AD75CD61D5143E69B",
+      "pixelSHA256": "BDB4E4DB1DE272A926EF0C332B5D0A7BB655193EC5824F526010F48967D4551B",
+      "size": [
+        1263,
+        893
+      ],
+      "mtime": "2026-10-13T09:36:21.380893+09:00",
+      "direct_original_size_viewed": true,
+      "clipped_text_or_border": "없음",
+      "condition_and_result_scope": "동일 조건/현재 판정 대기 유지"
+    },
+    {
+      "code": "SUVR-main",
+      "page": 205,
+      "range": "QCC 38조건",
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVR-main\\page-205.png",
+      "sha256": "D910F0497133C574683E551057BFAB1460D9C59301A3028B74E2367AE32F6117",
+      "pixelSHA256": "C52A99B8ED0CB9B0E995D25960FC66360250FC22C5482A9B20A3BD7F44370767",
+      "size": [
+        1263,
+        893
+      ],
+      "mtime": "2026-10-13T09:36:21.427766+09:00",
+      "direct_original_size_viewed": true,
+      "clipped_text_or_border": "없음",
+      "condition_and_result_scope": "동일 조건/현재 판정 대기 유지"
+    },
+    {
+      "code": "SUVR-main",
+      "page": 4,
+      "range": "긴 RTT/정량 기준 표본",
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVR-main\\page-004.png",
+      "sha256": "AA02449D84B5245ED77D4C1D20913CEB37C79C2AAD17C29CEF5009DEAFCE3BA9",
+      "pixelSHA256": "7DA1CD4F4F557F7397B283F308FAEA00A1FEAA110EA977D66C545B9337B15CB3",
+      "size": [
+        1263,
+        893
+      ],
+      "mtime": "2026-10-13T09:36:13.736109+09:00",
+      "direct_original_size_viewed": true,
+      "clipped_text_or_border": "없음",
+      "condition_and_result_scope": "기존 E8300 관찰 범위 유지"
+    },
+    {
+      "code": "SUVR-main",
+      "page": 81,
+      "range": "긴 RTT/정량 기준 표본",
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVR-main\\page-081.png",
+      "sha256": "DEB8EA9B8AAB0F6D84549D32B565F486B5294885E3C8AD0658CF198C0C6781F4",
+      "pixelSHA256": "6A0E895DD81B2750B4C4BE7552743C393682BD27A4991A132E8A148EE5853DBC",
+      "size": [
+        1263,
+        893
+      ],
+      "mtime": "2026-10-13T09:36:16.176070+09:00",
+      "direct_original_size_viewed": true,
+      "clipped_text_or_border": "없음",
+      "condition_and_result_scope": "기존 E8300 관찰 범위 유지"
+    },
+    {
+      "code": "SUVR-main",
+      "page": 82,
+      "range": "긴 RTT/정량 기준 표본",
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVR-main\\page-082.png",
+      "sha256": "7E12EDA959FEEDB1636816DCDCCF4B7C5C900C60C32DBF20059F77EC8DBA9277",
+      "pixelSHA256": "3642945EDE9FB3B6076EBAE91CCF2342C4330E7E7FADC68BD061359947B724B8",
+      "size": [
+        1263,
+        893
+      ],
+      "mtime": "2026-10-13T09:36:16.213171+09:00",
+      "direct_original_size_viewed": true,
+      "clipped_text_or_border": "없음",
+      "condition_and_result_scope": "기존 E8300 관찰 범위 유지"
+    },
+    {
+      "code": "SUVR-main",
+      "page": 87,
+      "range": "긴 RTT/정량 기준 표본",
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVR-main\\page-087.png",
+      "sha256": "C9D13E015C0575B163C14899ED15718591FE106BAAAC07660B7F912C217929E7",
+      "pixelSHA256": "D6501A7FA67E37558F2729AF2B54DA3C5A4383F18B362B743F512D73256A231F",
+      "size": [
+        1263,
+        893
+      ],
+      "mtime": "2026-10-13T09:36:16.394555+09:00",
+      "direct_original_size_viewed": true,
+      "clipped_text_or_border": "없음",
+      "condition_and_result_scope": "기존 E8300 관찰 범위 유지"
+    },
+    {
+      "code": "SUVR-main",
+      "page": 108,
+      "range": "긴 RTT/정량 기준 표본",
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVR-main\\page-108.png",
+      "sha256": "B226DFA53BADE5F81B77CFC07BFF2710B2E8DE3F475F776247FB3EDB3BCD823A",
+      "pixelSHA256": "553B032CFF540C4C6F2E12C91F8D275F067C7F6338AE07395335E90C31FF9E63",
+      "size": [
+        1263,
+        893
+      ],
+      "mtime": "2026-10-13T09:36:17.214350+09:00",
+      "direct_original_size_viewed": true,
+      "clipped_text_or_border": "없음",
+      "condition_and_result_scope": "기존 E8300 관찰 범위 유지"
+    }
+  ],
+  "native_current_link": "root 09:36 재렌더의 QCC 꼬리 구간34쪽과 대표10쪽이 직접 검토한44 PNG와 픽셀 동일. actual current G/source/native hash 동등 확인.",
+  "status": "통과: 최신 97ABF9/C2AA80 저장 해시와 44곳 대응 + 추가1쪽 독립표시검사. 제품시험 미실행/판정대기.",
+  "findings": [],
+  "semantic_limits": [
+    "QCC 실제 로그/측정/관찰 부재는 38조건 모두 판정에서 유지한다.",
+    "AUTH 12-byte 중계 확인과 CRA 계산 검증을 구별한다.",
+    "Classic I2S 수신/자극은 DMIC2 통화 송신의 통과가 아니다.",
+    "SPI 배터리 패킷 길이/Left-Right 대응/인증 타임아웃 경계/키 파생 및 NVM 보호 근거는 미비 설명과 함께 남는다.",
+    "기존 E8300 RTT 시험자 확인 결과는 해당 입력/예상 조건에서만 보존한다."
+  ],
+  "final_render_link": {
+    "checkedAt": "2026-10-13T09:37:18.486229+09:00",
+    "all44pixels_equal": true,
+    "sources": [
+      {
+        "code": "SUVC-main",
+        "currentSHA256": "3AC014BFEC9A87FFA92A12DFA01497A48FCFF5E94C792289916E71CFA1CC257B",
+        "nativeSHA256": "3AC014BFEC9A87FFA92A12DFA01497A48FCFF5E94C792289916E71CFA1CC257B",
+        "same_current_native": true,
+        "same_inspected_XML": true,
+        "pages_count": 256,
+        "nativeCheckedAt": "2026-10-13T09:30:56.3919903+09:00"
+      },
+      {
+        "code": "SUVR-main",
+        "currentSHA256": "F4DBAE9DBF3CAD87F66C28C85846D289C6160378847B9A8152A39A6457A898F6",
+        "nativeSHA256": "F4DBAE9DBF3CAD87F66C28C85846D289C6160378847B9A8152A39A6457A898F6",
+        "same_current_native": true,
+        "same_inspected_XML": true,
+        "pages_count": 205,
+        "nativeCheckedAt": "2026-10-13T09:31:52.6501166+09:00"
+      }
+    ],
+    "pages": [
+      {
+        "code": "SUVC-main",
+        "page": 239,
+        "reviewed_pixelSHA256": "AAE0F28C1FB01CDD0E9841B2E8C4CE77A9E9C94351AE33A83184127A3519F3E5",
+        "current_pixelSHA256": "AAE0F28C1FB01CDD0E9841B2E8C4CE77A9E9C94351AE33A83184127A3519F3E5",
+        "equal": true,
+        "current_pngSHA256": "C130AD23A7B99DBDEDE0A8EFA3654C02A970CF32737BE5DEF547CAF309A1CCC0",
+        "mtime": "2026-10-13T09:36:11.633831+09:00"
+      },
+      {
+        "code": "SUVC-main",
+        "page": 240,
+        "reviewed_pixelSHA256": "E2E544704CBCB4F363713283D99A3825B964755B8729CFE3F7CCACB0E357B38C",
+        "current_pixelSHA256": "E2E544704CBCB4F363713283D99A3825B964755B8729CFE3F7CCACB0E357B38C",
+        "equal": true,
+        "current_pngSHA256": "AC9087B3AC9B2B3ABDE6FE32613370A5CBCBFE57DB89CFFD235CB0008867056C",
+        "mtime": "2026-10-13T09:36:11.699696+09:00"
+      },
+      {
+        "code": "SUVC-main",
+        "page": 241,
+        "reviewed_pixelSHA256": "054B7AD07B8AC85AFAAB24C9C7B0ACD7E7F147C817F3A0A72CAF2E57EDFB8AF2",
+        "current_pixelSHA256": "054B7AD07B8AC85AFAAB24C9C7B0ACD7E7F147C817F3A0A72CAF2E57EDFB8AF2",
+        "equal": true,
+        "current_pngSHA256": "942F24CE971A8F43EBB4125AD9AC55CF19ABF5F5974C038608DCE39E4BF0A40D",
+        "mtime": "2026-10-13T09:36:11.738583+09:00"
+      },
+      {
+        "code": "SUVC-main",
+        "page": 242,
+        "reviewed_pixelSHA256": "DFF84CE3D716FAA17BAD75C6D906098A34E77F8D1993D8CF7C1D7824DAC1EBEF",
+        "current_pixelSHA256": "DFF84CE3D716FAA17BAD75C6D906098A34E77F8D1993D8CF7C1D7824DAC1EBEF",
+        "equal": true,
+        "current_pngSHA256": "61DBF375B00462C83BE6359AEBF77D38F00A062A53FCF78332BCC9E97A181CDD",
+        "mtime": "2026-10-13T09:36:11.774292+09:00"
+      },
+      {
+        "code": "SUVC-main",
+        "page": 243,
+        "reviewed_pixelSHA256": "9217C866D167E9941E6CAA557B4B2EA037230A13A7F30FB0D8054ECCB8B5FF5E",
+        "current_pixelSHA256": "9217C866D167E9941E6CAA557B4B2EA037230A13A7F30FB0D8054ECCB8B5FF5E",
+        "equal": true,
+        "current_pngSHA256": "5CA7B8F46D778F8EEC08FDF5019C9E78DD0D6B7DF9ACBE874F84143E92CD270B",
+        "mtime": "2026-10-13T09:36:11.822131+09:00"
+      },
+      {
+        "code": "SUVC-main",
+        "page": 244,
+        "reviewed_pixelSHA256": "F0E99B1AB47DC44817F919D204A39E78CA5126B45316A8AEEF14EF535F818764",
+        "current_pixelSHA256": "F0E99B1AB47DC44817F919D204A39E78CA5126B45316A8AEEF14EF535F818764",
+        "equal": true,
+        "current_pngSHA256": "1BA79F7422AF16018574C6B40F085B10927EEFFB3C7C1EA1A1134876B27FF066",
+        "mtime": "2026-10-13T09:36:11.859799+09:00"
+      },
+      {
+        "code": "SUVC-main",
+        "page": 245,
+        "reviewed_pixelSHA256": "F303C47FB798440238FC2D98A3E3784E5507C6D74962B03EFAF62158537C6E21",
+        "current_pixelSHA256": "F303C47FB798440238FC2D98A3E3784E5507C6D74962B03EFAF62158537C6E21",
+        "equal": true,
+        "current_pngSHA256": "14EF62FED19DC0148684C916603FAF8D17B86FA4751AB01FD04D9F9239675922",
+        "mtime": "2026-10-13T09:36:11.897369+09:00"
+      },
+      {
+        "code": "SUVC-main",
+        "page": 246,
+        "reviewed_pixelSHA256": "724268AADA36E069B3C7EB44FE1039822DE69D45A1494D4E14C52F90F040FE8B",
+        "current_pixelSHA256": "724268AADA36E069B3C7EB44FE1039822DE69D45A1494D4E14C52F90F040FE8B",
+        "equal": true,
+        "current_pngSHA256": "AAB6234A4E2A5F09CD1E4B715EEA7A7044285CDC8AE47C36FE375654A29CF6CA",
+        "mtime": "2026-10-13T09:36:11.943051+09:00"
+      },
+      {
+        "code": "SUVC-main",
+        "page": 247,
+        "reviewed_pixelSHA256": "4507C636771547B84D7CE48D42A80EE7970428F264A747D3AF5A4323AFCDB5F7",
+        "current_pixelSHA256": "4507C636771547B84D7CE48D42A80EE7970428F264A747D3AF5A4323AFCDB5F7",
+        "equal": true,
+        "current_pngSHA256": "A3895205E882C6531ABEB440CBF2CF99ABDD8AEC2F9C7830379E01A1AD68E475",
+        "mtime": "2026-10-13T09:36:11.971657+09:00"
+      },
+      {
+        "code": "SUVC-main",
+        "page": 248,
+        "reviewed_pixelSHA256": "330F90C2C7011D64E53E75016745D2E2CA1AF7D74561E940C8661BA4A3F69AF1",
+        "current_pixelSHA256": "330F90C2C7011D64E53E75016745D2E2CA1AF7D74561E940C8661BA4A3F69AF1",
+        "equal": true,
+        "current_pngSHA256": "612016620973D3669AFA54BC10C2E4362C0F63F94D71264D687A2DA5145076CF",
+        "mtime": "2026-10-13T09:36:12.027836+09:00"
+      },
+      {
+        "code": "SUVC-main",
+        "page": 249,
+        "reviewed_pixelSHA256": "09BC22A530AC83812044588715AD1E2D337780151038759BFA14ED0D3F8DDAEA",
+        "current_pixelSHA256": "09BC22A530AC83812044588715AD1E2D337780151038759BFA14ED0D3F8DDAEA",
+        "equal": true,
+        "current_pngSHA256": "8903E39C48076E0D0A732E1B8510C83376F7F9A29A8DCFDFDBE8685D6BD034AB",
+        "mtime": "2026-10-13T09:36:12.078114+09:00"
+      },
+      {
+        "code": "SUVC-main",
+        "page": 250,
+        "reviewed_pixelSHA256": "810A1DF62A6E0DD8FFE0FCD20DB499E458E101385941877F14060686C009DD43",
+        "current_pixelSHA256": "810A1DF62A6E0DD8FFE0FCD20DB499E458E101385941877F14060686C009DD43",
+        "equal": true,
+        "current_pngSHA256": "263685826FD9241983A2A11444C04AA5BC1D47BAA4F5BA5BEF51E602D1C619CB",
+        "mtime": "2026-10-13T09:36:12.110204+09:00"
+      },
+      {
+        "code": "SUVC-main",
+        "page": 251,
+        "reviewed_pixelSHA256": "CC514672F34CC417B364BA3F591FD57A2A9D536023AE4E055972D299D4EAF3C6",
+        "current_pixelSHA256": "CC514672F34CC417B364BA3F591FD57A2A9D536023AE4E055972D299D4EAF3C6",
+        "equal": true,
+        "current_pngSHA256": "D8ED8391991D17867D7A6FC17A1D1F0743AE01F5972ACCD4297F20405511CCDD",
+        "mtime": "2026-10-13T09:36:12.152430+09:00"
+      },
+      {
+        "code": "SUVC-main",
+        "page": 252,
+        "reviewed_pixelSHA256": "D4BED580AC027731AFB41D4EA3FA5F8C623EDE44522C5DE4C0EDCBAAA988CC92",
+        "current_pixelSHA256": "D4BED580AC027731AFB41D4EA3FA5F8C623EDE44522C5DE4C0EDCBAAA988CC92",
+        "equal": true,
+        "current_pngSHA256": "D461DBE664E35005BC6CD28A9BDA248A090CB8EB5434BFD28DB694EAF48062CF",
+        "mtime": "2026-10-13T09:36:12.197686+09:00"
+      },
+      {
+        "code": "SUVC-main",
+        "page": 253,
+        "reviewed_pixelSHA256": "656528A535DB8D1CD586B478EABCDEF548D7D98F7222BAB6F201761E7D4B09F0",
+        "current_pixelSHA256": "656528A535DB8D1CD586B478EABCDEF548D7D98F7222BAB6F201761E7D4B09F0",
+        "equal": true,
+        "current_pngSHA256": "D2F2B5E22C3614A73E7F38BB37D506AF5CC782016498F208B744B773FDD68023",
+        "mtime": "2026-10-13T09:36:12.236942+09:00"
+      },
+      {
+        "code": "SUVC-main",
+        "page": 254,
+        "reviewed_pixelSHA256": "20CD7264A34F0EC2C77271FC48217067E09711753AFEBC363501B4DB237A3FB3",
+        "current_pixelSHA256": "20CD7264A34F0EC2C77271FC48217067E09711753AFEBC363501B4DB237A3FB3",
+        "equal": true,
+        "current_pngSHA256": "25E68D1DB4DFC6E068766040AD732B1D0F9727F0A7E5DE9375F7B77977497331",
+        "mtime": "2026-10-13T09:36:12.274393+09:00"
+      },
+      {
+        "code": "SUVC-main",
+        "page": 255,
+        "reviewed_pixelSHA256": "9E8BCCF9F3137BA2F457972C94324CF56D380225E3531BB387C9B1C48B2263F5",
+        "current_pixelSHA256": "9E8BCCF9F3137BA2F457972C94324CF56D380225E3531BB387C9B1C48B2263F5",
+        "equal": true,
+        "current_pngSHA256": "E3C9E9EA75F4C7A9E425033A5DA825B446F337917FDCA2673DEFE83B772B8E56",
+        "mtime": "2026-10-13T09:36:12.327061+09:00"
+      },
+      {
+        "code": "SUVC-main",
+        "page": 256,
+        "reviewed_pixelSHA256": "764E2AA221D6033BEBDC0D6B4F775E73579A9A49B785C366232A757A0276EA2C",
+        "current_pixelSHA256": "764E2AA221D6033BEBDC0D6B4F775E73579A9A49B785C366232A757A0276EA2C",
+        "equal": true,
+        "current_pngSHA256": "1D582B4D3DC771A3C4C75A31E0E1C2FC8C3374222D6CED20411FDB24ABC2FDC8",
+        "mtime": "2026-10-13T09:36:12.366931+09:00"
+      },
+      {
+        "code": "SUVC-main",
+        "page": 4,
+        "reviewed_pixelSHA256": "38B3DBEAE58881743104395D9A64EF74B8368CEEDC68A3417F528FA9C42C8FEB",
+        "current_pixelSHA256": "38B3DBEAE58881743104395D9A64EF74B8368CEEDC68A3417F528FA9C42C8FEB",
+        "equal": true,
+        "current_pngSHA256": "3E89C1FB676B43EE1532C4C726F76FE1DBCDE48A0BD6A9286C65AA40E53BE4B3",
+        "mtime": "2026-10-13T09:36:03.422381+09:00"
+      },
+      {
+        "code": "SUVC-main",
+        "page": 102,
+        "reviewed_pixelSHA256": "A23B8246135981451988A9B7F92390FF4E4ABCDF0542F3C829B3D60FF915D2D7",
+        "current_pixelSHA256": "A23B8246135981451988A9B7F92390FF4E4ABCDF0542F3C829B3D60FF915D2D7",
+        "equal": true,
+        "current_pngSHA256": "46E25285B2C35C559408CE9387C9B21A3078F0B4CF8ABE97A4E7F85990007F4C",
+        "mtime": "2026-10-13T09:36:06.327413+09:00"
+      },
+      {
+        "code": "SUVC-main",
+        "page": 103,
+        "reviewed_pixelSHA256": "A3B8CA369247F2DA64EB9558B30402CF36C6F7061B635C1CCA7B496EA09B3FC1",
+        "current_pixelSHA256": "A3B8CA369247F2DA64EB9558B30402CF36C6F7061B635C1CCA7B496EA09B3FC1",
+        "equal": true,
+        "current_pngSHA256": "92668D244421A9606B699789EEE713B30407591DFD7461C1628F723CA78A8DBA",
+        "mtime": "2026-10-13T09:36:06.378329+09:00"
+      },
+      {
+        "code": "SUVC-main",
+        "page": 109,
+        "reviewed_pixelSHA256": "8D2C7E94DE0DFCD5B70BBB89B2B9E7AF3AC15FEE7791DE170E1BDE9A9EA40B57",
+        "current_pixelSHA256": "8D2C7E94DE0DFCD5B70BBB89B2B9E7AF3AC15FEE7791DE170E1BDE9A9EA40B57",
+        "equal": true,
+        "current_pngSHA256": "E4DF5158F797D60032188410478AB320BB2FDB2EBBD4AAA4A554DCE6D3342B6C",
+        "mtime": "2026-10-13T09:36:06.610383+09:00"
+      },
+      {
+        "code": "SUVC-main",
+        "page": 136,
+        "reviewed_pixelSHA256": "3D71DD189ACB7C0463E038BB960832E249867D8E20D31E056B89AB7436C9A8D7",
+        "current_pixelSHA256": "3D71DD189ACB7C0463E038BB960832E249867D8E20D31E056B89AB7436C9A8D7",
+        "equal": true,
+        "current_pngSHA256": "8CCFF8A9B1F3D0E95F8053D6036CD788F8C3A0D8E0A0C9287CE379D16930CAD7",
+        "mtime": "2026-10-13T09:36:07.564265+09:00"
+      },
+      {
+        "code": "SUVR-main",
+        "page": 190,
+        "reviewed_pixelSHA256": "37DA9A31B4999FE6E5C080855E183D67ECA19AABAB476D705C294A8D60A0C974",
+        "current_pixelSHA256": "37DA9A31B4999FE6E5C080855E183D67ECA19AABAB476D705C294A8D60A0C974",
+        "equal": true,
+        "current_pngSHA256": "C9EB284BEACC61C37A79CDC16F3336A48005AA76779D091C15DBC3DA18125E87",
+        "mtime": "2026-10-13T09:36:20.681225+09:00"
+      },
+      {
+        "code": "SUVR-main",
+        "page": 191,
+        "reviewed_pixelSHA256": "2F1A9AB9BC4E2370A40836F87ECD8B3F9E5A3ED19327610003EAF6CEBEF26739",
+        "current_pixelSHA256": "2F1A9AB9BC4E2370A40836F87ECD8B3F9E5A3ED19327610003EAF6CEBEF26739",
+        "equal": true,
+        "current_pngSHA256": "DF7C104A49F4858D6A5E602E00AF495BAB65E7BC23664532E4B8D1B1ABCC5D99",
+        "mtime": "2026-10-13T09:36:20.748230+09:00"
+      },
+      {
+        "code": "SUVR-main",
+        "page": 192,
+        "reviewed_pixelSHA256": "9DD36F23A2BF68574A4A8BCF8C3F58A1BFCE5DFE051FF24B0F43D6D6042B7201",
+        "current_pixelSHA256": "9DD36F23A2BF68574A4A8BCF8C3F58A1BFCE5DFE051FF24B0F43D6D6042B7201",
+        "equal": true,
+        "current_pngSHA256": "803AEE398C4B800579E8B43685596EA8E6A1FA3BA2DFAFB669D7C57EEABCB6B2",
+        "mtime": "2026-10-13T09:36:20.794161+09:00"
+      },
+      {
+        "code": "SUVR-main",
+        "page": 193,
+        "reviewed_pixelSHA256": "349F2BC18E371DDBDD86EC80CE75F01D42C13B998E672F93ADC8A81B0554BA56",
+        "current_pixelSHA256": "349F2BC18E371DDBDD86EC80CE75F01D42C13B998E672F93ADC8A81B0554BA56",
+        "equal": true,
+        "current_pngSHA256": "6D3D1F681ECAC895A43F27DFBB7E75BAEB4BDAD1B4439072E532D61921802AE3",
+        "mtime": "2026-10-13T09:36:20.838844+09:00"
+      },
+      {
+        "code": "SUVR-main",
+        "page": 194,
+        "reviewed_pixelSHA256": "82715ACB61772665975E4D7D3A1E72683F8F98037FF4234F3C93603425CF1827",
+        "current_pixelSHA256": "82715ACB61772665975E4D7D3A1E72683F8F98037FF4234F3C93603425CF1827",
+        "equal": true,
+        "current_pngSHA256": "0FD71DE9135A3605339E7EAFE3553DEF080B6E0F4B910687E65CF2AE1910F947",
+        "mtime": "2026-10-13T09:36:20.878010+09:00"
+      },
+      {
+        "code": "SUVR-main",
+        "page": 195,
+        "reviewed_pixelSHA256": "E7E91EE9BCD7424E9286BA8C5EB1900FB9F40D391A49675B0D2120CDE917FF5A",
+        "current_pixelSHA256": "E7E91EE9BCD7424E9286BA8C5EB1900FB9F40D391A49675B0D2120CDE917FF5A",
+        "equal": true,
+        "current_pngSHA256": "C53185108F95AEAE8AC2CD55D5CA8032CA1440FFF10E41009D7B4DB10CD8CD8C",
+        "mtime": "2026-10-13T09:36:20.910582+09:00"
+      },
+      {
+        "code": "SUVR-main",
+        "page": 196,
+        "reviewed_pixelSHA256": "AE1A42B56736B90A634C93990DBC7F103220E95D958950A7EF9FFC977539052B",
+        "current_pixelSHA256": "AE1A42B56736B90A634C93990DBC7F103220E95D958950A7EF9FFC977539052B",
+        "equal": true,
+        "current_pngSHA256": "5B0230EEAF8B8C4F2C8E1F4B27BC6CCEA5CF9BA0CBD9325774E7447208E07BD0",
+        "mtime": "2026-10-13T09:36:20.957364+09:00"
+      },
+      {
+        "code": "SUVR-main",
+        "page": 197,
+        "reviewed_pixelSHA256": "435B9038110F81883E2DD3538B20DDEEF07BF59398C223B4FAA56EB26A5B8417",
+        "current_pixelSHA256": "435B9038110F81883E2DD3538B20DDEEF07BF59398C223B4FAA56EB26A5B8417",
+        "equal": true,
+        "current_pngSHA256": "2C88098C01F2E9DF8EE99DAB9375C78EF63F6E201FB52C18BFD025475C93389A",
+        "mtime": "2026-10-13T09:36:21.008035+09:00"
+      },
+      {
+        "code": "SUVR-main",
+        "page": 198,
+        "reviewed_pixelSHA256": "A23B7977483E513A9E871AA012C806F0DCC20A70E4551A93617D54FE5FCD98BE",
+        "current_pixelSHA256": "A23B7977483E513A9E871AA012C806F0DCC20A70E4551A93617D54FE5FCD98BE",
+        "equal": true,
+        "current_pngSHA256": "35DBE7F266169AC592325B50F2B9018313553A43DBD38E7D33CCFB522CEBA558",
+        "mtime": "2026-10-13T09:36:21.058103+09:00"
+      },
+      {
+        "code": "SUVR-main",
+        "page": 199,
+        "reviewed_pixelSHA256": "093DEC08277F2CACD8FB36780BA392EF50FBE6E211BC0FC26965A201287742BC",
+        "current_pixelSHA256": "093DEC08277F2CACD8FB36780BA392EF50FBE6E211BC0FC26965A201287742BC",
+        "equal": true,
+        "current_pngSHA256": "A7EF7CB5CD84B2E1F1192C3F0044340C6CBE603D073E3A3016F55FF500FC044B",
+        "mtime": "2026-10-13T09:36:21.128603+09:00"
+      },
+      {
+        "code": "SUVR-main",
+        "page": 200,
+        "reviewed_pixelSHA256": "E429A4E9C00A194DCE222AA3BA44B9F87974695A51E7F0DEF63EE947093B9AA3",
+        "current_pixelSHA256": "E429A4E9C00A194DCE222AA3BA44B9F87974695A51E7F0DEF63EE947093B9AA3",
+        "equal": true,
+        "current_pngSHA256": "CDD5545F6AA67C58221458DA3ECD905F79ACFF59EF0A84F93B0DFC3E4E14AD94",
+        "mtime": "2026-10-13T09:36:21.177385+09:00"
+      },
+      {
+        "code": "SUVR-main",
+        "page": 201,
+        "reviewed_pixelSHA256": "543CF4E8A1DAA35D6C72DF9A36E6E2AB21D1ED49ED911C58010BA8B7475C15CC",
+        "current_pixelSHA256": "543CF4E8A1DAA35D6C72DF9A36E6E2AB21D1ED49ED911C58010BA8B7475C15CC",
+        "equal": true,
+        "current_pngSHA256": "9E142718F8BF8ED8E1D7EDCE628061A0D684A33968685F3A1E7CC7346960D94E",
+        "mtime": "2026-10-13T09:36:21.219865+09:00"
+      },
+      {
+        "code": "SUVR-main",
+        "page": 202,
+        "reviewed_pixelSHA256": "05D2CC052CEB0F396F6A5549E711618A4B327204798BF266A6A7E57FD7B0A644",
+        "current_pixelSHA256": "05D2CC052CEB0F396F6A5549E711618A4B327204798BF266A6A7E57FD7B0A644",
+        "equal": true,
+        "current_pngSHA256": "A510C4CFFBCACF10F58D2A8FE382D48FA3B8816BDC6D65264E20E8632606F256",
+        "mtime": "2026-10-13T09:36:21.284594+09:00"
+      },
+      {
+        "code": "SUVR-main",
+        "page": 203,
+        "reviewed_pixelSHA256": "702ACC304B52DB599C5D37DE89CDA775BABDAAFE875A2A06AE34E1902EE3B0BA",
+        "current_pixelSHA256": "702ACC304B52DB599C5D37DE89CDA775BABDAAFE875A2A06AE34E1902EE3B0BA",
+        "equal": true,
+        "current_pngSHA256": "79EC08F6F7DFFBE2DFD5663E49C9DE0C49421BACB204EF6ED1F86CC9B9839520",
+        "mtime": "2026-10-13T09:36:21.326316+09:00"
+      },
+      {
+        "code": "SUVR-main",
+        "page": 204,
+        "reviewed_pixelSHA256": "BDB4E4DB1DE272A926EF0C332B5D0A7BB655193EC5824F526010F48967D4551B",
+        "current_pixelSHA256": "BDB4E4DB1DE272A926EF0C332B5D0A7BB655193EC5824F526010F48967D4551B",
+        "equal": true,
+        "current_pngSHA256": "5E4C284E3143A8C810AC288559AA3E3F0D8ACF0C40E7593AD75CD61D5143E69B",
+        "mtime": "2026-10-13T09:36:21.380893+09:00"
+      },
+      {
+        "code": "SUVR-main",
+        "page": 205,
+        "reviewed_pixelSHA256": "C52A99B8ED0CB9B0E995D25960FC66360250FC22C5482A9B20A3BD7F44370767",
+        "current_pixelSHA256": "C52A99B8ED0CB9B0E995D25960FC66360250FC22C5482A9B20A3BD7F44370767",
+        "equal": true,
+        "current_pngSHA256": "D910F0497133C574683E551057BFAB1460D9C59301A3028B74E2367AE32F6117",
+        "mtime": "2026-10-13T09:36:21.427766+09:00"
+      },
+      {
+        "code": "SUVR-main",
+        "page": 4,
+        "reviewed_pixelSHA256": "7DA1CD4F4F557F7397B283F308FAEA00A1FEAA110EA977D66C545B9337B15CB3",
+        "current_pixelSHA256": "7DA1CD4F4F557F7397B283F308FAEA00A1FEAA110EA977D66C545B9337B15CB3",
+        "equal": true,
+        "current_pngSHA256": "AA02449D84B5245ED77D4C1D20913CEB37C79C2AAD17C29CEF5009DEAFCE3BA9",
+        "mtime": "2026-10-13T09:36:13.736109+09:00"
+      },
+      {
+        "code": "SUVR-main",
+        "page": 81,
+        "reviewed_pixelSHA256": "6A0E895DD81B2750B4C4BE7552743C393682BD27A4991A132E8A148EE5853DBC",
+        "current_pixelSHA256": "6A0E895DD81B2750B4C4BE7552743C393682BD27A4991A132E8A148EE5853DBC",
+        "equal": true,
+        "current_pngSHA256": "DEB8EA9B8AAB0F6D84549D32B565F486B5294885E3C8AD0658CF198C0C6781F4",
+        "mtime": "2026-10-13T09:36:16.176070+09:00"
+      },
+      {
+        "code": "SUVR-main",
+        "page": 82,
+        "reviewed_pixelSHA256": "3642945EDE9FB3B6076EBAE91CCF2342C4330E7E7FADC68BD061359947B724B8",
+        "current_pixelSHA256": "3642945EDE9FB3B6076EBAE91CCF2342C4330E7E7FADC68BD061359947B724B8",
+        "equal": true,
+        "current_pngSHA256": "7E12EDA959FEEDB1636816DCDCCF4B7C5C900C60C32DBF20059F77EC8DBA9277",
+        "mtime": "2026-10-13T09:36:16.213171+09:00"
+      },
+      {
+        "code": "SUVR-main",
+        "page": 87,
+        "reviewed_pixelSHA256": "D6501A7FA67E37558F2729AF2B54DA3C5A4383F18B362B743F512D73256A231F",
+        "current_pixelSHA256": "D6501A7FA67E37558F2729AF2B54DA3C5A4383F18B362B743F512D73256A231F",
+        "equal": true,
+        "current_pngSHA256": "C9D13E015C0575B163C14899ED15718591FE106BAAAC07660B7F912C217929E7",
+        "mtime": "2026-10-13T09:36:16.394555+09:00"
+      },
+      {
+        "code": "SUVR-main",
+        "page": 108,
+        "reviewed_pixelSHA256": "553B032CFF540C4C6F2E12C91F8D275F067C7F6338AE07395335E90C31FF9E63",
+        "current_pixelSHA256": "553B032CFF540C4C6F2E12C91F8D275F067C7F6338AE07395335E90C31FF9E63",
+        "equal": true,
+        "current_pngSHA256": "B226DFA53BADE5F81B77CFC07BFF2710B2E8DE3F475F776247FB3EDB3BCD823A",
+        "mtime": "2026-10-13T09:36:17.214350+09:00"
+      }
+    ]
+  },
+  "latest_layout_render_link": {
+    "checkedAt": "2026-10-13T10:12:25.546714+09:00",
+    "native_metadata": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests-native.json",
+    "sources": [
+      {
+        "code": "SUVC-main",
+        "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SUVC-FW-TD24A 소프트웨어 유닛 검증 기준서.xlsx",
+        "sha256_before": "97ABF9DF8329EAF1EA00C93C7E136A18C79A865D0F09A22F3C9297EE88BB69F3",
+        "sha256_after": "97ABF9DF8329EAF1EA00C93C7E136A18C79A865D0F09A22F3C9297EE88BB69F3",
+        "readonly_unchanged": true,
+        "matches_current_native": true
+      },
+      {
+        "code": "SUVR-main",
+        "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\04_설계 검증\\SW\\외부기\\[E8300-QCC] SUVR-FW-TD24A 소프트웨어 유닛 검증 보고서.xlsx",
+        "sha256_before": "C2AA80C2D85439B07FEAEAE05DB2C460EF6E2F7F1CB32103C0A328763B0DE2BA",
+        "sha256_after": "C2AA80C2D85439B07FEAEAE05DB2C460EF6E2F7F1CB32103C0A328763B0DE2BA",
+        "readonly_unchanged": true,
+        "matches_current_native": true
+      }
+    ],
+    "actual_page_counts": {
+      "SUVC-main": 305,
+      "SUVR-main": 260
+    },
+    "reviewed_previous_scope": 44,
+    "pixel_same_reused_count": 35,
+    "latest_direct_changed_page_count": 9,
+    "page_mapping": [
+      {
+        "code": "SUVC-main",
+        "old_page": 239,
+        "current_page": 288,
+        "old_pngSHA256": "C130AD23A7B99DBDEDE0A8EFA3654C02A970CF32737BE5DEF547CAF309A1CCC0",
+        "old_pixelSHA256": "AAE0F28C1FB01CDD0E9841B2E8C4CE77A9E9C94351AE33A83184127A3519F3E5",
+        "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVC-main\\page-288.png",
+        "sha256": "C130AD23A7B99DBDEDE0A8EFA3654C02A970CF32737BE5DEF547CAF309A1CCC0",
+        "pixelSHA256": "AAE0F28C1FB01CDD0E9841B2E8C4CE77A9E9C94351AE33A83184127A3519F3E5",
+        "size": [
+          1263,
+          893
+        ],
+        "exact_pixel_equal": true,
+        "verification": "기존 개별full검토 + 최신 전체픽셀동일",
+        "function": "QCC 38조건",
+        "verdict": "통과",
+        "text_or_border_clipping": "없음"
+      },
+      {
+        "code": "SUVC-main",
+        "old_page": 240,
+        "current_page": 289,
+        "old_pngSHA256": "AC9087B3AC9B2B3ABDE6FE32613370A5CBCBFE57DB89CFFD235CB0008867056C",
+        "old_pixelSHA256": "E2E544704CBCB4F363713283D99A3825B964755B8729CFE3F7CCACB0E357B38C",
+        "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVC-main\\page-289.png",
+        "sha256": "AC9087B3AC9B2B3ABDE6FE32613370A5CBCBFE57DB89CFFD235CB0008867056C",
+        "pixelSHA256": "E2E544704CBCB4F363713283D99A3825B964755B8729CFE3F7CCACB0E357B38C",
+        "size": [
+          1263,
+          893
+        ],
+        "exact_pixel_equal": true,
+        "verification": "기존 개별full검토 + 최신 전체픽셀동일",
+        "function": "QCC 38조건",
+        "verdict": "통과",
+        "text_or_border_clipping": "없음"
+      },
+      {
+        "code": "SUVC-main",
+        "old_page": 241,
+        "current_page": 290,
+        "old_pngSHA256": "942F24CE971A8F43EBB4125AD9AC55CF19ABF5F5974C038608DCE39E4BF0A40D",
+        "old_pixelSHA256": "054B7AD07B8AC85AFAAB24C9C7B0ACD7E7F147C817F3A0A72CAF2E57EDFB8AF2",
+        "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVC-main\\page-290.png",
+        "sha256": "942F24CE971A8F43EBB4125AD9AC55CF19ABF5F5974C038608DCE39E4BF0A40D",
+        "pixelSHA256": "054B7AD07B8AC85AFAAB24C9C7B0ACD7E7F147C817F3A0A72CAF2E57EDFB8AF2",
+        "size": [
+          1263,
+          893
+        ],
+        "exact_pixel_equal": true,
+        "verification": "기존 개별full검토 + 최신 전체픽셀동일",
+        "function": "QCC 38조건",
+        "verdict": "통과",
+        "text_or_border_clipping": "없음"
+      },
+      {
+        "code": "SUVC-main",
+        "old_page": 242,
+        "current_page": 291,
+        "old_pngSHA256": "61DBF375B00462C83BE6359AEBF77D38F00A062A53FCF78332BCC9E97A181CDD",
+        "old_pixelSHA256": "DFF84CE3D716FAA17BAD75C6D906098A34E77F8D1993D8CF7C1D7824DAC1EBEF",
+        "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVC-main\\page-291.png",
+        "sha256": "61DBF375B00462C83BE6359AEBF77D38F00A062A53FCF78332BCC9E97A181CDD",
+        "pixelSHA256": "DFF84CE3D716FAA17BAD75C6D906098A34E77F8D1993D8CF7C1D7824DAC1EBEF",
+        "size": [
+          1263,
+          893
+        ],
+        "exact_pixel_equal": true,
+        "verification": "기존 개별full검토 + 최신 전체픽셀동일",
+        "function": "QCC 38조건",
+        "verdict": "통과",
+        "text_or_border_clipping": "없음"
+      },
+      {
+        "code": "SUVC-main",
+        "old_page": 243,
+        "current_page": 292,
+        "old_pngSHA256": "5CA7B8F46D778F8EEC08FDF5019C9E78DD0D6B7DF9ACBE874F84143E92CD270B",
+        "old_pixelSHA256": "9217C866D167E9941E6CAA557B4B2EA037230A13A7F30FB0D8054ECCB8B5FF5E",
+        "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVC-main\\page-292.png",
+        "sha256": "5CA7B8F46D778F8EEC08FDF5019C9E78DD0D6B7DF9ACBE874F84143E92CD270B",
+        "pixelSHA256": "9217C866D167E9941E6CAA557B4B2EA037230A13A7F30FB0D8054ECCB8B5FF5E",
+        "size": [
+          1263,
+          893
+        ],
+        "exact_pixel_equal": true,
+        "verification": "기존 개별full검토 + 최신 전체픽셀동일",
+        "function": "QCC 38조건",
+        "verdict": "통과",
+        "text_or_border_clipping": "없음"
+      },
+      {
+        "code": "SUVC-main",
+        "old_page": 244,
+        "current_page": 293,
+        "old_pngSHA256": "1BA79F7422AF16018574C6B40F085B10927EEFFB3C7C1EA1A1134876B27FF066",
+        "old_pixelSHA256": "F0E99B1AB47DC44817F919D204A39E78CA5126B45316A8AEEF14EF535F818764",
+        "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVC-main\\page-293.png",
+        "sha256": "1BA79F7422AF16018574C6B40F085B10927EEFFB3C7C1EA1A1134876B27FF066",
+        "pixelSHA256": "F0E99B1AB47DC44817F919D204A39E78CA5126B45316A8AEEF14EF535F818764",
+        "size": [
+          1263,
+          893
+        ],
+        "exact_pixel_equal": true,
+        "verification": "기존 개별full검토 + 최신 전체픽셀동일",
+        "function": "QCC 38조건",
+        "verdict": "통과",
+        "text_or_border_clipping": "없음"
+      },
+      {
+        "code": "SUVC-main",
+        "old_page": 245,
+        "current_page": 294,
+        "old_pngSHA256": "14EF62FED19DC0148684C916603FAF8D17B86FA4751AB01FD04D9F9239675922",
+        "old_pixelSHA256": "F303C47FB798440238FC2D98A3E3784E5507C6D74962B03EFAF62158537C6E21",
+        "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVC-main\\page-294.png",
+        "sha256": "14EF62FED19DC0148684C916603FAF8D17B86FA4751AB01FD04D9F9239675922",
+        "pixelSHA256": "F303C47FB798440238FC2D98A3E3784E5507C6D74962B03EFAF62158537C6E21",
+        "size": [
+          1263,
+          893
+        ],
+        "exact_pixel_equal": true,
+        "verification": "기존 개별full검토 + 최신 전체픽셀동일",
+        "function": "QCC 38조건",
+        "verdict": "통과",
+        "text_or_border_clipping": "없음"
+      },
+      {
+        "code": "SUVC-main",
+        "old_page": 246,
+        "current_page": 295,
+        "old_pngSHA256": "AAB6234A4E2A5F09CD1E4B715EEA7A7044285CDC8AE47C36FE375654A29CF6CA",
+        "old_pixelSHA256": "724268AADA36E069B3C7EB44FE1039822DE69D45A1494D4E14C52F90F040FE8B",
+        "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVC-main\\page-295.png",
+        "sha256": "AAB6234A4E2A5F09CD1E4B715EEA7A7044285CDC8AE47C36FE375654A29CF6CA",
+        "pixelSHA256": "724268AADA36E069B3C7EB44FE1039822DE69D45A1494D4E14C52F90F040FE8B",
+        "size": [
+          1263,
+          893
+        ],
+        "exact_pixel_equal": true,
+        "verification": "기존 개별full검토 + 최신 전체픽셀동일",
+        "function": "QCC 38조건",
+        "verdict": "통과",
+        "text_or_border_clipping": "없음"
+      },
+      {
+        "code": "SUVC-main",
+        "old_page": 247,
+        "current_page": 296,
+        "old_pngSHA256": "A3895205E882C6531ABEB440CBF2CF99ABDD8AEC2F9C7830379E01A1AD68E475",
+        "old_pixelSHA256": "4507C636771547B84D7CE48D42A80EE7970428F264A747D3AF5A4323AFCDB5F7",
+        "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVC-main\\page-296.png",
+        "sha256": "A3895205E882C6531ABEB440CBF2CF99ABDD8AEC2F9C7830379E01A1AD68E475",
+        "pixelSHA256": "4507C636771547B84D7CE48D42A80EE7970428F264A747D3AF5A4323AFCDB5F7",
+        "size": [
+          1263,
+          893
+        ],
+        "exact_pixel_equal": true,
+        "verification": "기존 개별full검토 + 최신 전체픽셀동일",
+        "function": "QCC 38조건",
+        "verdict": "통과",
+        "text_or_border_clipping": "없음"
+      },
+      {
+        "code": "SUVC-main",
+        "old_page": 248,
+        "current_page": 297,
+        "old_pngSHA256": "612016620973D3669AFA54BC10C2E4362C0F63F94D71264D687A2DA5145076CF",
+        "old_pixelSHA256": "330F90C2C7011D64E53E75016745D2E2CA1AF7D74561E940C8661BA4A3F69AF1",
+        "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVC-main\\page-297.png",
+        "sha256": "612016620973D3669AFA54BC10C2E4362C0F63F94D71264D687A2DA5145076CF",
+        "pixelSHA256": "330F90C2C7011D64E53E75016745D2E2CA1AF7D74561E940C8661BA4A3F69AF1",
+        "size": [
+          1263,
+          893
+        ],
+        "exact_pixel_equal": true,
+        "verification": "기존 개별full검토 + 최신 전체픽셀동일",
+        "function": "QCC 38조건",
+        "verdict": "통과",
+        "text_or_border_clipping": "없음"
+      },
+      {
+        "code": "SUVC-main",
+        "old_page": 249,
+        "current_page": 298,
+        "old_pngSHA256": "8903E39C48076E0D0A732E1B8510C83376F7F9A29A8DCFDFDBE8685D6BD034AB",
+        "old_pixelSHA256": "09BC22A530AC83812044588715AD1E2D337780151038759BFA14ED0D3F8DDAEA",
+        "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVC-main\\page-298.png",
+        "sha256": "8903E39C48076E0D0A732E1B8510C83376F7F9A29A8DCFDFDBE8685D6BD034AB",
+        "pixelSHA256": "09BC22A530AC83812044588715AD1E2D337780151038759BFA14ED0D3F8DDAEA",
+        "size": [
+          1263,
+          893
+        ],
+        "exact_pixel_equal": true,
+        "verification": "기존 개별full검토 + 최신 전체픽셀동일",
+        "function": "QCC 38조건",
+        "verdict": "통과",
+        "text_or_border_clipping": "없음"
+      },
+      {
+        "code": "SUVC-main",
+        "old_page": 250,
+        "current_page": 299,
+        "old_pngSHA256": "263685826FD9241983A2A11444C04AA5BC1D47BAA4F5BA5BEF51E602D1C619CB",
+        "old_pixelSHA256": "810A1DF62A6E0DD8FFE0FCD20DB499E458E101385941877F14060686C009DD43",
+        "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVC-main\\page-299.png",
+        "sha256": "263685826FD9241983A2A11444C04AA5BC1D47BAA4F5BA5BEF51E602D1C619CB",
+        "pixelSHA256": "810A1DF62A6E0DD8FFE0FCD20DB499E458E101385941877F14060686C009DD43",
+        "size": [
+          1263,
+          893
+        ],
+        "exact_pixel_equal": true,
+        "verification": "기존 개별full검토 + 최신 전체픽셀동일",
+        "function": "QCC 38조건",
+        "verdict": "통과",
+        "text_or_border_clipping": "없음"
+      },
+      {
+        "code": "SUVC-main",
+        "old_page": 251,
+        "current_page": 300,
+        "old_pngSHA256": "D8ED8391991D17867D7A6FC17A1D1F0743AE01F5972ACCD4297F20405511CCDD",
+        "old_pixelSHA256": "CC514672F34CC417B364BA3F591FD57A2A9D536023AE4E055972D299D4EAF3C6",
+        "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVC-main\\page-300.png",
+        "sha256": "D8ED8391991D17867D7A6FC17A1D1F0743AE01F5972ACCD4297F20405511CCDD",
+        "pixelSHA256": "CC514672F34CC417B364BA3F591FD57A2A9D536023AE4E055972D299D4EAF3C6",
+        "size": [
+          1263,
+          893
+        ],
+        "exact_pixel_equal": true,
+        "verification": "기존 개별full검토 + 최신 전체픽셀동일",
+        "function": "QCC 38조건",
+        "verdict": "통과",
+        "text_or_border_clipping": "없음"
+      },
+      {
+        "code": "SUVC-main",
+        "old_page": 252,
+        "current_page": 301,
+        "old_pngSHA256": "D461DBE664E35005BC6CD28A9BDA248A090CB8EB5434BFD28DB694EAF48062CF",
+        "old_pixelSHA256": "D4BED580AC027731AFB41D4EA3FA5F8C623EDE44522C5DE4C0EDCBAAA988CC92",
+        "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVC-main\\page-301.png",
+        "sha256": "D461DBE664E35005BC6CD28A9BDA248A090CB8EB5434BFD28DB694EAF48062CF",
+        "pixelSHA256": "D4BED580AC027731AFB41D4EA3FA5F8C623EDE44522C5DE4C0EDCBAAA988CC92",
+        "size": [
+          1263,
+          893
+        ],
+        "exact_pixel_equal": true,
+        "verification": "기존 개별full검토 + 최신 전체픽셀동일",
+        "function": "QCC 38조건",
+        "verdict": "통과",
+        "text_or_border_clipping": "없음"
+      },
+      {
+        "code": "SUVC-main",
+        "old_page": 253,
+        "current_page": 302,
+        "old_pngSHA256": "D2F2B5E22C3614A73E7F38BB37D506AF5CC782016498F208B744B773FDD68023",
+        "old_pixelSHA256": "656528A535DB8D1CD586B478EABCDEF548D7D98F7222BAB6F201761E7D4B09F0",
+        "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVC-main\\page-302.png",
+        "sha256": "D2F2B5E22C3614A73E7F38BB37D506AF5CC782016498F208B744B773FDD68023",
+        "pixelSHA256": "656528A535DB8D1CD586B478EABCDEF548D7D98F7222BAB6F201761E7D4B09F0",
+        "size": [
+          1263,
+          893
+        ],
+        "exact_pixel_equal": true,
+        "verification": "기존 개별full검토 + 최신 전체픽셀동일",
+        "function": "QCC 38조건",
+        "verdict": "통과",
+        "text_or_border_clipping": "없음"
+      },
+      {
+        "code": "SUVC-main",
+        "old_page": 254,
+        "current_page": 303,
+        "old_pngSHA256": "25E68D1DB4DFC6E068766040AD732B1D0F9727F0A7E5DE9375F7B77977497331",
+        "old_pixelSHA256": "20CD7264A34F0EC2C77271FC48217067E09711753AFEBC363501B4DB237A3FB3",
+        "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVC-main\\page-303.png",
+        "sha256": "25E68D1DB4DFC6E068766040AD732B1D0F9727F0A7E5DE9375F7B77977497331",
+        "pixelSHA256": "20CD7264A34F0EC2C77271FC48217067E09711753AFEBC363501B4DB237A3FB3",
+        "size": [
+          1263,
+          893
+        ],
+        "exact_pixel_equal": true,
+        "verification": "기존 개별full검토 + 최신 전체픽셀동일",
+        "function": "QCC 38조건",
+        "verdict": "통과",
+        "text_or_border_clipping": "없음"
+      },
+      {
+        "code": "SUVC-main",
+        "old_page": 255,
+        "current_page": 304,
+        "old_pngSHA256": "E3C9E9EA75F4C7A9E425033A5DA825B446F337917FDCA2673DEFE83B772B8E56",
+        "old_pixelSHA256": "9E8BCCF9F3137BA2F457972C94324CF56D380225E3531BB387C9B1C48B2263F5",
+        "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVC-main\\page-304.png",
+        "sha256": "E3C9E9EA75F4C7A9E425033A5DA825B446F337917FDCA2673DEFE83B772B8E56",
+        "pixelSHA256": "9E8BCCF9F3137BA2F457972C94324CF56D380225E3531BB387C9B1C48B2263F5",
+        "size": [
+          1263,
+          893
+        ],
+        "exact_pixel_equal": true,
+        "verification": "기존 개별full검토 + 최신 전체픽셀동일",
+        "function": "QCC 38조건",
+        "verdict": "통과",
+        "text_or_border_clipping": "없음"
+      },
+      {
+        "code": "SUVC-main",
+        "old_page": 256,
+        "current_page": 305,
+        "old_pngSHA256": "1D582B4D3DC771A3C4C75A31E0E1C2FC8C3374222D6CED20411FDB24ABC2FDC8",
+        "old_pixelSHA256": "764E2AA221D6033BEBDC0D6B4F775E73579A9A49B785C366232A757A0276EA2C",
+        "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVC-main\\page-305.png",
+        "sha256": "1D582B4D3DC771A3C4C75A31E0E1C2FC8C3374222D6CED20411FDB24ABC2FDC8",
+        "pixelSHA256": "764E2AA221D6033BEBDC0D6B4F775E73579A9A49B785C366232A757A0276EA2C",
+        "size": [
+          1263,
+          893
+        ],
+        "exact_pixel_equal": true,
+        "verification": "기존 개별full검토 + 최신 전체픽셀동일",
+        "function": "QCC 38조건",
+        "verdict": "통과",
+        "text_or_border_clipping": "없음"
+      },
+      {
+        "code": "SUVC-main",
+        "old_page": 4,
+        "current_page": 4,
+        "old_pngSHA256": "3E89C1FB676B43EE1532C4C726F76FE1DBCDE48A0BD6A9286C65AA40E53BE4B3",
+        "old_pixelSHA256": "38B3DBEAE58881743104395D9A64EF74B8368CEEDC68A3417F528FA9C42C8FEB",
+        "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVC-main\\page-004.png",
+        "sha256": "568E29929E0CDC968A73A816AE7DB3FE742F80BD9D69BAD52227FB7233E9BF8F",
+        "pixelSHA256": "1C1E3FC50343D0F34E5F945CA87AAED17E0F1C0F14CE0611FBBCAA0F220E05EA",
+        "size": [
+          1263,
+          893
+        ],
+        "exact_pixel_equal": false,
+        "verification": "최신 개별full PNG 원본크기 직접 재검토. 과거 픽셀 동일 주장 없음.",
+        "function": "CFX003 1/2-DMIC 설정",
+        "verdict": "통과",
+        "text_or_border_clipping": "없음"
+      },
+      {
+        "code": "SUVC-main",
+        "old_page": 102,
+        "current_page": 123,
+        "old_pngSHA256": "46E25285B2C35C559408CE9387C9B21A3078F0B4CF8ABE97A4E7F85990007F4C",
+        "old_pixelSHA256": "A23B8246135981451988A9B7F92390FF4E4ABCDF0542F3C829B3D60FF915D2D7",
+        "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVC-main\\page-123.png",
+        "sha256": "D111348DF344190583B8D7F31A902F1E61691042D8FFA1A021CFF3271C693215",
+        "pixelSHA256": "4F046F612B29E4A93837A5B7393AC3D74A03F90CFC804B4EC104E6C90B944358",
+        "size": [
+          1263,
+          893
+        ],
+        "exact_pixel_equal": false,
+        "verification": "최신 개별full PNG 원본크기 직접 재검토. 과거 픽셀 동일 주장 없음.",
+        "function": "HEAR002 vMag192..239",
+        "verdict": "통과",
+        "text_or_border_clipping": "없음"
+      },
+      {
+        "code": "SUVC-main",
+        "old_page": 103,
+        "current_page": 124,
+        "old_pngSHA256": "92668D244421A9606B699789EEE713B30407591DFD7461C1628F723CA78A8DBA",
+        "old_pixelSHA256": "A3B8CA369247F2DA64EB9558B30402CF36C6F7061B635C1CCA7B496EA09B3FC1",
+        "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVC-main\\page-124.png",
+        "sha256": "4EE87F2F6C9A54C4F79B8068E97D7ECF16B151D6F7F95A14258E955D33332AE5",
+        "pixelSHA256": "4023955A5A4F61E329ADCDC973F26BE70703CED71096C80053C982F7A007A753",
+        "size": [
+          1263,
+          893
+        ],
+        "exact_pixel_equal": false,
+        "verification": "최신 개별full PNG 원본크기 직접 재검토. 과거 픽셀 동일 주장 없음.",
+        "function": "HEAR002 vMag240..255와 경계조건",
+        "verdict": "통과",
+        "text_or_border_clipping": "없음"
+      },
+      {
+        "code": "SUVC-main",
+        "old_page": 109,
+        "current_page": 132,
+        "old_pngSHA256": "E4DF5158F797D60032188410478AB320BB2FDB2EBBD4AAA4A554DCE6D3342B6C",
+        "old_pixelSHA256": "8D2C7E94DE0DFCD5B70BBB89B2B9E7AF3AC15FEE7791DE170E1BDE9A9EA40B57",
+        "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVC-main\\page-132.png",
+        "sha256": "44C1E672D8E56804106171AB3A768334AAEBFCD87B16D5B6C4FCBE1DC36B55CF",
+        "pixelSHA256": "1F397849B4EBD8D3B81000E3F85A85A6DA440598D90F797D958226E09EF5A3FF",
+        "size": [
+          1263,
+          893
+        ],
+        "exact_pixel_equal": false,
+        "verification": "최신 개별full PNG 원본크기 직접 재검토. 과거 픽셀 동일 주장 없음.",
+        "function": "CM3-007 C1/C2 입력/RTT 경계",
+        "verdict": "통과",
+        "text_or_border_clipping": "없음"
+      },
+      {
+        "code": "SUVC-main",
+        "old_page": 136,
+        "current_page": 164,
+        "old_pngSHA256": "8CCFF8A9B1F3D0E95F8053D6036CD788F8C3A0D8E0A0C9287CE379D16930CAD7",
+        "old_pixelSHA256": "3D71DD189ACB7C0463E038BB960832E249867D8E20D31E056B89AB7436C9A8D7",
+        "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVC-main\\page-164.png",
+        "sha256": "A5A6955DEF69510E68622BC951B72B0DC3D3CA5789DCB741C30EAB0D173A6CA5",
+        "pixelSHA256": "41AA0AE88D20C349407EC74CB143DAD52D9DCE5BF2B3235E63662D7EAE82C0FD",
+        "size": [
+          1263,
+          893
+        ],
+        "exact_pixel_equal": false,
+        "verification": "최신 개별full PNG 원본크기 직접 재검토. 과거 픽셀 동일 주장 없음.",
+        "function": "CM3-023 음량 독립성",
+        "verdict": "통과",
+        "text_or_border_clipping": "없음"
+      },
+      {
+        "code": "SUVR-main",
+        "old_page": 190,
+        "current_page": 245,
+        "old_pngSHA256": "C9EB284BEACC61C37A79CDC16F3336A48005AA76779D091C15DBC3DA18125E87",
+        "old_pixelSHA256": "37DA9A31B4999FE6E5C080855E183D67ECA19AABAB476D705C294A8D60A0C974",
+        "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVR-main\\page-245.png",
+        "sha256": "C9EB284BEACC61C37A79CDC16F3336A48005AA76779D091C15DBC3DA18125E87",
+        "pixelSHA256": "37DA9A31B4999FE6E5C080855E183D67ECA19AABAB476D705C294A8D60A0C974",
+        "size": [
+          1263,
+          893
+        ],
+        "exact_pixel_equal": true,
+        "verification": "기존 개별full검토 + 최신 전체픽셀동일",
+        "function": "QCC 38조건",
+        "verdict": "통과",
+        "text_or_border_clipping": "없음"
+      },
+      {
+        "code": "SUVR-main",
+        "old_page": 191,
+        "current_page": 246,
+        "old_pngSHA256": "DF7C104A49F4858D6A5E602E00AF495BAB65E7BC23664532E4B8D1B1ABCC5D99",
+        "old_pixelSHA256": "2F1A9AB9BC4E2370A40836F87ECD8B3F9E5A3ED19327610003EAF6CEBEF26739",
+        "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVR-main\\page-246.png",
+        "sha256": "DF7C104A49F4858D6A5E602E00AF495BAB65E7BC23664532E4B8D1B1ABCC5D99",
+        "pixelSHA256": "2F1A9AB9BC4E2370A40836F87ECD8B3F9E5A3ED19327610003EAF6CEBEF26739",
+        "size": [
+          1263,
+          893
+        ],
+        "exact_pixel_equal": true,
+        "verification": "기존 개별full검토 + 최신 전체픽셀동일",
+        "function": "QCC 38조건",
+        "verdict": "통과",
+        "text_or_border_clipping": "없음"
+      },
+      {
+        "code": "SUVR-main",
+        "old_page": 192,
+        "current_page": 247,
+        "old_pngSHA256": "803AEE398C4B800579E8B43685596EA8E6A1FA3BA2DFAFB669D7C57EEABCB6B2",
+        "old_pixelSHA256": "9DD36F23A2BF68574A4A8BCF8C3F58A1BFCE5DFE051FF24B0F43D6D6042B7201",
+        "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVR-main\\page-247.png",
+        "sha256": "803AEE398C4B800579E8B43685596EA8E6A1FA3BA2DFAFB669D7C57EEABCB6B2",
+        "pixelSHA256": "9DD36F23A2BF68574A4A8BCF8C3F58A1BFCE5DFE051FF24B0F43D6D6042B7201",
+        "size": [
+          1263,
+          893
+        ],
+        "exact_pixel_equal": true,
+        "verification": "기존 개별full검토 + 최신 전체픽셀동일",
+        "function": "QCC 38조건",
+        "verdict": "통과",
+        "text_or_border_clipping": "없음"
+      },
+      {
+        "code": "SUVR-main",
+        "old_page": 193,
+        "current_page": 248,
+        "old_pngSHA256": "6D3D1F681ECAC895A43F27DFBB7E75BAEB4BDAD1B4439072E532D61921802AE3",
+        "old_pixelSHA256": "349F2BC18E371DDBDD86EC80CE75F01D42C13B998E672F93ADC8A81B0554BA56",
+        "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVR-main\\page-248.png",
+        "sha256": "6D3D1F681ECAC895A43F27DFBB7E75BAEB4BDAD1B4439072E532D61921802AE3",
+        "pixelSHA256": "349F2BC18E371DDBDD86EC80CE75F01D42C13B998E672F93ADC8A81B0554BA56",
+        "size": [
+          1263,
+          893
+        ],
+        "exact_pixel_equal": true,
+        "verification": "기존 개별full검토 + 최신 전체픽셀동일",
+        "function": "QCC 38조건",
+        "verdict": "통과",
+        "text_or_border_clipping": "없음"
+      },
+      {
+        "code": "SUVR-main",
+        "old_page": 194,
+        "current_page": 249,
+        "old_pngSHA256": "0FD71DE9135A3605339E7EAFE3553DEF080B6E0F4B910687E65CF2AE1910F947",
+        "old_pixelSHA256": "82715ACB61772665975E4D7D3A1E72683F8F98037FF4234F3C93603425CF1827",
+        "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVR-main\\page-249.png",
+        "sha256": "0FD71DE9135A3605339E7EAFE3553DEF080B6E0F4B910687E65CF2AE1910F947",
+        "pixelSHA256": "82715ACB61772665975E4D7D3A1E72683F8F98037FF4234F3C93603425CF1827",
+        "size": [
+          1263,
+          893
+        ],
+        "exact_pixel_equal": true,
+        "verification": "기존 개별full검토 + 최신 전체픽셀동일",
+        "function": "QCC 38조건",
+        "verdict": "통과",
+        "text_or_border_clipping": "없음"
+      },
+      {
+        "code": "SUVR-main",
+        "old_page": 195,
+        "current_page": 250,
+        "old_pngSHA256": "C53185108F95AEAE8AC2CD55D5CA8032CA1440FFF10E41009D7B4DB10CD8CD8C",
+        "old_pixelSHA256": "E7E91EE9BCD7424E9286BA8C5EB1900FB9F40D391A49675B0D2120CDE917FF5A",
+        "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVR-main\\page-250.png",
+        "sha256": "C53185108F95AEAE8AC2CD55D5CA8032CA1440FFF10E41009D7B4DB10CD8CD8C",
+        "pixelSHA256": "E7E91EE9BCD7424E9286BA8C5EB1900FB9F40D391A49675B0D2120CDE917FF5A",
+        "size": [
+          1263,
+          893
+        ],
+        "exact_pixel_equal": true,
+        "verification": "기존 개별full검토 + 최신 전체픽셀동일",
+        "function": "QCC 38조건",
+        "verdict": "통과",
+        "text_or_border_clipping": "없음"
+      },
+      {
+        "code": "SUVR-main",
+        "old_page": 196,
+        "current_page": 251,
+        "old_pngSHA256": "5B0230EEAF8B8C4F2C8E1F4B27BC6CCEA5CF9BA0CBD9325774E7447208E07BD0",
+        "old_pixelSHA256": "AE1A42B56736B90A634C93990DBC7F103220E95D958950A7EF9FFC977539052B",
+        "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVR-main\\page-251.png",
+        "sha256": "5B0230EEAF8B8C4F2C8E1F4B27BC6CCEA5CF9BA0CBD9325774E7447208E07BD0",
+        "pixelSHA256": "AE1A42B56736B90A634C93990DBC7F103220E95D958950A7EF9FFC977539052B",
+        "size": [
+          1263,
+          893
+        ],
+        "exact_pixel_equal": true,
+        "verification": "기존 개별full검토 + 최신 전체픽셀동일",
+        "function": "QCC 38조건",
+        "verdict": "통과",
+        "text_or_border_clipping": "없음"
+      },
+      {
+        "code": "SUVR-main",
+        "old_page": 197,
+        "current_page": 252,
+        "old_pngSHA256": "2C88098C01F2E9DF8EE99DAB9375C78EF63F6E201FB52C18BFD025475C93389A",
+        "old_pixelSHA256": "435B9038110F81883E2DD3538B20DDEEF07BF59398C223B4FAA56EB26A5B8417",
+        "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVR-main\\page-252.png",
+        "sha256": "2C88098C01F2E9DF8EE99DAB9375C78EF63F6E201FB52C18BFD025475C93389A",
+        "pixelSHA256": "435B9038110F81883E2DD3538B20DDEEF07BF59398C223B4FAA56EB26A5B8417",
+        "size": [
+          1263,
+          893
+        ],
+        "exact_pixel_equal": true,
+        "verification": "기존 개별full검토 + 최신 전체픽셀동일",
+        "function": "QCC 38조건",
+        "verdict": "통과",
+        "text_or_border_clipping": "없음"
+      },
+      {
+        "code": "SUVR-main",
+        "old_page": 198,
+        "current_page": 253,
+        "old_pngSHA256": "35DBE7F266169AC592325B50F2B9018313553A43DBD38E7D33CCFB522CEBA558",
+        "old_pixelSHA256": "A23B7977483E513A9E871AA012C806F0DCC20A70E4551A93617D54FE5FCD98BE",
+        "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVR-main\\page-253.png",
+        "sha256": "35DBE7F266169AC592325B50F2B9018313553A43DBD38E7D33CCFB522CEBA558",
+        "pixelSHA256": "A23B7977483E513A9E871AA012C806F0DCC20A70E4551A93617D54FE5FCD98BE",
+        "size": [
+          1263,
+          893
+        ],
+        "exact_pixel_equal": true,
+        "verification": "기존 개별full검토 + 최신 전체픽셀동일",
+        "function": "QCC 38조건",
+        "verdict": "통과",
+        "text_or_border_clipping": "없음"
+      },
+      {
+        "code": "SUVR-main",
+        "old_page": 199,
+        "current_page": 254,
+        "old_pngSHA256": "A7EF7CB5CD84B2E1F1192C3F0044340C6CBE603D073E3A3016F55FF500FC044B",
+        "old_pixelSHA256": "093DEC08277F2CACD8FB36780BA392EF50FBE6E211BC0FC26965A201287742BC",
+        "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVR-main\\page-254.png",
+        "sha256": "A7EF7CB5CD84B2E1F1192C3F0044340C6CBE603D073E3A3016F55FF500FC044B",
+        "pixelSHA256": "093DEC08277F2CACD8FB36780BA392EF50FBE6E211BC0FC26965A201287742BC",
+        "size": [
+          1263,
+          893
+        ],
+        "exact_pixel_equal": true,
+        "verification": "기존 개별full검토 + 최신 전체픽셀동일",
+        "function": "QCC 38조건",
+        "verdict": "통과",
+        "text_or_border_clipping": "없음"
+      },
+      {
+        "code": "SUVR-main",
+        "old_page": 200,
+        "current_page": 255,
+        "old_pngSHA256": "CDD5545F6AA67C58221458DA3ECD905F79ACFF59EF0A84F93B0DFC3E4E14AD94",
+        "old_pixelSHA256": "E429A4E9C00A194DCE222AA3BA44B9F87974695A51E7F0DEF63EE947093B9AA3",
+        "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVR-main\\page-255.png",
+        "sha256": "CDD5545F6AA67C58221458DA3ECD905F79ACFF59EF0A84F93B0DFC3E4E14AD94",
+        "pixelSHA256": "E429A4E9C00A194DCE222AA3BA44B9F87974695A51E7F0DEF63EE947093B9AA3",
+        "size": [
+          1263,
+          893
+        ],
+        "exact_pixel_equal": true,
+        "verification": "기존 개별full검토 + 최신 전체픽셀동일",
+        "function": "QCC 38조건",
+        "verdict": "통과",
+        "text_or_border_clipping": "없음"
+      },
+      {
+        "code": "SUVR-main",
+        "old_page": 201,
+        "current_page": 256,
+        "old_pngSHA256": "9E142718F8BF8ED8E1D7EDCE628061A0D684A33968685F3A1E7CC7346960D94E",
+        "old_pixelSHA256": "543CF4E8A1DAA35D6C72DF9A36E6E2AB21D1ED49ED911C58010BA8B7475C15CC",
+        "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVR-main\\page-256.png",
+        "sha256": "9E142718F8BF8ED8E1D7EDCE628061A0D684A33968685F3A1E7CC7346960D94E",
+        "pixelSHA256": "543CF4E8A1DAA35D6C72DF9A36E6E2AB21D1ED49ED911C58010BA8B7475C15CC",
+        "size": [
+          1263,
+          893
+        ],
+        "exact_pixel_equal": true,
+        "verification": "기존 개별full검토 + 최신 전체픽셀동일",
+        "function": "QCC 38조건",
+        "verdict": "통과",
+        "text_or_border_clipping": "없음"
+      },
+      {
+        "code": "SUVR-main",
+        "old_page": 202,
+        "current_page": 257,
+        "old_pngSHA256": "A510C4CFFBCACF10F58D2A8FE382D48FA3B8816BDC6D65264E20E8632606F256",
+        "old_pixelSHA256": "05D2CC052CEB0F396F6A5549E711618A4B327204798BF266A6A7E57FD7B0A644",
+        "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVR-main\\page-257.png",
+        "sha256": "A510C4CFFBCACF10F58D2A8FE382D48FA3B8816BDC6D65264E20E8632606F256",
+        "pixelSHA256": "05D2CC052CEB0F396F6A5549E711618A4B327204798BF266A6A7E57FD7B0A644",
+        "size": [
+          1263,
+          893
+        ],
+        "exact_pixel_equal": true,
+        "verification": "기존 개별full검토 + 최신 전체픽셀동일",
+        "function": "QCC 38조건",
+        "verdict": "통과",
+        "text_or_border_clipping": "없음"
+      },
+      {
+        "code": "SUVR-main",
+        "old_page": 203,
+        "current_page": 258,
+        "old_pngSHA256": "79EC08F6F7DFFBE2DFD5663E49C9DE0C49421BACB204EF6ED1F86CC9B9839520",
+        "old_pixelSHA256": "702ACC304B52DB599C5D37DE89CDA775BABDAAFE875A2A06AE34E1902EE3B0BA",
+        "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVR-main\\page-258.png",
+        "sha256": "79EC08F6F7DFFBE2DFD5663E49C9DE0C49421BACB204EF6ED1F86CC9B9839520",
+        "pixelSHA256": "702ACC304B52DB599C5D37DE89CDA775BABDAAFE875A2A06AE34E1902EE3B0BA",
+        "size": [
+          1263,
+          893
+        ],
+        "exact_pixel_equal": true,
+        "verification": "기존 개별full검토 + 최신 전체픽셀동일",
+        "function": "QCC 38조건",
+        "verdict": "통과",
+        "text_or_border_clipping": "없음"
+      },
+      {
+        "code": "SUVR-main",
+        "old_page": 204,
+        "current_page": 259,
+        "old_pngSHA256": "5E4C284E3143A8C810AC288559AA3E3F0D8ACF0C40E7593AD75CD61D5143E69B",
+        "old_pixelSHA256": "BDB4E4DB1DE272A926EF0C332B5D0A7BB655193EC5824F526010F48967D4551B",
+        "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVR-main\\page-259.png",
+        "sha256": "5E4C284E3143A8C810AC288559AA3E3F0D8ACF0C40E7593AD75CD61D5143E69B",
+        "pixelSHA256": "BDB4E4DB1DE272A926EF0C332B5D0A7BB655193EC5824F526010F48967D4551B",
+        "size": [
+          1263,
+          893
+        ],
+        "exact_pixel_equal": true,
+        "verification": "기존 개별full검토 + 최신 전체픽셀동일",
+        "function": "QCC 38조건",
+        "verdict": "통과",
+        "text_or_border_clipping": "없음"
+      },
+      {
+        "code": "SUVR-main",
+        "old_page": 205,
+        "current_page": 260,
+        "old_pngSHA256": "D910F0497133C574683E551057BFAB1460D9C59301A3028B74E2367AE32F6117",
+        "old_pixelSHA256": "C52A99B8ED0CB9B0E995D25960FC66360250FC22C5482A9B20A3BD7F44370767",
+        "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVR-main\\page-260.png",
+        "sha256": "D910F0497133C574683E551057BFAB1460D9C59301A3028B74E2367AE32F6117",
+        "pixelSHA256": "C52A99B8ED0CB9B0E995D25960FC66360250FC22C5482A9B20A3BD7F44370767",
+        "size": [
+          1263,
+          893
+        ],
+        "exact_pixel_equal": true,
+        "verification": "기존 개별full검토 + 최신 전체픽셀동일",
+        "function": "QCC 38조건",
+        "verdict": "통과",
+        "text_or_border_clipping": "없음"
+      },
+      {
+        "code": "SUVR-main",
+        "old_page": 4,
+        "current_page": 8,
+        "old_pngSHA256": "AA02449D84B5245ED77D4C1D20913CEB37C79C2AAD17C29CEF5009DEAFCE3BA9",
+        "old_pixelSHA256": "7DA1CD4F4F557F7397B283F308FAEA00A1FEAA110EA977D66C545B9337B15CB3",
+        "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVR-main\\page-008.png",
+        "sha256": "E6C53DD862F7DD90F8A9A9D7BB8965A13681CF28544F53C1488D592123F5B1C6",
+        "pixelSHA256": "C2F7CCAA5F06EEA193F3D5740B3C7AA8D731DA6FDEC87916E9D85CDA416935DE",
+        "size": [
+          1263,
+          893
+        ],
+        "exact_pixel_equal": false,
+        "verification": "최신 개별full PNG 원본크기 직접 재검토. 과거 픽셀 동일 주장 없음.",
+        "function": "CFX007 DMIC7 버퍼 전체RTT",
+        "verdict": "통과",
+        "text_or_border_clipping": "없음"
+      },
+      {
+        "code": "SUVR-main",
+        "old_page": 81,
+        "current_page": 103,
+        "old_pngSHA256": "DEB8EA9B8AAB0F6D84549D32B565F486B5294885E3C8AD0658CF198C0C6781F4",
+        "old_pixelSHA256": "6A0E895DD81B2750B4C4BE7552743C393682BD27A4991A132E8A148EE5853DBC",
+        "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVR-main\\page-103.png",
+        "sha256": "DEB8EA9B8AAB0F6D84549D32B565F486B5294885E3C8AD0658CF198C0C6781F4",
+        "pixelSHA256": "6A0E895DD81B2750B4C4BE7552743C393682BD27A4991A132E8A148EE5853DBC",
+        "size": [
+          1263,
+          893
+        ],
+        "exact_pixel_equal": true,
+        "verification": "기존 개별full검토 + 최신 전체픽셀동일",
+        "function": "긴 RTT/정량 기준 표본",
+        "verdict": "통과",
+        "text_or_border_clipping": "없음"
+      },
+      {
+        "code": "SUVR-main",
+        "old_page": 82,
+        "current_page": 104,
+        "old_pngSHA256": "7E12EDA959FEEDB1636816DCDCCF4B7C5C900C60C32DBF20059F77EC8DBA9277",
+        "old_pixelSHA256": "3642945EDE9FB3B6076EBAE91CCF2342C4330E7E7FADC68BD061359947B724B8",
+        "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVR-main\\page-104.png",
+        "sha256": "60464A9A7F0E9662842171AB92FC743231295D3E87E513C80CB07E1F37156678",
+        "pixelSHA256": "1785A07E578DA549815641F4572733A884644452A87B8E17D0BBC31598182AE3",
+        "size": [
+          1263,
+          893
+        ],
+        "exact_pixel_equal": false,
+        "verification": "최신 개별full PNG 원본크기 직접 재검토. 과거 픽셀 동일 주장 없음.",
+        "function": "HEAR002 vMag216..255와 경계조건",
+        "verdict": "통과",
+        "text_or_border_clipping": "없음"
+      },
+      {
+        "code": "SUVR-main",
+        "old_page": 87,
+        "current_page": 113,
+        "old_pngSHA256": "C9D13E015C0575B163C14899ED15718591FE106BAAAC07660B7F912C217929E7",
+        "old_pixelSHA256": "D6501A7FA67E37558F2729AF2B54DA3C5A4383F18B362B743F512D73256A231F",
+        "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVR-main\\page-113.png",
+        "sha256": "A0ED9FCED3FE870129EBCB4751127FB3965DB623BC5490E45EA89006CAD1BA4E",
+        "pixelSHA256": "603DCEA16207A0F111FE902FBC6467DCDA0125368749B5C4F4100C92D213A8EF",
+        "size": [
+          1263,
+          893
+        ],
+        "exact_pixel_equal": false,
+        "verification": "최신 개별full PNG 원본크기 직접 재검토. 과거 픽셀 동일 주장 없음.",
+        "function": "CM3-007 C2/C3 전체RTT",
+        "verdict": "통과",
+        "text_or_border_clipping": "없음"
+      },
+      {
+        "code": "SUVR-main",
+        "old_page": 108,
+        "current_page": 139,
+        "old_pngSHA256": "B226DFA53BADE5F81B77CFC07BFF2710B2E8DE3F475F776247FB3EDB3BCD823A",
+        "old_pixelSHA256": "553B032CFF540C4C6F2E12C91F8D275F067C7F6338AE07395335E90C31FF9E63",
+        "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVR-main\\page-139.png",
+        "sha256": "B4AB2661C480C06DEC2E38536D03C630042FF6FEC01176F36D038412CA1B3BB1",
+        "pixelSHA256": "949A166C1545459FEFEBA725A85845F2F68E1C5C5BBE8F0CC4BFB73467F31525",
+        "size": [
+          1263,
+          893
+        ],
+        "exact_pixel_equal": false,
+        "verification": "최신 개별full PNG 원본크기 직접 재검토. 과거 픽셀 동일 주장 없음.",
+        "function": "CM3-023 음량 독립성 전체RTT",
+        "verdict": "통과",
+        "text_or_border_clipping": "없음"
+      }
+    ],
+    "additional_current_direct_page": {
+      "code": "SUVC-main",
+      "page": 133,
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVC-main\\page-133.png",
+      "sha256": "480BDA738EF5131F16B5C5D929B9EF44233B406604B5174CC8D49AE4B2134F16",
+      "pixelSHA256": "CE956CD72E8796223E1DC3D24CDB642FE917620F7D1495B20A47697A085B750D",
+      "size": [
+        1263,
+        893
+      ],
+      "function": "CM3-007 C3 payload 및 C1/C2/C3 전체 RTT 비교 꼬리",
+      "direct_full_original_size": true,
+      "verdict": "통과"
+    },
+    "current_common": {
+      "range": "B30:K1764",
+      "cells": 17350,
+      "value_rich_formula_differences": [],
+      "QCC38_expected_observation_verdict_vs_previous_differences": [],
+      "current_QCC38_common_styles_equal": true,
+      "current_QCC38_heights_equal": true
+    },
+    "scope_limit": "현재 SUVC305/SUVR260쪽 중 이전44곳 대응과 추가1쪽만 독립full검사. 전체565쪽 glyph검사 또는 제품시험 통과로 확대하지 않는다.",
+    "status": "통과(독립 표시/동일 조건 대응 범위); QCC 제품미실행/판정대기 유지"
+  },
+  "render_history": [
+    {
+      "checkedAt": "2026-10-13T10:03:44.867728+09:00",
+      "native_metadata": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests-native.json",
+      "sources": [
+        {
+          "code": "SUVC-main",
+          "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SUVC-FW-TD24A 소프트웨어 유닛 검증 기준서.xlsx",
+          "sha256_before": "10A7F9F1167794E8B51FE899DC319FC43A441FD1CC1BF3E2AA50EAD2B1AD76ED",
+          "sha256_after": "10A7F9F1167794E8B51FE899DC319FC43A441FD1CC1BF3E2AA50EAD2B1AD76ED",
+          "readonly_unchanged": true,
+          "matches_current_native": true
+        },
+        {
+          "code": "SUVR-main",
+          "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\04_설계 검증\\SW\\외부기\\[E8300-QCC] SUVR-FW-TD24A 소프트웨어 유닛 검증 보고서.xlsx",
+          "sha256_before": "F49DB7D01632E6D3423F7815304FE85807C233663928E576FE7448F9B8DAC046",
+          "sha256_after": "F49DB7D01632E6D3423F7815304FE85807C233663928E576FE7448F9B8DAC046",
+          "readonly_unchanged": true,
+          "matches_current_native": true
+        }
+      ],
+      "actual_page_counts": {
+        "SUVC-main": 265,
+        "SUVR-main": 214
+      },
+      "reviewed_scope": 44,
+      "pixel_same_reused_count": 36,
+      "latest_direct_changed_page_count": 8,
+      "latest_direct_QCC_endpoint_pages": [
+        {
+          "code": "SUVC-main",
+          "page": 248,
+          "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVC-main\\page-248.png",
+          "sha256": "C130AD23A7B99DBDEDE0A8EFA3654C02A970CF32737BE5DEF547CAF309A1CCC0",
+          "pixelSHA256": "AAE0F28C1FB01CDD0E9841B2E8C4CE77A9E9C94351AE33A83184127A3519F3E5",
+          "size": [
+            1263,
+            893
+          ]
+        },
+        {
+          "code": "SUVC-main",
+          "page": 265,
+          "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVC-main\\page-265.png",
+          "sha256": "1D582B4D3DC771A3C4C75A31E0E1C2FC8C3374222D6CED20411FDB24ABC2FDC8",
+          "pixelSHA256": "764E2AA221D6033BEBDC0D6B4F775E73579A9A49B785C366232A757A0276EA2C",
+          "size": [
+            1263,
+            893
+          ]
+        },
+        {
+          "code": "SUVR-main",
+          "page": 199,
+          "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVR-main\\page-199.png",
+          "sha256": "C9EB284BEACC61C37A79CDC16F3336A48005AA76779D091C15DBC3DA18125E87",
+          "pixelSHA256": "37DA9A31B4999FE6E5C080855E183D67ECA19AABAB476D705C294A8D60A0C974",
+          "size": [
+            1263,
+            893
+          ]
+        },
+        {
+          "code": "SUVR-main",
+          "page": 214,
+          "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVR-main\\page-214.png",
+          "sha256": "D910F0497133C574683E551057BFAB1460D9C59301A3028B74E2367AE32F6117",
+          "pixelSHA256": "C52A99B8ED0CB9B0E995D25960FC66360250FC22C5482A9B20A3BD7F44370767",
+          "size": [
+            1263,
+            893
+          ]
+        }
+      ],
+      "page_mapping": [
+        {
+          "code": "SUVC-main",
+          "old_page": 239,
+          "current_page": 248,
+          "old_pngSHA256": "C130AD23A7B99DBDEDE0A8EFA3654C02A970CF32737BE5DEF547CAF309A1CCC0",
+          "old_pixelSHA256": "AAE0F28C1FB01CDD0E9841B2E8C4CE77A9E9C94351AE33A83184127A3519F3E5",
+          "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVC-main\\page-248.png",
+          "sha256": "C130AD23A7B99DBDEDE0A8EFA3654C02A970CF32737BE5DEF547CAF309A1CCC0",
+          "pixelSHA256": "AAE0F28C1FB01CDD0E9841B2E8C4CE77A9E9C94351AE33A83184127A3519F3E5",
+          "size": [
+            1263,
+            893
+          ],
+          "exact_pixel_equal": true,
+          "verification": "기존 개별 full PNG 검토 + 최신 전체 픽셀 동일",
+          "function": "QCC 38조건",
+          "verdict": "통과",
+          "text_or_border_clipping": "없음",
+          "product_scope": "QCC 조건 미실행/판정 대기 유지"
+        },
+        {
+          "code": "SUVC-main",
+          "old_page": 240,
+          "current_page": 249,
+          "old_pngSHA256": "AC9087B3AC9B2B3ABDE6FE32613370A5CBCBFE57DB89CFFD235CB0008867056C",
+          "old_pixelSHA256": "E2E544704CBCB4F363713283D99A3825B964755B8729CFE3F7CCACB0E357B38C",
+          "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVC-main\\page-249.png",
+          "sha256": "AC9087B3AC9B2B3ABDE6FE32613370A5CBCBFE57DB89CFFD235CB0008867056C",
+          "pixelSHA256": "E2E544704CBCB4F363713283D99A3825B964755B8729CFE3F7CCACB0E357B38C",
+          "size": [
+            1263,
+            893
+          ],
+          "exact_pixel_equal": true,
+          "verification": "기존 개별 full PNG 검토 + 최신 전체 픽셀 동일",
+          "function": "QCC 38조건",
+          "verdict": "통과",
+          "text_or_border_clipping": "없음",
+          "product_scope": "QCC 조건 미실행/판정 대기 유지"
+        },
+        {
+          "code": "SUVC-main",
+          "old_page": 241,
+          "current_page": 250,
+          "old_pngSHA256": "942F24CE971A8F43EBB4125AD9AC55CF19ABF5F5974C038608DCE39E4BF0A40D",
+          "old_pixelSHA256": "054B7AD07B8AC85AFAAB24C9C7B0ACD7E7F147C817F3A0A72CAF2E57EDFB8AF2",
+          "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVC-main\\page-250.png",
+          "sha256": "942F24CE971A8F43EBB4125AD9AC55CF19ABF5F5974C038608DCE39E4BF0A40D",
+          "pixelSHA256": "054B7AD07B8AC85AFAAB24C9C7B0ACD7E7F147C817F3A0A72CAF2E57EDFB8AF2",
+          "size": [
+            1263,
+            893
+          ],
+          "exact_pixel_equal": true,
+          "verification": "기존 개별 full PNG 검토 + 최신 전체 픽셀 동일",
+          "function": "QCC 38조건",
+          "verdict": "통과",
+          "text_or_border_clipping": "없음",
+          "product_scope": "QCC 조건 미실행/판정 대기 유지"
+        },
+        {
+          "code": "SUVC-main",
+          "old_page": 242,
+          "current_page": 251,
+          "old_pngSHA256": "61DBF375B00462C83BE6359AEBF77D38F00A062A53FCF78332BCC9E97A181CDD",
+          "old_pixelSHA256": "DFF84CE3D716FAA17BAD75C6D906098A34E77F8D1993D8CF7C1D7824DAC1EBEF",
+          "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVC-main\\page-251.png",
+          "sha256": "61DBF375B00462C83BE6359AEBF77D38F00A062A53FCF78332BCC9E97A181CDD",
+          "pixelSHA256": "DFF84CE3D716FAA17BAD75C6D906098A34E77F8D1993D8CF7C1D7824DAC1EBEF",
+          "size": [
+            1263,
+            893
+          ],
+          "exact_pixel_equal": true,
+          "verification": "기존 개별 full PNG 검토 + 최신 전체 픽셀 동일",
+          "function": "QCC 38조건",
+          "verdict": "통과",
+          "text_or_border_clipping": "없음",
+          "product_scope": "QCC 조건 미실행/판정 대기 유지"
+        },
+        {
+          "code": "SUVC-main",
+          "old_page": 243,
+          "current_page": 252,
+          "old_pngSHA256": "5CA7B8F46D778F8EEC08FDF5019C9E78DD0D6B7DF9ACBE874F84143E92CD270B",
+          "old_pixelSHA256": "9217C866D167E9941E6CAA557B4B2EA037230A13A7F30FB0D8054ECCB8B5FF5E",
+          "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVC-main\\page-252.png",
+          "sha256": "5CA7B8F46D778F8EEC08FDF5019C9E78DD0D6B7DF9ACBE874F84143E92CD270B",
+          "pixelSHA256": "9217C866D167E9941E6CAA557B4B2EA037230A13A7F30FB0D8054ECCB8B5FF5E",
+          "size": [
+            1263,
+            893
+          ],
+          "exact_pixel_equal": true,
+          "verification": "기존 개별 full PNG 검토 + 최신 전체 픽셀 동일",
+          "function": "QCC 38조건",
+          "verdict": "통과",
+          "text_or_border_clipping": "없음",
+          "product_scope": "QCC 조건 미실행/판정 대기 유지"
+        },
+        {
+          "code": "SUVC-main",
+          "old_page": 244,
+          "current_page": 253,
+          "old_pngSHA256": "1BA79F7422AF16018574C6B40F085B10927EEFFB3C7C1EA1A1134876B27FF066",
+          "old_pixelSHA256": "F0E99B1AB47DC44817F919D204A39E78CA5126B45316A8AEEF14EF535F818764",
+          "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVC-main\\page-253.png",
+          "sha256": "1BA79F7422AF16018574C6B40F085B10927EEFFB3C7C1EA1A1134876B27FF066",
+          "pixelSHA256": "F0E99B1AB47DC44817F919D204A39E78CA5126B45316A8AEEF14EF535F818764",
+          "size": [
+            1263,
+            893
+          ],
+          "exact_pixel_equal": true,
+          "verification": "기존 개별 full PNG 검토 + 최신 전체 픽셀 동일",
+          "function": "QCC 38조건",
+          "verdict": "통과",
+          "text_or_border_clipping": "없음",
+          "product_scope": "QCC 조건 미실행/판정 대기 유지"
+        },
+        {
+          "code": "SUVC-main",
+          "old_page": 245,
+          "current_page": 254,
+          "old_pngSHA256": "14EF62FED19DC0148684C916603FAF8D17B86FA4751AB01FD04D9F9239675922",
+          "old_pixelSHA256": "F303C47FB798440238FC2D98A3E3784E5507C6D74962B03EFAF62158537C6E21",
+          "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVC-main\\page-254.png",
+          "sha256": "14EF62FED19DC0148684C916603FAF8D17B86FA4751AB01FD04D9F9239675922",
+          "pixelSHA256": "F303C47FB798440238FC2D98A3E3784E5507C6D74962B03EFAF62158537C6E21",
+          "size": [
+            1263,
+            893
+          ],
+          "exact_pixel_equal": true,
+          "verification": "기존 개별 full PNG 검토 + 최신 전체 픽셀 동일",
+          "function": "QCC 38조건",
+          "verdict": "통과",
+          "text_or_border_clipping": "없음",
+          "product_scope": "QCC 조건 미실행/판정 대기 유지"
+        },
+        {
+          "code": "SUVC-main",
+          "old_page": 246,
+          "current_page": 255,
+          "old_pngSHA256": "AAB6234A4E2A5F09CD1E4B715EEA7A7044285CDC8AE47C36FE375654A29CF6CA",
+          "old_pixelSHA256": "724268AADA36E069B3C7EB44FE1039822DE69D45A1494D4E14C52F90F040FE8B",
+          "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVC-main\\page-255.png",
+          "sha256": "AAB6234A4E2A5F09CD1E4B715EEA7A7044285CDC8AE47C36FE375654A29CF6CA",
+          "pixelSHA256": "724268AADA36E069B3C7EB44FE1039822DE69D45A1494D4E14C52F90F040FE8B",
+          "size": [
+            1263,
+            893
+          ],
+          "exact_pixel_equal": true,
+          "verification": "기존 개별 full PNG 검토 + 최신 전체 픽셀 동일",
+          "function": "QCC 38조건",
+          "verdict": "통과",
+          "text_or_border_clipping": "없음",
+          "product_scope": "QCC 조건 미실행/판정 대기 유지"
+        },
+        {
+          "code": "SUVC-main",
+          "old_page": 247,
+          "current_page": 256,
+          "old_pngSHA256": "A3895205E882C6531ABEB440CBF2CF99ABDD8AEC2F9C7830379E01A1AD68E475",
+          "old_pixelSHA256": "4507C636771547B84D7CE48D42A80EE7970428F264A747D3AF5A4323AFCDB5F7",
+          "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVC-main\\page-256.png",
+          "sha256": "A3895205E882C6531ABEB440CBF2CF99ABDD8AEC2F9C7830379E01A1AD68E475",
+          "pixelSHA256": "4507C636771547B84D7CE48D42A80EE7970428F264A747D3AF5A4323AFCDB5F7",
+          "size": [
+            1263,
+            893
+          ],
+          "exact_pixel_equal": true,
+          "verification": "기존 개별 full PNG 검토 + 최신 전체 픽셀 동일",
+          "function": "QCC 38조건",
+          "verdict": "통과",
+          "text_or_border_clipping": "없음",
+          "product_scope": "QCC 조건 미실행/판정 대기 유지"
+        },
+        {
+          "code": "SUVC-main",
+          "old_page": 248,
+          "current_page": 257,
+          "old_pngSHA256": "612016620973D3669AFA54BC10C2E4362C0F63F94D71264D687A2DA5145076CF",
+          "old_pixelSHA256": "330F90C2C7011D64E53E75016745D2E2CA1AF7D74561E940C8661BA4A3F69AF1",
+          "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVC-main\\page-257.png",
+          "sha256": "612016620973D3669AFA54BC10C2E4362C0F63F94D71264D687A2DA5145076CF",
+          "pixelSHA256": "330F90C2C7011D64E53E75016745D2E2CA1AF7D74561E940C8661BA4A3F69AF1",
+          "size": [
+            1263,
+            893
+          ],
+          "exact_pixel_equal": true,
+          "verification": "기존 개별 full PNG 검토 + 최신 전체 픽셀 동일",
+          "function": "QCC 38조건",
+          "verdict": "통과",
+          "text_or_border_clipping": "없음",
+          "product_scope": "QCC 조건 미실행/판정 대기 유지"
+        },
+        {
+          "code": "SUVC-main",
+          "old_page": 249,
+          "current_page": 258,
+          "old_pngSHA256": "8903E39C48076E0D0A732E1B8510C83376F7F9A29A8DCFDFDBE8685D6BD034AB",
+          "old_pixelSHA256": "09BC22A530AC83812044588715AD1E2D337780151038759BFA14ED0D3F8DDAEA",
+          "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVC-main\\page-258.png",
+          "sha256": "8903E39C48076E0D0A732E1B8510C83376F7F9A29A8DCFDFDBE8685D6BD034AB",
+          "pixelSHA256": "09BC22A530AC83812044588715AD1E2D337780151038759BFA14ED0D3F8DDAEA",
+          "size": [
+            1263,
+            893
+          ],
+          "exact_pixel_equal": true,
+          "verification": "기존 개별 full PNG 검토 + 최신 전체 픽셀 동일",
+          "function": "QCC 38조건",
+          "verdict": "통과",
+          "text_or_border_clipping": "없음",
+          "product_scope": "QCC 조건 미실행/판정 대기 유지"
+        },
+        {
+          "code": "SUVC-main",
+          "old_page": 250,
+          "current_page": 259,
+          "old_pngSHA256": "263685826FD9241983A2A11444C04AA5BC1D47BAA4F5BA5BEF51E602D1C619CB",
+          "old_pixelSHA256": "810A1DF62A6E0DD8FFE0FCD20DB499E458E101385941877F14060686C009DD43",
+          "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVC-main\\page-259.png",
+          "sha256": "263685826FD9241983A2A11444C04AA5BC1D47BAA4F5BA5BEF51E602D1C619CB",
+          "pixelSHA256": "810A1DF62A6E0DD8FFE0FCD20DB499E458E101385941877F14060686C009DD43",
+          "size": [
+            1263,
+            893
+          ],
+          "exact_pixel_equal": true,
+          "verification": "기존 개별 full PNG 검토 + 최신 전체 픽셀 동일",
+          "function": "QCC 38조건",
+          "verdict": "통과",
+          "text_or_border_clipping": "없음",
+          "product_scope": "QCC 조건 미실행/판정 대기 유지"
+        },
+        {
+          "code": "SUVC-main",
+          "old_page": 251,
+          "current_page": 260,
+          "old_pngSHA256": "D8ED8391991D17867D7A6FC17A1D1F0743AE01F5972ACCD4297F20405511CCDD",
+          "old_pixelSHA256": "CC514672F34CC417B364BA3F591FD57A2A9D536023AE4E055972D299D4EAF3C6",
+          "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVC-main\\page-260.png",
+          "sha256": "D8ED8391991D17867D7A6FC17A1D1F0743AE01F5972ACCD4297F20405511CCDD",
+          "pixelSHA256": "CC514672F34CC417B364BA3F591FD57A2A9D536023AE4E055972D299D4EAF3C6",
+          "size": [
+            1263,
+            893
+          ],
+          "exact_pixel_equal": true,
+          "verification": "기존 개별 full PNG 검토 + 최신 전체 픽셀 동일",
+          "function": "QCC 38조건",
+          "verdict": "통과",
+          "text_or_border_clipping": "없음",
+          "product_scope": "QCC 조건 미실행/판정 대기 유지"
+        },
+        {
+          "code": "SUVC-main",
+          "old_page": 252,
+          "current_page": 261,
+          "old_pngSHA256": "D461DBE664E35005BC6CD28A9BDA248A090CB8EB5434BFD28DB694EAF48062CF",
+          "old_pixelSHA256": "D4BED580AC027731AFB41D4EA3FA5F8C623EDE44522C5DE4C0EDCBAAA988CC92",
+          "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVC-main\\page-261.png",
+          "sha256": "D461DBE664E35005BC6CD28A9BDA248A090CB8EB5434BFD28DB694EAF48062CF",
+          "pixelSHA256": "D4BED580AC027731AFB41D4EA3FA5F8C623EDE44522C5DE4C0EDCBAAA988CC92",
+          "size": [
+            1263,
+            893
+          ],
+          "exact_pixel_equal": true,
+          "verification": "기존 개별 full PNG 검토 + 최신 전체 픽셀 동일",
+          "function": "QCC 38조건",
+          "verdict": "통과",
+          "text_or_border_clipping": "없음",
+          "product_scope": "QCC 조건 미실행/판정 대기 유지"
+        },
+        {
+          "code": "SUVC-main",
+          "old_page": 253,
+          "current_page": 262,
+          "old_pngSHA256": "D2F2B5E22C3614A73E7F38BB37D506AF5CC782016498F208B744B773FDD68023",
+          "old_pixelSHA256": "656528A535DB8D1CD586B478EABCDEF548D7D98F7222BAB6F201761E7D4B09F0",
+          "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVC-main\\page-262.png",
+          "sha256": "D2F2B5E22C3614A73E7F38BB37D506AF5CC782016498F208B744B773FDD68023",
+          "pixelSHA256": "656528A535DB8D1CD586B478EABCDEF548D7D98F7222BAB6F201761E7D4B09F0",
+          "size": [
+            1263,
+            893
+          ],
+          "exact_pixel_equal": true,
+          "verification": "기존 개별 full PNG 검토 + 최신 전체 픽셀 동일",
+          "function": "QCC 38조건",
+          "verdict": "통과",
+          "text_or_border_clipping": "없음",
+          "product_scope": "QCC 조건 미실행/판정 대기 유지"
+        },
+        {
+          "code": "SUVC-main",
+          "old_page": 254,
+          "current_page": 263,
+          "old_pngSHA256": "25E68D1DB4DFC6E068766040AD732B1D0F9727F0A7E5DE9375F7B77977497331",
+          "old_pixelSHA256": "20CD7264A34F0EC2C77271FC48217067E09711753AFEBC363501B4DB237A3FB3",
+          "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVC-main\\page-263.png",
+          "sha256": "25E68D1DB4DFC6E068766040AD732B1D0F9727F0A7E5DE9375F7B77977497331",
+          "pixelSHA256": "20CD7264A34F0EC2C77271FC48217067E09711753AFEBC363501B4DB237A3FB3",
+          "size": [
+            1263,
+            893
+          ],
+          "exact_pixel_equal": true,
+          "verification": "기존 개별 full PNG 검토 + 최신 전체 픽셀 동일",
+          "function": "QCC 38조건",
+          "verdict": "통과",
+          "text_or_border_clipping": "없음",
+          "product_scope": "QCC 조건 미실행/판정 대기 유지"
+        },
+        {
+          "code": "SUVC-main",
+          "old_page": 255,
+          "current_page": 264,
+          "old_pngSHA256": "E3C9E9EA75F4C7A9E425033A5DA825B446F337917FDCA2673DEFE83B772B8E56",
+          "old_pixelSHA256": "9E8BCCF9F3137BA2F457972C94324CF56D380225E3531BB387C9B1C48B2263F5",
+          "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVC-main\\page-264.png",
+          "sha256": "E3C9E9EA75F4C7A9E425033A5DA825B446F337917FDCA2673DEFE83B772B8E56",
+          "pixelSHA256": "9E8BCCF9F3137BA2F457972C94324CF56D380225E3531BB387C9B1C48B2263F5",
+          "size": [
+            1263,
+            893
+          ],
+          "exact_pixel_equal": true,
+          "verification": "기존 개별 full PNG 검토 + 최신 전체 픽셀 동일",
+          "function": "QCC 38조건",
+          "verdict": "통과",
+          "text_or_border_clipping": "없음",
+          "product_scope": "QCC 조건 미실행/판정 대기 유지"
+        },
+        {
+          "code": "SUVC-main",
+          "old_page": 256,
+          "current_page": 265,
+          "old_pngSHA256": "1D582B4D3DC771A3C4C75A31E0E1C2FC8C3374222D6CED20411FDB24ABC2FDC8",
+          "old_pixelSHA256": "764E2AA221D6033BEBDC0D6B4F775E73579A9A49B785C366232A757A0276EA2C",
+          "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVC-main\\page-265.png",
+          "sha256": "1D582B4D3DC771A3C4C75A31E0E1C2FC8C3374222D6CED20411FDB24ABC2FDC8",
+          "pixelSHA256": "764E2AA221D6033BEBDC0D6B4F775E73579A9A49B785C366232A757A0276EA2C",
+          "size": [
+            1263,
+            893
+          ],
+          "exact_pixel_equal": true,
+          "verification": "기존 개별 full PNG 검토 + 최신 전체 픽셀 동일",
+          "function": "QCC 38조건",
+          "verdict": "통과",
+          "text_or_border_clipping": "없음",
+          "product_scope": "QCC 조건 미실행/판정 대기 유지"
+        },
+        {
+          "code": "SUVC-main",
+          "old_page": 4,
+          "current_page": 4,
+          "old_pngSHA256": "3E89C1FB676B43EE1532C4C726F76FE1DBCDE48A0BD6A9286C65AA40E53BE4B3",
+          "old_pixelSHA256": "38B3DBEAE58881743104395D9A64EF74B8368CEEDC68A3417F528FA9C42C8FEB",
+          "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVC-main\\page-004.png",
+          "sha256": "3E89C1FB676B43EE1532C4C726F76FE1DBCDE48A0BD6A9286C65AA40E53BE4B3",
+          "pixelSHA256": "38B3DBEAE58881743104395D9A64EF74B8368CEEDC68A3417F528FA9C42C8FEB",
+          "size": [
+            1263,
+            893
+          ],
+          "exact_pixel_equal": true,
+          "verification": "기존 개별 full PNG 검토 + 최신 전체 픽셀 동일",
+          "function": "긴 RTT/정량 기준 표본",
+          "verdict": "통과",
+          "text_or_border_clipping": "없음",
+          "product_scope": "기존 E8300 기록/현재 기준 비교 범위 유지"
+        },
+        {
+          "code": "SUVC-main",
+          "old_page": 102,
+          "current_page": 106,
+          "old_pngSHA256": "46E25285B2C35C559408CE9387C9B21A3078F0B4CF8ABE97A4E7F85990007F4C",
+          "old_pixelSHA256": "A23B8246135981451988A9B7F92390FF4E4ABCDF0542F3C829B3D60FF915D2D7",
+          "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVC-main\\page-106.png",
+          "sha256": "D111348DF344190583B8D7F31A902F1E61691042D8FFA1A021CFF3271C693215",
+          "pixelSHA256": "4F046F612B29E4A93837A5B7393AC3D74A03F90CFC804B4EC104E6C90B944358",
+          "size": [
+            1263,
+            893
+          ],
+          "exact_pixel_equal": false,
+          "verification": "최신 개별 full PNG 원본 크기 직접 검토; 페이지 재배치로 과거 픽셀 동일 주장 없음",
+          "function": "HEAR002 vMag192..239",
+          "verdict": "통과",
+          "text_or_border_clipping": "없음",
+          "product_scope": "기존 E8300 기록/현재 기준 비교 범위 유지"
+        },
+        {
+          "code": "SUVC-main",
+          "old_page": 103,
+          "current_page": 107,
+          "old_pngSHA256": "92668D244421A9606B699789EEE713B30407591DFD7461C1628F723CA78A8DBA",
+          "old_pixelSHA256": "A3B8CA369247F2DA64EB9558B30402CF36C6F7061B635C1CCA7B496EA09B3FC1",
+          "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVC-main\\page-107.png",
+          "sha256": "4EE87F2F6C9A54C4F79B8068E97D7ECF16B151D6F7F95A14258E955D33332AE5",
+          "pixelSHA256": "4023955A5A4F61E329ADCDC973F26BE70703CED71096C80053C982F7A007A753",
+          "size": [
+            1263,
+            893
+          ],
+          "exact_pixel_equal": false,
+          "verification": "최신 개별 full PNG 원본 크기 직접 검토; 페이지 재배치로 과거 픽셀 동일 주장 없음",
+          "function": "HEAR002 vMag240..255와 경계조건",
+          "verdict": "통과",
+          "text_or_border_clipping": "없음",
+          "product_scope": "기존 E8300 기록/현재 기준 비교 범위 유지"
+        },
+        {
+          "code": "SUVC-main",
+          "old_page": 109,
+          "current_page": 114,
+          "old_pngSHA256": "E4DF5158F797D60032188410478AB320BB2FDB2EBBD4AAA4A554DCE6D3342B6C",
+          "old_pixelSHA256": "8D2C7E94DE0DFCD5B70BBB89B2B9E7AF3AC15FEE7791DE170E1BDE9A9EA40B57",
+          "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVC-main\\page-114.png",
+          "sha256": "9BD32C4EA7233EDBD526FB26120B77C109852FD933350DAD9DB83CA80F825A43",
+          "pixelSHA256": "2853F7CFE53E64BBE14F035579322D1525D8AA1333D99BABDE6E3873593C93BF",
+          "size": [
+            1263,
+            893
+          ],
+          "exact_pixel_equal": false,
+          "verification": "최신 개별 full PNG 원본 크기 직접 검토; 페이지 재배치로 과거 픽셀 동일 주장 없음",
+          "function": "CM3-007 카운터 C1/C2/C3 RTT",
+          "verdict": "통과",
+          "text_or_border_clipping": "없음",
+          "product_scope": "기존 E8300 기록/현재 기준 비교 범위 유지"
+        },
+        {
+          "code": "SUVC-main",
+          "old_page": 136,
+          "current_page": 140,
+          "old_pngSHA256": "8CCFF8A9B1F3D0E95F8053D6036CD788F8C3A0D8E0A0C9287CE379D16930CAD7",
+          "old_pixelSHA256": "3D71DD189ACB7C0463E038BB960832E249867D8E20D31E056B89AB7436C9A8D7",
+          "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVC-main\\page-140.png",
+          "sha256": "EB65A87F829700FB366BD3CF817974414AAB22DDE0010C9EB7A37847FDC8A163",
+          "pixelSHA256": "5822375124792D755DD55854B58B2297A97092696A0E3B23D4B17FEFAF5260E5",
+          "size": [
+            1263,
+            893
+          ],
+          "exact_pixel_equal": false,
+          "verification": "최신 개별 full PNG 원본 크기 직접 검토; 페이지 재배치로 과거 픽셀 동일 주장 없음",
+          "function": "CM3-023 음량 독립성/024 LED",
+          "verdict": "통과",
+          "text_or_border_clipping": "없음",
+          "product_scope": "기존 E8300 기록/현재 기준 비교 범위 유지"
+        },
+        {
+          "code": "SUVR-main",
+          "old_page": 190,
+          "current_page": 199,
+          "old_pngSHA256": "C9EB284BEACC61C37A79CDC16F3336A48005AA76779D091C15DBC3DA18125E87",
+          "old_pixelSHA256": "37DA9A31B4999FE6E5C080855E183D67ECA19AABAB476D705C294A8D60A0C974",
+          "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVR-main\\page-199.png",
+          "sha256": "C9EB284BEACC61C37A79CDC16F3336A48005AA76779D091C15DBC3DA18125E87",
+          "pixelSHA256": "37DA9A31B4999FE6E5C080855E183D67ECA19AABAB476D705C294A8D60A0C974",
+          "size": [
+            1263,
+            893
+          ],
+          "exact_pixel_equal": true,
+          "verification": "기존 개별 full PNG 검토 + 최신 전체 픽셀 동일",
+          "function": "QCC 38조건",
+          "verdict": "통과",
+          "text_or_border_clipping": "없음",
+          "product_scope": "QCC 조건 미실행/판정 대기 유지"
+        },
+        {
+          "code": "SUVR-main",
+          "old_page": 191,
+          "current_page": 200,
+          "old_pngSHA256": "DF7C104A49F4858D6A5E602E00AF495BAB65E7BC23664532E4B8D1B1ABCC5D99",
+          "old_pixelSHA256": "2F1A9AB9BC4E2370A40836F87ECD8B3F9E5A3ED19327610003EAF6CEBEF26739",
+          "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVR-main\\page-200.png",
+          "sha256": "DF7C104A49F4858D6A5E602E00AF495BAB65E7BC23664532E4B8D1B1ABCC5D99",
+          "pixelSHA256": "2F1A9AB9BC4E2370A40836F87ECD8B3F9E5A3ED19327610003EAF6CEBEF26739",
+          "size": [
+            1263,
+            893
+          ],
+          "exact_pixel_equal": true,
+          "verification": "기존 개별 full PNG 검토 + 최신 전체 픽셀 동일",
+          "function": "QCC 38조건",
+          "verdict": "통과",
+          "text_or_border_clipping": "없음",
+          "product_scope": "QCC 조건 미실행/판정 대기 유지"
+        },
+        {
+          "code": "SUVR-main",
+          "old_page": 192,
+          "current_page": 201,
+          "old_pngSHA256": "803AEE398C4B800579E8B43685596EA8E6A1FA3BA2DFAFB669D7C57EEABCB6B2",
+          "old_pixelSHA256": "9DD36F23A2BF68574A4A8BCF8C3F58A1BFCE5DFE051FF24B0F43D6D6042B7201",
+          "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVR-main\\page-201.png",
+          "sha256": "803AEE398C4B800579E8B43685596EA8E6A1FA3BA2DFAFB669D7C57EEABCB6B2",
+          "pixelSHA256": "9DD36F23A2BF68574A4A8BCF8C3F58A1BFCE5DFE051FF24B0F43D6D6042B7201",
+          "size": [
+            1263,
+            893
+          ],
+          "exact_pixel_equal": true,
+          "verification": "기존 개별 full PNG 검토 + 최신 전체 픽셀 동일",
+          "function": "QCC 38조건",
+          "verdict": "통과",
+          "text_or_border_clipping": "없음",
+          "product_scope": "QCC 조건 미실행/판정 대기 유지"
+        },
+        {
+          "code": "SUVR-main",
+          "old_page": 193,
+          "current_page": 202,
+          "old_pngSHA256": "6D3D1F681ECAC895A43F27DFBB7E75BAEB4BDAD1B4439072E532D61921802AE3",
+          "old_pixelSHA256": "349F2BC18E371DDBDD86EC80CE75F01D42C13B998E672F93ADC8A81B0554BA56",
+          "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVR-main\\page-202.png",
+          "sha256": "6D3D1F681ECAC895A43F27DFBB7E75BAEB4BDAD1B4439072E532D61921802AE3",
+          "pixelSHA256": "349F2BC18E371DDBDD86EC80CE75F01D42C13B998E672F93ADC8A81B0554BA56",
+          "size": [
+            1263,
+            893
+          ],
+          "exact_pixel_equal": true,
+          "verification": "기존 개별 full PNG 검토 + 최신 전체 픽셀 동일",
+          "function": "QCC 38조건",
+          "verdict": "통과",
+          "text_or_border_clipping": "없음",
+          "product_scope": "QCC 조건 미실행/판정 대기 유지"
+        },
+        {
+          "code": "SUVR-main",
+          "old_page": 194,
+          "current_page": 203,
+          "old_pngSHA256": "0FD71DE9135A3605339E7EAFE3553DEF080B6E0F4B910687E65CF2AE1910F947",
+          "old_pixelSHA256": "82715ACB61772665975E4D7D3A1E72683F8F98037FF4234F3C93603425CF1827",
+          "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVR-main\\page-203.png",
+          "sha256": "0FD71DE9135A3605339E7EAFE3553DEF080B6E0F4B910687E65CF2AE1910F947",
+          "pixelSHA256": "82715ACB61772665975E4D7D3A1E72683F8F98037FF4234F3C93603425CF1827",
+          "size": [
+            1263,
+            893
+          ],
+          "exact_pixel_equal": true,
+          "verification": "기존 개별 full PNG 검토 + 최신 전체 픽셀 동일",
+          "function": "QCC 38조건",
+          "verdict": "통과",
+          "text_or_border_clipping": "없음",
+          "product_scope": "QCC 조건 미실행/판정 대기 유지"
+        },
+        {
+          "code": "SUVR-main",
+          "old_page": 195,
+          "current_page": 204,
+          "old_pngSHA256": "C53185108F95AEAE8AC2CD55D5CA8032CA1440FFF10E41009D7B4DB10CD8CD8C",
+          "old_pixelSHA256": "E7E91EE9BCD7424E9286BA8C5EB1900FB9F40D391A49675B0D2120CDE917FF5A",
+          "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVR-main\\page-204.png",
+          "sha256": "C53185108F95AEAE8AC2CD55D5CA8032CA1440FFF10E41009D7B4DB10CD8CD8C",
+          "pixelSHA256": "E7E91EE9BCD7424E9286BA8C5EB1900FB9F40D391A49675B0D2120CDE917FF5A",
+          "size": [
+            1263,
+            893
+          ],
+          "exact_pixel_equal": true,
+          "verification": "기존 개별 full PNG 검토 + 최신 전체 픽셀 동일",
+          "function": "QCC 38조건",
+          "verdict": "통과",
+          "text_or_border_clipping": "없음",
+          "product_scope": "QCC 조건 미실행/판정 대기 유지"
+        },
+        {
+          "code": "SUVR-main",
+          "old_page": 196,
+          "current_page": 205,
+          "old_pngSHA256": "5B0230EEAF8B8C4F2C8E1F4B27BC6CCEA5CF9BA0CBD9325774E7447208E07BD0",
+          "old_pixelSHA256": "AE1A42B56736B90A634C93990DBC7F103220E95D958950A7EF9FFC977539052B",
+          "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVR-main\\page-205.png",
+          "sha256": "5B0230EEAF8B8C4F2C8E1F4B27BC6CCEA5CF9BA0CBD9325774E7447208E07BD0",
+          "pixelSHA256": "AE1A42B56736B90A634C93990DBC7F103220E95D958950A7EF9FFC977539052B",
+          "size": [
+            1263,
+            893
+          ],
+          "exact_pixel_equal": true,
+          "verification": "기존 개별 full PNG 검토 + 최신 전체 픽셀 동일",
+          "function": "QCC 38조건",
+          "verdict": "통과",
+          "text_or_border_clipping": "없음",
+          "product_scope": "QCC 조건 미실행/판정 대기 유지"
+        },
+        {
+          "code": "SUVR-main",
+          "old_page": 197,
+          "current_page": 206,
+          "old_pngSHA256": "2C88098C01F2E9DF8EE99DAB9375C78EF63F6E201FB52C18BFD025475C93389A",
+          "old_pixelSHA256": "435B9038110F81883E2DD3538B20DDEEF07BF59398C223B4FAA56EB26A5B8417",
+          "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVR-main\\page-206.png",
+          "sha256": "2C88098C01F2E9DF8EE99DAB9375C78EF63F6E201FB52C18BFD025475C93389A",
+          "pixelSHA256": "435B9038110F81883E2DD3538B20DDEEF07BF59398C223B4FAA56EB26A5B8417",
+          "size": [
+            1263,
+            893
+          ],
+          "exact_pixel_equal": true,
+          "verification": "기존 개별 full PNG 검토 + 최신 전체 픽셀 동일",
+          "function": "QCC 38조건",
+          "verdict": "통과",
+          "text_or_border_clipping": "없음",
+          "product_scope": "QCC 조건 미실행/판정 대기 유지"
+        },
+        {
+          "code": "SUVR-main",
+          "old_page": 198,
+          "current_page": 207,
+          "old_pngSHA256": "35DBE7F266169AC592325B50F2B9018313553A43DBD38E7D33CCFB522CEBA558",
+          "old_pixelSHA256": "A23B7977483E513A9E871AA012C806F0DCC20A70E4551A93617D54FE5FCD98BE",
+          "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVR-main\\page-207.png",
+          "sha256": "35DBE7F266169AC592325B50F2B9018313553A43DBD38E7D33CCFB522CEBA558",
+          "pixelSHA256": "A23B7977483E513A9E871AA012C806F0DCC20A70E4551A93617D54FE5FCD98BE",
+          "size": [
+            1263,
+            893
+          ],
+          "exact_pixel_equal": true,
+          "verification": "기존 개별 full PNG 검토 + 최신 전체 픽셀 동일",
+          "function": "QCC 38조건",
+          "verdict": "통과",
+          "text_or_border_clipping": "없음",
+          "product_scope": "QCC 조건 미실행/판정 대기 유지"
+        },
+        {
+          "code": "SUVR-main",
+          "old_page": 199,
+          "current_page": 208,
+          "old_pngSHA256": "A7EF7CB5CD84B2E1F1192C3F0044340C6CBE603D073E3A3016F55FF500FC044B",
+          "old_pixelSHA256": "093DEC08277F2CACD8FB36780BA392EF50FBE6E211BC0FC26965A201287742BC",
+          "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVR-main\\page-208.png",
+          "sha256": "A7EF7CB5CD84B2E1F1192C3F0044340C6CBE603D073E3A3016F55FF500FC044B",
+          "pixelSHA256": "093DEC08277F2CACD8FB36780BA392EF50FBE6E211BC0FC26965A201287742BC",
+          "size": [
+            1263,
+            893
+          ],
+          "exact_pixel_equal": true,
+          "verification": "기존 개별 full PNG 검토 + 최신 전체 픽셀 동일",
+          "function": "QCC 38조건",
+          "verdict": "통과",
+          "text_or_border_clipping": "없음",
+          "product_scope": "QCC 조건 미실행/판정 대기 유지"
+        },
+        {
+          "code": "SUVR-main",
+          "old_page": 200,
+          "current_page": 209,
+          "old_pngSHA256": "CDD5545F6AA67C58221458DA3ECD905F79ACFF59EF0A84F93B0DFC3E4E14AD94",
+          "old_pixelSHA256": "E429A4E9C00A194DCE222AA3BA44B9F87974695A51E7F0DEF63EE947093B9AA3",
+          "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVR-main\\page-209.png",
+          "sha256": "CDD5545F6AA67C58221458DA3ECD905F79ACFF59EF0A84F93B0DFC3E4E14AD94",
+          "pixelSHA256": "E429A4E9C00A194DCE222AA3BA44B9F87974695A51E7F0DEF63EE947093B9AA3",
+          "size": [
+            1263,
+            893
+          ],
+          "exact_pixel_equal": true,
+          "verification": "기존 개별 full PNG 검토 + 최신 전체 픽셀 동일",
+          "function": "QCC 38조건",
+          "verdict": "통과",
+          "text_or_border_clipping": "없음",
+          "product_scope": "QCC 조건 미실행/판정 대기 유지"
+        },
+        {
+          "code": "SUVR-main",
+          "old_page": 201,
+          "current_page": 210,
+          "old_pngSHA256": "9E142718F8BF8ED8E1D7EDCE628061A0D684A33968685F3A1E7CC7346960D94E",
+          "old_pixelSHA256": "543CF4E8A1DAA35D6C72DF9A36E6E2AB21D1ED49ED911C58010BA8B7475C15CC",
+          "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVR-main\\page-210.png",
+          "sha256": "9E142718F8BF8ED8E1D7EDCE628061A0D684A33968685F3A1E7CC7346960D94E",
+          "pixelSHA256": "543CF4E8A1DAA35D6C72DF9A36E6E2AB21D1ED49ED911C58010BA8B7475C15CC",
+          "size": [
+            1263,
+            893
+          ],
+          "exact_pixel_equal": true,
+          "verification": "기존 개별 full PNG 검토 + 최신 전체 픽셀 동일",
+          "function": "QCC 38조건",
+          "verdict": "통과",
+          "text_or_border_clipping": "없음",
+          "product_scope": "QCC 조건 미실행/판정 대기 유지"
+        },
+        {
+          "code": "SUVR-main",
+          "old_page": 202,
+          "current_page": 211,
+          "old_pngSHA256": "A510C4CFFBCACF10F58D2A8FE382D48FA3B8816BDC6D65264E20E8632606F256",
+          "old_pixelSHA256": "05D2CC052CEB0F396F6A5549E711618A4B327204798BF266A6A7E57FD7B0A644",
+          "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVR-main\\page-211.png",
+          "sha256": "A510C4CFFBCACF10F58D2A8FE382D48FA3B8816BDC6D65264E20E8632606F256",
+          "pixelSHA256": "05D2CC052CEB0F396F6A5549E711618A4B327204798BF266A6A7E57FD7B0A644",
+          "size": [
+            1263,
+            893
+          ],
+          "exact_pixel_equal": true,
+          "verification": "기존 개별 full PNG 검토 + 최신 전체 픽셀 동일",
+          "function": "QCC 38조건",
+          "verdict": "통과",
+          "text_or_border_clipping": "없음",
+          "product_scope": "QCC 조건 미실행/판정 대기 유지"
+        },
+        {
+          "code": "SUVR-main",
+          "old_page": 203,
+          "current_page": 212,
+          "old_pngSHA256": "79EC08F6F7DFFBE2DFD5663E49C9DE0C49421BACB204EF6ED1F86CC9B9839520",
+          "old_pixelSHA256": "702ACC304B52DB599C5D37DE89CDA775BABDAAFE875A2A06AE34E1902EE3B0BA",
+          "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVR-main\\page-212.png",
+          "sha256": "79EC08F6F7DFFBE2DFD5663E49C9DE0C49421BACB204EF6ED1F86CC9B9839520",
+          "pixelSHA256": "702ACC304B52DB599C5D37DE89CDA775BABDAAFE875A2A06AE34E1902EE3B0BA",
+          "size": [
+            1263,
+            893
+          ],
+          "exact_pixel_equal": true,
+          "verification": "기존 개별 full PNG 검토 + 최신 전체 픽셀 동일",
+          "function": "QCC 38조건",
+          "verdict": "통과",
+          "text_or_border_clipping": "없음",
+          "product_scope": "QCC 조건 미실행/판정 대기 유지"
+        },
+        {
+          "code": "SUVR-main",
+          "old_page": 204,
+          "current_page": 213,
+          "old_pngSHA256": "5E4C284E3143A8C810AC288559AA3E3F0D8ACF0C40E7593AD75CD61D5143E69B",
+          "old_pixelSHA256": "BDB4E4DB1DE272A926EF0C332B5D0A7BB655193EC5824F526010F48967D4551B",
+          "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVR-main\\page-213.png",
+          "sha256": "5E4C284E3143A8C810AC288559AA3E3F0D8ACF0C40E7593AD75CD61D5143E69B",
+          "pixelSHA256": "BDB4E4DB1DE272A926EF0C332B5D0A7BB655193EC5824F526010F48967D4551B",
+          "size": [
+            1263,
+            893
+          ],
+          "exact_pixel_equal": true,
+          "verification": "기존 개별 full PNG 검토 + 최신 전체 픽셀 동일",
+          "function": "QCC 38조건",
+          "verdict": "통과",
+          "text_or_border_clipping": "없음",
+          "product_scope": "QCC 조건 미실행/판정 대기 유지"
+        },
+        {
+          "code": "SUVR-main",
+          "old_page": 205,
+          "current_page": 214,
+          "old_pngSHA256": "D910F0497133C574683E551057BFAB1460D9C59301A3028B74E2367AE32F6117",
+          "old_pixelSHA256": "C52A99B8ED0CB9B0E995D25960FC66360250FC22C5482A9B20A3BD7F44370767",
+          "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVR-main\\page-214.png",
+          "sha256": "D910F0497133C574683E551057BFAB1460D9C59301A3028B74E2367AE32F6117",
+          "pixelSHA256": "C52A99B8ED0CB9B0E995D25960FC66360250FC22C5482A9B20A3BD7F44370767",
+          "size": [
+            1263,
+            893
+          ],
+          "exact_pixel_equal": true,
+          "verification": "기존 개별 full PNG 검토 + 최신 전체 픽셀 동일",
+          "function": "QCC 38조건",
+          "verdict": "통과",
+          "text_or_border_clipping": "없음",
+          "product_scope": "QCC 조건 미실행/판정 대기 유지"
+        },
+        {
+          "code": "SUVR-main",
+          "old_page": 4,
+          "current_page": 4,
+          "old_pngSHA256": "AA02449D84B5245ED77D4C1D20913CEB37C79C2AAD17C29CEF5009DEAFCE3BA9",
+          "old_pixelSHA256": "7DA1CD4F4F557F7397B283F308FAEA00A1FEAA110EA977D66C545B9337B15CB3",
+          "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVR-main\\page-004.png",
+          "sha256": "79015AF075FFB230872125FB067E7D7B531640D4AADD5599DE72484B3A509E5F",
+          "pixelSHA256": "7BCB4C44E9B3D33D6CF3E6E333EB0E45D3211C4F419CA4A1E5FAB380B141C54F",
+          "size": [
+            1263,
+            893
+          ],
+          "exact_pixel_equal": false,
+          "verification": "최신 개별 full PNG 원본 크기 직접 검토; 페이지 재배치로 과거 픽셀 동일 주장 없음",
+          "function": "CFX007 DMIC7 버퍼/CFX008/009",
+          "verdict": "통과",
+          "text_or_border_clipping": "없음",
+          "product_scope": "기존 E8300 기록/현재 기준 비교 범위 유지"
+        },
+        {
+          "code": "SUVR-main",
+          "old_page": 81,
+          "current_page": 85,
+          "old_pngSHA256": "DEB8EA9B8AAB0F6D84549D32B565F486B5294885E3C8AD0658CF198C0C6781F4",
+          "old_pixelSHA256": "6A0E895DD81B2750B4C4BE7552743C393682BD27A4991A132E8A148EE5853DBC",
+          "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVR-main\\page-085.png",
+          "sha256": "DEB8EA9B8AAB0F6D84549D32B565F486B5294885E3C8AD0658CF198C0C6781F4",
+          "pixelSHA256": "6A0E895DD81B2750B4C4BE7552743C393682BD27A4991A132E8A148EE5853DBC",
+          "size": [
+            1263,
+            893
+          ],
+          "exact_pixel_equal": true,
+          "verification": "기존 개별 full PNG 검토 + 최신 전체 픽셀 동일",
+          "function": "긴 RTT/정량 기준 표본",
+          "verdict": "통과",
+          "text_or_border_clipping": "없음",
+          "product_scope": "기존 E8300 기록/현재 기준 비교 범위 유지"
+        },
+        {
+          "code": "SUVR-main",
+          "old_page": 82,
+          "current_page": 86,
+          "old_pngSHA256": "7E12EDA959FEEDB1636816DCDCCF4B7C5C900C60C32DBF20059F77EC8DBA9277",
+          "old_pixelSHA256": "3642945EDE9FB3B6076EBAE91CCF2342C4330E7E7FADC68BD061359947B724B8",
+          "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVR-main\\page-086.png",
+          "sha256": "60464A9A7F0E9662842171AB92FC743231295D3E87E513C80CB07E1F37156678",
+          "pixelSHA256": "1785A07E578DA549815641F4572733A884644452A87B8E17D0BBC31598182AE3",
+          "size": [
+            1263,
+            893
+          ],
+          "exact_pixel_equal": false,
+          "verification": "최신 개별 full PNG 원본 크기 직접 검토; 페이지 재배치로 과거 픽셀 동일 주장 없음",
+          "function": "HEAR002 vMag216..255와 경계조건",
+          "verdict": "통과",
+          "text_or_border_clipping": "없음",
+          "product_scope": "기존 E8300 기록/현재 기준 비교 범위 유지"
+        },
+        {
+          "code": "SUVR-main",
+          "old_page": 87,
+          "current_page": 92,
+          "old_pngSHA256": "C9D13E015C0575B163C14899ED15718591FE106BAAAC07660B7F912C217929E7",
+          "old_pixelSHA256": "D6501A7FA67E37558F2729AF2B54DA3C5A4383F18B362B743F512D73256A231F",
+          "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVR-main\\page-092.png",
+          "sha256": "ABF62006945049CCCAE84171E2C87422DA6B9496C7B7F9C7F0118FFF3EE4599D",
+          "pixelSHA256": "4F11B0C1E6D9C048164936CFB64521017392C4D3B5235443A716B7623023B887",
+          "size": [
+            1263,
+            893
+          ],
+          "exact_pixel_equal": false,
+          "verification": "최신 개별 full PNG 원본 크기 직접 검토; 페이지 재배치로 과거 픽셀 동일 주장 없음",
+          "function": "CM3-007 C2/C3 RTT/008/009",
+          "verdict": "통과",
+          "text_or_border_clipping": "없음",
+          "product_scope": "기존 E8300 기록/현재 기준 비교 범위 유지"
+        },
+        {
+          "code": "SUVR-main",
+          "old_page": 108,
+          "current_page": 112,
+          "old_pngSHA256": "B226DFA53BADE5F81B77CFC07BFF2710B2E8DE3F475F776247FB3EDB3BCD823A",
+          "old_pixelSHA256": "553B032CFF540C4C6F2E12C91F8D275F067C7F6338AE07395335E90C31FF9E63",
+          "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVR-main\\page-112.png",
+          "sha256": "61021F2CEA2AB994378846C37319AA3E7FF4811A3B750ACEA71639F46C6E3B90",
+          "pixelSHA256": "9F4196DE19BA9B81B0DE05E5564219580FA61C47429CF936D41AEA40C4003CDC",
+          "size": [
+            1263,
+            893
+          ],
+          "exact_pixel_equal": false,
+          "verification": "최신 개별 full PNG 원본 크기 직접 검토; 페이지 재배치로 과거 픽셀 동일 주장 없음",
+          "function": "CM3-023 음량 RTT/024 LED/025 I2C",
+          "verdict": "통과",
+          "text_or_border_clipping": "없음",
+          "product_scope": "기존 E8300 기록/현재 기준 비교 범위 유지"
+        }
+      ],
+      "current_common": {
+        "range": "B30:K1764",
+        "cells": 17350,
+        "value_rich_formula_differences": [],
+        "QCC38_expected_observation_verdict_vs_previous_differences": [],
+        "current_QCC38_common_styles_equal": true,
+        "current_QCC38_heights_equal": true
+      },
+      "scope_limit": "현재 전체 SUVC265/SUVR214쪽 중 44곳의 독립 검사만 주장. 다른 전체/수정 영역 검사는 담당 및 root 증거에 연결. 제품 QCC 시험 미실행/판정 대기.",
+      "status": "통과(정의된 독립 표시/동일 조건 대응 범위)"
+    }
+  ]
+}

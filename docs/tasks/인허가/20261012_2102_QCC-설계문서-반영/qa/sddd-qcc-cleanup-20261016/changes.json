@@ -1,0 +1,812 @@
+{
+  "target": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SDDD-FW-TD24A 소프트웨어 상세 설계서.docx",
+  "sha256_before": "121d4204a3b4bc1946695b74820720bc388d27e9978ef91b2b40f550e2145e2e",
+  "sha256_candidate": "e7abe5924acbf3da17ef2019a6ffcbf627e14c00f3e875732c25ba6dae903802",
+  "new_revision_start": 19651,
+  "new_revision_end": 20106,
+  "author": "김은수",
+  "completed_prefix_relocated_count": 3,
+  "fully_removed_notice_count": 0,
+  "mixed_notices_normalized_count": 3,
+  "qcc_prefix_count_before": 20,
+  "qcc_prefix_count_after": 20,
+  "joint_prefix_count_after": 1,
+  "colored": [
+    {
+      "paragraph": 270,
+      "text": "DMIC2는 QCC에도 연결되어 전화 통화 상향 입력으로 사용한다."
+    },
+    {
+      "paragraph": 325,
+      "text": "외부기 / QCC"
+    },
+    {
+      "paragraph": 326,
+      "text": "시스템 관리, HW 인터페이스, 블루투스, 보안"
+    },
+    {
+      "paragraph": 327,
+      "text": "DMIC2→QCC→통화 상대, BLE/Classic, SPI/PIO/NVM"
+    },
+    {
+      "paragraph": 329,
+      "text": "리모콘/매핑 프로그램, Classic 상대 장치와 충전케이스"
+    },
+    {
+      "paragraph": 330,
+      "text": "BLE AUTH/GAIA, Classic 오디오 송수신, 충전케이스 통신"
+    },
+    {
+      "paragraph": 277,
+      "text": "QCC의 시스템 관리/HW 인터페이스/블루투스/보안 4모듈과14유닛"
+    },
+    {
+      "paragraph": 317,
+      "text": "외부기에는 E8300과 별도 칩 QCC5181이 있다."
+    },
+    {
+      "paragraph": 317,
+      "text": "QCC는 무선 송수신, 전원/PIO/NVM과 인증을 처리한다. DMIC2는 두 칩에 연결되며 QCC의 통화 상향과 E8300으로 보내는 I2S 하향을 구분한다."
+    },
+    {
+      "paragraph": 4886,
+      "text": "QCC BLE Data 메시지는 type 1바이트와 data 0~19바이트로 총 1~20바이트이다."
+    },
+    {
+      "paragraph": 4889,
+      "text": "DMIC2는 QCC에도 연결되며 전화 통화 시 QCC가 수음한 음성을 통화 상대에게 송신한다. QCC의 Classic 수신 오디오는 I2S 24bit/16kHz로 CFX에 전달한다."
+    },
+    {
+      "paragraph": 4896,
+      "text": "QCC 소프트웨어 상세 설계"
+    },
+    {
+      "paragraph": 4897,
+      "text": "외부기의 QCC5181은 시스템 관리, HW 인터페이스, 블루투스와 보안의 4개 기능 모듈 및 14개 유닛으로 구성한다. QCC는 무선 송수신과 상태/명령 중계, PIO/전원/NVM 접근 및 CRA 인증을 처리한다."
+    },
+    {
+      "paragraph": 4898,
+      "text": "SI-ID-QCC-001 시스템 관리 모듈"
+    },
+    {
+      "paragraph": 4899,
+      "text": "주변장치와 라이브러리를 초기화한 뒤 전원/연결 상태, Standalone/TWS 구성과 Bluetooth 활성 상태를 관리한다. 시스템 상태 유닛을 통해 BLE 명령과 E8300 SPI 명령/응답을 연결한다."
+    },
+    {
+      "paragraph": 4901,
+      "text": "SU-ID-QCC-001 시스템 초기화와 설정 유닛"
+    },
+    {
+      "paragraph": 4902,
+      "text": "QCC의 주변장치와 라이브러리를 정해진 순서로 준비하여 상태 처리와 통신이 유효한 초기 설정에서 시작되도록 한다."
+    },
+    {
+      "paragraph": 4903,
+      "text": "표 238. 시스템 초기화와 설정 유닛 / 유닛 설계 내용"
+    },
+    {
+      "paragraph": 4907,
+      "text": "SPI 포트/클록과 PIO 방향/기능 설정, NVM 데이터 식별자/길이\nI2S 출력 24bit/16kHz, Classic 오디오의 I2S 출력 선택\nBLE 특성의 인증 속성 및 AUTH service 설정, 충전케이스 통신 포트/속도"
+    },
+    {
+      "paragraph": 4909,
+      "text": "시스템, Built-in library, scheduler, Power, Bluetooth, HW, PIO의 초기화 상태\n사운드 처리기/배터리/충전/Bluetooth 상태를 초기 상태 처리에 연결"
+    },
+    {
+      "paragraph": 4911,
+      "text": "1. 초기화 전에 주변장치, 통신과 NVM 설정을 준비하고 정상 동작 중 초기 설정을 반복 변경하지 않는다.\n2. 시스템 → 내장 라이브러리 → 시스템 스케줄러 → Power → Bluetooth → HW → PIO 순서로 초기화한다. Application은 필요한 하위 기능이 준비된 후 시작한다.\n3. PIO_INTER_DEVICE_CONN_IND, PIO_SPI_COMM_IND, PIO_SHUT_DOWN_IND는 입력으로 설정한다. PIO_I2S_EN_IND, PIO_HW_RESET_CTRL, PIO_TEMP_CHECK_ON은 출력으로 설정하고 SPI 및 온도 감지 핀은 주변장치 기능에 연결한다.\n4. 초기화가 끝나면 시스템 상태 처리에 종료/내부기 연결 입력, 배터리/충전 및 Bluetooth 상태를 전달한다."
+    },
+    {
+      "paragraph": 4913,
+      "text": "표 239. 시스템 초기화와 설정 유닛 / 구현 조건"
+    },
+    {
+      "paragraph": 4917,
+      "text": "초기 설정은 각 하위 모듈의 실행 전에 완료한다. Classic 수신 오디오는 스피커 출력 대신 I2S 출력 경로를 사용한다.\ntdPio_preInit()은 Application 초기화 전에 수행한다. 초기화 완료를 확인한 뒤 상태 처리와 통신을 시작한다."
+    },
+    {
+      "paragraph": 4919,
+      "text": "상위 요구사항: SW-FW-RID-15, SW-FW-RID-16, SW-FW-RID-21, SW-FW-RID-22, SW-FW-RID-29, SW-FW-RID-44, SW-FW-RID-45, SW-FW-RID-48, SW-FW-RID-49, SW-FW-RID-52, SW-FW-RID-63, SW-FW-RID-76. SW-FW-UnitTest-QCC-ID-4에서는 기동 설정/초기화와 전원 상태 SPI/ACK를 확인한다. 전원/상태 처리를 시작하기 위한 초기 설정을 지원한다."
+    },
+    {
+      "paragraph": 4923,
+      "text": "SU-ID-QCC-002 시스템 상태 유닛"
+    },
+    {
+      "paragraph": 4924,
+      "text": "E8300의 연결/종료 신호와 전원/무선 상태를 관리하고 BLE와 SPI 사이에서 명령과 응답을 중계한다."
+    },
+    {
+      "paragraph": 4925,
+      "text": "표 240. 시스템 상태 유닛 / 유닛 설계 내용"
+    },
+    {
+      "paragraph": 4929,
+      "text": "사운드 처리기 shutdown_ind, inter_dev_conn_ind\n시스템 전원/블루투스 상태, BLE에서 받은 사운드 처리기 대상 데이터"
+    },
+    {
+      "paragraph": 4931,
+      "text": "시스템 동작/종료 결정 및 관련 모듈 제어\nSPI로 전원/Bluetooth 상태를 전달하고 내부장치 정보를 요청\nBLE↔사운드 처리기 대상 메시지의 중계"
+    },
+    {
+      "paragraph": 4933,
+      "text": "1. shutdown_ind, inter_dev_conn_ind, 배터리, 충전, Classic 연결과 BLE 연결의 여섯 상태를 저장하고 조회한다.\n2. 초기화 후 E8300 준비 신호를 기다린다. 준비 대기 시간을 넘기면 Deep sleep에 진입하고, 정상 동작 중 종료 요청을 받으면 종료 대기 후 정지한다.\n3. 내부기 연결 상태가 활성화되면 E8300에 장치 정보와 편이/양이 정보를 요청하고 장치명 및 Classic/BLE 동작을 준비한다.\n4. 전원/Bluetooth 상태를 SPI로 E8300에 전달하고 BLE의 E8300 대상 데이터와 응답을 내용 변경 없이 중계한다.\n5. 0x34는 잔량 %, charger_connected 0/1과 lid 1/2를 전달한다. 0x35는 LED/갱신 연결, 0x36은 오디오 연결/종류를 전달한다. E8300의 유효 응답은 해당 명령과 성공값 1이다."
+    },
+    {
+      "paragraph": 4935,
+      "text": "표 241. 시스템 상태 유닛 / 구현 조건"
+    },
+    {
+      "paragraph": 4939,
+      "text": "E8300 QCC_CTRL은 High=정상, Low=종료 요청이다. ISD_CHECK는 High=내부기 연결, Low=미연결이다. 두 핀의 초기값은 Low이다.\nBLE 논리 메시지의 type+payload는 최대 20byte이다. E8300 물리 SPI 프레임은 별도 길이 1byte를 포함한 21byte이다. 응답 저장 배열의 index20은 유효 응답 길이를 저장한다."
+    },
+    {
+      "paragraph": 4941,
+      "text": "상위 요구사항: SW-FW-RID-21, SW-FW-RID-22, SW-FW-RID-29, SW-FW-RID-35, SW-FW-RID-38, SW-FW-RID-44, SW-FW-RID-45, SW-FW-RID-46, SW-FW-RID-63, SW-FW-RID-66, SW-FW-RID-67, SW-FW-RID-68, SW-FW-RID-69, SW-FW-RID-70. SW-FW-UnitTest-QCC-ID-5에서는 여섯 시스템 상태 저장/조회를 확인한다. SW-FW-UnitTest-QCC-ID-4에서는 기동 설정/초기화와 전원 상태 SPI/ACK를 연계 지원으로 확인한다. 위치/잔량 및 무선 연결 상태의 저장/조회를 지원한다."
+    },
+    {
+      "paragraph": 4945,
+      "text": "SU-ID-QCC-003 장치 상태 유닛"
+    },
+    {
+      "paragraph": 4946,
+      "text": "생산 시 결정한 Standalone 또는 TWS 구성에 따라 오디오와 제어 데이터의 처리 대상을 선택한다."
+    },
+    {
+      "paragraph": 4947,
+      "text": "표 242. 장치 상태 유닛 / 유닛 설계 내용"
+    },
+    {
+      "paragraph": 4951,
+      "text": "생산 시 저장한 Standalone/TWS 구성\nBluetooth 오디오 L/R, 데이터, 단독 사용 상태"
+    },
+    {
+      "paragraph": 4953,
+      "text": "편이 또는 양이의 오디오/데이터 처리 구성과 각 모듈의 상태"
+    },
+    {
+      "paragraph": 4955,
+      "text": "1. Standalone은 외부장치1대로 L/R 오디오와 데이터를 처리한다.\n2. TWS는 외부장치2대를 한 세트로 구성하며 L/R 오디오와 데이터를 구분한다.\n3. TWS 구성에서도 1대 단독 사용이 가능하다.\n4. 장치 구성은 생산 시 결정하며 동작 중에는 변경하지 않는다. Qualcomm Built-in library가 TWS 오디오/데이터 전달을 수행한다."
+    },
+    {
+      "paragraph": 4957,
+      "text": "표 243. 장치 상태 유닛 / 구현 조건"
+    },
+    {
+      "paragraph": 4961,
+      "text": "Standalone은 외부기 1대가 오디오 L+R과 제어 데이터를 처리한다. TWS는 외부기 2대가 L/R 오디오와 데이터를 구분하며 1대 단독 사용도 지원한다.\n장치 구성은 생산 시 결정하며 동작 중 변경하지 않는다. TWS 오디오/데이터 전달은 Qualcomm 내장 라이브러리 기능에 연결한다."
+    },
+    {
+      "paragraph": 4963,
+      "text": "상위 요구사항: SW-FW-RID-15, SW-FW-RID-69, SW-FW-RID-70. SW-FW-UnitTest-QCC-ID-6에서는 생산 시 Standalone/TWS 구성과 편이/양이 오디오/데이터 처리를 확인한다."
+    },
+    {
+      "paragraph": 4967,
+      "text": "SU-ID-QCC-004 블루투스 상태 유닛"
+    },
+    {
+      "paragraph": 4968,
+      "text": "내부기 부착 상태와 Bluetooth 연결 상태를 연결하여 검색/연결 가능 여부와 외부기 장치명을 관리한다."
+    },
+    {
+      "paragraph": 4969,
+      "text": "표 244. 블루투스 상태 유닛 / 유닛 설계 내용"
+    },
+    {
+      "paragraph": 4973,
+      "text": "내부장치 연결 표시 inter_dev_conn_ind\nClassic/BLE 연결 상태와 연결 장치 종류\n사운드 처리기에서 제공한 내부장치 측/사용자/외부장치 정보"
+    },
+    {
+      "paragraph": 4975,
+      "text": "Classic/BLE 활성/비활성 제어\nBluetooth 상태를 관련 모듈에 전달\nTD_L__SOUND_ UserName_ExternalDeviceInfo 형식의 장치명"
+    },
+    {
+      "paragraph": 4977,
+      "text": "1. 내부장치가 연결된 경우 Bluetooth를 활성화한다.\n2. 내부장치가 분리되면 디바운스 후 연결된 Bluetooth를 모두 해제한 뒤 비활성화한다.\n3. 내부장치 연결 시 받은 정보를 사용하여 장치명을 구성한다. L은 수술 위치 L/R을 나타낸다."
+    },
+    {
+      "paragraph": 4979,
+      "text": "표 245. 블루투스 상태 유닛 / 구현 조건"
+    },
+    {
+      "paragraph": 4983,
+      "text": "inter_dev_conn_ind=0이면 Bluetooth를 비활성화하고 1이면 활성화한다. 탈착 시 기존 BLE/Classic 연결을 해제하고 재부착 시 검색/연결 기능을 다시 준비한다.\n장치명은 TD_L__SOUND_ UserName_ExternalDeviceInfo 형식을 사용하며 L 부분은 내부기 수술 위치 L/R에 대응한다."
+    },
+    {
+      "paragraph": 4985,
+      "text": "상위 요구사항: SW-FW-RID-44, SW-FW-RID-45, SW-FW-RID-46, SW-FW-RID-48, SW-FW-RID-49, SW-FW-RID-66, SW-FW-RID-67, SW-FW-RID-68, SW-FW-RID-69, SW-FW-RID-70. SW-FW-UnitTest-QCC-ID-7에서는 연결표시 입력에 따른 Bluetooth 활성 및 장치명을 확인한다. SW-FW-UnitTest-QCC-ID-8에서는 부착/탈착 시 BLE/Classic 검색/연결 활성화를 확인한다. 페어링/보호 데이터 경로를 사용하기 위한 Bluetooth 활성화를 지원한다. 활성화 상태만으로 페어링/암호화 완료를 판정하지 않는다."
+    },
+    {
+      "paragraph": 4988,
+      "text": "SI-ID-QCC-002 HW 인터페이스 모듈"
+    },
+    {
+      "paragraph": 4989,
+      "text": "PIO, 배터리/충전과 비휘발성 저장장치의 접근을 제공한다. 입력 변화와 전원 상태는 시스템 관리에 전달하고, NVM 데이터는 일반 설정 및 보안 처리에 제공한다."
+    },
+    {
+      "paragraph": 4991,
+      "text": "SU-ID-QCC-005 PIO 포트 제어 유닛"
+    },
+    {
+      "paragraph": 4992,
+      "text": "QCC의 디지털 입력, 출력과 주변장치 기능을 설정하고 입력 변화를 상태 처리에 전달한다."
+    },
+    {
+      "paragraph": 4993,
+      "text": "표 246. PIO 포트 제어 유닛 / 유닛 설계 내용"
+    },
+    {
+      "paragraph": 4997,
+      "text": "내부장치 연결, shutdown, SPI 데이터 수신요청 신호\n충전 상태 변화\nPIO 핀/주변기능 설정"
+    },
+    {
+      "paragraph": 4999,
+      "text": "I2S enable 표시, HW reset 제어, 내부 온도센서 활성화\n관련 입력 상태 및 SPI/I2S 주변기능 연결"
+    },
+    {
+      "paragraph": 5001,
+      "text": "1. 입력 신호를 감지하고 I2S 동작 상태를 사운드 처리기에 전달한다.\n2. SPI/I2S/온도센서에 필요한 포트 기능을 구성한다.\n3. 충전 상태가 바뀌면 충전 중에는 HW reset 기능을 비활성화하고 비충전 상태에서는 활성화한다."
+    },
+    {
+      "paragraph": 5003,
+      "text": "표 247. PIO 포트 제어 유닛 / 구현 조건"
+    },
+    {
+      "paragraph": 5007,
+      "text": "tdPio_preInit()/tdPio_init()으로 방향/기능과 초기값을 준비한다. shutdown_ind와 inter_dev_conn_ind의 상태가 변하면 TD_MSG_PIO_CHANGED를 상태 처리에 전달한다.\nI2S enable은 E8300의 I2S 입력 유효 상태와 연계한다. E8300 CFX I2S_FLAG(DIO29)는 Low일 때 입력 유효이다."
+    },
+    {
+      "paragraph": 5009,
+      "text": "상위 요구사항: SW-FW-RID-15, SW-FW-RID-16, SW-FW-RID-44, SW-FW-RID-45, SW-FW-RID-46, SW-FW-RID-67, SW-FW-RID-68, SW-FW-RID-69. SW-FW-UnitTest-QCC-ID-1에서는 PIO 방향/주변장치/초기값 및 입력변화 메시지를 확인한다."
+    },
+    {
+      "paragraph": 5013,
+      "text": "SU-ID-QCC-006 Power 제어 유닛"
+    },
+    {
+      "paragraph": 5014,
+      "text": "배터리 전압과 충전 연결을 잔량/전원 상태로 변환하여 시스템에 전달하고 저전압과 종료 요청을 처리한다."
+    },
+    {
+      "paragraph": 5015,
+      "text": "표 248. Power 제어 유닛 / 유닛 설계 내용"
+    },
+    {
+      "paragraph": 5019,
+      "text": "설정한 배터리 최소/최대 전압, 충전 전류\nADC 배터리 전압\n충전케이스 통신, 충전 상태, shutdown_ind"
+    },
+    {
+      "paragraph": 5021,
+      "text": "0~100% 배터리 잔량과 충전 상태\n시스템 관리 및 Bluetooth/SP로 전달할 전원 정보\nDeep sleep 진입/기동 복귀"
+    },
+    {
+      "paragraph": 5023,
+      "text": "1. ADC로 배터리 전압을 주기적으로 읽어 0~100% 잔량과 저전압 상태로 변환하고 시스템 상태에서 읽을 수 있게 한다.\n2. 전압[V]→잔량[%]의 기준점은 4.2 이상→100, 3.95→80, 3.7→60, 3.475→40, 3.35→20, 3.0→0이다.\n3. 충전 상태는 미연결/연결/충전 중/비충전으로 구분한다. E8300 0x34에는 충전기 연결 여부 0/1을 전달한다.\n4. 배터리가 Empty이거나 E8300 종료 요청을 받으면 Deep sleep 진입을 처리한다. 외부 충전 연결 중에는 충전 상태를 유지하는 조건을 함께 적용한다.\n5. 전원 인가/wake-up 후에는 시스템 초기화를 수행한다. 충전케이스 통신과 저수준 전원 처리는 내장 라이브러리에 연결한다."
+    },
+    {
+      "paragraph": 5025,
+      "text": "표 249. Power 제어 유닛 / 구현 조건"
+    },
+    {
+      "paragraph": 5029,
+      "text": "잔량 기준점과 실제 ADC/공급 전압은 같은 입력에서 비교한다. Empty의 저전압 진입, 충전 연결/분리와 shutdown_ind 변화는 독립 상태로 확인한다.\n전원 상태 정보는 SU-ID-QCC-002가 SPI로 E8300에 전달한다. 저전압 LED/자극 알림의 최종 실행은 E8300 시스템 경로가 담당한다."
+    },
+    {
+      "paragraph": 5031,
+      "text": "상위 요구사항: SW-FW-RID-21, SW-FW-RID-22, SW-FW-RID-23, SW-FW-RID-28, SW-FW-RID-29, SW-FW-RID-34, SW-FW-RID-55, SW-FW-RID-62, SW-FW-RID-63, SW-FW-RID-66, SW-FW-RID-68. SW-FW-UnitTest-QCC-ID-2에서는 전압→잔량/충전/저전압 상태를 확인한다. 배터리 잔량/전원 상태를 제공하여 LED/자극 알림의 입력을 지원한다. 알림/자극의 최종 실행은 E8300 시스템 경로에서 별도로 확인한다."
+    },
+    {
+      "paragraph": 5035,
+      "text": "SU-ID-QCC-007 NVM 처리 유닛"
+    },
+    {
+      "paragraph": 5036,
+      "text": "Application의 비휘발성 데이터를 식별자와 길이로 접근하여 외부기 설정과 제조 정보를 유지한다."
+    },
+    {
+      "paragraph": 5037,
+      "text": "표 250. NVM 처리 유닛 / 유닛 설계 내용"
+    },
+    {
+      "paragraph": 5041,
+      "text": "NVM 데이터 ID, 길이, 읽기/쓰기 데이터\n외부장치 일련번호, 장치타입, 보안용 난수 및 키 데이터"
+    },
+    {
+      "paragraph": 5043,
+      "text": "해당 ID의 길이/저장 데이터/쓰기 결과 인터페이스"
+    },
+    {
+      "paragraph": 5045,
+      "text": "1. 사용가능 NVM 영역에 application data를 매핑한다.\n2. nvm_data_length_get, nvm_data_read, nvm_data_write 인터페이스를 제공한다.\n3. 물리 접근은 시스템/Built-in library가 수행한다."
+    },
+    {
+      "paragraph": 5047,
+      "text": "표 251. NVM 처리 유닛 / 구현 조건"
+    },
+    {
+      "paragraph": 5051,
+      "text": "Application PS 영역의 외부기 일련번호는 TD_PS_KEY_EX_DEV_SERIAL_NUNM으로 읽기/쓰기한다. 시험용 번호를 저장한 뒤 같은 ID에서 읽어 길이와 값을 확인한다.\n보안 키의 역할/권한/암복호화는 보안 NVM과 툴박스에서 처리한다. 일반 NVM 인터페이스의 존재를 키 보호 완료로 판단하지 않는다."
+    },
+    {
+      "paragraph": 5053,
+      "text": "상위 요구사항: SW-FW-RID-52, SW-FW-RID-76. SW-FW-UnitTest-QCC-ID-3에서는 외부기 일련번호 PS 매핑/읽기/쓰기를 확인한다."
+    },
+    {
+      "paragraph": 5056,
+      "text": "SI-ID-QCC-003 블루투스 모듈"
+    },
+    {
+      "paragraph": 5057,
+      "text": "Classic 오디오 송수신과 BLE 광고/연결 및 메시지 전달을 처리한다. 수신 오디오는 I2S로 E8300에 전달하고 전화 통화 중 DMIC2의 음성은 통화 상대에게 송신한다. AUTH service의 전송과 보안 모듈의 인증 계산은 분리한다."
+    },
+    {
+      "paragraph": 5059,
+      "text": "SU-ID-QCC-008 Bluetooth Classic 유닛"
+    },
+    {
+      "paragraph": 5060,
+      "text": "Bluetooth Classic 오디오 연결을 관리하여 수신 오디오는 I2S로 E8300에 전달하고 통화 중 DMIC2 입력은 상대 장치로 송신한다."
+    },
+    {
+      "paragraph": 5061,
+      "text": "표 252. Bluetooth Classic 유닛 / 유닛 설계 내용"
+    },
+    {
+      "paragraph": 5065,
+      "text": "Bluetooth 활성 상태, pair_req/disconnect_req/audio_disconnect_req\n상대 Classic 장치의 연결/오디오 연결 요청과 수신 오디오\nDMIC2 마이크 입력과 전화 통화 상태"
+    },
+    {
+      "paragraph": 5067,
+      "text": "Classic 및 Audio 연결 상태\n수신 오디오의 I2S 24bit/16kHz 출력과 E8300 오디오 상태 통보\nDMIC2에서 수음한 음성의 Bluetooth 통화 상향 송신"
+    },
+    {
+      "paragraph": 5069,
+      "text": "1. Bluetooth 비활성 상태이면 연결/페어링 요청을 처리하지 않는다.\n2. Pairable 상태를 유지하여 상대 장치가 검색/페어링할 수 있게 하고 페어링 완료 또는 제한 시간 경과 후 해제한다.\n3. Classic/Audio 연결이 성립하면 수신 오디오를 I2S 24bit/16kHz로 E8300 CFX에 전달한다.\n4. 전화 통화 시 QCC에 연결된 DMIC2의 음성을 수음하여 통화 상대에게 송신한다. DMIC2는 E8300에도 연결되며 QCC→E8300 I2S 하향과 마이크 상향은 별도 경로이다.\n5. Classic 해제 요청은 Audio 연결도 해제한다. Audio만 해제할 때는 Classic 연결 상태를 유지한다."
+    },
+    {
+      "paragraph": 5071,
+      "text": "표 253. Bluetooth Classic 유닛 / 구현 조건"
+    },
+    {
+      "paragraph": 5075,
+      "text": "SU-ID-QCC-003의 Standalone/TWS 구성에 따라 수신 오디오 L/R을 처리한다. I2S 시작/중단은 PIO의 입력 유효 표시와 0x36 오디오 상태에 연결한다.\n수신→I2S→E8300 처리와 DMIC2→QCC→통화 상대 송신은 SW-FW-RID-69의 서로 다른 방향이다. 시스템 시험 ID69와 ID82는 각 방향의 결과를 별도로 비교한다."
+    },
+    {
+      "paragraph": 5077,
+      "text": "상위 요구사항: SW-FW-RID-15, SW-FW-RID-16, SW-FW-RID-69. SW-FW-UnitTest-QCC-ID-10에서는 Classic 페어링/연결, 시험 스피커/양이 및 I2S 하향 경로를 확인한다. SW-FW-UnitTest-QCC-ID-8에서는 부착/탈착 시 BLE/Classic 검색/연결 활성화를 연계 지원으로 확인한다."
+    },
+    {
+      "paragraph": 5081,
+      "text": "SU-ID-QCC-009 BLE 유닛"
+    },
+    {
+      "paragraph": 5082,
+      "text": "BLE 광고와 연결 상태를 관리하여 외부 앱이 장치를 식별하고 인증/데이터 서비스에 접근할 수 있게 한다."
+    },
+    {
+      "paragraph": 5083,
+      "text": "표 254. BLE 유닛 / 유닛 설계 내용"
+    },
+    {
+      "paragraph": 5087,
+      "text": "Bluetooth 활성상태\n장치 이름/일련번호, local/secondary 배터리 및 충전 정보\nBLE 연결/광고 요청"
+    },
+    {
+      "paragraph": 5089,
+      "text": "Advertising/Scan response data\nBLE 연결상태와 AUTH service 데이터 전달"
+    },
+    {
+      "paragraph": 5091,
+      "text": "1. Bluetooth 비활성 상태이면 BLE 검색/연결 요청을 처리하지 않는다.\n2. Advertising에는 Complete Local Name과 Flags를, Scan response에는 Appearance/Flags/Manufacturer specific data를 구성한다.\n3. Appearance는 Cochlear Implant로 설정하고 manufacturer data에는 현재 장치와 TWS peer의 배터리/연결 상태를 포함한다. 잔량 변화에 맞춰 갱신한다.\n4. 동시에 BLE 연결 1개를 허용하고 연결 상태를 시스템 상태에 전달한다. 페어링 후 AUTH service와 보안 모듈을 통해 자체 인증을 진행한다.\n5. BLE 데이터 송수신이 3분(180초) 동안 없으면 연결을 해제한다. 제어 명령 미수신 조건과 송수신 감시 조건은 같은 타이머로 임의 치환하지 않는다."
+    },
+    {
+      "paragraph": 5093,
+      "text": "표 255. BLE 유닛 / 구현 조건"
+    },
+    {
+      "paragraph": 5097,
+      "text": "연결/해제와 잔량 갱신을 각각 광고/scan response와 장치 상태에 반영한다. TWS peer의 값은 현재 장치 값과 구분한다.\nBLE 링크 AES-CCM 보호, CRA 인증값 계산과 저장 데이터 암호화는 서로 다른 보호 경로이다."
+    },
+    {
+      "paragraph": 5099,
+      "text": "상위 요구사항: SW-FW-RID-29, SW-FW-RID-35, SW-FW-RID-38, SW-FW-RID-44, SW-FW-RID-45, SW-FW-RID-47, SW-FW-RID-48, SW-FW-RID-49, SW-FW-RID-63, SW-FW-RID-70, SW-FW-RID-76. SW-FW-UnitTest-QCC-ID-9에서는 광고/스캔 응답과 현재/peer 잔량/연결 상태를 확인한다. SW-FW-UnitTest-QCC-ID-8에서는 부착/탈착 시 BLE/Classic 검색/연결 활성화를 연계 지원으로 확인한다. 현재/peer의 위치/잔량 및 연결 상태를 광고/조회 데이터에 반영하는 입력을 지원한다."
+    },
+    {
+      "paragraph": 5103,
+      "text": "SU-ID-QCC-010 AUTH service 처리 유닛"
+    },
+    {
+      "paragraph": 5104,
+      "text": "CRA의 Challenge/Response/Confirm/Status 교환을 GATT 특성에 연결하여 인증 계산과 무선 전송을 분리한다."
+    },
+    {
+      "paragraph": 5105,
+      "text": "표 256. AUTH service 처리 유닛 / 유닛 설계 내용"
+    },
+    {
+      "paragraph": 5109,
+      "text": "Challenge: 인증타입 및 클라이언트 난수\nConfirm: 클라이언트의 인증응답\nBLE pairing/보안 접근 상태"
+    },
+    {
+      "paragraph": 5111,
+      "text": "Response: 외부장치 난수와 암호화 응답\nStatus:0실패/1성공/2진행/3시간초과"
+    },
+    {
+      "paragraph": 5113,
+      "text": "1. AUTH GATT service를 Primary/Challenge/Response/Confirm/Status 식별자로 구성한다.\n2. Challenge와 Confirm은 write, Response와 Status는 read/notify로 정의한다.\n3. auth_type0x01=Patient/리모콘,0x02=Clinician/매핑, 그 밖은 invalid로 처리한다.\n4. 실제 인증은 보안 처리 유닛에서 수행하고 AUTH service는 데이터 접근 인터페이스를 제공한다."
+    },
+    {
+      "paragraph": 5115,
+      "text": "표 257. AUTH service 처리 유닛 / 구현 조건"
+    },
+    {
+      "paragraph": 5119,
+      "text": "Challenge/Confirm은 client write, Response/Status는 read/notify에 연결한다. auth_type 0x01은 Patient/리모콘, 0x02는 Clinician/매핑이며 다른 값은 invalid로 처리한다.\nStatus는 실패 0, 성공 1, 진행 중 2, 타임아웃 3을 사용한다. AUTH service는 값을 전달하고 SU-ID-QCC-012가 인증을 판정한다.\n단순 전송 경계 시험은 Challenge/Response/Confirm의 12byte 패턴과 Status 1byte 패턴을 비교한다. 이 길이/패턴은 실제 CRA 메시지 전체 길이와 인증 성공을 뜻하지 않는다."
+    },
+    {
+      "paragraph": 5121,
+      "text": "상위 요구사항: SW-FW-RID-48, SW-FW-RID-52, SW-FW-RID-71, SW-FW-RID-76. SW-FW-UnitTest-QCC-ID-11에서는 AUTH 서비스 정의/등록 및 네 characteristic 패턴 중계를 확인한다."
+    },
+    {
+      "paragraph": 5125,
+      "text": "SU-ID-QCC-011 BLE Data 처리 유닛"
+    },
+    {
+      "paragraph": 5126,
+      "text": "BLE 메시지의 상태, 주소, 종류와 길이를 검사하여 유효한 제어 데이터를 해당 처리 대상에 전달한다."
+    },
+    {
+      "paragraph": 5127,
+      "text": "표 258. BLE Data 처리 유닛 / 유닛 설계 내용"
+    },
+    {
+      "paragraph": 5131,
+      "text": "전송할type/data\nGAIA received data handler에서 받은 메시지\nBLE 연결상태와 addressing/system state"
+    },
+    {
+      "paragraph": 5133,
+      "text": "유효 GAIA/BLE 메시지 또는 수신 처리 요청\nSP 대상 SPI 중계용 명령/데이터"
+    },
+    {
+      "paragraph": 5135,
+      "text": "1. 메시지는 type1byte+data0~19byte이며 전체 최소1~최대20byte이다.\n2. 송신 시 BLE연결과 type/data를 검사하고 GAIA addressing을 적용하여 전송한다.\n3. 수신 시 BLE연결/addressing/type/data를 검사하고 유효하지 않으면 무시한다.\n4. 유효한 메시지는 현재 시스템 상태에 맞게 관련 모듈에 전달한다."
+    },
+    {
+      "paragraph": 5137,
+      "text": "표 259. BLE Data 처리 유닛 / 구현 조건"
+    },
+    {
+      "paragraph": 5141,
+      "text": "type 1byte와 payload 0~19byte의 논리 메시지를 검사한다. SPI 중계는 별도 길이 byte가 포함된 21byte 프레임에 연결한다.\n보호된 기기제어/매핑 데이터는 CRA 성공 이후에 전달한다. 인증 실패/타임아웃에는 허용된 인증 응답과 일반 제어 요청을 구분한다."
+    },
+    {
+      "paragraph": 5143,
+      "text": "상위 요구사항: SW-FW-RID-24, SW-FW-RID-25, SW-FW-RID-26, SW-FW-RID-27, SW-FW-RID-28, SW-FW-RID-29, SW-FW-RID-30, SW-FW-RID-31, SW-FW-RID-32, SW-FW-RID-33, SW-FW-RID-34, SW-FW-RID-35, SW-FW-RID-36, SW-FW-RID-37, SW-FW-RID-38, SW-FW-RID-39, SW-FW-RID-40, SW-FW-RID-44, SW-FW-RID-45, SW-FW-RID-59, SW-FW-RID-60, SW-FW-RID-66, SW-FW-RID-70, SW-FW-RID-76. SW-FW-UnitTest-QCC-ID-12에서는 GAIA 편이/양이 메시지 처리와 위치/잔량 응답를 확인한다."
+    },
+    {
+      "paragraph": 5146,
+      "text": "SI-ID-QCC-004 보안 모듈"
+    },
+    {
+      "paragraph": 5147,
+      "text": "CRA를 통해 통신 상대를 확인하고 인증 상태에 따라 보호 데이터 접근을 허용한다. 보안 툴박스의 키 파생/인증값 계산과 보안 NVM의 키 읽기를 사용하며 인증 실패와 시간 제한을 BLE 연결 제어에 반영한다."
+    },
+    {
+      "paragraph": 5149,
+      "text": "SU-ID-QCC-012 보안 처리 유닛"
+    },
+    {
+      "paragraph": 5150,
+      "text": "리모콘과 매핑 통신의 상대 장치를 CRA로 확인하고 인증 결과와 제한 조건에 따라 데이터 접근을 제어한다."
+    },
+    {
+      "paragraph": 5151,
+      "text": "표 260. 보안 처리 유닛 / 유닛 설계 내용"
+    },
+    {
+      "paragraph": 5155,
+      "text": "BLE pairing완료, AUTH Challenge(auth_type,Nonce_A)\n서버 Nonce_B 및 키\nConfirm 인증값, 타이머"
+    },
+    {
+      "paragraph": 5157,
+      "text": "Status4상태와 인증결과\n일반 BLE 데이터처리 허용 또는 BLE연결 해제"
+    },
+    {
+      "paragraph": 5159,
+      "text": "1. BLE 페어링 후 CRA를 시작하고 auth_type에 따라 리모콘 또는 매핑 키를 선택한다. 유효하지 않은 타입은 실패로 처리한다.\n2. 클라이언트의 Nonce_A를 받고 장치의 Nonce_B와 인증값 B를 Response로 전달한다. 클라이언트가 B를 확인하여 보낸 Confirm의 인증값 A를 장치 계산값과 비교한다.\n3. Status로 실패 0/성공 1/진행 중 2/타임아웃 3을 알리고 성공일 때 보호된 기기제어/매핑 데이터를 허용한다. 응답에는 인증 비밀을 노출하지 않는다.\n4. 30초 동안 인증이 완료되지 않으면 타임아웃 처리 후 연결을 해제한다. 정상 완료 연결은 인증 타임아웃으로 해제하지 않는다.\n5. 같은 대상의 CRA 인증이 5회 연속 실패하면 1분(60초) 동안 연결을 제한한다. BLE 무송수신 180초 해제와 인증 30초/실패 제한 60초는 각각 관리한다.\n6. 연결 해제 시 현재 인증 상태를 대기 상태로 전환한다. 실패 누적/제한 이력의 초기화는 연결 해제와 별도 정책으로 관리한다."
+    },
+    {
+      "paragraph": 5161,
+      "text": "표 261. 보안 처리 유닛 / 구현 조건"
+    },
+    {
+      "paragraph": 5165,
+      "text": "auth_type에 따른 키 선택과 인증값 계산은 SU-ID-QCC-013에 요청하고 AUTH service를 통해 상대에게 전달한다.\n인증 상태, 데이터 접근 허용과 연결 해제는 같은 사건에서 비교한다. 12byte 패턴 중계만으로 CRA 계산/제어 허용의 통과를 판정하지 않는다."
+    },
+    {
+      "paragraph": 5167,
+      "text": "상위 요구사항: SW-FW-RID-47, SW-FW-RID-48, SW-FW-RID-49, SW-FW-RID-52, SW-FW-RID-71, SW-FW-RID-72, SW-FW-RID-76. SW-FW-UnitTest-QCC-ID-13에서는 1:1, CRA 성공/실패/30초 timeout를 확인한다."
+    },
+    {
+      "paragraph": 5171,
+      "text": "SU-ID-QCC-013 보안 툴박스 유닛"
+    },
+    {
+      "paragraph": 5172,
+      "text": "인증 키 선택, 매핑 키 파생과 인증값 계산 및 NVM 암복호화를 공통 인터페이스로 제공한다."
+    },
+    {
+      "paragraph": 5173,
+      "text": "표 262. 보안 툴박스 유닛 / 유닛 설계 내용"
+    },
+    {
+      "paragraph": 5177,
+      "text": "리모콘 shared_service_key 또는 clinician_master_key+serial_num\nNonce_A16byte 및 Nonce_B16byte\nNVM용 BD_ADDR6byte와 random10byte"
+    },
+    {
+      "paragraph": 5179,
+      "text": "인증값A/B\nclinic_service_key의 SHA256 앞16byte\nNVM용 enc_key16byte 및 암복호화 결과"
+    },
+    {
+      "paragraph": 5181,
+      "text": "1. 리모콘 인증에는 생산 시 설치한 shared_service_key를 사용한다. 매핑에는 clinician_master_key와 제조번호를 사용하여 SHA-256 결과의 앞 16byte를 clinic_service_key로 파생한다.\n2. Nonce_A와 Nonce_B는 각각 16byte이다. 인증값 A/B 계산은 AES-CMAC 인터페이스에 연결하며 서로 다른 nonce 결합 순서를 사용한다.\n3. NVM 암복호화에는 AES-128 인터페이스를 사용한다. BD_ADDR 6byte와 random 10byte를 연결한 16byte를 키 재료로 사용한다.\n4. 인증/저장 데이터는 보안 NVM을 통해 읽으며 제조 설치 키와 실행 중 파생 키를 구분한다."
+    },
+    {
+      "paragraph": 5183,
+      "text": "표 263. 보안 툴박스 유닛 / 구현 조건"
+    },
+    {
+      "paragraph": 5187,
+      "text": "SHA-256 키 파생과 AES-CMAC 인증값 계산은 역할이 다르다. 공개 시험키/입력과 독립 벡터로 digest 전체, 앞 16byte 키, 인증값 및 복호화값을 각각 비교한다."
+    },
+    {
+      "paragraph": 5189,
+      "text": "상위 요구사항: SW-FW-RID-52, SW-FW-RID-76, SW-FW-RID-78. SW-FW-UnitTest-QCC-ID-14에서는 리모콘 키, SHA-256 파생 매핑키, AES-CMAC 인증 및 NVM 복호화를 확인한다."
+    },
+    {
+      "paragraph": 5193,
+      "text": "SU-ID-QCC-014 보안 NVM 유닛"
+    },
+    {
+      "paragraph": 5194,
+      "text": "생산 시 설치한 키와 난수를 정해진 보안 저장 영역에서 읽어 인증과 암복호화에 필요한 데이터로 제공한다."
+    },
+    {
+      "paragraph": 5195,
+      "text": "표 264. 보안 NVM 유닛 / 유닛 설계 내용"
+    },
+    {
+      "paragraph": 5199,
+      "text": "보안 PS 데이터 식별자와 읽기 요청\nHW NVM 읽기 인터페이스, toolbox 복호화, BD_ADDR/RAND 키 재료"
+    },
+    {
+      "paragraph": 5201,
+      "text": "복호화된 제조 설치 키와 인증/키 파생용 데이터\n읽기 결과/길이/실패 상태"
+    },
+    {
+      "paragraph": 5203,
+      "text": "1. 생산 시 설치한 보안 저장값은 PS_USR40의 RAND 10byte, PS_USR43의 clinician_master_key 16byte, PS_USR44의 shared_service_key 16byte로 구분한다.\n2. 펌웨어의 보안 NVM 접근은 읽기 인터페이스를 사용한다. 일반 NVM이 실제 PS 영역을 읽고 toolbox가 필요한 저장값을 복호화한다.\n3. 리모콘 키와 의료진 master key를 인증/파생 처리에 제공하고 생성된 clinic_service_key와 제조 저장 키를 구분한다.\n4. 읽기 전용 펌웨어 인터페이스를 생산 도구/PSTool/디버거의 접근 제한 완료로 확대하지 않는다."
+    },
+    {
+      "paragraph": 5205,
+      "text": "표 265. 보안 NVM 유닛 / 구현 조건"
+    },
+    {
+      "paragraph": 5209,
+      "text": "TD_PS_KEY_AUTH_SET_RAND와 보안 키의 PS 식별자/길이를 일치시킨다. 시험키의 존재/길이/보호 상태와 복호화 결과를 비교하며 실제 생산 비밀키를 시험 보고서에 노출하지 않는다.\n생산 저장 작업과 실행 중 읽기를 분리한다. 읽기 실패/손상 저장값은 인증/데이터 접근의 안전 상태에 연결한다."
+    },
+    {
+      "paragraph": 5211,
+      "text": "상위 요구사항: SW-FW-RID-52, SW-FW-RID-76, SW-FW-RID-78. SW-FW-UnitTest-QCC-ID-15에서는 보안 PS 영역/길이/읽기 인터페이스 및 암호화 저장값/복호화를 확인한다."
+    },
+    {
+      "paragraph": 5215,
+      "text": "인증 키와 비휘발성 저장 데이터"
+    },
+    {
+      "paragraph": 5216,
+      "text": "생산 시 설치하는 키, 실행 중 파생하는 키와 저장 복호화의 키 재료는 역할과 수명 주기가 다르다. 제조 키의 저장/읽기, 매핑 키 파생과 CRA 인증값 계산을 각각 연결한다."
+    },
+    {
+      "paragraph": 5217,
+      "text": "표 266. 키와 저장 데이터의 역할"
+    },
+    {
+      "paragraph": 5221,
+      "text": "shared_service_key"
+    },
+    {
+      "paragraph": 5222,
+      "text": "리모콘 인증용 제조 설치 키, 16byte"
+    },
+    {
+      "paragraph": 5223,
+      "text": "PS_USR44 → 보안 NVM/복호화 → CRA"
+    },
+    {
+      "paragraph": 5224,
+      "text": "clinician_master_key"
+    },
+    {
+      "paragraph": 5225,
+      "text": "의료진 매핑 키의 제조 설치 master key, 16byte"
+    },
+    {
+      "paragraph": 5226,
+      "text": "PS_USR43 → 보안 NVM/복호화 → SHA-256 키 파생"
+    },
+    {
+      "paragraph": 5227,
+      "text": "clinic_service_key"
+    },
+    {
+      "paragraph": 5228,
+      "text": "제조번호와 master key로 파생한 매핑 인증 키"
+    },
+    {
+      "paragraph": 5229,
+      "text": "SHA-256 결과 앞 16byte → CRA 인증값 계산"
+    },
+    {
+      "paragraph": 5230,
+      "text": "RAND / BD_ADDR"
+    },
+    {
+      "paragraph": 5231,
+      "text": "NVM 복호화 키 재료: 10byte/6byte"
+    },
+    {
+      "paragraph": 5232,
+      "text": "PS_USR40 RAND와 장치 주소 → toolbox"
+    }
+  ],
+  "mixed_notice_edits": [
+    {
+      "paragraph": 315,
+      "before": "[QCC 자료 입력] QCC 4모듈/14유닛의 실제 소스/빌드/라이브러리 설정과 실행/측정 결과를 확인해야 한다. DMIC2의 두 칩 입력 연결은 확인되었으며 미비 상태는 구현/시험 근거에 적용한다.",
+      "after": "DMIC2의 두 칩 입력 연결은 확인되었으며 미비 상태는 구현/시험 근거에 적용한다.\n[QCC 자료 입력] QCC 4모듈/14유닛의 실제 소스/빌드/라이브러리 설정과 실행/측정 결과를 확인해야 한다."
+    },
+    {
+      "paragraph": 4895,
+      "before": "[QCC 자료 입력] DMIC2의 QCC 입력 연결은 확인되었다. QCC 마이크 핀/클록, 프로파일/코덱별 송수신과 동시 동작, I2S 클록/프레임/좌우 배정 및 시작/중단 유효 신호의 실제 설정/파형과 오디오 시험 결과를 확인해야 한다.",
+      "after": "DMIC2의 QCC 입력 연결은 확인되었다.\n[QCC 자료 입력] QCC 마이크 핀/클록, 프로파일/코덱별 송수신과 동시 동작, I2S 클록/프레임/좌우 배정 및 시작/중단 유효 신호의 실제 설정/파형과 오디오 시험 결과를 확인해야 한다."
+    },
+    {
+      "paragraph": 5079,
+      "before": "[QCC 자료 입력] DMIC2의 QCC 입력 연결은 확인되었다. QCC 마이크 핀/클록, 상대 장치와 Classic 프로파일/코덱/라이브러리 설정, 페어링 제한 시간, L/R/동시 송수신 조건, I2S 유효 신호/0x36 통보 순서 및 실제 음성/오디오 시험 결과가 필요하다.",
+      "after": "DMIC2의 QCC 입력 연결은 확인되었다.\n[QCC 자료 입력] QCC 마이크 핀/클록, 상대 장치와 Classic 프로파일/코덱/라이브러리 설정, 페어링 제한 시간, L/R/동시 송수신 조건, I2S 유효 신호/0x36 통보 순서 및 실제 음성/오디오 시험 결과가 필요하다."
+    }
+  ],
+  "pending": [
+    {
+      "paragraph": 316,
+      "title_or_id": "Bluetooth Communication Module",
+      "text": "[QCC 자료 입력] QCC 4모듈/14유닛의 실제 소스/빌드/라이브러리 설정과 실행/측정 결과를 확인해야 한다."
+    },
+    {
+      "paragraph": 4892,
+      "title_or_id": "E8300 연계",
+      "text": "[QCC 자료 입력] QCC shutdown_ind의 정상/종료 논리와 실제 PIO 번호/전압/반전, 기동/종료 대기 및 I2S enable→I2S_FLAG Low 유효의 물리 대응을 확인해야 한다."
+    },
+    {
+      "paragraph": 4894,
+      "title_or_id": "E8300 연계",
+      "text": "[QCC 자료 입력] 충전 4상태→0x34 charger_connected 0/1 변환, 0x34~0x36 통보/오류 처리, 실제 QCC 송신 length 필드/21byte 변환 및 GAIA 주소/type별 데이터 정의와 실행 확인이 필요하다."
+    },
+    {
+      "paragraph": 4897,
+      "title_or_id": "E8300 연계",
+      "text": "[QCC 자료 입력] QCC 마이크 핀/클록, 프로파일/코덱별 송수신과 동시 동작, I2S 클록/프레임/좌우 배정 및 시작/중단 유효 신호의 실제 설정/파형과 오디오 시험 결과를 확인해야 한다."
+    },
+    {
+      "paragraph": 4923,
+      "title_or_id": "SU-ID-QCC-001 시스템 초기화와 설정 유닛",
+      "text": "[QCC 자료 입력] SPI 속도와 실제 QCC 핀 번호/초기값, 초기화 실패 처리/시간 한도, AUTH UUID/권한 및 I2S 24bit/16kHz의 실제 출력 설정과 실행 확인이 필요하다."
+    },
+    {
+      "paragraph": 4945,
+      "title_or_id": "SU-ID-QCC-002 시스템 상태 유닛",
+      "text": "[QCC 자료 입력] QCC shutdown_ind의 물리 핀/논리 반전과 기동/종료 대기 수치, 마지막 SPI 거래 시점, 내부기 정보 요청/응답 및 실제 QCC 송신 length 필드의 값/위치와 21byte 변환 계약을 확인해야 한다."
+    },
+    {
+      "paragraph": 4967,
+      "title_or_id": "SU-ID-QCC-003 장치 상태 유닛",
+      "text": "[QCC 자료 입력] TWS 구성값과 좌우 배정, peer 연결/해제 후 단독 복귀 동작, 생산 설정과 내부기 정보의 우선순위 및 각 모드의 실제 오디오/데이터 처리 확인이 필요하다."
+    },
+    {
+      "paragraph": 4989,
+      "title_or_id": "SU-ID-QCC-004 블루투스 상태 유닛",
+      "text": "[QCC 자료 입력] 부착 디바운스 시간, 장치명의 실제 바이트/인코딩/길이와 개인정보 처리, 부착 전 허용되는 BLE 기동/충전/갱신 조건 및 신호 전환 실행 확인이 필요하다."
+    },
+    {
+      "paragraph": 5013,
+      "title_or_id": "SU-ID-QCC-005 PIO 포트 제어 유닛",
+      "text": "[QCC 자료 입력] QCC PIO 번호/전압/논리 반전, I2S enable과 DIO29의 물리 대응, HW reset의 회로 대상과 안전 상태, 온도 감지의 실제 사용 조건/한도 및 측정 결과를 확인해야 한다."
+    },
+    {
+      "paragraph": 5035,
+      "title_or_id": "SU-ID-QCC-006 Power 제어 유닛",
+      "text": "[QCC 자료 입력] 전압-잔량의 중간 구간 변환 방식/측정 주기, 10% 허용오차의 상대오차 또는 %p 의미, 충전 4상태→binary 변환과 Empty/충전/종료 요청의 우선순위, wake-up source/시간 및 실행 결과를 확인해야 한다."
+    },
+    {
+      "paragraph": 5057,
+      "title_or_id": "SU-ID-QCC-007 NVM 처리 유닛",
+      "text": "[QCC 자료 입력] 데이터별 실제 PS 식별자/길이/바이트 순서/초기값과 읽기/쓰기 실패 처리, 일반 NVM과 보안 NVM의 키 식별자 대응 및 실행 결과를 확인해야 한다."
+    },
+    {
+      "paragraph": 5082,
+      "title_or_id": "SU-ID-QCC-008 Bluetooth Classic 유닛",
+      "text": "[QCC 자료 입력] QCC 마이크 핀/클록, 상대 장치와 Classic 프로파일/코덱/라이브러리 설정, 페어링 제한 시간, L/R/동시 송수신 조건, I2S 유효 신호/0x36 통보 순서 및 실제 음성/오디오 시험 결과가 필요하다."
+    },
+    {
+      "paragraph": 5104,
+      "title_or_id": "SU-ID-QCC-009 BLE 유닛",
+      "text": "[QCC 자료 입력] Advertising/Scan response의 전체 바이트 배치/회사ID/Appearance 값/길이/주기, 링크 암호화와 페어링 전 접근 차단, 180초 감시 대상/시작/reset/허용오차 및 실제 연결/상태 결과를 확인해야 한다."
+    },
+    {
+      "paragraph": 5126,
+      "title_or_id": "SU-ID-QCC-010 AUTH service 처리 유닛",
+      "text": "[QCC 자료 입력] 실제 서비스/특성 UUID, CRA 메시지 길이/엔디언/유효성 검사와 GATT 권한, Confirm client write와 notify 표기의 정합성, 페어링 전 접근 차단 및 실행 결과를 확인해야 한다."
+    },
+    {
+      "paragraph": 5148,
+      "title_or_id": "SU-ID-QCC-011 BLE Data 처리 유닛",
+      "text": "[QCC 자료 입력] GAIA 주소와 type별 데이터 필드/단위/길이/CRC/응답, 편이/양이 좌우 및 nn 주소 정의, 인증/권한별 허용 메시지, 실제 송신 length 필드/21byte 변환 및 유효하지 않은 요청 처리 결과를 확인해야 한다."
+    },
+    {
+      "paragraph": 5172,
+      "title_or_id": "SU-ID-QCC-012 보안 처리 유닛",
+      "text": "[QCC 자료 입력] 30초/180초 타이머 시작/갱신/reset/허용오차, 5회 실패 누적 대상과 초기화/재기동/60초 제한 종료 경계, 인증값 알고리즘/직렬화 및 데이터 게이트의 실제 동작을 확인해야 한다."
+    },
+    {
+      "paragraph": 5194,
+      "title_or_id": "SU-ID-QCC-013 보안 툴박스 유닛",
+      "text": "[QCC 자료 입력] 앱별 인증 계산과 SHA-256 키 파생의 역할 정합성, clinician_master_key/제조번호의 직렬화/길이, HMAC/ENC 표기와 nonce 순서/태그 길이, AES-128 모드/IV/무결성, 난수 품질과 NVM bootstrap 및 검증 벡터가 필요하다."
+    },
+    {
+      "paragraph": 5216,
+      "title_or_id": "SU-ID-QCC-014 보안 NVM 유닛",
+      "text": "[QCC 자료 입력] PS 키 이름/역할의 전체 대응, RAND 저장 보호와 복호화 키 bootstrap, 초기값/손상 검출/읽기 실패/접근 제한 정책, 암호화 저장값/복호화 시험 벡터 및 실제 보호 결과를 확인해야 한다."
+    },
+    {
+      "paragraph": 5237,
+      "title_or_id": "인증 키와 비휘발성 저장 데이터",
+      "text": "[QCC 자료 입력] 실제 AUTH UUID/메시지 길이/엔디언/권한, HMAC/ENC와 AES-CMAC의 역할/직렬화, NVM 키 이름/권한과 RAND 복호화 bootstrap 및 검증 벡터를 확인해야 한다."
+    },
+    {
+      "paragraph": 5238,
+      "title_or_id": "인증 키와 비휘발성 저장 데이터",
+      "text": "[QCC 자료 입력] QCC 자체 OTA의 이미지 인증/오류 복구와 E8300 이미지 전달 경로, QCC 부트 이미지 무결성 방식/활성화/검사 실패 처리는 상세 계약과 구현/측정 확인이 필요하다."
+    },
+    {
+      "paragraph": 5239,
+      "title_or_id": "인증 키와 비휘발성 저장 데이터",
+      "text": "[QCC/E8300 자료 입력] 무제어 명령 조건과 BLE 무송수신 180초의 감시/reset 범위, 인증 실패 누적과 60초 제한/재접속 경계 및 E8300 통보 영향을 함께 확인해야 한다."
+    }
+  ],
+  "validation": {
+    "new_rejection_restores_text_and_run_properties": true,
+    "old_revision_signatures_preserved": true,
+    "all_ids_preserved": true,
+    "drawings_preserved": 89,
+    "table_widths_grid_cells_paragraphs_sections_preserved": true,
+    "other_package_parts_unchanged": true,
+    "product_test_performed": false,
+    "render": "passed",
+    "visual_review": "Parent reviewed all 171 pages through 15 contact sheets and full-size changed pages 149, 157 and 170. No new clipping or layout defects found.",
+    "native_word_open_and_render": true,
+    "new_revision_rejection_all_171_pages_pixel_identical": true,
+    "individual_native_revision_rejection": "Stopped redundant slow check; not claimed as passed. OOXML new-revision rejection followed by native Word rendering and all-page pixel comparison passed."
+  },
+  "source_evidence": {
+    "QCC_SDDD": "4 modules / 14 unit descriptions, AUTH/CRA/NVM/Classic/BLE definitions",
+    "QCC_SUVC": "PIO/preInit, PS identifiers and lengths, CRA 30 s and test-connection definitions",
+    "DMIC2": "2026-10-13 user confirmation retained in the existing task record"
+  },
+  "published": true,
+  "sha256_final": "e7abe5924acbf3da17ef2019a6ffcbf627e14c00f3e875732c25ba6dae903802",
+  "published_at": "2026-10-16T07:52:33.875223+00:00",
+  "source_hash_rechecked_before_publish": true,
+  "reference_documents_unchanged": true
+}

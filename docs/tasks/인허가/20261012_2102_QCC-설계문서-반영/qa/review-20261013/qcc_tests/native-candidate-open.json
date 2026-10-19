@@ -1,0 +1,31 @@
+[
+  {
+    "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\SUVC-probe-canonical-rich.xlsx",
+    "mode": "canonical-rich",
+    "opened": false,
+    "readOnly": true,
+    "error": "Workbooks 클래스 중 Open 속성을 구할 수 없습니다."
+  },
+  {
+    "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\SUVC-probe-plain-inline.xlsx",
+    "mode": "plain-inline",
+    "opened": true,
+    "readOnly": true,
+    "error": null,
+    "sheets": [
+      "표지",
+      "기준서_유닛 검증"
+    ]
+  },
+  {
+    "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\SUVC-probe-restored-sheet.xlsx",
+    "mode": "restored-sheet",
+    "opened": true,
+    "readOnly": true,
+    "error": null,
+    "sheets": [
+      "표지",
+      "기준서_유닛 검증"
+    ]
+  }
+]

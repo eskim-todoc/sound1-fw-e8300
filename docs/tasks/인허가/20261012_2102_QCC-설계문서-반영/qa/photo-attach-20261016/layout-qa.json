@@ -1,0 +1,862 @@
+{
+  "status": "통과",
+  "scope": "최종 후보의 이전3실패위치/새긴문구/마지막82·83 및 대표보조·비교시트의 bounded 재검사",
+  "created_at": "2026-10-16T15:19:18.724974+09:00",
+  "inputs": {
+    "candidate.xlsx": {
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\photo-attach-20261016\\candidate.xlsx",
+      "sha256": "EB8699A7A95382F9D9A372CA425F6228EC5651A18AE7543A651B2FF1D80EB713"
+    },
+    "native-results.pdf": {
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\photo-attach-20261016\\native-results.pdf",
+      "sha256": "01196AF944A96A4FB1B6678E8167411B116FC8C6037063094793CFB70498890F"
+    },
+    "native-first-full.pdf": {
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\photo-attach-20261016\\native-first-full.pdf",
+      "sha256": "4E111D4B9984BA72D1ACA8A28D42FD9A5C127D646F33FE8793AA5DE7EEC55B6F"
+    },
+    "native-support.pdf": {
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\photo-attach-20261016\\native-support.pdf",
+      "sha256": "6A157F4F3DAACAF6ECE5016555DFE184D4D9538C2D0CF0A918E36AF5AB195112"
+    },
+    "native-comparison.pdf": {
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\photo-attach-20261016\\native-comparison.pdf",
+      "sha256": "AAC205D014889AEB804861368E15702FC41D5481313C0FBD44F2843152A759B9"
+    },
+    "plan.json": {
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\photo-attach-20261016\\plan.json",
+      "sha256": "75BCC1373264CB098D886C77D1BF7F0DEA5DEEA086E9A8D8787F5D3A961A5571"
+    },
+    "native-qa.json": {
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\photo-attach-20261016\\native-qa.json",
+      "sha256": "6AD522FB5A4964847DE9931320A522BAD5C53451D696956C389E11BA35CF45C2"
+    }
+  },
+  "native_source_binding": {
+    "expected_sha256": "EB8699A7A95382F9D9A372CA425F6228EC5651A18AE7543A651B2FF1D80EB713",
+    "native_qa_source_sha256": "EB8699A7A95382F9D9A372CA425F6228EC5651A18AE7543A651B2FF1D80EB713",
+    "candidate_start_sha256": "EB8699A7A95382F9D9A372CA425F6228EC5651A18AE7543A651B2FF1D80EB713",
+    "candidate_end_sha256": "EB8699A7A95382F9D9A372CA425F6228EC5651A18AE7543A651B2FF1D80EB713",
+    "matches": true
+  },
+  "coverage": {
+    "results_pdf_pages": 183,
+    "results_selected_full_pages": [
+      18,
+      19,
+      20,
+      99,
+      109,
+      110,
+      111,
+      139,
+      145,
+      152,
+      153,
+      158,
+      162,
+      176,
+      177,
+      181,
+      182,
+      183
+    ],
+    "results_selected_full_count": 18,
+    "first_full_pages": [
+      1,
+      2
+    ],
+    "support_pages": [
+      1
+    ],
+    "comparison_pages": [
+      1
+    ],
+    "direct_total_pages": 22,
+    "new_all_pages_individual_review": false,
+    "new_contact_overview_performed": false,
+    "limitation": "재검사는18개결과페이지와 첫B:L2/보조1/비교1쪽의 직접보기. 이전186쪽접촉시트검토는 이전후보에만 유효하며 새183쪽전수검사로 주장하지 않는다."
+  },
+  "direct_page_views": [
+    {
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\photo-attach-20261016\\layout-preview-v2-results-p018.png",
+      "sha256": "6CE0458AA8AFE78AC61B9FEC3802C069885A59237958DEBE38C436088B7F3137",
+      "pdf": "native-results.pdf",
+      "page": 18,
+      "direct_viewed": true,
+      "view_detail": "original",
+      "render_scale": 1.8,
+      "verdict": "통과"
+    },
+    {
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\photo-attach-20261016\\layout-preview-v2-results-p019.png",
+      "sha256": "598CF333567AA7BBF52712884E43CBA358FE42356F06EF008C5FB0DDF4763C06",
+      "pdf": "native-results.pdf",
+      "page": 19,
+      "direct_viewed": true,
+      "view_detail": "original",
+      "render_scale": 1.8,
+      "verdict": "통과"
+    },
+    {
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\photo-attach-20261016\\layout-preview-v2-results-p020.png",
+      "sha256": "225B164C574E003E7B3C2F69AA1EF9903FB2E9BDA860E864AF82ACECC4E9FE17",
+      "pdf": "native-results.pdf",
+      "page": 20,
+      "direct_viewed": true,
+      "view_detail": "original",
+      "render_scale": 1.8,
+      "verdict": "통과"
+    },
+    {
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\photo-attach-20261016\\layout-preview-v2-results-p099.png",
+      "sha256": "4D324A07EA3F283A8230CBD531CB24FD5F2FF4C9580D590F3A7BB480BCBB9CD6",
+      "pdf": "native-results.pdf",
+      "page": 99,
+      "direct_viewed": true,
+      "view_detail": "original",
+      "render_scale": 1.8,
+      "verdict": "통과"
+    },
+    {
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\photo-attach-20261016\\layout-preview-v2-results-p109.png",
+      "sha256": "EC093DF02E40AA6209B075BA04768744FB36E9C74B9FEA6311E3B1C644861DD4",
+      "pdf": "native-results.pdf",
+      "page": 109,
+      "direct_viewed": true,
+      "view_detail": "original",
+      "render_scale": 1.8,
+      "verdict": "통과"
+    },
+    {
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\photo-attach-20261016\\layout-preview-v2-results-p110.png",
+      "sha256": "4854A39342C4027F5ED3EBFEA392D4C9B5C300DB144A9F27BA521FD7AEDC5D03",
+      "pdf": "native-results.pdf",
+      "page": 110,
+      "direct_viewed": true,
+      "view_detail": "original",
+      "render_scale": 1.8,
+      "verdict": "통과"
+    },
+    {
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\photo-attach-20261016\\layout-preview-v2-results-p111.png",
+      "sha256": "370DD71E5FFA15AE34C75ED841491A75BD9E622CF77BE1B840DDD1AC869D7605",
+      "pdf": "native-results.pdf",
+      "page": 111,
+      "direct_viewed": true,
+      "view_detail": "original",
+      "render_scale": 1.8,
+      "verdict": "통과"
+    },
+    {
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\photo-attach-20261016\\layout-preview-v2-results-p139.png",
+      "sha256": "7F2BD407E3D3879111F4DFD2A68F6DCB221726028CE71288EEE7D5EFB13A898E",
+      "pdf": "native-results.pdf",
+      "page": 139,
+      "direct_viewed": true,
+      "view_detail": "original",
+      "render_scale": 1.8,
+      "verdict": "통과"
+    },
+    {
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\photo-attach-20261016\\layout-preview-v2-results-p145.png",
+      "sha256": "23D79DB24967C6D4EB35287D32C0819337474B31E3798E23D99387061F632D40",
+      "pdf": "native-results.pdf",
+      "page": 145,
+      "direct_viewed": true,
+      "view_detail": "original",
+      "render_scale": 1.8,
+      "verdict": "통과"
+    },
+    {
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\photo-attach-20261016\\layout-preview-v2-results-p152.png",
+      "sha256": "096811E923F302474499FED1C1EDE7E7A7EB20B41EAC05C36350ADB353A6D876",
+      "pdf": "native-results.pdf",
+      "page": 152,
+      "direct_viewed": true,
+      "view_detail": "original",
+      "render_scale": 1.8,
+      "verdict": "통과"
+    },
+    {
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\photo-attach-20261016\\layout-preview-v2-results-p153.png",
+      "sha256": "113327C96900A69E1980738BED6A5F0746359958393F1D6ECFB4CA0E309F8DA9",
+      "pdf": "native-results.pdf",
+      "page": 153,
+      "direct_viewed": true,
+      "view_detail": "original",
+      "render_scale": 1.8,
+      "verdict": "통과"
+    },
+    {
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\photo-attach-20261016\\layout-preview-v2-results-p158.png",
+      "sha256": "689DB9B68D6F0236D1138D9EC36E83A875A213561F0172C8F3E780DD40CD2C91",
+      "pdf": "native-results.pdf",
+      "page": 158,
+      "direct_viewed": true,
+      "view_detail": "original",
+      "render_scale": 1.8,
+      "verdict": "통과"
+    },
+    {
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\photo-attach-20261016\\layout-preview-v2-results-p162.png",
+      "sha256": "26ECE9B1CAD726042D240605A66D62D8B14F82CAB954778A7CEC076B729EC9F4",
+      "pdf": "native-results.pdf",
+      "page": 162,
+      "direct_viewed": true,
+      "view_detail": "original",
+      "render_scale": 1.8,
+      "verdict": "통과"
+    },
+    {
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\photo-attach-20261016\\layout-preview-v2-results-p176.png",
+      "sha256": "3AC61499DBD5F893BCC41EF954D199A6D8C273800109EE6AB6296083CBD7686D",
+      "pdf": "native-results.pdf",
+      "page": 176,
+      "direct_viewed": true,
+      "view_detail": "original",
+      "render_scale": 1.8,
+      "verdict": "통과"
+    },
+    {
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\photo-attach-20261016\\layout-preview-v2-results-p177.png",
+      "sha256": "7936DE7CED156DAE4EE86CF5ACD365EE65C38B728C37C810F991118ACC28A657",
+      "pdf": "native-results.pdf",
+      "page": 177,
+      "direct_viewed": true,
+      "view_detail": "original",
+      "render_scale": 1.8,
+      "verdict": "통과"
+    },
+    {
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\photo-attach-20261016\\layout-preview-v2-results-p181.png",
+      "sha256": "99CC05AC634BF0023EA8363D9266C84241F7B71FCC64FA5EF5C6AD749003F88A",
+      "pdf": "native-results.pdf",
+      "page": 181,
+      "direct_viewed": true,
+      "view_detail": "original",
+      "render_scale": 1.8,
+      "verdict": "통과"
+    },
+    {
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\photo-attach-20261016\\layout-preview-v2-results-p182.png",
+      "sha256": "6F0C176535FCC3D43DE0F55D121553F0BF14315E5BFDEF46C04BA23BD6746376",
+      "pdf": "native-results.pdf",
+      "page": 182,
+      "direct_viewed": true,
+      "view_detail": "original",
+      "render_scale": 1.8,
+      "verdict": "통과"
+    },
+    {
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\photo-attach-20261016\\layout-preview-v2-results-p183.png",
+      "sha256": "3513C836025415EFC65728C79296E4387CF00061C6BB7B871CBA01288856F837",
+      "pdf": "native-results.pdf",
+      "page": 183,
+      "direct_viewed": true,
+      "view_detail": "original",
+      "render_scale": 1.8,
+      "verdict": "통과"
+    },
+    {
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\photo-attach-20261016\\layout-preview-v2-native-first-full-p001.png",
+      "sha256": "3E420609EE1E1E39677D33DAF18E572E71AA568E3FB3E270FC06676BEA981DCC",
+      "pdf": "native-first-full.pdf",
+      "page": 1,
+      "direct_viewed": true,
+      "view_detail": "original",
+      "render_scale": 2,
+      "verdict": "통과"
+    },
+    {
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\photo-attach-20261016\\layout-preview-v2-native-first-full-p002.png",
+      "sha256": "A87007CC382090B1A73B8960A5601DBB3FA35FECB6504B79E561A2AC67853832",
+      "pdf": "native-first-full.pdf",
+      "page": 2,
+      "direct_viewed": true,
+      "view_detail": "original",
+      "render_scale": 2,
+      "verdict": "통과"
+    },
+    {
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\photo-attach-20261016\\layout-preview-v2-native-support-p001.png",
+      "sha256": "D5F1E1C1BD50A9D90CAE921423A20C975CFCFA02CBC79D4975929013D1D85425",
+      "pdf": "native-support.pdf",
+      "page": 1,
+      "direct_viewed": true,
+      "view_detail": "original",
+      "render_scale": 2,
+      "verdict": "통과"
+    },
+    {
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\photo-attach-20261016\\layout-preview-v2-native-comparison-p001.png",
+      "sha256": "50D61134D09CEECFC1ABC1A2A576DB12567BB9048890EBB752707C20B16C72F7",
+      "pdf": "native-comparison.pdf",
+      "page": 1,
+      "direct_viewed": true,
+      "view_detail": "original",
+      "render_scale": 2,
+      "verdict": "통과"
+    }
+  ],
+  "checks": [
+    {
+      "id": "PREVIOUS-OVERFLOW",
+      "verdict": "통과",
+      "scope": "시험7 검증1 K51 / 시험65 검증1 K283 / 검증2 K284",
+      "old_pages": [
+        18,
+        179,
+        180
+      ],
+      "current_pages": [
+        18,
+        176,
+        177
+      ],
+      "evidence": "3사진 모두 새K열 내부. PDF사진끝726.16pt, K오른쪽내측743.28pt, 여유17.12pt. 직접원본크기확인."
+    },
+    {
+      "id": "ADDED-LONG-SCOPE-TEXT",
+      "verdict": "통과",
+      "scope": "시험7/51/54/73/74/77/80: p18~20/139/145/152/153/158/162",
+      "evidence": "사진과 새범위설명이 겹치지 않고 마지막줄까지 읽힘. RAM/실부팅/합성정보/시험파일 등 한계설명과 보존판정 표시가 셀 안에 위치."
+    },
+    {
+      "id": "PENDING-28-32",
+      "verdict": "통과",
+      "scope": "p99 및109~111",
+      "evidence": "시험28 알림ON조건과OFF기록불일치/시험32 시작볼륨1과증가응답3 불일치의 파란밑줄안내 및 확인필요 판정이 보임. 시험결과 재판정은 하지 않음."
+    },
+    {
+      "id": "FIRST-B-L",
+      "verdict": "통과",
+      "scope": "native-first-full.pdf p1~2",
+      "evidence": "개인본셀별정렬의 차이를 보존한 표폭/머리글/색상/외곽이 정상. 사진은 결과열 안에 위치. p2는 시험2의 시작·다사진 결과를 포함."
+    },
+    {
+      "id": "LAST-82-83",
+      "verdict": "통과",
+      "scope": "native-results.pdf p181~183",
+      "evidence": "82두조건 공동보라밑줄안내와 미실행/판정대기,83초안확인3항목과 E8300파랑밑줄배포본미비/판정대기가 유지. 글자잘림없음."
+    },
+    {
+      "id": "SUPPORT-COMPARISON-REPRESENTATIVE",
+      "verdict": "통과",
+      "scope": "native-support.pdf p1 / native-comparison.pdf p1",
+      "evidence": "대표부분의 표제/헤더/행외곽과 본문열이 겹치지 않음. 비교[-]빨강/[+]초록이 유지됨. 보조시트 전체내용 정확성은 타담당검사범위."
+    },
+    {
+      "id": "IMAGE-BOUNDARY-GEOMETRY",
+      "verdict": "통과",
+      "scope": "새PDF123사진 좌표 대743.28pt경계 및 native문자bbox",
+      "evidence": {
+        "photos": 123,
+        "outside_K_pages": [],
+        "text_image_bbox_intersections": [],
+        "note": "기하검사는 전체페이지육안검사를 대신하지 않음."
+      }
+    }
+  ],
+  "findings": [],
+  "resolved_findings": [
+    {
+      "id": "LAYOUT-01",
+      "prior_status": "실패",
+      "current_status": "통과",
+      "cells": [
+        "K51",
+        "K283",
+        "K284"
+      ],
+      "current_pages": [
+        18,
+        176,
+        177
+      ],
+      "geometry_pdf_pt": {
+        "K_right_inner": 743.28,
+        "photo_right": 726.16,
+        "clearance": 17.12
+      }
+    }
+  ],
+  "history": [
+    {
+      "status": "실패",
+      "inputs": {
+        "candidate.xlsx": {
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\photo-attach-20261016\\candidate.xlsx",
+          "sha256": "0B1A0FEC7595E3CFC90A58A4A8AB442BDEA80BC93E1C54DBEE8147C029CAE3A3"
+        },
+        "native-results.pdf": {
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\photo-attach-20261016\\native-results.pdf",
+          "sha256": "45713633E6972504A34CA8C6F13F324D95E89ACA4FABE125A5D4739EDBF0EB07"
+        },
+        "native-first-full.pdf": {
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\photo-attach-20261016\\native-first-full.pdf",
+          "sha256": "76C2B487E67DFD2D68FC7489C11166E3CD24C171469CCF79349C7C1A8A33D9A7"
+        },
+        "plan.json": {
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\photo-attach-20261016\\plan.json",
+          "sha256": "3E78754542F8D89F449EF180F7A269297AE41E52E5554BBE12EBE70EC5B089B9"
+        },
+        "native-qa.json": {
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\photo-attach-20261016\\native-qa.json",
+          "sha256": "61C21243023699E65ACEB7BE038CF1235D7D5B61C71743C2DF11A61F3076F24B"
+        }
+      },
+      "coverage": {
+        "results_pdf_pages": 186,
+        "contact_overview_pages": 186,
+        "contact_sheet_count": 8,
+        "results_selected_full_pages": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          16,
+          18,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          77,
+          78,
+          130,
+          161,
+          178,
+          179,
+          180,
+          184,
+          185,
+          186
+        ],
+        "results_selected_full_count": 26,
+        "first_full_pdf_pages_viewed": [
+          1,
+          2
+        ],
+        "all186_individual_full_page_review": false,
+        "limitation": "전체186쪽은 접촉시트 개괄이며, 본문 상세 가독성/클리핑 직접 판정은 기록된26쪽과 B:L2쪽에 한정한다. 제품 시험 수치/실제 통과 및 사진 귀속의 확정 검증이 아니다."
+      },
+      "contacts": [
+        {
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\photo-attach-20261016\\layout-preview-contact-001.png",
+          "sha256": "471E468306C52554CFC3A11DD3EBC9E51F44434EFBB8BD3A8A0161B70F2EB43A",
+          "pdf": "native-results.pdf",
+          "pages": [
+            1,
+            24
+          ],
+          "viewed": true,
+          "scope": "contact_sheet_overview"
+        },
+        {
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\photo-attach-20261016\\layout-preview-contact-002.png",
+          "sha256": "90635C51F221395FE5A3A4F4A1EDBBD07867AD18B2FA6F9A070250B461B98DF4",
+          "pdf": "native-results.pdf",
+          "pages": [
+            25,
+            48
+          ],
+          "viewed": true,
+          "scope": "contact_sheet_overview"
+        },
+        {
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\photo-attach-20261016\\layout-preview-contact-003.png",
+          "sha256": "EA466BD97C02FDFF184C8F3173972201689EB95FCDBA602B8483E9EFB6A8DF21",
+          "pdf": "native-results.pdf",
+          "pages": [
+            49,
+            72
+          ],
+          "viewed": true,
+          "scope": "contact_sheet_overview"
+        },
+        {
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\photo-attach-20261016\\layout-preview-contact-004.png",
+          "sha256": "101F7FE034C8D192DADF79D27A6B51F58C8370B55EB55E3F7EAEF5C6652B6610",
+          "pdf": "native-results.pdf",
+          "pages": [
+            73,
+            96
+          ],
+          "viewed": true,
+          "scope": "contact_sheet_overview"
+        },
+        {
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\photo-attach-20261016\\layout-preview-contact-005.png",
+          "sha256": "222A365EB2F51D60F4E58DCA5007C6587BCDADBDFE8607B80FA28D705DAD4D8B",
+          "pdf": "native-results.pdf",
+          "pages": [
+            97,
+            120
+          ],
+          "viewed": true,
+          "scope": "contact_sheet_overview"
+        },
+        {
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\photo-attach-20261016\\layout-preview-contact-006.png",
+          "sha256": "6D7E8BBA34EA82B6F87A7C44D3A8BC3E36D5137C4653B03DF037CDE305539407",
+          "pdf": "native-results.pdf",
+          "pages": [
+            121,
+            144
+          ],
+          "viewed": true,
+          "scope": "contact_sheet_overview"
+        },
+        {
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\photo-attach-20261016\\layout-preview-contact-007.png",
+          "sha256": "43FDE65AC9A88624877033DD87221F473A70B351455325F747AB73124B6E9E11",
+          "pdf": "native-results.pdf",
+          "pages": [
+            145,
+            168
+          ],
+          "viewed": true,
+          "scope": "contact_sheet_overview"
+        },
+        {
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\photo-attach-20261016\\layout-preview-contact-008.png",
+          "sha256": "32FC5A15BEFBCAE869B2499D2080FA09E5495C5516366E10F3567BEDB3F27698",
+          "pdf": "native-results.pdf",
+          "pages": [
+            169,
+            186
+          ],
+          "viewed": true,
+          "scope": "contact_sheet_overview"
+        }
+      ],
+      "direct_page_views": [
+        {
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\photo-attach-20261016\\layout-preview-results-p001.png",
+          "sha256": "D7099353E46D49B95D276AF9935BAE985C9DA07C081187B62E8D880E52763239",
+          "pdf": "native-results.pdf",
+          "page": 1,
+          "viewed": true,
+          "view_detail": "original",
+          "render_scale": 1.8
+        },
+        {
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\photo-attach-20261016\\layout-preview-results-p002.png",
+          "sha256": "14A1044DD1E609F160FFBBB658846107A219DACA679DFBE1E8DA89F3D01316F8",
+          "pdf": "native-results.pdf",
+          "page": 2,
+          "viewed": true,
+          "view_detail": "original",
+          "render_scale": 1.8
+        },
+        {
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\photo-attach-20261016\\layout-preview-results-p003.png",
+          "sha256": "3C3136D535EB3435DFAE355BF7283FA17801101690D6FE471C9CE2E36D6A9BA6",
+          "pdf": "native-results.pdf",
+          "page": 3,
+          "viewed": true,
+          "view_detail": "original",
+          "render_scale": 1.8
+        },
+        {
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\photo-attach-20261016\\layout-preview-results-p004.png",
+          "sha256": "1D207285055E237C51A76274F8EB226BE24BAA60675CB13EC2BD60A637951DDA",
+          "pdf": "native-results.pdf",
+          "page": 4,
+          "viewed": true,
+          "view_detail": "original",
+          "render_scale": 1.8
+        },
+        {
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\photo-attach-20261016\\layout-preview-results-p005.png",
+          "sha256": "B6462A3C41AC181939AF0BD420949E2990ABE9EFF424CCAEBD545CE1407391EF",
+          "pdf": "native-results.pdf",
+          "page": 5,
+          "viewed": true,
+          "view_detail": "original",
+          "render_scale": 1.8
+        },
+        {
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\photo-attach-20261016\\layout-preview-results-p016.png",
+          "sha256": "68E3678D449032311CEA3D5E146CA43943A882269B8EF09E2B8236FA87466ADB",
+          "pdf": "native-results.pdf",
+          "page": 16,
+          "viewed": true,
+          "view_detail": "original",
+          "render_scale": 1.8
+        },
+        {
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\photo-attach-20261016\\layout-preview-results-p018.png",
+          "sha256": "71D20328652CD5E61D4F0E4882736AFB50FEFC250202038183CBE5C8EBB0DD35",
+          "pdf": "native-results.pdf",
+          "page": 18,
+          "viewed": true,
+          "view_detail": "original",
+          "render_scale": 1.8
+        },
+        {
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\photo-attach-20261016\\layout-preview-results-p024.png",
+          "sha256": "7EB8BF495C86C6FDB2C9DDBDE3656320C0FF14B2EB2C9D0F69877F07A4B83F36",
+          "pdf": "native-results.pdf",
+          "page": 24,
+          "viewed": true,
+          "view_detail": "original",
+          "render_scale": 1.8
+        },
+        {
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\photo-attach-20261016\\layout-preview-results-p025.png",
+          "sha256": "1F87448FF6B68EE0320E007AA97C51456584153FB71DA5EE3DFFC29C7374BA82",
+          "pdf": "native-results.pdf",
+          "page": 25,
+          "viewed": true,
+          "view_detail": "original",
+          "render_scale": 1.8
+        },
+        {
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\photo-attach-20261016\\layout-preview-results-p026.png",
+          "sha256": "81652A4F302D88C1C7A00C05249FE8E9D6EF5CFA28F4D0258518504510729787",
+          "pdf": "native-results.pdf",
+          "page": 26,
+          "viewed": true,
+          "view_detail": "original",
+          "render_scale": 1.8
+        },
+        {
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\photo-attach-20261016\\layout-preview-results-p027.png",
+          "sha256": "9BDB287A01BFCEE518380A8D2C23AE05180C2BF1D283794326389CE92C24AF2F",
+          "pdf": "native-results.pdf",
+          "page": 27,
+          "viewed": true,
+          "view_detail": "original",
+          "render_scale": 1.8
+        },
+        {
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\photo-attach-20261016\\layout-preview-results-p028.png",
+          "sha256": "8E63C437CC5163A987918EBA46E4C6177200BD4242AE754A2154296A2085DBBB",
+          "pdf": "native-results.pdf",
+          "page": 28,
+          "viewed": true,
+          "view_detail": "original",
+          "render_scale": 1.8
+        },
+        {
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\photo-attach-20261016\\layout-preview-results-p029.png",
+          "sha256": "F47AEB5529E2B7C45D7E9C4F9CEC7551D68723F221AB39D45173C96C99773E6D",
+          "pdf": "native-results.pdf",
+          "page": 29,
+          "viewed": true,
+          "view_detail": "original",
+          "render_scale": 1.8
+        },
+        {
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\photo-attach-20261016\\layout-preview-results-p030.png",
+          "sha256": "8028E664CAD0757420CA98B840E5BFF0E7A9D867915886BCC7BD334871EDED6F",
+          "pdf": "native-results.pdf",
+          "page": 30,
+          "viewed": true,
+          "view_detail": "original",
+          "render_scale": 1.8
+        },
+        {
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\photo-attach-20261016\\layout-preview-results-p031.png",
+          "sha256": "A938CE61BB2141436E2611C5BF6704284E6D9487B155AE19FDE24819A158C037",
+          "pdf": "native-results.pdf",
+          "page": 31,
+          "viewed": true,
+          "view_detail": "original",
+          "render_scale": 1.8
+        },
+        {
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\photo-attach-20261016\\layout-preview-results-p032.png",
+          "sha256": "0E608D5BE48C69621A77D31E8F4C1B2B1B69BDACFD7A838AAD129A7D1E215E7E",
+          "pdf": "native-results.pdf",
+          "page": 32,
+          "viewed": true,
+          "view_detail": "original",
+          "render_scale": 1.8
+        },
+        {
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\photo-attach-20261016\\layout-preview-results-p077.png",
+          "sha256": "4ABF6DFFF7E9571270ED0600E4A138ECA2EAE197292CBB69848836314AA5A87F",
+          "pdf": "native-results.pdf",
+          "page": 77,
+          "viewed": true,
+          "view_detail": "original",
+          "render_scale": 1.8
+        },
+        {
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\photo-attach-20261016\\layout-preview-results-p078.png",
+          "sha256": "D2D9C900B13B313F578889F0E51D66FD6EC773A21ED0B76AD57312A4E4806DFE",
+          "pdf": "native-results.pdf",
+          "page": 78,
+          "viewed": true,
+          "view_detail": "original",
+          "render_scale": 1.8
+        },
+        {
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\photo-attach-20261016\\layout-preview-results-p130.png",
+          "sha256": "E5792F49829C756FA9256E26DC2744EDB0BF113C88F581A887B2ABAA868E2C67",
+          "pdf": "native-results.pdf",
+          "page": 130,
+          "viewed": true,
+          "view_detail": "original",
+          "render_scale": 1.8
+        },
+        {
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\photo-attach-20261016\\layout-preview-results-p161.png",
+          "sha256": "D0C0CD7E2B89A250834940BB359BFD75E1D0D94D19269969EFA81CB4C55F0FA5",
+          "pdf": "native-results.pdf",
+          "page": 161,
+          "viewed": true,
+          "view_detail": "original",
+          "render_scale": 1.8
+        },
+        {
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\photo-attach-20261016\\layout-preview-results-p178.png",
+          "sha256": "30E3FD6002F9E5A05A6D07AEBF4507EAA85D3E20AFA302888E348A178B832479",
+          "pdf": "native-results.pdf",
+          "page": 178,
+          "viewed": true,
+          "view_detail": "original",
+          "render_scale": 1.8
+        },
+        {
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\photo-attach-20261016\\layout-preview-results-p179.png",
+          "sha256": "897CCEB904ACC542B5B4850AC6B7F33D3BB22DA581C859E4F03337A1B06F2749",
+          "pdf": "native-results.pdf",
+          "page": 179,
+          "viewed": true,
+          "view_detail": "original",
+          "render_scale": 1.8
+        },
+        {
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\photo-attach-20261016\\layout-preview-results-p180.png",
+          "sha256": "8C163C18EB026BF847A49D76CA573BD9CB96ED6D0670EC4C0129BCFCA197FE5A",
+          "pdf": "native-results.pdf",
+          "page": 180,
+          "viewed": true,
+          "view_detail": "original",
+          "render_scale": 1.8
+        },
+        {
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\photo-attach-20261016\\layout-preview-results-p184.png",
+          "sha256": "DF0E4C00FD6A56FAF881560C269FED4122596CBC8CD1535763541AA577196F64",
+          "pdf": "native-results.pdf",
+          "page": 184,
+          "viewed": true,
+          "view_detail": "original",
+          "render_scale": 1.8
+        },
+        {
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\photo-attach-20261016\\layout-preview-results-p185.png",
+          "sha256": "06D87CE2F966C476A0B88DDF15F4C18B39B17075CA89050DC95BD463A4A9DF51",
+          "pdf": "native-results.pdf",
+          "page": 185,
+          "viewed": true,
+          "view_detail": "original",
+          "render_scale": 1.8
+        },
+        {
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\photo-attach-20261016\\layout-preview-results-p186.png",
+          "sha256": "ED7F5469FF3F849B8FB3252AB79D657254B6735FDF3828F7D0FB4C8886C49A9F",
+          "pdf": "native-results.pdf",
+          "page": 186,
+          "viewed": true,
+          "view_detail": "original",
+          "render_scale": 1.8
+        },
+        {
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\photo-attach-20261016\\layout-preview-first-full-p001.png",
+          "sha256": "8AB50407B6F84E4946153DF66C3D804DEE905F8FDE4244D20C5C0AAEE6D40253",
+          "pdf": "native-first-full.pdf",
+          "page": 1,
+          "viewed": true,
+          "view_detail": "original",
+          "render_scale": 2
+        },
+        {
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\photo-attach-20261016\\layout-preview-first-full-p002.png",
+          "sha256": "39692ED4A4AE5E73E0076E74F9B832F5087A7EFABB338D7A7465A38D44CFE209",
+          "pdf": "native-first-full.pdf",
+          "page": 2,
+          "viewed": true,
+          "view_detail": "original",
+          "render_scale": 2
+        }
+      ],
+      "findings": [
+        {
+          "id": "LAYOUT-01",
+          "verdict": "실패",
+          "category": "photo_outside_result_cell",
+          "pdf": "native-results.pdf",
+          "page": 18,
+          "test_id": "SW-FW-SYS-Test-ID-7",
+          "verification": 1,
+          "cell": "K51",
+          "description": "보드 사진의 오른쪽 끝이 K/L 경계를 넘어 통과 여부 열로 돌출한다. 본문 문자 가림은 발견하지 못했다.",
+          "geometry_pdf_pt": {
+            "result_cell_right": 738.84,
+            "photo_right": 750.32,
+            "overflow": 11.48
+          },
+          "preview": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\photo-attach-20261016\\layout-preview-results-p018.png",
+          "required_followup": "사진 높이/비율 및 K열 사용 가능 폭의 사용자 지정 조건을 함께 검토하여 배치 보완 후 해당 페이지를 실제 Excel로 다시 렌더한다."
+        },
+        {
+          "id": "LAYOUT-01",
+          "verdict": "실패",
+          "category": "photo_outside_result_cell",
+          "pdf": "native-results.pdf",
+          "page": 179,
+          "test_id": "SW-FW-SYS-Test-ID-65",
+          "verification": 1,
+          "cell": "K283",
+          "description": "보드 사진의 오른쪽 끝이 K/L 경계를 넘어 통과 여부 열로 돌출한다. 본문 문자 가림은 발견하지 못했다.",
+          "geometry_pdf_pt": {
+            "result_cell_right": 738.84,
+            "photo_right": 750.32,
+            "overflow": 11.48
+          },
+          "preview": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\photo-attach-20261016\\layout-preview-results-p179.png",
+          "required_followup": "사진 높이/비율 및 K열 사용 가능 폭의 사용자 지정 조건을 함께 검토하여 배치 보완 후 해당 페이지를 실제 Excel로 다시 렌더한다."
+        },
+        {
+          "id": "LAYOUT-01",
+          "verdict": "실패",
+          "category": "photo_outside_result_cell",
+          "pdf": "native-results.pdf",
+          "page": 180,
+          "test_id": "SW-FW-SYS-Test-ID-65",
+          "verification": 2,
+          "cell": "K284",
+          "description": "보드 사진의 오른쪽 끝이 K/L 경계를 넘어 통과 여부 열로 돌출한다. 본문 문자 가림은 발견하지 못했다.",
+          "geometry_pdf_pt": {
+            "result_cell_right": 738.84,
+            "photo_right": 750.32,
+            "overflow": 11.48
+          },
+          "preview": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\photo-attach-20261016\\layout-preview-results-p180.png",
+          "required_followup": "사진 높이/비율 및 K열 사용 가능 폭의 사용자 지정 조건을 함께 검토하여 배치 보완 후 해당 페이지를 실제 Excel로 다시 렌더한다."
+        }
+      ],
+      "note": "이전후보의실패와검사범위를보존. 현재판정은위새후보재검사에한정."
+    }
+  ],
+  "operations": {
+    "candidate_modified": false,
+    "originals_modified": false,
+    "excel_ui_or_com_used": false,
+    "generated_only": [
+      "layout-preview-v2-*.png",
+      "layout-qa.json"
+    ]
+  },
+  "product_verdict": "문서레이아웃검사이며 실제제품시험 결과나 미실행/확인필요/판정대기 상태를 변경하지 않는다."
+}

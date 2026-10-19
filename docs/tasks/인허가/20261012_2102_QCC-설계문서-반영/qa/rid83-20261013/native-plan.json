@@ -1,0 +1,95 @@
+{
+  "books": [
+    {
+      "code": "SSTR",
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\rid83-20261013\\candidates\\SSTR.xlsx",
+      "sha256": "EC5849B277A4F074CDBACCFA7AC770D1FC8DCE8FD3AC5B8D5FC349BD74D41C8B",
+      "formulas": [],
+      "previews": [
+        {
+          "sheet": "보고서_시스템 시험",
+          "range": "B2:L303",
+          "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\rid83-20261013\\native\\SSTR-0-main.pdf",
+          "scope": "Full main print area"
+        },
+        {
+          "sheet": "보고서_시스템 시험_비교",
+          "range": "B285:L286",
+          "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\rid83-20261013\\native\\SSTR-0-compare.pdf",
+          "scope": "Changed view and retained comparison history"
+        },
+        {
+          "sheet": "사이버보안 시험 연계",
+          "range": "A38:L38",
+          "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\rid83-20261013\\native\\SSTR-1-main.pdf",
+          "scope": "Changed view and retained comparison history"
+        },
+        {
+          "sheet": "사이버보안 시험 연계_비교",
+          "range": "A38:L38",
+          "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\rid83-20261013\\native\\SSTR-1-compare.pdf",
+          "scope": "Changed view and retained comparison history"
+        }
+      ]
+    },
+    {
+      "code": "SRS",
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\rid83-20261013\\candidates\\SRS.xlsx",
+      "sha256": "BF9A92ACC2770563A410CF4A580C005A73BBAB5D34B7DABC3C695A6B9BE5B6BD",
+      "formulas": [
+        {
+          "sheet": "소프트웨어 입력 요구사항 사양서",
+          "cell": "G93",
+          "expected": "SW-FW-RID-83"
+        }
+      ],
+      "previews": [
+        {
+          "sheet": "소프트웨어 입력 요구사항 사양서",
+          "range": "B3:I107",
+          "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\rid83-20261013\\native\\SRS-0-main.pdf",
+          "scope": "Full main print area"
+        },
+        {
+          "sheet": "소프트웨어 입력 요구사항 사양서_비교",
+          "range": "B93:I94",
+          "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\rid83-20261013\\native\\SRS-0-compare.pdf",
+          "scope": "Changed view and retained comparison history"
+        }
+      ]
+    },
+    {
+      "code": "SSTC",
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\rid83-20261013\\candidates\\SSTC.xlsx",
+      "sha256": "865851FC890543BB4A637718EE7956E6EE565AFA6109822AD4E2859B50ADE33F",
+      "formulas": [],
+      "previews": [
+        {
+          "sheet": "기준서_시스템 시험",
+          "range": "B2:J303",
+          "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\rid83-20261013\\native\\SSTC-0-main.pdf",
+          "scope": "Full main print area"
+        },
+        {
+          "sheet": "기준서_시스템 시험_비교",
+          "range": "B285:J285",
+          "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\rid83-20261013\\native\\SSTC-0-compare.pdf",
+          "scope": "Changed view and retained comparison history"
+        },
+        {
+          "sheet": "사이버보안 시험 연계",
+          "range": "A38:J38",
+          "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\rid83-20261013\\native\\SSTC-1-main.pdf",
+          "scope": "Changed view and retained comparison history"
+        },
+        {
+          "sheet": "사이버보안 시험 연계_비교",
+          "range": "A38:J38",
+          "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\rid83-20261013\\native\\SSTC-1-compare.pdf",
+          "scope": "Changed view and retained comparison history"
+        }
+      ]
+    }
+  ],
+  "recordPath": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\rid83-20261013\\native-checks.json"
+}

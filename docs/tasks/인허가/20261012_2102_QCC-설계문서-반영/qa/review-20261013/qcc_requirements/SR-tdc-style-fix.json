@@ -1,0 +1,18 @@
+{
+  "target": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\02_설계 입력\\SW\\외부기\\[E8300-QCC] SR-FW-TD24A 소프트웨어 요구사항.docx",
+  "before_sha256": "C27815F2002D2D026B88D431FF234A88933422AD6FABCCADB867CF37A4C95260",
+  "after_sha256": "828C6EAB82919332E08164A5981DF12C5EFF83410640E32F840950B08FB4D486",
+  "canonical_tdc_count": 59,
+  "support_style_ids": {
+    "a1": "TDCSupport20261013Paragraph",
+    "a3": "TDCSupport20261013Table"
+  },
+  "source_dotx_sha256": "70271C2B81E97B917D7044A41C9B5FE377AC631A8BBB175373A6D399F5D7F04B",
+  "unrelated_styles_unchanged": true,
+  "document_text_revision_fields_images_xml_unchanged": true,
+  "tdc_current_style_ids_preserved": true,
+  "existing_heading_numbering_linkage_preserved": true,
+  "base_normal_line": "300 auto = 1.25배",
+  "base_normal_after": "160 twips = 8pt",
+  "native_recheck": "대기"
+}

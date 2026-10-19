@@ -1,0 +1,34 @@
+[
+  {
+    "code": "SAD",
+    "source": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SAD-FW-TD24A 소프트웨어 아키텍쳐 기술서.docx",
+    "beforeSha256": "ff7726ea2270a6fd34cb10322770a9c8a003b85edc527589578b355d25376576",
+    "candidate": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\fields-candidate\\[E8300-QCC] SAD-FW-TD24A 소프트웨어 아키텍쳐 기술서.docx",
+    "candidateSha256": "8AF46EF971B15EC6815CB5AED66E25580A4C9494D43DCDF4925852CB38C50515",
+    "comparison": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\SAD-final-mic-fields-comparison.json"
+  },
+  {
+    "code": "SDDD",
+    "source": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SDDD-FW-TD24A 소프트웨어 상세 설계서.docx",
+    "beforeSha256": "d7c1777f089cd37a6930b9452a928908286006bc35ec8cd131ec0199af5de776",
+    "candidate": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\fields-candidate\\[E8300-QCC] SDDD-FW-TD24A 소프트웨어 상세 설계서.docx",
+    "candidateSha256": "9A80D4901E69A099A882D89067844BABC119AA9F9A41E51D4FE6A7E0B4DE0316",
+    "comparison": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\SDDD-final-mic-fields-comparison.json"
+  },
+  {
+    "code": "SIP",
+    "source": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SIP-FW-TD24A 소프트웨어 통합 계획서.docx",
+    "beforeSha256": "10e39ed37d53d0fa70e457cb4c4f5d48bfb05237eed51cce105271c7d90773d8",
+    "candidate": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\fields-candidate\\[E8300-QCC] SIP-FW-TD24A 소프트웨어 통합 계획서.docx",
+    "candidateSha256": "347D8632BC21AA37EE84418E471CB2CA67541CBA7D014C17C3058DA2A1D62978",
+    "comparison": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\SIP-final-mic-fields-comparison.json"
+  },
+  {
+    "code": "SR",
+    "source": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\02_설계 입력\\SW\\외부기\\[E8300-QCC] SR-FW-TD24A 소프트웨어 요구사항.docx",
+    "beforeSha256": "fa08a1f90789f5a789423bbaff7462dbb35781d0e2680f7a05cf3562e751813d",
+    "candidate": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\fields-candidate\\[E8300-QCC] SR-FW-TD24A 소프트웨어 요구사항.docx",
+    "candidateSha256": "975C9F5389F20FC02CC483265D038EB85F950F50ABDDA4D733B5695978656895",
+    "comparison": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\SR-final-mic-fields-comparison.json"
+  }
+]

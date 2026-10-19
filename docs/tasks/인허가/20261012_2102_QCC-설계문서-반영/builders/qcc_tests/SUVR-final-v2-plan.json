@@ -1,0 +1,16 @@
+{
+  "recordPath": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\excel-native\\SUVR-final-v2-export.json",
+  "books": [
+    {
+      "code": "SUVR-final-v2",
+      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\04_설계 검증\\SW\\외부기\\[E8300-QCC] SUVR-FW-TD24A 소프트웨어 유닛 검증 보고서.xlsx",
+      "sheet": "보고서_유닛 시험",
+      "parts": [
+        {
+          "range": "B1733:M1735",
+          "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\excel-native\\SUVR-final-v2.pdf"
+        }
+      ]
+    }
+  ]
+}

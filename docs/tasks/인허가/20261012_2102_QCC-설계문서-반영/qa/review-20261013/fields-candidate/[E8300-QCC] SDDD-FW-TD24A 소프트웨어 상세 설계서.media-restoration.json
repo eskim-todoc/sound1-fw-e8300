@@ -1,0 +1,19 @@
+{
+  "source": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_design\\final-ota-flow\\[E8300-QCC] SDDD-FW-TD24A 소프트웨어 상세 설계서.docx",
+  "candidate": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\fields-candidate\\[E8300-QCC] SDDD-FW-TD24A 소프트웨어 상세 설계서.docx",
+  "original_part": "word/media/image16.png",
+  "candidate_part": "word/media/image17.png",
+  "original_sha256": "66e19c1aa5aa5c9c5759e444eac9763910ac38f16c780f8c56f08d9f18c21226",
+  "compressed_sha256": "d88a7313f421446290b7d236970b95dbcf9a150352efeb3217979b6b3982a7b4",
+  "original_size": [
+    2100,
+    1200
+  ],
+  "compressed_size": [
+    1396,
+    798
+  ],
+  "candidate_before_sha256": "287634679da92d0b469277f6c37fb01a9df55a15baad88854cbcaae1c9a9ba4c",
+  "candidate_after_sha256": "121d4204a3b4bc1946695b74820720bc388d27e9978ef91b2b40f550e2145e2e",
+  "scope": "One known media part restored byte-for-byte; document, relationships, fields, styles and revisions untouched"
+}

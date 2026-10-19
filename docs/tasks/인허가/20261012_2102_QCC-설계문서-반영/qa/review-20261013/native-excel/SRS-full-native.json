@@ -1,0 +1,12 @@
+{
+  "code": "SRS",
+  "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\02_설계 입력\\SW\\외부기\\[E8300-QCC] SRS-FW-TD24A 소프트웨어 요구사항 사양서.xlsx",
+  "sheet": "소프트웨어 입력 요구사항 사양서",
+  "range": "B3:I107",
+  "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\SRS-full.pdf",
+  "sourceSHA256": "A568B4996AC13053D55973E5E59E59ACB6E18FAB5E41C4A7423DEF49596B93E4",
+  "sourceUnchanged": true,
+  "originalPrintArea": "$B$3:$I$107",
+  "scope": "Read-only Excel preview; source print settings preserved",
+  "checkedAt": "2026-10-13T09:18:10.6484095+09:00"
+}

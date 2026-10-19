@@ -1,0 +1,20 @@
+[
+  {
+    "page": 1,
+    "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\excel-native\\SUVC-final-v2\\page-001.png",
+    "size": [
+      1684,
+      1191
+    ],
+    "text": "CORE Module TEST ID 설명 방법 상세 설계 ID 시험 준비 및 초기 조건 가정 및 제한 조건 시험 절차 통과 기준\r\nQCC\r\nSI-ID-QCC-002\r\n하드웨어 인터페이스 SW-FW-UnitTest-QCC-ID-3\r\nNVM 처리\r\n원문 SW-FW-TEST-U-01-003\r\n요구: 직접 요구 ID 미제공 / 요구 추적 자료 필요\r\nT SU-ID-QCC-007\r\nQCC 시험 이미지/버전·소스·회로·도구 버전을\r\n기록한다. 초기 상태를 조건별 복원한다. 제공\r\n자료는 기준서이며 실제 결과/전체 RTT가 없\r\n다.\r\n입력: Application PS 영역의\r\nTD_PS_KEY_EX_DEV_SERIAL_NUNM, 별도로 준\r\n비한 시험용 외부기 일련번호\r\n실제 QCC 로그 원문을 수집하며 생성\r\n예상 로그로 대체하지 않는다. 생산 비\r\n밀키를 기록하지 않고 공개 시험키를\r\n사용한다.\r\n[QCC 자료 입력] 원문 심볼NUNM\r\n은 확정하지 않고 실제 QCC 정의\r\n와 대조 필요 / 일련번호 길이/바\r\n이트순서/PS주소/허용 형식/전원\r\n재기동 보존조건 미제공 / 실제\r\n제조번호 및 제품 보안키를 예상\r\n로그로 작성하지 않음\r\n키 매핑과 읽기/쓰기 경로 대조. 시험용 PS에 정해진 번호를 기록하고\r\n다시 읽기\r\n각 입력과 전량 실제값을 동일 조건의 결과 칸에 기입한다. 부분 로그만\r\n제공된 경우 전체 형식/자료 부족을 기록한다.\r\n조건 [1]\r\n입력: Application PS 영역의 TD_PS_KEY_EX_DEV_SERIAL_NUNM, 별도로 준비한 시\r\n험용 외부기 일련번호\r\n예상/판정: PS키 매핑 및 읽기/쓰기 인터페이스 존재. 같은 시험용 번호 쓰기 후 읽\r\n기 값 일치"
+  },
+  {
+    "page": 2,
+    "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\excel-native\\SUVC-final-v2\\page-002.png",
+    "size": [
+      1684,
+      1191
+    ],
+    "text": "CORE Module TEST ID 설명 방법 상세 설계 ID 시험 준비 및 초기 조건 가정 및 제한 조건 시험 절차 통과 기준\r\nA\r\nQCC 시험 이미지/버전·소스·회로·도구 버전을\r\n기록한다. 초기 상태를 조건별 복원한다. 제공\r\n자료는 기준서이며 실제 결과/전체 RTT가 없\r\n다.\r\n입력: 기\r\n동:Battery/Charging/Power/Classic/BLE/충전케\r\n이스통신/Application/PIO 초기화\r\n실제 QCC 로그 원문을 수집하며 생성\r\n예상 로그로 대체하지 않는다. 생산 비\r\n밀키를 기록하지 않고 공개 시험키를\r\n사용한다.\r\n[QCC 자료 입력] shutdown_ind=0\r\n의 초기SPI송신시점과절전계약\r\n상충 / QCC 주기/중복/실패시재\r\n송신정책 미제공\r\n기동 호출과 상태 초기화를 QCC 코드로 분석\r\n각 입력과 전량 실제값을 동일 조건의 결과 칸에 기입한다. 부분 로그만\r\n제공된 경우 전체 형식/자료 부족을 기록한다.\r\n조건 [1]\r\n입력: 기동:Battery/Charging/Power/Classic/BLE/충전케이스통신/Application/PIO\r\n초기화\r\n예상/판정: 초기화 경로에 QCC 외부기 Application과PIO설정 포함\r\nT\r\nQCC 시험 이미지/버전·소스·회로·도구 버전을\r\n기록한다. 초기 상태를 조건별 복원한다. 제공\r\n자료는 기준서이며 실제 결과/전체 RTT가 없\r\n다.\r\n입력: 기동 후 원문 shutdown_ind=0, 이후 배\r\n터리 주기 읽기. 잔량80/충전1/뚜껑1과잔량\r\n40/충전0/뚜껑2\r\n실제 QCC 로그 원문을 수집하며 생성\r\n예상 로그로 대체하지 않는다. 생산 비\r\n밀키를 기록하지 않고 공개 시험키를\r\n사용한다.\r\n[QCC 자료 입력] pp에똑같이'스마\r\n트케이스Lid'라고되어있지만현\r\n재E8300도크래들뚜껑으로사용\r\n하므로필드삭제불가\r\nQCC 논리메시지(type+payload 최대20byte)와실제SPI21byte(별도\r\nlength1byte 포함), E8300 수신/상태,21바이트ACK를 각각 저장.유효응답\r\n[34,01]과저장배열길이칸을 구분\r\n각 입력과 전량 실제값을 동일 조건의 결과 칸에 기입한다. 부분 로그만\r\n제공된 경우 전체 형식/자료 부족을 기록한다.\r\n조건 [2]\r\n입력: 기동 후 원문 shutdown_ind=0, 이후 배터리 주기 읽기. 잔량80/충전1/뚜껑1\r\n과잔량40/충전0/뚜껑2\r\n예상/판정: 입력 A: 잔량80%, charger_connected=1, lid=1. 논리 메시지 버퍼\r\n20byte(hex)=34 50 01 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\r\n입력 B: 잔량40%, charger_connected=0, lid=2. 논리 메시지 버퍼20byte(hex)=34 28\r\n00 02 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\r\n각 입력의 E8300 응답 저장배열21byte(hex)=34 01 00 00 00 00 00 00 00 00 00 00 00\r\n00 00 00 00 00 00 00 02; 마지막 index20=응답길이2, 유효 ACK=34 01.\r\nE8300 전체 예상 RTT A: [BT] CMD 0x34, CHARGER STATE: 1, BATT LEVEL 80 PERCENT,\r\nLID STATE 1\r\n전체 예상 RTT B: [BT] CMD 0x34, CHARGER STATE: 0, BATT LEVEL 40 PERCENT, LID\r\nSTATE 2\r\n위 RTT는 E8300 구현 출력의 예상 문자열이며 QCC 실측 로그가 아니다. 각 상태80\r\n→40, charger1→0, lid1→2. shutdown_ind 전송 시점은 미확정.\r\n전송 경계: type+payload는최대20byte이며 위 hex는논리20byte버퍼(미사용00포\r\n함)이다. 실제SPI물리프레임은20byte+별도length1byte=21byte로구분한다.\r\n[QCC/E8300 자료 입력] 실제QCC 송신의length필드 값/위치 및논리메\r\n시지→SPI21byte변환 자료. E8300 응답index20=2와구분한다.\r\nQCC\r\nSI-ID-QCC-001\r\n시스템 관리 SW-FW-UnitTest-QCC-ID-4\r\n시스템 초기화와 상태 처리\r\n원문 SW-FW-TEST-U-02-001\r\n요구: SW-FW-RID-21, SW-FW-RID-22, SW-FW-RID-29, SW-FW-RID-63\r\nSU-ID-QCC-001\r\nSU-ID-QCC-002"
+  }
+]

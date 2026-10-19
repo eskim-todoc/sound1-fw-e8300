@@ -1,0 +1,85 @@
+{
+  "code": "SR",
+  "status": "PASS",
+  "reviewer": "root",
+  "checked_at": "2026-10-13T08:44:36.512786+00:00",
+  "candidate": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\SR-fields.docx",
+  "candidate_sha256": "C30AF83386C4DE07C415497A850036A40B12D926C743595E348FDBCAD4142548",
+  "pages": 11,
+  "all_pages_opened_full_size": true,
+  "method": "Actual native Word export of saved candidate, pypdfium2 PNG, view_image all pages 1..11",
+  "checks": {
+    "cover_history_preserved": true,
+    "TOC_and_page_numbering_1_to_11": true,
+    "heading_number_weight_and_baselines": true,
+    "body10pt_and_memory_item_indentation": true,
+    "no_unexpected_blank_page": true,
+    "no_clipped_text_or_tables": true,
+    "figures_with_captions": true,
+    "QCC_red_content_and_black_unconfirmed_notices_readable": true,
+    "old_E8300_blue_notice_preserved": true
+  },
+  "refinements": [
+    "Removed obsolete break before hardware; standards table/hardware/system figure now share page5",
+    "Corrected two leading layout tabs in memory explanations",
+    "Bold category and verification-question labels; question/English/answer stay together",
+    "Continuous page numbers match total pages"
+  ],
+  "page_images": [
+    {
+      "page": 1,
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\views-final\\SR\\page-001.png",
+      "sha256": "26ED98909E34F56E7D8913BD719A7D2AB97E7AA482E5F1AF3AB19DD8831F83AF"
+    },
+    {
+      "page": 2,
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\views-final\\SR\\page-002.png",
+      "sha256": "15E1ADDFC1000A5DD40A427781EB34B8D479146BF7D51008A9A8564B001DA538"
+    },
+    {
+      "page": 3,
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\views-final\\SR\\page-003.png",
+      "sha256": "4109602C8A2F5BA5098368E5EF3A4F1C87839EDB4DAD0984F4192A3235320C94"
+    },
+    {
+      "page": 4,
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\views-final\\SR\\page-004.png",
+      "sha256": "0198B33F017BCCFD106EFBDDEF25481FDB4C6B132E386E6D677022065FD7B52E"
+    },
+    {
+      "page": 5,
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\views-final\\SR\\page-005.png",
+      "sha256": "AFFAA1E76E8C07EC386A524148CF1A9F0E8F02BB76403DE55967FB423883174B"
+    },
+    {
+      "page": 6,
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\views-final\\SR\\page-006.png",
+      "sha256": "EB285D21DC439AA7240FD286794D24F9FBC81E5490EC37B3D009F6E92BE9D108"
+    },
+    {
+      "page": 7,
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\views-final\\SR\\page-007.png",
+      "sha256": "27766730DA4804B5366BE58352F27A50BD6D04C9181F39FD5E4A4C0DCF90A7AD"
+    },
+    {
+      "page": 8,
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\views-final\\SR\\page-008.png",
+      "sha256": "BF425A44964D9D0710236F65922A62ADA946E1F0BA00436DCC0108A9C75CFC14"
+    },
+    {
+      "page": 9,
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\views-final\\SR\\page-009.png",
+      "sha256": "3CADD770C394FD0BBEF329DAA9C827C64D6F3D50C6C6A6C4DD15B78AA14C8A64"
+    },
+    {
+      "page": 10,
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\views-final\\SR\\page-010.png",
+      "sha256": "0E66B90AA095BEC0BB19AFB49286D067352AB3BE4CDE034AABE185AC5B6BA57A"
+    },
+    {
+      "page": 11,
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\views-final\\SR\\page-011.png",
+      "sha256": "105296F224262603C00F9738E1477C209A259BBBC402409F6C2116A51D1C3F95"
+    }
+  ]
+}

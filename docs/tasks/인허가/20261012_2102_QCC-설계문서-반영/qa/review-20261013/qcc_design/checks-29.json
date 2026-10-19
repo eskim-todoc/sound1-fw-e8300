@@ -1,0 +1,916 @@
+{
+  "scope": "Owned3designDOCX document verification; unrelated Excel execution/format items are reasoned 해당없음 and linked to owner QA. QCC product tests remain 미실행/판정대기. All29 applicability decisions are recorded.",
+  "checks": [
+    {
+      "number": 1,
+      "status": "통과",
+      "inspection_and_reason": "활성82개 요구1..81+83; 송신을RID69로 통합, RID82현재참조0. DMIC2 양쪽 입력과 두 오디오 방향을 본문/그림에 작성.",
+      "product_state": "해당없음",
+      "evidence": [
+        {
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_design\\cross-actual-saved.json",
+          "sha256": "b1d03ab5478c3871d9a73dd83134440ea02fcff025a8ad9ccd6a286d4525026a"
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "status": "통과",
+      "inspection_and_reason": "requirements-contract.json 최종 기본/상세와 오디오69/문서83 설계 연결을 대조. SRS 자체 작성은 요구사항 담당.",
+      "product_state": "해당없음",
+      "evidence": [
+        {
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_design\\cross-actual-saved.json",
+          "sha256": "b1d03ab5478c3871d9a73dd83134440ea02fcff025a8ad9ccd6a286d4525026a"
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "status": "통과",
+      "inspection_and_reason": "실제 저장된82요구/14모듈/129유닛/237시험 선언과 미정의 현재ID0을 독립 대조했다. QCC4모듈/14유닛/15유닛시험과7통합시험의 기능/목적/입력/조건을 대조했다. 통합22의 실제 수신경계 CFX005/008/015 연결과 별도SIT013 범위를 확인했다. QCC007 일련번호 PS 시험조건의 직접 요구 추적 미비는 보존한다.",
+      "product_state": "해당없음",
+      "evidence": [
+        {
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_requirements\\principle3-independent-qa.json",
+          "sha256": "1a0d13ab113d58a4cda6eec8785cbc7fcd7970c89257c8e7f70979e7a8ebb914"
+        },
+        {
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_design\\cross-actual-saved.json",
+          "sha256": "b1d03ab5478c3871d9a73dd83134440ea02fcff025a8ad9ccd6a286d4525026a"
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "status": "통과",
+      "inspection_and_reason": "E/Q/current9개 실제ZIP 본문·표·그림 확인; 스마트케이스/CC 잔존식별은 local근거에만 보존.",
+      "product_state": "해당없음",
+      "evidence": [
+        {
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_design\\input-audit.json",
+          "sha256": "66c1e28169391220091ae04ce8355cf90a89e834d40013d1d393e462aff1ddfd"
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "status": "통과",
+      "inspection_and_reason": "시스템 구조와 현 E8300 SPI/I2S 계약 및 사용자 확정 DMIC2 이중 연결 대조; QCC 실제 핀/코덱/내부코드 미확정 유지.",
+      "product_state": "시험/제품판정대기",
+      "evidence": [
+        {
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_design\\cross-actual-saved.json",
+          "sha256": "b1d03ab5478c3871d9a73dd83134440ea02fcff025a8ad9ccd6a286d4525026a"
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "status": "통과",
+      "inspection_and_reason": "요구/시험 저장본과 설계의 양방향 반복에서 보조 요구 추적/유닛 목적/통합22 수신경계 누락을 보완한 후 동일ID/조건/예상값/미실행 결과 범위를 다시 대조했다. 고정 반복 횟수 없이 실제 불일치 해소로 수렴을 판정했다.",
+      "product_state": "해당없음",
+      "evidence": [
+        {
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_design\\cross-actual-saved.json",
+          "sha256": "b1d03ab5478c3871d9a73dd83134440ea02fcff025a8ad9ccd6a286d4525026a"
+        },
+        {
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_requirements\\principle3-independent-qa.json",
+          "sha256": "1a0d13ab113d58a4cda6eec8785cbc7fcd7970c89257c8e7f70979e7a8ebb914"
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "status": "통과",
+      "inspection_and_reason": "SAD E기능 항목 틀/본문 수준에 맞춰4모듈/14항목, SDDD 동종2열표grid1304/7512 유지. Q전용 소속유닛 틀 제거. 현재 새 작성 문구의 가운데점/조사 오류는 tracked 후보에서 / 및 올바른 조사로 정리; 원문/삭제 이력은 보존.",
+      "product_state": "해당없음",
+      "evidence": [
+        {
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_design\\current-style-qa.json",
+          "sha256": "9380b92a182644952b2fedd5652db73986bd9c9c48449330342808420116ad8c"
+        },
+        {
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_design\\final-mic-patch\\proof.json",
+          "sha256": "547c9369f28fec6c16a2f55dcb4c199bcecbd5338088472450dd384412313459"
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "status": "통과",
+      "inspection_and_reason": "14유닛 목적 본문과 입력/출력/처리 표, 구현 조건/예외/키 수명주기 설명. 시험문서 없이 기능 이해 가능. 미확정 계약 분리.",
+      "product_state": "시험/제품판정대기",
+      "evidence": [
+        {
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_design\\cross-actual-saved.json",
+          "sha256": "b1d03ab5478c3871d9a73dd83134440ea02fcff025a8ad9ccd6a286d4525026a"
+        },
+        {
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_design\\SDDD-authored.json",
+          "sha256": "69492feaf2b9f0f12665e27cf845e94044594b595fcac84ef5aab41a5b4fbdf7"
+        }
+      ]
+    },
+    {
+      "number": 9,
+      "status": "통과",
+      "inspection_and_reason": "SIP 시험방법은 증거별 I/A/D/T 정의 유지. 새 SYS82 D 송신과 정량 I2S 측정을 구분; 해당 Excel방법열은 시험 담당.",
+      "product_state": "해당없음",
+      "evidence": [
+        {
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_design\\cross-actual-saved.json",
+          "sha256": "b1d03ab5478c3871d9a73dd83134440ea02fcff025a8ad9ccd6a286d4525026a"
+        }
+      ]
+    },
+    {
+      "number": 10,
+      "status": "통과",
+      "inspection_and_reason": "기준/실제 증거와 PC/모의/실장치 범위 분리. 코드분석을 물리QCC/I2S 실측으로 기재하지 않음.",
+      "product_state": "해당없음",
+      "evidence": [
+        {
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_design\\cross-actual-saved.json",
+          "sha256": "b1d03ab5478c3871d9a73dd83134440ea02fcff025a8ad9ccd6a286d4525026a"
+        }
+      ]
+    },
+    {
+      "number": 11,
+      "status": "통과",
+      "inspection_and_reason": "SIP 사전 구성 표와 실제 연결/확인 통합단계 구분. 제한된 핀/설정은 구체 미비로 보존.",
+      "product_state": "해당없음",
+      "evidence": [
+        {
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_design\\SIP-authored.json",
+          "sha256": "879cbc1481618dfa8a106268b24bff86356ee37f79370d20eb7b4731eecac1f3"
+        }
+      ]
+    },
+    {
+      "number": 12,
+      "status": "해당없음",
+      "inspection_and_reason": "소유3DOCX에는 기준/보고서 공통셀 없음. 6Excel 공통열/병합 검사는 시험 담당 증거를 연결.",
+      "product_state": "해당없음",
+      "evidence": [
+        {
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\qa.json",
+          "sha256": "c4d438b3228329c90c9a304fb74d73112bb67d772ba55fb5bde1199334c0b592"
+        }
+      ]
+    },
+    {
+      "number": 13,
+      "status": "통과",
+      "inspection_and_reason": "SIP 각 단계에 실제 시험ID와 기능/비교대상 기재. 수치·배열 결과는 기준/보고서 같은 조건에서 대조하도록 명시.",
+      "product_state": "해당없음",
+      "evidence": [
+        {
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_design\\cross-actual-saved.json",
+          "sha256": "b1d03ab5478c3871d9a73dd83134440ea02fcff025a8ad9ccd6a286d4525026a"
+        }
+      ]
+    },
+    {
+      "number": 14,
+      "status": "해당없음",
+      "inspection_and_reason": "새 실제 RTT 결과를 작성하지 않음. 기존 E8300 결과 범위 보존, 패턴전달을 CRA 성공으로 확대하지 않음. 독립 보조 QA는 이전 E8300 CFX007/011 RTT 본문과 같은 조건의 기대/관찰 배열 전체가 보이는 대표 native4페이지를 확인했으며 새 결과를 작성하지 않음(excel-targeted-native.json).",
+      "product_state": "해당없음",
+      "evidence": [
+        {
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_design\\excel-targeted-native.json",
+          "sha256": "7c9669201836c7eeb264be101df7261a932f8b894228dc98dda99395f3dfbbbf"
+        }
+      ]
+    },
+    {
+      "number": 15,
+      "status": "해당없음",
+      "inspection_and_reason": "시험 조건/검증 번호 행 변경 없음. 기준/보고서 번호 대응은 시험 담당 소유.",
+      "product_state": "해당없음",
+      "evidence": [
+        {
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\qa.json",
+          "sha256": "c4d438b3228329c90c9a304fb74d73112bb67d772ba55fb5bde1199334c0b592"
+        }
+      ]
+    },
+    {
+      "number": 16,
+      "status": "통과",
+      "inspection_and_reason": "새 QCC 결과 미실행/제품판정대기. 설계 작성/검토를 실제 관찰/시험 통과로 기재하지 않음.",
+      "product_state": "시험/제품판정대기",
+      "evidence": [
+        {
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_design\\cross-actual-saved.json",
+          "sha256": "b1d03ab5478c3871d9a73dd83134440ea02fcff025a8ad9ccd6a286d4525026a"
+        }
+      ]
+    },
+    {
+      "number": 17,
+      "status": "통과",
+      "inspection_and_reason": "사용자 시험자 확인 기존범위 보존. Codex 새 보드실행/새원시로그 수집 주장 없음.",
+      "product_state": "해당없음",
+      "evidence": [
+        {
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_design\\cross-actual-saved.json",
+          "sha256": "b1d03ab5478c3871d9a73dd83134440ea02fcff025a8ad9ccd6a286d4525026a"
+        }
+      ]
+    },
+    {
+      "number": 18,
+      "status": "통과",
+      "inspection_and_reason": "수신 SYS69와 송신 SYS82를 별도 실행 조건/판정으로 유지. QCC 실제자료/미측정 계약 완료로 확대하지 않음.",
+      "product_state": "시험/제품판정대기",
+      "evidence": [
+        {
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_design\\cross-actual-saved.json",
+          "sha256": "b1d03ab5478c3871d9a73dd83134440ea02fcff025a8ad9ccd6a286d4525026a"
+        }
+      ]
+    },
+    {
+      "number": 19,
+      "status": "해당없음",
+      "inspection_and_reason": "과거 사용자 지정 시험자 확인 결과의 중간값/절삭 작성 작업 아님; 새 측정값 생성 없음.",
+      "product_state": "해당없음",
+      "evidence": [
+        {
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_design\\cross-actual-saved.json",
+          "sha256": "b1d03ab5478c3871d9a73dd83134440ea02fcff025a8ad9ccd6a286d4525026a"
+        }
+      ]
+    },
+    {
+      "number": 20,
+      "status": "해당없음",
+      "inspection_and_reason": "아키텍처 코드-native 도식만 작성, 예상 계측기/파형사진이나 측정값 생성 없음. 삭제 지시 사진 요청 재추가 없음.",
+      "product_state": "해당없음",
+      "evidence": [
+        {
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_design\\authored.json",
+          "sha256": "cac90ee56c774bab77344e744744d098b049da5b2c4f51f1a6240a946763cab9"
+        }
+      ]
+    },
+    {
+      "number": 21,
+      "status": "해당없음",
+      "inspection_and_reason": "일반 시간시험 입력/결과 날짜 변경 작업 없음. 기존 서명/승인날짜 보존.",
+      "product_state": "해당없음",
+      "evidence": [
+        {
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_design\\input-audit.json",
+          "sha256": "66c1e28169391220091ae04ce8355cf90a89e834d40013d1d393e462aff1ddfd"
+        }
+      ]
+    },
+    {
+      "number": 22,
+      "status": "통과",
+      "inspection_and_reason": "SAD23/SDDD21/SIP4 미비 안내 지정색/기본10+2pt/밑줄/비굵게. 알려진DMIC2연결을 미확인으로 확대하지 않음; 접두어 유지.",
+      "product_state": "시험/제품판정대기",
+      "evidence": [
+        {
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\current-positions.json",
+          "sha256": "03e2936e381b99460c82c411086f43d5b52df83326800a1eb15f60ef5814b87c"
+        },
+        {
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_requirements\\word-visual-coverage.json",
+          "sha256": "3b7aeabd678eedf5e0982015bc3414a17a8b7ee66ae016b2eabe947389bc3c5e"
+        }
+      ]
+    },
+    {
+      "number": 23,
+      "status": "통과",
+      "inspection_and_reason": "root가 현재 저장12파일의397개 위치를 수집하고 중앙목록을 같은 작업에서 갱신했다. current-positions.json의 실제12파일/397개 위치를 확인했다. 삭제추적/목차/비교원문을 현재 위치로 세지 않는다.",
+      "product_state": "해당없음",
+      "evidence": [
+        {
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\current-positions.json",
+          "sha256": "03e2936e381b99460c82c411086f43d5b52df83326800a1eb15f60ef5814b87c"
+        }
+      ]
+    },
+    {
+      "number": 24,
+      "status": "해당없음",
+      "inspection_and_reason": "Excel 셀/행높이/병합/인쇄 서식 쓰기 소유권 없음. 관련 저장본 의미 대조만 수행.",
+      "product_state": "해당없음",
+      "evidence": [
+        {
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\qa.json",
+          "sha256": "c4d438b3228329c90c9a304fb74d73112bb67d772ba55fb5bde1199334c0b592"
+        }
+      ]
+    },
+    {
+      "number": 25,
+      "status": "해당없음",
+      "inspection_and_reason": "Word actual track작성. Excel [-]/[+] 표시/배경 복구는 시험/요구 담당 소유.",
+      "product_state": "해당없음",
+      "evidence": [
+        {
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\qa.json",
+          "sha256": "c4d438b3228329c90c9a304fb74d73112bb67d772ba55fb5bde1199334c0b592"
+        }
+      ]
+    },
+    {
+      "number": 26,
+      "status": "통과",
+      "inspection_and_reason": "실제 변경추적 저자는 김은수이고 그림의 원본bytes/이력을 보존했다. SAD 빈문단 정리는 실제 native Word 생성 트랙이며 저장360개 중 재열기 시 동일 실효서식125개가 정규화되고, 실제 남은235개를 새QA저자만 선택 거부하여0개가 됐다. 과거 revision text와 원래83행×3셀/본문 복원을 확인했다. 최종 필드/G게시 후 actual WordAcceptAll83×3cells249개도 재확인했다. 정적 C14N 모델만으로 native 복원을 단정하지 않는다.",
+      "product_state": "해당없음",
+      "evidence": [
+        {
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_design\\native-trace-probe-v2\\proof.json",
+          "sha256": "13789d4e6b264fe2daacb4ac9d1afae2879e505f77944f78e945309a10195dfc"
+        },
+        {
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_design\\native-trace-probe-v2\\reject-allmarkup\\native-cell-proof.json",
+          "sha256": "a6cf020173c19d4cda8499817c9dab90f8b70a256596b3b182b39f6ac587b12f"
+        },
+        {
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\final-word\\SAD-native-accepted-cells.json",
+          "sha256": "f77889e4f52b640ff85bb3a36f40288c9a0ec02278a2983ef61ed0cee2baf107"
+        }
+      ]
+    },
+    {
+      "number": 27,
+      "status": "통과",
+      "inspection_and_reason": "동일Gstage [E8300-QCC]3사본에만 작성. E/Q6원본 해시 불변, 작성자전용/승인란/서명 보존.",
+      "product_state": "해당없음",
+      "evidence": [
+        {
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_design\\input-audit.json",
+          "sha256": "66c1e28169391220091ae04ce8355cf90a89e834d40013d1d393e462aff1ddfd"
+        }
+      ]
+    },
+    {
+      "number": 28,
+      "status": "통과",
+      "inspection_and_reason": "현재G SAD55/SDDD171/SIP17 총243쪽의 개별 원본크기 PNG 검사 또는 이미 직접 검토한 페이지의 정확한 본문 픽셀 일치 근거가 전부 연결됐다. 전체 목차/본문 흐름/그림/캡션/미비 안내/셀잘림/표 연결과 수정 페이지를 확인했다. SAD 최종 actual native 수락83×3cells도 통과했다. 문서 검증과 실제 제품시험/정식 승인은 분리한다.",
+      "product_state": "시험/제품판정대기",
+      "evidence": [
+        {
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_requirements\\word-visual-coverage.json",
+          "sha256": "3b7aeabd678eedf5e0982015bc3414a17a8b7ee66ae016b2eabe947389bc3c5e"
+        },
+        {
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\final-word\\SAD-native-accepted-cells.json",
+          "sha256": "f77889e4f52b640ff85bb3a36f40288c9a0ec02278a2983ef61ed0cee2baf107"
+        }
+      ]
+    },
+    {
+      "number": 29,
+      "status": "통과",
+      "inspection_and_reason": "Word README와 실제DOTX를 기준으로59TDC 스타일 등록/기반 참조와 격리 지원2스타일 상속을 대조했다. 기존E번호체계를 보존하고 실제 Q상세표28개가 동종E본문 수준/폭8816/grid1304·7512/기준선에 맞는지 확인했다. 목적 본문/입출력처리표/정상 표뒤 문단/수식·그림/표행 흐름/변경추적/목차·필드를 전체 native243쪽에서 확인했다. raw 기본값/번호ID 차이를 정의 전체 동일이라고 주장하지 않는다.",
+      "product_state": "해당없음",
+      "evidence": [
+        {
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_design\\current-style-qa.json",
+          "sha256": "9380b92a182644952b2fedd5652db73986bd9c9c48449330342808420116ad8c"
+        },
+        {
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_requirements\\word-visual-coverage.json",
+          "sha256": "3b7aeabd678eedf5e0982015bc3414a17a8b7ee66ae016b2eabe947389bc3c5e"
+        }
+      ]
+    }
+  ],
+  "renderer_attempt": {
+    "tool": "documents/render_docx.py",
+    "candidate": "SAD",
+    "result": "FileNotFoundError: LibreOffice soffice.exe was not found on PATH",
+    "fallback": "root serialized native Word PDF and bundled pypdfium2 PNG",
+    "native_final_status": "통과",
+    "native_final_page_count": 243
+  },
+  "format_source": "E:/workspace/rules-for-codex/지침/양식/Word/TDC 공통 스타일.dotx",
+  "evidence": [
+    "input-audit.json",
+    "format-baseline.json",
+    "candidate-qa.json",
+    "authored.json",
+    "SAD-authored.json",
+    "SDDD-authored.json",
+    "SIP-authored.json",
+    "followup/qa.json",
+    "cross-doc.json",
+    "native-review.json",
+    "final-layout/proof.json",
+    "final-layout-v2/proof.json",
+    "excel-targeted-native.json"
+  ],
+  "status": "통과",
+  "remaining": [],
+  "checkedAt": "2026-10-13T01:54:44.356772+00:00",
+  "current_documents": {
+    "SAD": {
+      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SAD-FW-TD24A 소프트웨어 아키텍쳐 기술서.docx",
+      "sourceSHA256": "84f592a7f7988a78eb73fa718268cc22ddf20a5bac796358b971aba0d23ccc68",
+      "pages": 55
+    },
+    "SDDD": {
+      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SDDD-FW-TD24A 소프트웨어 상세 설계서.docx",
+      "sourceSHA256": "121d4204a3b4bc1946695b74820720bc388d27e9978ef91b2b40f550e2145e2e",
+      "pages": 171
+    },
+    "SIP": {
+      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SIP-FW-TD24A 소프트웨어 통합 계획서.docx",
+      "sourceSHA256": "347d8632bc21aa37ee84418e471cb2ca67541cba7d014c17c3058da2a1d62978",
+      "pages": 17
+    }
+  },
+  "native_final_accepted_cells": {
+    "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\final-word\\SAD-native-accepted-cells.json",
+    "sha256": "f77889e4f52b640ff85bb3a36f40288c9a0ec02278a2983ef61ed0cee2baf107",
+    "sourceSHA256": "84f592a7f7988a78eb73fa718268cc22ddf20a5bac796358b971aba0d23ccc68",
+    "row_count": 83,
+    "column_count": 3,
+    "segments": 249,
+    "pass": true,
+    "native_XML": {
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\final-word\\SAD-native-accepted.xml",
+      "sha256": "9fbe4ad4d24662146fb0e88e89ab2ee3095195742b6d0432942e015125843938"
+    },
+    "scope": "Root actual native Word AcceptAllRevisions after field refresh and guarded G publication; read-only snapshot. This is actual cell preservation, not only an OOXML projection."
+  },
+  "current_visual_coverage": {
+    "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_requirements\\word-visual-coverage.json",
+    "sha256": "3b7aeabd678eedf5e0982015bc3414a17a8b7ee66ae016b2eabe947389bc3c5e"
+  },
+  "current_principle3": {
+    "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_requirements\\principle3-independent-qa.json",
+    "sha256": "1a0d13ab113d58a4cda6eec8785cbc7fcd7970c89257c8e7f70979e7a8ebb914"
+  },
+  "current_position_count": {
+    "files": 12,
+    "locations": 397,
+    "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\current-positions.json",
+    "sha256": "03e2936e381b99460c82c411086f43d5b52df83326800a1eb15f60ef5814b87c"
+  },
+  "prior_failure_history": {
+    "prior_checks": {
+      "scope": "Owned SAD/SDDD/SIP content and package; independent requirements/test cross-check. No other owner edits.",
+      "checks": [
+        {
+          "number": 1,
+          "status": "통과",
+          "inspection_and_reason": "활성82개 요구1..81+83; 송신을RID69로 통합, RID82현재참조0. DMIC2 양쪽 입력과 두 오디오 방향을 본문/그림에 작성.",
+          "product_state": "해당없음"
+        },
+        {
+          "number": 2,
+          "status": "통과",
+          "inspection_and_reason": "requirements-contract.json 최종 기본/상세와 오디오69/문서83 설계 연결을 대조. SRS 자체 작성은 요구사항 담당.",
+          "product_state": "해당없음"
+        },
+        {
+          "number": 3,
+          "status": "통과",
+          "inspection_and_reason": "4모듈/14유닛/실제시험ID 연결 확인. 저장 시험2/5/9의 보조 요구사항 연결 추가 필요; cross-loop 후 재검사. 지원 요구 추가를 SAD 정/역방향 추적과 SDDD5유닛에서 재검사하여 누락 해소.",
+          "product_state": "해당없음"
+        },
+        {
+          "number": 4,
+          "status": "통과",
+          "inspection_and_reason": "E/Q/current9개 실제ZIP 본문·표·그림 확인; 스마트케이스/CC 잔존식별은 local근거에만 보존.",
+          "product_state": "해당없음"
+        },
+        {
+          "number": 5,
+          "status": "통과",
+          "inspection_and_reason": "시스템 구조와 현 E8300 SPI/I2S 계약 및 사용자 확정 DMIC2 이중 연결 대조; QCC 실제 핀/코덱/내부코드 미확정 유지.",
+          "product_state": "시험/제품판정대기"
+        },
+        {
+          "number": 6,
+          "status": "통과",
+          "inspection_and_reason": "시험 저장본→설계 역방향 대조에서 지원 요구 누락 발견. 본문 조건 동일; 표적 추적 보완 후 동일ID/조건 재검사 예정. 지원 요구 추가를 SAD 정/역방향 추적과 SDDD5유닛에서 재검사하여 누락 해소.",
+          "product_state": "해당없음"
+        },
+        {
+          "number": 7,
+          "status": "통과",
+          "inspection_and_reason": "SAD E기능 항목 틀/본문 수준에 맞춰4모듈/14항목, SDDD 동종2열표grid1304/7512 유지. Q전용 소속유닛 틀 제거. 현재 새 작성 문구의 가운데점/조사 오류는 tracked 후보에서 / 및 올바른 조사로 정리; 원문/삭제 이력은 보존.",
+          "product_state": "해당없음"
+        },
+        {
+          "number": 8,
+          "status": "통과",
+          "inspection_and_reason": "14유닛 목적 본문과 입력/출력/처리 표, 구현 조건/예외/키 수명주기 설명. 시험문서 없이 기능 이해 가능. 미확정 계약 분리.",
+          "product_state": "시험/제품판정대기"
+        },
+        {
+          "number": 9,
+          "status": "통과",
+          "inspection_and_reason": "SIP 시험방법은 증거별 I/A/D/T 정의 유지. 새 SYS82 D 송신과 정량 I2S 측정을 구분; 해당 Excel방법열은 시험 담당.",
+          "product_state": "해당없음"
+        },
+        {
+          "number": 10,
+          "status": "통과",
+          "inspection_and_reason": "기준/실제 증거와 PC/모의/실장치 범위 분리. 코드분석을 물리QCC/I2S 실측으로 기재하지 않음.",
+          "product_state": "해당없음"
+        },
+        {
+          "number": 11,
+          "status": "통과",
+          "inspection_and_reason": "SIP 사전 구성 표와 실제 연결/확인 통합단계 구분. 제한된 핀/설정은 구체 미비로 보존.",
+          "product_state": "해당없음"
+        },
+        {
+          "number": 12,
+          "status": "해당없음",
+          "inspection_and_reason": "소유3DOCX에는 기준/보고서 공통셀 없음. 6Excel 공통열/병합 검사는 시험 담당 증거를 연결.",
+          "product_state": "해당없음"
+        },
+        {
+          "number": 13,
+          "status": "통과",
+          "inspection_and_reason": "SIP 각 단계에 실제 시험ID와 기능/비교대상 기재. 수치·배열 결과는 기준/보고서 같은 조건에서 대조하도록 명시.",
+          "product_state": "해당없음"
+        },
+        {
+          "number": 14,
+          "status": "해당없음",
+          "inspection_and_reason": "새 실제 RTT 결과를 작성하지 않음. 기존 E8300 결과 범위 보존, 패턴전달을 CRA 성공으로 확대하지 않음. 독립 보조 QA는 이전 E8300 CFX007/011 RTT 본문과 같은 조건의 기대/관찰 배열 전체가 보이는 대표 native4페이지를 확인했으며 새 결과를 작성하지 않음(excel-targeted-native.json).",
+          "product_state": "해당없음"
+        },
+        {
+          "number": 15,
+          "status": "해당없음",
+          "inspection_and_reason": "시험 조건/검증 번호 행 변경 없음. 기준/보고서 번호 대응은 시험 담당 소유.",
+          "product_state": "해당없음"
+        },
+        {
+          "number": 16,
+          "status": "통과",
+          "inspection_and_reason": "새 QCC 결과 미실행/제품판정대기. 설계 작성/검토를 실제 관찰/시험 통과로 기재하지 않음.",
+          "product_state": "시험/제품판정대기"
+        },
+        {
+          "number": 17,
+          "status": "통과",
+          "inspection_and_reason": "사용자 시험자 확인 기존범위 보존. Codex 새 보드실행/새원시로그 수집 주장 없음.",
+          "product_state": "해당없음"
+        },
+        {
+          "number": 18,
+          "status": "통과",
+          "inspection_and_reason": "수신 SYS69와 송신 SYS82를 별도 실행 조건/판정으로 유지. QCC 실제자료/미측정 계약 완료로 확대하지 않음.",
+          "product_state": "시험/제품판정대기"
+        },
+        {
+          "number": 19,
+          "status": "해당없음",
+          "inspection_and_reason": "과거 사용자 지정 시험자 확인 결과의 중간값/절삭 작성 작업 아님; 새 측정값 생성 없음.",
+          "product_state": "해당없음"
+        },
+        {
+          "number": 20,
+          "status": "해당없음",
+          "inspection_and_reason": "아키텍처 코드-native 도식만 작성, 예상 계측기/파형사진이나 측정값 생성 없음. 삭제 지시 사진 요청 재추가 없음.",
+          "product_state": "해당없음"
+        },
+        {
+          "number": 21,
+          "status": "해당없음",
+          "inspection_and_reason": "일반 시간시험 입력/결과 날짜 변경 작업 없음. 기존 서명/승인날짜 보존.",
+          "product_state": "해당없음"
+        },
+        {
+          "number": 22,
+          "status": "통과",
+          "inspection_and_reason": "SAD23/SDDD21/SIP4 미비 안내 지정색/기본10+2pt/밑줄/비굵게. 알려진DMIC2연결을 미확인으로 확대하지 않음; 접두어 유지.",
+          "product_state": "시험/제품판정대기"
+        },
+        {
+          "number": 23,
+          "status": "미실행",
+          "inspection_and_reason": "중앙현재위치 등록은 root 소유. 최종필드/렌더 후 실제저장 검색 위치와 미비 목록 전달 예정.",
+          "product_state": "해당없음"
+        },
+        {
+          "number": 24,
+          "status": "해당없음",
+          "inspection_and_reason": "Excel 셀/행높이/병합/인쇄 서식 쓰기 소유권 없음. 관련 저장본 의미 대조만 수행.",
+          "product_state": "해당없음"
+        },
+        {
+          "number": 25,
+          "status": "해당없음",
+          "inspection_and_reason": "Word actual track작성. Excel [-]/[+] 표시/배경 복구는 시험/요구 담당 소유.",
+          "product_state": "해당없음"
+        },
+        {
+          "number": 26,
+          "status": "통과",
+          "inspection_and_reason": "newauthor김은수, priorhistory보존. 신규삽입중첩0, 새트랙 거부 C14N currentbaselineexact. 원media/관계 보존, drawing tracked교체. final-layout/proof.json 및 final-layout-v2/proof.json에서 새 문체/흐름/행서식 변경만 거부→직전 G C14N 정확 복원, 삽입중첩0, 실제 author 재검사.",
+          "product_state": "해당없음"
+        },
+        {
+          "number": 27,
+          "status": "통과",
+          "inspection_and_reason": "동일Gstage [E8300-QCC]3사본에만 작성. E/Q6원본 해시 불변, 작성자전용/승인란/서명 보존.",
+          "product_state": "해당없음"
+        },
+        {
+          "number": 28,
+          "status": "실패",
+          "inspection_and_reason": "native244페이지(SAD55/SDDD172/SIP17) 전수 contact/변경본문 fullPNG 검사. SAD빈4p/안내고아53p, SIP안내고아16p, SDDD짧은키행분할을 발견하여 final-layout 및 v2 추적후보 보완. 최종native 재검사대기; 제품시험/승인별도.",
+          "product_state": "시험/제품판정대기"
+        },
+        {
+          "number": 29,
+          "status": "실패",
+          "inspection_and_reason": "README/actualDOTX 읽고 saved59TDC정의/hash 대조. 새동종표 폭/스타일/반복머리글/정상빈문단 static통과. 실제폰트/기준선 및 전체렌더 final대기. DOTX 기반ID충돌을 지원2스타일로 격리,59정의의 template 구조 일치/비TDC·기존heading번호 보존 재검사 통과. native Q상세표28개 폭/본문 기준선 실제 일치 확인(차이0.069pt); 발견 페이지흐름 결함 후보 반영 후 최종렌더 재검사대기.",
+          "product_state": "해당없음"
+        }
+      ],
+      "renderer_attempt": {
+        "tool": "documents/render_docx.py",
+        "candidate": "SAD",
+        "result": "FileNotFoundError: LibreOffice soffice.exe was not found on PATH",
+        "fallback": "root serialized native Word PDF and bundled pypdfium2 PNG",
+        "native_final_status": "미실행"
+      },
+      "format_source": "E:/workspace/rules-for-codex/지침/양식/Word/TDC 공통 스타일.dotx",
+      "evidence": [
+        "input-audit.json",
+        "format-baseline.json",
+        "candidate-qa.json",
+        "authored.json",
+        "SAD-authored.json",
+        "SDDD-authored.json",
+        "SIP-authored.json",
+        "followup/qa.json",
+        "cross-doc.json",
+        "native-review.json",
+        "final-layout/proof.json",
+        "final-layout-v2/proof.json",
+        "excel-targeted-native.json"
+      ],
+      "status": "실패",
+      "remaining": [
+        "root 최종필드/후보native 재검사 및 전체 렌더",
+        "root 현재위치 등록"
+      ]
+    },
+    "prior_native_review": {
+      "status": "실패",
+      "reason": "SAD blank/orphan pages, SIP orphan notice and SDDD short key-role row split have local tracked candidates; native reinspection pending",
+      "scope": "document verification only; QCC product test verdict remains pending",
+      "full_page_contact_review": {
+        "SAD": {
+          "pages": 55,
+          "ranges": [
+            [
+              1,
+              12
+            ],
+            [
+              13,
+              24
+            ],
+            [
+              25,
+              36
+            ],
+            [
+              37,
+              48
+            ],
+            [
+              49,
+              55
+            ]
+          ],
+          "unexpected_blank_pages": [
+            4
+          ],
+          "orphan_notice_pages": [
+            53
+          ]
+        },
+        "SDDD": {
+          "pages": 172,
+          "ranges": [
+            [
+              1,
+              12
+            ],
+            [
+              13,
+              24
+            ],
+            [
+              25,
+              36
+            ],
+            [
+              37,
+              48
+            ],
+            [
+              49,
+              60
+            ],
+            [
+              61,
+              72
+            ],
+            [
+              73,
+              84
+            ],
+            [
+              85,
+              96
+            ],
+            [
+              97,
+              108
+            ],
+            [
+              109,
+              120
+            ],
+            [
+              121,
+              132
+            ],
+            [
+              133,
+              144
+            ],
+            [
+              145,
+              156
+            ],
+            [
+              157,
+              168
+            ],
+            [
+              169,
+              172
+            ]
+          ],
+          "unexpected_blank_pages": [],
+          "caption_only_queried_pages": [
+            56,
+            101,
+            115,
+            125,
+            136
+          ],
+          "caption_only_result": "normal pages with visible diagrams"
+        },
+        "SIP": {
+          "pages": 17,
+          "ranges": [
+            [
+              1,
+              12
+            ],
+            [
+              13,
+              17
+            ]
+          ],
+          "unexpected_blank_pages": [],
+          "orphan_notice_pages": [
+            16
+          ]
+        }
+      },
+      "full_png_review": {
+        "SDDD": [
+          7,
+          12,
+          149,
+          150,
+          151,
+          152,
+          153,
+          154,
+          155,
+          156,
+          157,
+          158,
+          159,
+          160,
+          161,
+          162,
+          163,
+          164,
+          165,
+          166,
+          167,
+          168,
+          169,
+          170,
+          171,
+          172
+        ],
+        "SIP": [
+          15,
+          16
+        ]
+      },
+      "table_geometry_pt": {
+        "E_level4_caption_x": 86.424,
+        "E_level4_table_left": 86.492571,
+        "Q_level4_caption_x": 86.424,
+        "Q_level4_table_left": 86.492571,
+        "Q_level4_table_right": 527.237,
+        "caption_table_delta": 0.068571,
+        "width_twips": 8816,
+        "unit_two_column_grid": [
+          1304,
+          7512
+        ],
+        "assessment": "통과; no visual shift relative to matching E8300 body level"
+      },
+      "SDDD_current_render": {
+        "four_modules_fourteen_units": true,
+        "all_twenty_eight_IO_implementation_tables_readable": true,
+        "table_header_repetition_and_long_row_continuation_readable": true,
+        "unit_purposes_outside_IO_table": true,
+        "DMIC2_both_chip_inputs_and_distinct_downlink": true,
+        "SPI_logical20_physical21_separate": true,
+        "CRA_transport_authentication_and_key_roles_separate": true,
+        "pending_notice_complete_color_underline_larger_visible": true,
+        "defect": {
+          "table": "266",
+          "physical_pages": [
+            170,
+            171
+          ],
+          "key": "shared_service_key",
+          "problem": "short data row split leaves 16byte in continuation; v2 cantSplit candidate supplied"
+        }
+      },
+      "candidates": {
+        "SAD": "final-layout",
+        "SIP": "final-layout",
+        "SDDD": "final-layout-v2"
+      },
+      "pdf_snapshots": {
+        "SAD": {
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\final-word\\SAD.pdf",
+          "sha256": "433f42501ded5a728d3ccb9e63a18b9040c5798e6aaf2434863cd316aec8df2e"
+        },
+        "SDDD": {
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\final-word\\SDDD.pdf",
+          "sha256": "b05b370270e01491fdb4b55ac9ad8489f44466253d2690306a4221d6bb97262f"
+        },
+        "SIP": {
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\final-word\\SIP.pdf",
+          "sha256": "5eb82f96c575e27336f5ede613c6d2bacf8dbe663fcff04bab84540ba3539ec9"
+        }
+      },
+      "expected_final_verification": [
+        "SAD normal-font TOC remains line240 after field cache update; blank page4 eliminated",
+        "SAD requirement83 upper trace retained in current requirement row; duplicate standalone notice removed; orphan page53 eliminated",
+        "SIP boot integration explanation and complete pending OTA notice on same page",
+        "SDDD short key-role rows remain whole",
+        "final current heading page numbers and TOC cache agree using displayed section PAGE numbers",
+        "unchanged final pages use earlier reviewed full contact/PNG evidence with exact pixel comparison where available"
+      ]
+    },
+    "later_failed_blank_cleanup": {
+      "status": "실패",
+      "candidate": "014C80CF / 35-page direct paragraph-mark deletion candidate",
+      "failure": "Actual native accepted SAD trace contents were lost although the custom XML model passed. Candidate was rejected as invalid; exact 8AF baseline was restored by root.",
+      "rollback": {
+        "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\SAD-native-rollback.json",
+        "sha256": "22866a9a636bf77464f4f42c8ed7654822328e1513e88cb780b7fb86de47d2fd"
+      },
+      "replacement": "Native Word tracked Range.Delete preserving the cell-end mark; actual accept/reject all83x3 cell verification. The failed XML approach is not reused."
+    },
+    "native_60_page_baseline": {
+      "sourceSHA256": "8af46ef971b15ec6815cb5aed66e25580a4c9494d43dcdf4925852cb38c50515",
+      "defect_pages": [
+        22,
+        51
+      ],
+      "failure": "Empty continued trace-row areas; 183 active blank paragraphs removed through actual native tracked deletion."
+    }
+  },
+  "product_state": "미실행 / 판정 대기; 문서 점검 통과는 제품시험 통과 또는 정식 승인이 아니다.",
+  "counts": {
+    "통과": 21,
+    "해당없음": 8
+  }
+}

@@ -1,0 +1,1036 @@
+{
+  "code": "SRS",
+  "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sv-clean-20261013\\candidates\\SRS.xlsx",
+  "sha256": "093CE649ACE49090B333E2990CFE4D27DB2AF24C28BEC6130B2E1A0387F3F123",
+  "readOnly": true,
+  "initiallySelectedSheets": [
+    "소프트웨어 입력 요구사항 사양서"
+  ],
+  "worksheets": [
+    {
+      "name": "표지",
+      "index": 1,
+      "comments": 0,
+      "shapes": 0,
+      "printArea": null
+    },
+    {
+      "name": "소프트웨어 입력 요구사항 사양서",
+      "index": 2,
+      "comments": 1,
+      "shapes": 1,
+      "printArea": "$B$3:$I$107"
+    },
+    {
+      "name": "소프트웨어 입력 요구사항 사양서_비교",
+      "index": 3,
+      "comments": 1,
+      "shapes": 1,
+      "printArea": "$B$3:$I$107"
+    }
+  ],
+  "formulas": [
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "G6",
+      "value": "SW-FW-RID-1",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_비교",
+      "cell": "G6",
+      "value": "SW-FW-RID-1",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "G7",
+      "value": "SW-FW-RID-2",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_비교",
+      "cell": "G7",
+      "value": "SW-FW-RID-2",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "G8",
+      "value": "SW-FW-RID-3",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_비교",
+      "cell": "G8",
+      "value": "SW-FW-RID-3",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "G9",
+      "value": "SW-FW-RID-4",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_비교",
+      "cell": "G9",
+      "value": "SW-FW-RID-4",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "G10",
+      "value": "SW-FW-RID-5",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_비교",
+      "cell": "G10",
+      "value": "SW-FW-RID-5",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "G11",
+      "value": "SW-FW-RID-6",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_비교",
+      "cell": "G11",
+      "value": "SW-FW-RID-6",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "G12",
+      "value": "SW-FW-RID-7",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_비교",
+      "cell": "G12",
+      "value": "SW-FW-RID-7",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "G13",
+      "value": "SW-FW-RID-8",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_비교",
+      "cell": "G13",
+      "value": "SW-FW-RID-8",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "G14",
+      "value": "SW-FW-RID-9",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_비교",
+      "cell": "G14",
+      "value": "SW-FW-RID-9",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "G15",
+      "value": "SW-FW-RID-10",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_비교",
+      "cell": "G15",
+      "value": "SW-FW-RID-10",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "G16",
+      "value": "SW-FW-RID-11",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_비교",
+      "cell": "G16",
+      "value": "SW-FW-RID-11",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "G17",
+      "value": "SW-FW-RID-12",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_비교",
+      "cell": "G17",
+      "value": "SW-FW-RID-12",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "G18",
+      "value": "SW-FW-RID-13",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_비교",
+      "cell": "G18",
+      "value": "SW-FW-RID-13",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "G19",
+      "value": "SW-FW-RID-14",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_비교",
+      "cell": "G19",
+      "value": "SW-FW-RID-14",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "G20",
+      "value": "SW-FW-RID-15",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_비교",
+      "cell": "G20",
+      "value": "SW-FW-RID-15",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "G22",
+      "value": "SW-FW-RID-16",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_비교",
+      "cell": "G22",
+      "value": "SW-FW-RID-16",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "G23",
+      "value": "SW-FW-RID-17",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_비교",
+      "cell": "G23",
+      "value": "SW-FW-RID-17",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "G24",
+      "value": "SW-FW-RID-18",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_비교",
+      "cell": "G24",
+      "value": "SW-FW-RID-18",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "G25",
+      "value": "SW-FW-RID-19",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_비교",
+      "cell": "G25",
+      "value": "SW-FW-RID-19",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "G26",
+      "value": "SW-FW-RID-20",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_비교",
+      "cell": "G26",
+      "value": "SW-FW-RID-20",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "G27",
+      "value": "SW-FW-RID-21",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_비교",
+      "cell": "G27",
+      "value": "SW-FW-RID-21",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "G28",
+      "value": "SW-FW-RID-22",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_비교",
+      "cell": "G28",
+      "value": "SW-FW-RID-22",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "G29",
+      "value": "SW-FW-RID-23",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_비교",
+      "cell": "G29",
+      "value": "SW-FW-RID-23",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "G30",
+      "value": "SW-FW-RID-24",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_비교",
+      "cell": "G30",
+      "value": "SW-FW-RID-24",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "G31",
+      "value": "SW-FW-RID-25",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_비교",
+      "cell": "G31",
+      "value": "SW-FW-RID-25",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "G32",
+      "value": "SW-FW-RID-26",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_비교",
+      "cell": "G32",
+      "value": "SW-FW-RID-26",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "G33",
+      "value": "SW-FW-RID-27",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_비교",
+      "cell": "G33",
+      "value": "SW-FW-RID-27",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "G34",
+      "value": "SW-FW-RID-28",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_비교",
+      "cell": "G34",
+      "value": "SW-FW-RID-28",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "G35",
+      "value": "SW-FW-RID-29",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_비교",
+      "cell": "G35",
+      "value": "SW-FW-RID-29",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "G36",
+      "value": "SW-FW-RID-30",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_비교",
+      "cell": "G36",
+      "value": "SW-FW-RID-30",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "G37",
+      "value": "SW-FW-RID-31",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_비교",
+      "cell": "G37",
+      "value": "SW-FW-RID-31",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "G38",
+      "value": "SW-FW-RID-32",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_비교",
+      "cell": "G38",
+      "value": "SW-FW-RID-32",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "G39",
+      "value": "SW-FW-RID-33",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_비교",
+      "cell": "G39",
+      "value": "SW-FW-RID-33",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "G40",
+      "value": "SW-FW-RID-34",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_비교",
+      "cell": "G40",
+      "value": "SW-FW-RID-34",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "G41",
+      "value": "SW-FW-RID-35",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_비교",
+      "cell": "G41",
+      "value": "SW-FW-RID-35",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "G42",
+      "value": "SW-FW-RID-36",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_비교",
+      "cell": "G42",
+      "value": "SW-FW-RID-36",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "G43",
+      "value": "SW-FW-RID-37",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_비교",
+      "cell": "G43",
+      "value": "SW-FW-RID-37",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "G44",
+      "value": "SW-FW-RID-38",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_비교",
+      "cell": "G44",
+      "value": "SW-FW-RID-38",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "G45",
+      "value": "SW-FW-RID-39",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_비교",
+      "cell": "G45",
+      "value": "SW-FW-RID-39",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "G46",
+      "value": "SW-FW-RID-40",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_비교",
+      "cell": "G46",
+      "value": "SW-FW-RID-40",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "G47",
+      "value": "SW-FW-RID-41",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_비교",
+      "cell": "G47",
+      "value": "SW-FW-RID-41",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "G48",
+      "value": "SW-FW-RID-42",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_비교",
+      "cell": "G48",
+      "value": "SW-FW-RID-42",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "G49",
+      "value": "SW-FW-RID-43",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_비교",
+      "cell": "G49",
+      "value": "SW-FW-RID-43",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "G51",
+      "value": "SW-FW-RID-44",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_비교",
+      "cell": "G51",
+      "value": "SW-FW-RID-44",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "G53",
+      "value": "SW-FW-RID-45",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_비교",
+      "cell": "G53",
+      "value": "SW-FW-RID-45",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "G55",
+      "value": "SW-FW-RID-69",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_비교",
+      "cell": "G55",
+      "value": "SW-FW-RID-69",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "G57",
+      "value": "SW-FW-RID-70",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_비교",
+      "cell": "G57",
+      "value": "SW-FW-RID-70",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "G59",
+      "value": "SW-FW-RID-46",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_비교",
+      "cell": "G59",
+      "value": "SW-FW-RID-46",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "G60",
+      "value": "SW-FW-RID-47",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_비교",
+      "cell": "G60",
+      "value": "SW-FW-RID-47",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "G62",
+      "value": "SW-FW-RID-48",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_비교",
+      "cell": "G62",
+      "value": "SW-FW-RID-48",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "G64",
+      "value": "SW-FW-RID-49",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_비교",
+      "cell": "G64",
+      "value": "SW-FW-RID-49",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "G66",
+      "value": "SW-FW-RID-50",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_비교",
+      "cell": "G66",
+      "value": "SW-FW-RID-50",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "G67",
+      "value": "SW-FW-RID-51",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_비교",
+      "cell": "G67",
+      "value": "SW-FW-RID-51",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "G68",
+      "value": "SW-FW-RID-52",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_비교",
+      "cell": "G68",
+      "value": "SW-FW-RID-52",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "G70",
+      "value": "SW-FW-RID-53",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_비교",
+      "cell": "G70",
+      "value": "SW-FW-RID-53",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "G71",
+      "value": "SW-FW-RID-81",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_비교",
+      "cell": "G71",
+      "value": "SW-FW-RID-81",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "G72",
+      "value": "SW-FW-RID-54",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_비교",
+      "cell": "G72",
+      "value": "SW-FW-RID-54",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "G74",
+      "value": "SW-FW-RID-71",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_비교",
+      "cell": "G74",
+      "value": "SW-FW-RID-71",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "G76",
+      "value": "SW-FW-RID-72",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_비교",
+      "cell": "G76",
+      "value": "SW-FW-RID-72",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "G78",
+      "value": "SW-FW-RID-73",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_비교",
+      "cell": "G78",
+      "value": "SW-FW-RID-73",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "G79",
+      "value": "SW-FW-RID-74",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_비교",
+      "cell": "G79",
+      "value": "SW-FW-RID-74",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "G80",
+      "value": "SW-FW-RID-75",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_비교",
+      "cell": "G80",
+      "value": "SW-FW-RID-75",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "G81",
+      "value": "SW-FW-RID-76",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_비교",
+      "cell": "G81",
+      "value": "SW-FW-RID-76",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "G83",
+      "value": "SW-FW-RID-77",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_비교",
+      "cell": "G83",
+      "value": "SW-FW-RID-77",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "G84",
+      "value": "SW-FW-RID-78",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_비교",
+      "cell": "G84",
+      "value": "SW-FW-RID-78",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "G86",
+      "value": "SW-FW-RID-79",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_비교",
+      "cell": "G86",
+      "value": "SW-FW-RID-79",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "G87",
+      "value": "SW-FW-RID-80",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_비교",
+      "cell": "G87",
+      "value": "SW-FW-RID-80",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "G88",
+      "value": "SW-FW-RID-55",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_비교",
+      "cell": "G88",
+      "value": "SW-FW-RID-55",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "G89",
+      "value": "SW-FW-RID-56",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_비교",
+      "cell": "G89",
+      "value": "SW-FW-RID-56",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "G93",
+      "value": "SW-FW-RID-83",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_비교",
+      "cell": "G93",
+      "value": "SW-FW-RID-83",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "G96",
+      "value": "SW-FW-RID-57",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_비교",
+      "cell": "G96",
+      "value": "SW-FW-RID-57",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "G97",
+      "value": "SW-FW-RID-58",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_비교",
+      "cell": "G97",
+      "value": "SW-FW-RID-58",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "G98",
+      "value": "SW-FW-RID-59",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_비교",
+      "cell": "G98",
+      "value": "SW-FW-RID-59",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "G99",
+      "value": "SW-FW-RID-60",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_비교",
+      "cell": "G99",
+      "value": "SW-FW-RID-60",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "G100",
+      "value": "SW-FW-RID-61",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_비교",
+      "cell": "G100",
+      "value": "SW-FW-RID-61",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "G101",
+      "value": "SW-FW-RID-62",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_비교",
+      "cell": "G101",
+      "value": "SW-FW-RID-62",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "G102",
+      "value": "SW-FW-RID-63",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_비교",
+      "cell": "G102",
+      "value": "SW-FW-RID-63",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "G103",
+      "value": "SW-FW-RID-64",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_비교",
+      "cell": "G103",
+      "value": "SW-FW-RID-64",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "G104",
+      "value": "SW-FW-RID-65",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_비교",
+      "cell": "G104",
+      "value": "SW-FW-RID-65",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "G105",
+      "value": "SW-FW-RID-66",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_비교",
+      "cell": "G105",
+      "value": "SW-FW-RID-66",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "G106",
+      "value": "SW-FW-RID-67",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_비교",
+      "cell": "G106",
+      "value": "SW-FW-RID-67",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "G107",
+      "value": "SW-FW-RID-68",
+      "pass": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_비교",
+      "cell": "G107",
+      "value": "SW-FW-RID-68",
+      "pass": true
+    }
+  ],
+  "previews": [
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "range": "B3:I107",
+      "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sv-clean-20261013\\native-srs-final\\SRS-main.pdf",
+      "scope": "Current main sheet, complete existing print area; read-only Excel preview",
+      "originalPrintArea": "$B$3:$I$107"
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_비교",
+      "range": "B50:I57",
+      "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sv-clean-20261013\\native-srs-final\\SRS-main-compare.pdf",
+      "scope": "New comparison sheet representative range; full original comparison cells/layout verified against backup",
+      "originalPrintArea": "$B$3:$I$107"
+    }
+  ],
+  "unchanged": true,
+  "checkedAt": "2026-10-13T14:26:31.0444488+09:00"
+}

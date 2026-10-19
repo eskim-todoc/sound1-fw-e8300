@@ -1,0 +1,10 @@
+import fs from 'node:fs/promises';
+import path from 'node:path';
+import {FileBlob,SpreadsheetFile} from '@oai/artifact-tool';
+const base='E:/workspace/projects/sound1-fw-e8300-backup/docs/tasks/인허가/20261012_2102_QCC-설계문서-반영';
+const source='G:/공유 드라이브/20_프로젝트별/01_project sound1/08_DHF/02_설계 입력/SW/외부기/[E8300-QCC] SRS-FW-TD24A 소프트웨어 요구사항 사양서.xlsx';
+const wb=await SpreadsheetFile.importXlsx(await FileBlob.load(source));
+wb.worksheets.getItem('소프트웨어 입력 요구사항 사양서').getRange('H49').format.wrapText=true;
+wb.recalculate();
+await (await SpreadsheetFile.exportXlsx(wb)).save(path.join(base,'qa/qcc_requirements/h49-wrap-artifact.xlsx'));
+console.log('H49 wrapping authored in isolated Artifact candidate');

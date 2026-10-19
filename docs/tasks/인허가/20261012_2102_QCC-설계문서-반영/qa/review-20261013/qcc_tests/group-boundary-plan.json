@@ -1,0 +1,4478 @@
+{
+  "SUVC": {
+    "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SUVC-FW-TD24A 소프트웨어 유닛 검증 기준서.xlsx",
+    "sha256_before": "10a7f9f1167794e8b51fe899dc319fc43a441fd1cc1bf3e2aa50ead2b1ad76ed",
+    "sheet": "기준서_유닛 검증",
+    "member": "xl/worksheets/sheet2.xml",
+    "all_group_ids": [
+      [
+        30,
+        "SW-FW-UnitTest-CFX-ID-1"
+      ],
+      [
+        35,
+        "SW-FW-UnitTest-CFX-ID-2"
+      ],
+      [
+        39,
+        "SW-FW-UnitTest-CFX-ID-3"
+      ],
+      [
+        43,
+        "SW-FW-UnitTest-CFX-ID-4"
+      ],
+      [
+        47,
+        "SW-FW-UnitTest-CFX-ID-5"
+      ],
+      [
+        51,
+        "SW-FW-UnitTest-CFX-ID-6"
+      ],
+      [
+        54,
+        "SW-FW-UnitTest-CFX-ID-7"
+      ],
+      [
+        59,
+        "SW-FW-UnitTest-CFX-ID-8"
+      ],
+      [
+        64,
+        "SW-FW-UnitTest-CFX-ID-9"
+      ],
+      [
+        67,
+        "SW-FW-UnitTest-CFX-ID-10"
+      ],
+      [
+        72,
+        "SW-FW-UnitTest-CFX-ID-11"
+      ],
+      [
+        101,
+        "SW-FW-UnitTest-CFX-ID-12"
+      ],
+      [
+        116,
+        "SW-FW-UnitTest-CFX-ID-13"
+      ],
+      [
+        121,
+        "SW-FW-UnitTest-CFX-ID-14"
+      ],
+      [
+        124,
+        "SW-FW-UnitTest-CFX-ID-15"
+      ],
+      [
+        131,
+        "SW-FW-UnitTest-CFX-ID-16"
+      ],
+      [
+        138,
+        "SW-FW-UnitTest-CFX-ID-17"
+      ],
+      [
+        144,
+        "SW-FW-UnitTest-CFX-ID-18"
+      ],
+      [
+        149,
+        "SW-FW-UnitTest-CFX-ID-19"
+      ],
+      [
+        160,
+        "SW-FW-UnitTest-CFX-ID-20"
+      ],
+      [
+        168,
+        "SW-FW-UnitTest-CFX-ID-21"
+      ],
+      [
+        175,
+        "SW-FW-UnitTest-CFX-ID-22"
+      ],
+      [
+        182,
+        "SW-FW-UnitTest-CFX-ID-23"
+      ],
+      [
+        268,
+        "SW-FW-UnitTest-CFX-ID-24"
+      ],
+      [
+        278,
+        "SW-FW-UnitTest-CFX-ID-25"
+      ],
+      [
+        285,
+        "SW-FW-UnitTest-CFX-ID-26"
+      ],
+      [
+        289,
+        "SW-FW-UnitTest-CFX-ID-27"
+      ],
+      [
+        298,
+        "SW-FW-UnitTest-CFX-ID-28"
+      ],
+      [
+        304,
+        "SW-FW-UnitTest-CFX-ID-29"
+      ],
+      [
+        309,
+        "SW-FW-UnitTest-CFX-ID-30"
+      ],
+      [
+        322,
+        "SW-FW-UnitTest-CFX-ID-31"
+      ],
+      [
+        401,
+        "SW-FW-UnitTest-CFX-ID-32"
+      ],
+      [
+        559,
+        "SW-FW-UnitTest-CFX-ID-33"
+      ],
+      [
+        578,
+        "SW-FW-UnitTest-CFX-ID-34"
+      ],
+      [
+        585,
+        "SW-FW-UnitTest-CFX-ID-35"
+      ],
+      [
+        589,
+        "SW-FW-UnitTest-CFX-ID-36"
+      ],
+      [
+        595,
+        "SW-FW-UnitTest-CFX-ID-37"
+      ],
+      [
+        609,
+        "SW-FW-UnitTest-CFX-ID-38"
+      ],
+      [
+        614,
+        "SW-FW-UnitTest-CFX-ID-39"
+      ],
+      [
+        624,
+        "SW-FW-UnitTest-CFX-ID-40"
+      ],
+      [
+        633,
+        "SW-FW-UnitTest-CFX-ID-41"
+      ],
+      [
+        638,
+        "SW-FW-UnitTest-CFX-ID-42"
+      ],
+      [
+        644,
+        "SW-FW-UnitTest-HEAR-ID-1"
+      ],
+      [
+        650,
+        "SW-FW-UnitTest-HEAR-ID-2"
+      ],
+      [
+        789,
+        "SW-FW-UnitTest-CM3-ID-1"
+      ],
+      [
+        793,
+        "SW-FW-UnitTest-CM3-ID-2"
+      ],
+      [
+        799,
+        "SW-FW-UnitTest-CM3-ID-3"
+      ],
+      [
+        802,
+        "SW-FW-UnitTest-CM3-ID-4"
+      ],
+      [
+        809,
+        "SW-FW-UnitTest-CM3-ID-5"
+      ],
+      [
+        812,
+        "SW-FW-UnitTest-CM3-ID-6"
+      ],
+      [
+        824,
+        "SW-FW-UnitTest-CM3-ID-7"
+      ],
+      [
+        834,
+        "SW-FW-UnitTest-CM3-ID-8"
+      ],
+      [
+        839,
+        "SW-FW-UnitTest-CM3-ID-9"
+      ],
+      [
+        860,
+        "SW-FW-UnitTest-CM3-ID-10"
+      ],
+      [
+        876,
+        "SW-FW-UnitTest-CM3-ID-11"
+      ],
+      [
+        883,
+        "SW-FW-UnitTest-CM3-ID-12"
+      ],
+      [
+        889,
+        "SW-FW-UnitTest-CM3-ID-13"
+      ],
+      [
+        897,
+        "SW-FW-UnitTest-CM3-ID-14"
+      ],
+      [
+        904,
+        "SW-FW-UnitTest-CM3-ID-15"
+      ],
+      [
+        908,
+        "SW-FW-UnitTest-CM3-ID-16"
+      ],
+      [
+        915,
+        "SW-FW-UnitTest-CM3-ID-17"
+      ],
+      [
+        920,
+        "SW-FW-UnitTest-CM3-ID-18"
+      ],
+      [
+        925,
+        "SW-FW-UnitTest-CM3-ID-19"
+      ],
+      [
+        934,
+        "SW-FW-UnitTest-CM3-ID-20"
+      ],
+      [
+        942,
+        "SW-FW-UnitTest-CM3-ID-21"
+      ],
+      [
+        964,
+        "SW-FW-UnitTest-CM3-ID-22"
+      ],
+      [
+        976,
+        "SW-FW-UnitTest-CM3-ID-23"
+      ],
+      [
+        982,
+        "SW-FW-UnitTest-CM3-ID-24"
+      ],
+      [
+        987,
+        "SW-FW-UnitTest-CM3-ID-25"
+      ],
+      [
+        996,
+        "SW-FW-UnitTest-CM3-ID-26"
+      ],
+      [
+        1003,
+        "SW-FW-UnitTest-CM3-ID-27"
+      ],
+      [
+        1010,
+        "SW-FW-UnitTest-CM3-ID-28"
+      ],
+      [
+        1040,
+        "SW-FW-UnitTest-CM3-ID-29"
+      ],
+      [
+        1088,
+        "SW-FW-UnitTest-CM3-ID-30"
+      ],
+      [
+        1100,
+        "SW-FW-UnitTest-CM3-ID-31"
+      ],
+      [
+        1104,
+        "SW-FW-UnitTest-CM3-ID-32"
+      ],
+      [
+        1109,
+        "SW-FW-UnitTest-CM3-ID-33"
+      ],
+      [
+        1114,
+        "SW-FW-UnitTest-CM3-ID-34"
+      ],
+      [
+        1119,
+        "SW-FW-UnitTest-CM3-ID-35"
+      ],
+      [
+        1124,
+        "SW-FW-UnitTest-CM3-ID-36"
+      ],
+      [
+        1142,
+        "SW-FW-UnitTest-CM3-ID-37"
+      ],
+      [
+        1148,
+        "SW-FW-UnitTest-CM3-ID-38"
+      ],
+      [
+        1154,
+        "SW-FW-UnitTest-CM3-ID-39"
+      ],
+      [
+        1159,
+        "SW-FW-UnitTest-CM3-ID-40"
+      ],
+      [
+        1165,
+        "SW-FW-UnitTest-CM3-ID-41"
+      ],
+      [
+        1175,
+        "SW-FW-UnitTest-CM3-ID-42"
+      ],
+      [
+        1181,
+        "SW-FW-UnitTest-CM3-ID-43"
+      ],
+      [
+        1185,
+        "SW-FW-UnitTest-CM3-ID-44"
+      ],
+      [
+        1192,
+        "SW-FW-UnitTest-CM3-ID-45"
+      ],
+      [
+        1208,
+        "SW-FW-UnitTest-CM3-ID-46"
+      ],
+      [
+        1214,
+        "SW-FW-UnitTest-CM3-ID-47"
+      ],
+      [
+        1230,
+        "SW-FW-UnitTest-CM3-ID-48"
+      ],
+      [
+        1235,
+        "SW-FW-UnitTest-CM3-ID-49"
+      ],
+      [
+        1243,
+        "SW-FW-UnitTest-CM3-ID-50"
+      ],
+      [
+        1252,
+        "SW-FW-UnitTest-CM3-ID-51"
+      ],
+      [
+        1284,
+        "SW-FW-UnitTest-BOOT-ID-1"
+      ],
+      [
+        1288,
+        "SW-FW-UnitTest-BOOT-ID-2"
+      ],
+      [
+        1305,
+        "SW-FW-UnitTest-BOOT-ID-3"
+      ],
+      [
+        1308,
+        "SW-FW-UnitTest-BOOT-ID-4"
+      ],
+      [
+        1319,
+        "SW-FW-UnitTest-BOOT-ID-5"
+      ],
+      [
+        1323,
+        "SW-FW-UnitTest-BOOT-ID-6"
+      ],
+      [
+        1329,
+        "SW-FW-UnitTest-BOOT-ID-7"
+      ],
+      [
+        1365,
+        "SW-FW-UnitTest-BOOT-ID-8"
+      ],
+      [
+        1391,
+        "SW-FW-UnitTest-BOOT-ID-9"
+      ],
+      [
+        1409,
+        "SW-FW-UnitTest-BOOT-ID-10"
+      ],
+      [
+        1452,
+        "SW-FW-UnitTest-BOOT-ID-11"
+      ],
+      [
+        1497,
+        "SW-FW-UnitTest-BOOT-ID-12"
+      ],
+      [
+        1534,
+        "SW-FW-UnitTest-BOOT-ID-13"
+      ],
+      [
+        1577,
+        "SW-FW-UnitTest-BOOT-ID-14"
+      ],
+      [
+        1590,
+        "SW-FW-UnitTest-BOOT-ID-15"
+      ],
+      [
+        1616,
+        "SW-FW-UnitTest-BOOT-ID-16"
+      ],
+      [
+        1623,
+        "SW-FW-UnitTest-BOOT-ID-17"
+      ],
+      [
+        1644,
+        "SW-FW-UnitTest-BOOT-ID-18"
+      ],
+      [
+        1649,
+        "SW-FW-UnitTest-BOOT-ID-19"
+      ],
+      [
+        1686,
+        "SW-FW-UnitTest-BOOT-ID-20"
+      ],
+      [
+        1727,
+        "SW-FW-UnitTest-QCC-ID-1"
+      ],
+      [
+        1729,
+        "SW-FW-UnitTest-QCC-ID-2"
+      ],
+      [
+        1733,
+        "SW-FW-UnitTest-QCC-ID-3"
+      ],
+      [
+        1734,
+        "SW-FW-UnitTest-QCC-ID-4"
+      ],
+      [
+        1736,
+        "SW-FW-UnitTest-QCC-ID-5"
+      ],
+      [
+        1737,
+        "SW-FW-UnitTest-QCC-ID-6"
+      ],
+      [
+        1738,
+        "SW-FW-UnitTest-QCC-ID-7"
+      ],
+      [
+        1740,
+        "SW-FW-UnitTest-QCC-ID-8"
+      ],
+      [
+        1744,
+        "SW-FW-UnitTest-QCC-ID-9"
+      ],
+      [
+        1746,
+        "SW-FW-UnitTest-QCC-ID-10"
+      ],
+      [
+        1751,
+        "SW-FW-UnitTest-QCC-ID-11"
+      ],
+      [
+        1753,
+        "SW-FW-UnitTest-QCC-ID-12"
+      ],
+      [
+        1755,
+        "SW-FW-UnitTest-QCC-ID-13"
+      ],
+      [
+        1760,
+        "SW-FW-UnitTest-QCC-ID-14"
+      ],
+      [
+        1763,
+        "SW-FW-UnitTest-QCC-ID-15"
+      ]
+    ],
+    "page_break_before_rows": [
+      35,
+      39,
+      43,
+      47,
+      51,
+      54,
+      59,
+      64,
+      67,
+      72,
+      101,
+      116,
+      121,
+      124,
+      131,
+      138,
+      144,
+      149,
+      160,
+      168,
+      175,
+      182,
+      268,
+      278,
+      285,
+      289,
+      298,
+      304,
+      309,
+      322,
+      401,
+      559,
+      578,
+      585,
+      589,
+      595,
+      609,
+      614,
+      624,
+      633,
+      638,
+      644,
+      650,
+      789,
+      793,
+      799,
+      802,
+      809,
+      812,
+      824,
+      834,
+      839,
+      860,
+      876,
+      883,
+      889,
+      897,
+      904,
+      908,
+      915,
+      920,
+      925,
+      934,
+      942,
+      964,
+      976,
+      982,
+      987,
+      996,
+      1003,
+      1010,
+      1040,
+      1088,
+      1100,
+      1104,
+      1109,
+      1114,
+      1119,
+      1124,
+      1142,
+      1148,
+      1154,
+      1159,
+      1165,
+      1175,
+      1181,
+      1185,
+      1192,
+      1208,
+      1214,
+      1230,
+      1235,
+      1243,
+      1252,
+      1284,
+      1288,
+      1305,
+      1308,
+      1319,
+      1323,
+      1329,
+      1365,
+      1391,
+      1409,
+      1452,
+      1497,
+      1534,
+      1577,
+      1590,
+      1616,
+      1623,
+      1644,
+      1649,
+      1686,
+      1727,
+      1729,
+      1733,
+      1734,
+      1736,
+      1737,
+      1738,
+      1740,
+      1744,
+      1746,
+      1751,
+      1753,
+      1755,
+      1760,
+      1763
+    ],
+    "new_break_before_rows": [
+      35,
+      39,
+      43,
+      47,
+      51,
+      54,
+      59,
+      64,
+      116,
+      121,
+      124,
+      131,
+      138,
+      144,
+      160,
+      168,
+      175,
+      182,
+      268,
+      278,
+      289,
+      298,
+      304,
+      322,
+      401,
+      559,
+      585,
+      589,
+      595,
+      609,
+      614,
+      624,
+      633,
+      638,
+      644,
+      793,
+      799,
+      802,
+      812,
+      824,
+      834,
+      839,
+      860,
+      876,
+      883,
+      889,
+      897,
+      904,
+      908,
+      920,
+      925,
+      934,
+      942,
+      964,
+      976,
+      982,
+      987,
+      996,
+      1088,
+      1100,
+      1104,
+      1109,
+      1114,
+      1119,
+      1124,
+      1142,
+      1154,
+      1165,
+      1181,
+      1185,
+      1192,
+      1208,
+      1214,
+      1230,
+      1235,
+      1243,
+      1252,
+      1284,
+      1288,
+      1305,
+      1319,
+      1323,
+      1329,
+      1365,
+      1391,
+      1409,
+      1452,
+      1497,
+      1534,
+      1577,
+      1590,
+      1616,
+      1623,
+      1649
+    ],
+    "changed_short_group_scope": [
+      {
+        "start_row": 35,
+        "id": "SW-FW-UnitTest-CFX-ID-2"
+      },
+      {
+        "start_row": 39,
+        "id": "SW-FW-UnitTest-CFX-ID-3"
+      },
+      {
+        "start_row": 43,
+        "id": "SW-FW-UnitTest-CFX-ID-4"
+      },
+      {
+        "start_row": 47,
+        "id": "SW-FW-UnitTest-CFX-ID-5"
+      },
+      {
+        "start_row": 51,
+        "id": "SW-FW-UnitTest-CFX-ID-6"
+      },
+      {
+        "start_row": 54,
+        "id": "SW-FW-UnitTest-CFX-ID-7"
+      },
+      {
+        "start_row": 59,
+        "id": "SW-FW-UnitTest-CFX-ID-8"
+      },
+      {
+        "start_row": 64,
+        "id": "SW-FW-UnitTest-CFX-ID-9"
+      },
+      {
+        "start_row": 67,
+        "id": "SW-FW-UnitTest-CFX-ID-10"
+      },
+      {
+        "start_row": 72,
+        "id": "SW-FW-UnitTest-CFX-ID-11"
+      },
+      {
+        "start_row": 101,
+        "id": "SW-FW-UnitTest-CFX-ID-12"
+      },
+      {
+        "start_row": 116,
+        "id": "SW-FW-UnitTest-CFX-ID-13"
+      },
+      {
+        "start_row": 121,
+        "id": "SW-FW-UnitTest-CFX-ID-14"
+      },
+      {
+        "start_row": 124,
+        "id": "SW-FW-UnitTest-CFX-ID-15"
+      },
+      {
+        "start_row": 131,
+        "id": "SW-FW-UnitTest-CFX-ID-16"
+      },
+      {
+        "start_row": 138,
+        "id": "SW-FW-UnitTest-CFX-ID-17"
+      },
+      {
+        "start_row": 144,
+        "id": "SW-FW-UnitTest-CFX-ID-18"
+      },
+      {
+        "start_row": 149,
+        "id": "SW-FW-UnitTest-CFX-ID-19"
+      },
+      {
+        "start_row": 160,
+        "id": "SW-FW-UnitTest-CFX-ID-20"
+      },
+      {
+        "start_row": 168,
+        "id": "SW-FW-UnitTest-CFX-ID-21"
+      },
+      {
+        "start_row": 175,
+        "id": "SW-FW-UnitTest-CFX-ID-22"
+      },
+      {
+        "start_row": 182,
+        "id": "SW-FW-UnitTest-CFX-ID-23"
+      },
+      {
+        "start_row": 268,
+        "id": "SW-FW-UnitTest-CFX-ID-24"
+      },
+      {
+        "start_row": 278,
+        "id": "SW-FW-UnitTest-CFX-ID-25"
+      },
+      {
+        "start_row": 285,
+        "id": "SW-FW-UnitTest-CFX-ID-26"
+      },
+      {
+        "start_row": 289,
+        "id": "SW-FW-UnitTest-CFX-ID-27"
+      },
+      {
+        "start_row": 298,
+        "id": "SW-FW-UnitTest-CFX-ID-28"
+      },
+      {
+        "start_row": 304,
+        "id": "SW-FW-UnitTest-CFX-ID-29"
+      },
+      {
+        "start_row": 309,
+        "id": "SW-FW-UnitTest-CFX-ID-30"
+      },
+      {
+        "start_row": 322,
+        "id": "SW-FW-UnitTest-CFX-ID-31"
+      },
+      {
+        "start_row": 401,
+        "id": "SW-FW-UnitTest-CFX-ID-32"
+      },
+      {
+        "start_row": 559,
+        "id": "SW-FW-UnitTest-CFX-ID-33"
+      },
+      {
+        "start_row": 578,
+        "id": "SW-FW-UnitTest-CFX-ID-34"
+      },
+      {
+        "start_row": 585,
+        "id": "SW-FW-UnitTest-CFX-ID-35"
+      },
+      {
+        "start_row": 589,
+        "id": "SW-FW-UnitTest-CFX-ID-36"
+      },
+      {
+        "start_row": 595,
+        "id": "SW-FW-UnitTest-CFX-ID-37"
+      },
+      {
+        "start_row": 609,
+        "id": "SW-FW-UnitTest-CFX-ID-38"
+      },
+      {
+        "start_row": 614,
+        "id": "SW-FW-UnitTest-CFX-ID-39"
+      },
+      {
+        "start_row": 624,
+        "id": "SW-FW-UnitTest-CFX-ID-40"
+      },
+      {
+        "start_row": 633,
+        "id": "SW-FW-UnitTest-CFX-ID-41"
+      },
+      {
+        "start_row": 638,
+        "id": "SW-FW-UnitTest-CFX-ID-42"
+      },
+      {
+        "start_row": 644,
+        "id": "SW-FW-UnitTest-HEAR-ID-1"
+      },
+      {
+        "start_row": 650,
+        "id": "SW-FW-UnitTest-HEAR-ID-2"
+      },
+      {
+        "start_row": 789,
+        "id": "SW-FW-UnitTest-CM3-ID-1"
+      },
+      {
+        "start_row": 793,
+        "id": "SW-FW-UnitTest-CM3-ID-2"
+      },
+      {
+        "start_row": 799,
+        "id": "SW-FW-UnitTest-CM3-ID-3"
+      },
+      {
+        "start_row": 802,
+        "id": "SW-FW-UnitTest-CM3-ID-4"
+      },
+      {
+        "start_row": 809,
+        "id": "SW-FW-UnitTest-CM3-ID-5"
+      },
+      {
+        "start_row": 812,
+        "id": "SW-FW-UnitTest-CM3-ID-6"
+      },
+      {
+        "start_row": 824,
+        "id": "SW-FW-UnitTest-CM3-ID-7"
+      },
+      {
+        "start_row": 834,
+        "id": "SW-FW-UnitTest-CM3-ID-8"
+      },
+      {
+        "start_row": 839,
+        "id": "SW-FW-UnitTest-CM3-ID-9"
+      },
+      {
+        "start_row": 860,
+        "id": "SW-FW-UnitTest-CM3-ID-10"
+      },
+      {
+        "start_row": 876,
+        "id": "SW-FW-UnitTest-CM3-ID-11"
+      },
+      {
+        "start_row": 883,
+        "id": "SW-FW-UnitTest-CM3-ID-12"
+      },
+      {
+        "start_row": 889,
+        "id": "SW-FW-UnitTest-CM3-ID-13"
+      },
+      {
+        "start_row": 897,
+        "id": "SW-FW-UnitTest-CM3-ID-14"
+      },
+      {
+        "start_row": 904,
+        "id": "SW-FW-UnitTest-CM3-ID-15"
+      },
+      {
+        "start_row": 908,
+        "id": "SW-FW-UnitTest-CM3-ID-16"
+      },
+      {
+        "start_row": 915,
+        "id": "SW-FW-UnitTest-CM3-ID-17"
+      },
+      {
+        "start_row": 920,
+        "id": "SW-FW-UnitTest-CM3-ID-18"
+      },
+      {
+        "start_row": 925,
+        "id": "SW-FW-UnitTest-CM3-ID-19"
+      },
+      {
+        "start_row": 934,
+        "id": "SW-FW-UnitTest-CM3-ID-20"
+      },
+      {
+        "start_row": 942,
+        "id": "SW-FW-UnitTest-CM3-ID-21"
+      },
+      {
+        "start_row": 964,
+        "id": "SW-FW-UnitTest-CM3-ID-22"
+      },
+      {
+        "start_row": 976,
+        "id": "SW-FW-UnitTest-CM3-ID-23"
+      },
+      {
+        "start_row": 982,
+        "id": "SW-FW-UnitTest-CM3-ID-24"
+      },
+      {
+        "start_row": 987,
+        "id": "SW-FW-UnitTest-CM3-ID-25"
+      },
+      {
+        "start_row": 996,
+        "id": "SW-FW-UnitTest-CM3-ID-26"
+      },
+      {
+        "start_row": 1003,
+        "id": "SW-FW-UnitTest-CM3-ID-27"
+      },
+      {
+        "start_row": 1010,
+        "id": "SW-FW-UnitTest-CM3-ID-28"
+      },
+      {
+        "start_row": 1040,
+        "id": "SW-FW-UnitTest-CM3-ID-29"
+      },
+      {
+        "start_row": 1088,
+        "id": "SW-FW-UnitTest-CM3-ID-30"
+      },
+      {
+        "start_row": 1100,
+        "id": "SW-FW-UnitTest-CM3-ID-31"
+      },
+      {
+        "start_row": 1104,
+        "id": "SW-FW-UnitTest-CM3-ID-32"
+      },
+      {
+        "start_row": 1109,
+        "id": "SW-FW-UnitTest-CM3-ID-33"
+      },
+      {
+        "start_row": 1114,
+        "id": "SW-FW-UnitTest-CM3-ID-34"
+      },
+      {
+        "start_row": 1119,
+        "id": "SW-FW-UnitTest-CM3-ID-35"
+      },
+      {
+        "start_row": 1124,
+        "id": "SW-FW-UnitTest-CM3-ID-36"
+      },
+      {
+        "start_row": 1142,
+        "id": "SW-FW-UnitTest-CM3-ID-37"
+      },
+      {
+        "start_row": 1148,
+        "id": "SW-FW-UnitTest-CM3-ID-38"
+      },
+      {
+        "start_row": 1154,
+        "id": "SW-FW-UnitTest-CM3-ID-39"
+      },
+      {
+        "start_row": 1159,
+        "id": "SW-FW-UnitTest-CM3-ID-40"
+      },
+      {
+        "start_row": 1165,
+        "id": "SW-FW-UnitTest-CM3-ID-41"
+      },
+      {
+        "start_row": 1175,
+        "id": "SW-FW-UnitTest-CM3-ID-42"
+      },
+      {
+        "start_row": 1181,
+        "id": "SW-FW-UnitTest-CM3-ID-43"
+      },
+      {
+        "start_row": 1185,
+        "id": "SW-FW-UnitTest-CM3-ID-44"
+      },
+      {
+        "start_row": 1192,
+        "id": "SW-FW-UnitTest-CM3-ID-45"
+      },
+      {
+        "start_row": 1208,
+        "id": "SW-FW-UnitTest-CM3-ID-46"
+      },
+      {
+        "start_row": 1214,
+        "id": "SW-FW-UnitTest-CM3-ID-47"
+      },
+      {
+        "start_row": 1230,
+        "id": "SW-FW-UnitTest-CM3-ID-48"
+      },
+      {
+        "start_row": 1235,
+        "id": "SW-FW-UnitTest-CM3-ID-49"
+      },
+      {
+        "start_row": 1243,
+        "id": "SW-FW-UnitTest-CM3-ID-50"
+      },
+      {
+        "start_row": 1252,
+        "id": "SW-FW-UnitTest-CM3-ID-51"
+      },
+      {
+        "start_row": 1284,
+        "id": "SW-FW-UnitTest-BOOT-ID-1"
+      },
+      {
+        "start_row": 1288,
+        "id": "SW-FW-UnitTest-BOOT-ID-2"
+      },
+      {
+        "start_row": 1305,
+        "id": "SW-FW-UnitTest-BOOT-ID-3"
+      },
+      {
+        "start_row": 1308,
+        "id": "SW-FW-UnitTest-BOOT-ID-4"
+      },
+      {
+        "start_row": 1319,
+        "id": "SW-FW-UnitTest-BOOT-ID-5"
+      },
+      {
+        "start_row": 1323,
+        "id": "SW-FW-UnitTest-BOOT-ID-6"
+      },
+      {
+        "start_row": 1329,
+        "id": "SW-FW-UnitTest-BOOT-ID-7"
+      },
+      {
+        "start_row": 1365,
+        "id": "SW-FW-UnitTest-BOOT-ID-8"
+      },
+      {
+        "start_row": 1391,
+        "id": "SW-FW-UnitTest-BOOT-ID-9"
+      },
+      {
+        "start_row": 1409,
+        "id": "SW-FW-UnitTest-BOOT-ID-10"
+      },
+      {
+        "start_row": 1452,
+        "id": "SW-FW-UnitTest-BOOT-ID-11"
+      },
+      {
+        "start_row": 1497,
+        "id": "SW-FW-UnitTest-BOOT-ID-12"
+      },
+      {
+        "start_row": 1534,
+        "id": "SW-FW-UnitTest-BOOT-ID-13"
+      },
+      {
+        "start_row": 1577,
+        "id": "SW-FW-UnitTest-BOOT-ID-14"
+      },
+      {
+        "start_row": 1590,
+        "id": "SW-FW-UnitTest-BOOT-ID-15"
+      },
+      {
+        "start_row": 1616,
+        "id": "SW-FW-UnitTest-BOOT-ID-16"
+      },
+      {
+        "start_row": 1623,
+        "id": "SW-FW-UnitTest-BOOT-ID-17"
+      },
+      {
+        "start_row": 1644,
+        "id": "SW-FW-UnitTest-BOOT-ID-18"
+      },
+      {
+        "start_row": 1649,
+        "id": "SW-FW-UnitTest-BOOT-ID-19"
+      },
+      {
+        "start_row": 1686,
+        "id": "SW-FW-UnitTest-BOOT-ID-20"
+      },
+      {
+        "start_row": 1727,
+        "id": "SW-FW-UnitTest-QCC-ID-1"
+      },
+      {
+        "start_row": 1729,
+        "id": "SW-FW-UnitTest-QCC-ID-2"
+      },
+      {
+        "start_row": 1733,
+        "id": "SW-FW-UnitTest-QCC-ID-3"
+      },
+      {
+        "start_row": 1734,
+        "id": "SW-FW-UnitTest-QCC-ID-4"
+      },
+      {
+        "start_row": 1736,
+        "id": "SW-FW-UnitTest-QCC-ID-5"
+      },
+      {
+        "start_row": 1737,
+        "id": "SW-FW-UnitTest-QCC-ID-6"
+      },
+      {
+        "start_row": 1738,
+        "id": "SW-FW-UnitTest-QCC-ID-7"
+      },
+      {
+        "start_row": 1740,
+        "id": "SW-FW-UnitTest-QCC-ID-8"
+      },
+      {
+        "start_row": 1744,
+        "id": "SW-FW-UnitTest-QCC-ID-9"
+      },
+      {
+        "start_row": 1746,
+        "id": "SW-FW-UnitTest-QCC-ID-10"
+      },
+      {
+        "start_row": 1751,
+        "id": "SW-FW-UnitTest-QCC-ID-11"
+      },
+      {
+        "start_row": 1753,
+        "id": "SW-FW-UnitTest-QCC-ID-12"
+      },
+      {
+        "start_row": 1755,
+        "id": "SW-FW-UnitTest-QCC-ID-13"
+      },
+      {
+        "start_row": 1760,
+        "id": "SW-FW-UnitTest-QCC-ID-14"
+      },
+      {
+        "start_row": 1763,
+        "id": "SW-FW-UnitTest-QCC-ID-15"
+      }
+    ],
+    "extra_condition_breaks": [],
+    "top_alignment_cells": [],
+    "candidate": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\group-boundary-candidate\\[E8300-QCC] SUVC-FW-TD24A 소프트웨어 유닛 검증 기준서.xlsx",
+    "height_changes": {},
+    "text_changes": {},
+    "reason": "Fix each changed short preparation/procedure at its test start; preserve normal long RTT continuation. H82/H206 limited notes top aligned, J218 date comparison condition starts separately. No test input/result/PASS added."
+  },
+  "SUVR": {
+    "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\04_설계 검증\\SW\\외부기\\[E8300-QCC] SUVR-FW-TD24A 소프트웨어 유닛 검증 보고서.xlsx",
+    "sha256_before": "f49db7d01632e6d3423f7815304fe85807c233663928e576fe7448f9b8dac046",
+    "sheet": "보고서_유닛 시험",
+    "member": "xl/worksheets/sheet2.xml",
+    "all_group_ids": [
+      [
+        30,
+        "SW-FW-UnitTest-CFX-ID-1"
+      ],
+      [
+        35,
+        "SW-FW-UnitTest-CFX-ID-2"
+      ],
+      [
+        39,
+        "SW-FW-UnitTest-CFX-ID-3"
+      ],
+      [
+        43,
+        "SW-FW-UnitTest-CFX-ID-4"
+      ],
+      [
+        47,
+        "SW-FW-UnitTest-CFX-ID-5"
+      ],
+      [
+        51,
+        "SW-FW-UnitTest-CFX-ID-6"
+      ],
+      [
+        54,
+        "SW-FW-UnitTest-CFX-ID-7"
+      ],
+      [
+        59,
+        "SW-FW-UnitTest-CFX-ID-8"
+      ],
+      [
+        64,
+        "SW-FW-UnitTest-CFX-ID-9"
+      ],
+      [
+        67,
+        "SW-FW-UnitTest-CFX-ID-10"
+      ],
+      [
+        72,
+        "SW-FW-UnitTest-CFX-ID-11"
+      ],
+      [
+        101,
+        "SW-FW-UnitTest-CFX-ID-12"
+      ],
+      [
+        116,
+        "SW-FW-UnitTest-CFX-ID-13"
+      ],
+      [
+        121,
+        "SW-FW-UnitTest-CFX-ID-14"
+      ],
+      [
+        124,
+        "SW-FW-UnitTest-CFX-ID-15"
+      ],
+      [
+        131,
+        "SW-FW-UnitTest-CFX-ID-16"
+      ],
+      [
+        138,
+        "SW-FW-UnitTest-CFX-ID-17"
+      ],
+      [
+        144,
+        "SW-FW-UnitTest-CFX-ID-18"
+      ],
+      [
+        149,
+        "SW-FW-UnitTest-CFX-ID-19"
+      ],
+      [
+        160,
+        "SW-FW-UnitTest-CFX-ID-20"
+      ],
+      [
+        168,
+        "SW-FW-UnitTest-CFX-ID-21"
+      ],
+      [
+        175,
+        "SW-FW-UnitTest-CFX-ID-22"
+      ],
+      [
+        182,
+        "SW-FW-UnitTest-CFX-ID-23"
+      ],
+      [
+        268,
+        "SW-FW-UnitTest-CFX-ID-24"
+      ],
+      [
+        278,
+        "SW-FW-UnitTest-CFX-ID-25"
+      ],
+      [
+        285,
+        "SW-FW-UnitTest-CFX-ID-26"
+      ],
+      [
+        289,
+        "SW-FW-UnitTest-CFX-ID-27"
+      ],
+      [
+        298,
+        "SW-FW-UnitTest-CFX-ID-28"
+      ],
+      [
+        304,
+        "SW-FW-UnitTest-CFX-ID-29"
+      ],
+      [
+        309,
+        "SW-FW-UnitTest-CFX-ID-30"
+      ],
+      [
+        322,
+        "SW-FW-UnitTest-CFX-ID-31"
+      ],
+      [
+        401,
+        "SW-FW-UnitTest-CFX-ID-32"
+      ],
+      [
+        559,
+        "SW-FW-UnitTest-CFX-ID-33"
+      ],
+      [
+        578,
+        "SW-FW-UnitTest-CFX-ID-34"
+      ],
+      [
+        585,
+        "SW-FW-UnitTest-CFX-ID-35"
+      ],
+      [
+        589,
+        "SW-FW-UnitTest-CFX-ID-36"
+      ],
+      [
+        595,
+        "SW-FW-UnitTest-CFX-ID-37"
+      ],
+      [
+        609,
+        "SW-FW-UnitTest-CFX-ID-38"
+      ],
+      [
+        614,
+        "SW-FW-UnitTest-CFX-ID-39"
+      ],
+      [
+        624,
+        "SW-FW-UnitTest-CFX-ID-40"
+      ],
+      [
+        633,
+        "SW-FW-UnitTest-CFX-ID-41"
+      ],
+      [
+        638,
+        "SW-FW-UnitTest-CFX-ID-42"
+      ],
+      [
+        644,
+        "SW-FW-UnitTest-HEAR-ID-1"
+      ],
+      [
+        650,
+        "SW-FW-UnitTest-HEAR-ID-2"
+      ],
+      [
+        789,
+        "SW-FW-UnitTest-CM3-ID-1"
+      ],
+      [
+        793,
+        "SW-FW-UnitTest-CM3-ID-2"
+      ],
+      [
+        799,
+        "SW-FW-UnitTest-CM3-ID-3"
+      ],
+      [
+        802,
+        "SW-FW-UnitTest-CM3-ID-4"
+      ],
+      [
+        809,
+        "SW-FW-UnitTest-CM3-ID-5"
+      ],
+      [
+        812,
+        "SW-FW-UnitTest-CM3-ID-6"
+      ],
+      [
+        824,
+        "SW-FW-UnitTest-CM3-ID-7"
+      ],
+      [
+        834,
+        "SW-FW-UnitTest-CM3-ID-8"
+      ],
+      [
+        839,
+        "SW-FW-UnitTest-CM3-ID-9"
+      ],
+      [
+        860,
+        "SW-FW-UnitTest-CM3-ID-10"
+      ],
+      [
+        876,
+        "SW-FW-UnitTest-CM3-ID-11"
+      ],
+      [
+        883,
+        "SW-FW-UnitTest-CM3-ID-12"
+      ],
+      [
+        889,
+        "SW-FW-UnitTest-CM3-ID-13"
+      ],
+      [
+        897,
+        "SW-FW-UnitTest-CM3-ID-14"
+      ],
+      [
+        904,
+        "SW-FW-UnitTest-CM3-ID-15"
+      ],
+      [
+        908,
+        "SW-FW-UnitTest-CM3-ID-16"
+      ],
+      [
+        915,
+        "SW-FW-UnitTest-CM3-ID-17"
+      ],
+      [
+        920,
+        "SW-FW-UnitTest-CM3-ID-18"
+      ],
+      [
+        925,
+        "SW-FW-UnitTest-CM3-ID-19"
+      ],
+      [
+        934,
+        "SW-FW-UnitTest-CM3-ID-20"
+      ],
+      [
+        942,
+        "SW-FW-UnitTest-CM3-ID-21"
+      ],
+      [
+        964,
+        "SW-FW-UnitTest-CM3-ID-22"
+      ],
+      [
+        976,
+        "SW-FW-UnitTest-CM3-ID-23"
+      ],
+      [
+        982,
+        "SW-FW-UnitTest-CM3-ID-24"
+      ],
+      [
+        987,
+        "SW-FW-UnitTest-CM3-ID-25"
+      ],
+      [
+        996,
+        "SW-FW-UnitTest-CM3-ID-26"
+      ],
+      [
+        1003,
+        "SW-FW-UnitTest-CM3-ID-27"
+      ],
+      [
+        1010,
+        "SW-FW-UnitTest-CM3-ID-28"
+      ],
+      [
+        1040,
+        "SW-FW-UnitTest-CM3-ID-29"
+      ],
+      [
+        1088,
+        "SW-FW-UnitTest-CM3-ID-30"
+      ],
+      [
+        1100,
+        "SW-FW-UnitTest-CM3-ID-31"
+      ],
+      [
+        1104,
+        "SW-FW-UnitTest-CM3-ID-32"
+      ],
+      [
+        1109,
+        "SW-FW-UnitTest-CM3-ID-33"
+      ],
+      [
+        1114,
+        "SW-FW-UnitTest-CM3-ID-34"
+      ],
+      [
+        1119,
+        "SW-FW-UnitTest-CM3-ID-35"
+      ],
+      [
+        1124,
+        "SW-FW-UnitTest-CM3-ID-36"
+      ],
+      [
+        1142,
+        "SW-FW-UnitTest-CM3-ID-37"
+      ],
+      [
+        1148,
+        "SW-FW-UnitTest-CM3-ID-38"
+      ],
+      [
+        1154,
+        "SW-FW-UnitTest-CM3-ID-39"
+      ],
+      [
+        1159,
+        "SW-FW-UnitTest-CM3-ID-40"
+      ],
+      [
+        1165,
+        "SW-FW-UnitTest-CM3-ID-41"
+      ],
+      [
+        1175,
+        "SW-FW-UnitTest-CM3-ID-42"
+      ],
+      [
+        1181,
+        "SW-FW-UnitTest-CM3-ID-43"
+      ],
+      [
+        1185,
+        "SW-FW-UnitTest-CM3-ID-44"
+      ],
+      [
+        1192,
+        "SW-FW-UnitTest-CM3-ID-45"
+      ],
+      [
+        1208,
+        "SW-FW-UnitTest-CM3-ID-46"
+      ],
+      [
+        1214,
+        "SW-FW-UnitTest-CM3-ID-47"
+      ],
+      [
+        1230,
+        "SW-FW-UnitTest-CM3-ID-48"
+      ],
+      [
+        1235,
+        "SW-FW-UnitTest-CM3-ID-49"
+      ],
+      [
+        1243,
+        "SW-FW-UnitTest-CM3-ID-50"
+      ],
+      [
+        1252,
+        "SW-FW-UnitTest-CM3-ID-51"
+      ],
+      [
+        1284,
+        "SW-FW-UnitTest-BOOT-ID-1"
+      ],
+      [
+        1288,
+        "SW-FW-UnitTest-BOOT-ID-2"
+      ],
+      [
+        1305,
+        "SW-FW-UnitTest-BOOT-ID-3"
+      ],
+      [
+        1308,
+        "SW-FW-UnitTest-BOOT-ID-4"
+      ],
+      [
+        1319,
+        "SW-FW-UnitTest-BOOT-ID-5"
+      ],
+      [
+        1323,
+        "SW-FW-UnitTest-BOOT-ID-6"
+      ],
+      [
+        1329,
+        "SW-FW-UnitTest-BOOT-ID-7"
+      ],
+      [
+        1365,
+        "SW-FW-UnitTest-BOOT-ID-8"
+      ],
+      [
+        1391,
+        "SW-FW-UnitTest-BOOT-ID-9"
+      ],
+      [
+        1409,
+        "SW-FW-UnitTest-BOOT-ID-10"
+      ],
+      [
+        1452,
+        "SW-FW-UnitTest-BOOT-ID-11"
+      ],
+      [
+        1497,
+        "SW-FW-UnitTest-BOOT-ID-12"
+      ],
+      [
+        1534,
+        "SW-FW-UnitTest-BOOT-ID-13"
+      ],
+      [
+        1577,
+        "SW-FW-UnitTest-BOOT-ID-14"
+      ],
+      [
+        1590,
+        "SW-FW-UnitTest-BOOT-ID-15"
+      ],
+      [
+        1616,
+        "SW-FW-UnitTest-BOOT-ID-16"
+      ],
+      [
+        1623,
+        "SW-FW-UnitTest-BOOT-ID-17"
+      ],
+      [
+        1644,
+        "SW-FW-UnitTest-BOOT-ID-18"
+      ],
+      [
+        1649,
+        "SW-FW-UnitTest-BOOT-ID-19"
+      ],
+      [
+        1686,
+        "SW-FW-UnitTest-BOOT-ID-20"
+      ],
+      [
+        1727,
+        "SW-FW-UnitTest-QCC-ID-1"
+      ],
+      [
+        1729,
+        "SW-FW-UnitTest-QCC-ID-2"
+      ],
+      [
+        1733,
+        "SW-FW-UnitTest-QCC-ID-3"
+      ],
+      [
+        1734,
+        "SW-FW-UnitTest-QCC-ID-4"
+      ],
+      [
+        1736,
+        "SW-FW-UnitTest-QCC-ID-5"
+      ],
+      [
+        1737,
+        "SW-FW-UnitTest-QCC-ID-6"
+      ],
+      [
+        1738,
+        "SW-FW-UnitTest-QCC-ID-7"
+      ],
+      [
+        1740,
+        "SW-FW-UnitTest-QCC-ID-8"
+      ],
+      [
+        1744,
+        "SW-FW-UnitTest-QCC-ID-9"
+      ],
+      [
+        1746,
+        "SW-FW-UnitTest-QCC-ID-10"
+      ],
+      [
+        1751,
+        "SW-FW-UnitTest-QCC-ID-11"
+      ],
+      [
+        1753,
+        "SW-FW-UnitTest-QCC-ID-12"
+      ],
+      [
+        1755,
+        "SW-FW-UnitTest-QCC-ID-13"
+      ],
+      [
+        1760,
+        "SW-FW-UnitTest-QCC-ID-14"
+      ],
+      [
+        1763,
+        "SW-FW-UnitTest-QCC-ID-15"
+      ]
+    ],
+    "page_break_before_rows": [
+      35,
+      39,
+      43,
+      47,
+      51,
+      54,
+      59,
+      64,
+      67,
+      72,
+      101,
+      116,
+      121,
+      124,
+      131,
+      138,
+      144,
+      149,
+      160,
+      168,
+      175,
+      182,
+      268,
+      278,
+      285,
+      289,
+      298,
+      304,
+      309,
+      322,
+      401,
+      559,
+      578,
+      585,
+      589,
+      595,
+      609,
+      614,
+      624,
+      633,
+      638,
+      644,
+      650,
+      789,
+      793,
+      799,
+      802,
+      809,
+      812,
+      824,
+      834,
+      839,
+      860,
+      876,
+      883,
+      889,
+      897,
+      904,
+      908,
+      915,
+      920,
+      925,
+      934,
+      942,
+      964,
+      976,
+      982,
+      987,
+      996,
+      1003,
+      1010,
+      1040,
+      1088,
+      1100,
+      1104,
+      1109,
+      1114,
+      1119,
+      1124,
+      1142,
+      1148,
+      1154,
+      1159,
+      1165,
+      1175,
+      1181,
+      1185,
+      1192,
+      1208,
+      1214,
+      1230,
+      1235,
+      1243,
+      1252,
+      1284,
+      1288,
+      1305,
+      1308,
+      1319,
+      1323,
+      1329,
+      1365,
+      1391,
+      1409,
+      1452,
+      1497,
+      1534,
+      1577,
+      1590,
+      1616,
+      1623,
+      1644,
+      1649,
+      1686,
+      1727,
+      1729,
+      1733,
+      1734,
+      1736,
+      1737,
+      1738,
+      1740,
+      1744,
+      1746,
+      1751,
+      1753,
+      1755,
+      1760,
+      1763
+    ],
+    "new_break_before_rows": [
+      35,
+      39,
+      43,
+      47,
+      51,
+      54,
+      59,
+      64,
+      116,
+      121,
+      124,
+      131,
+      138,
+      144,
+      160,
+      168,
+      175,
+      182,
+      268,
+      278,
+      289,
+      298,
+      304,
+      322,
+      401,
+      559,
+      585,
+      589,
+      595,
+      609,
+      614,
+      624,
+      633,
+      638,
+      644,
+      793,
+      799,
+      802,
+      812,
+      824,
+      834,
+      839,
+      860,
+      876,
+      883,
+      889,
+      897,
+      904,
+      908,
+      920,
+      925,
+      934,
+      942,
+      964,
+      976,
+      982,
+      987,
+      996,
+      1088,
+      1100,
+      1104,
+      1109,
+      1114,
+      1119,
+      1124,
+      1142,
+      1154,
+      1165,
+      1181,
+      1185,
+      1192,
+      1208,
+      1214,
+      1230,
+      1235,
+      1243,
+      1252,
+      1284,
+      1288,
+      1305,
+      1319,
+      1323,
+      1329,
+      1365,
+      1391,
+      1409,
+      1452,
+      1497,
+      1534,
+      1577,
+      1590,
+      1616,
+      1623,
+      1649
+    ],
+    "changed_short_group_scope": [
+      {
+        "start_row": 35,
+        "id": "SW-FW-UnitTest-CFX-ID-2"
+      },
+      {
+        "start_row": 39,
+        "id": "SW-FW-UnitTest-CFX-ID-3"
+      },
+      {
+        "start_row": 43,
+        "id": "SW-FW-UnitTest-CFX-ID-4"
+      },
+      {
+        "start_row": 47,
+        "id": "SW-FW-UnitTest-CFX-ID-5"
+      },
+      {
+        "start_row": 51,
+        "id": "SW-FW-UnitTest-CFX-ID-6"
+      },
+      {
+        "start_row": 54,
+        "id": "SW-FW-UnitTest-CFX-ID-7"
+      },
+      {
+        "start_row": 59,
+        "id": "SW-FW-UnitTest-CFX-ID-8"
+      },
+      {
+        "start_row": 64,
+        "id": "SW-FW-UnitTest-CFX-ID-9"
+      },
+      {
+        "start_row": 67,
+        "id": "SW-FW-UnitTest-CFX-ID-10"
+      },
+      {
+        "start_row": 72,
+        "id": "SW-FW-UnitTest-CFX-ID-11"
+      },
+      {
+        "start_row": 101,
+        "id": "SW-FW-UnitTest-CFX-ID-12"
+      },
+      {
+        "start_row": 116,
+        "id": "SW-FW-UnitTest-CFX-ID-13"
+      },
+      {
+        "start_row": 121,
+        "id": "SW-FW-UnitTest-CFX-ID-14"
+      },
+      {
+        "start_row": 124,
+        "id": "SW-FW-UnitTest-CFX-ID-15"
+      },
+      {
+        "start_row": 131,
+        "id": "SW-FW-UnitTest-CFX-ID-16"
+      },
+      {
+        "start_row": 138,
+        "id": "SW-FW-UnitTest-CFX-ID-17"
+      },
+      {
+        "start_row": 144,
+        "id": "SW-FW-UnitTest-CFX-ID-18"
+      },
+      {
+        "start_row": 149,
+        "id": "SW-FW-UnitTest-CFX-ID-19"
+      },
+      {
+        "start_row": 160,
+        "id": "SW-FW-UnitTest-CFX-ID-20"
+      },
+      {
+        "start_row": 168,
+        "id": "SW-FW-UnitTest-CFX-ID-21"
+      },
+      {
+        "start_row": 175,
+        "id": "SW-FW-UnitTest-CFX-ID-22"
+      },
+      {
+        "start_row": 182,
+        "id": "SW-FW-UnitTest-CFX-ID-23"
+      },
+      {
+        "start_row": 268,
+        "id": "SW-FW-UnitTest-CFX-ID-24"
+      },
+      {
+        "start_row": 278,
+        "id": "SW-FW-UnitTest-CFX-ID-25"
+      },
+      {
+        "start_row": 285,
+        "id": "SW-FW-UnitTest-CFX-ID-26"
+      },
+      {
+        "start_row": 289,
+        "id": "SW-FW-UnitTest-CFX-ID-27"
+      },
+      {
+        "start_row": 298,
+        "id": "SW-FW-UnitTest-CFX-ID-28"
+      },
+      {
+        "start_row": 304,
+        "id": "SW-FW-UnitTest-CFX-ID-29"
+      },
+      {
+        "start_row": 309,
+        "id": "SW-FW-UnitTest-CFX-ID-30"
+      },
+      {
+        "start_row": 322,
+        "id": "SW-FW-UnitTest-CFX-ID-31"
+      },
+      {
+        "start_row": 401,
+        "id": "SW-FW-UnitTest-CFX-ID-32"
+      },
+      {
+        "start_row": 559,
+        "id": "SW-FW-UnitTest-CFX-ID-33"
+      },
+      {
+        "start_row": 578,
+        "id": "SW-FW-UnitTest-CFX-ID-34"
+      },
+      {
+        "start_row": 585,
+        "id": "SW-FW-UnitTest-CFX-ID-35"
+      },
+      {
+        "start_row": 589,
+        "id": "SW-FW-UnitTest-CFX-ID-36"
+      },
+      {
+        "start_row": 595,
+        "id": "SW-FW-UnitTest-CFX-ID-37"
+      },
+      {
+        "start_row": 609,
+        "id": "SW-FW-UnitTest-CFX-ID-38"
+      },
+      {
+        "start_row": 614,
+        "id": "SW-FW-UnitTest-CFX-ID-39"
+      },
+      {
+        "start_row": 624,
+        "id": "SW-FW-UnitTest-CFX-ID-40"
+      },
+      {
+        "start_row": 633,
+        "id": "SW-FW-UnitTest-CFX-ID-41"
+      },
+      {
+        "start_row": 638,
+        "id": "SW-FW-UnitTest-CFX-ID-42"
+      },
+      {
+        "start_row": 644,
+        "id": "SW-FW-UnitTest-HEAR-ID-1"
+      },
+      {
+        "start_row": 650,
+        "id": "SW-FW-UnitTest-HEAR-ID-2"
+      },
+      {
+        "start_row": 789,
+        "id": "SW-FW-UnitTest-CM3-ID-1"
+      },
+      {
+        "start_row": 793,
+        "id": "SW-FW-UnitTest-CM3-ID-2"
+      },
+      {
+        "start_row": 799,
+        "id": "SW-FW-UnitTest-CM3-ID-3"
+      },
+      {
+        "start_row": 802,
+        "id": "SW-FW-UnitTest-CM3-ID-4"
+      },
+      {
+        "start_row": 809,
+        "id": "SW-FW-UnitTest-CM3-ID-5"
+      },
+      {
+        "start_row": 812,
+        "id": "SW-FW-UnitTest-CM3-ID-6"
+      },
+      {
+        "start_row": 824,
+        "id": "SW-FW-UnitTest-CM3-ID-7"
+      },
+      {
+        "start_row": 834,
+        "id": "SW-FW-UnitTest-CM3-ID-8"
+      },
+      {
+        "start_row": 839,
+        "id": "SW-FW-UnitTest-CM3-ID-9"
+      },
+      {
+        "start_row": 860,
+        "id": "SW-FW-UnitTest-CM3-ID-10"
+      },
+      {
+        "start_row": 876,
+        "id": "SW-FW-UnitTest-CM3-ID-11"
+      },
+      {
+        "start_row": 883,
+        "id": "SW-FW-UnitTest-CM3-ID-12"
+      },
+      {
+        "start_row": 889,
+        "id": "SW-FW-UnitTest-CM3-ID-13"
+      },
+      {
+        "start_row": 897,
+        "id": "SW-FW-UnitTest-CM3-ID-14"
+      },
+      {
+        "start_row": 904,
+        "id": "SW-FW-UnitTest-CM3-ID-15"
+      },
+      {
+        "start_row": 908,
+        "id": "SW-FW-UnitTest-CM3-ID-16"
+      },
+      {
+        "start_row": 915,
+        "id": "SW-FW-UnitTest-CM3-ID-17"
+      },
+      {
+        "start_row": 920,
+        "id": "SW-FW-UnitTest-CM3-ID-18"
+      },
+      {
+        "start_row": 925,
+        "id": "SW-FW-UnitTest-CM3-ID-19"
+      },
+      {
+        "start_row": 934,
+        "id": "SW-FW-UnitTest-CM3-ID-20"
+      },
+      {
+        "start_row": 942,
+        "id": "SW-FW-UnitTest-CM3-ID-21"
+      },
+      {
+        "start_row": 964,
+        "id": "SW-FW-UnitTest-CM3-ID-22"
+      },
+      {
+        "start_row": 976,
+        "id": "SW-FW-UnitTest-CM3-ID-23"
+      },
+      {
+        "start_row": 982,
+        "id": "SW-FW-UnitTest-CM3-ID-24"
+      },
+      {
+        "start_row": 987,
+        "id": "SW-FW-UnitTest-CM3-ID-25"
+      },
+      {
+        "start_row": 996,
+        "id": "SW-FW-UnitTest-CM3-ID-26"
+      },
+      {
+        "start_row": 1003,
+        "id": "SW-FW-UnitTest-CM3-ID-27"
+      },
+      {
+        "start_row": 1010,
+        "id": "SW-FW-UnitTest-CM3-ID-28"
+      },
+      {
+        "start_row": 1040,
+        "id": "SW-FW-UnitTest-CM3-ID-29"
+      },
+      {
+        "start_row": 1088,
+        "id": "SW-FW-UnitTest-CM3-ID-30"
+      },
+      {
+        "start_row": 1100,
+        "id": "SW-FW-UnitTest-CM3-ID-31"
+      },
+      {
+        "start_row": 1104,
+        "id": "SW-FW-UnitTest-CM3-ID-32"
+      },
+      {
+        "start_row": 1109,
+        "id": "SW-FW-UnitTest-CM3-ID-33"
+      },
+      {
+        "start_row": 1114,
+        "id": "SW-FW-UnitTest-CM3-ID-34"
+      },
+      {
+        "start_row": 1119,
+        "id": "SW-FW-UnitTest-CM3-ID-35"
+      },
+      {
+        "start_row": 1124,
+        "id": "SW-FW-UnitTest-CM3-ID-36"
+      },
+      {
+        "start_row": 1142,
+        "id": "SW-FW-UnitTest-CM3-ID-37"
+      },
+      {
+        "start_row": 1148,
+        "id": "SW-FW-UnitTest-CM3-ID-38"
+      },
+      {
+        "start_row": 1154,
+        "id": "SW-FW-UnitTest-CM3-ID-39"
+      },
+      {
+        "start_row": 1159,
+        "id": "SW-FW-UnitTest-CM3-ID-40"
+      },
+      {
+        "start_row": 1165,
+        "id": "SW-FW-UnitTest-CM3-ID-41"
+      },
+      {
+        "start_row": 1175,
+        "id": "SW-FW-UnitTest-CM3-ID-42"
+      },
+      {
+        "start_row": 1181,
+        "id": "SW-FW-UnitTest-CM3-ID-43"
+      },
+      {
+        "start_row": 1185,
+        "id": "SW-FW-UnitTest-CM3-ID-44"
+      },
+      {
+        "start_row": 1192,
+        "id": "SW-FW-UnitTest-CM3-ID-45"
+      },
+      {
+        "start_row": 1208,
+        "id": "SW-FW-UnitTest-CM3-ID-46"
+      },
+      {
+        "start_row": 1214,
+        "id": "SW-FW-UnitTest-CM3-ID-47"
+      },
+      {
+        "start_row": 1230,
+        "id": "SW-FW-UnitTest-CM3-ID-48"
+      },
+      {
+        "start_row": 1235,
+        "id": "SW-FW-UnitTest-CM3-ID-49"
+      },
+      {
+        "start_row": 1243,
+        "id": "SW-FW-UnitTest-CM3-ID-50"
+      },
+      {
+        "start_row": 1252,
+        "id": "SW-FW-UnitTest-CM3-ID-51"
+      },
+      {
+        "start_row": 1284,
+        "id": "SW-FW-UnitTest-BOOT-ID-1"
+      },
+      {
+        "start_row": 1288,
+        "id": "SW-FW-UnitTest-BOOT-ID-2"
+      },
+      {
+        "start_row": 1305,
+        "id": "SW-FW-UnitTest-BOOT-ID-3"
+      },
+      {
+        "start_row": 1308,
+        "id": "SW-FW-UnitTest-BOOT-ID-4"
+      },
+      {
+        "start_row": 1319,
+        "id": "SW-FW-UnitTest-BOOT-ID-5"
+      },
+      {
+        "start_row": 1323,
+        "id": "SW-FW-UnitTest-BOOT-ID-6"
+      },
+      {
+        "start_row": 1329,
+        "id": "SW-FW-UnitTest-BOOT-ID-7"
+      },
+      {
+        "start_row": 1365,
+        "id": "SW-FW-UnitTest-BOOT-ID-8"
+      },
+      {
+        "start_row": 1391,
+        "id": "SW-FW-UnitTest-BOOT-ID-9"
+      },
+      {
+        "start_row": 1409,
+        "id": "SW-FW-UnitTest-BOOT-ID-10"
+      },
+      {
+        "start_row": 1452,
+        "id": "SW-FW-UnitTest-BOOT-ID-11"
+      },
+      {
+        "start_row": 1497,
+        "id": "SW-FW-UnitTest-BOOT-ID-12"
+      },
+      {
+        "start_row": 1534,
+        "id": "SW-FW-UnitTest-BOOT-ID-13"
+      },
+      {
+        "start_row": 1577,
+        "id": "SW-FW-UnitTest-BOOT-ID-14"
+      },
+      {
+        "start_row": 1590,
+        "id": "SW-FW-UnitTest-BOOT-ID-15"
+      },
+      {
+        "start_row": 1616,
+        "id": "SW-FW-UnitTest-BOOT-ID-16"
+      },
+      {
+        "start_row": 1623,
+        "id": "SW-FW-UnitTest-BOOT-ID-17"
+      },
+      {
+        "start_row": 1644,
+        "id": "SW-FW-UnitTest-BOOT-ID-18"
+      },
+      {
+        "start_row": 1649,
+        "id": "SW-FW-UnitTest-BOOT-ID-19"
+      },
+      {
+        "start_row": 1686,
+        "id": "SW-FW-UnitTest-BOOT-ID-20"
+      },
+      {
+        "start_row": 1727,
+        "id": "SW-FW-UnitTest-QCC-ID-1"
+      },
+      {
+        "start_row": 1729,
+        "id": "SW-FW-UnitTest-QCC-ID-2"
+      },
+      {
+        "start_row": 1733,
+        "id": "SW-FW-UnitTest-QCC-ID-3"
+      },
+      {
+        "start_row": 1734,
+        "id": "SW-FW-UnitTest-QCC-ID-4"
+      },
+      {
+        "start_row": 1736,
+        "id": "SW-FW-UnitTest-QCC-ID-5"
+      },
+      {
+        "start_row": 1737,
+        "id": "SW-FW-UnitTest-QCC-ID-6"
+      },
+      {
+        "start_row": 1738,
+        "id": "SW-FW-UnitTest-QCC-ID-7"
+      },
+      {
+        "start_row": 1740,
+        "id": "SW-FW-UnitTest-QCC-ID-8"
+      },
+      {
+        "start_row": 1744,
+        "id": "SW-FW-UnitTest-QCC-ID-9"
+      },
+      {
+        "start_row": 1746,
+        "id": "SW-FW-UnitTest-QCC-ID-10"
+      },
+      {
+        "start_row": 1751,
+        "id": "SW-FW-UnitTest-QCC-ID-11"
+      },
+      {
+        "start_row": 1753,
+        "id": "SW-FW-UnitTest-QCC-ID-12"
+      },
+      {
+        "start_row": 1755,
+        "id": "SW-FW-UnitTest-QCC-ID-13"
+      },
+      {
+        "start_row": 1760,
+        "id": "SW-FW-UnitTest-QCC-ID-14"
+      },
+      {
+        "start_row": 1763,
+        "id": "SW-FW-UnitTest-QCC-ID-15"
+      }
+    ],
+    "extra_condition_breaks": [],
+    "top_alignment_cells": [],
+    "candidate": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\group-boundary-candidate\\[E8300-QCC] SUVR-FW-TD24A 소프트웨어 유닛 검증 보고서.xlsx",
+    "height_changes": {},
+    "text_changes": {},
+    "reason": "Fix each changed short preparation/procedure at its test start; preserve normal long RTT continuation. H82/H206 limited notes top aligned, J218 date comparison condition starts separately. No test input/result/PASS added."
+  },
+  "SITC": {
+    "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SITC-FW-TD24A 소프트웨어 통합시험 기준서.xlsx",
+    "sha256_before": "9cf0d7df2f6255f67230b857a85a1a82dfcc9e802f0eaf3f172643c9daf5a1ca",
+    "sheet": "기준서_통합 시험",
+    "member": "xl/worksheets/sheet2.xml",
+    "all_group_ids": [
+      [
+        25,
+        "SW-FW-IntegrationTest-ID-001"
+      ],
+      [
+        29,
+        "SW-FW-IntegrationTest-ID-002"
+      ],
+      [
+        32,
+        "SW-FW-IntegrationTest-ID-003"
+      ],
+      [
+        37,
+        "SW-FW-IntegrationTest-ID-004"
+      ],
+      [
+        43,
+        "SW-FW-IntegrationTest-ID-005"
+      ],
+      [
+        52,
+        "SW-FW-IntegrationTest-ID-006"
+      ],
+      [
+        58,
+        "SW-FW-IntegrationTest-ID-007"
+      ],
+      [
+        62,
+        "SW-FW-IntegrationTest-ID-008"
+      ],
+      [
+        67,
+        "SW-FW-IntegrationTest-ID-009"
+      ],
+      [
+        73,
+        "SW-FW-IntegrationTest-ID-010"
+      ],
+      [
+        78,
+        "SW-FW-IntegrationTest-ID-011"
+      ],
+      [
+        83,
+        "SW-FW-IntegrationTest-ID-012"
+      ],
+      [
+        92,
+        "SW-FW-IntegrationTest-ID-013"
+      ],
+      [
+        98,
+        "SW-FW-IntegrationTest-ID-014"
+      ],
+      [
+        102,
+        "SW-FW-IntegrationTest-ID-015"
+      ],
+      [
+        112,
+        "SW-FW-IntegrationTest-ID-016"
+      ],
+      [
+        119,
+        "SW-FW-IntegrationTest-ID-017"
+      ],
+      [
+        131,
+        "SW-FW-IntegrationTest-ID-018"
+      ],
+      [
+        134,
+        "SW-FW-IntegrationTest-ID-019"
+      ],
+      [
+        136,
+        "SW-FW-IntegrationTest-ID-020"
+      ],
+      [
+        137,
+        "SW-FW-IntegrationTest-ID-021"
+      ],
+      [
+        141,
+        "SW-FW-IntegrationTest-ID-022"
+      ],
+      [
+        142,
+        "SW-FW-IntegrationTest-ID-023"
+      ],
+      [
+        144,
+        "SW-FW-IntegrationTest-ID-024"
+      ]
+    ],
+    "page_break_before_rows": [
+      29,
+      32,
+      37,
+      43,
+      52,
+      58,
+      62,
+      67,
+      73,
+      78,
+      83,
+      92,
+      98,
+      102,
+      112,
+      119,
+      131,
+      134,
+      136,
+      137,
+      141,
+      142,
+      144
+    ],
+    "new_break_before_rows": [
+      29,
+      37,
+      43,
+      52,
+      58,
+      62,
+      73,
+      78,
+      83,
+      92,
+      98,
+      102,
+      112,
+      119
+    ],
+    "changed_short_group_scope": [
+      {
+        "start_row": 29,
+        "id": "SW-FW-IntegrationTest-ID-002"
+      },
+      {
+        "start_row": 32,
+        "id": "SW-FW-IntegrationTest-ID-003"
+      },
+      {
+        "start_row": 37,
+        "id": "SW-FW-IntegrationTest-ID-004"
+      },
+      {
+        "start_row": 43,
+        "id": "SW-FW-IntegrationTest-ID-005"
+      },
+      {
+        "start_row": 52,
+        "id": "SW-FW-IntegrationTest-ID-006"
+      },
+      {
+        "start_row": 58,
+        "id": "SW-FW-IntegrationTest-ID-007"
+      },
+      {
+        "start_row": 62,
+        "id": "SW-FW-IntegrationTest-ID-008"
+      },
+      {
+        "start_row": 67,
+        "id": "SW-FW-IntegrationTest-ID-009"
+      },
+      {
+        "start_row": 73,
+        "id": "SW-FW-IntegrationTest-ID-010"
+      },
+      {
+        "start_row": 78,
+        "id": "SW-FW-IntegrationTest-ID-011"
+      },
+      {
+        "start_row": 83,
+        "id": "SW-FW-IntegrationTest-ID-012"
+      },
+      {
+        "start_row": 92,
+        "id": "SW-FW-IntegrationTest-ID-013"
+      },
+      {
+        "start_row": 98,
+        "id": "SW-FW-IntegrationTest-ID-014"
+      },
+      {
+        "start_row": 102,
+        "id": "SW-FW-IntegrationTest-ID-015"
+      },
+      {
+        "start_row": 112,
+        "id": "SW-FW-IntegrationTest-ID-016"
+      },
+      {
+        "start_row": 119,
+        "id": "SW-FW-IntegrationTest-ID-017"
+      },
+      {
+        "start_row": 131,
+        "id": "SW-FW-IntegrationTest-ID-018"
+      },
+      {
+        "start_row": 134,
+        "id": "SW-FW-IntegrationTest-ID-019"
+      },
+      {
+        "start_row": 136,
+        "id": "SW-FW-IntegrationTest-ID-020"
+      },
+      {
+        "start_row": 137,
+        "id": "SW-FW-IntegrationTest-ID-021"
+      },
+      {
+        "start_row": 141,
+        "id": "SW-FW-IntegrationTest-ID-022"
+      },
+      {
+        "start_row": 142,
+        "id": "SW-FW-IntegrationTest-ID-023"
+      },
+      {
+        "start_row": 144,
+        "id": "SW-FW-IntegrationTest-ID-024"
+      }
+    ],
+    "extra_condition_breaks": [],
+    "top_alignment_cells": [],
+    "candidate": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\group-boundary-candidate\\[E8300-QCC] SITC-FW-TD24A 소프트웨어 통합시험 기준서.xlsx",
+    "height_changes": {},
+    "text_changes": {},
+    "reason": "Fix each changed short preparation/procedure at its test start; preserve normal long RTT continuation. H82/H206 limited notes top aligned, J218 date comparison condition starts separately. No test input/result/PASS added."
+  },
+  "SITR": {
+    "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\04_설계 검증\\SW\\외부기\\[E8300-QCC] SITR-FW-TD24A 소프트웨어 통합시험 보고서.xlsx",
+    "sha256_before": "4045f5cbe326bec72eb3a31d86dac92e017f625774f06dc0bc62e34090cfb7cf",
+    "sheet": "보고서_통합시험",
+    "member": "xl/worksheets/sheet2.xml",
+    "all_group_ids": [
+      [
+        25,
+        "SW-FW-IntegrationTest-ID-001"
+      ],
+      [
+        29,
+        "SW-FW-IntegrationTest-ID-002"
+      ],
+      [
+        32,
+        "SW-FW-IntegrationTest-ID-003"
+      ],
+      [
+        37,
+        "SW-FW-IntegrationTest-ID-004"
+      ],
+      [
+        43,
+        "SW-FW-IntegrationTest-ID-005"
+      ],
+      [
+        52,
+        "SW-FW-IntegrationTest-ID-006"
+      ],
+      [
+        58,
+        "SW-FW-IntegrationTest-ID-007"
+      ],
+      [
+        62,
+        "SW-FW-IntegrationTest-ID-008"
+      ],
+      [
+        67,
+        "SW-FW-IntegrationTest-ID-009"
+      ],
+      [
+        73,
+        "SW-FW-IntegrationTest-ID-010"
+      ],
+      [
+        78,
+        "SW-FW-IntegrationTest-ID-011"
+      ],
+      [
+        83,
+        "SW-FW-IntegrationTest-ID-012"
+      ],
+      [
+        92,
+        "SW-FW-IntegrationTest-ID-013"
+      ],
+      [
+        98,
+        "SW-FW-IntegrationTest-ID-014"
+      ],
+      [
+        102,
+        "SW-FW-IntegrationTest-ID-015"
+      ],
+      [
+        112,
+        "SW-FW-IntegrationTest-ID-016"
+      ],
+      [
+        119,
+        "SW-FW-IntegrationTest-ID-017"
+      ],
+      [
+        131,
+        "SW-FW-IntegrationTest-ID-018"
+      ],
+      [
+        134,
+        "SW-FW-IntegrationTest-ID-019"
+      ],
+      [
+        136,
+        "SW-FW-IntegrationTest-ID-020"
+      ],
+      [
+        137,
+        "SW-FW-IntegrationTest-ID-021"
+      ],
+      [
+        141,
+        "SW-FW-IntegrationTest-ID-022"
+      ],
+      [
+        142,
+        "SW-FW-IntegrationTest-ID-023"
+      ],
+      [
+        144,
+        "SW-FW-IntegrationTest-ID-024"
+      ]
+    ],
+    "page_break_before_rows": [
+      29,
+      32,
+      37,
+      43,
+      52,
+      58,
+      62,
+      67,
+      73,
+      78,
+      83,
+      92,
+      98,
+      102,
+      112,
+      119,
+      131,
+      134,
+      136,
+      137,
+      141,
+      142,
+      144
+    ],
+    "new_break_before_rows": [
+      29,
+      37,
+      43,
+      52,
+      58,
+      62,
+      73,
+      78,
+      83,
+      92,
+      98,
+      102,
+      112,
+      119
+    ],
+    "changed_short_group_scope": [
+      {
+        "start_row": 29,
+        "id": "SW-FW-IntegrationTest-ID-002"
+      },
+      {
+        "start_row": 32,
+        "id": "SW-FW-IntegrationTest-ID-003"
+      },
+      {
+        "start_row": 37,
+        "id": "SW-FW-IntegrationTest-ID-004"
+      },
+      {
+        "start_row": 43,
+        "id": "SW-FW-IntegrationTest-ID-005"
+      },
+      {
+        "start_row": 52,
+        "id": "SW-FW-IntegrationTest-ID-006"
+      },
+      {
+        "start_row": 58,
+        "id": "SW-FW-IntegrationTest-ID-007"
+      },
+      {
+        "start_row": 62,
+        "id": "SW-FW-IntegrationTest-ID-008"
+      },
+      {
+        "start_row": 67,
+        "id": "SW-FW-IntegrationTest-ID-009"
+      },
+      {
+        "start_row": 73,
+        "id": "SW-FW-IntegrationTest-ID-010"
+      },
+      {
+        "start_row": 78,
+        "id": "SW-FW-IntegrationTest-ID-011"
+      },
+      {
+        "start_row": 83,
+        "id": "SW-FW-IntegrationTest-ID-012"
+      },
+      {
+        "start_row": 92,
+        "id": "SW-FW-IntegrationTest-ID-013"
+      },
+      {
+        "start_row": 98,
+        "id": "SW-FW-IntegrationTest-ID-014"
+      },
+      {
+        "start_row": 102,
+        "id": "SW-FW-IntegrationTest-ID-015"
+      },
+      {
+        "start_row": 112,
+        "id": "SW-FW-IntegrationTest-ID-016"
+      },
+      {
+        "start_row": 119,
+        "id": "SW-FW-IntegrationTest-ID-017"
+      },
+      {
+        "start_row": 131,
+        "id": "SW-FW-IntegrationTest-ID-018"
+      },
+      {
+        "start_row": 134,
+        "id": "SW-FW-IntegrationTest-ID-019"
+      },
+      {
+        "start_row": 136,
+        "id": "SW-FW-IntegrationTest-ID-020"
+      },
+      {
+        "start_row": 137,
+        "id": "SW-FW-IntegrationTest-ID-021"
+      },
+      {
+        "start_row": 141,
+        "id": "SW-FW-IntegrationTest-ID-022"
+      },
+      {
+        "start_row": 142,
+        "id": "SW-FW-IntegrationTest-ID-023"
+      },
+      {
+        "start_row": 144,
+        "id": "SW-FW-IntegrationTest-ID-024"
+      }
+    ],
+    "extra_condition_breaks": [],
+    "top_alignment_cells": [],
+    "candidate": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\group-boundary-candidate\\[E8300-QCC] SITR-FW-TD24A 소프트웨어 통합시험 보고서.xlsx",
+    "height_changes": {},
+    "text_changes": {},
+    "reason": "Fix each changed short preparation/procedure at its test start; preserve normal long RTT continuation. H82/H206 limited notes top aligned, J218 date comparison condition starts separately. No test input/result/PASS added."
+  },
+  "SSTC": {
+    "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SSTC-FW-TD24A 소프트웨어 시스템 시험 기준서.xlsx",
+    "sha256_before": "e2a71fe7cae39e21c9ea5a8dc7d731e6935d8db236454371a2ca7dcf0131fb74",
+    "sheet": "기준서_시스템 시험",
+    "member": "xl/worksheets/sheet2.xml",
+    "all_group_ids": [
+      [
+        34,
+        "SW-FW-SYS-Test-ID-1"
+      ],
+      [
+        35,
+        "SW-FW-SYS-Test-ID-2"
+      ],
+      [
+        38,
+        "SW-FW-SYS-Test-ID-3"
+      ],
+      [
+        39,
+        "SW-FW-SYS-Test-ID-4"
+      ],
+      [
+        41,
+        "SW-FW-SYS-Test-ID-5"
+      ],
+      [
+        44,
+        "SW-FW-SYS-Test-ID-6"
+      ],
+      [
+        48,
+        "SW-FW-SYS-Test-ID-7"
+      ],
+      [
+        50,
+        "SW-FW-SYS-Test-ID-8"
+      ],
+      [
+        53,
+        "SW-FW-SYS-Test-ID-9"
+      ],
+      [
+        54,
+        "SW-FW-SYS-Test-ID-10"
+      ],
+      [
+        64,
+        "SW-FW-SYS-Test-ID-11"
+      ],
+      [
+        68,
+        "SW-FW-SYS-Test-ID-12"
+      ],
+      [
+        70,
+        "SW-FW-SYS-Test-ID-13"
+      ],
+      [
+        74,
+        "SW-FW-SYS-Test-ID-14"
+      ],
+      [
+        78,
+        "SW-FW-SYS-Test-ID-15"
+      ],
+      [
+        82,
+        "SW-FW-SYS-Test-ID-16"
+      ],
+      [
+        84,
+        "SW-FW-SYS-Test-ID-17"
+      ],
+      [
+        86,
+        "SW-FW-SYS-Test-ID-18"
+      ],
+      [
+        93,
+        "SW-FW-SYS-Test-ID-19"
+      ],
+      [
+        96,
+        "SW-FW-SYS-Test-ID-20"
+      ],
+      [
+        98,
+        "SW-FW-SYS-Test-ID-21"
+      ],
+      [
+        106,
+        "SW-FW-SYS-Test-ID-22"
+      ],
+      [
+        114,
+        "SW-FW-SYS-Test-ID-23"
+      ],
+      [
+        116,
+        "SW-FW-SYS-Test-ID-24"
+      ],
+      [
+        121,
+        "SW-FW-SYS-Test-ID-25"
+      ],
+      [
+        124,
+        "SW-FW-SYS-Test-ID-26"
+      ],
+      [
+        128,
+        "SW-FW-SYS-Test-ID-27"
+      ],
+      [
+        130,
+        "SW-FW-SYS-Test-ID-28"
+      ],
+      [
+        132,
+        "SW-FW-SYS-Test-ID-29"
+      ],
+      [
+        134,
+        "SW-FW-SYS-Test-ID-30"
+      ],
+      [
+        138,
+        "SW-FW-SYS-Test-ID-31"
+      ],
+      [
+        141,
+        "SW-FW-SYS-Test-ID-32"
+      ],
+      [
+        144,
+        "SW-FW-SYS-Test-ID-33"
+      ],
+      [
+        146,
+        "SW-FW-SYS-Test-ID-34"
+      ],
+      [
+        148,
+        "SW-FW-SYS-Test-ID-35"
+      ],
+      [
+        151,
+        "SW-FW-SYS-Test-ID-36"
+      ],
+      [
+        152,
+        "SW-FW-SYS-Test-ID-37"
+      ],
+      [
+        155,
+        "SW-FW-SYS-Test-ID-38"
+      ],
+      [
+        157,
+        "SW-FW-SYS-Test-ID-39"
+      ],
+      [
+        159,
+        "SW-FW-SYS-Test-ID-40"
+      ],
+      [
+        162,
+        "SW-FW-SYS-Test-ID-41"
+      ],
+      [
+        164,
+        "SW-FW-SYS-Test-ID-42"
+      ],
+      [
+        166,
+        "SW-FW-SYS-Test-ID-43"
+      ],
+      [
+        168,
+        "SW-FW-SYS-Test-ID-44"
+      ],
+      [
+        178,
+        "SW-FW-SYS-Test-ID-45"
+      ],
+      [
+        184,
+        "SW-FW-SYS-Test-ID-69"
+      ],
+      [
+        186,
+        "SW-FW-SYS-Test-ID-70"
+      ],
+      [
+        188,
+        "SW-FW-SYS-Test-ID-46"
+      ],
+      [
+        190,
+        "SW-FW-SYS-Test-ID-47"
+      ],
+      [
+        191,
+        "SW-FW-SYS-Test-ID-48"
+      ],
+      [
+        194,
+        "SW-FW-SYS-Test-ID-49"
+      ],
+      [
+        195,
+        "SW-FW-SYS-Test-ID-50"
+      ],
+      [
+        197,
+        "SW-FW-SYS-Test-ID-51"
+      ],
+      [
+        199,
+        "SW-FW-SYS-Test-ID-52"
+      ],
+      [
+        203,
+        "SW-FW-SYS-Test-ID-53"
+      ],
+      [
+        204,
+        "SW-FW-SYS-Test-ID-81"
+      ],
+      [
+        206,
+        "SW-FW-SYS-Test-ID-54"
+      ],
+      [
+        210,
+        "SW-FW-SYS-Test-ID-71"
+      ],
+      [
+        212,
+        "SW-FW-SYS-Test-ID-72"
+      ],
+      [
+        215,
+        "SW-FW-SYS-Test-ID-73"
+      ],
+      [
+        217,
+        "SW-FW-SYS-Test-ID-74"
+      ],
+      [
+        219,
+        "SW-FW-SYS-Test-ID-75"
+      ],
+      [
+        222,
+        "SW-FW-SYS-Test-ID-76"
+      ],
+      [
+        225,
+        "SW-FW-SYS-Test-ID-77"
+      ],
+      [
+        227,
+        "SW-FW-SYS-Test-ID-78"
+      ],
+      [
+        230,
+        "SW-FW-SYS-Test-ID-79"
+      ],
+      [
+        234,
+        "SW-FW-SYS-Test-ID-80"
+      ],
+      [
+        237,
+        "SW-FW-SYS-Test-ID-55"
+      ],
+      [
+        239,
+        "SW-FW-SYS-Test-ID-56"
+      ],
+      [
+        243,
+        "SW-FW-SYS-Test-ID-57"
+      ],
+      [
+        244,
+        "SW-FW-SYS-Test-ID-58"
+      ],
+      [
+        247,
+        "SW-FW-SYS-Test-ID-59"
+      ],
+      [
+        249,
+        "SW-FW-SYS-Test-ID-60"
+      ],
+      [
+        260,
+        "SW-FW-SYS-Test-ID-61"
+      ],
+      [
+        261,
+        "SW-FW-SYS-Test-ID-62"
+      ],
+      [
+        269,
+        "SW-FW-SYS-Test-ID-63"
+      ],
+      [
+        272,
+        "SW-FW-SYS-Test-ID-64"
+      ],
+      [
+        274,
+        "SW-FW-SYS-Test-ID-65"
+      ],
+      [
+        276,
+        "SW-FW-SYS-Test-ID-66"
+      ],
+      [
+        278,
+        "SW-FW-SYS-Test-ID-67"
+      ],
+      [
+        280,
+        "SW-FW-SYS-Test-ID-68"
+      ],
+      [
+        282,
+        "SW-FW-SYS-Test-ID-82"
+      ],
+      [
+        285,
+        "SW-FW-SYS-Test-ID-83"
+      ]
+    ],
+    "page_break_before_rows": [
+      35,
+      38,
+      39,
+      41,
+      44,
+      48,
+      50,
+      54,
+      64,
+      68,
+      70,
+      74,
+      78,
+      82,
+      84,
+      98,
+      106,
+      114,
+      116,
+      121,
+      124,
+      128,
+      130,
+      132,
+      134,
+      138,
+      141,
+      144,
+      146,
+      148,
+      151,
+      152,
+      155,
+      157,
+      159,
+      162,
+      166,
+      188,
+      190,
+      191,
+      194,
+      197,
+      199,
+      206,
+      210,
+      212,
+      215,
+      218,
+      222,
+      227,
+      230,
+      237,
+      239,
+      244,
+      247,
+      260,
+      261,
+      269,
+      278,
+      280,
+      282,
+      285
+    ],
+    "new_break_before_rows": [
+      35,
+      38,
+      39,
+      41,
+      44,
+      48,
+      50,
+      54,
+      64,
+      68,
+      70,
+      74,
+      82,
+      84,
+      98,
+      106,
+      116,
+      121,
+      128,
+      130,
+      132,
+      138,
+      141,
+      144,
+      146,
+      151,
+      152,
+      155,
+      157,
+      162,
+      166,
+      190,
+      191,
+      194,
+      197,
+      199,
+      206,
+      210,
+      212,
+      215,
+      218,
+      222,
+      227,
+      230,
+      237,
+      239,
+      244,
+      247,
+      260,
+      261,
+      269,
+      280,
+      282,
+      285
+    ],
+    "changed_short_group_scope": [
+      {
+        "start_row": 35,
+        "id": "SW-FW-SYS-Test-ID-2"
+      },
+      {
+        "start_row": 38,
+        "id": "SW-FW-SYS-Test-ID-3"
+      },
+      {
+        "start_row": 39,
+        "id": "SW-FW-SYS-Test-ID-4"
+      },
+      {
+        "start_row": 41,
+        "id": "SW-FW-SYS-Test-ID-5"
+      },
+      {
+        "start_row": 44,
+        "id": "SW-FW-SYS-Test-ID-6"
+      },
+      {
+        "start_row": 48,
+        "id": "SW-FW-SYS-Test-ID-7"
+      },
+      {
+        "start_row": 50,
+        "id": "SW-FW-SYS-Test-ID-8"
+      },
+      {
+        "start_row": 54,
+        "id": "SW-FW-SYS-Test-ID-10"
+      },
+      {
+        "start_row": 64,
+        "id": "SW-FW-SYS-Test-ID-11"
+      },
+      {
+        "start_row": 68,
+        "id": "SW-FW-SYS-Test-ID-12"
+      },
+      {
+        "start_row": 70,
+        "id": "SW-FW-SYS-Test-ID-13"
+      },
+      {
+        "start_row": 74,
+        "id": "SW-FW-SYS-Test-ID-14"
+      },
+      {
+        "start_row": 78,
+        "id": "SW-FW-SYS-Test-ID-15"
+      },
+      {
+        "start_row": 82,
+        "id": "SW-FW-SYS-Test-ID-16"
+      },
+      {
+        "start_row": 84,
+        "id": "SW-FW-SYS-Test-ID-17"
+      },
+      {
+        "start_row": 98,
+        "id": "SW-FW-SYS-Test-ID-21"
+      },
+      {
+        "start_row": 106,
+        "id": "SW-FW-SYS-Test-ID-22"
+      },
+      {
+        "start_row": 114,
+        "id": "SW-FW-SYS-Test-ID-23"
+      },
+      {
+        "start_row": 116,
+        "id": "SW-FW-SYS-Test-ID-24"
+      },
+      {
+        "start_row": 121,
+        "id": "SW-FW-SYS-Test-ID-25"
+      },
+      {
+        "start_row": 124,
+        "id": "SW-FW-SYS-Test-ID-26"
+      },
+      {
+        "start_row": 128,
+        "id": "SW-FW-SYS-Test-ID-27"
+      },
+      {
+        "start_row": 130,
+        "id": "SW-FW-SYS-Test-ID-28"
+      },
+      {
+        "start_row": 132,
+        "id": "SW-FW-SYS-Test-ID-29"
+      },
+      {
+        "start_row": 134,
+        "id": "SW-FW-SYS-Test-ID-30"
+      },
+      {
+        "start_row": 138,
+        "id": "SW-FW-SYS-Test-ID-31"
+      },
+      {
+        "start_row": 141,
+        "id": "SW-FW-SYS-Test-ID-32"
+      },
+      {
+        "start_row": 144,
+        "id": "SW-FW-SYS-Test-ID-33"
+      },
+      {
+        "start_row": 146,
+        "id": "SW-FW-SYS-Test-ID-34"
+      },
+      {
+        "start_row": 148,
+        "id": "SW-FW-SYS-Test-ID-35"
+      },
+      {
+        "start_row": 151,
+        "id": "SW-FW-SYS-Test-ID-36"
+      },
+      {
+        "start_row": 152,
+        "id": "SW-FW-SYS-Test-ID-37"
+      },
+      {
+        "start_row": 155,
+        "id": "SW-FW-SYS-Test-ID-38"
+      },
+      {
+        "start_row": 157,
+        "id": "SW-FW-SYS-Test-ID-39"
+      },
+      {
+        "start_row": 159,
+        "id": "SW-FW-SYS-Test-ID-40"
+      },
+      {
+        "start_row": 162,
+        "id": "SW-FW-SYS-Test-ID-41"
+      },
+      {
+        "start_row": 166,
+        "id": "SW-FW-SYS-Test-ID-43"
+      },
+      {
+        "start_row": 188,
+        "id": "SW-FW-SYS-Test-ID-46"
+      },
+      {
+        "start_row": 190,
+        "id": "SW-FW-SYS-Test-ID-47"
+      },
+      {
+        "start_row": 191,
+        "id": "SW-FW-SYS-Test-ID-48"
+      },
+      {
+        "start_row": 194,
+        "id": "SW-FW-SYS-Test-ID-49"
+      },
+      {
+        "start_row": 197,
+        "id": "SW-FW-SYS-Test-ID-51"
+      },
+      {
+        "start_row": 199,
+        "id": "SW-FW-SYS-Test-ID-52"
+      },
+      {
+        "start_row": 210,
+        "id": "SW-FW-SYS-Test-ID-71"
+      },
+      {
+        "start_row": 212,
+        "id": "SW-FW-SYS-Test-ID-72"
+      },
+      {
+        "start_row": 215,
+        "id": "SW-FW-SYS-Test-ID-73"
+      },
+      {
+        "start_row": 222,
+        "id": "SW-FW-SYS-Test-ID-76"
+      },
+      {
+        "start_row": 227,
+        "id": "SW-FW-SYS-Test-ID-78"
+      },
+      {
+        "start_row": 230,
+        "id": "SW-FW-SYS-Test-ID-79"
+      },
+      {
+        "start_row": 237,
+        "id": "SW-FW-SYS-Test-ID-55"
+      },
+      {
+        "start_row": 239,
+        "id": "SW-FW-SYS-Test-ID-56"
+      },
+      {
+        "start_row": 244,
+        "id": "SW-FW-SYS-Test-ID-58"
+      },
+      {
+        "start_row": 247,
+        "id": "SW-FW-SYS-Test-ID-59"
+      },
+      {
+        "start_row": 260,
+        "id": "SW-FW-SYS-Test-ID-61"
+      },
+      {
+        "start_row": 261,
+        "id": "SW-FW-SYS-Test-ID-62"
+      },
+      {
+        "start_row": 269,
+        "id": "SW-FW-SYS-Test-ID-63"
+      },
+      {
+        "start_row": 278,
+        "id": "SW-FW-SYS-Test-ID-67"
+      },
+      {
+        "start_row": 280,
+        "id": "SW-FW-SYS-Test-ID-68"
+      },
+      {
+        "start_row": 282,
+        "id": "SW-FW-SYS-Test-ID-82"
+      },
+      {
+        "start_row": 285,
+        "id": "SW-FW-SYS-Test-ID-83"
+      }
+    ],
+    "extra_condition_breaks": [
+      206,
+      218
+    ],
+    "top_alignment_cells": [
+      "H82",
+      "H206"
+    ],
+    "candidate": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\group-boundary-candidate\\[E8300-QCC] SSTC-FW-TD24A 소프트웨어 시스템 시험 기준서.xlsx",
+    "height_changes": {},
+    "text_changes": {},
+    "reason": "Fix each changed short preparation/procedure at its test start; preserve normal long RTT continuation. H82/H206 limited notes top aligned, J218 date comparison condition starts separately. No test input/result/PASS added."
+  },
+  "SSTR": {
+    "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\04_설계 검증\\SW\\외부기\\[E8300-QCC] SSTR-FW-TD24A 소프트웨어 시스템 시험 보고서.xlsx",
+    "sha256_before": "8e4967b8a1e2f255fdbdb1c111d5f8bf5a633fe5b2f3770b6b2b87501211feee",
+    "sheet": "보고서_시스템 시험",
+    "member": "xl/worksheets/sheet2.xml",
+    "all_group_ids": [
+      [
+        34,
+        "SW-FW-SYS-Test-ID-1"
+      ],
+      [
+        35,
+        "SW-FW-SYS-Test-ID-2"
+      ],
+      [
+        38,
+        "SW-FW-SYS-Test-ID-3"
+      ],
+      [
+        39,
+        "SW-FW-SYS-Test-ID-4"
+      ],
+      [
+        41,
+        "SW-FW-SYS-Test-ID-5"
+      ],
+      [
+        44,
+        "SW-FW-SYS-Test-ID-6"
+      ],
+      [
+        48,
+        "SW-FW-SYS-Test-ID-7"
+      ],
+      [
+        50,
+        "SW-FW-SYS-Test-ID-8"
+      ],
+      [
+        53,
+        "SW-FW-SYS-Test-ID-9"
+      ],
+      [
+        54,
+        "SW-FW-SYS-Test-ID-10"
+      ],
+      [
+        64,
+        "SW-FW-SYS-Test-ID-11"
+      ],
+      [
+        68,
+        "SW-FW-SYS-Test-ID-12"
+      ],
+      [
+        70,
+        "SW-FW-SYS-Test-ID-13"
+      ],
+      [
+        74,
+        "SW-FW-SYS-Test-ID-14"
+      ],
+      [
+        78,
+        "SW-FW-SYS-Test-ID-15"
+      ],
+      [
+        82,
+        "SW-FW-SYS-Test-ID-16"
+      ],
+      [
+        84,
+        "SW-FW-SYS-Test-ID-17"
+      ],
+      [
+        86,
+        "SW-FW-SYS-Test-ID-18"
+      ],
+      [
+        93,
+        "SW-FW-SYS-Test-ID-19"
+      ],
+      [
+        96,
+        "SW-FW-SYS-Test-ID-20"
+      ],
+      [
+        98,
+        "SW-FW-SYS-Test-ID-21"
+      ],
+      [
+        106,
+        "SW-FW-SYS-Test-ID-22"
+      ],
+      [
+        114,
+        "SW-FW-SYS-Test-ID-23"
+      ],
+      [
+        116,
+        "SW-FW-SYS-Test-ID-24"
+      ],
+      [
+        121,
+        "SW-FW-SYS-Test-ID-25"
+      ],
+      [
+        124,
+        "SW-FW-SYS-Test-ID-26"
+      ],
+      [
+        128,
+        "SW-FW-SYS-Test-ID-27"
+      ],
+      [
+        130,
+        "SW-FW-SYS-Test-ID-28"
+      ],
+      [
+        132,
+        "SW-FW-SYS-Test-ID-29"
+      ],
+      [
+        134,
+        "SW-FW-SYS-Test-ID-30"
+      ],
+      [
+        138,
+        "SW-FW-SYS-Test-ID-31"
+      ],
+      [
+        141,
+        "SW-FW-SYS-Test-ID-32"
+      ],
+      [
+        144,
+        "SW-FW-SYS-Test-ID-33"
+      ],
+      [
+        146,
+        "SW-FW-SYS-Test-ID-34"
+      ],
+      [
+        148,
+        "SW-FW-SYS-Test-ID-35"
+      ],
+      [
+        151,
+        "SW-FW-SYS-Test-ID-36"
+      ],
+      [
+        152,
+        "SW-FW-SYS-Test-ID-37"
+      ],
+      [
+        155,
+        "SW-FW-SYS-Test-ID-38"
+      ],
+      [
+        157,
+        "SW-FW-SYS-Test-ID-39"
+      ],
+      [
+        159,
+        "SW-FW-SYS-Test-ID-40"
+      ],
+      [
+        162,
+        "SW-FW-SYS-Test-ID-41"
+      ],
+      [
+        164,
+        "SW-FW-SYS-Test-ID-42"
+      ],
+      [
+        166,
+        "SW-FW-SYS-Test-ID-43"
+      ],
+      [
+        168,
+        "SW-FW-SYS-Test-ID-44"
+      ],
+      [
+        178,
+        "SW-FW-SYS-Test-ID-45"
+      ],
+      [
+        184,
+        "SW-FW-SYS-Test-ID-69"
+      ],
+      [
+        186,
+        "SW-FW-SYS-Test-ID-70"
+      ],
+      [
+        188,
+        "SW-FW-SYS-Test-ID-46"
+      ],
+      [
+        190,
+        "SW-FW-SYS-Test-ID-47"
+      ],
+      [
+        191,
+        "SW-FW-SYS-Test-ID-48"
+      ],
+      [
+        194,
+        "SW-FW-SYS-Test-ID-49"
+      ],
+      [
+        195,
+        "SW-FW-SYS-Test-ID-50"
+      ],
+      [
+        197,
+        "SW-FW-SYS-Test-ID-51"
+      ],
+      [
+        199,
+        "SW-FW-SYS-Test-ID-52"
+      ],
+      [
+        203,
+        "SW-FW-SYS-Test-ID-53"
+      ],
+      [
+        204,
+        "SW-FW-SYS-Test-ID-81"
+      ],
+      [
+        206,
+        "SW-FW-SYS-Test-ID-54"
+      ],
+      [
+        210,
+        "SW-FW-SYS-Test-ID-71"
+      ],
+      [
+        212,
+        "SW-FW-SYS-Test-ID-72"
+      ],
+      [
+        215,
+        "SW-FW-SYS-Test-ID-73"
+      ],
+      [
+        217,
+        "SW-FW-SYS-Test-ID-74"
+      ],
+      [
+        219,
+        "SW-FW-SYS-Test-ID-75"
+      ],
+      [
+        222,
+        "SW-FW-SYS-Test-ID-76"
+      ],
+      [
+        225,
+        "SW-FW-SYS-Test-ID-77"
+      ],
+      [
+        227,
+        "SW-FW-SYS-Test-ID-78"
+      ],
+      [
+        230,
+        "SW-FW-SYS-Test-ID-79"
+      ],
+      [
+        234,
+        "SW-FW-SYS-Test-ID-80"
+      ],
+      [
+        237,
+        "SW-FW-SYS-Test-ID-55"
+      ],
+      [
+        239,
+        "SW-FW-SYS-Test-ID-56"
+      ],
+      [
+        243,
+        "SW-FW-SYS-Test-ID-57"
+      ],
+      [
+        244,
+        "SW-FW-SYS-Test-ID-58"
+      ],
+      [
+        247,
+        "SW-FW-SYS-Test-ID-59"
+      ],
+      [
+        249,
+        "SW-FW-SYS-Test-ID-60"
+      ],
+      [
+        260,
+        "SW-FW-SYS-Test-ID-61"
+      ],
+      [
+        261,
+        "SW-FW-SYS-Test-ID-62"
+      ],
+      [
+        269,
+        "SW-FW-SYS-Test-ID-63"
+      ],
+      [
+        272,
+        "SW-FW-SYS-Test-ID-64"
+      ],
+      [
+        274,
+        "SW-FW-SYS-Test-ID-65"
+      ],
+      [
+        276,
+        "SW-FW-SYS-Test-ID-66"
+      ],
+      [
+        278,
+        "SW-FW-SYS-Test-ID-67"
+      ],
+      [
+        280,
+        "SW-FW-SYS-Test-ID-68"
+      ],
+      [
+        282,
+        "SW-FW-SYS-Test-ID-82"
+      ],
+      [
+        285,
+        "SW-FW-SYS-Test-ID-83"
+      ]
+    ],
+    "page_break_before_rows": [
+      35,
+      38,
+      39,
+      41,
+      44,
+      48,
+      50,
+      54,
+      64,
+      68,
+      70,
+      74,
+      78,
+      82,
+      84,
+      98,
+      106,
+      114,
+      116,
+      121,
+      124,
+      128,
+      130,
+      132,
+      134,
+      138,
+      141,
+      144,
+      146,
+      148,
+      151,
+      152,
+      155,
+      157,
+      159,
+      162,
+      166,
+      188,
+      190,
+      191,
+      194,
+      197,
+      199,
+      206,
+      210,
+      212,
+      215,
+      218,
+      222,
+      227,
+      230,
+      237,
+      239,
+      244,
+      247,
+      260,
+      261,
+      269,
+      278,
+      280,
+      282,
+      285
+    ],
+    "new_break_before_rows": [
+      35,
+      38,
+      39,
+      41,
+      44,
+      48,
+      50,
+      54,
+      64,
+      68,
+      70,
+      74,
+      82,
+      84,
+      98,
+      106,
+      116,
+      121,
+      128,
+      130,
+      132,
+      138,
+      141,
+      144,
+      146,
+      151,
+      152,
+      155,
+      157,
+      162,
+      166,
+      190,
+      191,
+      194,
+      197,
+      199,
+      206,
+      210,
+      212,
+      215,
+      218,
+      222,
+      227,
+      230,
+      237,
+      239,
+      244,
+      247,
+      260,
+      261,
+      269,
+      280,
+      282,
+      285
+    ],
+    "changed_short_group_scope": [
+      {
+        "start_row": 35,
+        "id": "SW-FW-SYS-Test-ID-2"
+      },
+      {
+        "start_row": 38,
+        "id": "SW-FW-SYS-Test-ID-3"
+      },
+      {
+        "start_row": 39,
+        "id": "SW-FW-SYS-Test-ID-4"
+      },
+      {
+        "start_row": 41,
+        "id": "SW-FW-SYS-Test-ID-5"
+      },
+      {
+        "start_row": 44,
+        "id": "SW-FW-SYS-Test-ID-6"
+      },
+      {
+        "start_row": 48,
+        "id": "SW-FW-SYS-Test-ID-7"
+      },
+      {
+        "start_row": 50,
+        "id": "SW-FW-SYS-Test-ID-8"
+      },
+      {
+        "start_row": 54,
+        "id": "SW-FW-SYS-Test-ID-10"
+      },
+      {
+        "start_row": 64,
+        "id": "SW-FW-SYS-Test-ID-11"
+      },
+      {
+        "start_row": 68,
+        "id": "SW-FW-SYS-Test-ID-12"
+      },
+      {
+        "start_row": 70,
+        "id": "SW-FW-SYS-Test-ID-13"
+      },
+      {
+        "start_row": 74,
+        "id": "SW-FW-SYS-Test-ID-14"
+      },
+      {
+        "start_row": 78,
+        "id": "SW-FW-SYS-Test-ID-15"
+      },
+      {
+        "start_row": 82,
+        "id": "SW-FW-SYS-Test-ID-16"
+      },
+      {
+        "start_row": 84,
+        "id": "SW-FW-SYS-Test-ID-17"
+      },
+      {
+        "start_row": 98,
+        "id": "SW-FW-SYS-Test-ID-21"
+      },
+      {
+        "start_row": 106,
+        "id": "SW-FW-SYS-Test-ID-22"
+      },
+      {
+        "start_row": 114,
+        "id": "SW-FW-SYS-Test-ID-23"
+      },
+      {
+        "start_row": 116,
+        "id": "SW-FW-SYS-Test-ID-24"
+      },
+      {
+        "start_row": 121,
+        "id": "SW-FW-SYS-Test-ID-25"
+      },
+      {
+        "start_row": 124,
+        "id": "SW-FW-SYS-Test-ID-26"
+      },
+      {
+        "start_row": 128,
+        "id": "SW-FW-SYS-Test-ID-27"
+      },
+      {
+        "start_row": 130,
+        "id": "SW-FW-SYS-Test-ID-28"
+      },
+      {
+        "start_row": 132,
+        "id": "SW-FW-SYS-Test-ID-29"
+      },
+      {
+        "start_row": 134,
+        "id": "SW-FW-SYS-Test-ID-30"
+      },
+      {
+        "start_row": 138,
+        "id": "SW-FW-SYS-Test-ID-31"
+      },
+      {
+        "start_row": 141,
+        "id": "SW-FW-SYS-Test-ID-32"
+      },
+      {
+        "start_row": 144,
+        "id": "SW-FW-SYS-Test-ID-33"
+      },
+      {
+        "start_row": 146,
+        "id": "SW-FW-SYS-Test-ID-34"
+      },
+      {
+        "start_row": 148,
+        "id": "SW-FW-SYS-Test-ID-35"
+      },
+      {
+        "start_row": 151,
+        "id": "SW-FW-SYS-Test-ID-36"
+      },
+      {
+        "start_row": 152,
+        "id": "SW-FW-SYS-Test-ID-37"
+      },
+      {
+        "start_row": 155,
+        "id": "SW-FW-SYS-Test-ID-38"
+      },
+      {
+        "start_row": 157,
+        "id": "SW-FW-SYS-Test-ID-39"
+      },
+      {
+        "start_row": 159,
+        "id": "SW-FW-SYS-Test-ID-40"
+      },
+      {
+        "start_row": 162,
+        "id": "SW-FW-SYS-Test-ID-41"
+      },
+      {
+        "start_row": 166,
+        "id": "SW-FW-SYS-Test-ID-43"
+      },
+      {
+        "start_row": 188,
+        "id": "SW-FW-SYS-Test-ID-46"
+      },
+      {
+        "start_row": 190,
+        "id": "SW-FW-SYS-Test-ID-47"
+      },
+      {
+        "start_row": 191,
+        "id": "SW-FW-SYS-Test-ID-48"
+      },
+      {
+        "start_row": 194,
+        "id": "SW-FW-SYS-Test-ID-49"
+      },
+      {
+        "start_row": 197,
+        "id": "SW-FW-SYS-Test-ID-51"
+      },
+      {
+        "start_row": 199,
+        "id": "SW-FW-SYS-Test-ID-52"
+      },
+      {
+        "start_row": 210,
+        "id": "SW-FW-SYS-Test-ID-71"
+      },
+      {
+        "start_row": 212,
+        "id": "SW-FW-SYS-Test-ID-72"
+      },
+      {
+        "start_row": 215,
+        "id": "SW-FW-SYS-Test-ID-73"
+      },
+      {
+        "start_row": 222,
+        "id": "SW-FW-SYS-Test-ID-76"
+      },
+      {
+        "start_row": 227,
+        "id": "SW-FW-SYS-Test-ID-78"
+      },
+      {
+        "start_row": 230,
+        "id": "SW-FW-SYS-Test-ID-79"
+      },
+      {
+        "start_row": 237,
+        "id": "SW-FW-SYS-Test-ID-55"
+      },
+      {
+        "start_row": 239,
+        "id": "SW-FW-SYS-Test-ID-56"
+      },
+      {
+        "start_row": 244,
+        "id": "SW-FW-SYS-Test-ID-58"
+      },
+      {
+        "start_row": 247,
+        "id": "SW-FW-SYS-Test-ID-59"
+      },
+      {
+        "start_row": 260,
+        "id": "SW-FW-SYS-Test-ID-61"
+      },
+      {
+        "start_row": 261,
+        "id": "SW-FW-SYS-Test-ID-62"
+      },
+      {
+        "start_row": 269,
+        "id": "SW-FW-SYS-Test-ID-63"
+      },
+      {
+        "start_row": 278,
+        "id": "SW-FW-SYS-Test-ID-67"
+      },
+      {
+        "start_row": 280,
+        "id": "SW-FW-SYS-Test-ID-68"
+      },
+      {
+        "start_row": 282,
+        "id": "SW-FW-SYS-Test-ID-82"
+      },
+      {
+        "start_row": 285,
+        "id": "SW-FW-SYS-Test-ID-83"
+      }
+    ],
+    "extra_condition_breaks": [
+      206,
+      218
+    ],
+    "top_alignment_cells": [
+      "H82",
+      "H206"
+    ],
+    "candidate": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\group-boundary-candidate\\[E8300-QCC] SSTR-FW-TD24A 소프트웨어 시스템 시험 보고서.xlsx",
+    "height_changes": {},
+    "text_changes": {},
+    "reason": "Fix each changed short preparation/procedure at its test start; preserve normal long RTT continuation. H82/H206 limited notes top aligned, J218 date comparison condition starts separately. No test input/result/PASS added."
+  }
+}

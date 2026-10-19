@@ -1,0 +1,20 @@
+[
+  {
+    "allRevisionsAccepted": false,
+    "candidate": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\SR-fields.docx",
+    "userUnchanged": true,
+    "afterRevisions": 265,
+    "beforeRevisions": 265,
+    "pages": 11,
+    "code": "SR"
+  },
+  {
+    "allRevisionsAccepted": false,
+    "candidate": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\SGR-fields.docx",
+    "userUnchanged": true,
+    "afterRevisions": 255,
+    "beforeRevisions": 255,
+    "pages": 11,
+    "code": "SGR"
+  }
+]

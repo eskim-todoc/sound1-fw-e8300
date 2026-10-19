@@ -1,0 +1,49 @@
+{
+  "before_sha256": "468F5E305AD1386DD0A02868F3C1EB3C6D290F53406F4601BFB11C26CB337D30",
+  "after_sha256": "D87A445328E501D48A481D57FC3C3CCC5B502B27D640930D3398B55F4F078E4D",
+  "row_changes": [
+    {
+      "row": 21,
+      "old_height": 130.0,
+      "new_height": 185
+    },
+    {
+      "row": 52,
+      "old_height": 130.5,
+      "new_height": 170
+    },
+    {
+      "row": 56,
+      "old_height": 200.0,
+      "new_height": 235
+    },
+    {
+      "row": 61,
+      "old_height": 130.5,
+      "new_height": 225
+    },
+    {
+      "row": 63,
+      "old_height": 190.0,
+      "new_height": 265
+    },
+    {
+      "row": 68,
+      "old_height": 250.0,
+      "new_height": 295
+    },
+    {
+      "row": 69,
+      "old_height": 250.0,
+      "new_height": 360
+    },
+    {
+      "row": 73,
+      "old_height": 130.0,
+      "new_height": 205
+    }
+  ],
+  "content_merge_styles_unchanged": true,
+  "reason": "전체 native27쪽을 직접 확인하여 RID15/44/47/48/52/54 분할 셀의 첫줄 잘림을 확인했다. RID69 재조정도 포함하며 정상 글꼴을 유지한 채 해당 행 높이만 보완했다.",
+  "native_recheck": "대기"
+}

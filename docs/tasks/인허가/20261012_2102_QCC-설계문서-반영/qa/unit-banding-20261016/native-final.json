@@ -1,0 +1,58 @@
+{
+  "status": "통과",
+  "candidate": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\unit-banding-20261016\\candidate.xlsx",
+  "candidate_sha256": "6FA732E9AAAAFDE64975327C7A9A13542B08BA7D487E3B35959A60CE6ADC40A2",
+  "scope": "물리 순서130시험블록 / B30:M1763 / 채우기만",
+  "native_check": {
+    "blocks": 130,
+    "rows": 1734,
+    "cells_covered": 20808,
+    "order_sequence": true,
+    "plan_parity": true,
+    "rows_uniform_expected_color": true,
+    "failure_count": 0,
+    "odd_rgb": "FFFFFF",
+    "even_rgb": "F5F5F5",
+    "core_restart": false,
+    "exceptions": []
+  },
+  "visual_status": "통과",
+  "direct_views": [
+    {
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\unit-banding-20261016\\native-boundary-BOOT-p001.png",
+      "sha256": "DE210568D7F1F9AF56B7D285DA3ADF92105B538D767D2D1852E06796B229C0EC",
+      "direct_full_viewed": true,
+      "verdict": "통과"
+    },
+    {
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\unit-banding-20261016\\native-boundary-QCC-p001.png",
+      "sha256": "422D456757A9A66222BDD8764FF7428CF3B11BD270CC37C8F949DFC0AEC2F2F1",
+      "direct_full_viewed": true,
+      "verdict": "통과"
+    }
+  ],
+  "visual_result": "CM3→BOOT 및 BOOT→QCC 경계의 흰색→연회색을 확인했다. BOOT1은 전체96번째, QCC1은116번째이므로 연회색이다. 본문 / 결과 / 빨간 안내 / 외곽 표시 회귀는 없다.",
+  "readonly": true,
+  "repair_requested": false,
+  "saved": false,
+  "closed_without_saving": true,
+  "source_unchanged": true,
+  "evidence": {
+    "plan.json": {
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\unit-banding-20261016\\plan.json",
+      "sha256": "68221E5E53182087779BFD5A81297D80ABCDDF8080390BC6CE836B51C8B99479"
+    },
+    "native-check.json": {
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\unit-banding-20261016\\native-check.json",
+      "sha256": "A1C18A41F036360E360A2D136E8379C6965D0C819DA12B5735DE86C5745F3DE2"
+    },
+    "native-render.json": {
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\unit-banding-20261016\\native-render.json",
+      "sha256": "F7617D139DB901CE8D3773CCBEAA6BDB276210E6AF2DB975308D2F7978E04835"
+    }
+  },
+  "limitations": "대표2쪽 시각검사. 내용 / 수식 / 이미지 / 병합 / 채우기 외 스타일 / 기타 package 보존은 제작자 전수검사에 연결하며 재감사하지 않음.",
+  "outstanding_defects": [],
+  "product_test_results_changed": false,
+  "completed_at": "2026-10-16T19:37:49.498955+09:00"
+}

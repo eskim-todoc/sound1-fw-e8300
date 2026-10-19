@@ -1,0 +1,19 @@
+{
+  "Markup": 1,
+  "View": 0,
+  "ShowAll": true,
+  "ShowParagraphs": true,
+  "ShowRevisionsAndComments": true,
+  "ShowFormatChanges": true,
+  "ShowInsertionsAndDeletions": true,
+  "Reviewers": [
+    {
+      "Index": 1,
+      "Visible": true
+    },
+    {
+      "Index": 2,
+      "Visible": true
+    }
+  ]
+}

@@ -1,0 +1,499 @@
+[
+  {
+    "key": "SUVR",
+    "page": 13,
+    "candidate_group": "SW-FW-UnitTest-CFX-ID-11",
+    "candidate_start_row": 72,
+    "near_bottom": [
+      {
+        "text": "[UT-CFX-011]C4A[126:131]=12800,12800,1,1,0,24",
+        "bbox": [
+          647.86,
+          506.35200000000003,
+          726.6819999999999,
+          509.83200000000005
+        ],
+        "size": 3.480000000000004,
+        "below": 3.22
+      }
+    ],
+    "crop": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\boundary-review-final\\SUVR-013.png"
+  },
+  {
+    "key": "SUVR",
+    "page": 84,
+    "candidate_group": "SW-FW-UnitTest-HEAR-ID-2",
+    "candidate_start_row": 650,
+    "near_bottom": [
+      {
+        "text": "[UT-HEAR-002]C80A[126:140]=0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
+        "bbox": [
+          647.86,
+          529.344,
+          732.5665600000001,
+          532.5840000000001
+        ],
+        "size": 3.240000000000002,
+        "below": 3.41
+      }
+    ],
+    "crop": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\boundary-review-final\\SUVR-084.png"
+  },
+  {
+    "key": "SUVR",
+    "page": 133,
+    "candidate_group": "SW-FW-UnitTest-CM3-ID-21",
+    "candidate_start_row": 942,
+    "near_bottom": [
+      {
+        "text": "출력[18]합성이름[15](문자코드)=112",
+        "bbox": [
+          647.86,
+          522.192,
+          712.1529999999999,
+          525.672
+        ],
+        "size": 3.480000000000004,
+        "below": 3.58
+      }
+    ],
+    "crop": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\boundary-review-final\\SUVR-133.png"
+  },
+  {
+    "key": "SUVR",
+    "page": 150,
+    "candidate_group": "SW-FW-UnitTest-CM3-ID-29",
+    "candidate_start_row": 1040,
+    "near_bottom": [
+      {
+        "text": "출력[20]공유C코드[8]=127",
+        "bbox": [
+          647.86,
+          447.43600000000004,
+          695.1218799999999,
+          450.91600000000005
+        ],
+        "size": 3.4799999999999898,
+        "below": 3.46
+      }
+    ],
+    "crop": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\boundary-review-final\\SUVR-150.png"
+  },
+  {
+    "key": "SSTC",
+    "page": 25,
+    "candidate_group": "SW-FW-SYS-Test-ID-27",
+    "candidate_start_row": 128,
+    "near_bottom": [
+      {
+        "text": "리모콘앱으로LED알림을끄고켜며일반상태LED를확",
+        "bbox": [
+          532.87,
+          165.90800000000002,
+          646.6228000000001,
+          170.348
+        ],
+        "size": 4.439999999999998,
+        "below": 3.53
+      }
+    ],
+    "crop": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\boundary-review-final\\SSTC-025.png"
+  },
+  {
+    "key": "SSTC",
+    "page": 26,
+    "candidate_group": "SW-FW-SYS-Test-ID-28",
+    "candidate_start_row": 130,
+    "near_bottom": [
+      {
+        "text": "전원을3.7V에서낮추며배터리부족LED와알림용자극",
+        "bbox": [
+          532.87,
+          179.348,
+          645.9124,
+          183.788
+        ],
+        "size": 4.439999999999998,
+        "below": 4.13
+      }
+    ],
+    "crop": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\boundary-review-final\\SSTC-026.png"
+  },
+  {
+    "key": "SSTC",
+    "page": 27,
+    "candidate_group": "SW-FW-SYS-Test-ID-29",
+    "candidate_start_row": 132,
+    "near_bottom": [
+      {
+        "text": "전달값/응답/앱잔량표시를비교한다.",
+        "bbox": [
+          532.87,
+          179.348,
+          608.71852,
+          183.788
+        ],
+        "size": 4.439999999999998,
+        "below": 0.41
+      }
+    ],
+    "crop": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\boundary-review-final\\SSTC-027.png"
+  },
+  {
+    "key": "SSTC",
+    "page": 31,
+    "candidate_group": "SW-FW-SYS-Test-ID-33",
+    "candidate_start_row": 144,
+    "near_bottom": [
+      {
+        "text": "설정응답/앱표시/실제일반LED를확인한다.",
+        "bbox": [
+          532.87,
+          179.348,
+          623.9521599999999,
+          183.788
+        ],
+        "size": 4.439999999999998,
+        "below": 4.01
+      }
+    ],
+    "crop": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\boundary-review-final\\SSTC-031.png"
+  },
+  {
+    "key": "SSTC",
+    "page": 32,
+    "candidate_group": "SW-FW-SYS-Test-ID-34",
+    "candidate_start_row": 146,
+    "near_bottom": [
+      {
+        "text": "의유무를확인한다.",
+        "bbox": [
+          532.87,
+          186.098,
+          572.48812,
+          190.538
+        ],
+        "size": 4.439999999999998,
+        "below": 2.09
+      }
+    ],
+    "crop": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\boundary-review-final\\SSTC-032.png"
+  },
+  {
+    "key": "SSTC",
+    "page": 34,
+    "candidate_group": "SW-FW-SYS-Test-ID-36",
+    "candidate_start_row": 151,
+    "near_bottom": [
+      {
+        "text": "성.",
+        "bbox": [
+          351.65,
+          172.62800000000004,
+          357.06235999999996,
+          177.06800000000004
+        ],
+        "size": 4.439999999999998,
+        "below": 4.61
+      },
+      {
+        "text": "매핑앱에서지정자극명령을보내고오실로스코프로해",
+        "bbox": [
+          532.87,
+          172.62800000000004,
+          645.9168400000001,
+          177.06800000000004
+        ],
+        "size": 4.439999999999998,
+        "below": 4.61
+      }
+    ],
+    "crop": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\boundary-review-final\\SSTC-034.png"
+  },
+  {
+    "key": "SSTC",
+    "page": 36,
+    "candidate_group": "SW-FW-SYS-Test-ID-38",
+    "candidate_start_row": 155,
+    "near_bottom": [
+      {
+        "text": "성.",
+        "bbox": [
+          351.65,
+          172.62800000000004,
+          357.06235999999996,
+          177.06800000000004
+        ],
+        "size": 4.439999999999998,
+        "below": 1.01
+      },
+      {
+        "text": "잔량37%와72%에서매핑앱으로[0x67]을보내고응답을",
+        "bbox": [
+          532.87,
+          172.62800000000004,
+          648.20344,
+          177.06800000000004
+        ],
+        "size": 4.439999999999998,
+        "below": 1.01
+      }
+    ],
+    "crop": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\boundary-review-final\\SSTC-036.png"
+  },
+  {
+    "key": "SSTC",
+    "page": 43,
+    "candidate_group": "SW-FW-SYS-Test-ID-46",
+    "candidate_start_row": 188,
+    "near_bottom": [
+      {
+        "text": "성.",
+        "bbox": [
+          351.65,
+          199.538,
+          357.06235999999996,
+          203.978
+        ],
+        "size": 4.439999999999998,
+        "below": 4.01
+      },
+      {
+        "text": "태에서각각광고를검색한다.",
+        "bbox": [
+          532.87,
+          199.538,
+          591.8109999999999,
+          203.978
+        ],
+        "size": 4.439999999999998,
+        "below": 4.01
+      }
+    ],
+    "crop": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\boundary-review-final\\SSTC-043.png"
+  },
+  {
+    "key": "SSTC",
+    "page": 47,
+    "candidate_group": "SW-FW-SYS-Test-ID-51",
+    "candidate_start_row": 197,
+    "near_bottom": [
+      {
+        "text": "된감사기록전체를읽는다.",
+        "bbox": [
+          532.87,
+          179.348,
+          587.371,
+          183.788
+        ],
+        "size": 4.439999999999998,
+        "below": 1.25
+      }
+    ],
+    "crop": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\boundary-review-final\\SSTC-047.png"
+  },
+  {
+    "key": "SSTC",
+    "page": 56,
+    "candidate_group": "SW-FW-SYS-Test-ID-74",
+    "candidate_start_row": 217,
+    "near_bottom": [
+      {
+        "text": "다고간주하지않는다.",
+        "bbox": [
+          650.38,
+          165.90800000000002,
+          694.43812,
+          170.348
+        ],
+        "size": 4.439999999999998,
+        "below": 3.65
+      }
+    ],
+    "crop": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\boundary-review-final\\SSTC-056.png"
+  },
+  {
+    "key": "SSTC",
+    "page": 62,
+    "candidate_group": "SW-FW-SYS-Test-ID-55",
+    "candidate_start_row": 237,
+    "near_bottom": [
+      {
+        "text": "성.",
+        "bbox": [
+          351.65,
+          179.348,
+          357.06235999999996,
+          183.788
+        ],
+        "size": 4.439999999999998,
+        "below": -0.07
+      },
+      {
+        "text": "의간격을측정한다.",
+        "bbox": [
+          532.87,
+          179.348,
+          572.48812,
+          183.788
+        ],
+        "size": 4.439999999999998,
+        "below": -0.07
+      }
+    ],
+    "crop": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\boundary-review-final\\SSTC-062.png"
+  },
+  {
+    "key": "SSTC",
+    "page": 67,
+    "candidate_group": "SW-FW-SYS-Test-ID-61",
+    "candidate_start_row": 260,
+    "near_bottom": [
+      {
+        "text": "한다.",
+        "bbox": [
+          532.87,
+          172.62800000000004,
+          542.72236,
+          177.06800000000004
+        ],
+        "size": 4.439999999999998,
+        "below": 4.61
+      }
+    ],
+    "crop": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\boundary-review-final\\SSTC-067.png"
+  },
+  {
+    "key": "SSTC",
+    "page": 70,
+    "candidate_group": "SW-FW-SYS-Test-ID-67",
+    "candidate_start_row": 278,
+    "near_bottom": [
+      {
+        "text": "외부기의시동과내부기부착과정에서오실로스코프로",
+        "bbox": [
+          532.87,
+          179.348,
+          642.7910800000001,
+          183.788
+        ],
+        "size": 4.439999999999998,
+        "below": -0.07
+      }
+    ],
+    "crop": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\boundary-review-final\\SSTC-070.png"
+  },
+  {
+    "key": "SSTC",
+    "page": 71,
+    "candidate_group": "SW-FW-SYS-Test-ID-68",
+    "candidate_start_row": 280,
+    "near_bottom": [
+      {
+        "text": "외부기의종료와내부기탈착과정에서오실로스코프로",
+        "bbox": [
+          532.87,
+          179.348,
+          642.7910800000001,
+          183.788
+        ],
+        "size": 4.439999999999998,
+        "below": -0.07
+      }
+    ],
+    "crop": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\boundary-review-final\\SSTC-071.png"
+  },
+  {
+    "key": "SSTR",
+    "page": 25,
+    "candidate_group": "SW-FW-SYS-Test-ID-27",
+    "candidate_start_row": 128,
+    "near_bottom": [
+      {
+        "text": "다",
+        "bbox": [
+          430.13,
+          140.87600000000003,
+          433.61,
+          144.35600000000005
+        ],
+        "size": 3.480000000000018,
+        "below": 0.1
+      },
+      {
+        "text": ".",
+        "bbox": [
+          433.61,
+          141.05,
+          434.48696,
+          144.53000000000003
+        ],
+        "size": 3.480000000000018,
+        "below": 0.27
+      }
+    ],
+    "crop": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\boundary-review-final\\SSTR-025.png"
+  },
+  {
+    "key": "SSTR",
+    "page": 34,
+    "candidate_group": "SW-FW-SYS-Test-ID-36",
+    "candidate_start_row": 151,
+    "near_bottom": [
+      {
+        "text": "전극의출력을확인한다",
+        "bbox": [
+          430.13,
+          145.55600000000004,
+          466.63,
+          149.03600000000006
+        ],
+        "size": 3.480000000000018,
+        "below": 0.34
+      },
+      {
+        "text": ".",
+        "bbox": [
+          466.63,
+          145.73000000000002,
+          467.50696,
+          149.21000000000004
+        ],
+        "size": 3.480000000000018,
+        "below": 0.51
+      }
+    ],
+    "crop": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\boundary-review-final\\SSTR-034.png"
+  },
+  {
+    "key": "SSTR",
+    "page": 54,
+    "candidate_group": "SW-FW-SYS-Test-ID-74",
+    "candidate_start_row": 217,
+    "near_bottom": [
+      {
+        "text": "EVENTLOGTIME{...}6.",
+        "bbox": [
+          430.13,
+          108.29000000000002,
+          517.0669600000001,
+          111.77000000000004
+        ],
+        "size": 3.480000000000018,
+        "below": 0.87
+      },
+      {
+        "text": "의개필드를해당이벤트와비교한다",
+        "bbox": [
+          445.27,
+          108.11600000000004,
+          516.19,
+          111.59600000000006
+        ],
+        "size": 3.480000000000018,
+        "below": 0.7
+      }
+    ],
+    "crop": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\boundary-review-final\\SSTR-054.png"
+  }
+]

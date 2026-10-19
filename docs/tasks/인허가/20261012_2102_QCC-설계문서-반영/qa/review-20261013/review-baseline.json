@@ -1,0 +1,236 @@
+[
+  {
+    "role": "protected-source",
+    "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\04_설계 검증\\SW\\외부기\\[E8300] SSTR-FW-TD24A 소프트웨어 시스템 시험 보고서.xlsx",
+    "sha256": "522C9970C8CF6130A9350CC60C50F578E61E25F7171608EF577F01B17D426660",
+    "size": 449555
+  },
+  {
+    "role": "protected-source",
+    "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\04_설계 검증\\SW\\외부기\\[E8300] SITR-FW-TD24A 소프트웨어 통합시험 보고서.xlsx",
+    "sha256": "EF9797101BA6FBE803C58FEFCDC81F829090C5D199A145FE79F61103207A7085",
+    "size": 44059
+  },
+  {
+    "role": "protected-source",
+    "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\04_설계 검증\\SW\\외부기\\[E8300] SUVR-FW-TD24A 소프트웨어 유닛 검증 보고서.xlsx",
+    "sha256": "05495AED7973BAF02E03C03AACE158AE233CEC419CF2308CCF3F9950DFAF21B5",
+    "size": 323308
+  },
+  {
+    "role": "protected-source",
+    "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\02_설계 입력\\SW\\외부기\\[E8300] SR-FW-TD24A 소프트웨어 요구사항.docx",
+    "sha256": "6F8F005BB1F311752FDE1E8AA14A75F3E716A48167072261DA630061864231C6",
+    "size": 882162
+  },
+  {
+    "role": "protected-source",
+    "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\02_설계 입력\\SW\\외부기\\[E8300] SGR-FW-TD24A 소프트웨어 일반요구사항.docx",
+    "sha256": "2D81FC0FCE22B8DC57A73C6C3B71F0B3989404BA60289E346E0670A7B1D593F3",
+    "size": 303369
+  },
+  {
+    "role": "protected-source",
+    "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\02_설계 입력\\SW\\외부기\\[E8300] SRS-FW-TD24A 소프트웨어 요구사항 사양서.xlsx",
+    "sha256": "F41DF6E3478CA642565EB569228E58CB75D7653260FFF613FDFEA74E95BF7D0B",
+    "size": 29647
+  },
+  {
+    "role": "protected-source",
+    "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\01_설계 계획\\SW\\외부기\\[E8300] SPRP-FW-TD24A 소프트웨어 문제해결 계획서.docx",
+    "sha256": "1DFD64FB5E6F92C0CA6234B9E54924DD08BAA153BD52A7DEBA706B19068F9628",
+    "size": 203675
+  },
+  {
+    "role": "protected-source",
+    "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\01_설계 계획\\SW\\외부기\\[E8300] SMP-FW-TD24A 소프트웨어 유지보수 계획서.docx",
+    "sha256": "C7B90B1250D9602207C6EA9C847832BC768B42AE9C047A8DDF661B08EB034C50",
+    "size": 205146
+  },
+  {
+    "role": "protected-source",
+    "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\01_설계 계획\\SW\\외부기\\[E8300] SDP-FW-TD24A 소프트웨어 개발 계획서.docx",
+    "sha256": "A019C578175F16B61CE9B3E2C355BB7186D8AA352E6035D9A15F8FD955C24EED",
+    "size": 279103
+  },
+  {
+    "role": "protected-source",
+    "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\01_설계 계획\\SW\\외부기\\[E8300] SCMP-FW-TD24A 소프트웨어 형상관리 계획서.docx",
+    "sha256": "CE6D5E0F308EB791FA3627241DE9313982B464C621CCAA9BEA89AB870A6AC9B8",
+    "size": 513429
+  },
+  {
+    "role": "protected-source",
+    "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\01_설계 계획\\SW\\외부기\\[E8300] SCCP-FW-TD24A 소프트웨어 변경관리 계획서.docx",
+    "sha256": "024EC477EE05BE5DDD15E10BCFAAE1F0A7DECCCE8E6FF4274B395271C051CF3D",
+    "size": 206212
+  },
+  {
+    "role": "protected-source",
+    "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\01_설계 계획\\SW\\외부기\\[E8300] SRMP-FW-TD24A 소프트웨어 위험관리 계획서.docx",
+    "sha256": "0C088019B722F8A055A931E1FA0ECC80C2974171D74CE5F868B931177E2E587F",
+    "size": 370163
+  },
+  {
+    "role": "protected-source",
+    "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300] SSTC-FW-TD24A 소프트웨어 시스템 시험 기준서.xlsx",
+    "sha256": "5DC280315BB6FDE189E7D10670A3603143EA1F3F42E92DCE7D2A671CB8A5CFF2",
+    "size": 70089
+  },
+  {
+    "role": "protected-source",
+    "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300] SITC-FW-TD24A 소프트웨어 통합시험 기준서.xlsx",
+    "sha256": "26E9CAD65570E11BB472235FF35A32637F785EA948255B694B2DB16222495C7F",
+    "size": 40521
+  },
+  {
+    "role": "protected-source",
+    "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300] SIP-FW-TD24A 소프트웨어 통합 계획서.docx",
+    "sha256": "7EB0438F5AF2BF991BB06BA843D4A6040A38683CD53F6DBFE58F9DDEC2305D02",
+    "size": 356377
+  },
+  {
+    "role": "protected-source",
+    "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300] SDDD-FW-TD24A 소프트웨어 상세 설계서.docx",
+    "sha256": "C95A3405788121F8DDBDB8F296A49ECD41C28947044635EA9B7B432EB99D289C",
+    "size": 6441267
+  },
+  {
+    "role": "protected-source",
+    "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300] SAD-FW-TD24A 소프트웨어 아키텍쳐 기술서.docx",
+    "sha256": "7B79A7D3F17AD78E02366FF79E6AD5A9E0FCB03F989AB4C337A2792097BA48B5",
+    "size": 573365
+  },
+  {
+    "role": "protected-source",
+    "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300] SUVC-FW-TD24A 소프트웨어 유닛 검증 기준서.xlsx",
+    "sha256": "12ED6CFD93A937E4A13618C7F5730D45493586A3A3E005BD5701C85529946A3E",
+    "size": 256521
+  },
+  {
+    "role": "protected-source",
+    "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\02_설계 입력\\SW\\외부기\\서석일_작성\\QCC_SRS-FW-TD24A 소프트웨어 요구사항 사양서_byssi.docx",
+    "sha256": "64DDECBA6C1B718ECD31881F45FEC163F4E5CDD88807455FA6B019C370BFE078",
+    "size": 532422
+  },
+  {
+    "role": "protected-source",
+    "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\서석일_작성\\QCC_SIP-FW-TD24A 소프트웨어 통합 계획서_byssi.docx",
+    "sha256": "0037A200031568BBEE5D044B40BD4647ADE513BF13C1B227BA4EE67DA4C0DABF",
+    "size": 233030
+  },
+  {
+    "role": "protected-source",
+    "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\서석일_작성\\QCC_SDDD-FW-TD24A 소프트웨어 상세 설계서_byssi.docx",
+    "sha256": "49982C995F78064613F47F4D97A262C70394FC937B66CF4E6F38925E4FB5E1CE",
+    "size": 1031533
+  },
+  {
+    "role": "protected-source",
+    "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\서석일_작성\\QCC_SAD-FW-TD24A 소프트웨어 아키텍쳐 기술서_byssi.docx",
+    "sha256": "49EBEBCF56D3835B0DB3365C5BA996909A1F59490E50468C2FE76D44974B8878",
+    "size": 301227
+  },
+  {
+    "role": "protected-source",
+    "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\서석일_작성\\QCC_SUVC-FW-TD24A 유닛 테스트 기준서_byssi.docx",
+    "sha256": "072AA94EF6C48846C78A81DEA104A65ADCF19DEF60F5484A8F33C3677AFCAB5A",
+    "size": 118320
+  },
+  {
+    "role": "editable-output",
+    "code": "SSTR",
+    "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\04_설계 검증\\SW\\외부기\\[E8300-QCC] SSTR-FW-TD24A 소프트웨어 시스템 시험 보고서.xlsx",
+    "snapshot": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\before\\[E8300-QCC] SSTR-FW-TD24A 소프트웨어 시스템 시험 보고서.xlsx",
+    "sha256": "57BBAA3DC7B5792EF34CD88E9FC0C9A7CC32036DA965EDB41CE968E16A51352A",
+    "size": 456073
+  },
+  {
+    "role": "editable-output",
+    "code": "SITR",
+    "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\04_설계 검증\\SW\\외부기\\[E8300-QCC] SITR-FW-TD24A 소프트웨어 통합시험 보고서.xlsx",
+    "snapshot": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\before\\[E8300-QCC] SITR-FW-TD24A 소프트웨어 통합시험 보고서.xlsx",
+    "sha256": "0F24D4729C7C8C1432E6207FE4317708DA6751490FA048CFC15F8C57997B4377",
+    "size": 44288
+  },
+  {
+    "role": "editable-output",
+    "code": "SUVR",
+    "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\04_설계 검증\\SW\\외부기\\[E8300-QCC] SUVR-FW-TD24A 소프트웨어 유닛 검증 보고서.xlsx",
+    "snapshot": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\before\\[E8300-QCC] SUVR-FW-TD24A 소프트웨어 유닛 검증 보고서.xlsx",
+    "sha256": "59892DDB69E4AD215E1F2FE7D5DC19EC93732D2EB4868558EDE2EC58A91471D1",
+    "size": 287843
+  },
+  {
+    "role": "editable-output",
+    "code": "SR",
+    "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\02_설계 입력\\SW\\외부기\\[E8300-QCC] SR-FW-TD24A 소프트웨어 요구사항.docx",
+    "snapshot": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\before\\[E8300-QCC] SR-FW-TD24A 소프트웨어 요구사항.docx",
+    "sha256": "8237F9E97E7D868FB87D09661FA546E51E69DE0D83C9F2DDB75148ECC56F6F63",
+    "size": 883691
+  },
+  {
+    "role": "editable-output",
+    "code": "SGR",
+    "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\02_설계 입력\\SW\\외부기\\[E8300-QCC] SGR-FW-TD24A 소프트웨어 일반요구사항.docx",
+    "snapshot": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\before\\[E8300-QCC] SGR-FW-TD24A 소프트웨어 일반요구사항.docx",
+    "sha256": "2B04B70CAF90E42E3CB829EF8AD7FD860D9DCFD589FB4333E7749B62BE48F049",
+    "size": 303878
+  },
+  {
+    "role": "editable-output",
+    "code": "SRS",
+    "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\02_설계 입력\\SW\\외부기\\[E8300-QCC] SRS-FW-TD24A 소프트웨어 요구사항 사양서.xlsx",
+    "snapshot": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\before\\[E8300-QCC] SRS-FW-TD24A 소프트웨어 요구사항 사양서.xlsx",
+    "sha256": "FB34D47181B2AC35E6DBE710C78986990B6934849B370B5E8CDE030FF10DFAC8",
+    "size": 32026
+  },
+  {
+    "role": "editable-output",
+    "code": "SSTC",
+    "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SSTC-FW-TD24A 소프트웨어 시스템 시험 기준서.xlsx",
+    "snapshot": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\before\\[E8300-QCC] SSTC-FW-TD24A 소프트웨어 시스템 시험 기준서.xlsx",
+    "sha256": "2E3A661F2A21EC82059543D465259FBF506C6DA5357207F709936CFBFEB20EFA",
+    "size": 73181
+  },
+  {
+    "role": "editable-output",
+    "code": "SITC",
+    "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SITC-FW-TD24A 소프트웨어 통합시험 기준서.xlsx",
+    "snapshot": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\before\\[E8300-QCC] SITC-FW-TD24A 소프트웨어 통합시험 기준서.xlsx",
+    "sha256": "EBB54A9830529E5295AB592FE3BA1CC8769AB34118F6EE123F294A9D6AB8405B",
+    "size": 41171
+  },
+  {
+    "role": "editable-output",
+    "code": "SIP",
+    "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SIP-FW-TD24A 소프트웨어 통합 계획서.docx",
+    "snapshot": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\before\\[E8300-QCC] SIP-FW-TD24A 소프트웨어 통합 계획서.docx",
+    "sha256": "3C9FF2237625C78416F3C501D12196E477615DB15625624E7E391572EDCD2C47",
+    "size": 537484
+  },
+  {
+    "role": "editable-output",
+    "code": "SDDD",
+    "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SDDD-FW-TD24A 소프트웨어 상세 설계서.docx",
+    "snapshot": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\before\\[E8300-QCC] SDDD-FW-TD24A 소프트웨어 상세 설계서.docx",
+    "sha256": "490BC2E342353825BF8E053111BBFAFD23EC103EC17452DECDD0320FC3B499C7",
+    "size": 7393900
+  },
+  {
+    "role": "editable-output",
+    "code": "SAD",
+    "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SAD-FW-TD24A 소프트웨어 아키텍쳐 기술서.docx",
+    "snapshot": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\before\\[E8300-QCC] SAD-FW-TD24A 소프트웨어 아키텍쳐 기술서.docx",
+    "sha256": "47B8FB9A30EB01470730A096E38A74B986AB2956BB7E69623ACCCA17E0197117",
+    "size": 830986
+  },
+  {
+    "role": "editable-output",
+    "code": "SUVC",
+    "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SUVC-FW-TD24A 소프트웨어 유닛 검증 기준서.xlsx",
+    "snapshot": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\before\\[E8300-QCC] SUVC-FW-TD24A 소프트웨어 유닛 검증 기준서.xlsx",
+    "sha256": "13B24A4BA19B7CBDAB2C223571CB26563C0B28131608153271D1F69C00ACB76B",
+    "size": 224605
+  }
+]

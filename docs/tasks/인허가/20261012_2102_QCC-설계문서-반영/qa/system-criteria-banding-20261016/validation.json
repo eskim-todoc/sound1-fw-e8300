@@ -1,0 +1,320 @@
+{
+  "status": "PASS",
+  "candidateSHA": "F56DA1CF51524527E3C95EB0507C8D6503358FB78AFAC242E5608F63F9DA356C",
+  "sourceSHA": "D3F7E5FEA16AA448BE548CF9ADB507B85DE06CADAE73C00DE94C97451F5FB301",
+  "sourceUnchanged": true,
+  "sheet": "기준서_시스템 시험",
+  "range": "B34:J292",
+  "blocks": 83,
+  "targetCellsChecked": 2100,
+  "allMainSheetCellsChecked": 2724,
+  "preservedPinkIDCellsChecked": 231,
+  "preservedPinkRanges": [
+    {
+      "testID": "SW-FW-SYS-Test-ID-1",
+      "range": "B34"
+    },
+    {
+      "testID": "SW-FW-SYS-Test-ID-2",
+      "range": "B35:B38"
+    },
+    {
+      "testID": "SW-FW-SYS-Test-ID-3",
+      "range": "B39"
+    },
+    {
+      "testID": "SW-FW-SYS-Test-ID-4",
+      "range": "B40:B41"
+    },
+    {
+      "testID": "SW-FW-SYS-Test-ID-5",
+      "range": "B42:B45"
+    },
+    {
+      "testID": "SW-FW-SYS-Test-ID-6",
+      "range": "B46:B50"
+    },
+    {
+      "testID": "SW-FW-SYS-Test-ID-7",
+      "range": "B51:B53"
+    },
+    {
+      "testID": "SW-FW-SYS-Test-ID-8",
+      "range": "B54:B56"
+    },
+    {
+      "testID": "SW-FW-SYS-Test-ID-9",
+      "range": "B57"
+    },
+    {
+      "testID": "SW-FW-SYS-Test-ID-10",
+      "range": "B58:B90"
+    },
+    {
+      "testID": "SW-FW-SYS-Test-ID-11",
+      "range": "B91:B93"
+    },
+    {
+      "testID": "SW-FW-SYS-Test-ID-12",
+      "range": "B94:B95"
+    },
+    {
+      "testID": "SW-FW-SYS-Test-ID-13",
+      "range": "B96:B99"
+    },
+    {
+      "testID": "SW-FW-SYS-Test-ID-14",
+      "range": "B100:B103"
+    },
+    {
+      "testID": "SW-FW-SYS-Test-ID-15",
+      "range": "B104:B107"
+    },
+    {
+      "testID": "SW-FW-SYS-Test-ID-16",
+      "range": "B108:B109"
+    },
+    {
+      "testID": "SW-FW-SYS-Test-ID-17",
+      "range": "B110:B111"
+    },
+    {
+      "testID": "SW-FW-SYS-Test-ID-18",
+      "range": "B112:B118"
+    },
+    {
+      "testID": "SW-FW-SYS-Test-ID-19",
+      "range": "B119:B121"
+    },
+    {
+      "testID": "SW-FW-SYS-Test-ID-20",
+      "range": "B122:B123"
+    },
+    {
+      "testID": "SW-FW-SYS-Test-ID-21",
+      "range": "B124:B131"
+    },
+    {
+      "testID": "SW-FW-SYS-Test-ID-22",
+      "range": "B132:B139"
+    },
+    {
+      "testID": "SW-FW-SYS-Test-ID-23",
+      "range": "B140"
+    },
+    {
+      "testID": "SW-FW-SYS-Test-ID-24",
+      "range": "B141:B144"
+    },
+    {
+      "testID": "SW-FW-SYS-Test-ID-25",
+      "range": "B145:B150"
+    },
+    {
+      "testID": "SW-FW-SYS-Test-ID-26",
+      "range": "B151:B155"
+    },
+    {
+      "testID": "SW-FW-SYS-Test-ID-27",
+      "range": "B156:B157"
+    },
+    {
+      "testID": "SW-FW-SYS-Test-ID-28",
+      "range": "B158:B159"
+    },
+    {
+      "testID": "SW-FW-SYS-Test-ID-29",
+      "range": "B160:B161"
+    },
+    {
+      "testID": "SW-FW-SYS-Test-ID-30",
+      "range": "B162:B165"
+    },
+    {
+      "testID": "SW-FW-SYS-Test-ID-31",
+      "range": "B166:B168"
+    },
+    {
+      "testID": "SW-FW-SYS-Test-ID-32",
+      "range": "B169:B171"
+    },
+    {
+      "testID": "SW-FW-SYS-Test-ID-33",
+      "range": "B172:B173"
+    },
+    {
+      "testID": "SW-FW-SYS-Test-ID-34",
+      "range": "B174:B175"
+    },
+    {
+      "testID": "SW-FW-SYS-Test-ID-35",
+      "range": "B176"
+    },
+    {
+      "testID": "SW-FW-SYS-Test-ID-36",
+      "range": "B177"
+    },
+    {
+      "testID": "SW-FW-SYS-Test-ID-37",
+      "range": "B178"
+    },
+    {
+      "testID": "SW-FW-SYS-Test-ID-38",
+      "range": "B179"
+    },
+    {
+      "testID": "SW-FW-SYS-Test-ID-39",
+      "range": "B180:B181"
+    },
+    {
+      "testID": "SW-FW-SYS-Test-ID-40",
+      "range": "B182"
+    },
+    {
+      "testID": "SW-FW-SYS-Test-ID-41",
+      "range": "B183:B184"
+    },
+    {
+      "testID": "SW-FW-SYS-Test-ID-42",
+      "range": "B185:B186"
+    },
+    {
+      "testID": "SW-FW-SYS-Test-ID-43",
+      "range": "B187:B188"
+    },
+    {
+      "testID": "SW-FW-SYS-Test-ID-44",
+      "range": "B189:B198"
+    },
+    {
+      "testID": "SW-FW-SYS-Test-ID-45",
+      "range": "B199:B204"
+    },
+    {
+      "testID": "SW-FW-SYS-Test-ID-69",
+      "range": "B205:B207"
+    },
+    {
+      "testID": "SW-FW-SYS-Test-ID-70",
+      "range": "B208:B209"
+    },
+    {
+      "testID": "SW-FW-SYS-Test-ID-46",
+      "range": "B210:B211"
+    },
+    {
+      "testID": "SW-FW-SYS-Test-ID-50",
+      "range": "B217:B218"
+    },
+    {
+      "testID": "SW-FW-SYS-Test-ID-51",
+      "range": "B219"
+    },
+    {
+      "testID": "SW-FW-SYS-Test-ID-54",
+      "range": "B227:B228"
+    },
+    {
+      "testID": "SW-FW-SYS-Test-ID-73",
+      "range": "B234"
+    },
+    {
+      "testID": "SW-FW-SYS-Test-ID-74",
+      "range": "B235"
+    },
+    {
+      "testID": "SW-FW-SYS-Test-ID-75",
+      "range": "B236:B238"
+    },
+    {
+      "testID": "SW-FW-SYS-Test-ID-77",
+      "range": "B242"
+    },
+    {
+      "testID": "SW-FW-SYS-Test-ID-78",
+      "range": "B243"
+    },
+    {
+      "testID": "SW-FW-SYS-Test-ID-80",
+      "range": "B248:B249"
+    },
+    {
+      "testID": "SW-FW-SYS-Test-ID-55",
+      "range": "B250"
+    },
+    {
+      "testID": "SW-FW-SYS-Test-ID-56",
+      "range": "B251:B252"
+    },
+    {
+      "testID": "SW-FW-SYS-Test-ID-58",
+      "range": "B254:B255"
+    },
+    {
+      "testID": "SW-FW-SYS-Test-ID-59",
+      "range": "B256:B257"
+    },
+    {
+      "testID": "SW-FW-SYS-Test-ID-60",
+      "range": "B258:B268"
+    },
+    {
+      "testID": "SW-FW-SYS-Test-ID-61",
+      "range": "B269"
+    },
+    {
+      "testID": "SW-FW-SYS-Test-ID-62",
+      "range": "B270:B277"
+    },
+    {
+      "testID": "SW-FW-SYS-Test-ID-63",
+      "range": "B278:B279"
+    },
+    {
+      "testID": "SW-FW-SYS-Test-ID-64",
+      "range": "B280:B281"
+    },
+    {
+      "testID": "SW-FW-SYS-Test-ID-65",
+      "range": "B282:B283"
+    },
+    {
+      "testID": "SW-FW-SYS-Test-ID-66",
+      "range": "B284:B285"
+    },
+    {
+      "testID": "SW-FW-SYS-Test-ID-67",
+      "range": "B286:B287"
+    },
+    {
+      "testID": "SW-FW-SYS-Test-ID-68",
+      "range": "B288:B289"
+    }
+  ],
+  "changedStyleReferences": 1280,
+  "otherZipPartsByteIdentical": [
+    "[Content_Types].xml",
+    "_rels/.rels",
+    "xl/workbook.xml",
+    "xl/_rels/workbook.xml.rels",
+    "xl/worksheets/sheet1.xml",
+    "xl/theme/theme1.xml",
+    "xl/sharedStrings.xml",
+    "xl/worksheets/_rels/sheet2.xml.rels",
+    "xl/printerSettings/printerSettings1.bin",
+    "docProps/core.xml",
+    "docProps/app.xml"
+  ],
+  "cellContentRichTextFormulaCachedValues": "exact unchanged",
+  "nonFillStyleProperties": "exact unchanged",
+  "sheetStructureMergesRowsHeightsColumnsWidthsPrintSettings": "exact unchanged",
+  "otherSheetsMediaDrawingsRelationships": "byte-identical",
+  "SV29": {
+    "24": "Native display QA assigned to design agent; layout XML unchanged.",
+    "25": "Fill-only edit; existing sheet structure/history untouched.",
+    "27": "Source/approval metadata preserved.",
+    "28": "OOXML strict comparison passed; native QA pending.",
+    "otherPrinciples": "해당없음: content/design/test-result changes outside this fill-only request."
+  },
+  "nativeVisualQA": "PENDING_DESIGN_AGENT"
+}

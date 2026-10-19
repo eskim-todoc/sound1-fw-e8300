@@ -1,0 +1,170 @@
+[1 P ] 
+[2 P ] 
+[3 P ] 
+[4 P ] 
+[5 P ] 
+[6 TABLE 1 rows]
+소프트웨어 통합 계획서
+[7 P ] 
+[8 P ] 
+[9 P ] 
+[10 TABLE 1 rows]
+제품명: TD24A-A-EXT
+[11 P ] 
+[12 P ] 
+[13 P ] 
+[14 P ] 
+[15 P ] 
+[16 TABLE 5 rows]
+작 성 | 검 토 | 승 인
+ |  | 
+서석일 |  | 
+SW개발책임 |  | 
+ |  | 
+[17 P ] 
+[18 P ] 	
+[19 P ] 
+[20 TABLE 18 rows]
+
+No. | 개정 내용 | 개정 위치  | 개정 날짜
+0 | 최초 제정 | - | 2026.0.0
+1 |  |  | 
+2 |  |  | 
+3 |   |  | 
+4 |  |  | 
+5 |  |  | 
+6 |  |  | 
+7 |  |  | 
+8 |  |  | 
+9 |  |  | 
+10 |  |  | 
+11 |  |  | 
+12 |  |  | 
+13 |  |  | 
+14 |  |  | 
+15 |  |  | 
+16 |  |  | 
+[21 P ] 
+[22 SDT excluded TOC]
+[23 P ] 
+
+[24 P 10] 서론
+[25 P 2] 개요
+[26 P ] 본 문서는 외부장치 제품의 소프트웨어 아키텍처에 기술서에서 설계된 소프트웨어 모듈들의 통합 과정의 계획을 설명한다.
+[27 P ] 
+[28 P 2] 목적
+[29 P ] 외부장치 제품의 소프트웨어 모듈들의 통합 과정을 계획함으로써 소프트웨어 개발 절차에 따라 안전하고 일관성 및 정확성을 확보된 소프트웨어의 개발이 보장되는 것을 목적으로 한다.
+[30 P ] 
+[31 P 2] 대상
+[32 P ] 소프트웨어 개발 프로젝트에 참여하는 모든 구성원은 이 문서를 참고하여 하도록 한다.
+[33 P ] 
+[34 P 2] 관련문서
+[35 P 3] 프로젝트
+[36 TABLE 5 rows]
+No | 문서번호 | 문서 제목
+1 | SDP-FW-TD24A | 소프트웨어 개발 계획서
+2 | SGR-FW-TD24A | 소프트웨어 일반 요구사항
+3 | SRS-FW-TD24A | 소프트웨어 요구사항 사양서
+4 | SAD-FW-TD24A | 소프트웨어 아키텍처 기술서
+[37 P ] 
+[38 P a8] 표준 및 규제
+[39 TABLE 3 rows]
+No | 문서번호 | 문서 제목
+1 | IEC 62304 | Medical device software – Software life cycle processes
+2 | ISO 14971 | Medical devices – Application of risk management to medical
+[40 P a8] 
+[41 P ] 
+
+[42 P 10] 소프트웨어 통합 계획
+[43 P ] 소프트웨어 아키텍처 기술서(SAD-FW-TD24A)에서 설계된 외부장치 소프트웨어의 아키텍처는   <그림 1>과 같으며, 소프트웨어 시스템의 동작 흐름은 <그림 2>와 같다. 
+[44 P ] 
+[45 P ] 
+[46 P ] 
+[47 P ] 
+[48 P ] 
+[49 P ] 
+[50 P ] 
+[51 P ] 
+[52 P ] 
+[53 P ] 
+[54 P ] 
+[55 P ] 
+[56 P ] 
+[57 P ] 
+[58 P ] 
+[59 P ] 
+[60 P ] 
+[61 P ] 
+[62 P ] 
+[63 P ] 
+[64 P ] 
+[65 P ] 
+[66 P ] 
+[67 P ] 
+[68 P ] 
+[69 P ] <그림 1. 외부장치 소프트웨어 아키텍처 블록도>
+[70 P ] 
+[71 P ] <그림 2>을 보면, 외부장치의 소프트웨어는 시스템 관리 모듈(System management module)과 하드웨어 인터페이스 모듈(HW interface module)에서 반복적으로 수행되는 방식으로 실시간 동작을 하게 되어있다. 따라서 위 모듈들과 블루투스 모듈(Bluetooth module)과 보안 모듈(Security moduel)을 결합하여 구현이 진행되어야 된다.
+[72 P ] 
+[73 P ] 
+[74 P ] 
+[75 P ] 
+[76 P ] 
+[77 P ] 
+[78 P ] 
+[79 P ] 
+[80 P ] 
+[81 P ] 
+[82 P ] 
+[83 P ] 
+[84 P ] 
+[85 P ] 
+[86 P ] 
+[87 P ] 
+[88 P ] 
+[89 P ] 
+[90 P ] 
+[91 P ] 
+[92 P ] 
+[93 P ] 
+[94 P ] 
+[95 P ] 
+[96 P ] 
+[97 P ] <그림 2. 시스템 동작 흐름도>
+[98 P ] 
+[99 P ] 이를 참고하여 소프트웨어 모듈 구현 및 통합 순서를 계획하면 다음의 단계로 이루어진다.
+[100 P 2] 모듈 구현 단계
+[101 P 3] Hardware interface module 구현
+[102 P ] 가장 중요한 MCU와 그 주변장치에 대한 초기화와 활성화 후 동작을 시작하여야 전체 시스템이 정상 동작이 가능하게 된다. 특히, 제일 중요한 사운드 처리기의 신호를 항상 확인한다. 따라서, HW interface module을 가장 먼저 구현해야 한다.
+[103 P 3] System management module 구현
+[104 P ] 장치의 HW가 동작하기 시작한다고, 전체 시스템이 정상 동작을 하는 것이 아니다. 전체 시스템이 동작하기 위해서는 장치의 각 부분들의 현재 상태를 읽고 다음 상태를 결정해야 하는데, 이러한 역할은 System management module에서 수행한다.
+[105 P 3] Bluetooth module 구현
+[106 P ] 이 모듈은 Audio 통신과 데이터 통신에 모두 필요한 기능이고, 시스템의 상태와 필요한 HW 입력에 따라 활성화와 동작이 제어되므로 HW interface module과 System management module이 구현된 후에 이 모듈들의 기능을 사용해 구현하고, 통신 테스트를 수행한다.
+[107 P 3] Security module 구현
+[108 P ] 보안 모듈은 전체 시스템을 설정하고 제어하므로, 다른 모듈들이 모두 구성된 후에 구현하여 정상 동작하는 것을 확인한 후에 보안 모듈과 통합하는 방식으로 한다. 특히, 민감하고 주요 데이터는 BLE를 통해 송수신되므로 BLE 연결의 보안에 중점을 둔다.
+[109 P 2] 모듈 통합 단계
+[110 P 3] System management module과 통합
+[111 P ] 서로 밀접히 연계된 모듈들을 서로 통합하면서 개별 모듈들의 동작을 검증하고 필요하다면 프로그램의 수정을 진행한다.
+[112 P ] [System management module] + [Hardware interface module]
+[113 P ] Hardware interface module의 각 입력 신호가 System management module로 전달되어 상태로 변환되는지를 확인하고, 그 상태에 따른 결과가 Hardware interface module로 전달되어 원하는 출력이 되는지 확인한다.
+[114 P 3] Bluetooth module과 통합
+[115 P a8] Bluetooth module은 시스템 상태에 따라 활성화와 동작이 되므로, System management module 에 통합된다.
+[116 P ] [System management module + Hardware interface module]+ [Bluetooth module]
+[117 P ] Bluetooth module은 시스템 상태에 따라 동작이 결정된다. 그리고, 현재 Bluetooth 상태들을, Classic 또는 BLE 연결상태 같은, 다시 System management module에 전달하게 된다.
+[118 P 3] Security module과 통합
+[119 P a8] 보안 모듈의 초기화 및 설정은 System management module에서 수행되고 보안 설정에 따른 주요 동작은 Bluetooth module에서 수행되므로, System management module이 Bluetooth module에 통합된 후에 Security module은 이에 통합된다.
+[120 P ] [ System management module + Bluetooth module ] + [ Security module ]
+[121 P ] Bluetooth pairing과 BLE service 보안 설정은 시스템 시작전에 결정되고 초기화시에 설정을 수행한다. 그리고, BLE 연결시에 보안 정책에 따른 인증을 수행하게 된다.
+[122 P 3] 누적 통합 
+[123 P ] 모듈들을 누적해가면서 동작을 검증하고 필요하다면 프로그램의 수정을 진행한다.
+[124 P ] [ System management module + Hardware interface module + Bluetooth module ] + [ Security module ]
+[125 P ] Bluetooth module은 시스템 상태에 따라 동작이 결정된다. 이러한 상태는 HW 입력을 통해 결정되어 Bluetooth가 활성화되고, 동작이 진행되며, HW 마이크 폰으로 주변 소리를 입력 받고, Battery level과 같은 처리하는 정보 또한 입력 받는다. 이러한, 과정은 모두 보안 모듈의 설정과 제어를 통해 이루어진다.
+[126 P 3] 시스템 통합 검증
+[127 P ] 모든 모듈들을 통합한 상태에서 스마트폰의 리모콘/매핑 앱과 연동을 검증하고 필요에 따라서 프로그램을 수정을 진행한다.
+[128 P a8] [ Remocon/Mapping On ] + [ System management module + Hardware interface module + Bluetooth module + Security module ]
+[129 P ] 
+[130 P 3] 장치 통합 검증
+[131 P ] 전체 TD24A의 시스템인 외부장치, 스마트 케이스 그리고 스마트폰을 가지고 전체적인 사용 시나리오를 테스트하고 검증한다. 그리고, 필요에 따라서 프로그램을 수정을 진행한다.
+[132 P ] [ Remocon/Mapping On ] + [ Smart case ] + [ System management module + Hardware interface module + Bluetooth module + Security module ]
+[133 P ] 외부 장치는 외부 충전과 Bluetooth Audio 통신 테스트에 필요하다.
+[134 P ] 

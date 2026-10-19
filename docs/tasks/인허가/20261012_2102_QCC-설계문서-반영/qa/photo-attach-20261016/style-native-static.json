@@ -1,0 +1,17 @@
+{
+  "current_sha256": "64E7636993431C36BA9D9FF4A5A1C0CBC38EF23EB1889DDDBC8C6574EB77C90C",
+  "reuse_baseline_sha256": "8A6F683CC357F217900CC7975C6750F0D05394A46DDE242A4380C02FC9C801A4",
+  "changed_parts_vs_native_baseline": [
+    "xl/worksheets/sheet6.xml"
+  ],
+  "padding_cells": {
+    "outside": 6588,
+    "body": 1109
+  },
+  "padding_failures": [],
+  "body_size_hist": {
+    "10.0": 1276
+  },
+  "body_non10_cells": [],
+  "pink_green_remaining": []
+}

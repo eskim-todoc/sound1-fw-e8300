@@ -1,0 +1,406 @@
+[
+  {
+    "key": "SUVR",
+    "page": 13,
+    "id": null,
+    "group_row": null,
+    "matches": [
+      {
+        "column": "L",
+        "line": "[UT-CFX-011] C4 A[121:125]=12800,12800,12800,12800,12800",
+        "cell": "L89"
+      },
+      {
+        "column": "L",
+        "line": "[UT-CFX-011] C4 A[126:131]=12800,12800,1,1,0,24",
+        "cell": "L89"
+      },
+      {
+        "column": "L",
+        "line": "[UT-CFX-011] C4 PASS N=132 F=0",
+        "cell": "L89"
+      },
+      {
+        "column": "K",
+        "line": "[UT-CFX-011] C4 A[78:83]=8832,8832,8832,8832,8832,8832",
+        "cell": "K90"
+      }
+    ]
+  },
+  {
+    "key": "SUVR",
+    "page": 84,
+    "id": null,
+    "group_row": null,
+    "matches": [
+      {
+        "column": "L",
+        "line": "[UT-HEAR-002] C80 A[111:125]=0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
+        "cell": "L682"
+      },
+      {
+        "column": "L",
+        "line": "[UT-HEAR-002] C80 A[126:140]=0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
+        "cell": "L682"
+      },
+      {
+        "column": "L",
+        "line": "[UT-HEAR-002] C80 A[141:155]=0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
+        "cell": "L682"
+      },
+      {
+        "column": "K",
+        "line": "[UT-HEAR-002] C80 A[64:79]=0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
+        "cell": "K682"
+      }
+    ]
+  },
+  {
+    "key": "SUVR",
+    "page": 133,
+    "id": null,
+    "group_row": null,
+    "matches": [
+      {
+        "column": "L",
+        "line": "출력[17] 합성 이름[14] (문자 코드) = 111",
+        "cell": "L951"
+      },
+      {
+        "column": "L",
+        "line": "출력[18] 합성 이름[15] (문자 코드) = 112",
+        "cell": "L951"
+      },
+      {
+        "column": "L",
+        "line": "출력[19] 합성 이름[16] (문자 코드) = 113",
+        "cell": "L951"
+      },
+      {
+        "column": "K",
+        "line": "payload 인덱스: 5",
+        "ambiguous": [
+          "K807",
+          "K818",
+          "K821",
+          "K848",
+          "K881",
+          "K887",
+          "K914",
+          "K928",
+          "K940",
+          "K946",
+          "K951",
+          "K956",
+          "K969",
+          "K971",
+          "K980",
+          "K1016",
+          "K1023",
+          "K1024",
+          "K1029",
+          "K1031",
+          "K1048",
+          "K1055",
+          "K1056",
+          "K1058",
+          "K1065",
+          "K1066",
+          "K1069",
+          "K1071",
+          "K1074",
+          "K1076",
+          "K1079",
+          "K1081",
+          "K1190",
+          "K1379",
+          "K1398",
+          "K1517",
+          "K1582",
+          "K1599",
+          "K1601",
+          "K1603",
+          "K1605",
+          "K1607",
+          "K1658",
+          "K1660",
+          "K1662",
+          "K1664",
+          "K1707",
+          "K1709",
+          "K1711",
+          "K1713",
+          "K1715",
+          "K1717",
+          "K1719"
+        ]
+      }
+    ]
+  },
+  {
+    "key": "SUVR",
+    "page": 150,
+    "id": "SW-FW-UnitTest-CM3-ID-29",
+    "group_row": 1040,
+    "matches": [
+      {
+        "column": "L",
+        "line": "출력[19] 공유 T 코드[8] = 0",
+        "ambiguous": [
+          "L1048",
+          "L1058"
+        ]
+      },
+      {
+        "column": "L",
+        "line": "출력[20] 공유 C 코드[8] = 127",
+        "ambiguous": [
+          "L1048",
+          "L1058"
+        ]
+      },
+      {
+        "column": "L",
+        "line": "출력[21] 공유 T 코드[9] = 0",
+        "ambiguous": [
+          "L1048",
+          "L1058"
+        ]
+      },
+      {
+        "column": "K",
+        "line": "출력 의미/단위: 공유 T 코드[1]",
+        "ambiguous": [
+          "K1048",
+          "K1051",
+          "K1052",
+          "K1053",
+          "K1054",
+          "K1058",
+          "K1061",
+          "K1062",
+          "K1063",
+          "K1064"
+        ]
+      }
+    ]
+  },
+  {
+    "key": "SSTC",
+    "page": 25,
+    "id": "SW-FW-SYS-Test-ID-27",
+    "group_row": 128,
+    "matches": [
+      {
+        "column": "I",
+        "line": "리모콘 앱으로 LED 알림을 끄고 켜며 일반 상태 LED를 확",
+        "cell": "I128"
+      }
+    ]
+  },
+  {
+    "key": "SSTC",
+    "page": 26,
+    "id": "SW-FW-SYS-Test-ID-28",
+    "group_row": 130,
+    "matches": [
+      {
+        "column": "I",
+        "line": "전원을 3.7 V에서 낮추며 배터리 부족 LED와 알림용 자극",
+        "ambiguous": [
+          "I130",
+          "I146"
+        ]
+      }
+    ]
+  },
+  {
+    "key": "SSTC",
+    "page": 27,
+    "id": "SW-FW-SYS-Test-ID-29",
+    "group_row": 132,
+    "matches": [
+      {
+        "column": "I",
+        "line": "전달값/응답/앱 잔량 표시를 비교한다.",
+        "cell": "I132"
+      }
+    ]
+  },
+  {
+    "key": "SSTC",
+    "page": 31,
+    "id": "SW-FW-SYS-Test-ID-33",
+    "group_row": 144,
+    "matches": [
+      {
+        "column": "I",
+        "line": "설정 응답/앱 표시/실제 일반 LED를 확인한다.",
+        "cell": "I144"
+      }
+    ]
+  },
+  {
+    "key": "SSTC",
+    "page": 32,
+    "id": "SW-FW-SYS-Test-ID-34",
+    "group_row": 146,
+    "matches": [
+      {
+        "column": "I",
+        "line": "의 유무를 확인한다.",
+        "ambiguous": [
+          "I130",
+          "I146"
+        ]
+      }
+    ]
+  },
+  {
+    "key": "SSTC",
+    "page": 34,
+    "id": "SW-FW-SYS-Test-ID-36",
+    "group_row": 151,
+    "matches": [
+      {
+        "column": "I",
+        "line": "매핑 앱에서 지정 자극 명령을 보내고 오실로스코프로 해",
+        "cell": "I151"
+      }
+    ]
+  },
+  {
+    "key": "SSTC",
+    "page": 36,
+    "id": "SW-FW-SYS-Test-ID-38",
+    "group_row": 155,
+    "matches": [
+      {
+        "column": "I",
+        "line": "잔량 37%와 72%에서 매핑 앱으로 [0x67]을 보내고 응답을",
+        "ambiguous": [
+          "I148",
+          "I155"
+        ]
+      }
+    ]
+  },
+  {
+    "key": "SSTC",
+    "page": 43,
+    "id": "SW-FW-SYS-Test-ID-46",
+    "group_row": 188,
+    "matches": [
+      {
+        "column": "I",
+        "line": "태에서 각각 광고를 검색한다.",
+        "cell": "I188"
+      }
+    ]
+  },
+  {
+    "key": "SSTC",
+    "page": 47,
+    "id": "SW-FW-SYS-Test-ID-51",
+    "group_row": 197,
+    "matches": [
+      {
+        "column": "I",
+        "line": "된 감사기록 전체를 읽는다.",
+        "cell": "I197"
+      }
+    ]
+  },
+  {
+    "key": "SSTC",
+    "page": 56,
+    "id": "SW-FW-SYS-Test-ID-74",
+    "group_row": 217,
+    "matches": [
+      {
+        "column": "J",
+        "line": "다고 간주하지 않는다.",
+        "cell": "J218"
+      }
+    ]
+  },
+  {
+    "key": "SSTC",
+    "page": 62,
+    "id": "SW-FW-SYS-Test-ID-55",
+    "group_row": 237,
+    "matches": [
+      {
+        "column": "I",
+        "line": "의 간격을 측정한다.",
+        "cell": "I237"
+      }
+    ]
+  },
+  {
+    "key": "SSTC",
+    "page": 67,
+    "id": "SW-FW-SYS-Test-ID-61",
+    "group_row": 260,
+    "matches": []
+  },
+  {
+    "key": "SSTC",
+    "page": 70,
+    "id": "SW-FW-SYS-Test-ID-67",
+    "group_row": 278,
+    "matches": [
+      {
+        "column": "I",
+        "line": "외부기의 시동과 내부기 부착 과정에서 오실로스코프로",
+        "cell": "I278"
+      }
+    ]
+  },
+  {
+    "key": "SSTC",
+    "page": 71,
+    "id": "SW-FW-SYS-Test-ID-68",
+    "group_row": 280,
+    "matches": [
+      {
+        "column": "I",
+        "line": "외부기의 종료와 내부기 탈착 과정에서 오실로스코프로",
+        "cell": "I280"
+      }
+    ]
+  },
+  {
+    "key": "SSTR",
+    "page": 25,
+    "id": "SW-FW-SYS-Test-ID-27",
+    "group_row": 128,
+    "matches": []
+  },
+  {
+    "key": "SSTR",
+    "page": 34,
+    "id": "SW-FW-SYS-Test-ID-36",
+    "group_row": 151,
+    "matches": [
+      {
+        "column": "I",
+        "line": "전극의 출력을 확인한다.",
+        "cell": "I151"
+      }
+    ]
+  },
+  {
+    "key": "SSTR",
+    "page": 54,
+    "id": "SW-FW-SYS-Test-ID-74",
+    "group_row": 217,
+    "matches": [
+      {
+        "column": "I",
+        "line": "EVENTLOG의 TIME{...} 6개 필드를 해당 이벤트와 비교한다.",
+        "cell": "I217"
+      }
+    ]
+  }
+]

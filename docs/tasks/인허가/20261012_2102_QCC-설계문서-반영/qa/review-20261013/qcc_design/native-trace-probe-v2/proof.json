@@ -1,0 +1,87 @@
+{
+  "source_sha256": "8af46ef971b15ec6815cb5aed66e25580a4c9494d43dcdf4925852cb38c50515",
+  "native_candidate": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_design\\native-trace-probe-v2\\SAD-native-probe-author.docx",
+  "native_candidate_sha256": "afa120b7a38105fcf4264dc47cf0bdc39c430330f259e07a627fab51aff8cb19",
+  "checks": {
+    "baseline": {
+      "pass": true,
+      "differences": [],
+      "actual_rows": 83
+    },
+    "accept": {
+      "pass": true,
+      "differences": [],
+      "actual_rows": 83
+    },
+    "reject_new": {
+      "pass": true,
+      "differences": [],
+      "actual_rows": 83
+    },
+    "historical_revision_text_preserved": {
+      "pass": true
+    },
+    "new_native_revision_created": {
+      "pass": true,
+      "count": 360
+    },
+    "only_paragraph_marks_deleted": {
+      "pass": true
+    }
+  },
+  "pass": true,
+  "historical_revision_inventory_changes": {
+    "ins|김은수|2026-10-13T00:52": {
+      "before": 190,
+      "after": 187
+    }
+  },
+  "native_evidence": "docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_design\\native-trace-probe-v2\\reject-allmarkup\\native-cell-proof.json",
+  "finalized": true,
+  "G_published": true,
+  "candidate": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_design\\native-trace-probe-v2\\SAD-native-tracked-candidate.docx",
+  "candidate_sha256": "5b03dfed5a927d60f95240299f490bf954e864d56c4d5663388f2b0c98a59ca2",
+  "new_revision_count": 360,
+  "author": "김은수",
+  "scope": "Native-generated empty paragraph deletion, actual new-only rejection/history and allbody restoration proof, then author/bookmark-only finalization. Root field/G publication preserves strict acceptance/rejection content. Final actual WordAcceptAll83x3 cells after publication passes. Historical before8AF guard remains unchanged.",
+  "final_transform_checks": {
+    "author_bookmark_only_exact_transform": true,
+    "all_non_document_parts_byte_unchanged": true,
+    "QA_author_nodes_removed": true,
+    "QA_bookmarks_removed": true,
+    "actual_native_accepted_all_body_text_preserved": true,
+    "actual_native_new_reject_all_body_text_restored": true,
+    "original_media_bytes_preserved": true,
+    "styles_bytes_preserved_from_source": true,
+    "current_G_before_guard": true
+  },
+  "current_G": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SAD-FW-TD24A 소프트웨어 아키텍쳐 기술서.docx",
+  "current_G_before_sha256": "8af46ef971b15ec6815cb5aed66e25580a4c9494d43dcdf4925852cb38c50515",
+  "new_only_rejection_scope": "Actual read-only native Word: opened del183+pPrChange52=235 -> 0 via AllMarkup/Final and QA reviewer only; all historical revision text retained; actual native AcceptAll restores all 83x3 cells and full body text. 125 redundant saved pPrChange snapshots omitted on reopen with unchanged actual formatting.",
+  "native_profile_restored": true,
+  "native_view_options_restored": true,
+  "historical_revision_inventory_explanation": "Native save merged three historical insertion wrappers; historical author/date-grouped text signatures unchanged. No historical text deletion or author/date rewrite.",
+  "status": "PASS",
+  "stored_new_revision_nodes": 360,
+  "actual_native_new_revision_nodes_rejected": 235,
+  "native_normalized_redundant_format_nodes": 125,
+  "current_G_published_sha256": "84f592a7f7988a78eb73fa718268cc22ddf20a5bac796358b971aba0d23ccc68",
+  "root_publication": {
+    "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\SAD-native-safe-published.json",
+    "sha256": "c361745e14322229e79ab08d95d181ffcc071e0dbc494d5bc9b831af1ecd9501"
+  },
+  "post_fields_actual_native_final_accept": {
+    "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\final-word\\SAD-native-accepted-cells.json",
+    "sha256": "f77889e4f52b640ff85bb3a36f40288c9a0ec02278a2983ef61ed0cee2baf107",
+    "sourceSHA256": "84f592a7f7988a78eb73fa718268cc22ddf20a5bac796358b971aba0d23ccc68",
+    "row_count": 83,
+    "column_count": 3,
+    "segments": 249,
+    "pass": true,
+    "native_XML": {
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\final-word\\SAD-native-accepted.xml",
+      "sha256": "9fbe4ad4d24662146fb0e88e89ab2ee3095195742b6d0432942e015125843938"
+    },
+    "scope": "Root actual native Word AcceptAllRevisions after field refresh and guarded G publication; read-only snapshot. This is actual cell preservation, not only an OOXML projection."
+  }
+}

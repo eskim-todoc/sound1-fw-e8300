@@ -1,0 +1,45 @@
+[
+  {
+    "plan": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\builders\\qcc_tests\\SUVC-final-v2-plan.json",
+    "pdfs": [
+      "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\excel-native\\SUVC-final-v2.pdf"
+    ]
+  },
+  {
+    "plan": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\builders\\qcc_tests\\SUVR-final-v2-plan.json",
+    "pdfs": [
+      "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\excel-native\\SUVR-final-v2.pdf"
+    ]
+  },
+  {
+    "plan": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\builders\\qcc_tests\\SITC-final-v2-plan.json",
+    "pdfs": [
+      "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\excel-native\\SITC-final-v2.pdf"
+    ]
+  },
+  {
+    "plan": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\builders\\qcc_tests\\SITR-final-v2-plan.json",
+    "pdfs": [
+      "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\excel-native\\SITR-final-v2.pdf"
+    ]
+  },
+  {
+    "plan": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\builders\\qcc_tests\\SSTR-final-v2-plan.json",
+    "pdfs": [
+      "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\excel-native\\SSTR-final-v2.pdf"
+    ]
+  },
+  {
+    "plan": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\builders\\qcc_tests\\SSTR-aux-final-v2-plan.json",
+    "pdfs": [
+      "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\excel-native\\SSTR-aux-A2-D2-final-v2.pdf",
+      "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\excel-native\\SSTR-aux-A78-D83-final-v2.pdf",
+      "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\excel-native\\SSTR-aux-A184-D185-final-v2.pdf",
+      "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\excel-native\\SSTR-aux-A190-D190-final-v2.pdf",
+      "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\excel-native\\SSTR-aux-A199-D202-final-v2.pdf",
+      "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\excel-native\\SSTR-aux-A206-D214-final-v2.pdf",
+      "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\excel-native\\SSTR-aux-A222-D224-final-v2.pdf",
+      "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\excel-native\\SSTR-aux-A227-D229-final-v2.pdf"
+    ]
+  }
+]

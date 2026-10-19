@@ -1,0 +1,712 @@
+{
+  "SAD": {
+    "code": "SAD",
+    "source": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SAD-FW-TD24A 소프트웨어 아키텍쳐 기술서.docx",
+    "before_sha256": "da3ad4861b3915b8eb64eaf89a09ce4749ef6dbd220283488d4576713da60e6e",
+    "candidate": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_design\\final-layout\\[E8300-QCC] SAD-FW-TD24A 소프트웨어 아키텍쳐 기술서.docx",
+    "candidate_sha256": "9907eb0b5ae15edbbf2fa45ac352b5b89408623f5ecfcdd17a1a684b874b42f4",
+    "new_revision_ids": [
+      "4257",
+      "4258",
+      "4259",
+      "4260",
+      "4261",
+      "4262",
+      "4263",
+      "4264",
+      "4265",
+      "4266",
+      "4267",
+      "4268",
+      "4269",
+      "4270",
+      "4271",
+      "4272",
+      "4273",
+      "4274",
+      "4275",
+      "4276",
+      "4277",
+      "4278",
+      "4279",
+      "4280",
+      "4281",
+      "4282",
+      "4283",
+      "4284",
+      "4285",
+      "4286",
+      "4287",
+      "4288",
+      "4289",
+      "4290",
+      "4291",
+      "4292",
+      "4293",
+      "4294",
+      "4295",
+      "4296",
+      "4297",
+      "4298",
+      "4299",
+      "4300",
+      "4301",
+      "4302",
+      "4303",
+      "4304",
+      "4305",
+      "4306",
+      "4307",
+      "4308",
+      "4309",
+      "4310",
+      "4311",
+      "4312",
+      "4313",
+      "4314",
+      "4315",
+      "4316",
+      "4317",
+      "4318",
+      "4319",
+      "4320",
+      "4321",
+      "4322",
+      "4323",
+      "4324",
+      "4325",
+      "4326",
+      "4327",
+      "4328",
+      "4329",
+      "4330",
+      "4331",
+      "4332",
+      "4333",
+      "4334",
+      "4335",
+      "4336",
+      "4337",
+      "4338",
+      "4339",
+      "4340",
+      "4341",
+      "4342",
+      "4343",
+      "4344",
+      "4345",
+      "4346",
+      "4347",
+      "4348",
+      "4349",
+      "4350",
+      "4351",
+      "4352",
+      "4353"
+    ],
+    "author": "김은수",
+    "reject_new_exact_baseline_c14n": true,
+    "accepted_text_only_declared_changes": true,
+    "new_nested_insertions": 0,
+    "all_other_package_parts_exact": true,
+    "styles_fonts_media_field_instructions_preserved": true,
+    "changes": [
+      {
+        "type": "grammar or new QCC separator",
+        "para_id": "088FC570",
+        "before": "SU-ID-QCC-004은 내부기 부착 상태와 Bluetooth 연결 상태를 연결하여 검색/연결 가능 여부와 외부기 장치명을 관리한다. SW-FW-UnitTest-QCC-ID-7에서는 연결표시 입력에 따른 Bluetooth 활성 및 장치명를 확인한다. SW-FW-UnitTest-QCC-ID-8에서는 부착/탈착 시 BLE/Classic 검색/연결 활성를 확인한다.",
+        "after": "SU-ID-QCC-004은 내부기 부착 상태와 Bluetooth 연결 상태를 연결하여 검색/연결 가능 여부와 외부기 장치명을 관리한다. SW-FW-UnitTest-QCC-ID-7에서는 연결표시 입력에 따른 Bluetooth 활성 및 장치명을 확인한다. SW-FW-UnitTest-QCC-ID-8에서는 부착/탈착 시 BLE/Classic 검색/연결 활성화를 확인한다."
+      },
+      {
+        "type": "grammar or new QCC separator",
+        "para_id": "41C56B58",
+        "before": "SU-ID-QCC-008은 Bluetooth Classic 오디오 연결을 관리하여 수신 오디오는 I2S로 E8300에 전달하고 통화 중 DMIC2 입력은 상대 장치로 송신한다. SW-FW-UnitTest-QCC-ID-10에서는 Classic 페어링/연결, 시험 스피커/양이 및 I2S 하향를 확인한다. SW-FW-UnitTest-QCC-ID-8에서는 부착/탈착 시 BLE/Classic 검색/연결 활성를 연계 지원으로 확인한다.",
+        "after": "SU-ID-QCC-008은 Bluetooth Classic 오디오 연결을 관리하여 수신 오디오는 I2S로 E8300에 전달하고 통화 중 DMIC2 입력은 상대 장치로 송신한다. SW-FW-UnitTest-QCC-ID-10에서는 Classic 페어링/연결, 시험 스피커/양이 및 I2S 하향 경로를 확인한다. SW-FW-UnitTest-QCC-ID-8에서는 부착/탈착 시 BLE/Classic 검색/연결 활성화를 연계 지원으로 확인한다."
+      },
+      {
+        "type": "grammar or new QCC separator",
+        "para_id": "085371C2",
+        "before": "SU-ID-QCC-009은 BLE 광고와 연결 상태를 관리하여 외부 앱이 장치를 식별하고 인증/데이터 서비스에 접근할 수 있게 한다. SW-FW-UnitTest-QCC-ID-9에서는 광고/스캔 응답과 현재/peer 잔량/연결 상태를 확인한다. SW-FW-UnitTest-QCC-ID-8에서는 부착/탈착 시 BLE/Classic 검색/연결 활성를 연계 지원으로 확인한다.",
+        "after": "SU-ID-QCC-009은 BLE 광고와 연결 상태를 관리하여 외부 앱이 장치를 식별하고 인증/데이터 서비스에 접근할 수 있게 한다. SW-FW-UnitTest-QCC-ID-9에서는 광고/스캔 응답과 현재/peer 잔량/연결 상태를 확인한다. SW-FW-UnitTest-QCC-ID-8에서는 부착/탈착 시 BLE/Classic 검색/연결 활성화를 연계 지원으로 확인한다."
+      },
+      {
+        "type": "grammar or new QCC separator",
+        "para_id": "5DB62019",
+        "before": "SPI 연계: E8300의 수신 정의는 0x34(data[0] 배터리 %, data[1] 충전기 미연결 0 / 연결 1, data[2] 뚜껑 열림 1 / 닫힘 2), 0x35(data[0] LED 상태, OTA_EZAIRO=4일 때 갱신 연결 1), 0x36(data[0] 오디오 미연결 0 / 연결 1, data[1] 종류 미상 0 / 크래들 1 / 기타 2)이다. 응답은 각각 명령값과 성공값 1이다. 0x36은 연결 1·종류 1일 때만 크래들 오디오 상태를 설정한다.",
+        "after": "SPI 연계: E8300의 수신 정의는 0x34(data[0] 배터리 %, data[1] 충전기 미연결 0 / 연결 1, data[2] 뚜껑 열림 1 / 닫힘 2), 0x35(data[0] LED 상태, OTA_EZAIRO=4일 때 갱신 연결 1), 0x36(data[0] 오디오 미연결 0 / 연결 1, data[1] 종류 미상 0 / 크래들 1 / 기타 2)이다. 응답은 각각 명령값과 성공값 1이다. 0x36은 연결 1/종류 1일 때만 크래들 오디오 상태를 설정한다."
+      },
+      {
+        "type": "grammar or new QCC separator",
+        "para_id": "62B7F1D8",
+        "before": "[QCC 자료 입력] 인증 전 데이터 차단/앱별 권한, 실제 AUTH UUID와 characteristic 길이, CRA 알고리즘·키 역할, NVM 보호·난수 bootstrap, 무통신/실패 제한 경계, QCC 자체 OTA와 기동 이미지 무결성의 상세 설계 및 구현 근거가 필요하다.",
+        "after": "[QCC 자료 입력] 인증 전 데이터 차단/앱별 권한, 실제 AUTH UUID와 characteristic 길이, CRA 알고리즘/키 역할, NVM 보호/난수 bootstrap, 무통신/실패 제한 경계, QCC 자체 OTA와 기동 이미지 무결성의 상세 설계 및 구현 근거가 필요하다."
+      },
+      {
+        "type": "grammar or new QCC separator",
+        "para_id": "39E81D81",
+        "before": "SU-ID-QCC-001 시스템 초기화와 설정 유닛\nSU-ID-QCC-009 BLE 유닛\nSU-ID-QCC-012 보안 처리 유닛\nSU-ID-QCC-004 블루투스 상태 유닛\n[QCC 자료 입력] BLE 버전·암호화 활성 설정과 라이브러리/프로파일, AES-CCM 보호 범위 및 실제 링크 검증 자료가 필요하다. CRA 인증 설계를 전송 암호화의 근거로 사용하지 않는다.",
+        "after": "SU-ID-QCC-001 시스템 초기화와 설정 유닛\nSU-ID-QCC-009 BLE 유닛\nSU-ID-QCC-012 보안 처리 유닛\nSU-ID-QCC-004 블루투스 상태 유닛\n[QCC 자료 입력] BLE 버전/암호화 활성 설정과 라이브러리/프로파일, AES-CCM 보호 범위 및 실제 링크 검증 자료가 필요하다. CRA 인증 설계를 전송 암호화의 근거로 사용하지 않는다."
+      },
+      {
+        "type": "grammar or new QCC separator",
+        "para_id": "2E18027D",
+        "before": "[QCC 자료 입력] Qualcomm ADK/BSP와 Classic/TWS/BLE/GAIA/암호·NVM 라이브러리의 정확한 제품명·버전·구성·API, 알려진 문제 및 사용 검토 자료를 SOUP 목록에 연결해야 한다.",
+        "after": "[QCC 자료 입력] Qualcomm ADK/BSP와 Classic/TWS/BLE/GAIA/암호/NVM 라이브러리의 정확한 제품명/버전/구성/API, 알려진 문제 및 사용 검토 자료를 SOUP 목록에 연결해야 한다."
+      },
+      {
+        "type": "normal TOC line spacing; font unchanged",
+        "para_id": "4F0CAEA4",
+        "properties": {
+          "spacing": {
+            "after": 0,
+            "line": 240,
+            "lineRule": "auto"
+          }
+        }
+      },
+      {
+        "type": "normal TOC line spacing; font unchanged",
+        "para_id": "34949DA7",
+        "properties": {
+          "spacing": {
+            "after": 0,
+            "line": 240,
+            "lineRule": "auto"
+          }
+        }
+      },
+      {
+        "type": "normal TOC line spacing; font unchanged",
+        "para_id": "4470D281",
+        "properties": {
+          "spacing": {
+            "after": 0,
+            "line": 240,
+            "lineRule": "auto"
+          }
+        }
+      },
+      {
+        "type": "normal TOC line spacing; font unchanged",
+        "para_id": "3748799A",
+        "properties": {
+          "spacing": {
+            "after": 0,
+            "line": 240,
+            "lineRule": "auto"
+          }
+        }
+      },
+      {
+        "type": "normal TOC line spacing; font unchanged",
+        "para_id": "726DE182",
+        "properties": {
+          "spacing": {
+            "after": 0,
+            "line": 240,
+            "lineRule": "auto"
+          }
+        }
+      },
+      {
+        "type": "normal TOC line spacing; font unchanged",
+        "para_id": "7C712CE3",
+        "properties": {
+          "spacing": {
+            "after": 0,
+            "line": 240,
+            "lineRule": "auto"
+          }
+        }
+      },
+      {
+        "type": "normal TOC line spacing; font unchanged",
+        "para_id": "1CD3F9A0",
+        "properties": {
+          "spacing": {
+            "after": 0,
+            "line": 240,
+            "lineRule": "auto"
+          }
+        }
+      },
+      {
+        "type": "normal TOC line spacing; font unchanged",
+        "para_id": "0B1C3E07",
+        "properties": {
+          "spacing": {
+            "after": 0,
+            "line": 240,
+            "lineRule": "auto"
+          }
+        }
+      },
+      {
+        "type": "normal TOC line spacing; font unchanged",
+        "para_id": "55845048",
+        "properties": {
+          "spacing": {
+            "after": 0,
+            "line": 240,
+            "lineRule": "auto"
+          }
+        }
+      },
+      {
+        "type": "normal TOC line spacing; font unchanged",
+        "para_id": "5008CDC5",
+        "properties": {
+          "spacing": {
+            "after": 0,
+            "line": 240,
+            "lineRule": "auto"
+          }
+        }
+      },
+      {
+        "type": "normal TOC line spacing; font unchanged",
+        "para_id": "7CCAE2D1",
+        "properties": {
+          "spacing": {
+            "after": 0,
+            "line": 240,
+            "lineRule": "auto"
+          }
+        }
+      },
+      {
+        "type": "normal TOC line spacing; font unchanged",
+        "para_id": "0E6C6D7B",
+        "properties": {
+          "spacing": {
+            "after": 0,
+            "line": 240,
+            "lineRule": "auto"
+          }
+        }
+      },
+      {
+        "type": "normal TOC line spacing; font unchanged",
+        "para_id": "70B0BD68",
+        "properties": {
+          "spacing": {
+            "after": 0,
+            "line": 240,
+            "lineRule": "auto"
+          }
+        }
+      },
+      {
+        "type": "normal TOC line spacing; font unchanged",
+        "para_id": "475F21B0",
+        "properties": {
+          "spacing": {
+            "after": 0,
+            "line": 240,
+            "lineRule": "auto"
+          }
+        }
+      },
+      {
+        "type": "normal TOC line spacing; font unchanged",
+        "para_id": "279C2DC9",
+        "properties": {
+          "spacing": {
+            "after": 0,
+            "line": 240,
+            "lineRule": "auto"
+          }
+        }
+      },
+      {
+        "type": "normal TOC line spacing; font unchanged",
+        "para_id": "2D95517C",
+        "properties": {
+          "spacing": {
+            "after": 0,
+            "line": 240,
+            "lineRule": "auto"
+          }
+        }
+      },
+      {
+        "type": "normal TOC line spacing; font unchanged",
+        "para_id": "5463D73D",
+        "properties": {
+          "spacing": {
+            "after": 0,
+            "line": 240,
+            "lineRule": "auto"
+          }
+        }
+      },
+      {
+        "type": "normal TOC line spacing; font unchanged",
+        "para_id": "15452D28",
+        "properties": {
+          "spacing": {
+            "after": 0,
+            "line": 240,
+            "lineRule": "auto"
+          }
+        }
+      },
+      {
+        "type": "normal TOC line spacing; font unchanged",
+        "para_id": "19E223E3",
+        "properties": {
+          "spacing": {
+            "after": 0,
+            "line": 240,
+            "lineRule": "auto"
+          }
+        }
+      },
+      {
+        "type": "normal TOC line spacing; font unchanged",
+        "para_id": "13877277",
+        "properties": {
+          "spacing": {
+            "after": 0,
+            "line": 240,
+            "lineRule": "auto"
+          }
+        }
+      },
+      {
+        "type": "normal TOC line spacing; font unchanged",
+        "para_id": "4E3EFF25",
+        "properties": {
+          "spacing": {
+            "after": 0,
+            "line": 240,
+            "lineRule": "auto"
+          }
+        }
+      },
+      {
+        "type": "normal TOC line spacing; font unchanged",
+        "para_id": "61CF05F5",
+        "properties": {
+          "spacing": {
+            "after": 0,
+            "line": 240,
+            "lineRule": "auto"
+          }
+        }
+      },
+      {
+        "type": "normal TOC line spacing; font unchanged",
+        "para_id": "5E2467D6",
+        "properties": {
+          "spacing": {
+            "after": 0,
+            "line": 240,
+            "lineRule": "auto"
+          }
+        }
+      },
+      {
+        "type": "normal TOC line spacing; font unchanged",
+        "para_id": "35B062CC",
+        "properties": {
+          "spacing": {
+            "after": 0,
+            "line": 240,
+            "lineRule": "auto"
+          }
+        }
+      },
+      {
+        "type": "normal TOC line spacing; font unchanged",
+        "para_id": "4ACAEEB8",
+        "properties": {
+          "spacing": {
+            "after": 0,
+            "line": 240,
+            "lineRule": "auto"
+          }
+        }
+      },
+      {
+        "type": "normal TOC line spacing; font unchanged",
+        "para_id": "6634F50A",
+        "properties": {
+          "spacing": {
+            "after": 0,
+            "line": 240,
+            "lineRule": "auto"
+          }
+        }
+      },
+      {
+        "type": "normal TOC line spacing; font unchanged",
+        "para_id": "18A96590",
+        "properties": {
+          "spacing": {
+            "after": 0,
+            "line": 240,
+            "lineRule": "auto"
+          }
+        }
+      },
+      {
+        "type": "normal TOC line spacing; font unchanged",
+        "para_id": "35AA127D",
+        "properties": {
+          "spacing": {
+            "after": 0,
+            "line": 240,
+            "lineRule": "auto"
+          }
+        }
+      },
+      {
+        "type": "normal TOC line spacing; font unchanged",
+        "para_id": "589422B2",
+        "properties": {
+          "spacing": {
+            "after": 0,
+            "line": 240,
+            "lineRule": "auto"
+          }
+        }
+      },
+      {
+        "type": "normal TOC line spacing; font unchanged",
+        "para_id": "4603E5F9",
+        "properties": {
+          "spacing": {
+            "after": 0,
+            "line": 240,
+            "lineRule": "auto"
+          }
+        }
+      },
+      {
+        "type": "normal TOC line spacing; font unchanged",
+        "para_id": "1E9A5D19",
+        "properties": {
+          "spacing": {
+            "after": 0,
+            "line": 240,
+            "lineRule": "auto"
+          }
+        }
+      },
+      {
+        "type": "normal TOC line spacing; font unchanged",
+        "para_id": "22F2412E",
+        "properties": {
+          "spacing": {
+            "after": 0,
+            "line": 240,
+            "lineRule": "auto"
+          }
+        }
+      },
+      {
+        "type": "consolidate duplicate RID83 notice into existing requirement row",
+        "removed_para_id": "7EB2C45B",
+        "before": "[E8300 보완] SW-FW-RID-83은 상위 SYS-RID-ACDOC-17/18/20의 사용 설명서 요구사항에 연결된다. 제품 사용 설명서의 안전/작동법/동작방법 및 문제 해결 내용, 배포 대상과 검토 결과를 확인해야 한다.",
+        "retained_requirement": "SW-FW-RID-83",
+        "retained_upper_ids": [
+          "SYS-RID-ACDOC-17",
+          "SYS-RID-ACDOC-18",
+          "SYS-RID-ACDOC-20"
+        ],
+        "notice_preserved": true
+      }
+    ],
+    "G_published": false,
+    "static_status": "통과",
+    "native_status": "미실행",
+    "toc_cache": "root final page-number update required; unchanged heading text"
+  },
+  "SDDD": {
+    "code": "SDDD",
+    "source": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SDDD-FW-TD24A 소프트웨어 상세 설계서.docx",
+    "before_sha256": "c6b56a6464c17b2b7b393f5d0d3f822e8fd55dc03701d3f0306dddd15da83e97",
+    "candidate": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_design\\final-layout\\[E8300-QCC] SDDD-FW-TD24A 소프트웨어 상세 설계서.docx",
+    "candidate_sha256": "729813e0cecdb07debe426141452f96b72fd47aed7ec3afe29e00ec0e96a998f",
+    "new_revision_ids": [
+      "19180",
+      "19181",
+      "19182",
+      "19183",
+      "19184",
+      "19185",
+      "19186",
+      "19187"
+    ],
+    "author": "김은수",
+    "reject_new_exact_baseline_c14n": true,
+    "accepted_text_only_declared_changes": true,
+    "new_nested_insertions": 0,
+    "all_other_package_parts_exact": true,
+    "styles_fonts_media_field_instructions_preserved": true,
+    "changes": [
+      {
+        "type": "grammar or new QCC separator",
+        "para_id": null,
+        "before": "SPI 연계: E8300의 수신 정의는 0x34(data[0] 배터리 %, data[1] 충전기 미연결 0 / 연결 1, data[2] 뚜껑 열림 1 / 닫힘 2), 0x35(data[0] LED 상태, OTA_EZAIRO=4일 때 갱신 연결 1), 0x36(data[0] 오디오 미연결 0 / 연결 1, data[1] 종류 미상 0 / 크래들 1 / 기타 2)이다. 응답은 각각 명령값과 성공값 1이다. 0x36은 연결 1·종류 1일 때만 크래들 오디오 상태를 설정한다.",
+        "after": "SPI 연계: E8300의 수신 정의는 0x34(data[0] 배터리 %, data[1] 충전기 미연결 0 / 연결 1, data[2] 뚜껑 열림 1 / 닫힘 2), 0x35(data[0] LED 상태, OTA_EZAIRO=4일 때 갱신 연결 1), 0x36(data[0] 오디오 미연결 0 / 연결 1, data[1] 종류 미상 0 / 크래들 1 / 기타 2)이다. 응답은 각각 명령값과 성공값 1이다. 0x36은 연결 1/종류 1일 때만 크래들 오디오 상태를 설정한다."
+      },
+      {
+        "type": "grammar or new QCC separator",
+        "para_id": null,
+        "before": "상위 요구사항: SW-FW-RID-44, SW-FW-RID-45, SW-FW-RID-46, SW-FW-RID-48, SW-FW-RID-49, SW-FW-RID-66, SW-FW-RID-67, SW-FW-RID-68, SW-FW-RID-69, SW-FW-RID-70. SW-FW-UnitTest-QCC-ID-7에서는 연결표시 입력에 따른 Bluetooth 활성 및 장치명를 확인한다. SW-FW-UnitTest-QCC-ID-8에서는 부착/탈착 시 BLE/Classic 검색/연결 활성를 확인한다. 페어링/보호 데이터 경로를 사용하기 위한 Bluetooth 활성화를 지원한다. 활성화 상태만으로 페어링/암호화 완료를 판정하지 않는다.",
+        "after": "상위 요구사항: SW-FW-RID-44, SW-FW-RID-45, SW-FW-RID-46, SW-FW-RID-48, SW-FW-RID-49, SW-FW-RID-66, SW-FW-RID-67, SW-FW-RID-68, SW-FW-RID-69, SW-FW-RID-70. SW-FW-UnitTest-QCC-ID-7에서는 연결표시 입력에 따른 Bluetooth 활성 및 장치명을 확인한다. SW-FW-UnitTest-QCC-ID-8에서는 부착/탈착 시 BLE/Classic 검색/연결 활성화를 확인한다. 페어링/보호 데이터 경로를 사용하기 위한 Bluetooth 활성화를 지원한다. 활성화 상태만으로 페어링/암호화 완료를 판정하지 않는다."
+      },
+      {
+        "type": "grammar or new QCC separator",
+        "para_id": null,
+        "before": "상위 요구사항: SW-FW-RID-15, SW-FW-RID-16, SW-FW-RID-69. SW-FW-UnitTest-QCC-ID-10에서는 Classic 페어링/연결, 시험 스피커/양이 및 I2S 하향를 확인한다. SW-FW-UnitTest-QCC-ID-8에서는 부착/탈착 시 BLE/Classic 검색/연결 활성를 연계 지원으로 확인한다.",
+        "after": "상위 요구사항: SW-FW-RID-15, SW-FW-RID-16, SW-FW-RID-69. SW-FW-UnitTest-QCC-ID-10에서는 Classic 페어링/연결, 시험 스피커/양이 및 I2S 하향 경로를 확인한다. SW-FW-UnitTest-QCC-ID-8에서는 부착/탈착 시 BLE/Classic 검색/연결 활성화를 연계 지원으로 확인한다."
+      },
+      {
+        "type": "grammar or new QCC separator",
+        "para_id": null,
+        "before": "상위 요구사항: SW-FW-RID-29, SW-FW-RID-35, SW-FW-RID-38, SW-FW-RID-44, SW-FW-RID-45, SW-FW-RID-47, SW-FW-RID-48, SW-FW-RID-49, SW-FW-RID-63, SW-FW-RID-70, SW-FW-RID-76. SW-FW-UnitTest-QCC-ID-9에서는 광고/스캔 응답과 현재/peer 잔량/연결 상태를 확인한다. SW-FW-UnitTest-QCC-ID-8에서는 부착/탈착 시 BLE/Classic 검색/연결 활성를 연계 지원으로 확인한다. 현재/peer의 위치/잔량 및 연결 상태를 광고/조회 데이터에 반영하는 입력을 지원한다.",
+        "after": "상위 요구사항: SW-FW-RID-29, SW-FW-RID-35, SW-FW-RID-38, SW-FW-RID-44, SW-FW-RID-45, SW-FW-RID-47, SW-FW-RID-48, SW-FW-RID-49, SW-FW-RID-63, SW-FW-RID-70, SW-FW-RID-76. SW-FW-UnitTest-QCC-ID-9에서는 광고/스캔 응답과 현재/peer 잔량/연결 상태를 확인한다. SW-FW-UnitTest-QCC-ID-8에서는 부착/탈착 시 BLE/Classic 검색/연결 활성화를 연계 지원으로 확인한다. 현재/peer의 위치/잔량 및 연결 상태를 광고/조회 데이터에 반영하는 입력을 지원한다."
+      }
+    ],
+    "G_published": false,
+    "static_status": "통과",
+    "native_status": "미실행",
+    "toc_cache": "root final page-number update required; unchanged heading text"
+  },
+  "SIP": {
+    "code": "SIP",
+    "source": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SIP-FW-TD24A 소프트웨어 통합 계획서.docx",
+    "before_sha256": "d2051a712ca509466c6d0fbeb0841a250af328d6dbe6570125b496f5a0400d40",
+    "candidate": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_design\\final-layout\\[E8300-QCC] SIP-FW-TD24A 소프트웨어 통합 계획서.docx",
+    "candidate_sha256": "1fab1b19b8e2ccf46f6dc102e874c051fe0be04229170a1e8002e1f11233ec45",
+    "new_revision_ids": [
+      "765",
+      "766",
+      "767",
+      "768",
+      "769",
+      "770",
+      "771",
+      "772",
+      "773",
+      "774",
+      "775",
+      "776",
+      "777",
+      "778",
+      "779",
+      "780",
+      "781",
+      "782",
+      "783",
+      "784",
+      "785",
+      "786",
+      "787",
+      "788",
+      "789",
+      "790",
+      "791",
+      "792",
+      "793",
+      "794",
+      "795"
+    ],
+    "author": "김은수",
+    "reject_new_exact_baseline_c14n": true,
+    "accepted_text_only_declared_changes": true,
+    "new_nested_insertions": 0,
+    "all_other_package_parts_exact": true,
+    "styles_fonts_media_field_instructions_preserved": true,
+    "changes": [
+      {
+        "type": "grammar or new QCC separator",
+        "para_id": "7C88A5F1",
+        "before": "[QCC 자료 입력] 실제 QCC 소스/빌드·ADK/BSP 버전과 단위 실행 로그를 제출해야 한다. 아래 단계는 통합 계획이며 구현/단위시험이 완료된 것으로 가정하지 않는다.",
+        "after": "[QCC 자료 입력] 실제 QCC 소스/빌드/ADK/BSP 버전과 단위 실행 로그를 제출해야 한다. 아래 단계는 통합 계획이며 구현/단위시험이 완료된 것으로 가정하지 않는다."
+      },
+      {
+        "type": "grammar or new QCC separator",
+        "para_id": "21924680",
+        "before": "SPI 연계: E8300의 수신 정의는 0x34(data[0] 배터리 %, data[1] 충전기 미연결 0 / 연결 1, data[2] 뚜껑 열림 1 / 닫힘 2), 0x35(data[0] LED 상태, OTA_EZAIRO=4일 때 갱신 연결 1), 0x36(data[0] 오디오 미연결 0 / 연결 1, data[1] 종류 미상 0 / 크래들 1 / 기타 2)이다. 응답은 각각 명령값과 성공값 1이다. 0x36은 연결 1·종류 1일 때만 크래들 오디오 상태를 설정한다.",
+        "after": "SPI 연계: E8300의 수신 정의는 0x34(data[0] 배터리 %, data[1] 충전기 미연결 0 / 연결 1, data[2] 뚜껑 열림 1 / 닫힘 2), 0x35(data[0] LED 상태, OTA_EZAIRO=4일 때 갱신 연결 1), 0x36(data[0] 오디오 미연결 0 / 연결 1, data[1] 종류 미상 0 / 크래들 1 / 기타 2)이다. 응답은 각각 명령값과 성공값 1이다. 0x36은 연결 1/종류 1일 때만 크래들 오디오 상태를 설정한다."
+      },
+      {
+        "type": "grammar or new QCC separator",
+        "para_id": "50141D30",
+        "before": "시험 기록: 유닛 시험은 15그룹(SW-FW-UnitTest-QCC-ID-1~15)이 14설계유닛에 대응한다. Bluetooth activation 그룹은 SU-ID-QCC-004가 주담당이고008/009가 연계된다. 통합과 시스템 시험은 상위 요구 기능을 함께 적고 준비 조건·입력·구체 예상 메시지/값·절차·통과 기준을 본문 행에 둔다. 보고서는 기준서의 공통 열·행/병합 구조를 그대로 유지하면서 같은 입력 조건 옆에 실제 시험/측정 내용과 판정을 추가한다.",
+        "after": "시험 기록: 유닛 시험은 15그룹(SW-FW-UnitTest-QCC-ID-1~15)이 14설계유닛에 대응한다. Bluetooth activation 그룹은 SU-ID-QCC-004가 주담당이고008/009가 연계된다. 통합과 시스템 시험은 상위 요구 기능을 함께 적고 준비 조건/입력/구체 예상 메시지/값/절차/통과 기준을 본문 행에 둔다. 보고서는 기준서의 공통 열/행/병합 구조를 그대로 유지하면서 같은 입력 조건 옆에 실제 시험/측정 내용과 판정을 추가한다."
+      },
+      {
+        "type": "grammar or new QCC separator",
+        "para_id": "2EB090E8",
+        "before": "신규 통합시험의 ID는 SW-FW-IntegrationTest-ID-018 전원 상태/SPI, 019 연결·종료 신호, 020 AUTH 패턴 중계, 021 실제 CRA와 제어 게이트/시간 제한, 022 Classic/I2S 오디오, 023 BLE 편이·양이 데이터, 024 보안 NVM/키 생성/CRA 계산이다. AUTH 패턴 중계 시험을 실제 CRA 통과로 확대하지 않으며, 각 단계를 해당 기준서·보고서의 같은 입력 조건과 연결한다.",
+        "after": "신규 통합시험의 ID는 SW-FW-IntegrationTest-ID-018 전원 상태/SPI, 019 연결/종료 신호, 020 AUTH 패턴 중계, 021 실제 CRA와 제어 게이트/시간 제한, 022 Classic/I2S 오디오, 023 BLE 편이/양이 데이터, 024 보안 NVM/키 생성/CRA 계산이다. AUTH 패턴 중계 시험을 실제 CRA 통과로 확대하지 않으며, 각 단계를 해당 기준서/보고서의 같은 입력 조건과 연결한다."
+      },
+      {
+        "type": "grammar or new QCC separator",
+        "para_id": "29927FDD",
+        "before": "[QCC 자료 입력] QCC 통합 실행 로그, 실제 입력/응답 전체 메시지, 오디오/핀 파형·장비/빌드 식별 및 시험자 확인 기록이 필요하다. 미해소 설계 상충은 시험 판정에도 유지한다.",
+        "after": "[QCC 자료 입력] QCC 통합 실행 로그, 실제 입력/응답 전체 메시지, 오디오/핀 파형/장비/빌드 식별 및 시험자 확인 기록이 필요하다. 미해소 설계 상충은 시험 판정에도 유지한다."
+      },
+      {
+        "type": "grammar or new QCC separator",
+        "para_id": "3709D544",
+        "before": "[QCC 자료 입력] QCC 자체 펌웨어 갱신과 E8300 이미지 전달의 명령·버퍼·순서·재시도·인증·오류/중단 복구를 각각 정의하고 구현/통합 결과를 제출해야 한다. E8300 OTA 슬롯1~2와 부트 상태 슬롯1~4, 0x35 갱신 연결 통보를 구분하며 QCC 기동 이미지 무결성 검사 범위·알고리즘·실패 처리도 별도로 확인해야 한다.",
+        "after": "[QCC 자료 입력] QCC 자체 펌웨어 갱신과 E8300 이미지 전달의 명령/버퍼/순서/재시도/인증/오류/중단 복구를 각각 정의하고 구현/통합 결과를 제출해야 한다. E8300 OTA 슬롯1~2와 부트 상태 슬롯1~4, 0x35 갱신 연결 통보를 구분하며 QCC 기동 이미지 무결성 검사 범위/알고리즘/실패 처리도 별도로 확인해야 한다."
+      },
+      {
+        "type": "keep boot integration explanation and pending OTA notice together in a normal body section",
+        "before_para_id": "1C0ED646",
+        "after_para_id": "5F2E0017",
+        "before": "부트로더 소프트웨어 통합",
+        "after": "부트로더 소프트웨어 통합",
+        "flow": {
+          "pageBreakBefore": 1,
+          "keepNext": 1,
+          "keepLines": 1
+        }
+      },
+      {
+        "type": "keep boot integration explanation and pending OTA notice together in a normal body section",
+        "before_para_id": "003EEAA4",
+        "after_para_id": "1F3F6894",
+        "before": "정상/손상 이미지의 헤더, 구획 크기와 CRC 검사, 암호화 구획의 복호화 및 메모리 적재를 연결한다. 검사 오류 시 해당 이미지의 응용 기동이 진행되지 않는지 확인하고, 기본/대체 슬롯의 시도 횟수와 실행 성공 상태에 따라 다음 기동 위치가 선택되는지 확인한다.",
+        "after": "정상/손상 이미지의 헤더, 구획 크기와 CRC 검사, 암호화 구획의 복호화 및 메모리 적재를 연결한다. 검사 오류 시 해당 이미지의 응용 기동이 진행되지 않는지 확인하고, 기본/대체 슬롯의 시도 횟수와 실행 성공 상태에 따라 다음 기동 위치가 선택되는지 확인한다.",
+        "flow": {
+          "keepNext": 1,
+          "keepLines": 1
+        }
+      },
+      {
+        "type": "keep boot integration explanation and pending OTA notice together in a normal body section",
+        "before_para_id": "08BC3354",
+        "after_para_id": "30F9163D",
+        "before": "CM3의 갱신 시작/데이터/종료 명령을 파일 기록 및 기동 위치 선택에 연결하고, 재기동 후 부트로더의 검사/적재까지 확인한다. OTA 명령의 슬롯 1~2와 부트로더 상태의 슬롯 1~4를 구분하며 수신 순서 오류, 저장 실패와 불완전 이미지 조건도 확인한다.",
+        "after": "CM3의 갱신 시작/데이터/종료 명령을 파일 기록 및 기동 위치 선택에 연결하고, 재기동 후 부트로더의 검사/적재까지 확인한다. OTA 명령의 슬롯 1~2와 부트로더 상태의 슬롯 1~4를 구분하며 수신 순서 오류, 저장 실패와 불완전 이미지 조건도 확인한다.",
+        "flow": {
+          "keepNext": 1,
+          "keepLines": 1
+        }
+      },
+      {
+        "type": "keep boot integration explanation and pending OTA notice together in a normal body section",
+        "before_para_id": "3709D544",
+        "after_para_id": "1B5DABC1",
+        "before": "[QCC 자료 입력] QCC 자체 펌웨어 갱신과 E8300 이미지 전달의 명령/버퍼/순서/재시도/인증/오류/중단 복구를 각각 정의하고 구현/통합 결과를 제출해야 한다. E8300 OTA 슬롯1~2와 부트 상태 슬롯1~4, 0x35 갱신 연결 통보를 구분하며 QCC 기동 이미지 무결성 검사 범위/알고리즘/실패 처리도 별도로 확인해야 한다.",
+        "after": "[QCC 자료 입력] QCC 자체 펌웨어 갱신과 E8300 이미지 전달의 명령/버퍼/순서/재시도/인증/오류/중단 복구를 각각 정의하고 구현/통합 결과를 제출해야 한다. E8300 OTA 슬롯1~2와 부트 상태 슬롯1~4, 0x35 갱신 연결 통보를 구분하며 QCC 기동 이미지 무결성 검사 범위/알고리즘/실패 처리도 별도로 확인해야 한다.",
+        "flow": {
+          "keepNext": 0,
+          "keepLines": 1
+        }
+      }
+    ],
+    "G_published": false,
+    "static_status": "통과",
+    "native_status": "미실행",
+    "toc_cache": "root final page-number update required; unchanged heading text"
+  }
+}

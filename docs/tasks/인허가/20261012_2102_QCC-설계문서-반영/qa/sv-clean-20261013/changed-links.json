@@ -1,0 +1,586 @@
+{
+  "files": [
+    {
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\AGENTS.md",
+      "sha256": "A35DA4FBE314873A675FA12BD8E6376ADA4F0B44F7287FC3AA91A584BFBA5792"
+    },
+    {
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\SW 밸리데이션 문서 작성·검증 지침.md",
+      "sha256": "53608227B9E0412B0D7902E544CA5E66625A39C5CE53903DC3562C0458B02843"
+    },
+    {
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\QCC 자료 추가 위치 관리.md",
+      "sha256": "BA760998F2C22D1CD4043AD4E3496AA6CD3FCC2A54674A7E5283A1D8BF6FDA98"
+    },
+    {
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\작업.md",
+      "sha256": "E6DE7F1DCC5CEA52E91F8D9229F139A285E490C351B193F913890D4E01730662"
+    },
+    {
+      "path": "E:\\workspace\\rules-for-codex\\지침\\운영\\문서 기본 서식.md",
+      "sha256": "0B9C7D03E86CD9BD4E6A233BC9E699F77A3911D46C3E2BF872C4177F2229B24F"
+    }
+  ],
+  "links": [
+    {
+      "file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\AGENTS.md",
+      "line": 22,
+      "target": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\시스템\\Sound1 시스템 구조.md",
+      "exists": true
+    },
+    {
+      "file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\AGENTS.md",
+      "line": 23,
+      "target": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\시스템\\구조 근거 확인.py",
+      "exists": true
+    },
+    {
+      "file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\AGENTS.md",
+      "line": 32,
+      "target": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\SW 밸리데이션 문서 작성·검증 지침.md",
+      "exists": true
+    },
+    {
+      "file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\AGENTS.md",
+      "line": 47,
+      "target": "E:\\workspace\\rules-for-codex\\지침\\운영\\문서 기본 서식.md",
+      "exists": true
+    },
+    {
+      "file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\AGENTS.md",
+      "line": 49,
+      "target": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\QCC 자료 추가 위치 관리.md",
+      "exists": true
+    },
+    {
+      "file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\AGENTS.md",
+      "line": 70,
+      "target": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\QCC 자료 추가 위치 관리.md",
+      "exists": true
+    },
+    {
+      "file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\SW 밸리데이션 문서 작성·검증 지침.md",
+      "line": 11,
+      "target": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\AGENTS.md",
+      "exists": true
+    },
+    {
+      "file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\SW 밸리데이션 문서 작성·검증 지침.md",
+      "line": 12,
+      "target": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\QCC 자료 추가 위치 관리.md",
+      "exists": true
+    },
+    {
+      "file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\SW 밸리데이션 문서 작성·검증 지침.md",
+      "line": 13,
+      "target": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\시스템\\Sound1 시스템 구조.md",
+      "exists": true
+    },
+    {
+      "file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\SW 밸리데이션 문서 작성·검증 지침.md",
+      "line": 14,
+      "target": "E:\\workspace\\rules-for-codex\\지침\\운영\\문서 기본 서식.md",
+      "exists": true
+    },
+    {
+      "file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\SW 밸리데이션 문서 작성·검증 지침.md",
+      "line": 15,
+      "target": "E:\\workspace\\rules-for-codex\\지침\\양식\\Word\\README.md",
+      "exists": true
+    },
+    {
+      "file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\SW 밸리데이션 문서 작성·검증 지침.md",
+      "line": 15,
+      "target": "E:\\workspace\\rules-for-codex\\지침\\양식\\Word\\TDC 공통 스타일.dotx",
+      "exists": true
+    },
+    {
+      "file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\SW 밸리데이션 문서 작성·검증 지침.md",
+      "line": 79,
+      "target": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\시스템\\Sound1 시스템 구조.md",
+      "exists": true
+    },
+    {
+      "file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\SW 밸리데이션 문서 작성·검증 지침.md",
+      "line": 185,
+      "target": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\AGENTS.md",
+      "exists": true
+    },
+    {
+      "file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\SW 밸리데이션 문서 작성·검증 지침.md",
+      "line": 193,
+      "target": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\QCC 자료 추가 위치 관리.md",
+      "exists": true
+    },
+    {
+      "file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\SW 밸리데이션 문서 작성·검증 지침.md",
+      "line": 205,
+      "target": "E:\\workspace\\rules-for-codex\\지침\\운영\\문서 기본 서식.md",
+      "exists": true
+    },
+    {
+      "file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\SW 밸리데이션 문서 작성·검증 지침.md",
+      "line": 219,
+      "target": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\AGENTS.md",
+      "exists": true
+    },
+    {
+      "file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\SW 밸리데이션 문서 작성·검증 지침.md",
+      "line": 221,
+      "target": "E:\\workspace\\rules-for-codex\\지침\\운영\\문서 기본 서식.md",
+      "exists": true
+    },
+    {
+      "file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\SW 밸리데이션 문서 작성·검증 지침.md",
+      "line": 233,
+      "target": "E:\\workspace\\rules-for-codex\\지침\\양식\\Word\\README.md",
+      "exists": true
+    },
+    {
+      "file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\SW 밸리데이션 문서 작성·검증 지침.md",
+      "line": 233,
+      "target": "E:\\workspace\\rules-for-codex\\지침\\양식\\Word\\TDC 공통 스타일.dotx",
+      "exists": true
+    },
+    {
+      "file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\QCC 자료 추가 위치 관리.md",
+      "line": 5,
+      "target": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\SW 밸리데이션 문서 작성·검증 지침.md",
+      "exists": true
+    },
+    {
+      "file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\QCC 자료 추가 위치 관리.md",
+      "line": 5,
+      "target": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\AGENTS.md",
+      "exists": true
+    },
+    {
+      "file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\QCC 자료 추가 위치 관리.md",
+      "line": 7,
+      "target": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\AGENTS.md",
+      "exists": true
+    },
+    {
+      "file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\QCC 자료 추가 위치 관리.md",
+      "line": 9,
+      "target": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\AGENTS.md",
+      "exists": true
+    },
+    {
+      "file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\QCC 자료 추가 위치 관리.md",
+      "line": 22,
+      "target": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\02_설계 입력\\SW\\외부기\\[E8300-QCC] SR-FW-TD24A 소프트웨어 요구사항.docx",
+      "exists": true
+    },
+    {
+      "file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\QCC 자료 추가 위치 관리.md",
+      "line": 23,
+      "target": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\02_설계 입력\\SW\\외부기\\[E8300-QCC] SR-FW-TD24A 소프트웨어 요구사항.docx",
+      "exists": true
+    },
+    {
+      "file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\QCC 자료 추가 위치 관리.md",
+      "line": 24,
+      "target": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\02_설계 입력\\SW\\외부기\\[E8300-QCC] SR-FW-TD24A 소프트웨어 요구사항.docx",
+      "exists": true
+    },
+    {
+      "file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\QCC 자료 추가 위치 관리.md",
+      "line": 25,
+      "target": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\02_설계 입력\\SW\\외부기\\[E8300-QCC] SGR-FW-TD24A 소프트웨어 일반요구사항.docx",
+      "exists": true
+    },
+    {
+      "file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\QCC 자료 추가 위치 관리.md",
+      "line": 26,
+      "target": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\02_설계 입력\\SW\\외부기\\[E8300-QCC] SRS-FW-TD24A 소프트웨어 요구사항 사양서.xlsx",
+      "exists": true
+    },
+    {
+      "file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\QCC 자료 추가 위치 관리.md",
+      "line": 27,
+      "target": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\02_설계 입력\\SW\\외부기\\[E8300-QCC] SRS-FW-TD24A 소프트웨어 요구사항 사양서.xlsx",
+      "exists": true
+    },
+    {
+      "file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\QCC 자료 추가 위치 관리.md",
+      "line": 28,
+      "target": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\02_설계 입력\\SW\\외부기\\[E8300-QCC] SRS-FW-TD24A 소프트웨어 요구사항 사양서.xlsx",
+      "exists": true
+    },
+    {
+      "file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\QCC 자료 추가 위치 관리.md",
+      "line": 29,
+      "target": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SAD-FW-TD24A 소프트웨어 아키텍쳐 기술서.docx",
+      "exists": true
+    },
+    {
+      "file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\QCC 자료 추가 위치 관리.md",
+      "line": 30,
+      "target": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SAD-FW-TD24A 소프트웨어 아키텍쳐 기술서.docx",
+      "exists": true
+    },
+    {
+      "file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\QCC 자료 추가 위치 관리.md",
+      "line": 31,
+      "target": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SAD-FW-TD24A 소프트웨어 아키텍쳐 기술서.docx",
+      "exists": true
+    },
+    {
+      "file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\QCC 자료 추가 위치 관리.md",
+      "line": 32,
+      "target": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SDDD-FW-TD24A 소프트웨어 상세 설계서.docx",
+      "exists": true
+    },
+    {
+      "file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\QCC 자료 추가 위치 관리.md",
+      "line": 33,
+      "target": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SDDD-FW-TD24A 소프트웨어 상세 설계서.docx",
+      "exists": true
+    },
+    {
+      "file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\QCC 자료 추가 위치 관리.md",
+      "line": 34,
+      "target": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SIP-FW-TD24A 소프트웨어 통합 계획서.docx",
+      "exists": true
+    },
+    {
+      "file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\QCC 자료 추가 위치 관리.md",
+      "line": 35,
+      "target": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SUVC-FW-TD24A 소프트웨어 유닛 검증 기준서.xlsx",
+      "exists": true
+    },
+    {
+      "file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\QCC 자료 추가 위치 관리.md",
+      "line": 36,
+      "target": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SUVC-FW-TD24A 소프트웨어 유닛 검증 기준서.xlsx",
+      "exists": true
+    },
+    {
+      "file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\QCC 자료 추가 위치 관리.md",
+      "line": 37,
+      "target": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\04_설계 검증\\SW\\외부기\\[E8300-QCC] SUVR-FW-TD24A 소프트웨어 유닛 검증 보고서.xlsx",
+      "exists": true
+    },
+    {
+      "file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\QCC 자료 추가 위치 관리.md",
+      "line": 38,
+      "target": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\04_설계 검증\\SW\\외부기\\[E8300-QCC] SUVR-FW-TD24A 소프트웨어 유닛 검증 보고서.xlsx",
+      "exists": true
+    },
+    {
+      "file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\QCC 자료 추가 위치 관리.md",
+      "line": 39,
+      "target": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SITC-FW-TD24A 소프트웨어 통합시험 기준서.xlsx",
+      "exists": true
+    },
+    {
+      "file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\QCC 자료 추가 위치 관리.md",
+      "line": 40,
+      "target": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SITC-FW-TD24A 소프트웨어 통합시험 기준서.xlsx",
+      "exists": true
+    },
+    {
+      "file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\QCC 자료 추가 위치 관리.md",
+      "line": 41,
+      "target": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\04_설계 검증\\SW\\외부기\\[E8300-QCC] SITR-FW-TD24A 소프트웨어 통합시험 보고서.xlsx",
+      "exists": true
+    },
+    {
+      "file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\QCC 자료 추가 위치 관리.md",
+      "line": 42,
+      "target": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\04_설계 검증\\SW\\외부기\\[E8300-QCC] SITR-FW-TD24A 소프트웨어 통합시험 보고서.xlsx",
+      "exists": true
+    },
+    {
+      "file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\QCC 자료 추가 위치 관리.md",
+      "line": 43,
+      "target": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SSTC-FW-TD24A 소프트웨어 시스템 시험 기준서.xlsx",
+      "exists": true
+    },
+    {
+      "file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\QCC 자료 추가 위치 관리.md",
+      "line": 44,
+      "target": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SSTC-FW-TD24A 소프트웨어 시스템 시험 기준서.xlsx",
+      "exists": true
+    },
+    {
+      "file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\QCC 자료 추가 위치 관리.md",
+      "line": 45,
+      "target": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SSTC-FW-TD24A 소프트웨어 시스템 시험 기준서.xlsx",
+      "exists": true
+    },
+    {
+      "file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\QCC 자료 추가 위치 관리.md",
+      "line": 46,
+      "target": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\04_설계 검증\\SW\\외부기\\[E8300-QCC] SSTR-FW-TD24A 소프트웨어 시스템 시험 보고서.xlsx",
+      "exists": true
+    },
+    {
+      "file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\QCC 자료 추가 위치 관리.md",
+      "line": 47,
+      "target": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\04_설계 검증\\SW\\외부기\\[E8300-QCC] SSTR-FW-TD24A 소프트웨어 시스템 시험 보고서.xlsx",
+      "exists": true
+    },
+    {
+      "file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\QCC 자료 추가 위치 관리.md",
+      "line": 48,
+      "target": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\04_설계 검증\\SW\\외부기\\[E8300-QCC] SSTR-FW-TD24A 소프트웨어 시스템 시험 보고서.xlsx",
+      "exists": true
+    },
+    {
+      "file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\QCC 자료 추가 위치 관리.md",
+      "line": 77,
+      "target": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\AGENTS.md",
+      "exists": true
+    },
+    {
+      "file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\QCC 자료 추가 위치 관리.md",
+      "line": 141,
+      "target": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\DHF\\04_설계 검증\\SW\\펌웨어\\유닛 시험 일괄 실행 매뉴얼.md",
+      "exists": true
+    },
+    {
+      "file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\QCC 자료 추가 위치 관리.md",
+      "line": 145,
+      "target": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\02_설계 입력\\SW\\외부기\\[E8300] SRS-FW-TD24A 소프트웨어 요구사항 사양서.xlsx",
+      "exists": true
+    },
+    {
+      "file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\QCC 자료 추가 위치 관리.md",
+      "line": 146,
+      "target": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\04_설계 검증\\SW\\외부기\\[E8300] SITR-FW-TD24A 소프트웨어 통합시험 보고서.xlsx",
+      "exists": true
+    },
+    {
+      "file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\QCC 자료 추가 위치 관리.md",
+      "line": 147,
+      "target": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\04_설계 검증\\SW\\외부기\\[E8300] SSTR-FW-TD24A 소프트웨어 시스템 시험 보고서.xlsx",
+      "exists": true
+    },
+    {
+      "file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\QCC 자료 추가 위치 관리.md",
+      "line": 148,
+      "target": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300] SAD-FW-TD24A 소프트웨어 아키텍쳐 기술서.docx",
+      "exists": true
+    },
+    {
+      "file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\QCC 자료 추가 위치 관리.md",
+      "line": 149,
+      "target": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300] SDDD-FW-TD24A 소프트웨어 상세 설계서.docx",
+      "exists": true
+    },
+    {
+      "file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\QCC 자료 추가 위치 관리.md",
+      "line": 150,
+      "target": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300] SIP-FW-TD24A 소프트웨어 통합 계획서.docx",
+      "exists": true
+    },
+    {
+      "file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\QCC 자료 추가 위치 관리.md",
+      "line": 151,
+      "target": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300] SUVC-FW-TD24A 소프트웨어 유닛 검증 기준서.xlsx",
+      "exists": true
+    },
+    {
+      "file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\QCC 자료 추가 위치 관리.md",
+      "line": 152,
+      "target": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\04_설계 검증\\SW\\외부기\\[E8300] SUVR-FW-TD24A 소프트웨어 유닛 검증 보고서.xlsx",
+      "exists": true
+    },
+    {
+      "file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\QCC 자료 추가 위치 관리.md",
+      "line": 153,
+      "target": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300] SITC-FW-TD24A 소프트웨어 통합시험 기준서.xlsx",
+      "exists": true
+    },
+    {
+      "file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\QCC 자료 추가 위치 관리.md",
+      "line": 154,
+      "target": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300] SSTC-FW-TD24A 소프트웨어 시스템 시험 기준서.xlsx",
+      "exists": true
+    },
+    {
+      "file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\QCC 자료 추가 위치 관리.md",
+      "line": 155,
+      "target": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\EPTC-TD24A 필수성능시험 기준서.docx",
+      "exists": true
+    },
+    {
+      "file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\QCC 자료 추가 위치 관리.md",
+      "line": 280,
+      "target": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\DHF\\04_설계 검증\\SW\\펌웨어\\유닛 시험 예상 입출력\\README.md",
+      "exists": true
+    },
+    {
+      "file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\QCC 자료 추가 위치 관리.md",
+      "line": 407,
+      "target": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\시스템\\Sound1 시스템 구조.md",
+      "exists": true
+    },
+    {
+      "file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\작업.md",
+      "line": 35,
+      "target": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\AGENTS.md",
+      "exists": true
+    },
+    {
+      "file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\작업.md",
+      "line": 37,
+      "target": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\시스템\\Sound1 시스템 구조.md",
+      "exists": true
+    },
+    {
+      "file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\작업.md",
+      "line": 37,
+      "target": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\QCC 자료 추가 위치 관리.md",
+      "exists": true
+    },
+    {
+      "file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\작업.md",
+      "line": 54,
+      "target": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\SW 밸리데이션 문서 작성·검증 지침.md",
+      "exists": true
+    },
+    {
+      "file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\작업.md",
+      "line": 63,
+      "target": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\evidence\\final-output-manifest.json",
+      "exists": true
+    },
+    {
+      "file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\작업.md",
+      "line": 63,
+      "target": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\QCC 자료 추가 위치 관리.md",
+      "exists": true
+    },
+    {
+      "file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\작업.md",
+      "line": 110,
+      "target": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\review-baseline.json",
+      "exists": true
+    },
+    {
+      "file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\작업.md",
+      "line": 152,
+      "target": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_requirements\\matrix-readonly.xlsx",
+      "exists": true
+    },
+    {
+      "file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\작업.md",
+      "line": 166,
+      "target": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\evidence\\final-output-manifest.json",
+      "exists": true
+    },
+    {
+      "file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\작업.md",
+      "line": 172,
+      "target": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\QCC 자료 추가 위치 관리.md",
+      "exists": true
+    },
+    {
+      "file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\작업.md",
+      "line": 208,
+      "target": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\integrated-29-review.json",
+      "exists": true
+    },
+    {
+      "file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\작업.md",
+      "line": 208,
+      "target": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\saved-package-checks.json",
+      "exists": true
+    },
+    {
+      "file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\작업.md",
+      "line": 208,
+      "target": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_requirements\\review-29.json",
+      "exists": true
+    },
+    {
+      "file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\작업.md",
+      "line": 208,
+      "target": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_design\\checks-29.json",
+      "exists": true
+    },
+    {
+      "file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\작업.md",
+      "line": 208,
+      "target": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\qa.json",
+      "exists": true
+    },
+    {
+      "file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\작업.md",
+      "line": 208,
+      "target": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\current-positions.json",
+      "exists": true
+    },
+    {
+      "file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\작업.md",
+      "line": 225,
+      "target": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\evidence\\final-output-manifest.json",
+      "exists": true
+    },
+    {
+      "file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\작업.md",
+      "line": 225,
+      "target": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sv-clean-20261013\\plan.json",
+      "exists": true
+    },
+    {
+      "file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\작업.md",
+      "line": 225,
+      "target": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sv-clean-20261013\\independent-review.json",
+      "exists": true
+    },
+    {
+      "file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\작업.md",
+      "line": 225,
+      "target": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sv-clean-20261013\\native-checks.json",
+      "exists": true
+    },
+    {
+      "file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\작업.md",
+      "line": 225,
+      "target": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sv-clean-20261013\\visual-review.json",
+      "exists": true
+    },
+    {
+      "file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\작업.md",
+      "line": 225,
+      "target": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sv-clean-20261013\\policy-review.json",
+      "exists": true
+    },
+    {
+      "file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\작업.md",
+      "line": 225,
+      "target": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sv-clean-20261013\\published.json",
+      "exists": true
+    },
+    {
+      "file": "E:\\workspace\\rules-for-codex\\지침\\운영\\문서 기본 서식.md",
+      "line": 53,
+      "target": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\SW 밸리데이션 문서 작성·검증 지침.md",
+      "exists": true
+    },
+    {
+      "file": "E:\\workspace\\rules-for-codex\\지침\\운영\\문서 기본 서식.md",
+      "line": 57,
+      "target": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\AGENTS.md",
+      "exists": true
+    },
+    {
+      "file": "E:\\workspace\\rules-for-codex\\지침\\운영\\문서 기본 서식.md",
+      "line": 72,
+      "target": "E:\\workspace\\rules-for-codex\\지침\\양식\\Word\\README.md",
+      "exists": true
+    },
+    {
+      "file": "E:\\workspace\\rules-for-codex\\지침\\운영\\문서 기본 서식.md",
+      "line": 92,
+      "target": "E:\\workspace\\rules-for-codex\\지침\\운영\\Word·인쇄 서식.md",
+      "exists": true
+    }
+  ],
+  "failures": [],
+  "pass": true
+}

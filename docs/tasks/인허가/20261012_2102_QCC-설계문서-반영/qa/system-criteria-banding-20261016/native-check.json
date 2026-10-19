@@ -1,0 +1,4421 @@
+{
+  "source": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\system-criteria-banding-20261016\\candidate.xlsx",
+  "source_sha256": "F56DA1CF51524527E3C95EB0507C8D6503358FB78AFAC242E5608F63F9DA356C",
+  "before_sha256": "D3F7E5FEA16AA448BE548CF9ADB507B85DE06CADAE73C00DE94C97451F5FB301",
+  "status": "통과",
+  "readonly": true,
+  "saved": false,
+  "blocks": [
+    {
+      "order": 1,
+      "id": 1,
+      "start": 34,
+      "end": 34,
+      "expected_rgb": "FFFFFF",
+      "plan_parity_correct": true
+    },
+    {
+      "order": 2,
+      "id": 2,
+      "start": 35,
+      "end": 38,
+      "expected_rgb": "F5F5F5",
+      "plan_parity_correct": true
+    },
+    {
+      "order": 3,
+      "id": 3,
+      "start": 39,
+      "end": 39,
+      "expected_rgb": "FFFFFF",
+      "plan_parity_correct": true
+    },
+    {
+      "order": 4,
+      "id": 4,
+      "start": 40,
+      "end": 41,
+      "expected_rgb": "F5F5F5",
+      "plan_parity_correct": true
+    },
+    {
+      "order": 5,
+      "id": 5,
+      "start": 42,
+      "end": 45,
+      "expected_rgb": "FFFFFF",
+      "plan_parity_correct": true
+    },
+    {
+      "order": 6,
+      "id": 6,
+      "start": 46,
+      "end": 50,
+      "expected_rgb": "F5F5F5",
+      "plan_parity_correct": true
+    },
+    {
+      "order": 7,
+      "id": 7,
+      "start": 51,
+      "end": 53,
+      "expected_rgb": "FFFFFF",
+      "plan_parity_correct": true
+    },
+    {
+      "order": 8,
+      "id": 8,
+      "start": 54,
+      "end": 56,
+      "expected_rgb": "F5F5F5",
+      "plan_parity_correct": true
+    },
+    {
+      "order": 9,
+      "id": 9,
+      "start": 57,
+      "end": 57,
+      "expected_rgb": "FFFFFF",
+      "plan_parity_correct": true
+    },
+    {
+      "order": 10,
+      "id": 10,
+      "start": 58,
+      "end": 90,
+      "expected_rgb": "F5F5F5",
+      "plan_parity_correct": true
+    },
+    {
+      "order": 11,
+      "id": 11,
+      "start": 91,
+      "end": 93,
+      "expected_rgb": "FFFFFF",
+      "plan_parity_correct": true
+    },
+    {
+      "order": 12,
+      "id": 12,
+      "start": 94,
+      "end": 95,
+      "expected_rgb": "F5F5F5",
+      "plan_parity_correct": true
+    },
+    {
+      "order": 13,
+      "id": 13,
+      "start": 96,
+      "end": 99,
+      "expected_rgb": "FFFFFF",
+      "plan_parity_correct": true
+    },
+    {
+      "order": 14,
+      "id": 14,
+      "start": 100,
+      "end": 103,
+      "expected_rgb": "F5F5F5",
+      "plan_parity_correct": true
+    },
+    {
+      "order": 15,
+      "id": 15,
+      "start": 104,
+      "end": 107,
+      "expected_rgb": "FFFFFF",
+      "plan_parity_correct": true
+    },
+    {
+      "order": 16,
+      "id": 16,
+      "start": 108,
+      "end": 109,
+      "expected_rgb": "F5F5F5",
+      "plan_parity_correct": true
+    },
+    {
+      "order": 17,
+      "id": 17,
+      "start": 110,
+      "end": 111,
+      "expected_rgb": "FFFFFF",
+      "plan_parity_correct": true
+    },
+    {
+      "order": 18,
+      "id": 18,
+      "start": 112,
+      "end": 118,
+      "expected_rgb": "F5F5F5",
+      "plan_parity_correct": true
+    },
+    {
+      "order": 19,
+      "id": 19,
+      "start": 119,
+      "end": 121,
+      "expected_rgb": "FFFFFF",
+      "plan_parity_correct": true
+    },
+    {
+      "order": 20,
+      "id": 20,
+      "start": 122,
+      "end": 123,
+      "expected_rgb": "F5F5F5",
+      "plan_parity_correct": true
+    },
+    {
+      "order": 21,
+      "id": 21,
+      "start": 124,
+      "end": 131,
+      "expected_rgb": "FFFFFF",
+      "plan_parity_correct": true
+    },
+    {
+      "order": 22,
+      "id": 22,
+      "start": 132,
+      "end": 139,
+      "expected_rgb": "F5F5F5",
+      "plan_parity_correct": true
+    },
+    {
+      "order": 23,
+      "id": 23,
+      "start": 140,
+      "end": 140,
+      "expected_rgb": "FFFFFF",
+      "plan_parity_correct": true
+    },
+    {
+      "order": 24,
+      "id": 24,
+      "start": 141,
+      "end": 144,
+      "expected_rgb": "F5F5F5",
+      "plan_parity_correct": true
+    },
+    {
+      "order": 25,
+      "id": 25,
+      "start": 145,
+      "end": 150,
+      "expected_rgb": "FFFFFF",
+      "plan_parity_correct": true
+    },
+    {
+      "order": 26,
+      "id": 26,
+      "start": 151,
+      "end": 155,
+      "expected_rgb": "F5F5F5",
+      "plan_parity_correct": true
+    },
+    {
+      "order": 27,
+      "id": 27,
+      "start": 156,
+      "end": 157,
+      "expected_rgb": "FFFFFF",
+      "plan_parity_correct": true
+    },
+    {
+      "order": 28,
+      "id": 28,
+      "start": 158,
+      "end": 159,
+      "expected_rgb": "F5F5F5",
+      "plan_parity_correct": true
+    },
+    {
+      "order": 29,
+      "id": 29,
+      "start": 160,
+      "end": 161,
+      "expected_rgb": "FFFFFF",
+      "plan_parity_correct": true
+    },
+    {
+      "order": 30,
+      "id": 30,
+      "start": 162,
+      "end": 165,
+      "expected_rgb": "F5F5F5",
+      "plan_parity_correct": true
+    },
+    {
+      "order": 31,
+      "id": 31,
+      "start": 166,
+      "end": 168,
+      "expected_rgb": "FFFFFF",
+      "plan_parity_correct": true
+    },
+    {
+      "order": 32,
+      "id": 32,
+      "start": 169,
+      "end": 171,
+      "expected_rgb": "F5F5F5",
+      "plan_parity_correct": true
+    },
+    {
+      "order": 33,
+      "id": 33,
+      "start": 172,
+      "end": 173,
+      "expected_rgb": "FFFFFF",
+      "plan_parity_correct": true
+    },
+    {
+      "order": 34,
+      "id": 34,
+      "start": 174,
+      "end": 175,
+      "expected_rgb": "F5F5F5",
+      "plan_parity_correct": true
+    },
+    {
+      "order": 35,
+      "id": 35,
+      "start": 176,
+      "end": 176,
+      "expected_rgb": "FFFFFF",
+      "plan_parity_correct": true
+    },
+    {
+      "order": 36,
+      "id": 36,
+      "start": 177,
+      "end": 177,
+      "expected_rgb": "F5F5F5",
+      "plan_parity_correct": true
+    },
+    {
+      "order": 37,
+      "id": 37,
+      "start": 178,
+      "end": 178,
+      "expected_rgb": "FFFFFF",
+      "plan_parity_correct": true
+    },
+    {
+      "order": 38,
+      "id": 38,
+      "start": 179,
+      "end": 179,
+      "expected_rgb": "F5F5F5",
+      "plan_parity_correct": true
+    },
+    {
+      "order": 39,
+      "id": 39,
+      "start": 180,
+      "end": 181,
+      "expected_rgb": "FFFFFF",
+      "plan_parity_correct": true
+    },
+    {
+      "order": 40,
+      "id": 40,
+      "start": 182,
+      "end": 182,
+      "expected_rgb": "F5F5F5",
+      "plan_parity_correct": true
+    },
+    {
+      "order": 41,
+      "id": 41,
+      "start": 183,
+      "end": 184,
+      "expected_rgb": "FFFFFF",
+      "plan_parity_correct": true
+    },
+    {
+      "order": 42,
+      "id": 42,
+      "start": 185,
+      "end": 186,
+      "expected_rgb": "F5F5F5",
+      "plan_parity_correct": true
+    },
+    {
+      "order": 43,
+      "id": 43,
+      "start": 187,
+      "end": 188,
+      "expected_rgb": "FFFFFF",
+      "plan_parity_correct": true
+    },
+    {
+      "order": 44,
+      "id": 44,
+      "start": 189,
+      "end": 198,
+      "expected_rgb": "F5F5F5",
+      "plan_parity_correct": true
+    },
+    {
+      "order": 45,
+      "id": 45,
+      "start": 199,
+      "end": 204,
+      "expected_rgb": "FFFFFF",
+      "plan_parity_correct": true
+    },
+    {
+      "order": 46,
+      "id": 69,
+      "start": 205,
+      "end": 207,
+      "expected_rgb": "F5F5F5",
+      "plan_parity_correct": true
+    },
+    {
+      "order": 47,
+      "id": 70,
+      "start": 208,
+      "end": 209,
+      "expected_rgb": "FFFFFF",
+      "plan_parity_correct": true
+    },
+    {
+      "order": 48,
+      "id": 46,
+      "start": 210,
+      "end": 211,
+      "expected_rgb": "F5F5F5",
+      "plan_parity_correct": true
+    },
+    {
+      "order": 49,
+      "id": 47,
+      "start": 212,
+      "end": 212,
+      "expected_rgb": "FFFFFF",
+      "plan_parity_correct": true
+    },
+    {
+      "order": 50,
+      "id": 48,
+      "start": 213,
+      "end": 215,
+      "expected_rgb": "F5F5F5",
+      "plan_parity_correct": true
+    },
+    {
+      "order": 51,
+      "id": 49,
+      "start": 216,
+      "end": 216,
+      "expected_rgb": "FFFFFF",
+      "plan_parity_correct": true
+    },
+    {
+      "order": 52,
+      "id": 50,
+      "start": 217,
+      "end": 218,
+      "expected_rgb": "F5F5F5",
+      "plan_parity_correct": true
+    },
+    {
+      "order": 53,
+      "id": 51,
+      "start": 219,
+      "end": 219,
+      "expected_rgb": "FFFFFF",
+      "plan_parity_correct": true
+    },
+    {
+      "order": 54,
+      "id": 52,
+      "start": 220,
+      "end": 223,
+      "expected_rgb": "F5F5F5",
+      "plan_parity_correct": true
+    },
+    {
+      "order": 55,
+      "id": 53,
+      "start": 224,
+      "end": 224,
+      "expected_rgb": "FFFFFF",
+      "plan_parity_correct": true
+    },
+    {
+      "order": 56,
+      "id": 81,
+      "start": 225,
+      "end": 226,
+      "expected_rgb": "F5F5F5",
+      "plan_parity_correct": true
+    },
+    {
+      "order": 57,
+      "id": 54,
+      "start": 227,
+      "end": 228,
+      "expected_rgb": "FFFFFF",
+      "plan_parity_correct": true
+    },
+    {
+      "order": 58,
+      "id": 71,
+      "start": 229,
+      "end": 230,
+      "expected_rgb": "F5F5F5",
+      "plan_parity_correct": true
+    },
+    {
+      "order": 59,
+      "id": 72,
+      "start": 231,
+      "end": 233,
+      "expected_rgb": "FFFFFF",
+      "plan_parity_correct": true
+    },
+    {
+      "order": 60,
+      "id": 73,
+      "start": 234,
+      "end": 234,
+      "expected_rgb": "F5F5F5",
+      "plan_parity_correct": true
+    },
+    {
+      "order": 61,
+      "id": 74,
+      "start": 235,
+      "end": 235,
+      "expected_rgb": "FFFFFF",
+      "plan_parity_correct": true
+    },
+    {
+      "order": 62,
+      "id": 75,
+      "start": 236,
+      "end": 238,
+      "expected_rgb": "F5F5F5",
+      "plan_parity_correct": true
+    },
+    {
+      "order": 63,
+      "id": 76,
+      "start": 239,
+      "end": 241,
+      "expected_rgb": "FFFFFF",
+      "plan_parity_correct": true
+    },
+    {
+      "order": 64,
+      "id": 77,
+      "start": 242,
+      "end": 242,
+      "expected_rgb": "F5F5F5",
+      "plan_parity_correct": true
+    },
+    {
+      "order": 65,
+      "id": 78,
+      "start": 243,
+      "end": 243,
+      "expected_rgb": "FFFFFF",
+      "plan_parity_correct": true
+    },
+    {
+      "order": 66,
+      "id": 79,
+      "start": 244,
+      "end": 247,
+      "expected_rgb": "F5F5F5",
+      "plan_parity_correct": true
+    },
+    {
+      "order": 67,
+      "id": 80,
+      "start": 248,
+      "end": 249,
+      "expected_rgb": "FFFFFF",
+      "plan_parity_correct": true
+    },
+    {
+      "order": 68,
+      "id": 55,
+      "start": 250,
+      "end": 250,
+      "expected_rgb": "F5F5F5",
+      "plan_parity_correct": true
+    },
+    {
+      "order": 69,
+      "id": 56,
+      "start": 251,
+      "end": 252,
+      "expected_rgb": "FFFFFF",
+      "plan_parity_correct": true
+    },
+    {
+      "order": 70,
+      "id": 57,
+      "start": 253,
+      "end": 253,
+      "expected_rgb": "F5F5F5",
+      "plan_parity_correct": true
+    },
+    {
+      "order": 71,
+      "id": 58,
+      "start": 254,
+      "end": 255,
+      "expected_rgb": "FFFFFF",
+      "plan_parity_correct": true
+    },
+    {
+      "order": 72,
+      "id": 59,
+      "start": 256,
+      "end": 257,
+      "expected_rgb": "F5F5F5",
+      "plan_parity_correct": true
+    },
+    {
+      "order": 73,
+      "id": 60,
+      "start": 258,
+      "end": 268,
+      "expected_rgb": "FFFFFF",
+      "plan_parity_correct": true
+    },
+    {
+      "order": 74,
+      "id": 61,
+      "start": 269,
+      "end": 269,
+      "expected_rgb": "F5F5F5",
+      "plan_parity_correct": true
+    },
+    {
+      "order": 75,
+      "id": 62,
+      "start": 270,
+      "end": 277,
+      "expected_rgb": "FFFFFF",
+      "plan_parity_correct": true
+    },
+    {
+      "order": 76,
+      "id": 63,
+      "start": 278,
+      "end": 279,
+      "expected_rgb": "F5F5F5",
+      "plan_parity_correct": true
+    },
+    {
+      "order": 77,
+      "id": 64,
+      "start": 280,
+      "end": 281,
+      "expected_rgb": "FFFFFF",
+      "plan_parity_correct": true
+    },
+    {
+      "order": 78,
+      "id": 65,
+      "start": 282,
+      "end": 283,
+      "expected_rgb": "F5F5F5",
+      "plan_parity_correct": true
+    },
+    {
+      "order": 79,
+      "id": 66,
+      "start": 284,
+      "end": 285,
+      "expected_rgb": "FFFFFF",
+      "plan_parity_correct": true
+    },
+    {
+      "order": 80,
+      "id": 67,
+      "start": 286,
+      "end": 287,
+      "expected_rgb": "F5F5F5",
+      "plan_parity_correct": true
+    },
+    {
+      "order": 81,
+      "id": 68,
+      "start": 288,
+      "end": 289,
+      "expected_rgb": "FFFFFF",
+      "plan_parity_correct": true
+    },
+    {
+      "order": 82,
+      "id": 82,
+      "start": 290,
+      "end": 291,
+      "expected_rgb": "F5F5F5",
+      "plan_parity_correct": true
+    },
+    {
+      "order": 83,
+      "id": 83,
+      "start": 292,
+      "end": 292,
+      "expected_rgb": "FFFFFF",
+      "plan_parity_correct": true
+    }
+  ],
+  "rows": [
+    {
+      "row": 34,
+      "order": 1,
+      "id": 1,
+      "range": "C34:J34",
+      "color": 16777215.0,
+      "expected_color": 16777215,
+      "pass": true
+    },
+    {
+      "row": 35,
+      "order": 2,
+      "id": 2,
+      "range": "C35:J35",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 36,
+      "order": 2,
+      "id": 2,
+      "range": "C36:J36",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 37,
+      "order": 2,
+      "id": 2,
+      "range": "C37:J37",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 38,
+      "order": 2,
+      "id": 2,
+      "range": "C38:J38",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 39,
+      "order": 3,
+      "id": 3,
+      "range": "C39:J39",
+      "color": 16777215.0,
+      "expected_color": 16777215,
+      "pass": true
+    },
+    {
+      "row": 40,
+      "order": 4,
+      "id": 4,
+      "range": "C40:J40",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 41,
+      "order": 4,
+      "id": 4,
+      "range": "C41:J41",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 42,
+      "order": 5,
+      "id": 5,
+      "range": "C42:J42",
+      "color": 16777215.0,
+      "expected_color": 16777215,
+      "pass": true
+    },
+    {
+      "row": 43,
+      "order": 5,
+      "id": 5,
+      "range": "C43:J43",
+      "color": 16777215.0,
+      "expected_color": 16777215,
+      "pass": true
+    },
+    {
+      "row": 44,
+      "order": 5,
+      "id": 5,
+      "range": "C44:J44",
+      "color": 16777215.0,
+      "expected_color": 16777215,
+      "pass": true
+    },
+    {
+      "row": 45,
+      "order": 5,
+      "id": 5,
+      "range": "C45:J45",
+      "color": 16777215.0,
+      "expected_color": 16777215,
+      "pass": true
+    },
+    {
+      "row": 46,
+      "order": 6,
+      "id": 6,
+      "range": "C46:J46",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 47,
+      "order": 6,
+      "id": 6,
+      "range": "C47:J47",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 48,
+      "order": 6,
+      "id": 6,
+      "range": "C48:J48",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 49,
+      "order": 6,
+      "id": 6,
+      "range": "C49:J49",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 50,
+      "order": 6,
+      "id": 6,
+      "range": "C50:J50",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 51,
+      "order": 7,
+      "id": 7,
+      "range": "C51:J51",
+      "color": 16777215.0,
+      "expected_color": 16777215,
+      "pass": true
+    },
+    {
+      "row": 52,
+      "order": 7,
+      "id": 7,
+      "range": "C52:J52",
+      "color": 16777215.0,
+      "expected_color": 16777215,
+      "pass": true
+    },
+    {
+      "row": 53,
+      "order": 7,
+      "id": 7,
+      "range": "C53:J53",
+      "color": 16777215.0,
+      "expected_color": 16777215,
+      "pass": true
+    },
+    {
+      "row": 54,
+      "order": 8,
+      "id": 8,
+      "range": "C54:J54",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 55,
+      "order": 8,
+      "id": 8,
+      "range": "C55:J55",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 56,
+      "order": 8,
+      "id": 8,
+      "range": "C56:J56",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 57,
+      "order": 9,
+      "id": 9,
+      "range": "C57:J57",
+      "color": 16777215.0,
+      "expected_color": 16777215,
+      "pass": true
+    },
+    {
+      "row": 58,
+      "order": 10,
+      "id": 10,
+      "range": "C58:J58",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 59,
+      "order": 10,
+      "id": 10,
+      "range": "C59:J59",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 60,
+      "order": 10,
+      "id": 10,
+      "range": "C60:J60",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 61,
+      "order": 10,
+      "id": 10,
+      "range": "C61:J61",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 62,
+      "order": 10,
+      "id": 10,
+      "range": "C62:J62",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 63,
+      "order": 10,
+      "id": 10,
+      "range": "C63:J63",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 64,
+      "order": 10,
+      "id": 10,
+      "range": "C64:J64",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 65,
+      "order": 10,
+      "id": 10,
+      "range": "C65:J65",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 66,
+      "order": 10,
+      "id": 10,
+      "range": "C66:J66",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 67,
+      "order": 10,
+      "id": 10,
+      "range": "C67:J67",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 68,
+      "order": 10,
+      "id": 10,
+      "range": "C68:J68",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 69,
+      "order": 10,
+      "id": 10,
+      "range": "C69:J69",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 70,
+      "order": 10,
+      "id": 10,
+      "range": "C70:J70",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 71,
+      "order": 10,
+      "id": 10,
+      "range": "C71:J71",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 72,
+      "order": 10,
+      "id": 10,
+      "range": "C72:J72",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 73,
+      "order": 10,
+      "id": 10,
+      "range": "C73:J73",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 74,
+      "order": 10,
+      "id": 10,
+      "range": "C74:J74",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 75,
+      "order": 10,
+      "id": 10,
+      "range": "C75:J75",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 76,
+      "order": 10,
+      "id": 10,
+      "range": "C76:J76",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 77,
+      "order": 10,
+      "id": 10,
+      "range": "C77:J77",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 78,
+      "order": 10,
+      "id": 10,
+      "range": "C78:J78",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 79,
+      "order": 10,
+      "id": 10,
+      "range": "C79:J79",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 80,
+      "order": 10,
+      "id": 10,
+      "range": "C80:J80",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 81,
+      "order": 10,
+      "id": 10,
+      "range": "C81:J81",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 82,
+      "order": 10,
+      "id": 10,
+      "range": "C82:J82",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 83,
+      "order": 10,
+      "id": 10,
+      "range": "C83:J83",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 84,
+      "order": 10,
+      "id": 10,
+      "range": "C84:J84",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 85,
+      "order": 10,
+      "id": 10,
+      "range": "C85:J85",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 86,
+      "order": 10,
+      "id": 10,
+      "range": "C86:J86",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 87,
+      "order": 10,
+      "id": 10,
+      "range": "C87:J87",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 88,
+      "order": 10,
+      "id": 10,
+      "range": "C88:J88",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 89,
+      "order": 10,
+      "id": 10,
+      "range": "C89:J89",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 90,
+      "order": 10,
+      "id": 10,
+      "range": "C90:J90",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 91,
+      "order": 11,
+      "id": 11,
+      "range": "C91:J91",
+      "color": 16777215.0,
+      "expected_color": 16777215,
+      "pass": true
+    },
+    {
+      "row": 92,
+      "order": 11,
+      "id": 11,
+      "range": "C92:J92",
+      "color": 16777215.0,
+      "expected_color": 16777215,
+      "pass": true
+    },
+    {
+      "row": 93,
+      "order": 11,
+      "id": 11,
+      "range": "C93:J93",
+      "color": 16777215.0,
+      "expected_color": 16777215,
+      "pass": true
+    },
+    {
+      "row": 94,
+      "order": 12,
+      "id": 12,
+      "range": "C94:J94",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 95,
+      "order": 12,
+      "id": 12,
+      "range": "C95:J95",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 96,
+      "order": 13,
+      "id": 13,
+      "range": "C96:J96",
+      "color": 16777215.0,
+      "expected_color": 16777215,
+      "pass": true
+    },
+    {
+      "row": 97,
+      "order": 13,
+      "id": 13,
+      "range": "C97:J97",
+      "color": 16777215.0,
+      "expected_color": 16777215,
+      "pass": true
+    },
+    {
+      "row": 98,
+      "order": 13,
+      "id": 13,
+      "range": "C98:J98",
+      "color": 16777215.0,
+      "expected_color": 16777215,
+      "pass": true
+    },
+    {
+      "row": 99,
+      "order": 13,
+      "id": 13,
+      "range": "C99:J99",
+      "color": 16777215.0,
+      "expected_color": 16777215,
+      "pass": true
+    },
+    {
+      "row": 100,
+      "order": 14,
+      "id": 14,
+      "range": "C100:J100",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 101,
+      "order": 14,
+      "id": 14,
+      "range": "C101:J101",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 102,
+      "order": 14,
+      "id": 14,
+      "range": "C102:J102",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 103,
+      "order": 14,
+      "id": 14,
+      "range": "C103:J103",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 104,
+      "order": 15,
+      "id": 15,
+      "range": "C104:J104",
+      "color": 16777215.0,
+      "expected_color": 16777215,
+      "pass": true
+    },
+    {
+      "row": 105,
+      "order": 15,
+      "id": 15,
+      "range": "C105:J105",
+      "color": 16777215.0,
+      "expected_color": 16777215,
+      "pass": true
+    },
+    {
+      "row": 106,
+      "order": 15,
+      "id": 15,
+      "range": "C106:J106",
+      "color": 16777215.0,
+      "expected_color": 16777215,
+      "pass": true
+    },
+    {
+      "row": 107,
+      "order": 15,
+      "id": 15,
+      "range": "C107:J107",
+      "color": 16777215.0,
+      "expected_color": 16777215,
+      "pass": true
+    },
+    {
+      "row": 108,
+      "order": 16,
+      "id": 16,
+      "range": "C108:J108",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 109,
+      "order": 16,
+      "id": 16,
+      "range": "C109:J109",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 110,
+      "order": 17,
+      "id": 17,
+      "range": "C110:J110",
+      "color": 16777215.0,
+      "expected_color": 16777215,
+      "pass": true
+    },
+    {
+      "row": 111,
+      "order": 17,
+      "id": 17,
+      "range": "C111:J111",
+      "color": 16777215.0,
+      "expected_color": 16777215,
+      "pass": true
+    },
+    {
+      "row": 112,
+      "order": 18,
+      "id": 18,
+      "range": "C112:J112",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 113,
+      "order": 18,
+      "id": 18,
+      "range": "C113:J113",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 114,
+      "order": 18,
+      "id": 18,
+      "range": "C114:J114",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 115,
+      "order": 18,
+      "id": 18,
+      "range": "C115:J115",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 116,
+      "order": 18,
+      "id": 18,
+      "range": "C116:J116",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 117,
+      "order": 18,
+      "id": 18,
+      "range": "C117:J117",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 118,
+      "order": 18,
+      "id": 18,
+      "range": "C118:J118",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 119,
+      "order": 19,
+      "id": 19,
+      "range": "C119:J119",
+      "color": 16777215.0,
+      "expected_color": 16777215,
+      "pass": true
+    },
+    {
+      "row": 120,
+      "order": 19,
+      "id": 19,
+      "range": "C120:J120",
+      "color": 16777215.0,
+      "expected_color": 16777215,
+      "pass": true
+    },
+    {
+      "row": 121,
+      "order": 19,
+      "id": 19,
+      "range": "C121:J121",
+      "color": 16777215.0,
+      "expected_color": 16777215,
+      "pass": true
+    },
+    {
+      "row": 122,
+      "order": 20,
+      "id": 20,
+      "range": "C122:J122",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 123,
+      "order": 20,
+      "id": 20,
+      "range": "C123:J123",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 124,
+      "order": 21,
+      "id": 21,
+      "range": "C124:J124",
+      "color": 16777215.0,
+      "expected_color": 16777215,
+      "pass": true
+    },
+    {
+      "row": 125,
+      "order": 21,
+      "id": 21,
+      "range": "C125:J125",
+      "color": 16777215.0,
+      "expected_color": 16777215,
+      "pass": true
+    },
+    {
+      "row": 126,
+      "order": 21,
+      "id": 21,
+      "range": "C126:J126",
+      "color": 16777215.0,
+      "expected_color": 16777215,
+      "pass": true
+    },
+    {
+      "row": 127,
+      "order": 21,
+      "id": 21,
+      "range": "C127:J127",
+      "color": 16777215.0,
+      "expected_color": 16777215,
+      "pass": true
+    },
+    {
+      "row": 128,
+      "order": 21,
+      "id": 21,
+      "range": "C128:J128",
+      "color": 16777215.0,
+      "expected_color": 16777215,
+      "pass": true
+    },
+    {
+      "row": 129,
+      "order": 21,
+      "id": 21,
+      "range": "C129:J129",
+      "color": 16777215.0,
+      "expected_color": 16777215,
+      "pass": true
+    },
+    {
+      "row": 130,
+      "order": 21,
+      "id": 21,
+      "range": "C130:J130",
+      "color": 16777215.0,
+      "expected_color": 16777215,
+      "pass": true
+    },
+    {
+      "row": 131,
+      "order": 21,
+      "id": 21,
+      "range": "C131:J131",
+      "color": 16777215.0,
+      "expected_color": 16777215,
+      "pass": true
+    },
+    {
+      "row": 132,
+      "order": 22,
+      "id": 22,
+      "range": "C132:J132",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 133,
+      "order": 22,
+      "id": 22,
+      "range": "C133:J133",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 134,
+      "order": 22,
+      "id": 22,
+      "range": "C134:J134",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 135,
+      "order": 22,
+      "id": 22,
+      "range": "C135:J135",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 136,
+      "order": 22,
+      "id": 22,
+      "range": "C136:J136",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 137,
+      "order": 22,
+      "id": 22,
+      "range": "C137:J137",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 138,
+      "order": 22,
+      "id": 22,
+      "range": "C138:J138",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 139,
+      "order": 22,
+      "id": 22,
+      "range": "C139:J139",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 140,
+      "order": 23,
+      "id": 23,
+      "range": "C140:J140",
+      "color": 16777215.0,
+      "expected_color": 16777215,
+      "pass": true
+    },
+    {
+      "row": 141,
+      "order": 24,
+      "id": 24,
+      "range": "C141:J141",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 142,
+      "order": 24,
+      "id": 24,
+      "range": "C142:J142",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 143,
+      "order": 24,
+      "id": 24,
+      "range": "C143:J143",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 144,
+      "order": 24,
+      "id": 24,
+      "range": "C144:J144",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 145,
+      "order": 25,
+      "id": 25,
+      "range": "C145:J145",
+      "color": 16777215.0,
+      "expected_color": 16777215,
+      "pass": true
+    },
+    {
+      "row": 146,
+      "order": 25,
+      "id": 25,
+      "range": "C146:J146",
+      "color": 16777215.0,
+      "expected_color": 16777215,
+      "pass": true
+    },
+    {
+      "row": 147,
+      "order": 25,
+      "id": 25,
+      "range": "C147:J147",
+      "color": 16777215.0,
+      "expected_color": 16777215,
+      "pass": true
+    },
+    {
+      "row": 148,
+      "order": 25,
+      "id": 25,
+      "range": "C148:J148",
+      "color": 16777215.0,
+      "expected_color": 16777215,
+      "pass": true
+    },
+    {
+      "row": 149,
+      "order": 25,
+      "id": 25,
+      "range": "C149:J149",
+      "color": 16777215.0,
+      "expected_color": 16777215,
+      "pass": true
+    },
+    {
+      "row": 150,
+      "order": 25,
+      "id": 25,
+      "range": "C150:J150",
+      "color": 16777215.0,
+      "expected_color": 16777215,
+      "pass": true
+    },
+    {
+      "row": 151,
+      "order": 26,
+      "id": 26,
+      "range": "C151:J151",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 152,
+      "order": 26,
+      "id": 26,
+      "range": "C152:J152",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 153,
+      "order": 26,
+      "id": 26,
+      "range": "C153:J153",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 154,
+      "order": 26,
+      "id": 26,
+      "range": "C154:J154",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 155,
+      "order": 26,
+      "id": 26,
+      "range": "C155:J155",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 156,
+      "order": 27,
+      "id": 27,
+      "range": "C156:J156",
+      "color": 16777215.0,
+      "expected_color": 16777215,
+      "pass": true
+    },
+    {
+      "row": 157,
+      "order": 27,
+      "id": 27,
+      "range": "C157:J157",
+      "color": 16777215.0,
+      "expected_color": 16777215,
+      "pass": true
+    },
+    {
+      "row": 158,
+      "order": 28,
+      "id": 28,
+      "range": "C158:J158",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 159,
+      "order": 28,
+      "id": 28,
+      "range": "C159:J159",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 160,
+      "order": 29,
+      "id": 29,
+      "range": "C160:J160",
+      "color": 16777215.0,
+      "expected_color": 16777215,
+      "pass": true
+    },
+    {
+      "row": 161,
+      "order": 29,
+      "id": 29,
+      "range": "C161:J161",
+      "color": 16777215.0,
+      "expected_color": 16777215,
+      "pass": true
+    },
+    {
+      "row": 162,
+      "order": 30,
+      "id": 30,
+      "range": "C162:J162",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 163,
+      "order": 30,
+      "id": 30,
+      "range": "C163:J163",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 164,
+      "order": 30,
+      "id": 30,
+      "range": "C164:J164",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 165,
+      "order": 30,
+      "id": 30,
+      "range": "C165:J165",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 166,
+      "order": 31,
+      "id": 31,
+      "range": "C166:J166",
+      "color": 16777215.0,
+      "expected_color": 16777215,
+      "pass": true
+    },
+    {
+      "row": 167,
+      "order": 31,
+      "id": 31,
+      "range": "C167:J167",
+      "color": 16777215.0,
+      "expected_color": 16777215,
+      "pass": true
+    },
+    {
+      "row": 168,
+      "order": 31,
+      "id": 31,
+      "range": "C168:J168",
+      "color": 16777215.0,
+      "expected_color": 16777215,
+      "pass": true
+    },
+    {
+      "row": 169,
+      "order": 32,
+      "id": 32,
+      "range": "C169:J169",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 170,
+      "order": 32,
+      "id": 32,
+      "range": "C170:J170",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 171,
+      "order": 32,
+      "id": 32,
+      "range": "C171:J171",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 172,
+      "order": 33,
+      "id": 33,
+      "range": "C172:J172",
+      "color": 16777215.0,
+      "expected_color": 16777215,
+      "pass": true
+    },
+    {
+      "row": 173,
+      "order": 33,
+      "id": 33,
+      "range": "C173:J173",
+      "color": 16777215.0,
+      "expected_color": 16777215,
+      "pass": true
+    },
+    {
+      "row": 174,
+      "order": 34,
+      "id": 34,
+      "range": "C174:J174",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 175,
+      "order": 34,
+      "id": 34,
+      "range": "C175:J175",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 176,
+      "order": 35,
+      "id": 35,
+      "range": "C176:J176",
+      "color": 16777215.0,
+      "expected_color": 16777215,
+      "pass": true
+    },
+    {
+      "row": 177,
+      "order": 36,
+      "id": 36,
+      "range": "C177:J177",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 178,
+      "order": 37,
+      "id": 37,
+      "range": "C178:J178",
+      "color": 16777215.0,
+      "expected_color": 16777215,
+      "pass": true
+    },
+    {
+      "row": 179,
+      "order": 38,
+      "id": 38,
+      "range": "C179:J179",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 180,
+      "order": 39,
+      "id": 39,
+      "range": "C180:J180",
+      "color": 16777215.0,
+      "expected_color": 16777215,
+      "pass": true
+    },
+    {
+      "row": 181,
+      "order": 39,
+      "id": 39,
+      "range": "C181:J181",
+      "color": 16777215.0,
+      "expected_color": 16777215,
+      "pass": true
+    },
+    {
+      "row": 182,
+      "order": 40,
+      "id": 40,
+      "range": "C182:J182",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 183,
+      "order": 41,
+      "id": 41,
+      "range": "C183:J183",
+      "color": 16777215.0,
+      "expected_color": 16777215,
+      "pass": true
+    },
+    {
+      "row": 184,
+      "order": 41,
+      "id": 41,
+      "range": "C184:J184",
+      "color": 16777215.0,
+      "expected_color": 16777215,
+      "pass": true
+    },
+    {
+      "row": 185,
+      "order": 42,
+      "id": 42,
+      "range": "C185:J185",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 186,
+      "order": 42,
+      "id": 42,
+      "range": "C186:J186",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 187,
+      "order": 43,
+      "id": 43,
+      "range": "C187:J187",
+      "color": 16777215.0,
+      "expected_color": 16777215,
+      "pass": true
+    },
+    {
+      "row": 188,
+      "order": 43,
+      "id": 43,
+      "range": "C188:J188",
+      "color": 16777215.0,
+      "expected_color": 16777215,
+      "pass": true
+    },
+    {
+      "row": 189,
+      "order": 44,
+      "id": 44,
+      "range": "C189:J189",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 190,
+      "order": 44,
+      "id": 44,
+      "range": "C190:J190",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 191,
+      "order": 44,
+      "id": 44,
+      "range": "C191:J191",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 192,
+      "order": 44,
+      "id": 44,
+      "range": "C192:J192",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 193,
+      "order": 44,
+      "id": 44,
+      "range": "C193:J193",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 194,
+      "order": 44,
+      "id": 44,
+      "range": "C194:J194",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 195,
+      "order": 44,
+      "id": 44,
+      "range": "C195:J195",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 196,
+      "order": 44,
+      "id": 44,
+      "range": "C196:J196",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 197,
+      "order": 44,
+      "id": 44,
+      "range": "C197:J197",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 198,
+      "order": 44,
+      "id": 44,
+      "range": "C198:J198",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 199,
+      "order": 45,
+      "id": 45,
+      "range": "C199:J199",
+      "color": 16777215.0,
+      "expected_color": 16777215,
+      "pass": true
+    },
+    {
+      "row": 200,
+      "order": 45,
+      "id": 45,
+      "range": "C200:J200",
+      "color": 16777215.0,
+      "expected_color": 16777215,
+      "pass": true
+    },
+    {
+      "row": 201,
+      "order": 45,
+      "id": 45,
+      "range": "C201:J201",
+      "color": 16777215.0,
+      "expected_color": 16777215,
+      "pass": true
+    },
+    {
+      "row": 202,
+      "order": 45,
+      "id": 45,
+      "range": "C202:J202",
+      "color": 16777215.0,
+      "expected_color": 16777215,
+      "pass": true
+    },
+    {
+      "row": 203,
+      "order": 45,
+      "id": 45,
+      "range": "C203:J203",
+      "color": 16777215.0,
+      "expected_color": 16777215,
+      "pass": true
+    },
+    {
+      "row": 204,
+      "order": 45,
+      "id": 45,
+      "range": "C204:J204",
+      "color": 16777215.0,
+      "expected_color": 16777215,
+      "pass": true
+    },
+    {
+      "row": 205,
+      "order": 46,
+      "id": 69,
+      "range": "C205:J205",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 206,
+      "order": 46,
+      "id": 69,
+      "range": "C206:J206",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 207,
+      "order": 46,
+      "id": 69,
+      "range": "C207:J207",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 208,
+      "order": 47,
+      "id": 70,
+      "range": "C208:J208",
+      "color": 16777215.0,
+      "expected_color": 16777215,
+      "pass": true
+    },
+    {
+      "row": 209,
+      "order": 47,
+      "id": 70,
+      "range": "C209:J209",
+      "color": 16777215.0,
+      "expected_color": 16777215,
+      "pass": true
+    },
+    {
+      "row": 210,
+      "order": 48,
+      "id": 46,
+      "range": "C210:J210",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 211,
+      "order": 48,
+      "id": 46,
+      "range": "C211:J211",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 212,
+      "order": 49,
+      "id": 47,
+      "range": "B212:J212",
+      "color": 16777215.0,
+      "expected_color": 16777215,
+      "pass": true
+    },
+    {
+      "row": 213,
+      "order": 50,
+      "id": 48,
+      "range": "B213:J213",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 214,
+      "order": 50,
+      "id": 48,
+      "range": "B214:J214",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 215,
+      "order": 50,
+      "id": 48,
+      "range": "B215:J215",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 216,
+      "order": 51,
+      "id": 49,
+      "range": "B216:J216",
+      "color": 16777215.0,
+      "expected_color": 16777215,
+      "pass": true
+    },
+    {
+      "row": 217,
+      "order": 52,
+      "id": 50,
+      "range": "C217:J217",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 218,
+      "order": 52,
+      "id": 50,
+      "range": "C218:J218",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 219,
+      "order": 53,
+      "id": 51,
+      "range": "C219:J219",
+      "color": 16777215.0,
+      "expected_color": 16777215,
+      "pass": true
+    },
+    {
+      "row": 220,
+      "order": 54,
+      "id": 52,
+      "range": "B220:J220",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 221,
+      "order": 54,
+      "id": 52,
+      "range": "B221:J221",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 222,
+      "order": 54,
+      "id": 52,
+      "range": "B222:J222",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 223,
+      "order": 54,
+      "id": 52,
+      "range": "B223:J223",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 224,
+      "order": 55,
+      "id": 53,
+      "range": "B224:J224",
+      "color": 16777215.0,
+      "expected_color": 16777215,
+      "pass": true
+    },
+    {
+      "row": 225,
+      "order": 56,
+      "id": 81,
+      "range": "B225:J225",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 226,
+      "order": 56,
+      "id": 81,
+      "range": "B226:J226",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 227,
+      "order": 57,
+      "id": 54,
+      "range": "C227:J227",
+      "color": 16777215.0,
+      "expected_color": 16777215,
+      "pass": true
+    },
+    {
+      "row": 228,
+      "order": 57,
+      "id": 54,
+      "range": "C228:J228",
+      "color": 16777215.0,
+      "expected_color": 16777215,
+      "pass": true
+    },
+    {
+      "row": 229,
+      "order": 58,
+      "id": 71,
+      "range": "B229:J229",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 230,
+      "order": 58,
+      "id": 71,
+      "range": "B230:J230",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 231,
+      "order": 59,
+      "id": 72,
+      "range": "B231:J231",
+      "color": 16777215.0,
+      "expected_color": 16777215,
+      "pass": true
+    },
+    {
+      "row": 232,
+      "order": 59,
+      "id": 72,
+      "range": "B232:J232",
+      "color": 16777215.0,
+      "expected_color": 16777215,
+      "pass": true
+    },
+    {
+      "row": 233,
+      "order": 59,
+      "id": 72,
+      "range": "B233:J233",
+      "color": 16777215.0,
+      "expected_color": 16777215,
+      "pass": true
+    },
+    {
+      "row": 234,
+      "order": 60,
+      "id": 73,
+      "range": "C234:J234",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 235,
+      "order": 61,
+      "id": 74,
+      "range": "C235:J235",
+      "color": 16777215.0,
+      "expected_color": 16777215,
+      "pass": true
+    },
+    {
+      "row": 236,
+      "order": 62,
+      "id": 75,
+      "range": "C236:J236",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 237,
+      "order": 62,
+      "id": 75,
+      "range": "C237:J237",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 238,
+      "order": 62,
+      "id": 75,
+      "range": "C238:J238",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 239,
+      "order": 63,
+      "id": 76,
+      "range": "B239:J239",
+      "color": 16777215.0,
+      "expected_color": 16777215,
+      "pass": true
+    },
+    {
+      "row": 240,
+      "order": 63,
+      "id": 76,
+      "range": "B240:J240",
+      "color": 16777215.0,
+      "expected_color": 16777215,
+      "pass": true
+    },
+    {
+      "row": 241,
+      "order": 63,
+      "id": 76,
+      "range": "B241:J241",
+      "color": 16777215.0,
+      "expected_color": 16777215,
+      "pass": true
+    },
+    {
+      "row": 242,
+      "order": 64,
+      "id": 77,
+      "range": "C242:J242",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 243,
+      "order": 65,
+      "id": 78,
+      "range": "C243:J243",
+      "color": 16777215.0,
+      "expected_color": 16777215,
+      "pass": true
+    },
+    {
+      "row": 244,
+      "order": 66,
+      "id": 79,
+      "range": "B244:J244",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 245,
+      "order": 66,
+      "id": 79,
+      "range": "B245:J245",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 246,
+      "order": 66,
+      "id": 79,
+      "range": "B246:J246",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 247,
+      "order": 66,
+      "id": 79,
+      "range": "B247:J247",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 248,
+      "order": 67,
+      "id": 80,
+      "range": "C248:J248",
+      "color": 16777215.0,
+      "expected_color": 16777215,
+      "pass": true
+    },
+    {
+      "row": 249,
+      "order": 67,
+      "id": 80,
+      "range": "C249:J249",
+      "color": 16777215.0,
+      "expected_color": 16777215,
+      "pass": true
+    },
+    {
+      "row": 250,
+      "order": 68,
+      "id": 55,
+      "range": "C250:J250",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 251,
+      "order": 69,
+      "id": 56,
+      "range": "C251:J251",
+      "color": 16777215.0,
+      "expected_color": 16777215,
+      "pass": true
+    },
+    {
+      "row": 252,
+      "order": 69,
+      "id": 56,
+      "range": "C252:J252",
+      "color": 16777215.0,
+      "expected_color": 16777215,
+      "pass": true
+    },
+    {
+      "row": 253,
+      "order": 70,
+      "id": 57,
+      "range": "B253:J253",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 254,
+      "order": 71,
+      "id": 58,
+      "range": "C254:J254",
+      "color": 16777215.0,
+      "expected_color": 16777215,
+      "pass": true
+    },
+    {
+      "row": 255,
+      "order": 71,
+      "id": 58,
+      "range": "C255:J255",
+      "color": 16777215.0,
+      "expected_color": 16777215,
+      "pass": true
+    },
+    {
+      "row": 256,
+      "order": 72,
+      "id": 59,
+      "range": "C256:J256",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 257,
+      "order": 72,
+      "id": 59,
+      "range": "C257:J257",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 258,
+      "order": 73,
+      "id": 60,
+      "range": "C258:J258",
+      "color": 16777215.0,
+      "expected_color": 16777215,
+      "pass": true
+    },
+    {
+      "row": 259,
+      "order": 73,
+      "id": 60,
+      "range": "C259:J259",
+      "color": 16777215.0,
+      "expected_color": 16777215,
+      "pass": true
+    },
+    {
+      "row": 260,
+      "order": 73,
+      "id": 60,
+      "range": "C260:J260",
+      "color": 16777215.0,
+      "expected_color": 16777215,
+      "pass": true
+    },
+    {
+      "row": 261,
+      "order": 73,
+      "id": 60,
+      "range": "C261:J261",
+      "color": 16777215.0,
+      "expected_color": 16777215,
+      "pass": true
+    },
+    {
+      "row": 262,
+      "order": 73,
+      "id": 60,
+      "range": "C262:J262",
+      "color": 16777215.0,
+      "expected_color": 16777215,
+      "pass": true
+    },
+    {
+      "row": 263,
+      "order": 73,
+      "id": 60,
+      "range": "C263:J263",
+      "color": 16777215.0,
+      "expected_color": 16777215,
+      "pass": true
+    },
+    {
+      "row": 264,
+      "order": 73,
+      "id": 60,
+      "range": "C264:J264",
+      "color": 16777215.0,
+      "expected_color": 16777215,
+      "pass": true
+    },
+    {
+      "row": 265,
+      "order": 73,
+      "id": 60,
+      "range": "C265:J265",
+      "color": 16777215.0,
+      "expected_color": 16777215,
+      "pass": true
+    },
+    {
+      "row": 266,
+      "order": 73,
+      "id": 60,
+      "range": "C266:J266",
+      "color": 16777215.0,
+      "expected_color": 16777215,
+      "pass": true
+    },
+    {
+      "row": 267,
+      "order": 73,
+      "id": 60,
+      "range": "C267:J267",
+      "color": 16777215.0,
+      "expected_color": 16777215,
+      "pass": true
+    },
+    {
+      "row": 268,
+      "order": 73,
+      "id": 60,
+      "range": "C268:J268",
+      "color": 16777215.0,
+      "expected_color": 16777215,
+      "pass": true
+    },
+    {
+      "row": 269,
+      "order": 74,
+      "id": 61,
+      "range": "C269:J269",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 270,
+      "order": 75,
+      "id": 62,
+      "range": "C270:J270",
+      "color": 16777215.0,
+      "expected_color": 16777215,
+      "pass": true
+    },
+    {
+      "row": 271,
+      "order": 75,
+      "id": 62,
+      "range": "C271:J271",
+      "color": 16777215.0,
+      "expected_color": 16777215,
+      "pass": true
+    },
+    {
+      "row": 272,
+      "order": 75,
+      "id": 62,
+      "range": "C272:J272",
+      "color": 16777215.0,
+      "expected_color": 16777215,
+      "pass": true
+    },
+    {
+      "row": 273,
+      "order": 75,
+      "id": 62,
+      "range": "C273:J273",
+      "color": 16777215.0,
+      "expected_color": 16777215,
+      "pass": true
+    },
+    {
+      "row": 274,
+      "order": 75,
+      "id": 62,
+      "range": "C274:J274",
+      "color": 16777215.0,
+      "expected_color": 16777215,
+      "pass": true
+    },
+    {
+      "row": 275,
+      "order": 75,
+      "id": 62,
+      "range": "C275:J275",
+      "color": 16777215.0,
+      "expected_color": 16777215,
+      "pass": true
+    },
+    {
+      "row": 276,
+      "order": 75,
+      "id": 62,
+      "range": "C276:J276",
+      "color": 16777215.0,
+      "expected_color": 16777215,
+      "pass": true
+    },
+    {
+      "row": 277,
+      "order": 75,
+      "id": 62,
+      "range": "C277:J277",
+      "color": 16777215.0,
+      "expected_color": 16777215,
+      "pass": true
+    },
+    {
+      "row": 278,
+      "order": 76,
+      "id": 63,
+      "range": "C278:J278",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 279,
+      "order": 76,
+      "id": 63,
+      "range": "C279:J279",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 280,
+      "order": 77,
+      "id": 64,
+      "range": "C280:J280",
+      "color": 16777215.0,
+      "expected_color": 16777215,
+      "pass": true
+    },
+    {
+      "row": 281,
+      "order": 77,
+      "id": 64,
+      "range": "C281:J281",
+      "color": 16777215.0,
+      "expected_color": 16777215,
+      "pass": true
+    },
+    {
+      "row": 282,
+      "order": 78,
+      "id": 65,
+      "range": "C282:J282",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 283,
+      "order": 78,
+      "id": 65,
+      "range": "C283:J283",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 284,
+      "order": 79,
+      "id": 66,
+      "range": "C284:J284",
+      "color": 16777215.0,
+      "expected_color": 16777215,
+      "pass": true
+    },
+    {
+      "row": 285,
+      "order": 79,
+      "id": 66,
+      "range": "C285:J285",
+      "color": 16777215.0,
+      "expected_color": 16777215,
+      "pass": true
+    },
+    {
+      "row": 286,
+      "order": 80,
+      "id": 67,
+      "range": "C286:J286",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 287,
+      "order": 80,
+      "id": 67,
+      "range": "C287:J287",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 288,
+      "order": 81,
+      "id": 68,
+      "range": "C288:J288",
+      "color": 16777215.0,
+      "expected_color": 16777215,
+      "pass": true
+    },
+    {
+      "row": 289,
+      "order": 81,
+      "id": 68,
+      "range": "C289:J289",
+      "color": 16777215.0,
+      "expected_color": 16777215,
+      "pass": true
+    },
+    {
+      "row": 290,
+      "order": 82,
+      "id": 82,
+      "range": "B290:J290",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 291,
+      "order": 82,
+      "id": 82,
+      "range": "B291:J291",
+      "color": 16119285.0,
+      "expected_color": 16119285,
+      "pass": true
+    },
+    {
+      "row": 292,
+      "order": 83,
+      "id": 83,
+      "range": "B292:J292",
+      "color": 16777215.0,
+      "expected_color": 16777215,
+      "pass": true
+    }
+  ],
+  "pink_cells": [
+    {
+      "address": "B34",
+      "before_color": 16772095.0,
+      "candidate_color": 16772095.0,
+      "pass": true
+    },
+    {
+      "address": "B35",
+      "before_color": 16772095.0,
+      "candidate_color": 16772095.0,
+      "pass": true
+    },
+    {
+      "address": "B36",
+      "before_color": 16119285.0,
+      "candidate_color": 16119285.0,
+      "pass": true
+    },
+    {
+      "address": "B37",
+      "before_color": 16119285.0,
+      "candidate_color": 16119285.0,
+      "pass": true
+    },
+    {
+      "address": "B38",
+      "before_color": 16119285.0,
+      "candidate_color": 16119285.0,
+      "pass": true
+    },
+    {
+      "address": "B39",
+      "before_color": 16772095.0,
+      "candidate_color": 16772095.0,
+      "pass": true
+    },
+    {
+      "address": "B40",
+      "before_color": 16772095.0,
+      "candidate_color": 16772095.0,
+      "pass": true
+    },
+    {
+      "address": "B41",
+      "before_color": 16119285.0,
+      "candidate_color": 16119285.0,
+      "pass": true
+    },
+    {
+      "address": "B42",
+      "before_color": 16772095.0,
+      "candidate_color": 16772095.0,
+      "pass": true
+    },
+    {
+      "address": "B43",
+      "before_color": 16772095.0,
+      "candidate_color": 16772095.0,
+      "pass": true
+    },
+    {
+      "address": "B44",
+      "before_color": 16777215.0,
+      "candidate_color": 16777215.0,
+      "pass": true
+    },
+    {
+      "address": "B45",
+      "before_color": 16777215.0,
+      "candidate_color": 16777215.0,
+      "pass": true
+    },
+    {
+      "address": "B46",
+      "before_color": 16772095.0,
+      "candidate_color": 16772095.0,
+      "pass": true
+    },
+    {
+      "address": "B47",
+      "before_color": 16772095.0,
+      "candidate_color": 16772095.0,
+      "pass": true
+    },
+    {
+      "address": "B48",
+      "before_color": 16119285.0,
+      "candidate_color": 16119285.0,
+      "pass": true
+    },
+    {
+      "address": "B49",
+      "before_color": 16119285.0,
+      "candidate_color": 16119285.0,
+      "pass": true
+    },
+    {
+      "address": "B50",
+      "before_color": 16119285.0,
+      "candidate_color": 16119285.0,
+      "pass": true
+    },
+    {
+      "address": "B51",
+      "before_color": 16772095.0,
+      "candidate_color": 16772095.0,
+      "pass": true
+    },
+    {
+      "address": "B52",
+      "before_color": 16772095.0,
+      "candidate_color": 16772095.0,
+      "pass": true
+    },
+    {
+      "address": "B53",
+      "before_color": 16777215.0,
+      "candidate_color": 16777215.0,
+      "pass": true
+    },
+    {
+      "address": "B54",
+      "before_color": 16772095.0,
+      "candidate_color": 16772095.0,
+      "pass": true
+    },
+    {
+      "address": "B55",
+      "before_color": 16119285.0,
+      "candidate_color": 16119285.0,
+      "pass": true
+    },
+    {
+      "address": "B56",
+      "before_color": 16119285.0,
+      "candidate_color": 16119285.0,
+      "pass": true
+    },
+    {
+      "address": "B57",
+      "before_color": 16772095.0,
+      "candidate_color": 16772095.0,
+      "pass": true
+    },
+    {
+      "address": "B58",
+      "before_color": 16772095.0,
+      "candidate_color": 16772095.0,
+      "pass": true
+    },
+    {
+      "address": "B59",
+      "before_color": 16772095.0,
+      "candidate_color": 16772095.0,
+      "pass": true
+    },
+    {
+      "address": "B60",
+      "before_color": 16772095.0,
+      "candidate_color": 16772095.0,
+      "pass": true
+    },
+    {
+      "address": "B61",
+      "before_color": 16772095.0,
+      "candidate_color": 16772095.0,
+      "pass": true
+    },
+    {
+      "address": "B62",
+      "before_color": 16119285.0,
+      "candidate_color": 16119285.0,
+      "pass": true
+    },
+    {
+      "address": "B63",
+      "before_color": 16119285.0,
+      "candidate_color": 16119285.0,
+      "pass": true
+    },
+    {
+      "address": "B64",
+      "before_color": 16119285.0,
+      "candidate_color": 16119285.0,
+      "pass": true
+    },
+    {
+      "address": "B65",
+      "before_color": 16119285.0,
+      "candidate_color": 16119285.0,
+      "pass": true
+    },
+    {
+      "address": "B66",
+      "before_color": 16119285.0,
+      "candidate_color": 16119285.0,
+      "pass": true
+    },
+    {
+      "address": "B67",
+      "before_color": 16119285.0,
+      "candidate_color": 16119285.0,
+      "pass": true
+    },
+    {
+      "address": "B68",
+      "before_color": 16119285.0,
+      "candidate_color": 16119285.0,
+      "pass": true
+    },
+    {
+      "address": "B69",
+      "before_color": 16119285.0,
+      "candidate_color": 16119285.0,
+      "pass": true
+    },
+    {
+      "address": "B70",
+      "before_color": 16119285.0,
+      "candidate_color": 16119285.0,
+      "pass": true
+    },
+    {
+      "address": "B71",
+      "before_color": 16119285.0,
+      "candidate_color": 16119285.0,
+      "pass": true
+    },
+    {
+      "address": "B72",
+      "before_color": 16119285.0,
+      "candidate_color": 16119285.0,
+      "pass": true
+    },
+    {
+      "address": "B73",
+      "before_color": 16119285.0,
+      "candidate_color": 16119285.0,
+      "pass": true
+    },
+    {
+      "address": "B74",
+      "before_color": 16119285.0,
+      "candidate_color": 16119285.0,
+      "pass": true
+    },
+    {
+      "address": "B75",
+      "before_color": 16119285.0,
+      "candidate_color": 16119285.0,
+      "pass": true
+    },
+    {
+      "address": "B76",
+      "before_color": 16119285.0,
+      "candidate_color": 16119285.0,
+      "pass": true
+    },
+    {
+      "address": "B77",
+      "before_color": 16119285.0,
+      "candidate_color": 16119285.0,
+      "pass": true
+    },
+    {
+      "address": "B78",
+      "before_color": 16119285.0,
+      "candidate_color": 16119285.0,
+      "pass": true
+    },
+    {
+      "address": "B79",
+      "before_color": 16119285.0,
+      "candidate_color": 16119285.0,
+      "pass": true
+    },
+    {
+      "address": "B80",
+      "before_color": 16119285.0,
+      "candidate_color": 16119285.0,
+      "pass": true
+    },
+    {
+      "address": "B81",
+      "before_color": 16119285.0,
+      "candidate_color": 16119285.0,
+      "pass": true
+    },
+    {
+      "address": "B82",
+      "before_color": 16119285.0,
+      "candidate_color": 16119285.0,
+      "pass": true
+    },
+    {
+      "address": "B83",
+      "before_color": 16119285.0,
+      "candidate_color": 16119285.0,
+      "pass": true
+    },
+    {
+      "address": "B84",
+      "before_color": 16119285.0,
+      "candidate_color": 16119285.0,
+      "pass": true
+    },
+    {
+      "address": "B85",
+      "before_color": 16119285.0,
+      "candidate_color": 16119285.0,
+      "pass": true
+    },
+    {
+      "address": "B86",
+      "before_color": 16119285.0,
+      "candidate_color": 16119285.0,
+      "pass": true
+    },
+    {
+      "address": "B87",
+      "before_color": 16119285.0,
+      "candidate_color": 16119285.0,
+      "pass": true
+    },
+    {
+      "address": "B88",
+      "before_color": 16119285.0,
+      "candidate_color": 16119285.0,
+      "pass": true
+    },
+    {
+      "address": "B89",
+      "before_color": 16119285.0,
+      "candidate_color": 16119285.0,
+      "pass": true
+    },
+    {
+      "address": "B90",
+      "before_color": 16119285.0,
+      "candidate_color": 16119285.0,
+      "pass": true
+    },
+    {
+      "address": "B91",
+      "before_color": 16772095.0,
+      "candidate_color": 16772095.0,
+      "pass": true
+    },
+    {
+      "address": "B92",
+      "before_color": 16777215.0,
+      "candidate_color": 16777215.0,
+      "pass": true
+    },
+    {
+      "address": "B93",
+      "before_color": 16777215.0,
+      "candidate_color": 16777215.0,
+      "pass": true
+    },
+    {
+      "address": "B94",
+      "before_color": 16772095.0,
+      "candidate_color": 16772095.0,
+      "pass": true
+    },
+    {
+      "address": "B95",
+      "before_color": 16119285.0,
+      "candidate_color": 16119285.0,
+      "pass": true
+    },
+    {
+      "address": "B96",
+      "before_color": 16772095.0,
+      "candidate_color": 16772095.0,
+      "pass": true
+    },
+    {
+      "address": "B97",
+      "before_color": 16777215.0,
+      "candidate_color": 16777215.0,
+      "pass": true
+    },
+    {
+      "address": "B98",
+      "before_color": 16777215.0,
+      "candidate_color": 16777215.0,
+      "pass": true
+    },
+    {
+      "address": "B99",
+      "before_color": 16777215.0,
+      "candidate_color": 16777215.0,
+      "pass": true
+    },
+    {
+      "address": "B100",
+      "before_color": 16772095.0,
+      "candidate_color": 16772095.0,
+      "pass": true
+    },
+    {
+      "address": "B101",
+      "before_color": 16119285.0,
+      "candidate_color": 16119285.0,
+      "pass": true
+    },
+    {
+      "address": "B102",
+      "before_color": 16119285.0,
+      "candidate_color": 16119285.0,
+      "pass": true
+    },
+    {
+      "address": "B103",
+      "before_color": 16119285.0,
+      "candidate_color": 16119285.0,
+      "pass": true
+    },
+    {
+      "address": "B104",
+      "before_color": 16772095.0,
+      "candidate_color": 16772095.0,
+      "pass": true
+    },
+    {
+      "address": "B105",
+      "before_color": 16777215.0,
+      "candidate_color": 16777215.0,
+      "pass": true
+    },
+    {
+      "address": "B106",
+      "before_color": 16777215.0,
+      "candidate_color": 16777215.0,
+      "pass": true
+    },
+    {
+      "address": "B107",
+      "before_color": 16777215.0,
+      "candidate_color": 16777215.0,
+      "pass": true
+    },
+    {
+      "address": "B108",
+      "before_color": 16772095.0,
+      "candidate_color": 16772095.0,
+      "pass": true
+    },
+    {
+      "address": "B109",
+      "before_color": 16119285.0,
+      "candidate_color": 16119285.0,
+      "pass": true
+    },
+    {
+      "address": "B110",
+      "before_color": 16772095.0,
+      "candidate_color": 16772095.0,
+      "pass": true
+    },
+    {
+      "address": "B111",
+      "before_color": 16777215.0,
+      "candidate_color": 16777215.0,
+      "pass": true
+    },
+    {
+      "address": "B112",
+      "before_color": 16772095.0,
+      "candidate_color": 16772095.0,
+      "pass": true
+    },
+    {
+      "address": "B113",
+      "before_color": 16119285.0,
+      "candidate_color": 16119285.0,
+      "pass": true
+    },
+    {
+      "address": "B114",
+      "before_color": 16119285.0,
+      "candidate_color": 16119285.0,
+      "pass": true
+    },
+    {
+      "address": "B115",
+      "before_color": 16119285.0,
+      "candidate_color": 16119285.0,
+      "pass": true
+    },
+    {
+      "address": "B116",
+      "before_color": 16119285.0,
+      "candidate_color": 16119285.0,
+      "pass": true
+    },
+    {
+      "address": "B117",
+      "before_color": 16119285.0,
+      "candidate_color": 16119285.0,
+      "pass": true
+    },
+    {
+      "address": "B118",
+      "before_color": 16119285.0,
+      "candidate_color": 16119285.0,
+      "pass": true
+    },
+    {
+      "address": "B119",
+      "before_color": 16772095.0,
+      "candidate_color": 16772095.0,
+      "pass": true
+    },
+    {
+      "address": "B120",
+      "before_color": 16777215.0,
+      "candidate_color": 16777215.0,
+      "pass": true
+    },
+    {
+      "address": "B121",
+      "before_color": 16777215.0,
+      "candidate_color": 16777215.0,
+      "pass": true
+    },
+    {
+      "address": "B122",
+      "before_color": 16772095.0,
+      "candidate_color": 16772095.0,
+      "pass": true
+    },
+    {
+      "address": "B123",
+      "before_color": 16119285.0,
+      "candidate_color": 16119285.0,
+      "pass": true
+    },
+    {
+      "address": "B124",
+      "before_color": 16772095.0,
+      "candidate_color": 16772095.0,
+      "pass": true
+    },
+    {
+      "address": "B125",
+      "before_color": 16777215.0,
+      "candidate_color": 16777215.0,
+      "pass": true
+    },
+    {
+      "address": "B126",
+      "before_color": 16777215.0,
+      "candidate_color": 16777215.0,
+      "pass": true
+    },
+    {
+      "address": "B127",
+      "before_color": 16777215.0,
+      "candidate_color": 16777215.0,
+      "pass": true
+    },
+    {
+      "address": "B128",
+      "before_color": 16777215.0,
+      "candidate_color": 16777215.0,
+      "pass": true
+    },
+    {
+      "address": "B129",
+      "before_color": 16777215.0,
+      "candidate_color": 16777215.0,
+      "pass": true
+    },
+    {
+      "address": "B130",
+      "before_color": 16777215.0,
+      "candidate_color": 16777215.0,
+      "pass": true
+    },
+    {
+      "address": "B131",
+      "before_color": 16777215.0,
+      "candidate_color": 16777215.0,
+      "pass": true
+    },
+    {
+      "address": "B132",
+      "before_color": 16772095.0,
+      "candidate_color": 16772095.0,
+      "pass": true
+    },
+    {
+      "address": "B133",
+      "before_color": 16119285.0,
+      "candidate_color": 16119285.0,
+      "pass": true
+    },
+    {
+      "address": "B134",
+      "before_color": 16119285.0,
+      "candidate_color": 16119285.0,
+      "pass": true
+    },
+    {
+      "address": "B135",
+      "before_color": 16119285.0,
+      "candidate_color": 16119285.0,
+      "pass": true
+    },
+    {
+      "address": "B136",
+      "before_color": 16119285.0,
+      "candidate_color": 16119285.0,
+      "pass": true
+    },
+    {
+      "address": "B137",
+      "before_color": 16119285.0,
+      "candidate_color": 16119285.0,
+      "pass": true
+    },
+    {
+      "address": "B138",
+      "before_color": 16119285.0,
+      "candidate_color": 16119285.0,
+      "pass": true
+    },
+    {
+      "address": "B139",
+      "before_color": 16119285.0,
+      "candidate_color": 16119285.0,
+      "pass": true
+    },
+    {
+      "address": "B140",
+      "before_color": 16772095.0,
+      "candidate_color": 16772095.0,
+      "pass": true
+    },
+    {
+      "address": "B141",
+      "before_color": 16772095.0,
+      "candidate_color": 16772095.0,
+      "pass": true
+    },
+    {
+      "address": "B142",
+      "before_color": 16119285.0,
+      "candidate_color": 16119285.0,
+      "pass": true
+    },
+    {
+      "address": "B143",
+      "before_color": 16119285.0,
+      "candidate_color": 16119285.0,
+      "pass": true
+    },
+    {
+      "address": "B144",
+      "before_color": 16119285.0,
+      "candidate_color": 16119285.0,
+      "pass": true
+    },
+    {
+      "address": "B145",
+      "before_color": 16772095.0,
+      "candidate_color": 16772095.0,
+      "pass": true
+    },
+    {
+      "address": "B146",
+      "before_color": 16772095.0,
+      "candidate_color": 16772095.0,
+      "pass": true
+    },
+    {
+      "address": "B147",
+      "before_color": 16777215.0,
+      "candidate_color": 16777215.0,
+      "pass": true
+    },
+    {
+      "address": "B148",
+      "before_color": 16777215.0,
+      "candidate_color": 16777215.0,
+      "pass": true
+    },
+    {
+      "address": "B149",
+      "before_color": 16777215.0,
+      "candidate_color": 16777215.0,
+      "pass": true
+    },
+    {
+      "address": "B150",
+      "before_color": 16777215.0,
+      "candidate_color": 16777215.0,
+      "pass": true
+    },
+    {
+      "address": "B151",
+      "before_color": 16772095.0,
+      "candidate_color": 16772095.0,
+      "pass": true
+    },
+    {
+      "address": "B152",
+      "before_color": 16772095.0,
+      "candidate_color": 16772095.0,
+      "pass": true
+    },
+    {
+      "address": "B153",
+      "before_color": 16119285.0,
+      "candidate_color": 16119285.0,
+      "pass": true
+    },
+    {
+      "address": "B154",
+      "before_color": 16119285.0,
+      "candidate_color": 16119285.0,
+      "pass": true
+    },
+    {
+      "address": "B155",
+      "before_color": 16119285.0,
+      "candidate_color": 16119285.0,
+      "pass": true
+    },
+    {
+      "address": "B156",
+      "before_color": 16772095.0,
+      "candidate_color": 16772095.0,
+      "pass": true
+    },
+    {
+      "address": "B157",
+      "before_color": 16777215.0,
+      "candidate_color": 16777215.0,
+      "pass": true
+    },
+    {
+      "address": "B158",
+      "before_color": 16772095.0,
+      "candidate_color": 16772095.0,
+      "pass": true
+    },
+    {
+      "address": "B159",
+      "before_color": 16119285.0,
+      "candidate_color": 16119285.0,
+      "pass": true
+    },
+    {
+      "address": "B160",
+      "before_color": 16772095.0,
+      "candidate_color": 16772095.0,
+      "pass": true
+    },
+    {
+      "address": "B161",
+      "before_color": 16777215.0,
+      "candidate_color": 16777215.0,
+      "pass": true
+    },
+    {
+      "address": "B162",
+      "before_color": 16772095.0,
+      "candidate_color": 16772095.0,
+      "pass": true
+    },
+    {
+      "address": "B163",
+      "before_color": 16119285.0,
+      "candidate_color": 16119285.0,
+      "pass": true
+    },
+    {
+      "address": "B164",
+      "before_color": 16119285.0,
+      "candidate_color": 16119285.0,
+      "pass": true
+    },
+    {
+      "address": "B165",
+      "before_color": 16119285.0,
+      "candidate_color": 16119285.0,
+      "pass": true
+    },
+    {
+      "address": "B166",
+      "before_color": 16772095.0,
+      "candidate_color": 16772095.0,
+      "pass": true
+    },
+    {
+      "address": "B167",
+      "before_color": 16777215.0,
+      "candidate_color": 16777215.0,
+      "pass": true
+    },
+    {
+      "address": "B168",
+      "before_color": 16777215.0,
+      "candidate_color": 16777215.0,
+      "pass": true
+    },
+    {
+      "address": "B169",
+      "before_color": 16772095.0,
+      "candidate_color": 16772095.0,
+      "pass": true
+    },
+    {
+      "address": "B170",
+      "before_color": 16119285.0,
+      "candidate_color": 16119285.0,
+      "pass": true
+    },
+    {
+      "address": "B171",
+      "before_color": 16119285.0,
+      "candidate_color": 16119285.0,
+      "pass": true
+    },
+    {
+      "address": "B172",
+      "before_color": 16772095.0,
+      "candidate_color": 16772095.0,
+      "pass": true
+    },
+    {
+      "address": "B173",
+      "before_color": 16777215.0,
+      "candidate_color": 16777215.0,
+      "pass": true
+    },
+    {
+      "address": "B174",
+      "before_color": 16772095.0,
+      "candidate_color": 16772095.0,
+      "pass": true
+    },
+    {
+      "address": "B175",
+      "before_color": 16119285.0,
+      "candidate_color": 16119285.0,
+      "pass": true
+    },
+    {
+      "address": "B176",
+      "before_color": 16772095.0,
+      "candidate_color": 16772095.0,
+      "pass": true
+    },
+    {
+      "address": "B177",
+      "before_color": 16772095.0,
+      "candidate_color": 16772095.0,
+      "pass": true
+    },
+    {
+      "address": "B178",
+      "before_color": 16772095.0,
+      "candidate_color": 16772095.0,
+      "pass": true
+    },
+    {
+      "address": "B179",
+      "before_color": 16772095.0,
+      "candidate_color": 16772095.0,
+      "pass": true
+    },
+    {
+      "address": "B180",
+      "before_color": 16772095.0,
+      "candidate_color": 16772095.0,
+      "pass": true
+    },
+    {
+      "address": "B181",
+      "before_color": 16772095.0,
+      "candidate_color": 16772095.0,
+      "pass": true
+    },
+    {
+      "address": "B182",
+      "before_color": 16772095.0,
+      "candidate_color": 16772095.0,
+      "pass": true
+    },
+    {
+      "address": "B183",
+      "before_color": 16772095.0,
+      "candidate_color": 16772095.0,
+      "pass": true
+    },
+    {
+      "address": "B184",
+      "before_color": 16777215.0,
+      "candidate_color": 16777215.0,
+      "pass": true
+    },
+    {
+      "address": "B185",
+      "before_color": 16772095.0,
+      "candidate_color": 16772095.0,
+      "pass": true
+    },
+    {
+      "address": "B186",
+      "before_color": 16772095.0,
+      "candidate_color": 16772095.0,
+      "pass": true
+    },
+    {
+      "address": "B187",
+      "before_color": 16772095.0,
+      "candidate_color": 16772095.0,
+      "pass": true
+    },
+    {
+      "address": "B188",
+      "before_color": 16777215.0,
+      "candidate_color": 16777215.0,
+      "pass": true
+    },
+    {
+      "address": "B189",
+      "before_color": 16772095.0,
+      "candidate_color": 16772095.0,
+      "pass": true
+    },
+    {
+      "address": "B190",
+      "before_color": 16119285.0,
+      "candidate_color": 16119285.0,
+      "pass": true
+    },
+    {
+      "address": "B191",
+      "before_color": 16119285.0,
+      "candidate_color": 16119285.0,
+      "pass": true
+    },
+    {
+      "address": "B192",
+      "before_color": 16119285.0,
+      "candidate_color": 16119285.0,
+      "pass": true
+    },
+    {
+      "address": "B193",
+      "before_color": 16119285.0,
+      "candidate_color": 16119285.0,
+      "pass": true
+    },
+    {
+      "address": "B194",
+      "before_color": 16119285.0,
+      "candidate_color": 16119285.0,
+      "pass": true
+    },
+    {
+      "address": "B195",
+      "before_color": 16119285.0,
+      "candidate_color": 16119285.0,
+      "pass": true
+    },
+    {
+      "address": "B196",
+      "before_color": 16119285.0,
+      "candidate_color": 16119285.0,
+      "pass": true
+    },
+    {
+      "address": "B197",
+      "before_color": 16119285.0,
+      "candidate_color": 16119285.0,
+      "pass": true
+    },
+    {
+      "address": "B198",
+      "before_color": 16119285.0,
+      "candidate_color": 16119285.0,
+      "pass": true
+    },
+    {
+      "address": "B199",
+      "before_color": 16772095.0,
+      "candidate_color": 16772095.0,
+      "pass": true
+    },
+    {
+      "address": "B200",
+      "before_color": 16777215.0,
+      "candidate_color": 16777215.0,
+      "pass": true
+    },
+    {
+      "address": "B201",
+      "before_color": 16777215.0,
+      "candidate_color": 16777215.0,
+      "pass": true
+    },
+    {
+      "address": "B202",
+      "before_color": 16777215.0,
+      "candidate_color": 16777215.0,
+      "pass": true
+    },
+    {
+      "address": "B203",
+      "before_color": 16777215.0,
+      "candidate_color": 16777215.0,
+      "pass": true
+    },
+    {
+      "address": "B204",
+      "before_color": 16777215.0,
+      "candidate_color": 16777215.0,
+      "pass": true
+    },
+    {
+      "address": "B205",
+      "before_color": 16772095.0,
+      "candidate_color": 16772095.0,
+      "pass": true
+    },
+    {
+      "address": "B206",
+      "before_color": 16777215.0,
+      "candidate_color": 16777215.0,
+      "pass": true
+    },
+    {
+      "address": "B207",
+      "before_color": 16777215.0,
+      "candidate_color": 16777215.0,
+      "pass": true
+    },
+    {
+      "address": "B208",
+      "before_color": 16772095.0,
+      "candidate_color": 16772095.0,
+      "pass": true
+    },
+    {
+      "address": "B209",
+      "before_color": 16119285.0,
+      "candidate_color": 16119285.0,
+      "pass": true
+    },
+    {
+      "address": "B210",
+      "before_color": 16772095.0,
+      "candidate_color": 16772095.0,
+      "pass": true
+    },
+    {
+      "address": "B211",
+      "before_color": 16119285.0,
+      "candidate_color": 16119285.0,
+      "pass": true
+    },
+    {
+      "address": "B217",
+      "before_color": 16772095.0,
+      "candidate_color": 16772095.0,
+      "pass": true
+    },
+    {
+      "address": "B218",
+      "before_color": 16119285.0,
+      "candidate_color": 16119285.0,
+      "pass": true
+    },
+    {
+      "address": "B219",
+      "before_color": 16772095.0,
+      "candidate_color": 16772095.0,
+      "pass": true
+    },
+    {
+      "address": "B227",
+      "before_color": 16772095.0,
+      "candidate_color": 16772095.0,
+      "pass": true
+    },
+    {
+      "address": "B228",
+      "before_color": 16119285.0,
+      "candidate_color": 16119285.0,
+      "pass": true
+    },
+    {
+      "address": "B234",
+      "before_color": 16772095.0,
+      "candidate_color": 16772095.0,
+      "pass": true
+    },
+    {
+      "address": "B235",
+      "before_color": 16772095.0,
+      "candidate_color": 16772095.0,
+      "pass": true
+    },
+    {
+      "address": "B236",
+      "before_color": 16772095.0,
+      "candidate_color": 16772095.0,
+      "pass": true
+    },
+    {
+      "address": "B237",
+      "before_color": 16777215.0,
+      "candidate_color": 16777215.0,
+      "pass": true
+    },
+    {
+      "address": "B238",
+      "before_color": 16777215.0,
+      "candidate_color": 16777215.0,
+      "pass": true
+    },
+    {
+      "address": "B242",
+      "before_color": 16772095.0,
+      "candidate_color": 16772095.0,
+      "pass": true
+    },
+    {
+      "address": "B243",
+      "before_color": 16772095.0,
+      "candidate_color": 16772095.0,
+      "pass": true
+    },
+    {
+      "address": "B248",
+      "before_color": 16772095.0,
+      "candidate_color": 16772095.0,
+      "pass": true
+    },
+    {
+      "address": "B249",
+      "before_color": 16119285.0,
+      "candidate_color": 16119285.0,
+      "pass": true
+    },
+    {
+      "address": "B250",
+      "before_color": 16772095.0,
+      "candidate_color": 16772095.0,
+      "pass": true
+    },
+    {
+      "address": "B251",
+      "before_color": 16772095.0,
+      "candidate_color": 16772095.0,
+      "pass": true
+    },
+    {
+      "address": "B252",
+      "before_color": 16119285.0,
+      "candidate_color": 16119285.0,
+      "pass": true
+    },
+    {
+      "address": "B254",
+      "before_color": 16772095.0,
+      "candidate_color": 16772095.0,
+      "pass": true
+    },
+    {
+      "address": "B255",
+      "before_color": 16119285.0,
+      "candidate_color": 16119285.0,
+      "pass": true
+    },
+    {
+      "address": "B256",
+      "before_color": 16772095.0,
+      "candidate_color": 16772095.0,
+      "pass": true
+    },
+    {
+      "address": "B257",
+      "before_color": 16777215.0,
+      "candidate_color": 16777215.0,
+      "pass": true
+    },
+    {
+      "address": "B258",
+      "before_color": 16772095.0,
+      "candidate_color": 16772095.0,
+      "pass": true
+    },
+    {
+      "address": "B259",
+      "before_color": 16119285.0,
+      "candidate_color": 16119285.0,
+      "pass": true
+    },
+    {
+      "address": "B260",
+      "before_color": 16119285.0,
+      "candidate_color": 16119285.0,
+      "pass": true
+    },
+    {
+      "address": "B261",
+      "before_color": 16119285.0,
+      "candidate_color": 16119285.0,
+      "pass": true
+    },
+    {
+      "address": "B262",
+      "before_color": 16119285.0,
+      "candidate_color": 16119285.0,
+      "pass": true
+    },
+    {
+      "address": "B263",
+      "before_color": 16119285.0,
+      "candidate_color": 16119285.0,
+      "pass": true
+    },
+    {
+      "address": "B264",
+      "before_color": 16119285.0,
+      "candidate_color": 16119285.0,
+      "pass": true
+    },
+    {
+      "address": "B265",
+      "before_color": 16119285.0,
+      "candidate_color": 16119285.0,
+      "pass": true
+    },
+    {
+      "address": "B266",
+      "before_color": 16119285.0,
+      "candidate_color": 16119285.0,
+      "pass": true
+    },
+    {
+      "address": "B267",
+      "before_color": 16119285.0,
+      "candidate_color": 16119285.0,
+      "pass": true
+    },
+    {
+      "address": "B268",
+      "before_color": 16119285.0,
+      "candidate_color": 16119285.0,
+      "pass": true
+    },
+    {
+      "address": "B269",
+      "before_color": 16772095.0,
+      "candidate_color": 16772095.0,
+      "pass": true
+    },
+    {
+      "address": "B270",
+      "before_color": 16772095.0,
+      "candidate_color": 16772095.0,
+      "pass": true
+    },
+    {
+      "address": "B271",
+      "before_color": 16119285.0,
+      "candidate_color": 16119285.0,
+      "pass": true
+    },
+    {
+      "address": "B272",
+      "before_color": 16119285.0,
+      "candidate_color": 16119285.0,
+      "pass": true
+    },
+    {
+      "address": "B273",
+      "before_color": 16119285.0,
+      "candidate_color": 16119285.0,
+      "pass": true
+    },
+    {
+      "address": "B274",
+      "before_color": 16119285.0,
+      "candidate_color": 16119285.0,
+      "pass": true
+    },
+    {
+      "address": "B275",
+      "before_color": 16119285.0,
+      "candidate_color": 16119285.0,
+      "pass": true
+    },
+    {
+      "address": "B276",
+      "before_color": 16119285.0,
+      "candidate_color": 16119285.0,
+      "pass": true
+    },
+    {
+      "address": "B277",
+      "before_color": 16119285.0,
+      "candidate_color": 16119285.0,
+      "pass": true
+    },
+    {
+      "address": "B278",
+      "before_color": 16772095.0,
+      "candidate_color": 16772095.0,
+      "pass": true
+    },
+    {
+      "address": "B279",
+      "before_color": 16777215.0,
+      "candidate_color": 16777215.0,
+      "pass": true
+    },
+    {
+      "address": "B280",
+      "before_color": 16772095.0,
+      "candidate_color": 16772095.0,
+      "pass": true
+    },
+    {
+      "address": "B281",
+      "before_color": 16119285.0,
+      "candidate_color": 16119285.0,
+      "pass": true
+    },
+    {
+      "address": "B282",
+      "before_color": 16772095.0,
+      "candidate_color": 16772095.0,
+      "pass": true
+    },
+    {
+      "address": "B283",
+      "before_color": 16777215.0,
+      "candidate_color": 16777215.0,
+      "pass": true
+    },
+    {
+      "address": "B284",
+      "before_color": 16772095.0,
+      "candidate_color": 16772095.0,
+      "pass": true
+    },
+    {
+      "address": "B285",
+      "before_color": 16119285.0,
+      "candidate_color": 16119285.0,
+      "pass": true
+    },
+    {
+      "address": "B286",
+      "before_color": 16772095.0,
+      "candidate_color": 16772095.0,
+      "pass": true
+    },
+    {
+      "address": "B287",
+      "before_color": 16777215.0,
+      "candidate_color": 16777215.0,
+      "pass": true
+    },
+    {
+      "address": "B288",
+      "before_color": 16772095.0,
+      "candidate_color": 16772095.0,
+      "pass": true
+    },
+    {
+      "address": "B289",
+      "before_color": 16119285.0,
+      "candidate_color": 16119285.0,
+      "pass": true
+    }
+  ],
+  "exports": [
+    {
+      "name": "order-boundary",
+      "area": "B205:J211",
+      "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\system-criteria-banding-20261016\\native-order-boundary.pdf",
+      "sha256": "237284372CBA7E44D9C60ED5F89AE5506E76E7A5C1001786126A152C5D6AA575"
+    }
+  ],
+  "native_readonly": true,
+  "repair_requested": false,
+  "original_setup": {
+    "zoom": false,
+    "fit_wide": 1,
+    "fit_tall": false,
+    "orientation": 2.0,
+    "repeat_rows": "$32:$33"
+  },
+  "order_sequence_pass": true,
+  "plan_parity_pass": true,
+  "rows_pass": true,
+  "pink_preservation_pass": true,
+  "closed_without_saving": true,
+  "source_end_sha256": "F56DA1CF51524527E3C95EB0507C8D6503358FB78AFAC242E5608F63F9DA356C",
+  "source_unchanged": true,
+  "before_end_sha256": "D3F7E5FEA16AA448BE548CF9ADB507B85DE06CADAE73C00DE94C97451F5FB301",
+  "before_unchanged": true
+}

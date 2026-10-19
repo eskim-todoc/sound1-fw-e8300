@@ -1,0 +1,1756 @@
+[
+  {
+    "key": "SUVC",
+    "page": 5,
+    "candidate_group": "SW-FW-UnitTest-CFX-ID-8",
+    "candidate_start_row": 59,
+    "near_bottom": [
+      {
+        "text": "관찰수단다른실행이대상입력결과버퍼",
+        "bbox": [
+          348.89,
+          515.0880000000001,
+          435.89,
+          519.648
+        ],
+        "size": 4.560000000000002,
+        "below": 4.15
+      },
+      {
+        "text": "./",
+        "bbox": [
+          368.21,
+          515.316,
+          416.53015999999997,
+          519.8760000000001
+        ],
+        "size": 4.560000000000002,
+        "below": 4.38
+      },
+      {
+        "text": "는별도버퍼에보존한뒤로준비한조건을각각독립초기화하여해당유닛을실행한다입력출",
+        "bbox": [
+          440.83,
+          515.0880000000001,
+          657.4599999999999,
+          519.648
+        ],
+        "size": 4.560000000000002,
+        "below": 4.15
+      },
+      {
+        "text": "CM3RTT-./",
+        "bbox": [
+          491.82616,
+          515.316,
+          652.8601600000001,
+          519.8760000000001
+        ],
+        "size": 4.560000000000002,
+        "below": 4.38
+      }
+    ],
+    "crop": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\boundary-review\\SUVC-005.png"
+  },
+  {
+    "key": "SUVC",
+    "page": 9,
+    "candidate_group": "SW-FW-UnitTest-CFX-ID-12",
+    "candidate_start_row": 101,
+    "near_bottom": [
+      {
+        "text": "수집준비된그룹실행후의조건별배열상태",
+        "bbox": [
+          520.15,
+          514.128,
+          659.0199999999999,
+          518.6880000000001
+        ],
+        "size": 4.560000000000002,
+        "below": 3.31
+      },
+      {
+        "text": ":CFX(utcfx1)UT-CFX-012/",
+        "bbox": [
+          529.27,
+          514.356,
+          649.8601600000001,
+          518.916
+        ],
+        "size": 4.560000000000002,
+        "below": 3.54
+      }
+    ],
+    "crop": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\boundary-review\\SUVC-009.png"
+  },
+  {
+    "key": "SUVC",
+    "page": 14,
+    "candidate_group": "SW-FW-UnitTest-CFX-ID-18",
+    "candidate_start_row": 144,
+    "near_bottom": [
+      {
+        "text": "[+](I2S)",
+        "bbox": [
+          348.89,
+          515.196,
+          417.95168,
+          519.7560000000001
+        ],
+        "size": 4.560000000000002,
+        "below": 4.26
+      },
+      {
+        "text": "시작과중단의완만한전환를실행할",
+        "bbox": [
+          363.17,
+          514.9680000000001,
+          437.33,
+          519.528
+        ],
+        "size": 4.560000000000002,
+        "below": 4.03
+      },
+      {
+        "text": "읽고에서긴로그를출력하지않는준비한조건을각각독립초기화하여해당유닛을실행한다입력출",
+        "bbox": [
+          440.83,
+          514.9680000000001,
+          657.4599999999999,
+          519.528
+        ],
+        "size": 4.560000000000002,
+        "below": 4.03
+      },
+      {
+        "text": "ISR-./",
+        "bbox": [
+          451.02616,
+          515.196,
+          652.8601600000001,
+          519.7560000000001
+        ],
+        "size": 4.560000000000002,
+        "below": 4.26
+      }
+    ],
+    "crop": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\boundary-review\\SUVC-014.png"
+  },
+  {
+    "key": "SUVC",
+    "page": 30,
+    "candidate_group": "SW-FW-UnitTest-CFX-ID-24",
+    "candidate_start_row": 268,
+    "near_bottom": [
+      {
+        "text": "미지와해당입력출력경계또는메모리",
+        "bbox": [
+          348.89,
+          527.5680000000001,
+          438.29,
+          532.128
+        ],
+        "size": 4.559999999999995,
+        "below": 3.55
+      },
+      {
+        "text": "/,RTT",
+        "bbox": [
+          382.97,
+          527.796,
+          413.2601599999999,
+          532.356
+        ],
+        "size": 4.560000000000002,
+        "below": 3.78
+      },
+      {
+        "text": "와비교한다",
+        "bbox": [
+          520.15,
+          527.5680000000001,
+          544.0299999999999,
+          532.128
+        ],
+        "size": 4.559999999999995,
+        "below": 3.55
+      },
+      {
+        "text": ".",
+        "bbox": [
+          544.03,
+          527.796,
+          545.17912,
+          532.356
+        ],
+        "size": 4.560000000000002,
+        "below": 3.78
+      }
+    ],
+    "crop": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\boundary-review\\SUVC-030.png"
+  },
+  {
+    "key": "SUVC",
+    "page": 33,
+    "candidate_group": "SW-FW-UnitTest-CFX-ID-28",
+    "candidate_start_row": 298,
+    "near_bottom": [
+      {
+        "text": "수집준비된그룹실행후의조건별배열상태",
+        "bbox": [
+          520.15,
+          534.888,
+          659.0199999999999,
+          539.4480000000001
+        ],
+        "size": 4.560000000000002,
+        "below": 3.55
+      },
+      {
+        "text": ":CFX(utcfx1)UT-CFX-030/",
+        "bbox": [
+          529.27,
+          535.1160000000001,
+          649.8601600000001,
+          539.676
+        ],
+        "size": 4.560000000000002,
+        "below": 3.78
+      }
+    ],
+    "crop": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\boundary-review\\SUVC-033.png"
+  },
+  {
+    "key": "SUVC",
+    "page": 35,
+    "candidate_group": "SW-FW-UnitTest-CFX-ID-30",
+    "candidate_start_row": 309,
+    "near_bottom": [
+      {
+        "text": "와판정줄을찾는다",
+        "bbox": [
+          520.15,
+          524.808,
+          559.87,
+          529.368
+        ],
+        "size": 4.560000000000002,
+        "below": 1.39
+      },
+      {
+        "text": ".",
+        "bbox": [
+          559.87,
+          525.0360000000001,
+          561.01912,
+          529.596
+        ],
+        "size": 4.560000000000002,
+        "below": 1.62
+      }
+    ],
+    "crop": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\boundary-review\\SUVC-035.png"
+  },
+  {
+    "key": "SUVC",
+    "page": 36,
+    "candidate_group": "SW-FW-UnitTest-CFX-ID-31",
+    "candidate_start_row": 322,
+    "near_bottom": [
+      {
+        "text": "입력조건거듭제곱을고정한계수산출거듭제곱대체플래그로설정한다",
+        "bbox": [
+          662.26,
+          516.048,
+          816.4799999999999,
+          520.6080000000001
+        ],
+        "size": 4.560000000000002,
+        "below": 3.79
+      },
+      {
+        "text": "/:.=1.",
+        "bbox": [
+          671.38,
+          516.2760000000001,
+          817.6291200000001,
+          520.836
+        ],
+        "size": 4.560000000000002,
+        "below": 4.02
+      }
+    ],
+    "crop": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\boundary-review\\SUVC-036.png"
+  },
+  {
+    "key": "SUVC",
+    "page": 73,
+    "candidate_group": "SW-FW-UnitTest-CFX-ID-42",
+    "candidate_start_row": 638,
+    "near_bottom": [
+      {
+        "text": "실제를채우지않는다합성검사시험자기록실기수집자료를",
+        "bbox": [
+          520.15,
+          529.368,
+          655.78,
+          533.928
+        ],
+        "size": 4.559999999999995,
+        "below": -0.17
+      },
+      {
+        "text": "E.PC//",
+        "bbox": [
+          530.34996,
+          529.596,
+          621.66016,
+          534.1560000000001
+        ],
+        "size": 4.560000000000002,
+        "below": 0.06
+      }
+    ],
+    "crop": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\boundary-review\\SUVC-073.png"
+  },
+  {
+    "key": "SUVC",
+    "page": 105,
+    "candidate_group": "SW-FW-UnitTest-CM3-ID-4",
+    "candidate_start_row": 802,
+    "near_bottom": [
+      {
+        "text": "는기록출력건수에서제외한다",
+        "bbox": [
+          520.15,
+          407.182,
+          583.7499999999999,
+          411.7420000000001
+        ],
+        "size": 4.560000000000002,
+        "below": 2.47
+      },
+      {
+        "text": ".",
+        "bbox": [
+          583.75,
+          407.4100000000001,
+          584.89912,
+          411.97
+        ],
+        "size": 4.559999999999974,
+        "below": 2.7
+      }
+    ],
+    "crop": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\boundary-review\\SUVC-105.png"
+  },
+  {
+    "key": "SUVC",
+    "page": 120,
+    "candidate_group": "SW-FW-UnitTest-CM3-ID-16",
+    "candidate_start_row": 908,
+    "near_bottom": [
+      {
+        "text": "미지와해당입력출력경계또는메모리",
+        "bbox": [
+          348.89,
+          518.4480000000001,
+          438.29,
+          523.008
+        ],
+        "size": 4.560000000000002,
+        "below": 4.39
+      },
+      {
+        "text": "/,RTT",
+        "bbox": [
+          382.97,
+          518.676,
+          413.2601599999999,
+          523.2360000000001
+        ],
+        "size": 4.560000000000002,
+        "below": 4.62
+      },
+      {
+        "text": "상태확인을구분한다준비한조건을각각독립초기화하여해당유닛을실행한다입력출",
+        "bbox": [
+          440.83,
+          518.4480000000001,
+          657.4599999999999,
+          523.008
+        ],
+        "size": 4.560000000000002,
+        "below": 4.39
+      },
+      {
+        "text": ".-./",
+        "bbox": [
+          484.03,
+          518.676,
+          652.8601600000001,
+          523.2360000000001
+        ],
+        "size": 4.560000000000002,
+        "below": 4.62
+      }
+    ],
+    "crop": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\boundary-review\\SUVC-120.png"
+  },
+  {
+    "key": "SUVC",
+    "page": 136,
+    "candidate_group": "SW-FW-UnitTest-CM3-ID-26",
+    "candidate_start_row": 996,
+    "near_bottom": [
+      {
+        "text": "[+]SU-ID-CM3-027[+]",
+        "bbox": [
+          348.89,
+          521.676,
+          525.2571999999999,
+          526.2360000000001
+        ],
+        "size": 4.560000000000002,
+        "below": 4.62
+      },
+      {
+        "text": "상태확인을구분한다",
+        "bbox": [
+          440.83,
+          521.4480000000001,
+          484.03000000000003,
+          526.008
+        ],
+        "size": 4.560000000000002,
+        "below": 4.39
+      },
+      {
+        "text": ".",
+        "bbox": [
+          484.03,
+          521.676,
+          485.17911999999995,
+          526.2360000000001
+        ],
+        "size": 4.560000000000002,
+        "below": 4.62
+      }
+    ],
+    "crop": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\boundary-review\\SUVC-136.png"
+  },
+  {
+    "key": "SUVC",
+    "page": 137,
+    "candidate_group": "SW-FW-UnitTest-CM3-ID-28",
+    "candidate_start_row": 1010,
+    "near_bottom": [
+      {
+        "text": "험이미지와해당입력출력경계또는",
+        "bbox": [
+          348.89,
+          538.6080000000001,
+          433.73,
+          543.168
+        ],
+        "size": 4.560000000000002,
+        "below": 2.83
+      },
+      {
+        "text": "/,RTT",
+        "bbox": [
+          393.17,
+          538.836,
+          423.46016,
+          543.3960000000001
+        ],
+        "size": 4.560000000000002,
+        "below": 3.06
+      },
+      {
+        "text": "와비교한다",
+        "bbox": [
+          520.15,
+          538.6080000000001,
+          544.0299999999999,
+          543.168
+        ],
+        "size": 4.560000000000002,
+        "below": 2.83
+      },
+      {
+        "text": ".",
+        "bbox": [
+          544.03,
+          538.836,
+          545.17912,
+          543.3960000000001
+        ],
+        "size": 4.560000000000002,
+        "below": 3.06
+      }
+    ],
+    "crop": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\boundary-review\\SUVC-137.png"
+  },
+  {
+    "key": "SUVC",
+    "page": 144,
+    "candidate_group": "SW-FW-UnitTest-CM3-ID-28",
+    "candidate_start_row": 1010,
+    "near_bottom": [
+      {
+        "text": "관찰에서는기존완료플래그를로각각",
+        "bbox": [
+          348.89,
+          526.6080000000001,
+          433.61,
+          531.1680000000001
+        ],
+        "size": 4.560000000000002,
+        "below": 3.31
+      },
+      {
+        "text": "0/1",
+        "bbox": [
+          412.48616000000004,
+          526.836,
+          418.87472,
+          531.3960000000001
+        ],
+        "size": 4.560000000000002,
+        "below": 3.54
+      },
+      {
+        "text": "[+]2./",
+        "bbox": [
+          520.15,
+          526.836,
+          541.8301600000001,
+          531.3960000000001
+        ],
+        "size": 4.560000000000002,
+        "below": 3.54
+      },
+      {
+        "text": "수행확인",
+        "bbox": [
+          530.95,
+          526.6080000000001,
+          550.9899999999999,
+          531.1680000000001
+        ],
+        "size": 4.560000000000002,
+        "below": 3.31
+      }
+    ],
+    "crop": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\boundary-review\\SUVC-144.png"
+  },
+  {
+    "key": "SUVC",
+    "page": 163,
+    "candidate_group": "SW-FW-UnitTest-CM3-ID-36",
+    "candidate_start_row": 1124,
+    "near_bottom": [
+      {
+        "text": "한다",
+        "bbox": [
+          348.89,
+          509.2080000000001,
+          358.01,
+          513.768
+        ],
+        "size": 4.560000000000002,
+        "below": 4.39
+      },
+      {
+        "text": ".",
+        "bbox": [
+          358.01,
+          509.43600000000004,
+          359.15912,
+          513.9960000000001
+        ],
+        "size": 4.560000000000002,
+        "below": 4.62
+      },
+      {
+        "text": "상태확인을구분한다",
+        "bbox": [
+          440.83,
+          509.2080000000001,
+          484.03000000000003,
+          513.768
+        ],
+        "size": 4.560000000000002,
+        "below": 4.39
+      },
+      {
+        "text": ".",
+        "bbox": [
+          484.03,
+          509.43600000000004,
+          485.17911999999995,
+          513.9960000000001
+        ],
+        "size": 4.560000000000002,
+        "below": 4.62
+      },
+      {
+        "text": "[+]",
+        "bbox": [
+          520.15,
+          509.43600000000004,
+          525.2571999999999,
+          513.9960000000001
+        ],
+        "size": 4.560000000000002,
+        "below": 4.62
+      }
+    ],
+    "crop": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\boundary-review\\SUVC-163.png"
+  },
+  {
+    "key": "SUVC",
+    "page": 164,
+    "candidate_group": "SW-FW-UnitTest-CM3-ID-38",
+    "candidate_start_row": 1148,
+    "near_bottom": [
+      {
+        "text": "태와판정줄을찾는다",
+        "bbox": [
+          520.15,
+          506.2080000000001,
+          564.43,
+          510.76800000000003
+        ],
+        "size": 4.560000000000002,
+        "below": 3.31
+      },
+      {
+        "text": ".",
+        "bbox": [
+          564.43,
+          506.43600000000004,
+          565.57912,
+          510.99600000000004
+        ],
+        "size": 4.560000000000002,
+        "below": 3.54
+      }
+    ],
+    "crop": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\boundary-review\\SUVC-164.png"
+  },
+  {
+    "key": "SUVC",
+    "page": 225,
+    "candidate_group": "SW-FW-UnitTest-BOOT-ID-18",
+    "candidate_start_row": 1644,
+    "near_bottom": [
+      {
+        "text": "관찰수단다른실행이대상입력결과버퍼",
+        "bbox": [
+          348.89,
+          538.8480000000001,
+          435.89,
+          543.408
+        ],
+        "size": 4.559999999999995,
+        "below": 3.07
+      },
+      {
+        "text": "./",
+        "bbox": [
+          368.21,
+          539.076,
+          416.53015999999997,
+          543.6360000000001
+        ],
+        "size": 4.560000000000002,
+        "below": 3.3
+      },
+      {
+        "text": "한다정상서비스동작에서는공유핀조건을맞춘뒤표시와",
+        "bbox": [
+          520.15,
+          538.8480000000001,
+          658.9,
+          543.408
+        ],
+        "size": 4.559999999999995,
+        "below": 3.07
+      },
+      {
+        "text": ".UARTLED",
+        "bbox": [
+          529.27,
+          539.076,
+          644.17576,
+          543.6360000000001
+        ],
+        "size": 4.560000000000002,
+        "below": 3.3
+      }
+    ],
+    "crop": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\boundary-review\\SUVC-225.png"
+  },
+  {
+    "key": "SUVC",
+    "page": 231,
+    "candidate_group": "SW-FW-UnitTest-BOOT-ID-19",
+    "candidate_start_row": 1649,
+    "near_bottom": [
+      {
+        "text": "완료의성공실패및지원하지않는하위상",
+        "bbox": [
+          348.89,
+          539.6880000000001,
+          434.69,
+          544.248
+        ],
+        "size": 4.560000000000002,
+        "below": 4.03
+      },
+      {
+        "text": "/",
+        "bbox": [
+          372.77,
+          539.916,
+          374.53015999999997,
+          544.476
+        ],
+        "size": 4.560000000000002,
+        "below": 4.26
+      },
+      {
+        "text": "기미사용시결과를보존한뒤읽",
+        "bbox": [
+          440.83,
+          539.6880000000001,
+          514.75,
+          544.248
+        ],
+        "size": 4.560000000000002,
+        "below": 4.03
+      },
+      {
+        "text": "RTT",
+        "bbox": [
+          446.46996,
+          539.916,
+          453.48627999999997,
+          544.476
+        ],
+        "size": 4.560000000000002,
+        "below": 4.26
+      },
+      {
+        "text": "[+]",
+        "bbox": [
+          520.15,
+          539.916,
+          525.2571999999999,
+          544.476
+        ],
+        "size": 4.560000000000002,
+        "below": 4.26
+      }
+    ],
+    "crop": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\boundary-review\\SUVC-231.png"
+  },
+  {
+    "key": "SUVR",
+    "page": 4,
+    "candidate_group": "SW-FW-UnitTest-CFX-ID-10",
+    "candidate_start_row": 67,
+    "near_bottom": [
+      {
+        "text": "수집준비된그룹실행후의조건별배열상태",
+        "bbox": [
+          410.33,
+          526.032,
+          516.55,
+          529.5120000000001
+        ],
+        "size": 3.480000000000004,
+        "below": 3.7
+      },
+      {
+        "text": ":CFX(utcfx1)UT-CFX-010/",
+        "bbox": [
+          417.29,
+          526.206,
+          509.61328,
+          529.686
+        ],
+        "size": 3.480000000000004,
+        "below": 3.87
+      }
+    ],
+    "crop": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\boundary-review\\SUVR-004.png"
+  },
+  {
+    "key": "SUVR",
+    "page": 6,
+    "candidate_group": "SW-FW-UnitTest-CFX-ID-11",
+    "candidate_start_row": 72,
+    "near_bottom": [
+      {
+        "text": "[UT-CFX-011]C3A[125:131]=12800,12800,12800,4,1,0,24",
+        "bbox": [
+          647.86,
+          506.71200000000005,
+          737.0002,
+          510.19200000000006
+        ],
+        "size": 3.480000000000004,
+        "below": 3.58
+      }
+    ],
+    "crop": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\boundary-review\\SUVR-006.png"
+  },
+  {
+    "key": "SUVR",
+    "page": 25,
+    "candidate_group": "SW-FW-UnitTest-CFX-ID-27",
+    "candidate_start_row": 289,
+    "near_bottom": [
+      {
+        "text": "[UT-CFX-027]C1A[99:109]=-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1",
+        "bbox": [
+          647.86,
+          495.744,
+          730.8266800000001,
+          498.98400000000004
+        ],
+        "size": 3.239999999999995,
+        "below": 3.29
+      }
+    ],
+    "crop": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\boundary-review\\SUVR-025.png"
+  },
+  {
+    "key": "SUVR",
+    "page": 51,
+    "candidate_group": "SW-FW-UnitTest-CFX-ID-34",
+    "candidate_start_row": 578,
+    "near_bottom": [
+      {
+        "text": "단다른실행이대상입력결과버퍼를변경하",
+        "bbox": [
+          276.65,
+          525.672,
+          346.49,
+          529.152
+        ],
+        "size": 3.480000000000004,
+        "below": 0.34
+      },
+      {
+        "text": "./",
+        "bbox": [
+          280.13,
+          525.846,
+          316.99327999999997,
+          529.326
+        ],
+        "size": 3.480000000000004,
+        "below": 0.51
+      },
+      {
+        "text": "별도버퍼에보존한뒤로읽고준비한조건을각각독립초기화하여해당유닛을실행한다입력출력",
+        "bbox": [
+          348.41,
+          525.672,
+          518.59,
+          529.152
+        ],
+        "size": 3.480000000000004,
+        "below": 0.34
+      },
+      {
+        "text": "CM3RTT-./",
+        "bbox": [
+          383.0852,
+          525.846,
+          511.65328,
+          529.326
+        ],
+        "size": 3.480000000000004,
+        "below": 0.51
+      }
+    ],
+    "crop": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\boundary-review\\SUVR-051.png"
+  },
+  {
+    "key": "SUVR",
+    "page": 56,
+    "candidate_group": "SW-FW-UnitTest-CFX-ID-40",
+    "candidate_start_row": 624,
+    "near_bottom": [
+      {
+        "text": "[UT-CFX-040]C1A[103:106]=152917,152917,152917,152917",
+        "bbox": [
+          647.86,
+          479.836,
+          742.5194799999999,
+          483.31600000000003
+        ],
+        "size": 3.480000000000004,
+        "below": 0.22
+      }
+    ],
+    "crop": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\boundary-review\\SUVR-056.png"
+  },
+  {
+    "key": "SUVR",
+    "page": 58,
+    "candidate_group": "SW-FW-UnitTest-HEAR-ID-2",
+    "candidate_start_row": 650,
+    "near_bottom": [
+      {
+        "text": "각를만들며실제스피커톤이나",
+        "bbox": [
+          276.65,
+          520.5120000000001,
+          343.49,
+          523.9920000000001
+        ],
+        "size": 3.480000000000004,
+        "below": 3.1
+      },
+      {
+        "text": "bin32/bin64",
+        "bbox": [
+          280.9652,
+          520.686,
+          298.30256,
+          524.166
+        ],
+        "size": 3.480000000000004,
+        "below": 3.27
+      },
+      {
+        "text": "화유휴상태인지확인하고정상오디오생산자와결과버퍼쓰기",
+        "bbox": [
+          410.33,
+          520.5120000000001,
+          516.79,
+          523.9920000000001
+        ],
+        "size": 3.480000000000004,
+        "below": 3.1
+      },
+      {
+        "text": "//PCM",
+        "bbox": [
+          413.81,
+          520.686,
+          478.60263999999995,
+          524.166
+        ],
+        "size": 3.480000000000004,
+        "below": 3.27
+      }
+    ],
+    "crop": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\boundary-review\\SUVR-058.png"
+  },
+  {
+    "key": "SUVR",
+    "page": 62,
+    "candidate_group": "SW-FW-UnitTest-HEAR-ID-2",
+    "candidate_start_row": 650,
+    "near_bottom": [
+      {
+        "text": "[UT-HEAR-002]C80A[126:140]=0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
+        "bbox": [
+          647.86,
+          529.344,
+          732.5665600000001,
+          532.5840000000001
+        ],
+        "size": 3.240000000000002,
+        "below": 3.41
+      }
+    ],
+    "crop": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\boundary-review\\SUVR-062.png"
+  },
+  {
+    "key": "SUVR",
+    "page": 82,
+    "candidate_group": "SW-FW-UnitTest-CM3-ID-1",
+    "candidate_start_row": 789,
+    "near_bottom": [
+      {
+        "text": "[+]SU-ID-CM3-001",
+        "bbox": [
+          276.65,
+          514.566,
+          303.33404,
+          518.046
+        ],
+        "size": 3.480000000000004,
+        "below": 3.75
+      },
+      {
+        "text": "및상태변경을코드에서확인한다아래예상결과와대조하고검토한",
+        "bbox": [
+          410.33,
+          514.392,
+          516.19,
+          517.8720000000001
+        ],
+        "size": 3.480000000000004,
+        "below": 3.58
+      },
+      {
+        "text": ".",
+        "bbox": [
+          462.43,
+          514.566,
+          463.30696,
+          518.046
+        ],
+        "size": 3.480000000000004,
+        "below": 3.75
+      }
+    ],
+    "crop": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\boundary-review\\SUVR-082.png"
+  },
+  {
+    "key": "SUVR",
+    "page": 84,
+    "candidate_group": "SW-FW-UnitTest-CM3-ID-5",
+    "candidate_start_row": 809,
+    "near_bottom": [
+      {
+        "text": "통과",
+        "bbox": [
+          783.94,
+          531.984,
+          790.4200000000001,
+          535.224
+        ],
+        "size": 3.240000000000002,
+        "below": 1.01
+      }
+    ],
+    "crop": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\boundary-review\\SUVR-084.png"
+  },
+  {
+    "key": "SUVR",
+    "page": 100,
+    "candidate_group": "SW-FW-UnitTest-CM3-ID-21",
+    "candidate_start_row": 942,
+    "near_bottom": [
+      {
+        "text": "출력[18]합성이름[15](문자코드)=80",
+        "bbox": [
+          647.86,
+          474.55600000000004,
+          710.23552,
+          478.03600000000006
+        ],
+        "size": 3.480000000000004,
+        "below": 3.58
+      }
+    ],
+    "crop": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\boundary-review\\SUVR-100.png"
+  },
+  {
+    "key": "SUVR",
+    "page": 110,
+    "candidate_group": "SW-FW-UnitTest-CM3-ID-28",
+    "candidate_start_row": 1010,
+    "near_bottom": [
+      {
+        "text": "출력[61]T출력[28]=0",
+        "bbox": [
+          647.86,
+          444.91600000000005,
+          684.68536,
+          448.3960000000001
+        ],
+        "size": 3.4799999999999898,
+        "below": 1.18
+      }
+    ],
+    "crop": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\boundary-review\\SUVR-110.png"
+  },
+  {
+    "key": "SUVR",
+    "page": 115,
+    "candidate_group": "SW-FW-UnitTest-CM3-ID-29",
+    "candidate_start_row": 1040,
+    "near_bottom": [
+      {
+        "text": "출력[20]공유C코드[8]=127",
+        "bbox": [
+          647.86,
+          447.43600000000004,
+          695.1218799999999,
+          450.91600000000005
+        ],
+        "size": 3.4799999999999898,
+        "below": 3.46
+      }
+    ],
+    "crop": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\boundary-review\\SUVR-115.png"
+  },
+  {
+    "key": "SUVR",
+    "page": 118,
+    "candidate_group": "SW-FW-UnitTest-CM3-ID-29",
+    "candidate_start_row": 1040,
+    "near_bottom": [
+      {
+        "text": "출력[62]공유C코드[29]=127",
+        "bbox": [
+          647.86,
+          535.6320000000001,
+          697.04284,
+          539.1120000000001
+        ],
+        "size": 3.479999999999997,
+        "below": 1.06
+      }
+    ],
+    "crop": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\boundary-review\\SUVR-118.png"
+  },
+  {
+    "key": "SUVR",
+    "page": 131,
+    "candidate_group": "SW-FW-UnitTest-CM3-ID-42",
+    "candidate_start_row": 1175,
+    "near_bottom": [
+      {
+        "text": "고구조체를으로지운뒤재읽기한다기존",
+        "bbox": [
+          276.65,
+          526.6320000000001,
+          342.65000000000003,
+          530.1120000000001
+        ],
+        "size": 3.480000000000004,
+        "below": 0.34
+      },
+      {
+        "text": "0.",
+        "bbox": [
+          294.89,
+          526.806,
+          334.88696,
+          530.2860000000001
+        ],
+        "size": 3.480000000000004,
+        "below": 0.51
+      },
+      {
+        "text": "류짧은읽기조건은별도로보존한다",
+        "bbox": [
+          410.33,
+          526.6320000000001,
+          466.39000000000004,
+          530.1120000000001
+        ],
+        "size": 3.480000000000004,
+        "below": 0.34
+      },
+      {
+        "text": "/.",
+        "bbox": [
+          413.81,
+          526.806,
+          467.26696,
+          530.2860000000001
+        ],
+        "size": 3.480000000000004,
+        "below": 0.51
+      }
+    ],
+    "crop": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\boundary-review\\SUVR-131.png"
+  },
+  {
+    "key": "SUVR",
+    "page": 144,
+    "candidate_group": "SW-FW-UnitTest-BOOT-ID-4",
+    "candidate_start_row": 1308,
+    "near_bottom": [
+      {
+        "text": "미지와해당입력출력경계또는메모리",
+        "bbox": [
+          276.65,
+          515.2320000000001,
+          344.81,
+          518.712
+        ],
+        "size": 3.480000000000004,
+        "below": 3.7
+      },
+      {
+        "text": "/,RTT",
+        "bbox": [
+          302.69,
+          515.4060000000001,
+          325.73695999999995,
+          518.8860000000001
+        ],
+        "size": 3.480000000000004,
+        "below": 3.87
+      },
+      {
+        "text": "지와응용상태분리를비교한다정상기동에서표시와정지후표",
+        "bbox": [
+          410.33,
+          515.2320000000001,
+          516.19,
+          518.712
+        ],
+        "size": 3.480000000000004,
+        "below": 3.7
+      },
+      {
+        "text": ".LED",
+        "bbox": [
+          458.95,
+          515.4060000000001,
+          488.44696,
+          518.8860000000001
+        ],
+        "size": 3.480000000000004,
+        "below": 3.87
+      }
+    ],
+    "crop": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\boundary-review\\SUVR-144.png"
+  },
+  {
+    "key": "SITC",
+    "page": 4,
+    "candidate_group": "SI-ID-CM3-001",
+    "candidate_start_row": null,
+    "near_bottom": [
+      {
+        "text": "SU-ID-CFX-041",
+        "bbox": [
+          231.02,
+          511.77600000000007,
+          255.6728,
+          515.3760000000001
+        ],
+        "size": 3.5999999999999943,
+        "below": 1.56
+      }
+    ],
+    "crop": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\boundary-review\\SITC-004.png"
+  },
+  {
+    "key": "SITR",
+    "page": 1,
+    "candidate_group": "SI-ID-CM3-001",
+    "candidate_start_row": null,
+    "near_bottom": [
+      {
+        "text": "SU-ID-CFX-019",
+        "bbox": [
+          189.74,
+          529.6320000000001,
+          209.31824000000003,
+          532.5120000000001
+        ],
+        "size": 2.8800000000000026,
+        "below": 1.78
+      },
+      {
+        "text": "-FIFO/.",
+        "bbox": [
+          461.23,
+          529.8960000000001,
+          541.39576,
+          532.7760000000001
+        ],
+        "size": 2.8800000000000026,
+        "below": 2.04
+      },
+      {
+        "text": "인터럽트와두번의블록복사후현재직전자료를읽는다",
+        "bbox": [
+          468.55,
+          529.7520000000001,
+          540.6700004759999,
+          532.6320000000001
+        ],
+        "size": 2.8799999999999955,
+        "below": 1.9
+      }
+    ],
+    "crop": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\boundary-review\\SITR-001.png"
+  },
+  {
+    "key": "SITR",
+    "page": 3,
+    "candidate_group": "SI-ID-CM3-002",
+    "candidate_start_row": null,
+    "near_bottom": [
+      {
+        "text": "SI-ID-CFX-002SU-ID-CM3-033",
+        "bbox": [
+          99.024,
+          538.152,
+          210.39824000000002,
+          541.032
+        ],
+        "size": 2.8800000000000026,
+        "below": 1.42
+      },
+      {
+        "text": "복원할수있는시험구성수행확인",
+        "bbox": [
+          329.93,
+          538.7520000000001,
+          480.310000238,
+          541.6320000000001
+        ],
+        "size": 2.8800000000000026,
+        "below": 2.02
+      },
+      {
+        "text": ".[+]2./",
+        "bbox": [
+          361.13,
+          538.8960000000001,
+          474.58168,
+          541.7760000000001
+        ],
+        "size": 2.8800000000000026,
+        "below": 2.16
+      }
+    ],
+    "crop": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\boundary-review\\SITR-003.png"
+  },
+  {
+    "key": "SSTC",
+    "page": 10,
+    "candidate_group": "SW-FW-SYS-Test-ID-23",
+    "candidate_start_row": null,
+    "near_bottom": [
+      {
+        "text": "다",
+        "bbox": [
+          351.65,
+          500.54400000000004,
+          356.09,
+          504.98400000000004
+        ],
+        "size": 4.440000000000012,
+        "below": 2.33
+      },
+      {
+        "text": ".",
+        "bbox": [
+          356.09,
+          500.7660000000001,
+          357.20887999999997,
+          505.206
+        ],
+        "size": 4.439999999999998,
+        "below": 2.55
+      },
+      {
+        "text": "[+]32.",
+        "bbox": [
+          532.87,
+          500.7660000000001,
+          639.85888,
+          505.206
+        ],
+        "size": 4.439999999999998,
+        "below": 2.55
+      },
+      {
+        "text": "또는채널핀헤더내부기테스트지그를사용한다",
+        "bbox": [
+          538.63,
+          500.54400000000004,
+          638.7400000000001,
+          504.98400000000004
+        ],
+        "size": 4.440000000000012,
+        "below": 2.33
+      }
+    ],
+    "crop": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\boundary-review\\SSTC-010.png"
+  },
+  {
+    "key": "SSTC",
+    "page": 11,
+    "candidate_group": "SW-FW-SYS-Test-ID-26",
+    "candidate_start_row": null,
+    "near_bottom": [
+      {
+        "text": "스트지그,리모콘.조건별연결/설정/초기상태를",
+        "bbox": [
+          351.65,
+          508.10400000000004,
+          449.32555999999994,
+          512.5440000000001
+        ],
+        "size": 4.440000000000012,
+        "below": 4.01
+      },
+      {
+        "text": "리모콘에서자극볼륨을바꾸고오실로스코프로출력크",
+        "bbox": [
+          532.87,
+          508.10400000000004,
+          644.35396,
+          512.5440000000001
+        ],
+        "size": 4.440000000000012,
+        "below": 4.01
+      }
+    ],
+    "crop": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\boundary-review\\SSTC-011.png"
+  },
+  {
+    "key": "SSTC",
+    "page": 18,
+    "candidate_group": "SW-FW-SYS-Test-ID-46",
+    "candidate_start_row": null,
+    "near_bottom": [
+      {
+        "text": "성.",
+        "bbox": [
+          351.65,
+          536.7840000000001,
+          357.06235999999996,
+          541.224
+        ],
+        "size": 4.439999999999998,
+        "below": 4.01
+      },
+      {
+        "text": "태에서각각광고를검색한다.",
+        "bbox": [
+          532.87,
+          536.7840000000001,
+          591.8109999999999,
+          541.224
+        ],
+        "size": 4.439999999999998,
+        "below": 4.01
+      }
+    ],
+    "crop": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\boundary-review\\SSTC-018.png"
+  },
+  {
+    "key": "SSTC",
+    "page": 25,
+    "candidate_group": "SW-FW-SYS-Test-ID-74",
+    "candidate_start_row": null,
+    "near_bottom": [
+      {
+        "text": "다고간주하지않는다.",
+        "bbox": [
+          650.38,
+          296.61800000000005,
+          694.43812,
+          301.05800000000005
+        ],
+        "size": 4.439999999999998,
+        "below": 3.65
+      }
+    ],
+    "crop": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\boundary-review\\SSTC-025.png"
+  },
+  {
+    "key": "SSTC",
+    "page": 33,
+    "candidate_group": "SW-FW-SYS-Test-ID-67",
+    "candidate_start_row": null,
+    "near_bottom": [
+      {
+        "text": "[+]내부기테스트지그사용시32채널전극핀헤더에서",
+        "bbox": [
+          532.87,
+          537.504,
+          646.2838000000002,
+          541.9440000000001
+        ],
+        "size": 4.439999999999998,
+        "below": 2.93
+      },
+      {
+        "text": "더에서측정한다.",
+        "bbox": [
+          351.65,
+          537.504,
+          385.26523999999995,
+          541.9440000000001
+        ],
+        "size": 4.439999999999998,
+        "below": 2.93
+      }
+    ],
+    "crop": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\boundary-review\\SSTC-033.png"
+  },
+  {
+    "key": "SSTR",
+    "page": 5,
+    "candidate_group": "SW-FW-SYS-Test-ID-13",
+    "candidate_start_row": null,
+    "near_bottom": [
+      {
+        "text": "I2S24bit/16kHz··",
+        "bbox": [
+          367.49,
+          465.9100000000001,
+          428.27000000000004,
+          470.11
+        ],
+        "size": 4.199999999999989,
+        "below": 2.61
+      },
+      {
+        "text": "의실제슬롯클록",
+        "bbox": [
+          393.77,
+          465.70000000000005,
+          426.16999999999996,
+          469.90000000000003
+        ],
+        "size": 4.200000000000003,
+        "below": 2.4
+      },
+      {
+        "text": "기존관찰보존",
+        "bbox": [
+          779.26,
+          464.30800000000005,
+          800.85784,
+          467.54800000000006
+        ],
+        "size": 3.240000000000009,
+        "below": 0.05
+      }
+    ],
+    "crop": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\boundary-review\\SSTR-005.png"
+  },
+  {
+    "key": "SSTR",
+    "page": 6,
+    "candidate_group": "SW-FW-SYS-Test-ID-15",
+    "candidate_start_row": null,
+    "near_bottom": [
+      {
+        "text": "이출력되는지확인한다최대전하량을초과하면오류가표",
+        "bbox": [
+          430.13,
+          530.1120000000001,
+          520.39,
+          533.5920000000001
+        ],
+        "size": 3.479999999999997,
+        "below": 2.26
+      },
+      {
+        "text": ",",
+        "bbox": [
+          466.63,
+          530.2860000000001,
+          467.5,
+          533.7660000000001
+        ],
+        "size": 3.480000000000004,
+        "below": 2.43
+      }
+    ],
+    "crop": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\boundary-review\\SSTR-006.png"
+  },
+  {
+    "key": "SSTR",
+    "page": 9,
+    "candidate_group": "SW-FW-SYS-Test-ID-25",
+    "candidate_start_row": null,
+    "near_bottom": [
+      {
+        "text": "통과",
+        "bbox": [
+          786.82,
+          536.5440000000001,
+          793.3000000000001,
+          539.7840000000001
+        ],
+        "size": 3.240000000000002,
+        "below": 1.49
+      }
+    ],
+    "crop": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\boundary-review\\SSTR-009.png"
+  },
+  {
+    "key": "SSTR",
+    "page": 10,
+    "candidate_group": "SW-FW-SYS-Test-ID-30",
+    "candidate_start_row": null,
+    "near_bottom": [
+      {
+        "text": "[-]//",
+        "bbox": [
+          285.29,
+          520.686,
+          334.63328,
+          524.166
+        ],
+        "size": 3.480000000000004,
+        "below": -0.45
+      },
+      {
+        "text": ".",
+        "bbox": [
+          465.79,
+          520.686,
+          466.66696,
+          524.166
+        ],
+        "size": 3.480000000000004,
+        "below": -0.45
+      }
+    ],
+    "crop": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\boundary-review\\SSTR-010.png"
+  },
+  {
+    "key": "SSTR",
+    "page": 11,
+    "candidate_group": "SW-FW-SYS-Test-ID-35",
+    "candidate_start_row": null,
+    "near_bottom": [
+      {
+        "text": "[-]:32",
+        "bbox": [
+          285.29,
+          515.7660000000001,
+          335.52524,
+          519.2460000000001
+        ],
+        "size": 3.480000000000004,
+        "below": 0.39
+      },
+      {
+        "text": "대안내부기테스트지그의채널전극핀헤더",
+        "bbox": [
+          289.37,
+          515.5920000000001,
+          362.45000000000005,
+          519.072
+        ],
+        "size": 3.480000000000004,
+        "below": 0.22
+      },
+      {
+        "text": "[+].",
+        "bbox": [
+          430.13,
+          515.7660000000001,
+          497.38696,
+          519.2460000000001
+        ],
+        "size": 3.480000000000004,
+        "below": 0.39
+      },
+      {
+        "text": "오실로스코프를측정용지그에연결한다",
+        "bbox": [
+          434.81,
+          515.5920000000001,
+          496.51,
+          519.072
+        ],
+        "size": 3.480000000000004,
+        "below": 0.22
+      }
+    ],
+    "crop": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\boundary-review\\SSTR-011.png"
+  },
+  {
+    "key": "SSTR",
+    "page": 20,
+    "candidate_group": "SW-FW-SYS-Test-ID-75",
+    "candidate_start_row": null,
+    "near_bottom": [
+      {
+        "text": "통과",
+        "bbox": [
+          786.82,
+          537.984,
+          793.3000000000001,
+          541.224
+        ],
+        "size": 3.240000000000002,
+        "below": 1.25
+      }
+    ],
+    "crop": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\boundary-review\\SSTR-020.png"
+  },
+  {
+    "key": "SSTR",
+    "page": 25,
+    "candidate_group": "SW-FW-SYS-Test-ID-62",
+    "candidate_start_row": null,
+    "near_bottom": [
+      {
+        "text": "[-]",
+        "bbox": [
+          285.29,
+          523.686,
+          288.5148,
+          527.166
+        ],
+        "size": 3.480000000000004,
+        "below": 2.55
+      },
+      {
+        "text": "시동완료이벤트와파형시각을비교할수있게준",
+        "bbox": [
+          289.37,
+          523.5120000000001,
+          365.69,
+          526.9920000000001
+        ],
+        "size": 3.480000000000004,
+        "below": 2.38
+      },
+      {
+        "text": "정한다",
+        "bbox": [
+          430.13,
+          523.5120000000001,
+          440.57,
+          526.9920000000001
+        ],
+        "size": 3.480000000000004,
+        "below": 2.38
+      },
+      {
+        "text": ".",
+        "bbox": [
+          440.59,
+          523.686,
+          441.46696,
+          527.166
+        ],
+        "size": 3.480000000000004,
+        "below": 2.55
+      },
+      {
+        "text": "통과",
+        "bbox": [
+          786.82,
+          522.864,
+          793.3000000000001,
+          526.104
+        ],
+        "size": 3.239999999999995,
+        "below": 1.49
+      }
+    ],
+    "crop": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\boundary-review\\SSTR-025.png"
+  }
+]

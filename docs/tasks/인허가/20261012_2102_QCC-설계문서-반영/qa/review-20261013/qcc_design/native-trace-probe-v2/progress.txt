@@ -1,0 +1,33 @@
+2026-10-13T10:29:43.4501873+09:00 start hidden Word, save options
+2026-10-13T10:29:46.1739863+09:00 scratch one-character revision author preflight
+2026-10-13T10:29:46.4898958+09:00 baseline read-only open
+2026-10-13T10:29:48.4206224+09:00 baseline-history: native Content.WordOpenXML single call
+2026-10-13T10:29:51.6728282+09:00 baseline native AcceptAll
+2026-10-13T10:29:54.7716942+09:00 baseline-accepted: native Content.WordOpenXML single call
+2026-10-13T10:29:56.4286666+09:00 editable QA candidate open / bookmark ranges
+2026-10-13T10:30:00.3069194+09:00 tracked Delete 10/183
+2026-10-13T10:30:00.6054798+09:00 tracked Delete 20/183
+2026-10-13T10:30:00.8893996+09:00 tracked Delete 30/183
+2026-10-13T10:30:01.1688039+09:00 tracked Delete 40/183
+2026-10-13T10:30:01.4000462+09:00 tracked Delete 50/183
+2026-10-13T10:30:01.6350416+09:00 tracked Delete 60/183
+2026-10-13T10:30:01.9458631+09:00 tracked Delete 70/183
+2026-10-13T10:30:02.2918568+09:00 tracked Delete 80/183
+2026-10-13T10:30:02.5620969+09:00 tracked Delete 90/183
+2026-10-13T10:30:02.8106150+09:00 tracked Delete 100/183
+2026-10-13T10:30:03.0589521+09:00 tracked Delete 110/183
+2026-10-13T10:30:03.2714484+09:00 tracked Delete 120/183
+2026-10-13T10:30:03.5022802+09:00 tracked Delete 130/183
+2026-10-13T10:30:03.7379086+09:00 tracked Delete 140/183
+2026-10-13T10:30:03.9917225+09:00 tracked Delete 150/183
+2026-10-13T10:30:04.2918385+09:00 tracked Delete 160/183
+2026-10-13T10:30:04.5390278+09:00 tracked Delete 170/183
+2026-10-13T10:30:04.8158987+09:00 tracked Delete 180/183
+2026-10-13T10:30:04.9078641+09:00 native candidate Save
+2026-10-13T10:30:06.6028651+09:00 candidate-history: native Content.WordOpenXML single call
+2026-10-13T10:30:11.2696903+09:00 saved candidate stable / ready for accepted and selective-rejected snapshots
+2026-10-13T10:30:11.2719367+09:00 candidate read-only native AcceptAll
+2026-10-13T10:30:15.0408247+09:00 candidate-accepted: native Content.WordOpenXML single call
+2026-10-13T10:30:16.9565785+09:00 candidate native selective RejectAllRevisionsShown
+2026-10-13T10:30:22.7383889+09:00 candidate-new-rejected-history: native Content.WordOpenXML single call
+2026-10-13T10:30:26.2647378+09:00 FAIL Native selective rejection left new probe revisions

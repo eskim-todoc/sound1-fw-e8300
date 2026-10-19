@@ -1,0 +1,11 @@
+[
+  {
+    "page": 1,
+    "png": "docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\excel-native\\SUVC-18-20\\page-001.png",
+    "size": [
+      1684,
+      1191
+    ],
+    "text": "오실로스코프\r\nQCC 시험 도구/자료\r\n시험 입력/응답 준비\r\nUART RX/TX, Calibration 시험 표시. 필요 시 PMIC 출력 전압 측정\r\nQCC 담당자 기준서의 시험 조건을 반영했다. QCC SDK/PSTool/nRF Connect/CRA 앱, 실제 QCC 로그와 전바이트\r\n수집 도구를 확인한다. 실행 결과는 제공되지 않았다. [QCC 자료 입력] 실제 SDK·소스/도구·회로/프로\r\n토콜 버전 및수집자료.\r\n배열/공유 메모리 직접 입력, 가상 주변장치 응답/호출 기록. 시험 코드 준비 필요"
+  }
+]

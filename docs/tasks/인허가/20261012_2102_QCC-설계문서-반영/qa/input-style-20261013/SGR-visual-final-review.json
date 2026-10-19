@@ -1,0 +1,191 @@
+{
+  "schema": "SGR-full-native-final-visual-review-v1",
+  "checked_at": "2026-10-13T17:45:05.982819+09:00",
+  "candidate": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\SGR-fields.docx",
+  "sourceSHA256": "16D2E69CE1C73A482404A86DCF438CA270DFA99CFE244F3064FBB1285C48408B",
+  "source_unchanged_during_review": true,
+  "native_evidence": {
+    "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\native-after.json",
+    "sha256": "A630A4CD9768DEB7977BB4EBA817E3FD71D4224EF3847B040BDDE73FE32940B5",
+    "sourceSHA256": "16D2E69CE1C73A482404A86DCF438CA270DFA99CFE244F3064FBB1285C48408B",
+    "nativeAccepted": true,
+    "pages": 11,
+    "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\SGR-after.pdf",
+    "pdf_sha256": "2BA612BBF8AF80D15C0FFC31B48ACCE046B7C053FF45379C744A75C23C93477F"
+  },
+  "authored_evidence": {
+    "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\authored.json",
+    "sha256": "086A6E07A9ADF28CB92E1AB09D735D7075743E012D8712E59AC811B0FD76F9AC"
+  },
+  "prior_failure_record": {
+    "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\SGR-visual-review.json",
+    "sha256": "A14E8A2B6E7FA22BDBEC61E3DCFD8B790DDBD187EE80C32FD20AF1EF1274D71A",
+    "preserved": true,
+    "failure": "이전13쪽 후보의4쪽 빈페이지",
+    "recheck_result": "최종4/11은 서론 본문이며11쪽 전체에 머리글만 있는 빈 페이지 없음"
+  },
+  "scope": "실제 Word 수락보기 최종 SGR11쪽 전체 PNG를 모두 원본크기로 직접 열어 제목/번호굵기/들여쓰기/본문/표/목차/페이지경계/빨강강조 가독성을 재검사. 원문/후보/G/COM/기존실패기록은 수정하지 않았다. 문서 표시 검사이며 제품 실행/검증 통과나 정식 승인을 주장하지 않는다.",
+  "status": "PASS_FULL_NATIVE_VISUAL",
+  "full_page_count_viewed": 11,
+  "final_native_display_pass": true,
+  "pages": [
+    {
+      "page": 1,
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\views-final\\SGR\\page-001.png",
+      "sha256": "F4A08662248C20A21BBD75A5FFAA4C82842F3CD8A884602DC29BF17519754776",
+      "pixels": [
+        893,
+        1263
+      ],
+      "direct_original_size_viewed": true,
+      "view_detail": "original",
+      "verdict": "통과",
+      "finding": "표지/문서번호/모델명/작성 검토 승인 표가 페이지 안에 표시되고 머리글1/11이 맞는다."
+    },
+    {
+      "page": 2,
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\views-final\\SGR\\page-002.png",
+      "sha256": "EFA963959CBC571695E7FDD71C73094B414C4FBD2D7228D4089D4E866FC63302",
+      "pixels": [
+        893,
+        1263
+      ],
+      "direct_original_size_viewed": true,
+      "view_detail": "original",
+      "verdict": "통과",
+      "finding": "목차 계층/점선/쪽 번호가 표시된다. 서론4,기기 설명5,분류7,등급절차8,심각도결론/4장/5장10,마지막 환경 절11은 실제 본문과 맞는다."
+    },
+    {
+      "page": 3,
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\views-final\\SGR\\page-003.png",
+      "sha256": "9E47BF98DB6DF79EBD60E3AE875E91F080EE5FFE89B269168593573014C27D5D",
+      "pixels": [
+        893,
+        1263
+      ],
+      "direct_original_size_viewed": true,
+      "view_detail": "original",
+      "verdict": "통과",
+      "finding": "목차 마지막5.3.3 항목과 개정이력 표가 전체 표시된다. 표 테두리나 셀 내용 잘림은 없고, 다음4쪽에서 서론이 정상 시작한다."
+    },
+    {
+      "page": 4,
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\views-final\\SGR\\page-004.png",
+      "sha256": "CEF519298126A412237DF7768B181BA6AB7262870FE8930D742F71CEA549D4E6",
+      "pixels": [
+        893,
+        1263
+      ],
+      "direct_original_size_viewed": true,
+      "view_detail": "original",
+      "verdict": "통과",
+      "finding": "서론1장과1.1~1.5.2 제목/번호가 굵게 표시되고 계층 들여쓰기가 일관된다. 본문/빨간색 굵게 적용범위/프로젝트표/표준표 첫행이 읽힌다. 이전 실패의 머리글만 있는 빈 페이지가 해소됐다."
+    },
+    {
+      "page": 5,
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\views-final\\SGR\\page-005.png",
+      "sha256": "1A6162896AE14B07B70789F7441436D262BB455BCA78267AFA43AEEDF67361EB",
+      "pixels": [
+        893,
+        1263
+      ],
+      "direct_original_size_viewed": true,
+      "view_detail": "original",
+      "verdict": "통과",
+      "finding": "표준표의 반복 머리글과ISO14971 이어짐,2장/2.1/2.2와 본문/그림1/캡션이 페이지 안에 표시된다."
+    },
+    {
+      "page": 6,
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\views-final\\SGR\\page-006.png",
+      "sha256": "61EA2FED2680951B074F3E5C159A56CDC6DB7FA5951950903783EBDF2F699330",
+      "pixels": [
+        893,
+        1263
+      ],
+      "direct_original_size_viewed": true,
+      "view_detail": "original",
+      "verdict": "통과",
+      "finding": "그림2와 캡션/장치 설명 본문이 표시된다. 마지막 내부장치 소제목 뒤의 본문은7쪽으로 정상 이어진다."
+    },
+    {
+      "page": 7,
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\views-final\\SGR\\page-007.png",
+      "sha256": "EEB6C6FCDB4B5A83173DAA622598F5CFADD16C0B63F9E6F0DA27DD16F9B2924F",
+      "pixels": [
+        893,
+        1263
+      ],
+      "direct_original_size_viewed": true,
+      "view_detail": "original",
+      "verdict": "통과",
+      "finding": "내부장치 설명이 이어지고3장/3.1 및 분류표가 읽힌다. Class A 영문은8쪽에 이어지며 실제 glyph 잘림은 없다."
+    },
+    {
+      "page": 8,
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\views-final\\SGR\\page-008.png",
+      "sha256": "8F2D2F72B772C1B107012201660E0A18AA2296303F926E4887C5950F186789B1",
+      "pixels": [
+        893,
+        1263
+      ],
+      "direct_original_size_viewed": true,
+      "view_detail": "original",
+      "verdict": "통과",
+      "finding": "분류표 Class A 이어짐/반복 머리글과3.2 절/질문 표가 표시된다.4.2 영문은9쪽으로 이어진다."
+    },
+    {
+      "page": 9,
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\views-final\\SGR\\page-009.png",
+      "sha256": "8B7666886D1DF7913BF83827B130BE8CACA4BC61F3141F20602FC915CB760860",
+      "pixels": [
+        893,
+        1263
+      ],
+      "direct_original_size_viewed": true,
+      "view_detail": "original",
+      "verdict": "통과",
+      "finding": "질문표의 반복 머리글/4.2 영문 이어짐/남은Class C와Class B 문장이 셀 안에 표시된다. Class B 마지막 질문의 영문은10쪽에 이어진다."
+    },
+    {
+      "page": 10,
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\views-final\\SGR\\page-010.png",
+      "sha256": "2A334DEC846AFD7E19B6D303C5C21BE670ED0E4C7258A30E569F9444000C0008",
+      "pixels": [
+        893,
+        1263
+      ],
+      "direct_original_size_viewed": true,
+      "view_detail": "original",
+      "verdict": "통과",
+      "finding": "질문표 마지막 이어짐/3.3/4/5장/5.1/5.1.1 제목과 번호/본문이 읽힌다. 빨간색 굵게 QCC 역할 문단은11쪽에 정상 이어지고 경계에서 glyph 잘림은 없다."
+    },
+    {
+      "page": 11,
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\views-final\\SGR\\page-011.png",
+      "sha256": "C9C73435BF2BA691961CB1C078DC7AC5D3A222E84AF3536BF9096C5B980333D3",
+      "pixels": [
+        893,
+        1263
+      ],
+      "direct_original_size_viewed": true,
+      "view_detail": "original",
+      "verdict": "통과",
+      "finding": "앞쪽 QCC 문단의 남은 문장/BLE 보호 문단,5.1.2/5.2/5.3 및5.3.1~5.3.3이 모두 표시된다. 플랫폼/라이브러리 실제내용의 빨간색 굵게 문장이 읽히고 미확정 설명은 일반 본문으로 표시된다."
+    }
+  ],
+  "checks": {
+    "page4_intro_normal": true,
+    "blank_pages": [],
+    "heading_number_bold_consistent": true,
+    "heading_body_indentation_consistent": true,
+    "tables_diagrams_and_captions_fit": true,
+    "toc_numbers_match_visible_body": true,
+    "red_actual_content_readable": true,
+    "actual_glyph_clipping_found": false,
+    "normal_multi_page_table_and_paragraph_continuations_preserved": true
+  },
+  "failures": [],
+  "new_writes": [
+    "SGR-visual-final-review.json"
+  ]
+}

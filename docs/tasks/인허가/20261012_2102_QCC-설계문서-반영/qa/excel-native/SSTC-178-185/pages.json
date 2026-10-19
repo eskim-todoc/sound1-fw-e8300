@@ -1,0 +1,20 @@
+[
+  {
+    "page": 1,
+    "png": "docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\excel-native\\SSTC-178-185\\page-001.png",
+    "size": [
+      1684,
+      1191
+    ],
+    "text": "독립 공통\r\nTEST ID 설명 방법 시험 준비 및 초기 조건 가정 및 제한 조건 시험 절차 통과 기준\r\n소프트웨어 요구사항 사양 ID\r\n조건 [1] SW-FW-SYS-Test-ID-35 결과 확인.\r\n요구사항 내용:\r\nSW-FW-RID-35: 시스템 상태 확인\r\n시스템 상태 응답이 확인되고 해당 시험이 통과해야 한다.\r\n조건 [2] SW-FW-SYS-Test-ID-36 결과 확인.\r\n요구사항 내용:\r\nSW-FW-RID-36: 특정 자극 출력\r\n오실로스코프의 지정 자극 출력이 확인되고 해당 시험이 통과해야 한다.\r\n조건 [3] SW-FW-SYS-Test-ID-37 결과 확인.\r\n요구사항 내용:\r\nSW-FW-RID-37: 실시간 자극 출력 진행\r\n오실로스코프의 실시간 자극 출력이 확인되고 해당 시험이 통과해야 한다.\r\n조건 [4] SW-FW-SYS-Test-ID-38 결과 확인.\r\n요구사항 내용:\r\nSW-FW-RID-38: 시스템 상태\r\n시스템 상태 전송 응답이 확인되고 해당 시험이 통과해야 한다.\r\n조건 [5] SW-FW-SYS-Test-ID-39 결과 확인.\r\n요구사항 내용:\r\nSW-FW-RID-39: 특정 자극 출력 결과\r\n지정 자극 완료 응답이 확인되고 해당 시험이 통과해야 한다.\r\n조건 [6] SW-FW-SYS-Test-ID-40 결과 확인.\r\n요구사항 내용:\r\nSW-FW-RID-40: 실시간 자극 진행 상태\r\n실시간 자극 상태 응답이 확인되고 해당 시험이 통과해야 한다.\r\n조건 [1] Bluetooth Classic 스트리밍을 시작하고 지그에 연결된 내부기의 전극\r\n을 PBS 용액에 담가 출력을 확인한다.\r\n전송한 소리에 따른 자극 출력이 있어야 한다.\r\n실제 QCC I2S24bit/16kHz와 E8300 수신을 확인한다. QCC 시험스피커 출력/무\r\n음·I2S활성 로그는 최종 전극 자극 출력의 증거로 대체하지 않는다.\r\nSW-FW-SYS-Test-ID-45\r\n매핑 프로그램이 실행되는 기기와 블루투스를 사용하여 데이터 통\r\n신이 가능해야 한다.\r\nA SW-FW-RID-45\r\nSYS-RID-SP-FW-14 매핑 제어 시험 SW-FW-SYS-Test-ID-35~SW-FW-SYS￾Test-ID-40의 결과와 통과 여부를 확인한다.\r\n확인할 기능: 매핑 앱의 내부기 연결/배터리 잔량/오류 조\r\n회, 매핑 앱의 지정 자극 출력, 매핑 앱의 실시간 자극과 음\r\n원 반응 확인, 매핑 앱으로 내부기 연결/배터리 잔량/오류\r\n전송, 매핑 지정 자극의 완료 응답, 매핑 실시간 자극의 시\r\n작/정지 응답.\r\nSW-FW-SYS-Test-ID-69\r\nBluetooth Classic 스트리밍 자극 출력 T/D\r\nSW-FW-RID-69\r\nSYS-RID-SP-FW-15\r\n[QCC/E8300 자료 입력] Classic\r\n연결의 프로파일/코덱 및QCC\r\nI2S24bit16kHz 프레임/클록 실제\r\n수집 자료.\r\n내부기를 출력 측정용 지그에 연결하고 전극을 PBS 용액\r\n에 담근다.\r\nBluetooth Classic 스트리밍을 시작해 오실로스코프로 자\r\n극 출력을 확인한다.\r\n내부기 테스트 지그 사용 시 32채널 전극 핀 헤더에서 측\r\n정한다.\r\nClassic 수신→QCC I2S24bit16kHz→E8300 수신→자극 지\r\n그의 각 실제 경계를 별도로 기록한다."
+  },
+  {
+    "page": 2,
+    "png": "docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\excel-native\\SSTC-178-185\\page-002.png",
+    "size": [
+      1684,
+      1191
+    ],
+    "text": "독립 공통\r\nTEST ID 설명 방법 시험 준비 및 초기 조건 가정 및 제한 조건 시험 절차 통과 기준\r\n소프트웨어 요구사항 사양 ID\r\n조건 [2] 일반 Classic 스트림과 QCC 0x36 [연결=1, 종류=2]를 전달한다.\r\n크래들 플래그=0(일반 스트리밍)에서 입력 소리에 따른 자극이 있어야 한다.\r\n보조 확인: E8300 상태 응답 ACK=[0x36,1].\r\nSW-FW-SYS-Test-ID-69\r\nBluetooth Classic 스트리밍 자극 출력 T/D\r\nSW-FW-RID-69\r\nSYS-RID-SP-FW-15\r\n[QCC/E8300 자료 입력] Classic\r\n연결의 프로파일/코덱 및QCC\r\nI2S24bit16kHz 프레임/클록 실제\r\n수집 자료.\r\n내부기를 출력 측정용 지그에 연결하고 전극을 PBS 용액\r\n에 담근다.\r\nBluetooth Classic 스트리밍을 시작해 오실로스코프로 자\r\n극 출력을 확인한다.\r\n내부기 테스트 지그 사용 시 32채널 전극 핀 헤더에서 측\r\n정한다.\r\nClassic 수신→QCC I2S24bit16kHz→E8300 수신→자극 지\r\n그의 각 실제 경계를 별도로 기록한다."
+  }
+]

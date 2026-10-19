@@ -1,0 +1,18 @@
+[
+  {
+    "stem": "candidate",
+    "revisions_before": 2139,
+    "pages": 171,
+    "hash": "E7ABE5924ACBF3DA17EF2019A6FFCBF627E14C00F3E875732C25BA6DAE903802",
+    "source_unchanged": true,
+    "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sddd-qcc-cleanup-20261016\\candidate.pdf"
+  },
+  {
+    "stem": "reject-new",
+    "revisions_before": 1800,
+    "pages": 171,
+    "hash": "6AD74D0B5AF98E32A3FB02EEA648BE1632CF331D3F499FD47A339EB39CE0320E",
+    "source_unchanged": true,
+    "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sddd-qcc-cleanup-20261016\\reject-new.pdf"
+  }
+]

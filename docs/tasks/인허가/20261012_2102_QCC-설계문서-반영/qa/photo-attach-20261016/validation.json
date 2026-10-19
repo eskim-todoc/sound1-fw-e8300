@@ -1,0 +1,875 @@
+{
+  "candidateSHA256": "EB8699A7A95382F9D9A372CA425F6228EC5651A18AE7543A651B2FF1D80EB713",
+  "errors": [],
+  "checks": {
+    "testOrder": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      69,
+      70,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      81,
+      54,
+      71,
+      72,
+      73,
+      74,
+      75,
+      76,
+      77,
+      78,
+      79,
+      80,
+      55,
+      56,
+      57,
+      58,
+      59,
+      60,
+      61,
+      62,
+      63,
+      64,
+      65,
+      66,
+      67,
+      68,
+      82,
+      83
+    ],
+    "preservedCells": 2623,
+    "changedCells": 237,
+    "greenCells": 183,
+    "deletedRows": [
+      63,
+      67,
+      115,
+      120,
+      149,
+      150,
+      153,
+      154,
+      156,
+      158,
+      160,
+      161,
+      165,
+      198,
+      208,
+      209,
+      216,
+      218,
+      226,
+      228,
+      229,
+      236,
+      238,
+      241,
+      242,
+      246
+    ],
+    "photos": [
+      {
+        "name": "SW-FW-SYS-Test-ID -- 1 -- 검증 -- 1.jpeg",
+        "cell": "K34",
+        "heightCm": 8,
+        "sha256": "93990101DEE34E8B252C38B1309820E88C24DB27D5794F45C00946B5D224A3C8"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 2 -- 검증 -- 1.jpeg",
+        "cell": "K35",
+        "heightCm": 8,
+        "sha256": "831D3A7B1E7BCFAC3F62A7CF733DF6776547411C8F90FECA76FB8A37DFE4CBC9"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 2 -- 검증 -- 2.jpeg",
+        "cell": "K36",
+        "heightCm": 8,
+        "sha256": "278C9830AF81D47882FBD014161CA57AB1E964A1BB890D96AFC74F8389940B34"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 2 -- 검증 -- 3 -- 세부 1.jpeg",
+        "cell": "K37",
+        "heightCm": 8,
+        "sha256": "4101DD6933354C333350A121B38C8A621F66060EC6E1D3CD98AB76B4773E7110"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 2 -- 검증 -- 3 -- 세부 2.jpeg",
+        "cell": "K38",
+        "heightCm": 8,
+        "sha256": "5FD6F4114032DAD6CB52ABCE6A0D663E5E253510CB665BBEDC81C83459810FDF"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 3 -- 검증 -- 1.jpeg",
+        "cell": "K39",
+        "heightCm": 8,
+        "sha256": "54155F54984BC94028B71C3EA1165A98D9F099E1674D406411D82F3AA726B80E"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 4 -- 검증 -- 1.jpeg",
+        "cell": "K40",
+        "heightCm": 8,
+        "sha256": "89ACA49C601A3948701613BEECBF6F8876EAC6BEF767463E78C2E646E31EB8DC"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 4 -- 검증 -- 2.jpeg",
+        "cell": "K41",
+        "heightCm": 8,
+        "sha256": "FC2EFCB755B67C708B6D7251837D6BF9461C84E2BDA325A075B69B7A4314288F"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 5 -- 검증 -- 1 -- 세부 1.jpeg",
+        "cell": "K42",
+        "heightCm": 8,
+        "sha256": "6E05EAF89EB41B5EEFA9D92B4485D6020F46519C6DEBA73B3156C23BC55E57C0"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 5 -- 검증 -- 1 -- 세부 2.jpeg",
+        "cell": "K43",
+        "heightCm": 8,
+        "sha256": "C5F76A11F8F413BF8054EBBEBAF832B715224068BCC4EBC40D05EC71C772A87D"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 5 -- 검증 -- 2.jpeg",
+        "cell": "K44",
+        "heightCm": 8,
+        "sha256": "9EC72E5C130E01F172B8FAB0A297A836E0E7A0F2DAA79CB3D4FA3B41FE1DBA67"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 5 -- 검증 -- 3.jpeg",
+        "cell": "K45",
+        "heightCm": 8,
+        "sha256": "AC4825FD4C6B6714E7CF8C0E50DAAD594DE1013B500B400B393ABF791A221189"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 6 -- 검증 -- 1 -- 세부 1.jpeg",
+        "cell": "K46",
+        "heightCm": 8,
+        "sha256": "C6BAFC737C4E9554BB3ECAD73B3732EF8DD9CD05F855E35D06B07FE1F0B5B729"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 6 -- 검증 -- 1 -- 세부 2.jpeg",
+        "cell": "K47",
+        "heightCm": 8,
+        "sha256": "1B1299021D1B67ECC6FFBCD43216423303139AAD871DF562A949BE44FDB4F9AF"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 6 -- 검증 -- 2.jpeg",
+        "cell": "K48",
+        "heightCm": 8,
+        "sha256": "1A62396AB89351004E0488A2249199C8397948118B152E52B9FEE5996FA4AE17"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 6 -- 검증 -- 3.jpeg",
+        "cell": "K49",
+        "heightCm": 8,
+        "sha256": "3C0A2B2F0BA5645422588B9882CB6FDE194949297FD04186CD3E67F76AC18ECA"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 6 -- 검증 -- 4.jpeg",
+        "cell": "K50",
+        "heightCm": 8,
+        "sha256": "9048911379A65210FE4CBC9F07791E8822771BFF94F5E15F39360E22E3210A84"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 7 -- 검증 -- 1 -- 세부 1.jpeg",
+        "cell": "K51",
+        "heightCm": 8,
+        "sha256": "3F0B4BF3C8B3646CD8F1C66D388688A312CD37EE23E3DDD9778C5A3A6F8AD4F1"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 7 -- 검증 -- 1 -- 세부 2.jpeg",
+        "cell": "K52",
+        "heightCm": 8,
+        "sha256": "753F954D5A00608E3CA6E21BB42430D70C7A3272510676F59162E3F381A2DD38"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 7 -- 검증 -- 2.jpeg",
+        "cell": "K53",
+        "heightCm": 8,
+        "sha256": "649E5EB0B5310F4C44B2DD8D5E4C982BBD1DBE10D27D843D7C4555515DA4B2C4"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 8 -- 검증 -- 1.jpeg",
+        "cell": "K54",
+        "heightCm": 8,
+        "sha256": "FAA06065825BF363850DAABFEC5E6A282943DDC6E8DBB8D33A28C564BC750C6A"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 8 -- 검증 -- 2.jpeg",
+        "cell": "K55",
+        "heightCm": 8,
+        "sha256": "E4F745AC6FCA173E1C7DCA798108B3FC1731D9204CAD6E483354AE717C0A4A10"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 8 -- 검증 -- 3.jpeg",
+        "cell": "K56",
+        "heightCm": 8,
+        "sha256": "333302DEBF837E85741135A008F1704B391B13EAEB4F13D0064D562B8E2B3D8B"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 10 -- 검증 -- 1 -- 세부 1.jpeg",
+        "cell": "K58",
+        "heightCm": 8,
+        "sha256": "1589E29DA51EF98877DE3507B626AE495D86DE9B0E41F038B671B096C08BC1B6"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 10 -- 검증 -- 1 -- 세부 2.jpeg",
+        "cell": "K59",
+        "heightCm": 8,
+        "sha256": "FB2259CB3E8A2B0D7C1F85BE1C78BAD039CD331B78BA739FDB2ECD5CD71DFA55"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 10 -- 검증 -- 1 -- 세부 3.jpeg",
+        "cell": "K60",
+        "heightCm": 8,
+        "sha256": "9A9F934587BAD7EE1B0C357AE59CFF3C2876900580244D84B7B05D05C511BBEC"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 10 -- 검증 -- 1 -- 세부 4.jpeg",
+        "cell": "K61",
+        "heightCm": 8,
+        "sha256": "71411CA2947150580332AD4F096187361AA5EC645BE0DC3F0C3F0C67DEC0BD63"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 10 -- 검증 -- 2-- 세부 1.jpeg",
+        "cell": "K63",
+        "heightCm": 8,
+        "sha256": "25099489AE48241E15E669B717A6271CA0195A1D857B2250D17369ABC64E236D"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 10 -- 검증 -- 2-- 세부 2.jpeg",
+        "cell": "K64",
+        "heightCm": 8,
+        "sha256": "D9BB7F0628526E89BBB572ADD3278CBD4A84C4CF4C2977F6021813FA201CDD5F"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 10 -- 검증 -- 2-- 세부 3.jpeg",
+        "cell": "K65",
+        "heightCm": 8,
+        "sha256": "0A78D25D4786E65CAD478E49B83AF3BA97232BF91250FC3E0244169F9FF2F9AC"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 10 -- 검증 -- 2-- 세부 4.jpeg",
+        "cell": "K66",
+        "heightCm": 8,
+        "sha256": "81CD6C0A696A79518954598A50B7B2AD4D0D26057720441841D9B161A88CBFE5"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 10 -- 검증 -- 3-- 세부 1.jpeg",
+        "cell": "K67",
+        "heightCm": 8,
+        "sha256": "8B07654C98673C3FFC6C1904EFB3374DC00DC2B1A6E6E169ED1DC15283ED99EF"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 10 -- 검증 -- 3-- 세부 2.jpeg",
+        "cell": "K68",
+        "heightCm": 8,
+        "sha256": "CF9B205B35815E43FCD759B39986FB13D98E02EC60BBA00105C2D00A38C722E5"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 10 -- 검증 -- 3-- 세부 3.jpeg",
+        "cell": "K69",
+        "heightCm": 8,
+        "sha256": "CD45CC451847BF0FF557E6212501EEA5C596E376D4AB59ACB2F4E145050D9437"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 10 -- 검증 -- 3-- 세부 4.jpeg",
+        "cell": "K70",
+        "heightCm": 8,
+        "sha256": "DE944F0CE18CD468A2C6B2B9F4201BD023FB7691C6FA19ED02B39CB4D8983D63"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 10 -- 검증 -- 4-- 세부 1.jpeg",
+        "cell": "K71",
+        "heightCm": 8,
+        "sha256": "04670404653FFD33AA1DF42F9042C4FF855390AC0BCC2C0099877E59033AE084"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 10 -- 검증 -- 4-- 세부 2.jpeg",
+        "cell": "K72",
+        "heightCm": 8,
+        "sha256": "1287E3E58F4297BC7201808444C5EC9C9E123328839AFF374C40FD48BFDF85AE"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 10 -- 검증 -- 4-- 세부 3.jpeg",
+        "cell": "K73",
+        "heightCm": 8,
+        "sha256": "42B85E6DD87C8D26AA38E174B793D16AC0476C03803E0C270BDFC0EE62C1DB5B"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 10 -- 검증 -- 4-- 세부 4.jpeg",
+        "cell": "K74",
+        "heightCm": 8,
+        "sha256": "D3A93E72092D17601782001E861071AC9D623E4F026980BB16362F91F6804844"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 10 -- 검증 -- 5-- 세부 1.jpeg",
+        "cell": "K75",
+        "heightCm": 8,
+        "sha256": "EC07C54DBEB2715BD95B843D758E1E9525511C9F44C9F42935DBA1A6F85EA314"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 10 -- 검증 -- 5-- 세부 2.jpeg",
+        "cell": "K76",
+        "heightCm": 8,
+        "sha256": "8F2F275BA85CAF29512A58C66A0912A0DE5174242C6BDB613C6F6B72EF2E466D"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 10 -- 검증 -- 5-- 세부 3.jpeg",
+        "cell": "K77",
+        "heightCm": 8,
+        "sha256": "9AA2E40089C82ABF5CEAC8382799A3C66A448EF6D698B8BFB0EC90980E51935B"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 10 -- 검증 -- 5-- 세부 4.jpeg",
+        "cell": "K78",
+        "heightCm": 8,
+        "sha256": "01A5E5B90D2A792EEE652AF9326F70972B4CA61834D065B9217747440A7276F5"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 10 -- 검증 -- 6-- 세부 1.jpeg",
+        "cell": "K79",
+        "heightCm": 8,
+        "sha256": "575ED215FD594AC4873FF72895B200D0BC27C5942CEBFDB7129A2390C536E2CD"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 10 -- 검증 -- 6-- 세부 2.jpeg",
+        "cell": "K80",
+        "heightCm": 8,
+        "sha256": "CD33AF43C27A32A75DD06EEC73D54C8CCDE9CA8A660F6A1C93CEC3F0CD304F4A"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 10 -- 검증 -- 6-- 세부 3.jpeg",
+        "cell": "K81",
+        "heightCm": 8,
+        "sha256": "CAB403DC848020C3572C06E5C50440131DF9F39DE3F749721D46B7B908872994"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 10 -- 검증 -- 6-- 세부 4.jpeg",
+        "cell": "K82",
+        "heightCm": 8,
+        "sha256": "70DF1DE34279BBAC750DF68459E96BF8A336687DCFA606957759FC4D7DDE4B25"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 10 -- 검증 -- 7-- 세부 1.jpeg",
+        "cell": "K83",
+        "heightCm": 8,
+        "sha256": "34DE3405A8F976685469587A3289F7AEC20D2018607ECCE93EA0FECB8EE3B6E3"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 10 -- 검증 -- 7-- 세부 2.jpeg",
+        "cell": "K84",
+        "heightCm": 8,
+        "sha256": "7F609DB17E8318DBFB2A656D73E9C10F9D711CD009FFB9529688625BF2A7BC5F"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 10 -- 검증 -- 7-- 세부 3.jpeg",
+        "cell": "K85",
+        "heightCm": 8,
+        "sha256": "8199CB6D147C551943AD0004BFD8F3535F4A976AA8562891FA374908B3F91752"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 10 -- 검증 -- 7-- 세부 4.jpeg",
+        "cell": "K86",
+        "heightCm": 8,
+        "sha256": "86AFCFFDAAD8D87F79910BE3D921B73C4F3012B12E9F0D27F555A8F2EB2C8221"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 10 -- 검증 -- 8-- 세부 1.jpeg",
+        "cell": "K87",
+        "heightCm": 8,
+        "sha256": "AC26085D9984959DA7E35ACE27841B1716C38FA9D71521FEFD41CDAE4F361692"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 10 -- 검증 -- 8-- 세부 2.jpeg",
+        "cell": "K88",
+        "heightCm": 8,
+        "sha256": "C501CF47485DF4A526C00A034B31EF56CF66D7ADD848DDFEE9C8F6C3D7E31A12"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 10 -- 검증 -- 8-- 세부 3.jpeg",
+        "cell": "K89",
+        "heightCm": 8,
+        "sha256": "9F299DEFF9422581FFCCED82AC4E212ACBAD347AB0E5F2EACF337874127E8893"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 10 -- 검증 -- 8-- 세부 4.jpeg",
+        "cell": "K90",
+        "heightCm": 8,
+        "sha256": "A855B79FA26B92C4D08C3790CEE6174A06F393371CFBD3F026835C96CF966D7A"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 11 -- 검증 -- 1.jpeg",
+        "cell": "K91",
+        "heightCm": 8,
+        "sha256": "3232AD0993A34853AE9E4BC097F70CAEA796DBDEBB669C87AA40DA0DA21B6599"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 11 -- 검증 -- 2.jpeg",
+        "cell": "K92",
+        "heightCm": 8,
+        "sha256": "7FEA025961AA7CEA33B78A111E2608CAE22D603CF59F4955E722277FCF1DE9AC"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 11 -- 검증 -- 3.jpeg",
+        "cell": "K93",
+        "heightCm": 8,
+        "sha256": "C1D38B9EEB9543574FC6A9C88705ECADE5B4C7F255ED6EC99F280E57BB281A8C"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 12 -- 검증 -- 1.jpeg",
+        "cell": "K94",
+        "heightCm": 8,
+        "sha256": "29EECF6B0D6612DC83C2C49C3141A60072F96FA819677B34A2805953E7B98A30"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 12 -- 검증 -- 2.jpeg",
+        "cell": "K95",
+        "heightCm": 8,
+        "sha256": "28B9F3F7BF29F1FECAED78B6449502B0C54270549CC5B3836D3276FE0FDCA27F"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 13 -- 검증 -- 1.jpeg",
+        "cell": "K96",
+        "heightCm": 8,
+        "sha256": "E3FB7AB4DF8F9303913063EAB9A61D52FE3006C0E2A151796CAF484C0380518D"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 13 -- 검증 -- 2.jpeg",
+        "cell": "K97",
+        "heightCm": 8,
+        "sha256": "39AC75E575D2C64BA44BAA30F2B520319F4973E372CDF6D69AB0081569BED49F"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 13 -- 검증 -- 3.jpeg",
+        "cell": "K98",
+        "heightCm": 8,
+        "sha256": "037FE4CA225A76F62479A93A0CEDFD48282C843E3DC5E4A6B800C090A4E479FE"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 13 -- 검증 -- 4.jpeg",
+        "cell": "K99",
+        "heightCm": 8,
+        "sha256": "5442CEA6F2547DF92050A428CAA78E69D5E007D762F12F6EA8281B005B68E65C"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 14 -- 검증 -- 1.jpeg",
+        "cell": "K100",
+        "heightCm": 8,
+        "sha256": "0F6E91FF456BDA0FC3069BFFDA50D53CE2711D61EAC9E06D5A3FD582288613F8"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 14 -- 검증 -- 2.jpeg",
+        "cell": "K101",
+        "heightCm": 8,
+        "sha256": "257F6F7E8F897E61C46919CA3B6E961FE4E998E59EFC5123AA321B5CDB33DB9D"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 14 -- 검증 -- 3.jpeg",
+        "cell": "K102",
+        "heightCm": 8,
+        "sha256": "C4D0982A165DDC82E8E8DCD4C424664E876C0926DAF295100037D41F3DF3772B"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 14 -- 검증 -- 4.jpeg",
+        "cell": "K103",
+        "heightCm": 8,
+        "sha256": "093E5FD7B8F9F0DDB6EB69BEE885CA835C8C7F9929C894526B5018F9A93FB656"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 15 -- 검증 -- 4.jpeg",
+        "cell": "K107",
+        "heightCm": 8,
+        "sha256": "714FAE096F4249D038BF57DBCAB47E90FC7F70A416A7D08A9DF12ED3B766C342"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 17 -- 검증 -- 1.jpeg",
+        "cell": "K110",
+        "heightCm": 8,
+        "sha256": "0A17F74A05FD923D27DF742B80A6B9FF8F41EB0666ACBD92054A76E0146AD1CE"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 17 -- 검증 -- 2.jpeg",
+        "cell": "K111",
+        "heightCm": 8,
+        "sha256": "6969DB807C779EDD60FDCD528E287B6249EDA4A44A80F1A2FCEF87F6D2733B4A"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 23 -- 검증 -- 1.jpeg",
+        "cell": "K140",
+        "heightCm": 8,
+        "sha256": "2BD64F24FAA2CC75226B111D8607C3BFDCA2FCEE4ADD579576396FCA9550744F"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 25 -- 검증 -- 1 -- 세부 1.jpeg",
+        "cell": "K145",
+        "heightCm": 8,
+        "sha256": "7519C75DC31D18ED016BABF54E5888021E2B978576C5B621BBB58E73ED70D124"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 25 -- 검증 -- 1 -- 세부 2.jpeg",
+        "cell": "K146",
+        "heightCm": 8,
+        "sha256": "3ED7D09670351606D6048141C130AF60846387308F5A6F15BC82A8E61E3536A0"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 25 -- 검증 -- 2 -- 세부 1.jpeg",
+        "cell": "K147",
+        "heightCm": 8,
+        "sha256": "BF11CBE484D9FF2F7BC0F17EE89D749763F47026C49581A09B9DAA68029C40F2"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 25 -- 검증 -- 2 -- 세부 2.jpeg",
+        "cell": "K148",
+        "heightCm": 8,
+        "sha256": "A4B93B67C722C438AFFA6DB1A9523485BE7347F50D6F196BBBFC02316A6C2D18"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 25 -- 검증 -- 3 -- 세부 1.jpeg",
+        "cell": "K149",
+        "heightCm": 8,
+        "sha256": "D82343A02C1BB84FDDD142E68E0CDBF1DA9B0EEDB3B95799A05B2F4546FF2424"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 25 -- 검증 -- 3 -- 세부 2.jpeg",
+        "cell": "K150",
+        "heightCm": 8,
+        "sha256": "D760EF96162CEBD9D735DAA41A876B6FC10C45C09F557577130F2CB71AF587C2"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 26 -- 검증 -- 1 -- 세부 1.jpeg",
+        "cell": "K151",
+        "heightCm": 8,
+        "sha256": "B418DA3304442F64E3AEE6900ED858FA81F6AFECBF90C436540E44156FDEC650"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 26 -- 검증 -- 1 -- 세부 2.jpeg",
+        "cell": "K152",
+        "heightCm": 8,
+        "sha256": "216BE64415E15E502263B6720EC48B989D59E402B154F35574CC65C8A263F0CA"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 26 -- 검증 -- 2.jpeg",
+        "cell": "K153",
+        "heightCm": 8,
+        "sha256": "4993CF84C27DB18423BFE74A19F7973FE2C3266117DDF9486E72B0C6746E74F8"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 26 -- 검증 -- 3.jpeg",
+        "cell": "K154",
+        "heightCm": 8,
+        "sha256": "38C8F68C3487CBC0D82498453100549460F74885FAEF097F89A88622479E6C6B"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 26 -- 검증 -- 4.jpeg",
+        "cell": "K155",
+        "heightCm": 8,
+        "sha256": "0B2523192F14C43BC3478D267AF89809D42BBD2A53310C633712D497BAD10864"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 27 -- 검증 -- 1.jpeg",
+        "cell": "K156",
+        "heightCm": 8,
+        "sha256": "EAB9E2E43274933A72535EA2A418078971B29335DD7A2673258B27822260AECB"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 27 -- 검증 -- 2.jpeg",
+        "cell": "K157",
+        "heightCm": 8,
+        "sha256": "1D58F9A17A2C9958C004087B29215C819F55F7EBADE58C457B51C75B534F4E53"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 29 -- 검증 -- 1.jpeg",
+        "cell": "K160",
+        "heightCm": 8,
+        "sha256": "B4F25E1B0FDE077DCDBF1425CC46E8B1548763EDABBBCA52EFEA55AAA0A90AC1"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 29 -- 검증 -- 2.jpeg",
+        "cell": "K161",
+        "heightCm": 8,
+        "sha256": "AC0ADF09B3443B8C161623E40C431AFDE4490DF15AAB0C09C8F9EF58C1D710CC"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 30 -- 검증 -- 1.jpeg",
+        "cell": "K162",
+        "heightCm": 8,
+        "sha256": "3218CBDF76CA19421684C0E53834246BC245ECCF220846DBFB67F93FF71E4A1F"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 30 -- 검증 -- 2.jpeg",
+        "cell": "K163",
+        "heightCm": 8,
+        "sha256": "62FC7BC72AC5918A1FD8CC850F52A293A0CEC279FAC1D1BA8DD4C60CB36088E5"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 30 -- 검증 -- 3.jpeg",
+        "cell": "K164",
+        "heightCm": 8,
+        "sha256": "C6B346D977D4E6DBFD5FDC9428F2E040B5EEC86F9A2917252097907C7B93CDA3"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 30 -- 검증 -- 4.jpeg",
+        "cell": "K165",
+        "heightCm": 8,
+        "sha256": "D014838302E3938314022A3E97D0F33CBB9E5802179BB85FA6B9F908294D03C1"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 31 -- 검증 -- 1.jpeg",
+        "cell": "K166",
+        "heightCm": 8,
+        "sha256": "E5D977D42E4E3918B25D6BE854CF4F2B54027900491916362EABB5FC42EF6D30"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 31 -- 검증 -- 2.jpeg",
+        "cell": "K167",
+        "heightCm": 8,
+        "sha256": "F83F99B7B5F0BF0BAE83DB22F7B2237C46ECBE6074987B89E4824643E3695FDE"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 31 -- 검증 -- 3.jpeg",
+        "cell": "K168",
+        "heightCm": 8,
+        "sha256": "06805CAF07746CABEA8305E077AC1F04E11778A82D0B258A6D4E229913F5A011"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 32 -- 검증 -- 1.jpeg",
+        "cell": "K169",
+        "heightCm": 8,
+        "sha256": "0686FFE47F616ADC00E0320759CE250CB4C299550088B60921B63EA19D425917"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 32 -- 검증 -- 2.jpeg",
+        "cell": "K170",
+        "heightCm": 8,
+        "sha256": "5D21A2C2AA6F5C94FF11046FEA706E379E748C0505CE3543234EA781EE3DD273"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 32 -- 검증 -- 3.jpeg",
+        "cell": "K171",
+        "heightCm": 8,
+        "sha256": "385B3A809647B1B2965C288D387F1DB1B2D7333D6EC16640B6862A43FF946AF2"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 33 -- 검증 -- 1.jpeg",
+        "cell": "K172",
+        "heightCm": 8,
+        "sha256": "B3F6F2604852CAB63A6A4301A846F372EE19623BAC6F59E36BC6833E51892776"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 33 -- 검증 -- 2.jpeg",
+        "cell": "K173",
+        "heightCm": 8,
+        "sha256": "99D430314A7DA5A338F3C9A46ED135A01751C9880CA63B5948F6EDC1765E5082"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 34 -- 검증 -- 1.jpeg",
+        "cell": "K174",
+        "heightCm": 8,
+        "sha256": "DD65BBAF18626AB3055020B2F0F8D8F932A067CEF0219C76564B6A9E39B1D2A3"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 34 -- 검증 -- 2.jpeg",
+        "cell": "K175",
+        "heightCm": 8,
+        "sha256": "D862D634C42AE22BC40C02E551F1B79F0F7624C936CA82314119FB9065522F1C"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 35 -- 검증 -- 1.jpeg",
+        "cell": "K176",
+        "heightCm": 8,
+        "sha256": "84E0EBB365B93FEADDD4EFA0FC846D2661713C18A43CE74B6C25E494786F61D7"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 36 -- 검증 -- 1.jpeg",
+        "cell": "K177",
+        "heightCm": 8,
+        "sha256": "1717014F762CC970E6D87AD0A8E81F91E96ADD53491CAE8D33560219FEE64846"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 37 -- 검증 -- 1.jpeg",
+        "cell": "K178",
+        "heightCm": 8,
+        "sha256": "30C895671C82D9AE3B300E25BFC7059614483C5DC8F91E4FB5F36D32C70D4E6F"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 39 -- 검증 -- 1 -- 세부 1.jpeg",
+        "cell": "K180",
+        "heightCm": 8,
+        "sha256": "72D493E923E451AF81B231FC0B4C516E6818E71F0B7904F5FD345F8933C26C7A"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 39 -- 검증 -- 1 -- 세부 2.jpeg",
+        "cell": "K181",
+        "heightCm": 8,
+        "sha256": "D19F1ABA88EBD6B3833222975CA061A98E73CC4348C4DE18F4B8D316600D89A6"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 40 -- 검증 -- 1.jpeg",
+        "cell": "K182",
+        "heightCm": 8,
+        "sha256": "D129DB042D444DD01685E5F738040069B44AC4D6712C9493565A6D5C8C3AF850"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 41 -- 검증 -- 1.jpeg",
+        "cell": "K183",
+        "heightCm": 8,
+        "sha256": "391448A7D04CA03CBD7F40EBF3EA716974942017EBD47C4E5F3EBE0683F1F50A"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 42 -- 검증 -- 1 -- 세부 1.jpeg",
+        "cell": "K185",
+        "heightCm": 8,
+        "sha256": "C8C919334415F9133FBACDA9F6C431251FC313F16674E5E85B13D2E35FC7CA1B"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 42 -- 검증 -- 1 -- 세부 2.jpeg",
+        "cell": "K186",
+        "heightCm": 8,
+        "sha256": "35E5D5E8D25A20F86178014749F54839298489FA7F6324821B3B6BAE3B8032B9"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 69 -- 검증 -- 2.jpeg",
+        "cell": "K207",
+        "heightCm": 8,
+        "sha256": "1C5E916B55FC1FF681D54F70C79B672B625FF1B7F932E81AC8DD6952052EBEEE"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 50 -- 검증 -- 2.jpeg",
+        "cell": "K218",
+        "heightCm": 8,
+        "sha256": "E0F7B3D4E77FA532683CE52F254596AAC036BB063E224192B13597ABD1D327A9"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 51 -- 검증 -- 1.jpeg",
+        "cell": "K219",
+        "heightCm": 8,
+        "sha256": "EC880EF8DC41A78B7B389EFCA8F25B558C2A13F3B10C9C58557E3AE56B67AF57"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 54 -- 검증 -- 1.jpeg",
+        "cell": "K227",
+        "heightCm": 8,
+        "sha256": "420DF634E3FA9A2B466384409BF3675147C79B6B6E5AEBFA4CF26BF41047C196"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 73 -- 검증 -- 1.jpeg",
+        "cell": "K234",
+        "heightCm": 8,
+        "sha256": "151FBC2DD4ED2F0EEB4384A7A827AC6F867C4FC8573ECBD569CE93B7B6C876AB"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 74 -- 검증 -- 1.jpeg",
+        "cell": "K235",
+        "heightCm": 8,
+        "sha256": "86AD1AD2DBAFF85B475190C8FA53122DDFD2F8624BCA08E1047EFAF57A3DC0C0"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 77 -- 검증 -- 1.jpeg",
+        "cell": "K242",
+        "heightCm": 8,
+        "sha256": "438CEF0FEF73D7DA304A35EBA79844D00220F7B02CCDBD3359A93AB676A14567"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 80 -- 검증 -- 2.jpeg",
+        "cell": "K249",
+        "heightCm": 8,
+        "sha256": "D67DA352131329E1B0A4AFF95A8A234CF557BDCAE5F68371B4FB9A85006AEDD8"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 58 -- 검증 -- 2.jpeg",
+        "cell": "K255",
+        "heightCm": 8,
+        "sha256": "43739DD91D8CB4F85D46F893CA8FB580B08F639CF95E06A14404C5F078BD903B"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 59 -- 검증 -- 2.jpeg",
+        "cell": "K257",
+        "heightCm": 8,
+        "sha256": "79939D84F3A29A8E565BE43FAB558A7CF2DB24A5F6FFD288B99012AD55DF1D09"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 61 -- 검증 -- 1.jpeg",
+        "cell": "K269",
+        "heightCm": 8,
+        "sha256": "6F763C399A3A8A49E92D86AF63CD728A217636E2A6BECACDF2E43A8BE5CE02D8"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 65 -- 검증 -- 1.jpeg",
+        "cell": "K283",
+        "heightCm": 8,
+        "sha256": "3F0B4BF3C8B3646CD8F1C66D388688A312CD37EE23E3DDD9778C5A3A6F8AD4F1"
+      },
+      {
+        "name": "SW-FW-SYS-Test-ID -- 65 -- 검증 -- 2.jpeg",
+        "cell": "K284",
+        "heightCm": 8,
+        "sha256": "42E6B33A700748A77822F877F0C1A668DAA2C747B50A1137750EEC942C21AB57"
+      }
+    ],
+    "unchangedSheets": [
+      "표지",
+      "사이버보안 시험 연계_비교"
+    ],
+    "sourceHashes": {
+      "base": "E1643A377713825A7545451B1D01BC599B01FE5A9F1D8A5745F9E66CEF6E8595",
+      "personal": "FF6A53930D975A5A7F0683B1F1D0AA9651A605B396D8F6D940DD5BFAC93217F2"
+    },
+    "unresolved": [
+      "시험28 검증2 알림 ON/OFF",
+      "시험32 조건2 시작 볼륨"
+    ]
+  },
+  "scope": "저장 문서의 내용·서식·사진 연결 검사. 새 제품 시험 실행 또는 승인 아님."
+}

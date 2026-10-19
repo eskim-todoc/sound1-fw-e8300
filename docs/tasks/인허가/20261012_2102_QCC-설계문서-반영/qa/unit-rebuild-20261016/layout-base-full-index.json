@@ -1,0 +1,34 @@
+{
+  "pages": [
+    {
+      "page": 1,
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\unit-rebuild-20261016\\native-base-full-p001.png",
+      "sha256": "211A3EC6D58049E4A5C1E52829D9AC8DB4ADDBDFE6B3637A3A06DC67EE8397DD"
+    },
+    {
+      "page": 2,
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\unit-rebuild-20261016\\native-base-full-p002.png",
+      "sha256": "A1ED6534A8CDFEA036DE2AF59CECEF30448FCE81AA8A88E339F6D8A0FC2881C9"
+    },
+    {
+      "page": 3,
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\unit-rebuild-20261016\\native-base-full-p003.png",
+      "sha256": "785089CDCB23C2BEDAA50D008124FE7B3CCB1F4B54704DDDE75337B9507F44C3"
+    },
+    {
+      "page": 4,
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\unit-rebuild-20261016\\native-base-full-p004.png",
+      "sha256": "EA090F9D8FE02ED55857A2118E998635993A08F5C7A5A7D2DEEF1ADB5191687E"
+    },
+    {
+      "page": 5,
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\unit-rebuild-20261016\\native-base-full-p005.png",
+      "sha256": "A9A6F09743B2CE0E6BFED775A83823412B7D30ACF952AFB778EF76FD38061155"
+    },
+    {
+      "page": 6,
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\unit-rebuild-20261016\\native-base-full-p006.png",
+      "sha256": "5E93B06415CDE449838A54B60AD97280E170B6AD9686D0146D4428017697F889"
+    }
+  ]
+}

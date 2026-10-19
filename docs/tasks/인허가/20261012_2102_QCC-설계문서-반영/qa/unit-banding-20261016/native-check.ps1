@@ -1,0 +1,15 @@
+param([Parameter(Mandatory=$true)][string]$ExpectedSHA256)
+$ErrorActionPreference='Stop';$h=Split-Path -Parent $PSCommandPath;$source=Join-Path $h 'candidate.xlsx';$plan=Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $h 'plan.json')|ConvertFrom-Json
+$r=[ordered]@{source=$source;source_sha256=(Get-FileHash -LiteralPath $source -Algorithm SHA256).Hash;status='미실행';readonly=$true;saved=$false;blocks=@();rows=@();exports=@()}
+if($r.source_sha256 -ne $ExpectedSHA256){throw 'Candidate hash mismatch'}
+$x=$null;$b=$null;$w=$null
+try{
+ $x=New-Object -ComObject Excel.Application;$x.Visible=$false;$x.DisplayAlerts=$false;$x.AskToUpdateLinks=$false;$x.AutomationSecurity=3;$b=$x.Workbooks.Open($source,0,$true);$w=$b.Worksheets.Item($plan.sheet);$r.native_readonly=[bool]$b.ReadOnly;$r.repair_requested=$false
+ $r.original_setup=[ordered]@{zoom=$w.PageSetup.Zoom;fit_wide=$w.PageSetup.FitToPagesWide;fit_tall=$w.PageSetup.FitToPagesTall;orientation=$w.PageSetup.Orientation;repeat_rows=$w.PageSetup.PrintTitleRows}
+ $first=[string]$plan.columns[0];$last=[string]$plan.columns[$plan.columns.Length-1]
+ foreach($g in $plan.blocks){$parity=if([int]$g.order%2 -eq 1){'FFFFFF'}else{'F5F5F5'};$expect=[Convert]::ToInt32($parity,16);$r.blocks+=[ordered]@{order=$g.order;id=$g.id;core=$g.core;start=$g.start;end=$g.end;expected_rgb=$parity;plan_parity_correct=($g.color -eq $parity)};for($row=[int]$g.start;$row -le [int]$g.end;$row++){$area=$first+$row+':'+$last+$row;$actual=$w.Range($area).Interior.Color;$ok=$null -ne $actual -and [int]$actual -eq $expect;$r.rows+=[ordered]@{row=$row;order=$g.order;id=$g.id;range=$area;color=$actual;expected_color=$expect;pass=$ok}}}
+ $r.order_sequence_pass=(($plan.blocks.order -join ',') -eq ((1..$plan.blocks.Count) -join ','));$r.plan_parity_pass=@($r.blocks|Where-Object{-not $_.plan_parity_correct}).Count -eq 0;$r.rows_pass=@($r.rows|Where-Object{-not $_.pass}).Count -eq 0
+ foreach($core in @('BOOT','QCC')){$g=@($plan.blocks|Where-Object{$_.core -eq $core})[0];$area=$first+([int]$g.start-1)+':'+$last+([int]$g.start+1);$w.PageSetup.PrintArea=$area;$pdf=Join-Path $h ('native-boundary-'+$core+'.pdf');$w.ExportAsFixedFormat(0,$pdf,0,$true,$false);$r.exports+=[ordered]@{name='boundary-'+$core;area=$area;first_test_order=$g.order;first_test_id=$g.id;pdf=$pdf;sha256=(Get-FileHash -LiteralPath $pdf -Algorithm SHA256).Hash}}
+ $r.status=if($r.order_sequence_pass -and $r.plan_parity_pass -and $r.rows_pass){'통과'}else{'실패'}
+}catch{$r.status='실패';$r.error=$_.Exception.ToString();throw}
+finally{if($b){$b.Close($false)};if($x){$x.Quit()};foreach($o in @($w,$b,$x)){if($o){[void][Runtime.InteropServices.Marshal]::FinalReleaseComObject($o)}};[GC]::Collect();[GC]::WaitForPendingFinalizers();$r.closed_without_saving=$true;$r.source_end_sha256=(Get-FileHash -LiteralPath $source -Algorithm SHA256).Hash;$r.source_unchanged=$r.source_sha256 -eq $r.source_end_sha256;$r|ConvertTo-Json -Depth 8|Set-Content -LiteralPath (Join-Path $h 'native-check.json') -Encoding utf8}

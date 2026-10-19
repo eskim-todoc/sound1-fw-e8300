@@ -1,0 +1,42 @@
+{
+  "status": "통과",
+  "scope": "all active SDDD paragraphs referencing table145; deleted history excluded",
+  "before": {
+    "hash": "d7c1777f089cd37a6930b9452a928908286006bc35ec8cd131ec0199af5de776",
+    "table145": [
+      {
+        "para_id": "50036994",
+        "text": "표 145. SPI 응답 버퍼 관리 / 구현 조건",
+        "caption": true
+      },
+      {
+        "para_id": "2E8869E0",
+        "text": "내부기의 DAC 파라미터가 표 145와 같을 때, 자극 디지털값은 (전류-오프셋 전류)에 선택 범위의 환산 계수를 곱하고 15비트 우측 이동하여 구한다. 오프셋 레지스터도 선택한 오프셋 계수로 계산한다. 이 파라미터에서 펄스폭 25us, 32채널 모두 T=100/C=300uA를 입력하면 A/A 범위, 오프셋 전류 100uA, 오프셋 레지스터 44, T=0/C=127이 된다. 연결할 내부기의 DAC 상한과 환산 계수는 파라미터로 제공하고, 범위 선택과 전하량 조건을 각각 판단하도록 한다.",
+        "caption": false
+      },
+      {
+        "para_id": "3BBCB45D",
+        "text": "입출력 예 : 내부기 파라미터가 표 145와 같고 펄스폭 25us, 32채널 모두 T=100uA/C=300uA이면 자극 DAC A/오프셋 DAC A를 선택한다. 오프셋 전류=100uA, 오프셋 레지스터=44, T 디지털값=0/C 디지털값=127이고 반환값은 true이다. 범위 선택에 실패하면 false를 반환한다.",
+        "caption": false
+      }
+    ],
+    "caption146": [
+      "표 146. 계산 예에 적용하는 내부기 DAC 파라미터"
+    ]
+  },
+  "after": {
+    "hash": "ac520f40320a9e9c1323e410726ac5ec4506e9e8c20573132a694a6fdde85969",
+    "table145": [
+      {
+        "para_id": "50036994",
+        "text": "표 145. SPI 응답 버퍼 관리 / 구현 조건",
+        "caption": true
+      }
+    ],
+    "caption146": [
+      "표 146. 계산 예에 적용하는 내부기 DAC 파라미터"
+    ]
+  },
+  "corrected_manual_references": 2,
+  "actual_table146_DAC_parameters_verified": true
+}

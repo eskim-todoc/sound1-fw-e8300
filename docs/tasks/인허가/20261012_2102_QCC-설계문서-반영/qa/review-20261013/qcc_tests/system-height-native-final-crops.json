@@ -1,0 +1,342 @@
+[
+  {
+    "key": "SSTC",
+    "id": "SW-FW-SYS-Test-ID-27",
+    "start_row": 128,
+    "page": 25,
+    "sourceSHA256": "C4DCAAA772F4BE959F2431BE5BBAED6EDEA2F2C1C132598FD020A694613EEBA8",
+    "pdf_sha256": "5b9a29779e26f1b77b5880e5d73611b29434be6f517cb99542e152239766baa6",
+    "crop": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\system-height-native-final-crops\\SSTC-SYS27-p25-current.png",
+    "crop_sha256": "5b448867c031cee6c1ddd4b8b5939903c703bab80facb753d89b0e5788bcc68f"
+  },
+  {
+    "key": "SSTC",
+    "id": "SW-FW-SYS-Test-ID-28",
+    "start_row": 130,
+    "page": 26,
+    "sourceSHA256": "C4DCAAA772F4BE959F2431BE5BBAED6EDEA2F2C1C132598FD020A694613EEBA8",
+    "pdf_sha256": "5b9a29779e26f1b77b5880e5d73611b29434be6f517cb99542e152239766baa6",
+    "crop": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\system-height-native-final-crops\\SSTC-SYS28-p26-current.png",
+    "crop_sha256": "1f73bc4e40d747fa892108e287d30ada7a7c2f7118421f7c6ec93d9ee238bf38"
+  },
+  {
+    "key": "SSTC",
+    "id": "SW-FW-SYS-Test-ID-29",
+    "start_row": 132,
+    "page": 27,
+    "sourceSHA256": "C4DCAAA772F4BE959F2431BE5BBAED6EDEA2F2C1C132598FD020A694613EEBA8",
+    "pdf_sha256": "5b9a29779e26f1b77b5880e5d73611b29434be6f517cb99542e152239766baa6",
+    "crop": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\system-height-native-final-crops\\SSTC-SYS29-p27-current.png",
+    "crop_sha256": "10f99bf152dc215fc500ed87fe1c258056e20917f7475ce6ff32038a6ddf0614"
+  },
+  {
+    "key": "SSTC",
+    "id": "SW-FW-SYS-Test-ID-33",
+    "start_row": 144,
+    "page": 31,
+    "sourceSHA256": "C4DCAAA772F4BE959F2431BE5BBAED6EDEA2F2C1C132598FD020A694613EEBA8",
+    "pdf_sha256": "5b9a29779e26f1b77b5880e5d73611b29434be6f517cb99542e152239766baa6",
+    "crop": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\system-height-native-final-crops\\SSTC-SYS33-p31-current.png",
+    "crop_sha256": "30676b2b0f91907915041af88d46913ce7b32345b2fd4beffe468d84838810e5"
+  },
+  {
+    "key": "SSTC",
+    "id": "SW-FW-SYS-Test-ID-34",
+    "start_row": 146,
+    "page": 32,
+    "sourceSHA256": "C4DCAAA772F4BE959F2431BE5BBAED6EDEA2F2C1C132598FD020A694613EEBA8",
+    "pdf_sha256": "5b9a29779e26f1b77b5880e5d73611b29434be6f517cb99542e152239766baa6",
+    "crop": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\system-height-native-final-crops\\SSTC-SYS34-p32-current.png",
+    "crop_sha256": "56e3d7f319b1127013e5207f16111d80d8df050c788df28b75abd4ee422aab03"
+  },
+  {
+    "key": "SSTC",
+    "id": "SW-FW-SYS-Test-ID-36",
+    "start_row": 151,
+    "page": 34,
+    "sourceSHA256": "C4DCAAA772F4BE959F2431BE5BBAED6EDEA2F2C1C132598FD020A694613EEBA8",
+    "pdf_sha256": "5b9a29779e26f1b77b5880e5d73611b29434be6f517cb99542e152239766baa6",
+    "crop": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\system-height-native-final-crops\\SSTC-SYS36-p34-current.png",
+    "crop_sha256": "713267bb0649fb328e1efb796d05f1442ea3b0996b7be7ac454e932024e9c2d0"
+  },
+  {
+    "key": "SSTC",
+    "id": "SW-FW-SYS-Test-ID-38",
+    "start_row": 155,
+    "page": 36,
+    "sourceSHA256": "C4DCAAA772F4BE959F2431BE5BBAED6EDEA2F2C1C132598FD020A694613EEBA8",
+    "pdf_sha256": "5b9a29779e26f1b77b5880e5d73611b29434be6f517cb99542e152239766baa6",
+    "crop": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\system-height-native-final-crops\\SSTC-SYS38-p36-current.png",
+    "crop_sha256": "83cebad7bd3ab25cced1d908f1f8eb2866a89aaccac32b8756f5a2a9dcd75b49"
+  },
+  {
+    "key": "SSTC",
+    "id": "SW-FW-SYS-Test-ID-46",
+    "start_row": 188,
+    "page": 43,
+    "sourceSHA256": "C4DCAAA772F4BE959F2431BE5BBAED6EDEA2F2C1C132598FD020A694613EEBA8",
+    "pdf_sha256": "5b9a29779e26f1b77b5880e5d73611b29434be6f517cb99542e152239766baa6",
+    "crop": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\system-height-native-final-crops\\SSTC-SYS46-p43-current.png",
+    "crop_sha256": "9858168851d153b6b8418064ec3980a6c95f3de31961a19d1c9a2b56f85ad09f"
+  },
+  {
+    "key": "SSTC",
+    "id": "SW-FW-SYS-Test-ID-49",
+    "start_row": 194,
+    "page": 46,
+    "sourceSHA256": "C4DCAAA772F4BE959F2431BE5BBAED6EDEA2F2C1C132598FD020A694613EEBA8",
+    "pdf_sha256": "5b9a29779e26f1b77b5880e5d73611b29434be6f517cb99542e152239766baa6",
+    "crop": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\system-height-native-final-crops\\SSTC-SYS49-p46-current.png",
+    "crop_sha256": "3013eccaef5591fedca0c470e292ea25584d215e6a72c811ec3b2eb3d8108b6c"
+  },
+  {
+    "key": "SSTC",
+    "id": "SW-FW-SYS-Test-ID-51",
+    "start_row": 197,
+    "page": 47,
+    "sourceSHA256": "C4DCAAA772F4BE959F2431BE5BBAED6EDEA2F2C1C132598FD020A694613EEBA8",
+    "pdf_sha256": "5b9a29779e26f1b77b5880e5d73611b29434be6f517cb99542e152239766baa6",
+    "crop": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\system-height-native-final-crops\\SSTC-SYS51-p47-current.png",
+    "crop_sha256": "afd9f8b0147d19b0d21a1579965c5dbd3610c5bb6a23130c61ec3770e469b0e5"
+  },
+  {
+    "key": "SSTC",
+    "id": "SW-FW-SYS-Test-ID-55",
+    "start_row": 237,
+    "page": 61,
+    "sourceSHA256": "C4DCAAA772F4BE959F2431BE5BBAED6EDEA2F2C1C132598FD020A694613EEBA8",
+    "pdf_sha256": "5b9a29779e26f1b77b5880e5d73611b29434be6f517cb99542e152239766baa6",
+    "crop": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\system-height-native-final-crops\\SSTC-SYS55-p61-current.png",
+    "crop_sha256": "e928c5fd31fb6bab69c022aa6fd6736235583e818f8624ca8766d27332c17f58"
+  },
+  {
+    "key": "SSTC",
+    "id": "SW-FW-SYS-Test-ID-61",
+    "start_row": 260,
+    "page": 66,
+    "sourceSHA256": "C4DCAAA772F4BE959F2431BE5BBAED6EDEA2F2C1C132598FD020A694613EEBA8",
+    "pdf_sha256": "5b9a29779e26f1b77b5880e5d73611b29434be6f517cb99542e152239766baa6",
+    "crop": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\system-height-native-final-crops\\SSTC-SYS61-p66-current.png",
+    "crop_sha256": "df878858afb7f72fd81bbc4c7be2d6982f0dc155cd056c973407db9865d05f36"
+  },
+  {
+    "key": "SSTC",
+    "id": "SW-FW-SYS-Test-ID-67",
+    "start_row": 278,
+    "page": 69,
+    "sourceSHA256": "C4DCAAA772F4BE959F2431BE5BBAED6EDEA2F2C1C132598FD020A694613EEBA8",
+    "pdf_sha256": "5b9a29779e26f1b77b5880e5d73611b29434be6f517cb99542e152239766baa6",
+    "crop": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\system-height-native-final-crops\\SSTC-SYS67-p69-current.png",
+    "crop_sha256": "97fa6b0551880286c9329d4f4128699724ae1f71cfc36c09dae8cb472ff7e0be"
+  },
+  {
+    "key": "SSTC",
+    "id": "SW-FW-SYS-Test-ID-68",
+    "start_row": 280,
+    "page": 70,
+    "sourceSHA256": "C4DCAAA772F4BE959F2431BE5BBAED6EDEA2F2C1C132598FD020A694613EEBA8",
+    "pdf_sha256": "5b9a29779e26f1b77b5880e5d73611b29434be6f517cb99542e152239766baa6",
+    "crop": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\system-height-native-final-crops\\SSTC-SYS68-p70-current.png",
+    "crop_sha256": "679410df20b3cf838eddc4147941be7eff798c0d779a03d629ea2cbfb1f7746f"
+  },
+  {
+    "key": "SSTC",
+    "id": "SW-FW-SYS-Test-ID-74",
+    "start_row": 217,
+    "page": 55,
+    "sourceSHA256": "C4DCAAA772F4BE959F2431BE5BBAED6EDEA2F2C1C132598FD020A694613EEBA8",
+    "pdf_sha256": "5b9a29779e26f1b77b5880e5d73611b29434be6f517cb99542e152239766baa6",
+    "crop": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\system-height-native-final-crops\\SSTC-SYS74-p55-current.png",
+    "crop_sha256": "afb4093d9a9667e299d0c991ff27e8ae478f784772aa525667dfa9c5fa33e125"
+  },
+  {
+    "key": "SSTC",
+    "id": "SW-FW-SYS-Test-ID-82",
+    "start_row": 282,
+    "page": 71,
+    "sourceSHA256": "C4DCAAA772F4BE959F2431BE5BBAED6EDEA2F2C1C132598FD020A694613EEBA8",
+    "pdf_sha256": "5b9a29779e26f1b77b5880e5d73611b29434be6f517cb99542e152239766baa6",
+    "crop": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\system-height-native-final-crops\\SSTC-SYS82-p71-current.png",
+    "crop_sha256": "94febe3ba2ba470520bd0911ea24c7a451e303b3279e8218cd35641c970ee0eb"
+  },
+  {
+    "key": "SSTC",
+    "id": "SW-FW-SYS-Test-ID-83",
+    "start_row": 285,
+    "page": 72,
+    "sourceSHA256": "C4DCAAA772F4BE959F2431BE5BBAED6EDEA2F2C1C132598FD020A694613EEBA8",
+    "pdf_sha256": "5b9a29779e26f1b77b5880e5d73611b29434be6f517cb99542e152239766baa6",
+    "crop": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\system-height-native-final-crops\\SSTC-SYS83-p72-current.png",
+    "crop_sha256": "5e88b091d61edea2e4ebf27b898f38930c4a41320ccbc51ac925b16e9d52539b"
+  },
+  {
+    "key": "SSTR",
+    "id": "SW-FW-SYS-Test-ID-27",
+    "start_row": 128,
+    "page": 25,
+    "sourceSHA256": "1134D83842123D80F4086D961017914E9E657EB526ACE85817F877C3100C1E5A",
+    "pdf_sha256": "f4c66ba8a50a0ad113ac559e7b6a6771104def4c8b55b418beb37bcd98f45666",
+    "crop": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\system-height-native-final-crops\\SSTR-SYS27-p25-current.png",
+    "crop_sha256": "647ca5031a88ba90b1b598423686a8eee3b918b3f3dfe2fe7e1e0b8389692d2b"
+  },
+  {
+    "key": "SSTR",
+    "id": "SW-FW-SYS-Test-ID-28",
+    "start_row": 130,
+    "page": 26,
+    "sourceSHA256": "1134D83842123D80F4086D961017914E9E657EB526ACE85817F877C3100C1E5A",
+    "pdf_sha256": "f4c66ba8a50a0ad113ac559e7b6a6771104def4c8b55b418beb37bcd98f45666",
+    "crop": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\system-height-native-final-crops\\SSTR-SYS28-p26-current.png",
+    "crop_sha256": "7b3da6432fb5c79b2ad7b6dd89f5c3431758688f28f62a5a3bad35dc00008357"
+  },
+  {
+    "key": "SSTR",
+    "id": "SW-FW-SYS-Test-ID-29",
+    "start_row": 132,
+    "page": 27,
+    "sourceSHA256": "1134D83842123D80F4086D961017914E9E657EB526ACE85817F877C3100C1E5A",
+    "pdf_sha256": "f4c66ba8a50a0ad113ac559e7b6a6771104def4c8b55b418beb37bcd98f45666",
+    "crop": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\system-height-native-final-crops\\SSTR-SYS29-p27-current.png",
+    "crop_sha256": "a1e1a2e812b2c3aa733874ab8457a473023f2ff836b1232e6bd2cec775f62190"
+  },
+  {
+    "key": "SSTR",
+    "id": "SW-FW-SYS-Test-ID-33",
+    "start_row": 144,
+    "page": 31,
+    "sourceSHA256": "1134D83842123D80F4086D961017914E9E657EB526ACE85817F877C3100C1E5A",
+    "pdf_sha256": "f4c66ba8a50a0ad113ac559e7b6a6771104def4c8b55b418beb37bcd98f45666",
+    "crop": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\system-height-native-final-crops\\SSTR-SYS33-p31-current.png",
+    "crop_sha256": "710dad7c2b1fb651cea82bf23f1bdb255f437621429e666ffa78fa67daee4a7b"
+  },
+  {
+    "key": "SSTR",
+    "id": "SW-FW-SYS-Test-ID-34",
+    "start_row": 146,
+    "page": 32,
+    "sourceSHA256": "1134D83842123D80F4086D961017914E9E657EB526ACE85817F877C3100C1E5A",
+    "pdf_sha256": "f4c66ba8a50a0ad113ac559e7b6a6771104def4c8b55b418beb37bcd98f45666",
+    "crop": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\system-height-native-final-crops\\SSTR-SYS34-p32-current.png",
+    "crop_sha256": "18c47513e4b42569b8fe8c3c540a34ce80263935df4d4b8c074667af73a92990"
+  },
+  {
+    "key": "SSTR",
+    "id": "SW-FW-SYS-Test-ID-36",
+    "start_row": 151,
+    "page": 34,
+    "sourceSHA256": "1134D83842123D80F4086D961017914E9E657EB526ACE85817F877C3100C1E5A",
+    "pdf_sha256": "f4c66ba8a50a0ad113ac559e7b6a6771104def4c8b55b418beb37bcd98f45666",
+    "crop": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\system-height-native-final-crops\\SSTR-SYS36-p34-current.png",
+    "crop_sha256": "70e950a3e40c2b154790c15ff3f7a2c42fb3ce56455d2cca7f3a628e1f35c4a7"
+  },
+  {
+    "key": "SSTR",
+    "id": "SW-FW-SYS-Test-ID-38",
+    "start_row": 155,
+    "page": 36,
+    "sourceSHA256": "1134D83842123D80F4086D961017914E9E657EB526ACE85817F877C3100C1E5A",
+    "pdf_sha256": "f4c66ba8a50a0ad113ac559e7b6a6771104def4c8b55b418beb37bcd98f45666",
+    "crop": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\system-height-native-final-crops\\SSTR-SYS38-p36-current.png",
+    "crop_sha256": "badaeb409dd40cef4bad62f81c5e9d1ff02bd362a8bfb0322d93890fb1a89a9d"
+  },
+  {
+    "key": "SSTR",
+    "id": "SW-FW-SYS-Test-ID-46",
+    "start_row": 188,
+    "page": 43,
+    "sourceSHA256": "1134D83842123D80F4086D961017914E9E657EB526ACE85817F877C3100C1E5A",
+    "pdf_sha256": "f4c66ba8a50a0ad113ac559e7b6a6771104def4c8b55b418beb37bcd98f45666",
+    "crop": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\system-height-native-final-crops\\SSTR-SYS46-p43-current.png",
+    "crop_sha256": "0f912aa07846f5276ac2f3b3f9bafce44297718cd43e6081ebc636d1d401ee76"
+  },
+  {
+    "key": "SSTR",
+    "id": "SW-FW-SYS-Test-ID-49",
+    "start_row": 194,
+    "page": 46,
+    "sourceSHA256": "1134D83842123D80F4086D961017914E9E657EB526ACE85817F877C3100C1E5A",
+    "pdf_sha256": "f4c66ba8a50a0ad113ac559e7b6a6771104def4c8b55b418beb37bcd98f45666",
+    "crop": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\system-height-native-final-crops\\SSTR-SYS49-p46-current.png",
+    "crop_sha256": "9f7bf1f4022fe6d70479994e25e5def43fa26a4f224d58840393f41a94c043c7"
+  },
+  {
+    "key": "SSTR",
+    "id": "SW-FW-SYS-Test-ID-51",
+    "start_row": 197,
+    "page": 47,
+    "sourceSHA256": "1134D83842123D80F4086D961017914E9E657EB526ACE85817F877C3100C1E5A",
+    "pdf_sha256": "f4c66ba8a50a0ad113ac559e7b6a6771104def4c8b55b418beb37bcd98f45666",
+    "crop": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\system-height-native-final-crops\\SSTR-SYS51-p47-current.png",
+    "crop_sha256": "1b3202020f19e1ac4aabffd9940d693144db835bf61bbf99d73e9a35a69713a8"
+  },
+  {
+    "key": "SSTR",
+    "id": "SW-FW-SYS-Test-ID-55",
+    "start_row": 237,
+    "page": 60,
+    "sourceSHA256": "1134D83842123D80F4086D961017914E9E657EB526ACE85817F877C3100C1E5A",
+    "pdf_sha256": "f4c66ba8a50a0ad113ac559e7b6a6771104def4c8b55b418beb37bcd98f45666",
+    "crop": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\system-height-native-final-crops\\SSTR-SYS55-p60-current.png",
+    "crop_sha256": "943cbe183b573158563d04aa4bec109223fd73176107a191cb783faf168147c3"
+  },
+  {
+    "key": "SSTR",
+    "id": "SW-FW-SYS-Test-ID-61",
+    "start_row": 260,
+    "page": 65,
+    "sourceSHA256": "1134D83842123D80F4086D961017914E9E657EB526ACE85817F877C3100C1E5A",
+    "pdf_sha256": "f4c66ba8a50a0ad113ac559e7b6a6771104def4c8b55b418beb37bcd98f45666",
+    "crop": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\system-height-native-final-crops\\SSTR-SYS61-p65-current.png",
+    "crop_sha256": "bd5872a8d0d25ee0a70d0336213194917e0c448cd8a56d57eb5d27ecaae0edf1"
+  },
+  {
+    "key": "SSTR",
+    "id": "SW-FW-SYS-Test-ID-67",
+    "start_row": 278,
+    "page": 68,
+    "sourceSHA256": "1134D83842123D80F4086D961017914E9E657EB526ACE85817F877C3100C1E5A",
+    "pdf_sha256": "f4c66ba8a50a0ad113ac559e7b6a6771104def4c8b55b418beb37bcd98f45666",
+    "crop": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\system-height-native-final-crops\\SSTR-SYS67-p68-current.png",
+    "crop_sha256": "1554b6d8e56a772612a1d52b3008bcbc20e4ab121cde3b1b604e56760ae7aaef"
+  },
+  {
+    "key": "SSTR",
+    "id": "SW-FW-SYS-Test-ID-68",
+    "start_row": 280,
+    "page": 69,
+    "sourceSHA256": "1134D83842123D80F4086D961017914E9E657EB526ACE85817F877C3100C1E5A",
+    "pdf_sha256": "f4c66ba8a50a0ad113ac559e7b6a6771104def4c8b55b418beb37bcd98f45666",
+    "crop": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\system-height-native-final-crops\\SSTR-SYS68-p69-current.png",
+    "crop_sha256": "ef0507f787a7a74c8ef452dd38ac23c7a0c9b12a91def511fdfc4e7414f180b3"
+  },
+  {
+    "key": "SSTR",
+    "id": "SW-FW-SYS-Test-ID-74",
+    "start_row": 217,
+    "page": 54,
+    "sourceSHA256": "1134D83842123D80F4086D961017914E9E657EB526ACE85817F877C3100C1E5A",
+    "pdf_sha256": "f4c66ba8a50a0ad113ac559e7b6a6771104def4c8b55b418beb37bcd98f45666",
+    "crop": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\system-height-native-final-crops\\SSTR-SYS74-p54-current.png",
+    "crop_sha256": "d35383ed3ce034114dfad3fccb3a1116c7e627e90041901f1c8e913e1af32940"
+  },
+  {
+    "key": "SSTR",
+    "id": "SW-FW-SYS-Test-ID-82",
+    "start_row": 282,
+    "page": 70,
+    "sourceSHA256": "1134D83842123D80F4086D961017914E9E657EB526ACE85817F877C3100C1E5A",
+    "pdf_sha256": "f4c66ba8a50a0ad113ac559e7b6a6771104def4c8b55b418beb37bcd98f45666",
+    "crop": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\system-height-native-final-crops\\SSTR-SYS82-p70-current.png",
+    "crop_sha256": "6ddd9adac3d9124436f5e6f17fef0601b1a4d27f48669ff6db7e02a1ce9515ca"
+  },
+  {
+    "key": "SSTR",
+    "id": "SW-FW-SYS-Test-ID-83",
+    "start_row": 285,
+    "page": 71,
+    "sourceSHA256": "1134D83842123D80F4086D961017914E9E657EB526ACE85817F877C3100C1E5A",
+    "pdf_sha256": "f4c66ba8a50a0ad113ac559e7b6a6771104def4c8b55b418beb37bcd98f45666",
+    "crop": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\system-height-native-final-crops\\SSTR-SYS83-p71-current.png",
+    "crop_sha256": "a6ef3d508b89e0c24b64f9d94e7ceca2333a3d636562f1010314cbfc8595dad8"
+  }
+]

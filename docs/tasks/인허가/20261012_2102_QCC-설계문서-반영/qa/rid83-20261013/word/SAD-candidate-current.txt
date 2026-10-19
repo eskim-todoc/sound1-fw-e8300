@@ -1,0 +1,2127 @@
+
+
+
+
+
+
+
+소프트웨어 아키텍쳐 기술서
+(TD24A-A-EXT)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+작성
+검토
+승인
+성함
+김은수
+
+
+직책
+수석연구원
+
+
+일자
+
+
+
+서명
+
+
+
+
+
+
+
+
+
+No.
+개정 내용
+개정 위치 
+개정 날짜
+0
+최초제정
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+
+목차
+1. 서론	4
+오류! 하이퍼링크 참조가 잘못되었습니다.
+	1.1. 개요	4
+오류! 하이퍼링크 참조가 잘못되었습니다.
+	1.2. 목적	4
+오류! 하이퍼링크 참조가 잘못되었습니다.
+	1.3. 대상	4
+1.4. 관련문서	4
+	1.4.1. 프로젝트	4
+	1.4.2. 표준 및 규제	4
+2. 하드웨어 플랫폼	5
+3. 소프트웨어 아키텍쳐	6
+3.1. CFX Core용 소프트웨어 아키텍쳐	7
+	3.1.1. 시스템 제어 모듈	7
+	3.1.2. 신호처리 모듈	7
+	3.1.3. 내부 자극 장치 실행 모듈	7
+3.2. Hear Core용 소프트웨어 아키텍쳐	7
+3.3. CM3용 소프트웨어 아키텍쳐	7
+	3.3.1. 시스템 제어 모듈	7
+	3.3.2. 신호처리 모듈	8
+	3.3.3. 내부 자극 장치 실행 모듈	8
+	3.3.4. 블루투스 통신 모듈	8
+3.4. QCC용 소프트웨어 아키텍쳐	8
+	3.4.1. E8300 연계	9
+	3.4.2. 블루투스 통신 연계	9
+	3.4.3. SI-ID-QCC-001 시스템 관리 모듈	10
+	3.4.4. SI-ID-QCC-002 HW 인터페이스 모듈	10
+	3.4.5. SI-ID-QCC-003 블루투스 모듈	11
+	3.4.6. SI-ID-QCC-004 보안 모듈	12
+3.5. 부트로더 소프트웨어 아키텍쳐	14
+	3.5.1. 부트 제어 및 이미지 적재 모듈	14
+	3.5.2. 무선 갱신 모듈	14
+4. 소프트웨어 요구사항 추적성	14
+5. 지원 소프트웨어	54
+6. 소프트웨어 아키텍쳐 검증	54
+
+
+서론
+개요
+본 문서는 인공달팽이관 외부장치 펌웨어를 개발하기 위한 소프트웨어 아키텍쳐를 설계하고 기술한다.
+
+목적
+인공달팽이관 외부장치 소프트웨어의 요구사항을 포함한 소프트웨어 아키텍쳐를 설계함으로써, 소프트웨어 개발 절차에 따라 안전한하고 일관성 및 정확성을 보장하는 소프트웨어가 개발 되는 것을 목적으로 한다.
+
+대상
+소프트웨어 개발 프로젝트에 참여하는 모든 구성원은 이 문서를 참고하도록 한다.
+
+관련문서
+프로젝트
+No
+문서번호
+문서 제목
+1
+SDP-FW-TD24A
+소프트웨어 개발 계획서
+2
+SGR-FW-TD24A
+소프트웨어 일반 요구사항
+3
+SR-FW-TD24A
+소프트웨어 요구사항
+
+1.4.2. 표준 및 규제
+No
+문서번호
+문서 제목
+1
+IEC 62304
+Medical device software – Software life cycle processes
+2
+ISO 14971
+Medical devices – Application of risk management to medical
+
+
+
+
+하드웨어 플랫폼
+
+
+인공달팽이관 시스템 전체의 하드웨어 플랫폼은 아래 <그림 1.>과 같다. 외부장치 Sound1의 소프트웨어는 E8300과 QCC5181에서 동작한다. DMIC1/DMIC2는 E8300에 연결되고 DMIC2는 QCC에도 연결되어 전화 통화 상향 입력으로 사용한다.
+
+
+
+
+
+< 그림 1. 인공달팽이관 시스템 블록도 >
+
+
+
+소프트웨어 아키텍쳐
+하드웨어 플랫폼을 기반으로 동작하는 소프트웨어 아키텍쳐는 <그림 2.>와 같다.
+
+
+
+
+<그림 2. 인공와우 소프트웨어 아키텍쳐 블록도>
+
+세로 영역은 실행 코어를, 가로 영역은 각 코어가 나누어 수행하는 기능 모듈을 나타낸다. 각 코어의 유닛은 공유 메모리, 함수체인 완료 이벤트 및 통신 인터페이스를 통해 연계된다.
+[QCC 자료 입력] QCC 4모듈/14유닛의 실제 소스/빌드/라이브러리 설정과 실행/측정 결과를 확인해야 한다. DMIC2의 두 칩 입력 연결 사실과 구현/시험 근거의 확인 상태는 구분한다.
+
+CFX Core용 소프트웨어 아키텍쳐
+시스템 제어 모듈
+오디오 입출력 설정, 공유 메모리 접근 및 처리 순서와 관련된 유닛들로 구성되어 CFX의 동작을 제어한다.
+소프트웨어 항목은 다음과 같다.
+시스템 초기화 항목
+부트로더의 초기화 이후 CFX의 인터럽트와 오디오 경로를 설정한다.
+시스템 제어 항목
+시스템의 전체적인 실행과 관련된 항목으로, 이 항목이 완성되면 소프트웨어 구현이 완료되게 된다.
+신호처리 모듈
+
+두 마이크의 빔포밍 또는 마이크와 I2S 입력의 혼합 신호에 AGC, 주파수 분석 및 비선형 매핑을 적용한다. CIS 또는 N-of-M 방식에 따라 자극할 채널과 크기를 결정한다.
+
+내부 자극 장치 실행 모듈
+내부 자극 장치에 전달되는 bitstream 생성과 관련된 유닛들로 구성되어 있다.
+PCM 제어 항목
+CM3에서 제어하는 PCM 출력 모드에 따라 내부기에 전달되는 PCM을 생성한다.
+
+Hear Core용 소프트웨어 아키텍쳐
+Hear Core의 소프트웨어는 디지털 신호처리 라이브러리를 묶은 Function Chain으로 동작이 실행되게 되어있으며, Function Chain은 CFX 시스템 제어항목에서 호출하게 된다. 
+
+CM3용 소프트웨어 아키텍쳐
+시스템 제어 모듈
+하드웨어 설정, 공유 메모리 접근, 보조장치 제어 등과 관련된 유닛들로 구성되어 시스템의 전체 동작을 제어한다.
+소프트웨어 항목은 다음과 같다.
+시스템 초기화 항목
+
+CM3에서 사용하는 주변장치와 공유 상태를 초기화한다. 코어 기동 전 하드웨어 설정과 이미지 적재는 부트로더에서 수행한다.
+시스템 제어 항목
+시스템의 전체적인 실행과 관련된 항목으로, 다른 모듈 및 유닛의 파라미터를 확인하여 시스템 동작을 제어한다. 이 항목이 완성되면 소프트웨어 구현이 완료되게 된다.
+신호처리 모듈
+CM3에서 읽은 매핑 데이터의 펄스폭과 C/T 전류크기를 사용하여 DAC 범위, C/T 자극 레벨 및 전송 가능한 자극 수를 계산하고 CFX에 공유하는 유닛으로 구성되어 있다.
+
+내부 자극 장치 실행 모듈
+내부 자극장치 제어 및 자극 출력 실행과 관련된 유닛들로 구성되어 있다.
+내부기 실행 제어 항목
+내부 자극 장치 실행과 관련된 보조장치 설정, 내부 자극 장치 설정 및 내부 자극 장치 연결 검사와 관련된 유닛을 실행하여 내부기를 제어한다.
+
+블루투스 통신 모듈
+리모콘 앱, 매핑 프로그램 통신과 관련된 유닛들로 구성되어 있다.
+블루투스 통신 제어 항목
+
+
+QCC에서 SPI로 수신한 명령을 구분하여 리모콘, 매핑 및 시스템 정보 처리를 실행하고 응답을 전송한다. 전원 정보, LED 표시 요청 및 오디오 연결 정보를 받아 시스템 제어와 공유 메모리에 반영한다.
+
+QCC용 소프트웨어 아키텍쳐
+외부기의 QCC5181은 시스템 관리, HW 인터페이스, 블루투스와 보안의 4개 기능 모듈 및 14개 유닛으로 구성한다. QCC는 무선 송수신과 상태/명령 중계, PIO/전원/NVM 접근 및 CRA 인증을 처리한다. E8300은 CFX/HEAR의 오디오 처리와 CM3의 내부기 제어/자극 실행을 담당하며 두 칩은 SPI, I2S와 제어 신호로 연결한다.
+표 1. 장치와 기능의 경계
+경계
+담당 기능
+연계 경로
+외부기 / E8300
+CFX/HEAR 오디오 처리, CM3 상태/명령 처리와 내부기 제어/자극
+DMIC1/DMIC2→E8300, QCC→CM3 SPI, QCC→CFX I2S
+외부기 / QCC
+시스템 관리, HW 인터페이스, 블루투스, 보안
+DMIC2→QCC→통화 상대, BLE/Classic, SPI/PIO/NVM
+주변 장치
+리모콘/매핑 프로그램, Classic 상대 장치와 충전케이스
+BLE AUTH/GAIA, Classic 오디오 송수신, 충전케이스 통신
+내부기
+E8300의 명령/PCM 출력에 따른 자극 실행
+E8300의 내부기 제어/자극 경로
+
+
+
+E8300 연계
+QCC는 블루투스 명령과 응답을 E8300과 주고받으며 I2S로 오디오를 전달한다. 본 절은 E8300 측 인터페이스를 정의한다.
+소프트웨어 항목은 다음과 같다.
+시스템 
+상태 및 
+제어 항목
+
+E8300은 QCC가 전달한 배터리 잔량, 충전기 연결 및 크래들 뚜껑 상태를 반영한다. 내부기 연결 상태는 ISD_CHECK 핀으로, 동작 모드 제어는 QCC_CTRL 핀으로 전달한다.
+오디오 연계 항목
+CFX는 I2S 입력 상태에 따라 마이크와 오디오를 혼합한다. CM3가 수신한 오디오 종류가 크래들 마이크인 경우 크래들용 게인을 적용하며, 일반 스트리밍은 해당 게인을 적용하지 않는다.
+블루투스 통신 연계
+블루투스 
+
+
+명령과 응답은 QCC와 CM3 사이의 SPI 경로로 전달한다.
+
+
+
+
+SI-ID-QCC-001 시스템 관리 모듈
+주변장치와 라이브러리를 초기화한 뒤 전원/연결 상태, Standalone/TWS 구성과 Bluetooth 활성 상태를 관리한다. 시스템 상태 유닛을 통해 BLE 명령과 E8300 SPI 명령/응답을 연결한다.
+소프트웨어 항목은 다음과 같다.
+시스템 초기화와 설정 항목
+SU-ID-QCC-001은 QCC의 주변장치와 라이브러리를 정해진 순서로 준비하여 상태 처리와 통신이 유효한 초기 설정에서 시작되도록 한다. SW-FW-UnitTest-QCC-ID-4에서는 기동 설정/초기화와 전원 상태 SPI/ACK를 확인한다.
+시스템 상태 항목
+SU-ID-QCC-002은 E8300의 연결/종료 신호와 전원/무선 상태를 관리하고 BLE와 SPI 사이에서 명령과 응답을 중계한다. SW-FW-UnitTest-QCC-ID-5에서는 여섯 시스템 상태 저장/조회를 확인한다. SW-FW-UnitTest-QCC-ID-4에서는 기동 설정/초기화와 전원 상태 SPI/ACK를 연계 지원으로 확인한다.
+장치 상태 항목
+SU-ID-QCC-003은 생산 시 결정한 Standalone 또는 TWS 구성에 따라 오디오와 제어 데이터의 처리 대상을 선택한다. SW-FW-UnitTest-QCC-ID-6에서는 생산 시 Standalone/TWS 구성과 편이/양이 오디오/데이터 처리를 확인한다.
+블루투스 상태 항목
+SU-ID-QCC-004은 내부기 부착 상태와 Bluetooth 연결 상태를 연결하여 검색/연결 가능 여부와 외부기 장치명을 관리한다. SW-FW-UnitTest-QCC-ID-7에서는 연결표시 입력에 따른 Bluetooth 활성 및 장치명을 확인한다. SW-FW-UnitTest-QCC-ID-8에서는 부착/탈착 시 BLE/Classic 검색/연결 활성화를 확인한다.
+SI-ID-QCC-002 HW 인터페이스 모듈
+PIO, 배터리/충전과 비휘발성 저장장치의 접근을 제공한다. 입력 변화와 전원 상태는 시스템 관리에 전달하고, NVM 데이터는 일반 설정 및 보안 처리에 제공한다.
+소프트웨어 항목은 다음과 같다.
+PIO 포트 제어 항목
+SU-ID-QCC-005은 QCC의 디지털 입력, 출력과 주변장치 기능을 설정하고 입력 변화를 상태 처리에 전달한다. SW-FW-UnitTest-QCC-ID-1에서는 PIO 방향/주변장치/초기값 및 입력변화 메시지를 확인한다.
+Power 제어 항목
+SU-ID-QCC-006은 배터리 전압과 충전 연결을 잔량/전원 상태로 변환하여 시스템에 전달하고 저전압과 종료 요청을 처리한다. SW-FW-UnitTest-QCC-ID-2에서는 전압→잔량/충전/저전압 상태를 확인한다.
+NVM 처리 항목
+SU-ID-QCC-007은 Application의 비휘발성 데이터를 식별자와 길이로 접근하여 외부기 설정과 제조 정보를 유지한다. SW-FW-UnitTest-QCC-ID-3에서는 외부기 일련번호 PS 매핑/읽기/쓰기를 확인한다.
+SI-ID-QCC-003 블루투스 모듈
+Classic 오디오 송수신과 BLE 광고/연결 및 메시지 전달을 처리한다. 수신 오디오는 I2S로 E8300에 전달하고 전화 통화 중 DMIC2의 음성은 통화 상대에게 송신한다. AUTH service의 전송과 보안 모듈의 인증 계산은 분리한다.
+소프트웨어 항목은 다음과 같다.
+Bluetooth Classic 항목
+SU-ID-QCC-008은 Bluetooth Classic 오디오 연결을 관리하여 수신 오디오는 I2S로 E8300에 전달하고 통화 중 DMIC2 입력은 상대 장치로 송신한다. SW-FW-UnitTest-QCC-ID-10에서는 Classic 페어링/연결, 시험 스피커/양이 및 I2S 하향 경로를 확인한다. SW-FW-UnitTest-QCC-ID-8에서는 부착/탈착 시 BLE/Classic 검색/연결 활성화를 연계 지원으로 확인한다.
+BLE 항목
+SU-ID-QCC-009은 BLE 광고와 연결 상태를 관리하여 외부 앱이 장치를 식별하고 인증/데이터 서비스에 접근할 수 있게 한다. SW-FW-UnitTest-QCC-ID-9에서는 광고/스캔 응답과 현재/peer 잔량/연결 상태를 확인한다. SW-FW-UnitTest-QCC-ID-8에서는 부착/탈착 시 BLE/Classic 검색/연결 활성화를 연계 지원으로 확인한다.
+AUTH service 처리 항목
+SU-ID-QCC-010은 CRA의 Challenge/Response/Confirm/Status 교환을 GATT 특성에 연결하여 인증 계산과 무선 전송을 분리한다. SW-FW-UnitTest-QCC-ID-11에서는 AUTH 서비스 정의/등록 및 네 characteristic 패턴 중계를 확인한다.
+BLE Data 처리 항목
+SU-ID-QCC-011은 BLE 메시지의 상태, 주소, 종류와 길이를 검사하여 유효한 제어 데이터를 해당 처리 대상에 전달한다. SW-FW-UnitTest-QCC-ID-12에서는 GAIA 편이/양이 메시지 처리와 위치/잔량 응답를 확인한다.
+SI-ID-QCC-004 보안 모듈
+CRA를 통해 통신 상대를 확인하고 인증 상태에 따라 보호 데이터 접근을 허용한다. 보안 툴박스의 키 파생/인증값 계산과 보안 NVM의 키 읽기를 사용하며 인증 실패와 시간 제한을 BLE 연결 제어에 반영한다.
+소프트웨어 항목은 다음과 같다.
+보안 처리 항목
+SU-ID-QCC-012은 리모콘과 매핑 통신의 상대 장치를 CRA로 확인하고 인증 결과와 제한 조건에 따라 데이터 접근을 제어한다. SW-FW-UnitTest-QCC-ID-13에서는 1:1, CRA 성공/실패/30초 timeout를 확인한다.
+보안 툴박스 항목
+SU-ID-QCC-013은 인증 키 선택, 매핑 키 파생과 인증값 계산 및 NVM 암복호화를 공통 인터페이스로 제공한다. SW-FW-UnitTest-QCC-ID-14에서는 리모콘 키, SHA-256 파생 매핑키, AES-CMAC 인증 및 NVM 복호화를 확인한다.
+보안 NVM 항목
+SU-ID-QCC-014은 생산 시 설치한 키와 난수를 정해진 보안 저장 영역에서 읽어 인증과 암복호화에 필요한 데이터로 제공한다. SW-FW-UnitTest-QCC-ID-15에서는 보안 PS 영역/길이/읽기 인터페이스 및 암호화 저장값/복호화를 확인한다.
+
+
+
+
+
+
+
+
+
+
+
+
+SPI 연계: E8300의 수신 정의는 0x34(data[0] 배터리 %, data[1] 충전기 미연결 0 / 연결 1, data[2] 뚜껑 열림 1 / 닫힘 2), 0x35(data[0] LED 상태, OTA_EZAIRO=4일 때 갱신 연결 1), 0x36(data[0] 오디오 미연결 0 / 연결 1, data[1] 종류 미상 0 / 크래들 1 / 기타 2)이다. 응답은 각각 명령값과 성공값 1이다. 0x36은 연결 1/종류 1일 때만 크래들 오디오 상태를 설정한다.
+메시지 경계: QCC BLE Data 메시지는 type 1바이트와 data 0~19바이트로 총 1~20바이트이다. E8300 SPI 전송 프레임은 별도 길이 1바이트를 포함한 21바이트이다. 무선 메시지와 물리 SPI 프레임을 같은 계층의 길이로 취급하지 않는다.
+제어 핀: E8300 QCC_CTRL(DIO24)은 High=정상 동작 요청, Low=종료 요청이며 초기값은 Low이다. ISD_CHECK(DIO13)는 High=내부기 연결, Low=미연결이며 초기값은 Low이다. CFX I2S_FLAG(DIO29)는 Low=입력 유효이다. QCC의 shutdown_ind 또는 I2S enable이라는 논리 이름만으로 물리 핀 극성을 변경하지 않는다.
+
+오디오 입력은 DMIC1/DMIC2→E8300의 마이크 경로와 QCC→E8300의 I2S 경로로 구분한다. DMIC2는 QCC에도 연결되며 전화 통화 시 QCC가 수음한 음성을 통화 상대에게 송신한다. QCC의 Classic 수신 오디오는 I2S 24bit/16kHz로 CFX에 전달한다. E8300 PCM1은 slave, 24bit, MSB 우선/정렬, 상승 에지, 2word 설정이며 16표본 블록을 처리한다. 16kHz 표본율과 0~8kHz 오디오 대역은 구분한다. CFX는 일반 I2S 게인 1과 마이크 Gain A, 크래들 I2S Gain B와 마이크 Gain A, 매핑 연결 중 두 게인 1을 적용하며 혼합 후 2로 나누지 않는다.
+
+[QCC 자료 입력] QCC shutdown_ind의 정상/종료 논리와 실제 PIO 번호/전압/반전, 기동/종료 대기 및 I2S enable→I2S_FLAG Low 유효의 물리 대응을 확인해야 한다.
+
+[QCC 자료 입력] 충전 4상태를 0x34 charger_connected 0/1로 변환하는 표, 0x34~0x36의 통보 시점/오류 처리, 실제 QCC 송신 length 필드/21byte 변환 및 GAIA 주소/type별 데이터 정의와 실행 확인이 필요하다.
+
+[QCC 자료 입력] DMIC2의 QCC 입력 연결은 확인되었다. QCC 마이크 핀/클록, 프로파일/코덱별 송수신과 동시 동작, I2S 클록/프레임/좌우 배정 및 시작/중단 유효 신호의 실제 설정/파형과 오디오 시험 결과를 확인해야 한다.
+
+시스템 관리는 PIO/전원/장치 정보를 수집하여 Bluetooth 활성과 SPI 중계를 조정한다. AUTH service는 보안 처리의 Challenge/Response/Confirm/Status를 전달하며 일반 BLE Data는 인증/권한 조건을 만족한 메시지를 시스템 관리에 전달한다. 보안 처리는 toolbox와 보안 NVM을 사용하고 보안 NVM은 HW NVM을 통해 저장 영역에 접근한다. Classic 수신 오디오는 I2S로 E8300에 전달하고 전화 통화 상향은 DMIC2→QCC→통화 상대 경로로 처리한다.
+[QCC 자료 입력] 인증 전 데이터 차단/앱별 권한, 실제 AUTH UUID와 characteristic 길이, CRA 알고리즘/키 역할, NVM 보호/난수 bootstrap, 무통신/실패 제한 경계, QCC 자체 OTA와 기동 이미지 무결성의 상세 설계 및 구현 근거가 필요하다.
+
+부트로더 소프트웨어 아키텍쳐
+부트 제어 및 이미지 적재 모듈
+코어 실행에 필요한 하드웨어와 메모리를 설정하고 실행 이미지를 검사하여 적재한다. 기본 이미지와 대체 이미지의 기동 상태를 관리한다.
+무선 갱신 모듈
+CM3 응용 프로그램이 QCC를 통해 수신한 갱신 데이터를 저장한다. 부트로더는 다음 기동 시 선택된 이미지를 검사하고 적재한다.
+소프트웨어 요구사항 추적성
+소프트웨어 요구사항을 담당 모듈과 상세 설계 유닛에 연결한다. 유닛 ID와 이름은 소프트웨어 상세 설계서에 따른다.
+표 2. 소프트웨어 요구사항과 상세 설계 유닛 연결
+
+소프트웨어
+요구사항 ID
+모듈 ID / 이름
+상세 설계 유닛 ID / 이름
+SW-FW-RID-1
+SI-ID-CM3-002
+신호처리 모듈
+SI-ID-CFX-002
+신호처리 모듈
+SI-ID-CFX-003
+내부 자극 장치 실행 모듈
+SU-ID-CM3-027
+자극 프레임 수 계산
+SU-ID-CM3-029
+자극 파라미터 계산 결과 공유
+SU-ID-CFX-033
+CIS 전략과 전략 선택
+SU-ID-CFX-039
+실시간 자극 데이터 생성
+SW-FW-RID-2
+SI-ID-CM3-002
+신호처리 모듈
+SI-ID-CFX-002
+신호처리 모듈
+SI-ID-CFX-003
+내부 자극 장치 실행 모듈
+SU-ID-CM3-027
+자극 프레임 수 계산
+SU-ID-CM3-029
+자극 파라미터 계산 결과 공유
+SU-ID-CFX-033
+CIS 전략과 전략 선택
+SU-ID-CFX-039
+실시간 자극 데이터 생성
+SW-FW-RID-3
+SI-ID-CM3-003
+내부 자극 장치 실행 모듈
+SI-ID-CFX-003
+내부 자극 장치 실행 모듈
+SU-ID-CM3-041
+내부기 자극 설정 적용
+SU-ID-CFX-036
+자극 패킷 헤더 구성
+SU-ID-CFX-040
+지정 명령 PCM 출력
+SW-FW-RID-4
+SI-ID-CM3-003
+내부 자극 장치 실행 모듈
+SI-ID-CFX-003
+내부 자극 장치 실행 모듈
+SU-ID-CM3-041
+내부기 자극 설정 적용
+SU-ID-CFX-036
+자극 패킷 헤더 구성
+SW-FW-RID-5
+SI-ID-CM3-002
+신호처리 모듈
+SI-ID-CFX-002
+신호처리 모듈
+SU-ID-CM3-028
+내부기 DAC 범위와 T/C 변환
+SU-ID-CM3-029
+자극 파라미터 계산 결과 공유
+SU-ID-CFX-029
+CM3 계산 T/C 값 수신
+SU-ID-CFX-030
+자극 볼륨에 따른 C 값 계산
+SU-ID-CFX-032
+비선형 매핑과 T 이하 묵음
+SW-FW-RID-6
+SI-ID-CM3-002
+신호처리 모듈
+SI-ID-CM3-003
+내부 자극 장치 실행 모듈
+SU-ID-CM3-027
+자극 프레임 수 계산
+SU-ID-CM3-037
+펄스폭과 역방향 통신 설정
+SU-ID-CM3-041
+내부기 자극 설정 적용
+SW-FW-RID-7
+SI-ID-CM3-002
+신호처리 모듈
+SI-ID-CFX-002
+신호처리 모듈
+SU-ID-CM3-028
+내부기 DAC 범위와 T/C 변환
+SU-ID-CM3-029
+자극 파라미터 계산 결과 공유
+SU-ID-CFX-032
+비선형 매핑과 T 이하 묵음
+SW-FW-RID-8
+SI-ID-CM3-001
+시스템 제어 모듈
+SI-ID-CFX-001
+시스템 제어 모듈
+SI-ID-CFX-002
+신호처리 모듈
+SI-ID-HEAR-001
+신호처리 모듈
+SU-ID-CM3-023
+오디오 및 자극 볼륨 설정
+SU-ID-CFX-011
+맵 및 볼륨 변경 처리
+SU-ID-CFX-022
+AGC 입력 크기 읽기와 공유
+SU-ID-CFX-023
+AGC 목표 이득 계산
+SU-ID-CFX-024
+AGC 이득의 시간 변화
+SU-ID-CFX-025
+AGC 표본 이득 적용
+SU-ID-HEAR-001
+오디오 절대값 최대값 연산
+SW-FW-RID-9
+SI-ID-CFX-001
+시스템 제어 모듈
+SI-ID-CFX-002
+신호처리 모듈
+SI-ID-HEAR-001
+신호처리 모듈
+SU-ID-CFX-002
+HEAR 실행 준비
+SU-ID-CFX-026
+주파수 분석 입력 갱신
+SU-ID-CFX-028
+대역별 대표값 및 크기 보상
+SU-ID-HEAR-002
+창 적용 FFT와 크기 연산
+SW-FW-RID-10
+SI-ID-CFX-001
+시스템 제어 모듈
+SI-ID-CFX-002
+신호처리 모듈
+SI-ID-CM3-001
+시스템 제어 모듈
+SU-ID-CFX-012
+공유 맵 데이터 복사
+SU-ID-CFX-027
+FFT 대역 인덱스 읽기
+SU-ID-CFX-028
+대역별 대표값 및 크기 보상
+SU-ID-CM3-020
+맵 갱신 상태와 계산 자료 공유
+SW-FW-RID-11
+SI-ID-CM3-002
+신호처리 모듈
+SI-ID-CFX-002
+신호처리 모듈
+SI-ID-CFX-003
+내부 자극 장치 실행 모듈
+SU-ID-CM3-027
+자극 프레임 수 계산
+SU-ID-CFX-033
+CIS 전략과 전략 선택
+SU-ID-CFX-034
+NofM 대역 선택
+SU-ID-CFX-035
+NofM 선택 대역 교차 배치
+SU-ID-CFX-036
+자극 패킷 헤더 구성
+SU-ID-CFX-037
+NofM 패킷 구성과 분할 출력
+SW-FW-RID-12
+SI-ID-CFX-001
+시스템 제어 모듈
+SI-ID-CFX-002
+신호처리 모듈
+SI-ID-CFX-003
+내부 자극 장치 실행 모듈
+SI-ID-HEAR-001
+신호처리 모듈
+SU-ID-CFX-001
+인터럽트와 반복 실행 제어
+SU-ID-CFX-007
+마이크 블록 수집
+SU-ID-CFX-021
+신호처리 경로 선택
+SU-ID-CFX-026
+주파수 분석 입력 갱신
+SU-ID-CFX-038
+PCM 모드 분기와 프리앰블
+SU-ID-HEAR-001
+오디오 절대값 최대값 연산
+SU-ID-HEAR-002
+창 적용 FFT와 크기 연산
+SW-FW-RID-13
+SI-ID-CM3-001
+시스템 제어 모듈
+SI-ID-CM3-003
+내부 자극 장치 실행 모듈
+SI-ID-CFX-001
+시스템 제어 모듈
+SU-ID-CM3-006
+시스템 상태 및 맵 변경 공유
+SU-ID-CM3-022
+맵 목록과 선택 정보
+SU-ID-CM3-042
+내부기 및 사용자 설정 저장
+SU-ID-CM3-043
+맵 저장과 삭제 범위
+SU-ID-CFX-011
+맵 및 볼륨 변경 처리
+SU-ID-CFX-012
+공유 맵 데이터 복사
+SW-FW-RID-14
+SI-ID-CM3-001
+시스템 제어 모듈
+SI-ID-CFX-001
+시스템 제어 모듈
+SI-ID-CFX-002
+신호처리 모듈
+SU-ID-CM3-023
+오디오 및 자극 볼륨 설정
+SU-ID-CFX-011
+맵 및 볼륨 변경 처리
+SU-ID-CFX-030
+자극 볼륨에 따른 C 값 계산
+SW-FW-RID-15
+
+SI-ID-CFX-001
+시스템 제어 모듈
+SI-ID-CFX-002
+신호처리 모듈
+SI-ID-QCC-001
+시스템 관리 모듈
+SI-ID-QCC-002
+HW 인터페이스 모듈
+SI-ID-QCC-003
+블루투스 모듈
+
+
+
+SU-ID-CFX-003
+마이크와 오디오 경로 설정
+SU-ID-CFX-005
+I2S 인터페이스 초기화
+SU-ID-CFX-007
+마이크 블록 수집
+SU-ID-CFX-008
+I2S 입력 상태 판정
+SU-ID-CFX-015
+I2S 수신 버퍼 관리
+SU-ID-CFX-016
+단일 및 두 입력 혼합
+SU-ID-CFX-017
+두 마이크 지연 합산 빔포밍
+SU-ID-CFX-018
+입력별 게인 혼합
+SU-ID-CFX-021
+신호처리 경로 선택
+SU-ID-QCC-001
+시스템 초기화와 설정 유닛
+SU-ID-QCC-003
+장치 상태 유닛
+SU-ID-QCC-005
+PIO 포트 제어 유닛
+SU-ID-QCC-008
+Bluetooth Classic 유닛
+[QCC 자료 입력] 24bit/16kHz I2S 클럭/프레임/유효 신호의 실제 설정과 파형 자료가 필요하다.
+
+
+
+
+
+
+
+
+
+
+SW-FW-RID-16
+
+SI-ID-CFX-001
+시스템 제어 모듈
+SI-ID-QCC-001
+시스템 관리 모듈
+SI-ID-QCC-002
+HW 인터페이스 모듈
+SI-ID-QCC-003
+블루투스 모듈
+
+SU-ID-CFX-003
+마이크와 오디오 경로 설정
+SU-ID-CFX-005
+I2S 인터페이스 초기화
+SU-ID-CFX-007
+마이크 블록 수집
+SU-ID-CFX-015
+I2S 수신 버퍼 관리
+SU-ID-QCC-001
+시스템 초기화와 설정 유닛
+SU-ID-QCC-005
+PIO 포트 제어 유닛
+SU-ID-QCC-008
+Bluetooth Classic 유닛
+
+
+
+SW-FW-RID-17
+SI-ID-CFX-001
+시스템 제어 모듈
+SI-ID-CFX-003
+내부 자극 장치 실행 모듈
+SU-ID-CFX-004
+PCM 인터페이스 초기화
+SU-ID-CFX-036
+자극 패킷 헤더 구성
+SU-ID-CFX-038
+PCM 모드 분기와 프리앰블
+SU-ID-CFX-039
+실시간 자극 데이터 생성
+SW-FW-RID-18
+SI-ID-CM3-001
+시스템 제어 모듈
+SI-ID-CM3-002
+신호처리 모듈
+SI-ID-CM3-003
+내부 자극 장치 실행 모듈
+SI-ID-CFX-001
+시스템 제어 모듈
+SI-ID-CFX-002
+신호처리 모듈
+SU-ID-CM3-020
+맵 갱신 상태와 계산 자료 공유
+SU-ID-CM3-027
+자극 프레임 수 계산
+SU-ID-CM3-028
+내부기 DAC 범위와 T/C 변환
+SU-ID-CM3-029
+자극 파라미터 계산 결과 공유
+SU-ID-CM3-041
+내부기 자극 설정 적용
+SU-ID-CFX-011
+맵 및 볼륨 변경 처리
+SU-ID-CFX-029
+CM3 계산 T/C 값 수신
+SU-ID-CFX-031
+비선형 매핑 계수 계산
+SU-ID-CFX-032
+비선형 매핑과 T 이하 묵음
+SW-FW-RID-19
+SI-ID-CM3-001
+시스템 제어 모듈
+SU-ID-CM3-007
+전원 및 자동 절전 조건
+SU-ID-CM3-009
+터치 상태와 길게 누름 판정
+SU-ID-CM3-010
+터치 센서 읽기와 재보정
+SU-ID-CM3-015
+CM3 저전력 진입과 복귀
+SW-FW-RID-20
+SI-ID-CM3-001
+시스템 제어 모듈
+SU-ID-CM3-005
+정상 반복 처리
+SU-ID-CM3-013
+LED 표시 요청과 우선순위
+SU-ID-CM3-014
+LED 패턴 출력
+SW-FW-RID-21
+
+SI-ID-CM3-001
+시스템 제어 모듈
+SI-ID-CM3-004
+블루투스 통신 모듈
+SI-ID-QCC-001
+시스템 관리 모듈
+SI-ID-QCC-002
+HW 인터페이스 모듈
+
+
+SU-ID-CM3-011
+배터리 및 크래들 정보 관리
+SU-ID-CM3-013
+LED 표시 요청과 우선순위
+SU-ID-CM3-014
+LED 패턴 출력
+SU-ID-CM3-045
+QCC 수신 분류와 시스템 정보 응답
+SU-ID-QCC-002
+시스템 상태 유닛
+SU-ID-QCC-006
+Power 제어 유닛
+SU-ID-QCC-001
+시스템 초기화와 설정 유닛
+
+
+
+SW-FW-RID-22
+
+SI-ID-CM3-001
+시스템 제어 모듈
+SI-ID-QCC-001
+시스템 관리 모듈
+SI-ID-QCC-002
+HW 인터페이스 모듈
+
+SU-ID-CM3-011
+배터리 및 크래들 정보 관리
+SU-ID-CM3-013
+LED 표시 요청과 우선순위
+SU-ID-CM3-014
+LED 패턴 출력
+SU-ID-QCC-002
+시스템 상태 유닛
+SU-ID-QCC-006
+Power 제어 유닛
+SU-ID-QCC-001
+시스템 초기화와 설정 유닛
+
+
+SW-FW-RID-23
+
+SI-ID-CM3-001
+시스템 제어 모듈
+SI-ID-CM3-003
+내부 자극 장치 실행 모듈
+SI-ID-CFX-002
+신호처리 모듈
+SI-ID-QCC-002
+HW 인터페이스 모듈
+
+
+
+SU-ID-CM3-011
+배터리 및 크래들 정보 관리
+SU-ID-CM3-044
+자극 알림 실행
+SU-ID-CFX-032
+비선형 매핑과 T 이하 묵음
+SU-ID-QCC-006
+Power 제어 유닛
+
+
+SW-FW-RID-24
+
+SI-ID-CM3-001
+시스템 제어 모듈
+SI-ID-CM3-004
+블루투스 통신 모듈
+SI-ID-CFX-001
+시스템 제어 모듈
+SI-ID-QCC-003
+블루투스 모듈
+
+
+
+SU-ID-CM3-006
+시스템 상태 및 맵 변경 공유
+SU-ID-CM3-022
+맵 목록과 선택 정보
+SU-ID-CM3-046
+리모콘 명령 처리
+SU-ID-CFX-011
+맵 및 볼륨 변경 처리
+SU-ID-CFX-012
+공유 맵 데이터 복사
+SU-ID-QCC-011
+BLE Data 처리 유닛
+
+
+
+
+SW-FW-RID-25
+
+SI-ID-CM3-001
+시스템 제어 모듈
+SI-ID-CM3-004
+블루투스 통신 모듈
+SI-ID-CFX-001
+시스템 제어 모듈
+SI-ID-CFX-002
+신호처리 모듈
+SI-ID-QCC-003
+블루투스 모듈
+
+
+
+
+SU-ID-CM3-023
+오디오 및 자극 볼륨 설정
+SU-ID-CM3-046
+리모콘 명령 처리
+SU-ID-CFX-011
+맵 및 볼륨 변경 처리
+SU-ID-CFX-023
+AGC 목표 이득 계산
+SU-ID-QCC-011
+BLE Data 처리 유닛
+
+
+
+SW-FW-RID-26
+
+SI-ID-CM3-001
+시스템 제어 모듈
+SI-ID-CM3-004
+블루투스 통신 모듈
+SI-ID-CFX-001
+시스템 제어 모듈
+SI-ID-CFX-002
+신호처리 모듈
+SI-ID-QCC-003
+블루투스 모듈
+
+
+
+
+SU-ID-CM3-023
+오디오 및 자극 볼륨 설정
+SU-ID-CM3-046
+리모콘 명령 처리
+SU-ID-CFX-011
+맵 및 볼륨 변경 처리
+SU-ID-CFX-030
+자극 볼륨에 따른 C 값 계산
+SU-ID-QCC-011
+BLE Data 처리 유닛
+
+
+
+SW-FW-RID-27
+
+SI-ID-CM3-001
+시스템 제어 모듈
+SI-ID-CM3-004
+블루투스 통신 모듈
+SI-ID-QCC-003
+블루투스 모듈
+
+
+SU-ID-CM3-013
+LED 표시 요청과 우선순위
+SU-ID-CM3-014
+LED 패턴 출력
+SU-ID-CM3-024
+사용자 알림 설정
+SU-ID-CM3-046
+리모콘 명령 처리
+SU-ID-QCC-011
+BLE Data 처리 유닛
+
+
+
+SW-FW-RID-28
+
+SI-ID-CM3-001
+시스템 제어 모듈
+SI-ID-CM3-003
+내부 자극 장치 실행 모듈
+SI-ID-CM3-004
+블루투스 통신 모듈
+SI-ID-QCC-003
+블루투스 모듈
+SI-ID-QCC-002
+HW 인터페이스 모듈
+
+
+
+SU-ID-CM3-024
+사용자 알림 설정
+SU-ID-CM3-044
+자극 알림 실행
+SU-ID-CM3-046
+리모콘 명령 처리
+SU-ID-QCC-011
+BLE Data 처리 유닛
+SU-ID-QCC-006
+Power 제어 유닛
+
+
+SW-FW-RID-29
+
+SI-ID-CM3-001
+시스템 제어 모듈
+SI-ID-CM3-004
+블루투스 통신 모듈
+SI-ID-QCC-001
+시스템 관리 모듈
+SI-ID-QCC-002
+HW 인터페이스 모듈
+SI-ID-QCC-003
+블루투스 모듈
+
+
+SU-ID-CM3-011
+배터리 및 크래들 정보 관리
+SU-ID-CM3-046
+리모콘 명령 처리
+SU-ID-QCC-002
+시스템 상태 유닛
+SU-ID-QCC-006
+Power 제어 유닛
+SU-ID-QCC-011
+BLE Data 처리 유닛
+SU-ID-QCC-001
+시스템 초기화와 설정 유닛
+SU-ID-QCC-009
+BLE 유닛
+
+SW-FW-RID-30
+
+SI-ID-CM3-001
+시스템 제어 모듈
+SI-ID-CM3-004
+블루투스 통신 모듈
+SI-ID-QCC-003
+블루투스 모듈
+
+
+SU-ID-CM3-022
+맵 목록과 선택 정보
+SU-ID-CM3-046
+리모콘 명령 처리
+SU-ID-QCC-011
+BLE Data 처리 유닛
+
+SW-FW-RID-31
+
+SI-ID-CM3-001
+시스템 제어 모듈
+SI-ID-CM3-004
+블루투스 통신 모듈
+SI-ID-QCC-003
+블루투스 모듈
+
+
+SU-ID-CM3-023
+오디오 및 자극 볼륨 설정
+SU-ID-CM3-046
+리모콘 명령 처리
+SU-ID-QCC-011
+BLE Data 처리 유닛
+
+SW-FW-RID-32
+
+SI-ID-CM3-001
+시스템 제어 모듈
+SI-ID-CM3-004
+블루투스 통신 모듈
+SI-ID-QCC-003
+블루투스 모듈
+
+
+SU-ID-CM3-023
+오디오 및 자극 볼륨 설정
+SU-ID-CM3-046
+리모콘 명령 처리
+SU-ID-QCC-011
+BLE Data 처리 유닛
+
+SW-FW-RID-33
+
+SI-ID-CM3-001
+시스템 제어 모듈
+SI-ID-CM3-004
+블루투스 통신 모듈
+SI-ID-QCC-003
+블루투스 모듈
+
+
+SU-ID-CM3-024
+사용자 알림 설정
+SU-ID-CM3-046
+리모콘 명령 처리
+SU-ID-QCC-011
+BLE Data 처리 유닛
+
+SW-FW-RID-34
+
+SI-ID-CM3-001
+시스템 제어 모듈
+SI-ID-CM3-004
+블루투스 통신 모듈
+SI-ID-QCC-003
+블루투스 모듈
+SI-ID-QCC-002
+HW 인터페이스 모듈
+
+
+SU-ID-CM3-024
+사용자 알림 설정
+SU-ID-CM3-046
+리모콘 명령 처리
+SU-ID-QCC-011
+BLE Data 처리 유닛
+SU-ID-QCC-006
+Power 제어 유닛
+
+SW-FW-RID-35
+
+SI-ID-CM3-001
+시스템 제어 모듈
+SI-ID-CM3-004
+블루투스 통신 모듈
+SI-ID-QCC-003
+블루투스 모듈
+SI-ID-QCC-001
+시스템 관리 모듈
+
+
+SU-ID-CM3-016
+오류 및 공유 메모리 상태 확인
+SU-ID-CM3-021
+내부기 식별 및 사용자 정보 조회
+SU-ID-CM3-049
+매핑 명령 실행
+SU-ID-QCC-011
+BLE Data 처리 유닛
+SU-ID-QCC-002
+시스템 상태 유닛
+SU-ID-QCC-009
+BLE 유닛
+
+
+SW-FW-RID-36
+
+SI-ID-CM3-001
+시스템 제어 모듈
+SI-ID-CM3-003
+내부 자극 장치 실행 모듈
+SI-ID-CM3-004
+블루투스 통신 모듈
+SI-ID-CFX-003
+내부 자극 장치 실행 모듈
+SI-ID-QCC-003
+블루투스 모듈
+
+
+
+
+SU-ID-CM3-017
+PCM 명령 및 모드 공유
+SU-ID-CM3-030
+내부기 실행 상태 관리
+SU-ID-CM3-049
+매핑 명령 실행
+SU-ID-CFX-040
+지정 명령 PCM 출력
+SU-ID-QCC-011
+BLE Data 처리 유닛
+
+
+
+SW-FW-RID-37
+
+SI-ID-CM3-003
+내부 자극 장치 실행 모듈
+SI-ID-CM3-004
+블루투스 통신 모듈
+SI-ID-CFX-003
+내부 자극 장치 실행 모듈
+SI-ID-QCC-003
+블루투스 모듈
+
+
+
+SU-ID-CM3-030
+내부기 실행 상태 관리
+SU-ID-CM3-032
+실시간 자극 중 연결 확인
+SU-ID-CM3-049
+매핑 명령 실행
+SU-ID-CFX-038
+PCM 모드 분기와 프리앰블
+SU-ID-CFX-039
+실시간 자극 데이터 생성
+SU-ID-QCC-011
+BLE Data 처리 유닛
+
+
+
+
+SW-FW-RID-38
+
+SI-ID-CM3-001
+시스템 제어 모듈
+SI-ID-CM3-004
+블루투스 통신 모듈
+SI-ID-QCC-003
+블루투스 모듈
+SI-ID-QCC-001
+시스템 관리 모듈
+
+
+SU-ID-CM3-016
+오류 및 공유 메모리 상태 확인
+SU-ID-CM3-021
+내부기 식별 및 사용자 정보 조회
+SU-ID-CM3-049
+매핑 명령 실행
+SU-ID-QCC-011
+BLE Data 처리 유닛
+SU-ID-QCC-002
+시스템 상태 유닛
+SU-ID-QCC-009
+BLE 유닛
+
+
+SW-FW-RID-39
+
+SI-ID-CM3-001
+시스템 제어 모듈
+SI-ID-CM3-004
+블루투스 통신 모듈
+SI-ID-QCC-003
+블루투스 모듈
+
+
+SU-ID-CM3-017
+PCM 명령 및 모드 공유
+SU-ID-CM3-026
+SPI 응답 버퍼 관리
+SU-ID-CM3-049
+매핑 명령 실행
+SU-ID-QCC-011
+BLE Data 처리 유닛
+
+
+SW-FW-RID-40
+
+SI-ID-CM3-001
+시스템 제어 모듈
+SI-ID-CM3-004
+블루투스 통신 모듈
+SI-ID-QCC-003
+블루투스 모듈
+
+
+SU-ID-CM3-017
+PCM 명령 및 모드 공유
+SU-ID-CM3-019
+오디오 및 자극 크기 조회
+SU-ID-CM3-026
+SPI 응답 버퍼 관리
+SU-ID-CM3-049
+매핑 명령 실행
+SU-ID-QCC-011
+BLE Data 처리 유닛
+
+
+
+SW-FW-RID-41
+SI-ID-CM3-001
+시스템 제어 모듈
+SI-ID-CM3-003
+내부 자극 장치 실행 모듈
+SU-ID-CM3-025
+I2C 전송과 인터럽트 진행
+SU-ID-CM3-034
+FPGA 제어 레지스터와 리셋
+SU-ID-CM3-036
+FPGA 상태와 FIFO 접근
+SW-FW-RID-42
+SI-ID-CM3-001
+시스템 제어 모듈
+SU-ID-CM3-002
+터치 센서 초기화
+SU-ID-CM3-010
+터치 센서 읽기와 재보정
+SU-ID-CM3-025
+I2C 전송과 인터럽트 진행
+SW-FW-RID-43
+SI-ID-CM3-001
+시스템 제어 모듈
+SI-ID-CM3-003
+내부 자극 장치 실행 모듈
+SU-ID-CM3-025
+I2C 전송과 인터럽트 진행
+SU-ID-CM3-035
+송신 전력 단계 설정
+SU-ID-CM3-038
+주 송신 PMIC 접근
+SU-ID-CM3-039
+자극 전원 활성과 차단
+SU-ID-CM3-040
+보조 PMIC 접근
+SW-FW-RID-44
+
+SI-ID-CM3-001
+시스템 제어 모듈
+SI-ID-CM3-004
+블루투스 통신 모듈
+SI-ID-QCC-001
+시스템 관리 모듈
+SI-ID-QCC-002
+HW 인터페이스 모듈
+SI-ID-QCC-003
+블루투스 모듈
+
+
+
+SU-ID-CM3-001
+CM3 주변장치 초기화
+SU-ID-CM3-026
+SPI 응답 버퍼 관리
+SU-ID-CM3-045
+QCC 수신 분류와 시스템 정보 응답
+SU-ID-CM3-046
+리모콘 명령 처리
+SU-ID-QCC-001
+시스템 초기화와 설정 유닛
+SU-ID-QCC-002
+시스템 상태 유닛
+SU-ID-QCC-004
+블루투스 상태 유닛
+SU-ID-QCC-005
+PIO 포트 제어 유닛
+SU-ID-QCC-009
+BLE 유닛
+SU-ID-QCC-011
+BLE Data 처리 유닛
+[QCC 자료 입력] 리모콘 AUTH 접근 권한과 GAIA 주소/명령별 데이터/응답의 실제 계약 및 실행 자료가 필요하다.
+
+
+
+
+
+SW-FW-RID-45
+
+SI-ID-CM3-001
+시스템 제어 모듈
+SI-ID-CM3-004
+블루투스 통신 모듈
+SI-ID-QCC-001
+시스템 관리 모듈
+SI-ID-QCC-002
+HW 인터페이스 모듈
+SI-ID-QCC-003
+블루투스 모듈
+
+
+
+SU-ID-CM3-001
+CM3 주변장치 초기화
+SU-ID-CM3-026
+SPI 응답 버퍼 관리
+SU-ID-CM3-045
+QCC 수신 분류와 시스템 정보 응답
+SU-ID-CM3-048
+매핑 연결 및 종료 상태
+SU-ID-CM3-049
+매핑 명령 실행
+SU-ID-QCC-001
+시스템 초기화와 설정 유닛
+SU-ID-QCC-002
+시스템 상태 유닛
+SU-ID-QCC-004
+블루투스 상태 유닛
+SU-ID-QCC-005
+PIO 포트 제어 유닛
+SU-ID-QCC-009
+BLE 유닛
+SU-ID-QCC-011
+BLE Data 처리 유닛
+[QCC 자료 입력] 매핑 권한/키 역할, AUTH UUID 및 GAIA 주소/명령별 데이터/응답의 실제 계약과 실행 자료가 필요하다.
+
+
+
+
+
+
+SW-FW-RID-46
+
+SI-ID-CM3-001
+시스템 제어 모듈
+SI-ID-CM3-003
+내부 자극 장치 실행 모듈
+SI-ID-CFX-003
+내부 자극 장치 실행 모듈
+SI-ID-QCC-001
+시스템 관리 모듈
+SI-ID-QCC-002
+HW 인터페이스 모듈
+
+
+
+SU-ID-CM3-021
+내부기 식별 및 사용자 정보 조회
+SU-ID-CM3-031
+내부기 및 송신 전원 초기화
+SU-ID-CM3-032
+실시간 자극 중 연결 확인
+SU-ID-CM3-033
+매핑 중 연결 확인
+SU-ID-CFX-042
+내부기 연결 검사와 역방향 통신
+SU-ID-QCC-002
+시스템 상태 유닛
+SU-ID-QCC-004
+블루투스 상태 유닛
+SU-ID-QCC-005
+PIO 포트 제어 유닛
+
+
+
+
+SW-FW-RID-47
+
+SI-ID-QCC-003
+블루투스 모듈
+SI-ID-QCC-004
+보안 모듈
+
+SU-ID-QCC-009
+BLE 유닛
+SU-ID-QCC-012
+보안 처리 유닛
+[QCC/E8300 자료 입력] 기존 무제어명령 조건과 BLE 무송수신180초 조건의 범위/타이머 리셋 및 허용오차/경계 처리를 함께 확인해야 한다.
+
+SW-FW-RID-48
+
+SI-ID-QCC-001
+시스템 관리 모듈
+SI-ID-QCC-003
+블루투스 모듈
+SI-ID-QCC-004
+보안 모듈
+
+SU-ID-QCC-001
+시스템 초기화와 설정 유닛
+SU-ID-QCC-009
+BLE 유닛
+SU-ID-QCC-010
+AUTH service 처리 유닛
+SU-ID-QCC-012
+보안 처리 유닛
+SU-ID-QCC-004
+블루투스 상태 유닛
+[QCC 자료 입력] BLE pairing 이후 AUTH 접근과 인증 전 데이터 차단의 실제 UUID/권한 설정 및 조건별 실행 자료가 필요하다.
+
+SW-FW-RID-49
+
+SI-ID-QCC-001
+시스템 관리 모듈
+SI-ID-QCC-003
+블루투스 모듈
+SI-ID-QCC-004
+보안 모듈
+
+SU-ID-QCC-001
+시스템 초기화와 설정 유닛
+SU-ID-QCC-009
+BLE 유닛
+SU-ID-QCC-012
+보안 처리 유닛
+SU-ID-QCC-004
+블루투스 상태 유닛
+[QCC 자료 입력] BLE 버전/암호화 활성 설정과 라이브러리/프로파일, AES-CCM 보호 범위 및 실제 링크 검증 자료가 필요하다. CRA 인증 설계를 전송 암호화의 근거로 사용하지 않는다.
+
+SW-FW-RID-50
+SI-ID-CM3-001
+시스템 제어 모듈
+SI-ID-CM3-004
+블루투스 통신 모듈
+SU-ID-CM3-001
+CM3 주변장치 초기화
+SU-ID-CM3-046
+리모콘 명령 처리
+SW-FW-RID-51
+SI-ID-CM3-003
+내부 자극 장치 실행 모듈
+SU-ID-CM3-042
+내부기 및 사용자 설정 저장
+SU-ID-CM3-043
+맵 저장과 삭제 범위
+SW-FW-RID-52
+
+SI-ID-QCC-001
+시스템 관리 모듈
+SI-ID-QCC-002
+HW 인터페이스 모듈
+SI-ID-QCC-003
+블루투스 모듈
+SI-ID-QCC-004
+보안 모듈
+
+SU-ID-QCC-001
+시스템 초기화와 설정 유닛
+SU-ID-QCC-007
+NVM 처리 유닛
+SU-ID-QCC-010
+AUTH service 처리 유닛
+SU-ID-QCC-012
+보안 처리 유닛
+SU-ID-QCC-013
+보안 툴박스 유닛
+SU-ID-QCC-014
+보안 NVM 유닛
+[QCC 자료 입력] SHA-256의 매핑 키 생성과 AES-CMAC의 인증값 계산 역할, HMAC/ENC 표기 및 입력 직렬화/태그 길이의 정합성을 확정해야 한다.
+
+SW-FW-RID-53
+배포 및 변경관리 절차
+절차로 관리 / 개별 유닛 해당 없음
+SW-FW-RID-54
+SI-ID-BOOT-001
+부트 제어 및 이미지 적재 모듈
+SU-ID-BOOT-010
+응용 파일 열기와 헤더 검사
+SU-ID-BOOT-011
+이미지 구획 처리
+SU-ID-BOOT-012
+매니페스트 처리
+SU-ID-BOOT-013
+이미지 CRC 검사
+SW-FW-RID-55
+
+SI-ID-CM3-001
+시스템 제어 모듈
+SI-ID-CM3-003
+내부 자극 장치 실행 모듈
+SI-ID-CFX-002
+신호처리 모듈
+SI-ID-QCC-002
+HW 인터페이스 모듈
+
+
+
+SU-ID-CM3-007
+전원 및 자동 절전 조건
+SU-ID-CM3-011
+배터리 및 크래들 정보 관리
+SU-ID-CM3-013
+LED 표시 요청과 우선순위
+SU-ID-CM3-014
+LED 패턴 출력
+SU-ID-CM3-044
+자극 알림 실행
+SU-ID-CFX-032
+비선형 매핑과 T 이하 묵음
+SU-ID-QCC-006
+Power 제어 유닛
+
+
+
+
+
+SW-FW-RID-56
+SI-ID-CM3-001
+시스템 제어 모듈
+SI-ID-CFX-001
+시스템 제어 모듈
+SI-ID-CFX-002
+신호처리 모듈
+SU-ID-CM3-023
+오디오 및 자극 볼륨 설정
+SU-ID-CFX-011
+맵 및 볼륨 변경 처리
+SU-ID-CFX-030
+자극 볼륨에 따른 C 값 계산
+SW-FW-RID-57
+필수성능시험 절차
+시험 절차로 관리 / 개별 유닛 해당 없음
+SW-FW-RID-58
+SI-ID-CFX-001
+시스템 제어 모듈
+SI-ID-CFX-002
+신호처리 모듈
+SI-ID-CFX-003
+내부 자극 장치 실행 모듈
+SI-ID-HEAR-001
+신호처리 모듈
+SU-ID-CFX-001
+인터럽트와 반복 실행 제어
+SU-ID-CFX-007
+마이크 블록 수집
+SU-ID-CFX-021
+신호처리 경로 선택
+SU-ID-CFX-026
+주파수 분석 입력 갱신
+SU-ID-CFX-038
+PCM 모드 분기와 프리앰블
+SU-ID-HEAR-001
+오디오 절대값 최대값 연산
+SU-ID-HEAR-002
+창 적용 FFT와 크기 연산
+SW-FW-RID-59
+
+SI-ID-CM3-004
+블루투스 통신 모듈
+SI-ID-QCC-003
+블루투스 모듈
+
+SU-ID-CM3-045
+QCC 수신 분류와 시스템 정보 응답
+SU-ID-CM3-046
+리모콘 명령 처리
+SU-ID-CM3-047
+입력 게인 명령 처리
+SU-ID-CM3-049
+매핑 명령 실행
+SU-ID-CM3-051
+OTA 데이터와 기동 위치 명령
+SU-ID-QCC-011
+BLE Data 처리 유닛
+
+
+
+
+SW-FW-RID-60
+
+SI-ID-CM3-001
+시스템 제어 모듈
+SI-ID-CM3-004
+블루투스 통신 모듈
+SI-ID-QCC-003
+블루투스 모듈
+
+
+
+SU-ID-CM3-026
+SPI 응답 버퍼 관리
+SU-ID-CM3-045
+QCC 수신 분류와 시스템 정보 응답
+SU-ID-QCC-011
+BLE Data 처리 유닛
+[QCC 자료 입력] BLE/GAIA CRC의 실제 알고리즘/적용 바이트/저장 순서와 오류 응답/검증 자료가 필요하다.
+
+
+
+SW-FW-RID-61
+SI-ID-CM3-001
+시스템 제어 모듈
+SI-ID-CM3-003
+내부 자극 장치 실행 모듈
+SU-ID-CM3-004
+코어 간 기동 준비와 실행 허가
+SU-ID-CM3-013
+LED 표시 요청과 우선순위
+SU-ID-CM3-014
+LED 패턴 출력
+SU-ID-CM3-030
+내부기 실행 상태 관리
+SW-FW-RID-62
+
+SI-ID-CM3-001
+시스템 제어 모듈
+SI-ID-CM3-004
+블루투스 통신 모듈
+SI-ID-QCC-002
+HW 인터페이스 모듈
+
+
+SU-ID-CM3-011
+배터리 및 크래들 정보 관리
+SU-ID-CM3-013
+LED 표시 요청과 우선순위
+SU-ID-CM3-014
+LED 패턴 출력
+SU-ID-CM3-045
+QCC 수신 분류와 시스템 정보 응답
+SU-ID-QCC-006
+Power 제어 유닛
+
+
+
+SW-FW-RID-63
+
+SI-ID-CM3-001
+시스템 제어 모듈
+SI-ID-CM3-004
+블루투스 통신 모듈
+SI-ID-QCC-001
+시스템 관리 모듈
+SI-ID-QCC-002
+HW 인터페이스 모듈
+SI-ID-QCC-003
+블루투스 모듈
+
+
+SU-ID-CM3-011
+배터리 및 크래들 정보 관리
+SU-ID-CM3-013
+LED 표시 요청과 우선순위
+SU-ID-CM3-014
+LED 패턴 출력
+SU-ID-CM3-046
+리모콘 명령 처리
+SU-ID-QCC-002
+시스템 상태 유닛
+SU-ID-QCC-006
+Power 제어 유닛
+SU-ID-QCC-001
+시스템 초기화와 설정 유닛
+SU-ID-QCC-009
+BLE 유닛
+
+
+
+SW-FW-RID-64
+SI-ID-CM3-001
+시스템 제어 모듈
+SU-ID-CM3-013
+LED 표시 요청과 우선순위
+SU-ID-CM3-014
+LED 패턴 출력
+SW-FW-RID-65
+SI-ID-CM3-001
+시스템 제어 모듈
+SU-ID-CM3-013
+LED 표시 요청과 우선순위
+SU-ID-CM3-014
+LED 패턴 출력
+SW-FW-RID-66
+
+SI-ID-CM3-001
+시스템 제어 모듈
+SI-ID-CM3-003
+내부 자극 장치 실행 모듈
+SI-ID-CM3-004
+블루투스 통신 모듈
+SI-ID-QCC-001
+시스템 관리 모듈
+SI-ID-QCC-002
+HW 인터페이스 모듈
+SI-ID-QCC-003
+블루투스 모듈
+
+
+
+SU-ID-CM3-005
+정상 반복 처리
+SU-ID-CM3-030
+내부기 실행 상태 관리
+SU-ID-CM3-045
+QCC 수신 분류와 시스템 정보 응답
+SU-ID-CM3-048
+매핑 연결 및 종료 상태
+SU-ID-QCC-002
+시스템 상태 유닛
+SU-ID-QCC-004
+블루투스 상태 유닛
+SU-ID-QCC-006
+Power 제어 유닛
+SU-ID-QCC-011
+BLE Data 처리 유닛
+
+
+
+SW-FW-RID-67
+
+SI-ID-CM3-001
+시스템 제어 모듈
+SI-ID-CM3-003
+내부 자극 장치 실행 모듈
+SI-ID-CFX-003
+내부 자극 장치 실행 모듈
+SI-ID-QCC-001
+시스템 관리 모듈
+SI-ID-QCC-002
+HW 인터페이스 모듈
+
+
+
+SU-ID-CM3-004
+코어 간 기동 준비와 실행 허가
+SU-ID-CM3-017
+PCM 명령 및 모드 공유
+SU-ID-CM3-030
+내부기 실행 상태 관리
+SU-ID-CM3-031
+내부기 및 송신 전원 초기화
+SU-ID-CM3-039
+자극 전원 활성과 차단
+SU-ID-CFX-038
+PCM 모드 분기와 프리앰블
+SU-ID-CFX-041
+PCM 대기와 초기화
+SU-ID-QCC-002
+시스템 상태 유닛
+SU-ID-QCC-004
+블루투스 상태 유닛
+SU-ID-QCC-005
+PIO 포트 제어 유닛
+
+
+
+
+
+
+SW-FW-RID-68
+
+SI-ID-CM3-001
+시스템 제어 모듈
+SI-ID-CM3-003
+내부 자극 장치 실행 모듈
+SI-ID-CFX-001
+시스템 제어 모듈
+SI-ID-CFX-003
+내부 자극 장치 실행 모듈
+SI-ID-QCC-001
+시스템 관리 모듈
+SI-ID-QCC-002
+HW 인터페이스 모듈
+
+
+
+
+SU-ID-CM3-007
+전원 및 자동 절전 조건
+SU-ID-CM3-012
+CFX 전원 제어 요청
+SU-ID-CM3-015
+CM3 저전력 진입과 복귀
+SU-ID-CM3-039
+자극 전원 활성과 차단
+SU-ID-CFX-009
+CFX 저전력 전환
+SU-ID-CFX-041
+PCM 대기와 초기화
+SU-ID-QCC-002
+시스템 상태 유닛
+SU-ID-QCC-004
+블루투스 상태 유닛
+SU-ID-QCC-005
+PIO 포트 제어 유닛
+SU-ID-QCC-006
+Power 제어 유닛
+
+
+
+
+
+SW-FW-RID-69
+
+SI-ID-CFX-001
+시스템 제어 모듈
+SI-ID-CFX-002
+신호처리 모듈
+SI-ID-CM3-004
+블루투스 통신 모듈
+SI-ID-QCC-001
+시스템 관리 모듈
+SI-ID-QCC-002
+HW 인터페이스 모듈
+SI-ID-QCC-003
+블루투스 모듈
+
+
+
+
+SU-ID-CFX-005
+I2S 인터페이스 초기화
+SU-ID-CFX-008
+I2S 입력 상태 판정
+SU-ID-CFX-015
+I2S 수신 버퍼 관리
+SU-ID-CFX-018
+입력별 게인 혼합
+SU-ID-CFX-019
+I2S 시작과 중단의 완만한 전환
+SU-ID-CFX-021
+신호처리 경로 선택
+SU-ID-CM3-045
+QCC 수신 분류와 시스템 정보 응답
+SU-ID-QCC-003
+장치 상태 유닛
+SU-ID-QCC-004
+블루투스 상태 유닛
+SU-ID-QCC-005
+PIO 포트 제어 유닛
+SU-ID-QCC-008
+Bluetooth Classic 유닛
+SU-ID-QCC-002
+시스템 상태 유닛
+[QCC 자료 입력] DMIC2의 QCC 입력 연결은 확인되었다. QCC 마이크 핀/클록, 프로파일/코덱별 송수신과 동시 동작, I2S 클록/프레임/좌우 배정 및 시작/중단 유효 신호의 실제 설정/파형과 오디오 시험 결과를 확인해야 한다.
+
+
+
+
+
+
+
+
+SW-FW-RID-70
+
+SI-ID-CM3-001
+시스템 제어 모듈
+SI-ID-CM3-004
+블루투스 통신 모듈
+SI-ID-QCC-001
+시스템 관리 모듈
+SI-ID-QCC-003
+블루투스 모듈
+
+
+
+SU-ID-CM3-026
+SPI 응답 버퍼 관리
+SU-ID-CM3-045
+QCC 수신 분류와 시스템 정보 응답
+SU-ID-CM3-046
+리모콘 명령 처리
+SU-ID-CM3-049
+매핑 명령 실행
+SU-ID-QCC-002
+시스템 상태 유닛
+SU-ID-QCC-003
+장치 상태 유닛
+SU-ID-QCC-004
+블루투스 상태 유닛
+SU-ID-QCC-009
+BLE 유닛
+SU-ID-QCC-011
+BLE Data 처리 유닛
+[QCC 자료 입력] 실제 BLE 광고/연결 구성과 주소/회사ID/바이트 길이, 편이/양이 데이터 배정 및 실행 자료가 필요하다.
+
+
+
+
+
+SW-FW-RID-71
+
+SI-ID-QCC-003
+블루투스 모듈
+SI-ID-QCC-004
+보안 모듈
+
+SU-ID-QCC-010
+AUTH service 처리 유닛
+SU-ID-QCC-012
+보안 처리 유닛
+[QCC 자료 입력] 인증4상태의 실제 응답, 미완료30초 타이머 시작/리셋/허용오차 및 정보 미노출 결과가 필요하다.
+
+SW-FW-RID-72
+
+SI-ID-QCC-004
+보안 모듈
+
+SU-ID-QCC-012
+보안 처리 유닛
+[QCC 자료 입력] 연속5회 실패 누적/초기화/전원 재기동, 60초 제한의 시작/해제/재접속과 시간 경계 결과가 필요하다.
+
+SW-FW-RID-73
+SI-ID-CM3-001
+시스템 제어 모듈
+SU-ID-CM3-016
+오류 및 공유 메모리 상태 확인
+SW-FW-RID-74
+SI-ID-CM3-001
+시스템 제어 모듈
+SI-ID-CM3-004
+블루투스 통신 모듈
+SU-ID-CM3-001
+CM3 주변장치 초기화
+SU-ID-CM3-046
+리모콘 명령 처리
+SW-FW-RID-75
+SI-ID-CM3-001
+시스템 제어 모듈
+SI-ID-CM3-004
+블루투스 통신 모듈
+SU-ID-CM3-016
+오류 및 공유 메모리 상태 확인
+SU-ID-CM3-026
+SPI 응답 버퍼 관리
+SU-ID-CM3-045
+QCC 수신 분류와 시스템 정보 응답
+SW-FW-RID-76
+
+SI-ID-QCC-001
+시스템 관리 모듈
+SI-ID-QCC-002
+HW 인터페이스 모듈
+SI-ID-QCC-003
+블루투스 모듈
+SI-ID-QCC-004
+보안 모듈
+
+SU-ID-QCC-001
+시스템 초기화와 설정 유닛
+SU-ID-QCC-007
+NVM 처리 유닛
+SU-ID-QCC-009
+BLE 유닛
+SU-ID-QCC-010
+AUTH service 처리 유닛
+SU-ID-QCC-011
+BLE Data 처리 유닛
+SU-ID-QCC-012
+보안 처리 유닛
+SU-ID-QCC-013
+보안 툴박스 유닛
+SU-ID-QCC-014
+보안 NVM 유닛
+[QCC 자료 입력] 설치 shared_service_key/clinician_master_key와 생성 clinic_service_key, NVM ID/길이/암호화/접근 제한과 난수 bootstrap 및 실제 보호 결과가 필요하다.
+
+SW-FW-RID-77
+SI-ID-CM3-003
+내부 자극 장치 실행 모듈
+SU-ID-CM3-042
+내부기 및 사용자 설정 저장
+SW-FW-RID-78
+
+SI-ID-CM3-003
+내부 자극 장치 실행 모듈
+SI-ID-BOOT-001
+부트 제어 및 이미지 적재 모듈
+SI-ID-QCC-004
+보안 모듈
+
+
+SU-ID-CM3-042
+내부기 및 사용자 설정 저장
+SU-ID-CM3-043
+맵 저장과 삭제 범위
+SU-ID-BOOT-013
+이미지 CRC 검사
+SU-ID-BOOT-014
+이미지 AES 복호화
+SU-ID-QCC-013
+보안 툴박스 유닛
+SU-ID-QCC-014
+보안 NVM 유닛
+
+
+
+SW-FW-RID-79
+SI-ID-CM3-001
+시스템 제어 모듈
+SI-ID-CM3-003
+내부 자극 장치 실행 모듈
+SU-ID-CM3-005
+정상 반복 처리
+SU-ID-CM3-030
+내부기 실행 상태 관리
+SU-ID-CM3-031
+내부기 및 송신 전원 초기화
+SW-FW-RID-80
+SI-ID-CM3-003
+내부 자극 장치 실행 모듈
+SU-ID-CM3-042
+내부기 및 사용자 설정 저장
+SU-ID-CM3-043
+맵 저장과 삭제 범위
+SW-FW-RID-81
+품질관리 절차
+절차로 관리 / 개별 유닛 해당 없음
+SW-FW-RID-83
+제품 사용 설명서 / 실행 모듈 배정 대상 아님
+제품 문서 항목 / 실행 유닛 배정 대상 아님
+[E8300 보완] 제품 사용 설명서의 안전/작동법/동작방법 및 문제 해결 내용, 배포 대상과 검토 결과를 확인해야 한다.
+
+표 3. 소프트웨어 유닛과 상위 요구사항 연결
+상세 설계 유닛 ID / 이름
+모듈 ID / 이름
+상위 요구사항 ID
+SU-ID-QCC-001 시스템 초기화와 설정 유닛
+SI-ID-QCC-001 시스템 관리 모듈
+SW-FW-RID-15, SW-FW-RID-16, SW-FW-RID-21, SW-FW-RID-22, SW-FW-RID-29, SW-FW-RID-44, SW-FW-RID-45, SW-FW-RID-48, SW-FW-RID-49, SW-FW-RID-52, SW-FW-RID-63, SW-FW-RID-76
+SU-ID-QCC-002 시스템 상태 유닛
+SI-ID-QCC-001 시스템 관리 모듈
+SW-FW-RID-21, SW-FW-RID-22, SW-FW-RID-29, SW-FW-RID-35, SW-FW-RID-38, SW-FW-RID-44, SW-FW-RID-45, SW-FW-RID-46, SW-FW-RID-63, SW-FW-RID-66, SW-FW-RID-67, SW-FW-RID-68, SW-FW-RID-69, SW-FW-RID-70
+SU-ID-QCC-003 장치 상태 유닛
+SI-ID-QCC-001 시스템 관리 모듈
+SW-FW-RID-15, SW-FW-RID-69, SW-FW-RID-70
+SU-ID-QCC-004 블루투스 상태 유닛
+SI-ID-QCC-001 시스템 관리 모듈
+SW-FW-RID-44, SW-FW-RID-45, SW-FW-RID-46, SW-FW-RID-48, SW-FW-RID-49, SW-FW-RID-66, SW-FW-RID-67, SW-FW-RID-68, SW-FW-RID-69, SW-FW-RID-70
+SU-ID-QCC-005 PIO 포트 제어 유닛
+SI-ID-QCC-002 HW 인터페이스 모듈
+SW-FW-RID-15, SW-FW-RID-16, SW-FW-RID-44, SW-FW-RID-45, SW-FW-RID-46, SW-FW-RID-67, SW-FW-RID-68, SW-FW-RID-69
+SU-ID-QCC-006 Power 제어 유닛
+SI-ID-QCC-002 HW 인터페이스 모듈
+SW-FW-RID-21, SW-FW-RID-22, SW-FW-RID-23, SW-FW-RID-28, SW-FW-RID-29, SW-FW-RID-34, SW-FW-RID-55, SW-FW-RID-62, SW-FW-RID-63, SW-FW-RID-66, SW-FW-RID-68
+SU-ID-QCC-007 NVM 처리 유닛
+SI-ID-QCC-002 HW 인터페이스 모듈
+SW-FW-RID-52, SW-FW-RID-76
+SU-ID-QCC-008 Bluetooth Classic 유닛
+SI-ID-QCC-003 블루투스 모듈
+SW-FW-RID-15, SW-FW-RID-16, SW-FW-RID-69
+SU-ID-QCC-009 BLE 유닛
+SI-ID-QCC-003 블루투스 모듈
+SW-FW-RID-29, SW-FW-RID-35, SW-FW-RID-38, SW-FW-RID-44, SW-FW-RID-45, SW-FW-RID-47, SW-FW-RID-48, SW-FW-RID-49, SW-FW-RID-63, SW-FW-RID-70, SW-FW-RID-76
+SU-ID-QCC-010 AUTH service 처리 유닛
+SI-ID-QCC-003 블루투스 모듈
+SW-FW-RID-48, SW-FW-RID-52, SW-FW-RID-71, SW-FW-RID-76
+SU-ID-QCC-011 BLE Data 처리 유닛
+SI-ID-QCC-003 블루투스 모듈
+SW-FW-RID-24, SW-FW-RID-25, SW-FW-RID-26, SW-FW-RID-27, SW-FW-RID-28, SW-FW-RID-29, SW-FW-RID-30, SW-FW-RID-31, SW-FW-RID-32, SW-FW-RID-33, SW-FW-RID-34, SW-FW-RID-35, SW-FW-RID-36, SW-FW-RID-37, SW-FW-RID-38, SW-FW-RID-39, SW-FW-RID-40, SW-FW-RID-44, SW-FW-RID-45, SW-FW-RID-59, SW-FW-RID-60, SW-FW-RID-66, SW-FW-RID-70, SW-FW-RID-76
+SU-ID-QCC-012 보안 처리 유닛
+SI-ID-QCC-004 보안 모듈
+SW-FW-RID-47, SW-FW-RID-48, SW-FW-RID-49, SW-FW-RID-52, SW-FW-RID-71, SW-FW-RID-72, SW-FW-RID-76
+SU-ID-QCC-013 보안 툴박스 유닛
+SI-ID-QCC-004 보안 모듈
+SW-FW-RID-52, SW-FW-RID-76, SW-FW-RID-78
+SU-ID-QCC-014 보안 NVM 유닛
+SI-ID-QCC-004 보안 모듈
+SW-FW-RID-52, SW-FW-RID-76, SW-FW-RID-78
+
+
+
+
+[QCC 자료 입력] DMIC2의 QCC 입력 연결은 확인되었다. QCC 마이크 핀/클록, 프로파일/코덱별 송수신과 동시 동작, I2S 클록/프레임/좌우 배정 및 시작/중단 유효 신호의 실제 설정/파형과 오디오 시험 결과를 확인해야 한다.
+
+
+
+
+
+
+
+지원 소프트웨어
+표 4. 지원 소프트웨어 목록
+
+소프트웨어
+버전
+출처
+FatFS 파일 시스템
+R0.15 patch1
+ChaN (onsemi SDK 배포)
+https://elm-chan.org/fsw/ff/
+tiny-AES-c AES 암복호화
+1.0.0 (패키지 표기)
+kokke
+https://github.com/kokke/tiny-AES-c
+E8300 SDK CRC 지원 코드
+Ezairo 8300 SDK
+4.5.0.107
+onsemi / Ezairo 8300 SDK
+SEGGER RTT 디버그 입출력
+7.56a
+SEGGER
+https://kb.segger.com/RTT
+
+QCC는 Qualcomm BSP와 내장 라이브러리의 시스템 초기화, Classic/TWS/BLE, 전원 및 NVM 기능을 Application API로 사용한다. 내장 라이브러리의 내부 구현은 수정하지 않고 기능 인터페이스로 연결한다.
+[QCC 자료 입력] Qualcomm ADK/BSP와 Classic/TWS/BLE/GAIA/암호/NVM 라이브러리의 정확한 제품명/버전/구성/API, 알려진 문제 및 사용 검토 자료를 SOUP 목록에 연결해야 한다.
+
+소프트웨어 아키텍쳐 검증
+소프트웨어 요구사상이 모두 포함되었는가?
+
+SW-FW-RID-1~81 및 SW-FW-RID-83을 모듈/상세 설계 유닛 또는 제품 문서 항목에 연결한다. SW-FW-RID-69의 Classic 수신과 DMIC2 통화 송신은 각각의 실행 경로와 시험 조건으로 확인한다. 제품 사용 설명서 및 미확정 설계/검증 계약은 해당 미비 안내에서 확인하며 완료로 판정하지 않는다.
+
+
+소프트웨어 모듈(항목)간 연계성 및 하드웨어 사이의 연계성이 확인되는가?
+
+E8300의 공유 메모리/SPI/I2S/제어 핀과 QCC 모듈의 상태/명령/오디오/인증 경로를 연결한다. 종료 신호, 충전 변환과 무선/오디오/보안 계약의 미확정 조건은 검토 및 제품 시험에서 보류한다. 아키텍쳐의 연결성 검토와 실제 구현/통합시험의 판정은 구분한다.
+
+SOUP 항목의 적절한 운영이 지원되는가?
+E8300의 지원 소프트웨어는 목록에 제품/버전/출처로 식별하여 관리한다. QCC 지원 소프트웨어는 정확한 제품/버전/구성과 운영 검토 자료를 확인한 뒤 동일한 관리 범위에 연결한다.
+[QCC 자료 입력] QCC 지원 소프트웨어의 정확한 제품/버전, 사용 구성/API 및 운영 검토 자료가 필요하다.
+

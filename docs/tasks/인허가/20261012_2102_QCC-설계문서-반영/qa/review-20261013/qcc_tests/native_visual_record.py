@@ -1,0 +1,13 @@
+from pathlib import Path
+import json,hashlib
+H=Path(__file__).resolve().parent;B=H.parent/'native-excel'/'tests';M=H.parent/'native-excel'/'tests-native.json';P=json.loads((H/'final-layout-plan.json').read_text(encoding='utf-8'))
+def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
+parts={'SUVC-main':256,'SUVR-main':205,'SITC-main':16,'SITR-main':14,'SSTC-main':35,'SSTR-main':27,'SSTC-cyber':18,'SSTR-cyber':12}
+full={'SUVC-main':[36,37,120,121,144,145],'SUVR-main':[84,110,118],'SSTR-main':[5,9,20]}
+out={'status':'실패 발견 후 보완 게시됨; 최종 native 재검사 미실행','scope':'Document display inspection only. No product execution or new observation/PASS.','reviewed_prior_source_hashes':{k:b['hash'] for k,b in P.items()},'prior_native_manifest':str(M),'prior_native_manifest_sha256':sha(M),'whole_contact_review':[],'full_page_views':[],'native_boundary_crops':[],'corrections':{'evidence':'final-layout-published.json','breaks_per_pair':{'unit':23,'integration':2,'system':11},'height':[{'pair':'SUVC/SUVR','rows':[333,334],'each_pt':180},{'pair':'SITC/SITR','row':141,'pt':377}],'alignment':'SSTC/SSTR H78 left/top','values':'F141 real I2S receiving units, M131 punctuation only; historical observations/whole RTT/new unexecuted state unchanged'},'separate_strict_common_failure':{'cell':'SITC/SITR F141','detail':'same text/font name/size/color but source font scheme metadata mismatch','candidate':'SITR-f141-rich-repair.xlsx','state':'Await root serialized native output completion before publish'},'visibility_limits':'Whole contact sheets are layout triage. Cell font/width/line-height scanning and PDF character extraction are supporting checks, not proof of visible glyphs. Boundary crops and listed full pages were directly inspected; final published-source pages still require native pixel recheck.'}
+for part,count in parts.items():
+ files=sorted((B/part).glob('contact-*.png'));out['whole_contact_review'].append({'part':part,'pages':count,'images':[{'path':str(p),'sha256':sha(p)} for p in files],'inspection':'Entire page layout at contact size, actual boundary/content visibility handled separately.'})
+ for n in full.get(part,[]):
+  p=B/part/f'page-{n:03}.png';out['full_page_views'].append({'part':part,'page':n,'path':str(p),'sha256':sha(p)})
+for p in sorted((H/'boundary-review').glob('*-*.png')):out['native_boundary_crops'].append({'path':str(p),'sha256':sha(p)})
+(H/'native-visual-qa-prior.json').write_text(json.dumps(out,ensure_ascii=False,indent=2),encoding='utf-8');print(json.dumps({'contact_parts':8,'pages':sum(parts.values()),'full_page_views':len(out['full_page_views']),'boundary_pixel_images':len(out['native_boundary_crops']),'final_display_status':out['status']},ensure_ascii=True))

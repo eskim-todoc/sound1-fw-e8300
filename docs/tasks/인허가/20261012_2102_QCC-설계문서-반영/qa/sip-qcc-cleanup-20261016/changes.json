@@ -1,0 +1,298 @@
+{
+  "target": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SIP-FW-TD24A 소프트웨어 통합 계획서.docx",
+  "sha256_before": "347d8632bc21aa37ee84418e471cb2ca67541cba7d014c17c3058da2a1d62978",
+  "sha256_candidate": "5eebfe195d49a6a28e38b90da04f071d845fc2c04ebd0b7828999ee865b9fc90",
+  "new_revision_start": 857,
+  "new_revision_end": 971,
+  "revision_timestamp": "2026-10-16T07:28:39Z",
+  "author": "김은수",
+  "colored_spans": [
+    {
+      "paragraph": 233,
+      "start": 0,
+      "end": 138,
+      "text": "PIO/Power/NVM을 먼저 준비하고 보안 키 읽기/파생/인증 계산을 연결한다. 초기화와 상태 처리에는 E8300의 준비/종료 신호 및 내부기 연결 정보를 반영한다. 하위 기능이 준비된 후 Bluetooth 검색/연결과 SPI 중계를 연결한다."
+    },
+    {
+      "paragraph": 240,
+      "start": 0,
+      "end": 190,
+      "text": "Classic, BLE, AUTH service와 BLE Data를 단계적으로 연결한다. AUTH service는 보안 처리/툴박스/보안 NVM을 사용하고 인증된 BLE 데이터는 시스템 상태 유닛을 통해 SPI로 중계한다. Classic 수신 오디오는 I2S로 E8300에 전달하며 통화 상향은 DMIC2→QCC→통화 상대 경로로 연결한다."
+    },
+    {
+      "paragraph": 242,
+      "start": 0,
+      "end": 90,
+      "text": "구현은 HW 접근과 시스템/무선/보안 기능의 의존 순서를 따른다. QCC의 4모듈/14유닛과 E8300의 실행 경로는 아래의 준비 조건 및 통합 단계에 연결한다."
+    },
+    {
+      "paragraph": 247,
+      "start": 0,
+      "end": 22,
+      "text": "SI-ID-QCC-002 HW 인터페이스"
+    },
+    {
+      "paragraph": 248,
+      "start": 0,
+      "end": 39,
+      "text": "SU-ID-QCC-005 PIO / 006 Power / 007 NVM"
+    },
+    {
+      "paragraph": 250,
+      "start": 0,
+      "end": 16,
+      "text": "SI-ID-QCC-004 보안"
+    },
+    {
+      "paragraph": 251,
+      "start": 0,
+      "end": 46,
+      "text": "SU-ID-QCC-012 보안 처리 / 013 toolbox / 014 보안 NVM"
+    },
+    {
+      "paragraph": 253,
+      "start": 0,
+      "end": 20,
+      "text": "SI-ID-QCC-001 시스템 관리"
+    },
+    {
+      "paragraph": 254,
+      "start": 0,
+      "end": 61,
+      "text": "SU-ID-QCC-001 초기화 / 002 시스템 상태 / 003 장치 상태 / 004 Bluetooth 상태"
+    },
+    {
+      "paragraph": 256,
+      "start": 0,
+      "end": 18,
+      "text": "SI-ID-QCC-003 블루투스"
+    },
+    {
+      "paragraph": 257,
+      "start": 0,
+      "end": 57,
+      "text": "SU-ID-QCC-008 Classic / 009 BLE / 010 AUTH / 011 BLE Data"
+    },
+    {
+      "paragraph": 329,
+      "start": 0,
+      "end": 137,
+      "text": "하위 유닛을 연결한 뒤 시스템 상태, 인증/데이터와 오디오 경로를 순차 통합한다. 각 단계는 아래의 기능과 연결 범위를 해당 통합 시험 조건에서 확인한다. 실패나 상충이 발견되면 관련 유닛/요구사항/시험 기준을 갱신하고 같은 입력으로 재확인한다."
+    },
+    {
+      "paragraph": 334,
+      "start": 0,
+      "end": 36,
+      "text": "QCC-I-01 HW 기반\nSU-ID-QCC-005/006/007"
+    },
+    {
+      "paragraph": 335,
+      "start": 0,
+      "end": 94,
+      "text": "전원 인가 후 PIO 방향/초기값과 Power/NVM을 연결한다. 충전 연결/분리 및 배터리 전압별 잔량/전원 상태를 SPI 중계에 연결하고 읽기/쓰기 실패를 확인한다."
+    },
+    {
+      "paragraph": 337,
+      "start": 0,
+      "end": 36,
+      "text": "QCC-I-02 보안 기반\nSU-ID-QCC-007/013/014"
+    },
+    {
+      "paragraph": 338,
+      "start": 0,
+      "end": 100,
+      "text": "공개 시험키/RAND/BD_ADDR를 사용하는 격리된 저장 영역을 준비한다. 제조 저장값 읽기/복호화, SHA-256 매핑 키 파생과 AES-CMAC 인증값 계산을 각각 연결한다."
+    },
+    {
+      "paragraph": 340,
+      "start": 0,
+      "end": 49,
+      "text": "QCC-I-03 시스템 상태\nSU-ID-QCC-001/002/003/004/005/006"
+    },
+    {
+      "paragraph": 341,
+      "start": 0,
+      "end": 110,
+      "text": "정해진 초기화 순서와 E8300 준비/종료, 내부기 연결 및 Bluetooth 상태를 연결한다. 생산 Standalone/TWS 구성, L+R 또는 L/R 처리와 TWS 1대 단독 사용을 확인한다."
+    },
+    {
+      "paragraph": 343,
+      "start": 0,
+      "end": 45,
+      "text": "QCC-I-04 BLE 인증\nSU-ID-QCC-009/010/012/013/014"
+    },
+    {
+      "paragraph": 344,
+      "start": 0,
+      "end": 117,
+      "text": "페어링 후 AUTH 접근을 연결한다. 타입1리모콘/2매핑의 Challenge→Response→Confirm→Status와 invalid/wrong key/미완료를 확인하고 인증 전후 일반 제어 접근을 비교한다."
+    },
+    {
+      "paragraph": 346,
+      "start": 0,
+      "end": 46,
+      "text": "QCC-I-05 BLE 데이터\nSU-ID-QCC-002/004/009/011/012"
+    },
+    {
+      "paragraph": 347,
+      "start": 0,
+      "end": 111,
+      "text": "인증/권한에 따른 GAIA type/data와 SPI 중계를 연결한다. 유효1~20byte와 잘못된 길이/주소/종류, 연결 해제/재접속, 무송수신180초와 연속5회 인증 실패의60초 제한을 확인한다."
+    },
+    {
+      "paragraph": 352,
+      "start": 0,
+      "end": 158,
+      "text": "Classic 수신→I2S24bit/16kHz→E8300 CFX 수신 버퍼를 연결하고 OFF→ON→OFF, 0x36 종류와 I2S_FLAG를 확인한다. 별도로 DMIC2→QCC 통화 수음→상대 송신을 연결한다. Standalone/TWS의 오디오 구성과 송수신 동시 조건도 확인한다."
+    },
+    {
+      "paragraph": 355,
+      "start": 0,
+      "end": 28,
+      "text": "QCC-I-07 전체 및 갱신\n4모듈 / E8300"
+    },
+    {
+      "paragraph": 356,
+      "start": 0,
+      "end": 105,
+      "text": "전원/LED/오디오 상태, 리모콘/매핑 요청→실행→응답과 종료/충전/연결 전환을 전체 시스템에 연결한다. QCC 자체 OTA, E8300 이미지 전달과 각 칩의 부트 검사 경로를 구분한다."
+    },
+    {
+      "paragraph": 350,
+      "start": 0,
+      "end": 42,
+      "text": "QCC-I-06 오디오\nSU-ID-QCC-002/003/004/005/008"
+    },
+    {
+      "paragraph": 336,
+      "start": 0,
+      "end": 91,
+      "text": "SW-FW-IntegrationTest-ID-018: 잔량80/40, charger 1/0, lid1/2와 0x34/ACK 전량 비교. 019: 연결/종료 신호. "
+    },
+    {
+      "paragraph": 339,
+      "start": 0,
+      "end": 64,
+      "text": "SW-FW-IntegrationTest-ID-024: NVM 위치/길이, 파생 중간값/복호화값/인증값 전량 비교. "
+    },
+    {
+      "paragraph": 342,
+      "start": 0,
+      "end": 64,
+      "text": "SW-FW-IntegrationTest-ID-019: 부착/탈착/재부착과 종료 신호, 023: 편이/양이 데이터. "
+    },
+    {
+      "paragraph": 345,
+      "start": 0,
+      "end": 76,
+      "text": "SW-FW-IntegrationTest-ID-020: 네 방향의 시험 패턴 중계. 021: 실제 CRA와 제어 게이트/30초 타임아웃. "
+    },
+    {
+      "paragraph": 348,
+      "start": 0,
+      "end": 70,
+      "text": "SW-FW-IntegrationTest-ID-020/021/023: 패턴 중계, CRA/시간 제한과 편이/양이 전량 데이터. "
+    },
+    {
+      "paragraph": 354,
+      "start": 0,
+      "end": 108,
+      "text": "SW-FW-IntegrationTest-ID-022: 수신/I2S/CFX 경계. 시스템 시험 ID69는 수신, ID82는 DMIC2 통화 송신이며 요구사항은 SW-FW-RID-69로 연결한다. "
+    },
+    {
+      "paragraph": 357,
+      "start": 0,
+      "end": 51,
+      "text": "SW-FW-IntegrationTest-ID-018~024 및 해당 기존 E8300 조건. "
+    },
+    {
+      "paragraph": 394,
+      "start": 0,
+      "end": 122,
+      "text": "시험 기록: 유닛 시험은 15그룹(SW-FW-UnitTest-QCC-ID-1~15)이 14설계유닛에 대응한다. Bluetooth activation 그룹은 SU-ID-QCC-004가 주담당이고008/009가 연계된다. "
+    },
+    {
+      "paragraph": 395,
+      "start": 0,
+      "end": 175,
+      "text": "신규 통합시험의 ID는 SW-FW-IntegrationTest-ID-018 전원 상태/SPI, 019 연결/종료 신호, 020 AUTH 패턴 중계, 021 실제 CRA와 제어 게이트/시간 제한, 022 Classic/I2S 오디오, 023 BLE 편이/양이 데이터, 024 보안 NVM/키 생성/CRA 계산이다. "
+    },
+    {
+      "paragraph": 384,
+      "start": 8,
+      "end": 63,
+      "text": "QCC BLE Data 메시지는 type 1바이트와 data 0~19바이트로 총 1~20바이트이다."
+    },
+    {
+      "paragraph": 387,
+      "start": 60,
+      "end": 161,
+      "text": "DMIC2는 QCC에도 연결되며 전화 통화 시 QCC가 수음한 음성을 통화 상대에게 송신한다. QCC의 Classic 수신 오디오는 I2S 24bit/16kHz로 CFX에 전달한다."
+    }
+  ],
+  "replacements": [
+    {
+      "paragraph": 200,
+      "before": "[QCC 자료 입력] QCC 4모듈/14유닛의 실제 소스/빌드/라이브러리 설정과 유닛/통합 실행 및 측정 결과가 필요하다. DMIC2 입력 연결은 확인되었으며 이 안내는 구현/시험 근거의 확인 상태를 나타낸다.",
+      "after": "DMIC2 입력 연결은 확인되었다.\n[QCC 자료 입력] QCC 4모듈/14유닛의 실제 소스/빌드/라이브러리 설정과 유닛/통합 실행 및 측정 결과가 필요하다. 이 안내는 구현/시험 근거의 확인 상태를 나타낸다."
+    },
+    {
+      "paragraph": 393,
+      "before": "[QCC 자료 입력] DMIC2의 QCC 입력 연결은 확인되었다. QCC 마이크 핀/클록, 프로파일/코덱별 송수신과 동시 동작, I2S 클록/프레임/좌우 배정 및 시작/중단 유효 신호의 실제 설정/파형과 오디오 시험 결과를 확인해야 한다.",
+      "after": "DMIC2의 QCC 입력 연결은 확인되었다.\n[QCC 자료 입력] QCC 마이크 핀/클록, 프로파일/코덱별 송수신과 동시 동작, I2S 클록/프레임/좌우 배정 및 시작/중단 유효 신호의 실제 설정/파형과 오디오 시험 결과를 확인해야 한다."
+    }
+  ],
+  "completed_statements_detached_from_prefix": 2,
+  "whole_notices_removed": 0,
+  "active_prefix_count_before": 7,
+  "active_prefix_count_after": 7,
+  "pending": [
+    {
+      "paragraph": 200,
+      "heading": "소프트웨어 모듈 구현 및 통합 계획",
+      "text": "QCC 4모듈/14유닛의 실제 소스/빌드/라이브러리 설정과 유닛/통합 실행 및 측정 결과가 필요하다. 이 안내는 구현/시험 근거의 확인 상태를 나타낸다."
+    },
+    {
+      "paragraph": 275,
+      "heading": "Bluetooth Communication Module",
+      "text": "실제 QCC 소스/빌드/ADK/BSP 버전과 단위 실행 로그를 제출해야 한다. 아래 단계는 통합 계획이며 구현/단위시험이 완료된 것으로 가정하지 않는다."
+    },
+    {
+      "paragraph": 389,
+      "heading": "QCC와 E8300 소프트웨어 통합",
+      "text": "QCC shutdown_ind의 정상/종료 논리와 실제 PIO 번호/전압/반전, 기동/종료 대기 및 I2S enable→I2S_FLAG Low 유효의 물리 대응을 확인해야 한다."
+    },
+    {
+      "paragraph": 391,
+      "heading": "QCC와 E8300 소프트웨어 통합",
+      "text": "충전4상태→0x34 charger_connected0/1 변환, 통보/오류 처리, 실제 QCC 송신 length 필드와21byte 변환 및 GAIA 주소/type별 데이터 정의와 실행 결과가 필요하다."
+    },
+    {
+      "paragraph": 393,
+      "heading": "QCC와 E8300 소프트웨어 통합",
+      "text": "QCC 마이크 핀/클록, 프로파일/코덱별 송수신과 동시 동작, I2S 클록/프레임/좌우 배정 및 시작/중단 유효 신호의 실제 설정/파형과 오디오 시험 결과를 확인해야 한다."
+    },
+    {
+      "paragraph": 398,
+      "heading": "QCC와 E8300 소프트웨어 통합",
+      "text": "QCC 통합 실행 로그, 실제 입력/응답 전체 메시지, 오디오/핀 파형/장비/빌드 식별 및 시험자 확인 기록이 필요하다. 미해소 설계 상충은 시험 판정에도 유지한다."
+    },
+    {
+      "paragraph": 408,
+      "heading": "부트로더 소프트웨어 통합",
+      "text": "QCC 자체 펌웨어 갱신과 E8300 이미지 전달의 명령/버퍼/순서/재시도/인증/오류/중단 복구를 각각 정의하고 구현/통합 결과를 제출해야 한다. E8300 OTA 슬롯1~2와 부트 상태 슬롯1~4, 0x35 갱신 연결 통보를 구분하며 QCC 기동 이미지 무결성 검사 범위/알고리즘/실패 처리도 별도로 확인해야 한다."
+    }
+  ],
+  "old_revision_count": 729,
+  "old_revision_signatures_preserved": true,
+  "reject_new_text_and_font_equal_before": true,
+  "accept_new_equals_intended": true,
+  "ids_preserved": true,
+  "tables_fields_drawings_sections_preserved": true,
+  "other_package_parts_unchanged": true,
+  "native_validation": "pass",
+  "visual_review": "pass_all_pages",
+  "published_sha256": "5eebfe195d49a6a28e38b90da04f071d845fc2c04ebd0b7828999ee865b9fc90",
+  "published_at": "2026-10-16T07:39:59.982926+00:00",
+  "published_package_reopened": 30
+}

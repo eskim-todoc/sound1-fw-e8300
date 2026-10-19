@@ -1,0 +1,383 @@
+{
+  "code": "SAD",
+  "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SAD-FW-TD24A 소프트웨어 아키텍쳐 기술서.docx",
+  "candidate": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_design\\followup\\candidate\\[E8300-QCC] SAD-FW-TD24A 소프트웨어 아키텍쳐 기술서.docx",
+  "before_sha256": "0385038b27c8ac0ede82653cd99b6ce80b985b93ddf99ba07183c5ce7b5c1eb2",
+  "after_sha256": "381ffb1d8ee99f596c907e9ed1b932c4101737417354a53c25675527ce22783b",
+  "date": "2026-10-13T00:05:24Z",
+  "new_revision_count": 112,
+  "new_revision_ids": [
+    "4425",
+    "4426",
+    "4427",
+    "4428",
+    "4429",
+    "4430",
+    "4431",
+    "4432",
+    "4433",
+    "4434",
+    "4435",
+    "4436",
+    "4437",
+    "4438",
+    "4439",
+    "4440",
+    "4441",
+    "4442",
+    "4443",
+    "4444",
+    "4445",
+    "4446",
+    "4447",
+    "4448",
+    "4449",
+    "4450",
+    "4451",
+    "4452",
+    "4453",
+    "4454",
+    "4455",
+    "4456",
+    "4457",
+    "4458",
+    "4459",
+    "4460",
+    "4461",
+    "4462",
+    "4463",
+    "4464",
+    "4465",
+    "4466",
+    "4467",
+    "4468",
+    "4469",
+    "4470",
+    "4471",
+    "4472",
+    "4473",
+    "4474",
+    "4475",
+    "4476",
+    "4477",
+    "4478",
+    "4479",
+    "4480",
+    "4481",
+    "4482",
+    "4483",
+    "4484",
+    "4485",
+    "4486",
+    "4487",
+    "4488",
+    "4489",
+    "4490",
+    "4491",
+    "4492",
+    "4493",
+    "4494",
+    "4495",
+    "4496",
+    "4497",
+    "4498",
+    "4499",
+    "4500",
+    "4501",
+    "4502",
+    "4503",
+    "4504",
+    "4505",
+    "4506",
+    "4507",
+    "4508",
+    "4509",
+    "4510",
+    "4511",
+    "4512",
+    "4513",
+    "4514",
+    "4515",
+    "4516",
+    "4517",
+    "4518",
+    "4519",
+    "4520",
+    "4521",
+    "4522",
+    "4523",
+    "4524",
+    "4525",
+    "4526",
+    "4527",
+    "4528",
+    "4529",
+    "4530",
+    "4531",
+    "4532",
+    "4533",
+    "4534",
+    "4535",
+    "4536"
+  ],
+  "new_revision_authors": [
+    "김은수"
+  ],
+  "reject_new_c14n_equals_before": true,
+  "new_nested_insertions": 0,
+  "prior_revisions_and_other_parts_preserved": true,
+  "original_media_bytes_preserved": true,
+  "changes": [
+    {
+      "requirement": "SW-FW-RID-21",
+      "column": 2,
+      "added": "SU-ID-QCC-001 시스템 초기화와 설정 유닛"
+    },
+    {
+      "requirement": "SW-FW-RID-22",
+      "column": 2,
+      "added": "SU-ID-QCC-001 시스템 초기화와 설정 유닛"
+    },
+    {
+      "requirement": "SW-FW-RID-23",
+      "column": 1,
+      "added": "SI-ID-QCC-002 HW 인터페이스 모듈"
+    },
+    {
+      "requirement": "SW-FW-RID-23",
+      "column": 2,
+      "added": "SU-ID-QCC-006 Power 제어 유닛"
+    },
+    {
+      "requirement": "SW-FW-RID-28",
+      "column": 1,
+      "added": "SI-ID-QCC-002 HW 인터페이스 모듈"
+    },
+    {
+      "requirement": "SW-FW-RID-28",
+      "column": 2,
+      "added": "SU-ID-QCC-006 Power 제어 유닛"
+    },
+    {
+      "requirement": "SW-FW-RID-29",
+      "column": 2,
+      "added": "SU-ID-QCC-001 시스템 초기화와 설정 유닛"
+    },
+    {
+      "requirement": "SW-FW-RID-29",
+      "column": 2,
+      "added": "SU-ID-QCC-009 BLE 유닛"
+    },
+    {
+      "requirement": "SW-FW-RID-34",
+      "column": 1,
+      "added": "SI-ID-QCC-002 HW 인터페이스 모듈"
+    },
+    {
+      "requirement": "SW-FW-RID-34",
+      "column": 2,
+      "added": "SU-ID-QCC-006 Power 제어 유닛"
+    },
+    {
+      "requirement": "SW-FW-RID-35",
+      "column": 1,
+      "added": "SI-ID-QCC-001 시스템 관리 모듈"
+    },
+    {
+      "requirement": "SW-FW-RID-35",
+      "column": 2,
+      "added": "SU-ID-QCC-002 시스템 상태 유닛"
+    },
+    {
+      "requirement": "SW-FW-RID-35",
+      "column": 2,
+      "added": "SU-ID-QCC-009 BLE 유닛"
+    },
+    {
+      "requirement": "SW-FW-RID-38",
+      "column": 1,
+      "added": "SI-ID-QCC-001 시스템 관리 모듈"
+    },
+    {
+      "requirement": "SW-FW-RID-38",
+      "column": 2,
+      "added": "SU-ID-QCC-002 시스템 상태 유닛"
+    },
+    {
+      "requirement": "SW-FW-RID-38",
+      "column": 2,
+      "added": "SU-ID-QCC-009 BLE 유닛"
+    },
+    {
+      "requirement": "SW-FW-RID-48",
+      "column": 2,
+      "added": "SU-ID-QCC-004 블루투스 상태 유닛"
+    },
+    {
+      "requirement": "SW-FW-RID-49",
+      "column": 2,
+      "added": "SU-ID-QCC-004 블루투스 상태 유닛"
+    },
+    {
+      "requirement": "SW-FW-RID-63",
+      "column": 2,
+      "added": "SU-ID-QCC-001 시스템 초기화와 설정 유닛"
+    },
+    {
+      "requirement": "SW-FW-RID-63",
+      "column": 1,
+      "added": "SI-ID-QCC-003 블루투스 모듈"
+    },
+    {
+      "requirement": "SW-FW-RID-63",
+      "column": 2,
+      "added": "SU-ID-QCC-009 BLE 유닛"
+    },
+    {
+      "requirement": "SW-FW-RID-69",
+      "column": 2,
+      "added": "SU-ID-QCC-002 시스템 상태 유닛"
+    },
+    {
+      "reverse_unit": "SU-ID-QCC-001",
+      "requirements": [
+        15,
+        16,
+        21,
+        22,
+        29,
+        44,
+        45,
+        48,
+        49,
+        52,
+        63,
+        76
+      ]
+    },
+    {
+      "reverse_unit": "SU-ID-QCC-002",
+      "requirements": [
+        21,
+        22,
+        29,
+        35,
+        38,
+        44,
+        45,
+        46,
+        63,
+        66,
+        67,
+        68,
+        69,
+        70
+      ]
+    },
+    {
+      "reverse_unit": "SU-ID-QCC-004",
+      "requirements": [
+        44,
+        45,
+        46,
+        48,
+        49,
+        66,
+        67,
+        68,
+        69,
+        70
+      ]
+    },
+    {
+      "reverse_unit": "SU-ID-QCC-006",
+      "requirements": [
+        21,
+        22,
+        23,
+        28,
+        29,
+        34,
+        55,
+        62,
+        63,
+        66,
+        68
+      ]
+    },
+    {
+      "reverse_unit": "SU-ID-QCC-009",
+      "requirements": [
+        29,
+        35,
+        38,
+        44,
+        45,
+        47,
+        48,
+        49,
+        63,
+        70,
+        76
+      ]
+    }
+  ],
+  "figures": [],
+  "styles_saved": 59,
+  "native_render": "root serialized render pending",
+  "status": "미실행",
+  "committed": true,
+  "style_repair": {
+    "template_sha256": "70271c2b81e97b917d7044a41c9b5fe377ac631a8bbb175373a6d399f5d7f04b",
+    "saved_tdc_styles": 59,
+    "support_styles": [
+      {
+        "template_id": "a1",
+        "new_id": "TDCSupport20261013Paragraph",
+        "name": "공통 양식 본문 기반"
+      },
+      {
+        "template_id": "a3",
+        "new_id": "TDCSupport20261013Table",
+        "name": "공통 양식 표 기반"
+      }
+    ],
+    "numbering_bindings_preserved": [
+      {
+        "name": "TDC 제목 1",
+        "template_numId": "11",
+        "saved_numId": "23"
+      },
+      {
+        "name": "TDC 제목 2",
+        "template_numId": "11",
+        "saved_numId": "23"
+      },
+      {
+        "name": "TDC 제목 3",
+        "template_numId": "11",
+        "saved_numId": "23"
+      },
+      {
+        "name": "TDC 제목 4",
+        "template_numId": "11",
+        "saved_numId": "23"
+      },
+      {
+        "name": "TDC 제목 5",
+        "template_numId": "11",
+        "saved_numId": "23"
+      },
+      {
+        "name": "TDC 제목 6",
+        "template_numId": "11",
+        "saved_numId": "23"
+      }
+    ],
+    "before_styles_sha256": "f7b4ef3c3a82fe1e122639689a77c94e826a608aba2ee3e10be960f64148d9cf",
+    "after_styles_sha256": "5906326b83ba1eedcbf999f6c9712b19f67396add89a5cb9ec8cab8c4d569510",
+    "non_tdc_styles_and_document_defaults_preserved": true,
+    "limit": "Styles definitions are saved Word format; prose/drawing revisions remain separately accept/reject capable. Current baseline style XML is snapshotted."
+  },
+  "separator_normalization_count": 18
+}

@@ -1,0 +1,252 @@
+[1 P ] 
+[2 P ] 
+[3 P ] 
+[4 P ] 
+[5 P ] 
+[6 TABLE 1 rows]
+소프트웨어 통합 계획서(TD24A-A-EXT)
+[7 P ] 
+[8 P ] 
+[9 P ] 
+[10 P ] 
+[11 P ] 
+[12 P ] 
+[13 P ] 
+[14 P ] 
+[15 P ] 
+[16 P ] 
+[17 P ] 
+[18 P ] 
+[19 P ] 
+[20 P ] 
+[21 P ] 
+[22 TABLE 5 rows]
+ | 작성 | 검토 | 승인
+성함 | 김은수 |  | 
+직책 | 수석연구원 |  | 
+일자 |  |  | 
+서명 |  |  | 
+[23 P ] 
+[24 P ] 
+[25 TABLE 18 rows]
+
+No. | 개정 내용 | 개정 위치  | 개정 날짜
+0 | 최초제정 |  | 
+ |  |  | 
+ |  |  | 
+ |  |  | 
+ |  |  | 
+ |  |  | 
+ |  |  | 
+ |  |  | 
+ |  |  | 
+ |  |  | 
+ |  |  | 
+ |  |  | 
+ |  |  | 
+ |  |  | 
+ |  |  | 
+ |  |  | 
+ |  |  | 
+[26 P ] 	
+	
+[27 SDT excluded TOC]
+[28 P ] 
+[29 P ] 
+[30 P ] 
+[31 P ] 
+[32 P ] 
+[33 P TDC1] 서론
+[34 P TDC2] 개요
+[35 P TDC20] 본 문서는 TD24A-A-EXT 제품의 소프트웨어 개발 절차로서 소프트웨어 통합 계획을 수립한다.
+[36 P TDC20] 
+[37 P TDC2] 목적
+[38 P TDC20] 인공달팽이관 외부장치 소프트웨어 모듈들의 통합 과정을 계획하여, 소프트웨어 개발 절차에 따라 각 모듈이 안전하고 일관되게 동작하도록 하는 것을 목적으로 한다.
+[39 P TDC20] 
+[40 P TDC2] 대상
+[41 P TDC20] TD24A-A-EXT 제품의 펌웨어 개발 프로젝트에 참여하는 모든 구성원은 이 문서를 참고하도록 한다.
+[42 P TDC20] 
+[43 P TDC2] 관련문서
+[44 P TDC3] 프로젝트
+[45 TABLE 6 rows]
+No | 문서번호 | 문서 제목
+1 | SDP-FW-TD24A | 소프트웨어 개발 계획서
+2 | SGR-FW-TD24A | 소프트웨어 일반 요구사항
+3 | SRS-FW-TD24A | 소프트웨어 요구사항 사양서
+4 | SAD-FW-TD24A | 소프트웨어 아키텍쳐 기술서
+5 | SDDD-FW-TD24A | 소프트웨어 상세설계서
+[46 P TDC30] 
+[47 P TDC3] 1.4.2. 표준 및 규제
+[48 TABLE 3 rows]
+No | 문서번호 | 문서 제목
+1 | IEC 62304 | Medical device software – Software life cycle processes
+2 | ISO 14971 | Medical devices – Application of risk management to medical
+[49 P TDC30] 
+[50 P TDC30] 
+[51 P TDC30] 
+[52 P TDC30] 
+[53 P TDC1] 소프트웨어 모듈 구현 및 통합 계획 
+[54 P TDC10] 인공달팽이관 외부장치 소프트웨어의 기능 모듈과 코어별 역할은 <그림 1.>과 같이 구성한다.
+[55 P TDC10] 
+[56 P TDC10] 
+[57 P ] 
+[58 P TDC14] 
+[59 P TDC10] 
+[60 P TDC15] <그림 1. 인공와우 소프트웨어 아키텍쳐 블록도>
+[61 P TDC10] 
+[62 P TDC10] 이를 참고하여 소프트웨어 모듈 구현 및 통합 순서를 다음과 같이 계획한다.
+[63 P TDC10] 
+[64 P TDC10] 
+[65 P TDC2] 소프트웨어 구현 
+[66 P TDC20] 소프트웨어 모듈의 구현 과정에서 아직 준비되지 않은 상대 기능은 테스트 코드로 대신할 수 있다.
+[67 P TDC20] 소프트웨어 구현 순서는 다음과 같다.
+[68 P TDC3] CFX 코어 소프트웨어
+[69 P TDC4] System Control Module
+[70 P TDC40] 부트로더의 기초 하드웨어 설정과 이미지 적재를 바탕으로 CFX의 인터럽트, 공유 상태 및 반복 실행 제어를 먼저 구현한다. 이후 HEAR, 마이크, PCM과 I2S 경로를 준비한다.
+[71 P TDC40] 다른 모듈의 상태에 따라 시스템을 제어하는 항목은 Signal Processing Module, Internal Stimulation Device Execution Module의 구현 및 검증이 완료된 이후에 최종적으로 구현한다.
+[72 P TDC4] 그 외의 모듈
+[73 P TDC40] System Control Module의 반복실행 기능이 동작되는 상태에서 다른 모듈을 구현한다.
+[74 P TDC40] Signal Processing Module과 Internal Stimulation Device Execution Module은 독립적으로 구현할 수 있다. 다만 신호처리 결과를 자극 패킷으로 전달하는 단계에서는 맵, T/C 값과 프레임 조건을 함께 준비한다.
+[75 P TDC40] 
+[76 P TDC3] Hear 코어 소프트웨어
+[77 P TDC4] System Control Module
+[78 P TDC40] HEAR의 실행 준비와 함수체인 호출, 완료 이벤트 처리는 CFX의 System Control Module에서 구현한다.
+[79 P TDC4] Signal Processing Module
+[80 P TDC40] CFX의 반복 실행과 입력 버퍼가 준비된 상태에서 절대값 최대값 연산과 창 적용 FFT/크기 연산을 구현한다. CFX의 AGC, 분석 입력 갱신과 대역 대표값 처리에 연결한다.
+[81 P TDC40] 
+[82 P TDC3] CM3 코어 소프트웨어
+[83 P TDC4] System Control Module
+[84 P TDC40] CM3 주변장치와 공유 메모리, 터치 센서 및 QCC 제어 핀을 먼저 준비한다. CFX의 기동 상태를 확인하고 공유 자료를 설정한 뒤 CFX의 반복 실행을 허가하도록 구현한다.
+[85 P TDC40] 시스템을 제어하는 항목은 Signal Processing Module, Internal Stimulation Device Execution Module, Bluetooth Communication Module의 구현 및 검증이 완료된 이후에 최종적으로 구현한다.
+[86 P TDC4] 그 외의 모듈
+[87 P TDC40] Signal Processing Module, Internal Stimulation Device Execution Module과 Bluetooth Communication Module은 독립적으로 구현할 수 있다. 맵 읽기와 변경 요청, 자극 파라미터 계산, 내부기 설정 및 명령 응답의 연결은 통합 단계에서 확인한다.
+[88 P TDC40] 
+[89 P TDC3] QCC 소프트웨어
+[90 P TDC4] System Control Module
+[91 P TDC40] E8300 측에서는 CM3의 SPI 명령/응답과 제어 핀, CFX의 I2S 입력 경로를 구현한다. QCC 내부 모듈의 구현과 구분한다.
+[92 P TDC43] QCC 구현 준비는 SI-ID-QCC-002 HW 인터페이스의 PIO/Power/NVM과 SI-ID-QCC-004 보안의 키/NVM 계약에서 시작한다. 이후 시스템 초기화·상태·장치 구성·Bluetooth 상태를 연결한다. E8300 인터페이스 정의를 유지하고 QCC PIO 극성·전원 우선순위의 자료 미비를 선행 조건으로 확인한다.
+[93 P TDC4] Bluetooth Communication Module
+[94 P a8] 
+[95 P a8] 
+[96 P a8] 
+[97 P TDC40] E8300에서는 리모콘과 매핑 명령의 수신, 처리 및 응답 경로를 구현한다.
+[98 P TDC43] SI-ID-QCC-003은 Classic, BLE, AUTH service, BLE Data를 단계적으로 연결한다. AUTH service는 보안 처리·toolbox·보안 NVM과 연계하고, 인증된 BLE 명령은 시스템 상태 유닛을 통해 SPI로 중계한다. Classic 오디오 수신/I2S와 외부기 마이크 송신은 서로 다른 방향으로 검토한다.
+[99 P TDC30] 이 절은 제공된 QCC 설계 자료를 외부기 QCC 기능으로 반영한 설계 설명이다. 원문의 스마트케이스·CC 표기는 잔존 표기로 취급하며 원문 식별자는 대응표에 보존한다. 충전케이스와의 실제 통신 기능은 외부기 QCC가 사용하는 별도 주변장치 기능으로 구분한다. QCC 소스, 라이브러리 빌드 정보와 실측 로그가 입력되지 않았으므로 구현 또는 시험 완료를 뜻하지 않는다.
+[100 TABLE 5 rows]
+모듈 | 유닛 | 선행 계약 / 준비 자료
+SI-ID-QCC-002 HW 인터페이스 | SU-ID-QCC-005 PIO
+SU-ID-QCC-006 Power
+SU-ID-QCC-007 NVM | 핀 매핑/초기값, 전원·충전 상태, NVM ID/길이·오류 처리
+SI-ID-QCC-004 보안 | SU-ID-QCC-012 보안 처리
+SU-ID-QCC-013 toolbox
+SU-ID-QCC-014 보안 NVM | 설치키/생성키·키표 대응, nonce/primitive, 보안 NVM bootstrap, AUTH 접근 권한
+SI-ID-QCC-001 시스템 관리 | SU-ID-QCC-001 초기화
+SU-ID-QCC-002 시스템 상태
+SU-ID-QCC-003 장치 상태
+SU-ID-QCC-004 Bluetooth 상태 | HW/BSP 초기화 API, SP 제어 신호/정보, Standalone/TWS 구성·좌우 정책
+SI-ID-QCC-003 Bluetooth | SU-ID-QCC-008 Classic
+SU-ID-QCC-009 BLE
+SU-ID-QCC-010 AUTH
+SU-ID-QCC-011 BLE Data | 무선 설정, UUID/GAIA 데이터 계약, 보안 처리·시스템 중계, I2S 설정
+[101 P TDC30] [QCC 자료 입력] 실제 QCC 소스/빌드·ADK/BSP 버전과 단위 실행 로그를 제출해야 한다. 아래 단계는 통합 계획이며 구현/단위시험이 완료된 것으로 가정하지 않는다.
+[102 P TDC40] 
+[103 P TDC40] 
+[104 P TDC3] 부트로더 소프트웨어
+[105 P TDC30] 기초 하드웨어 설정, 저장장치 준비, 이미지 헤더/구획 검사와 메모리 적재를 먼저 구현한다. 이후 응용 코어 기동, 서비스 모드, 기본/대체 슬롯 선택과 복구 처리를 연결한다. 갱신 데이터 수신/저장은 CM3 응용 프로그램에서 구현한다.
+[106 P TDC2] 소프트웨어 통합 
+[107 P TDC20] 각 코어의 모듈을 먼저 통합한 뒤 공유 메모리와 완료 이벤트를 사용하는 코어 간 경로를 연결한다. 실행 순서는 부트로더의 이미지 적재, 응용 코어 준비, 맵/내부기 설정, 실시간 자극의 순서로 확인한다.
+[108 P TDC20] 상대 코어의 기능이 준비되지 않은 단계에서는 테스트 코드로 입력과 응답을 대신할 수 있다. 최종 통합에서는 실제 코어와 장치를 연결하여 같은 데이터와 완료 상태가 전달되는지 확인한다.
+[109 P TDC20] 각 통합 단계의 입력, 전달 결과와 상태 전환을 확인한 뒤 다음 단계로 진행한다. 결과가 설계와 다르면 해당 유닛과 연결 부분을 수정하고 같은 조건으로 다시 확인한다.
+[110 P TDC3] CFX 코어 소프트웨어 통합
+[111 P TDC4] 병렬 통합 단계
+[112 P TDC40] CFX의 System Control Module을 기준으로 신호처리와 내부기 실행 모듈을 각각 통합한다. 상대 모듈의 입력은 준비된 맵 자료나 테스트 코드로 제공할 수 있다.
+[113 P TDC5] Signal Processing Module + System Control Module
+[114 P TDC50] 맵의 방향/마이크 수와 입력 상태에 따라 단일 입력, 두 마이크 빔포밍 또는 I2S 혼합 경로가 선택되는지 확인한다. 오디오/자극 볼륨을 변경하여 AGC 이득, C 상한과 매핑 계수의 반영을 확인한다.
+[115 P TDC5] Internal Stimulation Device Execution Module + System Control Module
+[116 P TDC50] CM3의 내부기 연결 상태, PCM 실행 모드와 지정 명령이 CFX의 출력 경로에 반영되는지 확인한다. 명령 요청과 전송 완료를 구분하고 대기/초기화, 연결 검사 및 실시간 자극 모드를 각각 확인한다.
+[117 P TDC50] 
+[118 P TDC4] 누적 통합 단계
+[119 P TDC40] 신호처리와 내부기 실행 경로를 연결하고 설정 변경이 두 모듈에 반영된 뒤 자극 데이터를 출력하도록 통합한다.
+[120 P TDC5] Signal Processing Module + internal Stimulation Device Execution Module + System Control Module
+[121 P TDC50] 입력 혼합, HEAR 최대값 연산, AGC, FFT/크기 연산, 대역 대표값/매핑과 PCM 출력을 순서대로 연결한다. 선택한 맵의 디지털 T/C, 전극과 프레임 조건이 자극 패킷에 반영되는지 확인한다.
+[122 P TDC50] CIS는 맵의 펄스폭에서 계산한 프레임 수와 전송량을 사용한다. NofM은 대역 수 16 이상인 맵에서 16개 대역 선택, 교차 배치와 시작점 조정 후 자극당 3프레임, 1ms당 8개씩 두 구간으로 출력하는지 확인한다.
+[123 P TDC50] 
+[124 P TDC3] Hear 코어 소프트웨어 통합
+[125 P TDC30] HEAR 통합은 CFX 신호처리 통합에 포함한다. 혼합된 16표본의 절대값 최대값 연산이 끝나면 Event 0으로 CFX의 AGC와 FFT 입력 갱신을 진행하고, 512표본 FFT/크기 연산이 끝나면 Event 1으로 후속 대역 처리와 PCM 출력을 진행하는지 확인한다.
+[126 P TDC30] Event 0 전에는 최대값 결과를, Event 1 전에는 FFT/크기 결과를 사용하지 않는지 확인한다. CM3가 읽는 maxAudioInput은 혼합 후 AGC 전의 최근 16표본 절대값 최대이며, RMS나 장시간 누적 최대값과 구분한다.
+[127 P TDC30] 
+[128 P TDC3] CM3코어 소프트웨어 통합
+[129 P TDC4] 병렬 통합 단계
+[130 P TDC40] CM3의 System Control Module을 기준으로 신호처리, 내부기 실행과 블루투스 통신 모듈을 각각 통합한다. 이 단계에서는 상대 모듈의 상태와 응답을 준비하여 개별 연결을 확인한다.
+[131 P TDC5] Signal Processing Module + System Control Module
+[132 P TDC50] 맵의 펄스폭, 채널 수와 T/C 전류로 DAC 범위, 디지털 T/C 및 전송량이 계산되는지 확인한다. 선택한 내부기 파라미터와 계산 결과가 공유 메모리의 동일한 맵 자료에 대응하는지 확인한다.
+[133 P TDC50] 
+[134 P TDC5] Internal Stimulation Device Execution Module + System Control Module
+[135 P TDC50] 내부기 연결 요청에 따라 FPGA/송신 전원 설정과 연결 확인이 진행되는지 확인한다. CM3의 명령 요청, CFX의 PCM 전송과 완료 통보, FPGA의 응답 처리를 연결하고 해제/재연결 시 상태 갱신도 확인한다.
+[136 P TDC50] 
+[137 P TDC5] Bluetooth Communication Module + System Control Module
+[138 P TDC50] 리모콘의 연결 확인과 일반 명령 허용 상태를 구분하여 처리/응답을 확인한다. 매핑 연결/종료, 게인 변경, 배터리/충전/크래들 뚜껑 및 LED 요청이 해당 시스템 상태에 반영되는지 확인한다.
+[139 P TDC50] 
+[140 P TDC4] 누적 통합 단계
+[141 P TDC40] 먼저 맵 처리와 내부기 실행을 시스템 제어에 연결하고, 그 다음 블루투스 명령과 상태 전달을 추가한다.
+[142 P TDC5] Signal Processing Module + internal Stimulation Device Execution Module + System Control Module
+[143 P TDC50] CM3의 맵 변경 요청, CFX의 맵 반영 완료, CM3의 자극 파라미터 계산과 CFX의 결과 적용을 순서대로 확인한다. 내부기 설정과 준비 상태를 확인한 뒤 Live PCM 모드로 전환되는지 확인한다.
+[144 P TDC5] Signal Processing Module + internal Stimulation Device Execution Module + Bluetooth Communication Module + System Control Module
+[145 P TDC50] 입력 상태 수집 후 시스템 제어, 맵 갱신, 내부기 실행과 블루투스 통신 처리가 순서대로 연결되는지 확인한다. 맵/볼륨 변경, 연결 해제와 절전 요청이 겹치는 조건도 확인하고, 절전 시 CFX 정지 확인 후 CM3 대기로 전환되며 터치 입력으로 재시작되는지 확인한다.
+[146 P TDC50] 
+[147 P TDC3] QCC와 E8300 소프트웨어 통합
+[148 P ] 
+[149 P ] 
+[150 P ] 
+[151 P TDC30] SPI의 0x34 배터리/충전/크래들 뚜껑, 0x35 LED/갱신 연결, 0x36 오디오 연결 종류를 전달하여 CM3의 상태 반영과 응답을 확인한다. 리모콘/매핑 명령도 수신, 실행과 SPI 응답까지 연결하여 확인한다.
+[152 P TDC30] I2S 오디오를 입력하여 CFX의 마이크 혼합과 자극 출력을 확인한다. 일반 스트리밍은 I2S 게인 1, 크래들 마이크는 Gain B, 매핑 연결 중에는 마이크와 I2S 게인 1을 적용하는지 확인하고 시작/중단 전환도 확인한다.
+[153 P TDC30] CM3가 QCC_CTRL로 동작/종료 요청을, ISD_CHECK로 내부기 연결 상태를 전달하는지 확인한다. SPI의 오디오 종류와 I2S 입력 유효 상태가 CFX의 경로 선택에 맞게 반영되는지 확인한다.
+[154 P TDC33] QCC 내부 통합은 아래 QCC-I-01~07 단계와 선행 조건에 따라 수행한다. 해당 단계의 기준/보고 행은 통합시험 기준서와 보고서에 같은 구조로 적용하며 미실행·실측 미제공 상태를 보존한다.
+[155 TABLE 8 rows]
+단계 / 대상 | 연결 및 확인 내용 | 완료 근거 / 보류 조건
+QCC-I-01 HW 기반
+005+006+007 | PIO 입력/출력/주변기능과 Power·NVM을 연결한다. 전원 인가·충전 상태 전환·읽기/쓰기 실패·초기값을 각각 확인한다. | 실제 핀/전압·배터리 임계값·전압→잔량·NVM 길이와 실패 처리 필요. 충전 상태 4종→0x34 binary 미비 보존
+통합 기준 연결: SW-FW-IntegrationTest-ID-018/019
+QCC-I-02 보안 기반
+013+014+007 | 일반/보안 NVM의 설치키와 생성키, random 및 읽기/쓰기·암복호화 경로를 연결한다. | primitive 입력/출력 벡터, SHA-256 직렬화, AES 모드/IV/무결성, rand_num bootstrap 필요. 합성 결과를 실측으로 사용하지 않음
+통합 기준 연결: SW-FW-IntegrationTest-ID-024
+QCC-I-03 시스템 상태
+001+002+003+004+005+006 | 설정→system→내장 library→scheduler→Power→Bluetooth→HW→PIO 초기화를 연결한다. SP 준비/종료, 내부기 연결/분리, Standalone/TWS와 장치명을 조건별로 확인한다. | QCC shutdown_ind 상충, 대기/디바운스·좌우/단독 구성과 충전 예외 우선순위를 해소한 기준 필요
+통합 기준 연결: SW-FW-IntegrationTest-ID-019/023
+QCC-I-04 BLE 인증
+009+010+012+013+014 | pairing 후 AUTH 접근, Patient 1/Clinician 2, Challenge→Response→Confirm→Status를 연결한다. 실패0/성공1/진행2/타임아웃3, invalid type·wrong response·미완료30초를 비교한다. | 실제 UUID/길이·권한, Confirm write/notify 상충, 30초 시작/리셋/허용오차 필요. 실패/미인증 데이터 허용 범위 확인
+통합 기준 연결: SW-FW-IntegrationTest-ID-020/021
+QCC-I-05 BLE 데이터
+009+011+002+004+012 | 인증·권한별 GAIA type/data와 SPI 중계를 연결한다. 유효1~20byte와 invalid length/address/type, 연결 해제와 재접속을 비교한다. 무송수신180초 및 연속5회 실패 후60초 제한도 확인한다. | GAIA 주소·메시지/CRC·응답, E8300 무제어명령 기준과 무TX/RX 리셋 범위, 실패카운터/60초 경계 자료 필요
+통합 기준 연결: SW-FW-IntegrationTest-ID-020/021/023
+QCC-I-06 오디오
+008+003+004+005+002 | Classic/Audio 연결·오디오만 해제·전체 해제 및 TWS/단독을 연결한다. 24bit16kHz I2S와0x36종류/I2S_FLAG를 E8300 CFX 경로에 연결한다. RID82 마이크 Classic 송신을 별도 방향으로 확인한다. | 프로파일/코덱/좌우·클럭/프레임/시작중단 유효신호와 실제 자료 필요. RID82 송신 상세설계 미비
+통합 기준 연결: SW-FW-IntegrationTest-ID-022
+QCC-I-07 전체 및 갱신
+4모듈+E8300 | SPI 전원·LED/갱신·오디오 상태, 리모콘/매핑 요청→실행→응답, 종료/충전/연결 전환을 통합한다. QCC 자체 OTA와 E8300 이미지 전달·부트 검사도 분리한다. | QCC 구현·실측, OTA 자체/중계·재시도·실패복구 및 QCC 무결성 자료 필요. E8300 과거 결과를 QCC 통과로 재사용하지 않음
+통합 기준 연결: SW-FW-IntegrationTest-ID-018~024 및 기존 E8300 시험의 해당 조건
+[156 P TDC30] SPI 연계: E8300의 수신 정의는 0x34(data[0] 배터리 %, data[1] 충전기 미연결 0 / 연결 1, data[2] 뚜껑 열림 1 / 닫힘 2), 0x35(data[0] LED 상태, OTA_EZAIRO=4일 때 갱신 연결 1), 0x36(data[0] 오디오 미연결 0 / 연결 1, data[1] 종류 미상 0 / 크래들 1 / 기타 2)이다. 응답은 각각 명령값과 성공값 1이다. 0x36은 연결 1·종류 1일 때만 크래들 오디오 상태를 설정한다.
+[157 P TDC30] 메시지 경계: QCC BLE Data 메시지는 type 1바이트와 data 0~19바이트로 총 1~20바이트이다. E8300 SPI 전송 프레임은 별도 길이 1바이트를 포함한 21바이트이다. 무선 메시지와 물리 SPI 프레임을 같은 계층의 길이로 취급하지 않는다.
+[158 P TDC30] 제어 핀: E8300 QCC_CTRL(DIO24)은 High=정상 동작 요청, Low=종료 요청이며 초기값은 Low이다. ISD_CHECK(DIO13)는 High=내부기 연결, Low=미연결이며 초기값은 Low이다. CFX I2S_FLAG(DIO29)는 Low=입력 유효이다. QCC의 shutdown_ind 또는 I2S enable이라는 논리 이름만으로 물리 핀 극성을 변경하지 않는다.
+[159 P TDC30] 오디오 경로: QCC Classic 수신 오디오는 I2S로 CFX에 전달한다. SRS의 출력 사양은 24bit·16kHz이다. E8300 PCM1은 slave, 24bit, MSB 우선/정렬, 상승 에지, 2word 설정이며 16표본 블록을 처리한다. 16kHz 표본율과 0~8kHz 오디오 대역 요구는 구분한다. CFX는 일반 I2S 게인 1과 마이크 Gain A, 크래들 I2S Gain B와 마이크 Gain A, 매핑 연결 중 두 게인 1을 적용하며 혼합 후 2로 나누지 않는다.
+[160 P TDC30] [QCC 자료 입력] QCC shutdown_ind의 on/off 본문·그림이 상충한다. 실제 PIO 번호·전압·논리 반전, 기동/종료 대기와 I2S enable→I2S_FLAG Low 유효의 물리 대응을 확인해야 한다.
+[161 P TDC30] [QCC 자료 입력] 충전 미연결/연결/충전 중/비충전의 4상태를 0x34 충전기 연결 0/1로 변환하는 표, 0x34~0x36 통보 시점/길이/오류 응답과 GAIA addressing·type별 데이터 정의를 제출해야 한다.
+[162 P TDC30] [QCC 자료 입력] 24bit·16kHz의 QCC 출력 설정, I2S 클럭/프레임·좌우 배정과 시작/중단 시 유효 신호 파형을 확인해야 한다. E8300 정적 수신 설정과 제공 설계의 대응만 확인했으며 실제 오디오/핀 파형 측정은 미제공이다.
+[163 P TDC30] 시험 기록: 유닛 시험은 15그룹(SW-FW-UnitTest-QCC-ID-1~15)이 14설계유닛에 대응한다. Bluetooth activation 그룹은 SU-ID-QCC-004가 주담당이고008/009가 연계된다. 통합과 시스템 시험은 상위 요구 기능을 함께 적고 준비 조건·입력·구체 예상 메시지/값·절차·통과 기준을 본문 행에 둔다. 보고서는 기준서의 공통 열·행/병합 구조를 그대로 유지하면서 같은 입력 조건 옆에 실제 시험/측정 내용과 판정을 추가한다.
+[164 P TDC30] 신규 통합시험의 ID는 SW-FW-IntegrationTest-ID-018 전원 상태/SPI, 019 연결·종료 신호, 020 AUTH 패턴 중계, 021 실제 CRA와 제어 게이트/시간 제한, 022 Classic/I2S 오디오, 023 BLE 편이·양이 데이터, 024 보안 NVM/키 생성/CRA 계산이다. AUTH 패턴 중계 시험을 실제 CRA 통과로 확대하지 않으며, 각 단계를 해당 기준서·보고서의 같은 입력 조건과 연결한다.
+[165 P TDC30] 수치·메시지·시간 비교는 T로 수행하고 단순 설계 검토와 구분한다. 생성한 예상 SPI/BLE 데이터, 정적 코드 분석과 실제 로그/파형을 구분한다. 제공 QCC 시험 자료는 기준이므로 신규 결과는 미실행·판정 대기이며 실제 수집 자료가 없으면 통과로 기록하지 않는다. 사진/파형이 필요한 자리는 (사진필요)로 두고 예상 도식은 실측이 아님을 표시한다.
+[166 P TDC30] [QCC 자료 입력] QCC 통합 실행 로그, 실제 입력/응답 전체 메시지, 오디오/핀 파형·장비/빌드 식별 및 시험자 확인 기록이 필요하다. 미해소 설계 상충은 시험 판정에도 유지한다.
+[167 P TDC30] 
+[168 P TDC30] 
+[169 P TDC3] 부트로더 소프트웨어 통합
+[170 P TDC30] 정상/손상 이미지의 헤더, 구획 크기와 CRC 검사, 암호화 구획의 복호화 및 메모리 적재를 연결한다. 검사 오류 시 해당 이미지의 응용 기동이 진행되지 않는지 확인하고, 기본/대체 슬롯의 시도 횟수와 실행 성공 상태에 따라 다음 기동 위치가 선택되는지 확인한다.
+[171 P TDC30] CM3의 갱신 시작/데이터/종료 명령을 파일 기록 및 기동 위치 선택에 연결하고, 재기동 후 부트로더의 검사/적재까지 확인한다. OTA 명령의 슬롯 1~2와 부트로더 상태의 슬롯 1~4를 구분하며 수신 순서 오류, 저장 실패와 불완전 이미지 조건도 확인한다.
+[172 P TDC33] [QCC 자료 입력] QCC 자체 펌웨어 갱신과 E8300 이미지 전달의 명령·버퍼·순서·재시도·인증·오류/중단 복구를 각각 정의하고 구현/통합 결과를 제출해야 한다. E8300 OTA 슬롯1~2와 부트 상태 슬롯1~4, 0x35 갱신 연결 통보를 구분하며 QCC 기동 이미지 무결성 검사 범위·알고리즘·실패 처리도 별도로 확인해야 한다.
+[173 P TDC1] 소프트웨어 항목/유닛 구현 및 통합 계획
+[174 P TDC10] 모듈의 구현 및 통합은 위의 계획에 따라 진행한다. 하위 항목과 유닛은 소프트웨어 상세 설계서에 정의한 목적, 입력/출력, 처리 및 동작 조건을 기준으로 구현하고 연결한다.
+[175 P TDC10] 
+[176 P TDC2] 소프트웨어 항목/유닛 구현
+[177 P TDC20] 소프트웨어 상세 설계서의 항목과 유닛은 계층적으로 구성한다. 다른 유닛을 호출하거나 결과를 사용하는 항목은 필요한 하위 유닛을 먼저 구현한다. 독립적인 유닛은 병렬로 구현할 수 있다.
+[178 P TDC20] 
+[179 P TDC2] 소프트웨어 항목/유닛 통합
+[180 P TDC20] 유닛의 입력/출력과 동작 조건을 확인한 뒤 같은 항목 안의 유닛, 기능 모듈, 코어 간 경로의 순서로 통합한다. 데이터를 전달할 때는 단위, 저장 형식과 배열 크기를 맞추고, 요청/완료 상태를 확인하여 다음 처리를 진행한다.

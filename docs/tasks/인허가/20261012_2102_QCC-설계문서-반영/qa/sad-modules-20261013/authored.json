@@ -1,0 +1,173 @@
+{
+  "code": "SAD",
+  "source": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SAD-FW-TD24A 소프트웨어 아키텍쳐 기술서.docx",
+  "candidate": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sad-modules-20261013\\SAD-candidate.docx",
+  "before": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sad-modules-20261013\\SAD-before.docx",
+  "source_sha256": "4e71a6b7d696c7e5e21804eff3182f4a9f2f5bb6991e4b441ee6cbf5874119b1",
+  "candidate_sha256": "eb9dae4767b61f11a1be05f324ad89dba9fe775c867b54cd419488d0fd4cbbdc",
+  "changed_paragraphs": [
+    {
+      "paraId": "52838505",
+      "kind": "toc",
+      "before": "\t3.4.3. SI-ID-QCC-001 시스템 관리 모듈\t10\n",
+      "after": "\t3.4.3. 시스템 관리 모듈\t10\n",
+      "deleted_prefix": "SI-ID-QCC-001 "
+    },
+    {
+      "paraId": "1A93051C",
+      "kind": "toc",
+      "before": "\t3.4.4. SI-ID-QCC-002 HW 인터페이스 모듈\t10\n",
+      "after": "\t3.4.4. HW 인터페이스 모듈\t10\n",
+      "deleted_prefix": "SI-ID-QCC-002 "
+    },
+    {
+      "paraId": "1537B30E",
+      "kind": "toc",
+      "before": "\t3.4.5. SI-ID-QCC-003 블루투스 모듈\t11\n",
+      "after": "\t3.4.5. 블루투스 모듈\t11\n",
+      "deleted_prefix": "SI-ID-QCC-003 "
+    },
+    {
+      "paraId": "14DCD630",
+      "kind": "toc",
+      "before": "\t3.4.6. SI-ID-QCC-004 보안 모듈\t12\n",
+      "after": "\t3.4.6. 보안 모듈\t12\n",
+      "deleted_prefix": "SI-ID-QCC-004 "
+    },
+    {
+      "paraId": "7EEA74BA",
+      "kind": "heading",
+      "before": "SI-ID-QCC-001 시스템 관리 모듈\n",
+      "after": "시스템 관리 모듈\n",
+      "deleted_prefix": "SI-ID-QCC-001 "
+    },
+    {
+      "paraId": "748B004A",
+      "kind": "heading",
+      "before": "SI-ID-QCC-002 HW 인터페이스 모듈\n",
+      "after": "HW 인터페이스 모듈\n",
+      "deleted_prefix": "SI-ID-QCC-002 "
+    },
+    {
+      "paraId": "03E77286",
+      "kind": "heading",
+      "before": "SI-ID-QCC-003 블루투스 모듈\n",
+      "after": "블루투스 모듈\n",
+      "deleted_prefix": "SI-ID-QCC-003 "
+    },
+    {
+      "paraId": "134FFB4F",
+      "kind": "heading",
+      "before": "SI-ID-QCC-004 보안 모듈\n",
+      "after": "보안 모듈\n",
+      "deleted_prefix": "SI-ID-QCC-004 "
+    }
+  ],
+  "new_revision_ids": [
+    "4916",
+    "4917",
+    "4918",
+    "4919",
+    "4920",
+    "4921",
+    "4922",
+    "4923",
+    "4924",
+    "4925",
+    "4926",
+    "4927",
+    "4928",
+    "4929",
+    "4930",
+    "4931"
+  ],
+  "new_revision_count": 16,
+  "new_revision_author": "김은수",
+  "new_revision_date": "2026-10-13T07:39:49Z",
+  "saved_tables": [
+    {
+      "stored_table_ordinal": 1,
+      "raw_XML_before_sha256": "2b3e2972785f24f60dcd31c66d91eb70b4e34dee8d15098a38a2d896e50804ee",
+      "raw_XML_candidate_sha256": "2b3e2972785f24f60dcd31c66d91eb70b4e34dee8d15098a38a2d896e50804ee",
+      "raw_XML_byte_identical": true
+    },
+    {
+      "stored_table_ordinal": 2,
+      "raw_XML_before_sha256": "718c71e1b83f5ad1071eafe123da96af3fb081d7f18c591f12bd8516b6197060",
+      "raw_XML_candidate_sha256": "718c71e1b83f5ad1071eafe123da96af3fb081d7f18c591f12bd8516b6197060",
+      "raw_XML_byte_identical": true
+    },
+    {
+      "stored_table_ordinal": 3,
+      "raw_XML_before_sha256": "648e2a8bd6ffb32a68d00441f64a6b2c3bb9cd3122c76ba0128a704cb4fc56ab",
+      "raw_XML_candidate_sha256": "648e2a8bd6ffb32a68d00441f64a6b2c3bb9cd3122c76ba0128a704cb4fc56ab",
+      "raw_XML_byte_identical": true
+    },
+    {
+      "stored_table_ordinal": 4,
+      "raw_XML_before_sha256": "9d9e7c4467c51fb455ac474f88ee81db30aef48b84e8b002dcd94eddc039baaa",
+      "raw_XML_candidate_sha256": "9d9e7c4467c51fb455ac474f88ee81db30aef48b84e8b002dcd94eddc039baaa",
+      "raw_XML_byte_identical": true
+    },
+    {
+      "stored_table_ordinal": 5,
+      "raw_XML_before_sha256": "4fc1cfb8303e00bf0e3bdd30f90f656fd6fdb3f7ce200c895e49ea31915cb1b2",
+      "raw_XML_candidate_sha256": "4fc1cfb8303e00bf0e3bdd30f90f656fd6fdb3f7ce200c895e49ea31915cb1b2",
+      "raw_XML_byte_identical": true
+    },
+    {
+      "stored_table_ordinal": 6,
+      "raw_XML_before_sha256": "ff2a98b0fcf061354bf6fb0f340cc9e77575b522d56a105b2f5ba9b891f5f048",
+      "raw_XML_candidate_sha256": "ff2a98b0fcf061354bf6fb0f340cc9e77575b522d56a105b2f5ba9b891f5f048",
+      "raw_XML_byte_identical": true
+    },
+    {
+      "stored_table_ordinal": 7,
+      "raw_XML_before_sha256": "4b69b3e32197fd3fea00a7baa0571b484efef5d97b5290503656c30e85231496",
+      "raw_XML_candidate_sha256": "4b69b3e32197fd3fea00a7baa0571b484efef5d97b5290503656c30e85231496",
+      "raw_XML_byte_identical": true
+    },
+    {
+      "stored_table_ordinal": 8,
+      "raw_XML_before_sha256": "3e68829384666b204b95da97ccbdd914f7b1dce491c56053dd9e0ea7d334391a",
+      "raw_XML_candidate_sha256": "3e68829384666b204b95da97ccbdd914f7b1dce491c56053dd9e0ea7d334391a",
+      "raw_XML_byte_identical": true
+    },
+    {
+      "stored_table_ordinal": 9,
+      "raw_XML_before_sha256": "740188d90bcd08f0acbc6d74bec24be554dd6c769ac4d2185ce6f9fd8bce0450",
+      "raw_XML_candidate_sha256": "740188d90bcd08f0acbc6d74bec24be554dd6c769ac4d2185ce6f9fd8bce0450",
+      "raw_XML_byte_identical": true
+    },
+    {
+      "stored_table_ordinal": 10,
+      "raw_XML_before_sha256": "513c0bf5f27684e187cbbe648b6f004b005122c82fdfd589f28f4ce55731b74e",
+      "raw_XML_candidate_sha256": "513c0bf5f27684e187cbbe648b6f004b005122c82fdfd589f28f4ce55731b74e",
+      "raw_XML_byte_identical": true
+    },
+    {
+      "stored_table_ordinal": 11,
+      "raw_XML_before_sha256": "3992d1c9114a00e8ba1866e2b857672a0aa9068260a1b5f0f3c0e9f40070a94f",
+      "raw_XML_candidate_sha256": "3992d1c9114a00e8ba1866e2b857672a0aa9068260a1b5f0f3c0e9f40070a94f",
+      "raw_XML_byte_identical": true
+    },
+    {
+      "stored_table_ordinal": 12,
+      "raw_XML_before_sha256": "7901910369ec144aa47711c4be4a5e2190ab9333e49a37339c0b59b6ad191c6e",
+      "raw_XML_candidate_sha256": "7901910369ec144aa47711c4be4a5e2190ab9333e49a37339c0b59b6ad191c6e",
+      "raw_XML_byte_identical": true
+    }
+  ],
+  "checks": {
+    "new_only_reject_document_c14n_exact": true,
+    "existing_revision_text_author_date_preserved": true,
+    "only_8_prefix_deletions": true,
+    "all_other_paragraphs_pPr_styles_images_fields_links_page_numbers_preserved": true,
+    "all_other_ZIP_parts_byte_identical": true,
+    "all_tables_raw_XML_byte_identical": true,
+    "stored_table_count": 12,
+    "trace_module_unit_IDs_unchanged": true,
+    "G_source_unchanged": true
+  },
+  "native_status": "미실행: root serialized Word/PDF/PNG and narrow QA acceptance/rejection pending"
+}

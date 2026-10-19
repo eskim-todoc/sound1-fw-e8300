@@ -1,0 +1,6002 @@
+{
+  "QCC_SAD-FW-TD24A 소프트웨어 아키텍쳐 기술서_byssi.docx": {
+    "sha256": "49ebebcf56d3835b0db3365c5ba996909a1f59490e50468c2fe76d44974b8878",
+    "paragraphs": [
+      {
+        "i": 0,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 1,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 2,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 3,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 4,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 5,
+        "text": "소프트웨어 아키텍처 기술서",
+        "style": ""
+      },
+      {
+        "i": 6,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 7,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 8,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 9,
+        "text": "모델명: TD24A-A-ACC (외부장치)",
+        "style": ""
+      },
+      {
+        "i": 10,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 11,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 12,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 13,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 14,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 15,
+        "text": "작 성",
+        "style": ""
+      },
+      {
+        "i": 16,
+        "text": "검 토",
+        "style": ""
+      },
+      {
+        "i": 17,
+        "text": "승 인",
+        "style": ""
+      },
+      {
+        "i": 18,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 19,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 20,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 21,
+        "text": "서석일",
+        "style": ""
+      },
+      {
+        "i": 22,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 23,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 24,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 25,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 26,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 27,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 28,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 29,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 30,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 31,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 32,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 33,
+        "text": "\n",
+        "style": ""
+      },
+      {
+        "i": 34,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 35,
+        "text": "\nNo.",
+        "style": "a9"
+      },
+      {
+        "i": 36,
+        "text": "개정 내용",
+        "style": "a9"
+      },
+      {
+        "i": 37,
+        "text": "개정 위치 ",
+        "style": "a9"
+      },
+      {
+        "i": 38,
+        "text": "개정 날짜",
+        "style": "a9"
+      },
+      {
+        "i": 39,
+        "text": "0",
+        "style": "a9"
+      },
+      {
+        "i": 40,
+        "text": "최초 제정",
+        "style": "a9"
+      },
+      {
+        "i": 41,
+        "text": "-",
+        "style": "a9"
+      },
+      {
+        "i": 42,
+        "text": "",
+        "style": "a9"
+      },
+      {
+        "i": 43,
+        "text": "1",
+        "style": "a9"
+      },
+      {
+        "i": 44,
+        "text": "",
+        "style": "a9"
+      },
+      {
+        "i": 45,
+        "text": "",
+        "style": "a9"
+      },
+      {
+        "i": 46,
+        "text": "",
+        "style": "a9"
+      },
+      {
+        "i": 47,
+        "text": "2",
+        "style": "a9"
+      },
+      {
+        "i": 48,
+        "text": "",
+        "style": "a9"
+      },
+      {
+        "i": 49,
+        "text": "",
+        "style": "a9"
+      },
+      {
+        "i": 50,
+        "text": "",
+        "style": "a9"
+      },
+      {
+        "i": 51,
+        "text": "3",
+        "style": "a9"
+      },
+      {
+        "i": 52,
+        "text": "",
+        "style": "a9"
+      },
+      {
+        "i": 53,
+        "text": "",
+        "style": "a9"
+      },
+      {
+        "i": 54,
+        "text": "",
+        "style": "a9"
+      },
+      {
+        "i": 55,
+        "text": "4",
+        "style": "a9"
+      },
+      {
+        "i": 56,
+        "text": "",
+        "style": "a9"
+      },
+      {
+        "i": 57,
+        "text": "",
+        "style": "a9"
+      },
+      {
+        "i": 58,
+        "text": "",
+        "style": "a9"
+      },
+      {
+        "i": 59,
+        "text": "5",
+        "style": "a9"
+      },
+      {
+        "i": 60,
+        "text": "",
+        "style": "a9"
+      },
+      {
+        "i": 61,
+        "text": "",
+        "style": "a9"
+      },
+      {
+        "i": 62,
+        "text": "",
+        "style": "a9"
+      },
+      {
+        "i": 63,
+        "text": "6",
+        "style": "a9"
+      },
+      {
+        "i": 64,
+        "text": "",
+        "style": "a9"
+      },
+      {
+        "i": 65,
+        "text": "",
+        "style": "a9"
+      },
+      {
+        "i": 66,
+        "text": "",
+        "style": "a9"
+      },
+      {
+        "i": 67,
+        "text": "7",
+        "style": "a9"
+      },
+      {
+        "i": 68,
+        "text": "",
+        "style": "a9"
+      },
+      {
+        "i": 69,
+        "text": "",
+        "style": "a9"
+      },
+      {
+        "i": 70,
+        "text": "",
+        "style": "a9"
+      },
+      {
+        "i": 71,
+        "text": "8",
+        "style": "a9"
+      },
+      {
+        "i": 72,
+        "text": "",
+        "style": "a9"
+      },
+      {
+        "i": 73,
+        "text": "",
+        "style": "a9"
+      },
+      {
+        "i": 74,
+        "text": "",
+        "style": "a9"
+      },
+      {
+        "i": 75,
+        "text": "9",
+        "style": "a9"
+      },
+      {
+        "i": 76,
+        "text": "",
+        "style": "a9"
+      },
+      {
+        "i": 77,
+        "text": "",
+        "style": "a9"
+      },
+      {
+        "i": 78,
+        "text": "",
+        "style": "a9"
+      },
+      {
+        "i": 79,
+        "text": "10",
+        "style": "a9"
+      },
+      {
+        "i": 80,
+        "text": "",
+        "style": "a9"
+      },
+      {
+        "i": 81,
+        "text": "",
+        "style": "a9"
+      },
+      {
+        "i": 82,
+        "text": "",
+        "style": "a9"
+      },
+      {
+        "i": 83,
+        "text": "11",
+        "style": "a9"
+      },
+      {
+        "i": 84,
+        "text": "",
+        "style": "a9"
+      },
+      {
+        "i": 85,
+        "text": "",
+        "style": "a9"
+      },
+      {
+        "i": 86,
+        "text": "",
+        "style": "a9"
+      },
+      {
+        "i": 87,
+        "text": "12",
+        "style": "a9"
+      },
+      {
+        "i": 88,
+        "text": "",
+        "style": "a9"
+      },
+      {
+        "i": 89,
+        "text": "",
+        "style": "a9"
+      },
+      {
+        "i": 90,
+        "text": "",
+        "style": "a9"
+      },
+      {
+        "i": 91,
+        "text": "13",
+        "style": "a9"
+      },
+      {
+        "i": 92,
+        "text": "",
+        "style": "a9"
+      },
+      {
+        "i": 93,
+        "text": "",
+        "style": "a9"
+      },
+      {
+        "i": 94,
+        "text": "",
+        "style": "a9"
+      },
+      {
+        "i": 95,
+        "text": "14",
+        "style": "a9"
+      },
+      {
+        "i": 96,
+        "text": "",
+        "style": "a9"
+      },
+      {
+        "i": 97,
+        "text": "",
+        "style": "a9"
+      },
+      {
+        "i": 98,
+        "text": "",
+        "style": "a9"
+      },
+      {
+        "i": 99,
+        "text": "15",
+        "style": "a9"
+      },
+      {
+        "i": 100,
+        "text": "",
+        "style": "a9"
+      },
+      {
+        "i": 101,
+        "text": "",
+        "style": "a9"
+      },
+      {
+        "i": 102,
+        "text": "",
+        "style": "a9"
+      },
+      {
+        "i": 103,
+        "text": "16",
+        "style": "a9"
+      },
+      {
+        "i": 104,
+        "text": "",
+        "style": "a9"
+      },
+      {
+        "i": 105,
+        "text": "",
+        "style": "a9"
+      },
+      {
+        "i": 106,
+        "text": "",
+        "style": "a9"
+      },
+      {
+        "i": 107,
+        "text": "\t\n",
+        "style": ""
+      },
+      {
+        "i": 108,
+        "text": "목차",
+        "style": "TOC"
+      },
+      {
+        "i": 109,
+        "text": "1.\t서론\t5",
+        "style": "12"
+      },
+      {
+        "i": 110,
+        "text": "\t\t1.1.\t개요\t5",
+        "style": "20"
+      },
+      {
+        "i": 111,
+        "text": "\t\t1.2.\t목적\t5",
+        "style": "20"
+      },
+      {
+        "i": 112,
+        "text": "\t\t1.3.\t대상\t5",
+        "style": "20"
+      },
+      {
+        "i": 113,
+        "text": "\t\t1.4.\t관련문서\t5",
+        "style": "20"
+      },
+      {
+        "i": 114,
+        "text": "\t\t1.4.1.\t프로젝트\t5",
+        "style": "30"
+      },
+      {
+        "i": 115,
+        "text": "\t\t1.4.2.\t표준 및 규제\t5",
+        "style": "30"
+      },
+      {
+        "i": 116,
+        "text": "2.\t하드웨어 플랫폼\t6",
+        "style": "12"
+      },
+      {
+        "i": 117,
+        "text": "3.\t소프트웨어 아키텍처\t7",
+        "style": "12"
+      },
+      {
+        "i": 118,
+        "text": "\t\t3.1.\t시스템 관리 모듈 (System management module)\t7",
+        "style": "20"
+      },
+      {
+        "i": 119,
+        "text": "\t\t3.1.1.\t시스템 상태 처리 유닛\t8",
+        "style": "30"
+      },
+      {
+        "i": 120,
+        "text": "\t\t3.1.2.\t데이터 처리 유닛\t8",
+        "style": "30"
+      },
+      {
+        "i": 121,
+        "text": "\t\t3.1.3.\t시스템 보안 유닛\t8",
+        "style": "30"
+      },
+      {
+        "i": 122,
+        "text": "\t\t3.2.\t하드웨어 인터페이스 모듈 (Hardware interface module)\t8",
+        "style": "20"
+      },
+      {
+        "i": 123,
+        "text": "\t\t3.2.1.\tPIO 포트 유닛\t8",
+        "style": "30"
+      },
+      {
+        "i": 124,
+        "text": "\t\t3.2.2.\tPower 제어 유닛\t8",
+        "style": "30"
+      },
+      {
+        "i": 125,
+        "text": "\t\t3.2.3.\t충전 케이스 통신 유닛\t8",
+        "style": "30"
+      },
+      {
+        "i": 126,
+        "text": "\t\t3.2.4.\tI2C 제어 유닛\t8",
+        "style": "30"
+      },
+      {
+        "i": 127,
+        "text": "\t\t3.2.5.\tLED 제어 유닛\t8",
+        "style": "30"
+      },
+      {
+        "i": 128,
+        "text": "\t\t3.3.\t블루투스 모듈 (Bluetooth module)\t8",
+        "style": "20"
+      },
+      {
+        "i": 129,
+        "text": "\t\t3.3.1.\tBluetooth 관리 유닛\t8",
+        "style": "30"
+      },
+      {
+        "i": 130,
+        "text": "\t\t3.3.2.\tBluetooth Classic 유닛\t8",
+        "style": "30"
+      },
+      {
+        "i": 131,
+        "text": "\t\t3.3.3.\tBLE 유닛\t9",
+        "style": "30"
+      },
+      {
+        "i": 132,
+        "text": "\t\t3.3.4.\tBLE Data 처리 유닛\t9",
+        "style": "30"
+      },
+      {
+        "i": 133,
+        "text": "4.\t시스템 동작 흐름도\t10",
+        "style": "12"
+      },
+      {
+        "i": 134,
+        "text": "5.\t소프트웨어 안전 등급\t11",
+        "style": "12"
+      },
+      {
+        "i": 135,
+        "text": "6.\t소프트웨어 요구사항 추적성\t12",
+        "style": "12"
+      },
+      {
+        "i": 136,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 137,
+        "text": "\n",
+        "style": ""
+      },
+      {
+        "i": 138,
+        "text": "서론",
+        "style": "10"
+      },
+      {
+        "i": 139,
+        "text": "개요",
+        "style": "2"
+      },
+      {
+        "i": 140,
+        "text": "본 문서는 TD24A-A-ACC 제품의 스마트 케이스 펌웨어를 개발하기 위한 소프트웨어 아키텍처를 설계하고 기술한다.",
+        "style": ""
+      },
+      {
+        "i": 141,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 142,
+        "text": "목적",
+        "style": "2"
+      },
+      {
+        "i": 143,
+        "text": "스마트 케이스 펌웨어의 요구사항을 구현하기 위한 소프트웨어의 아키텍처를 설계함으로써 소프트웨어 개발 절차에 따라 안전한하고 일관성 및 정확성을 보장하는 소프트웨어의 개발이 보장되는 것을 목적으로 한다.",
+        "style": ""
+      },
+      {
+        "i": 144,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 145,
+        "text": "대상",
+        "style": "2"
+      },
+      {
+        "i": 146,
+        "text": "TD24B-A-EXT 펌웨어 개발 프로젝트에 참여하는 모든 구성원은 이 문서를 참고하도록 한다.",
+        "style": ""
+      },
+      {
+        "i": 147,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 148,
+        "text": "관련문서",
+        "style": "2"
+      },
+      {
+        "i": 149,
+        "text": "프로젝트",
+        "style": "3"
+      },
+      {
+        "i": 150,
+        "text": "No",
+        "style": "a8"
+      },
+      {
+        "i": 151,
+        "text": "문서번호",
+        "style": "a8"
+      },
+      {
+        "i": 152,
+        "text": "문서 제목",
+        "style": "a8"
+      },
+      {
+        "i": 153,
+        "text": "1",
+        "style": "a8"
+      },
+      {
+        "i": 154,
+        "text": "SDP-FW-TD24B",
+        "style": "a8"
+      },
+      {
+        "i": 155,
+        "text": "소프트웨어 개발 계획서",
+        "style": "a8"
+      },
+      {
+        "i": 156,
+        "text": "2",
+        "style": "a8"
+      },
+      {
+        "i": 157,
+        "text": "SGR-FW-TD24B",
+        "style": "a8"
+      },
+      {
+        "i": 158,
+        "text": "소프트웨어 일반 요구사항",
+        "style": "a8"
+      },
+      {
+        "i": 159,
+        "text": "3",
+        "style": "a8"
+      },
+      {
+        "i": 160,
+        "text": "SRS-FW-TD24B",
+        "style": "a8"
+      },
+      {
+        "i": 161,
+        "text": "소프트웨어 요구사항 사양서",
+        "style": "a8"
+      },
+      {
+        "i": 162,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 163,
+        "text": "표준 및 규제",
+        "style": "3"
+      },
+      {
+        "i": 164,
+        "text": "No",
+        "style": "a8"
+      },
+      {
+        "i": 165,
+        "text": "문서번호",
+        "style": "a8"
+      },
+      {
+        "i": 166,
+        "text": "문서 제목",
+        "style": "a8"
+      },
+      {
+        "i": 167,
+        "text": "1",
+        "style": "a8"
+      },
+      {
+        "i": 168,
+        "text": "IEC 62304:2006",
+        "style": "a8"
+      },
+      {
+        "i": 169,
+        "text": "Medical device software – Software life cycle processes",
+        "style": ""
+      },
+      {
+        "i": 170,
+        "text": "2",
+        "style": "a8"
+      },
+      {
+        "i": 171,
+        "text": "ISO 14971:2007",
+        "style": "a8"
+      },
+      {
+        "i": 172,
+        "text": "Medical devices – Application of risk management to medical",
+        "style": "a8"
+      },
+      {
+        "i": 173,
+        "text": "\n",
+        "style": ""
+      },
+      {
+        "i": 174,
+        "text": "하드웨어 플랫폼",
+        "style": "10"
+      },
+      {
+        "i": 175,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 176,
+        "text": "외부장치 소프트웨어가 동작할 하드웨어 플랫폼은 아래 <그림 1.>과 같으며, 이를 참고하여 소프트웨어 아키텍처를 설계한다.",
+        "style": ""
+      },
+      {
+        "i": 177,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 178,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 179,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 180,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 181,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 182,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 183,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 184,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 185,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 186,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 187,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 188,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 189,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 190,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 191,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 192,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 193,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 194,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 195,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 196,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 197,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 198,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 199,
+        "text": "<그림 1. 외부장치 블록도>",
+        "style": ""
+      },
+      {
+        "i": 200,
+        "text": "\n",
+        "style": ""
+      },
+      {
+        "i": 201,
+        "text": "소프트웨어 아키텍처 – 블루투스",
+        "style": "10"
+      },
+      {
+        "i": 202,
+        "text": "2절의 하드웨어 플랫폼을 기반으로 동작하는 외부장치 시스템의 블루투스 소프트웨어의 아키텍처는 <그림 2.>와 같이 설계되었으며,",
+        "style": ""
+      },
+      {
+        "i": 203,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 204,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 205,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 206,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 207,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 208,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 209,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 210,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 211,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 212,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 213,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 214,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 215,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 216,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 217,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 218,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 219,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 220,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 221,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 222,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 223,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 224,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 225,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 226,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 227,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 228,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 229,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 230,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 231,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 232,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 233,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 234,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 235,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 236,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 237,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 238,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 239,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 240,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 241,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 242,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 243,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 244,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 245,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 246,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 247,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 248,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 249,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 250,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 251,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 252,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 253,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 254,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 255,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 256,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 257,
+        "text": "<그림 2. 외부장치 블루투스 소프트웨어 아키텍처 블록도>",
+        "style": ""
+      },
+      {
+        "i": 258,
+        "text": "블루투스 펌웨어는 크게 외부장치 Application과 MCU 제조사인 Qualcomm에서 제공하는 Built-in library와 system software가 있다. 제조사에서 제공하는 부분은 Application을 구현하는데 바탕이 되며, 별도의 수정 없이 제공되는 API만을 사용하므로, 여기서는 외부 Application만을 설명한다.",
+        "style": ""
+      },
+      {
+        "i": 259,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 260,
+        "text": "외부장치 Application의 각 모듈들이 담당하는 기능들은 다음과 같다.",
+        "style": ""
+      },
+      {
+        "i": 261,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 262,
+        "text": "시스템 관리 모듈 (System management module)",
+        "style": "2"
+      },
+      {
+        "i": 263,
+        "text": "외부장치 시스템의 전체적인 동작을 제어하는 모듈이다. 다른 모듈의 상태 값을 확인하여 해당 모듈의 동작을 결정한다.",
+        "style": ""
+      },
+      {
+        "i": 264,
+        "text": "시스템 초기화와 설정 유닛",
+        "style": "3"
+      },
+      {
+        "i": 265,
+        "text": "시스템과 application의 초기화를 수행하고, 각 유닛과 모듈들의 초기 상태와 설정 수행하고 확인하다. 특히, 사용되는 시스템과 built-in library의 각 부분을 설정과 초기화를 수행한다.",
+        "style": "a8"
+      },
+      {
+        "i": 266,
+        "text": "시스템 상태 유닛",
+        "style": "3"
+      },
+      {
+        "i": 267,
+        "text": "시스템의 일반적인 상태와 사운드 처리기의 상태를 처리하고, 다른 모듈들에게 전달하거나 모듈들의 처리를 수행한다. 그리고, 사운드 처리기와 SPI 통신을 처리한다.",
+        "style": "a8"
+      },
+      {
+        "i": 268,
+        "text": "장치 상태 유닛",
+        "style": "3"
+      },
+      {
+        "i": 269,
+        "text": "장치가 블루투스 단독형(Standalone, 편이)인지 무선 스테레오형(TWS(True Wireless Stereo), 양이) 인지를 확인하고 이에 따라 관련된 모듈들의 상태 및 데이터 처리를 관리한다.",
+        "style": "a8"
+      },
+      {
+        "i": 270,
+        "text": "블루투스 상태 유닛",
+        "style": "3"
+      },
+      {
+        "i": 271,
+        "text": "시스템 상태에 따라 Bluetooth Classic과 BLE의 상태를 확인하고 관련된 모듈들의 상태 및 데이터 처리를 관리한다.",
+        "style": "a8"
+      },
+      {
+        "i": 272,
+        "text": "하드웨어 인터페이스 모듈 (Hardware interface module)",
+        "style": "2"
+      },
+      {
+        "i": 273,
+        "text": "MCU와 연결된 여러 HW 모듈들을 제어하고, 외부장치 전원관 배터리, 충전을 관리하고 제어한다.",
+        "style": ""
+      },
+      {
+        "i": 274,
+        "text": "PIO 포트 유닛",
+        "style": "3"
+      },
+      {
+        "i": 275,
+        "text": "MCU와 연결된 PORT IO들들 설정하고 제어한다.",
+        "style": "a8"
+      },
+      {
+        "i": 276,
+        "text": "Power 제어 유닛",
+        "style": "3"
+      },
+      {
+        "i": 277,
+        "text": "외부장치의 배터리와 충전을 관리하고 관련된 정보를 사운드처리기와 블루투스를 통해 외부기기에 전달한다.",
+        "style": "a8"
+      },
+      {
+        "i": 278,
+        "text": "시스템 상태에 따라 저전압 모드에 진입하고 wake-up을 수행한다.",
+        "style": "a8"
+      },
+      {
+        "i": 279,
+        "text": "NVM 처리 유닛",
+        "style": "3"
+      },
+      {
+        "i": 280,
+        "text": "칩의 NVM(Non-Volatile Memory, Flash memory)의 접근을 관리하고, 저장되는 데이터를 정의하고 읽고 쓰는 부분에 대한 인터페이스를 제공한다.",
+        "style": "a8"
+      },
+      {
+        "i": 281,
+        "text": "블루투스 모듈 (Bluetooth module)",
+        "style": "2"
+      },
+      {
+        "i": 282,
+        "text": "외부장치의 블루투스 통신을 제어한다. 이 모듈은 크게 Audio 전송을 위한 Bluetooth Classic과 데이터 통신을 위한 BLE로 나누어진다.",
+        "style": ""
+      },
+      {
+        "i": 283,
+        "text": "Bluetooth Classic 유닛",
+        "style": "3"
+      },
+      {
+        "i": 284,
+        "text": "Classic 연결을 위한 설정과 통신 관련 부분을 설정하고 제어한다.",
+        "style": "a8"
+      },
+      {
+        "i": 285,
+        "text": "Audio 연결과 통신을 설정하고 제어한다.",
+        "style": "a8"
+      },
+      {
+        "i": 286,
+        "text": "BLE 유닛",
+        "style": "3"
+      },
+      {
+        "i": 287,
+        "text": "BLE Advertising의 설정하고 연결을 관리한다.",
+        "style": "a8"
+      },
+      {
+        "i": 288,
+        "text": "BLE 데이터를 송수신하기 위한 BLE 정보와 통신 관련 부분을 설정하고 제어한다.",
+        "style": "a8"
+      },
+      {
+        "i": 289,
+        "text": "AUTH service 처리 유닛",
+        "style": "3"
+      },
+      {
+        "i": 290,
+        "text": "자체 보안 인증에 사용되는 AUTH service를 정의하고 관련된 characteristic의 접근과 데이터 처리를 관리한다.",
+        "style": "a8"
+      },
+      {
+        "i": 291,
+        "text": "BLE Data 처리 유닛",
+        "style": "3"
+      },
+      {
+        "i": 292,
+        "text": "BLE data를 정의된 메시지 형태로 구성하고, 처리한다.",
+        "style": "a8"
+      },
+      {
+        "i": 293,
+        "text": "상대 BLE 장치로 데이터를 전송하고, 수신된 데이터를 처리하여 시스템에 전달한다.",
+        "style": "a8"
+      },
+      {
+        "i": 294,
+        "text": "보안 모듈 (Security module)",
+        "style": "2"
+      },
+      {
+        "i": 295,
+        "text": "인증 처리 유닛",
+        "style": "3"
+      },
+      {
+        "i": 296,
+        "text": "BLE 데이터 통신에 필요한 인증을 정의하고 절차를 처리 및 관리한다.",
+        "style": "a8"
+      },
+      {
+        "i": 297,
+        "text": "보안 툴박스 유닛",
+        "style": "3"
+      },
+      {
+        "i": 298,
+        "text": "보안 모듈에서 사용하는 각종 암호화 알고리즘과 키 생성 방식에 대한 처리를 수행한다.",
+        "style": "a8"
+      },
+      {
+        "i": 299,
+        "text": "보안 NVM 처리 유닛",
+        "style": "3"
+      },
+      {
+        "i": 300,
+        "text": "NVM에 저장된 보안 데이터를 읽을 때와 쓸 때 각각 필요한 보안 절차를 수행한다.",
+        "style": "a8"
+      },
+      {
+        "i": 301,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 302,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 303,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 304,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 305,
+        "text": "\n",
+        "style": ""
+      },
+      {
+        "i": 306,
+        "text": "시스템 동작 흐름도",
+        "style": "10"
+      },
+      {
+        "i": 307,
+        "text": "시스템의 동작흐름을 3. 절의 소프트웨어 아키텍처에서 기술한 모듈들이 조합하여 시스템의 동작흐름을 간략히 설명하면 <그림 3.>과 같다.",
+        "style": ""
+      },
+      {
+        "i": 308,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 309,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 310,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 311,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 312,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 313,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 314,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 315,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 316,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 317,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 318,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 319,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 320,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 321,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 322,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 323,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 324,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 325,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 326,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 327,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 328,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 329,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 330,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 331,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 332,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 333,
+        "text": "<그림 3. 외부장치 블루투스 시스템 동작 흐름도>",
+        "style": ""
+      },
+      {
+        "i": 334,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 335,
+        "text": "<그림 3>을 요약하여 설명하면 다음과 같다:",
+        "style": ""
+      },
+      {
+        "i": 336,
+        "text": "System management module은 외부장치의 블루투스 시스템의 전체적인 동작을 관리한다. 전원이 들어오면 내부 시스템과 built-in library의 설정을 관리하고 시스템의 각 부분을 초기화 한다. 구동 중에는 배터리 상태와 사운드 처리기의 신호를 받아 필요하면 저전압 모드에 진입할 수 있도록 하고 블루투스의 활성화를 제어한다.",
+        "style": "a8"
+      },
+      {
+        "i": 337,
+        "text": "HW interface module은 충전이나 배터리 상태같은 Power 상태를 관리하며 필요하면 저전압 모드에 진입한다. 그리고, 주변 장치들의 상태와 사운드 처리기의 신호를 확인하고 상태를 전달한다. 또한, 비활성화 메모리에 대한 접근의 인터페이스를 제공한다.",
+        "style": "a8"
+      },
+      {
+        "i": 338,
+        "text": "Bluetooth module은 전반적인 블루투스 기능 (연결과 통신, 오디오 스트리밍 등)을 관리하여, 하나의 전체적인 블루투스 시스템을 구성한다. 또한, 일반 데이터와 오디오 데이터의 송수신을 처리한다.",
+        "style": "a8"
+      },
+      {
+        "i": 339,
+        "text": "Security module은 BLE 연결과 접근에 대한 설정 및 관리를 수행하고, 보안 데이터에 대한 읽기 쓰기를 관리한다.",
+        "style": "a8"
+      },
+      {
+        "i": 340,
+        "text": "\n",
+        "style": "a8"
+      },
+      {
+        "i": 341,
+        "text": "소프트웨어 안전 등급",
+        "style": "10"
+      },
+      {
+        "i": 342,
+        "text": "소프트웨어 일반 요구사항(TD-AE-SGR-01)에서 사운드원 인공 와우의 안전 심각도는 중(Class B or Moderate)로 분류되었다. 이 문서 3절에서 설계한 소프트웨어 아키텍처의 모든 소프트웨어 항목은 시스템의 안전 심각도를 동일하게 상속받는다. 따라서 사운드원의 인공 와우의 모든 소프트웨어 항목의 안전 심각도는 중(Class B or Moderate)로 분류한다.",
+        "style": ""
+      },
+      {
+        "i": 343,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 344,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 345,
+        "text": "\n",
+        "style": ""
+      },
+      {
+        "i": 346,
+        "text": "소프트웨어 요구사항 추적성",
+        "style": "10"
+      },
+      {
+        "i": 347,
+        "text": "Software requirements",
+        "style": "a8"
+      },
+      {
+        "i": 348,
+        "text": "Software Architecture",
+        "style": "a8"
+      },
+      {
+        "i": 349,
+        "text": "Requirements ID",
+        "style": "a8"
+      },
+      {
+        "i": 350,
+        "text": "Subject",
+        "style": "a8"
+      },
+      {
+        "i": 351,
+        "text": "",
+        "style": "a8"
+      },
+      {
+        "i": 352,
+        "text": "SW-CC-RI-001",
+        "style": "a8"
+      },
+      {
+        "i": 353,
+        "text": "스마트 케이스 충전",
+        "style": "a8"
+      },
+      {
+        "i": 354,
+        "text": "System management module",
+        "style": "a8"
+      },
+      {
+        "i": 355,
+        "text": "HW interface module",
+        "style": "a8"
+      },
+      {
+        "i": 356,
+        "text": "SW-CC-RI-002",
+        "style": "a8"
+      },
+      {
+        "i": 357,
+        "text": "충전가능한 외부장치 수",
+        "style": "a8"
+      },
+      {
+        "i": 358,
+        "text": "System management module",
+        "style": "a8"
+      },
+      {
+        "i": 359,
+        "text": "HW interface module",
+        "style": "a8"
+      },
+      {
+        "i": 360,
+        "text": "SW-CC-RI-003",
+        "style": "a8"
+      },
+      {
+        "i": 361,
+        "text": "스마트 케이스와 외부장치 동시 충전",
+        "style": "a8"
+      },
+      {
+        "i": 362,
+        "text": "System management module",
+        "style": "a8"
+      },
+      {
+        "i": 363,
+        "text": "HW interface module",
+        "style": "a8"
+      },
+      {
+        "i": 364,
+        "text": "SW-CC-RI-004",
+        "style": "a8"
+      },
+      {
+        "i": 365,
+        "text": "충전포트의 외부장치 인식",
+        "style": "a8"
+      },
+      {
+        "i": 366,
+        "text": "System management module",
+        "style": "a8"
+      },
+      {
+        "i": 367,
+        "text": "HW interface module",
+        "style": "a8"
+      },
+      {
+        "i": 368,
+        "text": "SW-CC-RI-005",
+        "style": "a8"
+      },
+      {
+        "i": 369,
+        "text": "외부장치 항시 충전",
+        "style": "a8"
+      },
+      {
+        "i": 370,
+        "text": "System management module",
+        "style": "a8"
+      },
+      {
+        "i": 371,
+        "text": "HW interface module",
+        "style": "a8"
+      },
+      {
+        "i": 372,
+        "text": "SW-CC-RI-006",
+        "style": "a8"
+      },
+      {
+        "i": 373,
+        "text": "저전압 컷오프",
+        "style": "a8"
+      },
+      {
+        "i": 374,
+        "text": "HW interface module",
+        "style": "a8"
+      },
+      {
+        "i": 375,
+        "text": "SW-CC-RI-007",
+        "style": "a8"
+      },
+      {
+        "i": 376,
+        "text": "시스템 상태 알림",
+        "style": "a8"
+      },
+      {
+        "i": 377,
+        "text": "System management module",
+        "style": "a8"
+      },
+      {
+        "i": 378,
+        "text": "SW-CC-RI-008",
+        "style": "a8"
+      },
+      {
+        "i": 379,
+        "text": "저전력 모드",
+        "style": "a8"
+      },
+      {
+        "i": 380,
+        "text": "System management module",
+        "style": "a8"
+      },
+      {
+        "i": 381,
+        "text": "SW-CC-RI-009",
+        "style": "a8"
+      },
+      {
+        "i": 382,
+        "text": "오디오 입력 소스",
+        "style": "a8"
+      },
+      {
+        "i": 383,
+        "text": "System management module",
+        "style": "a8"
+      },
+      {
+        "i": 384,
+        "text": "Bluetooth module",
+        "style": "a8"
+      },
+      {
+        "i": 385,
+        "text": "SW-CC-RI-010",
+        "style": "a8"
+      },
+      {
+        "i": 386,
+        "text": "충전 케이스 통신",
+        "style": "a8"
+      },
+      {
+        "i": 387,
+        "text": "System management module",
+        "style": "a8"
+      },
+      {
+        "i": 388,
+        "text": "HW interface module",
+        "style": "a8"
+      },
+      {
+        "i": 389,
+        "text": "SW-CC-RI-011",
+        "style": "a8"
+      },
+      {
+        "i": 390,
+        "text": "블루투스 연결",
+        "style": "a8"
+      },
+      {
+        "i": 391,
+        "text": "System management module",
+        "style": "a8"
+      },
+      {
+        "i": 392,
+        "text": "Bluetooth module",
+        "style": "a8"
+      },
+      {
+        "i": 393,
+        "text": "SW-CC-RI-012",
+        "style": "a8"
+      },
+      {
+        "i": 394,
+        "text": "사용자 인터페이스-모바일 앱 제어",
+        "style": "a8"
+      },
+      {
+        "i": 395,
+        "text": "System management module",
+        "style": "a8"
+      },
+      {
+        "i": 396,
+        "text": "Bluetooth module",
+        "style": "a8"
+      },
+      {
+        "i": 397,
+        "text": "SW-CC-RI-013",
+        "style": "a8"
+      },
+      {
+        "i": 398,
+        "text": "사용자 인터페이스-Lid 상태 입력",
+        "style": "a8"
+      },
+      {
+        "i": 399,
+        "text": "System management module",
+        "style": "a8"
+      },
+      {
+        "i": 400,
+        "text": "SW-CC-RI-014",
+        "style": "a8"
+      },
+      {
+        "i": 401,
+        "text": "사용자 인터페이스-버튼 입력",
+        "style": "a8"
+      },
+      {
+        "i": 402,
+        "text": "System management module",
+        "style": "a8"
+      },
+      {
+        "i": 403,
+        "text": "HW interface module",
+        "style": "a8"
+      },
+      {
+        "i": 404,
+        "text": "SW-CC-RI-015",
+        "style": "a8"
+      },
+      {
+        "i": 405,
+        "text": "사용자 인터페이스-LED 출력",
+        "style": "a8"
+      },
+      {
+        "i": 406,
+        "text": "System management module",
+        "style": "a8"
+      },
+      {
+        "i": 407,
+        "text": "HW interface module",
+        "style": "a8"
+      },
+      {
+        "i": 408,
+        "text": "SW-CC-RI-016",
+        "style": "a8"
+      },
+      {
+        "i": 409,
+        "text": "사용 설명서",
+        "style": "a8"
+      },
+      {
+        "i": 410,
+        "text": "N/A",
+        "style": "a8"
+      },
+      {
+        "i": 411,
+        "text": "SW-CC-RI-017",
+        "style": "a8"
+      },
+      {
+        "i": 412,
+        "text": "소프트웨어 규제 요구사항",
+        "style": "a8"
+      },
+      {
+        "i": 413,
+        "text": "N/A",
+        "style": "a8"
+      },
+      {
+        "i": 414,
+        "text": "",
+        "style": ""
+      }
+    ]
+  },
+  "QCC_SDDD-FW-TD24A 소프트웨어 상세 설계서_byssi.docx": {
+    "sha256": "49982c995f78064613f47f4d97a262c70394fc937b66cf4e6f38925e4fb5e1ce",
+    "paragraphs": [
+      {
+        "i": 0,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 1,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 2,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 3,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 4,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 5,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 6,
+        "text": "소프트웨어 상세 설계서",
+        "style": ""
+      },
+      {
+        "i": 7,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 8,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 9,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 10,
+        "text": "모델명: TD24A-A-EXT (외부장치)",
+        "style": ""
+      },
+      {
+        "i": 11,
+        "text": "\t",
+        "style": ""
+      },
+      {
+        "i": 12,
+        "text": "\t",
+        "style": ""
+      },
+      {
+        "i": 13,
+        "text": "\t",
+        "style": ""
+      },
+      {
+        "i": 14,
+        "text": "\t",
+        "style": ""
+      },
+      {
+        "i": 15,
+        "text": "\t",
+        "style": ""
+      },
+      {
+        "i": 16,
+        "text": "\t",
+        "style": ""
+      },
+      {
+        "i": 17,
+        "text": "\t",
+        "style": ""
+      },
+      {
+        "i": 18,
+        "text": "\t",
+        "style": ""
+      },
+      {
+        "i": 19,
+        "text": "작 성",
+        "style": ""
+      },
+      {
+        "i": 20,
+        "text": "검 토",
+        "style": ""
+      },
+      {
+        "i": 21,
+        "text": "승 인",
+        "style": ""
+      },
+      {
+        "i": 22,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 23,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 24,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 25,
+        "text": "서석일",
+        "style": ""
+      },
+      {
+        "i": 26,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 27,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 28,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 29,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 30,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 31,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 32,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 33,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 34,
+        "text": "\t",
+        "style": ""
+      },
+      {
+        "i": 35,
+        "text": "\t",
+        "style": ""
+      },
+      {
+        "i": 36,
+        "text": "\t",
+        "style": ""
+      },
+      {
+        "i": 37,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 38,
+        "text": "\n",
+        "style": ""
+      },
+      {
+        "i": 39,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 40,
+        "text": "\nNo.",
+        "style": "a9"
+      },
+      {
+        "i": 41,
+        "text": "개정 내용",
+        "style": "a9"
+      },
+      {
+        "i": 42,
+        "text": "개정 위치 ",
+        "style": "a9"
+      },
+      {
+        "i": 43,
+        "text": "개정 날짜",
+        "style": "a9"
+      },
+      {
+        "i": 44,
+        "text": "0",
+        "style": "a9"
+      },
+      {
+        "i": 45,
+        "text": "최초 제정",
+        "style": "a9"
+      },
+      {
+        "i": 46,
+        "text": "-",
+        "style": "a9"
+      },
+      {
+        "i": 47,
+        "text": "2026.xx.xx",
+        "style": "a9"
+      },
+      {
+        "i": 48,
+        "text": "1",
+        "style": "a9"
+      },
+      {
+        "i": 49,
+        "text": "",
+        "style": "a9"
+      },
+      {
+        "i": 50,
+        "text": "",
+        "style": "a9"
+      },
+      {
+        "i": 51,
+        "text": "",
+        "style": "a9"
+      },
+      {
+        "i": 52,
+        "text": "2",
+        "style": "a9"
+      },
+      {
+        "i": 53,
+        "text": "",
+        "style": "a9"
+      },
+      {
+        "i": 54,
+        "text": "",
+        "style": "a9"
+      },
+      {
+        "i": 55,
+        "text": "",
+        "style": "a9"
+      },
+      {
+        "i": 56,
+        "text": "3",
+        "style": "a9"
+      },
+      {
+        "i": 57,
+        "text": "",
+        "style": "a9"
+      },
+      {
+        "i": 58,
+        "text": "",
+        "style": "a9"
+      },
+      {
+        "i": 59,
+        "text": "",
+        "style": "a9"
+      },
+      {
+        "i": 60,
+        "text": "4",
+        "style": "a9"
+      },
+      {
+        "i": 61,
+        "text": "",
+        "style": "a9"
+      },
+      {
+        "i": 62,
+        "text": "",
+        "style": "a9"
+      },
+      {
+        "i": 63,
+        "text": "",
+        "style": "a9"
+      },
+      {
+        "i": 64,
+        "text": "5",
+        "style": "a9"
+      },
+      {
+        "i": 65,
+        "text": "",
+        "style": "a9"
+      },
+      {
+        "i": 66,
+        "text": "",
+        "style": "a9"
+      },
+      {
+        "i": 67,
+        "text": "",
+        "style": "a9"
+      },
+      {
+        "i": 68,
+        "text": "6",
+        "style": "a9"
+      },
+      {
+        "i": 69,
+        "text": "",
+        "style": "a9"
+      },
+      {
+        "i": 70,
+        "text": "",
+        "style": "a9"
+      },
+      {
+        "i": 71,
+        "text": "",
+        "style": "a9"
+      },
+      {
+        "i": 72,
+        "text": "7",
+        "style": "a9"
+      },
+      {
+        "i": 73,
+        "text": "",
+        "style": "a9"
+      },
+      {
+        "i": 74,
+        "text": "",
+        "style": "a9"
+      },
+      {
+        "i": 75,
+        "text": "",
+        "style": "a9"
+      },
+      {
+        "i": 76,
+        "text": "8",
+        "style": "a9"
+      },
+      {
+        "i": 77,
+        "text": "",
+        "style": "a9"
+      },
+      {
+        "i": 78,
+        "text": "",
+        "style": "a9"
+      },
+      {
+        "i": 79,
+        "text": "",
+        "style": "a9"
+      },
+      {
+        "i": 80,
+        "text": "9",
+        "style": "a9"
+      },
+      {
+        "i": 81,
+        "text": "",
+        "style": "a9"
+      },
+      {
+        "i": 82,
+        "text": "",
+        "style": "a9"
+      },
+      {
+        "i": 83,
+        "text": "",
+        "style": "a9"
+      },
+      {
+        "i": 84,
+        "text": "10",
+        "style": "a9"
+      },
+      {
+        "i": 85,
+        "text": "",
+        "style": "a9"
+      },
+      {
+        "i": 86,
+        "text": "",
+        "style": "a9"
+      },
+      {
+        "i": 87,
+        "text": "",
+        "style": "a9"
+      },
+      {
+        "i": 88,
+        "text": "11",
+        "style": "a9"
+      },
+      {
+        "i": 89,
+        "text": "",
+        "style": "a9"
+      },
+      {
+        "i": 90,
+        "text": "",
+        "style": "a9"
+      },
+      {
+        "i": 91,
+        "text": "",
+        "style": "a9"
+      },
+      {
+        "i": 92,
+        "text": "12",
+        "style": "a9"
+      },
+      {
+        "i": 93,
+        "text": "",
+        "style": "a9"
+      },
+      {
+        "i": 94,
+        "text": "",
+        "style": "a9"
+      },
+      {
+        "i": 95,
+        "text": "",
+        "style": "a9"
+      },
+      {
+        "i": 96,
+        "text": "13",
+        "style": "a9"
+      },
+      {
+        "i": 97,
+        "text": "",
+        "style": "a9"
+      },
+      {
+        "i": 98,
+        "text": "",
+        "style": "a9"
+      },
+      {
+        "i": 99,
+        "text": "",
+        "style": "a9"
+      },
+      {
+        "i": 100,
+        "text": "14",
+        "style": "a9"
+      },
+      {
+        "i": 101,
+        "text": "",
+        "style": "a9"
+      },
+      {
+        "i": 102,
+        "text": "",
+        "style": "a9"
+      },
+      {
+        "i": 103,
+        "text": "",
+        "style": "a9"
+      },
+      {
+        "i": 104,
+        "text": "15",
+        "style": "a9"
+      },
+      {
+        "i": 105,
+        "text": "",
+        "style": "a9"
+      },
+      {
+        "i": 106,
+        "text": "",
+        "style": "a9"
+      },
+      {
+        "i": 107,
+        "text": "",
+        "style": "a9"
+      },
+      {
+        "i": 108,
+        "text": "16",
+        "style": "a9"
+      },
+      {
+        "i": 109,
+        "text": "",
+        "style": "a9"
+      },
+      {
+        "i": 110,
+        "text": "",
+        "style": "a9"
+      },
+      {
+        "i": 111,
+        "text": "",
+        "style": "a9"
+      },
+      {
+        "i": 112,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 113,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 114,
+        "text": "\t\n",
+        "style": ""
+      },
+      {
+        "i": 115,
+        "text": "목차",
+        "style": "TOC"
+      },
+      {
+        "i": 116,
+        "text": "1.\t서론\t5",
+        "style": "12"
+      },
+      {
+        "i": 117,
+        "text": "\t\t1.1.\t개요\t5",
+        "style": "20"
+      },
+      {
+        "i": 118,
+        "text": "\t\t1.2.\t목적\t5",
+        "style": "20"
+      },
+      {
+        "i": 119,
+        "text": "\t\t1.3.\t대상\t5",
+        "style": "20"
+      },
+      {
+        "i": 120,
+        "text": "\t\t1.4.\t관련문서\t5",
+        "style": "20"
+      },
+      {
+        "i": 121,
+        "text": "\t\t\t프로젝트\t5",
+        "style": "30"
+      },
+      {
+        "i": 122,
+        "text": "\t1.4.2. 표준 및 규제\t5",
+        "style": "30"
+      },
+      {
+        "i": 123,
+        "text": "2.\t소프트웨어 상세 설계\t6",
+        "style": "12"
+      },
+      {
+        "i": 124,
+        "text": "\t\t2.1.\tSystem management module\t6",
+        "style": "20"
+      },
+      {
+        "i": 125,
+        "text": "\t\t\tSW-CC-DS-ID-001, 시스템 상태처리 유닛\t7",
+        "style": "30"
+      },
+      {
+        "i": 126,
+        "text": "\t\t\tSW-CC-DS-ID-002, 데이터 처리 유닛\t9",
+        "style": "30"
+      },
+      {
+        "i": 127,
+        "text": "\t\t\tSW-CC-DS-ID-003, 시스템 보안 처리 유닛\t9",
+        "style": "30"
+      },
+      {
+        "i": 128,
+        "text": "\t\t2.2.\tHW interface module\t10",
+        "style": "20"
+      },
+      {
+        "i": 129,
+        "text": "\t\t\tSW-CC-DS-ID-004, PIO 포트 제어 유닛\t10",
+        "style": "30"
+      },
+      {
+        "i": 130,
+        "text": "\t\t\tSW-CC-DS-ID-005, Power 제어 유닛\t12",
+        "style": "30"
+      },
+      {
+        "i": 131,
+        "text": "\t\t\tSW-CC-DS-ID-006, 충전 케이스 통신 (Charger Case Communication) 유닛\t13",
+        "style": "30"
+      },
+      {
+        "i": 132,
+        "text": "\t\t\tSW-CC-DS-ID-007, I2C 제어 유닛\t15",
+        "style": "30"
+      },
+      {
+        "i": 133,
+        "text": "\t\t\tSW-CC-DS-ID-008, LED 제어 유닛\t15",
+        "style": "30"
+      },
+      {
+        "i": 134,
+        "text": "\t\t2.3.\tBluetooth module\t16",
+        "style": "20"
+      },
+      {
+        "i": 135,
+        "text": "\t\t\tSW-CC-DS-ID-009, Bluetooth 관리 유닛\t17",
+        "style": "30"
+      },
+      {
+        "i": 136,
+        "text": "\t\t\tSW-CC-DS-ID-010, Bluetooth Classic 유닛\t18",
+        "style": "30"
+      },
+      {
+        "i": 137,
+        "text": "\t\t\tSW-CC-DS-ID-011, BLE 유닛\t19",
+        "style": "30"
+      },
+      {
+        "i": 138,
+        "text": "\t\t\tSW-CC-DS-ID-012, BLE Data 처리 유닛\t20",
+        "style": "30"
+      },
+      {
+        "i": 139,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 140,
+        "text": "서론",
+        "style": "10"
+      },
+      {
+        "i": 141,
+        "text": "개요",
+        "style": "2"
+      },
+      {
+        "i": 142,
+        "text": "본 문서는 TD24A-A-EXT 제품의 외부장치의 소프트웨어 아키텍처에 기술서에서 설계된 소프트웨어 모듈을 구성하는 소프트웨어 유닛을 설계한다.",
+        "style": ""
+      },
+      {
+        "i": 143,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 144,
+        "text": "목적",
+        "style": "2"
+      },
+      {
+        "i": 145,
+        "text": "TD24A-A-EXT 제품의 외부장치의 소프트웨어를 구성하는 소프트웨어 유닛들을 설계하고 이에 따라 소프트웨어를 구현함으로써 안전한하고 일관성 및 정확성을 보장하는 소프트웨어의 개발이 보장되는 것을 목적으로 한다.",
+        "style": ""
+      },
+      {
+        "i": 146,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 147,
+        "text": "대상",
+        "style": "2"
+      },
+      {
+        "i": 148,
+        "text": "TD24A-A-EXT 펌웨어 개발 프로젝트에 참여하는 모든 구성원은 이 문서를 참고하도록 한다.",
+        "style": ""
+      },
+      {
+        "i": 149,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 150,
+        "text": "관련문서",
+        "style": "2"
+      },
+      {
+        "i": 151,
+        "text": "프로젝트",
+        "style": "3"
+      },
+      {
+        "i": 152,
+        "text": "No",
+        "style": "a8"
+      },
+      {
+        "i": 153,
+        "text": "문서번호",
+        "style": "a8"
+      },
+      {
+        "i": 154,
+        "text": "문서 제목",
+        "style": "a8"
+      },
+      {
+        "i": 155,
+        "text": "1",
+        "style": "a8"
+      },
+      {
+        "i": 156,
+        "text": "SDP-CO-TD24A",
+        "style": "a8"
+      },
+      {
+        "i": 157,
+        "text": "소프트웨어 개발 계획서",
+        "style": "a8"
+      },
+      {
+        "i": 158,
+        "text": "2",
+        "style": "a8"
+      },
+      {
+        "i": 159,
+        "text": "SGR-FW-TD24A",
+        "style": "a8"
+      },
+      {
+        "i": 160,
+        "text": "소프트웨어 일반 요구사항",
+        "style": "a8"
+      },
+      {
+        "i": 161,
+        "text": "3",
+        "style": "a8"
+      },
+      {
+        "i": 162,
+        "text": "SRS-FW-TD24A",
+        "style": "a8"
+      },
+      {
+        "i": 163,
+        "text": "소프트웨어 요구사항 사양서",
+        "style": "a8"
+      },
+      {
+        "i": 164,
+        "text": "4",
+        "style": "a8"
+      },
+      {
+        "i": 165,
+        "text": "SAD-FW-TD24A",
+        "style": "a8"
+      },
+      {
+        "i": 166,
+        "text": "소프트웨어 아키텍처 기술서",
+        "style": "a8"
+      },
+      {
+        "i": 167,
+        "text": "5",
+        "style": "a8"
+      },
+      {
+        "i": 168,
+        "text": "SIP-FW-TD24A",
+        "style": "a8"
+      },
+      {
+        "i": 169,
+        "text": "소프트웨어 통합 계획서",
+        "style": "a8"
+      },
+      {
+        "i": 170,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 171,
+        "text": "1.4.2. 표준 및 규제",
+        "style": "3"
+      },
+      {
+        "i": 172,
+        "text": "No",
+        "style": "a8"
+      },
+      {
+        "i": 173,
+        "text": "문서번호",
+        "style": "a8"
+      },
+      {
+        "i": 174,
+        "text": "문서 제목",
+        "style": "a8"
+      },
+      {
+        "i": 175,
+        "text": "1",
+        "style": "a8"
+      },
+      {
+        "i": 176,
+        "text": "IEC 62304:2006",
+        "style": "a8"
+      },
+      {
+        "i": 177,
+        "text": "Medical device software – Software life cycle processes",
+        "style": ""
+      },
+      {
+        "i": 178,
+        "text": "2",
+        "style": "a8"
+      },
+      {
+        "i": 179,
+        "text": "ISO 14971:2007",
+        "style": "a8"
+      },
+      {
+        "i": 180,
+        "text": "Medical devices – Application of risk management to medical",
+        "style": "a8"
+      },
+      {
+        "i": 181,
+        "text": "",
+        "style": "a8"
+      },
+      {
+        "i": 182,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 183,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 184,
+        "text": "\n",
+        "style": ""
+      },
+      {
+        "i": 185,
+        "text": "소프트웨어 상세 설계",
+        "style": "10"
+      },
+      {
+        "i": 186,
+        "text": "소프트웨어 아키텍처 기술서(SAD-FW-TD24A)에서 설명된 소프트웨어 모듈들과 이를 구성하는 소프트웨어 유닛들에 대해 설명하고 설계한다.",
+        "style": ""
+      },
+      {
+        "i": 187,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 188,
+        "text": "System management module",
+        "style": "2"
+      },
+      {
+        "i": 189,
+        "text": "외부 시스템의 전체적인 동작을 제어하는 모듈이다. 먼저, 시스템의 설정에 따라 다른 모듈들 설정하고 초기화한다. 또한, 주요 상태를 수집하여 다른 모듈들에게 전달하거나, 직접 제어한다. 특히, 사운드 처리기(Sound processor, SP)의 상태가 가장 중요한 상태이다. 그리고, 시스템 상태에 따라 블루투스를 설정하고 제어를 수행한다.",
+        "style": ""
+      },
+      {
+        "i": 190,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 191,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 192,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 193,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 194,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 195,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 196,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 197,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 198,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 199,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 200,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 201,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 202,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 203,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 204,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 205,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 206,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 207,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 208,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 209,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 210,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 211,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 212,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 213,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 214,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 215,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 216,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 217,
+        "text": "<그림 1. System control module 동작 흐름도>",
+        "style": ""
+      },
+      {
+        "i": 218,
+        "text": "<그림 1>은 설계된 System management module의 동작 및 제어 흐름을 표현하고 있으며, 흐름도 전체가 System management module이다. 이 모듈에 포함된 유닛들은 파란색으로 표현되었으며, 시스템 상태 유닛은 System management module 뿐만 아니라 다른 모듈들 간의 상호작용을 제어한다. 이를 위해서 각각의 상태에 따른 시스템의 설정이 다르게 되어야 하며, 그 내용은 다음과 같다.",
+        "style": ""
+      },
+      {
+        "i": 219,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 220,
+        "text": "SW-BT-DS-ID-001, 시스템 초기화와 설정 유닛",
+        "style": "3"
+      },
+      {
+        "i": 221,
+        "text": "시스템을 초기화하기 전에 초기화에 필요한 설정이 먼저 되어 있어야 한다. 시스템 설정은 시스템 동작 중에 지속적으로 설정을 수행하는 것이 아니라, 초기화 전에 모두 설정이 되면, 이후에는 변하지 않는다. 하지만, 전체 시스템의 각 부분에 대한 설정은 수와 고려해야 할 사항이 많아 별도로 유닛에 추가하였다.",
+        "style": ""
+      },
+      {
+        "i": 222,
+        "text": "시스템 초기화는 위의 초기 설정에 기반하여 시스템의 각 부분을 차례대로 초기화하고 Application은 먼저 초기화된 시스템의 각 부분을 기반으로 제일 마지막에 수행하도록 한다.",
+        "style": ""
+      },
+      {
+        "i": 223,
+        "text": "중요한 시스템 설정은 다음과 같다.",
+        "style": ""
+      },
+      {
+        "i": 224,
+        "text": "HW interface 설정",
+        "style": "a8"
+      },
+      {
+        "i": 225,
+        "text": "SPI 설정 – SPI에서 사용하는 Port pin과 클럭 속도",
+        "style": "a8"
+      },
+      {
+        "i": 226,
+        "text": "I2S 설정 – Data bits과 sampling rate",
+        "style": "a8"
+      },
+      {
+        "i": 227,
+        "text": "General port pin – 일반적인 디지털 입력과 출력 설정",
+        "style": "a8"
+      },
+      {
+        "i": 228,
+        "text": "Charger case communication 설정: 통신에 사용되는 Port pin들과 data rate",
+        "style": "a8"
+      },
+      {
+        "i": 229,
+        "text": "NVM mapping: 저장할 데이터의 크기와 위치 설정",
+        "style": "a8"
+      },
+      {
+        "i": 230,
+        "text": "Security 설정",
+        "style": "a8"
+      },
+      {
+        "i": 231,
+        "text": "Bluetooth Classic – 오디오가 스피커가 아닌 I2S로 출력되도록 설정한다.",
+        "style": "a8"
+      },
+      {
+        "i": 232,
+        "text": "BLE Service – Characteristic의 property에 Authentication을 추가한다.",
+        "style": "a8"
+      },
+      {
+        "i": 233,
+        "text": "Auth service – 자체 인증에서 사용할 Auth service를 구성한다.",
+        "style": "a8"
+      },
+      {
+        "i": 234,
+        "text": "시스템 초기화는 다음의 순서로 진행한다.",
+        "style": ""
+      },
+      {
+        "i": 235,
+        "text": "시스템 초기화",
+        "style": "a8"
+      },
+      {
+        "i": 236,
+        "text": "Built-in library 초기화",
+        "style": "a8"
+      },
+      {
+        "i": 237,
+        "text": "System scheduler 초기화",
+        "style": "a8"
+      },
+      {
+        "i": 238,
+        "text": "Power 초기화",
+        "style": "a8"
+      },
+      {
+        "i": 239,
+        "text": "Bluetooth 초기화",
+        "style": "a8"
+      },
+      {
+        "i": 240,
+        "text": "HW 초기화",
+        "style": "a8"
+      },
+      {
+        "i": 241,
+        "text": "Port PIO input/output 초기화",
+        "style": "a8"
+      },
+      {
+        "i": 242,
+        "text": "시스템 상태처리",
+        "style": "a8"
+      },
+      {
+        "i": 243,
+        "text": "사운드 처리기 신호 – Shutdown indication, internal device connected indication",
+        "style": "a8"
+      },
+      {
+        "i": 244,
+        "text": "장치 배터리 및 충전 상태",
+        "style": "a8"
+      },
+      {
+        "i": 245,
+        "text": "Bluetooth 연결 상태와 제어",
+        "style": "a8"
+      },
+      {
+        "i": 246,
+        "text": "PIO 설정",
+        "style": "a8"
+      },
+      {
+        "i": 247,
+        "text": "Input",
+        "style": "a8"
+      },
+      {
+        "i": 248,
+        "text": "PIO 핀 동작 설정",
+        "style": "a8"
+      },
+      {
+        "i": 249,
+        "text": "PIO_INTER_DEVICE_CONN_IND",
+        "style": ""
+      },
+      {
+        "i": 250,
+        "text": "PIO_SPI_COMM_IND",
+        "style": ""
+      },
+      {
+        "i": 251,
+        "text": "PIO_SHUT_DOWN_IND",
+        "style": ""
+      },
+      {
+        "i": 252,
+        "text": "PIO Pin 매핑",
+        "style": "a8"
+      },
+      {
+        "i": 253,
+        "text": "PIO IN direction",
+        "style": ""
+      },
+      {
+        "i": 254,
+        "text": "Output",
+        "style": "a8"
+      },
+      {
+        "i": 255,
+        "text": "PIO 핀 동작 설정",
+        "style": "a8"
+      },
+      {
+        "i": 256,
+        "text": "PIO_I2S_EN_IND",
+        "style": ""
+      },
+      {
+        "i": 257,
+        "text": "PIO_HW_RESET_CTRL",
+        "style": ""
+      },
+      {
+        "i": 258,
+        "text": "PIO_TEMP_CHECK_ON",
+        "style": ""
+      },
+      {
+        "i": 259,
+        "text": "PIO Pin 매핑",
+        "style": "a8"
+      },
+      {
+        "i": 260,
+        "text": "PIO OUT direction",
+        "style": ""
+      },
+      {
+        "i": 261,
+        "text": "Peripheral",
+        "style": "a8"
+      },
+      {
+        "i": 262,
+        "text": "PIO 핀 동작 설정",
+        "style": "a8"
+      },
+      {
+        "i": 263,
+        "text": "PIO_SPI_SC",
+        "style": ""
+      },
+      {
+        "i": 264,
+        "text": "PIO_SPI_SLK",
+        "style": ""
+      },
+      {
+        "i": 265,
+        "text": "PIO_SPI_MISO",
+        "style": ""
+      },
+      {
+        "i": 266,
+        "text": "PIO_SPI_MOSI",
+        "style": ""
+      },
+      {
+        "i": 267,
+        "text": "PIO_TEMP_CHECK",
+        "style": ""
+      },
+      {
+        "i": 268,
+        "text": "PIO Pin 매핑",
+        "style": "a8"
+      },
+      {
+        "i": 269,
+        "text": "PIO PERIPHERAL direction",
+        "style": ""
+      },
+      {
+        "i": 270,
+        "text": "SW-FW-DS-ID-002, 시스템 상태 유닛",
+        "style": "3"
+      },
+      {
+        "i": 271,
+        "text": "상태 처리는 다음 시스템 상태를 확인한다.",
+        "style": ""
+      },
+      {
+        "i": 272,
+        "text": " 사운드 처리기 상태 확인",
+        "style": "a8"
+      },
+      {
+        "i": 273,
+        "text": "shutdown_ind – deep sleep mode에 진입 알림",
+        "style": "a8"
+      },
+      {
+        "i": 274,
+        "text": "inter_dev_conn_ind – 사운드 처리기가 내부기와 연결 알림",
+        "style": "a8"
+      },
+      {
+        "i": 275,
+        "text": "사운드 처리기와의 SPI 통신",
+        "style": "a8"
+      },
+      {
+        "i": 276,
+        "text": "필요한 시스템 상태를 사운드 처리기에 전달 – 전원 상태, 블루투스 연결 상태 등",
+        "style": "a8"
+      },
+      {
+        "i": 277,
+        "text": "사운드 처리기에 요청 – 내부장치 정보",
+        "style": "a8"
+      },
+      {
+        "i": 278,
+        "text": "사운드 처리기에서 처리해야 할 데이터 전송 – 이 경우는 별도의 처리 없이 바로 사운드 처리기와 BLE 연결 사이에서 데이터 만을 송수신",
+        "style": "a8"
+      },
+      {
+        "i": 279,
+        "text": "사운드 처리기의 shutdown_ind 신호 처리",
+        "style": "a8"
+      },
+      {
+        "i": 280,
+        "text": "시스템의 동작은 사운드 처리기의 상태에 크게 의존하므로 이를 어떻게 처리하는지 설명한다.",
+        "style": "a8"
+      },
+      {
+        "i": 281,
+        "text": "초기화 완료 후 shutdown_ind의 신호가 off 될 때까지 미리 정의된 시간동안 기다린다. 이는 사운드 처리기가 초리화를 완료하고 정상 동작 상태가 되기를 기다리는 것이다. 만일, 대기 시간이 지나면 바로 시스템을 종료하고 Deep sleep 모드에 들어간다.",
+        "style": "a8"
+      },
+      {
+        "i": 282,
+        "text": "동작 중에도 shutdown_ind의 신호가 off가 되면 미리 정의된 시간동안 기다린다. 대기 시간이 지나면 바로 시스템을 종료하고 Deep sleep 모드에 들어간다. 이는 특정 조건 때문에(예로 Idle 상태의 소모전류 감소 목적) Deep sleep에 들어가도록 요청이 오는 것이다.",
+        "style": "a8"
+      },
+      {
+        "i": 283,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 284,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 285,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 286,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 287,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 288,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 289,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 290,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 291,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 292,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 293,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 294,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 295,
+        "text": "<그림 2. shutdown_ind 신호 처리 흐름도>",
+        "style": ""
+      },
+      {
+        "i": 296,
+        "text": "사운드 처리기의 inter_dev_conn_ind 신호 처리",
+        "style": "a8"
+      },
+      {
+        "i": 297,
+        "text": "사운드의 처리기가 내부 장치와 연결되었다는 신호는 곧 전체 외부 장치가 주요 기능을 수행해야 한다는 의미이다. 이에 따라, 시스템의 주요 상태들을 활성화하고 준비한다.",
+        "style": "a8"
+      },
+      {
+        "i": 298,
+        "text": "사운드 처리기에 내부장치 정보 요청 – BLE의 장치 이름과 양이, 편이 구분의 정보는 외부 BLE 장치와의 연결에 필요한 정보인다.",
+        "style": "a8"
+      },
+      {
+        "i": 299,
+        "text": "Bluetooth Classic / BLE 활성화 – BLE 연결로는 각종 정보를 전달하고 명령을 수신하여 처리하며, Classic은 Bluetooth 연결로 오디오를 수신하여 전달한다.",
+        "style": "a8"
+      },
+      {
+        "i": 300,
+        "text": "SW-FW-DS-ID-003, 장치 상태 유닛",
+        "style": "3"
+      },
+      {
+        "i": 301,
+        "text": "외부장치는 편이 모드와 양이 모드에 대응하는 Standalone 모드와 TWS 모드로 설정되며 이에 따라 오디오와 데이터 처리가 달라진다. 이러한 장치 설정은 제품 생산시에 결정되며 동작 중에는 변경할 수 없다. 시스템의 모든 부분은 이러한 장치 설정에 따라 Audio와 데이터를 처리하게 된다.",
+        "style": ""
+      },
+      {
+        "i": 302,
+        "text": "Standalone 모드",
+        "style": "a8"
+      },
+      {
+        "i": 303,
+        "text": "외부 장치는 1대로 동작하며, Bluetooth audio는 L/R을 모두 처리하며 데이터도 별도의 구분없이 처리한다.",
+        "style": "a8"
+      },
+      {
+        "i": 304,
+        "text": "TWS 모드",
+        "style": "a8"
+      },
+      {
+        "i": 305,
+        "text": "외부 장치는 2대 1세트로 동작하며, 장치는 Bluetooth audio의 L/R을 각기 처리하며 데이터도 별도의 구분하여 처리한다.",
+        "style": "a8"
+      },
+      {
+        "i": 306,
+        "text": "이 상태에서도 1대로 단독 사용 가능하다.",
+        "style": "a8"
+      },
+      {
+        "i": 307,
+        "text": "이 모드는 흔히 Earbud 형태라 하며, 칩의 제조사인 Qualcomm 사에서 제공하는 자체 기능이며, 오디오의 처리와 데이터 전달은 Buil-in library와 시스템에서 수행하므로 Application에서는 별도의 처리를 하지 않아도 된다.",
+        "style": "a8"
+      },
+      {
+        "i": 308,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 309,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 310,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 311,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 312,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 313,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 314,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 315,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 316,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 317,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 318,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 319,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 320,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 321,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 322,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 323,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 324,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 325,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 326,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 327,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 328,
+        "text": "<그림 3. Qualcomm 사의 TWS 설명의 예>",
+        "style": ""
+      },
+      {
+        "i": 329,
+        "text": "SW-FW-DS-ID-004, 블루투스 상태 유닛",
+        "style": "3"
+      },
+      {
+        "i": 330,
+        "text": "시스템 상태에 따라 블루투스의 활성화를 제어하고, Bluetooth의 상태를 확인하여 필요한  다른 모듈과 유닛에 전달한다.",
+        "style": ""
+      },
+      {
+        "i": 331,
+        "text": "블루투스 활성화 제어",
+        "style": "a8"
+      },
+      {
+        "i": 332,
+        "text": "inter_dev_conn_ind의 신호에 따라 전체 Bluetooth를 활성화하거나 비활성화 한다. 이는 내부장치가 연결되어 있어야 Bluetooth의 오디오나 데이터가 처리가능하기 때문이다.",
+        "style": "a8"
+      },
+      {
+        "i": 333,
+        "text": "블루투스 장치 이름",
+        "style": "a8"
+      },
+      {
+        "i": 334,
+        "text": "블루투스 장치이름은 외부의 Bluetooth 장치가 연결할 때 기본적인 외부장치 정보를 인식하기 위해 필요하다. 내부장치가 연결될 때, 내부장치를 사운드 처리기에 요청하여 이를 기반으로 장치 이름을 구성한다. 형태는 다음과 같다",
+        "style": "a8"
+      },
+      {
+        "i": 335,
+        "text": "장치 이름 구성",
+        "style": "a8"
+      },
+      {
+        "i": 336,
+        "text": "설 명",
+        "style": "a8"
+      },
+      {
+        "i": 337,
+        "text": "전체 장치 이름",
+        "style": "a8"
+      },
+      {
+        "i": 338,
+        "text": "TD_L__SOUND_ UserName_ExternalDeviceInfo",
+        "style": "a8"
+      },
+      {
+        "i": 339,
+        "text": "L",
+        "style": "a8"
+      },
+      {
+        "i": 340,
+        "text": "내부장치 수술 위치: ‘L’ or ‘R’",
+        "style": "a8"
+      },
+      {
+        "i": 341,
+        "text": "UserName",
+        "style": "a8"
+      },
+      {
+        "i": 342,
+        "text": "사용자 이름 또는 ID",
+        "style": "a8"
+      },
+      {
+        "i": 343,
+        "text": "ExternalDeviceInfo",
+        "style": "a8"
+      },
+      {
+        "i": 344,
+        "text": "외부장치 식별 정보",
+        "style": "a8"
+      },
+      {
+        "i": 345,
+        "text": "블루투스 상태",
+        "style": "a8"
+      },
+      {
+        "i": 346,
+        "text": "Bluetooth Classic과 BLE의 연결 상태와 연결된 장치의 종류",
+        "style": "a8"
+      },
+      {
+        "i": 347,
+        "text": "주로 블루투스 모듈에서 연결 제어와 데이터 처리 시에 조건 확인에 사용된다.",
+        "style": "a8"
+      },
+      {
+        "i": 348,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 349,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 350,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 351,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 352,
+        "text": "\nHW interface module",
+        "style": "2"
+      },
+      {
+        "i": 353,
+        "text": "HW interface module은 시스템에 연결되어 있는 HW 장치의 데이터나 입출력 신호를 처리하고, NVM (Non-Volatile Memory)의 접근을 제어한다. 또한, 전원 상태를 관리하고 제어한다. ",
+        "style": ""
+      },
+      {
+        "i": 354,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 355,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 356,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 357,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 358,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 359,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 360,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 361,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 362,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 363,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 364,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 365,
+        "text": "<그림 3. HW interface module 동작 흐름도>",
+        "style": ""
+      },
+      {
+        "i": 366,
+        "text": "<그림 3>는 MCU의 Port와 HW 주변 장치를 관리하고 통제하는 HW interface module의 기능에 대한 흐림을 설명한다.",
+        "style": ""
+      },
+      {
+        "i": 367,
+        "text": "이러한 기능 중에서 칩 자체의 시스템이나 built-in library에서 처리하는 경우는 다음과 같다",
+        "style": ""
+      },
+      {
+        "i": 368,
+        "text": "HW 장치의 데이터 입출력(SPI, I2S)",
+        "style": "a8"
+      },
+      {
+        "i": 369,
+        "text": "CC 통신 (Charger Case communication) 통신 처리",
+        "style": "a8"
+      },
+      {
+        "i": 370,
+        "text": "NVM 접근 처리",
+        "style": "a8"
+      },
+      {
+        "i": 371,
+        "text": "충전 및 배터리 상태와 상태 관리",
+        "style": "a8"
+      },
+      {
+        "i": 372,
+        "text": "온도 센서 관리",
+        "style": "a8"
+      },
+      {
+        "i": 373,
+        "text": "Wake-up (from deep sleep)",
+        "style": "a8"
+      },
+      {
+        "i": 374,
+        "text": "칩 자체의 시스템이나 built-in library에서 처리하는 기능은 application에서 처리하므로 자세한 설명은 생략한다.",
+        "style": ""
+      },
+      {
+        "i": 375,
+        "text": "SW-FW-DS-ID-005, PIO 포트 제어 유닛",
+        "style": "3"
+      },
+      {
+        "i": 376,
+        "text": "외부 입력 또는 출력 그리고 주변 장치와 연결되어 있는 MUC PORT의 PIO를 제어하는 일이다. 주요 사운드 처리기의 (SP, Sound Process) 입력 신호를 감지하고 출력은 I2S 활성화 상태를 SP에 전달하거나 HW reset을 제어한다.",
+        "style": ""
+      },
+      {
+        "i": 377,
+        "text": "PORT와 PIO 설정 기능",
+        "style": "a8"
+      },
+      {
+        "i": 378,
+        "text": "출력 신호",
+        "style": ""
+      },
+      {
+        "i": 379,
+        "text": "출력 신호",
+        "style": ""
+      },
+      {
+        "i": 380,
+        "text": "제어 목적",
+        "style": ""
+      },
+      {
+        "i": 381,
+        "text": "I2S enable",
+        "style": ""
+      },
+      {
+        "i": 382,
+        "text": "I2S 동작 상태를 사운드 처리기에 전달",
+        "style": ""
+      },
+      {
+        "i": 383,
+        "text": "HW reset control",
+        "style": ""
+      },
+      {
+        "i": 384,
+        "text": "충전기가 연결될 때마다, HW reset을 수행하기 회로를 제어",
+        "style": ""
+      },
+      {
+        "i": 385,
+        "text": "온도 센서 Enable",
+        "style": ""
+      },
+      {
+        "i": 386,
+        "text": "장치 내부 온도 센서의 활성화를 제어",
+        "style": ""
+      },
+      {
+        "i": 387,
+        "text": "입력 신호",
+        "style": ""
+      },
+      {
+        "i": 388,
+        "text": "입력 신호",
+        "style": ""
+      },
+      {
+        "i": 389,
+        "text": "제어 목적",
+        "style": ""
+      },
+      {
+        "i": 390,
+        "text": "내부장치 연결 상태",
+        "style": ""
+      },
+      {
+        "i": 391,
+        "text": "사운드 처리기로부터의 내부장치와 연결 상태 입력 신호",
+        "style": ""
+      },
+      {
+        "i": 392,
+        "text": "Shutdown 알림",
+        "style": ""
+      },
+      {
+        "i": 393,
+        "text": "사운드 처리기로부터의 시스템 종료요청 입력 신호",
+        "style": ""
+      },
+      {
+        "i": 394,
+        "text": "SPI 통신 알림",
+        "style": ""
+      },
+      {
+        "i": 395,
+        "text": "사운드 처리기로부터 SPI data를 수신요청 입력 신호",
+        "style": ""
+      },
+      {
+        "i": 396,
+        "text": "주변 장치 설정",
+        "style": ""
+      },
+      {
+        "i": 397,
+        "text": "입력 신호",
+        "style": ""
+      },
+      {
+        "i": 398,
+        "text": "제어 목적",
+        "style": ""
+      },
+      {
+        "i": 399,
+        "text": "I2S 연결 포트",
+        "style": ""
+      },
+      {
+        "i": 400,
+        "text": "I2S에서 사용하는 Chip의 Pin은 고정되어 있다.",
+        "style": ""
+      },
+      {
+        "i": 401,
+        "text": "SPI 통신 포트",
+        "style": ""
+      },
+      {
+        "i": 402,
+        "text": "SPI 통신에 사용되는 Port pin",
+        "style": ""
+      },
+      {
+        "i": 403,
+        "text": "온도 센서",
+        "style": ""
+      },
+      {
+        "i": 404,
+        "text": "장치 내부의 온도를 측정",
+        "style": ""
+      },
+      {
+        "i": 405,
+        "text": "HW reset control",
+        "style": "a8"
+      },
+      {
+        "i": 406,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 407,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 408,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 409,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 410,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 411,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 412,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 413,
+        "text": "<그림 4. HW reset 제어 흐름도>",
+        "style": ""
+      },
+      {
+        "i": 414,
+        "text": "<그림 4>처럼 HW reset 제어는 충전 상태의 변화할 때마다 수행된다. HW reset 제어의 목적은 시스템이 Block되거나 Dead 상태에서 빠져나오게 하려는 안전장치로 충전을 시작할 때마다 HW reset을 하도록 한 것이다. 충전 상태에 따른 제어는 충전 중에는 충전 케이스 통신을 수행하여 data가 오갈 때 HW reset이 동작하는 것을 방지하기 위함이다. 또한, Chip 특성상 충전 중에는 시스템이 Block되더라도 바로 자동으로 빠져나오게 되므로 충전 상태에서 HW reset을 비활성화해도 안전하다.",
+        "style": ""
+      },
+      {
+        "i": 415,
+        "text": "SW-FW-DS-ID-006, Power 제어 유닛",
+        "style": "3"
+      },
+      {
+        "i": 416,
+        "text": "외부장치의 배터리 상태를 확인하고 충전을 제어한다. 이러한 상태들의 정보를 시스템 관리 모듈에 전달하여 전체 전원관리를 할 수 있도록 한다. ",
+        "style": ""
+      },
+      {
+        "i": 417,
+        "text": "통신은 MCU 제조사인 Qualcomm에서 지원하는 자체 통신 규격이다. 통신의Line signal level의 수준은 MCU의 Bult-in 내부 시스템에서 수행하고, 사용할 수 있는 명령도 미리 정의되어 있다. 따라서, 스마트 케이스 같은 Application에서는 전송할 명령을 선택하고 전달할 매개변수를 전달하거나, 수신된 응답에 대한 데이터만을 처리한다.",
+        "style": ""
+      },
+      {
+        "i": 418,
+        "text": "또 하나의 Power 제어 유닛의 주요 기능은 Deep sleep 모드에 진입하는 것이다 ",
+        "style": ""
+      },
+      {
+        "i": 419,
+        "text": "전원 관리",
+        "style": "a8"
+      },
+      {
+        "i": 420,
+        "text": "먼저 사용하는 외부장치의 배터리 특성을 설정한다. 예로, 최소 전압, 최대 전압 그리고 충전 전류 등이 있다.",
+        "style": "a8"
+      },
+      {
+        "i": 421,
+        "text": "ADC로 Battery 전압을 읽는다.",
+        "style": "a8"
+      },
+      {
+        "i": 422,
+        "text": "배터리 전압을 레벨 0% ~ 100%로 변환한다.",
+        "style": "a8"
+      },
+      {
+        "i": 423,
+        "text": "Battery level을 시스템 관리 모듈이 읽을 수 있도록 저장한다.",
+        "style": "a8"
+      },
+      {
+        "i": 424,
+        "text": "배터리이 Empty (0%)이면 무조건으로 Deep sleep 모드에 들어간다.",
+        "style": "a8"
+      },
+      {
+        "i": 425,
+        "text": "충전 관리",
+        "style": "a8"
+      },
+      {
+        "i": 426,
+        "text": "외부장치가 스마트 케이스의 충전 포트에 있을 경우에만 외부장치가 충전되도록 설계되었다.",
+        "style": "a8"
+      },
+      {
+        "i": 427,
+        "text": "충전 상태는 모두 4가 지로 구분된다. 시스템 관리 모듈은 각기 구분하여 처리한다.",
+        "style": "a8"
+      },
+      {
+        "i": 428,
+        "text": "충전 상태",
+        "style": ""
+      },
+      {
+        "i": 429,
+        "text": "설명",
+        "style": ""
+      },
+      {
+        "i": 430,
+        "text": "Charger is not connected",
+        "style": ""
+      },
+      {
+        "i": 431,
+        "text": "충전기와 연결이 되어 있지 않은 상태",
+        "style": ""
+      },
+      {
+        "i": 432,
+        "text": "Charger is connected",
+        "style": ""
+      },
+      {
+        "i": 433,
+        "text": "충전기와 연결이 되어 있는 상태",
+        "style": ""
+      },
+      {
+        "i": 434,
+        "text": "Charging",
+        "style": ""
+      },
+      {
+        "i": 435,
+        "text": "외부 장치가 충전 중인 상태",
+        "style": ""
+      },
+      {
+        "i": 436,
+        "text": "No charging",
+        "style": ""
+      },
+      {
+        "i": 437,
+        "text": "외부 장치가 충전이 아닌 상태",
+        "style": ""
+      },
+      {
+        "i": 438,
+        "text": "Deep sleep 모드",
+        "style": "a8"
+      },
+      {
+        "i": 439,
+        "text": "Deep sleep 모드 진입은 조건은 Battery가 empty 상태와 사운드 처리기의 shutdown_ind의 신호가 입력되었을 때이다.",
+        "style": "a8"
+      },
+      {
+        "i": 440,
+        "text": "충전 중인 동안에는 Deep sleep 모드에 진입하지 못한다. 이유는 충전 중인 동안에 Deep sleep 모드에 진입하면 바로 wake-up이 되기 때문이다.",
+        "style": "a8"
+      },
+      {
+        "i": 441,
+        "text": "Deep sleep 모드로 부터의 wake-up은 시스템과 HW로 구성되기 때문에 별도의 설정은 필요없다. wake-up이 되면 처음에 전원이 인가되는 상황과 같다.",
+        "style": "a8"
+      },
+      {
+        "i": 442,
+        "text": "다음 <그림 5>는 위와 같은 설명을 도식화한 것이다.",
+        "style": "a8"
+      },
+      {
+        "i": 443,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 444,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 445,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 446,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 447,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 448,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 449,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 450,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 451,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 452,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 453,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 454,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 455,
+        "text": "<그림 5. Deep sleep 모드 진입 흐름도>",
+        "style": ""
+      },
+      {
+        "i": 456,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 457,
+        "text": "NVM (Non-Volatile Memory) 처리 유닛",
+        "style": ""
+      },
+      {
+        "i": 458,
+        "text": "실제적인 NVM의 접근을 처리는 시스템과 built-in library에서 처리하고, application에서는 사용가능한 NVM 영역에  사용할 데이터를 매핑하는 것과 접근에 대한 interface를 제공한다.",
+        "style": ""
+      },
+      {
+        "i": 459,
+        "text": "NVM에 저장되는 application data",
+        "style": ""
+      },
+      {
+        "i": 460,
+        "text": "NVM 데이터",
+        "style": ""
+      },
+      {
+        "i": 461,
+        "text": "설명",
+        "style": ""
+      },
+      {
+        "i": 462,
+        "text": "Charger is not connected",
+        "style": ""
+      },
+      {
+        "i": 463,
+        "text": "충전기와 연결이 되어 있지 않은 상태",
+        "style": ""
+      },
+      {
+        "i": 464,
+        "text": "Charger is connected",
+        "style": ""
+      },
+      {
+        "i": 465,
+        "text": "충전기와 연결이 되어 있는 상태",
+        "style": ""
+      },
+      {
+        "i": 466,
+        "text": "Charging",
+        "style": ""
+      },
+      {
+        "i": 467,
+        "text": "외부 장치가 충전 중인 상태",
+        "style": ""
+      },
+      {
+        "i": 468,
+        "text": "No charging",
+        "style": ""
+      },
+      {
+        "i": 469,
+        "text": "외부 장치가 충전이 아닌 상태",
+        "style": ""
+      },
+      {
+        "i": 470,
+        "text": "SW-FW-DS-ID-007, NVM 처리 유닛",
+        "style": "3"
+      },
+      {
+        "i": 471,
+        "text": "실제적인 NVM (Non-Volatile Memory) 의 접근을 처리는 시스템과 built-in library에서 처리하고, application에서는 사용가능한 NVM 영역에  사용할 데이터를 매핑하는 것과 접근에 대한 interface를 제공한다.",
+        "style": ""
+      },
+      {
+        "i": 472,
+        "text": "NVM에 저장되는 application data",
+        "style": "a8"
+      },
+      {
+        "i": 473,
+        "text": "NVM 데이터",
+        "style": ""
+      },
+      {
+        "i": 474,
+        "text": "설명",
+        "style": ""
+      },
+      {
+        "i": 475,
+        "text": "NVM_EXT_SERIAL_NUM",
+        "style": ""
+      },
+      {
+        "i": 476,
+        "text": "외부장치 일련번호",
+        "style": ""
+      },
+      {
+        "i": 477,
+        "text": "NVM_DEV_TYPE",
+        "style": ""
+      },
+      {
+        "i": 478,
+        "text": "Standalone mode나 TWS mode",
+        "style": ""
+      },
+      {
+        "i": 479,
+        "text": "AUTH_RAND_NUM",
+        "style": ""
+      },
+      {
+        "i": 480,
+        "text": "NVM 암호화에 쓰이는 Random number",
+        "style": ""
+      },
+      {
+        "i": 481,
+        "text": "AUTH_CLLINC_KEY",
+        "style": ""
+      },
+      {
+        "i": 482,
+        "text": "매핑 앱과의 데이터 통신에서 쓰이는 암호화 키",
+        "style": ""
+      },
+      {
+        "i": 483,
+        "text": "AUTH_SHARED_KEY",
+        "style": ""
+      },
+      {
+        "i": 484,
+        "text": "리모콘 앱과의 데이터 통신에서 쓰이는 암호화 키",
+        "style": ""
+      },
+      {
+        "i": 485,
+        "text": "Application에서 제공되는 인터페이스",
+        "style": "a8"
+      },
+      {
+        "i": 486,
+        "text": "NVM 데이터",
+        "style": ""
+      },
+      {
+        "i": 487,
+        "text": "설명",
+        "style": ""
+      },
+      {
+        "i": 488,
+        "text": "nvm_data_length_get",
+        "style": ""
+      },
+      {
+        "i": 489,
+        "text": "해당 data의 길이를 반환한다.",
+        "style": ""
+      },
+      {
+        "i": 490,
+        "text": "nvm_data_read",
+        "style": ""
+      },
+      {
+        "i": 491,
+        "text": "NVM에 저장되어 있는 data를 읽어 온다.",
+        "style": ""
+      },
+      {
+        "i": 492,
+        "text": "nvm_data_write",
+        "style": ""
+      },
+      {
+        "i": 493,
+        "text": "해당 data를 NVM에 저장한다.",
+        "style": ""
+      },
+      {
+        "i": 494,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 495,
+        "text": "\n",
+        "style": ""
+      },
+      {
+        "i": 496,
+        "text": "Bluetooth module",
+        "style": "2"
+      },
+      {
+        "i": 497,
+        "text": "외부장치는 Bluetooth 통신을 지원하며, 두 종류의 Bluetooth transport를 지원한다.",
+        "style": ""
+      },
+      {
+        "i": 498,
+        "text": "Bluetooth Classic",
+        "style": "a8"
+      },
+      {
+        "i": 499,
+        "text": "규격 공식 명칭은 Bluetooth BR/EDR (Basic Rate/Enhanced Data Rate)이며, 처음 Bluetooth 규격 정의부터 사용되던 전송방식이다. 주로 스마트폰과 연결되어 음악 전송과 통화를 위해 사용된다.",
+        "style": ""
+      },
+      {
+        "i": 500,
+        "text": "Bluetooth Low Energy",
+        "style": "a8"
+      },
+      {
+        "i": 501,
+        "text": "일명 BLE라고 불리며, Classic 이후에 새로이 정의된 Bluetooth 규격이다. 배터리 소모를 크게 줄여 모바일 장치들이 적은 전류로도 서로 통신할 수 있게 만든 통신이다. 데이터 통신이 사용되며, 통신은 간단한 명령과 응답으로 이루어진다.",
+        "style": ""
+      },
+      {
+        "i": 502,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 503,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 504,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 505,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 506,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 507,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 508,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 509,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 510,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 511,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 512,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 513,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 514,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 515,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 516,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 517,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 518,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 519,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 520,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 521,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 522,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 523,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 524,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 525,
+        "text": "<그림 6 Bluetooth module 동작 흐림도>",
+        "style": ""
+      },
+      {
+        "i": 526,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 527,
+        "text": "<그림 6>은 Bluetooth module의 전체적인 흐름도를 나타낸 것이다. Bluetooth Transport는 Classic과 BLE로 나누어지며, 별도의 처리가 요구된다. Bluetooth Classic의 Data는 표준 Bluetooth 규격에 정의된 사항만 처리하므로, 이는 Built-in Library에서 처리되고 외부장치의 처리 대상이 아니다. BLE의 데이터에서는 외부장치의 주요 정보(상태, Bluetooth 제어 명령)를 처리해야 하므로 별도의 추가 처리가 요구된다.",
+        "style": ""
+      },
+      {
+        "i": 528,
+        "text": "시스템 관리 모듈은 전체 시스템 상태에 따라 Bluetooth의 enable/disable을 제어한다. 외부장치가 내부장치에 연결이 되어 있어야 정상적인 오디오 처리가 가능하므로 내부장치가 연결되어 있는 경우에만 Bluetooth를 활성화한다. 내부장치가 연결되어 있다 떨어지게 되면, 바로 Bluetooth를 비활성화를 하는 것이 아니라 디바운스를 확인하고 현재 연결을 모두 끊은 후에 Bluetooth를 비활성화하게 된다.",
+        "style": ""
+      },
+      {
+        "i": 529,
+        "text": "그리고, Bluetooth module은 Bluetooth 상태를 시스템 관리 모듈에 전달한다.",
+        "style": ""
+      },
+      {
+        "i": 530,
+        "text": "SW-FW-DS-ID-008, Bluetooth Classic 유닛",
+        "style": "3"
+      },
+      {
+        "i": 531,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 532,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 533,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 534,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 535,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 536,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 537,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 538,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 539,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 540,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 541,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 542,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 543,
+        "text": "<그림 7. Bluetooth Classic 유닛 동작 흐림도>",
+        "style": ""
+      },
+      {
+        "i": 544,
+        "text": "기본 상태",
+        "style": "a8"
+      },
+      {
+        "i": 545,
+        "text": "기본적으로 Bluetooth module은 Enable되어 있어야 한다. Disable되어 있으면 모든 요구는 무시된다.",
+        "style": ""
+      },
+      {
+        "i": 546,
+        "text": "pair_req",
+        "style": "a8"
+      },
+      {
+        "i": 547,
+        "text": "정확히는 Pairable 상태이다. 다른 장치가 외부장치를 검색하고 Pairing을 진행한다. Pairing이 성공하거나 Timeout이 되면 종료된다.",
+        "style": ""
+      },
+      {
+        "i": 548,
+        "text": "Classic/audio connect_req",
+        "style": "a8"
+      },
+      {
+        "i": 549,
+        "text": "Classic/Audio connect request는 외부장치에서 수행하지 않는다. 다른 블루투스 장치가 외부장치를 검색하고 연결하며, Audio 연결을 수행한다. 외부장치는 연결이 되면 연결상태를 처리하게 된다. Audio 연결이 되면 다른 장치로부터 수신된 오디오는 I2S로 전송해 사운드 처리기에서 오디오를 처리하도록 한다.",
+        "style": ""
+      },
+      {
+        "i": 550,
+        "text": "disconnect_req",
+        "style": "a8"
+      },
+      {
+        "i": 551,
+        "text": "Classic disconnect request를 처리한다. 연결 상태가 아니면, 처리는 종료된다. 연결을 해제할 때, Audio 연결이 되어 있으면 Audio 연결도 해제한다.",
+        "style": ""
+      },
+      {
+        "i": 552,
+        "text": "audio_disconnect_req",
+        "style": "a8"
+      },
+      {
+        "i": 553,
+        "text": "Audio 연결 상태가 아니면, 처리는 종료된다. Audio 연결이 해제되면, Classic 연결 상태가 된다.",
+        "style": ""
+      },
+      {
+        "i": 554,
+        "text": "SW-FW-DS-ID-009, BLE 유닛",
+        "style": "3"
+      },
+      {
+        "i": 555,
+        "text": "기본 상태",
+        "style": "a8"
+      },
+      {
+        "i": 556,
+        "text": "기본적으로 Bluetooth module은 Enable되어 있어야 한다. Disable되어 있으면 모든 요구는 무시된다",
+        "style": ""
+      },
+      {
+        "i": 557,
+        "text": "Advertising",
+        "style": "a8"
+      },
+      {
+        "i": 558,
+        "text": "BLE의 Advertising은 상대 장치와 연결을 가능하게 할 뿐만 아니라, 간단한 정보를 외부에 전달할 수 있다. 다음은 외부장치의 Advertising data와 Scan response data 설정이다.",
+        "style": ""
+      },
+      {
+        "i": 559,
+        "text": "Advertising data",
+        "style": ""
+      },
+      {
+        "i": 560,
+        "text": "AD Type",
+        "style": ""
+      },
+      {
+        "i": 561,
+        "text": "설명",
+        "style": ""
+      },
+      {
+        "i": 562,
+        "text": "Complete Local Name",
+        "style": ""
+      },
+      {
+        "i": 563,
+        "text": "외부장치 이름과 시리얼 번호",
+        "style": ""
+      },
+      {
+        "i": 564,
+        "text": "Flags",
+        "style": ""
+      },
+      {
+        "i": 565,
+        "text": "BLE 규격에서 Mandatory 항목",
+        "style": ""
+      },
+      {
+        "i": 566,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 567,
+        "text": "Scan response data",
+        "style": ""
+      },
+      {
+        "i": 568,
+        "text": "AD Type",
+        "style": ""
+      },
+      {
+        "i": 569,
+        "text": "설명",
+        "style": ""
+      },
+      {
+        "i": 570,
+        "text": "Appearance",
+        "style": ""
+      },
+      {
+        "i": 571,
+        "text": "Cochlear Implant",
+        "style": ""
+      },
+      {
+        "i": 572,
+        "text": "Flags",
+        "style": ""
+      },
+      {
+        "i": 573,
+        "text": "BLE 규격에서 Mandatory 항목",
+        "style": ""
+      },
+      {
+        "i": 574,
+        "text": "Manufacturer specific data",
+        "style": ""
+      },
+      {
+        "i": 575,
+        "text": "지역장치와 양이 모드 Secondary 장치의 배터리 레벨과 충전 상태",
+        "style": ""
+      },
+      {
+        "i": 576,
+        "text": "Connected",
+        "style": "a8"
+      },
+      {
+        "i": 577,
+        "text": "BLE 연결은 Data 통신만을 지원한다. 이는 BLE Data 처리 유닛에서 수행한다. 그리고, 데이터 통신을 하기 위해서는 연결된 장치와 자체 인증을 수행하는데, 이는 Security module과 AUTH service를 통해서 수행된다. BLE 모듈에서는 AUTH service의 데이터만을 처리한다.",
+        "style": "a8"
+      },
+      {
+        "i": 578,
+        "text": "SW-FW-DS-ID-010, AUTH service 처리 유닛",
+        "style": "3"
+      },
+      {
+        "i": 579,
+        "text": "AUTH service는 자체 CRA (Challenge-Response Authentication) 인증을 처리하기 위해 정의된 BLE Service 이다. BLE GATT에 기반하여 application-specific으로 정의한다. BLE에서의 처리는 일반적인 Service와 Characteristic 처리와 같으며, 자세한 처리내용은 Security module에서 다룬다. 여기에서는 AUTH service의 정의만을 설명한다.",
+        "style": ""
+      },
+      {
+        "i": 580,
+        "text": "Service UUID 정의",
+        "style": "a8"
+      },
+      {
+        "i": 581,
+        "text": "UUID",
+        "style": ""
+      },
+      {
+        "i": 582,
+        "text": "설명",
+        "style": ""
+      },
+      {
+        "i": 583,
+        "text": "Primary Service",
+        "style": ""
+      },
+      {
+        "i": 584,
+        "text": "AUTH service의 GATT내의 대표 식별자",
+        "style": ""
+      },
+      {
+        "i": 585,
+        "text": "Challenge Characteristic",
+        "style": ""
+      },
+      {
+        "i": 586,
+        "text": "인증의 Challenge에 해당되는 Characteristic 식별자",
+        "style": ""
+      },
+      {
+        "i": 587,
+        "text": "Response Characteristic",
+        "style": ""
+      },
+      {
+        "i": 588,
+        "text": "인증의 Response에 해당되는 Characteristic 식별자",
+        "style": ""
+      },
+      {
+        "i": 589,
+        "text": "Confirm Characteristic",
+        "style": ""
+      },
+      {
+        "i": 590,
+        "text": "인증 결과에 해당되는 Characteristic 식별자",
+        "style": ""
+      },
+      {
+        "i": 591,
+        "text": "Status Characteristic",
+        "style": ""
+      },
+      {
+        "i": 592,
+        "text": "인증 처리 과정에 해당되는 Characteristic 식별자",
+        "style": ""
+      },
+      {
+        "i": 593,
+        "text": "Characteristic 구조",
+        "style": "a8"
+      },
+      {
+        "i": 594,
+        "text": "Characteristic",
+        "style": ""
+      },
+      {
+        "i": 595,
+        "text": "Property",
+        "style": ""
+      },
+      {
+        "i": 596,
+        "text": "설명",
+        "style": ""
+      },
+      {
+        "i": 597,
+        "text": "Primary Service",
+        "style": ""
+      },
+      {
+        "i": 598,
+        "text": "read",
+        "style": ""
+      },
+      {
+        "i": 599,
+        "text": "Auth service의 primary service UUID",
+        "style": ""
+      },
+      {
+        "i": 600,
+        "text": "Challenge Characteristic",
+        "style": ""
+      },
+      {
+        "i": 601,
+        "text": "write",
+        "style": ""
+      },
+      {
+        "i": 602,
+        "text": "인증요청 장치가 Random number와 인증 타입을 전송한다.",
+        "style": ""
+      },
+      {
+        "i": 603,
+        "text": "Response Characteristic",
+        "style": ""
+      },
+      {
+        "i": 604,
+        "text": "read, notify",
+        "style": ""
+      },
+      {
+        "i": 605,
+        "text": "외부장치가 Random number와 인증요청 정치에 전송한 Random number을 암호화한 값을 상대에 인증요청 정치에게 전송한다.",
+        "style": ""
+      },
+      {
+        "i": 606,
+        "text": "Confirm Characteristic",
+        "style": ""
+      },
+      {
+        "i": 607,
+        "text": "write",
+        "style": ""
+      },
+      {
+        "i": 608,
+        "text": "인증요청 장치가 외부장치가 Random number을 암호화해 전송한다.",
+        "style": ""
+      },
+      {
+        "i": 609,
+        "text": "Status Characteristic",
+        "style": ""
+      },
+      {
+        "i": 610,
+        "text": "read, notify",
+        "style": ""
+      },
+      {
+        "i": 611,
+        "text": "인증요청 장치에게 인증 처리 과정을 알린다.",
+        "style": ""
+      },
+      {
+        "i": 612,
+        "text": "인증 타입 (Authentication type)",
+        "style": "a8"
+      },
+      {
+        "i": 613,
+        "text": "Challenge Characteristic에서 인증 타입을 사용하여 해당 인증 절차를 요청한다.",
+        "style": ""
+      },
+      {
+        "i": 614,
+        "text": "Value",
+        "style": ""
+      },
+      {
+        "i": 615,
+        "text": "Type",
+        "style": ""
+      },
+      {
+        "i": 616,
+        "text": "설명",
+        "style": ""
+      },
+      {
+        "i": 617,
+        "text": "0x01",
+        "style": ""
+      },
+      {
+        "i": 618,
+        "text": "Patient",
+        "style": ""
+      },
+      {
+        "i": 619,
+        "text": "리모콘 앱과 같은 외부장치 제어와 상태 알림 데이터 통신",
+        "style": ""
+      },
+      {
+        "i": 620,
+        "text": "0x02",
+        "style": ""
+      },
+      {
+        "i": 621,
+        "text": "Clinician",
+        "style": ""
+      },
+      {
+        "i": 622,
+        "text": "매팽 앱과  같은 매핑 데이터 통신",
+        "style": ""
+      },
+      {
+        "i": 623,
+        "text": "else",
+        "style": ""
+      },
+      {
+        "i": 624,
+        "text": "Invalid values",
+        "style": ""
+      },
+      {
+        "i": 625,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 626,
+        "text": "Status characteristic values",
+        "style": "a8"
+      },
+      {
+        "i": 627,
+        "text": "Value",
+        "style": ""
+      },
+      {
+        "i": 628,
+        "text": "Description",
+        "style": ""
+      },
+      {
+        "i": 629,
+        "text": "0x00",
+        "style": ""
+      },
+      {
+        "i": 630,
+        "text": "Authentication is failed",
+        "style": ""
+      },
+      {
+        "i": 631,
+        "text": "0x01",
+        "style": ""
+      },
+      {
+        "i": 632,
+        "text": "Authentication is passed",
+        "style": ""
+      },
+      {
+        "i": 633,
+        "text": "0x02",
+        "style": ""
+      },
+      {
+        "i": 634,
+        "text": "Authentication is in progress",
+        "style": ""
+      },
+      {
+        "i": 635,
+        "text": "0x03",
+        "style": ""
+      },
+      {
+        "i": 636,
+        "text": "Authentication is timed out",
+        "style": ""
+      },
+      {
+        "i": 637,
+        "text": "else",
+        "style": ""
+      },
+      {
+        "i": 638,
+        "text": "Invalid values",
+        "style": ""
+      },
+      {
+        "i": 639,
+        "text": "SW-FW-DS-ID-011, BLE Data 처리 유닛",
+        "style": "3"
+      },
+      {
+        "i": 640,
+        "text": "BLE data 통신은 MCU 제조사인 Qualcomm사의 GAIA (Generic Application Interface Architecture) 프로토콜을 기반으로 이루어진다. GAIA 프로토콜에서 Addressing을 스마트 케이스 장치 전용으로 설정하여 사용한다. 따라서, 이후부터 설명은 세부적인 GAIA와 관련된 사항은 생략한다.",
+        "style": ""
+      },
+      {
+        "i": 641,
+        "text": "또한, 미리 정의된 Message 구조에 맞게 구성된 BLE 데이터를 통해 Message 단위로 통신하게 된다",
+        "style": ""
+      },
+      {
+        "i": 642,
+        "text": "Message 구조",
+        "style": "a8"
+      },
+      {
+        "i": 643,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 644,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 645,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 646,
+        "text": "<그림 11. BLE message 구조>",
+        "style": ""
+      },
+      {
+        "i": 647,
+        "text": "메시지 길이는 20 byte이고, 길이는 가변이다. 최소 길이는 1이며 0 번째 Byte는 반드시 메시지에 포함되어야 한다.",
+        "style": ""
+      },
+      {
+        "i": 648,
+        "text": "0 번째 byte는 type이고, 이 메시지의 type을 나타낸다.",
+        "style": ""
+      },
+      {
+        "i": 649,
+        "text": "1 번째 byte 부터는 data이다. data의 내용이나 길이는 메시지 type에 따라 정의된다. ",
+        "style": ""
+      },
+      {
+        "i": 650,
+        "text": "Message 데이터 송신 처리",
+        "style": "a8"
+      },
+      {
+        "i": 651,
+        "text": "상대방에게 전송할 메시지가 있을 경우, type과 데이터를 BLE data 처리 유닛에 전달하면, 유닛은 타입과 데이터의 값을 검사하여 전송할 것인지 아닌지를 결정한다. 전송할 경우 GAIA 프로토콜에 맞게 구성한 후에 전송한다.",
+        "style": ""
+      },
+      {
+        "i": 652,
+        "text": "아래 <그림 8>은 BLE message 전송 처리 과정을 보여준다. 당연하겠지만, BLE 연결이 되어 있지 않으면, 요청은 무시된다.",
+        "style": ""
+      },
+      {
+        "i": 653,
+        "text": "Message 데이터 수신 처리",
+        "style": "a8"
+      },
+      {
+        "i": 654,
+        "text": "상대방이 전송한 메시지는 MCU 시스템의 Built-in Library GAIA received data handler를 통해 BLE Data 처리 유닛에 전달된다. 먼저 Addressing이 적법한지 확인을 하고 수신된 데이터가 메시지 구조를 갖지 않는 경우는 무시된다. 반대로, 메시지 하나를 구성하게 되면 수신된 메시는 처리가 수행된다.",
+        "style": ""
+      },
+      {
+        "i": 655,
+        "text": "수신된 각 메시지는 현재 시스템 상태에 따라 처리된다.",
+        "style": ""
+      },
+      {
+        "i": 656,
+        "text": "메시지를 수신하고 BLE 연결이 끊어졌다면, 이 메시지는 무시된다.",
+        "style": ""
+      },
+      {
+        "i": 657,
+        "text": "아래 그림 <그림 9>은 BLE 데이터를 수신하여, 메시지 구조를 확인하고 처리하는 흐름도이다. 이렇게 처리된 메시지는 시스템 상태에 맞게 각 모듈에 요청을 전달하게 된다.",
+        "style": ""
+      },
+      {
+        "i": 658,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 659,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 660,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 661,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 662,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 663,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 664,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 665,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 666,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 667,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 668,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 669,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 670,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 671,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 672,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 673,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 674,
+        "text": "<그림 8.  Message 데이터 전송 처리 흐름도>    <그림 9.  Message 데이터 수신 처리 흐름도>",
+        "style": ""
+      },
+      {
+        "i": 675,
+        "text": "\nSecurity module",
+        "style": "2"
+      },
+      {
+        "i": 676,
+        "text": "외부장치의 외부 인터페이스는 Bluetooth 통신이며, 이 중 주요 데이터는 BLE 통해 송수신된다. BLE에서는 표준 규격으로 BLE pairing을 하여 인증과 암호화를 제공하지만, 이를 더 보강하여 외부장치에서는 자체 인증과정을 추가하였다. 자체 인증과정은 CRA 방식을 따르며, BLE AUTH service를 이용하여 처리한다. BLE AUTH service의 정의는 Bluetooth module에서 설명하였고, 여기에서는 실제 어떻게 사용되고 처리되는지 설명한다.",
+        "style": ""
+      },
+      {
+        "i": 677,
+        "text": "CRA (Challenge – Response Authentication)의 개요",
+        "style": "a8"
+      },
+      {
+        "i": 678,
+        "text": "CRA는 네트워크 및 시스템 보안을 강화하기 위해 사용되는 인증 방식으로, 사용자가 비밀번호를 직접 전송하지 않고 보안 검증을 수행할 수 있도록 설계되었다.",
+        "style": ""
+      },
+      {
+        "i": 679,
+        "text": "CRA는 사용자와 인증 서버 간에 임의의 질문(Challenge)을 생성하고, 사용자가 이에 대한 적절한 응답(Response)을 제공해야 하는 방식으로, 비밀번호 노출을 방지하는 강력한 인증 기법입니다.",
+        "style": ""
+      },
+      {
+        "i": 680,
+        "text": "CRA 용어",
+        "style": "a8"
+      },
+      {
+        "i": 681,
+        "text": "용어",
+        "style": ""
+      },
+      {
+        "i": 682,
+        "text": "설명",
+        "style": ""
+      },
+      {
+        "i": 683,
+        "text": "Challenge",
+        "style": ""
+      },
+      {
+        "i": 684,
+        "text": "요청자가 상대방에게 임의로 생성한 질문 또는 난수를 전송",
+        "style": ""
+      },
+      {
+        "i": 685,
+        "text": "Response",
+        "style": ""
+      },
+      {
+        "i": 686,
+        "text": "상대방이 해당 Challenge에 대한 암호화된 응답을 생성하여 요청자에게 전송",
+        "style": ""
+      },
+      {
+        "i": 687,
+        "text": "Nonce",
+        "style": ""
+      },
+      {
+        "i": 688,
+        "text": "재사용 공격(Replay Attack)을 방지하기 위해 사용되는 일회성 숫자",
+        "style": ""
+      },
+      {
+        "i": 689,
+        "text": "HMAC(Hash-based Message Authentication Code)",
+        "style": ""
+      },
+      {
+        "i": 690,
+        "text": "Challenge와 비밀 키를 기반으로 응답을 생성하는 알고리즘",
+        "style": ""
+      },
+      {
+        "i": 691,
+        "text": "CRA 기본적인 절차",
+        "style": "a8"
+      },
+      {
+        "i": 692,
+        "text": "Challenge 생성: 요청자가 난수(Challenge)를 사용자에게 전송",
+        "style": "a8"
+      },
+      {
+        "i": 693,
+        "text": "Response 생성: 상대방이 자신의 비밀 키를 사용하여 Challenge에 대한 응답을 생성",
+        "style": "a8"
+      },
+      {
+        "i": 694,
+        "text": "Verify: Response를 검증하는 단계. 요청자가 상대방의 Response를 확인하여 인증 여부 결정",
+        "style": "a8"
+      },
+      {
+        "i": 695,
+        "text": "Confirm: Response가 일치하면 인증 완료",
+        "style": "a8"
+      },
+      {
+        "i": 696,
+        "text": "CRA에서 사용되는 암호화 Key는 NVM에 저장되는데, 보안과 무결성을 위하여 암호화되어 저장된다. Security module은 이러한 NMV 데이터에 대한 처리도 수행한다.",
+        "style": ""
+      },
+      {
+        "i": 697,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 698,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 699,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 700,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 701,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 702,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 703,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 704,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 705,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 706,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 707,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 708,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 709,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 710,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 711,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 712,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 713,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 714,
+        "text": "<그림 10.  외부장치 보안 처리 흐름도>",
+        "style": ""
+      },
+      {
+        "i": 715,
+        "text": "SW-FW-DS-ID-012, 보안 처리 유닛",
+        "style": "3"
+      },
+      {
+        "i": 716,
+        "text": "BLE data 통신을 통해 기기 제어나 기기 및 의료 정보같은 민감한 정보가 송수신될 수 있으므로,  연결하고 통신하려는 상대방이 적법한지를 확인해야 한다. BLE 표준 규격에서도 Pairing이라는 인증 방법을 제공하지만, 보안을 더욱 강화하기 위해 별도의 CRA 인증 방식을 사용한다. 그리고 암호화는 BLE 표준 규격에서 제공하는 암호화를 사용한다. 따라서, BLE pairing이 완료된 후에만 CRA 인증을 시작할 수 있다.",
+        "style": ""
+      },
+      {
+        "i": 717,
+        "text": "먼저, BLE가 연결이 시작되면, CRA 인증을 시작하는데 타이머를 시작하여 일정 시간내에 CRA 인증이 완료하지 못하면 실패로 간주하여 연결을 끊는다.",
+        "style": ""
+      },
+      {
+        "i": 718,
+        "text": "인증 절차는 BLE AUTH service를 통해 인증 요청하는 상대방과 정보를 주고받는다. 실제 오가는 정보의 처리는 보안 처리 유닛에서 이루어 지며, BLE AUTH service는 일종의 인터페이스를 제공한다. 그리고, 위에서 설명한 것처럼 BLE pairing을 수행한 후에 CRA 인증을 시작할 수 있으므로 BLE pairing이 완료되지 않으면 BLE AUTH service에 접근할 수 없다.",
+        "style": ""
+      },
+      {
+        "i": 719,
+        "text": "아래 <그림 11>은 CRA 인증 절차를 보여주는 것으로, Server는 외부장치가 되고 Client는 인을 요청하는 상대방이 된다. 그리고 NONCE나 HMAC와 같은 인증 절차에 사용되는 알고리즘 등은 보안 툴박스 유닛을 통해 값을 생성하고 얻는다.",
+        "style": ""
+      },
+      {
+        "i": 720,
+        "text": "추가로, BLE는 1:1 연결만 지원하여 한 사용자가 외부장치를 사용할 시, 다른 사용자의 간섭을 방지한다.",
+        "style": ""
+      },
+      {
+        "i": 721,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 722,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 723,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 724,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 725,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 726,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 727,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 728,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 729,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 730,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 731,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 732,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 733,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 734,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 735,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 736,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 737,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 738,
+        "text": "",
+        "style": ""
+      },
+      {
+        "i": 739,
+        "text": "<그림 11. CRA 인증 절차 흐림도>",
+        "style": ""
+      },
+      {
+        "i": 740,
+        "text": "<그림 11>의CRA 인증 절차는 다음과 같다.",
+        "style": ""
+      },
+      {
+        "i": 741,
+        "text": "CRA 인증을 시작하기 위해서는 서버와 클라이언트 사이에 BLE 연결과BLE Pairing이 완료되어 있어야 한다.",
+        "style": "a8"
+      },
+      {
+        "i": 742,
+        "text": "클라이언트는 AUTH service의 Challenge characteristic에 auth_type과 NOUNCE_A를 쓰므로 해서 CRA 인증을 시작한다.",
+        "style": "a8"
+      },
+      {
+        "i": 743,
+        "text": "Challenge characteristic에 데이터가 써지면, 서버는 auth_type가 적당한 값인지 확인한다. 허용되지 않은 값이면, 인증은 실패로 간주하고 인증을 종료하고 BLE 연결을 끊는다. 적법한 값이면 먼저 Status characteristic에 in_progress로 클라이언트에게 알린다. 그리고 NOUNC_B와 HMAC_B를 Response characteristic를 통해 생성하여 클라이언트에게 알린다.",
+        "style": "a8"
+      },
+      {
+        "i": 744,
+        "text": "클라이언트에서 Response characteristic에 데이터가 들어오면, HMAC_B’를 생성한 수에 HMAC_B와 비교한다.",
+        "style": "a8"
+      },
+      {
+        "i": 745,
+        "text": "HMAC_B = HMAC_B’ 이면, 클라이언트는 HMAC_A을 생성하여 Confirm characteristic 통해 서버에 전송한다.",
+        "style": "a8"
+      },
+      {
+        "i": 746,
+        "text": "HMAC_B ≠ HMAC_B’ 이면, 인증은 실패가 되고 종료된다.",
+        "style": "a8"
+      },
+      {
+        "i": 747,
+        "text": "서버는 HMAC_A를 받은 후에, HMAC_A’를 생성하고 HMAC_A와 비교한다.",
+        "style": "a8"
+      },
+      {
+        "i": 748,
+        "text": "HMAC_A와 HMAC_A’가 같다면, 서버는 Status characteristic을 통해 인증이 성공했음을 알리고 인증은 종료한다.",
+        "style": "a8"
+      },
+      {
+        "i": 749,
+        "text": "HMAC_A와 HMAC_A’가 같지 않으면, 서버는 Status characteristic을 통해 인증이 실패했음을 알리고 인증은 종료한다.",
+        "style": "a8"
+      },
+      {
+        "i": 750,
+        "text": "그림에는 나와있지 않지만, 인증 타이머가 동작하여 절차에 시간제한을 둔다. 이는 인증이 완료되지 않은 상태에서 BLE의 연결을 계속 유지하게 되면, 데이터 통신도 되지 않은 상태에서 오랜 시간 BLE 연결을 유지하지 않기 위함이다.",
+        "style": "a8"
+      },
+      {
+        "i": 751,
+        "text": "BLE 연결이 완료되면 서버는 타이머를 시작한다.",
+        "style": "a8"
+      },
+      {
+        "i": 752,
+        "text": "주어진 시간동안 성공이든 실패든 인증 절차가 완료되지 않으면, 인증은 실패로 간주한다. 인증은 실패하면 BLE의 연결이 해제된다.",
+        "style": "a8"
+      },
+      {
+        "i": 753,
+        "text": "SW-FW-DS-ID-013, 보안 툴박스 유닛",
+        "style": "3"
+      },
+      {
+        "i": 754,
+        "text": "보안 툴박스 유닛은 보안 모듈에서 사용하는 보안 알고리즘의 처리에 대한 인터페이스 제공한다. 이러한 툴박스는 알고리즘을 사용하는 유닛이 복잡한 내용을 알 필요없이 인터페이스를 통해 쉽게 알고리즘의 결과값을 얻는다. 또한, 기존과 다른 알고리즘을 사용하게 되면, 보안 툴박스 유닛만 수정해도 다른 유닛들은 기존 인터페이스를 사용하여 변경없이 알고리즘을 사용할 수 있을 수 있다.",
+        "style": ""
+      },
+      {
+        "i": 755,
+        "text": "알고리즘에 필요한 데이터는 보안 NVM 유닛을 통해 얻을 수 있으며, 보안 NVM 유닛 또한 보안 툴박스 유닛을 통해 NVM의 데이터를 복호화한다.",
+        "style": ""
+      },
+      {
+        "i": 756,
+        "text": "그리고, 알고리즘에 사용하는 각 키는 보안 NVM 유닛을 통해 얻는다. 리모콘 앱과 매핑 앱이 사용하는 키 생성 알고리즘을 다르게 하여 해당 장치에 원하는 데이터를 전송할 수 있다.",
+        "style": ""
+      },
+      {
+        "i": 757,
+        "text": "Authentication key",
+        "style": "a8"
+      },
+      {
+        "i": 758,
+        "text": "리모콘 앱: shared_service_key를 사용하며 제품 생산시에 NVM에서 저장되어 있어 직접 얻는다. 이 키는 각 사용자마다 서로 다른 키 값을 가져 적법한 사용자만 해당 외부장치와 통신할 수 있도록 한다.",
+        "style": "a8"
+      },
+      {
+        "i": 759,
+        "text": "매핑 앱: clinic_service_key를 사용하는데, 먼저 clinican_master_key를 NVM에서 읽어 다음과 같은 방식으로 생성하여 사용한다:\nclinic_service_key = [0:15] of SHA256(clinician_maseter_key, serial_num)",
+        "style": "a8"
+      },
+      {
+        "i": 760,
+        "text": "Authentication procedure",
+        "style": "a8"
+      },
+      {
+        "i": 761,
+        "text": "사용 알고리즘: ENC, AES-CMAC(Cipher-based Message Authentication Code)",
+        "style": "a8"
+      },
+      {
+        "i": 762,
+        "text": "NOUNCE_A: 클라이언트에서 생성한 16바이트 random data",
+        "style": "a8"
+      },
+      {
+        "i": 763,
+        "text": "NOUNCE_B: 서버에서 생성한 16바이트 random data",
+        "style": "a8"
+      },
+      {
+        "i": 764,
+        "text": "HMAC_A = ENC(auth_key, nounce_b || nounce_a)",
+        "style": "a8"
+      },
+      {
+        "i": 765,
+        "text": "HMAC_B = ENC(auth_key, nounce_a || nounce_b)",
+        "style": "a8"
+      },
+      {
+        "i": 766,
+        "text": "NVM access",
+        "style": "a8"
+      },
+      {
+        "i": 767,
+        "text": "사용 알고리즘:AES-128",
+        "style": "a8"
+      },
+      {
+        "i": 768,
+        "text": "Encryption key는 생산시에 저장되는 10바이트 random data와 외부장치의 BD_ADDR 6바이트를 조합하여 사용한다. random data와 BD_ADDR은 장치마다 다르므로 키 값 또한 장치마다 다르다\nenc_key = bd_addr || rand_num",
+        "style": "a8"
+      },
+      {
+        "i": 769,
+        "text": "SW-FW-DS-ID-014, 보안 NVM 유닛",
+        "style": "3"
+      },
+      {
+        "i": 770,
+        "text": "보안 모듈에서 사용하는 데이터 중에 NVM에 저장된 데이터를 읽거나 쓸 때 NVM의 접근을 처리한다. 다른 유닛들은 NVM의 직접적인 접근의 처리없이 보안 NVM이 제공하는 접근 인터페이스를 통해 쉽게 NVM을 데이터를 사용할 수 있도록 한다. 또한 NVM 데이터의 위치나 데이터 길이, 아니면 전체 NVM 타입이 바뀌더라도 보안 NVM 유닛만을 수정하여, 다른 유닛들은 기존 인터페이스를 통해 변경을 최소화하여 NVM 데이터를 사용할 수 있을 수 있다.",
+        "style": ""
+      },
+      {
+        "i": 771,
+        "text": "또한, 보안 NVM 유닛은 하드웨어 인터페이스 모듈의 NVM 처리 유닛을 통해 실제 데이터를 얻는다.",
+        "style": ""
+      },
+      {
+        "i": 772,
+        "text": "그리고, 보안 모듈에서 사용하는 모든 NVM 데이터는 암호화가 되어있기 때문에, 이는 보안 툴 박스를 통해 복호화하거나 암호화한다. 이 키에 대한 설명은 보안 툴박스 유닛에서 하였다.",
+        "style": ""
+      },
+      {
+        "i": 773,
+        "text": "보안에서 사용하는 NVM 데이터에는 다음과 같은 것들이 있다:",
+        "style": ""
+      },
+      {
+        "i": 774,
+        "text": "보안 NVM 데이터",
+        "style": ""
+      },
+      {
+        "i": 775,
+        "text": "설명",
+        "style": ""
+      },
+      {
+        "i": 776,
+        "text": "AUTH_RAND_NUM",
+        "style": ""
+      },
+      {
+        "i": 777,
+        "text": "NVM 데이터의 암호화 키 생성에 사용하는 random data",
+        "style": ""
+      },
+      {
+        "i": 778,
+        "text": "AUTH_SERVICE_KEY",
+        "style": ""
+      },
+      {
+        "i": 779,
+        "text": "리모콘 앱 인증에 사용하는 키",
+        "style": ""
+      },
+      {
+        "i": 780,
+        "text": "AUTH_CLINIC_MASTER_KEY",
+        "style": ""
+      },
+      {
+        "i": 781,
+        "text": "리모콘 앱 인증에 사용하는 키를 생성하는데 사용하는 키",
+        "style": ""
+      },
+      {
+        "i": 782,
+        "text": "",
+        "style": ""
+      }
+    ]
+  }
+}

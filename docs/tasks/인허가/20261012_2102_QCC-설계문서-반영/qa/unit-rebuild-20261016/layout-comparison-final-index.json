@@ -1,0 +1,178 @@
+{
+  "source_sha256": "037CF72A05B276DE25FD21B7EE457A655736BE8FB6D4AE14B67C881F0E3EBEF4",
+  "exports": [
+    {
+      "name": "candidate-comparison-final",
+      "area": "B4:G347",
+      "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\unit-rebuild-20261016\\native-candidate-comparison-final.pdf",
+      "sha256": "FD92DDFD17EDB61DE4D8286FD8615F7904F0626EC549AED847F2DCD221CEA656",
+      "pages": 25,
+      "pngs": [
+        {
+          "page": 1,
+          "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\unit-rebuild-20261016\\native-candidate-comparison-final-p001.png",
+          "sha256": "1B4960BB351D4738B5B2D9079A893419D47D80098A67A2BDE051ED840F445BC3"
+        },
+        {
+          "page": 2,
+          "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\unit-rebuild-20261016\\native-candidate-comparison-final-p002.png",
+          "sha256": "CB46BADC705E5E96266124074C37C81E9F69459D121BB486604440756BCBC9E1"
+        },
+        {
+          "page": 3,
+          "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\unit-rebuild-20261016\\native-candidate-comparison-final-p003.png",
+          "sha256": "9CDB0AC99F71FCCA03C570A4104DF31A859ADEC18DC878DF4ED3A492F7B0241B"
+        },
+        {
+          "page": 4,
+          "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\unit-rebuild-20261016\\native-candidate-comparison-final-p004.png",
+          "sha256": "45FA551B666E334DD6BB951548A34B83D463DD7FFE694D8F036B2CE9F58AEDA0"
+        },
+        {
+          "page": 5,
+          "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\unit-rebuild-20261016\\native-candidate-comparison-final-p005.png",
+          "sha256": "4A137429597F1506D9847E20374826FBA2C194AF3DBE8BB11CFBC32F96D18B3E"
+        },
+        {
+          "page": 6,
+          "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\unit-rebuild-20261016\\native-candidate-comparison-final-p006.png",
+          "sha256": "8521E1D38B9851D943B83312D25B8D324456AAC541B768D7BEE14A6B87FC67CE"
+        },
+        {
+          "page": 7,
+          "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\unit-rebuild-20261016\\native-candidate-comparison-final-p007.png",
+          "sha256": "89F6056F1938C8B6464EAE53571DAAC0C288BDB5983755685FF2D6FB7D12B20B"
+        },
+        {
+          "page": 8,
+          "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\unit-rebuild-20261016\\native-candidate-comparison-final-p008.png",
+          "sha256": "9260552BA3CF2405580DF31F1F3AE5F5DF98B6669FF1C73842CD69C83ACD7DB3"
+        },
+        {
+          "page": 9,
+          "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\unit-rebuild-20261016\\native-candidate-comparison-final-p009.png",
+          "sha256": "3F3367D3ACE96B84C265F76B2C621AB836ADC29BFAFA9535781501494A2AE6DA"
+        },
+        {
+          "page": 10,
+          "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\unit-rebuild-20261016\\native-candidate-comparison-final-p010.png",
+          "sha256": "20DBD05A30AAFDB57C338CE0A2AB5D8F5EEA6B1B9827634BDF91F2D43E537F2D"
+        },
+        {
+          "page": 11,
+          "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\unit-rebuild-20261016\\native-candidate-comparison-final-p011.png",
+          "sha256": "6F0E6495E0D8392624DF0B4A5A1608ACBCA16FEDF71C0558536896BEE90F65AA"
+        },
+        {
+          "page": 12,
+          "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\unit-rebuild-20261016\\native-candidate-comparison-final-p012.png",
+          "sha256": "7725863A48D6370DCCD7F23C2E32FEE60960739795B824F78C05A889910D9BF8"
+        },
+        {
+          "page": 13,
+          "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\unit-rebuild-20261016\\native-candidate-comparison-final-p013.png",
+          "sha256": "DF93F888964F6B8241818F57770534554BB95CFB976A42411E09879F911DBDF9"
+        },
+        {
+          "page": 14,
+          "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\unit-rebuild-20261016\\native-candidate-comparison-final-p014.png",
+          "sha256": "B5A2079631045F5EAB21F4DCFDA983A147B998881F924EA223E9B59685FCF4D6"
+        },
+        {
+          "page": 15,
+          "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\unit-rebuild-20261016\\native-candidate-comparison-final-p015.png",
+          "sha256": "15040FD540C3A1B9B87EAF59C52014062EF7EE27EDEB24FB7ADBFB5488E4D8E1"
+        },
+        {
+          "page": 16,
+          "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\unit-rebuild-20261016\\native-candidate-comparison-final-p016.png",
+          "sha256": "691D6D704F7C83FC9001D25F91C7C312ED70B2675D235EE1598849780803154D"
+        },
+        {
+          "page": 17,
+          "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\unit-rebuild-20261016\\native-candidate-comparison-final-p017.png",
+          "sha256": "5F42A135A7262F7944FA75A8496E6AF74B7534F35DA67971D8DFA5A5F8EBE92F"
+        },
+        {
+          "page": 18,
+          "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\unit-rebuild-20261016\\native-candidate-comparison-final-p018.png",
+          "sha256": "75526E59630A4A8CE637BA00650D079FF225C3A842FE1DF889C29309CE80DDEE"
+        },
+        {
+          "page": 19,
+          "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\unit-rebuild-20261016\\native-candidate-comparison-final-p019.png",
+          "sha256": "198CA21DE2E6B388607209847F2E745FB7CAD778362BD405AD79A109C105B8D5"
+        },
+        {
+          "page": 20,
+          "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\unit-rebuild-20261016\\native-candidate-comparison-final-p020.png",
+          "sha256": "B935C75911CB7CF8B6A839CFCC3A252D70A27E72E2A23DC5C0CC30F73538549E"
+        },
+        {
+          "page": 21,
+          "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\unit-rebuild-20261016\\native-candidate-comparison-final-p021.png",
+          "sha256": "0D4229EF9BB3D0BE999EB14CC4ED06EF6BC6C6D9139799529377F30F8B7A4B8E"
+        },
+        {
+          "page": 22,
+          "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\unit-rebuild-20261016\\native-candidate-comparison-final-p022.png",
+          "sha256": "490F831AB2086E37D43D580426D75A99033F1FFCD596849E95EDD5C3A347B7FC"
+        },
+        {
+          "page": 23,
+          "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\unit-rebuild-20261016\\native-candidate-comparison-final-p023.png",
+          "sha256": "4BB0E52490C56D511C8B682C62391F00F417C1E7A99860A8CBD15B13014757DA"
+        },
+        {
+          "page": 24,
+          "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\unit-rebuild-20261016\\native-candidate-comparison-final-p024.png",
+          "sha256": "511B54CA1C5A24EFC973D0DA6D179B1D0297F139289C04F09AEB650CB16CA72B"
+        },
+        {
+          "page": 25,
+          "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\unit-rebuild-20261016\\native-candidate-comparison-final-p025.png",
+          "sha256": "A223AA3E1270A0AE4B14F1A936FCA09B026975A84A1B9676AD1842FDBBEDCE8E"
+        }
+      ],
+      "contacts": [
+        "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\unit-rebuild-20261016\\native-candidate-comparison-final-contact-001.png",
+        "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\unit-rebuild-20261016\\native-candidate-comparison-final-contact-002.png",
+        "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\unit-rebuild-20261016\\native-candidate-comparison-final-contact-003.png"
+      ]
+    },
+    {
+      "name": "candidate-comparison-final-first",
+      "area": "B4:G12",
+      "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\unit-rebuild-20261016\\native-candidate-comparison-final-first.pdf",
+      "sha256": "E7011AFFFE3F59D733EC5DA16CC903CCA4206549598A88311EF5AF8D6FFE5CF0",
+      "pages": 1,
+      "pngs": [
+        {
+          "page": 1,
+          "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\unit-rebuild-20261016\\native-candidate-comparison-final-first-p001.png",
+          "sha256": "047D24DA2DD48DFF39828211B2649FB0385892B277794A0F5C2D5993A8B14755"
+        }
+      ],
+      "contacts": [
+        "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\unit-rebuild-20261016\\native-candidate-comparison-final-first-contact-001.png"
+      ]
+    },
+    {
+      "name": "candidate-comparison-final-last",
+      "area": "B341:G347",
+      "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\unit-rebuild-20261016\\native-candidate-comparison-final-last.pdf",
+      "sha256": "C91A8738E1E38817E45033448A7339B41EDD1B12A49ADC396B981075D3F20D82",
+      "pages": 1,
+      "pngs": [
+        {
+          "page": 1,
+          "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\unit-rebuild-20261016\\native-candidate-comparison-final-last-p001.png",
+          "sha256": "FB04E0828BFBC150AD8D4C50254880F22B6678BA913773387BEDD9BCB6183B3F"
+        }
+      ],
+      "contacts": [
+        "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\unit-rebuild-20261016\\native-candidate-comparison-final-last-contact-001.png"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+[
+  {
+    "code": "SAD",
+    "source": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SAD-FW-TD24A 소프트웨어 아키텍쳐 기술서.docx",
+    "beforeSha256": "da3ad4861b3915b8eb64eaf89a09ce4749ef6dbd220283488d4576713da60e6e",
+    "candidate": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\fields-candidate\\[E8300-QCC] SAD-FW-TD24A 소프트웨어 아키텍쳐 기술서.docx",
+    "candidateSha256": "FF7726EA2270A6FD34CB10322770A9C8A003B85EDC527589578B355D25376576",
+    "comparison": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\SAD-final-layout-fields-comparison.json"
+  },
+  {
+    "code": "SDDD",
+    "source": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SDDD-FW-TD24A 소프트웨어 상세 설계서.docx",
+    "beforeSha256": "c6b56a6464c17b2b7b393f5d0d3f822e8fd55dc03701d3f0306dddd15da83e97",
+    "candidate": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\fields-candidate\\[E8300-QCC] SDDD-FW-TD24A 소프트웨어 상세 설계서.docx",
+    "candidateSha256": "D7C1777F089CD37A6930B9452A928908286006BC35EC8CD131EC0199AF5DE776",
+    "comparison": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\SDDD-final-layout-fields-comparison.json"
+  },
+  {
+    "code": "SIP",
+    "source": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SIP-FW-TD24A 소프트웨어 통합 계획서.docx",
+    "beforeSha256": "d2051a712ca509466c6d0fbeb0841a250af328d6dbe6570125b496f5a0400d40",
+    "candidate": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\fields-candidate\\[E8300-QCC] SIP-FW-TD24A 소프트웨어 통합 계획서.docx",
+    "candidateSha256": "10E39ED37D53D0FA70E457CB4C4F5D48BFB05237EED51CCE105271C7D90773D8",
+    "comparison": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\SIP-final-layout-fields-comparison.json"
+  }
+]

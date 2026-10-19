@@ -1,0 +1,245 @@
+[
+  {
+    "id": "SU-ID-QCC-001",
+    "original_id": "SW-BT-DS-ID-001",
+    "title": "시스템 초기화와 설정 유닛",
+    "source": {
+      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\서석일_작성\\QCC_SDDD-FW-TD24A 소프트웨어 상세 설계서_byssi.docx",
+      "heading": "SW-BT-DS-ID-001, 시스템 초기화와 설정 유닛",
+      "body_element_0_based_start": 86,
+      "body_element_0_based_end_exclusive": 119,
+      "locator_note": "word/document.xml body 요소 순서. 페이지 번호 아님."
+    },
+    "source_corrections_local_only": [
+      "SPI 속도, QCC 핀 번호, 초기값, 초기화 실패 처리와 시간 한도",
+      "AUTH UUID 및 GATT 보안 설정의 실제 값",
+      "I2S 24bit/16kHz는 QCC SRS 근거를 연결해야 하며 본 유닛 원문에는 수치 없음"
+    ]
+  },
+  {
+    "id": "SU-ID-QCC-002",
+    "original_id": "SW-FW-DS-ID-002",
+    "title": "시스템 상태 유닛",
+    "source": {
+      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\서석일_작성\\QCC_SDDD-FW-TD24A 소프트웨어 상세 설계서_byssi.docx",
+      "heading": "SW-FW-DS-ID-002, 시스템 상태 유닛",
+      "body_element_0_based_start": 119,
+      "body_element_0_based_end_exclusive": 149,
+      "locator_note": "word/document.xml body 요소 순서. 페이지 번호 아님."
+    },
+    "source_corrections_local_only": [
+      "shutdown_ind off/on의 본문·그림 상충",
+      "기동 대기 및 종료 대기 수치",
+      "SPI 0x34/35/36의 필드/응답/순서 및 오류 계약",
+      "내부장치정보 명령과 유효한 응답 필드"
+    ]
+  },
+  {
+    "id": "SU-ID-QCC-003",
+    "original_id": "SW-FW-DS-ID-003",
+    "title": "장치 상태 유닛",
+    "source": {
+      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\서석일_작성\\QCC_SDDD-FW-TD24A 소프트웨어 상세 설계서_byssi.docx",
+      "heading": "SW-FW-DS-ID-003, 장치 상태 유닛",
+      "body_element_0_based_start": 149,
+      "body_element_0_based_end_exclusive": 178,
+      "locator_note": "word/document.xml body 요소 순서. 페이지 번호 아님."
+    },
+    "source_corrections_local_only": [
+      "TWS 구성값, 좌우 배정, 파트너 연결/해제/단독 복귀의 구체 계약",
+      "내부장치정보에서 받아 사용하는 편이/양이 정보와 생산 설정의 우선순위"
+    ]
+  },
+  {
+    "id": "SU-ID-QCC-004",
+    "original_id": "SW-FW-DS-ID-004",
+    "title": "블루투스 상태 유닛",
+    "source": {
+      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\서석일_작성\\QCC_SDDD-FW-TD24A 소프트웨어 상세 설계서_byssi.docx",
+      "heading": "SW-FW-DS-ID-004, 블루투스 상태 유닛",
+      "body_element_0_based_start": 178,
+      "body_element_0_based_end_exclusive": 215,
+      "locator_note": "word/document.xml body 요소 순서. 페이지 번호 아님."
+    },
+    "source_corrections_local_only": [
+      "해제 디바운스 시간, 실제 장치명 바이트 길이/인코딩/정보조회 응답",
+      "일반 BLE 기동/광고/매핑이 내부장치 미연결 때 허용되는지"
+    ]
+  },
+  {
+    "id": "SU-ID-QCC-005",
+    "original_id": "SW-FW-DS-ID-005",
+    "title": "PIO 포트 제어 유닛",
+    "source": {
+      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\서석일_작성\\QCC_SDDD-FW-TD24A 소프트웨어 상세 설계서_byssi.docx",
+      "heading": "SW-FW-DS-ID-005, PIO 포트 제어 유닛",
+      "body_element_0_based_start": 215,
+      "body_element_0_based_end_exclusive": 234,
+      "locator_note": "word/document.xml body 요소 순서. 페이지 번호 아님."
+    },
+    "source_corrections_local_only": [
+      "QCC PIO 번호/전압/극성과 E8300 핀의 실제 연결",
+      "I2S enable과 E8300 DIO29 Low=유효의 대응",
+      "HW reset 회로 대상, 리셋 펄스폭, 충전 시작 시 리셋 동작의 근거",
+      "온도센서 값이 사용되는 상태/한도는 원문에 없음"
+    ]
+  },
+  {
+    "id": "SU-ID-QCC-006",
+    "original_id": "SW-FW-DS-ID-006",
+    "title": "Power 제어 유닛",
+    "source": {
+      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\서석일_작성\\QCC_SDDD-FW-TD24A 소프트웨어 상세 설계서_byssi.docx",
+      "heading": "SW-FW-DS-ID-006, Power 제어 유닛",
+      "body_element_0_based_start": 234,
+      "body_element_0_based_end_exclusive": 271,
+      "locator_note": "word/document.xml body 요소 순서. 페이지 번호 아님."
+    },
+    "source_corrections_local_only": [
+      "배터리 기준값, 전압-잔량 변환표, 주기, 오차와 실패 시 정책",
+      "4종 충전 상태→E8300 0x34 charger_connected0/1 변환 계약",
+      "원문은 empty이면 무조건 sleep이라고도 쓰므로 충전예외와 우선순위 명확화 필요",
+      "종료 신호극성, wake-up source 및 시간",
+      "표270은 NVM 데이터 제목인데 충전상태표를 중복한 잔존 오류"
+    ]
+  },
+  {
+    "id": "SU-ID-QCC-007",
+    "original_id": "SW-FW-DS-ID-007",
+    "title": "NVM 처리 유닛",
+    "source": {
+      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\서석일_작성\\QCC_SDDD-FW-TD24A 소프트웨어 상세 설계서_byssi.docx",
+      "heading": "SW-FW-DS-ID-007, NVM 처리 유닛",
+      "body_element_0_based_start": 271,
+      "body_element_0_based_end_exclusive": 279,
+      "locator_note": "word/document.xml body 요소 순서. 페이지 번호 아님."
+    },
+    "source_corrections_local_only": [
+      "주소/ID/길이/원자성/오류 및 기본값 계약",
+      "AUTH_CLLINC_KEY/AUTH_SHARED_KEY와 보안유닛의 AUTH_SERVICE_KEY/AUTH_CLINIC_MASTER_KEY 명칭·역할 대응"
+    ]
+  },
+  {
+    "id": "SU-ID-QCC-008",
+    "original_id": "SW-FW-DS-ID-008",
+    "title": "Bluetooth Classic 유닛",
+    "source": {
+      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\서석일_작성\\QCC_SDDD-FW-TD24A 소프트웨어 상세 설계서_byssi.docx",
+      "heading": "SW-FW-DS-ID-008, Bluetooth Classic 유닛",
+      "body_element_0_based_start": 313,
+      "body_element_0_based_end_exclusive": 337,
+      "locator_note": "word/document.xml body 요소 순서. 페이지 번호 아님."
+    },
+    "source_corrections_local_only": [
+      "프로파일/코덱/QCC 라이브러리 버전/페어링 시간",
+      "I2S 실제24bit/16kHz 출력 및 L/R 처리의 세부",
+      "0x36 오디오 연결/종류 통보 순서와 I2S_FLAG 타이밍"
+    ]
+  },
+  {
+    "id": "SU-ID-QCC-009",
+    "original_id": "SW-FW-DS-ID-009",
+    "title": "BLE 유닛",
+    "source": {
+      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\서석일_작성\\QCC_SDDD-FW-TD24A 소프트웨어 상세 설계서_byssi.docx",
+      "heading": "SW-FW-DS-ID-009, BLE 유닛",
+      "body_element_0_based_start": 337,
+      "body_element_0_based_end_exclusive": 347,
+      "locator_note": "word/document.xml body 요소 순서. 페이지 번호 아님."
+    },
+    "source_corrections_local_only": [
+      "광고 바이트 배치, 회사ID/Appearance값/길이/광고주기",
+      "BLE 링크의 실제 암호화 설정·인증전 데이터차단",
+      "동시연결1개 및 무통신3분 제어는 SRS 근거를 추가 연결"
+    ]
+  },
+  {
+    "id": "SU-ID-QCC-010",
+    "original_id": "SW-FW-DS-ID-010",
+    "title": "AUTH service 처리 유닛",
+    "source": {
+      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\서석일_작성\\QCC_SDDD-FW-TD24A 소프트웨어 상세 설계서_byssi.docx",
+      "heading": "SW-FW-DS-ID-010, AUTH service 처리 유닛",
+      "body_element_0_based_start": 347,
+      "body_element_0_based_end_exclusive": 358,
+      "locator_note": "word/document.xml body 요소 순서. 페이지 번호 아님."
+    },
+    "source_corrections_local_only": [
+      "Primary/Characteristic 실제 UUID값, 바이트 길이/엔디언/일치검사",
+      "Primary Service의 read property 표기는 GATT service/characteristic 구분 검토",
+      "그림의 Confirm notify 표기는 본문의 client write와 상충",
+      "AUTH 서비스는 BLE pairing 후에만 접근 가능함을 GATT설정과 대조"
+    ]
+  },
+  {
+    "id": "SU-ID-QCC-011",
+    "original_id": "SW-FW-DS-ID-011",
+    "title": "BLE Data 처리 유닛",
+    "source": {
+      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\서석일_작성\\QCC_SDDD-FW-TD24A 소프트웨어 상세 설계서_byssi.docx",
+      "heading": "SW-FW-DS-ID-011, BLE Data 처리 유닛",
+      "body_element_0_based_start": 358,
+      "body_element_0_based_end_exclusive": 394,
+      "locator_note": "word/document.xml body 요소 순서. 페이지 번호 아님."
+    },
+    "source_corrections_local_only": [
+      "GAIA addressing의 실제 값, type별 데이터 정의/길이/응답/CRC",
+      "인증 완료 전과 권한별 메시지 허용범위",
+      "SPI21byte 프레임과 BLE최대20byte 메시지의 변환/길이검사",
+      "GAIA의 스마트케이스 전용 addressing 문구는 실제 외부기 주소로 확인 필요"
+    ]
+  },
+  {
+    "id": "SU-ID-QCC-012",
+    "original_id": "SW-FW-DS-ID-012",
+    "title": "보안 처리 유닛",
+    "source": {
+      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\서석일_작성\\QCC_SDDD-FW-TD24A 소프트웨어 상세 설계서_byssi.docx",
+      "heading": "SW-FW-DS-ID-012, 보안 처리 유닛",
+      "body_element_0_based_start": 425,
+      "body_element_0_based_end_exclusive": 463,
+      "locator_note": "word/document.xml body 요소 순서. 페이지 번호 아님."
+    },
+    "source_corrections_local_only": [
+      "인증타이머 구체30초는 QCC 시험기준 근거로 추가 필요",
+      "무통신3분 및 연속5회 실패1분제한의 카운터/시간/초기화 정책 원문 SDDD에 없음",
+      "HMAC 명칭과 AES-CMAC 실제알고리즘 명칭 상충",
+      "그림의 auth is required→in_progress후 End AUTH가 진행설명과 상충"
+    ]
+  },
+  {
+    "id": "SU-ID-QCC-013",
+    "original_id": "SW-FW-DS-ID-013",
+    "title": "보안 툴박스 유닛",
+    "source": {
+      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\서석일_작성\\QCC_SDDD-FW-TD24A 소프트웨어 상세 설계서_byssi.docx",
+      "heading": "SW-FW-DS-ID-013, 보안 툴박스 유닛",
+      "body_element_0_based_start": 463,
+      "body_element_0_based_end_exclusive": 479,
+      "locator_note": "word/document.xml body 요소 순서. 페이지 번호 아님."
+    },
+    "source_corrections_local_only": [
+      "HMAC와 CMAC명칭, ENC표기의 정확한 알고리즘/바이트결합/태그길이",
+      "SHA256 입력 직렬화/길이/엔디언과 clinician 명칭 오기",
+      "AES-128 모드/IV/무결성/쓰기실패 계약",
+      "난수 생성원·품질·재사용 방지 및 보안NVM의 rand_num 복호화 부트스트랩"
+    ]
+  },
+  {
+    "id": "SU-ID-QCC-014",
+    "original_id": "SW-FW-DS-ID-014",
+    "title": "보안 NVM 유닛",
+    "source": {
+      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\서석일_작성\\QCC_SDDD-FW-TD24A 소프트웨어 상세 설계서_byssi.docx",
+      "heading": "SW-FW-DS-ID-014, 보안 NVM 유닛",
+      "body_element_0_based_start": 479,
+      "body_element_0_based_end_exclusive": 485,
+      "locator_note": "word/document.xml body 요소 순서. 페이지 번호 아님."
+    },
+    "source_corrections_local_only": [
+      "AUTH_CLINIC_MASTER_KEY 설명이 리모콘이라고 적혀 toolbox의 매핑역할과 상충",
+      "보안NVM의 모든데이터 암호화 주장과 랜덤을 키재료로 읽는 부트스트랩",
+      "데이터길이/위치/기본값/손상검출/접근실패 및키읽기실패 차단"
+    ]
+  }
+]

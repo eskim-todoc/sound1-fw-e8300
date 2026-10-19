@@ -1,0 +1,35 @@
+[
+  {
+    "code": "SAD",
+    "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SAD-FW-TD24A 소프트웨어 아키텍쳐 기술서.docx",
+    "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\final-word\\SAD.pdf",
+    "pages": 60,
+    "revisions": 1031,
+    "sourceSHA256": "8AF46EF971B15EC6815CB5AED66E25580A4C9494D43DCDF4925852CB38C50515",
+    "sourceUnchanged": true,
+    "scope": "Read-only in-memory accepted preview; deliverable revisions preserved",
+    "checkedAt": "2026-10-13T09:59:23.0637903+09:00"
+  },
+  {
+    "code": "SIP",
+    "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SIP-FW-TD24A 소프트웨어 통합 계획서.docx",
+    "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\final-word\\SIP.pdf",
+    "pages": 17,
+    "revisions": 278,
+    "sourceSHA256": "347D8632BC21AA37EE84418E471CB2CA67541CBA7D014C17C3058DA2A1D62978",
+    "sourceUnchanged": true,
+    "scope": "Read-only in-memory accepted preview; deliverable revisions preserved",
+    "checkedAt": "2026-10-13T09:59:29.3479415+09:00"
+  },
+  {
+    "code": "SR",
+    "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\02_설계 입력\\SW\\외부기\\[E8300-QCC] SR-FW-TD24A 소프트웨어 요구사항.docx",
+    "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\final-word\\SR.pdf",
+    "pages": 13,
+    "revisions": 239,
+    "sourceSHA256": "975C9F5389F20FC02CC483265D038EB85F950F50ABDDA4D733B5695978656895",
+    "sourceUnchanged": true,
+    "scope": "Read-only in-memory accepted preview; deliverable revisions preserved",
+    "checkedAt": "2026-10-13T09:59:33.2263916+09:00"
+  }
+]

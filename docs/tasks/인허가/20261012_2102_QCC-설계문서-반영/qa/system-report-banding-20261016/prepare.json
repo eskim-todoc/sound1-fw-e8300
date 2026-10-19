@@ -1,0 +1,11 @@
+{
+  "sourceSHA": "50C8DEF81BA74982C33E537DEB8F14B92A19479A8667E92BF035CF630A6E793D",
+  "sourceBytes": 25330484,
+  "tests": 83,
+  "bodyRange": "B34:L292",
+  "pinkTESTs": 70,
+  "preservedCells": 231,
+  "notices": 31,
+  "removedAuthorOnlyParts": 135,
+  "finalPackagePolicy": "Original package; fill-only style additions and main worksheet s attributes only."
+}

@@ -1,0 +1,26 @@
+{
+  "output": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\04_설계 검증\\SW\\외부기\\[E8300-QCC] SSTR-FW-TD24A 소프트웨어 시스템 시험 보고서_자료첨부.xlsx",
+  "beforeSHA": "01353E812C3AE3C391079A46FBAD19B4F863F51698AEA72131D243D7EE71C02C",
+  "afterSHA": "64E7636993431C36BA9D9FF4A5A1C0CBC38EF23EB1889DDDBC8C6574EB77C90C",
+  "sourcesBeforeAndAfter": {
+    "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\04_설계 검증\\SW\\외부기\\[E8300-QCC] SSTR-FW-TD24A 소프트웨어 시스템 시험 보고서.xlsx": "E1643A377713825A7545451B1D01BC599B01FE5A9F1D8A5745F9E66CEF6E8595",
+    "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\04_설계 검증\\SW\\외부기\\[김은수 전용] SSTR-FW-TD24A 소프트웨어 시스템 시험 보고서.xlsx": "FF6A53930D975A5A7F0683B1F1D0AA9651A605B396D8F6D940DD5BFAC93217F2"
+  },
+  "backup": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\photo-attach-20261016\\style-before.xlsx",
+  "photoCount": 123,
+  "pinkTestCount": 70,
+  "bodyRange": "보고서_시스템 시험!34:293",
+  "substantiveChanges": 186,
+  "comparisonRows": [
+    1040,
+    1228
+  ],
+  "saved": true,
+  "checks": {
+    "structure": "style-validation.json",
+    "content": "style-content-final.json",
+    "photos": "style-photo-final.json",
+    "layout": "style-layout-final.json",
+    "native": "style-native-export.json"
+  }
+}

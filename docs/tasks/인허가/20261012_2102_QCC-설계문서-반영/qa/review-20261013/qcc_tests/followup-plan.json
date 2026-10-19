@@ -1,0 +1,2310 @@
+{
+  "SUVC": {
+    "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SUVC-FW-TD24A 소프트웨어 유닛 검증 기준서.xlsx",
+    "sheet": "기준서_유닛 검증",
+    "hash": "1bdcecf99c7ba0f4ab3cac4953e4b1156901b3bd3f11501664bbef010385d9ce",
+    "changes": {
+      "F59": {
+        "before": "\nD\n",
+        "current": "\nT\n",
+        "display": "\n[-] D\n[+] T\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "D"
+          },
+          {
+            "status": "new",
+            "text": "T"
+          }
+        ],
+        "reason": "9/10: full RTT numeric elements/counts or entire response byte/length comparison; original input/expected/observed preserved"
+      },
+      "F67": {
+        "before": "\nD\n",
+        "current": "\nT\n",
+        "display": "\n[-] D\n[+] T\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "D"
+          },
+          {
+            "status": "new",
+            "text": "T"
+          }
+        ],
+        "reason": "9/10: full RTT numeric elements/counts or entire response byte/length comparison; original input/expected/observed preserved"
+      },
+      "F116": {
+        "before": "\nD\n",
+        "current": "\nT\n",
+        "display": "\n[-] D\n[+] T\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "D"
+          },
+          {
+            "status": "new",
+            "text": "T"
+          }
+        ],
+        "reason": "9/10: full RTT numeric elements/counts or entire response byte/length comparison; original input/expected/observed preserved"
+      },
+      "F802": {
+        "before": "\nD\n",
+        "current": "\nT\n",
+        "display": "\n[-] D\n[+] T\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "D"
+          },
+          {
+            "status": "new",
+            "text": "T"
+          }
+        ],
+        "reason": "9/10: full RTT numeric elements/counts or entire response byte/length comparison; original input/expected/observed preserved"
+      },
+      "F812": {
+        "before": "\nD\n",
+        "current": "\nT\n",
+        "display": "\n[-] D\n[+] T\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "D"
+          },
+          {
+            "status": "new",
+            "text": "T"
+          }
+        ],
+        "reason": "9/10: full RTT numeric elements/counts or entire response byte/length comparison; original input/expected/observed preserved"
+      },
+      "F860": {
+        "before": "\nD\n",
+        "current": "\nT\n",
+        "display": "\n[-] D\n[+] T\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "D"
+          },
+          {
+            "status": "new",
+            "text": "T"
+          }
+        ],
+        "reason": "9/10: full RTT numeric elements/counts or entire response byte/length comparison; original input/expected/observed preserved"
+      },
+      "F876": {
+        "before": "\nD\n",
+        "current": "\nT\n",
+        "display": "\n[-] D\n[+] T\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "D"
+          },
+          {
+            "status": "new",
+            "text": "T"
+          }
+        ],
+        "reason": "9/10: full RTT numeric elements/counts or entire response byte/length comparison; original input/expected/observed preserved"
+      },
+      "F883": {
+        "before": "\nD\n",
+        "current": "\nT\n",
+        "display": "\n[-] D\n[+] T\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "D"
+          },
+          {
+            "status": "new",
+            "text": "T"
+          }
+        ],
+        "reason": "9/10: full RTT numeric elements/counts or entire response byte/length comparison; original input/expected/observed preserved"
+      },
+      "F889": {
+        "before": "\nD\n",
+        "current": "\nT\n",
+        "display": "\n[-] D\n[+] T\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "D"
+          },
+          {
+            "status": "new",
+            "text": "T"
+          }
+        ],
+        "reason": "9/10: full RTT numeric elements/counts or entire response byte/length comparison; original input/expected/observed preserved"
+      },
+      "F920": {
+        "before": "\nD\n",
+        "current": "\nT\n",
+        "display": "\n[-] D\n[+] T\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "D"
+          },
+          {
+            "status": "new",
+            "text": "T"
+          }
+        ],
+        "reason": "9/10: full RTT numeric elements/counts or entire response byte/length comparison; original input/expected/observed preserved"
+      },
+      "F934": {
+        "before": "\nD\n",
+        "current": "\nT\n",
+        "display": "\n[-] D\n[+] T\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "D"
+          },
+          {
+            "status": "new",
+            "text": "T"
+          }
+        ],
+        "reason": "9/10: full RTT numeric elements/counts or entire response byte/length comparison; original input/expected/observed preserved"
+      },
+      "F942": {
+        "before": "\nD\n",
+        "current": "\nT\n",
+        "display": "\n[-] D\n[+] T\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "D"
+          },
+          {
+            "status": "new",
+            "text": "T"
+          }
+        ],
+        "reason": "9/10: full RTT numeric elements/counts or entire response byte/length comparison; original input/expected/observed preserved"
+      },
+      "F964": {
+        "before": "\nD\n",
+        "current": "\nT\n",
+        "display": "\n[-] D\n[+] T\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "D"
+          },
+          {
+            "status": "new",
+            "text": "T"
+          }
+        ],
+        "reason": "9/10: full RTT numeric elements/counts or entire response byte/length comparison; original input/expected/observed preserved"
+      },
+      "F976": {
+        "before": "\nD\n",
+        "current": "\nT\n",
+        "display": "\n[-] D\n[+] T\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "D"
+          },
+          {
+            "status": "new",
+            "text": "T"
+          }
+        ],
+        "reason": "9/10: full RTT numeric elements/counts or entire response byte/length comparison; original input/expected/observed preserved"
+      },
+      "F982": {
+        "before": "\nD\n",
+        "current": "\nT\n",
+        "display": "\n[-] D\n[+] T\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "D"
+          },
+          {
+            "status": "new",
+            "text": "T"
+          }
+        ],
+        "reason": "9/10: full RTT numeric elements/counts or entire response byte/length comparison; original input/expected/observed preserved"
+      },
+      "F1088": {
+        "before": "\nD\n",
+        "current": "\nT\n",
+        "display": "\n[-] D\n[+] T\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "D"
+          },
+          {
+            "status": "new",
+            "text": "T"
+          }
+        ],
+        "reason": "9/10: full RTT numeric elements/counts or entire response byte/length comparison; original input/expected/observed preserved"
+      },
+      "F1185": {
+        "before": "\nD\n",
+        "current": "\nT\n",
+        "display": "\n[-] D\n[+] T\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "D"
+          },
+          {
+            "status": "new",
+            "text": "T"
+          }
+        ],
+        "reason": "9/10: full RTT numeric elements/counts or entire response byte/length comparison; original input/expected/observed preserved"
+      },
+      "F1214": {
+        "before": "\nD\n",
+        "current": "\nT\n",
+        "display": "\n[-] D\n[+] T\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "D"
+          },
+          {
+            "status": "new",
+            "text": "T"
+          }
+        ],
+        "reason": "9/10: full RTT numeric elements/counts or entire response byte/length comparison; original input/expected/observed preserved"
+      },
+      "F1235": {
+        "before": "\nD\n",
+        "current": "\nT\n",
+        "display": "\n[-] D\n[+] T\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "D"
+          },
+          {
+            "status": "new",
+            "text": "T"
+          }
+        ],
+        "reason": "9/10: full RTT numeric elements/counts or entire response byte/length comparison; original input/expected/observed preserved"
+      },
+      "F1243": {
+        "before": "\nD\n",
+        "current": "\nT\n",
+        "display": "\n[-] D\n[+] T\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "D"
+          },
+          {
+            "status": "new",
+            "text": "T"
+          }
+        ],
+        "reason": "9/10: full RTT numeric elements/counts or entire response byte/length comparison; original input/expected/observed preserved"
+      },
+      "F1252": {
+        "before": "\nD\n",
+        "current": "\nT\n",
+        "display": "\n[-] D\n[+] T\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "D"
+          },
+          {
+            "status": "new",
+            "text": "T"
+          }
+        ],
+        "reason": "9/10: full RTT numeric elements/counts or entire response byte/length comparison; original input/expected/observed preserved"
+      },
+      "F1409": {
+        "before": "\nD\n",
+        "current": "\nT\n",
+        "display": "\n[-] D\n[+] T\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "D"
+          },
+          {
+            "status": "new",
+            "text": "T"
+          }
+        ],
+        "reason": "9/10: full RTT numeric elements/counts or entire response byte/length comparison; original input/expected/observed preserved"
+      },
+      "F1497": {
+        "before": "\nD\n",
+        "current": "\nT\n",
+        "display": "\n[-] D\n[+] T\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "D"
+          },
+          {
+            "status": "new",
+            "text": "T"
+          }
+        ],
+        "reason": "9/10: full RTT numeric elements/counts or entire response byte/length comparison; original input/expected/observed preserved"
+      },
+      "F1644": {
+        "before": "\nD\n",
+        "current": "\nT\n",
+        "display": "\n[-] D\n[+] T\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "D"
+          },
+          {
+            "status": "new",
+            "text": "T"
+          }
+        ],
+        "reason": "9/10: full RTT numeric elements/counts or entire response byte/length comparison; original input/expected/observed preserved"
+      },
+      "F1649": {
+        "before": "\nD\n",
+        "current": "\nT\n",
+        "display": "\n[-] D\n[+] T\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "D"
+          },
+          {
+            "status": "new",
+            "text": "T"
+          }
+        ],
+        "reason": "9/10: full RTT numeric elements/counts or entire response byte/length comparison; original input/expected/observed preserved"
+      },
+      "I1760": {
+        "before": "\n[-] 실제 QCC 로그 원문을 수집하며 생성 예상 로그로 대체하지 않는다. 생산 비밀키를 기록하지 않고 공개 시험키를 사용한다.\n[+] 생산 비밀키 대신 격리된 공개 시험키를 사용하는 조건.\n[QCC 자료 입력] AES-CMAC결과를원문HMAC이라표현하나알고리즘명확화필요 / 전달된모든0시험키는시험설정이며실제생산키노출을요구하지않음\n[+] [QCC 자료 입력] 이 조건의 전체 QCC RTT 출력 형식/문자열과 실제 실행 결과.\n",
+        "current": "\n생산 비밀키 제외, 격리된 공개 시험키만 사용.\nshared_service_key(16byte,hex)=00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n[QCC 자료 입력] 리모콘 AES-CMAC의 nonce/입력 순서·길이, 전체16byte 출력의 독립 예상 벡터와 실측 미비. 키 역할/직렬화 미확정.\n[QCC 자료 입력] 전체 QCC RTT 형식/문자열과 실행 결과.\n",
+        "display": "\n[-] 실제 QCC 로그 원문을 수집하며 생성 예상 로그로 대체하지 않는다. 생산 비밀키를 기록하지 않고 공개 시험키를 사용한다.\n[-] [QCC 자료 입력] AES-CMAC결과를원문HMAC이라표현하나알고리즘명확화필요 / 전달된모든0시험키는시험설정이며실제생산키노출을요구하지않음\n[+] 생산 비밀키 제외, 격리된 공개 시험키만 사용.\n[+] shared_service_key(16byte,hex)=00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n[+] [QCC 자료 입력] 리모콘 AES-CMAC의 nonce/입력 순서·길이, 전체16byte 출력의 독립 예상 벡터와 실측 미비. 키 역할/직렬화 미확정.\n[+] [QCC 자료 입력] 전체 QCC RTT 형식/문자열과 실행 결과.\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "실제 QCC 로그 원문을 수집하며 생성 예상 로그로 대체하지 않는다. 생산 비밀키를 기록하지 않고 공개 시험키를 사용한다."
+          },
+          {
+            "status": "old",
+            "text": "[QCC 자료 입력] AES-CMAC결과를원문HMAC이라표현하나알고리즘명확화필요 / 전달된모든0시험키는시험설정이며실제생산키노출을요구하지않음"
+          },
+          {
+            "status": "new",
+            "text": "생산 비밀키 제외, 격리된 공개 시험키만 사용."
+          },
+          {
+            "status": "new",
+            "text": "shared_service_key(16byte,hex)=00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00"
+          },
+          {
+            "status": "new",
+            "text": "[QCC 자료 입력] 리모콘 AES-CMAC의 nonce/입력 순서·길이, 전체16byte 출력의 독립 예상 벡터와 실측 미비. 키 역할/직렬화 미확정."
+          },
+          {
+            "status": "new",
+            "text": "[QCC 자료 입력] 전체 QCC RTT 형식/문자열과 실행 결과."
+          }
+        ],
+        "reason": "1/13/22: independent algorithm/key/input/output criteria, concrete public testkey, source prose removed"
+      },
+      "F1114": {
+        "before": "\nA\n",
+        "current": "\nA/T\n",
+        "display": "\n[-] A\n[+] A/T\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "A"
+          },
+          {
+            "status": "new",
+            "text": "A/T"
+          }
+        ],
+        "reason": "9/10: existing source analysis plus full RTT numeric array/count comparison; observed scope unchanged"
+      },
+      "F1119": {
+        "before": "\nA\n",
+        "current": "\nA/T\n",
+        "display": "\n[-] A\n[+] A/T\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "A"
+          },
+          {
+            "status": "new",
+            "text": "A/T"
+          }
+        ],
+        "reason": "9/10: existing source analysis plus full RTT numeric array/count comparison; observed scope unchanged"
+      },
+      "F1142": {
+        "before": "\nA\n",
+        "current": "\nA/T\n",
+        "display": "\n[-] A\n[+] A/T\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "A"
+          },
+          {
+            "status": "new",
+            "text": "A/T"
+          }
+        ],
+        "reason": "9/10: existing source analysis plus full RTT numeric array/count comparison; observed scope unchanged"
+      },
+      "F1365": {
+        "before": "\nA\n",
+        "current": "\nA/T\n",
+        "display": "\n[-] A\n[+] A/T\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "A"
+          },
+          {
+            "status": "new",
+            "text": "A/T"
+          }
+        ],
+        "reason": "9/10: existing source analysis plus full RTT numeric array/count comparison; observed scope unchanged"
+      },
+      "F1452": {
+        "before": "\nA\n",
+        "current": "\nA/T\n",
+        "display": "\n[-] A\n[+] A/T\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "A"
+          },
+          {
+            "status": "new",
+            "text": "A/T"
+          }
+        ],
+        "reason": "9/10: existing source analysis plus full RTT numeric array/count comparison; observed scope unchanged"
+      },
+      "F1534": {
+        "before": "\nA\n",
+        "current": "\nA/T\n",
+        "display": "\n[-] A\n[+] A/T\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "A"
+          },
+          {
+            "status": "new",
+            "text": "A/T"
+          }
+        ],
+        "reason": "9/10: existing source analysis plus full RTT numeric array/count comparison; observed scope unchanged"
+      }
+    }
+  },
+  "SUVR": {
+    "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\04_설계 검증\\SW\\외부기\\[E8300-QCC] SUVR-FW-TD24A 소프트웨어 유닛 검증 보고서.xlsx",
+    "sheet": "보고서_유닛 시험",
+    "hash": "2470f4014b197bd541bca07e6af14bd3e9a05fa465206b9886373957221ce854",
+    "changes": {
+      "F59": {
+        "before": "\nD\n",
+        "current": "\nT\n",
+        "display": "\n[-] D\n[+] T\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "D"
+          },
+          {
+            "status": "new",
+            "text": "T"
+          }
+        ],
+        "reason": "9/10: full RTT numeric elements/counts or entire response byte/length comparison; original input/expected/observed preserved"
+      },
+      "F67": {
+        "before": "\nD\n",
+        "current": "\nT\n",
+        "display": "\n[-] D\n[+] T\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "D"
+          },
+          {
+            "status": "new",
+            "text": "T"
+          }
+        ],
+        "reason": "9/10: full RTT numeric elements/counts or entire response byte/length comparison; original input/expected/observed preserved"
+      },
+      "F116": {
+        "before": "\nD\n",
+        "current": "\nT\n",
+        "display": "\n[-] D\n[+] T\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "D"
+          },
+          {
+            "status": "new",
+            "text": "T"
+          }
+        ],
+        "reason": "9/10: full RTT numeric elements/counts or entire response byte/length comparison; original input/expected/observed preserved"
+      },
+      "F802": {
+        "before": "\nD\n",
+        "current": "\nT\n",
+        "display": "\n[-] D\n[+] T\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "D"
+          },
+          {
+            "status": "new",
+            "text": "T"
+          }
+        ],
+        "reason": "9/10: full RTT numeric elements/counts or entire response byte/length comparison; original input/expected/observed preserved"
+      },
+      "F812": {
+        "before": "\nD\n",
+        "current": "\nT\n",
+        "display": "\n[-] D\n[+] T\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "D"
+          },
+          {
+            "status": "new",
+            "text": "T"
+          }
+        ],
+        "reason": "9/10: full RTT numeric elements/counts or entire response byte/length comparison; original input/expected/observed preserved"
+      },
+      "F860": {
+        "before": "\nD\n",
+        "current": "\nT\n",
+        "display": "\n[-] D\n[+] T\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "D"
+          },
+          {
+            "status": "new",
+            "text": "T"
+          }
+        ],
+        "reason": "9/10: full RTT numeric elements/counts or entire response byte/length comparison; original input/expected/observed preserved"
+      },
+      "F876": {
+        "before": "\nD\n",
+        "current": "\nT\n",
+        "display": "\n[-] D\n[+] T\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "D"
+          },
+          {
+            "status": "new",
+            "text": "T"
+          }
+        ],
+        "reason": "9/10: full RTT numeric elements/counts or entire response byte/length comparison; original input/expected/observed preserved"
+      },
+      "F883": {
+        "before": "\nD\n",
+        "current": "\nT\n",
+        "display": "\n[-] D\n[+] T\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "D"
+          },
+          {
+            "status": "new",
+            "text": "T"
+          }
+        ],
+        "reason": "9/10: full RTT numeric elements/counts or entire response byte/length comparison; original input/expected/observed preserved"
+      },
+      "F889": {
+        "before": "\nD\n",
+        "current": "\nT\n",
+        "display": "\n[-] D\n[+] T\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "D"
+          },
+          {
+            "status": "new",
+            "text": "T"
+          }
+        ],
+        "reason": "9/10: full RTT numeric elements/counts or entire response byte/length comparison; original input/expected/observed preserved"
+      },
+      "F920": {
+        "before": "\nD\n",
+        "current": "\nT\n",
+        "display": "\n[-] D\n[+] T\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "D"
+          },
+          {
+            "status": "new",
+            "text": "T"
+          }
+        ],
+        "reason": "9/10: full RTT numeric elements/counts or entire response byte/length comparison; original input/expected/observed preserved"
+      },
+      "F934": {
+        "before": "\nD\n",
+        "current": "\nT\n",
+        "display": "\n[-] D\n[+] T\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "D"
+          },
+          {
+            "status": "new",
+            "text": "T"
+          }
+        ],
+        "reason": "9/10: full RTT numeric elements/counts or entire response byte/length comparison; original input/expected/observed preserved"
+      },
+      "F942": {
+        "before": "\nD\n",
+        "current": "\nT\n",
+        "display": "\n[-] D\n[+] T\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "D"
+          },
+          {
+            "status": "new",
+            "text": "T"
+          }
+        ],
+        "reason": "9/10: full RTT numeric elements/counts or entire response byte/length comparison; original input/expected/observed preserved"
+      },
+      "F964": {
+        "before": "\nD\n",
+        "current": "\nT\n",
+        "display": "\n[-] D\n[+] T\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "D"
+          },
+          {
+            "status": "new",
+            "text": "T"
+          }
+        ],
+        "reason": "9/10: full RTT numeric elements/counts or entire response byte/length comparison; original input/expected/observed preserved"
+      },
+      "F976": {
+        "before": "\nD\n",
+        "current": "\nT\n",
+        "display": "\n[-] D\n[+] T\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "D"
+          },
+          {
+            "status": "new",
+            "text": "T"
+          }
+        ],
+        "reason": "9/10: full RTT numeric elements/counts or entire response byte/length comparison; original input/expected/observed preserved"
+      },
+      "F982": {
+        "before": "\nD\n",
+        "current": "\nT\n",
+        "display": "\n[-] D\n[+] T\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "D"
+          },
+          {
+            "status": "new",
+            "text": "T"
+          }
+        ],
+        "reason": "9/10: full RTT numeric elements/counts or entire response byte/length comparison; original input/expected/observed preserved"
+      },
+      "F1088": {
+        "before": "\nD\n",
+        "current": "\nT\n",
+        "display": "\n[-] D\n[+] T\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "D"
+          },
+          {
+            "status": "new",
+            "text": "T"
+          }
+        ],
+        "reason": "9/10: full RTT numeric elements/counts or entire response byte/length comparison; original input/expected/observed preserved"
+      },
+      "F1185": {
+        "before": "\nD\n",
+        "current": "\nT\n",
+        "display": "\n[-] D\n[+] T\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "D"
+          },
+          {
+            "status": "new",
+            "text": "T"
+          }
+        ],
+        "reason": "9/10: full RTT numeric elements/counts or entire response byte/length comparison; original input/expected/observed preserved"
+      },
+      "F1214": {
+        "before": "\nD\n",
+        "current": "\nT\n",
+        "display": "\n[-] D\n[+] T\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "D"
+          },
+          {
+            "status": "new",
+            "text": "T"
+          }
+        ],
+        "reason": "9/10: full RTT numeric elements/counts or entire response byte/length comparison; original input/expected/observed preserved"
+      },
+      "F1235": {
+        "before": "\nD\n",
+        "current": "\nT\n",
+        "display": "\n[-] D\n[+] T\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "D"
+          },
+          {
+            "status": "new",
+            "text": "T"
+          }
+        ],
+        "reason": "9/10: full RTT numeric elements/counts or entire response byte/length comparison; original input/expected/observed preserved"
+      },
+      "F1243": {
+        "before": "\nD\n",
+        "current": "\nT\n",
+        "display": "\n[-] D\n[+] T\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "D"
+          },
+          {
+            "status": "new",
+            "text": "T"
+          }
+        ],
+        "reason": "9/10: full RTT numeric elements/counts or entire response byte/length comparison; original input/expected/observed preserved"
+      },
+      "F1252": {
+        "before": "\nD\n",
+        "current": "\nT\n",
+        "display": "\n[-] D\n[+] T\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "D"
+          },
+          {
+            "status": "new",
+            "text": "T"
+          }
+        ],
+        "reason": "9/10: full RTT numeric elements/counts or entire response byte/length comparison; original input/expected/observed preserved"
+      },
+      "F1409": {
+        "before": "\nD\n",
+        "current": "\nT\n",
+        "display": "\n[-] D\n[+] T\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "D"
+          },
+          {
+            "status": "new",
+            "text": "T"
+          }
+        ],
+        "reason": "9/10: full RTT numeric elements/counts or entire response byte/length comparison; original input/expected/observed preserved"
+      },
+      "F1497": {
+        "before": "\nD\n",
+        "current": "\nT\n",
+        "display": "\n[-] D\n[+] T\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "D"
+          },
+          {
+            "status": "new",
+            "text": "T"
+          }
+        ],
+        "reason": "9/10: full RTT numeric elements/counts or entire response byte/length comparison; original input/expected/observed preserved"
+      },
+      "F1644": {
+        "before": "\nD\n",
+        "current": "\nT\n",
+        "display": "\n[-] D\n[+] T\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "D"
+          },
+          {
+            "status": "new",
+            "text": "T"
+          }
+        ],
+        "reason": "9/10: full RTT numeric elements/counts or entire response byte/length comparison; original input/expected/observed preserved"
+      },
+      "F1649": {
+        "before": "\nD\n",
+        "current": "\nT\n",
+        "display": "\n[-] D\n[+] T\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "D"
+          },
+          {
+            "status": "new",
+            "text": "T"
+          }
+        ],
+        "reason": "9/10: full RTT numeric elements/counts or entire response byte/length comparison; original input/expected/observed preserved"
+      },
+      "I1760": {
+        "before": "\n[-] 실제 QCC 로그 원문을 수집하며 생성 예상 로그로 대체하지 않는다. 생산 비밀키를 기록하지 않고 공개 시험키를 사용한다.\n[+] 생산 비밀키 대신 격리된 공개 시험키를 사용하는 조건.\n[QCC 자료 입력] AES-CMAC결과를원문HMAC이라표현하나알고리즘명확화필요 / 전달된모든0시험키는시험설정이며실제생산키노출을요구하지않음\n[+] [QCC 자료 입력] 이 조건의 전체 QCC RTT 출력 형식/문자열과 실제 실행 결과.\n",
+        "current": "\n생산 비밀키 제외, 격리된 공개 시험키만 사용.\nshared_service_key(16byte,hex)=00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n[QCC 자료 입력] 리모콘 AES-CMAC의 nonce/입력 순서·길이, 전체16byte 출력의 독립 예상 벡터와 실측 미비. 키 역할/직렬화 미확정.\n[QCC 자료 입력] 전체 QCC RTT 형식/문자열과 실행 결과.\n",
+        "display": "\n[-] 실제 QCC 로그 원문을 수집하며 생성 예상 로그로 대체하지 않는다. 생산 비밀키를 기록하지 않고 공개 시험키를 사용한다.\n[-] [QCC 자료 입력] AES-CMAC결과를원문HMAC이라표현하나알고리즘명확화필요 / 전달된모든0시험키는시험설정이며실제생산키노출을요구하지않음\n[+] 생산 비밀키 제외, 격리된 공개 시험키만 사용.\n[+] shared_service_key(16byte,hex)=00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n[+] [QCC 자료 입력] 리모콘 AES-CMAC의 nonce/입력 순서·길이, 전체16byte 출력의 독립 예상 벡터와 실측 미비. 키 역할/직렬화 미확정.\n[+] [QCC 자료 입력] 전체 QCC RTT 형식/문자열과 실행 결과.\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "실제 QCC 로그 원문을 수집하며 생성 예상 로그로 대체하지 않는다. 생산 비밀키를 기록하지 않고 공개 시험키를 사용한다."
+          },
+          {
+            "status": "old",
+            "text": "[QCC 자료 입력] AES-CMAC결과를원문HMAC이라표현하나알고리즘명확화필요 / 전달된모든0시험키는시험설정이며실제생산키노출을요구하지않음"
+          },
+          {
+            "status": "new",
+            "text": "생산 비밀키 제외, 격리된 공개 시험키만 사용."
+          },
+          {
+            "status": "new",
+            "text": "shared_service_key(16byte,hex)=00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00"
+          },
+          {
+            "status": "new",
+            "text": "[QCC 자료 입력] 리모콘 AES-CMAC의 nonce/입력 순서·길이, 전체16byte 출력의 독립 예상 벡터와 실측 미비. 키 역할/직렬화 미확정."
+          },
+          {
+            "status": "new",
+            "text": "[QCC 자료 입력] 전체 QCC RTT 형식/문자열과 실행 결과."
+          }
+        ],
+        "reason": "1/13/22: independent algorithm/key/input/output criteria, concrete public testkey, source prose removed"
+      },
+      "F1114": {
+        "before": "\nA\n",
+        "current": "\nA/T\n",
+        "display": "\n[-] A\n[+] A/T\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "A"
+          },
+          {
+            "status": "new",
+            "text": "A/T"
+          }
+        ],
+        "reason": "9/10: existing source analysis plus full RTT numeric array/count comparison; observed scope unchanged"
+      },
+      "F1119": {
+        "before": "\nA\n",
+        "current": "\nA/T\n",
+        "display": "\n[-] A\n[+] A/T\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "A"
+          },
+          {
+            "status": "new",
+            "text": "A/T"
+          }
+        ],
+        "reason": "9/10: existing source analysis plus full RTT numeric array/count comparison; observed scope unchanged"
+      },
+      "F1142": {
+        "before": "\nA\n",
+        "current": "\nA/T\n",
+        "display": "\n[-] A\n[+] A/T\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "A"
+          },
+          {
+            "status": "new",
+            "text": "A/T"
+          }
+        ],
+        "reason": "9/10: existing source analysis plus full RTT numeric array/count comparison; observed scope unchanged"
+      },
+      "F1365": {
+        "before": "\nA\n",
+        "current": "\nA/T\n",
+        "display": "\n[-] A\n[+] A/T\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "A"
+          },
+          {
+            "status": "new",
+            "text": "A/T"
+          }
+        ],
+        "reason": "9/10: existing source analysis plus full RTT numeric array/count comparison; observed scope unchanged"
+      },
+      "F1452": {
+        "before": "\nA\n",
+        "current": "\nA/T\n",
+        "display": "\n[-] A\n[+] A/T\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "A"
+          },
+          {
+            "status": "new",
+            "text": "A/T"
+          }
+        ],
+        "reason": "9/10: existing source analysis plus full RTT numeric array/count comparison; observed scope unchanged"
+      },
+      "F1534": {
+        "before": "\nA\n",
+        "current": "\nA/T\n",
+        "display": "\n[-] A\n[+] A/T\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "A"
+          },
+          {
+            "status": "new",
+            "text": "A/T"
+          }
+        ],
+        "reason": "9/10: existing source analysis plus full RTT numeric array/count comparison; observed scope unchanged"
+      }
+    }
+  },
+  "SSTC": {
+    "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SSTC-FW-TD24A 소프트웨어 시스템 시험 기준서.xlsx",
+    "sheet": "기준서_시스템 시험",
+    "hash": "77397c3a8d7c64a0068bf92810a0f38e8f40f2c7af0901c6cc3a9a3841747412",
+    "changes": {
+      "D116": {
+        "before": "D",
+        "current": "\nT/D\n",
+        "display": "\n[-] D\n[+] T/D\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "D"
+          },
+          {
+            "status": "new",
+            "text": "T/D"
+          }
+        ],
+        "reason": "9/10: numeric response/array/count/time plus qualitative behavior; no new measurement or threshold introduced"
+      },
+      "D121": {
+        "before": "D",
+        "current": "\nT/D\n",
+        "display": "\n[-] D\n[+] T/D\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "D"
+          },
+          {
+            "status": "new",
+            "text": "T/D"
+          }
+        ],
+        "reason": "9/10: numeric response/array/count/time plus qualitative behavior; no new measurement or threshold introduced"
+      },
+      "D124": {
+        "before": "D",
+        "current": "\nT/D\n",
+        "display": "\n[-] D\n[+] T/D\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "D"
+          },
+          {
+            "status": "new",
+            "text": "T/D"
+          }
+        ],
+        "reason": "9/10: numeric response/array/count/time plus qualitative behavior; no new measurement or threshold introduced"
+      },
+      "D130": {
+        "before": "D",
+        "current": "\nT/D\n",
+        "display": "\n[-] D\n[+] T/D\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "D"
+          },
+          {
+            "status": "new",
+            "text": "T/D"
+          }
+        ],
+        "reason": "9/10: numeric response/array/count/time plus qualitative behavior; no new measurement or threshold introduced"
+      },
+      "D134": {
+        "before": "D",
+        "current": "\nT/D\n",
+        "display": "\n[-] D\n[+] T/D\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "D"
+          },
+          {
+            "status": "new",
+            "text": "T/D"
+          }
+        ],
+        "reason": "9/10: numeric response/array/count/time plus qualitative behavior; no new measurement or threshold introduced"
+      },
+      "D138": {
+        "before": "D",
+        "current": "\nT/D\n",
+        "display": "\n[-] D\n[+] T/D\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "D"
+          },
+          {
+            "status": "new",
+            "text": "T/D"
+          }
+        ],
+        "reason": "9/10: numeric response/array/count/time plus qualitative behavior; no new measurement or threshold introduced"
+      },
+      "D141": {
+        "before": "D",
+        "current": "\nT/D\n",
+        "display": "\n[-] D\n[+] T/D\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "D"
+          },
+          {
+            "status": "new",
+            "text": "T/D"
+          }
+        ],
+        "reason": "9/10: numeric response/array/count/time plus qualitative behavior; no new measurement or threshold introduced"
+      },
+      "D146": {
+        "before": "D",
+        "current": "\nT/D\n",
+        "display": "\n[-] D\n[+] T/D\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "D"
+          },
+          {
+            "status": "new",
+            "text": "T/D"
+          }
+        ],
+        "reason": "9/10: numeric response/array/count/time plus qualitative behavior; no new measurement or threshold introduced"
+      },
+      "D148": {
+        "before": "D",
+        "current": "\nT\n",
+        "display": "\n[-] D\n[+] T\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "D"
+          },
+          {
+            "status": "new",
+            "text": "T"
+          }
+        ],
+        "reason": "9/10: numeric response/array/count/time plus qualitative behavior; no new measurement or threshold introduced"
+      },
+      "D152": {
+        "before": "D",
+        "current": "\nT/D\n",
+        "display": "\n[-] D\n[+] T/D\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "D"
+          },
+          {
+            "status": "new",
+            "text": "T/D"
+          }
+        ],
+        "reason": "9/10: numeric response/array/count/time plus qualitative behavior; no new measurement or threshold introduced"
+      },
+      "D155": {
+        "before": "D",
+        "current": "\nT\n",
+        "display": "\n[-] D\n[+] T\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "D"
+          },
+          {
+            "status": "new",
+            "text": "T"
+          }
+        ],
+        "reason": "9/10: numeric response/array/count/time plus qualitative behavior; no new measurement or threshold introduced"
+      },
+      "D157": {
+        "before": "D",
+        "current": "\nT\n",
+        "display": "\n[-] D\n[+] T\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "D"
+          },
+          {
+            "status": "new",
+            "text": "T"
+          }
+        ],
+        "reason": "9/10: numeric response/array/count/time plus qualitative behavior; no new measurement or threshold introduced"
+      },
+      "D159": {
+        "before": "D",
+        "current": "\nT\n",
+        "display": "\n[-] D\n[+] T\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "D"
+          },
+          {
+            "status": "new",
+            "text": "T"
+          }
+        ],
+        "reason": "9/10: numeric response/array/count/time plus qualitative behavior; no new measurement or threshold introduced"
+      },
+      "D230": {
+        "before": "D",
+        "current": "\nT/D\n",
+        "display": "\n[-] D\n[+] T/D\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "D"
+          },
+          {
+            "status": "new",
+            "text": "T/D"
+          }
+        ],
+        "reason": "9/10: numeric response/array/count/time plus qualitative behavior; no new measurement or threshold introduced"
+      },
+      "D239": {
+        "before": "D",
+        "current": "\nT/D\n",
+        "display": "\n[-] D\n[+] T/D\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "D"
+          },
+          {
+            "status": "new",
+            "text": "T/D"
+          }
+        ],
+        "reason": "9/10: numeric response/array/count/time plus qualitative behavior; no new measurement or threshold introduced"
+      },
+      "D247": {
+        "before": "D",
+        "current": "\nT/D\n",
+        "display": "\n[-] D\n[+] T/D\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "D"
+          },
+          {
+            "status": "new",
+            "text": "T/D"
+          }
+        ],
+        "reason": "9/10: numeric response/array/count/time plus qualitative behavior; no new measurement or threshold introduced"
+      },
+      "D50": {
+        "before": "D",
+        "current": "\nT/D\n",
+        "display": "\n[-] D\n[+] T/D\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "D"
+          },
+          {
+            "status": "new",
+            "text": "T/D"
+          }
+        ],
+        "reason": "9/10: numeric response/array/count/time plus qualitative behavior; no new measurement or threshold introduced"
+      },
+      "D70": {
+        "before": "D",
+        "current": "\nT/D\n",
+        "display": "\n[-] D\n[+] T/D\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "D"
+          },
+          {
+            "status": "new",
+            "text": "T/D"
+          }
+        ],
+        "reason": "9/10: numeric response/array/count/time plus qualitative behavior; no new measurement or threshold introduced"
+      },
+      "D74": {
+        "before": "D",
+        "current": "\nT/D\n",
+        "display": "\n[-] D\n[+] T/D\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "D"
+          },
+          {
+            "status": "new",
+            "text": "T/D"
+          }
+        ],
+        "reason": "9/10: numeric response/array/count/time plus qualitative behavior; no new measurement or threshold introduced"
+      },
+      "I199": {
+        "before": "\n[+] 1. 사전 구성과 입력 설정\n[+] 시험용 QCC 외부기, 연결 상대 장치와 명령 전송 도구를 준비한다.\n[+] 펌웨어/운영체제/장치/앱 버전, BLE/Classic 프로파일/서비스/통신 규칙 개정판을 확인한다.\n[+] 이전 장치 등록(bonding)과 인증 상태를 초기화하고 페어링/CRA 인증 상태를 확인한다.\n[+] \n[+] 2. 수행/확인\n페어링 후 2차 인증키 전송 전에 제어 명령을 보낸다.\n불일치 키와 일치 키를 각각 보내고, 인증 성공 후 제어 명령을 보낸다.\n각 조건의 응답/인증 상태/제어 허용 여부를 통신 규칙과 비교한다.\n리모콘 및 매핑 앱을 각각 시험한다. 공개16byte 시험키를 쓰고 불일치 조건은 한쪽만 변경한다. 실제 Challenge/Response/Confirm/Status 전량을 독립 계산과 비교한다. AUTH시험패턴 중계 성공으로 CRA 성공을 대체하지 않는다.\n",
+        "current": "\n1. 사전 구성과 입력 설정\n시험용 QCC 외부기, 연결 상대 장치와 명령 전송 도구를 준비한다.\n펌웨어/운영체제/장치/앱 버전, BLE/Classic 프로파일/서비스/통신 규칙 개정판을 확인한다.\n이전 장치 등록(bonding)과 인증 상태를 초기화하고 페어링/CRA 인증 상태를 확인한다.\n\n2. 수행/확인\n페어링 후 CRA 완료 전에 일반 제어 명령을 보낸다.\n앱/QCC의 시험키를 불일치 및 일치 조건으로 각각 구성하여 CRA를 수행하고, 인증 성공 후 일반 제어 명령을 보낸다.\n각 조건의 응답/인증 상태/제어 허용 여부를 통신 규칙과 비교한다.\n리모콘 및 매핑 앱을 각각 시험한다. 공개16byte 시험키를 쓰고 불일치 조건은 한쪽만 변경한다. 실제 Challenge/Response/Confirm/Status 전량을 독립 계산과 비교한다. AUTH시험패턴 중계 성공으로 CRA 성공을 대체하지 않는다.\n",
+        "display": "\n[-] 페어링 후 2차 인증키 전송 전에 제어 명령을 보낸다.\n[-] 불일치 키와 일치 키를 각각 보내고, 인증 성공 후 제어 명령을 보낸다.\n[+] 1. 사전 구성과 입력 설정\n[+] 시험용 QCC 외부기, 연결 상대 장치와 명령 전송 도구를 준비한다.\n[+] 펌웨어/운영체제/장치/앱 버전, BLE/Classic 프로파일/서비스/통신 규칙 개정판을 확인한다.\n[+] 이전 장치 등록(bonding)과 인증 상태를 초기화하고 페어링/CRA 인증 상태를 확인한다.\n[+] \n[+] 2. 수행/확인\n[+] 페어링 후 CRA 완료 전에 일반 제어 명령을 보낸다.\n[+] 앱/QCC의 시험키를 불일치 및 일치 조건으로 각각 구성하여 CRA를 수행하고, 인증 성공 후 일반 제어 명령을 보낸다.\n각 조건의 응답/인증 상태/제어 허용 여부를 통신 규칙과 비교한다.\n리모콘 및 매핑 앱을 각각 시험한다. 공개16byte 시험키를 쓰고 불일치 조건은 한쪽만 변경한다. 실제 Challenge/Response/Confirm/Status 전량을 독립 계산과 비교한다. AUTH시험패턴 중계 성공으로 CRA 성공을 대체하지 않는다.\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "페어링 후 2차 인증키 전송 전에 제어 명령을 보낸다."
+          },
+          {
+            "status": "old",
+            "text": "불일치 키와 일치 키를 각각 보내고, 인증 성공 후 제어 명령을 보낸다."
+          },
+          {
+            "status": "new",
+            "text": "1. 사전 구성과 입력 설정"
+          },
+          {
+            "status": "new",
+            "text": "시험용 QCC 외부기, 연결 상대 장치와 명령 전송 도구를 준비한다."
+          },
+          {
+            "status": "new",
+            "text": "펌웨어/운영체제/장치/앱 버전, BLE/Classic 프로파일/서비스/통신 규칙 개정판을 확인한다."
+          },
+          {
+            "status": "new",
+            "text": "이전 장치 등록(bonding)과 인증 상태를 초기화하고 페어링/CRA 인증 상태를 확인한다."
+          },
+          {
+            "status": "new",
+            "text": ""
+          },
+          {
+            "status": "new",
+            "text": "2. 수행/확인"
+          },
+          {
+            "status": "new",
+            "text": "페어링 후 CRA 완료 전에 일반 제어 명령을 보낸다."
+          },
+          {
+            "status": "new",
+            "text": "앱/QCC의 시험키를 불일치 및 일치 조건으로 각각 구성하여 CRA를 수행하고, 인증 성공 후 일반 제어 명령을 보낸다."
+          },
+          {
+            "status": "same",
+            "text": "각 조건의 응답/인증 상태/제어 허용 여부를 통신 규칙과 비교한다."
+          },
+          {
+            "status": "same",
+            "text": "리모콘 및 매핑 앱을 각각 시험한다. 공개16byte 시험키를 쓰고 불일치 조건은 한쪽만 변경한다. 실제 Challenge/Response/Confirm/Status 전량을 독립 계산과 비교한다. AUTH시험패턴 중계 성공으로 CRA 성공을 대체하지 않는다."
+          }
+        ],
+        "reason": "1/11: CRA key configuration and authentication, no secret key transport assertion; old observation scope preserved"
+      },
+      "J199": {
+        "before": "\n조건 [1] 페어링 후 2차 인증키 전송 전에 다른 제어 명령 전송.\n통신 규칙에 따른 오류 응답이 와야 한다.\n",
+        "current": "\n조건 [1] 페어링 완료/CRA 미완료 상태에서 일반 제어 명령 전송.\n통신 규칙에 따른 오류 응답이 와야 하며 일반 제어 명령이 실행되지 않아야 한다.\n",
+        "display": "\n[-] 조건 [1] 페어링 후 2차 인증키 전송 전에 다른 제어 명령 전송.\n[-] 통신 규칙에 따른 오류 응답이 와야 한다.\n[+] 조건 [1] 페어링 완료/CRA 미완료 상태에서 일반 제어 명령 전송.\n[+] 통신 규칙에 따른 오류 응답이 와야 하며 일반 제어 명령이 실행되지 않아야 한다.\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "조건 [1] 페어링 후 2차 인증키 전송 전에 다른 제어 명령 전송."
+          },
+          {
+            "status": "old",
+            "text": "통신 규칙에 따른 오류 응답이 와야 한다."
+          },
+          {
+            "status": "new",
+            "text": "조건 [1] 페어링 완료/CRA 미완료 상태에서 일반 제어 명령 전송."
+          },
+          {
+            "status": "new",
+            "text": "통신 규칙에 따른 오류 응답이 와야 하며 일반 제어 명령이 실행되지 않아야 한다."
+          }
+        ],
+        "reason": "1/13: actual CRA state boundary"
+      },
+      "J200": {
+        "before": "\n조건 [2] 페어링 후 불일치 2차 인증키 전송.\n오류 응답이 와야 한다.\n리모콘/매핑 각각 한쪽만 다른16byte키를 적용하며 실제 CRA 실패/응답/차단을 비교한다.\n",
+        "current": "\n조건 [2] 페어링 후 리모콘/매핑 각각 QCC 공개 시험키00×16 유지, 클라이언트만01×16으로 구성하여 CRA 수행.\n인증 실패/오류 응답이며 일반 제어가 차단되어야 한다. 생산 비밀키는 사용/노출하지 않는다.\n",
+        "display": "\n[-] 조건 [2] 페어링 후 불일치 2차 인증키 전송.\n[-] 오류 응답이 와야 한다.\n[-] 리모콘/매핑 각각 한쪽만 다른16byte키를 적용하며 실제 CRA 실패/응답/차단을 비교한다.\n[+] 조건 [2] 페어링 후 리모콘/매핑 각각 QCC 공개 시험키00×16 유지, 클라이언트만01×16으로 구성하여 CRA 수행.\n[+] 인증 실패/오류 응답이며 일반 제어가 차단되어야 한다. 생산 비밀키는 사용/노출하지 않는다.\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "조건 [2] 페어링 후 불일치 2차 인증키 전송."
+          },
+          {
+            "status": "old",
+            "text": "오류 응답이 와야 한다."
+          },
+          {
+            "status": "old",
+            "text": "리모콘/매핑 각각 한쪽만 다른16byte키를 적용하며 실제 CRA 실패/응답/차단을 비교한다."
+          },
+          {
+            "status": "new",
+            "text": "조건 [2] 페어링 후 리모콘/매핑 각각 QCC 공개 시험키00×16 유지, 클라이언트만01×16으로 구성하여 CRA 수행."
+          },
+          {
+            "status": "new",
+            "text": "인증 실패/오류 응답이며 일반 제어가 차단되어야 한다. 생산 비밀키는 사용/노출하지 않는다."
+          }
+        ],
+        "reason": "1/13: mismatched-key concrete input, historical observation remains scope"
+      },
+      "J201": {
+        "before": "\n조건 [3] 페어링 후 일치하는 2차 인증키 전송.\n정상 응답이 와야 한다.\n리모콘 AES-CMAC 및 매핑 SHA-256키생성/인증 AES-CMAC의 역할을 확정하고16byte 키의 독립 계산 예상값과 전체 인증값을 대조한다. 원문 표기 정합성/벡터 미제공 부분은 판정 대기.\n",
+        "current": "\n조건 [3] 페어링 후 일치하는 공개 시험키로 CRA 수행.\n리모콘 shared_service_key 및 매핑 clinician_master_key의 공개 시험값16byte(hex)=00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n리모콘 AES-CMAC 인증, 매핑 SHA-256 파생키 생성과 AES-CMAC 인증을 구분하여 정의된 순서로 성공하고 Status1과 정상 응답이 확인되어야 한다.\n[QCC 자료 입력] shared_service_key/clinician_master_key/clinic_service_key의 역할, serial/nonce/Challenge/Confirm 직렬화와 입력 길이, 전체16byte 독립 인증 예상 벡터 및 실제 전량 인증값. 미확정 범위는 판정 대기. 생산 비밀키는 제외한다.\n",
+        "display": "\n[-] 조건 [3] 페어링 후 일치하는 2차 인증키 전송.\n[-] 정상 응답이 와야 한다.\n[-] 리모콘 AES-CMAC 및 매핑 SHA-256키생성/인증 AES-CMAC의 역할을 확정하고16byte 키의 독립 계산 예상값과 전체 인증값을 대조한다. 원문 표기 정합성/벡터 미제공 부분은 판정 대기.\n[+] 조건 [3] 페어링 후 일치하는 공개 시험키로 CRA 수행.\n[+] 리모콘 shared_service_key 및 매핑 clinician_master_key의 공개 시험값16byte(hex)=00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n[+] 리모콘 AES-CMAC 인증, 매핑 SHA-256 파생키 생성과 AES-CMAC 인증을 구분하여 정의된 순서로 성공하고 Status1과 정상 응답이 확인되어야 한다.\n[+] [QCC 자료 입력] shared_service_key/clinician_master_key/clinic_service_key의 역할, serial/nonce/Challenge/Confirm 직렬화와 입력 길이, 전체16byte 독립 인증 예상 벡터 및 실제 전량 인증값. 미확정 범위는 판정 대기. 생산 비밀키는 제외한다.\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "조건 [3] 페어링 후 일치하는 2차 인증키 전송."
+          },
+          {
+            "status": "old",
+            "text": "정상 응답이 와야 한다."
+          },
+          {
+            "status": "old",
+            "text": "리모콘 AES-CMAC 및 매핑 SHA-256키생성/인증 AES-CMAC의 역할을 확정하고16byte 키의 독립 계산 예상값과 전체 인증값을 대조한다. 원문 표기 정합성/벡터 미제공 부분은 판정 대기."
+          },
+          {
+            "status": "new",
+            "text": "조건 [3] 페어링 후 일치하는 공개 시험키로 CRA 수행."
+          },
+          {
+            "status": "new",
+            "text": "리모콘 shared_service_key 및 매핑 clinician_master_key의 공개 시험값16byte(hex)=00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00"
+          },
+          {
+            "status": "new",
+            "text": "리모콘 AES-CMAC 인증, 매핑 SHA-256 파생키 생성과 AES-CMAC 인증을 구분하여 정의된 순서로 성공하고 Status1과 정상 응답이 확인되어야 한다."
+          },
+          {
+            "status": "new",
+            "text": "[QCC 자료 입력] shared_service_key/clinician_master_key/clinic_service_key의 역할, serial/nonce/Challenge/Confirm 직렬화와 입력 길이, 전체16byte 독립 인증 예상 벡터 및 실제 전량 인증값. 미확정 범위는 판정 대기. 생산 비밀키는 제외한다."
+          }
+        ],
+        "reason": "1/13/22: actual algorithm/key/input/output and unresolved independent vectors; no source/process prose"
+      },
+      "J202": {
+        "before": "\n조건 [4] 2차 인증 성공 후 다른 내부기 제어 명령 전송.\n정상 응답과 허용된 제어 동작이 확인되어야 한다.\n",
+        "current": "\n조건 [4] CRA 성공 후 허용된 일반 내부기 제어 명령 전송.\n정상 응답과 허용된 제어 동작이 확인되어야 한다. 인증 성공을 AUTH 중계 패턴의 전송 성공으로 대신하지 않는다.\n",
+        "display": "\n[-] 조건 [4] 2차 인증 성공 후 다른 내부기 제어 명령 전송.\n[-] 정상 응답과 허용된 제어 동작이 확인되어야 한다.\n[+] 조건 [4] CRA 성공 후 허용된 일반 내부기 제어 명령 전송.\n[+] 정상 응답과 허용된 제어 동작이 확인되어야 한다. 인증 성공을 AUTH 중계 패턴의 전송 성공으로 대신하지 않는다.\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "조건 [4] 2차 인증 성공 후 다른 내부기 제어 명령 전송."
+          },
+          {
+            "status": "old",
+            "text": "정상 응답과 허용된 제어 동작이 확인되어야 한다."
+          },
+          {
+            "status": "new",
+            "text": "조건 [4] CRA 성공 후 허용된 일반 내부기 제어 명령 전송."
+          },
+          {
+            "status": "new",
+            "text": "정상 응답과 허용된 제어 동작이 확인되어야 한다. 인증 성공을 AUTH 중계 패턴의 전송 성공으로 대신하지 않는다."
+          }
+        ],
+        "reason": "1/18: real CRA success versus transport pattern"
+      }
+    }
+  },
+  "SSTR": {
+    "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\04_설계 검증\\SW\\외부기\\[E8300-QCC] SSTR-FW-TD24A 소프트웨어 시스템 시험 보고서.xlsx",
+    "sheet": "보고서_시스템 시험",
+    "hash": "d7ec24631bd074e5d790d8922d52ee557473465c8822c04074d88e26a9c238f3",
+    "changes": {
+      "D116": {
+        "before": "D",
+        "current": "\nT/D\n",
+        "display": "\n[-] D\n[+] T/D\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "D"
+          },
+          {
+            "status": "new",
+            "text": "T/D"
+          }
+        ],
+        "reason": "9/10: numeric response/array/count/time plus qualitative behavior; no new measurement or threshold introduced"
+      },
+      "D121": {
+        "before": "D",
+        "current": "\nT/D\n",
+        "display": "\n[-] D\n[+] T/D\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "D"
+          },
+          {
+            "status": "new",
+            "text": "T/D"
+          }
+        ],
+        "reason": "9/10: numeric response/array/count/time plus qualitative behavior; no new measurement or threshold introduced"
+      },
+      "D124": {
+        "before": "D",
+        "current": "\nT/D\n",
+        "display": "\n[-] D\n[+] T/D\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "D"
+          },
+          {
+            "status": "new",
+            "text": "T/D"
+          }
+        ],
+        "reason": "9/10: numeric response/array/count/time plus qualitative behavior; no new measurement or threshold introduced"
+      },
+      "D130": {
+        "before": "D",
+        "current": "\nT/D\n",
+        "display": "\n[-] D\n[+] T/D\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "D"
+          },
+          {
+            "status": "new",
+            "text": "T/D"
+          }
+        ],
+        "reason": "9/10: numeric response/array/count/time plus qualitative behavior; no new measurement or threshold introduced"
+      },
+      "D134": {
+        "before": "D",
+        "current": "\nT/D\n",
+        "display": "\n[-] D\n[+] T/D\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "D"
+          },
+          {
+            "status": "new",
+            "text": "T/D"
+          }
+        ],
+        "reason": "9/10: numeric response/array/count/time plus qualitative behavior; no new measurement or threshold introduced"
+      },
+      "D138": {
+        "before": "D",
+        "current": "\nT/D\n",
+        "display": "\n[-] D\n[+] T/D\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "D"
+          },
+          {
+            "status": "new",
+            "text": "T/D"
+          }
+        ],
+        "reason": "9/10: numeric response/array/count/time plus qualitative behavior; no new measurement or threshold introduced"
+      },
+      "D141": {
+        "before": "D",
+        "current": "\nT/D\n",
+        "display": "\n[-] D\n[+] T/D\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "D"
+          },
+          {
+            "status": "new",
+            "text": "T/D"
+          }
+        ],
+        "reason": "9/10: numeric response/array/count/time plus qualitative behavior; no new measurement or threshold introduced"
+      },
+      "D146": {
+        "before": "D",
+        "current": "\nT/D\n",
+        "display": "\n[-] D\n[+] T/D\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "D"
+          },
+          {
+            "status": "new",
+            "text": "T/D"
+          }
+        ],
+        "reason": "9/10: numeric response/array/count/time plus qualitative behavior; no new measurement or threshold introduced"
+      },
+      "D148": {
+        "before": "D",
+        "current": "\nT\n",
+        "display": "\n[-] D\n[+] T\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "D"
+          },
+          {
+            "status": "new",
+            "text": "T"
+          }
+        ],
+        "reason": "9/10: numeric response/array/count/time plus qualitative behavior; no new measurement or threshold introduced"
+      },
+      "D152": {
+        "before": "D",
+        "current": "\nT/D\n",
+        "display": "\n[-] D\n[+] T/D\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "D"
+          },
+          {
+            "status": "new",
+            "text": "T/D"
+          }
+        ],
+        "reason": "9/10: numeric response/array/count/time plus qualitative behavior; no new measurement or threshold introduced"
+      },
+      "D155": {
+        "before": "D",
+        "current": "\nT\n",
+        "display": "\n[-] D\n[+] T\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "D"
+          },
+          {
+            "status": "new",
+            "text": "T"
+          }
+        ],
+        "reason": "9/10: numeric response/array/count/time plus qualitative behavior; no new measurement or threshold introduced"
+      },
+      "D157": {
+        "before": "D",
+        "current": "\nT\n",
+        "display": "\n[-] D\n[+] T\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "D"
+          },
+          {
+            "status": "new",
+            "text": "T"
+          }
+        ],
+        "reason": "9/10: numeric response/array/count/time plus qualitative behavior; no new measurement or threshold introduced"
+      },
+      "D159": {
+        "before": "D",
+        "current": "\nT\n",
+        "display": "\n[-] D\n[+] T\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "D"
+          },
+          {
+            "status": "new",
+            "text": "T"
+          }
+        ],
+        "reason": "9/10: numeric response/array/count/time plus qualitative behavior; no new measurement or threshold introduced"
+      },
+      "D230": {
+        "before": "D",
+        "current": "\nT/D\n",
+        "display": "\n[-] D\n[+] T/D\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "D"
+          },
+          {
+            "status": "new",
+            "text": "T/D"
+          }
+        ],
+        "reason": "9/10: numeric response/array/count/time plus qualitative behavior; no new measurement or threshold introduced"
+      },
+      "D239": {
+        "before": "D",
+        "current": "\nT/D\n",
+        "display": "\n[-] D\n[+] T/D\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "D"
+          },
+          {
+            "status": "new",
+            "text": "T/D"
+          }
+        ],
+        "reason": "9/10: numeric response/array/count/time plus qualitative behavior; no new measurement or threshold introduced"
+      },
+      "D247": {
+        "before": "D",
+        "current": "\nT/D\n",
+        "display": "\n[-] D\n[+] T/D\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "D"
+          },
+          {
+            "status": "new",
+            "text": "T/D"
+          }
+        ],
+        "reason": "9/10: numeric response/array/count/time plus qualitative behavior; no new measurement or threshold introduced"
+      },
+      "D50": {
+        "before": "D",
+        "current": "\nT/D\n",
+        "display": "\n[-] D\n[+] T/D\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "D"
+          },
+          {
+            "status": "new",
+            "text": "T/D"
+          }
+        ],
+        "reason": "9/10: numeric response/array/count/time plus qualitative behavior; no new measurement or threshold introduced"
+      },
+      "D70": {
+        "before": "D",
+        "current": "\nT/D\n",
+        "display": "\n[-] D\n[+] T/D\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "D"
+          },
+          {
+            "status": "new",
+            "text": "T/D"
+          }
+        ],
+        "reason": "9/10: numeric response/array/count/time plus qualitative behavior; no new measurement or threshold introduced"
+      },
+      "D74": {
+        "before": "D",
+        "current": "\nT/D\n",
+        "display": "\n[-] D\n[+] T/D\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "D"
+          },
+          {
+            "status": "new",
+            "text": "T/D"
+          }
+        ],
+        "reason": "9/10: numeric response/array/count/time plus qualitative behavior; no new measurement or threshold introduced"
+      },
+      "L34": {
+        "before": "\n기존 기록 통과\n24 kHz 기준 사진 확인 대기\n",
+        "current": "\n판정 대기\n",
+        "display": "\n[-] 기존 기록 통과\n[-] 24 kHz 기준 사진 확인 대기\n[+] 판정 대기\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "기존 기록 통과"
+          },
+          {
+            "status": "old",
+            "text": "24 kHz 기준 사진 확인 대기"
+          },
+          {
+            "status": "new",
+            "text": "판정 대기"
+          }
+        ],
+        "reason": "16/18: old observation preserved in K; current incomplete criterion remains pending, old status retained red comparison"
+      },
+      "L35": {
+        "before": "\n기존 결과 통과\n32채널 조건 기록 확인 대기\n",
+        "current": "\n판정 대기\n",
+        "display": "\n[-] 기존 결과 통과\n[-] 32채널 조건 기록 확인 대기\n[+] 판정 대기\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "기존 결과 통과"
+          },
+          {
+            "status": "old",
+            "text": "32채널 조건 기록 확인 대기"
+          },
+          {
+            "status": "new",
+            "text": "판정 대기"
+          }
+        ],
+        "reason": "16/18: old observation preserved in K; current incomplete criterion remains pending, old status retained red comparison"
+      },
+      "L41": {
+        "before": "\n기존 결과 통과\n음압/전류 기록 연결 확인 대기\n",
+        "current": "\n판정 대기\n",
+        "display": "\n[-] 기존 결과 통과\n[-] 음압/전류 기록 연결 확인 대기\n[+] 판정 대기\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "기존 결과 통과"
+          },
+          {
+            "status": "old",
+            "text": "음압/전류 기록 연결 확인 대기"
+          },
+          {
+            "status": "new",
+            "text": "판정 대기"
+          }
+        ],
+        "reason": "16/18: old observation preserved in K; current incomplete criterion remains pending, old status retained red comparison"
+      },
+      "L44": {
+        "before": "\n기존 결과 통과\n14 us 기록 확인 대기\n",
+        "current": "\n판정 대기\n",
+        "display": "\n[-] 기존 결과 통과\n[-] 14 us 기록 확인 대기\n[+] 판정 대기\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "기존 결과 통과"
+          },
+          {
+            "status": "old",
+            "text": "14 us 기록 확인 대기"
+          },
+          {
+            "status": "new",
+            "text": "판정 대기"
+          }
+        ],
+        "reason": "16/18: old observation preserved in K; current incomplete criterion remains pending, old status retained red comparison"
+      },
+      "L50": {
+        "before": "\n기존 결과 통과\n10단계/내부기 출력 기록 확인 대기\n",
+        "current": "\n판정 대기\n",
+        "display": "\n[-] 기존 결과 통과\n[-] 10단계/내부기 출력 기록 확인 대기\n[+] 판정 대기\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "기존 결과 통과"
+          },
+          {
+            "status": "old",
+            "text": "10단계/내부기 출력 기록 확인 대기"
+          },
+          {
+            "status": "new",
+            "text": "판정 대기"
+          }
+        ],
+        "reason": "16/18: old observation preserved in K; current incomplete criterion remains pending, old status retained red comparison"
+      },
+      "L64": {
+        "before": "\n기존 결과 통과\n상위 비인접 조건 확인 대기\n",
+        "current": "\n판정 대기\n",
+        "display": "\n[-] 기존 결과 통과\n[-] 상위 비인접 조건 확인 대기\n[+] 판정 대기\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "기존 결과 통과"
+          },
+          {
+            "status": "old",
+            "text": "상위 비인접 조건 확인 대기"
+          },
+          {
+            "status": "new",
+            "text": "판정 대기"
+          }
+        ],
+        "reason": "16/18: old observation preserved in K; current incomplete criterion remains pending, old status retained red comparison"
+      },
+      "L188": {
+        "before": "\n기존 연결 시험: 통과\n광고 확인: 대기\n",
+        "current": "\n판정 대기\n",
+        "display": "\n[-] 기존 연결 시험: 통과\n[-] 광고 확인: 대기\n[+] 판정 대기\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "기존 연결 시험: 통과"
+          },
+          {
+            "status": "old",
+            "text": "광고 확인: 대기"
+          },
+          {
+            "status": "new",
+            "text": "판정 대기"
+          }
+        ],
+        "reason": "16/18: old observation preserved in K; current incomplete criterion remains pending, old status retained red comparison"
+      },
+      "L203": {
+        "before": "\n기존 결과 통과\n회수/교환 방침 연결 확인 대기\n",
+        "current": "\n판정 대기\n",
+        "display": "\n[-] 기존 결과 통과\n[-] 회수/교환 방침 연결 확인 대기\n[+] 판정 대기\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "기존 결과 통과"
+          },
+          {
+            "status": "old",
+            "text": "회수/교환 방침 연결 확인 대기"
+          },
+          {
+            "status": "new",
+            "text": "판정 대기"
+          }
+        ],
+        "reason": "16/18: old observation preserved in K; current incomplete criterion remains pending, old status retained red comparison"
+      },
+      "L219": {
+        "before": "\n기존 결과 통과\n상위 오류 문구 적용 범위 확인 대기\n",
+        "current": "\n판정 대기\n",
+        "display": "\n[-] 기존 결과 통과\n[-] 상위 오류 문구 적용 범위 확인 대기\n[+] 판정 대기\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "기존 결과 통과"
+          },
+          {
+            "status": "old",
+            "text": "상위 오류 문구 적용 범위 확인 대기"
+          },
+          {
+            "status": "new",
+            "text": "판정 대기"
+          }
+        ],
+        "reason": "16/18: old observation preserved in K; current incomplete criterion remains pending, old status retained red comparison"
+      },
+      "L239": {
+        "before": "\n기존 결과 통과\n최소 증가 시간 근거 확인 대기\n",
+        "current": "\n판정 대기\n",
+        "display": "\n[-] 기존 결과 통과\n[-] 최소 증가 시간 근거 확인 대기\n[+] 판정 대기\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "기존 결과 통과"
+          },
+          {
+            "status": "old",
+            "text": "최소 증가 시간 근거 확인 대기"
+          },
+          {
+            "status": "new",
+            "text": "판정 대기"
+          }
+        ],
+        "reason": "16/18: old observation preserved in K; current incomplete criterion remains pending, old status retained red comparison"
+      },
+      "L244": {
+        "before": "\n기존 결과 통과\n처리 시간 수치 확인 대기\n",
+        "current": "\n판정 대기\n",
+        "display": "\n[-] 기존 결과 통과\n[-] 처리 시간 수치 확인 대기\n[+] 판정 대기\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "기존 결과 통과"
+          },
+          {
+            "status": "old",
+            "text": "처리 시간 수치 확인 대기"
+          },
+          {
+            "status": "new",
+            "text": "판정 대기"
+          }
+        ],
+        "reason": "16/18: old observation preserved in K; current incomplete criterion remains pending, old status retained red comparison"
+      },
+      "L247": {
+        "before": "\n기존 결과 통과\n정상/범위 밖 응답 기록 확인 대기\n",
+        "current": "\n판정 대기\n",
+        "display": "\n[-] 기존 결과 통과\n[-] 정상/범위 밖 응답 기록 확인 대기\n[+] 판정 대기\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "기존 결과 통과"
+          },
+          {
+            "status": "old",
+            "text": "정상/범위 밖 응답 기록 확인 대기"
+          },
+          {
+            "status": "new",
+            "text": "판정 대기"
+          }
+        ],
+        "reason": "16/18: old observation preserved in K; current incomplete criterion remains pending, old status retained red comparison"
+      },
+      "L261": {
+        "before": "\n기존 결과 통과\n상위 충전 색상 적용 범위 확인 대기\n",
+        "current": "\n판정 대기\n",
+        "display": "\n[-] 기존 결과 통과\n[-] 상위 충전 색상 적용 범위 확인 대기\n[+] 판정 대기\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "기존 결과 통과"
+          },
+          {
+            "status": "old",
+            "text": "상위 충전 색상 적용 범위 확인 대기"
+          },
+          {
+            "status": "new",
+            "text": "판정 대기"
+          }
+        ],
+        "reason": "16/18: old observation preserved in K; current incomplete criterion remains pending, old status retained red comparison"
+      },
+      "L274": {
+        "before": "\n기존 결과 통과\n상위 주의 색상 적용 범위 확인 대기\n",
+        "current": "\n판정 대기\n",
+        "display": "\n[-] 기존 결과 통과\n[-] 상위 주의 색상 적용 범위 확인 대기\n[+] 판정 대기\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "기존 결과 통과"
+          },
+          {
+            "status": "old",
+            "text": "상위 주의 색상 적용 범위 확인 대기"
+          },
+          {
+            "status": "new",
+            "text": "판정 대기"
+          }
+        ],
+        "reason": "16/18: old observation preserved in K; current incomplete criterion remains pending, old status retained red comparison"
+      },
+      "I199": {
+        "before": "\n[+] 1. 사전 구성과 입력 설정\n[+] 시험용 QCC 외부기, 연결 상대 장치와 명령 전송 도구를 준비한다.\n[+] 펌웨어/운영체제/장치/앱 버전, BLE/Classic 프로파일/서비스/통신 규칙 개정판을 확인한다.\n[+] 이전 장치 등록(bonding)과 인증 상태를 초기화하고 페어링/CRA 인증 상태를 확인한다.\n[+] \n[+] 2. 수행/확인\n페어링 후 2차 인증키 전송 전에 제어 명령을 보낸다.\n불일치 키와 일치 키를 각각 보내고, 인증 성공 후 제어 명령을 보낸다.\n각 조건의 응답/인증 상태/제어 허용 여부를 통신 규칙과 비교한다.\n리모콘 및 매핑 앱을 각각 시험한다. 공개16byte 시험키를 쓰고 불일치 조건은 한쪽만 변경한다. 실제 Challenge/Response/Confirm/Status 전량을 독립 계산과 비교한다. AUTH시험패턴 중계 성공으로 CRA 성공을 대체하지 않는다.\n",
+        "current": "\n1. 사전 구성과 입력 설정\n시험용 QCC 외부기, 연결 상대 장치와 명령 전송 도구를 준비한다.\n펌웨어/운영체제/장치/앱 버전, BLE/Classic 프로파일/서비스/통신 규칙 개정판을 확인한다.\n이전 장치 등록(bonding)과 인증 상태를 초기화하고 페어링/CRA 인증 상태를 확인한다.\n\n2. 수행/확인\n페어링 후 CRA 완료 전에 일반 제어 명령을 보낸다.\n앱/QCC의 시험키를 불일치 및 일치 조건으로 각각 구성하여 CRA를 수행하고, 인증 성공 후 일반 제어 명령을 보낸다.\n각 조건의 응답/인증 상태/제어 허용 여부를 통신 규칙과 비교한다.\n리모콘 및 매핑 앱을 각각 시험한다. 공개16byte 시험키를 쓰고 불일치 조건은 한쪽만 변경한다. 실제 Challenge/Response/Confirm/Status 전량을 독립 계산과 비교한다. AUTH시험패턴 중계 성공으로 CRA 성공을 대체하지 않는다.\n",
+        "display": "\n[-] 페어링 후 2차 인증키 전송 전에 제어 명령을 보낸다.\n[-] 불일치 키와 일치 키를 각각 보내고, 인증 성공 후 제어 명령을 보낸다.\n[+] 1. 사전 구성과 입력 설정\n[+] 시험용 QCC 외부기, 연결 상대 장치와 명령 전송 도구를 준비한다.\n[+] 펌웨어/운영체제/장치/앱 버전, BLE/Classic 프로파일/서비스/통신 규칙 개정판을 확인한다.\n[+] 이전 장치 등록(bonding)과 인증 상태를 초기화하고 페어링/CRA 인증 상태를 확인한다.\n[+] \n[+] 2. 수행/확인\n[+] 페어링 후 CRA 완료 전에 일반 제어 명령을 보낸다.\n[+] 앱/QCC의 시험키를 불일치 및 일치 조건으로 각각 구성하여 CRA를 수행하고, 인증 성공 후 일반 제어 명령을 보낸다.\n각 조건의 응답/인증 상태/제어 허용 여부를 통신 규칙과 비교한다.\n리모콘 및 매핑 앱을 각각 시험한다. 공개16byte 시험키를 쓰고 불일치 조건은 한쪽만 변경한다. 실제 Challenge/Response/Confirm/Status 전량을 독립 계산과 비교한다. AUTH시험패턴 중계 성공으로 CRA 성공을 대체하지 않는다.\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "페어링 후 2차 인증키 전송 전에 제어 명령을 보낸다."
+          },
+          {
+            "status": "old",
+            "text": "불일치 키와 일치 키를 각각 보내고, 인증 성공 후 제어 명령을 보낸다."
+          },
+          {
+            "status": "new",
+            "text": "1. 사전 구성과 입력 설정"
+          },
+          {
+            "status": "new",
+            "text": "시험용 QCC 외부기, 연결 상대 장치와 명령 전송 도구를 준비한다."
+          },
+          {
+            "status": "new",
+            "text": "펌웨어/운영체제/장치/앱 버전, BLE/Classic 프로파일/서비스/통신 규칙 개정판을 확인한다."
+          },
+          {
+            "status": "new",
+            "text": "이전 장치 등록(bonding)과 인증 상태를 초기화하고 페어링/CRA 인증 상태를 확인한다."
+          },
+          {
+            "status": "new",
+            "text": ""
+          },
+          {
+            "status": "new",
+            "text": "2. 수행/확인"
+          },
+          {
+            "status": "new",
+            "text": "페어링 후 CRA 완료 전에 일반 제어 명령을 보낸다."
+          },
+          {
+            "status": "new",
+            "text": "앱/QCC의 시험키를 불일치 및 일치 조건으로 각각 구성하여 CRA를 수행하고, 인증 성공 후 일반 제어 명령을 보낸다."
+          },
+          {
+            "status": "same",
+            "text": "각 조건의 응답/인증 상태/제어 허용 여부를 통신 규칙과 비교한다."
+          },
+          {
+            "status": "same",
+            "text": "리모콘 및 매핑 앱을 각각 시험한다. 공개16byte 시험키를 쓰고 불일치 조건은 한쪽만 변경한다. 실제 Challenge/Response/Confirm/Status 전량을 독립 계산과 비교한다. AUTH시험패턴 중계 성공으로 CRA 성공을 대체하지 않는다."
+          }
+        ],
+        "reason": "1/11: CRA key configuration and authentication, no secret key transport assertion; old observation scope preserved"
+      },
+      "J199": {
+        "before": "\n조건 [1] 페어링 후 2차 인증키 전송 전에 다른 제어 명령 전송.\n통신 규칙에 따른 오류 응답이 와야 한다.\n",
+        "current": "\n조건 [1] 페어링 완료/CRA 미완료 상태에서 일반 제어 명령 전송.\n통신 규칙에 따른 오류 응답이 와야 하며 일반 제어 명령이 실행되지 않아야 한다.\n",
+        "display": "\n[-] 조건 [1] 페어링 후 2차 인증키 전송 전에 다른 제어 명령 전송.\n[-] 통신 규칙에 따른 오류 응답이 와야 한다.\n[+] 조건 [1] 페어링 완료/CRA 미완료 상태에서 일반 제어 명령 전송.\n[+] 통신 규칙에 따른 오류 응답이 와야 하며 일반 제어 명령이 실행되지 않아야 한다.\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "조건 [1] 페어링 후 2차 인증키 전송 전에 다른 제어 명령 전송."
+          },
+          {
+            "status": "old",
+            "text": "통신 규칙에 따른 오류 응답이 와야 한다."
+          },
+          {
+            "status": "new",
+            "text": "조건 [1] 페어링 완료/CRA 미완료 상태에서 일반 제어 명령 전송."
+          },
+          {
+            "status": "new",
+            "text": "통신 규칙에 따른 오류 응답이 와야 하며 일반 제어 명령이 실행되지 않아야 한다."
+          }
+        ],
+        "reason": "1/13: actual CRA state boundary"
+      },
+      "J200": {
+        "before": "\n조건 [2] 페어링 후 불일치 2차 인증키 전송.\n오류 응답이 와야 한다.\n리모콘/매핑 각각 한쪽만 다른16byte키를 적용하며 실제 CRA 실패/응답/차단을 비교한다.\n",
+        "current": "\n조건 [2] 페어링 후 리모콘/매핑 각각 QCC 공개 시험키00×16 유지, 클라이언트만01×16으로 구성하여 CRA 수행.\n인증 실패/오류 응답이며 일반 제어가 차단되어야 한다. 생산 비밀키는 사용/노출하지 않는다.\n",
+        "display": "\n[-] 조건 [2] 페어링 후 불일치 2차 인증키 전송.\n[-] 오류 응답이 와야 한다.\n[-] 리모콘/매핑 각각 한쪽만 다른16byte키를 적용하며 실제 CRA 실패/응답/차단을 비교한다.\n[+] 조건 [2] 페어링 후 리모콘/매핑 각각 QCC 공개 시험키00×16 유지, 클라이언트만01×16으로 구성하여 CRA 수행.\n[+] 인증 실패/오류 응답이며 일반 제어가 차단되어야 한다. 생산 비밀키는 사용/노출하지 않는다.\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "조건 [2] 페어링 후 불일치 2차 인증키 전송."
+          },
+          {
+            "status": "old",
+            "text": "오류 응답이 와야 한다."
+          },
+          {
+            "status": "old",
+            "text": "리모콘/매핑 각각 한쪽만 다른16byte키를 적용하며 실제 CRA 실패/응답/차단을 비교한다."
+          },
+          {
+            "status": "new",
+            "text": "조건 [2] 페어링 후 리모콘/매핑 각각 QCC 공개 시험키00×16 유지, 클라이언트만01×16으로 구성하여 CRA 수행."
+          },
+          {
+            "status": "new",
+            "text": "인증 실패/오류 응답이며 일반 제어가 차단되어야 한다. 생산 비밀키는 사용/노출하지 않는다."
+          }
+        ],
+        "reason": "1/13: mismatched-key concrete input, historical observation remains scope"
+      },
+      "J201": {
+        "before": "\n조건 [3] 페어링 후 일치하는 2차 인증키 전송.\n정상 응답이 와야 한다.\n리모콘 AES-CMAC 및 매핑 SHA-256키생성/인증 AES-CMAC의 역할을 확정하고16byte 키의 독립 계산 예상값과 전체 인증값을 대조한다. 원문 표기 정합성/벡터 미제공 부분은 판정 대기.\n",
+        "current": "\n조건 [3] 페어링 후 일치하는 공개 시험키로 CRA 수행.\n리모콘 shared_service_key 및 매핑 clinician_master_key의 공개 시험값16byte(hex)=00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n리모콘 AES-CMAC 인증, 매핑 SHA-256 파생키 생성과 AES-CMAC 인증을 구분하여 정의된 순서로 성공하고 Status1과 정상 응답이 확인되어야 한다.\n[QCC 자료 입력] shared_service_key/clinician_master_key/clinic_service_key의 역할, serial/nonce/Challenge/Confirm 직렬화와 입력 길이, 전체16byte 독립 인증 예상 벡터 및 실제 전량 인증값. 미확정 범위는 판정 대기. 생산 비밀키는 제외한다.\n",
+        "display": "\n[-] 조건 [3] 페어링 후 일치하는 2차 인증키 전송.\n[-] 정상 응답이 와야 한다.\n[-] 리모콘 AES-CMAC 및 매핑 SHA-256키생성/인증 AES-CMAC의 역할을 확정하고16byte 키의 독립 계산 예상값과 전체 인증값을 대조한다. 원문 표기 정합성/벡터 미제공 부분은 판정 대기.\n[+] 조건 [3] 페어링 후 일치하는 공개 시험키로 CRA 수행.\n[+] 리모콘 shared_service_key 및 매핑 clinician_master_key의 공개 시험값16byte(hex)=00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n[+] 리모콘 AES-CMAC 인증, 매핑 SHA-256 파생키 생성과 AES-CMAC 인증을 구분하여 정의된 순서로 성공하고 Status1과 정상 응답이 확인되어야 한다.\n[+] [QCC 자료 입력] shared_service_key/clinician_master_key/clinic_service_key의 역할, serial/nonce/Challenge/Confirm 직렬화와 입력 길이, 전체16byte 독립 인증 예상 벡터 및 실제 전량 인증값. 미확정 범위는 판정 대기. 생산 비밀키는 제외한다.\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "조건 [3] 페어링 후 일치하는 2차 인증키 전송."
+          },
+          {
+            "status": "old",
+            "text": "정상 응답이 와야 한다."
+          },
+          {
+            "status": "old",
+            "text": "리모콘 AES-CMAC 및 매핑 SHA-256키생성/인증 AES-CMAC의 역할을 확정하고16byte 키의 독립 계산 예상값과 전체 인증값을 대조한다. 원문 표기 정합성/벡터 미제공 부분은 판정 대기."
+          },
+          {
+            "status": "new",
+            "text": "조건 [3] 페어링 후 일치하는 공개 시험키로 CRA 수행."
+          },
+          {
+            "status": "new",
+            "text": "리모콘 shared_service_key 및 매핑 clinician_master_key의 공개 시험값16byte(hex)=00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00"
+          },
+          {
+            "status": "new",
+            "text": "리모콘 AES-CMAC 인증, 매핑 SHA-256 파생키 생성과 AES-CMAC 인증을 구분하여 정의된 순서로 성공하고 Status1과 정상 응답이 확인되어야 한다."
+          },
+          {
+            "status": "new",
+            "text": "[QCC 자료 입력] shared_service_key/clinician_master_key/clinic_service_key의 역할, serial/nonce/Challenge/Confirm 직렬화와 입력 길이, 전체16byte 독립 인증 예상 벡터 및 실제 전량 인증값. 미확정 범위는 판정 대기. 생산 비밀키는 제외한다."
+          }
+        ],
+        "reason": "1/13/22: actual algorithm/key/input/output and unresolved independent vectors; no source/process prose"
+      },
+      "J202": {
+        "before": "\n조건 [4] 2차 인증 성공 후 다른 내부기 제어 명령 전송.\n정상 응답과 허용된 제어 동작이 확인되어야 한다.\n",
+        "current": "\n조건 [4] CRA 성공 후 허용된 일반 내부기 제어 명령 전송.\n정상 응답과 허용된 제어 동작이 확인되어야 한다. 인증 성공을 AUTH 중계 패턴의 전송 성공으로 대신하지 않는다.\n",
+        "display": "\n[-] 조건 [4] 2차 인증 성공 후 다른 내부기 제어 명령 전송.\n[-] 정상 응답과 허용된 제어 동작이 확인되어야 한다.\n[+] 조건 [4] CRA 성공 후 허용된 일반 내부기 제어 명령 전송.\n[+] 정상 응답과 허용된 제어 동작이 확인되어야 한다. 인증 성공을 AUTH 중계 패턴의 전송 성공으로 대신하지 않는다.\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "조건 [4] 2차 인증 성공 후 다른 내부기 제어 명령 전송."
+          },
+          {
+            "status": "old",
+            "text": "정상 응답과 허용된 제어 동작이 확인되어야 한다."
+          },
+          {
+            "status": "new",
+            "text": "조건 [4] CRA 성공 후 허용된 일반 내부기 제어 명령 전송."
+          },
+          {
+            "status": "new",
+            "text": "정상 응답과 허용된 제어 동작이 확인되어야 한다. 인증 성공을 AUTH 중계 패턴의 전송 성공으로 대신하지 않는다."
+          }
+        ],
+        "reason": "1/18: real CRA success versus transport pattern"
+      }
+    }
+  }
+}

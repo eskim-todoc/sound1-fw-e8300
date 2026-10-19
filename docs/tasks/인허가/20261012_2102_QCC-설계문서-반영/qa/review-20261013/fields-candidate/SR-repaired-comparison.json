@@ -1,0 +1,130 @@
+{
+  "before": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\pre-fields\\SR-repaired.docx",
+  "after": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\fields-candidate\\[E8300-QCC] SR-FW-TD24A 소프트웨어 요구사항.docx",
+  "before_sha256": "0e7b1fa353b2535d5ad2af79199827a751d6430d3942f36982dbdfbcebd55045",
+  "after_sha256": "c27815f2002d2d026b88d431ff234a88933422ad6fabccadb867cf37a4c95260",
+  "checks": {
+    "accept": true,
+    "reject": true,
+    "body_revision_fingerprints": true,
+    "current_notice_text": true
+  },
+  "before_semantics": {
+    "accept": {
+      "body_text_sha256": "4bb2fd6b7263ed33d539b8c1095f3303ec39f9af3e4f8d0143126d09a9161b6f",
+      "body_text_length": 5286,
+      "picture_hashes_in_order": [
+        "9b0c9236d9ab9703c08d664047af3322439beb336cd7fe2a4f812082918fd35d",
+        "070b60b0a85a3540110a40f9ed3e5e427fe6e973f5186192e99de5d58c11b38b",
+        "4f7c3adc7d9427b852dbfa0f0342d94d1a2926e77712d0140b10172bb2c4c970"
+      ]
+    },
+    "reject": {
+      "body_text_sha256": "fed05b72ee1e1d6c87607cb32e1b390baf6cfd3dcfa2b4bbe517b96da395a395",
+      "body_text_length": 2840,
+      "picture_hashes_in_order": [
+        "b3f4b3d722e8b5093f6f211d940ec18e28b5b4eef3ce46769e9e464a461990a2",
+        "f372a9f37393ca468f9923b902fa1f9fdcfd62f7973c36a2b30ca1a81b4c893e",
+        "9b0c9236d9ab9703c08d664047af3322439beb336cd7fe2a4f812082918fd35d",
+        "769dc84bb17515d4aeadbe71cc372bcc2ac4c4293a8e330f1dbef0780ca27975",
+        "1ce2738f8c51a0d6551c13ba9cdb63d386100d89424a8c017597f9b1846ad3b1",
+        "78946965cfa39400a1be224f08b11b7698c13ab1b697db0ea2febc7c6a3dbc63",
+        "1144535bd5d61e6eb1aed584ce8267527965545bb2359b826e6a0d7380a94687",
+        "230f6d98a063d979b336036a7dea1edf7f9a8abc307dcaee18833b7dbe6b7658"
+      ]
+    },
+    "body_revision_fingerprints": {
+      "del|김은수|2026-09-28T17:07": {
+        "length": 780,
+        "sha256": "66a91449b31bf1a7d846fc58f294cb548a8d956c42788129b28c653d68f637f8"
+      },
+      "ins|김은수|2026-09-28T17:07": {
+        "length": 930,
+        "sha256": "17afdfdd77216a074b13aceaf25e5f79d7c9afde2b8189e6b8e6f018a1464e14"
+      },
+      "ins|김은수|2026-10-12T12:26": {
+        "length": 2029,
+        "sha256": "317edb0b73cc824d6d180531b12d5b66d6329b2402476c7e986a90191d04f5a1"
+      },
+      "del|김은수|2026-10-12T23:59": {
+        "length": 1546,
+        "sha256": "136ea39fc55d7c6a480368d917422a60d7607f4583b815d81700295d523e9ced"
+      },
+      "ins|김은수|2026-10-12T23:59": {
+        "length": 1992,
+        "sha256": "55d1a65850312cbf3869d1364bef1d6dc516c93a5b47309115dc579d0682fee7"
+      },
+      "del|김은수|2026-10-12T12:26": {
+        "length": 179,
+        "sha256": "23adde9c73c00c80ee10c52636e7e3cb5f9db58ddc921e55805c43010b61054f"
+      }
+    },
+    "current_notice_text": [
+      "[QCC/E8300 자료 입력] DMIC2가 E8300과 QCC에 함께 연결되는 경로는 확인되었다. 3분 무송수신의 감시/갱신 범위와 제어 명령 미수신 조건의 정합성, QCC 마이크 핀/클록, 연결 상대 및 프로파일/코덱별 송수신과 동시 동작 조건 및 시험 결과를 확인한다.",
+      "[QCC 자료 입력] 실제 QCC 개발 환경, 라이브러리/ADK 버전과 빌드 구성을 입력한다.",
+      "[QCC 자료 입력] QCC의 실제 메모리 배치, 실행 이미지/데이터 사용량과 부트 이미지 검사 설정을 입력한다.",
+      "[E8300 보완] 제품 사용 설명서에서 경고/안전사항, 안전한 작동법 및 동작방법의 해당 절과 내용, 배포 대상 및 검토 결과를 확인한다.",
+      "[QCC/E8300 자료 입력] 오디오 송수신, 연결/인증, 키 관리 및 펌웨어 보호에 대한 위험분석 재평가와 변경 영향의 검토 결과를 확인한다."
+    ]
+  },
+  "after_semantics": {
+    "accept": {
+      "body_text_sha256": "4bb2fd6b7263ed33d539b8c1095f3303ec39f9af3e4f8d0143126d09a9161b6f",
+      "body_text_length": 5286,
+      "picture_hashes_in_order": [
+        "9b0c9236d9ab9703c08d664047af3322439beb336cd7fe2a4f812082918fd35d",
+        "070b60b0a85a3540110a40f9ed3e5e427fe6e973f5186192e99de5d58c11b38b",
+        "4f7c3adc7d9427b852dbfa0f0342d94d1a2926e77712d0140b10172bb2c4c970"
+      ]
+    },
+    "reject": {
+      "body_text_sha256": "fed05b72ee1e1d6c87607cb32e1b390baf6cfd3dcfa2b4bbe517b96da395a395",
+      "body_text_length": 2840,
+      "picture_hashes_in_order": [
+        "b3f4b3d722e8b5093f6f211d940ec18e28b5b4eef3ce46769e9e464a461990a2",
+        "f372a9f37393ca468f9923b902fa1f9fdcfd62f7973c36a2b30ca1a81b4c893e",
+        "9b0c9236d9ab9703c08d664047af3322439beb336cd7fe2a4f812082918fd35d",
+        "769dc84bb17515d4aeadbe71cc372bcc2ac4c4293a8e330f1dbef0780ca27975",
+        "1ce2738f8c51a0d6551c13ba9cdb63d386100d89424a8c017597f9b1846ad3b1",
+        "78946965cfa39400a1be224f08b11b7698c13ab1b697db0ea2febc7c6a3dbc63",
+        "1144535bd5d61e6eb1aed584ce8267527965545bb2359b826e6a0d7380a94687",
+        "230f6d98a063d979b336036a7dea1edf7f9a8abc307dcaee18833b7dbe6b7658"
+      ]
+    },
+    "body_revision_fingerprints": {
+      "del|김은수|2026-09-28T17:07": {
+        "length": 780,
+        "sha256": "66a91449b31bf1a7d846fc58f294cb548a8d956c42788129b28c653d68f637f8"
+      },
+      "ins|김은수|2026-09-28T17:07": {
+        "length": 930,
+        "sha256": "17afdfdd77216a074b13aceaf25e5f79d7c9afde2b8189e6b8e6f018a1464e14"
+      },
+      "ins|김은수|2026-10-12T12:26": {
+        "length": 2029,
+        "sha256": "317edb0b73cc824d6d180531b12d5b66d6329b2402476c7e986a90191d04f5a1"
+      },
+      "del|김은수|2026-10-12T23:59": {
+        "length": 1546,
+        "sha256": "136ea39fc55d7c6a480368d917422a60d7607f4583b815d81700295d523e9ced"
+      },
+      "ins|김은수|2026-10-12T23:59": {
+        "length": 1992,
+        "sha256": "55d1a65850312cbf3869d1364bef1d6dc516c93a5b47309115dc579d0682fee7"
+      },
+      "del|김은수|2026-10-12T12:26": {
+        "length": 179,
+        "sha256": "23adde9c73c00c80ee10c52636e7e3cb5f9db58ddc921e55805c43010b61054f"
+      }
+    },
+    "current_notice_text": [
+      "[QCC/E8300 자료 입력] DMIC2가 E8300과 QCC에 함께 연결되는 경로는 확인되었다. 3분 무송수신의 감시/갱신 범위와 제어 명령 미수신 조건의 정합성, QCC 마이크 핀/클록, 연결 상대 및 프로파일/코덱별 송수신과 동시 동작 조건 및 시험 결과를 확인한다.",
+      "[QCC 자료 입력] 실제 QCC 개발 환경, 라이브러리/ADK 버전과 빌드 구성을 입력한다.",
+      "[QCC 자료 입력] QCC의 실제 메모리 배치, 실행 이미지/데이터 사용량과 부트 이미지 검사 설정을 입력한다.",
+      "[E8300 보완] 제품 사용 설명서에서 경고/안전사항, 안전한 작동법 및 동작방법의 해당 절과 내용, 배포 대상 및 검토 결과를 확인한다.",
+      "[QCC/E8300 자료 입력] 오디오 송수신, 연결/인증, 키 관리 및 펌웨어 보호에 대한 위험분석 재평가와 변경 영향의 검토 결과를 확인한다."
+    ]
+  },
+  "pass": true,
+  "scope": "TOC and computed fields excluded; accepted/rejected body text, drawings and author/date revision text preserved"
+}

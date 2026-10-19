@@ -1,0 +1,32 @@
+[
+  {
+    "phase": "before-reject-all",
+    "input": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sip-qcc-cleanup-20261016\\before.docx",
+    "sha256_before": "347D8632BC21AA37EE84418E471CB2CA67541CBA7D014C17C3058DA2A1D62978",
+    "revisions_at_open": -1,
+    "new_revisions": [],
+    "revisions_after_reject": -1,
+    "revisions_after_accept": 0,
+    "pages": 14,
+    "tables": 5,
+    "inline_shapes": 1,
+    "shapes": 2,
+    "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sip-qcc-cleanup-20261016\\before-reject-all.pdf",
+    "paragraphs": []
+  },
+  {
+    "phase": "candidate-reject-all",
+    "input": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sip-qcc-cleanup-20261016\\candidate.docx",
+    "sha256_before": "5EEBFE195D49A6A28E38B90DA04F071D845FC2C04EBD0B7828999EE865B9FC90",
+    "revisions_at_open": -1,
+    "new_revisions": [],
+    "revisions_after_reject": -1,
+    "revisions_after_accept": 0,
+    "pages": 14,
+    "tables": 5,
+    "inline_shapes": 1,
+    "shapes": 2,
+    "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sip-qcc-cleanup-20261016\\candidate-reject-all.pdf",
+    "paragraphs": []
+  }
+]

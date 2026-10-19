@@ -1,0 +1,16 @@
+{
+  "books": [
+    {
+      "code": "confirm-full",
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\photo-attach-20261016\\confirmation-after.xlsx",
+      "sheet": "보고서_시스템 시험",
+      "parts": [
+        {
+          "range": "J32:L293",
+          "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\photo-attach-20261016\\confirmation-full.pdf"
+        }
+      ]
+    }
+  ],
+  "recordPath": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\photo-attach-20261016\\confirmation-full-native.json"
+}

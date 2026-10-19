@@ -1,0 +1,41 @@
+{
+  "scope": "Saved current files: selected cell preview only, native full print remains root task",
+  "files": [
+    {
+      "key": "SUVC",
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\SUVC-after.png",
+      "sheet": "기준서_유닛 검증",
+      "range": "B1737:K1737"
+    },
+    {
+      "key": "SUVR",
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\SUVR-after.png",
+      "sheet": "보고서_유닛 시험",
+      "range": "B1737:M1737"
+    },
+    {
+      "key": "SITC",
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\SITC-after.png",
+      "sheet": "기준서_통합 시험",
+      "range": "B136:M136"
+    },
+    {
+      "key": "SITR",
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\SITR-after.png",
+      "sheet": "보고서_통합시험",
+      "range": "B136:O136"
+    },
+    {
+      "key": "SSTC",
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\SSTC-after.png",
+      "sheet": "기준서_시스템 시험",
+      "range": "B282:J283"
+    },
+    {
+      "key": "SSTR",
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\SSTR-after.png",
+      "sheet": "보고서_시스템 시험",
+      "range": "B282:L283"
+    }
+  ]
+}

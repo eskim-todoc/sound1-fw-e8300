@@ -1,0 +1,38 @@
+[
+  {
+    "candidate": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\rid83-20261013\\word\\candidates\\[E8300-QCC] SR-FW-TD24A 소프트웨어 요구사항.docx",
+    "projectionSHA256": "31df35ddb3821b9eb0222a0fda649ff27c83d499b713b4767ac39c1dc018e52f",
+    "candidateSHA256": "fb0f0a4ed73e0712e79d499097c0b635b8ea6446f65b5ddfff840edd2253b019",
+    "code": "SR",
+    "projection": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\rid83-20261013\\word\\qa-narrow\\SR-new-only.docx",
+    "nativeRejectMatchesBefore": true,
+    "checkedAt": "2026-10-13T16:12:37.1390728+09:00",
+    "nativeNewRevisionCount": 2,
+    "scope": "Actual Word acceptance/rejection of new revisions in minimal original-paragraph QA projection after accepting prior paragraph history. Full candidate separately tested for native acceptance, retained revision XML, and XML new-only rejection restoring prior paragraph.",
+    "nativeAcceptMatchesCurrent": true,
+    "directSelectiveRejectOnFullCandidate": false,
+    "observed": {
+      "accept": "Bluetooth Classic 송수신 요구 SW-FW-RID-69는 SYS-RID-SP-FW-15에 연결한다. 사용 설명서 요구 SW-FW-RID-83은 경고/안전사항, 안전한 작동법 및 동작방법을 정의한 자체 소프트웨어 요구사항이다. 다른 요구의 시스템 및 위험 통제 추적은 소프트웨어 요구사항 사양서에서 확인한다.\r",
+      "reject": "Bluetooth Classic 송수신 요구 SW-FW-RID-69는 SYS-RID-SP-FW-15에 연결한다. 사용 설명서 요구 SW-FW-RID-83은 SYS-RID-ACDOC-17, SYS-RID-ACDOC-18 및 SYS-RID-ACDOC-20의 경고/안전사항, 안전한 작동법 및 동작방법에 연결한다. 다른 요구의 시스템 및 위험 통제 추적은 소프트웨어 요구사항 사양서에서 확인한다.\r"
+    },
+    "candidateAndProjectionUnchanged": true
+  },
+  {
+    "candidate": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\rid83-20261013\\word\\candidates\\[E8300-QCC] SAD-FW-TD24A 소프트웨어 아키텍쳐 기술서.docx",
+    "projectionSHA256": "1f6e98ed3801c5e5dfea42547db4954bc4ef676ae83e06d5a105e171bbce07aa",
+    "candidateSHA256": "4e71a6b7d696c7e5e21804eff3182f4a9f2f5bb6991e4b441ee6cbf5874119b1",
+    "code": "SAD",
+    "projection": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\rid83-20261013\\word\\qa-narrow\\SAD-new-only.docx",
+    "nativeRejectMatchesBefore": true,
+    "checkedAt": "2026-10-13T16:12:37.7016511+09:00",
+    "nativeNewRevisionCount": 1,
+    "scope": "Actual Word acceptance/rejection of new revisions in minimal original-paragraph QA projection after accepting prior paragraph history. Full candidate separately tested for native acceptance, retained revision XML, and XML new-only rejection restoring prior paragraph.",
+    "nativeAcceptMatchesCurrent": true,
+    "directSelectiveRejectOnFullCandidate": false,
+    "observed": {
+      "accept": "제품 문서 항목 / 실행 유닛 배정 대상 아님\u000b[E8300 보완] 제품 사용 설명서의 안전/작동법/동작방법 및 문제 해결 내용, 배포 대상과 검토 결과를 확인해야 한다.\r",
+      "reject": "상위 요구사항: SYS-RID-ACDOC-17 / SYS-RID-ACDOC-18 / SYS-RID-ACDOC-20.\u000b제품 문서 항목 / 실행 유닛 배정 대상 아님\u000b[E8300 보완] 제품 사용 설명서의 안전/작동법/동작방법 및 문제 해결 내용, 배포 대상과 검토 결과를 확인해야 한다.\r"
+    },
+    "candidateAndProjectionUnchanged": true
+  }
+]

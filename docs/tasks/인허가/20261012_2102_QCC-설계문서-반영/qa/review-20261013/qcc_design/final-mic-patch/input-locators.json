@@ -1,0 +1,270 @@
+{
+  "SAD": {
+    "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SAD-FW-TD24A 소프트웨어 아키텍쳐 기술서.docx",
+    "sha256": "ff7726ea2270a6fd34cb10322770a9c8a003b85edc527589578b355d25376576",
+    "images": [
+      {
+        "rid": "rId12",
+        "part": "word/media/image5.png",
+        "hash": "070b60b0a85a3540110a40f9ed3e5e427fe6e973f5186192e99de5d58c11b38b"
+      },
+      {
+        "rid": "rId16",
+        "part": "word/media/image9.png",
+        "hash": "6c5f3fc9004546177cde5c36ad22364d3061c73be77b656d4337ab3792122414"
+      }
+    ],
+    "table_reference": []
+  },
+  "SDDD": {
+    "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SDDD-FW-TD24A 소프트웨어 상세 설계서.docx",
+    "sha256": "d7c1777f089cd37a6930b9452a928908286006bc35ec8cd131ec0199af5de776",
+    "images": [
+      {
+        "rid": "rId14",
+        "part": "word/media/image6.png",
+        "hash": "070b60b0a85a3540110a40f9ed3e5e427fe6e973f5186192e99de5d58c11b38b"
+      },
+      {
+        "rid": "rId16",
+        "part": "word/media/image8.png",
+        "hash": "d765976d40a8eb45e1937134a4efbf7603c5ff68c7093b2ac81783e47bfb20bc"
+      },
+      {
+        "rid": "rId18",
+        "part": "word/media/image10.png",
+        "hash": "e321dcaf061afef8731cd7c9453abc3acae5e6a76e96340633e8275d60ed2f29"
+      },
+      {
+        "rid": "rId20",
+        "part": "word/media/image12.png",
+        "hash": "18255e977ed7fc67023a830c3f1c4b83e70b3b43bffaa89fe24b1ca9b8d9bce1"
+      },
+      {
+        "rid": "rId24",
+        "part": "word/media/image16.png",
+        "hash": "66e19c1aa5aa5c9c5759e444eac9763910ac38f16c780f8c56f08d9f18c21226"
+      },
+      {
+        "rid": "rId25",
+        "part": "word/media/image17.png",
+        "hash": "6c8ba8b878358b0f05d1c73b946b20b8bd5814538b36535f45c09a5ac9aaa644"
+      },
+      {
+        "rid": "rId26",
+        "part": "word/media/image18.png",
+        "hash": "097e3041ce8e9240cb118cf9e264076ebd6cf45d1c054f5b89eb6e68e9e42473"
+      },
+      {
+        "rid": "rId30",
+        "part": "word/media/image22.png",
+        "hash": "2112ba7bfe8b249bfa59de6d8bfa2293d793ba06dd303743cf8958eebf43ac33"
+      },
+      {
+        "rid": "rId32",
+        "part": "word/media/image24.png",
+        "hash": "c77929a75e94a4f69ab84fcd1b9a3f416b02459e670187765860f6765e6ee55e"
+      },
+      {
+        "rid": "rId33",
+        "part": "word/media/image25.png",
+        "hash": "7020c0e21a97abb4d1e8892e94642c2ae23f0228ffcc77bc642ad228676ef760"
+      },
+      {
+        "rid": "rId34",
+        "part": "word/media/image26.png",
+        "hash": "50dfef992ff1df85cd48fdb45d1def4b381b014522b189cabcaae6480af6d8d5"
+      },
+      {
+        "rid": "rId35",
+        "part": "word/media/image27.png",
+        "hash": "15ea4cf38aa4e90033b5ece49780cb7ca3fef68853e45c9268b4c6dd7f20e0d5"
+      },
+      {
+        "rid": "rId36",
+        "part": "word/media/image28.png",
+        "hash": "c50bdc4d3cdf291d10a6a84a41244b9ad8b1f8736e15bc83d9b1b41a0b1a80ad"
+      },
+      {
+        "rid": "rId37",
+        "part": "word/media/image29.png",
+        "hash": "23a20e9082de62a5bc15bdf7103c2789cbb31dc12791f5ae248661356909d9da"
+      },
+      {
+        "rid": "rId38",
+        "part": "word/media/image30.png",
+        "hash": "2f7fa8e4a5dd0d911f62ae9f9db3b158fb28c99bbfa6e6b40c2fb3a1ab1e4a51"
+      },
+      {
+        "rid": "rId39",
+        "part": "word/media/image31.png",
+        "hash": "3e13d742276e767ed9a269f2dec5b115e15d915fcd1a0a2bfc8a9ae08075549a"
+      },
+      {
+        "rid": "rId40",
+        "part": "word/media/image32.png",
+        "hash": "72d8d5637d7e7d53ab01ac834e81339fa09233d7a0f842404f1c977983e235eb"
+      },
+      {
+        "rid": "rId43",
+        "part": "word/media/image35.png",
+        "hash": "4c502898c29fda94195b4d35b5edb82cb51ef269bde86587310dc5d3ccd28994"
+      },
+      {
+        "rid": "rId46",
+        "part": "word/media/image38.png",
+        "hash": "14918ede9f70bbb6bfe6bb5cb8e29256edac826fa2e571be124ae426b0141a0f"
+      },
+      {
+        "rid": "rId47",
+        "part": "word/media/image39.png",
+        "hash": "2d0e42221298c1fff5568e003ea0f5f211ee8f943ba015c02dd051ced69f47d7"
+      },
+      {
+        "rid": "rId48",
+        "part": "word/media/image40.png",
+        "hash": "d0d862334bfe660de340a0786a501039da2ccfc8e08da63fc90a3dbab84a9d33"
+      },
+      {
+        "rid": "rId49",
+        "part": "word/media/image41.png",
+        "hash": "a709231420bf16878b3dacc4a6b4b0d706341884ac6785bbdb6e669cc8353cee"
+      },
+      {
+        "rid": "rId50",
+        "part": "word/media/image42.png",
+        "hash": "16577e60e53b90e2d42fc73218b90b6481f650649d977c2c9d3314b54dfcd671"
+      },
+      {
+        "rid": "rId51",
+        "part": "word/media/image43.png",
+        "hash": "e0a22add59887554d9805a1ece0087bc7cbe6a53d71e9af089c79e2e07e240ce"
+      },
+      {
+        "rid": "rId57",
+        "part": "word/media/image49.png",
+        "hash": "5ac34b825d95760dc380270a435a118756d4463b4e8e6f7c43cfdd24f414f982"
+      },
+      {
+        "rid": "rId58",
+        "part": "word/media/image50.png",
+        "hash": "f2fe825c8b325f53c89d296cd90dd0d6b9a4407c85c46122e9a8494cc2fc7aba"
+      },
+      {
+        "rid": "rId60",
+        "part": "word/media/image52.png",
+        "hash": "cd2d3b0de8fa5eaa57337ca12f90b021be89758608acc83017a98b357d1b7236"
+      },
+      {
+        "rid": "rId63",
+        "part": "word/media/image55.png",
+        "hash": "7a86d7a8758ef3f31ba8eb156c0f3db6e6ac037952afd43256f356d026de8767"
+      },
+      {
+        "rid": "rId83",
+        "part": "word/media/image75.png",
+        "hash": "d3e4fabc1e46adfec4ba8a39ce545e4b2b354eba80eac37ec73ec61798f73a57"
+      },
+      {
+        "rid": "rId84",
+        "part": "word/media/image76.png",
+        "hash": "249e61693dd222e9e69d71df44c240f5f0de983f8e8e2f247b1c2d9d6335f27e"
+      },
+      {
+        "rid": "rId85",
+        "part": "word/media/image77.png",
+        "hash": "9feb2fc310dfe60c9f09327f6b42d135ba532a31f0149b2a966ec357b3310807"
+      },
+      {
+        "rid": "rId86",
+        "part": "word/media/image78.png",
+        "hash": "145a2629e4173b90edbb3a95c65b29df99e7355935c1e10673d407c3ce37ef5c"
+      },
+      {
+        "rid": "rId87",
+        "part": "word/media/image79.png",
+        "hash": "c08afac614391f1c521e912501b699c3ed17683517c683dba05fa04a51e2b8f5"
+      },
+      {
+        "rid": "rId89",
+        "part": "word/media/image81.png",
+        "hash": "f29c34ddfcd2b332e25ce572d0c2c90a077e6abb64468faa9fc9e508cb480a83"
+      },
+      {
+        "rid": "rId90",
+        "part": "word/media/image82.png",
+        "hash": "2ccf0376e5241b0b1d984c35d7521ccbb431f6db412a9ba144a7d03596ad68a4"
+      },
+      {
+        "rid": "rId91",
+        "part": "word/media/image83.png",
+        "hash": "0fce8e429b5f10937e97b5ee5979355dec7d54fe94f256525c761f66a7c674f9"
+      },
+      {
+        "rid": "rId92",
+        "part": "word/media/image84.png",
+        "hash": "54e9f778526f9a0d6da1072b4009db0472ef1bacc339c94388edbf5c29ad69df"
+      },
+      {
+        "rid": "rId93",
+        "part": "word/media/image85.png",
+        "hash": "c7ac5974a2fb72a0f96753cb4d24032b1694041e88112769dc9f55d47df5f7f3"
+      },
+      {
+        "rid": "rId94",
+        "part": "word/media/image86.png",
+        "hash": "2c8b276bf5813a258860bdbf83c9d69e036b694cb66bb07e56224dc344396fdd"
+      },
+      {
+        "rid": "rId95",
+        "part": "word/media/image87.png",
+        "hash": "4f7c67ae618d5610cf330a9dd0c30f6ee5437c2b9376c17c691ef0cfe16e834d"
+      },
+      {
+        "rid": "rId96",
+        "part": "word/media/image88.png",
+        "hash": "7e2655bd6ab12ada17651ba1d529fa80309084f1bd6a4612a079b48d6cdfdb5c"
+      }
+    ],
+    "table_reference": [
+      {
+        "pid": "2E8869E0",
+        "text": "내부기의 DAC 파라미터가 표 145와 같을 때, 자극 디지털값은 (전류-오프셋 전류)에 선택 범위의 환산 계수를 곱하고 15비트 우측 이동하여 구한다. 오프셋 레지스터도 선택한 오프셋 계수로 계산한다. 이 파라미터에서 펄스폭 25us, 32채널 모두 T=100/C=300uA를 입력하면 A/A 범위, 오프셋 전류 100uA, 오프셋 레지스터 44, T=0/C=127이 된다. 연결할 내부기의 DAC 상한과 환산 계수는 파라미터로 제공하고, 범위 선택과 전하량 조건을 각각 판단하도록 한다."
+      }
+    ]
+  },
+  "SIP": {
+    "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SIP-FW-TD24A 소프트웨어 통합 계획서.docx",
+    "sha256": "10e39ed37d53d0fa70e457cb4c4f5d48bfb05237eed51cce105271c7d90773d8",
+    "images": [
+      {
+        "rid": "rId13",
+        "part": "word/media/image6.png",
+        "hash": "6c5f3fc9004546177cde5c36ad22364d3061c73be77b656d4337ab3792122414"
+      }
+    ],
+    "table_reference": []
+  },
+  "SR": {
+    "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\02_설계 입력\\SW\\외부기\\[E8300-QCC] SR-FW-TD24A 소프트웨어 요구사항.docx",
+    "sha256": "fa08a1f90789f5a789423bbaff7462dbb35781d0e2680f7a05cf3562e751813d",
+    "images": [
+      {
+        "rid": "rId12",
+        "part": "word/media/image4.png",
+        "hash": "9b0c9236d9ab9703c08d664047af3322439beb336cd7fe2a4f812082918fd35d"
+      },
+      {
+        "rid": "rId15",
+        "part": "word/media/image7.png",
+        "hash": "070b60b0a85a3540110a40f9ed3e5e427fe6e973f5186192e99de5d58c11b38b"
+      },
+      {
+        "rid": "rId17",
+        "part": "word/media/image9.png",
+        "hash": "4f7c3adc7d9427b852dbfa0f0342d94d1a2926e77712d0140b10172bb2c4c970"
+      }
+    ],
+    "table_reference": []
+  }
+}

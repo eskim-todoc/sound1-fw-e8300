@@ -1,0 +1,76 @@
+{
+  "SUVC": {
+    "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SUVC-FW-TD24A 소프트웨어 유닛 검증 기준서.xlsx",
+    "sheet": "기준서_유닛 검증",
+    "hash": "014ac906bdedb3d52f8e0a704480ae18d6da29c11467c2f634ff1c6ae9b63ca3",
+    "changes": {
+      "D24": {
+        "before": "\n시험자가 전 항목 통과를 확인했다. 입력별 예상 출력과 대조하여 결과 칸을 정리했다.\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "시험자가 전 항목 통과를 확인했다. 입력별 예상 출력과 대조하여 결과 칸을 정리했다."
+          },
+          {
+            "status": "new",
+            "text": "기존 E8300 유닛 시험의 시험자 확인 결과를 입력별 예상 출력과 대조하여 결과 칸에 기록했다. 이 확인을 새 QCC 시험 조건의 통과로 확대하지 않는다."
+          },
+          {
+            "status": "new",
+            "text": "QCC 시험 조건은 실행 결과가 없어 미실행 / 판정 대기다."
+          }
+        ],
+        "display": "\n[-] 시험자가 전 항목 통과를 확인했다. 입력별 예상 출력과 대조하여 결과 칸을 정리했다.\n[+] 기존 E8300 유닛 시험의 시험자 확인 결과를 입력별 예상 출력과 대조하여 결과 칸에 기록했다. 이 확인을 새 QCC 시험 조건의 통과로 확대하지 않는다.\n[+] QCC 시험 조건은 실행 결과가 없어 미실행 / 판정 대기다.\n",
+        "current": "\n기존 E8300 유닛 시험의 시험자 확인 결과를 입력별 예상 출력과 대조하여 결과 칸에 기록했다. 이 확인을 새 QCC 시험 조건의 통과로 확대하지 않는다.\nQCC 시험 조건은 실행 결과가 없어 미실행 / 판정 대기다.\n",
+        "reason": "historic E8300 tester-confirmed result scope; QCC conditions remain unexecuted"
+      }
+    },
+    "page_break_after_rows": []
+  },
+  "SUVR": {
+    "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\04_설계 검증\\SW\\외부기\\[E8300-QCC] SUVR-FW-TD24A 소프트웨어 유닛 검증 보고서.xlsx",
+    "sheet": "보고서_유닛 시험",
+    "hash": "bcc605f85ba6aa93836c2918d6a9b6a3df7bdcd949823758b5bbc8687a66b729",
+    "changes": {
+      "D24": {
+        "before": "\n시험자가 전 항목 통과를 확인했다. 입력별 예상 출력과 대조하여 결과 칸을 정리했다.\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "시험자가 전 항목 통과를 확인했다. 입력별 예상 출력과 대조하여 결과 칸을 정리했다."
+          },
+          {
+            "status": "new",
+            "text": "기존 E8300 유닛 시험의 시험자 확인 결과를 입력별 예상 출력과 대조하여 결과 칸에 기록했다. 이 확인을 새 QCC 시험 조건의 통과로 확대하지 않는다."
+          },
+          {
+            "status": "new",
+            "text": "QCC 시험 조건은 실행 결과가 없어 미실행 / 판정 대기다."
+          }
+        ],
+        "display": "\n[-] 시험자가 전 항목 통과를 확인했다. 입력별 예상 출력과 대조하여 결과 칸을 정리했다.\n[+] 기존 E8300 유닛 시험의 시험자 확인 결과를 입력별 예상 출력과 대조하여 결과 칸에 기록했다. 이 확인을 새 QCC 시험 조건의 통과로 확대하지 않는다.\n[+] QCC 시험 조건은 실행 결과가 없어 미실행 / 판정 대기다.\n",
+        "current": "\n기존 E8300 유닛 시험의 시험자 확인 결과를 입력별 예상 출력과 대조하여 결과 칸에 기록했다. 이 확인을 새 QCC 시험 조건의 통과로 확대하지 않는다.\nQCC 시험 조건은 실행 결과가 없어 미실행 / 판정 대기다.\n",
+        "reason": "historic E8300 tester-confirmed result scope; QCC conditions remain unexecuted"
+      }
+    },
+    "page_break_after_rows": []
+  },
+  "SSTC": {
+    "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SSTC-FW-TD24A 소프트웨어 시스템 시험 기준서.xlsx",
+    "sheet": "기준서_시스템 시험",
+    "hash": "bd5c80557f5a06c56c3727665016f257f95cae2d40d00a9356bf20d9ee4f9616",
+    "changes": {},
+    "page_break_after_rows": [
+      218
+    ]
+  },
+  "SSTR": {
+    "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\04_설계 검증\\SW\\외부기\\[E8300-QCC] SSTR-FW-TD24A 소프트웨어 시스템 시험 보고서.xlsx",
+    "sheet": "보고서_시스템 시험",
+    "hash": "84fb5e568b36df97dd4d3974bdc3f3d70614f7b8d7b89552c779d8240bea334c",
+    "changes": {},
+    "page_break_after_rows": [
+      218
+    ]
+  }
+}

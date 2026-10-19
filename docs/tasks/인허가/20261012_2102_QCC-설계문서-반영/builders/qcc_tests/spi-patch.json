@@ -1,0 +1,27 @@
+{
+  "unit": {
+    "K1735": "\n조건 [2]\n입력: 기동 후 원문 shutdown_ind=0, 이후 배터리 주기 읽기. 잔량80/충전1/뚜껑1과잔량40/충전0/뚜껑2\n예상/판정: 입력 A: 잔량80%, charger_connected=1, lid=1. 논리 메시지 버퍼20byte(hex)=34 50 01 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n입력 B: 잔량40%, charger_connected=0, lid=2. 논리 메시지 버퍼20byte(hex)=34 28 00 02 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n각 입력의 E8300 응답 저장배열21byte(hex)=34 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 02; 마지막 index20=응답길이2, 유효 ACK=34 01.\nE8300 전체 예상 RTT A: [BT] CMD 0x34, CHARGER STATE: 1, BATT LEVEL 80 PERCENT, LID STATE 1\n전체 예상 RTT B: [BT] CMD 0x34, CHARGER STATE: 0, BATT LEVEL 40 PERCENT, LID STATE 2\n위 RTT는 E8300 구현 출력의 예상 문자열이며 QCC 실측 로그가 아니다. 각 상태80→40, charger1→0, lid1→2. shutdown_ind 전송 시점은 미확정.\n전송 경계: type+payload는최대20byte이며 위 hex는논리20byte버퍼(미사용00포함)이다. 실제SPI물리프레임은20byte+별도length1byte=21byte로구분한다.\n[QCC/E8300 자료 입력] 실제QCC 송신의length필드 값/위치 및논리메시지→SPI21byte변환 자료. E8300 응답index20=2와구분한다.\n",
+    "J1735": "\nQCC 논리메시지(type+payload 최대20byte)와실제SPI21byte(별도length1byte 포함), E8300 수신/상태,21바이트ACK를 각각 저장.유효응답[34,01]과저장배열길이칸을 구분\n각 입력과 전량 실제값을 동일 조건의 결과 칸에 기입한다. 부분 로그만 제공된 경우 전체 형식/자료 부족을 기록한다.\n"
+  },
+  "integration": {
+    "M131": "\n조건 [1]\n입력: 잔량80%, binary충전1, lid1\n예상/판정: 논리 메시지 버퍼20byte(hex)=34 50 01 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n응답 저장21byte=34 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 02; 유효 ACK=34 01, index20=2. E8300 잔량80/충전1/lid1. 전체 예상 RTT: [BT] CMD 0x34, CHARGER STATE: 1, BATT LEVEL 80 PERCENT, LID STATE 1\n전송 경계: type+payload최대20byte; 위20byte버퍼는미사용00채움까지표시한다. 물리SPI프레임은20byte+별도length1byte=21byte이다.\n[QCC/E8300 자료 입력] 실제QCC 송신length필드 값/위치·SPI21byte변환 자료. E8300 ACK의index20=2와구분한다.\n",
+    "M132": "\n조건 [2]\n입력: 잔량40%, binary충전0, lid2\n예상/판정: 논리 메시지 버퍼20byte(hex)=34 28 00 02 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n응답 저장21byte=34 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 02; E8300 잔량40/충전0/lid2. 전체 예상 RTT: [BT] CMD 0x34, CHARGER STATE: 0, BATT LEVEL 40 PERCENT, LID STATE 2\n전송 경계: type+payload최대20byte; 위20byte버퍼는미사용00채움까지표시한다. 물리SPI프레임은20byte+별도length1byte=21byte이다.\n[QCC/E8300 자료 입력] 실제QCC 송신length필드 값/위치·SPI21byte변환 자료. E8300 ACK의index20=2와구분한다.\n",
+    "E134": "\n부착·종료 신호와 Bluetooth 상태 연계\n검증 범위: RID46/67/68의 QCC PIO/연결표시·광고 및기동/종료상태 연계 지원. 등록된 내부기RF신원 확인과 실제자극출력 억제의 완주 판정은 E8300 SYS46/67/68의 해당경로에서별도확인한다. 기존E8300 결과의범위를유지한다.\n"
+  },
+  "integration_break_before_rows": [
+    131,
+    134,
+    136,
+    137,
+    141,
+    142,
+    144
+  ],
+  "unit_heights": {
+    "1735": 409.5
+  },
+  "integration_heights": {
+    "131": 350,
+    "132": 350
+  }
+}

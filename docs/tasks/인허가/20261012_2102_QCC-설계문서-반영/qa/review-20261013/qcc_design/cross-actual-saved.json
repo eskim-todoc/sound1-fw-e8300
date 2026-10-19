@@ -1,0 +1,724 @@
+{
+  "status": "통과",
+  "scope": "Saved OOXML current-body semantic contract checks for 82 RID, 14 QCC units / 15 QCC unit groups / 7 integration groups, including integration22 direct CFX receiver boundary and system82/83. This does not replace actual native AcceptAll cell preservation or whole E8300 declaration/trace review.",
+  "input_hashes": {
+    "SAD": "84f592a7f7988a78eb73fa718268cc22ddf20a5bac796358b971aba0d23ccc68",
+    "SDDD": "121d4204a3b4bc1946695b74820720bc388d27e9978ef91b2b40f550e2145e2e",
+    "SIP": "347d8632bc21aa37ee84418e471cb2ca67541cba7d014c17c3058da2a1d62978",
+    "requirements_contract": "e7bd8492009900ce02886e6861cfbbdcb08e8fad1fdaa25f15bbce9fce548614",
+    "test_current_values": "404f721f32b7910da6fc9e9aca3d7d75317fccea4835e87e593703337a842acc"
+  },
+  "requirements": {
+    "active_count": 82,
+    "RID82_active_refs": 0,
+    "RID69_transmit_receive_integrated": true,
+    "RID83_actual_upper_ids": true,
+    "SAD_forward_current_rows": 82
+  },
+  "units": {
+    "SU-ID-QCC-001": {
+      "title": "SU-ID-QCC-001 시스템 초기화와 설정 유닛",
+      "requirements": [
+        "SW-FW-RID-15",
+        "SW-FW-RID-16",
+        "SW-FW-RID-21",
+        "SW-FW-RID-22",
+        "SW-FW-RID-29",
+        "SW-FW-RID-44",
+        "SW-FW-RID-45",
+        "SW-FW-RID-48",
+        "SW-FW-RID-49",
+        "SW-FW-RID-52",
+        "SW-FW-RID-63",
+        "SW-FW-RID-76"
+      ],
+      "tests": [
+        "SW-FW-UnitTest-QCC-ID-4"
+      ],
+      "purpose": "QCC의 주변장치와 라이브러리를 정해진 순서로 준비하여 상태 처리와 통신이 유효한 초기 설정에서 시작되도록 한다.",
+      "module": "SI-ID-QCC-001"
+    },
+    "SU-ID-QCC-002": {
+      "title": "SU-ID-QCC-002 시스템 상태 유닛",
+      "requirements": [
+        "SW-FW-RID-21",
+        "SW-FW-RID-22",
+        "SW-FW-RID-29",
+        "SW-FW-RID-35",
+        "SW-FW-RID-38",
+        "SW-FW-RID-44",
+        "SW-FW-RID-45",
+        "SW-FW-RID-46",
+        "SW-FW-RID-63",
+        "SW-FW-RID-66",
+        "SW-FW-RID-67",
+        "SW-FW-RID-68",
+        "SW-FW-RID-69",
+        "SW-FW-RID-70"
+      ],
+      "tests": [
+        "SW-FW-UnitTest-QCC-ID-4",
+        "SW-FW-UnitTest-QCC-ID-5"
+      ],
+      "purpose": "E8300의 연결/종료 신호와 전원/무선 상태를 관리하고 BLE와 SPI 사이에서 명령과 응답을 중계한다.",
+      "module": "SI-ID-QCC-001"
+    },
+    "SU-ID-QCC-003": {
+      "title": "SU-ID-QCC-003 장치 상태 유닛",
+      "requirements": [
+        "SW-FW-RID-15",
+        "SW-FW-RID-69",
+        "SW-FW-RID-70"
+      ],
+      "tests": [
+        "SW-FW-UnitTest-QCC-ID-6"
+      ],
+      "purpose": "생산 시 결정한 Standalone 또는 TWS 구성에 따라 오디오와 제어 데이터의 처리 대상을 선택한다.",
+      "module": "SI-ID-QCC-001"
+    },
+    "SU-ID-QCC-004": {
+      "title": "SU-ID-QCC-004 블루투스 상태 유닛",
+      "requirements": [
+        "SW-FW-RID-44",
+        "SW-FW-RID-45",
+        "SW-FW-RID-46",
+        "SW-FW-RID-48",
+        "SW-FW-RID-49",
+        "SW-FW-RID-66",
+        "SW-FW-RID-67",
+        "SW-FW-RID-68",
+        "SW-FW-RID-69",
+        "SW-FW-RID-70"
+      ],
+      "tests": [
+        "SW-FW-UnitTest-QCC-ID-7",
+        "SW-FW-UnitTest-QCC-ID-8"
+      ],
+      "purpose": "내부기 부착 상태와 Bluetooth 연결 상태를 연결하여 검색/연결 가능 여부와 외부기 장치명을 관리한다.",
+      "module": "SI-ID-QCC-001"
+    },
+    "SU-ID-QCC-005": {
+      "title": "SU-ID-QCC-005 PIO 포트 제어 유닛",
+      "requirements": [
+        "SW-FW-RID-15",
+        "SW-FW-RID-16",
+        "SW-FW-RID-44",
+        "SW-FW-RID-45",
+        "SW-FW-RID-46",
+        "SW-FW-RID-67",
+        "SW-FW-RID-68",
+        "SW-FW-RID-69"
+      ],
+      "tests": [
+        "SW-FW-UnitTest-QCC-ID-1"
+      ],
+      "purpose": "QCC의 디지털 입력, 출력과 주변장치 기능을 설정하고 입력 변화를 상태 처리에 전달한다.",
+      "module": "SI-ID-QCC-002"
+    },
+    "SU-ID-QCC-006": {
+      "title": "SU-ID-QCC-006 Power 제어 유닛",
+      "requirements": [
+        "SW-FW-RID-21",
+        "SW-FW-RID-22",
+        "SW-FW-RID-23",
+        "SW-FW-RID-28",
+        "SW-FW-RID-29",
+        "SW-FW-RID-34",
+        "SW-FW-RID-55",
+        "SW-FW-RID-62",
+        "SW-FW-RID-63",
+        "SW-FW-RID-66",
+        "SW-FW-RID-68"
+      ],
+      "tests": [
+        "SW-FW-UnitTest-QCC-ID-2"
+      ],
+      "purpose": "배터리 전압과 충전 연결을 잔량/전원 상태로 변환하여 시스템에 전달하고 저전압과 종료 요청을 처리한다.",
+      "module": "SI-ID-QCC-002"
+    },
+    "SU-ID-QCC-007": {
+      "title": "SU-ID-QCC-007 NVM 처리 유닛",
+      "requirements": [
+        "SW-FW-RID-52",
+        "SW-FW-RID-76"
+      ],
+      "tests": [
+        "SW-FW-UnitTest-QCC-ID-3"
+      ],
+      "purpose": "Application의 비휘발성 데이터를 식별자와 길이로 접근하여 외부기 설정과 제조 정보를 유지한다.",
+      "module": "SI-ID-QCC-002"
+    },
+    "SU-ID-QCC-008": {
+      "title": "SU-ID-QCC-008 Bluetooth Classic 유닛",
+      "requirements": [
+        "SW-FW-RID-15",
+        "SW-FW-RID-16",
+        "SW-FW-RID-69"
+      ],
+      "tests": [
+        "SW-FW-UnitTest-QCC-ID-10",
+        "SW-FW-UnitTest-QCC-ID-8"
+      ],
+      "purpose": "Bluetooth Classic 오디오 연결을 관리하여 수신 오디오는 I2S로 E8300에 전달하고 통화 중 DMIC2 입력은 상대 장치로 송신한다.",
+      "module": "SI-ID-QCC-003"
+    },
+    "SU-ID-QCC-009": {
+      "title": "SU-ID-QCC-009 BLE 유닛",
+      "requirements": [
+        "SW-FW-RID-29",
+        "SW-FW-RID-35",
+        "SW-FW-RID-38",
+        "SW-FW-RID-44",
+        "SW-FW-RID-45",
+        "SW-FW-RID-47",
+        "SW-FW-RID-48",
+        "SW-FW-RID-49",
+        "SW-FW-RID-63",
+        "SW-FW-RID-70",
+        "SW-FW-RID-76"
+      ],
+      "tests": [
+        "SW-FW-UnitTest-QCC-ID-8",
+        "SW-FW-UnitTest-QCC-ID-9"
+      ],
+      "purpose": "BLE 광고와 연결 상태를 관리하여 외부 앱이 장치를 식별하고 인증/데이터 서비스에 접근할 수 있게 한다.",
+      "module": "SI-ID-QCC-003"
+    },
+    "SU-ID-QCC-010": {
+      "title": "SU-ID-QCC-010 AUTH service 처리 유닛",
+      "requirements": [
+        "SW-FW-RID-48",
+        "SW-FW-RID-52",
+        "SW-FW-RID-71",
+        "SW-FW-RID-76"
+      ],
+      "tests": [
+        "SW-FW-UnitTest-QCC-ID-11"
+      ],
+      "purpose": "CRA의 Challenge/Response/Confirm/Status 교환을 GATT 특성에 연결하여 인증 계산과 무선 전송을 분리한다.",
+      "module": "SI-ID-QCC-003"
+    },
+    "SU-ID-QCC-011": {
+      "title": "SU-ID-QCC-011 BLE Data 처리 유닛",
+      "requirements": [
+        "SW-FW-RID-24",
+        "SW-FW-RID-25",
+        "SW-FW-RID-26",
+        "SW-FW-RID-27",
+        "SW-FW-RID-28",
+        "SW-FW-RID-29",
+        "SW-FW-RID-30",
+        "SW-FW-RID-31",
+        "SW-FW-RID-32",
+        "SW-FW-RID-33",
+        "SW-FW-RID-34",
+        "SW-FW-RID-35",
+        "SW-FW-RID-36",
+        "SW-FW-RID-37",
+        "SW-FW-RID-38",
+        "SW-FW-RID-39",
+        "SW-FW-RID-40",
+        "SW-FW-RID-44",
+        "SW-FW-RID-45",
+        "SW-FW-RID-59",
+        "SW-FW-RID-60",
+        "SW-FW-RID-66",
+        "SW-FW-RID-70",
+        "SW-FW-RID-76"
+      ],
+      "tests": [
+        "SW-FW-UnitTest-QCC-ID-12"
+      ],
+      "purpose": "BLE 메시지의 상태, 주소, 종류와 길이를 검사하여 유효한 제어 데이터를 해당 처리 대상에 전달한다.",
+      "module": "SI-ID-QCC-003"
+    },
+    "SU-ID-QCC-012": {
+      "title": "SU-ID-QCC-012 보안 처리 유닛",
+      "requirements": [
+        "SW-FW-RID-47",
+        "SW-FW-RID-48",
+        "SW-FW-RID-49",
+        "SW-FW-RID-52",
+        "SW-FW-RID-71",
+        "SW-FW-RID-72",
+        "SW-FW-RID-76"
+      ],
+      "tests": [
+        "SW-FW-UnitTest-QCC-ID-13"
+      ],
+      "purpose": "리모콘과 매핑 통신의 상대 장치를 CRA로 확인하고 인증 결과와 제한 조건에 따라 데이터 접근을 제어한다.",
+      "module": "SI-ID-QCC-004"
+    },
+    "SU-ID-QCC-013": {
+      "title": "SU-ID-QCC-013 보안 툴박스 유닛",
+      "requirements": [
+        "SW-FW-RID-52",
+        "SW-FW-RID-76",
+        "SW-FW-RID-78"
+      ],
+      "tests": [
+        "SW-FW-UnitTest-QCC-ID-14"
+      ],
+      "purpose": "인증 키 선택, 매핑 키 파생과 인증값 계산 및 NVM 암복호화를 공통 인터페이스로 제공한다.",
+      "module": "SI-ID-QCC-004"
+    },
+    "SU-ID-QCC-014": {
+      "title": "SU-ID-QCC-014 보안 NVM 유닛",
+      "requirements": [
+        "SW-FW-RID-52",
+        "SW-FW-RID-76",
+        "SW-FW-RID-78"
+      ],
+      "tests": [
+        "SW-FW-UnitTest-QCC-ID-15"
+      ],
+      "purpose": "생산 시 설치한 키와 난수를 정해진 보안 저장 영역에서 읽어 인증과 암복호화에 필요한 데이터로 제공한다.",
+      "module": "SI-ID-QCC-004"
+    }
+  },
+  "unit_tests": [
+    {
+      "row": 1727,
+      "test": "SW-FW-UnitTest-QCC-ID-1",
+      "units": [
+        "SU-ID-QCC-005"
+      ],
+      "modules": [
+        "SI-ID-QCC-002"
+      ],
+      "requirements": [
+        "SW-FW-RID-46",
+        "SW-FW-RID-67",
+        "SW-FW-RID-68"
+      ],
+      "requirement_scope": "direct requirements",
+      "status": "통과"
+    },
+    {
+      "row": 1729,
+      "test": "SW-FW-UnitTest-QCC-ID-2",
+      "units": [
+        "SU-ID-QCC-006"
+      ],
+      "modules": [
+        "SI-ID-QCC-002"
+      ],
+      "requirements": [
+        "SW-FW-RID-21",
+        "SW-FW-RID-22",
+        "SW-FW-RID-23",
+        "SW-FW-RID-28",
+        "SW-FW-RID-29",
+        "SW-FW-RID-34",
+        "SW-FW-RID-63"
+      ],
+      "requirement_scope": "direct requirements",
+      "status": "통과"
+    },
+    {
+      "row": 1733,
+      "test": "SW-FW-UnitTest-QCC-ID-3",
+      "units": [
+        "SU-ID-QCC-007"
+      ],
+      "modules": [
+        "SI-ID-QCC-002"
+      ],
+      "requirements": [],
+      "requirement_scope": "basic NVM serial-number interface; supports the referenced design unit and does not establish security/NVM protection product pass",
+      "status": "통과"
+    },
+    {
+      "row": 1734,
+      "test": "SW-FW-UnitTest-QCC-ID-4",
+      "units": [
+        "SU-ID-QCC-001",
+        "SU-ID-QCC-002"
+      ],
+      "modules": [
+        "SI-ID-QCC-001"
+      ],
+      "requirements": [
+        "SW-FW-RID-21",
+        "SW-FW-RID-22",
+        "SW-FW-RID-29",
+        "SW-FW-RID-63"
+      ],
+      "requirement_scope": "direct requirements",
+      "status": "통과"
+    },
+    {
+      "row": 1736,
+      "test": "SW-FW-UnitTest-QCC-ID-5",
+      "units": [
+        "SU-ID-QCC-002"
+      ],
+      "modules": [
+        "SI-ID-QCC-001"
+      ],
+      "requirements": [
+        "SW-FW-RID-29",
+        "SW-FW-RID-35",
+        "SW-FW-RID-38",
+        "SW-FW-RID-46",
+        "SW-FW-RID-63",
+        "SW-FW-RID-69",
+        "SW-FW-RID-70"
+      ],
+      "requirement_scope": "direct requirements",
+      "status": "통과"
+    },
+    {
+      "row": 1737,
+      "test": "SW-FW-UnitTest-QCC-ID-6",
+      "units": [
+        "SU-ID-QCC-003"
+      ],
+      "modules": [
+        "SI-ID-QCC-001"
+      ],
+      "requirements": [
+        "SW-FW-RID-69",
+        "SW-FW-RID-70"
+      ],
+      "requirement_scope": "direct requirements",
+      "status": "통과"
+    },
+    {
+      "row": 1738,
+      "test": "SW-FW-UnitTest-QCC-ID-7",
+      "units": [
+        "SU-ID-QCC-004"
+      ],
+      "modules": [
+        "SI-ID-QCC-001"
+      ],
+      "requirements": [
+        "SW-FW-RID-46",
+        "SW-FW-RID-48",
+        "SW-FW-RID-49",
+        "SW-FW-RID-69",
+        "SW-FW-RID-70"
+      ],
+      "requirement_scope": "direct requirements",
+      "status": "통과"
+    },
+    {
+      "row": 1740,
+      "test": "SW-FW-UnitTest-QCC-ID-8",
+      "units": [
+        "SU-ID-QCC-004",
+        "SU-ID-QCC-008",
+        "SU-ID-QCC-009"
+      ],
+      "modules": [
+        "SI-ID-QCC-001",
+        "SI-ID-QCC-003"
+      ],
+      "requirements": [
+        "SW-FW-RID-46",
+        "SW-FW-RID-67",
+        "SW-FW-RID-68",
+        "SW-FW-RID-69",
+        "SW-FW-RID-70"
+      ],
+      "requirement_scope": "direct requirements",
+      "status": "통과"
+    },
+    {
+      "row": 1744,
+      "test": "SW-FW-UnitTest-QCC-ID-9",
+      "units": [
+        "SU-ID-QCC-009"
+      ],
+      "modules": [
+        "SI-ID-QCC-003"
+      ],
+      "requirements": [
+        "SW-FW-RID-29",
+        "SW-FW-RID-35",
+        "SW-FW-RID-38",
+        "SW-FW-RID-63",
+        "SW-FW-RID-70"
+      ],
+      "requirement_scope": "direct requirements",
+      "status": "통과"
+    },
+    {
+      "row": 1746,
+      "test": "SW-FW-UnitTest-QCC-ID-10",
+      "units": [
+        "SU-ID-QCC-008"
+      ],
+      "modules": [
+        "SI-ID-QCC-003"
+      ],
+      "requirements": [
+        "SW-FW-RID-15",
+        "SW-FW-RID-16",
+        "SW-FW-RID-69"
+      ],
+      "requirement_scope": "direct requirements",
+      "status": "통과"
+    },
+    {
+      "row": 1751,
+      "test": "SW-FW-UnitTest-QCC-ID-11",
+      "units": [
+        "SU-ID-QCC-010"
+      ],
+      "modules": [
+        "SI-ID-QCC-003"
+      ],
+      "requirements": [
+        "SW-FW-RID-48",
+        "SW-FW-RID-52",
+        "SW-FW-RID-71",
+        "SW-FW-RID-76"
+      ],
+      "requirement_scope": "direct requirements",
+      "status": "통과"
+    },
+    {
+      "row": 1753,
+      "test": "SW-FW-UnitTest-QCC-ID-12",
+      "units": [
+        "SU-ID-QCC-011"
+      ],
+      "modules": [
+        "SI-ID-QCC-003"
+      ],
+      "requirements": [
+        "SW-FW-RID-29",
+        "SW-FW-RID-35",
+        "SW-FW-RID-38",
+        "SW-FW-RID-44",
+        "SW-FW-RID-45",
+        "SW-FW-RID-70"
+      ],
+      "requirement_scope": "direct requirements",
+      "status": "통과"
+    },
+    {
+      "row": 1755,
+      "test": "SW-FW-UnitTest-QCC-ID-13",
+      "units": [
+        "SU-ID-QCC-012"
+      ],
+      "modules": [
+        "SI-ID-QCC-004"
+      ],
+      "requirements": [
+        "SW-FW-RID-47",
+        "SW-FW-RID-48",
+        "SW-FW-RID-49",
+        "SW-FW-RID-52",
+        "SW-FW-RID-71",
+        "SW-FW-RID-72",
+        "SW-FW-RID-76"
+      ],
+      "requirement_scope": "direct requirements",
+      "status": "통과"
+    },
+    {
+      "row": 1760,
+      "test": "SW-FW-UnitTest-QCC-ID-14",
+      "units": [
+        "SU-ID-QCC-013"
+      ],
+      "modules": [
+        "SI-ID-QCC-004"
+      ],
+      "requirements": [
+        "SW-FW-RID-52",
+        "SW-FW-RID-76",
+        "SW-FW-RID-78"
+      ],
+      "requirement_scope": "direct requirements",
+      "status": "통과"
+    },
+    {
+      "row": 1763,
+      "test": "SW-FW-UnitTest-QCC-ID-15",
+      "units": [
+        "SU-ID-QCC-014"
+      ],
+      "modules": [
+        "SI-ID-QCC-004"
+      ],
+      "requirements": [
+        "SW-FW-RID-76",
+        "SW-FW-RID-78"
+      ],
+      "requirement_scope": "direct requirements",
+      "status": "통과"
+    }
+  ],
+  "integration": [
+    {
+      "row": 131,
+      "test": "SW-FW-IntegrationTest-ID-018",
+      "units": [
+        "SU-ID-QCC-002",
+        "SU-ID-QCC-006"
+      ],
+      "modules": [
+        "SI-ID-QCC-001",
+        "SI-ID-QCC-002"
+      ],
+      "requirements": [
+        "SW-FW-RID-21",
+        "SW-FW-RID-22",
+        "SW-FW-RID-29",
+        "SW-FW-RID-63"
+      ],
+      "SIP_actual_test_reference": true,
+      "status": "통과"
+    },
+    {
+      "row": 134,
+      "test": "SW-FW-IntegrationTest-ID-019",
+      "units": [
+        "SU-ID-QCC-004",
+        "SU-ID-QCC-005",
+        "SU-ID-QCC-006",
+        "SU-ID-QCC-008",
+        "SU-ID-QCC-009"
+      ],
+      "modules": [
+        "SI-ID-QCC-001",
+        "SI-ID-QCC-002",
+        "SI-ID-QCC-003"
+      ],
+      "requirements": [
+        "SW-FW-RID-46",
+        "SW-FW-RID-67",
+        "SW-FW-RID-68",
+        "SW-FW-RID-69",
+        "SW-FW-RID-70"
+      ],
+      "SIP_actual_test_reference": true,
+      "status": "통과"
+    },
+    {
+      "row": 136,
+      "test": "SW-FW-IntegrationTest-ID-020",
+      "units": [
+        "SU-ID-QCC-010"
+      ],
+      "modules": [
+        "SI-ID-QCC-003"
+      ],
+      "requirements": [
+        "SW-FW-RID-48",
+        "SW-FW-RID-52",
+        "SW-FW-RID-71",
+        "SW-FW-RID-76"
+      ],
+      "SIP_actual_test_reference": true,
+      "status": "통과"
+    },
+    {
+      "row": 137,
+      "test": "SW-FW-IntegrationTest-ID-021",
+      "units": [
+        "SU-ID-QCC-010",
+        "SU-ID-QCC-011",
+        "SU-ID-QCC-012",
+        "SU-ID-QCC-013",
+        "SU-ID-QCC-014"
+      ],
+      "modules": [
+        "SI-ID-QCC-003",
+        "SI-ID-QCC-004"
+      ],
+      "requirements": [
+        "SW-FW-RID-47",
+        "SW-FW-RID-52",
+        "SW-FW-RID-71",
+        "SW-FW-RID-72",
+        "SW-FW-RID-76"
+      ],
+      "SIP_actual_test_reference": true,
+      "status": "통과"
+    },
+    {
+      "row": 141,
+      "test": "SW-FW-IntegrationTest-ID-022",
+      "units": [
+        "SU-ID-QCC-008"
+      ],
+      "modules": [
+        "SI-ID-QCC-003"
+      ],
+      "requirements": [
+        "SW-FW-RID-15",
+        "SW-FW-RID-16",
+        "SW-FW-RID-69"
+      ],
+      "SIP_actual_test_reference": true,
+      "status": "통과"
+    },
+    {
+      "row": 142,
+      "test": "SW-FW-IntegrationTest-ID-023",
+      "units": [
+        "SU-ID-QCC-011"
+      ],
+      "modules": [
+        "SI-ID-QCC-003"
+      ],
+      "requirements": [
+        "SW-FW-RID-29",
+        "SW-FW-RID-35",
+        "SW-FW-RID-38",
+        "SW-FW-RID-44",
+        "SW-FW-RID-45",
+        "SW-FW-RID-70"
+      ],
+      "SIP_actual_test_reference": true,
+      "status": "통과"
+    },
+    {
+      "row": 144,
+      "test": "SW-FW-IntegrationTest-ID-024",
+      "units": [
+        "SU-ID-QCC-012",
+        "SU-ID-QCC-013",
+        "SU-ID-QCC-014"
+      ],
+      "modules": [
+        "SI-ID-QCC-004"
+      ],
+      "requirements": [
+        "SW-FW-RID-52",
+        "SW-FW-RID-76",
+        "SW-FW-RID-78"
+      ],
+      "SIP_actual_test_reference": true,
+      "status": "통과"
+    }
+  ],
+  "integration22_receiver_units": {
+    "SU-ID-CFX-005": "I2S 인터페이스 초기화",
+    "SU-ID-CFX-008": "I2S 입력 상태 판정",
+    "SU-ID-CFX-015": "I2S 수신 버퍼 관리"
+  },
+  "system82": {
+    "test": "SW-FW-SYS-Test-ID-82",
+    "requirement": "SW-FW-RID-69",
+    "upper": "SYS-RID-SP-FW-15",
+    "method": "D",
+    "path": "DMIC2 -> QCC -> Classic call uplink",
+    "result": "미실행 / 판정 대기"
+  },
+  "system83": {
+    "requirement": "SW-FW-RID-83",
+    "upper": [
+      "SYS-RID-ACDOC-17",
+      "SYS-RID-ACDOC-18",
+      "SYS-RID-ACDOC-20"
+    ]
+  },
+  "pending_product_verdict": "미실행 / 판정 대기; source/design trace verification does not establish product test pass"
+}

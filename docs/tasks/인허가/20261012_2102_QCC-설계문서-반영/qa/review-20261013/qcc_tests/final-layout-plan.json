@@ -1,0 +1,624 @@
+{
+  "SUVC": {
+    "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SUVC-FW-TD24A 소프트웨어 유닛 검증 기준서.xlsx",
+    "hash": "3ac014bfec9a87ffa92a12dfa01497a48fcff5e94c792289916e71cfa1cc257b",
+    "sheet": "기준서_유닛 검증",
+    "member": "xl/worksheets/sheet2.xml",
+    "changes": {},
+    "heights": {
+      "333": 180,
+      "334": 180
+    },
+    "top_alignment_cells": [],
+    "page_break_before_rows": [
+      67,
+      72,
+      101,
+      149,
+      285,
+      309,
+      333,
+      578,
+      650,
+      789,
+      809,
+      915,
+      1003,
+      1010,
+      1016,
+      1040,
+      1058,
+      1148,
+      1159,
+      1175,
+      1308,
+      1644,
+      1686
+    ],
+    "break_ids_and_tests": [
+      {
+        "start_row": 67,
+        "id": "SW-FW-UnitTest-CFX-ID-10",
+        "is_condition_start": false
+      },
+      {
+        "start_row": 72,
+        "id": "SW-FW-UnitTest-CFX-ID-11",
+        "is_condition_start": false
+      },
+      {
+        "start_row": 101,
+        "id": "SW-FW-UnitTest-CFX-ID-12",
+        "is_condition_start": false
+      },
+      {
+        "start_row": 149,
+        "id": "SW-FW-UnitTest-CFX-ID-19",
+        "is_condition_start": false
+      },
+      {
+        "start_row": 285,
+        "id": "SW-FW-UnitTest-CFX-ID-26",
+        "is_condition_start": false
+      },
+      {
+        "start_row": 309,
+        "id": "SW-FW-UnitTest-CFX-ID-30",
+        "is_condition_start": false
+      },
+      {
+        "start_row": 333,
+        "id": "SW-FW-UnitTest-CFX-ID-31",
+        "is_condition_start": true
+      },
+      {
+        "start_row": 578,
+        "id": "SW-FW-UnitTest-CFX-ID-34",
+        "is_condition_start": false
+      },
+      {
+        "start_row": 650,
+        "id": "SW-FW-UnitTest-HEAR-ID-2",
+        "is_condition_start": false
+      },
+      {
+        "start_row": 789,
+        "id": "SW-FW-UnitTest-CM3-ID-1",
+        "is_condition_start": false
+      },
+      {
+        "start_row": 809,
+        "id": "SW-FW-UnitTest-CM3-ID-5",
+        "is_condition_start": false
+      },
+      {
+        "start_row": 915,
+        "id": "SW-FW-UnitTest-CM3-ID-17",
+        "is_condition_start": false
+      },
+      {
+        "start_row": 1003,
+        "id": "SW-FW-UnitTest-CM3-ID-27",
+        "is_condition_start": false
+      },
+      {
+        "start_row": 1010,
+        "id": "SW-FW-UnitTest-CM3-ID-28",
+        "is_condition_start": false
+      },
+      {
+        "start_row": 1016,
+        "id": "SW-FW-UnitTest-CM3-ID-28",
+        "is_condition_start": true
+      },
+      {
+        "start_row": 1040,
+        "id": "SW-FW-UnitTest-CM3-ID-29",
+        "is_condition_start": false
+      },
+      {
+        "start_row": 1058,
+        "id": "SW-FW-UnitTest-CM3-ID-29",
+        "is_condition_start": true
+      },
+      {
+        "start_row": 1148,
+        "id": "SW-FW-UnitTest-CM3-ID-38",
+        "is_condition_start": false
+      },
+      {
+        "start_row": 1159,
+        "id": "SW-FW-UnitTest-CM3-ID-40",
+        "is_condition_start": false
+      },
+      {
+        "start_row": 1175,
+        "id": "SW-FW-UnitTest-CM3-ID-42",
+        "is_condition_start": false
+      },
+      {
+        "start_row": 1308,
+        "id": "SW-FW-UnitTest-BOOT-ID-4",
+        "is_condition_start": false
+      },
+      {
+        "start_row": 1644,
+        "id": "SW-FW-UnitTest-BOOT-ID-18",
+        "is_condition_start": false
+      },
+      {
+        "start_row": 1686,
+        "id": "SW-FW-UnitTest-BOOT-ID-20",
+        "is_condition_start": false
+      }
+    ],
+    "candidate_path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\final-layout-candidate\\[E8300-QCC] SUVC-FW-TD24A 소프트웨어 유닛 검증 기준서.xlsx"
+  },
+  "SUVR": {
+    "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\04_설계 검증\\SW\\외부기\\[E8300-QCC] SUVR-FW-TD24A 소프트웨어 유닛 검증 보고서.xlsx",
+    "hash": "f4dbae9dbf3cad87f66c28c85846d289c6160378847b9a8152a39a6457a898f6",
+    "sheet": "보고서_유닛 시험",
+    "member": "xl/worksheets/sheet2.xml",
+    "changes": {},
+    "heights": {
+      "333": 180,
+      "334": 180
+    },
+    "top_alignment_cells": [],
+    "page_break_before_rows": [
+      67,
+      72,
+      101,
+      149,
+      285,
+      309,
+      333,
+      578,
+      650,
+      789,
+      809,
+      915,
+      1003,
+      1010,
+      1016,
+      1040,
+      1058,
+      1148,
+      1159,
+      1175,
+      1308,
+      1644,
+      1686
+    ],
+    "break_ids_and_tests": [
+      {
+        "start_row": 67,
+        "id": "SW-FW-UnitTest-CFX-ID-10",
+        "is_condition_start": false
+      },
+      {
+        "start_row": 72,
+        "id": "SW-FW-UnitTest-CFX-ID-11",
+        "is_condition_start": false
+      },
+      {
+        "start_row": 101,
+        "id": "SW-FW-UnitTest-CFX-ID-12",
+        "is_condition_start": false
+      },
+      {
+        "start_row": 149,
+        "id": "SW-FW-UnitTest-CFX-ID-19",
+        "is_condition_start": false
+      },
+      {
+        "start_row": 285,
+        "id": "SW-FW-UnitTest-CFX-ID-26",
+        "is_condition_start": false
+      },
+      {
+        "start_row": 309,
+        "id": "SW-FW-UnitTest-CFX-ID-30",
+        "is_condition_start": false
+      },
+      {
+        "start_row": 333,
+        "id": "SW-FW-UnitTest-CFX-ID-31",
+        "is_condition_start": true
+      },
+      {
+        "start_row": 578,
+        "id": "SW-FW-UnitTest-CFX-ID-34",
+        "is_condition_start": false
+      },
+      {
+        "start_row": 650,
+        "id": "SW-FW-UnitTest-HEAR-ID-2",
+        "is_condition_start": false
+      },
+      {
+        "start_row": 789,
+        "id": "SW-FW-UnitTest-CM3-ID-1",
+        "is_condition_start": false
+      },
+      {
+        "start_row": 809,
+        "id": "SW-FW-UnitTest-CM3-ID-5",
+        "is_condition_start": false
+      },
+      {
+        "start_row": 915,
+        "id": "SW-FW-UnitTest-CM3-ID-17",
+        "is_condition_start": false
+      },
+      {
+        "start_row": 1003,
+        "id": "SW-FW-UnitTest-CM3-ID-27",
+        "is_condition_start": false
+      },
+      {
+        "start_row": 1010,
+        "id": "SW-FW-UnitTest-CM3-ID-28",
+        "is_condition_start": false
+      },
+      {
+        "start_row": 1016,
+        "id": "SW-FW-UnitTest-CM3-ID-28",
+        "is_condition_start": true
+      },
+      {
+        "start_row": 1040,
+        "id": "SW-FW-UnitTest-CM3-ID-29",
+        "is_condition_start": false
+      },
+      {
+        "start_row": 1058,
+        "id": "SW-FW-UnitTest-CM3-ID-29",
+        "is_condition_start": true
+      },
+      {
+        "start_row": 1148,
+        "id": "SW-FW-UnitTest-CM3-ID-38",
+        "is_condition_start": false
+      },
+      {
+        "start_row": 1159,
+        "id": "SW-FW-UnitTest-CM3-ID-40",
+        "is_condition_start": false
+      },
+      {
+        "start_row": 1175,
+        "id": "SW-FW-UnitTest-CM3-ID-42",
+        "is_condition_start": false
+      },
+      {
+        "start_row": 1308,
+        "id": "SW-FW-UnitTest-BOOT-ID-4",
+        "is_condition_start": false
+      },
+      {
+        "start_row": 1644,
+        "id": "SW-FW-UnitTest-BOOT-ID-18",
+        "is_condition_start": false
+      },
+      {
+        "start_row": 1686,
+        "id": "SW-FW-UnitTest-BOOT-ID-20",
+        "is_condition_start": false
+      }
+    ],
+    "candidate_path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\final-layout-candidate\\[E8300-QCC] SUVR-FW-TD24A 소프트웨어 유닛 검증 보고서.xlsx"
+  },
+  "SITC": {
+    "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SITC-FW-TD24A 소프트웨어 통합시험 기준서.xlsx",
+    "hash": "8f714076c293afbe9a3b2720fdb245b70a067fc79d6ccfbf70c4c487a116b256",
+    "sheet": "기준서_통합 시험",
+    "member": "xl/worksheets/sheet2.xml",
+    "changes": {
+      "F141": {
+        "before": "\nSU-ID-QCC-008\nSW-FW-RID-15/16/69\n",
+        "current": "\nSU-ID-QCC-008\nSU-ID-CFX-005, I2S 인터페이스 초기화: I2S 초기화와 인터럽트 수신 준비\nSU-ID-CFX-008, I2S 입력 상태 판정: 수신 상태 판정/복사/스트리밍 상태 갱신\nSU-ID-CFX-015, I2S 수신 버퍼 관리: 16표본 FIFO에서 수신 버퍼로 복사하고 완료 플래그 갱신\nSW-FW-RID-15/16/69\n수신 경계: QCC I2S 송신부터 E8300 버퍼/완료 상태까지 확인한다. 믹싱/자극 경로는 SW-FW-IntegrationTest-ID-013에서 별도로 확인한다.\n",
+        "display": "\n[-] SU-ID-QCC-008\n[-] SW-FW-RID-15/16/69\n[+] SU-ID-QCC-008\n[+] SU-ID-CFX-005, I2S 인터페이스 초기화: I2S 초기화와 인터럽트 수신 준비\n[+] SU-ID-CFX-008, I2S 입력 상태 판정: 수신 상태 판정/복사/스트리밍 상태 갱신\n[+] SU-ID-CFX-015, I2S 수신 버퍼 관리: 16표본 FIFO에서 수신 버퍼로 복사하고 완료 플래그 갱신\n[+] SW-FW-RID-15/16/69\n[+] 수신 경계: QCC I2S 송신부터 E8300 버퍼/완료 상태까지 확인한다. 믹싱/자극 경로는 SW-FW-IntegrationTest-ID-013에서 별도로 확인한다.\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "SU-ID-QCC-008"
+          },
+          {
+            "status": "old",
+            "text": "SW-FW-RID-15/16/69"
+          },
+          {
+            "status": "new",
+            "text": "SU-ID-QCC-008"
+          },
+          {
+            "status": "new",
+            "text": "SU-ID-CFX-005, I2S 인터페이스 초기화: I2S 초기화와 인터럽트 수신 준비"
+          },
+          {
+            "status": "new",
+            "text": "SU-ID-CFX-008, I2S 입력 상태 판정: 수신 상태 판정/복사/스트리밍 상태 갱신"
+          },
+          {
+            "status": "new",
+            "text": "SU-ID-CFX-015, I2S 수신 버퍼 관리: 16표본 FIFO에서 수신 버퍼로 복사하고 완료 플래그 갱신"
+          },
+          {
+            "status": "new",
+            "text": "SW-FW-RID-15/16/69"
+          },
+          {
+            "status": "new",
+            "text": "수신 경계: QCC I2S 송신부터 E8300 버퍼/완료 상태까지 확인한다. 믹싱/자극 경로는 SW-FW-IntegrationTest-ID-013에서 별도로 확인한다."
+          }
+        ]
+      },
+      "M131": {
+        "before": "\n조건 [1]\n입력: 잔량80%, binary충전1, lid1\n[-] 예상/판정: 논리 메시지 버퍼20byte(hex)=34 50 01 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n[+] 통과 기준: 논리 메시지 버퍼20byte(hex)=34 50 01 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n응답 저장21byte=34 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 02; 유효 ACK=34 01, index20=2. E8300 잔량80/충전1/lid1. 전체 예상 RTT: [BT] CMD 0x34, CHARGER STATE: 1, BATT LEVEL 80 PERCENT, LID STATE 1\n전송 경계: type+payload최대20byte; 위20byte버퍼는미사용00채움까지표시한다. 물리SPI프레임은20byte+별도length1byte=21byte이다.\n[QCC/E8300 자료 입력] 실제QCC 송신length필드 값/위치·SPI21byte변환 자료. E8300 ACK의index20=2와구분한다.\n",
+        "current": "\n조건 [1]\n입력: 잔량80%, binary충전1, lid1\n통과 기준: 논리 메시지 버퍼20byte(hex)=34 50 01 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n응답 저장21byte=34 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 02; 유효 ACK=34 01, index20=2. E8300 잔량80/충전1/lid1. 전체 예상 RTT: [BT] CMD 0x34, CHARGER STATE: 1, BATT LEVEL 80 PERCENT, LID STATE 1\n전송 경계: type+payload최대20byte; 위20byte버퍼는미사용00채움까지표시한다. 물리SPI프레임은20byte+별도length1byte=21byte이다.\n[QCC/E8300 자료 입력] 실제QCC 송신length필드 값/위치/SPI21byte변환 자료. E8300 ACK의index20=2와구분한다.\n",
+        "display": "\n조건 [1]\n입력: 잔량80%, binary충전1, lid1\n[-] 예상/판정: 논리 메시지 버퍼20byte(hex)=34 50 01 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n[+] 통과 기준: 논리 메시지 버퍼20byte(hex)=34 50 01 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n응답 저장21byte=34 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 02; 유효 ACK=34 01, index20=2. E8300 잔량80/충전1/lid1. 전체 예상 RTT: [BT] CMD 0x34, CHARGER STATE: 1, BATT LEVEL 80 PERCENT, LID STATE 1\n전송 경계: type+payload최대20byte; 위20byte버퍼는미사용00채움까지표시한다. 물리SPI프레임은20byte+별도length1byte=21byte이다.\n[QCC/E8300 자료 입력] 실제QCC 송신length필드 값/위치/SPI21byte변환 자료. E8300 ACK의index20=2와구분한다.\n",
+        "punctuation_only": true,
+        "old": "위치·SPI",
+        "new": "위치/SPI"
+      }
+    },
+    "heights": {},
+    "top_alignment_cells": [],
+    "page_break_before_rows": [
+      32,
+      67
+    ],
+    "break_ids_and_tests": [
+      {
+        "start_row": 32,
+        "id": "SW-FW-IntegrationTest-ID-003",
+        "is_condition_start": false
+      },
+      {
+        "start_row": 67,
+        "id": "SW-FW-IntegrationTest-ID-009",
+        "is_condition_start": false
+      }
+    ],
+    "candidate_path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\final-layout-candidate\\[E8300-QCC] SITC-FW-TD24A 소프트웨어 통합시험 기준서.xlsx"
+  },
+  "SITR": {
+    "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\04_설계 검증\\SW\\외부기\\[E8300-QCC] SITR-FW-TD24A 소프트웨어 통합시험 보고서.xlsx",
+    "hash": "218a1077bf50f972b537368388503cbc23c85afc264cdf8ccc49897a00ea3963",
+    "sheet": "보고서_통합시험",
+    "member": "xl/worksheets/sheet2.xml",
+    "changes": {
+      "F141": {
+        "before": "\nSU-ID-QCC-008\nSW-FW-RID-15/16/69\n",
+        "current": "\nSU-ID-QCC-008\nSU-ID-CFX-005, I2S 인터페이스 초기화: I2S 초기화와 인터럽트 수신 준비\nSU-ID-CFX-008, I2S 입력 상태 판정: 수신 상태 판정/복사/스트리밍 상태 갱신\nSU-ID-CFX-015, I2S 수신 버퍼 관리: 16표본 FIFO에서 수신 버퍼로 복사하고 완료 플래그 갱신\nSW-FW-RID-15/16/69\n수신 경계: QCC I2S 송신부터 E8300 버퍼/완료 상태까지 확인한다. 믹싱/자극 경로는 SW-FW-IntegrationTest-ID-013에서 별도로 확인한다.\n",
+        "display": "\n[-] SU-ID-QCC-008\n[-] SW-FW-RID-15/16/69\n[+] SU-ID-QCC-008\n[+] SU-ID-CFX-005, I2S 인터페이스 초기화: I2S 초기화와 인터럽트 수신 준비\n[+] SU-ID-CFX-008, I2S 입력 상태 판정: 수신 상태 판정/복사/스트리밍 상태 갱신\n[+] SU-ID-CFX-015, I2S 수신 버퍼 관리: 16표본 FIFO에서 수신 버퍼로 복사하고 완료 플래그 갱신\n[+] SW-FW-RID-15/16/69\n[+] 수신 경계: QCC I2S 송신부터 E8300 버퍼/완료 상태까지 확인한다. 믹싱/자극 경로는 SW-FW-IntegrationTest-ID-013에서 별도로 확인한다.\n",
+        "lines": [
+          {
+            "status": "old",
+            "text": "SU-ID-QCC-008"
+          },
+          {
+            "status": "old",
+            "text": "SW-FW-RID-15/16/69"
+          },
+          {
+            "status": "new",
+            "text": "SU-ID-QCC-008"
+          },
+          {
+            "status": "new",
+            "text": "SU-ID-CFX-005, I2S 인터페이스 초기화: I2S 초기화와 인터럽트 수신 준비"
+          },
+          {
+            "status": "new",
+            "text": "SU-ID-CFX-008, I2S 입력 상태 판정: 수신 상태 판정/복사/스트리밍 상태 갱신"
+          },
+          {
+            "status": "new",
+            "text": "SU-ID-CFX-015, I2S 수신 버퍼 관리: 16표본 FIFO에서 수신 버퍼로 복사하고 완료 플래그 갱신"
+          },
+          {
+            "status": "new",
+            "text": "SW-FW-RID-15/16/69"
+          },
+          {
+            "status": "new",
+            "text": "수신 경계: QCC I2S 송신부터 E8300 버퍼/완료 상태까지 확인한다. 믹싱/자극 경로는 SW-FW-IntegrationTest-ID-013에서 별도로 확인한다."
+          }
+        ]
+      },
+      "M131": {
+        "before": "\n조건 [1]\n입력: 잔량80%, binary충전1, lid1\n[-] 예상/판정: 논리 메시지 버퍼20byte(hex)=34 50 01 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n[+] 통과 기준: 논리 메시지 버퍼20byte(hex)=34 50 01 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n응답 저장21byte=34 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 02; 유효 ACK=34 01, index20=2. E8300 잔량80/충전1/lid1. 전체 예상 RTT: [BT] CMD 0x34, CHARGER STATE: 1, BATT LEVEL 80 PERCENT, LID STATE 1\n전송 경계: type+payload최대20byte; 위20byte버퍼는미사용00채움까지표시한다. 물리SPI프레임은20byte+별도length1byte=21byte이다.\n[QCC/E8300 자료 입력] 실제QCC 송신length필드 값/위치·SPI21byte변환 자료. E8300 ACK의index20=2와구분한다.\n",
+        "current": "\n조건 [1]\n입력: 잔량80%, binary충전1, lid1\n통과 기준: 논리 메시지 버퍼20byte(hex)=34 50 01 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n응답 저장21byte=34 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 02; 유효 ACK=34 01, index20=2. E8300 잔량80/충전1/lid1. 전체 예상 RTT: [BT] CMD 0x34, CHARGER STATE: 1, BATT LEVEL 80 PERCENT, LID STATE 1\n전송 경계: type+payload최대20byte; 위20byte버퍼는미사용00채움까지표시한다. 물리SPI프레임은20byte+별도length1byte=21byte이다.\n[QCC/E8300 자료 입력] 실제QCC 송신length필드 값/위치/SPI21byte변환 자료. E8300 ACK의index20=2와구분한다.\n",
+        "display": "\n조건 [1]\n입력: 잔량80%, binary충전1, lid1\n[-] 예상/판정: 논리 메시지 버퍼20byte(hex)=34 50 01 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n[+] 통과 기준: 논리 메시지 버퍼20byte(hex)=34 50 01 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n응답 저장21byte=34 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 02; 유효 ACK=34 01, index20=2. E8300 잔량80/충전1/lid1. 전체 예상 RTT: [BT] CMD 0x34, CHARGER STATE: 1, BATT LEVEL 80 PERCENT, LID STATE 1\n전송 경계: type+payload최대20byte; 위20byte버퍼는미사용00채움까지표시한다. 물리SPI프레임은20byte+별도length1byte=21byte이다.\n[QCC/E8300 자료 입력] 실제QCC 송신length필드 값/위치/SPI21byte변환 자료. E8300 ACK의index20=2와구분한다.\n",
+        "punctuation_only": true,
+        "old": "위치·SPI",
+        "new": "위치/SPI"
+      }
+    },
+    "heights": {},
+    "top_alignment_cells": [],
+    "page_break_before_rows": [
+      32,
+      67
+    ],
+    "break_ids_and_tests": [
+      {
+        "start_row": 32,
+        "id": "SW-FW-IntegrationTest-ID-003",
+        "is_condition_start": false
+      },
+      {
+        "start_row": 67,
+        "id": "SW-FW-IntegrationTest-ID-009",
+        "is_condition_start": false
+      }
+    ],
+    "candidate_path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\final-layout-candidate\\[E8300-QCC] SITR-FW-TD24A 소프트웨어 통합시험 보고서.xlsx"
+  },
+  "SSTC": {
+    "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SSTC-FW-TD24A 소프트웨어 시스템 시험 기준서.xlsx",
+    "hash": "b29a9e4a2c340ccd1c9a61003350a7eb0c0f01260f62f45946dd899b2ebcb229",
+    "sheet": "기준서_시스템 시험",
+    "member": "xl/worksheets/sheet2.xml",
+    "changes": {},
+    "heights": {},
+    "top_alignment_cells": [
+      "H78"
+    ],
+    "page_break_before_rows": [
+      78,
+      86,
+      114,
+      124,
+      134,
+      148,
+      159,
+      188,
+      217,
+      225,
+      278
+    ],
+    "break_ids_and_tests": [
+      {
+        "start_row": 78,
+        "id": "SW-FW-SYS-Test-ID-15",
+        "is_condition_start": false
+      },
+      {
+        "start_row": 86,
+        "id": "SW-FW-SYS-Test-ID-18",
+        "is_condition_start": false
+      },
+      {
+        "start_row": 114,
+        "id": "SW-FW-SYS-Test-ID-23",
+        "is_condition_start": false
+      },
+      {
+        "start_row": 124,
+        "id": "SW-FW-SYS-Test-ID-26",
+        "is_condition_start": false
+      },
+      {
+        "start_row": 134,
+        "id": "SW-FW-SYS-Test-ID-30",
+        "is_condition_start": false
+      },
+      {
+        "start_row": 148,
+        "id": "SW-FW-SYS-Test-ID-35",
+        "is_condition_start": false
+      },
+      {
+        "start_row": 159,
+        "id": "SW-FW-SYS-Test-ID-40",
+        "is_condition_start": false
+      },
+      {
+        "start_row": 188,
+        "id": "SW-FW-SYS-Test-ID-46",
+        "is_condition_start": false
+      },
+      {
+        "start_row": 217,
+        "id": "SW-FW-SYS-Test-ID-74",
+        "is_condition_start": false
+      },
+      {
+        "start_row": 225,
+        "id": "SW-FW-SYS-Test-ID-77",
+        "is_condition_start": false
+      },
+      {
+        "start_row": 278,
+        "id": "SW-FW-SYS-Test-ID-67",
+        "is_condition_start": false
+      }
+    ],
+    "candidate_path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\final-layout-candidate\\[E8300-QCC] SSTC-FW-TD24A 소프트웨어 시스템 시험 기준서.xlsx"
+  },
+  "SSTR": {
+    "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\04_설계 검증\\SW\\외부기\\[E8300-QCC] SSTR-FW-TD24A 소프트웨어 시스템 시험 보고서.xlsx",
+    "hash": "f5712ae1aedfa09597928de294f2c3c3122f5e4bfa37eb52453733454e869fd5",
+    "sheet": "보고서_시스템 시험",
+    "member": "xl/worksheets/sheet2.xml",
+    "changes": {},
+    "heights": {},
+    "top_alignment_cells": [
+      "H78"
+    ],
+    "page_break_before_rows": [
+      78,
+      86,
+      114,
+      124,
+      134,
+      148,
+      159,
+      188,
+      217,
+      225,
+      278
+    ],
+    "break_ids_and_tests": [
+      {
+        "start_row": 78,
+        "id": "SW-FW-SYS-Test-ID-15",
+        "is_condition_start": false
+      },
+      {
+        "start_row": 86,
+        "id": "SW-FW-SYS-Test-ID-18",
+        "is_condition_start": false
+      },
+      {
+        "start_row": 114,
+        "id": "SW-FW-SYS-Test-ID-23",
+        "is_condition_start": false
+      },
+      {
+        "start_row": 124,
+        "id": "SW-FW-SYS-Test-ID-26",
+        "is_condition_start": false
+      },
+      {
+        "start_row": 134,
+        "id": "SW-FW-SYS-Test-ID-30",
+        "is_condition_start": false
+      },
+      {
+        "start_row": 148,
+        "id": "SW-FW-SYS-Test-ID-35",
+        "is_condition_start": false
+      },
+      {
+        "start_row": 159,
+        "id": "SW-FW-SYS-Test-ID-40",
+        "is_condition_start": false
+      },
+      {
+        "start_row": 188,
+        "id": "SW-FW-SYS-Test-ID-46",
+        "is_condition_start": false
+      },
+      {
+        "start_row": 217,
+        "id": "SW-FW-SYS-Test-ID-74",
+        "is_condition_start": false
+      },
+      {
+        "start_row": 225,
+        "id": "SW-FW-SYS-Test-ID-77",
+        "is_condition_start": false
+      },
+      {
+        "start_row": 278,
+        "id": "SW-FW-SYS-Test-ID-67",
+        "is_condition_start": false
+      }
+    ],
+    "candidate_path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\final-layout-candidate\\[E8300-QCC] SSTR-FW-TD24A 소프트웨어 시스템 시험 보고서.xlsx"
+  }
+}

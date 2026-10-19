@@ -1,0 +1,54 @@
+{
+  "status": "통과",
+  "checkedAt": "2026-10-13T01:54:44.356772+00:00",
+  "checks": 29,
+  "counts": {
+    "통과": 21,
+    "해당없음": 8
+  },
+  "owned_page_count": 243,
+  "current_documents": {
+    "SAD": {
+      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SAD-FW-TD24A 소프트웨어 아키텍쳐 기술서.docx",
+      "sourceSHA256": "84f592a7f7988a78eb73fa718268cc22ddf20a5bac796358b971aba0d23ccc68",
+      "pages": 55
+    },
+    "SDDD": {
+      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SDDD-FW-TD24A 소프트웨어 상세 설계서.docx",
+      "sourceSHA256": "121d4204a3b4bc1946695b74820720bc388d27e9978ef91b2b40f550e2145e2e",
+      "pages": 171
+    },
+    "SIP": {
+      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SIP-FW-TD24A 소프트웨어 통합 계획서.docx",
+      "sourceSHA256": "347d8632bc21aa37ee84418e471cb2ca67541cba7d014c17c3058da2a1d62978",
+      "pages": 17
+    }
+  },
+  "checks_file": {
+    "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_design\\checks-29.json",
+    "sha256": "0c09e1bb351200e2956f535196dbcee5bf4bb35647206a5a6860794cf2eb7993"
+  },
+  "native_review_file": {
+    "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_design\\native-review.json",
+    "sha256": "9a03e7d11db66cddc5284e6bd4b5dfe9737cca9e538ebca5ed25baa16df98af6"
+  },
+  "coverage": {
+    "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_requirements\\word-visual-coverage.json",
+    "sha256": "3b7aeabd678eedf5e0982015bc3414a17a8b7ee66ae016b2eabe947389bc3c5e"
+  },
+  "native_final_accepted_cells": {
+    "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\final-word\\SAD-native-accepted-cells.json",
+    "sha256": "f77889e4f52b640ff85bb3a36f40288c9a0ec02278a2983ef61ed0cee2baf107",
+    "sourceSHA256": "84f592a7f7988a78eb73fa718268cc22ddf20a5bac796358b971aba0d23ccc68",
+    "row_count": 83,
+    "column_count": 3,
+    "segments": 249,
+    "pass": true,
+    "native_XML": {
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\final-word\\SAD-native-accepted.xml",
+      "sha256": "9fbe4ad4d24662146fb0e88e89ab2ee3095195742b6d0432942e015125843938"
+    },
+    "scope": "Root actual native Word AcceptAllRevisions after field refresh and guarded G publication; read-only snapshot. This is actual cell preservation, not only an OOXML projection."
+  },
+  "writes": "Only owned qcc_design QA files; no COM or deliverable writes."
+}

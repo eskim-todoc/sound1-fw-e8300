@@ -1,0 +1,45 @@
+[
+  {
+    "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\SUVC-probe-bare-rich.xlsx",
+    "mode": "bare-rich",
+    "opened": true,
+    "readOnly": true,
+    "error": null,
+    "sheets": [
+      "표지",
+      "기준서_유닛 검증"
+    ]
+  },
+  {
+    "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\SUVC-probe-color-only-rich.xlsx",
+    "mode": "color-only-rich",
+    "opened": false,
+    "readOnly": true,
+    "error": "Workbooks 클래스 중 Open 속성을 구할 수 없습니다."
+  },
+  {
+    "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\SUVC-probe-font-size-rich.xlsx",
+    "mode": "font-size-rich",
+    "opened": false,
+    "readOnly": true,
+    "error": "Workbooks 클래스 중 Open 속성을 구할 수 없습니다."
+  },
+  {
+    "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\SUVC-probe-no-empty-rich.xlsx",
+    "mode": "no-empty-rich",
+    "opened": true,
+    "readOnly": true,
+    "error": null,
+    "sheets": [
+      "표지",
+      "기준서_유닛 검증"
+    ]
+  },
+  {
+    "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\SUVC-probe-shared-rich.xlsx",
+    "mode": "shared-rich",
+    "opened": false,
+    "readOnly": true,
+    "error": "Workbooks 클래스 중 Open 속성을 구할 수 없습니다."
+  }
+]

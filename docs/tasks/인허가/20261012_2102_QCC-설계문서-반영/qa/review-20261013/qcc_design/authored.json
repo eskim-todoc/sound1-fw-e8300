@@ -1,0 +1,53 @@
+{
+  "documents": {
+    "SAD": {
+      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SAD-FW-TD24A 소프트웨어 아키텍쳐 기술서.docx",
+      "sha256": "381ffb1d8ee99f596c907e9ed1b932c4101737417354a53c25675527ce22783b",
+      "before_sha256": "47b8fb9a30eb01470730a096e38a74b986ab2956bb7e69623accca17e0197117",
+      "reject_new_exact_before": true,
+      "initial_authored_sha256": "0385038b27c8ac0ede82653cd99b6ce80b985b93ddf99ba07183c5ce7b5c1eb2",
+      "followup_proof": "followup/SAD-authored.json",
+      "style_support_restored": true
+    },
+    "SDDD": {
+      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SDDD-FW-TD24A 소프트웨어 상세 설계서.docx",
+      "sha256": "89f92934b791a161a58cc5591c518160bb435a78358c6b27d2a21a32a7ad8d67",
+      "before_sha256": "490bc2e342353825bf8e053111bbfafd23ec103ec17452decdd0320fc3b499c7",
+      "reject_new_exact_before": true,
+      "initial_authored_sha256": "2b47b6fd3b74173a68651b814af3e443bc3383ce5c25c1f8aa8a80d1525a2c2e",
+      "followup_proof": "followup/SDDD-authored.json",
+      "style_support_restored": true
+    },
+    "SIP": {
+      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SIP-FW-TD24A 소프트웨어 통합 계획서.docx",
+      "sha256": "2e4196077f9cfb3410cd0ce2c83dd5c62879dc5083bb0ffbf66d92300aec8829",
+      "before_sha256": "3c9ff2237625c78416f3c501d12196e477615db15625624e7e391572edcd2c47",
+      "reject_new_exact_before": true,
+      "initial_authored_sha256": "5b0d29f1b59ac109c9089fda84c06f7cdba40924719920bce0e666424b38bc7c",
+      "followup_proof": "followup/SIP-authored.json",
+      "style_support_restored": true
+    }
+  },
+  "architecture_assets": [
+    {
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\DHF\\03_설계 출력\\SW\\펌웨어\\이미지 참조\\시스템 블록도.png",
+      "before_sha256": "5800f70be2ab3191a779bd5491cf4c9288f15c417ec578dc2f9d4aa473a7ef63",
+      "after_sha256": "070b60b0a85a3540110a40f9ed3e5e427fe6e973f5186192e99de5d58c11b38b",
+      "snapshot": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_design\\before\\시스템 블록도.png",
+      "generator": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_design\\diagrams.py"
+    },
+    {
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\DHF\\03_설계 출력\\SW\\펌웨어\\이미지 참조\\소프트웨어 구조도.png",
+      "before_sha256": "1cb0d55175ae0717744ac8dbe0d94c8c6f404e84b106f843a8d09054b5f39fb5",
+      "after_sha256": "6c5f3fc9004546177cde5c36ad22364d3061c73be77b656d4337ab3792122414",
+      "snapshot": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_design\\before\\소프트웨어 구조도.png",
+      "generator": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_design\\diagrams.py"
+    }
+  ],
+  "status": "통과",
+  "native_final": "미실행",
+  "product_verdict": "판정대기",
+  "followup_verification": "followup/qa.json",
+  "semantic_cross_review": "cross-doc.json",
+  "29_checks": "checks-29.json"
+}

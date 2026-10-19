@@ -1,0 +1,434 @@
+{
+  "code": "SAD",
+  "source": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SAD-FW-TD24A 소프트웨어 아키텍쳐 기술서.docx",
+  "sourceSHA256": "8AF46EF971B15EC6815CB5AED66E25580A4C9494D43DCDF4925852CB38C50515",
+  "pages": [
+    {
+      "page": 1,
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\root-SAD-inspected-before-flow\\page-001.png",
+      "sha256": "DA8A9418603FD08D2453BD25C0C69E1AF829AF48A09688C2C8A3F37F6560A3BF",
+      "view": "original-size individually",
+      "status": "통과"
+    },
+    {
+      "page": 2,
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\root-SAD-inspected-before-flow\\page-002.png",
+      "sha256": "D15EC33C20D0002D60C76824D2147644AE20B0B285DE14233009CEEB6F65DED8",
+      "view": "original-size individually",
+      "status": "통과"
+    },
+    {
+      "page": 3,
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\root-SAD-inspected-before-flow\\page-003.png",
+      "sha256": "C91D79AC9F40B86A154DB6E32C5510255B0F9ADE78AC08620C30ACC8B9657608",
+      "view": "original-size individually",
+      "status": "통과"
+    },
+    {
+      "page": 4,
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\root-SAD-inspected-before-flow\\page-004.png",
+      "sha256": "0C5638C2617DE453F253DB7588164D84D5FEDFE7D39249926A4D3F98E611E067",
+      "view": "original-size individually",
+      "status": "통과"
+    },
+    {
+      "page": 5,
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\root-SAD-inspected-before-flow\\page-005.png",
+      "sha256": "F96AFEA0750F0457B43885F75547786C95102C5233C3D9EF460631B37B9CF2DB",
+      "view": "original-size individually",
+      "status": "통과"
+    },
+    {
+      "page": 6,
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\root-SAD-inspected-before-flow\\page-006.png",
+      "sha256": "023DB28371C4DA4D821A3DEB08145197F82976C3959D0EEBD770DF4D5931702D",
+      "view": "original-size individually",
+      "status": "통과"
+    },
+    {
+      "page": 7,
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\root-SAD-inspected-before-flow\\page-007.png",
+      "sha256": "DE72BD3648D7A32D6E49FBD41540DF95F1DD319E88E41A842D8C6DC5442E305F",
+      "view": "original-size individually",
+      "status": "통과"
+    },
+    {
+      "page": 8,
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\root-SAD-inspected-before-flow\\page-008.png",
+      "sha256": "6D164D354A823A03DC9155B00D11D6EF44378F16CC13F3715926993D16F44868",
+      "view": "original-size individually",
+      "status": "통과"
+    },
+    {
+      "page": 9,
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\root-SAD-inspected-before-flow\\page-009.png",
+      "sha256": "4C1E6BD11EA47338D32034169E2A54B7C1D3B4F3E4E9A23CADAD4115085F2CF7",
+      "view": "original-size individually",
+      "status": "통과"
+    },
+    {
+      "page": 10,
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\root-SAD-inspected-before-flow\\page-010.png",
+      "sha256": "C09BCE05A91390BFB5FA78D22C29BB8756E5E35D57AC8BFA7DA5C90DB90D89B1",
+      "view": "original-size individually",
+      "status": "통과"
+    },
+    {
+      "page": 11,
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\root-SAD-inspected-before-flow\\page-011.png",
+      "sha256": "BA714B91F49F082DB28E2B6E292B90EEC52D0AD10D949BDC4DFB2E958A3818D7",
+      "view": "original-size individually",
+      "status": "통과"
+    },
+    {
+      "page": 12,
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\root-SAD-inspected-before-flow\\page-012.png",
+      "sha256": "70BC08E9B734B4DEB6C34C6216A003BEB6DBCAF68633E01A92685563BD059035",
+      "view": "original-size individually",
+      "status": "통과"
+    },
+    {
+      "page": 13,
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\root-SAD-inspected-before-flow\\page-013.png",
+      "sha256": "BC47BC3415D1871D87AF96D7D0F419F6266759A5508A8DA961A89828CFA2DE85",
+      "view": "original-size individually",
+      "status": "통과"
+    },
+    {
+      "page": 14,
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\root-SAD-inspected-before-flow\\page-014.png",
+      "sha256": "347C89F574FA274DF45B15685EC022E2274174F76F5FA788E1BD2963FC4568D8",
+      "view": "original-size individually",
+      "status": "통과"
+    },
+    {
+      "page": 15,
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\root-SAD-inspected-before-flow\\page-015.png",
+      "sha256": "06C5A86CE4660733B1774453EA0665D5FB049A66BD0B1FC712DB1DCA68AF1183",
+      "view": "original-size individually",
+      "status": "통과"
+    },
+    {
+      "page": 16,
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\root-SAD-inspected-before-flow\\page-016.png",
+      "sha256": "CB52F3CBCB690E008675EDFA81574A58A170A2661802F0B127918495DFDC182E",
+      "view": "original-size individually",
+      "status": "통과"
+    },
+    {
+      "page": 17,
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\root-SAD-inspected-before-flow\\page-017.png",
+      "sha256": "0990689350DF642612CD216C036735CF268C69EF6D8FD343C8874F19A4318473",
+      "view": "original-size individually",
+      "status": "통과"
+    },
+    {
+      "page": 18,
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\root-SAD-inspected-before-flow\\page-018.png",
+      "sha256": "C3823A8B85BE5D52975069A03D9E1D5BBEB6C0AB06CA8C46D287D70CFA989F63",
+      "view": "original-size individually",
+      "status": "통과"
+    },
+    {
+      "page": 19,
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\root-SAD-inspected-before-flow\\page-019.png",
+      "sha256": "DD4729C4EFBD85630345E51F8F7E08FC245A2C8CC3CAC505504C31DF57FFD36C",
+      "view": "original-size individually",
+      "status": "통과"
+    },
+    {
+      "page": 20,
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\root-SAD-inspected-before-flow\\page-020.png",
+      "sha256": "3BE0B49D31AC32F32029956AE0408D0AC6F2E86BCCD06FAE399A86F2DF5D0416",
+      "view": "original-size individually",
+      "status": "통과"
+    },
+    {
+      "page": 21,
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\root-SAD-inspected-before-flow\\page-021.png",
+      "sha256": "98C9DD09533D2A0FCF4F5FF32F1BA5FF812D8A0D13FDAF1F9C17347C24333D7E",
+      "view": "original-size individually",
+      "status": "통과"
+    },
+    {
+      "page": 22,
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\root-SAD-inspected-before-flow\\page-022.png",
+      "sha256": "79E1EBDDFDF4D972929F909F83C63A27DD52D14B5363D7FCA62565042C9A3C07",
+      "view": "original-size individually",
+      "status": "실패: 빈 continuation 행"
+    },
+    {
+      "page": 23,
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\root-SAD-inspected-before-flow\\page-023.png",
+      "sha256": "91488C324E7B001897BE5C86581823C0F1CD1D6D653CD387337525368073F8BC",
+      "view": "original-size individually",
+      "status": "통과"
+    },
+    {
+      "page": 24,
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\root-SAD-inspected-before-flow\\page-024.png",
+      "sha256": "C846A000E5A27D7467DBC048171FCCC48F78448D3C3241BEF11E36C5DEB73F0E",
+      "view": "original-size individually",
+      "status": "통과"
+    },
+    {
+      "page": 25,
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\root-SAD-inspected-before-flow\\page-025.png",
+      "sha256": "D99A1AE5584197EB2CA2F14D7ED2F47BF95C1B1664D4AF5584FF2D158F4F9A5B",
+      "view": "original-size individually",
+      "status": "통과"
+    },
+    {
+      "page": 26,
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\root-SAD-inspected-before-flow\\page-026.png",
+      "sha256": "F0F608AD9780F97992025740F8133FF078A59A1E03937C587179322FABF0F81F",
+      "view": "original-size individually",
+      "status": "통과"
+    },
+    {
+      "page": 27,
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\root-SAD-inspected-before-flow\\page-027.png",
+      "sha256": "E9406DA1359EA98988BA3C2647576C5678CD437470844765F607EDB2D7A5A3F0",
+      "view": "original-size individually",
+      "status": "통과"
+    },
+    {
+      "page": 28,
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\root-SAD-inspected-before-flow\\page-028.png",
+      "sha256": "719D51F77510E3C71AE08F19C9B6CFCF9B21A113F60007A2B14A49B5AB5935C4",
+      "view": "original-size individually",
+      "status": "통과"
+    },
+    {
+      "page": 29,
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\root-SAD-inspected-before-flow\\page-029.png",
+      "sha256": "E3A1AD653CBC5530155506F62966D3C6B38AF08844A19916C19E64916407BA5D",
+      "view": "original-size individually",
+      "status": "통과"
+    },
+    {
+      "page": 30,
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\root-SAD-inspected-before-flow\\page-030.png",
+      "sha256": "15CC29138B1C6E0D50868F3B10A13F3B52A11865C4E4066249B1BD132EE2810E",
+      "view": "original-size individually",
+      "status": "통과"
+    },
+    {
+      "page": 31,
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\root-SAD-inspected-before-flow\\page-031.png",
+      "sha256": "5D9D0747FA9F5F2AE429ECDF4C15A89C70C4B81822BBEA1ACFD06EF0C53EF504",
+      "view": "original-size individually",
+      "status": "통과"
+    },
+    {
+      "page": 32,
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\root-SAD-inspected-before-flow\\page-032.png",
+      "sha256": "EEDA337CFA5BC98597E5D746581864E9A0A3B0FC1E4FBFE956919D69DE8F38C1",
+      "view": "original-size individually",
+      "status": "통과"
+    },
+    {
+      "page": 33,
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\root-SAD-inspected-before-flow\\page-033.png",
+      "sha256": "DE840ECD35330B98B54046DE56EB08C5E3A3B50C7EB7CA259943F2EB69291404",
+      "view": "original-size individually",
+      "status": "통과"
+    },
+    {
+      "page": 34,
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\root-SAD-inspected-before-flow\\page-034.png",
+      "sha256": "23108F9A50A2B4EAF665019E2A17C607F14210FB84810A9B9536796E10BF9319",
+      "view": "original-size individually",
+      "status": "통과"
+    },
+    {
+      "page": 35,
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\root-SAD-inspected-before-flow\\page-035.png",
+      "sha256": "55567DA9141340961378DE733F04649246B2845FD6B328500F2949088C776620",
+      "view": "original-size individually",
+      "status": "통과"
+    },
+    {
+      "page": 36,
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\root-SAD-inspected-before-flow\\page-036.png",
+      "sha256": "154FC77E1CBD7FC26B16F1FB391F60E243C867ECCB2147B3B0306014BEAACDC0",
+      "view": "original-size individually",
+      "status": "통과"
+    },
+    {
+      "page": 37,
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\root-SAD-inspected-before-flow\\page-037.png",
+      "sha256": "43BFBB851F9C9C7F5A7373BC7137B31F01C12A01D6B1BF706299D033F1D7B5FB",
+      "view": "original-size individually",
+      "status": "통과"
+    },
+    {
+      "page": 38,
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\root-SAD-inspected-before-flow\\page-038.png",
+      "sha256": "DBF227A644BEF317DACB8C86F6D912DA4E7CC05E1022C2206920074B240E8C8B",
+      "view": "original-size individually",
+      "status": "통과"
+    },
+    {
+      "page": 39,
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\root-SAD-inspected-before-flow\\page-039.png",
+      "sha256": "33DA5C4ED7D696453345346E39665E3F0255DA7BE273C7FD266A00C5818AEE62",
+      "view": "original-size individually",
+      "status": "통과"
+    },
+    {
+      "page": 40,
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\root-SAD-inspected-before-flow\\page-040.png",
+      "sha256": "0D7C3F865E651DF13A287DADD65D606B2ECB3287A090DE4E92224853AF25A024",
+      "view": "original-size individually",
+      "status": "통과"
+    },
+    {
+      "page": 41,
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\root-SAD-inspected-before-flow\\page-041.png",
+      "sha256": "095FD9FA255E8D9EE467D133202E421D692E5C49DE81D7AED755D5C3612F1CBD",
+      "view": "original-size individually",
+      "status": "통과"
+    },
+    {
+      "page": 42,
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\root-SAD-inspected-before-flow\\page-042.png",
+      "sha256": "2FFBC7B8B4F2928533AB87070B13E5B3A033DCF8384E74E8BAE247A36290AE2A",
+      "view": "original-size individually",
+      "status": "통과"
+    },
+    {
+      "page": 43,
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\root-SAD-inspected-before-flow\\page-043.png",
+      "sha256": "F0E8B0F4BF95B5F6A8873155B48CE79ED71C1F3E60E5CD0C121EC834140CDD21",
+      "view": "original-size individually",
+      "status": "통과"
+    },
+    {
+      "page": 44,
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\root-SAD-inspected-before-flow\\page-044.png",
+      "sha256": "AEAD407BC9DDD99750308C7D5942A7C4CF17C7623D9F316B965E90A1AA293977",
+      "view": "original-size individually",
+      "status": "통과"
+    },
+    {
+      "page": 45,
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\root-SAD-inspected-before-flow\\page-045.png",
+      "sha256": "39E17EF1C440C97A2657E6384C0EFB3CDA6999E18F7EE753370DA4D5E4F03100",
+      "view": "original-size individually",
+      "status": "통과"
+    },
+    {
+      "page": 46,
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\root-SAD-inspected-before-flow\\page-046.png",
+      "sha256": "085A988BED4892D205B7D8967156F4234F9694CF2448F7798B72EDF4CFC4F3D5",
+      "view": "original-size individually",
+      "status": "통과"
+    },
+    {
+      "page": 47,
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\root-SAD-inspected-before-flow\\page-047.png",
+      "sha256": "CFAD73B37647A9AA07BD79CF6555F41699AF240B9378CBCBAB97B13DAD3679DE",
+      "view": "original-size individually",
+      "status": "통과"
+    },
+    {
+      "page": 48,
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\root-SAD-inspected-before-flow\\page-048.png",
+      "sha256": "AF4D5E132FDC5FCD9BBBD888EE9D3ADD6BCDFAC5A59BC6DB729F16786F6529D3",
+      "view": "original-size individually",
+      "status": "통과"
+    },
+    {
+      "page": 49,
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\root-SAD-inspected-before-flow\\page-049.png",
+      "sha256": "7FD32BA54BAE5D55911BAB74A209AABB7ACDFBE0CCDCD709C1377FE98F74CF31",
+      "view": "original-size individually",
+      "status": "통과"
+    },
+    {
+      "page": 50,
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\root-SAD-inspected-before-flow\\page-050.png",
+      "sha256": "974F0C03AA59EC272F5EF89379B5CD999B03BB1487720B973DFD5EB01EB2929C",
+      "view": "original-size individually",
+      "status": "통과"
+    },
+    {
+      "page": 51,
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\root-SAD-inspected-before-flow\\page-051.png",
+      "sha256": "824F8DD76B36799607AB3E495B5E4B72E7630B5BAFA5C0FD7D0606F2BB0E160D",
+      "view": "original-size individually",
+      "status": "실패: 빈 continuation 행"
+    },
+    {
+      "page": 52,
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\root-SAD-inspected-before-flow\\page-052.png",
+      "sha256": "696110A64BE9416B4398B314861C14BE54D834C52032E010FD40A8018EDBCF21",
+      "view": "original-size individually",
+      "status": "통과"
+    },
+    {
+      "page": 53,
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\root-SAD-inspected-before-flow\\page-053.png",
+      "sha256": "2AE4A78F4B5DA685F137E552B8EFD10DD73B89091E46A7E89CD2684CCB9E5ADE",
+      "view": "original-size individually",
+      "status": "통과"
+    },
+    {
+      "page": 54,
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\root-SAD-inspected-before-flow\\page-054.png",
+      "sha256": "5B68E7130045D48F8D9BC47701BBFD8A36029A5EAF9F5725E7C9B56E0F7F4803",
+      "view": "original-size individually",
+      "status": "통과"
+    },
+    {
+      "page": 55,
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\root-SAD-inspected-before-flow\\page-055.png",
+      "sha256": "A4578B37889C8657E62682C08B6910EA4571934D6ED207F790A1C38A549EBDA9",
+      "view": "original-size individually",
+      "status": "통과"
+    },
+    {
+      "page": 56,
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\root-SAD-inspected-before-flow\\page-056.png",
+      "sha256": "22E2E3F617A528ABA2FAAA62FF534F7B66A2390705EE8880BED412178CE43D97",
+      "view": "original-size individually",
+      "status": "통과"
+    },
+    {
+      "page": 57,
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\root-SAD-inspected-before-flow\\page-057.png",
+      "sha256": "D74CB5DE90E14ED8CCF765CFD9F6C9AD183D611C7F59A3EE2A548FFEA33EBF3E",
+      "view": "original-size individually",
+      "status": "통과"
+    },
+    {
+      "page": 58,
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\root-SAD-inspected-before-flow\\page-058.png",
+      "sha256": "63CFAC8B732AA067955574E85CDF60F132B695022FBFC3F8CF622F59A9276585",
+      "view": "original-size individually",
+      "status": "통과"
+    },
+    {
+      "page": 59,
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\root-SAD-inspected-before-flow\\page-059.png",
+      "sha256": "71BA1A204C082114FF19F08A1293335B97AE7F8EDA4521CF29D935ACA394C7F1",
+      "view": "original-size individually",
+      "status": "통과"
+    },
+    {
+      "page": 60,
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\root-SAD-inspected-before-flow\\page-060.png",
+      "sha256": "FD46B0F51053CC446AD6F016910895658D0A03D4BB75A20E81F2ABD86A6A0377",
+      "view": "original-size individually",
+      "status": "통과"
+    }
+  ],
+  "status": "실패/정상 추적 수정 후 재검사 대기",
+  "findings": [
+    "22 RID15 내용 종료 후 빈 행 연속",
+    "51 RID69 내용 종료 후 거의 빈 페이지"
+  ],
+  "scope": "Root directly inspected all 60 full-size PNGs. Header repeat rechecked normal; only active blank paragraph flow requires correction.",
+  "checkedAt": "2026-10-13T10:04:25.0899206+09:00"
+}

@@ -1,0 +1,37 @@
+{
+  "source_sha256": "6FA732E9AAAAFDE64975327C7A9A13542B08BA7D487E3B35959A60CE6ADC40A2",
+  "exports": [
+    {
+      "name": "boundary-BOOT",
+      "area": "B1282:M1284",
+      "first_test_order": 96,
+      "first_test_id": "SW-FW-UnitTest-BOOT-ID-1",
+      "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\unit-banding-20261016\\native-boundary-BOOT.pdf",
+      "sha256": "4FB3C95EC6BC65F1971284F8F03D127F8E159E4EBB6F710D4AD889A1559431D2",
+      "pages": 1,
+      "pngs": [
+        {
+          "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\unit-banding-20261016\\native-boundary-BOOT-p001.png",
+          "sha256": "DE210568D7F1F9AF56B7D285DA3ADF92105B538D767D2D1852E06796B229C0EC",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "name": "boundary-QCC",
+      "area": "B1725:M1727",
+      "first_test_order": 116,
+      "first_test_id": "SW-FW-UnitTest-QCC-ID-1",
+      "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\unit-banding-20261016\\native-boundary-QCC.pdf",
+      "sha256": "E6FF2FB8E8EA0536B0A1661E9C88368795105A0506A0AFCE2C2D9D0CB6A8260C",
+      "pages": 1,
+      "pngs": [
+        {
+          "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\unit-banding-20261016\\native-boundary-QCC-p001.png",
+          "sha256": "422D456757A9A66222BDD8764FF7428CF3B11BD270CC37C8F949DFC0AEC2F2F1",
+          "page": 1
+        }
+      ]
+    }
+  ]
+}

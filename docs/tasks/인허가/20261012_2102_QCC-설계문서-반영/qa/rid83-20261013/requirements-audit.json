@@ -1,0 +1,250 @@
+{
+  "checkedAt": "2026-10-13T15:46:00.394278+09:00",
+  "status": "AUDIT_COMPLETE_READONLY",
+  "scope": "RID83 directly allocated upper requirement investigation only. No G/COM/firmware/matrix/other-agent edits. Owned audit JSON only.",
+  "inputSHA256_before": {
+    "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\02_설계 입력\\SW\\외부기\\[E8300-QCC] SRS-FW-TD24A 소프트웨어 요구사항 사양서.xlsx": "093CE649ACE49090B333E2990CFE4D27DB2AF24C28BEC6130B2E1A0387F3F123",
+    "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\02_설계 입력\\SW\\외부기\\서석일_작성\\QCC_SRS-FW-TD24A 소프트웨어 요구사항 사양서_byssi.docx": "64DDECBA6C1B718ECD31881F45FEC163F4E5CDD88807455FA6B019C370BFE078",
+    "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_requirements\\matrix-readonly.xlsx": "1A7C1CB16F3E368EDBBFDD62A26006CC806062F38BF2323B644E180AFB1FE4A4",
+    "C:\\Users\\EUNSU\\AppData\\Local\\Temp\\browser-use\\exports\\TD24A_설계_입출력_검증_매트릭스-2f36f90f-d59c-4e5a-9246-27a6712e6d2e.xlsx": "3461D364CA1C1AF84DC21E1F17751D7962C8949BF02A79E17A0758ACCBCAB1BE",
+    "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_requirements\\requirements-contract.json": "E7BD8492009900CE02886E6861CFBBDCB08E8FAD1FDAA25F15BBCE9FCE548614"
+  },
+  "inputSHA256_after": {
+    "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\02_설계 입력\\SW\\외부기\\[E8300-QCC] SRS-FW-TD24A 소프트웨어 요구사항 사양서.xlsx": "093CE649ACE49090B333E2990CFE4D27DB2AF24C28BEC6130B2E1A0387F3F123",
+    "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\02_설계 입력\\SW\\외부기\\서석일_작성\\QCC_SRS-FW-TD24A 소프트웨어 요구사항 사양서_byssi.docx": "64DDECBA6C1B718ECD31881F45FEC163F4E5CDD88807455FA6B019C370BFE078",
+    "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_requirements\\matrix-readonly.xlsx": "1A7C1CB16F3E368EDBBFDD62A26006CC806062F38BF2323B644E180AFB1FE4A4",
+    "C:\\Users\\EUNSU\\AppData\\Local\\Temp\\browser-use\\exports\\TD24A_설계_입출력_검증_매트릭스-2f36f90f-d59c-4e5a-9246-27a6712e6d2e.xlsx": "3461D364CA1C1AF84DC21E1F17751D7962C8949BF02A79E17A0758ACCBCAB1BE",
+    "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_requirements\\requirements-contract.json": "E7BD8492009900CE02886E6861CFBBDCB08E8FAD1FDAA25F15BBCE9FCE548614"
+  },
+  "readonly_unchanged": true,
+  "current_SRS": {
+    "sheet": "소프트웨어 입력 요구사항 사양서",
+    "cells": {
+      "B93": "\nj) 개발할 사용자 설명서\n(user documentation to be developed)\n",
+      "C93": "\n사용 설명서\n",
+      "D93": "",
+      "E93": "",
+      "F93": "\n사용설명서에 경고 및 안전사항을 기재한다.\n사용설명서에 안전하게 사용하는 작동법을 기재한다.\n사용설명서에 동작방법을 자세히 기재한다.\n상세: 안전 예방조치, 사용 방법과 문제 해결 방법을 제품 사용 설명서에 포함한다.\n\n",
+      "F94": "[E8300 보완] 제품 사용 설명서의 해당 절과 내용, 배포 대상 및 검토 결과를 확인한다.\n",
+      "G93": "SW-FW-RID-83",
+      "H93": "\nSYS-RID-ACDOC-17, SYS-RID-ACDOC-18, SYS-RID-ACDOC-20\n",
+      "I93": ""
+    },
+    "comparison_sheet_cells": {
+      "F93": "\n[-] 사용자에게 배포되는 사용 설명서는 안전 예방조치, 사용 방법, 문제 해결 방법을 포함해야 한다.\n\n[E8300 보완] 제품 사용 설명서 파일의 해당 내용과 정식 상위 요구사항의 식별/추적을 등록한다.\n[+] 사용설명서에 경고 및 안전사항을 기재한다.\n사용설명서에 안전하게 사용하는 작동법을 기재한다.\n사용설명서에 동작방법을 자세히 기재한다.\n상세: 안전 예방조치, 사용 방법과 문제 해결 방법을 제품 사용 설명서에 포함한다.\n\n",
+      "F94": "[E8300 보완] 제품 사용 설명서의 해당 절과 내용, 배포 대상 및 검토 결과를 확인한다.\n",
+      "G93": "SW-FW-RID-83",
+      "H93": "\n[-] [E8300 보완] 정식 상위 요구사항 미등록\n[+] SYS-RID-ACDOC-17, SYS-RID-ACDOC-18, SYS-RID-ACDOC-20\n",
+      "I93": "\n[-] QCC SRS\n4.9.1 RI-16\n사용 설명서\n[+] \n"
+    },
+    "sourceSHA256": "093CE649ACE49090B333E2990CFE4D27DB2AF24C28BEC6130B2E1A0387F3F123"
+  },
+  "QCC_original": {
+    "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\02_설계 입력\\SW\\외부기\\서석일_작성\\QCC_SRS-FW-TD24A 소프트웨어 요구사항 사양서_byssi.docx",
+    "sha256": "64DDECBA6C1B718ECD31881F45FEC163F4E5CDD88807455FA6B019C370BFE078",
+    "section": "4.9 개발할 사용자 설명서 / 4.9.1 SW-CC-RI-16(사용 설명서)",
+    "heading_block": 202,
+    "table_block": 203,
+    "table_rows": [
+      [
+        "요구사항 식별Requirement ID",
+        "SW-CC-RI-16"
+      ],
+      [
+        "주제Subject",
+        "사용 설명서user manual"
+      ],
+      [
+        "설명Description",
+        "사용자에게 배포되는 사용 설명서에는 위험 관리 측면에서 다음의 사항이 포함되어야 한다.information안전 예방조치사용 방법문제 해결 방법"
+      ],
+      [
+        "다른 발생원 추적Traceable to other source",
+        "N/A"
+      ],
+      [
+        "Version",
+        "No.",
+        "1.0"
+      ],
+      [
+        "",
+        "개정사유",
+        "initially prepared"
+      ]
+    ],
+    "other_source_trace": "N/A",
+    "description": "사용자에게 배포되는 사용 설명서에는 위험 관리 측면에서 안전 예방조치/사용 방법/문제 해결 방법을 포함한다.",
+    "same_raw_ID_also_used_for_other_function": {
+      "block": 171,
+      "heading": "SW-CC-RI-16(BLE data 암호화)",
+      "note": "사용자 확정에 따라 CC/스마트케이스 표기는 외부기 QCC의 미갱신 표기로 해석한다. 중복 RI16은 기능과 원문 위치로 구분한다."
+    }
+  },
+  "matrix_currentness": {
+    "url": "https://docs.google.com/spreadsheets/d/1tT8US7ry-1s9Dqdg_eqpJ6ixSB6gbsjUezcIrn23Ogc/edit?gid=774914198",
+    "sheet": "설계 입출력 검증 매트릭스",
+    "gid": 774914198,
+    "normal_authenticated_browser_tab": 759001942,
+    "live_read_mode": "Existing normal Google Sheets UI was read; supported content.exportGsuite(xlsx) downloaded current content without editing. No403 bypass/network workaround.",
+    "browser_signal": "UI에 문서 상태는 드라이브에 저장됨, 정현주님이 13일 전에 마지막 수정한 것으로 표시됐다. 상대 시각을 정확한 수정일로 환산하지 않았다.",
+    "export_path": "C:\\Users\\EUNSU\\AppData\\Local\\Temp\\browser-use\\exports\\TD24A_설계_입출력_검증_매트릭스-2f36f90f-d59c-4e5a-9246-27a6712e6d2e.xlsx",
+    "export_path_is_runtime_temporary": true,
+    "exportSHA256": "3461D364CA1C1AF84DC21E1F17751D7962C8949BF02A79E17A0758ACCBCAB1BE",
+    "historical_snapshot_path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_requirements\\matrix-readonly.xlsx",
+    "historical_snapshotSHA256": "1A7C1CB16F3E368EDBBFDD62A26006CC806062F38BF2323B644E180AFB1FE4A4",
+    "all13_sheets_scanned_for_explicit_SW_FW_RID": 13,
+    "explicit_SW_FW_RID_cells": [],
+    "target_F_G_risk_output_verification_fields_unchanged_since_historical_snapshot": true
+  },
+  "actual_matrix_classification": {
+    "B332": "동봉문서\n(사용설명서)",
+    "B_merged_range": "B332:B382",
+    "C333": "라벨, 심볼, 기재사항",
+    "C_D_merged_range": "C333:D382",
+    "FW_reference_classification": "B100: 외부장치 펌웨어; FW source block100..149 is separate from ACDOC332..382.",
+    "header_F4": "내용",
+    "header_G4": "시스템 요구사항 식별",
+    "rows": [
+      {
+        "row": 348,
+        "cells": {
+          "B348": "",
+          "C348": "",
+          "D348": "",
+          "F348": "사용설명서에 경고 및 안전사항을 기재한다.",
+          "G348": "SYS-RID-ACDOC-17",
+          "J348": "RCM-60601-ACDOC-13",
+          "R348": "사용설명서",
+          "S348": "자체, 공인기관",
+          "T348": "Inspection",
+          "U348": "IEC 60601-1 시험 방법 참조",
+          "V348": "해당 시험 기준",
+          "W348": "부속 문서 체크리스트, IEC 60601-1 시험 보고서",
+          "AB348": "RCM-60601-ACDOC-13",
+          "AC348": "HID-60601-20"
+        },
+        "historical_vs_current_target_cell_differences": []
+      },
+      {
+        "row": 349,
+        "cells": {
+          "B349": "",
+          "C349": "",
+          "D349": "",
+          "F349": "사용설명서에 안전하게 사용하는 작동법을 기재한다.",
+          "G349": "SYS-RID-ACDOC-18",
+          "J349": "RCM-60601-ACDOC-14",
+          "R349": "사용설명서",
+          "S349": "자체, 공인기관",
+          "T349": "Inspection",
+          "U349": "IEC 60601-1 시험 방법 참조",
+          "V349": "해당 시험 기준",
+          "W349": "부속 문서 체크리스트, IEC 60601-1 시험 보고서",
+          "AB349": "RCM-60601-ACDOC-14",
+          "AC349": "HID-60601-21"
+        },
+        "historical_vs_current_target_cell_differences": []
+      },
+      {
+        "row": 351,
+        "cells": {
+          "B351": "",
+          "C351": "",
+          "D351": "",
+          "F351": "사용설명서에 동작방법을 자세히 기재한다.",
+          "G351": "SYS-RID-ACDOC-20",
+          "J351": "RCM-60601-ACDOC-16",
+          "R351": "사용설명서",
+          "S351": "자체, 공인기관",
+          "T351": "Inspection",
+          "U351": "IEC 60601-1 시험 방법 참조",
+          "V351": "해당 시험 기준",
+          "W351": "부속 문서 체크리스트, IEC 60601-1 시험 보고서",
+          "AB351": "RCM-60601-ACDOC-16",
+          "AC351": "HID-60601-23"
+        },
+        "historical_vs_current_target_cell_differences": []
+      }
+    ]
+  },
+  "historical_mapping_origin": {
+    "contract": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_requirements\\requirements-contract.json",
+    "contractSHA256": "E7BD8492009900CE02886E6861CFBBDCB08E8FAD1FDAA25F15BBCE9FCE548614",
+    "RID83_record": {
+      "id": "SW-FW-RID-83",
+      "rid": 83,
+      "old_row": 80,
+      "base_text": "사용설명서에 경고 및 안전사항을 기재한다.\n사용설명서에 안전하게 사용하는 작동법을 기재한다.\n사용설명서에 동작방법을 자세히 기재한다.",
+      "detail": "안전 예방조치, 사용 방법과 문제 해결 방법을 제품 사용 설명서에 포함한다.",
+      "notices": [
+        "[E8300 보완] 제품 사용 설명서의 해당 절과 내용, 배포 대상 및 검토 결과를 확인한다."
+      ],
+      "F": "\n사용설명서에 경고 및 안전사항을 기재한다.\n사용설명서에 안전하게 사용하는 작동법을 기재한다.\n사용설명서에 동작방법을 자세히 기재한다.\n상세: 안전 예방조치, 사용 방법과 문제 해결 방법을 제품 사용 설명서에 포함한다.\n\n[E8300 보완] 제품 사용 설명서의 해당 절과 내용, 배포 대상 및 검토 결과를 확인한다.\n",
+      "H": "\nSYS-RID-ACDOC-17, SYS-RID-ACDOC-18, SYS-RID-ACDOC-20\n",
+      "I": "",
+      "matrix": [
+        {
+          "row": 348,
+          "id": "SYS-RID-ACDOC-17",
+          "text": "사용설명서에 경고 및 안전사항을 기재한다."
+        },
+        {
+          "row": 349,
+          "id": "SYS-RID-ACDOC-18",
+          "text": "사용설명서에 안전하게 사용하는 작동법을 기재한다."
+        },
+        {
+          "row": 351,
+          "id": "SYS-RID-ACDOC-20",
+          "text": "사용설명서에 동작방법을 자세히 기재한다."
+        }
+      ],
+      "matrix_match": true,
+      "existing_upper_preserved": true,
+      "old_F": "\n사용자에게 배포되는 사용 설명서는 안전 예방조치, 사용 방법, 문제 해결 방법을 포함해야 한다.\n\n[E8300 보완] 제품 사용 설명서 파일의 해당 내용과 정식 상위 요구사항의 식별/추적을 등록한다.\n",
+      "old_H": "\n[E8300 보완] 정식 상위 요구사항 미등록\n",
+      "old_I": "\nQCC SRS\n4.9.1 RI-16\n사용 설명서\n"
+    },
+    "sequence": [
+      "QCC 4.9.1은 다른 발생원 추적 N/A인 사용자 설명서 요구였다. 기존 E8300 SRS의1..81에 같은 기능이 없어 자체 SW 요구 RID83으로 추가됐다.",
+      "초기 RID83의 H는 정식 상위 요구사항 미등록 안내였고 실제 상위 ID가 없었다.",
+      "후속 작성 중 매트릭스에서 사용설명서 문구를 찾아 실제 ACDOC17/18/20을 선택했다. 해당 F 문구를 RID83 기본 본문에, G 식별자를 H 상위 칸에 가져왔다.",
+      "contract의 matrix_match=true는 문구 대응을 의미했지만 소프트웨어로의 직접 할당을 입증하지 못했다. old_H에 실제 상위 ID가 없었는데 existing_upper_preserved=true로 기록한 것도 잘못이었다.",
+      "SV 본문/비교 시트 분리에서는 이 상위 연결을 현재 H93으로 유지했고, 초기 미등록 안내는 비교 이력에만 남겼다."
+    ]
+  },
+  "finding": {
+    "matrix_IDs_exist": true,
+    "fictional_matrix_ID_claim": false,
+    "direct_software_upper_allocation_proved": false,
+    "evidence_for_related_product_documentation": true,
+    "reason": "ACDOC17/18/20 are actual companion-document requirements with use-manual/IEC60601-1/companion-checklist output. QCC4.9.1 expressly has other-sourceN/A. The reviewed matrix and source records do not establish these3 as direct allocated SW-FW-RID83 upper requirements. Topic/wording similarity and actual ID existence were incorrectly promoted to formal upper trace.",
+    "wrong_contract_claim": "RID83existing_upper_preserved=true was inaccurate: old_H had no registered upperID.",
+    "limits": "Absence of explicit SW-FW-RID cells in matrix is not by itself used to invalidate all firmware trace. ExistingE8300FWupperlinks and matrixfirmware content/classification differ from this newly inferredACDOC relation."
+  },
+  "recommended_authoring_contract_after_parent_user_steering": {
+    "RID": "SW-FW-RID-83",
+    "upper_cell": "H93",
+    "upper_value": "",
+    "other_source_cell": "I93",
+    "other_source_value": "",
+    "F93": "현재 세 사용설명서 문구와 안전 예방조치/사용 방법/문제 해결의 상세는 사용자가 지정한 자체 SW 요구 내용으로 유지한다. 루트가 이번 사용자 지시를 전달했으므로 앞서 제안한 F93 복원은 철회한다.",
+    "F94": "실제 사용설명서 절/내용/배포/검토 근거 대기의 [E8300 보완] 안내 및 파란색/+2pt/밑줄을 유지한다. 상위 칸을 비운 사실을 사용설명서 검토 통과로 확대하지 않는다.",
+    "comparison_sheet": "과거 ACDOC 연결은 사실인 비교 이력으로 보존하되 현재 상위 요구로 세지 않는다. 추가 수정 비교의 기입은 루트가 별도 _비교 정책에 따라 결정한다.",
+    "downstream_scope": [
+      "SAD RID83의 현재 상위 요구 설명과 추적 칸",
+      "SYS83 기준서/보고서의 상위 추적; SW-FW-RID83 및 Inspection/근거 대기는 유지",
+      "작업 계약의 matrix_match 및 매트릭스/상위 연결 검사 분모",
+      "중앙 QCC 위치 목록의 해당 현재 상위와 검토 상태"
+    ],
+    "preserve": [
+      "E8300 원본과 QCC 원문",
+      "기존81개 요구의 상위 연결 및 의도한 공란",
+      "RID83 수식과 사용자 설명서 자체 요구",
+      "실제 시험 미실행/판정 대기",
+      "과거 비교 이력과 Word 변경 추적"
+    ]
+  },
+  "approval_and_product_scope": "문서 참조 정정은 제품 시험 통과, 사용자 설명서 완성, 정식 승인 또는 새 측정의 근거가 아니다."
+}

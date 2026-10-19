@@ -1,0 +1,83 @@
+{
+  "SDDD": {
+    "code": "SDDD",
+    "source": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SDDD-FW-TD24A 소프트웨어 상세 설계서.docx",
+    "before_sha256": "c6b56a6464c17b2b7b393f5d0d3f822e8fd55dc03701d3f0306dddd15da83e97",
+    "candidate": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_design\\final-layout-v2\\[E8300-QCC] SDDD-FW-TD24A 소프트웨어 상세 설계서.docx",
+    "candidate_sha256": "314b0d54595980254cd8bce0b068d729e9897ba40511f157a9c018d4f35bf575",
+    "new_revision_ids": [
+      "19180",
+      "19181",
+      "19182",
+      "19183",
+      "19184",
+      "19185",
+      "19186",
+      "19187",
+      "19188",
+      "19189",
+      "19190",
+      "19191"
+    ],
+    "author": "김은수",
+    "reject_new_exact_baseline_c14n": true,
+    "accepted_text_only_declared_changes": true,
+    "new_nested_insertions": 0,
+    "all_other_package_parts_exact": true,
+    "styles_fonts_media_field_instructions_preserved": true,
+    "changes": [
+      {
+        "type": "grammar or new QCC separator",
+        "para_id": null,
+        "before": "SPI 연계: E8300의 수신 정의는 0x34(data[0] 배터리 %, data[1] 충전기 미연결 0 / 연결 1, data[2] 뚜껑 열림 1 / 닫힘 2), 0x35(data[0] LED 상태, OTA_EZAIRO=4일 때 갱신 연결 1), 0x36(data[0] 오디오 미연결 0 / 연결 1, data[1] 종류 미상 0 / 크래들 1 / 기타 2)이다. 응답은 각각 명령값과 성공값 1이다. 0x36은 연결 1·종류 1일 때만 크래들 오디오 상태를 설정한다.",
+        "after": "SPI 연계: E8300의 수신 정의는 0x34(data[0] 배터리 %, data[1] 충전기 미연결 0 / 연결 1, data[2] 뚜껑 열림 1 / 닫힘 2), 0x35(data[0] LED 상태, OTA_EZAIRO=4일 때 갱신 연결 1), 0x36(data[0] 오디오 미연결 0 / 연결 1, data[1] 종류 미상 0 / 크래들 1 / 기타 2)이다. 응답은 각각 명령값과 성공값 1이다. 0x36은 연결 1/종류 1일 때만 크래들 오디오 상태를 설정한다."
+      },
+      {
+        "type": "grammar or new QCC separator",
+        "para_id": null,
+        "before": "상위 요구사항: SW-FW-RID-44, SW-FW-RID-45, SW-FW-RID-46, SW-FW-RID-48, SW-FW-RID-49, SW-FW-RID-66, SW-FW-RID-67, SW-FW-RID-68, SW-FW-RID-69, SW-FW-RID-70. SW-FW-UnitTest-QCC-ID-7에서는 연결표시 입력에 따른 Bluetooth 활성 및 장치명를 확인한다. SW-FW-UnitTest-QCC-ID-8에서는 부착/탈착 시 BLE/Classic 검색/연결 활성를 확인한다. 페어링/보호 데이터 경로를 사용하기 위한 Bluetooth 활성화를 지원한다. 활성화 상태만으로 페어링/암호화 완료를 판정하지 않는다.",
+        "after": "상위 요구사항: SW-FW-RID-44, SW-FW-RID-45, SW-FW-RID-46, SW-FW-RID-48, SW-FW-RID-49, SW-FW-RID-66, SW-FW-RID-67, SW-FW-RID-68, SW-FW-RID-69, SW-FW-RID-70. SW-FW-UnitTest-QCC-ID-7에서는 연결표시 입력에 따른 Bluetooth 활성 및 장치명을 확인한다. SW-FW-UnitTest-QCC-ID-8에서는 부착/탈착 시 BLE/Classic 검색/연결 활성화를 확인한다. 페어링/보호 데이터 경로를 사용하기 위한 Bluetooth 활성화를 지원한다. 활성화 상태만으로 페어링/암호화 완료를 판정하지 않는다."
+      },
+      {
+        "type": "grammar or new QCC separator",
+        "para_id": null,
+        "before": "상위 요구사항: SW-FW-RID-15, SW-FW-RID-16, SW-FW-RID-69. SW-FW-UnitTest-QCC-ID-10에서는 Classic 페어링/연결, 시험 스피커/양이 및 I2S 하향를 확인한다. SW-FW-UnitTest-QCC-ID-8에서는 부착/탈착 시 BLE/Classic 검색/연결 활성를 연계 지원으로 확인한다.",
+        "after": "상위 요구사항: SW-FW-RID-15, SW-FW-RID-16, SW-FW-RID-69. SW-FW-UnitTest-QCC-ID-10에서는 Classic 페어링/연결, 시험 스피커/양이 및 I2S 하향 경로를 확인한다. SW-FW-UnitTest-QCC-ID-8에서는 부착/탈착 시 BLE/Classic 검색/연결 활성화를 연계 지원으로 확인한다."
+      },
+      {
+        "type": "grammar or new QCC separator",
+        "para_id": null,
+        "before": "상위 요구사항: SW-FW-RID-29, SW-FW-RID-35, SW-FW-RID-38, SW-FW-RID-44, SW-FW-RID-45, SW-FW-RID-47, SW-FW-RID-48, SW-FW-RID-49, SW-FW-RID-63, SW-FW-RID-70, SW-FW-RID-76. SW-FW-UnitTest-QCC-ID-9에서는 광고/스캔 응답과 현재/peer 잔량/연결 상태를 확인한다. SW-FW-UnitTest-QCC-ID-8에서는 부착/탈착 시 BLE/Classic 검색/연결 활성를 연계 지원으로 확인한다. 현재/peer의 위치/잔량 및 연결 상태를 광고/조회 데이터에 반영하는 입력을 지원한다.",
+        "after": "상위 요구사항: SW-FW-RID-29, SW-FW-RID-35, SW-FW-RID-38, SW-FW-RID-44, SW-FW-RID-45, SW-FW-RID-47, SW-FW-RID-48, SW-FW-RID-49, SW-FW-RID-63, SW-FW-RID-70, SW-FW-RID-76. SW-FW-UnitTest-QCC-ID-9에서는 광고/스캔 응답과 현재/peer 잔량/연결 상태를 확인한다. SW-FW-UnitTest-QCC-ID-8에서는 부착/탈착 시 BLE/Classic 검색/연결 활성화를 연계 지원으로 확인한다. 현재/peer의 위치/잔량 및 연결 상태를 광고/조회 데이터에 반영하는 입력을 지원한다."
+      },
+      {
+        "type": "keep short key-role data row together",
+        "key": "shared_service_key",
+        "cantSplit": true,
+        "original_row_insertion_preserved": true
+      },
+      {
+        "type": "keep short key-role data row together",
+        "key": "clinician_master_key",
+        "cantSplit": true,
+        "original_row_insertion_preserved": true
+      },
+      {
+        "type": "keep short key-role data row together",
+        "key": "clinic_service_key",
+        "cantSplit": true,
+        "original_row_insertion_preserved": true
+      },
+      {
+        "type": "keep short key-role data row together",
+        "key": "RAND / BD_ADDR",
+        "cantSplit": true,
+        "original_row_insertion_preserved": true
+      }
+    ],
+    "G_published": false,
+    "static_status": "통과",
+    "native_status": "미실행",
+    "toc_cache": "root final page-number update required; unchanged heading text"
+  }
+}

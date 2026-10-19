@@ -1,0 +1,27 @@
+{
+  "target": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\02_설계 입력\\SW\\외부기\\[E8300-QCC] SR-FW-TD24A 소프트웨어 요구사항.docx",
+  "before_sha256": "EB3C5B733FCF94C50E9125E81EBF93DD8200EE0E8D230B91DB9F14ED931AE18B",
+  "candidate": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_requirements\\SR-final-layout-candidate.docx",
+  "candidate_sha256": "D16EAF9F3D11DB0AA5F006DE939230913039E9E9BBB9059D62036CE1631AD5CF",
+  "changes": [
+    {
+      "kind": "table-left-border",
+      "style": "TDC 표 3",
+      "old_twips": "482",
+      "new_twips": "397",
+      "text": "No문서번호문서 제목1SDP-FW-TD24A소프트웨어 개발 계획서2SGR-FW-TD24A소프트웨어 일반 요구"
+    },
+    {
+      "kind": "table-left-border",
+      "style": "TDC 표 3",
+      "old_twips": "482",
+      "new_twips": "397",
+      "text": "No문서번호문서 제목1IEC 62304Medical device software – Software life"
+    }
+  ],
+  "text_unchanged": true,
+  "revision_records_unchanged": true,
+  "prior_tracked_properties_preserved": true,
+  "images_relationships_styles_unchanged": true,
+  "native_review": "대기"
+}

@@ -1,0 +1,232 @@
+[
+  {
+    "code": "SSTR",
+    "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\rid83-20261013\\candidates\\SSTR.xlsx",
+    "sha256": "EC5849B277A4F074CDBACCFA7AC770D1FC8DCE8FD3AC5B8D5FC349BD74D41C8B",
+    "readOnly": true,
+    "initiallySelectedSheets": [
+      "보고서_시스템 시험"
+    ],
+    "worksheets": [
+      {
+        "name": "표지",
+        "index": 1,
+        "comments": 0,
+        "shapes": 0,
+        "printArea": null
+      },
+      {
+        "name": "보고서_시스템 시험",
+        "index": 2,
+        "comments": 0,
+        "shapes": 0,
+        "printArea": "$B$2:$L$303"
+      },
+      {
+        "name": "시험 보조자료",
+        "index": 3,
+        "comments": 0,
+        "shapes": 0,
+        "printArea": null
+      },
+      {
+        "name": "예상 그림",
+        "index": 4,
+        "comments": 0,
+        "shapes": 12,
+        "printArea": null
+      },
+      {
+        "name": "사이버보안 시험 연계",
+        "index": 5,
+        "comments": 0,
+        "shapes": 0,
+        "printArea": "$A$1:$L$39"
+      },
+      {
+        "name": "보고서_시스템 시험_비교",
+        "index": 6,
+        "comments": 0,
+        "shapes": 0,
+        "printArea": "$B$2:$L$303"
+      },
+      {
+        "name": "사이버보안 시험 연계_비교",
+        "index": 7,
+        "comments": 0,
+        "shapes": 0,
+        "printArea": "$A$1:$L$39"
+      }
+    ],
+    "formulas": [],
+    "previews": [
+      {
+        "sheet": "보고서_시스템 시험",
+        "range": "B2:L303",
+        "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\rid83-20261013\\native\\SSTR-0-main.pdf",
+        "scope": "Full main print area",
+        "originalPrintArea": "$B$2:$L$303"
+      },
+      {
+        "sheet": "보고서_시스템 시험_비교",
+        "range": "B285:L286",
+        "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\rid83-20261013\\native\\SSTR-0-compare.pdf",
+        "scope": "Changed view and retained comparison history",
+        "originalPrintArea": "$B$2:$L$303"
+      },
+      {
+        "sheet": "사이버보안 시험 연계",
+        "range": "A38:L38",
+        "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\rid83-20261013\\native\\SSTR-1-main.pdf",
+        "scope": "Changed view and retained comparison history",
+        "originalPrintArea": "$A$1:$L$39"
+      },
+      {
+        "sheet": "사이버보안 시험 연계_비교",
+        "range": "A38:L38",
+        "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\rid83-20261013\\native\\SSTR-1-compare.pdf",
+        "scope": "Changed view and retained comparison history",
+        "originalPrintArea": "$A$1:$L$39"
+      }
+    ],
+    "unchanged": true,
+    "checkedAt": "2026-10-13T15:54:33.7839136+09:00"
+  },
+  {
+    "code": "SRS",
+    "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\rid83-20261013\\candidates\\SRS.xlsx",
+    "sha256": "BF9A92ACC2770563A410CF4A580C005A73BBAB5D34B7DABC3C695A6B9BE5B6BD",
+    "readOnly": true,
+    "initiallySelectedSheets": [
+      "소프트웨어 입력 요구사항 사양서"
+    ],
+    "worksheets": [
+      {
+        "name": "표지",
+        "index": 1,
+        "comments": 0,
+        "shapes": 0,
+        "printArea": null
+      },
+      {
+        "name": "소프트웨어 입력 요구사항 사양서",
+        "index": 2,
+        "comments": 1,
+        "shapes": 1,
+        "printArea": "$B$3:$I$107"
+      },
+      {
+        "name": "소프트웨어 입력 요구사항 사양서_비교",
+        "index": 3,
+        "comments": 1,
+        "shapes": 1,
+        "printArea": "$B$3:$I$107"
+      }
+    ],
+    "formulas": [
+      {
+        "sheet": "소프트웨어 입력 요구사항 사양서",
+        "cell": "G93",
+        "value": "SW-FW-RID-83",
+        "pass": true
+      }
+    ],
+    "previews": [
+      {
+        "sheet": "소프트웨어 입력 요구사항 사양서",
+        "range": "B3:I107",
+        "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\rid83-20261013\\native\\SRS-0-main.pdf",
+        "scope": "Full main print area",
+        "originalPrintArea": "$B$3:$I$107"
+      },
+      {
+        "sheet": "소프트웨어 입력 요구사항 사양서_비교",
+        "range": "B93:I94",
+        "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\rid83-20261013\\native\\SRS-0-compare.pdf",
+        "scope": "Changed view and retained comparison history",
+        "originalPrintArea": "$B$3:$I$107"
+      }
+    ],
+    "unchanged": true,
+    "checkedAt": "2026-10-13T15:54:35.9996901+09:00"
+  },
+  {
+    "code": "SSTC",
+    "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\rid83-20261013\\candidates\\SSTC.xlsx",
+    "sha256": "865851FC890543BB4A637718EE7956E6EE565AFA6109822AD4E2859B50ADE33F",
+    "readOnly": true,
+    "initiallySelectedSheets": [
+      "기준서_시스템 시험"
+    ],
+    "worksheets": [
+      {
+        "name": "표지",
+        "index": 1,
+        "comments": 0,
+        "shapes": 0,
+        "printArea": null
+      },
+      {
+        "name": "기준서_시스템 시험",
+        "index": 2,
+        "comments": 0,
+        "shapes": 0,
+        "printArea": "$B$2:$J$303"
+      },
+      {
+        "name": "사이버보안 시험 연계",
+        "index": 3,
+        "comments": 0,
+        "shapes": 0,
+        "printArea": "$A$1:$J$39"
+      },
+      {
+        "name": "기준서_시스템 시험_비교",
+        "index": 4,
+        "comments": 0,
+        "shapes": 0,
+        "printArea": "$B$2:$J$303"
+      },
+      {
+        "name": "사이버보안 시험 연계_비교",
+        "index": 5,
+        "comments": 0,
+        "shapes": 0,
+        "printArea": "$A$1:$J$39"
+      }
+    ],
+    "formulas": [],
+    "previews": [
+      {
+        "sheet": "기준서_시스템 시험",
+        "range": "B2:J303",
+        "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\rid83-20261013\\native\\SSTC-0-main.pdf",
+        "scope": "Full main print area",
+        "originalPrintArea": "$B$2:$J$303"
+      },
+      {
+        "sheet": "기준서_시스템 시험_비교",
+        "range": "B285:J285",
+        "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\rid83-20261013\\native\\SSTC-0-compare.pdf",
+        "scope": "Changed view and retained comparison history",
+        "originalPrintArea": "$B$2:$J$303"
+      },
+      {
+        "sheet": "사이버보안 시험 연계",
+        "range": "A38:J38",
+        "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\rid83-20261013\\native\\SSTC-1-main.pdf",
+        "scope": "Changed view and retained comparison history",
+        "originalPrintArea": "$A$1:$J$39"
+      },
+      {
+        "sheet": "사이버보안 시험 연계_비교",
+        "range": "A38:J38",
+        "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\rid83-20261013\\native\\SSTC-1-compare.pdf",
+        "scope": "Changed view and retained comparison history",
+        "originalPrintArea": "$A$1:$J$39"
+      }
+    ],
+    "unchanged": true,
+    "checkedAt": "2026-10-13T15:54:41.9241287+09:00"
+  }
+]

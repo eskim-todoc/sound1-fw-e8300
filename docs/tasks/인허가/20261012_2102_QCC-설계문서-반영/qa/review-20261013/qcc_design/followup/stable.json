@@ -1,0 +1,20 @@
+[
+  {
+    "code": "SAD",
+    "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SAD-FW-TD24A 소프트웨어 아키텍쳐 기술서.docx",
+    "sha256": "381ffb1d8ee99f596c907e9ed1b932c4101737417354a53c25675527ce22783b",
+    "saved_canonical_TDC_styles": 59
+  },
+  {
+    "code": "SDDD",
+    "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SDDD-FW-TD24A 소프트웨어 상세 설계서.docx",
+    "sha256": "89f92934b791a161a58cc5591c518160bb435a78358c6b27d2a21a32a7ad8d67",
+    "saved_canonical_TDC_styles": 59
+  },
+  {
+    "code": "SIP",
+    "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SIP-FW-TD24A 소프트웨어 통합 계획서.docx",
+    "sha256": "2e4196077f9cfb3410cd0ce2c83dd5c62879dc5083bb0ffbf66d92300aec8829",
+    "saved_canonical_TDC_styles": 59
+  }
+]

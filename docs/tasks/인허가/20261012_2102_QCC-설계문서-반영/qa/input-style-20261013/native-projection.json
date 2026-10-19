@@ -1,0 +1,16 @@
+[
+  {
+    "newTextAcceptMatches": true,
+    "newTextRejectRestoresBefore": true,
+    "code": "SR",
+    "nativeRevisionCount": 8,
+    "scope": "Only new text revisions of the six notice paragraphs; older history accepted in QA projection only. Source and final histories retained."
+  },
+  {
+    "newTextAcceptMatches": true,
+    "newTextRejectRestoresBefore": true,
+    "code": "SGR",
+    "nativeRevisionCount": 4,
+    "scope": "Only new text revisions of the six notice paragraphs; older history accepted in QA projection only. Source and final histories retained."
+  }
+]

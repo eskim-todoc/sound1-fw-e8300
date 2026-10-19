@@ -1,0 +1,127 @@
+{
+  "before_pages": 17,
+  "candidate_pages": 17,
+  "word_accept_all_remaining_revisions": 0,
+  "new_only_reject_method": "OOXML new revision IDs 857-971 reversed; Word accepted preview equals before",
+  "new_only_reject_text_equals_before": true,
+  "new_only_reject_word_render_pixels_equal_before": [
+    {
+      "page": 1,
+      "equal": true
+    },
+    {
+      "page": 2,
+      "equal": true
+    },
+    {
+      "page": 3,
+      "equal": true
+    },
+    {
+      "page": 4,
+      "equal": true
+    },
+    {
+      "page": 5,
+      "equal": true
+    },
+    {
+      "page": 6,
+      "equal": true
+    },
+    {
+      "page": 7,
+      "equal": true
+    },
+    {
+      "page": 8,
+      "equal": true
+    },
+    {
+      "page": 9,
+      "equal": true
+    },
+    {
+      "page": 10,
+      "equal": true
+    },
+    {
+      "page": 11,
+      "equal": true
+    },
+    {
+      "page": 12,
+      "equal": true
+    },
+    {
+      "page": 13,
+      "equal": true
+    },
+    {
+      "page": 14,
+      "equal": true
+    },
+    {
+      "page": 15,
+      "equal": true
+    },
+    {
+      "page": 16,
+      "equal": true
+    },
+    {
+      "page": 17,
+      "equal": true
+    }
+  ],
+  "native_word_reject_all_text_equals_baseline_reject_all": true,
+  "native_word_reject_all_pixels_equal_baseline": [
+    {
+      "page": 1,
+      "equal": true
+    },
+    {
+      "page": 10,
+      "equal": true
+    },
+    {
+      "page": 2,
+      "equal": true
+    },
+    {
+      "page": 3,
+      "equal": true
+    },
+    {
+      "page": 4,
+      "equal": true
+    },
+    {
+      "page": 5,
+      "equal": true
+    },
+    {
+      "page": 6,
+      "equal": true
+    },
+    {
+      "page": 7,
+      "equal": true
+    },
+    {
+      "page": 8,
+      "equal": true
+    },
+    {
+      "page": 9,
+      "equal": true
+    }
+  ],
+  "candidate_all_expected_body_paragraphs_present": true,
+  "visual_review": "pass_all_pages",
+  "reviewed_candidate_pages": [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17],
+  "visual_findings": "전체 17쪽의 한글/폰트/표 폭/표 연속/머리말/그림/목차/본문 배치 확인. 새 잘림·겹침·빈 페이지 없음. 기본 크기 빨강과 미비 12pt 밑줄 구분 확인.",
+  "red_render_rgb": [192,0,0],
+  "native_reject_all_pdf_pages": 10,
+  "individual_revision_enumeration": "중단: Word 개별 Revisions 열거 지연. 새 변경만 OOXML 거부 후 Word 렌더 17쪽 원본 동일 및 Word RejectAll 양측 10쪽 동일로 대조."
+}

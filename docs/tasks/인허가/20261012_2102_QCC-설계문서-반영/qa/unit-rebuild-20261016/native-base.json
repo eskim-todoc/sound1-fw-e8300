@@ -1,0 +1,917 @@
+{
+  "source": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\unit-rebuild-20261016\\base.xlsx",
+  "source_sha256": "05495AED7973BAF02E03C03AACE158AE233CEC419CF2308CCF3F9950DFAF21B5",
+  "status": "통과",
+  "readonly": true,
+  "saved": false,
+  "exports": [
+    {
+      "name": "base-left",
+      "area": "B1686:J1726",
+      "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\unit-rebuild-20261016\\native-base-left.pdf",
+      "sha256": "E85805E13DEBEEBD01352B2043787DAD7B215859E11F5FAA84815A2F0F36858E",
+      "scale": "Original Zoom/Fit/Orientation preserved; print area only in read-only RAM"
+    },
+    {
+      "name": "base-results",
+      "area": "K1686:M1726",
+      "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\unit-rebuild-20261016\\native-base-results.pdf",
+      "sha256": "DE8792CA7D8E9153F72CE36E985437D559A727FB4637F32A498A12946FBF01AC",
+      "scale": "Original Zoom/Fit/Orientation preserved; print area only in read-only RAM"
+    }
+  ],
+  "columns": [
+    {
+      "column": 1,
+      "address": "$A:$A",
+      "column_width": 1.38,
+      "width_pt": 12.0,
+      "hidden": false
+    },
+    {
+      "column": 2,
+      "address": "$B:$B",
+      "column_width": 4.75,
+      "width_pt": 32.25,
+      "hidden": false
+    },
+    {
+      "column": 3,
+      "address": "$C:$C",
+      "column_width": 19.13,
+      "width_pt": 118.5,
+      "hidden": false
+    },
+    {
+      "column": 4,
+      "address": "$D:$D",
+      "column_width": 26.0,
+      "width_pt": 159.75,
+      "hidden": false
+    },
+    {
+      "column": 5,
+      "address": "$E:$E",
+      "column_width": 54.0,
+      "width_pt": 327.75,
+      "hidden": false
+    },
+    {
+      "column": 6,
+      "address": "$F:$F",
+      "column_width": 4.63,
+      "width_pt": 31.5,
+      "hidden": false
+    },
+    {
+      "column": 7,
+      "address": "$G:$G",
+      "column_width": 19.0,
+      "width_pt": 117.75,
+      "hidden": false
+    },
+    {
+      "column": 8,
+      "address": "$H:$H",
+      "column_width": 36.0,
+      "width_pt": 219.75,
+      "hidden": false
+    },
+    {
+      "column": 9,
+      "address": "$I:$I",
+      "column_width": 31.0,
+      "width_pt": 189.75,
+      "hidden": false
+    },
+    {
+      "column": 10,
+      "address": "$J:$J",
+      "column_width": 56.0,
+      "width_pt": 339.75,
+      "hidden": false
+    },
+    {
+      "column": 11,
+      "address": "$K:$K",
+      "column_width": 64.0,
+      "width_pt": 387.75,
+      "hidden": false
+    },
+    {
+      "column": 12,
+      "address": "$L:$L",
+      "column_width": 64.0,
+      "width_pt": 387.75,
+      "hidden": false
+    },
+    {
+      "column": 13,
+      "address": "$M:$M",
+      "column_width": 13.25,
+      "width_pt": 83.25,
+      "hidden": false
+    }
+  ],
+  "row_heights": [
+    {
+      "row": 1686,
+      "height_pt": 132.0,
+      "hidden": false
+    },
+    {
+      "row": 1687,
+      "height_pt": 82.5,
+      "hidden": false
+    },
+    {
+      "row": 1688,
+      "height_pt": 99.0,
+      "hidden": false
+    },
+    {
+      "row": 1689,
+      "height_pt": 99.0,
+      "hidden": false
+    },
+    {
+      "row": 1690,
+      "height_pt": 99.0,
+      "hidden": false
+    },
+    {
+      "row": 1691,
+      "height_pt": 99.0,
+      "hidden": false
+    },
+    {
+      "row": 1692,
+      "height_pt": 99.0,
+      "hidden": false
+    },
+    {
+      "row": 1693,
+      "height_pt": 99.0,
+      "hidden": false
+    },
+    {
+      "row": 1694,
+      "height_pt": 214.5,
+      "hidden": false
+    },
+    {
+      "row": 1695,
+      "height_pt": 165.0,
+      "hidden": false
+    },
+    {
+      "row": 1696,
+      "height_pt": 214.5,
+      "hidden": false
+    },
+    {
+      "row": 1697,
+      "height_pt": 165.0,
+      "hidden": false
+    },
+    {
+      "row": 1698,
+      "height_pt": 214.5,
+      "hidden": false
+    },
+    {
+      "row": 1699,
+      "height_pt": 165.0,
+      "hidden": false
+    },
+    {
+      "row": 1700,
+      "height_pt": 214.5,
+      "hidden": false
+    },
+    {
+      "row": 1701,
+      "height_pt": 165.0,
+      "hidden": false
+    },
+    {
+      "row": 1702,
+      "height_pt": 214.5,
+      "hidden": false
+    },
+    {
+      "row": 1703,
+      "height_pt": 165.0,
+      "hidden": false
+    },
+    {
+      "row": 1704,
+      "height_pt": 214.5,
+      "hidden": false
+    },
+    {
+      "row": 1705,
+      "height_pt": 165.0,
+      "hidden": false
+    },
+    {
+      "row": 1706,
+      "height_pt": 247.5,
+      "hidden": false
+    },
+    {
+      "row": 1707,
+      "height_pt": 165.0,
+      "hidden": false
+    },
+    {
+      "row": 1708,
+      "height_pt": 247.5,
+      "hidden": false
+    },
+    {
+      "row": 1709,
+      "height_pt": 165.0,
+      "hidden": false
+    },
+    {
+      "row": 1710,
+      "height_pt": 247.5,
+      "hidden": false
+    },
+    {
+      "row": 1711,
+      "height_pt": 165.0,
+      "hidden": false
+    },
+    {
+      "row": 1712,
+      "height_pt": 247.5,
+      "hidden": false
+    },
+    {
+      "row": 1713,
+      "height_pt": 165.0,
+      "hidden": false
+    },
+    {
+      "row": 1714,
+      "height_pt": 247.5,
+      "hidden": false
+    },
+    {
+      "row": 1715,
+      "height_pt": 165.0,
+      "hidden": false
+    },
+    {
+      "row": 1716,
+      "height_pt": 247.5,
+      "hidden": false
+    },
+    {
+      "row": 1717,
+      "height_pt": 165.0,
+      "hidden": false
+    },
+    {
+      "row": 1718,
+      "height_pt": 247.5,
+      "hidden": false
+    },
+    {
+      "row": 1719,
+      "height_pt": 165.0,
+      "hidden": false
+    },
+    {
+      "row": 1720,
+      "height_pt": 150.0,
+      "hidden": false
+    },
+    {
+      "row": 1721,
+      "height_pt": 150.0,
+      "hidden": false
+    },
+    {
+      "row": 1722,
+      "height_pt": 150.0,
+      "hidden": false
+    },
+    {
+      "row": 1723,
+      "height_pt": 150.0,
+      "hidden": false
+    },
+    {
+      "row": 1724,
+      "height_pt": 150.0,
+      "hidden": false
+    },
+    {
+      "row": 1725,
+      "height_pt": 150.0,
+      "hidden": false
+    },
+    {
+      "row": 1726,
+      "height_pt": 150.0,
+      "hidden": false
+    }
+  ],
+  "cells": [
+    {
+      "address": "B32",
+      "value": null,
+      "merge": true,
+      "merge_area": "$B$30:$B$34",
+      "style": null,
+      "font": "Calibri",
+      "size": 11.0,
+      "bold": false,
+      "color": 0.0,
+      "underline": -4142,
+      "horizontal": -4108,
+      "vertical": -4160,
+      "wrap": true,
+      "indent": 0,
+      "top": 1473.75,
+      "left": 12.0,
+      "height": 99.0,
+      "width": 32.25
+    },
+    {
+      "address": "C32",
+      "value": null,
+      "merge": true,
+      "merge_area": "$C$30:$C$34",
+      "style": null,
+      "font": "Calibri",
+      "size": 11.0,
+      "bold": false,
+      "color": 0.0,
+      "underline": -4142,
+      "horizontal": -4108,
+      "vertical": -4160,
+      "wrap": true,
+      "indent": 0,
+      "top": 1473.75,
+      "left": 44.25,
+      "height": 99.0,
+      "width": 118.5
+    },
+    {
+      "address": "D32",
+      "value": null,
+      "merge": true,
+      "merge_area": "$D$30:$D$34",
+      "style": null,
+      "font": "Calibri",
+      "size": 11.0,
+      "bold": false,
+      "color": 0.0,
+      "underline": -4142,
+      "horizontal": -4108,
+      "vertical": -4160,
+      "wrap": true,
+      "indent": 0,
+      "top": 1473.75,
+      "left": 162.75,
+      "height": 99.0,
+      "width": 159.75
+    },
+    {
+      "address": "E32",
+      "value": null,
+      "merge": true,
+      "merge_area": "$E$30:$E$34",
+      "style": null,
+      "font": "Calibri",
+      "size": 11.0,
+      "bold": false,
+      "color": 0.0,
+      "underline": -4142,
+      "horizontal": -4108,
+      "vertical": -4160,
+      "wrap": true,
+      "indent": 0,
+      "top": 1473.75,
+      "left": 322.5,
+      "height": 99.0,
+      "width": 327.75
+    },
+    {
+      "address": "F32",
+      "value": null,
+      "merge": true,
+      "merge_area": "$F$30:$F$34",
+      "style": null,
+      "font": "Calibri",
+      "size": 11.0,
+      "bold": false,
+      "color": 0.0,
+      "underline": -4142,
+      "horizontal": -4108,
+      "vertical": -4160,
+      "wrap": true,
+      "indent": 0,
+      "top": 1473.75,
+      "left": 650.25,
+      "height": 99.0,
+      "width": 31.5
+    },
+    {
+      "address": "G32",
+      "value": null,
+      "merge": true,
+      "merge_area": "$G$30:$G$34",
+      "style": null,
+      "font": "Calibri",
+      "size": 11.0,
+      "bold": false,
+      "color": 0.0,
+      "underline": -4142,
+      "horizontal": -4108,
+      "vertical": -4160,
+      "wrap": true,
+      "indent": 0,
+      "top": 1473.75,
+      "left": 681.75,
+      "height": 99.0,
+      "width": 117.75
+    },
+    {
+      "address": "H32",
+      "value": null,
+      "merge": true,
+      "merge_area": "$H$30:$H$34",
+      "style": null,
+      "font": "Calibri",
+      "size": 11.0,
+      "bold": false,
+      "color": 0.0,
+      "underline": -4142,
+      "horizontal": -4131,
+      "vertical": -4160,
+      "wrap": true,
+      "indent": 0,
+      "top": 1473.75,
+      "left": 799.5,
+      "height": 99.0,
+      "width": 219.75
+    },
+    {
+      "address": "I32",
+      "value": null,
+      "merge": true,
+      "merge_area": "$I$30:$I$34",
+      "style": null,
+      "font": "Calibri",
+      "size": 11.0,
+      "bold": false,
+      "color": 0.0,
+      "underline": -4142,
+      "horizontal": -4131,
+      "vertical": -4160,
+      "wrap": true,
+      "indent": 0,
+      "top": 1473.75,
+      "left": 1019.25,
+      "height": 99.0,
+      "width": 189.75
+    },
+    {
+      "address": "J32",
+      "value": null,
+      "merge": true,
+      "merge_area": "$J$30:$J$34",
+      "style": null,
+      "font": "Calibri",
+      "size": 11.0,
+      "bold": false,
+      "color": 0.0,
+      "underline": -4142,
+      "horizontal": -4131,
+      "vertical": -4160,
+      "wrap": true,
+      "indent": 0,
+      "top": 1473.75,
+      "left": 1209.0,
+      "height": 99.0,
+      "width": 339.75
+    },
+    {
+      "address": "K32",
+      "value": "\n조건 [2]\n입력/조건 [2]: 실행 허용=1, pcm_out/mic0/mic1/dac1=모두 1\n예상 결과: 오디오 블록 처리=1회; 처리 후 pcm_out/mic0/mic1/dac1=모두 0\n",
+      "merge": false,
+      "merge_area": "$K$32",
+      "style": null,
+      "font": "Calibri",
+      "size": 11.0,
+      "bold": false,
+      "color": 0.0,
+      "underline": -4142,
+      "horizontal": -4131,
+      "vertical": -4160,
+      "wrap": true,
+      "indent": 0,
+      "top": 1473.75,
+      "left": 1548.75,
+      "height": 99.0,
+      "width": 387.75
+    },
+    {
+      "address": "L32",
+      "value": "\n검증 [2]\n실행 허용=1, pcm_out/mic0/mic1/dac1=모두 1 / 오디오 블록 처리=1회; 처리 후 pcm_out/mic0/mic1/dac1=모두 0\n판정: 출력/동작이 기준과 일치하여 통과.\n",
+      "merge": false,
+      "merge_area": "$L$32",
+      "style": {},
+      "font": "맑은 고딕",
+      "size": null,
+      "bold": false,
+      "color": 0.0,
+      "underline": -4142,
+      "horizontal": -4131,
+      "vertical": -4160,
+      "wrap": true,
+      "indent": 0,
+      "top": 1473.75,
+      "left": 1936.5,
+      "height": 99.0,
+      "width": 387.75
+    },
+    {
+      "address": "M32",
+      "value": null,
+      "merge": true,
+      "merge_area": "$M$30:$M$34",
+      "style": {},
+      "font": "맑은 고딕",
+      "size": 10.0,
+      "bold": false,
+      "color": 1118481.0,
+      "underline": -4142,
+      "horizontal": -4108,
+      "vertical": -4160,
+      "wrap": true,
+      "indent": 0,
+      "top": 1473.75,
+      "left": 2324.25,
+      "height": 99.0,
+      "width": 83.25
+    },
+    {
+      "address": "B1686",
+      "value": "\nBOOT\n",
+      "merge": true,
+      "merge_area": "$B$1686:$B$1726",
+      "style": null,
+      "font": "Calibri",
+      "size": 11.0,
+      "bold": false,
+      "color": 0.0,
+      "underline": -4142,
+      "horizontal": -4108,
+      "vertical": -4160,
+      "wrap": true,
+      "indent": 0,
+      "top": 243821.25,
+      "left": 12.0,
+      "height": 132.0,
+      "width": 32.25
+    },
+    {
+      "address": "C1686",
+      "value": "\n무선 갱신 모듈\n",
+      "merge": true,
+      "merge_area": "$C$1686:$C$1726",
+      "style": null,
+      "font": "Calibri",
+      "size": 11.0,
+      "bold": false,
+      "color": 0.0,
+      "underline": -4142,
+      "horizontal": -4108,
+      "vertical": -4160,
+      "wrap": true,
+      "indent": 0,
+      "top": 243821.25,
+      "left": 44.25,
+      "height": 132.0,
+      "width": 118.5
+    },
+    {
+      "address": "D1686",
+      "value": "\nSW-FW-UnitTest-BOOT-ID-20\n",
+      "merge": true,
+      "merge_area": "$D$1686:$D$1726",
+      "style": null,
+      "font": "Calibri",
+      "size": 11.0,
+      "bold": false,
+      "color": 0.0,
+      "underline": -4142,
+      "horizontal": -4108,
+      "vertical": -4160,
+      "wrap": true,
+      "indent": 0,
+      "top": 243821.25,
+      "left": 162.75,
+      "height": 132.0,
+      "width": 159.75
+    },
+    {
+      "address": "E1686",
+      "value": "\n새 이미지 시도 결과에 따라 사용할 기동 위치를 결정한다.\n",
+      "merge": true,
+      "merge_area": "$E$1686:$E$1726",
+      "style": null,
+      "font": "Calibri",
+      "size": 11.0,
+      "bold": false,
+      "color": 0.0,
+      "underline": -4142,
+      "horizontal": -4131,
+      "vertical": -4160,
+      "wrap": true,
+      "indent": 0,
+      "top": 243821.25,
+      "left": 322.5,
+      "height": 132.0,
+      "width": 327.75
+    },
+    {
+      "address": "F1686",
+      "value": "\nT\n",
+      "merge": true,
+      "merge_area": "$F$1686:$F$1726",
+      "style": null,
+      "font": "Calibri",
+      "size": 11.0,
+      "bold": false,
+      "color": 0.0,
+      "underline": -4142,
+      "horizontal": -4108,
+      "vertical": -4160,
+      "wrap": true,
+      "indent": 0,
+      "top": 243821.25,
+      "left": 650.25,
+      "height": 132.0,
+      "width": 31.5
+    },
+    {
+      "address": "G1686",
+      "value": "\nSU-ID-BOOT-020\n(기동 슬롯 선택과 대체 기동)\n",
+      "merge": true,
+      "merge_area": "$G$1686:$G$1726",
+      "style": null,
+      "font": null,
+      "size": 11.0,
+      "bold": false,
+      "color": null,
+      "underline": -4142,
+      "horizontal": -4108,
+      "vertical": -4160,
+      "wrap": true,
+      "indent": 0,
+      "top": 243821.25,
+      "left": 681.75,
+      "height": 132.0,
+      "width": 117.75
+    },
+    {
+      "address": "H1686",
+      "value": "\n- 기본 기동 슬롯은 1, 대체 슬롯은 2, 기동 시도 상한은 3으로 설정한다. 정상 기동(BOOT), 대체 기동/시도 중(ALT_BOOT/BOOT_TRY), 시도 완료(TRY_DONE) 상태를 각각 준비한다.\n- 시도 중 상태의 호출 전 횟수 2와 3, 시도 완료의 성공/실패 및 지원하지 않는 하위 상태를 독립적으로 적용한다.\n",
+      "merge": true,
+      "merge_area": "$H$1686:$H$1726",
+      "style": null,
+      "font": "Calibri",
+      "size": 11.0,
+      "bold": false,
+      "color": 0.0,
+      "underline": -4142,
+      "horizontal": -4131,
+      "vertical": -4160,
+      "wrap": true,
+      "indent": 0,
+      "top": 243821.25,
+      "left": 799.5,
+      "height": 132.0,
+      "width": 219.75
+    },
+    {
+      "address": "I1686",
+      "value": "\n시험 입력 또는 가상 장치 응답은 유닛 입력 경계에 설정한다. 실행 결과를 미리 예상값으로 덮어쓰지 않는다. 실제 전원이나 RF 연결 확인과 소프트웨어 상태 확인을 구분한다. 운영 이미지 대신 격리된 시험 저장소를 사용한다. 초기 RTT 미사용 시 결과를 보존한 뒤 읽는다.\n",
+      "merge": true,
+      "merge_area": "$I$1686:$I$1726",
+      "style": null,
+      "font": "Calibri",
+      "size": 11.0,
+      "bold": false,
+      "color": 0.0,
+      "underline": -4142,
+      "horizontal": -4131,
+      "vertical": -4160,
+      "wrap": true,
+      "indent": 0,
+      "top": 243821.25,
+      "left": 1019.25,
+      "height": 132.0,
+      "width": 189.75
+    },
+    {
+      "address": "J1686",
+      "value": "\n- 준비한 조건을 각각 독립 초기화하여 해당 유닛을 실행한다. 입력/출력 배열, 계산값과 횟수를 처리 완료 후 RTT로 기록하여 아래 예상 결과와 비교한다.\n수집: 준비된 BOOT 그룹(ut boot 1) 실행 후 UT-BOOT-020의 조건별 배열/상태와 판정 줄을 찾는다. \n",
+      "merge": true,
+      "merge_area": "$J$1686:$J$1726",
+      "style": null,
+      "font": "Calibri",
+      "size": 11.0,
+      "bold": false,
+      "color": 0.0,
+      "underline": -4142,
+      "horizontal": -4131,
+      "vertical": -4160,
+      "wrap": true,
+      "indent": 0,
+      "top": 243821.25,
+      "left": 1209.0,
+      "height": 132.0,
+      "width": 339.75
+    },
+    {
+      "address": "K1686",
+      "value": "\n판정 범위\n- 정상 기동은 슬롯 1이다. 호출 전 시도 횟수가 2이면 새 횟수 3, 슬롯 2다. 횟수가 3이면 새 횟수 4, 슬롯 1로 돌아가며 BOOT/TRY_DONE/FAIL 상태를 기록한다.\n- 시도 완료 성공은 슬롯 2, 실패 또는 미지원 상태는 슬롯 1과 UNKNOWN 상태다. 슬롯 번호의 유효 범위 확인은 해당 분기를 별도로 분석한다.\n",
+      "merge": false,
+      "merge_area": "$K$1686",
+      "style": null,
+      "font": "Calibri",
+      "size": 11.0,
+      "bold": false,
+      "color": 0.0,
+      "underline": -4142,
+      "horizontal": -4131,
+      "vertical": -4160,
+      "wrap": true,
+      "indent": 0,
+      "top": 243821.25,
+      "left": 1548.75,
+      "height": 132.0,
+      "width": 387.75
+    },
+    {
+      "address": "L1686",
+      "value": "\n검증 결과\n기본 슬롯=1, 대체 슬롯=2, 정상 상태=BOOT / 선택 슬롯=1\nALT_BOOT/BOOT_TRY, 상한=3, 호출 전 시도 횟수=2 / 선택 슬롯=2; 저장 시도 횟수=3; 저장 상태=ALT_BOOT/BOOT_TRY\nALT_BOOT/BOOT_TRY, 상한=3, 호출 전 시도 횟수=3 / 선택 슬롯=1; 저장 시도 횟수=4; 저장 상태=BOOT/TRY_DONE/FAIL\n",
+      "merge": false,
+      "merge_area": "$L$1686",
+      "style": {},
+      "font": "맑은 고딕",
+      "size": null,
+      "bold": false,
+      "color": 0.0,
+      "underline": -4142,
+      "horizontal": -4131,
+      "vertical": -4160,
+      "wrap": true,
+      "indent": 0,
+      "top": 243821.25,
+      "left": 1936.5,
+      "height": 132.0,
+      "width": 387.75
+    },
+    {
+      "address": "M1686",
+      "value": "\n통과\n",
+      "merge": true,
+      "merge_area": "$M$1686:$M$1726",
+      "style": {},
+      "font": "맑은 고딕",
+      "size": null,
+      "bold": false,
+      "color": null,
+      "underline": -4142,
+      "horizontal": -4108,
+      "vertical": -4108,
+      "wrap": true,
+      "indent": 0,
+      "top": 243821.25,
+      "left": 2324.25,
+      "height": 132.0,
+      "width": 83.25
+    },
+    {
+      "address": "K1694",
+      "value": "\n검증 [1]의 입력/원소별 기준 (C1): 기본 슬롯\n시험 입력 (모의 I/O/임시 파일)\n초기화/입력/동작: 각 건 상태 64바이트를 0으로 초기화하고 boot_slot_num=1, alt_boot_slot_num=2, state=1, sub_state=1, alt_boot_try_count=0, alt_boot_result=3로 저장한다. 새 값으로 파일을 덮은 뒤 handler 실행과 파일 다시 읽기를 수행한다.\npayload 인덱스: 0\n의미/단위: 선택 슬롯\n사전 예상값: 1\npayload 인덱스: 1\n의미/단위: 저장 alt_boot_try_count (회)\n사전 예상값: 0",
+      "merge": false,
+      "merge_area": "$K$1694",
+      "style": null,
+      "font": null,
+      "size": 11.0,
+      "bold": false,
+      "color": 0.0,
+      "underline": -4142,
+      "horizontal": -4131,
+      "vertical": -4160,
+      "wrap": true,
+      "indent": 0,
+      "top": 244629.75,
+      "left": 1548.75,
+      "height": 214.5,
+      "width": 387.75
+    },
+    {
+      "address": "L1694",
+      "value": "\n검증 [1]: 기본 슬롯\n출력[0] 선택 슬롯 = 1\n출력[1] 저장 alt_boot_try_count (회) = 0\n출력[2] 저장 sub_state = 1\n출력[3] 저장 state = 1\n출력[4] 저장 alt_boot_result = 3\n",
+      "merge": true,
+      "merge_area": "$L$1694:$L$1695",
+      "style": {},
+      "font": "맑은 고딕",
+      "size": null,
+      "bold": false,
+      "color": 0.0,
+      "underline": -4142,
+      "horizontal": -4131,
+      "vertical": -4160,
+      "wrap": true,
+      "indent": 0,
+      "top": 244629.75,
+      "left": 1936.5,
+      "height": 214.5,
+      "width": 387.75
+    },
+    {
+      "address": "K1726",
+      "value": "\n검증 [107]의 RTT 출력 (C107)\n입력/조건: 각 건 상태 64바이트를 0으로 초기화하고 boot_slot_num=1, alt_boot_slot_num=2, state=99, sub_state=1, alt_boot_try_count=0, alt_boot_result=3로 저장한다. RAM 파일 exists=1, size=64로 초기화하고 handler를 실행한 뒤 RAM 자료를 읽는다.\n예상 RTT 출력 결과:\n[UT-BOOT-020] C107 A[0:5]=1,0,4,99,3,1\n[UT-BOOT-020] C107 PASS N=6 F=0\n",
+      "merge": false,
+      "merge_area": "$K$1726",
+      "style": null,
+      "font": "Calibri",
+      "size": 11.0,
+      "bold": false,
+      "color": 0.0,
+      "underline": -4142,
+      "horizontal": -4131,
+      "vertical": -4160,
+      "wrap": true,
+      "indent": 0,
+      "top": 250694.25,
+      "left": 1548.75,
+      "height": 150.0,
+      "width": 387.75
+    },
+    {
+      "address": "L1726",
+      "value": "\n[UT-BOOT-020] C107 A[0:5]=1,0,4,99,3,1\n[UT-BOOT-020] C107 PASS N=6 F=0\n",
+      "merge": false,
+      "merge_area": "$L$1726",
+      "style": {},
+      "font": "맑은 고딕",
+      "size": null,
+      "bold": false,
+      "color": 0.0,
+      "underline": -4142,
+      "horizontal": -4131,
+      "vertical": -4160,
+      "wrap": true,
+      "indent": 0,
+      "top": 250694.25,
+      "left": 1936.5,
+      "height": 150.0,
+      "width": 387.75
+    }
+  ],
+  "native_readonly": true,
+  "sheets": [
+    {
+      "name": "표지",
+      "used": "$B$1:$AD$32",
+      "standard_height": 16.5,
+      "standard_width": 5.13
+    },
+    {
+      "name": "보고서_유닛 시험",
+      "used": "$A$1:$M$1736",
+      "standard_height": 16.5,
+      "standard_width": 8.38
+    }
+  ],
+  "page_setup": {
+    "zoom": false,
+    "fit_wide": 1,
+    "fit_tall": false,
+    "orientation": 2.0,
+    "paper_size": 9.0,
+    "print_area": "$B$2:$M$1734",
+    "print_title_rows": "$28:$29",
+    "left_margin": 18.0,
+    "right_margin": 18.0,
+    "top_margin": 54.0,
+    "bottom_margin": 54.0
+  },
+  "phase": "inspected",
+  "closed_without_saving": true,
+  "source_end_sha256": "05495AED7973BAF02E03C03AACE158AE233CEC419CF2308CCF3F9950DFAF21B5",
+  "source_unchanged": true
+}

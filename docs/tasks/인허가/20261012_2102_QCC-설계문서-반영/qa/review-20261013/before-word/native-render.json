@@ -1,0 +1,37 @@
+[
+  {
+    "code": "SR",
+    "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\before\\[E8300-QCC] SR-FW-TD24A 소프트웨어 요구사항.docx",
+    "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\before-word\\SR.pdf",
+    "pages": 11,
+    "revisions": 129
+  },
+  {
+    "code": "SGR",
+    "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\before\\[E8300-QCC] SGR-FW-TD24A 소프트웨어 일반요구사항.docx",
+    "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\before-word\\SGR.pdf",
+    "pages": 10,
+    "revisions": 44
+  },
+  {
+    "code": "SIP",
+    "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\before\\[E8300-QCC] SIP-FW-TD24A 소프트웨어 통합 계획서.docx",
+    "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\before-word\\SIP.pdf",
+    "pages": 16,
+    "revisions": 264
+  },
+  {
+    "code": "SDDD",
+    "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\before\\[E8300-QCC] SDDD-FW-TD24A 소프트웨어 상세 설계서.docx",
+    "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\before-word\\SDDD.pdf",
+    "pages": 166,
+    "revisions": 1781
+  },
+  {
+    "code": "SAD",
+    "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\before\\[E8300-QCC] SAD-FW-TD24A 소프트웨어 아키텍쳐 기술서.docx",
+    "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\before-word\\SAD.pdf",
+    "pages": 47,
+    "revisions": 751
+  }
+]

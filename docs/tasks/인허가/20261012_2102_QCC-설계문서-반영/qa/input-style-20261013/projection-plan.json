@@ -1,0 +1,20 @@
+[
+  {
+    "code": "SR",
+    "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\SR-new-text-only.docx",
+    "sha256": "75D99FBFAF1344FAFA2EFA5FC79A48815645B453EF739312F3F3B04E01E6C7D9",
+    "expected_accept": "3분 무송수신의 감시/갱신 범위와 제어 명령 미수신 조건의 정합성, QCC 마이크 핀/클록, 연결 상대 및 프로파일/코덱별 송수신과 동시 동작 조건 및 시험 결과는 미확정이다.\nQCC 개발 환경의 라이브러리/ADK 버전과 빌드 구성은 미확정이다.\nQCC의 실제 메모리 배치, 실행 이미지/데이터 사용량과 부트 이미지 검사 설정은 미확정이다.\n오디오 송수신, 연결/인증, 키 관리 및 펌웨어 보호에 대한 위험분석 재평가와 변경 영향의 검토 결과는 미확정이다.",
+    "expected_reject": "[QCC/E8300 자료 입력] DMIC2가 E8300과 QCC에 함께 연결되는 경로는 확인되었다. 3분 무송수신의 감시/갱신 범위와 제어 명령 미수신 조건의 정합성, QCC 마이크 핀/클록, 연결 상대 및 프로파일/코덱별 송수신과 동시 동작 조건 및 시험 결과를 확인한다.\n[QCC 자료 입력] 실제 QCC 개발 환경, 라이브러리/ADK 버전과 빌드 구성을 입력한다.\n[QCC 자료 입력] QCC의 실제 메모리 배치, 실행 이미지/데이터 사용량과 부트 이미지 검사 설정을 입력한다.\n[QCC/E8300 자료 입력] 오디오 송수신, 연결/인증, 키 관리 및 펌웨어 보호에 대한 위험분석 재평가와 변경 영향의 검토 결과를 확인한다.",
+    "revision_count": 8,
+    "scope": "Only new text revisions of the six notice paragraphs; older history accepted in QA projection only. Source and final histories retained."
+  },
+  {
+    "code": "SGR",
+    "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\SGR-new-text-only.docx",
+    "sha256": "C3E846D9A6333CC7EB8382290778839422CAD549EBA860E86881E4630E44C419",
+    "expected_accept": "QCC의 실제 ADK/실행 환경, scheduler 구성과 사용 버전은 미확정이다.\nQCC 제조사 소프트웨어의 식별/버전, 사용 범위와 검토 근거는 미확정이다.",
+    "expected_reject": "[QCC 자료 입력] QCC의 실제 ADK/실행 환경, scheduler 구성과 사용 버전을 입력한다.\n[QCC 자료 입력] QCC 제조사 소프트웨어의 식별/버전, 사용 범위와 검토 근거를 입력한다.",
+    "revision_count": 4,
+    "scope": "Only new text revisions of the six notice paragraphs; older history accepted in QA projection only. Source and final histories retained."
+  }
+]

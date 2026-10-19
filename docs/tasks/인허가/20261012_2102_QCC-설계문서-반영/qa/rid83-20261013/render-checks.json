@@ -1,0 +1,102 @@
+[
+  {
+    "code": "SSTR",
+    "sheet": "보고서_시스템 시험",
+    "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\rid83-20261013\\native\\SSTR-0-main.pdf",
+    "pages": 71,
+    "images": [
+      "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\rid83-20261013\\views\\SSTR-0-main\\page-071.png"
+    ],
+    "sourceSHA256": "EC5849B277A4F074CDBACCFA7AC770D1FC8DCE8FD3AC5B8D5FC349BD74D41C8B"
+  },
+  {
+    "code": "SSTR",
+    "sheet": "보고서_시스템 시험_비교",
+    "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\rid83-20261013\\native\\SSTR-0-compare.pdf",
+    "pages": 1,
+    "images": [
+      "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\rid83-20261013\\views\\SSTR-0-compare\\page-001.png"
+    ],
+    "sourceSHA256": "EC5849B277A4F074CDBACCFA7AC770D1FC8DCE8FD3AC5B8D5FC349BD74D41C8B"
+  },
+  {
+    "code": "SSTR",
+    "sheet": "사이버보안 시험 연계",
+    "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\rid83-20261013\\native\\SSTR-1-main.pdf",
+    "pages": 1,
+    "images": [
+      "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\rid83-20261013\\views\\SSTR-1-main\\page-001.png"
+    ],
+    "sourceSHA256": "EC5849B277A4F074CDBACCFA7AC770D1FC8DCE8FD3AC5B8D5FC349BD74D41C8B"
+  },
+  {
+    "code": "SSTR",
+    "sheet": "사이버보안 시험 연계_비교",
+    "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\rid83-20261013\\native\\SSTR-1-compare.pdf",
+    "pages": 1,
+    "images": [
+      "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\rid83-20261013\\views\\SSTR-1-compare\\page-001.png"
+    ],
+    "sourceSHA256": "EC5849B277A4F074CDBACCFA7AC770D1FC8DCE8FD3AC5B8D5FC349BD74D41C8B"
+  },
+  {
+    "code": "SRS",
+    "sheet": "소프트웨어 입력 요구사항 사양서",
+    "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\rid83-20261013\\native\\SRS-0-main.pdf",
+    "pages": 26,
+    "images": [
+      "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\rid83-20261013\\views\\SRS-0-main\\page-024.png"
+    ],
+    "sourceSHA256": "BF9A92ACC2770563A410CF4A580C005A73BBAB5D34B7DABC3C695A6B9BE5B6BD"
+  },
+  {
+    "code": "SRS",
+    "sheet": "소프트웨어 입력 요구사항 사양서_비교",
+    "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\rid83-20261013\\native\\SRS-0-compare.pdf",
+    "pages": 1,
+    "images": [
+      "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\rid83-20261013\\views\\SRS-0-compare\\page-001.png"
+    ],
+    "sourceSHA256": "BF9A92ACC2770563A410CF4A580C005A73BBAB5D34B7DABC3C695A6B9BE5B6BD"
+  },
+  {
+    "code": "SSTC",
+    "sheet": "기준서_시스템 시험",
+    "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\rid83-20261013\\native\\SSTC-0-main.pdf",
+    "pages": 72,
+    "images": [
+      "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\rid83-20261013\\views\\SSTC-0-main\\page-072.png"
+    ],
+    "sourceSHA256": "865851FC890543BB4A637718EE7956E6EE565AFA6109822AD4E2859B50ADE33F"
+  },
+  {
+    "code": "SSTC",
+    "sheet": "기준서_시스템 시험_비교",
+    "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\rid83-20261013\\native\\SSTC-0-compare.pdf",
+    "pages": 1,
+    "images": [
+      "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\rid83-20261013\\views\\SSTC-0-compare\\page-001.png"
+    ],
+    "sourceSHA256": "865851FC890543BB4A637718EE7956E6EE565AFA6109822AD4E2859B50ADE33F"
+  },
+  {
+    "code": "SSTC",
+    "sheet": "사이버보안 시험 연계",
+    "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\rid83-20261013\\native\\SSTC-1-main.pdf",
+    "pages": 1,
+    "images": [
+      "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\rid83-20261013\\views\\SSTC-1-main\\page-001.png"
+    ],
+    "sourceSHA256": "865851FC890543BB4A637718EE7956E6EE565AFA6109822AD4E2859B50ADE33F"
+  },
+  {
+    "code": "SSTC",
+    "sheet": "사이버보안 시험 연계_비교",
+    "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\rid83-20261013\\native\\SSTC-1-compare.pdf",
+    "pages": 1,
+    "images": [
+      "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\rid83-20261013\\views\\SSTC-1-compare\\page-001.png"
+    ],
+    "sourceSHA256": "865851FC890543BB4A637718EE7956E6EE565AFA6109822AD4E2859B50ADE33F"
+  }
+]

@@ -1,0 +1,1808 @@
+{
+  "date": "2026-10-13",
+  "matrix_url": "https://docs.google.com/spreadsheets/d/1tT8US7ry-1s9Dqdg_eqpJ6ixSB6gbsjUezcIrn23Ogc/edit?gid=774914198",
+  "matrix_sheet": "설계 입출력 검증 매트릭스",
+  "matrix_sheet_id": "774914198",
+  "matrix_snapshot": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_requirements\\matrix-readonly.xlsx",
+  "matrix_sha256": "1A7C1CB16F3E368EDBBFDD62A26006CC806062F38BF2323B644E180AFB1FE4A4",
+  "source_current_sha": "FB34D47181B2AC35E6DBE710C78986990B6934849B370B5E8CDE030FF10DFAC8",
+  "active_requirement_count": 82,
+  "removed_duplicate_rid": 82,
+  "merged_into_rid": 69,
+  "requirements": [
+    {
+      "id": "SW-FW-RID-1",
+      "rid": 1,
+      "old_row": 6,
+      "base_text": "24 kHz",
+      "detail": "전채널 동시에 자극률은 20kHz이상이어야 한다.(32채널 사용)",
+      "notices": [],
+      "F": "\n24 kHz\n상세: 전채널 동시에 자극률은 20kHz이상이어야 한다.(32채널 사용)\n",
+      "H": "\nSYS-RID-SP-FW-2\n",
+      "I": "",
+      "matrix": [
+        {
+          "row": 101,
+          "id": "SYS-RID-SP-FW-02",
+          "text": "24 kHz"
+        }
+      ],
+      "matrix_match": true,
+      "existing_upper_preserved": true,
+      "old_F": "\n전채널 동시에 자극률은 20kHz이상이어야 한다.(32채널 사용)\n",
+      "old_H": "\nSYS-RID-SP-FW-2\n",
+      "old_I": ""
+    },
+    {
+      "id": "SW-FW-RID-2",
+      "rid": 2,
+      "old_row": 7,
+      "base_text": "채널별 최대 자극률은 1000Hz 이상이어야 한다.(24채널 사용)",
+      "detail": "",
+      "notices": [],
+      "F": "\n채널별 최대 자극률은 1000Hz 이상이어야 한다.(24채널 사용)\n",
+      "H": "",
+      "I": "",
+      "matrix": [],
+      "matrix_match": false,
+      "existing_upper_preserved": true,
+      "old_F": "\n채널별 최대 자극률은 1000Hz 이상이어야 한다.(24채널 사용)\n",
+      "old_H": "",
+      "old_I": ""
+    },
+    {
+      "id": "SW-FW-RID-3",
+      "rid": 3,
+      "old_row": 8,
+      "base_text": "Monopolar",
+      "detail": "모노폴라 자극 모드 출력이 가능해야한다.",
+      "notices": [],
+      "F": "\nMonopolar\n상세: 모노폴라 자극 모드 출력이 가능해야한다.\n",
+      "H": "\nSYS-RID-SP-FW-1\n",
+      "I": "",
+      "matrix": [
+        {
+          "row": 100,
+          "id": "SYS-RID-SP-FW-01",
+          "text": "Monopolar"
+        }
+      ],
+      "matrix_match": true,
+      "existing_upper_preserved": true,
+      "old_F": "\n모노폴라 자극 모드 출력이 가능해야한다.\n",
+      "old_H": "\nSYS-RID-SP-FW-1\n",
+      "old_I": ""
+    },
+    {
+      "id": "SW-FW-RID-4",
+      "rid": 4,
+      "old_row": 9,
+      "base_text": "negative, positive first",
+      "detail": "negative/positive phase 선택이 가능해야 한다.",
+      "notices": [],
+      "F": "\nnegative, positive first\n상세: negative/positive phase 선택이 가능해야 한다.\n",
+      "H": "\nSYS-RID-SP-FW-4\n",
+      "I": "",
+      "matrix": [
+        {
+          "row": 103,
+          "id": "SYS-RID-SP-FW-04",
+          "text": "negative, positive first"
+        }
+      ],
+      "matrix_match": true,
+      "existing_upper_preserved": true,
+      "old_F": "\nnegative/positive phase 선택이 가능해야 한다.\n",
+      "old_H": "\nSYS-RID-SP-FW-4\n",
+      "old_I": ""
+    },
+    {
+      "id": "SW-FW-RID-5",
+      "rid": 5,
+      "old_row": 10,
+      "base_text": "C/T 레벨 범위",
+      "detail": "내부 자극칩 출력 범위 내에서 조정이 가능해야 한다.",
+      "notices": [],
+      "F": "\nC/T 레벨 범위\n상세: 내부 자극칩 출력 범위 내에서 조정이 가능해야 한다.\n",
+      "H": "\nSYS-RID-SP-FW-5\n",
+      "I": "",
+      "matrix": [
+        {
+          "row": 104,
+          "id": "SYS-RID-SP-FW-05",
+          "text": "C/T 레벨 범위"
+        }
+      ],
+      "matrix_match": true,
+      "existing_upper_preserved": true,
+      "old_F": "\n내부 자극칩 출력 범위 내에서 조정이 가능해야 한다.\n",
+      "old_H": "\nSYS-RID-SP-FW-5\n",
+      "old_I": ""
+    },
+    {
+      "id": "SW-FW-RID-6",
+      "rid": 6,
+      "old_row": 11,
+      "base_text": "13~255단계, Step Size 1",
+      "detail": "자극 펄스 폭은 13~255usec 범위에서 1usec 단위로 조정이 가능해야한다.",
+      "notices": [],
+      "F": "\n13~255단계, Step Size 1\n상세: 자극 펄스 폭은 13~255usec 범위에서 1usec 단위로 조정이 가능해야한다.\n",
+      "H": "\nSYS-RID-SP-FW-3\n",
+      "I": "",
+      "matrix": [
+        {
+          "row": 102,
+          "id": "SYS-RID-SP-FW-03",
+          "text": "13~255단계, Step Size 1"
+        }
+      ],
+      "matrix_match": true,
+      "existing_upper_preserved": true,
+      "old_F": "\n자극 펄스 폭은 13~255usec 범위에서 1usec 단위로 조정이 가능해야한다.\n",
+      "old_H": "\nSYS-RID-SP-FW-3\n",
+      "old_I": ""
+    },
+    {
+      "id": "SW-FW-RID-7",
+      "rid": 7,
+      "old_row": 12,
+      "base_text": "인공와우 내부기 시스템의 전극에서 출력되는 최대 전하량이 안전치를 초과하지 않도록 펄스폭에 따라 최종 자극 크기의 제한이 필요하다.",
+      "detail": "",
+      "notices": [],
+      "F": "\n인공와우 내부기 시스템의 전극에서 출력되는 최대 전하량이 안전치를 초과하지 않도록 펄스폭에 따라 최종 자극 크기의 제한이 필요하다.\n",
+      "H": "",
+      "I": "",
+      "matrix": [],
+      "matrix_match": false,
+      "existing_upper_preserved": true,
+      "old_F": "\n인공와우 내부기 시스템의 전극에서 출력되는 최대 전하량이 안전치를 초과하지 않도록 펄스폭에 따라 최종 자극 크기의 제한이 필요하다.\n",
+      "old_H": "",
+      "old_I": ""
+    },
+    {
+      "id": "SW-FW-RID-8",
+      "rid": 8,
+      "old_row": 13,
+      "base_text": "AGC를 사용한 감도 조절",
+      "detail": "AGC를 사용한 감도 조절 10단계",
+      "notices": [],
+      "F": "\nAGC를 사용한 감도 조절\n상세: AGC를 사용한 감도 조절 10단계\n",
+      "H": "\nSYS-RID-SP-FW-6\n",
+      "I": "",
+      "matrix": [
+        {
+          "row": 105,
+          "id": "SYS-RID-SP-FW-06",
+          "text": "AGC를 사용한 감도 조절"
+        }
+      ],
+      "matrix_match": true,
+      "existing_upper_preserved": true,
+      "old_F": "\nAGC를 사용한 감도 조절 10단계\n",
+      "old_H": "\nSYS-RID-SP-FW-6\n",
+      "old_I": ""
+    },
+    {
+      "id": "SW-FW-RID-9",
+      "rid": 9,
+      "old_row": 14,
+      "base_text": "FFT",
+      "detail": "FFT 방식으로 신호의 주파수를 성분을 분석한다.",
+      "notices": [],
+      "F": "\nFFT\n상세: FFT 방식으로 신호의 주파수를 성분을 분석한다.\n",
+      "H": "\nSYS-RID-SP-FW-7\n",
+      "I": "",
+      "matrix": [
+        {
+          "row": 106,
+          "id": "SYS-RID-SP-FW-07",
+          "text": "FFT"
+        }
+      ],
+      "matrix_match": true,
+      "existing_upper_preserved": true,
+      "old_F": "\nFFT 방식으로 신호의 주파수를 성분을 분석한다.\n",
+      "old_H": "\nSYS-RID-SP-FW-7\n",
+      "old_I": ""
+    },
+    {
+      "id": "SW-FW-RID-10",
+      "rid": 10,
+      "old_row": 15,
+      "base_text": "최대 32채널",
+      "detail": "1~32채널의 대역수로 주파수 분석이 가능해야한다.",
+      "notices": [],
+      "F": "\n최대 32채널\n상세: 1~32채널의 대역수로 주파수 분석이 가능해야한다.\n",
+      "H": "\nSYS-RID-SP-FW-8\n",
+      "I": "",
+      "matrix": [
+        {
+          "row": 107,
+          "id": "SYS-RID-SP-FW-08",
+          "text": "최대 32채널"
+        }
+      ],
+      "matrix_match": true,
+      "existing_upper_preserved": true,
+      "old_F": "\n1~32채널의 대역수로 주파수 분석이 가능해야한다.\n",
+      "old_H": "\nSYS-RID-SP-FW-8\n",
+      "old_I": ""
+    },
+    {
+      "id": "SW-FW-RID-11",
+      "rid": 11,
+      "old_row": 16,
+      "base_text": "필수 : CIS",
+      "detail": "필수 : CIS, 옵션 : N-of-M",
+      "notices": [],
+      "F": "\n필수 : CIS\n상세: 필수 : CIS, 옵션 : N-of-M\n",
+      "H": "\nSYS-RID-SP-FW-9\n",
+      "I": "",
+      "matrix": [
+        {
+          "row": 108,
+          "id": "SYS-RID-SP-FW-09",
+          "text": "필수 : CIS"
+        }
+      ],
+      "matrix_match": true,
+      "existing_upper_preserved": true,
+      "old_F": "\n필수 : CIS, 옵션 : N-of-M\n",
+      "old_H": "\nSYS-RID-SP-FW-9\n",
+      "old_I": ""
+    },
+    {
+      "id": "SW-FW-RID-12",
+      "rid": 12,
+      "old_row": 17,
+      "base_text": "1msec",
+      "detail": "사운드 처리 주기는 1.00ms이며 허용 오차는 +/-5%(0.95~1.05ms)이다.",
+      "notices": [],
+      "F": "\n1msec\n상세: 사운드 처리 주기는 1.00ms이며 허용 오차는 +/-5%(0.95~1.05ms)이다.\n",
+      "H": "\nSYS-RID-SP-FW-10\n",
+      "I": "",
+      "matrix": [
+        {
+          "row": 109,
+          "id": "SYS-RID-SP-FW-10",
+          "text": "1msec"
+        }
+      ],
+      "matrix_match": true,
+      "existing_upper_preserved": true,
+      "old_F": "\n사운드 처리 주기는 1.00ms이며 허용 오차는 +/-5%(0.95~1.05ms)이다.\n",
+      "old_H": "\nSYS-RID-SP-FW-10\n",
+      "old_I": ""
+    },
+    {
+      "id": "SW-FW-RID-13",
+      "rid": 13,
+      "old_row": 18,
+      "base_text": "4개",
+      "detail": "4개의 맵 데이터를 사용할 수 있어야 한다.",
+      "notices": [],
+      "F": "\n4개\n상세: 4개의 맵 데이터를 사용할 수 있어야 한다.\n",
+      "H": "\nSYS-RID-SP-FW-11\n",
+      "I": "",
+      "matrix": [
+        {
+          "row": 110,
+          "id": "SYS-RID-SP-FW-11",
+          "text": "4개"
+        }
+      ],
+      "matrix_match": true,
+      "existing_upper_preserved": true,
+      "old_F": "\n4개의 맵 데이터를 사용할 수 있어야 한다.\n",
+      "old_H": "\nSYS-RID-SP-FW-11\n",
+      "old_I": ""
+    },
+    {
+      "id": "SW-FW-RID-14",
+      "rid": 14,
+      "old_row": 19,
+      "base_text": "4단계 자극 볼륨 조절",
+      "detail": "자극 볼륨은 4단계로 조정 가능해야한다.",
+      "notices": [],
+      "F": "\n4단계 자극 볼륨 조절\n상세: 자극 볼륨은 4단계로 조정 가능해야한다.\n",
+      "H": "\nSYS-RID-SP-FW-12\n",
+      "I": "",
+      "matrix": [
+        {
+          "row": 111,
+          "id": "SYS-RID-SP-FW-12",
+          "text": "4단계 자극 볼륨 조절"
+        }
+      ],
+      "matrix_match": true,
+      "existing_upper_preserved": true,
+      "old_F": "\n자극 볼륨은 4단계로 조정 가능해야한다.\n",
+      "old_H": "\nSYS-RID-SP-FW-12\n",
+      "old_I": ""
+    },
+    {
+      "id": "SW-FW-RID-15",
+      "rid": 15,
+      "old_row": 20,
+      "base_text": "2개 이상의 오디오 소스를 입력 받을 수 있어야 한다.",
+      "detail": "E8300은 DMIC1/DMIC2의 입력과 QCC가 전달하는 I2S 오디오를 처리한다. DMIC2는 QCC에도 입력된다. QCC의 Bluetooth 수신 오디오는 I2S의 24비트 데이터, 16kHz 샘플링 주파수로 E8300에 전달한다.",
+      "notices": [
+        "[QCC 자료 입력] I2S의 클록/프레임과 유효 신호의 출력 조건, 동시 입력 조건 및 측정 결과를 확인한다."
+      ],
+      "F": "\n2개 이상의 오디오 소스를 입력 받을 수 있어야 한다.\n상세: E8300은 DMIC1/DMIC2의 입력과 QCC가 전달하는 I2S 오디오를 처리한다. DMIC2는 QCC에도 입력된다. QCC의 Bluetooth 수신 오디오는 I2S의 24비트 데이터, 16kHz 샘플링 주파수로 E8300에 전달한다.\n\n[QCC 자료 입력] I2S의 클록/프레임과 유효 신호의 출력 조건, 동시 입력 조건 및 측정 결과를 확인한다.\n",
+      "H": "",
+      "I": "",
+      "matrix": [],
+      "matrix_match": false,
+      "existing_upper_preserved": true,
+      "old_F": "\n2개 이상의 오디오 소스를 입력 받을 수 있어야 한다. QCC는 Bluetooth 오디오를 I2S로 E8300에 전달하며, 데이터는 24비트, 샘플링 주파수는 16kHz다.\n\nQCC 설계 연결: Bluetooth Classic 유닛(SU-ID-QCC-008), 시스템 초기화와 설정 유닛(SU-ID-QCC-001).\n\n[QCC 자료 입력] I2S의 클록/프레임과 유효 신호의 실제 출력 조건 및 측정 자료를 입력한다.\n",
+      "old_H": "",
+      "old_I": "\nQCC SRS\nRI-09\nI2S 오디오 입력\n"
+    },
+    {
+      "id": "SW-FW-RID-16",
+      "rid": 16,
+      "old_row": 21,
+      "base_text": "8kHz 오디오 신호를 입력 받을 수 있어야 한다.",
+      "detail": "오디오 입력 대역은 0~8kHz이며, 16kHz 샘플링 주파수와 구분한다.",
+      "notices": [
+        "[QCC/E8300 자료 입력] 8kHz 대역 끝점의 입력/출력 조건, 허용 범위와 측정 결과를 확인한다."
+      ],
+      "F": "\n8kHz 오디오 신호를 입력 받을 수 있어야 한다.\n상세: 오디오 입력 대역은 0~8kHz이며, 16kHz 샘플링 주파수와 구분한다.\n\n[QCC/E8300 자료 입력] 8kHz 대역 끝점의 입력/출력 조건, 허용 범위와 측정 결과를 확인한다.\n",
+      "H": "",
+      "I": "",
+      "matrix": [],
+      "matrix_match": false,
+      "existing_upper_preserved": true,
+      "old_F": "\n오디오 입력 대역은 0~8kHz이며, 샘플링 주파수 16kHz와 구분한다.\n\n[QCC/E8300 자료 입력] 8kHz 대역 끝점의 입력/출력 조건과 허용 범위를 확인한다. 코드 설정을 실제 음향 성능 측정값으로 보지 않는다.\n",
+      "old_H": "",
+      "old_I": "\nQCC SRS\nRI-09\nI2S 오디오 입력\n"
+    },
+    {
+      "id": "SW-FW-RID-17",
+      "rid": 17,
+      "old_row": 22,
+      "base_text": "오디오 신호처리의 최종 출력은 PCM 데이터로 변환되어 FPGA에 전달되어야 한다.",
+      "detail": "",
+      "notices": [],
+      "F": "\n오디오 신호처리의 최종 출력은 PCM 데이터로 변환되어 FPGA에 전달되어야 한다.\n",
+      "H": "",
+      "I": "",
+      "matrix": [],
+      "matrix_match": false,
+      "existing_upper_preserved": true,
+      "old_F": "\n오디오 신호처리의 최종 출력은 PCM 데이터로 변환되어 FPGA에 전달되어야 한다.\n",
+      "old_H": "",
+      "old_I": ""
+    },
+    {
+      "id": "SW-FW-RID-18",
+      "rid": 18,
+      "old_row": 23,
+      "base_text": "매핑 데이터에 기반하여 최종 자극 파라미터가 생성되어야 한다.",
+      "detail": "",
+      "notices": [],
+      "F": "\n매핑 데이터에 기반하여 최종 자극 파라미터가 생성되어야 한다.\n",
+      "H": "",
+      "I": "",
+      "matrix": [],
+      "matrix_match": false,
+      "existing_upper_preserved": true,
+      "old_F": "\n매핑 데이터에 기반하여 최종 자극 파라미터가 생성되어야 한다.\n",
+      "old_H": "",
+      "old_I": ""
+    },
+    {
+      "id": "SW-FW-RID-19",
+      "rid": 19,
+      "old_row": 24,
+      "base_text": "터치 센서의 입력에 따라 전원 모드와 사용자 제어를 처리한다.",
+      "detail": "",
+      "notices": [],
+      "F": "\n터치 센서의 입력에 따라 전원 모드와 사용자 제어를 처리한다.\n",
+      "H": "",
+      "I": "",
+      "matrix": [],
+      "matrix_match": false,
+      "existing_upper_preserved": true,
+      "old_F": "\n터치 센서의 입력에 따라 전원 모드와 사용자 제어를 처리한다.\n",
+      "old_H": "",
+      "old_I": ""
+    },
+    {
+      "id": "SW-FW-RID-20",
+      "rid": 20,
+      "old_row": 25,
+      "base_text": "외부기 동작 상태를 표시한다.",
+      "detail": "",
+      "notices": [],
+      "F": "\n외부기 동작 상태를 표시한다.\n",
+      "H": "",
+      "I": "",
+      "matrix": [],
+      "matrix_match": false,
+      "existing_upper_preserved": true,
+      "old_F": "\n외부기 동작 상태를 표시한다.\n",
+      "old_H": "",
+      "old_I": ""
+    },
+    {
+      "id": "SW-FW-RID-21",
+      "rid": 21,
+      "old_row": 26,
+      "base_text": "전원 커넥터 연결 상태를 표시한다.",
+      "detail": "",
+      "notices": [],
+      "F": "\n전원 커넥터 연결 상태를 표시한다.\n",
+      "H": "",
+      "I": "",
+      "matrix": [],
+      "matrix_match": false,
+      "existing_upper_preserved": true,
+      "old_F": "\n전원 커넥터 연결 상태를 표시한다.\n",
+      "old_H": "",
+      "old_I": ""
+    },
+    {
+      "id": "SW-FW-RID-22",
+      "rid": 22,
+      "old_row": 27,
+      "base_text": "배터리 저전압 상태를  표시한다.",
+      "detail": "",
+      "notices": [],
+      "F": "\n배터리 저전압 상태를  표시한다.\n",
+      "H": "",
+      "I": "",
+      "matrix": [],
+      "matrix_match": false,
+      "existing_upper_preserved": true,
+      "old_F": "\n배터리 저전압 상태를  표시한다.\n",
+      "old_H": "",
+      "old_I": ""
+    },
+    {
+      "id": "SW-FW-RID-23",
+      "rid": 23,
+      "old_row": 28,
+      "base_text": "배터리 저전압 상태를 자극으로 출력한다.",
+      "detail": "",
+      "notices": [],
+      "F": "\n배터리 저전압 상태를 자극으로 출력한다.\n",
+      "H": "",
+      "I": "",
+      "matrix": [],
+      "matrix_match": false,
+      "existing_upper_preserved": true,
+      "old_F": "\n배터리 저전압 상태를 자극으로 출력한다.\n",
+      "old_H": "",
+      "old_I": ""
+    },
+    {
+      "id": "SW-FW-RID-24",
+      "rid": 24,
+      "old_row": 29,
+      "base_text": "프로그램 변경하기",
+      "detail": "",
+      "notices": [],
+      "F": "\n프로그램 변경하기\n",
+      "H": "",
+      "I": "",
+      "matrix": [],
+      "matrix_match": false,
+      "existing_upper_preserved": true,
+      "old_F": "\n프로그램 변경하기\n",
+      "old_H": "",
+      "old_I": ""
+    },
+    {
+      "id": "SW-FW-RID-25",
+      "rid": 25,
+      "old_row": 30,
+      "base_text": "오디오 볼륨 조절하기",
+      "detail": "",
+      "notices": [],
+      "F": "\n오디오 볼륨 조절하기\n",
+      "H": "",
+      "I": "",
+      "matrix": [],
+      "matrix_match": false,
+      "existing_upper_preserved": true,
+      "old_F": "\n오디오 볼륨 조절하기\n",
+      "old_H": "",
+      "old_I": ""
+    },
+    {
+      "id": "SW-FW-RID-26",
+      "rid": 26,
+      "old_row": 31,
+      "base_text": "자극 볼륨 조절하기",
+      "detail": "",
+      "notices": [],
+      "F": "\n자극 볼륨 조절하기\n",
+      "H": "",
+      "I": "",
+      "matrix": [],
+      "matrix_match": false,
+      "existing_upper_preserved": true,
+      "old_F": "\n자극 볼륨 조절하기\n",
+      "old_H": "",
+      "old_I": ""
+    },
+    {
+      "id": "SW-FW-RID-27",
+      "rid": 27,
+      "old_row": 32,
+      "base_text": "LED 알림 켜기/끄기",
+      "detail": "",
+      "notices": [],
+      "F": "\nLED 알림 켜기/끄기\n",
+      "H": "",
+      "I": "",
+      "matrix": [],
+      "matrix_match": false,
+      "existing_upper_preserved": true,
+      "old_F": "\nLED 알림 켜기/끄기\n",
+      "old_H": "",
+      "old_I": ""
+    },
+    {
+      "id": "SW-FW-RID-28",
+      "rid": 28,
+      "old_row": 33,
+      "base_text": "자극 알림 켜기/끄기",
+      "detail": "",
+      "notices": [],
+      "F": "\n자극 알림 켜기/끄기\n",
+      "H": "",
+      "I": "",
+      "matrix": [],
+      "matrix_match": false,
+      "existing_upper_preserved": true,
+      "old_F": "\n자극 알림 켜기/끄기\n",
+      "old_H": "",
+      "old_I": ""
+    },
+    {
+      "id": "SW-FW-RID-29",
+      "rid": 29,
+      "old_row": 34,
+      "base_text": "배터리 상태",
+      "detail": "",
+      "notices": [],
+      "F": "\n배터리 상태\n",
+      "H": "",
+      "I": "",
+      "matrix": [],
+      "matrix_match": false,
+      "existing_upper_preserved": true,
+      "old_F": "\n배터리 상태\n",
+      "old_H": "",
+      "old_I": ""
+    },
+    {
+      "id": "SW-FW-RID-30",
+      "rid": 30,
+      "old_row": 35,
+      "base_text": "선택된 맵 번호",
+      "detail": "",
+      "notices": [],
+      "F": "\n선택된 맵 번호\n",
+      "H": "",
+      "I": "",
+      "matrix": [],
+      "matrix_match": false,
+      "existing_upper_preserved": true,
+      "old_F": "\n선택된 맵 번호\n",
+      "old_H": "",
+      "old_I": ""
+    },
+    {
+      "id": "SW-FW-RID-31",
+      "rid": 31,
+      "old_row": 36,
+      "base_text": "오디오 볼륨 단계",
+      "detail": "",
+      "notices": [],
+      "F": "\n오디오 볼륨 단계\n",
+      "H": "",
+      "I": "",
+      "matrix": [],
+      "matrix_match": false,
+      "existing_upper_preserved": true,
+      "old_F": "\n오디오 볼륨 단계\n",
+      "old_H": "",
+      "old_I": ""
+    },
+    {
+      "id": "SW-FW-RID-32",
+      "rid": 32,
+      "old_row": 37,
+      "base_text": "자극 볼륨 단계",
+      "detail": "",
+      "notices": [],
+      "F": "\n자극 볼륨 단계\n",
+      "H": "",
+      "I": "",
+      "matrix": [],
+      "matrix_match": false,
+      "existing_upper_preserved": true,
+      "old_F": "\n자극 볼륨 단계\n",
+      "old_H": "",
+      "old_I": ""
+    },
+    {
+      "id": "SW-FW-RID-33",
+      "rid": 33,
+      "old_row": 38,
+      "base_text": "LED 알림 설정 상태",
+      "detail": "",
+      "notices": [],
+      "F": "\nLED 알림 설정 상태\n",
+      "H": "",
+      "I": "",
+      "matrix": [],
+      "matrix_match": false,
+      "existing_upper_preserved": true,
+      "old_F": "\nLED 알림 설정 상태\n",
+      "old_H": "",
+      "old_I": ""
+    },
+    {
+      "id": "SW-FW-RID-34",
+      "rid": 34,
+      "old_row": 39,
+      "base_text": "자극 알림 설정 상태",
+      "detail": "",
+      "notices": [],
+      "F": "\n자극 알림 설정 상태\n",
+      "H": "",
+      "I": "",
+      "matrix": [],
+      "matrix_match": false,
+      "existing_upper_preserved": true,
+      "old_F": "\n자극 알림 설정 상태\n",
+      "old_H": "",
+      "old_I": ""
+    },
+    {
+      "id": "SW-FW-RID-35",
+      "rid": 35,
+      "old_row": 40,
+      "base_text": "시스템 상태 확인",
+      "detail": "",
+      "notices": [],
+      "F": "\n시스템 상태 확인\n",
+      "H": "",
+      "I": "",
+      "matrix": [],
+      "matrix_match": false,
+      "existing_upper_preserved": true,
+      "old_F": "\n시스템 상태 확인\n",
+      "old_H": "",
+      "old_I": ""
+    },
+    {
+      "id": "SW-FW-RID-36",
+      "rid": 36,
+      "old_row": 41,
+      "base_text": "특정 자극 출력",
+      "detail": "",
+      "notices": [],
+      "F": "\n특정 자극 출력\n",
+      "H": "",
+      "I": "",
+      "matrix": [],
+      "matrix_match": false,
+      "existing_upper_preserved": true,
+      "old_F": "\n특정 자극 출력\n",
+      "old_H": "",
+      "old_I": ""
+    },
+    {
+      "id": "SW-FW-RID-37",
+      "rid": 37,
+      "old_row": 42,
+      "base_text": "실시간 자극 출력 진행",
+      "detail": "",
+      "notices": [],
+      "F": "\n실시간 자극 출력 진행\n",
+      "H": "",
+      "I": "",
+      "matrix": [],
+      "matrix_match": false,
+      "existing_upper_preserved": true,
+      "old_F": "\n실시간 자극 출력 진행\n",
+      "old_H": "",
+      "old_I": ""
+    },
+    {
+      "id": "SW-FW-RID-38",
+      "rid": 38,
+      "old_row": 43,
+      "base_text": "시스템 상태",
+      "detail": "",
+      "notices": [],
+      "F": "\n시스템 상태\n",
+      "H": "",
+      "I": "",
+      "matrix": [],
+      "matrix_match": false,
+      "existing_upper_preserved": true,
+      "old_F": "\n시스템 상태\n",
+      "old_H": "",
+      "old_I": ""
+    },
+    {
+      "id": "SW-FW-RID-39",
+      "rid": 39,
+      "old_row": 44,
+      "base_text": "특정 자극 출력 결과",
+      "detail": "",
+      "notices": [],
+      "F": "\n특정 자극 출력 결과\n",
+      "H": "",
+      "I": "",
+      "matrix": [],
+      "matrix_match": false,
+      "existing_upper_preserved": true,
+      "old_F": "\n특정 자극 출력 결과\n",
+      "old_H": "",
+      "old_I": ""
+    },
+    {
+      "id": "SW-FW-RID-40",
+      "rid": 40,
+      "old_row": 45,
+      "base_text": "실시간 자극 진행 상태",
+      "detail": "",
+      "notices": [],
+      "F": "\n실시간 자극 진행 상태\n",
+      "H": "",
+      "I": "",
+      "matrix": [],
+      "matrix_match": false,
+      "existing_upper_preserved": true,
+      "old_F": "\n실시간 자극 진행 상태\n",
+      "old_H": "",
+      "old_I": ""
+    },
+    {
+      "id": "SW-FW-RID-41",
+      "rid": 41,
+      "old_row": 46,
+      "base_text": "I2C 프로토콜을 사용하여 FPGA와 데이터 송/수신이 가능해야한다.",
+      "detail": "",
+      "notices": [],
+      "F": "\nI2C 프로토콜을 사용하여 FPGA와 데이터 송/수신이 가능해야한다.\n",
+      "H": "",
+      "I": "",
+      "matrix": [],
+      "matrix_match": false,
+      "existing_upper_preserved": true,
+      "old_F": "\nI2C 프로토콜을 사용하여 FPGA와 데이터 송/수신이 가능해야한다.\n",
+      "old_H": "",
+      "old_I": ""
+    },
+    {
+      "id": "SW-FW-RID-42",
+      "rid": 42,
+      "old_row": 47,
+      "base_text": "I2C 프로토콜을 사용하여 터치 센서와 데이터를 송수신할 수 있어야 한다.",
+      "detail": "",
+      "notices": [],
+      "F": "\nI2C 프로토콜을 사용하여 터치 센서와 데이터를 송수신할 수 있어야 한다.\n",
+      "H": "",
+      "I": "",
+      "matrix": [],
+      "matrix_match": false,
+      "existing_upper_preserved": true,
+      "old_F": "\nI2C 프로토콜을 사용하여 터치 센서와 데이터를 송수신할 수 있어야 한다.\n",
+      "old_H": "",
+      "old_I": ""
+    },
+    {
+      "id": "SW-FW-RID-43",
+      "rid": 43,
+      "old_row": 48,
+      "base_text": "I2C를 프로토콜을 사용하여 PMIC의 조정이 가능해야한다.",
+      "detail": "",
+      "notices": [],
+      "F": "\nI2C를 프로토콜을 사용하여 PMIC의 조정이 가능해야한다.\n",
+      "H": "",
+      "I": "",
+      "matrix": [],
+      "matrix_match": false,
+      "existing_upper_preserved": true,
+      "old_F": "\nI2C를 프로토콜을 사용하여 PMIC의 조정이 가능해야한다.\n",
+      "old_H": "",
+      "old_I": ""
+    },
+    {
+      "id": "SW-FW-RID-44",
+      "rid": 44,
+      "old_row": 50,
+      "base_text": "리모컨 앱과의 연동 기능",
+      "detail": "리모콘 앱과 BLE로 충전/배터리 상태, Bluetooth 제어 정보 및 사운드 처리기의 명령/응답을 송수신한다. QCC는 E8300의 명령/응답을 SPI로 중계한다.",
+      "notices": [
+        "[QCC 자료 입력] Bluetooth 제어 명령/상태와 충전 상태 데이터의 전달 조건 및 검증 결과를 확인한다."
+      ],
+      "F": "\n리모컨 앱과의 연동 기능\n상세: 리모콘 앱과 BLE로 충전/배터리 상태, Bluetooth 제어 정보 및 사운드 처리기의 명령/응답을 송수신한다. QCC는 E8300의 명령/응답을 SPI로 중계한다.\n\n[QCC 자료 입력] Bluetooth 제어 명령/상태와 충전 상태 데이터의 전달 조건 및 검증 결과를 확인한다.\n",
+      "H": "\nSYS-RID-SP-FW-13\n",
+      "I": "",
+      "matrix": [
+        {
+          "row": 112,
+          "id": "SYS-RID-SP-FW-13",
+          "text": "리모컨 앱과의 연동 기능"
+        }
+      ],
+      "matrix_match": true,
+      "existing_upper_preserved": true,
+      "old_F": "\n리모콘 앱이 실행되는 스마트폰과 BLE로 데이터 통신이 가능해야 한다. 충전/배터리 상태와 Bluetooth 제어 정보를 송수신하며, 사운드 처리기의 명령/응답은 QCC가 SPI로 중계한다.\n\nQCC 설계 연결: BLE 유닛(SU-ID-QCC-009), BLE Data 처리 유닛(SU-ID-QCC-011), 시스템 상태 유닛(SU-ID-QCC-002).\n\n[QCC 자료 입력] Bluetooth 제어의 명령/상태와 충전 상태 데이터의 상세 전달 계약을 입력한다.\n",
+      "old_H": "\nSYS-RID-SP-FW-13\n",
+      "old_I": "\nQCC SRS\n표제 RI-13/표 RI-12\n리모콘 앱\n"
+    },
+    {
+      "id": "SW-FW-RID-45",
+      "rid": 45,
+      "old_row": 51,
+      "base_text": "매핑 프로그램과의 연동 기능",
+      "detail": "매핑 프로그램과 BLE로 매핑 시작/종료 및 사운드 처리기의 명령/응답을 송수신한다. QCC는 E8300의 명령/응답을 SPI로 중계한다.",
+      "notices": [
+        "[QCC 자료 입력] 매핑 시작/종료의 상태 전이, 실패 처리, 동시 연결 조건 및 검증 결과를 확인한다."
+      ],
+      "F": "\n매핑 프로그램과의 연동 기능\n상세: 매핑 프로그램과 BLE로 매핑 시작/종료 및 사운드 처리기의 명령/응답을 송수신한다. QCC는 E8300의 명령/응답을 SPI로 중계한다.\n\n[QCC 자료 입력] 매핑 시작/종료의 상태 전이, 실패 처리, 동시 연결 조건 및 검증 결과를 확인한다.\n",
+      "H": "\nSYS-RID-SP-FW-14\n",
+      "I": "",
+      "matrix": [
+        {
+          "row": 113,
+          "id": "SYS-RID-SP-FW-14",
+          "text": "매핑 프로그램과의 연동 기능"
+        }
+      ],
+      "matrix_match": true,
+      "existing_upper_preserved": true,
+      "old_F": "\n매핑 프로그램이 실행되는 기기와 BLE로 데이터 통신이 가능해야 한다. 매핑 시작/종료 및 사운드 처리기의 명령/응답은 QCC가 SPI로 중계한다.\n\nQCC 설계 연결: BLE 유닛(SU-ID-QCC-009), BLE Data 처리 유닛(SU-ID-QCC-011), 시스템 상태 유닛(SU-ID-QCC-002).\n\n[QCC 자료 입력] 매핑 시작/종료의 상태/실패 처리와 동시 연결 정책을 입력한다.\n",
+      "old_H": "\nSYS-RID-SP-FW-14\n",
+      "old_I": "\nQCC SRS\nRI-14\n매핑 프로그램\n"
+    },
+    {
+      "id": "SW-FW-RID-69",
+      "rid": 69,
+      "old_row": 52,
+      "base_text": "Bluetooth Classic 오디오 통신",
+      "detail": "QCC는 수신 오디오를 I2S로 E8300에 전달한다. DMIC2의 입력은 E8300과 QCC에 연결되며 전화 통화 시 QCC가 DMIC2의 음성을 수음하여 통화 상대에게 송신한다. DMIC2 마이크 입력과 QCC에서 E8300으로 전달하는 I2S 오디오는 서로 다른 경로다.",
+      "notices": [
+        "[QCC 자료 입력] DMIC2의 QCC 입력 연결은 확인되었다. 마이크 핀/클록, 연결 상대, 프로파일/코덱별 송수신, 동시 동작 조건과 실제 시험 결과를 확인한다."
+      ],
+      "F": "\nBluetooth Classic 오디오 통신\n상세: QCC는 수신 오디오를 I2S로 E8300에 전달한다. DMIC2의 입력은 E8300과 QCC에 연결되며 전화 통화 시 QCC가 DMIC2의 음성을 수음하여 통화 상대에게 송신한다. DMIC2 마이크 입력과 QCC에서 E8300으로 전달하는 I2S 오디오는 서로 다른 경로다.\n\n[QCC 자료 입력] DMIC2의 QCC 입력 연결은 확인되었다. 마이크 핀/클록, 연결 상대, 프로파일/코덱별 송수신, 동시 동작 조건과 실제 시험 결과를 확인한다.\n",
+      "H": "\nSYS-RID-SP-FW-15\n",
+      "I": "",
+      "matrix": [
+        {
+          "row": 114,
+          "id": "SYS-RID-SP-FW-15",
+          "text": "Bluetooth Classic 오디오 통신"
+        }
+      ],
+      "matrix_match": true,
+      "existing_upper_preserved": true,
+      "old_F": "\nBluetooth Classic 오디오 통신을 지원해야 한다.\n\nQCC 설계 연결: 블루투스 상태 유닛(SU-ID-QCC-004), Bluetooth Classic 유닛(SU-ID-QCC-008). 오디오 입력과 마이크 송신 요구는 SW-FW-RID-15, SW-FW-RID-82에 따른다.\n\n[QCC 자료 입력] 연결 상대와 프로파일/코덱별 송수신 조건을 입력한다.\n",
+      "old_H": "\nSYS-RID-SP-FW-15\n",
+      "old_I": "\nQCC SRS\nRI-11\nClassic 통신\n"
+    },
+    {
+      "id": "SW-FW-RID-70",
+      "rid": 70,
+      "old_row": 53,
+      "base_text": "BLE data 통신",
+      "detail": "QCC는 BLE 연결과 데이터 접근을 처리하고 E8300의 명령/응답을 SPI로 중계한다.",
+      "notices": [
+        "[QCC 자료 입력] GATT 서비스/특성 값, 명령/응답의 허용 상태 및 검증 결과를 확인한다."
+      ],
+      "F": "\nBLE data 통신\n상세: QCC는 BLE 연결과 데이터 접근을 처리하고 E8300의 명령/응답을 SPI로 중계한다.\n\n[QCC 자료 입력] GATT 서비스/특성 값, 명령/응답의 허용 상태 및 검증 결과를 확인한다.\n",
+      "H": "\nSYS-RID-SP-FW-16\n",
+      "I": "",
+      "matrix": [
+        {
+          "row": 115,
+          "id": "SYS-RID-SP-FW-16",
+          "text": "BLE data 통신"
+        }
+      ],
+      "matrix_match": true,
+      "existing_upper_preserved": true,
+      "old_F": "\nBLE 데이터 통신을 지원해야 한다.\n\nQCC 설계 연결: BLE 유닛(SU-ID-QCC-009), BLE Data 처리 유닛(SU-ID-QCC-011), 시스템 상태 유닛(SU-ID-QCC-002).\n\n[QCC 자료 입력] GATT 서비스/특성의 실제 값과 명령/응답의 허용 상태를 입력한다.\n",
+      "old_H": "\nSYS-RID-SP-FW-16\n",
+      "old_I": "\nQCC SRS\nRI-12\nBLE 통신\n"
+    },
+    {
+      "id": "SW-FW-RID-46",
+      "rid": 46,
+      "old_row": 55,
+      "base_text": "외부장치는 링크를 통해 내부장치의 식별정보를 확인하고, 사전 등록된 정보와 일치하지 않을 경우 전기 자극 출력을 차단. 불일치 상태는 LED 및 앱을 통해 사용자에게 즉시 통지. ",
+      "detail": "등록된 내부이식장치와만 근접 무선 통신을 연결한다.",
+      "notices": [],
+      "F": "\n외부장치는 링크를 통해 내부장치의 식별정보를 확인하고, 사전 등록된 정보와 일치하지 않을 경우 전기 자극 출력을 차단. 불일치 상태는 LED 및 앱을 통해 사용자에게 즉시 통지. \n상세: 등록된 내부이식장치와만 근접 무선 통신을 연결한다.\n",
+      "H": "\nSYS-RID-SP-FW-17\n",
+      "I": "",
+      "matrix": [
+        {
+          "row": 116,
+          "id": "SYS-RID-SP-FW-17",
+          "text": "외부장치는 링크를 통해 내부장치의 식별정보를 확인하고, 사전 등록된 정보와 일치하지 않을 경우 전기 자극 출력을 차단. 불일치 상태는 LED 및 앱을 통해 사용자에게 즉시 통지. "
+        }
+      ],
+      "matrix_match": true,
+      "existing_upper_preserved": true,
+      "old_F": "\n등록된 내부이식장치와만 근접 무선 통신을 연결한다.\n",
+      "old_H": "\nSYS-RID-SP-FW-17\n",
+      "old_I": ""
+    },
+    {
+      "id": "SW-FW-RID-47",
+      "rid": 47,
+      "old_row": 56,
+      "base_text": "일정시간 동안 제어 명령이 수신되지 않으면, BLE 연결을 해제한다.",
+      "detail": "BLE 데이터 송수신이 3분(180초) 동안 없으면 연결을 해제한다. 데이터 송수신의 감시 범위가 제어 명령 미수신 조건을 충족하는지 확인해야 한다.",
+      "notices": [
+        "[QCC/E8300 자료 입력] 감시 대상, 타이머 시작/갱신/초기화 조건, 180초의 허용오차와 경계 동작을 확인한다. 제어 명령이 아닌 송수신에 의해 연결이 유지되는 경우의 처리 기준도 필요하다."
+      ],
+      "F": "\n일정시간 동안 제어 명령이 수신되지 않으면, BLE 연결을 해제한다.\n상세: BLE 데이터 송수신이 3분(180초) 동안 없으면 연결을 해제한다. 데이터 송수신의 감시 범위가 제어 명령 미수신 조건을 충족하는지 확인해야 한다.\n\n[QCC/E8300 자료 입력] 감시 대상, 타이머 시작/갱신/초기화 조건, 180초의 허용오차와 경계 동작을 확인한다. 제어 명령이 아닌 송수신에 의해 연결이 유지되는 경우의 처리 기준도 필요하다.\n",
+      "H": "\nSYS-RID-SP-FW-22\n",
+      "I": "",
+      "matrix": [
+        {
+          "row": 121,
+          "id": "SYS-RID-SP-FW-22",
+          "text": "일정시간 동안 제어 명령이 수신되지 않으면, BLE 연결을 해제한다."
+        }
+      ],
+      "matrix_match": true,
+      "existing_upper_preserved": true,
+      "old_F": "\n일정 시간 동안 제어 명령이 수신되지 않으면 BLE 연결을 해제해야 한다. QCC의 연결 제어 기준은 BLE 데이터 송수신이 3분(180초) 동안 없으면 연결을 해제하는 것이다.\n\nQCC 설계 연결: 보안 처리 유닛(SU-ID-QCC-012).\n\n[QCC/E8300 자료 입력] 데이터 송수신의 범위/타이머 갱신 조건을 정하고 기존 제어 명령 미수신 조건과 정합성을 확인한다. 180초의 허용오차 및 경계 동작 자료도 필요하다.\n",
+      "old_H": "\nSYS-RID-SP-FW-22\n",
+      "old_I": "\nQCC SRS\nRI-17\n연결 제어\n"
+    },
+    {
+      "id": "SW-FW-RID-48",
+      "rid": 48,
+      "old_row": 57,
+      "base_text": "1. BLE Pairing 기능을  사용하여 인가된 장치와 연결\n2. BLE 연결 후 별도의 자체 인증 방식, CRA(Challenge-Response Authentication),을 사용하여 적법한 장치를 확인",
+      "detail": "인증 서비스는 Challenge, Response, Confirm, Status 특성을 사용한다. 보호 대상 기기 제어/매핑 데이터 접근은 인증 이후에 허용한다.",
+      "notices": [
+        "[QCC 자료 입력] 페어링 전 허용 서비스, GATT 권한과 인증 전후 접근 차단/허용 조건 및 검증 결과를 확인한다."
+      ],
+      "F": "\n1. BLE Pairing 기능을  사용하여 인가된 장치와 연결\n2. BLE 연결 후 별도의 자체 인증 방식, CRA(Challenge-Response Authentication),을 사용하여 적법한 장치를 확인\n상세: 인증 서비스는 Challenge, Response, Confirm, Status 특성을 사용한다. 보호 대상 기기 제어/매핑 데이터 접근은 인증 이후에 허용한다.\n\n[QCC 자료 입력] 페어링 전 허용 서비스, GATT 권한과 인증 전후 접근 차단/허용 조건 및 검증 결과를 확인한다.\n",
+      "H": "\nSYS-RID-SP-FW-18\n",
+      "I": "",
+      "matrix": [
+        {
+          "row": 117,
+          "id": "SYS-RID-SP-FW-18",
+          "text": "1. BLE Pairing 기능을  사용하여 인가된 장치와 연결\n2. BLE 연결 후 별도의 자체 인증 방식, CRA(Challenge-Response Authentication),을 사용하여 적법한 장치를 확인"
+        }
+      ],
+      "matrix_match": true,
+      "existing_upper_preserved": true,
+      "old_F": "\n1. BLE 페어링을 사용하여 인가된 장치와 연결한다.\n2. BLE 연결 후 CRA(Challenge-Response Authentication)를 사용하여 적법한 장치를 확인한다. 인증 서비스는 Challenge, Response, Confirm, Status 특성을 사용하며 보호 대상 기기 제어/매핑 데이터 접근은 인증 이후에 허용한다.\n\nQCC 설계 연결: AUTH service 처리 유닛(SU-ID-QCC-010), 보안 처리 유닛(SU-ID-QCC-012).\n\n[QCC 자료 입력] 페어링 전 허용 서비스, GATT 권한과 인증 전후 차단/허용의 실제 조건 및 검증 자료를 입력한다.\n",
+      "old_H": "\nSYS-RID-SP-FW-18\n",
+      "old_I": "\nQCC SRS\n페어링 표제 RI-13/표 RI-14\n인증 접근 RI-14\n"
+    },
+    {
+      "id": "SW-FW-RID-49",
+      "rid": 49,
+      "old_row": 58,
+      "base_text": "BLE 페어링이 완료된 상태에서 데이터를 송/수신한다. - 무결성\n\nAES-CCM (Counter with CBC-MAC)을 사용함으로써 기밀성, 무결성, 인증  세 가지의 기능이 제공됨\n(Bluetooth Core specification LE Link Layer 참조)",
+      "detail": "",
+      "notices": [
+        "[QCC 자료 입력] BLE 링크 암호화 활성화와 페어링 전 차단을 확인한다. CRA 인증값 계산과 키 파생의 확인은 링크 암호화의 검증과 구분한다."
+      ],
+      "F": "\nBLE 페어링이 완료된 상태에서 데이터를 송/수신한다. - 무결성\n\nAES-CCM (Counter with CBC-MAC)을 사용함으로써 기밀성, 무결성, 인증  세 가지의 기능이 제공됨\n(Bluetooth Core specification LE Link Layer 참조)\n\n[QCC 자료 입력] BLE 링크 암호화 활성화와 페어링 전 차단을 확인한다. CRA 인증값 계산과 키 파생의 확인은 링크 암호화의 검증과 구분한다.\n",
+      "H": "\nSYS-RID-SP-FW-26\n",
+      "I": "",
+      "matrix": [
+        {
+          "row": 125,
+          "id": "SYS-RID-SP-FW-26",
+          "text": "BLE 페어링이 완료된 상태에서 데이터를 송/수신한다. - 무결성\n\nAES-CCM (Counter with CBC-MAC)을 사용함으로써 기밀성, 무결성, 인증  세 가지의 기능이 제공됨\n(Bluetooth Core specification LE Link Layer 참조)"
+        }
+      ],
+      "matrix_match": true,
+      "existing_upper_preserved": true,
+      "old_F": "\nBLE 페어링이 완료된 상태에서 데이터를 송수신하며, 무선 링크의 기밀성/무결성/인증은 AES-CCM(Counter with CBC-MAC) 보호를 적용해야 한다.\n\n[QCC 자료 입력] 링크 암호화 활성화와 페어링 전 차단을 확인한 자료를 입력한다. CRA의 AES-CMAC/SHA-256 정보를 무선 링크 암호화의 검증 근거로 사용하지 않는다.\n",
+      "old_H": "\nSYS-RID-SP-FW-26\n",
+      "old_I": "\nQCC SRS\n페어링 표제 RI-13/표 RI-14\n"
+    },
+    {
+      "id": "SW-FW-RID-50",
+      "rid": 50,
+      "old_row": 59,
+      "base_text": "감사기록을 생성한다.",
+      "detail": "",
+      "notices": [],
+      "F": "\n감사기록을 생성한다.\n",
+      "H": "\nSYS-RID-SP-FW-23\n",
+      "I": "",
+      "matrix": [
+        {
+          "row": 122,
+          "id": "SYS-RID-SP-FW-23",
+          "text": "감사기록을 생성한다."
+        }
+      ],
+      "matrix_match": true,
+      "existing_upper_preserved": true,
+      "old_F": "\n감사기록을 생성한다.\n",
+      "old_H": "\nSYS-RID-SP-FW-23\n",
+      "old_I": ""
+    },
+    {
+      "id": "SW-FW-RID-51",
+      "rid": 51,
+      "old_row": 60,
+      "base_text": "설정파일을 읽을 때, 파일의 무결성을 확인한다.",
+      "detail": "",
+      "notices": [],
+      "F": "\n설정파일을 읽을 때, 파일의 무결성을 확인한다.\n",
+      "H": "\nSYS-RID-SP-FW-27\n",
+      "I": "",
+      "matrix": [
+        {
+          "row": 126,
+          "id": "SYS-RID-SP-FW-27",
+          "text": "설정파일을 읽을 때, 파일의 무결성을 확인한다."
+        }
+      ],
+      "matrix_match": true,
+      "existing_upper_preserved": true,
+      "old_F": "\n설정파일을 읽을 때, 파일의 무결성을 확인한다.\n",
+      "old_H": "\nSYS-RID-SP-FW-27\n",
+      "old_I": ""
+    },
+    {
+      "id": "SW-FW-RID-52",
+      "rid": 52,
+      "old_row": 61,
+      "base_text": "1. CRA 인증에서 기기제어를 위한 통신과 매핑을 의한 통신을 구분하여 별도의  인증 키와 인증방식을 사용\n2. CRA 인증에 사용되는 각 키의 크기는 16 bytes (128 bits)이므로 충분히 안전한 보안을 제공한다.",
+      "detail": "기기 제어용 키와 의료진 매핑용 키를 구분한다. AES-CMAC 인증값 계산과 SHA-256에 의한 매핑 키 파생은 역할이 다르다. 의료진 키와 제조번호로 생성한 SHA-256 결과의 앞 16 bytes를 매핑용 키로 사용한다. 키 길이만으로 보안 검증 완료를 판단하지 않는다.",
+      "notices": [
+        "[QCC 자료 입력] 앱별 CRA 인증값 계산 알고리즘, 키 역할, 입력 직렬화와 인증값 길이를 확인한다. AES-CMAC 인증과 SHA-256 키 파생의 관계, HMAC/ENC 표기 및 검증 벡터를 대조한다."
+      ],
+      "F": "\n1. CRA 인증에서 기기제어를 위한 통신과 매핑을 의한 통신을 구분하여 별도의  인증 키와 인증방식을 사용\n2. CRA 인증에 사용되는 각 키의 크기는 16 bytes (128 bits)이므로 충분히 안전한 보안을 제공한다.\n상세: 기기 제어용 키와 의료진 매핑용 키를 구분한다. AES-CMAC 인증값 계산과 SHA-256에 의한 매핑 키 파생은 역할이 다르다. 의료진 키와 제조번호로 생성한 SHA-256 결과의 앞 16 bytes를 매핑용 키로 사용한다. 키 길이만으로 보안 검증 완료를 판단하지 않는다.\n\n[QCC 자료 입력] 앱별 CRA 인증값 계산 알고리즘, 키 역할, 입력 직렬화와 인증값 길이를 확인한다. AES-CMAC 인증과 SHA-256 키 파생의 관계, HMAC/ENC 표기 및 검증 벡터를 대조한다.\n",
+      "H": "\nSYS-RID-SP-FW-19\n",
+      "I": "",
+      "matrix": [
+        {
+          "row": 118,
+          "id": "SYS-RID-SP-FW-19",
+          "text": "1. CRA 인증에서 기기제어를 위한 통신과 매핑을 의한 통신을 구분하여 별도의  인증 키와 인증방식을 사용\n2. CRA 인증에 사용되는 각 키의 크기는 16 bytes (128 bits)이므로 충분히 안전한 보안을 제공한다."
+        }
+      ],
+      "matrix_match": true,
+      "existing_upper_preserved": true,
+      "old_F": "\n1. 기기 제어용 통신과 매핑용 통신은 CRA의 인증키와 처리 방식을 구분한다.\n2. 각 CRA 인증키의 크기는 16 bytes(128 bits)다. QCC 요구 자료는 리모콘 AES-CMAC, 매핑 SHA-256으로 구분한다. 상세설계에서는 매핑 키를 SHA-256 결과의 앞 16 bytes로 생성하고 인증 절차에는 AES-CMAC을 표시한다.\n\nQCC 설계 연결: 보안 처리 유닛(SU-ID-QCC-012), 보안 툴박스 유닛(SU-ID-QCC-013).\n\n[QCC 자료 입력] SHA-256의 키 생성 역할과 실제 CRA 인증값 계산 알고리즘의 관계를 확정한다. 키 역할, 입력 직렬화, 인증값 길이와 알고리즘 표기의 정합성 및 검증 자료를 입력한다.\n",
+      "old_H": "\nSYS-RID-SP-FW-19\n",
+      "old_I": "\nQCC SRS\nRI-15/RI-16\n인증 방식/알고리즘\nQCC SDDD 유닛013\n"
+    },
+    {
+      "id": "SW-FW-RID-53",
+      "rid": 53,
+      "old_row": 62,
+      "base_text": "소프트웨어 업데이트가 필요할 경우 기존 제품을 회수하고 업데이트된 제품을 생산하여 교체한다.",
+      "detail": "",
+      "notices": [
+        "[QCC/E8300 자료 입력] QCC의 인증/암호화 전송과 E8300의 OTA 수신/저장/재기동 보호 자료를 연결한다. 제품 회수/교체 절차와 OTA의 적용 범위도 확인한다."
+      ],
+      "F": "\n소프트웨어 업데이트가 필요할 경우 기존 제품을 회수하고 업데이트된 제품을 생산하여 교체한다.\n\n[QCC/E8300 자료 입력] QCC의 인증/암호화 전송과 E8300의 OTA 수신/저장/재기동 보호 자료를 연결한다. 제품 회수/교체 절차와 OTA의 적용 범위도 확인한다.\n",
+      "H": "\nSYS-RID-SP-FW-30\n",
+      "I": "",
+      "matrix": [
+        {
+          "row": 129,
+          "id": "SYS-RID-SP-FW-30",
+          "text": "소프트웨어 업데이트가 필요할 경우 기존 제품을 회수하고 업데이트된 제품을 생산하여 교체한다."
+        }
+      ],
+      "matrix_match": true,
+      "existing_upper_preserved": true,
+      "old_F": "\n소프트웨어 업데이트가 필요할 경우 기존 제품을 회수하고 업데이트된 제품을 생산하여 교체한다.\n\n[QCC/E8300 자료 입력] QCC의 인증/암호화 전송과 E8300의 OTA 수신/저장/재기동 보호 자료를 연결한다. 제품 회수/교체 절차와 OTA의 적용 범위도 확인한다.\n",
+      "old_H": "\nSYS-RID-SP-FW-30\n",
+      "old_I": ""
+    },
+    {
+      "id": "SW-FW-RID-81",
+      "rid": 81,
+      "old_row": 63,
+      "base_text": "품질관리시스템 절차에 따라, 인가된 인원이 펌웨어를 생성하여 배포한다.",
+      "detail": "",
+      "notices": [],
+      "F": "\n품질관리시스템 절차에 따라, 인가된 인원이 펌웨어를 생성하여 배포한다.\n",
+      "H": "\nSYS-RID-SP-FW-31\n",
+      "I": "",
+      "matrix": [
+        {
+          "row": 130,
+          "id": "SYS-RID-SP-FW-31",
+          "text": "품질관리시스템 절차에 따라, 인가된 인원이 펌웨어를 생성하여 배포한다."
+        }
+      ],
+      "matrix_match": true,
+      "existing_upper_preserved": true,
+      "old_F": "\n품질관리시스템 절차에 따라, 인가된 인원이 펌웨어를 생성하여 배포한다.\n",
+      "old_H": "\nSYS-RID-SP-FW-31\n",
+      "old_I": ""
+    },
+    {
+      "id": "SW-FW-RID-54",
+      "rid": 54,
+      "old_row": 64,
+      "base_text": "1. 칩셋에서 부팅 과정에서 실행파일의 CRC 체크 기능 활성화\n2. 칩셋에서 제공하는 무결성 방식을 사용하여 검사",
+      "detail": "E8300의 부팅 과정에서는 실행파일의 CRC와 파일/이미지 무결성을 확인한다. QCC는 전원 인가 후 부팅 과정에서 칩셋이 제공하는 방식으로 펌웨어 이미지의 무결성을 검사한다.",
+      "notices": [
+        "[QCC 자료 입력] QCC의 부트 검사 방식/활성화 설정, 손상 또는 변조 이미지의 거부/복구 동작과 검증 결과를 확인한다."
+      ],
+      "F": "\n1. 칩셋에서 부팅 과정에서 실행파일의 CRC 체크 기능 활성화\n2. 칩셋에서 제공하는 무결성 방식을 사용하여 검사\n상세: E8300의 부팅 과정에서는 실행파일의 CRC와 파일/이미지 무결성을 확인한다. QCC는 전원 인가 후 부팅 과정에서 칩셋이 제공하는 방식으로 펌웨어 이미지의 무결성을 검사한다.\n\n[QCC 자료 입력] QCC의 부트 검사 방식/활성화 설정, 손상 또는 변조 이미지의 거부/복구 동작과 검증 결과를 확인한다.\n",
+      "H": "\nSYS-RID-SP-FW-32\n",
+      "I": "",
+      "matrix": [
+        {
+          "row": 131,
+          "id": "SYS-RID-SP-FW-32",
+          "text": "1. 칩셋에서 부팅 과정에서 실행파일의 CRC 체크 기능 활성화\n2. 칩셋에서 제공하는 무결성 방식을 사용하여 검사"
+        }
+      ],
+      "matrix_match": true,
+      "existing_upper_preserved": true,
+      "old_F": "\n1. E8300 부팅 과정에서 실행파일의 CRC와 파일/이미지 무결성 검사 경로를 적용한다.\n2. QCC는 전원 인가 후 부팅 과정에서 칩셋이 제공하는 방식으로 QCC 펌웨어 이미지의 무결성을 검사해야 한다.\n\n[QCC 자료 입력] QCC의 부트 검사 방식/활성화 설정, 손상/변조 이미지의 거부 및 복구 동작을 입력한다. E8300의 CRC 검사를 QCC 검사나 암호학적 인증의 근거로 대체하지 않는다.\n",
+      "old_H": "\nSYS-RID-SP-FW-32\n",
+      "old_I": "\nQCC SRS\nRI-18\n부트 무결성\n"
+    },
+    {
+      "id": "SW-FW-RID-71",
+      "rid": 71,
+      "old_row": 65,
+      "base_text": "- CRA 인증 결과에서 인증정보를 유추할 만한 피드백이 없음: 성공, 실패, 진행중, 타임아웃",
+      "detail": "30초 동안 인증이 완료되지 않으면 타임아웃으로 처리한다.",
+      "notices": [
+        "[QCC 자료 입력] 30초 타이머의 시작/갱신/초기화 조건, 허용오차와 상태별 응답 및 인증정보 미노출의 검증 결과를 확인한다."
+      ],
+      "F": "\n- CRA 인증 결과에서 인증정보를 유추할 만한 피드백이 없음: 성공, 실패, 진행중, 타임아웃\n상세: 30초 동안 인증이 완료되지 않으면 타임아웃으로 처리한다.\n\n[QCC 자료 입력] 30초 타이머의 시작/갱신/초기화 조건, 허용오차와 상태별 응답 및 인증정보 미노출의 검증 결과를 확인한다.\n",
+      "H": "\nSYS-RID-SP-FW-20\n",
+      "I": "",
+      "matrix": [
+        {
+          "row": 119,
+          "id": "SYS-RID-SP-FW-20",
+          "text": "- CRA 인증 결과에서 인증정보를 유추할 만한 피드백이 없음: 성공, 실패, 진행중, 타임아웃"
+        }
+      ],
+      "matrix_match": true,
+      "existing_upper_preserved": true,
+      "old_F": "\nCRA 인증 결과는 실패, 성공, 진행 중, 타임아웃으로 전달하며 인증정보를 유추할 피드백을 제공하지 않아야 한다. 30초 동안 인증이 완료되지 않으면 타임아웃으로 처리한다.\n\nQCC 설계 연결: AUTH service 처리 유닛(SU-ID-QCC-010), 보안 처리 유닛(SU-ID-QCC-012).\n\n[QCC 자료 입력] 30초 타이머의 시작/갱신/초기화 조건, 허용오차 및 상태별 응답과 인증정보 미노출의 검증 자료를 입력한다.\n",
+      "old_H": "\nSYS-RID-SP-FW-20\n",
+      "old_I": "\nQCC SRS RI-15\nQCC SUVC\nU04-001-2\n인증 30초\n"
+    },
+    {
+      "id": "SW-FW-RID-72",
+      "rid": 72,
+      "old_row": 66,
+      "base_text": "CRA 인증 5회 연속 실패 시, 일정 시간동안 연결을 제한한다.",
+      "detail": "5회 연속 인증 실패 시 1분(60초) 동안 BLE 연결을 제한한다.",
+      "notices": [
+        "[QCC 자료 입력] 실패 횟수의 누적/초기화, 전원 재기동, 제한 종료 후 재접속과 시간 경계/허용오차 및 검증 결과를 확인한다."
+      ],
+      "F": "\nCRA 인증 5회 연속 실패 시, 일정 시간동안 연결을 제한한다.\n상세: 5회 연속 인증 실패 시 1분(60초) 동안 BLE 연결을 제한한다.\n\n[QCC 자료 입력] 실패 횟수의 누적/초기화, 전원 재기동, 제한 종료 후 재접속과 시간 경계/허용오차 및 검증 결과를 확인한다.\n",
+      "H": "\nSYS-RID-SP-FW-21\n",
+      "I": "",
+      "matrix": [
+        {
+          "row": 120,
+          "id": "SYS-RID-SP-FW-21",
+          "text": "CRA 인증 5회 연속 실패 시, 일정 시간동안 연결을 제한한다.\n"
+        }
+      ],
+      "matrix_match": true,
+      "existing_upper_preserved": true,
+      "old_F": "\nCRA 인증이 5회 연속 실패하면 1분(60초) 동안 BLE 연결을 제한해야 한다.\n\nQCC 설계 연결: 보안 처리 유닛(SU-ID-QCC-012).\n\n[QCC 자료 입력] 실패 횟수의 누적/초기화, 전원 재기동, 제한 종료 후 재접속과 시간 경계/허용오차의 처리 및 검증 자료를 입력한다.\n",
+      "old_H": "\nSYS-RID-SP-FW-21\n",
+      "old_I": "\nQCC SRS\nRI-17\n연결 제어\n"
+    },
+    {
+      "id": "SW-FW-RID-73",
+      "rid": 73,
+      "old_row": 67,
+      "base_text": "감사기록 생성 실패를 오류 정보에 포함한다.",
+      "detail": "",
+      "notices": [],
+      "F": "\n감사기록 생성 실패를 오류 정보에 포함한다.\n",
+      "H": "\nSYS-RID-SP-FW-24\n",
+      "I": "",
+      "matrix": [
+        {
+          "row": 123,
+          "id": "SYS-RID-SP-FW-24",
+          "text": "감사기록 생성 실패를 오류 정보에 포함한다."
+        }
+      ],
+      "matrix_match": true,
+      "existing_upper_preserved": true,
+      "old_F": "\n감사기록 생성 실패를 오류 정보에 포함한다.\n",
+      "old_H": "\nSYS-RID-SP-FW-24\n",
+      "old_I": ""
+    },
+    {
+      "id": "SW-FW-RID-74",
+      "rid": 74,
+      "old_row": 68,
+      "base_text": "감사기록은 타임 스탬프를 포함한다.",
+      "detail": "",
+      "notices": [],
+      "F": "\n감사기록은 타임 스탬프를 포함한다.\n",
+      "H": "\nSYS-RID-SP-FW-25\n",
+      "I": "",
+      "matrix": [
+        {
+          "row": 124,
+          "id": "SYS-RID-SP-FW-25",
+          "text": "감사기록은 타임 스탬프를 포함한다."
+        }
+      ],
+      "matrix_match": true,
+      "existing_upper_preserved": true,
+      "old_F": "\n감사기록은 타임 스탬프를 포함한다.\n",
+      "old_H": "\nSYS-RID-SP-FW-25\n",
+      "old_I": ""
+    },
+    {
+      "id": "SW-FW-RID-75",
+      "rid": 75,
+      "old_row": 69,
+      "base_text": "오류 메시지에 보안과 관련된 정보를 직접 표시하지 않는다.",
+      "detail": "오류 메시지에 보안과 관련되 정보를 직접 표시하지 않는다.",
+      "notices": [],
+      "F": "\n오류 메시지에 보안과 관련된 정보를 직접 표시하지 않는다.\n상세: 오류 메시지에 보안과 관련되 정보를 직접 표시하지 않는다.\n",
+      "H": "\nSYS-RID-SP-FW-29\n",
+      "I": "",
+      "matrix": [
+        {
+          "row": 128,
+          "id": "SYS-RID-SP-FW-29",
+          "text": "오류 메시지에 보안과 관련된 정보를 직접 표시하지 않는다."
+        }
+      ],
+      "matrix_match": true,
+      "existing_upper_preserved": true,
+      "old_F": "\n오류 메시지에 보안과 관련되 정보를 직접 표시하지 않는다.\n",
+      "old_H": "\nSYS-RID-SP-FW-29\n",
+      "old_I": ""
+    },
+    {
+      "id": "SW-FW-RID-76",
+      "rid": 76,
+      "old_row": 70,
+      "base_text": "1. 데이터의 송수신은 BLE 페어링과 CRA 인증 이후에 활성화 함. - 기밀화\n2. CRA 인증 키들은 생산시에 암호화하여 저장한다.",
+      "detail": "생산 시 설치하는 shared_service_key/clinician_master_key와 생성되는 매핑용 clinic_service_key를 구분한다.",
+      "notices": [
+        "[QCC 자료 입력] 실제 설치/저장 대상, 키 역할, 저장 암호화/접근 제한과 복호화 시작 조건을 확인한다. 인증 전후 송수신/OTA 보호와 조건별 검증 결과도 확인한다."
+      ],
+      "F": "\n1. 데이터의 송수신은 BLE 페어링과 CRA 인증 이후에 활성화 함. - 기밀화\n2. CRA 인증 키들은 생산시에 암호화하여 저장한다.\n상세: 생산 시 설치하는 shared_service_key/clinician_master_key와 생성되는 매핑용 clinic_service_key를 구분한다.\n\n[QCC 자료 입력] 실제 설치/저장 대상, 키 역할, 저장 암호화/접근 제한과 복호화 시작 조건을 확인한다. 인증 전후 송수신/OTA 보호와 조건별 검증 결과도 확인한다.\n",
+      "H": "\nSYS-RID-SP-FW-33\n",
+      "I": "",
+      "matrix": [
+        {
+          "row": 132,
+          "id": "SYS-RID-SP-FW-33",
+          "text": "1. 데이터의 송수신은 BLE 페어링과 CRA 인증 이후에 활성화 함. - 기밀화\n2. CRA 인증 키들은 생산시에 암호화하여 저장한다."
+        }
+      ],
+      "matrix_match": true,
+      "existing_upper_preserved": true,
+      "old_F": "\n1. 보호 대상 데이터 송수신은 BLE 페어링과 CRA 인증 이후에 활성화한다.\n2. CRA의 인증키는 생산 시 암호화하여 비휘발성 메모리에 저장해야 한다. QCC 상세설계의 생산 설치 키(shared_service_key, clinician_master_key)와 생성 매핑 키(clinic_service_key)를 구분한다.\n\nQCC 설계 연결: NVM 처리 유닛(SU-ID-QCC-007), 보안 툴박스 유닛(SU-ID-QCC-013), 보안 NVM 유닛(SU-ID-QCC-014).\n\n[QCC 자료 입력] 실제 설치/저장 대상과 키 역할, 저장 암호화/접근 제한 및 복호화 시작 조건을 확정한다. 인증 전후 송수신/OTA 전송의 보호와 조건별 검증 자료도 입력한다.\n",
+      "old_H": "\nSYS-RID-SP-FW-33\n",
+      "old_I": "\nQCC SRS RI-14/RI-16\nQCC SDDD\n유닛013/014\n키와 NVM\n"
+    },
+    {
+      "id": "SW-FW-RID-77",
+      "rid": 77,
+      "old_row": 71,
+      "base_text": "내부장치 제조번호, 사용자 이니셜 값은 암호화 하여 저장한다.",
+      "detail": "",
+      "notices": [],
+      "F": "\n내부장치 제조번호, 사용자 이니셜 값은 암호화 하여 저장한다.\n",
+      "H": "\nSYS-RID-SP-FW-34\n",
+      "I": "",
+      "matrix": [
+        {
+          "row": 133,
+          "id": "SYS-RID-SP-FW-34",
+          "text": "내부장치 제조번호, 사용자 이니셜 값은 암호화 하여 저장한다."
+        }
+      ],
+      "matrix_match": true,
+      "existing_upper_preserved": true,
+      "old_F": "\n내부장치 제조번호, 사용자 이니셜 값은 암호화 하여 저장한다.\n",
+      "old_H": "\nSYS-RID-SP-FW-34\n",
+      "old_I": ""
+    },
+    {
+      "id": "SW-FW-RID-78",
+      "rid": 78,
+      "old_row": 72,
+      "base_text": "무결성, 암호화에 사용되는 알고리즘은 사이버보안 규격에서 권고하는 알고리즘을 사용한다.",
+      "detail": "CRA 인증값 계산, 매핑 키 파생, 비휘발성 저장 암호화와 BLE 링크 보호의 사용 목적을 구분한다.",
+      "notices": [
+        "[QCC/E8300 자료 입력] AES-CMAC/SHA-256/AES-128의 사용 목적/키 관리, E8300 AES 저장/부트 보호와의 연결을 확인한다. HMAC/ENC 표기, AES-128 모드 및 BLE 링크 보호의 실제 적용과 검증 결과를 대조한다."
+      ],
+      "F": "\n무결성, 암호화에 사용되는 알고리즘은 사이버보안 규격에서 권고하는 알고리즘을 사용한다.\n상세: CRA 인증값 계산, 매핑 키 파생, 비휘발성 저장 암호화와 BLE 링크 보호의 사용 목적을 구분한다.\n\n[QCC/E8300 자료 입력] AES-CMAC/SHA-256/AES-128의 사용 목적/키 관리, E8300 AES 저장/부트 보호와의 연결을 확인한다. HMAC/ENC 표기, AES-128 모드 및 BLE 링크 보호의 실제 적용과 검증 결과를 대조한다.\n",
+      "H": "\nSYS-RID-SP-FW-35\n",
+      "I": "",
+      "matrix": [
+        {
+          "row": 134,
+          "id": "SYS-RID-SP-FW-35",
+          "text": "무결성, 암호화에 사용되는 알고리즘은 사이버보안 규격에서 권고하는 알고리즘을 사용한다."
+        }
+      ],
+      "matrix_match": true,
+      "existing_upper_preserved": true,
+      "old_F": "\n무결성, 암호화에 사용하는 알고리즘은 사이버보안 규격에서 권고하는 알고리즘을 사용한다. QCC의 CRA 인증, 매핑 키 생성, NVM 암호화와 BLE 링크 보호는 서로 다른 사용 목적을 구분해야 한다.\n\n[QCC/E8300 자료 입력] QCC의 AES-CMAC/SHA-256/AES-128 사용 목적/키 관리와 E8300의 AES 저장/부트 보호를 연결한다. QCC의 HMAC/ENC 표기, AES-128 모드와 BLE 링크 보호의 실제 적용 자료를 입력한다.\n",
+      "old_H": "\nSYS-RID-SP-FW-35\n",
+      "old_I": "\nQCC SRS RI-16\nQCC SDDD\n유닛013/014\n보호 알고리즘\n"
+    },
+    {
+      "id": "SW-FW-RID-79",
+      "rid": 79,
+      "old_row": 73,
+      "base_text": "외부에서 로그 정보의 접근은 인가자만 가능해야 하며, 외부 전송을 할경우 기밀성이 보호되어야 한다.",
+      "detail": "",
+      "notices": [],
+      "F": "\n외부에서 로그 정보의 접근은 인가자만 가능해야 하며, 외부 전송을 할경우 기밀성이 보호되어야 한다.\n",
+      "H": "\nSYS-RID-SP-FW-36\n",
+      "I": "",
+      "matrix": [
+        {
+          "row": 135,
+          "id": "SYS-RID-SP-FW-36",
+          "text": "외부에서 로그 정보의 접근은 인가자만 가능해야 하며, 외부 전송을 할경우 기밀성이 보호되어야 한다."
+        }
+      ],
+      "matrix_match": true,
+      "existing_upper_preserved": true,
+      "old_F": "\n외부에서 로그 정보의 접근은 인가자만 가능해야 하며, 외부 전송을 할경우 기밀성이 보호되어야 한다.\n",
+      "old_H": "\nSYS-RID-SP-FW-36\n",
+      "old_I": ""
+    },
+    {
+      "id": "SW-FW-RID-80",
+      "rid": 80,
+      "old_row": 74,
+      "base_text": "설정파일의 무결성이 확인되지 않으면, 설정파일을 공장초기화 한다.",
+      "detail": "",
+      "notices": [],
+      "F": "\n설정파일의 무결성이 확인되지 않으면, 설정파일을 공장초기화 한다.\n",
+      "H": "\nSYS-RID-SP-FW-38\n",
+      "I": "",
+      "matrix": [
+        {
+          "row": 137,
+          "id": "SYS-RID-SP-FW-38",
+          "text": "설정파일의 무결성이 확인되지 않으면, 설정파일을 공장초기화 한다."
+        }
+      ],
+      "matrix_match": true,
+      "existing_upper_preserved": true,
+      "old_F": "\n설정파일의 무결성이 확인되지 않으면, 설정파일을 공장초기화 한다.\n",
+      "old_H": "\nSYS-RID-SP-FW-38\n",
+      "old_I": ""
+    },
+    {
+      "id": "SW-FW-RID-55",
+      "rid": 55,
+      "old_row": 75,
+      "base_text": "배터리 저전압을 주기적으로 반복하여 자극출력으로 알린다.",
+      "detail": "배터리 저전압을 주기적으로 반복하여 자극 출력과 LED로 알린다.",
+      "notices": [],
+      "F": "\n배터리 저전압을 주기적으로 반복하여 자극출력으로 알린다.\n상세: 배터리 저전압을 주기적으로 반복하여 자극 출력과 LED로 알린다.\n",
+      "H": "\nSYS-RID-SP-FW-48\n",
+      "I": "",
+      "matrix": [
+        {
+          "row": 147,
+          "id": "SYS-RID-SP-FW-48",
+          "text": "배터리 저전압을 주기적으로 반복하여 자극출력으로 알린다."
+        }
+      ],
+      "matrix_match": true,
+      "existing_upper_preserved": true,
+      "old_F": "\n배터리 저전압을 주기적으로 반복하여 자극 출력과 LED로 알린다.\n",
+      "old_H": "\nSYS-RID-SP-FW-48\n",
+      "old_I": ""
+    },
+    {
+      "id": "SW-FW-RID-56",
+      "rid": 56,
+      "old_row": 76,
+      "base_text": "볼륨 증가를 단계적으로 진행되도록 설계한다.(soft increase)",
+      "detail": "자극 볼륨은 단계적으로 증가하도록 설계한다.(soft increase)",
+      "notices": [],
+      "F": "\n볼륨 증가를 단계적으로 진행되도록 설계한다.(soft increase)\n상세: 자극 볼륨은 단계적으로 증가하도록 설계한다.(soft increase)\n",
+      "H": "\nSYS-RID-SP-FW-47\n",
+      "I": "",
+      "matrix": [
+        {
+          "row": 146,
+          "id": "SYS-RID-SP-FW-47",
+          "text": "볼륨 증가를 단계적으로 진행되도록 설계한다.(soft increase)"
+        }
+      ],
+      "matrix_match": true,
+      "existing_upper_preserved": true,
+      "old_F": "\n자극 볼륨은 단계적으로 증가하도록 설계한다.(soft increase)\n",
+      "old_H": "\nSYS-RID-SP-FW-47\n",
+      "old_I": ""
+    },
+    {
+      "id": "SW-FW-RID-83",
+      "rid": 83,
+      "old_row": 80,
+      "base_text": "사용설명서에 경고 및 안전사항을 기재한다.\n사용설명서에 안전하게 사용하는 작동법을 기재한다.\n사용설명서에 동작방법을 자세히 기재한다.",
+      "detail": "안전 예방조치, 사용 방법과 문제 해결 방법을 제품 사용 설명서에 포함한다.",
+      "notices": [
+        "[E8300 보완] 제품 사용 설명서의 해당 절과 내용, 배포 대상 및 검토 결과를 확인한다."
+      ],
+      "F": "\n사용설명서에 경고 및 안전사항을 기재한다.\n사용설명서에 안전하게 사용하는 작동법을 기재한다.\n사용설명서에 동작방법을 자세히 기재한다.\n상세: 안전 예방조치, 사용 방법과 문제 해결 방법을 제품 사용 설명서에 포함한다.\n\n[E8300 보완] 제품 사용 설명서의 해당 절과 내용, 배포 대상 및 검토 결과를 확인한다.\n",
+      "H": "\nSYS-RID-ACDOC-17, SYS-RID-ACDOC-18, SYS-RID-ACDOC-20\n",
+      "I": "",
+      "matrix": [
+        {
+          "row": 348,
+          "id": "SYS-RID-ACDOC-17",
+          "text": "사용설명서에 경고 및 안전사항을 기재한다."
+        },
+        {
+          "row": 349,
+          "id": "SYS-RID-ACDOC-18",
+          "text": "사용설명서에 안전하게 사용하는 작동법을 기재한다."
+        },
+        {
+          "row": 351,
+          "id": "SYS-RID-ACDOC-20",
+          "text": "사용설명서에 동작방법을 자세히 기재한다."
+        }
+      ],
+      "matrix_match": true,
+      "existing_upper_preserved": true,
+      "old_F": "\n사용자에게 배포되는 사용 설명서는 안전 예방조치, 사용 방법, 문제 해결 방법을 포함해야 한다.\n\n[E8300 보완] 제품 사용 설명서 파일의 해당 내용과 정식 상위 요구사항의 식별/추적을 등록한다.\n",
+      "old_H": "\n[E8300 보완] 정식 상위 요구사항 미등록\n",
+      "old_I": "\nQCC SRS\n4.9.1 RI-16\n사용 설명서\n"
+    },
+    {
+      "id": "SW-FW-RID-57",
+      "rid": 57,
+      "old_row": 82,
+      "base_text": "필수 성능 조건을 설계에 반영한다.\n필수 성능 시험을 진행한다.",
+      "detail": "필수 성능 시험을 진행한다.",
+      "notices": [],
+      "F": "\n필수 성능 조건을 설계에 반영한다.\n필수 성능 시험을 진행한다.\n상세: 필수 성능 시험을 진행한다.\n",
+      "H": "\nSYS-RID-SP-FW-39, SYS-RID-SP-FW-40\n",
+      "I": "",
+      "matrix": [
+        {
+          "row": 138,
+          "id": "SYS-RID-SP-FW-39",
+          "text": "필수 성능 조건을 설계에 반영한다."
+        },
+        {
+          "row": 139,
+          "id": "SYS-RID-SP-FW-40",
+          "text": "필수 성능 시험을 진행한다."
+        }
+      ],
+      "matrix_match": true,
+      "existing_upper_preserved": true,
+      "old_F": "\n필수 성능 시험을 진행한다.\n",
+      "old_H": "\nSYS-RID-SP-FW-39, SYS-RID-SP-FW-40\n",
+      "old_I": ""
+    },
+    {
+      "id": "SW-FW-RID-58",
+      "rid": 58,
+      "old_row": 83,
+      "base_text": "실시간 신호처리가 가능하도록 설계한다.",
+      "detail": "실시간 신호처리 주기는 1.00ms, 허용 오차 +/-5%(0.95~1.05ms)이며 각 블록 처리는 다음 처리 시작 전에 완료되어야 한다.",
+      "notices": [],
+      "F": "\n실시간 신호처리가 가능하도록 설계한다.\n상세: 실시간 신호처리 주기는 1.00ms, 허용 오차 +/-5%(0.95~1.05ms)이며 각 블록 처리는 다음 처리 시작 전에 완료되어야 한다.\n",
+      "H": "\nSYS-RID-SP-FW-41\n",
+      "I": "",
+      "matrix": [
+        {
+          "row": 140,
+          "id": "SYS-RID-SP-FW-41",
+          "text": "실시간 신호처리가 가능하도록 설계한다."
+        }
+      ],
+      "matrix_match": true,
+      "existing_upper_preserved": true,
+      "old_F": "\n실시간 신호처리 주기는 1.00ms, 허용 오차 +/-5%(0.95~1.05ms)이며 각 블록 처리는 다음 처리 시작 전에 완료되어야 한다.\n",
+      "old_H": "\nSYS-RID-SP-FW-41\n",
+      "old_I": ""
+    },
+    {
+      "id": "SW-FW-RID-59",
+      "rid": 59,
+      "old_row": 84,
+      "base_text": "BLE 통신으로 수신되는 데이터가 프로토콜에 정의된 값의 범위 안에 있는지 확인해야한다.",
+      "detail": "제어 명령이 프로토콜에 맞게 전송되어야 실행한다.",
+      "notices": [],
+      "F": "\nBLE 통신으로 수신되는 데이터가 프로토콜에 정의된 값의 범위 안에 있는지 확인해야한다.\n상세: 제어 명령이 프로토콜에 맞게 전송되어야 실행한다.\n",
+      "H": "\nSYS-RID-SP-FW-28\n",
+      "I": "",
+      "matrix": [
+        {
+          "row": 127,
+          "id": "SYS-RID-SP-FW-28",
+          "text": "BLE 통신으로 수신되는 데이터가 프로토콜에 정의된 값의 범위 안에 있는지 확인해야한다."
+        }
+      ],
+      "matrix_match": true,
+      "existing_upper_preserved": true,
+      "old_F": "\n제어 명령이 프로토콜에 맞게 전송되어야 실행한다.\n",
+      "old_H": "\nSYS-RID-SP-FW-28\n",
+      "old_I": ""
+    },
+    {
+      "id": "SW-FW-RID-60",
+      "rid": 60,
+      "old_row": 85,
+      "base_text": "CRC 기능이 있는 통신 프로토콜을 사용한다.",
+      "detail": "",
+      "notices": [
+        "[QCC 자료 입력] 무선 통신 CRC의 적용 계층, 검사 실패 시 처리와 조건별 검증 결과를 확인한다."
+      ],
+      "F": "\nCRC 기능이 있는 통신 프로토콜을 사용한다.\n\n[QCC 자료 입력] 무선 통신 CRC의 적용 계층, 검사 실패 시 처리와 조건별 검증 결과를 확인한다.\n",
+      "H": "\nSYS-RID-SP-FW-42\n",
+      "I": "",
+      "matrix": [
+        {
+          "row": 141,
+          "id": "SYS-RID-SP-FW-42",
+          "text": "CRC 기능이 있는 통신 프로토콜을 사용한다."
+        }
+      ],
+      "matrix_match": true,
+      "existing_upper_preserved": true,
+      "old_F": "\nCRC 기능이 있는 통신 프로토콜을 사용한다.\n\n[QCC 자료 입력] CRC가 적용된 무선 통신의 QCC 내부 모듈/유닛 설계 연결을 추가한다.\n",
+      "old_H": "\nSYS-RID-SP-FW-42\n",
+      "old_I": ""
+    },
+    {
+      "id": "SW-FW-RID-61",
+      "rid": 61,
+      "old_row": 86,
+      "base_text": "정상사용을 위한 준비상태를 표시하도록 설계한다.",
+      "detail": "",
+      "notices": [],
+      "F": "\n정상사용을 위한 준비상태를 표시하도록 설계한다.\n",
+      "H": "\nSYS-RID-SP-FW-43\n",
+      "I": "",
+      "matrix": [
+        {
+          "row": 142,
+          "id": "SYS-RID-SP-FW-43",
+          "text": "정상사용을 위한 준비상태를 표시하도록 설계한다."
+        }
+      ],
+      "matrix_match": true,
+      "existing_upper_preserved": true,
+      "old_F": "\n정상사용을 위한 준비상태를 표시하도록 설계한다.\n",
+      "old_H": "\nSYS-RID-SP-FW-43\n",
+      "old_I": ""
+    },
+    {
+      "id": "SW-FW-RID-62",
+      "rid": 62,
+      "old_row": 87,
+      "base_text": "전원커넥터가 연결되면 연결을 확인할 수 있어야한다.(충전모드 표시).",
+      "detail": "",
+      "notices": [],
+      "F": "\n전원커넥터가 연결되면 연결을 확인할 수 있어야한다.(충전모드 표시).\n",
+      "H": "\nSYS-RID-SP-FW-44\n",
+      "I": "",
+      "matrix": [
+        {
+          "row": 143,
+          "id": "SYS-RID-SP-FW-44",
+          "text": "전원커넥터가 연결되면 연결을 확인할 수 있어야한다.(충전모드 표시)."
+        }
+      ],
+      "matrix_match": true,
+      "existing_upper_preserved": true,
+      "old_F": "\n전원커넥터가 연결되면 연결을 확인할 수 있어야한다.(충전모드 표시).\n",
+      "old_H": "\nSYS-RID-SP-FW-44\n",
+      "old_I": ""
+    },
+    {
+      "id": "SW-FW-RID-63",
+      "rid": 63,
+      "old_row": 88,
+      "base_text": "배터리 잔량을 표시할 수 있어야 한다.",
+      "detail": "",
+      "notices": [],
+      "F": "\n배터리 잔량을 표시할 수 있어야 한다.\n",
+      "H": "",
+      "I": "",
+      "matrix": [],
+      "matrix_match": false,
+      "existing_upper_preserved": true,
+      "old_F": "\n배터리 잔량을 표시할 수 있어야 한다.\n",
+      "old_H": "",
+      "old_I": ""
+    },
+    {
+      "id": "SW-FW-RID-64",
+      "rid": 64,
+      "old_row": 89,
+      "base_text": "구분이 쉽도록 LED 패턴을 생성한다.",
+      "detail": "",
+      "notices": [],
+      "F": "\n구분이 쉽도록 LED 패턴을 생성한다.\n",
+      "H": "\nSYS-RID-SP-FW-45\n",
+      "I": "",
+      "matrix": [
+        {
+          "row": 144,
+          "id": "SYS-RID-SP-FW-45",
+          "text": "구분이 쉽도록 LED 패턴을 생성한다."
+        }
+      ],
+      "matrix_match": true,
+      "existing_upper_preserved": true,
+      "old_F": "\n구분이 쉽도록 LED 패턴을 생성한다.\n",
+      "old_H": "\nSYS-RID-SP-FW-45\n",
+      "old_I": ""
+    },
+    {
+      "id": "SW-FW-RID-65",
+      "rid": 65,
+      "old_row": 90,
+      "base_text": "사회 통념적으로 사용되는 색상을 사용하여 인공와우 외부기 상태를 표시한다.",
+      "detail": "",
+      "notices": [],
+      "F": "\n사회 통념적으로 사용되는 색상을 사용하여 인공와우 외부기 상태를 표시한다.\n",
+      "H": "\nSYS-RID-SP-FW-46\n",
+      "I": "",
+      "matrix": [
+        {
+          "row": 145,
+          "id": "SYS-RID-SP-FW-46",
+          "text": "사회 통념적으로 사용되는 색상을 사용하여 인공와우 외부기 상태를 표시한다."
+        }
+      ],
+      "matrix_match": true,
+      "existing_upper_preserved": true,
+      "old_F": "\n사회 통념적으로 사용되는 색상을 사용하여 인공와우 외부기 상태를 표시한다.\n",
+      "old_H": "\nSYS-RID-SP-FW-46\n",
+      "old_I": ""
+    },
+    {
+      "id": "SW-FW-RID-66",
+      "rid": 66,
+      "old_row": 91,
+      "base_text": "BLE 통신 연결 장애 발생 시, 정상 동작이 되어야 한다.",
+      "detail": "",
+      "notices": [],
+      "F": "\nBLE 통신 연결 장애 발생 시, 정상 동작이 되어야 한다.\n",
+      "H": "\nSYS-RID-SP-FW-37\n",
+      "I": "",
+      "matrix": [
+        {
+          "row": 136,
+          "id": "SYS-RID-SP-FW-37",
+          "text": "BLE 통신 연결 장애 발생 시, 정상 동작이 되어야 한다."
+        }
+      ],
+      "matrix_match": true,
+      "existing_upper_preserved": true,
+      "old_F": "\nBLE 통신 연결 장애 발생 시, 정상 동작이 되어야 한다.\n",
+      "old_H": "\nSYS-RID-SP-FW-37\n",
+      "old_I": ""
+    },
+    {
+      "id": "SW-FW-RID-67",
+      "rid": 67,
+      "old_row": 92,
+      "base_text": "시동과정에서는 출력을 생성하지 않게 한다",
+      "detail": "",
+      "notices": [],
+      "F": "\n시동과정에서는 출력을 생성하지 않게 한다\n",
+      "H": "\nSYS-RID-SP-FW-49\n",
+      "I": "",
+      "matrix": [
+        {
+          "row": 148,
+          "id": "SYS-RID-SP-FW-49",
+          "text": "시동과정에서는 출력을 생성하지 않게 한다"
+        }
+      ],
+      "matrix_match": true,
+      "existing_upper_preserved": true,
+      "old_F": "\n시동과정에서는 출력을 생성하지 않게 한다\n",
+      "old_H": "\nSYS-RID-SP-FW-49\n",
+      "old_I": ""
+    },
+    {
+      "id": "SW-FW-RID-68",
+      "rid": 68,
+      "old_row": 93,
+      "base_text": "종료과정에서는 출력을 생성하지 않게 한다.",
+      "detail": "",
+      "notices": [],
+      "F": "\n종료과정에서는 출력을 생성하지 않게 한다.\n",
+      "H": "\nSYS-RID-SP-FW-50\n",
+      "I": "",
+      "matrix": [
+        {
+          "row": 149,
+          "id": "SYS-RID-SP-FW-50",
+          "text": "종료과정에서는 출력을 생성하지 않게 한다."
+        }
+      ],
+      "matrix_match": true,
+      "existing_upper_preserved": true,
+      "old_F": "\n종료과정에서는 출력을 생성하지 않게 한다.\n",
+      "old_H": "\nSYS-RID-SP-FW-50\n",
+      "old_I": ""
+    }
+  ],
+  "raw_qcc_id_mapping_work_evidence_only": {
+    "RI09": [
+      15,
+      16
+    ],
+    "RI10": [
+      69
+    ],
+    "RI11": [
+      69
+    ],
+    "RI12 BLE": [
+      70
+    ],
+    "RI13 remocon": [
+      44
+    ],
+    "RI14 mapping": [
+      45
+    ],
+    "RI13 pairing": [
+      48,
+      49
+    ],
+    "RI14 auth-access": [
+      48,
+      76
+    ],
+    "RI15": [
+      48,
+      52,
+      71
+    ],
+    "RI16 crypto": [
+      52,
+      76,
+      78
+    ],
+    "RI17": [
+      47,
+      72
+    ],
+    "RI18": [
+      54
+    ],
+    "RI16 manual": [
+      83
+    ]
+  }
+}

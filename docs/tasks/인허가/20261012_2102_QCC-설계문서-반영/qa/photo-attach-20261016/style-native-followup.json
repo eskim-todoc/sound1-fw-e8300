@@ -1,0 +1,26 @@
+{
+  "source": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\photo-attach-20261016\\style-after.xlsx",
+  "source_sha256": "64E7636993431C36BA9D9FF4A5A1C0CBC38EF23EB1889DDDBC8C6574EB77C90C",
+  "status": "통과",
+  "exports": [
+    {
+      "name": "final-ci-crc",
+      "sheet": "보고서_시스템 시험",
+      "area": "C219:I223",
+      "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\photo-attach-20261016\\style-native-final-ci-crc.pdf",
+      "sha256": "5C429CEADBFEBFFE3522D7CAC2C7C5E720E2936964D9B6F9B8A0C42BB3A1A48B"
+    },
+    {
+      "name": "final-comparison",
+      "sheet": "보고서_시스템 시험_비교",
+      "area": "B1223:L1226",
+      "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\photo-attach-20261016\\style-native-final-comparison.pdf",
+      "sha256": "A40299E74612274E8C30692C074566CC71A873A2EE785F3987D51B4EF6E7E2D3"
+    }
+  ],
+  "saved": false,
+  "readonly": true,
+  "closed_without_saving": true,
+  "source_end_sha256": "64E7636993431C36BA9D9FF4A5A1C0CBC38EF23EB1889DDDBC8C6574EB77C90C",
+  "source_unchanged": true
+}

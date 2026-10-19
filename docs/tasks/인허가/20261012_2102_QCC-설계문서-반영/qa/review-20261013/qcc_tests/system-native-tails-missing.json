@@ -1,0 +1,190 @@
+[
+  {
+    "key": "SSTC",
+    "cell": "I128",
+    "tail": "리모콘앱으로LED알림을끄고켜며일반상태LED를확인한다.",
+    "estimate": {
+      "key": "SSTC",
+      "cell": "I128",
+      "merge": "I128:I129",
+      "font": 11.0,
+      "max_run_font": 11.0,
+      "width": 48.0,
+      "lines": 12,
+      "need_estimate": 183.6,
+      "available": 172.0,
+      "row_heights": {
+        "128": 86.0,
+        "129": 86.0
+      },
+      "has_current_comparison": true,
+      "shortfall": true,
+      "last_line": "리모콘 앱으로 LED 알림을 끄고 켜며 일반 상태 LED를 확인한다.",
+      "text_length": 208
+    }
+  },
+  {
+    "key": "SSTC",
+    "cell": "I151",
+    "tail": "매핑앱에서지정자극명령을보내고오실로스코프로해당전극의출력을확인한다.",
+    "estimate": {
+      "key": "SSTC",
+      "cell": "I151",
+      "merge": "I151",
+      "font": 11.0,
+      "max_run_font": 11.0,
+      "width": 48.0,
+      "lines": 13,
+      "need_estimate": 197.9,
+      "available": 186.0,
+      "row_heights": {
+        "151": 186.0
+      },
+      "has_current_comparison": true,
+      "shortfall": true,
+      "last_line": "매핑 앱에서 지정 자극 명령을 보내고 오실로스코프로 해당 전극의 출력을 확인한다.",
+      "text_length": 240
+    }
+  },
+  {
+    "key": "SSTC",
+    "cell": "I188",
+    "tail": "각상태의자극출력과LED를확인한다.",
+    "estimate": {
+      "key": "SSTC",
+      "cell": "I188",
+      "merge": "I188:I189",
+      "font": 11.0,
+      "max_run_font": 11.0,
+      "width": 48.0,
+      "lines": 18,
+      "need_estimate": 269.4,
+      "available": 254.0,
+      "row_heights": {
+        "188": 127.0,
+        "189": 127.0
+      },
+      "has_current_comparison": true,
+      "shortfall": true,
+      "last_line": "각 상태의 자극 출력과 LED를 확인한다.",
+      "text_length": 359
+    }
+  },
+  {
+    "key": "SSTC",
+    "cell": "I194",
+    "tail": "실제오류응답전체/QCC페어링상태/제어차단여부를확인한다.",
+    "estimate": {
+      "key": "SSTC",
+      "cell": "I194",
+      "merge": "I194",
+      "font": 11.0,
+      "max_run_font": 11.0,
+      "width": 48.0,
+      "lines": 14,
+      "need_estimate": 212.2,
+      "available": 199.0,
+      "row_heights": {
+        "194": 199.0
+      },
+      "has_current_comparison": true,
+      "shortfall": true,
+      "last_line": "실제 오류 응답 전체/QCC 페어링 상태/제어 차단 여부를 확인한다.",
+      "text_length": 287
+    }
+  },
+  {
+    "key": "SSTC",
+    "cell": "J249",
+    "tail": "D-25~SW-FW-SYS-Test-ID-34가모두통과해야한다.",
+    "estimate": {
+      "key": "SSTC",
+      "cell": "J249",
+      "merge": "J249",
+      "font": 11.0,
+      "max_run_font": 11.0,
+      "width": 64.625,
+      "lines": 8,
+      "need_estimate": 126.4,
+      "available": 151.5,
+      "row_heights": {
+        "249": 151.5
+      },
+      "has_current_comparison": false,
+      "shortfall": false,
+      "last_line": "CRC가 적용된 Bluetooth LE 통신을 사용하고 SW-FW-SYS-Test-ID-25~SW-FW-SYS-Test-ID-34가 모두 통과해야 한다.",
+      "text_length": 197
+    }
+  },
+  {
+    "key": "SSTC",
+    "cell": "I278",
+    "tail": "시동완료시각과비교한다.",
+    "estimate": {
+      "key": "SSTC",
+      "cell": "I278",
+      "merge": "I278:I279",
+      "font": 11.0,
+      "max_run_font": 11.0,
+      "width": 48.0,
+      "lines": 15,
+      "need_estimate": 226.5,
+      "available": 214.0,
+      "row_heights": {
+        "278": 107.0,
+        "279": 107.0
+      },
+      "has_current_comparison": true,
+      "shortfall": true,
+      "last_line": "시동 완료 시각과 비교한다.",
+      "text_length": 260
+    }
+  },
+  {
+    "key": "SSTC",
+    "cell": "I280",
+    "tail": "종료완료시각과비교한다.",
+    "estimate": {
+      "key": "SSTC",
+      "cell": "I280",
+      "merge": "I280:I281",
+      "font": 11.0,
+      "max_run_font": 11.0,
+      "width": 48.0,
+      "lines": 15,
+      "need_estimate": 226.5,
+      "available": 214.0,
+      "row_heights": {
+        "280": 107.0,
+        "281": 107.0
+      },
+      "has_current_comparison": true,
+      "shortfall": true,
+      "last_line": "종료 완료 시각과 비교한다.",
+      "text_length": 266
+    }
+  },
+  {
+    "key": "SSTR",
+    "cell": "J249",
+    "tail": "D-25~SW-FW-SYS-Test-ID-34가모두통과해야한다.",
+    "estimate": {
+      "key": "SSTR",
+      "cell": "J249",
+      "merge": "J249",
+      "font": 11.0,
+      "max_run_font": 11.0,
+      "width": 64.625,
+      "lines": 8,
+      "need_estimate": 126.4,
+      "available": 151.5,
+      "row_heights": {
+        "249": 151.5
+      },
+      "has_current_comparison": false,
+      "shortfall": false,
+      "last_line": "CRC가 적용된 Bluetooth LE 통신을 사용하고 SW-FW-SYS-Test-ID-25~SW-FW-SYS-Test-ID-34가 모두 통과해야 한다.",
+      "text_length": 197
+    }
+  }
+]

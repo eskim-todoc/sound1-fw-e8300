@@ -1,0 +1,214 @@
+[
+  {
+    "key": "SITC",
+    "sha256": "9cf0d7df2f6255f67230b857a85a1a82dfcc9e802f0eaf3f172643c9daf5a1ca",
+    "runs": [
+      {
+        "text": "\n",
+        "rPr": "<rPr xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:x14ac=\"http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac\" xmlns:xr=\"http://schemas.microsoft.com/office/spreadsheetml/2014/revision\" xmlns:xr2=\"http://schemas.microsoft.com/office/spreadsheetml/2015/revision2\" xmlns:xr3=\"http://schemas.microsoft.com/office/spreadsheetml/2016/revision3\"><sz val=\"11\"/><color rgb=\"FF000000\"/><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/><scheme val=\"minor\"/></rPr>"
+      },
+      {
+        "text": "[-] ",
+        "rPr": "<rPr xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:x14ac=\"http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac\" xmlns:xr=\"http://schemas.microsoft.com/office/spreadsheetml/2014/revision\" xmlns:xr2=\"http://schemas.microsoft.com/office/spreadsheetml/2015/revision2\" xmlns:xr3=\"http://schemas.microsoft.com/office/spreadsheetml/2016/revision3\"><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/><scheme val=\"minor\"/><color rgb=\"FFC00000\"/><sz val=\"11\"/></rPr>"
+      },
+      {
+        "text": "SU-ID-QCC-008",
+        "rPr": "<rPr xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:x14ac=\"http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac\" xmlns:xr=\"http://schemas.microsoft.com/office/spreadsheetml/2014/revision\" xmlns:xr2=\"http://schemas.microsoft.com/office/spreadsheetml/2015/revision2\" xmlns:xr3=\"http://schemas.microsoft.com/office/spreadsheetml/2016/revision3\"><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/><scheme val=\"minor\"/><color rgb=\"FFC00000\"/><sz val=\"11\"/></rPr>"
+      },
+      {
+        "text": "\n",
+        "rPr": "<rPr xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:x14ac=\"http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac\" xmlns:xr=\"http://schemas.microsoft.com/office/spreadsheetml/2014/revision\" xmlns:xr2=\"http://schemas.microsoft.com/office/spreadsheetml/2015/revision2\" xmlns:xr3=\"http://schemas.microsoft.com/office/spreadsheetml/2016/revision3\"><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/><scheme val=\"minor\"/><color rgb=\"FFC00000\"/><sz val=\"11\"/></rPr>"
+      },
+      {
+        "text": "[-] ",
+        "rPr": "<rPr xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:x14ac=\"http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac\" xmlns:xr=\"http://schemas.microsoft.com/office/spreadsheetml/2014/revision\" xmlns:xr2=\"http://schemas.microsoft.com/office/spreadsheetml/2015/revision2\" xmlns:xr3=\"http://schemas.microsoft.com/office/spreadsheetml/2016/revision3\"><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/><scheme val=\"minor\"/><color rgb=\"FFC00000\"/><sz val=\"11\"/></rPr>"
+      },
+      {
+        "text": "SW-FW-RID-15/16/69",
+        "rPr": "<rPr xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:x14ac=\"http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac\" xmlns:xr=\"http://schemas.microsoft.com/office/spreadsheetml/2014/revision\" xmlns:xr2=\"http://schemas.microsoft.com/office/spreadsheetml/2015/revision2\" xmlns:xr3=\"http://schemas.microsoft.com/office/spreadsheetml/2016/revision3\"><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/><scheme val=\"minor\"/><color rgb=\"FFC00000\"/><sz val=\"11\"/></rPr>"
+      },
+      {
+        "text": "\n",
+        "rPr": "<rPr xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:x14ac=\"http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac\" xmlns:xr=\"http://schemas.microsoft.com/office/spreadsheetml/2014/revision\" xmlns:xr2=\"http://schemas.microsoft.com/office/spreadsheetml/2015/revision2\" xmlns:xr3=\"http://schemas.microsoft.com/office/spreadsheetml/2016/revision3\"><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/><scheme val=\"minor\"/><color rgb=\"FFC00000\"/><sz val=\"11\"/></rPr>"
+      },
+      {
+        "text": "[+] ",
+        "rPr": "<rPr xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:x14ac=\"http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac\" xmlns:xr=\"http://schemas.microsoft.com/office/spreadsheetml/2014/revision\" xmlns:xr2=\"http://schemas.microsoft.com/office/spreadsheetml/2015/revision2\" xmlns:xr3=\"http://schemas.microsoft.com/office/spreadsheetml/2016/revision3\"><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/><scheme val=\"minor\"/><color rgb=\"FF008000\"/><sz val=\"11\"/></rPr>"
+      },
+      {
+        "text": "SU-ID-QCC-008",
+        "rPr": "<rPr xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:x14ac=\"http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac\" xmlns:xr=\"http://schemas.microsoft.com/office/spreadsheetml/2014/revision\" xmlns:xr2=\"http://schemas.microsoft.com/office/spreadsheetml/2015/revision2\" xmlns:xr3=\"http://schemas.microsoft.com/office/spreadsheetml/2016/revision3\"><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/><scheme val=\"minor\"/><color rgb=\"FF008000\"/><sz val=\"11\"/></rPr>"
+      },
+      {
+        "text": "\n",
+        "rPr": "<rPr xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:x14ac=\"http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac\" xmlns:xr=\"http://schemas.microsoft.com/office/spreadsheetml/2014/revision\" xmlns:xr2=\"http://schemas.microsoft.com/office/spreadsheetml/2015/revision2\" xmlns:xr3=\"http://schemas.microsoft.com/office/spreadsheetml/2016/revision3\"><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/><scheme val=\"minor\"/><color rgb=\"FF008000\"/><sz val=\"11\"/></rPr>"
+      },
+      {
+        "text": "[+] ",
+        "rPr": "<rPr xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:x14ac=\"http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac\" xmlns:xr=\"http://schemas.microsoft.com/office/spreadsheetml/2014/revision\" xmlns:xr2=\"http://schemas.microsoft.com/office/spreadsheetml/2015/revision2\" xmlns:xr3=\"http://schemas.microsoft.com/office/spreadsheetml/2016/revision3\"><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/><scheme val=\"minor\"/><color rgb=\"FF008000\"/><sz val=\"11\"/></rPr>"
+      },
+      {
+        "text": "SU-ID-CFX-005, I2S 인터페이스 초기화: I2S 초기화와 인터럽트 수신 준비",
+        "rPr": "<rPr xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:x14ac=\"http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac\" xmlns:xr=\"http://schemas.microsoft.com/office/spreadsheetml/2014/revision\" xmlns:xr2=\"http://schemas.microsoft.com/office/spreadsheetml/2015/revision2\" xmlns:xr3=\"http://schemas.microsoft.com/office/spreadsheetml/2016/revision3\"><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/><scheme val=\"minor\"/><color rgb=\"FF008000\"/><sz val=\"11\"/></rPr>"
+      },
+      {
+        "text": "\n",
+        "rPr": "<rPr xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:x14ac=\"http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac\" xmlns:xr=\"http://schemas.microsoft.com/office/spreadsheetml/2014/revision\" xmlns:xr2=\"http://schemas.microsoft.com/office/spreadsheetml/2015/revision2\" xmlns:xr3=\"http://schemas.microsoft.com/office/spreadsheetml/2016/revision3\"><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/><scheme val=\"minor\"/><color rgb=\"FF008000\"/><sz val=\"11\"/></rPr>"
+      },
+      {
+        "text": "[+] ",
+        "rPr": "<rPr xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:x14ac=\"http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac\" xmlns:xr=\"http://schemas.microsoft.com/office/spreadsheetml/2014/revision\" xmlns:xr2=\"http://schemas.microsoft.com/office/spreadsheetml/2015/revision2\" xmlns:xr3=\"http://schemas.microsoft.com/office/spreadsheetml/2016/revision3\"><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/><scheme val=\"minor\"/><color rgb=\"FF008000\"/><sz val=\"11\"/></rPr>"
+      },
+      {
+        "text": "SU-ID-CFX-008, I2S 입력 상태 판정: 수신 상태 판정/복사/스트리밍 상태 갱신",
+        "rPr": "<rPr xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:x14ac=\"http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac\" xmlns:xr=\"http://schemas.microsoft.com/office/spreadsheetml/2014/revision\" xmlns:xr2=\"http://schemas.microsoft.com/office/spreadsheetml/2015/revision2\" xmlns:xr3=\"http://schemas.microsoft.com/office/spreadsheetml/2016/revision3\"><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/><scheme val=\"minor\"/><color rgb=\"FF008000\"/><sz val=\"11\"/></rPr>"
+      },
+      {
+        "text": "\n",
+        "rPr": "<rPr xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:x14ac=\"http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac\" xmlns:xr=\"http://schemas.microsoft.com/office/spreadsheetml/2014/revision\" xmlns:xr2=\"http://schemas.microsoft.com/office/spreadsheetml/2015/revision2\" xmlns:xr3=\"http://schemas.microsoft.com/office/spreadsheetml/2016/revision3\"><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/><scheme val=\"minor\"/><color rgb=\"FF008000\"/><sz val=\"11\"/></rPr>"
+      },
+      {
+        "text": "[+] ",
+        "rPr": "<rPr xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:x14ac=\"http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac\" xmlns:xr=\"http://schemas.microsoft.com/office/spreadsheetml/2014/revision\" xmlns:xr2=\"http://schemas.microsoft.com/office/spreadsheetml/2015/revision2\" xmlns:xr3=\"http://schemas.microsoft.com/office/spreadsheetml/2016/revision3\"><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/><scheme val=\"minor\"/><color rgb=\"FF008000\"/><sz val=\"11\"/></rPr>"
+      },
+      {
+        "text": "SU-ID-CFX-015, I2S 수신 버퍼 관리: 16표본 FIFO에서 수신 버퍼로 복사하고 완료 플래그 갱신",
+        "rPr": "<rPr xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:x14ac=\"http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac\" xmlns:xr=\"http://schemas.microsoft.com/office/spreadsheetml/2014/revision\" xmlns:xr2=\"http://schemas.microsoft.com/office/spreadsheetml/2015/revision2\" xmlns:xr3=\"http://schemas.microsoft.com/office/spreadsheetml/2016/revision3\"><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/><scheme val=\"minor\"/><color rgb=\"FF008000\"/><sz val=\"11\"/></rPr>"
+      },
+      {
+        "text": "\n",
+        "rPr": "<rPr xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:x14ac=\"http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac\" xmlns:xr=\"http://schemas.microsoft.com/office/spreadsheetml/2014/revision\" xmlns:xr2=\"http://schemas.microsoft.com/office/spreadsheetml/2015/revision2\" xmlns:xr3=\"http://schemas.microsoft.com/office/spreadsheetml/2016/revision3\"><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/><scheme val=\"minor\"/><color rgb=\"FF008000\"/><sz val=\"11\"/></rPr>"
+      },
+      {
+        "text": "[+] ",
+        "rPr": "<rPr xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:x14ac=\"http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac\" xmlns:xr=\"http://schemas.microsoft.com/office/spreadsheetml/2014/revision\" xmlns:xr2=\"http://schemas.microsoft.com/office/spreadsheetml/2015/revision2\" xmlns:xr3=\"http://schemas.microsoft.com/office/spreadsheetml/2016/revision3\"><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/><scheme val=\"minor\"/><color rgb=\"FF008000\"/><sz val=\"11\"/></rPr>"
+      },
+      {
+        "text": "SW-FW-RID-15/16/69",
+        "rPr": "<rPr xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:x14ac=\"http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac\" xmlns:xr=\"http://schemas.microsoft.com/office/spreadsheetml/2014/revision\" xmlns:xr2=\"http://schemas.microsoft.com/office/spreadsheetml/2015/revision2\" xmlns:xr3=\"http://schemas.microsoft.com/office/spreadsheetml/2016/revision3\"><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/><scheme val=\"minor\"/><color rgb=\"FF008000\"/><sz val=\"11\"/></rPr>"
+      },
+      {
+        "text": "\n",
+        "rPr": "<rPr xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:x14ac=\"http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac\" xmlns:xr=\"http://schemas.microsoft.com/office/spreadsheetml/2014/revision\" xmlns:xr2=\"http://schemas.microsoft.com/office/spreadsheetml/2015/revision2\" xmlns:xr3=\"http://schemas.microsoft.com/office/spreadsheetml/2016/revision3\"><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/><scheme val=\"minor\"/><color rgb=\"FF008000\"/><sz val=\"11\"/></rPr>"
+      },
+      {
+        "text": "[+] ",
+        "rPr": "<rPr xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:x14ac=\"http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac\" xmlns:xr=\"http://schemas.microsoft.com/office/spreadsheetml/2014/revision\" xmlns:xr2=\"http://schemas.microsoft.com/office/spreadsheetml/2015/revision2\" xmlns:xr3=\"http://schemas.microsoft.com/office/spreadsheetml/2016/revision3\"><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/><scheme val=\"minor\"/><color rgb=\"FF008000\"/><sz val=\"11\"/></rPr>"
+      },
+      {
+        "text": "수신 경계: QCC I2S 송신부터 E8300 버퍼/완료 상태까지 확인한다. 믹싱/자극 경로는 SW-FW-IntegrationTest-ID-013에서 별도로 확인한다.",
+        "rPr": "<rPr xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:x14ac=\"http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac\" xmlns:xr=\"http://schemas.microsoft.com/office/spreadsheetml/2014/revision\" xmlns:xr2=\"http://schemas.microsoft.com/office/spreadsheetml/2015/revision2\" xmlns:xr3=\"http://schemas.microsoft.com/office/spreadsheetml/2016/revision3\"><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/><scheme val=\"minor\"/><color rgb=\"FF008000\"/><sz val=\"11\"/></rPr>"
+      },
+      {
+        "text": "\n",
+        "rPr": "<rPr xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:x14ac=\"http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac\" xmlns:xr=\"http://schemas.microsoft.com/office/spreadsheetml/2014/revision\" xmlns:xr2=\"http://schemas.microsoft.com/office/spreadsheetml/2015/revision2\" xmlns:xr3=\"http://schemas.microsoft.com/office/spreadsheetml/2016/revision3\"><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/><scheme val=\"minor\"/><color rgb=\"FF008000\"/><sz val=\"11\"/></rPr>"
+      }
+    ]
+  },
+  {
+    "key": "SITR",
+    "sha256": "7ade4402a4441874bac768136043b7d2860b4ae1e27cf4cca8f83f91dd2cf1cf",
+    "runs": [
+      {
+        "text": "\n",
+        "rPr": "<rPr xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:x14ac=\"http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac\" xmlns:xr=\"http://schemas.microsoft.com/office/spreadsheetml/2014/revision\" xmlns:xr2=\"http://schemas.microsoft.com/office/spreadsheetml/2015/revision2\" xmlns:xr3=\"http://schemas.microsoft.com/office/spreadsheetml/2016/revision3\"><sz val=\"11\"/><color rgb=\"FF000000\"/><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/></rPr>"
+      },
+      {
+        "text": "[-] ",
+        "rPr": "<rPr xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:x14ac=\"http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac\" xmlns:xr=\"http://schemas.microsoft.com/office/spreadsheetml/2014/revision\" xmlns:xr2=\"http://schemas.microsoft.com/office/spreadsheetml/2015/revision2\" xmlns:xr3=\"http://schemas.microsoft.com/office/spreadsheetml/2016/revision3\"><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/><color rgb=\"FFC00000\"/><sz val=\"11\"/></rPr>"
+      },
+      {
+        "text": "SU-ID-QCC-008",
+        "rPr": "<rPr xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:x14ac=\"http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac\" xmlns:xr=\"http://schemas.microsoft.com/office/spreadsheetml/2014/revision\" xmlns:xr2=\"http://schemas.microsoft.com/office/spreadsheetml/2015/revision2\" xmlns:xr3=\"http://schemas.microsoft.com/office/spreadsheetml/2016/revision3\"><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/><color rgb=\"FFC00000\"/><sz val=\"11\"/></rPr>"
+      },
+      {
+        "text": "\n",
+        "rPr": "<rPr xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:x14ac=\"http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac\" xmlns:xr=\"http://schemas.microsoft.com/office/spreadsheetml/2014/revision\" xmlns:xr2=\"http://schemas.microsoft.com/office/spreadsheetml/2015/revision2\" xmlns:xr3=\"http://schemas.microsoft.com/office/spreadsheetml/2016/revision3\"><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/><color rgb=\"FFC00000\"/><sz val=\"11\"/></rPr>"
+      },
+      {
+        "text": "[-] ",
+        "rPr": "<rPr xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:x14ac=\"http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac\" xmlns:xr=\"http://schemas.microsoft.com/office/spreadsheetml/2014/revision\" xmlns:xr2=\"http://schemas.microsoft.com/office/spreadsheetml/2015/revision2\" xmlns:xr3=\"http://schemas.microsoft.com/office/spreadsheetml/2016/revision3\"><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/><color rgb=\"FFC00000\"/><sz val=\"11\"/></rPr>"
+      },
+      {
+        "text": "SW-FW-RID-15/16/69",
+        "rPr": "<rPr xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:x14ac=\"http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac\" xmlns:xr=\"http://schemas.microsoft.com/office/spreadsheetml/2014/revision\" xmlns:xr2=\"http://schemas.microsoft.com/office/spreadsheetml/2015/revision2\" xmlns:xr3=\"http://schemas.microsoft.com/office/spreadsheetml/2016/revision3\"><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/><color rgb=\"FFC00000\"/><sz val=\"11\"/></rPr>"
+      },
+      {
+        "text": "\n",
+        "rPr": "<rPr xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:x14ac=\"http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac\" xmlns:xr=\"http://schemas.microsoft.com/office/spreadsheetml/2014/revision\" xmlns:xr2=\"http://schemas.microsoft.com/office/spreadsheetml/2015/revision2\" xmlns:xr3=\"http://schemas.microsoft.com/office/spreadsheetml/2016/revision3\"><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/><color rgb=\"FFC00000\"/><sz val=\"11\"/></rPr>"
+      },
+      {
+        "text": "[+] ",
+        "rPr": "<rPr xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:x14ac=\"http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac\" xmlns:xr=\"http://schemas.microsoft.com/office/spreadsheetml/2014/revision\" xmlns:xr2=\"http://schemas.microsoft.com/office/spreadsheetml/2015/revision2\" xmlns:xr3=\"http://schemas.microsoft.com/office/spreadsheetml/2016/revision3\"><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/><color rgb=\"FF008000\"/><sz val=\"11\"/></rPr>"
+      },
+      {
+        "text": "SU-ID-QCC-008",
+        "rPr": "<rPr xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:x14ac=\"http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac\" xmlns:xr=\"http://schemas.microsoft.com/office/spreadsheetml/2014/revision\" xmlns:xr2=\"http://schemas.microsoft.com/office/spreadsheetml/2015/revision2\" xmlns:xr3=\"http://schemas.microsoft.com/office/spreadsheetml/2016/revision3\"><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/><color rgb=\"FF008000\"/><sz val=\"11\"/></rPr>"
+      },
+      {
+        "text": "\n",
+        "rPr": "<rPr xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:x14ac=\"http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac\" xmlns:xr=\"http://schemas.microsoft.com/office/spreadsheetml/2014/revision\" xmlns:xr2=\"http://schemas.microsoft.com/office/spreadsheetml/2015/revision2\" xmlns:xr3=\"http://schemas.microsoft.com/office/spreadsheetml/2016/revision3\"><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/><color rgb=\"FF008000\"/><sz val=\"11\"/></rPr>"
+      },
+      {
+        "text": "[+] ",
+        "rPr": "<rPr xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:x14ac=\"http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac\" xmlns:xr=\"http://schemas.microsoft.com/office/spreadsheetml/2014/revision\" xmlns:xr2=\"http://schemas.microsoft.com/office/spreadsheetml/2015/revision2\" xmlns:xr3=\"http://schemas.microsoft.com/office/spreadsheetml/2016/revision3\"><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/><color rgb=\"FF008000\"/><sz val=\"11\"/></rPr>"
+      },
+      {
+        "text": "SU-ID-CFX-005, I2S 인터페이스 초기화: I2S 초기화와 인터럽트 수신 준비",
+        "rPr": "<rPr xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:x14ac=\"http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac\" xmlns:xr=\"http://schemas.microsoft.com/office/spreadsheetml/2014/revision\" xmlns:xr2=\"http://schemas.microsoft.com/office/spreadsheetml/2015/revision2\" xmlns:xr3=\"http://schemas.microsoft.com/office/spreadsheetml/2016/revision3\"><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/><color rgb=\"FF008000\"/><sz val=\"11\"/></rPr>"
+      },
+      {
+        "text": "\n",
+        "rPr": "<rPr xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:x14ac=\"http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac\" xmlns:xr=\"http://schemas.microsoft.com/office/spreadsheetml/2014/revision\" xmlns:xr2=\"http://schemas.microsoft.com/office/spreadsheetml/2015/revision2\" xmlns:xr3=\"http://schemas.microsoft.com/office/spreadsheetml/2016/revision3\"><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/><color rgb=\"FF008000\"/><sz val=\"11\"/></rPr>"
+      },
+      {
+        "text": "[+] ",
+        "rPr": "<rPr xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:x14ac=\"http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac\" xmlns:xr=\"http://schemas.microsoft.com/office/spreadsheetml/2014/revision\" xmlns:xr2=\"http://schemas.microsoft.com/office/spreadsheetml/2015/revision2\" xmlns:xr3=\"http://schemas.microsoft.com/office/spreadsheetml/2016/revision3\"><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/><color rgb=\"FF008000\"/><sz val=\"11\"/></rPr>"
+      },
+      {
+        "text": "SU-ID-CFX-008, I2S 입력 상태 판정: 수신 상태 판정/복사/스트리밍 상태 갱신",
+        "rPr": "<rPr xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:x14ac=\"http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac\" xmlns:xr=\"http://schemas.microsoft.com/office/spreadsheetml/2014/revision\" xmlns:xr2=\"http://schemas.microsoft.com/office/spreadsheetml/2015/revision2\" xmlns:xr3=\"http://schemas.microsoft.com/office/spreadsheetml/2016/revision3\"><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/><color rgb=\"FF008000\"/><sz val=\"11\"/></rPr>"
+      },
+      {
+        "text": "\n",
+        "rPr": "<rPr xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:x14ac=\"http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac\" xmlns:xr=\"http://schemas.microsoft.com/office/spreadsheetml/2014/revision\" xmlns:xr2=\"http://schemas.microsoft.com/office/spreadsheetml/2015/revision2\" xmlns:xr3=\"http://schemas.microsoft.com/office/spreadsheetml/2016/revision3\"><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/><color rgb=\"FF008000\"/><sz val=\"11\"/></rPr>"
+      },
+      {
+        "text": "[+] ",
+        "rPr": "<rPr xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:x14ac=\"http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac\" xmlns:xr=\"http://schemas.microsoft.com/office/spreadsheetml/2014/revision\" xmlns:xr2=\"http://schemas.microsoft.com/office/spreadsheetml/2015/revision2\" xmlns:xr3=\"http://schemas.microsoft.com/office/spreadsheetml/2016/revision3\"><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/><color rgb=\"FF008000\"/><sz val=\"11\"/></rPr>"
+      },
+      {
+        "text": "SU-ID-CFX-015, I2S 수신 버퍼 관리: 16표본 FIFO에서 수신 버퍼로 복사하고 완료 플래그 갱신",
+        "rPr": "<rPr xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:x14ac=\"http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac\" xmlns:xr=\"http://schemas.microsoft.com/office/spreadsheetml/2014/revision\" xmlns:xr2=\"http://schemas.microsoft.com/office/spreadsheetml/2015/revision2\" xmlns:xr3=\"http://schemas.microsoft.com/office/spreadsheetml/2016/revision3\"><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/><color rgb=\"FF008000\"/><sz val=\"11\"/></rPr>"
+      },
+      {
+        "text": "\n",
+        "rPr": "<rPr xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:x14ac=\"http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac\" xmlns:xr=\"http://schemas.microsoft.com/office/spreadsheetml/2014/revision\" xmlns:xr2=\"http://schemas.microsoft.com/office/spreadsheetml/2015/revision2\" xmlns:xr3=\"http://schemas.microsoft.com/office/spreadsheetml/2016/revision3\"><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/><color rgb=\"FF008000\"/><sz val=\"11\"/></rPr>"
+      },
+      {
+        "text": "[+] ",
+        "rPr": "<rPr xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:x14ac=\"http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac\" xmlns:xr=\"http://schemas.microsoft.com/office/spreadsheetml/2014/revision\" xmlns:xr2=\"http://schemas.microsoft.com/office/spreadsheetml/2015/revision2\" xmlns:xr3=\"http://schemas.microsoft.com/office/spreadsheetml/2016/revision3\"><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/><color rgb=\"FF008000\"/><sz val=\"11\"/></rPr>"
+      },
+      {
+        "text": "SW-FW-RID-15/16/69",
+        "rPr": "<rPr xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:x14ac=\"http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac\" xmlns:xr=\"http://schemas.microsoft.com/office/spreadsheetml/2014/revision\" xmlns:xr2=\"http://schemas.microsoft.com/office/spreadsheetml/2015/revision2\" xmlns:xr3=\"http://schemas.microsoft.com/office/spreadsheetml/2016/revision3\"><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/><color rgb=\"FF008000\"/><sz val=\"11\"/></rPr>"
+      },
+      {
+        "text": "\n",
+        "rPr": "<rPr xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:x14ac=\"http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac\" xmlns:xr=\"http://schemas.microsoft.com/office/spreadsheetml/2014/revision\" xmlns:xr2=\"http://schemas.microsoft.com/office/spreadsheetml/2015/revision2\" xmlns:xr3=\"http://schemas.microsoft.com/office/spreadsheetml/2016/revision3\"><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/><color rgb=\"FF008000\"/><sz val=\"11\"/></rPr>"
+      },
+      {
+        "text": "[+] ",
+        "rPr": "<rPr xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:x14ac=\"http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac\" xmlns:xr=\"http://schemas.microsoft.com/office/spreadsheetml/2014/revision\" xmlns:xr2=\"http://schemas.microsoft.com/office/spreadsheetml/2015/revision2\" xmlns:xr3=\"http://schemas.microsoft.com/office/spreadsheetml/2016/revision3\"><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/><color rgb=\"FF008000\"/><sz val=\"11\"/></rPr>"
+      },
+      {
+        "text": "수신 경계: QCC I2S 송신부터 E8300 버퍼/완료 상태까지 확인한다. 믹싱/자극 경로는 SW-FW-IntegrationTest-ID-013에서 별도로 확인한다.",
+        "rPr": "<rPr xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:x14ac=\"http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac\" xmlns:xr=\"http://schemas.microsoft.com/office/spreadsheetml/2014/revision\" xmlns:xr2=\"http://schemas.microsoft.com/office/spreadsheetml/2015/revision2\" xmlns:xr3=\"http://schemas.microsoft.com/office/spreadsheetml/2016/revision3\"><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/><color rgb=\"FF008000\"/><sz val=\"11\"/></rPr>"
+      },
+      {
+        "text": "\n",
+        "rPr": "<rPr xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:x14ac=\"http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac\" xmlns:xr=\"http://schemas.microsoft.com/office/spreadsheetml/2014/revision\" xmlns:xr2=\"http://schemas.microsoft.com/office/spreadsheetml/2015/revision2\" xmlns:xr3=\"http://schemas.microsoft.com/office/spreadsheetml/2016/revision3\"><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/><color rgb=\"FF008000\"/><sz val=\"11\"/></rPr>"
+      }
+    ]
+  }
+]

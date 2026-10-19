@@ -1,0 +1,684 @@
+{
+  "native_XML": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_design\\native-trace-probe-v2\\reject-allmarkup\\new-rejected-accepted.xml",
+  "native_XML_sha256": "33faaad9565aba846d53de28cfd938deb7b127a4b4079e4bb48198a08461bbda",
+  "scope": "Document.Content.WordOpenXML emitted by actual native Word; accepted snapshots are obtained only after actual AcceptAllRevisions",
+  "probe_revision_count": 0,
+  "probe_revision_types": {},
+  "paragraph_count": 969,
+  "paragraph_format_sha256": "8888b8b003e63631c54669daac6663d0fbb0eabc9aacd2e2d5aa0f50b92bfaf7",
+  "style_semantic_sha256": "6e617c53b4f96ea50ba373cc63132500e5b5fc85bb659004b95383e3dbe279e4",
+  "historical_revision_text_signatures": {},
+  "historical_revision_inventory": {
+    "del|김은수|2026-10-12T23:57": 1
+  },
+  "rows": [
+    {
+      "id": "소프트웨어요구사항ID",
+      "cells": [
+        "소프트웨어\n요구사항 ID",
+        "모듈 ID / 이름",
+        "상세 설계 유닛 ID / 이름"
+      ]
+    },
+    {
+      "id": "SW-FW-RID-1",
+      "cells": [
+        "SW-FW-RID-1",
+        "SI-ID-CM3-002\n신호처리 모듈SI-ID-CFX-002\n신호처리 모듈SI-ID-CFX-003\n내부 자극 장치 실행 모듈",
+        "SU-ID-CM3-027\n자극 프레임 수 계산SU-ID-CM3-029\n자극 파라미터 계산 결과 공유SU-ID-CFX-033\nCIS 전략과 전략 선택SU-ID-CFX-039\n실시간 자극 데이터 생성"
+      ]
+    },
+    {
+      "id": "SW-FW-RID-2",
+      "cells": [
+        "SW-FW-RID-2",
+        "SI-ID-CM3-002\n신호처리 모듈SI-ID-CFX-002\n신호처리 모듈SI-ID-CFX-003\n내부 자극 장치 실행 모듈",
+        "SU-ID-CM3-027\n자극 프레임 수 계산SU-ID-CM3-029\n자극 파라미터 계산 결과 공유SU-ID-CFX-033\nCIS 전략과 전략 선택SU-ID-CFX-039\n실시간 자극 데이터 생성"
+      ]
+    },
+    {
+      "id": "SW-FW-RID-3",
+      "cells": [
+        "SW-FW-RID-3",
+        "SI-ID-CM3-003\n내부 자극 장치 실행 모듈SI-ID-CFX-003\n내부 자극 장치 실행 모듈",
+        "SU-ID-CM3-041\n내부기 자극 설정 적용SU-ID-CFX-036\n자극 패킷 헤더 구성SU-ID-CFX-040\n지정 명령 PCM 출력"
+      ]
+    },
+    {
+      "id": "SW-FW-RID-4",
+      "cells": [
+        "SW-FW-RID-4",
+        "SI-ID-CM3-003\n내부 자극 장치 실행 모듈SI-ID-CFX-003\n내부 자극 장치 실행 모듈",
+        "SU-ID-CM3-041\n내부기 자극 설정 적용SU-ID-CFX-036\n자극 패킷 헤더 구성"
+      ]
+    },
+    {
+      "id": "SW-FW-RID-5",
+      "cells": [
+        "SW-FW-RID-5",
+        "SI-ID-CM3-002\n신호처리 모듈SI-ID-CFX-002\n신호처리 모듈",
+        "SU-ID-CM3-028\n내부기 DAC 범위와 T/C 변환SU-ID-CM3-029\n자극 파라미터 계산 결과 공유SU-ID-CFX-029\nCM3 계산 T/C 값 수신SU-ID-CFX-030\n자극 볼륨에 따른 C 값 계산SU-ID-CFX-032\n비선형 매핑과 T 이하 묵음"
+      ]
+    },
+    {
+      "id": "SW-FW-RID-6",
+      "cells": [
+        "SW-FW-RID-6",
+        "SI-ID-CM3-002\n신호처리 모듈SI-ID-CM3-003\n내부 자극 장치 실행 모듈",
+        "SU-ID-CM3-027\n자극 프레임 수 계산SU-ID-CM3-037\n펄스폭과 역방향 통신 설정SU-ID-CM3-041\n내부기 자극 설정 적용"
+      ]
+    },
+    {
+      "id": "SW-FW-RID-7",
+      "cells": [
+        "SW-FW-RID-7",
+        "SI-ID-CM3-002\n신호처리 모듈SI-ID-CFX-002\n신호처리 모듈",
+        "SU-ID-CM3-028\n내부기 DAC 범위와 T/C 변환SU-ID-CM3-029\n자극 파라미터 계산 결과 공유SU-ID-CFX-032\n비선형 매핑과 T 이하 묵음"
+      ]
+    },
+    {
+      "id": "SW-FW-RID-8",
+      "cells": [
+        "SW-FW-RID-8",
+        "SI-ID-CM3-001\n시스템 제어 모듈SI-ID-CFX-001\n시스템 제어 모듈SI-ID-CFX-002\n신호처리 모듈SI-ID-HEAR-001\n신호처리 모듈",
+        "SU-ID-CM3-023\n오디오 및 자극 볼륨 설정SU-ID-CFX-011\n맵 및 볼륨 변경 처리SU-ID-CFX-022\nAGC 입력 크기 읽기와 공유SU-ID-CFX-023\nAGC 목표 이득 계산SU-ID-CFX-024\nAGC 이득의 시간 변화SU-ID-CFX-025\nAGC 표본 이득 적용SU-ID-HEAR-001\n오디오 절대값 최대값 연산"
+      ]
+    },
+    {
+      "id": "SW-FW-RID-9",
+      "cells": [
+        "SW-FW-RID-9",
+        "SI-ID-CFX-001\n시스템 제어 모듈SI-ID-CFX-002\n신호처리 모듈SI-ID-HEAR-001\n신호처리 모듈",
+        "SU-ID-CFX-002\nHEAR 실행 준비SU-ID-CFX-026\n주파수 분석 입력 갱신SU-ID-CFX-028\n대역별 대표값 및 크기 보상SU-ID-HEAR-002\n창 적용 FFT와 크기 연산"
+      ]
+    },
+    {
+      "id": "SW-FW-RID-10",
+      "cells": [
+        "SW-FW-RID-10",
+        "SI-ID-CFX-001\n시스템 제어 모듈SI-ID-CFX-002\n신호처리 모듈SI-ID-CM3-001\n시스템 제어 모듈",
+        "SU-ID-CFX-012\n공유 맵 데이터 복사SU-ID-CFX-027\nFFT 대역 인덱스 읽기SU-ID-CFX-028\n대역별 대표값 및 크기 보상SU-ID-CM3-020\n맵 갱신 상태와 계산 자료 공유"
+      ]
+    },
+    {
+      "id": "SW-FW-RID-11",
+      "cells": [
+        "SW-FW-RID-11",
+        "SI-ID-CM3-002\n신호처리 모듈SI-ID-CFX-002\n신호처리 모듈SI-ID-CFX-003\n내부 자극 장치 실행 모듈",
+        "SU-ID-CM3-027\n자극 프레임 수 계산SU-ID-CFX-033\nCIS 전략과 전략 선택SU-ID-CFX-034\nNofM 대역 선택SU-ID-CFX-035\nNofM 선택 대역 교차 배치SU-ID-CFX-036\n자극 패킷 헤더 구성SU-ID-CFX-037\nNofM 패킷 구성과 분할 출력"
+      ]
+    },
+    {
+      "id": "SW-FW-RID-12",
+      "cells": [
+        "SW-FW-RID-12",
+        "SI-ID-CFX-001\n시스템 제어 모듈SI-ID-CFX-002\n신호처리 모듈SI-ID-CFX-003\n내부 자극 장치 실행 모듈SI-ID-HEAR-001\n신호처리 모듈",
+        "SU-ID-CFX-001\n인터럽트와 반복 실행 제어SU-ID-CFX-007\n마이크 블록 수집SU-ID-CFX-021\n신호처리 경로 선택SU-ID-CFX-026\n주파수 분석 입력 갱신SU-ID-CFX-038\nPCM 모드 분기와 프리앰블SU-ID-HEAR-001\n오디오 절대값 최대값 연산SU-ID-HEAR-002\n창 적용 FFT와 크기 연산"
+      ]
+    },
+    {
+      "id": "SW-FW-RID-13",
+      "cells": [
+        "SW-FW-RID-13",
+        "SI-ID-CM3-001\n시스템 제어 모듈SI-ID-CM3-003\n내부 자극 장치 실행 모듈SI-ID-CFX-001\n시스템 제어 모듈",
+        "SU-ID-CM3-006\n시스템 상태 및 맵 변경 공유SU-ID-CM3-022\n맵 목록과 선택 정보SU-ID-CM3-042\n내부기 및 사용자 설정 저장SU-ID-CM3-043\n맵 저장과 삭제 범위SU-ID-CFX-011\n맵 및 볼륨 변경 처리SU-ID-CFX-012\n공유 맵 데이터 복사"
+      ]
+    },
+    {
+      "id": "SW-FW-RID-14",
+      "cells": [
+        "SW-FW-RID-14",
+        "SI-ID-CM3-001\n시스템 제어 모듈SI-ID-CFX-001\n시스템 제어 모듈SI-ID-CFX-002\n신호처리 모듈",
+        "SU-ID-CM3-023\n오디오 및 자극 볼륨 설정SU-ID-CFX-011\n맵 및 볼륨 변경 처리SU-ID-CFX-030\n자극 볼륨에 따른 C 값 계산"
+      ]
+    },
+    {
+      "id": "SW-FW-RID-15",
+      "cells": [
+        "SW-FW-RID-15",
+        "SI-ID-CFX-001\n시스템 제어 모듈\nSI-ID-CFX-002\n신호처리 모듈\nSI-ID-QCC-001\n시스템 관리 모듈\nSI-ID-QCC-002\nHW 인터페이스 모듈\nSI-ID-QCC-003\n블루투스 모듈",
+        "SU-ID-CFX-003\n마이크와 오디오 경로 설정\nSU-ID-CFX-005\nI2S 인터페이스 초기화\nSU-ID-CFX-007\n마이크 블록 수집\nSU-ID-CFX-008\nI2S 입력 상태 판정\nSU-ID-CFX-015\nI2S 수신 버퍼 관리\nSU-ID-CFX-016\n단일 및 두 입력 혼합\nSU-ID-CFX-017\n두 마이크 지연 합산 빔포밍\nSU-ID-CFX-018\n입력별 게인 혼합\nSU-ID-CFX-021\n신호처리 경로 선택\nSU-ID-QCC-001\n시스템 초기화와 설정 유닛\nSU-ID-QCC-003\n장치 상태 유닛\nSU-ID-QCC-005\nPIO 포트 제어 유닛\nSU-ID-QCC-008\nBluetooth Classic 유닛\n[QCC 자료 입력] 24bit/16kHz I2S 클럭/프레임/유효 신호의 실제 설정과 파형 자료가 필요하다."
+      ]
+    },
+    {
+      "id": "SW-FW-RID-16",
+      "cells": [
+        "SW-FW-RID-16",
+        "SI-ID-CFX-001\n시스템 제어 모듈\nSI-ID-QCC-001\n시스템 관리 모듈\nSI-ID-QCC-002\nHW 인터페이스 모듈\nSI-ID-QCC-003\n블루투스 모듈",
+        "SU-ID-CFX-003\n마이크와 오디오 경로 설정\nSU-ID-CFX-005\nI2S 인터페이스 초기화\nSU-ID-CFX-007\n마이크 블록 수집\nSU-ID-CFX-015\nI2S 수신 버퍼 관리\nSU-ID-QCC-001\n시스템 초기화와 설정 유닛\nSU-ID-QCC-005\nPIO 포트 제어 유닛\nSU-ID-QCC-008\nBluetooth Classic 유닛"
+      ]
+    },
+    {
+      "id": "SW-FW-RID-17",
+      "cells": [
+        "SW-FW-RID-17",
+        "SI-ID-CFX-001\n시스템 제어 모듈SI-ID-CFX-003\n내부 자극 장치 실행 모듈",
+        "SU-ID-CFX-004\nPCM 인터페이스 초기화SU-ID-CFX-036\n자극 패킷 헤더 구성SU-ID-CFX-038\nPCM 모드 분기와 프리앰블SU-ID-CFX-039\n실시간 자극 데이터 생성"
+      ]
+    },
+    {
+      "id": "SW-FW-RID-18",
+      "cells": [
+        "SW-FW-RID-18",
+        "SI-ID-CM3-001\n시스템 제어 모듈SI-ID-CM3-002\n신호처리 모듈SI-ID-CM3-003\n내부 자극 장치 실행 모듈SI-ID-CFX-001\n시스템 제어 모듈SI-ID-CFX-002\n신호처리 모듈",
+        "SU-ID-CM3-020\n맵 갱신 상태와 계산 자료 공유SU-ID-CM3-027\n자극 프레임 수 계산SU-ID-CM3-028\n내부기 DAC 범위와 T/C 변환SU-ID-CM3-029\n자극 파라미터 계산 결과 공유SU-ID-CM3-041\n내부기 자극 설정 적용SU-ID-CFX-011\n맵 및 볼륨 변경 처리SU-ID-CFX-029\nCM3 계산 T/C 값 수신SU-ID-CFX-031\n비선형 매핑 계수 계산SU-ID-CFX-032\n비선형 매핑과 T 이하 묵음"
+      ]
+    },
+    {
+      "id": "SW-FW-RID-19",
+      "cells": [
+        "SW-FW-RID-19",
+        "SI-ID-CM3-001\n시스템 제어 모듈",
+        "SU-ID-CM3-007\n전원 및 자동 절전 조건SU-ID-CM3-009\n터치 상태와 길게 누름 판정SU-ID-CM3-010\n터치 센서 읽기와 재보정SU-ID-CM3-015\nCM3 저전력 진입과 복귀"
+      ]
+    },
+    {
+      "id": "SW-FW-RID-20",
+      "cells": [
+        "SW-FW-RID-20",
+        "SI-ID-CM3-001\n시스템 제어 모듈",
+        "SU-ID-CM3-005\n정상 반복 처리SU-ID-CM3-013\nLED 표시 요청과 우선순위SU-ID-CM3-014\nLED 패턴 출력"
+      ]
+    },
+    {
+      "id": "SW-FW-RID-21",
+      "cells": [
+        "SW-FW-RID-21",
+        "SI-ID-CM3-001\n시스템 제어 모듈\nSI-ID-CM3-004\n블루투스 통신 모듈\nSI-ID-QCC-001\n시스템 관리 모듈\nSI-ID-QCC-002\nHW 인터페이스 모듈",
+        "SU-ID-CM3-011\n배터리 및 크래들 정보 관리\nSU-ID-CM3-013\nLED 표시 요청과 우선순위\nSU-ID-CM3-014\nLED 패턴 출력\nSU-ID-CM3-045\nQCC 수신 분류와 시스템 정보 응답\nSU-ID-QCC-002\n시스템 상태 유닛\nSU-ID-QCC-006\nPower 제어 유닛\nSU-ID-QCC-001\n시스템 초기화와 설정 유닛"
+      ]
+    },
+    {
+      "id": "SW-FW-RID-22",
+      "cells": [
+        "SW-FW-RID-22",
+        "SI-ID-CM3-001\n시스템 제어 모듈\nSI-ID-QCC-001\n시스템 관리 모듈\nSI-ID-QCC-002\nHW 인터페이스 모듈",
+        "SU-ID-CM3-011\n배터리 및 크래들 정보 관리\nSU-ID-CM3-013\nLED 표시 요청과 우선순위\nSU-ID-CM3-014\nLED 패턴 출력\nSU-ID-QCC-002\n시스템 상태 유닛\nSU-ID-QCC-006\nPower 제어 유닛\nSU-ID-QCC-001\n시스템 초기화와 설정 유닛"
+      ]
+    },
+    {
+      "id": "SW-FW-RID-23",
+      "cells": [
+        "SW-FW-RID-23",
+        "SI-ID-CM3-001\n시스템 제어 모듈\nSI-ID-CM3-003\n내부 자극 장치 실행 모듈\nSI-ID-CFX-002\n신호처리 모듈\nSI-ID-QCC-002\nHW 인터페이스 모듈",
+        "SU-ID-CM3-011\n배터리 및 크래들 정보 관리\nSU-ID-CM3-044\n자극 알림 실행\nSU-ID-CFX-032\n비선형 매핑과 T 이하 묵음\nSU-ID-QCC-006\nPower 제어 유닛"
+      ]
+    },
+    {
+      "id": "SW-FW-RID-24",
+      "cells": [
+        "SW-FW-RID-24",
+        "SI-ID-CM3-001\n시스템 제어 모듈\nSI-ID-CM3-004\n블루투스 통신 모듈\nSI-ID-CFX-001\n시스템 제어 모듈\nSI-ID-QCC-003\n블루투스 모듈",
+        "SU-ID-CM3-006\n시스템 상태 및 맵 변경 공유\nSU-ID-CM3-022\n맵 목록과 선택 정보\nSU-ID-CM3-046\n리모콘 명령 처리\nSU-ID-CFX-011\n맵 및 볼륨 변경 처리\nSU-ID-CFX-012\n공유 맵 데이터 복사\nSU-ID-QCC-011\nBLE Data 처리 유닛"
+      ]
+    },
+    {
+      "id": "SW-FW-RID-25",
+      "cells": [
+        "SW-FW-RID-25",
+        "SI-ID-CM3-001\n시스템 제어 모듈\nSI-ID-CM3-004\n블루투스 통신 모듈\nSI-ID-CFX-001\n시스템 제어 모듈\nSI-ID-CFX-002\n신호처리 모듈\nSI-ID-QCC-003\n블루투스 모듈",
+        "SU-ID-CM3-023\n오디오 및 자극 볼륨 설정\nSU-ID-CM3-046\n리모콘 명령 처리\nSU-ID-CFX-011\n맵 및 볼륨 변경 처리\nSU-ID-CFX-023\nAGC 목표 이득 계산\nSU-ID-QCC-011\nBLE Data 처리 유닛"
+      ]
+    },
+    {
+      "id": "SW-FW-RID-26",
+      "cells": [
+        "SW-FW-RID-26",
+        "SI-ID-CM3-001\n시스템 제어 모듈\nSI-ID-CM3-004\n블루투스 통신 모듈\nSI-ID-CFX-001\n시스템 제어 모듈\nSI-ID-CFX-002\n신호처리 모듈\nSI-ID-QCC-003\n블루투스 모듈",
+        "SU-ID-CM3-023\n오디오 및 자극 볼륨 설정\nSU-ID-CM3-046\n리모콘 명령 처리\nSU-ID-CFX-011\n맵 및 볼륨 변경 처리\nSU-ID-CFX-030\n자극 볼륨에 따른 C 값 계산\nSU-ID-QCC-011\nBLE Data 처리 유닛"
+      ]
+    },
+    {
+      "id": "SW-FW-RID-27",
+      "cells": [
+        "SW-FW-RID-27",
+        "SI-ID-CM3-001\n시스템 제어 모듈\nSI-ID-CM3-004\n블루투스 통신 모듈\nSI-ID-QCC-003\n블루투스 모듈",
+        "SU-ID-CM3-013\nLED 표시 요청과 우선순위\nSU-ID-CM3-014\nLED 패턴 출력\nSU-ID-CM3-024\n사용자 알림 설정\nSU-ID-CM3-046\n리모콘 명령 처리\nSU-ID-QCC-011\nBLE Data 처리 유닛"
+      ]
+    },
+    {
+      "id": "SW-FW-RID-28",
+      "cells": [
+        "SW-FW-RID-28",
+        "SI-ID-CM3-001\n시스템 제어 모듈\nSI-ID-CM3-003\n내부 자극 장치 실행 모듈\nSI-ID-CM3-004\n블루투스 통신 모듈\nSI-ID-QCC-003\n블루투스 모듈\nSI-ID-QCC-002\nHW 인터페이스 모듈",
+        "SU-ID-CM3-024\n사용자 알림 설정\nSU-ID-CM3-044\n자극 알림 실행\nSU-ID-CM3-046\n리모콘 명령 처리\nSU-ID-QCC-011\nBLE Data 처리 유닛\nSU-ID-QCC-006\nPower 제어 유닛"
+      ]
+    },
+    {
+      "id": "SW-FW-RID-29",
+      "cells": [
+        "SW-FW-RID-29",
+        "SI-ID-CM3-001\n시스템 제어 모듈\nSI-ID-CM3-004\n블루투스 통신 모듈\nSI-ID-QCC-001\n시스템 관리 모듈\nSI-ID-QCC-002\nHW 인터페이스 모듈\nSI-ID-QCC-003\n블루투스 모듈",
+        "SU-ID-CM3-011\n배터리 및 크래들 정보 관리\nSU-ID-CM3-046\n리모콘 명령 처리\nSU-ID-QCC-002\n시스템 상태 유닛\nSU-ID-QCC-006\nPower 제어 유닛\nSU-ID-QCC-011\nBLE Data 처리 유닛\nSU-ID-QCC-001\n시스템 초기화와 설정 유닛\nSU-ID-QCC-009\nBLE 유닛"
+      ]
+    },
+    {
+      "id": "SW-FW-RID-30",
+      "cells": [
+        "SW-FW-RID-30",
+        "SI-ID-CM3-001\n시스템 제어 모듈\nSI-ID-CM3-004\n블루투스 통신 모듈\nSI-ID-QCC-003\n블루투스 모듈",
+        "SU-ID-CM3-022\n맵 목록과 선택 정보\nSU-ID-CM3-046\n리모콘 명령 처리\nSU-ID-QCC-011\nBLE Data 처리 유닛"
+      ]
+    },
+    {
+      "id": "SW-FW-RID-31",
+      "cells": [
+        "SW-FW-RID-31",
+        "SI-ID-CM3-001\n시스템 제어 모듈\nSI-ID-CM3-004\n블루투스 통신 모듈\nSI-ID-QCC-003\n블루투스 모듈",
+        "SU-ID-CM3-023\n오디오 및 자극 볼륨 설정\nSU-ID-CM3-046\n리모콘 명령 처리\nSU-ID-QCC-011\nBLE Data 처리 유닛"
+      ]
+    },
+    {
+      "id": "SW-FW-RID-32",
+      "cells": [
+        "SW-FW-RID-32",
+        "SI-ID-CM3-001\n시스템 제어 모듈\nSI-ID-CM3-004\n블루투스 통신 모듈\nSI-ID-QCC-003\n블루투스 모듈",
+        "SU-ID-CM3-023\n오디오 및 자극 볼륨 설정\nSU-ID-CM3-046\n리모콘 명령 처리\nSU-ID-QCC-011\nBLE Data 처리 유닛"
+      ]
+    },
+    {
+      "id": "SW-FW-RID-33",
+      "cells": [
+        "SW-FW-RID-33",
+        "SI-ID-CM3-001\n시스템 제어 모듈\nSI-ID-CM3-004\n블루투스 통신 모듈\nSI-ID-QCC-003\n블루투스 모듈",
+        "SU-ID-CM3-024\n사용자 알림 설정\nSU-ID-CM3-046\n리모콘 명령 처리\nSU-ID-QCC-011\nBLE Data 처리 유닛"
+      ]
+    },
+    {
+      "id": "SW-FW-RID-34",
+      "cells": [
+        "SW-FW-RID-34",
+        "SI-ID-CM3-001\n시스템 제어 모듈\nSI-ID-CM3-004\n블루투스 통신 모듈\nSI-ID-QCC-003\n블루투스 모듈\nSI-ID-QCC-002\nHW 인터페이스 모듈",
+        "SU-ID-CM3-024\n사용자 알림 설정\nSU-ID-CM3-046\n리모콘 명령 처리\nSU-ID-QCC-011\nBLE Data 처리 유닛\nSU-ID-QCC-006\nPower 제어 유닛"
+      ]
+    },
+    {
+      "id": "SW-FW-RID-35",
+      "cells": [
+        "SW-FW-RID-35",
+        "SI-ID-CM3-001\n시스템 제어 모듈\nSI-ID-CM3-004\n블루투스 통신 모듈\nSI-ID-QCC-003\n블루투스 모듈\nSI-ID-QCC-001\n시스템 관리 모듈",
+        "SU-ID-CM3-016\n오류 및 공유 메모리 상태 확인\nSU-ID-CM3-021\n내부기 식별 및 사용자 정보 조회\nSU-ID-CM3-049\n매핑 명령 실행\nSU-ID-QCC-011\nBLE Data 처리 유닛\nSU-ID-QCC-002\n시스템 상태 유닛\nSU-ID-QCC-009\nBLE 유닛"
+      ]
+    },
+    {
+      "id": "SW-FW-RID-36",
+      "cells": [
+        "SW-FW-RID-36",
+        "SI-ID-CM3-001\n시스템 제어 모듈\nSI-ID-CM3-003\n내부 자극 장치 실행 모듈\nSI-ID-CM3-004\n블루투스 통신 모듈\nSI-ID-CFX-003\n내부 자극 장치 실행 모듈\nSI-ID-QCC-003\n블루투스 모듈",
+        "SU-ID-CM3-017\nPCM 명령 및 모드 공유\nSU-ID-CM3-030\n내부기 실행 상태 관리\nSU-ID-CM3-049\n매핑 명령 실행\nSU-ID-CFX-040\n지정 명령 PCM 출력\nSU-ID-QCC-011\nBLE Data 처리 유닛"
+      ]
+    },
+    {
+      "id": "SW-FW-RID-37",
+      "cells": [
+        "SW-FW-RID-37",
+        "SI-ID-CM3-003\n내부 자극 장치 실행 모듈\nSI-ID-CM3-004\n블루투스 통신 모듈\nSI-ID-CFX-003\n내부 자극 장치 실행 모듈\nSI-ID-QCC-003\n블루투스 모듈",
+        "SU-ID-CM3-030\n내부기 실행 상태 관리\nSU-ID-CM3-032\n실시간 자극 중 연결 확인\nSU-ID-CM3-049\n매핑 명령 실행\nSU-ID-CFX-038\nPCM 모드 분기와 프리앰블\nSU-ID-CFX-039\n실시간 자극 데이터 생성\nSU-ID-QCC-011\nBLE Data 처리 유닛"
+      ]
+    },
+    {
+      "id": "SW-FW-RID-38",
+      "cells": [
+        "SW-FW-RID-38",
+        "SI-ID-CM3-001\n시스템 제어 모듈\nSI-ID-CM3-004\n블루투스 통신 모듈\nSI-ID-QCC-003\n블루투스 모듈\nSI-ID-QCC-001\n시스템 관리 모듈",
+        "SU-ID-CM3-016\n오류 및 공유 메모리 상태 확인\nSU-ID-CM3-021\n내부기 식별 및 사용자 정보 조회\nSU-ID-CM3-049\n매핑 명령 실행\nSU-ID-QCC-011\nBLE Data 처리 유닛\nSU-ID-QCC-002\n시스템 상태 유닛\nSU-ID-QCC-009\nBLE 유닛"
+      ]
+    },
+    {
+      "id": "SW-FW-RID-39",
+      "cells": [
+        "SW-FW-RID-39",
+        "SI-ID-CM3-001\n시스템 제어 모듈\nSI-ID-CM3-004\n블루투스 통신 모듈\nSI-ID-QCC-003\n블루투스 모듈",
+        "SU-ID-CM3-017\nPCM 명령 및 모드 공유\nSU-ID-CM3-026\nSPI 응답 버퍼 관리\nSU-ID-CM3-049\n매핑 명령 실행\nSU-ID-QCC-011\nBLE Data 처리 유닛"
+      ]
+    },
+    {
+      "id": "SW-FW-RID-40",
+      "cells": [
+        "SW-FW-RID-40",
+        "SI-ID-CM3-001\n시스템 제어 모듈\nSI-ID-CM3-004\n블루투스 통신 모듈\nSI-ID-QCC-003\n블루투스 모듈",
+        "SU-ID-CM3-017\nPCM 명령 및 모드 공유\nSU-ID-CM3-019\n오디오 및 자극 크기 조회\nSU-ID-CM3-026\nSPI 응답 버퍼 관리\nSU-ID-CM3-049\n매핑 명령 실행\nSU-ID-QCC-011\nBLE Data 처리 유닛"
+      ]
+    },
+    {
+      "id": "SW-FW-RID-41",
+      "cells": [
+        "SW-FW-RID-41",
+        "SI-ID-CM3-001\n시스템 제어 모듈SI-ID-CM3-003\n내부 자극 장치 실행 모듈",
+        "SU-ID-CM3-025\nI2C 전송과 인터럽트 진행SU-ID-CM3-034\nFPGA 제어 레지스터와 리셋SU-ID-CM3-036\nFPGA 상태와 FIFO 접근"
+      ]
+    },
+    {
+      "id": "SW-FW-RID-42",
+      "cells": [
+        "SW-FW-RID-42",
+        "SI-ID-CM3-001\n시스템 제어 모듈",
+        "SU-ID-CM3-002\n터치 센서 초기화SU-ID-CM3-010\n터치 센서 읽기와 재보정SU-ID-CM3-025\nI2C 전송과 인터럽트 진행"
+      ]
+    },
+    {
+      "id": "SW-FW-RID-43",
+      "cells": [
+        "SW-FW-RID-43",
+        "SI-ID-CM3-001\n시스템 제어 모듈SI-ID-CM3-003\n내부 자극 장치 실행 모듈",
+        "SU-ID-CM3-025\nI2C 전송과 인터럽트 진행SU-ID-CM3-035\n송신 전력 단계 설정SU-ID-CM3-038\n주 송신 PMIC 접근SU-ID-CM3-039\n자극 전원 활성과 차단SU-ID-CM3-040\n보조 PMIC 접근"
+      ]
+    },
+    {
+      "id": "SW-FW-RID-44",
+      "cells": [
+        "SW-FW-RID-44",
+        "SI-ID-CM3-001\n시스템 제어 모듈\nSI-ID-CM3-004\n블루투스 통신 모듈\nSI-ID-QCC-001\n시스템 관리 모듈\nSI-ID-QCC-002\nHW 인터페이스 모듈\nSI-ID-QCC-003\n블루투스 모듈",
+        "SU-ID-CM3-001\nCM3 주변장치 초기화\nSU-ID-CM3-026\nSPI 응답 버퍼 관리\nSU-ID-CM3-045\nQCC 수신 분류와 시스템 정보 응답\nSU-ID-CM3-046\n리모콘 명령 처리\nSU-ID-QCC-001\n시스템 초기화와 설정 유닛\nSU-ID-QCC-002\n시스템 상태 유닛\nSU-ID-QCC-004\n블루투스 상태 유닛\nSU-ID-QCC-005\nPIO 포트 제어 유닛\nSU-ID-QCC-009\nBLE 유닛\nSU-ID-QCC-011\nBLE Data 처리 유닛\n[QCC 자료 입력] 리모콘 AUTH 접근 권한과 GAIA 주소/명령별 데이터/응답의 실제 계약 및 실행 자료가 필요하다."
+      ]
+    },
+    {
+      "id": "SW-FW-RID-45",
+      "cells": [
+        "SW-FW-RID-45",
+        "SI-ID-CM3-001\n시스템 제어 모듈\nSI-ID-CM3-004\n블루투스 통신 모듈\nSI-ID-QCC-001\n시스템 관리 모듈\nSI-ID-QCC-002\nHW 인터페이스 모듈\nSI-ID-QCC-003\n블루투스 모듈",
+        "SU-ID-CM3-001\nCM3 주변장치 초기화\nSU-ID-CM3-026\nSPI 응답 버퍼 관리\nSU-ID-CM3-045\nQCC 수신 분류와 시스템 정보 응답\nSU-ID-CM3-048\n매핑 연결 및 종료 상태\nSU-ID-CM3-049\n매핑 명령 실행\nSU-ID-QCC-001\n시스템 초기화와 설정 유닛\nSU-ID-QCC-002\n시스템 상태 유닛\nSU-ID-QCC-004\n블루투스 상태 유닛\nSU-ID-QCC-005\nPIO 포트 제어 유닛\nSU-ID-QCC-009\nBLE 유닛\nSU-ID-QCC-011\nBLE Data 처리 유닛\n[QCC 자료 입력] 매핑 권한/키 역할, AUTH UUID 및 GAIA 주소/명령별 데이터/응답의 실제 계약과 실행 자료가 필요하다."
+      ]
+    },
+    {
+      "id": "SW-FW-RID-46",
+      "cells": [
+        "SW-FW-RID-46",
+        "SI-ID-CM3-001\n시스템 제어 모듈\nSI-ID-CM3-003\n내부 자극 장치 실행 모듈\nSI-ID-CFX-003\n내부 자극 장치 실행 모듈\nSI-ID-QCC-001\n시스템 관리 모듈\nSI-ID-QCC-002\nHW 인터페이스 모듈",
+        "SU-ID-CM3-021\n내부기 식별 및 사용자 정보 조회\nSU-ID-CM3-031\n내부기 및 송신 전원 초기화\nSU-ID-CM3-032\n실시간 자극 중 연결 확인\nSU-ID-CM3-033\n매핑 중 연결 확인\nSU-ID-CFX-042\n내부기 연결 검사와 역방향 통신\nSU-ID-QCC-002\n시스템 상태 유닛\nSU-ID-QCC-004\n블루투스 상태 유닛\nSU-ID-QCC-005\nPIO 포트 제어 유닛"
+      ]
+    },
+    {
+      "id": "SW-FW-RID-47",
+      "cells": [
+        "SW-FW-RID-47",
+        "SI-ID-QCC-003\n블루투스 모듈\nSI-ID-QCC-004\n보안 모듈",
+        "SU-ID-QCC-009\nBLE 유닛\nSU-ID-QCC-012\n보안 처리 유닛\n[QCC/E8300 자료 입력] 기존 무제어명령 조건과 BLE 무송수신180초 조건의 범위/타이머 리셋 및 허용오차/경계 처리를 함께 확인해야 한다."
+      ]
+    },
+    {
+      "id": "SW-FW-RID-48",
+      "cells": [
+        "SW-FW-RID-48",
+        "SI-ID-QCC-001\n시스템 관리 모듈\nSI-ID-QCC-003\n블루투스 모듈\nSI-ID-QCC-004\n보안 모듈",
+        "SU-ID-QCC-001\n시스템 초기화와 설정 유닛\nSU-ID-QCC-009\nBLE 유닛\nSU-ID-QCC-010\nAUTH service 처리 유닛\nSU-ID-QCC-012\n보안 처리 유닛\nSU-ID-QCC-004\n블루투스 상태 유닛\n[QCC 자료 입력] BLE pairing 이후 AUTH 접근과 인증 전 데이터 차단의 실제 UUID/권한 설정 및 조건별 실행 자료가 필요하다."
+      ]
+    },
+    {
+      "id": "SW-FW-RID-49",
+      "cells": [
+        "SW-FW-RID-49",
+        "SI-ID-QCC-001\n시스템 관리 모듈\nSI-ID-QCC-003\n블루투스 모듈\nSI-ID-QCC-004\n보안 모듈",
+        "SU-ID-QCC-001\n시스템 초기화와 설정 유닛\nSU-ID-QCC-009\nBLE 유닛\nSU-ID-QCC-012\n보안 처리 유닛\nSU-ID-QCC-004\n블루투스 상태 유닛\n[QCC 자료 입력] BLE 버전/암호화 활성 설정과 라이브러리/프로파일, AES-CCM 보호 범위 및 실제 링크 검증 자료가 필요하다. CRA 인증 설계를 전송 암호화의 근거로 사용하지 않는다."
+      ]
+    },
+    {
+      "id": "SW-FW-RID-50",
+      "cells": [
+        "SW-FW-RID-50",
+        "SI-ID-CM3-001\n시스템 제어 모듈SI-ID-CM3-004\n블루투스 통신 모듈",
+        "SU-ID-CM3-001\nCM3 주변장치 초기화SU-ID-CM3-046\n리모콘 명령 처리"
+      ]
+    },
+    {
+      "id": "SW-FW-RID-51",
+      "cells": [
+        "SW-FW-RID-51",
+        "SI-ID-CM3-003\n내부 자극 장치 실행 모듈",
+        "SU-ID-CM3-042\n내부기 및 사용자 설정 저장SU-ID-CM3-043\n맵 저장과 삭제 범위"
+      ]
+    },
+    {
+      "id": "SW-FW-RID-52",
+      "cells": [
+        "SW-FW-RID-52",
+        "SI-ID-QCC-001\n시스템 관리 모듈\nSI-ID-QCC-002\nHW 인터페이스 모듈\nSI-ID-QCC-003\n블루투스 모듈\nSI-ID-QCC-004\n보안 모듈",
+        "SU-ID-QCC-001\n시스템 초기화와 설정 유닛\nSU-ID-QCC-007\nNVM 처리 유닛\nSU-ID-QCC-010\nAUTH service 처리 유닛\nSU-ID-QCC-012\n보안 처리 유닛\nSU-ID-QCC-013\n보안 툴박스 유닛\nSU-ID-QCC-014\n보안 NVM 유닛\n[QCC 자료 입력] SHA-256의 매핑 키 생성과 AES-CMAC의 인증값 계산 역할, HMAC/ENC 표기 및 입력 직렬화/태그 길이의 정합성을 확정해야 한다."
+      ]
+    },
+    {
+      "id": "SW-FW-RID-53",
+      "cells": [
+        "SW-FW-RID-53",
+        "배포 및 변경관리 절차",
+        "절차로 관리 / 개별 유닛 해당 없음"
+      ]
+    },
+    {
+      "id": "SW-FW-RID-54",
+      "cells": [
+        "SW-FW-RID-54",
+        "SI-ID-BOOT-001\n부트 제어 및 이미지 적재 모듈",
+        "SU-ID-BOOT-010\n응용 파일 열기와 헤더 검사SU-ID-BOOT-011\n이미지 구획 처리SU-ID-BOOT-012\n매니페스트 처리SU-ID-BOOT-013\n이미지 CRC 검사"
+      ]
+    },
+    {
+      "id": "SW-FW-RID-55",
+      "cells": [
+        "SW-FW-RID-55",
+        "SI-ID-CM3-001\n시스템 제어 모듈\nSI-ID-CM3-003\n내부 자극 장치 실행 모듈\nSI-ID-CFX-002\n신호처리 모듈\nSI-ID-QCC-002\nHW 인터페이스 모듈",
+        "SU-ID-CM3-007\n전원 및 자동 절전 조건\nSU-ID-CM3-011\n배터리 및 크래들 정보 관리\nSU-ID-CM3-013\nLED 표시 요청과 우선순위\nSU-ID-CM3-014\nLED 패턴 출력\nSU-ID-CM3-044\n자극 알림 실행\nSU-ID-CFX-032\n비선형 매핑과 T 이하 묵음\nSU-ID-QCC-006\nPower 제어 유닛"
+      ]
+    },
+    {
+      "id": "SW-FW-RID-56",
+      "cells": [
+        "SW-FW-RID-56",
+        "SI-ID-CM3-001\n시스템 제어 모듈SI-ID-CFX-001\n시스템 제어 모듈SI-ID-CFX-002\n신호처리 모듈",
+        "SU-ID-CM3-023\n오디오 및 자극 볼륨 설정SU-ID-CFX-011\n맵 및 볼륨 변경 처리SU-ID-CFX-030\n자극 볼륨에 따른 C 값 계산"
+      ]
+    },
+    {
+      "id": "SW-FW-RID-57",
+      "cells": [
+        "SW-FW-RID-57",
+        "필수성능시험 절차",
+        "시험 절차로 관리 / 개별 유닛 해당 없음"
+      ]
+    },
+    {
+      "id": "SW-FW-RID-58",
+      "cells": [
+        "SW-FW-RID-58",
+        "SI-ID-CFX-001\n시스템 제어 모듈SI-ID-CFX-002\n신호처리 모듈SI-ID-CFX-003\n내부 자극 장치 실행 모듈SI-ID-HEAR-001\n신호처리 모듈",
+        "SU-ID-CFX-001\n인터럽트와 반복 실행 제어SU-ID-CFX-007\n마이크 블록 수집SU-ID-CFX-021\n신호처리 경로 선택SU-ID-CFX-026\n주파수 분석 입력 갱신SU-ID-CFX-038\nPCM 모드 분기와 프리앰블SU-ID-HEAR-001\n오디오 절대값 최대값 연산SU-ID-HEAR-002\n창 적용 FFT와 크기 연산"
+      ]
+    },
+    {
+      "id": "SW-FW-RID-59",
+      "cells": [
+        "SW-FW-RID-59",
+        "SI-ID-CM3-004\n블루투스 통신 모듈\nSI-ID-QCC-003\n블루투스 모듈",
+        "SU-ID-CM3-045\nQCC 수신 분류와 시스템 정보 응답\nSU-ID-CM3-046\n리모콘 명령 처리\nSU-ID-CM3-047\n입력 게인 명령 처리\nSU-ID-CM3-049\n매핑 명령 실행\nSU-ID-CM3-051\nOTA 데이터와 기동 위치 명령\nSU-ID-QCC-011\nBLE Data 처리 유닛"
+      ]
+    },
+    {
+      "id": "SW-FW-RID-60",
+      "cells": [
+        "SW-FW-RID-60",
+        "SI-ID-CM3-001\n시스템 제어 모듈\nSI-ID-CM3-004\n블루투스 통신 모듈\nSI-ID-QCC-003\n블루투스 모듈",
+        "SU-ID-CM3-026\nSPI 응답 버퍼 관리\nSU-ID-CM3-045\nQCC 수신 분류와 시스템 정보 응답\nSU-ID-QCC-011\nBLE Data 처리 유닛\n[QCC 자료 입력] BLE/GAIA CRC의 실제 알고리즘/적용 바이트/저장 순서와 오류 응답/검증 자료가 필요하다."
+      ]
+    },
+    {
+      "id": "SW-FW-RID-61",
+      "cells": [
+        "SW-FW-RID-61",
+        "SI-ID-CM3-001\n시스템 제어 모듈SI-ID-CM3-003\n내부 자극 장치 실행 모듈",
+        "SU-ID-CM3-004\n코어 간 기동 준비와 실행 허가SU-ID-CM3-013\nLED 표시 요청과 우선순위SU-ID-CM3-014\nLED 패턴 출력SU-ID-CM3-030\n내부기 실행 상태 관리"
+      ]
+    },
+    {
+      "id": "SW-FW-RID-62",
+      "cells": [
+        "SW-FW-RID-62",
+        "SI-ID-CM3-001\n시스템 제어 모듈\nSI-ID-CM3-004\n블루투스 통신 모듈\nSI-ID-QCC-002\nHW 인터페이스 모듈",
+        "SU-ID-CM3-011\n배터리 및 크래들 정보 관리\nSU-ID-CM3-013\nLED 표시 요청과 우선순위\nSU-ID-CM3-014\nLED 패턴 출력\nSU-ID-CM3-045\nQCC 수신 분류와 시스템 정보 응답\nSU-ID-QCC-006\nPower 제어 유닛"
+      ]
+    },
+    {
+      "id": "SW-FW-RID-63",
+      "cells": [
+        "SW-FW-RID-63",
+        "SI-ID-CM3-001\n시스템 제어 모듈\nSI-ID-CM3-004\n블루투스 통신 모듈\nSI-ID-QCC-001\n시스템 관리 모듈\nSI-ID-QCC-002\nHW 인터페이스 모듈\nSI-ID-QCC-003\n블루투스 모듈",
+        "SU-ID-CM3-011\n배터리 및 크래들 정보 관리\nSU-ID-CM3-013\nLED 표시 요청과 우선순위\nSU-ID-CM3-014\nLED 패턴 출력\nSU-ID-CM3-046\n리모콘 명령 처리\nSU-ID-QCC-002\n시스템 상태 유닛\nSU-ID-QCC-006\nPower 제어 유닛\nSU-ID-QCC-001\n시스템 초기화와 설정 유닛\nSU-ID-QCC-009\nBLE 유닛"
+      ]
+    },
+    {
+      "id": "SW-FW-RID-64",
+      "cells": [
+        "SW-FW-RID-64",
+        "SI-ID-CM3-001\n시스템 제어 모듈",
+        "SU-ID-CM3-013\nLED 표시 요청과 우선순위SU-ID-CM3-014\nLED 패턴 출력"
+      ]
+    },
+    {
+      "id": "SW-FW-RID-65",
+      "cells": [
+        "SW-FW-RID-65",
+        "SI-ID-CM3-001\n시스템 제어 모듈",
+        "SU-ID-CM3-013\nLED 표시 요청과 우선순위SU-ID-CM3-014\nLED 패턴 출력"
+      ]
+    },
+    {
+      "id": "SW-FW-RID-66",
+      "cells": [
+        "SW-FW-RID-66",
+        "SI-ID-CM3-001\n시스템 제어 모듈\nSI-ID-CM3-003\n내부 자극 장치 실행 모듈\nSI-ID-CM3-004\n블루투스 통신 모듈\nSI-ID-QCC-001\n시스템 관리 모듈\nSI-ID-QCC-002\nHW 인터페이스 모듈\nSI-ID-QCC-003\n블루투스 모듈",
+        "SU-ID-CM3-005\n정상 반복 처리\nSU-ID-CM3-030\n내부기 실행 상태 관리\nSU-ID-CM3-045\nQCC 수신 분류와 시스템 정보 응답\nSU-ID-CM3-048\n매핑 연결 및 종료 상태\nSU-ID-QCC-002\n시스템 상태 유닛\nSU-ID-QCC-004\n블루투스 상태 유닛\nSU-ID-QCC-006\nPower 제어 유닛\nSU-ID-QCC-011\nBLE Data 처리 유닛"
+      ]
+    },
+    {
+      "id": "SW-FW-RID-67",
+      "cells": [
+        "SW-FW-RID-67",
+        "SI-ID-CM3-001\n시스템 제어 모듈\nSI-ID-CM3-003\n내부 자극 장치 실행 모듈\nSI-ID-CFX-003\n내부 자극 장치 실행 모듈\nSI-ID-QCC-001\n시스템 관리 모듈\nSI-ID-QCC-002\nHW 인터페이스 모듈",
+        "SU-ID-CM3-004\n코어 간 기동 준비와 실행 허가\nSU-ID-CM3-017\nPCM 명령 및 모드 공유\nSU-ID-CM3-030\n내부기 실행 상태 관리\nSU-ID-CM3-031\n내부기 및 송신 전원 초기화\nSU-ID-CM3-039\n자극 전원 활성과 차단\nSU-ID-CFX-038\nPCM 모드 분기와 프리앰블\nSU-ID-CFX-041\nPCM 대기와 초기화\nSU-ID-QCC-002\n시스템 상태 유닛\nSU-ID-QCC-004\n블루투스 상태 유닛\nSU-ID-QCC-005\nPIO 포트 제어 유닛"
+      ]
+    },
+    {
+      "id": "SW-FW-RID-68",
+      "cells": [
+        "SW-FW-RID-68",
+        "SI-ID-CM3-001\n시스템 제어 모듈\nSI-ID-CM3-003\n내부 자극 장치 실행 모듈\nSI-ID-CFX-001\n시스템 제어 모듈\nSI-ID-CFX-003\n내부 자극 장치 실행 모듈\nSI-ID-QCC-001\n시스템 관리 모듈\nSI-ID-QCC-002\nHW 인터페이스 모듈",
+        "SU-ID-CM3-007\n전원 및 자동 절전 조건\nSU-ID-CM3-012\nCFX 전원 제어 요청\nSU-ID-CM3-015\nCM3 저전력 진입과 복귀\nSU-ID-CM3-039\n자극 전원 활성과 차단\nSU-ID-CFX-009\nCFX 저전력 전환\nSU-ID-CFX-041\nPCM 대기와 초기화\nSU-ID-QCC-002\n시스템 상태 유닛\nSU-ID-QCC-004\n블루투스 상태 유닛\nSU-ID-QCC-005\nPIO 포트 제어 유닛\nSU-ID-QCC-006\nPower 제어 유닛"
+      ]
+    },
+    {
+      "id": "SW-FW-RID-69",
+      "cells": [
+        "SW-FW-RID-69",
+        "SI-ID-CFX-001\n시스템 제어 모듈\nSI-ID-CFX-002\n신호처리 모듈\nSI-ID-CM3-004\n블루투스 통신 모듈\nSI-ID-QCC-001\n시스템 관리 모듈\nSI-ID-QCC-002\nHW 인터페이스 모듈\nSI-ID-QCC-003\n블루투스 모듈",
+        "SU-ID-CFX-005\nI2S 인터페이스 초기화\nSU-ID-CFX-008\nI2S 입력 상태 판정\nSU-ID-CFX-015\nI2S 수신 버퍼 관리\nSU-ID-CFX-018\n입력별 게인 혼합\nSU-ID-CFX-019\nI2S 시작과 중단의 완만한 전환\nSU-ID-CFX-021\n신호처리 경로 선택\nSU-ID-CM3-045\nQCC 수신 분류와 시스템 정보 응답\nSU-ID-QCC-003\n장치 상태 유닛\nSU-ID-QCC-004\n블루투스 상태 유닛\nSU-ID-QCC-005\nPIO 포트 제어 유닛\nSU-ID-QCC-008\nBluetooth Classic 유닛\nSU-ID-QCC-002\n시스템 상태 유닛\n[QCC 자료 입력] DMIC2의 QCC 입력 연결은 확인되었다. QCC 마이크 핀/클록, 프로파일/코덱별 송수신과 동시 동작, I2S 클록/프레임/좌우 배정 및 시작/중단 유효 신호의 실제 설정/파형과 오디오 시험 결과를 확인해야 한다."
+      ]
+    },
+    {
+      "id": "SW-FW-RID-70",
+      "cells": [
+        "SW-FW-RID-70",
+        "SI-ID-CM3-001\n시스템 제어 모듈\nSI-ID-CM3-004\n블루투스 통신 모듈\nSI-ID-QCC-001\n시스템 관리 모듈\nSI-ID-QCC-003\n블루투스 모듈",
+        "SU-ID-CM3-026\nSPI 응답 버퍼 관리\nSU-ID-CM3-045\nQCC 수신 분류와 시스템 정보 응답\nSU-ID-CM3-046\n리모콘 명령 처리\nSU-ID-CM3-049\n매핑 명령 실행\nSU-ID-QCC-002\n시스템 상태 유닛\nSU-ID-QCC-003\n장치 상태 유닛\nSU-ID-QCC-004\n블루투스 상태 유닛\nSU-ID-QCC-009\nBLE 유닛\nSU-ID-QCC-011\nBLE Data 처리 유닛\n[QCC 자료 입력] 실제 BLE 광고/연결 구성과 주소/회사ID/바이트 길이, 편이/양이 데이터 배정 및 실행 자료가 필요하다."
+      ]
+    },
+    {
+      "id": "SW-FW-RID-71",
+      "cells": [
+        "SW-FW-RID-71",
+        "SI-ID-QCC-003\n블루투스 모듈\nSI-ID-QCC-004\n보안 모듈",
+        "SU-ID-QCC-010\nAUTH service 처리 유닛\nSU-ID-QCC-012\n보안 처리 유닛\n[QCC 자료 입력] 인증4상태의 실제 응답, 미완료30초 타이머 시작/리셋/허용오차 및 정보 미노출 결과가 필요하다."
+      ]
+    },
+    {
+      "id": "SW-FW-RID-72",
+      "cells": [
+        "SW-FW-RID-72",
+        "SI-ID-QCC-004\n보안 모듈",
+        "SU-ID-QCC-012\n보안 처리 유닛\n[QCC 자료 입력] 연속5회 실패 누적/초기화/전원 재기동, 60초 제한의 시작/해제/재접속과 시간 경계 결과가 필요하다."
+      ]
+    },
+    {
+      "id": "SW-FW-RID-73",
+      "cells": [
+        "SW-FW-RID-73",
+        "SI-ID-CM3-001\n시스템 제어 모듈",
+        "SU-ID-CM3-016\n오류 및 공유 메모리 상태 확인"
+      ]
+    },
+    {
+      "id": "SW-FW-RID-74",
+      "cells": [
+        "SW-FW-RID-74",
+        "SI-ID-CM3-001\n시스템 제어 모듈SI-ID-CM3-004\n블루투스 통신 모듈",
+        "SU-ID-CM3-001\nCM3 주변장치 초기화SU-ID-CM3-046\n리모콘 명령 처리"
+      ]
+    },
+    {
+      "id": "SW-FW-RID-75",
+      "cells": [
+        "SW-FW-RID-75",
+        "SI-ID-CM3-001\n시스템 제어 모듈SI-ID-CM3-004\n블루투스 통신 모듈",
+        "SU-ID-CM3-016\n오류 및 공유 메모리 상태 확인SU-ID-CM3-026\nSPI 응답 버퍼 관리SU-ID-CM3-045\nQCC 수신 분류와 시스템 정보 응답"
+      ]
+    },
+    {
+      "id": "SW-FW-RID-76",
+      "cells": [
+        "SW-FW-RID-76",
+        "SI-ID-QCC-001\n시스템 관리 모듈\nSI-ID-QCC-002\nHW 인터페이스 모듈\nSI-ID-QCC-003\n블루투스 모듈\nSI-ID-QCC-004\n보안 모듈",
+        "SU-ID-QCC-001\n시스템 초기화와 설정 유닛\nSU-ID-QCC-007\nNVM 처리 유닛\nSU-ID-QCC-009\nBLE 유닛\nSU-ID-QCC-010\nAUTH service 처리 유닛\nSU-ID-QCC-011\nBLE Data 처리 유닛\nSU-ID-QCC-012\n보안 처리 유닛\nSU-ID-QCC-013\n보안 툴박스 유닛\nSU-ID-QCC-014\n보안 NVM 유닛\n[QCC 자료 입력] 설치 shared_service_key/clinician_master_key와 생성 clinic_service_key, NVM ID/길이/암호화/접근 제한과 난수 bootstrap 및 실제 보호 결과가 필요하다."
+      ]
+    },
+    {
+      "id": "SW-FW-RID-77",
+      "cells": [
+        "SW-FW-RID-77",
+        "SI-ID-CM3-003\n내부 자극 장치 실행 모듈",
+        "SU-ID-CM3-042\n내부기 및 사용자 설정 저장"
+      ]
+    },
+    {
+      "id": "SW-FW-RID-78",
+      "cells": [
+        "SW-FW-RID-78",
+        "SI-ID-CM3-003\n내부 자극 장치 실행 모듈\nSI-ID-BOOT-001\n부트 제어 및 이미지 적재 모듈\nSI-ID-QCC-004\n보안 모듈",
+        "SU-ID-CM3-042\n내부기 및 사용자 설정 저장\nSU-ID-CM3-043\n맵 저장과 삭제 범위\nSU-ID-BOOT-013\n이미지 CRC 검사\nSU-ID-BOOT-014\n이미지 AES 복호화\nSU-ID-QCC-013\n보안 툴박스 유닛\nSU-ID-QCC-014\n보안 NVM 유닛"
+      ]
+    },
+    {
+      "id": "SW-FW-RID-79",
+      "cells": [
+        "SW-FW-RID-79",
+        "SI-ID-CM3-001\n시스템 제어 모듈SI-ID-CM3-003\n내부 자극 장치 실행 모듈",
+        "SU-ID-CM3-005\n정상 반복 처리SU-ID-CM3-030\n내부기 실행 상태 관리SU-ID-CM3-031\n내부기 및 송신 전원 초기화"
+      ]
+    },
+    {
+      "id": "SW-FW-RID-80",
+      "cells": [
+        "SW-FW-RID-80",
+        "SI-ID-CM3-003\n내부 자극 장치 실행 모듈",
+        "SU-ID-CM3-042\n내부기 및 사용자 설정 저장SU-ID-CM3-043\n맵 저장과 삭제 범위"
+      ]
+    },
+    {
+      "id": "SW-FW-RID-81",
+      "cells": [
+        "SW-FW-RID-81",
+        "품질관리 절차",
+        "절차로 관리 / 개별 유닛 해당 없음"
+      ]
+    },
+    {
+      "id": "SW-FW-RID-83",
+      "cells": [
+        "SW-FW-RID-83",
+        "제품 사용 설명서 / 실행 모듈 배정 대상 아님",
+        "상위 요구사항: SYS-RID-ACDOC-17 / SYS-RID-ACDOC-18 / SYS-RID-ACDOC-20.\n제품 문서 항목 / 실행 유닛 배정 대상 아님\n[E8300 보완] 제품 사용 설명서의 안전/작동법/동작방법 및 문제 해결 내용, 배포 대상과 검토 결과를 확인해야 한다."
+      ]
+    }
+  ],
+  "row_count": 83,
+  "column_count": 3,
+  "pass": true,
+  "differences": []
+}

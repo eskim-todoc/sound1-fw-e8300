@@ -1,0 +1,45 @@
+{
+  "source_sha256": "05495AED7973BAF02E03C03AACE158AE233CEC419CF2308CCF3F9950DFAF21B5",
+  "exports": [
+    {
+      "name": "base-left",
+      "pages": 9,
+      "pngs": [
+        "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\unit-rebuild-20261016\\native-base-left-p001.png",
+        "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\unit-rebuild-20261016\\native-base-left-p002.png",
+        "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\unit-rebuild-20261016\\native-base-left-p003.png",
+        "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\unit-rebuild-20261016\\native-base-left-p004.png",
+        "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\unit-rebuild-20261016\\native-base-left-p005.png",
+        "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\unit-rebuild-20261016\\native-base-left-p006.png",
+        "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\unit-rebuild-20261016\\native-base-left-p007.png",
+        "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\unit-rebuild-20261016\\native-base-left-p008.png",
+        "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\unit-rebuild-20261016\\native-base-left-p009.png"
+      ]
+    },
+    {
+      "name": "base-results",
+      "pages": 19,
+      "pngs": [
+        "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\unit-rebuild-20261016\\native-base-results-p001.png",
+        "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\unit-rebuild-20261016\\native-base-results-p002.png",
+        "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\unit-rebuild-20261016\\native-base-results-p003.png",
+        "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\unit-rebuild-20261016\\native-base-results-p004.png",
+        "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\unit-rebuild-20261016\\native-base-results-p005.png",
+        "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\unit-rebuild-20261016\\native-base-results-p006.png",
+        "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\unit-rebuild-20261016\\native-base-results-p007.png",
+        "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\unit-rebuild-20261016\\native-base-results-p008.png",
+        "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\unit-rebuild-20261016\\native-base-results-p009.png",
+        "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\unit-rebuild-20261016\\native-base-results-p010.png",
+        "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\unit-rebuild-20261016\\native-base-results-p011.png",
+        "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\unit-rebuild-20261016\\native-base-results-p012.png",
+        "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\unit-rebuild-20261016\\native-base-results-p013.png",
+        "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\unit-rebuild-20261016\\native-base-results-p014.png",
+        "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\unit-rebuild-20261016\\native-base-results-p015.png",
+        "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\unit-rebuild-20261016\\native-base-results-p016.png",
+        "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\unit-rebuild-20261016\\native-base-results-p017.png",
+        "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\unit-rebuild-20261016\\native-base-results-p018.png",
+        "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\unit-rebuild-20261016\\native-base-results-p019.png"
+      ]
+    }
+  ]
+}

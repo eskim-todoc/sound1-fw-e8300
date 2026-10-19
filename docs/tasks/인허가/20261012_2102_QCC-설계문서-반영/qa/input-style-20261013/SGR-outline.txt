@@ -1,0 +1,302 @@
+0 None   
+1 None   
+2 None   
+3 None   
+4 None  TABLE 소프트웨어 일반 요구사항
+5 None  TABLE (TD24A-A-EXT)
+6 None   
+7 None   
+8 None   
+9 None   
+10 None   
+11 None   
+12 None   
+13 None   
+14 None   
+15 None  TABLE 
+16 None  TABLE 작성
+17 None  TABLE 검토
+18 None  TABLE 승인
+19 None  TABLE 성함
+20 None  TABLE 김은수
+21 None  TABLE 
+22 None  TABLE 
+23 None  TABLE 직책
+24 None  TABLE 수석연구원
+25 None  TABLE 
+26 None  TABLE 
+27 None  TABLE 일자
+28 None  TABLE 
+29 None  TABLE 
+30 None  TABLE 
+31 None  TABLE 서명
+32 None  TABLE 
+33 None  TABLE 
+34 None  TABLE 
+35 None   
+36 None   
+37 None TOC  목차
+38 None 12  1. 서론4
+39 None 20  1.1. 개요4
+40 None 20  1.2. 목적4
+41 None 20  1.3. 대상4
+42 None 20  1.4. 관련문서4
+43 None 30  1.4.1. 프로젝트4
+44 None 12  2. 기기 설명(Device Description)5
+45 None 20  2.1. 사용 목적(Intended Use)5
+46 None 20  2.2. 인공달팽이관 시스템 구성도5
+47 None 12  3. 소프트웨어 시스템 분류(Software System Classification)7
+48 None 20  3.1. 심각도 정의(definition of LEVEL Of CONCERN)7
+49 None 20  3.2. 소프트웨어 등급 분류 절차8
+50 None 20  3.3. 본 제품 소프트웨어 시스템의 심각도 등급10
+51 None 12  4. 소프트웨어 항목 심각도 분류(Software Item Classification)11
+52 None 12  5. 소프트웨어 설명11
+53 None 20  5.1. 소프트웨어 특징11
+54 None 30  5.1.1. 소프트웨어 역할11
+55 None 30  5.1.2. 소프트웨어와 사용자간 인터페이스11
+56 None 20  5.2. 사용자에 의해 조정되는 소프트웨어 특징12
+57 None 20  5.3. 소프트웨어 동작 환경12
+58 None 30  5.3.1. 프로그램 언어12
+59 None 30  5.3.2. 운영 체재12
+60 None 30  5.3.3. 기성용 소프트웨어 사용12
+61 None   
+62 None a9 TABLE No.
+63 None a9 TABLE 개정 내용
+64 None a9 TABLE 개정 위치 
+65 None a9 TABLE 개정 날짜
+66 None a9 TABLE 0
+67 None a9 TABLE 최초 제정
+68 None a9 TABLE 
+69 None a9 TABLE 
+70 None a9 TABLE 
+71 None a9 TABLE 
+72 None a9 TABLE 
+73 None a9 TABLE 
+74 None a9 TABLE 
+75 None a9 TABLE 
+76 None a9 TABLE 
+77 None a9 TABLE 
+78 None a9 TABLE 
+79 None a9 TABLE 
+80 None a9 TABLE 
+81 None a9 TABLE 
+82 None a9 TABLE 
+83 None a9 TABLE 
+84 None a9 TABLE 
+85 None a9 TABLE 
+86 None a9 TABLE 
+87 None a9 TABLE 
+88 None a9 TABLE 
+89 None a9 TABLE 
+90 None a9 TABLE 
+91 None a9 TABLE 
+92 None a9 TABLE 
+93 None a9 TABLE 
+94 None a9 TABLE 
+95 None a9 TABLE 
+96 None a9 TABLE 
+97 None a9 TABLE 
+98 None a9 TABLE 
+99 None a9 TABLE 
+100 None a9 TABLE 
+101 None a9 TABLE 
+102 None a9 TABLE 
+103 None a9 TABLE 
+104 None a9 TABLE 
+105 None a9 TABLE 
+106 None a9 TABLE 
+107 None a9 TABLE 
+108 None a9 TABLE 
+109 None a9 TABLE 
+110 None a9 TABLE 
+111 None a9 TABLE 
+112 None a9 TABLE 
+113 None a9 TABLE 
+114 None a9 TABLE 
+115 None a9 TABLE 
+116 None a9 TABLE 
+117 None a9 TABLE 
+118 None a9 TABLE 
+119 None a9 TABLE 
+120 None a9 TABLE 
+121 None a9 TABLE 
+122 None a9 TABLE 
+123 None a9 TABLE 
+124 None a9 TABLE 
+125 None a9 TABLE 
+126 None a9 TABLE 
+127 None a9 TABLE 
+128 None a9 TABLE 
+129 None a9 TABLE 
+130 None a9 TABLE 
+131 None a9 TABLE 
+132 None a9 TABLE 
+133 None a9 TABLE 
+134 None   
+135 None   
+136 None TDC1  서론
+137 None TDC2  개요
+138 None TDC20  본 문서는 TD24A-A-EXT 제품의 소프트웨어에 대하여 심각도를 분류하고 소프트웨어의 일반적인 요구사항을 정의한다.
+139 None TDC2  목적
+140 None TDC20  소프트웨어의 심각도를 분류함으로써, 이 후 소프트웨어 개발을 진행함에 있어 분류된 심각도에 적합한 절차를 준수함으로써 안전한하고 일관성 및 정확성을 보장하는 소프트웨어가 개발되는 것을 목적으로 한다.
+141 None TDC2  대상
+142 None TDC20  TD24A-A-EXT 펌웨어 개발 프로젝트에 참여하는 모든 구성원은 이 문서를 참고하도록 한다.
+143 None TDC20  적용 범위
+144 None TDC20  본 문서는 인공 달팽이관 외부장치(TD24A-A-EXT) 펌웨어에 적용된다.
+145 None TDC20  적용 범위에는 자극 처리와 장치 제어를 담당하는 E8300 펌웨어 및 Bluetooth 통신/인증과 E8300 전달 경로를 담당하는 QCC5181 펌웨어가 함께 포함된다.
+146 None TDC2  관련문서
+147 None TDC3  프로젝트
+148 None TDC0 TABLE No
+149 None TDC0 TABLE 문서번호
+150 None TDC0 TABLE 문서 제목
+151 None TDC7 TABLE 1
+152 None TDC7 TABLE SDP-FW-TD24A
+153 None TDC7 TABLE 소프트웨어 개발 계획서
+154 None TDC30  
+155 None TDC30  표준 및 규제
+156 None TDC0 TABLE No
+157 None TDC0 TABLE 문서번호
+158 None TDC0 TABLE 문서 제목
+159 None TDC7 TABLE 1
+160 None TDC7 TABLE IEC 62304
+161 None TDC7 TABLE Medical device software – Software life cycle processes
+162 None TDC7 TABLE 2
+163 None TDC7 TABLE ISO 14971
+164 None TDC7 TABLE Medical devices – Application of risk management to medical
+165 None TDC30  
+166 None TDC1  기기 설명(Device Description)
+167 None TDC2  사용 목적(Intended Use)
+168 None TDC20  중증 청각장애 환자의 청각을 회복할 목적으로 사용하는 기기
+169 None TDC20  
+170 None TDC2  인공달팽이관 시스템 구성도
+171 None TDC20  인공달팽이관 시스템은 사용자가 몸에 착용하는 인공 달팽이관 외부장치 시스템과 사용자의 몸속에 이식되는 인공달팽이관 내부장치 시스템으로 구성되며, 두 시스템은 무선으로 연결된다.
+172 None TDC20  추가적으로 인공달팽이과 외부장치를 제어하는 리모콘 앱과, 인공달팽이관 장치 시스템의 자극파라를 설정하는 매핑 앱은 블루투스 통신을 사용하여 인공달팽이관 외부장치와 무선으로 연결된다..
+173 None TDC24  
+174 None TDC25  < 그림 1. 인공달팽이관 시스템 구성도>
+175 None TDC20  
+176 None TDC24  
+177 None TDC25  <그림 2. 인공달팽이관 시스템, 통신 구성도>
+178 None TDC20  
+179 None TDC20  인공달팽이관 외부장치 시스템 
+180 None TDC20  - 인공달팽이관 외부장치
+181 None TDC20  사용자 주변의 사운드 신호를 획득하여 전기자극 파라미터로 변환하고 이를 근접 무선 통신으로 내부기 시스템에 전송한다.
+182 None TDC20  - 리모콘 앱 
+183 None TDC20  스마트폰에서 구동되는 앱으로 사용자가 인공달팽이관 외부장치의 상태를 확인하고 제어하는데 사용된다.
+184 None TDC20  스마트폰과 인공달팽이관 외부장치는 블루투스를 사용하여 통신한다.
+185 None TDC20  - 매핑 앱 
+186 None TDC20  태블릿 PC에서 구동되는 앱으로 청각사가 인공달팽이관 내/외부 장치를 설정하는데 사용된다. 
+187 None TDC20  태블릿 PC와 인공달팽이관 외부장치는 블루투스를 사용하여 통신한다.
+188 None TDC20  인공 달팽이관 내부장치 시스템 
+189 None TDC20  인공달팽이관 외부장치에서 수신된 자극 파라미터를 사용하여 전기 자극 파형을 출력하여 청각세포에 전달한다.
+190 None TDC1  소프트웨어 시스템 분류(Software System Classification)
+191 None TDC2  심각도 정의(definition of LEVEL Of CONCERN)
+192 None TDC20  일반적으로 의료기기의 소프트웨어의 심각도의 정의는 다음과 같다.
+193 None TDC0 TABLE 등급(Level)
+194 None TDC0 TABLE 설명(Description)
+195 None TDCe TABLE 상
+196 None TDCe TABLE Class C or Major
+197 None TDCf TABLE 고장이나 잠재적인 결함이 직접적인 원인으로 환자나 조작자에게 사망 또는 중상을 입힌 경우, 또는 고장이나 잠재적인 결함이 간접적 원인으로 작용하여 부정확하거나 지연된 정보로 인하여 환자나 조작자에게 사망이나 중상을 입힌 경우
+198 None TDCf TABLE When a patient or operator is fatally or seriously injured due to the system failure or potential defects as a direct cause, or 
+199 None TDCf TABLE a patient or operator is fatally or seriously injured due to the inaccurate or delayed information indirectly caused by system failure or potential defects.
+200 None TDCe TABLE 중
+201 None TDCe TABLE Class B or Moderate
+202 None TDCf TABLE 고장이나 잠재적인 설계 결함이 직접적 원인이 되어 환자나 조작자에게 경상을 입힌 경우, 또는 고장 또는 잠재적 결함이 간접적인 원인으로 작용하여 부정확하거나 지연된 정보로 환자나 조작자에게 경상을 입힌 경우
+203 None TDCf TABLE When a patient or operator has minor injuries due to the system failure or potential design defects as a direct cause, or a patient or operator has minor injuries due to the inaccurate or delayed information indirectly caused by system failure or potential defects.
+204 None TDCe TABLE 하
+205 None TDCe TABLE Class A or Minor
+206 None TDCf TABLE 고장, 잠재적인 설계 결함으로 환자나 조작자에게 어떤 부상이나 신체적 피해가 발생할 가능성이 없는 경우.
+207 None TDCf TABLE When there is no possibility to cause any injuries or physical damages to a patient or operator due to the system failure or potential defects.
+208 None TDC20  
+209 None TDC2  소프트웨어 등급 분류 절차
+210 None TDC0 TABLE 등급
+211 None TDC0 TABLE Level
+212 None TDC0 TABLE 질문
+213 None TDC0 TABLE Question
+214 None TDC0 TABLE 답변
+215 None TDC0 TABLE Answer
+216 None TDC7 TABLE 상
+217 None TDC7 TABLE Class C or Major
+218 None TDC7 TABLE 1. S/W Device가 혈액 처리 S/W처럼 중요한가?
+219 None TDC7 TABLE Is the device important as much as Blood Processing S/W?
+220 None TDC7 TABLE No
+221 None TDC7 TABLE 
+222 None TDC7 TABLE 2. S/W Device가 의약품이나 생물제제와 조합하여 사용되는가?
+223 None TDC7 TABLE Is the device used in combination with medicines or biological preparations?
+224 None TDC7 TABLE No
+225 None TDC7 TABLE 
+226 None TDC7 TABLE 3. S/W Device가 Major Concern의 Accessory인가?
+227 None TDC7 TABLE Is the device an Accessory of Class C?
+228 None TDC7 TABLE Yes
+229 None TDC7 TABLE 
+230 None TDC7 TABLE 4. 경감에 앞서 S/W의 결함이 환자나 사용자에게 죽음 또는 심각한 상해를 유발하는가?
+231 None TDC7 TABLE Before alleviating, do the S/W defects cause fatal or major injuries to patients or users?
+232 None TDC7 TABLE No
+233 None TDC7 TABLE 
+234 None TDC7 TABLE 4.1. 생명을 지원하거나 유지하는 기기를 제어하는가?
+235 None TDC7 TABLE Does it control the life-supporting or maintaining device?
+236 None TDC7 TABLE No
+237 None TDC7 TABLE 
+238 None TDC7 TABLE 4.2 방사선치료시스템, 제세동기 및 절제발생기처럼 사망이나 중상을 유발할 수 있는 잠재적으로 유해한 에너지의 전달을 제어하는가?
+239 None TDC7 TABLE Like Radiotherapy systems, Defibrillators and Ablation generators, does it control the transfer of potentially harmful energy that may cause fatal or major injuries?
+240 None TDC7 TABLE No
+241 None TDC7 TABLE 
+242 None TDC7 TABLE 4.3 오류나 오작동이 발생할 경우 사망이나 중상을 유발할 수 있는 치료나 요법을 제어하는가?
+243 None TDC7 TABLE Does it control the treatment or therapy that may cause fatal or major injuries in case of an error or malfunction?
+244 None TDC7 TABLE No
+245 None TDC7 TABLE 
+246 None TDC7 TABLE 4.4 잘못 적용할 경우 중상이나 사망을 유발할 수 있는 치료나 요법의 결정을 위해 진단정보를 제공하는가?
+247 None TDC7 TABLE Does it provide information about diagnosis in order to decide a treatment or therapy that may cause fatal or major injuries when they are applied wrong?
+248 None TDC7 TABLE No
+249 None TDC7 TABLE 
+250 None TDC7 TABLE 4.5 의학적 시술이 필요한 생명위급상황에서 생명유지 신호의 감시 및 경고 기능을 수행하는가?
+251 None TDC7 TABLE Does it perform monitoring of bio signals and alerting in the life-threatening emergency when a medical procedure is in need?
+252 None TDC7 TABLE No
+253 None TDC7 TABLE 중
+254 None TDC7 TABLE Class B or Moderate
+255 None TDC7 TABLE 1. S/W Device가 Moderate Concern의 Accessory인가?
+256 None TDC7 TABLE Is S/W Device an Accessory of Class B?
+257 None TDC7 TABLE No
+258 None TDC7 TABLE 
+259 None TDC7 TABLE 2. 경감에 앞서, S/W 결함이 환자 또는 사용자에게 심각하지 않은 상해를 유발하는가?
+260 None TDC7 TABLE  Before alleviating, do the S/W defects cause minor injuries to patients or users?
+261 None TDC7 TABLE No
+262 None TDC7 TABLE 
+263 None TDC7 TABLE 3. 고장 또는 잠재적인 설계결함이 잘못된 진단 또는 적절한 의료행위의 제공에 지연을 줄 수 있는가?
+264 None TDC7 TABLE Can the system failure or potential design defects give an incorrect diagnosis or cause the delay in the provision of proper medical care?
+265 None TDC7 TABLE No
+266 None TDC7 TABLE 하
+267 None TDC7 TABLE Class A or Minor
+268 None TDC7 TABLE 상, 중의 질문에 하나라도 Yes 답변이 있는가?
+269 None TDC7 TABLE Are there Yes answers to the questions in Class C, B?
+270 None TDC7 TABLE Yes
+271 None TDC20  
+272 None TDC2  본 제품 소프트웨어 시스템의 심각도 등급
+273 None TDC20  3.2절의 분류절차에 따라 사운드 처리기 펌웨어의 등급은 상(Class C or Major)로 분류한다.
+274 None TDC20  
+275 None TDC1  소프트웨어 항목 심각도 분류(Software Item Classification)
+276 None TDC10  소프트웨어 시스템이 소프트웨어 항목으로 나누어지고 소프트웨어 항목이 다시 소프트웨어 항목들로 나누어질 때, 소프트웨어 항목들은 소프트웨어 시스템의 심각도를 상속하여 같은 동일한 등급으로 취급할 것이다.
+277 None TDC10  따라서 사운드 처리기의 펌웨어 소프트웨어 항목들 전부는 상(Class C or Major)으로 분류한다. 
+278 None TDC10  
+279 None TDC1  소프트웨어 설명
+280 None TDC2  소프트웨어 특징
+281 None TDC3  소프트웨어 역할
+282 None TDC30  √ 사운드처리기에서 획득한 오디오 신호를 분석하여 전기 자극 펄스 파라미터로 변환하여 내부 자극장치에 전달한다.
+283 None TDC30  √ 리모콘 프로그램과 연동되어 사용자의 제어를 수행한다.
+284 None TDC30  √ QCC5181은 Bluetooth Classic 수신 오디오를 I2S로 E8300에 전달하고, 전화 통화 시 DMIC2의 음성을 수음하여 통화 상대에게 송신한다. DMIC2는 E8300과 QCC에 함께 연결되며, 통화 상향 마이크 입력과 I2S 수신 오디오는 서로 다른 경로다. BLE의 리모콘/매핑 명령과 응답은 SPI로 E8300에 중계한다.
+285 None TDC30  √ 보호 대상 BLE 데이터 접근에는 페어링과 CRA 인증을 요구한다. 오디오 송신, 연결 제한 및 인증/키 관리 조건은 소프트웨어 요구사항 사양서에 따른다.
+286 None TDC3  소프트웨어와 사용자간 인터페이스
+287 None TDC30  사용자는 사운드처리기를 터치하여 사운드처리기를 제어하고 LED를 확인하여 사운드 처리기의 상태를 확인한다.
+288 None TDC2  사용자에 의해 조정되는 소프트웨어 특징
+289 None TDC20  사용자는 사운드 처리기의 UI를 사용하여 전원을 켜고/끌 수 있으며, 리모콘 앱을 사용하여 맵 프로그램, 자극 볼륨, 마이크 감도, LED 알림 등을 조정할 수 있다.
+290 None TDC2  소프트웨어 동작 환경
+291 None TDC3  프로그램 언어
+292 None TDC30  C language, Assembly language.
+293 None TDC3  운영 체재
+294 None TDC30  
+295 None TDC30  E8300 펌웨어는 별도 운영체제 없이 동작한다.
+296 None TDC30  QCC5181은 제조사 제공 Built-in library와 scheduler를 사용하는 펌웨어로 구성한다. QCC의 실행 환경은 E8300의 운영체제 사용 여부와 별도로 정의한다.
+297 None TDC30  [QCC 자료 입력] QCC의 실제 ADK/실행 환경, scheduler 구성과 사용 버전을 입력한다.
+298 None TDC3  기성용 소프트웨어 사용
+299 None TDC30  onsemi E8300 SDK와 제조사 제공 라이브러리를 사용한다.
+300 None TDC30  QCC5181은 제조사 제공 Bluetooth stack과 Built-in library를 사용한다.
+301 None TDC30  [QCC 자료 입력] QCC 제조사 소프트웨어의 식별/버전, 사용 범위와 검토 근거를 입력한다.

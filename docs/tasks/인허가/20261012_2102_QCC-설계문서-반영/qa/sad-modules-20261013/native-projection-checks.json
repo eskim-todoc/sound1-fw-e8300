@@ -1,0 +1,20 @@
+[
+  {
+    "observed": {
+      "reject": "3.4.3. SI-ID-QCC-001 시스템 관리 모듈\t10\r3.4.4. SI-ID-QCC-002 HW 인터페이스 모듈\t10\r3.4.5. SI-ID-QCC-003 블루투스 모듈\t11\r3.4.6. SI-ID-QCC-004 보안 모듈\t12\rSI-ID-QCC-001 시스템 관리 모듈\rSI-ID-QCC-002 HW 인터페이스 모듈\rSI-ID-QCC-003 블루투스 모듈\rSI-ID-QCC-004 보안 모듈\r",
+      "accept": "3.4.3. 시스템 관리 모듈\t10\r3.4.4. HW 인터페이스 모듈\t10\r3.4.5. 블루투스 모듈\t11\r3.4.6. 보안 모듈\t12\r시스템 관리 모듈\rHW 인터페이스 모듈\r블루투스 모듈\r보안 모듈\r"
+    },
+    "candidateAndProjectionUnchanged": true,
+    "nativeNewRevisionCount": 16,
+    "code": "SAD",
+    "scope": "Actual Word acceptance/rejection of new revisions in minimal original-paragraph QA projection after accepting prior paragraph history. Full candidate separately tested for native acceptance, retained revision XML, and XML new-only rejection restoring prior paragraph.",
+    "projectionSHA256": "617be487a26cd0d6778d32daa0b19afec3238a756cca00045ee31df2231c990b",
+    "projection": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sad-modules-20261013\\SAD-new-only-qa.docx",
+    "checkedAt": "2026-10-13T16:43:13.0867992+09:00",
+    "candidate": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sad-modules-20261013\\SAD-candidate.docx",
+    "candidateSHA256": "eb9dae4767b61f11a1be05f324ad89dba9fe775c867b54cd419488d0fd4cbbdc",
+    "nativeAcceptMatchesCurrent": true,
+    "nativeRejectMatchesBefore": true,
+    "directSelectiveRejectOnFullCandidate": false
+  }
+]

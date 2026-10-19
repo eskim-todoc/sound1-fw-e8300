@@ -1,0 +1,25 @@
+{
+  "code": "SRS",
+  "sheet": "소프트웨어 입력 요구사항 사양서",
+  "artifactPath": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sv-clean-20261013\\SRS-row-layout-authored.xlsx",
+  "rows": [
+    {
+      "row": 50,
+      "height": 0,
+      "hidden": true
+    },
+    {
+      "row": 62,
+      "height": 15
+    },
+    {
+      "row": 68,
+      "height": 15
+    },
+    {
+      "row": 81,
+      "height": 15
+    }
+  ],
+  "reason": "Collapse deleted-only text rows; retain active requirement IDs and accepted text at their existing cell addresses. Preserve comparison layout."
+}

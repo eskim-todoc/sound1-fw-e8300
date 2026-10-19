@@ -1,0 +1,26 @@
+[
+  {
+    "allNativeTableTextPreserved": false,
+    "nativeTableCount": 9,
+    "nativeAccepted": true,
+    "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SAD-FW-TD24A 소프트웨어 아키텍쳐 기술서.docx",
+    "sha256": "4e71a6b7d696c7e5e21804eff3182f4a9f2f5bb6991e4b441ee6cbf5874119b1",
+    "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sad-modules-20261013\\SAD-before-native.pdf",
+    "checkedAt": "2026-10-13T16:40:48.4825923+09:00",
+    "mode": "before",
+    "pages": 55,
+    "outsideTableModuleIdCount": 8
+  },
+  {
+    "allNativeTableTextPreserved": true,
+    "nativeTableCount": 9,
+    "nativeAccepted": true,
+    "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sad-modules-20261013\\SAD-candidate.docx",
+    "sha256": "eb9dae4767b61f11a1be05f324ad89dba9fe775c867b54cd419488d0fd4cbbdc",
+    "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sad-modules-20261013\\SAD-after-native.pdf",
+    "checkedAt": "2026-10-13T16:41:00.4289728+09:00",
+    "mode": "after",
+    "pages": 55,
+    "outsideTableModuleIdCount": 0
+  }
+]

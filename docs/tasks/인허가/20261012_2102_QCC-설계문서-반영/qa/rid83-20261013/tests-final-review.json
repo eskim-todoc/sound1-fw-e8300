@@ -1,0 +1,1773 @@
+{
+  "schema": "rid83-tests-independent-review-v2",
+  "checked_at": "2026-10-13T16:00:45.169044+09:00",
+  "scope": "최종3local후보 실제 패키지/내용/서식 및 시험8개 nativePNG 원본 크기 직접 검사. root의 SRS2PNG 검사와 합산해 전체문서 검사로 주장하지 않음. G/COM/후보 수정 없음.",
+  "status": "PASS_SCOPED",
+  "static_checks_pass": true,
+  "final_native_display_pass": true,
+  "candidate_hashes": [
+    {
+      "code": "SSTR",
+      "sha256": "EC5849B277A4F074CDBACCFA7AC770D1FC8DCE8FD3AC5B8D5FC349BD74D41C8B"
+    },
+    {
+      "code": "SRS",
+      "sha256": "BF9A92ACC2770563A410CF4A580C005A73BBAB5D34B7DABC3C695A6B9BE5B6BD"
+    },
+    {
+      "code": "SSTC",
+      "sha256": "865851FC890543BB4A637718EE7956E6EE565AFA6109822AD4E2859B50ADE33F"
+    }
+  ],
+  "evidence_hashes": [
+    {
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\rid83-20261013\\plan.json",
+      "sha256": "45B96D7AA3793751C735FE4F81003428D812E20AB4729E00989C7B0D2B6B7C1D"
+    },
+    {
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\rid83-20261013\\package-checks.json",
+      "sha256": "73142CF9DE67C6EFC0F12BFBF44CA891AB3F0AFFCEBDF357B0D9E737AD01AEDB"
+    },
+    {
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\rid83-20261013\\render-checks.json",
+      "sha256": "80956DEBA562B5D7CA063C294EBFAF67D9764AF4099BD73737562E188CB7126F"
+    },
+    {
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\rid83-20261013\\qcc-design-manual-audit.json",
+      "sha256": "A217A4943493B0DA3633CD51B4A58108E6EF2245B28B94306724381B53E3DA0B"
+    }
+  ],
+  "package_invariants": [
+    {
+      "code": "SSTR",
+      "sourceSHA256": "CEFFDED299DC4B2C1001AAE5271CAE6A80FFCB04F4697B16567A6AED363005B3",
+      "candidateSHA256": "EC5849B277A4F074CDBACCFA7AC770D1FC8DCE8FD3AC5B8D5FC349BD74D41C8B",
+      "changed_parts": [
+        "xl/worksheets/sheet2.xml",
+        "xl/worksheets/sheet5.xml",
+        "xl/worksheets/sheet6.xml",
+        "xl/worksheets/sheet7.xml"
+      ],
+      "all_untouched_parts_byte_equal": true
+    },
+    {
+      "code": "SRS",
+      "sourceSHA256": "093CE649ACE49090B333E2990CFE4D27DB2AF24C28BEC6130B2E1A0387F3F123",
+      "candidateSHA256": "BF9A92ACC2770563A410CF4A580C005A73BBAB5D34B7DABC3C695A6B9BE5B6BD",
+      "changed_parts": [
+        "xl/worksheets/sheet2.xml",
+        "xl/worksheets/sheet3.xml"
+      ],
+      "all_untouched_parts_byte_equal": true
+    },
+    {
+      "code": "SSTC",
+      "sourceSHA256": "B86E424177E33B0A4E539DFB7845AFA255FC482EF0A9B008ACD82E71FFC90D5B",
+      "candidateSHA256": "865851FC890543BB4A637718EE7956E6EE565AFA6109822AD4E2859B50ADE33F",
+      "changed_parts": [
+        "xl/worksheets/sheet2.xml",
+        "xl/worksheets/sheet3.xml",
+        "xl/worksheets/sheet4.xml",
+        "xl/worksheets/sheet5.xml"
+      ],
+      "all_untouched_parts_byte_equal": true
+    }
+  ],
+  "common_range_equality": [
+    {
+      "label": "system",
+      "current_text_formula_difference_count": 0,
+      "common_merges_equal": true,
+      "baseline_rich_serialization_difference_count": 219,
+      "new_rich_difference_count": 0,
+      "baseline_difference_scope": "Existing B/D/E ID-method cells retain equivalent text and prior rich representation; not a new RID83 change defect."
+    },
+    {
+      "label": "cyber",
+      "current_text_formula_difference_count": 0,
+      "common_merges_equal": true,
+      "baseline_rich_serialization_difference_count": 0,
+      "new_rich_difference_count": 0,
+      "baseline_difference_scope": "Existing B/D/E ID-method cells retain equivalent text and prior rich representation; not a new RID83 change defect.",
+      "merge_scope": "A4:J39",
+      "preserved_title_exception": "기준 A1:J1/A2:J2/A3:J3, 보고 A1:L1/A2:L2/A3:L3의 원본 제목 전체폭 병합 유지"
+    }
+  ],
+  "checks": [
+    {
+      "check": "SSTR source guard",
+      "verdict": "통과",
+      "evidence": null
+    },
+    {
+      "check": "SSTR latest package hash",
+      "verdict": "통과",
+      "evidence": "EC5849B277A4F074CDBACCFA7AC770D1FC8DCE8FD3AC5B8D5FC349BD74D41C8B"
+    },
+    {
+      "check": "SSTR ZIP entries unchanged",
+      "verdict": "통과",
+      "evidence": null
+    },
+    {
+      "check": "SSTR allowed parts only",
+      "verdict": "통과",
+      "evidence": [
+        "xl/worksheets/sheet2.xml",
+        "xl/worksheets/sheet5.xml",
+        "xl/worksheets/sheet6.xml",
+        "xl/worksheets/sheet7.xml"
+      ]
+    },
+    {
+      "check": "SSTR all XML parse",
+      "verdict": "통과",
+      "evidence": []
+    },
+    {
+      "check": "SSTR 보고서_시스템 시험 cell addresses only explicit additions",
+      "verdict": "통과",
+      "evidence": {
+        "added": []
+      }
+    },
+    {
+      "check": "SSTR 보고서_시스템 시험 untouched cells exact",
+      "verdict": "통과",
+      "evidence": {
+        "count": 3152,
+        "differences": []
+      }
+    },
+    {
+      "check": "SSTR 보고서_시스템 시험 all planned text exact",
+      "verdict": "통과",
+      "evidence": []
+    },
+    {
+      "check": "SSTR 보고서_시스템 시험 outside plan XML/layout exact",
+      "verdict": "통과",
+      "evidence": null
+    },
+    {
+      "check": "SSTR 보고서_시스템 시험 max row height",
+      "verdict": "통과",
+      "evidence": null
+    },
+    {
+      "check": "SSTR 보고서_시스템 시험_비교 cell addresses only explicit additions",
+      "verdict": "통과",
+      "evidence": {
+        "added": [
+          "K286"
+        ]
+      }
+    },
+    {
+      "check": "SSTR 보고서_시스템 시험_비교 untouched cells exact",
+      "verdict": "통과",
+      "evidence": {
+        "count": 3151,
+        "differences": []
+      }
+    },
+    {
+      "check": "SSTR 보고서_시스템 시험_비교 all planned text exact",
+      "verdict": "통과",
+      "evidence": []
+    },
+    {
+      "check": "SSTR 보고서_시스템 시험_비교 earlier history text/font preserved",
+      "verdict": "통과",
+      "evidence": [
+        "F285",
+        "H285",
+        "I285",
+        "K285",
+        "L285"
+      ]
+    },
+    {
+      "check": "SSTR 보고서_시스템 시험_비교 outside plan XML/layout exact",
+      "verdict": "통과",
+      "evidence": null
+    },
+    {
+      "check": "SSTR 보고서_시스템 시험_비교 row 285 specified height",
+      "verdict": "통과",
+      "evidence": null
+    },
+    {
+      "check": "SSTR 보고서_시스템 시험_비교 row 286 specified height",
+      "verdict": "통과",
+      "evidence": null
+    },
+    {
+      "check": "SSTR 보고서_시스템 시험_비교 K286 empty continuation same source style",
+      "verdict": "통과",
+      "evidence": null
+    },
+    {
+      "check": "SSTR 보고서_시스템 시험_비교 K285:K286 specified added merge",
+      "verdict": "통과",
+      "evidence": null
+    },
+    {
+      "check": "SSTR 보고서_시스템 시험_비교 max row height",
+      "verdict": "통과",
+      "evidence": null
+    },
+    {
+      "check": "SSTR 사이버보안 시험 연계 cell addresses only explicit additions",
+      "verdict": "통과",
+      "evidence": {
+        "added": []
+      }
+    },
+    {
+      "check": "SSTR 사이버보안 시험 연계 untouched cells exact",
+      "verdict": "통과",
+      "evidence": {
+        "count": 465,
+        "differences": []
+      }
+    },
+    {
+      "check": "SSTR 사이버보안 시험 연계 all planned text exact",
+      "verdict": "통과",
+      "evidence": []
+    },
+    {
+      "check": "SSTR 사이버보안 시험 연계 outside plan XML/layout exact",
+      "verdict": "통과",
+      "evidence": null
+    },
+    {
+      "check": "SSTR 사이버보안 시험 연계 max row height",
+      "verdict": "통과",
+      "evidence": null
+    },
+    {
+      "check": "SSTR 사이버보안 시험 연계_비교 cell addresses only explicit additions",
+      "verdict": "통과",
+      "evidence": {
+        "added": []
+      }
+    },
+    {
+      "check": "SSTR 사이버보안 시험 연계_비교 untouched cells exact",
+      "verdict": "통과",
+      "evidence": {
+        "count": 465,
+        "differences": []
+      }
+    },
+    {
+      "check": "SSTR 사이버보안 시험 연계_비교 all planned text exact",
+      "verdict": "통과",
+      "evidence": []
+    },
+    {
+      "check": "SSTR 사이버보안 시험 연계_비교 earlier history text/font preserved",
+      "verdict": "통과",
+      "evidence": [
+        "G38",
+        "J38",
+        "K38"
+      ]
+    },
+    {
+      "check": "SSTR 사이버보안 시험 연계_비교 outside plan XML/layout exact",
+      "verdict": "통과",
+      "evidence": null
+    },
+    {
+      "check": "SSTR 사이버보안 시험 연계_비교 row 38 specified height",
+      "verdict": "통과",
+      "evidence": null
+    },
+    {
+      "check": "SSTR 사이버보안 시험 연계_비교 max row height",
+      "verdict": "통과",
+      "evidence": null
+    },
+    {
+      "check": "SSTR 표지 main markers zero",
+      "verdict": "통과",
+      "evidence": []
+    },
+    {
+      "check": "SSTR 표지 active ACDOC zero",
+      "verdict": "통과",
+      "evidence": []
+    },
+    {
+      "check": "SSTR 보고서_시스템 시험 main markers zero",
+      "verdict": "통과",
+      "evidence": []
+    },
+    {
+      "check": "SSTR 보고서_시스템 시험 active ACDOC zero",
+      "verdict": "통과",
+      "evidence": []
+    },
+    {
+      "check": "SSTR 시험 보조자료 main markers zero",
+      "verdict": "통과",
+      "evidence": []
+    },
+    {
+      "check": "SSTR 시험 보조자료 active ACDOC zero",
+      "verdict": "통과",
+      "evidence": []
+    },
+    {
+      "check": "SSTR 예상 그림 main markers zero",
+      "verdict": "통과",
+      "evidence": []
+    },
+    {
+      "check": "SSTR 예상 그림 active ACDOC zero",
+      "verdict": "통과",
+      "evidence": []
+    },
+    {
+      "check": "SSTR 사이버보안 시험 연계 main markers zero",
+      "verdict": "통과",
+      "evidence": []
+    },
+    {
+      "check": "SSTR 사이버보안 시험 연계 active ACDOC zero",
+      "verdict": "통과",
+      "evidence": []
+    },
+    {
+      "check": "SRS source guard",
+      "verdict": "통과",
+      "evidence": null
+    },
+    {
+      "check": "SRS latest package hash",
+      "verdict": "통과",
+      "evidence": "BF9A92ACC2770563A410CF4A580C005A73BBAB5D34B7DABC3C695A6B9BE5B6BD"
+    },
+    {
+      "check": "SRS ZIP entries unchanged",
+      "verdict": "통과",
+      "evidence": null
+    },
+    {
+      "check": "SRS allowed parts only",
+      "verdict": "통과",
+      "evidence": [
+        "xl/worksheets/sheet2.xml",
+        "xl/worksheets/sheet3.xml"
+      ]
+    },
+    {
+      "check": "SRS all XML parse",
+      "verdict": "통과",
+      "evidence": []
+    },
+    {
+      "check": "SRS 소프트웨어 입력 요구사항 사양서 cell addresses only explicit additions",
+      "verdict": "통과",
+      "evidence": {
+        "added": []
+      }
+    },
+    {
+      "check": "SRS 소프트웨어 입력 요구사항 사양서 untouched cells exact",
+      "verdict": "통과",
+      "evidence": {
+        "count": 838,
+        "differences": []
+      }
+    },
+    {
+      "check": "SRS 소프트웨어 입력 요구사항 사양서 all planned text exact",
+      "verdict": "통과",
+      "evidence": []
+    },
+    {
+      "check": "SRS 소프트웨어 입력 요구사항 사양서 outside plan XML/layout exact",
+      "verdict": "통과",
+      "evidence": null
+    },
+    {
+      "check": "SRS 소프트웨어 입력 요구사항 사양서 max row height",
+      "verdict": "통과",
+      "evidence": null
+    },
+    {
+      "check": "SRS 소프트웨어 입력 요구사항 사양서_비교 cell addresses only explicit additions",
+      "verdict": "통과",
+      "evidence": {
+        "added": []
+      }
+    },
+    {
+      "check": "SRS 소프트웨어 입력 요구사항 사양서_비교 untouched cells exact",
+      "verdict": "통과",
+      "evidence": {
+        "count": 838,
+        "differences": []
+      }
+    },
+    {
+      "check": "SRS 소프트웨어 입력 요구사항 사양서_비교 all planned text exact",
+      "verdict": "통과",
+      "evidence": []
+    },
+    {
+      "check": "SRS 소프트웨어 입력 요구사항 사양서_비교 earlier history text/font preserved",
+      "verdict": "통과",
+      "evidence": [
+        "H93",
+        "F94"
+      ]
+    },
+    {
+      "check": "SRS 소프트웨어 입력 요구사항 사양서_비교 outside plan XML/layout exact",
+      "verdict": "통과",
+      "evidence": null
+    },
+    {
+      "check": "SRS 소프트웨어 입력 요구사항 사양서_비교 row 93 specified height",
+      "verdict": "통과",
+      "evidence": null
+    },
+    {
+      "check": "SRS 소프트웨어 입력 요구사항 사양서_비교 row 94 specified height",
+      "verdict": "통과",
+      "evidence": null
+    },
+    {
+      "check": "SRS 소프트웨어 입력 요구사항 사양서_비교 max row height",
+      "verdict": "통과",
+      "evidence": null
+    },
+    {
+      "check": "SRS 표지 main markers zero",
+      "verdict": "통과",
+      "evidence": []
+    },
+    {
+      "check": "SRS 표지 active ACDOC zero",
+      "verdict": "통과",
+      "evidence": []
+    },
+    {
+      "check": "SRS 소프트웨어 입력 요구사항 사양서 main markers zero",
+      "verdict": "통과",
+      "evidence": []
+    },
+    {
+      "check": "SRS 소프트웨어 입력 요구사항 사양서 active ACDOC zero",
+      "verdict": "통과",
+      "evidence": []
+    },
+    {
+      "check": "SSTC source guard",
+      "verdict": "통과",
+      "evidence": null
+    },
+    {
+      "check": "SSTC latest package hash",
+      "verdict": "통과",
+      "evidence": "865851FC890543BB4A637718EE7956E6EE565AFA6109822AD4E2859B50ADE33F"
+    },
+    {
+      "check": "SSTC ZIP entries unchanged",
+      "verdict": "통과",
+      "evidence": null
+    },
+    {
+      "check": "SSTC allowed parts only",
+      "verdict": "통과",
+      "evidence": [
+        "xl/worksheets/sheet2.xml",
+        "xl/worksheets/sheet3.xml",
+        "xl/worksheets/sheet4.xml",
+        "xl/worksheets/sheet5.xml"
+      ]
+    },
+    {
+      "check": "SSTC all XML parse",
+      "verdict": "통과",
+      "evidence": []
+    },
+    {
+      "check": "SSTC 기준서_시스템 시험 cell addresses only explicit additions",
+      "verdict": "통과",
+      "evidence": {
+        "added": []
+      }
+    },
+    {
+      "check": "SSTC 기준서_시스템 시험 untouched cells exact",
+      "verdict": "통과",
+      "evidence": {
+        "count": 2637,
+        "differences": []
+      }
+    },
+    {
+      "check": "SSTC 기준서_시스템 시험 all planned text exact",
+      "verdict": "통과",
+      "evidence": []
+    },
+    {
+      "check": "SSTC 기준서_시스템 시험 outside plan XML/layout exact",
+      "verdict": "통과",
+      "evidence": null
+    },
+    {
+      "check": "SSTC 기준서_시스템 시험 max row height",
+      "verdict": "통과",
+      "evidence": null
+    },
+    {
+      "check": "SSTC 기준서_시스템 시험_비교 cell addresses only explicit additions",
+      "verdict": "통과",
+      "evidence": {
+        "added": []
+      }
+    },
+    {
+      "check": "SSTC 기준서_시스템 시험_비교 untouched cells exact",
+      "verdict": "통과",
+      "evidence": {
+        "count": 2637,
+        "differences": []
+      }
+    },
+    {
+      "check": "SSTC 기준서_시스템 시험_비교 all planned text exact",
+      "verdict": "통과",
+      "evidence": []
+    },
+    {
+      "check": "SSTC 기준서_시스템 시험_비교 earlier history text/font preserved",
+      "verdict": "통과",
+      "evidence": [
+        "F285",
+        "H285",
+        "I285"
+      ]
+    },
+    {
+      "check": "SSTC 기준서_시스템 시험_비교 outside plan XML/layout exact",
+      "verdict": "통과",
+      "evidence": null
+    },
+    {
+      "check": "SSTC 기준서_시스템 시험_비교 row 285 specified height",
+      "verdict": "통과",
+      "evidence": null
+    },
+    {
+      "check": "SSTC 기준서_시스템 시험_비교 max row height",
+      "verdict": "통과",
+      "evidence": null
+    },
+    {
+      "check": "SSTC 사이버보안 시험 연계 cell addresses only explicit additions",
+      "verdict": "통과",
+      "evidence": {
+        "added": []
+      }
+    },
+    {
+      "check": "SSTC 사이버보안 시험 연계 untouched cells exact",
+      "verdict": "통과",
+      "evidence": {
+        "count": 388,
+        "differences": []
+      }
+    },
+    {
+      "check": "SSTC 사이버보안 시험 연계 all planned text exact",
+      "verdict": "통과",
+      "evidence": []
+    },
+    {
+      "check": "SSTC 사이버보안 시험 연계 outside plan XML/layout exact",
+      "verdict": "통과",
+      "evidence": null
+    },
+    {
+      "check": "SSTC 사이버보안 시험 연계 max row height",
+      "verdict": "통과",
+      "evidence": null
+    },
+    {
+      "check": "SSTC 사이버보안 시험 연계_비교 cell addresses only explicit additions",
+      "verdict": "통과",
+      "evidence": {
+        "added": []
+      }
+    },
+    {
+      "check": "SSTC 사이버보안 시험 연계_비교 untouched cells exact",
+      "verdict": "통과",
+      "evidence": {
+        "count": 388,
+        "differences": []
+      }
+    },
+    {
+      "check": "SSTC 사이버보안 시험 연계_비교 all planned text exact",
+      "verdict": "통과",
+      "evidence": []
+    },
+    {
+      "check": "SSTC 사이버보안 시험 연계_비교 earlier history text/font preserved",
+      "verdict": "통과",
+      "evidence": [
+        "G38",
+        "J38"
+      ]
+    },
+    {
+      "check": "SSTC 사이버보안 시험 연계_비교 outside plan XML/layout exact",
+      "verdict": "통과",
+      "evidence": null
+    },
+    {
+      "check": "SSTC 사이버보안 시험 연계_비교 row 38 specified height",
+      "verdict": "통과",
+      "evidence": null
+    },
+    {
+      "check": "SSTC 사이버보안 시험 연계_비교 max row height",
+      "verdict": "통과",
+      "evidence": null
+    },
+    {
+      "check": "SSTC 표지 main markers zero",
+      "verdict": "통과",
+      "evidence": []
+    },
+    {
+      "check": "SSTC 표지 active ACDOC zero",
+      "verdict": "통과",
+      "evidence": []
+    },
+    {
+      "check": "SSTC 기준서_시스템 시험 main markers zero",
+      "verdict": "통과",
+      "evidence": []
+    },
+    {
+      "check": "SSTC 기준서_시스템 시험 active ACDOC zero",
+      "verdict": "통과",
+      "evidence": []
+    },
+    {
+      "check": "SSTC 사이버보안 시험 연계 main markers zero",
+      "verdict": "통과",
+      "evidence": []
+    },
+    {
+      "check": "SSTC 사이버보안 시험 연계 active ACDOC zero",
+      "verdict": "통과",
+      "evidence": []
+    },
+    {
+      "check": "system all common text/formula equal",
+      "verdict": "통과",
+      "evidence": {
+        "cells": 2268,
+        "differences": []
+      }
+    },
+    {
+      "check": "system common merge set equivalent",
+      "verdict": "통과",
+      "evidence": {
+        "count": 581
+      }
+    },
+    {
+      "check": "system original common merges preserved",
+      "verdict": "통과",
+      "evidence": null
+    },
+    {
+      "check": "system no new common rich-format difference",
+      "verdict": "통과",
+      "evidence": {
+        "baseline_rich_serialization_differences": 219,
+        "new_differences": []
+      }
+    },
+    {
+      "check": "cyber all common text/formula equal",
+      "verdict": "통과",
+      "evidence": {
+        "cells": 390,
+        "differences": []
+      }
+    },
+    {
+      "check": "cyber body A4:J39 common merge set equivalent; original full-width title exception preserved",
+      "verdict": "통과",
+      "evidence": {
+        "body_range": "A4:J39",
+        "criteria_body_merges": [],
+        "report_body_merges": [],
+        "original_title_merges": {
+          "criteria": [
+            "A1:J1",
+            "A2:J2",
+            "A3:J3"
+          ],
+          "report": [
+            "A1:L1",
+            "A2:L2",
+            "A3:L3"
+          ]
+        },
+        "reason": "원래 제목은 각 문서의 전체 표폭으로 병합한다. 보고서 결과열 K/L의 추가 폭에 따른 제목 차이는 그대로 보존되며 실제 공통 본문에는 병합 차이가 없다."
+      }
+    },
+    {
+      "check": "cyber original common merges preserved",
+      "verdict": "통과",
+      "evidence": null
+    },
+    {
+      "check": "cyber no new common rich-format difference",
+      "verdict": "통과",
+      "evidence": {
+        "baseline_rich_serialization_differences": 0,
+        "new_differences": []
+      }
+    },
+    {
+      "check": "SSTC SYS83/RID83/I unchanged",
+      "verdict": "통과",
+      "evidence": null
+    },
+    {
+      "check": "SSTC F285 blank / J285 unchanged",
+      "verdict": "통과",
+      "evidence": null
+    },
+    {
+      "check": "SSTC G38 own83/existingupper retained wrongupper removed",
+      "verdict": "통과",
+      "evidence": null
+    },
+    {
+      "check": "SSTC RA04 applicability/method/inputs preserved",
+      "verdict": "통과",
+      "evidence": null
+    },
+    {
+      "check": "SSTR SYS83/RID83/I unchanged",
+      "verdict": "통과",
+      "evidence": null
+    },
+    {
+      "check": "SSTR F285 blank / J285 unchanged",
+      "verdict": "통과",
+      "evidence": null
+    },
+    {
+      "check": "SSTR G38 own83/existingupper retained wrongupper removed",
+      "verdict": "통과",
+      "evidence": null
+    },
+    {
+      "check": "SSTR RA04 applicability/method/inputs preserved",
+      "verdict": "통과",
+      "evidence": null
+    },
+    {
+      "check": "SRS H93 blank/RID83 retained",
+      "verdict": "통과",
+      "evidence": null
+    },
+    {
+      "check": "K285 real draft identity/3actual checks/printedsections and unresolved deployment",
+      "verdict": "통과",
+      "evidence": null
+    },
+    {
+      "check": "L285 pending, no fabricated PASS",
+      "verdict": "통과",
+      "evidence": null
+    },
+    {
+      "check": "cyber48/52/76 new security unexecuted separate scope",
+      "verdict": "통과",
+      "evidence": null
+    },
+    {
+      "check": "cyber existing results and current pending preserved",
+      "verdict": "통과",
+      "evidence": null
+    },
+    {
+      "check": "SSTR H285 [E8300 보완] full notice +2/color/underline",
+      "verdict": "통과",
+      "evidence": {
+        "code": "SSTR",
+        "sheet": "보고서_시스템 시험",
+        "cell": "H285",
+        "prefix": "[E8300 보완]",
+        "base_pt": 11.0,
+        "actual_sizes": [
+          "13.0"
+        ],
+        "characters_in_whole_prefix_and_description": 50,
+        "pass": true
+      }
+    },
+    {
+      "check": "SSTR K285 [E8300 보완] full notice +2/color/underline",
+      "verdict": "통과",
+      "evidence": {
+        "code": "SSTR",
+        "sheet": "보고서_시스템 시험",
+        "cell": "K285",
+        "prefix": "[E8300 보완]",
+        "base_pt": 11.0,
+        "actual_sizes": [
+          "13.0"
+        ],
+        "characters_in_whole_prefix_and_description": 43,
+        "pass": true
+      }
+    },
+    {
+      "check": "SSTR J38 [E8300 보완] full notice +2/color/underline",
+      "verdict": "통과",
+      "evidence": {
+        "code": "SSTR",
+        "sheet": "사이버보안 시험 연계",
+        "cell": "J38",
+        "prefix": "[E8300 보완]",
+        "base_pt": 10.0,
+        "actual_sizes": [
+          "12.0"
+        ],
+        "characters_in_whole_prefix_and_description": 38,
+        "pass": true
+      }
+    },
+    {
+      "check": "SSTR J38 [QCC 자료 입력] full notice +2/color/underline",
+      "verdict": "통과",
+      "evidence": {
+        "code": "SSTR",
+        "sheet": "사이버보안 시험 연계",
+        "cell": "J38",
+        "prefix": "[QCC 자료 입력]",
+        "base_pt": 10.0,
+        "actual_sizes": [
+          "12.0"
+        ],
+        "characters_in_whole_prefix_and_description": 38,
+        "pass": true
+      }
+    },
+    {
+      "check": "SSTR K38 [QCC 자료 입력] full notice +2/color/underline",
+      "verdict": "통과",
+      "evidence": {
+        "code": "SSTR",
+        "sheet": "사이버보안 시험 연계",
+        "cell": "K38",
+        "prefix": "[QCC 자료 입력]",
+        "base_pt": 10.0,
+        "actual_sizes": [
+          "12.0"
+        ],
+        "characters_in_whole_prefix_and_description": 62,
+        "pass": true
+      }
+    },
+    {
+      "check": "SSTR K38 [QCC 자료 입력] full notice +2/color/underline",
+      "verdict": "통과",
+      "evidence": {
+        "code": "SSTR",
+        "sheet": "사이버보안 시험 연계",
+        "cell": "K38",
+        "prefix": "[QCC 자료 입력]",
+        "base_pt": 10.0,
+        "actual_sizes": [
+          "12.0"
+        ],
+        "characters_in_whole_prefix_and_description": 61,
+        "pass": true
+      }
+    },
+    {
+      "check": "SRS F94 [E8300 보완] full notice +2/color/underline",
+      "verdict": "통과",
+      "evidence": {
+        "code": "SRS",
+        "sheet": "소프트웨어 입력 요구사항 사양서",
+        "cell": "F94",
+        "prefix": "[E8300 보완]",
+        "base_pt": 10.0,
+        "actual_sizes": [
+          "12.0"
+        ],
+        "characters_in_whole_prefix_and_description": 50,
+        "pass": true
+      }
+    },
+    {
+      "check": "SSTC H285 [E8300 보완] full notice +2/color/underline",
+      "verdict": "통과",
+      "evidence": {
+        "code": "SSTC",
+        "sheet": "기준서_시스템 시험",
+        "cell": "H285",
+        "prefix": "[E8300 보완]",
+        "base_pt": 11.0,
+        "actual_sizes": [
+          "13.0"
+        ],
+        "characters_in_whole_prefix_and_description": 50,
+        "pass": true
+      }
+    },
+    {
+      "check": "SSTC J38 [E8300 보완] full notice +2/color/underline",
+      "verdict": "통과",
+      "evidence": {
+        "code": "SSTC",
+        "sheet": "사이버보안 시험 연계",
+        "cell": "J38",
+        "prefix": "[E8300 보완]",
+        "base_pt": 10.0,
+        "actual_sizes": [
+          "12.0"
+        ],
+        "characters_in_whole_prefix_and_description": 38,
+        "pass": true
+      }
+    },
+    {
+      "check": "SSTC J38 [QCC 자료 입력] full notice +2/color/underline",
+      "verdict": "통과",
+      "evidence": {
+        "code": "SSTC",
+        "sheet": "사이버보안 시험 연계",
+        "cell": "J38",
+        "prefix": "[QCC 자료 입력]",
+        "base_pt": 10.0,
+        "actual_sizes": [
+          "12.0"
+        ],
+        "characters_in_whole_prefix_and_description": 38,
+        "pass": true
+      }
+    },
+    {
+      "check": "latest eight direct PNG source/hash correspondence",
+      "verdict": "통과",
+      "evidence": null
+    },
+    {
+      "check": "SSTR candidate/source unchanged during review",
+      "verdict": "통과",
+      "evidence": null
+    },
+    {
+      "check": "SRS candidate/source unchanged during review",
+      "verdict": "통과",
+      "evidence": null
+    },
+    {
+      "check": "SSTC candidate/source unchanged during review",
+      "verdict": "통과",
+      "evidence": null
+    }
+  ],
+  "history_preservation": [
+    {
+      "code": "SSTR",
+      "sheet": "보고서_시스템 시험_비교",
+      "cell": "F285",
+      "old_characters": 100,
+      "old_text_font_exact": true,
+      "dated_diff_appended": true
+    },
+    {
+      "code": "SSTR",
+      "sheet": "보고서_시스템 시험_비교",
+      "cell": "H285",
+      "old_characters": 123,
+      "old_text_font_exact": true,
+      "dated_diff_appended": true
+    },
+    {
+      "code": "SSTR",
+      "sheet": "보고서_시스템 시험_비교",
+      "cell": "I285",
+      "old_characters": 64,
+      "old_text_font_exact": true,
+      "dated_diff_appended": true
+    },
+    {
+      "code": "SSTR",
+      "sheet": "보고서_시스템 시험_비교",
+      "cell": "K285",
+      "old_characters": 385,
+      "old_text_font_exact": true,
+      "dated_diff_appended": true
+    },
+    {
+      "code": "SSTR",
+      "sheet": "보고서_시스템 시험_비교",
+      "cell": "L285",
+      "old_characters": 11,
+      "old_text_font_exact": true,
+      "dated_diff_appended": true
+    },
+    {
+      "code": "SSTR",
+      "sheet": "사이버보안 시험 연계_비교",
+      "cell": "G38",
+      "old_characters": 270,
+      "old_text_font_exact": true,
+      "dated_diff_appended": true
+    },
+    {
+      "code": "SSTR",
+      "sheet": "사이버보안 시험 연계_비교",
+      "cell": "J38",
+      "old_characters": 226,
+      "old_text_font_exact": true,
+      "dated_diff_appended": true
+    },
+    {
+      "code": "SSTR",
+      "sheet": "사이버보안 시험 연계_비교",
+      "cell": "K38",
+      "old_characters": 278,
+      "old_text_font_exact": true,
+      "dated_diff_appended": true
+    },
+    {
+      "code": "SRS",
+      "sheet": "소프트웨어 입력 요구사항 사양서_비교",
+      "cell": "H93",
+      "old_characters": 88,
+      "old_text_font_exact": true,
+      "dated_diff_appended": true
+    },
+    {
+      "code": "SRS",
+      "sheet": "소프트웨어 입력 요구사항 사양서_비교",
+      "cell": "F94",
+      "old_characters": 53,
+      "old_text_font_exact": true,
+      "dated_diff_appended": true
+    },
+    {
+      "code": "SSTC",
+      "sheet": "기준서_시스템 시험_비교",
+      "cell": "F285",
+      "old_characters": 100,
+      "old_text_font_exact": true,
+      "dated_diff_appended": true
+    },
+    {
+      "code": "SSTC",
+      "sheet": "기준서_시스템 시험_비교",
+      "cell": "H285",
+      "old_characters": 123,
+      "old_text_font_exact": true,
+      "dated_diff_appended": true
+    },
+    {
+      "code": "SSTC",
+      "sheet": "기준서_시스템 시험_비교",
+      "cell": "I285",
+      "old_characters": 64,
+      "old_text_font_exact": true,
+      "dated_diff_appended": true
+    },
+    {
+      "code": "SSTC",
+      "sheet": "사이버보안 시험 연계_비교",
+      "cell": "G38",
+      "old_characters": 270,
+      "old_text_font_exact": true,
+      "dated_diff_appended": true
+    },
+    {
+      "code": "SSTC",
+      "sheet": "사이버보안 시험 연계_비교",
+      "cell": "J38",
+      "old_characters": 226,
+      "old_text_font_exact": true,
+      "dated_diff_appended": true
+    }
+  ],
+  "missing_notice_formatting": [
+    {
+      "code": "SSTR",
+      "sheet": "보고서_시스템 시험",
+      "cell": "H285",
+      "prefix": "[E8300 보완]",
+      "base_pt": 11.0,
+      "actual_sizes": [
+        "13.0"
+      ],
+      "characters_in_whole_prefix_and_description": 50,
+      "pass": true
+    },
+    {
+      "code": "SSTR",
+      "sheet": "보고서_시스템 시험",
+      "cell": "K285",
+      "prefix": "[E8300 보완]",
+      "base_pt": 11.0,
+      "actual_sizes": [
+        "13.0"
+      ],
+      "characters_in_whole_prefix_and_description": 43,
+      "pass": true
+    },
+    {
+      "code": "SSTR",
+      "sheet": "사이버보안 시험 연계",
+      "cell": "J38",
+      "prefix": "[E8300 보완]",
+      "base_pt": 10.0,
+      "actual_sizes": [
+        "12.0"
+      ],
+      "characters_in_whole_prefix_and_description": 38,
+      "pass": true
+    },
+    {
+      "code": "SSTR",
+      "sheet": "사이버보안 시험 연계",
+      "cell": "J38",
+      "prefix": "[QCC 자료 입력]",
+      "base_pt": 10.0,
+      "actual_sizes": [
+        "12.0"
+      ],
+      "characters_in_whole_prefix_and_description": 38,
+      "pass": true
+    },
+    {
+      "code": "SSTR",
+      "sheet": "사이버보안 시험 연계",
+      "cell": "K38",
+      "prefix": "[QCC 자료 입력]",
+      "base_pt": 10.0,
+      "actual_sizes": [
+        "12.0"
+      ],
+      "characters_in_whole_prefix_and_description": 62,
+      "pass": true
+    },
+    {
+      "code": "SSTR",
+      "sheet": "사이버보안 시험 연계",
+      "cell": "K38",
+      "prefix": "[QCC 자료 입력]",
+      "base_pt": 10.0,
+      "actual_sizes": [
+        "12.0"
+      ],
+      "characters_in_whole_prefix_and_description": 61,
+      "pass": true
+    },
+    {
+      "code": "SRS",
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "F94",
+      "prefix": "[E8300 보완]",
+      "base_pt": 10.0,
+      "actual_sizes": [
+        "12.0"
+      ],
+      "characters_in_whole_prefix_and_description": 50,
+      "pass": true
+    },
+    {
+      "code": "SSTC",
+      "sheet": "기준서_시스템 시험",
+      "cell": "H285",
+      "prefix": "[E8300 보완]",
+      "base_pt": 11.0,
+      "actual_sizes": [
+        "13.0"
+      ],
+      "characters_in_whole_prefix_and_description": 50,
+      "pass": true
+    },
+    {
+      "code": "SSTC",
+      "sheet": "사이버보안 시험 연계",
+      "cell": "J38",
+      "prefix": "[E8300 보완]",
+      "base_pt": 10.0,
+      "actual_sizes": [
+        "12.0"
+      ],
+      "characters_in_whole_prefix_and_description": 38,
+      "pass": true
+    },
+    {
+      "code": "SSTC",
+      "sheet": "사이버보안 시험 연계",
+      "cell": "J38",
+      "prefix": "[QCC 자료 입력]",
+      "base_pt": 10.0,
+      "actual_sizes": [
+        "12.0"
+      ],
+      "characters_in_whole_prefix_and_description": 38,
+      "pass": true
+    }
+  ],
+  "native_pages": [
+    {
+      "code": "SSTR",
+      "sheet": "보고서_시스템 시험",
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\rid83-20261013\\views\\SSTR-0-main\\page-071.png",
+      "sha256": "77B003AF83845E806ADBBD0E30AEBA66F1BEB07B792FCC8CA38B1F9ED2688433",
+      "pixels": [
+        1263,
+        893
+      ],
+      "sourceSHA256": "EC5849B277A4F074CDBACCFA7AC770D1FC8DCE8FD3AC5B8D5FC349BD74D41C8B",
+      "source_hash_match": true,
+      "direct_original_size_viewed": true,
+      "verdict": "통과",
+      "detail": "전체 표시된 해당 시험 행/비교 이력의 첫줄부터 끝줄, ID/기준/결과/판정/미비 안내와 테두리 확인. SSTR K285:K286의 최신 마지막 녹색 배포본 일치 미확인 안내까지 잘림 없이 표시. 다른 문서 전체 페이지 또는 제품 실행으로 확대하지 않음."
+    },
+    {
+      "code": "SSTR",
+      "sheet": "보고서_시스템 시험_비교",
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\rid83-20261013\\views\\SSTR-0-compare\\page-001.png",
+      "sha256": "A2DD734A293DB5A24B784B45B922A3D61229E54AC9DB507E7C0623E1A26BB62C",
+      "pixels": [
+        1263,
+        893
+      ],
+      "sourceSHA256": "EC5849B277A4F074CDBACCFA7AC770D1FC8DCE8FD3AC5B8D5FC349BD74D41C8B",
+      "source_hash_match": true,
+      "direct_original_size_viewed": true,
+      "verdict": "통과",
+      "detail": "전체 표시된 해당 시험 행/비교 이력의 첫줄부터 끝줄, ID/기준/결과/판정/미비 안내와 테두리 확인. SSTR K285:K286의 최신 마지막 녹색 배포본 일치 미확인 안내까지 잘림 없이 표시. 다른 문서 전체 페이지 또는 제품 실행으로 확대하지 않음."
+    },
+    {
+      "code": "SSTR",
+      "sheet": "사이버보안 시험 연계",
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\rid83-20261013\\views\\SSTR-1-main\\page-001.png",
+      "sha256": "86BBC0ACC84F2AF964B9025FFB160B0A282DF7FAF017298279E8D38CA02C7FA0",
+      "pixels": [
+        1263,
+        893
+      ],
+      "sourceSHA256": "EC5849B277A4F074CDBACCFA7AC770D1FC8DCE8FD3AC5B8D5FC349BD74D41C8B",
+      "source_hash_match": true,
+      "direct_original_size_viewed": true,
+      "verdict": "통과",
+      "detail": "전체 표시된 해당 시험 행/비교 이력의 첫줄부터 끝줄, ID/기준/결과/판정/미비 안내와 테두리 확인. SSTR K285:K286의 최신 마지막 녹색 배포본 일치 미확인 안내까지 잘림 없이 표시. 다른 문서 전체 페이지 또는 제품 실행으로 확대하지 않음."
+    },
+    {
+      "code": "SSTR",
+      "sheet": "사이버보안 시험 연계_비교",
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\rid83-20261013\\views\\SSTR-1-compare\\page-001.png",
+      "sha256": "D3E1E6729A3503ACA58E9FBDCA710CA7FD35838632B7BFDACAAB60D8BB768746",
+      "pixels": [
+        1263,
+        893
+      ],
+      "sourceSHA256": "EC5849B277A4F074CDBACCFA7AC770D1FC8DCE8FD3AC5B8D5FC349BD74D41C8B",
+      "source_hash_match": true,
+      "direct_original_size_viewed": true,
+      "verdict": "통과",
+      "detail": "전체 표시된 해당 시험 행/비교 이력의 첫줄부터 끝줄, ID/기준/결과/판정/미비 안내와 테두리 확인. SSTR K285:K286의 최신 마지막 녹색 배포본 일치 미확인 안내까지 잘림 없이 표시. 다른 문서 전체 페이지 또는 제품 실행으로 확대하지 않음."
+    },
+    {
+      "code": "SSTC",
+      "sheet": "기준서_시스템 시험",
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\rid83-20261013\\views\\SSTC-0-main\\page-072.png",
+      "sha256": "B7F6A1531F7BA13A131A10564EAF7D217358FEE511AF109EBB64AE871A3812BB",
+      "pixels": [
+        1263,
+        893
+      ],
+      "sourceSHA256": "865851FC890543BB4A637718EE7956E6EE565AFA6109822AD4E2859B50ADE33F",
+      "source_hash_match": true,
+      "direct_original_size_viewed": true,
+      "verdict": "통과",
+      "detail": "전체 표시된 해당 시험 행/비교 이력의 첫줄부터 끝줄, ID/기준/결과/판정/미비 안내와 테두리 확인. SSTR K285:K286의 최신 마지막 녹색 배포본 일치 미확인 안내까지 잘림 없이 표시. 다른 문서 전체 페이지 또는 제품 실행으로 확대하지 않음."
+    },
+    {
+      "code": "SSTC",
+      "sheet": "기준서_시스템 시험_비교",
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\rid83-20261013\\views\\SSTC-0-compare\\page-001.png",
+      "sha256": "6C3D8004EA07AD6DBB0D0C5D4E1658D3231B13711A2E6CD4E114888CCFABE441",
+      "pixels": [
+        1263,
+        893
+      ],
+      "sourceSHA256": "865851FC890543BB4A637718EE7956E6EE565AFA6109822AD4E2859B50ADE33F",
+      "source_hash_match": true,
+      "direct_original_size_viewed": true,
+      "verdict": "통과",
+      "detail": "전체 표시된 해당 시험 행/비교 이력의 첫줄부터 끝줄, ID/기준/결과/판정/미비 안내와 테두리 확인. SSTR K285:K286의 최신 마지막 녹색 배포본 일치 미확인 안내까지 잘림 없이 표시. 다른 문서 전체 페이지 또는 제품 실행으로 확대하지 않음."
+    },
+    {
+      "code": "SSTC",
+      "sheet": "사이버보안 시험 연계",
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\rid83-20261013\\views\\SSTC-1-main\\page-001.png",
+      "sha256": "63ABBA4A2E3F68A31CF1FC7D6BA20EBF2FE8018B6C3FD2B8AA57708BE9045D3D",
+      "pixels": [
+        1263,
+        893
+      ],
+      "sourceSHA256": "865851FC890543BB4A637718EE7956E6EE565AFA6109822AD4E2859B50ADE33F",
+      "source_hash_match": true,
+      "direct_original_size_viewed": true,
+      "verdict": "통과",
+      "detail": "전체 표시된 해당 시험 행/비교 이력의 첫줄부터 끝줄, ID/기준/결과/판정/미비 안내와 테두리 확인. SSTR K285:K286의 최신 마지막 녹색 배포본 일치 미확인 안내까지 잘림 없이 표시. 다른 문서 전체 페이지 또는 제품 실행으로 확대하지 않음."
+    },
+    {
+      "code": "SSTC",
+      "sheet": "사이버보안 시험 연계_비교",
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\rid83-20261013\\views\\SSTC-1-compare\\page-001.png",
+      "sha256": "526C9F297BB74F96CCC144BDAFFF7AA570164EDEAB6CCD3800C76177124C1B6D",
+      "pixels": [
+        1263,
+        893
+      ],
+      "sourceSHA256": "865851FC890543BB4A637718EE7956E6EE565AFA6109822AD4E2859B50ADE33F",
+      "source_hash_match": true,
+      "direct_original_size_viewed": true,
+      "verdict": "통과",
+      "detail": "전체 표시된 해당 시험 행/비교 이력의 첫줄부터 끝줄, ID/기준/결과/판정/미비 안내와 테두리 확인. SSTR K285:K286의 최신 마지막 녹색 배포본 일치 미확인 안내까지 잘림 없이 표시. 다른 문서 전체 페이지 또는 제품 실행으로 확대하지 않음."
+    }
+  ],
+  "failures": [],
+  "previous_reviews": [
+    {
+      "checked_at": "2026-10-13T15:55:22.792023+09:00",
+      "status": "FAIL_NATIVE_DISPLAY",
+      "candidate_hashes": [
+        {
+          "code": "SSTR",
+          "sha256": "EC5849B277A4F074CDBACCFA7AC770D1FC8DCE8FD3AC5B8D5FC349BD74D41C8B"
+        },
+        {
+          "code": "SRS",
+          "sha256": "BF9A92ACC2770563A410CF4A580C005A73BBAB5D34B7DABC3C695A6B9BE5B6BD"
+        },
+        {
+          "code": "SSTC",
+          "sha256": "865851FC890543BB4A637718EE7956E6EE565AFA6109822AD4E2859B50ADE33F"
+        }
+      ],
+      "failures": [
+        {
+          "check": "SSTR 보고서_시스템 시험_비교 same cell addresses",
+          "detail": null
+        },
+        {
+          "check": "SSTR 보고서_시스템 시험_비교 outside cells/layout exact",
+          "detail": null
+        },
+        {
+          "check": "system criteria/report text/rich/formula common equality",
+          "detail": {
+            "cells": 2268,
+            "differences": [
+              "B34",
+              "D34",
+              "E34",
+              "B35",
+              "D35",
+              "E35",
+              "B38",
+              "D38",
+              "E38",
+              "B39",
+              "D39",
+              "E39",
+              "B41",
+              "D41",
+              "E41",
+              "B44",
+              "D44",
+              "E44",
+              "B48",
+              "D48",
+              "E48",
+              "B50",
+              "E50",
+              "B53",
+              "D53",
+              "E53",
+              "B54",
+              "D54",
+              "E54",
+              "B64",
+              "D64",
+              "E64",
+              "B68",
+              "D68",
+              "E68",
+              "B70",
+              "E70",
+              "B74",
+              "E74",
+              "B78",
+              "E78",
+              "B82",
+              "D82",
+              "E82",
+              "B84",
+              "D84",
+              "E84",
+              "B86",
+              "D86",
+              "E86",
+              "B93",
+              "D93",
+              "E93",
+              "B96",
+              "D96",
+              "E96",
+              "B98",
+              "D98",
+              "E98",
+              "B106",
+              "D106",
+              "E106",
+              "B114",
+              "D114",
+              "E114",
+              "B116",
+              "E116",
+              "B121",
+              "E121",
+              "B124",
+              "E124",
+              "B128",
+              "D128",
+              "E128",
+              "B130",
+              "E130",
+              "B132",
+              "D132",
+              "E132",
+              "B134",
+              "E134",
+              "B138",
+              "E138",
+              "B141",
+              "E141",
+              "B144",
+              "D144",
+              "E144",
+              "B146",
+              "E146",
+              "B148",
+              "E148",
+              "B151",
+              "D151",
+              "E151",
+              "B152",
+              "E152",
+              "B155",
+              "E155",
+              "B157",
+              "E157",
+              "B159",
+              "E159",
+              "B162",
+              "D162",
+              "E162",
+              "B164",
+              "D164",
+              "E164",
+              "B166",
+              "D166",
+              "E166",
+              "B168",
+              "D168",
+              "E168",
+              "B178",
+              "D178",
+              "E178",
+              "B184",
+              "E184",
+              "B186",
+              "D186",
+              "E186",
+              "B188",
+              "D188",
+              "E188",
+              "B190",
+              "D190",
+              "E190",
+              "B191",
+              "D191",
+              "E191",
+              "B194",
+              "D194",
+              "E194",
+              "B195",
+              "D195",
+              "E195",
+              "B197",
+              "D197",
+              "E197",
+              "B199",
+              "E199",
+              "B203",
+              "D203",
+              "E203",
+              "B204",
+              "D204",
+              "E204",
+              "B206",
+              "D206",
+              "E206",
+              "B210",
+              "E210",
+              "B212",
+              "D212",
+              "E212",
+              "B215",
+              "D215",
+              "E215",
+              "B217",
+              "E217",
+              "B219",
+              "D219",
+              "E219",
+              "B222",
+              "D222",
+              "E222",
+              "B225",
+              "D225",
+              "E225",
+              "B227",
+              "D227",
+              "E227",
+              "B230",
+              "E230",
+              "B234",
+              "D234",
+              "E234",
+              "B237",
+              "D237",
+              "E237",
+              "B239",
+              "E239",
+              "B243",
+              "D243",
+              "E243",
+              "B244",
+              "D244",
+              "E244",
+              "B247",
+              "E247",
+              "B249",
+              "D249",
+              "E249",
+              "B260",
+              "D260",
+              "E260",
+              "B261",
+              "D261",
+              "E261",
+              "B269",
+              "D269",
+              "E269",
+              "B272",
+              "D272",
+              "E272",
+              "B274",
+              "D274",
+              "E274",
+              "B276",
+              "D276",
+              "E276",
+              "B278",
+              "D278",
+              "E278",
+              "B280",
+              "D280",
+              "E280"
+            ]
+          }
+        },
+        {
+          "check": "system criteria/report common merges exact",
+          "detail": {
+            "count": 581
+          }
+        },
+        {
+          "check": "cyber criteria/report common merges exact",
+          "detail": {
+            "count": 3
+          }
+        },
+        {
+          "check": "native eight inspected PNGs source hash linked",
+          "detail": null
+        },
+        {
+          "check": "actual native display",
+          "detail": [
+            {
+              "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\rid83-20261013\\views\\SSTR-0-compare\\page-001.png",
+              "cell": "K285",
+              "sheet": "보고서_시스템 시험_비교",
+              "finding": "K285 비교 이력이 아래 테두리에서 잘림. 최신 녹색 검사 결과 및 마지막 E8300 배포본 일치 미확인 안내가 전체 표시되지 않음. 행높이409.5pt이므로 비교 이력 공간/분할 보완 및 실제 재출력 필요."
+            }
+          ]
+        }
+      ],
+      "native_pages": [
+        {
+          "code": "SSTR",
+          "sheet": "보고서_시스템 시험",
+          "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\rid83-20261013\\views\\SSTR-0-main\\page-071.png",
+          "sha256": "77B003AF83845E806ADBBD0E30AEBA66F1BEB07B792FCC8CA38B1F9ED2688433",
+          "pixels": [
+            1263,
+            893
+          ],
+          "sourceSHA256": "3416675FB892628A7665E99C1A7D347B68F4CC26EEA341141ED16DBD63ACB425",
+          "source_hash_match": false,
+          "direct_original_size_viewed": true,
+          "verdict": "통과",
+          "finding": "검사 범위 본문/비교/ID/기준/결과/판정/미비 안내에서 추가 잘림/오버플로/빈 페이지를 발견하지 못함."
+        },
+        {
+          "code": "SSTR",
+          "sheet": "보고서_시스템 시험_비교",
+          "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\rid83-20261013\\views\\SSTR-0-compare\\page-001.png",
+          "sha256": "A73341071D3D0A54716AEF86FDBDAB4A03313F0BF0C4C3C0A07675CC2132732B",
+          "pixels": [
+            1263,
+            893
+          ],
+          "sourceSHA256": "3416675FB892628A7665E99C1A7D347B68F4CC26EEA341141ED16DBD63ACB425",
+          "source_hash_match": false,
+          "direct_original_size_viewed": true,
+          "verdict": "실패",
+          "finding": "K285 비교 이력이 아래 테두리에서 잘림. 최신 녹색 검사 결과 및 마지막 E8300 배포본 일치 미확인 안내가 전체 표시되지 않음. 행높이409.5pt이므로 비교 이력 공간/분할 보완 및 실제 재출력 필요."
+        },
+        {
+          "code": "SSTR",
+          "sheet": "사이버보안 시험 연계",
+          "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\rid83-20261013\\views\\SSTR-1-main\\page-001.png",
+          "sha256": "86BBC0ACC84F2AF964B9025FFB160B0A282DF7FAF017298279E8D38CA02C7FA0",
+          "pixels": [
+            1263,
+            893
+          ],
+          "sourceSHA256": "3416675FB892628A7665E99C1A7D347B68F4CC26EEA341141ED16DBD63ACB425",
+          "source_hash_match": false,
+          "direct_original_size_viewed": true,
+          "verdict": "통과",
+          "finding": "검사 범위 본문/비교/ID/기준/결과/판정/미비 안내에서 추가 잘림/오버플로/빈 페이지를 발견하지 못함."
+        },
+        {
+          "code": "SSTR",
+          "sheet": "사이버보안 시험 연계_비교",
+          "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\rid83-20261013\\views\\SSTR-1-compare\\page-001.png",
+          "sha256": "D3E1E6729A3503ACA58E9FBDCA710CA7FD35838632B7BFDACAAB60D8BB768746",
+          "pixels": [
+            1263,
+            893
+          ],
+          "sourceSHA256": "3416675FB892628A7665E99C1A7D347B68F4CC26EEA341141ED16DBD63ACB425",
+          "source_hash_match": false,
+          "direct_original_size_viewed": true,
+          "verdict": "통과",
+          "finding": "검사 범위 본문/비교/ID/기준/결과/판정/미비 안내에서 추가 잘림/오버플로/빈 페이지를 발견하지 못함."
+        },
+        {
+          "code": "SSTC",
+          "sheet": "기준서_시스템 시험",
+          "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\rid83-20261013\\views\\SSTC-0-main\\page-072.png",
+          "sha256": "B7F6A1531F7BA13A131A10564EAF7D217358FEE511AF109EBB64AE871A3812BB",
+          "pixels": [
+            1263,
+            893
+          ],
+          "sourceSHA256": "865851FC890543BB4A637718EE7956E6EE565AFA6109822AD4E2859B50ADE33F",
+          "source_hash_match": true,
+          "direct_original_size_viewed": true,
+          "verdict": "통과",
+          "finding": "검사 범위 본문/비교/ID/기준/결과/판정/미비 안내에서 추가 잘림/오버플로/빈 페이지를 발견하지 못함."
+        },
+        {
+          "code": "SSTC",
+          "sheet": "기준서_시스템 시험_비교",
+          "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\rid83-20261013\\views\\SSTC-0-compare\\page-001.png",
+          "sha256": "6C3D8004EA07AD6DBB0D0C5D4E1658D3231B13711A2E6CD4E114888CCFABE441",
+          "pixels": [
+            1263,
+            893
+          ],
+          "sourceSHA256": "865851FC890543BB4A637718EE7956E6EE565AFA6109822AD4E2859B50ADE33F",
+          "source_hash_match": true,
+          "direct_original_size_viewed": true,
+          "verdict": "통과",
+          "finding": "검사 범위 본문/비교/ID/기준/결과/판정/미비 안내에서 추가 잘림/오버플로/빈 페이지를 발견하지 못함."
+        },
+        {
+          "code": "SSTC",
+          "sheet": "사이버보안 시험 연계",
+          "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\rid83-20261013\\views\\SSTC-1-main\\page-001.png",
+          "sha256": "63ABBA4A2E3F68A31CF1FC7D6BA20EBF2FE8018B6C3FD2B8AA57708BE9045D3D",
+          "pixels": [
+            1263,
+            893
+          ],
+          "sourceSHA256": "865851FC890543BB4A637718EE7956E6EE565AFA6109822AD4E2859B50ADE33F",
+          "source_hash_match": true,
+          "direct_original_size_viewed": true,
+          "verdict": "통과",
+          "finding": "검사 범위 본문/비교/ID/기준/결과/판정/미비 안내에서 추가 잘림/오버플로/빈 페이지를 발견하지 못함."
+        },
+        {
+          "code": "SSTC",
+          "sheet": "사이버보안 시험 연계_비교",
+          "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\rid83-20261013\\views\\SSTC-1-compare\\page-001.png",
+          "sha256": "526C9F297BB74F96CCC144BDAFFF7AA570164EDEAB6CCD3800C76177124C1B6D",
+          "pixels": [
+            1263,
+            893
+          ],
+          "sourceSHA256": "865851FC890543BB4A637718EE7956E6EE565AFA6109822AD4E2859B50ADE33F",
+          "source_hash_match": true,
+          "direct_original_size_viewed": true,
+          "verdict": "통과",
+          "finding": "검사 범위 본문/비교/ID/기준/결과/판정/미비 안내에서 추가 잘림/오버플로/빈 페이지를 발견하지 못함."
+        }
+      ],
+      "interpretation": "1차 검토는 후보 갱신과 겹쳤다. 이전 SSTR K285 비교 표시 잘림의 실제 발견/PNG 해시 기록을 보존. 공통 rich 표현과 병합 순서는 기존 원본 대비 구분 후 신규 결함이 아님을 확인했다."
+    }
+  ],
+  "remaining_product_verdict": "SYS83 판정 대기. 실제 초안 내용 검사 완료/배포 대상 일치 미확인. 보안48/52/76의 새로운 QCC 조건 실행/판정대기는 유지.",
+  "new_writes": [
+    "tests-final-review.json"
+  ],
+  "review_method_note": "문자/수식은 전체 공통열을 비교했다. 기존 ID/방법 rich XML 표현의 차이는 원본 대비 그대로임을 확인하고 신규 수정 셀의 rich 일치를 별도 확인했다. 병합 순서는 의미가 같으면 집합으로 대조하고, 사이버 제목의 문서 전체폭 병합은 본문 공통 병합과 구분했다. 원래 관찰과 실제 미실행/판정 대기를 변경하거나 확대하지 않았다."
+}

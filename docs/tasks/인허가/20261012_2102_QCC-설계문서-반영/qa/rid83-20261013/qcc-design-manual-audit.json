@@ -1,0 +1,523 @@
+{
+  "schema": "qcc-design-manual-audit-1",
+  "created_at": "2026-10-13T15:48:57.616915+09:00",
+  "scope": "실제 제품 설명서 내용 확인 및 변경 전 Word5 현재본문 연결 조사. 제품 시험/배포본 승인 판정이 아님.",
+  "manual": {
+    "docx": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\04_docs\\01_사용자설명서\\260824_Sound1 사용 설명서 초안_사용적합성 형성평가용.docx",
+    "docx_sha256": "64b6d57908c51d5d109ee6b35aa04aff8ae3340e65e361a6f6c87bdfb45641dc",
+    "pdf": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\04_docs\\01_사용자설명서\\260824_Sound1 사용 설명서 초안_사용적합성 형성평가용.pdf",
+    "pdf_sha256": "c3f0dfac8a0964ae2101cdc3ae18e5d5e1143bffd21502a2a7f84f022121bc1a",
+    "physical_page_count": 48,
+    "document_id": "IFU-TD24A-01",
+    "revision": "Rev.0",
+    "cover_date": "2026.08.12",
+    "product": "Sound1 / TD24A-A-EXT",
+    "file_state": "파일명은 사용적합성 형성평가용 초안",
+    "pdf_metadata": {
+      "Company": "",
+      "CreationDate": "D:20261012120936+09'00'",
+      "Creator": " Word용 Acrobat PDFMaker 17",
+      "ModDate": "D:20261012120945+09'00'",
+      "Producer": "Adobe PDF Library 17.11.238",
+      "SourceModified": "D:20261012030803"
+    },
+    "docx_cover": [
+      {
+        "paragraph_ordinal": 1,
+        "text": "인공달팽이관"
+      },
+      {
+        "paragraph_ordinal": 2,
+        "text": "외부장치"
+      },
+      {
+        "paragraph_ordinal": 3,
+        "text": "사용설명서"
+      },
+      {
+        "paragraph_ordinal": 6,
+        "text": "IFU-TD24A-01 (Rev.0, 2026.08.12)"
+      },
+      {
+        "paragraph_ordinal": 12,
+        "text": "00"
+      },
+      {
+        "paragraph_ordinal": 13,
+        "text": "목차"
+      },
+      {
+        "paragraph_ordinal": 15,
+        "text": "1. 머리말"
+      },
+      {
+        "paragraph_ordinal": 16,
+        "text": "2. 제품 특징"
+      },
+      {
+        "paragraph_ordinal": 17,
+        "text": "인공 달팽이관 내부장치"
+      },
+      {
+        "paragraph_ordinal": 18,
+        "text": "인공 달팽이관 외부장치"
+      },
+      {
+        "paragraph_ordinal": 19,
+        "text": "3. 안전사항"
+      },
+      {
+        "paragraph_ordinal": 20,
+        "text": "기호표시"
+      },
+      {
+        "paragraph_ordinal": 21,
+        "text": "인공 달팽이관 내부장치"
+      },
+      {
+        "paragraph_ordinal": 22,
+        "text": "금기"
+      },
+      {
+        "paragraph_ordinal": 23,
+        "text": "상호작용"
+      },
+      {
+        "paragraph_ordinal": 24,
+        "text": "주의 사항"
+      },
+      {
+        "paragraph_ordinal": 25,
+        "text": "이상 반응"
+      },
+      {
+        "paragraph_ordinal": 26,
+        "text": "인공 달팽이관 외부장치"
+      },
+      {
+        "paragraph_ordinal": 27,
+        "text": "금기"
+      },
+      {
+        "paragraph_ordinal": 28,
+        "text": "경고"
+      },
+      {
+        "paragraph_ordinal": 29,
+        "text": "주의 사항"
+      },
+      {
+        "paragraph_ordinal": 30,
+        "text": "이상 반응"
+      }
+    ],
+    "docx_product_id_hits": [
+      {
+        "paragraph_ordinal": 6,
+        "text": "IFU-TD24A-01 (Rev.0, 2026.08.12)"
+      },
+      {
+        "paragraph_ordinal": 297,
+        "text": "제품 설명 - Sound1 (TD24A-A-EXT)"
+      },
+      {
+        "paragraph_ordinal": 492,
+        "text": "사용 방법 - Sound1 (TD24A-A-EXT)"
+      },
+      {
+        "paragraph_ordinal": 821,
+        "text": "  ☐ TD24A-A-EXT"
+      }
+    ],
+    "docx_heading_locations": [
+      {
+        "paragraph_ordinal": 118,
+        "text": "안전사항"
+      },
+      {
+        "paragraph_ordinal": 427,
+        "text": "사용 방법 - 초기 설정"
+      },
+      {
+        "paragraph_ordinal": 429,
+        "text": "사용 전 주의사항"
+      },
+      {
+        "paragraph_ordinal": 434,
+        "text": "사용 전 확인 사항"
+      },
+      {
+        "paragraph_ordinal": 494,
+        "text": "전원 켜기"
+      },
+      {
+        "paragraph_ordinal": 500,
+        "text": "전원 끄기"
+      },
+      {
+        "paragraph_ordinal": 505,
+        "text": "내부장치 연결"
+      },
+      {
+        "paragraph_ordinal": 510,
+        "text": "제품 충전"
+      },
+      {
+        "paragraph_ordinal": 711,
+        "text": "문제 해결"
+      }
+    ],
+    "selected_full_pdf_text": [
+      {
+        "physical_page": 1,
+        "printed_page": null,
+        "text": "인공달팽이관\n외부장치\n사용설명서\nIFU-TD24A-01 (Rev.0, 2026.08.12)"
+      },
+      {
+        "physical_page": 4,
+        "printed_page": "3 / 47",
+        "text": "03 안전사항\n반드시 아래의 안전사항을 읽고 이행해 주십시오. 안전 사항을 이행하지 않고\n사용자가 임의로 제품을 사용함으로 인해 발생하는 이익 또는 손해에 대하여 당사는\n책임을 지지 않습니다.\n기호 표시\nBF 형 전기 충격 보호 온도제한\n사용설명서 참고 습도 제한\n경고 기압 제한\n직사광선을 피해야 함 일반 폐기물이 아님\n건조한 상태로 유지되어야 포장이 파손되었을 경우,\n함 사용금지\n인공 달팽이관 내부장치\n◼\n금기\n• 전기 수술 기구를 이식부위에 사용하지 마십시오.\n- 유도 전류는 달팽이관 조직 손상 또는 내부장치의 영구적 손상을 일으킬 수 있습니다.\n• 전기 충격요법(Electroconvulsive therapy)을 적용하지 마십시오.\n- 유도 전류는 달팽이관 조직 손상 또는 내부장치의 영구적 손상을 일으킬 수 있습니다.\n• 전기 투열 요법(diathermy)을 이식 부위에 적용하지 마십시오.\n- 유도 전류는 달팽이관 조직 손상 또는 내부장치의 영구적 손상을 일으킬 수 있습니다.\n• 체외 전기 자극을 주는 저주파 자극기(TENS, TEMS), 간섭 전류 자극기의 전극을 목\n위쪽에 부착하여 사용하지 마십시오.\n- 유도 전류는 달팽이관 조직 손상 또는 내부장치의 영구적 손상을 일으킬 수 있습니다.\n• 경두개자기자극술(TMS)을 적용하지 마십시오.\n- 유도 전류는 달팽이관 조직 손상 또는 내부장치의 영구적 손상을 일으킬 수 있습니다.\n• 치료용 초음파 장치를 이식부위에 사용하지 마십시오.\n- 내부장치 주변의 조직 손상 또는 내부장치의 영구적 손상을 일으킬 수 있습니다.\n상호작용\n• 각종 의료행위 또는 검사를 받을 경우, 반드시 인공달팽이관 장치를 사용하고 있다는\n3 / 47"
+      },
+      {
+        "physical_page": 6,
+        "printed_page": "5 / 47",
+        "text": "인공 달팽이관 외부장치\n◼\n금기\n• 제품을 임의로 분해/조립하여 사용하지 마십시오.\n- 제품의 고장으로 화재가 발생할 수 있습니다.\n경고\n• 외부장치 및 액세서리를 오븐, 전자레인지, 헤어 드라이어와 같은 고열에 노출시키지\n마십시오.\n• 라디오 및 휴대전화를 포함한 RF 통신은 외부장치 음질에 영향을 줄 수 있습니다.\n• 외부장치가 비정상적으로 뜨겁거나 열이 느껴지면 즉시 사용을 중단하고, 제조사에 연락\n하십시오.\n• 사이버 보안 등의 사유로 기기가 오동작 하거나 심한 통증이 느껴질 경우, 부착된\n외부장치를 떼어내고 안전을 확보하십시오.\n• 제조업체에서 권장하는 배터리 충전기만 사용하여 배터리를 충전하십시오.\n• 단파 또는 극초단파 치료기 근처에서(1m 이내) 사용하지 마십시오.\n- 제품이 불안정해지거나 예기치 않은 출력을 발생시킬 수 있습니다.\n• 제품의 동작환경을 벗어난 환경에서 사용 시 제품에 이상이 발생할 수 있습니다.\n- 동작 환경 : 온도 10~40°C, 상대습도 30~85%, 기압 80~106kPa\n• 인공 달팽이관 외부장치의 부착 압력으로 해당부위의 피부가 괴사할 수 있습니다.\n- 외부장치 착용 위치로 장시간 누워있거나 압박을 가할 경우, 이식 부위의 피부 조직에\n자극이 발생할 수 있습니다.\n• 인공 달팽이관 내/외부장치의 자력으로 인하여 다른 이식장치(예, 뇌압션트)에 영향을 줄\n수 있습니다.\n• 제품의 작은 부속물(예. 교체용 자석)은 어린이 및 유아가 삼키지 않도록 손이 닿지 않는\n곳에 보관하십시오.\n• 제공되는 구성품 외에 제조사가 보증하지 않는 구성품(예. 공업용 자석 등)은 사용하지\n마십시오. 미보증 구성품 사용으로 인해 제품 고장 및/또는 상해가 발생할 수 있습니다.\n주의\n• 전신 검색 장비를 포함한 금속 탐지기 및 보안 검색 장비를 통과할 때 잡음이 발생할 수\n있습니다. (외부장치를 벗고 검색대를 통과하십시오)\n• 조명 센서 및 보안 시스템에서 사용되는 초음파 센서 근처에서 잡음이 발생할 수 있습니다.\n(초음파 센서 근처에서 외부장치를 벗으십시오.)\n• X-선으로 검사되는 공항 탑승 수속 또는 기내 휴대 수하물에 외부장치를 넣지 마십시오.\n외부장치의 마이크가 손상될 수 있습니다.\n5 / 47"
+      },
+      {
+        "physical_page": 7,
+        "printed_page": "6 / 47",
+        "text": "• 외부장치의 고장으로 인하여 과도한 자극이 전달되어 불편하거나 아무 소리가 들리지\n않을 수 있습니다.\n• 제품의 성능이 변한 것으로 인식될 경우 담당의에게 연락해 주십시오.\n• 사이버 보안 침해가 의심되는 경우 제조사로 연락 하십시오.\n• 정식 배포처(Android : Google Play, iOS : App Store)를 통해서 리모콘 앱을\n설치하십시오. 정식 배포처 이외의 경로에서 리모콘 앱을 설치할 경우 당사의 보안정책\n위반으로 제품을 책임지지 않습니다.\n• 스마트폰용 리모콘 앱 사용 시, 악성코드 감지 및 보안용 앱을 설치하여 사용하시길\n권장합니다.\n• 저전력 블루투스(BLE) 4.2버전 이상의 스마트폰에서 사용이 가능하며, 블루투스 페어링\n절차가 필요합니다.\n• 인공달팽이관장치 이식 후, 임의로 장기간 외부장치를 사용하지 않을 경우 기기의 성능\n저하 또는 고장이 발생할 수 있습니다.\n• 과격한 신체 활동에 따라 착용한 외부장치에 외상 또는 충격이 발생할 수 있습니다. 제품\n외장의 손상으로 인해 배터리 누수가 발생할 수 있으며, 제품 손상 시 즉시 착용을\n중단하고 문의처로 연락을 취합니다.\n6 / 47"
+      },
+      {
+        "physical_page": 8,
+        "printed_page": "7 / 47",
+        "text": "경고 배터리 관련 주의사항\n•당사가 안내한 정격(DC 5V, 500mA)의 충전기를 사용하십시오.\n- 안내되지 않은 충전기 사용 시, 배터리 과열, 폭발, 화재의 위험이 있습니다.\n• 배터리가 부풀어 오르거나 변형된 경우 즉시 사용을 중단하고 당사에 연락하십시오.\n- 계속 사용 시 폭발 또는 화재의 위험이 있습니다.\n• 배터리를 임의로 분해, 개조, 가열하지 마십시오.\n- 폭발, 화재, 화상의 위험이 있습니다.\n• 배터리를 물에 담그거나 젖게 하지 마십시오.\n- 합선으로 인한 화재, 감전의 위험이 있습니다.\n• 배터리 충전 시 가연성 물질 근처를 피하고, 충전 중인 제품을 천이나 이불로 덮지 마십시오.\n- 화재의 위험이 있습니다.\n경고 자석 관련 주의사항\n• 자석을 신용카드, 교통카드, 하드디스크 등 자기 저장매체에 가까이 하지 마십시오.\n- 데이터가 손상될 수 있습니다.\n• 자석을 어린이의 손이 닿지 않는 곳에 보관하십시오.\n- 삼킬 경우 질식 또는 장 천공의 위험이 있습니다.\n• 자석 교체 시 반드시 당사가 제공한 자석만 사용하십시오.\n- 비정품 자석 사용 시 내부장치와 연결되지 않아 제품 이용이 불가능할 수 있습니다.\n• 자석 교체 시 무리한 힘으로 돌리지 마십시오.\n- 기기파손이 발생할 수 있습니다. 청각사나 제조사에 요청부탁드립니다.\n이상반응\n• 인공달팽이관 장치 사용 시, 이명, 얼굴신경 자극, 어지럼증, 통증 등이 발생할 수 있습니다.\n• 내부장치의 고장으로 인하여 과도한 자극이 전달되어 불편하거나 아무 소리가 들리지\n않을 수 있습니다.\n• 이상 반응이 발생하는 경우, 장치의 사용을 중지하고 의사와 상담해야 합니다.\n7 / 47"
+      },
+      {
+        "physical_page": 15,
+        "printed_page": "14 / 47",
+        "text": "07 사용 방법 - 초기 설정\n사용 전 주의사항\n• 사용자(환자)가 직접 본 제품을 조작 및 사용하십시오. 외부장치는 사용자(환자)가 의도된\n조작자 입니다.\n• 제품이 정상적으로 동작하지 않거나, 사용 시 불편한 감각이 느껴지면 안전한 상태에서\n기기의 동작을 멈추는 등 적절한 조치를 취하고, 사용을 중단하십시오.\n• 사용법을 충분히 숙지 후 사용하십시오.\n사용 전 확인 사항\n• 본 제품을 사용할 때마다 다음 사항을 항상 점검하십시오.\n- 외부장치 외관, 배터리 상태 및 동작에 이상이 없는지 확인하십시오.\n1. 외부장치 피어 페어링\n• 양이 사용자의 경우, 외부장치 끼리 연결하고 방향을 부여하는 별도의 과정이 필요합니다.\n이 과정이 \"피어 페어링\" 입니다.\n• 연결을 진행할 두 외부장치를 스마트 케이스에 올바르게 넣으십시오.\n- 외부장치의 충전 단자와, 스마트 케이스의 외부장치 충전 핀이 연결되도록 합니다.\n14 / 47"
+      },
+      {
+        "physical_page": 24,
+        "printed_page": "23 / 47",
+        "text": "07 사용 방법 - Sound1 (TD24A-A-EXT)\n전원 켜기\n• 외부장치를 스마트 케이스로부터 분리하면, 자동으로 전원이 켜집니다.\n• 전원이 켜진 상태로 장시간 내부장치와 연결되지 않을 경우 자동으로 전원이 꺼집니다.\n23 / 47"
+      },
+      {
+        "physical_page": 25,
+        "printed_page": "24 / 47",
+        "text": "- 외부장치 윗면 터치 영역을 2초간 길게 누르면, 전원이 켜집니다.\n• 전원이 켜지면 배터리 상태를 표시합니다.\n전원 끄기\n• 외부장치를 머리에서 떼어낸 후, 스마트 케이스에 넣어 충전하면 전원이 꺼집니다.\n24 / 47"
+      },
+      {
+        "physical_page": 26,
+        "printed_page": "25 / 47",
+        "text": "- 외부장치의 전원이 꺼지지 않을 경우(LED가 꺼지지 않음), 외부장치 충전단자와\n케이스의 외부장치 충전 핀의 연결 상태를 확인하십시오.\n• 외부장치가 내부장치와 연결되지 않은 상태에서, 터치 영역을 2초간 길게 터치하면\n전원이 꺼집니다.\n25 / 47"
+      },
+      {
+        "physical_page": 27,
+        "printed_page": "26 / 47",
+        "text": "내부장치 연결\n• 내부장치가 이식된 부분에, 전원이 켜진 외부장치를 부착하십시오.\n• 정상적으로 연결될 경우, 외부장치의 LED가 백색으로 점등됩니다.\n- 앱 설정에 따라 연결 중의 LED를 끌 수 있습니다.\n제품 충전\n• 스마트 케이스를 열어 외부장치 충전핀의 위치를 확인합니다.\n• 외부장치의 충전단자 방향을 맞춰 제품을 충전하십시오.\n26 / 47"
+      },
+      {
+        "physical_page": 45,
+        "printed_page": "44 / 47",
+        "text": "09 문제 해결\n• 제품 사용 중 문제 발생 시 아래 항목의 점검 및 대처방법을 먼저 시도해 보십시오. 여전히\n문제가 해결되지 않은 경우 임상의 및 제조사에 문의하십시오.\n• 보증기간 내에 발생하는 제품 불량에 관하여서는 A/S처리 절차에 따라 수리 또는 교환이\n가능합니다. 단, 사용자 과실의 경우는 제외됩니다.\n배터리에 문제가 발생한 경우 반드시 제조사에 문의하십시오. 비전문가가\n배터리를 교체, 수리할 경우 과열 및 폭발 등의 안전상 심각한 위험이 발생할 수\n있습니다.\n증상 대처방법\n전원이 켜지지 않음 배터리 충전\n충전이 되지 않음 충전 케이블 교체\n외부장치 부착 피부 낮은 숫자 자석으로\n통증 교체\n전문가 (청각사 또는 제조사 서비스\n약한 진동에\n높은 숫자 자석으로 센터)를 찾으십시오.\n외부장치가\n교체\n부착 부위에서 떨어짐\n1. 외부장치에 충전 케이블을 연결하여 충전 램프의 점멸을\n에러 상태 램프 점등 확인한다.\n2. 연결된 충전 케이블의 연결을 해제하고 사용한다.\n10 A/S 방침\n1. 무상 A/S 범위\n본 제품은 구입일로부터 5년간 다음의 경우에 무상 A/S가 가능합니다.\n가. 제조상 결함으로 인한 고장\n나. 정상적인 사용 중 발생한 기능 이상\n다. 펌웨어 오류로 인한 작동 불량\n라. 정상적인 사용 환경에서 발생한 낙하·충격으로 인한 파손\n2. 유상 A/S 사유 (사용자 과실)\n다음의 경우에는 보증기간 내라도 유상 수리가 적용됩니다.\n가. 사용자의 취급 부주의로 인한 파손\n44 / 47"
+      }
+    ],
+    "selected_page_images": [
+      {
+        "physical_page": 1,
+        "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\rid83-20261013\\qcc-design-manual-pages\\IFU-TD24A-01-page-001.png",
+        "sha256": "0e209ff3af25feafb31965dc3529d0a28a3c6e91ae6c00c550400f9eca2642ad",
+        "pixels": [
+          1191,
+          1684
+        ],
+        "direct_viewed": true,
+        "view_detail": "original",
+        "view_verdict": "통과",
+        "scope": "확인한 절/문구/표 존재와 쪽 표시. 전체48쪽 시각 검사는 아님."
+      },
+      {
+        "physical_page": 6,
+        "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\rid83-20261013\\qcc-design-manual-pages\\IFU-TD24A-01-page-006.png",
+        "sha256": "a28927e4e308f5fe0f021020b615476cad93cc0d691be6dd38f060644f2d73cd",
+        "pixels": [
+          1191,
+          1684
+        ],
+        "direct_viewed": true,
+        "view_detail": "original",
+        "view_verdict": "통과",
+        "scope": "확인한 절/문구/표 존재와 쪽 표시. 전체48쪽 시각 검사는 아님."
+      },
+      {
+        "physical_page": 15,
+        "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\rid83-20261013\\qcc-design-manual-pages\\IFU-TD24A-01-page-015.png",
+        "sha256": "8da0d0c8e99c294e396842687a4f46bf090fced96e0d5d34479fbefcd3c49ef1",
+        "pixels": [
+          1191,
+          1684
+        ],
+        "direct_viewed": true,
+        "view_detail": "original",
+        "view_verdict": "통과",
+        "scope": "확인한 절/문구/표 존재와 쪽 표시. 전체48쪽 시각 검사는 아님."
+      },
+      {
+        "physical_page": 24,
+        "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\rid83-20261013\\qcc-design-manual-pages\\IFU-TD24A-01-page-024.png",
+        "sha256": "c37070b4e0adaa6867786bb643ab07c93ba2116181483233e71f645c0938256a",
+        "pixels": [
+          1191,
+          1684
+        ],
+        "direct_viewed": true,
+        "view_detail": "original",
+        "view_verdict": "통과",
+        "scope": "확인한 절/문구/표 존재와 쪽 표시. 전체48쪽 시각 검사는 아님."
+      },
+      {
+        "physical_page": 45,
+        "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\rid83-20261013\\qcc-design-manual-pages\\IFU-TD24A-01-page-045.png",
+        "sha256": "ca01e98916000df952e2d02cefaa248b5419ffff27093f9f8b7bec9764b6b5cb",
+        "pixels": [
+          1191,
+          1684
+        ],
+        "direct_viewed": true,
+        "view_detail": "original",
+        "view_verdict": "통과",
+        "scope": "확인한 절/문구/표 존재와 쪽 표시. 전체48쪽 시각 검사는 아님."
+      }
+    ]
+  },
+  "actual_content_checks": [
+    {
+      "item": "경고/안전사항",
+      "physical_pages": [
+        4,
+        6,
+        7,
+        8
+      ],
+      "printed_pages": [
+        "3 / 47",
+        "5 / 47",
+        "6 / 47",
+        "7 / 47"
+      ],
+      "section": "03 안전사항 / 인공 달팽이관 외부장치 / 경고 / 주의 / 배터리 및 자석 관련 주의사항",
+      "observed": "임의 분해, 고열, 비정상 발열, 사이버 보안 오동작 및 통증 시 중단/분리, 충전기/배터리/자석 관련 금기와 대응이 본문에 있다.",
+      "content_presence_verdict": "통과"
+    },
+    {
+      "item": "안전한 작동법",
+      "physical_pages": [
+        15,
+        24,
+        25,
+        26,
+        27
+      ],
+      "printed_pages": [
+        "14 / 47",
+        "23 / 47",
+        "24 / 47",
+        "25 / 47",
+        "26 / 47"
+      ],
+      "section": "07 사용 방법 - 초기 설정 / 사용 전 주의사항 / 사용 전 확인 사항 / 07 사용 방법 - Sound1(TD24A-A-EXT)",
+      "observed": "사용 전 외관/배터리/동작 확인, 이상감각 시 안전한 중단, 전원 켜기/끄기, 내부장치 부착과 LED 확인, 충전 방향을 설명한다.",
+      "content_presence_verdict": "통과"
+    },
+    {
+      "item": "동작방법과 문제 해결",
+      "physical_pages": [
+        15,
+        24,
+        25,
+        26,
+        27,
+        45
+      ],
+      "printed_pages": [
+        "14 / 47",
+        "23 / 47",
+        "24 / 47",
+        "25 / 47",
+        "26 / 47",
+        "44 / 47"
+      ],
+      "section": "07 사용 방법 / 09 문제 해결",
+      "observed": "설정 및 기본 사용법과 함께 전원/충전/부착 피부 통증/약한 부착/에러 램프의 증상-대처 표 및 임상의/제조사 문의를 설명한다.",
+      "content_presence_verdict": "통과"
+    }
+  ],
+  "overall_product_test_verdict": "판정 대기",
+  "remaining_evidence": [
+    "이 초안이 사용자가 확인한 현재 배포/시험 대상과 일치하는지",
+    "사용자/시험자의 실제 문서검토 결과 확인",
+    "정식 배포본/승인 상태는 별도 확인"
+  ],
+  "reference_scope": {
+    "searched_roots": [
+      "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF",
+      "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\04_docs\\99_참고용DHF",
+      "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs",
+      "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\04_docs\\01_사용자설명서"
+    ],
+    "negative_search_limit": "DHF/참고DHF/local의 파일명 검색에서 TD24A 제품 사용설명서를 찾지 못했으나 04_docs/01_사용자설명서에서 실제 파일을 확인함. 전 드라이브 부재 주장 아님.",
+    "older_reference_versions": [
+      "IFU-TD20B-01 Rev.0 2023.09.19 / TD20B-A-EXT",
+      "IFU-TD20B-02 Rev.0 2023.09.19 / TD20B-A-EXT"
+    ],
+    "older_reference_use": "현재 TD24A 배포본의 대체 증거로 사용하지 않음"
+  },
+  "combined_word_before": [
+    {
+      "code": "SR",
+      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\02_설계 입력\\SW\\외부기\\[E8300-QCC] SR-FW-TD24A 소프트웨어 요구사항.docx",
+      "sha256": "975c9f5389f20fc02cc483265d038eb85f950f50abdda4d733b5695978656895",
+      "active_acdoc_direct_links": [
+        {
+          "paragraph_ordinal": 300,
+          "paraId": "545E39EF",
+          "text": "Bluetooth Classic 송수신 요구 SW-FW-RID-69는 SYS-RID-SP-FW-15에 연결한다. 사용 설명서 요구 SW-FW-RID-83은 SYS-RID-ACDOC-17, SYS-RID-ACDOC-18 및 SYS-RID-ACDOC-20의 경고/안전사항, 안전한 작동법 및 동작방법에 연결한다. 다른 요구의 시스템 및 위험 통제 추적은 소프트웨어 요구사항 사양서에서 확인한다."
+        }
+      ],
+      "retained_general_notices": [
+        {
+          "paragraph_ordinal": 301,
+          "paraId": "3DE155B3",
+          "text": "[E8300 보완] 제품 사용 설명서에서 경고/안전사항, 안전한 작동법 및 동작방법의 해당 절과 내용, 배포 대상 및 검토 결과를 확인한다."
+        }
+      ]
+    },
+    {
+      "code": "SGR",
+      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\02_설계 입력\\SW\\외부기\\[E8300-QCC] SGR-FW-TD24A 소프트웨어 일반요구사항.docx",
+      "sha256": "92aac0e24260de06967fcf483548caf5c51f7fb96209c2a6b6daf90ce389b922",
+      "active_acdoc_direct_links": [],
+      "retained_general_notices": []
+    },
+    {
+      "code": "SIP",
+      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SIP-FW-TD24A 소프트웨어 통합 계획서.docx",
+      "sha256": "347d8632bc21aa37ee84418e471cb2ca67541cba7d014c17c3058da2a1d62978",
+      "active_acdoc_direct_links": [],
+      "retained_general_notices": []
+    },
+    {
+      "code": "SDDD",
+      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SDDD-FW-TD24A 소프트웨어 상세 설계서.docx",
+      "sha256": "121d4204a3b4bc1946695b74820720bc388d27e9978ef91b2b40f550e2145e2e",
+      "active_acdoc_direct_links": [],
+      "retained_general_notices": []
+    },
+    {
+      "code": "SAD",
+      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SAD-FW-TD24A 소프트웨어 아키텍쳐 기술서.docx",
+      "sha256": "84f592a7f7988a78eb73fa718268cc22ddf20a5bac796358b971aba0d23ccc68",
+      "active_acdoc_direct_links": [
+        {
+          "paragraph_ordinal": 1293,
+          "paraId": "32A0D308",
+          "text": "상위 요구사항: SYS-RID-ACDOC-17 / SYS-RID-ACDOC-18 / SYS-RID-ACDOC-20.제품 문서 항목 / 실행 유닛 배정 대상 아님[E8300 보완] 제품 사용 설명서의 안전/작동법/동작방법 및 문제 해결 내용, 배포 대상과 검토 결과를 확인해야 한다.",
+          "table_ordinal": 9,
+          "stored_row_ordinal": 84,
+          "cell_ordinal": 3
+        }
+      ],
+      "retained_general_notices": []
+    }
+  ],
+  "word_change_scope": "root 지시에 따라 SR/SAD의 RID83 직접 ACDOC 상위 연결만 후보에서 제거하고 자체 소프트웨어 요구사항으로 유지. 기존 일반 미비 안내는 유지. G/COM 수정 없음.",
+  "combined_word_before_render_pages": {
+    "SR": 13,
+    "SAD": 51,
+    "native_baseline": "qa/review-20261013/final-word/SR.pdf and SAD.pdf; matched baseline source hashes"
+  },
+  "word_candidates": [
+    {
+      "code": "SR",
+      "source": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\02_설계 입력\\SW\\외부기\\[E8300-QCC] SR-FW-TD24A 소프트웨어 요구사항.docx",
+      "before_backup": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\rid83-20261013\\word\\backups\\[E8300-QCC] SR-FW-TD24A 소프트웨어 요구사항.docx",
+      "candidate": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\rid83-20261013\\word\\candidates\\[E8300-QCC] SR-FW-TD24A 소프트웨어 요구사항.docx",
+      "source_sha256": "975c9f5389f20fc02cc483265d038eb85f950f50abdda4d733b5695978656895",
+      "candidate_sha256": "fb0f0a4ed73e0712e79d499097c0b635b8ea6446f65b5ddfff840edd2253b019",
+      "paraId": "545E39EF",
+      "before_current_paragraph": "Bluetooth Classic 송수신 요구 SW-FW-RID-69는 SYS-RID-SP-FW-15에 연결한다. 사용 설명서 요구 SW-FW-RID-83은 SYS-RID-ACDOC-17, SYS-RID-ACDOC-18 및 SYS-RID-ACDOC-20의 경고/안전사항, 안전한 작동법 및 동작방법에 연결한다. 다른 요구의 시스템 및 위험 통제 추적은 소프트웨어 요구사항 사양서에서 확인한다.\n",
+      "after_current_paragraph": "Bluetooth Classic 송수신 요구 SW-FW-RID-69는 SYS-RID-SP-FW-15에 연결한다. 사용 설명서 요구 SW-FW-RID-83은 경고/안전사항, 안전한 작동법 및 동작방법을 정의한 자체 소프트웨어 요구사항이다. 다른 요구의 시스템 및 위험 통제 추적은 소프트웨어 요구사항 사양서에서 확인한다.\n",
+      "old": "사용 설명서 요구 SW-FW-RID-83은 SYS-RID-ACDOC-17, SYS-RID-ACDOC-18 및 SYS-RID-ACDOC-20의 경고/안전사항, 안전한 작동법 및 동작방법에 연결한다.",
+      "new": "사용 설명서 요구 SW-FW-RID-83은 경고/안전사항, 안전한 작동법 및 동작방법을 정의한 자체 소프트웨어 요구사항이다.",
+      "new_revision_ids": [
+        "548",
+        "549"
+      ],
+      "new_revision_types": [
+        "del",
+        "ins"
+      ],
+      "new_revision_author": "김은수",
+      "new_revision_date": "2026-10-13T06:53:41Z",
+      "replacement_unit": "Saved single run; accepted text changes only the RID83 sentence",
+      "checks": {
+        "new_only_reject_c14n_exact_before": true,
+        "only_planned_current_text_difference": true,
+        "active_acdoc_count": 0,
+        "existing_revision_text_author_date_preserved": true,
+        "all_other_package_parts_byte_identical": true,
+        "all_styles_numbering_images_fields_relationships_preserved": true,
+        "paragraph_properties_byte_semantically_unchanged": true,
+        "paragraph_table_row_counts_unchanged": true,
+        "new_insertions_not_nested": true,
+        "G_source_unchanged": true
+      },
+      "retained_notice": "Existing [E8300 보완] product manual content / distribution target / review result notice unchanged",
+      "native_open_accept_reject_render": "미실행: root serialized native validation pending",
+      "publication": "Local candidate only; G unchanged",
+      "status": "통과",
+      "status_scope": "Saved package, active XML and exact new-only rejection verification only"
+    },
+    {
+      "code": "SAD",
+      "source": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SAD-FW-TD24A 소프트웨어 아키텍쳐 기술서.docx",
+      "before_backup": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\rid83-20261013\\word\\backups\\[E8300-QCC] SAD-FW-TD24A 소프트웨어 아키텍쳐 기술서.docx",
+      "candidate": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\rid83-20261013\\word\\candidates\\[E8300-QCC] SAD-FW-TD24A 소프트웨어 아키텍쳐 기술서.docx",
+      "source_sha256": "84f592a7f7988a78eb73fa718268cc22ddf20a5bac796358b971aba0d23ccc68",
+      "candidate_sha256": "4e71a6b7d696c7e5e21804eff3182f4a9f2f5bb6991e4b441ee6cbf5874119b1",
+      "paraId": "32A0D308",
+      "before_current_paragraph": "상위 요구사항: SYS-RID-ACDOC-17 / SYS-RID-ACDOC-18 / SYS-RID-ACDOC-20.\n제품 문서 항목 / 실행 유닛 배정 대상 아님\n[E8300 보완] 제품 사용 설명서의 안전/작동법/동작방법 및 문제 해결 내용, 배포 대상과 검토 결과를 확인해야 한다.\n",
+      "after_current_paragraph": "제품 문서 항목 / 실행 유닛 배정 대상 아님\n[E8300 보완] 제품 사용 설명서의 안전/작동법/동작방법 및 문제 해결 내용, 배포 대상과 검토 결과를 확인해야 한다.\n",
+      "old": "상위 요구사항: SYS-RID-ACDOC-17 / SYS-RID-ACDOC-18 / SYS-RID-ACDOC-20.",
+      "new": "",
+      "new_revision_ids": [
+        "4915"
+      ],
+      "new_revision_types": [
+        "del"
+      ],
+      "new_revision_author": "김은수",
+      "new_revision_date": "2026-10-13T06:53:41Z",
+      "replacement_unit": "Only upper-ID sentence and its attached line break",
+      "checks": {
+        "new_only_reject_c14n_exact_before": true,
+        "only_planned_current_text_difference": true,
+        "active_acdoc_count": 0,
+        "existing_revision_text_author_date_preserved": true,
+        "all_other_package_parts_byte_identical": true,
+        "all_styles_numbering_images_fields_relationships_preserved": true,
+        "paragraph_properties_byte_semantically_unchanged": true,
+        "paragraph_table_row_counts_unchanged": true,
+        "new_insertions_not_nested": true,
+        "G_source_unchanged": true
+      },
+      "retained_notice": "Existing [E8300 보완] product manual content / distribution target / review result notice unchanged",
+      "native_open_accept_reject_render": "미실행: root serialized native validation pending",
+      "publication": "Local candidate only; G unchanged",
+      "status": "통과",
+      "status_scope": "Saved package, active XML and exact new-only rejection verification only"
+    }
+  ]
+}

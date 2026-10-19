@@ -1,0 +1,315 @@
+[
+  {
+    "code": "SSTR",
+    "sourceSHA256": "1134D83842123D80F4086D961017914E9E657EB526ACE85817F877C3100C1E5A",
+    "sheets": [
+      {
+        "name": "보고서_시스템 시험",
+        "compareName": "보고서_시스템 시험_비교",
+        "range": "A1:L303",
+        "changes": 176
+      },
+      {
+        "name": "사이버보안 시험 연계",
+        "compareName": "사이버보안 시험 연계_비교",
+        "range": "A1:L39",
+        "changes": 1
+      }
+    ],
+    "inspect": {
+      "recordCount": 7,
+      "truncated": false,
+      "metadata": {
+        "revision": "jf5yge",
+        "target": {
+          "id": "wb/4xa4ab",
+          "beforeLines": 0,
+          "afterLines": 0
+        },
+        "kind": {
+          "requested": "sheet",
+          "tokens": [
+            "sheet"
+          ]
+        },
+        "include": {
+          "requested": "id,name",
+          "tokens": [
+            "id",
+            "name"
+          ]
+        },
+        "exclude": {
+          "tokens": []
+        },
+        "notices": []
+      }
+    },
+    "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sv-clean-20261013\\authored\\SSTR-authored.xlsx",
+    "allValuesMatched": true
+  },
+  {
+    "code": "SITR",
+    "sourceSHA256": "8FD7824CD36F174A970950DE20602B8C5C5308B7350FEB346C97EB3AC19C57EF",
+    "sheets": [
+      {
+        "name": "보고서_통합시험",
+        "compareName": "보고서_통합시험_비교",
+        "range": "A1:O144",
+        "changes": 96
+      }
+    ],
+    "inspect": {
+      "recordCount": 3,
+      "truncated": false,
+      "metadata": {
+        "revision": "v38syi",
+        "target": {
+          "id": "wb/f5hzfg",
+          "beforeLines": 0,
+          "afterLines": 0
+        },
+        "kind": {
+          "requested": "sheet",
+          "tokens": [
+            "sheet"
+          ]
+        },
+        "include": {
+          "requested": "id,name",
+          "tokens": [
+            "id",
+            "name"
+          ]
+        },
+        "exclude": {
+          "tokens": []
+        },
+        "notices": []
+      }
+    },
+    "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sv-clean-20261013\\authored\\SITR-authored.xlsx",
+    "allValuesMatched": true
+  },
+  {
+    "code": "SUVR",
+    "sourceSHA256": "C2AA80C2D85439B07FEAEAE05DB2C460EF6E2F7F1CB32103C0A328763B0DE2BA",
+    "sheets": [
+      {
+        "name": "보고서_유닛 시험",
+        "compareName": "보고서_유닛 시험_비교",
+        "range": "A1:M1775",
+        "changes": 486
+      }
+    ],
+    "inspect": {
+      "recordCount": 3,
+      "truncated": false,
+      "metadata": {
+        "revision": "d2u4bi",
+        "target": {
+          "id": "wb/p8jxxj",
+          "beforeLines": 0,
+          "afterLines": 0
+        },
+        "kind": {
+          "requested": "sheet",
+          "tokens": [
+            "sheet"
+          ]
+        },
+        "include": {
+          "requested": "id,name",
+          "tokens": [
+            "id",
+            "name"
+          ]
+        },
+        "exclude": {
+          "tokens": []
+        },
+        "notices": []
+      }
+    },
+    "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sv-clean-20261013\\authored\\SUVR-authored.xlsx",
+    "allValuesMatched": true
+  },
+  {
+    "code": "SRS",
+    "sourceSHA256": "A568B4996AC13053D55973E5E59E59ACB6E18FAB5E41C4A7423DEF49596B93E4",
+    "sheets": [
+      {
+        "name": "소프트웨어 입력 요구사항 사양서",
+        "compareName": "소프트웨어 입력 요구사항 사양서_비교",
+        "range": "B3:I107",
+        "changes": 69
+      }
+    ],
+    "inspect": {
+      "recordCount": 3,
+      "truncated": false,
+      "metadata": {
+        "revision": "e39365",
+        "target": {
+          "id": "wb/3c48me",
+          "beforeLines": 0,
+          "afterLines": 0
+        },
+        "kind": {
+          "requested": "sheet",
+          "tokens": [
+            "sheet"
+          ]
+        },
+        "include": {
+          "requested": "id,name",
+          "tokens": [
+            "id",
+            "name"
+          ]
+        },
+        "exclude": {
+          "tokens": []
+        },
+        "notices": []
+      }
+    },
+    "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sv-clean-20261013\\authored\\SRS-authored.xlsx",
+    "allValuesMatched": true
+  },
+  {
+    "code": "SSTC",
+    "sourceSHA256": "C4DCAAA772F4BE959F2431BE5BBAED6EDEA2F2C1C132598FD020A694613EEBA8",
+    "sheets": [
+      {
+        "name": "기준서_시스템 시험",
+        "compareName": "기준서_시스템 시험_비교",
+        "range": "A1:J304",
+        "changes": 157
+      },
+      {
+        "name": "사이버보안 시험 연계",
+        "compareName": "사이버보안 시험 연계_비교",
+        "range": "A1:J39",
+        "changes": 1
+      }
+    ],
+    "inspect": {
+      "recordCount": 5,
+      "truncated": false,
+      "metadata": {
+        "revision": "n1cdeo",
+        "target": {
+          "id": "wb/fxwgzb",
+          "beforeLines": 0,
+          "afterLines": 0
+        },
+        "kind": {
+          "requested": "sheet",
+          "tokens": [
+            "sheet"
+          ]
+        },
+        "include": {
+          "requested": "id,name",
+          "tokens": [
+            "id",
+            "name"
+          ]
+        },
+        "exclude": {
+          "tokens": []
+        },
+        "notices": []
+      }
+    },
+    "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sv-clean-20261013\\authored\\SSTC-authored.xlsx",
+    "allValuesMatched": true
+  },
+  {
+    "code": "SITC",
+    "sourceSHA256": "DF1B43F304EA7E438A3BDDEF86FA2E3770D0F1FEF829D536166A51E86C5FCAF6",
+    "sheets": [
+      {
+        "name": "기준서_통합 시험",
+        "compareName": "기준서_통합 시험_비교",
+        "range": "A1:M144",
+        "changes": 82
+      }
+    ],
+    "inspect": {
+      "recordCount": 3,
+      "truncated": false,
+      "metadata": {
+        "revision": "v9bonf",
+        "target": {
+          "id": "wb/f75ck5",
+          "beforeLines": 0,
+          "afterLines": 0
+        },
+        "kind": {
+          "requested": "sheet",
+          "tokens": [
+            "sheet"
+          ]
+        },
+        "include": {
+          "requested": "id,name",
+          "tokens": [
+            "id",
+            "name"
+          ]
+        },
+        "exclude": {
+          "tokens": []
+        },
+        "notices": []
+      }
+    },
+    "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sv-clean-20261013\\authored\\SITC-authored.xlsx",
+    "allValuesMatched": true
+  },
+  {
+    "code": "SUVC",
+    "sourceSHA256": "97ABF9DF8329EAF1EA00C93C7E136A18C79A865D0F09A22F3C9297EE88BB69F3",
+    "sheets": [
+      {
+        "name": "기준서_유닛 검증",
+        "compareName": "기준서_유닛 검증_비교",
+        "range": "A1:K1773",
+        "changes": 448
+      }
+    ],
+    "inspect": {
+      "recordCount": 3,
+      "truncated": false,
+      "metadata": {
+        "revision": "tj6nl6",
+        "target": {
+          "id": "wb/ghpn0p",
+          "beforeLines": 0,
+          "afterLines": 0
+        },
+        "kind": {
+          "requested": "sheet",
+          "tokens": [
+            "sheet"
+          ]
+        },
+        "include": {
+          "requested": "id,name",
+          "tokens": [
+            "id",
+            "name"
+          ]
+        },
+        "exclude": {
+          "tokens": []
+        },
+        "notices": []
+      }
+    },
+    "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sv-clean-20261013\\authored\\SUVC-authored.xlsx",
+    "allValuesMatched": true
+  }
+]

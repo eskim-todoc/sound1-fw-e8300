@@ -1,0 +1,31 @@
+{
+  "source": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\unit-rebuild-20261016\\candidate.xlsx",
+  "source_sha256": "037CF72A05B276DE25FD21B7EE457A655736BE8FB6D4AE14B67C881F0E3EBEF4",
+  "status": "통과",
+  "exports": [
+    {
+      "name": "candidate-comparison-final",
+      "area": "B4:G347",
+      "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\unit-rebuild-20261016\\native-candidate-comparison-final.pdf",
+      "sha256": "FD92DDFD17EDB61DE4D8286FD8615F7904F0626EC549AED847F2DCD221CEA656"
+    },
+    {
+      "name": "candidate-comparison-final-first",
+      "area": "B4:G12",
+      "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\unit-rebuild-20261016\\native-candidate-comparison-final-first.pdf",
+      "sha256": "E7011AFFFE3F59D733EC5DA16CC903CCA4206549598A88311EF5AF8D6FFE5CF0"
+    },
+    {
+      "name": "candidate-comparison-final-last",
+      "area": "B341:G347",
+      "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\unit-rebuild-20261016\\native-candidate-comparison-final-last.pdf",
+      "sha256": "C91A8738E1E38817E45033448A7339B41EDD1B12A49ADC396B981075D3F20D82"
+    }
+  ],
+  "readonly": true,
+  "saved": false,
+  "closed_without_saving": true,
+  "source_end_sha256": "037CF72A05B276DE25FD21B7EE457A655736BE8FB6D4AE14B67C881F0E3EBEF4",
+  "source_unchanged": true,
+  "preview_correction": "QA repeated row corrected from first data row5 to actual header row4; workbook unchanged"
+}

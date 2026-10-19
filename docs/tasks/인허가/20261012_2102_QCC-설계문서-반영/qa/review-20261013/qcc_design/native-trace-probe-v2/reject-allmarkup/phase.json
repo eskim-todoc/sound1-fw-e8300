@@ -1,0 +1,9 @@
+{
+  "phase": "native accepted and new-only rejected 83x3 cell proof PASS",
+  "at": "2026-10-13T10:39:22.5161089+09:00",
+  "candidate": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_design\\native-trace-probe-v2\\SAD-native-probe-author.docx",
+  "candidateSHA256": "AFA120B7A38105FCF4264DC47CF0BDC39C430330F259E07A627FAB51AFF8CB19",
+  "sourceSHA256": "8af46ef971b15ec6815cb5aed66e25580a4c9494d43dcdf4925852cb38c50515",
+  "GModified": false,
+  "personalization_changed": false
+}

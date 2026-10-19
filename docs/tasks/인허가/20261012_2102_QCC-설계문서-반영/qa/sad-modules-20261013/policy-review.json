@@ -1,0 +1,181 @@
+{
+  "checked_at": "2026-10-13T16:44:06.682085+09:00",
+  "scope": "SAD module label formatting only",
+  "status": "PASS_SCOPED",
+  "checks": [
+    {
+      "principle": 1,
+      "applies": true,
+      "verdict": "통과",
+      "evidence": "기능/역할은 원문 그대로이며 QCC도 같은 모듈 명칭 체계로 유지"
+    },
+    {
+      "principle": 2,
+      "applies": false,
+      "verdict": "해당없음",
+      "evidence": "모듈 이름 앞의 ID 표기만 정리하므로 요구사항 내용, 실행 구조/상세 구현, 시험 조건·수치·결과·사진·날짜 또는 Excel을 변경하지 않음"
+    },
+    {
+      "principle": 3,
+      "applies": true,
+      "verdict": "통과",
+      "evidence": "설명 제목에서는 모듈 ID를 제거하고 두 추적표의 모듈/유닛 ID와 XML을 보존"
+    },
+    {
+      "principle": 4,
+      "applies": true,
+      "verdict": "통과",
+      "evidence": "현재 G 문서와 E8300 동종 제목, 실제 목차/모듈 본문 확인"
+    },
+    {
+      "principle": 5,
+      "applies": false,
+      "verdict": "해당없음",
+      "evidence": "모듈 이름 앞의 ID 표기만 정리하므로 요구사항 내용, 실행 구조/상세 구현, 시험 조건·수치·결과·사진·날짜 또는 Excel을 변경하지 않음"
+    },
+    {
+      "principle": 6,
+      "applies": true,
+      "verdict": "통과",
+      "evidence": "제목과 목차를 함께 정리하고 상세설계 추적표 및 다른 DHF 11종의 보존 대조"
+    },
+    {
+      "principle": 7,
+      "applies": true,
+      "verdict": "통과",
+      "evidence": "E8300과 같은 모듈 이름 표기; 본문 역할 설명 및 스타일/표 폭/그림 불변"
+    },
+    {
+      "principle": 8,
+      "applies": false,
+      "verdict": "해당없음",
+      "evidence": "모듈 이름 앞의 ID 표기만 정리하므로 요구사항 내용, 실행 구조/상세 구현, 시험 조건·수치·결과·사진·날짜 또는 Excel을 변경하지 않음"
+    },
+    {
+      "principle": 9,
+      "applies": false,
+      "verdict": "해당없음",
+      "evidence": "모듈 이름 앞의 ID 표기만 정리하므로 요구사항 내용, 실행 구조/상세 구현, 시험 조건·수치·결과·사진·날짜 또는 Excel을 변경하지 않음"
+    },
+    {
+      "principle": 10,
+      "applies": false,
+      "verdict": "해당없음",
+      "evidence": "모듈 이름 앞의 ID 표기만 정리하므로 요구사항 내용, 실행 구조/상세 구현, 시험 조건·수치·결과·사진·날짜 또는 Excel을 변경하지 않음"
+    },
+    {
+      "principle": 11,
+      "applies": false,
+      "verdict": "해당없음",
+      "evidence": "모듈 이름 앞의 ID 표기만 정리하므로 요구사항 내용, 실행 구조/상세 구현, 시험 조건·수치·결과·사진·날짜 또는 Excel을 변경하지 않음"
+    },
+    {
+      "principle": 12,
+      "applies": false,
+      "verdict": "해당없음",
+      "evidence": "모듈 이름 앞의 ID 표기만 정리하므로 요구사항 내용, 실행 구조/상세 구현, 시험 조건·수치·결과·사진·날짜 또는 Excel을 변경하지 않음"
+    },
+    {
+      "principle": 13,
+      "applies": false,
+      "verdict": "해당없음",
+      "evidence": "모듈 이름 앞의 ID 표기만 정리하므로 요구사항 내용, 실행 구조/상세 구현, 시험 조건·수치·결과·사진·날짜 또는 Excel을 변경하지 않음"
+    },
+    {
+      "principle": 14,
+      "applies": false,
+      "verdict": "해당없음",
+      "evidence": "모듈 이름 앞의 ID 표기만 정리하므로 요구사항 내용, 실행 구조/상세 구현, 시험 조건·수치·결과·사진·날짜 또는 Excel을 변경하지 않음"
+    },
+    {
+      "principle": 15,
+      "applies": false,
+      "verdict": "해당없음",
+      "evidence": "모듈 이름 앞의 ID 표기만 정리하므로 요구사항 내용, 실행 구조/상세 구현, 시험 조건·수치·결과·사진·날짜 또는 Excel을 변경하지 않음"
+    },
+    {
+      "principle": 16,
+      "applies": false,
+      "verdict": "해당없음",
+      "evidence": "모듈 이름 앞의 ID 표기만 정리하므로 요구사항 내용, 실행 구조/상세 구현, 시험 조건·수치·결과·사진·날짜 또는 Excel을 변경하지 않음"
+    },
+    {
+      "principle": 17,
+      "applies": false,
+      "verdict": "해당없음",
+      "evidence": "모듈 이름 앞의 ID 표기만 정리하므로 요구사항 내용, 실행 구조/상세 구현, 시험 조건·수치·결과·사진·날짜 또는 Excel을 변경하지 않음"
+    },
+    {
+      "principle": 18,
+      "applies": false,
+      "verdict": "해당없음",
+      "evidence": "모듈 이름 앞의 ID 표기만 정리하므로 요구사항 내용, 실행 구조/상세 구현, 시험 조건·수치·결과·사진·날짜 또는 Excel을 변경하지 않음"
+    },
+    {
+      "principle": 19,
+      "applies": false,
+      "verdict": "해당없음",
+      "evidence": "모듈 이름 앞의 ID 표기만 정리하므로 요구사항 내용, 실행 구조/상세 구현, 시험 조건·수치·결과·사진·날짜 또는 Excel을 변경하지 않음"
+    },
+    {
+      "principle": 20,
+      "applies": false,
+      "verdict": "해당없음",
+      "evidence": "모듈 이름 앞의 ID 표기만 정리하므로 요구사항 내용, 실행 구조/상세 구현, 시험 조건·수치·결과·사진·날짜 또는 Excel을 변경하지 않음"
+    },
+    {
+      "principle": 21,
+      "applies": false,
+      "verdict": "해당없음",
+      "evidence": "모듈 이름 앞의 ID 표기만 정리하므로 요구사항 내용, 실행 구조/상세 구현, 시험 조건·수치·결과·사진·날짜 또는 Excel을 변경하지 않음"
+    },
+    {
+      "principle": 22,
+      "applies": true,
+      "verdict": "통과",
+      "evidence": "기존 미비 안내 전체 문구/서식/담당 접두어 보존"
+    },
+    {
+      "principle": 23,
+      "applies": true,
+      "verdict": "통과",
+      "evidence": "G 저장본의 현재 본문에서 중앙 위치 목록 재수집"
+    },
+    {
+      "principle": 24,
+      "applies": false,
+      "verdict": "해당없음",
+      "evidence": "모듈 이름 앞의 ID 표기만 정리하므로 요구사항 내용, 실행 구조/상세 구현, 시험 조건·수치·결과·사진·날짜 또는 Excel을 변경하지 않음"
+    },
+    {
+      "principle": 25,
+      "applies": false,
+      "verdict": "해당없음",
+      "evidence": "모듈 이름 앞의 ID 표기만 정리하므로 요구사항 내용, 실행 구조/상세 구현, 시험 조건·수치·결과·사진·날짜 또는 Excel을 변경하지 않음"
+    },
+    {
+      "principle": 26,
+      "applies": true,
+      "verdict": "통과",
+      "evidence": "새 삭제/삽입 추적과 기존 이력 보존, 새변경 XML 거부 복원 및 QA 사본의 실제 Word 수락/거부 확인"
+    },
+    {
+      "principle": 27,
+      "applies": true,
+      "verdict": "통과",
+      "evidence": "SAD 같은 경로/접두어 유지; 나머지 현재본11/보호원본23 불변; 신규 서명/승인/전역 설정 변경 없음"
+    },
+    {
+      "principle": 28,
+      "applies": true,
+      "verdict": "통과",
+      "evidence": "저장본은 검증 후보와 같은 SHA256; 실제 Word 전체 표시/표 보존/목차 정합 확인"
+    },
+    {
+      "principle": 29,
+      "applies": true,
+      "verdict": "통과",
+      "evidence": "기존 문단/런/번호/스타일/필드/추적표와 그림 보존; 새 모듈 이름도 같은 서식 유지"
+    }
+  ]
+}

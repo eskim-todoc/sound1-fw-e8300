@@ -1,0 +1,33 @@
+{
+  "code": "SAD",
+  "original_candidate": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sad-modules-20261013\\SAD-candidate.docx",
+  "original_candidate_sha256": "eb9dae4767b61f11a1be05f324ad89dba9fe775c867b54cd419488d0fd4cbbdc",
+  "qa_new_only": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sad-modules-20261013\\SAD-new-only-qa.docx",
+  "qa_new_only_sha256": "617be487a26cd0d6778d32daa0b19afec3238a756cca00045ee31df2231c990b",
+  "qa_before_control": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sad-modules-20261013\\SAD-before-control-qa.docx",
+  "qa_before_control_sha256": "b047384c9eb5a0949302b1d7df7f13e133d245c5c3c7b9f31866d2ed9b890ffe",
+  "expected_accept": "\t3.4.3. 시스템 관리 모듈\t10\n\t3.4.4. HW 인터페이스 모듈\t10\n\t3.4.5. 블루투스 모듈\t11\n\t3.4.6. 보안 모듈\t12\n시스템 관리 모듈\nHW 인터페이스 모듈\n블루투스 모듈\n보안 모듈\n",
+  "expected_reject": "\t3.4.3. SI-ID-QCC-001 시스템 관리 모듈\t10\n\t3.4.4. SI-ID-QCC-002 HW 인터페이스 모듈\t10\n\t3.4.5. SI-ID-QCC-003 블루투스 모듈\t11\n\t3.4.6. SI-ID-QCC-004 보안 모듈\t12\nSI-ID-QCC-001 시스템 관리 모듈\nSI-ID-QCC-002 HW 인터페이스 모듈\nSI-ID-QCC-003 블루투스 모듈\nSI-ID-QCC-004 보안 모듈\n",
+  "new_revision_ids": [
+    "4916",
+    "4917",
+    "4918",
+    "4919",
+    "4920",
+    "4921",
+    "4922",
+    "4923",
+    "4924",
+    "4925",
+    "4926",
+    "4927",
+    "4928",
+    "4929",
+    "4930",
+    "4931"
+  ],
+  "new_revision_count": 16,
+  "main_story_paragraph_count": 8,
+  "new_only_reject_xml_exact_before_control": true,
+  "scope": "Eight original heading/TOC paragraphs; only their past histories accepted. Native AcceptAll/RejectAll verifies remaining new revisions. Full candidate separately retains all history and exact XML new-only rejection; direct selective full-candidate COM rejection is not claimed."
+}

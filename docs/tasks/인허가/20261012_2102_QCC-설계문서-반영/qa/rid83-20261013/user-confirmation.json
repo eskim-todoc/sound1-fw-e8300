@@ -1,0 +1,103 @@
+{
+  "recordedAt": "2026-10-13T16:08:46.942736+09:00",
+  "source": "은수님의 최신 답변을 루트 담당이 이 후속 작업에 직접 전달함",
+  "latest_user_fact": "세 사용설명서 항목을 모두 직접 확인했다. 실제 배포본은 별도이므로 이번에는 260824 초안 검사 결과만 기록한다.",
+  "user": "김은수",
+  "document_identifier_as_given": "260824 초안",
+  "is_draft": true,
+  "released_manual_is_separate": true,
+  "all_three_items_user_confirmed": true,
+  "conditions": [
+    {
+      "condition": 1,
+      "item": "경고 및 안전사항",
+      "user_directly_checked": true,
+      "examined_scope": "260824 초안",
+      "draft_result": "확인 완료(사용자 확인)",
+      "released_manual_result": "판정 대기"
+    },
+    {
+      "condition": 2,
+      "item": "안전하게 사용하는 작동법",
+      "user_directly_checked": true,
+      "examined_scope": "260824 초안",
+      "draft_result": "확인 완료(사용자 확인)",
+      "released_manual_result": "판정 대기"
+    },
+    {
+      "condition": 3,
+      "item": "안전 예방조치, 사용 방법, 문제 해결 방법",
+      "user_directly_checked": true,
+      "examined_scope": "260824 초안",
+      "draft_result": "확인 완료(사용자 확인)",
+      "released_manual_result": "판정 대기"
+    }
+  ],
+  "fact_limits": [
+    "260824는 사용자가 지정한 초안 식별 표기를 그대로 사용한다. 별도 문서번호/파일명/배포 버전/승인일/서명/페이지/파일 해시는 제공된 사실만으로 새로 만들지 않는다.",
+    "사용자의 직접 확인은 이 초안 문서 검사 결과 기입의 근거다. Codex가 지금 실제 사용설명서에서 새 검사를 수행하거나 실기/원시 로그를 수집한 것으로 기록하지 않는다.",
+    "세 조건의 초안 확인과 실제 배포본의 최종 검토/판정은 구분한다. 초안 내용 확인을 정식 승인 또는 배포본 통과로 확대하지 않는다.",
+    "이번 확인은 RID83의 사용자 설명서 검사에 한정한다. 다른 QCC 구현/제품 시험/새 승인으로 확대하지 않는다."
+  ],
+  "report_result_recommendation": "260824 사용설명서 초안에서 경고 및 안전사항, 안전한 작동법, 안전 예방조치/사용 방법/문제 해결 항목을 사용자가 직접 확인했다. 실제 배포본은 별도이며 이번 결과는 초안 범위에 한정한다.",
+  "report_verdict_recommendation": "초안 확인 완료 / 실제 배포본 최종 판정 대기",
+  "remaining_final_evidence": [
+    "실제 배포본의 문서 식별/버전과 배포 대상",
+    "배포본의 세 조건에 대응하는 실제 내용과 검토 결과",
+    "초안 이후 변경 유무 및 배포본 검토의 적용 범위"
+  ],
+  "RID83_upper_trace": "직접 상위 입증이 없는 ACDOC17/18/20을 현재 상위로 사용하지 않는다. 자체 SW-FW-RID83을 유지하며 H93은 공란이다. 상위 정정과 초안 검사 결과는 별개의 사실이다.",
+  "previous_audit": {
+    "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\rid83-20261013\\requirements-audit.json",
+    "sha256": "29C63F7E930B0C79CF433DAC1EDBCFFC75EEC3BEBDBC7FDF04C9E5B620F51CD6",
+    "modified": false
+  },
+  "read_only_closeout_inputs": [
+    {
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\작업.md",
+      "sha256_at_read": "45D37B1946E63AACD700C8035EB2402102F04A0067A5D6FF14182D133A3AF96E"
+    },
+    {
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\QCC 자료 추가 위치 관리.md",
+      "sha256_at_read": "BA760998F2C22D1CD4043AD4E3496AA6CD3FCC2A54674A7E5283A1D8BF6FDA98"
+    },
+    {
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\evidence\\final-output-manifest.json",
+      "sha256_at_read": "64BB1E991AA62030D942C3B9A830C80BDA8AF1EA32F1A4B01B6F7962C5107CB7"
+    }
+  ],
+  "closeout_update_proposals": [
+    {
+      "owner": "root",
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\작업.md",
+      "locations": [
+        "현재 상태8~13줄",
+        "기존 매트릭스/ACDOC 설명152~153줄",
+        "이번RID83후속결과/검증근거절"
+      ],
+      "update": "최종 저장본, 기준/보고 공통 행 및 native 검증 완료 후 후속 수정 종료 상태로 갱신한다. ACDOC3 연결은 직접 상위 입증 부족으로 해제하고 자체 RID83을 유지했음을 명시한다. 이전 연결 완료 주장은 당시 이력이며 이번 정정으로 대체됐다고 연결한다. 세 조건의 사용자 확인은260824 초안에 한정하고 배포본 최종 판정 대기는 남긴다. 매트릭스 직접 상위 대조 분모와 자체 요구 분리는 새 저장본 기준으로 다시 계산한다."
+    },
+    {
+      "owner": "root",
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\QCC 자료 추가 위치 관리.md",
+      "locations": [
+        "현재 통합본 요약16줄",
+        "QCC-NEW-SAD-E31줄",
+        "QCC-NEW-MANUAL66줄",
+        "SRS/SSTC/SSTR의RID83/SYS83검색위치와담당안내"
+      ],
+      "update": "ACDOC 상위 연결 완료 상태를 자체 SW 요구/상위 공란으로 바꾼다. 자료 상태는260824 초안 세 조건 사용자 확인 완료와 실제 배포본 검토/최종 판정 대기로 구분한다. 최종 현재 본문의 절/ID/행/셀/접두어, 확인일과 위치 수는 실제 저장본에서 다시 수집한다. 삭제 추적/목차/_비교 이력을 현재 위치로 세지 않는다."
+    },
+    {
+      "owner": "root",
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\evidence\\final-output-manifest.json",
+      "locations": [
+        "files의SRS/SAD/SSTC/SSTR해시와native_previews",
+        "evidence/current_location_count/checked_at/status/scope",
+        "RID83검사근거와product_execution설명"
+      ],
+      "update": "실제 바뀐 파일의 최종 G 해시, native 표시와 내용 대조 증거를 갱신한다. 활성 RID82개 유지, 상위 공란/기존 추적 보존 및 기준/보고 공통 행 검사를 연결한다. 사용자 초안 확인JSON과 상위 조사JSON을 증거로 추가하고 실제 배포본 판정 대기를 보존한다. 앞선SV 단계의Word5 불변은 그 단계 이력으로 두고 이번SAD 변경은 현재 수정 범위로 구분한다. 원본23개 불변과 미변경 파일 보존도 최종본 기준으로 검증한다."
+    }
+  ],
+  "ownership_and_mutations": "이번 담당은 이 새 증거JSON만 작성했다. 기존 조사QA/작업MD/중앙목록/manifest/G/native/Office는 수정·조작하지 않았다."
+}

@@ -1,0 +1,2732 @@
+[
+  {
+    "key": "SUVC",
+    "source_path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SUVC-FW-TD24A 소프트웨어 유닛 검증 기준서.xlsx",
+    "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\SUVC-empty-run-repair.xlsx",
+    "sha256_before": "4dfa2cb97668537ac2cf1d681786e82e94074c6857aff49c9d1ef4b1b927b5c8",
+    "sha256_after": "682c33599fb54515db2b8b8eb4652c14b166713d62778d100d88d131a82feb1f",
+    "empty_runs_removed": 148,
+    "changes": [
+      {
+        "sheet": "기준서_유닛 검증",
+        "member": "xl/worksheets/sheet2.xml",
+        "cells": [
+          {
+            "cell": "J30",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J35",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J39",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J43",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J47",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J51",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J54",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J59",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J64",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J67",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J72",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J101",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J116",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J121",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J124",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J131",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J138",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J144",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J149",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J160",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J168",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J175",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J182",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J268",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J278",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J285",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J289",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J298",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J304",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J309",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J322",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J401",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J559",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J578",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J585",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J589",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J595",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J609",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J614",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J624",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J633",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J638",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J644",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J650",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "H789",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J789",
+            "empty_runs_removed": 3,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J793",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J799",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J802",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "H809",
+            "empty_runs_removed": 2,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J809",
+            "empty_runs_removed": 5,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J812",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J824",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J834",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J839",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J860",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J876",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J883",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J889",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J897",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J904",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J908",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J915",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J920",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J925",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J934",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J942",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J964",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J976",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J982",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J987",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J996",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J1003",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J1010",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J1040",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J1088",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J1100",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J1104",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J1109",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J1114",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J1119",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J1124",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J1142",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J1148",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J1154",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J1159",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J1165",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J1175",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J1181",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J1185",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J1192",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "H1208",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J1208",
+            "empty_runs_removed": 3,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J1214",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J1230",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J1235",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J1243",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J1252",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J1284",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J1288",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J1305",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J1308",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J1319",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J1323",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J1329",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J1365",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J1391",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J1409",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J1452",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J1497",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J1534",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J1577",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J1590",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J1616",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J1623",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J1644",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J1649",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J1686",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I1728",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I1729",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I1730",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I1734",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I1735",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J1735",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I1736",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I1738",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I1740",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I1741",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I1742",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I1744",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I1746",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I1747",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I1748",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I1751",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I1752",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I1753",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J1753",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I1754",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J1754",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          }
+        ]
+      }
+    ],
+    "other_package_members_byte_identical": true,
+    "all_cell_values_preserved": true,
+    "all_nonempty_rich_runs_byte_identical": true
+  },
+  {
+    "key": "SUVR",
+    "source_path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\04_설계 검증\\SW\\외부기\\[E8300-QCC] SUVR-FW-TD24A 소프트웨어 유닛 검증 보고서.xlsx",
+    "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\SUVR-empty-run-repair.xlsx",
+    "sha256_before": "e95a2096466540e835237a683f47b2cb3e315dae480e7e5b239e1adc464fa547",
+    "sha256_after": "f17845595231355efa8627c0689738173c7fbd58cd4987a7dd0980075c9a6b11",
+    "empty_runs_removed": 148,
+    "changes": [
+      {
+        "sheet": "보고서_유닛 시험",
+        "member": "xl/worksheets/sheet2.xml",
+        "cells": [
+          {
+            "cell": "J30",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J35",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J39",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J43",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J47",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J51",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J54",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J59",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J64",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J67",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J72",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J101",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J116",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J121",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J124",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J131",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J138",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J144",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J149",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J160",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J168",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J175",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J182",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J268",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J278",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J285",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J289",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J298",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J304",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J309",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J322",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J401",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J559",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J578",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J585",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J589",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J595",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J609",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J614",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J624",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J633",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J638",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J644",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J650",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "H789",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J789",
+            "empty_runs_removed": 3,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J793",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J799",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J802",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "H809",
+            "empty_runs_removed": 2,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J809",
+            "empty_runs_removed": 5,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J812",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J824",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J834",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J839",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J860",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J876",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J883",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J889",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J897",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J904",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J908",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J915",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J920",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J925",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J934",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J942",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J964",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J976",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J982",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J987",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J996",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J1003",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J1010",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J1040",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J1088",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J1100",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J1104",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J1109",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J1114",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J1119",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J1124",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J1142",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J1148",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J1154",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J1159",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J1165",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J1175",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J1181",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J1185",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J1192",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "H1208",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J1208",
+            "empty_runs_removed": 3,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J1214",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J1230",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J1235",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J1243",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J1252",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J1284",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J1288",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J1305",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J1308",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J1319",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J1323",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J1329",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J1365",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J1391",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J1409",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J1452",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J1497",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J1534",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J1577",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J1590",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J1616",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J1623",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J1644",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J1649",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J1686",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I1728",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I1729",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I1730",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I1734",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I1735",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J1735",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I1736",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I1738",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I1740",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I1741",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I1742",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I1744",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I1746",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I1747",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I1748",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I1751",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I1752",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I1753",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J1753",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I1754",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "J1754",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          }
+        ]
+      }
+    ],
+    "other_package_members_byte_identical": true,
+    "all_cell_values_preserved": true,
+    "all_nonempty_rich_runs_byte_identical": true
+  },
+  {
+    "key": "SITC",
+    "source_path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SITC-FW-TD24A 소프트웨어 통합시험 기준서.xlsx",
+    "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\SITC-empty-run-repair.xlsx",
+    "sha256_before": "5813a7ac7e8e3f96a102beea32133fed4345e34c485fab8bbd90b2025112388c",
+    "sha256_after": "ad494cbbc096ddc26f88807974bfbf58f365b74b9b9b37f3332281c6d83b820d",
+    "empty_runs_removed": 17,
+    "changes": [
+      {
+        "sheet": "기준서_통합 시험",
+        "member": "xl/worksheets/sheet2.xml",
+        "cells": [
+          {
+            "cell": "L25",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "L29",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "L32",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "L37",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "L43",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "L52",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "L58",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "L62",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "L67",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "L73",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "L78",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "L83",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "L92",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "L98",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "L102",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "L112",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "L119",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          }
+        ]
+      }
+    ],
+    "other_package_members_byte_identical": true,
+    "all_cell_values_preserved": true,
+    "all_nonempty_rich_runs_byte_identical": true
+  },
+  {
+    "key": "SITR",
+    "source_path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\04_설계 검증\\SW\\외부기\\[E8300-QCC] SITR-FW-TD24A 소프트웨어 통합시험 보고서.xlsx",
+    "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\SITR-empty-run-repair.xlsx",
+    "sha256_before": "0bd19ff7c1da654e7fb0376582bf3c93044fe0019aaef5591f750e390eda748a",
+    "sha256_after": "bdb79a625040afcdc2df209c0efdd6679e82f1666b575d5fe8340345e76045cd",
+    "empty_runs_removed": 17,
+    "changes": [
+      {
+        "sheet": "보고서_통합시험",
+        "member": "xl/worksheets/sheet2.xml",
+        "cells": [
+          {
+            "cell": "L25",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "L29",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "L32",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "L37",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "L43",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "L52",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "L58",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "L62",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "L67",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "L73",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "L78",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "L83",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "L92",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "L98",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "L102",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "L112",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "L119",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          }
+        ]
+      }
+    ],
+    "other_package_members_byte_identical": true,
+    "all_cell_values_preserved": true,
+    "all_nonempty_rich_runs_byte_identical": true
+  },
+  {
+    "key": "SSTC",
+    "source_path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SSTC-FW-TD24A 소프트웨어 시스템 시험 기준서.xlsx",
+    "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\SSTC-empty-run-repair.xlsx",
+    "sha256_before": "a5b77b73b625199c7364412c6c8c46704743b8a874a3f384417a3231d8deb291",
+    "sha256_after": "0aa291b57bdba35572aadd9d6f7d175d43022ffa65a86c818f59f9c4b42084f9",
+    "empty_runs_removed": 70,
+    "changes": [
+      {
+        "sheet": "기준서_시스템 시험",
+        "member": "xl/worksheets/sheet2.xml",
+        "cells": [
+          {
+            "cell": "I34",
+            "empty_runs_removed": 2,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I35",
+            "empty_runs_removed": 2,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I38",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I39",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I41",
+            "empty_runs_removed": 2,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I44",
+            "empty_runs_removed": 2,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I48",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "G50",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I50",
+            "empty_runs_removed": 2,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I54",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I64",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I68",
+            "empty_runs_removed": 2,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I70",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I74",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I78",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I82",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I84",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I98",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I106",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I114",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I116",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I121",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I124",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I128",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I130",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I132",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I134",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I138",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I141",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I144",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I146",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I148",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I151",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I152",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I155",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I157",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I159",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I162",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I166",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I188",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I190",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I191",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I194",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I197",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I199",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I210",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I212",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I215",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I222",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I227",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I230",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I237",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I239",
+            "empty_runs_removed": 2,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I244",
+            "empty_runs_removed": 2,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I247",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I260",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I261",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I269",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I278",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I280",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          }
+        ]
+      },
+      {
+        "sheet": "사이버보안 시험 연계",
+        "member": "xl/worksheets/sheet3.xml",
+        "cells": [
+          {
+            "cell": "G38",
+            "empty_runs_removed": 2,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          }
+        ]
+      }
+    ],
+    "other_package_members_byte_identical": true,
+    "all_cell_values_preserved": true,
+    "all_nonempty_rich_runs_byte_identical": true
+  },
+  {
+    "key": "SSTR",
+    "source_path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\04_설계 검증\\SW\\외부기\\[E8300-QCC] SSTR-FW-TD24A 소프트웨어 시스템 시험 보고서.xlsx",
+    "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\SSTR-empty-run-repair.xlsx",
+    "sha256_before": "d1cfb7e419dd43b903d2b6059f8ada140e1c691ad7aff6c35abb5b1b328f5bae",
+    "sha256_after": "34c4a22bb4d50e4880c3714c729d5d24da129bce5de9a3d4c8f2a504c595817b",
+    "empty_runs_removed": 70,
+    "changes": [
+      {
+        "sheet": "보고서_시스템 시험",
+        "member": "xl/worksheets/sheet2.xml",
+        "cells": [
+          {
+            "cell": "I34",
+            "empty_runs_removed": 2,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I35",
+            "empty_runs_removed": 2,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I38",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I39",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I41",
+            "empty_runs_removed": 2,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I44",
+            "empty_runs_removed": 2,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I48",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "G50",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I50",
+            "empty_runs_removed": 2,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I54",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I64",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I68",
+            "empty_runs_removed": 2,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I70",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I74",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I78",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I82",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I84",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I98",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I106",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I114",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I116",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I121",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I124",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I128",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I130",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I132",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I134",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I138",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I141",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I144",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I146",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I148",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I151",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I152",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I155",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I157",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I159",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I162",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I166",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I188",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I190",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I191",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I194",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I197",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I199",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I210",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I212",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I215",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I222",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I227",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I230",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I237",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I239",
+            "empty_runs_removed": 2,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I244",
+            "empty_runs_removed": 2,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I247",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I260",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I261",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I269",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I278",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          },
+          {
+            "cell": "I280",
+            "empty_runs_removed": 1,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          }
+        ]
+      },
+      {
+        "sheet": "사이버보안 시험 연계",
+        "member": "xl/worksheets/sheet5.xml",
+        "cells": [
+          {
+            "cell": "G38",
+            "empty_runs_removed": 2,
+            "text_preserved": true,
+            "all_nonempty_run_properties_preserved": true
+          }
+        ]
+      }
+    ],
+    "other_package_members_byte_identical": true,
+    "all_cell_values_preserved": true,
+    "all_nonempty_rich_runs_byte_identical": true
+  }
+]

@@ -1,0 +1,9 @@
+{
+  "source": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SAD-FW-TD24A 소프트웨어 아키텍쳐 기술서.docx",
+  "failedCandidateSHA256": "014C80CF59D7E121C478B43C29B3B89BD60D58A3E0D34D1D11E3148E12699F57",
+  "restoredSourceSHA256": "8AF46EF971B15EC6815CB5AED66E25580A4C9494D43DCDF4925852CB38C50515",
+  "exactBefore": true,
+  "reason": "Final native full-page review detected accepted paragraph-mark deletion removing entire table-cell content. Restored exact immediate-before bytes; XML ordinary-text comparison alone did not detect native behavior.",
+  "status": "Normal Word tracked range candidate required",
+  "checkedAt": "2026-10-13T10:09:19.9009122+09:00"
+}

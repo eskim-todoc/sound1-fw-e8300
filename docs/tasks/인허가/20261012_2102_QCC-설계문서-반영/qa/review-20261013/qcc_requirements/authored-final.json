@@ -1,0 +1,1119 @@
+{
+  "completed_at": "2026-10-13T00:28:50.139714+00:00",
+  "ownership": "G 설계입력 외부기 [E8300-QCC] SRS/SR/SGR3사본과 본인QA. 다른 원본/산출물/MD수정 없음",
+  "current_files": {
+    "SRS": {
+      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\02_설계 입력\\SW\\외부기\\[E8300-QCC] SRS-FW-TD24A 소프트웨어 요구사항 사양서.xlsx",
+      "sha256": "A568B4996AC13053D55973E5E59E59ACB6E18FAB5E41C4A7423DEF49596B93E4"
+    },
+    "SR": {
+      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\02_설계 입력\\SW\\외부기\\[E8300-QCC] SR-FW-TD24A 소프트웨어 요구사항.docx",
+      "sha256": "FA08A1F90789F5A789423BBAFF7462DBB35781D0E2680F7A05CF3562E751813D"
+    },
+    "SGR": {
+      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\02_설계 입력\\SW\\외부기\\[E8300-QCC] SGR-FW-TD24A 소프트웨어 일반요구사항.docx",
+      "sha256": "92AAC0E24260DE06967FCF483548CAF5C51F7FB96209C2A6B6DAF90CE389B922"
+    }
+  },
+  "active_requirements": {
+    "count": 82,
+    "ids": "SW-FW-RID-1..81 및83",
+    "RID82": "현재 요구에서 제외; red[-]이력만 보존. DMIC2통화송신은69/FW15로 통합",
+    "RID83": "실제matrix348/349/351행ACDOC17/18/20 기본문구와상위ID에연결",
+    "F_H_I_all_equal": true,
+    "Qraw_in_current_other_origin": false,
+    "original81_uppertrace_preserved": true,
+    "matrix_base_equality_denominator": 50,
+    "original_parent_blank_subordinate_exclusion": 32,
+    "source_parent_ids": 53,
+    "details_start_next_line": true,
+    "changed_requirement_cells": [
+      {
+        "rid": 1,
+        "rows": [
+          6,
+          6
+        ],
+        "changed_cells": [
+          "F6"
+        ],
+        "current_H": "SYS-RID-SP-FW-2"
+      },
+      {
+        "rid": 3,
+        "rows": [
+          8,
+          8
+        ],
+        "changed_cells": [
+          "F8"
+        ],
+        "current_H": "SYS-RID-SP-FW-1"
+      },
+      {
+        "rid": 4,
+        "rows": [
+          9,
+          9
+        ],
+        "changed_cells": [
+          "F9"
+        ],
+        "current_H": "SYS-RID-SP-FW-4"
+      },
+      {
+        "rid": 5,
+        "rows": [
+          10,
+          10
+        ],
+        "changed_cells": [
+          "F10"
+        ],
+        "current_H": "SYS-RID-SP-FW-5"
+      },
+      {
+        "rid": 6,
+        "rows": [
+          11,
+          11
+        ],
+        "changed_cells": [
+          "F11"
+        ],
+        "current_H": "SYS-RID-SP-FW-3"
+      },
+      {
+        "rid": 8,
+        "rows": [
+          13,
+          13
+        ],
+        "changed_cells": [
+          "F13"
+        ],
+        "current_H": "SYS-RID-SP-FW-6"
+      },
+      {
+        "rid": 9,
+        "rows": [
+          14,
+          14
+        ],
+        "changed_cells": [
+          "F14"
+        ],
+        "current_H": "SYS-RID-SP-FW-7"
+      },
+      {
+        "rid": 10,
+        "rows": [
+          15,
+          15
+        ],
+        "changed_cells": [
+          "F15"
+        ],
+        "current_H": "SYS-RID-SP-FW-8"
+      },
+      {
+        "rid": 11,
+        "rows": [
+          16,
+          16
+        ],
+        "changed_cells": [
+          "F16"
+        ],
+        "current_H": "SYS-RID-SP-FW-9"
+      },
+      {
+        "rid": 12,
+        "rows": [
+          17,
+          17
+        ],
+        "changed_cells": [
+          "F17"
+        ],
+        "current_H": "SYS-RID-SP-FW-10"
+      },
+      {
+        "rid": 13,
+        "rows": [
+          18,
+          18
+        ],
+        "changed_cells": [
+          "F18"
+        ],
+        "current_H": "SYS-RID-SP-FW-11"
+      },
+      {
+        "rid": 14,
+        "rows": [
+          19,
+          19
+        ],
+        "changed_cells": [
+          "F19"
+        ],
+        "current_H": "SYS-RID-SP-FW-12"
+      },
+      {
+        "rid": 15,
+        "rows": [
+          20,
+          21
+        ],
+        "changed_cells": [
+          "F20",
+          "I20",
+          "F21"
+        ],
+        "current_H": ""
+      },
+      {
+        "rid": 16,
+        "rows": [
+          22,
+          22
+        ],
+        "changed_cells": [
+          "F22",
+          "I22"
+        ],
+        "current_H": ""
+      },
+      {
+        "rid": 44,
+        "rows": [
+          51,
+          52
+        ],
+        "changed_cells": [
+          "F51",
+          "I51",
+          "F52"
+        ],
+        "current_H": "SYS-RID-SP-FW-13"
+      },
+      {
+        "rid": 45,
+        "rows": [
+          53,
+          54
+        ],
+        "changed_cells": [
+          "F53",
+          "I53",
+          "F54"
+        ],
+        "current_H": "SYS-RID-SP-FW-14"
+      },
+      {
+        "rid": 69,
+        "rows": [
+          55,
+          56
+        ],
+        "changed_cells": [
+          "F55",
+          "I55",
+          "F56"
+        ],
+        "current_H": "SYS-RID-SP-FW-15"
+      },
+      {
+        "rid": 70,
+        "rows": [
+          57,
+          57
+        ],
+        "changed_cells": [
+          "F57",
+          "I57"
+        ],
+        "current_H": "SYS-RID-SP-FW-16"
+      },
+      {
+        "rid": 46,
+        "rows": [
+          59,
+          59
+        ],
+        "changed_cells": [
+          "F59"
+        ],
+        "current_H": "SYS-RID-SP-FW-17"
+      },
+      {
+        "rid": 47,
+        "rows": [
+          60,
+          61
+        ],
+        "changed_cells": [
+          "F60",
+          "I60",
+          "F61"
+        ],
+        "current_H": "SYS-RID-SP-FW-22"
+      },
+      {
+        "rid": 48,
+        "rows": [
+          62,
+          63
+        ],
+        "changed_cells": [
+          "F62",
+          "I62",
+          "F63"
+        ],
+        "current_H": "SYS-RID-SP-FW-18"
+      },
+      {
+        "rid": 49,
+        "rows": [
+          64,
+          65
+        ],
+        "changed_cells": [
+          "F64",
+          "I64",
+          "F65"
+        ],
+        "current_H": "SYS-RID-SP-FW-26"
+      },
+      {
+        "rid": 52,
+        "rows": [
+          68,
+          69
+        ],
+        "changed_cells": [
+          "F68",
+          "I68",
+          "F69"
+        ],
+        "current_H": "SYS-RID-SP-FW-19"
+      },
+      {
+        "rid": 54,
+        "rows": [
+          72,
+          73
+        ],
+        "changed_cells": [
+          "F72",
+          "I72",
+          "F73"
+        ],
+        "current_H": "SYS-RID-SP-FW-32"
+      },
+      {
+        "rid": 71,
+        "rows": [
+          74,
+          75
+        ],
+        "changed_cells": [
+          "F74",
+          "I74",
+          "F75"
+        ],
+        "current_H": "SYS-RID-SP-FW-20"
+      },
+      {
+        "rid": 72,
+        "rows": [
+          76,
+          77
+        ],
+        "changed_cells": [
+          "F76",
+          "I76",
+          "F77"
+        ],
+        "current_H": "SYS-RID-SP-FW-21"
+      },
+      {
+        "rid": 75,
+        "rows": [
+          80,
+          80
+        ],
+        "changed_cells": [
+          "F80"
+        ],
+        "current_H": "SYS-RID-SP-FW-29"
+      },
+      {
+        "rid": 76,
+        "rows": [
+          81,
+          82
+        ],
+        "changed_cells": [
+          "F81",
+          "I81",
+          "F82"
+        ],
+        "current_H": "SYS-RID-SP-FW-33"
+      },
+      {
+        "rid": 78,
+        "rows": [
+          84,
+          85
+        ],
+        "changed_cells": [
+          "F84",
+          "I84",
+          "F85"
+        ],
+        "current_H": "SYS-RID-SP-FW-35"
+      },
+      {
+        "rid": 55,
+        "rows": [
+          88,
+          88
+        ],
+        "changed_cells": [
+          "F88"
+        ],
+        "current_H": "SYS-RID-SP-FW-48"
+      },
+      {
+        "rid": 56,
+        "rows": [
+          89,
+          89
+        ],
+        "changed_cells": [
+          "F89"
+        ],
+        "current_H": "SYS-RID-SP-FW-47"
+      },
+      {
+        "rid": 83,
+        "rows": [
+          93,
+          94
+        ],
+        "changed_cells": [
+          "F93",
+          "H93",
+          "I93",
+          "F94"
+        ],
+        "current_H": "SYS-RID-ACDOC-17, SYS-RID-ACDOC-18, SYS-RID-ACDOC-20"
+      },
+      {
+        "rid": 57,
+        "rows": [
+          96,
+          96
+        ],
+        "changed_cells": [
+          "F96"
+        ],
+        "current_H": "SYS-RID-SP-FW-39, SYS-RID-SP-FW-40"
+      },
+      {
+        "rid": 58,
+        "rows": [
+          97,
+          97
+        ],
+        "changed_cells": [
+          "F97"
+        ],
+        "current_H": "SYS-RID-SP-FW-41"
+      },
+      {
+        "rid": 59,
+        "rows": [
+          98,
+          98
+        ],
+        "changed_cells": [
+          "F98"
+        ],
+        "current_H": "SYS-RID-SP-FW-28"
+      },
+      {
+        "rid": 60,
+        "rows": [
+          99,
+          99
+        ],
+        "changed_cells": [
+          "F99"
+        ],
+        "current_H": "SYS-RID-SP-FW-42"
+      }
+    ],
+    "actual_text_cell_edit_count": 71,
+    "actual_text_cell_edits": [
+      {
+        "cell": "F6",
+        "rid": 1,
+        "column": "F"
+      },
+      {
+        "cell": "F8",
+        "rid": 3,
+        "column": "F"
+      },
+      {
+        "cell": "F9",
+        "rid": 4,
+        "column": "F"
+      },
+      {
+        "cell": "F10",
+        "rid": 5,
+        "column": "F"
+      },
+      {
+        "cell": "F11",
+        "rid": 6,
+        "column": "F"
+      },
+      {
+        "cell": "F13",
+        "rid": 8,
+        "column": "F"
+      },
+      {
+        "cell": "F14",
+        "rid": 9,
+        "column": "F"
+      },
+      {
+        "cell": "F15",
+        "rid": 10,
+        "column": "F"
+      },
+      {
+        "cell": "F16",
+        "rid": 11,
+        "column": "F"
+      },
+      {
+        "cell": "F17",
+        "rid": 12,
+        "column": "F"
+      },
+      {
+        "cell": "F18",
+        "rid": 13,
+        "column": "F"
+      },
+      {
+        "cell": "F19",
+        "rid": 14,
+        "column": "F"
+      },
+      {
+        "cell": "F20",
+        "rid": 15,
+        "column": "F"
+      },
+      {
+        "cell": "I20",
+        "rid": 15,
+        "column": "I"
+      },
+      {
+        "cell": "F21",
+        "rid": 15,
+        "column": "F"
+      },
+      {
+        "cell": "F22",
+        "rid": 16,
+        "column": "F"
+      },
+      {
+        "cell": "I22",
+        "rid": 16,
+        "column": "I"
+      },
+      {
+        "cell": "F50",
+        "rid": 82,
+        "column": "F"
+      },
+      {
+        "cell": "G50",
+        "rid": 82,
+        "column": "G"
+      },
+      {
+        "cell": "H50",
+        "rid": 82,
+        "column": "H"
+      },
+      {
+        "cell": "I50",
+        "rid": 82,
+        "column": "I"
+      },
+      {
+        "cell": "F51",
+        "rid": 44,
+        "column": "F"
+      },
+      {
+        "cell": "I51",
+        "rid": 44,
+        "column": "I"
+      },
+      {
+        "cell": "F52",
+        "rid": 44,
+        "column": "F"
+      },
+      {
+        "cell": "F53",
+        "rid": 45,
+        "column": "F"
+      },
+      {
+        "cell": "I53",
+        "rid": 45,
+        "column": "I"
+      },
+      {
+        "cell": "F54",
+        "rid": 45,
+        "column": "F"
+      },
+      {
+        "cell": "F55",
+        "rid": 69,
+        "column": "F"
+      },
+      {
+        "cell": "I55",
+        "rid": 69,
+        "column": "I"
+      },
+      {
+        "cell": "F56",
+        "rid": 69,
+        "column": "F"
+      },
+      {
+        "cell": "F57",
+        "rid": 70,
+        "column": "F"
+      },
+      {
+        "cell": "I57",
+        "rid": 70,
+        "column": "I"
+      },
+      {
+        "cell": "F59",
+        "rid": 46,
+        "column": "F"
+      },
+      {
+        "cell": "F60",
+        "rid": 47,
+        "column": "F"
+      },
+      {
+        "cell": "I60",
+        "rid": 47,
+        "column": "I"
+      },
+      {
+        "cell": "F61",
+        "rid": 47,
+        "column": "F"
+      },
+      {
+        "cell": "F62",
+        "rid": 48,
+        "column": "F"
+      },
+      {
+        "cell": "I62",
+        "rid": 48,
+        "column": "I"
+      },
+      {
+        "cell": "F63",
+        "rid": 48,
+        "column": "F"
+      },
+      {
+        "cell": "F64",
+        "rid": 49,
+        "column": "F"
+      },
+      {
+        "cell": "I64",
+        "rid": 49,
+        "column": "I"
+      },
+      {
+        "cell": "F65",
+        "rid": 49,
+        "column": "F"
+      },
+      {
+        "cell": "F68",
+        "rid": 52,
+        "column": "F"
+      },
+      {
+        "cell": "I68",
+        "rid": 52,
+        "column": "I"
+      },
+      {
+        "cell": "F69",
+        "rid": 52,
+        "column": "F"
+      },
+      {
+        "cell": "F72",
+        "rid": 54,
+        "column": "F"
+      },
+      {
+        "cell": "I72",
+        "rid": 54,
+        "column": "I"
+      },
+      {
+        "cell": "F73",
+        "rid": 54,
+        "column": "F"
+      },
+      {
+        "cell": "F74",
+        "rid": 71,
+        "column": "F"
+      },
+      {
+        "cell": "I74",
+        "rid": 71,
+        "column": "I"
+      },
+      {
+        "cell": "F75",
+        "rid": 71,
+        "column": "F"
+      },
+      {
+        "cell": "F76",
+        "rid": 72,
+        "column": "F"
+      },
+      {
+        "cell": "I76",
+        "rid": 72,
+        "column": "I"
+      },
+      {
+        "cell": "F77",
+        "rid": 72,
+        "column": "F"
+      },
+      {
+        "cell": "F80",
+        "rid": 75,
+        "column": "F"
+      },
+      {
+        "cell": "F81",
+        "rid": 76,
+        "column": "F"
+      },
+      {
+        "cell": "I81",
+        "rid": 76,
+        "column": "I"
+      },
+      {
+        "cell": "F82",
+        "rid": 76,
+        "column": "F"
+      },
+      {
+        "cell": "F84",
+        "rid": 78,
+        "column": "F"
+      },
+      {
+        "cell": "I84",
+        "rid": 78,
+        "column": "I"
+      },
+      {
+        "cell": "F85",
+        "rid": 78,
+        "column": "F"
+      },
+      {
+        "cell": "F88",
+        "rid": 55,
+        "column": "F"
+      },
+      {
+        "cell": "F89",
+        "rid": 56,
+        "column": "F"
+      },
+      {
+        "cell": "F93",
+        "rid": 83,
+        "column": "F"
+      },
+      {
+        "cell": "H93",
+        "rid": 83,
+        "column": "H"
+      },
+      {
+        "cell": "I93",
+        "rid": 83,
+        "column": "I"
+      },
+      {
+        "cell": "F94",
+        "rid": 83,
+        "column": "F"
+      },
+      {
+        "cell": "F96",
+        "rid": 57,
+        "column": "F"
+      },
+      {
+        "cell": "F97",
+        "rid": 58,
+        "column": "F"
+      },
+      {
+        "cell": "F98",
+        "rid": 59,
+        "column": "F"
+      },
+      {
+        "cell": "F99",
+        "rid": 60,
+        "column": "F"
+      }
+    ]
+  },
+  "native_visual": {
+    "SRS_actualPrintArea": "B3:I107",
+    "SRS_pages": 29,
+    "SR_pages": 13,
+    "SGR_pages": 12,
+    "all54pages_direct_original_size_reviewed": true,
+    "all25WordPages_pixel_equal_approved_layout": true,
+    "pass": true,
+    "proof": "native-final-qa.json"
+  },
+  "missing_notices": {
+    "SRS": {
+      "count": 18,
+      "all_character_style_pass": true,
+      "locations": [
+        {
+          "rid": 15,
+          "cells": [
+            "F21"
+          ],
+          "paragraph_index": null,
+          "prefix": "[QCC 자료 입력]",
+          "current_text": "[QCC 자료 입력] I2S의 클록/프레임과 유효 신호의 출력 조건, 동시 입력 조건 및 측정 결과를 확인한다."
+        },
+        {
+          "rid": 16,
+          "cells": [
+            "F22"
+          ],
+          "paragraph_index": null,
+          "prefix": "[QCC/E8300 자료 입력]",
+          "current_text": "[QCC/E8300 자료 입력] 8kHz 대역 끝점의 입력/출력 조건, 허용 범위와 측정 결과를 확인한다."
+        },
+        {
+          "rid": 44,
+          "cells": [
+            "F52"
+          ],
+          "paragraph_index": null,
+          "prefix": "[QCC 자료 입력]",
+          "current_text": "[QCC 자료 입력] Bluetooth 제어 명령/상태와 충전 상태 데이터의 전달 조건 및 검증 결과를 확인한다."
+        },
+        {
+          "rid": 45,
+          "cells": [
+            "F54"
+          ],
+          "paragraph_index": null,
+          "prefix": "[QCC 자료 입력]",
+          "current_text": "[QCC 자료 입력] 매핑 시작/종료의 상태 전이, 실패 처리, 동시 연결 조건 및 검증 결과를 확인한다."
+        },
+        {
+          "rid": 69,
+          "cells": [
+            "F56"
+          ],
+          "paragraph_index": null,
+          "prefix": "[QCC 자료 입력]",
+          "current_text": "[QCC 자료 입력] DMIC2의 QCC 입력 연결은 확인되었다. 마이크 핀/클록, 연결 상대, 프로파일/코덱별 송수신, 동시 동작 조건과 실제 시험 결과를 확인한다."
+        },
+        {
+          "rid": 70,
+          "cells": [
+            "F57"
+          ],
+          "paragraph_index": null,
+          "prefix": "[QCC 자료 입력]",
+          "current_text": "[QCC 자료 입력] GATT 서비스/특성 값, 명령/응답의 허용 상태 및 검증 결과를 확인한다."
+        },
+        {
+          "rid": 47,
+          "cells": [
+            "F61"
+          ],
+          "paragraph_index": null,
+          "prefix": "[QCC/E8300 자료 입력]",
+          "current_text": "[QCC/E8300 자료 입력] 감시 대상, 타이머 시작/갱신/초기화 조건, 180초의 허용오차와 경계 동작을 확인한다. 제어 명령이 아닌 송수신에 의해 연결이 유지되는 경우의 처리 기준도 필요하다."
+        },
+        {
+          "rid": 48,
+          "cells": [
+            "F63"
+          ],
+          "paragraph_index": null,
+          "prefix": "[QCC 자료 입력]",
+          "current_text": "[QCC 자료 입력] 페어링 전 허용 서비스, GATT 권한과 인증 전후 접근 차단/허용 조건 및 검증 결과를 확인한다."
+        },
+        {
+          "rid": 49,
+          "cells": [
+            "F65"
+          ],
+          "paragraph_index": null,
+          "prefix": "[QCC 자료 입력]",
+          "current_text": "[QCC 자료 입력] BLE 링크 암호화 활성화와 페어링 전 차단을 확인한다. CRA 인증값 계산과 키 파생의 확인은 링크 암호화의 검증과 구분한다."
+        },
+        {
+          "rid": 52,
+          "cells": [
+            "F69"
+          ],
+          "paragraph_index": null,
+          "prefix": "[QCC 자료 입력]",
+          "current_text": "[QCC 자료 입력] 앱별 CRA 인증값 계산 알고리즘, 키 역할, 입력 직렬화와 인증값 길이를 확인한다. AES-CMAC 인증과 SHA-256 키 파생의 관계, HMAC/ENC 표기 및 검증 벡터를 대조한다."
+        },
+        {
+          "rid": 53,
+          "cells": [
+            "F70"
+          ],
+          "paragraph_index": null,
+          "prefix": "[QCC/E8300 자료 입력]",
+          "current_text": "[QCC/E8300 자료 입력] QCC의 인증/암호화 전송과 E8300의 OTA 수신/저장/재기동 보호 자료를 연결한다. 제품 회수/교체 절차와 OTA의 적용 범위도 확인한다."
+        },
+        {
+          "rid": 54,
+          "cells": [
+            "F73"
+          ],
+          "paragraph_index": null,
+          "prefix": "[QCC 자료 입력]",
+          "current_text": "[QCC 자료 입력] QCC의 부트 검사 방식/활성화 설정, 손상 또는 변조 이미지의 거부/복구 동작과 검증 결과를 확인한다."
+        },
+        {
+          "rid": 71,
+          "cells": [
+            "F75"
+          ],
+          "paragraph_index": null,
+          "prefix": "[QCC 자료 입력]",
+          "current_text": "[QCC 자료 입력] 30초 타이머의 시작/갱신/초기화 조건, 허용오차와 상태별 응답 및 인증정보 미노출의 검증 결과를 확인한다."
+        },
+        {
+          "rid": 72,
+          "cells": [
+            "F77"
+          ],
+          "paragraph_index": null,
+          "prefix": "[QCC 자료 입력]",
+          "current_text": "[QCC 자료 입력] 실패 횟수의 누적/초기화, 전원 재기동, 제한 종료 후 재접속과 시간 경계/허용오차 및 검증 결과를 확인한다."
+        },
+        {
+          "rid": 76,
+          "cells": [
+            "F82"
+          ],
+          "paragraph_index": null,
+          "prefix": "[QCC 자료 입력]",
+          "current_text": "[QCC 자료 입력] 실제 설치/저장 대상, 키 역할, 저장 암호화/접근 제한과 복호화 시작 조건을 확인한다. 인증 전후 송수신/OTA 보호와 조건별 검증 결과도 확인한다."
+        },
+        {
+          "rid": 78,
+          "cells": [
+            "F85"
+          ],
+          "paragraph_index": null,
+          "prefix": "[QCC/E8300 자료 입력]",
+          "current_text": "[QCC/E8300 자료 입력] AES-CMAC/SHA-256/AES-128의 사용 목적/키 관리, E8300 AES 저장/부트 보호와의 연결을 확인한다. HMAC/ENC 표기, AES-128 모드 및 BLE 링크 보호의 실제 적용과 검증 결과를 대조한다."
+        },
+        {
+          "rid": 83,
+          "cells": [
+            "F94"
+          ],
+          "paragraph_index": null,
+          "prefix": "[E8300 보완]",
+          "current_text": "[E8300 보완] 제품 사용 설명서의 해당 절과 내용, 배포 대상 및 검토 결과를 확인한다."
+        },
+        {
+          "rid": 60,
+          "cells": [
+            "F99"
+          ],
+          "paragraph_index": null,
+          "prefix": "[QCC 자료 입력]",
+          "current_text": "[QCC 자료 입력] 무선 통신 CRC의 적용 계층, 검사 실패 시 처리와 조건별 검증 결과를 확인한다."
+        }
+      ]
+    },
+    "SR": {
+      "count": 5,
+      "all_character_style_pass": true,
+      "locations": [
+        {
+          "rid": null,
+          "cells": null,
+          "paragraph_index": 250,
+          "prefix": "[QCC/E8300 자료 입력]",
+          "current_text": "[QCC/E8300 자료 입력] DMIC2가 E8300과 QCC에 함께 연결되는 경로는 확인되었다. 3분 무송수신의 감시/갱신 범위와 제어 명령 미수신 조건의 정합성, QCC 마이크 핀/클록, 연결 상대 및 프로파일/코덱별 송수신과 동시 동작 조건 및 시험 결과를 확인한다."
+        },
+        {
+          "rid": null,
+          "cells": null,
+          "paragraph_index": 260,
+          "prefix": "[QCC 자료 입력]",
+          "current_text": "[QCC 자료 입력] 실제 QCC 개발 환경, 라이브러리/ADK 버전과 빌드 구성을 입력한다."
+        },
+        {
+          "rid": null,
+          "cells": null,
+          "paragraph_index": 265,
+          "prefix": "[QCC 자료 입력]",
+          "current_text": "[QCC 자료 입력] QCC의 실제 메모리 배치, 실행 이미지/데이터 사용량과 부트 이미지 검사 설정을 입력한다."
+        },
+        {
+          "rid": null,
+          "cells": null,
+          "paragraph_index": 300,
+          "prefix": "[E8300 보완]",
+          "current_text": "[E8300 보완] 제품 사용 설명서에서 경고/안전사항, 안전한 작동법 및 동작방법의 해당 절과 내용, 배포 대상 및 검토 결과를 확인한다."
+        },
+        {
+          "rid": null,
+          "cells": null,
+          "paragraph_index": 307,
+          "prefix": "[QCC/E8300 자료 입력]",
+          "current_text": "[QCC/E8300 자료 입력] 오디오 송수신, 연결/인증, 키 관리 및 펌웨어 보호에 대한 위험분석 재평가와 변경 영향의 검토 결과를 확인한다."
+        }
+      ]
+    },
+    "SGR": {
+      "count": 2,
+      "all_character_style_pass": true,
+      "locations": [
+        {
+          "rid": null,
+          "cells": null,
+          "paragraph_index": 297,
+          "prefix": "[QCC 자료 입력]",
+          "current_text": "[QCC 자료 입력] QCC의 실제 ADK/실행 환경, scheduler 구성과 사용 버전을 입력한다."
+        },
+        {
+          "rid": null,
+          "cells": null,
+          "paragraph_index": 301,
+          "prefix": "[QCC 자료 입력]",
+          "current_text": "[QCC 자료 입력] QCC 제조사 소프트웨어의 식별/버전, 사용 범위와 검토 근거를 입력한다."
+        }
+      ]
+    }
+  },
+  "Word_tracking": {
+    "author": "김은수",
+    "new_change_rejection_restores_before": true,
+    "old_media_hashes_preserved_after_office_part_renumbering": true,
+    "native_field_semantics_checks": "각 SR/SGR 최신 후보4검사통과, native-final-qa.json 참조",
+    "SR_native_open_repair": "비유효newdel>oldins그림구조를 actualrun 삭제추적으로복구; oldins>newdel>oldrun 및 siblingnewins. 원본before의텍스트/그림/기존이력보존과WordOpen성공"
+  },
+  "punctuation_new_sentences_pass": true,
+  "source_protection": {
+    "protected_count": 23,
+    "all_unchanged": true,
+    "full_sha_evidence": "srs-comparison-qa.json"
+  },
+  "review29_status_counts": {
+    "통과": 14,
+    "실패": 0,
+    "미실행": 2,
+    "해당없음": 13
+  },
+  "remaining_integrated_review": [
+    {
+      "number": 3,
+      "scope": "전체 SRS→SAD→SDDD→시험 연결",
+      "owner": "root/design/tests",
+      "reason": "본인 소유3문서의 현재 식별ID/실제 상위 요구 연결은 통과했다. 최종 설계3개 및 시험6개의 전체 downstream 독립 대조는 해당 담당자/루트의 검사 결과에 연결해야 한다."
+    },
+    {
+      "number": 23,
+      "scope": "중앙 QCC 위치 목록",
+      "owner": "root/design/tests",
+      "reason": "본인에게 MD수정 권한이 없다. 저장된현재ID/행좌표/미비안내 전체 문구를 루트에 전달했으며 목록 최종 대조는 루트 책임이다."
+    }
+  ],
+  "product_tests": "이번 작업에서 제품시험을 실행하지 않았으며 기존통과를새QCC조건으로확대하지않음",
+  "unresolved_data": [
+    "QCC핀/클록/프로파일/코덱/동시송수신/실제시험결과",
+    "180초감시대상/갱신조건/무명령의도정합성",
+    "30초인증및5회실패60초제한조건별측정",
+    "AES-CMAC인증/의료진SHA256키파생/HMAC-ENC표기의역할정합성및실제벡터",
+    "제조설치키/생성키의실제NVM보호/복호화계약",
+    "QCCADK/실행환경/SOUP식별버전/메모리/이미지사용량/부트검사설정",
+    "제품사용설명서실제절/내용/배포검토",
+    "위험분석변경영향재평가"
+  ],
+  "evidence": [
+    "requirements-contract.json",
+    "matrix-readonly.xlsx",
+    "srs-qa.json",
+    "srs-comparison-qa.json",
+    "full-note-qa.json",
+    "native-final-qa.json",
+    "new-sentence-punctuation-qa.json",
+    "review-29.json",
+    "SR-authored.json",
+    "SGR-authored.json",
+    "SR-tdc-style-fix.json",
+    "SGR-tdc-style-fix.json",
+    "SR-final-layout.json",
+    "SGR-final-layout.json"
+  ]
+}

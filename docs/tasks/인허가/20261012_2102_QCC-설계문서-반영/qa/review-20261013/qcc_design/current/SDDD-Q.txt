@@ -1,0 +1,612 @@
+[1 P ] 
+[2 P ] 
+[3 P ] 
+[4 P ] 
+[5 P ] 
+[6 P ] 
+[7 TABLE 1 rows]
+소프트웨어 상세 설계서
+[8 P ] 
+[9 P ] 
+[10 P ] 
+[11 TABLE 1 rows]
+모델명: TD24A-A-EXT (외부장치)
+[12 P ] 	
+[13 P ] 	
+[14 P ] 	
+[15 P ] 	
+[16 P ] 	
+[17 P ] 	
+[18 P ] 	
+[19 P ] 	
+[20 TABLE 5 rows]
+작 성 | 검 토 | 승 인
+ |  | 
+서석일 |  | 
+ |  | 
+ |  | 
+[21 P ] 	
+[22 P ] 	
+[23 P ] 	
+[24 P ] 
+[25 P ] 
+
+[26 P ] 
+[27 TABLE 18 rows]
+
+No. | 개정 내용 | 개정 위치  | 개정 날짜
+0 | 최초 제정 | - | 2026.xx.xx
+1 |  |  | 
+2 |  |  | 
+3 |  |  | 
+4 |  |  | 
+5 |  |  | 
+6 |  |  | 
+7 |  |  | 
+8 |  |  | 
+9 |  |  | 
+10 |  |  | 
+11 |  |  | 
+12 |  |  | 
+13 |  |  | 
+14 |  |  | 
+15 |  |  | 
+16 |  |  | 
+[28 P ] 
+[29 P ] 
+[30 P ] 	
+
+[31 SDT excluded TOC]
+[32 P 10] 서론
+[33 P 2] 개요
+[34 P ] 본 문서는 TD24A-A-EXT 제품의 외부장치의 소프트웨어 아키텍처에 기술서에서 설계된 소프트웨어 모듈을 구성하는 소프트웨어 유닛을 설계한다.
+[35 P ] 
+[36 P 2] 목적
+[37 P ] TD24A-A-EXT 제품의 외부장치의 소프트웨어를 구성하는 소프트웨어 유닛들을 설계하고 이에 따라 소프트웨어를 구현함으로써 안전한하고 일관성 및 정확성을 보장하는 소프트웨어의 개발이 보장되는 것을 목적으로 한다.
+[38 P ] 
+[39 P 2] 대상
+[40 P ] TD24A-A-EXT 펌웨어 개발 프로젝트에 참여하는 모든 구성원은 이 문서를 참고하도록 한다.
+[41 P ] 
+[42 P 2] 관련문서
+[43 P 3] 프로젝트
+[44 TABLE 6 rows]
+No | 문서번호 | 문서 제목
+1 | SDP-CO-TD24A | 소프트웨어 개발 계획서
+2 | SGR-FW-TD24A | 소프트웨어 일반 요구사항
+3 | SRS-FW-TD24A | 소프트웨어 요구사항 사양서
+4 | SAD-FW-TD24A | 소프트웨어 아키텍처 기술서
+5 | SIP-FW-TD24A | 소프트웨어 통합 계획서
+[45 P ] 
+[46 P 3] 1.4.2. 표준 및 규제
+[47 TABLE 3 rows]
+No | 문서번호 | 문서 제목
+1 | IEC 62304:2006 | Medical device software – Software life cycle processes
+2 | ISO 14971:2007 | Medical devices – Application of risk management to medical
+[48 P a8] 
+[49 P ] 
+[50 P ] 
+[51 P ] 
+
+[52 P 10] 소프트웨어 상세 설계
+[53 P ] 소프트웨어 아키텍처 기술서(SAD-FW-TD24A)에서 설명된 소프트웨어 모듈들과 이를 구성하는 소프트웨어 유닛들에 대해 설명하고 설계한다.
+[54 P ] 
+[55 P 2] System management module
+[56 P ] 외부 시스템의 전체적인 동작을 제어하는 모듈이다. 먼저, 시스템의 설정에 따라 다른 모듈들 설정하고 초기화한다. 또한, 주요 상태를 수집하여 다른 모듈들에게 전달하거나, 직접 제어한다. 특히, 사운드 처리기(Sound processor, SP)의 상태가 가장 중요한 상태이다. 그리고, 시스템 상태에 따라 블루투스를 설정하고 제어를 수행한다.
+[57 P ] 
+[58 P ] 
+[59 P ] 
+[60 P ] 
+[61 P ] 
+[62 P ] 
+[63 P ] 
+[64 P ] 
+[65 P ] 
+[66 P ] 
+[67 P ] 
+[68 P ] 
+[69 P ] 
+[70 P ] 
+[71 P ] 
+[72 P ] 
+[73 P ] 
+[74 P ] 
+[75 P ] 
+[76 P ] 
+[77 P ] 
+[78 P ] 
+[79 P ] 
+[80 P ] 
+[81 P ] 
+[82 P ] 
+[83 P ] 
+[84 P ] <그림 1. System control module 동작 흐름도>
+[85 P ] <그림 1>은 설계된 System management module의 동작 및 제어 흐름을 표현하고 있으며, 흐름도 전체가 System management module이다. 이 모듈에 포함된 유닛들은 파란색으로 표현되었으며, 시스템 상태 유닛은 System management module 뿐만 아니라 다른 모듈들 간의 상호작용을 제어한다. 이를 위해서 각각의 상태에 따른 시스템의 설정이 다르게 되어야 하며, 그 내용은 다음과 같다.
+[86 P ] 
+[87 P 3] SW-BT-DS-ID-001, 시스템 초기화와 설정 유닛
+[88 P ] 시스템을 초기화하기 전에 초기화에 필요한 설정이 먼저 되어 있어야 한다. 시스템 설정은 시스템 동작 중에 지속적으로 설정을 수행하는 것이 아니라, 초기화 전에 모두 설정이 되면, 이후에는 변하지 않는다. 하지만, 전체 시스템의 각 부분에 대한 설정은 수와 고려해야 할 사항이 많아 별도로 유닛에 추가하였다.
+[89 P ] 시스템 초기화는 위의 초기 설정에 기반하여 시스템의 각 부분을 차례대로 초기화하고 Application은 먼저 초기화된 시스템의 각 부분을 기반으로 제일 마지막에 수행하도록 한다.
+[90 P ] 중요한 시스템 설정은 다음과 같다.
+[91 P a8] HW interface 설정
+[92 P a8] SPI 설정 – SPI에서 사용하는 Port pin과 클럭 속도
+[93 P a8] I2S 설정 – Data bits과 sampling rate
+[94 P a8] General port pin – 일반적인 디지털 입력과 출력 설정
+[95 P a8] Charger case communication 설정: 통신에 사용되는 Port pin들과 data rate
+[96 P a8] NVM mapping: 저장할 데이터의 크기와 위치 설정
+[97 P a8] Security 설정
+[98 P a8] Bluetooth Classic – 오디오가 스피커가 아닌 I2S로 출력되도록 설정한다.
+[99 P a8] BLE Service – Characteristic의 property에 Authentication을 추가한다.
+[100 P a8] Auth service – 자체 인증에서 사용할 Auth service를 구성한다.
+[101 P ] 시스템 초기화는 다음의 순서로 진행한다.
+[102 P a8] 시스템 초기화
+[103 P a8] Built-in library 초기화
+[104 P a8] System scheduler 초기화
+[105 P a8] Power 초기화
+[106 P a8] Bluetooth 초기화
+[107 P a8] HW 초기화
+[108 P a8] Port PIO input/output 초기화
+[109 P a8] 시스템 상태처리
+[110 P a8] 사운드 처리기 신호 – Shutdown indication, internal device connected indication
+[111 P a8] 장치 배터리 및 충전 상태
+[112 P a8] Bluetooth 연결 상태와 제어
+[113 P a8] PIO 설정
+[114 P a8] Input
+[115 TABLE 2 rows]
+PIO 핀 동작 설정 | PIO_INTER_DEVICE_CONN_INDPIO_SPI_COMM_INDPIO_SHUT_DOWN_IND
+PIO Pin 매핑 | PIO IN direction
+[116 P a8] Output
+[117 TABLE 2 rows]
+PIO 핀 동작 설정 | PIO_I2S_EN_INDPIO_HW_RESET_CTRLPIO_TEMP_CHECK_ON
+PIO Pin 매핑 | PIO OUT direction
+[118 P a8] Peripheral
+[119 TABLE 2 rows]
+PIO 핀 동작 설정 | PIO_SPI_SCPIO_SPI_SLKPIO_SPI_MISOPIO_SPI_MOSIPIO_TEMP_CHECK
+PIO Pin 매핑 | PIO PERIPHERAL direction
+[120 P 3] SW-FW-DS-ID-002, 시스템 상태 유닛
+[121 P ] 상태 처리는 다음 시스템 상태를 확인한다.
+[122 P a8]  사운드 처리기 상태 확인
+[123 P a8] shutdown_ind – deep sleep mode에 진입 알림
+[124 P a8] inter_dev_conn_ind – 사운드 처리기가 내부기와 연결 알림
+[125 P a8] 사운드 처리기와의 SPI 통신
+[126 P a8] 필요한 시스템 상태를 사운드 처리기에 전달 – 전원 상태, 블루투스 연결 상태 등
+[127 P a8] 사운드 처리기에 요청 – 내부장치 정보
+[128 P a8] 사운드 처리기에서 처리해야 할 데이터 전송 – 이 경우는 별도의 처리 없이 바로 사운드 처리기와 BLE 연결 사이에서 데이터 만을 송수신
+[129 P a8] 사운드 처리기의 shutdown_ind 신호 처리
+[130 P a8] 시스템의 동작은 사운드 처리기의 상태에 크게 의존하므로 이를 어떻게 처리하는지 설명한다.
+[131 P a8] 초기화 완료 후 shutdown_ind의 신호가 off 될 때까지 미리 정의된 시간동안 기다린다. 이는 사운드 처리기가 초리화를 완료하고 정상 동작 상태가 되기를 기다리는 것이다. 만일, 대기 시간이 지나면 바로 시스템을 종료하고 Deep sleep 모드에 들어간다.
+[132 P a8] 동작 중에도 shutdown_ind의 신호가 off가 되면 미리 정의된 시간동안 기다린다. 대기 시간이 지나면 바로 시스템을 종료하고 Deep sleep 모드에 들어간다. 이는 특정 조건 때문에(예로 Idle 상태의 소모전류 감소 목적) Deep sleep에 들어가도록 요청이 오는 것이다.
+[133 P ] 
+[134 P ] 
+[135 P ] 
+[136 P ] 
+[137 P ] 
+[138 P ] 
+[139 P ] 
+[140 P ] 
+[141 P ] 
+[142 P ] 
+[143 P ] 
+[144 P ] 
+[145 P ] <그림 2. shutdown_ind 신호 처리 흐름도>
+[146 P a8] 사운드 처리기의 inter_dev_conn_ind 신호 처리
+[147 P a8] 사운드의 처리기가 내부 장치와 연결되었다는 신호는 곧 전체 외부 장치가 주요 기능을 수행해야 한다는 의미이다. 이에 따라, 시스템의 주요 상태들을 활성화하고 준비한다.
+[148 P a8] 사운드 처리기에 내부장치 정보 요청 – BLE의 장치 이름과 양이, 편이 구분의 정보는 외부 BLE 장치와의 연결에 필요한 정보인다.
+[149 P a8] Bluetooth Classic / BLE 활성화 – BLE 연결로는 각종 정보를 전달하고 명령을 수신하여 처리하며, Classic은 Bluetooth 연결로 오디오를 수신하여 전달한다.
+[150 P 3] SW-FW-DS-ID-003, 장치 상태 유닛
+[151 P ] 외부장치는 편이 모드와 양이 모드에 대응하는 Standalone 모드와 TWS 모드로 설정되며 이에 따라 오디오와 데이터 처리가 달라진다. 이러한 장치 설정은 제품 생산시에 결정되며 동작 중에는 변경할 수 없다. 시스템의 모든 부분은 이러한 장치 설정에 따라 Audio와 데이터를 처리하게 된다.
+[152 P a8] Standalone 모드
+[153 P a8] 외부 장치는 1대로 동작하며, Bluetooth audio는 L/R을 모두 처리하며 데이터도 별도의 구분없이 처리한다.
+[154 P a8] TWS 모드
+[155 P a8] 외부 장치는 2대 1세트로 동작하며, 장치는 Bluetooth audio의 L/R을 각기 처리하며 데이터도 별도의 구분하여 처리한다.
+[156 P a8] 이 상태에서도 1대로 단독 사용 가능하다.
+[157 P a8] 이 모드는 흔히 Earbud 형태라 하며, 칩의 제조사인 Qualcomm 사에서 제공하는 자체 기능이며, 오디오의 처리와 데이터 전달은 Buil-in library와 시스템에서 수행하므로 Application에서는 별도의 처리를 하지 않아도 된다.
+[158 P ] 
+[159 P ] 
+[160 P ] 
+[161 P ] 
+[162 P ] 
+[163 P ] 
+[164 P ] 
+[165 P ] 
+[166 P ] 
+[167 P ] 
+[168 P ] 
+[169 P ] 
+[170 P ] 
+[171 P ] 
+[172 P ] 
+[173 P ] 
+[174 P ] 
+[175 P ] 
+[176 P ] 
+[177 P ] 
+[178 P ] <그림 3. Qualcomm 사의 TWS 설명의 예>
+[179 P 3] SW-FW-DS-ID-004, 블루투스 상태 유닛
+[180 P ] 시스템 상태에 따라 블루투스의 활성화를 제어하고, Bluetooth의 상태를 확인하여 필요한  다른 모듈과 유닛에 전달한다.
+[181 P a8] 블루투스 활성화 제어
+[182 P a8] inter_dev_conn_ind의 신호에 따라 전체 Bluetooth를 활성화하거나 비활성화 한다. 이는 내부장치가 연결되어 있어야 Bluetooth의 오디오나 데이터가 처리가능하기 때문이다.
+[183 P a8] 블루투스 장치 이름
+[184 P a8] 블루투스 장치이름은 외부의 Bluetooth 장치가 연결할 때 기본적인 외부장치 정보를 인식하기 위해 필요하다. 내부장치가 연결될 때, 내부장치를 사운드 처리기에 요청하여 이를 기반으로 장치 이름을 구성한다. 형태는 다음과 같다
+[185 TABLE 5 rows]
+장치 이름 구성 | 설 명
+전체 장치 이름 | TD_L__SOUND_ UserName_ExternalDeviceInfo
+L | 내부장치 수술 위치: ‘L’ or ‘R’
+UserName | 사용자 이름 또는 ID
+ExternalDeviceInfo | 외부장치 식별 정보
+[186 P a8] 블루투스 상태
+[187 P a8] Bluetooth Classic과 BLE의 연결 상태와 연결된 장치의 종류
+[188 P a8] 주로 블루투스 모듈에서 연결 제어와 데이터 처리 시에 조건 확인에 사용된다.
+[189 P ] 
+[190 P ] 
+[191 P ] 
+[192 P ] 
+[193 P 2] 
+HW interface module
+[194 P ] HW interface module은 시스템에 연결되어 있는 HW 장치의 데이터나 입출력 신호를 처리하고, NVM (Non-Volatile Memory)의 접근을 제어한다. 또한, 전원 상태를 관리하고 제어한다. 
+[195 P ] 
+[196 P ] 
+[197 P ] 
+[198 P ] 
+[199 P ] 
+[200 P ] 
+[201 P ] 
+[202 P ] 
+[203 P ] 
+[204 P ] 
+[205 P ] 
+[206 P ] <그림 3. HW interface module 동작 흐름도>
+[207 P ] <그림 3>는 MCU의 Port와 HW 주변 장치를 관리하고 통제하는 HW interface module의 기능에 대한 흐림을 설명한다.
+[208 P ] 이러한 기능 중에서 칩 자체의 시스템이나 built-in library에서 처리하는 경우는 다음과 같다
+[209 P a8] HW 장치의 데이터 입출력(SPI, I2S)
+[210 P a8] CC 통신 (Charger Case communication) 통신 처리
+[211 P a8] NVM 접근 처리
+[212 P a8] 충전 및 배터리 상태와 상태 관리
+[213 P a8] 온도 센서 관리
+[214 P a8] Wake-up (from deep sleep)
+[215 P ] 칩 자체의 시스템이나 built-in library에서 처리하는 기능은 application에서 처리하므로 자세한 설명은 생략한다.
+[216 P 3] SW-FW-DS-ID-005, PIO 포트 제어 유닛
+[217 P ] 외부 입력 또는 출력 그리고 주변 장치와 연결되어 있는 MUC PORT의 PIO를 제어하는 일이다. 주요 사운드 처리기의 (SP, Sound Process) 입력 신호를 감지하고 출력은 I2S 활성화 상태를 SP에 전달하거나 HW reset을 제어한다.
+[218 P a8] PORT와 PIO 설정 기능
+[219 P ] 출력 신호
+[220 TABLE 4 rows]
+출력 신호 | 제어 목적
+I2S enable | I2S 동작 상태를 사운드 처리기에 전달
+HW reset control | 충전기가 연결될 때마다, HW reset을 수행하기 회로를 제어
+온도 센서 Enable | 장치 내부 온도 센서의 활성화를 제어
+[221 P ] 입력 신호
+[222 TABLE 4 rows]
+입력 신호 | 제어 목적
+내부장치 연결 상태 | 사운드 처리기로부터의 내부장치와 연결 상태 입력 신호
+Shutdown 알림 | 사운드 처리기로부터의 시스템 종료요청 입력 신호
+SPI 통신 알림 | 사운드 처리기로부터 SPI data를 수신요청 입력 신호
+[223 P ] 주변 장치 설정
+[224 TABLE 4 rows]
+입력 신호 | 제어 목적
+I2S 연결 포트 | I2S에서 사용하는 Chip의 Pin은 고정되어 있다.
+SPI 통신 포트 | SPI 통신에 사용되는 Port pin
+온도 센서 | 장치 내부의 온도를 측정
+[225 P a8] HW reset control
+[226 P ] 
+[227 P ] 
+[228 P ] 
+[229 P ] 
+[230 P ] 
+[231 P ] 
+[232 P ] 
+[233 P ] <그림 4. HW reset 제어 흐름도>
+[234 P ] <그림 4>처럼 HW reset 제어는 충전 상태의 변화할 때마다 수행된다. HW reset 제어의 목적은 시스템이 Block되거나 Dead 상태에서 빠져나오게 하려는 안전장치로 충전을 시작할 때마다 HW reset을 하도록 한 것이다. 충전 상태에 따른 제어는 충전 중에는 충전 케이스 통신을 수행하여 data가 오갈 때 HW reset이 동작하는 것을 방지하기 위함이다. 또한, Chip 특성상 충전 중에는 시스템이 Block되더라도 바로 자동으로 빠져나오게 되므로 충전 상태에서 HW reset을 비활성화해도 안전하다.
+[235 P 3] SW-FW-DS-ID-006, Power 제어 유닛
+[236 P ] 외부장치의 배터리 상태를 확인하고 충전을 제어한다. 이러한 상태들의 정보를 시스템 관리 모듈에 전달하여 전체 전원관리를 할 수 있도록 한다. 
+[237 P ] 통신은 MCU 제조사인 Qualcomm에서 지원하는 자체 통신 규격이다. 통신의Line signal level의 수준은 MCU의 Bult-in 내부 시스템에서 수행하고, 사용할 수 있는 명령도 미리 정의되어 있다. 따라서, 스마트 케이스 같은 Application에서는 전송할 명령을 선택하고 전달할 매개변수를 전달하거나, 수신된 응답에 대한 데이터만을 처리한다.
+[238 P ] 또 하나의 Power 제어 유닛의 주요 기능은 Deep sleep 모드에 진입하는 것이다 
+[239 P a8] 전원 관리
+[240 P a8] 먼저 사용하는 외부장치의 배터리 특성을 설정한다. 예로, 최소 전압, 최대 전압 그리고 충전 전류 등이 있다.
+[241 P a8] ADC로 Battery 전압을 읽는다.
+[242 P a8] 배터리 전압을 레벨 0% ~ 100%로 변환한다.
+[243 P a8] Battery level을 시스템 관리 모듈이 읽을 수 있도록 저장한다.
+[244 P a8] 배터리이 Empty (0%)이면 무조건으로 Deep sleep 모드에 들어간다.
+[245 P a8] 충전 관리
+[246 P a8] 외부장치가 스마트 케이스의 충전 포트에 있을 경우에만 외부장치가 충전되도록 설계되었다.
+[247 P a8] 충전 상태는 모두 4가 지로 구분된다. 시스템 관리 모듈은 각기 구분하여 처리한다.
+[248 TABLE 5 rows]
+충전 상태 | 설명
+Charger is not connected | 충전기와 연결이 되어 있지 않은 상태
+Charger is connected | 충전기와 연결이 되어 있는 상태
+Charging | 외부 장치가 충전 중인 상태
+No charging | 외부 장치가 충전이 아닌 상태
+[249 P a8] Deep sleep 모드
+[250 P a8] Deep sleep 모드 진입은 조건은 Battery가 empty 상태와 사운드 처리기의 shutdown_ind의 신호가 입력되었을 때이다.
+[251 P a8] 충전 중인 동안에는 Deep sleep 모드에 진입하지 못한다. 이유는 충전 중인 동안에 Deep sleep 모드에 진입하면 바로 wake-up이 되기 때문이다.
+[252 P a8] Deep sleep 모드로 부터의 wake-up은 시스템과 HW로 구성되기 때문에 별도의 설정은 필요없다. wake-up이 되면 처음에 전원이 인가되는 상황과 같다.
+[253 P a8] 다음 <그림 5>는 위와 같은 설명을 도식화한 것이다.
+[254 P ] 
+[255 P ] 
+[256 P ] 
+[257 P ] 
+[258 P ] 
+[259 P ] 
+[260 P ] 
+[261 P ] 
+[262 P ] 
+[263 P ] 
+[264 P ] 
+[265 P ] 
+[266 P ] <그림 5. Deep sleep 모드 진입 흐름도>
+[267 P ] 
+[268 P ] NVM (Non-Volatile Memory) 처리 유닛
+[269 P ] 실제적인 NVM의 접근을 처리는 시스템과 built-in library에서 처리하고, application에서는 사용가능한 NVM 영역에  사용할 데이터를 매핑하는 것과 접근에 대한 interface를 제공한다.
+[270 P ] NVM에 저장되는 application data
+[271 TABLE 5 rows]
+NVM 데이터 | 설명
+Charger is not connected | 충전기와 연결이 되어 있지 않은 상태
+Charger is connected | 충전기와 연결이 되어 있는 상태
+Charging | 외부 장치가 충전 중인 상태
+No charging | 외부 장치가 충전이 아닌 상태
+[272 P 3] SW-FW-DS-ID-007, NVM 처리 유닛
+[273 P ] 실제적인 NVM (Non-Volatile Memory) 의 접근을 처리는 시스템과 built-in library에서 처리하고, application에서는 사용가능한 NVM 영역에  사용할 데이터를 매핑하는 것과 접근에 대한 interface를 제공한다.
+[274 P a8] NVM에 저장되는 application data
+[275 TABLE 6 rows]
+NVM 데이터 | 설명
+NVM_EXT_SERIAL_NUM | 외부장치 일련번호
+NVM_DEV_TYPE | Standalone mode나 TWS mode
+AUTH_RAND_NUM | NVM 암호화에 쓰이는 Random number
+AUTH_CLLINC_KEY | 매핑 앱과의 데이터 통신에서 쓰이는 암호화 키
+AUTH_SHARED_KEY | 리모콘 앱과의 데이터 통신에서 쓰이는 암호화 키
+[276 P a8] Application에서 제공되는 인터페이스
+[277 TABLE 4 rows]
+NVM 데이터 | 설명
+nvm_data_length_get | 해당 data의 길이를 반환한다.
+nvm_data_read | NVM에 저장되어 있는 data를 읽어 온다.
+nvm_data_write | 해당 data를 NVM에 저장한다.
+[278 P ] 
+[279 P ] 
+
+[280 P 2] Bluetooth module
+[281 P ] 외부장치는 Bluetooth 통신을 지원하며, 두 종류의 Bluetooth transport를 지원한다.
+[282 P a8] Bluetooth Classic
+[283 P ] 규격 공식 명칭은 Bluetooth BR/EDR (Basic Rate/Enhanced Data Rate)이며, 처음 Bluetooth 규격 정의부터 사용되던 전송방식이다. 주로 스마트폰과 연결되어 음악 전송과 통화를 위해 사용된다.
+[284 P a8] Bluetooth Low Energy
+[285 P ] 일명 BLE라고 불리며, Classic 이후에 새로이 정의된 Bluetooth 규격이다. 배터리 소모를 크게 줄여 모바일 장치들이 적은 전류로도 서로 통신할 수 있게 만든 통신이다. 데이터 통신이 사용되며, 통신은 간단한 명령과 응답으로 이루어진다.
+[286 P ] 
+[287 P ] 
+[288 P ] 
+[289 P ] 
+[290 P ] 
+[291 P ] 
+[292 P ] 
+[293 P ] 
+[294 P ] 
+[295 P ] 
+[296 P ] 
+[297 P ] 
+[298 P ] 
+[299 P ] 
+[300 P ] 
+[301 P ] 
+[302 P ] 
+[303 P ] 
+[304 P ] 
+[305 P ] 
+[306 P ] 
+[307 P ] 
+[308 P ] 
+[309 P ] <그림 6 Bluetooth module 동작 흐림도>
+[310 P ] 
+[311 P ] <그림 6>은 Bluetooth module의 전체적인 흐름도를 나타낸 것이다. Bluetooth Transport는 Classic과 BLE로 나누어지며, 별도의 처리가 요구된다. Bluetooth Classic의 Data는 표준 Bluetooth 규격에 정의된 사항만 처리하므로, 이는 Built-in Library에서 처리되고 외부장치의 처리 대상이 아니다. BLE의 데이터에서는 외부장치의 주요 정보(상태, Bluetooth 제어 명령)를 처리해야 하므로 별도의 추가 처리가 요구된다.
+[312 P ] 시스템 관리 모듈은 전체 시스템 상태에 따라 Bluetooth의 enable/disable을 제어한다. 외부장치가 내부장치에 연결이 되어 있어야 정상적인 오디오 처리가 가능하므로 내부장치가 연결되어 있는 경우에만 Bluetooth를 활성화한다. 내부장치가 연결되어 있다 떨어지게 되면, 바로 Bluetooth를 비활성화를 하는 것이 아니라 디바운스를 확인하고 현재 연결을 모두 끊은 후에 Bluetooth를 비활성화하게 된다.
+[313 P ] 그리고, Bluetooth module은 Bluetooth 상태를 시스템 관리 모듈에 전달한다.
+[314 P 3] SW-FW-DS-ID-008, Bluetooth Classic 유닛
+[315 P ] 
+[316 P ] 
+[317 P ] 
+[318 P ] 
+[319 P ] 
+[320 P ] 
+[321 P ] 
+[322 P ] 
+[323 P ] 
+[324 P ] 
+[325 P ] 
+[326 P ] 
+[327 P ] <그림 7. Bluetooth Classic 유닛 동작 흐림도>
+[328 P a8] 기본 상태
+[329 P ] 기본적으로 Bluetooth module은 Enable되어 있어야 한다. Disable되어 있으면 모든 요구는 무시된다.
+[330 P a8] pair_req
+[331 P ] 정확히는 Pairable 상태이다. 다른 장치가 외부장치를 검색하고 Pairing을 진행한다. Pairing이 성공하거나 Timeout이 되면 종료된다.
+[332 P a8] Classic/audio connect_req
+[333 P ] Classic/Audio connect request는 외부장치에서 수행하지 않는다. 다른 블루투스 장치가 외부장치를 검색하고 연결하며, Audio 연결을 수행한다. 외부장치는 연결이 되면 연결상태를 처리하게 된다. Audio 연결이 되면 다른 장치로부터 수신된 오디오는 I2S로 전송해 사운드 처리기에서 오디오를 처리하도록 한다.
+[334 P a8] disconnect_req
+[335 P ] Classic disconnect request를 처리한다. 연결 상태가 아니면, 처리는 종료된다. 연결을 해제할 때, Audio 연결이 되어 있으면 Audio 연결도 해제한다.
+[336 P a8] audio_disconnect_req
+[337 P ] Audio 연결 상태가 아니면, 처리는 종료된다. Audio 연결이 해제되면, Classic 연결 상태가 된다.
+[338 P 3] SW-FW-DS-ID-009, BLE 유닛
+[339 P a8] 기본 상태
+[340 P ] 기본적으로 Bluetooth module은 Enable되어 있어야 한다. Disable되어 있으면 모든 요구는 무시된다
+[341 P a8] Advertising
+[342 P ] BLE의 Advertising은 상대 장치와 연결을 가능하게 할 뿐만 아니라, 간단한 정보를 외부에 전달할 수 있다. 다음은 외부장치의 Advertising data와 Scan response data 설정이다.
+[343 TABLE 4 rows]
+Advertising data
+AD Type | 설명
+Complete Local Name | 외부장치 이름과 시리얼 번호
+Flags | BLE 규격에서 Mandatory 항목
+[344 P ] 
+[345 TABLE 5 rows]
+Scan response data
+AD Type | 설명
+Appearance | Cochlear Implant
+Flags | BLE 규격에서 Mandatory 항목
+Manufacturer specific data | 지역장치와 양이 모드 Secondary 장치의 배터리 레벨과 충전 상태
+[346 P a8] Connected
+[347 P a8] BLE 연결은 Data 통신만을 지원한다. 이는 BLE Data 처리 유닛에서 수행한다. 그리고, 데이터 통신을 하기 위해서는 연결된 장치와 자체 인증을 수행하는데, 이는 Security module과 AUTH service를 통해서 수행된다. BLE 모듈에서는 AUTH service의 데이터만을 처리한다.
+[348 P 3] SW-FW-DS-ID-010, AUTH service 처리 유닛
+[349 P ] AUTH service는 자체 CRA (Challenge-Response Authentication) 인증을 처리하기 위해 정의된 BLE Service 이다. BLE GATT에 기반하여 application-specific으로 정의한다. BLE에서의 처리는 일반적인 Service와 Characteristic 처리와 같으며, 자세한 처리내용은 Security module에서 다룬다. 여기에서는 AUTH service의 정의만을 설명한다.
+[350 P a8] Service UUID 정의
+[351 TABLE 6 rows]
+UUID | 설명
+Primary Service | AUTH service의 GATT내의 대표 식별자
+Challenge Characteristic | 인증의 Challenge에 해당되는 Characteristic 식별자
+Response Characteristic | 인증의 Response에 해당되는 Characteristic 식별자
+Confirm Characteristic | 인증 결과에 해당되는 Characteristic 식별자
+Status Characteristic | 인증 처리 과정에 해당되는 Characteristic 식별자
+[352 P a8] Characteristic 구조
+[353 TABLE 6 rows]
+Characteristic | Property | 설명
+Primary Service | read | Auth service의 primary service UUID
+Challenge Characteristic | write | 인증요청 장치가 Random number와 인증 타입을 전송한다.
+Response Characteristic | read, notify | 외부장치가 Random number와 인증요청 정치에 전송한 Random number을 암호화한 값을 상대에 인증요청 정치에게 전송한다.
+Confirm Characteristic | write | 인증요청 장치가 외부장치가 Random number을 암호화해 전송한다.
+Status Characteristic | read, notify | 인증요청 장치에게 인증 처리 과정을 알린다.
+[354 P a8] 인증 타입 (Authentication type)
+[355 P ] Challenge Characteristic에서 인증 타입을 사용하여 해당 인증 절차를 요청한다.
+[356 TABLE 4 rows]
+Value | Type | 설명
+0x01 | Patient | 리모콘 앱과 같은 외부장치 제어와 상태 알림 데이터 통신
+0x02 | Clinician | 매팽 앱과  같은 매핑 데이터 통신
+else | Invalid values | 
+[357 P a8] Status characteristic values
+[358 TABLE 6 rows]
+Value | Description
+0x00 | Authentication is failed
+0x01 | Authentication is passed
+0x02 | Authentication is in progress
+0x03 | Authentication is timed out
+else | Invalid values
+[359 P 3] SW-FW-DS-ID-011, BLE Data 처리 유닛
+[360 P ] BLE data 통신은 MCU 제조사인 Qualcomm사의 GAIA (Generic Application Interface Architecture) 프로토콜을 기반으로 이루어진다. GAIA 프로토콜에서 Addressing을 스마트 케이스 장치 전용으로 설정하여 사용한다. 따라서, 이후부터 설명은 세부적인 GAIA와 관련된 사항은 생략한다.
+[361 P ] 또한, 미리 정의된 Message 구조에 맞게 구성된 BLE 데이터를 통해 Message 단위로 통신하게 된다
+[362 P a8] Message 구조
+[363 P ] 
+[364 P ] 
+[365 P ] 
+[366 P ] <그림 11. BLE message 구조>
+[367 P ] 메시지 길이는 20 byte이고, 길이는 가변이다. 최소 길이는 1이며 0 번째 Byte는 반드시 메시지에 포함되어야 한다.
+[368 P ] 0 번째 byte는 type이고, 이 메시지의 type을 나타낸다.
+[369 P ] 1 번째 byte 부터는 data이다. data의 내용이나 길이는 메시지 type에 따라 정의된다. 
+[370 P a8] Message 데이터 송신 처리
+[371 P ] 상대방에게 전송할 메시지가 있을 경우, type과 데이터를 BLE data 처리 유닛에 전달하면, 유닛은 타입과 데이터의 값을 검사하여 전송할 것인지 아닌지를 결정한다. 전송할 경우 GAIA 프로토콜에 맞게 구성한 후에 전송한다.
+[372 P ] 아래 <그림 8>은 BLE message 전송 처리 과정을 보여준다. 당연하겠지만, BLE 연결이 되어 있지 않으면, 요청은 무시된다.
+[373 P a8] Message 데이터 수신 처리
+[374 P ] 상대방이 전송한 메시지는 MCU 시스템의 Built-in Library GAIA received data handler를 통해 BLE Data 처리 유닛에 전달된다. 먼저 Addressing이 적법한지 확인을 하고 수신된 데이터가 메시지 구조를 갖지 않는 경우는 무시된다. 반대로, 메시지 하나를 구성하게 되면 수신된 메시는 처리가 수행된다.
+[375 P ] 수신된 각 메시지는 현재 시스템 상태에 따라 처리된다.
+[376 P ] 메시지를 수신하고 BLE 연결이 끊어졌다면, 이 메시지는 무시된다.
+[377 P ] 아래 그림 <그림 9>은 BLE 데이터를 수신하여, 메시지 구조를 확인하고 처리하는 흐름도이다. 이렇게 처리된 메시지는 시스템 상태에 맞게 각 모듈에 요청을 전달하게 된다.
+[378 P ] 
+[379 P ] 
+[380 P ] 
+[381 P ] 
+[382 P ] 
+[383 P ] 
+[384 P ] 
+[385 P ] 
+[386 P ] 
+[387 P ] 
+[388 P ] 
+[389 P ] 
+[390 P ] 
+[391 P ] 
+[392 P ] 
+[393 P ] 
+[394 P ] <그림 8.  Message 데이터 전송 처리 흐름도>    <그림 9.  Message 데이터 수신 처리 흐름도>
+[395 P 2] 
+Security module
+[396 P ] 외부장치의 외부 인터페이스는 Bluetooth 통신이며, 이 중 주요 데이터는 BLE 통해 송수신된다. BLE에서는 표준 규격으로 BLE pairing을 하여 인증과 암호화를 제공하지만, 이를 더 보강하여 외부장치에서는 자체 인증과정을 추가하였다. 자체 인증과정은 CRA 방식을 따르며, BLE AUTH service를 이용하여 처리한다. BLE AUTH service의 정의는 Bluetooth module에서 설명하였고, 여기에서는 실제 어떻게 사용되고 처리되는지 설명한다.
+[397 P a8] CRA (Challenge – Response Authentication)의 개요
+[398 P ] CRA는 네트워크 및 시스템 보안을 강화하기 위해 사용되는 인증 방식으로, 사용자가 비밀번호를 직접 전송하지 않고 보안 검증을 수행할 수 있도록 설계되었다.
+[399 P ] CRA는 사용자와 인증 서버 간에 임의의 질문(Challenge)을 생성하고, 사용자가 이에 대한 적절한 응답(Response)을 제공해야 하는 방식으로, 비밀번호 노출을 방지하는 강력한 인증 기법입니다.
+[400 P a8] CRA 용어
+[401 TABLE 5 rows]
+용어 | 설명
+Challenge | 요청자가 상대방에게 임의로 생성한 질문 또는 난수를 전송
+Response | 상대방이 해당 Challenge에 대한 암호화된 응답을 생성하여 요청자에게 전송
+Nonce | 재사용 공격(Replay Attack)을 방지하기 위해 사용되는 일회성 숫자
+HMAC(Hash-based Message Authentication Code) | Challenge와 비밀 키를 기반으로 응답을 생성하는 알고리즘
+[402 P a8] CRA 기본적인 절차
+[403 P a8] Challenge 생성: 요청자가 난수(Challenge)를 사용자에게 전송
+[404 P a8] Response 생성: 상대방이 자신의 비밀 키를 사용하여 Challenge에 대한 응답을 생성
+[405 P a8] Verify: Response를 검증하는 단계. 요청자가 상대방의 Response를 확인하여 인증 여부 결정
+[406 P a8] Confirm: Response가 일치하면 인증 완료
+[407 P ] CRA에서 사용되는 암호화 Key는 NVM에 저장되는데, 보안과 무결성을 위하여 암호화되어 저장된다. Security module은 이러한 NMV 데이터에 대한 처리도 수행한다.
+[408 P ] 
+[409 P ] 
+[410 P ] 
+[411 P ] 
+[412 P ] 
+[413 P ] 
+[414 P ] 
+[415 P ] 
+[416 P ] 
+[417 P ] 
+[418 P ] 
+[419 P ] 
+[420 P ] 
+[421 P ] 
+[422 P ] 
+[423 P ] 
+[424 P ] 
+[425 P ] <그림 10.  외부장치 보안 처리 흐름도>
+[426 P 3] SW-FW-DS-ID-012, 보안 처리 유닛
+[427 P ] BLE data 통신을 통해 기기 제어나 기기 및 의료 정보같은 민감한 정보가 송수신될 수 있으므로,  연결하고 통신하려는 상대방이 적법한지를 확인해야 한다. BLE 표준 규격에서도 Pairing이라는 인증 방법을 제공하지만, 보안을 더욱 강화하기 위해 별도의 CRA 인증 방식을 사용한다. 그리고 암호화는 BLE 표준 규격에서 제공하는 암호화를 사용한다. 따라서, BLE pairing이 완료된 후에만 CRA 인증을 시작할 수 있다.
+[428 P ] 먼저, BLE가 연결이 시작되면, CRA 인증을 시작하는데 타이머를 시작하여 일정 시간내에 CRA 인증이 완료하지 못하면 실패로 간주하여 연결을 끊는다.
+[429 P ] 인증 절차는 BLE AUTH service를 통해 인증 요청하는 상대방과 정보를 주고받는다. 실제 오가는 정보의 처리는 보안 처리 유닛에서 이루어 지며, BLE AUTH service는 일종의 인터페이스를 제공한다. 그리고, 위에서 설명한 것처럼 BLE pairing을 수행한 후에 CRA 인증을 시작할 수 있으므로 BLE pairing이 완료되지 않으면 BLE AUTH service에 접근할 수 없다.
+[430 P ] 아래 <그림 11>은 CRA 인증 절차를 보여주는 것으로, Server는 외부장치가 되고 Client는 인을 요청하는 상대방이 된다. 그리고 NONCE나 HMAC와 같은 인증 절차에 사용되는 알고리즘 등은 보안 툴박스 유닛을 통해 값을 생성하고 얻는다.
+[431 P ] 추가로, BLE는 1:1 연결만 지원하여 한 사용자가 외부장치를 사용할 시, 다른 사용자의 간섭을 방지한다.
+[432 P ] 
+[433 P ] 
+[434 P ] 
+[435 P ] 
+[436 P ] 
+[437 P ] 
+[438 P ] 
+[439 P ] 
+[440 P ] 
+[441 P ] 
+[442 P ] 
+[443 P ] 
+[444 P ] 
+[445 P ] 
+[446 P ] 
+[447 P ] 
+[448 P ] 
+[449 P ] 
+[450 P ] <그림 11. CRA 인증 절차 흐림도>
+[451 P ] <그림 11>의CRA 인증 절차는 다음과 같다.
+[452 P a8] CRA 인증을 시작하기 위해서는 서버와 클라이언트 사이에 BLE 연결과BLE Pairing이 완료되어 있어야 한다.
+[453 P a8] 클라이언트는 AUTH service의 Challenge characteristic에 auth_type과 NOUNCE_A를 쓰므로 해서 CRA 인증을 시작한다.
+[454 P a8] Challenge characteristic에 데이터가 써지면, 서버는 auth_type가 적당한 값인지 확인한다. 허용되지 않은 값이면, 인증은 실패로 간주하고 인증을 종료하고 BLE 연결을 끊는다. 적법한 값이면 먼저 Status characteristic에 in_progress로 클라이언트에게 알린다. 그리고 NOUNC_B와 HMAC_B를 Response characteristic를 통해 생성하여 클라이언트에게 알린다.
+[455 P a8] 클라이언트에서 Response characteristic에 데이터가 들어오면, HMAC_B’를 생성한 수에 HMAC_B와 비교한다.
+[456 P a8] HMAC_B = HMAC_B’ 이면, 클라이언트는 HMAC_A을 생성하여 Confirm characteristic 통해 서버에 전송한다.
+[457 P a8] HMAC_B ≠ HMAC_B’ 이면, 인증은 실패가 되고 종료된다.
+[458 P a8] 서버는 HMAC_A를 받은 후에, HMAC_A’를 생성하고 HMAC_A와 비교한다.
+[459 P a8] HMAC_A와 HMAC_A’가 같다면, 서버는 Status characteristic을 통해 인증이 성공했음을 알리고 인증은 종료한다.
+[460 P a8] HMAC_A와 HMAC_A’가 같지 않으면, 서버는 Status characteristic을 통해 인증이 실패했음을 알리고 인증은 종료한다.
+[461 P a8] 그림에는 나와있지 않지만, 인증 타이머가 동작하여 절차에 시간제한을 둔다. 이는 인증이 완료되지 않은 상태에서 BLE의 연결을 계속 유지하게 되면, 데이터 통신도 되지 않은 상태에서 오랜 시간 BLE 연결을 유지하지 않기 위함이다.
+[462 P a8] BLE 연결이 완료되면 서버는 타이머를 시작한다.
+[463 P a8] 주어진 시간동안 성공이든 실패든 인증 절차가 완료되지 않으면, 인증은 실패로 간주한다. 인증은 실패하면 BLE의 연결이 해제된다.
+[464 P 3] SW-FW-DS-ID-013, 보안 툴박스 유닛
+[465 P ] 보안 툴박스 유닛은 보안 모듈에서 사용하는 보안 알고리즘의 처리에 대한 인터페이스 제공한다. 이러한 툴박스는 알고리즘을 사용하는 유닛이 복잡한 내용을 알 필요없이 인터페이스를 통해 쉽게 알고리즘의 결과값을 얻는다. 또한, 기존과 다른 알고리즘을 사용하게 되면, 보안 툴박스 유닛만 수정해도 다른 유닛들은 기존 인터페이스를 사용하여 변경없이 알고리즘을 사용할 수 있을 수 있다.
+[466 P ] 알고리즘에 필요한 데이터는 보안 NVM 유닛을 통해 얻을 수 있으며, 보안 NVM 유닛 또한 보안 툴박스 유닛을 통해 NVM의 데이터를 복호화한다.
+[467 P ] 그리고, 알고리즘에 사용하는 각 키는 보안 NVM 유닛을 통해 얻는다. 리모콘 앱과 매핑 앱이 사용하는 키 생성 알고리즘을 다르게 하여 해당 장치에 원하는 데이터를 전송할 수 있다.
+[468 P a8] Authentication key
+[469 P a8] 리모콘 앱: shared_service_key를 사용하며 제품 생산시에 NVM에서 저장되어 있어 직접 얻는다. 이 키는 각 사용자마다 서로 다른 키 값을 가져 적법한 사용자만 해당 외부장치와 통신할 수 있도록 한다.
+[470 P a8] 매핑 앱: clinic_service_key를 사용하는데, 먼저 clinican_master_key를 NVM에서 읽어 다음과 같은 방식으로 생성하여 사용한다:
+clinic_service_key = [0:15] of SHA256(clinician_maseter_key, serial_num)
+[471 P a8] Authentication procedure
+[472 P a8] 사용 알고리즘: ENC, AES-CMAC(Cipher-based Message Authentication Code)
+[473 P a8] NOUNCE_A: 클라이언트에서 생성한 16바이트 random data
+[474 P a8] NOUNCE_B: 서버에서 생성한 16바이트 random data
+[475 P a8] HMAC_A = ENC(auth_key, nounce_b || nounce_a)
+[476 P a8] HMAC_B = ENC(auth_key, nounce_a || nounce_b)
+[477 P a8] NVM access
+[478 P a8] 사용 알고리즘:AES-128
+[479 P a8] Encryption key는 생산시에 저장되는 10바이트 random data와 외부장치의 BD_ADDR 6바이트를 조합하여 사용한다. random data와 BD_ADDR은 장치마다 다르므로 키 값 또한 장치마다 다르다
+enc_key = bd_addr || rand_num
+[480 P 3] SW-FW-DS-ID-014, 보안 NVM 유닛
+[481 P ] 보안 모듈에서 사용하는 데이터 중에 NVM에 저장된 데이터를 읽거나 쓸 때 NVM의 접근을 처리한다. 다른 유닛들은 NVM의 직접적인 접근의 처리없이 보안 NVM이 제공하는 접근 인터페이스를 통해 쉽게 NVM을 데이터를 사용할 수 있도록 한다. 또한 NVM 데이터의 위치나 데이터 길이, 아니면 전체 NVM 타입이 바뀌더라도 보안 NVM 유닛만을 수정하여, 다른 유닛들은 기존 인터페이스를 통해 변경을 최소화하여 NVM 데이터를 사용할 수 있을 수 있다.
+[482 P ] 또한, 보안 NVM 유닛은 하드웨어 인터페이스 모듈의 NVM 처리 유닛을 통해 실제 데이터를 얻는다.
+[483 P ] 그리고, 보안 모듈에서 사용하는 모든 NVM 데이터는 암호화가 되어있기 때문에, 이는 보안 툴 박스를 통해 복호화하거나 암호화한다. 이 키에 대한 설명은 보안 툴박스 유닛에서 하였다.
+[484 P ] 보안에서 사용하는 NVM 데이터에는 다음과 같은 것들이 있다:
+[485 TABLE 4 rows]
+보안 NVM 데이터 | 설명
+AUTH_RAND_NUM | NVM 데이터의 암호화 키 생성에 사용하는 random data
+AUTH_SERVICE_KEY | 리모콘 앱 인증에 사용하는 키
+AUTH_CLINIC_MASTER_KEY | 리모콘 앱 인증에 사용하는 키를 생성하는데 사용하는 키
+[486 P ] 

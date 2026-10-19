@@ -1,0 +1,593 @@
+{
+  "target": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\DHF\\02_설계 입력\\SW\\펌웨어\\SRS-FW-TD24A 소프트웨어 요구사항 사양서_rev0(김은수 작성).xlsx",
+  "changes": [
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "H6",
+      "before": "SYS-RID-FW-2",
+      "after": "SYS-RID-SP-FW-2"
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "H8",
+      "before": "SYS-RID-FW-1",
+      "after": "SYS-RID-SP-FW-1"
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "H9",
+      "before": "SYS-RID-FW-4",
+      "after": "SYS-RID-SP-FW-4"
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "H10",
+      "before": "SYS-RID-FW-5",
+      "after": "SYS-RID-SP-FW-5"
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "H11",
+      "before": "SYS-RID-FW-3",
+      "after": "SYS-RID-SP-FW-3"
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "H13",
+      "before": "SYS-RID-FW-6",
+      "after": "SYS-RID-SP-FW-6"
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "H14",
+      "before": "SYS-RID-FW-7",
+      "after": "SYS-RID-SP-FW-7"
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "H15",
+      "before": "SYS-RID-FW-8",
+      "after": "SYS-RID-SP-FW-8"
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "H16",
+      "before": "SYS-RID-FW-9",
+      "after": "SYS-RID-SP-FW-9"
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "H17",
+      "before": "SYS-RID-FW-10",
+      "after": "SYS-RID-SP-FW-10"
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "H18",
+      "before": "SYS-RID-FW-11",
+      "after": "SYS-RID-SP-FW-11"
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "H19",
+      "before": "SYS-RID-FW-12",
+      "after": "SYS-RID-SP-FW-12"
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "H49",
+      "before": "SYS-RID-FW-13",
+      "after": "SYS-RID-SP-FW-13"
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "H50",
+      "before": "SYS-RID-FW-14",
+      "after": "SYS-RID-SP-FW-14"
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "H51",
+      "before": "SYS-RID-FW-15",
+      "after": "SYS-RID-SP-FW-15"
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "H52",
+      "before": "SYS-RID-FW-16",
+      "after": "SYS-RID-SP-FW-16"
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "H54",
+      "before": "SYS-RID-FW-17",
+      "after": "SYS-RID-SP-FW-17"
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "H55",
+      "before": "SYS-RID-FW-22",
+      "after": "SYS-RID-SP-FW-22"
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "H56",
+      "before": "SYS-RID-FW-18",
+      "after": "SYS-RID-SP-FW-18"
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "H57",
+      "before": "SYS-RID-FW-26",
+      "after": "SYS-RID-SP-FW-26"
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "H58",
+      "before": "SYS-RID-FW-23",
+      "after": "SYS-RID-SP-FW-23"
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "H59",
+      "before": "SYS-RID-FW-27",
+      "after": "SYS-RID-SP-FW-27"
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "H60",
+      "before": "SYS-RID-FW-19",
+      "after": "SYS-RID-SP-FW-19"
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "H61",
+      "before": "SYS-RID-FW-30",
+      "after": "SYS-RID-SP-FW-30"
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "H62",
+      "before": "SYS-RID-FW-31",
+      "after": "SYS-RID-SP-FW-31"
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "H63",
+      "before": "SYS-RID-FW-32",
+      "after": "SYS-RID-SP-FW-32"
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "H64",
+      "before": "SYS-RID-FW-20",
+      "after": "SYS-RID-SP-FW-20"
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "H65",
+      "before": "SYS-RID-FW-21",
+      "after": "SYS-RID-SP-FW-21"
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "H66",
+      "before": "SYS-RID-FW-24",
+      "after": "SYS-RID-SP-FW-24"
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "H67",
+      "before": "SYS-RID-FW-25",
+      "after": "SYS-RID-SP-FW-25"
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "H68",
+      "before": "SYS-RID-FW-29",
+      "after": "SYS-RID-SP-FW-29"
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "H69",
+      "before": "SYS-RID-FW-33",
+      "after": "SYS-RID-SP-FW-33"
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "H70",
+      "before": "SYS-RID-FW-34",
+      "after": "SYS-RID-SP-FW-34"
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "H71",
+      "before": "SYS-RID-FW-35",
+      "after": "SYS-RID-SP-FW-35"
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "H72",
+      "before": "SYS-RID-FW-36",
+      "after": "SYS-RID-SP-FW-36"
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "H73",
+      "before": "SYS-RID-FW-38",
+      "after": "SYS-RID-SP-FW-38"
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "H74",
+      "before": "SYS-RID-FW-48",
+      "after": "SYS-RID-SP-FW-48"
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "H75",
+      "before": "SYS-RID-FW-47",
+      "after": "SYS-RID-SP-FW-47"
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "H81",
+      "before": "SYS-RID-FW-39, SYS-RID-FW-40",
+      "after": "SYS-RID-SP-FW-39, SYS-RID-SP-FW-40"
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "H82",
+      "before": "SYS-RID-FW-41",
+      "after": "SYS-RID-SP-FW-41"
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "H83",
+      "before": "SYS-RID-FW-28",
+      "after": "SYS-RID-SP-FW-28"
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "H84",
+      "before": "SYS-RID-FW-42",
+      "after": "SYS-RID-SP-FW-42"
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "H85",
+      "before": "SYS-RID-FW-43",
+      "after": "SYS-RID-SP-FW-43"
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "H86",
+      "before": "SYS-RID-FW-44",
+      "after": "SYS-RID-SP-FW-44"
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "H88",
+      "before": "SYS-RID-FW-45",
+      "after": "SYS-RID-SP-FW-45"
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "H89",
+      "before": "SYS-RID-FW-46",
+      "after": "SYS-RID-SP-FW-46"
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "H90",
+      "before": "SYS-RID-FW-37",
+      "after": "SYS-RID-SP-FW-37"
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "H91",
+      "before": "SYS-RID-FW-49",
+      "after": "SYS-RID-SP-FW-49"
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "H92",
+      "before": "SYS-RID-FW-50",
+      "after": "SYS-RID-SP-FW-50"
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_변경 비교",
+      "cell": "H6",
+      "before": "SYS-RID-FW-2",
+      "after": "SYS-RID-SP-FW-2"
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_변경 비교",
+      "cell": "H8",
+      "before": "SYS-RID-FW-1",
+      "after": "SYS-RID-SP-FW-1"
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_변경 비교",
+      "cell": "H9",
+      "before": "SYS-RID-FW-4",
+      "after": "SYS-RID-SP-FW-4"
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_변경 비교",
+      "cell": "H10",
+      "before": "SYS-RID-FW-5",
+      "after": "SYS-RID-SP-FW-5"
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_변경 비교",
+      "cell": "H11",
+      "before": "SYS-RID-FW-3",
+      "after": "SYS-RID-SP-FW-3"
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_변경 비교",
+      "cell": "H14",
+      "before": "SYS-RID-FW-6",
+      "after": "SYS-RID-SP-FW-6"
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_변경 비교",
+      "cell": "H16",
+      "before": "SYS-RID-FW-7",
+      "after": "SYS-RID-SP-FW-7"
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_변경 비교",
+      "cell": "H18",
+      "before": "SYS-RID-FW-8",
+      "after": "SYS-RID-SP-FW-8"
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_변경 비교",
+      "cell": "H20",
+      "before": "SYS-RID-FW-9",
+      "after": "SYS-RID-SP-FW-9"
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_변경 비교",
+      "cell": "H22",
+      "before": "SYS-RID-FW-10",
+      "after": "SYS-RID-SP-FW-10"
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_변경 비교",
+      "cell": "H24",
+      "before": "SYS-RID-FW-11",
+      "after": "SYS-RID-SP-FW-11"
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_변경 비교",
+      "cell": "H26",
+      "before": "SYS-RID-FW-12",
+      "after": "SYS-RID-SP-FW-12"
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_변경 비교",
+      "cell": "H60",
+      "before": "SYS-RID-FW-13",
+      "after": "SYS-RID-SP-FW-13"
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_변경 비교",
+      "cell": "H62",
+      "before": "SYS-RID-FW-14",
+      "after": "SYS-RID-SP-FW-14"
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_변경 비교",
+      "cell": "H63",
+      "before": "SYS-RID-FW-15",
+      "after": "SYS-RID-SP-FW-15"
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_변경 비교",
+      "cell": "H64",
+      "before": "SYS-RID-FW-16",
+      "after": "SYS-RID-SP-FW-16"
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_변경 비교",
+      "cell": "H67",
+      "before": "SYS-RID-FW-17",
+      "after": "SYS-RID-SP-FW-17"
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_변경 비교",
+      "cell": "H69",
+      "before": "SYS-RID-FW-22",
+      "after": "SYS-RID-SP-FW-22"
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_변경 비교",
+      "cell": "H71",
+      "before": "SYS-RID-FW-18",
+      "after": "SYS-RID-SP-FW-18"
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_변경 비교",
+      "cell": "H73",
+      "before": "SYS-RID-FW-26",
+      "after": "SYS-RID-SP-FW-26"
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_변경 비교",
+      "cell": "H75",
+      "before": "SYS-RID-FW-23",
+      "after": "SYS-RID-SP-FW-23"
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_변경 비교",
+      "cell": "H77",
+      "before": "SYS-RID-FW-27",
+      "after": "SYS-RID-SP-FW-27"
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_변경 비교",
+      "cell": "H79",
+      "before": "SYS-RID-FW-19",
+      "after": "SYS-RID-SP-FW-19"
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_변경 비교",
+      "cell": "H81",
+      "before": "SYS-RID-FW-30",
+      "after": "SYS-RID-SP-FW-30"
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_변경 비교",
+      "cell": "H82",
+      "before": "SYS-RID-FW-31",
+      "after": "SYS-RID-SP-FW-31"
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_변경 비교",
+      "cell": "H84",
+      "before": "SYS-RID-FW-32",
+      "after": "SYS-RID-SP-FW-32"
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_변경 비교",
+      "cell": "H85",
+      "before": "SYS-RID-FW-20",
+      "after": "SYS-RID-SP-FW-20"
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_변경 비교",
+      "cell": "H86",
+      "before": "SYS-RID-FW-21",
+      "after": "SYS-RID-SP-FW-21"
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_변경 비교",
+      "cell": "H87",
+      "before": "SYS-RID-FW-24",
+      "after": "SYS-RID-SP-FW-24"
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_변경 비교",
+      "cell": "H88",
+      "before": "SYS-RID-FW-25",
+      "after": "SYS-RID-SP-FW-25"
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_변경 비교",
+      "cell": "H89",
+      "before": "SYS-RID-FW-29",
+      "after": "SYS-RID-SP-FW-29"
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_변경 비교",
+      "cell": "H90",
+      "before": "SYS-RID-FW-33",
+      "after": "SYS-RID-SP-FW-33"
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_변경 비교",
+      "cell": "H91",
+      "before": "SYS-RID-FW-34",
+      "after": "SYS-RID-SP-FW-34"
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_변경 비교",
+      "cell": "H92",
+      "before": "SYS-RID-FW-35",
+      "after": "SYS-RID-SP-FW-35"
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_변경 비교",
+      "cell": "H93",
+      "before": "SYS-RID-FW-36",
+      "after": "SYS-RID-SP-FW-36"
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_변경 비교",
+      "cell": "H94",
+      "before": "SYS-RID-FW-38",
+      "after": "SYS-RID-SP-FW-38"
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_변경 비교",
+      "cell": "H96",
+      "before": "SYS-RID-FW-48",
+      "after": "SYS-RID-SP-FW-48"
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_변경 비교",
+      "cell": "H98",
+      "before": "SYS-RID-FW-47",
+      "after": "SYS-RID-SP-FW-47"
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_변경 비교",
+      "cell": "H105",
+      "before": "SYS-RID-FW-39, SYS-RID-FW-40",
+      "after": "SYS-RID-SP-FW-39, SYS-RID-SP-FW-40"
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_변경 비교",
+      "cell": "H107",
+      "before": "SYS-RID-FW-41",
+      "after": "SYS-RID-SP-FW-41"
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_변경 비교",
+      "cell": "H109",
+      "before": "SYS-RID-FW-28",
+      "after": "SYS-RID-SP-FW-28"
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_변경 비교",
+      "cell": "H111",
+      "before": "SYS-RID-FW-42",
+      "after": "SYS-RID-SP-FW-42"
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_변경 비교",
+      "cell": "H113",
+      "before": "SYS-RID-FW-43",
+      "after": "SYS-RID-SP-FW-43"
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_변경 비교",
+      "cell": "H115",
+      "before": "SYS-RID-FW-44",
+      "after": "SYS-RID-SP-FW-44"
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_변경 비교",
+      "cell": "H119",
+      "before": "SYS-RID-FW-45",
+      "after": "SYS-RID-SP-FW-45"
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_변경 비교",
+      "cell": "H121",
+      "before": "SYS-RID-FW-46",
+      "after": "SYS-RID-SP-FW-46"
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_변경 비교",
+      "cell": "H123",
+      "before": "SYS-RID-FW-37",
+      "after": "SYS-RID-SP-FW-37"
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_변경 비교",
+      "cell": "H125",
+      "before": "SYS-RID-FW-49",
+      "after": "SYS-RID-SP-FW-49"
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서_변경 비교",
+      "cell": "H127",
+      "before": "SYS-RID-FW-50",
+      "after": "SYS-RID-SP-FW-50"
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+[
+  {
+    "sourceUnchanged": true,
+    "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\rid83-20261013\\word\\candidates\\[E8300-QCC] SR-FW-TD24A 소프트웨어 요구사항.docx",
+    "SADNativeCellCount": 0,
+    "nativeRejectedNewCount": 0,
+    "pages": 13,
+    "nativeAccepted": true,
+    "code": "SR",
+    "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\rid83-20261013\\word\\SR-native.pdf",
+    "sha256": "fb0f0a4ed73e0712e79d499097c0b635b8ea6446f65b5ddfff840edd2253b019"
+  },
+  {
+    "sourceUnchanged": true,
+    "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\rid83-20261013\\word\\candidates\\[E8300-QCC] SAD-FW-TD24A 소프트웨어 아키텍쳐 기술서.docx",
+    "SADNativeCellCount": 249,
+    "nativeRejectedNewCount": 0,
+    "pages": 55,
+    "nativeAccepted": true,
+    "code": "SAD",
+    "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\rid83-20261013\\word\\SAD-native.pdf",
+    "sha256": "4e71a6b7d696c7e5e21804eff3182f4a9f2f5bb6991e4b441ee6cbf5874119b1"
+  }
+]

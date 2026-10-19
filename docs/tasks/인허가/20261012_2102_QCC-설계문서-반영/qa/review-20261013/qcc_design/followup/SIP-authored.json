@@ -1,0 +1,76 @@
+{
+  "code": "SIP",
+  "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SIP-FW-TD24A 소프트웨어 통합 계획서.docx",
+  "candidate": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_design\\followup\\candidate\\[E8300-QCC] SIP-FW-TD24A 소프트웨어 통합 계획서.docx",
+  "before_sha256": "5b0d29f1b59ac109c9089fda84c06f7cdba40924719920bce0e666424b38bc7c",
+  "after_sha256": "2e4196077f9cfb3410cd0ce2c83dd5c62879dc5083bb0ffbf66d92300aec8829",
+  "date": "2026-10-13T00:05:24Z",
+  "new_revision_count": 0,
+  "new_revision_ids": [],
+  "new_revision_authors": [
+    "김은수"
+  ],
+  "reject_new_c14n_equals_before": true,
+  "new_nested_insertions": 0,
+  "prior_revisions_and_other_parts_preserved": true,
+  "original_media_bytes_preserved": true,
+  "changes": [],
+  "figures": [],
+  "styles_saved": 59,
+  "native_render": "root serialized render pending",
+  "status": "미실행",
+  "committed": true,
+  "style_repair": {
+    "template_sha256": "70271c2b81e97b917d7044a41c9b5fe377ac631a8bbb175373a6d399f5d7f04b",
+    "saved_tdc_styles": 59,
+    "support_styles": [
+      {
+        "template_id": "a1",
+        "new_id": "TDCSupport20261013Paragraph",
+        "name": "공통 양식 본문 기반"
+      },
+      {
+        "template_id": "a3",
+        "new_id": "TDCSupport20261013Table",
+        "name": "공통 양식 표 기반"
+      }
+    ],
+    "numbering_bindings_preserved": [
+      {
+        "name": "TDC 제목 1",
+        "template_numId": "11",
+        "saved_numId": "22"
+      },
+      {
+        "name": "TDC 제목 2",
+        "template_numId": "11",
+        "saved_numId": "22"
+      },
+      {
+        "name": "TDC 제목 3",
+        "template_numId": "11",
+        "saved_numId": "22"
+      },
+      {
+        "name": "TDC 제목 4",
+        "template_numId": "11",
+        "saved_numId": "22"
+      },
+      {
+        "name": "TDC 제목 5",
+        "template_numId": "11",
+        "saved_numId": "22"
+      },
+      {
+        "name": "TDC 제목 6",
+        "template_numId": "11",
+        "saved_numId": "22"
+      }
+    ],
+    "before_styles_sha256": "b86369c28528dccffd29b78663d416bf4925195ad16f9ef6e6be46b84675a3b8",
+    "after_styles_sha256": "469c0f1b38f865a5da803e15b3b7e7b68dff5ea328efdb8995eb0eaa51f8fdb2",
+    "non_tdc_styles_and_document_defaults_preserved": true,
+    "limit": "Styles definitions are saved Word format; prose/drawing revisions remain separately accept/reject capable. Current baseline style XML is snapshotted."
+  },
+  "separator_normalization_count": 0
+}

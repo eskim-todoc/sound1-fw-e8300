@@ -1,0 +1,1028 @@
+{
+  "documents": {
+    "SAD": {
+      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SAD-FW-TD24A 소프트웨어 아키텍쳐 기술서.docx",
+      "sha256": "381ffb1d8ee99f596c907e9ed1b932c4101737417354a53c25675527ce22783b",
+      "canonical_tdc_styles": [
+        {
+          "name": "TDC 문서 제목",
+          "saved_id": "TDC",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 본문 1",
+          "saved_id": "TDC10",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 본문 2",
+          "saved_id": "TDC20",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 본문 3",
+          "saved_id": "TDC30",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 본문 4",
+          "saved_id": "TDC40",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 본문 5",
+          "saved_id": "TDC50",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 본문 6",
+          "saved_id": "TDC60",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 제목 1",
+          "saved_id": "TDC1",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 제목 2",
+          "saved_id": "TDC2",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 제목 3",
+          "saved_id": "TDC3",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 제목 4",
+          "saved_id": "TDC4",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 제목 5",
+          "saved_id": "TDC5",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 제목 6",
+          "saved_id": "TDC6",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 표 머리행",
+          "saved_id": "TDC0",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 표 본문",
+          "saved_id": "TDC7",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 그림",
+          "saved_id": "TDC8",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 표 캡션",
+          "saved_id": "TDC9",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 그림 캡션",
+          "saved_id": "TDCa",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 주석",
+          "saved_id": "TDCb",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 수식",
+          "saved_id": "TDCc",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 표",
+          "saved_id": "TDCd",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 표 1",
+          "saved_id": "TDC11",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 표 2",
+          "saved_id": "TDC21",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 표 3",
+          "saved_id": "TDC31",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 표 4",
+          "saved_id": "TDC41",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 표 5",
+          "saved_id": "TDC51",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 표 6",
+          "saved_id": "TDC61",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 표 캡션 1",
+          "saved_id": "TDC12",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 표 캡션 2",
+          "saved_id": "TDC22",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 표 캡션 3",
+          "saved_id": "TDC32",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 표 캡션 4",
+          "saved_id": "TDC42",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 표 캡션 5",
+          "saved_id": "TDC52",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 표 캡션 6",
+          "saved_id": "TDC62",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 주석 1",
+          "saved_id": "TDC13",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 주석 2",
+          "saved_id": "TDC23",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 주석 3",
+          "saved_id": "TDC33",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 주석 4",
+          "saved_id": "TDC43",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 주석 5",
+          "saved_id": "TDC53",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 주석 6",
+          "saved_id": "TDC63",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 그림 1",
+          "saved_id": "TDC14",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 그림 2",
+          "saved_id": "TDC24",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 그림 3",
+          "saved_id": "TDC34",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 그림 4",
+          "saved_id": "TDC44",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 그림 5",
+          "saved_id": "TDC54",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 그림 6",
+          "saved_id": "TDC64",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 그림 캡션 1",
+          "saved_id": "TDC15",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 그림 캡션 2",
+          "saved_id": "TDC25",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 그림 캡션 3",
+          "saved_id": "TDC35",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 그림 캡션 4",
+          "saved_id": "TDC45",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 그림 캡션 5",
+          "saved_id": "TDC55",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 그림 캡션 6",
+          "saved_id": "TDC65",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 수식 1",
+          "saved_id": "TDC16",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 수식 2",
+          "saved_id": "TDC26",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 수식 3",
+          "saved_id": "TDC36",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 수식 4",
+          "saved_id": "TDC46",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 수식 5",
+          "saved_id": "TDC56",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 수식 6",
+          "saved_id": "TDC66",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 표 항목",
+          "saved_id": "TDCe",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 표 설명",
+          "saved_id": "TDCf",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        }
+      ],
+      "support_styles": [
+        "TDCSupport20261013Paragraph",
+        "TDCSupport20261013Table"
+      ],
+      "numbering_sha256": "79c3ab3ac4df67a765e2c7975b127c8421e58dbf6ea0f4f7a3daa5c00db78b6a",
+      "support_links": [
+        {
+          "unit": "SU-ID-QCC-001",
+          "added_support_requirements": [
+            21,
+            22,
+            29,
+            63
+          ],
+          "forward_and_reverse_match": true
+        },
+        {
+          "unit": "SU-ID-QCC-002",
+          "added_support_requirements": [
+            35,
+            38,
+            69
+          ],
+          "forward_and_reverse_match": true
+        },
+        {
+          "unit": "SU-ID-QCC-004",
+          "added_support_requirements": [
+            48,
+            49
+          ],
+          "forward_and_reverse_match": true
+        },
+        {
+          "unit": "SU-ID-QCC-006",
+          "added_support_requirements": [
+            23,
+            28,
+            34
+          ],
+          "forward_and_reverse_match": true
+        },
+        {
+          "unit": "SU-ID-QCC-009",
+          "added_support_requirements": [
+            29,
+            35,
+            38,
+            63
+          ],
+          "forward_and_reverse_match": true
+        }
+      ],
+      "reject_followup_new_prose_exact_previous_body": true,
+      "native_final": "미실행"
+    },
+    "SDDD": {
+      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SDDD-FW-TD24A 소프트웨어 상세 설계서.docx",
+      "sha256": "89f92934b791a161a58cc5591c518160bb435a78358c6b27d2a21a32a7ad8d67",
+      "canonical_tdc_styles": [
+        {
+          "name": "TDC 문서 제목",
+          "saved_id": "TDC",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 본문 1",
+          "saved_id": "TDC10",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 본문 2",
+          "saved_id": "TDC20",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 본문 3",
+          "saved_id": "TDC30",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 본문 4",
+          "saved_id": "TDC40",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 본문 5",
+          "saved_id": "TDC50",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 본문 6",
+          "saved_id": "TDC60",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 제목 1",
+          "saved_id": "TDC1",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 제목 2",
+          "saved_id": "TDC2",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 제목 3",
+          "saved_id": "TDC3",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 제목 4",
+          "saved_id": "TDC4",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 제목 5",
+          "saved_id": "TDC5",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 제목 6",
+          "saved_id": "TDC6",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 표 머리행",
+          "saved_id": "TDC0",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 표 본문",
+          "saved_id": "TDC7",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 그림",
+          "saved_id": "TDC8",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 표 캡션",
+          "saved_id": "TDC9",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 그림 캡션",
+          "saved_id": "TDCa",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 주석",
+          "saved_id": "TDCb",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 수식",
+          "saved_id": "TDCc",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 표",
+          "saved_id": "TDCd",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 표 1",
+          "saved_id": "TDC11",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 표 2",
+          "saved_id": "TDC21",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 표 3",
+          "saved_id": "TDC31",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 표 4",
+          "saved_id": "TDC41",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 표 5",
+          "saved_id": "TDC51",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 표 6",
+          "saved_id": "TDC61",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 표 캡션 1",
+          "saved_id": "TDC12",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 표 캡션 2",
+          "saved_id": "TDC22",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 표 캡션 3",
+          "saved_id": "TDC32",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 표 캡션 4",
+          "saved_id": "TDC42",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 표 캡션 5",
+          "saved_id": "TDC52",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 표 캡션 6",
+          "saved_id": "TDC62",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 주석 1",
+          "saved_id": "TDC13",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 주석 2",
+          "saved_id": "TDC23",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 주석 3",
+          "saved_id": "TDC33",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 주석 4",
+          "saved_id": "TDC43",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 주석 5",
+          "saved_id": "TDC53",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 주석 6",
+          "saved_id": "TDC63",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 그림 1",
+          "saved_id": "TDC14",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 그림 2",
+          "saved_id": "TDC24",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 그림 3",
+          "saved_id": "TDC34",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 그림 4",
+          "saved_id": "TDC44",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 그림 5",
+          "saved_id": "TDC54",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 그림 6",
+          "saved_id": "TDC64",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 그림 캡션 1",
+          "saved_id": "TDC15",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 그림 캡션 2",
+          "saved_id": "TDC25",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 그림 캡션 3",
+          "saved_id": "TDC35",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 그림 캡션 4",
+          "saved_id": "TDC45",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 그림 캡션 5",
+          "saved_id": "TDC55",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 그림 캡션 6",
+          "saved_id": "TDC65",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 수식 1",
+          "saved_id": "TDC16",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 수식 2",
+          "saved_id": "TDC26",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 수식 3",
+          "saved_id": "TDC36",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 수식 4",
+          "saved_id": "TDC46",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 수식 5",
+          "saved_id": "TDC56",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 수식 6",
+          "saved_id": "TDC66",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 표 항목",
+          "saved_id": "TDCe",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 표 설명",
+          "saved_id": "TDCf",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        }
+      ],
+      "support_styles": [
+        "TDCSupport20261013Paragraph",
+        "TDCSupport20261013Table"
+      ],
+      "numbering_sha256": "92588839ccd8dc568ca5f82b5a34e511ad682867967968447499378ee4578dc9",
+      "support_links": [
+        {
+          "unit": "SU-ID-QCC-001",
+          "support_requirements": [
+            21,
+            22,
+            29,
+            63
+          ],
+          "scope_description": "상위 요구사항: SW-FW-RID-15, SW-FW-RID-16, SW-FW-RID-21, SW-FW-RID-22, SW-FW-RID-29, SW-FW-RID-44, SW-FW-RID-45, SW-FW-RID-48, SW-FW-RID-49, SW-FW-RID-52, SW-FW-RID-63, SW-FW-RID-76. SW-FW-UnitTest-QCC-ID-4에서는 기동 설정/초기화와 전원 상태 SPI/ACK를 확인한다. 전원/상태 처리를 시작하기 위한 초기 설정을 지원한다."
+        },
+        {
+          "unit": "SU-ID-QCC-002",
+          "support_requirements": [
+            35,
+            38,
+            69
+          ],
+          "scope_description": "상위 요구사항: SW-FW-RID-21, SW-FW-RID-22, SW-FW-RID-29, SW-FW-RID-35, SW-FW-RID-38, SW-FW-RID-44, SW-FW-RID-45, SW-FW-RID-46, SW-FW-RID-63, SW-FW-RID-66, SW-FW-RID-67, SW-FW-RID-68, SW-FW-RID-69, SW-FW-RID-70. SW-FW-UnitTest-QCC-ID-5에서는 여섯 시스템 상태 저장/조회를 확인한다. SW-FW-UnitTest-QCC-ID-4에서는 기동 설정/초기화와 전원 상태 SPI/ACK를 연계 지원으로 확인한다. 위치/잔량 및 무선 연결 상태의 저장/조회를 지원한다."
+        },
+        {
+          "unit": "SU-ID-QCC-004",
+          "support_requirements": [
+            48,
+            49
+          ],
+          "scope_description": "상위 요구사항: SW-FW-RID-44, SW-FW-RID-45, SW-FW-RID-46, SW-FW-RID-48, SW-FW-RID-49, SW-FW-RID-66, SW-FW-RID-67, SW-FW-RID-68, SW-FW-RID-69, SW-FW-RID-70. SW-FW-UnitTest-QCC-ID-7에서는 연결표시 입력에 따른 Bluetooth 활성 및 장치명를 확인한다. SW-FW-UnitTest-QCC-ID-8에서는 부착/탈착 시 BLE/Classic 검색/연결 활성를 확인한다. 페어링/보호 데이터 경로를 사용하기 위한 Bluetooth 활성화를 지원한다. 활성화 상태만으로 페어링/암호화 완료를 판정하지 않는다."
+        },
+        {
+          "unit": "SU-ID-QCC-006",
+          "support_requirements": [
+            23,
+            28,
+            34
+          ],
+          "scope_description": "상위 요구사항: SW-FW-RID-21, SW-FW-RID-22, SW-FW-RID-23, SW-FW-RID-28, SW-FW-RID-29, SW-FW-RID-34, SW-FW-RID-55, SW-FW-RID-62, SW-FW-RID-63, SW-FW-RID-66, SW-FW-RID-68. SW-FW-UnitTest-QCC-ID-2에서는 전압→잔량/충전/저전압 상태를 확인한다. 배터리 잔량/전원 상태를 제공하여 LED/자극 알림의 입력을 지원한다. 알림/자극의 최종 실행은 E8300 시스템 경로에서 별도로 확인한다."
+        },
+        {
+          "unit": "SU-ID-QCC-009",
+          "support_requirements": [
+            29,
+            35,
+            38,
+            63
+          ],
+          "scope_description": "상위 요구사항: SW-FW-RID-29, SW-FW-RID-35, SW-FW-RID-38, SW-FW-RID-44, SW-FW-RID-45, SW-FW-RID-47, SW-FW-RID-48, SW-FW-RID-49, SW-FW-RID-63, SW-FW-RID-70, SW-FW-RID-76. SW-FW-UnitTest-QCC-ID-9에서는 광고/스캔 응답과 현재/peer 잔량/연결 상태를 확인한다. SW-FW-UnitTest-QCC-ID-8에서는 부착/탈착 시 BLE/Classic 검색/연결 활성를 연계 지원으로 확인한다. 현재/peer의 위치/잔량 및 연결 상태를 광고/조회 데이터에 반영하는 입력을 지원한다."
+        }
+      ],
+      "reject_followup_new_prose_exact_previous_body": true,
+      "native_final": "미실행"
+    },
+    "SIP": {
+      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SIP-FW-TD24A 소프트웨어 통합 계획서.docx",
+      "sha256": "2e4196077f9cfb3410cd0ce2c83dd5c62879dc5083bb0ffbf66d92300aec8829",
+      "canonical_tdc_styles": [
+        {
+          "name": "TDC 문서 제목",
+          "saved_id": "TDC",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 본문 1",
+          "saved_id": "TDC10",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 본문 2",
+          "saved_id": "TDC20",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 본문 3",
+          "saved_id": "TDC30",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 본문 4",
+          "saved_id": "TDC40",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 본문 5",
+          "saved_id": "TDC50",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 본문 6",
+          "saved_id": "TDC60",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 제목 1",
+          "saved_id": "TDC1",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 제목 2",
+          "saved_id": "TDC2",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 제목 3",
+          "saved_id": "TDC3",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 제목 4",
+          "saved_id": "TDC4",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 제목 5",
+          "saved_id": "TDC5",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 제목 6",
+          "saved_id": "TDC6",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 표 머리행",
+          "saved_id": "TDC0",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 표 본문",
+          "saved_id": "TDC7",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 그림",
+          "saved_id": "TDC8",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 표 캡션",
+          "saved_id": "TDC9",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 그림 캡션",
+          "saved_id": "TDCa",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 주석",
+          "saved_id": "TDCb",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 수식",
+          "saved_id": "TDCc",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 표",
+          "saved_id": "TDCd",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 표 1",
+          "saved_id": "TDC11",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 표 2",
+          "saved_id": "TDC21",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 표 3",
+          "saved_id": "TDC31",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 표 4",
+          "saved_id": "TDC41",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 표 5",
+          "saved_id": "TDC51",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 표 6",
+          "saved_id": "TDC61",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 표 캡션 1",
+          "saved_id": "TDC12",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 표 캡션 2",
+          "saved_id": "TDC22",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 표 캡션 3",
+          "saved_id": "TDC32",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 표 캡션 4",
+          "saved_id": "TDC42",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 표 캡션 5",
+          "saved_id": "TDC52",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 표 캡션 6",
+          "saved_id": "TDC62",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 주석 1",
+          "saved_id": "TDC13",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 주석 2",
+          "saved_id": "TDC23",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 주석 3",
+          "saved_id": "TDC33",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 주석 4",
+          "saved_id": "TDC43",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 주석 5",
+          "saved_id": "TDC53",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 주석 6",
+          "saved_id": "TDC63",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 그림 1",
+          "saved_id": "TDC14",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 그림 2",
+          "saved_id": "TDC24",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 그림 3",
+          "saved_id": "TDC34",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 그림 4",
+          "saved_id": "TDC44",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 그림 5",
+          "saved_id": "TDC54",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 그림 6",
+          "saved_id": "TDC64",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 그림 캡션 1",
+          "saved_id": "TDC15",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 그림 캡션 2",
+          "saved_id": "TDC25",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 그림 캡션 3",
+          "saved_id": "TDC35",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 그림 캡션 4",
+          "saved_id": "TDC45",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 그림 캡션 5",
+          "saved_id": "TDC55",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 그림 캡션 6",
+          "saved_id": "TDC65",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 수식 1",
+          "saved_id": "TDC16",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 수식 2",
+          "saved_id": "TDC26",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 수식 3",
+          "saved_id": "TDC36",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 수식 4",
+          "saved_id": "TDC46",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 수식 5",
+          "saved_id": "TDC56",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 수식 6",
+          "saved_id": "TDC66",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 표 항목",
+          "saved_id": "TDCe",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        },
+        {
+          "name": "TDC 표 설명",
+          "saved_id": "TDCf",
+          "template_structure_equal_after_dependency_and_numId_mapping": true
+        }
+      ],
+      "support_styles": [
+        "TDCSupport20261013Paragraph",
+        "TDCSupport20261013Table"
+      ],
+      "numbering_sha256": "7b6b8a517d0a74d89a995733a66d65f2d0241e71bdda61437e6b0c891b4a5d2f",
+      "support_links": [],
+      "reject_followup_new_prose_exact_previous_body": true,
+      "native_final": "미실행"
+    }
+  },
+  "status": "통과",
+  "native_final": "미실행",
+  "product_verdict": "판정대기"
+}

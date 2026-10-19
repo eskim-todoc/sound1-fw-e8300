@@ -1,0 +1,25 @@
+{
+  "recordCount": 8,
+  "truncated": true,
+  "metadata": {
+    "revision": "a6wyu8",
+    "target": {
+      "id": "wb/mr8abs",
+      "beforeLines": 0,
+      "afterLines": 0
+    },
+    "kind": {
+      "requested": "computedStyle",
+      "tokens": [
+        "computedStyle"
+      ]
+    },
+    "include": {
+      "tokens": []
+    },
+    "exclude": {
+      "tokens": []
+    },
+    "notices": []
+  }
+}

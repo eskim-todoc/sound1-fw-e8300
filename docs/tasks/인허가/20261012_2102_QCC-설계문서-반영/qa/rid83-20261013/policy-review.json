@@ -1,0 +1,220 @@
+{
+  "checked_at": "2026-10-13T16:13:29.320032+09:00",
+  "status": "PASS_SCOPED",
+  "scope": "RID83 correction and draft manual inspection record only",
+  "checks": [
+    {
+      "principle": 1,
+      "applies": true,
+      "verdict": "통과",
+      "evidence": "RID83 and the unified product wording retained; no parallel QCC requirement created"
+    },
+    {
+      "principle": 2,
+      "applies": true,
+      "verdict": "통과",
+      "evidence": "Actual matrix/source checked; unjustified ACDOC parent removed; own SW requirement retained; policy clarified"
+    },
+    {
+      "principle": 3,
+      "applies": true,
+      "verdict": "통과",
+      "evidence": "SRS H93 and TEST83 F285 blank; SR/SAD/cyber references corrected; requirement and test IDs retained"
+    },
+    {
+      "principle": 4,
+      "applies": true,
+      "verdict": "통과",
+      "evidence": "Current combined documents, source QCC SRS, actual matrix, and manual draft contents read"
+    },
+    {
+      "principle": 5,
+      "applies": false,
+      "verdict": "해당없음",
+      "evidence": "No firmware structure or architecture-image change in this follow-up"
+    },
+    {
+      "principle": 6,
+      "applies": true,
+      "verdict": "통과",
+      "evidence": "SRS correction propagated to SR/SAD and both test documents; current saved bodies cross-checked"
+    },
+    {
+      "principle": 7,
+      "applies": true,
+      "verdict": "통과",
+      "evidence": "E8300-derived paragraphs, table dimensions, original styles and test-row layout preserved"
+    },
+    {
+      "principle": 8,
+      "applies": false,
+      "verdict": "해당없음",
+      "evidence": "No detailed implementation design changed"
+    },
+    {
+      "principle": 9,
+      "applies": true,
+      "verdict": "통과",
+      "evidence": "Document content is inspected; existing I retained"
+    },
+    {
+      "principle": 10,
+      "applies": true,
+      "verdict": "통과",
+      "evidence": "Pass evidence defined as actual presence of the three content categories in the identified manual version"
+    },
+    {
+      "principle": 11,
+      "applies": true,
+      "verdict": "통과",
+      "evidence": "Four explicit steps cover the three categories and recording version/section"
+    },
+    {
+      "principle": 12,
+      "applies": true,
+      "verdict": "통과",
+      "evidence": "Criteria/report common B:J cells and main merged rows match; no report-only test conditions added"
+    },
+    {
+      "principle": 13,
+      "applies": true,
+      "verdict": "통과",
+      "evidence": "The same TEST83 row contains the criteria and three actual observations plus section/page references"
+    },
+    {
+      "principle": 14,
+      "applies": false,
+      "verdict": "해당없음",
+      "evidence": "No RTT output or logs changed"
+    },
+    {
+      "principle": 15,
+      "applies": true,
+      "verdict": "통과",
+      "evidence": "Existing verification [1] and three numbered inspection observations preserved in one criterion/report row"
+    },
+    {
+      "principle": 16,
+      "applies": true,
+      "verdict": "통과",
+      "evidence": "K285 records actual inspected draft ID/revision/date and sections rather than fabricated product measurements"
+    },
+    {
+      "principle": 17,
+      "applies": true,
+      "verdict": "통과",
+      "evidence": "User confirmed all three categories but explicitly limited current record to the draft; separate distribution manual pending"
+    },
+    {
+      "principle": 18,
+      "applies": true,
+      "verdict": "통과",
+      "evidence": "Draft content inspection is not promoted to final-manual or security-test passage; L285 pending and other QCC tests unexecuted"
+    },
+    {
+      "principle": 19,
+      "applies": false,
+      "verdict": "해당없음",
+      "evidence": "No prior numeric test-value convention used or extended"
+    },
+    {
+      "principle": 20,
+      "applies": false,
+      "verdict": "해당없음",
+      "evidence": "No expected diagram or measured photo changed"
+    },
+    {
+      "principle": 21,
+      "applies": false,
+      "verdict": "해당없음",
+      "evidence": "No time test input or approval date changed"
+    },
+    {
+      "principle": 22,
+      "applies": true,
+      "verdict": "통과",
+      "evidence": "Only remaining distribution-manual deficiency retained with existing E8300 prefix, blue, underline, base+2pt; QCC notices unchanged"
+    },
+    {
+      "principle": 23,
+      "applies": true,
+      "verdict": "통과",
+      "evidence": "Current saved G files re-collected into the single central QCC registry; no duplicate registries"
+    },
+    {
+      "principle": 24,
+      "applies": true,
+      "verdict": "통과",
+      "evidence": "Native displays reviewed; comparison clipping fixed by comparison-only heights/merge; main alignment/borders/rows preserved"
+    },
+    {
+      "principle": 25,
+      "applies": true,
+      "verdict": "통과",
+      "evidence": "Main sheets contain accepted current text only; red[-]/green[+] added only to existing _비교 history"
+    },
+    {
+      "principle": 26,
+      "applies": true,
+      "verdict": "통과",
+      "evidence": "Full-history candidate retains real new revisions and old history; XML new-only rejection exactly restores prior paragraph. Actual Word accepts current content; QA projection separately verifies native acceptance/rejection of new revisions. Direct full-history COM selective rejection was not verified and is not claimed"
+    },
+    {
+      "principle": 27,
+      "applies": true,
+      "verdict": "통과",
+      "evidence": "Five combined outputs only; 7 other combined files and 23 originals hash-preserved; no approval/signature/user-setting mutation"
+    },
+    {
+      "principle": 28,
+      "applies": true,
+      "verdict": "통과",
+      "evidence": "Published bytes equal reviewed candidates; package, native display, active-content and common-row checks linked"
+    },
+    {
+      "principle": 29,
+      "applies": true,
+      "verdict": "통과",
+      "evidence": "Existing Word paragraph/run styles and table dimensions preserved; author 김은수; no global Word user setting changes"
+    }
+  ],
+  "evidence": {
+    "requirements-audit.json": {
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\rid83-20261013\\requirements-audit.json",
+      "sha256": "29C63F7E930B0C79CF433DAC1EDBCFFC75EEC3BEBDBC7FDF04C9E5B620F51CD6"
+    },
+    "user-confirmation.json": {
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\rid83-20261013\\user-confirmation.json",
+      "sha256": "DCAF74C6EC732A6082453F69D833665F72B71402E76EE8A27967D57A872C6492"
+    },
+    "qcc-design-manual-audit.json": {
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\rid83-20261013\\qcc-design-manual-audit.json",
+      "sha256": "A217A4943493B0DA3633CD51B4A58108E6EF2245B28B94306724381B53E3DA0B"
+    },
+    "package-checks.json": {
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\rid83-20261013\\package-checks.json",
+      "sha256": "73142CF9DE67C6EFC0F12BFBF44CA891AB3F0AFFCEBDF357B0D9E737AD01AEDB"
+    },
+    "tests-final-review.json": {
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\rid83-20261013\\tests-final-review.json",
+      "sha256": "A7B59FC62C3581D332B6E7C01934783F78537D94A61BB8F450DA03E4C2C279EC"
+    },
+    "native-checks.json": {
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\rid83-20261013\\native-checks.json",
+      "sha256": "7BD1F5F507F072B1522554703B8571B5517BA143FC8BA5B8214717474B3EC78A"
+    },
+    "word/native-checks.json": {
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\rid83-20261013\\word\\native-checks.json",
+      "sha256": "C8E3CFF8C4494D616AFF6198EFF1F000365B13469E1045113F733ACBAFBF882F"
+    },
+    "word/native-projection-checks.json": {
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\rid83-20261013\\word\\native-projection-checks.json",
+      "sha256": "9FAD9973C58351CAF37F3B5E9EEECAE1677B27DA463E6CA2CA951CD5171D2112"
+    },
+    "visual-review.json": {
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\rid83-20261013\\visual-review.json",
+      "sha256": "11E00702377FDC594FEEBF8B7B04D2AF622FB7354A884953B1D9362EEE740159"
+    }
+  },
+  "product_verdict": "Draft inspection observed; separate actual distribution manual and final TEST83 verdict pending"
+}

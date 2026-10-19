@@ -1,0 +1,16 @@
+{
+  "document_id": "SIP-FW-TD24A",
+  "registry_id": "QCC-NEW-SIP-Q",
+  "checked_date": "2026-10-16",
+  "status": "게시 완료; 반영된 QCC 설명 #C00000/기본 크기/기존 굵기. DMIC2 확인 문장 2곳을 미비 안내에서 분리. 남은 안내 7곳. 제품 시험 실행/판정 대기 보존.",
+  "locations": [
+    {"title":"소프트웨어 모듈 구현 및 통합 계획", "count":1, "remaining":"4모듈/14유닛 소스/빌드/라이브러리 설정, 유닛/통합 실행 및 측정 결과", "confirmed":"DMIC2 입력 연결 문장을 별도 기본 크기 빨강으로 표시"},
+    {"title":"QCC 소프트웨어 > Bluetooth Communication Module", "count":1, "anchor":"표 1. QCC 구현의 사전 준비 조건 아래", "remaining":"실제 소스/빌드/ADK/BSP 버전, 단위 실행 로그"},
+    {"title":"QCC와 E8300 소프트웨어 통합", "count":4, "ids":"QCC-I-01~07; SW-FW-IntegrationTest-ID-018~024", "remaining":["shutdown_ind/PIO 번호·극성·전압·반전·대기 및 I2S enable 물리 대응","충전4상태→0/1, 통보/오류 처리, length/21byte, GAIA 정의와 실행 결과","마이크 핀/클록, 프로파일/코덱·동시 동작, I2S 설정/파형과 오디오 시험","통합 실행 로그, 전체 입력/응답, 파형/장비/빌드/시험자 기록 및 미해소 상충"],"confirmed":"DMIC2의 QCC 연결 확인 문장을 별도 기본 크기 빨강으로 표시"},
+    {"title":"부트로더 소프트웨어 통합", "count":1, "ids":"QCC-I-07", "remaining":"QCC 자체 OTA/E8300 전달의 명령·버퍼·순서·재시도·인증·오류·복구, 구현/통합 결과, QCC 부트 무결성 범위/알고리즘/실패 처리"}
+  ],
+  "prefix_counts":{"completed_statements_detached":2,"whole_prefix_notices_removed":0,"before":7,"after":7},
+  "parent_only_files_modified":false,
+  "qa":"qa/sip-qcc-cleanup-20261016/changes.json; render-validation.json",
+  "word_cleanup":{"interrupted_individual_revision_scan":true,"owned_process_id":11880,"ownership_evidence":"Windows Restart Manager returned PID 11880 for this QA before.docx; process name WINWORD and start 2026-10-16 16:30:02 rechecked","owned_process_stopped":true,"other_word_instances_untouched":true}
+}

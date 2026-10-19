@@ -1,0 +1,278 @@
+{
+  "row_insertion": {
+    "at": 49,
+    "new_requirement": 82
+  },
+  "cell_edits": [
+    {
+      "cell": "F20",
+      "value": "\n2개 이상의 오디오 소스를 입력 받을 수 있어야 한다. QCC는 Bluetooth 오디오를 I2S로 E8300에 전달하며, 데이터는 24비트, 샘플링 주파수는 16kHz다.\n\nQCC 설계 연결: Bluetooth Classic 유닛(SU-ID-QCC-008), 시스템 초기화와 설정 유닛(SU-ID-QCC-001).\n\n[QCC 자료 입력] I2S의 클록/프레임과 유효 신호의 실제 출력 조건 및 측정 자료를 입력한다.\n",
+      "formula": null
+    },
+    {
+      "cell": "F21",
+      "value": "\n오디오 입력 대역은 0~8kHz이며, 샘플링 주파수 16kHz와 구분한다.\n\n[QCC/E8300 자료 입력] 8kHz 대역 끝점의 입력/출력 조건과 허용 범위를 확인한다. 코드 설정을 실제 음향 성능 측정값으로 보지 않는다.\n",
+      "formula": null
+    },
+    {
+      "cell": "F49",
+      "value": "\n외부기는 마이크에서 수집한 오디오를 Bluetooth Classic을 통해 다른 블루투스 장치로 전송할 수 있어야 한다.\n\nQCC 설계 연결: Bluetooth Classic 유닛(SU-ID-QCC-008).\n\n[QCC 자료 입력] 마이크의 QCC 입력 경로, 프로파일/코덱/상대 장치, 동시 송수신 조건과 실제 시험 자료를 입력한다.\n",
+      "formula": null
+    },
+    {
+      "cell": "F50",
+      "value": "\n리모콘 앱이 실행되는 스마트폰과 BLE로 데이터 통신이 가능해야 한다. 충전/배터리 상태와 Bluetooth 제어 정보를 송수신하며, 사운드 처리기의 명령/응답은 QCC가 SPI로 중계한다.\n\nQCC 설계 연결: BLE 유닛(SU-ID-QCC-009), BLE Data 처리 유닛(SU-ID-QCC-011), 시스템 상태 유닛(SU-ID-QCC-002).\n\n[QCC 자료 입력] Bluetooth 제어의 명령/상태와 충전 상태 데이터의 상세 전달 계약을 입력한다.\n",
+      "formula": null
+    },
+    {
+      "cell": "F51",
+      "value": "\n매핑 프로그램이 실행되는 기기와 BLE로 데이터 통신이 가능해야 한다. 매핑 시작/종료 및 사운드 처리기의 명령/응답은 QCC가 SPI로 중계한다.\n\nQCC 설계 연결: BLE 유닛(SU-ID-QCC-009), BLE Data 처리 유닛(SU-ID-QCC-011), 시스템 상태 유닛(SU-ID-QCC-002).\n\n[QCC 자료 입력] 매핑 시작/종료의 상태/실패 처리와 동시 연결 정책을 입력한다.\n",
+      "formula": null
+    },
+    {
+      "cell": "F52",
+      "value": "\nBluetooth Classic 오디오 통신을 지원해야 한다.\n\nQCC 설계 연결: 블루투스 상태 유닛(SU-ID-QCC-004), Bluetooth Classic 유닛(SU-ID-QCC-008). 오디오 입력과 마이크 송신 요구는 SW-FW-RID-15, SW-FW-RID-82에 따른다.\n\n[QCC 자료 입력] 연결 상대와 프로파일/코덱별 송수신 조건을 입력한다.\n",
+      "formula": null
+    },
+    {
+      "cell": "F53",
+      "value": "\nBLE 데이터 통신을 지원해야 한다.\n\nQCC 설계 연결: BLE 유닛(SU-ID-QCC-009), BLE Data 처리 유닛(SU-ID-QCC-011), 시스템 상태 유닛(SU-ID-QCC-002).\n\n[QCC 자료 입력] GATT 서비스/특성의 실제 값과 명령/응답의 허용 상태를 입력한다.\n",
+      "formula": null
+    },
+    {
+      "cell": "F56",
+      "value": "\n일정 시간 동안 제어 명령이 수신되지 않으면 BLE 연결을 해제해야 한다. QCC의 연결 제어 기준은 BLE 데이터 송수신이 3분(180초) 동안 없으면 연결을 해제하는 것이다.\n\nQCC 설계 연결: 보안 처리 유닛(SU-ID-QCC-012).\n\n[QCC/E8300 자료 입력] 데이터 송수신의 범위/타이머 갱신 조건을 정하고 기존 제어 명령 미수신 조건과 정합성을 확인한다. 180초의 허용오차 및 경계 동작 자료도 필요하다.\n",
+      "formula": null
+    },
+    {
+      "cell": "F57",
+      "value": "\n1. BLE 페어링을 사용하여 인가된 장치와 연결한다.\n2. BLE 연결 후 CRA(Challenge-Response Authentication)를 사용하여 적법한 장치를 확인한다. 인증 서비스는 Challenge, Response, Confirm, Status 특성을 사용하며 보호 대상 기기 제어/매핑 데이터 접근은 인증 이후에 허용한다.\n\nQCC 설계 연결: AUTH service 처리 유닛(SU-ID-QCC-010), 보안 처리 유닛(SU-ID-QCC-012).\n\n[QCC 자료 입력] 페어링 전 허용 서비스, GATT 권한과 인증 전후 차단/허용의 실제 조건 및 검증 자료를 입력한다.\n",
+      "formula": null
+    },
+    {
+      "cell": "F58",
+      "value": "\nBLE 페어링이 완료된 상태에서 데이터를 송수신하며, 무선 링크의 기밀성/무결성/인증은 AES-CCM(Counter with CBC-MAC) 보호를 적용해야 한다.\n\n[QCC 자료 입력] 링크 암호화 활성화와 페어링 전 차단을 확인한 자료를 입력한다. CRA의 AES-CMAC/SHA-256 정보를 무선 링크 암호화의 검증 근거로 사용하지 않는다.\n",
+      "formula": null
+    },
+    {
+      "cell": "F61",
+      "value": "\n1. 기기 제어용 통신과 매핑용 통신은 CRA의 인증키와 처리 방식을 구분한다.\n2. 각 CRA 인증키의 크기는 16 bytes(128 bits)다. QCC 요구 자료는 리모콘 AES-CMAC, 매핑 SHA-256으로 구분한다. 상세설계에서는 매핑 키를 SHA-256 결과의 앞 16 bytes로 생성하고 인증 절차에는 AES-CMAC을 표시한다.\n\nQCC 설계 연결: 보안 처리 유닛(SU-ID-QCC-012), 보안 툴박스 유닛(SU-ID-QCC-013).\n\n[QCC 자료 입력] SHA-256의 키 생성 역할과 실제 CRA 인증값 계산 알고리즘의 관계를 확정한다. 키 역할, 입력 직렬화, 인증값 길이와 알고리즘 표기의 정합성 및 검증 자료를 입력한다.\n",
+      "formula": null
+    },
+    {
+      "cell": "F64",
+      "value": "\n1. E8300 부팅 과정에서 실행파일의 CRC와 파일/이미지 무결성 검사 경로를 적용한다.\n2. QCC는 전원 인가 후 부팅 과정에서 칩셋이 제공하는 방식으로 QCC 펌웨어 이미지의 무결성을 검사해야 한다.\n\n[QCC 자료 입력] QCC의 부트 검사 방식/활성화 설정, 손상/변조 이미지의 거부 및 복구 동작을 입력한다. E8300의 CRC 검사를 QCC 검사나 암호학적 인증의 근거로 대체하지 않는다.\n",
+      "formula": null
+    },
+    {
+      "cell": "F65",
+      "value": "\nCRA 인증 결과는 실패, 성공, 진행 중, 타임아웃으로 전달하며 인증정보를 유추할 피드백을 제공하지 않아야 한다. 30초 동안 인증이 완료되지 않으면 타임아웃으로 처리한다.\n\nQCC 설계 연결: AUTH service 처리 유닛(SU-ID-QCC-010), 보안 처리 유닛(SU-ID-QCC-012).\n\n[QCC 자료 입력] 30초 타이머의 시작/갱신/초기화 조건, 허용오차 및 상태별 응답과 인증정보 미노출의 검증 자료를 입력한다.\n",
+      "formula": null
+    },
+    {
+      "cell": "F66",
+      "value": "\nCRA 인증이 5회 연속 실패하면 1분(60초) 동안 BLE 연결을 제한해야 한다.\n\nQCC 설계 연결: 보안 처리 유닛(SU-ID-QCC-012).\n\n[QCC 자료 입력] 실패 횟수의 누적/초기화, 전원 재기동, 제한 종료 후 재접속과 시간 경계/허용오차의 처리 및 검증 자료를 입력한다.\n",
+      "formula": null
+    },
+    {
+      "cell": "F70",
+      "value": "\n1. 보호 대상 데이터 송수신은 BLE 페어링과 CRA 인증 이후에 활성화한다.\n2. CRA의 인증키는 생산 시 암호화하여 비휘발성 메모리에 저장해야 한다. QCC 상세설계의 생산 설치 키(shared_service_key, clinician_master_key)와 생성 매핑 키(clinic_service_key)를 구분한다.\n\nQCC 설계 연결: NVM 처리 유닛(SU-ID-QCC-007), 보안 툴박스 유닛(SU-ID-QCC-013), 보안 NVM 유닛(SU-ID-QCC-014).\n\n[QCC 자료 입력] 실제 설치/저장 대상과 키 역할, 저장 암호화/접근 제한 및 복호화 시작 조건을 확정한다. 인증 전후 송수신/OTA 전송의 보호와 조건별 검증 자료도 입력한다.\n",
+      "formula": null
+    },
+    {
+      "cell": "F72",
+      "value": "\n무결성, 암호화에 사용하는 알고리즘은 사이버보안 규격에서 권고하는 알고리즘을 사용한다. QCC의 CRA 인증, 매핑 키 생성, NVM 암호화와 BLE 링크 보호는 서로 다른 사용 목적을 구분해야 한다.\n\n[QCC/E8300 자료 입력] QCC의 AES-CMAC/SHA-256/AES-128 사용 목적/키 관리와 E8300의 AES 저장/부트 보호를 연결한다. QCC의 HMAC/ENC 표기, AES-128 모드와 BLE 링크 보호의 실제 적용 자료를 입력한다.\n",
+      "formula": null
+    },
+    {
+      "cell": "F80",
+      "value": "\n사용자에게 배포되는 사용 설명서는 안전 예방조치, 사용 방법, 문제 해결 방법을 포함해야 한다.\n\n[E8300 보완] 제품 사용 설명서 파일의 해당 내용과 정식 상위 요구사항의 식별/추적을 등록한다.\n",
+      "formula": null
+    },
+    {
+      "cell": "H80",
+      "value": "\n[E8300 보완] 정식 상위 요구사항 미등록\n",
+      "formula": null
+    },
+    {
+      "cell": "C49",
+      "value": "\nBluetooth 오디오 송신\n",
+      "formula": null
+    },
+    {
+      "cell": "G49",
+      "value": "=\"SW-FW-RID-\"&82",
+      "formula": "=\"SW-FW-RID-\"&82"
+    },
+    {
+      "cell": "H49",
+      "value": "\nSYS-RID-SP-HW-11\n",
+      "formula": null
+    },
+    {
+      "cell": "C80",
+      "value": "\n사용 설명서\n",
+      "formula": null
+    },
+    {
+      "cell": "G80",
+      "value": "=\"SW-FW-RID-\"&83",
+      "formula": "=\"SW-FW-RID-\"&83"
+    },
+    {
+      "cell": "I20",
+      "value": "\nQCC SRS\nRI-09\nI2S 오디오 입력\n",
+      "formula": null
+    },
+    {
+      "cell": "I21",
+      "value": "\nQCC SRS\nRI-09\nI2S 오디오 입력\n",
+      "formula": null
+    },
+    {
+      "cell": "I49",
+      "value": "\nQCC SRS\nRI-10\n오디오 출력\n",
+      "formula": null
+    },
+    {
+      "cell": "I50",
+      "value": "\nQCC SRS\n표제 RI-13/표 RI-12\n리모콘 앱\n",
+      "formula": null
+    },
+    {
+      "cell": "I51",
+      "value": "\nQCC SRS\nRI-14\n매핑 프로그램\n",
+      "formula": null
+    },
+    {
+      "cell": "I52",
+      "value": "\nQCC SRS\nRI-11\nClassic 통신\n",
+      "formula": null
+    },
+    {
+      "cell": "I53",
+      "value": "\nQCC SRS\nRI-12\nBLE 통신\n",
+      "formula": null
+    },
+    {
+      "cell": "I56",
+      "value": "\nQCC SRS\nRI-17\n연결 제어\n",
+      "formula": null
+    },
+    {
+      "cell": "I57",
+      "value": "\nQCC SRS\n페어링 표제 RI-13/표 RI-14\n인증 접근 RI-14\n",
+      "formula": null
+    },
+    {
+      "cell": "I58",
+      "value": "\nQCC SRS\n페어링 표제 RI-13/표 RI-14\n",
+      "formula": null
+    },
+    {
+      "cell": "I61",
+      "value": "\nQCC SRS\nRI-15/RI-16\n인증 방식/알고리즘\nQCC SDDD 유닛013\n",
+      "formula": null
+    },
+    {
+      "cell": "I64",
+      "value": "\nQCC SRS\nRI-18\n부트 무결성\n",
+      "formula": null
+    },
+    {
+      "cell": "I65",
+      "value": "\nQCC SRS RI-15\nQCC SUVC\nU04-001-2\n인증 30초\n",
+      "formula": null
+    },
+    {
+      "cell": "I66",
+      "value": "\nQCC SRS\nRI-17\n연결 제어\n",
+      "formula": null
+    },
+    {
+      "cell": "I70",
+      "value": "\nQCC SRS RI-14/RI-16\nQCC SDDD\n유닛013/014\n키와 NVM\n",
+      "formula": null
+    },
+    {
+      "cell": "I72",
+      "value": "\nQCC SRS RI-16\nQCC SDDD\n유닛013/014\n보호 알고리즘\n",
+      "formula": null
+    },
+    {
+      "cell": "I80",
+      "value": "\nQCC SRS\n4.9.1 RI-16\n사용 설명서\n",
+      "formula": null
+    }
+  ],
+  "word_edits": {
+    "SR": {
+      "add_after": {
+        "32": [
+          "이 요구사항은 외부기의 E8300 펌웨어와 QCC5181의 Bluetooth/보안 펌웨어에 적용한다. 자극 처리의 담당과 무선 통신/인증의 담당을 구분하고 두 칩의 전달 경계를 함께 정의한다."
+        ],
+        "66": [
+          "- QCC5181 : Bluetooth Classic 오디오와 BLE 연결/인증을 처리하고 E8300에 오디오 및 명령/응답 데이터를 전달한다. QCC의 내부 구성은 소프트웨어 아키텍쳐 기술서와 상세 설계서에서 정의한다."
+        ],
+        "107": [
+          "QCC의 Bluetooth 오디오 입력은 I2S 24비트, 샘플링 주파수 16kHz로 E8300에 전달한다. 외부기 마이크 오디오를 다른 Bluetooth 장치로 송신하는 기능은 SW-FW-RID-82에 따른다.",
+          "BLE의 리모콘/매핑 데이터는 QCC와 E8300 사이에서 SPI로 중계한다. 보호 대상 접근에는 페어링과 CRA 인증을 요구하며, 3분 무송수신/인증 실패 5회 후 1분 연결 제한/인증 30초 시간 제한의 정의와 미비 사항은 소프트웨어 요구사항 사양서에 따른다.",
+          "[QCC/E8300 자료 입력] 3분 무송수신의 감시/갱신 범위와 기존 제어 명령 미수신 조건의 정합성, 마이크의 QCC 입력 경로 및 연결/프로파일별 오디오 송수신 조건을 확인한다."
+        ],
+        "115": [
+          "- QCC5181 : C language 및 제조사 제공 Bluetooth stack/Built-in library와 scheduler를 사용하는 펌웨어로 구성한다.",
+          "[QCC 자료 입력] 실제 QCC 개발 환경, 라이브러리/ADK 버전과 빌드 구성을 입력한다."
+        ],
+        "118": [
+          "QCC의 실행 이미지와 저장 데이터는 QCC에 할당한 메모리 영역의 범위를 넘지 않아야 한다. E8300 코어의 메모리 값과 QCC 메모리 값은 구분한다.",
+          "[QCC 자료 입력] QCC의 실제 메모리 배치, 실행 이미지/데이터 사용량과 부트 이미지 검사 설정을 입력한다."
+        ],
+        "123": [
+          "E8300 및 QCC의 요구사항은 소프트웨어 요구사항 사양서의 SW-FW-RID-1~83으로 식별한다. QCC 자료의 원문 CC 식별 번호는 사양서의 발생원 추적에 남기고, 중복된 번호는 해당 주제와 함께 구분한다.",
+          "사용 설명서의 안전 예방조치/사용/문제 해결 요구는 SW-FW-RID-83에 따른다. IEC 62304 개발 절차와 ISO 14971 위험관리 적용은 본 문서와 소프트웨어 일반 요구사항의 규제 요구를 유지한다."
+        ]
+      },
+      "replace": {
+        "130": "기존 시스템 요구와 위험 통제 식별을 사양서에 유지하고 QCC 입력의 기능/보안 요구를 연결하였다. 요구의 구현과 검증 완료는 개별 시험 근거로 확인하며, QCC 자료 보완 또는 실제 시험이 남은 항목은 판정을 대기한다.",
+        "134": "QCC 입력에서 확인한 조건을 반영하였다. 무송수신 시간의 감시 대상, 인증 알고리즘/키 역할 및 인터페이스 표기 상충은 사양서의 미비 사항으로 남아 있으며 확인 후 관련 설계와 시험에 함께 반영해야 한다.",
+        "138": "QCC의 I2S 데이터 크기/표본율, 연결 제한 시간/횟수 및 인증 상태를 구체화하였다. 키 역할, 타이머 갱신 범위와 시간 경계 조건은 사양서에 추가 자료가 필요한 사항으로 표시하였다.",
+        "142": "확정된 I2S 조건과 인증 시간/횟수는 시험 기준에 연결한다. 미확정인 타이머 갱신/허용오차, 실제 보호 방식 및 오디오 송신 조건은 확인 전 시험 통과로 판정하지 않는다.",
+        "146": "SW-FW-RID-1~81을 보존하고 마이크 오디오 송신과 사용 설명서에 SW-FW-RID-82/83을 부여하였다. QCC 원문 중복 식별 번호는 주제와 함께 구분하여 추적한다.",
+        "150": "소프트웨어 요구사항 사양서에서 기존 설계 입력/위험 통제 식별을 보존하고 QCC의 원문 요구사항을 연결한다. SW-FW-RID-82는 SYS-RID-SP-HW-11에 연결하며 SW-FW-RID-83의 정식 상위 요구사항 등록은 보완이 필요하다.",
+        "156": "QCC 요구사항과 설계 자료를 반영한 변경에 대하여 오디오 송신, 연결/인증, 키 관리 및 펌웨어 보호의 위험통제 영향을 재평가하고 설계 입력/출력과 시험 기준에 반영해야 한다."
+      },
+      "missing_after": {
+        "150": "[E8300 보완] SW-FW-RID-83의 정식 상위 요구사항 식별과 제품 사용 설명서 파일의 해당 내용을 등록한다.",
+        "156": "[QCC/E8300 자료 입력] 이번 QCC 자료 반영에 따른 위험분석 재평가와 변경 영향의 검토 결과를 입력한다."
+      }
+    },
+    "SGR": {
+      "add_after": {
+        "30": [
+          "적용 범위에는 자극 처리와 장치 제어를 담당하는 E8300 펌웨어 및 Bluetooth 통신/인증과 E8300 전달 경로를 담당하는 QCC5181 펌웨어가 함께 포함된다."
+        ],
+        "79": [
+          "√ QCC5181을 통해 Bluetooth Classic 오디오를 송수신하고 BLE의 리모콘/매핑 명령과 응답을 E8300에 중계한다.",
+          "√ 보호 대상 BLE 데이터 접근에는 페어링과 CRA 인증을 요구한다. 오디오 송신, 연결 제한 및 인증/키 관리 조건은 소프트웨어 요구사항 사양서에 따른다."
+        ],
+        "89": [
+          "QCC5181은 제조사 제공 Built-in library와 scheduler를 사용하는 펌웨어로 구성한다. QCC의 실행 환경은 E8300의 운영체제 사용 여부와 별도로 정의한다.",
+          "[QCC 자료 입력] QCC의 실제 ADK/실행 환경, scheduler 구성과 사용 버전을 입력한다."
+        ],
+        "91": [
+          "QCC5181은 제조사 제공 Bluetooth stack과 Built-in library를 사용한다.",
+          "[QCC 자료 입력] QCC 제조사 소프트웨어의 식별/버전, 사용 범위와 검토 근거를 입력한다."
+        ]
+      },
+      "replace": {},
+      "missing_after": {}
+    }
+  },
+  "append_14_source_requirements_as": "각 원문 요구의 내용은 기존/신규 SRS 셀 및 SR/SGR의 동일 규제 요구에 통합하고, 빈 요구표는 가져오지 않는다.",
+  "rendering_owner": "root Office native render/QA",
+  "sha_initial": {
+    "SRS": "F41DF6E3478CA642565EB569228E58CB75D7653260FFF613FDFEA74E95BF7D0B",
+    "SR": "6F8F005BB1F311752FDE1E8AA14A75F3E716A48167072261DA630061864231C6",
+    "SGR": "2D81FC0FCE22B8DC57A73C6C3B71F0B3989404BA60289E346E0670A7B1D593F3"
+  }
+}

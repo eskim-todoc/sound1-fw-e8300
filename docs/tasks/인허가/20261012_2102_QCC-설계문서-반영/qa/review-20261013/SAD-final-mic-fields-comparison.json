@@ -1,0 +1,298 @@
+{
+  "before": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\SAD-native-safe-candidate\\[E8300-QCC] SAD-FW-TD24A 소프트웨어 아키텍쳐 기술서.docx",
+  "after": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\fields-candidate\\[E8300-QCC] SAD-FW-TD24A 소프트웨어 아키텍쳐 기술서.docx",
+  "before_sha256": "5b03dfed5a927d60f95240299f490bf954e864d56c4d5663388f2b0c98a59ca2",
+  "after_sha256": "84f592a7f7988a78eb73fa718268cc22ddf20a5bac796358b971aba0d23ccc68",
+  "checks": {
+    "accept": true,
+    "reject": true,
+    "body_revision_fingerprints": true,
+    "current_notice_text": true
+  },
+  "before_semantics": {
+    "accept": {
+      "body_text_sha256": "3401a3dececd47c79b605be0c900c75a4319c7a7b7473b91b78f3dc02f714f61",
+      "body_text_length": 29634,
+      "picture_hashes_in_order": [
+        "cbbf1c23f450b2b563252c752538e3905f20e25914860f616fd6f3fa14372776",
+        "6c5f3fc9004546177cde5c36ad22364d3061c73be77b656d4337ab3792122414"
+      ]
+    },
+    "reject": {
+      "body_text_sha256": "6924be31aca3b21ddd9104ca2725742c41c71f0c83df2fece955f0435f732da6",
+      "body_text_length": 6641,
+      "picture_hashes_in_order": [
+        "b3f4b3d722e8b5093f6f211d940ec18e28b5b4eef3ce46769e9e464a461990a2",
+        "f372a9f37393ca468f9923b902fa1f9fdcfd62f7973c36a2b30ca1a81b4c893e",
+        "6c5a649d65e40f20e57917506bf53ec58fc8f150c5ab0237ce78835d5e7308dc",
+        "3ac1d9cb2bfd986907665d31db3f46436a91f0e91b67c7b7c7131aafa02d358e"
+      ]
+    },
+    "body_revision_fingerprints": {
+      "del|김은수|2026-09-29T18:27": {
+        "length": 1890,
+        "sha256": "ffa24f31f24e013d629ad9564de7dd43ae62906c135178d997f3d9e0d7a2f6e4"
+      },
+      "ins|김은수|2026-09-29T18:27": {
+        "length": 4664,
+        "sha256": "ca5fb3ab0cb689b7e3c7f4b96c87ab479a14980fbd25b7861471cfa8d86a3078"
+      },
+      "del|김은수|2026-10-12T13:05": {
+        "length": 4,
+        "sha256": "f317e03af7e923ce619b8562a47dd294d5e474c64c98496a2fa3672c217cde0d"
+      },
+      "ins|김은수|2026-10-12T13:05": {
+        "length": 4,
+        "sha256": "77429d85f0dad0f0003ff68a87ca6402c7e33ac5a15d6932863bb6c707f305d6"
+      },
+      "del|김은수|2026-10-12T23:57": {
+        "length": 11556,
+        "sha256": "25b3e5c8dda8b4db736f2bf889e4b4ca6b276ce097ada134c646e1010743b2f8"
+      },
+      "ins|김은수|2026-10-12T23:57": {
+        "length": 18751,
+        "sha256": "acc05321784d70b4747ebef09791ecda274fda54980d5d7912bfa583a710f79f"
+      },
+      "del|김은수|2026-09-29T10:17": {
+        "length": 125,
+        "sha256": "23e8c9b9a4dcdf469bd6e21fd01f42bcac3d08efb5b3ef81e438cab8a1202431"
+      },
+      "ins|김은수|2026-09-29T10:17": {
+        "length": 198,
+        "sha256": "8e5bb7e31d3e0477e9dd19840420fb7404ecc03b7b4fe28f492974a32c9a4a24"
+      },
+      "del|김은수|2026-10-12T12:28": {
+        "length": 997,
+        "sha256": "11772ab6c51f20a7a83720681eb27cfda6135dc8c390364528e629118f3c6928"
+      },
+      "ins|김은수|2026-10-12T12:28": {
+        "length": 9309,
+        "sha256": "7551cd9c1955a4fad6ea175337171e592aae29d26cec63c52b84eb28be108ea6"
+      },
+      "del|김은수|2026-10-13T00:05": {
+        "length": 7070,
+        "sha256": "5eaeffa52f67d829f20a9aa5ffdec605adeccfebded17d4dfcfff021c1105d2e"
+      },
+      "ins|김은수|2026-10-13T00:05": {
+        "length": 7820,
+        "sha256": "659352347f370989236878a796cf3419d941a96dc0386569db92aacb65202cfc"
+      },
+      "del|김은수|2026-10-13T00:30": {
+        "length": 1521,
+        "sha256": "dffddbd9798ee982c65ca07dca9f1ae18a559105ac96a89557eb6317084c40e4"
+      },
+      "ins|김은수|2026-10-13T00:30": {
+        "length": 1463,
+        "sha256": "33a192778d88bb14ea9d1f5f49587b78f275cc756cff04f6db7be05721ab2f12"
+      },
+      "ins|김은수|2026-10-12T09:19": {
+        "length": 12749,
+        "sha256": "615b6c88cf063129afa3f81496e43a7e39d9d1914b9c80ea575931034459e1d4"
+      },
+      "del|김은수|2026-10-13T00:52": {
+        "length": 11521,
+        "sha256": "4653c3de3f66128732f0de38abdd131160f5ae6e6f96cc0e53563e767ff36aa5"
+      },
+      "ins|김은수|2026-10-13T00:52": {
+        "length": 11325,
+        "sha256": "ee6d8813483a2527bae0819c8bdb2eac66ce1bb953a8f3e1dfa53332de8f3794"
+      },
+      "ins|김은수|2026-09-30T00:44": {
+        "length": 343,
+        "sha256": "ac651ad181d0791d7162b2356b8c73e018f8b8b7d9435dac6a02445c94a2a886"
+      },
+      "ins|김은수|2026-10-01T16:31": {
+        "length": 4,
+        "sha256": "87aca384a7b47d24245ee659dbccab17d407e2ce7ca45fb0e612a27ba97bb328"
+      },
+      "del|김은수|2026-09-30T00:29": {
+        "length": 99,
+        "sha256": "5d6983a12adb628fc432da37600c67c5c1954a98b17f6c86d8cda44584be732c"
+      },
+      "ins|김은수|2026-09-30T00:29": {
+        "length": 221,
+        "sha256": "426bbafdf71879f3c11c0994d3dec48c6f1d8ba5fc08ed0d5a77eddc095a5ddb"
+      },
+      "del|김은수|2026-09-30T00:44": {
+        "length": 13,
+        "sha256": "cd4e77b064a4566e4f019b1d98f8eb403814126141d069105b015e566ddd73f5"
+      },
+      "del|김은수|2026-10-12T13:07": {
+        "length": 43,
+        "sha256": "2270526b74f831063484213018a0240f82786cc9d07266193274732d78f3f69e"
+      },
+      "ins|김은수|2026-10-12T13:07": {
+        "length": 162,
+        "sha256": "4e1303b782a4f606c335b40209fa285b9ffc75b9c2912096b50f3ed08c01550f"
+      }
+    },
+    "current_notice_text": [
+      "[QCC 자료 입력] QCC 4모듈/14유닛의 실제 소스/빌드/라이브러리 설정과 실행/측정 결과를 확인해야 한다. DMIC2의 두 칩 입력 연결 사실과 구현/시험 근거의 확인 상태는 구분한다.",
+      "[QCC 자료 입력] QCC shutdown_ind의 정상/종료 논리와 실제 PIO 번호/전압/반전, 기동/종료 대기 및 I2S enable→I2S_FLAG Low 유효의 물리 대응을 확인해야 한다.",
+      "[QCC 자료 입력] 충전 4상태를 0x34 charger_connected 0/1로 변환하는 표, 0x34~0x36의 통보 시점/오류 처리, 실제 QCC 송신 length 필드/21byte 변환 및 GAIA 주소/type별 데이터 정의와 실행 확인이 필요하다.",
+      "[QCC 자료 입력] DMIC2의 QCC 입력 연결은 확인되었다. QCC 마이크 핀/클록, 프로파일/코덱별 송수신과 동시 동작, I2S 클록/프레임/좌우 배정 및 시작/중단 유효 신호의 실제 설정/파형과 오디오 시험 결과를 확인해야 한다.",
+      "[QCC 자료 입력] 인증 전 데이터 차단/앱별 권한, 실제 AUTH UUID와 characteristic 길이, CRA 알고리즘/키 역할, NVM 보호/난수 bootstrap, 무통신/실패 제한 경계, QCC 자체 OTA와 기동 이미지 무결성의 상세 설계 및 구현 근거가 필요하다.",
+      "SU-ID-CFX-003마이크와 오디오 경로 설정SU-ID-CFX-005I2S 인터페이스 초기화SU-ID-CFX-007마이크 블록 수집SU-ID-CFX-008I2S 입력 상태 판정SU-ID-CFX-015I2S 수신 버퍼 관리SU-ID-CFX-016단일 및 두 입력 혼합SU-ID-CFX-017두 마이크 지연 합산 빔포밍SU-ID-CFX-018입력별 게인 혼합SU-ID-CFX-021신호처리 경로 선택SU-ID-QCC-001시스템 초기화와 설정 유닛SU-ID-QCC-003장치 상태 유닛SU-ID-QCC-005PIO 포트 제어 유닛SU-ID-QCC-008Bluetooth Classic 유닛[QCC 자료 입력] 24bit/16kHz I2S 클럭/프레임/유효 신호의 실제 설정과 파형 자료가 필요하다.",
+      "SU-ID-CM3-001CM3 주변장치 초기화SU-ID-CM3-026SPI 응답 버퍼 관리SU-ID-CM3-045QCC 수신 분류와 시스템 정보 응답SU-ID-CM3-046리모콘 명령 처리SU-ID-QCC-001시스템 초기화와 설정 유닛SU-ID-QCC-002시스템 상태 유닛SU-ID-QCC-004블루투스 상태 유닛SU-ID-QCC-005PIO 포트 제어 유닛SU-ID-QCC-009BLE 유닛SU-ID-QCC-011BLE Data 처리 유닛[QCC 자료 입력] 리모콘 AUTH 접근 권한과 GAIA 주소/명령별 데이터/응답의 실제 계약 및 실행 자료가 필요하다.",
+      "SU-ID-CM3-001CM3 주변장치 초기화SU-ID-CM3-026SPI 응답 버퍼 관리SU-ID-CM3-045QCC 수신 분류와 시스템 정보 응답SU-ID-CM3-048매핑 연결 및 종료 상태SU-ID-CM3-049매핑 명령 실행SU-ID-QCC-001시스템 초기화와 설정 유닛SU-ID-QCC-002시스템 상태 유닛SU-ID-QCC-004블루투스 상태 유닛SU-ID-QCC-005PIO 포트 제어 유닛SU-ID-QCC-009BLE 유닛SU-ID-QCC-011BLE Data 처리 유닛[QCC 자료 입력] 매핑 권한/키 역할, AUTH UUID 및 GAIA 주소/명령별 데이터/응답의 실제 계약과 실행 자료가 필요하다.",
+      "SU-ID-QCC-009BLE 유닛SU-ID-QCC-012보안 처리 유닛[QCC/E8300 자료 입력] 기존 무제어명령 조건과 BLE 무송수신180초 조건의 범위/타이머 리셋 및 허용오차/경계 처리를 함께 확인해야 한다.",
+      "SU-ID-QCC-001시스템 초기화와 설정 유닛SU-ID-QCC-009BLE 유닛SU-ID-QCC-010AUTH service 처리 유닛SU-ID-QCC-012보안 처리 유닛SU-ID-QCC-004블루투스 상태 유닛[QCC 자료 입력] BLE pairing 이후 AUTH 접근과 인증 전 데이터 차단의 실제 UUID/권한 설정 및 조건별 실행 자료가 필요하다.",
+      "SU-ID-QCC-001시스템 초기화와 설정 유닛SU-ID-QCC-009BLE 유닛SU-ID-QCC-012보안 처리 유닛SU-ID-QCC-004블루투스 상태 유닛[QCC 자료 입력] BLE 버전/암호화 활성 설정과 라이브러리/프로파일, AES-CCM 보호 범위 및 실제 링크 검증 자료가 필요하다. CRA 인증 설계를 전송 암호화의 근거로 사용하지 않는다.",
+      "SU-ID-QCC-001시스템 초기화와 설정 유닛SU-ID-QCC-007NVM 처리 유닛SU-ID-QCC-010AUTH service 처리 유닛SU-ID-QCC-012보안 처리 유닛SU-ID-QCC-013보안 툴박스 유닛SU-ID-QCC-014보안 NVM 유닛[QCC 자료 입력] SHA-256의 매핑 키 생성과 AES-CMAC의 인증값 계산 역할, HMAC/ENC 표기 및 입력 직렬화/태그 길이의 정합성을 확정해야 한다.",
+      "SU-ID-CM3-026SPI 응답 버퍼 관리SU-ID-CM3-045QCC 수신 분류와 시스템 정보 응답SU-ID-QCC-011BLE Data 처리 유닛[QCC 자료 입력] BLE/GAIA CRC의 실제 알고리즘/적용 바이트/저장 순서와 오류 응답/검증 자료가 필요하다.",
+      "SU-ID-CFX-005I2S 인터페이스 초기화SU-ID-CFX-008I2S 입력 상태 판정SU-ID-CFX-015I2S 수신 버퍼 관리SU-ID-CFX-018입력별 게인 혼합SU-ID-CFX-019I2S 시작과 중단의 완만한 전환SU-ID-CFX-021신호처리 경로 선택SU-ID-CM3-045QCC 수신 분류와 시스템 정보 응답SU-ID-QCC-003장치 상태 유닛SU-ID-QCC-004블루투스 상태 유닛SU-ID-QCC-005PIO 포트 제어 유닛SU-ID-QCC-008Bluetooth Classic 유닛SU-ID-QCC-002시스템 상태 유닛[QCC 자료 입력] DMIC2의 QCC 입력 연결은 확인되었다. QCC 마이크 핀/클록, 프로파일/코덱별 송수신과 동시 동작, I2S 클록/프레임/좌우 배정 및 시작/중단 유효 신호의 실제 설정/파형과 오디오 시험 결과를 확인해야 한다.",
+      "SU-ID-CM3-026SPI 응답 버퍼 관리SU-ID-CM3-045QCC 수신 분류와 시스템 정보 응답SU-ID-CM3-046리모콘 명령 처리SU-ID-CM3-049매핑 명령 실행SU-ID-QCC-002시스템 상태 유닛SU-ID-QCC-003장치 상태 유닛SU-ID-QCC-004블루투스 상태 유닛SU-ID-QCC-009BLE 유닛SU-ID-QCC-011BLE Data 처리 유닛[QCC 자료 입력] 실제 BLE 광고/연결 구성과 주소/회사ID/바이트 길이, 편이/양이 데이터 배정 및 실행 자료가 필요하다.",
+      "SU-ID-QCC-010AUTH service 처리 유닛SU-ID-QCC-012보안 처리 유닛[QCC 자료 입력] 인증4상태의 실제 응답, 미완료30초 타이머 시작/리셋/허용오차 및 정보 미노출 결과가 필요하다.",
+      "SU-ID-QCC-012보안 처리 유닛[QCC 자료 입력] 연속5회 실패 누적/초기화/전원 재기동, 60초 제한의 시작/해제/재접속과 시간 경계 결과가 필요하다.",
+      "SU-ID-QCC-001시스템 초기화와 설정 유닛SU-ID-QCC-007NVM 처리 유닛SU-ID-QCC-009BLE 유닛SU-ID-QCC-010AUTH service 처리 유닛SU-ID-QCC-011BLE Data 처리 유닛SU-ID-QCC-012보안 처리 유닛SU-ID-QCC-013보안 툴박스 유닛SU-ID-QCC-014보안 NVM 유닛[QCC 자료 입력] 설치 shared_service_key/clinician_master_key와 생성 clinic_service_key, NVM ID/길이/암호화/접근 제한과 난수 bootstrap 및 실제 보호 결과가 필요하다.",
+      "상위 요구사항: SYS-RID-ACDOC-17 / SYS-RID-ACDOC-18 / SYS-RID-ACDOC-20.제품 문서 항목 / 실행 유닛 배정 대상 아님[E8300 보완] 제품 사용 설명서의 안전/작동법/동작방법 및 문제 해결 내용, 배포 대상과 검토 결과를 확인해야 한다.",
+      "[QCC 자료 입력] DMIC2의 QCC 입력 연결은 확인되었다. QCC 마이크 핀/클록, 프로파일/코덱별 송수신과 동시 동작, I2S 클록/프레임/좌우 배정 및 시작/중단 유효 신호의 실제 설정/파형과 오디오 시험 결과를 확인해야 한다.",
+      "[QCC 자료 입력] Qualcomm ADK/BSP와 Classic/TWS/BLE/GAIA/암호/NVM 라이브러리의 정확한 제품명/버전/구성/API, 알려진 문제 및 사용 검토 자료를 SOUP 목록에 연결해야 한다.",
+      "[QCC 자료 입력] QCC 지원 소프트웨어의 정확한 제품/버전, 사용 구성/API 및 운영 검토 자료가 필요하다."
+    ]
+  },
+  "after_semantics": {
+    "accept": {
+      "body_text_sha256": "3401a3dececd47c79b605be0c900c75a4319c7a7b7473b91b78f3dc02f714f61",
+      "body_text_length": 29634,
+      "picture_hashes_in_order": [
+        "cbbf1c23f450b2b563252c752538e3905f20e25914860f616fd6f3fa14372776",
+        "6c5f3fc9004546177cde5c36ad22364d3061c73be77b656d4337ab3792122414"
+      ]
+    },
+    "reject": {
+      "body_text_sha256": "6924be31aca3b21ddd9104ca2725742c41c71f0c83df2fece955f0435f732da6",
+      "body_text_length": 6641,
+      "picture_hashes_in_order": [
+        "b3f4b3d722e8b5093f6f211d940ec18e28b5b4eef3ce46769e9e464a461990a2",
+        "f372a9f37393ca468f9923b902fa1f9fdcfd62f7973c36a2b30ca1a81b4c893e",
+        "6c5a649d65e40f20e57917506bf53ec58fc8f150c5ab0237ce78835d5e7308dc",
+        "3ac1d9cb2bfd986907665d31db3f46436a91f0e91b67c7b7c7131aafa02d358e"
+      ]
+    },
+    "body_revision_fingerprints": {
+      "del|김은수|2026-09-29T18:27": {
+        "length": 1890,
+        "sha256": "ffa24f31f24e013d629ad9564de7dd43ae62906c135178d997f3d9e0d7a2f6e4"
+      },
+      "ins|김은수|2026-09-29T18:27": {
+        "length": 4664,
+        "sha256": "ca5fb3ab0cb689b7e3c7f4b96c87ab479a14980fbd25b7861471cfa8d86a3078"
+      },
+      "del|김은수|2026-10-12T13:05": {
+        "length": 4,
+        "sha256": "f317e03af7e923ce619b8562a47dd294d5e474c64c98496a2fa3672c217cde0d"
+      },
+      "ins|김은수|2026-10-12T13:05": {
+        "length": 4,
+        "sha256": "77429d85f0dad0f0003ff68a87ca6402c7e33ac5a15d6932863bb6c707f305d6"
+      },
+      "del|김은수|2026-10-12T23:57": {
+        "length": 11556,
+        "sha256": "25b3e5c8dda8b4db736f2bf889e4b4ca6b276ce097ada134c646e1010743b2f8"
+      },
+      "ins|김은수|2026-10-12T23:57": {
+        "length": 18751,
+        "sha256": "acc05321784d70b4747ebef09791ecda274fda54980d5d7912bfa583a710f79f"
+      },
+      "del|김은수|2026-09-29T10:17": {
+        "length": 125,
+        "sha256": "23e8c9b9a4dcdf469bd6e21fd01f42bcac3d08efb5b3ef81e438cab8a1202431"
+      },
+      "ins|김은수|2026-09-29T10:17": {
+        "length": 198,
+        "sha256": "8e5bb7e31d3e0477e9dd19840420fb7404ecc03b7b4fe28f492974a32c9a4a24"
+      },
+      "del|김은수|2026-10-12T12:28": {
+        "length": 997,
+        "sha256": "11772ab6c51f20a7a83720681eb27cfda6135dc8c390364528e629118f3c6928"
+      },
+      "ins|김은수|2026-10-12T12:28": {
+        "length": 9309,
+        "sha256": "7551cd9c1955a4fad6ea175337171e592aae29d26cec63c52b84eb28be108ea6"
+      },
+      "del|김은수|2026-10-13T00:05": {
+        "length": 7070,
+        "sha256": "5eaeffa52f67d829f20a9aa5ffdec605adeccfebded17d4dfcfff021c1105d2e"
+      },
+      "ins|김은수|2026-10-13T00:05": {
+        "length": 7820,
+        "sha256": "659352347f370989236878a796cf3419d941a96dc0386569db92aacb65202cfc"
+      },
+      "del|김은수|2026-10-13T00:30": {
+        "length": 1521,
+        "sha256": "dffddbd9798ee982c65ca07dca9f1ae18a559105ac96a89557eb6317084c40e4"
+      },
+      "ins|김은수|2026-10-13T00:30": {
+        "length": 1463,
+        "sha256": "33a192778d88bb14ea9d1f5f49587b78f275cc756cff04f6db7be05721ab2f12"
+      },
+      "ins|김은수|2026-10-12T09:19": {
+        "length": 12749,
+        "sha256": "615b6c88cf063129afa3f81496e43a7e39d9d1914b9c80ea575931034459e1d4"
+      },
+      "del|김은수|2026-10-13T00:52": {
+        "length": 11521,
+        "sha256": "4653c3de3f66128732f0de38abdd131160f5ae6e6f96cc0e53563e767ff36aa5"
+      },
+      "ins|김은수|2026-10-13T00:52": {
+        "length": 11325,
+        "sha256": "ee6d8813483a2527bae0819c8bdb2eac66ce1bb953a8f3e1dfa53332de8f3794"
+      },
+      "ins|김은수|2026-09-30T00:44": {
+        "length": 343,
+        "sha256": "ac651ad181d0791d7162b2356b8c73e018f8b8b7d9435dac6a02445c94a2a886"
+      },
+      "ins|김은수|2026-10-01T16:31": {
+        "length": 4,
+        "sha256": "87aca384a7b47d24245ee659dbccab17d407e2ce7ca45fb0e612a27ba97bb328"
+      },
+      "del|김은수|2026-09-30T00:29": {
+        "length": 99,
+        "sha256": "5d6983a12adb628fc432da37600c67c5c1954a98b17f6c86d8cda44584be732c"
+      },
+      "ins|김은수|2026-09-30T00:29": {
+        "length": 221,
+        "sha256": "426bbafdf71879f3c11c0994d3dec48c6f1d8ba5fc08ed0d5a77eddc095a5ddb"
+      },
+      "del|김은수|2026-09-30T00:44": {
+        "length": 13,
+        "sha256": "cd4e77b064a4566e4f019b1d98f8eb403814126141d069105b015e566ddd73f5"
+      },
+      "del|김은수|2026-10-12T13:07": {
+        "length": 43,
+        "sha256": "2270526b74f831063484213018a0240f82786cc9d07266193274732d78f3f69e"
+      },
+      "ins|김은수|2026-10-12T13:07": {
+        "length": 162,
+        "sha256": "4e1303b782a4f606c335b40209fa285b9ffc75b9c2912096b50f3ed08c01550f"
+      }
+    },
+    "current_notice_text": [
+      "[QCC 자료 입력] QCC 4모듈/14유닛의 실제 소스/빌드/라이브러리 설정과 실행/측정 결과를 확인해야 한다. DMIC2의 두 칩 입력 연결 사실과 구현/시험 근거의 확인 상태는 구분한다.",
+      "[QCC 자료 입력] QCC shutdown_ind의 정상/종료 논리와 실제 PIO 번호/전압/반전, 기동/종료 대기 및 I2S enable→I2S_FLAG Low 유효의 물리 대응을 확인해야 한다.",
+      "[QCC 자료 입력] 충전 4상태를 0x34 charger_connected 0/1로 변환하는 표, 0x34~0x36의 통보 시점/오류 처리, 실제 QCC 송신 length 필드/21byte 변환 및 GAIA 주소/type별 데이터 정의와 실행 확인이 필요하다.",
+      "[QCC 자료 입력] DMIC2의 QCC 입력 연결은 확인되었다. QCC 마이크 핀/클록, 프로파일/코덱별 송수신과 동시 동작, I2S 클록/프레임/좌우 배정 및 시작/중단 유효 신호의 실제 설정/파형과 오디오 시험 결과를 확인해야 한다.",
+      "[QCC 자료 입력] 인증 전 데이터 차단/앱별 권한, 실제 AUTH UUID와 characteristic 길이, CRA 알고리즘/키 역할, NVM 보호/난수 bootstrap, 무통신/실패 제한 경계, QCC 자체 OTA와 기동 이미지 무결성의 상세 설계 및 구현 근거가 필요하다.",
+      "SU-ID-CFX-003마이크와 오디오 경로 설정SU-ID-CFX-005I2S 인터페이스 초기화SU-ID-CFX-007마이크 블록 수집SU-ID-CFX-008I2S 입력 상태 판정SU-ID-CFX-015I2S 수신 버퍼 관리SU-ID-CFX-016단일 및 두 입력 혼합SU-ID-CFX-017두 마이크 지연 합산 빔포밍SU-ID-CFX-018입력별 게인 혼합SU-ID-CFX-021신호처리 경로 선택SU-ID-QCC-001시스템 초기화와 설정 유닛SU-ID-QCC-003장치 상태 유닛SU-ID-QCC-005PIO 포트 제어 유닛SU-ID-QCC-008Bluetooth Classic 유닛[QCC 자료 입력] 24bit/16kHz I2S 클럭/프레임/유효 신호의 실제 설정과 파형 자료가 필요하다.",
+      "SU-ID-CM3-001CM3 주변장치 초기화SU-ID-CM3-026SPI 응답 버퍼 관리SU-ID-CM3-045QCC 수신 분류와 시스템 정보 응답SU-ID-CM3-046리모콘 명령 처리SU-ID-QCC-001시스템 초기화와 설정 유닛SU-ID-QCC-002시스템 상태 유닛SU-ID-QCC-004블루투스 상태 유닛SU-ID-QCC-005PIO 포트 제어 유닛SU-ID-QCC-009BLE 유닛SU-ID-QCC-011BLE Data 처리 유닛[QCC 자료 입력] 리모콘 AUTH 접근 권한과 GAIA 주소/명령별 데이터/응답의 실제 계약 및 실행 자료가 필요하다.",
+      "SU-ID-CM3-001CM3 주변장치 초기화SU-ID-CM3-026SPI 응답 버퍼 관리SU-ID-CM3-045QCC 수신 분류와 시스템 정보 응답SU-ID-CM3-048매핑 연결 및 종료 상태SU-ID-CM3-049매핑 명령 실행SU-ID-QCC-001시스템 초기화와 설정 유닛SU-ID-QCC-002시스템 상태 유닛SU-ID-QCC-004블루투스 상태 유닛SU-ID-QCC-005PIO 포트 제어 유닛SU-ID-QCC-009BLE 유닛SU-ID-QCC-011BLE Data 처리 유닛[QCC 자료 입력] 매핑 권한/키 역할, AUTH UUID 및 GAIA 주소/명령별 데이터/응답의 실제 계약과 실행 자료가 필요하다.",
+      "SU-ID-QCC-009BLE 유닛SU-ID-QCC-012보안 처리 유닛[QCC/E8300 자료 입력] 기존 무제어명령 조건과 BLE 무송수신180초 조건의 범위/타이머 리셋 및 허용오차/경계 처리를 함께 확인해야 한다.",
+      "SU-ID-QCC-001시스템 초기화와 설정 유닛SU-ID-QCC-009BLE 유닛SU-ID-QCC-010AUTH service 처리 유닛SU-ID-QCC-012보안 처리 유닛SU-ID-QCC-004블루투스 상태 유닛[QCC 자료 입력] BLE pairing 이후 AUTH 접근과 인증 전 데이터 차단의 실제 UUID/권한 설정 및 조건별 실행 자료가 필요하다.",
+      "SU-ID-QCC-001시스템 초기화와 설정 유닛SU-ID-QCC-009BLE 유닛SU-ID-QCC-012보안 처리 유닛SU-ID-QCC-004블루투스 상태 유닛[QCC 자료 입력] BLE 버전/암호화 활성 설정과 라이브러리/프로파일, AES-CCM 보호 범위 및 실제 링크 검증 자료가 필요하다. CRA 인증 설계를 전송 암호화의 근거로 사용하지 않는다.",
+      "SU-ID-QCC-001시스템 초기화와 설정 유닛SU-ID-QCC-007NVM 처리 유닛SU-ID-QCC-010AUTH service 처리 유닛SU-ID-QCC-012보안 처리 유닛SU-ID-QCC-013보안 툴박스 유닛SU-ID-QCC-014보안 NVM 유닛[QCC 자료 입력] SHA-256의 매핑 키 생성과 AES-CMAC의 인증값 계산 역할, HMAC/ENC 표기 및 입력 직렬화/태그 길이의 정합성을 확정해야 한다.",
+      "SU-ID-CM3-026SPI 응답 버퍼 관리SU-ID-CM3-045QCC 수신 분류와 시스템 정보 응답SU-ID-QCC-011BLE Data 처리 유닛[QCC 자료 입력] BLE/GAIA CRC의 실제 알고리즘/적용 바이트/저장 순서와 오류 응답/검증 자료가 필요하다.",
+      "SU-ID-CFX-005I2S 인터페이스 초기화SU-ID-CFX-008I2S 입력 상태 판정SU-ID-CFX-015I2S 수신 버퍼 관리SU-ID-CFX-018입력별 게인 혼합SU-ID-CFX-019I2S 시작과 중단의 완만한 전환SU-ID-CFX-021신호처리 경로 선택SU-ID-CM3-045QCC 수신 분류와 시스템 정보 응답SU-ID-QCC-003장치 상태 유닛SU-ID-QCC-004블루투스 상태 유닛SU-ID-QCC-005PIO 포트 제어 유닛SU-ID-QCC-008Bluetooth Classic 유닛SU-ID-QCC-002시스템 상태 유닛[QCC 자료 입력] DMIC2의 QCC 입력 연결은 확인되었다. QCC 마이크 핀/클록, 프로파일/코덱별 송수신과 동시 동작, I2S 클록/프레임/좌우 배정 및 시작/중단 유효 신호의 실제 설정/파형과 오디오 시험 결과를 확인해야 한다.",
+      "SU-ID-CM3-026SPI 응답 버퍼 관리SU-ID-CM3-045QCC 수신 분류와 시스템 정보 응답SU-ID-CM3-046리모콘 명령 처리SU-ID-CM3-049매핑 명령 실행SU-ID-QCC-002시스템 상태 유닛SU-ID-QCC-003장치 상태 유닛SU-ID-QCC-004블루투스 상태 유닛SU-ID-QCC-009BLE 유닛SU-ID-QCC-011BLE Data 처리 유닛[QCC 자료 입력] 실제 BLE 광고/연결 구성과 주소/회사ID/바이트 길이, 편이/양이 데이터 배정 및 실행 자료가 필요하다.",
+      "SU-ID-QCC-010AUTH service 처리 유닛SU-ID-QCC-012보안 처리 유닛[QCC 자료 입력] 인증4상태의 실제 응답, 미완료30초 타이머 시작/리셋/허용오차 및 정보 미노출 결과가 필요하다.",
+      "SU-ID-QCC-012보안 처리 유닛[QCC 자료 입력] 연속5회 실패 누적/초기화/전원 재기동, 60초 제한의 시작/해제/재접속과 시간 경계 결과가 필요하다.",
+      "SU-ID-QCC-001시스템 초기화와 설정 유닛SU-ID-QCC-007NVM 처리 유닛SU-ID-QCC-009BLE 유닛SU-ID-QCC-010AUTH service 처리 유닛SU-ID-QCC-011BLE Data 처리 유닛SU-ID-QCC-012보안 처리 유닛SU-ID-QCC-013보안 툴박스 유닛SU-ID-QCC-014보안 NVM 유닛[QCC 자료 입력] 설치 shared_service_key/clinician_master_key와 생성 clinic_service_key, NVM ID/길이/암호화/접근 제한과 난수 bootstrap 및 실제 보호 결과가 필요하다.",
+      "상위 요구사항: SYS-RID-ACDOC-17 / SYS-RID-ACDOC-18 / SYS-RID-ACDOC-20.제품 문서 항목 / 실행 유닛 배정 대상 아님[E8300 보완] 제품 사용 설명서의 안전/작동법/동작방법 및 문제 해결 내용, 배포 대상과 검토 결과를 확인해야 한다.",
+      "[QCC 자료 입력] DMIC2의 QCC 입력 연결은 확인되었다. QCC 마이크 핀/클록, 프로파일/코덱별 송수신과 동시 동작, I2S 클록/프레임/좌우 배정 및 시작/중단 유효 신호의 실제 설정/파형과 오디오 시험 결과를 확인해야 한다.",
+      "[QCC 자료 입력] Qualcomm ADK/BSP와 Classic/TWS/BLE/GAIA/암호/NVM 라이브러리의 정확한 제품명/버전/구성/API, 알려진 문제 및 사용 검토 자료를 SOUP 목록에 연결해야 한다.",
+      "[QCC 자료 입력] QCC 지원 소프트웨어의 정확한 제품/버전, 사용 구성/API 및 운영 검토 자료가 필요하다."
+    ]
+  },
+  "pass": true,
+  "scope": "TOC and computed fields excluded; accepted/rejected body text, drawings and author/date revision text preserved"
+}

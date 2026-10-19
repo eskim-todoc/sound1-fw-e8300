@@ -1,0 +1,10 @@
+{
+  "checked_at": "2026-10-13T16:13:50.246838+09:00",
+  "files_hash_match": 12,
+  "protected_originals_unchanged": 23,
+  "checks": [
+    "SRS H93 blank; G93 requirement formula retained",
+    "TEST83 upper blank; internal RID83 and inspection I retained; criteria/report B:J match; actual draft observations and pending final verdict retained",
+    "Both saved Word current bodies omit ACDOC links and retain RID83 with tracked history"
+  ]
+}

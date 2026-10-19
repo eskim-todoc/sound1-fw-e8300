@@ -1,0 +1,1416 @@
+{
+  "status": "READONLY_SUPPORT_UPDATE_PLAN_COMPLETE",
+  "createdAt": "2026-10-16T15:10:11.123542+09:00",
+  "scope": "qcc-source.xlsx의 현재 본문에서 삭제하는25조건과 시험 보조자료/예상 그림/사이버보안 시험 연계의 직접 인용 일관성. 원본/후보/최종 파일 수정 없음.",
+  "sources": [
+    {
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\photo-attach-20261016\\qcc-source.xlsx",
+      "sha256": "E1643A377713825A7545451B1D01BC599B01FE5A9F1D8A5745F9E66CEF6E8595"
+    },
+    {
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\photo-attach-20261016\\plan.json",
+      "sha256": "78B9556263BCBEEA659F1CB207C08552C24E5F37899C415B7FE494C36BDF2B18"
+    },
+    {
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\photo-attach-20261016\\decisions.json",
+      "sha256": "FC935D5D6FA4B5F6E1646B0BCAA133EDD496156E0D5DCD319E6218D61DEF2447"
+    },
+    {
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\photo-attach-20261016\\edit-audit.json",
+      "sha256": "5B62472EB56CDCF0519DF820844DD44B1DFD8F22B230CE02215001DBEBE84D82"
+    }
+  ],
+  "coordinateConvention": "모든 sourceCell/sourceRow는 qcc-source.xlsx 좌표. 본문은 plan.rowMap 참조. 보조행 삭제를 실제 구현할 때에는 내림차순 삭제 또는 원좌표 재매핑. 비교 시트 좌표는 대상 아님.",
+  "deletedConditionCount": 25,
+  "deletedPhysicalMainRows": [
+    63,
+    67,
+    115,
+    120,
+    149,
+    150,
+    153,
+    154,
+    156,
+    158,
+    160,
+    161,
+    165,
+    198,
+    208,
+    209,
+    216,
+    218,
+    226,
+    228,
+    229,
+    236,
+    238,
+    241,
+    242,
+    246
+  ],
+  "auxiliaryDeleteRowCount": 25,
+  "auxiliaryMatchedDistinctDeletedConditions": 23,
+  "auxiliaryDeleteRows": [
+    {
+      "sheet": "시험 보조자료",
+      "sourceRow": 35,
+      "sourceRange": "A35:D35",
+      "action": "delete_physical_auxiliary_row",
+      "oldValues": {
+        "A35": "\nSW-FW-SYS-Test-ID-10\n",
+        "B35": "\n조건 [9] 계산 보조 확인: CIS 1/11밴드, 채널당 2프레임, 블록당 12채널\n설정한 분석 대역에 대응하는 채널의 출력이 확인되어야 한다.\n",
+        "C35": "\n검증 [9] / CIS 1/11밴드 경계\n설정한 분석 대역의 입력에 대응하는 출력 확인. 최신 유닛 CFX-033의 해당 패킷 조건도 통과.\n\n사진/자료 안내\n(사진필요) 대역별 맵 주파수 범위, 입력 순음 Hz, 배정 전극과 전극의 자극 파형. 보조 자료: CIS 1/11밴드의 CFX-033 패킷 비교.\n",
+        "D35": "\n통과\n사진 첨부 대기\n"
+      },
+      "proposedValues": null,
+      "actualDeletedTestID": "SW-FW-SYS-Test-ID-10",
+      "condition": 9,
+      "mainSourceRows": [
+        63
+      ],
+      "mainOldTexts": [
+        {
+          "J": "\n조건 [9] 계산 보조 확인: CIS 1/11밴드, 채널당 2프레임, 블록당 12채널\n설정한 분석 대역에 대응하는 채널의 출력이 확인되어야 한다.\n",
+          "K": "\n검증 [9] / CIS 1/11밴드 경계\n설정한 분석 대역의 입력에 대응하는 출력 확인. 최신 유닛 CFX-033의 해당 패킷 조건도 통과.\n(사진필요) 대역별 맵 주파수 범위, 입력 순음 Hz, 배정 전극과 전극의 자극 파형. 보조 자료: CIS 1/11밴드의 CFX-033 패킷 비교.\n"
+        }
+      ],
+      "reason": "삭제된 현재 본문 조건의 기능/검증 문구에 대응하는 보조 사본. A열 ID만으로 판정하지 않았다.",
+      "duplicateCopyOfSameDeletedCondition": false,
+      "sourceAMismatched": false
+    },
+    {
+      "sheet": "시험 보조자료",
+      "sourceRow": 39,
+      "sourceRange": "A39:D39",
+      "action": "delete_physical_auxiliary_row",
+      "oldValues": {
+        "A39": "\nSW-FW-SYS-Test-ID-11\n",
+        "B39": "\n조건 [4] 계산 보조 확인: CIS 1/11밴드, 채널당 2프레임, 블록당 12채널\n설정한 순서대로 자극 데이터가 유지되어야 한다.\n필요한 자극 데이터가 NOP(무자극)로 바뀌거나 누락되지 않아야 한다.\n",
+        "C39": "\n검증 [4] / CIS 1/11밴드 경계\n설정 채널 순서와 필요한 자극 패킷 유지 확인. NOP 덮어쓰기/미기록 없이 출력.\n\n사진/자료 안내\n(사진필요) CIS/N-of-M 맵, 음원과 PBS 용액에 담근 전극별 선택/미선택, 출력 순서 파형. 보조 자료: RAM 벡터/PCM 패킷.\n",
+        "D39": "\n통과\n사진 첨부 대기\n"
+      },
+      "proposedValues": null,
+      "actualDeletedTestID": "SW-FW-SYS-Test-ID-11",
+      "condition": 4,
+      "mainSourceRows": [
+        67
+      ],
+      "mainOldTexts": [
+        {
+          "J": "\n조건 [4] 계산 보조 확인: CIS 1/11밴드, 채널당 2프레임, 블록당 12채널\n설정한 순서대로 자극 데이터가 유지되어야 한다.\n필요한 자극 데이터가 NOP(무자극)로 바뀌거나 누락되지 않아야 한다.\n",
+          "K": "\n검증 [4] / CIS 1/11밴드 경계\n설정 채널 순서와 필요한 자극 패킷 유지 확인. NOP 덮어쓰기/미기록 없이 출력.\n(사진필요) CIS/N-of-M 맵, 음원과 PBS 용액에 담근 전극별 선택/미선택, 출력 순서 파형. 보조 자료: RAM 벡터/PCM 패킷.\n"
+        }
+      ],
+      "reason": "삭제된 현재 본문 조건의 기능/검증 문구에 대응하는 보조 사본. A열 ID만으로 판정하지 않았다.",
+      "duplicateCopyOfSameDeletedCondition": false,
+      "sourceAMismatched": false
+    },
+    {
+      "sheet": "시험 보조자료",
+      "sourceRow": 93,
+      "sourceRange": "A93:D93",
+      "action": "delete_physical_auxiliary_row",
+      "oldValues": {
+        "A93": "\nSW-FW-SYS-Test-ID-23\n",
+        "B93": "\n조건 [2] 잔량 경계 확인: 내부기 연결, 알림 허용\n배터리 잔량 20%에서는 부족 알림을 요청하지 않아야 한다.\n19%에서는 알림 발생 조건이 되면 알림용 자극이 출력되어야 한다.\n",
+        "C93": "\n검증 [2] / 잔량 20%와 19% 경계\n기존 코드상 알림 진입 조건=<20%. 알림 발생 조건에서 실제 자극 파형 확인.\n입력은 E8300에 전달한 배터리 잔량/충전/연결 상태 데이터.\n\n사진/자료 안내\n(사진필요) 3.7→3.3 V 공급, 알림 ON의 전극의 알림용 자극 파형. 실제 전압, QCC 잔량, 알림 전극, 관찰시간.\n",
+        "D93": "\n통과\n사진 첨부 대기\n"
+      },
+      "proposedValues": null,
+      "actualDeletedTestID": "SW-FW-SYS-Test-ID-23",
+      "condition": 2,
+      "mainSourceRows": [
+        115
+      ],
+      "mainOldTexts": [
+        {
+          "J": "\n조건 [2] 잔량 경계 확인: 내부기 연결, 알림 허용\n배터리 잔량 20%에서는 부족 알림을 요청하지 않아야 한다.\n19%에서는 알림 발생 조건이 되면 알림용 자극이 출력되어야 한다.\n",
+          "K": "\n검증 [2] / 잔량 20%와 19% 경계\n기존 코드상 알림 진입 조건=<20%. 알림 발생 조건에서 실제 자극 파형 확인.\n입력은 E8300에 전달한 배터리 잔량/충전/연결 상태 데이터.\n(사진필요) 3.7→3.3 V 공급, 알림 ON의 전극의 알림용 자극 파형. 실제 전압, QCC 잔량, 알림 전극, 관찰시간.\n"
+        }
+      ],
+      "reason": "삭제된 현재 본문 조건의 기능/검증 문구에 대응하는 보조 사본. A열 ID만으로 판정하지 않았다.",
+      "duplicateCopyOfSameDeletedCondition": false,
+      "sourceAMismatched": false
+    },
+    {
+      "sheet": "시험 보조자료",
+      "sourceRow": 99,
+      "sourceRange": "A99:D99",
+      "action": "delete_physical_auxiliary_row",
+      "oldValues": {
+        "A99": "\nSW-FW-SYS-Test-ID-24\n",
+        "B99": "\n조건 [5] 명령 0x4A 처리 중 새 명령 입력\n처리 중 오류 응답 0xF0/1을 보내고 이전 명령 0x4A를 유지해야 한다.\n",
+        "C99": "\n검증 [5] / 이전 명령 0x4A 처리 중 새 명령 수신\n오류 응답 0xF0/1, 이전 명령 0x4A 유지 확인.\n\n사진/자료 안내\n(사진필요) 맵 변경 전후 전극의 자극 파형과 앱 선택 맵 화면. 보조 자료: 논리 응답 및 busy 명령 유지 조건의 응답.\n",
+        "D99": "\n통과\n사진 첨부 대기\n"
+      },
+      "proposedValues": null,
+      "actualDeletedTestID": "SW-FW-SYS-Test-ID-24",
+      "condition": 5,
+      "mainSourceRows": [
+        120
+      ],
+      "mainOldTexts": [
+        {
+          "J": "\n조건 [5] 명령 0x4A 처리 중 새 명령 입력\n처리 중 오류 응답 0xF0/1을 보내고 이전 명령 0x4A를 유지해야 한다.\n",
+          "K": "\n검증 [5] / 이전 명령 0x4A 처리 중 새 명령 수신\n오류 응답 0xF0/1, 이전 명령 0x4A 유지 확인.\n(사진필요) 맵 변경 전후 전극의 자극 파형과 앱 선택 맵 화면. 보조 자료: 논리 응답 및 busy 명령 유지 조건의 응답.\n"
+        }
+      ],
+      "reason": "삭제된 현재 본문 조건의 기능/검증 문구에 대응하는 보조 사본. A열 ID만으로 판정하지 않았다.",
+      "duplicateCopyOfSameDeletedCondition": false,
+      "sourceAMismatched": false
+    },
+    {
+      "sheet": "시험 보조자료",
+      "sourceRow": 139,
+      "sourceRange": "A139:D139",
+      "action": "delete_physical_auxiliary_row",
+      "oldValues": {
+        "A139": "\nSW-FW-SYS-Test-ID-35\n",
+        "B139": "\n조건 [2] 매핑 앱/내부기 연결=1 유지. 잔량=72%, 오류=0에서 [0x67] 조회.\n앱 응답=[0x67,1,72,0,0], 잔량이 37%에서 72%로 바뀌어야 한다.\n",
+        "C139": "\n검증 [2] / 잔량 72%로 변경 후 재조회\n논리 응답=[0x67,1,72,0,0]을 매핑 앱에서 확인.\n\n사진/자료 안내\n응답 자료: 잔량 37/72% 상태조회, 처리 중 오류 응답, 실제 명령/앱 수신값과 순서.\n",
+        "D139": "\n통과\n관련 자료 위치: C열\n"
+      },
+      "proposedValues": null,
+      "actualDeletedTestID": "SW-FW-SYS-Test-ID-35",
+      "condition": 2,
+      "mainSourceRows": [
+        149
+      ],
+      "mainOldTexts": [
+        {
+          "J": "\n조건 [2] 매핑 앱/내부기 연결=1 유지. 잔량=72%, 오류=0에서 [0x67] 조회.\n앱 응답=[0x67,1,72,0,0], 잔량이 37%에서 72%로 바뀌어야 한다.\n",
+          "K": "\n검증 [2] / 잔량 72%로 변경 후 재조회\n논리 응답=[0x67,1,72,0,0]을 매핑 앱에서 확인.\n"
+        }
+      ],
+      "reason": "삭제된 현재 본문 조건의 기능/검증 문구에 대응하는 보조 사본. A열 ID만으로 판정하지 않았다.",
+      "duplicateCopyOfSameDeletedCondition": false,
+      "sourceAMismatched": false
+    },
+    {
+      "sheet": "시험 보조자료",
+      "sourceRow": 140,
+      "sourceRange": "A140:D140",
+      "action": "delete_physical_auxiliary_row",
+      "oldValues": {
+        "A140": "\nSW-FW-SYS-Test-ID-35\n",
+        "B140": "\n조건 [3] CM3-049 E-09 보조 조건: command=0x62 처리 중 [0x67] 수신.\nfetched_command=IDLE(0), Live=Standby(0)에서 명령 해석 함수 호출.\n기대값: command=0x62 유지, fetched_command=0(새 명령 미접수), tx[0]=0xF0, tx[3]=1(이전 명령 미완료).\n시스템 시험의 실제 오류/후속 응답 순서는 별도로 확인한다.\n",
+        "C140": "\n검증 [3] / 기존 command=0x62 처리 중 새 명령 0x67\n기존 command=0x62 유지, fetched_command=0, 오류 응답 TX[0]=0xF0 및 TX[3]=1 확인.\n\n사진/자료 안내\n응답 자료: 잔량 37/72% 상태조회, 처리 중 오류 응답, 실제 명령/앱 수신값과 순서.\n",
+        "D140": "\n통과\n관련 자료 위치: C열\n"
+      },
+      "proposedValues": null,
+      "actualDeletedTestID": "SW-FW-SYS-Test-ID-35",
+      "condition": 3,
+      "mainSourceRows": [
+        150
+      ],
+      "mainOldTexts": [
+        {
+          "J": "\n조건 [3] CM3-049 E-09 보조 조건: command=0x62 처리 중 [0x67] 수신.\nfetched_command=IDLE(0), Live=Standby(0)에서 명령 해석 함수 호출.\n기대값: command=0x62 유지, fetched_command=0(새 명령 미접수), tx[0]=0xF0, tx[3]=1(이전 명령 미완료).\n시스템 시험의 실제 오류/후속 응답 순서는 별도로 확인한다.\n",
+          "K": "\n검증 [3] / 기존 command=0x62 처리 중 새 명령 0x67\n기존 command=0x62 유지, fetched_command=0, 오류 응답 TX[0]=0xF0 및 TX[3]=1 확인.\n"
+        }
+      ],
+      "reason": "삭제된 현재 본문 조건의 기능/검증 문구에 대응하는 보조 사본. A열 ID만으로 판정하지 않았다.",
+      "duplicateCopyOfSameDeletedCondition": false,
+      "sourceAMismatched": false
+    },
+    {
+      "sheet": "시험 보조자료",
+      "sourceRow": 145,
+      "sourceRange": "A145:D145",
+      "action": "delete_physical_auxiliary_row",
+      "oldValues": {
+        "A145": "\nSW-FW-SYS-Test-ID-37\n",
+        "B145": "\n조건 [2] 32대역, CIS, 모노폴라 rod=2, 음극 선행=0, 폭=25 us, 자극 볼륨=4, 오디오 볼륨=5.\n대역과 전극은 1:1 대응.\n자극 전극 배열=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32].\nCIS 순서 배열=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32].\n",
+        "C145": "\n검증 [2] / 전극 배정 및 CIS 순서\n전극 배열/CIS 순서=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32].\n\n사진/자료 안내\n(사진필요) Live 음원 ON/크기 변경별 전극의 자극 파형 및 매핑 상태 화면. 적용 맵/전극/T/C 입력.\n",
+        "D145": "\n통과\n사진 첨부 대기\n"
+      },
+      "proposedValues": null,
+      "actualDeletedTestID": "SW-FW-SYS-Test-ID-37",
+      "condition": 2,
+      "mainSourceRows": [
+        153
+      ],
+      "mainOldTexts": [
+        {
+          "J": "\n조건 [2] 32대역, CIS, 모노폴라 rod=2, 음극 선행=0, 폭=25 us, 자극 볼륨=4, 오디오 볼륨=5.\n대역과 전극은 1:1 대응.\n자극 전극 배열=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32].\nCIS 순서 배열=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32].\n",
+          "K": "\n검증 [2] / 전극 배정 및 CIS 순서\n전극 배열/CIS 순서=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32].\n"
+        }
+      ],
+      "reason": "삭제된 현재 본문 조건의 기능/검증 문구에 대응하는 보조 사본. A열 ID만으로 판정하지 않았다.",
+      "duplicateCopyOfSameDeletedCondition": false,
+      "sourceAMismatched": false
+    },
+    {
+      "sheet": "시험 보조자료",
+      "sourceRow": 146,
+      "sourceRange": "A146:D146",
+      "action": "delete_physical_auxiliary_row",
+      "oldValues": {
+        "A146": "\nSW-FW-SYS-Test-ID-37\n",
+        "B146": "\n조건 [3] 32대역, CIS, 모노폴라 rod=2, 음극 선행=0, 폭=25 us, 자극 볼륨=4, 오디오 볼륨=5.\nT[uA]=[100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100].\nC[uA]=[300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300].\n같은 음원을 켜거나 크기를 바꾸면 해당 대역의 자극 출력이 달라져야 한다.\n",
+        "C146": "\n검증 [3] / T/C 입력 및 음원 변화\nT[0..31]=100 uA, C[0..31]=300 uA(각 32개)의 입력 조건에서 음원 ON/크기 변경에 따른 해당 대역 자극 변화 확인.\n\n사진/자료 안내\n(사진필요) Live 음원 ON/크기 변경별 전극의 자극 파형 및 매핑 상태 화면. 적용 맵/전극/T/C 입력.\n",
+        "D146": "\n통과\n사진 첨부 대기\n"
+      },
+      "proposedValues": null,
+      "actualDeletedTestID": "SW-FW-SYS-Test-ID-37",
+      "condition": 3,
+      "mainSourceRows": [
+        154
+      ],
+      "mainOldTexts": [
+        {
+          "J": "\n조건 [3] 32대역, CIS, 모노폴라 rod=2, 음극 선행=0, 폭=25 us, 자극 볼륨=4, 오디오 볼륨=5.\nT[uA]=[100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100].\nC[uA]=[300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300,300].\n같은 음원을 켜거나 크기를 바꾸면 해당 대역의 자극 출력이 달라져야 한다.\n",
+          "K": "\n검증 [3] / T/C 입력 및 음원 변화\nT[0..31]=100 uA, C[0..31]=300 uA(각 32개)의 입력 조건에서 음원 ON/크기 변경에 따른 해당 대역 자극 변화 확인.\n(사진필요) Live 음원 ON/크기 변경별 전극의 자극 파형 및 매핑 상태 화면. 적용 맵/전극/T/C 입력.\n"
+        }
+      ],
+      "reason": "삭제된 현재 본문 조건의 기능/검증 문구에 대응하는 보조 사본. A열 ID만으로 판정하지 않았다.",
+      "duplicateCopyOfSameDeletedCondition": false,
+      "sourceAMismatched": false
+    },
+    {
+      "sheet": "시험 보조자료",
+      "sourceRow": 149,
+      "sourceRange": "A149:D149",
+      "action": "delete_physical_auxiliary_row",
+      "oldValues": {
+        "A149": "\nSW-FW-SYS-Test-ID-38\n",
+        "B149": "\n조건 [2] 매핑 앱/내부기 연결=1 유지. 잔량=72%, 오류=0에서 [0x67] 조회.\n앱 응답=[0x67,1,72,0,0], 잔량이 37%에서 72%로 바뀌어야 한다.\n",
+        "C149": "\n검증 [2] / 잔량 72%로 변경 후 재조회\n논리 응답=[0x67,1,72,0,0]을 매핑 앱에서 확인.\n\n사진/자료 안내\n응답 자료: 잔량 37/72% 상태조회 명령, 논리 응답 및 실제 매핑 앱 수신값.\n",
+        "D149": "\n통과\n관련 자료 위치: C열\n"
+      },
+      "proposedValues": null,
+      "actualDeletedTestID": "SW-FW-SYS-Test-ID-38",
+      "condition": 2,
+      "mainSourceRows": [
+        156
+      ],
+      "mainOldTexts": [
+        {
+          "J": "\n조건 [2] 매핑 앱/내부기 연결=1 유지. 잔량=72%, 오류=0에서 [0x67] 조회.\n앱 응답=[0x67,1,72,0,0], 잔량이 37%에서 72%로 바뀌어야 한다.\n",
+          "K": "\n검증 [2] / 잔량 72%로 변경 후 재조회\n논리 응답=[0x67,1,72,0,0]을 매핑 앱에서 확인.\n"
+        }
+      ],
+      "reason": "삭제된 현재 본문 조건의 기능/검증 문구에 대응하는 보조 사본. A열 ID만으로 판정하지 않았다.",
+      "duplicateCopyOfSameDeletedCondition": false,
+      "sourceAMismatched": false
+    },
+    {
+      "sheet": "시험 보조자료",
+      "sourceRow": 152,
+      "sourceRange": "A152:D152",
+      "action": "delete_physical_auxiliary_row",
+      "oldValues": {
+        "A152": "\nSW-FW-SYS-Test-ID-39\n",
+        "B152": "\n조건 [2] CM3-049 E-09 보조 조건: command=0x62 처리 중 [0x67] 수신.\nfetched_command=IDLE(0), Live=Standby(0)에서 명령 해석 함수 호출.\n기대값: command=0x62 유지, fetched_command=0(새 명령 미접수), tx[0]=0xF0, tx[3]=1(이전 명령 미완료).\n시스템 시험의 실제 오류/후속 응답 순서는 별도로 확인한다.\n",
+        "C152": "\n검증 [2] / 기존 command=0x62 처리 중 새 명령 0x67\n기존 command=0x62 유지, fetched_command=0, 오류 응답 TX[0]=0xF0 및 TX[3]=1 확인.\n\n사진/자료 안내\n응답 자료: 지정 자극 완료 응답, 처리 중 명령 유지 조건의 송수신값과 순서.\n",
+        "D152": "\n통과\n관련 자료 위치: C열\n"
+      },
+      "proposedValues": null,
+      "actualDeletedTestID": "SW-FW-SYS-Test-ID-39",
+      "condition": 2,
+      "mainSourceRows": [
+        158
+      ],
+      "mainOldTexts": [
+        {
+          "J": "\n조건 [2] CM3-049 E-09 보조 조건: command=0x62 처리 중 [0x67] 수신.\nfetched_command=IDLE(0), Live=Standby(0)에서 명령 해석 함수 호출.\n기대값: command=0x62 유지, fetched_command=0(새 명령 미접수), tx[0]=0xF0, tx[3]=1(이전 명령 미완료).\n시스템 시험의 실제 오류/후속 응답 순서는 별도로 확인한다.\n",
+          "K": "\n검증 [2] / 기존 command=0x62 처리 중 새 명령 0x67\n기존 command=0x62 유지, fetched_command=0, 오류 응답 TX[0]=0xF0 및 TX[3]=1 확인.\n"
+        }
+      ],
+      "reason": "삭제된 현재 본문 조건의 기능/검증 문구에 대응하는 보조 사본. A열 ID만으로 판정하지 않았다.",
+      "duplicateCopyOfSameDeletedCondition": false,
+      "sourceAMismatched": false
+    },
+    {
+      "sheet": "시험 보조자료",
+      "sourceRow": 155,
+      "sourceRange": "A155:D155",
+      "action": "delete_physical_auxiliary_row",
+      "oldValues": {
+        "A155": "\nSW-FW-SYS-Test-ID-40\n",
+        "B155": "\n조건 [2] Live 시작 응답 후 command=0x66, 하위상태=HoldOn(9)에서 [0x66,8](정지) 전송.\n응답=[0x66,8](2바이트), 처리 명령=IDLE(0), 하위상태=Standby(0).\n시작 [0x66,2]와 정지 [0x66,8] 응답이 구별되어야 한다.\n",
+        "C155": "\n검증 [2] / Live 정지\n논리 응답=[0x66,8](2바이트), 처리 명령=IDLE(0), 하위상태=Standby(0). 시작/종료 응답 구별 확인.\n\n사진/자료 안내\n응답 자료: Live Start/Stop 상태, 응답, 처리 중 오류 응답.\n",
+        "D155": "\n통과\n관련 자료 위치: C열\n"
+      },
+      "proposedValues": null,
+      "actualDeletedTestID": "SW-FW-SYS-Test-ID-40",
+      "condition": 2,
+      "mainSourceRows": [
+        160
+      ],
+      "mainOldTexts": [
+        {
+          "J": "\n조건 [2] Live 시작 응답 후 command=0x66, 하위상태=HoldOn(9)에서 [0x66,8](정지) 전송.\n응답=[0x66,8](2바이트), 처리 명령=IDLE(0), 하위상태=Standby(0).\n시작 [0x66,2]와 정지 [0x66,8] 응답이 구별되어야 한다.\n",
+          "K": "\n검증 [2] / Live 정지\n논리 응답=[0x66,8](2바이트), 처리 명령=IDLE(0), 하위상태=Standby(0). 시작/종료 응답 구별 확인.\n"
+        }
+      ],
+      "reason": "삭제된 현재 본문 조건의 기능/검증 문구에 대응하는 보조 사본. A열 ID만으로 판정하지 않았다.",
+      "duplicateCopyOfSameDeletedCondition": false,
+      "sourceAMismatched": false
+    },
+    {
+      "sheet": "시험 보조자료",
+      "sourceRow": 156,
+      "sourceRange": "A156:D156",
+      "action": "delete_physical_auxiliary_row",
+      "oldValues": {
+        "A156": "\nSW-FW-SYS-Test-ID-40\n",
+        "B156": "\n조건 [3] CM3-049 E-09 보조 조건: command=0x62 처리 중 [0x67] 수신.\nfetched_command=IDLE(0), Live=Standby(0)에서 명령 해석 함수 호출.\n기대값: command=0x62 유지, fetched_command=0(새 명령 미접수), tx[0]=0xF0, tx[3]=1(이전 명령 미완료).\n시스템 시험의 실제 오류/후속 응답 순서는 별도로 확인한다.\n",
+        "C156": "\n검증 [3] / 기존 command=0x62 처리 중 새 명령 0x67\n기존 command=0x62 유지, fetched_command=0, 오류 응답 TX[0]=0xF0 및 TX[3]=1 확인.\n\n사진/자료 안내\n응답 자료: Live Start/Stop 상태, 응답, 처리 중 오류 응답.\n",
+        "D156": "\n통과\n관련 자료 위치: C열\n"
+      },
+      "proposedValues": null,
+      "actualDeletedTestID": "SW-FW-SYS-Test-ID-40",
+      "condition": 3,
+      "mainSourceRows": [
+        161
+      ],
+      "mainOldTexts": [
+        {
+          "J": "\n조건 [3] CM3-049 E-09 보조 조건: command=0x62 처리 중 [0x67] 수신.\nfetched_command=IDLE(0), Live=Standby(0)에서 명령 해석 함수 호출.\n기대값: command=0x62 유지, fetched_command=0(새 명령 미접수), tx[0]=0xF0, tx[3]=1(이전 명령 미완료).\n시스템 시험의 실제 오류/후속 응답 순서는 별도로 확인한다.\n",
+          "K": "\n검증 [3] / 기존 command=0x62 처리 중 새 명령 0x67\n기존 command=0x62 유지, fetched_command=0, 오류 응답 TX[0]=0xF0 및 TX[3]=1 확인.\n"
+        }
+      ],
+      "reason": "삭제된 현재 본문 조건의 기능/검증 문구에 대응하는 보조 사본. A열 ID만으로 판정하지 않았다.",
+      "duplicateCopyOfSameDeletedCondition": false,
+      "sourceAMismatched": false
+    },
+    {
+      "sheet": "시험 보조자료",
+      "sourceRow": 161,
+      "sourceRange": "A161:D161",
+      "action": "delete_physical_auxiliary_row",
+      "oldValues": {
+        "A161": "\nSW-FW-SYS-Test-ID-42\n",
+        "B161": "\n조건 [2] 부팅 중 접촉 무시 처리가 끝난 정상 모드.\n2399 ms 접촉: 길게 누름 이벤트 없음.\n2400 ms 이상: 이벤트 1회, 유지 중 중복 없음.\n해제 후 재입력이 가능해야 한다.\n",
+        "C161": "\n검증 [2] / 길게 누름 경계\n2399 ms에서 이벤트 없음, 2400 ms 이상에서 1회 발생, 유지 중 중복 없음, 해제 후 재입력 확인.\n\n사진/자료 안내\n입력 자료: 비접촉/접촉/해제 및 2399/2400 ms 경계 이벤트.\n",
+        "D161": "\n통과\n관련 자료 위치: C열\n"
+      },
+      "proposedValues": null,
+      "actualDeletedTestID": "SW-FW-SYS-Test-ID-42",
+      "condition": 2,
+      "mainSourceRows": [
+        165
+      ],
+      "mainOldTexts": [
+        {
+          "J": "\n조건 [2] 부팅 중 접촉 무시 처리가 끝난 정상 모드.\n2399 ms 접촉: 길게 누름 이벤트 없음.\n2400 ms 이상: 이벤트 1회, 유지 중 중복 없음.\n해제 후 재입력이 가능해야 한다.\n",
+          "K": "\n검증 [2] / 길게 누름 경계\n2399 ms에서 이벤트 없음, 2400 ms 이상에서 1회 발생, 유지 중 중복 없음, 해제 후 재입력 확인.\n"
+        }
+      ],
+      "reason": "삭제된 현재 본문 조건의 기능/검증 문구에 대응하는 보조 사본. A열 ID만으로 판정하지 않았다.",
+      "duplicateCopyOfSameDeletedCondition": false,
+      "sourceAMismatched": false
+    },
+    {
+      "sheet": "시험 보조자료",
+      "sourceRow": 208,
+      "sourceRange": "A208:D208",
+      "action": "delete_physical_auxiliary_row",
+      "oldValues": {
+        "A208": "\nSW-FW-SYS-Test-ID-53\n",
+        "B208": "\n조건 [3] VOLATILE 구획의 CRC 불일치.\n실제 기동 여부를 손상 실행파일 기동 차단 기준과 비교한다.\n",
+        "C208": "\n기존 E8300 관찰/작성자 확인 기록(과거 범위):\n검증 [3] / VOLATILE 구획 CRC 오류\n기존 시험 기록(작성자 확인):\n손상 이미지 기동 차단 확인.\n\n코드 대조: 현재 부트로더에는 VOLATILE 구획 CRC 불일치를 허용하는 예외가 있다. 이 기록의 시험 이미지/적용 경로와 대조가 필요하다.\n현재 추가/수정 기준의 실제 QCC 결과: 미실행/미수집.\n[QCC 자료 입력] 옆 기준의 동일 입력·전량 값/시각·계산/보호 자료.\n",
+        "D208": "\n기존 관찰 보존\n현재 판정 대기\n"
+      },
+      "proposedValues": null,
+      "actualDeletedTestID": "SW-FW-SYS-Test-ID-54",
+      "condition": 3,
+      "mainSourceRows": [
+        208
+      ],
+      "mainOldTexts": [
+        {
+          "J": "\n조건 [3] VOLATILE 구획의 CRC 불일치.\n실제 기동 여부를 손상 실행파일 기동 차단 기준과 비교한다.\n",
+          "K": "\n기존 E8300 관찰/작성자 확인 기록(과거 범위):\n검증 [3] / VOLATILE 구획 CRC 오류\n기존 시험 기록(작성자 확인):\n손상 이미지 기동 차단 확인.\n\n코드 대조: 현재 부트로더에는 VOLATILE 구획 CRC 불일치를 허용하는 예외가 있다. 이 기록의 시험 이미지/적용 경로와 대조가 필요하다.\n현재 추가/수정 기준의 실제 QCC 결과: 미실행/미수집.\n[QCC 자료 입력] 옆 기준의 동일 입력·전량 값/시각·계산/보호 자료.\n"
+        }
+      ],
+      "reason": "삭제된 현재 본문 조건의 기능/검증 문구에 대응하는 보조 사본. A열 ID만으로 판정하지 않았다.",
+      "duplicateCopyOfSameDeletedCondition": false,
+      "sourceAMismatched": true
+    },
+    {
+      "sheet": "시험 보조자료",
+      "sourceRow": 209,
+      "sourceRange": "A209:D209",
+      "action": "delete_physical_auxiliary_row",
+      "oldValues": {
+        "A209": "\nSW-FW-SYS-Test-ID-81\n",
+        "B209": "\n조건 [4] 구획 1/2개 선언 후 데이터 없음, 첫 헤더 읽기 실패, 일부 구획 이후 읽기 실패를 각각 확인.\n정상 적재로 처리하지 않고 손상 이미지의 기동을 차단해야 한다.\n",
+        "C209": "\n기존 E8300 관찰/작성자 확인 기록(과거 범위):\n검증 [4] / 손상/짧은 이미지 경계\n기존 시험 기록(작성자 확인):\n조건 [4]에 대응하는 최신 유닛 BOOT-011의 손상/읽기 실패 사례(C6/C108/C109/C110) 반환값은 모두 -1. 오류를 정상 적재 완료로 처리하지 않음.\n\n코드 대조: 현재 코드/보충 시험에는 구획 누락과 헤더 읽기 처리의 차이가 남아 있다. 아래 기존 결과를 모든 손상 이미지의 차단 근거로 확대하지 않는다.\n현재 추가/수정 기준의 실제 QCC 결과: 미실행/미수집.\n[QCC 자료 입력] 옆 기준의 동일 입력·전량 값/시각·계산/보호 자료.\n",
+        "D209": "\n기존 관찰 보존\n현재 판정 대기\n"
+      },
+      "proposedValues": null,
+      "actualDeletedTestID": "SW-FW-SYS-Test-ID-54",
+      "condition": 4,
+      "mainSourceRows": [
+        209
+      ],
+      "mainOldTexts": [
+        {
+          "J": "\n조건 [4] 구획 1/2개 선언 후 데이터 없음, 첫 헤더 읽기 실패, 일부 구획 이후 읽기 실패를 각각 확인.\n정상 적재로 처리하지 않고 손상 이미지의 기동을 차단해야 한다.\n",
+          "K": "\n기존 E8300 관찰/작성자 확인 기록(과거 범위):\n검증 [4] / 손상/짧은 이미지 경계\n기존 시험 기록(작성자 확인):\n조건 [4]에 대응하는 최신 유닛 BOOT-011의 손상/읽기 실패 사례(C6/C108/C109/C110) 반환값은 모두 -1. 오류를 정상 적재 완료로 처리하지 않음.\n\n코드 대조: 현재 코드/보충 시험에는 구획 누락과 헤더 읽기 처리의 차이가 남아 있다. 아래 기존 결과를 모든 손상 이미지의 차단 근거로 확대하지 않는다.\n현재 추가/수정 기준의 실제 QCC 결과: 미실행/미수집.\n[QCC 자료 입력] 옆 기준의 동일 입력·전량 값/시각·계산/보호 자료.\n"
+        }
+      ],
+      "reason": "삭제된 현재 본문 조건의 기능/검증 문구에 대응하는 보조 사본. A열 ID만으로 판정하지 않았다.",
+      "duplicateCopyOfSameDeletedCondition": false,
+      "sourceAMismatched": true
+    },
+    {
+      "sheet": "시험 보조자료",
+      "sourceRow": 225,
+      "sourceRange": "A225:D225",
+      "action": "delete_physical_auxiliary_row",
+      "oldValues": {
+        "A225": "\nSW-FW-SYS-Test-ID-74\n",
+        "B225": "\n조건 [2] 유닛 보조 시험의 고정 입력: 시간=[26,5,2,13,14,15], 주소=[18,52,86,120,154,188], 이벤트=0x40.\n기록값은 시간=[26,5,2,13,14,15], 주소=[18,52,86,120,154,188], 이벤트=64이어야 한다.\n",
+        "C225": "\n검증 [2] / 고정 입력의 보조 기록\n시간=[26,5,29,13,14,15], 주소=[18,52,86,120,154,188], 이벤트=64.\n날짜/시각: 시험용 고정 입력.\n\n사진/자료 안내\n감사기록 자료: 시간/주소/이벤트 표시. 고정 입력 [26,5,29,13,14,15]의 결과.\n",
+        "D225": "\n통과\n관련 자료 위치: C열\n"
+      },
+      "proposedValues": null,
+      "actualDeletedTestID": "SW-FW-SYS-Test-ID-74",
+      "condition": 2,
+      "mainSourceRows": [
+        218
+      ],
+      "mainOldTexts": [
+        {
+          "J": "\n조건 [2] 유닛 보조 시험의 기준서 날짜의 고정 입력 예시(2026-05-02): 시간=[26,5,2,13,14,15], 주소=[18,52,86,120,154,188], 이벤트=0x40.\n기록값은 시간=[26,5,2,13,14,15], 주소=[18,52,86,120,154,188], 이벤트=64이어야 한다.\n날짜는 시험 입력 매개변수다. 결과 시험은 확인된 고정 입력 [26,5,29,13,14,15]를 적용한다. 그 입력의 예상 기록은 시간=[26,5,29,13,14,15], 주소=[18,52,86,120,154,188], 이벤트=64다. 기준서 날짜를 결과 날짜로 관찰했다고 간주하지 않는다.\n",
+          "K": "\n검증 [2] / 고정 입력의 보조 기록\n시간=[26,5,29,13,14,15], 주소=[18,52,86,120,154,188], 이벤트=64.\n날짜/시각: 시험용 고정 입력.\n이 결과 시험의 고정 입력은 시간=[26,5,29,13,14,15], 주소=[18,52,86,120,154,188], 이벤트=0x40이다. 해당 입력의 예상 저장 기록은 시간=[26,5,29,13,14,15], 주소=[18,52,86,120,154,188], 이벤트=64다.\n위 값은 기존 입력 보조기록이며 저장 후 독립적으로 읽은 관찰값과의 일치 근거는 미확인이다. 검증 [1]의 6개 시간 필드 표시 확인을 이 저장 일치 조건의 통과로 확대하지 않는다.\n[E8300 보완] 해당 입력으로 저장한 시간/주소/이벤트를 읽은 값과 원소별 비교 근거.\n"
+        }
+      ],
+      "reason": "삭제된 현재 본문 조건의 기능/검증 문구에 대응하는 보조 사본. A열 ID만으로 판정하지 않았다.",
+      "duplicateCopyOfSameDeletedCondition": false,
+      "sourceAMismatched": false
+    },
+    {
+      "sheet": "시험 보조자료",
+      "sourceRow": 228,
+      "sourceRange": "A228:D228",
+      "action": "delete_physical_auxiliary_row",
+      "oldValues": {
+        "A228": "\nSW-FW-SYS-Test-ID-75\n",
+        "B228": "\n조건 [2] 설정파일/부트 이미지의 무결성 검사 알고리즘을 권고의 목적과 범위에 대조한다.\n보조 계산(SW-FW-UnitTest-BOOT-ID-13): 헤더를 포함한 CRC 잔여값이 0이면 반환값 0이어야 한다.\n첫 CRC 오류 후 복호화한 CRC 잔여값이 0이고 암호화 표시가 1이면 반환값 0이어야 한다.\n복호화 후에도 CRC 오류가 있으면 반환값 -1이어야 한다.\n",
+        "C228": "\n기존 E8300 관찰/작성자 확인 기록(과거 범위):\n검증 [2] / 저장 파일 및 이미지 오류 검출\nCRC16 사용 확인. SW-FW-UnitTest-BOOT-ID-13의 기존 결과는 첫 잔여값0/반환0, 복호화 후 잔여값0 및 암호화 표시1/반환0, 복호화 후 잔여값1 또는 암호화 표시0/반환 -1이다.\nCRC는 데이터 오류를 검출하는 기능이며 인증된 송신자나 파일 서명을 확인하는 결과가 아니다.\n현재 추가/수정 기준의 실제 QCC 결과: 미실행/미수집.\n[QCC 자료 입력] 옆 기준의 동일 입력·전량 값/시각·계산/보호 자료.\n",
+        "D228": "\n기존 관찰 보존\n현재 판정 대기\n"
+      },
+      "proposedValues": null,
+      "actualDeletedTestID": "SW-FW-SYS-Test-ID-78",
+      "condition": 2,
+      "mainSourceRows": [
+        228
+      ],
+      "mainOldTexts": [
+        {
+          "J": "\n조건 [2] 설정파일/부트 이미지의 무결성 검사 알고리즘을 권고의 목적과 범위에 대조한다.\n보조 계산(SW-FW-UnitTest-BOOT-ID-13): 헤더를 포함한 CRC 잔여값이 0이면 반환값 0이어야 한다.\n첫 CRC 오류 후 복호화한 CRC 잔여값이 0이고 암호화 표시가 1이면 반환값 0이어야 한다.\n복호화 후에도 CRC 오류가 있으면 반환값 -1이어야 한다.\n",
+          "K": "\n기존 E8300 관찰/작성자 확인 기록(과거 범위):\n검증 [2] / 저장 파일 및 이미지 오류 검출\nCRC16 사용 확인. SW-FW-UnitTest-BOOT-ID-13의 기존 결과는 첫 잔여값0/반환0, 복호화 후 잔여값0 및 암호화 표시1/반환0, 복호화 후 잔여값1 또는 암호화 표시0/반환 -1이다.\nCRC는 데이터 오류를 검출하는 기능이며 인증된 송신자나 파일 서명을 확인하는 결과가 아니다.\n현재 추가/수정 기준의 실제 QCC 결과: 미실행/미수집.\n[QCC 자료 입력] 옆 기준의 동일 입력·전량 값/시각·계산/보호 자료.\n"
+        }
+      ],
+      "reason": "삭제된 현재 본문 조건의 기능/검증 문구에 대응하는 보조 사본. A열 ID만으로 판정하지 않았다.",
+      "duplicateCopyOfSameDeletedCondition": false,
+      "sourceAMismatched": true
+    },
+    {
+      "sheet": "시험 보조자료",
+      "sourceRow": 229,
+      "sourceRange": "A229:D229",
+      "action": "delete_physical_auxiliary_row",
+      "oldValues": {
+        "A229": "\nSW-FW-SYS-Test-ID-75\n",
+        "B229": "\n조건 [3] AES-128 ECB와 CRC의 모드 및 사용 목적을 적용 규격의 개정판/권고 조항과 대조한다.\n해당 사용 목적에 대한 권고 근거가 있어야 한다.\nQCC 인증 AES-CMAC 및 매핑키 생성 SHA-256, NVM 복호화 AES-128은 BOOT AES-ECB/CRC 확인과 분리하여 실제 알고리즘/입력/보호 목적 및 적용 권고를 분석한다.\n",
+        "C229": "\n기존 E8300 관찰/작성자 확인 기록(과거 범위):\n검증 [3] / 적용 규격 권고 대조\n기존 시험 기록(작성자 확인):\n적용 대상/사용 목적에 대한 권고 알고리즘 확인.\n\n[QCC/E8300 자료 입력] AES-128 ECB 및 CRC16의 사용은 확인했으나 사용 목적별 권고 근거/키 관리 자료는 이 코드 분석으로 확인하지 않았다. 사이버보안 시험 연계의 DC-03에 해당 자료를 연결한다.\n현재 추가/수정 기준의 실제 QCC 결과: 미실행/미수집.\n[QCC 자료 입력] 옆 기준의 동일 입력·전량 값/시각·계산/보호 자료.\n",
+        "D229": "\n기존 관찰 보존\n현재 판정 대기\n"
+      },
+      "proposedValues": null,
+      "actualDeletedTestID": "SW-FW-SYS-Test-ID-78",
+      "condition": 3,
+      "mainSourceRows": [
+        229
+      ],
+      "mainOldTexts": [
+        {
+          "J": "\n조건 [3] AES-128 ECB와 CRC의 모드 및 사용 목적을 적용 규격의 개정판/권고 조항과 대조한다.\n해당 사용 목적에 대한 권고 근거가 있어야 한다.\nQCC 인증 AES-CMAC 및 매핑키 생성 SHA-256, NVM 복호화 AES-128은 BOOT AES-ECB/CRC 확인과 분리하여 실제 알고리즘/입력/보호 목적 및 적용 권고를 분석한다.\n",
+          "K": "\n기존 E8300 관찰/작성자 확인 기록(과거 범위):\n검증 [3] / 적용 규격 권고 대조\n기존 시험 기록(작성자 확인):\n적용 대상/사용 목적에 대한 권고 알고리즘 확인.\n\n[QCC/E8300 자료 입력] AES-128 ECB 및 CRC16의 사용은 확인했으나 사용 목적별 권고 근거/키 관리 자료는 이 코드 분석으로 확인하지 않았다. 사이버보안 시험 연계의 DC-03에 해당 자료를 연결한다.\n현재 추가/수정 기준의 실제 QCC 결과: 미실행/미수집.\n[QCC 자료 입력] 옆 기준의 동일 입력·전량 값/시각·계산/보호 자료.\n"
+        }
+      ],
+      "reason": "삭제된 현재 본문 조건의 기능/검증 문구에 대응하는 보조 사본. A열 ID만으로 판정하지 않았다.",
+      "duplicateCopyOfSameDeletedCondition": false,
+      "sourceAMismatched": true
+    },
+    {
+      "sheet": "시험 보조자료",
+      "sourceRow": 236,
+      "sourceRange": "A236:D236",
+      "action": "delete_physical_auxiliary_row",
+      "oldValues": {
+        "A236": "\nSW-FW-SYS-Test-ID-77\n",
+        "B236": "\n조건 [2] 같은 정보의 파일 읽기 경로를 분석한다.\n읽을 때 복호화가 적용되어야 한다.\n",
+        "C236": "\n검증 [2] / 같은 정보 읽기 경로 분석\nci_map_read_isd_info가 같은 CRC/AES 설정으로 읽고 ci_filesystem_read_with_crc_and_aes128가 블록별 ci_aes_decrypt 후 CRC 대조. 복호화된 구조의 isd_serial/isd_userName 필드 확인.\n\n사진/자료 안내\n분석 자료: 제조번호/이니셜 저장, 읽기 함수, CRC/AES 설정 및 암복호화 경로.\n",
+        "D236": "\n통과\n관련 자료 위치: C열\n"
+      },
+      "proposedValues": null,
+      "actualDeletedTestID": "SW-FW-SYS-Test-ID-77",
+      "condition": 2,
+      "mainSourceRows": [
+        226
+      ],
+      "mainOldTexts": [
+        {
+          "J": "\n조건 [2] 같은 정보의 파일 읽기 경로를 분석한다.\n읽을 때 복호화가 적용되어야 한다.\n",
+          "K": "\n검증 [2] / 같은 정보 읽기 경로 분석\nci_map_read_isd_info가 같은 CRC/AES 설정으로 읽고 ci_filesystem_read_with_crc_and_aes128가 블록별 ci_aes_decrypt 후 CRC 대조. 복호화된 구조의 isd_serial/isd_userName 필드 확인.\n"
+        }
+      ],
+      "reason": "삭제된 현재 본문 조건의 기능/검증 문구에 대응하는 보조 사본. A열 ID만으로 판정하지 않았다.",
+      "duplicateCopyOfSameDeletedCondition": false,
+      "sourceAMismatched": false
+    },
+    {
+      "sheet": "시험 보조자료",
+      "sourceRow": 238,
+      "sourceRange": "A238:D238",
+      "action": "delete_physical_auxiliary_row",
+      "oldValues": {
+        "A238": "\nSW-FW-SYS-Test-ID-78\n",
+        "B238": "\n조건 [2] 설정파일/부트 이미지의 무결성 검사 알고리즘을 권고의 목적과 범위에 대조한다.\n보조 계산(SW-FW-UnitTest-BOOT-ID-13): 헤더를 포함한 CRC 잔여값이 0이면 반환값 0이어야 한다.\n첫 CRC 오류 후 복호화한 CRC 잔여값이 0이고 암호화 표시가 1이면 반환값 0이어야 한다.\n복호화 후에도 CRC 오류가 있으면 반환값 -1이어야 한다.\n",
+        "C238": "\n검증 [2] / 무결성 알고리즘 식별\nCRC16 사용 확인.\n\n사진/자료 안내\n문서 자료: 적용 사이버보안 규격 번호/개정/권고 조항과 AES-128 ECB/CRC16 사용 목적 대조.\n",
+        "D238": "\n통과\n관련 자료 위치: C열\n"
+      },
+      "proposedValues": null,
+      "actualDeletedTestID": "SW-FW-SYS-Test-ID-78",
+      "condition": 2,
+      "mainSourceRows": [
+        228
+      ],
+      "mainOldTexts": [
+        {
+          "J": "\n조건 [2] 설정파일/부트 이미지의 무결성 검사 알고리즘을 권고의 목적과 범위에 대조한다.\n보조 계산(SW-FW-UnitTest-BOOT-ID-13): 헤더를 포함한 CRC 잔여값이 0이면 반환값 0이어야 한다.\n첫 CRC 오류 후 복호화한 CRC 잔여값이 0이고 암호화 표시가 1이면 반환값 0이어야 한다.\n복호화 후에도 CRC 오류가 있으면 반환값 -1이어야 한다.\n",
+          "K": "\n기존 E8300 관찰/작성자 확인 기록(과거 범위):\n검증 [2] / 저장 파일 및 이미지 오류 검출\nCRC16 사용 확인. SW-FW-UnitTest-BOOT-ID-13의 기존 결과는 첫 잔여값0/반환0, 복호화 후 잔여값0 및 암호화 표시1/반환0, 복호화 후 잔여값1 또는 암호화 표시0/반환 -1이다.\nCRC는 데이터 오류를 검출하는 기능이며 인증된 송신자나 파일 서명을 확인하는 결과가 아니다.\n현재 추가/수정 기준의 실제 QCC 결과: 미실행/미수집.\n[QCC 자료 입력] 옆 기준의 동일 입력·전량 값/시각·계산/보호 자료.\n"
+        }
+      ],
+      "reason": "삭제된 현재 본문 조건의 기능/검증 문구에 대응하는 보조 사본. A열 ID만으로 판정하지 않았다.",
+      "duplicateCopyOfSameDeletedCondition": true,
+      "sourceAMismatched": false
+    },
+    {
+      "sheet": "시험 보조자료",
+      "sourceRow": 239,
+      "sourceRange": "A239:D239",
+      "action": "delete_physical_auxiliary_row",
+      "oldValues": {
+        "A239": "\nSW-FW-SYS-Test-ID-78\n",
+        "B239": "\n조건 [3] AES-128 ECB와 CRC의 모드 및 사용 목적을 적용 규격의 개정판/권고 조항과 대조한다.\n해당 사용 목적에 대한 권고 근거가 있어야 한다.\n",
+        "C239": "\n검증 [3] / 적용 규격 권고 대조\n적용 대상/사용 목적에 대한 권고 알고리즘 확인.\n\n사진/자료 안내\n문서 자료: 적용 사이버보안 규격 번호/개정/권고 조항과 AES-128 ECB/CRC16 사용 목적 대조.\n",
+        "D239": "\n통과\n관련 자료 위치: C열\n"
+      },
+      "proposedValues": null,
+      "actualDeletedTestID": "SW-FW-SYS-Test-ID-78",
+      "condition": 3,
+      "mainSourceRows": [
+        229
+      ],
+      "mainOldTexts": [
+        {
+          "J": "\n조건 [3] AES-128 ECB와 CRC의 모드 및 사용 목적을 적용 규격의 개정판/권고 조항과 대조한다.\n해당 사용 목적에 대한 권고 근거가 있어야 한다.\nQCC 인증 AES-CMAC 및 매핑키 생성 SHA-256, NVM 복호화 AES-128은 BOOT AES-ECB/CRC 확인과 분리하여 실제 알고리즘/입력/보호 목적 및 적용 권고를 분석한다.\n",
+          "K": "\n기존 E8300 관찰/작성자 확인 기록(과거 범위):\n검증 [3] / 적용 규격 권고 대조\n기존 시험 기록(작성자 확인):\n적용 대상/사용 목적에 대한 권고 알고리즘 확인.\n\n[QCC/E8300 자료 입력] AES-128 ECB 및 CRC16의 사용은 확인했으나 사용 목적별 권고 근거/키 관리 자료는 이 코드 분석으로 확인하지 않았다. 사이버보안 시험 연계의 DC-03에 해당 자료를 연결한다.\n현재 추가/수정 기준의 실제 QCC 결과: 미실행/미수집.\n[QCC 자료 입력] 옆 기준의 동일 입력·전량 값/시각·계산/보호 자료.\n"
+        }
+      ],
+      "reason": "삭제된 현재 본문 조건의 기능/검증 문구에 대응하는 보조 사본. A열 ID만으로 판정하지 않았다.",
+      "duplicateCopyOfSameDeletedCondition": true,
+      "sourceAMismatched": false
+    },
+    {
+      "sheet": "시험 보조자료",
+      "sourceRow": 247,
+      "sourceRange": "A247:D247",
+      "action": "delete_physical_auxiliary_row",
+      "oldValues": {
+        "A247": "\nSW-FW-SYS-Test-ID-80\n",
+        "B247": "\n조건 [3] 초기화된 설정을 저장한 뒤 다시 읽고 적용 결과를 확인한다.\n외부기가 초기화된 설정에 따라 동작해야 한다.\n",
+        "C247": "\n검증 [3] / 저장 및 재읽기\n초기화 설정의 저장/재읽기 및 재기동 후 적용 확인.\n\n사진/자료 안내\n설정 자료: 손상 파일 식별, 초기값 [1,4,1,1,1,2,1], 저장/재읽기, 재기동 적용 결과.\n",
+        "D247": "\n통과\n관련 자료 위치: C열\n"
+      },
+      "proposedValues": null,
+      "actualDeletedTestID": "SW-FW-SYS-Test-ID-80",
+      "condition": 3,
+      "mainSourceRows": [
+        236
+      ],
+      "mainOldTexts": [
+        {
+          "J": "\n조건 [3] 초기화된 설정을 저장한 뒤 다시 읽고 적용 결과를 확인한다.\n외부기가 초기화된 설정에 따라 동작해야 한다.\n",
+          "K": "\n검증 [3] / 저장 및 재읽기\n초기화 설정의 저장/재읽기 및 재기동 후 적용 확인.\n"
+        }
+      ],
+      "reason": "삭제된 현재 본문 조건의 기능/검증 문구에 대응하는 보조 사본. A열 ID만으로 판정하지 않았다.",
+      "duplicateCopyOfSameDeletedCondition": false,
+      "sourceAMismatched": false
+    },
+    {
+      "sheet": "시험 보조자료",
+      "sourceRow": 249,
+      "sourceRange": "A249:D249",
+      "action": "delete_physical_auxiliary_row",
+      "oldValues": {
+        "A249": "\nSW-FW-SYS-Test-ID-55\n",
+        "B249": "\n조건 [2] 낮춘 전압과 내부기 연결을 유지한다.\n연속 알림 시각 t0, t1, t2의 간격은 t1-t0=10분(600초), t2-t1=10분(600초)이어야 한다.\n",
+        "C249": "\n검증 [2] / 최초 및 후속 두 알림 간격\nt1-t0=10분(600초), t2-t1=10분(600초).\n입력은 E8300에 전달한 배터리 잔량/충전/연결 상태 데이터.\n\n사진/자료 안내\n(사진필요) 저전압의 반복 알림 전극의 자극 파형, 시간 커서 및 t0/t1/t2. 전압/QCC 잔량.\n",
+        "D249": "\n통과\n사진 첨부 대기\n"
+      },
+      "proposedValues": null,
+      "actualDeletedTestID": "SW-FW-SYS-Test-ID-55",
+      "condition": 2,
+      "mainSourceRows": [
+        238
+      ],
+      "mainOldTexts": [
+        {
+          "J": "\n조건 [2] 낮춘 전압과 내부기 연결을 유지한다.\n연속 알림 시각 t0, t1, t2의 간격은 t1-t0=10분(600초), t2-t1=10분(600초)이어야 한다.\n",
+          "K": "\n검증 [2] / 최초 및 후속 두 알림 간격\nt1-t0=10분(600초), t2-t1=10분(600초).\n입력은 E8300에 전달한 배터리 잔량/충전/연결 상태 데이터.\n(사진필요) 저전압의 반복 알림 전극의 자극 파형, 시간 커서 및 t0/t1/t2. 전압/QCC 잔량.\n"
+        }
+      ],
+      "reason": "삭제된 현재 본문 조건의 기능/검증 문구에 대응하는 보조 사본. A열 ID만으로 판정하지 않았다.",
+      "duplicateCopyOfSameDeletedCondition": false,
+      "sourceAMismatched": false
+    },
+    {
+      "sheet": "시험 보조자료",
+      "sourceRow": 253,
+      "sourceRange": "A253:D253",
+      "action": "delete_physical_auxiliary_row",
+      "oldValues": {
+        "A253": "\nSW-FW-SYS-Test-ID-56\n",
+        "B253": "\n조건 [3] 32채널 자극 볼륨 1→4의 유닛 보조 계산을 확인한다. 오디오 볼륨은 고정한다.\nT(자극 시작 수준)=[50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50,\n50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50]\nC(최대 자극 수준)=[150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150,\n150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150]\n시작 Cnew[0..31](자극 크기 계산값)=[119, 119, 119, 119, 119, 119, 119, 119, 119, 119, 119, 119, 119, 119, 119, 119, 119, 119, 119, 119, 119, 119, 119, 119, 119, 119, 119, 119, 119, 119, 119, 119]\n최종 Cnew[0..31]=[150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150]이어야 한다.\n",
+        "C253": "\n검증 [3] / 자극 볼륨 1→4 보조 계산\n정적 계산의 시작 Cnew[0..31]=[119, 119, 119, 119, 119, 119, 119, 119, 119, 119, 119, 119, 119, 119, 119, 119, 119, 119, 119, 119, 119, 119, 119, 119, 119, 119, 119, 119, 119, 119, 119, 119]\n최종 Cnew[0..31]=[150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150]\n\n사진/자료 안내\n(사진필요) 볼륨 변경부터 최종 단계까지의 전극의 자극 크기 파형과 변경 전/증가 중/완료 후 오디오 설정 화면.\n",
+        "D253": "\n통과\n사진 첨부 대기\n"
+      },
+      "proposedValues": null,
+      "actualDeletedTestID": "SW-FW-SYS-Test-ID-56",
+      "condition": 3,
+      "mainSourceRows": [
+        241
+      ],
+      "mainOldTexts": [
+        {
+          "J": "\n조건 [3] 32채널 자극 볼륨 1→4의 유닛 보조 계산을 확인한다. 오디오 볼륨은 고정한다.\nT(자극 시작 수준)=[50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50,\n50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50]\nC(최대 자극 수준)=[150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150,\n150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150]\n시작 Cnew[0..31](자극 크기 계산값)=[119, 119, 119, 119, 119, 119, 119, 119, 119, 119, 119, 119, 119, 119, 119, 119, 119, 119, 119, 119, 119, 119, 119, 119, 119, 119, 119, 119, 119, 119, 119, 119]\n최종 Cnew[0..31]=[150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150]이어야 한다.\n",
+          "K": "\n검증 [3] / 자극 볼륨 1→4 보조 계산\n정적 계산의 시작 Cnew[0..31]=[119, 119, 119, 119, 119, 119, 119, 119, 119, 119, 119, 119, 119, 119, 119, 119, 119, 119, 119, 119, 119, 119, 119, 119, 119, 119, 119, 119, 119, 119, 119, 119]\n최종 Cnew[0..31]=[150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150]\n(사진필요) 볼륨 변경부터 최종 단계까지의 전극의 자극 크기 파형과 변경 전/증가 중/완료 후 오디오 설정 화면.\n"
+        }
+      ],
+      "reason": "삭제된 현재 본문 조건의 기능/검증 문구에 대응하는 보조 사본. A열 ID만으로 판정하지 않았다.",
+      "duplicateCopyOfSameDeletedCondition": false,
+      "sourceAMismatched": false
+    },
+    {
+      "sheet": "시험 보조자료",
+      "sourceRow": 257,
+      "sourceRange": "A257:D257",
+      "action": "delete_physical_auxiliary_row",
+      "oldValues": {
+        "A257": "\nSW-FW-SYS-Test-ID-58\n",
+        "B257": "\n조건 [3] 측정 후 시작/완료 시각을 RTT로 읽는다.\n측정 중 로그 출력이 정상 처리를 바꾸지 않고, 연속 블록 기록에 누락이 없어야 한다.\n",
+        "C257": "\n검증 [3] / 저장 계측값과 RTT 대조\n연속 seq/s/e 기록과 RTT 출력의 대응 확인.\n\n사진/자료 안내\n계측 자료: 연속 seq/시작 s/완료 e/다음 시작 시각, 주기, 완료 경계 계산표 및 RTT 원문.\n",
+        "D257": "\n통과\n관련 자료 위치: C열\n"
+      },
+      "proposedValues": null,
+      "actualDeletedTestID": "SW-FW-SYS-Test-ID-58",
+      "condition": 3,
+      "mainSourceRows": [
+        246
+      ],
+      "mainOldTexts": [
+        {
+          "J": "\n조건 [3] 측정 후 시작/완료 시각을 RTT로 읽는다.\n측정 중 로그 출력이 정상 처리를 바꾸지 않고, 연속 블록 기록에 누락이 없어야 한다.\n",
+          "K": "\n검증 [3] / 저장 계측값과 RTT 대조\n연속 seq/s/e 기록과 RTT 출력의 대응 확인.\n"
+        }
+      ],
+      "reason": "삭제된 현재 본문 조건의 기능/검증 문구에 대응하는 보조 사본. A열 ID만으로 판정하지 않았다.",
+      "duplicateCopyOfSameDeletedCondition": false,
+      "sourceAMismatched": false
+    }
+  ],
+  "cellTextActions": [
+    {
+      "sheet": "시험 보조자료",
+      "sourceCell": "C27",
+      "action": "replace_text",
+      "oldText": "\n검증 [1] / 활성 32대역 맵의 대역 1~4\n각 대역의 입력 순음에 대응하는 맵 배정 전극에서 자극 출력 확인.\n\n사진/자료 안내\n(사진필요) 대역별 맵 주파수 범위, 입력 순음 Hz, 배정 전극과 전극의 자극 파형. 보조 자료: CIS 1/11밴드의 CFX-033 패킷 비교.\n",
+      "proposedText": "\n검증 [1] / 활성 32대역 맵의 대역 1~4\n각 대역의 입력 순음에 대응하는 맵 배정 전극에서 자극 출력 확인.\n\n사진/자료 안내\n(사진필요) 대역별 맵 주파수 범위, 입력 순음 Hz, 배정 전극과 전극의 자극 파형.\n",
+      "reason": "시험10 조건9 CIS 1/11밴드 계산 보조조건 삭제. 남은 실제 대역별 파형 안내는 유지."
+    },
+    {
+      "sheet": "시험 보조자료",
+      "sourceCell": "C28",
+      "action": "replace_text",
+      "oldText": "\n검증 [2] / 활성 32대역 맵의 대역 5~8\n각 대역의 입력 순음에 대응하는 맵 배정 전극에서 자극 출력 확인.\n\n사진/자료 안내\n(사진필요) 대역별 맵 주파수 범위, 입력 순음 Hz, 배정 전극과 전극의 자극 파형. 보조 자료: CIS 1/11밴드의 CFX-033 패킷 비교.\n",
+      "proposedText": "\n검증 [2] / 활성 32대역 맵의 대역 5~8\n각 대역의 입력 순음에 대응하는 맵 배정 전극에서 자극 출력 확인.\n\n사진/자료 안내\n(사진필요) 대역별 맵 주파수 범위, 입력 순음 Hz, 배정 전극과 전극의 자극 파형.\n",
+      "reason": "시험10 조건9 CIS 1/11밴드 계산 보조조건 삭제. 남은 실제 대역별 파형 안내는 유지."
+    },
+    {
+      "sheet": "시험 보조자료",
+      "sourceCell": "C29",
+      "action": "replace_text",
+      "oldText": "\n검증 [3] / 활성 32대역 맵의 대역 9~12\n각 대역의 입력 순음에 대응하는 맵 배정 전극에서 자극 출력 확인.\n\n사진/자료 안내\n(사진필요) 대역별 맵 주파수 범위, 입력 순음 Hz, 배정 전극과 전극의 자극 파형. 보조 자료: CIS 1/11밴드의 CFX-033 패킷 비교.\n",
+      "proposedText": "\n검증 [3] / 활성 32대역 맵의 대역 9~12\n각 대역의 입력 순음에 대응하는 맵 배정 전극에서 자극 출력 확인.\n\n사진/자료 안내\n(사진필요) 대역별 맵 주파수 범위, 입력 순음 Hz, 배정 전극과 전극의 자극 파형.\n",
+      "reason": "시험10 조건9 CIS 1/11밴드 계산 보조조건 삭제. 남은 실제 대역별 파형 안내는 유지."
+    },
+    {
+      "sheet": "시험 보조자료",
+      "sourceCell": "C30",
+      "action": "replace_text",
+      "oldText": "\n검증 [4] / 활성 32대역 맵의 대역 13~16\n각 대역의 입력 순음에 대응하는 맵 배정 전극에서 자극 출력 확인.\n\n사진/자료 안내\n(사진필요) 대역별 맵 주파수 범위, 입력 순음 Hz, 배정 전극과 전극의 자극 파형. 보조 자료: CIS 1/11밴드의 CFX-033 패킷 비교.\n",
+      "proposedText": "\n검증 [4] / 활성 32대역 맵의 대역 13~16\n각 대역의 입력 순음에 대응하는 맵 배정 전극에서 자극 출력 확인.\n\n사진/자료 안내\n(사진필요) 대역별 맵 주파수 범위, 입력 순음 Hz, 배정 전극과 전극의 자극 파형.\n",
+      "reason": "시험10 조건9 CIS 1/11밴드 계산 보조조건 삭제. 남은 실제 대역별 파형 안내는 유지."
+    },
+    {
+      "sheet": "시험 보조자료",
+      "sourceCell": "C31",
+      "action": "replace_text",
+      "oldText": "\n검증 [5] / 활성 32대역 맵의 대역 17~20\n각 대역의 입력 순음에 대응하는 맵 배정 전극에서 자극 출력 확인.\n\n사진/자료 안내\n(사진필요) 대역별 맵 주파수 범위, 입력 순음 Hz, 배정 전극과 전극의 자극 파형. 보조 자료: CIS 1/11밴드의 CFX-033 패킷 비교.\n",
+      "proposedText": "\n검증 [5] / 활성 32대역 맵의 대역 17~20\n각 대역의 입력 순음에 대응하는 맵 배정 전극에서 자극 출력 확인.\n\n사진/자료 안내\n(사진필요) 대역별 맵 주파수 범위, 입력 순음 Hz, 배정 전극과 전극의 자극 파형.\n",
+      "reason": "시험10 조건9 CIS 1/11밴드 계산 보조조건 삭제. 남은 실제 대역별 파형 안내는 유지."
+    },
+    {
+      "sheet": "시험 보조자료",
+      "sourceCell": "C32",
+      "action": "replace_text",
+      "oldText": "\n검증 [6] / 활성 32대역 맵의 대역 21~24\n각 대역의 입력 순음에 대응하는 맵 배정 전극에서 자극 출력 확인.\n\n사진/자료 안내\n(사진필요) 대역별 맵 주파수 범위, 입력 순음 Hz, 배정 전극과 전극의 자극 파형. 보조 자료: CIS 1/11밴드의 CFX-033 패킷 비교.\n",
+      "proposedText": "\n검증 [6] / 활성 32대역 맵의 대역 21~24\n각 대역의 입력 순음에 대응하는 맵 배정 전극에서 자극 출력 확인.\n\n사진/자료 안내\n(사진필요) 대역별 맵 주파수 범위, 입력 순음 Hz, 배정 전극과 전극의 자극 파형.\n",
+      "reason": "시험10 조건9 CIS 1/11밴드 계산 보조조건 삭제. 남은 실제 대역별 파형 안내는 유지."
+    },
+    {
+      "sheet": "시험 보조자료",
+      "sourceCell": "C33",
+      "action": "replace_text",
+      "oldText": "\n검증 [7] / 활성 32대역 맵의 대역 25~28\n각 대역의 입력 순음에 대응하는 맵 배정 전극에서 자극 출력 확인.\n\n사진/자료 안내\n(사진필요) 대역별 맵 주파수 범위, 입력 순음 Hz, 배정 전극과 전극의 자극 파형. 보조 자료: CIS 1/11밴드의 CFX-033 패킷 비교.\n",
+      "proposedText": "\n검증 [7] / 활성 32대역 맵의 대역 25~28\n각 대역의 입력 순음에 대응하는 맵 배정 전극에서 자극 출력 확인.\n\n사진/자료 안내\n(사진필요) 대역별 맵 주파수 범위, 입력 순음 Hz, 배정 전극과 전극의 자극 파형.\n",
+      "reason": "시험10 조건9 CIS 1/11밴드 계산 보조조건 삭제. 남은 실제 대역별 파형 안내는 유지."
+    },
+    {
+      "sheet": "시험 보조자료",
+      "sourceCell": "C34",
+      "action": "replace_text",
+      "oldText": "\n검증 [8] / 활성 32대역 맵의 대역 29~32\n각 대역의 입력 순음에 대응하는 맵 배정 전극에서 자극 출력 확인.\n\n사진/자료 안내\n(사진필요) 대역별 맵 주파수 범위, 입력 순음 Hz, 배정 전극과 전극의 자극 파형. 보조 자료: CIS 1/11밴드의 CFX-033 패킷 비교.\n",
+      "proposedText": "\n검증 [8] / 활성 32대역 맵의 대역 29~32\n각 대역의 입력 순음에 대응하는 맵 배정 전극에서 자극 출력 확인.\n\n사진/자료 안내\n(사진필요) 대역별 맵 주파수 범위, 입력 순음 Hz, 배정 전극과 전극의 자극 파형.\n",
+      "reason": "시험10 조건9 CIS 1/11밴드 계산 보조조건 삭제. 남은 실제 대역별 파형 안내는 유지."
+    },
+    {
+      "sheet": "시험 보조자료",
+      "sourceCell": "C95",
+      "action": "replace_text",
+      "oldText": "\n검증 [1] / 맵 2 선택\n논리 응답=[0x44,2], 2번 맵의 구별 가능한 자극 출력 확인.\n\n사진/자료 안내\n(사진필요) 맵 변경 전후 전극의 자극 파형과 앱 선택 맵 화면. 보조 자료: 논리 응답 및 busy 명령 유지 조건의 응답.\n",
+      "proposedText": "\n검증 [1] / 맵 2 선택\n논리 응답=[0x44,2], 2번 맵의 구별 가능한 자극 출력 확인.\n\n사진/자료 안내\n(사진필요) 맵 변경 전후 전극의 자극 파형과 앱 선택 맵 화면. 보조 자료: 논리 응답.\n",
+      "reason": "시험24 조건5 처리 중 오류/명령 유지 조건 삭제. 맵 선택의 응답/파형 안내는 유지."
+    },
+    {
+      "sheet": "시험 보조자료",
+      "sourceCell": "C96",
+      "action": "replace_text",
+      "oldText": "\n검증 [2] / 맵 3 선택\n논리 응답=[0x44,3], 3번 맵의 구별 가능한 자극 출력 확인.\n\n사진/자료 안내\n(사진필요) 맵 변경 전후 전극의 자극 파형과 앱 선택 맵 화면. 보조 자료: 논리 응답 및 busy 명령 유지 조건의 응답.\n",
+      "proposedText": "\n검증 [2] / 맵 3 선택\n논리 응답=[0x44,3], 3번 맵의 구별 가능한 자극 출력 확인.\n\n사진/자료 안내\n(사진필요) 맵 변경 전후 전극의 자극 파형과 앱 선택 맵 화면. 보조 자료: 논리 응답.\n",
+      "reason": "시험24 조건5 처리 중 오류/명령 유지 조건 삭제. 맵 선택의 응답/파형 안내는 유지."
+    },
+    {
+      "sheet": "시험 보조자료",
+      "sourceCell": "C97",
+      "action": "replace_text",
+      "oldText": "\n검증 [3] / 맵 4 선택\n논리 응답=[0x44,4], 4번 맵의 구별 가능한 자극 출력 확인.\n\n사진/자료 안내\n(사진필요) 맵 변경 전후 전극의 자극 파형과 앱 선택 맵 화면. 보조 자료: 논리 응답 및 busy 명령 유지 조건의 응답.\n",
+      "proposedText": "\n검증 [3] / 맵 4 선택\n논리 응답=[0x44,4], 4번 맵의 구별 가능한 자극 출력 확인.\n\n사진/자료 안내\n(사진필요) 맵 변경 전후 전극의 자극 파형과 앱 선택 맵 화면. 보조 자료: 논리 응답.\n",
+      "reason": "시험24 조건5 처리 중 오류/명령 유지 조건 삭제. 맵 선택의 응답/파형 안내는 유지."
+    },
+    {
+      "sheet": "시험 보조자료",
+      "sourceCell": "C98",
+      "action": "replace_text",
+      "oldText": "\n검증 [4] / 맵 1 선택\n논리 응답=[0x44,1], 1번 맵의 구별 가능한 자극 출력 확인.\n\n사진/자료 안내\n(사진필요) 맵 변경 전후 전극의 자극 파형과 앱 선택 맵 화면. 보조 자료: 논리 응답 및 busy 명령 유지 조건의 응답.\n",
+      "proposedText": "\n검증 [4] / 맵 1 선택\n논리 응답=[0x44,1], 1번 맵의 구별 가능한 자극 출력 확인.\n\n사진/자료 안내\n(사진필요) 맵 변경 전후 전극의 자극 파형과 앱 선택 맵 화면. 보조 자료: 논리 응답.\n",
+      "reason": "시험24 조건5 처리 중 오류/명령 유지 조건 삭제. 맵 선택의 응답/파형 안내는 유지."
+    },
+    {
+      "sheet": "시험 보조자료",
+      "sourceCell": "C100",
+      "action": "replace_text",
+      "oldText": "\n(사진필요) 맵 변경 전후 전극의 자극 파형과 앱 선택 맵 화면. 보조 자료: 논리 응답 및 busy 명령 유지 조건의 응답.\n",
+      "proposedText": "\n(사진필요) 맵 변경 전후 전극의 자극 파형과 앱 선택 맵 화면. 보조 자료: 논리 응답.\n",
+      "reason": "시험24 조건5 처리 중 오류/명령 유지 조건 삭제. 맵 선택의 응답/파형 안내는 유지."
+    },
+    {
+      "sheet": "시험 보조자료",
+      "sourceCell": "C138",
+      "action": "replace_text",
+      "oldText": "\n검증 [1] / 내부기 연결, 잔량 37%, 시스템 상태 조회\n논리 응답 5바이트=[0x67,1,37,0,0]을 매핑 앱에서 확인.\n\n사진/자료 안내\n응답 자료: 잔량 37/72% 상태조회, 처리 중 오류 응답, 실제 명령/앱 수신값과 순서.\n",
+      "proposedText": "\n검증 [1] / 내부기 연결, 잔량 37%, 시스템 상태 조회\n논리 응답 5바이트=[0x67,1,37,0,0]을 매핑 앱에서 확인.\n\n사진/자료 안내\n응답 자료: 시스템 상태 확인 프로토콜 0x67의 실제 명령/응답 송수신 자료.\n",
+      "reason": "시험35 조건2/3 삭제 및 남은 조건1의 사용자 프로토콜 확인 범위와 맞춘다."
+    },
+    {
+      "sheet": "시험 보조자료",
+      "sourceCell": "C141",
+      "action": "replace_text",
+      "oldText": "\n응답 자료: 잔량 37/72% 상태조회, 처리 중 오류 응답, 실제 명령/앱 수신값과 순서.\n",
+      "proposedText": "\n응답 자료: 시스템 상태 확인 프로토콜 0x67의 실제 명령/응답 송수신 자료.\n",
+      "reason": "시험35 조건2/3 삭제 및 남은 조건1의 사용자 프로토콜 확인 범위와 맞춘다."
+    },
+    {
+      "sheet": "시험 보조자료",
+      "sourceCell": "C144",
+      "action": "replace_text",
+      "oldText": "\n검증 [1] / 매핑 Live 시작\n응답=[0x66,2], 하위상태=9(HoldOn). 입력 음원에 반응한 자극 출력 확인.\n\n사진/자료 안내\n(사진필요) Live 음원 ON/크기 변경별 전극의 자극 파형 및 매핑 상태 화면. 적용 맵/전극/T/C 입력.\n",
+      "proposedText": "\n검증 [1] / 매핑 Live 시작\n응답=[0x66,2], 하위상태=9(HoldOn). 입력 음원에 반응한 자극 출력 확인.\n\n사진/자료 안내\n프로토콜 자료: 0x66으로 전송한 파라미터의 수신값과 응답.\n",
+      "reason": "시험37 조건2/3의 전극 배열·T/C 및 음원 변화 파형 안내 제거. 남은 조건1 사용자 수정은 파라미터 수신/응답 확인이다."
+    },
+    {
+      "sheet": "시험 보조자료",
+      "sourceCell": "C147",
+      "action": "replace_text",
+      "oldText": "\n(사진필요) Live 음원 ON/크기 변경별 전극의 자극 파형 및 매핑 상태 화면. 적용 맵/전극/T/C 입력.\n",
+      "proposedText": "\n프로토콜 자료: 0x66으로 전송한 파라미터의 수신값과 응답.\n",
+      "reason": "시험37 조건2/3의 전극 배열·T/C 및 음원 변화 파형 안내 제거. 남은 조건1 사용자 수정은 파라미터 수신/응답 확인이다."
+    },
+    {
+      "sheet": "시험 보조자료",
+      "sourceCell": "C148",
+      "action": "replace_text",
+      "oldText": "\n검증 [1] / 내부기 연결, 잔량 37%, 시스템 상태 조회\n논리 응답 5바이트=[0x67,1,37,0,0]을 매핑 앱에서 확인.\n\n사진/자료 안내\n응답 자료: 잔량 37/72% 상태조회 명령, 논리 응답 및 실제 매핑 앱 수신값.\n",
+      "proposedText": "\n검증 [1] / 내부기 연결, 잔량 37%, 시스템 상태 조회\n논리 응답 5바이트=[0x67,1,37,0,0]을 매핑 앱에서 확인.\n\n사진/자료 안내\n응답 자료: 시스템 상태 확인 프로토콜 0x67의 응답 송신 자료.\n",
+      "reason": "시험38 조건2의 72% 재조회 삭제. 남은 조건1/시험35 연계에 한정한다."
+    },
+    {
+      "sheet": "시험 보조자료",
+      "sourceCell": "C150",
+      "action": "replace_text",
+      "oldText": "\n응답 자료: 잔량 37/72% 상태조회 명령, 논리 응답 및 실제 매핑 앱 수신값.\n",
+      "proposedText": "\n응답 자료: 시스템 상태 확인 프로토콜 0x67의 응답 송신 자료.\n",
+      "reason": "시험38 조건2의 72% 재조회 삭제. 남은 조건1/시험35 연계에 한정한다."
+    },
+    {
+      "sheet": "시험 보조자료",
+      "sourceCell": "C151",
+      "action": "replace_text",
+      "oldText": "\n검증 [1] / 지정 자극 정상 종료\n논리 응답=[0x65,1](2바이트)을 매핑 앱에서 확인. 응답 작성 후 처리 명령=IDLE(0).\n\n사진/자료 안내\n응답 자료: 지정 자극 완료 응답, 처리 중 명령 유지 조건의 송수신값과 순서.\n",
+      "proposedText": "\n검증 [1] / 지정 자극 정상 종료\n논리 응답=[0x65,1](2바이트)을 매핑 앱에서 확인. 응답 작성 후 처리 명령=IDLE(0).\n\n사진/자료 안내\n응답 자료: 지정 자극 완료 응답의 송수신값과 순서.\n",
+      "reason": "시험39 조건2 busy 명령 유지 보조조건 삭제. 지정 자극 완료 응답은 유지."
+    },
+    {
+      "sheet": "시험 보조자료",
+      "sourceCell": "C153",
+      "action": "replace_text",
+      "oldText": "\n응답 자료: 지정 자극 완료 응답, 처리 중 명령 유지 조건의 송수신값과 순서.\n",
+      "proposedText": "\n응답 자료: 지정 자극 완료 응답의 송수신값과 순서.\n",
+      "reason": "시험39 조건2 busy 명령 유지 보조조건 삭제. 지정 자극 완료 응답은 유지."
+    },
+    {
+      "sheet": "시험 보조자료",
+      "sourceCell": "C154",
+      "action": "replace_text",
+      "oldText": "\n검증 [1] / Live 시작\n논리 응답=[0x66,2](2바이트), 처리 명령=0x66, 하위상태=9(HoldOn). 매핑 앱 응답 확인.\n\n사진/자료 안내\n응답 자료: Live Start/Stop 상태, 응답, 처리 중 오류 응답.\n",
+      "proposedText": "\n검증 [1] / Live 시작\n논리 응답=[0x66,2](2바이트), 처리 명령=0x66, 하위상태=9(HoldOn). 매핑 앱 응답 확인.\n\n사진/자료 안내\n응답 자료: 남은 조건에 따른 Live 모드 자극 출력 및 시작 응답 자료.\n",
+      "reason": "시험40 조건2 정지·조건3 busy 삭제. 사용자가 남긴 조건1의 Live 자극/시험37 연계 범위로 제한."
+    },
+    {
+      "sheet": "시험 보조자료",
+      "sourceCell": "C157",
+      "action": "replace_text",
+      "oldText": "\n응답 자료: Live Start/Stop 상태, 응답, 처리 중 오류 응답.\n",
+      "proposedText": "\n응답 자료: 남은 조건에 따른 Live 모드 자극 출력 및 시작 응답 자료.\n",
+      "reason": "시험40 조건2 정지·조건3 busy 삭제. 사용자가 남긴 조건1의 Live 자극/시험37 연계 범위로 제한."
+    },
+    {
+      "sheet": "시험 보조자료",
+      "sourceCell": "C160",
+      "action": "replace_text",
+      "oldText": "\n검증 [1] / 터치 전, 접촉 중, 해제 후\n비접촉→접촉→비접촉 상태 읽기 및 해당 입력 이벤트 처리 확인.\n\n사진/자료 안내\n입력 자료: 비접촉/접촉/해제 및 2399/2400 ms 경계 이벤트.\n",
+      "proposedText": "\n검증 [1] / 터치 전, 접촉 중, 해제 후\n비접촉→접촉→비접촉 상태 읽기 및 해당 입력 이벤트 처리 확인.\n\n사진/자료 안내\n입력 자료: 비접촉/접촉/해제 상태 및 해당 입력 이벤트.\n",
+      "reason": "시험42 조건2 길게 누름 경계 삭제. 접촉/해제 이벤트는 조건1로 유지."
+    },
+    {
+      "sheet": "시험 보조자료",
+      "sourceCell": "C248",
+      "action": "replace_text",
+      "oldText": "\n검증 [1] / 저전압, 자극 알림 ON\n저전압 조건에서 알림용 자극 반복 출력 확인.\n\n사진/자료 안내\n(사진필요) 저전압의 반복 알림 전극의 자극 파형, 시간 커서 및 t0/t1/t2. 전압/QCC 잔량.\n",
+      "proposedText": "\n검증 [1] / 저전압, 자극 알림 ON\n저전압 조건에서 알림용 자극 반복 출력 확인.\n\n사진/자료 안내\n(사진필요) 저전압의 반복 알림 전극의 자극 파형, 시간 커서 및 반복 알림 간격. 전압/QCC 잔량.\n",
+      "reason": "시험55 조건2의 별도 t0/t1/t2 보조계산을 반복 인용하지 않는다. 조건1의 10분 반복 알림 요구는 유지."
+    },
+    {
+      "sheet": "시험 보조자료",
+      "sourceCell": "C250",
+      "action": "replace_text",
+      "oldText": "\n(사진필요) 저전압의 반복 알림 전극의 자극 파형, 시간 커서 및 t0/t1/t2. 전압/QCC 잔량.\n",
+      "proposedText": "\n(사진필요) 저전압의 반복 알림 전극의 자극 파형, 시간 커서 및 반복 알림 간격. 전압/QCC 잔량.\n",
+      "reason": "시험55 조건2의 별도 t0/t1/t2 보조계산을 반복 인용하지 않는다. 조건1의 10분 반복 알림 요구는 유지."
+    },
+    {
+      "sheet": "시험 보조자료",
+      "sourceCell": "C255",
+      "action": "replace_text",
+      "oldText": "\n검증 [1] / 정상 LIVE 연속 블록 처리 주기\n처리 주기=1.00 ms, 허용 범위 0.95~1.05 ms 충족.\n\n사진/자료 안내\n계측 자료: 연속 seq/시작 s/완료 e/다음 시작 시각, 주기, 완료 경계 계산표 및 RTT 원문.\n",
+      "proposedText": "\n검증 [1] / 정상 LIVE 연속 블록 처리 주기\n처리 주기=1.00 ms, 허용 범위 0.95~1.05 ms 충족.\n\n사진/자료 안내\n계측 자료: 처리 시작 간격, 처리 주기, 완료 경계와 실시간 자극 파형.\n",
+      "reason": "시험58 조건3 RTT 대조 삭제. 남은 주기/실시간 신호 처리 조건의 자료 안내로 제한."
+    },
+    {
+      "sheet": "시험 보조자료",
+      "sourceCell": "C256",
+      "action": "replace_text",
+      "oldText": "\n검증 [2] / 블록 완료와 다음 시작 대조\n각 블록의 완료 시각 e[k]가 다음 시작 시각 s[k+1]보다 앞섬을 확인.\n\n사진/자료 안내\n계측 자료: 연속 seq/시작 s/완료 e/다음 시작 시각, 주기, 완료 경계 계산표 및 RTT 원문.\n",
+      "proposedText": "\n검증 [2] / 블록 완료와 다음 시작 대조\n각 블록의 완료 시각 e[k]가 다음 시작 시각 s[k+1]보다 앞섬을 확인.\n\n사진/자료 안내\n계측 자료: 처리 시작 간격, 처리 주기, 완료 경계와 실시간 자극 파형.\n",
+      "reason": "시험58 조건3 RTT 대조 삭제. 남은 주기/실시간 신호 처리 조건의 자료 안내로 제한."
+    },
+    {
+      "sheet": "시험 보조자료",
+      "sourceCell": "C226",
+      "action": "replace_text",
+      "oldText": "\n감사기록 자료: 시간/주소/이벤트 표시. 고정 입력 [26,5,29,13,14,15]의 결과.\n",
+      "proposedText": "\n감사기록 자료: 저장된 감사기록의 년/월/일/시/분/초 표시.\n",
+      "reason": "시험74 조건2의 고정 입력 보조 기록 삭제. 남은 조건1 시간 필드 표시만 안내한다."
+    },
+    {
+      "sheet": "예상 그림",
+      "sourceCell": "C30",
+      "action": "replace_text",
+      "oldText": "\n계측 자료: 연속 seq/시작 s/완료 e/다음 시작 시각, 주기, 완료 경계 계산표 및 RTT 원문.\n",
+      "proposedText": "\n계측 자료: 연속 seq/시작 s/완료 e/다음 시작 시각, 주기, 완료 경계 계산표.\n",
+      "reason": "시험58 조건3 RTT 대조 삭제. 예상 도식과 주기/완료 경계 안내는 조건1에도 해당하므로 보존."
+    },
+    {
+      "sheet": "보고서_시스템 시험",
+      "sourceCell": "I215",
+      "action": "replace_text",
+      "oldText": "\n1. 사전 구성과 입력 설정\n시험용 저장소 또는 오류 재현 지그를 준비한다.\n파일 열기/읽기/쓰기, 짧은 읽기/쓰기, f_sync/f_close 실패를 각각 재현할 수 있게 준비한다.\n\n2. 수행/확인\n감사기록 생성 중 준비한 저장 오류를 각각 발생시킨다.\n파일 함수 반환값, 감사기록 오류 상태와 최종 LED 요청을 확인한다.\n실제 오류 LED 표시를 확인한다.\n",
+      "proposedText": "\n1. 사전 구성과 입력 설정\n시험용 저장소 또는 오류 재현 지그를 준비한다.\n파일 열기/읽기/쓰기, 짧은 읽기/쓰기 실패를 각각 재현할 수 있게 준비한다.\n\n2. 수행/확인\n감사기록 생성 중 준비한 저장 오류를 각각 발생시킨다.\n파일 함수 반환값, 감사기록 오류 상태와 최종 LED 요청을 확인한다.\n실제 오류 LED 표시를 확인한다.\n",
+      "reason": "시험73 조건2 삭제 후에도 준비/절차가 f_sync/f_close 실패 재현을 요구하는 직접 잔존.",
+      "mainSourceRow": 215,
+      "candidateFirstRowFromPlan": 234,
+      "targetMainCoordinateRule": "원본 셀의 열+plan.rowMap의 first 행. 사진 삽입/분할 후 실제 셀을 구현자가 확인한다."
+    },
+    {
+      "sheet": "사이버보안 시험 연계",
+      "sourceCell": "K18",
+      "action": "replace_text",
+      "oldText": "\n기존 시험 74: 시간 정보 표시 확인. 저장 구조=년/월/일/시/분/초 6바이트.\n\n기존 시스템 시험74 조건 [2]의 고정 입력 보조 기록: 시간=[26,5,29,13,14,15], 주소=[18,52,86,120,154,188], 이벤트=64. 이는 입력 기록이다. 저장한 타임스탬프를 읽은 값 및 그 일치 여부는 현재 첨부 자료에서 미확인이다.\n\n[E8300 보완] 시간 미설정/재기동 후 시간 유지 및 기준 시간 관리 근거.\n",
+      "proposedText": "\n기존 시험 74: 시간 정보 표시 확인. 저장 구조=년/월/일/시/분/초 6바이트.\n\n[E8300 보완] 시간 미설정/재기동 후 시간 유지 및 기준 시간 관리 근거.\n",
+      "reason": "UC-06이 삭제된 시험74 조건2의 고정 입력 기록을 현재 결과로 직접 인용한다. 조건1의 6바이트 시간 필드 표시/미비 안내는 보존."
+    },
+    {
+      "sheet": "사이버보안 시험 연계",
+      "sourceCell": "I31",
+      "action": "replace_text",
+      "oldText": "\nQCC 연결 구간에서 암호화가 적용되는지 확인한다.\n내부기 제조번호와 사용자 이니셜을 파일에 암호화해 저장한 뒤 다시 읽어 원래 정보로 복호화하는지 확인한다.\n최신 QCC 입력 조건: 인증 전후 데이터 게이트, 생산키 설치/NVM암호화·생성키 역할(본문SYS76). 실제 같은 입력/전량 결과를 본문에서 비교한다.\n",
+      "proposedText": "\nQCC 연결 구간에서 암호화가 적용되는지 확인한다.\n내부기 제조번호와 사용자 이니셜을 파일에 암호화해 저장하는지 확인한다.\n최신 QCC 입력 조건: 인증 전후 데이터 게이트, 생산키 설치/NVM암호화·생성키 역할(본문SYS76). 실제 같은 입력/전량 결과를 본문에서 비교한다.\n",
+      "reason": "DC-01에서 시험77 삭제조건2의 파일 재읽기/복호화 확인 절차를 제거. 남은 조건1 저장 암호화/QCC 연결 확인은 보존."
+    },
+    {
+      "sheet": "사이버보안 시험 연계",
+      "sourceCell": "J31",
+      "action": "replace_text",
+      "oldText": "\n전송 구간이 암호화되어야 한다.\n내부기 제조번호와 사용자 이니셜은 AES 방식으로 저장 및 복호화되어야 한다.\n최신 조건/수치는 본문 최신 기준과 같다. [QCC 자료 입력] 해당 조건의 실제 데이터·시각·계산/보호 자료.\n",
+      "proposedText": "\n전송 구간이 암호화되어야 한다.\n내부기 제조번호와 사용자 이니셜의 저장에 AES 암호화가 적용되어야 한다.\n최신 조건/수치는 본문 최신 기준과 같다. [QCC 자료 입력] 해당 조건의 실제 데이터·시각·계산/보호 자료.\n",
+      "reason": "파일 읽기 경로의 시스템 검증을 삭제조건2에서 계속 요구하지 않게 저장 단계로 한정. 별도 BOOT-14 공개 복호화 벡터의 유닛 근거는 삭제하지 않는다."
+    }
+  ],
+  "retainedAuxiliaryCurrentTextSynchronizations": [
+    {
+      "sheet": "시험 보조자료",
+      "testID": "SW-FW-SYS-Test-ID-35",
+      "condition": 1,
+      "sourceAuxRow": 138,
+      "mainSourceRow": 148,
+      "mainCandidateFirstRow": 176,
+      "B": {
+        "cell": "B138",
+        "oldText": "\n조건 [1] 매핑 앱 명령 대기 상태, 내부기 연결=1, QCC 잔량=37%, 오류 플래그=0에서 [0x67] 조회.\n매핑 앱의 E8300 응답 5바이트=[0x67,1,37,0,0].\n순서: [명령,내부기 연결(1=연결/2=해제),잔량%,오류 플래그,예약0].\n",
+        "proposedText": "\n조건 [1]\n매핑 앱에서 0x67 프로토콜을 전송한다. 외부기에서 0x67 프로토콜을 수신하였는지 확인.\n"
+      },
+      "C": {
+        "cell": "C138",
+        "oldText": "\n검증 [1] / 내부기 연결, 잔량 37%, 시스템 상태 조회\n논리 응답 5바이트=[0x67,1,37,0,0]을 매핑 앱에서 확인.\n\n사진/자료 안내\n응답 자료: 잔량 37/72% 상태조회, 처리 중 오류 응답, 실제 명령/앱 수신값과 순서.\n",
+        "proposedText": "\n검증 [1]\n0x67 프로토콜을 수신하였음을 확인함.\n0x67 프로토콜에 대한 응답을 송신하는 것을 확인함.\n\n사진/자료 안내\n응답 자료: 시스템 상태 확인 프로토콜 0x67의 실제 명령/응답 송수신 자료.\n"
+      },
+      "reason": "삭제 후 남는 유일/관련 조건의 보조 사본을 사용자 수정된 현재 본문과 일치시킨다. C열 안내 부분 정리안과 별도 적용하면 안 되며 이 전체 값으로 통합한다.",
+      "verdictInstruction": "D열은 이 동기화로 새 통과를 만들지 말고 최신 본문 L열 판정을 근거로 구현자가 함께 맞춘다."
+    },
+    {
+      "sheet": "시험 보조자료",
+      "testID": "SW-FW-SYS-Test-ID-37",
+      "condition": 1,
+      "sourceAuxRow": 144,
+      "mainSourceRow": 152,
+      "mainCandidateFirstRow": 178,
+      "B": {
+        "cell": "B144",
+        "oldText": "\n조건 [1] Live 설정 전송 후 [0x66,2](시작) 전송.\n32대역, CIS, 모노폴라 rod=2, 음극 선행=0, 폭=25 us, 자극 볼륨=4, 오디오 볼륨=5.\n응답=[0x66,2], 하위상태=9(HoldOn).\n오실로스코프로 입력 소리에 반응하는 내부기의 실시간 자극이 확인되어야 한다.\n",
+        "proposedText": "\n조건 [1] \n0x66 프로토콜에 대하여 다음의 파라미터 세팅을 전송한다.\n32대역, CIS, 모노폴라 rod=2, 음극 선행=0, 폭=25 us, 자극 볼륨=4, 오디오 볼륨=5.\n32 대역 전체의 T Level = 300uA, C Level = 600uA로 설정한다. \n수신된 0x66 프로토콜의 설정 정보가 올바른지 확인한다.\n"
+      },
+      "C": {
+        "cell": "C144",
+        "oldText": "\n검증 [1] / 매핑 Live 시작\n응답=[0x66,2], 하위상태=9(HoldOn). 입력 음원에 반응한 자극 출력 확인.\n\n사진/자료 안내\n(사진필요) Live 음원 ON/크기 변경별 전극의 자극 파형 및 매핑 상태 화면. 적용 맵/전극/T/C 입력.\n",
+        "proposedText": "\n검증 [1]\n0x66 프로토콜로 전송한 파라미터 세팅이 올바르게 수신한 것을 확인함.\n각 프로토콜에 대하여 응답을 송신한 것을 확인함.\n\n사진/자료 안내\n프로토콜 자료: 0x66으로 전송한 파라미터의 수신값과 응답.\n"
+      },
+      "reason": "삭제 후 남는 유일/관련 조건의 보조 사본을 사용자 수정된 현재 본문과 일치시킨다. C열 안내 부분 정리안과 별도 적용하면 안 되며 이 전체 값으로 통합한다.",
+      "verdictInstruction": "D열은 이 동기화로 새 통과를 만들지 말고 최신 본문 L열 판정을 근거로 구현자가 함께 맞춘다."
+    },
+    {
+      "sheet": "시험 보조자료",
+      "testID": "SW-FW-SYS-Test-ID-38",
+      "condition": 1,
+      "sourceAuxRow": 148,
+      "mainSourceRow": 155,
+      "mainCandidateFirstRow": 179,
+      "B": {
+        "cell": "B148",
+        "oldText": "\n조건 [1] 매핑 앱 명령 대기 상태, 내부기 연결=1, QCC 잔량=37%, 오류 플래그=0에서 [0x67] 조회.\n매핑 앱의 E8300 응답 5바이트=[0x67,1,37,0,0].\n순서: [명령,내부기 연결(1=연결/2=해제),잔량%,오류 플래그,예약0].\n",
+        "proposedText": "\n조건 [1]\nSW-FW-SYS-Test-ID-35의 조건[1]을 통과하면 된다.\n"
+      },
+      "C": {
+        "cell": "C148",
+        "oldText": "\n검증 [1] / 내부기 연결, 잔량 37%, 시스템 상태 조회\n논리 응답 5바이트=[0x67,1,37,0,0]을 매핑 앱에서 확인.\n\n사진/자료 안내\n응답 자료: 잔량 37/72% 상태조회 명령, 논리 응답 및 실제 매핑 앱 수신값.\n",
+        "proposedText": "\n검증 [1]\nSW-FW-SYS-Test-ID-36의 조건[1] 통과 확인\n\n사진/자료 안내\n응답 자료: 시스템 상태 확인 프로토콜 0x67의 응답 송신 자료.\n"
+      },
+      "reason": "삭제 후 남는 유일/관련 조건의 보조 사본을 사용자 수정된 현재 본문과 일치시킨다. C열 안내 부분 정리안과 별도 적용하면 안 되며 이 전체 값으로 통합한다.",
+      "verdictInstruction": "D열은 이 동기화로 새 통과를 만들지 말고 최신 본문 L열 판정을 근거로 구현자가 함께 맞춘다."
+    },
+    {
+      "sheet": "시험 보조자료",
+      "testID": "SW-FW-SYS-Test-ID-39",
+      "condition": 1,
+      "sourceAuxRow": 151,
+      "mainSourceRow": 157,
+      "mainCandidateFirstRow": 180,
+      "B": {
+        "cell": "B151",
+        "oldText": "\n조건 [1] 매핑 앱/내부기 연결 후 [0x65,1,25,0,2,1,99,0x01,0x2C,10] 전송.\n전극 수=1, 폭=25 us, 음극 선행=0, 모노폴라 rod=2, 전극=1, 기준=99, 전류=300 uA, 유지=10×100 ms.\n정상 종료 후 앱 응답=[0x65,1](2바이트), 처리 명령=IDLE(0).\n",
+        "proposedText": "\n조건 [1]\nSW-FW-SYS-Test-ID-36의 조건[1]을 통과하면 된다.\n자극 알림 출력을 확인한다.\n"
+      },
+      "C": {
+        "cell": "C151",
+        "oldText": "\n검증 [1] / 지정 자극 정상 종료\n논리 응답=[0x65,1](2바이트)을 매핑 앱에서 확인. 응답 작성 후 처리 명령=IDLE(0).\n\n사진/자료 안내\n응답 자료: 지정 자극 완료 응답, 처리 중 명령 유지 조건의 송수신값과 순서.\n",
+        "proposedText": "\n검증 [1]\nSW-FW-SYS-Test-ID-36의 조건[1] 통과.\n작극 알림 출력 확인.\n\n사진/자료 안내\n응답 자료: 지정 자극 완료 응답의 송수신값과 순서.\n"
+      },
+      "reason": "삭제 후 남는 유일/관련 조건의 보조 사본을 사용자 수정된 현재 본문과 일치시킨다. C열 안내 부분 정리안과 별도 적용하면 안 되며 이 전체 값으로 통합한다.",
+      "verdictInstruction": "D열은 이 동기화로 새 통과를 만들지 말고 최신 본문 L열 판정을 근거로 구현자가 함께 맞춘다."
+    },
+    {
+      "sheet": "시험 보조자료",
+      "testID": "SW-FW-SYS-Test-ID-40",
+      "condition": 1,
+      "sourceAuxRow": 154,
+      "mainSourceRow": 159,
+      "mainCandidateFirstRow": 182,
+      "B": {
+        "cell": "B154",
+        "oldText": "\n조건 [1] 매핑 앱 연결, Live 설정 완료 후 [0x66,2](시작) 전송.\n앱 응답=[0x66,2](2바이트), 처리 명령=0x66, 하위상태=9(HoldOn).\n",
+        "proposedText": "\n조건 [1]\nSW-FW-SYS-Test-ID-37의 조건[1]을 통과하면 된다.\nLive 모드의 자극 출력을 확인한다.\n"
+      },
+      "C": {
+        "cell": "C154",
+        "oldText": "\n검증 [1] / Live 시작\n논리 응답=[0x66,2](2바이트), 처리 명령=0x66, 하위상태=9(HoldOn). 매핑 앱 응답 확인.\n\n사진/자료 안내\n응답 자료: Live Start/Stop 상태, 응답, 처리 중 오류 응답.\n",
+        "proposedText": "\n검증 [1] \nSW-FW-SYS-Test-ID-37의 조건[1] 통과\nLive 모드의 자극 출력을 확인\n\n사진/자료 안내\n응답 자료: 남은 조건에 따른 Live 모드 자극 출력 및 시작 응답 자료.\n"
+      },
+      "reason": "삭제 후 남는 유일/관련 조건의 보조 사본을 사용자 수정된 현재 본문과 일치시킨다. C열 안내 부분 정리안과 별도 적용하면 안 되며 이 전체 값으로 통합한다.",
+      "verdictInstruction": "D열은 이 동기화로 새 통과를 만들지 말고 최신 본문 L열 판정을 근거로 구현자가 함께 맞춘다."
+    },
+    {
+      "sheet": "시험 보조자료",
+      "testID": "SW-FW-SYS-Test-ID-42",
+      "condition": 1,
+      "sourceAuxRow": 160,
+      "mainSourceRow": 164,
+      "mainCandidateFirstRow": 185,
+      "B": {
+        "cell": "B160",
+        "oldText": "\n조건 [1] 터치 전/접촉 중/해제 후 IQS323 I2C 상태 확인.\n비접촉→접촉→비접촉으로 읽히고, 설정된 터치 제어 동작이 실행되어야 한다.\n",
+        "proposedText": "\n조건 [1]\n100ms 마다 I2C 통신 에러 없이 상태가 확인되어야 한다.\n비접촉→접촉→비접촉으로 읽히고, 설정된 터치 제어 동작이 실행되어야 한다.\n"
+      },
+      "C": {
+        "cell": "C160",
+        "oldText": "\n검증 [1] / 터치 전, 접촉 중, 해제 후\n비접촉→접촉→비접촉 상태 읽기 및 해당 입력 이벤트 처리 확인.\n\n사진/자료 안내\n입력 자료: 비접촉/접촉/해제 및 2399/2400 ms 경계 이벤트.\n",
+        "proposedText": "\n검증 [1]\n100ms 마다 I2C 통신 에러 없이 상태 체크하는 것을 확인함\n비접촉→접촉→비접촉 상태 읽기 및 해당 입력 이벤트 처리 확인.\n\n사진/자료 안내\n입력 자료: 비접촉/접촉/해제 상태 및 해당 입력 이벤트.\n"
+      },
+      "reason": "삭제 후 남는 유일/관련 조건의 보조 사본을 사용자 수정된 현재 본문과 일치시킨다. C열 안내 부분 정리안과 별도 적용하면 안 되며 이 전체 값으로 통합한다.",
+      "verdictInstruction": "D열은 이 동기화로 새 통과를 만들지 말고 최신 본문 L열 판정을 근거로 구현자가 함께 맞춘다."
+    },
+    {
+      "sheet": "시험 보조자료",
+      "testID": "SW-FW-SYS-Test-ID-58",
+      "condition": 1,
+      "sourceAuxRow": 255,
+      "mainSourceRow": 244,
+      "mainCandidateFirstRow": 254,
+      "B": {
+        "cell": "B255",
+        "oldText": "\n조건 [1] 정상 실시간 자극 중 처리 시작 간격 측정\n처리 주기: 1.00 ms, 허용오차 ±5%\n모든 측정 주기가 0.95~1.05 ms이고 다음 블록 시작 전에 처리가 완료되어야 한다.\n",
+        "proposedText": "\n조건 [1] 정상 실시간 자극 중 처리 시작 간격 측정\n처리 주기: 1.00 ms, 허용오차 ±5%\n모든 측정 주기가 0.95~1.05 ms이고 다음 블록 시작 전에 처리가 완료되어야 한다.\nSW-FW-SYS-Test-ID-12  시험을 통과해야 한다.\n"
+      },
+      "C": {
+        "cell": "C255",
+        "oldText": "\n검증 [1] / 정상 LIVE 연속 블록 처리 주기\n처리 주기=1.00 ms, 허용 범위 0.95~1.05 ms 충족.\n\n사진/자료 안내\n계측 자료: 연속 seq/시작 s/완료 e/다음 시작 시각, 주기, 완료 경계 계산표 및 RTT 원문.\n",
+        "proposedText": "\n검증 [1] \n처리 주기=1.00 ms, 허용 범위 0.95~1.05 ms 충족.\nSW-FW-SYS-Test-ID-12 시험 통과 확인.\n\n사진/자료 안내\n계측 자료: 처리 시작 간격, 처리 주기, 완료 경계와 실시간 자극 파형.\n"
+      },
+      "reason": "삭제 후 남는 유일/관련 조건의 보조 사본을 사용자 수정된 현재 본문과 일치시킨다. C열 안내 부분 정리안과 별도 적용하면 안 되며 이 전체 값으로 통합한다.",
+      "verdictInstruction": "D열은 이 동기화로 새 통과를 만들지 말고 최신 본문 L열 판정을 근거로 구현자가 함께 맞춘다."
+    },
+    {
+      "sheet": "시험 보조자료",
+      "testID": "SW-FW-SYS-Test-ID-58",
+      "condition": 2,
+      "sourceAuxRow": 256,
+      "mainSourceRow": 245,
+      "mainCandidateFirstRow": 255,
+      "B": {
+        "cell": "B256",
+        "oldText": "\n조건 [2] 블록별 처리 완료 시각과 다음 시작 시각 비교\n모든 블록이 다음 블록의 시작 전에 처리를 마쳐야 한다.\n",
+        "proposedText": "\n조건 [2]\n오디오 신호를 입력할 때 실시간 신호 처리 후 자극 파형 출력이 변하는 것을 확인한다.\n"
+      },
+      "C": {
+        "cell": "C256",
+        "oldText": "\n검증 [2] / 블록 완료와 다음 시작 대조\n각 블록의 완료 시각 e[k]가 다음 시작 시각 s[k+1]보다 앞섬을 확인.\n\n사진/자료 안내\n계측 자료: 연속 seq/시작 s/완료 e/다음 시작 시각, 주기, 완료 경계 계산표 및 RTT 원문.\n",
+        "proposedText": "\n검증 [2] \n오디오 신호를 입력하고 실시간 신호처리 후 자극 출력에 변화가 생기는 것을 확인함.\n\n사진/자료 안내\n계측 자료: 처리 시작 간격, 처리 주기, 완료 경계와 실시간 자극 파형.\n"
+      },
+      "reason": "삭제 후 남는 유일/관련 조건의 보조 사본을 사용자 수정된 현재 본문과 일치시킨다. C열 안내 부분 정리안과 별도 적용하면 안 되며 이 전체 값으로 통합한다.",
+      "verdictInstruction": "D열은 이 동기화로 새 통과를 만들지 말고 최신 본문 L열 판정을 근거로 구현자가 함께 맞춘다."
+    }
+  ],
+  "criticalPreserveRows": [
+    {
+      "sheet": "시험 보조자료",
+      "row": 214,
+      "range": "A214:D214",
+      "oldValues": {
+        "A214": "\nSW-FW-SYS-Test-ID-54\n",
+        "B214": "\n조건[3] 6회째 및60초 제한 구간의 시도는 연결 제한. 제한이 해제되는60초 경계와 그 이후 정상 CRA 인증/연결 허용을 확인한다. 경계/허용오차 미확정 부분은 판정 대기.\n",
+        "C214": "\n기존 E8300 관찰/작성자 확인 기록(과거 범위):\n검증 [3] / 6회째 및 제한 시간 중 재시도\n6회째부터 제한 시간 동안 페어링 절차 중지 확인.\n[QCC 자료 입력] 적용 인증 단계, 규격/설정, 잠금 시간, 같은 대상의 실패 1~5회/6회째/제한 중 재시도 시각.\n현재 추가/수정 기준의 실제 QCC 결과: 미실행/미수집.\n[QCC 자료 입력] 옆 기준의 동일 입력·전량 값/시각·계산/보호 자료.\n",
+        "D214": "\n기존 관찰 보존\n현재 판정 대기\n"
+      },
+      "actualTestID": "SW-FW-SYS-Test-ID-72",
+      "condition": 3,
+      "matchingMainRow": 214,
+      "action": "preserve_entire_QCC_condition_and_pending_state",
+      "optionalIdentifierCorrection": {
+        "cell": "A214",
+        "newText": "\nSW-FW-SYS-Test-ID-72\n"
+      },
+      "reason": "A열 구ID 또는 낮은 유사도 후보만으로 삭제하면 남아야 할 QCC 인증/연결/생산키 조건을 잃는다."
+    },
+    {
+      "sheet": "시험 보조자료",
+      "row": 223,
+      "range": "A223:D223",
+      "oldValues": {
+        "A223": "\nSW-FW-SYS-Test-ID-73\n",
+        "B223": "\n조건 [2] 페어링 후 CRA 인증 전후에 데이터를 전송한다.\n인증 전에는 일반 데이터 송수신이 차단되고, 페어링과 CRA 인증 완료 후에는 허용되어야 한다.\nOTA 데이터도 인증된 QCC 암호화 연결로 전달되어야 한다.\n",
+        "C223": "\n기존 E8300 관찰/작성자 확인 기록(과거 범위):\n검증 [2] / 페어링 완료 후 CRA 인증 전후\nCRA 인증 전 송수신 차단, 인증 완료 후 활성화 확인.\nQCC 인증/암호화 기능의 시험 완료는 작성자 확인 사항이다. OTA 수신의 무선 통신 보호에 같은 연결을 사용한다. 업데이트 파일의 서명 검증 여부와는 구분한다.\n[QCC 자료 입력] 인증 전후 일반 데이터 및 OTA 전송 경로의 보안 연결 자료.\n현재 추가/수정 기준의 실제 QCC 결과: 미실행/미수집.\n[QCC 자료 입력] 옆 기준의 동일 입력·전량 값/시각·계산/보호 자료.\n",
+        "D223": "\n기존 관찰 보존\n현재 판정 대기\n"
+      },
+      "actualTestID": "SW-FW-SYS-Test-ID-76",
+      "condition": 2,
+      "matchingMainRow": 223,
+      "action": "preserve_entire_QCC_condition_and_pending_state",
+      "optionalIdentifierCorrection": {
+        "cell": "A223",
+        "newText": "\nSW-FW-SYS-Test-ID-76\n"
+      },
+      "reason": "A열 구ID 또는 낮은 유사도 후보만으로 삭제하면 남아야 할 QCC 인증/연결/생산키 조건을 잃는다."
+    },
+    {
+      "sheet": "시험 보조자료",
+      "row": 233,
+      "range": "A233:D233",
+      "oldValues": {
+        "A233": "\nSW-FW-SYS-Test-ID-76\n",
+        "B233": "\n조건 [3] 생산 시 CRA 키 저장 및 보호 자료를 확인한다.\nCRA 인증키가 암호화되어 저장되어야 한다.\n",
+        "C233": "\n검증 [3] / 생산 시 CRA 키 저장\nCRA 인증키의 암호화 저장 확인.\n\n사진/자료 안내\n[QCC 자료 입력] 페어링 전/CRA 인증 전후 송수신 상태 및 생산키 암호화 저장/보호 자료.\n",
+        "D233": "\n통과\n[QCC 자료 입력] 자료 첨부 대기\n"
+      },
+      "actualTestID": "SW-FW-SYS-Test-ID-76",
+      "condition": 3,
+      "matchingMainRow": 224,
+      "action": "preserve_entire_QCC_condition_and_pending_state",
+      "optionalIdentifierCorrection": null,
+      "reason": "A열 구ID 또는 낮은 유사도 후보만으로 삭제하면 남아야 할 QCC 인증/연결/생산키 조건을 잃는다."
+    }
+  ],
+  "deletedConditionsWithNoCurrentAuxiliaryCopyFound": [
+    {
+      "testID": "SW-FW-SYS-Test-ID-51",
+      "condition": 2,
+      "sourceMainRow": 198,
+      "finding": "보조시트 전체 B/C에서 자동 손상사건 0xF0/대상/시간 대조 조건의 실제 사본을 찾지 못했다. A51의 현재 행들은 QCC 2차 인증 내용이므로 삭제하지 않는다."
+    },
+    {
+      "testID": "SW-FW-SYS-Test-ID-73",
+      "condition": 2,
+      "sourceMainRow": 216,
+      "finding": "보조시트 전체 B/C에서 f_sync/f_close 실패 조건 문구를 찾지 못했다. A223의 QCC 인증 후 OTA 연결 조건은 실제76/2이므로 삭제하지 않는다."
+    }
+  ],
+  "retainedRelatedEvidence": [
+    {
+      "sheet": "사이버보안 시험 연계",
+      "cells": [
+        "K16",
+        "K23",
+        "K25",
+        "K30"
+      ],
+      "why": "시험51의 무결성 손상 감사기록/0xF0는 남은 조건1에도 직접 존재. 삭제조건2가 없어져도 시험ID51 연결 전체를 제거하지 않는다."
+    },
+    {
+      "sheet": "사이버보안 시험 연계",
+      "cells": [
+        "K8",
+        "K31",
+        "K32"
+      ],
+      "why": "시험77의 isd_serial/isd_userName 저장시 AES 적용 분석은 남은 조건1. 삭제한 것은 파일 읽기 경로 조건2이므로 저장 근거는 보존."
+    },
+    {
+      "sheet": "사이버보안 시험 연계",
+      "cells": [
+        "I17",
+        "J17",
+        "K17",
+        "L17"
+      ],
+      "why": "동기화/닫기/용량 오류는 기존 열기/읽기/쓰기와 구분되고 미확정 [E8300 보완]으로 이미 표시됨. 요구/미확정 자체를 삭제해 완료로 만들지 않는다. K17의 기존 sync/close 기록 언급은 삭제조건의 통과근거로 사용하지 않도록 범위를 좁히는 선택 수정 가능.",
+      "optionalReplace": {
+        "cell": "K17",
+        "oldText": "\n기존 시험 73: 에러 LED 표시 확인.\n\n[E8300 보완] 동기화/닫기 오류와 용량 초과 시의 처리 근거.\n\n코드 대조: 기존 기록의 sync/close 실패 처리까지 현재 경로에서 확인되지 않았다.\n",
+        "newText": "\n기존 시험 73: 에러 LED 표시 확인.\n\n[E8300 보완] 동기화/닫기 오류와 용량 초과 시의 처리 근거.\n\n이 보고서의 남은 시스템 조건은 열기/읽기/쓰기 실패이다. 동기화/닫기 및 용량 초과의 처리 결과는 확인하지 않았다.\n"
+      }
+    },
+    {
+      "sheet": "사이버보안 시험 연계",
+      "cells": [
+        "H22",
+        "H27",
+        "H28",
+        "H33",
+        "H37",
+        "I37",
+        "J37",
+        "K37"
+      ],
+      "why": "BOOT-11/13/14/20 유닛 독립 근거/벡터/상태값은 시스템 삭제조건과 분리. BOOT-20과 시험80 남은 조건2의 기본값 복구 연결도 남아 있으므로 유닛 결과/추적은 삭제하지 않는다."
+    },
+    {
+      "sheet": "사이버보안 시험 연계",
+      "cells": [
+        "K22",
+        "K28",
+        "K33"
+      ],
+      "why": "AES-128/16바이트 일반 알고리즘 표기는 남은 시험78 조건1의 AES-128 확인과도 연결된다. 삭제조건2/3 전용 결과로 단정하여 삭제하지 않는다. 새 사용자 알고리즘 목록과의 전체 정합성은 이번 삭제조건 조사 범위 밖이며 별도 일반 기술분석은 하지 않았다."
+    },
+    {
+      "sheet": "예상 그림",
+      "cells": [
+        "A18",
+        "B18",
+        "C18"
+      ],
+      "why": "시험11의 NofM/선택 전극 그림은 남은 조건1~3에 해당. 삭제조건4(CIS1/11밴드) 전용 도식이 아니므로 유지."
+    }
+  ],
+  "formulaAndLinkAudit": {
+    "allSheetFormulaCounts": {
+      "표지": 0,
+      "보고서_시스템 시험": 0,
+      "시험 보조자료": 0,
+      "예상 그림": 0,
+      "사이버보안 시험 연계": 0,
+      "보고서_시스템 시험_비교": 0,
+      "사이버보안 시험 연계_비교": 0
+    },
+    "allSheetHyperlinkCounts": {
+      "표지": 0,
+      "보고서_시스템 시험": 0,
+      "시험 보조자료": 0,
+      "예상 그림": 0,
+      "사이버보안 시험 연계": 0,
+      "보고서_시스템 시험_비교": 0,
+      "사이버보안 시험 연계_비교": 0
+    },
+    "definedNames": [
+      {
+        "name": "_xlnm.Print_Area",
+        "localSheetId": "1",
+        "value": "'보고서_시스템 시험'!$B$2:$L$302"
+      },
+      {
+        "name": "_xlnm.Print_Area",
+        "localSheetId": "5",
+        "value": "'보고서_시스템 시험_비교'!$B$2:$L$303"
+      },
+      {
+        "name": "_xlnm.Print_Area",
+        "localSheetId": "4",
+        "value": "'사이버보안 시험 연계'!$A$1:$L$39"
+      },
+      {
+        "name": "_xlnm.Print_Area",
+        "localSheetId": "6",
+        "value": "'사이버보안 시험 연계_비교'!$A$1:$L$39"
+      },
+      {
+        "name": "_xlnm.Print_Titles",
+        "localSheetId": "1",
+        "value": "'보고서_시스템 시험'!$32:$33"
+      },
+      {
+        "name": "_xlnm.Print_Titles",
+        "localSheetId": "5",
+        "value": "'보고서_시스템 시험_비교'!$32:$33"
+      },
+      {
+        "name": "_xlnm.Print_Titles",
+        "localSheetId": "4",
+        "value": "'사이버보안 시험 연계'!$4:$4"
+      },
+      {
+        "name": "_xlnm.Print_Titles",
+        "localSheetId": "6",
+        "value": "'사이버보안 시험 연계_비교'!$4:$4"
+      }
+    ],
+    "definedNameActions": [
+      {
+        "name": "_xlnm.Print_Area",
+        "localSheetId": "1",
+        "oldValue": "'보고서_시스템 시험'!$B$2:$L$302",
+        "proposedValue": "'보고서_시스템 시험'!$B$2:$L$311",
+        "reason": "삭제와123사진의 행배치 후 실제 마지막 행에 맞춤. 구현자의 최종 lastRow가 다르면 그 실제 값으로 갱신. 비교 시트 인쇄 범위는 보존."
+      }
+    ],
+    "externalLinkParts": [],
+    "drawingTextReferences": [
+      {
+        "part": "xl/drawings/drawing1.xml",
+        "texts": []
+      }
+    ],
+    "conclusion": "원본의 현재 시트 수식/하이퍼링크는0. 삭제조건으로 향하는 셀 수식/명시 하이퍼링크 정정 대상은 발견되지 않았다. 인쇄 이름정의는 본문 행 재배치 후 조정 필요. 래스터 예상 그림 자체의 새 OCR/기술검증은 수행하지 않았다."
+  },
+  "historyPreservation": {
+    "보고서_시스템 시험_비교": {
+      "part": "xl/worksheets/sheet6.xml",
+      "sha256": "7A74423009695C2727EBB4E582742B5620DBAE841E26FA02E24E8B1189471AA7",
+      "action": "preserve_history_exactly"
+    },
+    "사이버보안 시험 연계_비교": {
+      "part": "xl/worksheets/sheet7.xml",
+      "sha256": "6D6CF35888C881500B4AD78D6902E274736F2BFCEE610C8EF24C7F92FFC6706E",
+      "action": "preserve_history_exactly"
+    }
+  },
+  "implementationGuardrails": [
+    "보조 A열의 잘못 남은 ID만으로 삭제하지 말고 B/C 기능까지 사용한다.",
+    "사이버 G열의 시험ID 전체는 동일시험에 남는 조건이 있으면 보존한다.",
+    "삭제조건에서만 온 통과/결과를 새 본문으로 옮기지 않는다.",
+    "QCC 현재 미실행/미수집 및 판정 대기를 보조시트 변경으로 통과로 만들지 않는다.",
+    "그림/사진 자체 및 실제 계측값은 만들거나 수정하지 않는다.",
+    "이번 계획은 root 소유 _자료첨부 사본 구현용이며 기준서/원본/기존 _비교 이력 수정 지시가 아니다."
+  ],
+  "limitations": [
+    "현재 최종 _자료첨부 파일은 root가 작성 중이므로 이 JSON은 source와plan/decisions 기준 제안이다. 적용 후 최종 actual XML/표시 대조는 구현 담당이 수행해야 한다.",
+    "이 조사는 삭제25조건의 직접/기능 인용에 한정하며 전체 사이버보안 기술 적합성 검토를 수행하지 않았다."
+  ],
+  "sourceUnchangedAfterRead": true
+}

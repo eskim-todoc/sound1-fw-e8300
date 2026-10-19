@@ -1,0 +1,24 @@
+[
+  {
+    "checkedAt": "2026-10-13T17:42:14.5192656+09:00",
+    "globalUserUnchanged": true,
+    "code": "SR",
+    "mode": "after",
+    "sha256": "C30AF83386C4DE07C415497A850036A40B12D926C743595E348FDBCAD4142548",
+    "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\SR-fields.docx",
+    "pages": 11,
+    "nativeAccepted": true,
+    "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\SR-after.pdf"
+  },
+  {
+    "checkedAt": "2026-10-13T17:42:17.3298772+09:00",
+    "globalUserUnchanged": true,
+    "code": "SGR",
+    "mode": "after",
+    "sha256": "16D2E69CE1C73A482404A86DCF438CA270DFA99CFE244F3064FBB1285C48408B",
+    "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\SGR-fields.docx",
+    "pages": 11,
+    "nativeAccepted": true,
+    "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\SGR-after.pdf"
+  }
+]

@@ -1,0 +1,7 @@
+{
+  "target": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\04_설계 검증\\SW\\외부기\\[E8300-QCC] [완료 - QCC 입력 대기] SSTR-FW-TD24A 소프트웨어 시스템 시험 보고서.xlsx",
+  "status": "PASS",
+  "beforeSHA": "50C8DEF81BA74982C33E537DEB8F14B92A19479A8667E92BF035CF630A6E793D",
+  "afterSHA": "7C2F31E7EBA5AB1F216B171E6AE636A21DECBFD9A7C976D46F79D970CD0FFDD6",
+  "backup": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\system-report-banding-20261016\\before.xlsx"
+}

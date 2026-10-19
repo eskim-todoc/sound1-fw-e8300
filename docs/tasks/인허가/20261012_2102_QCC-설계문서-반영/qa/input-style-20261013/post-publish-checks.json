@@ -1,0 +1,44 @@
+{
+  "status": "PASS_POST_PUBLISH",
+  "checked_at": "2026-10-13T17:51:32.457800+09:00",
+  "documents": [
+    {
+      "code": "SR",
+      "published_sha256": "C30AF83386C4DE07C415497A850036A40B12D926C743595E348FDBCAD4142548",
+      "matches_verified_file": true,
+      "registry_link_exists": true,
+      "red_locations": 7,
+      "unconfirmed_locations": 4,
+      "old_name_absent": true
+    },
+    {
+      "code": "SGR",
+      "published_sha256": "16D2E69CE1C73A482404A86DCF438CA270DFA99CFE244F3064FBB1285C48408B",
+      "matches_verified_file": true,
+      "registry_link_exists": true,
+      "red_locations": 5,
+      "unconfirmed_locations": 2,
+      "old_name_absent": true
+    }
+  ],
+  "all_12_current_registry_paths_exist": true,
+  "registry_location_count": 409,
+  "protected_originals_unchanged": 23,
+  "other_current_files_unchanged": 10,
+  "previous_manifest_external_edits_preserved": [
+    {
+      "code": "SUVR",
+      "previous_record_sha256": "B99CF882386A465994277BE9986C3130E42DB9ED8A56F8AD674EA392405E25E0",
+      "observed_sha256": "3FC067D5ACE535FB0B21E0F1C63449FCE552106AF26F2F1AA853AC2E9D82DA36"
+    },
+    {
+      "code": "SRS",
+      "previous_record_sha256": "BF9A92ACC2770563A410CF4A580C005A73BBAB5D34B7DABC3C695A6B9BE5B6BD",
+      "observed_sha256": "73C05216CF1272FA0982A4139758B9CFDFE8D6820730B925B4FDEF7C00FE60FF"
+    }
+  ],
+  "native_verified_pages": 22,
+  "current_task_links_updated": true,
+  "scoped_policy22_exception_present": true,
+  "product_test_execution": false
+}

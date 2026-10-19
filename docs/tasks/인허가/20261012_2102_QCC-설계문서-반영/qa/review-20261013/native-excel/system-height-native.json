@@ -1,0 +1,50 @@
+[
+  {
+    "code": "SSTC-main",
+    "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SSTC-FW-TD24A 소프트웨어 시스템 시험 기준서.xlsx",
+    "sheet": "기준서_시스템 시험",
+    "range": "B2:J303",
+    "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SSTC-main.pdf",
+    "sourceSHA256": "C4DCAAA772F4BE959F2431BE5BBAED6EDEA2F2C1C132598FD020A694613EEBA8",
+    "sourceUnchanged": true,
+    "originalPrintArea": "$B$2:$J$303",
+    "scope": "Read-only Excel preview; source print settings preserved",
+    "checkedAt": "2026-10-13T10:21:46.2677206+09:00"
+  },
+  {
+    "code": "SSTC-cyber",
+    "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SSTC-FW-TD24A 소프트웨어 시스템 시험 기준서.xlsx",
+    "sheet": "사이버보안 시험 연계",
+    "range": "A1:J39",
+    "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SSTC-cyber.pdf",
+    "sourceSHA256": "C4DCAAA772F4BE959F2431BE5BBAED6EDEA2F2C1C132598FD020A694613EEBA8",
+    "sourceUnchanged": true,
+    "originalPrintArea": "$A$1:$J$39",
+    "scope": "Read-only Excel preview; source print settings preserved",
+    "checkedAt": "2026-10-13T10:21:47.6316301+09:00"
+  },
+  {
+    "code": "SSTR-main",
+    "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\04_설계 검증\\SW\\외부기\\[E8300-QCC] SSTR-FW-TD24A 소프트웨어 시스템 시험 보고서.xlsx",
+    "sheet": "보고서_시스템 시험",
+    "range": "B2:L303",
+    "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SSTR-main.pdf",
+    "sourceSHA256": "1134D83842123D80F4086D961017914E9E657EB526ACE85817F877C3100C1E5A",
+    "sourceUnchanged": true,
+    "originalPrintArea": "$B$2:$L$303",
+    "scope": "Read-only Excel preview; source print settings preserved",
+    "checkedAt": "2026-10-13T10:21:57.2705534+09:00"
+  },
+  {
+    "code": "SSTR-cyber",
+    "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\04_설계 검증\\SW\\외부기\\[E8300-QCC] SSTR-FW-TD24A 소프트웨어 시스템 시험 보고서.xlsx",
+    "sheet": "사이버보안 시험 연계",
+    "range": "A1:L39",
+    "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SSTR-cyber.pdf",
+    "sourceSHA256": "1134D83842123D80F4086D961017914E9E657EB526ACE85817F877C3100C1E5A",
+    "sourceUnchanged": true,
+    "originalPrintArea": "$A$1:$L$39",
+    "scope": "Read-only Excel preview; source print settings preserved",
+    "checkedAt": "2026-10-13T10:21:58.8805559+09:00"
+  }
+]

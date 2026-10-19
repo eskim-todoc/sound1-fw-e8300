@@ -1,0 +1,62 @@
+{
+  "SDDD": {
+    "code": "SDDD",
+    "source": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_design\\final-mic-patch\\[E8300-QCC] SDDD-FW-TD24A 소프트웨어 상세 설계서.docx",
+    "before_sha256": "c1478a934d78e53ecdec136037feaec628bd864d7eff225b0062eeb93bc10b30",
+    "candidate": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_design\\final-ota-flow\\[E8300-QCC] SDDD-FW-TD24A 소프트웨어 상세 설계서.docx",
+    "candidate_sha256": "ac520f40320a9e9c1323e410726ac5ec4506e9e8c20573132a694a6fdde85969",
+    "new_revision_ids": [
+      "19431",
+      "19432",
+      "19433",
+      "19434",
+      "19435",
+      "19436",
+      "19437",
+      "19438"
+    ],
+    "author": "김은수",
+    "reject_new_exact_baseline_c14n": true,
+    "accepted_text_only_declared_changes": true,
+    "new_nested_insertions": 0,
+    "all_other_package_parts_exact": true,
+    "styles_fonts_media_field_instructions_preserved": true,
+    "changes": [
+      {
+        "before_para_id": "2D2692F1",
+        "after_para_id": "FF90AEF1",
+        "text_unchanged": "흐름 참고 : OTA 파일 데이터의 수신 순서와 파일 쓰기 결과를 확인한다. 기동 슬롯 명령은 별도 인터페이스로 처리하며, QCC 자체 펌웨어의 갱신 절차와 구분한다.",
+        "operation": "tracked paragraph replacement preserving earlier format history",
+        "flow": {
+          "keepNext": 1,
+          "keepLines": 1
+        },
+        "font_size_and_spacing_preserved": true,
+        "field_instructions_and_bookmark_targets_preserved": true,
+        "reason": "OTA51 explanation and figure34 form one readable group; remove active forced separation",
+        "drawing_media_relationship_and_extent_unchanged": true
+      },
+      {
+        "before_para_id": "3BDFE6A4",
+        "after_para_id": "FC76DC7B",
+        "text_unchanged": "",
+        "operation": "tracked paragraph replacement preserving earlier format history",
+        "flow": {
+          "pageBreakBefore": 0
+        },
+        "font_size_and_spacing_preserved": true,
+        "field_instructions_and_bookmark_targets_preserved": true,
+        "reason": "OTA51 explanation and figure34 form one readable group; remove active forced separation",
+        "drawing_media_relationship_and_extent_unchanged": true
+      }
+    ],
+    "G_published": false,
+    "static_status": "통과",
+    "native_status": "미실행",
+    "toc_cache": "root final page-number update required; unchanged heading text",
+    "reject_this_flow_patch_exact_final_mic_candidate": true,
+    "prior_final_mic_proof": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_design\\final-mic-patch\\proof.json",
+    "unchanged_G_guard": "d7c1777f089cd37a6930b9452a928908286006bc35ec8cd131ec0199af5de776",
+    "G_sha256_verified": "d7c1777f089cd37a6930b9452a928908286006bc35ec8cd131ec0199af5de776"
+  }
+}

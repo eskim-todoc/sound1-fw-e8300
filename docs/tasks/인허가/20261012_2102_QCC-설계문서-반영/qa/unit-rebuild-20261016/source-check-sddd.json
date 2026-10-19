@@ -1,0 +1,1604 @@
+{
+  "status": "통과",
+  "checked_at": "2026-10-16T19:27:45.811961+09:00",
+  "scope": "원문 SDDD의4모듈/14설계유닛과 재작성 보고서14 SU-ID의 출처/기능 대응. SUVC 원문 기준의15시험/38조건 수량 검토는 별도 담당 근거.",
+  "source": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\서석일_작성\\QCC_SDDD-FW-TD24A 소프트웨어 상세 설계서_byssi.docx",
+  "source_sha256": "49982C995F78064613F47F4D97A262C70394FC937B66CF4E6F38925E4FB5E1CE",
+  "source_end_sha256": "49982C995F78064613F47F4D97A262C70394FC937B66CF4E6F38925E4FB5E1CE",
+  "source_unchanged": true,
+  "read_method": "DOCX ZIP word/document.xml 본문/표를 직접 읽어 추출. COM/저장/변경 없음.",
+  "module_count": 4,
+  "unit_count": 14,
+  "report_test_group_count": 15,
+  "report_condition_rows": 38,
+  "module_list": [
+    {
+      "body_block_1based": 55,
+      "name": "System management module",
+      "units": [
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "body_block_1based": 193,
+      "name": "HW interface module",
+      "units": [
+        5,
+        6,
+        7
+      ]
+    },
+    {
+      "body_block_1based": 280,
+      "name": "Bluetooth module",
+      "units": [
+        8,
+        9,
+        10,
+        11
+      ]
+    },
+    {
+      "body_block_1based": 395,
+      "name": "Security module",
+      "units": [
+        12,
+        13,
+        14
+      ]
+    }
+  ],
+  "unit_mapping": [
+    {
+      "original_id": "SW-BT-DS-ID-001",
+      "original_title": "시스템 초기화와 설정 유닛",
+      "original_heading_body_block_1based": 87,
+      "module": "System management module",
+      "combined_id": "SU-ID-QCC-001",
+      "report_tests": [
+        {
+          "id": "SW-FW-UnitTest-QCC-ID-4",
+          "rows": "1734:1735"
+        }
+      ],
+      "definition_excerpt": "시스템을 초기화하기 전에 초기화에 필요한 설정이 먼저 되어 있어야 한다. 시스템 설정은 시스템 동작 중에 지속적으로 설정을 수행하는 것이 아니라, 초기화 전에 모두 설정이 되면, 이후에는 변하지 않는다. 하지만, 전체 시스템의 각 부분에 대한 설정은 수와 고려해야 할 사항이 많아 별도로 유닛에 추가하였다.",
+      "source_section_blocks": [
+        {
+          "body_block_1based": 88,
+          "type": "p",
+          "text": "시스템을 초기화하기 전에 초기화에 필요한 설정이 먼저 되어 있어야 한다. 시스템 설정은 시스템 동작 중에 지속적으로 설정을 수행하는 것이 아니라, 초기화 전에 모두 설정이 되면, 이후에는 변하지 않는다. 하지만, 전체 시스템의 각 부분에 대한 설정은 수와 고려해야 할 사항이 많아 별도로 유닛에 추가하였다."
+        },
+        {
+          "body_block_1based": 89,
+          "type": "p",
+          "text": "시스템 초기화는 위의 초기 설정에 기반하여 시스템의 각 부분을 차례대로 초기화하고 Application은 먼저 초기화된 시스템의 각 부분을 기반으로 제일 마지막에 수행하도록 한다."
+        },
+        {
+          "body_block_1based": 90,
+          "type": "p",
+          "text": "중요한 시스템 설정은 다음과 같다."
+        },
+        {
+          "body_block_1based": 91,
+          "type": "p",
+          "text": "HW interface 설정"
+        },
+        {
+          "body_block_1based": 92,
+          "type": "p",
+          "text": "SPI 설정 – SPI에서 사용하는 Port pin과 클럭 속도"
+        },
+        {
+          "body_block_1based": 93,
+          "type": "p",
+          "text": "I2S 설정 – Data bits과 sampling rate"
+        },
+        {
+          "body_block_1based": 94,
+          "type": "p",
+          "text": "General port pin – 일반적인 디지털 입력과 출력 설정"
+        },
+        {
+          "body_block_1based": 95,
+          "type": "p",
+          "text": "Charger case communication 설정: 통신에 사용되는 Port pin들과 data rate"
+        },
+        {
+          "body_block_1based": 96,
+          "type": "p",
+          "text": "NVM mapping: 저장할 데이터의 크기와 위치 설정"
+        },
+        {
+          "body_block_1based": 97,
+          "type": "p",
+          "text": "Security 설정"
+        },
+        {
+          "body_block_1based": 98,
+          "type": "p",
+          "text": "Bluetooth Classic – 오디오가 스피커가 아닌 I2S로 출력되도록 설정한다."
+        },
+        {
+          "body_block_1based": 99,
+          "type": "p",
+          "text": "BLE Service – Characteristic의 property에 Authentication을 추가한다."
+        },
+        {
+          "body_block_1based": 100,
+          "type": "p",
+          "text": "Auth service – 자체 인증에서 사용할 Auth service를 구성한다."
+        },
+        {
+          "body_block_1based": 101,
+          "type": "p",
+          "text": "시스템 초기화는 다음의 순서로 진행한다."
+        },
+        {
+          "body_block_1based": 102,
+          "type": "p",
+          "text": "시스템 초기화"
+        },
+        {
+          "body_block_1based": 103,
+          "type": "p",
+          "text": "Built-in library 초기화"
+        },
+        {
+          "body_block_1based": 104,
+          "type": "p",
+          "text": "System scheduler 초기화"
+        },
+        {
+          "body_block_1based": 105,
+          "type": "p",
+          "text": "Power 초기화"
+        },
+        {
+          "body_block_1based": 106,
+          "type": "p",
+          "text": "Bluetooth 초기화"
+        },
+        {
+          "body_block_1based": 107,
+          "type": "p",
+          "text": "HW 초기화"
+        },
+        {
+          "body_block_1based": 108,
+          "type": "p",
+          "text": "Port PIO input/output 초기화"
+        },
+        {
+          "body_block_1based": 109,
+          "type": "p",
+          "text": "시스템 상태처리"
+        },
+        {
+          "body_block_1based": 110,
+          "type": "p",
+          "text": "사운드 처리기 신호 – Shutdown indication, internal device connected indication"
+        },
+        {
+          "body_block_1based": 111,
+          "type": "p",
+          "text": "장치 배터리 및 충전 상태"
+        },
+        {
+          "body_block_1based": 112,
+          "type": "p",
+          "text": "Bluetooth 연결 상태와 제어"
+        },
+        {
+          "body_block_1based": 113,
+          "type": "p",
+          "text": "PIO 설정"
+        },
+        {
+          "body_block_1based": 114,
+          "type": "p",
+          "text": "Input"
+        },
+        {
+          "body_block_1based": 115,
+          "type": "tbl",
+          "text": "PIO 핀 동작 설정 | PIO_INTER_DEVICE_CONN_IND / PIO_SPI_COMM_IND / PIO_SHUT_DOWN_IND\nPIO Pin 매핑 | PIO IN direction"
+        },
+        {
+          "body_block_1based": 116,
+          "type": "p",
+          "text": "Output"
+        },
+        {
+          "body_block_1based": 117,
+          "type": "tbl",
+          "text": "PIO 핀 동작 설정 | PIO_I2S_EN_IND / PIO_HW_RESET_CTRL / PIO_TEMP_CHECK_ON\nPIO Pin 매핑 | PIO OUT direction"
+        },
+        {
+          "body_block_1based": 118,
+          "type": "p",
+          "text": "Peripheral"
+        },
+        {
+          "body_block_1based": 119,
+          "type": "tbl",
+          "text": "PIO 핀 동작 설정 | PIO_SPI_SC / PIO_SPI_SLK / PIO_SPI_MISO / PIO_SPI_MOSI / PIO_TEMP_CHECK\nPIO Pin 매핑 | PIO PERIPHERAL direction"
+        }
+      ]
+    },
+    {
+      "original_id": "SW-FW-DS-ID-002",
+      "original_title": "시스템 상태 유닛",
+      "original_heading_body_block_1based": 120,
+      "module": "System management module",
+      "combined_id": "SU-ID-QCC-002",
+      "report_tests": [
+        {
+          "id": "SW-FW-UnitTest-QCC-ID-4",
+          "rows": "1734:1735"
+        },
+        {
+          "id": "SW-FW-UnitTest-QCC-ID-5",
+          "rows": "1736:1736"
+        }
+      ],
+      "definition_excerpt": "사운드 처리기에서 처리해야 할 데이터 전송 – 이 경우는 별도의 처리 없이 바로 사운드 처리기와 BLE 연결 사이에서 데이터 만을 송수신",
+      "source_section_blocks": [
+        {
+          "body_block_1based": 121,
+          "type": "p",
+          "text": "상태 처리는 다음 시스템 상태를 확인한다."
+        },
+        {
+          "body_block_1based": 122,
+          "type": "p",
+          "text": " 사운드 처리기 상태 확인"
+        },
+        {
+          "body_block_1based": 123,
+          "type": "p",
+          "text": "shutdown_ind – deep sleep mode에 진입 알림"
+        },
+        {
+          "body_block_1based": 124,
+          "type": "p",
+          "text": "inter_dev_conn_ind – 사운드 처리기가 내부기와 연결 알림"
+        },
+        {
+          "body_block_1based": 125,
+          "type": "p",
+          "text": "사운드 처리기와의 SPI 통신"
+        },
+        {
+          "body_block_1based": 126,
+          "type": "p",
+          "text": "필요한 시스템 상태를 사운드 처리기에 전달 – 전원 상태, 블루투스 연결 상태 등"
+        },
+        {
+          "body_block_1based": 127,
+          "type": "p",
+          "text": "사운드 처리기에 요청 – 내부장치 정보"
+        },
+        {
+          "body_block_1based": 128,
+          "type": "p",
+          "text": "사운드 처리기에서 처리해야 할 데이터 전송 – 이 경우는 별도의 처리 없이 바로 사운드 처리기와 BLE 연결 사이에서 데이터 만을 송수신"
+        },
+        {
+          "body_block_1based": 129,
+          "type": "p",
+          "text": "사운드 처리기의 shutdown_ind 신호 처리"
+        },
+        {
+          "body_block_1based": 130,
+          "type": "p",
+          "text": "시스템의 동작은 사운드 처리기의 상태에 크게 의존하므로 이를 어떻게 처리하는지 설명한다."
+        },
+        {
+          "body_block_1based": 131,
+          "type": "p",
+          "text": "초기화 완료 후 shutdown_ind의 신호가 off 될 때까지 미리 정의된 시간동안 기다린다. 이는 사운드 처리기가 초리화를 완료하고 정상 동작 상태가 되기를 기다리는 것이다. 만일, 대기 시간이 지나면 바로 시스템을 종료하고 Deep sleep 모드에 들어간다."
+        },
+        {
+          "body_block_1based": 132,
+          "type": "p",
+          "text": "동작 중에도 shutdown_ind의 신호가 off가 되면 미리 정의된 시간동안 기다린다. 대기 시간이 지나면 바로 시스템을 종료하고 Deep sleep 모드에 들어간다. 이는 특정 조건 때문에(예로 Idle 상태의 소모전류 감소 목적) Deep sleep에 들어가도록 요청이 오는 것이다."
+        },
+        {
+          "body_block_1based": 145,
+          "type": "p",
+          "text": "<그림 2. shutdown_ind 신호 처리 흐름도>"
+        },
+        {
+          "body_block_1based": 146,
+          "type": "p",
+          "text": "사운드 처리기의 inter_dev_conn_ind 신호 처리"
+        },
+        {
+          "body_block_1based": 147,
+          "type": "p",
+          "text": "사운드의 처리기가 내부 장치와 연결되었다는 신호는 곧 전체 외부 장치가 주요 기능을 수행해야 한다는 의미이다. 이에 따라, 시스템의 주요 상태들을 활성화하고 준비한다."
+        },
+        {
+          "body_block_1based": 148,
+          "type": "p",
+          "text": "사운드 처리기에 내부장치 정보 요청 – BLE의 장치 이름과 양이, 편이 구분의 정보는 외부 BLE 장치와의 연결에 필요한 정보인다."
+        },
+        {
+          "body_block_1based": 149,
+          "type": "p",
+          "text": "Bluetooth Classic / BLE 활성화 – BLE 연결로는 각종 정보를 전달하고 명령을 수신하여 처리하며, Classic은 Bluetooth 연결로 오디오를 수신하여 전달한다."
+        }
+      ]
+    },
+    {
+      "original_id": "SW-FW-DS-ID-003",
+      "original_title": "장치 상태 유닛",
+      "original_heading_body_block_1based": 150,
+      "module": "System management module",
+      "combined_id": "SU-ID-QCC-003",
+      "report_tests": [
+        {
+          "id": "SW-FW-UnitTest-QCC-ID-6",
+          "rows": "1737:1737"
+        }
+      ],
+      "definition_excerpt": "외부장치는 편이 모드와 양이 모드에 대응하는 Standalone 모드와 TWS 모드로 설정되며 이에 따라 오디오와 데이터 처리가 달라진다. 이러한 장치 설정은 제품 생산시에 결정되며 동작 중에는 변경할 수 없다. 시스템의 모든 부분은 이러한 장치 설정에 따라 Audio와 데이터를 처리하게 된다.",
+      "source_section_blocks": [
+        {
+          "body_block_1based": 151,
+          "type": "p",
+          "text": "외부장치는 편이 모드와 양이 모드에 대응하는 Standalone 모드와 TWS 모드로 설정되며 이에 따라 오디오와 데이터 처리가 달라진다. 이러한 장치 설정은 제품 생산시에 결정되며 동작 중에는 변경할 수 없다. 시스템의 모든 부분은 이러한 장치 설정에 따라 Audio와 데이터를 처리하게 된다."
+        },
+        {
+          "body_block_1based": 152,
+          "type": "p",
+          "text": "Standalone 모드"
+        },
+        {
+          "body_block_1based": 153,
+          "type": "p",
+          "text": "외부 장치는 1대로 동작하며, Bluetooth audio는 L/R을 모두 처리하며 데이터도 별도의 구분없이 처리한다."
+        },
+        {
+          "body_block_1based": 154,
+          "type": "p",
+          "text": "TWS 모드"
+        },
+        {
+          "body_block_1based": 155,
+          "type": "p",
+          "text": "외부 장치는 2대 1세트로 동작하며, 장치는 Bluetooth audio의 L/R을 각기 처리하며 데이터도 별도의 구분하여 처리한다."
+        },
+        {
+          "body_block_1based": 156,
+          "type": "p",
+          "text": "이 상태에서도 1대로 단독 사용 가능하다."
+        },
+        {
+          "body_block_1based": 157,
+          "type": "p",
+          "text": "이 모드는 흔히 Earbud 형태라 하며, 칩의 제조사인 Qualcomm 사에서 제공하는 자체 기능이며, 오디오의 처리와 데이터 전달은 Buil-in library와 시스템에서 수행하므로 Application에서는 별도의 처리를 하지 않아도 된다."
+        },
+        {
+          "body_block_1based": 178,
+          "type": "p",
+          "text": "<그림 3. Qualcomm 사의 TWS 설명의 예>"
+        }
+      ]
+    },
+    {
+      "original_id": "SW-FW-DS-ID-004",
+      "original_title": "블루투스 상태 유닛",
+      "original_heading_body_block_1based": 179,
+      "module": "System management module",
+      "combined_id": "SU-ID-QCC-004",
+      "report_tests": [
+        {
+          "id": "SW-FW-UnitTest-QCC-ID-7",
+          "rows": "1738:1739"
+        },
+        {
+          "id": "SW-FW-UnitTest-QCC-ID-8",
+          "rows": "1740:1743"
+        }
+      ],
+      "definition_excerpt": "시스템 상태에 따라 블루투스의 활성화를 제어하고, Bluetooth의 상태를 확인하여 필요한  다른 모듈과 유닛에 전달한다.",
+      "source_section_blocks": [
+        {
+          "body_block_1based": 180,
+          "type": "p",
+          "text": "시스템 상태에 따라 블루투스의 활성화를 제어하고, Bluetooth의 상태를 확인하여 필요한  다른 모듈과 유닛에 전달한다."
+        },
+        {
+          "body_block_1based": 181,
+          "type": "p",
+          "text": "블루투스 활성화 제어"
+        },
+        {
+          "body_block_1based": 182,
+          "type": "p",
+          "text": "inter_dev_conn_ind의 신호에 따라 전체 Bluetooth를 활성화하거나 비활성화 한다. 이는 내부장치가 연결되어 있어야 Bluetooth의 오디오나 데이터가 처리가능하기 때문이다."
+        },
+        {
+          "body_block_1based": 183,
+          "type": "p",
+          "text": "블루투스 장치 이름"
+        },
+        {
+          "body_block_1based": 184,
+          "type": "p",
+          "text": "블루투스 장치이름은 외부의 Bluetooth 장치가 연결할 때 기본적인 외부장치 정보를 인식하기 위해 필요하다. 내부장치가 연결될 때, 내부장치를 사운드 처리기에 요청하여 이를 기반으로 장치 이름을 구성한다. 형태는 다음과 같다"
+        },
+        {
+          "body_block_1based": 185,
+          "type": "tbl",
+          "text": "장치 이름 구성 | 설 명\n전체 장치 이름 | TD_L__SOUND_ UserName_ExternalDeviceInfo\nL | 내부장치 수술 위치: ‘L’ or ‘R’\nUserName | 사용자 이름 또는 ID\nExternalDeviceInfo | 외부장치 식별 정보"
+        },
+        {
+          "body_block_1based": 186,
+          "type": "p",
+          "text": "블루투스 상태"
+        },
+        {
+          "body_block_1based": 187,
+          "type": "p",
+          "text": "Bluetooth Classic과 BLE의 연결 상태와 연결된 장치의 종류"
+        },
+        {
+          "body_block_1based": 188,
+          "type": "p",
+          "text": "주로 블루투스 모듈에서 연결 제어와 데이터 처리 시에 조건 확인에 사용된다."
+        },
+        {
+          "body_block_1based": 193,
+          "type": "p",
+          "text": "HW interface module"
+        },
+        {
+          "body_block_1based": 194,
+          "type": "p",
+          "text": "HW interface module은 시스템에 연결되어 있는 HW 장치의 데이터나 입출력 신호를 처리하고, NVM (Non-Volatile Memory)의 접근을 제어한다. 또한, 전원 상태를 관리하고 제어한다. "
+        },
+        {
+          "body_block_1based": 206,
+          "type": "p",
+          "text": "<그림 3. HW interface module 동작 흐름도>"
+        },
+        {
+          "body_block_1based": 207,
+          "type": "p",
+          "text": "<그림 3>는 MCU의 Port와 HW 주변 장치를 관리하고 통제하는 HW interface module의 기능에 대한 흐림을 설명한다."
+        },
+        {
+          "body_block_1based": 208,
+          "type": "p",
+          "text": "이러한 기능 중에서 칩 자체의 시스템이나 built-in library에서 처리하는 경우는 다음과 같다"
+        },
+        {
+          "body_block_1based": 209,
+          "type": "p",
+          "text": "HW 장치의 데이터 입출력(SPI, I2S)"
+        },
+        {
+          "body_block_1based": 210,
+          "type": "p",
+          "text": "CC 통신 (Charger Case communication) 통신 처리"
+        },
+        {
+          "body_block_1based": 211,
+          "type": "p",
+          "text": "NVM 접근 처리"
+        },
+        {
+          "body_block_1based": 212,
+          "type": "p",
+          "text": "충전 및 배터리 상태와 상태 관리"
+        },
+        {
+          "body_block_1based": 213,
+          "type": "p",
+          "text": "온도 센서 관리"
+        },
+        {
+          "body_block_1based": 214,
+          "type": "p",
+          "text": "Wake-up (from deep sleep)"
+        },
+        {
+          "body_block_1based": 215,
+          "type": "p",
+          "text": "칩 자체의 시스템이나 built-in library에서 처리하는 기능은 application에서 처리하므로 자세한 설명은 생략한다."
+        }
+      ]
+    },
+    {
+      "original_id": "SW-FW-DS-ID-005",
+      "original_title": "PIO 포트 제어 유닛",
+      "original_heading_body_block_1based": 216,
+      "module": "HW interface module",
+      "combined_id": "SU-ID-QCC-005",
+      "report_tests": [
+        {
+          "id": "SW-FW-UnitTest-QCC-ID-1",
+          "rows": "1727:1728"
+        }
+      ],
+      "definition_excerpt": "외부 입력 또는 출력 그리고 주변 장치와 연결되어 있는 MUC PORT의 PIO를 제어하는 일이다. 주요 사운드 처리기의 (SP, Sound Process) 입력 신호를 감지하고 출력은 I2S 활성화 상태를 SP에 전달하거나 HW reset을 제어한다.",
+      "source_section_blocks": [
+        {
+          "body_block_1based": 217,
+          "type": "p",
+          "text": "외부 입력 또는 출력 그리고 주변 장치와 연결되어 있는 MUC PORT의 PIO를 제어하는 일이다. 주요 사운드 처리기의 (SP, Sound Process) 입력 신호를 감지하고 출력은 I2S 활성화 상태를 SP에 전달하거나 HW reset을 제어한다."
+        },
+        {
+          "body_block_1based": 218,
+          "type": "p",
+          "text": "PORT와 PIO 설정 기능"
+        },
+        {
+          "body_block_1based": 219,
+          "type": "p",
+          "text": "출력 신호"
+        },
+        {
+          "body_block_1based": 220,
+          "type": "tbl",
+          "text": "출력 신호 | 제어 목적\nI2S enable | I2S 동작 상태를 사운드 처리기에 전달\nHW reset control | 충전기가 연결될 때마다, HW reset을 수행하기 회로를 제어\n온도 센서 Enable | 장치 내부 온도 센서의 활성화를 제어"
+        },
+        {
+          "body_block_1based": 221,
+          "type": "p",
+          "text": "입력 신호"
+        },
+        {
+          "body_block_1based": 222,
+          "type": "tbl",
+          "text": "입력 신호 | 제어 목적\n내부장치 연결 상태 | 사운드 처리기로부터의 내부장치와 연결 상태 입력 신호\nShutdown 알림 | 사운드 처리기로부터의 시스템 종료요청 입력 신호\nSPI 통신 알림 | 사운드 처리기로부터 SPI data를 수신요청 입력 신호"
+        },
+        {
+          "body_block_1based": 223,
+          "type": "p",
+          "text": "주변 장치 설정"
+        },
+        {
+          "body_block_1based": 224,
+          "type": "tbl",
+          "text": "입력 신호 | 제어 목적\nI2S 연결 포트 | I2S에서 사용하는 Chip의 Pin은 고정되어 있다.\nSPI 통신 포트 | SPI 통신에 사용되는 Port pin\n온도 센서 | 장치 내부의 온도를 측정"
+        },
+        {
+          "body_block_1based": 225,
+          "type": "p",
+          "text": "HW reset control"
+        },
+        {
+          "body_block_1based": 233,
+          "type": "p",
+          "text": "<그림 4. HW reset 제어 흐름도>"
+        },
+        {
+          "body_block_1based": 234,
+          "type": "p",
+          "text": "<그림 4>처럼 HW reset 제어는 충전 상태의 변화할 때마다 수행된다. HW reset 제어의 목적은 시스템이 Block되거나 Dead 상태에서 빠져나오게 하려는 안전장치로 충전을 시작할 때마다 HW reset을 하도록 한 것이다. 충전 상태에 따른 제어는 충전 중에는 충전 케이스 통신을 수행하여 data가 오갈 때 HW reset이 동작하는 것을 방지하기 위함이다. 또한, Chip 특성상 충전 중에는 시스템이 Block되더라도 바로 자동으로 빠져나오게 되므로 충전 상태에서 HW reset을 비활성화해도 안전하다."
+        }
+      ]
+    },
+    {
+      "original_id": "SW-FW-DS-ID-006",
+      "original_title": "Power 제어 유닛",
+      "original_heading_body_block_1based": 235,
+      "module": "HW interface module",
+      "combined_id": "SU-ID-QCC-006",
+      "report_tests": [
+        {
+          "id": "SW-FW-UnitTest-QCC-ID-2",
+          "rows": "1729:1732"
+        }
+      ],
+      "definition_excerpt": "외부장치의 배터리 상태를 확인하고 충전을 제어한다. 이러한 상태들의 정보를 시스템 관리 모듈에 전달하여 전체 전원관리를 할 수 있도록 한다. ",
+      "source_section_blocks": [
+        {
+          "body_block_1based": 236,
+          "type": "p",
+          "text": "외부장치의 배터리 상태를 확인하고 충전을 제어한다. 이러한 상태들의 정보를 시스템 관리 모듈에 전달하여 전체 전원관리를 할 수 있도록 한다. "
+        },
+        {
+          "body_block_1based": 237,
+          "type": "p",
+          "text": "통신은 MCU 제조사인 Qualcomm에서 지원하는 자체 통신 규격이다. 통신의Line signal level의 수준은 MCU의 Bult-in 내부 시스템에서 수행하고, 사용할 수 있는 명령도 미리 정의되어 있다. 따라서, 스마트 케이스 같은 Application에서는 전송할 명령을 선택하고 전달할 매개변수를 전달하거나, 수신된 응답에 대한 데이터만을 처리한다."
+        },
+        {
+          "body_block_1based": 238,
+          "type": "p",
+          "text": "또 하나의 Power 제어 유닛의 주요 기능은 Deep sleep 모드에 진입하는 것이다 "
+        },
+        {
+          "body_block_1based": 239,
+          "type": "p",
+          "text": "전원 관리"
+        },
+        {
+          "body_block_1based": 240,
+          "type": "p",
+          "text": "먼저 사용하는 외부장치의 배터리 특성을 설정한다. 예로, 최소 전압, 최대 전압 그리고 충전 전류 등이 있다."
+        },
+        {
+          "body_block_1based": 241,
+          "type": "p",
+          "text": "ADC로 Battery 전압을 읽는다."
+        },
+        {
+          "body_block_1based": 242,
+          "type": "p",
+          "text": "배터리 전압을 레벨 0% ~ 100%로 변환한다."
+        },
+        {
+          "body_block_1based": 243,
+          "type": "p",
+          "text": "Battery level을 시스템 관리 모듈이 읽을 수 있도록 저장한다."
+        },
+        {
+          "body_block_1based": 244,
+          "type": "p",
+          "text": "배터리이 Empty (0%)이면 무조건으로 Deep sleep 모드에 들어간다."
+        },
+        {
+          "body_block_1based": 245,
+          "type": "p",
+          "text": "충전 관리"
+        },
+        {
+          "body_block_1based": 246,
+          "type": "p",
+          "text": "외부장치가 스마트 케이스의 충전 포트에 있을 경우에만 외부장치가 충전되도록 설계되었다."
+        },
+        {
+          "body_block_1based": 247,
+          "type": "p",
+          "text": "충전 상태는 모두 4가 지로 구분된다. 시스템 관리 모듈은 각기 구분하여 처리한다."
+        },
+        {
+          "body_block_1based": 248,
+          "type": "tbl",
+          "text": "충전 상태 | 설명\nCharger is not connected | 충전기와 연결이 되어 있지 않은 상태\nCharger is connected | 충전기와 연결이 되어 있는 상태\nCharging | 외부 장치가 충전 중인 상태\nNo charging | 외부 장치가 충전이 아닌 상태"
+        },
+        {
+          "body_block_1based": 249,
+          "type": "p",
+          "text": "Deep sleep 모드"
+        },
+        {
+          "body_block_1based": 250,
+          "type": "p",
+          "text": "Deep sleep 모드 진입은 조건은 Battery가 empty 상태와 사운드 처리기의 shutdown_ind의 신호가 입력되었을 때이다."
+        },
+        {
+          "body_block_1based": 251,
+          "type": "p",
+          "text": "충전 중인 동안에는 Deep sleep 모드에 진입하지 못한다. 이유는 충전 중인 동안에 Deep sleep 모드에 진입하면 바로 wake-up이 되기 때문이다."
+        },
+        {
+          "body_block_1based": 252,
+          "type": "p",
+          "text": "Deep sleep 모드로 부터의 wake-up은 시스템과 HW로 구성되기 때문에 별도의 설정은 필요없다. wake-up이 되면 처음에 전원이 인가되는 상황과 같다."
+        },
+        {
+          "body_block_1based": 253,
+          "type": "p",
+          "text": "다음 <그림 5>는 위와 같은 설명을 도식화한 것이다."
+        },
+        {
+          "body_block_1based": 266,
+          "type": "p",
+          "text": "<그림 5. Deep sleep 모드 진입 흐름도>"
+        },
+        {
+          "body_block_1based": 268,
+          "type": "p",
+          "text": "NVM (Non-Volatile Memory) 처리 유닛"
+        },
+        {
+          "body_block_1based": 269,
+          "type": "p",
+          "text": "실제적인 NVM의 접근을 처리는 시스템과 built-in library에서 처리하고, application에서는 사용가능한 NVM 영역에  사용할 데이터를 매핑하는 것과 접근에 대한 interface를 제공한다."
+        },
+        {
+          "body_block_1based": 270,
+          "type": "p",
+          "text": "NVM에 저장되는 application data"
+        },
+        {
+          "body_block_1based": 271,
+          "type": "tbl",
+          "text": "NVM 데이터 | 설명\nCharger is not connected | 충전기와 연결이 되어 있지 않은 상태\nCharger is connected | 충전기와 연결이 되어 있는 상태\nCharging | 외부 장치가 충전 중인 상태\nNo charging | 외부 장치가 충전이 아닌 상태"
+        }
+      ]
+    },
+    {
+      "original_id": "SW-FW-DS-ID-007",
+      "original_title": "NVM 처리 유닛",
+      "original_heading_body_block_1based": 272,
+      "module": "HW interface module",
+      "combined_id": "SU-ID-QCC-007",
+      "report_tests": [
+        {
+          "id": "SW-FW-UnitTest-QCC-ID-3",
+          "rows": "1733:1733"
+        }
+      ],
+      "definition_excerpt": "실제적인 NVM (Non-Volatile Memory) 의 접근을 처리는 시스템과 built-in library에서 처리하고, application에서는 사용가능한 NVM 영역에  사용할 데이터를 매핑하는 것과 접근에 대한 interface를 제공한다.",
+      "source_section_blocks": [
+        {
+          "body_block_1based": 273,
+          "type": "p",
+          "text": "실제적인 NVM (Non-Volatile Memory) 의 접근을 처리는 시스템과 built-in library에서 처리하고, application에서는 사용가능한 NVM 영역에  사용할 데이터를 매핑하는 것과 접근에 대한 interface를 제공한다."
+        },
+        {
+          "body_block_1based": 274,
+          "type": "p",
+          "text": "NVM에 저장되는 application data"
+        },
+        {
+          "body_block_1based": 275,
+          "type": "tbl",
+          "text": "NVM 데이터 | 설명\nNVM_EXT_SERIAL_NUM | 외부장치 일련번호\nNVM_DEV_TYPE | Standalone mode나 TWS mode\nAUTH_RAND_NUM | NVM 암호화에 쓰이는 Random number\nAUTH_CLLINC_KEY | 매핑 앱과의 데이터 통신에서 쓰이는 암호화 키\nAUTH_SHARED_KEY | 리모콘 앱과의 데이터 통신에서 쓰이는 암호화 키"
+        },
+        {
+          "body_block_1based": 276,
+          "type": "p",
+          "text": "Application에서 제공되는 인터페이스"
+        },
+        {
+          "body_block_1based": 277,
+          "type": "tbl",
+          "text": "NVM 데이터 | 설명\nnvm_data_length_get | 해당 data의 길이를 반환한다.\nnvm_data_read | NVM에 저장되어 있는 data를 읽어 온다.\nnvm_data_write | 해당 data를 NVM에 저장한다."
+        },
+        {
+          "body_block_1based": 280,
+          "type": "p",
+          "text": "Bluetooth module"
+        },
+        {
+          "body_block_1based": 281,
+          "type": "p",
+          "text": "외부장치는 Bluetooth 통신을 지원하며, 두 종류의 Bluetooth transport를 지원한다."
+        },
+        {
+          "body_block_1based": 282,
+          "type": "p",
+          "text": "Bluetooth Classic"
+        },
+        {
+          "body_block_1based": 283,
+          "type": "p",
+          "text": "규격 공식 명칭은 Bluetooth BR/EDR (Basic Rate/Enhanced Data Rate)이며, 처음 Bluetooth 규격 정의부터 사용되던 전송방식이다. 주로 스마트폰과 연결되어 음악 전송과 통화를 위해 사용된다."
+        },
+        {
+          "body_block_1based": 284,
+          "type": "p",
+          "text": "Bluetooth Low Energy"
+        },
+        {
+          "body_block_1based": 285,
+          "type": "p",
+          "text": "일명 BLE라고 불리며, Classic 이후에 새로이 정의된 Bluetooth 규격이다. 배터리 소모를 크게 줄여 모바일 장치들이 적은 전류로도 서로 통신할 수 있게 만든 통신이다. 데이터 통신이 사용되며, 통신은 간단한 명령과 응답으로 이루어진다."
+        },
+        {
+          "body_block_1based": 309,
+          "type": "p",
+          "text": "<그림 6 Bluetooth module 동작 흐림도>"
+        },
+        {
+          "body_block_1based": 311,
+          "type": "p",
+          "text": "<그림 6>은 Bluetooth module의 전체적인 흐름도를 나타낸 것이다. Bluetooth Transport는 Classic과 BLE로 나누어지며, 별도의 처리가 요구된다. Bluetooth Classic의 Data는 표준 Bluetooth 규격에 정의된 사항만 처리하므로, 이는 Built-in Library에서 처리되고 외부장치의 처리 대상이 아니다. BLE의 데이터에서는 외부장치의 주요 정보(상태, Bluetooth 제어 명령)를 처리해야 하므로 별도의 추가 처리가 요구된다."
+        },
+        {
+          "body_block_1based": 312,
+          "type": "p",
+          "text": "시스템 관리 모듈은 전체 시스템 상태에 따라 Bluetooth의 enable/disable을 제어한다. 외부장치가 내부장치에 연결이 되어 있어야 정상적인 오디오 처리가 가능하므로 내부장치가 연결되어 있는 경우에만 Bluetooth를 활성화한다. 내부장치가 연결되어 있다 떨어지게 되면, 바로 Bluetooth를 비활성화를 하는 것이 아니라 디바운스를 확인하고 현재 연결을 모두 끊은 후에 Bluetooth를 비활성화하게 된다."
+        },
+        {
+          "body_block_1based": 313,
+          "type": "p",
+          "text": "그리고, Bluetooth module은 Bluetooth 상태를 시스템 관리 모듈에 전달한다."
+        }
+      ]
+    },
+    {
+      "original_id": "SW-FW-DS-ID-008",
+      "original_title": "Bluetooth Classic 유닛",
+      "original_heading_body_block_1based": 314,
+      "module": "Bluetooth module",
+      "combined_id": "SU-ID-QCC-008",
+      "report_tests": [
+        {
+          "id": "SW-FW-UnitTest-QCC-ID-8",
+          "rows": "1740:1743"
+        },
+        {
+          "id": "SW-FW-UnitTest-QCC-ID-10",
+          "rows": "1746:1750"
+        }
+      ],
+      "definition_excerpt": "기본적으로 Bluetooth module은 Enable되어 있어야 한다. Disable되어 있으면 모든 요구는 무시된다.",
+      "source_section_blocks": [
+        {
+          "body_block_1based": 327,
+          "type": "p",
+          "text": "<그림 7. Bluetooth Classic 유닛 동작 흐림도>"
+        },
+        {
+          "body_block_1based": 328,
+          "type": "p",
+          "text": "기본 상태"
+        },
+        {
+          "body_block_1based": 329,
+          "type": "p",
+          "text": "기본적으로 Bluetooth module은 Enable되어 있어야 한다. Disable되어 있으면 모든 요구는 무시된다."
+        },
+        {
+          "body_block_1based": 330,
+          "type": "p",
+          "text": "pair_req"
+        },
+        {
+          "body_block_1based": 331,
+          "type": "p",
+          "text": "정확히는 Pairable 상태이다. 다른 장치가 외부장치를 검색하고 Pairing을 진행한다. Pairing이 성공하거나 Timeout이 되면 종료된다."
+        },
+        {
+          "body_block_1based": 332,
+          "type": "p",
+          "text": "Classic/audio connect_req"
+        },
+        {
+          "body_block_1based": 333,
+          "type": "p",
+          "text": "Classic/Audio connect request는 외부장치에서 수행하지 않는다. 다른 블루투스 장치가 외부장치를 검색하고 연결하며, Audio 연결을 수행한다. 외부장치는 연결이 되면 연결상태를 처리하게 된다. Audio 연결이 되면 다른 장치로부터 수신된 오디오는 I2S로 전송해 사운드 처리기에서 오디오를 처리하도록 한다."
+        },
+        {
+          "body_block_1based": 334,
+          "type": "p",
+          "text": "disconnect_req"
+        },
+        {
+          "body_block_1based": 335,
+          "type": "p",
+          "text": "Classic disconnect request를 처리한다. 연결 상태가 아니면, 처리는 종료된다. 연결을 해제할 때, Audio 연결이 되어 있으면 Audio 연결도 해제한다."
+        },
+        {
+          "body_block_1based": 336,
+          "type": "p",
+          "text": "audio_disconnect_req"
+        },
+        {
+          "body_block_1based": 337,
+          "type": "p",
+          "text": "Audio 연결 상태가 아니면, 처리는 종료된다. Audio 연결이 해제되면, Classic 연결 상태가 된다."
+        }
+      ]
+    },
+    {
+      "original_id": "SW-FW-DS-ID-009",
+      "original_title": "BLE 유닛",
+      "original_heading_body_block_1based": 338,
+      "module": "Bluetooth module",
+      "combined_id": "SU-ID-QCC-009",
+      "report_tests": [
+        {
+          "id": "SW-FW-UnitTest-QCC-ID-8",
+          "rows": "1740:1743"
+        },
+        {
+          "id": "SW-FW-UnitTest-QCC-ID-9",
+          "rows": "1744:1745"
+        }
+      ],
+      "definition_excerpt": "기본적으로 Bluetooth module은 Enable되어 있어야 한다. Disable되어 있으면 모든 요구는 무시된다",
+      "source_section_blocks": [
+        {
+          "body_block_1based": 339,
+          "type": "p",
+          "text": "기본 상태"
+        },
+        {
+          "body_block_1based": 340,
+          "type": "p",
+          "text": "기본적으로 Bluetooth module은 Enable되어 있어야 한다. Disable되어 있으면 모든 요구는 무시된다"
+        },
+        {
+          "body_block_1based": 341,
+          "type": "p",
+          "text": "Advertising"
+        },
+        {
+          "body_block_1based": 342,
+          "type": "p",
+          "text": "BLE의 Advertising은 상대 장치와 연결을 가능하게 할 뿐만 아니라, 간단한 정보를 외부에 전달할 수 있다. 다음은 외부장치의 Advertising data와 Scan response data 설정이다."
+        },
+        {
+          "body_block_1based": 343,
+          "type": "tbl",
+          "text": "Advertising data\nAD Type | 설명\nComplete Local Name | 외부장치 이름과 시리얼 번호\nFlags | BLE 규격에서 Mandatory 항목"
+        },
+        {
+          "body_block_1based": 345,
+          "type": "tbl",
+          "text": "Scan response data\nAD Type | 설명\nAppearance | Cochlear Implant\nFlags | BLE 규격에서 Mandatory 항목\nManufacturer specific data | 지역장치와 양이 모드 Secondary 장치의 배터리 레벨과 충전 상태"
+        },
+        {
+          "body_block_1based": 346,
+          "type": "p",
+          "text": "Connected"
+        },
+        {
+          "body_block_1based": 347,
+          "type": "p",
+          "text": "BLE 연결은 Data 통신만을 지원한다. 이는 BLE Data 처리 유닛에서 수행한다. 그리고, 데이터 통신을 하기 위해서는 연결된 장치와 자체 인증을 수행하는데, 이는 Security module과 AUTH service를 통해서 수행된다. BLE 모듈에서는 AUTH service의 데이터만을 처리한다."
+        }
+      ]
+    },
+    {
+      "original_id": "SW-FW-DS-ID-010",
+      "original_title": "AUTH service 처리 유닛",
+      "original_heading_body_block_1based": 348,
+      "module": "Bluetooth module",
+      "combined_id": "SU-ID-QCC-010",
+      "report_tests": [
+        {
+          "id": "SW-FW-UnitTest-QCC-ID-11",
+          "rows": "1751:1752"
+        }
+      ],
+      "definition_excerpt": "AUTH service는 자체 CRA (Challenge-Response Authentication) 인증을 처리하기 위해 정의된 BLE Service 이다. BLE GATT에 기반하여 application-specific으로 정의한다. BLE에서의 처리는 일반적인 Service와 Characteristic 처리와 같으며, 자세한 처리내용은 Security module에서 다룬다. 여기에서는 AUTH service의 정의만을 설명한다.",
+      "source_section_blocks": [
+        {
+          "body_block_1based": 349,
+          "type": "p",
+          "text": "AUTH service는 자체 CRA (Challenge-Response Authentication) 인증을 처리하기 위해 정의된 BLE Service 이다. BLE GATT에 기반하여 application-specific으로 정의한다. BLE에서의 처리는 일반적인 Service와 Characteristic 처리와 같으며, 자세한 처리내용은 Security module에서 다룬다. 여기에서는 AUTH service의 정의만을 설명한다."
+        },
+        {
+          "body_block_1based": 350,
+          "type": "p",
+          "text": "Service UUID 정의"
+        },
+        {
+          "body_block_1based": 351,
+          "type": "tbl",
+          "text": "UUID | 설명\nPrimary Service | AUTH service의 GATT내의 대표 식별자\nChallenge Characteristic | 인증의 Challenge에 해당되는 Characteristic 식별자\nResponse Characteristic | 인증의 Response에 해당되는 Characteristic 식별자\nConfirm Characteristic | 인증 결과에 해당되는 Characteristic 식별자\nStatus Characteristic | 인증 처리 과정에 해당되는 Characteristic 식별자"
+        },
+        {
+          "body_block_1based": 352,
+          "type": "p",
+          "text": "Characteristic 구조"
+        },
+        {
+          "body_block_1based": 353,
+          "type": "tbl",
+          "text": "Characteristic | Property | 설명\nPrimary Service | read | Auth service의 primary service UUID\nChallenge Characteristic | write | 인증요청 장치가 Random number와 인증 타입을 전송한다.\nResponse Characteristic | read, notify | 외부장치가 Random number와 인증요청 정치에 전송한 Random number을 암호화한 값을 상대에 인증요청 정치에게 전송한다.\nConfirm Characteristic | write | 인증요청 장치가 외부장치가 Random number을 암호화해 전송한다.\nStatus Characteristic | read, notify | 인증요청 장치에게 인증 처리 과정을 알린다."
+        },
+        {
+          "body_block_1based": 354,
+          "type": "p",
+          "text": "인증 타입 (Authentication type)"
+        },
+        {
+          "body_block_1based": 355,
+          "type": "p",
+          "text": "Challenge Characteristic에서 인증 타입을 사용하여 해당 인증 절차를 요청한다."
+        },
+        {
+          "body_block_1based": 356,
+          "type": "tbl",
+          "text": "Value | Type | 설명\n0x01 | Patient | 리모콘 앱과 같은 외부장치 제어와 상태 알림 데이터 통신\n0x02 | Clinician | 매팽 앱과  같은 매핑 데이터 통신\nelse | Invalid values | "
+        },
+        {
+          "body_block_1based": 357,
+          "type": "p",
+          "text": "Status characteristic values"
+        },
+        {
+          "body_block_1based": 358,
+          "type": "tbl",
+          "text": "Value | Description\n0x00 | Authentication is failed\n0x01 | Authentication is passed\n0x02 | Authentication is in progress\n0x03 | Authentication is timed out\nelse | Invalid values"
+        }
+      ]
+    },
+    {
+      "original_id": "SW-FW-DS-ID-011",
+      "original_title": "BLE Data 처리 유닛",
+      "original_heading_body_block_1based": 359,
+      "module": "Bluetooth module",
+      "combined_id": "SU-ID-QCC-011",
+      "report_tests": [
+        {
+          "id": "SW-FW-UnitTest-QCC-ID-12",
+          "rows": "1753:1754"
+        }
+      ],
+      "definition_excerpt": "BLE data 통신은 MCU 제조사인 Qualcomm사의 GAIA (Generic Application Interface Architecture) 프로토콜을 기반으로 이루어진다. GAIA 프로토콜에서 Addressing을 스마트 케이스 장치 전용으로 설정하여 사용한다. 따라서, 이후부터 설명은 세부적인 GAIA와 관련된 사항은 생략한다.",
+      "source_section_blocks": [
+        {
+          "body_block_1based": 360,
+          "type": "p",
+          "text": "BLE data 통신은 MCU 제조사인 Qualcomm사의 GAIA (Generic Application Interface Architecture) 프로토콜을 기반으로 이루어진다. GAIA 프로토콜에서 Addressing을 스마트 케이스 장치 전용으로 설정하여 사용한다. 따라서, 이후부터 설명은 세부적인 GAIA와 관련된 사항은 생략한다."
+        },
+        {
+          "body_block_1based": 361,
+          "type": "p",
+          "text": "또한, 미리 정의된 Message 구조에 맞게 구성된 BLE 데이터를 통해 Message 단위로 통신하게 된다"
+        },
+        {
+          "body_block_1based": 362,
+          "type": "p",
+          "text": "Message 구조"
+        },
+        {
+          "body_block_1based": 366,
+          "type": "p",
+          "text": "<그림 11. BLE message 구조>"
+        },
+        {
+          "body_block_1based": 367,
+          "type": "p",
+          "text": "메시지 길이는 20 byte이고, 길이는 가변이다. 최소 길이는 1이며 0 번째 Byte는 반드시 메시지에 포함되어야 한다."
+        },
+        {
+          "body_block_1based": 368,
+          "type": "p",
+          "text": "0 번째 byte는 type이고, 이 메시지의 type을 나타낸다."
+        },
+        {
+          "body_block_1based": 369,
+          "type": "p",
+          "text": "1 번째 byte 부터는 data이다. data의 내용이나 길이는 메시지 type에 따라 정의된다. "
+        },
+        {
+          "body_block_1based": 370,
+          "type": "p",
+          "text": "Message 데이터 송신 처리"
+        },
+        {
+          "body_block_1based": 371,
+          "type": "p",
+          "text": "상대방에게 전송할 메시지가 있을 경우, type과 데이터를 BLE data 처리 유닛에 전달하면, 유닛은 타입과 데이터의 값을 검사하여 전송할 것인지 아닌지를 결정한다. 전송할 경우 GAIA 프로토콜에 맞게 구성한 후에 전송한다."
+        },
+        {
+          "body_block_1based": 372,
+          "type": "p",
+          "text": "아래 <그림 8>은 BLE message 전송 처리 과정을 보여준다. 당연하겠지만, BLE 연결이 되어 있지 않으면, 요청은 무시된다."
+        },
+        {
+          "body_block_1based": 373,
+          "type": "p",
+          "text": "Message 데이터 수신 처리"
+        },
+        {
+          "body_block_1based": 374,
+          "type": "p",
+          "text": "상대방이 전송한 메시지는 MCU 시스템의 Built-in Library GAIA received data handler를 통해 BLE Data 처리 유닛에 전달된다. 먼저 Addressing이 적법한지 확인을 하고 수신된 데이터가 메시지 구조를 갖지 않는 경우는 무시된다. 반대로, 메시지 하나를 구성하게 되면 수신된 메시는 처리가 수행된다."
+        },
+        {
+          "body_block_1based": 375,
+          "type": "p",
+          "text": "수신된 각 메시지는 현재 시스템 상태에 따라 처리된다."
+        },
+        {
+          "body_block_1based": 376,
+          "type": "p",
+          "text": "메시지를 수신하고 BLE 연결이 끊어졌다면, 이 메시지는 무시된다."
+        },
+        {
+          "body_block_1based": 377,
+          "type": "p",
+          "text": "아래 그림 <그림 9>은 BLE 데이터를 수신하여, 메시지 구조를 확인하고 처리하는 흐름도이다. 이렇게 처리된 메시지는 시스템 상태에 맞게 각 모듈에 요청을 전달하게 된다."
+        },
+        {
+          "body_block_1based": 394,
+          "type": "p",
+          "text": "<그림 8.  Message 데이터 전송 처리 흐름도>    <그림 9.  Message 데이터 수신 처리 흐름도>"
+        },
+        {
+          "body_block_1based": 395,
+          "type": "p",
+          "text": "Security module"
+        },
+        {
+          "body_block_1based": 396,
+          "type": "p",
+          "text": "외부장치의 외부 인터페이스는 Bluetooth 통신이며, 이 중 주요 데이터는 BLE 통해 송수신된다. BLE에서는 표준 규격으로 BLE pairing을 하여 인증과 암호화를 제공하지만, 이를 더 보강하여 외부장치에서는 자체 인증과정을 추가하였다. 자체 인증과정은 CRA 방식을 따르며, BLE AUTH service를 이용하여 처리한다. BLE AUTH service의 정의는 Bluetooth module에서 설명하였고, 여기에서는 실제 어떻게 사용되고 처리되는지 설명한다."
+        },
+        {
+          "body_block_1based": 397,
+          "type": "p",
+          "text": "CRA (Challenge – Response Authentication)의 개요"
+        },
+        {
+          "body_block_1based": 398,
+          "type": "p",
+          "text": "CRA는 네트워크 및 시스템 보안을 강화하기 위해 사용되는 인증 방식으로, 사용자가 비밀번호를 직접 전송하지 않고 보안 검증을 수행할 수 있도록 설계되었다."
+        },
+        {
+          "body_block_1based": 399,
+          "type": "p",
+          "text": "CRA는 사용자와 인증 서버 간에 임의의 질문(Challenge)을 생성하고, 사용자가 이에 대한 적절한 응답(Response)을 제공해야 하는 방식으로, 비밀번호 노출을 방지하는 강력한 인증 기법입니다."
+        },
+        {
+          "body_block_1based": 400,
+          "type": "p",
+          "text": "CRA 용어"
+        },
+        {
+          "body_block_1based": 401,
+          "type": "tbl",
+          "text": "용어 | 설명\nChallenge | 요청자가 상대방에게 임의로 생성한 질문 또는 난수를 전송\nResponse | 상대방이 해당 Challenge에 대한 암호화된 응답을 생성하여 요청자에게 전송\nNonce | 재사용 공격(Replay Attack)을 방지하기 위해 사용되는 일회성 숫자\nHMAC(Hash-based Message Authentication Code) | Challenge와 비밀 키를 기반으로 응답을 생성하는 알고리즘"
+        },
+        {
+          "body_block_1based": 402,
+          "type": "p",
+          "text": "CRA 기본적인 절차"
+        },
+        {
+          "body_block_1based": 403,
+          "type": "p",
+          "text": "Challenge 생성: 요청자가 난수(Challenge)를 사용자에게 전송"
+        },
+        {
+          "body_block_1based": 404,
+          "type": "p",
+          "text": "Response 생성: 상대방이 자신의 비밀 키를 사용하여 Challenge에 대한 응답을 생성"
+        },
+        {
+          "body_block_1based": 405,
+          "type": "p",
+          "text": "Verify: Response를 검증하는 단계. 요청자가 상대방의 Response를 확인하여 인증 여부 결정"
+        },
+        {
+          "body_block_1based": 406,
+          "type": "p",
+          "text": "Confirm: Response가 일치하면 인증 완료"
+        },
+        {
+          "body_block_1based": 407,
+          "type": "p",
+          "text": "CRA에서 사용되는 암호화 Key는 NVM에 저장되는데, 보안과 무결성을 위하여 암호화되어 저장된다. Security module은 이러한 NMV 데이터에 대한 처리도 수행한다."
+        },
+        {
+          "body_block_1based": 425,
+          "type": "p",
+          "text": "<그림 10.  외부장치 보안 처리 흐름도>"
+        }
+      ]
+    },
+    {
+      "original_id": "SW-FW-DS-ID-012",
+      "original_title": "보안 처리 유닛",
+      "original_heading_body_block_1based": 426,
+      "module": "Security module",
+      "combined_id": "SU-ID-QCC-012",
+      "report_tests": [
+        {
+          "id": "SW-FW-UnitTest-QCC-ID-13",
+          "rows": "1755:1759"
+        }
+      ],
+      "definition_excerpt": "BLE data 통신을 통해 기기 제어나 기기 및 의료 정보같은 민감한 정보가 송수신될 수 있으므로,  연결하고 통신하려는 상대방이 적법한지를 확인해야 한다. BLE 표준 규격에서도 Pairing이라는 인증 방법을 제공하지만, 보안을 더욱 강화하기 위해 별도의 CRA 인증 방식을 사용한다. 그리고 암호화는 BLE 표준 규격에서 제공하는 암호화를 사용한다. 따라서, BLE pairing이 완료된 후에만 CRA 인증을 시작할 수 있다.",
+      "source_section_blocks": [
+        {
+          "body_block_1based": 427,
+          "type": "p",
+          "text": "BLE data 통신을 통해 기기 제어나 기기 및 의료 정보같은 민감한 정보가 송수신될 수 있으므로,  연결하고 통신하려는 상대방이 적법한지를 확인해야 한다. BLE 표준 규격에서도 Pairing이라는 인증 방법을 제공하지만, 보안을 더욱 강화하기 위해 별도의 CRA 인증 방식을 사용한다. 그리고 암호화는 BLE 표준 규격에서 제공하는 암호화를 사용한다. 따라서, BLE pairing이 완료된 후에만 CRA 인증을 시작할 수 있다."
+        },
+        {
+          "body_block_1based": 428,
+          "type": "p",
+          "text": "먼저, BLE가 연결이 시작되면, CRA 인증을 시작하는데 타이머를 시작하여 일정 시간내에 CRA 인증이 완료하지 못하면 실패로 간주하여 연결을 끊는다."
+        },
+        {
+          "body_block_1based": 429,
+          "type": "p",
+          "text": "인증 절차는 BLE AUTH service를 통해 인증 요청하는 상대방과 정보를 주고받는다. 실제 오가는 정보의 처리는 보안 처리 유닛에서 이루어 지며, BLE AUTH service는 일종의 인터페이스를 제공한다. 그리고, 위에서 설명한 것처럼 BLE pairing을 수행한 후에 CRA 인증을 시작할 수 있으므로 BLE pairing이 완료되지 않으면 BLE AUTH service에 접근할 수 없다."
+        },
+        {
+          "body_block_1based": 430,
+          "type": "p",
+          "text": "아래 <그림 11>은 CRA 인증 절차를 보여주는 것으로, Server는 외부장치가 되고 Client는 인을 요청하는 상대방이 된다. 그리고 NONCE나 HMAC와 같은 인증 절차에 사용되는 알고리즘 등은 보안 툴박스 유닛을 통해 값을 생성하고 얻는다."
+        },
+        {
+          "body_block_1based": 431,
+          "type": "p",
+          "text": "추가로, BLE는 1:1 연결만 지원하여 한 사용자가 외부장치를 사용할 시, 다른 사용자의 간섭을 방지한다."
+        },
+        {
+          "body_block_1based": 450,
+          "type": "p",
+          "text": "<그림 11. CRA 인증 절차 흐림도>"
+        },
+        {
+          "body_block_1based": 451,
+          "type": "p",
+          "text": "<그림 11>의CRA 인증 절차는 다음과 같다."
+        },
+        {
+          "body_block_1based": 452,
+          "type": "p",
+          "text": "CRA 인증을 시작하기 위해서는 서버와 클라이언트 사이에 BLE 연결과BLE Pairing이 완료되어 있어야 한다."
+        },
+        {
+          "body_block_1based": 453,
+          "type": "p",
+          "text": "클라이언트는 AUTH service의 Challenge characteristic에 auth_type과 NOUNCE_A를 쓰므로 해서 CRA 인증을 시작한다."
+        },
+        {
+          "body_block_1based": 454,
+          "type": "p",
+          "text": "Challenge characteristic에 데이터가 써지면, 서버는 auth_type가 적당한 값인지 확인한다. 허용되지 않은 값이면, 인증은 실패로 간주하고 인증을 종료하고 BLE 연결을 끊는다. 적법한 값이면 먼저 Status characteristic에 in_progress로 클라이언트에게 알린다. 그리고 NOUNC_B와 HMAC_B를 Response characteristic를 통해 생성하여 클라이언트에게 알린다."
+        },
+        {
+          "body_block_1based": 455,
+          "type": "p",
+          "text": "클라이언트에서 Response characteristic에 데이터가 들어오면, HMAC_B’를 생성한 수에 HMAC_B와 비교한다."
+        },
+        {
+          "body_block_1based": 456,
+          "type": "p",
+          "text": "HMAC_B = HMAC_B’ 이면, 클라이언트는 HMAC_A을 생성하여 Confirm characteristic 통해 서버에 전송한다."
+        },
+        {
+          "body_block_1based": 457,
+          "type": "p",
+          "text": "HMAC_B ≠ HMAC_B’ 이면, 인증은 실패가 되고 종료된다."
+        },
+        {
+          "body_block_1based": 458,
+          "type": "p",
+          "text": "서버는 HMAC_A를 받은 후에, HMAC_A’를 생성하고 HMAC_A와 비교한다."
+        },
+        {
+          "body_block_1based": 459,
+          "type": "p",
+          "text": "HMAC_A와 HMAC_A’가 같다면, 서버는 Status characteristic을 통해 인증이 성공했음을 알리고 인증은 종료한다."
+        },
+        {
+          "body_block_1based": 460,
+          "type": "p",
+          "text": "HMAC_A와 HMAC_A’가 같지 않으면, 서버는 Status characteristic을 통해 인증이 실패했음을 알리고 인증은 종료한다."
+        },
+        {
+          "body_block_1based": 461,
+          "type": "p",
+          "text": "그림에는 나와있지 않지만, 인증 타이머가 동작하여 절차에 시간제한을 둔다. 이는 인증이 완료되지 않은 상태에서 BLE의 연결을 계속 유지하게 되면, 데이터 통신도 되지 않은 상태에서 오랜 시간 BLE 연결을 유지하지 않기 위함이다."
+        },
+        {
+          "body_block_1based": 462,
+          "type": "p",
+          "text": "BLE 연결이 완료되면 서버는 타이머를 시작한다."
+        },
+        {
+          "body_block_1based": 463,
+          "type": "p",
+          "text": "주어진 시간동안 성공이든 실패든 인증 절차가 완료되지 않으면, 인증은 실패로 간주한다. 인증은 실패하면 BLE의 연결이 해제된다."
+        }
+      ]
+    },
+    {
+      "original_id": "SW-FW-DS-ID-013",
+      "original_title": "보안 툴박스 유닛",
+      "original_heading_body_block_1based": 464,
+      "module": "Security module",
+      "combined_id": "SU-ID-QCC-013",
+      "report_tests": [
+        {
+          "id": "SW-FW-UnitTest-QCC-ID-14",
+          "rows": "1760:1762"
+        }
+      ],
+      "definition_excerpt": "보안 툴박스 유닛은 보안 모듈에서 사용하는 보안 알고리즘의 처리에 대한 인터페이스 제공한다. 이러한 툴박스는 알고리즘을 사용하는 유닛이 복잡한 내용을 알 필요없이 인터페이스를 통해 쉽게 알고리즘의 결과값을 얻는다. 또한, 기존과 다른 알고리즘을 사용하게 되면, 보안 툴박스 유닛만 수정해도 다른 유닛들은 기존 인터페이스를 사용하여 변경없이 알고리즘을 사용할 수 있을 수 있다.",
+      "source_section_blocks": [
+        {
+          "body_block_1based": 465,
+          "type": "p",
+          "text": "보안 툴박스 유닛은 보안 모듈에서 사용하는 보안 알고리즘의 처리에 대한 인터페이스 제공한다. 이러한 툴박스는 알고리즘을 사용하는 유닛이 복잡한 내용을 알 필요없이 인터페이스를 통해 쉽게 알고리즘의 결과값을 얻는다. 또한, 기존과 다른 알고리즘을 사용하게 되면, 보안 툴박스 유닛만 수정해도 다른 유닛들은 기존 인터페이스를 사용하여 변경없이 알고리즘을 사용할 수 있을 수 있다."
+        },
+        {
+          "body_block_1based": 466,
+          "type": "p",
+          "text": "알고리즘에 필요한 데이터는 보안 NVM 유닛을 통해 얻을 수 있으며, 보안 NVM 유닛 또한 보안 툴박스 유닛을 통해 NVM의 데이터를 복호화한다."
+        },
+        {
+          "body_block_1based": 467,
+          "type": "p",
+          "text": "그리고, 알고리즘에 사용하는 각 키는 보안 NVM 유닛을 통해 얻는다. 리모콘 앱과 매핑 앱이 사용하는 키 생성 알고리즘을 다르게 하여 해당 장치에 원하는 데이터를 전송할 수 있다."
+        },
+        {
+          "body_block_1based": 468,
+          "type": "p",
+          "text": "Authentication key"
+        },
+        {
+          "body_block_1based": 469,
+          "type": "p",
+          "text": "리모콘 앱: shared_service_key를 사용하며 제품 생산시에 NVM에서 저장되어 있어 직접 얻는다. 이 키는 각 사용자마다 서로 다른 키 값을 가져 적법한 사용자만 해당 외부장치와 통신할 수 있도록 한다."
+        },
+        {
+          "body_block_1based": 470,
+          "type": "p",
+          "text": "매핑 앱: clinic_service_key를 사용하는데, 먼저 clinican_master_key를 NVM에서 읽어 다음과 같은 방식으로 생성하여 사용한다:clinic_service_key = [0:15] of SHA256(clinician_maseter_key, serial_num)"
+        },
+        {
+          "body_block_1based": 471,
+          "type": "p",
+          "text": "Authentication procedure"
+        },
+        {
+          "body_block_1based": 472,
+          "type": "p",
+          "text": "사용 알고리즘: ENC, AES-CMAC(Cipher-based Message Authentication Code)"
+        },
+        {
+          "body_block_1based": 473,
+          "type": "p",
+          "text": "NOUNCE_A: 클라이언트에서 생성한 16바이트 random data"
+        },
+        {
+          "body_block_1based": 474,
+          "type": "p",
+          "text": "NOUNCE_B: 서버에서 생성한 16바이트 random data"
+        },
+        {
+          "body_block_1based": 475,
+          "type": "p",
+          "text": "HMAC_A = ENC(auth_key, nounce_b || nounce_a)"
+        },
+        {
+          "body_block_1based": 476,
+          "type": "p",
+          "text": "HMAC_B = ENC(auth_key, nounce_a || nounce_b)"
+        },
+        {
+          "body_block_1based": 477,
+          "type": "p",
+          "text": "NVM access"
+        },
+        {
+          "body_block_1based": 478,
+          "type": "p",
+          "text": "사용 알고리즘:AES-128"
+        },
+        {
+          "body_block_1based": 479,
+          "type": "p",
+          "text": "Encryption key는 생산시에 저장되는 10바이트 random data와 외부장치의 BD_ADDR 6바이트를 조합하여 사용한다. random data와 BD_ADDR은 장치마다 다르므로 키 값 또한 장치마다 다르다enc_key = bd_addr || rand_num"
+        }
+      ]
+    },
+    {
+      "original_id": "SW-FW-DS-ID-014",
+      "original_title": "보안 NVM 유닛",
+      "original_heading_body_block_1based": 480,
+      "module": "Security module",
+      "combined_id": "SU-ID-QCC-014",
+      "report_tests": [
+        {
+          "id": "SW-FW-UnitTest-QCC-ID-15",
+          "rows": "1763:1764"
+        }
+      ],
+      "definition_excerpt": "보안 모듈에서 사용하는 데이터 중에 NVM에 저장된 데이터를 읽거나 쓸 때 NVM의 접근을 처리한다. 다른 유닛들은 NVM의 직접적인 접근의 처리없이 보안 NVM이 제공하는 접근 인터페이스를 통해 쉽게 NVM을 데이터를 사용할 수 있도록 한다. 또한 NVM 데이터의 위치나 데이터 길이, 아니면 전체 NVM 타입이 바뀌더라도 보안 NVM 유닛만을 수정하여, 다른 유닛들은 기존 인터페이스를 통해 변경을 최소화하여 NVM 데이터를 사용할 수 있을 수 있다.",
+      "source_section_blocks": [
+        {
+          "body_block_1based": 481,
+          "type": "p",
+          "text": "보안 모듈에서 사용하는 데이터 중에 NVM에 저장된 데이터를 읽거나 쓸 때 NVM의 접근을 처리한다. 다른 유닛들은 NVM의 직접적인 접근의 처리없이 보안 NVM이 제공하는 접근 인터페이스를 통해 쉽게 NVM을 데이터를 사용할 수 있도록 한다. 또한 NVM 데이터의 위치나 데이터 길이, 아니면 전체 NVM 타입이 바뀌더라도 보안 NVM 유닛만을 수정하여, 다른 유닛들은 기존 인터페이스를 통해 변경을 최소화하여 NVM 데이터를 사용할 수 있을 수 있다."
+        },
+        {
+          "body_block_1based": 482,
+          "type": "p",
+          "text": "또한, 보안 NVM 유닛은 하드웨어 인터페이스 모듈의 NVM 처리 유닛을 통해 실제 데이터를 얻는다."
+        },
+        {
+          "body_block_1based": 483,
+          "type": "p",
+          "text": "그리고, 보안 모듈에서 사용하는 모든 NVM 데이터는 암호화가 되어있기 때문에, 이는 보안 툴 박스를 통해 복호화하거나 암호화한다. 이 키에 대한 설명은 보안 툴박스 유닛에서 하였다."
+        },
+        {
+          "body_block_1based": 484,
+          "type": "p",
+          "text": "보안에서 사용하는 NVM 데이터에는 다음과 같은 것들이 있다:"
+        },
+        {
+          "body_block_1based": 485,
+          "type": "tbl",
+          "text": "보안 NVM 데이터 | 설명\nAUTH_RAND_NUM | NVM 데이터의 암호화 키 생성에 사용하는 random data\nAUTH_SERVICE_KEY | 리모콘 앱 인증에 사용하는 키\nAUTH_CLINIC_MASTER_KEY | 리모콘 앱 인증에 사용하는 키를 생성하는데 사용하는 키"
+        }
+      ]
+    }
+  ],
+  "report_groups": [
+    {
+      "test_id": "SW-FW-UnitTest-QCC-ID-1",
+      "start_row": 1727,
+      "end_row": 1728,
+      "unit_ids": [
+        "SU-ID-QCC-005"
+      ],
+      "description": "PIO 초기화 설정과 제어\n목적: PIO 방향/주변장치 / 초기값 및 입력변화 메시지.\n요구: SW-FW-RID-46, SW-FW-RID-67, SW-FW-RID-68\n검증 범위: RID46의 QCC 연결표시 입력 지원, RID67/68의 기동/종료 상태 입력 지원. 등록 내부기 신원/RF 연결과 기동/종료 자극 억제의 완주 검증은 E8300 SW-FW-SYS-Test-ID-46(등록 내부기 연결)/67(기동 자극 억제)/68(종료 자극 억제) 경로에서 별도 확인한다.",
+      "condition_rows": 2
+    },
+    {
+      "test_id": "SW-FW-UnitTest-QCC-ID-2",
+      "start_row": 1729,
+      "end_row": 1732,
+      "unit_ids": [
+        "SU-ID-QCC-006"
+      ],
+      "description": "전원 관리\n목적: 전압→잔량 / 충전 / 저전압 상태.\n요구: SW-FW-RID-21, SW-FW-RID-22, SW-FW-RID-23, SW-FW-RID-29, SW-FW-RID-63, SW-FW-RID-28, SW-FW-RID-34\n검증 범위: RID23/28/34의 배터리 상태·알림 조건에 필요한 QCC 전원/잔량 입력 지원. 실제 자극 출력과 LED/자극 알림의 완주 검증은 E8300의 해당 시스템 시험23/28/34 경로에서 별도 확인한다. QCC 상태 확인을 알림/자극 통과로 확대하지 않는다.",
+      "condition_rows": 4
+    },
+    {
+      "test_id": "SW-FW-UnitTest-QCC-ID-3",
+      "start_row": 1733,
+      "end_row": 1733,
+      "unit_ids": [
+        "SU-ID-QCC-007"
+      ],
+      "description": "NVM 처리\n목적: 외부기 일련번호 PS 매핑/읽기/쓰기.\n[QCC 자료 입력] 외부기 일련번호 NVM 동작의 정식 직접 요구 추적.",
+      "condition_rows": 1
+    },
+    {
+      "test_id": "SW-FW-UnitTest-QCC-ID-4",
+      "start_row": 1734,
+      "end_row": 1735,
+      "unit_ids": [
+        "SU-ID-QCC-001",
+        "SU-ID-QCC-002"
+      ],
+      "description": "시스템 초기화와 상태 처리\n목적: 기동 설정/초기화와 전원 상태 SPI/ACK.\n요구: SW-FW-RID-21, SW-FW-RID-22, SW-FW-RID-29, SW-FW-RID-63",
+      "condition_rows": 2
+    },
+    {
+      "test_id": "SW-FW-UnitTest-QCC-ID-5",
+      "start_row": 1736,
+      "end_row": 1736,
+      "unit_ids": [
+        "SU-ID-QCC-002"
+      ],
+      "description": "시스템 상태 처리\n목적: 여섯 시스템 상태 저장/조회.\n요구: SW-FW-RID-29, SW-FW-RID-35, SW-FW-RID-38, SW-FW-RID-46, SW-FW-RID-63, SW-FW-RID-69, SW-FW-RID-70\n검증 범위: RID46의 QCC 연결표시/저장 상태 지원. 이 유닛의 상태 조회는 등록된 내부기 신원 및 근접 RF 연결을 검증하지 않는다. 해당 요구의 완주 검증은 E8300 SW-FW-SYS-Test-ID-46(등록 내부기 연결) 경로에서 별도 확인한다.",
+      "condition_rows": 1
+    },
+    {
+      "test_id": "SW-FW-UnitTest-QCC-ID-6",
+      "start_row": 1737,
+      "end_row": 1737,
+      "unit_ids": [
+        "SU-ID-QCC-003"
+      ],
+      "description": "장치 상태 처리\n목적: 생산 시 Standalone/TWS 구성과 편이/양이 오디오 / 데이터 처리.\n요구: SW-FW-RID-69, SW-FW-RID-70",
+      "condition_rows": 1
+    },
+    {
+      "test_id": "SW-FW-UnitTest-QCC-ID-7",
+      "start_row": 1738,
+      "end_row": 1739,
+      "unit_ids": [
+        "SU-ID-QCC-004"
+      ],
+      "description": "블루투스 상태 처리\n목적: 연결표시 입력에 따른 Bluetooth 활성 및 장치명.\n요구: SW-FW-RID-46, SW-FW-RID-48, SW-FW-RID-49, SW-FW-RID-69, SW-FW-RID-70\n검증 범위: RID46의 연결표시를 받아 QCC Bluetooth 활성/장치명을 구성하는 연계 지원. 등록 내부기 신원/RF 연결은 E8300 SYS46, 페어링/보호 데이터의 완주 검증은 SW-FW-SYS-Test-ID-48(페어링 전 제어 차단)/49(보호 데이터 전송)의 별도 경로에서 확인한다.",
+      "condition_rows": 2
+    },
+    {
+      "test_id": "SW-FW-UnitTest-QCC-ID-8",
+      "start_row": 1740,
+      "end_row": 1743,
+      "unit_ids": [
+        "SU-ID-QCC-004",
+        "SU-ID-QCC-008",
+        "SU-ID-QCC-009"
+      ],
+      "description": "Bluetooth 활성화와 기능 동작\n목적: 부착/탈착 시 BLE/Classic 검색 / 연결 활성.\n요구: SW-FW-RID-46, SW-FW-RID-67, SW-FW-RID-68, SW-FW-RID-69, SW-FW-RID-70\n검증 범위: RID46의 연결표시와 RID67/68의 부착/탈착 / 기동/종료 상태 연계 지원 및 QCC Bluetooth 동작. 등록 내부기 신원/RF 검증과 자극 출력 억제의 완주 검증은 E8300 SW-FW-SYS-Test-ID-46(등록 내부기 연결)/67(기동 자극 억제)/68(종료 자극 억제) 경로에서 별도 확인한다.",
+      "condition_rows": 4
+    },
+    {
+      "test_id": "SW-FW-UnitTest-QCC-ID-9",
+      "start_row": 1744,
+      "end_row": 1745,
+      "unit_ids": [
+        "SU-ID-QCC-009"
+      ],
+      "description": "BLE 연결 처리\n목적: 광고/스캔 응답과 현재/peer 잔량 / 연결 상태.\n요구: SW-FW-RID-29, SW-FW-RID-35, SW-FW-RID-38, SW-FW-RID-63, SW-FW-RID-70",
+      "condition_rows": 2
+    },
+    {
+      "test_id": "SW-FW-UnitTest-QCC-ID-10",
+      "start_row": 1746,
+      "end_row": 1750,
+      "unit_ids": [
+        "SU-ID-QCC-008"
+      ],
+      "description": "Bluetooth Classic 기능 처리\n목적: Classic 페어링 / 연결, 시험 스피커/양이 및 I2S 하향.\n요구: SW-FW-RID-15, SW-FW-RID-16, SW-FW-RID-69",
+      "condition_rows": 5
+    },
+    {
+      "test_id": "SW-FW-UnitTest-QCC-ID-11",
+      "start_row": 1751,
+      "end_row": 1752,
+      "unit_ids": [
+        "SU-ID-QCC-010"
+      ],
+      "description": "AUTH service 데이터 처리\n목적: AUTH 서비스 정의/등록 및 네 characteristic 패턴 중계.\n요구: SW-FW-RID-48, SW-FW-RID-52, SW-FW-RID-71, SW-FW-RID-76",
+      "condition_rows": 2
+    },
+    {
+      "test_id": "SW-FW-UnitTest-QCC-ID-12",
+      "start_row": 1753,
+      "end_row": 1754,
+      "unit_ids": [
+        "SU-ID-QCC-011"
+      ],
+      "description": "BLE data 처리\n목적: GAIA 편이/양이 메시지 처리와 위치 / 잔량 응답.\n요구: SW-FW-RID-29, SW-FW-RID-35, SW-FW-RID-38, SW-FW-RID-44, SW-FW-RID-45, SW-FW-RID-70",
+      "condition_rows": 2
+    },
+    {
+      "test_id": "SW-FW-UnitTest-QCC-ID-13",
+      "start_row": 1755,
+      "end_row": 1759,
+      "unit_ids": [
+        "SU-ID-QCC-012"
+      ],
+      "description": "CRA 인증 절차\n목적: 1:1, CRA 성공/실패 / 30초 timeout.\n요구: SW-FW-RID-47, SW-FW-RID-48, SW-FW-RID-49, SW-FW-RID-52, SW-FW-RID-71, SW-FW-RID-72, SW-FW-RID-76",
+      "condition_rows": 5
+    },
+    {
+      "test_id": "SW-FW-UnitTest-QCC-ID-14",
+      "start_row": 1760,
+      "end_row": 1762,
+      "unit_ids": [
+        "SU-ID-QCC-013"
+      ],
+      "description": "보안 툴박스\n목적: 리모콘 키, SHA-256 파생 매핑키, AES-CMAC 인증 및 NVM 복호화.\n요구: SW-FW-RID-52, SW-FW-RID-76, SW-FW-RID-78",
+      "condition_rows": 3
+    },
+    {
+      "test_id": "SW-FW-UnitTest-QCC-ID-15",
+      "start_row": 1763,
+      "end_row": 1764,
+      "unit_ids": [
+        "SU-ID-QCC-014"
+      ],
+      "description": "보안 NVM 접근\n목적: 보안 PS 영역/길이 / 읽기 인터페이스 및 암호화 저장값/복호화.\n요구: SW-FW-RID-76, SW-FW-RID-78",
+      "condition_rows": 2
+    }
+  ],
+  "report_evidence": {
+    "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\unit-rebuild-20261016\\source-check-workbook.json",
+    "sha256": "0FD9C473653CFD1C7395BB9077FA86E6C3B688869349EA24DE0CB0D8E260D9E8",
+    "output_sha256": "208F00BDB1C1B91636610C3D0B4DE7C3B679004A593782D1DBE104ADE2EED89C"
+  },
+  "conclusion": [
+    "재작성의 SU-ID-QCC-001..014는 원문 DS-ID-001..014의 기능에1:1 대응하며 설계 유닛 수를 임의로 늘린 것이 아니다.",
+    "보고서 TEST ID15개는 설계유닛14개와 구분한다. 시험4는 초기화001+시스템상태002, 시험5는시스템상태002, 시험8은주담당상태004와Classic008/BLE009 연계를 검증한다.",
+    "원문001의SW-BT, 나머지SW-FW 접두어와 스마트케이스/CC 잔존표기는 사용자 확정에 따라 외부기QCC 문맥으로 읽었으며 원문ID는 근거에 그대로 보존했다.",
+    "본 확인은 제공 설계의 구성/시험 매핑이며 QCC 실제 구현이나 제품시험 통과를 확인한 것이 아니다."
+  ],
+  "report_unique_unit_ids": [
+    "SU-ID-QCC-001",
+    "SU-ID-QCC-002",
+    "SU-ID-QCC-003",
+    "SU-ID-QCC-004",
+    "SU-ID-QCC-005",
+    "SU-ID-QCC-006",
+    "SU-ID-QCC-007",
+    "SU-ID-QCC-008",
+    "SU-ID-QCC-009",
+    "SU-ID-QCC-010",
+    "SU-ID-QCC-011",
+    "SU-ID-QCC-012",
+    "SU-ID-QCC-013",
+    "SU-ID-QCC-014"
+  ],
+  "files_modified": []
+}

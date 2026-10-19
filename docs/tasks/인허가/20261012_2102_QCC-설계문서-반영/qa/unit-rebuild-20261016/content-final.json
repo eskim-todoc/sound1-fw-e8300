@@ -1,0 +1,6891 @@
+{
+  "status": "PASS",
+  "scope": "독립 내용 QA: E8300 원본의 115개 시험을 유지하고 신규 QCC 15개 시험의 38개 조건만 이식했다. 새 제품 시험이나 정식 승인을 주장하지 않는다.",
+  "reviewAt": "2026-10-16T18:43:15.695202+09:00",
+  "candidateSHA256": "037CF72A05B276DE25FD21B7EE457A655736BE8FB6D4AE14B67C881F0E3EBEF4",
+  "candidatePath": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\unit-rebuild-20261016\\candidate.xlsx",
+  "sources": {
+    "originalE": {
+      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\04_설계 검증\\SW\\외부기\\김은수_작성\\[E8300] SUVR-FW-TD24A 소프트웨어 유닛 검증 보고서.xlsx",
+      "sha256": "05495AED7973BAF02E03C03AACE158AE233CEC419CF2308CCF3F9950DFAF21B5"
+    },
+    "QCCdonor": {
+      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\04_설계 검증\\SW\\외부기\\[E8300-QCC] SUVR-FW-TD24A 소프트웨어 유닛 검증 보고서.xlsx",
+      "sha256": "3FC067D5ACE535FB0B21E0F1C63449FCE552106AF26F2F1AA853AC2E9D82DA36"
+    },
+    "currentSUVC": {
+      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SUVC-FW-TD24A 소프트웨어 유닛 검증 기준서.xlsx",
+      "sha256": "7713D5BF52D76E7D79F516E1DF7943A26BB25783D3C8E6A03ABCAD4F598F457A"
+    },
+    "plan": {
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\unit-rebuild-20261016\\plan.json",
+      "sha256": "23FE6BFA7EB4BF736D5BDE25EBC54EB5FA01A351EDDCB44CC07D032AB019DB18"
+    },
+    "inventory": {
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\unit-rebuild-20261016\\content-inventory.json",
+      "sha256": "C2746CD1C2B2108C7D6A4F04555FE657CC32F3BC0A9969D53D988ADB05F3FE7A"
+    }
+  },
+  "checks": {
+    "candidateMatchesRootHash": true,
+    "originalE115IDOrderAndContentPreserved": true,
+    "originalEDeclaredPassValuesNotChanged": true,
+    "originalCoverPreserved": true,
+    "originalFooterShift38Preserved": true,
+    "new15UniqueQCCIDsAfter115": true,
+    "new341NonemptyRichCellsExactSource": true,
+    "all38ExpectedObservedNumbersAndUnexecutedStatesPreserved": true,
+    "allOriginalAnd60NewMergesPreserved": true,
+    "twoAuthorizedSharedNoticesExact": true,
+    "noticeD24LimitsPriorPassToE8300": true,
+    "noticeD19KeepsMissingQCCDataPending": true,
+    "comparison343BeforeAfterMatchesBody": true,
+    "comparison343RedOldGreenNew": true,
+    "mainComparisonMarkers0": true,
+    "SV12NoNewCommonColumnMismatch": true,
+    "protectedOriginalEUnchanged": true,
+    "protectedQCCSourceUnchanged": true,
+    "protectedSUVCSourceUnchanged": true,
+    "candidateStable": true,
+    "extendedOriginalPrintAreaAndRepeatRowsPreserved": true
+  },
+  "originalPreservation": {
+    "existingIDs": [
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-1",
+        "cell": "D30",
+        "row": 30
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-2",
+        "cell": "D35",
+        "row": 35
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-3",
+        "cell": "D39",
+        "row": 39
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-4",
+        "cell": "D43",
+        "row": 43
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-5",
+        "cell": "D47",
+        "row": 47
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-6",
+        "cell": "D51",
+        "row": 51
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-7",
+        "cell": "D54",
+        "row": 54
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-8",
+        "cell": "D59",
+        "row": 59
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-9",
+        "cell": "D64",
+        "row": 64
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-10",
+        "cell": "D67",
+        "row": 67
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-11",
+        "cell": "D72",
+        "row": 72
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-12",
+        "cell": "D101",
+        "row": 101
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-13",
+        "cell": "D116",
+        "row": 116
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-14",
+        "cell": "D121",
+        "row": 121
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-15",
+        "cell": "D124",
+        "row": 124
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-16",
+        "cell": "D131",
+        "row": 131
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-17",
+        "cell": "D138",
+        "row": 138
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-18",
+        "cell": "D144",
+        "row": 144
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-19",
+        "cell": "D149",
+        "row": 149
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-20",
+        "cell": "D160",
+        "row": 160
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-21",
+        "cell": "D168",
+        "row": 168
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-22",
+        "cell": "D175",
+        "row": 175
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-23",
+        "cell": "D182",
+        "row": 182
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-24",
+        "cell": "D268",
+        "row": 268
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-25",
+        "cell": "D278",
+        "row": 278
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-26",
+        "cell": "D285",
+        "row": 285
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-27",
+        "cell": "D289",
+        "row": 289
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-28",
+        "cell": "D298",
+        "row": 298
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-29",
+        "cell": "D304",
+        "row": 304
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-30",
+        "cell": "D309",
+        "row": 309
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-31",
+        "cell": "D322",
+        "row": 322
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-32",
+        "cell": "D401",
+        "row": 401
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-33",
+        "cell": "D559",
+        "row": 559
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-34",
+        "cell": "D578",
+        "row": 578
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-35",
+        "cell": "D585",
+        "row": 585
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-36",
+        "cell": "D589",
+        "row": 589
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-37",
+        "cell": "D595",
+        "row": 595
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-38",
+        "cell": "D609",
+        "row": 609
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-39",
+        "cell": "D614",
+        "row": 614
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-40",
+        "cell": "D624",
+        "row": 624
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-41",
+        "cell": "D633",
+        "row": 633
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-42",
+        "cell": "D638",
+        "row": 638
+      },
+      {
+        "id": "SW-FW-UnitTest-HEAR-ID-1",
+        "cell": "D644",
+        "row": 644
+      },
+      {
+        "id": "SW-FW-UnitTest-HEAR-ID-2",
+        "cell": "D650",
+        "row": 650
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-1",
+        "cell": "D789",
+        "row": 789
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-2",
+        "cell": "D793",
+        "row": 793
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-3",
+        "cell": "D799",
+        "row": 799
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-4",
+        "cell": "D802",
+        "row": 802
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-5",
+        "cell": "D809",
+        "row": 809
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-6",
+        "cell": "D812",
+        "row": 812
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-7",
+        "cell": "D824",
+        "row": 824
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-8",
+        "cell": "D834",
+        "row": 834
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-9",
+        "cell": "D839",
+        "row": 839
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-10",
+        "cell": "D860",
+        "row": 860
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-11",
+        "cell": "D876",
+        "row": 876
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-12",
+        "cell": "D883",
+        "row": 883
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-13",
+        "cell": "D889",
+        "row": 889
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-14",
+        "cell": "D897",
+        "row": 897
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-15",
+        "cell": "D904",
+        "row": 904
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-16",
+        "cell": "D908",
+        "row": 908
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-17",
+        "cell": "D915",
+        "row": 915
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-18",
+        "cell": "D920",
+        "row": 920
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-19",
+        "cell": "D925",
+        "row": 925
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-20",
+        "cell": "D934",
+        "row": 934
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-21",
+        "cell": "D942",
+        "row": 942
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-22",
+        "cell": "D964",
+        "row": 964
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-23",
+        "cell": "D976",
+        "row": 976
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-24",
+        "cell": "D982",
+        "row": 982
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-25",
+        "cell": "D987",
+        "row": 987
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-26",
+        "cell": "D996",
+        "row": 996
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-27",
+        "cell": "D1003",
+        "row": 1003
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-28",
+        "cell": "D1010",
+        "row": 1010
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-29",
+        "cell": "D1040",
+        "row": 1040
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-30",
+        "cell": "D1088",
+        "row": 1088
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-31",
+        "cell": "D1100",
+        "row": 1100
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-32",
+        "cell": "D1104",
+        "row": 1104
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-33",
+        "cell": "D1109",
+        "row": 1109
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-34",
+        "cell": "D1114",
+        "row": 1114
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-35",
+        "cell": "D1119",
+        "row": 1119
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-36",
+        "cell": "D1124",
+        "row": 1124
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-37",
+        "cell": "D1142",
+        "row": 1142
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-38",
+        "cell": "D1148",
+        "row": 1148
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-39",
+        "cell": "D1154",
+        "row": 1154
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-40",
+        "cell": "D1159",
+        "row": 1159
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-41",
+        "cell": "D1165",
+        "row": 1165
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-42",
+        "cell": "D1175",
+        "row": 1175
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-43",
+        "cell": "D1181",
+        "row": 1181
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-44",
+        "cell": "D1185",
+        "row": 1185
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-45",
+        "cell": "D1192",
+        "row": 1192
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-46",
+        "cell": "D1208",
+        "row": 1208
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-47",
+        "cell": "D1214",
+        "row": 1214
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-48",
+        "cell": "D1230",
+        "row": 1230
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-49",
+        "cell": "D1235",
+        "row": 1235
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-50",
+        "cell": "D1243",
+        "row": 1243
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-51",
+        "cell": "D1252",
+        "row": 1252
+      },
+      {
+        "id": "SW-FW-UnitTest-BOOT-ID-1",
+        "cell": "D1284",
+        "row": 1284
+      },
+      {
+        "id": "SW-FW-UnitTest-BOOT-ID-2",
+        "cell": "D1288",
+        "row": 1288
+      },
+      {
+        "id": "SW-FW-UnitTest-BOOT-ID-3",
+        "cell": "D1305",
+        "row": 1305
+      },
+      {
+        "id": "SW-FW-UnitTest-BOOT-ID-4",
+        "cell": "D1308",
+        "row": 1308
+      },
+      {
+        "id": "SW-FW-UnitTest-BOOT-ID-5",
+        "cell": "D1319",
+        "row": 1319
+      },
+      {
+        "id": "SW-FW-UnitTest-BOOT-ID-6",
+        "cell": "D1323",
+        "row": 1323
+      },
+      {
+        "id": "SW-FW-UnitTest-BOOT-ID-7",
+        "cell": "D1329",
+        "row": 1329
+      },
+      {
+        "id": "SW-FW-UnitTest-BOOT-ID-8",
+        "cell": "D1365",
+        "row": 1365
+      },
+      {
+        "id": "SW-FW-UnitTest-BOOT-ID-9",
+        "cell": "D1391",
+        "row": 1391
+      },
+      {
+        "id": "SW-FW-UnitTest-BOOT-ID-10",
+        "cell": "D1409",
+        "row": 1409
+      },
+      {
+        "id": "SW-FW-UnitTest-BOOT-ID-11",
+        "cell": "D1452",
+        "row": 1452
+      },
+      {
+        "id": "SW-FW-UnitTest-BOOT-ID-12",
+        "cell": "D1497",
+        "row": 1497
+      },
+      {
+        "id": "SW-FW-UnitTest-BOOT-ID-13",
+        "cell": "D1534",
+        "row": 1534
+      },
+      {
+        "id": "SW-FW-UnitTest-BOOT-ID-14",
+        "cell": "D1577",
+        "row": 1577
+      },
+      {
+        "id": "SW-FW-UnitTest-BOOT-ID-15",
+        "cell": "D1590",
+        "row": 1590
+      },
+      {
+        "id": "SW-FW-UnitTest-BOOT-ID-16",
+        "cell": "D1616",
+        "row": 1616
+      },
+      {
+        "id": "SW-FW-UnitTest-BOOT-ID-17",
+        "cell": "D1623",
+        "row": 1623
+      },
+      {
+        "id": "SW-FW-UnitTest-BOOT-ID-18",
+        "cell": "D1644",
+        "row": 1644
+      },
+      {
+        "id": "SW-FW-UnitTest-BOOT-ID-19",
+        "cell": "D1649",
+        "row": 1649
+      },
+      {
+        "id": "SW-FW-UnitTest-BOOT-ID-20",
+        "cell": "D1686",
+        "row": 1686
+      }
+    ],
+    "cellsCheckedBeforeNewSection": 22353,
+    "errors": [],
+    "addedUnexpectedOriginalSectionContent": [],
+    "originalCoverErrors": [],
+    "existingPassAnchorsBefore": 115,
+    "existingPassAnchorsAfter": 115,
+    "footerCellsChecked": 45,
+    "footerErrors": [],
+    "note": "기존footer의예답변은원본이력/내용보존이며새QCC검토완료나새정식승인으로해석하지않는다."
+  },
+  "newQCC": {
+    "IDs": [
+      {
+        "id": "SW-FW-UnitTest-QCC-ID-1",
+        "cell": "D1727",
+        "row": 1727
+      },
+      {
+        "id": "SW-FW-UnitTest-QCC-ID-2",
+        "cell": "D1729",
+        "row": 1729
+      },
+      {
+        "id": "SW-FW-UnitTest-QCC-ID-3",
+        "cell": "D1733",
+        "row": 1733
+      },
+      {
+        "id": "SW-FW-UnitTest-QCC-ID-4",
+        "cell": "D1734",
+        "row": 1734
+      },
+      {
+        "id": "SW-FW-UnitTest-QCC-ID-5",
+        "cell": "D1736",
+        "row": 1736
+      },
+      {
+        "id": "SW-FW-UnitTest-QCC-ID-6",
+        "cell": "D1737",
+        "row": 1737
+      },
+      {
+        "id": "SW-FW-UnitTest-QCC-ID-7",
+        "cell": "D1738",
+        "row": 1738
+      },
+      {
+        "id": "SW-FW-UnitTest-QCC-ID-8",
+        "cell": "D1740",
+        "row": 1740
+      },
+      {
+        "id": "SW-FW-UnitTest-QCC-ID-9",
+        "cell": "D1744",
+        "row": 1744
+      },
+      {
+        "id": "SW-FW-UnitTest-QCC-ID-10",
+        "cell": "D1746",
+        "row": 1746
+      },
+      {
+        "id": "SW-FW-UnitTest-QCC-ID-11",
+        "cell": "D1751",
+        "row": 1751
+      },
+      {
+        "id": "SW-FW-UnitTest-QCC-ID-12",
+        "cell": "D1753",
+        "row": 1753
+      },
+      {
+        "id": "SW-FW-UnitTest-QCC-ID-13",
+        "cell": "D1755",
+        "row": 1755
+      },
+      {
+        "id": "SW-FW-UnitTest-QCC-ID-14",
+        "cell": "D1760",
+        "row": 1760
+      },
+      {
+        "id": "SW-FW-UnitTest-QCC-ID-15",
+        "cell": "D1763",
+        "row": 1763
+      }
+    ],
+    "allIDOrder": [
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-1",
+        "cell": "D30",
+        "row": 30
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-2",
+        "cell": "D35",
+        "row": 35
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-3",
+        "cell": "D39",
+        "row": 39
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-4",
+        "cell": "D43",
+        "row": 43
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-5",
+        "cell": "D47",
+        "row": 47
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-6",
+        "cell": "D51",
+        "row": 51
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-7",
+        "cell": "D54",
+        "row": 54
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-8",
+        "cell": "D59",
+        "row": 59
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-9",
+        "cell": "D64",
+        "row": 64
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-10",
+        "cell": "D67",
+        "row": 67
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-11",
+        "cell": "D72",
+        "row": 72
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-12",
+        "cell": "D101",
+        "row": 101
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-13",
+        "cell": "D116",
+        "row": 116
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-14",
+        "cell": "D121",
+        "row": 121
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-15",
+        "cell": "D124",
+        "row": 124
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-16",
+        "cell": "D131",
+        "row": 131
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-17",
+        "cell": "D138",
+        "row": 138
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-18",
+        "cell": "D144",
+        "row": 144
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-19",
+        "cell": "D149",
+        "row": 149
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-20",
+        "cell": "D160",
+        "row": 160
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-21",
+        "cell": "D168",
+        "row": 168
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-22",
+        "cell": "D175",
+        "row": 175
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-23",
+        "cell": "D182",
+        "row": 182
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-24",
+        "cell": "D268",
+        "row": 268
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-25",
+        "cell": "D278",
+        "row": 278
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-26",
+        "cell": "D285",
+        "row": 285
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-27",
+        "cell": "D289",
+        "row": 289
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-28",
+        "cell": "D298",
+        "row": 298
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-29",
+        "cell": "D304",
+        "row": 304
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-30",
+        "cell": "D309",
+        "row": 309
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-31",
+        "cell": "D322",
+        "row": 322
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-32",
+        "cell": "D401",
+        "row": 401
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-33",
+        "cell": "D559",
+        "row": 559
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-34",
+        "cell": "D578",
+        "row": 578
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-35",
+        "cell": "D585",
+        "row": 585
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-36",
+        "cell": "D589",
+        "row": 589
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-37",
+        "cell": "D595",
+        "row": 595
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-38",
+        "cell": "D609",
+        "row": 609
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-39",
+        "cell": "D614",
+        "row": 614
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-40",
+        "cell": "D624",
+        "row": 624
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-41",
+        "cell": "D633",
+        "row": 633
+      },
+      {
+        "id": "SW-FW-UnitTest-CFX-ID-42",
+        "cell": "D638",
+        "row": 638
+      },
+      {
+        "id": "SW-FW-UnitTest-HEAR-ID-1",
+        "cell": "D644",
+        "row": 644
+      },
+      {
+        "id": "SW-FW-UnitTest-HEAR-ID-2",
+        "cell": "D650",
+        "row": 650
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-1",
+        "cell": "D789",
+        "row": 789
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-2",
+        "cell": "D793",
+        "row": 793
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-3",
+        "cell": "D799",
+        "row": 799
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-4",
+        "cell": "D802",
+        "row": 802
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-5",
+        "cell": "D809",
+        "row": 809
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-6",
+        "cell": "D812",
+        "row": 812
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-7",
+        "cell": "D824",
+        "row": 824
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-8",
+        "cell": "D834",
+        "row": 834
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-9",
+        "cell": "D839",
+        "row": 839
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-10",
+        "cell": "D860",
+        "row": 860
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-11",
+        "cell": "D876",
+        "row": 876
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-12",
+        "cell": "D883",
+        "row": 883
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-13",
+        "cell": "D889",
+        "row": 889
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-14",
+        "cell": "D897",
+        "row": 897
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-15",
+        "cell": "D904",
+        "row": 904
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-16",
+        "cell": "D908",
+        "row": 908
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-17",
+        "cell": "D915",
+        "row": 915
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-18",
+        "cell": "D920",
+        "row": 920
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-19",
+        "cell": "D925",
+        "row": 925
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-20",
+        "cell": "D934",
+        "row": 934
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-21",
+        "cell": "D942",
+        "row": 942
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-22",
+        "cell": "D964",
+        "row": 964
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-23",
+        "cell": "D976",
+        "row": 976
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-24",
+        "cell": "D982",
+        "row": 982
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-25",
+        "cell": "D987",
+        "row": 987
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-26",
+        "cell": "D996",
+        "row": 996
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-27",
+        "cell": "D1003",
+        "row": 1003
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-28",
+        "cell": "D1010",
+        "row": 1010
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-29",
+        "cell": "D1040",
+        "row": 1040
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-30",
+        "cell": "D1088",
+        "row": 1088
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-31",
+        "cell": "D1100",
+        "row": 1100
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-32",
+        "cell": "D1104",
+        "row": 1104
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-33",
+        "cell": "D1109",
+        "row": 1109
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-34",
+        "cell": "D1114",
+        "row": 1114
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-35",
+        "cell": "D1119",
+        "row": 1119
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-36",
+        "cell": "D1124",
+        "row": 1124
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-37",
+        "cell": "D1142",
+        "row": 1142
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-38",
+        "cell": "D1148",
+        "row": 1148
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-39",
+        "cell": "D1154",
+        "row": 1154
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-40",
+        "cell": "D1159",
+        "row": 1159
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-41",
+        "cell": "D1165",
+        "row": 1165
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-42",
+        "cell": "D1175",
+        "row": 1175
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-43",
+        "cell": "D1181",
+        "row": 1181
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-44",
+        "cell": "D1185",
+        "row": 1185
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-45",
+        "cell": "D1192",
+        "row": 1192
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-46",
+        "cell": "D1208",
+        "row": 1208
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-47",
+        "cell": "D1214",
+        "row": 1214
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-48",
+        "cell": "D1230",
+        "row": 1230
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-49",
+        "cell": "D1235",
+        "row": 1235
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-50",
+        "cell": "D1243",
+        "row": 1243
+      },
+      {
+        "id": "SW-FW-UnitTest-CM3-ID-51",
+        "cell": "D1252",
+        "row": 1252
+      },
+      {
+        "id": "SW-FW-UnitTest-BOOT-ID-1",
+        "cell": "D1284",
+        "row": 1284
+      },
+      {
+        "id": "SW-FW-UnitTest-BOOT-ID-2",
+        "cell": "D1288",
+        "row": 1288
+      },
+      {
+        "id": "SW-FW-UnitTest-BOOT-ID-3",
+        "cell": "D1305",
+        "row": 1305
+      },
+      {
+        "id": "SW-FW-UnitTest-BOOT-ID-4",
+        "cell": "D1308",
+        "row": 1308
+      },
+      {
+        "id": "SW-FW-UnitTest-BOOT-ID-5",
+        "cell": "D1319",
+        "row": 1319
+      },
+      {
+        "id": "SW-FW-UnitTest-BOOT-ID-6",
+        "cell": "D1323",
+        "row": 1323
+      },
+      {
+        "id": "SW-FW-UnitTest-BOOT-ID-7",
+        "cell": "D1329",
+        "row": 1329
+      },
+      {
+        "id": "SW-FW-UnitTest-BOOT-ID-8",
+        "cell": "D1365",
+        "row": 1365
+      },
+      {
+        "id": "SW-FW-UnitTest-BOOT-ID-9",
+        "cell": "D1391",
+        "row": 1391
+      },
+      {
+        "id": "SW-FW-UnitTest-BOOT-ID-10",
+        "cell": "D1409",
+        "row": 1409
+      },
+      {
+        "id": "SW-FW-UnitTest-BOOT-ID-11",
+        "cell": "D1452",
+        "row": 1452
+      },
+      {
+        "id": "SW-FW-UnitTest-BOOT-ID-12",
+        "cell": "D1497",
+        "row": 1497
+      },
+      {
+        "id": "SW-FW-UnitTest-BOOT-ID-13",
+        "cell": "D1534",
+        "row": 1534
+      },
+      {
+        "id": "SW-FW-UnitTest-BOOT-ID-14",
+        "cell": "D1577",
+        "row": 1577
+      },
+      {
+        "id": "SW-FW-UnitTest-BOOT-ID-15",
+        "cell": "D1590",
+        "row": 1590
+      },
+      {
+        "id": "SW-FW-UnitTest-BOOT-ID-16",
+        "cell": "D1616",
+        "row": 1616
+      },
+      {
+        "id": "SW-FW-UnitTest-BOOT-ID-17",
+        "cell": "D1623",
+        "row": 1623
+      },
+      {
+        "id": "SW-FW-UnitTest-BOOT-ID-18",
+        "cell": "D1644",
+        "row": 1644
+      },
+      {
+        "id": "SW-FW-UnitTest-BOOT-ID-19",
+        "cell": "D1649",
+        "row": 1649
+      },
+      {
+        "id": "SW-FW-UnitTest-BOOT-ID-20",
+        "cell": "D1686",
+        "row": 1686
+      },
+      {
+        "id": "SW-FW-UnitTest-QCC-ID-1",
+        "cell": "D1727",
+        "row": 1727
+      },
+      {
+        "id": "SW-FW-UnitTest-QCC-ID-2",
+        "cell": "D1729",
+        "row": 1729
+      },
+      {
+        "id": "SW-FW-UnitTest-QCC-ID-3",
+        "cell": "D1733",
+        "row": 1733
+      },
+      {
+        "id": "SW-FW-UnitTest-QCC-ID-4",
+        "cell": "D1734",
+        "row": 1734
+      },
+      {
+        "id": "SW-FW-UnitTest-QCC-ID-5",
+        "cell": "D1736",
+        "row": 1736
+      },
+      {
+        "id": "SW-FW-UnitTest-QCC-ID-6",
+        "cell": "D1737",
+        "row": 1737
+      },
+      {
+        "id": "SW-FW-UnitTest-QCC-ID-7",
+        "cell": "D1738",
+        "row": 1738
+      },
+      {
+        "id": "SW-FW-UnitTest-QCC-ID-8",
+        "cell": "D1740",
+        "row": 1740
+      },
+      {
+        "id": "SW-FW-UnitTest-QCC-ID-9",
+        "cell": "D1744",
+        "row": 1744
+      },
+      {
+        "id": "SW-FW-UnitTest-QCC-ID-10",
+        "cell": "D1746",
+        "row": 1746
+      },
+      {
+        "id": "SW-FW-UnitTest-QCC-ID-11",
+        "cell": "D1751",
+        "row": 1751
+      },
+      {
+        "id": "SW-FW-UnitTest-QCC-ID-12",
+        "cell": "D1753",
+        "row": 1753
+      },
+      {
+        "id": "SW-FW-UnitTest-QCC-ID-13",
+        "cell": "D1755",
+        "row": 1755
+      },
+      {
+        "id": "SW-FW-UnitTest-QCC-ID-14",
+        "cell": "D1760",
+        "row": 1760
+      },
+      {
+        "id": "SW-FW-UnitTest-QCC-ID-15",
+        "cell": "D1763",
+        "row": 1763
+      }
+    ],
+    "nonemptyCellsChecked": 341,
+    "allValuePositionsChecked": 456,
+    "errors": [],
+    "conditionResultProof": [
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-1",
+        "row": 1727,
+        "condition": 1,
+        "verification": 1,
+        "result": "\n검증 [1]\n입력: 초기 PIO 설정과 입출력/주변장치 매핑\n실행 상태: 미실행.\n관찰: PIO 방향/출력 초기값, preInit/Application 호출 순서와 전체 로그 미수집/미제공.\n[QCC 자료 입력] 이 조건의 실제 실행 결과와 관찰 근거.\n",
+        "verdict": "\n미실행\n판정 대기\n",
+        "pass": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-1",
+        "row": 1728,
+        "condition": 2,
+        "verification": 2,
+        "result": "\n검증 [2]\n입력: shutdown_ind/inter_dev_conn_ind 각각 초기값0/1 및 0→1,1→0\n실행 상태: 미실행.\n관찰: 두 PIO 신호, 초기/변화 이벤트와 상태 로그 미수집/미제공.\n[QCC 자료 입력] 이 조건의 실제 실행 결과와 관찰 근거.\n",
+        "verdict": "\n미실행\n판정 대기\n",
+        "pass": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-2",
+        "row": 1729,
+        "condition": 1,
+        "verification": 1,
+        "result": "\n검증 [1]\n입력: 배터리 특성 설정과 전압4.2/3.95/3.7/3.475/3.35/3.0 V\n실행 상태: 미실행.\n관찰: 공급/ADC 전압, 읽기 시각, 변환/저장 잔량 미수집/미제공.\n[QCC 자료 입력] 이 조건의 실제 실행 결과와 관찰 근거.\n",
+        "verdict": "\n미실행\n판정 대기\n",
+        "pass": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-2",
+        "row": 1730,
+        "condition": 2,
+        "verification": 2,
+        "result": "\n검증 [2]\n입력: 충전 케이블 연결→분리, 동일 배터리 상태\n실행 상태: 미실행.\n관찰: 연결/분리 시각, 충전 상태 및 잔량 변화 미수집/미제공.\n[QCC 자료 입력] 이 조건의 실제 실행 결과와 관찰 근거.\n",
+        "verdict": "\n미실행\n판정 대기\n",
+        "pass": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-2",
+        "row": 1731,
+        "condition": 3,
+        "verification": 3,
+        "result": "\n검증 [3]\n입력: 외부 충전 Enable, 공급 전압4.2 V 이상/3.95/3.7/3.475/3.35/3.0 V\n실행 상태: 미실행.\n관찰: 각 공급/ADC 전압과 잔량/상태, Empty 동작 및 충전 상태 미수집/미제공.\n[QCC 자료 입력] 이 조건의 실제 실행 결과와 관찰 근거.\n",
+        "verdict": "\n미실행\n판정 대기\n",
+        "pass": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-2",
+        "row": 1732,
+        "condition": 4,
+        "verification": 4,
+        "result": "\n검증 [4]\n입력: shutdown_ind=0/1, 충전 중/비충전 상태 구분\n실행 상태: 미실행.\n관찰: 논리 입력/물리 핀, 충전 상태, 절전/깨움 및 마지막 SPI 시각 미수집/미제공.\n[QCC 자료 입력] 이 조건의 실제 실행 결과와 관찰 근거.\n",
+        "verdict": "\n미실행\n판정 대기\n",
+        "pass": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-3",
+        "row": 1733,
+        "condition": 1,
+        "verification": 1,
+        "result": "\n검증 [1]\n입력: Application PS 키 TD_PS_KEY_EX_DEV_SERIAL_NUNM의 격리된 시험 일련번호\n실행 상태: 미실행.\n관찰: PS 위치/길이, 시험 번호의 쓰기/읽기 전량 미수집/미제공.\n[QCC 자료 입력] 이 조건의 실제 실행 결과와 관찰 근거.\n",
+        "verdict": "\n미실행\n판정 대기\n",
+        "pass": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-4",
+        "row": 1734,
+        "condition": 1,
+        "verification": 1,
+        "result": "\n검증 [1]\n입력: 초기 설정 완료 후 시스템 기동\n실행 상태: 미실행.\n관찰: 설정 완료 시점, 각 초기화/Application 호출 순서 미수집/미제공.\n[QCC 자료 입력] 이 조건의 실제 실행 결과와 관찰 근거.\n",
+        "verdict": "\n미실행\n판정 대기\n",
+        "pass": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-4",
+        "row": 1735,
+        "condition": 2,
+        "verification": 2,
+        "result": "\n검증 [2]\n입력: 기동 후 shutdown_ind=0, 이후 배터리 주기 읽기. 잔량80/충전1/뚜껑1과잔량40/충전0/뚜껑2\n실행 상태: 미실행.\n관찰: 입력/수신 전량 바이트, 저장 상태/전체 RTT 미수집/미제공.\n[QCC 자료 입력] 이 조건의 실제 실행 결과와 관찰 근거.\n",
+        "verdict": "\n미실행\n판정 대기\n",
+        "pass": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-5",
+        "row": 1736,
+        "condition": 1,
+        "verification": 1,
+        "result": "\n검증 [1]\n입력: 다른 상태는 고정, shutdown_ind/inter_dev_conn_ind=0→1→0, 잔량40→80, 충전 분리→연결, Classic/BLE 연결→해제\n실행 상태: 미실행.\n관찰: 여섯 입력/저장/조회값 및 전체 상태 로그 미수집/미제공.\n[QCC 자료 입력] 이 조건의 실제 실행 결과와 관찰 근거.\n",
+        "verdict": "\n미실행\n판정 대기\n",
+        "pass": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-6",
+        "row": 1737,
+        "condition": 1,
+        "verification": 1,
+        "result": "\n검증 [1]\n입력: 생산 구성: A=Standalone1대, B=TWS2대1세트, C=TWS 구성의1대 단독 사용\n실행 상태: 미실행.\n관찰: 생산 모드/동작 중 유지, A/B/C별 오디오/데이터 및 peer 상태 미수집/미제공.\n[QCC 자료 입력] 이 조건의 실제 실행 결과와 관찰 근거.\n",
+        "verdict": "\n미실행\n판정 대기\n",
+        "pass": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-7",
+        "row": 1738,
+        "condition": 1,
+        "verification": 1,
+        "result": "\n검증 [1]\n입력: inter_dev_conn_ind=0→1→0\n실행 상태: 미실행.\n관찰: 연결 표시, 활성 상태, 검색/연결 상태 미수집/미제공.\n[QCC 자료 입력] 이 조건의 실제 실행 결과와 관찰 근거.\n",
+        "verdict": "\n미실행\n판정 대기\n",
+        "pass": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-7",
+        "row": 1739,
+        "condition": 2,
+        "verification": 2,
+        "result": "\n검증 [2]\n입력: 연결 표시1, 수술위치L/R, 시험 사용자TEST01, 외부기 시험 식별번호\n실행 상태: 미실행.\n관찰: 정보 요청/응답, L/R별 생성 이름 / 로그 / 스캔 전량 미수집/미제공.\n[QCC 자료 입력] 이 조건의 실제 실행 결과와 관찰 근거.\n",
+        "verdict": "\n미실행\n판정 대기\n",
+        "pass": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-8",
+        "row": 1740,
+        "condition": 1,
+        "verification": 1,
+        "result": "\n검증 [1]\n입력: 내부기 미부착→부착→탈착→재부착, nRFConnect 검색\n실행 상태: 미실행.\n관찰: 각 부착 상태의 PIO/광고/검색 이름 미수집/미제공.\n[QCC 자료 입력] 이 조건의 실제 실행 결과와 관찰 근거.\n",
+        "verdict": "\n미실행\n판정 대기\n",
+        "pass": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-8",
+        "row": 1741,
+        "condition": 2,
+        "verification": 2,
+        "result": "\n검증 [2]\n입력: 내부기 부착, BLE 연결 후1분 유지→탈착\n실행 상태: 미실행.\n관찰: 유지 시작/탈착/해제 시각, 연결 상태 및 해제 주체 미수집/미제공.\n[QCC 자료 입력] 이 조건의 실제 실행 결과와 관찰 근거.\n",
+        "verdict": "\n미실행\n판정 대기\n",
+        "pass": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-8",
+        "row": 1742,
+        "condition": 3,
+        "verification": 3,
+        "result": "\n검증 [3]\n입력: Classic 페어링 준비, 미부착→부착→탈착→재부착\n실행 상태: 미실행.\n관찰: 각 부착 상태의 Classic 검색/장치명 미수집/미제공.\n[QCC 자료 입력] 이 조건의 실제 실행 결과와 관찰 근거.\n",
+        "verdict": "\n미실행\n판정 대기\n",
+        "pass": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-8",
+        "row": 1743,
+        "condition": 4,
+        "verification": 4,
+        "result": "\n검증 [4]\n입력: 내부기 부착, Classic 연결 후1분 유지→탈착\n실행 상태: 미실행.\n관찰: 유지 시작/탈착/해제 시각, 프로파일 상태 및 해제 주체 미수집/미제공.\n[QCC 자료 입력] 이 조건의 실제 실행 결과와 관찰 근거.\n",
+        "verdict": "\n미실행\n판정 대기\n",
+        "pass": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-9",
+        "row": 1744,
+        "condition": 1,
+        "verification": 1,
+        "result": "\n검증 [1]\n입력: 부착/양이peer 구성, 현재잔량37→72%, peer72→37%\n실행 상태: 미실행.\n관찰: 잔량쌍, Advertising/ScanResponse 생성/수신 전바이트 및 전체 로그 미수집/미제공.\n[QCC 자료 입력] 이 조건의 실제 실행 결과와 관찰 근거.\n",
+        "verdict": "\n미실행\n판정 대기\n",
+        "pass": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-9",
+        "row": 1745,
+        "condition": 2,
+        "verification": 2,
+        "result": "\n검증 [2]\n입력: 내부기 부착, nRFConnect BLE 연결→해제\n실행 상태: 미실행.\n관찰: 연결/해제 시각, 저장/조회 상태 및 전체 로그 미수집/미제공.\n[QCC 자료 입력] 이 조건의 실제 실행 결과와 관찰 근거.\n",
+        "verdict": "\n미실행\n판정 대기\n",
+        "pass": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-10",
+        "row": 1746,
+        "condition": 1,
+        "verification": 1,
+        "result": "\n검증 [1]\n입력: 내부기 부착/BLE 연결, Pair 요청19 04 02 01 80 80\n실행 상태: 미실행.\n관찰: 요청/응답6byte, Pairing 처리와 전후 검색 상태 미수집/미제공.\n[QCC 자료 입력] 이 조건의 실제 실행 결과와 관찰 근거.\n",
+        "verdict": "\n미실행\n판정 대기\n",
+        "pass": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-10",
+        "row": 1747,
+        "condition": 2,
+        "verification": 2,
+        "result": "\n검증 [2]\n입력: 스마트폰 Classic 연결→해제\n실행 상태: 미실행.\n관찰: 프로파일 연결/해제와 저장/조회 상태 / 전체 로그 미수집/미제공.\n[QCC 자료 입력] 이 조건의 실제 실행 결과와 관찰 근거.\n",
+        "verdict": "\n미실행\n판정 대기\n",
+        "pass": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-10",
+        "row": 1748,
+        "condition": 3,
+        "verification": 3,
+        "result": "\n검증 [3]\n입력: Classic 시험 스피커 출력 구성, 스마트폰 음악 재생\n실행 상태: 미실행.\n관찰: 오디오 연결 상태/로그와 시험 스피커 청취 미수집/미제공.\n[QCC 자료 입력] 이 조건의 실제 실행 결과와 관찰 근거.\n",
+        "verdict": "\n미실행\n판정 대기\n",
+        "pass": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-10",
+        "row": 1749,
+        "condition": 4,
+        "verification": 4,
+        "result": "\n검증 [4]\n입력: 시험 스피커 구성2대, TWS 양이 설정, 같은 스마트폰 음악\n실행 상태: 미실행.\n관찰: 두 장치의 peer/오디오 상태 및 개별 청취 미수집/미제공.\n[QCC 자료 입력] 이 조건의 실제 실행 결과와 관찰 근거.\n",
+        "verdict": "\n미실행\n판정 대기\n",
+        "pass": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-10",
+        "row": 1750,
+        "condition": 5,
+        "verification": 5,
+        "result": "\n검증 [5]\n입력: Classic 수신/I2S 하향 구성, 스마트폰 시험 음악, I2S OFF→ON→OFF\n실행 상태: 미실행.\n관찰: Classic 연결, BCLK/LRCLK/샘플 전량, DIO29 및 E8300 수신 버퍼 미수집/미제공.\n[QCC 자료 입력] 이 조건의 실제 실행 결과와 관찰 근거.\n",
+        "verdict": "\n미실행\n판정 대기\n",
+        "pass": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-11",
+        "row": 1751,
+        "condition": 1,
+        "verification": 1,
+        "result": "\n검증 [1]\n입력: 내부기 부착/BLE 연결 후 AUTH 서비스 탐색\n실행 상태: 미실행.\n관찰: AUTH 등록/초기화, 서비스/characteristic 속성 / 권한 미수집/미제공.\n[QCC 자료 입력] 이 조건의 실제 실행 결과와 관찰 근거.\n",
+        "verdict": "\n미실행\n판정 대기\n",
+        "pass": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-11",
+        "row": 1752,
+        "condition": 2,
+        "verification": 2,
+        "result": "\n검증 [2]\n입력: Challenge00..0B,Response10..1B,Confirm20..2B 각12byte 및Status30\n실행 상태: 미실행.\n관찰: 네 교환의 실제 방향/길이/전량 바이트 미수집/미제공.\n[QCC 자료 입력] 이 조건의 실제 실행 결과와 관찰 근거.\n",
+        "verdict": "\n미실행\n판정 대기\n",
+        "pass": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-12",
+        "row": 1753,
+        "condition": 1,
+        "verification": 1,
+        "result": "\n검증 [1]\n입력: 편이 설정; Pair=19 04 02 01 80 80, State=19 04 02 01 81 00 01. 시험 A Left/37%, B Right/72%.\n실행 상태: 미실행.\n관찰: 입력/수신 전량 바이트, 저장 상태/전체 RTT 미수집/미제공.\n[QCC 자료 입력] 이 조건의 실제 실행 결과와 관찰 근거.\n",
+        "verdict": "\n미실행\n판정 대기\n",
+        "pass": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-12",
+        "row": 1754,
+        "condition": 2,
+        "verification": 2,
+        "result": "\n검증 [2]\n입력: 양이 설정; Pair=19 04 02 01 03 80 80, State=19 04 02 01 03 81 00 01. 양쪽 nn/aa/잔량37·72를 구별해 준비.\n실행 상태: 미실행.\n관찰: 입력/수신 전량 바이트, 저장 상태/전체 RTT 미수집/미제공.\n[QCC 자료 입력] 이 조건의 실제 실행 결과와 관찰 근거.\n",
+        "verdict": "\n미실행\n판정 대기\n",
+        "pass": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-13",
+        "row": 1755,
+        "condition": 1,
+        "verification": 1,
+        "result": "\n검증 [1]\n입력: 내부기 부착/CRA앱 BLE 연결, 별도nRFConnect 검색; 앱 해제와내부기 탈착\n실행 상태: 미실행.\n관찰: 앱 연결/해제, 부착 상태 및 검색 결과 미수집/미제공.\n[QCC 자료 입력] 이 조건의 실제 실행 결과와 관찰 근거.\n",
+        "verdict": "\n미실행\n판정 대기\n",
+        "pass": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-13",
+        "row": 1756,
+        "condition": 2,
+        "verification": 2,
+        "result": "\n검증 [2]\n입력: CRA 인증 완료 없는 BLE 연결, timeout30초\n실행 상태: 미실행.\n관찰: 연결/타이머 시작/타임아웃/해제 시각과Status 미수집/미제공.\n[QCC 자료 입력] 이 조건의 실제 실행 결과와 관찰 근거.\n",
+        "verdict": "\n미실행\n판정 대기\n",
+        "pass": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-13",
+        "row": 1757,
+        "condition": 3,
+        "verification": 3,
+        "result": "\n검증 [3]\n입력: 리모콘auth_type1/매핑2, 각시험키00×16, timeout30초\n실행 상태: 미실행.\n관찰: 앱유형/전체 인증값 / Status, 인증완료/연결유지/탈착/검색 미수집/미제공.\n[QCC 자료 입력] 이 조건의 실제 실행 결과와 관찰 근거.\n",
+        "verdict": "\n미실행\n판정 대기\n",
+        "pass": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-13",
+        "row": 1758,
+        "condition": 4,
+        "verification": 4,
+        "result": "\n검증 [4]\n입력: QCC시험키00×16 유지, client만01×16; 타입1리모콘/2매핑\n실행 상태: 미실행.\n관찰: 양쪽 시험키 역할/타입, 실패Status/반환값과해제 주체 미수집/미제공.\n[QCC 자료 입력] 이 조건의 실제 실행 결과와 관찰 근거.\n",
+        "verdict": "\n미실행\n판정 대기\n",
+        "pass": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-13",
+        "row": 1759,
+        "condition": 5,
+        "verification": 5,
+        "result": "\n검증 [5]\n입력: 시험키00×16, auth_type1=매핑/2=리모콘의 타입불일치\n실행 상태: 미실행.\n관찰: 실제 앱유형/auth_type, 실패Status 및 QCC해제 미수집/미제공.\n[QCC 자료 입력] 이 조건의 실제 실행 결과와 관찰 근거.\n",
+        "verdict": "\n미실행\n판정 대기\n",
+        "pass": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-14",
+        "row": 1760,
+        "condition": 1,
+        "verification": 1,
+        "result": "\n검증 [1]\n입력: 리모콘auth_type1, 공개 시험shared_service_key00×16\n실행 상태: 미실행.\n관찰: NVM키 역할/길이, nonce/계산입력 및 전체CMAC/인증상태 미수집/미제공.\n[QCC 자료 입력] 이 조건의 실제 실행 결과와 관찰 근거.\n",
+        "verdict": "\n미실행\n판정 대기\n",
+        "pass": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-14",
+        "row": 1761,
+        "condition": 2,
+        "verification": 2,
+        "result": "\n검증 [2]\n입력: 매핑auth_type2, 공개 clinician_master_key00×16와시험serial_num, timeout30초\n실행 상태: 미실행.\n관찰: 전체입력 직렬화,32byte digest/16byte파생키 및 전체CMAC/인증상태 미수집/미제공.\n[QCC 자료 입력] 이 조건의 실제 실행 결과와 관찰 근거.\n",
+        "verdict": "\n미실행\n판정 대기\n",
+        "pass": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-14",
+        "row": 1762,
+        "condition": 3,
+        "verification": 3,
+        "result": "\n검증 [3]\n입력: NVM시험RAND10byte,BD_ADDR6byte,암호화된shared_service_key의평문00×16\n실행 상태: 미실행.\n관찰: RAND/BD_ADDR 직렬화, 암호문/도출키 및16byte복호화값 미수집/미제공.\n[QCC 자료 입력] 이 조건의 실제 실행 결과와 관찰 근거.\n",
+        "verdict": "\n미실행\n판정 대기\n",
+        "pass": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-15",
+        "row": 1763,
+        "condition": 1,
+        "verification": 1,
+        "result": "\n검증 [1]\n입력: 격리 시험PS_USR40/43/44와보안NVM접근 인터페이스\n실행 상태: 미실행.\n관찰: PS위치/길이/값존재, 인터페이스 및 저장대상/접근권한 미수집/미제공.\n[QCC 자료 입력] 이 조건의 실제 실행 결과와 관찰 근거.\n",
+        "verdict": "\n미실행\n판정 대기\n",
+        "pass": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-15",
+        "row": 1764,
+        "condition": 2,
+        "verification": 2,
+        "result": "\n검증 [2]\n입력: 리모콘auth_type1,시험키00×16,시험RAND/BD_ADDR와PS저장암호문\n실행 상태: 미실행.\n관찰: PS저장암호문, RAND/주소/도출경계 및16byte평문 미수집/미제공.\n[QCC 자료 입력] 이 조건의 실제 실행 결과와 관찰 근거.\n",
+        "verdict": "\n미실행\n판정 대기\n",
+        "pass": true
+      }
+    ],
+    "conditionErrors": [],
+    "originalNewMergeCount": 60,
+    "mergeMissing": [],
+    "mergeExtra": []
+  },
+  "sharedNoticeProof": [
+    {
+      "cell": "D19",
+      "before": "\nQCC 내부 유닛 시험 자료를 여기에 추가한다. 시험 목록은 아래 E8300 시험 다음에 이어서 작성한다.\n",
+      "expected": "\nQCC 유닛 시험에는 QCC SDK, PSTool, nRF Connect, CRA 앱과 실제 로그/전송 바이트 수집 도구를 사용한다.\n[QCC 자료 입력] 실제 SDK, 소스/도구, 회로/프로토콜 버전 및 실행 결과와 수집 자료.\n",
+      "actual": "\nQCC 유닛 시험에는 QCC SDK, PSTool, nRF Connect, CRA 앱과 실제 로그/전송 바이트 수집 도구를 사용한다.\n[QCC 자료 입력] 실제 SDK, 소스/도구, 회로/프로토콜 버전 및 실행 결과와 수집 자료.\n",
+      "pass": true
+    },
+    {
+      "cell": "D24",
+      "before": "\n시험자가 전 항목 통과를 확인했다. 입력별 예상 출력과 대조하여 결과 칸을 정리했다.\n",
+      "expected": "\n시험자가 기존 E8300 시험 전 항목의 통과를 확인했다. 입력별 예상 출력과 대조하여 결과 칸을 정리했다. QCC 유닛 시험의 실행 및 판정 상태는 각 시험 결과와 통과 여부 칸에 기재한다.\n",
+      "actual": "\n시험자가 기존 E8300 시험 전 항목의 통과를 확인했다. 입력별 예상 출력과 대조하여 결과 칸을 정리했다. QCC 유닛 시험의 실행 및 판정 상태는 각 시험 결과와 통과 여부 칸에 기재한다.\n",
+      "pass": true
+    }
+  ],
+  "comparison": {
+    "count": 343,
+    "rows": [
+      {
+        "row": 5,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-1",
+        "bodyCell": "B1727",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 6,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-1",
+        "bodyCell": "C1727",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 7,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-1",
+        "bodyCell": "D1727",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 8,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-1",
+        "bodyCell": "E1727",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 9,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-1",
+        "bodyCell": "F1727",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 10,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-1",
+        "bodyCell": "G1727",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 11,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-1",
+        "bodyCell": "H1727",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 12,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-1",
+        "bodyCell": "I1727",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 13,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-1",
+        "bodyCell": "J1727",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 14,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-1",
+        "bodyCell": "K1727",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 15,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-1",
+        "bodyCell": "L1727",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 16,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-1",
+        "bodyCell": "M1727",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 17,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-1",
+        "bodyCell": "F1728",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 18,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-1",
+        "bodyCell": "H1728",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 19,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-1",
+        "bodyCell": "I1728",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 20,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-1",
+        "bodyCell": "J1728",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 21,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-1",
+        "bodyCell": "K1728",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 22,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-1",
+        "bodyCell": "L1728",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 23,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-1",
+        "bodyCell": "M1728",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 24,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-2",
+        "bodyCell": "B1729",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 25,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-2",
+        "bodyCell": "C1729",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 26,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-2",
+        "bodyCell": "D1729",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 27,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-2",
+        "bodyCell": "E1729",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 28,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-2",
+        "bodyCell": "F1729",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 29,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-2",
+        "bodyCell": "G1729",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 30,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-2",
+        "bodyCell": "H1729",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 31,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-2",
+        "bodyCell": "I1729",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 32,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-2",
+        "bodyCell": "J1729",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 33,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-2",
+        "bodyCell": "K1729",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 34,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-2",
+        "bodyCell": "L1729",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 35,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-2",
+        "bodyCell": "M1729",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 36,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-2",
+        "bodyCell": "F1730",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 37,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-2",
+        "bodyCell": "H1730",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 38,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-2",
+        "bodyCell": "I1730",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 39,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-2",
+        "bodyCell": "J1730",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 40,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-2",
+        "bodyCell": "K1730",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 41,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-2",
+        "bodyCell": "L1730",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 42,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-2",
+        "bodyCell": "M1730",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 43,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-2",
+        "bodyCell": "F1731",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 44,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-2",
+        "bodyCell": "H1731",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 45,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-2",
+        "bodyCell": "I1731",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 46,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-2",
+        "bodyCell": "J1731",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 47,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-2",
+        "bodyCell": "K1731",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 48,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-2",
+        "bodyCell": "L1731",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 49,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-2",
+        "bodyCell": "M1731",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 50,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-2",
+        "bodyCell": "F1732",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 51,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-2",
+        "bodyCell": "H1732",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 52,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-2",
+        "bodyCell": "I1732",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 53,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-2",
+        "bodyCell": "J1732",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 54,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-2",
+        "bodyCell": "K1732",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 55,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-2",
+        "bodyCell": "L1732",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 56,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-2",
+        "bodyCell": "M1732",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 57,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-3",
+        "bodyCell": "B1733",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 58,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-3",
+        "bodyCell": "C1733",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 59,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-3",
+        "bodyCell": "D1733",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 60,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-3",
+        "bodyCell": "E1733",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 61,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-3",
+        "bodyCell": "F1733",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 62,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-3",
+        "bodyCell": "G1733",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 63,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-3",
+        "bodyCell": "H1733",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 64,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-3",
+        "bodyCell": "I1733",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 65,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-3",
+        "bodyCell": "J1733",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 66,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-3",
+        "bodyCell": "K1733",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 67,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-3",
+        "bodyCell": "L1733",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 68,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-3",
+        "bodyCell": "M1733",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 69,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-4",
+        "bodyCell": "B1734",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 70,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-4",
+        "bodyCell": "C1734",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 71,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-4",
+        "bodyCell": "D1734",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 72,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-4",
+        "bodyCell": "E1734",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 73,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-4",
+        "bodyCell": "F1734",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 74,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-4",
+        "bodyCell": "G1734",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 75,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-4",
+        "bodyCell": "H1734",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 76,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-4",
+        "bodyCell": "I1734",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 77,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-4",
+        "bodyCell": "J1734",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 78,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-4",
+        "bodyCell": "K1734",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 79,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-4",
+        "bodyCell": "L1734",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 80,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-4",
+        "bodyCell": "M1734",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 81,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-4",
+        "bodyCell": "F1735",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 82,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-4",
+        "bodyCell": "H1735",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 83,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-4",
+        "bodyCell": "I1735",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 84,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-4",
+        "bodyCell": "J1735",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 85,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-4",
+        "bodyCell": "K1735",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 86,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-4",
+        "bodyCell": "L1735",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 87,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-4",
+        "bodyCell": "M1735",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 88,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-5",
+        "bodyCell": "B1736",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 89,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-5",
+        "bodyCell": "C1736",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 90,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-5",
+        "bodyCell": "D1736",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 91,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-5",
+        "bodyCell": "E1736",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 92,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-5",
+        "bodyCell": "F1736",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 93,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-5",
+        "bodyCell": "G1736",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 94,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-5",
+        "bodyCell": "H1736",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 95,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-5",
+        "bodyCell": "I1736",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 96,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-5",
+        "bodyCell": "J1736",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 97,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-5",
+        "bodyCell": "K1736",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 98,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-5",
+        "bodyCell": "L1736",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 99,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-5",
+        "bodyCell": "M1736",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 100,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-6",
+        "bodyCell": "B1737",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 101,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-6",
+        "bodyCell": "C1737",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 102,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-6",
+        "bodyCell": "D1737",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 103,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-6",
+        "bodyCell": "E1737",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 104,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-6",
+        "bodyCell": "F1737",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 105,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-6",
+        "bodyCell": "G1737",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 106,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-6",
+        "bodyCell": "H1737",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 107,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-6",
+        "bodyCell": "I1737",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 108,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-6",
+        "bodyCell": "J1737",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 109,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-6",
+        "bodyCell": "K1737",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 110,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-6",
+        "bodyCell": "L1737",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 111,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-6",
+        "bodyCell": "M1737",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 112,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-7",
+        "bodyCell": "B1738",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 113,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-7",
+        "bodyCell": "C1738",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 114,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-7",
+        "bodyCell": "D1738",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 115,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-7",
+        "bodyCell": "E1738",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 116,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-7",
+        "bodyCell": "F1738",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 117,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-7",
+        "bodyCell": "G1738",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 118,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-7",
+        "bodyCell": "H1738",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 119,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-7",
+        "bodyCell": "I1738",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 120,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-7",
+        "bodyCell": "J1738",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 121,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-7",
+        "bodyCell": "K1738",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 122,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-7",
+        "bodyCell": "L1738",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 123,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-7",
+        "bodyCell": "M1738",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 124,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-7",
+        "bodyCell": "F1739",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 125,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-7",
+        "bodyCell": "H1739",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 126,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-7",
+        "bodyCell": "I1739",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 127,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-7",
+        "bodyCell": "J1739",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 128,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-7",
+        "bodyCell": "K1739",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 129,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-7",
+        "bodyCell": "L1739",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 130,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-7",
+        "bodyCell": "M1739",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 131,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-8",
+        "bodyCell": "B1740",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 132,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-8",
+        "bodyCell": "C1740",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 133,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-8",
+        "bodyCell": "D1740",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 134,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-8",
+        "bodyCell": "E1740",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 135,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-8",
+        "bodyCell": "F1740",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 136,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-8",
+        "bodyCell": "G1740",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 137,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-8",
+        "bodyCell": "H1740",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 138,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-8",
+        "bodyCell": "I1740",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 139,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-8",
+        "bodyCell": "J1740",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 140,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-8",
+        "bodyCell": "K1740",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 141,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-8",
+        "bodyCell": "L1740",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 142,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-8",
+        "bodyCell": "M1740",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 143,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-8",
+        "bodyCell": "F1741",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 144,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-8",
+        "bodyCell": "H1741",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 145,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-8",
+        "bodyCell": "I1741",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 146,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-8",
+        "bodyCell": "J1741",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 147,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-8",
+        "bodyCell": "K1741",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 148,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-8",
+        "bodyCell": "L1741",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 149,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-8",
+        "bodyCell": "M1741",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 150,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-8",
+        "bodyCell": "F1742",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 151,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-8",
+        "bodyCell": "H1742",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 152,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-8",
+        "bodyCell": "I1742",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 153,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-8",
+        "bodyCell": "J1742",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 154,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-8",
+        "bodyCell": "K1742",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 155,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-8",
+        "bodyCell": "L1742",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 156,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-8",
+        "bodyCell": "M1742",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 157,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-8",
+        "bodyCell": "F1743",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 158,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-8",
+        "bodyCell": "H1743",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 159,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-8",
+        "bodyCell": "I1743",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 160,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-8",
+        "bodyCell": "J1743",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 161,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-8",
+        "bodyCell": "K1743",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 162,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-8",
+        "bodyCell": "L1743",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 163,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-8",
+        "bodyCell": "M1743",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 164,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-9",
+        "bodyCell": "B1744",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 165,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-9",
+        "bodyCell": "C1744",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 166,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-9",
+        "bodyCell": "D1744",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 167,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-9",
+        "bodyCell": "E1744",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 168,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-9",
+        "bodyCell": "F1744",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 169,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-9",
+        "bodyCell": "G1744",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 170,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-9",
+        "bodyCell": "H1744",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 171,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-9",
+        "bodyCell": "I1744",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 172,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-9",
+        "bodyCell": "J1744",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 173,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-9",
+        "bodyCell": "K1744",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 174,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-9",
+        "bodyCell": "L1744",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 175,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-9",
+        "bodyCell": "M1744",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 176,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-9",
+        "bodyCell": "F1745",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 177,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-9",
+        "bodyCell": "H1745",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 178,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-9",
+        "bodyCell": "I1745",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 179,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-9",
+        "bodyCell": "J1745",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 180,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-9",
+        "bodyCell": "K1745",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 181,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-9",
+        "bodyCell": "L1745",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 182,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-9",
+        "bodyCell": "M1745",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 183,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-10",
+        "bodyCell": "B1746",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 184,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-10",
+        "bodyCell": "C1746",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 185,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-10",
+        "bodyCell": "D1746",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 186,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-10",
+        "bodyCell": "E1746",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 187,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-10",
+        "bodyCell": "F1746",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 188,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-10",
+        "bodyCell": "G1746",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 189,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-10",
+        "bodyCell": "H1746",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 190,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-10",
+        "bodyCell": "I1746",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 191,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-10",
+        "bodyCell": "J1746",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 192,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-10",
+        "bodyCell": "K1746",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 193,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-10",
+        "bodyCell": "L1746",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 194,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-10",
+        "bodyCell": "M1746",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 195,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-10",
+        "bodyCell": "F1747",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 196,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-10",
+        "bodyCell": "H1747",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 197,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-10",
+        "bodyCell": "I1747",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 198,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-10",
+        "bodyCell": "J1747",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 199,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-10",
+        "bodyCell": "K1747",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 200,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-10",
+        "bodyCell": "L1747",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 201,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-10",
+        "bodyCell": "M1747",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 202,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-10",
+        "bodyCell": "F1748",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 203,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-10",
+        "bodyCell": "H1748",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 204,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-10",
+        "bodyCell": "I1748",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 205,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-10",
+        "bodyCell": "J1748",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 206,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-10",
+        "bodyCell": "K1748",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 207,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-10",
+        "bodyCell": "L1748",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 208,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-10",
+        "bodyCell": "M1748",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 209,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-10",
+        "bodyCell": "F1749",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 210,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-10",
+        "bodyCell": "H1749",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 211,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-10",
+        "bodyCell": "I1749",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 212,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-10",
+        "bodyCell": "J1749",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 213,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-10",
+        "bodyCell": "K1749",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 214,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-10",
+        "bodyCell": "L1749",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 215,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-10",
+        "bodyCell": "M1749",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 216,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-10",
+        "bodyCell": "F1750",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 217,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-10",
+        "bodyCell": "H1750",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 218,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-10",
+        "bodyCell": "I1750",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 219,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-10",
+        "bodyCell": "J1750",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 220,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-10",
+        "bodyCell": "K1750",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 221,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-10",
+        "bodyCell": "L1750",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 222,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-10",
+        "bodyCell": "M1750",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 223,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-11",
+        "bodyCell": "B1751",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 224,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-11",
+        "bodyCell": "C1751",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 225,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-11",
+        "bodyCell": "D1751",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 226,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-11",
+        "bodyCell": "E1751",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 227,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-11",
+        "bodyCell": "F1751",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 228,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-11",
+        "bodyCell": "G1751",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 229,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-11",
+        "bodyCell": "H1751",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 230,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-11",
+        "bodyCell": "I1751",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 231,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-11",
+        "bodyCell": "J1751",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 232,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-11",
+        "bodyCell": "K1751",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 233,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-11",
+        "bodyCell": "L1751",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 234,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-11",
+        "bodyCell": "M1751",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 235,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-11",
+        "bodyCell": "F1752",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 236,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-11",
+        "bodyCell": "H1752",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 237,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-11",
+        "bodyCell": "I1752",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 238,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-11",
+        "bodyCell": "J1752",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 239,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-11",
+        "bodyCell": "K1752",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 240,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-11",
+        "bodyCell": "L1752",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 241,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-11",
+        "bodyCell": "M1752",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 242,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-12",
+        "bodyCell": "B1753",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 243,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-12",
+        "bodyCell": "C1753",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 244,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-12",
+        "bodyCell": "D1753",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 245,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-12",
+        "bodyCell": "E1753",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 246,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-12",
+        "bodyCell": "F1753",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 247,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-12",
+        "bodyCell": "G1753",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 248,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-12",
+        "bodyCell": "H1753",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 249,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-12",
+        "bodyCell": "I1753",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 250,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-12",
+        "bodyCell": "J1753",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 251,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-12",
+        "bodyCell": "K1753",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 252,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-12",
+        "bodyCell": "L1753",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 253,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-12",
+        "bodyCell": "M1753",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 254,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-12",
+        "bodyCell": "F1754",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 255,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-12",
+        "bodyCell": "H1754",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 256,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-12",
+        "bodyCell": "I1754",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 257,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-12",
+        "bodyCell": "J1754",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 258,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-12",
+        "bodyCell": "K1754",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 259,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-12",
+        "bodyCell": "L1754",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 260,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-12",
+        "bodyCell": "M1754",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 261,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-13",
+        "bodyCell": "B1755",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 262,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-13",
+        "bodyCell": "C1755",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 263,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-13",
+        "bodyCell": "D1755",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 264,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-13",
+        "bodyCell": "E1755",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 265,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-13",
+        "bodyCell": "F1755",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 266,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-13",
+        "bodyCell": "G1755",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 267,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-13",
+        "bodyCell": "H1755",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 268,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-13",
+        "bodyCell": "I1755",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 269,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-13",
+        "bodyCell": "J1755",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 270,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-13",
+        "bodyCell": "K1755",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 271,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-13",
+        "bodyCell": "L1755",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 272,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-13",
+        "bodyCell": "M1755",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 273,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-13",
+        "bodyCell": "F1756",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 274,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-13",
+        "bodyCell": "H1756",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 275,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-13",
+        "bodyCell": "I1756",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 276,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-13",
+        "bodyCell": "J1756",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 277,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-13",
+        "bodyCell": "K1756",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 278,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-13",
+        "bodyCell": "L1756",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 279,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-13",
+        "bodyCell": "M1756",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 280,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-13",
+        "bodyCell": "F1757",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 281,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-13",
+        "bodyCell": "H1757",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 282,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-13",
+        "bodyCell": "I1757",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 283,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-13",
+        "bodyCell": "J1757",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 284,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-13",
+        "bodyCell": "K1757",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 285,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-13",
+        "bodyCell": "L1757",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 286,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-13",
+        "bodyCell": "M1757",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 287,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-13",
+        "bodyCell": "F1758",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 288,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-13",
+        "bodyCell": "H1758",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 289,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-13",
+        "bodyCell": "I1758",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 290,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-13",
+        "bodyCell": "J1758",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 291,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-13",
+        "bodyCell": "K1758",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 292,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-13",
+        "bodyCell": "L1758",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 293,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-13",
+        "bodyCell": "M1758",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 294,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-13",
+        "bodyCell": "F1759",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 295,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-13",
+        "bodyCell": "H1759",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 296,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-13",
+        "bodyCell": "I1759",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 297,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-13",
+        "bodyCell": "J1759",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 298,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-13",
+        "bodyCell": "K1759",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 299,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-13",
+        "bodyCell": "L1759",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 300,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-13",
+        "bodyCell": "M1759",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 301,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-14",
+        "bodyCell": "B1760",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 302,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-14",
+        "bodyCell": "C1760",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 303,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-14",
+        "bodyCell": "D1760",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 304,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-14",
+        "bodyCell": "E1760",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 305,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-14",
+        "bodyCell": "F1760",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 306,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-14",
+        "bodyCell": "G1760",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 307,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-14",
+        "bodyCell": "H1760",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 308,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-14",
+        "bodyCell": "I1760",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 309,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-14",
+        "bodyCell": "J1760",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 310,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-14",
+        "bodyCell": "K1760",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 311,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-14",
+        "bodyCell": "L1760",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 312,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-14",
+        "bodyCell": "M1760",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 313,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-14",
+        "bodyCell": "F1761",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 314,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-14",
+        "bodyCell": "H1761",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 315,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-14",
+        "bodyCell": "I1761",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 316,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-14",
+        "bodyCell": "J1761",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 317,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-14",
+        "bodyCell": "K1761",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 318,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-14",
+        "bodyCell": "L1761",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 319,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-14",
+        "bodyCell": "M1761",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 320,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-14",
+        "bodyCell": "F1762",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 321,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-14",
+        "bodyCell": "H1762",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 322,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-14",
+        "bodyCell": "I1762",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 323,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-14",
+        "bodyCell": "J1762",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 324,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-14",
+        "bodyCell": "K1762",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 325,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-14",
+        "bodyCell": "L1762",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 326,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-14",
+        "bodyCell": "M1762",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 327,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-15",
+        "bodyCell": "B1763",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 328,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-15",
+        "bodyCell": "C1763",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 329,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-15",
+        "bodyCell": "D1763",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 330,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-15",
+        "bodyCell": "E1763",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 331,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-15",
+        "bodyCell": "F1763",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 332,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-15",
+        "bodyCell": "G1763",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 333,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-15",
+        "bodyCell": "H1763",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 334,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-15",
+        "bodyCell": "I1763",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 335,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-15",
+        "bodyCell": "J1763",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 336,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-15",
+        "bodyCell": "K1763",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 337,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-15",
+        "bodyCell": "L1763",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 338,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-15",
+        "bodyCell": "M1763",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 339,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-15",
+        "bodyCell": "F1764",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 340,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-15",
+        "bodyCell": "H1764",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 341,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-15",
+        "bodyCell": "I1764",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 342,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-15",
+        "bodyCell": "J1764",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 343,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-15",
+        "bodyCell": "K1764",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 344,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-15",
+        "bodyCell": "L1764",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 345,
+        "sourceTestID": "SW-FW-UnitTest-QCC-ID-15",
+        "bodyCell": "M1764",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 346,
+        "sourceTestID": "공통 안내",
+        "bodyCell": "D19",
+        "matchesBeforeAfterBody": true
+      },
+      {
+        "row": 347,
+        "sourceTestID": "공통 안내",
+        "bodyCell": "D24",
+        "matchesBeforeAfterBody": true
+      }
+    ],
+    "errors": [],
+    "colorErrors": [],
+    "mainMarkers": []
+  },
+  "SV12NewQCCCommonContent": {
+    "status": "PASS",
+    "scope": "신규 QCC 15개 시험의 38개 조건에 해당하는 B:K 공통 10열만 현행 SUVC와 ID/조건별로 대조했다. 기존 115개 시험의 기준서 및 설계 전수 대조는 미실행이다.",
+    "criteriaCaseCount": 38,
+    "candidateCaseCount": 38,
+    "commonCellsChecked": 380,
+    "proof": [
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-1",
+        "condition": 1,
+        "column": "B",
+        "criteriaCell": "B1727",
+        "reportCell": "B1727",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-1",
+        "condition": 1,
+        "column": "C",
+        "criteriaCell": "C1727",
+        "reportCell": "C1727",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-1",
+        "condition": 1,
+        "column": "D",
+        "criteriaCell": "D1727",
+        "reportCell": "D1727",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-1",
+        "condition": 1,
+        "column": "E",
+        "criteriaCell": "E1727",
+        "reportCell": "E1727",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-1",
+        "condition": 1,
+        "column": "F",
+        "criteriaCell": "F1727",
+        "reportCell": "F1727",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-1",
+        "condition": 1,
+        "column": "G",
+        "criteriaCell": "G1727",
+        "reportCell": "G1727",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-1",
+        "condition": 1,
+        "column": "H",
+        "criteriaCell": "H1727",
+        "reportCell": "H1727",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-1",
+        "condition": 1,
+        "column": "I",
+        "criteriaCell": "I1727",
+        "reportCell": "I1727",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-1",
+        "condition": 1,
+        "column": "J",
+        "criteriaCell": "J1727",
+        "reportCell": "J1727",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-1",
+        "condition": 1,
+        "column": "K",
+        "criteriaCell": "K1727",
+        "reportCell": "K1727",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-1",
+        "condition": 2,
+        "column": "B",
+        "criteriaCell": "B1728",
+        "reportCell": "B1728",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-1",
+        "condition": 2,
+        "column": "C",
+        "criteriaCell": "C1728",
+        "reportCell": "C1728",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-1",
+        "condition": 2,
+        "column": "D",
+        "criteriaCell": "D1728",
+        "reportCell": "D1728",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-1",
+        "condition": 2,
+        "column": "E",
+        "criteriaCell": "E1728",
+        "reportCell": "E1728",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-1",
+        "condition": 2,
+        "column": "F",
+        "criteriaCell": "F1728",
+        "reportCell": "F1728",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-1",
+        "condition": 2,
+        "column": "G",
+        "criteriaCell": "G1728",
+        "reportCell": "G1728",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-1",
+        "condition": 2,
+        "column": "H",
+        "criteriaCell": "H1728",
+        "reportCell": "H1728",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-1",
+        "condition": 2,
+        "column": "I",
+        "criteriaCell": "I1728",
+        "reportCell": "I1728",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-1",
+        "condition": 2,
+        "column": "J",
+        "criteriaCell": "J1728",
+        "reportCell": "J1728",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-1",
+        "condition": 2,
+        "column": "K",
+        "criteriaCell": "K1728",
+        "reportCell": "K1728",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-2",
+        "condition": 1,
+        "column": "B",
+        "criteriaCell": "B1729",
+        "reportCell": "B1729",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-2",
+        "condition": 1,
+        "column": "C",
+        "criteriaCell": "C1729",
+        "reportCell": "C1729",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-2",
+        "condition": 1,
+        "column": "D",
+        "criteriaCell": "D1729",
+        "reportCell": "D1729",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-2",
+        "condition": 1,
+        "column": "E",
+        "criteriaCell": "E1729",
+        "reportCell": "E1729",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-2",
+        "condition": 1,
+        "column": "F",
+        "criteriaCell": "F1729",
+        "reportCell": "F1729",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-2",
+        "condition": 1,
+        "column": "G",
+        "criteriaCell": "G1729",
+        "reportCell": "G1729",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-2",
+        "condition": 1,
+        "column": "H",
+        "criteriaCell": "H1729",
+        "reportCell": "H1729",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-2",
+        "condition": 1,
+        "column": "I",
+        "criteriaCell": "I1729",
+        "reportCell": "I1729",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-2",
+        "condition": 1,
+        "column": "J",
+        "criteriaCell": "J1729",
+        "reportCell": "J1729",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-2",
+        "condition": 1,
+        "column": "K",
+        "criteriaCell": "K1729",
+        "reportCell": "K1729",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-2",
+        "condition": 2,
+        "column": "B",
+        "criteriaCell": "B1730",
+        "reportCell": "B1730",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-2",
+        "condition": 2,
+        "column": "C",
+        "criteriaCell": "C1730",
+        "reportCell": "C1730",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-2",
+        "condition": 2,
+        "column": "D",
+        "criteriaCell": "D1730",
+        "reportCell": "D1730",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-2",
+        "condition": 2,
+        "column": "E",
+        "criteriaCell": "E1730",
+        "reportCell": "E1730",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-2",
+        "condition": 2,
+        "column": "F",
+        "criteriaCell": "F1730",
+        "reportCell": "F1730",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-2",
+        "condition": 2,
+        "column": "G",
+        "criteriaCell": "G1730",
+        "reportCell": "G1730",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-2",
+        "condition": 2,
+        "column": "H",
+        "criteriaCell": "H1730",
+        "reportCell": "H1730",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-2",
+        "condition": 2,
+        "column": "I",
+        "criteriaCell": "I1730",
+        "reportCell": "I1730",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-2",
+        "condition": 2,
+        "column": "J",
+        "criteriaCell": "J1730",
+        "reportCell": "J1730",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-2",
+        "condition": 2,
+        "column": "K",
+        "criteriaCell": "K1730",
+        "reportCell": "K1730",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-2",
+        "condition": 3,
+        "column": "B",
+        "criteriaCell": "B1731",
+        "reportCell": "B1731",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-2",
+        "condition": 3,
+        "column": "C",
+        "criteriaCell": "C1731",
+        "reportCell": "C1731",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-2",
+        "condition": 3,
+        "column": "D",
+        "criteriaCell": "D1731",
+        "reportCell": "D1731",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-2",
+        "condition": 3,
+        "column": "E",
+        "criteriaCell": "E1731",
+        "reportCell": "E1731",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-2",
+        "condition": 3,
+        "column": "F",
+        "criteriaCell": "F1731",
+        "reportCell": "F1731",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-2",
+        "condition": 3,
+        "column": "G",
+        "criteriaCell": "G1731",
+        "reportCell": "G1731",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-2",
+        "condition": 3,
+        "column": "H",
+        "criteriaCell": "H1731",
+        "reportCell": "H1731",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-2",
+        "condition": 3,
+        "column": "I",
+        "criteriaCell": "I1731",
+        "reportCell": "I1731",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-2",
+        "condition": 3,
+        "column": "J",
+        "criteriaCell": "J1731",
+        "reportCell": "J1731",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-2",
+        "condition": 3,
+        "column": "K",
+        "criteriaCell": "K1731",
+        "reportCell": "K1731",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-2",
+        "condition": 4,
+        "column": "B",
+        "criteriaCell": "B1732",
+        "reportCell": "B1732",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-2",
+        "condition": 4,
+        "column": "C",
+        "criteriaCell": "C1732",
+        "reportCell": "C1732",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-2",
+        "condition": 4,
+        "column": "D",
+        "criteriaCell": "D1732",
+        "reportCell": "D1732",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-2",
+        "condition": 4,
+        "column": "E",
+        "criteriaCell": "E1732",
+        "reportCell": "E1732",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-2",
+        "condition": 4,
+        "column": "F",
+        "criteriaCell": "F1732",
+        "reportCell": "F1732",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-2",
+        "condition": 4,
+        "column": "G",
+        "criteriaCell": "G1732",
+        "reportCell": "G1732",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-2",
+        "condition": 4,
+        "column": "H",
+        "criteriaCell": "H1732",
+        "reportCell": "H1732",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-2",
+        "condition": 4,
+        "column": "I",
+        "criteriaCell": "I1732",
+        "reportCell": "I1732",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-2",
+        "condition": 4,
+        "column": "J",
+        "criteriaCell": "J1732",
+        "reportCell": "J1732",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-2",
+        "condition": 4,
+        "column": "K",
+        "criteriaCell": "K1732",
+        "reportCell": "K1732",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-3",
+        "condition": 1,
+        "column": "B",
+        "criteriaCell": "B1733",
+        "reportCell": "B1733",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-3",
+        "condition": 1,
+        "column": "C",
+        "criteriaCell": "C1733",
+        "reportCell": "C1733",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-3",
+        "condition": 1,
+        "column": "D",
+        "criteriaCell": "D1733",
+        "reportCell": "D1733",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-3",
+        "condition": 1,
+        "column": "E",
+        "criteriaCell": "E1733",
+        "reportCell": "E1733",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-3",
+        "condition": 1,
+        "column": "F",
+        "criteriaCell": "F1733",
+        "reportCell": "F1733",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-3",
+        "condition": 1,
+        "column": "G",
+        "criteriaCell": "G1733",
+        "reportCell": "G1733",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-3",
+        "condition": 1,
+        "column": "H",
+        "criteriaCell": "H1733",
+        "reportCell": "H1733",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-3",
+        "condition": 1,
+        "column": "I",
+        "criteriaCell": "I1733",
+        "reportCell": "I1733",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-3",
+        "condition": 1,
+        "column": "J",
+        "criteriaCell": "J1733",
+        "reportCell": "J1733",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-3",
+        "condition": 1,
+        "column": "K",
+        "criteriaCell": "K1733",
+        "reportCell": "K1733",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-4",
+        "condition": 1,
+        "column": "B",
+        "criteriaCell": "B1734",
+        "reportCell": "B1734",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-4",
+        "condition": 1,
+        "column": "C",
+        "criteriaCell": "C1734",
+        "reportCell": "C1734",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-4",
+        "condition": 1,
+        "column": "D",
+        "criteriaCell": "D1734",
+        "reportCell": "D1734",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-4",
+        "condition": 1,
+        "column": "E",
+        "criteriaCell": "E1734",
+        "reportCell": "E1734",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-4",
+        "condition": 1,
+        "column": "F",
+        "criteriaCell": "F1734",
+        "reportCell": "F1734",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-4",
+        "condition": 1,
+        "column": "G",
+        "criteriaCell": "G1734",
+        "reportCell": "G1734",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-4",
+        "condition": 1,
+        "column": "H",
+        "criteriaCell": "H1734",
+        "reportCell": "H1734",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-4",
+        "condition": 1,
+        "column": "I",
+        "criteriaCell": "I1734",
+        "reportCell": "I1734",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-4",
+        "condition": 1,
+        "column": "J",
+        "criteriaCell": "J1734",
+        "reportCell": "J1734",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-4",
+        "condition": 1,
+        "column": "K",
+        "criteriaCell": "K1734",
+        "reportCell": "K1734",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-4",
+        "condition": 2,
+        "column": "B",
+        "criteriaCell": "B1735",
+        "reportCell": "B1735",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-4",
+        "condition": 2,
+        "column": "C",
+        "criteriaCell": "C1735",
+        "reportCell": "C1735",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-4",
+        "condition": 2,
+        "column": "D",
+        "criteriaCell": "D1735",
+        "reportCell": "D1735",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-4",
+        "condition": 2,
+        "column": "E",
+        "criteriaCell": "E1735",
+        "reportCell": "E1735",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-4",
+        "condition": 2,
+        "column": "F",
+        "criteriaCell": "F1735",
+        "reportCell": "F1735",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-4",
+        "condition": 2,
+        "column": "G",
+        "criteriaCell": "G1735",
+        "reportCell": "G1735",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-4",
+        "condition": 2,
+        "column": "H",
+        "criteriaCell": "H1735",
+        "reportCell": "H1735",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-4",
+        "condition": 2,
+        "column": "I",
+        "criteriaCell": "I1735",
+        "reportCell": "I1735",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-4",
+        "condition": 2,
+        "column": "J",
+        "criteriaCell": "J1735",
+        "reportCell": "J1735",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-4",
+        "condition": 2,
+        "column": "K",
+        "criteriaCell": "K1735",
+        "reportCell": "K1735",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-5",
+        "condition": 1,
+        "column": "B",
+        "criteriaCell": "B1736",
+        "reportCell": "B1736",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-5",
+        "condition": 1,
+        "column": "C",
+        "criteriaCell": "C1736",
+        "reportCell": "C1736",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-5",
+        "condition": 1,
+        "column": "D",
+        "criteriaCell": "D1736",
+        "reportCell": "D1736",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-5",
+        "condition": 1,
+        "column": "E",
+        "criteriaCell": "E1736",
+        "reportCell": "E1736",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-5",
+        "condition": 1,
+        "column": "F",
+        "criteriaCell": "F1736",
+        "reportCell": "F1736",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-5",
+        "condition": 1,
+        "column": "G",
+        "criteriaCell": "G1736",
+        "reportCell": "G1736",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-5",
+        "condition": 1,
+        "column": "H",
+        "criteriaCell": "H1736",
+        "reportCell": "H1736",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-5",
+        "condition": 1,
+        "column": "I",
+        "criteriaCell": "I1736",
+        "reportCell": "I1736",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-5",
+        "condition": 1,
+        "column": "J",
+        "criteriaCell": "J1736",
+        "reportCell": "J1736",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-5",
+        "condition": 1,
+        "column": "K",
+        "criteriaCell": "K1736",
+        "reportCell": "K1736",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-6",
+        "condition": 1,
+        "column": "B",
+        "criteriaCell": "B1737",
+        "reportCell": "B1737",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-6",
+        "condition": 1,
+        "column": "C",
+        "criteriaCell": "C1737",
+        "reportCell": "C1737",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-6",
+        "condition": 1,
+        "column": "D",
+        "criteriaCell": "D1737",
+        "reportCell": "D1737",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-6",
+        "condition": 1,
+        "column": "E",
+        "criteriaCell": "E1737",
+        "reportCell": "E1737",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-6",
+        "condition": 1,
+        "column": "F",
+        "criteriaCell": "F1737",
+        "reportCell": "F1737",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-6",
+        "condition": 1,
+        "column": "G",
+        "criteriaCell": "G1737",
+        "reportCell": "G1737",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-6",
+        "condition": 1,
+        "column": "H",
+        "criteriaCell": "H1737",
+        "reportCell": "H1737",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-6",
+        "condition": 1,
+        "column": "I",
+        "criteriaCell": "I1737",
+        "reportCell": "I1737",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-6",
+        "condition": 1,
+        "column": "J",
+        "criteriaCell": "J1737",
+        "reportCell": "J1737",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-6",
+        "condition": 1,
+        "column": "K",
+        "criteriaCell": "K1737",
+        "reportCell": "K1737",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-7",
+        "condition": 1,
+        "column": "B",
+        "criteriaCell": "B1738",
+        "reportCell": "B1738",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-7",
+        "condition": 1,
+        "column": "C",
+        "criteriaCell": "C1738",
+        "reportCell": "C1738",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-7",
+        "condition": 1,
+        "column": "D",
+        "criteriaCell": "D1738",
+        "reportCell": "D1738",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-7",
+        "condition": 1,
+        "column": "E",
+        "criteriaCell": "E1738",
+        "reportCell": "E1738",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-7",
+        "condition": 1,
+        "column": "F",
+        "criteriaCell": "F1738",
+        "reportCell": "F1738",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-7",
+        "condition": 1,
+        "column": "G",
+        "criteriaCell": "G1738",
+        "reportCell": "G1738",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-7",
+        "condition": 1,
+        "column": "H",
+        "criteriaCell": "H1738",
+        "reportCell": "H1738",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-7",
+        "condition": 1,
+        "column": "I",
+        "criteriaCell": "I1738",
+        "reportCell": "I1738",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-7",
+        "condition": 1,
+        "column": "J",
+        "criteriaCell": "J1738",
+        "reportCell": "J1738",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-7",
+        "condition": 1,
+        "column": "K",
+        "criteriaCell": "K1738",
+        "reportCell": "K1738",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-7",
+        "condition": 2,
+        "column": "B",
+        "criteriaCell": "B1739",
+        "reportCell": "B1739",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-7",
+        "condition": 2,
+        "column": "C",
+        "criteriaCell": "C1739",
+        "reportCell": "C1739",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-7",
+        "condition": 2,
+        "column": "D",
+        "criteriaCell": "D1739",
+        "reportCell": "D1739",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-7",
+        "condition": 2,
+        "column": "E",
+        "criteriaCell": "E1739",
+        "reportCell": "E1739",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-7",
+        "condition": 2,
+        "column": "F",
+        "criteriaCell": "F1739",
+        "reportCell": "F1739",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-7",
+        "condition": 2,
+        "column": "G",
+        "criteriaCell": "G1739",
+        "reportCell": "G1739",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-7",
+        "condition": 2,
+        "column": "H",
+        "criteriaCell": "H1739",
+        "reportCell": "H1739",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-7",
+        "condition": 2,
+        "column": "I",
+        "criteriaCell": "I1739",
+        "reportCell": "I1739",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-7",
+        "condition": 2,
+        "column": "J",
+        "criteriaCell": "J1739",
+        "reportCell": "J1739",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-7",
+        "condition": 2,
+        "column": "K",
+        "criteriaCell": "K1739",
+        "reportCell": "K1739",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-8",
+        "condition": 1,
+        "column": "B",
+        "criteriaCell": "B1740",
+        "reportCell": "B1740",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-8",
+        "condition": 1,
+        "column": "C",
+        "criteriaCell": "C1740",
+        "reportCell": "C1740",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-8",
+        "condition": 1,
+        "column": "D",
+        "criteriaCell": "D1740",
+        "reportCell": "D1740",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-8",
+        "condition": 1,
+        "column": "E",
+        "criteriaCell": "E1740",
+        "reportCell": "E1740",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-8",
+        "condition": 1,
+        "column": "F",
+        "criteriaCell": "F1740",
+        "reportCell": "F1740",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-8",
+        "condition": 1,
+        "column": "G",
+        "criteriaCell": "G1740",
+        "reportCell": "G1740",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-8",
+        "condition": 1,
+        "column": "H",
+        "criteriaCell": "H1740",
+        "reportCell": "H1740",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-8",
+        "condition": 1,
+        "column": "I",
+        "criteriaCell": "I1740",
+        "reportCell": "I1740",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-8",
+        "condition": 1,
+        "column": "J",
+        "criteriaCell": "J1740",
+        "reportCell": "J1740",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-8",
+        "condition": 1,
+        "column": "K",
+        "criteriaCell": "K1740",
+        "reportCell": "K1740",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-8",
+        "condition": 2,
+        "column": "B",
+        "criteriaCell": "B1741",
+        "reportCell": "B1741",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-8",
+        "condition": 2,
+        "column": "C",
+        "criteriaCell": "C1741",
+        "reportCell": "C1741",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-8",
+        "condition": 2,
+        "column": "D",
+        "criteriaCell": "D1741",
+        "reportCell": "D1741",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-8",
+        "condition": 2,
+        "column": "E",
+        "criteriaCell": "E1741",
+        "reportCell": "E1741",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-8",
+        "condition": 2,
+        "column": "F",
+        "criteriaCell": "F1741",
+        "reportCell": "F1741",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-8",
+        "condition": 2,
+        "column": "G",
+        "criteriaCell": "G1741",
+        "reportCell": "G1741",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-8",
+        "condition": 2,
+        "column": "H",
+        "criteriaCell": "H1741",
+        "reportCell": "H1741",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-8",
+        "condition": 2,
+        "column": "I",
+        "criteriaCell": "I1741",
+        "reportCell": "I1741",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-8",
+        "condition": 2,
+        "column": "J",
+        "criteriaCell": "J1741",
+        "reportCell": "J1741",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-8",
+        "condition": 2,
+        "column": "K",
+        "criteriaCell": "K1741",
+        "reportCell": "K1741",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-8",
+        "condition": 3,
+        "column": "B",
+        "criteriaCell": "B1742",
+        "reportCell": "B1742",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-8",
+        "condition": 3,
+        "column": "C",
+        "criteriaCell": "C1742",
+        "reportCell": "C1742",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-8",
+        "condition": 3,
+        "column": "D",
+        "criteriaCell": "D1742",
+        "reportCell": "D1742",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-8",
+        "condition": 3,
+        "column": "E",
+        "criteriaCell": "E1742",
+        "reportCell": "E1742",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-8",
+        "condition": 3,
+        "column": "F",
+        "criteriaCell": "F1742",
+        "reportCell": "F1742",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-8",
+        "condition": 3,
+        "column": "G",
+        "criteriaCell": "G1742",
+        "reportCell": "G1742",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-8",
+        "condition": 3,
+        "column": "H",
+        "criteriaCell": "H1742",
+        "reportCell": "H1742",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-8",
+        "condition": 3,
+        "column": "I",
+        "criteriaCell": "I1742",
+        "reportCell": "I1742",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-8",
+        "condition": 3,
+        "column": "J",
+        "criteriaCell": "J1742",
+        "reportCell": "J1742",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-8",
+        "condition": 3,
+        "column": "K",
+        "criteriaCell": "K1742",
+        "reportCell": "K1742",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-8",
+        "condition": 4,
+        "column": "B",
+        "criteriaCell": "B1743",
+        "reportCell": "B1743",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-8",
+        "condition": 4,
+        "column": "C",
+        "criteriaCell": "C1743",
+        "reportCell": "C1743",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-8",
+        "condition": 4,
+        "column": "D",
+        "criteriaCell": "D1743",
+        "reportCell": "D1743",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-8",
+        "condition": 4,
+        "column": "E",
+        "criteriaCell": "E1743",
+        "reportCell": "E1743",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-8",
+        "condition": 4,
+        "column": "F",
+        "criteriaCell": "F1743",
+        "reportCell": "F1743",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-8",
+        "condition": 4,
+        "column": "G",
+        "criteriaCell": "G1743",
+        "reportCell": "G1743",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-8",
+        "condition": 4,
+        "column": "H",
+        "criteriaCell": "H1743",
+        "reportCell": "H1743",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-8",
+        "condition": 4,
+        "column": "I",
+        "criteriaCell": "I1743",
+        "reportCell": "I1743",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-8",
+        "condition": 4,
+        "column": "J",
+        "criteriaCell": "J1743",
+        "reportCell": "J1743",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-8",
+        "condition": 4,
+        "column": "K",
+        "criteriaCell": "K1743",
+        "reportCell": "K1743",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-9",
+        "condition": 1,
+        "column": "B",
+        "criteriaCell": "B1744",
+        "reportCell": "B1744",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-9",
+        "condition": 1,
+        "column": "C",
+        "criteriaCell": "C1744",
+        "reportCell": "C1744",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-9",
+        "condition": 1,
+        "column": "D",
+        "criteriaCell": "D1744",
+        "reportCell": "D1744",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-9",
+        "condition": 1,
+        "column": "E",
+        "criteriaCell": "E1744",
+        "reportCell": "E1744",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-9",
+        "condition": 1,
+        "column": "F",
+        "criteriaCell": "F1744",
+        "reportCell": "F1744",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-9",
+        "condition": 1,
+        "column": "G",
+        "criteriaCell": "G1744",
+        "reportCell": "G1744",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-9",
+        "condition": 1,
+        "column": "H",
+        "criteriaCell": "H1744",
+        "reportCell": "H1744",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-9",
+        "condition": 1,
+        "column": "I",
+        "criteriaCell": "I1744",
+        "reportCell": "I1744",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-9",
+        "condition": 1,
+        "column": "J",
+        "criteriaCell": "J1744",
+        "reportCell": "J1744",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-9",
+        "condition": 1,
+        "column": "K",
+        "criteriaCell": "K1744",
+        "reportCell": "K1744",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-9",
+        "condition": 2,
+        "column": "B",
+        "criteriaCell": "B1745",
+        "reportCell": "B1745",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-9",
+        "condition": 2,
+        "column": "C",
+        "criteriaCell": "C1745",
+        "reportCell": "C1745",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-9",
+        "condition": 2,
+        "column": "D",
+        "criteriaCell": "D1745",
+        "reportCell": "D1745",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-9",
+        "condition": 2,
+        "column": "E",
+        "criteriaCell": "E1745",
+        "reportCell": "E1745",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-9",
+        "condition": 2,
+        "column": "F",
+        "criteriaCell": "F1745",
+        "reportCell": "F1745",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-9",
+        "condition": 2,
+        "column": "G",
+        "criteriaCell": "G1745",
+        "reportCell": "G1745",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-9",
+        "condition": 2,
+        "column": "H",
+        "criteriaCell": "H1745",
+        "reportCell": "H1745",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-9",
+        "condition": 2,
+        "column": "I",
+        "criteriaCell": "I1745",
+        "reportCell": "I1745",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-9",
+        "condition": 2,
+        "column": "J",
+        "criteriaCell": "J1745",
+        "reportCell": "J1745",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-9",
+        "condition": 2,
+        "column": "K",
+        "criteriaCell": "K1745",
+        "reportCell": "K1745",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-10",
+        "condition": 1,
+        "column": "B",
+        "criteriaCell": "B1746",
+        "reportCell": "B1746",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-10",
+        "condition": 1,
+        "column": "C",
+        "criteriaCell": "C1746",
+        "reportCell": "C1746",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-10",
+        "condition": 1,
+        "column": "D",
+        "criteriaCell": "D1746",
+        "reportCell": "D1746",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-10",
+        "condition": 1,
+        "column": "E",
+        "criteriaCell": "E1746",
+        "reportCell": "E1746",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-10",
+        "condition": 1,
+        "column": "F",
+        "criteriaCell": "F1746",
+        "reportCell": "F1746",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-10",
+        "condition": 1,
+        "column": "G",
+        "criteriaCell": "G1746",
+        "reportCell": "G1746",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-10",
+        "condition": 1,
+        "column": "H",
+        "criteriaCell": "H1746",
+        "reportCell": "H1746",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-10",
+        "condition": 1,
+        "column": "I",
+        "criteriaCell": "I1746",
+        "reportCell": "I1746",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-10",
+        "condition": 1,
+        "column": "J",
+        "criteriaCell": "J1746",
+        "reportCell": "J1746",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-10",
+        "condition": 1,
+        "column": "K",
+        "criteriaCell": "K1746",
+        "reportCell": "K1746",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-10",
+        "condition": 2,
+        "column": "B",
+        "criteriaCell": "B1747",
+        "reportCell": "B1747",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-10",
+        "condition": 2,
+        "column": "C",
+        "criteriaCell": "C1747",
+        "reportCell": "C1747",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-10",
+        "condition": 2,
+        "column": "D",
+        "criteriaCell": "D1747",
+        "reportCell": "D1747",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-10",
+        "condition": 2,
+        "column": "E",
+        "criteriaCell": "E1747",
+        "reportCell": "E1747",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-10",
+        "condition": 2,
+        "column": "F",
+        "criteriaCell": "F1747",
+        "reportCell": "F1747",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-10",
+        "condition": 2,
+        "column": "G",
+        "criteriaCell": "G1747",
+        "reportCell": "G1747",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-10",
+        "condition": 2,
+        "column": "H",
+        "criteriaCell": "H1747",
+        "reportCell": "H1747",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-10",
+        "condition": 2,
+        "column": "I",
+        "criteriaCell": "I1747",
+        "reportCell": "I1747",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-10",
+        "condition": 2,
+        "column": "J",
+        "criteriaCell": "J1747",
+        "reportCell": "J1747",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-10",
+        "condition": 2,
+        "column": "K",
+        "criteriaCell": "K1747",
+        "reportCell": "K1747",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-10",
+        "condition": 3,
+        "column": "B",
+        "criteriaCell": "B1748",
+        "reportCell": "B1748",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-10",
+        "condition": 3,
+        "column": "C",
+        "criteriaCell": "C1748",
+        "reportCell": "C1748",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-10",
+        "condition": 3,
+        "column": "D",
+        "criteriaCell": "D1748",
+        "reportCell": "D1748",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-10",
+        "condition": 3,
+        "column": "E",
+        "criteriaCell": "E1748",
+        "reportCell": "E1748",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-10",
+        "condition": 3,
+        "column": "F",
+        "criteriaCell": "F1748",
+        "reportCell": "F1748",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-10",
+        "condition": 3,
+        "column": "G",
+        "criteriaCell": "G1748",
+        "reportCell": "G1748",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-10",
+        "condition": 3,
+        "column": "H",
+        "criteriaCell": "H1748",
+        "reportCell": "H1748",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-10",
+        "condition": 3,
+        "column": "I",
+        "criteriaCell": "I1748",
+        "reportCell": "I1748",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-10",
+        "condition": 3,
+        "column": "J",
+        "criteriaCell": "J1748",
+        "reportCell": "J1748",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-10",
+        "condition": 3,
+        "column": "K",
+        "criteriaCell": "K1748",
+        "reportCell": "K1748",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-10",
+        "condition": 4,
+        "column": "B",
+        "criteriaCell": "B1749",
+        "reportCell": "B1749",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-10",
+        "condition": 4,
+        "column": "C",
+        "criteriaCell": "C1749",
+        "reportCell": "C1749",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-10",
+        "condition": 4,
+        "column": "D",
+        "criteriaCell": "D1749",
+        "reportCell": "D1749",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-10",
+        "condition": 4,
+        "column": "E",
+        "criteriaCell": "E1749",
+        "reportCell": "E1749",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-10",
+        "condition": 4,
+        "column": "F",
+        "criteriaCell": "F1749",
+        "reportCell": "F1749",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-10",
+        "condition": 4,
+        "column": "G",
+        "criteriaCell": "G1749",
+        "reportCell": "G1749",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-10",
+        "condition": 4,
+        "column": "H",
+        "criteriaCell": "H1749",
+        "reportCell": "H1749",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-10",
+        "condition": 4,
+        "column": "I",
+        "criteriaCell": "I1749",
+        "reportCell": "I1749",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-10",
+        "condition": 4,
+        "column": "J",
+        "criteriaCell": "J1749",
+        "reportCell": "J1749",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-10",
+        "condition": 4,
+        "column": "K",
+        "criteriaCell": "K1749",
+        "reportCell": "K1749",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-10",
+        "condition": 5,
+        "column": "B",
+        "criteriaCell": "B1750",
+        "reportCell": "B1750",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-10",
+        "condition": 5,
+        "column": "C",
+        "criteriaCell": "C1750",
+        "reportCell": "C1750",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-10",
+        "condition": 5,
+        "column": "D",
+        "criteriaCell": "D1750",
+        "reportCell": "D1750",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-10",
+        "condition": 5,
+        "column": "E",
+        "criteriaCell": "E1750",
+        "reportCell": "E1750",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-10",
+        "condition": 5,
+        "column": "F",
+        "criteriaCell": "F1750",
+        "reportCell": "F1750",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-10",
+        "condition": 5,
+        "column": "G",
+        "criteriaCell": "G1750",
+        "reportCell": "G1750",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-10",
+        "condition": 5,
+        "column": "H",
+        "criteriaCell": "H1750",
+        "reportCell": "H1750",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-10",
+        "condition": 5,
+        "column": "I",
+        "criteriaCell": "I1750",
+        "reportCell": "I1750",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-10",
+        "condition": 5,
+        "column": "J",
+        "criteriaCell": "J1750",
+        "reportCell": "J1750",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-10",
+        "condition": 5,
+        "column": "K",
+        "criteriaCell": "K1750",
+        "reportCell": "K1750",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-11",
+        "condition": 1,
+        "column": "B",
+        "criteriaCell": "B1751",
+        "reportCell": "B1751",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-11",
+        "condition": 1,
+        "column": "C",
+        "criteriaCell": "C1751",
+        "reportCell": "C1751",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-11",
+        "condition": 1,
+        "column": "D",
+        "criteriaCell": "D1751",
+        "reportCell": "D1751",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-11",
+        "condition": 1,
+        "column": "E",
+        "criteriaCell": "E1751",
+        "reportCell": "E1751",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-11",
+        "condition": 1,
+        "column": "F",
+        "criteriaCell": "F1751",
+        "reportCell": "F1751",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-11",
+        "condition": 1,
+        "column": "G",
+        "criteriaCell": "G1751",
+        "reportCell": "G1751",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-11",
+        "condition": 1,
+        "column": "H",
+        "criteriaCell": "H1751",
+        "reportCell": "H1751",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-11",
+        "condition": 1,
+        "column": "I",
+        "criteriaCell": "I1751",
+        "reportCell": "I1751",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-11",
+        "condition": 1,
+        "column": "J",
+        "criteriaCell": "J1751",
+        "reportCell": "J1751",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-11",
+        "condition": 1,
+        "column": "K",
+        "criteriaCell": "K1751",
+        "reportCell": "K1751",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-11",
+        "condition": 2,
+        "column": "B",
+        "criteriaCell": "B1752",
+        "reportCell": "B1752",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-11",
+        "condition": 2,
+        "column": "C",
+        "criteriaCell": "C1752",
+        "reportCell": "C1752",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-11",
+        "condition": 2,
+        "column": "D",
+        "criteriaCell": "D1752",
+        "reportCell": "D1752",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-11",
+        "condition": 2,
+        "column": "E",
+        "criteriaCell": "E1752",
+        "reportCell": "E1752",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-11",
+        "condition": 2,
+        "column": "F",
+        "criteriaCell": "F1752",
+        "reportCell": "F1752",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-11",
+        "condition": 2,
+        "column": "G",
+        "criteriaCell": "G1752",
+        "reportCell": "G1752",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-11",
+        "condition": 2,
+        "column": "H",
+        "criteriaCell": "H1752",
+        "reportCell": "H1752",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-11",
+        "condition": 2,
+        "column": "I",
+        "criteriaCell": "I1752",
+        "reportCell": "I1752",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-11",
+        "condition": 2,
+        "column": "J",
+        "criteriaCell": "J1752",
+        "reportCell": "J1752",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-11",
+        "condition": 2,
+        "column": "K",
+        "criteriaCell": "K1752",
+        "reportCell": "K1752",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-12",
+        "condition": 1,
+        "column": "B",
+        "criteriaCell": "B1753",
+        "reportCell": "B1753",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-12",
+        "condition": 1,
+        "column": "C",
+        "criteriaCell": "C1753",
+        "reportCell": "C1753",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-12",
+        "condition": 1,
+        "column": "D",
+        "criteriaCell": "D1753",
+        "reportCell": "D1753",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-12",
+        "condition": 1,
+        "column": "E",
+        "criteriaCell": "E1753",
+        "reportCell": "E1753",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-12",
+        "condition": 1,
+        "column": "F",
+        "criteriaCell": "F1753",
+        "reportCell": "F1753",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-12",
+        "condition": 1,
+        "column": "G",
+        "criteriaCell": "G1753",
+        "reportCell": "G1753",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-12",
+        "condition": 1,
+        "column": "H",
+        "criteriaCell": "H1753",
+        "reportCell": "H1753",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-12",
+        "condition": 1,
+        "column": "I",
+        "criteriaCell": "I1753",
+        "reportCell": "I1753",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-12",
+        "condition": 1,
+        "column": "J",
+        "criteriaCell": "J1753",
+        "reportCell": "J1753",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-12",
+        "condition": 1,
+        "column": "K",
+        "criteriaCell": "K1753",
+        "reportCell": "K1753",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-12",
+        "condition": 2,
+        "column": "B",
+        "criteriaCell": "B1754",
+        "reportCell": "B1754",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-12",
+        "condition": 2,
+        "column": "C",
+        "criteriaCell": "C1754",
+        "reportCell": "C1754",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-12",
+        "condition": 2,
+        "column": "D",
+        "criteriaCell": "D1754",
+        "reportCell": "D1754",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-12",
+        "condition": 2,
+        "column": "E",
+        "criteriaCell": "E1754",
+        "reportCell": "E1754",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-12",
+        "condition": 2,
+        "column": "F",
+        "criteriaCell": "F1754",
+        "reportCell": "F1754",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-12",
+        "condition": 2,
+        "column": "G",
+        "criteriaCell": "G1754",
+        "reportCell": "G1754",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-12",
+        "condition": 2,
+        "column": "H",
+        "criteriaCell": "H1754",
+        "reportCell": "H1754",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-12",
+        "condition": 2,
+        "column": "I",
+        "criteriaCell": "I1754",
+        "reportCell": "I1754",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-12",
+        "condition": 2,
+        "column": "J",
+        "criteriaCell": "J1754",
+        "reportCell": "J1754",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-12",
+        "condition": 2,
+        "column": "K",
+        "criteriaCell": "K1754",
+        "reportCell": "K1754",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-13",
+        "condition": 1,
+        "column": "B",
+        "criteriaCell": "B1755",
+        "reportCell": "B1755",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-13",
+        "condition": 1,
+        "column": "C",
+        "criteriaCell": "C1755",
+        "reportCell": "C1755",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-13",
+        "condition": 1,
+        "column": "D",
+        "criteriaCell": "D1755",
+        "reportCell": "D1755",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-13",
+        "condition": 1,
+        "column": "E",
+        "criteriaCell": "E1755",
+        "reportCell": "E1755",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-13",
+        "condition": 1,
+        "column": "F",
+        "criteriaCell": "F1755",
+        "reportCell": "F1755",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-13",
+        "condition": 1,
+        "column": "G",
+        "criteriaCell": "G1755",
+        "reportCell": "G1755",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-13",
+        "condition": 1,
+        "column": "H",
+        "criteriaCell": "H1755",
+        "reportCell": "H1755",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-13",
+        "condition": 1,
+        "column": "I",
+        "criteriaCell": "I1755",
+        "reportCell": "I1755",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-13",
+        "condition": 1,
+        "column": "J",
+        "criteriaCell": "J1755",
+        "reportCell": "J1755",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-13",
+        "condition": 1,
+        "column": "K",
+        "criteriaCell": "K1755",
+        "reportCell": "K1755",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-13",
+        "condition": 2,
+        "column": "B",
+        "criteriaCell": "B1756",
+        "reportCell": "B1756",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-13",
+        "condition": 2,
+        "column": "C",
+        "criteriaCell": "C1756",
+        "reportCell": "C1756",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-13",
+        "condition": 2,
+        "column": "D",
+        "criteriaCell": "D1756",
+        "reportCell": "D1756",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-13",
+        "condition": 2,
+        "column": "E",
+        "criteriaCell": "E1756",
+        "reportCell": "E1756",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-13",
+        "condition": 2,
+        "column": "F",
+        "criteriaCell": "F1756",
+        "reportCell": "F1756",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-13",
+        "condition": 2,
+        "column": "G",
+        "criteriaCell": "G1756",
+        "reportCell": "G1756",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-13",
+        "condition": 2,
+        "column": "H",
+        "criteriaCell": "H1756",
+        "reportCell": "H1756",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-13",
+        "condition": 2,
+        "column": "I",
+        "criteriaCell": "I1756",
+        "reportCell": "I1756",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-13",
+        "condition": 2,
+        "column": "J",
+        "criteriaCell": "J1756",
+        "reportCell": "J1756",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-13",
+        "condition": 2,
+        "column": "K",
+        "criteriaCell": "K1756",
+        "reportCell": "K1756",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-13",
+        "condition": 3,
+        "column": "B",
+        "criteriaCell": "B1757",
+        "reportCell": "B1757",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-13",
+        "condition": 3,
+        "column": "C",
+        "criteriaCell": "C1757",
+        "reportCell": "C1757",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-13",
+        "condition": 3,
+        "column": "D",
+        "criteriaCell": "D1757",
+        "reportCell": "D1757",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-13",
+        "condition": 3,
+        "column": "E",
+        "criteriaCell": "E1757",
+        "reportCell": "E1757",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-13",
+        "condition": 3,
+        "column": "F",
+        "criteriaCell": "F1757",
+        "reportCell": "F1757",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-13",
+        "condition": 3,
+        "column": "G",
+        "criteriaCell": "G1757",
+        "reportCell": "G1757",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-13",
+        "condition": 3,
+        "column": "H",
+        "criteriaCell": "H1757",
+        "reportCell": "H1757",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-13",
+        "condition": 3,
+        "column": "I",
+        "criteriaCell": "I1757",
+        "reportCell": "I1757",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-13",
+        "condition": 3,
+        "column": "J",
+        "criteriaCell": "J1757",
+        "reportCell": "J1757",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-13",
+        "condition": 3,
+        "column": "K",
+        "criteriaCell": "K1757",
+        "reportCell": "K1757",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-13",
+        "condition": 4,
+        "column": "B",
+        "criteriaCell": "B1758",
+        "reportCell": "B1758",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-13",
+        "condition": 4,
+        "column": "C",
+        "criteriaCell": "C1758",
+        "reportCell": "C1758",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-13",
+        "condition": 4,
+        "column": "D",
+        "criteriaCell": "D1758",
+        "reportCell": "D1758",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-13",
+        "condition": 4,
+        "column": "E",
+        "criteriaCell": "E1758",
+        "reportCell": "E1758",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-13",
+        "condition": 4,
+        "column": "F",
+        "criteriaCell": "F1758",
+        "reportCell": "F1758",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-13",
+        "condition": 4,
+        "column": "G",
+        "criteriaCell": "G1758",
+        "reportCell": "G1758",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-13",
+        "condition": 4,
+        "column": "H",
+        "criteriaCell": "H1758",
+        "reportCell": "H1758",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-13",
+        "condition": 4,
+        "column": "I",
+        "criteriaCell": "I1758",
+        "reportCell": "I1758",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-13",
+        "condition": 4,
+        "column": "J",
+        "criteriaCell": "J1758",
+        "reportCell": "J1758",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-13",
+        "condition": 4,
+        "column": "K",
+        "criteriaCell": "K1758",
+        "reportCell": "K1758",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-13",
+        "condition": 5,
+        "column": "B",
+        "criteriaCell": "B1759",
+        "reportCell": "B1759",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-13",
+        "condition": 5,
+        "column": "C",
+        "criteriaCell": "C1759",
+        "reportCell": "C1759",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-13",
+        "condition": 5,
+        "column": "D",
+        "criteriaCell": "D1759",
+        "reportCell": "D1759",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-13",
+        "condition": 5,
+        "column": "E",
+        "criteriaCell": "E1759",
+        "reportCell": "E1759",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-13",
+        "condition": 5,
+        "column": "F",
+        "criteriaCell": "F1759",
+        "reportCell": "F1759",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-13",
+        "condition": 5,
+        "column": "G",
+        "criteriaCell": "G1759",
+        "reportCell": "G1759",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-13",
+        "condition": 5,
+        "column": "H",
+        "criteriaCell": "H1759",
+        "reportCell": "H1759",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-13",
+        "condition": 5,
+        "column": "I",
+        "criteriaCell": "I1759",
+        "reportCell": "I1759",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-13",
+        "condition": 5,
+        "column": "J",
+        "criteriaCell": "J1759",
+        "reportCell": "J1759",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-13",
+        "condition": 5,
+        "column": "K",
+        "criteriaCell": "K1759",
+        "reportCell": "K1759",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-14",
+        "condition": 1,
+        "column": "B",
+        "criteriaCell": "B1760",
+        "reportCell": "B1760",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-14",
+        "condition": 1,
+        "column": "C",
+        "criteriaCell": "C1760",
+        "reportCell": "C1760",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-14",
+        "condition": 1,
+        "column": "D",
+        "criteriaCell": "D1760",
+        "reportCell": "D1760",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-14",
+        "condition": 1,
+        "column": "E",
+        "criteriaCell": "E1760",
+        "reportCell": "E1760",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-14",
+        "condition": 1,
+        "column": "F",
+        "criteriaCell": "F1760",
+        "reportCell": "F1760",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-14",
+        "condition": 1,
+        "column": "G",
+        "criteriaCell": "G1760",
+        "reportCell": "G1760",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-14",
+        "condition": 1,
+        "column": "H",
+        "criteriaCell": "H1760",
+        "reportCell": "H1760",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-14",
+        "condition": 1,
+        "column": "I",
+        "criteriaCell": "I1760",
+        "reportCell": "I1760",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-14",
+        "condition": 1,
+        "column": "J",
+        "criteriaCell": "J1760",
+        "reportCell": "J1760",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-14",
+        "condition": 1,
+        "column": "K",
+        "criteriaCell": "K1760",
+        "reportCell": "K1760",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-14",
+        "condition": 2,
+        "column": "B",
+        "criteriaCell": "B1761",
+        "reportCell": "B1761",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-14",
+        "condition": 2,
+        "column": "C",
+        "criteriaCell": "C1761",
+        "reportCell": "C1761",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-14",
+        "condition": 2,
+        "column": "D",
+        "criteriaCell": "D1761",
+        "reportCell": "D1761",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-14",
+        "condition": 2,
+        "column": "E",
+        "criteriaCell": "E1761",
+        "reportCell": "E1761",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-14",
+        "condition": 2,
+        "column": "F",
+        "criteriaCell": "F1761",
+        "reportCell": "F1761",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-14",
+        "condition": 2,
+        "column": "G",
+        "criteriaCell": "G1761",
+        "reportCell": "G1761",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-14",
+        "condition": 2,
+        "column": "H",
+        "criteriaCell": "H1761",
+        "reportCell": "H1761",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-14",
+        "condition": 2,
+        "column": "I",
+        "criteriaCell": "I1761",
+        "reportCell": "I1761",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-14",
+        "condition": 2,
+        "column": "J",
+        "criteriaCell": "J1761",
+        "reportCell": "J1761",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-14",
+        "condition": 2,
+        "column": "K",
+        "criteriaCell": "K1761",
+        "reportCell": "K1761",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-14",
+        "condition": 3,
+        "column": "B",
+        "criteriaCell": "B1762",
+        "reportCell": "B1762",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-14",
+        "condition": 3,
+        "column": "C",
+        "criteriaCell": "C1762",
+        "reportCell": "C1762",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-14",
+        "condition": 3,
+        "column": "D",
+        "criteriaCell": "D1762",
+        "reportCell": "D1762",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-14",
+        "condition": 3,
+        "column": "E",
+        "criteriaCell": "E1762",
+        "reportCell": "E1762",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-14",
+        "condition": 3,
+        "column": "F",
+        "criteriaCell": "F1762",
+        "reportCell": "F1762",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-14",
+        "condition": 3,
+        "column": "G",
+        "criteriaCell": "G1762",
+        "reportCell": "G1762",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-14",
+        "condition": 3,
+        "column": "H",
+        "criteriaCell": "H1762",
+        "reportCell": "H1762",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-14",
+        "condition": 3,
+        "column": "I",
+        "criteriaCell": "I1762",
+        "reportCell": "I1762",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-14",
+        "condition": 3,
+        "column": "J",
+        "criteriaCell": "J1762",
+        "reportCell": "J1762",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-14",
+        "condition": 3,
+        "column": "K",
+        "criteriaCell": "K1762",
+        "reportCell": "K1762",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-15",
+        "condition": 1,
+        "column": "B",
+        "criteriaCell": "B1763",
+        "reportCell": "B1763",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-15",
+        "condition": 1,
+        "column": "C",
+        "criteriaCell": "C1763",
+        "reportCell": "C1763",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-15",
+        "condition": 1,
+        "column": "D",
+        "criteriaCell": "D1763",
+        "reportCell": "D1763",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-15",
+        "condition": 1,
+        "column": "E",
+        "criteriaCell": "E1763",
+        "reportCell": "E1763",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-15",
+        "condition": 1,
+        "column": "F",
+        "criteriaCell": "F1763",
+        "reportCell": "F1763",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-15",
+        "condition": 1,
+        "column": "G",
+        "criteriaCell": "G1763",
+        "reportCell": "G1763",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-15",
+        "condition": 1,
+        "column": "H",
+        "criteriaCell": "H1763",
+        "reportCell": "H1763",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-15",
+        "condition": 1,
+        "column": "I",
+        "criteriaCell": "I1763",
+        "reportCell": "I1763",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-15",
+        "condition": 1,
+        "column": "J",
+        "criteriaCell": "J1763",
+        "reportCell": "J1763",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-15",
+        "condition": 1,
+        "column": "K",
+        "criteriaCell": "K1763",
+        "reportCell": "K1763",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-15",
+        "condition": 2,
+        "column": "B",
+        "criteriaCell": "B1764",
+        "reportCell": "B1764",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-15",
+        "condition": 2,
+        "column": "C",
+        "criteriaCell": "C1764",
+        "reportCell": "C1764",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-15",
+        "condition": 2,
+        "column": "D",
+        "criteriaCell": "D1764",
+        "reportCell": "D1764",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-15",
+        "condition": 2,
+        "column": "E",
+        "criteriaCell": "E1764",
+        "reportCell": "E1764",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-15",
+        "condition": 2,
+        "column": "F",
+        "criteriaCell": "F1764",
+        "reportCell": "F1764",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-15",
+        "condition": 2,
+        "column": "G",
+        "criteriaCell": "G1764",
+        "reportCell": "G1764",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-15",
+        "condition": 2,
+        "column": "H",
+        "criteriaCell": "H1764",
+        "reportCell": "H1764",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-15",
+        "condition": 2,
+        "column": "I",
+        "criteriaCell": "I1764",
+        "reportCell": "I1764",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-15",
+        "condition": 2,
+        "column": "J",
+        "criteriaCell": "J1764",
+        "reportCell": "J1764",
+        "equalExactText": true
+      },
+      {
+        "testID": "SW-FW-UnitTest-QCC-ID-15",
+        "condition": 2,
+        "column": "K",
+        "criteriaCell": "K1764",
+        "reportCell": "K1764",
+        "equalExactText": true
+      }
+    ],
+    "preExistingSourceDifferences": [],
+    "newRebuildDifferences": [],
+    "missingPairs": [],
+    "policy": "기존 불일치가 발견되더라도 이번 보고서 재작성 범위를 확장하여 기준서나 기존 본문을 수정하지 않는다."
+  },
+  "definedNames": [
+    {
+      "name": "_xlnm.Print_Area",
+      "sheet": "1",
+      "value": "'보고서_유닛 시험'!$B$2:$M$1772"
+    },
+    {
+      "name": "_xlnm.Print_Titles",
+      "sheet": "1",
+      "value": "'보고서_유닛 시험'!$28:$29"
+    },
+    {
+      "name": "_xlnm.Print_Area",
+      "sheet": "2",
+      "value": "'보고서_유닛 시험_비교'!$B$2:$G$347"
+    },
+    {
+      "name": "_xlnm.Print_Titles",
+      "sheet": "2",
+      "value": "'보고서_유닛 시험_비교'!$4:$4"
+    }
+  ],
+  "SV29Followup": {
+    "12": "신규 QCC 15개 시험의 38개 조건을 현행 SUVC의 B:K와 대조했다. 기존 115개 시험의 기준서 전수 대조는 미실행이다.",
+    "22": "신규 QCC 비공란 341셀의 색/크기/밑줄을 포함한 effective rich text가 원문과 일치한다. 실제 표시는 루트가 별도로 검사한다.",
+    "24": "실제 Excel의 전체 인쇄, 행 높이, 줄바꿈 및 테두리 검사는 루트 소유다. XML 일치만으로 표시 통과를 주장하지 않는다.",
+    "28": "저장 후보의 독립 재열기와 내용 검사를 완료했다. native 표시, G 게시 및 중앙 목록 갱신은 루트 소유다."
+  },
+  "limitations": [
+    "실제 하드웨어 시험을 새로 실행하지 않았다. 신규 QCC 38조건은 모두 미실행/판정 대기다.",
+    "실제 Excel의 전체 페이지, 행 높이, 줄바꿈 및 테두리 표시 검사는 루트가 별도로 수행한다.",
+    "보고서 재작성만으로 기준서/SRS/설계/펌웨어를 변경하지 않는다."
+  ],
+  "writes": "content-final.json만 작성했다. 원본/후보/산출물/공통 기록 및 다른 담당 파일은 수정하지 않았다."
+}

@@ -1,0 +1,82 @@
+[
+  {
+    "code": "SR",
+    "source": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\02_설계 입력\\SW\\외부기\\[E8300-QCC] SR-FW-TD24A 소프트웨어 요구사항.docx",
+    "before_backup": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\rid83-20261013\\word\\backups\\[E8300-QCC] SR-FW-TD24A 소프트웨어 요구사항.docx",
+    "candidate": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\rid83-20261013\\word\\candidates\\[E8300-QCC] SR-FW-TD24A 소프트웨어 요구사항.docx",
+    "source_sha256": "975c9f5389f20fc02cc483265d038eb85f950f50abdda4d733b5695978656895",
+    "candidate_sha256": "fb0f0a4ed73e0712e79d499097c0b635b8ea6446f65b5ddfff840edd2253b019",
+    "paraId": "545E39EF",
+    "before_current_paragraph": "Bluetooth Classic 송수신 요구 SW-FW-RID-69는 SYS-RID-SP-FW-15에 연결한다. 사용 설명서 요구 SW-FW-RID-83은 SYS-RID-ACDOC-17, SYS-RID-ACDOC-18 및 SYS-RID-ACDOC-20의 경고/안전사항, 안전한 작동법 및 동작방법에 연결한다. 다른 요구의 시스템 및 위험 통제 추적은 소프트웨어 요구사항 사양서에서 확인한다.\n",
+    "after_current_paragraph": "Bluetooth Classic 송수신 요구 SW-FW-RID-69는 SYS-RID-SP-FW-15에 연결한다. 사용 설명서 요구 SW-FW-RID-83은 경고/안전사항, 안전한 작동법 및 동작방법을 정의한 자체 소프트웨어 요구사항이다. 다른 요구의 시스템 및 위험 통제 추적은 소프트웨어 요구사항 사양서에서 확인한다.\n",
+    "old": "사용 설명서 요구 SW-FW-RID-83은 SYS-RID-ACDOC-17, SYS-RID-ACDOC-18 및 SYS-RID-ACDOC-20의 경고/안전사항, 안전한 작동법 및 동작방법에 연결한다.",
+    "new": "사용 설명서 요구 SW-FW-RID-83은 경고/안전사항, 안전한 작동법 및 동작방법을 정의한 자체 소프트웨어 요구사항이다.",
+    "new_revision_ids": [
+      "548",
+      "549"
+    ],
+    "new_revision_types": [
+      "del",
+      "ins"
+    ],
+    "new_revision_author": "김은수",
+    "new_revision_date": "2026-10-13T06:53:41Z",
+    "replacement_unit": "Saved single run; accepted text changes only the RID83 sentence",
+    "checks": {
+      "new_only_reject_c14n_exact_before": true,
+      "only_planned_current_text_difference": true,
+      "active_acdoc_count": 0,
+      "existing_revision_text_author_date_preserved": true,
+      "all_other_package_parts_byte_identical": true,
+      "all_styles_numbering_images_fields_relationships_preserved": true,
+      "paragraph_properties_byte_semantically_unchanged": true,
+      "paragraph_table_row_counts_unchanged": true,
+      "new_insertions_not_nested": true,
+      "G_source_unchanged": true
+    },
+    "retained_notice": "Existing [E8300 보완] product manual content / distribution target / review result notice unchanged",
+    "native_open_accept_reject_render": "미실행: root serialized native validation pending",
+    "publication": "Local candidate only; G unchanged",
+    "status": "통과",
+    "status_scope": "Saved package, active XML and exact new-only rejection verification only"
+  },
+  {
+    "code": "SAD",
+    "source": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SAD-FW-TD24A 소프트웨어 아키텍쳐 기술서.docx",
+    "before_backup": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\rid83-20261013\\word\\backups\\[E8300-QCC] SAD-FW-TD24A 소프트웨어 아키텍쳐 기술서.docx",
+    "candidate": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\rid83-20261013\\word\\candidates\\[E8300-QCC] SAD-FW-TD24A 소프트웨어 아키텍쳐 기술서.docx",
+    "source_sha256": "84f592a7f7988a78eb73fa718268cc22ddf20a5bac796358b971aba0d23ccc68",
+    "candidate_sha256": "4e71a6b7d696c7e5e21804eff3182f4a9f2f5bb6991e4b441ee6cbf5874119b1",
+    "paraId": "32A0D308",
+    "before_current_paragraph": "상위 요구사항: SYS-RID-ACDOC-17 / SYS-RID-ACDOC-18 / SYS-RID-ACDOC-20.\n제품 문서 항목 / 실행 유닛 배정 대상 아님\n[E8300 보완] 제품 사용 설명서의 안전/작동법/동작방법 및 문제 해결 내용, 배포 대상과 검토 결과를 확인해야 한다.\n",
+    "after_current_paragraph": "제품 문서 항목 / 실행 유닛 배정 대상 아님\n[E8300 보완] 제품 사용 설명서의 안전/작동법/동작방법 및 문제 해결 내용, 배포 대상과 검토 결과를 확인해야 한다.\n",
+    "old": "상위 요구사항: SYS-RID-ACDOC-17 / SYS-RID-ACDOC-18 / SYS-RID-ACDOC-20.",
+    "new": "",
+    "new_revision_ids": [
+      "4915"
+    ],
+    "new_revision_types": [
+      "del"
+    ],
+    "new_revision_author": "김은수",
+    "new_revision_date": "2026-10-13T06:53:41Z",
+    "replacement_unit": "Only upper-ID sentence and its attached line break",
+    "checks": {
+      "new_only_reject_c14n_exact_before": true,
+      "only_planned_current_text_difference": true,
+      "active_acdoc_count": 0,
+      "existing_revision_text_author_date_preserved": true,
+      "all_other_package_parts_byte_identical": true,
+      "all_styles_numbering_images_fields_relationships_preserved": true,
+      "paragraph_properties_byte_semantically_unchanged": true,
+      "paragraph_table_row_counts_unchanged": true,
+      "new_insertions_not_nested": true,
+      "G_source_unchanged": true
+    },
+    "retained_notice": "Existing [E8300 보완] product manual content / distribution target / review result notice unchanged",
+    "native_open_accept_reject_render": "미실행: root serialized native validation pending",
+    "publication": "Local candidate only; G unchanged",
+    "status": "통과",
+    "status_scope": "Saved package, active XML and exact new-only rejection verification only"
+  }
+]

@@ -1,0 +1,240 @@
+{
+  "globalUserUnchanged": true,
+  "status": "PASS_NATIVE_EFFECTIVE_FONT",
+  "documents": [
+    {
+      "matches": [
+        {
+          "sizePt": 10.0,
+          "colorWordBgr": 192,
+          "end": 2757,
+          "bold": -1,
+          "pass": true,
+          "fontName": "맑은 고딕",
+          "start": 2567,
+          "underline": 0,
+          "kind": "QCC",
+          "text": "- QCC5181 : Bluetooth Classic 오디오 송수신과 BLE 연결/인증을 처리한다. 수신 오디오를 I2S로 E8300에 전달하고 전화 통화 시 DMIC2의 음성을 수음하여 통화 상대에게 송신한다. E8300의 명령/응답 데이터는 SPI로 중계한다. QCC의 내부 구성은 소프트웨어 아키텍쳐 기술서와 상세 설계서에서 정의한다."
+        },
+        {
+          "sizePt": 10.0,
+          "colorWordBgr": 192,
+          "end": 3377,
+          "bold": -1,
+          "pass": true,
+          "fontName": "맑은 고딕",
+          "start": 3254,
+          "underline": 0,
+          "kind": "QCC",
+          "text": "오디오 입력은 DMIC1/DMIC2의 디지털 마이크와 QCC5181에서 전달하는 I2S 오디오를 사용한다. DMIC2는 E8300과 QCC5181에 함께 연결되며, QCC5181은 전화 통화 상향 음성의 수음에 사용한다."
+        },
+        {
+          "sizePt": 10.0,
+          "colorWordBgr": 192,
+          "end": 3830,
+          "bold": -1,
+          "pass": true,
+          "fontName": "맑은 고딕",
+          "start": 3750,
+          "underline": 0,
+          "kind": "QCC",
+          "text": "QCC5181을 통해 Bluetooth Classic 오디오를 송수신하고, 리모콘 앱과 매핑 프로그램의 제어 명령 및 응답 데이터를 송수신한다."
+        },
+        {
+          "sizePt": 10.0,
+          "colorWordBgr": 192,
+          "end": 4061,
+          "bold": -1,
+          "pass": true,
+          "fontName": "맑은 고딕",
+          "start": 3831,
+          "underline": 0,
+          "kind": "QCC",
+          "text": "QCC의 Bluetooth 수신 오디오는 I2S 24비트, 샘플링 주파수 16kHz로 E8300에 전달한다. DMIC2는 E8300과 QCC에 함께 연결되며, 전화 통화 시 QCC가 DMIC2의 음성을 수음하여 통화 상대에게 송신한다. 통화 상향 마이크 입력과 QCC에서 E8300으로 전달하는 I2S 오디오는 서로 다른 경로이며, Bluetooth Classic 송수신 기능은 SW-FW-RID-69에 따른다."
+        },
+        {
+          "sizePt": 10.0,
+          "colorWordBgr": 192,
+          "end": 4209,
+          "bold": -1,
+          "pass": true,
+          "fontName": "맑은 고딕",
+          "start": 4062,
+          "underline": 0,
+          "kind": "QCC",
+          "text": "BLE의 리모콘/매핑 데이터는 QCC와 E8300 사이에서 SPI로 중계한다. 보호 대상 접근에는 페어링과 CRA 인증을 요구하며, 3분 무송수신/인증 실패 5회 후 1분 연결 제한/인증 30초 시간 제한의 정의와 미비 사항은 소프트웨어 요구사항 사양서에 따른다."
+        },
+        {
+          "sizePt": 10.0,
+          "colorWordBgr": 192,
+          "end": 4550,
+          "bold": -1,
+          "pass": true,
+          "fontName": "맑은 고딕",
+          "start": 4458,
+          "underline": 0,
+          "kind": "QCC",
+          "text": "- QCC5181 : C language 및 제조사 제공 Bluetooth stack/Built-in library와 scheduler를 사용하는 펌웨어로 구성한다."
+        },
+        {
+          "sizePt": 10.0,
+          "colorWordBgr": 192,
+          "end": 4733,
+          "bold": -1,
+          "pass": true,
+          "fontName": "맑은 고딕",
+          "start": 4647,
+          "underline": 0,
+          "kind": "QCC",
+          "text": "QCC의 실행 이미지와 저장 데이터는 QCC에 할당한 메모리 영역의 범위를 넘지 않아야 한다. E8300 코어의 메모리 값과 QCC 메모리 값은 구분한다."
+        },
+        {
+          "sizePt": 10.0,
+          "colorWordBgr": 0,
+          "end": 4308,
+          "bold": 0,
+          "pass": true,
+          "fontName": "맑은 고딕",
+          "start": 4210,
+          "underline": 0,
+          "kind": "unconfirmed",
+          "text": "3분 무송수신의 감시/갱신 범위와 제어 명령 미수신 조건의 정합성, QCC 마이크 핀/클록, 연결 상대 및 프로파일/코덱별 송수신과 동시 동작 조건 및 시험 결과는 미확정이다."
+        },
+        {
+          "sizePt": 10.0,
+          "colorWordBgr": 0,
+          "end": 4589,
+          "bold": 0,
+          "pass": true,
+          "fontName": "맑은 고딕",
+          "start": 4551,
+          "underline": 0,
+          "kind": "unconfirmed",
+          "text": "QCC 개발 환경의 라이브러리/ADK 버전과 빌드 구성은 미확정이다."
+        },
+        {
+          "sizePt": 10.0,
+          "colorWordBgr": 0,
+          "end": 4786,
+          "bold": 0,
+          "pass": true,
+          "fontName": "맑은 고딕",
+          "start": 4734,
+          "underline": 0,
+          "kind": "unconfirmed",
+          "text": "QCC의 실제 메모리 배치, 실행 이미지/데이터 사용량과 부트 이미지 검사 설정은 미확정이다."
+        },
+        {
+          "sizePt": 10.0,
+          "colorWordBgr": 0,
+          "end": 6698,
+          "bold": 0,
+          "pass": true,
+          "fontName": "맑은 고딕",
+          "start": 6634,
+          "underline": 0,
+          "kind": "unconfirmed",
+          "text": "오디오 송수신, 연결/인증, 키 관리 및 펌웨어 보호에 대한 위험분석 재평가와 변경 영향의 검토 결과는 미확정이다."
+        }
+      ],
+      "code": "SR",
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\SR-fields.docx",
+      "allPass": true,
+      "sha256": "C30AF83386C4DE07C415497A850036A40B12D926C743595E348FDBCAD4142548",
+      "scope": "Read-only Word open; accept revisions in memory only to inspect current visible text. No document save or global setting change."
+    },
+    {
+      "matches": [
+        {
+          "sizePt": 10.0,
+          "colorWordBgr": 192,
+          "end": 2742,
+          "bold": -1,
+          "pass": true,
+          "fontName": "맑은 고딕",
+          "start": 2647,
+          "underline": 0,
+          "kind": "QCC",
+          "text": "적용 범위에는 자극 처리와 장치 제어를 담당하는 E8300 펌웨어 및 Bluetooth 통신/인증과 E8300 전달 경로를 담당하는 QCC5181 펌웨어가 함께 포함된다."
+        },
+        {
+          "sizePt": 10.0,
+          "colorWordBgr": 192,
+          "end": 7543,
+          "bold": -1,
+          "pass": true,
+          "fontName": "맑은 고딕",
+          "start": 7348,
+          "underline": 0,
+          "kind": "QCC",
+          "text": "√ QCC5181은 Bluetooth Classic 수신 오디오를 I2S로 E8300에 전달하고, 전화 통화 시 DMIC2의 음성을 수음하여 통화 상대에게 송신한다. DMIC2는 E8300과 QCC에 함께 연결되며, 통화 상향 마이크 입력과 I2S 수신 오디오는 서로 다른 경로다. BLE의 리모콘/매핑 명령과 응답은 SPI로 E8300에 중계한다."
+        },
+        {
+          "sizePt": 10.0,
+          "colorWordBgr": 192,
+          "end": 7632,
+          "bold": -1,
+          "pass": true,
+          "fontName": "맑은 고딕",
+          "start": 7544,
+          "underline": 0,
+          "kind": "QCC",
+          "text": "√ 보호 대상 BLE 데이터 접근에는 페어링과 CRA 인증을 요구한다. 오디오 송신, 연결 제한 및 인증/키 관리 조건은 소프트웨어 요구사항 사양서에 따른다."
+        },
+        {
+          "sizePt": 10.0,
+          "colorWordBgr": 192,
+          "end": 8013,
+          "bold": -1,
+          "pass": true,
+          "fontName": "맑은 고딕",
+          "start": 7912,
+          "underline": 0,
+          "kind": "QCC",
+          "text": "QCC5181은 제조사 제공 Built-in library와 scheduler를 사용하는 펌웨어로 구성한다. QCC의 실행 환경은 E8300의 운영체제 사용 여부와 별도로 정의한다."
+        },
+        {
+          "sizePt": 10.0,
+          "colorWordBgr": 192,
+          "end": 8168,
+          "bold": -1,
+          "pass": true,
+          "fontName": "맑은 고딕",
+          "start": 8112,
+          "underline": 0,
+          "kind": "QCC",
+          "text": "QCC5181은 제조사 제공 Bluetooth stack과 Built-in library를 사용한다."
+        },
+        {
+          "sizePt": 10.0,
+          "colorWordBgr": 0,
+          "end": 8060,
+          "bold": 0,
+          "pass": true,
+          "fontName": "맑은 고딕",
+          "start": 8014,
+          "underline": 0,
+          "kind": "unconfirmed",
+          "text": "QCC의 실제 ADK/실행 환경, scheduler 구성과 사용 버전은 미확정이다."
+        },
+        {
+          "sizePt": 10.0,
+          "colorWordBgr": 0,
+          "end": 8211,
+          "bold": 0,
+          "pass": true,
+          "fontName": "맑은 고딕",
+          "start": 8169,
+          "underline": 0,
+          "kind": "unconfirmed",
+          "text": "QCC 제조사 소프트웨어의 식별/버전, 사용 범위와 검토 근거는 미확정이다."
+        }
+      ],
+      "code": "SGR",
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\SGR-fields.docx",
+      "allPass": true,
+      "sha256": "16D2E69CE1C73A482404A86DCF438CA270DFA99CFE244F3064FBB1285C48408B",
+      "scope": "Read-only Word open; accept revisions in memory only to inspect current visible text. No document save or global setting change."
+    }
+  ]
+}

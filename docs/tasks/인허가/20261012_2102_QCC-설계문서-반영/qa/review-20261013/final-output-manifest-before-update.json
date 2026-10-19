@@ -1,0 +1,809 @@
+{
+  "status": "Documentation draft complete; product/QCC tests not executed",
+  "checked_at": "2026-10-12T22:24:09+09:00",
+  "files": [
+    {
+      "code": "SSTR",
+      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\04_설계 검증\\SW\\외부기\\[E8300-QCC] SSTR-FW-TD24A 소프트웨어 시스템 시험 보고서.xlsx",
+      "exists": true,
+      "sha256": "57BBAA3DC7B5792EF34CD88E9FC0C9A7CC32036DA965EDB41CE968E16A51352A",
+      "changed_from_original": true,
+      "all_xml_parse": true,
+      "row_height_over_limit": {},
+      "original_drawings_preserved": true,
+      "changed_drawing_parts": [],
+      "original_ids_missing": [],
+      "new_ids": [
+        "SW-FW-RID-82",
+        "SW-FW-RID-83",
+        "SW-FW-SYS-Test-ID-82",
+        "SW-FW-SYS-Test-ID-83"
+      ]
+    },
+    {
+      "code": "SITR",
+      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\04_설계 검증\\SW\\외부기\\[E8300-QCC] SITR-FW-TD24A 소프트웨어 통합시험 보고서.xlsx",
+      "exists": true,
+      "sha256": "0F24D4729C7C8C1432E6207FE4317708DA6751490FA048CFC15F8C57997B4377",
+      "changed_from_original": true,
+      "all_xml_parse": true,
+      "row_height_over_limit": {},
+      "original_drawings_preserved": true,
+      "changed_drawing_parts": [],
+      "original_ids_missing": [],
+      "new_ids": [
+        "SW-FW-IntegrationTest-ID-018",
+        "SW-FW-IntegrationTest-ID-019",
+        "SW-FW-IntegrationTest-ID-020",
+        "SW-FW-IntegrationTest-ID-021",
+        "SW-FW-IntegrationTest-ID-022",
+        "SW-FW-IntegrationTest-ID-023",
+        "SW-FW-IntegrationTest-ID-024",
+        "SW-FW-RID-15",
+        "SW-FW-RID-21",
+        "SW-FW-RID-29",
+        "SW-FW-RID-46",
+        "SW-FW-RID-47",
+        "SW-FW-RID-48",
+        "SW-FW-RID-52"
+      ]
+    },
+    {
+      "code": "SUVR",
+      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\04_설계 검증\\SW\\외부기\\[E8300-QCC] SUVR-FW-TD24A 소프트웨어 유닛 검증 보고서.xlsx",
+      "exists": true,
+      "sha256": "59892DDB69E4AD215E1F2FE7D5DC19EC93732D2EB4868558EDE2EC58A91471D1",
+      "changed_from_original": true,
+      "all_xml_parse": true,
+      "row_height_over_limit": {},
+      "original_drawings_preserved": true,
+      "changed_drawing_parts": [],
+      "original_ids_missing": [],
+      "new_ids": [
+        "SW-FW-RID-15",
+        "SW-FW-RID-16",
+        "SW-FW-RID-21",
+        "SW-FW-RID-22",
+        "SW-FW-RID-23",
+        "SW-FW-RID-28",
+        "SW-FW-RID-29",
+        "SW-FW-RID-34",
+        "SW-FW-RID-35",
+        "SW-FW-RID-38",
+        "SW-FW-RID-44",
+        "SW-FW-RID-45",
+        "SW-FW-RID-46",
+        "SW-FW-RID-47",
+        "SW-FW-RID-48",
+        "SW-FW-RID-49",
+        "SW-FW-RID-52",
+        "SW-FW-RID-63",
+        "SW-FW-RID-67",
+        "SW-FW-RID-68",
+        "SW-FW-RID-69",
+        "SW-FW-RID-70",
+        "SW-FW-RID-71",
+        "SW-FW-RID-72",
+        "SW-FW-RID-76",
+        "SW-FW-RID-78",
+        "SW-FW-UnitTest-QCC-ID-1",
+        "SW-FW-UnitTest-QCC-ID-10",
+        "SW-FW-UnitTest-QCC-ID-11",
+        "SW-FW-UnitTest-QCC-ID-12",
+        "SW-FW-UnitTest-QCC-ID-13",
+        "SW-FW-UnitTest-QCC-ID-14",
+        "SW-FW-UnitTest-QCC-ID-15",
+        "SW-FW-UnitTest-QCC-ID-2",
+        "SW-FW-UnitTest-QCC-ID-3",
+        "SW-FW-UnitTest-QCC-ID-4",
+        "SW-FW-UnitTest-QCC-ID-5",
+        "SW-FW-UnitTest-QCC-ID-6",
+        "SW-FW-UnitTest-QCC-ID-7",
+        "SW-FW-UnitTest-QCC-ID-8",
+        "SW-FW-UnitTest-QCC-ID-9"
+      ]
+    },
+    {
+      "code": "SR",
+      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\02_설계 입력\\SW\\외부기\\[E8300-QCC] SR-FW-TD24A 소프트웨어 요구사항.docx",
+      "exists": true,
+      "sha256": "8237F9E97E7D868FB87D09661FA546E51E69DE0D83C9F2DDB75148ECC56F6F63",
+      "changed_from_original": true,
+      "all_xml_parse": true,
+      "new_revision_count": 106,
+      "new_revision_authors": [
+        "김은수"
+      ],
+      "visible_qcc_markers": 2,
+      "visible_joint_markers": 2,
+      "visible_e8300_markers": 1,
+      "nested_revision_count": 0,
+      "deletions_inside_original_insertions": 0,
+      "unsupported_nested_revisions": [],
+      "original_media_preserved": true,
+      "active_original_body_media": [
+        {
+          "original_part": "word/media/image1.png",
+          "bytes_present": true
+        },
+        {
+          "original_part": "word/media/image5.png",
+          "bytes_present": true
+        },
+        {
+          "original_part": "word/media/image10.png",
+          "bytes_present": true
+        },
+        {
+          "original_part": "word/media/image4.png",
+          "bytes_present": true
+        },
+        {
+          "original_part": "word/media/image9.png",
+          "bytes_present": true
+        },
+        {
+          "original_part": "word/media/image8.png",
+          "bytes_present": true
+        },
+        {
+          "original_part": "word/media/image7.png",
+          "bytes_present": true
+        },
+        {
+          "original_part": "word/media/image11.png",
+          "bytes_present": true
+        },
+        {
+          "original_part": "word/media/image2.png",
+          "bytes_present": true
+        },
+        {
+          "original_part": "word/media/image6.png",
+          "bytes_present": true
+        }
+      ],
+      "active_original_body_media_bytes_preserved": true
+    },
+    {
+      "code": "SGR",
+      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\02_설계 입력\\SW\\외부기\\[E8300-QCC] SGR-FW-TD24A 소프트웨어 일반요구사항.docx",
+      "exists": true,
+      "sha256": "2B04B70CAF90E42E3CB829EF8AD7FD860D9DCFD589FB4333E7749B62BE48F049",
+      "changed_from_original": true,
+      "all_xml_parse": true,
+      "new_revision_count": 22,
+      "new_revision_authors": [
+        "김은수"
+      ],
+      "visible_qcc_markers": 2,
+      "visible_joint_markers": 0,
+      "visible_e8300_markers": 0,
+      "nested_revision_count": 0,
+      "deletions_inside_original_insertions": 0,
+      "unsupported_nested_revisions": [],
+      "original_media_preserved": true,
+      "active_original_body_media": [
+        {
+          "original_part": "word/media/image1.png",
+          "bytes_present": true
+        },
+        {
+          "original_part": "word/media/image4.png",
+          "bytes_present": true
+        },
+        {
+          "original_part": "word/media/image3.png",
+          "bytes_present": true
+        },
+        {
+          "original_part": "word/media/image2.png",
+          "bytes_present": true
+        }
+      ],
+      "active_original_body_media_bytes_preserved": true
+    },
+    {
+      "code": "SRS",
+      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\02_설계 입력\\SW\\외부기\\[E8300-QCC] SRS-FW-TD24A 소프트웨어 요구사항 사양서.xlsx",
+      "exists": true,
+      "sha256": "FB34D47181B2AC35E6DBE710C78986990B6934849B370B5E8CDE030FF10DFAC8",
+      "changed_from_original": true,
+      "all_xml_parse": true,
+      "row_height_over_limit": {},
+      "original_drawings_preserved": false,
+      "changed_drawing_parts": [
+        "xl/drawings/vmlDrawing1.vml"
+      ],
+      "original_ids_missing": [],
+      "new_ids": [
+        "SW-FW-RID-82",
+        "SW-FW-RID-83"
+      ]
+    },
+    {
+      "code": "SSTC",
+      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SSTC-FW-TD24A 소프트웨어 시스템 시험 기준서.xlsx",
+      "exists": true,
+      "sha256": "2E3A661F2A21EC82059543D465259FBF506C6DA5357207F709936CFBFEB20EFA",
+      "changed_from_original": true,
+      "all_xml_parse": true,
+      "row_height_over_limit": {},
+      "original_drawings_preserved": true,
+      "changed_drawing_parts": [],
+      "original_ids_missing": [],
+      "new_ids": [
+        "SW-FW-RID-82",
+        "SW-FW-RID-83",
+        "SW-FW-SYS-Test-ID-82",
+        "SW-FW-SYS-Test-ID-83"
+      ]
+    },
+    {
+      "code": "SITC",
+      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SITC-FW-TD24A 소프트웨어 통합시험 기준서.xlsx",
+      "exists": true,
+      "sha256": "EBB54A9830529E5295AB592FE3BA1CC8769AB34118F6EE123F294A9D6AB8405B",
+      "changed_from_original": true,
+      "all_xml_parse": true,
+      "row_height_over_limit": {},
+      "original_drawings_preserved": true,
+      "changed_drawing_parts": [],
+      "original_ids_missing": [],
+      "new_ids": [
+        "SW-FW-IntegrationTest-ID-018",
+        "SW-FW-IntegrationTest-ID-019",
+        "SW-FW-IntegrationTest-ID-020",
+        "SW-FW-IntegrationTest-ID-021",
+        "SW-FW-IntegrationTest-ID-022",
+        "SW-FW-IntegrationTest-ID-023",
+        "SW-FW-IntegrationTest-ID-024",
+        "SW-FW-RID-15",
+        "SW-FW-RID-21",
+        "SW-FW-RID-29",
+        "SW-FW-RID-46",
+        "SW-FW-RID-47",
+        "SW-FW-RID-48",
+        "SW-FW-RID-52"
+      ]
+    },
+    {
+      "code": "SIP",
+      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SIP-FW-TD24A 소프트웨어 통합 계획서.docx",
+      "exists": true,
+      "sha256": "3C9FF2237625C78416F3C501D12196E477615DB15625624E7E391572EDCD2C47",
+      "changed_from_original": true,
+      "all_xml_parse": true,
+      "new_revision_count": 204,
+      "new_revision_authors": [
+        "김은수"
+      ],
+      "visible_qcc_markers": 6,
+      "visible_joint_markers": 0,
+      "visible_e8300_markers": 0,
+      "nested_revision_count": 3,
+      "deletions_inside_original_insertions": 5,
+      "unsupported_nested_revisions": [],
+      "original_media_preserved": false,
+      "active_original_body_media": [
+        {
+          "original_part": "word/media/image1.png",
+          "bytes_present": true
+        },
+        {
+          "original_part": "word/media/image3.png",
+          "bytes_present": true
+        },
+        {
+          "original_part": "word/media/image2.png",
+          "bytes_present": true
+        },
+        {
+          "original_part": "word/media/sound1_sip_architecture.png",
+          "bytes_present": true
+        }
+      ],
+      "active_original_body_media_bytes_preserved": true
+    },
+    {
+      "code": "SDDD",
+      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SDDD-FW-TD24A 소프트웨어 상세 설계서.docx",
+      "exists": true,
+      "sha256": "490BC2E342353825BF8E053111BBFAFD23EC103EC17452DECDD0320FC3B499C7",
+      "changed_from_original": true,
+      "all_xml_parse": true,
+      "new_revision_count": 5589,
+      "new_revision_authors": [
+        "김은수"
+      ],
+      "visible_qcc_markers": 19,
+      "visible_joint_markers": 1,
+      "visible_e8300_markers": 0,
+      "nested_revision_count": 6,
+      "deletions_inside_original_insertions": 6,
+      "unsupported_nested_revisions": [],
+      "original_media_preserved": true,
+      "active_original_body_media": [
+        {
+          "original_part": "word/media/image18.png",
+          "bytes_present": true
+        },
+        {
+          "original_part": "word/media/image13.png",
+          "bytes_present": true
+        },
+        {
+          "original_part": "word/media/image34.png",
+          "bytes_present": true
+        },
+        {
+          "original_part": "word/media/image39.png",
+          "bytes_present": true
+        },
+        {
+          "original_part": "word/media/image55.png",
+          "bytes_present": true
+        },
+        {
+          "original_part": "word/media/image60.png",
+          "bytes_present": true
+        },
+        {
+          "original_part": "word/media/image76.png",
+          "bytes_present": true
+        },
+        {
+          "original_part": "word/media/image81.png",
+          "bytes_present": true
+        },
+        {
+          "original_part": "word/media/image8.png",
+          "bytes_present": true
+        },
+        {
+          "original_part": "word/media/image24.png",
+          "bytes_present": true
+        },
+        {
+          "original_part": "word/media/image29.png",
+          "bytes_present": true
+        },
+        {
+          "original_part": "word/media/image45.png",
+          "bytes_present": true
+        },
+        {
+          "original_part": "word/media/image50.png",
+          "bytes_present": true
+        },
+        {
+          "original_part": "word/media/image66.png",
+          "bytes_present": true
+        },
+        {
+          "original_part": "word/media/image71.png",
+          "bytes_present": true
+        },
+        {
+          "original_part": "word/media/image82.png",
+          "bytes_present": true
+        },
+        {
+          "original_part": "word/media/image14.png",
+          "bytes_present": true
+        },
+        {
+          "original_part": "word/media/image19.png",
+          "bytes_present": true
+        },
+        {
+          "original_part": "word/media/image35.png",
+          "bytes_present": true
+        },
+        {
+          "original_part": "word/media/image40.png",
+          "bytes_present": true
+        },
+        {
+          "original_part": "word/media/image56.png",
+          "bytes_present": true
+        },
+        {
+          "original_part": "word/media/image61.png",
+          "bytes_present": true
+        },
+        {
+          "original_part": "word/media/image72.png",
+          "bytes_present": true
+        },
+        {
+          "original_part": "word/media/image77.png",
+          "bytes_present": true
+        },
+        {
+          "original_part": "word/media/image4.png",
+          "bytes_present": true
+        },
+        {
+          "original_part": "word/media/image9.png",
+          "bytes_present": true
+        },
+        {
+          "original_part": "word/media/image17.png",
+          "bytes_present": true
+        },
+        {
+          "original_part": "word/media/image25.png",
+          "bytes_present": true
+        },
+        {
+          "original_part": "word/media/image30.png",
+          "bytes_present": true
+        },
+        {
+          "original_part": "word/media/image38.png",
+          "bytes_present": true
+        },
+        {
+          "original_part": "word/media/image51.png",
+          "bytes_present": true
+        },
+        {
+          "original_part": "word/media/image59.png",
+          "bytes_present": true
+        },
+        {
+          "original_part": "word/media/image12.png",
+          "bytes_present": true
+        },
+        {
+          "original_part": "word/media/image33.png",
+          "bytes_present": true
+        },
+        {
+          "original_part": "word/media/image46.png",
+          "bytes_present": true
+        },
+        {
+          "original_part": "word/media/image54.png",
+          "bytes_present": true
+        },
+        {
+          "original_part": "word/media/image62.emf",
+          "bytes_present": true
+        },
+        {
+          "original_part": "word/media/image67.png",
+          "bytes_present": true
+        },
+        {
+          "original_part": "word/media/image75.png",
+          "bytes_present": true
+        },
+        {
+          "original_part": "word/media/image80.png",
+          "bytes_present": true
+        },
+        {
+          "original_part": "word/media/image83.png",
+          "bytes_present": true
+        },
+        {
+          "original_part": "word/media/image7.png",
+          "bytes_present": true
+        },
+        {
+          "original_part": "word/media/image15.png",
+          "bytes_present": true
+        },
+        {
+          "original_part": "word/media/image20.png",
+          "bytes_present": true
+        },
+        {
+          "original_part": "word/media/image28.png",
+          "bytes_present": true
+        },
+        {
+          "original_part": "word/media/image41.png",
+          "bytes_present": true
+        },
+        {
+          "original_part": "word/media/image49.png",
+          "bytes_present": true
+        },
+        {
+          "original_part": "word/media/image23.png",
+          "bytes_present": true
+        },
+        {
+          "original_part": "word/media/image36.png",
+          "bytes_present": true
+        },
+        {
+          "original_part": "word/media/image44.png",
+          "bytes_present": true
+        },
+        {
+          "original_part": "word/media/image52.png",
+          "bytes_present": true
+        },
+        {
+          "original_part": "word/media/image57.png",
+          "bytes_present": true
+        },
+        {
+          "original_part": "word/media/image65.emf",
+          "bytes_present": true
+        },
+        {
+          "original_part": "word/media/image70.png",
+          "bytes_present": true
+        },
+        {
+          "original_part": "word/media/image73.png",
+          "bytes_present": true
+        },
+        {
+          "original_part": "word/media/image78.png",
+          "bytes_present": true
+        },
+        {
+          "original_part": "word/media/image2.png",
+          "bytes_present": true
+        },
+        {
+          "original_part": "word/media/image5.png",
+          "bytes_present": true
+        },
+        {
+          "original_part": "word/media/image10.png",
+          "bytes_present": true
+        },
+        {
+          "original_part": "word/media/image31.png",
+          "bytes_present": true
+        },
+        {
+          "original_part": "word/media/image26.png",
+          "bytes_present": true
+        },
+        {
+          "original_part": "word/media/image42.png",
+          "bytes_present": true
+        },
+        {
+          "original_part": "word/media/image47.png",
+          "bytes_present": true
+        },
+        {
+          "original_part": "word/media/image68.png",
+          "bytes_present": true
+        },
+        {
+          "original_part": "word/media/image63.png",
+          "bytes_present": true
+        },
+        {
+          "original_part": "word/media/image84.png",
+          "bytes_present": true
+        },
+        {
+          "original_part": "word/media/image21.png",
+          "bytes_present": true
+        },
+        {
+          "original_part": "word/media/image16.png",
+          "bytes_present": true
+        },
+        {
+          "original_part": "word/media/image32.png",
+          "bytes_present": true
+        },
+        {
+          "original_part": "word/media/image37.png",
+          "bytes_present": true
+        },
+        {
+          "original_part": "word/media/image58.png",
+          "bytes_present": true
+        },
+        {
+          "original_part": "word/media/image79.png",
+          "bytes_present": true
+        },
+        {
+          "original_part": "word/media/image53.png",
+          "bytes_present": true
+        },
+        {
+          "original_part": "word/media/image74.png",
+          "bytes_present": true
+        },
+        {
+          "original_part": "word/media/image11.png",
+          "bytes_present": true
+        },
+        {
+          "original_part": "word/media/image6.png",
+          "bytes_present": true
+        },
+        {
+          "original_part": "word/media/image22.png",
+          "bytes_present": true
+        },
+        {
+          "original_part": "word/media/image27.png",
+          "bytes_present": true
+        },
+        {
+          "original_part": "word/media/image48.png",
+          "bytes_present": true
+        },
+        {
+          "original_part": "word/media/image69.png",
+          "bytes_present": true
+        },
+        {
+          "original_part": "word/media/image1.png",
+          "bytes_present": true
+        },
+        {
+          "original_part": "word/media/image43.png",
+          "bytes_present": true
+        },
+        {
+          "original_part": "word/media/image64.png",
+          "bytes_present": true
+        },
+        {
+          "original_part": "word/media/image85.png",
+          "bytes_present": true
+        }
+      ],
+      "active_original_body_media_bytes_preserved": true
+    },
+    {
+      "code": "SAD",
+      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SAD-FW-TD24A 소프트웨어 아키텍쳐 기술서.docx",
+      "exists": true,
+      "sha256": "47B8FB9A30EB01470730A096E38A74B986AB2956BB7E69623ACCCA17E0197117",
+      "changed_from_original": true,
+      "all_xml_parse": true,
+      "new_revision_count": 694,
+      "new_revision_authors": [
+        "김은수"
+      ],
+      "visible_qcc_markers": 20,
+      "visible_joint_markers": 1,
+      "visible_e8300_markers": 2,
+      "nested_revision_count": 31,
+      "deletions_inside_original_insertions": 31,
+      "unsupported_nested_revisions": [],
+      "original_media_preserved": false,
+      "active_original_body_media": [
+        {
+          "original_part": "word/media/image1.png",
+          "bytes_present": true
+        },
+        {
+          "original_part": "word/media/image6.png",
+          "bytes_present": true
+        },
+        {
+          "original_part": "word/media/image5.png",
+          "bytes_present": true
+        },
+        {
+          "original_part": "word/media/image4.png",
+          "bytes_present": true
+        },
+        {
+          "original_part": "word/media/image3.png",
+          "bytes_present": true
+        },
+        {
+          "original_part": "word/media/image2.png",
+          "bytes_present": true
+        }
+      ],
+      "active_original_body_media_bytes_preserved": true
+    },
+    {
+      "code": "SUVC",
+      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SUVC-FW-TD24A 소프트웨어 유닛 검증 기준서.xlsx",
+      "exists": true,
+      "sha256": "13B24A4BA19B7CBDAB2C223571CB26563C0B28131608153271D1F69C00ACB76B",
+      "changed_from_original": true,
+      "all_xml_parse": true,
+      "row_height_over_limit": {},
+      "original_drawings_preserved": true,
+      "changed_drawing_parts": [],
+      "original_ids_missing": [],
+      "new_ids": [
+        "SW-FW-RID-15",
+        "SW-FW-RID-16",
+        "SW-FW-RID-21",
+        "SW-FW-RID-22",
+        "SW-FW-RID-23",
+        "SW-FW-RID-28",
+        "SW-FW-RID-29",
+        "SW-FW-RID-34",
+        "SW-FW-RID-35",
+        "SW-FW-RID-38",
+        "SW-FW-RID-44",
+        "SW-FW-RID-45",
+        "SW-FW-RID-46",
+        "SW-FW-RID-47",
+        "SW-FW-RID-48",
+        "SW-FW-RID-49",
+        "SW-FW-RID-52",
+        "SW-FW-RID-63",
+        "SW-FW-RID-67",
+        "SW-FW-RID-68",
+        "SW-FW-RID-69",
+        "SW-FW-RID-70",
+        "SW-FW-RID-71",
+        "SW-FW-RID-72",
+        "SW-FW-RID-76",
+        "SW-FW-RID-78",
+        "SW-FW-UnitTest-QCC-ID-1",
+        "SW-FW-UnitTest-QCC-ID-10",
+        "SW-FW-UnitTest-QCC-ID-11",
+        "SW-FW-UnitTest-QCC-ID-12",
+        "SW-FW-UnitTest-QCC-ID-13",
+        "SW-FW-UnitTest-QCC-ID-14",
+        "SW-FW-UnitTest-QCC-ID-15",
+        "SW-FW-UnitTest-QCC-ID-2",
+        "SW-FW-UnitTest-QCC-ID-3",
+        "SW-FW-UnitTest-QCC-ID-4",
+        "SW-FW-UnitTest-QCC-ID-5",
+        "SW-FW-UnitTest-QCC-ID-6",
+        "SW-FW-UnitTest-QCC-ID-7",
+        "SW-FW-UnitTest-QCC-ID-8",
+        "SW-FW-UnitTest-QCC-ID-9"
+      ]
+    }
+  ],
+  "originals_unchanged": 23,
+  "requirements": 83,
+  "qcc_modules": 4,
+  "qcc_units": 14,
+  "test_ids": {
+    "unit": 130,
+    "integration": 24,
+    "system": 83
+  },
+  "new_conditions": {
+    "unit": 38,
+    "integration": 14,
+    "system": 3
+  },
+  "common_columns_and_merges": "PASS",
+  "native_open_and_visual_QA": "PASS",
+  "word_pages": {
+    "SR": 11,
+    "SGR": 10,
+    "SAD": 47,
+    "SDDD": 166,
+    "SIP": 16
+  },
+  "registered_current_notice_locations": 389,
+  "registry": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\QCC 자료 추가 위치 관리.md",
+  "matrix_edit": false,
+  "firmware_edit": false,
+  "new_test_passes": false,
+  "evidence": [
+    "qa/saved-package-checks.json",
+    "qa/cross-requirements-word.json",
+    "qa/cross-design-native.json",
+    "qa/final-word/SAD-candidate-proof.json",
+    "evidence/qcc_tests_native_v2.json",
+    "qa/qcc_requirements/saved-body-validation.json"
+  ],
+  "known_tool_limits": [
+    "Bundled LibreOffice unavailable; isolated read-only native Office PDF/PNG used.",
+    "Word TOC terminal paragraph formatting revision unavailable through COM Revisions item; QA candidate accepted/rejected body text, drawings and author/date change text verified unchanged before publishing field cache."
+  ],
+  "remaining_product_evidence": "See central registry for QCC implementation/build, pin/power/BLE/auth/audio/OTA contracts, measured logs/photos and RID83 manual/upper trace."
+}

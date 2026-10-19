@@ -1,0 +1,751 @@
+{
+  "status": "READONLY_AUDIT_COMPLETE",
+  "books": [
+    {
+      "code": "SSTC",
+      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SSTC-FW-TD24A 소프트웨어 시스템 시험 기준서.xlsx",
+      "sourceSHA256": "B86E424177E33B0A4E539DFB7845AFA255FC482EF0A9B008ACD82E71FFC90D5B",
+      "endSHA256": "B86E424177E33B0A4E539DFB7845AFA255FC482EF0A9B008ACD82E71FFC90D5B",
+      "unchanged": true,
+      "sheets": [
+        {
+          "name": "기준서_시스템 시험",
+          "part": "xl/worksheets/sheet2.xml",
+          "cells": {
+            "B285": {
+              "text": "\nSW-FW-SYS-Test-ID-83\n",
+              "style": "121",
+              "type": "inlineStr",
+              "formula": null,
+              "xml": "<c xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:x14ac=\"http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac\" xmlns:xr=\"http://schemas.microsoft.com/office/spreadsheetml/2014/revision\" xmlns:xr2=\"http://schemas.microsoft.com/office/spreadsheetml/2015/revision2\" xmlns:xr3=\"http://schemas.microsoft.com/office/spreadsheetml/2016/revision3\" r=\"B285\" s=\"121\" t=\"inlineStr\"><is><t xml:space=\"preserve\">\nSW-FW-SYS-Test-ID-83\n</t></is></c>"
+            },
+            "C285": {
+              "text": "\n사용자 설명서의 안전·사용·문제 해결 정보\n",
+              "style": "122",
+              "type": "inlineStr",
+              "formula": null,
+              "xml": "<c xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:x14ac=\"http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac\" xmlns:xr=\"http://schemas.microsoft.com/office/spreadsheetml/2014/revision\" xmlns:xr2=\"http://schemas.microsoft.com/office/spreadsheetml/2015/revision2\" xmlns:xr3=\"http://schemas.microsoft.com/office/spreadsheetml/2016/revision3\" r=\"C285\" s=\"122\" t=\"inlineStr\"><is><t xml:space=\"preserve\">\n&#49324;&#50857;&#51088; &#49444;&#47749;&#49436;&#51032; &#50504;&#51204;&#183;&#49324;&#50857;&#183;&#47928;&#51228; &#54644;&#44208; &#51221;&#48372;\n</t></is></c>"
+            },
+            "D285": {
+              "text": "\nI\n",
+              "style": "123",
+              "type": "inlineStr",
+              "formula": null,
+              "xml": "<c xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:x14ac=\"http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac\" xmlns:xr=\"http://schemas.microsoft.com/office/spreadsheetml/2014/revision\" xmlns:xr2=\"http://schemas.microsoft.com/office/spreadsheetml/2015/revision2\" xmlns:xr3=\"http://schemas.microsoft.com/office/spreadsheetml/2016/revision3\" r=\"D285\" s=\"123\" t=\"inlineStr\"><is><t xml:space=\"preserve\">\nI\n</t></is></c>"
+            },
+            "E285": {
+              "text": "\nSW-FW-RID-83\n",
+              "style": "124",
+              "type": "inlineStr",
+              "formula": null,
+              "xml": "<c xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:x14ac=\"http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac\" xmlns:xr=\"http://schemas.microsoft.com/office/spreadsheetml/2014/revision\" xmlns:xr2=\"http://schemas.microsoft.com/office/spreadsheetml/2015/revision2\" xmlns:xr3=\"http://schemas.microsoft.com/office/spreadsheetml/2016/revision3\" r=\"E285\" s=\"124\" t=\"inlineStr\"><is><t xml:space=\"preserve\">\nSW-FW-RID-83\n</t></is></c>"
+            },
+            "F285": {
+              "text": "\nSYS-RID-ACDOC-17\nSYS-RID-ACDOC-18\nSYS-RID-ACDOC-20\n",
+              "style": "125",
+              "type": "inlineStr",
+              "formula": null,
+              "xml": "<c xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:x14ac=\"http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac\" xmlns:xr=\"http://schemas.microsoft.com/office/spreadsheetml/2014/revision\" xmlns:xr2=\"http://schemas.microsoft.com/office/spreadsheetml/2015/revision2\" xmlns:xr3=\"http://schemas.microsoft.com/office/spreadsheetml/2016/revision3\" r=\"F285\" s=\"125\" t=\"inlineStr\"><is><r><rPr><sz val=\"11\"/><color rgb=\"FF000000\"/><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/><color rgb=\"FF000000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">SYS-RID-ACDOC-17</t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/><color rgb=\"FF000000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/><color rgb=\"FF000000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">SYS-RID-ACDOC-18</t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/><color rgb=\"FF000000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/><color rgb=\"FF000000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">SYS-RID-ACDOC-20</t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/><color rgb=\"FF000000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">\n</t></r></is></c>"
+            },
+            "G285": {
+              "text": "\n사용자 배포용 외부기 설명서의 현재 파일/버전/언어/대상제품. 안전/사용/문제 해결 정보를 검토할 제품 사용 흐름과 검토 기준.\n",
+              "style": "126",
+              "type": "inlineStr",
+              "formula": null,
+              "xml": "<c xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:x14ac=\"http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac\" xmlns:xr=\"http://schemas.microsoft.com/office/spreadsheetml/2014/revision\" xmlns:xr2=\"http://schemas.microsoft.com/office/spreadsheetml/2015/revision2\" xmlns:xr3=\"http://schemas.microsoft.com/office/spreadsheetml/2016/revision3\" r=\"G285\" s=\"126\" t=\"inlineStr\"><is><r><rPr><sz val=\"11\"/><color rgb=\"FF000000\"/><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/><color rgb=\"FF000000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">&#49324;&#50857;&#51088; &#48176;&#54252;&#50857; &#50808;&#48512;&#44592; &#49444;&#47749;&#49436;&#51032; &#54788;&#51116; &#54028;&#51068;/&#48260;&#51204;/&#50616;&#50612;/&#45824;&#49345;&#51228;&#54408;. &#50504;&#51204;/&#49324;&#50857;/&#47928;&#51228; &#54644;&#44208; &#51221;&#48372;&#47484; &#44160;&#53664;&#54624; &#51228;&#54408; &#49324;&#50857; &#55120;&#47492;&#44284; &#44160;&#53664; &#44592;&#51456;.</t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/><color rgb=\"FF000000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">\n</t></r></is></c>"
+            },
+            "H285": {
+              "text": "\n[E8300 보완] 제품 사용 설명서의 실제 해당 절/내용, 배포 대상 및 검토 결과. 상위 ACDOC-17/18/20 추적은 반영함.\n",
+              "style": "127",
+              "type": "inlineStr",
+              "formula": null,
+              "xml": "<c xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:x14ac=\"http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac\" xmlns:xr=\"http://schemas.microsoft.com/office/spreadsheetml/2014/revision\" xmlns:xr2=\"http://schemas.microsoft.com/office/spreadsheetml/2015/revision2\" xmlns:xr3=\"http://schemas.microsoft.com/office/spreadsheetml/2016/revision3\" r=\"H285\" s=\"127\" t=\"inlineStr\"><is><r><rPr><sz val=\"11\"/><color rgb=\"FF000000\"/><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/><color rgb=\"FF0070C0\"/><sz val=\"13.0\"/><u/></rPr><t xml:space=\"preserve\">[E8300 &#48372;&#50756;] &#51228;&#54408; &#49324;&#50857; &#49444;&#47749;&#49436;&#51032; &#49892;&#51228; &#54644;&#45817; &#51208;/&#45236;&#50857;, &#48176;&#54252; &#45824;&#49345; &#48143; &#44160;&#53664; &#44208;&#44284;. &#49345;&#50948; ACDOC-17/18/20 &#52628;&#51201;&#51008; &#48152;&#50689;&#54632;.</t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/><color rgb=\"FF000000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">\n</t></r></is></c>"
+            },
+            "I285": {
+              "text": "\n배포 설명서의 안전 예방조치·사용 방법·문제 해결 방법을 실제 본문에서 찾아 위치/내용/제품 적합성을 검토한다.\n",
+              "style": "128",
+              "type": "inlineStr",
+              "formula": null,
+              "xml": "<c xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:x14ac=\"http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac\" xmlns:xr=\"http://schemas.microsoft.com/office/spreadsheetml/2014/revision\" xmlns:xr2=\"http://schemas.microsoft.com/office/spreadsheetml/2015/revision2\" xmlns:xr3=\"http://schemas.microsoft.com/office/spreadsheetml/2016/revision3\" r=\"I285\" s=\"128\" t=\"inlineStr\"><is><t xml:space=\"preserve\">\n&#48176;&#54252; &#49444;&#47749;&#49436;&#51032; &#50504;&#51204; &#50696;&#48169;&#51312;&#52824;&#183;&#49324;&#50857; &#48169;&#48277;&#183;&#47928;&#51228; &#54644;&#44208; &#48169;&#48277;&#51012; &#49892;&#51228; &#48376;&#47928;&#50640;&#49436; &#52286;&#50500; &#50948;&#52824;/&#45236;&#50857;/&#51228;&#54408; &#51201;&#54633;&#49457;&#51012; &#44160;&#53664;&#54620;&#45796;.\n</t></is></c>"
+            },
+            "J285": {
+              "text": "\n조건 [1]\n입력: 사용자에게 배포될 외부기 설명서 현재본.\n통과 기준: 경고/안전사항, 안전한 작동법, 자세한 동작방법이 포함되고 안전 예방조치/사용/문제 해결 방법이 대상 제품의 실제 사용 흐름과 맞아야 한다. 각 내용의 실제 위치/본문과 제품 적합성을 확인한다.\n",
+              "style": "129",
+              "type": "inlineStr",
+              "formula": null,
+              "xml": "<c xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:x14ac=\"http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac\" xmlns:xr=\"http://schemas.microsoft.com/office/spreadsheetml/2014/revision\" xmlns:xr2=\"http://schemas.microsoft.com/office/spreadsheetml/2015/revision2\" xmlns:xr3=\"http://schemas.microsoft.com/office/spreadsheetml/2016/revision3\" r=\"J285\" s=\"129\" t=\"inlineStr\"><is><r><rPr><sz val=\"11\"/><color rgb=\"FF000000\"/><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/><color rgb=\"FF000000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">&#51312;&#44148; [1]</t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/><color rgb=\"FF000000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/><color rgb=\"FF000000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">&#51077;&#47141;: &#49324;&#50857;&#51088;&#50640;&#44172; &#48176;&#54252;&#46112; &#50808;&#48512;&#44592; &#49444;&#47749;&#49436; &#54788;&#51116;&#48376;.</t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/><color rgb=\"FF000000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/><color rgb=\"FF000000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">&#53685;&#44284; &#44592;&#51456;: &#44221;&#44256;/&#50504;&#51204;&#49324;&#54637;, &#50504;&#51204;&#54620; &#51089;&#46041;&#48277;, &#51088;&#49464;&#54620; &#46041;&#51089;&#48169;&#48277;&#51060; &#54252;&#54632;&#46104;&#44256; &#50504;&#51204; &#50696;&#48169;&#51312;&#52824;/&#49324;&#50857;/&#47928;&#51228; &#54644;&#44208; &#48169;&#48277;&#51060; &#45824;&#49345; &#51228;&#54408;&#51032; &#49892;&#51228; &#49324;&#50857; &#55120;&#47492;&#44284; &#47582;&#50500;&#50556; &#54620;&#45796;. &#44033; &#45236;&#50857;&#51032; &#49892;&#51228; &#50948;&#52824;/&#48376;&#47928;&#44284; &#51228;&#54408; &#51201;&#54633;&#49457;&#51012; &#54869;&#51064;&#54620;&#45796;.</t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/><color rgb=\"FF000000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">\n</t></r></is></c>"
+            }
+          },
+          "merges_around_285": [
+            "B282:B283",
+            "C282:C283",
+            "D282:D283",
+            "E282:E283",
+            "F282:F283"
+          ],
+          "row285_attributes": {
+            "r": "285",
+            "spans": "2:10",
+            "ht": "300",
+            "customHeight": "1",
+            "{http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac}dyDescent": "0.3"
+          }
+        },
+        {
+          "name": "사이버보안 시험 연계",
+          "part": "xl/worksheets/sheet3.xml",
+          "cells": {
+            "G38": {
+              "text": "\nSW-FW-SYS-Test-ID-48\nSW-FW-RID-48\nSYS-RID-SP-FW-18\n\nSW-FW-SYS-Test-ID-52\nSW-FW-RID-52\nSYS-RID-SP-FW-19\n\nSW-FW-SYS-Test-ID-76\nSW-FW-RID-76\nSYS-RID-SP-FW-33\nSW-FW-SYS-Test-ID-83\nSW-FW-RID-83\nSYS-RID-ACDOC-17\nSYS-RID-ACDOC-18\nSYS-RID-ACDOC-20\n",
+              "style": "36",
+              "type": "inlineStr",
+              "formula": null,
+              "xml": "<c xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:x14ac=\"http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac\" xmlns:xr=\"http://schemas.microsoft.com/office/spreadsheetml/2014/revision\" xmlns:xr2=\"http://schemas.microsoft.com/office/spreadsheetml/2015/revision2\" xmlns:xr3=\"http://schemas.microsoft.com/office/spreadsheetml/2016/revision3\" r=\"G38\" s=\"36\" t=\"inlineStr\"><is><r><rPr><sz val=\"10\"/><color rgb=\"FF000000\"/><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><sz val=\"10\"/><color rgb=\"FF000000\"/><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/></rPr><t xml:space=\"preserve\">SW-FW-SYS-Test-ID-48</t></r><r><rPr><sz val=\"10\"/><color rgb=\"FF000000\"/><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><sz val=\"10\"/><color rgb=\"FF000000\"/><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/></rPr><t xml:space=\"preserve\">SW-FW-RID-48</t></r><r><rPr><sz val=\"10\"/><color rgb=\"FF000000\"/><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><sz val=\"10\"/><color rgb=\"FF000000\"/><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/></rPr><t xml:space=\"preserve\">SYS-RID-SP-FW-18</t></r><r><rPr><sz val=\"10\"/><color rgb=\"FF000000\"/><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><sz val=\"10\"/><color rgb=\"FF000000\"/><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><sz val=\"10\"/><color rgb=\"FF000000\"/><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/></rPr><t xml:space=\"preserve\">SW-FW-SYS-Test-ID-52</t></r><r><rPr><sz val=\"10\"/><color rgb=\"FF000000\"/><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><sz val=\"10\"/><color rgb=\"FF000000\"/><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/></rPr><t xml:space=\"preserve\">SW-FW-RID-52</t></r><r><rPr><sz val=\"10\"/><color rgb=\"FF000000\"/><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><sz val=\"10\"/><color rgb=\"FF000000\"/><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/></rPr><t xml:space=\"preserve\">SYS-RID-SP-FW-19</t></r><r><rPr><sz val=\"10\"/><color rgb=\"FF000000\"/><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><sz val=\"10\"/><color rgb=\"FF000000\"/><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><sz val=\"10\"/><color rgb=\"FF000000\"/><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/></rPr><t xml:space=\"preserve\">SW-FW-SYS-Test-ID-76</t></r><r><rPr><sz val=\"10\"/><color rgb=\"FF000000\"/><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><sz val=\"10\"/><color rgb=\"FF000000\"/><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/></rPr><t xml:space=\"preserve\">SW-FW-RID-76</t></r><r><rPr><sz val=\"10\"/><color rgb=\"FF000000\"/><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><sz val=\"10\"/><color rgb=\"FF000000\"/><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/></rPr><t xml:space=\"preserve\">SYS-RID-SP-FW-33</t></r><r><rPr><sz val=\"10\"/><color rgb=\"FF000000\"/><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><sz val=\"10\"/><color rgb=\"FF000000\"/><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/></rPr><t xml:space=\"preserve\">SW-FW-SYS-Test-ID-83</t></r><r><rPr><sz val=\"10\"/><color rgb=\"FF000000\"/><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><sz val=\"10\"/><color rgb=\"FF000000\"/><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/></rPr><t xml:space=\"preserve\">SW-FW-RID-83</t></r><r><rPr><sz val=\"10\"/><color rgb=\"FF000000\"/><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/><color rgb=\"FF000000\"/><sz val=\"10\"/></rPr><t xml:space=\"preserve\">SYS-RID-ACDOC-17</t></r><r><rPr><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/><color rgb=\"FF000000\"/><sz val=\"10\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/><color rgb=\"FF000000\"/><sz val=\"10\"/></rPr><t xml:space=\"preserve\">SYS-RID-ACDOC-18</t></r><r><rPr><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/><color rgb=\"FF000000\"/><sz val=\"10\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/><color rgb=\"FF000000\"/><sz val=\"10\"/></rPr><t xml:space=\"preserve\">SYS-RID-ACDOC-20</t></r><r><rPr><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/><color rgb=\"FF000000\"/><sz val=\"10\"/></rPr><t xml:space=\"preserve\">\n</t></r></is></c>"
+            }
+          },
+          "merges_around_285": [],
+          "row285_attributes": null
+        },
+        {
+          "name": "기준서_시스템 시험_비교",
+          "part": "xl/worksheets/sheet4.xml",
+          "cells": {
+            "B285": {
+              "text": "\nSW-FW-SYS-Test-ID-83\n",
+              "style": "121",
+              "type": "inlineStr",
+              "formula": null,
+              "xml": "<c xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:x14ac=\"http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac\" xmlns:xr=\"http://schemas.microsoft.com/office/spreadsheetml/2014/revision\" xmlns:xr2=\"http://schemas.microsoft.com/office/spreadsheetml/2015/revision2\" xmlns:xr3=\"http://schemas.microsoft.com/office/spreadsheetml/2016/revision3\" r=\"B285\" s=\"121\" t=\"inlineStr\"><is><t xml:space=\"preserve\">\nSW-FW-SYS-Test-ID-83\n</t></is></c>"
+            },
+            "C285": {
+              "text": "\n사용자 설명서의 안전·사용·문제 해결 정보\n",
+              "style": "122",
+              "type": "inlineStr",
+              "formula": null,
+              "xml": "<c xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:x14ac=\"http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac\" xmlns:xr=\"http://schemas.microsoft.com/office/spreadsheetml/2014/revision\" xmlns:xr2=\"http://schemas.microsoft.com/office/spreadsheetml/2015/revision2\" xmlns:xr3=\"http://schemas.microsoft.com/office/spreadsheetml/2016/revision3\" r=\"C285\" s=\"122\" t=\"inlineStr\"><is><t xml:space=\"preserve\">\n&#49324;&#50857;&#51088; &#49444;&#47749;&#49436;&#51032; &#50504;&#51204;&#183;&#49324;&#50857;&#183;&#47928;&#51228; &#54644;&#44208; &#51221;&#48372;\n</t></is></c>"
+            },
+            "D285": {
+              "text": "\nI\n",
+              "style": "123",
+              "type": "inlineStr",
+              "formula": null,
+              "xml": "<c xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:x14ac=\"http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac\" xmlns:xr=\"http://schemas.microsoft.com/office/spreadsheetml/2014/revision\" xmlns:xr2=\"http://schemas.microsoft.com/office/spreadsheetml/2015/revision2\" xmlns:xr3=\"http://schemas.microsoft.com/office/spreadsheetml/2016/revision3\" r=\"D285\" s=\"123\" t=\"inlineStr\"><is><t xml:space=\"preserve\">\nI\n</t></is></c>"
+            },
+            "E285": {
+              "text": "\nSW-FW-RID-83\n",
+              "style": "124",
+              "type": "inlineStr",
+              "formula": null,
+              "xml": "<c xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:x14ac=\"http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac\" xmlns:xr=\"http://schemas.microsoft.com/office/spreadsheetml/2014/revision\" xmlns:xr2=\"http://schemas.microsoft.com/office/spreadsheetml/2015/revision2\" xmlns:xr3=\"http://schemas.microsoft.com/office/spreadsheetml/2016/revision3\" r=\"E285\" s=\"124\" t=\"inlineStr\"><is><t xml:space=\"preserve\">\nSW-FW-RID-83\n</t></is></c>"
+            },
+            "F285": {
+              "text": "\n[-] [E8300 보완] 정식 상위 요구 추적 식별자 미제공.\n[+] SYS-RID-ACDOC-17\n[+] SYS-RID-ACDOC-18\n[+] SYS-RID-ACDOC-20\n",
+              "style": "125",
+              "type": "inlineStr",
+              "formula": null,
+              "xml": "<c xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:x14ac=\"http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac\" xmlns:xr=\"http://schemas.microsoft.com/office/spreadsheetml/2014/revision\" xmlns:xr2=\"http://schemas.microsoft.com/office/spreadsheetml/2015/revision2\" xmlns:xr3=\"http://schemas.microsoft.com/office/spreadsheetml/2016/revision3\" r=\"F285\" s=\"125\" t=\"inlineStr\"><is><r><rPr><sz val=\"11\"/><color rgb=\"FF000000\"/><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/><color rgb=\"FFC00000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">[-] </t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/><color rgb=\"FFC00000\"/><sz val=\"13.0\"/><u/></rPr><t xml:space=\"preserve\">[E8300 &#48372;&#50756;] &#51221;&#49885; &#49345;&#50948; &#50836;&#44396; &#52628;&#51201; &#49885;&#48324;&#51088; &#48120;&#51228;&#44277;.</t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/><color rgb=\"FFC00000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/><color rgb=\"FF008000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">[+] </t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/><color rgb=\"FF008000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">SYS-RID-ACDOC-17</t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/><color rgb=\"FF008000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/><color rgb=\"FF008000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">[+] </t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/><color rgb=\"FF008000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">SYS-RID-ACDOC-18</t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/><color rgb=\"FF008000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/><color rgb=\"FF008000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">[+] </t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/><color rgb=\"FF008000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">SYS-RID-ACDOC-20</t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/><color rgb=\"FF008000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">\n</t></r></is></c>"
+            },
+            "G285": {
+              "text": "\n[-] 사용자에게 배포될 제품 설명서의 파일명/버전/언어/대상제품과검토 기준을 확인한다. 현재 제품 문서가 미제공이면대기한다.\n[+] 사용자 배포용 외부기 설명서의 현재 파일/버전/언어/대상제품. 안전/사용/문제 해결 정보를 검토할 제품 사용 흐름과 검토 기준.\n",
+              "style": "126",
+              "type": "inlineStr",
+              "formula": null,
+              "xml": "<c xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:x14ac=\"http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac\" xmlns:xr=\"http://schemas.microsoft.com/office/spreadsheetml/2014/revision\" xmlns:xr2=\"http://schemas.microsoft.com/office/spreadsheetml/2015/revision2\" xmlns:xr3=\"http://schemas.microsoft.com/office/spreadsheetml/2016/revision3\" r=\"G285\" s=\"126\" t=\"inlineStr\"><is><r><rPr><sz val=\"11\"/><color rgb=\"FF000000\"/><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/><color rgb=\"FFC00000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">[-] </t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/><color rgb=\"FFC00000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">&#49324;&#50857;&#51088;&#50640;&#44172; &#48176;&#54252;&#46112; &#51228;&#54408; &#49444;&#47749;&#49436;&#51032; &#54028;&#51068;&#47749;/&#48260;&#51204;/&#50616;&#50612;/&#45824;&#49345;&#51228;&#54408;&#44284;&#44160;&#53664; &#44592;&#51456;&#51012; &#54869;&#51064;&#54620;&#45796;. &#54788;&#51116; &#51228;&#54408; &#47928;&#49436;&#44032; &#48120;&#51228;&#44277;&#51060;&#47732;&#45824;&#44592;&#54620;&#45796;.</t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/><color rgb=\"FFC00000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/><color rgb=\"FF008000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">[+] </t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/><color rgb=\"FF008000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">&#49324;&#50857;&#51088; &#48176;&#54252;&#50857; &#50808;&#48512;&#44592; &#49444;&#47749;&#49436;&#51032; &#54788;&#51116; &#54028;&#51068;/&#48260;&#51204;/&#50616;&#50612;/&#45824;&#49345;&#51228;&#54408;. &#50504;&#51204;/&#49324;&#50857;/&#47928;&#51228; &#54644;&#44208; &#51221;&#48372;&#47484; &#44160;&#53664;&#54624; &#51228;&#54408; &#49324;&#50857; &#55120;&#47492;&#44284; &#44160;&#53664; &#44592;&#51456;.</t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/><color rgb=\"FF008000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">\n</t></r></is></c>"
+            },
+            "H285": {
+              "text": "\n[-] [E8300 보완] 제품 사용설명서 현재본 및정식 상위 요구 추적.\n[+] [E8300 보완] 제품 사용 설명서의 실제 해당 절/내용, 배포 대상 및 검토 결과. 상위 ACDOC-17/18/20 추적은 반영함.\n",
+              "style": "127",
+              "type": "inlineStr",
+              "formula": null,
+              "xml": "<c xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:x14ac=\"http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac\" xmlns:xr=\"http://schemas.microsoft.com/office/spreadsheetml/2014/revision\" xmlns:xr2=\"http://schemas.microsoft.com/office/spreadsheetml/2015/revision2\" xmlns:xr3=\"http://schemas.microsoft.com/office/spreadsheetml/2016/revision3\" r=\"H285\" s=\"127\" t=\"inlineStr\"><is><r><rPr><sz val=\"11\"/><color rgb=\"FF000000\"/><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/><color rgb=\"FFC00000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">[-] </t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/><color rgb=\"FFC00000\"/><sz val=\"13.0\"/><u/></rPr><t xml:space=\"preserve\">[E8300 &#48372;&#50756;] &#51228;&#54408; &#49324;&#50857;&#49444;&#47749;&#49436; &#54788;&#51116;&#48376; &#48143;&#51221;&#49885; &#49345;&#50948; &#50836;&#44396; &#52628;&#51201;.</t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/><color rgb=\"FFC00000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/><color rgb=\"FF008000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">[+] </t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/><color rgb=\"FF0070C0\"/><sz val=\"13.0\"/><u/></rPr><t xml:space=\"preserve\">[E8300 &#48372;&#50756;] &#51228;&#54408; &#49324;&#50857; &#49444;&#47749;&#49436;&#51032; &#49892;&#51228; &#54644;&#45817; &#51208;/&#45236;&#50857;, &#48176;&#54252; &#45824;&#49345; &#48143; &#44160;&#53664; &#44208;&#44284;. &#49345;&#50948; ACDOC-17/18/20 &#52628;&#51201;&#51008; &#48152;&#50689;&#54632;.</t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/><color rgb=\"FF008000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">\n</t></r></is></c>"
+            },
+            "I285": {
+              "text": "\n배포 설명서의 안전 예방조치·사용 방법·문제 해결 방법을 실제 본문에서 찾아 위치/내용/제품 적합성을 검토한다.\n",
+              "style": "128",
+              "type": "inlineStr",
+              "formula": null,
+              "xml": "<c xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:x14ac=\"http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac\" xmlns:xr=\"http://schemas.microsoft.com/office/spreadsheetml/2014/revision\" xmlns:xr2=\"http://schemas.microsoft.com/office/spreadsheetml/2015/revision2\" xmlns:xr3=\"http://schemas.microsoft.com/office/spreadsheetml/2016/revision3\" r=\"I285\" s=\"128\" t=\"inlineStr\"><is><t xml:space=\"preserve\">\n&#48176;&#54252; &#49444;&#47749;&#49436;&#51032; &#50504;&#51204; &#50696;&#48169;&#51312;&#52824;&#183;&#49324;&#50857; &#48169;&#48277;&#183;&#47928;&#51228; &#54644;&#44208; &#48169;&#48277;&#51012; &#49892;&#51228; &#48376;&#47928;&#50640;&#49436; &#52286;&#50500; &#50948;&#52824;/&#45236;&#50857;/&#51228;&#54408; &#51201;&#54633;&#49457;&#51012; &#44160;&#53664;&#54620;&#45796;.\n</t></is></c>"
+            },
+            "J285": {
+              "text": "\n[-] 조건[1] 설명서에 안전 예방조치, 사용 방법, 문제 해결 방법이 모두 포함되고 외부기 제품/사용 흐름과 맞아야 한다. 실제 문서 각 위치와 내용을 옆 결과에 기록한다. QCC SRS의 요구 문구만으로 설명서 내용 확인을 통과시키지 않는다.\n[+] 조건 [1]\n[+] 입력: 사용자에게 배포될 외부기 설명서 현재본.\n[+] 통과 기준: 경고/안전사항, 안전한 작동법, 자세한 동작방법이 포함되고 안전 예방조치/사용/문제 해결 방법이 대상 제품의 실제 사용 흐름과 맞아야 한다. 각 내용의 실제 위치/본문과 제품 적합성을 확인한다.\n",
+              "style": "129",
+              "type": "inlineStr",
+              "formula": null,
+              "xml": "<c xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:x14ac=\"http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac\" xmlns:xr=\"http://schemas.microsoft.com/office/spreadsheetml/2014/revision\" xmlns:xr2=\"http://schemas.microsoft.com/office/spreadsheetml/2015/revision2\" xmlns:xr3=\"http://schemas.microsoft.com/office/spreadsheetml/2016/revision3\" r=\"J285\" s=\"129\" t=\"inlineStr\"><is><r><rPr><sz val=\"11\"/><color rgb=\"FF000000\"/><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/><color rgb=\"FFC00000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">[-] </t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/><color rgb=\"FFC00000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">&#51312;&#44148;[1] &#49444;&#47749;&#49436;&#50640; &#50504;&#51204; &#50696;&#48169;&#51312;&#52824;, &#49324;&#50857; &#48169;&#48277;, &#47928;&#51228; &#54644;&#44208; &#48169;&#48277;&#51060; &#47784;&#46160; &#54252;&#54632;&#46104;&#44256; &#50808;&#48512;&#44592; &#51228;&#54408;/&#49324;&#50857; &#55120;&#47492;&#44284; &#47582;&#50500;&#50556; &#54620;&#45796;. &#49892;&#51228; &#47928;&#49436; &#44033; &#50948;&#52824;&#50752; &#45236;&#50857;&#51012; &#50694; &#44208;&#44284;&#50640; &#44592;&#47197;&#54620;&#45796;. QCC SRS&#51032; &#50836;&#44396; &#47928;&#44396;&#47564;&#51004;&#47196; &#49444;&#47749;&#49436; &#45236;&#50857; &#54869;&#51064;&#51012; &#53685;&#44284;&#49884;&#53412;&#51648; &#50506;&#45716;&#45796;.</t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/><color rgb=\"FFC00000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/><color rgb=\"FF008000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">[+] </t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/><color rgb=\"FF008000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">&#51312;&#44148; [1]</t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/><color rgb=\"FF008000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/><color rgb=\"FF008000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">[+] </t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/><color rgb=\"FF008000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">&#51077;&#47141;: &#49324;&#50857;&#51088;&#50640;&#44172; &#48176;&#54252;&#46112; &#50808;&#48512;&#44592; &#49444;&#47749;&#49436; &#54788;&#51116;&#48376;.</t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/><color rgb=\"FF008000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/><color rgb=\"FF008000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">[+] </t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/><color rgb=\"FF008000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">&#53685;&#44284; &#44592;&#51456;: &#44221;&#44256;/&#50504;&#51204;&#49324;&#54637;, &#50504;&#51204;&#54620; &#51089;&#46041;&#48277;, &#51088;&#49464;&#54620; &#46041;&#51089;&#48169;&#48277;&#51060; &#54252;&#54632;&#46104;&#44256; &#50504;&#51204; &#50696;&#48169;&#51312;&#52824;/&#49324;&#50857;/&#47928;&#51228; &#54644;&#44208; &#48169;&#48277;&#51060; &#45824;&#49345; &#51228;&#54408;&#51032; &#49892;&#51228; &#49324;&#50857; &#55120;&#47492;&#44284; &#47582;&#50500;&#50556; &#54620;&#45796;. &#44033; &#45236;&#50857;&#51032; &#49892;&#51228; &#50948;&#52824;/&#48376;&#47928;&#44284; &#51228;&#54408; &#51201;&#54633;&#49457;&#51012; &#54869;&#51064;&#54620;&#45796;.</t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/><color rgb=\"FF008000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">\n</t></r></is></c>"
+            }
+          },
+          "merges_around_285": [
+            "B282:B283",
+            "C282:C283",
+            "D282:D283",
+            "E282:E283",
+            "F282:F283"
+          ],
+          "row285_attributes": {
+            "r": "285",
+            "spans": "2:10",
+            "ht": "300",
+            "customHeight": "1",
+            "{http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac}dyDescent": "0.3"
+          }
+        },
+        {
+          "name": "사이버보안 시험 연계_비교",
+          "part": "xl/worksheets/sheet5.xml",
+          "cells": {
+            "G38": {
+              "text": "\nSW-FW-SYS-Test-ID-48\nSW-FW-RID-48\nSYS-RID-SP-FW-18\n\nSW-FW-SYS-Test-ID-52\nSW-FW-RID-52\nSYS-RID-SP-FW-19\n\nSW-FW-SYS-Test-ID-76\nSW-FW-RID-76\nSYS-RID-SP-FW-33\nSW-FW-SYS-Test-ID-83\nSW-FW-RID-83\n[-] 정식 상위 추적 미제공\n[+] SYS-RID-ACDOC-17\n[+] SYS-RID-ACDOC-18\n[+] SYS-RID-ACDOC-20\n",
+              "style": "36",
+              "type": "inlineStr",
+              "formula": null,
+              "xml": "<c xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:x14ac=\"http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac\" xmlns:xr=\"http://schemas.microsoft.com/office/spreadsheetml/2014/revision\" xmlns:xr2=\"http://schemas.microsoft.com/office/spreadsheetml/2015/revision2\" xmlns:xr3=\"http://schemas.microsoft.com/office/spreadsheetml/2016/revision3\" r=\"G38\" s=\"36\" t=\"inlineStr\"><is><r><rPr><sz val=\"10\"/><color rgb=\"FF000000\"/><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><sz val=\"10\"/><color rgb=\"FF000000\"/><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/></rPr><t xml:space=\"preserve\">SW-FW-SYS-Test-ID-48</t></r><r><rPr><sz val=\"10\"/><color rgb=\"FF000000\"/><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><sz val=\"10\"/><color rgb=\"FF000000\"/><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/></rPr><t xml:space=\"preserve\">SW-FW-RID-48</t></r><r><rPr><sz val=\"10\"/><color rgb=\"FF000000\"/><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><sz val=\"10\"/><color rgb=\"FF000000\"/><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/></rPr><t xml:space=\"preserve\">SYS-RID-SP-FW-18</t></r><r><rPr><sz val=\"10\"/><color rgb=\"FF000000\"/><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><sz val=\"10\"/><color rgb=\"FF000000\"/><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><sz val=\"10\"/><color rgb=\"FF000000\"/><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/></rPr><t xml:space=\"preserve\">SW-FW-SYS-Test-ID-52</t></r><r><rPr><sz val=\"10\"/><color rgb=\"FF000000\"/><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><sz val=\"10\"/><color rgb=\"FF000000\"/><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/></rPr><t xml:space=\"preserve\">SW-FW-RID-52</t></r><r><rPr><sz val=\"10\"/><color rgb=\"FF000000\"/><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><sz val=\"10\"/><color rgb=\"FF000000\"/><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/></rPr><t xml:space=\"preserve\">SYS-RID-SP-FW-19</t></r><r><rPr><sz val=\"10\"/><color rgb=\"FF000000\"/><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><sz val=\"10\"/><color rgb=\"FF000000\"/><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><sz val=\"10\"/><color rgb=\"FF000000\"/><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/></rPr><t xml:space=\"preserve\">SW-FW-SYS-Test-ID-76</t></r><r><rPr><sz val=\"10\"/><color rgb=\"FF000000\"/><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><sz val=\"10\"/><color rgb=\"FF000000\"/><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/></rPr><t xml:space=\"preserve\">SW-FW-RID-76</t></r><r><rPr><sz val=\"10\"/><color rgb=\"FF000000\"/><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><sz val=\"10\"/><color rgb=\"FF000000\"/><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/></rPr><t xml:space=\"preserve\">SYS-RID-SP-FW-33</t></r><r><rPr><sz val=\"10\"/><color rgb=\"FF000000\"/><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><sz val=\"10\"/><color rgb=\"FF000000\"/><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/></rPr><t xml:space=\"preserve\">SW-FW-SYS-Test-ID-83</t></r><r><rPr><sz val=\"10\"/><color rgb=\"FF000000\"/><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><sz val=\"10\"/><color rgb=\"FF000000\"/><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/></rPr><t xml:space=\"preserve\">SW-FW-RID-83</t></r><r><rPr><sz val=\"10\"/><color rgb=\"FF000000\"/><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/><color rgb=\"FFC00000\"/><sz val=\"10\"/></rPr><t xml:space=\"preserve\">[-] </t></r><r><rPr><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/><color rgb=\"FFC00000\"/><sz val=\"10\"/></rPr><t xml:space=\"preserve\">&#51221;&#49885; &#49345;&#50948; &#52628;&#51201; &#48120;&#51228;&#44277;</t></r><r><rPr><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/><color rgb=\"FFC00000\"/><sz val=\"10\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/><color rgb=\"FF008000\"/><sz val=\"10\"/></rPr><t xml:space=\"preserve\">[+] </t></r><r><rPr><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/><color rgb=\"FF008000\"/><sz val=\"10\"/></rPr><t xml:space=\"preserve\">SYS-RID-ACDOC-17</t></r><r><rPr><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/><color rgb=\"FF008000\"/><sz val=\"10\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/><color rgb=\"FF008000\"/><sz val=\"10\"/></rPr><t xml:space=\"preserve\">[+] </t></r><r><rPr><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/><color rgb=\"FF008000\"/><sz val=\"10\"/></rPr><t xml:space=\"preserve\">SYS-RID-ACDOC-18</t></r><r><rPr><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/><color rgb=\"FF008000\"/><sz val=\"10\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/><color rgb=\"FF008000\"/><sz val=\"10\"/></rPr><t xml:space=\"preserve\">[+] </t></r><r><rPr><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/><color rgb=\"FF008000\"/><sz val=\"10\"/></rPr><t xml:space=\"preserve\">SYS-RID-ACDOC-20</t></r><r><rPr><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/><color rgb=\"FF008000\"/><sz val=\"10\"/></rPr><t xml:space=\"preserve\">\n</t></r></is></c>"
+            }
+          },
+          "merges_around_285": [],
+          "row285_attributes": null
+        }
+      ]
+    },
+    {
+      "code": "SSTR",
+      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\04_설계 검증\\SW\\외부기\\[E8300-QCC] SSTR-FW-TD24A 소프트웨어 시스템 시험 보고서.xlsx",
+      "sourceSHA256": "CEFFDED299DC4B2C1001AAE5271CAE6A80FFCB04F4697B16567A6AED363005B3",
+      "endSHA256": "CEFFDED299DC4B2C1001AAE5271CAE6A80FFCB04F4697B16567A6AED363005B3",
+      "unchanged": true,
+      "sheets": [
+        {
+          "name": "보고서_시스템 시험",
+          "part": "xl/worksheets/sheet2.xml",
+          "cells": {
+            "B285": {
+              "text": "\nSW-FW-SYS-Test-ID-83\n",
+              "style": "162",
+              "type": "inlineStr",
+              "formula": null,
+              "xml": "<c xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:x14ac=\"http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac\" xmlns:xr=\"http://schemas.microsoft.com/office/spreadsheetml/2014/revision\" xmlns:xr2=\"http://schemas.microsoft.com/office/spreadsheetml/2015/revision2\" xmlns:xr3=\"http://schemas.microsoft.com/office/spreadsheetml/2016/revision3\" r=\"B285\" s=\"162\" t=\"inlineStr\"><is><t xml:space=\"preserve\">\nSW-FW-SYS-Test-ID-83\n</t></is></c>"
+            },
+            "C285": {
+              "text": "\n사용자 설명서의 안전·사용·문제 해결 정보\n",
+              "style": "163",
+              "type": "inlineStr",
+              "formula": null,
+              "xml": "<c xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:x14ac=\"http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac\" xmlns:xr=\"http://schemas.microsoft.com/office/spreadsheetml/2014/revision\" xmlns:xr2=\"http://schemas.microsoft.com/office/spreadsheetml/2015/revision2\" xmlns:xr3=\"http://schemas.microsoft.com/office/spreadsheetml/2016/revision3\" r=\"C285\" s=\"163\" t=\"inlineStr\"><is><t xml:space=\"preserve\">\n&#49324;&#50857;&#51088; &#49444;&#47749;&#49436;&#51032; &#50504;&#51204;&#183;&#49324;&#50857;&#183;&#47928;&#51228; &#54644;&#44208; &#51221;&#48372;\n</t></is></c>"
+            },
+            "D285": {
+              "text": "\nI\n",
+              "style": "164",
+              "type": "inlineStr",
+              "formula": null,
+              "xml": "<c xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:x14ac=\"http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac\" xmlns:xr=\"http://schemas.microsoft.com/office/spreadsheetml/2014/revision\" xmlns:xr2=\"http://schemas.microsoft.com/office/spreadsheetml/2015/revision2\" xmlns:xr3=\"http://schemas.microsoft.com/office/spreadsheetml/2016/revision3\" r=\"D285\" s=\"164\" t=\"inlineStr\"><is><t xml:space=\"preserve\">\nI\n</t></is></c>"
+            },
+            "E285": {
+              "text": "\nSW-FW-RID-83\n",
+              "style": "165",
+              "type": "inlineStr",
+              "formula": null,
+              "xml": "<c xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:x14ac=\"http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac\" xmlns:xr=\"http://schemas.microsoft.com/office/spreadsheetml/2014/revision\" xmlns:xr2=\"http://schemas.microsoft.com/office/spreadsheetml/2015/revision2\" xmlns:xr3=\"http://schemas.microsoft.com/office/spreadsheetml/2016/revision3\" r=\"E285\" s=\"165\" t=\"inlineStr\"><is><t xml:space=\"preserve\">\nSW-FW-RID-83\n</t></is></c>"
+            },
+            "F285": {
+              "text": "\nSYS-RID-ACDOC-17\nSYS-RID-ACDOC-18\nSYS-RID-ACDOC-20\n",
+              "style": "166",
+              "type": "inlineStr",
+              "formula": null,
+              "xml": "<c xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:x14ac=\"http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac\" xmlns:xr=\"http://schemas.microsoft.com/office/spreadsheetml/2014/revision\" xmlns:xr2=\"http://schemas.microsoft.com/office/spreadsheetml/2015/revision2\" xmlns:xr3=\"http://schemas.microsoft.com/office/spreadsheetml/2016/revision3\" r=\"F285\" s=\"166\" t=\"inlineStr\"><is><r><rPr><sz val=\"11\"/><color rgb=\"FF000000\"/><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/><color rgb=\"FF000000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">SYS-RID-ACDOC-17</t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/><color rgb=\"FF000000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/><color rgb=\"FF000000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">SYS-RID-ACDOC-18</t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/><color rgb=\"FF000000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/><color rgb=\"FF000000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">SYS-RID-ACDOC-20</t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/><color rgb=\"FF000000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">\n</t></r></is></c>"
+            },
+            "G285": {
+              "text": "\n사용자 배포용 외부기 설명서의 현재 파일/버전/언어/대상제품. 안전/사용/문제 해결 정보를 검토할 제품 사용 흐름과 검토 기준.\n",
+              "style": "167",
+              "type": "inlineStr",
+              "formula": null,
+              "xml": "<c xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:x14ac=\"http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac\" xmlns:xr=\"http://schemas.microsoft.com/office/spreadsheetml/2014/revision\" xmlns:xr2=\"http://schemas.microsoft.com/office/spreadsheetml/2015/revision2\" xmlns:xr3=\"http://schemas.microsoft.com/office/spreadsheetml/2016/revision3\" r=\"G285\" s=\"167\" t=\"inlineStr\"><is><r><rPr><sz val=\"11\"/><color rgb=\"FF000000\"/><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/><color rgb=\"FF000000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">&#49324;&#50857;&#51088; &#48176;&#54252;&#50857; &#50808;&#48512;&#44592; &#49444;&#47749;&#49436;&#51032; &#54788;&#51116; &#54028;&#51068;/&#48260;&#51204;/&#50616;&#50612;/&#45824;&#49345;&#51228;&#54408;. &#50504;&#51204;/&#49324;&#50857;/&#47928;&#51228; &#54644;&#44208; &#51221;&#48372;&#47484; &#44160;&#53664;&#54624; &#51228;&#54408; &#49324;&#50857; &#55120;&#47492;&#44284; &#44160;&#53664; &#44592;&#51456;.</t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/><color rgb=\"FF000000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">\n</t></r></is></c>"
+            },
+            "H285": {
+              "text": "\n[E8300 보완] 제품 사용 설명서의 실제 해당 절/내용, 배포 대상 및 검토 결과. 상위 ACDOC-17/18/20 추적은 반영함.\n",
+              "style": "168",
+              "type": "inlineStr",
+              "formula": null,
+              "xml": "<c xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:x14ac=\"http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac\" xmlns:xr=\"http://schemas.microsoft.com/office/spreadsheetml/2014/revision\" xmlns:xr2=\"http://schemas.microsoft.com/office/spreadsheetml/2015/revision2\" xmlns:xr3=\"http://schemas.microsoft.com/office/spreadsheetml/2016/revision3\" r=\"H285\" s=\"168\" t=\"inlineStr\"><is><r><rPr><sz val=\"11\"/><color rgb=\"FF000000\"/><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/><color rgb=\"FF0070C0\"/><sz val=\"13.0\"/><u/></rPr><t xml:space=\"preserve\">[E8300 &#48372;&#50756;] &#51228;&#54408; &#49324;&#50857; &#49444;&#47749;&#49436;&#51032; &#49892;&#51228; &#54644;&#45817; &#51208;/&#45236;&#50857;, &#48176;&#54252; &#45824;&#49345; &#48143; &#44160;&#53664; &#44208;&#44284;. &#49345;&#50948; ACDOC-17/18/20 &#52628;&#51201;&#51008; &#48152;&#50689;&#54632;.</t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/><color rgb=\"FF000000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">\n</t></r></is></c>"
+            },
+            "I285": {
+              "text": "\n배포 설명서의 안전 예방조치·사용 방법·문제 해결 방법을 실제 본문에서 찾아 위치/내용/제품 적합성을 검토한다.\n",
+              "style": "169",
+              "type": "inlineStr",
+              "formula": null,
+              "xml": "<c xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:x14ac=\"http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac\" xmlns:xr=\"http://schemas.microsoft.com/office/spreadsheetml/2014/revision\" xmlns:xr2=\"http://schemas.microsoft.com/office/spreadsheetml/2015/revision2\" xmlns:xr3=\"http://schemas.microsoft.com/office/spreadsheetml/2016/revision3\" r=\"I285\" s=\"169\" t=\"inlineStr\"><is><t xml:space=\"preserve\">\n&#48176;&#54252; &#49444;&#47749;&#49436;&#51032; &#50504;&#51204; &#50696;&#48169;&#51312;&#52824;&#183;&#49324;&#50857; &#48169;&#48277;&#183;&#47928;&#51228; &#54644;&#44208; &#48169;&#48277;&#51012; &#49892;&#51228; &#48376;&#47928;&#50640;&#49436; &#52286;&#50500; &#50948;&#52824;/&#45236;&#50857;/&#51228;&#54408; &#51201;&#54633;&#49457;&#51012; &#44160;&#53664;&#54620;&#45796;.\n</t></is></c>"
+            },
+            "J285": {
+              "text": "\n조건 [1]\n입력: 사용자에게 배포될 외부기 설명서 현재본.\n통과 기준: 경고/안전사항, 안전한 작동법, 자세한 동작방법이 포함되고 안전 예방조치/사용/문제 해결 방법이 대상 제품의 실제 사용 흐름과 맞아야 한다. 각 내용의 실제 위치/본문과 제품 적합성을 확인한다.\n",
+              "style": "170",
+              "type": "inlineStr",
+              "formula": null,
+              "xml": "<c xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:x14ac=\"http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac\" xmlns:xr=\"http://schemas.microsoft.com/office/spreadsheetml/2014/revision\" xmlns:xr2=\"http://schemas.microsoft.com/office/spreadsheetml/2015/revision2\" xmlns:xr3=\"http://schemas.microsoft.com/office/spreadsheetml/2016/revision3\" r=\"J285\" s=\"170\" t=\"inlineStr\"><is><r><rPr><sz val=\"11\"/><color rgb=\"FF000000\"/><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/><color rgb=\"FF000000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">&#51312;&#44148; [1]</t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/><color rgb=\"FF000000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/><color rgb=\"FF000000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">&#51077;&#47141;: &#49324;&#50857;&#51088;&#50640;&#44172; &#48176;&#54252;&#46112; &#50808;&#48512;&#44592; &#49444;&#47749;&#49436; &#54788;&#51116;&#48376;.</t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/><color rgb=\"FF000000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/><color rgb=\"FF000000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">&#53685;&#44284; &#44592;&#51456;: &#44221;&#44256;/&#50504;&#51204;&#49324;&#54637;, &#50504;&#51204;&#54620; &#51089;&#46041;&#48277;, &#51088;&#49464;&#54620; &#46041;&#51089;&#48169;&#48277;&#51060; &#54252;&#54632;&#46104;&#44256; &#50504;&#51204; &#50696;&#48169;&#51312;&#52824;/&#49324;&#50857;/&#47928;&#51228; &#54644;&#44208; &#48169;&#48277;&#51060; &#45824;&#49345; &#51228;&#54408;&#51032; &#49892;&#51228; &#49324;&#50857; &#55120;&#47492;&#44284; &#47582;&#50500;&#50556; &#54620;&#45796;. &#44033; &#45236;&#50857;&#51032; &#49892;&#51228; &#50948;&#52824;/&#48376;&#47928;&#44284; &#51228;&#54408; &#51201;&#54633;&#49457;&#51012; &#54869;&#51064;&#54620;&#45796;.</t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/><color rgb=\"FF000000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">\n</t></r></is></c>"
+            },
+            "K285": {
+              "text": "\n검증 [1]\n실행 상태: 미실행.\n관찰: 사용자 배포 설명서 현재본/버전과 경고/안전사항/작동법/동작방법 및 문제 해결의 실제 내용/위치 미제공.\n[E8300 보완] 제품 설명서 현재본과 실제 검토 결과.\n",
+              "style": "171",
+              "type": "inlineStr",
+              "formula": null,
+              "xml": "<c xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:x14ac=\"http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac\" xmlns:xr=\"http://schemas.microsoft.com/office/spreadsheetml/2014/revision\" xmlns:xr2=\"http://schemas.microsoft.com/office/spreadsheetml/2015/revision2\" xmlns:xr3=\"http://schemas.microsoft.com/office/spreadsheetml/2016/revision3\" r=\"K285\" s=\"171\" t=\"inlineStr\"><is><r><rPr><sz val=\"11\"/><color rgb=\"FF000000\"/><rFont val=\"Calibri\"/><family val=\"3\"/><charset val=\"129\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"3\"/><charset val=\"129\"/><color rgb=\"FF000000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">&#44160;&#51613; [1]</t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"3\"/><charset val=\"129\"/><color rgb=\"FF000000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"3\"/><charset val=\"129\"/><color rgb=\"FF000000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">&#49892;&#54665; &#49345;&#53468;: &#48120;&#49892;&#54665;.</t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"3\"/><charset val=\"129\"/><color rgb=\"FF000000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"3\"/><charset val=\"129\"/><color rgb=\"FF000000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">&#44288;&#52272;: &#49324;&#50857;&#51088; &#48176;&#54252; &#49444;&#47749;&#49436; &#54788;&#51116;&#48376;/&#48260;&#51204;&#44284; &#44221;&#44256;/&#50504;&#51204;&#49324;&#54637;/&#51089;&#46041;&#48277;/&#46041;&#51089;&#48169;&#48277; &#48143; &#47928;&#51228; &#54644;&#44208;&#51032; &#49892;&#51228; &#45236;&#50857;/&#50948;&#52824; &#48120;&#51228;&#44277;.</t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"3\"/><charset val=\"129\"/><color rgb=\"FF000000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"3\"/><charset val=\"129\"/><color rgb=\"FF0070C0\"/><sz val=\"13.0\"/><u/></rPr><t xml:space=\"preserve\">[E8300 &#48372;&#50756;] &#51228;&#54408; &#49444;&#47749;&#49436; &#54788;&#51116;&#48376;&#44284; &#49892;&#51228; &#44160;&#53664; &#44208;&#44284;.</t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"3\"/><charset val=\"129\"/><color rgb=\"FF000000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">\n</t></r></is></c>"
+            },
+            "L285": {
+              "text": "\n미실행\n판정 대기\n",
+              "style": "172",
+              "type": "inlineStr",
+              "formula": null,
+              "xml": "<c xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:x14ac=\"http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac\" xmlns:xr=\"http://schemas.microsoft.com/office/spreadsheetml/2014/revision\" xmlns:xr2=\"http://schemas.microsoft.com/office/spreadsheetml/2015/revision2\" xmlns:xr3=\"http://schemas.microsoft.com/office/spreadsheetml/2016/revision3\" r=\"L285\" s=\"172\" t=\"inlineStr\"><is><t xml:space=\"preserve\">\n&#48120;&#49892;&#54665;\n&#54032;&#51221; &#45824;&#44592;\n</t></is></c>"
+            }
+          },
+          "merges_around_285": [
+            "B282:B283",
+            "C282:C283",
+            "D282:D283",
+            "E282:E283",
+            "F282:F283"
+          ],
+          "row285_attributes": {
+            "r": "285",
+            "spans": "2:12",
+            "ht": "300",
+            "customHeight": "1",
+            "{http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac}dyDescent": "0.3"
+          }
+        },
+        {
+          "name": "시험 보조자료",
+          "part": "xl/worksheets/sheet3.xml",
+          "cells": {
+            "B285": {
+              "text": "\n조건 [3] 0x34 [37,1,1]을 전달한 뒤 [72,0,2]를 전달한다.\nRTT 출력이 다음 전체 문자열과 일치해야 한다:\n[BT] CMD 0x34, CHARGER STATE: 1, BATT LEVEL 37 PERCENT, LID STATE 1\n[BT] CMD 0x34, CHARGER STATE: 0, BATT LEVEL 72 PERCENT, LID STATE 2\n",
+              "style": "58",
+              "type": "s",
+              "formula": null,
+              "xml": "<c xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:x14ac=\"http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac\" xmlns:xr=\"http://schemas.microsoft.com/office/spreadsheetml/2014/revision\" xmlns:xr2=\"http://schemas.microsoft.com/office/spreadsheetml/2015/revision2\" xmlns:xr3=\"http://schemas.microsoft.com/office/spreadsheetml/2016/revision3\" r=\"B285\" s=\"58\" t=\"s\"><v>507</v></c>"
+            },
+            "C285": {
+              "text": "\n검증 [3] / 0x34 입력과 ci_printv 상태 대조\nRTT 출력 결과:\n[BT] CMD 0x34, CHARGER STATE: 1, BATT LEVEL 37 PERCENT, LID STATE 1\n[BT] CMD 0x34, CHARGER STATE: 0, BATT LEVEL 72 PERCENT, LID STATE 2\n충전/잔량/뚜껑 상태가 각각 (1,37,1), (0,72,2)로 확인.\n\n사진/자료 안내\n(사진필요) 잔량 37/72%의 리모콘 화면. 수집 자료: 0x34 입력별 ci_printv 출력.\n",
+              "style": "58",
+              "type": "s",
+              "formula": null,
+              "xml": "<c xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:x14ac=\"http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac\" xmlns:xr=\"http://schemas.microsoft.com/office/spreadsheetml/2014/revision\" xmlns:xr2=\"http://schemas.microsoft.com/office/spreadsheetml/2015/revision2\" xmlns:xr3=\"http://schemas.microsoft.com/office/spreadsheetml/2016/revision3\" r=\"C285\" s=\"58\" t=\"s\"><v>1294</v></c>"
+            },
+            "D285": {
+              "text": "\n통과\n사진 첨부 대기\n",
+              "style": "59",
+              "type": "s",
+              "formula": null,
+              "xml": "<c xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:x14ac=\"http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac\" xmlns:xr=\"http://schemas.microsoft.com/office/spreadsheetml/2014/revision\" xmlns:xr2=\"http://schemas.microsoft.com/office/spreadsheetml/2015/revision2\" xmlns:xr3=\"http://schemas.microsoft.com/office/spreadsheetml/2016/revision3\" r=\"D285\" s=\"59\" t=\"s\"><v>1012</v></c>"
+            }
+          },
+          "merges_around_285": [],
+          "row285_attributes": {
+            "r": "285",
+            "spans": "1:4",
+            "ht": "144",
+            "customHeight": "1",
+            "{http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac}dyDescent": "0.3"
+          }
+        },
+        {
+          "name": "사이버보안 시험 연계",
+          "part": "xl/worksheets/sheet5.xml",
+          "cells": {
+            "G38": {
+              "text": "\nSW-FW-SYS-Test-ID-48\nSW-FW-RID-48\nSYS-RID-SP-FW-18\n\nSW-FW-SYS-Test-ID-52\nSW-FW-RID-52\nSYS-RID-SP-FW-19\n\nSW-FW-SYS-Test-ID-76\nSW-FW-RID-76\nSYS-RID-SP-FW-33\nSW-FW-SYS-Test-ID-83\nSW-FW-RID-83\nSYS-RID-ACDOC-17\nSYS-RID-ACDOC-18\nSYS-RID-ACDOC-20\n",
+              "style": "27",
+              "type": "inlineStr",
+              "formula": null,
+              "xml": "<c xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:x14ac=\"http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac\" xmlns:xr=\"http://schemas.microsoft.com/office/spreadsheetml/2014/revision\" xmlns:xr2=\"http://schemas.microsoft.com/office/spreadsheetml/2015/revision2\" xmlns:xr3=\"http://schemas.microsoft.com/office/spreadsheetml/2016/revision3\" r=\"G38\" s=\"27\" t=\"inlineStr\"><is><r><rPr><sz val=\"10\"/><color rgb=\"FF000000\"/><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><sz val=\"10\"/><color rgb=\"FF000000\"/><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/></rPr><t xml:space=\"preserve\">SW-FW-SYS-Test-ID-48</t></r><r><rPr><sz val=\"10\"/><color rgb=\"FF000000\"/><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><sz val=\"10\"/><color rgb=\"FF000000\"/><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/></rPr><t xml:space=\"preserve\">SW-FW-RID-48</t></r><r><rPr><sz val=\"10\"/><color rgb=\"FF000000\"/><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><sz val=\"10\"/><color rgb=\"FF000000\"/><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/></rPr><t xml:space=\"preserve\">SYS-RID-SP-FW-18</t></r><r><rPr><sz val=\"10\"/><color rgb=\"FF000000\"/><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><sz val=\"10\"/><color rgb=\"FF000000\"/><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><sz val=\"10\"/><color rgb=\"FF000000\"/><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/></rPr><t xml:space=\"preserve\">SW-FW-SYS-Test-ID-52</t></r><r><rPr><sz val=\"10\"/><color rgb=\"FF000000\"/><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><sz val=\"10\"/><color rgb=\"FF000000\"/><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/></rPr><t xml:space=\"preserve\">SW-FW-RID-52</t></r><r><rPr><sz val=\"10\"/><color rgb=\"FF000000\"/><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><sz val=\"10\"/><color rgb=\"FF000000\"/><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/></rPr><t xml:space=\"preserve\">SYS-RID-SP-FW-19</t></r><r><rPr><sz val=\"10\"/><color rgb=\"FF000000\"/><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><sz val=\"10\"/><color rgb=\"FF000000\"/><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><sz val=\"10\"/><color rgb=\"FF000000\"/><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/></rPr><t xml:space=\"preserve\">SW-FW-SYS-Test-ID-76</t></r><r><rPr><sz val=\"10\"/><color rgb=\"FF000000\"/><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><sz val=\"10\"/><color rgb=\"FF000000\"/><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/></rPr><t xml:space=\"preserve\">SW-FW-RID-76</t></r><r><rPr><sz val=\"10\"/><color rgb=\"FF000000\"/><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><sz val=\"10\"/><color rgb=\"FF000000\"/><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/></rPr><t xml:space=\"preserve\">SYS-RID-SP-FW-33</t></r><r><rPr><sz val=\"10\"/><color rgb=\"FF000000\"/><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><sz val=\"10\"/><color rgb=\"FF000000\"/><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/></rPr><t xml:space=\"preserve\">SW-FW-SYS-Test-ID-83</t></r><r><rPr><sz val=\"10\"/><color rgb=\"FF000000\"/><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><sz val=\"10\"/><color rgb=\"FF000000\"/><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/></rPr><t xml:space=\"preserve\">SW-FW-RID-83</t></r><r><rPr><sz val=\"10\"/><color rgb=\"FF000000\"/><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/><color rgb=\"FF000000\"/><sz val=\"10\"/></rPr><t xml:space=\"preserve\">SYS-RID-ACDOC-17</t></r><r><rPr><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/><color rgb=\"FF000000\"/><sz val=\"10\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/><color rgb=\"FF000000\"/><sz val=\"10\"/></rPr><t xml:space=\"preserve\">SYS-RID-ACDOC-18</t></r><r><rPr><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/><color rgb=\"FF000000\"/><sz val=\"10\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/><color rgb=\"FF000000\"/><sz val=\"10\"/></rPr><t xml:space=\"preserve\">SYS-RID-ACDOC-20</t></r><r><rPr><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/><color rgb=\"FF000000\"/><sz val=\"10\"/></rPr><t xml:space=\"preserve\">\n</t></r></is></c>"
+            }
+          },
+          "merges_around_285": [],
+          "row285_attributes": null
+        },
+        {
+          "name": "보고서_시스템 시험_비교",
+          "part": "xl/worksheets/sheet6.xml",
+          "cells": {
+            "B285": {
+              "text": "\nSW-FW-SYS-Test-ID-83\n",
+              "style": "162",
+              "type": "inlineStr",
+              "formula": null,
+              "xml": "<c xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:x14ac=\"http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac\" xmlns:xr=\"http://schemas.microsoft.com/office/spreadsheetml/2014/revision\" xmlns:xr2=\"http://schemas.microsoft.com/office/spreadsheetml/2015/revision2\" xmlns:xr3=\"http://schemas.microsoft.com/office/spreadsheetml/2016/revision3\" r=\"B285\" s=\"162\" t=\"inlineStr\"><is><t xml:space=\"preserve\">\nSW-FW-SYS-Test-ID-83\n</t></is></c>"
+            },
+            "C285": {
+              "text": "\n사용자 설명서의 안전·사용·문제 해결 정보\n",
+              "style": "163",
+              "type": "inlineStr",
+              "formula": null,
+              "xml": "<c xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:x14ac=\"http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac\" xmlns:xr=\"http://schemas.microsoft.com/office/spreadsheetml/2014/revision\" xmlns:xr2=\"http://schemas.microsoft.com/office/spreadsheetml/2015/revision2\" xmlns:xr3=\"http://schemas.microsoft.com/office/spreadsheetml/2016/revision3\" r=\"C285\" s=\"163\" t=\"inlineStr\"><is><t xml:space=\"preserve\">\n&#49324;&#50857;&#51088; &#49444;&#47749;&#49436;&#51032; &#50504;&#51204;&#183;&#49324;&#50857;&#183;&#47928;&#51228; &#54644;&#44208; &#51221;&#48372;\n</t></is></c>"
+            },
+            "D285": {
+              "text": "\nI\n",
+              "style": "164",
+              "type": "inlineStr",
+              "formula": null,
+              "xml": "<c xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:x14ac=\"http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac\" xmlns:xr=\"http://schemas.microsoft.com/office/spreadsheetml/2014/revision\" xmlns:xr2=\"http://schemas.microsoft.com/office/spreadsheetml/2015/revision2\" xmlns:xr3=\"http://schemas.microsoft.com/office/spreadsheetml/2016/revision3\" r=\"D285\" s=\"164\" t=\"inlineStr\"><is><t xml:space=\"preserve\">\nI\n</t></is></c>"
+            },
+            "E285": {
+              "text": "\nSW-FW-RID-83\n",
+              "style": "165",
+              "type": "inlineStr",
+              "formula": null,
+              "xml": "<c xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:x14ac=\"http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac\" xmlns:xr=\"http://schemas.microsoft.com/office/spreadsheetml/2014/revision\" xmlns:xr2=\"http://schemas.microsoft.com/office/spreadsheetml/2015/revision2\" xmlns:xr3=\"http://schemas.microsoft.com/office/spreadsheetml/2016/revision3\" r=\"E285\" s=\"165\" t=\"inlineStr\"><is><t xml:space=\"preserve\">\nSW-FW-RID-83\n</t></is></c>"
+            },
+            "F285": {
+              "text": "\n[-] [E8300 보완] 정식 상위 요구 추적 식별자 미제공.\n[+] SYS-RID-ACDOC-17\n[+] SYS-RID-ACDOC-18\n[+] SYS-RID-ACDOC-20\n",
+              "style": "166",
+              "type": "inlineStr",
+              "formula": null,
+              "xml": "<c xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:x14ac=\"http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac\" xmlns:xr=\"http://schemas.microsoft.com/office/spreadsheetml/2014/revision\" xmlns:xr2=\"http://schemas.microsoft.com/office/spreadsheetml/2015/revision2\" xmlns:xr3=\"http://schemas.microsoft.com/office/spreadsheetml/2016/revision3\" r=\"F285\" s=\"166\" t=\"inlineStr\"><is><r><rPr><sz val=\"11\"/><color rgb=\"FF000000\"/><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/><color rgb=\"FFC00000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">[-] </t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/><color rgb=\"FFC00000\"/><sz val=\"13.0\"/><u/></rPr><t xml:space=\"preserve\">[E8300 &#48372;&#50756;] &#51221;&#49885; &#49345;&#50948; &#50836;&#44396; &#52628;&#51201; &#49885;&#48324;&#51088; &#48120;&#51228;&#44277;.</t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/><color rgb=\"FFC00000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/><color rgb=\"FF008000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">[+] </t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/><color rgb=\"FF008000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">SYS-RID-ACDOC-17</t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/><color rgb=\"FF008000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/><color rgb=\"FF008000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">[+] </t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/><color rgb=\"FF008000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">SYS-RID-ACDOC-18</t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/><color rgb=\"FF008000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/><color rgb=\"FF008000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">[+] </t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/><color rgb=\"FF008000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">SYS-RID-ACDOC-20</t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/><color rgb=\"FF008000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">\n</t></r></is></c>"
+            },
+            "G285": {
+              "text": "\n[-] 사용자에게 배포될 제품 설명서의 파일명/버전/언어/대상제품과검토 기준을 확인한다. 현재 제품 문서가 미제공이면대기한다.\n[+] 사용자 배포용 외부기 설명서의 현재 파일/버전/언어/대상제품. 안전/사용/문제 해결 정보를 검토할 제품 사용 흐름과 검토 기준.\n",
+              "style": "167",
+              "type": "inlineStr",
+              "formula": null,
+              "xml": "<c xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:x14ac=\"http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac\" xmlns:xr=\"http://schemas.microsoft.com/office/spreadsheetml/2014/revision\" xmlns:xr2=\"http://schemas.microsoft.com/office/spreadsheetml/2015/revision2\" xmlns:xr3=\"http://schemas.microsoft.com/office/spreadsheetml/2016/revision3\" r=\"G285\" s=\"167\" t=\"inlineStr\"><is><r><rPr><sz val=\"11\"/><color rgb=\"FF000000\"/><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/><color rgb=\"FFC00000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">[-] </t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/><color rgb=\"FFC00000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">&#49324;&#50857;&#51088;&#50640;&#44172; &#48176;&#54252;&#46112; &#51228;&#54408; &#49444;&#47749;&#49436;&#51032; &#54028;&#51068;&#47749;/&#48260;&#51204;/&#50616;&#50612;/&#45824;&#49345;&#51228;&#54408;&#44284;&#44160;&#53664; &#44592;&#51456;&#51012; &#54869;&#51064;&#54620;&#45796;. &#54788;&#51116; &#51228;&#54408; &#47928;&#49436;&#44032; &#48120;&#51228;&#44277;&#51060;&#47732;&#45824;&#44592;&#54620;&#45796;.</t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/><color rgb=\"FFC00000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/><color rgb=\"FF008000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">[+] </t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/><color rgb=\"FF008000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">&#49324;&#50857;&#51088; &#48176;&#54252;&#50857; &#50808;&#48512;&#44592; &#49444;&#47749;&#49436;&#51032; &#54788;&#51116; &#54028;&#51068;/&#48260;&#51204;/&#50616;&#50612;/&#45824;&#49345;&#51228;&#54408;. &#50504;&#51204;/&#49324;&#50857;/&#47928;&#51228; &#54644;&#44208; &#51221;&#48372;&#47484; &#44160;&#53664;&#54624; &#51228;&#54408; &#49324;&#50857; &#55120;&#47492;&#44284; &#44160;&#53664; &#44592;&#51456;.</t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/><color rgb=\"FF008000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">\n</t></r></is></c>"
+            },
+            "H285": {
+              "text": "\n[-] [E8300 보완] 제품 사용설명서 현재본 및정식 상위 요구 추적.\n[+] [E8300 보완] 제품 사용 설명서의 실제 해당 절/내용, 배포 대상 및 검토 결과. 상위 ACDOC-17/18/20 추적은 반영함.\n",
+              "style": "168",
+              "type": "inlineStr",
+              "formula": null,
+              "xml": "<c xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:x14ac=\"http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac\" xmlns:xr=\"http://schemas.microsoft.com/office/spreadsheetml/2014/revision\" xmlns:xr2=\"http://schemas.microsoft.com/office/spreadsheetml/2015/revision2\" xmlns:xr3=\"http://schemas.microsoft.com/office/spreadsheetml/2016/revision3\" r=\"H285\" s=\"168\" t=\"inlineStr\"><is><r><rPr><sz val=\"11\"/><color rgb=\"FF000000\"/><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/><color rgb=\"FFC00000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">[-] </t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/><color rgb=\"FFC00000\"/><sz val=\"13.0\"/><u/></rPr><t xml:space=\"preserve\">[E8300 &#48372;&#50756;] &#51228;&#54408; &#49324;&#50857;&#49444;&#47749;&#49436; &#54788;&#51116;&#48376; &#48143;&#51221;&#49885; &#49345;&#50948; &#50836;&#44396; &#52628;&#51201;.</t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/><color rgb=\"FFC00000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/><color rgb=\"FF008000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">[+] </t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/><color rgb=\"FF0070C0\"/><sz val=\"13.0\"/><u/></rPr><t xml:space=\"preserve\">[E8300 &#48372;&#50756;] &#51228;&#54408; &#49324;&#50857; &#49444;&#47749;&#49436;&#51032; &#49892;&#51228; &#54644;&#45817; &#51208;/&#45236;&#50857;, &#48176;&#54252; &#45824;&#49345; &#48143; &#44160;&#53664; &#44208;&#44284;. &#49345;&#50948; ACDOC-17/18/20 &#52628;&#51201;&#51008; &#48152;&#50689;&#54632;.</t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/><color rgb=\"FF008000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">\n</t></r></is></c>"
+            },
+            "I285": {
+              "text": "\n배포 설명서의 안전 예방조치·사용 방법·문제 해결 방법을 실제 본문에서 찾아 위치/내용/제품 적합성을 검토한다.\n",
+              "style": "169",
+              "type": "inlineStr",
+              "formula": null,
+              "xml": "<c xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:x14ac=\"http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac\" xmlns:xr=\"http://schemas.microsoft.com/office/spreadsheetml/2014/revision\" xmlns:xr2=\"http://schemas.microsoft.com/office/spreadsheetml/2015/revision2\" xmlns:xr3=\"http://schemas.microsoft.com/office/spreadsheetml/2016/revision3\" r=\"I285\" s=\"169\" t=\"inlineStr\"><is><t xml:space=\"preserve\">\n&#48176;&#54252; &#49444;&#47749;&#49436;&#51032; &#50504;&#51204; &#50696;&#48169;&#51312;&#52824;&#183;&#49324;&#50857; &#48169;&#48277;&#183;&#47928;&#51228; &#54644;&#44208; &#48169;&#48277;&#51012; &#49892;&#51228; &#48376;&#47928;&#50640;&#49436; &#52286;&#50500; &#50948;&#52824;/&#45236;&#50857;/&#51228;&#54408; &#51201;&#54633;&#49457;&#51012; &#44160;&#53664;&#54620;&#45796;.\n</t></is></c>"
+            },
+            "J285": {
+              "text": "\n[-] 조건[1] 설명서에 안전 예방조치, 사용 방법, 문제 해결 방법이 모두 포함되고 외부기 제품/사용 흐름과 맞아야 한다. 실제 문서 각 위치와 내용을 옆 결과에 기록한다. QCC SRS의 요구 문구만으로 설명서 내용 확인을 통과시키지 않는다.\n[+] 조건 [1]\n[+] 입력: 사용자에게 배포될 외부기 설명서 현재본.\n[+] 통과 기준: 경고/안전사항, 안전한 작동법, 자세한 동작방법이 포함되고 안전 예방조치/사용/문제 해결 방법이 대상 제품의 실제 사용 흐름과 맞아야 한다. 각 내용의 실제 위치/본문과 제품 적합성을 확인한다.\n",
+              "style": "170",
+              "type": "inlineStr",
+              "formula": null,
+              "xml": "<c xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:x14ac=\"http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac\" xmlns:xr=\"http://schemas.microsoft.com/office/spreadsheetml/2014/revision\" xmlns:xr2=\"http://schemas.microsoft.com/office/spreadsheetml/2015/revision2\" xmlns:xr3=\"http://schemas.microsoft.com/office/spreadsheetml/2016/revision3\" r=\"J285\" s=\"170\" t=\"inlineStr\"><is><r><rPr><sz val=\"11\"/><color rgb=\"FF000000\"/><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/><color rgb=\"FFC00000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">[-] </t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/><color rgb=\"FFC00000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">&#51312;&#44148;[1] &#49444;&#47749;&#49436;&#50640; &#50504;&#51204; &#50696;&#48169;&#51312;&#52824;, &#49324;&#50857; &#48169;&#48277;, &#47928;&#51228; &#54644;&#44208; &#48169;&#48277;&#51060; &#47784;&#46160; &#54252;&#54632;&#46104;&#44256; &#50808;&#48512;&#44592; &#51228;&#54408;/&#49324;&#50857; &#55120;&#47492;&#44284; &#47582;&#50500;&#50556; &#54620;&#45796;. &#49892;&#51228; &#47928;&#49436; &#44033; &#50948;&#52824;&#50752; &#45236;&#50857;&#51012; &#50694; &#44208;&#44284;&#50640; &#44592;&#47197;&#54620;&#45796;. QCC SRS&#51032; &#50836;&#44396; &#47928;&#44396;&#47564;&#51004;&#47196; &#49444;&#47749;&#49436; &#45236;&#50857; &#54869;&#51064;&#51012; &#53685;&#44284;&#49884;&#53412;&#51648; &#50506;&#45716;&#45796;.</t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/><color rgb=\"FFC00000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/><color rgb=\"FF008000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">[+] </t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/><color rgb=\"FF008000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">&#51312;&#44148; [1]</t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/><color rgb=\"FF008000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/><color rgb=\"FF008000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">[+] </t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/><color rgb=\"FF008000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">&#51077;&#47141;: &#49324;&#50857;&#51088;&#50640;&#44172; &#48176;&#54252;&#46112; &#50808;&#48512;&#44592; &#49444;&#47749;&#49436; &#54788;&#51116;&#48376;.</t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/><color rgb=\"FF008000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/><color rgb=\"FF008000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">[+] </t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/><color rgb=\"FF008000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">&#53685;&#44284; &#44592;&#51456;: &#44221;&#44256;/&#50504;&#51204;&#49324;&#54637;, &#50504;&#51204;&#54620; &#51089;&#46041;&#48277;, &#51088;&#49464;&#54620; &#46041;&#51089;&#48169;&#48277;&#51060; &#54252;&#54632;&#46104;&#44256; &#50504;&#51204; &#50696;&#48169;&#51312;&#52824;/&#49324;&#50857;/&#47928;&#51228; &#54644;&#44208; &#48169;&#48277;&#51060; &#45824;&#49345; &#51228;&#54408;&#51032; &#49892;&#51228; &#49324;&#50857; &#55120;&#47492;&#44284; &#47582;&#50500;&#50556; &#54620;&#45796;. &#44033; &#45236;&#50857;&#51032; &#49892;&#51228; &#50948;&#52824;/&#48376;&#47928;&#44284; &#51228;&#54408; &#51201;&#54633;&#49457;&#51012; &#54869;&#51064;&#54620;&#45796;.</t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"2\"/><scheme val=\"minor\"/><color rgb=\"FF008000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">\n</t></r></is></c>"
+            },
+            "K285": {
+              "text": "\n[-] 미실행 / 실제 결과 미제공\n[-] 조건[1] 설명서에 안전 예방조치, 사용 방법, 문제 해결 방법이 모두 포함되고 외부기 제품/사용 흐름과 맞아야 한다. 실제 문서 각 위치와 내용을 옆 결과에 기록한다. QCC SRS의 요구 문구만으로 설명서 내용 확인을 통과시키지 않는다.\n[-] 실제 입력/수신 전바이트·상태/시각: 미수집. 생성 예상값을 관찰값으로 기록하지 않았다.\n[-] [E8300 보완] 이 조건의 실제 실행·수집 원문/계측 자료.\n[+] 검증 [1]\n[+] 실행 상태: 미실행.\n[+] 관찰: 사용자 배포 설명서 현재본/버전과 경고/안전사항/작동법/동작방법 및 문제 해결의 실제 내용/위치 미제공.\n[+] [E8300 보완] 제품 설명서 현재본과 실제 검토 결과.\n",
+              "style": "171",
+              "type": "inlineStr",
+              "formula": null,
+              "xml": "<c xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:x14ac=\"http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac\" xmlns:xr=\"http://schemas.microsoft.com/office/spreadsheetml/2014/revision\" xmlns:xr2=\"http://schemas.microsoft.com/office/spreadsheetml/2015/revision2\" xmlns:xr3=\"http://schemas.microsoft.com/office/spreadsheetml/2016/revision3\" r=\"K285\" s=\"171\" t=\"inlineStr\"><is><r><rPr><sz val=\"11\"/><color rgb=\"FF000000\"/><rFont val=\"Calibri\"/><family val=\"3\"/><charset val=\"129\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"3\"/><charset val=\"129\"/><color rgb=\"FFC00000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">[-] </t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"3\"/><charset val=\"129\"/><color rgb=\"FFC00000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">&#48120;&#49892;&#54665; / &#49892;&#51228; &#44208;&#44284; &#48120;&#51228;&#44277;</t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"3\"/><charset val=\"129\"/><color rgb=\"FFC00000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"3\"/><charset val=\"129\"/><color rgb=\"FFC00000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">[-] </t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"3\"/><charset val=\"129\"/><color rgb=\"FFC00000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">&#51312;&#44148;[1] &#49444;&#47749;&#49436;&#50640; &#50504;&#51204; &#50696;&#48169;&#51312;&#52824;, &#49324;&#50857; &#48169;&#48277;, &#47928;&#51228; &#54644;&#44208; &#48169;&#48277;&#51060; &#47784;&#46160; &#54252;&#54632;&#46104;&#44256; &#50808;&#48512;&#44592; &#51228;&#54408;/&#49324;&#50857; &#55120;&#47492;&#44284; &#47582;&#50500;&#50556; &#54620;&#45796;. &#49892;&#51228; &#47928;&#49436; &#44033; &#50948;&#52824;&#50752; &#45236;&#50857;&#51012; &#50694; &#44208;&#44284;&#50640; &#44592;&#47197;&#54620;&#45796;. QCC SRS&#51032; &#50836;&#44396; &#47928;&#44396;&#47564;&#51004;&#47196; &#49444;&#47749;&#49436; &#45236;&#50857; &#54869;&#51064;&#51012; &#53685;&#44284;&#49884;&#53412;&#51648; &#50506;&#45716;&#45796;.</t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"3\"/><charset val=\"129\"/><color rgb=\"FFC00000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"3\"/><charset val=\"129\"/><color rgb=\"FFC00000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">[-] </t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"3\"/><charset val=\"129\"/><color rgb=\"FFC00000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">&#49892;&#51228; &#51077;&#47141;/&#49688;&#49888; &#51204;&#48148;&#51060;&#53944;&#183;&#49345;&#53468;/&#49884;&#44033;: &#48120;&#49688;&#51665;. &#49373;&#49457; &#50696;&#49345;&#44050;&#51012; &#44288;&#52272;&#44050;&#51004;&#47196; &#44592;&#47197;&#54616;&#51648; &#50506;&#50520;&#45796;.</t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"3\"/><charset val=\"129\"/><color rgb=\"FFC00000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"3\"/><charset val=\"129\"/><color rgb=\"FFC00000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">[-] </t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"3\"/><charset val=\"129\"/><color rgb=\"FFC00000\"/><sz val=\"13.0\"/><u/></rPr><t xml:space=\"preserve\">[E8300 &#48372;&#50756;] &#51060; &#51312;&#44148;&#51032; &#49892;&#51228; &#49892;&#54665;&#183;&#49688;&#51665; &#50896;&#47928;/&#44228;&#52769; &#51088;&#47308;.</t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"3\"/><charset val=\"129\"/><color rgb=\"FFC00000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"3\"/><charset val=\"129\"/><color rgb=\"FF008000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">[+] </t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"3\"/><charset val=\"129\"/><color rgb=\"FF008000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">&#44160;&#51613; [1]</t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"3\"/><charset val=\"129\"/><color rgb=\"FF008000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"3\"/><charset val=\"129\"/><color rgb=\"FF008000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">[+] </t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"3\"/><charset val=\"129\"/><color rgb=\"FF008000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">&#49892;&#54665; &#49345;&#53468;: &#48120;&#49892;&#54665;.</t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"3\"/><charset val=\"129\"/><color rgb=\"FF008000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"3\"/><charset val=\"129\"/><color rgb=\"FF008000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">[+] </t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"3\"/><charset val=\"129\"/><color rgb=\"FF008000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">&#44288;&#52272;: &#49324;&#50857;&#51088; &#48176;&#54252; &#49444;&#47749;&#49436; &#54788;&#51116;&#48376;/&#48260;&#51204;&#44284; &#44221;&#44256;/&#50504;&#51204;&#49324;&#54637;/&#51089;&#46041;&#48277;/&#46041;&#51089;&#48169;&#48277; &#48143; &#47928;&#51228; &#54644;&#44208;&#51032; &#49892;&#51228; &#45236;&#50857;/&#50948;&#52824; &#48120;&#51228;&#44277;.</t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"3\"/><charset val=\"129\"/><color rgb=\"FF008000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"3\"/><charset val=\"129\"/><color rgb=\"FF008000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">[+] </t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"3\"/><charset val=\"129\"/><color rgb=\"FF0070C0\"/><sz val=\"13.0\"/><u/></rPr><t xml:space=\"preserve\">[E8300 &#48372;&#50756;] &#51228;&#54408; &#49444;&#47749;&#49436; &#54788;&#51116;&#48376;&#44284; &#49892;&#51228; &#44160;&#53664; &#44208;&#44284;.</t></r><r><rPr><rFont val=\"Calibri\"/><family val=\"3\"/><charset val=\"129\"/><color rgb=\"FF008000\"/><sz val=\"11\"/></rPr><t xml:space=\"preserve\">\n</t></r></is></c>"
+            },
+            "L285": {
+              "text": "\n미실행\n판정 대기\n",
+              "style": "172",
+              "type": "inlineStr",
+              "formula": null,
+              "xml": "<c xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:x14ac=\"http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac\" xmlns:xr=\"http://schemas.microsoft.com/office/spreadsheetml/2014/revision\" xmlns:xr2=\"http://schemas.microsoft.com/office/spreadsheetml/2015/revision2\" xmlns:xr3=\"http://schemas.microsoft.com/office/spreadsheetml/2016/revision3\" r=\"L285\" s=\"172\" t=\"inlineStr\"><is><t xml:space=\"preserve\">\n&#48120;&#49892;&#54665;\n&#54032;&#51221; &#45824;&#44592;\n</t></is></c>"
+            }
+          },
+          "merges_around_285": [
+            "B282:B283",
+            "C282:C283",
+            "D282:D283",
+            "E282:E283",
+            "F282:F283"
+          ],
+          "row285_attributes": {
+            "r": "285",
+            "spans": "2:12",
+            "ht": "300",
+            "customHeight": "1",
+            "{http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac}dyDescent": "0.3"
+          }
+        },
+        {
+          "name": "사이버보안 시험 연계_비교",
+          "part": "xl/worksheets/sheet7.xml",
+          "cells": {
+            "G38": {
+              "text": "\nSW-FW-SYS-Test-ID-48\nSW-FW-RID-48\nSYS-RID-SP-FW-18\n\nSW-FW-SYS-Test-ID-52\nSW-FW-RID-52\nSYS-RID-SP-FW-19\n\nSW-FW-SYS-Test-ID-76\nSW-FW-RID-76\nSYS-RID-SP-FW-33\nSW-FW-SYS-Test-ID-83\nSW-FW-RID-83\n[-] 정식 상위 추적 미제공\n[+] SYS-RID-ACDOC-17\n[+] SYS-RID-ACDOC-18\n[+] SYS-RID-ACDOC-20\n",
+              "style": "27",
+              "type": "inlineStr",
+              "formula": null,
+              "xml": "<c xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\" xmlns:x14ac=\"http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac\" xmlns:xr=\"http://schemas.microsoft.com/office/spreadsheetml/2014/revision\" xmlns:xr2=\"http://schemas.microsoft.com/office/spreadsheetml/2015/revision2\" xmlns:xr3=\"http://schemas.microsoft.com/office/spreadsheetml/2016/revision3\" r=\"G38\" s=\"27\" t=\"inlineStr\"><is><r><rPr><sz val=\"10\"/><color rgb=\"FF000000\"/><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><sz val=\"10\"/><color rgb=\"FF000000\"/><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/></rPr><t xml:space=\"preserve\">SW-FW-SYS-Test-ID-48</t></r><r><rPr><sz val=\"10\"/><color rgb=\"FF000000\"/><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><sz val=\"10\"/><color rgb=\"FF000000\"/><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/></rPr><t xml:space=\"preserve\">SW-FW-RID-48</t></r><r><rPr><sz val=\"10\"/><color rgb=\"FF000000\"/><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><sz val=\"10\"/><color rgb=\"FF000000\"/><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/></rPr><t xml:space=\"preserve\">SYS-RID-SP-FW-18</t></r><r><rPr><sz val=\"10\"/><color rgb=\"FF000000\"/><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><sz val=\"10\"/><color rgb=\"FF000000\"/><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><sz val=\"10\"/><color rgb=\"FF000000\"/><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/></rPr><t xml:space=\"preserve\">SW-FW-SYS-Test-ID-52</t></r><r><rPr><sz val=\"10\"/><color rgb=\"FF000000\"/><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><sz val=\"10\"/><color rgb=\"FF000000\"/><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/></rPr><t xml:space=\"preserve\">SW-FW-RID-52</t></r><r><rPr><sz val=\"10\"/><color rgb=\"FF000000\"/><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><sz val=\"10\"/><color rgb=\"FF000000\"/><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/></rPr><t xml:space=\"preserve\">SYS-RID-SP-FW-19</t></r><r><rPr><sz val=\"10\"/><color rgb=\"FF000000\"/><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><sz val=\"10\"/><color rgb=\"FF000000\"/><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><sz val=\"10\"/><color rgb=\"FF000000\"/><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/></rPr><t xml:space=\"preserve\">SW-FW-SYS-Test-ID-76</t></r><r><rPr><sz val=\"10\"/><color rgb=\"FF000000\"/><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><sz val=\"10\"/><color rgb=\"FF000000\"/><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/></rPr><t xml:space=\"preserve\">SW-FW-RID-76</t></r><r><rPr><sz val=\"10\"/><color rgb=\"FF000000\"/><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><sz val=\"10\"/><color rgb=\"FF000000\"/><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/></rPr><t xml:space=\"preserve\">SYS-RID-SP-FW-33</t></r><r><rPr><sz val=\"10\"/><color rgb=\"FF000000\"/><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><sz val=\"10\"/><color rgb=\"FF000000\"/><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/></rPr><t xml:space=\"preserve\">SW-FW-SYS-Test-ID-83</t></r><r><rPr><sz val=\"10\"/><color rgb=\"FF000000\"/><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><sz val=\"10\"/><color rgb=\"FF000000\"/><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/></rPr><t xml:space=\"preserve\">SW-FW-RID-83</t></r><r><rPr><sz val=\"10\"/><color rgb=\"FF000000\"/><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/><color rgb=\"FFC00000\"/><sz val=\"10\"/></rPr><t xml:space=\"preserve\">[-] </t></r><r><rPr><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/><color rgb=\"FFC00000\"/><sz val=\"10\"/></rPr><t xml:space=\"preserve\">&#51221;&#49885; &#49345;&#50948; &#52628;&#51201; &#48120;&#51228;&#44277;</t></r><r><rPr><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/><color rgb=\"FFC00000\"/><sz val=\"10\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/><color rgb=\"FF008000\"/><sz val=\"10\"/></rPr><t xml:space=\"preserve\">[+] </t></r><r><rPr><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/><color rgb=\"FF008000\"/><sz val=\"10\"/></rPr><t xml:space=\"preserve\">SYS-RID-ACDOC-17</t></r><r><rPr><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/><color rgb=\"FF008000\"/><sz val=\"10\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/><color rgb=\"FF008000\"/><sz val=\"10\"/></rPr><t xml:space=\"preserve\">[+] </t></r><r><rPr><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/><color rgb=\"FF008000\"/><sz val=\"10\"/></rPr><t xml:space=\"preserve\">SYS-RID-ACDOC-18</t></r><r><rPr><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/><color rgb=\"FF008000\"/><sz val=\"10\"/></rPr><t xml:space=\"preserve\">\n</t></r><r><rPr><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/><color rgb=\"FF008000\"/><sz val=\"10\"/></rPr><t xml:space=\"preserve\">[+] </t></r><r><rPr><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/><color rgb=\"FF008000\"/><sz val=\"10\"/></rPr><t xml:space=\"preserve\">SYS-RID-ACDOC-20</t></r><r><rPr><rFont val=\"&#47569;&#51008; &#44256;&#46357;\"/><family val=\"3\"/><charset val=\"129\"/><color rgb=\"FF008000\"/><sz val=\"10\"/></rPr><t xml:space=\"preserve\">\n</t></r></is></c>"
+            }
+          },
+          "merges_around_285": [],
+          "row285_attributes": null
+        }
+      ]
+    }
+  ],
+  "manual_discovered": {
+    "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\04_docs\\01_사용자설명서\\260824_Sound1 사용 설명서 초안_사용적합성 형성평가용.docx",
+    "sha256": "64B6D57908C51D5D109EE6B35AA04AFF8AE3340E65E361A6F6C87BDFB45641DC",
+    "body_blocks": 548,
+    "document_header": "IFU-TD24A-01 (Rev.0, 2026.08.12)",
+    "review_scope": "파일명/본문 표지문서번호 식별.548 body block은 파싱했지만 전체내용 의미 검토를 완료한 것으로 주장하지 않음. 집중 내용 검토는design 담당."
+  },
+  "checked_at": "2026-10-13T15:44:48.653413+09:00",
+  "scope": "현재 G SSTC/SSTR SYS83 및 해당 cyber 연결의 실제 셀/병합/공통열/결과근거 읽기 감사. 산출물/COM/지침/기존QA 변경 없음. 설명서 집중 검토는 design 담당에게 넘겼고 여기서는 파일 위치/문서번호 식별까지만 수행했다.",
+  "current_row_contract": {
+    "test": "SW-FW-SYS-Test-ID-83",
+    "requirement": "SW-FW-RID-83",
+    "method": "I",
+    "criterion_sheet": "기준서_시스템 시험",
+    "report_sheet": "보고서_시스템 시험",
+    "row": 285,
+    "common_range": "B285:J285",
+    "result_cell": "K285",
+    "verdict_cell": "L285",
+    "common_value_differences": [],
+    "common_rich_differences": [],
+    "row285_merges": [],
+    "source_height_pt": 300,
+    "result_evidence": "K285는 실제 내용/위치 미제공 및 미실행 기록이고 L285는 미실행/판정 대기다. SYS83은 신규 검사이며 이 조건의 과거 통과/서명/사용자 확인 근거는 현재 시험 행에 없다. 보조자료의285행은0x34 상태 시험이며 SYS83 결과가 아니다."
+  },
+  "exact_correction_locations": [
+    {
+      "books": [
+        "SSTC",
+        "SSTR"
+      ],
+      "sheet_role": "current main",
+      "cell": "F285",
+      "issue": "사용자 정정으로 근거가 부적절한 ACDOC17/18/20 상위 연결을 비우고 자체SW 요구83 유지",
+      "proposed": ""
+    },
+    {
+      "books": [
+        "SSTC",
+        "SSTR"
+      ],
+      "sheet_role": "current main",
+      "cell": "H285",
+      "issue": "상위ACDOC17/18/20 추적은반영함이라는 현재falseclaim 삭제",
+      "proposed": "\n[E8300 보완] 사용자 배포 대상 사용설명서의 확정본/버전/대상 제품과 아래 세 검사 항목의 실제 절/내용 및 검토 결과.\n"
+    },
+    {
+      "books": [
+        "SSTC",
+        "SSTR"
+      ],
+      "sheet_role": "current main",
+      "cell": "I285",
+      "issue": "세 검사 항목을 실제 문서에서 확인할 절차로 명시",
+      "proposed": "\n1. 사용설명서의 경고 및 안전사항을 실제 본문에서 찾아 해당 절/페이지와 내용을 확인한다.\n2. 안전한 작동법을 찾아 대상 제품의 실제 사용 흐름과 일치하는지 확인한다.\n3. 안전 예방조치/사용 방법/문제 해결 방법을 찾아 내용과 제품 적합성을 확인하고 각 항목의 실제 위치와 확인 결과를 기록한다.\n"
+    },
+    {
+      "books": [
+        "SSTC",
+        "SSTR"
+      ],
+      "sheet_role": "current main",
+      "cell": "J285",
+      "issue": "기존 통과 기준이 경고/안전사항,안전한작동법,예방조치/사용/문제해결과 실제내용·제품적합성을포괄함",
+      "proposed": "현재 값 보존"
+    },
+    {
+      "books": [
+        "SSTC",
+        "SSTR"
+      ],
+      "sheet": "사이버보안 시험 연계",
+      "cell": "G38",
+      "issue": "SYS83/RID83 아래 ACDOC17/18/20 현재연결도 함께 제거. 다른SYS48/52/76 연결은 유지",
+      "proposed": "SYS83/RID83의 현재상위ID는공란으로 유지"
+    }
+  ],
+  "same_row_result_proposal": {
+    "cell": "SSTR K285",
+    "current_status": "미실행/판정 대기",
+    "proposed_pending_text": "\n검증 [1]\n실행 상태: 사용설명서 내용 검사 및 판정 근거 확인 대기.\n확인된 자료: 260824_Sound1 사용 설명서 초안_사용적합성 형성평가용.docx의 파일과 문서번호 IFU-TD24A-01(Rev.0,2026.08.12)을 식별하였다.\n관찰: 이 초안이 사용자 배포 대상 확정본인지와 경고/안전사항, 안전한 작동법, 안전 예방조치/사용 방법/문제 해결의 항목별 실제 절/내용에 대한 확인 근거가 아직 확정되지 않았다.\n[E8300 보완] 검사 대상 확정본과 세 검사 항목별 실제 위치/내용/제품 적합성 검토 근거.\n",
+    "verdict_pending_text": "\n미실행\n판정 대기\n",
+    "passing_condition": "사용자의 실제 내용 확인 응답 또는 담당의 실제 설명서 검토 근거가 해당 입력 파일/버전/제품 및 J285의 모든 요구 항목을 충족하는지 확인된 경우에만 결과칸에 각 검증 항목의 실제 위치/관찰과 근거를 기록하고 판정칸은 통과로 변경할 수 있다. 파일 존재/초안 제목/상위 문구만으로통과시키지 않는다. 일부 항목만 확인됐다면 확인범위와 남은항목을구분하고 전체판정대기를유지한다.",
+    "avoid": "자료 확인 대기 중 임의 통과, 상세 내용 미확인을 시험자 확인으로 표현, 과거0x34 결과/보조시트285를 SYS83 통과로 사용"
+  },
+  "search_evidence": {
+    "current_task_record": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\작업.md",
+    "current_registry": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\QCC 자료 추가 위치 관리.md",
+    "findings": "현재 작업/목록 기록은 사용설명서 검토 대기이고 새 통과 근거를 제시하지 않는다. 해당 문서의 기존 상위연결 완료 표현은 이번 정정에서 함께 갱신 필요.",
+    "manual_folder": "G:/공유 드라이브/20_프로젝트별/01_project sound1/04_docs/01_사용자설명서",
+    "review_candidate_folder": "G:/공유 드라이브/20_프로젝트별/01_project sound1/04_docs/09_시험소 대응/전기안전시험",
+    "manual_review_owner": "qcc_design",
+    "actual_user_confirmation_found": false,
+    "note": "사용자 응답 대기 상태는 root가 추후확정. 파일명검색만으로개별검토xlsx/초안내용을검토완료로판정하지 않음."
+  },
+  "comparison_history_policy": "현재본문 수정안에는[+]/[-]를넣지않는다. 기존_비교원문과색/이력은보존하고root가날짜표시후새diff를추가한다. 비교행높이최대409.5/필요한동일행분할은기준·보고공통구조로적용하며실제인쇄검사가필요하다.",
+  "source_end_recheck": [
+    {
+      "code": "SSTC",
+      "sha256": "B86E424177E33B0A4E539DFB7845AFA255FC482EF0A9B008ACD82E71FFC90D5B",
+      "same_as_audit": true
+    },
+    {
+      "code": "SSTR",
+      "sha256": "CEFFDED299DC4B2C1001AAE5271CAE6A80FFCB04F4697B16567A6AED363005B3",
+      "same_as_audit": true
+    }
+  ],
+  "new_writes": "Only this audit JSON. No output/COM/G instructions or existing QA writes.",
+  "cyber_followup": {
+    "checked_at": "2026-10-13T15:49:26.204308+09:00",
+    "scope": "현재 G SSTC/SSTR의 모든 비비교 시트를 실제 본문 문자열로 검색. 설명서 본문 내용의 독립 재분석은 수행하지 않았다.",
+    "rows": [
+      {
+        "code": "SSTC",
+        "sheet": "사이버보안 시험 연계",
+        "row38": {
+          "A38": "34",
+          "B38": "\nRA-04\n",
+          "C38": "\n네트워크 및 보안 구성 설정\n",
+          "D38": "\n미적용\n",
+          "E38": "\n적용 범위 검토: QCC 네트워크/보안 설정\n",
+          "F38": "\nD\n",
+          "G38": "\nSW-FW-SYS-Test-ID-48\nSW-FW-RID-48\nSYS-RID-SP-FW-18\n\nSW-FW-SYS-Test-ID-52\nSW-FW-RID-52\nSYS-RID-SP-FW-19\n\nSW-FW-SYS-Test-ID-76\nSW-FW-RID-76\nSYS-RID-SP-FW-33\nSW-FW-SYS-Test-ID-83\nSW-FW-RID-83\nSYS-RID-ACDOC-17\nSYS-RID-ACDOC-18\nSYS-RID-ACDOC-20\n",
+          "H38": "\n별도 유닛 추가 없음\n",
+          "I38": "\n사용설명서의 연결 대상 등록(페어링) 및 보안 설정 방법을 실제 제품 설정과 비교한다.\n설정을 변경할 수 있는 사람의 권한과 변경 후 상태를 확인하는 방법을 검토한다.\n최신 QCC 입력 조건: 리모콘/매핑16byte키, AES-CMAC 인증과 SHA-256매핑키 생성 역할·벡터(본문SYS52). 인증 전후 데이터 게이트, 생산키 설치/NVM암호화·생성키 역할(본문SYS76). 실제 같은 입력/전량 결과를 본문에서 비교한다.\n",
+          "J38": "\n사용설명서에 해당 설정 방법이 안내되어 있어야 한다.\n허가된 설정 변경 방법과 변경 후 상태 확인 방법이 제품의 동작과 일치해야 한다.\n최신 조건/수치는 본문 최신 기준과 같다. [QCC 자료 입력] 해당 조건의 실제 데이터·시각·계산/보호 자료.\n설명서의 안전 예방조치·사용 방법·문제 해결 방법은 본문SYS83에서 실제 파일 내용으로 확인한다. [E8300 보완] 제품 설명서 현재본 및상위 추적.\n"
+        },
+        "sourceSHA256": "B86E424177E33B0A4E539DFB7845AFA255FC482EF0A9B008ACD82E71FFC90D5B"
+      },
+      {
+        "code": "SSTR",
+        "sheet": "사이버보안 시험 연계",
+        "row38": {
+          "A38": "34",
+          "B38": "\nRA-04\n",
+          "C38": "\n네트워크 및 보안 구성 설정\n",
+          "D38": "\n미적용\n",
+          "E38": "\n적용 범위 검토: QCC 네트워크/보안 설정\n",
+          "F38": "\nD\n",
+          "G38": "\nSW-FW-SYS-Test-ID-48\nSW-FW-RID-48\nSYS-RID-SP-FW-18\n\nSW-FW-SYS-Test-ID-52\nSW-FW-RID-52\nSYS-RID-SP-FW-19\n\nSW-FW-SYS-Test-ID-76\nSW-FW-RID-76\nSYS-RID-SP-FW-33\nSW-FW-SYS-Test-ID-83\nSW-FW-RID-83\nSYS-RID-ACDOC-17\nSYS-RID-ACDOC-18\nSYS-RID-ACDOC-20\n",
+          "H38": "\n별도 유닛 추가 없음\n",
+          "I38": "\n사용설명서의 연결 대상 등록(페어링) 및 보안 설정 방법을 실제 제품 설정과 비교한다.\n설정을 변경할 수 있는 사람의 권한과 변경 후 상태를 확인하는 방법을 검토한다.\n최신 QCC 입력 조건: 리모콘/매핑16byte키, AES-CMAC 인증과 SHA-256매핑키 생성 역할·벡터(본문SYS52). 인증 전후 데이터 게이트, 생산키 설치/NVM암호화·생성키 역할(본문SYS76). 실제 같은 입력/전량 결과를 본문에서 비교한다.\n",
+          "J38": "\n사용설명서에 해당 설정 방법이 안내되어 있어야 한다.\n허가된 설정 변경 방법과 변경 후 상태 확인 방법이 제품의 동작과 일치해야 한다.\n최신 조건/수치는 본문 최신 기준과 같다. [QCC 자료 입력] 해당 조건의 실제 데이터·시각·계산/보호 자료.\n설명서의 안전 예방조치·사용 방법·문제 해결 방법은 본문SYS83에서 실제 파일 내용으로 확인한다. [E8300 보완] 제품 설명서 현재본 및상위 추적.\n",
+          "K38": "\n기존 관찰/작성자 확인 범위:\n기존 시험 48: 오류 발생, 명령 정상 실행 안 됨.\n\n기존 시험 52: 에러 응답 확인.\n\n기존 시험 76: Bluetooth 오류 및 데이터 송수신 차단 확인.\n\n[QCC 자료 입력] QCC 네트워크/보안 설정 목록, 변경 통제/확인 자료 및 사용자 설명서.\n[QCC 자료 입력] 인증/암호화 기능과 시험 완료는 작성자 확인. 이 항목에 해당하는 결과 자료를 연결한다.\n최신 QCC 추가 조건: 미실행/실제 자료 미수집. 본문 결과의 현재 판정 대기와 같다.\n",
+          "L38": "\n기존 관찰 보존\n현재 판정 대기\n"
+        },
+        "sourceSHA256": "CEFFDED299DC4B2C1001AAE5271CAE6A80FFCB04F4697B16567A6AED363005B3"
+      }
+    ],
+    "all_current_sheet_matches": [
+      {
+        "code": "SSTC",
+        "sheet": "표지",
+        "matches": {}
+      },
+      {
+        "code": "SSTC",
+        "sheet": "기준서_시스템 시험",
+        "matches": {
+          "B285": "\nSW-FW-SYS-Test-ID-83\n",
+          "C285": "\n사용자 설명서의 안전·사용·문제 해결 정보\n",
+          "E285": "\nSW-FW-RID-83\n",
+          "F285": "\nSYS-RID-ACDOC-17\nSYS-RID-ACDOC-18\nSYS-RID-ACDOC-20\n",
+          "G285": "\n사용자 배포용 외부기 설명서의 현재 파일/버전/언어/대상제품. 안전/사용/문제 해결 정보를 검토할 제품 사용 흐름과 검토 기준.\n",
+          "H285": "\n[E8300 보완] 제품 사용 설명서의 실제 해당 절/내용, 배포 대상 및 검토 결과. 상위 ACDOC-17/18/20 추적은 반영함.\n",
+          "I285": "\n배포 설명서의 안전 예방조치·사용 방법·문제 해결 방법을 실제 본문에서 찾아 위치/내용/제품 적합성을 검토한다.\n",
+          "J285": "\n조건 [1]\n입력: 사용자에게 배포될 외부기 설명서 현재본.\n통과 기준: 경고/안전사항, 안전한 작동법, 자세한 동작방법이 포함되고 안전 예방조치/사용/문제 해결 방법이 대상 제품의 실제 사용 흐름과 맞아야 한다. 각 내용의 실제 위치/본문과 제품 적합성을 확인한다.\n"
+        }
+      },
+      {
+        "code": "SSTC",
+        "sheet": "사이버보안 시험 연계",
+        "matches": {
+          "G38": "\nSW-FW-SYS-Test-ID-48\nSW-FW-RID-48\nSYS-RID-SP-FW-18\n\nSW-FW-SYS-Test-ID-52\nSW-FW-RID-52\nSYS-RID-SP-FW-19\n\nSW-FW-SYS-Test-ID-76\nSW-FW-RID-76\nSYS-RID-SP-FW-33\nSW-FW-SYS-Test-ID-83\nSW-FW-RID-83\nSYS-RID-ACDOC-17\nSYS-RID-ACDOC-18\nSYS-RID-ACDOC-20\n",
+          "I38": "\n사용설명서의 연결 대상 등록(페어링) 및 보안 설정 방법을 실제 제품 설정과 비교한다.\n설정을 변경할 수 있는 사람의 권한과 변경 후 상태를 확인하는 방법을 검토한다.\n최신 QCC 입력 조건: 리모콘/매핑16byte키, AES-CMAC 인증과 SHA-256매핑키 생성 역할·벡터(본문SYS52). 인증 전후 데이터 게이트, 생산키 설치/NVM암호화·생성키 역할(본문SYS76). 실제 같은 입력/전량 결과를 본문에서 비교한다.\n",
+          "J38": "\n사용설명서에 해당 설정 방법이 안내되어 있어야 한다.\n허가된 설정 변경 방법과 변경 후 상태 확인 방법이 제품의 동작과 일치해야 한다.\n최신 조건/수치는 본문 최신 기준과 같다. [QCC 자료 입력] 해당 조건의 실제 데이터·시각·계산/보호 자료.\n설명서의 안전 예방조치·사용 방법·문제 해결 방법은 본문SYS83에서 실제 파일 내용으로 확인한다. [E8300 보완] 제품 설명서 현재본 및상위 추적.\n"
+        }
+      },
+      {
+        "code": "SSTR",
+        "sheet": "표지",
+        "matches": {}
+      },
+      {
+        "code": "SSTR",
+        "sheet": "보고서_시스템 시험",
+        "matches": {
+          "B285": "\nSW-FW-SYS-Test-ID-83\n",
+          "C285": "\n사용자 설명서의 안전·사용·문제 해결 정보\n",
+          "E285": "\nSW-FW-RID-83\n",
+          "F285": "\nSYS-RID-ACDOC-17\nSYS-RID-ACDOC-18\nSYS-RID-ACDOC-20\n",
+          "G285": "\n사용자 배포용 외부기 설명서의 현재 파일/버전/언어/대상제품. 안전/사용/문제 해결 정보를 검토할 제품 사용 흐름과 검토 기준.\n",
+          "H285": "\n[E8300 보완] 제품 사용 설명서의 실제 해당 절/내용, 배포 대상 및 검토 결과. 상위 ACDOC-17/18/20 추적은 반영함.\n",
+          "I285": "\n배포 설명서의 안전 예방조치·사용 방법·문제 해결 방법을 실제 본문에서 찾아 위치/내용/제품 적합성을 검토한다.\n",
+          "J285": "\n조건 [1]\n입력: 사용자에게 배포될 외부기 설명서 현재본.\n통과 기준: 경고/안전사항, 안전한 작동법, 자세한 동작방법이 포함되고 안전 예방조치/사용/문제 해결 방법이 대상 제품의 실제 사용 흐름과 맞아야 한다. 각 내용의 실제 위치/본문과 제품 적합성을 확인한다.\n",
+          "K285": "\n검증 [1]\n실행 상태: 미실행.\n관찰: 사용자 배포 설명서 현재본/버전과 경고/안전사항/작동법/동작방법 및 문제 해결의 실제 내용/위치 미제공.\n[E8300 보완] 제품 설명서 현재본과 실제 검토 결과.\n"
+        }
+      },
+      {
+        "code": "SSTR",
+        "sheet": "시험 보조자료",
+        "matches": {}
+      },
+      {
+        "code": "SSTR",
+        "sheet": "예상 그림",
+        "matches": {}
+      },
+      {
+        "code": "SSTR",
+        "sheet": "사이버보안 시험 연계",
+        "matches": {
+          "G38": "\nSW-FW-SYS-Test-ID-48\nSW-FW-RID-48\nSYS-RID-SP-FW-18\n\nSW-FW-SYS-Test-ID-52\nSW-FW-RID-52\nSYS-RID-SP-FW-19\n\nSW-FW-SYS-Test-ID-76\nSW-FW-RID-76\nSYS-RID-SP-FW-33\nSW-FW-SYS-Test-ID-83\nSW-FW-RID-83\nSYS-RID-ACDOC-17\nSYS-RID-ACDOC-18\nSYS-RID-ACDOC-20\n",
+          "I38": "\n사용설명서의 연결 대상 등록(페어링) 및 보안 설정 방법을 실제 제품 설정과 비교한다.\n설정을 변경할 수 있는 사람의 권한과 변경 후 상태를 확인하는 방법을 검토한다.\n최신 QCC 입력 조건: 리모콘/매핑16byte키, AES-CMAC 인증과 SHA-256매핑키 생성 역할·벡터(본문SYS52). 인증 전후 데이터 게이트, 생산키 설치/NVM암호화·생성키 역할(본문SYS76). 실제 같은 입력/전량 결과를 본문에서 비교한다.\n",
+          "J38": "\n사용설명서에 해당 설정 방법이 안내되어 있어야 한다.\n허가된 설정 변경 방법과 변경 후 상태 확인 방법이 제품의 동작과 일치해야 한다.\n최신 조건/수치는 본문 최신 기준과 같다. [QCC 자료 입력] 해당 조건의 실제 데이터·시각·계산/보호 자료.\n설명서의 안전 예방조치·사용 방법·문제 해결 방법은 본문SYS83에서 실제 파일 내용으로 확인한다. [E8300 보완] 제품 설명서 현재본 및상위 추적.\n",
+          "K38": "\n기존 관찰/작성자 확인 범위:\n기존 시험 48: 오류 발생, 명령 정상 실행 안 됨.\n\n기존 시험 52: 에러 응답 확인.\n\n기존 시험 76: Bluetooth 오류 및 데이터 송수신 차단 확인.\n\n[QCC 자료 입력] QCC 네트워크/보안 설정 목록, 변경 통제/확인 자료 및 사용자 설명서.\n[QCC 자료 입력] 인증/암호화 기능과 시험 완료는 작성자 확인. 이 항목에 해당하는 결과 자료를 연결한다.\n최신 QCC 추가 조건: 미실행/실제 자료 미수집. 본문 결과의 현재 판정 대기와 같다.\n"
+        }
+      }
+    ],
+    "common_range": "A38:J38",
+    "common_text_differences": [],
+    "current_corrections": [
+      {
+        "books": [
+          "SSTC",
+          "SSTR"
+        ],
+        "sheet": "사이버보안 시험 연계",
+        "cell": "G38",
+        "action": "현재 SYS83/RID83 뒤의 SYS-RID-ACDOC-17/18/20 세 줄만 제거. SYS48/52/76의 상위 추적 및 SYS83/RID83 자체 연결 유지."
+      },
+      {
+        "books": [
+          "SSTC",
+          "SSTR"
+        ],
+        "sheet": "사이버보안 시험 연계",
+        "cell": "J38",
+        "action": "마지막 [E8300 보완] 제품 설명서 현재본 및상위 추적.을 [E8300 보완] 검사 대상 사용설명서와 사용자 배포 대상의 일치 확인.으로 변경. 본문 SYS83 I 검사의 기준 연결과 다른 QCC 기준/자료 접두어 유지."
+      },
+      {
+        "books": [
+          "SSTR"
+        ],
+        "sheet": "사이버보안 시험 연계",
+        "cell": "K38",
+        "action": "첫 QCC 안내의 사용자 설명서를 해당 네트워크/보안 설정에 관한 설명서 안내 및 실제 제품 정합성 검토 근거로 한정. 최신 QCC 추가 조건 미실행은 SYS48/52/76 조건으로 한정. SYS83은 실제 형성평가 초안의 일반 3항목 검사 완료와 배포 대상 일치 대기를 별도 문단으로 연결. 실제 절/문서번호는 design audit의 검사 근거로 기입."
+      },
+      {
+        "books": [
+          "SSTR"
+        ],
+        "sheet": "사이버보안 시험 연계",
+        "cell": "L38",
+        "action": "기존 관찰 보존 / 현재 판정 대기 유지. SYS83 초안 내용 확인으로 RA-04 네트워크/보안 설정 전체 통과를 만들지 않음."
+      }
+    ],
+    "stage_scope": {
+      "D38": "미적용",
+      "E38": "적용 범위 검토: QCC 네트워크/보안 설정",
+      "F38": "D",
+      "interpretation": "RA-04 설정 검토 단계. 본체 SYS83의 I 검사와 검사 범위/방법을 구분하고 기존 RA-04 적용 판정을 임의로 변경하지 않음."
+    },
+    "new_information_from_root": "design audit에서 IFU-TD24A-01 Rev.0 형성평가 초안의 세 내용 검사를 확인했다는 root 전달. 사용자에게 이 초안을 test83 대상본으로 사용할지 질문 대기. 해당 manual 의미 검토는 design 책임이며 본 audit이 독립 완료한 것으로 주장하지 않음.",
+    "current_result_proposal_update": {
+      "K285": "실제 초안 검사 완료 세 항목/문서번호/버전/절은 design audit 근거로 기입하고 사용자 배포 대상 일치만 미확인으로 구분.",
+      "L285": "판정 대기",
+      "old_proposal_status": "same_row_result_proposal의 전체 내용 검사 대기 문구는 새 정보 이전 제안이며 대체됨."
+    },
+    "source_unchanged": true,
+    "output_changes": "none"
+  }
+}

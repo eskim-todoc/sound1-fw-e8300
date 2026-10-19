@@ -1,0 +1,43 @@
+[
+  {
+    "mode": "bare-rich",
+    "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\SUVC-probe-bare-rich.xlsx",
+    "sha256": "a07d4b97db9a8e09ab60197bc3795aff213b6fdfcf544d7d468ee68d5f12c3e2",
+    "changed_parts": [
+      "xl/worksheets/sheet2.xml"
+    ]
+  },
+  {
+    "mode": "color-only-rich",
+    "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\SUVC-probe-color-only-rich.xlsx",
+    "sha256": "5bb1eecb20c7bc88be21dbcf7c14d0bd13da0d466ff7ef89c725920974707408",
+    "changed_parts": [
+      "xl/worksheets/sheet2.xml"
+    ]
+  },
+  {
+    "mode": "font-size-rich",
+    "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\SUVC-probe-font-size-rich.xlsx",
+    "sha256": "4abef84f249f28fee4b606483a2a86da17cb79785c0de47b9e22a7b23d679313",
+    "changed_parts": [
+      "xl/worksheets/sheet2.xml"
+    ]
+  },
+  {
+    "mode": "no-empty-rich",
+    "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\SUVC-probe-no-empty-rich.xlsx",
+    "sha256": "f85d4081e03ade61b4097342ec4d1576bc03b0ae3f4e3bb08d7fa967931c2a91",
+    "changed_parts": [
+      "xl/worksheets/sheet2.xml"
+    ]
+  },
+  {
+    "mode": "shared-rich",
+    "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\SUVC-probe-shared-rich.xlsx",
+    "sha256": "0288adf079736b0168d315809a48002ed314311f5325371068ab10e15a0a1099",
+    "changed_parts": [
+      "xl/worksheets/sheet2.xml",
+      "xl/sharedStrings.xml"
+    ]
+  }
+]

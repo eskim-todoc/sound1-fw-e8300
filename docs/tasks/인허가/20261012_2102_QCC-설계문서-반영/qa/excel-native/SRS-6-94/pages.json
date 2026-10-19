@@ -1,0 +1,200 @@
+[
+  {
+    "page": 1,
+    "png": "docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\excel-native\\SRS-6-94\\page-001.png",
+    "size": [
+      1684,
+      1191
+    ],
+    "text": "전채널 최대 전채널 동시에 자극률은 20kHz이상이어야 한다.(32\r\n채널 사용) SW-FW-RID-1\r\n채널별 최대 채널별 최대 자극률은 1000Hz 이상이어야 한다.(24\r\n채널 사용) SW-FW-RID-2\r\n모노폴라 자극 모드 출력이 가능해야한다. SW-FW-RID-3 SYS-RID-SP-FW-1\r\nnegative/positive phase 선택이 가능해야 한다. SW-FW-RID-4 SYS-RID-SP-FW-4\r\n내부 자극칩 출력 범위 내에서 조정이 가능해야 한다. SW-FW-RID-5 SYS-RID-SP-FW-5\r\n자극 펄스 폭은 13~255usec 범위에서 1usec 단위로\r\n조정이 가능해야한다. SW-FW-RID-6 SYS-RID-SP-FW-3\r\n인공와우 내부기 시스템의 전극에서 출력되는 최대\r\n전하량이 안전치를 초과하지 않도록 펄스폭에 따라\r\n최종 자극 크기의 제한이 필요하다.\r\nSW-FW-RID-7\r\n전처리 마이크 감도\r\n조절 기능\r\nAGC를 사용한 감도 조절 10단계 SW-FW-RID-8 SYS-RID-SP-FW-6\r\n선행 펄스 모양\r\na) 기능 및 성능 요구사항\r\nfunctional and capability\r\nrequirements\r\n자극 출력 조정\r\n자극 크기\r\n자극 펄스폭\r\n사운드 처리\r\n자극 크기/펄스폭 관계\r\n자극율 SYS-RID-SP-FW-2\r\n자극 모드"
+  },
+  {
+    "page": 2,
+    "png": "docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\excel-native\\SRS-6-94\\page-002.png",
+    "size": [
+      1684,
+      1191
+    ],
+    "text": "FFT 방식으로 신호의 주파수를 성분을 분석한다. SW-FW-RID-9 SYS-RID-SP-FW-7\r\n1~32채널의 대역수로 주파수 분석이 가능해야한다. SW-FW-RID-10 SYS-RID-SP-FW-8\r\n필수 : CIS, 옵션 : N-of-M SW-FW-RID-11 SYS-RID-SP-FW-9\r\n사운드 처리 주기는 1.00ms이며 허용 오차는 +/-\r\n5%(0.95~1.05ms)이다. SW-FW-RID-12 SYS-RID-SP-FW-10\r\n4개의 맵 데이터를 사용할 수 있어야 한다. SW-FW-RID-13 SYS-RID-SP-FW-11\r\n자극 볼륨 조절 자극 볼륨은 4단계로 조정 가능해야한다. SW-FW-RID-14 SYS-RID-SP-FW-12\r\na) 기능 및 성능 요구사항\r\nfunctional and capability\r\nrequirements\r\n주파수 분석 방법\r\n주파수 분석 대역수\r\n자극 기법\r\n사운드 처리 주기\r\n사운드 처리\r\n프로그램 수\r\n기능"
+  },
+  {
+    "page": 3,
+    "png": "docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\excel-native\\SRS-6-94\\page-003.png",
+    "size": [
+      1684,
+      1191
+    ],
+    "text": "2개 이상의 오디오 소스를 입력 받을 수 있어야 한다.\r\nQCC는 Bluetooth 오디오를 I2S로 E8300에 전달하며,\r\n데이터는 24비트, 샘플링 주파수는 16kHz다.\r\nQCC 설계 연결: Bluetooth Classic 유닛(SU-ID-QCC￾008), 시스템 초기화와 설정 유닛(SU-ID-QCC-001).\r\n[QCC 자료 입력] I2S의 클록/프레임과 유효\r\n신호의 실제 출력 조건 및 측정 자료를 입력\r\n한다.\r\nSW-FW-RID-15\r\nQCC SRS\r\nRI-09\r\nI2S 오디오\r\n입력\r\n오디오 입력 대역은 0~8kHz이며, 샘플링 주파수\r\n16kHz와 구분한다.\r\n[QCC/E8300 자료 입력] 8kHz 대역 끝점의\r\n입력/출력 조건과 허용 범위를 확인한다. 코\r\n드 설정을 실제 음향 성능 측정값으로 보지\r\n않는다.\r\nSW-FW-RID-16\r\nQCC SRS\r\nRI-09\r\nI2S 오디오\r\n입력\r\n오디오 신호처리의 최종 출력은 PCM 데이터로 변환\r\n되어 FPGA에 전달되어야 한다. SW-FW-RID-17\r\n사운드 처리\r\n입력단\r\n출력단\r\nb) 소프트웨어 시스템 입력\r\n과 출력\r\n(SOFTWARE SYSTEM\r\ninputs and outputs)"
+  },
+  {
+    "page": 4,
+    "png": "docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\excel-native\\SRS-6-94\\page-004.png",
+    "size": [
+      1684,
+      1191
+    ],
+    "text": "매핑 데이터에 기반하여 최종 자극 파라미터가 생성\r\n되어야 한다. SW-FW-RID-18\r\n터치 센서의 입력에 따라 전원 모드와 사용자 제어를\r\n처리한다. SW-FW-RID-19\r\n외부기 동작 상태를 표시한다. SW-FW-RID-20\r\n전원 커넥터 연결 상태를 표시한다. SW-FW-RID-21\r\n배터리 저전압 상태를 표시한다. SW-FW-RID-22\r\n자극 출력 배터리 저전압 상태를 자극으로 출력한다. SW-FW-RID-23\r\n프로그램 변경하기 SW-FW-RID-24\r\n오디오 볼륨 조절하기 SW-FW-RID-25\r\n자극 볼륨 조절하기 SW-FW-RID-26\r\nLED 알림 켜기/끄기 SW-FW-RID-27\r\n사운드 처리\r\n사용자 인터페이스\r\n(리모콘 앱 통신)\r\n매핑 데이터\r\nLED 출력\r\n출력\r\n사용자 인터페이스\r\n(외부기 자체)\r\nb) 소프트웨어 시스템 입력\r\n과 출력\r\n(SOFTWARE SYSTEM\r\ninputs and outputs)\r\n입력\r\n입력(수신)"
+  },
+  {
+    "page": 5,
+    "png": "docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\excel-native\\SRS-6-94\\page-005.png",
+    "size": [
+      1684,
+      1191
+    ],
+    "text": "자극 알림 켜기/끄기 SW-FW-RID-28\r\n배터리 상태 SW-FW-RID-29\r\n선택된 맵 번호 SW-FW-RID-30\r\n오디오 볼륨 단계 SW-FW-RID-31\r\n자극 볼륨 단계 SW-FW-RID-32\r\nLED 알림 설정 상태 SW-FW-RID-33\r\n자극 알림 설정 상태 SW-FW-RID-34\r\n시스템 상태 확인 SW-FW-RID-35\r\n특정 자극 출력 SW-FW-RID-36\r\n실시간 자극 출력 진행 SW-FW-RID-37\r\n시스템 상태 SW-FW-RID-38\r\n사용자 인터페이스\r\n(매핑 앱 통신)\r\n입력(수신)\r\n출력(송신)\r\n사용자 인터페이스\r\n(리모콘 앱 통신)\r\n출력(송신)\r\nb) 소프트웨어 시스템 입력\r\n과 출력\r\n(SOFTWARE SYSTEM\r\ninputs and outputs)\r\n입력(수신)"
+  },
+  {
+    "page": 6,
+    "png": "docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\excel-native\\SRS-6-94\\page-006.png",
+    "size": [
+      1684,
+      1191
+    ],
+    "text": "특정 자극 출력 결과 SW-FW-RID-39\r\n실시간 자극 진행 상태 SW-FW-RID-40\r\nI2C 프로토콜을 사용하여 FPGA와 데이터 송/수신이\r\n가능해야한다. SW-FW-RID-41\r\nI2C 프로토콜을 사용하여 터치 센서와 데이터를 송수\r\n신할 수 있어야 한다. SW-FW-RID-42\r\nI2C를 프로토콜을 사용하여 PMIC의 조정이 가능해야\r\n한다. SW-FW-RID-43\r\n외부기는 마이크에서 수집한 오디오를 Bluetooth\r\nClassic을 통해 다른 블루투스 장치로 전송할 수 있어\r\n야 한다.\r\nQCC 설계 연결: Bluetooth Classic 유닛(SU-ID-QCC￾008).\r\n[QCC 자료 입력] 마이크의 QCC 입력 경로,\r\n프로파일/코덱/상대 장치, 동시 송수신 조건\r\n과 실제 시험 자료를 입력한다.\r\nSW-FW-RID-82 SYS-RID-SP-HW-1\r\nQCC SRS\r\nRI-10\r\n오디오 출력\r\nBluetooth 오디오 송신\r\n사용자 인터페이스\r\n(매핑 앱 통신)\r\n출력(송신)\r\nb) 소프트웨어 시스템 입력\r\n과 출력\r\n(SOFTWARE SYSTEM\r\ninputs and outputs)\r\nPMIC\r\nFPGA\r\n기기 인터페이스 센서"
+  },
+  {
+    "page": 7,
+    "png": "docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\excel-native\\SRS-6-94\\page-007.png",
+    "size": [
+      1684,
+      1191
+    ],
+    "text": "리모콘 앱이 실행되는 스마트폰과 BLE로 데이터 통신\r\n이 가능해야 한다. 충전/배터리 상태와 Bluetooth 제\r\n어 정보를 송수신하며, 사운드 처리기의 명령/응답은\r\nQCC가 SPI로 중계한다.\r\nQCC 설계 연결: BLE 유닛(SU-ID-QCC-009), BLE Data\r\n처리 유닛(SU-ID-QCC-011), 시스템 상태 유닛(SU￾ID-QCC-002).\r\n[QCC 자료 입력] Bluetooth 제어의 명령/상\r\n태와 충전 상태 데이터의 상세 전달 계약을\r\n입력한다.\r\nSW-FW-RID-44 SYS-RID-SP-FW-13\r\nQCC SRS\r\n표제 RI-13/\r\n표 RI-12\r\n리모콘 앱\r\nc) 소프트웨어 시스템과 다\r\n른 소프트웨어 사이의 연계\r\n성\r\n(interfaces between the\r\nSOFTWARE SYSTEM and\r\nother SYSTEMS)\r\n리모콘"
+  },
+  {
+    "page": 8,
+    "png": "docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\excel-native\\SRS-6-94\\page-008.png",
+    "size": [
+      1684,
+      1191
+    ],
+    "text": "매핑 프로그램이 실행되는 기기와 BLE로 데이터 통신\r\n이 가능해야 한다. 매핑 시작/종료 및 사운드 처리기\r\n의 명령/응답은 QCC가 SPI로 중계한다.\r\nQCC 설계 연결: BLE 유닛(SU-ID-QCC-009), BLE Data\r\n처리 유닛(SU-ID-QCC-011), 시스템 상태 유닛(SU￾ID-QCC-002).\r\n[QCC 자료 입력] 매핑 시작/종료의 상태/실\r\n패 처리와 동시 연결 정책을 입력한다.\r\nSW-FW-RID-45 SYS-RID-SP-FW-14\r\nQCC SRS\r\nRI-14\r\n매핑 프로그\r\n램\r\nBluetooth Classic 오디오 통신을 지원해야 한다.\r\nQCC 설계 연결: 블루투스 상태 유닛(SU-ID-QCC￾004), Bluetooth Classic 유닛(SU-ID-QCC-008). 오디\r\n오 입력과 마이크 송신 요구는 SW-FW-RID-15, SW￾FW-RID-82에 따른다.\r\n[QCC 자료 입력] 연결 상대와 프로파일/코\r\n덱별 송수신 조건을 입력한다.\r\nSW-FW-RID-69 SYS-RID-SP-FW-15\r\nQCC SRS\r\nRI-11\r\nClassic 통신\r\n매핑\r\nc) 소프트웨어 시스템과 다\r\n른 소프트웨어 사이의 연계\r\n성\r\n(interfaces between the\r\nSOFTWARE SYSTEM and\r\nother SYSTEMS)\r\nBluetooth"
+  },
+  {
+    "page": 9,
+    "png": "docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\excel-native\\SRS-6-94\\page-009.png",
+    "size": [
+      1684,
+      1191
+    ],
+    "text": "BLE 데이터 통신을 지원해야 한다.\r\nQCC 설계 연결: BLE 유닛(SU-ID-QCC-009), BLE Data\r\n처리 유닛(SU-ID-QCC-011), 시스템 상태 유닛(SU￾ID-QCC-002).\r\n[QCC 자료 입력] GATT 서비스/특성의 실제\r\n값과 명령/응답의 허용 상태를 입력한다.\r\nSW-FW-RID-70 SYS-RID-SP-FW-16\r\nQCC SRS\r\nRI-12\r\nBLE 통신\r\nd) 소프트웨어 구동 경보,\r\n경고 및 운영자 메시지\r\n(software-driven alarms,\r\nwarnings, and operator\r\nmessages)\r\n등록된 내부이식장치와만 근접 무선 통신을 연결한\r\n다. SW-FW-RID-46 SYS-RID-SP-FW-17\r\ne) 보안 요구사항\r\n(SECURITY requirements)\r\nNA\r\nc) 소프트웨어 시스템과 다\r\n른 소프트웨어 사이의 연계\r\n성\r\n(interfaces between the\r\nSOFTWARE SYSTEM and\r\nother SYSTEMS)\r\n사이버 보안\r\nBluetooth"
+  },
+  {
+    "page": 10,
+    "png": "docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\excel-native\\SRS-6-94\\page-010.png",
+    "size": [
+      1684,
+      1191
+    ],
+    "text": "일정 시간 동안 제어 명령이 수신되지 않으면 BLE 연\r\n결을 해제해야 한다. QCC의 연결 제어 기준은 BLE 데\r\n이터 송수신이 3분(180초) 동안 없으면 연결을 해제\r\n하는 것이다.\r\nQCC 설계 연결: 보안 처리 유닛(SU-ID-QCC-012).\r\n[QCC/E8300 자료 입력] 데이터 송수신의 범\r\n위/타이머 갱신 조건을 정하고 기존 제어 명\r\n령 미수신 조건과 정합성을 확인한다. 180초\r\n의 허용오차 및 경계 동작 자료도 필요하다.\r\nSW-FW-RID-47 SYS-RID-SP-FW-22\r\nQCC SRS\r\nRI-17\r\n연결 제어\r\ne) 보안 요구사항\r\n(SECURITY requirements) 사이버 보안"
+  },
+  {
+    "page": 11,
+    "png": "docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\excel-native\\SRS-6-94\\page-011.png",
+    "size": [
+      1684,
+      1191
+    ],
+    "text": "1. BLE 페어링을 사용하여 인가된 장치와 연결한다.\r\n2. BLE 연결 후 CRA(Challenge-Response\r\nAuthentication)를 사용하여 적법한 장치를 확인한다.\r\n인증 서비스는 Challenge, Response, Confirm, Status\r\n특성을 사용하며 보호 대상 기기 제어/매핑 데이터\r\n접근은 인증 이후에 허용한다.\r\nQCC 설계 연결: AUTH service 처리 유닛(SU-ID￾QCC-010), 보안 처리 유닛(SU-ID-QCC-012).\r\n[QCC 자료 입력] 페어링 전 허용 서비스,\r\nGATT 권한과 인증 전후 차단/허용의 실제\r\n조건 및 검증 자료를 입력한다.\r\nSW-FW-RID-48 SYS-RID-SP-FW-18\r\nQCC SRS\r\n페어링 표제\r\nRI-13/표\r\nRI-14\r\n인증 접근\r\nRI-14\r\ne) 보안 요구사항\r\n(SECURITY requirements) 사이버 보안"
+  },
+  {
+    "page": 12,
+    "png": "docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\excel-native\\SRS-6-94\\page-012.png",
+    "size": [
+      1684,
+      1191
+    ],
+    "text": "BLE 페어링이 완료된 상태에서 데이터를 송수신하며,\r\n무선 링크의 기밀성/무결성/인증은 AES￾CCM(Counter with CBC-MAC) 보호를 적용해야 한\r\n다.\r\n[QCC 자료 입력] 링크 암호화 활성화와 페\r\n어링 전 차단을 확인한 자료를 입력한다.\r\nCRA의 AES-CMAC/SHA-256 정보를 무선 링\r\n크 암호화의 검증 근거로 사용하지 않는다.\r\nSW-FW-RID-49 SYS-RID-SP-FW-26\r\nQCC SRS\r\n페어링 표제\r\nRI-13/표\r\nRI-14\r\n감사기록을 생성한다. SW-FW-RID-50 SYS-RID-SP-FW-23\r\n설정파일을 읽을 때, 파일의 무결성을 확인한다. SW-FW-RID-51 SYS-RID-SP-FW-27\r\ne) 보안 요구사항\r\n(SECURITY requirements) 사이버 보안"
+  },
+  {
+    "page": 13,
+    "png": "docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\excel-native\\SRS-6-94\\page-013.png",
+    "size": [
+      1684,
+      1191
+    ],
+    "text": "1. 기기 제어용 통신과 매핑용 통신은 CRA의 인증키\r\n와 처리 방식을 구분한다.\r\n2. 각 CRA 인증키의 크기는 16 bytes(128 bits)다.\r\nQCC 요구 자료는 리모콘 AES-CMAC, 매핑 SHA-256\r\n으로 구분한다. 상세설계에서는 매핑 키를 SHA-256\r\n결과의 앞 16 bytes로 생성하고 인증 절차에는 AES￾CMAC을 표시한다.\r\nQCC 설계 연결: 보안 처리 유닛(SU-ID-QCC-012), 보\r\n안 툴박스 유닛(SU-ID-QCC-013).\r\n[QCC 자료 입력] SHA-256의 키 생성 역할\r\n과 실제 CRA 인증값 계산 알고리즘의 관계\r\n를 확정한다. 키 역할, 입력 직렬화, 인증값\r\n길이와 알고리즘 표기의 정합성 및 검증 자\r\n료를 입력한다.\r\nSW-FW-RID-52 SYS-RID-SP-FW-19\r\nQCC SRS\r\nRI-15/RI-16\r\n인증 방식/\r\n알고리즘\r\nQCC SDDD\r\n유닛013\r\ne) 보안 요구사항\r\n(SECURITY requirements) 사이버 보안"
+  },
+  {
+    "page": 14,
+    "png": "docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\excel-native\\SRS-6-94\\page-014.png",
+    "size": [
+      1684,
+      1191
+    ],
+    "text": "소프트웨어 업데이트가 필요할 경우 기존 제품을 회\r\n수하고 업데이트된 제품을 생산하여 교체한다.\r\n[QCC/E8300 자료 입력] QCC의 인증/암호화\r\n전송과 E8300의 OTA 수신/저장/재기동 보\r\n호 자료를 연결한다. 제품 회수/교체 절차와\r\nOTA의 적용 범위도 확인한다.\r\nSW-FW-RID-53 SYS-RID-SP-FW-30\r\n품질관리시스템 절차에 따라, 인가된 인원이 펌웨어\r\n를 생성하여 배포한다. SW-FW-RID-81 SYS-RID-SP-FW-31\r\n1. E8300 부팅 과정에서 실행파일의 CRC와 파일/이\r\n미지 무결성 검사 경로를 적용한다.\r\n2. QCC는 전원 인가 후 부팅 과정에서 칩셋이 제공하\r\n는 방식으로 QCC 펌웨어 이미지의 무결성을 검사해\r\n야 한다.\r\n[QCC 자료 입력] QCC의 부트 검사 방식/활\r\n성화 설정, 손상/변조 이미지의 거부 및 복\r\n구 동작을 입력한다. E8300의 CRC 검사를\r\nQCC 검사나 암호학적 인증의 근거로 대체\r\n하지 않는다.\r\nSW-FW-RID-54 SYS-RID-SP-FW-32\r\nQCC SRS\r\nRI-18\r\n부트 무결성\r\ne) 보안 요구사항\r\n(SECURITY requirements) 사이버 보안"
+  },
+  {
+    "page": 15,
+    "png": "docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\excel-native\\SRS-6-94\\page-015.png",
+    "size": [
+      1684,
+      1191
+    ],
+    "text": "CRA 인증 결과는 실패, 성공, 진행 중, 타임아웃으로\r\n전달하며 인증정보를 유추할 피드백을 제공하지 않\r\n아야 한다. 30초 동안 인증이 완료되지 않으면 타임\r\n아웃으로 처리한다.\r\nQCC 설계 연결: AUTH service 처리 유닛(SU-ID￾QCC-010), 보안 처리 유닛(SU-ID-QCC-012).\r\n[QCC 자료 입력] 30초 타이머의 시작/갱신/\r\n초기화 조건, 허용오차 및 상태별 응답과 인\r\n증정보 미노출의 검증 자료를 입력한다.\r\nSW-FW-RID-71 SYS-RID-SP-FW-20\r\nQCC SRS\r\nRI-15\r\nQCC SUVC\r\nU04-001-2\r\n인증 30초\r\nCRA 인증이 5회 연속 실패하면 1분(60초) 동안 BLE\r\n연결을 제한해야 한다.\r\nQCC 설계 연결: 보안 처리 유닛(SU-ID-QCC-012).\r\n[QCC 자료 입력] 실패 횟수의 누적/초기화,\r\n전원 재기동, 제한 종료 후 재접속과 시간\r\n경계/허용오차의 처리 및 검증 자료를 입력\r\n한다.\r\nSW-FW-RID-72 SYS-RID-SP-FW-21\r\nQCC SRS\r\nRI-17\r\n연결 제어\r\ne) 보안 요구사항\r\n(SECURITY requirements) 사이버 보안"
+  },
+  {
+    "page": 16,
+    "png": "docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\excel-native\\SRS-6-94\\page-016.png",
+    "size": [
+      1684,
+      1191
+    ],
+    "text": "감사기록 생성 실패를 오류 정보에 포함한다.\r\nSW-FW-RID-73 SYS-RID-SP-FW-24\r\n감사기록은 타임 스탬프를 포함한다.\r\nSW-FW-RID-74 SYS-RID-SP-FW-25\r\n오류 메시지에 보안과 관련되 정보를 직접 표시하지\r\n않는다.\r\nSW-FW-RID-75 SYS-RID-SP-FW-29\r\ne) 보안 요구사항\r\n(SECURITY requirements) 사이버 보안"
+  },
+  {
+    "page": 17,
+    "png": "docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\excel-native\\SRS-6-94\\page-017.png",
+    "size": [
+      1684,
+      1191
+    ],
+    "text": "1. 보호 대상 데이터 송수신은 BLE 페어링과 CRA 인\r\n증 이후에 활성화한다.\r\n2. CRA의 인증키는 생산 시 암호화하여 비휘발성 메\r\n모리에 저장해야 한다. QCC 상세설계의 생산 설치\r\n키(shared_service_key, clinician_master_key)와 생성\r\n매핑 키(clinic_service_key)를 구분한다.\r\nQCC 설계 연결: NVM 처리 유닛(SU-ID-QCC-007), 보\r\n안 툴박스 유닛(SU-ID-QCC-013), 보안 NVM 유닛\r\n(SU-ID-QCC-014).\r\n[QCC 자료 입력] 실제 설치/저장 대상과 키\r\n역할, 저장 암호화/접근 제한 및 복호화 시\r\n작 조건을 확정한다. 인증 전후 송수신/OTA\r\n전송의 보호와 조건별 검증 자료도 입력한\r\n다.\r\nSW-FW-RID-76 SYS-RID-SP-FW-33\r\nQCC SRS\r\nRI-14/RI-16\r\nQCC SDDD\r\n유닛\r\n013/014\r\n키와 NVM\r\n내부장치 제조번호, 사용자 이니셜 값은 암호화 하여\r\n저장한다.\r\nSW-FW-RID-77 SYS-RID-SP-FW-34\r\ne) 보안 요구사항\r\n(SECURITY requirements) 사이버 보안"
+  },
+  {
+    "page": 18,
+    "png": "docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\excel-native\\SRS-6-94\\page-018.png",
+    "size": [
+      1684,
+      1191
+    ],
+    "text": "무결성, 암호화에 사용하는 알고리즘은 사이버보안\r\n규격에서 권고하는 알고리즘을 사용한다. QCC의\r\nCRA 인증, 매핑 키 생성, NVM 암호화와 BLE 링크 보\r\n호는 서로 다른 사용 목적을 구분해야 한다.\r\n[QCC/E8300 자료 입력] QCC의 AES￾CMAC/SHA-256/AES-128 사용 목적/키 관\r\n리와 E8300의 AES 저장/부트 보호를 연결한\r\n다. QCC의 HMAC/ENC 표기, AES-128 모드\r\n와 BLE 링크 보호의 실제 적용 자료를 입력\r\n한다.\r\nSW-FW-RID-78 SYS-RID-SP-FW-35\r\nQCC SRS\r\nRI-16\r\nQCC SDDD\r\n유닛\r\n013/014\r\n보호 알고리\r\n즘\r\n외부에서 로그 정보의 접근은 인가자만 가능해야 하\r\n며, 외부 전송을 할경우 기밀성이 보호되어야 한다.\r\nSW-FW-RID-79 SYS-RID-SP-FW-36\r\n설정파일의 무결성이 확인되지 않으면, 설정파일을\r\n공장초기화 한다.\r\nSW-FW-RID-80 SYS-RID-SP-FW-38\r\ne) 보안 요구사항\r\n(SECURITY requirements) 사이버 보안"
+  },
+  {
+    "page": 19,
+    "png": "docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\excel-native\\SRS-6-94\\page-019.png",
+    "size": [
+      1684,
+      1191
+    ],
+    "text": "배터리 저전압을 주기적으로 반복하여 자극 출력과\r\nLED로 알린다.\r\nSW-FW-RID-55 SYS-RID-SP-FW-48\r\n자극 볼륨은 단계적으로 증가하도록 설계한다.(soft\r\nincrease) SW-FW-RID-56 SYS-RID-SP-FW-47\r\ng) 데이터 정의 및 데이터\r\n베이스 요구사항\r\n(data definition and\r\ndatabase requirements)\r\nh) 운영 및 유지보수 현장에\r\n인도된 의료기기 소프트웨\r\n어의 설치 및 인수 요구사항\r\n(installation and\r\nacceptance requirements\r\nof the delivered MEDICAL\r\nDEVICE SOFTWARE at the\r\noperation and\r\nmaintenance site or sites)\r\nf) 사람에 의해 발생하는 오\r\n류와 훈련에 민감한 사용성\r\n공학 요구사항\r\n(usability engineering\r\nrequirements that are\r\nsensitive to human errors\r\nand training)\r\n주의부족, 기억력 감퇴\r\n중복실수\r\nNA\r\nNA"
+  },
+  {
+    "page": 20,
+    "png": "docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\excel-native\\SRS-6-94\\page-020.png",
+    "size": [
+      1684,
+      1191
+    ],
+    "text": "i) 운영 및 유지보수 방법에\r\n관련된 요구사항\r\nrequirements related to\r\nmethods of operation\r\nand maintenance\r\nj) 개발할 사용자 설명서\r\n(user documentation to\r\nbe developed)\r\n사용자에게 배포되는 사용 설명서는 안전 예방조치,\r\n사용 방법, 문제 해결 방법을 포함해야 한다.\r\n[E8300 보완] 제품 사용 설명서 파일의 해당\r\n내용과 정식 상위 요구사항의 식별/추적을\r\n등록한다.\r\nSW-FW-RID-83\r\n[E8300 보완] 정\r\n식 상위 요구사\r\n항 미등록\r\nQCC SRS\r\n4.9.1 RI-16\r\n사용 설명서\r\nk) 사용자 유지보수 요구사\r\n항\r\n(user maintenance\r\nrequirements)\r\n필수 성능 시험을 진행한다. SW-FW-RID-57\r\nSYS-RID-SP-FW-39,\r\nSYS-RID-SP-FW-40\r\n실시간 신호처리 주기는 1.00ms, 허용 오차 +/-\r\n5%(0.95~1.05ms)이며 각 블록 처리는 다음 처리 시\r\n작 전에 완료되어야 한다.\r\nSW-FW-RID-58 SYS-RID-SP-FW-41\r\nl) 규제적 요구사항\r\n(regulatory requirements)\r\nNA\r\nIEC 60601-1\r\n(IEC 62304에 포함되지 않은 사항)\r\nNA\r\n사용 설명서"
+  },
+  {
+    "page": 21,
+    "png": "docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\excel-native\\SRS-6-94\\page-021.png",
+    "size": [
+      1684,
+      1191
+    ],
+    "text": "제어 명령이 프로토콜에 맞게 전송되어야 실행한다. SW-FW-RID-59 SYS-RID-SP-FW-28\r\nCRC 기능이 있는 통신 프로토콜을 사용한다.\r\n[QCC 자료 입력] CRC가 적용된 무선 통신의\r\nQCC 내부 모듈/유닛 설계 연결을 추가한다.\r\nSW-FW-RID-60 SYS-RID-SP-FW-42\r\n정상사용을 위한 준비상태를 표시하도록 설계한다. SW-FW-RID-61 SYS-RID-SP-FW-43\r\n전원커넥터가 연결되면 연결을 확인할 수 있어야한\r\n다.(충전모드 표시). SW-FW-RID-62 SYS-RID-SP-FW-44\r\n배터리 잔량을 표시할 수 있어야 한다. SW-FW-RID-63\r\n구분이 쉽도록 LED 패턴을 생성한다. SW-FW-RID-64 SYS-RID-SP-FW-45\r\n사회 통념적으로 사용되는 색상을 사용하여 인공와\r\n우 외부기 상태를 표시한다. SW-FW-RID-65 SYS-RID-SP-FW-46\r\nBLE 통신 연결 장애 발생 시, 정상 동작이 되어야 한\r\n다. SW-FW-RID-66 SYS-RID-SP-FW-37\r\nl) 규제적 요구사항\r\n(regulatory requirements)\r\nIEC 60601-1\r\n(IEC 62304에 포함되지 않은 사항)"
+  },
+  {
+    "page": 22,
+    "png": "docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\excel-native\\SRS-6-94\\page-022.png",
+    "size": [
+      1684,
+      1191
+    ],
+    "text": "시동과정에서는 출력을 생성하지 않게 한다 SW-FW-RID-67 SYS-RID-SP-FW-49\r\n종료과정에서는 출력을 생성하지 않게 한다. SW-FW-RID-68 SYS-RID-SP-FW-50\r\nl) 규제적 요구사항\r\n(regulatory requirements)"
+  }
+]

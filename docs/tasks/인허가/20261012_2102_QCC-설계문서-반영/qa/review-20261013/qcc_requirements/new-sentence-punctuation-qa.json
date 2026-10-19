@@ -1,0 +1,29 @@
+{
+  "SRS": {
+    "scope": "이번 상세/미비 안내만; 매트릭스 첫 기본문구 및 원문은 제외",
+    "findings": []
+  },
+  "Word": {
+    "SR": {
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\fields-candidate\\[E8300-QCC] SR-FW-TD24A 소프트웨어 요구사항.docx",
+      "sha256": "FA08A1F90789F5A789423BBAFF7462DBB35781D0E2680F7A05CF3562E751813D",
+      "new_active_insertions_checked": 22,
+      "findings": [],
+      "authored_new_text_findings": [],
+      "active_paragraph_count": 308,
+      "all_active_paragraph_middle_dot_count": 0,
+      "revision_date_normalization": "Word가 초를 00으로 정규화했으므로 작성 minute/author와 현재 본문을 함께 확인"
+    },
+    "SGR": {
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\fields-candidate\\[E8300-QCC] SGR-FW-TD24A 소프트웨어 일반요구사항.docx",
+      "sha256": "92AAC0E24260DE06967FCF483548CAF5C51F7FB96209C2A6B6DAF90CE389B922",
+      "new_active_insertions_checked": 7,
+      "findings": [],
+      "authored_new_text_findings": [],
+      "active_paragraph_count": 302,
+      "all_active_paragraph_middle_dot_count": 0,
+      "revision_date_normalization": "Word가 초를 00으로 정규화했으므로 작성 minute/author와 현재 본문을 함께 확인"
+    }
+  },
+  "pass": true
+}

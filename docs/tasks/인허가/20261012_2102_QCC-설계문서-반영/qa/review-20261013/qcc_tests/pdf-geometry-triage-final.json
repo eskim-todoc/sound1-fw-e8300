@@ -1,0 +1,107 @@
+[
+  {
+    "key": "SUVC",
+    "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVC-main.pdf",
+    "pages_total": 305,
+    "boundary_candidates": []
+  },
+  {
+    "key": "SUVR",
+    "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVR-main.pdf",
+    "pages_total": 260,
+    "boundary_candidates": [
+      {
+        "page": 13,
+        "grid_bottom": 506.61600000000004,
+        "near_bottom": [
+          {
+            "text": "[UT-CFX-011]C4A[126:131]=12800,12800,1,1,0,24",
+            "bbox": [
+              647.86,
+              506.35200000000003,
+              726.6819999999999,
+              509.83200000000005
+            ],
+            "size": 3.480000000000004,
+            "below": 3.22
+          }
+        ]
+      },
+      {
+        "page": 84,
+        "grid_bottom": 529.176,
+        "near_bottom": [
+          {
+            "text": "[UT-HEAR-002]C80A[126:140]=0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
+            "bbox": [
+              647.86,
+              529.344,
+              732.5665600000001,
+              532.5840000000001
+            ],
+            "size": 3.240000000000002,
+            "below": 3.41
+          }
+        ]
+      },
+      {
+        "page": 133,
+        "grid_bottom": 522.096,
+        "near_bottom": [
+          {
+            "text": "출력[18]합성이름[15](문자코드)=112",
+            "bbox": [
+              647.86,
+              522.192,
+              712.1529999999999,
+              525.672
+            ],
+            "size": 3.480000000000004,
+            "below": 3.58
+          }
+        ]
+      },
+      {
+        "page": 150,
+        "grid_bottom": 447.46000000000004,
+        "near_bottom": [
+          {
+            "text": "출력[20]공유C코드[8]=127",
+            "bbox": [
+              647.86,
+              447.43600000000004,
+              695.1218799999999,
+              450.91600000000005
+            ],
+            "size": 3.4799999999999898,
+            "below": 3.46
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "key": "SITC",
+    "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SITC-main.pdf",
+    "pages_total": 25,
+    "boundary_candidates": []
+  },
+  {
+    "key": "SITR",
+    "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SITR-main.pdf",
+    "pages_total": 25,
+    "boundary_candidates": []
+  },
+  {
+    "key": "SSTC",
+    "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SSTC-main.pdf",
+    "pages_total": 72,
+    "boundary_candidates": []
+  },
+  {
+    "key": "SSTR",
+    "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SSTR-main.pdf",
+    "pages_total": 71,
+    "boundary_candidates": []
+  }
+]

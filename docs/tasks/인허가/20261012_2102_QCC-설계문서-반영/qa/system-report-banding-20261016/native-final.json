@@ -1,0 +1,60 @@
+{
+  "status": "통과",
+  "candidate": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\system-report-banding-20261016\\candidate.xlsx",
+  "candidate_sha256": "7C2F31E7EBA5AB1F216B171E6AE636A21DECBFD9A7C976D46F79D970CD0FFDD6",
+  "scope": "시스템 보고서 B34:L292 / 물리83시험의 채우기와 분홍 ID 예외",
+  "native_checks": {
+    "test_blocks": 83,
+    "rows": 259,
+    "band_cells": 2618,
+    "preserved_pink_ranges": 70,
+    "preserved_pink_cells": 231,
+    "order_sequence_pass": true,
+    "plan_parity_pass": true,
+    "band_rows_pass": true,
+    "pink_preservation_pass": true,
+    "row_failures": 0,
+    "pink_failures": 0
+  },
+  "visual_status": "통과",
+  "visual_scope": "B205:L211 대표2PNG 직접 확인 / 69→70→46의 물리순서 회·흰·회와 B분홍 보존",
+  "views": [
+    {
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\system-report-banding-20261016\\native-order-boundary-p001.png",
+      "sha256": "205A174EEF1230336937C1388A1AD15777FAC2D4EE55063A6C0680910EE4C329",
+      "page": 1,
+      "direct_full_viewed": true,
+      "verdict": "통과"
+    },
+    {
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\system-report-banding-20261016\\native-order-boundary-p002.png",
+      "sha256": "3169611AF654A4CD84937DAE2A2579A0E9A853457D3DC3681F43209FC07F4379",
+      "page": 2,
+      "direct_full_viewed": true,
+      "verdict": "통과"
+    }
+  ],
+  "readonly": true,
+  "saved": false,
+  "closed_without_saving": true,
+  "source_unchanged": true,
+  "before_unchanged": true,
+  "repair_requested": false,
+  "outstanding_defects": [],
+  "limitations": "채우기 native 전행 및 대표 시각 검사만 실시. 내용/그림/병합/채우기 외 서식 보존은 제작자 전수검사에 연결. 사진131개 전체 재감사 또는 제품시험 결과 변경은 하지 않음.",
+  "evidence": {
+    "plan.json": {
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\system-report-banding-20261016\\plan.json",
+      "sha256": "739DFA1ECD82B91C338DF185CEC5D3F2FC872169C4296FF11C0E97BDCBEF75B6"
+    },
+    "native-check.json": {
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\system-report-banding-20261016\\native-check.json",
+      "sha256": "B388E4FDF2F0826D1B31BCDDD4E0717913640209B80A284139C4C4EB3E82E2C8"
+    },
+    "native-render.json": {
+      "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\system-report-banding-20261016\\native-render.json",
+      "sha256": "A73255496D6D29E12228686C2293C45A6F090E0E64252FCAAC72F2D88D26A622"
+    }
+  },
+  "completed_at": "2026-10-16T19:40:57.786417+09:00"
+}

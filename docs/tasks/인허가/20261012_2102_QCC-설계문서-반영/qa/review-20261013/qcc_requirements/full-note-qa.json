@@ -1,0 +1,462 @@
+{
+  "SRS": {
+    "target": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\02_설계 입력\\SW\\외부기\\[E8300-QCC] SRS-FW-TD24A 소프트웨어 요구사항 사양서.xlsx",
+    "sha256": "A568B4996AC13053D55973E5E59E59ACB6E18FAB5E41C4A7423DEF49596B93E4",
+    "current_note_count": 18,
+    "all_notes_pass": true,
+    "notes": [
+      {
+        "rid": 15,
+        "cells": [
+          "F21"
+        ],
+        "text": "[QCC 자료 입력] I2S의 클록/프레임과 유효 신호의 출력 조건, 동시 입력 조건 및 측정 결과를 확인한다.",
+        "prefix": "[QCC 자료 입력]",
+        "all_characters_correct": true,
+        "segments": [
+          {
+            "start": 413,
+            "end": 476,
+            "cell": "F21",
+            "size": 12.0,
+            "base": 10.0,
+            "color": "C00000",
+            "underline": true,
+            "bold": false
+          }
+        ]
+      },
+      {
+        "rid": 16,
+        "cells": [
+          "F22"
+        ],
+        "text": "[QCC/E8300 자료 입력] 8kHz 대역 끝점의 입력/출력 조건, 허용 범위와 측정 결과를 확인한다.",
+        "prefix": "[QCC/E8300 자료 입력]",
+        "all_characters_correct": true,
+        "segments": [
+          {
+            "start": 211,
+            "end": 271,
+            "cell": "F22",
+            "size": 12.0,
+            "base": 10.0,
+            "color": "7030A0",
+            "underline": true,
+            "bold": false
+          }
+        ]
+      },
+      {
+        "rid": 44,
+        "cells": [
+          "F52"
+        ],
+        "text": "[QCC 자료 입력] Bluetooth 제어 명령/상태와 충전 상태 데이터의 전달 조건 및 검증 결과를 확인한다.",
+        "prefix": "[QCC 자료 입력]",
+        "all_characters_correct": true,
+        "segments": [
+          {
+            "start": 382,
+            "end": 446,
+            "cell": "F52",
+            "size": 12.0,
+            "base": 10.0,
+            "color": "C00000",
+            "underline": true,
+            "bold": false
+          }
+        ]
+      },
+      {
+        "rid": 45,
+        "cells": [
+          "F54"
+        ],
+        "text": "[QCC 자료 입력] 매핑 시작/종료의 상태 전이, 실패 처리, 동시 연결 조건 및 검증 결과를 확인한다.",
+        "prefix": "[QCC 자료 입력]",
+        "all_characters_correct": true,
+        "segments": [
+          {
+            "start": 332,
+            "end": 392,
+            "cell": "F54",
+            "size": 12.0,
+            "base": 10.0,
+            "color": "C00000",
+            "underline": true,
+            "bold": false
+          }
+        ]
+      },
+      {
+        "rid": 69,
+        "cells": [
+          "F56"
+        ],
+        "text": "[QCC 자료 입력] DMIC2의 QCC 입력 연결은 확인되었다. 마이크 핀/클록, 연결 상대, 프로파일/코덱별 송수신, 동시 동작 조건과 실제 시험 결과를 확인한다.",
+        "prefix": "[QCC 자료 입력]",
+        "all_characters_correct": true,
+        "segments": [
+          {
+            "start": 400,
+            "end": 494,
+            "cell": "F56",
+            "size": 12.0,
+            "base": 10.0,
+            "color": "C00000",
+            "underline": true,
+            "bold": false
+          }
+        ]
+      },
+      {
+        "rid": 70,
+        "cells": [
+          "F57"
+        ],
+        "text": "[QCC 자료 입력] GATT 서비스/특성 값, 명령/응답의 허용 상태 및 검증 결과를 확인한다.",
+        "prefix": "[QCC 자료 입력]",
+        "all_characters_correct": true,
+        "segments": [
+          {
+            "start": 242,
+            "end": 297,
+            "cell": "F57",
+            "size": 12.0,
+            "base": 10.0,
+            "color": "C00000",
+            "underline": true,
+            "bold": false
+          }
+        ]
+      },
+      {
+        "rid": 47,
+        "cells": [
+          "F61"
+        ],
+        "text": "[QCC/E8300 자료 입력] 감시 대상, 타이머 시작/갱신/초기화 조건, 180초의 허용오차와 경계 동작을 확인한다. 제어 명령이 아닌 송수신에 의해 연결이 유지되는 경우의 처리 기준도 필요하다.",
+        "prefix": "[QCC/E8300 자료 입력]",
+        "all_characters_correct": true,
+        "segments": [
+          {
+            "start": 377,
+            "end": 489,
+            "cell": "F61",
+            "size": 12.0,
+            "base": 10.0,
+            "color": "7030A0",
+            "underline": true,
+            "bold": false
+          }
+        ]
+      },
+      {
+        "rid": 48,
+        "cells": [
+          "F63"
+        ],
+        "text": "[QCC 자료 입력] 페어링 전 허용 서비스, GATT 권한과 인증 전후 접근 차단/허용 조건 및 검증 결과를 확인한다.",
+        "prefix": "[QCC 자료 입력]",
+        "all_characters_correct": true,
+        "segments": [
+          {
+            "start": 558,
+            "end": 626,
+            "cell": "F63",
+            "size": 12.0,
+            "base": 10.0,
+            "color": "C00000",
+            "underline": true,
+            "bold": false
+          }
+        ]
+      },
+      {
+        "rid": 49,
+        "cells": [
+          "F65"
+        ],
+        "text": "[QCC 자료 입력] BLE 링크 암호화 활성화와 페어링 전 차단을 확인한다. CRA 인증값 계산과 키 파생의 확인은 링크 암호화의 검증과 구분한다.",
+        "prefix": "[QCC 자료 입력]",
+        "all_characters_correct": true,
+        "segments": [
+          {
+            "start": 358,
+            "end": 442,
+            "cell": "F65",
+            "size": 12.0,
+            "base": 10.0,
+            "color": "C00000",
+            "underline": true,
+            "bold": false
+          }
+        ]
+      },
+      {
+        "rid": 52,
+        "cells": [
+          "F69"
+        ],
+        "text": "[QCC 자료 입력] 앱별 CRA 인증값 계산 알고리즘, 키 역할, 입력 직렬화와 인증값 길이를 확인한다. AES-CMAC 인증과 SHA-256 키 파생의 관계, HMAC/ENC 표기 및 검증 벡터를 대조한다.",
+        "prefix": "[QCC 자료 입력]",
+        "all_characters_correct": true,
+        "segments": [
+          {
+            "start": 666,
+            "end": 784,
+            "cell": "F69",
+            "size": 12.0,
+            "base": 10.0,
+            "color": "C00000",
+            "underline": true,
+            "bold": false
+          }
+        ]
+      },
+      {
+        "rid": 53,
+        "cells": [
+          "F70"
+        ],
+        "text": "[QCC/E8300 자료 입력] QCC의 인증/암호화 전송과 E8300의 OTA 수신/저장/재기동 보호 자료를 연결한다. 제품 회수/교체 절차와 OTA의 적용 범위도 확인한다.",
+        "prefix": "[QCC/E8300 자료 입력]",
+        "all_characters_correct": true,
+        "segments": [
+          {
+            "start": 54,
+            "end": 152,
+            "cell": "F70",
+            "size": 12.0,
+            "base": 10.0,
+            "color": "7030A0",
+            "underline": true,
+            "bold": false
+          }
+        ]
+      },
+      {
+        "rid": 54,
+        "cells": [
+          "F73"
+        ],
+        "text": "[QCC 자료 입력] QCC의 부트 검사 방식/활성화 설정, 손상 또는 변조 이미지의 거부/복구 동작과 검증 결과를 확인한다.",
+        "prefix": "[QCC 자료 입력]",
+        "all_characters_correct": true,
+        "segments": [
+          {
+            "start": 406,
+            "end": 477,
+            "cell": "F73",
+            "size": 12.0,
+            "base": 10.0,
+            "color": "C00000",
+            "underline": true,
+            "bold": false
+          }
+        ]
+      },
+      {
+        "rid": 71,
+        "cells": [
+          "F75"
+        ],
+        "text": "[QCC 자료 입력] 30초 타이머의 시작/갱신/초기화 조건, 허용오차와 상태별 응답 및 인증정보 미노출의 검증 결과를 확인한다.",
+        "prefix": "[QCC 자료 입력]",
+        "all_characters_correct": true,
+        "segments": [
+          {
+            "start": 345,
+            "end": 418,
+            "cell": "F75",
+            "size": 12.0,
+            "base": 10.0,
+            "color": "C00000",
+            "underline": true,
+            "bold": false
+          }
+        ]
+      },
+      {
+        "rid": 72,
+        "cells": [
+          "F77"
+        ],
+        "text": "[QCC 자료 입력] 실패 횟수의 누적/초기화, 전원 재기동, 제한 종료 후 재접속과 시간 경계/허용오차 및 검증 결과를 확인한다.",
+        "prefix": "[QCC 자료 입력]",
+        "all_characters_correct": true,
+        "segments": [
+          {
+            "start": 253,
+            "end": 327,
+            "cell": "F77",
+            "size": 12.0,
+            "base": 10.0,
+            "color": "C00000",
+            "underline": true,
+            "bold": false
+          }
+        ]
+      },
+      {
+        "rid": 76,
+        "cells": [
+          "F82"
+        ],
+        "text": "[QCC 자료 입력] 실제 설치/저장 대상, 키 역할, 저장 암호화/접근 제한과 복호화 시작 조건을 확인한다. 인증 전후 송수신/OTA 보호와 조건별 검증 결과도 확인한다.",
+        "prefix": "[QCC 자료 입력]",
+        "all_characters_correct": true,
+        "segments": [
+          {
+            "start": 554,
+            "end": 651,
+            "cell": "F82",
+            "size": 12.0,
+            "base": 10.0,
+            "color": "C00000",
+            "underline": true,
+            "bold": false
+          }
+        ]
+      },
+      {
+        "rid": 78,
+        "cells": [
+          "F85"
+        ],
+        "text": "[QCC/E8300 자료 입력] AES-CMAC/SHA-256/AES-128의 사용 목적/키 관리, E8300 AES 저장/부트 보호와의 연결을 확인한다. HMAC/ENC 표기, AES-128 모드 및 BLE 링크 보호의 실제 적용과 검증 결과를 대조한다.",
+        "prefix": "[QCC/E8300 자료 입력]",
+        "all_characters_correct": true,
+        "segments": [
+          {
+            "start": 379,
+            "end": 523,
+            "cell": "F85",
+            "size": 12.0,
+            "base": 10.0,
+            "color": "7030A0",
+            "underline": true,
+            "bold": false
+          }
+        ]
+      },
+      {
+        "rid": 83,
+        "cells": [
+          "F94"
+        ],
+        "text": "[E8300 보완] 제품 사용 설명서의 해당 절과 내용, 배포 대상 및 검토 결과를 확인한다.",
+        "prefix": "[E8300 보완]",
+        "all_characters_correct": true,
+        "segments": [
+          {
+            "start": 244,
+            "end": 297,
+            "cell": "F94",
+            "size": 12.0,
+            "base": 10.0,
+            "color": "0070C0",
+            "underline": true,
+            "bold": false
+          }
+        ]
+      },
+      {
+        "rid": 60,
+        "cells": [
+          "F99"
+        ],
+        "text": "[QCC 자료 입력] 무선 통신 CRC의 적용 계층, 검사 실패 시 처리와 조건별 검증 결과를 확인한다.",
+        "prefix": "[QCC 자료 입력]",
+        "all_characters_correct": true,
+        "segments": [
+          {
+            "start": 117,
+            "end": 176,
+            "cell": "F99",
+            "size": 12.0,
+            "base": 10.0,
+            "color": "C00000",
+            "underline": true,
+            "bold": false
+          }
+        ]
+      }
+    ]
+  },
+  "SR": {
+    "target": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\02_설계 입력\\SW\\외부기\\[E8300-QCC] SR-FW-TD24A 소프트웨어 요구사항.docx",
+    "sha256": "FA08A1F90789F5A789423BBAFF7462DBB35781D0E2680F7A05CF3562E751813D",
+    "current_note_count": 5,
+    "all_notes_pass": true,
+    "notes": [
+      {
+        "paragraph_index": 250,
+        "text": "[QCC/E8300 자료 입력] DMIC2가 E8300과 QCC에 함께 연결되는 경로는 확인되었다. 3분 무송수신의 감시/갱신 범위와 제어 명령 미수신 조건의 정합성, QCC 마이크 핀/클록, 연결 상대 및 프로파일/코덱별 송수신과 동시 동작 조건 및 시험 결과를 확인한다.",
+        "prefix": "[QCC/E8300 자료 입력]",
+        "base_size": 10,
+        "size": 12,
+        "all_characters_correct": true
+      },
+      {
+        "paragraph_index": 260,
+        "text": "[QCC 자료 입력] 실제 QCC 개발 환경, 라이브러리/ADK 버전과 빌드 구성을 입력한다.",
+        "prefix": "[QCC 자료 입력]",
+        "base_size": 10,
+        "size": 12,
+        "all_characters_correct": true
+      },
+      {
+        "paragraph_index": 265,
+        "text": "[QCC 자료 입력] QCC의 실제 메모리 배치, 실행 이미지/데이터 사용량과 부트 이미지 검사 설정을 입력한다.",
+        "prefix": "[QCC 자료 입력]",
+        "base_size": 10,
+        "size": 12,
+        "all_characters_correct": true
+      },
+      {
+        "paragraph_index": 300,
+        "text": "[E8300 보완] 제품 사용 설명서에서 경고/안전사항, 안전한 작동법 및 동작방법의 해당 절과 내용, 배포 대상 및 검토 결과를 확인한다.",
+        "prefix": "[E8300 보완]",
+        "base_size": 10,
+        "size": 12,
+        "all_characters_correct": true
+      },
+      {
+        "paragraph_index": 307,
+        "text": "[QCC/E8300 자료 입력] 오디오 송수신, 연결/인증, 키 관리 및 펌웨어 보호에 대한 위험분석 재평가와 변경 영향의 검토 결과를 확인한다.",
+        "prefix": "[QCC/E8300 자료 입력]",
+        "base_size": 10,
+        "size": 12,
+        "all_characters_correct": true
+      }
+    ],
+    "tdc_embedded_count": 59
+  },
+  "SGR": {
+    "target": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\02_설계 입력\\SW\\외부기\\[E8300-QCC] SGR-FW-TD24A 소프트웨어 일반요구사항.docx",
+    "sha256": "92AAC0E24260DE06967FCF483548CAF5C51F7FB96209C2A6B6DAF90CE389B922",
+    "current_note_count": 2,
+    "all_notes_pass": true,
+    "notes": [
+      {
+        "paragraph_index": 297,
+        "text": "[QCC 자료 입력] QCC의 실제 ADK/실행 환경, scheduler 구성과 사용 버전을 입력한다.",
+        "prefix": "[QCC 자료 입력]",
+        "base_size": 10,
+        "size": 12,
+        "all_characters_correct": true
+      },
+      {
+        "paragraph_index": 301,
+        "text": "[QCC 자료 입력] QCC 제조사 소프트웨어의 식별/버전, 사용 범위와 검토 근거를 입력한다.",
+        "prefix": "[QCC 자료 입력]",
+        "base_size": 10,
+        "size": 12,
+        "all_characters_correct": true
+      }
+    ],
+    "tdc_embedded_count": 59
+  }
+}

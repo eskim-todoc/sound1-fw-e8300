@@ -1,0 +1,11 @@
+import fs from 'node:fs/promises';
+import {FileBlob,SpreadsheetFile} from '@oai/artifact-tool';
+const plan=JSON.parse(await fs.readFile('plan.json','utf8'));
+const wb=await SpreadsheetFile.importXlsx(await FileBlob.load('before.xlsx'));
+const sh=wb.worksheets.getItem(plan.sheet);
+const before=await wb.render({sheetName:plan.sheet,range:'B131:D144',scale:1});
+await fs.writeFile('before.png',new Uint8Array(await before.arrayBuffer()));
+for(const b of plan.blocks)sh.getRange(`B${b.start}:O${b.end}`).format.fill='#'+b.color;
+wb.recalculate();
+const out=await SpreadsheetFile.exportXlsx(wb);await out.save('authored.xlsx');
+console.log(JSON.stringify({blocks:plan.blocks.length,status:'authored'}));

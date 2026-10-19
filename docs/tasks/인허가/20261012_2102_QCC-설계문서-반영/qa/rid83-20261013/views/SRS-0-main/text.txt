@@ -1,0 +1,513 @@
+펌웨어 부분 그 외
+전채널 최대
+24 kHz
+상세: 전채널 동시에 자극률은 20kHz이상이어야 한
+다.(32채널 사용)
+SW-FW-RID-1
+채널별 최대 채널별 최대 자극률은 1000Hz 이상이어야 한다.(24
+채널 사용) SW-FW-RID-2
+Monopolar
+상세: 모노폴라 자극 모드 출력이 가능해야한다. SW-FW-RID-3 SYS-RID-SP-FW-1
+소프트웨어 요구사항
+자극율
+다른 발생원 추적
+(설계 입력 요구사항 사양서)
+대분류 (IEC 62304 5.2.2) 소분류 내용 상세 요구사항 식별
+SYS-RID-SP-FW-2
+자극 모드
+a) 기능 및 성능 요구사항
+functional and capability
+requirements
+자극 출력 조정
+negative, positive first
+상세: negative/positive phase 선택이 가능해야 한다. SW-FW-RID-4 SYS-RID-SP-FW-4
+C/T 레벨 범위
+상세: 내부 자극칩 출력 범위 내에서 조정이 가능해야
+한다.
+SW-FW-RID-5 SYS-RID-SP-FW-5
+13~255단계, Step Size 1
+상세: 자극 펄스 폭은 13~255usec 범위에서 1usec
+단위로 조정이 가능해야한다.
+SW-FW-RID-6 SYS-RID-SP-FW-3
+인공와우 내부기 시스템의 전극에서 출력되는 최대
+전하량이 안전치를 초과하지 않도록 펄스폭에 따라
+최종 자극 크기의 제한이 필요하다.
+SW-FW-RID-7
+전처리 마이크 감도
+조절 기능
+AGC를 사용한 감도 조절
+상세: AGC를 사용한 감도 조절 10단계 SW-FW-RID-8 SYS-RID-SP-FW-6
+사운드 처리
+자극 크기/펄스폭 관계
+선행 펄스 모양
+a) 기능 및 성능 요구사항
+functional and capability
+requirements
+자극 출력 조정
+자극 크기
+자극 펄스폭
+FFT
+상세: FFT 방식으로 신호의 주파수를 성분을 분석한
+다.
+SW-FW-RID-9 SYS-RID-SP-FW-7
+최대 32채널
+상세: 1~32채널의 대역수로 주파수 분석이 가능해야
+한다.
+SW-FW-RID-10 SYS-RID-SP-FW-8
+필수 : CIS
+상세: 필수 : CIS, 옵션 : N-of-M SW-FW-RID-11 SYS-RID-SP-FW-9
+1msec
+상세: 사운드 처리 주기는 1.00ms이며 허용 오차는
++/-5%(0.95~1.05ms)이다.
+SW-FW-RID-12 SYS-RID-SP-FW-10
+4개
+상세: 4개의 맵 데이터를 사용할 수 있어야 한다. SW-FW-RID-13 SYS-RID-SP-FW-11
+자극 기법
+사운드 처리 주기
+사운드 처리
+프로그램 수
+기능
+a) 기능 및 성능 요구사항
+functional and capability
+requirements
+주파수 분석 방법
+주파수 분석 대역수
+4단계 자극 볼륨 조절
+상세: 자극 볼륨은 4단계로 조정 가능해야한다. SW-FW-RID-14 SYS-RID-SP-FW-12
+2개 이상의 오디오 소스를 입력 받을 수 있어야 한다.
+상세: E8300은 DMIC1/DMIC2의 입력과 QCC가 전달
+하는 I2S 오디오를 처리한다. DMIC2는 QCC에도 입
+력된다. QCC의 Bluetooth 수신 오디오는 I2S의 24비
+트 데이터, 16kHz 샘플링 주파수로 E8300에 전달한
+다.
+[QCC 자료 입력] I2S의 클록/프레임과 유효
+신호의 출력 조건, 동시 입력 조건 및 측정
+결과를 확인한다.
+SW-FW-RID-15
+b) 소프트웨어 시스템 입력
+과 출력
+(SOFTWARE SYSTEM
+inputs and outputs)
+자극 볼륨 조절
+사운드 처리
+입력단
+기능
+a) 기능 및 성능 요구사항
+functional and capability
+requirements
+8kHz 오디오 신호를 입력 받을 수 있어야 한다.
+상세: 오디오 입력 대역은 0~8kHz이며, 16kHz 샘플
+링 주파수와 구분한다.
+[QCC/E8300 자료 입력] 8kHz 대역 끝점의
+입력/출력 조건, 허용 범위와 측정 결과를
+확인한다.
+SW-FW-RID-16
+오디오 신호처리의 최종 출력은 PCM 데이터로 변환
+되어 FPGA에 전달되어야 한다. SW-FW-RID-17
+매핑 데이터에 기반하여 최종 자극 파라미터가 생성
+되어야 한다. SW-FW-RID-18
+터치 센서의 입력에 따라 전원 모드와 사용자 제어를
+처리한다. SW-FW-RID-19
+외부기 동작 상태를 표시한다. SW-FW-RID-20
+전원 커넥터 연결 상태를 표시한다. SW-FW-RID-21
+b) 소프트웨어 시스템 입력
+과 출력
+(SOFTWARE SYSTEM
+inputs and outputs)
+입력
+사운드 처리
+입력단
+출력단
+매핑 데이터
+LED 출력
+출력
+사용자 인터페이스
+(외부기 자체)
+배터리 저전압 상태를 표시한다. SW-FW-RID-22
+자극 출력 배터리 저전압 상태를 자극으로 출력한다. SW-FW-RID-23
+프로그램 변경하기 SW-FW-RID-24
+오디오 볼륨 조절하기 SW-FW-RID-25
+자극 볼륨 조절하기 SW-FW-RID-26
+LED 알림 켜기/끄기 SW-FW-RID-27
+자극 알림 켜기/끄기 SW-FW-RID-28
+배터리 상태 SW-FW-RID-29
+선택된 맵 번호 SW-FW-RID-30
+오디오 볼륨 단계 SW-FW-RID-31
+자극 볼륨 단계 SW-FW-RID-32
+b) 소프트웨어 시스템 입력
+과 출력
+(SOFTWARE SYSTEM
+inputs and outputs)
+입력(수신)
+사용자 인터페이스
+(리모콘 앱 통신)
+출력(송신)
+LED 출력
+출력
+사용자 인터페이스
+(외부기 자체)
+LED 알림 설정 상태 SW-FW-RID-33
+자극 알림 설정 상태 SW-FW-RID-34
+시스템 상태 확인 SW-FW-RID-35
+특정 자극 출력 SW-FW-RID-36
+실시간 자극 출력 진행 SW-FW-RID-37
+시스템 상태 SW-FW-RID-38
+특정 자극 출력 결과 SW-FW-RID-39
+실시간 자극 진행 상태 SW-FW-RID-40
+I2C 프로토콜을 사용하여 FPGA와 데이터 송/수신이
+가능해야한다. SW-FW-RID-41
+I2C 프로토콜을 사용하여 터치 센서와 데이터를 송수
+신할 수 있어야 한다. SW-FW-RID-42
+b) 소프트웨어 시스템 입력
+과 출력
+(SOFTWARE SYSTEM
+inputs and outputs)
+사용자 인터페이스
+(매핑 앱 통신)
+입력(수신)
+출력(송신)
+사용자 인터페이스
+(리모콘 앱 통신)
+출력(송신)
+FPGA
+기기 인터페이스 센서
+I2C를 프로토콜을 사용하여 PMIC의 조정이 가능해야
+한다. SW-FW-RID-43
+리모컨 앱과의 연동 기능
+상세: 리모콘 앱과 BLE로 충전/배터리 상태,
+Bluetooth 제어 정보 및 사운드 처리기의 명령/응답
+을 송수신한다. QCC는 E8300의 명령/응답을 SPI로
+중계한다.
+[QCC 자료 입력] Bluetooth 제어 명령/상태
+와 충전 상태 데이터의 전달 조건 및 검증
+결과를 확인한다.
+SW-FW-RID-44 SYS-RID-SP-FW-13
+b) 소프트웨어 시스템 입력
+과 출력
+(SOFTWARE SYSTEM
+inputs and outputs)
+PMIC
+기기 인터페이스
+c) 소프트웨어 시스템과 다
+른 소프트웨어 사이의 연계
+성
+(interfaces between the
+SOFTWARE SYSTEM and
+other SYSTEMS)
+리모콘
+매핑 프로그램과의 연동 기능
+상세: 매핑 프로그램과 BLE로 매핑 시작/종료 및 사운
+드 처리기의 명령/응답을 송수신한다. QCC는 E8300
+의 명령/응답을 SPI로 중계한다.
+[QCC 자료 입력] 매핑 시작/종료의 상태 전
+이, 실패 처리, 동시 연결 조건 및 검증 결과
+를 확인한다.
+매핑 SW-FW-RID-45 SYS-RID-SP-FW-14
+c) 소프트웨어 시스템과 다
+른 소프트웨어 사이의 연계
+성
+(interfaces between the
+SOFTWARE SYSTEM and
+other SYSTEMS)
+Bluetooth Classic 오디오 통신
+상세: QCC는 수신 오디오를 I2S로 E8300에 전달한다.
+DMIC2의 입력은 E8300과 QCC에 연결되며 전화 통
+화 시 QCC가 DMIC2의 음성을 수음하여 통화 상대에
+게 송신한다. DMIC2 마이크 입력과 QCC에서 E8300
+으로 전달하는 I2S 오디오는 서로 다른 경로다.
+[QCC 자료 입력] DMIC2의 QCC 입력 연결
+은 확인되었다. 마이크 핀/클록, 연결 상대,
+프로파일/코덱별 송수신, 동시 동작 조건과
+실제 시험 결과를 확인한다.
+SW-FW-RID-69 SYS-RID-SP-FW-15
+c) 소프트웨어 시스템과 다
+른 소프트웨어 사이의 연계
+성
+(interfaces between the
+SOFTWARE SYSTEM and
+other SYSTEMS)
+Bluetooth
+BLE data 통신
+상세: QCC는 BLE 연결과 데이터 접근을 처리하고
+E8300의 명령/응답을 SPI로 중계한다.
+[QCC 자료 입력] GATT 서비스/특성 값, 명
+령/응답의 허용 상태 및 검증 결과를 확인한
+다.
+SW-FW-RID-70 SYS-RID-SP-FW-16
+d) 소프트웨어 구동 경보,
+경고 및 운영자 메시지
+(software-driven alarms,
+warnings, and operator
+messages)
+외부장치는 링크를 통해 내부장치의 식별정보를 확
+인하고, 사전 등록된 정보와 일치하지 않을 경우 전기
+자극 출력을 차단. 불일치 상태는 LED 및 앱을 통해
+사용자에게 즉시 통지.
+상세: 등록된 내부이식장치와만 근접 무선 통신을 연
+결한다.
+SW-FW-RID-46 SYS-RID-SP-FW-17
+e) 보안 요구사항
+(SECURITY requirements)
+c) 소프트웨어 시스템과 다
+른 소프트웨어 사이의 연계
+성
+(interfaces between the
+SOFTWARE SYSTEM and
+other SYSTEMS)
+사이버 보안
+Bluetooth
+NA
+일정시간 동안 제어 명령이 수신되지 않으면, BLE 연
+결을 해제한다.
+상세: BLE 데이터 송수신이 3분(180초) 동안 없으면
+연결을 해제한다. 데이터 송수신의 감시 범위가 제어
+명령 미수신 조건을 충족하는지 확인해야 한다.
+[QCC/E8300 자료 입력] 감시 대상, 타이머
+시작/갱신/초기화 조건, 180초의 허용오차
+와 경계 동작을 확인한다. 제어 명령이 아닌
+송수신에 의해 연결이 유지되는 경우의 처
+리 기준도 필요하다.
+SW-FW-RID-47 SYS-RID-SP-FW-22
+e) 보안 요구사항
+(SECURITY requirements) 사이버 보안
+1. BLE Pairing 기능을 사용하여 인가된 장치와 연결
+2. BLE 연결 후 별도의 자체 인증 방식,
+CRA(Challenge-Response Authentication),을 사용하
+여 적법한 장치를 확인
+상세: 인증 서비스는 Challenge, Response, Confirm,
+Status 특성을 사용한다. 보호 대상 기기 제어/매핑
+데이터 접근은 인증 이후에 허용한다.
+[QCC 자료 입력] 페어링 전 허용 서비스,
+GATT 권한과 인증 전후 접근 차단/허용 조
+건 및 검증 결과를 확인한다.
+SW-FW-RID-48 SYS-RID-SP-FW-18
+e) 보안 요구사항
+(SECURITY requirements) 사이버 보안
+BLE 페어링이 완료된 상태에서 데이터를 송/수신한
+다. - 무결성
+AES-CCM (Counter with CBC-MAC)을 사용함으로써
+기밀성, 무결성, 인증 세 가지의 기능이 제공됨
+(Bluetooth Core specification LE Link Layer 참조)
+[QCC 자료 입력] BLE 링크 암호화 활성화와
+페어링 전 차단을 확인한다. CRA 인증값 계
+산과 키 파생의 확인은 링크 암호화의 검증
+과 구분한다.
+감사기록을 생성한다. SW-FW-RID-50 SYS-RID-SP-FW-23
+설정파일을 읽을 때, 파일의 무결성을 확인한다. SW-FW-RID-51 SYS-RID-SP-FW-27
+SW-FW-RID-49 SYS-RID-SP-FW-26
+SW-FW-RID-52 SYS-RID-SP-FW-19
+e) 보안 요구사항
+(SECURITY requirements) 사이버 보안
+1. CRA 인증에서 기기제어를 위한 통신과 매핑을 의
+한 통신을 구분하여 별도의 인증 키와 인증방식을
+사용
+2. CRA 인증에 사용되는 각 키의 크기는 16 bytes
+(128 bits)이므로 충분히 안전한 보안을 제공한다.
+상세: 기기 제어용 키와 의료진 매핑용 키를 구분한
+다. AES-CMAC 인증값 계산과 SHA-256에 의한 매핑
+키 파생은 역할이 다르다. 의료진 키와 제조번호로 생
+성한 SHA-256 결과의 앞 16 bytes를 매핑용 키로 사
+용한다. 키 길이만으로 보안 검증 완료를 판단하지 않
+는다.
+[QCC 자료 입력] 앱별 CRA 인증값 계산 알
+고리즘, 키 역할, 입력 직렬화와 인증값 길이
+를 확인한다. AES-CMAC 인증과 SHA-256
+키 파생의 관계, HMAC/ENC 표기 및 검증
+벡터를 대조한다.
+SW-FW-RID-52 SYS-RID-SP-FW-19
+e) 보안 요구사항
+(SECURITY requirements) 사이버 보안
+소프트웨어 업데이트가 필요할 경우 기존 제품을 회
+수하고 업데이트된 제품을 생산하여 교체한다.
+[QCC/E8300 자료 입력] QCC의 인증/암호화
+전송과 E8300의 OTA 수신/저장/재기동 보
+호 자료를 연결한다. 제품 회수/교체 절차와
+OTA의 적용 범위도 확인한다.
+SW-FW-RID-53 SYS-RID-SP-FW-30
+품질관리시스템 절차에 따라, 인가된 인원이 펌웨어
+를 생성하여 배포한다. SW-FW-RID-81 SYS-RID-SP-FW-31
+1. 칩셋에서 부팅 과정에서 실행파일의 CRC 체크 기
+능 활성화
+2. 칩셋에서 제공하는 무결성 방식을 사용하여 검사
+SW-FW-RID-54 SYS-RID-SP-FW-32
+e) 보안 요구사항
+(SECURITY requirements) 사이버 보안
+상세: E8300의 부팅 과정에서는 실행파일의 CRC와
+파일/이미지 무결성을 확인한다. QCC는 전원 인가
+후 부팅 과정에서 칩셋이 제공하는 방식으로 펌웨어
+이미지의 무결성을 검사한다.
+[QCC 자료 입력] QCC의 부트 검사 방식/활
+성화 설정, 손상 또는 변조 이미지의 거부/
+복구 동작과 검증 결과를 확인한다.
+- CRA 인증 결과에서 인증정보를 유추할 만한 피드
+백이 없음: 성공, 실패, 진행중, 타임아웃
+SW-FW-RID-71 SYS-RID-SP-FW-20
+SW-FW-RID-54 SYS-RID-SP-FW-32
+e) 보안 요구사항
+(SECURITY requirements) 사이버 보안
+상세: 30초 동안 인증이 완료되지 않으면 타임아웃으
+로 처리한다.
+[QCC 자료 입력] 30초 타이머의 시작/갱신/
+초기화 조건, 허용오차와 상태별 응답 및 인
+증정보 미노출의 검증 결과를 확인한다.
+CRA 인증 5회 연속 실패 시, 일정 시간동안 연결을
+제한한다.
+상세: 5회 연속 인증 실패 시 1분(60초) 동안 BLE 연
+결을 제한한다.
+[QCC 자료 입력] 실패 횟수의 누적/초기화,
+전원 재기동, 제한 종료 후 재접속과 시간
+경계/허용오차 및 검증 결과를 확인한다.
+SW-FW-RID-71 SYS-RID-SP-FW-20
+SW-FW-RID-72 SYS-RID-SP-FW-21
+e) 보안 요구사항
+(SECURITY requirements) 사이버 보안
+감사기록 생성 실패를 오류 정보에 포함한다.
+SW-FW-RID-73 SYS-RID-SP-FW-24
+감사기록은 타임 스탬프를 포함한다.
+SW-FW-RID-74 SYS-RID-SP-FW-25
+오류 메시지에 보안과 관련된 정보를 직접 표시하지
+않는다.
+상세: 오류 메시지에 보안과 관련되 정보를 직접 표시
+하지 않는다.
+SW-FW-RID-75 SYS-RID-SP-FW-29
+SW-FW-RID-76 SYS-RID-SP-FW-33
+e) 보안 요구사항
+(SECURITY requirements) 사이버 보안
+1. 데이터의 송수신은 BLE 페어링과 CRA 인증 이후
+에 활성화 함. - 기밀화
+2. CRA 인증 키들은 생산시에 암호화하여 저장한다.
+상세: 생산 시 설치하는
+shared_service_key/clinician_master_key와 생성되는
+매핑용 clinic_service_key를 구분한다.
+[QCC 자료 입력] 실제 설치/저장 대상, 키
+역할, 저장 암호화/접근 제한과 복호화 시작
+조건을 확인한다. 인증 전후 송수신/OTA 보
+호와 조건별 검증 결과도 확인한다.
+내부장치 제조번호, 사용자 이니셜 값은 암호화 하여
+저장한다.
+SW-FW-RID-77 SYS-RID-SP-FW-34
+SW-FW-RID-76 SYS-RID-SP-FW-33
+e) 보안 요구사항
+(SECURITY requirements) 사이버 보안
+무결성, 암호화에 사용되는 알고리즘은 사이버보안
+규격에서 권고하는 알고리즘을 사용한다.
+상세: CRA 인증값 계산, 매핑 키 파생, 비휘발성 저장
+암호화와 BLE 링크 보호의 사용 목적을 구분한다.
+[QCC/E8300 자료 입력] AES-CMAC/SHA￾256/AES-128의 사용 목적/키 관리, E8300
+AES 저장/부트 보호와의 연결을 확인한다.
+HMAC/ENC 표기, AES-128 모드 및 BLE 링
+크 보호의 실제 적용과 검증 결과를 대조한
+다.
+외부에서 로그 정보의 접근은 인가자만 가능해야 하
+며, 외부 전송을 할경우 기밀성이 보호되어야 한다.
+SW-FW-RID-79 SYS-RID-SP-FW-36
+SW-FW-RID-78 SYS-RID-SP-FW-35
+e) 보안 요구사항
+(SECURITY requirements) 사이버 보안
+설정파일의 무결성이 확인되지 않으면, 설정파일을
+공장초기화 한다.
+SW-FW-RID-80 SYS-RID-SP-FW-38
+배터리 저전압을 주기적으로 반복하여 자극출력으로
+알린다.
+상세: 배터리 저전압을 주기적으로 반복하여 자극 출
+력과 LED로 알린다.
+SW-FW-RID-55 SYS-RID-SP-FW-48
+볼륨 증가를 단계적으로 진행되도록 설계한다.(soft
+increase)
+상세: 자극 볼륨은 단계적으로 증가하도록 설계한
+다.(soft increase)
+SW-FW-RID-56 SYS-RID-SP-FW-47
+g) 데이터 정의 및 데이터
+베이스 요구사항
+(data definition and
+database requirements)
+e) 보안 요구사항
+(SECURITY requirements) 사이버 보안
+중복실수
+NA
+f) 사람에 의해 발생하는 오
+류와 훈련에 민감한 사용성
+공학 요구사항
+(usability engineering
+requirements that are
+sensitive to human errors
+and training)
+주의부족, 기억력 감퇴
+h) 운영 및 유지보수 현장에
+인도된 의료기기 소프트웨
+어의 설치 및 인수 요구사항
+(installation and
+acceptance requirements
+of the delivered MEDICAL
+DEVICE SOFTWARE at the
+operation and
+maintenance site or sites)
+i) 운영 및 유지보수 방법에
+관련된 요구사항
+requirements related to
+methods of operation
+and maintenance
+NA
+NA
+j) 개발할 사용자 설명서
+(user documentation to
+be developed)
+사용설명서에 경고 및 안전사항을 기재한다.
+사용설명서에 안전하게 사용하는 작동법을 기재한다.
+사용설명서에 동작방법을 자세히 기재한다.
+상세: 안전 예방조치, 사용 방법과 문제 해결 방법을
+제품 사용 설명서에 포함한다.
+[E8300 보완] 검사한 사용설명서 초안과 사
+용자 배포용 설명서의 일치 여부를 확인한
+다.
+k) 사용자 유지보수 요구사
+항
+(user maintenance
+requirements)
+필수 성능 조건을 설계에 반영한다.
+필수 성능 시험을 진행한다.
+상세: 필수 성능 시험을 진행한다.
+SW-FW-RID-57
+SYS-RID-SP-FW-39,
+SYS-RID-SP-FW-40
+SW-FW-RID-83
+l) 규제적 요구사항
+(regulatory requirements)
+IEC 60601-1
+(IEC 62304에 포함되지 않은 사항)
+NA
+사용 설명서
+실시간 신호처리가 가능하도록 설계한다.
+상세: 실시간 신호처리 주기는 1.00ms, 허용 오차 +/-
+5%(0.95~1.05ms)이며 각 블록 처리는 다음 처리 시
+작 전에 완료되어야 한다.
+SW-FW-RID-58 SYS-RID-SP-FW-41
+BLE 통신으로 수신되는 데이터가 프로토콜에 정의된
+값의 범위 안에 있는지 확인해야한다.
+상세: 제어 명령이 프로토콜에 맞게 전송되어야 실행
+한다.
+SW-FW-RID-59 SYS-RID-SP-FW-28
+CRC 기능이 있는 통신 프로토콜을 사용한다.
+[QCC 자료 입력] 무선 통신 CRC의 적용 계
+층, 검사 실패 시 처리와 조건별 검증 결과
+를 확인한다.
+SW-FW-RID-60 SYS-RID-SP-FW-42
+정상사용을 위한 준비상태를 표시하도록 설계한다. SW-FW-RID-61 SYS-RID-SP-FW-43
+l) 규제적 요구사항
+(regulatory requirements)
+IEC 60601-1
+(IEC 62304에 포함되지 않은 사항)
+전원커넥터가 연결되면 연결을 확인할 수 있어야한
+다.(충전모드 표시). SW-FW-RID-62 SYS-RID-SP-FW-44
+배터리 잔량을 표시할 수 있어야 한다. SW-FW-RID-63
+구분이 쉽도록 LED 패턴을 생성한다. SW-FW-RID-64 SYS-RID-SP-FW-45
+사회 통념적으로 사용되는 색상을 사용하여 인공와
+우 외부기 상태를 표시한다. SW-FW-RID-65 SYS-RID-SP-FW-46
+BLE 통신 연결 장애 발생 시, 정상 동작이 되어야 한
+다. SW-FW-RID-66 SYS-RID-SP-FW-37
+시동과정에서는 출력을 생성하지 않게 한다 SW-FW-RID-67 SYS-RID-SP-FW-49
+종료과정에서는 출력을 생성하지 않게 한다. SW-FW-RID-68 SYS-RID-SP-FW-50
+l) 규제적 요구사항
+(regulatory requirements)
+IEC 60601-1
+(IEC 62304에 포함되지 않은 사항)

@@ -1,0 +1,170 @@
+{
+  "status": "통과",
+  "scope": "기존 E8300 원본 끝 B1686:M1726의 서식 baseline / 후보 검사는 미실행",
+  "source": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\unit-rebuild-20261016\\base.xlsx",
+  "source_sha256": "05495AED7973BAF02E03C03AACE158AE233CEC419CF2308CCF3F9950DFAF21B5",
+  "original_source": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\04_설계 검증\\SW\\외부기\\김은수_작성\\[E8300] SUVR-FW-TD24A 소프트웨어 유닛 검증 보고서.xlsx",
+  "native_evidence": [
+    "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\unit-rebuild-20261016\\native-base.json",
+    "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\unit-rebuild-20261016\\native-base-full.json"
+  ],
+  "native_open_readonly": true,
+  "saved": false,
+  "closed_without_saving": true,
+  "source_unchanged": true,
+  "page_setup": {
+    "zoom": false,
+    "fit_wide": 1,
+    "fit_tall": false,
+    "orientation": 2.0,
+    "paper_size": 9.0,
+    "print_area": "$B$2:$M$1734",
+    "print_title_rows": "$28:$29",
+    "left_margin": 18.0,
+    "right_margin": 18.0,
+    "top_margin": 54.0,
+    "bottom_margin": 54.0
+  },
+  "columns": [
+    {
+      "column": 1,
+      "address": "$A:$A",
+      "column_width": 1.38,
+      "width_pt": 12.0,
+      "hidden": false
+    },
+    {
+      "column": 2,
+      "address": "$B:$B",
+      "column_width": 4.75,
+      "width_pt": 32.25,
+      "hidden": false
+    },
+    {
+      "column": 3,
+      "address": "$C:$C",
+      "column_width": 19.13,
+      "width_pt": 118.5,
+      "hidden": false
+    },
+    {
+      "column": 4,
+      "address": "$D:$D",
+      "column_width": 26.0,
+      "width_pt": 159.75,
+      "hidden": false
+    },
+    {
+      "column": 5,
+      "address": "$E:$E",
+      "column_width": 54.0,
+      "width_pt": 327.75,
+      "hidden": false
+    },
+    {
+      "column": 6,
+      "address": "$F:$F",
+      "column_width": 4.63,
+      "width_pt": 31.5,
+      "hidden": false
+    },
+    {
+      "column": 7,
+      "address": "$G:$G",
+      "column_width": 19.0,
+      "width_pt": 117.75,
+      "hidden": false
+    },
+    {
+      "column": 8,
+      "address": "$H:$H",
+      "column_width": 36.0,
+      "width_pt": 219.75,
+      "hidden": false
+    },
+    {
+      "column": 9,
+      "address": "$I:$I",
+      "column_width": 31.0,
+      "width_pt": 189.75,
+      "hidden": false
+    },
+    {
+      "column": 10,
+      "address": "$J:$J",
+      "column_width": 56.0,
+      "width_pt": 339.75,
+      "hidden": false
+    },
+    {
+      "column": 11,
+      "address": "$K:$K",
+      "column_width": 64.0,
+      "width_pt": 387.75,
+      "hidden": false
+    },
+    {
+      "column": 12,
+      "address": "$L:$L",
+      "column_width": 64.0,
+      "width_pt": 387.75,
+      "hidden": false
+    },
+    {
+      "column": 13,
+      "address": "$M:$M",
+      "column_width": 13.25,
+      "width_pt": 83.25,
+      "hidden": false
+    }
+  ],
+  "row_height_min": 82.5,
+  "row_height_max": 247.5,
+  "visual_baseline": [
+    "원본 B:M 전체 열폭 / fitwide1 / A4 가로 그대로인 6쪽 전체 배치 개괄, 첫 / 마지막 full PNG 직접 확인.",
+    "28:29 반복머리글, B:J와 M의 41행 병합, K 통과기준 및 L 결과의 조건별 분리 경계가 기존 구조다.",
+    "일반 B:K Calibri11pt, L/M 맑은고딕 / 혼합크기와 강조가 있으므로 이 작업에서 일괄10pt 적용을 새 기준으로 삼지 않는다.",
+    "원본 긴 병합 설명은 첫 페이지에만 표시되고 이후 페이지는 조건/결과가 이어진다. 새 QCC도 같은 열/필드 체계를 사용하며 기존 큰 병합을 소스 보존 대상에서 제외하지 않는다."
+  ],
+  "views": [
+    {
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\unit-rebuild-20261016\\native-base-left-p001.png",
+      "sha256": "F3BA8A371D00DEB6892D5037DBC7E518ABAE5B702800EBA19294E5D6AE8CF836",
+      "direct_viewed": true,
+      "scope": "full PNG"
+    },
+    {
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\unit-rebuild-20261016\\native-base-full-contact.png",
+      "sha256": "B6963874170591278FA5E19DE74DB72B59B7A516C0F41C79F9C751FFE6A37B74",
+      "direct_viewed": true,
+      "scope": "개괄"
+    },
+    {
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\unit-rebuild-20261016\\native-base-full-p001.png",
+      "sha256": "211A3EC6D58049E4A5C1E52829D9AC8DB4ADDBDFE6B3637A3A06DC67EE8397DD",
+      "direct_viewed": true,
+      "scope": "full PNG"
+    },
+    {
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\unit-rebuild-20261016\\native-base-full-p006.png",
+      "sha256": "5E93B06415CDE449838A54B60AD97280E170B6AD9686D0146D4428017697F889",
+      "direct_viewed": true,
+      "scope": "full PNG"
+    }
+  ],
+  "supplemental_previews": {
+    "left_pages": 9,
+    "results_pages": 19,
+    "meaning": "가독성 보조. 열폭이 다른 부분 범위라 fitwide 실제 배율은 full B:M과 다름. 원본 배율 동등성 기준은 full B:M 6쪽이다."
+  },
+  "candidate_status": "미실행",
+  "candidate_remaining": "루트 후보 수신 후 1727:1764 전체38조건, 앞뒤 경계와 말미 / 기존 서식 동등성 native 확인",
+  "product_verdict": "본 QA는 문서 표시 확인이며 제품 시험 실행/판정 아님",
+  "principles_scope": {
+    "7": "E8300 동종 형식 baseline 확보",
+    "24": "실제 Excel 열폭/행높이/병합/정렬 및 대표 인쇄 확인",
+    "28": "후보 저장본 native 검사는 수신 후 실시",
+    "29": "해당없음: Excel 대상, Word 변경 없음",
+    "other_content_and_trace": "내용/ID/기준보고 공통/원본 package보존은 루트 및 독립 내용 담당 소유. 본 조사로 통과를 대체하지 않음"
+  }
+}

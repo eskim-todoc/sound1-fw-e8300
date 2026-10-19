@@ -1,0 +1,3209 @@
+{
+  "docs": [
+    {
+      "code": "SR",
+      "source": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\02_설계 입력\\SW\\외부기\\[E8300-QCC] SR-FW-TD24A 소프트웨어 요구사항.docx",
+      "source_sha256": "FB0F0A4ED73E0712E79D499097C0B635B8EA6446F65B5DDFFF840EDD2253B019",
+      "backup": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\SR-before.docx",
+      "output": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\02_설계 입력\\SW\\외부기\\[E8300-QCC] SR-FW-TD24A 소프트웨어 요구사항_완료.docx",
+      "candidate": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\SR-fields.docx",
+      "candidate_sha256": "F7BC96CA67D736D8E454902905ABF8E3F62EAAC3A92746C5A3A71FB178188BBA",
+      "new_text_revision_ids": [
+        "649",
+        "650",
+        "651",
+        "652",
+        "653",
+        "654",
+        "655",
+        "656"
+      ],
+      "note_changes": [
+        {
+          "index": 250,
+          "before": "[QCC/E8300 자료 입력] DMIC2가 E8300과 QCC에 함께 연결되는 경로는 확인되었다. 3분 무송수신의 감시/갱신 범위와 제어 명령 미수신 조건의 정합성, QCC 마이크 핀/클록, 연결 상대 및 프로파일/코덱별 송수신과 동시 동작 조건 및 시험 결과를 확인한다.",
+          "after": "3분 무송수신의 감시/갱신 범위와 제어 명령 미수신 조건의 정합성, QCC 마이크 핀/클록, 연결 상대 및 프로파일/코덱별 송수신과 동시 동작 조건 및 시험 결과는 미확정이다."
+        },
+        {
+          "index": 260,
+          "before": "[QCC 자료 입력] 실제 QCC 개발 환경, 라이브러리/ADK 버전과 빌드 구성을 입력한다.",
+          "after": "QCC 개발 환경의 라이브러리/ADK 버전과 빌드 구성은 미확정이다."
+        },
+        {
+          "index": 265,
+          "before": "[QCC 자료 입력] QCC의 실제 메모리 배치, 실행 이미지/데이터 사용량과 부트 이미지 검사 설정을 입력한다.",
+          "after": "QCC의 실제 메모리 배치, 실행 이미지/데이터 사용량과 부트 이미지 검사 설정은 미확정이다."
+        },
+        {
+          "index": 307,
+          "before": "[QCC/E8300 자료 입력] 오디오 송수신, 연결/인증, 키 관리 및 펌웨어 보호에 대한 위험분석 재평가와 변경 영향의 검토 결과를 확인한다.",
+          "after": "오디오 송수신, 연결/인증, 키 관리 및 펌웨어 보호에 대한 위험분석 재평가와 변경 영향의 검토 결과는 미확정이다."
+        }
+      ],
+      "highlighted_paragraphs": [
+        {
+          "index": 206,
+          "text": "- QCC5181 : Bluetooth Classic 오디오 송수신과 BLE 연결/인증을 처리한다. 수신 오디오를 I2S로 E8300에 전달하고 전화 통화 시 DMIC2의 음성을 수음하여 통화 상대에게 송신한다. E8300의 명령/응답 데이터는 SPI로 중계한다. QCC의 내부 구성은 소프트웨어 아키텍쳐 기술서와 상세 설계서에서 정의한다.",
+          "color": "C00000",
+          "bold": true,
+          "size_pt": 10
+        },
+        {
+          "index": 237,
+          "text": "오디오 입력은 DMIC1/DMIC2의 디지털 마이크와 QCC5181에서 전달하는 I2S 오디오를 사용한다. DMIC2는 E8300과 QCC5181에 함께 연결되며, QCC5181은 전화 통화 상향 음성의 수음에 사용한다.",
+          "color": "C00000",
+          "bold": true,
+          "size_pt": 10
+        },
+        {
+          "index": 247,
+          "text": "QCC5181을 통해 Bluetooth Classic 오디오를 송수신하고, 리모콘 앱과 매핑 프로그램의 제어 명령 및 응답 데이터를 송수신한다.",
+          "color": "C00000",
+          "bold": true,
+          "size_pt": 10
+        },
+        {
+          "index": 248,
+          "text": "QCC의 Bluetooth 수신 오디오는 I2S 24비트, 샘플링 주파수 16kHz로 E8300에 전달한다. DMIC2는 E8300과 QCC에 함께 연결되며, 전화 통화 시 QCC가 DMIC2의 음성을 수음하여 통화 상대에게 송신한다. 통화 상향 마이크 입력과 QCC에서 E8300으로 전달하는 I2S 오디오는 서로 다른 경로이며, Bluetooth Classic 송수신 기능은 SW-FW-RID-69에 따른다.",
+          "color": "C00000",
+          "bold": true,
+          "size_pt": 10
+        },
+        {
+          "index": 249,
+          "text": "BLE의 리모콘/매핑 데이터는 QCC와 E8300 사이에서 SPI로 중계한다. 보호 대상 접근에는 페어링과 CRA 인증을 요구하며, 3분 무송수신/인증 실패 5회 후 1분 연결 제한/인증 30초 시간 제한의 정의와 미비 사항은 소프트웨어 요구사항 사양서에 따른다.",
+          "color": "C00000",
+          "bold": true,
+          "size_pt": 10
+        },
+        {
+          "index": 259,
+          "text": "- QCC5181 : C language 및 제조사 제공 Bluetooth stack/Built-in library와 scheduler를 사용하는 펌웨어로 구성한다.",
+          "color": "C00000",
+          "bold": true,
+          "size_pt": 10
+        },
+        {
+          "index": 264,
+          "text": "QCC의 실행 이미지와 저장 데이터는 QCC에 할당한 메모리 영역의 범위를 넘지 않아야 한다. E8300 코어의 메모리 값과 QCC 메모리 값은 구분한다.",
+          "color": "C00000",
+          "bold": true,
+          "size_pt": 10
+        }
+      ],
+      "style": {
+        "code": "SR",
+        "edited_paragraphs": [
+          {
+            "i": 149,
+            "ordinal": 150,
+            "paraId": "051AA32E",
+            "text": "서론",
+            "style": "TDC 제목 1",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 150,
+            "ordinal": 151,
+            "paraId": "69F2D195",
+            "text": "개요",
+            "style": "TDC 제목 2",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 151,
+            "ordinal": 152,
+            "paraId": "235F31F9",
+            "text": "본 문서는 TD24A-A-EXT 제품의 펌웨어를 개발하기 위한 소프트웨어의 요구사항을 정의한다.",
+            "style": "TDC 본문 2",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 152,
+            "ordinal": 153,
+            "paraId": "160CE611",
+            "text": "이 요구사항은 외부기의 E8300 펌웨어와 QCC5181의 Bluetooth/보안 펌웨어에 적용한다. 자극 처리의 담당과 무선 통신/인증의 담당을 구분하고 두 칩의 전달 경계를 함께 정의한다.",
+            "style": "TDC 본문 2",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 153,
+            "ordinal": 154,
+            "paraId": "07E2CE08",
+            "text": "",
+            "style": "TDC 본문 2",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 154,
+            "ordinal": 155,
+            "paraId": "2306B0B2",
+            "text": "목적",
+            "style": "TDC 제목 2",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 155,
+            "ordinal": 156,
+            "paraId": "52B56173",
+            "text": "외부기 펌웨어의 소프트웨어 요구사항을 결정함으로써 사양을 충족할 수 있는 설계 절차를 진행할 수 있게 하여 소프트웨어 개발 절차에 따라 안전하고 일관성 및 정확성을 제공하는 소프트웨어의 개발이 보장되는 것을 목적으로 한다.",
+            "style": "TDC 본문 2",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 156,
+            "ordinal": 157,
+            "paraId": "136848E1",
+            "text": "",
+            "style": "TDC 본문 2",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 157,
+            "ordinal": 158,
+            "paraId": "22C099E2",
+            "text": "대상",
+            "style": "TDC 제목 2",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 158,
+            "ordinal": 159,
+            "paraId": "51DC4B24",
+            "text": "TD24A-A-EXT 제품의 펌웨어 개발 프로젝트에 참여하는 모든 구성원은 이 문서를 참고하도록 한다.",
+            "style": "TDC 본문 2",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 159,
+            "ordinal": 160,
+            "paraId": "0B3B8E54",
+            "text": "",
+            "style": "TDC 본문 2",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 160,
+            "ordinal": 161,
+            "paraId": "06CFF5B9",
+            "text": "관련문서",
+            "style": "TDC 제목 2",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 161,
+            "ordinal": 162,
+            "paraId": "73127F70",
+            "text": "프로젝트",
+            "style": "TDC 제목 3",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 162,
+            "ordinal": 163,
+            "paraId": "27AFE599",
+            "text": "No",
+            "style": "TDC 표 머리행",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 163,
+            "ordinal": 164,
+            "paraId": "2207E671",
+            "text": "문서번호",
+            "style": "TDC 표 머리행",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 164,
+            "ordinal": 165,
+            "paraId": "242037F2",
+            "text": "문서 제목",
+            "style": "TDC 표 머리행",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 165,
+            "ordinal": 166,
+            "paraId": "73E2450B",
+            "text": "1",
+            "style": "TDC 표 본문",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 166,
+            "ordinal": 167,
+            "paraId": "4A7FAA50",
+            "text": "SDP-FW-TD24A",
+            "style": "TDC 표 본문",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 167,
+            "ordinal": 168,
+            "paraId": "1EB59E73",
+            "text": "소프트웨어 개발 계획서",
+            "style": "TDC 표 본문",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 168,
+            "ordinal": 169,
+            "paraId": "7BFFC127",
+            "text": "2",
+            "style": "TDC 표 본문",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 169,
+            "ordinal": 170,
+            "paraId": "1DA1DF1E",
+            "text": "SGR-FW-TD24A",
+            "style": "TDC 표 본문",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 170,
+            "ordinal": 171,
+            "paraId": "65F955BE",
+            "text": "소프트웨어 일반 요구사항",
+            "style": "TDC 표 본문",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 171,
+            "ordinal": 172,
+            "paraId": "2C5A0604",
+            "text": "3",
+            "style": "TDC 표 본문",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 172,
+            "ordinal": 173,
+            "paraId": "14A59E13",
+            "text": "SRS-FW-TD24A",
+            "style": "TDC 표 본문",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 173,
+            "ordinal": 174,
+            "paraId": "30ADF17B",
+            "text": "소프트웨어 요구사항 사양서",
+            "style": "TDC 표 본문",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 174,
+            "ordinal": 175,
+            "paraId": "0A6B815A",
+            "text": "",
+            "style": "TDC 본문 3",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 175,
+            "ordinal": 176,
+            "paraId": "594DFD0F",
+            "text": "표준 및 규제",
+            "style": "TDC 제목 3",
+            "heading_restored": "TDC 제목 3",
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 176,
+            "ordinal": 177,
+            "paraId": "1FF21E77",
+            "text": "No",
+            "style": "TDC 표 머리행",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 177,
+            "ordinal": 178,
+            "paraId": "268771EE",
+            "text": "문서번호",
+            "style": "TDC 표 머리행",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 178,
+            "ordinal": 179,
+            "paraId": "352A81DE",
+            "text": "문서 제목",
+            "style": "TDC 표 머리행",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 179,
+            "ordinal": 180,
+            "paraId": "2E5045DB",
+            "text": "1",
+            "style": "TDC 표 본문",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 180,
+            "ordinal": 181,
+            "paraId": "5894B055",
+            "text": "IEC 62304",
+            "style": "TDC 표 본문",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 181,
+            "ordinal": 182,
+            "paraId": "5B3D9B8C",
+            "text": "Medical device software – Software life cycle processes",
+            "style": "TDC 표 본문",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 182,
+            "ordinal": 183,
+            "paraId": "415828F2",
+            "text": "2",
+            "style": "TDC 표 본문",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 183,
+            "ordinal": 184,
+            "paraId": "6E27B58F",
+            "text": "ISO 14971",
+            "style": "TDC 표 본문",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 184,
+            "ordinal": 185,
+            "paraId": "046D3380",
+            "text": "Medical devices – Application of risk management to medical",
+            "style": "TDC 표 본문",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 185,
+            "ordinal": 186,
+            "paraId": "586E3B06",
+            "text": "",
+            "style": "TDC 본문 3",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 186,
+            "ordinal": 187,
+            "paraId": "17DB3504",
+            "text": "\n",
+            "style": "TDC 본문 3",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 187,
+            "ordinal": 188,
+            "paraId": "4F8D9A24",
+            "text": "",
+            "style": "TDC 본문 3",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 188,
+            "ordinal": 189,
+            "paraId": "065F400E",
+            "text": "하드웨어 플랫폼",
+            "style": "TDC 제목 1",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 189,
+            "ordinal": 190,
+            "paraId": "0F291EEC",
+            "text": "인공와우 시스템을 구성하는 시스템의 구성은 그림 1.과 같으며, 외부기 펌웨어가 동작하는 하드웨어 블록도는 그림 2.와 같다.",
+            "style": "TDC 본문 1",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 190,
+            "ordinal": 191,
+            "paraId": "3794024D",
+            "text": "",
+            "style": "TDC 본문 1",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 192,
+            "ordinal": 193,
+            "paraId": "7683BC16",
+            "text": "< 그림 1. 인공와우 시스템 >",
+            "style": "TDC 그림 캡션 1",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 193,
+            "ordinal": 194,
+            "paraId": "36D39DAA",
+            "text": "",
+            "style": "TDC 본문 1",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 194,
+            "ordinal": 195,
+            "paraId": "6F545E64",
+            "text": "",
+            "style": "TDC 본문 1",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 196,
+            "ordinal": 197,
+            "paraId": "712F2387",
+            "text": "< 그림 2. 인공와우 외부장치 블록도 >",
+            "style": "TDC 그림 캡션 1",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 197,
+            "ordinal": 198,
+            "paraId": "3872D732",
+            "text": "• MCU or DSP",
+            "style": "TDC 본문 1",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 198,
+            "ordinal": 199,
+            "paraId": "28B67B66",
+            "text": "",
+            "style": "TDC 본문 1",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 199,
+            "ordinal": 200,
+            "paraId": "7BA8B08C",
+            "text": "Ezairo 8300은 CFX",
+            "style": "TDC 본문 1",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 200,
+            "ordinal": 201,
+            "paraId": "1189E96B",
+            "text": ", ARM Cortex-M3, HEAR",
+            "style": "TDC 본문 1",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 201,
+            "ordinal": 202,
+            "paraId": "72CC5967",
+            "text": ", Filter Engine, LPDSP32, NNA를 포함한다. Sound1의 신호처리와 제어는 CFX, HEAR, Cortex-M3를 중심으로 구성한다.",
+            "style": "TDC 본문 1",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 202,
+            "ordinal": 203,
+            "paraId": "248EB2B7",
+            "text": "- CFX : 오디오 입력, 빔포밍 및 자극 데이터 생성",
+            "style": "TDC 본문 2",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 203,
+            "ordinal": 204,
+            "paraId": "116AD858",
+            "text": "- HEAR : FFT 등 신호처리 연산",
+            "style": "TDC 본문 2",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 204,
+            "ordinal": 205,
+            "paraId": "4AFA74D8",
+            "text": "- Filter Engine, LPDSP32, NNA : 칩 내 제공 기능으로, 사용 여부는 펌웨어 설계에 따른다.",
+            "style": "TDC 본문 2",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 205,
+            "ordinal": 206,
+            "paraId": "05616A40",
+            "text": "- ARM Cortex-M3 : 시스템 제어 및 QCC5181과 통신. QCC5181은 별도의 Bluetooth 칩이다.",
+            "style": "TDC 본문 2",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 206,
+            "ordinal": 207,
+            "paraId": "0535BC52",
+            "text": "- QCC5181 : Bluetooth Classic 오디오 송수신과 BLE 연결/인증을 처리한다. 수신 오디오를 I2S로 E8300에 전달하고 전화 통화 시 DMIC2의 음성을 수음하여 통화 상대에게 송신한다. E8300의 명령/응답 데이터는 SPI로 중계한다. QCC의 내부 구성은 소프트웨어 아키텍쳐 기술서와 상세 설",
+            "style": "TDC 본문 2",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 207,
+            "ordinal": 208,
+            "paraId": "79864990",
+            "text": "",
+            "style": "TDC 본문 1",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 209,
+            "ordinal": 210,
+            "paraId": "1B30EEFB",
+            "text": "< 그림 3. Ezairo 8300 Chip 블록도 >",
+            "style": "TDC 그림 캡션 1",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 210,
+            "ordinal": 211,
+            "paraId": "3F4CCA7B",
+            "text": "",
+            "style": "TDC 본문 1",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 211,
+            "ordinal": 212,
+            "paraId": "0000AC7A",
+            "text": "• Memory device",
+            "style": "TDC 본문 1",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 212,
+            "ordinal": 213,
+            "paraId": "34E564FD",
+            "text": "",
+            "style": "TDC 본문 1",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 213,
+            "ordinal": 214,
+            "paraId": "5F601F3E",
+            "text": "",
+            "style": "TDC 본문 1",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 214,
+            "ordinal": 215,
+            "paraId": "059B7348",
+            "text": "프로그램과 맵 데이터는 외부 비휘발성 메모리에 저장하며, Ezairo 8300 내부 RAM에서 프로그램을 실행한다.",
+            "style": "TDC 본문 1",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 215,
+            "ordinal": 216,
+            "paraId": "37A237E5",
+            "text": "RAM은 프로그램용, 데이터용 및 코어 간 공유 영역으로 구분한다. 메모리 배치는 각 프로젝트의 링커 설정을 따른다.",
+            "style": "TDC 본문 1",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 216,
+            "ordinal": 217,
+            "paraId": "65472282",
+            "text": "부팅 시 부트로더가 저장된 프로그램과 데이터를 RAM으로 적재한다. 아래 값은 현재 CM3 프로젝트 링커에서 선언한 영역 크기이며, 실제 사용량은 빌드 결과로 확인한다.",
+            "style": "TDC 본문 1",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 217,
+            "ordinal": 218,
+            "paraId": "7503B8A7",
+            "text": "- 비휘발성 메모리",
+            "style": "TDC 본문 2",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 218,
+            "ordinal": 219,
+            "paraId": "2ACFE04C",
+            "text": "",
+            "style": "TDC 본문 1",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 219,
+            "ordinal": 220,
+            "paraId": "03DC8061",
+            "text": "프로그램, 맵 데이터 및 설정 데이터를 저장할 수 있어야 한다.",
+            "style": "TDC 본문 1",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 220,
+            "ordinal": 221,
+            "paraId": "3D35C8A1",
+            "text": "- 프로그램 메모리",
+            "style": "TDC 본문 2",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 221,
+            "ordinal": 222,
+            "paraId": "535E9597",
+            "text": "",
+            "style": "TDC 본문 1",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 222,
+            "ordinal": 223,
+            "paraId": "6E9D982C",
+            "text": "CFX : 128 kBytes, ARM Cortex-M3 : 384 kBytes",
+            "style": "TDC 본문 1",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 223,
+            "ordinal": 224,
+            "paraId": "2EE3B36A",
+            "text": "- 데이터 메모리",
+            "style": "TDC 본문 2",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 224,
+            "ordinal": 225,
+            "paraId": "7066C4D8",
+            "text": "",
+            "style": "TDC 본문 1",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 225,
+            "ordinal": 226,
+            "paraId": "319A7C6B",
+            "text": "ARM Cortex-M3 DRAM : 96 kBytes",
+            "style": "TDC 본문 1",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 226,
+            "ordinal": 227,
+            "paraId": "0EA3E8B8",
+            "text": "공유 메모리 : 신호처리 버퍼와 코어 간 공유 데이터 영역을 중복 없이 배치한다.",
+            "style": "TDC 본문 1",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 227,
+            "ordinal": 228,
+            "paraId": "41239823",
+            "text": "",
+            "style": "TDC 본문 1",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 228,
+            "ordinal": 229,
+            "paraId": "0D904086",
+            "text": "",
+            "style": "TDC 본문 1",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 229,
+            "ordinal": 230,
+            "paraId": "720804EE",
+            "text": "",
+            "style": "TDC 본문 1",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 230,
+            "ordinal": 231,
+            "paraId": "38B21DC4",
+            "text": "",
+            "style": "TDC 본문 1",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 231,
+            "ordinal": 232,
+            "paraId": "242CB30F",
+            "text": "",
+            "style": "TDC 본문 1",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 232,
+            "ordinal": 233,
+            "paraId": "61DE0B88",
+            "text": "",
+            "style": "TDC 본문 1",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 233,
+            "ordinal": 234,
+            "paraId": "1E6D4C61",
+            "text": "",
+            "style": "TDC 본문 1",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 234,
+            "ordinal": 235,
+            "paraId": "6217F543",
+            "text": "",
+            "style": "TDC 본문 1",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 235,
+            "ordinal": 236,
+            "paraId": "4C28E4E1",
+            "text": "",
+            "style": "TDC 본문 1",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 236,
+            "ordinal": 237,
+            "paraId": "57E167E6",
+            "text": "• Sensors",
+            "style": "TDC 본문 1",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 237,
+            "ordinal": 238,
+            "paraId": "7D5BCC6D",
+            "text": "오디오 입력은 DMIC1/DMIC2의 디지털 마이크와 QCC5181에서 전달하는 I2S 오디오를 사용한다. DMIC2는 E8300과 QCC5181에 함께 연결되며, QCC5181은 전화 통화 상향 음성의 수음에 사용한다. IQS323 터치 센서는 사용자 입력을 감지한다.",
+            "style": "TDC 본문 1",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 238,
+            "ordinal": 239,
+            "paraId": "45BE64B0",
+            "text": "• 전원",
+            "style": "TDC 본문 1",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 239,
+            "ordinal": 240,
+            "paraId": "34298DC7",
+            "text": "충전형 내장 배터리를 사용한다.",
+            "style": "TDC 본문 1",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 240,
+            "ordinal": 241,
+            "paraId": "3930DCF7",
+            "text": "• 안전 특징",
+            "style": "TDC 본문 1",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 241,
+            "ordinal": 242,
+            "paraId": "2299C91F",
+            "text": "",
+            "style": "TDC 본문 1",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 242,
+            "ordinal": 243,
+            "paraId": "00C5787E",
+            "text": "시동과 종료 중에는 자극 출력을 생성하지 않으며, 맵에서 정한 자극 크기와 펄스폭 범위를 지켜야 한다.",
+            "style": "TDC 본문 1",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 243,
+            "ordinal": 244,
+            "paraId": "32AC1F2A",
+            "text": "• 통신 ",
+            "style": "TDC 본문 1",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 244,
+            "ordinal": 245,
+            "paraId": "10345A3D",
+            "text": "근접 무선 통신 : ",
+            "style": "TDC 본문 1",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 245,
+            "ordinal": 246,
+            "paraId": "43769C2E",
+            "text": "인공달팽이관 외부장치의 코일에서 인공달팽이관 내부장치의 코일로 10MHz ASK(Amplitude Shift Keying) 방식으로 전력 및 데이터를 송신하고, LSK(Load shift keying) 방식으로 데이터를 수신한다. 이 기능은 FPGA가 담당하고 있으며, Ezairo 8300 chip은 FPGA에 PCM i",
+            "style": "TDC 본문 1",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 246,
+            "ordinal": 247,
+            "paraId": "385273E1",
+            "text": "Bluetooth Classic / LE :",
+            "style": "TDC 본문 1",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 247,
+            "ordinal": 248,
+            "paraId": "4E3454C1",
+            "text": "QCC5181을 통해 Bluetooth Classic 오디오를 송수신하고, 리모콘 앱과 매핑 프로그램의 제어 명령 및 응답 데이터를 송수신한다.",
+            "style": "TDC 본문 1",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 248,
+            "ordinal": 249,
+            "paraId": "48A45E08",
+            "text": "QCC의 Bluetooth 수신 오디오는 I2S 24비트, 샘플링 주파수 16kHz로 E8300에 전달한다. DMIC2는 E8300과 QCC에 함께 연결되며, 전화 통화 시 QCC가 DMIC2의 음성을 수음하여 통화 상대에게 송신한다. 통화 상향 마이크 입력과 QCC에서 E8300으로 전달하는 I2S 오디오는 서로 다른 ",
+            "style": "TDC 본문 1",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 249,
+            "ordinal": 250,
+            "paraId": "64B844A7",
+            "text": "BLE의 리모콘/매핑 데이터는 QCC와 E8300 사이에서 SPI로 중계한다. 보호 대상 접근에는 페어링과 CRA 인증을 요구하며, 3분 무송수신/인증 실패 5회 후 1분 연결 제한/인증 30초 시간 제한의 정의와 미비 사항은 소프트웨어 요구사항 사양서에 따른다.",
+            "style": "TDC 본문 1",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 250,
+            "ordinal": 251,
+            "paraId": "0C2E9C27",
+            "text": "3분 무송수신의 감시/갱신 범위와 제어 명령 미수신 조건의 정합성, QCC 마이크 핀/클록, 연결 상대 및 프로파일/코덱별 송수신과 동시 동작 조건 및 시험 결과는 미확정이다.",
+            "style": "TDC 본문 1",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 251,
+            "ordinal": 252,
+            "paraId": "732943B4",
+            "text": "",
+            "style": "TDC 본문 1",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 252,
+            "ordinal": 253,
+            "paraId": "111751CC",
+            "text": "",
+            "style": "TDC 본문 1",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 253,
+            "ordinal": 254,
+            "paraId": "46A9A6E5",
+            "text": "",
+            "style": "TDC 본문 1",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 254,
+            "ordinal": 255,
+            "paraId": "75748A56",
+            "text": "프로그램 언어 및 사이즈",
+            "style": "TDC 제목 1",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 255,
+            "ordinal": 256,
+            "paraId": "12EBFBB5",
+            "text": "프로그램 언어 및 사이즈(Program Language and Size)",
+            "style": "TDC 제목 2",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 256,
+            "ordinal": 257,
+            "paraId": "022408FA",
+            "text": "프로그램 언어",
+            "style": "TDC 제목 3",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 257,
+            "ordinal": 258,
+            "paraId": "3B791777",
+            "text": "- CFX : C language, Assembly language / HEAR : Microcode",
+            "style": "TDC 본문 3",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 258,
+            "ordinal": 259,
+            "paraId": "2F86165D",
+            "text": "- ARM Cortex-M3 : C language",
+            "style": "TDC 본문 3",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 259,
+            "ordinal": 260,
+            "paraId": "4614A801",
+            "text": "- QCC5181 : C language 및 제조사 제공 Bluetooth stack/Built-in library와 scheduler를 사용하는 펌웨어로 구성한다.",
+            "style": "TDC 본문 3",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 260,
+            "ordinal": 261,
+            "paraId": "217E0D60",
+            "text": "QCC 개발 환경의 라이브러리/ADK 버전과 빌드 구성은 미확정이다.",
+            "style": "TDC 본문 3",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 261,
+            "ordinal": 262,
+            "paraId": "7BD3DBA3",
+            "text": "프로그램 사이즈",
+            "style": "TDC 제목 3",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 262,
+            "ordinal": 263,
+            "paraId": "099DEC29",
+            "text": "",
+            "style": "TDC 본문 3",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 263,
+            "ordinal": 264,
+            "paraId": "0A79A2C3",
+            "text": "- 각 코어의 실행 코드와 데이터가 링커에서 할당한 메모리 범위를 넘지 않아야 한다.",
+            "style": "TDC 본문 3",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 264,
+            "ordinal": 265,
+            "paraId": "7765B95A",
+            "text": "QCC의 실행 이미지와 저장 데이터는 QCC에 할당한 메모리 영역의 범위를 넘지 않아야 한다. E8300 코어의 메모리 값과 QCC 메모리 값은 구분한다.",
+            "style": "TDC 본문 3",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 265,
+            "ordinal": 266,
+            "paraId": "14849979",
+            "text": "QCC의 실제 메모리 배치, 실행 이미지/데이터 사용량과 부트 이미지 검사 설정은 미확정이다.",
+            "style": "TDC 본문 3",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 266,
+            "ordinal": 267,
+            "paraId": "3E008076",
+            "text": "",
+            "style": "TDC 본문 3",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 267,
+            "ordinal": 268,
+            "paraId": "344D0FFA",
+            "text": "",
+            "style": "TDC 본문 3",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 268,
+            "ordinal": 269,
+            "paraId": "0B6AACE2",
+            "text": "",
+            "style": "TDC 본문 3",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 269,
+            "ordinal": 270,
+            "paraId": "16772362",
+            "text": "소프트웨어 요구사항",
+            "style": "TDC 제목 1",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 270,
+            "ordinal": 271,
+            "paraId": "739532CD",
+            "text": "소프트웨어 입력 요구사항 사양서(SRS-FW-TD24A) 참조",
+            "style": "TDC 본문 1",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 271,
+            "ordinal": 272,
+            "paraId": "3DCAD843",
+            "text": "외부기 소프트웨어의 요구사항은 소프트웨어 요구사항 사양서의 SW-FW-RID-1~81 및 SW-FW-RID-83으로 식별한다. Bluetooth Classic의 수신과 통화 상향 송신은 SW-FW-RID-69에 함께 정의한다.",
+            "style": "TDC 본문 1",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 272,
+            "ordinal": 273,
+            "paraId": "29D74A7F",
+            "text": "사용 설명서의 안전 예방조치/사용/문제 해결 요구는 SW-FW-RID-83에 따른다. IEC 62304 개발 절차와 ISO 14971 위험관리 적용은 본 문서와 소프트웨어 일반 요구사항의 규제 요구를 유지한다.",
+            "style": "TDC 본문 1",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 273,
+            "ordinal": 274,
+            "paraId": "4351C0E7",
+            "text": "",
+            "style": "TDC 본문 1",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 274,
+            "ordinal": 275,
+            "paraId": "326244CC",
+            "text": "",
+            "style": "TDC 본문 1",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 275,
+            "ordinal": 276,
+            "paraId": "7EF608A4",
+            "text": "소프트웨어 요구사항 검증",
+            "style": "TDC 제목 1",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 276,
+            "ordinal": 277,
+            "paraId": "3FB6872B",
+            "text": "4장에서 기술된 소프트웨어 요구사항이 다음의 질문들을 만족하는지 검증한다.",
+            "style": "TDC 본문 1",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 277,
+            "ordinal": 278,
+            "paraId": "586C65BF",
+            "text": "위험관리에 관련된 요구사항을 포함해 시스템 요구사항이 구현되었는가?",
+            "style": "TDC 본문 1",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 278,
+            "ordinal": 279,
+            "paraId": "51882428",
+            "text": "(Have system requirements been implemented, including requirements related to risk management?)",
+            "style": "TDC 본문 1",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 279,
+            "ordinal": 280,
+            "paraId": "6EDFEF37",
+            "text": "위험 통제와 기능/보안 요구사항은 소프트웨어 요구사항 사양서에서 해당 시스템 요구사항과 연결한다. 각 요구의 구현 및 검증 완료는 해당 시험 근거로 판단하며, 미확정 조건과 실제 시험이 남은 항목은 판정을 대기한다.",
+            "style": "TDC 본문 1",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 280,
+            "ordinal": 281,
+            "paraId": "1FE90545",
+            "text": "",
+            "style": "TDC 본문 1",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 281,
+            "ordinal": 282,
+            "paraId": "497BFE4F",
+            "text": "서로 상충하지 않는가?",
+            "style": "TDC 본문 1",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 282,
+            "ordinal": 283,
+            "paraId": "34D7F929",
+            "text": "(Do they not contradict one another?)",
+            "style": "TDC 본문 1",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 283,
+            "ordinal": 284,
+            "paraId": "5C7E7947",
+            "text": "무송수신 시간의 감시 대상, 인증 알고리즘/키 역할 및 인터페이스의 상충 조건은 소프트웨어 요구사항 사양서에 표시한다. 조건을 확인한 후 관련 설계와 시험 기준을 함께 조정하고 대조한다.",
+            "style": "TDC 본문 1",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 284,
+            "ordinal": 285,
+            "paraId": "7AFF7B65",
+            "text": "",
+            "style": "TDC 본문 1",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 285,
+            "ordinal": 286,
+            "paraId": "362DD365",
+            "text": "모호한 표현을 방지하는 용어로 표현되었는가?",
+            "style": "TDC 본문 1",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 286,
+            "ordinal": 287,
+            "paraId": "17138D5B",
+            "text": "(Are they expressed in terms that avoid ambiguity?)",
+            "style": "TDC 본문 1",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 287,
+            "ordinal": 288,
+            "paraId": "6422905B",
+            "text": "I2S 데이터 크기/표본율, 연결 제한 시간/횟수 및 인증 상태를 구체적으로 정의한다. 키 역할, 타이머 시작/갱신 범위와 시간 경계의 허용 조건 및 실제 검증 결과는 추가 확인이 필요하다.",
+            "style": "TDC 본문 1",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 288,
+            "ordinal": 289,
+            "paraId": "1D08EB05",
+            "text": "",
+            "style": "TDC 본문 1",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 289,
+            "ordinal": 290,
+            "paraId": "7A2CF13C",
+            "text": "시험 기준이 충족되는지 판단하기 위해 시험 기준과 시험 성능을 확립할 수 있는 용어로 언급되었는가?",
+            "style": "TDC 본문 1",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 290,
+            "ordinal": 291,
+            "paraId": "292F8382",
+            "text": "(Are they stated in terms that permit establishment of test criteria and performance of tests to determine whether the test criteria have been met? )",
+            "style": "TDC 본문 1",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 291,
+            "ordinal": 292,
+            "paraId": "1ED4DDAF",
+            "text": "I2S 조건과 인증 시간/횟수는 시험 기준과 같은 입력 조건에서 비교한다. 타이머 갱신/허용오차, 실제 보호 방식 및 오디오 송수신의 미확정 조건은 확인 전 시험 통과로 판정하지 않는다.",
+            "style": "TDC 본문 1",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 292,
+            "ordinal": 293,
+            "paraId": "674932AD",
+            "text": "",
+            "style": "TDC 본문 1",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 293,
+            "ordinal": 294,
+            "paraId": "7E2A0836",
+            "text": "유일하게 식별되는가?",
+            "style": "TDC 본문 1",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 294,
+            "ordinal": 295,
+            "paraId": "2D89F901",
+            "text": "(Are they uniquely identified?)",
+            "style": "TDC 본문 1",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 295,
+            "ordinal": 296,
+            "paraId": "212258BB",
+            "text": "각 요구는 SW-FW-RID-1~81 및 SW-FW-RID-83으로 유일하게 식별한다. Bluetooth Classic 송수신은 SW-FW-RID-69, 사용 설명서는 SW-FW-RID-83에 정의한다.",
+            "style": "TDC 본문 1",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 296,
+            "ordinal": 297,
+            "paraId": "3DB2CEB5",
+            "text": "",
+            "style": "TDC 본문 1",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 297,
+            "ordinal": 298,
+            "paraId": "0FB0C841",
+            "text": "시스템 요구사항이나 다른 발생원까지 추적할 수 있는가?",
+            "style": "TDC 본문 1",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 298,
+            "ordinal": 299,
+            "paraId": "0BFF1891",
+            "text": "(Are they traceable to SYSTEM requirements or other source?)",
+            "style": "TDC 본문 1",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 299,
+            "ordinal": 300,
+            "paraId": "545E39EF",
+            "text": "Bluetooth Classic 송수신 요구 SW-FW-RID-69는 SYS-RID-SP-FW-15에 연결한다. 사용 설명서 요구 SW-FW-RID-83은 경고/안전사항, 안전한 작동법 및 동작방법을 정의한 자체 소프트웨어 요구사항이다. 다른 요구의 시스템 및 위험 통제 추적은 소프트웨어 요구사항 사양서에서 확인한다.",
+            "style": "TDC 본문 1",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 300,
+            "ordinal": 301,
+            "paraId": "3DE155B3",
+            "text": "[E8300 보완] 제품 사용 설명서에서 경고/안전사항, 안전한 작동법 및 동작방법의 해당 절과 내용, 배포 대상 및 검토 결과를 확인한다.",
+            "style": "TDC 본문 1",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 301,
+            "ordinal": 302,
+            "paraId": "08A17FA2",
+            "text": "",
+            "style": "TDC 본문 1",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 302,
+            "ordinal": 303,
+            "paraId": "36AA27E5",
+            "text": "",
+            "style": "TDC 본문 1",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 303,
+            "ordinal": 304,
+            "paraId": "38C93EF4",
+            "text": "",
+            "style": "TDC 본문 1",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 304,
+            "ordinal": 305,
+            "paraId": "1B80EA6A",
+            "text": "",
+            "style": "TDC 본문 1",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 305,
+            "ordinal": 306,
+            "paraId": "3BAD9AD5",
+            "text": "소프트웨어 위험분석 재평가",
+            "style": "TDC 제목 1",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 306,
+            "ordinal": 307,
+            "paraId": "0E19AB4F",
+            "text": "오디오 송수신, 연결/인증, 키 관리 및 펌웨어 보호의 위험 통제 영향을 재평가하고 설계 입력/출력 및 시험 기준과 대조한다.",
+            "style": "TDC 본문 1",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 307,
+            "ordinal": 308,
+            "paraId": "09CDA595",
+            "text": "오디오 송수신, 연결/인증, 키 관리 및 펌웨어 보호에 대한 위험분석 재평가와 변경 영향의 검토 결과는 미확정이다.",
+            "style": "TDC 본문 1",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          }
+        ],
+        "saved_TDC_style_count": 59,
+        "styles_xml_byte_unchanged": true,
+        "all_past_pPrChange_rPrChange_byte_semantically_unchanged": true,
+        "paragraph_count_order_and_text_unchanged": true,
+        "numbering_change": "num7 existing levels0..2 glyph font/size/bold only; IDs, starts, numbering text and suffix preserved",
+        "blank_paragraphs_deleted": 24,
+        "blank_deletion_revisions": [
+          {
+            "i": 153,
+            "revision_id": "657"
+          },
+          {
+            "i": 156,
+            "revision_id": "658"
+          },
+          {
+            "i": 159,
+            "revision_id": "659"
+          },
+          {
+            "i": 187,
+            "revision_id": "660"
+          },
+          {
+            "i": 190,
+            "revision_id": "661"
+          },
+          {
+            "i": 193,
+            "revision_id": "662"
+          },
+          {
+            "i": 210,
+            "revision_id": "663"
+          },
+          {
+            "i": 251,
+            "revision_id": "664"
+          },
+          {
+            "i": 252,
+            "revision_id": "665"
+          },
+          {
+            "i": 253,
+            "revision_id": "666"
+          },
+          {
+            "i": 266,
+            "revision_id": "667"
+          },
+          {
+            "i": 267,
+            "revision_id": "668"
+          },
+          {
+            "i": 268,
+            "revision_id": "669"
+          },
+          {
+            "i": 273,
+            "revision_id": "670"
+          },
+          {
+            "i": 274,
+            "revision_id": "671"
+          },
+          {
+            "i": 280,
+            "revision_id": "672"
+          },
+          {
+            "i": 284,
+            "revision_id": "673"
+          },
+          {
+            "i": 288,
+            "revision_id": "674"
+          },
+          {
+            "i": 292,
+            "revision_id": "675"
+          },
+          {
+            "i": 296,
+            "revision_id": "676"
+          },
+          {
+            "i": 301,
+            "revision_id": "677"
+          },
+          {
+            "i": 302,
+            "revision_id": "678"
+          },
+          {
+            "i": 303,
+            "revision_id": "679"
+          },
+          {
+            "i": 304,
+            "revision_id": "680"
+          }
+        ],
+        "blank_policy": "Unneeded plain blank paragraph marks deleted with revisions; table-following normal paragraph and structural breaks retained.",
+        "tracking_scope": "Only current formatting properties adjusted; no new format revisions added. Existing snapshots and text revisions retained. Root owns tracked content replacements and final approval of this format scope."
+      },
+      "existing_revision_text_author_date_preserved": true,
+      "source_images_headers_footers_preserved": true,
+      "source_unchanged": true,
+      "split_run_whitespace_preserved": true,
+      "authored_candidate": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\SR-candidate.docx",
+      "authored_candidate_sha256": "C9AEF4A3361B5A16936DCAFC51413859C4FF51435A151DDBED337EB77C8E72DF",
+      "field_refresh_semantics": {
+        "accept": true,
+        "reject": true,
+        "body_revision_fingerprints": true,
+        "current_notice_text": true
+      }
+    },
+    {
+      "code": "SGR",
+      "source": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\02_설계 입력\\SW\\외부기\\[E8300-QCC] SGR-FW-TD24A 소프트웨어 일반요구사항.docx",
+      "source_sha256": "92AAC0E24260DE06967FCF483548CAF5C51F7FB96209C2A6B6DAF90CE389B922",
+      "backup": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\SGR-before.docx",
+      "output": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\02_설계 입력\\SW\\외부기\\[E8300-QCC] SGR-FW-TD24A 소프트웨어 일반요구사항_완료.docx",
+      "candidate": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\SGR-fields.docx",
+      "candidate_sha256": "83072C8AA513BC0C19D03BEFD14368AEB948EE742F58BDDA27414536259E66A0",
+      "new_text_revision_ids": [
+        "940",
+        "941",
+        "942",
+        "943"
+      ],
+      "note_changes": [
+        {
+          "index": 297,
+          "before": "[QCC 자료 입력] QCC의 실제 ADK/실행 환경, scheduler 구성과 사용 버전을 입력한다.",
+          "after": "QCC의 실제 ADK/실행 환경, scheduler 구성과 사용 버전은 미확정이다."
+        },
+        {
+          "index": 301,
+          "before": "[QCC 자료 입력] QCC 제조사 소프트웨어의 식별/버전, 사용 범위와 검토 근거를 입력한다.",
+          "after": "QCC 제조사 소프트웨어의 식별/버전, 사용 범위와 검토 근거는 미확정이다."
+        }
+      ],
+      "highlighted_paragraphs": [
+        {
+          "index": 145,
+          "text": "적용 범위에는 자극 처리와 장치 제어를 담당하는 E8300 펌웨어 및 Bluetooth 통신/인증과 E8300 전달 경로를 담당하는 QCC5181 펌웨어가 함께 포함된다.",
+          "color": "C00000",
+          "bold": true,
+          "size_pt": 10
+        },
+        {
+          "index": 284,
+          "text": "√ QCC5181은 Bluetooth Classic 수신 오디오를 I2S로 E8300에 전달하고, 전화 통화 시 DMIC2의 음성을 수음하여 통화 상대에게 송신한다. DMIC2는 E8300과 QCC에 함께 연결되며, 통화 상향 마이크 입력과 I2S 수신 오디오는 서로 다른 경로다. BLE의 리모콘/매핑 명령과 응답은 SPI로 E8300에 중계한다.",
+          "color": "C00000",
+          "bold": true,
+          "size_pt": 10
+        },
+        {
+          "index": 285,
+          "text": "√ 보호 대상 BLE 데이터 접근에는 페어링과 CRA 인증을 요구한다. 오디오 송신, 연결 제한 및 인증/키 관리 조건은 소프트웨어 요구사항 사양서에 따른다.",
+          "color": "C00000",
+          "bold": true,
+          "size_pt": 10
+        },
+        {
+          "index": 296,
+          "text": "QCC5181은 제조사 제공 Built-in library와 scheduler를 사용하는 펌웨어로 구성한다. QCC의 실행 환경은 E8300의 운영체제 사용 여부와 별도로 정의한다.",
+          "color": "C00000",
+          "bold": true,
+          "size_pt": 10
+        },
+        {
+          "index": 300,
+          "text": "QCC5181은 제조사 제공 Bluetooth stack과 Built-in library를 사용한다.",
+          "color": "C00000",
+          "bold": true,
+          "size_pt": 10
+        }
+      ],
+      "style": {
+        "code": "SGR",
+        "edited_paragraphs": [
+          {
+            "i": 136,
+            "ordinal": 137,
+            "paraId": null,
+            "text": "서론",
+            "style": "TDC 제목 1",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 137,
+            "ordinal": 138,
+            "paraId": null,
+            "text": "개요",
+            "style": "TDC 제목 2",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 138,
+            "ordinal": 139,
+            "paraId": null,
+            "text": "본 문서는 TD24A-A-EXT 제품의 소프트웨어에 대하여 심각도를 분류하고 소프트웨어의 일반적인 요구사항을 정의한다.",
+            "style": "TDC 본문 2",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 139,
+            "ordinal": 140,
+            "paraId": null,
+            "text": "목적",
+            "style": "TDC 제목 2",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 140,
+            "ordinal": 141,
+            "paraId": null,
+            "text": "소프트웨어의 심각도를 분류함으로써, 이 후 소프트웨어 개발을 진행함에 있어 분류된 심각도에 적합한 절차를 준수함으로써 안전한하고 일관성 및 정확성을 보장하는 소프트웨어가 개발되는 것을 목적으로 한다.",
+            "style": "TDC 본문 2",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 141,
+            "ordinal": 142,
+            "paraId": null,
+            "text": "대상",
+            "style": "TDC 제목 2",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 142,
+            "ordinal": 143,
+            "paraId": null,
+            "text": "TD24A-A-EXT 펌웨어 개발 프로젝트에 참여하는 모든 구성원은 이 문서를 참고하도록 한다.",
+            "style": "TDC 본문 2",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 143,
+            "ordinal": 144,
+            "paraId": null,
+            "text": "적용 범위",
+            "style": "TDC 제목 2",
+            "heading_restored": "TDC 제목 2",
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 144,
+            "ordinal": 145,
+            "paraId": null,
+            "text": "본 문서는 인공 달팽이관 외부장치(TD24A-A-EXT) 펌웨어에 적용된다.",
+            "style": "TDC 본문 2",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 145,
+            "ordinal": 146,
+            "paraId": null,
+            "text": "적용 범위에는 자극 처리와 장치 제어를 담당하는 E8300 펌웨어 및 Bluetooth 통신/인증과 E8300 전달 경로를 담당하는 QCC5181 펌웨어가 함께 포함된다.",
+            "style": "TDC 본문 2",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 146,
+            "ordinal": 147,
+            "paraId": null,
+            "text": "관련문서",
+            "style": "TDC 제목 2",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 147,
+            "ordinal": 148,
+            "paraId": null,
+            "text": "프로젝트",
+            "style": "TDC 제목 3",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 148,
+            "ordinal": 149,
+            "paraId": null,
+            "text": "No",
+            "style": "TDC 표 머리행",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 149,
+            "ordinal": 150,
+            "paraId": null,
+            "text": "문서번호",
+            "style": "TDC 표 머리행",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 150,
+            "ordinal": 151,
+            "paraId": null,
+            "text": "문서 제목",
+            "style": "TDC 표 머리행",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 151,
+            "ordinal": 152,
+            "paraId": null,
+            "text": "1",
+            "style": "TDC 표 본문",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 152,
+            "ordinal": 153,
+            "paraId": null,
+            "text": "SDP-FW-TD24A",
+            "style": "TDC 표 본문",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 153,
+            "ordinal": 154,
+            "paraId": null,
+            "text": "소프트웨어 개발 계획서",
+            "style": "TDC 표 본문",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 154,
+            "ordinal": 155,
+            "paraId": null,
+            "text": "",
+            "style": "TDC 본문 3",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 155,
+            "ordinal": 156,
+            "paraId": null,
+            "text": "표준 및 규제",
+            "style": "TDC 제목 3",
+            "heading_restored": "TDC 제목 3",
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 156,
+            "ordinal": 157,
+            "paraId": null,
+            "text": "No",
+            "style": "TDC 표 머리행",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 157,
+            "ordinal": 158,
+            "paraId": null,
+            "text": "문서번호",
+            "style": "TDC 표 머리행",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 158,
+            "ordinal": 159,
+            "paraId": null,
+            "text": "문서 제목",
+            "style": "TDC 표 머리행",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 159,
+            "ordinal": 160,
+            "paraId": null,
+            "text": "1",
+            "style": "TDC 표 본문",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 160,
+            "ordinal": 161,
+            "paraId": null,
+            "text": "IEC 62304",
+            "style": "TDC 표 본문",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 161,
+            "ordinal": 162,
+            "paraId": null,
+            "text": "Medical device software – Software life cycle processes",
+            "style": "TDC 표 본문",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 162,
+            "ordinal": 163,
+            "paraId": null,
+            "text": "2",
+            "style": "TDC 표 본문",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 163,
+            "ordinal": 164,
+            "paraId": null,
+            "text": "ISO 14971",
+            "style": "TDC 표 본문",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 164,
+            "ordinal": 165,
+            "paraId": null,
+            "text": "Medical devices – Application of risk management to medical",
+            "style": "TDC 표 본문",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 165,
+            "ordinal": 166,
+            "paraId": null,
+            "text": "",
+            "style": "TDC 본문 3",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 166,
+            "ordinal": 167,
+            "paraId": null,
+            "text": "기기 설명(Device Description)",
+            "style": "TDC 제목 1",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 167,
+            "ordinal": 168,
+            "paraId": null,
+            "text": "사용 목적(Intended Use)",
+            "style": "TDC 제목 2",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 168,
+            "ordinal": 169,
+            "paraId": null,
+            "text": "중증 청각장애 환자의 청각을 회복할 목적으로 사용하는 기기",
+            "style": "TDC 본문 2",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 169,
+            "ordinal": 170,
+            "paraId": null,
+            "text": "",
+            "style": "TDC 본문 2",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 170,
+            "ordinal": 171,
+            "paraId": null,
+            "text": "인공달팽이관 시스템 구성도",
+            "style": "TDC 제목 2",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 171,
+            "ordinal": 172,
+            "paraId": null,
+            "text": "인공달팽이관 시스템은 사용자가 몸에 착용하는 인공 달팽이관 외부장치 시스템과 사용자의 몸속에 이식되는 인공달팽이관 내부장치 시스템으로 구성되며, 두 시스템은 무선으로 연결된다.",
+            "style": "TDC 본문 2",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 172,
+            "ordinal": 173,
+            "paraId": null,
+            "text": "추가적으로 인공달팽이과 외부장치를 제어하는 리모콘 앱과, 인공달팽이관 장치 시스템의 자극파라를 설정하는 매핑 앱은 블루투스 통신을 사용하여 인공달팽이관 외부장치와 무선으로 연결된다..",
+            "style": "TDC 본문 2",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 174,
+            "ordinal": 175,
+            "paraId": null,
+            "text": "< 그림 1. 인공달팽이관 시스템 구성도>",
+            "style": "TDC 그림 캡션 2",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 175,
+            "ordinal": 176,
+            "paraId": null,
+            "text": "",
+            "style": "TDC 본문 2",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 177,
+            "ordinal": 178,
+            "paraId": null,
+            "text": "<그림 2. 인공달팽이관 시스템, 통신 구성도>",
+            "style": "TDC 그림 캡션 2",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 178,
+            "ordinal": 179,
+            "paraId": null,
+            "text": "",
+            "style": "TDC 본문 2",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 179,
+            "ordinal": 180,
+            "paraId": null,
+            "text": "인공달팽이관 외부장치 시스템 ",
+            "style": "TDC 본문 2",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 180,
+            "ordinal": 181,
+            "paraId": null,
+            "text": "- 인공달팽이관 외부장치",
+            "style": "TDC 본문 2",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 181,
+            "ordinal": 182,
+            "paraId": null,
+            "text": "사용자 주변의 사운드 신호를 획득하여 전기자극 파라미터로 변환하고 이를 근접 무선 통신으로 내부기 시스템에 전송한다.",
+            "style": "TDC 본문 2",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 182,
+            "ordinal": 183,
+            "paraId": null,
+            "text": "- 리모콘 앱 ",
+            "style": "TDC 본문 2",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 183,
+            "ordinal": 184,
+            "paraId": null,
+            "text": "스마트폰에서 구동되는 앱으로 사용자가 인공달팽이관 외부장치의 상태를 확인하고 제어하는데 사용된다.",
+            "style": "TDC 본문 2",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 184,
+            "ordinal": 185,
+            "paraId": null,
+            "text": "스마트폰과 인공달팽이관 외부장치는 블루투스를 사용하여 통신한다.",
+            "style": "TDC 본문 2",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 185,
+            "ordinal": 186,
+            "paraId": null,
+            "text": "- 매핑 앱 ",
+            "style": "TDC 본문 2",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 186,
+            "ordinal": 187,
+            "paraId": null,
+            "text": "태블릿 PC에서 구동되는 앱으로 청각사가 인공달팽이관 내/외부 장치를 설정하는데 사용된다. ",
+            "style": "TDC 본문 2",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 187,
+            "ordinal": 188,
+            "paraId": null,
+            "text": "태블릿 PC와 인공달팽이관 외부장치는 블루투스를 사용하여 통신한다.",
+            "style": "TDC 본문 2",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 188,
+            "ordinal": 189,
+            "paraId": null,
+            "text": "인공 달팽이관 내부장치 시스템 ",
+            "style": "TDC 본문 2",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 189,
+            "ordinal": 190,
+            "paraId": null,
+            "text": "인공달팽이관 외부장치에서 수신된 자극 파라미터를 사용하여 전기 자극 파형을 출력하여 청각세포에 전달한다.",
+            "style": "TDC 본문 2",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 190,
+            "ordinal": 191,
+            "paraId": null,
+            "text": "소프트웨어 시스템 분류(Software System Classification)",
+            "style": "TDC 제목 1",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 191,
+            "ordinal": 192,
+            "paraId": null,
+            "text": "심각도 정의(definition of LEVEL Of CONCERN)",
+            "style": "TDC 제목 2",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 192,
+            "ordinal": 193,
+            "paraId": null,
+            "text": "일반적으로 의료기기의 소프트웨어의 심각도의 정의는 다음과 같다.",
+            "style": "TDC 본문 2",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 193,
+            "ordinal": 194,
+            "paraId": null,
+            "text": "등급(Level)",
+            "style": "TDC 표 머리행",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 194,
+            "ordinal": 195,
+            "paraId": null,
+            "text": "설명(Description)",
+            "style": "TDC 표 머리행",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 195,
+            "ordinal": 196,
+            "paraId": null,
+            "text": "상",
+            "style": "TDC 표 항목",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 196,
+            "ordinal": 197,
+            "paraId": null,
+            "text": "Class C or Major",
+            "style": "TDC 표 항목",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 197,
+            "ordinal": 198,
+            "paraId": null,
+            "text": "고장이나 잠재적인 결함이 직접적인 원인으로 환자나 조작자에게 사망 또는 중상을 입힌 경우, 또는 고장이나 잠재적인 결함이 간접적 원인으로 작용하여 부정확하거나 지연된 정보로 인하여 환자나 조작자에게 사망이나 중상을 입힌 경우",
+            "style": "TDC 표 설명",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 198,
+            "ordinal": 199,
+            "paraId": null,
+            "text": "When a patient or operator is fatally or seriously injured due to the system failure or potential defects as a direct cause, or ",
+            "style": "TDC 표 설명",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 199,
+            "ordinal": 200,
+            "paraId": null,
+            "text": "a patient or operator is fatally or seriously injured due to the inaccurate or delayed information indirectly caused by system failure or potential defects.",
+            "style": "TDC 표 설명",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 200,
+            "ordinal": 201,
+            "paraId": null,
+            "text": "중",
+            "style": "TDC 표 항목",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 201,
+            "ordinal": 202,
+            "paraId": null,
+            "text": "Class B or Moderate",
+            "style": "TDC 표 항목",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 202,
+            "ordinal": 203,
+            "paraId": null,
+            "text": "고장이나 잠재적인 설계 결함이 직접적 원인이 되어 환자나 조작자에게 경상을 입힌 경우, 또는 고장 또는 잠재적 결함이 간접적인 원인으로 작용하여 부정확하거나 지연된 정보로 환자나 조작자에게 경상을 입힌 경우",
+            "style": "TDC 표 설명",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 203,
+            "ordinal": 204,
+            "paraId": null,
+            "text": "When a patient or operator has minor injuries due to the system failure or potential design defects as a direct cause, or a patient or operator has minor injuries due to the inaccu",
+            "style": "TDC 표 설명",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 204,
+            "ordinal": 205,
+            "paraId": null,
+            "text": "하",
+            "style": "TDC 표 항목",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 205,
+            "ordinal": 206,
+            "paraId": null,
+            "text": "Class A or Minor",
+            "style": "TDC 표 항목",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 206,
+            "ordinal": 207,
+            "paraId": null,
+            "text": "고장, 잠재적인 설계 결함으로 환자나 조작자에게 어떤 부상이나 신체적 피해가 발생할 가능성이 없는 경우.",
+            "style": "TDC 표 설명",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 207,
+            "ordinal": 208,
+            "paraId": null,
+            "text": "When there is no possibility to cause any injuries or physical damages to a patient or operator due to the system failure or potential defects.",
+            "style": "TDC 표 설명",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 208,
+            "ordinal": 209,
+            "paraId": null,
+            "text": "",
+            "style": "TDC 본문 2",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 209,
+            "ordinal": 210,
+            "paraId": null,
+            "text": "소프트웨어 등급 분류 절차",
+            "style": "TDC 제목 2",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 210,
+            "ordinal": 211,
+            "paraId": null,
+            "text": "등급",
+            "style": "TDC 표 머리행",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 211,
+            "ordinal": 212,
+            "paraId": null,
+            "text": "Level",
+            "style": "TDC 표 머리행",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 212,
+            "ordinal": 213,
+            "paraId": null,
+            "text": "질문",
+            "style": "TDC 표 머리행",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 213,
+            "ordinal": 214,
+            "paraId": null,
+            "text": "Question",
+            "style": "TDC 표 머리행",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 214,
+            "ordinal": 215,
+            "paraId": null,
+            "text": "답변",
+            "style": "TDC 표 머리행",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 215,
+            "ordinal": 216,
+            "paraId": null,
+            "text": "Answer",
+            "style": "TDC 표 머리행",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 216,
+            "ordinal": 217,
+            "paraId": null,
+            "text": "상",
+            "style": "TDC 표 본문",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 217,
+            "ordinal": 218,
+            "paraId": null,
+            "text": "Class C or Major",
+            "style": "TDC 표 본문",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 218,
+            "ordinal": 219,
+            "paraId": null,
+            "text": "1. S/W Device가 혈액 처리 S/W처럼 중요한가?",
+            "style": "TDC 표 본문",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 219,
+            "ordinal": 220,
+            "paraId": null,
+            "text": "Is the device important as much as Blood Processing S/W?",
+            "style": "TDC 표 본문",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 220,
+            "ordinal": 221,
+            "paraId": null,
+            "text": "No",
+            "style": "TDC 표 본문",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 221,
+            "ordinal": 222,
+            "paraId": null,
+            "text": "",
+            "style": "TDC 표 본문",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 222,
+            "ordinal": 223,
+            "paraId": null,
+            "text": "2. S/W Device가 의약품이나 생물제제와 조합하여 사용되는가?",
+            "style": "TDC 표 본문",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 223,
+            "ordinal": 224,
+            "paraId": null,
+            "text": "Is the device used in combination with medicines or biological preparations?",
+            "style": "TDC 표 본문",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 224,
+            "ordinal": 225,
+            "paraId": null,
+            "text": "No",
+            "style": "TDC 표 본문",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 225,
+            "ordinal": 226,
+            "paraId": null,
+            "text": "",
+            "style": "TDC 표 본문",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 226,
+            "ordinal": 227,
+            "paraId": null,
+            "text": "3. S/W Device가 Major Concern의 Accessory인가?",
+            "style": "TDC 표 본문",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 227,
+            "ordinal": 228,
+            "paraId": null,
+            "text": "Is the device an Accessory of Class C?",
+            "style": "TDC 표 본문",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 228,
+            "ordinal": 229,
+            "paraId": null,
+            "text": "Yes",
+            "style": "TDC 표 본문",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 229,
+            "ordinal": 230,
+            "paraId": null,
+            "text": "",
+            "style": "TDC 표 본문",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 230,
+            "ordinal": 231,
+            "paraId": null,
+            "text": "4. 경감에 앞서 S/W의 결함이 환자나 사용자에게 죽음 또는 심각한 상해를 유발하는가?",
+            "style": "TDC 표 본문",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 231,
+            "ordinal": 232,
+            "paraId": null,
+            "text": "Before alleviating, do the S/W defects cause fatal or major injuries to patients or users?",
+            "style": "TDC 표 본문",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 232,
+            "ordinal": 233,
+            "paraId": null,
+            "text": "No",
+            "style": "TDC 표 본문",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 233,
+            "ordinal": 234,
+            "paraId": null,
+            "text": "",
+            "style": "TDC 표 본문",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 234,
+            "ordinal": 235,
+            "paraId": null,
+            "text": "4.1. 생명을 지원하거나 유지하는 기기를 제어하는가?",
+            "style": "TDC 표 본문",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 235,
+            "ordinal": 236,
+            "paraId": null,
+            "text": "Does it control the life-supporting or maintaining device?",
+            "style": "TDC 표 본문",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 236,
+            "ordinal": 237,
+            "paraId": null,
+            "text": "No",
+            "style": "TDC 표 본문",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 237,
+            "ordinal": 238,
+            "paraId": null,
+            "text": "",
+            "style": "TDC 표 본문",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 238,
+            "ordinal": 239,
+            "paraId": null,
+            "text": "4.2 방사선치료시스템, 제세동기 및 절제발생기처럼 사망이나 중상을 유발할 수 있는 잠재적으로 유해한 에너지의 전달을 제어하는가?",
+            "style": "TDC 표 본문",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 239,
+            "ordinal": 240,
+            "paraId": null,
+            "text": "Like Radiotherapy systems, Defibrillators and Ablation generators, does it control the transfer of potentially harmful energy that may cause fatal or major injuries?",
+            "style": "TDC 표 본문",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 240,
+            "ordinal": 241,
+            "paraId": null,
+            "text": "No",
+            "style": "TDC 표 본문",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 241,
+            "ordinal": 242,
+            "paraId": null,
+            "text": "",
+            "style": "TDC 표 본문",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 242,
+            "ordinal": 243,
+            "paraId": null,
+            "text": "4.3 오류나 오작동이 발생할 경우 사망이나 중상을 유발할 수 있는 치료나 요법을 제어하는가?",
+            "style": "TDC 표 본문",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 243,
+            "ordinal": 244,
+            "paraId": null,
+            "text": "Does it control the treatment or therapy that may cause fatal or major injuries in case of an error or malfunction?",
+            "style": "TDC 표 본문",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 244,
+            "ordinal": 245,
+            "paraId": null,
+            "text": "No",
+            "style": "TDC 표 본문",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 245,
+            "ordinal": 246,
+            "paraId": null,
+            "text": "",
+            "style": "TDC 표 본문",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 246,
+            "ordinal": 247,
+            "paraId": null,
+            "text": "4.4 잘못 적용할 경우 중상이나 사망을 유발할 수 있는 치료나 요법의 결정을 위해 진단정보를 제공하는가?",
+            "style": "TDC 표 본문",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 247,
+            "ordinal": 248,
+            "paraId": null,
+            "text": "Does it provide information about diagnosis in order to decide a treatment or therapy that may cause fatal or major injuries when they are applied wrong?",
+            "style": "TDC 표 본문",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 248,
+            "ordinal": 249,
+            "paraId": null,
+            "text": "No",
+            "style": "TDC 표 본문",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 249,
+            "ordinal": 250,
+            "paraId": null,
+            "text": "",
+            "style": "TDC 표 본문",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 250,
+            "ordinal": 251,
+            "paraId": null,
+            "text": "4.5 의학적 시술이 필요한 생명위급상황에서 생명유지 신호의 감시 및 경고 기능을 수행하는가?",
+            "style": "TDC 표 본문",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 251,
+            "ordinal": 252,
+            "paraId": null,
+            "text": "Does it perform monitoring of bio signals and alerting in the life-threatening emergency when a medical procedure is in need?",
+            "style": "TDC 표 본문",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 252,
+            "ordinal": 253,
+            "paraId": null,
+            "text": "No",
+            "style": "TDC 표 본문",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 253,
+            "ordinal": 254,
+            "paraId": null,
+            "text": "중",
+            "style": "TDC 표 본문",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 254,
+            "ordinal": 255,
+            "paraId": null,
+            "text": "Class B or Moderate",
+            "style": "TDC 표 본문",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 255,
+            "ordinal": 256,
+            "paraId": null,
+            "text": "1. S/W Device가 Moderate Concern의 Accessory인가?",
+            "style": "TDC 표 본문",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 256,
+            "ordinal": 257,
+            "paraId": null,
+            "text": "Is S/W Device an Accessory of Class B?",
+            "style": "TDC 표 본문",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 257,
+            "ordinal": 258,
+            "paraId": null,
+            "text": "No",
+            "style": "TDC 표 본문",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 258,
+            "ordinal": 259,
+            "paraId": null,
+            "text": "",
+            "style": "TDC 표 본문",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 259,
+            "ordinal": 260,
+            "paraId": null,
+            "text": "2. 경감에 앞서, S/W 결함이 환자 또는 사용자에게 심각하지 않은 상해를 유발하는가?",
+            "style": "TDC 표 본문",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 260,
+            "ordinal": 261,
+            "paraId": null,
+            "text": " Before alleviating, do the S/W defects cause minor injuries to patients or users?",
+            "style": "TDC 표 본문",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 261,
+            "ordinal": 262,
+            "paraId": null,
+            "text": "No",
+            "style": "TDC 표 본문",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 262,
+            "ordinal": 263,
+            "paraId": null,
+            "text": "",
+            "style": "TDC 표 본문",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 263,
+            "ordinal": 264,
+            "paraId": null,
+            "text": "3. 고장 또는 잠재적인 설계결함이 잘못된 진단 또는 적절한 의료행위의 제공에 지연을 줄 수 있는가?",
+            "style": "TDC 표 본문",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 264,
+            "ordinal": 265,
+            "paraId": null,
+            "text": "Can the system failure or potential design defects give an incorrect diagnosis or cause the delay in the provision of proper medical care?",
+            "style": "TDC 표 본문",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 265,
+            "ordinal": 266,
+            "paraId": null,
+            "text": "No",
+            "style": "TDC 표 본문",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 266,
+            "ordinal": 267,
+            "paraId": null,
+            "text": "하",
+            "style": "TDC 표 본문",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 267,
+            "ordinal": 268,
+            "paraId": null,
+            "text": "Class A or Minor",
+            "style": "TDC 표 본문",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 268,
+            "ordinal": 269,
+            "paraId": null,
+            "text": "상, 중의 질문에 하나라도 Yes 답변이 있는가?",
+            "style": "TDC 표 본문",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 269,
+            "ordinal": 270,
+            "paraId": null,
+            "text": "Are there Yes answers to the questions in Class C, B?",
+            "style": "TDC 표 본문",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 270,
+            "ordinal": 271,
+            "paraId": null,
+            "text": "Yes",
+            "style": "TDC 표 본문",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 271,
+            "ordinal": 272,
+            "paraId": null,
+            "text": "",
+            "style": "TDC 본문 2",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 272,
+            "ordinal": 273,
+            "paraId": null,
+            "text": "본 제품 소프트웨어 시스템의 심각도 등급",
+            "style": "TDC 제목 2",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 273,
+            "ordinal": 274,
+            "paraId": null,
+            "text": "3.2절의 분류절차에 따라 사운드 처리기 펌웨어의 등급은 상(Class C or Major)로 분류한다.",
+            "style": "TDC 본문 2",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 274,
+            "ordinal": 275,
+            "paraId": null,
+            "text": "",
+            "style": "TDC 본문 2",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 275,
+            "ordinal": 276,
+            "paraId": null,
+            "text": "소프트웨어 항목 심각도 분류(Software Item Classification)",
+            "style": "TDC 제목 1",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 276,
+            "ordinal": 277,
+            "paraId": null,
+            "text": "소프트웨어 시스템이 소프트웨어 항목으로 나누어지고 소프트웨어 항목이 다시 소프트웨어 항목들로 나누어질 때, 소프트웨어 항목들은 소프트웨어 시스템의 심각도를 상속하여 같은 동일한 등급으로 취급할 것이다.",
+            "style": "TDC 본문 1",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 277,
+            "ordinal": 278,
+            "paraId": null,
+            "text": "따라서 사운드 처리기의 펌웨어 소프트웨어 항목들 전부는 상(Class C or Major)으로 분류한다. ",
+            "style": "TDC 본문 1",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 278,
+            "ordinal": 279,
+            "paraId": null,
+            "text": "",
+            "style": "TDC 본문 1",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 279,
+            "ordinal": 280,
+            "paraId": null,
+            "text": "소프트웨어 설명",
+            "style": "TDC 제목 1",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 280,
+            "ordinal": 281,
+            "paraId": null,
+            "text": "소프트웨어 특징",
+            "style": "TDC 제목 2",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 281,
+            "ordinal": 282,
+            "paraId": null,
+            "text": "소프트웨어 역할",
+            "style": "TDC 제목 3",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 282,
+            "ordinal": 283,
+            "paraId": null,
+            "text": "√ 사운드처리기에서 획득한 오디오 신호를 분석하여 전기 자극 펄스 파라미터로 변환하여 내부 자극장치에 전달한다.",
+            "style": "TDC 본문 3",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 283,
+            "ordinal": 284,
+            "paraId": null,
+            "text": "√ 리모콘 프로그램과 연동되어 사용자의 제어를 수행한다.",
+            "style": "TDC 본문 3",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 284,
+            "ordinal": 285,
+            "paraId": null,
+            "text": "√ QCC5181은 Bluetooth Classic 수신 오디오를 I2S로 E8300에 전달하고, 전화 통화 시 DMIC2의 음성을 수음하여 통화 상대에게 송신한다. DMIC2는 E8300과 QCC에 함께 연결되며, 통화 상향 마이크 입력과 I2S 수신 오디오는 서로 다른 경로다. BLE의 리모콘/매핑 명령과 응답은 SP",
+            "style": "TDC 본문 3",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 285,
+            "ordinal": 286,
+            "paraId": null,
+            "text": "√ 보호 대상 BLE 데이터 접근에는 페어링과 CRA 인증을 요구한다. 오디오 송신, 연결 제한 및 인증/키 관리 조건은 소프트웨어 요구사항 사양서에 따른다.",
+            "style": "TDC 본문 3",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 286,
+            "ordinal": 287,
+            "paraId": null,
+            "text": "소프트웨어와 사용자간 인터페이스",
+            "style": "TDC 제목 3",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 287,
+            "ordinal": 288,
+            "paraId": null,
+            "text": "사용자는 사운드처리기를 터치하여 사운드처리기를 제어하고 LED를 확인하여 사운드 처리기의 상태를 확인한다.",
+            "style": "TDC 본문 3",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 288,
+            "ordinal": 289,
+            "paraId": null,
+            "text": "사용자에 의해 조정되는 소프트웨어 특징",
+            "style": "TDC 제목 2",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 289,
+            "ordinal": 290,
+            "paraId": null,
+            "text": "사용자는 사운드 처리기의 UI를 사용하여 전원을 켜고/끌 수 있으며, 리모콘 앱을 사용하여 맵 프로그램, 자극 볼륨, 마이크 감도, LED 알림 등을 조정할 수 있다.",
+            "style": "TDC 본문 2",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 290,
+            "ordinal": 291,
+            "paraId": null,
+            "text": "소프트웨어 동작 환경",
+            "style": "TDC 제목 2",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 291,
+            "ordinal": 292,
+            "paraId": null,
+            "text": "프로그램 언어",
+            "style": "TDC 제목 3",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 292,
+            "ordinal": 293,
+            "paraId": null,
+            "text": "C language, Assembly language.",
+            "style": "TDC 본문 3",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 293,
+            "ordinal": 294,
+            "paraId": null,
+            "text": "운영 체재",
+            "style": "TDC 제목 3",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 294,
+            "ordinal": 295,
+            "paraId": null,
+            "text": "",
+            "style": "TDC 본문 3",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 295,
+            "ordinal": 296,
+            "paraId": null,
+            "text": "E8300 펌웨어는 별도 운영체제 없이 동작한다.",
+            "style": "TDC 본문 3",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 296,
+            "ordinal": 297,
+            "paraId": null,
+            "text": "QCC5181은 제조사 제공 Built-in library와 scheduler를 사용하는 펌웨어로 구성한다. QCC의 실행 환경은 E8300의 운영체제 사용 여부와 별도로 정의한다.",
+            "style": "TDC 본문 3",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 297,
+            "ordinal": 298,
+            "paraId": null,
+            "text": "QCC의 실제 ADK/실행 환경, scheduler 구성과 사용 버전은 미확정이다.",
+            "style": "TDC 본문 3",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 298,
+            "ordinal": 299,
+            "paraId": null,
+            "text": "기성용 소프트웨어 사용",
+            "style": "TDC 제목 3",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 299,
+            "ordinal": 300,
+            "paraId": null,
+            "text": "onsemi E8300 SDK와 제조사 제공 라이브러리를 사용한다.",
+            "style": "TDC 본문 3",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 300,
+            "ordinal": 301,
+            "paraId": null,
+            "text": "QCC5181은 제조사 제공 Bluetooth stack과 Built-in library를 사용한다.",
+            "style": "TDC 본문 3",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          },
+          {
+            "i": 301,
+            "ordinal": 302,
+            "paraId": null,
+            "text": "QCC 제조사 소프트웨어의 식별/버전, 사용 범위와 검토 근거는 미확정이다.",
+            "style": "TDC 본문 3",
+            "heading_restored": null,
+            "format_mode": "current properties updated; existing format/insertion histories preserved; no nested new format revision"
+          }
+        ],
+        "saved_TDC_style_count": 59,
+        "styles_xml_byte_unchanged": true,
+        "all_past_pPrChange_rPrChange_byte_semantically_unchanged": true,
+        "paragraph_count_order_and_text_unchanged": true,
+        "numbering_change": "num7 existing levels0..2 glyph font/size/bold only; IDs, starts, numbering text and suffix preserved",
+        "blank_paragraphs_deleted": 5,
+        "blank_deletion_revisions": [
+          {
+            "i": 169,
+            "revision_id": "944"
+          },
+          {
+            "i": 175,
+            "revision_id": "945"
+          },
+          {
+            "i": 178,
+            "revision_id": "946"
+          },
+          {
+            "i": 274,
+            "revision_id": "947"
+          },
+          {
+            "i": 278,
+            "revision_id": "948"
+          }
+        ],
+        "blank_policy": "Unneeded plain blank paragraph marks deleted with revisions; table-following normal paragraph and structural breaks retained.",
+        "tracking_scope": "Only current formatting properties adjusted; no new format revisions added. Existing snapshots and text revisions retained. Root owns tracked content replacements and final approval of this format scope."
+      },
+      "existing_revision_text_author_date_preserved": true,
+      "source_images_headers_footers_preserved": true,
+      "source_unchanged": true,
+      "authored_candidate": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\SGR-candidate.docx",
+      "authored_candidate_sha256": "B71A477011BF31D2A4B6BA427E271CCCB77454BF5E9BBA5429E7FD1405384A2A",
+      "field_refresh_semantics": {
+        "accept": true,
+        "reject": true,
+        "body_revision_fingerprints": true,
+        "current_notice_text": true
+      }
+    }
+  ]
+}

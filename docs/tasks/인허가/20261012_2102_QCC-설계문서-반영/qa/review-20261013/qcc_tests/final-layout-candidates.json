@@ -1,0 +1,1162 @@
+{
+  "files": [
+    {
+      "key": "SUVC",
+      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SUVC-FW-TD24A 소프트웨어 유닛 검증 기준서.xlsx",
+      "candidate": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\final-layout-candidate\\[E8300-QCC] SUVC-FW-TD24A 소프트웨어 유닛 검증 기준서.xlsx",
+      "sha256_before": "3ac014bfec9a87ffa92a12dfa01497a48fcff5e94c792289916e71cfa1cc257b",
+      "sha256_candidate": "10a7f9f1167794e8b51fe899dc319fc43a441fd1cc1bf3e2aa50ead2b1ad76ed",
+      "height_changes": {
+        "333": {
+          "before": 16.5,
+          "after": 180
+        },
+        "334": {
+          "before": 16.5,
+          "after": 180
+        }
+      },
+      "alignment_changes": [],
+      "text_changes": {},
+      "breaks_before": [
+        {
+          "id": "1726",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "1728",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "1732",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "1733",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "1735",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "1736",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "1737",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "1739",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "1743",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "1745",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "1750",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "1752",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "1754",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "1759",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "1762",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        }
+      ],
+      "breaks_after": [
+        {
+          "id": "66",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "71",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "100",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "148",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "284",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "308",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "332",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "577",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "649",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "788",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "808",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "914",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "1002",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "1009",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "1015",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "1039",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "1057",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "1147",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "1158",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "1174",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "1307",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "1643",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "1685",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "1726",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "1728",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "1732",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "1733",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "1735",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "1736",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "1737",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "1739",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "1743",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "1745",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "1750",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "1752",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "1754",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "1759",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "1762",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        }
+      ],
+      "all_other_values_formulas_and_package_members_unchanged": true,
+      "merge_structure_unchanged": true,
+      "native_display": "미실행: final candidate print requires root native engine"
+    },
+    {
+      "key": "SUVR",
+      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\04_설계 검증\\SW\\외부기\\[E8300-QCC] SUVR-FW-TD24A 소프트웨어 유닛 검증 보고서.xlsx",
+      "candidate": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\final-layout-candidate\\[E8300-QCC] SUVR-FW-TD24A 소프트웨어 유닛 검증 보고서.xlsx",
+      "sha256_before": "f4dbae9dbf3cad87f66c28c85846d289c6160378847b9a8152a39a6457a898f6",
+      "sha256_candidate": "f49db7d01632e6d3423f7815304fe85807c233663928e576fe7448f9b8dac046",
+      "height_changes": {
+        "333": {
+          "before": 16.5,
+          "after": 180
+        },
+        "334": {
+          "before": 16.5,
+          "after": 180
+        }
+      },
+      "alignment_changes": [],
+      "text_changes": {},
+      "breaks_before": [
+        {
+          "id": "1726",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "1728",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "1732",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "1733",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "1735",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "1736",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "1737",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "1739",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "1743",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "1745",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "1750",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "1752",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "1754",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "1759",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "1762",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        }
+      ],
+      "breaks_after": [
+        {
+          "id": "66",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "71",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "100",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "148",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "284",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "308",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "332",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "577",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "649",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "788",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "808",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "914",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "1002",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "1009",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "1015",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "1039",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "1057",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "1147",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "1158",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "1174",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "1307",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "1643",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "1685",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "1726",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "1728",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "1732",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "1733",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "1735",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "1736",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "1737",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "1739",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "1743",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "1745",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "1750",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "1752",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "1754",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "1759",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "1762",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        }
+      ],
+      "all_other_values_formulas_and_package_members_unchanged": true,
+      "merge_structure_unchanged": true,
+      "native_display": "미실행: final candidate print requires root native engine"
+    },
+    {
+      "key": "SITC",
+      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SITC-FW-TD24A 소프트웨어 통합시험 기준서.xlsx",
+      "candidate": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\final-layout-candidate\\[E8300-QCC] SITC-FW-TD24A 소프트웨어 통합시험 기준서.xlsx",
+      "sha256_before": "8f714076c293afbe9a3b2720fdb245b70a067fc79d6ccfbf70c4c487a116b256",
+      "sha256_candidate": "9cf0d7df2f6255f67230b857a85a1a82dfcc9e802f0eaf3f172643c9daf5a1ca",
+      "height_changes": {
+        "141": {
+          "before": 270.0,
+          "after": 377
+        }
+      },
+      "alignment_changes": [],
+      "text_changes": {
+        "F141": {
+          "before": "\nSU-ID-QCC-008\nSW-FW-RID-15/16/69\n",
+          "display": "\n[-] SU-ID-QCC-008\n[-] SW-FW-RID-15/16/69\n[+] SU-ID-QCC-008\n[+] SU-ID-CFX-005, I2S 인터페이스 초기화: I2S 초기화와 인터럽트 수신 준비\n[+] SU-ID-CFX-008, I2S 입력 상태 판정: 수신 상태 판정/복사/스트리밍 상태 갱신\n[+] SU-ID-CFX-015, I2S 수신 버퍼 관리: 16표본 FIFO에서 수신 버퍼로 복사하고 완료 플래그 갱신\n[+] SW-FW-RID-15/16/69\n[+] 수신 경계: QCC I2S 송신부터 E8300 버퍼/완료 상태까지 확인한다. 믹싱/자극 경로는 SW-FW-IntegrationTest-ID-013에서 별도로 확인한다.\n",
+          "current": "\nSU-ID-QCC-008\nSU-ID-CFX-005, I2S 인터페이스 초기화: I2S 초기화와 인터럽트 수신 준비\nSU-ID-CFX-008, I2S 입력 상태 판정: 수신 상태 판정/복사/스트리밍 상태 갱신\nSU-ID-CFX-015, I2S 수신 버퍼 관리: 16표본 FIFO에서 수신 버퍼로 복사하고 완료 플래그 갱신\nSW-FW-RID-15/16/69\n수신 경계: QCC I2S 송신부터 E8300 버퍼/완료 상태까지 확인한다. 믹싱/자극 경로는 SW-FW-IntegrationTest-ID-013에서 별도로 확인한다.\n",
+          "punctuation_only": false
+        },
+        "M131": {
+          "before": "\n조건 [1]\n입력: 잔량80%, binary충전1, lid1\n[-] 예상/판정: 논리 메시지 버퍼20byte(hex)=34 50 01 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n[+] 통과 기준: 논리 메시지 버퍼20byte(hex)=34 50 01 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n응답 저장21byte=34 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 02; 유효 ACK=34 01, index20=2. E8300 잔량80/충전1/lid1. 전체 예상 RTT: [BT] CMD 0x34, CHARGER STATE: 1, BATT LEVEL 80 PERCENT, LID STATE 1\n전송 경계: type+payload최대20byte; 위20byte버퍼는미사용00채움까지표시한다. 물리SPI프레임은20byte+별도length1byte=21byte이다.\n[QCC/E8300 자료 입력] 실제QCC 송신length필드 값/위치·SPI21byte변환 자료. E8300 ACK의index20=2와구분한다.\n",
+          "display": "\n조건 [1]\n입력: 잔량80%, binary충전1, lid1\n[-] 예상/판정: 논리 메시지 버퍼20byte(hex)=34 50 01 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n[+] 통과 기준: 논리 메시지 버퍼20byte(hex)=34 50 01 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n응답 저장21byte=34 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 02; 유효 ACK=34 01, index20=2. E8300 잔량80/충전1/lid1. 전체 예상 RTT: [BT] CMD 0x34, CHARGER STATE: 1, BATT LEVEL 80 PERCENT, LID STATE 1\n전송 경계: type+payload최대20byte; 위20byte버퍼는미사용00채움까지표시한다. 물리SPI프레임은20byte+별도length1byte=21byte이다.\n[QCC/E8300 자료 입력] 실제QCC 송신length필드 값/위치/SPI21byte변환 자료. E8300 ACK의index20=2와구분한다.\n",
+          "current": "\n조건 [1]\n입력: 잔량80%, binary충전1, lid1\n통과 기준: 논리 메시지 버퍼20byte(hex)=34 50 01 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n응답 저장21byte=34 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 02; 유효 ACK=34 01, index20=2. E8300 잔량80/충전1/lid1. 전체 예상 RTT: [BT] CMD 0x34, CHARGER STATE: 1, BATT LEVEL 80 PERCENT, LID STATE 1\n전송 경계: type+payload최대20byte; 위20byte버퍼는미사용00채움까지표시한다. 물리SPI프레임은20byte+별도length1byte=21byte이다.\n[QCC/E8300 자료 입력] 실제QCC 송신length필드 값/위치/SPI21byte변환 자료. E8300 ACK의index20=2와구분한다.\n",
+          "punctuation_only": true
+        }
+      },
+      "breaks_before": [
+        {
+          "id": "130",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "133",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "135",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "136",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "140",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "141",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "143",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        }
+      ],
+      "breaks_after": [
+        {
+          "id": "31",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "66",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "130",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "133",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "135",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "136",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "140",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "141",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "143",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        }
+      ],
+      "all_other_values_formulas_and_package_members_unchanged": true,
+      "merge_structure_unchanged": true,
+      "native_display": "미실행: final candidate print requires root native engine"
+    },
+    {
+      "key": "SITR",
+      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\04_설계 검증\\SW\\외부기\\[E8300-QCC] SITR-FW-TD24A 소프트웨어 통합시험 보고서.xlsx",
+      "candidate": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\final-layout-candidate\\[E8300-QCC] SITR-FW-TD24A 소프트웨어 통합시험 보고서.xlsx",
+      "sha256_before": "218a1077bf50f972b537368388503cbc23c85afc264cdf8ccc49897a00ea3963",
+      "sha256_candidate": "7ade4402a4441874bac768136043b7d2860b4ae1e27cf4cca8f83f91dd2cf1cf",
+      "height_changes": {
+        "141": {
+          "before": 270.0,
+          "after": 377
+        }
+      },
+      "alignment_changes": [],
+      "text_changes": {
+        "F141": {
+          "before": "\nSU-ID-QCC-008\nSW-FW-RID-15/16/69\n",
+          "display": "\n[-] SU-ID-QCC-008\n[-] SW-FW-RID-15/16/69\n[+] SU-ID-QCC-008\n[+] SU-ID-CFX-005, I2S 인터페이스 초기화: I2S 초기화와 인터럽트 수신 준비\n[+] SU-ID-CFX-008, I2S 입력 상태 판정: 수신 상태 판정/복사/스트리밍 상태 갱신\n[+] SU-ID-CFX-015, I2S 수신 버퍼 관리: 16표본 FIFO에서 수신 버퍼로 복사하고 완료 플래그 갱신\n[+] SW-FW-RID-15/16/69\n[+] 수신 경계: QCC I2S 송신부터 E8300 버퍼/완료 상태까지 확인한다. 믹싱/자극 경로는 SW-FW-IntegrationTest-ID-013에서 별도로 확인한다.\n",
+          "current": "\nSU-ID-QCC-008\nSU-ID-CFX-005, I2S 인터페이스 초기화: I2S 초기화와 인터럽트 수신 준비\nSU-ID-CFX-008, I2S 입력 상태 판정: 수신 상태 판정/복사/스트리밍 상태 갱신\nSU-ID-CFX-015, I2S 수신 버퍼 관리: 16표본 FIFO에서 수신 버퍼로 복사하고 완료 플래그 갱신\nSW-FW-RID-15/16/69\n수신 경계: QCC I2S 송신부터 E8300 버퍼/완료 상태까지 확인한다. 믹싱/자극 경로는 SW-FW-IntegrationTest-ID-013에서 별도로 확인한다.\n",
+          "punctuation_only": false
+        },
+        "M131": {
+          "before": "\n조건 [1]\n입력: 잔량80%, binary충전1, lid1\n[-] 예상/판정: 논리 메시지 버퍼20byte(hex)=34 50 01 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n[+] 통과 기준: 논리 메시지 버퍼20byte(hex)=34 50 01 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n응답 저장21byte=34 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 02; 유효 ACK=34 01, index20=2. E8300 잔량80/충전1/lid1. 전체 예상 RTT: [BT] CMD 0x34, CHARGER STATE: 1, BATT LEVEL 80 PERCENT, LID STATE 1\n전송 경계: type+payload최대20byte; 위20byte버퍼는미사용00채움까지표시한다. 물리SPI프레임은20byte+별도length1byte=21byte이다.\n[QCC/E8300 자료 입력] 실제QCC 송신length필드 값/위치·SPI21byte변환 자료. E8300 ACK의index20=2와구분한다.\n",
+          "display": "\n조건 [1]\n입력: 잔량80%, binary충전1, lid1\n[-] 예상/판정: 논리 메시지 버퍼20byte(hex)=34 50 01 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n[+] 통과 기준: 논리 메시지 버퍼20byte(hex)=34 50 01 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n응답 저장21byte=34 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 02; 유효 ACK=34 01, index20=2. E8300 잔량80/충전1/lid1. 전체 예상 RTT: [BT] CMD 0x34, CHARGER STATE: 1, BATT LEVEL 80 PERCENT, LID STATE 1\n전송 경계: type+payload최대20byte; 위20byte버퍼는미사용00채움까지표시한다. 물리SPI프레임은20byte+별도length1byte=21byte이다.\n[QCC/E8300 자료 입력] 실제QCC 송신length필드 값/위치/SPI21byte변환 자료. E8300 ACK의index20=2와구분한다.\n",
+          "current": "\n조건 [1]\n입력: 잔량80%, binary충전1, lid1\n통과 기준: 논리 메시지 버퍼20byte(hex)=34 50 01 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n응답 저장21byte=34 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 02; 유효 ACK=34 01, index20=2. E8300 잔량80/충전1/lid1. 전체 예상 RTT: [BT] CMD 0x34, CHARGER STATE: 1, BATT LEVEL 80 PERCENT, LID STATE 1\n전송 경계: type+payload최대20byte; 위20byte버퍼는미사용00채움까지표시한다. 물리SPI프레임은20byte+별도length1byte=21byte이다.\n[QCC/E8300 자료 입력] 실제QCC 송신length필드 값/위치/SPI21byte변환 자료. E8300 ACK의index20=2와구분한다.\n",
+          "punctuation_only": true
+        }
+      },
+      "breaks_before": [
+        {
+          "id": "130",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "133",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "135",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "136",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "140",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "141",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "143",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        }
+      ],
+      "breaks_after": [
+        {
+          "id": "31",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "66",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "130",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "133",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "135",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "136",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "140",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "141",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "143",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        }
+      ],
+      "all_other_values_formulas_and_package_members_unchanged": true,
+      "merge_structure_unchanged": true,
+      "native_display": "미실행: final candidate print requires root native engine"
+    },
+    {
+      "key": "SSTC",
+      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SSTC-FW-TD24A 소프트웨어 시스템 시험 기준서.xlsx",
+      "candidate": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\final-layout-candidate\\[E8300-QCC] SSTC-FW-TD24A 소프트웨어 시스템 시험 기준서.xlsx",
+      "sha256_before": "b29a9e4a2c340ccd1c9a61003350a7eb0c0f01260f62f45946dd899b2ebcb229",
+      "sha256_candidate": "e2a71fe7cae39e21c9ea5a8dc7d731e6935d8db236454371a2ca7dcf0131fb74",
+      "height_changes": {},
+      "alignment_changes": [
+        {
+          "cell": "H78",
+          "old_style": 132,
+          "new_style": 139,
+          "alignment": "left/top",
+          "other_xf_attributes_unchanged": true
+        }
+      ],
+      "text_changes": {},
+      "breaks_before": [
+        {
+          "id": "218",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        }
+      ],
+      "breaks_after": [
+        {
+          "id": "77",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "85",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "113",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "123",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "133",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "147",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "158",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "187",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "216",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "218",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "224",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "277",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        }
+      ],
+      "all_other_values_formulas_and_package_members_unchanged": true,
+      "merge_structure_unchanged": true,
+      "native_display": "미실행: final candidate print requires root native engine"
+    },
+    {
+      "key": "SSTR",
+      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\04_설계 검증\\SW\\외부기\\[E8300-QCC] SSTR-FW-TD24A 소프트웨어 시스템 시험 보고서.xlsx",
+      "candidate": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_tests\\final-layout-candidate\\[E8300-QCC] SSTR-FW-TD24A 소프트웨어 시스템 시험 보고서.xlsx",
+      "sha256_before": "f5712ae1aedfa09597928de294f2c3c3122f5e4bfa37eb52453733454e869fd5",
+      "sha256_candidate": "8e4967b8a1e2f255fdbdb1c111d5f8bf5a633fe5b2f3770b6b2b87501211feee",
+      "height_changes": {},
+      "alignment_changes": [
+        {
+          "cell": "H78",
+          "old_style": 175,
+          "new_style": 190,
+          "alignment": "left/top",
+          "other_xf_attributes_unchanged": true
+        }
+      ],
+      "text_changes": {},
+      "breaks_before": [
+        {
+          "id": "218",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        }
+      ],
+      "breaks_after": [
+        {
+          "id": "77",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "85",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "113",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "123",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "133",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "147",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "158",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "187",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "216",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "218",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "224",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        },
+        {
+          "id": "277",
+          "min": "0",
+          "max": "16383",
+          "man": "1"
+        }
+      ],
+      "all_other_values_formulas_and_package_members_unchanged": true,
+      "merge_structure_unchanged": true,
+      "native_display": "미실행: final candidate print requires root native engine"
+    }
+  ],
+  "common_values_merges_and_page_breaks": "통과",
+  "new_or_changed_product_results": false
+}

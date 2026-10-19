@@ -1,0 +1,522 @@
+[
+  {
+    "kind": "local-document",
+    "source": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\DHF\\01_설계 계획\\SW\\펌웨어\\[E8300] SRMP-FW-TD24A 소프트웨어 위험관리 계획서.docx",
+    "destination": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20260929_1755_DHF-펌웨어-설계출력\\qa\\dhf-materials-system-20261012\\정리 전 로컬 원본\\01_설계 계획\\SW\\펌웨어\\[E8300] SRMP-FW-TD24A 소프트웨어 위험관리 계획서.docx",
+    "source_hash": "0c088019b722f8a055a931e1fa0ecc80c2974171d74ce5f868b931177e2e587f",
+    "current": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\01_설계 계획\\SW\\외부기\\[E8300] SRMP-FW-TD24A 소프트웨어 위험관리 계획서.docx",
+    "same_as_current_start": true
+  },
+  {
+    "kind": "local-document",
+    "source": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\DHF\\01_설계 계획\\SW\\펌웨어\\[E8300] SCCP-FW-TD24A 소프트웨어 변경관리 계획서.docx",
+    "destination": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20260929_1755_DHF-펌웨어-설계출력\\qa\\dhf-materials-system-20261012\\정리 전 로컬 원본\\01_설계 계획\\SW\\펌웨어\\[E8300] SCCP-FW-TD24A 소프트웨어 변경관리 계획서.docx",
+    "source_hash": "024ec477ee05be5ddd15e10bcfaae1f0a7deccce8e6ff4274b395271c051cf3d",
+    "current": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\01_설계 계획\\SW\\외부기\\[E8300] SCCP-FW-TD24A 소프트웨어 변경관리 계획서.docx",
+    "same_as_current_start": true
+  },
+  {
+    "kind": "local-document",
+    "source": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\DHF\\01_설계 계획\\SW\\펌웨어\\[E8300] SCMP-FW-TD24A 소프트웨어 형상관리 계획서.docx",
+    "destination": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20260929_1755_DHF-펌웨어-설계출력\\qa\\dhf-materials-system-20261012\\정리 전 로컬 원본\\01_설계 계획\\SW\\펌웨어\\[E8300] SCMP-FW-TD24A 소프트웨어 형상관리 계획서.docx",
+    "source_hash": "ce6d5e0f308eb791fa3627241de9313982b464c621ccaa9bea89ab870a6ac9b8",
+    "current": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\01_설계 계획\\SW\\외부기\\[E8300] SCMP-FW-TD24A 소프트웨어 형상관리 계획서.docx",
+    "same_as_current_start": true
+  },
+  {
+    "kind": "local-document",
+    "source": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\DHF\\01_설계 계획\\SW\\펌웨어\\[E8300] SDP-FW-TD24A 소프트웨어 개발 계획서.docx",
+    "destination": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20260929_1755_DHF-펌웨어-설계출력\\qa\\dhf-materials-system-20261012\\정리 전 로컬 원본\\01_설계 계획\\SW\\펌웨어\\[E8300] SDP-FW-TD24A 소프트웨어 개발 계획서.docx",
+    "source_hash": "a019c578175f16b61ce9b3e2c355bb7186d8aa352e6035d9a15f8fd955c24eed",
+    "current": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\01_설계 계획\\SW\\외부기\\[E8300] SDP-FW-TD24A 소프트웨어 개발 계획서.docx",
+    "same_as_current_start": true
+  },
+  {
+    "kind": "local-document",
+    "source": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\DHF\\01_설계 계획\\SW\\펌웨어\\[E8300] SMP-FW-TD24A 소프트웨어 유지보수 계획서.docx",
+    "destination": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20260929_1755_DHF-펌웨어-설계출력\\qa\\dhf-materials-system-20261012\\정리 전 로컬 원본\\01_설계 계획\\SW\\펌웨어\\[E8300] SMP-FW-TD24A 소프트웨어 유지보수 계획서.docx",
+    "source_hash": "c7b90b1250d9602207c6ea9c847832bc768b42ae9c047a8ddf661b08eb034c50",
+    "current": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\01_설계 계획\\SW\\외부기\\[E8300] SMP-FW-TD24A 소프트웨어 유지보수 계획서.docx",
+    "same_as_current_start": true
+  },
+  {
+    "kind": "local-document",
+    "source": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\DHF\\01_설계 계획\\SW\\펌웨어\\[E8300] SPRP-FW-TD24A 소프트웨어 문제해결 계획서.docx",
+    "destination": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20260929_1755_DHF-펌웨어-설계출력\\qa\\dhf-materials-system-20261012\\정리 전 로컬 원본\\01_설계 계획\\SW\\펌웨어\\[E8300] SPRP-FW-TD24A 소프트웨어 문제해결 계획서.docx",
+    "source_hash": "1dfd64fb5e6f92c0ca6234b9e54924dd08baa153bd52a7deba706b19068f9628",
+    "current": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\01_설계 계획\\SW\\외부기\\[E8300] SPRP-FW-TD24A 소프트웨어 문제해결 계획서.docx",
+    "same_as_current_start": true
+  },
+  {
+    "kind": "local-document",
+    "source": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\DHF\\02_설계 입력\\SW\\펌웨어\\[E8300] SRS-FW-TD24A 소프트웨어 요구사항 사양서.xlsx",
+    "destination": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20260929_1755_DHF-펌웨어-설계출력\\qa\\dhf-materials-system-20261012\\정리 전 로컬 원본\\02_설계 입력\\SW\\펌웨어\\[E8300] SRS-FW-TD24A 소프트웨어 요구사항 사양서.xlsx",
+    "source_hash": "661ef5cdb508ae7ce8e17f6b225b5b6866a311ea9f005cf02d874339a53766b7",
+    "current": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\02_설계 입력\\SW\\외부기\\[E8300] SRS-FW-TD24A 소프트웨어 요구사항 사양서.xlsx",
+    "same_as_current_start": true
+  },
+  {
+    "kind": "local-document",
+    "source": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\DHF\\02_설계 입력\\SW\\펌웨어\\[E8300] SGR-FW-TD24A 소프트웨어 일반요구사항.docx",
+    "destination": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20260929_1755_DHF-펌웨어-설계출력\\qa\\dhf-materials-system-20261012\\정리 전 로컬 원본\\02_설계 입력\\SW\\펌웨어\\[E8300] SGR-FW-TD24A 소프트웨어 일반요구사항.docx",
+    "source_hash": "2d81fc0fce22b8dc57a73c6c3b71f0b3989404ba60289e346e0670a7b1d593f3",
+    "current": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\02_설계 입력\\SW\\외부기\\[E8300] SGR-FW-TD24A 소프트웨어 일반요구사항.docx",
+    "same_as_current_start": true
+  },
+  {
+    "kind": "local-document",
+    "source": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\DHF\\02_설계 입력\\SW\\펌웨어\\[E8300] SR-FW-TD24A 소프트웨어 요구사항.docx",
+    "destination": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20260929_1755_DHF-펌웨어-설계출력\\qa\\dhf-materials-system-20261012\\정리 전 로컬 원본\\02_설계 입력\\SW\\펌웨어\\[E8300] SR-FW-TD24A 소프트웨어 요구사항.docx",
+    "source_hash": "6f8f005bb1f311752fde1e8aa14a75f3e716a48167072261da630061864231c6",
+    "current": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\02_설계 입력\\SW\\외부기\\[E8300] SR-FW-TD24A 소프트웨어 요구사항.docx",
+    "same_as_current_start": true
+  },
+  {
+    "kind": "local-document",
+    "source": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\DHF\\03_설계 출력\\SW\\펌웨어\\[E8300] SUVC-FW-TD24A 소프트웨어 유닛 검증 기준서.xlsx",
+    "destination": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20260929_1755_DHF-펌웨어-설계출력\\qa\\dhf-materials-system-20261012\\정리 전 로컬 원본\\03_설계 출력\\SW\\펌웨어\\[E8300] SUVC-FW-TD24A 소프트웨어 유닛 검증 기준서.xlsx",
+    "source_hash": "bb19f659ea03d4b3091accf33696033ad817ed391da566fe0f4da39146fcae42",
+    "current": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300] SUVC-FW-TD24A 소프트웨어 유닛 검증 기준서.xlsx",
+    "same_as_current_start": true
+  },
+  {
+    "kind": "local-document",
+    "source": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\DHF\\03_설계 출력\\SW\\펌웨어\\[E8300] SAD-FW-TD24A 소프트웨어 아키텍쳐 기술서.docx",
+    "destination": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20260929_1755_DHF-펌웨어-설계출력\\qa\\dhf-materials-system-20261012\\정리 전 로컬 원본\\03_설계 출력\\SW\\펌웨어\\[E8300] SAD-FW-TD24A 소프트웨어 아키텍쳐 기술서.docx",
+    "source_hash": "cf1d95cd376806647b6abb55560a4b25554d13865e2de2d2b115aaa0f378bd30",
+    "current": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300] SAD-FW-TD24A 소프트웨어 아키텍쳐 기술서.docx",
+    "same_as_current_start": true
+  },
+  {
+    "kind": "local-document",
+    "source": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\DHF\\03_설계 출력\\SW\\펌웨어\\[E8300] SDDD-FW-TD24A 소프트웨어 상세 설계서.docx",
+    "destination": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20260929_1755_DHF-펌웨어-설계출력\\qa\\dhf-materials-system-20261012\\정리 전 로컬 원본\\03_설계 출력\\SW\\펌웨어\\[E8300] SDDD-FW-TD24A 소프트웨어 상세 설계서.docx",
+    "source_hash": "007fb3d942fb1db2bfc2c17f00113e23b8df5b5dfda6965bd8b126ab43b9c8c1",
+    "current": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300] SDDD-FW-TD24A 소프트웨어 상세 설계서.docx",
+    "same_as_current_start": true
+  },
+  {
+    "kind": "local-document",
+    "source": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\DHF\\03_설계 출력\\SW\\펌웨어\\[E8300] SIP-FW-TD24A 소프트웨어 통합 계획서.docx",
+    "destination": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20260929_1755_DHF-펌웨어-설계출력\\qa\\dhf-materials-system-20261012\\정리 전 로컬 원본\\03_설계 출력\\SW\\펌웨어\\[E8300] SIP-FW-TD24A 소프트웨어 통합 계획서.docx",
+    "source_hash": "f0f6dc009f316da893367ac4ea16db7965ea9f755fbb7ccbccdef0e3b0b1f4c6",
+    "current": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300] SIP-FW-TD24A 소프트웨어 통합 계획서.docx",
+    "same_as_current_start": true
+  },
+  {
+    "kind": "local-document",
+    "source": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\DHF\\03_설계 출력\\SW\\펌웨어\\[E8300] SITC-FW-TD24A 소프트웨어 통합시험 기준서.xlsx",
+    "destination": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20260929_1755_DHF-펌웨어-설계출력\\qa\\dhf-materials-system-20261012\\정리 전 로컬 원본\\03_설계 출력\\SW\\펌웨어\\[E8300] SITC-FW-TD24A 소프트웨어 통합시험 기준서.xlsx",
+    "source_hash": "ae4d4bb831f3632fbe4a2a60aaa74e7ed251a8ad44321556bc84536a63fa221d",
+    "current": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300] SITC-FW-TD24A 소프트웨어 통합시험 기준서.xlsx",
+    "same_as_current_start": true
+  },
+  {
+    "kind": "local-document",
+    "source": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\DHF\\03_설계 출력\\SW\\펌웨어\\[E8300] SSTC-FW-TD24A 소프트웨어 시스템 시험 기준서.xlsx",
+    "destination": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20260929_1755_DHF-펌웨어-설계출력\\qa\\dhf-materials-system-20261012\\정리 전 로컬 원본\\03_설계 출력\\SW\\펌웨어\\[E8300] SSTC-FW-TD24A 소프트웨어 시스템 시험 기준서.xlsx",
+    "source_hash": "e28942431eb856e0a9cbeab2a0d79341b9f6cdcc0a5e22728115c3136fb58fc8",
+    "current": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300] SSTC-FW-TD24A 소프트웨어 시스템 시험 기준서.xlsx",
+    "same_as_current_start": true
+  },
+  {
+    "kind": "local-document",
+    "source": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\DHF\\04_설계 검증\\SW\\펌웨어\\[E8300] SUVR-FW-TD24A 소프트웨어 유닛 검증 보고서.xlsx",
+    "destination": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20260929_1755_DHF-펌웨어-설계출력\\qa\\dhf-materials-system-20261012\\정리 전 로컬 원본\\04_설계 검증\\SW\\펌웨어\\[E8300] SUVR-FW-TD24A 소프트웨어 유닛 검증 보고서.xlsx",
+    "source_hash": "7627e6c7d3efc84e4700fecb7792f8c7cbdb4bbcf03570f45b3690744d480c02",
+    "current": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\04_설계 검증\\SW\\외부기\\[E8300] SUVR-FW-TD24A 소프트웨어 유닛 검증 보고서.xlsx",
+    "same_as_current_start": true
+  },
+  {
+    "kind": "local-document",
+    "source": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\DHF\\04_설계 검증\\SW\\펌웨어\\[E8300] SITR-FW-TD24A 소프트웨어 통합시험 보고서.xlsx",
+    "destination": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20260929_1755_DHF-펌웨어-설계출력\\qa\\dhf-materials-system-20261012\\정리 전 로컬 원본\\04_설계 검증\\SW\\펌웨어\\[E8300] SITR-FW-TD24A 소프트웨어 통합시험 보고서.xlsx",
+    "source_hash": "4adb99de359aab6b06436a66417aa45f5a1ca032cfd2d474e9b5212a3b333380",
+    "current": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\04_설계 검증\\SW\\외부기\\[E8300] SITR-FW-TD24A 소프트웨어 통합시험 보고서.xlsx",
+    "same_as_current_start": false
+  },
+  {
+    "kind": "local-document",
+    "source": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\DHF\\04_설계 검증\\SW\\펌웨어\\[E8300] SSTR-FW-TD24A 소프트웨어 시스템 시험 보고서.xlsx",
+    "destination": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20260929_1755_DHF-펌웨어-설계출력\\qa\\dhf-materials-system-20261012\\정리 전 로컬 원본\\04_설계 검증\\SW\\펌웨어\\[E8300] SSTR-FW-TD24A 소프트웨어 시스템 시험 보고서.xlsx",
+    "source_hash": "ad5dcc2b582e613f379cabd5d0d3174601ebc1554604e82158c663b1b69d3047",
+    "current": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\04_설계 검증\\SW\\외부기\\[E8300] SSTR-FW-TD24A 소프트웨어 시스템 시험 보고서.xlsx",
+    "same_as_current_start": false
+  },
+  {
+    "kind": "local-document",
+    "source": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\DHF\\03_설계 출력\\10_성능검사기준서\\EPTC-TD24A 필수성능시험 기준서.docx",
+    "destination": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20260929_1755_DHF-펌웨어-설계출력\\qa\\dhf-materials-system-20261012\\정리 전 로컬 원본\\03_설계 출력\\10_성능검사기준서\\EPTC-TD24A 필수성능시험 기준서.docx",
+    "source_hash": "4c8a57165e7d1584be6a71b04676e474de03b9b61d4353848033f955191e9cba",
+    "current": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\EPTC-TD24A 필수성능시험 기준서.docx",
+    "same_as_current_start": true
+  },
+  {
+    "kind": "new-supplement",
+    "source": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\01_설계 계획\\SW\\외부기\\이미지 참조\\SCMP 형상관리 분기 구성.png",
+    "destination": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20260929_1755_DHF-펌웨어-설계출력\\qa\\dhf-materials-system-20261012\\정리 전 G 보조자료\\01_설계 계획\\SW\\외부기\\이미지 참조\\SCMP 형상관리 분기 구성.png",
+    "source_hash": "7b49940454ef3bddc29ba6ca9de779ab56917a5a06277a9b1ef694c85c14cab3",
+    "current": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\DHF\\01_설계 계획\\SW\\펌웨어\\이미지 참조\\SCMP 형상관리 분기 구성.png",
+    "same_as_current_start": true
+  },
+  {
+    "kind": "new-supplement",
+    "source": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\이미지 참조\\SDDD AGC 특성.png",
+    "destination": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20260929_1755_DHF-펌웨어-설계출력\\qa\\dhf-materials-system-20261012\\정리 전 G 보조자료\\03_설계 출력\\SW\\외부기\\이미지 참조\\SDDD AGC 특성.png",
+    "source_hash": "c77929a75e94a4f69ab84fcd1b9a3f416b02459e670187765860f6765e6ee55e",
+    "current": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\DHF\\03_설계 출력\\SW\\펌웨어\\이미지 참조\\SDDD AGC 특성.png",
+    "same_as_current_start": true
+  },
+  {
+    "kind": "new-supplement",
+    "source": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\이미지 참조\\SDDD 내부기 실행 연계.png",
+    "destination": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20260929_1755_DHF-펌웨어-설계출력\\qa\\dhf-materials-system-20261012\\정리 전 G 보조자료\\03_설계 출력\\SW\\외부기\\이미지 참조\\SDDD 내부기 실행 연계.png",
+    "source_hash": "18255e977ed7fc67023a830c3f1c4b83e70b3b43bffaa89fe24b1ca9b8d9bce1",
+    "current": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\DHF\\03_설계 출력\\SW\\펌웨어\\이미지 참조\\SDDD 내부기 실행 연계.png",
+    "same_as_current_start": true
+  },
+  {
+    "kind": "new-supplement",
+    "source": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\이미지 참조\\SDDD 블루투스 연계.png",
+    "destination": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20260929_1755_DHF-펌웨어-설계출력\\qa\\dhf-materials-system-20261012\\정리 전 G 보조자료\\03_설계 출력\\SW\\외부기\\이미지 참조\\SDDD 블루투스 연계.png",
+    "source_hash": "7f9bf71a41d468f1726fb7e36486506a98ddec58987e50bab7b363fc801be8a7",
+    "current": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\DHF\\03_설계 출력\\SW\\펌웨어\\이미지 참조\\SDDD 블루투스 연계.png",
+    "same_as_current_start": true
+  },
+  {
+    "kind": "new-supplement",
+    "source": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\이미지 참조\\SDDD 순서도 BOOT-006.png",
+    "destination": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20260929_1755_DHF-펌웨어-설계출력\\qa\\dhf-materials-system-20261012\\정리 전 G 보조자료\\03_설계 출력\\SW\\외부기\\이미지 참조\\SDDD 순서도 BOOT-006.png",
+    "source_hash": "2ccf0376e5241b0b1d984c35d7521ccbb431f6db412a9ba144a7d03596ad68a4",
+    "current": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\DHF\\03_설계 출력\\SW\\펌웨어\\이미지 참조\\SDDD 순서도 BOOT-006.png",
+    "same_as_current_start": true
+  },
+  {
+    "kind": "new-supplement",
+    "source": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\이미지 참조\\SDDD 순서도 BOOT-010.png",
+    "destination": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20260929_1755_DHF-펌웨어-설계출력\\qa\\dhf-materials-system-20261012\\정리 전 G 보조자료\\03_설계 출력\\SW\\외부기\\이미지 참조\\SDDD 순서도 BOOT-010.png",
+    "source_hash": "0fce8e429b5f10937e97b5ee5979355dec7d54fe94f256525c761f66a7c674f9",
+    "current": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\DHF\\03_설계 출력\\SW\\펌웨어\\이미지 참조\\SDDD 순서도 BOOT-010.png",
+    "same_as_current_start": true
+  },
+  {
+    "kind": "new-supplement",
+    "source": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\이미지 참조\\SDDD 순서도 BOOT-011.png",
+    "destination": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20260929_1755_DHF-펌웨어-설계출력\\qa\\dhf-materials-system-20261012\\정리 전 G 보조자료\\03_설계 출력\\SW\\외부기\\이미지 참조\\SDDD 순서도 BOOT-011.png",
+    "source_hash": "54e9f778526f9a0d6da1072b4009db0472ef1bacc339c94388edbf5c29ad69df",
+    "current": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\DHF\\03_설계 출력\\SW\\펌웨어\\이미지 참조\\SDDD 순서도 BOOT-011.png",
+    "same_as_current_start": true
+  },
+  {
+    "kind": "new-supplement",
+    "source": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\이미지 참조\\SDDD 순서도 BOOT-012.png",
+    "destination": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20260929_1755_DHF-펌웨어-설계출력\\qa\\dhf-materials-system-20261012\\정리 전 G 보조자료\\03_설계 출력\\SW\\외부기\\이미지 참조\\SDDD 순서도 BOOT-012.png",
+    "source_hash": "c7ac5974a2fb72a0f96753cb4d24032b1694041e88112769dc9f55d47df5f7f3",
+    "current": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\DHF\\03_설계 출력\\SW\\펌웨어\\이미지 참조\\SDDD 순서도 BOOT-012.png",
+    "same_as_current_start": true
+  },
+  {
+    "kind": "new-supplement",
+    "source": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\이미지 참조\\SDDD 순서도 BOOT-015.png",
+    "destination": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20260929_1755_DHF-펌웨어-설계출력\\qa\\dhf-materials-system-20261012\\정리 전 G 보조자료\\03_설계 출력\\SW\\외부기\\이미지 참조\\SDDD 순서도 BOOT-015.png",
+    "source_hash": "2c8b276bf5813a258860bdbf83c9d69e036b694cb66bb07e56224dc344396fdd",
+    "current": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\DHF\\03_설계 출력\\SW\\펌웨어\\이미지 참조\\SDDD 순서도 BOOT-015.png",
+    "same_as_current_start": true
+  },
+  {
+    "kind": "new-supplement",
+    "source": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\이미지 참조\\SDDD 순서도 BOOT-019.png",
+    "destination": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20260929_1755_DHF-펌웨어-설계출력\\qa\\dhf-materials-system-20261012\\정리 전 G 보조자료\\03_설계 출력\\SW\\외부기\\이미지 참조\\SDDD 순서도 BOOT-019.png",
+    "source_hash": "4f7c67ae618d5610cf330a9dd0c30f6ee5437c2b9376c17c691ef0cfe16e834d",
+    "current": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\DHF\\03_설계 출력\\SW\\펌웨어\\이미지 참조\\SDDD 순서도 BOOT-019.png",
+    "same_as_current_start": true
+  },
+  {
+    "kind": "new-supplement",
+    "source": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\이미지 참조\\SDDD 순서도 BOOT-020.png",
+    "destination": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20260929_1755_DHF-펌웨어-설계출력\\qa\\dhf-materials-system-20261012\\정리 전 G 보조자료\\03_설계 출력\\SW\\외부기\\이미지 참조\\SDDD 순서도 BOOT-020.png",
+    "source_hash": "7e2655bd6ab12ada17651ba1d529fa80309084f1bd6a4612a079b48d6cdfdb5c",
+    "current": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\DHF\\03_설계 출력\\SW\\펌웨어\\이미지 참조\\SDDD 순서도 BOOT-020.png",
+    "same_as_current_start": true
+  },
+  {
+    "kind": "new-supplement",
+    "source": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\이미지 참조\\SDDD 순서도 CFX-001.png",
+    "destination": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20260929_1755_DHF-펌웨어-설계출력\\qa\\dhf-materials-system-20261012\\정리 전 G 보조자료\\03_설계 출력\\SW\\외부기\\이미지 참조\\SDDD 순서도 CFX-001.png",
+    "source_hash": "6c8ba8b878358b0f05d1c73b946b20b8bd5814538b36535f45c09a5ac9aaa644",
+    "current": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\DHF\\03_설계 출력\\SW\\펌웨어\\이미지 참조\\SDDD 순서도 CFX-001.png",
+    "same_as_current_start": true
+  },
+  {
+    "kind": "new-supplement",
+    "source": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\이미지 참조\\SDDD 순서도 CFX-011.png",
+    "destination": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20260929_1755_DHF-펌웨어-설계출력\\qa\\dhf-materials-system-20261012\\정리 전 G 보조자료\\03_설계 출력\\SW\\외부기\\이미지 참조\\SDDD 순서도 CFX-011.png",
+    "source_hash": "097e3041ce8e9240cb118cf9e264076ebd6cf45d1c054f5b89eb6e68e9e42473",
+    "current": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\DHF\\03_설계 출력\\SW\\펌웨어\\이미지 참조\\SDDD 순서도 CFX-011.png",
+    "same_as_current_start": true
+  },
+  {
+    "kind": "new-supplement",
+    "source": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\이미지 참조\\SDDD 순서도 CFX-017.png",
+    "destination": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20260929_1755_DHF-펌웨어-설계출력\\qa\\dhf-materials-system-20261012\\정리 전 G 보조자료\\03_설계 출력\\SW\\외부기\\이미지 참조\\SDDD 순서도 CFX-017.png",
+    "source_hash": "7020c0e21a97abb4d1e8892e94642c2ae23f0228ffcc77bc642ad228676ef760",
+    "current": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\DHF\\03_설계 출력\\SW\\펌웨어\\이미지 참조\\SDDD 순서도 CFX-017.png",
+    "same_as_current_start": true
+  },
+  {
+    "kind": "new-supplement",
+    "source": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\이미지 참조\\SDDD 순서도 CFX-021.png",
+    "destination": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20260929_1755_DHF-펌웨어-설계출력\\qa\\dhf-materials-system-20261012\\정리 전 G 보조자료\\03_설계 출력\\SW\\외부기\\이미지 참조\\SDDD 순서도 CFX-021.png",
+    "source_hash": "50dfef992ff1df85cd48fdb45d1def4b381b014522b189cabcaae6480af6d8d5",
+    "current": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\DHF\\03_설계 출력\\SW\\펌웨어\\이미지 참조\\SDDD 순서도 CFX-021.png",
+    "same_as_current_start": true
+  },
+  {
+    "kind": "new-supplement",
+    "source": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\이미지 참조\\SDDD 순서도 CFX-023.png",
+    "destination": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20260929_1755_DHF-펌웨어-설계출력\\qa\\dhf-materials-system-20261012\\정리 전 G 보조자료\\03_설계 출력\\SW\\외부기\\이미지 참조\\SDDD 순서도 CFX-023.png",
+    "source_hash": "15ea4cf38aa4e90033b5ece49780cb7ca3fef68853e45c9268b4c6dd7f20e0d5",
+    "current": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\DHF\\03_설계 출력\\SW\\펌웨어\\이미지 참조\\SDDD 순서도 CFX-023.png",
+    "same_as_current_start": true
+  },
+  {
+    "kind": "new-supplement",
+    "source": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\이미지 참조\\SDDD 순서도 CFX-024.png",
+    "destination": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20260929_1755_DHF-펌웨어-설계출력\\qa\\dhf-materials-system-20261012\\정리 전 G 보조자료\\03_설계 출력\\SW\\외부기\\이미지 참조\\SDDD 순서도 CFX-024.png",
+    "source_hash": "c50bdc4d3cdf291d10a6a84a41244b9ad8b1f8736e15bc83d9b1b41a0b1a80ad",
+    "current": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\DHF\\03_설계 출력\\SW\\펌웨어\\이미지 참조\\SDDD 순서도 CFX-024.png",
+    "same_as_current_start": true
+  },
+  {
+    "kind": "new-supplement",
+    "source": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\이미지 참조\\SDDD 순서도 CFX-028.png",
+    "destination": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20260929_1755_DHF-펌웨어-설계출력\\qa\\dhf-materials-system-20261012\\정리 전 G 보조자료\\03_설계 출력\\SW\\외부기\\이미지 참조\\SDDD 순서도 CFX-028.png",
+    "source_hash": "23a20e9082de62a5bc15bdf7103c2789cbb31dc12791f5ae248661356909d9da",
+    "current": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\DHF\\03_설계 출력\\SW\\펌웨어\\이미지 참조\\SDDD 순서도 CFX-028.png",
+    "same_as_current_start": true
+  },
+  {
+    "kind": "new-supplement",
+    "source": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\이미지 참조\\SDDD 순서도 CFX-032.png",
+    "destination": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20260929_1755_DHF-펌웨어-설계출력\\qa\\dhf-materials-system-20261012\\정리 전 G 보조자료\\03_설계 출력\\SW\\외부기\\이미지 참조\\SDDD 순서도 CFX-032.png",
+    "source_hash": "2f7fa8e4a5dd0d911f62ae9f9db3b158fb28c99bbfa6e6b40c2fb3a1ab1e4a51",
+    "current": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\DHF\\03_설계 출력\\SW\\펌웨어\\이미지 참조\\SDDD 순서도 CFX-032.png",
+    "same_as_current_start": true
+  },
+  {
+    "kind": "new-supplement",
+    "source": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\이미지 참조\\SDDD 순서도 CFX-034.png",
+    "destination": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20260929_1755_DHF-펌웨어-설계출력\\qa\\dhf-materials-system-20261012\\정리 전 G 보조자료\\03_설계 출력\\SW\\외부기\\이미지 참조\\SDDD 순서도 CFX-034.png",
+    "source_hash": "3e13d742276e767ed9a269f2dec5b115e15d915fcd1a0a2bfc8a9ae08075549a",
+    "current": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\DHF\\03_설계 출력\\SW\\펌웨어\\이미지 참조\\SDDD 순서도 CFX-034.png",
+    "same_as_current_start": true
+  },
+  {
+    "kind": "new-supplement",
+    "source": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\이미지 참조\\SDDD 순서도 CFX-035.png",
+    "destination": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20260929_1755_DHF-펌웨어-설계출력\\qa\\dhf-materials-system-20261012\\정리 전 G 보조자료\\03_설계 출력\\SW\\외부기\\이미지 참조\\SDDD 순서도 CFX-035.png",
+    "source_hash": "72d8d5637d7e7d53ab01ac834e81339fa09233d7a0f842404f1c977983e235eb",
+    "current": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\DHF\\03_설계 출력\\SW\\펌웨어\\이미지 참조\\SDDD 순서도 CFX-035.png",
+    "same_as_current_start": true
+  },
+  {
+    "kind": "new-supplement",
+    "source": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\이미지 참조\\SDDD 순서도 CFX-037.png",
+    "destination": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20260929_1755_DHF-펌웨어-설계출력\\qa\\dhf-materials-system-20261012\\정리 전 G 보조자료\\03_설계 출력\\SW\\외부기\\이미지 참조\\SDDD 순서도 CFX-037.png",
+    "source_hash": "4c502898c29fda94195b4d35b5edb82cb51ef269bde86587310dc5d3ccd28994",
+    "current": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\DHF\\03_설계 출력\\SW\\펌웨어\\이미지 참조\\SDDD 순서도 CFX-037.png",
+    "same_as_current_start": true
+  },
+  {
+    "kind": "new-supplement",
+    "source": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\이미지 참조\\SDDD 순서도 CM3-002.png",
+    "destination": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20260929_1755_DHF-펌웨어-설계출력\\qa\\dhf-materials-system-20261012\\정리 전 G 보조자료\\03_설계 출력\\SW\\외부기\\이미지 참조\\SDDD 순서도 CM3-002.png",
+    "source_hash": "14918ede9f70bbb6bfe6bb5cb8e29256edac826fa2e571be124ae426b0141a0f",
+    "current": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\DHF\\03_설계 출력\\SW\\펌웨어\\이미지 참조\\SDDD 순서도 CM3-002.png",
+    "same_as_current_start": true
+  },
+  {
+    "kind": "new-supplement",
+    "source": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\이미지 참조\\SDDD 순서도 CM3-007.png",
+    "destination": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20260929_1755_DHF-펌웨어-설계출력\\qa\\dhf-materials-system-20261012\\정리 전 G 보조자료\\03_설계 출력\\SW\\외부기\\이미지 참조\\SDDD 순서도 CM3-007.png",
+    "source_hash": "2d0e42221298c1fff5568e003ea0f5f211ee8f943ba015c02dd051ced69f47d7",
+    "current": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\DHF\\03_설계 출력\\SW\\펌웨어\\이미지 참조\\SDDD 순서도 CM3-007.png",
+    "same_as_current_start": true
+  },
+  {
+    "kind": "new-supplement",
+    "source": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\이미지 참조\\SDDD 순서도 CM3-009.png",
+    "destination": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20260929_1755_DHF-펌웨어-설계출력\\qa\\dhf-materials-system-20261012\\정리 전 G 보조자료\\03_설계 출력\\SW\\외부기\\이미지 참조\\SDDD 순서도 CM3-009.png",
+    "source_hash": "d0d862334bfe660de340a0786a501039da2ccfc8e08da63fc90a3dbab84a9d33",
+    "current": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\DHF\\03_설계 출력\\SW\\펌웨어\\이미지 참조\\SDDD 순서도 CM3-009.png",
+    "same_as_current_start": true
+  },
+  {
+    "kind": "new-supplement",
+    "source": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\이미지 참조\\SDDD 순서도 CM3-013.png",
+    "destination": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20260929_1755_DHF-펌웨어-설계출력\\qa\\dhf-materials-system-20261012\\정리 전 G 보조자료\\03_설계 출력\\SW\\외부기\\이미지 참조\\SDDD 순서도 CM3-013.png",
+    "source_hash": "a709231420bf16878b3dacc4a6b4b0d706341884ac6785bbdb6e669cc8353cee",
+    "current": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\DHF\\03_설계 출력\\SW\\펌웨어\\이미지 참조\\SDDD 순서도 CM3-013.png",
+    "same_as_current_start": true
+  },
+  {
+    "kind": "new-supplement",
+    "source": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\이미지 참조\\SDDD 순서도 CM3-015.png",
+    "destination": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20260929_1755_DHF-펌웨어-설계출력\\qa\\dhf-materials-system-20261012\\정리 전 G 보조자료\\03_설계 출력\\SW\\외부기\\이미지 참조\\SDDD 순서도 CM3-015.png",
+    "source_hash": "16577e60e53b90e2d42fc73218b90b6481f650649d977c2c9d3314b54dfcd671",
+    "current": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\DHF\\03_설계 출력\\SW\\펌웨어\\이미지 참조\\SDDD 순서도 CM3-015.png",
+    "same_as_current_start": true
+  },
+  {
+    "kind": "new-supplement",
+    "source": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\이미지 참조\\SDDD 순서도 CM3-025.png",
+    "destination": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20260929_1755_DHF-펌웨어-설계출력\\qa\\dhf-materials-system-20261012\\정리 전 G 보조자료\\03_설계 출력\\SW\\외부기\\이미지 참조\\SDDD 순서도 CM3-025.png",
+    "source_hash": "e0a22add59887554d9805a1ece0087bc7cbe6a53d71e9af089c79e2e07e240ce",
+    "current": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\DHF\\03_설계 출력\\SW\\펌웨어\\이미지 참조\\SDDD 순서도 CM3-025.png",
+    "same_as_current_start": true
+  },
+  {
+    "kind": "new-supplement",
+    "source": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\이미지 참조\\SDDD 순서도 CM3-027.png",
+    "destination": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20260929_1755_DHF-펌웨어-설계출력\\qa\\dhf-materials-system-20261012\\정리 전 G 보조자료\\03_설계 출력\\SW\\외부기\\이미지 참조\\SDDD 순서도 CM3-027.png",
+    "source_hash": "5ac34b825d95760dc380270a435a118756d4463b4e8e6f7c43cfdd24f414f982",
+    "current": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\DHF\\03_설계 출력\\SW\\펌웨어\\이미지 참조\\SDDD 순서도 CM3-027.png",
+    "same_as_current_start": true
+  },
+  {
+    "kind": "new-supplement",
+    "source": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\이미지 참조\\SDDD 순서도 CM3-028.png",
+    "destination": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20260929_1755_DHF-펌웨어-설계출력\\qa\\dhf-materials-system-20261012\\정리 전 G 보조자료\\03_설계 출력\\SW\\외부기\\이미지 참조\\SDDD 순서도 CM3-028.png",
+    "source_hash": "f2fe825c8b325f53c89d296cd90dd0d6b9a4407c85c46122e9a8494cc2fc7aba",
+    "current": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\DHF\\03_설계 출력\\SW\\펌웨어\\이미지 참조\\SDDD 순서도 CM3-028.png",
+    "same_as_current_start": true
+  },
+  {
+    "kind": "new-supplement",
+    "source": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\이미지 참조\\SDDD 순서도 CM3-029.png",
+    "destination": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20260929_1755_DHF-펌웨어-설계출력\\qa\\dhf-materials-system-20261012\\정리 전 G 보조자료\\03_설계 출력\\SW\\외부기\\이미지 참조\\SDDD 순서도 CM3-029.png",
+    "source_hash": "cd2d3b0de8fa5eaa57337ca12f90b021be89758608acc83017a98b357d1b7236",
+    "current": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\DHF\\03_설계 출력\\SW\\펌웨어\\이미지 참조\\SDDD 순서도 CM3-029.png",
+    "same_as_current_start": true
+  },
+  {
+    "kind": "new-supplement",
+    "source": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\이미지 참조\\SDDD 순서도 CM3-030.png",
+    "destination": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20260929_1755_DHF-펌웨어-설계출력\\qa\\dhf-materials-system-20261012\\정리 전 G 보조자료\\03_설계 출력\\SW\\외부기\\이미지 참조\\SDDD 순서도 CM3-030.png",
+    "source_hash": "7a86d7a8758ef3f31ba8eb156c0f3db6e6ac037952afd43256f356d026de8767",
+    "current": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\DHF\\03_설계 출력\\SW\\펌웨어\\이미지 참조\\SDDD 순서도 CM3-030.png",
+    "same_as_current_start": true
+  },
+  {
+    "kind": "new-supplement",
+    "source": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\이미지 참조\\SDDD 순서도 CM3-032.png",
+    "destination": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20260929_1755_DHF-펌웨어-설계출력\\qa\\dhf-materials-system-20261012\\정리 전 G 보조자료\\03_설계 출력\\SW\\외부기\\이미지 참조\\SDDD 순서도 CM3-032.png",
+    "source_hash": "d3e4fabc1e46adfec4ba8a39ce545e4b2b354eba80eac37ec73ec61798f73a57",
+    "current": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\DHF\\03_설계 출력\\SW\\펌웨어\\이미지 참조\\SDDD 순서도 CM3-032.png",
+    "same_as_current_start": true
+  },
+  {
+    "kind": "new-supplement",
+    "source": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\이미지 참조\\SDDD 순서도 CM3-044.png",
+    "destination": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20260929_1755_DHF-펌웨어-설계출력\\qa\\dhf-materials-system-20261012\\정리 전 G 보조자료\\03_설계 출력\\SW\\외부기\\이미지 참조\\SDDD 순서도 CM3-044.png",
+    "source_hash": "249e61693dd222e9e69d71df44c240f5f0de983f8e8e2f247b1c2d9d6335f27e",
+    "current": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\DHF\\03_설계 출력\\SW\\펌웨어\\이미지 참조\\SDDD 순서도 CM3-044.png",
+    "same_as_current_start": true
+  },
+  {
+    "kind": "new-supplement",
+    "source": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\이미지 참조\\SDDD 순서도 CM3-045.png",
+    "destination": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20260929_1755_DHF-펌웨어-설계출력\\qa\\dhf-materials-system-20261012\\정리 전 G 보조자료\\03_설계 출력\\SW\\외부기\\이미지 참조\\SDDD 순서도 CM3-045.png",
+    "source_hash": "9feb2fc310dfe60c9f09327f6b42d135ba532a31f0149b2a966ec357b3310807",
+    "current": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\DHF\\03_설계 출력\\SW\\펌웨어\\이미지 참조\\SDDD 순서도 CM3-045.png",
+    "same_as_current_start": true
+  },
+  {
+    "kind": "new-supplement",
+    "source": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\이미지 참조\\SDDD 순서도 CM3-046.png",
+    "destination": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20260929_1755_DHF-펌웨어-설계출력\\qa\\dhf-materials-system-20261012\\정리 전 G 보조자료\\03_설계 출력\\SW\\외부기\\이미지 참조\\SDDD 순서도 CM3-046.png",
+    "source_hash": "145a2629e4173b90edbb3a95c65b29df99e7355935c1e10673d407c3ce37ef5c",
+    "current": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\DHF\\03_설계 출력\\SW\\펌웨어\\이미지 참조\\SDDD 순서도 CM3-046.png",
+    "same_as_current_start": true
+  },
+  {
+    "kind": "new-supplement",
+    "source": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\이미지 참조\\SDDD 순서도 CM3-049.png",
+    "destination": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20260929_1755_DHF-펌웨어-설계출력\\qa\\dhf-materials-system-20261012\\정리 전 G 보조자료\\03_설계 출력\\SW\\외부기\\이미지 참조\\SDDD 순서도 CM3-049.png",
+    "source_hash": "c08afac614391f1c521e912501b699c3ed17683517c683dba05fa04a51e2b8f5",
+    "current": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\DHF\\03_설계 출력\\SW\\펌웨어\\이미지 참조\\SDDD 순서도 CM3-049.png",
+    "same_as_current_start": true
+  },
+  {
+    "kind": "new-supplement",
+    "source": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\이미지 참조\\SDDD 순서도 CM3-051.png",
+    "destination": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20260929_1755_DHF-펌웨어-설계출력\\qa\\dhf-materials-system-20261012\\정리 전 G 보조자료\\03_설계 출력\\SW\\외부기\\이미지 참조\\SDDD 순서도 CM3-051.png",
+    "source_hash": "f29c34ddfcd2b332e25ce572d0c2c90a077e6abb64468faa9fc9e508cb480a83",
+    "current": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\DHF\\03_설계 출력\\SW\\펌웨어\\이미지 참조\\SDDD 순서도 CM3-051.png",
+    "same_as_current_start": true
+  },
+  {
+    "kind": "new-supplement",
+    "source": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\이미지 참조\\SDDD 시스템 제어 연계.png",
+    "destination": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20260929_1755_DHF-펌웨어-설계출력\\qa\\dhf-materials-system-20261012\\정리 전 G 보조자료\\03_설계 출력\\SW\\외부기\\이미지 참조\\SDDD 시스템 제어 연계.png",
+    "source_hash": "d765976d40a8eb45e1937134a4efbf7603c5ff68c7093b2ac81783e47bfb20bc",
+    "current": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\DHF\\03_설계 출력\\SW\\펌웨어\\이미지 참조\\SDDD 시스템 제어 연계.png",
+    "same_as_current_start": true
+  },
+  {
+    "kind": "new-supplement",
+    "source": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\이미지 참조\\SDDD 신호처리 연계.png",
+    "destination": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20260929_1755_DHF-펌웨어-설계출력\\qa\\dhf-materials-system-20261012\\정리 전 G 보조자료\\03_설계 출력\\SW\\외부기\\이미지 참조\\SDDD 신호처리 연계.png",
+    "source_hash": "e321dcaf061afef8731cd7c9453abc3acae5e6a76e96340633e8275d60ed2f29",
+    "current": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\DHF\\03_설계 출력\\SW\\펌웨어\\이미지 참조\\SDDD 신호처리 연계.png",
+    "same_as_current_start": true
+  },
+  {
+    "kind": "new-supplement",
+    "source": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\이미지 참조\\내부기 실행 연계.png",
+    "destination": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20260929_1755_DHF-펌웨어-설계출력\\qa\\dhf-materials-system-20261012\\정리 전 G 보조자료\\03_설계 출력\\SW\\외부기\\이미지 참조\\내부기 실행 연계.png",
+    "source_hash": "d76d8ddbc12c5e07f786848a75817ae9d04c077627c680b6734eea8e5ffb802b",
+    "current": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\DHF\\03_설계 출력\\SW\\펌웨어\\이미지 참조\\내부기 실행 연계.png",
+    "same_as_current_start": true
+  },
+  {
+    "kind": "new-supplement",
+    "source": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\이미지 참조\\블루투스 명령 연계.png",
+    "destination": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20260929_1755_DHF-펌웨어-설계출력\\qa\\dhf-materials-system-20261012\\정리 전 G 보조자료\\03_설계 출력\\SW\\외부기\\이미지 참조\\블루투스 명령 연계.png",
+    "source_hash": "6b96c1661e1c37768c807949fc794f0b8f2dcc30d8fa0dfd256e6663ad239320",
+    "current": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\DHF\\03_설계 출력\\SW\\펌웨어\\이미지 참조\\블루투스 명령 연계.png",
+    "same_as_current_start": true
+  },
+  {
+    "kind": "new-supplement",
+    "source": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\이미지 참조\\소프트웨어 구조도.png",
+    "destination": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20260929_1755_DHF-펌웨어-설계출력\\qa\\dhf-materials-system-20261012\\정리 전 G 보조자료\\03_설계 출력\\SW\\외부기\\이미지 참조\\소프트웨어 구조도.png",
+    "source_hash": "1cb0d55175ae0717744ac8dbe0d94c8c6f404e84b106f843a8d09054b5f39fb5",
+    "current": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\DHF\\03_설계 출력\\SW\\펌웨어\\이미지 참조\\소프트웨어 구조도.png",
+    "same_as_current_start": true
+  },
+  {
+    "kind": "new-supplement",
+    "source": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\이미지 참조\\시스템 블록도.png",
+    "destination": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20260929_1755_DHF-펌웨어-설계출력\\qa\\dhf-materials-system-20261012\\정리 전 G 보조자료\\03_설계 출력\\SW\\외부기\\이미지 참조\\시스템 블록도.png",
+    "source_hash": "5800f70be2ab3191a779bd5491cf4c9288f15c417ec578dc2f9d4aa473a7ef63",
+    "current": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\DHF\\03_설계 출력\\SW\\펌웨어\\이미지 참조\\시스템 블록도.png",
+    "same_as_current_start": true
+  },
+  {
+    "kind": "new-supplement",
+    "source": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\이미지 참조\\시스템 제어 연계.png",
+    "destination": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20260929_1755_DHF-펌웨어-설계출력\\qa\\dhf-materials-system-20261012\\정리 전 G 보조자료\\03_설계 출력\\SW\\외부기\\이미지 참조\\시스템 제어 연계.png",
+    "source_hash": "c5db1e583987c5993d4447f53158a02efdb35196442357d75651ab000e61c191",
+    "current": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\DHF\\03_설계 출력\\SW\\펌웨어\\이미지 참조\\시스템 제어 연계.png",
+    "same_as_current_start": true
+  },
+  {
+    "kind": "new-supplement",
+    "source": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\이미지 참조\\신호처리 연계.png",
+    "destination": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20260929_1755_DHF-펌웨어-설계출력\\qa\\dhf-materials-system-20261012\\정리 전 G 보조자료\\03_설계 출력\\SW\\외부기\\이미지 참조\\신호처리 연계.png",
+    "source_hash": "a07908c30eee3e4a00371ba537aadd547e01e5c54384820f18d1e47a11e439cd",
+    "current": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\참고\\인허가\\사운드1\\DHF\\03_설계 출력\\SW\\펌웨어\\이미지 참조\\신호처리 연계.png",
+    "same_as_current_start": true
+  }
+]

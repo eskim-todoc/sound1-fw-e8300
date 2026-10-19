@@ -1,0 +1,278 @@
+{
+  "status": "PASS",
+  "candidateSHA": "037CF72A05B276DE25FD21B7EE457A655736BE8FB6D4AE14B67C881F0E3EBEF4",
+  "checks": {
+    "source_hashes": {
+      "pass": true,
+      "detail": null
+    },
+    "sheet_order": {
+      "pass": true,
+      "detail": null
+    },
+    "cover_byte_exact": {
+      "pass": true,
+      "detail": null
+    },
+    "other_parts_byte_exact": {
+      "pass": true,
+      "detail": null
+    },
+    "original_cells_exact": {
+      "pass": true,
+      "detail": {
+        "count": 22353,
+        "differences": []
+      }
+    },
+    "original_row_attributes": {
+      "pass": true,
+      "detail": null
+    },
+    "footer_row_1729": {
+      "pass": true,
+      "detail": null
+    },
+    "footer_row_1730": {
+      "pass": true,
+      "detail": null
+    },
+    "footer_row_1731": {
+      "pass": true,
+      "detail": null
+    },
+    "footer_row_1732": {
+      "pass": true,
+      "detail": null
+    },
+    "footer_row_1733": {
+      "pass": true,
+      "detail": null
+    },
+    "footer_row_1734": {
+      "pass": true,
+      "detail": null
+    },
+    "footer_row_1735": {
+      "pass": true,
+      "detail": null
+    },
+    "footer_row_1736": {
+      "pass": true,
+      "detail": null
+    },
+    "footer_row_1737": {
+      "pass": true,
+      "detail": null
+    },
+    "column_widths_styles": {
+      "pass": true,
+      "detail": null
+    },
+    "preserve_sheetFormatPr": {
+      "pass": true,
+      "detail": null
+    },
+    "preserve_sheetViews": {
+      "pass": true,
+      "detail": null
+    },
+    "preserve_pageMargins": {
+      "pass": true,
+      "detail": null
+    },
+    "preserve_pageSetup": {
+      "pass": true,
+      "detail": null
+    },
+    "preserve_headerFooter": {
+      "pass": true,
+      "detail": null
+    },
+    "preserve_printOptions": {
+      "pass": true,
+      "detail": null
+    },
+    "preserve_rowBreaks": {
+      "pass": true,
+      "detail": null
+    },
+    "preserve_colBreaks": {
+      "pass": true,
+      "detail": null
+    },
+    "preserve_sheetProtection": {
+      "pass": true,
+      "detail": null
+    },
+    "merges_existing_and_new": {
+      "pass": true,
+      "detail": {
+        "existing": 1275,
+        "added": 60
+      }
+    },
+    "old_fonts_unchanged": {
+      "pass": true,
+      "detail": null
+    },
+    "old_fills_unchanged": {
+      "pass": true,
+      "detail": null
+    },
+    "old_borders_unchanged": {
+      "pass": true,
+      "detail": null
+    },
+    "old_cellXfs_unchanged": {
+      "pass": true,
+      "detail": null
+    },
+    "old_cellStyleXfs_unchanged": {
+      "pass": true,
+      "detail": null
+    },
+    "old_cellStyles_unchanged": {
+      "pass": true,
+      "detail": null
+    },
+    "old_dxfs_unchanged": {
+      "pass": true,
+      "detail": null
+    },
+    "qcc_all_values": {
+      "pass": true,
+      "detail": 341
+    },
+    "qcc_exact_rich_text": {
+      "pass": true,
+      "detail": []
+    },
+    "qcc_native_font_fill_border": {
+      "pass": true,
+      "detail": []
+    },
+    "qcc_empty_cells": {
+      "pass": true,
+      "detail": null
+    },
+    "no_current_diff_markers": {
+      "pass": true,
+      "detail": null
+    },
+    "pending_all_38": {
+      "pass": true,
+      "detail": null
+    },
+    "115_plus_15_unique": {
+      "pass": true,
+      "detail": null
+    },
+    "height_limit": {
+      "pass": true,
+      "detail": null
+    },
+    "comparison_values_and_colors": {
+      "pass": true,
+      "detail": {
+        "changes": 343,
+        "bad": []
+      }
+    },
+    "print_area_expanded": {
+      "pass": true,
+      "detail": null
+    },
+    "no_cell_errors": {
+      "pass": true,
+      "detail": null
+    }
+  },
+  "errors": [],
+  "prefixLocations": {
+    "[QCC 자료 입력]": [
+      "C19",
+      "D19",
+      "I1727",
+      "L1727",
+      "I1728",
+      "L1728",
+      "I1729",
+      "L1729",
+      "I1730",
+      "L1730",
+      "I1731",
+      "L1731",
+      "I1732",
+      "L1732",
+      "E1733",
+      "I1733",
+      "L1733",
+      "I1734",
+      "L1734",
+      "I1735",
+      "L1735",
+      "I1736",
+      "L1736",
+      "I1737",
+      "L1737",
+      "I1738",
+      "L1738",
+      "I1739",
+      "L1739",
+      "I1740",
+      "L1740",
+      "I1741",
+      "L1741",
+      "I1742",
+      "L1742",
+      "I1743",
+      "L1743",
+      "I1744",
+      "L1744",
+      "I1745",
+      "L1745",
+      "I1746",
+      "L1746",
+      "I1747",
+      "L1747",
+      "I1748",
+      "L1748",
+      "I1749",
+      "L1749",
+      "I1750",
+      "L1750",
+      "I1751",
+      "L1751",
+      "I1752",
+      "L1752",
+      "I1753",
+      "L1753",
+      "I1754",
+      "L1754",
+      "I1755",
+      "L1755",
+      "I1756",
+      "L1756",
+      "I1757",
+      "L1757",
+      "I1758",
+      "L1758",
+      "I1759",
+      "L1759",
+      "I1760",
+      "L1760",
+      "I1761",
+      "L1761",
+      "I1762",
+      "L1762",
+      "I1763",
+      "L1763",
+      "I1764",
+      "L1764"
+    ],
+    "[QCC/E8300 자료 입력]": [
+      "K1735"
+    ]
+  }
+}

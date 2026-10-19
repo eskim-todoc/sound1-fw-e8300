@@ -1,0 +1,309 @@
+{
+  "scope": "소유 SRS/SR/SGR3문서에 대한29원칙 검사. 다른 소유자의 설계/시험/중앙MD검사를 대신하지 않는다.",
+  "guideline_sha256": "E92F8E37DA5159B3FEF6C6A44A9167F5BC07AF83A05D2F632F9D57D907DBC927",
+  "active_requirement_count": 82,
+  "matrix_equality_denominator": 50,
+  "matrix_unregistered_original_subordinate_count": 32,
+  "checks": [
+    {
+      "number": 1,
+      "title": "E8300과 QCC의 같은 요구사항을 하나로 완성한다",
+      "status": "통과",
+      "location": "SRS F/G/H/I, SR 4/5장",
+      "evidence_and_scope": "같은 Bluetooth 송수신은 기존69/FW15로 통합했다. 82는 삭제 비교 이력만 보존했다. 83은 실제 ACDOC17/18/20의 사용 설명서 요구이며 기존81에 같은 기능이 없어 유지했다.",
+      "evidence_files": [
+        "srs-qa.json",
+        "requirements-contract.json"
+      ]
+    },
+    {
+      "number": 2,
+      "title": "SRS 내용상세의 기본 문구를 매트릭스와 맞춘다",
+      "status": "통과",
+      "location": "SRS 82개 현재 F/H, 실제 매트릭스 100~149 및348/349/351행",
+      "evidence_and_scope": "실제 상위 추적이 있는50요구는 첫 기본 블록의 원문과 다음줄 상세 분리까지 일치한다. 원본H빈32요구는 매트릭스 대조 분모에서 제외하며 상위ID를 추정하지 않았다.",
+      "evidence_files": [
+        "srs-comparison-qa.json",
+        "matrix-readonly.xlsx"
+      ]
+    },
+    {
+      "number": 3,
+      "title": "요구사항부터 실제 설계와 시험 ID/이름까지 연결한다",
+      "status": "미실행",
+      "location": "전체 SRS→SAD→SDDD→시험 연결",
+      "evidence_and_scope": "본인 소유3문서의 현재 식별ID/실제 상위 요구 연결은 통과했다. 최종 설계3개 및 시험6개의 전체 downstream 독립 대조는 해당 담당자/루트의 검사 결과에 연결해야 한다.",
+      "evidence_files": [
+        "requirements-contract.json"
+      ]
+    },
+    {
+      "number": 4,
+      "title": "실제 문서 내용과 미갱신 표기를 확인한다",
+      "status": "통과",
+      "location": "QCC SRS 실제 원문 및 현행3문서",
+      "evidence_and_scope": "QCC 실제본문을 읽고 스마트케이스/CC를 외부기QCC의 미갱신표기로 해석했다. 본문 없는 충전 항목은 신규요구로 만들지 않았다. 원문ID대응은 로컬 근거에만 남겼다.",
+      "evidence_files": [
+        "inspection.json",
+        "requirements-contract.json"
+      ]
+    },
+    {
+      "number": 5,
+      "title": "실제 시스템 구조와 전달 경로를 먼저 이해한다",
+      "status": "통과",
+      "location": "SR 2장/그림2, SGR 5.1.1, SRS15/69",
+      "evidence_and_scope": "사용자 확정 사실 DMIC2→E8300 및QCC를 반영했고 통화 상향과 QCC→E8300 I2S하향을 구분했다. CFX/HEAR/CM3와 칩/장치 경계를 보존하며 QCC핀/클록을 만들지 않았다.",
+      "evidence_files": [
+        "SR-authored.json",
+        "SGR-authored.json"
+      ]
+    },
+    {
+      "number": 6,
+      "title": "권장 순서로 시작하고 양방향으로 반복한다",
+      "status": "통과",
+      "location": "SRS15/47/48/49/52/54/69/71/72/76/78/83 및 연결 문서",
+      "evidence_and_scope": "설계/시험 담당과 최종문구를 공유하고 키파생/인증/링크보호, 180초/30초/60초 조건과 DMIC2 피드백을 앞 문서에 재반영했다. native에서 찾은 서식 결함은 표적 수정 후 다시 검사한다.",
+      "evidence_files": [
+        "requirements-contract.json",
+        "srs-layout-fix2.json",
+        "srs-layout-fix3.json"
+      ]
+    },
+    {
+      "number": 7,
+      "title": "E8300 본문의 형식과 설명 수준으로 QCC를 넣는다",
+      "status": "통과",
+      "location": "SR/SGR 전체본문, SRS 현재F",
+      "evidence_and_scope": "기존 E8300 절/설명 수준 안에 QCC기능을 통합했다. 제공자료/병합과정 문구는 본문에서 제거했고 요구와 상세를 같은 항목 안에 배치했다. 이번 상세/미비안내의 가운데점 0개를 확인했다. 매트릭스 기본문구/기존 문장은 유지했다.",
+      "evidence_files": [
+        "SR-authored.json",
+        "SGR-authored.json",
+        "srs-qa.json",
+        "new-sentence-punctuation-qa.json"
+      ]
+    },
+    {
+      "number": 8,
+      "title": "상세설계 본문만으로 구현 조건을 이해하게 한다",
+      "status": "해당없음",
+      "location": "본인 소유3문서",
+      "evidence_and_scope": "상세설계 SDDD는 설계 담당 소유이다. 본인 문서는 요구/일반요구이며 유닛설계 목적/I/O/처리 재구성 대상이 없다.",
+      "evidence_files": []
+    },
+    {
+      "number": 9,
+      "title": "I/A/D/T 방법과 정의를 정확히 쓴다",
+      "status": "해당없음",
+      "location": "SRS/SR/SGR",
+      "evidence_and_scope": "소유3문서에는 I/A/D/T 방법 열 또는 방법 정의 표가 없다. 기준서의 약어/정의는 시험 담당 검사 대상이다.",
+      "evidence_files": []
+    },
+    {
+      "number": 10,
+      "title": "도구 이름이 아니라 통과 증거로 방법을 정한다",
+      "status": "해당없음",
+      "location": "SRS/SR/SGR",
+      "evidence_and_scope": "시험 방법 분류 열이 없다. 송신 SYS82는 기존69/FW15에 연결하며 정량범위 없는 시연 D라는 시험 담당/루트 결정을 공유했다.",
+      "evidence_files": []
+    },
+    {
+      "number": 11,
+      "title": "제3자가 수행할 준비와 절차를 쓴다",
+      "status": "해당없음",
+      "location": "본인 소유3문서",
+      "evidence_and_scope": "실행 준비/절차를 작성하는 시험 기준서 소유권이 없다. 요구의 미확정 조건은 실제 현재 미비안내에 남겼다.",
+      "evidence_files": []
+    },
+    {
+      "number": 12,
+      "title": "기준서와 보고서의 공통 열과 행을 동일하게 유지한다",
+      "status": "해당없음",
+      "location": "본인 소유3문서",
+      "evidence_and_scope": "기준서/보고서 공통 열·행·병합 대조는 시험 담당의6Excel에 적용한다.",
+      "evidence_files": []
+    },
+    {
+      "number": 13,
+      "title": "같은 입력의 예상값과 관찰값을 본문 같은 행에서 비교한다",
+      "status": "해당없음",
+      "location": "본인 소유3문서",
+      "evidence_and_scope": "실제 시험 결과값을 추가하는 보고서 소유권이 없다. 요구사항에 시험 결과를 만들지 않았다.",
+      "evidence_files": []
+    },
+    {
+      "number": 14,
+      "title": "RTT의 전체 문자열과 증거 종류를 구분한다",
+      "status": "해당없음",
+      "location": "본인 소유3문서",
+      "evidence_and_scope": "RTT 예상/관찰 문자열 기입 문서가 아니다.",
+      "evidence_files": []
+    },
+    {
+      "number": 15,
+      "title": "조건 번호와 검증 번호를 빠짐없이 대응시킨다",
+      "status": "해당없음",
+      "location": "본인 소유3문서",
+      "evidence_and_scope": "조건/검증 번호가 있는 시험 행이 없다.",
+      "evidence_files": []
+    },
+    {
+      "number": 16,
+      "title": "결과 칸에는 실제 입력/출력/관찰과 근거를 쓴다",
+      "status": "해당없음",
+      "location": "본인 소유3문서",
+      "evidence_and_scope": "시험 결과 칸이 없다. 제품 시험 결과는 새로 생성하지 않았다.",
+      "evidence_files": []
+    },
+    {
+      "number": 17,
+      "title": "사용자에게 확인된 시험자 결과의 근거 범위를 지킨다",
+      "status": "해당없음",
+      "location": "본인 소유3문서",
+      "evidence_and_scope": "시험자 확인 결과 또는 수집로그를 새로 기입하는 문서가 아니다.",
+      "evidence_files": []
+    },
+    {
+      "number": 18,
+      "title": "기존 통과를 새 조건이나 다른 시험 단계로 확대하지 않는다",
+      "status": "통과",
+      "location": "SR 5장 검증 질문/6장 위험분석 재평가",
+      "evidence_and_scope": "과거 예 답변을 신규QCC 구현·정량시험 완료로 확대하지 않는다. 현재 미확정 조건/시험은 판정 대기로 설명하고 위험 영향 재평가를 남겼다.",
+      "evidence_files": [
+        "SR-authored.json"
+      ]
+    },
+    {
+      "number": 19,
+      "title": "과거 지정된 시험자 확인 결과의 수치 처리만 재사용한다",
+      "status": "해당없음",
+      "location": "본인 소유3문서",
+      "evidence_and_scope": "시험자 확인 결과의 중간값/음수 절삭을 적용한 결과값 기입이 없다.",
+      "evidence_files": []
+    },
+    {
+      "number": 20,
+      "title": "예상 도식과 실제 사진을 구분하고 지정 삭제를 유지한다",
+      "status": "해당없음",
+      "location": "SR 그림2/기존 그림",
+      "evidence_and_scope": "하드웨어 구성도를 수정했고 파형/LED예상도식 또는 계측 캡처를 생성하지 않았다. 구조 그림은 실측 화면 주장이 없다.",
+      "evidence_files": [
+        "SR-authored.json"
+      ]
+    },
+    {
+      "number": 21,
+      "title": "일반 시간 시험의 날짜와 경계 입력을 구분한다",
+      "status": "해당없음",
+      "location": "본인 소유3문서",
+      "evidence_and_scope": "일반 시간 시험 입력 날짜가 없다. 작성/서명/승인 이력을 시험날짜로 치환하지 않았다.",
+      "evidence_files": []
+    },
+    {
+      "number": 22,
+      "title": "담당별 표시를 적용하고 자료 수신 뒤에도 지정 접두어를 유지한다",
+      "status": "통과",
+      "location": "SRS 현재18안내/SR5안내/SGR2안내",
+      "evidence_and_scope": "접두어와 전체 설명의 기본10+2pt, 지정색/밑줄을 실제현재 richrun/Wordrun 전체에서 검사했다. DMIC2연결은 확인됨으로 적고 핀/클록/동시조건 등 실제 남은 자료를 구분했다. 보존Q접두어는 임의 해제하지 않았다.",
+      "evidence_files": [
+        "full-note-qa.json"
+      ]
+    },
+    {
+      "number": 23,
+      "title": "중앙 QCC 위치 목록을 저장본과 함께 갱신한다",
+      "status": "미실행",
+      "location": "중앙 QCC 위치 목록",
+      "evidence_and_scope": "본인에게 MD수정 권한이 없다. 저장된현재ID/행좌표/미비안내 전체 문구를 루트에 전달했으며 목록 최종 대조는 루트 책임이다.",
+      "evidence_files": [
+        "full-note-qa.json",
+        "srs-qa.json"
+      ]
+    },
+    {
+      "number": 24,
+      "title": "Excel의 정렬과 행/병합/테두리를 실제 표시로 확인한다",
+      "status": "통과",
+      "location": "SRS B3:I107 전체 실제 인쇄범위 29쪽",
+      "evidence_and_scope": "최신A568 실제Excel native29쪽 모두 원본 크기로 확인했다. 긴F상세와H상위추적, C18/D26분류, G/H60 RID47/FW22 및 과거I문구의 잘림이 해소됐다. 같은내용 분할 외곽테두리와 내부경계,409.5pt높이상한을 확인했다. 원본B열 IEC분류/NA와96~107행 규제요구는 보존했다.",
+      "evidence_files": [
+        "srs-layout-fix2.json",
+        "srs-layout-fix3.json",
+        "native-final-qa.json",
+        "srs-comparison-qa.json"
+      ]
+    },
+    {
+      "number": 25,
+      "title": "Excel 변경 비교는 본문 행 단위로 실질 차이를 보여준다",
+      "status": "통과",
+      "location": "SRS 모든 비교richrun",
+      "evidence_and_scope": "원문빨강[-]/다음수정초록[+]순서와 전체문자색을 검사했다. 현재미비안내만 지정색예외이다. 요구/ID/추적의 실질차이를 본문에 보존하며 현재값은[+]로 분리했다.",
+      "evidence_files": [
+        "srs-comparison-qa.json"
+      ]
+    },
+    {
+      "number": 26,
+      "title": "Word 본 파일에 실제 수락/거부 가능한 변경 추적을 남긴다",
+      "status": "통과",
+      "location": "SR/SGR Word본문·그림",
+      "evidence_and_scope": "김은수 실제 삽입/삭제/속성추적과 기존 이력을 보존했다. 새 변경 거부는 시작before현재본문을 복원한다. 최신G와같은 native필드정규화 후 수락/거부본문·그림/저자일자 일반revision/안내 4개 비교가 통과했다. Word media파트 재번호는 실제bytes/hash 및 수락/거부 그림 순서 보존으로 확인했다.",
+      "evidence_files": [
+        "SR-authored.json",
+        "SGR-authored.json",
+        "../SR-layout-fields-comparison.json",
+        "../SGR-layout-fields-comparison.json",
+        "native-final-qa.json"
+      ]
+    },
+    {
+      "number": 27,
+      "title": "원본, 산출물 경로와 작성/승인 정보를 보존한다",
+      "status": "통과",
+      "location": "G 설계입력 외부기3사본/보호원본23개",
+      "evidence_and_scope": "G기존단계동일경로 [E8300-QCC]3사본만 수정했고 E원본/Q원문23개 SHA256는 시작기준과동일하다. 표지/서명/검토/승인빈칸과 기존개정이력은 보존했다.",
+      "evidence_files": [
+        "srs-comparison-qa.json",
+        "SR-authored.json",
+        "SGR-authored.json"
+      ]
+    },
+    {
+      "number": 28,
+      "title": "최종 저장 내용과 전체 표시를 검증한다",
+      "status": "통과",
+      "location": "저장현재G SR13/SGR12/SRS29쪽 전체native",
+      "evidence_and_scope": "82현재요구의F/H/I실제문구,50매트릭스 기본블록과32원본하위요구를 구분해 대조했다. 최신native 전체54쪽을 직접 확인했고 Word25쪽은 검토후 게시본과pixel동일이다. 표기준선/SGR표제목 고립/Excel경계 잘림은 수정후 해소됐다. 제품시험 또는 새승인은 생성하지 않았다.",
+      "evidence_files": [
+        "srs-qa.json",
+        "full-note-qa.json",
+        "native-final-qa.json",
+        "SR-final-layout.json",
+        "SGR-final-layout.json"
+      ]
+    },
+    {
+      "number": 29,
+      "title": "우리의 Word 공통 형식을 같은 본문 체계로 적용한다",
+      "status": "통과",
+      "location": "SR/SGR 모든본문/표/캡션",
+      "evidence_and_scope": "실제저장59개 TDC스타일과지원스타일 참조/기본1.25배 및뒤8pt를 확인했다. 전체native에서 본문10pt, 표기준선/너비/정렬/머리행반복과캡션/SEQ/목차필드를 확인했다. SR/SGR 표외곽6px이동 및 SGR표준및규제제목의5쪽표연결은 최종저장PNG에서 정상이다. 원본PAGE재시작과이력보존. 유닛목적/I/O/처리 표는 이 소유문서에 해당없다.",
+      "evidence_files": [
+        "SR-tdc-style-fix.json",
+        "SGR-tdc-style-fix.json",
+        "SR-final-layout.json",
+        "SGR-final-layout.json",
+        "native-final-qa.json"
+      ]
+    }
+  ],
+  "current_hashes": {
+    "SRS": "A568B4996AC13053D55973E5E59E59ACB6E18FAB5E41C4A7423DEF49596B93E4",
+    "SR": "FA08A1F90789F5A789423BBAFF7462DBB35781D0E2680F7A05CF3562E751813D",
+    "SGR": "92AAC0E24260DE06967FCF483548CAF5C51F7FB96209C2A6B6DAF90CE389B922"
+  },
+  "native_status": "저장현재G SR13/SGR12/SRS29쪽 전체native 직접검사 통과. Word검토후 게시본 전체PNG pixel동일. 전체downstream/중앙목록은 루트 최종증거에 연결한다.",
+  "product_execution": "이번 문서 작업에서 제품 시험을 새로 실행하지 않았다. 자료/설계 반영과 시험 통과/승인을 구분한다."
+}

@@ -1,0 +1,219 @@
+{
+  "schema": "SGR-full-native-visual-review-v1",
+  "checked_at": "2026-10-13T17:38:52.919075+09:00",
+  "candidate": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\SGR-fields.docx",
+  "sourceSHA256": "83072C8AA513BC0C19D03BEFD14368AEB948EE742F58BDDA27414536259E66A0",
+  "currentSHA256": "83072C8AA513BC0C19D03BEFD14368AEB948EE742F58BDDA27414536259E66A0",
+  "source_unchanged_during_review": true,
+  "authored_evidence": {
+    "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\authored.json",
+    "sha256": "398F1F726A321273434F06B0225F726D1AA7F9CB02538060E44F3186C1332CE5"
+  },
+  "scope": "실제 Word 수락 보기 SGR 최종후보13쪽 PNG를 모두 원본 크기로 직접 열어 제목/번호굵기/들여쓰기/본문/표/목차/빈페이지/잘림/빨강 가독성 검사. 원본/후보/COM/G/다른 기록은 변경하지 않았다. 기능 구현/제품 시험 또는 정식 승인으로 확대하지 않는다.",
+  "status": "FAIL_NEW_BLANK_PAGE",
+  "full_page_count_viewed": 13,
+  "final_native_display_pass": false,
+  "pages": [
+    {
+      "page": 1,
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\views-after\\SGR\\page-001.png",
+      "sha256": "65D93ECCD4BC46270C2386EBAF33C7189AD29479026C8E42DD72D7E8F5897FF9",
+      "pixels": [
+        893,
+        1263
+      ],
+      "direct_original_size_viewed": true,
+      "view_detail": "original",
+      "verdict": "통과",
+      "finding": "표지/문서번호/모델명/작성 검토 승인 표와 머리글이 경계 안에 표시된다."
+    },
+    {
+      "page": 2,
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\views-after\\SGR\\page-002.png",
+      "sha256": "31B37260E32592CC440441FDA803A619F99ACFF3FC078C6602495A0BC4B8379E",
+      "pixels": [
+        893,
+        1263
+      ],
+      "direct_original_size_viewed": true,
+      "view_detail": "original",
+      "verdict": "통과",
+      "finding": "목차의 계층 들여쓰기/쪽 번호/점선이 표시되며 하위 마지막 항목은3쪽으로 정상 이어진다."
+    },
+    {
+      "page": 3,
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\views-after\\SGR\\page-003.png",
+      "sha256": "D0B76D217F1030819AB7E41FFF5CE8686B9077EB26928C485D1DB65250D6DC30",
+      "pixels": [
+        893,
+        1263
+      ],
+      "direct_original_size_viewed": true,
+      "view_detail": "original",
+      "verdict": "통과",
+      "finding": "목차5.3.3 항목 및 개정이력 표가 표시된다. 표 내용/외곽 테두리 잘림은 없다."
+    },
+    {
+      "page": 4,
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\views-after\\SGR\\page-004.png",
+      "sha256": "129001394D64D95C5A8B10BA0358A3D428AE0FB127202F317762AC22D1626C94",
+      "pixels": [
+        893,
+        1263
+      ],
+      "direct_original_size_viewed": true,
+      "view_detail": "original",
+      "verdict": "실패",
+      "finding": "문서 머리글과4/13만 표시되고 본문 전체가 비어 있다. 이전12쪽본의4쪽은 서론 본문이므로 새 빈 페이지다."
+    },
+    {
+      "page": 5,
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\views-after\\SGR\\page-005.png",
+      "sha256": "A9208F24FAFD6436D25183F79071A41E072655ADC1BE4FEDDEF5E4D8B4BB7E2D",
+      "pixels": [
+        893,
+        1263
+      ],
+      "direct_original_size_viewed": true,
+      "view_detail": "original",
+      "verdict": "통과",
+      "finding": "서론/하위 제목과 번호가 함께 굵게 표시되고 본문 들여쓰기가 계층과 맞는다. 적용 범위 실제 QCC 내용의 빨간색 굵게 문단이 줄바꿈되고 잘리지 않는다."
+    },
+    {
+      "page": 6,
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\views-after\\SGR\\page-006.png",
+      "sha256": "DB60C6464F31DBD7CFFF4E94C2EE5FB4DB2D3DE358109D3C4DD2E9603A98BA43",
+      "pixels": [
+        893,
+        1263
+      ],
+      "direct_original_size_viewed": true,
+      "view_detail": "original",
+      "verdict": "통과",
+      "finding": "표준/규제 표와 기기 설명 제목/하위 제목 및 본문이 겹침 없이 표시된다."
+    },
+    {
+      "page": 7,
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\views-after\\SGR\\page-007.png",
+      "sha256": "69A55693D94AEAF74BF43945842FE7DF078872E4DB437E7C175B3771A507FF74",
+      "pixels": [
+        893,
+        1263
+      ],
+      "direct_original_size_viewed": true,
+      "view_detail": "original",
+      "verdict": "통과",
+      "finding": "시스템 구성 그림2개와 캡션/그림 내부 레이블이 페이지 안에 표시된다. 다음 쪽에 이어지는 외부장치 설명은 읽히며 실제 glyph 잘림은 없다."
+    },
+    {
+      "page": 8,
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\views-after\\SGR\\page-008.png",
+      "sha256": "706F7E0275BCC3E1659058567087C73F9CBF46BF60A37F742B1EFEEA9E74584E",
+      "pixels": [
+        893,
+        1263
+      ],
+      "direct_original_size_viewed": true,
+      "view_detail": "original",
+      "verdict": "통과",
+      "finding": "앞쪽의 제품 설명 본문이 이어지고 분류 제목/3.1 및 표 첫 구간이 표시된다. 긴Class C 설명은9쪽에 정상 이어진다."
+    },
+    {
+      "page": 9,
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\views-after\\SGR\\page-009.png",
+      "sha256": "5914047EAD38CD6891C4857B6D48AE0531110F5D14D92E271DFCF96CA4CD2B25",
+      "pixels": [
+        893,
+        1263
+      ],
+      "direct_original_size_viewed": true,
+      "view_detail": "original",
+      "verdict": "통과",
+      "finding": "분류 표의 반복 머리글과Class C 이어짐/Class B/Class A,3.2 제목/표 시작이 표시된다. 문장 잘림은 없다."
+    },
+    {
+      "page": 10,
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\views-after\\SGR\\page-010.png",
+      "sha256": "7F0E66C374B92A3548D5980523CE50ACCE5AABC638C4E38121FBB22998C627A8",
+      "pixels": [
+        893,
+        1263
+      ],
+      "direct_original_size_viewed": true,
+      "view_detail": "original",
+      "verdict": "통과",
+      "finding": "등급 분류 질문 표의 병합 영역/긴 질문이 셀 안에 표시된다.4.4 영문은11쪽에 이어진다."
+    },
+    {
+      "page": 11,
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\views-after\\SGR\\page-011.png",
+      "sha256": "1B6E75D099D17917018A26945F23430ED0E0F4C0623D4201A4CC25A86D183E7D",
+      "pixels": [
+        893,
+        1263
+      ],
+      "direct_original_size_viewed": true,
+      "view_detail": "original",
+      "verdict": "통과",
+      "finding": "표의 반복 머리글/4.4 영문 이어짐/남은 질문과3.3 제목 및 첫 문장이 페이지 안에 표시된다."
+    },
+    {
+      "page": 12,
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\views-after\\SGR\\page-012.png",
+      "sha256": "3EFE1BA12E4D6FADD6118CC94D4779F0425E10F1D4B70ED1EDDA0005CC1943F0",
+      "pixels": [
+        893,
+        1263
+      ],
+      "direct_original_size_viewed": true,
+      "view_detail": "original",
+      "verdict": "통과",
+      "finding": "4/5장과5.1/5.1.1/5.1.2/5.2의 제목·번호 굵기가 일관된다. DMIC2/SPI/BLE 실제내용의 빨간색 굵게 문단이 읽히고 전체 마지막 줄까지 표시된다."
+    },
+    {
+      "page": 13,
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\views-after\\SGR\\page-013.png",
+      "sha256": "232128102AFD81B7BE4FAA9939C2E1C03F7CCCC2DC13D910BFEC8308B0FB6D65",
+      "pixels": [
+        893,
+        1263
+      ],
+      "direct_original_size_viewed": true,
+      "view_detail": "original",
+      "verdict": "통과",
+      "finding": "5.3/5.3.1~5.3.3 제목과 번호/본문 들여쓰기가 일관된다. QCC 실행환경 및 Bluetooth stack 실제 내용의 빨간색 굵게 문단이 읽히고, 미확정 설명은 일반 본문으로 표시된다."
+    }
+  ],
+  "baseline_comparison": [
+    {
+      "page": 3,
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\views-before\\SGR\\page-003.png",
+      "sha256": "5B85900CC1C20BDC19894AC0A0C9A1845B063629D9E2B9861EDDFA13610667A8",
+      "direct_original_size_viewed": true,
+      "view_detail": "original",
+      "observation": "3/12 개정이력 표 표시,4/12 서론 본문 시작. 해당 위치에 빈 페이지 없음."
+    },
+    {
+      "page": 4,
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\views-before\\SGR\\page-004.png",
+      "sha256": "048B59E2717D9D620EB286A38695F4374A4068EDA79C924F6F585B93412B1C6D",
+      "direct_original_size_viewed": true,
+      "view_detail": "original",
+      "observation": "3/12 개정이력 표 표시,4/12 서론 본문 시작. 해당 위치에 빈 페이지 없음."
+    }
+  ],
+  "findings": [
+    {
+      "severity": "수정 필요",
+      "page": 4,
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\views-after\\SGR\\page-004.png",
+      "issue": "본문 없는 새 빈 페이지",
+      "evidence": "후보4/13은 머리글만 표시. 후보3쪽의 목차 마지막 항목/개정표 뒤,5쪽 서론 앞에 생김. 이전본4/12는서론 본문이었다.",
+      "suggested_action": "개정이력 표 다음의 빈 문단/페이지 나눔/목차 이어짐 배치를 점검하여 새 빈 페이지 제거. 본문/이력/표를 보존한 후 실제 Word 출력으로 전체 쪽 번호/목차와 해당 경계를 재확인."
+    }
+  ],
+  "remaining_visual_defects": "새4쪽 빈 페이지1건. 나머지12쪽에서 추가 glyph 잘림/표 오버플로/빨강 가독성 결함을 찾지 못함.",
+  "new_writes": [
+    "SGR-visual-review.json"
+  ]
+}

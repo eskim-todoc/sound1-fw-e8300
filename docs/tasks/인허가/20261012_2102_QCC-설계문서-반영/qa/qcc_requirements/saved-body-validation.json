@@ -1,0 +1,1392 @@
+{
+  "saved_body_basis": true,
+  "checks": {
+    "srs_package_modified_parts": [
+      "xl/workbook.xml",
+      "xl/worksheets/sheet2.xml",
+      "xl/styles.xml",
+      "xl/drawings/vmlDrawing1.vml",
+      "xl/comments1.xml",
+      "xl/calcChain.xml"
+    ],
+    "original_note_preserved_at_shifted_B55": true,
+    "all_83_ids_unique": true,
+    "existing_upper_ids_unchanged": true,
+    "srs_new_row_merge_checked": true,
+    "calc_chain_matches_formula_cells": true,
+    "SR": {
+      "package_modified_parts": [
+        "word/document.xml",
+        "word/settings.xml",
+        "docProps/core.xml"
+      ],
+      "old_revisions_count": 231,
+      "new_revisions_count": 40,
+      "existing_revision_xml_unchanged": true,
+      "new_author_checked": true,
+      "all_current_plan_text_present": true
+    },
+    "SGR": {
+      "package_modified_parts": [
+        "word/document.xml",
+        "word/settings.xml",
+        "docProps/core.xml"
+      ],
+      "old_revisions_count": 43,
+      "new_revisions_count": 14,
+      "existing_revision_xml_unchanged": true,
+      "new_author_checked": true,
+      "all_current_plan_text_present": true
+    },
+    "SRS_saved_sha256": "FB34D47181B2AC35E6DBE710C78986990B6934849B370B5E8CDE030FF10DFAC8",
+    "SR_saved_sha256": "7E9B1A1E2971CE5CF5D316F5B1D06406493F7FD300CB44C108079CDEA595F93C",
+    "SGR_saved_sha256": "1D8997BD92966D82100C40C1801B3A111A5A8D352D756C20DEF6283A787E97CC",
+    "source_column_wrap_checked_existing_styles_preserved": true
+  },
+  "srs_missing_locations": [
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "F20",
+      "prefix": "[QCC 자료 입력]",
+      "text": "[QCC 자료 입력] I2S의 클록/프레임과 유효 신호의 실제 출력 조건 및 측정 자료를 입력한다.",
+      "font_size": 12.0,
+      "base_size": 10.0,
+      "color": "#C00000",
+      "underline": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "F21",
+      "prefix": "[QCC/E8300 자료 입력]",
+      "text": "[QCC/E8300 자료 입력] 8kHz 대역 끝점의 입력/출력 조건과 허용 범위를 확인한다. 코드 설정을 실제 음향 성능 측정값으로 보지 않는다.",
+      "font_size": 12.0,
+      "base_size": 10.0,
+      "color": "#7030A0",
+      "underline": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "F49",
+      "prefix": "[QCC 자료 입력]",
+      "text": "[QCC 자료 입력] 마이크의 QCC 입력 경로, 프로파일/코덱/상대 장치, 동시 송수신 조건과 실제 시험 자료를 입력한다.",
+      "font_size": 12.0,
+      "base_size": 10.0,
+      "color": "#C00000",
+      "underline": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "F50",
+      "prefix": "[QCC 자료 입력]",
+      "text": "[QCC 자료 입력] Bluetooth 제어의 명령/상태와 충전 상태 데이터의 상세 전달 계약을 입력한다.",
+      "font_size": 12.0,
+      "base_size": 10.0,
+      "color": "#C00000",
+      "underline": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "F51",
+      "prefix": "[QCC 자료 입력]",
+      "text": "[QCC 자료 입력] 매핑 시작/종료의 상태/실패 처리와 동시 연결 정책을 입력한다.",
+      "font_size": 12.0,
+      "base_size": 10.0,
+      "color": "#C00000",
+      "underline": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "F52",
+      "prefix": "[QCC 자료 입력]",
+      "text": "[QCC 자료 입력] 연결 상대와 프로파일/코덱별 송수신 조건을 입력한다.",
+      "font_size": 12.0,
+      "base_size": 10.0,
+      "color": "#C00000",
+      "underline": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "F53",
+      "prefix": "[QCC 자료 입력]",
+      "text": "[QCC 자료 입력] GATT 서비스/특성의 실제 값과 명령/응답의 허용 상태를 입력한다.",
+      "font_size": 12.0,
+      "base_size": 10.0,
+      "color": "#C00000",
+      "underline": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "F56",
+      "prefix": "[QCC/E8300 자료 입력]",
+      "text": "[QCC/E8300 자료 입력] 데이터 송수신의 범위/타이머 갱신 조건을 정하고 기존 제어 명령 미수신 조건과 정합성을 확인한다. 180초의 허용오차 및 경계 동작 자료도 필요하다.",
+      "font_size": 12.0,
+      "base_size": 10.0,
+      "color": "#7030A0",
+      "underline": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "F57",
+      "prefix": "[QCC 자료 입력]",
+      "text": "[QCC 자료 입력] 페어링 전 허용 서비스, GATT 권한과 인증 전후 차단/허용의 실제 조건 및 검증 자료를 입력한다.",
+      "font_size": 12.0,
+      "base_size": 10.0,
+      "color": "#C00000",
+      "underline": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "F58",
+      "prefix": "[QCC 자료 입력]",
+      "text": "[QCC 자료 입력] 링크 암호화 활성화와 페어링 전 차단을 확인한 자료를 입력한다. CRA의 AES-CMAC/SHA-256 정보를 무선 링크 암호화의 검증 근거로 사용하지 않는다.",
+      "font_size": 12.0,
+      "base_size": 10.0,
+      "color": "#C00000",
+      "underline": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "F61",
+      "prefix": "[QCC 자료 입력]",
+      "text": "[QCC 자료 입력] SHA-256의 키 생성 역할과 실제 CRA 인증값 계산 알고리즘의 관계를 확정한다. 키 역할, 입력 직렬화, 인증값 길이와 알고리즘 표기의 정합성 및 검증 자료를 입력한다.",
+      "font_size": 12.0,
+      "base_size": 10.0,
+      "color": "#C00000",
+      "underline": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "F62",
+      "prefix": "[QCC/E8300 자료 입력]",
+      "text": "[QCC/E8300 자료 입력] QCC의 인증/암호화 전송과 E8300의 OTA 수신/저장/재기동 보호 자료를 연결한다. 제품 회수/교체 절차와 OTA의 적용 범위도 확인한다.",
+      "font_size": 12.0,
+      "base_size": 10.0,
+      "color": "#7030A0",
+      "underline": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "F64",
+      "prefix": "[QCC 자료 입력]",
+      "text": "[QCC 자료 입력] QCC의 부트 검사 방식/활성화 설정, 손상/변조 이미지의 거부 및 복구 동작을 입력한다. E8300의 CRC 검사를 QCC 검사나 암호학적 인증의 근거로 대체하지 않는다.",
+      "font_size": 12.0,
+      "base_size": 10.0,
+      "color": "#C00000",
+      "underline": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "F65",
+      "prefix": "[QCC 자료 입력]",
+      "text": "[QCC 자료 입력] 30초 타이머의 시작/갱신/초기화 조건, 허용오차 및 상태별 응답과 인증정보 미노출의 검증 자료를 입력한다.",
+      "font_size": 12.0,
+      "base_size": 10.0,
+      "color": "#C00000",
+      "underline": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "F66",
+      "prefix": "[QCC 자료 입력]",
+      "text": "[QCC 자료 입력] 실패 횟수의 누적/초기화, 전원 재기동, 제한 종료 후 재접속과 시간 경계/허용오차의 처리 및 검증 자료를 입력한다.",
+      "font_size": 12.0,
+      "base_size": 10.0,
+      "color": "#C00000",
+      "underline": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "F70",
+      "prefix": "[QCC 자료 입력]",
+      "text": "[QCC 자료 입력] 실제 설치/저장 대상과 키 역할, 저장 암호화/접근 제한 및 복호화 시작 조건을 확정한다. 인증 전후 송수신/OTA 전송의 보호와 조건별 검증 자료도 입력한다.",
+      "font_size": 12.0,
+      "base_size": 10.0,
+      "color": "#C00000",
+      "underline": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "F72",
+      "prefix": "[QCC/E8300 자료 입력]",
+      "text": "[QCC/E8300 자료 입력] QCC의 AES-CMAC/SHA-256/AES-128 사용 목적/키 관리와 E8300의 AES 저장/부트 보호를 연결한다. QCC의 HMAC/ENC 표기, AES-128 모드와 BLE 링크 보호의 실제 적용 자료를 입력한다.",
+      "font_size": 12.0,
+      "base_size": 10.0,
+      "color": "#7030A0",
+      "underline": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "F80",
+      "prefix": "[E8300 보완]",
+      "text": "[E8300 보완] 제품 사용 설명서 파일의 해당 내용과 정식 상위 요구사항의 식별/추적을 등록한다.",
+      "font_size": 12.0,
+      "base_size": 10.0,
+      "color": "#0070C0",
+      "underline": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "H80",
+      "prefix": "[E8300 보완]",
+      "text": "[E8300 보완] 정식 상위 요구사항 미등록",
+      "font_size": 12.0,
+      "base_size": 10.0,
+      "color": "#0070C0",
+      "underline": true
+    },
+    {
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "cell": "F85",
+      "prefix": "[QCC 자료 입력]",
+      "text": "[QCC 자료 입력] CRC가 적용된 무선 통신의 QCC 내부 모듈/유닛 설계 연결을 추가한다.",
+      "font_size": 12.0,
+      "base_size": 10.0,
+      "color": "#C00000",
+      "underline": true
+    }
+  ],
+  "srs_rid_current_text": [
+    {
+      "id": "SW-FW-RID-1",
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "id_cell": "G6",
+      "body_cell": "F6",
+      "body": "\n전채널 동시에 자극률은 20kHz이상이어야 한다.(32채널 사용)\n",
+      "upper_cell": "H6",
+      "upper": "\nSYS-RID-SP-FW-2\n"
+    },
+    {
+      "id": "SW-FW-RID-2",
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "id_cell": "G7",
+      "body_cell": "F7",
+      "body": "\n채널별 최대 자극률은 1000Hz 이상이어야 한다.(24채널 사용)\n",
+      "upper_cell": "H7",
+      "upper": ""
+    },
+    {
+      "id": "SW-FW-RID-3",
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "id_cell": "G8",
+      "body_cell": "F8",
+      "body": "\n모노폴라 자극 모드 출력이 가능해야한다.\n",
+      "upper_cell": "H8",
+      "upper": "\nSYS-RID-SP-FW-1\n"
+    },
+    {
+      "id": "SW-FW-RID-4",
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "id_cell": "G9",
+      "body_cell": "F9",
+      "body": "\nnegative/positive phase 선택이 가능해야 한다.\n",
+      "upper_cell": "H9",
+      "upper": "\nSYS-RID-SP-FW-4\n"
+    },
+    {
+      "id": "SW-FW-RID-5",
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "id_cell": "G10",
+      "body_cell": "F10",
+      "body": "\n내부 자극칩 출력 범위 내에서 조정이 가능해야 한다.\n",
+      "upper_cell": "H10",
+      "upper": "\nSYS-RID-SP-FW-5\n"
+    },
+    {
+      "id": "SW-FW-RID-6",
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "id_cell": "G11",
+      "body_cell": "F11",
+      "body": "\n자극 펄스 폭은 13~255usec 범위에서 1usec 단위로 조정이 가능해야한다.\n",
+      "upper_cell": "H11",
+      "upper": "\nSYS-RID-SP-FW-3\n"
+    },
+    {
+      "id": "SW-FW-RID-7",
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "id_cell": "G12",
+      "body_cell": "F12",
+      "body": "\n인공와우 내부기 시스템의 전극에서 출력되는 최대 전하량이 안전치를 초과하지 않도록 펄스폭에 따라 최종 자극 크기의 제한이 필요하다.\n",
+      "upper_cell": "H12",
+      "upper": ""
+    },
+    {
+      "id": "SW-FW-RID-8",
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "id_cell": "G13",
+      "body_cell": "F13",
+      "body": "\nAGC를 사용한 감도 조절 10단계\n",
+      "upper_cell": "H13",
+      "upper": "\nSYS-RID-SP-FW-6\n"
+    },
+    {
+      "id": "SW-FW-RID-9",
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "id_cell": "G14",
+      "body_cell": "F14",
+      "body": "\nFFT 방식으로 신호의 주파수를 성분을 분석한다.\n",
+      "upper_cell": "H14",
+      "upper": "\nSYS-RID-SP-FW-7\n"
+    },
+    {
+      "id": "SW-FW-RID-10",
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "id_cell": "G15",
+      "body_cell": "F15",
+      "body": "\n1~32채널의 대역수로 주파수 분석이 가능해야한다.\n",
+      "upper_cell": "H15",
+      "upper": "\nSYS-RID-SP-FW-8\n"
+    },
+    {
+      "id": "SW-FW-RID-11",
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "id_cell": "G16",
+      "body_cell": "F16",
+      "body": "\n필수 : CIS, 옵션 : N-of-M\n",
+      "upper_cell": "H16",
+      "upper": "\nSYS-RID-SP-FW-9\n"
+    },
+    {
+      "id": "SW-FW-RID-12",
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "id_cell": "G17",
+      "body_cell": "F17",
+      "body": "\n사운드 처리 주기는 1.00ms이며 허용 오차는 +/-5%(0.95~1.05ms)이다.\n",
+      "upper_cell": "H17",
+      "upper": "\nSYS-RID-SP-FW-10\n"
+    },
+    {
+      "id": "SW-FW-RID-13",
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "id_cell": "G18",
+      "body_cell": "F18",
+      "body": "\n4개의 맵 데이터를 사용할 수 있어야 한다.\n",
+      "upper_cell": "H18",
+      "upper": "\nSYS-RID-SP-FW-11\n"
+    },
+    {
+      "id": "SW-FW-RID-14",
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "id_cell": "G19",
+      "body_cell": "F19",
+      "body": "\n자극 볼륨은 4단계로 조정 가능해야한다.\n",
+      "upper_cell": "H19",
+      "upper": "\nSYS-RID-SP-FW-12\n"
+    },
+    {
+      "id": "SW-FW-RID-15",
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "id_cell": "G20",
+      "body_cell": "F20",
+      "body": "\n2개 이상의 오디오 소스를 입력 받을 수 있어야 한다. QCC는 Bluetooth 오디오를 I2S로 E8300에 전달하며, 데이터는 24비트, 샘플링 주파수는 16kHz다.\n\nQCC 설계 연결: Bluetooth Classic 유닛(SU-ID-QCC-008), 시스템 초기화와 설정 유닛(SU-ID-QCC-001).\n\n[QCC 자료 입력] I2S의 클록/프레임과 유효 신호의 실제 출력 조건 및 측정 자료를 입력한다.\n",
+      "upper_cell": "H20",
+      "upper": ""
+    },
+    {
+      "id": "SW-FW-RID-16",
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "id_cell": "G21",
+      "body_cell": "F21",
+      "body": "\n오디오 입력 대역은 0~8kHz이며, 샘플링 주파수 16kHz와 구분한다.\n\n[QCC/E8300 자료 입력] 8kHz 대역 끝점의 입력/출력 조건과 허용 범위를 확인한다. 코드 설정을 실제 음향 성능 측정값으로 보지 않는다.\n",
+      "upper_cell": "H21",
+      "upper": ""
+    },
+    {
+      "id": "SW-FW-RID-17",
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "id_cell": "G22",
+      "body_cell": "F22",
+      "body": "\n오디오 신호처리의 최종 출력은 PCM 데이터로 변환되어 FPGA에 전달되어야 한다.\n",
+      "upper_cell": "H22",
+      "upper": ""
+    },
+    {
+      "id": "SW-FW-RID-18",
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "id_cell": "G23",
+      "body_cell": "F23",
+      "body": "\n매핑 데이터에 기반하여 최종 자극 파라미터가 생성되어야 한다.\n",
+      "upper_cell": "H23",
+      "upper": ""
+    },
+    {
+      "id": "SW-FW-RID-19",
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "id_cell": "G24",
+      "body_cell": "F24",
+      "body": "\n터치 센서의 입력에 따라 전원 모드와 사용자 제어를 처리한다.\n",
+      "upper_cell": "H24",
+      "upper": ""
+    },
+    {
+      "id": "SW-FW-RID-20",
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "id_cell": "G25",
+      "body_cell": "F25",
+      "body": "\n외부기 동작 상태를 표시한다.\n",
+      "upper_cell": "H25",
+      "upper": ""
+    },
+    {
+      "id": "SW-FW-RID-21",
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "id_cell": "G26",
+      "body_cell": "F26",
+      "body": "\n전원 커넥터 연결 상태를 표시한다.\n",
+      "upper_cell": "H26",
+      "upper": ""
+    },
+    {
+      "id": "SW-FW-RID-22",
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "id_cell": "G27",
+      "body_cell": "F27",
+      "body": "\n배터리 저전압 상태를  표시한다.\n",
+      "upper_cell": "H27",
+      "upper": ""
+    },
+    {
+      "id": "SW-FW-RID-23",
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "id_cell": "G28",
+      "body_cell": "F28",
+      "body": "\n배터리 저전압 상태를 자극으로 출력한다.\n",
+      "upper_cell": "H28",
+      "upper": ""
+    },
+    {
+      "id": "SW-FW-RID-24",
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "id_cell": "G29",
+      "body_cell": "F29",
+      "body": "\n프로그램 변경하기\n",
+      "upper_cell": "H29",
+      "upper": ""
+    },
+    {
+      "id": "SW-FW-RID-25",
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "id_cell": "G30",
+      "body_cell": "F30",
+      "body": "\n오디오 볼륨 조절하기\n",
+      "upper_cell": "H30",
+      "upper": ""
+    },
+    {
+      "id": "SW-FW-RID-26",
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "id_cell": "G31",
+      "body_cell": "F31",
+      "body": "\n자극 볼륨 조절하기\n",
+      "upper_cell": "H31",
+      "upper": ""
+    },
+    {
+      "id": "SW-FW-RID-27",
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "id_cell": "G32",
+      "body_cell": "F32",
+      "body": "\nLED 알림 켜기/끄기\n",
+      "upper_cell": "H32",
+      "upper": ""
+    },
+    {
+      "id": "SW-FW-RID-28",
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "id_cell": "G33",
+      "body_cell": "F33",
+      "body": "\n자극 알림 켜기/끄기\n",
+      "upper_cell": "H33",
+      "upper": ""
+    },
+    {
+      "id": "SW-FW-RID-29",
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "id_cell": "G34",
+      "body_cell": "F34",
+      "body": "\n배터리 상태\n",
+      "upper_cell": "H34",
+      "upper": ""
+    },
+    {
+      "id": "SW-FW-RID-30",
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "id_cell": "G35",
+      "body_cell": "F35",
+      "body": "\n선택된 맵 번호\n",
+      "upper_cell": "H35",
+      "upper": ""
+    },
+    {
+      "id": "SW-FW-RID-31",
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "id_cell": "G36",
+      "body_cell": "F36",
+      "body": "\n오디오 볼륨 단계\n",
+      "upper_cell": "H36",
+      "upper": ""
+    },
+    {
+      "id": "SW-FW-RID-32",
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "id_cell": "G37",
+      "body_cell": "F37",
+      "body": "\n자극 볼륨 단계\n",
+      "upper_cell": "H37",
+      "upper": ""
+    },
+    {
+      "id": "SW-FW-RID-33",
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "id_cell": "G38",
+      "body_cell": "F38",
+      "body": "\nLED 알림 설정 상태\n",
+      "upper_cell": "H38",
+      "upper": ""
+    },
+    {
+      "id": "SW-FW-RID-34",
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "id_cell": "G39",
+      "body_cell": "F39",
+      "body": "\n자극 알림 설정 상태\n",
+      "upper_cell": "H39",
+      "upper": ""
+    },
+    {
+      "id": "SW-FW-RID-35",
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "id_cell": "G40",
+      "body_cell": "F40",
+      "body": "\n시스템 상태 확인\n",
+      "upper_cell": "H40",
+      "upper": ""
+    },
+    {
+      "id": "SW-FW-RID-36",
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "id_cell": "G41",
+      "body_cell": "F41",
+      "body": "\n특정 자극 출력\n",
+      "upper_cell": "H41",
+      "upper": ""
+    },
+    {
+      "id": "SW-FW-RID-37",
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "id_cell": "G42",
+      "body_cell": "F42",
+      "body": "\n실시간 자극 출력 진행\n",
+      "upper_cell": "H42",
+      "upper": ""
+    },
+    {
+      "id": "SW-FW-RID-38",
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "id_cell": "G43",
+      "body_cell": "F43",
+      "body": "\n시스템 상태\n",
+      "upper_cell": "H43",
+      "upper": ""
+    },
+    {
+      "id": "SW-FW-RID-39",
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "id_cell": "G44",
+      "body_cell": "F44",
+      "body": "\n특정 자극 출력 결과\n",
+      "upper_cell": "H44",
+      "upper": ""
+    },
+    {
+      "id": "SW-FW-RID-40",
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "id_cell": "G45",
+      "body_cell": "F45",
+      "body": "\n실시간 자극 진행 상태\n",
+      "upper_cell": "H45",
+      "upper": ""
+    },
+    {
+      "id": "SW-FW-RID-41",
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "id_cell": "G46",
+      "body_cell": "F46",
+      "body": "\nI2C 프로토콜을 사용하여 FPGA와 데이터 송/수신이 가능해야한다.\n",
+      "upper_cell": "H46",
+      "upper": ""
+    },
+    {
+      "id": "SW-FW-RID-42",
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "id_cell": "G47",
+      "body_cell": "F47",
+      "body": "\nI2C 프로토콜을 사용하여 터치 센서와 데이터를 송수신할 수 있어야 한다.\n",
+      "upper_cell": "H47",
+      "upper": ""
+    },
+    {
+      "id": "SW-FW-RID-43",
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "id_cell": "G48",
+      "body_cell": "F48",
+      "body": "\nI2C를 프로토콜을 사용하여 PMIC의 조정이 가능해야한다.\n",
+      "upper_cell": "H48",
+      "upper": ""
+    },
+    {
+      "id": "SW-FW-RID-82",
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "id_cell": "G49",
+      "body_cell": "F49",
+      "body": "\n외부기는 마이크에서 수집한 오디오를 Bluetooth Classic을 통해 다른 블루투스 장치로 전송할 수 있어야 한다.\n\nQCC 설계 연결: Bluetooth Classic 유닛(SU-ID-QCC-008).\n\n[QCC 자료 입력] 마이크의 QCC 입력 경로, 프로파일/코덱/상대 장치, 동시 송수신 조건과 실제 시험 자료를 입력한다.\n",
+      "upper_cell": "H49",
+      "upper": "\nSYS-RID-SP-HW-11\n"
+    },
+    {
+      "id": "SW-FW-RID-44",
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "id_cell": "G50",
+      "body_cell": "F50",
+      "body": "\n리모콘 앱이 실행되는 스마트폰과 BLE로 데이터 통신이 가능해야 한다. 충전/배터리 상태와 Bluetooth 제어 정보를 송수신하며, 사운드 처리기의 명령/응답은 QCC가 SPI로 중계한다.\n\nQCC 설계 연결: BLE 유닛(SU-ID-QCC-009), BLE Data 처리 유닛(SU-ID-QCC-011), 시스템 상태 유닛(SU-ID-QCC-002).\n\n[QCC 자료 입력] Bluetooth 제어의 명령/상태와 충전 상태 데이터의 상세 전달 계약을 입력한다.\n",
+      "upper_cell": "H50",
+      "upper": "\nSYS-RID-SP-FW-13\n"
+    },
+    {
+      "id": "SW-FW-RID-45",
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "id_cell": "G51",
+      "body_cell": "F51",
+      "body": "\n매핑 프로그램이 실행되는 기기와 BLE로 데이터 통신이 가능해야 한다. 매핑 시작/종료 및 사운드 처리기의 명령/응답은 QCC가 SPI로 중계한다.\n\nQCC 설계 연결: BLE 유닛(SU-ID-QCC-009), BLE Data 처리 유닛(SU-ID-QCC-011), 시스템 상태 유닛(SU-ID-QCC-002).\n\n[QCC 자료 입력] 매핑 시작/종료의 상태/실패 처리와 동시 연결 정책을 입력한다.\n",
+      "upper_cell": "H51",
+      "upper": "\nSYS-RID-SP-FW-14\n"
+    },
+    {
+      "id": "SW-FW-RID-69",
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "id_cell": "G52",
+      "body_cell": "F52",
+      "body": "\nBluetooth Classic 오디오 통신을 지원해야 한다.\n\nQCC 설계 연결: 블루투스 상태 유닛(SU-ID-QCC-004), Bluetooth Classic 유닛(SU-ID-QCC-008). 오디오 입력과 마이크 송신 요구는 SW-FW-RID-15, SW-FW-RID-82에 따른다.\n\n[QCC 자료 입력] 연결 상대와 프로파일/코덱별 송수신 조건을 입력한다.\n",
+      "upper_cell": "H52",
+      "upper": "\nSYS-RID-SP-FW-15\n"
+    },
+    {
+      "id": "SW-FW-RID-70",
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "id_cell": "G53",
+      "body_cell": "F53",
+      "body": "\nBLE 데이터 통신을 지원해야 한다.\n\nQCC 설계 연결: BLE 유닛(SU-ID-QCC-009), BLE Data 처리 유닛(SU-ID-QCC-011), 시스템 상태 유닛(SU-ID-QCC-002).\n\n[QCC 자료 입력] GATT 서비스/특성의 실제 값과 명령/응답의 허용 상태를 입력한다.\n",
+      "upper_cell": "H53",
+      "upper": "\nSYS-RID-SP-FW-16\n"
+    },
+    {
+      "id": "SW-FW-RID-46",
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "id_cell": "G55",
+      "body_cell": "F55",
+      "body": "\n등록된 내부이식장치와만 근접 무선 통신을 연결한다.\n",
+      "upper_cell": "H55",
+      "upper": "\nSYS-RID-SP-FW-17\n"
+    },
+    {
+      "id": "SW-FW-RID-47",
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "id_cell": "G56",
+      "body_cell": "F56",
+      "body": "\n일정 시간 동안 제어 명령이 수신되지 않으면 BLE 연결을 해제해야 한다. QCC의 연결 제어 기준은 BLE 데이터 송수신이 3분(180초) 동안 없으면 연결을 해제하는 것이다.\n\nQCC 설계 연결: 보안 처리 유닛(SU-ID-QCC-012).\n\n[QCC/E8300 자료 입력] 데이터 송수신의 범위/타이머 갱신 조건을 정하고 기존 제어 명령 미수신 조건과 정합성을 확인한다. 180초의 허용오차 및 경계 동작 자료도 필요하다.\n",
+      "upper_cell": "H56",
+      "upper": "\nSYS-RID-SP-FW-22\n"
+    },
+    {
+      "id": "SW-FW-RID-48",
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "id_cell": "G57",
+      "body_cell": "F57",
+      "body": "\n1. BLE 페어링을 사용하여 인가된 장치와 연결한다.\n2. BLE 연결 후 CRA(Challenge-Response Authentication)를 사용하여 적법한 장치를 확인한다. 인증 서비스는 Challenge, Response, Confirm, Status 특성을 사용하며 보호 대상 기기 제어/매핑 데이터 접근은 인증 이후에 허용한다.\n\nQCC 설계 연결: AUTH service 처리 유닛(SU-ID-QCC-010), 보안 처리 유닛(SU-ID-QCC-012).\n\n[QCC 자료 입력] 페어링 전 허용 서비스, GATT 권한과 인증 전후 차단/허용의 실제 조건 및 검증 자료를 입력한다.\n",
+      "upper_cell": "H57",
+      "upper": "\nSYS-RID-SP-FW-18\n"
+    },
+    {
+      "id": "SW-FW-RID-49",
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "id_cell": "G58",
+      "body_cell": "F58",
+      "body": "\nBLE 페어링이 완료된 상태에서 데이터를 송수신하며, 무선 링크의 기밀성/무결성/인증은 AES-CCM(Counter with CBC-MAC) 보호를 적용해야 한다.\n\n[QCC 자료 입력] 링크 암호화 활성화와 페어링 전 차단을 확인한 자료를 입력한다. CRA의 AES-CMAC/SHA-256 정보를 무선 링크 암호화의 검증 근거로 사용하지 않는다.\n",
+      "upper_cell": "H58",
+      "upper": "\nSYS-RID-SP-FW-26\n"
+    },
+    {
+      "id": "SW-FW-RID-50",
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "id_cell": "G59",
+      "body_cell": "F59",
+      "body": "\n감사기록을 생성한다.\n",
+      "upper_cell": "H59",
+      "upper": "\nSYS-RID-SP-FW-23\n"
+    },
+    {
+      "id": "SW-FW-RID-51",
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "id_cell": "G60",
+      "body_cell": "F60",
+      "body": "\n설정파일을 읽을 때, 파일의 무결성을 확인한다.\n",
+      "upper_cell": "H60",
+      "upper": "\nSYS-RID-SP-FW-27\n"
+    },
+    {
+      "id": "SW-FW-RID-52",
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "id_cell": "G61",
+      "body_cell": "F61",
+      "body": "\n1. 기기 제어용 통신과 매핑용 통신은 CRA의 인증키와 처리 방식을 구분한다.\n2. 각 CRA 인증키의 크기는 16 bytes(128 bits)다. QCC 요구 자료는 리모콘 AES-CMAC, 매핑 SHA-256으로 구분한다. 상세설계에서는 매핑 키를 SHA-256 결과의 앞 16 bytes로 생성하고 인증 절차에는 AES-CMAC을 표시한다.\n\nQCC 설계 연결: 보안 처리 유닛(SU-ID-QCC-012), 보안 툴박스 유닛(SU-ID-QCC-013).\n\n[QCC 자료 입력] SHA-256의 키 생성 역할과 실제 CRA 인증값 계산 알고리즘의 관계를 확정한다. 키 역할, 입력 직렬화, 인증값 길이와 알고리즘 표기의 정합성 및 검증 자료를 입력한다.\n",
+      "upper_cell": "H61",
+      "upper": "\nSYS-RID-SP-FW-19\n"
+    },
+    {
+      "id": "SW-FW-RID-53",
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "id_cell": "G62",
+      "body_cell": "F62",
+      "body": "\n소프트웨어 업데이트가 필요할 경우 기존 제품을 회수하고 업데이트된 제품을 생산하여 교체한다.\n\n[QCC/E8300 자료 입력] QCC의 인증/암호화 전송과 E8300의 OTA 수신/저장/재기동 보호 자료를 연결한다. 제품 회수/교체 절차와 OTA의 적용 범위도 확인한다.\n",
+      "upper_cell": "H62",
+      "upper": "\nSYS-RID-SP-FW-30\n"
+    },
+    {
+      "id": "SW-FW-RID-81",
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "id_cell": "G63",
+      "body_cell": "F63",
+      "body": "\n품질관리시스템 절차에 따라, 인가된 인원이 펌웨어를 생성하여 배포한다.\n",
+      "upper_cell": "H63",
+      "upper": "\nSYS-RID-SP-FW-31\n"
+    },
+    {
+      "id": "SW-FW-RID-54",
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "id_cell": "G64",
+      "body_cell": "F64",
+      "body": "\n1. E8300 부팅 과정에서 실행파일의 CRC와 파일/이미지 무결성 검사 경로를 적용한다.\n2. QCC는 전원 인가 후 부팅 과정에서 칩셋이 제공하는 방식으로 QCC 펌웨어 이미지의 무결성을 검사해야 한다.\n\n[QCC 자료 입력] QCC의 부트 검사 방식/활성화 설정, 손상/변조 이미지의 거부 및 복구 동작을 입력한다. E8300의 CRC 검사를 QCC 검사나 암호학적 인증의 근거로 대체하지 않는다.\n",
+      "upper_cell": "H64",
+      "upper": "\nSYS-RID-SP-FW-32\n"
+    },
+    {
+      "id": "SW-FW-RID-71",
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "id_cell": "G65",
+      "body_cell": "F65",
+      "body": "\nCRA 인증 결과는 실패, 성공, 진행 중, 타임아웃으로 전달하며 인증정보를 유추할 피드백을 제공하지 않아야 한다. 30초 동안 인증이 완료되지 않으면 타임아웃으로 처리한다.\n\nQCC 설계 연결: AUTH service 처리 유닛(SU-ID-QCC-010), 보안 처리 유닛(SU-ID-QCC-012).\n\n[QCC 자료 입력] 30초 타이머의 시작/갱신/초기화 조건, 허용오차 및 상태별 응답과 인증정보 미노출의 검증 자료를 입력한다.\n",
+      "upper_cell": "H65",
+      "upper": "\nSYS-RID-SP-FW-20\n"
+    },
+    {
+      "id": "SW-FW-RID-72",
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "id_cell": "G66",
+      "body_cell": "F66",
+      "body": "\nCRA 인증이 5회 연속 실패하면 1분(60초) 동안 BLE 연결을 제한해야 한다.\n\nQCC 설계 연결: 보안 처리 유닛(SU-ID-QCC-012).\n\n[QCC 자료 입력] 실패 횟수의 누적/초기화, 전원 재기동, 제한 종료 후 재접속과 시간 경계/허용오차의 처리 및 검증 자료를 입력한다.\n",
+      "upper_cell": "H66",
+      "upper": "\nSYS-RID-SP-FW-21\n"
+    },
+    {
+      "id": "SW-FW-RID-73",
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "id_cell": "G67",
+      "body_cell": "F67",
+      "body": "\n감사기록 생성 실패를 오류 정보에 포함한다.\n",
+      "upper_cell": "H67",
+      "upper": "\nSYS-RID-SP-FW-24\n"
+    },
+    {
+      "id": "SW-FW-RID-74",
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "id_cell": "G68",
+      "body_cell": "F68",
+      "body": "\n감사기록은 타임 스탬프를 포함한다.\n",
+      "upper_cell": "H68",
+      "upper": "\nSYS-RID-SP-FW-25\n"
+    },
+    {
+      "id": "SW-FW-RID-75",
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "id_cell": "G69",
+      "body_cell": "F69",
+      "body": "\n오류 메시지에 보안과 관련되 정보를 직접 표시하지 않는다.\n",
+      "upper_cell": "H69",
+      "upper": "\nSYS-RID-SP-FW-29\n"
+    },
+    {
+      "id": "SW-FW-RID-76",
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "id_cell": "G70",
+      "body_cell": "F70",
+      "body": "\n1. 보호 대상 데이터 송수신은 BLE 페어링과 CRA 인증 이후에 활성화한다.\n2. CRA의 인증키는 생산 시 암호화하여 비휘발성 메모리에 저장해야 한다. QCC 상세설계의 생산 설치 키(shared_service_key, clinician_master_key)와 생성 매핑 키(clinic_service_key)를 구분한다.\n\nQCC 설계 연결: NVM 처리 유닛(SU-ID-QCC-007), 보안 툴박스 유닛(SU-ID-QCC-013), 보안 NVM 유닛(SU-ID-QCC-014).\n\n[QCC 자료 입력] 실제 설치/저장 대상과 키 역할, 저장 암호화/접근 제한 및 복호화 시작 조건을 확정한다. 인증 전후 송수신/OTA 전송의 보호와 조건별 검증 자료도 입력한다.\n",
+      "upper_cell": "H70",
+      "upper": "\nSYS-RID-SP-FW-33\n"
+    },
+    {
+      "id": "SW-FW-RID-77",
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "id_cell": "G71",
+      "body_cell": "F71",
+      "body": "\n내부장치 제조번호, 사용자 이니셜 값은 암호화 하여 저장한다.\n",
+      "upper_cell": "H71",
+      "upper": "\nSYS-RID-SP-FW-34\n"
+    },
+    {
+      "id": "SW-FW-RID-78",
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "id_cell": "G72",
+      "body_cell": "F72",
+      "body": "\n무결성, 암호화에 사용하는 알고리즘은 사이버보안 규격에서 권고하는 알고리즘을 사용한다. QCC의 CRA 인증, 매핑 키 생성, NVM 암호화와 BLE 링크 보호는 서로 다른 사용 목적을 구분해야 한다.\n\n[QCC/E8300 자료 입력] QCC의 AES-CMAC/SHA-256/AES-128 사용 목적/키 관리와 E8300의 AES 저장/부트 보호를 연결한다. QCC의 HMAC/ENC 표기, AES-128 모드와 BLE 링크 보호의 실제 적용 자료를 입력한다.\n",
+      "upper_cell": "H72",
+      "upper": "\nSYS-RID-SP-FW-35\n"
+    },
+    {
+      "id": "SW-FW-RID-79",
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "id_cell": "G73",
+      "body_cell": "F73",
+      "body": "\n외부에서 로그 정보의 접근은 인가자만 가능해야 하며, 외부 전송을 할경우 기밀성이 보호되어야 한다.\n",
+      "upper_cell": "H73",
+      "upper": "\nSYS-RID-SP-FW-36\n"
+    },
+    {
+      "id": "SW-FW-RID-80",
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "id_cell": "G74",
+      "body_cell": "F74",
+      "body": "\n설정파일의 무결성이 확인되지 않으면, 설정파일을 공장초기화 한다.\n",
+      "upper_cell": "H74",
+      "upper": "\nSYS-RID-SP-FW-38\n"
+    },
+    {
+      "id": "SW-FW-RID-55",
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "id_cell": "G75",
+      "body_cell": "F75",
+      "body": "\n배터리 저전압을 주기적으로 반복하여 자극 출력과 LED로 알린다.\n",
+      "upper_cell": "H75",
+      "upper": "\nSYS-RID-SP-FW-48\n"
+    },
+    {
+      "id": "SW-FW-RID-56",
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "id_cell": "G76",
+      "body_cell": "F76",
+      "body": "\n자극 볼륨은 단계적으로 증가하도록 설계한다.(soft increase)\n",
+      "upper_cell": "H76",
+      "upper": "\nSYS-RID-SP-FW-47\n"
+    },
+    {
+      "id": "SW-FW-RID-83",
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "id_cell": "G80",
+      "body_cell": "F80",
+      "body": "\n사용자에게 배포되는 사용 설명서는 안전 예방조치, 사용 방법, 문제 해결 방법을 포함해야 한다.\n\n[E8300 보완] 제품 사용 설명서 파일의 해당 내용과 정식 상위 요구사항의 식별/추적을 등록한다.\n",
+      "upper_cell": "H80",
+      "upper": "\n[E8300 보완] 정식 상위 요구사항 미등록\n"
+    },
+    {
+      "id": "SW-FW-RID-57",
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "id_cell": "G82",
+      "body_cell": "F82",
+      "body": "\n필수 성능 시험을 진행한다.\n",
+      "upper_cell": "H82",
+      "upper": "\nSYS-RID-SP-FW-39, SYS-RID-SP-FW-40\n"
+    },
+    {
+      "id": "SW-FW-RID-58",
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "id_cell": "G83",
+      "body_cell": "F83",
+      "body": "\n실시간 신호처리 주기는 1.00ms, 허용 오차 +/-5%(0.95~1.05ms)이며 각 블록 처리는 다음 처리 시작 전에 완료되어야 한다.\n",
+      "upper_cell": "H83",
+      "upper": "\nSYS-RID-SP-FW-41\n"
+    },
+    {
+      "id": "SW-FW-RID-59",
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "id_cell": "G84",
+      "body_cell": "F84",
+      "body": "\n제어 명령이 프로토콜에 맞게 전송되어야 실행한다.\n",
+      "upper_cell": "H84",
+      "upper": "\nSYS-RID-SP-FW-28\n"
+    },
+    {
+      "id": "SW-FW-RID-60",
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "id_cell": "G85",
+      "body_cell": "F85",
+      "body": "\nCRC 기능이 있는 통신 프로토콜을 사용한다.\n\n[QCC 자료 입력] CRC가 적용된 무선 통신의 QCC 내부 모듈/유닛 설계 연결을 추가한다.\n",
+      "upper_cell": "H85",
+      "upper": "\nSYS-RID-SP-FW-42\n"
+    },
+    {
+      "id": "SW-FW-RID-61",
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "id_cell": "G86",
+      "body_cell": "F86",
+      "body": "\n정상사용을 위한 준비상태를 표시하도록 설계한다.\n",
+      "upper_cell": "H86",
+      "upper": "\nSYS-RID-SP-FW-43\n"
+    },
+    {
+      "id": "SW-FW-RID-62",
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "id_cell": "G87",
+      "body_cell": "F87",
+      "body": "\n전원커넥터가 연결되면 연결을 확인할 수 있어야한다.(충전모드 표시).\n",
+      "upper_cell": "H87",
+      "upper": "\nSYS-RID-SP-FW-44\n"
+    },
+    {
+      "id": "SW-FW-RID-63",
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "id_cell": "G88",
+      "body_cell": "F88",
+      "body": "\n배터리 잔량을 표시할 수 있어야 한다.\n",
+      "upper_cell": "H88",
+      "upper": ""
+    },
+    {
+      "id": "SW-FW-RID-64",
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "id_cell": "G89",
+      "body_cell": "F89",
+      "body": "\n구분이 쉽도록 LED 패턴을 생성한다.\n",
+      "upper_cell": "H89",
+      "upper": "\nSYS-RID-SP-FW-45\n"
+    },
+    {
+      "id": "SW-FW-RID-65",
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "id_cell": "G90",
+      "body_cell": "F90",
+      "body": "\n사회 통념적으로 사용되는 색상을 사용하여 인공와우 외부기 상태를 표시한다.\n",
+      "upper_cell": "H90",
+      "upper": "\nSYS-RID-SP-FW-46\n"
+    },
+    {
+      "id": "SW-FW-RID-66",
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "id_cell": "G91",
+      "body_cell": "F91",
+      "body": "\nBLE 통신 연결 장애 발생 시, 정상 동작이 되어야 한다.\n",
+      "upper_cell": "H91",
+      "upper": "\nSYS-RID-SP-FW-37\n"
+    },
+    {
+      "id": "SW-FW-RID-67",
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "id_cell": "G92",
+      "body_cell": "F92",
+      "body": "\n시동과정에서는 출력을 생성하지 않게 한다\n",
+      "upper_cell": "H92",
+      "upper": "\nSYS-RID-SP-FW-49\n"
+    },
+    {
+      "id": "SW-FW-RID-68",
+      "sheet": "소프트웨어 입력 요구사항 사양서",
+      "id_cell": "G93",
+      "body_cell": "F93",
+      "body": "\n종료과정에서는 출력을 생성하지 않게 한다.\n",
+      "upper_cell": "H93",
+      "upper": "\nSYS-RID-SP-FW-50\n"
+    }
+  ],
+  "word_missing_locations": {
+    "SR": [
+      {
+        "paragraph_index": 251,
+        "prefix": "[QCC/E8300 자료 입력]",
+        "text": "[QCC/E8300 자료 입력] 3분 무송수신의 감시/갱신 범위와 기존 제어 명령 미수신 조건의 정합성, 마이크의 QCC 입력 경로 및 연결/프로파일별 오디오 송수신 조건을 확인한다.",
+        "format": [
+          {
+            "font_size": 12.0,
+            "color": "#7030A0",
+            "underline": true
+          }
+        ]
+      },
+      {
+        "paragraph_index": 261,
+        "prefix": "[QCC 자료 입력]",
+        "text": "[QCC 자료 입력] 실제 QCC 개발 환경, 라이브러리/ADK 버전과 빌드 구성을 입력한다.",
+        "format": [
+          {
+            "font_size": 12.0,
+            "color": "#C00000",
+            "underline": true
+          }
+        ]
+      },
+      {
+        "paragraph_index": 266,
+        "prefix": "[QCC 자료 입력]",
+        "text": "[QCC 자료 입력] QCC의 실제 메모리 배치, 실행 이미지/데이터 사용량과 부트 이미지 검사 설정을 입력한다.",
+        "format": [
+          {
+            "font_size": 12.0,
+            "color": "#C00000",
+            "underline": true
+          }
+        ]
+      },
+      {
+        "paragraph_index": 301,
+        "prefix": "[E8300 보완]",
+        "text": "[E8300 보완] SW-FW-RID-83의 정식 상위 요구사항 식별과 제품 사용 설명서 파일의 해당 내용을 등록한다.",
+        "format": [
+          {
+            "font_size": 12.0,
+            "color": "#0070C0",
+            "underline": true
+          }
+        ]
+      },
+      {
+        "paragraph_index": 308,
+        "prefix": "[QCC/E8300 자료 입력]",
+        "text": "[QCC/E8300 자료 입력] 이번 QCC 자료 반영에 따른 위험분석 재평가와 변경 영향의 검토 결과를 입력한다.",
+        "format": [
+          {
+            "font_size": 12.0,
+            "color": "#7030A0",
+            "underline": true
+          }
+        ]
+      }
+    ],
+    "SGR": [
+      {
+        "paragraph_index": 297,
+        "prefix": "[QCC 자료 입력]",
+        "text": "[QCC 자료 입력] QCC의 실제 ADK/실행 환경, scheduler 구성과 사용 버전을 입력한다.",
+        "format": [
+          {
+            "font_size": 12.0,
+            "color": "#C00000",
+            "underline": true
+          }
+        ]
+      },
+      {
+        "paragraph_index": 301,
+        "prefix": "[QCC 자료 입력]",
+        "text": "[QCC 자료 입력] QCC 제조사 소프트웨어의 식별/버전, 사용 범위와 검토 근거를 입력한다.",
+        "format": [
+          {
+            "font_size": 12.0,
+            "color": "#C00000",
+            "underline": true
+          }
+        ]
+      }
+    ]
+  },
+  "word_current_sections": {
+    "SR": [
+      {
+        "paragraph_index": 148,
+        "text": ""
+      },
+      {
+        "paragraph_index": 149,
+        "text": ""
+      },
+      {
+        "paragraph_index": 150,
+        "text": "서론"
+      },
+      {
+        "paragraph_index": 151,
+        "text": "개요"
+      },
+      {
+        "paragraph_index": 152,
+        "text": "본 문서는 TD24A-A-EXT 제품의 펌웨어를 개발하기 위한 소프트웨어의 요구사항을 정의한다."
+      },
+      {
+        "paragraph_index": 153,
+        "text": "이 요구사항은 외부기의 E8300 펌웨어와 QCC5181의 Bluetooth/보안 펌웨어에 적용한다. 자극 처리의 담당과 무선 통신/인증의 담당을 구분하고 두 칩의 전달 경계를 함께 정의한다."
+      },
+      {
+        "paragraph_index": 154,
+        "text": ""
+      },
+      {
+        "paragraph_index": 155,
+        "text": "목적"
+      },
+      {
+        "paragraph_index": 156,
+        "text": "외부기 펌웨어의 소프트웨어 요구사항을 결정함으로써 사양을 충족할 수 있는 설계 절차를 진행할 수 있게 하여 소프트웨어 개발 절차에 따라 안전하고 일관성 및 정확성을 제공하는 소프트웨어의 개발이 보장되는 것을 목적으로 한다."
+      },
+      {
+        "paragraph_index": 157,
+        "text": ""
+      },
+      {
+        "paragraph_index": 158,
+        "text": "대상"
+      },
+      {
+        "paragraph_index": 159,
+        "text": "TD24A-A-EXT 제품의 펌웨어 개발 프로젝트에 참여하는 모든 구성원은 이 문서를 참고하도록 한다."
+      },
+      {
+        "paragraph_index": 160,
+        "text": ""
+      },
+      {
+        "paragraph_index": 161,
+        "text": "관련문서"
+      },
+      {
+        "paragraph_index": 162,
+        "text": "프로젝트"
+      },
+      {
+        "paragraph_index": 163,
+        "text": "No"
+      },
+      {
+        "paragraph_index": 164,
+        "text": "문서번호"
+      },
+      {
+        "paragraph_index": 165,
+        "text": "문서 제목"
+      },
+      {
+        "paragraph_index": 166,
+        "text": "1"
+      },
+      {
+        "paragraph_index": 167,
+        "text": "SDP-FW-TD24A"
+      },
+      {
+        "paragraph_index": 168,
+        "text": "소프트웨어 개발 계획서"
+      },
+      {
+        "paragraph_index": 169,
+        "text": "2"
+      },
+      {
+        "paragraph_index": 170,
+        "text": "SGR-FW-TD24A"
+      },
+      {
+        "paragraph_index": 171,
+        "text": "소프트웨어 일반 요구사항"
+      },
+      {
+        "paragraph_index": 172,
+        "text": "3"
+      },
+      {
+        "paragraph_index": 173,
+        "text": "SRS-FW-TD24A"
+      },
+      {
+        "paragraph_index": 174,
+        "text": "소프트웨어 요구사항 사양서"
+      },
+      {
+        "paragraph_index": 175,
+        "text": ""
+      },
+      {
+        "paragraph_index": 176,
+        "text": "표준 및 규제"
+      },
+      {
+        "paragraph_index": 177,
+        "text": "No"
+      },
+      {
+        "paragraph_index": 178,
+        "text": "문서번호"
+      },
+      {
+        "paragraph_index": 179,
+        "text": "문서 제목"
+      },
+      {
+        "paragraph_index": 180,
+        "text": "1"
+      },
+      {
+        "paragraph_index": 181,
+        "text": "IEC 62304"
+      },
+      {
+        "paragraph_index": 182,
+        "text": "Medical device software – Software life cycle processes"
+      },
+      {
+        "paragraph_index": 183,
+        "text": "2"
+      },
+      {
+        "paragraph_index": 184,
+        "text": "ISO 14971"
+      },
+      {
+        "paragraph_index": 185,
+        "text": "Medical devices – Application of risk management to medical"
+      },
+      {
+        "paragraph_index": 186,
+        "text": ""
+      },
+      {
+        "paragraph_index": 187,
+        "text": ""
+      },
+      {
+        "paragraph_index": 188,
+        "text": ""
+      },
+      {
+        "paragraph_index": 189,
+        "text": "하드웨어 플랫폼"
+      },
+      {
+        "paragraph_index": 190,
+        "text": "인공와우 시스템을 구성하는 시스템의 구성은 그림 1.과 같으며, 외부기 펌웨어가 동작하는 하드웨어 블록도는 그림 2.와 같다."
+      },
+      {
+        "paragraph_index": 191,
+        "text": ""
+      },
+      {
+        "paragraph_index": 192,
+        "text": ""
+      },
+      {
+        "paragraph_index": 193,
+        "text": "< 그림 1. 인공와우 시스템 >"
+      },
+      {
+        "paragraph_index": 194,
+        "text": ""
+      },
+      {
+        "paragraph_index": 195,
+        "text": ""
+      },
+      {
+        "paragraph_index": 196,
+        "text": ""
+      },
+      {
+        "paragraph_index": 197,
+        "text": "< 그림 2. 인공와우 외부장치 블록도 >"
+      },
+      {
+        "paragraph_index": 198,
+        "text": "• MCU or DSP"
+      },
+      {
+        "paragraph_index": 199,
+        "text": ""
+      },
+      {
+        "paragraph_index": 200,
+        "text": "Ezairo 8300은 CFX"
+      },
+      {
+        "paragraph_index": 201,
+        "text": ", ARM Cortex-M3, HEAR"
+      },
+      {
+        "paragraph_index": 202,
+        "text": ", Filter Engine, LPDSP32, NNA를 포함한다. Sound1의 신호처리와 제어는 CFX, HEAR, Cortex-M3를 중심으로 구성한다."
+      },
+      {
+        "paragraph_index": 203,
+        "text": "- CFX : 오디오 입력, 빔포밍 및 자극 데이터 생성"
+      },
+      {
+        "paragraph_index": 204,
+        "text": "- HEAR : FFT 등 신호처리 연산"
+      },
+      {
+        "paragraph_index": 205,
+        "text": "- Filter Engine, LPDSP32, NNA : 칩 내 제공 기능으로, 사용 여부는 펌웨어 설계에 따른다."
+      },
+      {
+        "paragraph_index": 206,
+        "text": "- ARM Cortex-M3 : 시스템 제어 및 QCC5181과 통신. QCC5181은 별도의 Bluetooth 칩이다."
+      },
+      {
+        "paragraph_index": 207,
+        "text": "- QCC5181 : Bluetooth Classic 오디오와 BLE 연결/인증을 처리하고 E8300에 오디오 및 명령/응답 데이터를 전달한다. QCC의 내부 구성은 소프트웨어 아키텍쳐 기술서와 상세 설계서에서 정의한다."
+      },
+      {
+        "paragraph_index": 208,
+        "text": ""
+      },
+      {
+        "paragraph_index": 209,
+        "text": ""
+      },
+      {
+        "paragraph_index": 210,
+        "text": "< 그림 3. Ezairo 8300 Chip 블록도 >"
+      },
+      {
+        "paragraph_index": 251,
+        "text": "[QCC/E8300 자료 입력] 3분 무송수신의 감시/갱신 범위와 기존 제어 명령 미수신 조건의 정합성, 마이크의 QCC 입력 경로 및 연결/프로파일별 오디오 송수신 조건을 확인한다."
+      },
+      {
+        "paragraph_index": 261,
+        "text": "[QCC 자료 입력] 실제 QCC 개발 환경, 라이브러리/ADK 버전과 빌드 구성을 입력한다."
+      },
+      {
+        "paragraph_index": 266,
+        "text": "[QCC 자료 입력] QCC의 실제 메모리 배치, 실행 이미지/데이터 사용량과 부트 이미지 검사 설정을 입력한다."
+      },
+      {
+        "paragraph_index": 301,
+        "text": "[E8300 보완] SW-FW-RID-83의 정식 상위 요구사항 식별과 제품 사용 설명서 파일의 해당 내용을 등록한다."
+      },
+      {
+        "paragraph_index": 308,
+        "text": "[QCC/E8300 자료 입력] 이번 QCC 자료 반영에 따른 위험분석 재평가와 변경 영향의 검토 결과를 입력한다."
+      }
+    ],
+    "SGR": [
+      {
+        "paragraph_index": 297,
+        "text": "[QCC 자료 입력] QCC의 실제 ADK/실행 환경, scheduler 구성과 사용 버전을 입력한다."
+      },
+      {
+        "paragraph_index": 301,
+        "text": "[QCC 자료 입력] QCC 제조사 소프트웨어의 식별/버전, 사용 범위와 검토 근거를 입력한다."
+      }
+    ]
+  },
+  "originals": [
+    {
+      "file": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\02_설계 입력\\SW\\외부기\\[E8300] SRS-FW-TD24A 소프트웨어 요구사항 사양서.xlsx",
+      "sha256": "F41DF6E3478CA642565EB569228E58CB75D7653260FFF613FDFEA74E95BF7D0B",
+      "unchanged": true
+    },
+    {
+      "file": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\02_설계 입력\\SW\\외부기\\[E8300] SR-FW-TD24A 소프트웨어 요구사항.docx",
+      "sha256": "6F8F005BB1F311752FDE1E8AA14A75F3E716A48167072261DA630061864231C6",
+      "unchanged": true
+    },
+    {
+      "file": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\02_설계 입력\\SW\\외부기\\[E8300] SGR-FW-TD24A 소프트웨어 일반요구사항.docx",
+      "sha256": "2D81FC0FCE22B8DC57A73C6C3B71F0B3989404BA60289E346E0670A7B1D593F3",
+      "unchanged": true
+    }
+  ],
+  "all_checks_passed": true,
+  "word_validation_scope": "pre-root-Office field update; original authoring validation preserved"
+}

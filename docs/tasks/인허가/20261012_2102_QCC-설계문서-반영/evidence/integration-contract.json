@@ -1,0 +1,114 @@
+{
+  "date": "2026-10-12",
+  "root": "E:/workspace/projects/sound1-fw-e8300-backup/docs/tasks/인허가/20261012_2102_QCC-설계문서-반영",
+  "phase": "documentation-draft-complete",
+  "original_policy": "Preserve all [E8300] and QCC_ source bytes. Edit only newly copied [E8300-QCC] files. No firmware/test code/Git/online matrix changes.",
+  "source_identity": "Smartcase/CC source labels are stale; all supplied technical content is external-device QCC. Preserve source IDs and exact source locations for traceability. Do not blindly transfer absent requirements from empty source tables.",
+  "outputs": {
+    "docx": [
+      "SR",
+      "SGR",
+      "SAD",
+      "SDDD",
+      "SIP"
+    ],
+    "xlsx": [
+      "SRS",
+      "SSTC",
+      "SSTR",
+      "SUVC",
+      "SUVR",
+      "SITC",
+      "SITR"
+    ]
+  },
+  "requirements": {
+    "preserve_ids": "SW-FW-RID-1..81 and their existing upper IDs",
+    "new": [
+      {
+        "id": 82,
+        "topic": "외부기 마이크의 Bluetooth Classic 송신",
+        "source": "QCC SRS SW-CC-RI-10 audio output, table block139",
+        "upper": "SYS-RID-SP-HW-11",
+        "missing": "마이크의 QCC 입력 경로/프로파일/코덱/상대 장치/동시 송수신, 실제 결과"
+      },
+      {
+        "id": 83,
+        "topic": "사용자 설명서 안전 예방조치/사용/문제 해결",
+        "source": "QCC SRS 4.9.1 usage manual, table block204",
+        "upper": null,
+        "missing": "제품 사용설명서 파일과 정식 상위 추적; E8300 보완으로 표시"
+      }
+    ],
+    "confirmed_values": {
+      "15": "QCC I2S 24bit 16kHz toward E8300; actual frame/clock measurement pending",
+      "16": "audio band 0..8kHz distinct from 16kHz sample rate; do not claim measured 8kHz endpoint",
+      "47": "3min no BLE TX/RX disconnect; preserve existing no-control-command intent and explicitly retain timer-reset scope conflict",
+      "52": "128bit CRA keys. QCC SRS lists remocon AES-CMAC/mapping SHA256; QCC SDDD uses SHA256 for clinician service-key derivation and AES-CMAC for CRA. Preserve this role conflict as QCC gap; do not call SHA256 a proved mapping CRA or transport-encryption algorithm.",
+      "54": "E8300 integrity checks and QCC chipset image integrity must be separate; QCC details pending",
+      "71": "failure/success/in-progress/timeout; 30s unfinished authentication criterion from QCC SUVC, start/reset/tolerance pending",
+      "72": "5 consecutive auth failures as existing intent; 1min restriction; reset/reconnect/boundaries pending",
+      "76": "Manufacturing-installed shared_service_key/clinician_master_key are separate from derived clinic_service_key; exact NVM IDs, encryption mode/access/integrity/bootstrap remain pending."
+    },
+    "missing_remains": [
+      49,
+      53,
+      54,
+      60,
+      76,
+      78,
+      81
+    ],
+    "upper_id_policy": "Do not invent matrix IDs. Preserve existing mappings. New RID83 shows upper trace not provided as a real gap. Online matrix remains unchanged."
+  },
+  "qcc_architecture": {
+    "modules": [
+      "SI-ID-QCC-001 System management",
+      "SI-ID-QCC-002 HW interface",
+      "SI-ID-QCC-003 Bluetooth",
+      "SI-ID-QCC-004 Security"
+    ],
+    "units": "SU-ID-QCC-001..014, exact source title mapping in qcc_design.json",
+    "unit_tests": "SW-FW-UnitTest-QCC-ID-1..15, 15 groups/38 source conditions mapped to 14 design units"
+  },
+  "interface_contract": {
+    "E8300_confirmed": [
+      "QCC_CTRL High=normal, Low=shutdown request",
+      "I2S_FLAG DIO29 Low=valid",
+      "0x34 charger_connected accepts 0=not connected or1=connected; QCC4-state power model requires conversion",
+      "QCC message type+payload <=20bytes; E8300 transport21bytes includes separate length byte"
+    ],
+    "qcc_only_gaps": [
+      "shutdown_ind physical/logical mapping and inconsistent QCC text/figures",
+      "left/right values differ between unilateral/bilateral/source sentences",
+      "four charger states to binary0x34 conversion",
+      "AUTH UUID/characteristic lengths/permissions/GAIA details",
+      "authentication primitive inputs and key names",
+      "OTA QCC self-update vs E8300 image delivery definitions"
+    ]
+  },
+  "tests": {
+    "common_columns": {
+      "unit": "B:K; resultsL; verdictM",
+      "integration": "B:M; resultsN; verdictO",
+      "system": "B:J; resultsK; verdictL"
+    },
+    "rules": [
+      "Define split conditions in criterion first and mirror report exactly, including merge/row structure",
+      "Expected concrete same-input output/entire SPI sequence or source-defined RTT placed in main criterion cell; no separate-only expected source",
+      "Do not invent QCC RTT format. QCC source expected messages are SPI/BLE data, not collected logs",
+      "QCC source supplies criteria only. All newly added QCC result conditions are 미실행/판정 대기 with actual evidence needs",
+      "Preserve existing E8300 result scope. Changed system timing/auth protection conditions require pending assessment if old record lacks required result",
+      "I/A/D/T determined by evidence: numerical payload/time/array comparisons are T",
+      "Use baseline2026-05-02/result2026-05-29 for general time vectors only; no new signature/approval dates"
+    ]
+  },
+  "format": {
+    "word": "Existing styles/fields/drawings unchanged where unrelated, true insertion/deletion revisions author 김은수, no accepted clean deliverable; current accepted text must read correctly",
+    "excel": "Artifact Tool authoring with targeted OOXML preservation for missing package/layout capabilities; retain sheets/features, except required added condition/test rows",
+    "missing": "QCC #C00000, E8300 #0070C0, joint #7030A0; +2pt from normal base, underline full prefix and explanation, preserve base bold",
+    "rendering": "Packaged render_docx failed because soffice.exe missing. Bundled LibreOffice absent. Use isolated hidden Office COM export to PDF and bundled Python PNG QA fallback. Never use installed desktop LibreOffice."
+  },
+  "checked_at": "2026-10-12T22:24:09+09:00",
+  "final_manifest": "final-output-manifest.json"
+}

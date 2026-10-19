@@ -1,0 +1,7 @@
+{
+  "target": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\04_설계 검증\\SW\\외부기\\[E8300-QCC] SUVR-FW-TD24A 소프트웨어 유닛 검증 보고서_재작성.xlsx",
+  "status": "PASS",
+  "beforeSHA": "1BB7A560EB304364D905CD76F076A123D43D9A3929BB29453461773620E49935",
+  "afterSHA": "6FA732E9AAAAFDE64975327C7A9A13542B08BA7D487E3B35959A60CE6ADC40A2",
+  "backup": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\unit-banding-20261016\\before.xlsx"
+}

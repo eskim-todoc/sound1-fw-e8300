@@ -1,0 +1,107 @@
+[
+  {
+    "code": "SSTR",
+    "sourceSHA256": "CEFFDED299DC4B2C1001AAE5271CAE6A80FFCB04F4697B16567A6AED363005B3",
+    "allRequestedValuesMatched": true,
+    "inspect": {
+      "recordCount": 1,
+      "truncated": false,
+      "metadata": {
+        "revision": "qhyt0f",
+        "target": {
+          "id": "wb/1ftbyt",
+          "beforeLines": 0,
+          "afterLines": 0
+        },
+        "kind": {
+          "requested": "table",
+          "tokens": [
+            "table"
+          ]
+        },
+        "include": {
+          "requested": "values,formulas",
+          "tokens": [
+            "values",
+            "formulas"
+          ]
+        },
+        "exclude": {
+          "tokens": []
+        },
+        "notices": []
+      }
+    },
+    "output": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\rid83-20261013\\authored\\SSTR.xlsx"
+  },
+  {
+    "code": "SRS",
+    "sourceSHA256": "093CE649ACE49090B333E2990CFE4D27DB2AF24C28BEC6130B2E1A0387F3F123",
+    "allRequestedValuesMatched": true,
+    "inspect": {
+      "recordCount": 1,
+      "truncated": false,
+      "metadata": {
+        "revision": "iwu9sn",
+        "target": {
+          "id": "wb/3jspl6",
+          "beforeLines": 0,
+          "afterLines": 0
+        },
+        "kind": {
+          "requested": "table",
+          "tokens": [
+            "table"
+          ]
+        },
+        "include": {
+          "requested": "values,formulas",
+          "tokens": [
+            "values",
+            "formulas"
+          ]
+        },
+        "exclude": {
+          "tokens": []
+        },
+        "notices": []
+      }
+    },
+    "output": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\rid83-20261013\\authored\\SRS.xlsx"
+  },
+  {
+    "code": "SSTC",
+    "sourceSHA256": "B86E424177E33B0A4E539DFB7845AFA255FC482EF0A9B008ACD82E71FFC90D5B",
+    "allRequestedValuesMatched": true,
+    "inspect": {
+      "recordCount": 1,
+      "truncated": false,
+      "metadata": {
+        "revision": "8yd84o",
+        "target": {
+          "id": "wb/o1d409",
+          "beforeLines": 0,
+          "afterLines": 0
+        },
+        "kind": {
+          "requested": "table",
+          "tokens": [
+            "table"
+          ]
+        },
+        "include": {
+          "requested": "values,formulas",
+          "tokens": [
+            "values",
+            "formulas"
+          ]
+        },
+        "exclude": {
+          "tokens": []
+        },
+        "notices": []
+      }
+    },
+    "output": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\rid83-20261013\\authored\\SSTC.xlsx"
+  }
+]

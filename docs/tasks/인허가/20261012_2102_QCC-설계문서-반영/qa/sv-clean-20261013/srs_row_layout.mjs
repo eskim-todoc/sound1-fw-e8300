@@ -1,0 +1,13 @@
+import fs from 'node:fs/promises';
+import path from 'node:path';
+import {FileBlob,SpreadsheetFile} from '@oai/artifact-tool';
+const h=import.meta.dirname;
+const wb=await SpreadsheetFile.importXlsx(await FileBlob.load(path.join(h,'candidates','SRS.xlsx')));
+const sheet=wb.worksheets.getItem('소프트웨어 입력 요구사항 사양서');
+const rows=[{row:50,height:0,hidden:true},{row:62,height:15},{row:68,height:15},{row:81,height:15}];
+for(const r of rows)sheet.getRange(`A${r.row}:I${r.row}`).format.rowHeight=r.height;
+wb.recalculate();
+const output=path.join(h,'SRS-row-layout-authored.xlsx');
+await(await SpreadsheetFile.exportXlsx(wb)).save(output);
+await fs.writeFile(path.join(h,'main-row-layout.json'),JSON.stringify({code:'SRS',sheet:sheet.name,artifactPath:output,rows,reason:'Collapse deleted-only text rows; retain active requirement IDs and accepted text at their existing cell addresses. Preserve comparison layout.'},null,2));
+console.log(JSON.stringify({output,rows}));

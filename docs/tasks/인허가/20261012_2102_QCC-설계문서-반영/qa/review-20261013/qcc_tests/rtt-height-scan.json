@@ -1,0 +1,56 @@
+[
+  {
+    "key": "SUVC",
+    "cell": "K333",
+    "merge": "K333:K334",
+    "font": 11.0,
+    "width": 64.625,
+    "lines": 24,
+    "need_estimate": 335.4,
+    "available": 33.0,
+    "row_heights": {
+      "333": 16.5,
+      "334": 16.5
+    },
+    "rtt_labels": [
+      "[UT-CFX-031]"
+    ],
+    "height_shortfall": true
+  },
+  {
+    "key": "SUVR",
+    "cell": "K333",
+    "merge": "K333:K334",
+    "font": 11.0,
+    "width": 64.625,
+    "lines": 24,
+    "need_estimate": 335.4,
+    "available": 33.0,
+    "row_heights": {
+      "333": 16.5,
+      "334": 16.5
+    },
+    "rtt_labels": [
+      "[UT-CFX-031]"
+    ],
+    "height_shortfall": true
+  },
+  {
+    "key": "SUVR",
+    "cell": "L333",
+    "merge": "L333:L334",
+    "font": 10.0,
+    "width": 64.625,
+    "lines": 16,
+    "need_estimate": 206.4,
+    "available": 33.0,
+    "row_heights": {
+      "333": 16.5,
+      "334": 16.5
+    },
+    "rtt_labels": [
+      "[UT-CFX-031]"
+    ],
+    "height_shortfall": true
+  }
+]

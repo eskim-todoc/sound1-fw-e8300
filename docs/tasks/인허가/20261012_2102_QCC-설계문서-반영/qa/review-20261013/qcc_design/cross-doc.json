@@ -1,0 +1,352 @@
+{
+  "status": "통과",
+  "scope": "read-only semantic cross-review of source-current extracted values; native final rendering is separate",
+  "input_sha256": {
+    "requirements_contract": "e7bd8492009900ce02886e6861cfbbdcb08e8fad1fdaa25f15bbce9fce548614",
+    "test_current_values": "9417a7e98717ce70bca8717d67ada1024db16e587fff63be017fdf4ebcff9ec2"
+  },
+  "unit_tests": [
+    {
+      "test_id": "SW-FW-UnitTest-QCC-ID-1",
+      "sheet": "기준서_유닛 검증",
+      "row": 1727,
+      "purpose_cell": "E1727",
+      "unit_cell": "G1727",
+      "units": [
+        "SU-ID-QCC-005"
+      ],
+      "purpose": "\nPIO 초기화 설정과 제어\n목적: PIO 방향/주변장치 / 초기값 및 입력변화 메시지.\n요구: SW-FW-RID-46, SW-FW-RID-67, SW-FW-RID-68\n검증 범위: RID46의 QCC 연결표시 입력 지원, RID67/68의 기동/종료 상태 입력 지원. 등록 내부기 신원/RF 연결과 기동/종료 자극 억제의 완주 검증은 E8300 SW-FW-SYS-Test-ID-46(등록 내부기 연결)/67(기동 자극 억제)/68(종료 자극 억제) 경로에서 별도 확인한다.\n",
+      "scope": "actual conditions K1727..1764 compared to design purpose/input/output/process; supports are not full-system pass"
+    },
+    {
+      "test_id": "SW-FW-UnitTest-QCC-ID-2",
+      "sheet": "기준서_유닛 검증",
+      "row": 1729,
+      "purpose_cell": "E1729",
+      "unit_cell": "G1729",
+      "units": [
+        "SU-ID-QCC-006"
+      ],
+      "purpose": "\n전원 관리\n목적: 전압→잔량 / 충전 / 저전압 상태.\n요구: SW-FW-RID-21, SW-FW-RID-22, SW-FW-RID-23, SW-FW-RID-29, SW-FW-RID-63, SW-FW-RID-28, SW-FW-RID-34\n검증 범위: RID23/28/34의 배터리 상태·알림 조건에 필요한 QCC 전원/잔량 입력 지원. 실제 자극 출력과 LED/자극 알림의 완주 검증은 E8300의 해당 시스템 시험23/28/34 경로에서 별도 확인한다. QCC 상태 확인을 알림/자극 통과로 확대하지 않는다.\n",
+      "scope": "actual conditions K1727..1764 compared to design purpose/input/output/process; supports are not full-system pass"
+    },
+    {
+      "test_id": "SW-FW-UnitTest-QCC-ID-3",
+      "sheet": "기준서_유닛 검증",
+      "row": 1733,
+      "purpose_cell": "E1733",
+      "unit_cell": "G1733",
+      "units": [
+        "SU-ID-QCC-007"
+      ],
+      "purpose": "\nNVM 처리\n목적: 외부기 일련번호 PS 매핑/읽기/쓰기.\n[QCC 자료 입력] 외부기 일련번호 NVM 동작의 정식 직접 요구 추적.\n",
+      "scope": "actual conditions K1727..1764 compared to design purpose/input/output/process; supports are not full-system pass"
+    },
+    {
+      "test_id": "SW-FW-UnitTest-QCC-ID-4",
+      "sheet": "기준서_유닛 검증",
+      "row": 1734,
+      "purpose_cell": "E1734",
+      "unit_cell": "G1734",
+      "units": [
+        "SU-ID-QCC-001",
+        "SU-ID-QCC-002"
+      ],
+      "purpose": "\n시스템 초기화와 상태 처리\n목적: 기동 설정/초기화와 전원 상태 SPI/ACK.\n요구: SW-FW-RID-21, SW-FW-RID-22, SW-FW-RID-29, SW-FW-RID-63\n",
+      "scope": "actual conditions K1727..1764 compared to design purpose/input/output/process; supports are not full-system pass"
+    },
+    {
+      "test_id": "SW-FW-UnitTest-QCC-ID-5",
+      "sheet": "기준서_유닛 검증",
+      "row": 1736,
+      "purpose_cell": "E1736",
+      "unit_cell": "G1736",
+      "units": [
+        "SU-ID-QCC-002"
+      ],
+      "purpose": "\n시스템 상태 처리\n목적: 여섯 시스템 상태 저장/조회.\n요구: SW-FW-RID-29, SW-FW-RID-35, SW-FW-RID-38, SW-FW-RID-46, SW-FW-RID-63, SW-FW-RID-69, SW-FW-RID-70\n검증 범위: RID46의 QCC 연결표시/저장 상태 지원. 이 유닛의 상태 조회는 등록된 내부기 신원 및 근접 RF 연결을 검증하지 않는다. 해당 요구의 완주 검증은 E8300 SW-FW-SYS-Test-ID-46(등록 내부기 연결) 경로에서 별도 확인한다.\n",
+      "scope": "actual conditions K1727..1764 compared to design purpose/input/output/process; supports are not full-system pass"
+    },
+    {
+      "test_id": "SW-FW-UnitTest-QCC-ID-6",
+      "sheet": "기준서_유닛 검증",
+      "row": 1737,
+      "purpose_cell": "E1737",
+      "unit_cell": "G1737",
+      "units": [
+        "SU-ID-QCC-003"
+      ],
+      "purpose": "\n장치 상태 처리\n목적: 생산 시 Standalone/TWS 구성과 편이/양이 오디오 / 데이터 처리.\n요구: SW-FW-RID-69, SW-FW-RID-70\n",
+      "scope": "actual conditions K1727..1764 compared to design purpose/input/output/process; supports are not full-system pass"
+    },
+    {
+      "test_id": "SW-FW-UnitTest-QCC-ID-7",
+      "sheet": "기준서_유닛 검증",
+      "row": 1738,
+      "purpose_cell": "E1738",
+      "unit_cell": "G1738",
+      "units": [
+        "SU-ID-QCC-004"
+      ],
+      "purpose": "\n블루투스 상태 처리\n목적: 연결표시 입력에 따른 Bluetooth 활성 및 장치명.\n요구: SW-FW-RID-46, SW-FW-RID-48, SW-FW-RID-49, SW-FW-RID-69, SW-FW-RID-70\n검증 범위: RID46의 연결표시를 받아 QCC Bluetooth 활성/장치명을 구성하는 연계 지원. 등록 내부기 신원/RF 연결은 E8300 SYS46, 페어링/보호 데이터의 완주 검증은 SW-FW-SYS-Test-ID-48(페어링 전 제어 차단)/49(보호 데이터 전송)의 별도 경로에서 확인한다.\n",
+      "scope": "actual conditions K1727..1764 compared to design purpose/input/output/process; supports are not full-system pass"
+    },
+    {
+      "test_id": "SW-FW-UnitTest-QCC-ID-8",
+      "sheet": "기준서_유닛 검증",
+      "row": 1740,
+      "purpose_cell": "E1740",
+      "unit_cell": "G1740",
+      "units": [
+        "SU-ID-QCC-004",
+        "SU-ID-QCC-008",
+        "SU-ID-QCC-009"
+      ],
+      "purpose": "\nBluetooth 활성화와 기능 동작\n목적: 부착/탈착 시 BLE/Classic 검색 / 연결 활성.\n요구: SW-FW-RID-46, SW-FW-RID-67, SW-FW-RID-68, SW-FW-RID-69, SW-FW-RID-70\n검증 범위: RID46의 연결표시와 RID67/68의 부착/탈착 / 기동/종료 상태 연계 지원 및 QCC Bluetooth 동작. 등록 내부기 신원/RF 검증과 자극 출력 억제의 완주 검증은 E8300 SW-FW-SYS-Test-ID-46(등록 내부기 연결)/67(기동 자극 억제)/68(종료 자극 억제) 경로에서 별도 확인한다.\n",
+      "scope": "actual conditions K1727..1764 compared to design purpose/input/output/process; supports are not full-system pass"
+    },
+    {
+      "test_id": "SW-FW-UnitTest-QCC-ID-9",
+      "sheet": "기준서_유닛 검증",
+      "row": 1744,
+      "purpose_cell": "E1744",
+      "unit_cell": "G1744",
+      "units": [
+        "SU-ID-QCC-009"
+      ],
+      "purpose": "\nBLE 연결 처리\n목적: 광고/스캔 응답과 현재/peer 잔량 / 연결 상태.\n요구: SW-FW-RID-29, SW-FW-RID-35, SW-FW-RID-38, SW-FW-RID-63, SW-FW-RID-70\n",
+      "scope": "actual conditions K1727..1764 compared to design purpose/input/output/process; supports are not full-system pass"
+    },
+    {
+      "test_id": "SW-FW-UnitTest-QCC-ID-10",
+      "sheet": "기준서_유닛 검증",
+      "row": 1746,
+      "purpose_cell": "E1746",
+      "unit_cell": "G1746",
+      "units": [
+        "SU-ID-QCC-008"
+      ],
+      "purpose": "\nBluetooth Classic 기능 처리\n목적: Classic 페어링 / 연결, 시험 스피커/양이 및 I2S 하향.\n요구: SW-FW-RID-15, SW-FW-RID-16, SW-FW-RID-69\n",
+      "scope": "actual conditions K1727..1764 compared to design purpose/input/output/process; supports are not full-system pass"
+    },
+    {
+      "test_id": "SW-FW-UnitTest-QCC-ID-11",
+      "sheet": "기준서_유닛 검증",
+      "row": 1751,
+      "purpose_cell": "E1751",
+      "unit_cell": "G1751",
+      "units": [
+        "SU-ID-QCC-010"
+      ],
+      "purpose": "\nAUTH service 데이터 처리\n목적: AUTH 서비스 정의/등록 및 네 characteristic 패턴 중계.\n요구: SW-FW-RID-48, SW-FW-RID-52, SW-FW-RID-71, SW-FW-RID-76\n",
+      "scope": "actual conditions K1727..1764 compared to design purpose/input/output/process; supports are not full-system pass"
+    },
+    {
+      "test_id": "SW-FW-UnitTest-QCC-ID-12",
+      "sheet": "기준서_유닛 검증",
+      "row": 1753,
+      "purpose_cell": "E1753",
+      "unit_cell": "G1753",
+      "units": [
+        "SU-ID-QCC-011"
+      ],
+      "purpose": "\nBLE data 처리\n목적: GAIA 편이/양이 메시지 처리와 위치 / 잔량 응답.\n요구: SW-FW-RID-29, SW-FW-RID-35, SW-FW-RID-38, SW-FW-RID-44, SW-FW-RID-45, SW-FW-RID-70\n",
+      "scope": "actual conditions K1727..1764 compared to design purpose/input/output/process; supports are not full-system pass"
+    },
+    {
+      "test_id": "SW-FW-UnitTest-QCC-ID-13",
+      "sheet": "기준서_유닛 검증",
+      "row": 1755,
+      "purpose_cell": "E1755",
+      "unit_cell": "G1755",
+      "units": [
+        "SU-ID-QCC-012"
+      ],
+      "purpose": "\nCRA 인증 절차\n목적: 1:1, CRA 성공/실패 / 30초 timeout.\n요구: SW-FW-RID-47, SW-FW-RID-48, SW-FW-RID-49, SW-FW-RID-52, SW-FW-RID-71, SW-FW-RID-72, SW-FW-RID-76\n",
+      "scope": "actual conditions K1727..1764 compared to design purpose/input/output/process; supports are not full-system pass"
+    },
+    {
+      "test_id": "SW-FW-UnitTest-QCC-ID-14",
+      "sheet": "기준서_유닛 검증",
+      "row": 1760,
+      "purpose_cell": "E1760",
+      "unit_cell": "G1760",
+      "units": [
+        "SU-ID-QCC-013"
+      ],
+      "purpose": "\n보안 툴박스\n목적: 리모콘 키, SHA-256 파생 매핑키, AES-CMAC 인증 및 NVM 복호화.\n요구: SW-FW-RID-52, SW-FW-RID-76, SW-FW-RID-78\n",
+      "scope": "actual conditions K1727..1764 compared to design purpose/input/output/process; supports are not full-system pass"
+    },
+    {
+      "test_id": "SW-FW-UnitTest-QCC-ID-15",
+      "sheet": "기준서_유닛 검증",
+      "row": 1763,
+      "purpose_cell": "E1763",
+      "unit_cell": "G1763",
+      "units": [
+        "SU-ID-QCC-014"
+      ],
+      "purpose": "\n보안 NVM 접근\n목적: 보안 PS 영역/길이 / 읽기 인터페이스 및 암호화 저장값/복호화.\n요구: SW-FW-RID-76, SW-FW-RID-78\n",
+      "scope": "actual conditions K1727..1764 compared to design purpose/input/output/process; supports are not full-system pass"
+    }
+  ],
+  "integration_tests": [
+    {
+      "test_id": "SW-FW-IntegrationTest-ID-018",
+      "sheet": "기준서_통합 시험",
+      "row": 131,
+      "description_cell": "E131",
+      "trace_cell": "F131",
+      "criteria_column": "M",
+      "purpose": "\nQCC 전원 상태→SPI→E8300 상태와 ACK\n",
+      "unit_and_requirement_trace": "\nSU-ID-QCC-002/006\nSW-FW-RID-21/22/29/63\n"
+    },
+    {
+      "test_id": "SW-FW-IntegrationTest-ID-019",
+      "sheet": "기준서_통합 시험",
+      "row": 134,
+      "description_cell": "E134",
+      "trace_cell": "F134",
+      "criteria_column": "M",
+      "purpose": "\n부착·종료 신호와 Bluetooth 상태 연계\n검증 범위: RID46/67/68의 QCC PIO/연결표시 / 광고 및기동/종료상태 연계 지원. 등록된 내부기RF신원 확인과 실제자극출력 억제의 완주 판정은 E8300 SW-FW-SYS-Test-ID-46(등록 내부기 연결)/67(기동 자극 억제)/68(종료 자극 억제)의 해당경로에서별도확인한다.\n",
+      "unit_and_requirement_trace": "\nSU-ID-QCC-004/005/006/008/009\nSW-FW-RID-46/67/68/69/70\n"
+    },
+    {
+      "test_id": "SW-FW-IntegrationTest-ID-020",
+      "sheet": "기준서_통합 시험",
+      "row": 136,
+      "description_cell": "E136",
+      "trace_cell": "F136",
+      "criteria_column": "M",
+      "purpose": "\nAUTH service의 시험 패턴 전량 중계\n",
+      "unit_and_requirement_trace": "\nSU-ID-QCC-010\nSW-FW-RID-48/52/71/76\n"
+    },
+    {
+      "test_id": "SW-FW-IntegrationTest-ID-021",
+      "sheet": "기준서_통합 시험",
+      "row": 137,
+      "description_cell": "E137",
+      "trace_cell": "F137",
+      "criteria_column": "M",
+      "purpose": "\n실제 CRA·데이터 게이트와 서로 다른 시간 계약\n",
+      "unit_and_requirement_trace": "\nSU-ID-QCC-010/011/012/013/014\nSW-FW-RID-47/52/71/72/76\n"
+    },
+    {
+      "test_id": "SW-FW-IntegrationTest-ID-022",
+      "sheet": "기준서_통합 시험",
+      "row": 141,
+      "description_cell": "E141",
+      "trace_cell": "F141",
+      "criteria_column": "M",
+      "purpose": "\nClassic 수신→QCC I2S→E8300 처리\n",
+      "unit_and_requirement_trace": "\nSU-ID-QCC-008\nSW-FW-RID-15/16/69\n"
+    },
+    {
+      "test_id": "SW-FW-IntegrationTest-ID-023",
+      "sheet": "기준서_통합 시험",
+      "row": 142,
+      "description_cell": "E142",
+      "trace_cell": "F142",
+      "criteria_column": "M",
+      "purpose": "\nBLE 편이/양이 GAIA 메시지 처리\n",
+      "unit_and_requirement_trace": "\nSU-ID-QCC-011\nSW-FW-RID-29/35/38/44/45/70\n"
+    },
+    {
+      "test_id": "SW-FW-IntegrationTest-ID-024",
+      "sheet": "기준서_통합 시험",
+      "row": 144,
+      "description_cell": "E144",
+      "trace_cell": "F144",
+      "criteria_column": "M",
+      "purpose": "\n생산 NVM→키 생성·복호화→CRA 계산\n",
+      "unit_and_requirement_trace": "\nSU-ID-QCC-012/013/014\nSW-FW-RID-52/76/78\n"
+    }
+  ],
+  "report_pending": [
+    {
+      "document": "SUVR",
+      "sheet": "보고서_유닛 시험",
+      "rows": [
+        1727,
+        1728,
+        1729,
+        1730,
+        1731,
+        1732,
+        1733,
+        1734,
+        1735,
+        1736,
+        1737,
+        1738,
+        1739,
+        1740,
+        1741,
+        1742,
+        1743,
+        1744,
+        1745,
+        1746,
+        1747,
+        1748,
+        1749,
+        1750,
+        1751,
+        1752,
+        1753,
+        1754,
+        1755,
+        1756,
+        1757,
+        1758,
+        1759,
+        1760,
+        1761,
+        1762,
+        1763,
+        1764
+      ],
+      "unexecuted_and_pending_preserved": true
+    },
+    {
+      "document": "SITR",
+      "sheet": "보고서_통합시험",
+      "rows": [
+        131,
+        132,
+        133,
+        134,
+        135,
+        136,
+        137,
+        138,
+        139,
+        140,
+        141,
+        142,
+        143,
+        144
+      ],
+      "unexecuted_and_pending_preserved": true
+    }
+  ],
+  "findings": {
+    "unit6": "production Standalone1/TWS2/one device alone; normal immutable composition matches Q003",
+    "unit8": "main004/SI001 and support008/009/SI003 activation boundary; identity/RF and stimulation pass separate",
+    "audio": "RID69/FW15 downlink Classic→I2S→E8300 and DMIC2→QCC→phone call uplink separate; SYS82 is a test ID",
+    "SPI": "logical type+payload<=20byte and separate physical length+20byte=21; response index20 length storage distinct",
+    "authentication": "12byte AUTH transport patterns and status30 distinct from nonce16byte/real status0..3/CRA",
+    "timers": "30sec auth/180sec noTXRX/5 failures→60sec limitation distinct; reset/tolerance unresolved",
+    "keys": "installed shared_service/clinician_master distinct from derived clinic_service; SHA256 key derivation vs AESCMAC authenticator; vectors/bootstrap pending",
+    "remaining": "No conflict requiring tests-owned edits found after support trace followup; no physical QCC/product trial performed."
+  },
+  "support_trace_reinspection": "followup/qa.json",
+  "product_verdict": "판정대기",
+  "algorithm_reinspection": {
+    "SUVC1760": "remote AES-CMAC/public 16byte test key; nonce and serialization/vectors pending; aligns with Q013",
+    "SSTC199_202": "actual CRA pre/mismatch/match/post-control gate; no 12byte AUTH shortcut",
+    "SSTR199_202": "past E8300 scope only; QCC actual CRA pending",
+    "new_product_result_claim": false
+  },
+  "latest_test_agent_delta": "Empty rich runs removed for native Excel opening; new separators corrected; CM3/SYS74 boundary input and readback pending scope clarified. Q013/Q014/RID52/new15unit7integration purposes unchanged."
+}

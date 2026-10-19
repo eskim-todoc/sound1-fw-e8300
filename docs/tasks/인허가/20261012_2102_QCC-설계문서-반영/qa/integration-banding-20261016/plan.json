@@ -1,0 +1,151 @@
+{
+  "target": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\04_설계 검증\\SW\\외부기\\[E8300-QCC] [완료] SITR-FW-TD24A 소프트웨어 통합시험 보고서.xlsx",
+  "sha": "6AD96E64B26D11ACFEB649F3752DF2B951D76EE6F78D5192AFD88E01F1A47C40",
+  "sheet": "보고서_통합시험",
+  "blocks": [
+    {
+      "id": 1,
+      "start": 25,
+      "end": 28,
+      "color": "FFFFFF"
+    },
+    {
+      "id": 2,
+      "start": 29,
+      "end": 31,
+      "color": "F5F5F5"
+    },
+    {
+      "id": 3,
+      "start": 32,
+      "end": 36,
+      "color": "FFFFFF"
+    },
+    {
+      "id": 4,
+      "start": 37,
+      "end": 42,
+      "color": "F5F5F5"
+    },
+    {
+      "id": 5,
+      "start": 43,
+      "end": 51,
+      "color": "FFFFFF"
+    },
+    {
+      "id": 6,
+      "start": 52,
+      "end": 57,
+      "color": "F5F5F5"
+    },
+    {
+      "id": 7,
+      "start": 58,
+      "end": 61,
+      "color": "FFFFFF"
+    },
+    {
+      "id": 8,
+      "start": 62,
+      "end": 66,
+      "color": "F5F5F5"
+    },
+    {
+      "id": 9,
+      "start": 67,
+      "end": 72,
+      "color": "FFFFFF"
+    },
+    {
+      "id": 10,
+      "start": 73,
+      "end": 77,
+      "color": "F5F5F5"
+    },
+    {
+      "id": 11,
+      "start": 78,
+      "end": 82,
+      "color": "FFFFFF"
+    },
+    {
+      "id": 12,
+      "start": 83,
+      "end": 91,
+      "color": "F5F5F5"
+    },
+    {
+      "id": 13,
+      "start": 92,
+      "end": 97,
+      "color": "FFFFFF"
+    },
+    {
+      "id": 14,
+      "start": 98,
+      "end": 101,
+      "color": "F5F5F5"
+    },
+    {
+      "id": 15,
+      "start": 102,
+      "end": 111,
+      "color": "FFFFFF"
+    },
+    {
+      "id": 16,
+      "start": 112,
+      "end": 118,
+      "color": "F5F5F5"
+    },
+    {
+      "id": 17,
+      "start": 119,
+      "end": 130,
+      "color": "FFFFFF"
+    },
+    {
+      "id": 18,
+      "start": 131,
+      "end": 133,
+      "color": "F5F5F5"
+    },
+    {
+      "id": 19,
+      "start": 134,
+      "end": 135,
+      "color": "FFFFFF"
+    },
+    {
+      "id": 20,
+      "start": 136,
+      "end": 136,
+      "color": "F5F5F5"
+    },
+    {
+      "id": 21,
+      "start": 137,
+      "end": 140,
+      "color": "FFFFFF"
+    },
+    {
+      "id": 22,
+      "start": 141,
+      "end": 141,
+      "color": "F5F5F5"
+    },
+    {
+      "id": 23,
+      "start": 142,
+      "end": 143,
+      "color": "FFFFFF"
+    },
+    {
+      "id": 24,
+      "start": 144,
+      "end": 144,
+      "color": "F5F5F5"
+    }
+  ]
+}

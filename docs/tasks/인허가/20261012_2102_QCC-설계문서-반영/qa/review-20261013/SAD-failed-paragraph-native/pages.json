@@ -1,0 +1,317 @@
+[
+  {
+    "page": 1,
+    "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\final-word\\SAD\\page-001.png",
+    "size": [
+      893,
+      1263
+    ],
+    "text": "SW 아키텍쳐 설계 기술서 표준번호 SAD-FW-TD24A\r\n제(개)정일자\r\nTD24A-A-EXT\r\n제(개)정 번호 0\r\n페 이 지 1 / 35\r\n소프트웨어 아키텍쳐 기술서\r\n(TD24A-A-EXT)\r\n작성 검토 승인\r\n성함 김은수\r\n직책 수석연구원\r\n일자\r\n서명"
+  },
+  {
+    "page": 2,
+    "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\final-word\\SAD\\page-002.png",
+    "size": [
+      893,
+      1263
+    ],
+    "text": "SW 아키텍쳐 설계 기술서 표준번호 SAD-FW-TD24A\r\n제(개)정일자\r\nTD24A-A-EXT\r\n제(개)정 번호 0\r\n페 이 지 2 / 35\r\nNo. 개정 내용 개정 위치 개정 날짜\r\n0 최초제정"
+  },
+  {
+    "page": 3,
+    "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\final-word\\SAD\\page-003.png",
+    "size": [
+      893,
+      1263
+    ],
+    "text": "SW 아키텍쳐 설계 기술서 표준번호 SAD-FW-TD24A\r\n제(개)정일자\r\nTD24A-A-EXT\r\n제(개)정 번호 0\r\n페 이 지 3 / 35\r\n목차\r\n1. 서론............................................................................................................................................................................................................4\r\n1.1. 개요....................................................................................................................................................................................................4\r\n1.2. 목적....................................................................................................................................................................................................4\r\n1.3. 대상....................................................................................................................................................................................................4\r\n1.4. 관련문서...........................................................................................................................................................................................4\r\n1.4.1. 프로젝트 .........................................................................................................................................................................4\r\n1.4.2. 표준 및 규제................................................................................................................................................................4\r\n2. 하드웨어 플랫폼...................................................................................................................................................................................5\r\n3. 소프트웨어 아키텍쳐 .........................................................................................................................................................................6\r\n3.1. CFX Core용 소프트웨어 아키텍쳐........................................................................................................................................7\r\n3.1.1. 시스템 제어 모듈.......................................................................................................................................................7\r\n3.1.2. 신호처리 모듈..............................................................................................................................................................7\r\n3.1.3. 내부 자극 장치 실행 모듈 ....................................................................................................................................7\r\n3.2. Hear Core용 소프트웨어 아키텍쳐......................................................................................................................................7\r\n3.3. CM3용 소프트웨어 아키텍쳐 .................................................................................................................................................7\r\n3.3.1. 시스템 제어 모듈.......................................................................................................................................................7\r\n3.3.2. 신호처리 모듈..............................................................................................................................................................8\r\n3.3.3. 내부 자극 장치 실행 모듈 ....................................................................................................................................8\r\n3.3.4. 블루투스 통신 모듈..................................................................................................................................................8\r\n3.4. QCC용 소프트웨어 아키텍쳐..................................................................................................................................................8\r\n3.4.1. E8300 연계 ....................................................................................................................................................................9\r\n3.4.2. 블루투스 통신 연계..................................................................................................................................................9\r\n3.4.3. SI-ID-QCC-001 시스템 관리 모듈....................................................................................................................10\r\n3.4.4. SI-ID-QCC-002 HW 인터페이스 모듈.............................................................................................................10\r\n3.4.5. SI-ID-QCC-003 블루투스 모듈...........................................................................................................................11\r\n3.4.6. SI-ID-QCC-004 보안 모듈 ....................................................................................................................................12\r\n3.5. 부트로더 소프트웨어 아키텍쳐 ..........................................................................................................................................14\r\n3.5.1. 부트 제어 및 이미지 적재 모듈.......................................................................................................................14\r\n3.5.2. 무선 갱신 모듈 .........................................................................................................................................................14\r\n4. 소프트웨어 요구사항 추적성.......................................................................................................................................................14\r\n5. 지원 소프트웨어.................................................................................................................................................................................34\r\n6. 소프트웨어 아키텍쳐 검증............................................................................................................................................................34"
+  },
+  {
+    "page": 4,
+    "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\final-word\\SAD\\page-004.png",
+    "size": [
+      893,
+      1263
+    ],
+    "text": "SW 아키텍쳐 설계 기술서 표준번호 SAD-FW-TD24A\r\n제(개)정일자\r\nTD24A-A-EXT\r\n제(개)정 번호 0\r\n페 이 지 4 / 35\r\n1. 서론\r\n1.1. 개요\r\n본 문서는 인공달팽이관 외부장치 펌웨어를 개발하기 위한 소프트웨어 아키텍쳐를 설계하고 기술한다.\r\n1.2. 목적\r\n인공달팽이관 외부장치 소프트웨어의 요구사항을 포함한 소프트웨어 아키텍쳐를 설계함으로써,\r\n소프트웨어 개발 절차에 따라 안전한하고 일관성 및 정확성을 보장하는 소프트웨어가 개발 되는 것을\r\n목적으로 한다.\r\n1.3. 대상\r\n소프트웨어 개발 프로젝트에 참여하는 모든 구성원은 이 문서를 참고하도록 한다.\r\n1.4. 관련문서\r\n1.4.1. 프로젝트\r\nNo 문서번호 문서 제목\r\n1 SDP-FW-TD24A 소프트웨어 개발 계획서\r\n2 SGR-FW-TD24A 소프트웨어 일반 요구사항\r\n3 SR-FW-TD24A 소프트웨어 요구사항\r\n1.4.2. 표준 및 규제\r\nNo 문서번호 문서 제목\r\n1 IEC 62304 Medical device software – Software life cycle processes\r\n2 ISO 14971 Medical devices – Application of risk management to medical"
+  },
+  {
+    "page": 5,
+    "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\final-word\\SAD\\page-005.png",
+    "size": [
+      893,
+      1263
+    ],
+    "text": "SW 아키텍쳐 설계 기술서 표준번호 SAD-FW-TD24A\r\n제(개)정일자\r\nTD24A-A-EXT\r\n제(개)정 번호 0\r\n페 이 지 5 / 35\r\n2. 하드웨어 플랫폼\r\n인공달팽이관 시스템 전체의 하드웨어 플랫폼은 아래 <그림 1.>과 같다. 외부장치 Sound1 의\r\n소프트웨어는 E8300과 QCC5181에서 동작한다. DMIC1/DMIC2는 E8300에 연결되고 DMIC2는 QCC에도\r\n연결되어 전화 통화 상향 입력으로 사용한다.\r\n< 그림 1. 인공달팽이관 시스템 블록도 >"
+  },
+  {
+    "page": 6,
+    "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\final-word\\SAD\\page-006.png",
+    "size": [
+      893,
+      1263
+    ],
+    "text": "SW 아키텍쳐 설계 기술서 표준번호 SAD-FW-TD24A\r\n제(개)정일자\r\nTD24A-A-EXT\r\n제(개)정 번호 0\r\n페 이 지 6 / 35\r\n3. 소프트웨어 아키텍쳐\r\n하드웨어 플랫폼을 기반으로 동작하는 소프트웨어 아키텍쳐는 <그림 2.>와 같다.\r\n<그림 2. 인공와우 소프트웨어 아키텍쳐 블록도>\r\n세로 영역은 실행 코어를, 가로 영역은 각 코어가 나누어 수행하는 기능 모듈을 나타낸다. 각 코어의\r\n유닛은 공유 메모리, 함수체인 완료 이벤트 및 통신 인터페이스를 통해 연계된다.\r\n[QCC 자료 입력] QCC 4 모듈/14 유닛의 실제 소스/빌드/라이브러리 설정과 실행/측정\r\n결과를 확인해야 한다. DMIC2 의 두 칩 입력 연결 사실과 구현/시험 근거의 확인\r\n상태는 구분한다."
+  },
+  {
+    "page": 7,
+    "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\final-word\\SAD\\page-007.png",
+    "size": [
+      893,
+      1263
+    ],
+    "text": "SW 아키텍쳐 설계 기술서 표준번호 SAD-FW-TD24A\r\n제(개)정일자\r\nTD24A-A-EXT\r\n제(개)정 번호 0\r\n페 이 지 7 / 35\r\n3.1. CFX Core 용 소프트웨어 아키텍쳐\r\n3.1.1. 시스템 제어 모듈\r\n오디오 입출력 설정, 공유 메모리 접근 및 처리 순서와 관련된 유닛들로 구성되어 CFX 의 동작을\r\n제어한다.\r\n소프트웨어 항목은 다음과 같다.\r\n3.1.1.1. 시스템 초기화 항목\r\n부트로더의 초기화 이후 CFX 의 인터럽트와 오디오 경로를 설정한다.\r\n3.1.1.2. 시스템 제어 항목\r\n시스템의 전체적인 실행과 관련된 항목으로, 이 항목이 완성되면 소프트웨어 구현이 완료되게\r\n된다.\r\n3.1.2. 신호처리 모듈\r\n두 마이크의 빔포밍 또는 마이크와 I2S 입력의 혼합 신호에 AGC, 주파수 분석 및 비선형 매핑을\r\n적용한다. CIS 또는 N-of-M 방식에 따라 자극할 채널과 크기를 결정한다.\r\n3.1.3. 내부 자극 장치 실행 모듈\r\n내부 자극 장치에 전달되는 bitstream 생성과 관련된 유닛들로 구성되어 있다.\r\n3.1.3.1. PCM 제어 항목\r\nCM3 에서 제어하는 PCM 출력 모드에 따라 내부기에 전달되는 PCM 을 생성한다.\r\n3.2. Hear Core 용 소프트웨어 아키텍쳐\r\nHear Core 의 소프트웨어는 디지털 신호처리 라이브러리를 묶은 Function Chain 으로 동작이 실행되게\r\n되어있으며, Function Chain 은 CFX 시스템 제어항목에서 호출하게 된다.\r\n3.3. CM3 용 소프트웨어 아키텍쳐\r\n3.3.1. 시스템 제어 모듈\r\n하드웨어 설정, 공유 메모리 접근, 보조장치 제어 등과 관련된 유닛들로 구성되어 시스템의 전체\r\n동작을 제어한다."
+  },
+  {
+    "page": 8,
+    "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\final-word\\SAD\\page-008.png",
+    "size": [
+      893,
+      1263
+    ],
+    "text": "SW 아키텍쳐 설계 기술서 표준번호 SAD-FW-TD24A\r\n제(개)정일자\r\nTD24A-A-EXT\r\n제(개)정 번호 0\r\n페 이 지 8 / 35\r\n소프트웨어 항목은 다음과 같다.\r\n3.3.1.1. 시스템 초기화 항목\r\nCM3 에서 사용하는 주변장치와 공유 상태를 초기화한다. 코어 기동 전 하드웨어 설정과 이미지\r\n적재는 부트로더에서 수행한다.\r\n3.3.1.2. 시스템 제어 항목\r\n시스템의 전체적인 실행과 관련된 항목으로, 다른 모듈 및 유닛의 파라미터를 확인하여 시스템\r\n동작을 제어한다. 이 항목이 완성되면 소프트웨어 구현이 완료되게 된다.\r\n3.3.2. 신호처리 모듈\r\nCM3 에서 읽은 매핑 데이터의 펄스폭과 C/T 전류크기를 사용하여 DAC 범위, C/T 자극 레벨 및\r\n전송 가능한 자극 수를 계산하고 CFX 에 공유하는 유닛으로 구성되어 있다.\r\n3.3.3. 내부 자극 장치 실행 모듈\r\n내부 자극장치 제어 및 자극 출력 실행과 관련된 유닛들로 구성되어 있다.\r\n3.3.3.1. 내부기 실행 제어 항목\r\n내부 자극 장치 실행과 관련된 보조장치 설정, 내부 자극 장치 설정 및 내부 자극 장치 연결\r\n검사와 관련된 유닛을 실행하여 내부기를 제어한다.\r\n3.3.4. 블루투스 통신 모듈\r\n리모콘 앱, 매핑 프로그램 통신과 관련된 유닛들로 구성되어 있다.\r\n3.3.4.1. 블루투스 통신 제어 항목\r\nQCC 에서 SPI 로 수신한 명령을 구분하여 리모콘, 매핑 및 시스템 정보 처리를 실행하고 응답을\r\n전송한다. 전원 정보, LED 표시 요청 및 오디오 연결 정보를 받아 시스템 제어와 공유 메모리에\r\n반영한다.\r\n3.4. QCC 용 소프트웨어 아키텍쳐\r\n외부기의 QCC5181 은 시스템 관리, HW 인터페이스, 블루투스와 보안의 4 개 기능 모듈 및 14 개\r\n유닛으로 구성한다. QCC 는 무선 송수신과 상태/명령 중계, PIO/전원/NVM 접근 및 CRA 인증을"
+  },
+  {
+    "page": 9,
+    "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\final-word\\SAD\\page-009.png",
+    "size": [
+      893,
+      1263
+    ],
+    "text": "SW 아키텍쳐 설계 기술서 표준번호 SAD-FW-TD24A\r\n제(개)정일자\r\nTD24A-A-EXT\r\n제(개)정 번호 0\r\n페 이 지 9 / 35\r\n처리한다. E8300 은 CFX/HEAR 의 오디오 처리와 CM3 의 내부기 제어/자극 실행을 담당하며 두 칩은\r\nSPI, I2S 와 제어 신호로 연결한다.\r\n표 1. 장치와 기능의 경계\r\n경계 담당 기능 연계 경로\r\n외부기 / E8300\r\nCFX/HEAR 오디오 처리, CM3 \r\n상태/명령 처리와 내부기\r\n제어/자극\r\nDMIC1/DMIC2→E8300, QCC→CM3 SPI, \r\nQCC→CFX I2S\r\n외부기 / QCC\r\n시스템 관리, HW 인터페이스, \r\n블루투스, 보안\r\nDMIC2→QCC→통화 상대, BLE/Classic, \r\nSPI/PIO/NVM\r\n주변 장치\r\n리모콘/매핑 프로그램, Classic \r\n상대 장치와 충전케이스\r\nBLE AUTH/GAIA, Classic 오디오 송수신, \r\n충전케이스 통신\r\n내부기\r\nE8300 의 명령/PCM 출력에\r\n따른 자극 실행\r\nE8300 의 내부기 제어/자극 경로\r\n3.4.1. E8300 연계\r\nQCC 는 블루투스 명령과 응답을 E8300 과 주고받으며 I2S 로 오디오를 전달한다. 본 절은 E8300 측\r\n인터페이스를 정의한다.\r\n소프트웨어 항목은 다음과 같다.\r\n3.4.1.1. 시스템 상태 및 제어 항목\r\nE8300 은 QCC 가 전달한 배터리 잔량, 충전기 연결 및 크래들 뚜껑 상태를 반영한다. 내부기 연결\r\n상태는 ISD_CHECK 핀으로, 동작 모드 제어는 QCC_CTRL 핀으로 전달한다.\r\n3.4.1.2. 오디오 연계 항목\r\nCFX 는 I2S 입력 상태에 따라 마이크와 오디오를 혼합한다. CM3 가 수신한 오디오 종류가 크래들\r\n마이크인 경우 크래들용 게인을 적용하며, 일반 스트리밍은 해당 게인을 적용하지 않는다.\r\n3.4.2. 블루투스 통신 연계\r\n블루투스 명령과 응답은 QCC 와 CM3 사이의 SPI 경로로 전달한다."
+  },
+  {
+    "page": 10,
+    "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\final-word\\SAD\\page-010.png",
+    "size": [
+      893,
+      1263
+    ],
+    "text": "SW 아키텍쳐 설계 기술서 표준번호 SAD-FW-TD24A\r\n제(개)정일자\r\nTD24A-A-EXT\r\n제(개)정 번호 0\r\n페 이 지 10 / 35\r\n3.4.3. SI-ID-QCC-001 시스템 관리 모듈\r\n주변장치와 라이브러리를 초기화한 뒤 전원/연결 상태, Standalone/TWS 구성과 Bluetooth 활성\r\n상태를 관리한다. 시스템 상태 유닛을 통해 BLE 명령과 E8300 SPI 명령/응답을 연결한다.\r\n소프트웨어 항목은 다음과 같다.\r\n3.4.3.1. 시스템 초기화와 설정 항목\r\nSU-ID-QCC-001 은 QCC 의 주변장치와 라이브러리를 정해진 순서로 준비하여 상태 처리와 통신이\r\n유효한 초기 설정에서 시작되도록 한다. SW-FW-UnitTest-QCC-ID-4 에서는 기동 설정/초기화와\r\n전원 상태 SPI/ACK 를 확인한다.\r\n3.4.3.2. 시스템 상태 항목\r\nSU-ID-QCC-002 은 E8300 의 연결/종료 신호와 전원/무선 상태를 관리하고 BLE 와 SPI 사이에서\r\n명령과 응답을 중계한다. SW-FW-UnitTest-QCC-ID-5 에서는 여섯 시스템 상태 저장/조회를\r\n확인한다. SW-FW-UnitTest-QCC-ID-4 에서는 기동 설정/초기화와 전원 상태 SPI/ACK 를 연계\r\n지원으로 확인한다.\r\n3.4.3.3. 장치 상태 항목\r\nSU-ID-QCC-003 은 생산 시 결정한 Standalone 또는 TWS 구성에 따라 오디오와 제어 데이터의\r\n처리 대상을 선택한다. SW-FW-UnitTest-QCC-ID-6 에서는 생산 시 Standalone/TWS 구성과\r\n편이/양이 오디오/데이터 처리를 확인한다.\r\n3.4.3.4. 블루투스 상태 항목\r\nSU-ID-QCC-004 은 내부기 부착 상태와 Bluetooth 연결 상태를 연결하여 검색/연결 가능 여부와\r\n외부기 장치명을 관리한다. SW-FW-UnitTest-QCC-ID-7 에서는 연결표시 입력에 따른 Bluetooth \r\n활성 및 장치명을 확인한다. SW-FW-UnitTest-QCC-ID-8 에서는 부착/탈착 시 BLE/Classic 검색/연결\r\n활성화를 확인한다.\r\n3.4.4. SI-ID-QCC-002 HW 인터페이스 모듈\r\nPIO, 배터리/충전과 비휘발성 저장장치의 접근을 제공한다. 입력 변화와 전원 상태는 시스템 관리에\r\n전달하고, NVM 데이터는 일반 설정 및 보안 처리에 제공한다.\r\n소프트웨어 항목은 다음과 같다."
+  },
+  {
+    "page": 11,
+    "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\final-word\\SAD\\page-011.png",
+    "size": [
+      893,
+      1263
+    ],
+    "text": "SW 아키텍쳐 설계 기술서 표준번호 SAD-FW-TD24A\r\n제(개)정일자\r\nTD24A-A-EXT\r\n제(개)정 번호 0\r\n페 이 지 11 / 35\r\n3.4.4.1. PIO 포트 제어 항목\r\nSU-ID-QCC-005 은 QCC 의 디지털 입력, 출력과 주변장치 기능을 설정하고 입력 변화를 상태\r\n처리에 전달한다. SW-FW-UnitTest-QCC-ID-1 에서는 PIO 방향/주변장치/초기값 및 입력변화\r\n메시지를 확인한다.\r\n3.4.4.2. Power 제어 항목\r\nSU-ID-QCC-006 은 배터리 전압과 충전 연결을 잔량/전원 상태로 변환하여 시스템에 전달하고\r\n저전압과 종료 요청을 처리한다. SW-FW-UnitTest-QCC-ID-2 에서는 전압→잔량/충전/저전압 상태를\r\n확인한다.\r\n3.4.4.3. NVM 처리 항목\r\nSU-ID-QCC-007 은 Application 의 비휘발성 데이터를 식별자와 길이로 접근하여 외부기 설정과\r\n제조 정보를 유지한다. SW-FW-UnitTest-QCC-ID-3 에서는 외부기 일련번호 PS 매핑/읽기/쓰기를\r\n확인한다.\r\n3.4.5. SI-ID-QCC-003 블루투스 모듈\r\nClassic 오디오 송수신과 BLE 광고/연결 및 메시지 전달을 처리한다. 수신 오디오는 I2S 로 E8300 에\r\n전달하고 전화 통화 중 DMIC2 의 음성은 통화 상대에게 송신한다. AUTH service 의 전송과 보안\r\n모듈의 인증 계산은 분리한다.\r\n소프트웨어 항목은 다음과 같다.\r\n3.4.5.1. Bluetooth Classic 항목\r\nSU-ID-QCC-008 은 Bluetooth Classic 오디오 연결을 관리하여 수신 오디오는 I2S 로 E8300 에\r\n전달하고 통화 중 DMIC2 입력은 상대 장치로 송신한다. SW-FW-UnitTest-QCC-ID-10 에서는\r\nClassic 페어링/연결, 시험 스피커/양이 및 I2S 하향 경로를 확인한다. SW-FW-UnitTest-QCC-ID￾8 에서는 부착/탈착 시 BLE/Classic 검색/연결 활성화를 연계 지원으로 확인한다.\r\n3.4.5.2. BLE 항목\r\nSU-ID-QCC-009 은 BLE 광고와 연결 상태를 관리하여 외부 앱이 장치를 식별하고 인증/데이터\r\n서비스에 접근할 수 있게 한다. SW-FW-UnitTest-QCC-ID-9 에서는 광고/스캔 응답과 현재/peer \r\n잔량/연결 상태를 확인한다. SW-FW-UnitTest-QCC-ID-8 에서는 부착/탈착 시 BLE/Classic 검색/연결\r\n활성화를 연계 지원으로 확인한다."
+  },
+  {
+    "page": 12,
+    "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\final-word\\SAD\\page-012.png",
+    "size": [
+      893,
+      1263
+    ],
+    "text": "SW 아키텍쳐 설계 기술서 표준번호 SAD-FW-TD24A\r\n제(개)정일자\r\nTD24A-A-EXT\r\n제(개)정 번호 0\r\n페 이 지 12 / 35\r\n3.4.5.3. AUTH service 처리 항목\r\nSU-ID-QCC-010 은 CRA 의 Challenge/Response/Confirm/Status 교환을 GATT 특성에 연결하여\r\n인증 계산과 무선 전송을 분리한다. SW-FW-UnitTest-QCC-ID-11 에서는 AUTH 서비스 정의/등록\r\n및 네 characteristic 패턴 중계를 확인한다.\r\n3.4.5.4. BLE Data 처리 항목\r\nSU-ID-QCC-011 은 BLE 메시지의 상태, 주소, 종류와 길이를 검사하여 유효한 제어 데이터를 해당\r\n처리 대상에 전달한다. SW-FW-UnitTest-QCC-ID-12 에서는 GAIA 편이/양이 메시지 처리와\r\n위치/잔량 응답를 확인한다.\r\n3.4.6. SI-ID-QCC-004 보안 모듈\r\nCRA 를 통해 통신 상대를 확인하고 인증 상태에 따라 보호 데이터 접근을 허용한다. 보안 툴박스의\r\n키 파생/인증값 계산과 보안 NVM 의 키 읽기를 사용하며 인증 실패와 시간 제한을 BLE 연결\r\n제어에 반영한다.\r\n소프트웨어 항목은 다음과 같다.\r\n3.4.6.1. 보안 처리 항목\r\nSU-ID-QCC-012 은 리모콘과 매핑 통신의 상대 장치를 CRA 로 확인하고 인증 결과와 제한 조건에\r\n따라 데이터 접근을 제어한다. SW-FW-UnitTest-QCC-ID-13 에서는 1:1, CRA 성공/실패/30 초\r\ntimeout 를 확인한다.\r\n3.4.6.2. 보안 툴박스 항목\r\nSU-ID-QCC-013 은 인증 키 선택, 매핑 키 파생과 인증값 계산 및 NVM 암복호화를 공통\r\n인터페이스로 제공한다. SW-FW-UnitTest-QCC-ID-14 에서는 리모콘 키, SHA-256 파생 매핑키, AES￾CMAC 인증 및 NVM 복호화를 확인한다.\r\n3.4.6.3. 보안 NVM 항목\r\nSU-ID-QCC-014 은 생산 시 설치한 키와 난수를 정해진 보안 저장 영역에서 읽어 인증과\r\n암복호화에 필요한 데이터로 제공한다. SW-FW-UnitTest-QCC-ID-15 에서는 보안 PS 영역/길이/읽기\r\n인터페이스 및 암호화 저장값/복호화를 확인한다.\r\nSPI 연계: E8300 의 수신 정의는 0x34(data[0] 배터리 %, data[1] 충전기 미연결 0 / 연결 1, data[2] 뚜껑\r\n열림 1 / 닫힘 2), 0x35(data[0] LED 상태, OTA_EZAIRO=4 일 때 갱신 연결 1), 0x36(data[0] 오디오"
+  },
+  {
+    "page": 13,
+    "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\final-word\\SAD\\page-013.png",
+    "size": [
+      893,
+      1263
+    ],
+    "text": "SW 아키텍쳐 설계 기술서 표준번호 SAD-FW-TD24A\r\n제(개)정일자\r\nTD24A-A-EXT\r\n제(개)정 번호 0\r\n페 이 지 13 / 35\r\n미연결 0 / 연결 1, data[1] 종류 미상 0 / 크래들 1 / 기타 2)이다. 응답은 각각 명령값과 성공값 1 이다. \r\n0x36 은 연결 1/종류 1 일 때만 크래들 오디오 상태를 설정한다.\r\n메시지 경계: QCC BLE Data 메시지는 type 1 바이트와 data 0~19 바이트로 총 1~20 바이트이다. E8300 \r\nSPI 전송 프레임은 별도 길이 1 바이트를 포함한 21 바이트이다. 무선 메시지와 물리 SPI 프레임을\r\n같은 계층의 길이로 취급하지 않는다.\r\n제어 핀: E8300 QCC_CTRL(DIO24)은 High=정상 동작 요청, Low=종료 요청이며 초기값은 Low 이다. \r\nISD_CHECK(DIO13)는 High=내부기 연결, Low=미연결이며 초기값은 Low 이다. CFX I2S_FLAG(DIO29)는\r\nLow=입력 유효이다. QCC 의 shutdown_ind 또는 I2S enable 이라는 논리 이름만으로 물리 핀 극성을\r\n변경하지 않는다.\r\n오디오 입력은 DMIC1/DMIC2→E8300 의 마이크 경로와 QCC→E8300 의 I2S 경로로 구분한다. \r\nDMIC2 는 QCC 에도 연결되며 전화 통화 시 QCC 가 수음한 음성을 통화 상대에게 송신한다. QCC 의\r\nClassic 수신 오디오는 I2S 24bit/16kHz 로 CFX 에 전달한다. E8300 PCM1 은 slave, 24bit, MSB 우선/정렬, \r\n상승 에지, 2word 설정이며 16 표본 블록을 처리한다. 16kHz 표본율과 0~8kHz 오디오 대역은\r\n구분한다. CFX 는 일반 I2S 게인 1 과 마이크 Gain A, 크래들 I2S Gain B 와 마이크 Gain A, 매핑 연결\r\n중 두 게인 1 을 적용하며 혼합 후 2 로 나누지 않는다.\r\n[QCC 자료 입력] QCC shutdown_ind 의 정상/종료 논리와 실제 PIO 번호/전압/반전, \r\n기동/종료 대기 및 I2S enable→I2S_FLAG Low 유효의 물리 대응을 확인해야 한다.\r\n[QCC 자료 입력] 충전 4 상태를 0x34 charger_connected 0/1 로 변환하는 표, \r\n0x34~0x36 의 통보 시점/오류 처리, 실제 QCC 송신 length 필드/21byte 변환 및\r\nGAIA 주소/type 별 데이터 정의와 실행 확인이 필요하다.\r\n[QCC 자료 입력] DMIC2 의 QCC 입력 연결은 확인되었다. QCC 마이크 핀/클록, \r\n프로파일/코덱별 송수신과 동시 동작, I2S 클록/프레임/좌우 배정 및 시작/중단 유효\r\n신호의 실제 설정/파형과 오디오 시험 결과를 확인해야 한다.\r\n시스템 관리는 PIO/전원/장치 정보를 수집하여 Bluetooth 활성과 SPI 중계를 조정한다. AUTH \r\nservice 는 보안 처리의 Challenge/Response/Confirm/Status 를 전달하며 일반 BLE Data 는 인증/권한\r\n조건을 만족한 메시지를 시스템 관리에 전달한다. 보안 처리는 toolbox 와 보안 NVM 을 사용하고"
+  },
+  {
+    "page": 14,
+    "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\final-word\\SAD\\page-014.png",
+    "size": [
+      893,
+      1263
+    ],
+    "text": "SW 아키텍쳐 설계 기술서 표준번호 SAD-FW-TD24A\r\n제(개)정일자\r\nTD24A-A-EXT\r\n제(개)정 번호 0\r\n페 이 지 14 / 35\r\n보안 NVM은 HW NVM을 통해 저장 영역에 접근한다. Classic 수신 오디오는 I2S로 E8300에 전달하고\r\n전화 통화 상향은 DMIC2→QCC→통화 상대 경로로 처리한다.\r\n[QCC 자료 입력] 인증 전 데이터 차단/앱별 권한, 실제 AUTH UUID 와 characteristic \r\n길이, CRA 알고리즘/키 역할, NVM 보호/난수 bootstrap, 무통신/실패 제한 경계, QCC \r\n자체 OTA 와 기동 이미지 무결성의 상세 설계 및 구현 근거가 필요하다.\r\n3.5. 부트로더 소프트웨어 아키텍쳐\r\n3.5.1. 부트 제어 및 이미지 적재 모듈\r\n코어 실행에 필요한 하드웨어와 메모리를 설정하고 실행 이미지를 검사하여 적재한다. 기본\r\n이미지와 대체 이미지의 기동 상태를 관리한다.\r\n3.5.2. 무선 갱신 모듈\r\nCM3 응용 프로그램이 QCC 를 통해 수신한 갱신 데이터를 저장한다. 부트로더는 다음 기동 시\r\n선택된 이미지를 검사하고 적재한다.\r\n4. 소프트웨어 요구사항 추적성\r\n소프트웨어 요구사항을 담당 모듈과 상세 설계 유닛에 연결한다. 유닛 ID 와 이름은 소프트웨어 상세\r\n설계서에 따른다.\r\n표 2. 소프트웨어 요구사항과 상세 설계 유닛 연결\r\n소프트웨어\r\n요구사항 ID\r\n모듈 ID / 이름 상세 설계 유닛 ID / 이름\r\nSW-FW-RID-1 SI-ID-CM3-002\r\n신호처리 모듈\r\nSI-ID-CFX-002\r\n신호처리 모듈\r\nSI-ID-CFX-003\r\n내부 자극 장치 실행 모듈\r\nSU-ID-CM3-027\r\n자극 프레임 수 계산\r\nSU-ID-CM3-029\r\n자극 파라미터 계산 결과 공유\r\nSU-ID-CFX-033\r\nCIS 전략과 전략 선택\r\nSU-ID-CFX-039\r\n실시간 자극 데이터 생성"
+  },
+  {
+    "page": 15,
+    "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\final-word\\SAD\\page-015.png",
+    "size": [
+      893,
+      1263
+    ],
+    "text": "SW 아키텍쳐 설계 기술서 표준번호 SAD-FW-TD24A\r\n제(개)정일자\r\nTD24A-A-EXT\r\n제(개)정 번호 0\r\n페 이 지 15 / 35\r\n소프트웨어\r\n요구사항 ID\r\n모듈 ID / 이름 상세 설계 유닛 ID / 이름\r\nSW-FW-RID-2 SI-ID-CM3-002\r\n신호처리 모듈\r\nSI-ID-CFX-002\r\n신호처리 모듈\r\nSI-ID-CFX-003\r\n내부 자극 장치 실행 모듈\r\nSU-ID-CM3-027\r\n자극 프레임 수 계산\r\nSU-ID-CM3-029\r\n자극 파라미터 계산 결과 공유\r\nSU-ID-CFX-033\r\nCIS 전략과 전략 선택\r\nSU-ID-CFX-039\r\n실시간 자극 데이터 생성\r\nSW-FW-RID-3 SI-ID-CM3-003\r\n내부 자극 장치 실행 모듈\r\nSI-ID-CFX-003\r\n내부 자극 장치 실행 모듈\r\nSU-ID-CM3-041\r\n내부기 자극 설정 적용\r\nSU-ID-CFX-036\r\n자극 패킷 헤더 구성\r\nSU-ID-CFX-040\r\n지정 명령 PCM 출력\r\nSW-FW-RID-4 SI-ID-CM3-003\r\n내부 자극 장치 실행 모듈\r\nSI-ID-CFX-003\r\n내부 자극 장치 실행 모듈\r\nSU-ID-CM3-041\r\n내부기 자극 설정 적용\r\nSU-ID-CFX-036\r\n자극 패킷 헤더 구성"
+  },
+  {
+    "page": 16,
+    "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\final-word\\SAD\\page-016.png",
+    "size": [
+      893,
+      1263
+    ],
+    "text": "SW 아키텍쳐 설계 기술서 표준번호 SAD-FW-TD24A\r\n제(개)정일자\r\nTD24A-A-EXT\r\n제(개)정 번호 0\r\n페 이 지 16 / 35\r\n소프트웨어\r\n요구사항 ID\r\n모듈 ID / 이름 상세 설계 유닛 ID / 이름\r\nSW-FW-RID-5 SI-ID-CM3-002\r\n신호처리 모듈\r\nSI-ID-CFX-002\r\n신호처리 모듈\r\nSU-ID-CM3-028\r\n내부기 DAC 범위와 T/C 변환\r\nSU-ID-CM3-029\r\n자극 파라미터 계산 결과 공유\r\nSU-ID-CFX-029\r\nCM3 계산 T/C 값 수신\r\nSU-ID-CFX-030\r\n자극 볼륨에 따른 C 값 계산\r\nSU-ID-CFX-032\r\n비선형 매핑과 T 이하 묵음\r\nSW-FW-RID-6 SI-ID-CM3-002\r\n신호처리 모듈\r\nSI-ID-CM3-003\r\n내부 자극 장치 실행 모듈\r\nSU-ID-CM3-027\r\n자극 프레임 수 계산\r\nSU-ID-CM3-037\r\n펄스폭과 역방향 통신 설정\r\nSU-ID-CM3-041\r\n내부기 자극 설정 적용\r\nSW-FW-RID-7 SI-ID-CM3-002\r\n신호처리 모듈\r\nSI-ID-CFX-002\r\n신호처리 모듈\r\nSU-ID-CM3-028\r\n내부기 DAC 범위와 T/C 변환\r\nSU-ID-CM3-029\r\n자극 파라미터 계산 결과 공유\r\nSU-ID-CFX-032\r\n비선형 매핑과 T 이하 묵음"
+  },
+  {
+    "page": 17,
+    "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\final-word\\SAD\\page-017.png",
+    "size": [
+      893,
+      1263
+    ],
+    "text": "SW 아키텍쳐 설계 기술서 표준번호 SAD-FW-TD24A\r\n제(개)정일자\r\nTD24A-A-EXT\r\n제(개)정 번호 0\r\n페 이 지 17 / 35\r\n소프트웨어\r\n요구사항 ID\r\n모듈 ID / 이름 상세 설계 유닛 ID / 이름\r\nSW-FW-RID-8 SI-ID-CM3-001\r\n시스템 제어 모듈\r\nSI-ID-CFX-001\r\n시스템 제어 모듈\r\nSI-ID-CFX-002\r\n신호처리 모듈\r\nSI-ID-HEAR-001\r\n신호처리 모듈\r\nSU-ID-CM3-023\r\n오디오 및 자극 볼륨 설정\r\nSU-ID-CFX-011\r\n맵 및 볼륨 변경 처리\r\nSU-ID-CFX-022\r\nAGC 입력 크기 읽기와 공유\r\nSU-ID-CFX-023\r\nAGC 목표 이득 계산\r\nSU-ID-CFX-024\r\nAGC 이득의 시간 변화\r\nSU-ID-CFX-025\r\nAGC 표본 이득 적용\r\nSU-ID-HEAR-001\r\n오디오 절대값 최대값 연산\r\nSW-FW-RID-9 SI-ID-CFX-001\r\n시스템 제어 모듈\r\nSI-ID-CFX-002\r\n신호처리 모듈\r\nSI-ID-HEAR-001\r\n신호처리 모듈\r\nSU-ID-CFX-002\r\nHEAR 실행 준비\r\nSU-ID-CFX-026\r\n주파수 분석 입력 갱신\r\nSU-ID-CFX-028\r\n대역별 대표값 및 크기 보상\r\nSU-ID-HEAR-002\r\n창 적용 FFT 와 크기 연산"
+  },
+  {
+    "page": 18,
+    "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\final-word\\SAD\\page-018.png",
+    "size": [
+      893,
+      1263
+    ],
+    "text": "SW 아키텍쳐 설계 기술서 표준번호 SAD-FW-TD24A\r\n제(개)정일자\r\nTD24A-A-EXT\r\n제(개)정 번호 0\r\n페 이 지 18 / 35\r\n소프트웨어\r\n요구사항 ID\r\n모듈 ID / 이름 상세 설계 유닛 ID / 이름\r\nSW-FW-RID-10 SI-ID-CFX-001\r\n시스템 제어 모듈\r\nSI-ID-CFX-002\r\n신호처리 모듈\r\nSI-ID-CM3-001\r\n시스템 제어 모듈\r\nSU-ID-CFX-012\r\n공유 맵 데이터 복사\r\nSU-ID-CFX-027\r\nFFT 대역 인덱스 읽기\r\nSU-ID-CFX-028\r\n대역별 대표값 및 크기 보상\r\nSU-ID-CM3-020\r\n맵 갱신 상태와 계산 자료 공유\r\nSW-FW-RID-11 SI-ID-CM3-002\r\n신호처리 모듈\r\nSI-ID-CFX-002\r\n신호처리 모듈\r\nSI-ID-CFX-003\r\n내부 자극 장치 실행 모듈\r\nSU-ID-CM3-027\r\n자극 프레임 수 계산\r\nSU-ID-CFX-033\r\nCIS 전략과 전략 선택\r\nSU-ID-CFX-034\r\nNofM 대역 선택\r\nSU-ID-CFX-035\r\nNofM 선택 대역 교차 배치\r\nSU-ID-CFX-036\r\n자극 패킷 헤더 구성\r\nSU-ID-CFX-037\r\nNofM 패킷 구성과 분할 출력"
+  },
+  {
+    "page": 19,
+    "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\final-word\\SAD\\page-019.png",
+    "size": [
+      893,
+      1263
+    ],
+    "text": "SW 아키텍쳐 설계 기술서 표준번호 SAD-FW-TD24A\r\n제(개)정일자\r\nTD24A-A-EXT\r\n제(개)정 번호 0\r\n페 이 지 19 / 35\r\n소프트웨어\r\n요구사항 ID\r\n모듈 ID / 이름 상세 설계 유닛 ID / 이름\r\nSW-FW-RID-12 SI-ID-CFX-001\r\n시스템 제어 모듈\r\nSI-ID-CFX-002\r\n신호처리 모듈\r\nSI-ID-CFX-003\r\n내부 자극 장치 실행 모듈\r\nSI-ID-HEAR-001\r\n신호처리 모듈\r\nSU-ID-CFX-001\r\n인터럽트와 반복 실행 제어\r\nSU-ID-CFX-007\r\n마이크 블록 수집\r\nSU-ID-CFX-021\r\n신호처리 경로 선택\r\nSU-ID-CFX-026\r\n주파수 분석 입력 갱신\r\nSU-ID-CFX-038\r\nPCM 모드 분기와 프리앰블\r\nSU-ID-HEAR-001\r\n오디오 절대값 최대값 연산\r\nSU-ID-HEAR-002\r\n창 적용 FFT 와 크기 연산\r\nSW-FW-RID-13 SI-ID-CM3-001\r\n시스템 제어 모듈\r\nSI-ID-CM3-003\r\n내부 자극 장치 실행 모듈\r\nSI-ID-CFX-001\r\n시스템 제어 모듈\r\nSU-ID-CM3-006\r\n시스템 상태 및 맵 변경 공유\r\nSU-ID-CM3-022\r\n맵 목록과 선택 정보\r\nSU-ID-CM3-042\r\n내부기 및 사용자 설정 저장\r\nSU-ID-CM3-043\r\n맵 저장과 삭제 범위\r\nSU-ID-CFX-011\r\n맵 및 볼륨 변경 처리\r\nSU-ID-CFX-012\r\n공유 맵 데이터 복사"
+  },
+  {
+    "page": 20,
+    "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\final-word\\SAD\\page-020.png",
+    "size": [
+      893,
+      1263
+    ],
+    "text": "SW 아키텍쳐 설계 기술서 표준번호 SAD-FW-TD24A\r\n제(개)정일자\r\nTD24A-A-EXT\r\n제(개)정 번호 0\r\n페 이 지 20 / 35\r\n소프트웨어\r\n요구사항 ID\r\n모듈 ID / 이름 상세 설계 유닛 ID / 이름\r\nSW-FW-RID-14 SI-ID-CM3-001\r\n시스템 제어 모듈\r\nSI-ID-CFX-001\r\n시스템 제어 모듈\r\nSI-ID-CFX-002\r\n신호처리 모듈\r\nSU-ID-CM3-023\r\n오디오 및 자극 볼륨 설정\r\nSU-ID-CFX-011\r\n맵 및 볼륨 변경 처리\r\nSU-ID-CFX-030\r\n자극 볼륨에 따른 C 값 계산\r\nSW-FW-RID￾15\r\nSW-FW-RID￾16\r\nSI-ID-CFX-001\r\n시스템 제어 모듈\r\nSI-ID-QCC-001\r\n시스템 관리 모듈\r\nSI-ID-QCC-002\r\nHW 인터페이스 모듈\r\nSI-ID-QCC-003\r\n블루투스 모듈\r\nSW-FW-RID-17 SI-ID-CFX-001\r\n시스템 제어 모듈\r\nSI-ID-CFX-003\r\n내부 자극 장치 실행 모듈\r\nSU-ID-CFX-004\r\nPCM 인터페이스 초기화\r\nSU-ID-CFX-036\r\n자극 패킷 헤더 구성\r\nSU-ID-CFX-038\r\nPCM 모드 분기와 프리앰블\r\nSU-ID-CFX-039\r\n실시간 자극 데이터 생성"
+  },
+  {
+    "page": 21,
+    "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\final-word\\SAD\\page-021.png",
+    "size": [
+      893,
+      1263
+    ],
+    "text": "SW 아키텍쳐 설계 기술서 표준번호 SAD-FW-TD24A\r\n제(개)정일자\r\nTD24A-A-EXT\r\n제(개)정 번호 0\r\n페 이 지 21 / 35\r\n소프트웨어\r\n요구사항 ID\r\n모듈 ID / 이름 상세 설계 유닛 ID / 이름\r\nSW-FW-RID-18 SI-ID-CM3-001\r\n시스템 제어 모듈\r\nSI-ID-CM3-002\r\n신호처리 모듈\r\nSI-ID-CM3-003\r\n내부 자극 장치 실행 모듈\r\nSI-ID-CFX-001\r\n시스템 제어 모듈\r\nSI-ID-CFX-002\r\n신호처리 모듈\r\nSU-ID-CM3-020\r\n맵 갱신 상태와 계산 자료 공유\r\nSU-ID-CM3-027\r\n자극 프레임 수 계산\r\nSU-ID-CM3-028\r\n내부기 DAC 범위와 T/C 변환\r\nSU-ID-CM3-029\r\n자극 파라미터 계산 결과 공유\r\nSU-ID-CM3-041\r\n내부기 자극 설정 적용\r\nSU-ID-CFX-011\r\n맵 및 볼륨 변경 처리\r\nSU-ID-CFX-029\r\nCM3 계산 T/C 값 수신\r\nSU-ID-CFX-031\r\n비선형 매핑 계수 계산\r\nSU-ID-CFX-032\r\n비선형 매핑과 T 이하 묵음\r\nSW-FW-RID-19 SI-ID-CM3-001\r\n시스템 제어 모듈\r\nSU-ID-CM3-007\r\n전원 및 자동 절전 조건\r\nSU-ID-CM3-009\r\n터치 상태와 길게 누름 판정\r\nSU-ID-CM3-010\r\n터치 센서 읽기와 재보정\r\nSU-ID-CM3-015\r\nCM3 저전력 진입과 복귀"
+  },
+  {
+    "page": 22,
+    "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\final-word\\SAD\\page-022.png",
+    "size": [
+      893,
+      1263
+    ],
+    "text": "SW 아키텍쳐 설계 기술서 표준번호 SAD-FW-TD24A\r\n제(개)정일자\r\nTD24A-A-EXT\r\n제(개)정 번호 0\r\n페 이 지 22 / 35\r\n소프트웨어\r\n요구사항 ID\r\n모듈 ID / 이름 상세 설계 유닛 ID / 이름\r\nSW-FW-RID-20 SI-ID-CM3-001\r\n시스템 제어 모듈\r\nSU-ID-CM3-005\r\n정상 반복 처리\r\nSU-ID-CM3-013\r\nLED 표시 요청과 우선순위\r\nSU-ID-CM3-014\r\nLED 패턴 출력\r\nSW-FW-RID￾21\r\nSW-FW-RID￾22\r\nSI-ID-CM3-001\r\n시스템 제어 모듈\r\nSI-ID-QCC-001\r\n시스템 관리 모듈\r\nSI-ID-QCC-002\r\nHW 인터페이스 모듈\r\nSW-FW-RID￾23\r\nSW-FW-RID￾24\r\nSW-FW-RID￾25\r\nSW-FW-RID￾26\r\nSW-FW-RID￾27\r\nSW-FW-RID￾28\r\nSW-FW-RID￾29"
+  },
+  {
+    "page": 23,
+    "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\final-word\\SAD\\page-023.png",
+    "size": [
+      893,
+      1263
+    ],
+    "text": "SW 아키텍쳐 설계 기술서 표준번호 SAD-FW-TD24A\r\n제(개)정일자\r\nTD24A-A-EXT\r\n제(개)정 번호 0\r\n페 이 지 23 / 35\r\n소프트웨어\r\n요구사항 ID\r\n모듈 ID / 이름 상세 설계 유닛 ID / 이름\r\nSW-FW-RID￾30\r\nSW-FW-RID￾31\r\nSW-FW-RID￾32\r\nSW-FW-RID￾33\r\nSW-FW-RID￾34\r\nSW-FW-RID￾35\r\nSW-FW-RID￾36\r\nSW-FW-RID￾37\r\nSW-FW-RID￾38\r\nSW-FW-RID￾39\r\nSW-FW-RID￾40"
+  },
+  {
+    "page": 24,
+    "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\final-word\\SAD\\page-024.png",
+    "size": [
+      893,
+      1263
+    ],
+    "text": "SW 아키텍쳐 설계 기술서 표준번호 SAD-FW-TD24A\r\n제(개)정일자\r\nTD24A-A-EXT\r\n제(개)정 번호 0\r\n페 이 지 24 / 35\r\n소프트웨어\r\n요구사항 ID\r\n모듈 ID / 이름 상세 설계 유닛 ID / 이름\r\nSW-FW-RID-41 SI-ID-CM3-001\r\n시스템 제어 모듈\r\nSI-ID-CM3-003\r\n내부 자극 장치 실행 모듈\r\nSU-ID-CM3-025\r\nI2C 전송과 인터럽트 진행\r\nSU-ID-CM3-034\r\nFPGA 제어 레지스터와 리셋\r\nSU-ID-CM3-036\r\nFPGA 상태와 FIFO 접근\r\nSW-FW-RID-42 SI-ID-CM3-001\r\n시스템 제어 모듈\r\nSU-ID-CM3-002\r\n터치 센서 초기화\r\nSU-ID-CM3-010\r\n터치 센서 읽기와 재보정\r\nSU-ID-CM3-025\r\nI2C 전송과 인터럽트 진행\r\nSW-FW-RID-43 SI-ID-CM3-001\r\n시스템 제어 모듈\r\nSI-ID-CM3-003\r\n내부 자극 장치 실행 모듈\r\nSU-ID-CM3-025\r\nI2C 전송과 인터럽트 진행\r\nSU-ID-CM3-035\r\n송신 전력 단계 설정\r\nSU-ID-CM3-038\r\n주 송신 PMIC 접근\r\nSU-ID-CM3-039\r\n자극 전원 활성과 차단\r\nSU-ID-CM3-040\r\n보조 PMIC 접근\r\nSW-FW-RID￾44\r\nSW-FW-RID￾45"
+  },
+  {
+    "page": 25,
+    "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\final-word\\SAD\\page-025.png",
+    "size": [
+      893,
+      1263
+    ],
+    "text": "SW 아키텍쳐 설계 기술서 표준번호 SAD-FW-TD24A\r\n제(개)정일자\r\nTD24A-A-EXT\r\n제(개)정 번호 0\r\n페 이 지 25 / 35\r\n소프트웨어\r\n요구사항 ID\r\n모듈 ID / 이름 상세 설계 유닛 ID / 이름\r\nSW-FW-RID￾46\r\nSW-FW-RID￾47\r\nSI-ID-QCC-003\r\n블루투스 모듈\r\nSI-ID-QCC-004\r\n보안 모듈\r\nSW-FW-RID￾48\r\nSI-ID-QCC-001\r\n시스템 관리 모듈\r\nSI-ID-QCC-003\r\n블루투스 모듈\r\nSI-ID-QCC-004\r\n보안 모듈\r\nSW-FW-RID￾49\r\nSI-ID-QCC-001\r\n시스템 관리 모듈\r\nSI-ID-QCC-003\r\n블루투스 모듈\r\nSI-ID-QCC-004\r\n보안 모듈\r\nSW-FW-RID-50 SI-ID-CM3-001\r\n시스템 제어 모듈\r\nSI-ID-CM3-004\r\n블루투스 통신 모듈\r\nSU-ID-CM3-001\r\nCM3 주변장치 초기화\r\nSU-ID-CM3-046\r\n리모콘 명령 처리\r\nSW-FW-RID-51 SI-ID-CM3-003\r\n내부 자극 장치 실행 모듈\r\nSU-ID-CM3-042\r\n내부기 및 사용자 설정 저장\r\nSU-ID-CM3-043\r\n맵 저장과 삭제 범위"
+  },
+  {
+    "page": 26,
+    "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\final-word\\SAD\\page-026.png",
+    "size": [
+      893,
+      1263
+    ],
+    "text": "SW 아키텍쳐 설계 기술서 표준번호 SAD-FW-TD24A\r\n제(개)정일자\r\nTD24A-A-EXT\r\n제(개)정 번호 0\r\n페 이 지 26 / 35\r\n소프트웨어\r\n요구사항 ID\r\n모듈 ID / 이름 상세 설계 유닛 ID / 이름\r\nSW-FW-RID￾52\r\nSI-ID-QCC-001\r\n시스템 관리 모듈\r\nSI-ID-QCC-002\r\nHW 인터페이스 모듈\r\nSI-ID-QCC-003\r\n블루투스 모듈\r\nSI-ID-QCC-004\r\n보안 모듈\r\nSW-FW-RID-53 배포 및 변경관리 절차 절차로 관리 / 개별 유닛 해당 없음\r\nSW-FW-RID-54 SI-ID-BOOT-001\r\n부트 제어 및 이미지 적재 모듈\r\nSU-ID-BOOT-010\r\n응용 파일 열기와 헤더 검사\r\nSU-ID-BOOT-011\r\n이미지 구획 처리\r\nSU-ID-BOOT-012\r\n매니페스트 처리\r\nSU-ID-BOOT-013\r\n이미지 CRC 검사\r\nSW-FW-RID￾55\r\nSW-FW-RID-56 SI-ID-CM3-001\r\n시스템 제어 모듈\r\nSI-ID-CFX-001\r\n시스템 제어 모듈\r\nSI-ID-CFX-002\r\n신호처리 모듈\r\nSU-ID-CM3-023\r\n오디오 및 자극 볼륨 설정\r\nSU-ID-CFX-011\r\n맵 및 볼륨 변경 처리\r\nSU-ID-CFX-030\r\n자극 볼륨에 따른 C 값 계산\r\nSW-FW-RID-57 필수성능시험 절차 시험 절차로 관리 / 개별 유닛 해당 없음"
+  },
+  {
+    "page": 27,
+    "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\final-word\\SAD\\page-027.png",
+    "size": [
+      893,
+      1263
+    ],
+    "text": "SW 아키텍쳐 설계 기술서 표준번호 SAD-FW-TD24A\r\n제(개)정일자\r\nTD24A-A-EXT\r\n제(개)정 번호 0\r\n페 이 지 27 / 35\r\n소프트웨어\r\n요구사항 ID\r\n모듈 ID / 이름 상세 설계 유닛 ID / 이름\r\nSW-FW-RID-58 SI-ID-CFX-001\r\n시스템 제어 모듈\r\nSI-ID-CFX-002\r\n신호처리 모듈\r\nSI-ID-CFX-003\r\n내부 자극 장치 실행 모듈\r\nSI-ID-HEAR-001\r\n신호처리 모듈\r\nSU-ID-CFX-001\r\n인터럽트와 반복 실행 제어\r\nSU-ID-CFX-007\r\n마이크 블록 수집\r\nSU-ID-CFX-021\r\n신호처리 경로 선택\r\nSU-ID-CFX-026\r\n주파수 분석 입력 갱신\r\nSU-ID-CFX-038\r\nPCM 모드 분기와 프리앰블\r\nSU-ID-HEAR-001\r\n오디오 절대값 최대값 연산\r\nSU-ID-HEAR-002\r\n창 적용 FFT 와 크기 연산\r\nSW-FW-RID￾59\r\nSI-ID-CM3-004\r\n블루투스 통신 모듈\r\nSI-ID-QCC-003\r\n블루투스 모듈\r\nSW-FW-RID￾60\r\nSW-FW-RID-61 SI-ID-CM3-001\r\n시스템 제어 모듈\r\nSI-ID-CM3-003\r\n내부 자극 장치 실행 모듈\r\nSU-ID-CM3-004\r\n코어 간 기동 준비와 실행 허가\r\nSU-ID-CM3-013\r\nLED 표시 요청과 우선순위\r\nSU-ID-CM3-014\r\nLED 패턴 출력\r\nSU-ID-CM3-030\r\n내부기 실행 상태 관리"
+  },
+  {
+    "page": 28,
+    "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\final-word\\SAD\\page-028.png",
+    "size": [
+      893,
+      1263
+    ],
+    "text": "SW 아키텍쳐 설계 기술서 표준번호 SAD-FW-TD24A\r\n제(개)정일자\r\nTD24A-A-EXT\r\n제(개)정 번호 0\r\n페 이 지 28 / 35\r\n소프트웨어\r\n요구사항 ID\r\n모듈 ID / 이름 상세 설계 유닛 ID / 이름\r\nSW-FW-RID￾62\r\nSW-FW-RID￾63\r\nSW-FW-RID-64 SI-ID-CM3-001\r\n시스템 제어 모듈\r\nSU-ID-CM3-013\r\nLED 표시 요청과 우선순위\r\nSU-ID-CM3-014\r\nLED 패턴 출력\r\nSW-FW-RID-65 SI-ID-CM3-001\r\n시스템 제어 모듈\r\nSU-ID-CM3-013\r\nLED 표시 요청과 우선순위\r\nSU-ID-CM3-014\r\nLED 패턴 출력\r\nSW-FW-RID￾66\r\nSW-FW-RID￾67\r\nSW-FW-RID￾68\r\nSW-FW-RID￾69\r\nSW-FW-RID￾70\r\nSW-FW-RID￾71\r\nSI-ID-QCC-003\r\n블루투스 모듈\r\nSI-ID-QCC-004\r\n보안 모듈"
+  },
+  {
+    "page": 29,
+    "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\final-word\\SAD\\page-029.png",
+    "size": [
+      893,
+      1263
+    ],
+    "text": "SW 아키텍쳐 설계 기술서 표준번호 SAD-FW-TD24A\r\n제(개)정일자\r\nTD24A-A-EXT\r\n제(개)정 번호 0\r\n페 이 지 29 / 35\r\n소프트웨어\r\n요구사항 ID\r\n모듈 ID / 이름 상세 설계 유닛 ID / 이름\r\nSW-FW-RID￾72\r\nSI-ID-QCC-004\r\n보안 모듈\r\nSW-FW-RID-73 SI-ID-CM3-001\r\n시스템 제어 모듈\r\nSU-ID-CM3-016\r\n오류 및 공유 메모리 상태 확인\r\nSW-FW-RID-74 SI-ID-CM3-001\r\n시스템 제어 모듈\r\nSI-ID-CM3-004\r\n블루투스 통신 모듈\r\nSU-ID-CM3-001\r\nCM3 주변장치 초기화\r\nSU-ID-CM3-046\r\n리모콘 명령 처리\r\nSW-FW-RID-75 SI-ID-CM3-001\r\n시스템 제어 모듈\r\nSI-ID-CM3-004\r\n블루투스 통신 모듈\r\nSU-ID-CM3-016\r\n오류 및 공유 메모리 상태 확인\r\nSU-ID-CM3-026\r\nSPI 응답 버퍼 관리\r\nSU-ID-CM3-045\r\nQCC 수신 분류와 시스템 정보 응답\r\nSW-FW-RID￾76\r\nSI-ID-QCC-001\r\n시스템 관리 모듈\r\nSI-ID-QCC-002\r\nHW 인터페이스 모듈\r\nSI-ID-QCC-003\r\n블루투스 모듈\r\nSI-ID-QCC-004\r\n보안 모듈\r\nSW-FW-RID-77 SI-ID-CM3-003\r\n내부 자극 장치 실행 모듈\r\nSU-ID-CM3-042\r\n내부기 및 사용자 설정 저장\r\nSW-FW-RID￾78"
+  },
+  {
+    "page": 30,
+    "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\final-word\\SAD\\page-030.png",
+    "size": [
+      893,
+      1263
+    ],
+    "text": "SW 아키텍쳐 설계 기술서 표준번호 SAD-FW-TD24A\r\n제(개)정일자\r\nTD24A-A-EXT\r\n제(개)정 번호 0\r\n페 이 지 30 / 35\r\n소프트웨어\r\n요구사항 ID\r\n모듈 ID / 이름 상세 설계 유닛 ID / 이름\r\nSW-FW-RID-79 SI-ID-CM3-001\r\n시스템 제어 모듈\r\nSI-ID-CM3-003\r\n내부 자극 장치 실행 모듈\r\nSU-ID-CM3-005\r\n정상 반복 처리\r\nSU-ID-CM3-030\r\n내부기 실행 상태 관리\r\nSU-ID-CM3-031\r\n내부기 및 송신 전원 초기화\r\nSW-FW-RID-80 SI-ID-CM3-003\r\n내부 자극 장치 실행 모듈\r\nSU-ID-CM3-042\r\n내부기 및 사용자 설정 저장\r\nSU-ID-CM3-043\r\n맵 저장과 삭제 범위\r\nSW-FW-RID-81 품질관리 절차 절차로 관리 / 개별 유닛 해당 없음\r\nSW-FW-RID￾83\r\n제품 사용 설명서 / 실행 모듈\r\n배정 대상 아님\r\n상위 요구사항: SYS-RID-ACDOC-17 / SYS-RID￾ACDOC-18 / SYS-RID-ACDOC-20.\r\n제품 문서 항목 / 실행 유닛 배정 대상 아님\r\n[E8300 보완] 제품 사용 설명서의\r\n안전/작동법/동작방법 및 문제 해결\r\n내용, 배포 대상과 검토 결과를\r\n확인해야 한다.\r\n표 3. 소프트웨어 유닛과 상위 요구사항 연결\r\n상세 설계 유닛 ID / 이름 모듈 ID / 이름 상위 요구사항 ID\r\nSU-ID-QCC-001 시스템\r\n초기화와 설정 유닛\r\nSI-ID-QCC-001 시스템\r\n관리 모듈\r\nSW-FW-RID-15, SW-FW-RID-16, SW-FW￾RID-21, SW-FW-RID-22, SW-FW-RID-29, \r\nSW-FW-RID-44, SW-FW-RID-45, SW-FW￾RID-48, SW-FW-RID-49, SW-FW-RID-52, \r\nSW-FW-RID-63, SW-FW-RID-76"
+  },
+  {
+    "page": 31,
+    "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\final-word\\SAD\\page-031.png",
+    "size": [
+      893,
+      1263
+    ],
+    "text": "SW 아키텍쳐 설계 기술서 표준번호 SAD-FW-TD24A\r\n제(개)정일자\r\nTD24A-A-EXT\r\n제(개)정 번호 0\r\n페 이 지 31 / 35\r\n상세 설계 유닛 ID / 이름 모듈 ID / 이름 상위 요구사항 ID\r\nSU-ID-QCC-002 시스템 상태\r\n유닛\r\nSI-ID-QCC-001 시스템\r\n관리 모듈\r\nSW-FW-RID-21, SW-FW-RID-22, SW-FW￾RID-29, SW-FW-RID-35, SW-FW-RID-38, \r\nSW-FW-RID-44, SW-FW-RID-45, SW-FW￾RID-46, SW-FW-RID-63, SW-FW-RID-66, \r\nSW-FW-RID-67, SW-FW-RID-68, SW-FW￾RID-69, SW-FW-RID-70\r\nSU-ID-QCC-003 장치 상태\r\n유닛\r\nSI-ID-QCC-001 시스템\r\n관리 모듈\r\nSW-FW-RID-15, SW-FW-RID-69, SW-FW￾RID-70\r\nSU-ID-QCC-004 블루투스\r\n상태 유닛\r\nSI-ID-QCC-001 시스템\r\n관리 모듈\r\nSW-FW-RID-44, SW-FW-RID-45, SW-FW￾RID-46, SW-FW-RID-48, SW-FW-RID-49, \r\nSW-FW-RID-66, SW-FW-RID-67, SW-FW￾RID-68, SW-FW-RID-69, SW-FW-RID-70\r\nSU-ID-QCC-005 PIO 포트\r\n제어 유닛\r\nSI-ID-QCC-002 HW \r\n인터페이스 모듈\r\nSW-FW-RID-15, SW-FW-RID-16, SW-FW￾RID-44, SW-FW-RID-45, SW-FW-RID-46, \r\nSW-FW-RID-67, SW-FW-RID-68, SW-FW￾RID-69\r\nSU-ID-QCC-006 Power 제어\r\n유닛\r\nSI-ID-QCC-002 HW \r\n인터페이스 모듈\r\nSW-FW-RID-21, SW-FW-RID-22, SW-FW￾RID-23, SW-FW-RID-28, SW-FW-RID-29, \r\nSW-FW-RID-34, SW-FW-RID-55, SW-FW￾RID-62, SW-FW-RID-63, SW-FW-RID-66, \r\nSW-FW-RID-68\r\nSU-ID-QCC-007 NVM 처리\r\n유닛\r\nSI-ID-QCC-002 HW \r\n인터페이스 모듈\r\nSW-FW-RID-52, SW-FW-RID-76\r\nSU-ID-QCC-008 Bluetooth \r\nClassic 유닛\r\nSI-ID-QCC-003 블루투스\r\n모듈\r\nSW-FW-RID-15, SW-FW-RID-16, SW-FW￾RID-69\r\nSU-ID-QCC-009 BLE 유닛\r\nSI-ID-QCC-003 블루투스\r\n모듈\r\nSW-FW-RID-29, SW-FW-RID-35, SW-FW￾RID-38, SW-FW-RID-44, SW-FW-RID-45, "
+  },
+  {
+    "page": 32,
+    "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\final-word\\SAD\\page-032.png",
+    "size": [
+      893,
+      1263
+    ],
+    "text": "SW 아키텍쳐 설계 기술서 표준번호 SAD-FW-TD24A\r\n제(개)정일자\r\nTD24A-A-EXT\r\n제(개)정 번호 0\r\n페 이 지 32 / 35\r\n상세 설계 유닛 ID / 이름 모듈 ID / 이름 상위 요구사항 ID\r\nSW-FW-RID-47, SW-FW-RID-48, SW-FW￾RID-49, SW-FW-RID-63, SW-FW-RID-70, \r\nSW-FW-RID-76\r\nSU-ID-QCC-010 AUTH service \r\n처리 유닛\r\nSI-ID-QCC-003 블루투스\r\n모듈\r\nSW-FW-RID-48, SW-FW-RID-52, SW-FW￾RID-71, SW-FW-RID-76\r\nSU-ID-QCC-011 BLE Data \r\n처리 유닛\r\nSI-ID-QCC-003 블루투스\r\n모듈\r\nSW-FW-RID-24, SW-FW-RID-25, SW-FW￾RID-26, SW-FW-RID-27, SW-FW-RID-28, \r\nSW-FW-RID-29, SW-FW-RID-30, SW-FW￾RID-31, SW-FW-RID-32, SW-FW-RID-33, \r\nSW-FW-RID-34, SW-FW-RID-35, SW-FW￾RID-36, SW-FW-RID-37, SW-FW-RID-38, \r\nSW-FW-RID-39, SW-FW-RID-40, SW-FW￾RID-44, SW-FW-RID-45, SW-FW-RID-59, \r\nSW-FW-RID-60, SW-FW-RID-66, SW-FW￾RID-70, SW-FW-RID-76\r\nSU-ID-QCC-012 보안 처리\r\n유닛\r\nSI-ID-QCC-004 보안 모듈\r\nSW-FW-RID-47, SW-FW-RID-48, SW-FW￾RID-49, SW-FW-RID-52, SW-FW-RID-71, \r\nSW-FW-RID-72, SW-FW-RID-76\r\nSU-ID-QCC-013 보안 툴박스\r\n유닛\r\nSI-ID-QCC-004 보안 모듈\r\nSW-FW-RID-52, SW-FW-RID-76, SW-FW￾RID-78\r\nSU-ID-QCC-014 보안 NVM \r\n유닛\r\nSI-ID-QCC-004 보안 모듈\r\nSW-FW-RID-52, SW-FW-RID-76, SW-FW￾RID-78\r\n[QCC 자료 입력] DMIC2 의 QCC 입력 연결은 확인되었다. QCC 마이크 핀/클록, \r\n프로파일/코덱별 송수신과 동시 동작, I2S 클록/프레임/좌우 배정 및 시작/중단 유효\r\n신호의 실제 설정/파형과 오디오 시험 결과를 확인해야 한다."
+  },
+  {
+    "page": 33,
+    "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\final-word\\SAD\\page-033.png",
+    "size": [
+      893,
+      1263
+    ],
+    "text": "S\r\nW 아키텍쳐 설계 기술서 표준번호 SAD\r\n-FW\r\n-TD24A\r\n제\r\n(\r\n개\r\n)정일자\r\nTD24A\r\n-\r\nA\r\n-EXT\r\n제\r\n(\r\n개\r\n)\r\n정 번호\r\n0\r\n페\r\n이\r\n지 33 / 35"
+  },
+  {
+    "page": 34,
+    "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\final-word\\SAD\\page-034.png",
+    "size": [
+      893,
+      1263
+    ],
+    "text": "SW 아키텍쳐 설계 기술서 표준번호 SAD-FW-TD24A\r\n제(개)정일자\r\nTD24A-A-EXT\r\n제(개)정 번호 0\r\n페 이 지 34 / 35\r\n5. 지원 소프트웨어\r\n표 4. 지원 소프트웨어 목록\r\n소프트웨어 버전 출처\r\nFatFS 파일 시스템 R0.15 patch1\r\nChaN (onsemi SDK 배포)\r\nhttps://elm-chan.org/fsw/ff/\r\ntiny-AES-c AES 암복호화 1.0.0 (패키지 표기)\r\nkokke\r\nhttps://github.com/kokke/tiny-AES-c\r\nE8300 SDK CRC 지원\r\n코드\r\nEzairo 8300 SDK\r\n4.5.0.107\r\nonsemi / Ezairo 8300 SDK\r\nSEGGER RTT 디버그\r\n입출력\r\n7.56a\r\nSEGGER\r\nhttps://kb.segger.com/RTT\r\nQCC 는 Qualcomm BSP 와 내장 라이브러리의 시스템 초기화, Classic/TWS/BLE, 전원 및 NVM 기능을\r\nApplication API 로 사용한다. 내장 라이브러리의 내부 구현은 수정하지 않고 기능 인터페이스로\r\n연결한다.\r\n[QCC 자료 입력] Qualcomm ADK/BSP 와 Classic/TWS/BLE/GAIA/암호/NVM \r\n라이브러리의 정확한 제품명/버전/구성/API, 알려진 문제 및 사용 검토 자료를 SOUP \r\n목록에 연결해야 한다.\r\n6. 소프트웨어 아키텍쳐 검증\r\n- 소프트웨어 요구사상이 모두 포함되었는가?\r\nSW-FW-RID-1~81 및 SW-FW-RID-83 을 모듈/상세 설계 유닛 또는 제품 문서 항목에 연결한다. SW-FW￾RID-69 의 Classic 수신과 DMIC2 통화 송신은 각각의 실행 경로와 시험 조건으로 확인한다. 제품 사용\r\n설명서 및 미확정 설계/검증 계약은 해당 미비 안내에서 확인하며 완료로 판정하지 않는다."
+  },
+  {
+    "page": 35,
+    "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\final-word\\SAD\\page-035.png",
+    "size": [
+      893,
+      1263
+    ],
+    "text": "SW 아키텍쳐 설계 기술서 표준번호 SAD-FW-TD24A\r\n제(개)정일자\r\nTD24A-A-EXT\r\n제(개)정 번호 0\r\n페 이 지 35 / 35\r\n- 소프트웨어 모듈(항목)간 연계성 및 하드웨어 사이의 연계성이 확인되는가?\r\nE8300 의 공유 메모리/SPI/I2S/제어 핀과 QCC 모듈의 상태/명령/오디오/인증 경로를 연결한다. 종료\r\n신호, 충전 변환과 무선/오디오/보안 계약의 미확정 조건은 검토 및 제품 시험에서 보류한다. \r\n아키텍쳐의 연결성 검토와 실제 구현/통합시험의 판정은 구분한다.\r\n- SOUP 항목의 적절한 운영이 지원되는가?\r\nE8300 의 지원 소프트웨어는 목록에 제품/버전/출처로 식별하여 관리한다. QCC 지원 소프트웨어는\r\n정확한 제품/버전/구성과 운영 검토 자료를 확인한 뒤 동일한 관리 범위에 연결한다.\r\n[QCC 자료 입력] QCC 지원 소프트웨어의 정확한 제품/버전, 사용 구성/API 및 운영\r\n검토 자료가 필요하다."
+  }
+]

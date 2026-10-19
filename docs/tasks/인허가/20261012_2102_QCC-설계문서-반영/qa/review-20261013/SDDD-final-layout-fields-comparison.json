@@ -1,0 +1,390 @@
+{
+  "before": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_design\\final-layout-v2\\[E8300-QCC] SDDD-FW-TD24A 소프트웨어 상세 설계서.docx",
+  "after": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\fields-candidate\\[E8300-QCC] SDDD-FW-TD24A 소프트웨어 상세 설계서.docx",
+  "before_sha256": "314b0d54595980254cd8bce0b068d729e9897ba40511f157a9c018d4f35bf575",
+  "after_sha256": "d7c1777f089cd37a6930b9452a928908286006bc35ec8cd131ec0199af5de776",
+  "checks": {
+    "accept": true,
+    "reject": true,
+    "body_revision_fingerprints": true,
+    "current_notice_text": true
+  },
+  "before_semantics": {
+    "accept": {
+      "body_text_sha256": "0c7a261dcfd5fdfd4781eae32e34593c50fb2eed7d39690f330a5d4e0088aa21",
+      "body_text_length": 87815,
+      "picture_hashes_in_order": [
+        "070b60b0a85a3540110a40f9ed3e5e427fe6e973f5186192e99de5d58c11b38b",
+        "d765976d40a8eb45e1937134a4efbf7603c5ff68c7093b2ac81783e47bfb20bc",
+        "e321dcaf061afef8731cd7c9453abc3acae5e6a76e96340633e8275d60ed2f29",
+        "18255e977ed7fc67023a830c3f1c4b83e70b3b43bffaa89fe24b1ca9b8d9bce1",
+        "66e19c1aa5aa5c9c5759e444eac9763910ac38f16c780f8c56f08d9f18c21226",
+        "6c8ba8b878358b0f05d1c73b946b20b8bd5814538b36535f45c09a5ac9aaa644",
+        "097e3041ce8e9240cb118cf9e264076ebd6cf45d1c054f5b89eb6e68e9e42473",
+        "2112ba7bfe8b249bfa59de6d8bfa2293d793ba06dd303743cf8958eebf43ac33",
+        "c77929a75e94a4f69ab84fcd1b9a3f416b02459e670187765860f6765e6ee55e",
+        "7020c0e21a97abb4d1e8892e94642c2ae23f0228ffcc77bc642ad228676ef760",
+        "50dfef992ff1df85cd48fdb45d1def4b381b014522b189cabcaae6480af6d8d5",
+        "15ea4cf38aa4e90033b5ece49780cb7ca3fef68853e45c9268b4c6dd7f20e0d5",
+        "c50bdc4d3cdf291d10a6a84a41244b9ad8b1f8736e15bc83d9b1b41a0b1a80ad",
+        "23a20e9082de62a5bc15bdf7103c2789cbb31dc12791f5ae248661356909d9da",
+        "2f7fa8e4a5dd0d911f62ae9f9db3b158fb28c99bbfa6e6b40c2fb3a1ab1e4a51",
+        "3e13d742276e767ed9a269f2dec5b115e15d915fcd1a0a2bfc8a9ae08075549a",
+        "72d8d5637d7e7d53ab01ac834e81339fa09233d7a0f842404f1c977983e235eb",
+        "4c502898c29fda94195b4d35b5edb82cb51ef269bde86587310dc5d3ccd28994",
+        "14918ede9f70bbb6bfe6bb5cb8e29256edac826fa2e571be124ae426b0141a0f",
+        "2d0e42221298c1fff5568e003ea0f5f211ee8f943ba015c02dd051ced69f47d7",
+        "d0d862334bfe660de340a0786a501039da2ccfc8e08da63fc90a3dbab84a9d33",
+        "a709231420bf16878b3dacc4a6b4b0d706341884ac6785bbdb6e669cc8353cee",
+        "16577e60e53b90e2d42fc73218b90b6481f650649d977c2c9d3314b54dfcd671",
+        "e0a22add59887554d9805a1ece0087bc7cbe6a53d71e9af089c79e2e07e240ce",
+        "5ac34b825d95760dc380270a435a118756d4463b4e8e6f7c43cfdd24f414f982",
+        "f2fe825c8b325f53c89d296cd90dd0d6b9a4407c85c46122e9a8494cc2fc7aba",
+        "cd2d3b0de8fa5eaa57337ca12f90b021be89758608acc83017a98b357d1b7236",
+        "7a86d7a8758ef3f31ba8eb156c0f3db6e6ac037952afd43256f356d026de8767",
+        "d3e4fabc1e46adfec4ba8a39ce545e4b2b354eba80eac37ec73ec61798f73a57",
+        "249e61693dd222e9e69d71df44c240f5f0de983f8e8e2f247b1c2d9d6335f27e",
+        "9feb2fc310dfe60c9f09327f6b42d135ba532a31f0149b2a966ec357b3310807",
+        "145a2629e4173b90edbb3a95c65b29df99e7355935c1e10673d407c3ce37ef5c",
+        "c08afac614391f1c521e912501b699c3ed17683517c683dba05fa04a51e2b8f5",
+        "f29c34ddfcd2b332e25ce572d0c2c90a077e6abb64468faa9fc9e508cb480a83",
+        "2ccf0376e5241b0b1d984c35d7521ccbb431f6db412a9ba144a7d03596ad68a4",
+        "0fce8e429b5f10937e97b5ee5979355dec7d54fe94f256525c761f66a7c674f9",
+        "54e9f778526f9a0d6da1072b4009db0472ef1bacc339c94388edbf5c29ad69df",
+        "c7ac5974a2fb72a0f96753cb4d24032b1694041e88112769dc9f55d47df5f7f3",
+        "2c8b276bf5813a258860bdbf83c9d69e036b694cb66bb07e56224dc344396fdd",
+        "4f7c67ae618d5610cf330a9dd0c30f6ee5437c2b9376c17c691ef0cfe16e834d",
+        "7e2655bd6ab12ada17651ba1d529fa80309084f1bd6a4612a079b48d6cdfdb5c"
+      ]
+    },
+    "reject": {
+      "body_text_sha256": "95ed1c8f1941eb88ca1c0ce2b8c9eb2a39be606be62233533feb010d093b4aa0",
+      "body_text_length": 32985,
+      "picture_hashes_in_order": [
+        "b3f4b3d722e8b5093f6f211d940ec18e28b5b4eef3ce46769e9e464a461990a2",
+        "f372a9f37393ca468f9923b902fa1f9fdcfd62f7973c36a2b30ca1a81b4c893e",
+        "6c5a649d65e40f20e57917506bf53ec58fc8f150c5ab0237ce78835d5e7308dc",
+        "0b7eb9abdcf3c6c37b90604b000b0ea2c5acfc87b36dd7c5af8e5eb7f6325cbe",
+        "3f77df8b77cd7a3938b76b9730e60393e922b438739c828bc43f161eb27f0c6a",
+        "294a80791d22b5ea9f269b7bc1b22f27762e1ee6301d1a5c7bb6fa556601798a",
+        "c049baed6d572f371d514fc6db88b6757e8cdf5bf39b8841cf36d153015ff86b",
+        "89eb37a9bbe50ae47b5a104a68e0bcdc0654226b66f1aab1a42dbd2dfc447a5f",
+        "2b1572b2077522e84611562f753a134ec907404dfa38584f05ffe1fd5a09da76",
+        "cb04b9a6e36517d44efdb79e8cf1de9a2896fea69b5224b2aa9cc0fa5891ac4c",
+        "2112ba7bfe8b249bfa59de6d8bfa2293d793ba06dd303743cf8958eebf43ac33",
+        "21589d01faa299d316b840eadc2988417ab9c1f5367f03d5a4e3a171c11c2773",
+        "1dc173211ec9892c796d26773563d5e887ef298d91bdf7db990820b7cfc5bbb4",
+        "05502259df24c44317df112aee72a7a643cabcb980b178495243815078899c3d",
+        "7bfc49e83be52e3bf7e0ef756b38a56927e4513074bee09d966f039212087c1f",
+        "b7b8b5c7071d5dd8450a606fc46c9d495b948e7dddf8b66fe9d0471acaf1d79a",
+        "8172b1bec95b2a860648d513271d3f1d1a29bdc37c88e8c44f66fce67f9ee71f",
+        "2823e3f1aab54a16cf4dd3ef2f5355739b6c02e1d8e4cacd779f36da749cfba9",
+        "eb172f969b98b7cdcb34b8770d9b92be68212628b5b67891103da3a30ada9c6a",
+        "ab1f4e2df052d4a7bc03d93a5dd23902bf4fe4241052b01deda36c86d3238f65",
+        "5781b3f6bb0f4715fe568f6a989bbc7dc5c03bab138f8ae0b5619d4d4c6407de",
+        "be3d2e3c014672196cd6bd2915d0a418066c6d00a3627d4309cd6ab624be1db8",
+        "1036e7665b57c36c43f02e10a3cfba8cac95c69acd7e1a4c7dceea1f25cbcf12",
+        "6d45f32982ef61f4e5b14519cfbe266cbcb4e8d78cf03e9000692eca89270418",
+        "04c4f090fe070842cfecf285f1ccf2a5d46177bf61866c132f15557b4251a572",
+        "9830560dfacb2f9fe9028365364454bd73ca8d6c26b64e16284d450527e08dd8",
+        "d7a660a3b8f52d57144f00104d28a23d27f62af22c6e01a82734bf4e034942f4",
+        "d29bc8b5926cacf14d32615bca345df89fd8ca33bad9e61cc46d002d698a46f2",
+        "4051fb8268ea052c41d559ead008c4b33b11a102f940a9f15f228af33ca18230",
+        "7edddddc170d3f3aeaf843d9a0afd37b4260073ccba58985c559707e708ae25a",
+        "94fa528533b5bcc6ec99407a38d4325406e7a6e8d7212dcbda6af5451bb29959",
+        "180af3d602a199890606deac7cbe783fed86e84688fa50c810333e814926cf35",
+        "5efdd75bd6037ad62caa45bad68be8744e763830cbac761a72617a40f09b6629",
+        "fb899722c52cdc157b9470646becc41af8ce05f7ab7540a81271e2e43ee78632",
+        "23ccdf7a28431f71238a709bb1b543e5ddc94e83cafeafb8e78a25eca42cd684",
+        "dc2763fba7d46bb5b5bd8d332cf5d4f1e4ab0c61b66287d71ea6ccd473725880",
+        "c351bb196ba85c7e2826abd7c40dc6a28a97822729d26d8ac7e935b2e9887253",
+        "c7fb5d0297fe4309c7a0f26d4c2069eb80eb6fb41462e231dae074391e64eb40",
+        "156ee00b0930b14c667d092047c6179adeb193bb7814d5bce54b4c232bd5d090",
+        "bd5cf3bba325ed482c32d8c4395aaab3092c55b7121be0315f390838ba225264",
+        "b92d8e6e255a8934f1999a108aa5b59fb0215735118ad4eda23b883135aaaa91",
+        "1f8b1fb9d0c943d0edd6442177365cb768d231680bf97a43aa968ddf3b682113",
+        "11d80c3489eaf7cd26f53ce9f39f321671d24d7013a06d5ef64c2b48e69861ff",
+        "95c59442bcdbe40471db4cd6b017e89e3c1fa407773d2524cab29ccfb12d4d5b"
+      ]
+    },
+    "body_revision_fingerprints": {
+      "del|김은수|2026-09-30T15:44": {
+        "length": 30080,
+        "sha256": "3ef62576b59758642ea31311af0ca876ba84013ab75b4f20d1fff21027385708"
+      },
+      "ins|김은수|2026-09-30T15:44": {
+        "length": 17083,
+        "sha256": "36d4b2bef7efc7640f9fe7ec4a2f9065e44bbd839b20d379b5b58f01fd1d02ea"
+      },
+      "ins|김은수|2026-10-01T02:14": {
+        "length": 28,
+        "sha256": "f72d05f69c523be51a327dca418a66bef8b4a236db48051f36c55d3a49796951"
+      },
+      "del|김은수|2026-10-12T23:57": {
+        "length": 5276,
+        "sha256": "6d095cabc8b711902d608e38c09cd6ef112ec2de02082791bb842c6a06cc92bc"
+      },
+      "ins|김은수|2026-10-12T23:57": {
+        "length": 19551,
+        "sha256": "7793b0a7a81f61b06bbb324414885865d297476a74e60b40093175a021bbee51"
+      },
+      "ins|김은수|2026-10-01T05:08": {
+        "length": 1554,
+        "sha256": "ab53d7983f7b9b45acd506f17db7cb85b8b58a2ed17fee1732a89b015bb6b836"
+      },
+      "ins|김은수|2026-10-01T05:58": {
+        "length": 344,
+        "sha256": "c9f23885019e80a5b9c0e08c0468a758c72336242a37266da697f00a021ee107"
+      },
+      "del|김은수|2026-10-12T12:28": {
+        "length": 609,
+        "sha256": "169427b7a1530412b07c1319e727ae5bd27861be7bc50c3d431f9e98a37a087d"
+      },
+      "ins|김은수|2026-10-12T12:28": {
+        "length": 15202,
+        "sha256": "7b94f7fd767e8359d6d69a74271d77132e38b2d8751f98782539a4c5b8052503"
+      },
+      "ins|김은수|2026-10-01T12:05": {
+        "length": 46460,
+        "sha256": "6b0e4d70074eaeb57382e9d0d7bc85e4e403f3caca720f678c43a15ada533542"
+      },
+      "del|김은수|2026-10-01T11:11": {
+        "length": 186,
+        "sha256": "a4586442e31d8866c8d28b4f6f9e739ac2505b2e61dca4fb0532aa0f93291eef"
+      },
+      "del|김은수|2026-10-13T00:32": {
+        "length": 1151,
+        "sha256": "b026d02a212edf6672f157b95d75a1e5486e938f7cc1df67c288ad654ced8c89"
+      },
+      "ins|김은수|2026-10-13T00:32": {
+        "length": 1157,
+        "sha256": "20b709664971b8ed74c27ea1e06aac7aa0b205f1c1c35a439c2f5e0cee9620b7"
+      },
+      "del|김은수|2026-10-13T00:05": {
+        "length": 2403,
+        "sha256": "c553546d1acf6dd02e92189606dd965e96d2a3e4284ce556e34bc051be24986c"
+      },
+      "ins|김은수|2026-10-13T00:05": {
+        "length": 2894,
+        "sha256": "3a196caa590d5e1ad0e1974c269d5fcf4de00dcc0b06bef8396849a3cfba2e73"
+      },
+      "ins|김은수|2026-10-12T12:45": {
+        "length": 100,
+        "sha256": "afc257e42bab95a9176e4ffa70fcdd43b25cd57d4f6009220d52c45775538109"
+      }
+    },
+    "current_notice_text": [
+      "[QCC 자료 입력] QCC 4모듈/14유닛의 실제 소스/빌드/라이브러리 설정과 실행/측정 결과를 확인해야 한다. DMIC2의 두 칩 입력 연결은 확인되었으며 미비 상태는 구현/시험 근거에 적용한다.",
+      "[QCC 자료 입력] QCC shutdown_ind의 정상/종료 논리와 실제 PIO 번호/전압/반전, 기동/종료 대기 및 I2S enable→I2S_FLAG Low 유효의 물리 대응을 확인해야 한다.",
+      "[QCC 자료 입력] 충전 4상태→0x34 charger_connected 0/1 변환, 0x34~0x36 통보/오류 처리, 실제 QCC 송신 length 필드/21byte 변환 및 GAIA 주소/type별 데이터 정의와 실행 확인이 필요하다.",
+      "[QCC 자료 입력] DMIC2의 QCC 입력 연결은 확인되었다. QCC 마이크 핀/클록, 프로파일/코덱별 송수신과 동시 동작, I2S 클록/프레임/좌우 배정 및 시작/중단 유효 신호의 실제 설정/파형과 오디오 시험 결과를 확인해야 한다.",
+      "[QCC 자료 입력] SPI 속도와 실제 QCC 핀 번호/초기값, 초기화 실패 처리/시간 한도, AUTH UUID/권한 및 I2S 24bit/16kHz의 실제 출력 설정과 실행 확인이 필요하다.",
+      "[QCC 자료 입력] QCC shutdown_ind의 물리 핀/논리 반전과 기동/종료 대기 수치, 마지막 SPI 거래 시점, 내부기 정보 요청/응답 및 실제 QCC 송신 length 필드의 값/위치와 21byte 변환 계약을 확인해야 한다.",
+      "[QCC 자료 입력] TWS 구성값과 좌우 배정, peer 연결/해제 후 단독 복귀 동작, 생산 설정과 내부기 정보의 우선순위 및 각 모드의 실제 오디오/데이터 처리 확인이 필요하다.",
+      "[QCC 자료 입력] 부착 디바운스 시간, 장치명의 실제 바이트/인코딩/길이와 개인정보 처리, 부착 전 허용되는 BLE 기동/충전/갱신 조건 및 신호 전환 실행 확인이 필요하다.",
+      "[QCC 자료 입력] QCC PIO 번호/전압/논리 반전, I2S enable과 DIO29의 물리 대응, HW reset의 회로 대상과 안전 상태, 온도 감지의 실제 사용 조건/한도 및 측정 결과를 확인해야 한다.",
+      "[QCC 자료 입력] 전압-잔량의 중간 구간 변환 방식/측정 주기, 10% 허용오차의 상대오차 또는 %p 의미, 충전 4상태→binary 변환과 Empty/충전/종료 요청의 우선순위, wake-up source/시간 및 실행 결과를 확인해야 한다.",
+      "[QCC 자료 입력] 데이터별 실제 PS 식별자/길이/바이트 순서/초기값과 읽기/쓰기 실패 처리, 일반 NVM과 보안 NVM의 키 식별자 대응 및 실행 결과를 확인해야 한다.",
+      "[QCC 자료 입력] DMIC2의 QCC 입력 연결은 확인되었다. QCC 마이크 핀/클록, 상대 장치와 Classic 프로파일/코덱/라이브러리 설정, 페어링 제한 시간, L/R/동시 송수신 조건, I2S 유효 신호/0x36 통보 순서 및 실제 음성/오디오 시험 결과가 필요하다.",
+      "[QCC 자료 입력] Advertising/Scan response의 전체 바이트 배치/회사ID/Appearance 값/길이/주기, 링크 암호화와 페어링 전 접근 차단, 180초 감시 대상/시작/reset/허용오차 및 실제 연결/상태 결과를 확인해야 한다.",
+      "[QCC 자료 입력] 실제 서비스/특성 UUID, CRA 메시지 길이/엔디언/유효성 검사와 GATT 권한, Confirm client write와 notify 표기의 정합성, 페어링 전 접근 차단 및 실행 결과를 확인해야 한다.",
+      "[QCC 자료 입력] GAIA 주소와 type별 데이터 필드/단위/길이/CRC/응답, 편이/양이 좌우 및 nn 주소 정의, 인증/권한별 허용 메시지, 실제 송신 length 필드/21byte 변환 및 유효하지 않은 요청 처리 결과를 확인해야 한다.",
+      "[QCC 자료 입력] 30초/180초 타이머 시작/갱신/reset/허용오차, 5회 실패 누적 대상과 초기화/재기동/60초 제한 종료 경계, 인증값 알고리즘/직렬화 및 데이터 게이트의 실제 동작을 확인해야 한다.",
+      "[QCC 자료 입력] 앱별 인증 계산과 SHA-256 키 파생의 역할 정합성, clinician_master_key/제조번호의 직렬화/길이, HMAC/ENC 표기와 nonce 순서/태그 길이, AES-128 모드/IV/무결성, 난수 품질과 NVM bootstrap 및 검증 벡터가 필요하다.",
+      "[QCC 자료 입력] PS 키 이름/역할의 전체 대응, RAND 저장 보호와 복호화 키 bootstrap, 초기값/손상 검출/읽기 실패/접근 제한 정책, 암호화 저장값/복호화 시험 벡터 및 실제 보호 결과를 확인해야 한다.",
+      "[QCC 자료 입력] 실제 AUTH UUID/메시지 길이/엔디언/권한, HMAC/ENC와 AES-CMAC의 역할/직렬화, NVM 키 이름/권한과 RAND 복호화 bootstrap 및 검증 벡터를 확인해야 한다.",
+      "[QCC 자료 입력] QCC 자체 OTA의 이미지 인증/오류 복구와 E8300 이미지 전달 경로, QCC 부트 이미지 무결성 방식/활성화/검사 실패 처리는 상세 계약과 구현/측정 확인이 필요하다.",
+      "[QCC/E8300 자료 입력] 무제어 명령 조건과 BLE 무송수신 180초의 감시/reset 범위, 인증 실패 누적과 60초 제한/재접속 경계 및 E8300 통보 영향을 함께 확인해야 한다."
+    ]
+  },
+  "after_semantics": {
+    "accept": {
+      "body_text_sha256": "0c7a261dcfd5fdfd4781eae32e34593c50fb2eed7d39690f330a5d4e0088aa21",
+      "body_text_length": 87815,
+      "picture_hashes_in_order": [
+        "070b60b0a85a3540110a40f9ed3e5e427fe6e973f5186192e99de5d58c11b38b",
+        "d765976d40a8eb45e1937134a4efbf7603c5ff68c7093b2ac81783e47bfb20bc",
+        "e321dcaf061afef8731cd7c9453abc3acae5e6a76e96340633e8275d60ed2f29",
+        "18255e977ed7fc67023a830c3f1c4b83e70b3b43bffaa89fe24b1ca9b8d9bce1",
+        "66e19c1aa5aa5c9c5759e444eac9763910ac38f16c780f8c56f08d9f18c21226",
+        "6c8ba8b878358b0f05d1c73b946b20b8bd5814538b36535f45c09a5ac9aaa644",
+        "097e3041ce8e9240cb118cf9e264076ebd6cf45d1c054f5b89eb6e68e9e42473",
+        "2112ba7bfe8b249bfa59de6d8bfa2293d793ba06dd303743cf8958eebf43ac33",
+        "c77929a75e94a4f69ab84fcd1b9a3f416b02459e670187765860f6765e6ee55e",
+        "7020c0e21a97abb4d1e8892e94642c2ae23f0228ffcc77bc642ad228676ef760",
+        "50dfef992ff1df85cd48fdb45d1def4b381b014522b189cabcaae6480af6d8d5",
+        "15ea4cf38aa4e90033b5ece49780cb7ca3fef68853e45c9268b4c6dd7f20e0d5",
+        "c50bdc4d3cdf291d10a6a84a41244b9ad8b1f8736e15bc83d9b1b41a0b1a80ad",
+        "23a20e9082de62a5bc15bdf7103c2789cbb31dc12791f5ae248661356909d9da",
+        "2f7fa8e4a5dd0d911f62ae9f9db3b158fb28c99bbfa6e6b40c2fb3a1ab1e4a51",
+        "3e13d742276e767ed9a269f2dec5b115e15d915fcd1a0a2bfc8a9ae08075549a",
+        "72d8d5637d7e7d53ab01ac834e81339fa09233d7a0f842404f1c977983e235eb",
+        "4c502898c29fda94195b4d35b5edb82cb51ef269bde86587310dc5d3ccd28994",
+        "14918ede9f70bbb6bfe6bb5cb8e29256edac826fa2e571be124ae426b0141a0f",
+        "2d0e42221298c1fff5568e003ea0f5f211ee8f943ba015c02dd051ced69f47d7",
+        "d0d862334bfe660de340a0786a501039da2ccfc8e08da63fc90a3dbab84a9d33",
+        "a709231420bf16878b3dacc4a6b4b0d706341884ac6785bbdb6e669cc8353cee",
+        "16577e60e53b90e2d42fc73218b90b6481f650649d977c2c9d3314b54dfcd671",
+        "e0a22add59887554d9805a1ece0087bc7cbe6a53d71e9af089c79e2e07e240ce",
+        "5ac34b825d95760dc380270a435a118756d4463b4e8e6f7c43cfdd24f414f982",
+        "f2fe825c8b325f53c89d296cd90dd0d6b9a4407c85c46122e9a8494cc2fc7aba",
+        "cd2d3b0de8fa5eaa57337ca12f90b021be89758608acc83017a98b357d1b7236",
+        "7a86d7a8758ef3f31ba8eb156c0f3db6e6ac037952afd43256f356d026de8767",
+        "d3e4fabc1e46adfec4ba8a39ce545e4b2b354eba80eac37ec73ec61798f73a57",
+        "249e61693dd222e9e69d71df44c240f5f0de983f8e8e2f247b1c2d9d6335f27e",
+        "9feb2fc310dfe60c9f09327f6b42d135ba532a31f0149b2a966ec357b3310807",
+        "145a2629e4173b90edbb3a95c65b29df99e7355935c1e10673d407c3ce37ef5c",
+        "c08afac614391f1c521e912501b699c3ed17683517c683dba05fa04a51e2b8f5",
+        "f29c34ddfcd2b332e25ce572d0c2c90a077e6abb64468faa9fc9e508cb480a83",
+        "2ccf0376e5241b0b1d984c35d7521ccbb431f6db412a9ba144a7d03596ad68a4",
+        "0fce8e429b5f10937e97b5ee5979355dec7d54fe94f256525c761f66a7c674f9",
+        "54e9f778526f9a0d6da1072b4009db0472ef1bacc339c94388edbf5c29ad69df",
+        "c7ac5974a2fb72a0f96753cb4d24032b1694041e88112769dc9f55d47df5f7f3",
+        "2c8b276bf5813a258860bdbf83c9d69e036b694cb66bb07e56224dc344396fdd",
+        "4f7c67ae618d5610cf330a9dd0c30f6ee5437c2b9376c17c691ef0cfe16e834d",
+        "7e2655bd6ab12ada17651ba1d529fa80309084f1bd6a4612a079b48d6cdfdb5c"
+      ]
+    },
+    "reject": {
+      "body_text_sha256": "95ed1c8f1941eb88ca1c0ce2b8c9eb2a39be606be62233533feb010d093b4aa0",
+      "body_text_length": 32985,
+      "picture_hashes_in_order": [
+        "b3f4b3d722e8b5093f6f211d940ec18e28b5b4eef3ce46769e9e464a461990a2",
+        "f372a9f37393ca468f9923b902fa1f9fdcfd62f7973c36a2b30ca1a81b4c893e",
+        "6c5a649d65e40f20e57917506bf53ec58fc8f150c5ab0237ce78835d5e7308dc",
+        "0b7eb9abdcf3c6c37b90604b000b0ea2c5acfc87b36dd7c5af8e5eb7f6325cbe",
+        "3f77df8b77cd7a3938b76b9730e60393e922b438739c828bc43f161eb27f0c6a",
+        "294a80791d22b5ea9f269b7bc1b22f27762e1ee6301d1a5c7bb6fa556601798a",
+        "c049baed6d572f371d514fc6db88b6757e8cdf5bf39b8841cf36d153015ff86b",
+        "89eb37a9bbe50ae47b5a104a68e0bcdc0654226b66f1aab1a42dbd2dfc447a5f",
+        "2b1572b2077522e84611562f753a134ec907404dfa38584f05ffe1fd5a09da76",
+        "cb04b9a6e36517d44efdb79e8cf1de9a2896fea69b5224b2aa9cc0fa5891ac4c",
+        "2112ba7bfe8b249bfa59de6d8bfa2293d793ba06dd303743cf8958eebf43ac33",
+        "21589d01faa299d316b840eadc2988417ab9c1f5367f03d5a4e3a171c11c2773",
+        "1dc173211ec9892c796d26773563d5e887ef298d91bdf7db990820b7cfc5bbb4",
+        "05502259df24c44317df112aee72a7a643cabcb980b178495243815078899c3d",
+        "7bfc49e83be52e3bf7e0ef756b38a56927e4513074bee09d966f039212087c1f",
+        "b7b8b5c7071d5dd8450a606fc46c9d495b948e7dddf8b66fe9d0471acaf1d79a",
+        "8172b1bec95b2a860648d513271d3f1d1a29bdc37c88e8c44f66fce67f9ee71f",
+        "2823e3f1aab54a16cf4dd3ef2f5355739b6c02e1d8e4cacd779f36da749cfba9",
+        "eb172f969b98b7cdcb34b8770d9b92be68212628b5b67891103da3a30ada9c6a",
+        "ab1f4e2df052d4a7bc03d93a5dd23902bf4fe4241052b01deda36c86d3238f65",
+        "5781b3f6bb0f4715fe568f6a989bbc7dc5c03bab138f8ae0b5619d4d4c6407de",
+        "be3d2e3c014672196cd6bd2915d0a418066c6d00a3627d4309cd6ab624be1db8",
+        "1036e7665b57c36c43f02e10a3cfba8cac95c69acd7e1a4c7dceea1f25cbcf12",
+        "6d45f32982ef61f4e5b14519cfbe266cbcb4e8d78cf03e9000692eca89270418",
+        "04c4f090fe070842cfecf285f1ccf2a5d46177bf61866c132f15557b4251a572",
+        "9830560dfacb2f9fe9028365364454bd73ca8d6c26b64e16284d450527e08dd8",
+        "d7a660a3b8f52d57144f00104d28a23d27f62af22c6e01a82734bf4e034942f4",
+        "d29bc8b5926cacf14d32615bca345df89fd8ca33bad9e61cc46d002d698a46f2",
+        "4051fb8268ea052c41d559ead008c4b33b11a102f940a9f15f228af33ca18230",
+        "7edddddc170d3f3aeaf843d9a0afd37b4260073ccba58985c559707e708ae25a",
+        "94fa528533b5bcc6ec99407a38d4325406e7a6e8d7212dcbda6af5451bb29959",
+        "180af3d602a199890606deac7cbe783fed86e84688fa50c810333e814926cf35",
+        "5efdd75bd6037ad62caa45bad68be8744e763830cbac761a72617a40f09b6629",
+        "fb899722c52cdc157b9470646becc41af8ce05f7ab7540a81271e2e43ee78632",
+        "23ccdf7a28431f71238a709bb1b543e5ddc94e83cafeafb8e78a25eca42cd684",
+        "dc2763fba7d46bb5b5bd8d332cf5d4f1e4ab0c61b66287d71ea6ccd473725880",
+        "c351bb196ba85c7e2826abd7c40dc6a28a97822729d26d8ac7e935b2e9887253",
+        "c7fb5d0297fe4309c7a0f26d4c2069eb80eb6fb41462e231dae074391e64eb40",
+        "156ee00b0930b14c667d092047c6179adeb193bb7814d5bce54b4c232bd5d090",
+        "bd5cf3bba325ed482c32d8c4395aaab3092c55b7121be0315f390838ba225264",
+        "b92d8e6e255a8934f1999a108aa5b59fb0215735118ad4eda23b883135aaaa91",
+        "1f8b1fb9d0c943d0edd6442177365cb768d231680bf97a43aa968ddf3b682113",
+        "11d80c3489eaf7cd26f53ce9f39f321671d24d7013a06d5ef64c2b48e69861ff",
+        "95c59442bcdbe40471db4cd6b017e89e3c1fa407773d2524cab29ccfb12d4d5b"
+      ]
+    },
+    "body_revision_fingerprints": {
+      "del|김은수|2026-09-30T15:44": {
+        "length": 30080,
+        "sha256": "3ef62576b59758642ea31311af0ca876ba84013ab75b4f20d1fff21027385708"
+      },
+      "ins|김은수|2026-09-30T15:44": {
+        "length": 17083,
+        "sha256": "36d4b2bef7efc7640f9fe7ec4a2f9065e44bbd839b20d379b5b58f01fd1d02ea"
+      },
+      "ins|김은수|2026-10-01T02:14": {
+        "length": 28,
+        "sha256": "f72d05f69c523be51a327dca418a66bef8b4a236db48051f36c55d3a49796951"
+      },
+      "del|김은수|2026-10-12T23:57": {
+        "length": 5276,
+        "sha256": "6d095cabc8b711902d608e38c09cd6ef112ec2de02082791bb842c6a06cc92bc"
+      },
+      "ins|김은수|2026-10-12T23:57": {
+        "length": 19551,
+        "sha256": "7793b0a7a81f61b06bbb324414885865d297476a74e60b40093175a021bbee51"
+      },
+      "ins|김은수|2026-10-01T05:08": {
+        "length": 1554,
+        "sha256": "ab53d7983f7b9b45acd506f17db7cb85b8b58a2ed17fee1732a89b015bb6b836"
+      },
+      "ins|김은수|2026-10-01T05:58": {
+        "length": 344,
+        "sha256": "c9f23885019e80a5b9c0e08c0468a758c72336242a37266da697f00a021ee107"
+      },
+      "del|김은수|2026-10-12T12:28": {
+        "length": 609,
+        "sha256": "169427b7a1530412b07c1319e727ae5bd27861be7bc50c3d431f9e98a37a087d"
+      },
+      "ins|김은수|2026-10-12T12:28": {
+        "length": 15202,
+        "sha256": "7b94f7fd767e8359d6d69a74271d77132e38b2d8751f98782539a4c5b8052503"
+      },
+      "ins|김은수|2026-10-01T12:05": {
+        "length": 46460,
+        "sha256": "6b0e4d70074eaeb57382e9d0d7bc85e4e403f3caca720f678c43a15ada533542"
+      },
+      "del|김은수|2026-10-01T11:11": {
+        "length": 186,
+        "sha256": "a4586442e31d8866c8d28b4f6f9e739ac2505b2e61dca4fb0532aa0f93291eef"
+      },
+      "del|김은수|2026-10-13T00:32": {
+        "length": 1151,
+        "sha256": "b026d02a212edf6672f157b95d75a1e5486e938f7cc1df67c288ad654ced8c89"
+      },
+      "ins|김은수|2026-10-13T00:32": {
+        "length": 1157,
+        "sha256": "20b709664971b8ed74c27ea1e06aac7aa0b205f1c1c35a439c2f5e0cee9620b7"
+      },
+      "del|김은수|2026-10-13T00:05": {
+        "length": 2403,
+        "sha256": "c553546d1acf6dd02e92189606dd965e96d2a3e4284ce556e34bc051be24986c"
+      },
+      "ins|김은수|2026-10-13T00:05": {
+        "length": 2894,
+        "sha256": "3a196caa590d5e1ad0e1974c269d5fcf4de00dcc0b06bef8396849a3cfba2e73"
+      },
+      "ins|김은수|2026-10-12T12:45": {
+        "length": 100,
+        "sha256": "afc257e42bab95a9176e4ffa70fcdd43b25cd57d4f6009220d52c45775538109"
+      }
+    },
+    "current_notice_text": [
+      "[QCC 자료 입력] QCC 4모듈/14유닛의 실제 소스/빌드/라이브러리 설정과 실행/측정 결과를 확인해야 한다. DMIC2의 두 칩 입력 연결은 확인되었으며 미비 상태는 구현/시험 근거에 적용한다.",
+      "[QCC 자료 입력] QCC shutdown_ind의 정상/종료 논리와 실제 PIO 번호/전압/반전, 기동/종료 대기 및 I2S enable→I2S_FLAG Low 유효의 물리 대응을 확인해야 한다.",
+      "[QCC 자료 입력] 충전 4상태→0x34 charger_connected 0/1 변환, 0x34~0x36 통보/오류 처리, 실제 QCC 송신 length 필드/21byte 변환 및 GAIA 주소/type별 데이터 정의와 실행 확인이 필요하다.",
+      "[QCC 자료 입력] DMIC2의 QCC 입력 연결은 확인되었다. QCC 마이크 핀/클록, 프로파일/코덱별 송수신과 동시 동작, I2S 클록/프레임/좌우 배정 및 시작/중단 유효 신호의 실제 설정/파형과 오디오 시험 결과를 확인해야 한다.",
+      "[QCC 자료 입력] SPI 속도와 실제 QCC 핀 번호/초기값, 초기화 실패 처리/시간 한도, AUTH UUID/권한 및 I2S 24bit/16kHz의 실제 출력 설정과 실행 확인이 필요하다.",
+      "[QCC 자료 입력] QCC shutdown_ind의 물리 핀/논리 반전과 기동/종료 대기 수치, 마지막 SPI 거래 시점, 내부기 정보 요청/응답 및 실제 QCC 송신 length 필드의 값/위치와 21byte 변환 계약을 확인해야 한다.",
+      "[QCC 자료 입력] TWS 구성값과 좌우 배정, peer 연결/해제 후 단독 복귀 동작, 생산 설정과 내부기 정보의 우선순위 및 각 모드의 실제 오디오/데이터 처리 확인이 필요하다.",
+      "[QCC 자료 입력] 부착 디바운스 시간, 장치명의 실제 바이트/인코딩/길이와 개인정보 처리, 부착 전 허용되는 BLE 기동/충전/갱신 조건 및 신호 전환 실행 확인이 필요하다.",
+      "[QCC 자료 입력] QCC PIO 번호/전압/논리 반전, I2S enable과 DIO29의 물리 대응, HW reset의 회로 대상과 안전 상태, 온도 감지의 실제 사용 조건/한도 및 측정 결과를 확인해야 한다.",
+      "[QCC 자료 입력] 전압-잔량의 중간 구간 변환 방식/측정 주기, 10% 허용오차의 상대오차 또는 %p 의미, 충전 4상태→binary 변환과 Empty/충전/종료 요청의 우선순위, wake-up source/시간 및 실행 결과를 확인해야 한다.",
+      "[QCC 자료 입력] 데이터별 실제 PS 식별자/길이/바이트 순서/초기값과 읽기/쓰기 실패 처리, 일반 NVM과 보안 NVM의 키 식별자 대응 및 실행 결과를 확인해야 한다.",
+      "[QCC 자료 입력] DMIC2의 QCC 입력 연결은 확인되었다. QCC 마이크 핀/클록, 상대 장치와 Classic 프로파일/코덱/라이브러리 설정, 페어링 제한 시간, L/R/동시 송수신 조건, I2S 유효 신호/0x36 통보 순서 및 실제 음성/오디오 시험 결과가 필요하다.",
+      "[QCC 자료 입력] Advertising/Scan response의 전체 바이트 배치/회사ID/Appearance 값/길이/주기, 링크 암호화와 페어링 전 접근 차단, 180초 감시 대상/시작/reset/허용오차 및 실제 연결/상태 결과를 확인해야 한다.",
+      "[QCC 자료 입력] 실제 서비스/특성 UUID, CRA 메시지 길이/엔디언/유효성 검사와 GATT 권한, Confirm client write와 notify 표기의 정합성, 페어링 전 접근 차단 및 실행 결과를 확인해야 한다.",
+      "[QCC 자료 입력] GAIA 주소와 type별 데이터 필드/단위/길이/CRC/응답, 편이/양이 좌우 및 nn 주소 정의, 인증/권한별 허용 메시지, 실제 송신 length 필드/21byte 변환 및 유효하지 않은 요청 처리 결과를 확인해야 한다.",
+      "[QCC 자료 입력] 30초/180초 타이머 시작/갱신/reset/허용오차, 5회 실패 누적 대상과 초기화/재기동/60초 제한 종료 경계, 인증값 알고리즘/직렬화 및 데이터 게이트의 실제 동작을 확인해야 한다.",
+      "[QCC 자료 입력] 앱별 인증 계산과 SHA-256 키 파생의 역할 정합성, clinician_master_key/제조번호의 직렬화/길이, HMAC/ENC 표기와 nonce 순서/태그 길이, AES-128 모드/IV/무결성, 난수 품질과 NVM bootstrap 및 검증 벡터가 필요하다.",
+      "[QCC 자료 입력] PS 키 이름/역할의 전체 대응, RAND 저장 보호와 복호화 키 bootstrap, 초기값/손상 검출/읽기 실패/접근 제한 정책, 암호화 저장값/복호화 시험 벡터 및 실제 보호 결과를 확인해야 한다.",
+      "[QCC 자료 입력] 실제 AUTH UUID/메시지 길이/엔디언/권한, HMAC/ENC와 AES-CMAC의 역할/직렬화, NVM 키 이름/권한과 RAND 복호화 bootstrap 및 검증 벡터를 확인해야 한다.",
+      "[QCC 자료 입력] QCC 자체 OTA의 이미지 인증/오류 복구와 E8300 이미지 전달 경로, QCC 부트 이미지 무결성 방식/활성화/검사 실패 처리는 상세 계약과 구현/측정 확인이 필요하다.",
+      "[QCC/E8300 자료 입력] 무제어 명령 조건과 BLE 무송수신 180초의 감시/reset 범위, 인증 실패 누적과 60초 제한/재접속 경계 및 E8300 통보 영향을 함께 확인해야 한다."
+    ]
+  },
+  "pass": true,
+  "scope": "TOC and computed fields excluded; accepted/rejected body text, drawings and author/date revision text preserved"
+}

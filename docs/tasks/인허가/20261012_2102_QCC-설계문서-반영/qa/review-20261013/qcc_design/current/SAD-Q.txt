@@ -1,0 +1,277 @@
+[1 P ] 
+[2 P ] 
+[3 P ] 
+[4 P ] 
+[5 P ] 
+[6 TABLE 1 rows]
+소프트웨어 아키텍처 기술서
+[7 P ] 
+[8 P ] 
+[9 P ] 
+[10 TABLE 1 rows]
+모델명: TD24A-A-ACC (외부장치)
+[11 P ] 
+[12 P ] 
+[13 P ] 
+[14 P ] 
+[15 P ] 
+[16 TABLE 5 rows]
+작 성 | 검 토 | 승 인
+ |  | 
+서석일 |  | 
+ |  | 
+ |  | 
+[17 P ] 
+[18 P ] 
+[19 P ] 
+[20 P ] 
+
+[21 P ] 
+[22 TABLE 18 rows]
+
+No. | 개정 내용 | 개정 위치  | 개정 날짜
+0 | 최초 제정 | - | 
+1 |  |  | 
+2 |  |  | 
+3 |  |  | 
+4 |  |  | 
+5 |  |  | 
+6 |  |  | 
+7 |  |  | 
+8 |  |  | 
+9 |  |  | 
+10 |  |  | 
+11 |  |  | 
+12 |  |  | 
+13 |  |  | 
+14 |  |  | 
+15 |  |  | 
+16 |  |  | 
+[23 P ] 	
+
+[24 SDT excluded TOC]
+[25 P ] 
+
+[26 P 10] 서론
+[27 P 2] 개요
+[28 P ] 본 문서는 TD24A-A-ACC 제품의 스마트 케이스 펌웨어를 개발하기 위한 소프트웨어 아키텍처를 설계하고 기술한다.
+[29 P ] 
+[30 P 2] 목적
+[31 P ] 스마트 케이스 펌웨어의 요구사항을 구현하기 위한 소프트웨어의 아키텍처를 설계함으로써 소프트웨어 개발 절차에 따라 안전한하고 일관성 및 정확성을 보장하는 소프트웨어의 개발이 보장되는 것을 목적으로 한다.
+[32 P ] 
+[33 P 2] 대상
+[34 P ] TD24B-A-EXT 펌웨어 개발 프로젝트에 참여하는 모든 구성원은 이 문서를 참고하도록 한다.
+[35 P ] 
+[36 P 2] 관련문서
+[37 P 3] 프로젝트
+[38 TABLE 4 rows]
+No | 문서번호 | 문서 제목
+1 | SDP-FW-TD24B | 소프트웨어 개발 계획서
+2 | SGR-FW-TD24B | 소프트웨어 일반 요구사항
+3 | SRS-FW-TD24B | 소프트웨어 요구사항 사양서
+[39 P ] 
+[40 P 3] 표준 및 규제
+[41 TABLE 3 rows]
+No | 문서번호 | 문서 제목
+1 | IEC 62304:2006 | Medical device software – Software life cycle processes
+2 | ISO 14971:2007 | Medical devices – Application of risk management to medical
+[42 P ] 
+
+[43 P 10] 하드웨어 플랫폼
+[44 P ] 
+[45 P ] 외부장치 소프트웨어가 동작할 하드웨어 플랫폼은 아래 <그림 1.>과 같으며, 이를 참고하여 소프트웨어 아키텍처를 설계한다.
+[46 P ] 
+[47 P ] 
+[48 P ] 
+[49 P ] 
+[50 P ] 
+[51 P ] 
+[52 P ] 
+[53 P ] 
+[54 P ] 
+[55 P ] 
+[56 P ] 
+[57 P ] 
+[58 P ] 
+[59 P ] 
+[60 P ] 
+[61 P ] 
+[62 P ] 
+[63 P ] 
+[64 P ] 
+[65 P ] 
+[66 P ] 
+[67 P ] 
+[68 P ] <그림 1. 외부장치 블록도>
+[69 P ] 
+
+[70 P 10] 소프트웨어 아키텍처 – 블루투스
+[71 P ] 2절의 하드웨어 플랫폼을 기반으로 동작하는 외부장치 시스템의 블루투스 소프트웨어의 아키텍처는 <그림 2.>와 같이 설계되었으며,
+[72 P ] 
+[73 P ] 
+[74 P ] 
+[75 P ] 
+[76 P ] 
+[77 P ] 
+[78 P ] 
+[79 P ] 
+[80 P ] 
+[81 P ] 
+[82 P ] 
+[83 P ] 
+[84 P ] 
+[85 P ] 
+[86 P ] 
+[87 P ] 
+[88 P ] 
+[89 P ] 
+[90 P ] 
+[91 P ] 
+[92 P ] 
+[93 P ] 
+[94 P ] 
+[95 P ] 
+[96 P ] 
+[97 P ] 
+[98 P ] 
+[99 P ] 
+[100 P ] 
+[101 P ] 
+[102 P ] 
+[103 P ] 
+[104 P ] 
+[105 P ] 
+[106 P ] 
+[107 P ] 
+[108 P ] 
+[109 P ] 
+[110 P ] 
+[111 P ] 
+[112 P ] 
+[113 P ] 
+[114 P ] 
+[115 P ] 
+[116 P ] 
+[117 P ] 
+[118 P ] 
+[119 P ] 
+[120 P ] 
+[121 P ] 
+[122 P ] 
+[123 P ] 
+[124 P ] 
+[125 P ] 
+[126 P ] <그림 2. 외부장치 블루투스 소프트웨어 아키텍처 블록도>
+[127 P ] 블루투스 펌웨어는 크게 외부장치 Application과 MCU 제조사인 Qualcomm에서 제공하는 Built-in library와 system software가 있다. 제조사에서 제공하는 부분은 Application을 구현하는데 바탕이 되며, 별도의 수정 없이 제공되는 API만을 사용하므로, 여기서는 외부 Application만을 설명한다.
+[128 P ] 
+[129 P ] 외부장치 Application의 각 모듈들이 담당하는 기능들은 다음과 같다.
+[130 P ] 
+[131 P 2] 시스템 관리 모듈 (System management module)
+[132 P ] 외부장치 시스템의 전체적인 동작을 제어하는 모듈이다. 다른 모듈의 상태 값을 확인하여 해당 모듈의 동작을 결정한다.
+[133 P 3] 시스템 초기화와 설정 유닛
+[134 P a8] 시스템과 application의 초기화를 수행하고, 각 유닛과 모듈들의 초기 상태와 설정 수행하고 확인하다. 특히, 사용되는 시스템과 built-in library의 각 부분을 설정과 초기화를 수행한다.
+[135 P 3] 시스템 상태 유닛
+[136 P a8] 시스템의 일반적인 상태와 사운드 처리기의 상태를 처리하고, 다른 모듈들에게 전달하거나 모듈들의 처리를 수행한다. 그리고, 사운드 처리기와 SPI 통신을 처리한다.
+[137 P 3] 장치 상태 유닛
+[138 P a8] 장치가 블루투스 단독형(Standalone, 편이)인지 무선 스테레오형(TWS(True Wireless Stereo), 양이) 인지를 확인하고 이에 따라 관련된 모듈들의 상태 및 데이터 처리를 관리한다.
+[139 P 3] 블루투스 상태 유닛
+[140 P a8] 시스템 상태에 따라 Bluetooth Classic과 BLE의 상태를 확인하고 관련된 모듈들의 상태 및 데이터 처리를 관리한다.
+[141 P 2] 하드웨어 인터페이스 모듈 (Hardware interface module)
+[142 P ] MCU와 연결된 여러 HW 모듈들을 제어하고, 외부장치 전원관 배터리, 충전을 관리하고 제어한다.
+[143 P 3] PIO 포트 유닛
+[144 P a8] MCU와 연결된 PORT IO들들 설정하고 제어한다.
+[145 P 3] Power 제어 유닛
+[146 P a8] 외부장치의 배터리와 충전을 관리하고 관련된 정보를 사운드처리기와 블루투스를 통해 외부기기에 전달한다.
+[147 P a8] 시스템 상태에 따라 저전압 모드에 진입하고 wake-up을 수행한다.
+[148 P 3] NVM 처리 유닛
+[149 P a8] 칩의 NVM(Non-Volatile Memory, Flash memory)의 접근을 관리하고, 저장되는 데이터를 정의하고 읽고 쓰는 부분에 대한 인터페이스를 제공한다.
+[150 P 2] 블루투스 모듈 (Bluetooth module)
+[151 P ] 외부장치의 블루투스 통신을 제어한다. 이 모듈은 크게 Audio 전송을 위한 Bluetooth Classic과 데이터 통신을 위한 BLE로 나누어진다.
+[152 P 3] Bluetooth Classic 유닛
+[153 P a8] Classic 연결을 위한 설정과 통신 관련 부분을 설정하고 제어한다.
+[154 P a8] Audio 연결과 통신을 설정하고 제어한다.
+[155 P 3] BLE 유닛
+[156 P a8] BLE Advertising의 설정하고 연결을 관리한다.
+[157 P a8] BLE 데이터를 송수신하기 위한 BLE 정보와 통신 관련 부분을 설정하고 제어한다.
+[158 P 3] AUTH service 처리 유닛
+[159 P a8] 자체 보안 인증에 사용되는 AUTH service를 정의하고 관련된 characteristic의 접근과 데이터 처리를 관리한다.
+[160 P 3] BLE Data 처리 유닛
+[161 P a8] BLE data를 정의된 메시지 형태로 구성하고, 처리한다.
+[162 P a8] 상대 BLE 장치로 데이터를 전송하고, 수신된 데이터를 처리하여 시스템에 전달한다.
+[163 P 2] 보안 모듈 (Security module)
+[164 P 3] 인증 처리 유닛
+[165 P a8] BLE 데이터 통신에 필요한 인증을 정의하고 절차를 처리 및 관리한다.
+[166 P 3] 보안 툴박스 유닛
+[167 P a8] 보안 모듈에서 사용하는 각종 암호화 알고리즘과 키 생성 방식에 대한 처리를 수행한다.
+[168 P 3] 보안 NVM 처리 유닛
+[169 P a8] NVM에 저장된 보안 데이터를 읽을 때와 쓸 때 각각 필요한 보안 절차를 수행한다.
+[170 P ] 
+[171 P ] 
+[172 P ] 
+[173 P ] 
+[174 P ] 
+
+[175 P 10] 시스템 동작 흐름도
+[176 P ] 시스템의 동작흐름을 3. 절의 소프트웨어 아키텍처에서 기술한 모듈들이 조합하여 시스템의 동작흐름을 간략히 설명하면 <그림 3.>과 같다.
+[177 P ] 
+[178 P ] 
+[179 P ] 
+[180 P ] 
+[181 P ] 
+[182 P ] 
+[183 P ] 
+[184 P ] 
+[185 P ] 
+[186 P ] 
+[187 P ] 
+[188 P ] 
+[189 P ] 
+[190 P ] 
+[191 P ] 
+[192 P ] 
+[193 P ] 
+[194 P ] 
+[195 P ] 
+[196 P ] 
+[197 P ] 
+[198 P ] 
+[199 P ] 
+[200 P ] 
+[201 P ] 
+[202 P ] <그림 3. 외부장치 블루투스 시스템 동작 흐름도>
+[203 P ] 
+[204 P ] <그림 3>을 요약하여 설명하면 다음과 같다:
+[205 P a8] System management module은 외부장치의 블루투스 시스템의 전체적인 동작을 관리한다. 전원이 들어오면 내부 시스템과 built-in library의 설정을 관리하고 시스템의 각 부분을 초기화 한다. 구동 중에는 배터리 상태와 사운드 처리기의 신호를 받아 필요하면 저전압 모드에 진입할 수 있도록 하고 블루투스의 활성화를 제어한다.
+[206 P a8] HW interface module은 충전이나 배터리 상태같은 Power 상태를 관리하며 필요하면 저전압 모드에 진입한다. 그리고, 주변 장치들의 상태와 사운드 처리기의 신호를 확인하고 상태를 전달한다. 또한, 비활성화 메모리에 대한 접근의 인터페이스를 제공한다.
+[207 P a8] Bluetooth module은 전반적인 블루투스 기능 (연결과 통신, 오디오 스트리밍 등)을 관리하여, 하나의 전체적인 블루투스 시스템을 구성한다. 또한, 일반 데이터와 오디오 데이터의 송수신을 처리한다.
+[208 P a8] Security module은 BLE 연결과 접근에 대한 설정 및 관리를 수행하고, 보안 데이터에 대한 읽기 쓰기를 관리한다.
+[209 P a8] 
+
+[210 P 10] 소프트웨어 안전 등급
+[211 P ] 소프트웨어 일반 요구사항(TD-AE-SGR-01)에서 사운드원 인공 와우의 안전 심각도는 중(Class B or Moderate)로 분류되었다. 이 문서 3절에서 설계한 소프트웨어 아키텍처의 모든 소프트웨어 항목은 시스템의 안전 심각도를 동일하게 상속받는다. 따라서 사운드원의 인공 와우의 모든 소프트웨어 항목의 안전 심각도는 중(Class B or Moderate)로 분류한다.
+[212 P ] 
+[213 P ] 
+[214 P ] 
+
+[215 P 10] 소프트웨어 요구사항 추적성
+[216 TABLE 19 rows]
+Software requirements | Software Architecture
+Requirements ID | Subject | 
+SW-CC-RI-001 | 스마트 케이스 충전 | System management moduleHW interface module
+SW-CC-RI-002 | 충전가능한 외부장치 수 | System management moduleHW interface module
+SW-CC-RI-003 | 스마트 케이스와 외부장치 동시 충전 | System management moduleHW interface module
+SW-CC-RI-004 | 충전포트의 외부장치 인식 | System management moduleHW interface module
+SW-CC-RI-005 | 외부장치 항시 충전 | System management moduleHW interface module
+SW-CC-RI-006 | 저전압 컷오프 | HW interface module
+SW-CC-RI-007 | 시스템 상태 알림 | System management module
+SW-CC-RI-008 | 저전력 모드 | System management module
+SW-CC-RI-009 | 오디오 입력 소스 | System management moduleBluetooth module
+SW-CC-RI-010 | 충전 케이스 통신 | System management moduleHW interface module
+SW-CC-RI-011 | 블루투스 연결 | System management moduleBluetooth module
+SW-CC-RI-012 | 사용자 인터페이스-모바일 앱 제어 | System management moduleBluetooth module
+SW-CC-RI-013 | 사용자 인터페이스-Lid 상태 입력 | System management module
+SW-CC-RI-014 | 사용자 인터페이스-버튼 입력 | System management moduleHW interface module
+SW-CC-RI-015 | 사용자 인터페이스-LED 출력 | System management moduleHW interface module
+SW-CC-RI-016 | 사용 설명서 | N/A
+SW-CC-RI-017 | 소프트웨어 규제 요구사항 | N/A
+[217 P ] 

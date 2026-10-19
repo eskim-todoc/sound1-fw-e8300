@@ -1,0 +1,2336 @@
+{
+  "timestamp_utc": "2026-10-12T13:19:25.895609+00:00",
+  "reviewer": "qcc_design independent review",
+  "scope": "Read-only saved G copies and native Office PDF/PNG; no other agent files modified.",
+  "status": "PASS",
+  "excel_native": [
+    {
+      "directory": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\excel-native\\SRS-6-94",
+      "page_count": 22,
+      "contact_all_pages_viewed": true,
+      "full_png_pages_viewed": [
+        3,
+        6,
+        7,
+        8,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        17,
+        18,
+        20,
+        21
+      ],
+      "result": "PASS",
+      "notes": "IDs and merged boundary labels visible; long content within cells; missing-data colors/underline visible; reports remain unexecuted/pending."
+    },
+    {
+      "directory": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\excel-native\\SUVC-1686-1773",
+      "page_count": 17,
+      "contact_all_pages_viewed": true,
+      "full_png_pages_viewed": [
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17
+      ],
+      "result": "PASS",
+      "notes": "IDs and merged boundary labels visible; long content within cells; missing-data colors/underline visible; reports remain unexecuted/pending."
+    },
+    {
+      "directory": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\excel-native\\SUVR-1686-1773",
+      "page_count": 14,
+      "contact_all_pages_viewed": true,
+      "full_png_pages_viewed": [
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13
+      ],
+      "result": "PASS",
+      "notes": "IDs and merged boundary labels visible; long content within cells; missing-data colors/underline visible; reports remain unexecuted/pending."
+    },
+    {
+      "directory": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\excel-native\\SITC-119-145",
+      "page_count": 5,
+      "contact_all_pages_viewed": true,
+      "full_png_pages_viewed": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "result": "PASS",
+      "notes": "IDs and merged boundary labels visible; long content within cells; missing-data colors/underline visible; reports remain unexecuted/pending."
+    },
+    {
+      "directory": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\excel-native\\SITR-119-145",
+      "page_count": 4,
+      "contact_all_pages_viewed": true,
+      "full_png_pages_viewed": [
+        2,
+        3,
+        4
+      ],
+      "result": "PASS",
+      "notes": "IDs and merged boundary labels visible; long content within cells; missing-data colors/underline visible; reports remain unexecuted/pending."
+    },
+    {
+      "directory": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\excel-native\\SUVC-QCC-final",
+      "page_count": 17,
+      "contact_all_pages_viewed": true,
+      "full_png_pages_viewed": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17
+      ],
+      "result": "PASS",
+      "notes": "IDs and merged boundary labels visible; long content within cells; missing-data colors/underline visible; reports remain unexecuted/pending."
+    },
+    {
+      "directory": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\excel-native\\SUVR-QCC-final",
+      "page_count": 15,
+      "contact_all_pages_viewed": true,
+      "full_png_pages_viewed": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "result": "PASS",
+      "notes": "IDs and merged boundary labels visible; long content within cells; missing-data colors/underline visible; reports remain unexecuted/pending."
+    },
+    {
+      "directory": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\excel-native\\SRS-H49-fixed",
+      "page_count": 1,
+      "contact_all_pages_viewed": false,
+      "full_png_pages_viewed": [
+        1
+      ],
+      "result": "PASS",
+      "notes": "IDs and merged boundary labels visible; long content within cells; missing-data colors/underline visible; reports remain unexecuted/pending."
+    },
+    {
+      "directory": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\excel-native\\SITC-final-v2",
+      "page_count": 7,
+      "contact_all_pages_viewed": false,
+      "full_png_pages_viewed": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "result": "PASS",
+      "notes": "IDs and merged boundary labels visible; long content within cells; missing-data colors/underline visible; reports remain unexecuted/pending."
+    },
+    {
+      "directory": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\excel-native\\SITR-final-v2",
+      "page_count": 7,
+      "contact_all_pages_viewed": false,
+      "full_png_pages_viewed": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "result": "PASS",
+      "notes": "IDs and merged boundary labels visible; long content within cells; missing-data colors/underline visible; reports remain unexecuted/pending."
+    },
+    {
+      "directory": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\excel-native\\SUVC-final-v2",
+      "page_count": 2,
+      "contact_all_pages_viewed": false,
+      "full_png_pages_viewed": [
+        1,
+        2
+      ],
+      "result": "PASS",
+      "notes": "IDs and merged boundary labels visible; long content within cells; missing-data colors/underline visible; reports remain unexecuted/pending."
+    },
+    {
+      "directory": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\excel-native\\SUVR-final-v2",
+      "page_count": 2,
+      "contact_all_pages_viewed": false,
+      "full_png_pages_viewed": [
+        1,
+        2
+      ],
+      "result": "PASS",
+      "notes": "IDs and merged boundary labels visible; long content within cells; missing-data colors/underline visible; reports remain unexecuted/pending."
+    },
+    {
+      "directory": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\excel-native\\SUVC-18-20",
+      "page_count": 1,
+      "contact_all_pages_viewed": false,
+      "full_png_pages_viewed": [
+        1
+      ],
+      "result": "PASS",
+      "notes": "IDs and merged boundary labels visible; long content within cells; missing-data colors/underline visible; reports remain unexecuted/pending."
+    },
+    {
+      "directory": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\excel-native\\SUVR-18-20",
+      "page_count": 1,
+      "contact_all_pages_viewed": false,
+      "full_png_pages_viewed": [
+        1
+      ],
+      "result": "PASS",
+      "notes": "IDs and merged boundary labels visible; long content within cells; missing-data colors/underline visible; reports remain unexecuted/pending."
+    },
+    {
+      "directory": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\excel-native\\SITC-18-20",
+      "page_count": 1,
+      "contact_all_pages_viewed": false,
+      "full_png_pages_viewed": [
+        1
+      ],
+      "result": "PASS",
+      "notes": "IDs and merged boundary labels visible; long content within cells; missing-data colors/underline visible; reports remain unexecuted/pending."
+    },
+    {
+      "directory": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\excel-native\\SITR-18-20",
+      "page_count": 1,
+      "contact_all_pages_viewed": false,
+      "full_png_pages_viewed": [
+        1
+      ],
+      "result": "PASS",
+      "notes": "IDs and merged boundary labels visible; long content within cells; missing-data colors/underline visible; reports remain unexecuted/pending."
+    }
+  ],
+  "excel_final_v2_observations": {
+    "integration_all_14_full_pages": "018..024 exactly one complete group on each criterion/report page; labels and all conditions readable.",
+    "scope_019": "QCC signal/state support distinguished from E8300 identity/RF/stimulation/notification completion.",
+    "security_020_021_024": "Pattern relay is separate from actual CRA; timers/key derivation/vector/NVM gaps preserved.",
+    "SPI_unit4_and_integration018": "logical buffer max20 bytes separated from physical length-prefixed SPI21 bytes; E8300 ACK index20=2 distinguished from QCC length field.",
+    "result_columns": "All new report conditions unexecuted / actual data unprovided / judgement pending.",
+    "SRS_H49": "SYS-RID-SP-HW-11 wraps within H bounds and does not overlap origin I.",
+    "SRS82_83": "Red QCC microphone TX design gap and blue E8300 manual upper trace gaps visible in native output."
+  },
+  "sddd_native": {
+    "pages_json": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\final-word\\SDDD\\pages.json",
+    "all_166_page_metadata_and_text_parsed": true,
+    "all_14_contact_sheets_all_166_pages_viewed": true,
+    "full_png_pages_viewed": [
+      3,
+      12,
+      13,
+      149,
+      150,
+      151,
+      152,
+      153,
+      154,
+      155,
+      156,
+      157,
+      158,
+      159,
+      160,
+      161,
+      162,
+      163,
+      164,
+      165,
+      166
+    ],
+    "full_QCC_14_unit_tables_readable": true,
+    "new_unit002_support_test4_and_main5": "visible on native page152; coherent with unit criterion group4",
+    "new_diagram_page12": "4 modules / 14 units; detailed design8.2; implementation/measurement unconfirmed; retained chip/core/interface boundaries; no clipping",
+    "table_continuations": "Repeat column headers present; no clipped text. Some labels/processing paragraphs span adjacent pages and remain fully readable. White space from table flow and chapter-start boundaries is not evidence of omitted text.",
+    "TOC": "Native page3 QCC sections148/149/153/156/159/163 and validation165 match body header page numbers; physical cover offset1.",
+    "result": "PASS"
+  },
+  "sip_new_native_diagram": {
+    "page": 5,
+    "full_png_viewed": true,
+    "4_modules_14_units": true,
+    "E8300_core_function_boundaries_retained": true,
+    "implementation_measurement_unconfirmed_visible": true,
+    "result": "PASS"
+  },
+  "package_audit": [
+    {
+      "code": "SAD",
+      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SAD-FW-TD24A 소프트웨어 아키텍쳐 기술서.docx",
+      "current_sha256": "47B8FB9A30EB01470730A096E38A74B986AB2956BB7E69623ACCCA17E0197117",
+      "original_path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300] SAD-FW-TD24A 소프트웨어 아키텍쳐 기술서.docx",
+      "original_sha256": "7B79A7D3F17AD78E02366FF79E6AD5A9E0FCB03F989AB4C337A2792097BA48B5",
+      "original_unchanged": true,
+      "nested_revisions": [
+        {
+          "inner_kind": "del",
+          "inner_id": "217",
+          "inner_date": "2026-10-12T13:05:00Z",
+          "outer_kind": "ins",
+          "outer_id": "216",
+          "outer_date": "2026-09-29T18:27:00Z",
+          "outer_signature_matches_baselines": [
+            "E8300 original",
+            "SAD-before-final-targeted.docx",
+            "SAD-before-SOUP-clarification.docx"
+          ],
+          "classification": "deletion inside a pre-existing unaccepted insertion"
+        },
+        {
+          "inner_kind": "del",
+          "inner_id": "390",
+          "inner_date": "2026-10-12T12:28:00Z",
+          "outer_kind": "ins",
+          "outer_id": "389",
+          "outer_date": "2026-09-29T18:27:00Z",
+          "outer_signature_matches_baselines": [
+            "E8300 original",
+            "SAD-before-final-targeted.docx",
+            "SAD-before-SOUP-clarification.docx"
+          ],
+          "classification": "deletion inside a pre-existing unaccepted insertion"
+        },
+        {
+          "inner_kind": "del",
+          "inner_id": "2219",
+          "inner_date": "2026-10-12T12:28:00Z",
+          "outer_kind": "ins",
+          "outer_id": "2218",
+          "outer_date": "2026-10-12T09:19:00Z",
+          "outer_signature_matches_baselines": [
+            "E8300 original",
+            "SAD-before-final-targeted.docx",
+            "SAD-before-SOUP-clarification.docx"
+          ],
+          "classification": "deletion inside a pre-existing unaccepted insertion"
+        },
+        {
+          "inner_kind": "del",
+          "inner_id": "2241",
+          "inner_date": "2026-10-12T12:28:00Z",
+          "outer_kind": "ins",
+          "outer_id": "2240",
+          "outer_date": "2026-10-12T09:19:00Z",
+          "outer_signature_matches_baselines": [
+            "E8300 original",
+            "SAD-before-final-targeted.docx",
+            "SAD-before-SOUP-clarification.docx"
+          ],
+          "classification": "deletion inside a pre-existing unaccepted insertion"
+        },
+        {
+          "inner_kind": "del",
+          "inner_id": "2664",
+          "inner_date": "2026-10-12T12:28:00Z",
+          "outer_kind": "ins",
+          "outer_id": "2663",
+          "outer_date": "2026-10-12T09:19:00Z",
+          "outer_signature_matches_baselines": [
+            "E8300 original",
+            "SAD-before-final-targeted.docx",
+            "SAD-before-SOUP-clarification.docx"
+          ],
+          "classification": "deletion inside a pre-existing unaccepted insertion"
+        },
+        {
+          "inner_kind": "del",
+          "inner_id": "2676",
+          "inner_date": "2026-10-12T12:28:00Z",
+          "outer_kind": "ins",
+          "outer_id": "2675",
+          "outer_date": "2026-10-12T09:19:00Z",
+          "outer_signature_matches_baselines": [
+            "E8300 original",
+            "SAD-before-final-targeted.docx",
+            "SAD-before-SOUP-clarification.docx"
+          ],
+          "classification": "deletion inside a pre-existing unaccepted insertion"
+        },
+        {
+          "inner_kind": "del",
+          "inner_id": "2689",
+          "inner_date": "2026-10-12T12:28:00Z",
+          "outer_kind": "ins",
+          "outer_id": "2688",
+          "outer_date": "2026-10-12T09:19:00Z",
+          "outer_signature_matches_baselines": [
+            "E8300 original",
+            "SAD-before-final-targeted.docx",
+            "SAD-before-SOUP-clarification.docx"
+          ],
+          "classification": "deletion inside a pre-existing unaccepted insertion"
+        },
+        {
+          "inner_kind": "del",
+          "inner_id": "2703",
+          "inner_date": "2026-10-12T12:28:00Z",
+          "outer_kind": "ins",
+          "outer_id": "2702",
+          "outer_date": "2026-10-12T09:19:00Z",
+          "outer_signature_matches_baselines": [
+            "E8300 original",
+            "SAD-before-final-targeted.docx",
+            "SAD-before-SOUP-clarification.docx"
+          ],
+          "classification": "deletion inside a pre-existing unaccepted insertion"
+        },
+        {
+          "inner_kind": "del",
+          "inner_id": "2731",
+          "inner_date": "2026-10-12T12:28:00Z",
+          "outer_kind": "ins",
+          "outer_id": "2730",
+          "outer_date": "2026-10-12T09:19:00Z",
+          "outer_signature_matches_baselines": [
+            "E8300 original",
+            "SAD-before-final-targeted.docx",
+            "SAD-before-SOUP-clarification.docx"
+          ],
+          "classification": "deletion inside a pre-existing unaccepted insertion"
+        },
+        {
+          "inner_kind": "del",
+          "inner_id": "2735",
+          "inner_date": "2026-10-12T12:28:00Z",
+          "outer_kind": "ins",
+          "outer_id": "2734",
+          "outer_date": "2026-10-12T09:19:00Z",
+          "outer_signature_matches_baselines": [
+            "E8300 original",
+            "SAD-before-final-targeted.docx",
+            "SAD-before-SOUP-clarification.docx"
+          ],
+          "classification": "deletion inside a pre-existing unaccepted insertion"
+        },
+        {
+          "inner_kind": "del",
+          "inner_id": "2744",
+          "inner_date": "2026-10-12T12:28:00Z",
+          "outer_kind": "ins",
+          "outer_id": "2743",
+          "outer_date": "2026-10-12T09:19:00Z",
+          "outer_signature_matches_baselines": [
+            "E8300 original",
+            "SAD-before-final-targeted.docx",
+            "SAD-before-SOUP-clarification.docx"
+          ],
+          "classification": "deletion inside a pre-existing unaccepted insertion"
+        },
+        {
+          "inner_kind": "del",
+          "inner_id": "2748",
+          "inner_date": "2026-10-12T12:28:00Z",
+          "outer_kind": "ins",
+          "outer_id": "2747",
+          "outer_date": "2026-10-12T09:19:00Z",
+          "outer_signature_matches_baselines": [
+            "E8300 original",
+            "SAD-before-final-targeted.docx",
+            "SAD-before-SOUP-clarification.docx"
+          ],
+          "classification": "deletion inside a pre-existing unaccepted insertion"
+        },
+        {
+          "inner_kind": "del",
+          "inner_id": "2757",
+          "inner_date": "2026-10-12T12:28:00Z",
+          "outer_kind": "ins",
+          "outer_id": "2756",
+          "outer_date": "2026-10-12T09:19:00Z",
+          "outer_signature_matches_baselines": [
+            "E8300 original",
+            "SAD-before-final-targeted.docx",
+            "SAD-before-SOUP-clarification.docx"
+          ],
+          "classification": "deletion inside a pre-existing unaccepted insertion"
+        },
+        {
+          "inner_kind": "del",
+          "inner_id": "2761",
+          "inner_date": "2026-10-12T12:28:00Z",
+          "outer_kind": "ins",
+          "outer_id": "2760",
+          "outer_date": "2026-10-12T09:19:00Z",
+          "outer_signature_matches_baselines": [
+            "E8300 original",
+            "SAD-before-final-targeted.docx",
+            "SAD-before-SOUP-clarification.docx"
+          ],
+          "classification": "deletion inside a pre-existing unaccepted insertion"
+        },
+        {
+          "inner_kind": "del",
+          "inner_id": "2790",
+          "inner_date": "2026-10-12T12:28:00Z",
+          "outer_kind": "ins",
+          "outer_id": "2789",
+          "outer_date": "2026-10-12T09:19:00Z",
+          "outer_signature_matches_baselines": [
+            "E8300 original",
+            "SAD-before-final-targeted.docx",
+            "SAD-before-SOUP-clarification.docx"
+          ],
+          "classification": "deletion inside a pre-existing unaccepted insertion"
+        },
+        {
+          "inner_kind": "del",
+          "inner_id": "2794",
+          "inner_date": "2026-10-12T12:28:00Z",
+          "outer_kind": "ins",
+          "outer_id": "2793",
+          "outer_date": "2026-10-12T09:19:00Z",
+          "outer_signature_matches_baselines": [
+            "E8300 original",
+            "SAD-before-final-targeted.docx",
+            "SAD-before-SOUP-clarification.docx"
+          ],
+          "classification": "deletion inside a pre-existing unaccepted insertion"
+        },
+        {
+          "inner_kind": "del",
+          "inner_id": "2910",
+          "inner_date": "2026-10-12T12:28:00Z",
+          "outer_kind": "ins",
+          "outer_id": "2909",
+          "outer_date": "2026-10-12T09:19:00Z",
+          "outer_signature_matches_baselines": [
+            "E8300 original",
+            "SAD-before-final-targeted.docx",
+            "SAD-before-SOUP-clarification.docx"
+          ],
+          "classification": "deletion inside a pre-existing unaccepted insertion"
+        },
+        {
+          "inner_kind": "del",
+          "inner_id": "2918",
+          "inner_date": "2026-10-12T12:28:00Z",
+          "outer_kind": "ins",
+          "outer_id": "2917",
+          "outer_date": "2026-10-12T09:19:00Z",
+          "outer_signature_matches_baselines": [
+            "E8300 original",
+            "SAD-before-final-targeted.docx",
+            "SAD-before-SOUP-clarification.docx"
+          ],
+          "classification": "deletion inside a pre-existing unaccepted insertion"
+        },
+        {
+          "inner_kind": "del",
+          "inner_id": "3059",
+          "inner_date": "2026-10-12T12:28:00Z",
+          "outer_kind": "ins",
+          "outer_id": "3058",
+          "outer_date": "2026-10-12T09:19:00Z",
+          "outer_signature_matches_baselines": [
+            "E8300 original",
+            "SAD-before-final-targeted.docx",
+            "SAD-before-SOUP-clarification.docx"
+          ],
+          "classification": "deletion inside a pre-existing unaccepted insertion"
+        },
+        {
+          "inner_kind": "del",
+          "inner_id": "3077",
+          "inner_date": "2026-10-12T12:28:00Z",
+          "outer_kind": "ins",
+          "outer_id": "3076",
+          "outer_date": "2026-10-12T09:19:00Z",
+          "outer_signature_matches_baselines": [
+            "E8300 original",
+            "SAD-before-final-targeted.docx",
+            "SAD-before-SOUP-clarification.docx"
+          ],
+          "classification": "deletion inside a pre-existing unaccepted insertion"
+        },
+        {
+          "inner_kind": "del",
+          "inner_id": "3090",
+          "inner_date": "2026-10-12T12:28:00Z",
+          "outer_kind": "ins",
+          "outer_id": "3089",
+          "outer_date": "2026-10-12T09:19:00Z",
+          "outer_signature_matches_baselines": [
+            "E8300 original",
+            "SAD-before-final-targeted.docx",
+            "SAD-before-SOUP-clarification.docx"
+          ],
+          "classification": "deletion inside a pre-existing unaccepted insertion"
+        },
+        {
+          "inner_kind": "del",
+          "inner_id": "3102",
+          "inner_date": "2026-10-12T12:28:00Z",
+          "outer_kind": "ins",
+          "outer_id": "3101",
+          "outer_date": "2026-10-12T09:19:00Z",
+          "outer_signature_matches_baselines": [
+            "E8300 original",
+            "SAD-before-final-targeted.docx",
+            "SAD-before-SOUP-clarification.docx"
+          ],
+          "classification": "deletion inside a pre-existing unaccepted insertion"
+        },
+        {
+          "inner_kind": "del",
+          "inner_id": "3111",
+          "inner_date": "2026-10-12T12:28:00Z",
+          "outer_kind": "ins",
+          "outer_id": "3110",
+          "outer_date": "2026-10-12T09:19:00Z",
+          "outer_signature_matches_baselines": [
+            "E8300 original",
+            "SAD-before-final-targeted.docx",
+            "SAD-before-SOUP-clarification.docx"
+          ],
+          "classification": "deletion inside a pre-existing unaccepted insertion"
+        },
+        {
+          "inner_kind": "del",
+          "inner_id": "3115",
+          "inner_date": "2026-10-12T12:28:00Z",
+          "outer_kind": "ins",
+          "outer_id": "3114",
+          "outer_date": "2026-10-12T09:19:00Z",
+          "outer_signature_matches_baselines": [
+            "E8300 original",
+            "SAD-before-final-targeted.docx",
+            "SAD-before-SOUP-clarification.docx"
+          ],
+          "classification": "deletion inside a pre-existing unaccepted insertion"
+        },
+        {
+          "inner_kind": "del",
+          "inner_id": "3124",
+          "inner_date": "2026-10-12T12:28:00Z",
+          "outer_kind": "ins",
+          "outer_id": "3123",
+          "outer_date": "2026-10-12T09:19:00Z",
+          "outer_signature_matches_baselines": [
+            "E8300 original",
+            "SAD-before-final-targeted.docx",
+            "SAD-before-SOUP-clarification.docx"
+          ],
+          "classification": "deletion inside a pre-existing unaccepted insertion"
+        },
+        {
+          "inner_kind": "del",
+          "inner_id": "3128",
+          "inner_date": "2026-10-12T12:28:00Z",
+          "outer_kind": "ins",
+          "outer_id": "3127",
+          "outer_date": "2026-10-12T09:19:00Z",
+          "outer_signature_matches_baselines": [
+            "E8300 original",
+            "SAD-before-final-targeted.docx",
+            "SAD-before-SOUP-clarification.docx"
+          ],
+          "classification": "deletion inside a pre-existing unaccepted insertion"
+        },
+        {
+          "inner_kind": "del",
+          "inner_id": "3168",
+          "inner_date": "2026-10-12T12:28:00Z",
+          "outer_kind": "ins",
+          "outer_id": "3167",
+          "outer_date": "2026-10-12T09:19:00Z",
+          "outer_signature_matches_baselines": [
+            "E8300 original",
+            "SAD-before-final-targeted.docx",
+            "SAD-before-SOUP-clarification.docx"
+          ],
+          "classification": "deletion inside a pre-existing unaccepted insertion"
+        },
+        {
+          "inner_kind": "del",
+          "inner_id": "3172",
+          "inner_date": "2026-10-12T12:28:00Z",
+          "outer_kind": "ins",
+          "outer_id": "3171",
+          "outer_date": "2026-10-12T09:19:00Z",
+          "outer_signature_matches_baselines": [
+            "E8300 original",
+            "SAD-before-final-targeted.docx",
+            "SAD-before-SOUP-clarification.docx"
+          ],
+          "classification": "deletion inside a pre-existing unaccepted insertion"
+        },
+        {
+          "inner_kind": "del",
+          "inner_id": "3426",
+          "inner_date": "2026-10-12T12:28:00Z",
+          "outer_kind": "ins",
+          "outer_id": "3425",
+          "outer_date": "2026-09-30T00:29:00Z",
+          "outer_signature_matches_baselines": [
+            "E8300 original",
+            "SAD-before-final-targeted.docx",
+            "SAD-before-SOUP-clarification.docx"
+          ],
+          "classification": "deletion inside a pre-existing unaccepted insertion"
+        },
+        {
+          "inner_kind": "del",
+          "inner_id": "3434",
+          "inner_date": "2026-10-12T12:28:00Z",
+          "outer_kind": "ins",
+          "outer_id": "3433",
+          "outer_date": "2026-09-30T00:29:00Z",
+          "outer_signature_matches_baselines": [
+            "E8300 original",
+            "SAD-before-final-targeted.docx",
+            "SAD-before-SOUP-clarification.docx"
+          ],
+          "classification": "deletion inside a pre-existing unaccepted insertion"
+        },
+        {
+          "inner_kind": "del",
+          "inner_id": "3442",
+          "inner_date": "2026-10-12T13:07:00Z",
+          "outer_kind": "ins",
+          "outer_id": "3441",
+          "outer_date": "2026-09-30T00:44:00Z",
+          "outer_signature_matches_baselines": [
+            "E8300 original",
+            "SAD-before-final-targeted.docx",
+            "SAD-before-SOUP-clarification.docx"
+          ],
+          "classification": "deletion inside a pre-existing unaccepted insertion"
+        }
+      ],
+      "nested_insertions_count": 0,
+      "nested_under_deletion_count": 0,
+      "all_nested_are_baseline_insertion_deletions": true,
+      "revision_id_difference_is_not_new_revision_evidence": "Word field saves renumber revisions; use author/date/content and ancestor baseline signatures.",
+      "original_media_by_hash": [
+        {
+          "rid": "rId8",
+          "part": "word/media/image1.png",
+          "sha256": "B3F4B3D722E8B5093F6F211D940EC18E28B5B4EEF3CE46769E9E464A461990A2",
+          "drawing_references_all": 1,
+          "current_same_bytes_part": "word/media/image1.png",
+          "classification": "bytes preserved (part name may change)"
+        },
+        {
+          "rid": "rId13",
+          "part": "word/media/image6.png",
+          "sha256": "1CB0D55175AE0717744AC8DBE0D94C8C6F404E84B106F843A8D09054B5F39FB5",
+          "drawing_references_all": 1,
+          "current_same_bytes_part": "word/media/image6.png",
+          "classification": "bytes preserved (part name may change)"
+        },
+        {
+          "rid": "rId12",
+          "part": "word/media/image5.png",
+          "sha256": "3AC1D9CB2BFD986907665D31DB3F46436A91F0E91B67C7B7C7131AAFA02D358E",
+          "drawing_references_all": 1,
+          "current_same_bytes_part": "word/media/image5.png",
+          "classification": "bytes preserved (part name may change)"
+        },
+        {
+          "rid": "rId11",
+          "part": "word/media/image4.png",
+          "sha256": "5800F70BE2AB3191A779BD5491CF4C9288F15C417EC578DC2F9D4AA473A7EF63",
+          "drawing_references_all": 1,
+          "current_same_bytes_part": "word/media/image4.png",
+          "classification": "bytes preserved (part name may change)"
+        },
+        {
+          "rid": "rId10",
+          "part": "word/media/image3.png",
+          "sha256": "6C5A649D65E40F20E57917506BF53EC58FC8F150C5AB0237CE78835D5E7308DC",
+          "drawing_references_all": 1,
+          "current_same_bytes_part": "word/media/image3.png",
+          "classification": "bytes preserved (part name may change)"
+        },
+        {
+          "rid": "rId9",
+          "part": "word/media/image2.png",
+          "sha256": "F372A9F37393CA468F9923B902FA1F9FDCFD62F7973C36A2B30CA1A81B4C893E",
+          "drawing_references_all": 1,
+          "current_same_bytes_part": "word/media/image2.png",
+          "classification": "bytes preserved (part name may change)"
+        }
+      ],
+      "all_original_active_media_preserved": true,
+      "current_media": [
+        {
+          "rid": "rId8",
+          "part": "word/media/image1.png",
+          "sha256": "B3F4B3D722E8B5093F6F211D940EC18E28B5B4EEF3CE46769E9E464A461990A2",
+          "drawing_references_all": 1
+        },
+        {
+          "rid": "rId13",
+          "part": "word/media/image6.png",
+          "sha256": "1CB0D55175AE0717744AC8DBE0D94C8C6F404E84B106F843A8D09054B5F39FB5",
+          "drawing_references_all": 1
+        },
+        {
+          "rid": "rId12",
+          "part": "word/media/image5.png",
+          "sha256": "3AC1D9CB2BFD986907665D31DB3F46436A91F0E91B67C7B7C7131AAFA02D358E",
+          "drawing_references_all": 1
+        },
+        {
+          "rid": "rId11",
+          "part": "word/media/image4.png",
+          "sha256": "5800F70BE2AB3191A779BD5491CF4C9288F15C417EC578DC2F9D4AA473A7EF63",
+          "drawing_references_all": 1
+        },
+        {
+          "rid": "rId10",
+          "part": "word/media/image3.png",
+          "sha256": "6C5A649D65E40F20E57917506BF53EC58FC8F150C5AB0237CE78835D5E7308DC",
+          "drawing_references_all": 1
+        },
+        {
+          "rid": "rId9",
+          "part": "word/media/image2.png",
+          "sha256": "F372A9F37393CA468F9923B902FA1F9FDCFD62F7973C36A2B30CA1A81B4C893E",
+          "drawing_references_all": 1
+        },
+        {
+          "rid": "rId14",
+          "part": "word/media/image7.png",
+          "sha256": "290F8A149EAB31200A07BB193E81EB193B76FC09A334AAAAF3D39765405CA1F3",
+          "drawing_references_all": 1
+        }
+      ]
+    },
+    {
+      "code": "SDDD",
+      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SDDD-FW-TD24A 소프트웨어 상세 설계서.docx",
+      "current_sha256": "490BC2E342353825BF8E053111BBFAFD23EC103EC17452DECDD0320FC3B499C7",
+      "original_path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300] SDDD-FW-TD24A 소프트웨어 상세 설계서.docx",
+      "original_sha256": "C95A3405788121F8DDBDB8F296A49ECD41C28947044635EA9B7B432EB99D289C",
+      "original_unchanged": true,
+      "nested_revisions": [
+        {
+          "inner_kind": "del",
+          "inner_id": "17888",
+          "inner_date": "2026-10-12T13:05:08Z",
+          "outer_kind": "ins",
+          "outer_id": "468",
+          "outer_date": "2026-09-30T15:44:00Z",
+          "outer_signature_matches_baselines": [
+            "E8300 original",
+            "SDDD-before-final-targeted.docx"
+          ],
+          "classification": "deletion inside a pre-existing unaccepted insertion"
+        },
+        {
+          "inner_kind": "del",
+          "inner_id": "474",
+          "inner_date": "2026-10-12T12:28:00Z",
+          "outer_kind": "ins",
+          "outer_id": "473",
+          "outer_date": "2026-10-01T05:58:00Z",
+          "outer_signature_matches_baselines": [
+            "E8300 original",
+            "SDDD-before-final-targeted.docx"
+          ],
+          "classification": "deletion inside a pre-existing unaccepted insertion"
+        },
+        {
+          "inner_kind": "del",
+          "inner_id": "17444",
+          "inner_date": "2026-10-12T12:28:00Z",
+          "outer_kind": "ins",
+          "outer_id": "17443",
+          "outer_date": "2026-10-01T05:58:00Z",
+          "outer_signature_matches_baselines": [
+            "E8300 original",
+            "SDDD-before-final-targeted.docx"
+          ],
+          "classification": "deletion inside a pre-existing unaccepted insertion"
+        },
+        {
+          "inner_kind": "del",
+          "inner_id": "17473",
+          "inner_date": "2026-10-12T12:28:00Z",
+          "outer_kind": "ins",
+          "outer_id": "17472",
+          "outer_date": "2026-09-30T15:44:00Z",
+          "outer_signature_matches_baselines": [
+            "E8300 original",
+            "SDDD-before-final-targeted.docx"
+          ],
+          "classification": "deletion inside a pre-existing unaccepted insertion"
+        },
+        {
+          "inner_kind": "del",
+          "inner_id": "17878",
+          "inner_date": "2026-10-12T12:28:00Z",
+          "outer_kind": "ins",
+          "outer_id": "17877",
+          "outer_date": "2026-10-01T05:58:00Z",
+          "outer_signature_matches_baselines": [
+            "E8300 original",
+            "SDDD-before-final-targeted.docx"
+          ],
+          "classification": "deletion inside a pre-existing unaccepted insertion"
+        },
+        {
+          "inner_kind": "del",
+          "inner_id": "17885",
+          "inner_date": "2026-10-12T12:28:00Z",
+          "outer_kind": "ins",
+          "outer_id": "17884",
+          "outer_date": "2026-09-30T15:44:00Z",
+          "outer_signature_matches_baselines": [
+            "E8300 original",
+            "SDDD-before-final-targeted.docx"
+          ],
+          "classification": "deletion inside a pre-existing unaccepted insertion"
+        }
+      ],
+      "nested_insertions_count": 0,
+      "nested_under_deletion_count": 0,
+      "all_nested_are_baseline_insertion_deletions": true,
+      "revision_id_difference_is_not_new_revision_evidence": "Word field saves renumber revisions; use author/date/content and ancestor baseline signatures.",
+      "original_media_by_hash": [
+        {
+          "rid": "rId26",
+          "part": "word/media/image18.png",
+          "sha256": "CB04B9A6E36517D44EFDB79E8CF1DE9A2896FEA69B5224B2AA9CC0FA5891AC4C",
+          "drawing_references_all": 1,
+          "current_same_bytes_part": "word/media/image18.png",
+          "classification": "bytes preserved (part name may change)"
+        },
+        {
+          "rid": "rId21",
+          "part": "word/media/image13.png",
+          "sha256": "DA1E22161F2619AE0B26404C3C2B337A3AC06AF5628C033D4F5F748624748599",
+          "drawing_references_all": 1,
+          "current_same_bytes_part": "word/media/image13.png",
+          "classification": "bytes preserved (part name may change)"
+        },
+        {
+          "rid": "rId42",
+          "part": "word/media/image34.png",
+          "sha256": "B7B8B5C7071D5DD8450A606FC46C9D495B948E7DDDF8B66FE9D0471ACAF1D79A",
+          "drawing_references_all": 1,
+          "current_same_bytes_part": "word/media/image34.png",
+          "classification": "bytes preserved (part name may change)"
+        },
+        {
+          "rid": "rId47",
+          "part": "word/media/image39.png",
+          "sha256": "16577E60E53B90E2D42FC73218B90B6481F650649D977C2C9D3314B54DFCD671",
+          "drawing_references_all": 1,
+          "current_same_bytes_part": "word/media/image39.png",
+          "classification": "bytes preserved (part name may change)"
+        },
+        {
+          "rid": "rId63",
+          "part": "word/media/image55.png",
+          "sha256": "D7A660A3B8F52D57144F00104D28A23D27F62AF22C6E01A82734BF4E034942F4",
+          "drawing_references_all": 1,
+          "current_same_bytes_part": "word/media/image55.png",
+          "classification": "bytes preserved (part name may change)"
+        },
+        {
+          "rid": "rId68",
+          "part": "word/media/image60.png",
+          "sha256": "180AF3D602A199890606DEAC7CBE783FED86E84688FA50C810333E814926CF35",
+          "drawing_references_all": 1,
+          "current_same_bytes_part": "word/media/image60.png",
+          "classification": "bytes preserved (part name may change)"
+        },
+        {
+          "rid": "rId84",
+          "part": "word/media/image76.png",
+          "sha256": "C08AFAC614391F1C521E912501B699C3ED17683517C683DBA05FA04A51E2B8F5",
+          "drawing_references_all": 1,
+          "current_same_bytes_part": "word/media/image76.png",
+          "classification": "bytes preserved (part name may change)"
+        },
+        {
+          "rid": "rId89",
+          "part": "word/media/image81.png",
+          "sha256": "54E9F778526F9A0D6DA1072B4009DB0472EF1BACC339C94388EDBF5C29AD69DF",
+          "drawing_references_all": 1,
+          "current_same_bytes_part": "word/media/image81.png",
+          "classification": "bytes preserved (part name may change)"
+        },
+        {
+          "rid": "rId16",
+          "part": "word/media/image8.png",
+          "sha256": "3F77DF8B77CD7A3938B76B9730E60393E922B438739C828BC43F161EB27F0C6A",
+          "drawing_references_all": 1,
+          "current_same_bytes_part": "word/media/image8.png",
+          "classification": "bytes preserved (part name may change)"
+        },
+        {
+          "rid": "rId32",
+          "part": "word/media/image24.png",
+          "sha256": "15EA4CF38AA4E90033B5ECE49780CB7CA3FEF68853E45C9268B4C6DD7F20E0D5",
+          "drawing_references_all": 1,
+          "current_same_bytes_part": "word/media/image24.png",
+          "classification": "bytes preserved (part name may change)"
+        },
+        {
+          "rid": "rId37",
+          "part": "word/media/image29.png",
+          "sha256": "72D8D5637D7E7D53AB01AC834E81339FA09233D7A0F842404F1C977983E235EB",
+          "drawing_references_all": 1,
+          "current_same_bytes_part": "word/media/image29.png",
+          "classification": "bytes preserved (part name may change)"
+        },
+        {
+          "rid": "rId53",
+          "part": "word/media/image45.png",
+          "sha256": "5781B3F6BB0F4715FE568F6A989BBC7DC5C03BAB138F8AE0B5619D4D4C6407DE",
+          "drawing_references_all": 1,
+          "current_same_bytes_part": "word/media/image45.png",
+          "classification": "bytes preserved (part name may change)"
+        },
+        {
+          "rid": "rId58",
+          "part": "word/media/image50.png",
+          "sha256": "1036E7665B57C36C43F02E10A3CFBA8CAC95C69ACD7E1A4C7DCEEA1F25CBCF12",
+          "drawing_references_all": 1,
+          "current_same_bytes_part": "word/media/image50.png",
+          "classification": "bytes preserved (part name may change)"
+        },
+        {
+          "rid": "rId74",
+          "part": "word/media/image66.png",
+          "sha256": "C7FB5D0297FE4309C7A0F26D4C2069EB80EB6FB41462E231DAE074391E64EB40",
+          "drawing_references_all": 1,
+          "current_same_bytes_part": "word/media/image66.png",
+          "classification": "bytes preserved (part name may change)"
+        },
+        {
+          "rid": "rId79",
+          "part": "word/media/image71.png",
+          "sha256": "11D80C3489EAF7CD26F53CE9F39F321671D24D7013A06D5EF64C2B48E69861FF",
+          "drawing_references_all": 1,
+          "current_same_bytes_part": "word/media/image71.png",
+          "classification": "bytes preserved (part name may change)"
+        },
+        {
+          "rid": "rId90",
+          "part": "word/media/image82.png",
+          "sha256": "C7AC5974A2FB72A0F96753CB4D24032B1694041E88112769DC9F55D47DF5F7F3",
+          "drawing_references_all": 1,
+          "current_same_bytes_part": "word/media/image82.png",
+          "classification": "bytes preserved (part name may change)"
+        },
+        {
+          "rid": "rId22",
+          "part": "word/media/image14.png",
+          "sha256": "6C8BA8B878358B0F05D1C73B946B20B8BD5814538B36535F45C09A5AC9AAA644",
+          "drawing_references_all": 1,
+          "current_same_bytes_part": "word/media/image14.png",
+          "classification": "bytes preserved (part name may change)"
+        },
+        {
+          "rid": "rId27",
+          "part": "word/media/image19.png",
+          "sha256": "2112BA7BFE8B249BFA59DE6D8BFA2293D793BA06DD303743CF8958EEBF43AC33",
+          "drawing_references_all": 1,
+          "current_same_bytes_part": "word/media/image19.png",
+          "classification": "bytes preserved (part name may change)"
+        },
+        {
+          "rid": "rId43",
+          "part": "word/media/image35.png",
+          "sha256": "14918EDE9F70BBB6BFE6BB5CB8E29256EDAC826FA2E571BE124AE426B0141A0F",
+          "drawing_references_all": 1,
+          "current_same_bytes_part": "word/media/image35.png",
+          "classification": "bytes preserved (part name may change)"
+        },
+        {
+          "rid": "rId48",
+          "part": "word/media/image40.png",
+          "sha256": "E0A22ADD59887554D9805A1ECE0087BC7CBE6A53D71E9AF089C79E2E07E240CE",
+          "drawing_references_all": 1,
+          "current_same_bytes_part": "word/media/image40.png",
+          "classification": "bytes preserved (part name may change)"
+        },
+        {
+          "rid": "rId64",
+          "part": "word/media/image56.png",
+          "sha256": "D29BC8B5926CACF14D32615BCA345DF89FD8CA33BAD9E61CC46D002D698A46F2",
+          "drawing_references_all": 1,
+          "current_same_bytes_part": "word/media/image56.png",
+          "classification": "bytes preserved (part name may change)"
+        },
+        {
+          "rid": "rId69",
+          "part": "word/media/image61.png",
+          "sha256": "5EFDD75BD6037AD62CAA45BAD68BE8744E763830CBAC761A72617A40F09B6629",
+          "drawing_references_all": 1,
+          "current_same_bytes_part": "word/media/image61.png",
+          "classification": "bytes preserved (part name may change)"
+        },
+        {
+          "rid": "rId80",
+          "part": "word/media/image72.png",
+          "sha256": "D3E4FABC1E46ADFEC4BA8A39CE545E4B2B354EBA80EAC37EC73EC61798F73A57",
+          "drawing_references_all": 1,
+          "current_same_bytes_part": "word/media/image72.png",
+          "classification": "bytes preserved (part name may change)"
+        },
+        {
+          "rid": "rId85",
+          "part": "word/media/image77.png",
+          "sha256": "95C59442BCDBE40471DB4CD6B017E89E3C1FA407773D2524CAB29CCFB12D4D5B",
+          "drawing_references_all": 1,
+          "current_same_bytes_part": "word/media/image77.png",
+          "classification": "bytes preserved (part name may change)"
+        },
+        {
+          "rid": "rId12",
+          "part": "word/media/image4.png",
+          "sha256": "6C5A649D65E40F20E57917506BF53EC58FC8F150C5AB0237CE78835D5E7308DC",
+          "drawing_references_all": 1,
+          "current_same_bytes_part": "word/media/image4.png",
+          "classification": "bytes preserved (part name may change)"
+        },
+        {
+          "rid": "rId17",
+          "part": "word/media/image9.png",
+          "sha256": "E321DCAF061AFEF8731CD7C9453ABC3ACAE5E6A76E96340633E8275D60ED2F29",
+          "drawing_references_all": 1,
+          "current_same_bytes_part": "word/media/image9.png",
+          "classification": "bytes preserved (part name may change)"
+        },
+        {
+          "rid": "rId25",
+          "part": "word/media/image17.png",
+          "sha256": "2B1572B2077522E84611562F753A134EC907404DFA38584F05FFE1FD5A09DA76",
+          "drawing_references_all": 1,
+          "current_same_bytes_part": "word/media/image17.png",
+          "classification": "bytes preserved (part name may change)"
+        },
+        {
+          "rid": "rId33",
+          "part": "word/media/image25.png",
+          "sha256": "C50BDC4D3CDF291D10A6A84A41244B9AD8B1F8736E15BC83D9B1B41A0B1A80AD",
+          "drawing_references_all": 1,
+          "current_same_bytes_part": "word/media/image25.png",
+          "classification": "bytes preserved (part name may change)"
+        },
+        {
+          "rid": "rId38",
+          "part": "word/media/image30.png",
+          "sha256": "1DC173211EC9892C796D26773563D5E887EF298D91BDF7DB990820B7CFC5BBB4",
+          "drawing_references_all": 1,
+          "current_same_bytes_part": "word/media/image30.png",
+          "classification": "bytes preserved (part name may change)"
+        },
+        {
+          "rid": "rId46",
+          "part": "word/media/image38.png",
+          "sha256": "A709231420BF16878B3DACC4A6B4B0D706341884AC6785BBDB6E669CC8353CEE",
+          "drawing_references_all": 1,
+          "current_same_bytes_part": "word/media/image38.png",
+          "classification": "bytes preserved (part name may change)"
+        },
+        {
+          "rid": "rId59",
+          "part": "word/media/image51.png",
+          "sha256": "6D45F32982EF61F4E5B14519CFBE266CBCB4E8D78CF03E9000692ECA89270418",
+          "drawing_references_all": 1,
+          "current_same_bytes_part": "word/media/image51.png",
+          "classification": "bytes preserved (part name may change)"
+        },
+        {
+          "rid": "rId67",
+          "part": "word/media/image59.png",
+          "sha256": "94FA528533B5BCC6EC99407A38D4325406E7A6E8D7212DCBDA6AF5451BB29959",
+          "drawing_references_all": 1,
+          "current_same_bytes_part": "word/media/image59.png",
+          "classification": "bytes preserved (part name may change)"
+        },
+        {
+          "rid": "rId20",
+          "part": "word/media/image12.png",
+          "sha256": "C049BAED6D572F371D514FC6DB88B6757E8CDF5BF39B8841CF36D153015FF86B",
+          "drawing_references_all": 1,
+          "current_same_bytes_part": "word/media/image12.png",
+          "classification": "bytes preserved (part name may change)"
+        },
+        {
+          "rid": "rId41",
+          "part": "word/media/image33.png",
+          "sha256": "7BFC49E83BE52E3BF7E0EF756B38A56927E4513074BEE09D966F039212087C1F",
+          "drawing_references_all": 1,
+          "current_same_bytes_part": "word/media/image33.png",
+          "classification": "bytes preserved (part name may change)"
+        },
+        {
+          "rid": "rId54",
+          "part": "word/media/image46.png",
+          "sha256": "5AC34B825D95760DC380270A435A118756D4463B4E8E6F7C43CFDD24F414F982",
+          "drawing_references_all": 1,
+          "current_same_bytes_part": "word/media/image46.png",
+          "classification": "bytes preserved (part name may change)"
+        },
+        {
+          "rid": "rId62",
+          "part": "word/media/image54.png",
+          "sha256": "9830560DFACB2F9FE9028365364454BD73CA8D6C26B64E16284D450527E08DD8",
+          "drawing_references_all": 1,
+          "current_same_bytes_part": "word/media/image54.png",
+          "classification": "bytes preserved (part name may change)"
+        },
+        {
+          "rid": "rId70",
+          "part": "word/media/image62.emf",
+          "sha256": "FB899722C52CDC157B9470646BECC41AF8CE05F7AB7540A81271E2E43EE78632",
+          "drawing_references_all": 1,
+          "current_same_bytes_part": "word/media/image62.emf",
+          "classification": "bytes preserved (part name may change)"
+        },
+        {
+          "rid": "rId75",
+          "part": "word/media/image67.png",
+          "sha256": "156EE00B0930B14C667D092047C6179ADEB193BB7814D5BCE54B4C232BD5D090",
+          "drawing_references_all": 1,
+          "current_same_bytes_part": "word/media/image67.png",
+          "classification": "bytes preserved (part name may change)"
+        },
+        {
+          "rid": "rId83",
+          "part": "word/media/image75.png",
+          "sha256": "145A2629E4173B90EDBB3A95C65B29DF99E7355935C1E10673D407C3CE37EF5C",
+          "drawing_references_all": 1,
+          "current_same_bytes_part": "word/media/image75.png",
+          "classification": "bytes preserved (part name may change)"
+        },
+        {
+          "rid": "rId88",
+          "part": "word/media/image80.png",
+          "sha256": "0FCE8E429B5F10937E97B5EE5979355DEC7D54FE94F256525C761F66A7C674F9",
+          "drawing_references_all": 1,
+          "current_same_bytes_part": "word/media/image80.png",
+          "classification": "bytes preserved (part name may change)"
+        },
+        {
+          "rid": "rId91",
+          "part": "word/media/image83.png",
+          "sha256": "2C8B276BF5813A258860BDBF83C9D69E036B694CB66BB07E56224DC344396FDD",
+          "drawing_references_all": 1,
+          "current_same_bytes_part": "word/media/image83.png",
+          "classification": "bytes preserved (part name may change)"
+        },
+        {
+          "rid": "rId15",
+          "part": "word/media/image7.png",
+          "sha256": "D765976D40A8EB45E1937134A4EFBF7603C5FF68C7093B2AC81783E47BFB20BC",
+          "drawing_references_all": 1,
+          "current_same_bytes_part": "word/media/image7.png",
+          "classification": "bytes preserved (part name may change)"
+        },
+        {
+          "rid": "rId23",
+          "part": "word/media/image15.png",
+          "sha256": "097E3041CE8E9240CB118CF9E264076EBD6CF45D1C054F5B89EB6E68E9E42473",
+          "drawing_references_all": 1,
+          "current_same_bytes_part": "word/media/image15.png",
+          "classification": "bytes preserved (part name may change)"
+        },
+        {
+          "rid": "rId28",
+          "part": "word/media/image20.png",
+          "sha256": "21589D01FAA299D316B840EADC2988417AB9C1F5367F03D5A4E3A171C11C2773",
+          "drawing_references_all": 1,
+          "current_same_bytes_part": "word/media/image20.png",
+          "classification": "bytes preserved (part name may change)"
+        },
+        {
+          "rid": "rId36",
+          "part": "word/media/image28.png",
+          "sha256": "3E13D742276E767ED9A269F2DEC5B115E15D915FCD1A0A2BFC8A9AE08075549A",
+          "drawing_references_all": 1,
+          "current_same_bytes_part": "word/media/image28.png",
+          "classification": "bytes preserved (part name may change)"
+        },
+        {
+          "rid": "rId49",
+          "part": "word/media/image41.png",
+          "sha256": "8172B1BEC95B2A860648D513271D3F1D1A29BDC37C88E8C44F66FCE67F9EE71F",
+          "drawing_references_all": 1,
+          "current_same_bytes_part": "word/media/image41.png",
+          "classification": "bytes preserved (part name may change)"
+        },
+        {
+          "rid": "rId57",
+          "part": "word/media/image49.png",
+          "sha256": "CD2D3B0DE8FA5EAA57337CA12F90B021BE89758608ACC83017A98B357D1B7236",
+          "drawing_references_all": 1,
+          "current_same_bytes_part": "word/media/image49.png",
+          "classification": "bytes preserved (part name may change)"
+        },
+        {
+          "rid": "rId31",
+          "part": "word/media/image23.png",
+          "sha256": "50DFEF992FF1DF85CD48FDB45D1DEF4B381B014522B189CABCAAE6480AF6D8D5",
+          "drawing_references_all": 1,
+          "current_same_bytes_part": "word/media/image23.png",
+          "classification": "bytes preserved (part name may change)"
+        },
+        {
+          "rid": "rId44",
+          "part": "word/media/image36.png",
+          "sha256": "2D0E42221298C1FFF5568E003EA0F5F211EE8F943BA015C02DD051CED69F47D7",
+          "drawing_references_all": 1,
+          "current_same_bytes_part": "word/media/image36.png",
+          "classification": "bytes preserved (part name may change)"
+        },
+        {
+          "rid": "rId52",
+          "part": "word/media/image44.png",
+          "sha256": "AB1F4E2DF052D4A7BC03D93A5DD23902BF4FE4241052B01DEDA36C86D3238F65",
+          "drawing_references_all": 1,
+          "current_same_bytes_part": "word/media/image44.png",
+          "classification": "bytes preserved (part name may change)"
+        },
+        {
+          "rid": "rId60",
+          "part": "word/media/image52.png",
+          "sha256": "7A86D7A8758EF3F31BA8EB156C0F3DB6E6AC037952AFD43256F356D026DE8767",
+          "drawing_references_all": 1,
+          "current_same_bytes_part": "word/media/image52.png",
+          "classification": "bytes preserved (part name may change)"
+        },
+        {
+          "rid": "rId65",
+          "part": "word/media/image57.png",
+          "sha256": "4051FB8268EA052C41D559EAD008C4B33B11A102F940A9F15F228AF33CA18230",
+          "drawing_references_all": 1,
+          "current_same_bytes_part": "word/media/image57.png",
+          "classification": "bytes preserved (part name may change)"
+        },
+        {
+          "rid": "rId73",
+          "part": "word/media/image65.emf",
+          "sha256": "C351BB196BA85C7E2826ABD7C40DC6A28A97822729D26D8AC7E935B2E9887253",
+          "drawing_references_all": 1,
+          "current_same_bytes_part": "word/media/image65.emf",
+          "classification": "bytes preserved (part name may change)"
+        },
+        {
+          "rid": "rId78",
+          "part": "word/media/image70.png",
+          "sha256": "1F8B1FB9D0C943D0EDD6442177365CB768D231680BF97A43AA968DDF3B682113",
+          "drawing_references_all": 1,
+          "current_same_bytes_part": "word/media/image70.png",
+          "classification": "bytes preserved (part name may change)"
+        },
+        {
+          "rid": "rId81",
+          "part": "word/media/image73.png",
+          "sha256": "249E61693DD222E9E69D71DF44C240F5F0DE983F8E8E2F247B1C2D9D6335F27E",
+          "drawing_references_all": 1,
+          "current_same_bytes_part": "word/media/image73.png",
+          "classification": "bytes preserved (part name may change)"
+        },
+        {
+          "rid": "rId86",
+          "part": "word/media/image78.png",
+          "sha256": "F29C34DDFCD2B332E25CE572D0C2C90A077E6ABB64468FAA9FC9E508CB480A83",
+          "drawing_references_all": 1,
+          "current_same_bytes_part": "word/media/image78.png",
+          "classification": "bytes preserved (part name may change)"
+        },
+        {
+          "rid": "rId9",
+          "part": "word/media/image2.png",
+          "sha256": "F372A9F37393CA468F9923B902FA1F9FDCFD62F7973C36A2B30CA1A81B4C893E",
+          "drawing_references_all": 1,
+          "current_same_bytes_part": "word/media/image2.png",
+          "classification": "bytes preserved (part name may change)"
+        },
+        {
+          "rid": "rId13",
+          "part": "word/media/image5.png",
+          "sha256": "5800F70BE2AB3191A779BD5491CF4C9288F15C417EC578DC2F9D4AA473A7EF63",
+          "drawing_references_all": 1,
+          "current_same_bytes_part": "word/media/image5.png",
+          "classification": "bytes preserved (part name may change)"
+        },
+        {
+          "rid": "rId18",
+          "part": "word/media/image10.png",
+          "sha256": "294A80791D22B5EA9F269B7BC1B22F27762E1EE6301D1A5C7BB6FA556601798A",
+          "drawing_references_all": 1,
+          "current_same_bytes_part": "word/media/image10.png",
+          "classification": "bytes preserved (part name may change)"
+        },
+        {
+          "rid": "rId39",
+          "part": "word/media/image31.png",
+          "sha256": "05502259DF24C44317DF112AEE72A7A643CABCB980B178495243815078899C3D",
+          "drawing_references_all": 1,
+          "current_same_bytes_part": "word/media/image31.png",
+          "classification": "bytes preserved (part name may change)"
+        },
+        {
+          "rid": "rId34",
+          "part": "word/media/image26.png",
+          "sha256": "23A20E9082DE62A5BC15BDF7103C2789CBB31DC12791F5AE248661356909D9DA",
+          "drawing_references_all": 1,
+          "current_same_bytes_part": "word/media/image26.png",
+          "classification": "bytes preserved (part name may change)"
+        },
+        {
+          "rid": "rId50",
+          "part": "word/media/image42.png",
+          "sha256": "2823E3F1AAB54A16CF4DD3EF2F5355739B6C02E1D8E4CACD779F36DA749CFBA9",
+          "drawing_references_all": 1,
+          "current_same_bytes_part": "word/media/image42.png",
+          "classification": "bytes preserved (part name may change)"
+        },
+        {
+          "rid": "rId55",
+          "part": "word/media/image47.png",
+          "sha256": "F2FE825C8B325F53C89D296CD90DD0D6B9A4407C85C46122E9A8494CC2FC7ABA",
+          "drawing_references_all": 1,
+          "current_same_bytes_part": "word/media/image47.png",
+          "classification": "bytes preserved (part name may change)"
+        },
+        {
+          "rid": "rId76",
+          "part": "word/media/image68.png",
+          "sha256": "BD5CF3BBA325ED482C32D8C4395AAAB3092C55B7121BE0315F390838BA225264",
+          "drawing_references_all": 1,
+          "current_same_bytes_part": "word/media/image68.png",
+          "classification": "bytes preserved (part name may change)"
+        },
+        {
+          "rid": "rId71",
+          "part": "word/media/image63.png",
+          "sha256": "23CCDF7A28431F71238A709BB1B543E5DDC94E83CAFEAFB8E78A25ECA42CD684",
+          "drawing_references_all": 1,
+          "current_same_bytes_part": "word/media/image63.png",
+          "classification": "bytes preserved (part name may change)"
+        },
+        {
+          "rid": "rId92",
+          "part": "word/media/image84.png",
+          "sha256": "4F7C67AE618D5610CF330A9DD0C30F6EE5437C2B9376C17C691EF0CFE16E834D",
+          "drawing_references_all": 1,
+          "current_same_bytes_part": "word/media/image84.png",
+          "classification": "bytes preserved (part name may change)"
+        },
+        {
+          "rid": "rId29",
+          "part": "word/media/image21.png",
+          "sha256": "C77929A75E94A4F69AB84FCD1B9A3F416B02459E670187765860F6765E6EE55E",
+          "drawing_references_all": 1,
+          "current_same_bytes_part": "word/media/image21.png",
+          "classification": "bytes preserved (part name may change)"
+        },
+        {
+          "rid": "rId24",
+          "part": "word/media/image16.png",
+          "sha256": "89EB37A9BBE50AE47B5A104A68E0BCDC0654226B66F1AAB1A42DBD2DFC447A5F",
+          "drawing_references_all": 1,
+          "current_same_bytes_part": "word/media/image16.png",
+          "classification": "bytes preserved (part name may change)"
+        },
+        {
+          "rid": "rId40",
+          "part": "word/media/image32.png",
+          "sha256": "4C502898C29FDA94195B4D35B5EDB82CB51EF269BDE86587310DC5D3CCD28994",
+          "drawing_references_all": 1,
+          "current_same_bytes_part": "word/media/image32.png",
+          "classification": "bytes preserved (part name may change)"
+        },
+        {
+          "rid": "rId45",
+          "part": "word/media/image37.png",
+          "sha256": "D0D862334BFE660DE340A0786A501039DA2CCFC8E08DA63FC90A3DBAB84A9D33",
+          "drawing_references_all": 1,
+          "current_same_bytes_part": "word/media/image37.png",
+          "classification": "bytes preserved (part name may change)"
+        },
+        {
+          "rid": "rId66",
+          "part": "word/media/image58.png",
+          "sha256": "7EDDDDDC170D3F3AEAF843D9A0AFD37B4260073CCBA58985C559707E708AE25A",
+          "drawing_references_all": 1,
+          "current_same_bytes_part": "word/media/image58.png",
+          "classification": "bytes preserved (part name may change)"
+        },
+        {
+          "rid": "rId87",
+          "part": "word/media/image79.png",
+          "sha256": "2CCF0376E5241B0B1D984C35D7521CCBB431F6DB412A9BA144A7D03596AD68A4",
+          "drawing_references_all": 1,
+          "current_same_bytes_part": "word/media/image79.png",
+          "classification": "bytes preserved (part name may change)"
+        },
+        {
+          "rid": "rId61",
+          "part": "word/media/image53.png",
+          "sha256": "04C4F090FE070842CFECF285F1CCF2A5D46177BF61866C132F15557B4251A572",
+          "drawing_references_all": 1,
+          "current_same_bytes_part": "word/media/image53.png",
+          "classification": "bytes preserved (part name may change)"
+        },
+        {
+          "rid": "rId82",
+          "part": "word/media/image74.png",
+          "sha256": "9FEB2FC310DFE60C9F09327F6B42D135BA532A31F0149B2A966EC357B3310807",
+          "drawing_references_all": 1,
+          "current_same_bytes_part": "word/media/image74.png",
+          "classification": "bytes preserved (part name may change)"
+        },
+        {
+          "rid": "rId19",
+          "part": "word/media/image11.png",
+          "sha256": "18255E977ED7FC67023A830C3F1C4B83E70B3B43BFFAA89FE24B1CA9B8D9BCE1",
+          "drawing_references_all": 1,
+          "current_same_bytes_part": "word/media/image11.png",
+          "classification": "bytes preserved (part name may change)"
+        },
+        {
+          "rid": "rId14",
+          "part": "word/media/image6.png",
+          "sha256": "0B7EB9ABDCF3C6C37B90604B000B0EA2C5ACFC87B36DD7C5AF8E5EB7F6325CBE",
+          "drawing_references_all": 1,
+          "current_same_bytes_part": "word/media/image6.png",
+          "classification": "bytes preserved (part name may change)"
+        },
+        {
+          "rid": "rId30",
+          "part": "word/media/image22.png",
+          "sha256": "7020C0E21A97ABB4D1E8892E94642C2AE23F0228FFCC77BC642AD228676EF760",
+          "drawing_references_all": 1,
+          "current_same_bytes_part": "word/media/image22.png",
+          "classification": "bytes preserved (part name may change)"
+        },
+        {
+          "rid": "rId35",
+          "part": "word/media/image27.png",
+          "sha256": "2F7FA8E4A5DD0D911F62AE9F9DB3B158FB28C99BBFA6E6B40C2FB3A1AB1E4A51",
+          "drawing_references_all": 1,
+          "current_same_bytes_part": "word/media/image27.png",
+          "classification": "bytes preserved (part name may change)"
+        },
+        {
+          "rid": "rId56",
+          "part": "word/media/image48.png",
+          "sha256": "BE3D2E3C014672196CD6BD2915D0A418066C6D00A3627D4309CD6AB624BE1DB8",
+          "drawing_references_all": 1,
+          "current_same_bytes_part": "word/media/image48.png",
+          "classification": "bytes preserved (part name may change)"
+        },
+        {
+          "rid": "rId77",
+          "part": "word/media/image69.png",
+          "sha256": "B92D8E6E255A8934F1999A108AA5B59FB0215735118AD4EDA23B883135AAAA91",
+          "drawing_references_all": 1,
+          "current_same_bytes_part": "word/media/image69.png",
+          "classification": "bytes preserved (part name may change)"
+        },
+        {
+          "rid": "rId8",
+          "part": "word/media/image1.png",
+          "sha256": "B3F4B3D722E8B5093F6F211D940EC18E28B5B4EEF3CE46769E9E464A461990A2",
+          "drawing_references_all": 1,
+          "current_same_bytes_part": "word/media/image1.png",
+          "classification": "bytes preserved (part name may change)"
+        },
+        {
+          "rid": "rId51",
+          "part": "word/media/image43.png",
+          "sha256": "EB172F969B98B7CDCB34B8770D9B92BE68212628B5B67891103DA3A30ADA9C6A",
+          "drawing_references_all": 1,
+          "current_same_bytes_part": "word/media/image43.png",
+          "classification": "bytes preserved (part name may change)"
+        },
+        {
+          "rid": "rId72",
+          "part": "word/media/image64.png",
+          "sha256": "DC2763FBA7D46BB5B5BD8D332CF5D4F1E4AB0C61B66287D71EA6CCD473725880",
+          "drawing_references_all": 1,
+          "current_same_bytes_part": "word/media/image64.png",
+          "classification": "bytes preserved (part name may change)"
+        },
+        {
+          "rid": "rId93",
+          "part": "word/media/image85.png",
+          "sha256": "7E2655BD6AB12ADA17651BA1D529FA80309084F1BD6A4612A079B48D6CDFDB5C",
+          "drawing_references_all": 1,
+          "current_same_bytes_part": "word/media/image85.png",
+          "classification": "bytes preserved (part name may change)"
+        }
+      ],
+      "all_original_active_media_preserved": true,
+      "current_media": [
+        {
+          "rid": "rId26",
+          "part": "word/media/image18.png",
+          "sha256": "CB04B9A6E36517D44EFDB79E8CF1DE9A2896FEA69B5224B2AA9CC0FA5891AC4C",
+          "drawing_references_all": 1
+        },
+        {
+          "rid": "rId21",
+          "part": "word/media/image13.png",
+          "sha256": "DA1E22161F2619AE0B26404C3C2B337A3AC06AF5628C033D4F5F748624748599",
+          "drawing_references_all": 1
+        },
+        {
+          "rid": "rId42",
+          "part": "word/media/image34.png",
+          "sha256": "B7B8B5C7071D5DD8450A606FC46C9D495B948E7DDDF8B66FE9D0471ACAF1D79A",
+          "drawing_references_all": 1
+        },
+        {
+          "rid": "rId47",
+          "part": "word/media/image39.png",
+          "sha256": "16577E60E53B90E2D42FC73218B90B6481F650649D977C2C9D3314B54DFCD671",
+          "drawing_references_all": 1
+        },
+        {
+          "rid": "rId63",
+          "part": "word/media/image55.png",
+          "sha256": "D7A660A3B8F52D57144F00104D28A23D27F62AF22C6E01A82734BF4E034942F4",
+          "drawing_references_all": 1
+        },
+        {
+          "rid": "rId68",
+          "part": "word/media/image60.png",
+          "sha256": "180AF3D602A199890606DEAC7CBE783FED86E84688FA50C810333E814926CF35",
+          "drawing_references_all": 1
+        },
+        {
+          "rid": "rId84",
+          "part": "word/media/image76.png",
+          "sha256": "C08AFAC614391F1C521E912501B699C3ED17683517C683DBA05FA04A51E2B8F5",
+          "drawing_references_all": 1
+        },
+        {
+          "rid": "rId89",
+          "part": "word/media/image81.png",
+          "sha256": "54E9F778526F9A0D6DA1072B4009DB0472EF1BACC339C94388EDBF5C29AD69DF",
+          "drawing_references_all": 1
+        },
+        {
+          "rid": "rId16",
+          "part": "word/media/image8.png",
+          "sha256": "3F77DF8B77CD7A3938B76B9730E60393E922B438739C828BC43F161EB27F0C6A",
+          "drawing_references_all": 1
+        },
+        {
+          "rid": "rId32",
+          "part": "word/media/image24.png",
+          "sha256": "15EA4CF38AA4E90033B5ECE49780CB7CA3FEF68853E45C9268B4C6DD7F20E0D5",
+          "drawing_references_all": 1
+        },
+        {
+          "rid": "rId37",
+          "part": "word/media/image29.png",
+          "sha256": "72D8D5637D7E7D53AB01AC834E81339FA09233D7A0F842404F1C977983E235EB",
+          "drawing_references_all": 1
+        },
+        {
+          "rid": "rId53",
+          "part": "word/media/image45.png",
+          "sha256": "5781B3F6BB0F4715FE568F6A989BBC7DC5C03BAB138F8AE0B5619D4D4C6407DE",
+          "drawing_references_all": 1
+        },
+        {
+          "rid": "rId58",
+          "part": "word/media/image50.png",
+          "sha256": "1036E7665B57C36C43F02E10A3CFBA8CAC95C69ACD7E1A4C7DCEEA1F25CBCF12",
+          "drawing_references_all": 1
+        },
+        {
+          "rid": "rId74",
+          "part": "word/media/image66.png",
+          "sha256": "C7FB5D0297FE4309C7A0F26D4C2069EB80EB6FB41462E231DAE074391E64EB40",
+          "drawing_references_all": 1
+        },
+        {
+          "rid": "rId79",
+          "part": "word/media/image71.png",
+          "sha256": "11D80C3489EAF7CD26F53CE9F39F321671D24D7013A06D5EF64C2B48E69861FF",
+          "drawing_references_all": 1
+        },
+        {
+          "rid": "rId90",
+          "part": "word/media/image82.png",
+          "sha256": "C7AC5974A2FB72A0F96753CB4D24032B1694041E88112769DC9F55D47DF5F7F3",
+          "drawing_references_all": 1
+        },
+        {
+          "rid": "rId22",
+          "part": "word/media/image14.png",
+          "sha256": "6C8BA8B878358B0F05D1C73B946B20B8BD5814538B36535F45C09A5AC9AAA644",
+          "drawing_references_all": 1
+        },
+        {
+          "rid": "rId27",
+          "part": "word/media/image19.png",
+          "sha256": "2112BA7BFE8B249BFA59DE6D8BFA2293D793BA06DD303743CF8958EEBF43AC33",
+          "drawing_references_all": 1
+        },
+        {
+          "rid": "rId43",
+          "part": "word/media/image35.png",
+          "sha256": "14918EDE9F70BBB6BFE6BB5CB8E29256EDAC826FA2E571BE124AE426B0141A0F",
+          "drawing_references_all": 1
+        },
+        {
+          "rid": "rId48",
+          "part": "word/media/image40.png",
+          "sha256": "E0A22ADD59887554D9805A1ECE0087BC7CBE6A53D71E9AF089C79E2E07E240CE",
+          "drawing_references_all": 1
+        },
+        {
+          "rid": "rId64",
+          "part": "word/media/image56.png",
+          "sha256": "D29BC8B5926CACF14D32615BCA345DF89FD8CA33BAD9E61CC46D002D698A46F2",
+          "drawing_references_all": 1
+        },
+        {
+          "rid": "rId69",
+          "part": "word/media/image61.png",
+          "sha256": "5EFDD75BD6037AD62CAA45BAD68BE8744E763830CBAC761A72617A40F09B6629",
+          "drawing_references_all": 1
+        },
+        {
+          "rid": "rId80",
+          "part": "word/media/image72.png",
+          "sha256": "D3E4FABC1E46ADFEC4BA8A39CE545E4B2B354EBA80EAC37EC73EC61798F73A57",
+          "drawing_references_all": 1
+        },
+        {
+          "rid": "rId85",
+          "part": "word/media/image77.png",
+          "sha256": "95C59442BCDBE40471DB4CD6B017E89E3C1FA407773D2524CAB29CCFB12D4D5B",
+          "drawing_references_all": 1
+        },
+        {
+          "rid": "rId12",
+          "part": "word/media/image4.png",
+          "sha256": "6C5A649D65E40F20E57917506BF53EC58FC8F150C5AB0237CE78835D5E7308DC",
+          "drawing_references_all": 1
+        },
+        {
+          "rid": "rId17",
+          "part": "word/media/image9.png",
+          "sha256": "E321DCAF061AFEF8731CD7C9453ABC3ACAE5E6A76E96340633E8275D60ED2F29",
+          "drawing_references_all": 1
+        },
+        {
+          "rid": "rId25",
+          "part": "word/media/image17.png",
+          "sha256": "2B1572B2077522E84611562F753A134EC907404DFA38584F05FFE1FD5A09DA76",
+          "drawing_references_all": 1
+        },
+        {
+          "rid": "rId33",
+          "part": "word/media/image25.png",
+          "sha256": "C50BDC4D3CDF291D10A6A84A41244B9AD8B1F8736E15BC83D9B1B41A0B1A80AD",
+          "drawing_references_all": 1
+        },
+        {
+          "rid": "rId38",
+          "part": "word/media/image30.png",
+          "sha256": "1DC173211EC9892C796D26773563D5E887EF298D91BDF7DB990820B7CFC5BBB4",
+          "drawing_references_all": 1
+        },
+        {
+          "rid": "rId46",
+          "part": "word/media/image38.png",
+          "sha256": "A709231420BF16878B3DACC4A6B4B0D706341884AC6785BBDB6E669CC8353CEE",
+          "drawing_references_all": 1
+        },
+        {
+          "rid": "rId59",
+          "part": "word/media/image51.png",
+          "sha256": "6D45F32982EF61F4E5B14519CFBE266CBCB4E8D78CF03E9000692ECA89270418",
+          "drawing_references_all": 1
+        },
+        {
+          "rid": "rId67",
+          "part": "word/media/image59.png",
+          "sha256": "94FA528533B5BCC6EC99407A38D4325406E7A6E8D7212DCBDA6AF5451BB29959",
+          "drawing_references_all": 1
+        },
+        {
+          "rid": "rId20",
+          "part": "word/media/image12.png",
+          "sha256": "C049BAED6D572F371D514FC6DB88B6757E8CDF5BF39B8841CF36D153015FF86B",
+          "drawing_references_all": 1
+        },
+        {
+          "rid": "rId41",
+          "part": "word/media/image33.png",
+          "sha256": "7BFC49E83BE52E3BF7E0EF756B38A56927E4513074BEE09D966F039212087C1F",
+          "drawing_references_all": 1
+        },
+        {
+          "rid": "rId54",
+          "part": "word/media/image46.png",
+          "sha256": "5AC34B825D95760DC380270A435A118756D4463B4E8E6F7C43CFDD24F414F982",
+          "drawing_references_all": 1
+        },
+        {
+          "rid": "rId62",
+          "part": "word/media/image54.png",
+          "sha256": "9830560DFACB2F9FE9028365364454BD73CA8D6C26B64E16284D450527E08DD8",
+          "drawing_references_all": 1
+        },
+        {
+          "rid": "rId70",
+          "part": "word/media/image62.emf",
+          "sha256": "FB899722C52CDC157B9470646BECC41AF8CE05F7AB7540A81271E2E43EE78632",
+          "drawing_references_all": 1
+        },
+        {
+          "rid": "rId75",
+          "part": "word/media/image67.png",
+          "sha256": "156EE00B0930B14C667D092047C6179ADEB193BB7814D5BCE54B4C232BD5D090",
+          "drawing_references_all": 1
+        },
+        {
+          "rid": "rId83",
+          "part": "word/media/image75.png",
+          "sha256": "145A2629E4173B90EDBB3A95C65B29DF99E7355935C1E10673D407C3CE37EF5C",
+          "drawing_references_all": 1
+        },
+        {
+          "rid": "rId88",
+          "part": "word/media/image80.png",
+          "sha256": "0FCE8E429B5F10937E97B5EE5979355DEC7D54FE94F256525C761F66A7C674F9",
+          "drawing_references_all": 1
+        },
+        {
+          "rid": "rId91",
+          "part": "word/media/image83.png",
+          "sha256": "2C8B276BF5813A258860BDBF83C9D69E036B694CB66BB07E56224DC344396FDD",
+          "drawing_references_all": 1
+        },
+        {
+          "rid": "rId15",
+          "part": "word/media/image7.png",
+          "sha256": "D765976D40A8EB45E1937134A4EFBF7603C5FF68C7093B2AC81783E47BFB20BC",
+          "drawing_references_all": 1
+        },
+        {
+          "rid": "rId23",
+          "part": "word/media/image15.png",
+          "sha256": "097E3041CE8E9240CB118CF9E264076EBD6CF45D1C054F5B89EB6E68E9E42473",
+          "drawing_references_all": 1
+        },
+        {
+          "rid": "rId28",
+          "part": "word/media/image20.png",
+          "sha256": "21589D01FAA299D316B840EADC2988417AB9C1F5367F03D5A4E3A171C11C2773",
+          "drawing_references_all": 1
+        },
+        {
+          "rid": "rId36",
+          "part": "word/media/image28.png",
+          "sha256": "3E13D742276E767ED9A269F2DEC5B115E15D915FCD1A0A2BFC8A9AE08075549A",
+          "drawing_references_all": 1
+        },
+        {
+          "rid": "rId49",
+          "part": "word/media/image41.png",
+          "sha256": "8172B1BEC95B2A860648D513271D3F1D1A29BDC37C88E8C44F66FCE67F9EE71F",
+          "drawing_references_all": 1
+        },
+        {
+          "rid": "rId57",
+          "part": "word/media/image49.png",
+          "sha256": "CD2D3B0DE8FA5EAA57337CA12F90B021BE89758608ACC83017A98B357D1B7236",
+          "drawing_references_all": 1
+        },
+        {
+          "rid": "rId31",
+          "part": "word/media/image23.png",
+          "sha256": "50DFEF992FF1DF85CD48FDB45D1DEF4B381B014522B189CABCAAE6480AF6D8D5",
+          "drawing_references_all": 1
+        },
+        {
+          "rid": "rId44",
+          "part": "word/media/image36.png",
+          "sha256": "2D0E42221298C1FFF5568E003EA0F5F211EE8F943BA015C02DD051CED69F47D7",
+          "drawing_references_all": 1
+        },
+        {
+          "rid": "rId52",
+          "part": "word/media/image44.png",
+          "sha256": "AB1F4E2DF052D4A7BC03D93A5DD23902BF4FE4241052B01DEDA36C86D3238F65",
+          "drawing_references_all": 1
+        },
+        {
+          "rid": "rId60",
+          "part": "word/media/image52.png",
+          "sha256": "7A86D7A8758EF3F31BA8EB156C0F3DB6E6AC037952AFD43256F356D026DE8767",
+          "drawing_references_all": 1
+        },
+        {
+          "rid": "rId65",
+          "part": "word/media/image57.png",
+          "sha256": "4051FB8268EA052C41D559EAD008C4B33B11A102F940A9F15F228AF33CA18230",
+          "drawing_references_all": 1
+        },
+        {
+          "rid": "rId73",
+          "part": "word/media/image65.emf",
+          "sha256": "C351BB196BA85C7E2826ABD7C40DC6A28A97822729D26D8AC7E935B2E9887253",
+          "drawing_references_all": 1
+        },
+        {
+          "rid": "rId78",
+          "part": "word/media/image70.png",
+          "sha256": "1F8B1FB9D0C943D0EDD6442177365CB768D231680BF97A43AA968DDF3B682113",
+          "drawing_references_all": 1
+        },
+        {
+          "rid": "rId81",
+          "part": "word/media/image73.png",
+          "sha256": "249E61693DD222E9E69D71DF44C240F5F0DE983F8E8E2F247B1C2D9D6335F27E",
+          "drawing_references_all": 1
+        },
+        {
+          "rid": "rId86",
+          "part": "word/media/image78.png",
+          "sha256": "F29C34DDFCD2B332E25CE572D0C2C90A077E6ABB64468FAA9FC9E508CB480A83",
+          "drawing_references_all": 1
+        },
+        {
+          "rid": "rId9",
+          "part": "word/media/image2.png",
+          "sha256": "F372A9F37393CA468F9923B902FA1F9FDCFD62F7973C36A2B30CA1A81B4C893E",
+          "drawing_references_all": 1
+        },
+        {
+          "rid": "rId13",
+          "part": "word/media/image5.png",
+          "sha256": "5800F70BE2AB3191A779BD5491CF4C9288F15C417EC578DC2F9D4AA473A7EF63",
+          "drawing_references_all": 1
+        },
+        {
+          "rid": "rId18",
+          "part": "word/media/image10.png",
+          "sha256": "294A80791D22B5EA9F269B7BC1B22F27762E1EE6301D1A5C7BB6FA556601798A",
+          "drawing_references_all": 1
+        },
+        {
+          "rid": "rId39",
+          "part": "word/media/image31.png",
+          "sha256": "05502259DF24C44317DF112AEE72A7A643CABCB980B178495243815078899C3D",
+          "drawing_references_all": 1
+        },
+        {
+          "rid": "rId34",
+          "part": "word/media/image26.png",
+          "sha256": "23A20E9082DE62A5BC15BDF7103C2789CBB31DC12791F5AE248661356909D9DA",
+          "drawing_references_all": 1
+        },
+        {
+          "rid": "rId50",
+          "part": "word/media/image42.png",
+          "sha256": "2823E3F1AAB54A16CF4DD3EF2F5355739B6C02E1D8E4CACD779F36DA749CFBA9",
+          "drawing_references_all": 1
+        },
+        {
+          "rid": "rId55",
+          "part": "word/media/image47.png",
+          "sha256": "F2FE825C8B325F53C89D296CD90DD0D6B9A4407C85C46122E9A8494CC2FC7ABA",
+          "drawing_references_all": 1
+        },
+        {
+          "rid": "rId76",
+          "part": "word/media/image68.png",
+          "sha256": "BD5CF3BBA325ED482C32D8C4395AAAB3092C55B7121BE0315F390838BA225264",
+          "drawing_references_all": 1
+        },
+        {
+          "rid": "rId71",
+          "part": "word/media/image63.png",
+          "sha256": "23CCDF7A28431F71238A709BB1B543E5DDC94E83CAFEAFB8E78A25ECA42CD684",
+          "drawing_references_all": 1
+        },
+        {
+          "rid": "rId92",
+          "part": "word/media/image84.png",
+          "sha256": "4F7C67AE618D5610CF330A9DD0C30F6EE5437C2B9376C17C691EF0CFE16E834D",
+          "drawing_references_all": 1
+        },
+        {
+          "rid": "rId29",
+          "part": "word/media/image21.png",
+          "sha256": "C77929A75E94A4F69AB84FCD1B9A3F416B02459E670187765860F6765E6EE55E",
+          "drawing_references_all": 1
+        },
+        {
+          "rid": "rId24",
+          "part": "word/media/image16.png",
+          "sha256": "89EB37A9BBE50AE47B5A104A68E0BCDC0654226B66F1AAB1A42DBD2DFC447A5F",
+          "drawing_references_all": 1
+        },
+        {
+          "rid": "rId40",
+          "part": "word/media/image32.png",
+          "sha256": "4C502898C29FDA94195B4D35B5EDB82CB51EF269BDE86587310DC5D3CCD28994",
+          "drawing_references_all": 1
+        },
+        {
+          "rid": "rId45",
+          "part": "word/media/image37.png",
+          "sha256": "D0D862334BFE660DE340A0786A501039DA2CCFC8E08DA63FC90A3DBAB84A9D33",
+          "drawing_references_all": 1
+        },
+        {
+          "rid": "rId66",
+          "part": "word/media/image58.png",
+          "sha256": "7EDDDDDC170D3F3AEAF843D9A0AFD37B4260073CCBA58985C559707E708AE25A",
+          "drawing_references_all": 1
+        },
+        {
+          "rid": "rId87",
+          "part": "word/media/image79.png",
+          "sha256": "2CCF0376E5241B0B1D984C35D7521CCBB431F6DB412A9BA144A7D03596AD68A4",
+          "drawing_references_all": 1
+        },
+        {
+          "rid": "rId61",
+          "part": "word/media/image53.png",
+          "sha256": "04C4F090FE070842CFECF285F1CCF2A5D46177BF61866C132F15557B4251A572",
+          "drawing_references_all": 1
+        },
+        {
+          "rid": "rId82",
+          "part": "word/media/image74.png",
+          "sha256": "9FEB2FC310DFE60C9F09327F6B42D135BA532A31F0149B2A966EC357B3310807",
+          "drawing_references_all": 1
+        },
+        {
+          "rid": "rId19",
+          "part": "word/media/image11.png",
+          "sha256": "18255E977ED7FC67023A830C3F1C4B83E70B3B43BFFAA89FE24B1CA9B8D9BCE1",
+          "drawing_references_all": 1
+        },
+        {
+          "rid": "rId14",
+          "part": "word/media/image6.png",
+          "sha256": "0B7EB9ABDCF3C6C37B90604B000B0EA2C5ACFC87B36DD7C5AF8E5EB7F6325CBE",
+          "drawing_references_all": 1
+        },
+        {
+          "rid": "rId30",
+          "part": "word/media/image22.png",
+          "sha256": "7020C0E21A97ABB4D1E8892E94642C2AE23F0228FFCC77BC642AD228676EF760",
+          "drawing_references_all": 1
+        },
+        {
+          "rid": "rId35",
+          "part": "word/media/image27.png",
+          "sha256": "2F7FA8E4A5DD0D911F62AE9F9DB3B158FB28C99BBFA6E6B40C2FB3A1AB1E4A51",
+          "drawing_references_all": 1
+        },
+        {
+          "rid": "rId56",
+          "part": "word/media/image48.png",
+          "sha256": "BE3D2E3C014672196CD6BD2915D0A418066C6D00A3627D4309CD6AB624BE1DB8",
+          "drawing_references_all": 1
+        },
+        {
+          "rid": "rId77",
+          "part": "word/media/image69.png",
+          "sha256": "B92D8E6E255A8934F1999A108AA5B59FB0215735118AD4EDA23B883135AAAA91",
+          "drawing_references_all": 1
+        },
+        {
+          "rid": "rId8",
+          "part": "word/media/image1.png",
+          "sha256": "B3F4B3D722E8B5093F6F211D940EC18E28B5B4EEF3CE46769E9E464A461990A2",
+          "drawing_references_all": 1
+        },
+        {
+          "rid": "rId51",
+          "part": "word/media/image43.png",
+          "sha256": "EB172F969B98B7CDCB34B8770D9B92BE68212628B5B67891103DA3A30ADA9C6A",
+          "drawing_references_all": 1
+        },
+        {
+          "rid": "rId72",
+          "part": "word/media/image64.png",
+          "sha256": "DC2763FBA7D46BB5B5BD8D332CF5D4F1E4AB0C61B66287D71EA6CCD473725880",
+          "drawing_references_all": 1
+        },
+        {
+          "rid": "rId93",
+          "part": "word/media/image85.png",
+          "sha256": "7E2655BD6AB12ADA17651BA1D529FA80309084F1BD6A4612A079B48D6CDFDB5C",
+          "drawing_references_all": 1
+        },
+        {
+          "rid": "rIdQccDesignFigureSDDD",
+          "part": "word/media/qcc_design_sddd.png",
+          "sha256": "C26519AE3B5D75E5542CB92BE0BB8F776F828DF2A802B4F9C52651E5F5DA980C",
+          "drawing_references_all": 1
+        }
+      ]
+    },
+    {
+      "code": "SIP",
+      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SIP-FW-TD24A 소프트웨어 통합 계획서.docx",
+      "current_sha256": "3C9FF2237625C78416F3C501D12196E477615DB15625624E7E391572EDCD2C47",
+      "original_path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300] SIP-FW-TD24A 소프트웨어 통합 계획서.docx",
+      "original_sha256": "7EB0438F5AF2BF991BB06BA843D4A6040A38683CD53F6DBFE58F9DDEC2305D02",
+      "original_unchanged": true,
+      "nested_revisions": [
+        {
+          "inner_kind": "del",
+          "inner_id": "718",
+          "inner_date": "2026-10-12T13:05:08Z",
+          "outer_kind": "ins",
+          "outer_id": "228",
+          "outer_date": "2026-09-29T18:28:00Z",
+          "outer_signature_matches_baselines": [
+            "E8300 original",
+            "SIP-before-final-targeted.docx"
+          ],
+          "classification": "deletion inside a pre-existing unaccepted insertion"
+        },
+        {
+          "inner_kind": "del",
+          "inner_id": "308",
+          "inner_date": "2026-10-12T12:28:00Z",
+          "outer_kind": "ins",
+          "outer_id": "307",
+          "outer_date": "2026-10-12T00:00:00Z",
+          "outer_signature_matches_baselines": [
+            "E8300 original",
+            "SIP-before-final-targeted.docx"
+          ],
+          "classification": "deletion inside a pre-existing unaccepted insertion"
+        },
+        {
+          "inner_kind": "del",
+          "inner_id": "323",
+          "inner_date": "2026-10-12T12:28:00Z",
+          "outer_kind": "ins",
+          "outer_id": "322",
+          "outer_date": "2026-10-12T00:00:00Z",
+          "outer_signature_matches_baselines": [
+            "E8300 original",
+            "SIP-before-final-targeted.docx"
+          ],
+          "classification": "deletion inside a pre-existing unaccepted insertion"
+        },
+        {
+          "inner_kind": "del",
+          "inner_id": "527",
+          "inner_date": "2026-10-12T12:28:00Z",
+          "outer_kind": "ins",
+          "outer_id": "526",
+          "outer_date": "2026-10-12T00:00:00Z",
+          "outer_signature_matches_baselines": [
+            "E8300 original",
+            "SIP-before-final-targeted.docx"
+          ],
+          "classification": "deletion inside a pre-existing unaccepted insertion"
+        },
+        {
+          "inner_kind": "del",
+          "inner_id": "654",
+          "inner_date": "2026-10-12T12:28:00Z",
+          "outer_kind": "ins",
+          "outer_id": "653",
+          "outer_date": "2026-10-12T00:00:00Z",
+          "outer_signature_matches_baselines": [
+            "E8300 original",
+            "SIP-before-final-targeted.docx"
+          ],
+          "classification": "deletion inside a pre-existing unaccepted insertion"
+        }
+      ],
+      "nested_insertions_count": 0,
+      "nested_under_deletion_count": 0,
+      "all_nested_are_baseline_insertion_deletions": true,
+      "revision_id_difference_is_not_new_revision_evidence": "Word field saves renumber revisions; use author/date/content and ancestor baseline signatures.",
+      "original_media_by_hash": [
+        {
+          "rid": "rId8",
+          "part": "word/media/image1.png",
+          "sha256": "B3F4B3D722E8B5093F6F211D940EC18E28B5B4EEF3CE46769E9E464A461990A2",
+          "drawing_references_all": 1,
+          "current_same_bytes_part": "word/media/image1.png",
+          "classification": "bytes preserved (part name may change)"
+        },
+        {
+          "rid": "rId11",
+          "part": "word/media/image4.png",
+          "sha256": "2E0B282CE824577EF14B77A0A0EED982BACB632D6B7254CD29BA8C02EB03A92F",
+          "drawing_references_all": 0,
+          "current_same_bytes_part": null,
+          "classification": "unreferenced original orphan removed by Office"
+        },
+        {
+          "rid": "rId10",
+          "part": "word/media/image3.png",
+          "sha256": "3AC1D9CB2BFD986907665D31DB3F46436A91F0E91B67C7B7C7131AAFA02D358E",
+          "drawing_references_all": 1,
+          "current_same_bytes_part": "word/media/image3.png",
+          "classification": "bytes preserved (part name may change)"
+        },
+        {
+          "rid": "rId9",
+          "part": "word/media/image2.png",
+          "sha256": "F372A9F37393CA468F9923B902FA1F9FDCFD62F7973C36A2B30CA1A81B4C893E",
+          "drawing_references_all": 1,
+          "current_same_bytes_part": "word/media/image2.png",
+          "classification": "bytes preserved (part name may change)"
+        },
+        {
+          "rid": "rIdSound1SipArchitecture",
+          "part": "word/media/sound1_sip_architecture.png",
+          "sha256": "1CB0D55175AE0717744AC8DBE0D94C8C6F404E84B106F843A8D09054B5F39FB5",
+          "drawing_references_all": 1,
+          "current_same_bytes_part": "word/media/image4.png",
+          "classification": "bytes preserved (part name may change)"
+        }
+      ],
+      "all_original_active_media_preserved": true,
+      "current_media": [
+        {
+          "rid": "rId8",
+          "part": "word/media/image1.png",
+          "sha256": "B3F4B3D722E8B5093F6F211D940EC18E28B5B4EEF3CE46769E9E464A461990A2",
+          "drawing_references_all": 1
+        },
+        {
+          "rid": "rId11",
+          "part": "word/media/image4.png",
+          "sha256": "1CB0D55175AE0717744AC8DBE0D94C8C6F404E84B106F843A8D09054B5F39FB5",
+          "drawing_references_all": 1
+        },
+        {
+          "rid": "rId10",
+          "part": "word/media/image3.png",
+          "sha256": "3AC1D9CB2BFD986907665D31DB3F46436A91F0E91B67C7B7C7131AAFA02D358E",
+          "drawing_references_all": 1
+        },
+        {
+          "rid": "rId9",
+          "part": "word/media/image2.png",
+          "sha256": "F372A9F37393CA468F9923B902FA1F9FDCFD62F7973C36A2B30CA1A81B4C893E",
+          "drawing_references_all": 1
+        },
+        {
+          "rid": "rIdQccDesignFigureSIP",
+          "part": "word/media/qcc_design_sip.png",
+          "sha256": "290F8A149EAB31200A07BB193E81EB193B76FC09A334AAAAF3D39765405CA1F3",
+          "drawing_references_all": 1
+        }
+      ]
+    }
+  ],
+  "SAD_native_revision_collection_limitation": {
+    "known_id": "pPrChange3424 at TOC final field-end paragraph",
+    "xml_duplicate_format_change": false,
+    "diagnostic": "Current item38/39 null, prior targeted backup item38 deletion/item39 paragraph deletion readable. Remove only3424 from diagnostic copy while preserving1pt current format makes38/39 readable. All diagnostic files read-only/native unsaved; G not changed.",
+    "proof_files": [
+      "qa/qcc_design/SAD-format-track-xml-probe.json",
+      "qa/qcc_design/SAD-format-track-native-quick.json"
+    ],
+    "completion_validation": "Root QA-copy field save compares accepted/rejected complete body text, ordered image hashes, author+minute-date revision text, and current56 gap notices. See qa/final-word/SAD-candidate-proof.json; PASS stated by root.",
+    "exhaustive_probe": "Stopped optional exhaustive probe shell after quick isolated comparison established cause and root accepted/rejected XML/figure/revision-text candidate proof passed. No G edit by probe."
+  },
+  "findings_resolutions": [
+    {
+      "finding": "Unit/integration merged ID labels split at print page boundary",
+      "resolution": "15 unit/7 integration group starts manual break by test owner; latest full native pages PASS."
+    },
+    {
+      "finding": "SRS H49 upper trace overflow",
+      "resolution": "WrapText style191; native H49 one-page verification PASS."
+    },
+    {
+      "finding": "Unit002 missing support test4",
+      "resolution": "Tracked sibling insertion in unit002; native152 verified; main test5 retained."
+    },
+    {
+      "finding": "QCC diagram generic unavailable module placeholder",
+      "resolution": "Code-generated true tracked replacement in all three copies, old bytes/relationships retained. SDDD12/SIP5/SAD6 latest full native PASS."
+    },
+    {
+      "finding": "SAD blank4 page + wrong SDP ref + SOUP overclaim",
+      "resolution": "Latest saved SAD47pages native3/4/47 verified: TOC/intro adjacent, TD24A ref correct, SOUP E8300 scope and QCC pending scoped. PASS."
+    }
+  ],
+  "SAD_final_native": {
+    "pages": 47,
+    "full_png_pages_viewed": [
+      3,
+      4,
+      6,
+      47
+    ],
+    "TOC_cache_coherent": true,
+    "TOC_entries": "Introduction4 / hardware5 / architecture6 / QCC8..10 / trace12 / SOUP46 / validation46 match native header numbers.",
+    "blank_page4_removed": "Page3 TOC directly followed by page4 Introduction; no blank intervening page.",
+    "SDP_reference": "SDP-FW-TD24A visible in page4 table.",
+    "SOUP_scope": "Page47 E8300 identified scope retained; QCC exact product/version/operation review unconfirmed with full red+underline request.",
+    "diagram_page6": "Full code-generated 4 modules / 14 units shown; chip/core and cross-core functional bands retained; implementation/measurement unconfirmed visible; no clipping.",
+    "root_candidate_proof": {
+      "path": "qa/final-word/SAD-candidate-proof.json",
+      "pass": true,
+      "checks": {
+        "accept": true,
+        "reject": true,
+        "body_revision_fingerprints": true,
+        "current_notice_text": true
+      },
+      "after_sha256": "47b8fb9a30eb01470730a096e38a74b986ab2956bb7e69623accca17e0197117"
+    },
+    "result": "PASS"
+  },
+  "completed_utc": "2026-10-12T13:22:02.610055+00:00"
+}

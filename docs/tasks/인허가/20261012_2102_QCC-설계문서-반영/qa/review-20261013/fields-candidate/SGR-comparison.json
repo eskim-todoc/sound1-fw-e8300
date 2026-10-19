@@ -1,0 +1,106 @@
+{
+  "before": ".\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\pre-fields\\SGR.docx",
+  "after": ".\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\fields-candidate\\[E8300-QCC] SGR-FW-TD24A 소프트웨어 일반요구사항.docx",
+  "before_sha256": "2955fe9ee21672677e86f997d281094fdbe7aa143baf688949b2d6f8d84b014b",
+  "after_sha256": "b974ac111608a2e742f9d6c62b4925cbf71e749555c4fa87ca0555cf02730e91",
+  "checks": {
+    "accept": true,
+    "reject": true,
+    "body_revision_fingerprints": true,
+    "current_notice_text": true
+  },
+  "before_semantics": {
+    "accept": {
+      "body_text_sha256": "e3822d5f2765cf38d256dba00ccb5b4d86ecb776118d8e9fa91b4c07df7ddfbd",
+      "body_text_length": 5725,
+      "picture_hashes_in_order": [
+        "46b1dd38f1809cf8f298210633dfc54c0fbfc85054fa7c0beaee35669d691340",
+        "de92c0479e61c1a76fd7bfcd9f7447dddb5bb3dbd334c395620d92ae07edef51"
+      ]
+    },
+    "reject": {
+      "body_text_sha256": "c52b9e4871157b5dce2c053d4143d97d9e7331615d97f8d4b084b38dc9983d79",
+      "body_text_length": 5083,
+      "picture_hashes_in_order": [
+        "b3f4b3d722e8b5093f6f211d940ec18e28b5b4eef3ce46769e9e464a461990a2",
+        "f372a9f37393ca468f9923b902fa1f9fdcfd62f7973c36a2b30ca1a81b4c893e",
+        "46b1dd38f1809cf8f298210633dfc54c0fbfc85054fa7c0beaee35669d691340",
+        "de92c0479e61c1a76fd7bfcd9f7447dddb5bb3dbd334c395620d92ae07edef51"
+      ]
+    },
+    "body_revision_fingerprints": {
+      "del|김은수|2026-09-28T17:07": {
+        "length": 98,
+        "sha256": "87021e35631d8eeca7b5fd6986fd07eeb4bc1875c87a6e86d0538233ed776e84"
+      },
+      "ins|김은수|2026-09-28T17:07": {
+        "length": 97,
+        "sha256": "7f99531e07741460b0cbba8dacef4c6b57c57fa04a9cf62ebf55a7c1a09dc98a"
+      },
+      "ins|김은수|2026-10-12T12:26": {
+        "length": 525,
+        "sha256": "32ac09028e7c032a32c65810a5f128d243f56833927d14e1421ce071f759fdba"
+      },
+      "del|김은수|2026-10-12T23:56": {
+        "length": 124,
+        "sha256": "b5c2d5bf52c1cc68b93c59b386032bf91ba95d7c388fcad06694be237e3ac473"
+      },
+      "ins|김은수|2026-10-12T23:56": {
+        "length": 242,
+        "sha256": "8b73f2362201f1d06a8dda9decac108e1d0f2426ea14e4fa5fbac655c684afda"
+      }
+    },
+    "current_notice_text": [
+      "[QCC 자료 입력] QCC의 실제 ADK/실행 환경, scheduler 구성과 사용 버전을 입력한다.",
+      "[QCC 자료 입력] QCC 제조사 소프트웨어의 식별/버전, 사용 범위와 검토 근거를 입력한다."
+    ]
+  },
+  "after_semantics": {
+    "accept": {
+      "body_text_sha256": "e3822d5f2765cf38d256dba00ccb5b4d86ecb776118d8e9fa91b4c07df7ddfbd",
+      "body_text_length": 5725,
+      "picture_hashes_in_order": [
+        "46b1dd38f1809cf8f298210633dfc54c0fbfc85054fa7c0beaee35669d691340",
+        "de92c0479e61c1a76fd7bfcd9f7447dddb5bb3dbd334c395620d92ae07edef51"
+      ]
+    },
+    "reject": {
+      "body_text_sha256": "c52b9e4871157b5dce2c053d4143d97d9e7331615d97f8d4b084b38dc9983d79",
+      "body_text_length": 5083,
+      "picture_hashes_in_order": [
+        "b3f4b3d722e8b5093f6f211d940ec18e28b5b4eef3ce46769e9e464a461990a2",
+        "f372a9f37393ca468f9923b902fa1f9fdcfd62f7973c36a2b30ca1a81b4c893e",
+        "46b1dd38f1809cf8f298210633dfc54c0fbfc85054fa7c0beaee35669d691340",
+        "de92c0479e61c1a76fd7bfcd9f7447dddb5bb3dbd334c395620d92ae07edef51"
+      ]
+    },
+    "body_revision_fingerprints": {
+      "del|김은수|2026-09-28T17:07": {
+        "length": 98,
+        "sha256": "87021e35631d8eeca7b5fd6986fd07eeb4bc1875c87a6e86d0538233ed776e84"
+      },
+      "ins|김은수|2026-09-28T17:07": {
+        "length": 97,
+        "sha256": "7f99531e07741460b0cbba8dacef4c6b57c57fa04a9cf62ebf55a7c1a09dc98a"
+      },
+      "ins|김은수|2026-10-12T12:26": {
+        "length": 525,
+        "sha256": "32ac09028e7c032a32c65810a5f128d243f56833927d14e1421ce071f759fdba"
+      },
+      "del|김은수|2026-10-12T23:56": {
+        "length": 124,
+        "sha256": "b5c2d5bf52c1cc68b93c59b386032bf91ba95d7c388fcad06694be237e3ac473"
+      },
+      "ins|김은수|2026-10-12T23:56": {
+        "length": 242,
+        "sha256": "8b73f2362201f1d06a8dda9decac108e1d0f2426ea14e4fa5fbac655c684afda"
+      }
+    },
+    "current_notice_text": [
+      "[QCC 자료 입력] QCC의 실제 ADK/실행 환경, scheduler 구성과 사용 버전을 입력한다.",
+      "[QCC 자료 입력] QCC 제조사 소프트웨어의 식별/버전, 사용 범위와 검토 근거를 입력한다."
+    ]
+  },
+  "pass": true,
+  "scope": "TOC and computed fields excluded; accepted/rejected body text, drawings and author/date revision text preserved"
+}

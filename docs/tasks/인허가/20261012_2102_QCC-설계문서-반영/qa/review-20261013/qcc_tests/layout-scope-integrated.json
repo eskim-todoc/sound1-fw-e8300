@@ -1,0 +1,62 @@
+{
+  "write": true,
+  "files": [
+    {
+      "key": "SUVC",
+      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SUVC-FW-TD24A 소프트웨어 유닛 검증 기준서.xlsx",
+      "sha256_before": "014ac906bdedb3d52f8e0a704480ae18d6da29c11467c2f634ff1c6ae9b63ca3",
+      "member": "xl/worksheets/sheet2.xml",
+      "changed_cells": [
+        "D24"
+      ],
+      "page_break_after_rows": [],
+      "height_changes": {
+        "24": 77
+      },
+      "all_other_values_and_package_members_unchanged": true,
+      "sha256_after": "3ac014bfec9a87ffa92a12dfa01497a48fcff5e94c792289916e71cfa1cc257b"
+    },
+    {
+      "key": "SUVR",
+      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\04_설계 검증\\SW\\외부기\\[E8300-QCC] SUVR-FW-TD24A 소프트웨어 유닛 검증 보고서.xlsx",
+      "sha256_before": "bcc605f85ba6aa93836c2918d6a9b6a3df7bdcd949823758b5bbc8687a66b729",
+      "member": "xl/worksheets/sheet2.xml",
+      "changed_cells": [
+        "D24"
+      ],
+      "page_break_after_rows": [],
+      "height_changes": {
+        "24": 77
+      },
+      "all_other_values_and_package_members_unchanged": true,
+      "sha256_after": "f4dbae9dbf3cad87f66c28c85846d289c6160378847b9a8152a39a6457a898f6"
+    },
+    {
+      "key": "SSTC",
+      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SSTC-FW-TD24A 소프트웨어 시스템 시험 기준서.xlsx",
+      "sha256_before": "bd5c80557f5a06c56c3727665016f257f95cae2d40d00a9356bf20d9ee4f9616",
+      "member": "xl/worksheets/sheet2.xml",
+      "changed_cells": [],
+      "page_break_after_rows": [
+        218
+      ],
+      "height_changes": {},
+      "all_other_values_and_package_members_unchanged": true,
+      "sha256_after": "b29a9e4a2c340ccd1c9a61003350a7eb0c0f01260f62f45946dd899b2ebcb229"
+    },
+    {
+      "key": "SSTR",
+      "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\04_설계 검증\\SW\\외부기\\[E8300-QCC] SSTR-FW-TD24A 소프트웨어 시스템 시험 보고서.xlsx",
+      "sha256_before": "84fb5e568b36df97dd4d3974bdc3f3d70614f7b8d7b89552c779d8240bea334c",
+      "member": "xl/worksheets/sheet2.xml",
+      "changed_cells": [],
+      "page_break_after_rows": [
+        218
+      ],
+      "height_changes": {},
+      "all_other_values_and_package_members_unchanged": true,
+      "sha256_after": "f5712ae1aedfa09597928de294f2c3c3122f5e4bfa37eb52453733454e869fd5"
+    }
+  ],
+  "split_candidates": []
+}

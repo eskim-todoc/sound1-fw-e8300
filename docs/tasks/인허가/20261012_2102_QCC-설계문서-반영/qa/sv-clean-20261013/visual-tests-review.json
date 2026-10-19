@@ -1,0 +1,862 @@
+{
+  "checkedAt": "2026-10-13T05:25:10.846132+00:00",
+  "reviewer": "qcc_design",
+  "status": "통과",
+  "completed_scope_status": "통과",
+  "scope": "Independent visual regression review of root native Excel exports for six test workbooks; SRS excluded. Actual image paths/pages inspected are listed. No all-page or product-test pass claim.",
+  "render_checks": {
+    "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sv-clean-20261013\\render-checks.json",
+    "sha256_at_read": "6a33d770b1ee1a7dc7c74d8ae176ae3d806fea2789b766af1522f59876528a24",
+    "record_count_at_read": 18,
+    "scope": "Test16 PDF records bound individually; root may subsequently rerender only SRS outside this review."
+  },
+  "records": [
+    {
+      "code": "SSTR",
+      "sheet": "보고서_시스템 시험",
+      "range": "B2:L303",
+      "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sv-clean-20261013\\native-final\\SSTR-main.pdf",
+      "pdfSHA256": "28A6B72C0F74A1A04CCDD952839CFB44CB6D1AE8CA1501834DB84AB2A06EDA00",
+      "sourceSHA256": "CEFFDED299DC4B2C1001AAE5271CAE6A80FFCB04F4697B16567A6AED363005B3",
+      "pages": 71,
+      "comparison": false,
+      "mainMarkerFree": true,
+      "status": "통과",
+      "scope": "Listed selected native PNGs only; not every page of the source workbook or PDF.",
+      "full_images": [
+        {
+          "page": 1,
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sv-clean-20261013\\views\\SSTR-main\\page-001.png",
+          "sha256": "b983f9fcc970bcfeb8dcb9cfba746bb92a36b9d174f6a3956ff45bbe4c3bd755",
+          "viewed_direct_original_size": true,
+          "status": "통과"
+        },
+        {
+          "page": 2,
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sv-clean-20261013\\views\\SSTR-main\\page-002.png",
+          "sha256": "3c20d89cf6738437dfa25ac43a2a0e62b1809ff2eb6abe09e2598bd58ad073df",
+          "viewed_direct_original_size": true,
+          "status": "통과"
+        },
+        {
+          "page": 36,
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sv-clean-20261013\\views\\SSTR-main\\page-036.png",
+          "sha256": "315a1e1e65be470c427a6e658c0950f7e4803cb9831fc850a979108add63e026",
+          "viewed_direct_original_size": true,
+          "status": "통과"
+        },
+        {
+          "page": 70,
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sv-clean-20261013\\views\\SSTR-main\\page-070.png",
+          "sha256": "4c3034872f7c38c41196b7684773638b0f4fd05cedfd9d16db452963d3690387",
+          "viewed_direct_original_size": true,
+          "status": "통과"
+        },
+        {
+          "page": 71,
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sv-clean-20261013\\views\\SSTR-main\\page-071.png",
+          "sha256": "69d9563a90e21cfd51a635699be822641cb2bd45cbfba34a3330af63400977d7",
+          "viewed_direct_original_size": true,
+          "status": "통과"
+        }
+      ],
+      "contacts": [
+        {
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sv-clean-20261013\\views\\SSTR-main\\contact-001.png",
+          "sha256": "106181e8c531c3557802635f724aff4dade8c4e8c750d78b465efd412d89b17c",
+          "viewed": true,
+          "scope": "contact contains only rendered selected pages; not full-PDF coverage"
+        }
+      ],
+      "observations": "관찰한 본문 페이지에는 변경 비교 표식이 없고 현재 문구/기준/결과가 같은 기존 표에 남는다. 담당 미비색/밑줄과 표 경계에서 분리로 인한 회귀를 찾지 못했다."
+    },
+    {
+      "code": "SSTR",
+      "sheet": "보고서_시스템 시험_비교",
+      "range": "B218:L219",
+      "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sv-clean-20261013\\native-final\\SSTR-main-compare.pdf",
+      "pdfSHA256": "12F7D2AA7934D79FB628CE56B453DFD8D1D821F7113AE1C821B1CBBC8CE75E64",
+      "sourceSHA256": "CEFFDED299DC4B2C1001AAE5271CAE6A80FFCB04F4697B16567A6AED363005B3",
+      "pages": 2,
+      "comparison": true,
+      "mainMarkerFree": null,
+      "status": "통과",
+      "scope": "Listed selected native PNGs only; not every page of the source workbook or PDF.",
+      "full_images": [
+        {
+          "page": 1,
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sv-clean-20261013\\views\\SSTR-main-compare\\page-001.png",
+          "sha256": "2e9d46d7d2424bfc2b5839aad55f5abdda247dec99851106aa36315b83620d2d",
+          "viewed_direct_original_size": true,
+          "status": "통과"
+        },
+        {
+          "page": 2,
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sv-clean-20261013\\views\\SSTR-main-compare\\page-002.png",
+          "sha256": "425427f27b80929b5cb608b1d5507cf65c45acd167e92422c350970c4c900a0c",
+          "viewed_direct_original_size": true,
+          "status": "통과"
+        }
+      ],
+      "contacts": [
+        {
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sv-clean-20261013\\views\\SSTR-main-compare\\contact-001.png",
+          "sha256": "cbf5a101f84527de7b54c0b88183e08f4650f736739e1c9a1af271a74c06c048",
+          "viewed": true,
+          "scope": "contact contains only rendered selected pages; not full-PDF coverage"
+        }
+      ],
+      "observations": "변경 전후 빨강[-]/초록[+] 구분과 기존 담당 미비 표시를 관찰했다. 행/열 기준과 보이는 내용의 잘림/겹침 회귀를 찾지 못했다.",
+      "subset_limit": "Export range starts/ends within existing merged conditions. Some ID/title cells or external boundaries are absent in this excerpt; this is not evidence of loss in the complete comparison sheet. Full comparison-sheet geometry is covered by root/package verification, not asserted from this cropped PDF."
+    },
+    {
+      "code": "SSTR",
+      "sheet": "사이버보안 시험 연계",
+      "range": "A1:L39",
+      "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sv-clean-20261013\\native-final\\SSTR-cyber.pdf",
+      "pdfSHA256": "B6770F1273E064EB1105BB08A27A7E3DF40CFFE680F1F087AE6839878447AF05",
+      "sourceSHA256": "CEFFDED299DC4B2C1001AAE5271CAE6A80FFCB04F4697B16567A6AED363005B3",
+      "pages": 12,
+      "comparison": false,
+      "mainMarkerFree": true,
+      "status": "통과",
+      "scope": "Listed selected native PNGs only; not every page of the source workbook or PDF.",
+      "full_images": [
+        {
+          "page": 1,
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sv-clean-20261013\\views\\SSTR-cyber\\page-001.png",
+          "sha256": "19c770a2ddc3880db7a507b11b42e5b02521e777960939c4d898d741ba0d07c9",
+          "viewed_direct_original_size": true,
+          "status": "통과"
+        },
+        {
+          "page": 2,
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sv-clean-20261013\\views\\SSTR-cyber\\page-002.png",
+          "sha256": "72f3b246d3e1b664ff2d9a50d7a27e8616828e39bf5554fdf7ea1d37c93477bb",
+          "viewed_direct_original_size": true,
+          "status": "통과"
+        },
+        {
+          "page": 7,
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sv-clean-20261013\\views\\SSTR-cyber\\page-007.png",
+          "sha256": "1eb692e845d6405e5f7575bce059d21a0bb02677d321705a4e04d5e5c8cfec63",
+          "viewed_direct_original_size": true,
+          "status": "통과"
+        },
+        {
+          "page": 11,
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sv-clean-20261013\\views\\SSTR-cyber\\page-011.png",
+          "sha256": "7b5ec985dbb126641341566a5efbbc386b585ed55d6f35d283cdcf9c822351b5",
+          "viewed_direct_original_size": true,
+          "status": "통과"
+        },
+        {
+          "page": 12,
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sv-clean-20261013\\views\\SSTR-cyber\\page-012.png",
+          "sha256": "dcfbf3de3fa03a31318049143e8b7e0ecf1972851a046c7119230e2c445382e9",
+          "viewed_direct_original_size": true,
+          "status": "통과"
+        }
+      ],
+      "contacts": [
+        {
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sv-clean-20261013\\views\\SSTR-cyber\\contact-001.png",
+          "sha256": "7fbe3cc767634ddfb8cb2d10c149fea1fcd294633d12fa6168919ad04c7c1377",
+          "viewed": true,
+          "scope": "contact contains only rendered selected pages; not full-PDF coverage"
+        }
+      ],
+      "observations": "관찰한 본문 페이지에는 변경 비교 표식이 없고 현재 문구/기준/결과가 같은 기존 표에 남는다. 담당 미비색/밑줄과 표 경계에서 분리로 인한 회귀를 찾지 못했다."
+    },
+    {
+      "code": "SSTR",
+      "sheet": "사이버보안 시험 연계_비교",
+      "range": "A37:L39",
+      "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sv-clean-20261013\\native-final\\SSTR-cyber-compare.pdf",
+      "pdfSHA256": "92ACE418718A809CE993C2B2CA41950A3B7438B87D14E56C4CBDCE89538ABB44",
+      "sourceSHA256": "CEFFDED299DC4B2C1001AAE5271CAE6A80FFCB04F4697B16567A6AED363005B3",
+      "pages": 1,
+      "comparison": true,
+      "mainMarkerFree": null,
+      "status": "통과",
+      "scope": "Listed selected native PNGs only; not every page of the source workbook or PDF.",
+      "full_images": [
+        {
+          "page": 1,
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sv-clean-20261013\\views\\SSTR-cyber-compare\\page-001.png",
+          "sha256": "86939d4b86561abee64ec00a0baf8640a00d2c99fe004336b964183b862dad50",
+          "viewed_direct_original_size": true,
+          "status": "통과"
+        }
+      ],
+      "contacts": [
+        {
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sv-clean-20261013\\views\\SSTR-cyber-compare\\contact-001.png",
+          "sha256": "b85e410c60f6f267048da56a107cda1914948be2ee9cbd05a072d70ffe5c4014",
+          "viewed": true,
+          "scope": "contact contains only rendered selected pages; not full-PDF coverage"
+        }
+      ],
+      "observations": "변경 전후 빨강[-]/초록[+] 구분과 기존 담당 미비 표시를 관찰했다. 행/열 기준과 보이는 내용의 잘림/겹침 회귀를 찾지 못했다."
+    },
+    {
+      "code": "SITR",
+      "sheet": "보고서_통합시험",
+      "range": "B2:O144",
+      "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sv-clean-20261013\\native-final\\SITR-main.pdf",
+      "pdfSHA256": "8F7FF43A036EBAFC1D7B9B868976DDEF578247DBC044BDD5B7084172787E7B71",
+      "sourceSHA256": "8C24B0D16DB9BEFB45A05AFBBCAF7E15CFA860FCA5353EC0D6C22F7F757FA312",
+      "pages": 25,
+      "comparison": false,
+      "mainMarkerFree": true,
+      "status": "통과",
+      "scope": "Listed selected native PNGs only; not every page of the source workbook or PDF.",
+      "full_images": [
+        {
+          "page": 1,
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sv-clean-20261013\\views\\SITR-main\\page-001.png",
+          "sha256": "5943adc1bb890d3227b2bd4ee30c9f5a6e6eae6bd916c57894532985187dfe1a",
+          "viewed_direct_original_size": true,
+          "status": "통과"
+        },
+        {
+          "page": 2,
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sv-clean-20261013\\views\\SITR-main\\page-002.png",
+          "sha256": "95c27e2402debcc13f5f4e00af3fdef2745d90c2353d88215ca1eedf49ddecb5",
+          "viewed_direct_original_size": true,
+          "status": "통과"
+        },
+        {
+          "page": 13,
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sv-clean-20261013\\views\\SITR-main\\page-013.png",
+          "sha256": "c3c2f84b41e1c67c40b1e69a8615a75cea5b24562aecc633b1a88b472d439d6c",
+          "viewed_direct_original_size": true,
+          "status": "통과"
+        },
+        {
+          "page": 24,
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sv-clean-20261013\\views\\SITR-main\\page-024.png",
+          "sha256": "6aa48444dc169105d4ce8ff992583c4d5e7469fd9d553f74402177270681954b",
+          "viewed_direct_original_size": true,
+          "status": "통과"
+        },
+        {
+          "page": 25,
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sv-clean-20261013\\views\\SITR-main\\page-025.png",
+          "sha256": "956841a5dc8aef22e1d5be13c7942b015eba97484dcee877ef361735b7dbdb11",
+          "viewed_direct_original_size": true,
+          "status": "통과"
+        }
+      ],
+      "contacts": [
+        {
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sv-clean-20261013\\views\\SITR-main\\contact-001.png",
+          "sha256": "f4ab9ea863da3267d025692fa67446114c57bcc2adf733df5c047115f1e5e5da",
+          "viewed": true,
+          "scope": "contact contains only rendered selected pages; not full-PDF coverage"
+        }
+      ],
+      "observations": "관찰한 본문 페이지에는 변경 비교 표식이 없고 현재 문구/기준/결과가 같은 기존 표에 남는다. 담당 미비색/밑줄과 표 경계에서 분리로 인한 회귀를 찾지 못했다."
+    },
+    {
+      "code": "SITR",
+      "sheet": "보고서_통합시험_비교",
+      "range": "B126:O131",
+      "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sv-clean-20261013\\native-final\\SITR-main-compare.pdf",
+      "pdfSHA256": "5644361769A95B3282450BEBDC70779E029596D7778AD68CE665D7EAA8A5F25B",
+      "sourceSHA256": "8C24B0D16DB9BEFB45A05AFBBCAF7E15CFA860FCA5353EC0D6C22F7F757FA312",
+      "pages": 2,
+      "comparison": true,
+      "mainMarkerFree": null,
+      "status": "통과",
+      "scope": "Listed selected native PNGs only; not every page of the source workbook or PDF.",
+      "full_images": [
+        {
+          "page": 1,
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sv-clean-20261013\\views\\SITR-main-compare\\page-001.png",
+          "sha256": "c9824bdd84749a340696207bc1aede523cd9d94213bfe220895d58787322cbc0",
+          "viewed_direct_original_size": true,
+          "status": "통과"
+        },
+        {
+          "page": 2,
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sv-clean-20261013\\views\\SITR-main-compare\\page-002.png",
+          "sha256": "96563d5c7e4b2b345e932980575644007c258f50a98d24e9637464a42d184ed7",
+          "viewed_direct_original_size": true,
+          "status": "통과"
+        }
+      ],
+      "contacts": [
+        {
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sv-clean-20261013\\views\\SITR-main-compare\\contact-001.png",
+          "sha256": "cd6b60255c6f35ee99475dad438538252141f8cf51dae52c220671a55a81664a",
+          "viewed": true,
+          "scope": "contact contains only rendered selected pages; not full-PDF coverage"
+        }
+      ],
+      "observations": "변경 전후 빨강[-]/초록[+] 구분과 기존 담당 미비 표시를 관찰했다. 행/열 기준과 보이는 내용의 잘림/겹침 회귀를 찾지 못했다.",
+      "subset_limit": "Export range starts/ends within existing merged conditions. Some ID/title cells or external boundaries are absent in this excerpt; this is not evidence of loss in the complete comparison sheet. Full comparison-sheet geometry is covered by root/package verification, not asserted from this cropped PDF."
+    },
+    {
+      "code": "SUVR",
+      "sheet": "보고서_유닛 시험",
+      "range": "B2:M1772",
+      "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sv-clean-20261013\\native-final\\SUVR-main.pdf",
+      "pdfSHA256": "518C529A0C942F7D356639A554AB1B51C80729722FD78D50B8758F2A6316099D",
+      "sourceSHA256": "B99CF882386A465994277BE9986C3130E42DB9ED8A56F8AD674EA392405E25E0",
+      "pages": 260,
+      "comparison": false,
+      "mainMarkerFree": true,
+      "status": "통과",
+      "scope": "Listed selected native PNGs only; not every page of the source workbook or PDF.",
+      "full_images": [
+        {
+          "page": 1,
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sv-clean-20261013\\views\\SUVR-main\\page-001.png",
+          "sha256": "8b71203fd8662c2bc58e56e60f891b5f8adab1078890fb2246ce32fbd95f9ea0",
+          "viewed_direct_original_size": true,
+          "status": "통과"
+        },
+        {
+          "page": 2,
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sv-clean-20261013\\views\\SUVR-main\\page-002.png",
+          "sha256": "83136dcbe00974f0b353c07074728ba2eb1476d923f075800ffa00c62c2603c6",
+          "viewed_direct_original_size": true,
+          "status": "통과"
+        },
+        {
+          "page": 131,
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sv-clean-20261013\\views\\SUVR-main\\page-131.png",
+          "sha256": "9a0ee8053e175bdacd68f6f6c2c4a8782686ef03c8f9f2b4c948590948b13d86",
+          "viewed_direct_original_size": true,
+          "status": "통과"
+        },
+        {
+          "page": 259,
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sv-clean-20261013\\views\\SUVR-main\\page-259.png",
+          "sha256": "6a83d89c102b673e3bab45feb53d88bcfa873740709fd683110c717b1cf0101d",
+          "viewed_direct_original_size": true,
+          "status": "통과"
+        },
+        {
+          "page": 260,
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sv-clean-20261013\\views\\SUVR-main\\page-260.png",
+          "sha256": "7432b187402bf956ca532e5f1ac9f697958499850a3fb98970219137220dd080",
+          "viewed_direct_original_size": true,
+          "status": "통과"
+        }
+      ],
+      "contacts": [
+        {
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sv-clean-20261013\\views\\SUVR-main\\contact-001.png",
+          "sha256": "c4a3e99ecab8b900054be2a5be8df791a8859f734d5d67a95587f5440cd29d37",
+          "viewed": true,
+          "scope": "contact contains only rendered selected pages; not full-PDF coverage"
+        }
+      ],
+      "observations": "관찰한 본문 페이지에는 변경 비교 표식이 없고 현재 문구/기준/결과가 같은 기존 표에 남는다. 담당 미비색/밑줄과 표 경계에서 분리로 인한 회귀를 찾지 못했다."
+    },
+    {
+      "code": "SUVR",
+      "sheet": "보고서_유닛 시험_비교",
+      "range": "B1734:M1740",
+      "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sv-clean-20261013\\native-final\\SUVR-main-compare.pdf",
+      "pdfSHA256": "711BBE33DDCD6BDBCE906BE3D369A23E2F1CB0A2D0CF0EE8A18695B6520423DC",
+      "sourceSHA256": "B99CF882386A465994277BE9986C3130E42DB9ED8A56F8AD674EA392405E25E0",
+      "pages": 5,
+      "comparison": true,
+      "mainMarkerFree": null,
+      "status": "통과",
+      "scope": "Listed selected native PNGs only; not every page of the source workbook or PDF.",
+      "full_images": [
+        {
+          "page": 1,
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sv-clean-20261013\\views\\SUVR-main-compare\\page-001.png",
+          "sha256": "6d3d1f681ecac895a43f27dfbb7e75baeb4bdad1b4439072e532d61921802ae3",
+          "viewed_direct_original_size": true,
+          "status": "통과"
+        },
+        {
+          "page": 2,
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sv-clean-20261013\\views\\SUVR-main-compare\\page-002.png",
+          "sha256": "0fd71de9135a3605339e7eafe3553def080b6e0f4b910687e65cf2ae1910f947",
+          "viewed_direct_original_size": true,
+          "status": "통과"
+        },
+        {
+          "page": 3,
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sv-clean-20261013\\views\\SUVR-main-compare\\page-003.png",
+          "sha256": "c53185108f95aeae8ac2cd55d5ca8032ca1440fff10e41009d7b4db10cd8cd8c",
+          "viewed_direct_original_size": true,
+          "status": "통과"
+        },
+        {
+          "page": 4,
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sv-clean-20261013\\views\\SUVR-main-compare\\page-004.png",
+          "sha256": "5b0230eeaf8b8c4f2c8e1f4b27bc6ccea5cf9ba0cbd9325774e7447208e07bd0",
+          "viewed_direct_original_size": true,
+          "status": "통과"
+        },
+        {
+          "page": 5,
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sv-clean-20261013\\views\\SUVR-main-compare\\page-005.png",
+          "sha256": "4eb38f9caa989daa86fca1cb778d7ec67e9841b48038d260595ab3df3a5e2647",
+          "viewed_direct_original_size": true,
+          "status": "통과"
+        }
+      ],
+      "contacts": [
+        {
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sv-clean-20261013\\views\\SUVR-main-compare\\contact-001.png",
+          "sha256": "c14034b82db7c0d75dbfd29e7360a022fc893960df62f3f3ded959e2183671e2",
+          "viewed": true,
+          "scope": "contact contains only rendered selected pages; not full-PDF coverage"
+        }
+      ],
+      "observations": "변경 전후 빨강[-]/초록[+] 구분과 기존 담당 미비 표시를 관찰했다. 행/열 기준과 보이는 내용의 잘림/겹침 회귀를 찾지 못했다."
+    },
+    {
+      "code": "SSTC",
+      "sheet": "기준서_시스템 시험",
+      "range": "B2:J303",
+      "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sv-clean-20261013\\native-final\\SSTC-main.pdf",
+      "pdfSHA256": "F3A909F5D329F5B57D26D15805709D2B0E79A3B3D1329EAE6365BBED38808DEF",
+      "sourceSHA256": "B86E424177E33B0A4E539DFB7845AFA255FC482EF0A9B008ACD82E71FFC90D5B",
+      "pages": 72,
+      "comparison": false,
+      "mainMarkerFree": true,
+      "status": "통과",
+      "scope": "Listed selected native PNGs only; not every page of the source workbook or PDF.",
+      "full_images": [
+        {
+          "page": 1,
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sv-clean-20261013\\views\\SSTC-main\\page-001.png",
+          "sha256": "449a6af3a62726be0594dc6cb7d0f2c4cb06e3f3c3e52d33c8efbec5169972c6",
+          "viewed_direct_original_size": true,
+          "status": "통과"
+        },
+        {
+          "page": 2,
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sv-clean-20261013\\views\\SSTC-main\\page-002.png",
+          "sha256": "c45fe1ee55b56635b5ff042c6886ac4b31d4f7aeacb7e1124fa6075ade1f8ab1",
+          "viewed_direct_original_size": true,
+          "status": "통과"
+        },
+        {
+          "page": 37,
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sv-clean-20261013\\views\\SSTC-main\\page-037.png",
+          "sha256": "5c4ad8615f2c69fc50c5a2df71ca5ecde10978e7f23281c2e28257cf92e786e3",
+          "viewed_direct_original_size": true,
+          "status": "통과"
+        },
+        {
+          "page": 71,
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sv-clean-20261013\\views\\SSTC-main\\page-071.png",
+          "sha256": "ca95f7e2307375e94d4d3e0edd0782a876ba6af6a34fba154d4ee192635d0400",
+          "viewed_direct_original_size": true,
+          "status": "통과"
+        },
+        {
+          "page": 72,
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sv-clean-20261013\\views\\SSTC-main\\page-072.png",
+          "sha256": "be8dcf86d1f13ebee38089c328fd3d326a87f86c18860d9d8bdfadae342f9d16",
+          "viewed_direct_original_size": true,
+          "status": "통과"
+        }
+      ],
+      "contacts": [
+        {
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sv-clean-20261013\\views\\SSTC-main\\contact-001.png",
+          "sha256": "31f1cc7521dac52dbec1d891f300732e678ff6d49c5f10d0449682ffe6c9c5d0",
+          "viewed": true,
+          "scope": "contact contains only rendered selected pages; not full-PDF coverage"
+        }
+      ],
+      "observations": "관찰한 본문 페이지에는 변경 비교 표식이 없고 현재 문구/기준/결과가 같은 기존 표에 남는다. 담당 미비색/밑줄과 표 경계에서 분리로 인한 회귀를 찾지 못했다."
+    },
+    {
+      "code": "SSTC",
+      "sheet": "기준서_시스템 시험_비교",
+      "range": "B218:J219",
+      "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sv-clean-20261013\\native-final\\SSTC-main-compare.pdf",
+      "pdfSHA256": "964003ABA4C1AEBD35399AE4F8DB1DE2423F822EE365FC10D7E6DB643BE3E367",
+      "sourceSHA256": "B86E424177E33B0A4E539DFB7845AFA255FC482EF0A9B008ACD82E71FFC90D5B",
+      "pages": 2,
+      "comparison": true,
+      "mainMarkerFree": null,
+      "status": "통과",
+      "scope": "Listed selected native PNGs only; not every page of the source workbook or PDF.",
+      "full_images": [
+        {
+          "page": 1,
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sv-clean-20261013\\views\\SSTC-main-compare\\page-001.png",
+          "sha256": "895bf310d1b86c8cb6e09ecbe1de53fae120a711a8517f7abf47909340d8eb84",
+          "viewed_direct_original_size": true,
+          "status": "통과"
+        },
+        {
+          "page": 2,
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sv-clean-20261013\\views\\SSTC-main-compare\\page-002.png",
+          "sha256": "4f1c203b2f74cf67b3e7fc854b15468903e4cbb87c95a166bd7cba5b9bec5f8e",
+          "viewed_direct_original_size": true,
+          "status": "통과"
+        }
+      ],
+      "contacts": [
+        {
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sv-clean-20261013\\views\\SSTC-main-compare\\contact-001.png",
+          "sha256": "7792a4c2201cf23629f97d91c8edaaf885b65e29ca58b192847b1a124e4002aa",
+          "viewed": true,
+          "scope": "contact contains only rendered selected pages; not full-PDF coverage"
+        }
+      ],
+      "observations": "변경 전후 빨강[-]/초록[+] 구분과 기존 담당 미비 표시를 관찰했다. 행/열 기준과 보이는 내용의 잘림/겹침 회귀를 찾지 못했다.",
+      "subset_limit": "Export range starts/ends within existing merged conditions. Some ID/title cells or external boundaries are absent in this excerpt; this is not evidence of loss in the complete comparison sheet. Full comparison-sheet geometry is covered by root/package verification, not asserted from this cropped PDF."
+    },
+    {
+      "code": "SSTC",
+      "sheet": "사이버보안 시험 연계",
+      "range": "A1:J39",
+      "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sv-clean-20261013\\native-final\\SSTC-cyber.pdf",
+      "pdfSHA256": "D81E20FC11D257DEB6FFA48DDA48ED09706D243DC373A869F29D0F7BD691B8B1",
+      "sourceSHA256": "B86E424177E33B0A4E539DFB7845AFA255FC482EF0A9B008ACD82E71FFC90D5B",
+      "pages": 18,
+      "comparison": false,
+      "mainMarkerFree": true,
+      "status": "통과",
+      "scope": "Listed selected native PNGs only; not every page of the source workbook or PDF.",
+      "full_images": [
+        {
+          "page": 1,
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sv-clean-20261013\\views\\SSTC-cyber\\page-001.png",
+          "sha256": "2805f72e2744274e3db16a5303e071f3b51e9e4cdef69141aafe7e4ee39f008d",
+          "viewed_direct_original_size": true,
+          "status": "통과"
+        },
+        {
+          "page": 2,
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sv-clean-20261013\\views\\SSTC-cyber\\page-002.png",
+          "sha256": "de3cd63b4e5746e236efdda98c6e15486c82faf5475f1fd913a6d496a396ad40",
+          "viewed_direct_original_size": true,
+          "status": "통과"
+        },
+        {
+          "page": 10,
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sv-clean-20261013\\views\\SSTC-cyber\\page-010.png",
+          "sha256": "0f3f21723574a531025e74d5f5b81d3c1bf218855d981cffdd1c9df851ad70b6",
+          "viewed_direct_original_size": true,
+          "status": "통과"
+        },
+        {
+          "page": 17,
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sv-clean-20261013\\views\\SSTC-cyber\\page-017.png",
+          "sha256": "3674e2260e10b13764228cb75662f5ec8ef3a5c541694e5ed3a6cdb6b3b9d731",
+          "viewed_direct_original_size": true,
+          "status": "통과"
+        },
+        {
+          "page": 18,
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sv-clean-20261013\\views\\SSTC-cyber\\page-018.png",
+          "sha256": "d8f86f671a83be6a46f14d7d7c892eb296915aac301fb6caecd2c201121623ab",
+          "viewed_direct_original_size": true,
+          "status": "통과"
+        }
+      ],
+      "contacts": [
+        {
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sv-clean-20261013\\views\\SSTC-cyber\\contact-001.png",
+          "sha256": "1f26a80f960fee2aae7e5fea0b6a79cc91f86a3c5011cf9d6843fedff409e43a",
+          "viewed": true,
+          "scope": "contact contains only rendered selected pages; not full-PDF coverage"
+        }
+      ],
+      "observations": "관찰한 본문 페이지에는 변경 비교 표식이 없고 현재 문구/기준/결과가 같은 기존 표에 남는다. 담당 미비색/밑줄과 표 경계에서 분리로 인한 회귀를 찾지 못했다."
+    },
+    {
+      "code": "SSTC",
+      "sheet": "사이버보안 시험 연계_비교",
+      "range": "A37:J39",
+      "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sv-clean-20261013\\native-final\\SSTC-cyber-compare.pdf",
+      "pdfSHA256": "F7E3467807AF813A3BDDD03C19E46F3385B90882E12FF719B0BE384A0645F9C8",
+      "sourceSHA256": "B86E424177E33B0A4E539DFB7845AFA255FC482EF0A9B008ACD82E71FFC90D5B",
+      "pages": 2,
+      "comparison": true,
+      "mainMarkerFree": null,
+      "status": "통과",
+      "scope": "Listed selected native PNGs only; not every page of the source workbook or PDF.",
+      "full_images": [
+        {
+          "page": 1,
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sv-clean-20261013\\views\\SSTC-cyber-compare\\page-001.png",
+          "sha256": "f647f1f642883e0f12e2e294f12d42fbe61fe9f13b46eea5aef86e1af113f7fb",
+          "viewed_direct_original_size": true,
+          "status": "통과"
+        },
+        {
+          "page": 2,
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sv-clean-20261013\\views\\SSTC-cyber-compare\\page-002.png",
+          "sha256": "d8f86f671a83be6a46f14d7d7c892eb296915aac301fb6caecd2c201121623ab",
+          "viewed_direct_original_size": true,
+          "status": "통과"
+        }
+      ],
+      "contacts": [
+        {
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sv-clean-20261013\\views\\SSTC-cyber-compare\\contact-001.png",
+          "sha256": "801c00fedb40561899ff600c3e108c8a757dc2329242887a34c5ecfd21e3ecd6",
+          "viewed": true,
+          "scope": "contact contains only rendered selected pages; not full-PDF coverage"
+        }
+      ],
+      "observations": "변경 전후 빨강[-]/초록[+] 구분과 기존 담당 미비 표시를 관찰했다. 행/열 기준과 보이는 내용의 잘림/겹침 회귀를 찾지 못했다."
+    },
+    {
+      "code": "SITC",
+      "sheet": "기준서_통합 시험",
+      "range": "B2:M144",
+      "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sv-clean-20261013\\native-final\\SITC-main.pdf",
+      "pdfSHA256": "E5A05921D50DA2F5DF5B9F5D5B21EF61D25E5535E05D1E9B4E54362101FAE9B6",
+      "sourceSHA256": "113B5D1B610A0D9BD9859407FEB6F4944E7E8CA73E160D331C5D32BCCD0EDA95",
+      "pages": 25,
+      "comparison": false,
+      "mainMarkerFree": true,
+      "status": "통과",
+      "scope": "Listed selected native PNGs only; not every page of the source workbook or PDF.",
+      "full_images": [
+        {
+          "page": 1,
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sv-clean-20261013\\views\\SITC-main\\page-001.png",
+          "sha256": "45d577594a6fc9837f69c9eb491884bcfd6ec74df1f8f667c1aeaaf16bd6f474",
+          "viewed_direct_original_size": true,
+          "status": "통과"
+        },
+        {
+          "page": 2,
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sv-clean-20261013\\views\\SITC-main\\page-002.png",
+          "sha256": "1364ecee0d88fa6612aead207e437e0bc8dc6b1db88f6414b4828403664cd665",
+          "viewed_direct_original_size": true,
+          "status": "통과"
+        },
+        {
+          "page": 13,
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sv-clean-20261013\\views\\SITC-main\\page-013.png",
+          "sha256": "aeb78b0bcd4a13eea15399081dafe75cbf2231110afc0859de91969ac80ea13d",
+          "viewed_direct_original_size": true,
+          "status": "통과"
+        },
+        {
+          "page": 24,
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sv-clean-20261013\\views\\SITC-main\\page-024.png",
+          "sha256": "f9e931b32bf58aa3686f6851ac229812dc7c85f23f582babc218bf587b457c8a",
+          "viewed_direct_original_size": true,
+          "status": "통과"
+        },
+        {
+          "page": 25,
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sv-clean-20261013\\views\\SITC-main\\page-025.png",
+          "sha256": "1ef212b286a54a965ee7856d946475a28f13f45fac0192d25fb6198bae6b9065",
+          "viewed_direct_original_size": true,
+          "status": "통과"
+        }
+      ],
+      "contacts": [
+        {
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sv-clean-20261013\\views\\SITC-main\\contact-001.png",
+          "sha256": "2914484a23aa18f11a41c7c784f28fcf840c1242eed2e571fbcb5cda076d1e2f",
+          "viewed": true,
+          "scope": "contact contains only rendered selected pages; not full-PDF coverage"
+        }
+      ],
+      "observations": "관찰한 본문 페이지에는 변경 비교 표식이 없고 현재 문구/기준/결과가 같은 기존 표에 남는다. 담당 미비색/밑줄과 표 경계에서 분리로 인한 회귀를 찾지 못했다."
+    },
+    {
+      "code": "SITC",
+      "sheet": "기준서_통합 시험_비교",
+      "range": "B126:M131",
+      "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sv-clean-20261013\\native-final\\SITC-main-compare.pdf",
+      "pdfSHA256": "ABAC884C3EC3B04F7296BA12D99C4B7971E1A49583B27784D25D692419FB4B4B",
+      "sourceSHA256": "113B5D1B610A0D9BD9859407FEB6F4944E7E8CA73E160D331C5D32BCCD0EDA95",
+      "pages": 2,
+      "comparison": true,
+      "mainMarkerFree": null,
+      "status": "통과",
+      "scope": "Listed selected native PNGs only; not every page of the source workbook or PDF.",
+      "full_images": [
+        {
+          "page": 1,
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sv-clean-20261013\\views\\SITC-main-compare\\page-001.png",
+          "sha256": "5ecfd14e4aea56a4c8832304b1537b49ffa568d877635abed34b6c92eb1c84f5",
+          "viewed_direct_original_size": true,
+          "status": "통과"
+        },
+        {
+          "page": 2,
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sv-clean-20261013\\views\\SITC-main-compare\\page-002.png",
+          "sha256": "295185c87a8f47d8d02a145ad189c7995f2429ffec380b78af2187f7b2473150",
+          "viewed_direct_original_size": true,
+          "status": "통과"
+        }
+      ],
+      "contacts": [
+        {
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sv-clean-20261013\\views\\SITC-main-compare\\contact-001.png",
+          "sha256": "761ee183069ce091796bc77a17b9be3421ac8217e6b7da6eeb12266b81346581",
+          "viewed": true,
+          "scope": "contact contains only rendered selected pages; not full-PDF coverage"
+        }
+      ],
+      "observations": "변경 전후 빨강[-]/초록[+] 구분과 기존 담당 미비 표시를 관찰했다. 행/열 기준과 보이는 내용의 잘림/겹침 회귀를 찾지 못했다.",
+      "subset_limit": "Export range starts/ends within existing merged conditions. Some ID/title cells or external boundaries are absent in this excerpt; this is not evidence of loss in the complete comparison sheet. Full comparison-sheet geometry is covered by root/package verification, not asserted from this cropped PDF."
+    },
+    {
+      "code": "SUVC",
+      "sheet": "기준서_유닛 검증",
+      "range": "B2:K1772",
+      "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sv-clean-20261013\\native-final\\SUVC-main.pdf",
+      "pdfSHA256": "6A8644C6AACB71DAF5CE466F58A4A61B13F72F531315B0379340770A7DCCEF94",
+      "sourceSHA256": "7713D5BF52D76E7D79F516E1DF7943A26BB25783D3C8E6A03ABCAD4F598F457A",
+      "pages": 305,
+      "comparison": false,
+      "mainMarkerFree": true,
+      "status": "통과",
+      "scope": "Listed selected native PNGs only; not every page of the source workbook or PDF.",
+      "full_images": [
+        {
+          "page": 1,
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sv-clean-20261013\\views\\SUVC-main\\page-001.png",
+          "sha256": "d9adf5f9e773fc293ebee05f8b2ffe26e2afb56a39dd04ef7276f31096f970c1",
+          "viewed_direct_original_size": true,
+          "status": "통과"
+        },
+        {
+          "page": 2,
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sv-clean-20261013\\views\\SUVC-main\\page-002.png",
+          "sha256": "757c9f02b95264a2f2e4e9ee3f08408254408c568631c988dce633ed23231209",
+          "viewed_direct_original_size": true,
+          "status": "통과"
+        },
+        {
+          "page": 153,
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sv-clean-20261013\\views\\SUVC-main\\page-153.png",
+          "sha256": "9628c8fdd923ea39648b0d438d09ddd83d08dca2b80b33f2d1e17ded2959e780",
+          "viewed_direct_original_size": true,
+          "status": "통과"
+        },
+        {
+          "page": 304,
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sv-clean-20261013\\views\\SUVC-main\\page-304.png",
+          "sha256": "f2e503e27b4db4e1ddbbcd9b56088be54f7f4e28e0f033b4dd0337488ee954cc",
+          "viewed_direct_original_size": true,
+          "status": "통과"
+        },
+        {
+          "page": 305,
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sv-clean-20261013\\views\\SUVC-main\\page-305.png",
+          "sha256": "73e51deb44e91e56e57717b2b8b17d57141daff29ecb3d6a9a6c650285208d86",
+          "viewed_direct_original_size": true,
+          "status": "통과"
+        }
+      ],
+      "contacts": [
+        {
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sv-clean-20261013\\views\\SUVC-main\\contact-001.png",
+          "sha256": "c3cc2c10893ed7d238c6bffc23277468b6417638f1b9b6427f97298daccfeb10",
+          "viewed": true,
+          "scope": "contact contains only rendered selected pages; not full-PDF coverage"
+        }
+      ],
+      "observations": "관찰한 현재 본문에서는 비교 표식이 없고 입력/예상 조건이 같은 기존 표에 남는다. QCC 빨강/밑줄과 머리글/기준열의 경계에 새 분리로 인한 회귀를 찾지 못했다. 긴 CM3-020 조건은 기존 페이지 계속 행으로 보이며 이번 분리에서 행높이/표폭을 변경했다는 근거는 없다."
+    },
+    {
+      "code": "SUVC",
+      "sheet": "기준서_유닛 검증_비교",
+      "range": "B1734:K1740",
+      "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sv-clean-20261013\\native-final\\SUVC-main-compare.pdf",
+      "pdfSHA256": "AA230FE577B0C20772B7857E6A21A87A3DC4421C6B40D433E34566E75C625ED3",
+      "sourceSHA256": "7713D5BF52D76E7D79F516E1DF7943A26BB25783D3C8E6A03ABCAD4F598F457A",
+      "pages": 5,
+      "comparison": true,
+      "mainMarkerFree": null,
+      "status": "통과",
+      "scope": "Listed selected native PNGs only; not every page of the source workbook or PDF.",
+      "full_images": [
+        {
+          "page": 1,
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sv-clean-20261013\\views\\SUVC-main-compare\\page-001.png",
+          "sha256": "5ca7b8f46d778f8eec08fdf5019c9e78dd0d6b7df9acbe874f84143e92cd270b",
+          "viewed_direct_original_size": true,
+          "status": "통과"
+        },
+        {
+          "page": 2,
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sv-clean-20261013\\views\\SUVC-main-compare\\page-002.png",
+          "sha256": "1ba79f7422af16018574c6b40f085b10927eeffb3c7c1ea1a1134876b27ff066",
+          "viewed_direct_original_size": true,
+          "status": "통과"
+        },
+        {
+          "page": 3,
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sv-clean-20261013\\views\\SUVC-main-compare\\page-003.png",
+          "sha256": "14ef62fed19dc0148684c916603faf8d17b86fa4751ab01fd04d9f9239675922",
+          "viewed_direct_original_size": true,
+          "status": "통과"
+        },
+        {
+          "page": 4,
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sv-clean-20261013\\views\\SUVC-main-compare\\page-004.png",
+          "sha256": "aab6234a4e2a5f09cd1e4b715eea7a7044285cdc8ae47c36fe375654a29cf6ca",
+          "viewed_direct_original_size": true,
+          "status": "통과"
+        },
+        {
+          "page": 5,
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sv-clean-20261013\\views\\SUVC-main-compare\\page-005.png",
+          "sha256": "d4f3127e47a72d04b133a69592113df976c631613536194a68c1c463f23dd5cf",
+          "viewed_direct_original_size": true,
+          "status": "통과"
+        }
+      ],
+      "contacts": [
+        {
+          "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\sv-clean-20261013\\views\\SUVC-main-compare\\contact-001.png",
+          "sha256": "72c5e03f6f6b210996d15dcbd321629d0d2564b5f1b9c35c5abfe5366e7d0fa7",
+          "viewed": true,
+          "scope": "contact contains only rendered selected pages; not full-PDF coverage"
+        }
+      ],
+      "observations": "관찰한 비교 페이지에서 빨강[-]/초록[+] 문구 이력과 QCC 빨강 및 공동 보라 미비 표시/밑줄이 유지된다. 표 폭/조건 경계와 전체 보이는 문구에 분리로 인한 잘림/겹침 회귀를 찾지 못했다."
+    }
+  ],
+  "reviewed_codes": [
+    "SITC",
+    "SITR",
+    "SSTC",
+    "SSTR",
+    "SUVC",
+    "SUVR"
+  ],
+  "reviewed_full_image_count": 61,
+  "reviewed_contact_count": 16,
+  "findings": [],
+  "pending": [],
+  "limits": [
+    "Contacts and selected full PNGs only; no full-PDF/all-workbook visual verification assertion.",
+    "Root all-main-PDF text scan of marker absence is separate evidence, not inferred from selected images.",
+    "Exact notice color/size/run preservation is root/independent package QA; visual sample confirms red/blue/purple and underline appearance, not a numeric +2pt measurement.",
+    "Some comparison PDFs are excerpts through merged conditions; incomplete excerpt label/border is not judged as source worksheet loss.",
+    "Product execution/results/approval remain as saved; visual review does not run a test."
+  ],
+  "writes": "Only visual-tests-review.json; no COM/G/candidate/policy modification.",
+  "prior_waiting_state": {
+    "checkedAt": "2026-10-13T05:24:00.918075+00:00",
+    "status": "미실행",
+    "pending": [
+      {
+        "code": "SUVC",
+        "reason": "Final native export/render not yet present in the read render-checks records; images have not been reviewed."
+      }
+    ],
+    "full_image_count": 51
+  },
+  "final_summary": "시험6문서의16 native PDF에 대한 선택61개 full PNG와 contact16개를 직접 확인했다. 선택 범위에서 본문 비교표식 제거, 별도 비교의 빨강/초록 및 담당 미비 표시 유지, 표/조건/결과열의 새 분리 회귀를 찾지 못했다. PDF의 모든 페이지를 시각검토했다고 주장하지 않는다."
+}

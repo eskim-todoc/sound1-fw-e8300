@@ -1,0 +1,38 @@
+{
+  "source_sha256": "04409C6107A7BEE9F21428904274718A2C2E835F88A9598964216B8534EB18EC",
+  "exports": [
+    {
+      "name": "front",
+      "area": "B25:O28",
+      "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\integration-banding-20261016\\native-front.pdf",
+      "sha256": "B8357AAC4BE765C9F28B6BCCDA2934F92BC8456690A32C95C5F1D15BAAF8ED64",
+      "pages": 1,
+      "pngs": [
+        {
+          "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\integration-banding-20261016\\native-front-p001.png",
+          "sha256": "55C3A481EC2906EA508A4F1B6585B4011D7CDE5DB00D02BDBCF7348C30FB8A17",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "name": "end",
+      "area": "B142:O144",
+      "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\integration-banding-20261016\\native-end.pdf",
+      "sha256": "2326FC1F277FF610A18E97C57C9EEDA363F17FE478C162A4336B35EBB5B8BC49",
+      "pages": 2,
+      "pngs": [
+        {
+          "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\integration-banding-20261016\\native-end-p001.png",
+          "sha256": "1C85510C55520042C7D19656A7062B2B1ECE9F746ECAF8BDD3EADAF9525CA6AB",
+          "page": 1
+        },
+        {
+          "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\integration-banding-20261016\\native-end-p002.png",
+          "sha256": "3BAE5ADA66EBA0DC5CD206CD826553493AFF78418E6ED6C5DC12E79CBEA683BF",
+          "page": 2
+        }
+      ]
+    }
+  ]
+}

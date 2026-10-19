@@ -1,0 +1,98 @@
+[
+  {
+    "code": "SUVC-main",
+    "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SUVC-FW-TD24A 소프트웨어 유닛 검증 기준서.xlsx",
+    "sheet": "기준서_유닛 검증",
+    "range": "B2:K1772",
+    "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVC-main.pdf",
+    "sourceSHA256": "014AC906BDEDB3D52F8E0A704480AE18D6DA29C11467C2F634FF1C6AE9B63CA3",
+    "sourceUnchanged": true,
+    "originalPrintArea": "$B$2:$K$1772",
+    "scope": "Read-only Excel preview; source print settings preserved",
+    "checkedAt": "2026-10-13T09:23:52.0113334+09:00"
+  },
+  {
+    "code": "SUVR-main",
+    "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\04_설계 검증\\SW\\외부기\\[E8300-QCC] SUVR-FW-TD24A 소프트웨어 유닛 검증 보고서.xlsx",
+    "sheet": "보고서_유닛 시험",
+    "range": "B2:M1772",
+    "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SUVR-main.pdf",
+    "sourceSHA256": "BCC605F85BA6AA93836C2918D6A9B6A3DF7BDCD949823758B5BBC8687A66B729",
+    "sourceUnchanged": true,
+    "originalPrintArea": "$B$2:$M$1772",
+    "scope": "Read-only Excel preview; source print settings preserved",
+    "checkedAt": "2026-10-13T09:24:50.2912477+09:00"
+  },
+  {
+    "code": "SITC-main",
+    "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SITC-FW-TD24A 소프트웨어 통합시험 기준서.xlsx",
+    "sheet": "기준서_통합 시험",
+    "range": "B2:M144",
+    "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SITC-main.pdf",
+    "sourceSHA256": "8F714076C293AFBE9A3B2720FDB245B70A067FC79D6CCFBF70C4C487A116B256",
+    "sourceUnchanged": true,
+    "originalPrintArea": "$B$2:$M$144",
+    "scope": "Read-only Excel preview; source print settings preserved",
+    "checkedAt": "2026-10-13T09:24:52.7704042+09:00"
+  },
+  {
+    "code": "SITR-main",
+    "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\04_설계 검증\\SW\\외부기\\[E8300-QCC] SITR-FW-TD24A 소프트웨어 통합시험 보고서.xlsx",
+    "sheet": "보고서_통합시험",
+    "range": "B2:O144",
+    "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SITR-main.pdf",
+    "sourceSHA256": "218A1077BF50F972B537368388503CBC23C85AFC264CDF8CCC49897A00EA3963",
+    "sourceUnchanged": true,
+    "originalPrintArea": "$B$2:$O$144",
+    "scope": "Read-only Excel preview; source print settings preserved",
+    "checkedAt": "2026-10-13T09:24:57.3972492+09:00"
+  },
+  {
+    "code": "SSTC-main",
+    "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SSTC-FW-TD24A 소프트웨어 시스템 시험 기준서.xlsx",
+    "sheet": "기준서_시스템 시험",
+    "range": "B2:J303",
+    "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SSTC-main.pdf",
+    "sourceSHA256": "BD5C80557F5A06C56C3727665016F257F95CAE2D40D00A9356BF20D9EE4F9616",
+    "sourceUnchanged": true,
+    "originalPrintArea": "$B$2:$J$303",
+    "scope": "Read-only Excel preview; source print settings preserved",
+    "checkedAt": "2026-10-13T09:25:02.0041098+09:00"
+  },
+  {
+    "code": "SSTC-cyber",
+    "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SSTC-FW-TD24A 소프트웨어 시스템 시험 기준서.xlsx",
+    "sheet": "사이버보안 시험 연계",
+    "range": "A1:J39",
+    "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SSTC-cyber.pdf",
+    "sourceSHA256": "BD5C80557F5A06C56C3727665016F257F95CAE2D40D00A9356BF20D9EE4F9616",
+    "sourceUnchanged": true,
+    "originalPrintArea": "$A$1:$J$39",
+    "scope": "Read-only Excel preview; source print settings preserved",
+    "checkedAt": "2026-10-13T09:25:03.3343758+09:00"
+  },
+  {
+    "code": "SSTR-main",
+    "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\04_설계 검증\\SW\\외부기\\[E8300-QCC] SSTR-FW-TD24A 소프트웨어 시스템 시험 보고서.xlsx",
+    "sheet": "보고서_시스템 시험",
+    "range": "B2:L303",
+    "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SSTR-main.pdf",
+    "sourceSHA256": "84FB5E568B36DF97DD4D3974BDC3F3D70614F7B8D7B89552C779D8240BEA334C",
+    "sourceUnchanged": true,
+    "originalPrintArea": "$B$2:$L$303",
+    "scope": "Read-only Excel preview; source print settings preserved",
+    "checkedAt": "2026-10-13T09:25:12.8389444+09:00"
+  },
+  {
+    "code": "SSTR-cyber",
+    "path": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\04_설계 검증\\SW\\외부기\\[E8300-QCC] SSTR-FW-TD24A 소프트웨어 시스템 시험 보고서.xlsx",
+    "sheet": "사이버보안 시험 연계",
+    "range": "A1:L39",
+    "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\native-excel\\tests\\SSTR-cyber.pdf",
+    "sourceSHA256": "84FB5E568B36DF97DD4D3974BDC3F3D70614F7B8D7B89552C779D8240BEA334C",
+    "sourceUnchanged": true,
+    "originalPrintArea": "$A$1:$L$39",
+    "scope": "Read-only Excel preview; source print settings preserved",
+    "checkedAt": "2026-10-13T09:25:14.5115002+09:00"
+  }
+]

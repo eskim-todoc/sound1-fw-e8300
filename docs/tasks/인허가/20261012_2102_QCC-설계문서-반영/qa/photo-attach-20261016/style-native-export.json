@@ -1,0 +1,1359 @@
+{
+  "status": "통과",
+  "source": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\photo-attach-20261016\\style-after.xlsx",
+  "source_sha256": "8A6F683CC357F217900CC7975C6750F0D05394A46DDE242A4380C02FC9C801A4",
+  "started_at": "2026-10-16T16:12:09.8550872+09:00",
+  "readonly": true,
+  "saved": false,
+  "exports": [
+    {
+      "name": "cover",
+      "sheet": "표지",
+      "area": "B1:AD34",
+      "title_rows": "",
+      "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\photo-attach-20261016\\style-native-cover.pdf",
+      "sha256": "1BEA9813BDB36D0909755D1763CEFCE9884DC48B34F6A9CC4D549B348E1A6787",
+      "exported_at": "2026-10-16T16:12:14.4789779+09:00",
+      "note": "Print area/fit changed only in read-only RAM copy; not saved to source"
+    },
+    {
+      "name": "main-intro",
+      "sheet": "보고서_시스템 시험",
+      "area": "B1:L31",
+      "title_rows": "",
+      "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\photo-attach-20261016\\style-native-main-intro.pdf",
+      "sha256": "C9395636BF75F012DA27A3803E38684FA39F093F5D7917A42AEE53A3E2351D13",
+      "exported_at": "2026-10-16T16:12:15.4224875+09:00",
+      "note": "Print area/fit changed only in read-only RAM copy; not saved to source"
+    },
+    {
+      "name": "main-results",
+      "sheet": "보고서_시스템 시험",
+      "area": "J34:L293",
+      "title_rows": "$32:$33",
+      "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\photo-attach-20261016\\style-native-main-results.pdf",
+      "sha256": "1CE3F382C23E46EA019155FF54353E8C82BD5F6A982EF9ADC63F85F51423040F",
+      "exported_at": "2026-10-16T16:12:20.4914378+09:00",
+      "note": "Print area/fit changed only in read-only RAM copy; not saved to source"
+    },
+    {
+      "name": "main-first-full",
+      "sheet": "보고서_시스템 시험",
+      "area": "B32:L38",
+      "title_rows": "$32:$33",
+      "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\photo-attach-20261016\\style-native-main-first-full.pdf",
+      "sha256": "E5D43E1D9D6D08FDC30A8D73E2AA94156D1C9A9DD8ADEB12DF970F636293F80C",
+      "exported_at": "2026-10-16T16:12:21.2305285+09:00",
+      "note": "Print area/fit changed only in read-only RAM copy; not saved to source"
+    },
+    {
+      "name": "main-ci",
+      "sheet": "보고서_시스템 시험",
+      "area": "C42:I56",
+      "title_rows": "$32:$33",
+      "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\photo-attach-20261016\\style-native-main-ci.pdf",
+      "sha256": "1A2A4565AFEA2BFC6FE7285A1EEFC88C705BDE910FA5A2DE91B07AEA524D4C0E",
+      "exported_at": "2026-10-16T16:12:22.0769351+09:00",
+      "note": "Print area/fit changed only in read-only RAM copy; not saved to source"
+    },
+    {
+      "name": "main-ci-crc",
+      "sheet": "보고서_시스템 시험",
+      "area": "C219:I220",
+      "title_rows": "$32:$33",
+      "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\photo-attach-20261016\\style-native-main-ci-crc.pdf",
+      "sha256": "33345E1A5FC7D54AAC1DCB26A49585B535831F58E2957CCDB37B800B5C325580",
+      "exported_at": "2026-10-16T16:12:22.7393199+09:00",
+      "note": "Print area/fit changed only in read-only RAM copy; not saved to source"
+    },
+    {
+      "name": "main-ci-errors",
+      "sheet": "보고서_시스템 시험",
+      "area": "C234:I235",
+      "title_rows": "$32:$33",
+      "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\photo-attach-20261016\\style-native-main-ci-errors.pdf",
+      "sha256": "EB3D02616BB7CA3D25714BDD1D46CB8DB1264B5F7EDCE1FFDD35D47C4CCAF988",
+      "exported_at": "2026-10-16T16:12:23.2667066+09:00",
+      "note": "Print area/fit changed only in read-only RAM copy; not saved to source"
+    },
+    {
+      "name": "main-ci-last",
+      "sheet": "보고서_시스템 시험",
+      "area": "C291:I293",
+      "title_rows": "$32:$33",
+      "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\photo-attach-20261016\\style-native-main-ci-last.pdf",
+      "sha256": "296BE536CC166991282A489ABA41C39240CE1BD136BDCCEA7D97F7B56AFA70CB",
+      "exported_at": "2026-10-16T16:12:23.8692555+09:00",
+      "note": "Print area/fit changed only in read-only RAM copy; not saved to source"
+    },
+    {
+      "name": "support",
+      "sheet": "시험 보조자료",
+      "area": "A2:D12",
+      "title_rows": "",
+      "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\photo-attach-20261016\\style-native-support.pdf",
+      "sha256": "622B21B8EA0FB68A15F68100E67229236802D2BBBAFD3CD2E40654344EAE6E17",
+      "exported_at": "2026-10-16T16:12:24.4693317+09:00",
+      "note": "Print area/fit changed only in read-only RAM copy; not saved to source"
+    },
+    {
+      "name": "support-test75",
+      "sheet": "시험 보조자료",
+      "area": "A210:D212",
+      "title_rows": "",
+      "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\photo-attach-20261016\\style-native-support-test75.pdf",
+      "sha256": "24736D84601F68E0AB513E20AE9F080EEAA5D9C9FDC3773CE31C3C1DE050A254",
+      "exported_at": "2026-10-16T16:12:24.7949805+09:00",
+      "note": "Print area/fit changed only in read-only RAM copy; not saved to source"
+    },
+    {
+      "name": "support-test59",
+      "sheet": "시험 보조자료",
+      "area": "A233:D235",
+      "title_rows": "",
+      "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\photo-attach-20261016\\style-native-support-test59.pdf",
+      "sha256": "F90EA124D437E3310C97892041D1190288019297A02D5AF49925A6199C99BF8F",
+      "exported_at": "2026-10-16T16:12:25.1794590+09:00",
+      "note": "Print area/fit changed only in read-only RAM copy; not saved to source"
+    },
+    {
+      "name": "expected",
+      "sheet": "예상 그림",
+      "area": "A2:C12",
+      "title_rows": "",
+      "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\photo-attach-20261016\\style-native-expected.pdf",
+      "sha256": "91591D3170B0498EB94EA5E366BB25769E76862C88A4AE45F692FC43865F8B8A",
+      "exported_at": "2026-10-16T16:12:25.7688693+09:00",
+      "note": "Print area/fit changed only in read-only RAM copy; not saved to source"
+    },
+    {
+      "name": "cyber",
+      "sheet": "사이버보안 시험 연계",
+      "area": "A1:L8",
+      "title_rows": "",
+      "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\photo-attach-20261016\\style-native-cyber.pdf",
+      "sha256": "9476CF2332796C0BF1B7538D8016EFEAA674E3140E0C773CBB389EB048870EAB",
+      "exported_at": "2026-10-16T16:12:26.2543771+09:00",
+      "note": "Print area/fit changed only in read-only RAM copy; not saved to source"
+    },
+    {
+      "name": "comparison",
+      "sheet": "보고서_시스템 시험_비교",
+      "area": "B1220:L1226",
+      "title_rows": "",
+      "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\photo-attach-20261016\\style-native-comparison.pdf",
+      "sha256": "CCDFE2C15884630AAB864F6CCB1AA7B5C8E66F9AB2B34964E5623AD56A76CBC7",
+      "exported_at": "2026-10-16T16:12:26.5752127+09:00",
+      "note": "Print area/fit changed only in read-only RAM copy; not saved to source"
+    },
+    {
+      "name": "cyber-comparison",
+      "sheet": "사이버보안 시험 연계_비교",
+      "area": "A1:L8",
+      "title_rows": "",
+      "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\photo-attach-20261016\\style-native-cyber-comparison.pdf",
+      "sha256": "0DA69148E81131AAECA9A683381241D328D8B3ED32A6D2FA61EA20BEAD30BB72",
+      "exported_at": "2026-10-16T16:12:26.9575505+09:00",
+      "note": "Print area/fit changed only in read-only RAM copy; not saved to source"
+    }
+  ],
+  "sheets": [
+    {
+      "name": "표지",
+      "used_range": "$B$1:$AD$34",
+      "stored_print_area": "",
+      "font_size": null
+    },
+    {
+      "name": "보고서_시스템 시험",
+      "used_range": "$A$1:$L$311",
+      "stored_print_area": "$B$2:$L$311",
+      "font_size": null
+    },
+    {
+      "name": "시험 보조자료",
+      "used_range": "$A$2:$D$273",
+      "stored_print_area": "",
+      "font_size": null
+    },
+    {
+      "name": "예상 그림",
+      "used_range": "$A$2:$C$40",
+      "stored_print_area": "",
+      "font_size": null
+    },
+    {
+      "name": "사이버보안 시험 연계",
+      "used_range": "$A$1:$L$39",
+      "stored_print_area": "$A$1:$L$39",
+      "font_size": null
+    },
+    {
+      "name": "보고서_시스템 시험_비교",
+      "used_range": "$A$1:$L$1228",
+      "stored_print_area": "$B$2:$L$1228",
+      "font_size": null
+    },
+    {
+      "name": "사이버보안 시험 연계_비교",
+      "used_range": "$A$1:$L$39",
+      "stored_print_area": "$A$1:$L$39",
+      "font_size": null
+    }
+  ],
+  "photos": [
+    {
+      "name": "SW-FW-SYS-Test-ID -- 1 -- 검증 -- 1.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 360.6706237792969,
+      "top_pt": 1618.2501220703125,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$34",
+      "bottom_right": "$K$34"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 2 -- 검증 -- 1.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 360.6706237792969,
+      "top_pt": 1920.5,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$35",
+      "bottom_right": "$K$35"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 2 -- 검증 -- 2.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 360.6706237792969,
+      "top_pt": 2222.75,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$36",
+      "bottom_right": "$K$36"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 2 -- 검증 -- 3 -- 세부 1.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 360.6706237792969,
+      "top_pt": 2525.0,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$37",
+      "bottom_right": "$K$37"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 2 -- 검증 -- 3 -- 세부 2.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 360.6706237792969,
+      "top_pt": 2765.25,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$38",
+      "bottom_right": "$K$38"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 3 -- 검증 -- 1.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 360.6706237792969,
+      "top_pt": 3068.0,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$39",
+      "bottom_right": "$K$39"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 4 -- 검증 -- 1.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 360.6706237792969,
+      "top_pt": 3370.25,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$40",
+      "bottom_right": "$K$40"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 4 -- 검증 -- 2.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 360.6706237792969,
+      "top_pt": 3672.500244140625,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$41",
+      "bottom_right": "$K$41"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 5 -- 검증 -- 1 -- 세부 1.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 267.9116516113281,
+      "top_pt": 3974.75,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$42",
+      "bottom_right": "$K$42"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 5 -- 검증 -- 1 -- 세부 2.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 360.6706237792969,
+      "top_pt": 4215.0,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$43",
+      "bottom_right": "$K$43"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 5 -- 검증 -- 2.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 360.6706237792969,
+      "top_pt": 4517.75,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$44",
+      "bottom_right": "$K$44"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 5 -- 검증 -- 3.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 360.6706237792969,
+      "top_pt": 4834.0,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$45",
+      "bottom_right": "$K$45"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 6 -- 검증 -- 1 -- 세부 1.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 360.6706237792969,
+      "top_pt": 5136.5,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$46",
+      "bottom_right": "$K$46"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 6 -- 검증 -- 1 -- 세부 2.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 360.6706237792969,
+      "top_pt": 5376.75,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$47",
+      "bottom_right": "$K$47"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 6 -- 검증 -- 2.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 360.6706237792969,
+      "top_pt": 5679.5,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$48",
+      "bottom_right": "$K$48"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 6 -- 검증 -- 3.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 360.6706237792969,
+      "top_pt": 5981.75,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$49",
+      "bottom_right": "$K$49"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 6 -- 검증 -- 4.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 360.6706237792969,
+      "top_pt": 6298.0,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$50",
+      "bottom_right": "$K$50"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 7 -- 검증 -- 1 -- 세부 1.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 403.14959716796875,
+      "top_pt": 6600.5,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$51",
+      "bottom_right": "$K$51"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 7 -- 검증 -- 1 -- 세부 2.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 342.1643371582031,
+      "top_pt": 6840.75,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$52",
+      "bottom_right": "$K$52"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 7 -- 검증 -- 2.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 342.1643371582031,
+      "top_pt": 7185.5,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$53",
+      "bottom_right": "$K$53"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 8 -- 검증 -- 1.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 360.6706237792969,
+      "top_pt": 7487.75,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$54",
+      "bottom_right": "$K$54"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 8 -- 검증 -- 2.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 360.6706237792969,
+      "top_pt": 7790.0,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$55",
+      "bottom_right": "$K$55"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 8 -- 검증 -- 3.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 360.6706237792969,
+      "top_pt": 8092.25,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$56",
+      "bottom_right": "$K$56"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 10 -- 검증 -- 1 -- 세부 1.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 360.6706237792969,
+      "top_pt": 8598.5,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$58",
+      "bottom_right": "$K$58"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 10 -- 검증 -- 1 -- 세부 2.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 360.6706237792969,
+      "top_pt": 8838.75,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$59",
+      "bottom_right": "$K$59"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 10 -- 검증 -- 1 -- 세부 3.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 360.6706237792969,
+      "top_pt": 9079.5,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$60",
+      "bottom_right": "$K$60"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 10 -- 검증 -- 1 -- 세부 4.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 360.6706237792969,
+      "top_pt": 9320.25,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$61",
+      "bottom_right": "$K$61"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 10 -- 검증 -- 2-- 세부 1.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 360.6706237792969,
+      "top_pt": 9672.5,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$63",
+      "bottom_right": "$K$63"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 10 -- 검증 -- 2-- 세부 2.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 360.6706237792969,
+      "top_pt": 9912.75,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$64",
+      "bottom_right": "$K$64"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 10 -- 검증 -- 2-- 세부 3.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 360.6706237792969,
+      "top_pt": 10153.5,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$65",
+      "bottom_right": "$K$65"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 10 -- 검증 -- 2-- 세부 4.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 360.6706237792969,
+      "top_pt": 10394.25,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$66",
+      "bottom_right": "$K$66"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 10 -- 검증 -- 3-- 세부 1.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 360.6706237792969,
+      "top_pt": 10697.0,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$67",
+      "bottom_right": "$K$67"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 10 -- 검증 -- 3-- 세부 2.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 360.6706237792969,
+      "top_pt": 10937.25,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$68",
+      "bottom_right": "$K$68"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 10 -- 검증 -- 3-- 세부 3.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 360.6706237792969,
+      "top_pt": 11178.0009765625,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$69",
+      "bottom_right": "$K$69"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 10 -- 검증 -- 3-- 세부 4.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 360.6706237792969,
+      "top_pt": 11418.75,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$70",
+      "bottom_right": "$K$70"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 10 -- 검증 -- 4-- 세부 1.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 360.6706237792969,
+      "top_pt": 11721.5,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$71",
+      "bottom_right": "$K$71"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 10 -- 검증 -- 4-- 세부 2.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 360.6706237792969,
+      "top_pt": 11961.75,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$72",
+      "bottom_right": "$K$72"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 10 -- 검증 -- 4-- 세부 3.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 360.6706237792969,
+      "top_pt": 12202.5,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$73",
+      "bottom_right": "$K$73"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 10 -- 검증 -- 4-- 세부 4.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 360.6706237792969,
+      "top_pt": 12443.25,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$74",
+      "bottom_right": "$K$74"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 10 -- 검증 -- 5-- 세부 1.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 360.6706237792969,
+      "top_pt": 12746.0009765625,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$75",
+      "bottom_right": "$K$75"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 10 -- 검증 -- 5-- 세부 2.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 360.6706237792969,
+      "top_pt": 12986.25,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$76",
+      "bottom_right": "$K$76"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 10 -- 검증 -- 5-- 세부 3.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 360.6706237792969,
+      "top_pt": 13227.0,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$77",
+      "bottom_right": "$K$77"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 10 -- 검증 -- 5-- 세부 4.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 360.6706237792969,
+      "top_pt": 13467.7509765625,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$78",
+      "bottom_right": "$K$78"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 10 -- 검증 -- 6-- 세부 1.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 360.6706237792969,
+      "top_pt": 13770.5,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$79",
+      "bottom_right": "$K$79"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 10 -- 검증 -- 6-- 세부 2.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 360.6706237792969,
+      "top_pt": 14010.75,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$80",
+      "bottom_right": "$K$80"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 10 -- 검증 -- 6-- 세부 3.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 360.6706237792969,
+      "top_pt": 14251.5,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$81",
+      "bottom_right": "$K$81"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 10 -- 검증 -- 6-- 세부 4.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 360.6706237792969,
+      "top_pt": 14492.2490234375,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$82",
+      "bottom_right": "$K$82"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 10 -- 검증 -- 7-- 세부 1.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 360.6706237792969,
+      "top_pt": 14795.0,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$83",
+      "bottom_right": "$K$83"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 10 -- 검증 -- 7-- 세부 2.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 360.6706237792969,
+      "top_pt": 15035.25,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$84",
+      "bottom_right": "$K$84"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 10 -- 검증 -- 7-- 세부 3.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 360.6706237792969,
+      "top_pt": 15276.0,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$85",
+      "bottom_right": "$K$85"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 10 -- 검증 -- 7-- 세부 4.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 360.6706237792969,
+      "top_pt": 15516.75,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$86",
+      "bottom_right": "$K$86"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 10 -- 검증 -- 8-- 세부 1.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 360.6706237792969,
+      "top_pt": 15819.5,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$87",
+      "bottom_right": "$K$87"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 10 -- 검증 -- 8-- 세부 2.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 360.6706237792969,
+      "top_pt": 16059.7509765625,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$88",
+      "bottom_right": "$K$88"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 10 -- 검증 -- 8-- 세부 3.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 360.6706237792969,
+      "top_pt": 16300.5,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$89",
+      "bottom_right": "$K$89"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 10 -- 검증 -- 8-- 세부 4.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 360.6706237792969,
+      "top_pt": 16541.25,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$90",
+      "bottom_right": "$K$90"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 11 -- 검증 -- 1.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 360.6706237792969,
+      "top_pt": 16858.0,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$91",
+      "bottom_right": "$K$91"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 11 -- 검증 -- 2.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 360.6706237792969,
+      "top_pt": 17188.5,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$92",
+      "bottom_right": "$K$92"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 11 -- 검증 -- 3.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 360.6706237792969,
+      "top_pt": 17505.25,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$93",
+      "bottom_right": "$K$93"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 12 -- 검증 -- 1.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 360.6706237792969,
+      "top_pt": 17807.75,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$94",
+      "bottom_right": "$K$94"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 12 -- 검증 -- 2.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 360.6706237792969,
+      "top_pt": 18096.0,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$95",
+      "bottom_right": "$K$95"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 13 -- 검증 -- 1.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 360.6706237792969,
+      "top_pt": 18398.75,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$96",
+      "bottom_right": "$K$96"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 13 -- 검증 -- 2.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 360.6706237792969,
+      "top_pt": 18701.0,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$97",
+      "bottom_right": "$K$97"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 13 -- 검증 -- 3.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 360.6706237792969,
+      "top_pt": 19003.25,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$98",
+      "bottom_right": "$K$98"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 13 -- 검증 -- 4.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 360.6706237792969,
+      "top_pt": 19305.5,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$99",
+      "bottom_right": "$K$99"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 14 -- 검증 -- 1.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 360.6706237792969,
+      "top_pt": 19621.75,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$100",
+      "bottom_right": "$K$100"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 14 -- 검증 -- 2.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 360.6706237792969,
+      "top_pt": 19938.25,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$101",
+      "bottom_right": "$K$101"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 14 -- 검증 -- 3.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 360.6706237792969,
+      "top_pt": 20254.75,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$102",
+      "bottom_right": "$K$102"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 14 -- 검증 -- 4.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 360.6706237792969,
+      "top_pt": 20571.25,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$103",
+      "bottom_right": "$K$103"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 15 -- 검증 -- 4.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 360.6706237792969,
+      "top_pt": 21107.25,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$107",
+      "bottom_right": "$K$107"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 17 -- 검증 -- 1.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 360.6706237792969,
+      "top_pt": 21537.5,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$110",
+      "bottom_right": "$K$110"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 17 -- 검증 -- 2.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 127.55905151367188,
+      "top_pt": 21839.75,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$111",
+      "bottom_right": "$K$111"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 23 -- 검증 -- 1.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 360.6706237792969,
+      "top_pt": 24276.5,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$140",
+      "bottom_right": "$K$140"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 25 -- 검증 -- 1 -- 세부 1.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 360.6706237792969,
+      "top_pt": 25001.751953125,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$145",
+      "bottom_right": "$K$145"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 25 -- 검증 -- 1 -- 세부 2.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 360.6706237792969,
+      "top_pt": 25242.0,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$146",
+      "bottom_right": "$K$146"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 25 -- 검증 -- 2 -- 세부 1.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 360.6706237792969,
+      "top_pt": 25544.75,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$147",
+      "bottom_right": "$K$147"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 25 -- 검증 -- 2 -- 세부 2.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 360.6706237792969,
+      "top_pt": 25785.0,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$148",
+      "bottom_right": "$K$148"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 25 -- 검증 -- 3 -- 세부 1.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 360.6706237792969,
+      "top_pt": 26087.75,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$149",
+      "bottom_right": "$K$149"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 25 -- 검증 -- 3 -- 세부 2.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 360.6706237792969,
+      "top_pt": 26328.0,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$150",
+      "bottom_right": "$K$150"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 26 -- 검증 -- 1 -- 세부 1.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 360.6706237792969,
+      "top_pt": 26630.75,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$151",
+      "bottom_right": "$K$151"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 26 -- 검증 -- 1 -- 세부 2.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 360.6706237792969,
+      "top_pt": 26871.0,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$152",
+      "bottom_right": "$K$152"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 26 -- 검증 -- 2.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 360.6706237792969,
+      "top_pt": 27173.75,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$153",
+      "bottom_right": "$K$153"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 26 -- 검증 -- 3.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 360.6706237792969,
+      "top_pt": 27476.001953125,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$154",
+      "bottom_right": "$K$154"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 26 -- 검증 -- 4.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 360.6706237792969,
+      "top_pt": 27778.25,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$155",
+      "bottom_right": "$K$155"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 27 -- 검증 -- 1.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 127.55905151367188,
+      "top_pt": 28080.498046875,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$156",
+      "bottom_right": "$K$156"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 27 -- 검증 -- 2.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 127.55905151367188,
+      "top_pt": 28382.75,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$157",
+      "bottom_right": "$K$157"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 29 -- 검증 -- 1.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 341.963623046875,
+      "top_pt": 28930.748046875,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$160",
+      "bottom_right": "$K$160"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 29 -- 검증 -- 2.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 341.963623046875,
+      "top_pt": 29247.25,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$161",
+      "bottom_right": "$K$161"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 30 -- 검증 -- 1.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 341.963623046875,
+      "top_pt": 29549.75,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$162",
+      "bottom_right": "$K$162"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 30 -- 검증 -- 2.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 342.1643371582031,
+      "top_pt": 29851.998046875,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$163",
+      "bottom_right": "$K$163"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 30 -- 검증 -- 3.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 342.1643371582031,
+      "top_pt": 30154.25,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$164",
+      "bottom_right": "$K$164"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 30 -- 검증 -- 4.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 342.1643371582031,
+      "top_pt": 30456.498046875,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$165",
+      "bottom_right": "$K$165"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 31 -- 검증 -- 1.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 342.1643371582031,
+      "top_pt": 30758.75,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$166",
+      "bottom_right": "$K$166"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 31 -- 검증 -- 2.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 342.1643371582031,
+      "top_pt": 31061.0,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$167",
+      "bottom_right": "$K$167"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 31 -- 검증 -- 3.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 342.1643371582031,
+      "top_pt": 31363.25,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$168",
+      "bottom_right": "$K$168"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 32 -- 검증 -- 1.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 342.1643371582031,
+      "top_pt": 31665.5,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$169",
+      "bottom_right": "$K$169"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 32 -- 검증 -- 2.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 342.1643371582031,
+      "top_pt": 31981.75,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$170",
+      "bottom_right": "$K$170"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 32 -- 검증 -- 3.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 342.1643371582031,
+      "top_pt": 32284.25,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$171",
+      "bottom_right": "$K$171"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 33 -- 검증 -- 1.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 342.1643371582031,
+      "top_pt": 32586.5,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$172",
+      "bottom_right": "$K$172"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 33 -- 검증 -- 2.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 342.1643371582031,
+      "top_pt": 32888.75,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$173",
+      "bottom_right": "$K$173"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 34 -- 검증 -- 1.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 342.1643371582031,
+      "top_pt": 33191.0,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$174",
+      "bottom_right": "$K$174"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 34 -- 검증 -- 2.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 342.1643371582031,
+      "top_pt": 33493.25,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$175",
+      "bottom_right": "$K$175"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 35 -- 검증 -- 1.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 342.1643371582031,
+      "top_pt": 33809.5,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$176",
+      "bottom_right": "$K$176"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 36 -- 검증 -- 1.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 342.1643371582031,
+      "top_pt": 34126.0,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$177",
+      "bottom_right": "$K$177"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 37 -- 검증 -- 1.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 193.8073272705078,
+      "top_pt": 34442.5,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$178",
+      "bottom_right": "$K$178"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 39 -- 검증 -- 1 -- 세부 1.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 360.6706237792969,
+      "top_pt": 34822.75,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$180",
+      "bottom_right": "$K$180"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 39 -- 검증 -- 1 -- 세부 2.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 360.6706237792969,
+      "top_pt": 35063.25,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$181",
+      "bottom_right": "$K$181"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 40 -- 검증 -- 1.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 360.6706237792969,
+      "top_pt": 35380.0,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$182",
+      "bottom_right": "$K$182"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 41 -- 검증 -- 1.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 360.6706237792969,
+      "top_pt": 35682.5,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$183",
+      "bottom_right": "$K$183"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 42 -- 검증 -- 1 -- 세부 1.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 360.6706237792969,
+      "top_pt": 36104.5,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$185",
+      "bottom_right": "$K$185"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 42 -- 검증 -- 1 -- 세부 2.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 342.1643371582031,
+      "top_pt": 36345.0,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$186",
+      "bottom_right": "$K$186"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 69 -- 검증 -- 2.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 360.6706237792969,
+      "top_pt": 38410.5,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$207",
+      "bottom_right": "$K$207"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 50 -- 검증 -- 2.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 342.6771545410156,
+      "top_pt": 39760.25,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$218",
+      "bottom_right": "$K$218"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 51 -- 검증 -- 1.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 342.1643371582031,
+      "top_pt": 40104.5,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$219",
+      "bottom_right": "$K$219"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 54 -- 검증 -- 1.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 279.67132568359375,
+      "top_pt": 41217.25,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$227",
+      "bottom_right": "$K$227"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 73 -- 검증 -- 1.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 296.2802429199219,
+      "top_pt": 42279.75,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$234",
+      "bottom_right": "$K$234"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 74 -- 검증 -- 1.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 226.67495727539062,
+      "top_pt": 42624.5,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$235",
+      "bottom_right": "$K$235"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 77 -- 검증 -- 1.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 238.3024444580078,
+      "top_pt": 43630.75,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$242",
+      "bottom_right": "$K$242"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 80 -- 검증 -- 2.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 246.6639404296875,
+      "top_pt": 44526.25,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$249",
+      "bottom_right": "$K$249"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 58 -- 검증 -- 2.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 360.6706237792969,
+      "top_pt": 45357.5,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$255",
+      "bottom_right": "$K$255"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 59 -- 검증 -- 2.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 342.1643371582031,
+      "top_pt": 45723.5,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$257",
+      "bottom_right": "$K$257"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 61 -- 검증 -- 1.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 302.3622131347656,
+      "top_pt": 47287.25,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$269",
+      "bottom_right": "$K$269"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 65 -- 검증 -- 1.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 403.14959716796875,
+      "top_pt": 48572.0,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$283",
+      "bottom_right": "$K$283"
+    },
+    {
+      "name": "SW-FW-SYS-Test-ID -- 65 -- 검증 -- 2.jpeg",
+      "height_pt": 226.7716522216797,
+      "width_pt": 403.14959716796875,
+      "top_pt": 48874.25,
+      "left_pt": 1956.7498779296875,
+      "top_left": "$K$284",
+      "bottom_right": "$K$284"
+    }
+  ],
+  "options_scope": "Owned hidden Excel instance only; workbook not saved",
+  "main_body_font_size": 10.0,
+  "current_export": "cyber-comparison",
+  "source_end_sha256": "8A6F683CC357F217900CC7975C6750F0D05394A46DDE242A4380C02FC9C801A4",
+  "source_unchanged": true,
+  "completed_at": "2026-10-16T16:12:29.3495371+09:00",
+  "closed_without_saving": true,
+  "final_candidate_sha256": "64E7636993431C36BA9D9FF4A5A1C0CBC38EF23EB1889DDDBC8C6574EB77C90C",
+  "followup_exports": [
+    {
+      "name": "final-ci-crc",
+      "sheet": "보고서_시스템 시험",
+      "area": "C219:I223",
+      "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\photo-attach-20261016\\style-native-final-ci-crc.pdf",
+      "sha256": "5C429CEADBFEBFFE3522D7CAC2C7C5E720E2936964D9B6F9B8A0C42BB3A1A48B"
+    },
+    {
+      "name": "final-comparison",
+      "sheet": "보고서_시스템 시험_비교",
+      "area": "B1223:L1226",
+      "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\photo-attach-20261016\\style-native-final-comparison.pdf",
+      "sha256": "A40299E74612274E8C30692C074566CC71A873A2EE785F3987D51B4EF6E7E2D3"
+    },
+    {
+      "name": "final-comparison-last4",
+      "area": "B1225:L1228",
+      "pdf": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\photo-attach-20261016\\style-native-final-comparison-last4.pdf",
+      "sha256": "6C68359E3F8DCF2DA100355E18CDE05572FA1756FFDC013634C16EE054D3306E"
+    }
+  ],
+  "followup_evidence": [
+    "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\photo-attach-20261016\\style-native-followup.json",
+    "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\photo-attach-20261016\\style-native-tail-followup.json"
+  ],
+  "reuse_proof": {
+    "baseline_file": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\photo-attach-20261016\\style-before-compare-color.xlsx",
+    "baseline_sha256": "8A6F683CC357F217900CC7975C6750F0D05394A46DDE242A4380C02FC9C801A4",
+    "current_sha256": "64E7636993431C36BA9D9FF4A5A1C0CBC38EF23EB1889DDDBC8C6574EB77C90C",
+    "changed_parts": [
+      "xl/worksheets/sheet6.xml"
+    ],
+    "all_other_zip_parts_exact": true,
+    "meaning": "본문 / 그림 / 행높이 / 글꼴과 나머지 6시트의 8A native 근거를 재사용. 최종 비교색은 64E 후보에서 별도 출력하여 직접 재검사."
+  },
+  "final_source_unchanged": true,
+  "final_layout_review": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\photo-attach-20261016\\style-layout-final.json"
+}

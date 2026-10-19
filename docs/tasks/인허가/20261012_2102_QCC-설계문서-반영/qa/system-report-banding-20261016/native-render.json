@@ -1,0 +1,16 @@
+{
+  "source_sha256": "7C2F31E7EBA5AB1F216B171E6AE636A21DECBFD9A7C976D46F79D970CD0FFDD6",
+  "pages": 2,
+  "images": [
+    {
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\system-report-banding-20261016\\native-order-boundary-p001.png",
+      "sha256": "205A174EEF1230336937C1388A1AD15777FAC2D4EE55063A6C0680910EE4C329",
+      "page": 1
+    },
+    {
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\system-report-banding-20261016\\native-order-boundary-p002.png",
+      "sha256": "3169611AF654A4CD84937DAE2A2579A0E9A853457D3DC3681F43209FC07F4379",
+      "page": 2
+    }
+  ]
+}

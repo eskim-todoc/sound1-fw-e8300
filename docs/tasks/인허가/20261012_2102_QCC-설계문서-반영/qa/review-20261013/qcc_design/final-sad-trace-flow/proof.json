@@ -1,0 +1,1727 @@
+{
+  "SAD": {
+    "code": "SAD",
+    "source": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SAD-FW-TD24A 소프트웨어 아키텍쳐 기술서.docx",
+    "before_sha256": "8af46ef971b15ec6815cb5aed66e25580a4c9494d43dcdf4925852cb38c50515",
+    "candidate": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\qcc_design\\final-sad-trace-flow\\[E8300-QCC] SAD-FW-TD24A 소프트웨어 아키텍쳐 기술서.docx",
+    "candidate_sha256": "a07ec79724b3d94ed5c572a56e3feef9e8ab09df6cf3b24821f8794e87173439",
+    "new_revision_ids": [
+      "4680",
+      "4681",
+      "4682",
+      "4683",
+      "4684",
+      "4685",
+      "4686",
+      "4687",
+      "4688",
+      "4689",
+      "4690",
+      "4691",
+      "4692",
+      "4693",
+      "4694",
+      "4695",
+      "4696",
+      "4697",
+      "4698",
+      "4699",
+      "4700",
+      "4701",
+      "4702",
+      "4703",
+      "4704",
+      "4705",
+      "4706",
+      "4707",
+      "4708",
+      "4709",
+      "4710",
+      "4711",
+      "4712",
+      "4713",
+      "4714",
+      "4715",
+      "4716",
+      "4717",
+      "4718",
+      "4719",
+      "4720",
+      "4721",
+      "4722",
+      "4723",
+      "4724",
+      "4725",
+      "4726",
+      "4727",
+      "4728",
+      "4729",
+      "4730",
+      "4731",
+      "4732",
+      "4733",
+      "4734",
+      "4735",
+      "4736",
+      "4737",
+      "4738",
+      "4739",
+      "4740",
+      "4741",
+      "4742",
+      "4743",
+      "4744",
+      "4745",
+      "4746",
+      "4747",
+      "4748",
+      "4749",
+      "4750",
+      "4751",
+      "4752",
+      "4753",
+      "4754",
+      "4755",
+      "4756",
+      "4757",
+      "4758",
+      "4759",
+      "4760",
+      "4761",
+      "4762",
+      "4763",
+      "4764",
+      "4765",
+      "4766",
+      "4767",
+      "4768",
+      "4769",
+      "4770",
+      "4771",
+      "4772",
+      "4773",
+      "4774",
+      "4775",
+      "4776",
+      "4777",
+      "4778",
+      "4779",
+      "4780",
+      "4781",
+      "4782",
+      "4783",
+      "4784",
+      "4785",
+      "4786",
+      "4787",
+      "4788",
+      "4789",
+      "4790",
+      "4791",
+      "4792",
+      "4793",
+      "4794",
+      "4795",
+      "4796",
+      "4797",
+      "4798",
+      "4799",
+      "4800",
+      "4801",
+      "4802",
+      "4803",
+      "4804",
+      "4805",
+      "4806",
+      "4807",
+      "4808",
+      "4809",
+      "4810",
+      "4811",
+      "4812",
+      "4813",
+      "4814",
+      "4815",
+      "4816",
+      "4817",
+      "4818",
+      "4819",
+      "4820",
+      "4821",
+      "4822",
+      "4823",
+      "4824",
+      "4825",
+      "4826",
+      "4827",
+      "4828",
+      "4829",
+      "4830",
+      "4831",
+      "4832",
+      "4833",
+      "4834",
+      "4835",
+      "4836",
+      "4837",
+      "4838",
+      "4839",
+      "4840",
+      "4841",
+      "4842",
+      "4843",
+      "4844",
+      "4845",
+      "4846",
+      "4847",
+      "4848",
+      "4849",
+      "4850",
+      "4851",
+      "4852",
+      "4853",
+      "4854",
+      "4855",
+      "4856",
+      "4857",
+      "4858",
+      "4859",
+      "4860",
+      "4861",
+      "4862"
+    ],
+    "author": "김은수",
+    "reject_only_this_patch_exact_immediate_G_c14n": true,
+    "accepted_text_only_declared_changes": true,
+    "new_nested_insertions": 0,
+    "all_other_parts_exact": [
+      "[Content_Types].xml",
+      "_rels/.rels",
+      "word/footnotes.xml",
+      "word/endnotes.xml",
+      "word/header1.xml",
+      "word/header2.xml",
+      "word/_rels/header1.xml.rels",
+      "word/_rels/header2.xml.rels",
+      "word/media/image1.png",
+      "word/media/image2.png",
+      "word/media/image3.png",
+      "word/media/image4.png",
+      "word/media/image5.png",
+      "word/media/image6.png",
+      "word/media/image10.png",
+      "word/media/image11.png",
+      "word/theme/theme1.xml",
+      "word/media/image7.png",
+      "word/media/image9.png",
+      "word/media/image8.png",
+      "word/settings.xml",
+      "customXml/item1.xml",
+      "customXml/itemProps1.xml",
+      "word/numbering.xml",
+      "word/styles.xml",
+      "word/webSettings.xml",
+      "word/fontTable.xml",
+      "word/people.xml",
+      "docProps/core.xml",
+      "docProps/app.xml",
+      "customXml/_rels/item1.xml.rels"
+    ],
+    "styles_numbering_fonts_and_original_media_bytes_preserved": true,
+    "changes": [
+      {
+        "requirement": "SW-FW-RID-15",
+        "column": 1,
+        "paragraph_id": "05FCA36F",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-15",
+        "column": 1,
+        "paragraph_id": "48167A84",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 5,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-15",
+        "column": 2,
+        "paragraph_id": "60D8B221",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-15",
+        "column": 2,
+        "paragraph_id": "74367706",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-15",
+        "column": 2,
+        "paragraph_id": "6881159E",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-15",
+        "column": 2,
+        "paragraph_id": "3B2732BA",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-15",
+        "column": 2,
+        "paragraph_id": "69D1EBB9",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-15",
+        "column": 2,
+        "paragraph_id": "354D1676",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-15",
+        "column": 2,
+        "paragraph_id": "6963892D",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-15",
+        "column": 2,
+        "paragraph_id": "2A927B29",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-15",
+        "column": 2,
+        "paragraph_id": "508B9861",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 5,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-15",
+        "column": 2,
+        "paragraph_id": "16619BD4",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-16",
+        "column": 2,
+        "paragraph_id": "7B69D346",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-16",
+        "column": 2,
+        "paragraph_id": "25DB2622",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-16",
+        "column": 2,
+        "paragraph_id": "6352AA03",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-21",
+        "column": 1,
+        "paragraph_id": "5E4D927B",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-21",
+        "column": 2,
+        "paragraph_id": "6E65CD07",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-21",
+        "column": 2,
+        "paragraph_id": "527767D9",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-21",
+        "column": 2,
+        "paragraph_id": "49D7D5A9",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-22",
+        "column": 2,
+        "paragraph_id": "524CB794",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-22",
+        "column": 2,
+        "paragraph_id": "642B9C3A",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-23",
+        "column": 1,
+        "paragraph_id": "54CB7E65",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-23",
+        "column": 1,
+        "paragraph_id": "1DBCBE7D",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-23",
+        "column": 2,
+        "paragraph_id": "66D65D61",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-23",
+        "column": 2,
+        "paragraph_id": "48C949AC",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-24",
+        "column": 1,
+        "paragraph_id": "3B5C8F70",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-24",
+        "column": 1,
+        "paragraph_id": "68F77D19",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-24",
+        "column": 2,
+        "paragraph_id": "2EEB7D36",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-24",
+        "column": 2,
+        "paragraph_id": "1B2F507E",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-24",
+        "column": 2,
+        "paragraph_id": "012FBD61",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-24",
+        "column": 2,
+        "paragraph_id": "1F80F048",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-25",
+        "column": 1,
+        "paragraph_id": "645E4429",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-25",
+        "column": 1,
+        "paragraph_id": "0F69BEE0",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-25",
+        "column": 1,
+        "paragraph_id": "66CC5304",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-25",
+        "column": 2,
+        "paragraph_id": "43D127F6",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-25",
+        "column": 2,
+        "paragraph_id": "49F6D3F8",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-25",
+        "column": 2,
+        "paragraph_id": "1D2EB580",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-26",
+        "column": 1,
+        "paragraph_id": "64DC9213",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-26",
+        "column": 1,
+        "paragraph_id": "7CDCBF5C",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-26",
+        "column": 1,
+        "paragraph_id": "3BA6322B",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-26",
+        "column": 2,
+        "paragraph_id": "7D7EB39E",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-26",
+        "column": 2,
+        "paragraph_id": "00BDAED6",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-26",
+        "column": 2,
+        "paragraph_id": "07E8F3BB",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-27",
+        "column": 1,
+        "paragraph_id": "32E9A7D5",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-27",
+        "column": 2,
+        "paragraph_id": "1CE98DB2",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-27",
+        "column": 2,
+        "paragraph_id": "46EDB251",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-27",
+        "column": 2,
+        "paragraph_id": "27DEA04C",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-28",
+        "column": 1,
+        "paragraph_id": "706470A8",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-28",
+        "column": 1,
+        "paragraph_id": "5842CF85",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-28",
+        "column": 2,
+        "paragraph_id": "193918AB",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-28",
+        "column": 2,
+        "paragraph_id": "3E741C28",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-29",
+        "column": 1,
+        "paragraph_id": "2294CFFA",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-29",
+        "column": 2,
+        "paragraph_id": "363288F8",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-30",
+        "column": 1,
+        "paragraph_id": "578D80A4",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-30",
+        "column": 2,
+        "paragraph_id": "41D02DEE",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-31",
+        "column": 1,
+        "paragraph_id": "501472F3",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-31",
+        "column": 2,
+        "paragraph_id": "53131F1A",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-32",
+        "column": 1,
+        "paragraph_id": "0A25F9B8",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-32",
+        "column": 2,
+        "paragraph_id": "020B7AA2",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-33",
+        "column": 1,
+        "paragraph_id": "2878E917",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-33",
+        "column": 2,
+        "paragraph_id": "470F344E",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-34",
+        "column": 1,
+        "paragraph_id": "7D9ABAB9",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-34",
+        "column": 2,
+        "paragraph_id": "23A4C876",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-35",
+        "column": 1,
+        "paragraph_id": "20337ACB",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-35",
+        "column": 2,
+        "paragraph_id": "00780D7B",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-35",
+        "column": 2,
+        "paragraph_id": "18A9CF19",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-36",
+        "column": 1,
+        "paragraph_id": "493AC435",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-36",
+        "column": 1,
+        "paragraph_id": "6E85F86C",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-36",
+        "column": 1,
+        "paragraph_id": "249838E7",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-36",
+        "column": 2,
+        "paragraph_id": "14B7C358",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-36",
+        "column": 2,
+        "paragraph_id": "68CDCBC0",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-36",
+        "column": 2,
+        "paragraph_id": "3A0E7B36",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-37",
+        "column": 1,
+        "paragraph_id": "545A410F",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-37",
+        "column": 1,
+        "paragraph_id": "257EAFFF",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-37",
+        "column": 2,
+        "paragraph_id": "32044A04",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-37",
+        "column": 2,
+        "paragraph_id": "69983C1D",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-37",
+        "column": 2,
+        "paragraph_id": "10471B60",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-37",
+        "column": 2,
+        "paragraph_id": "12F1E880",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-38",
+        "column": 1,
+        "paragraph_id": "29AE5B79",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-38",
+        "column": 2,
+        "paragraph_id": "1683F5BE",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-38",
+        "column": 2,
+        "paragraph_id": "5F7724F5",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-39",
+        "column": 1,
+        "paragraph_id": "61D7B30F",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-39",
+        "column": 2,
+        "paragraph_id": "4912370C",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-39",
+        "column": 2,
+        "paragraph_id": "5AD6A924",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-40",
+        "column": 1,
+        "paragraph_id": "00B8C332",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-40",
+        "column": 2,
+        "paragraph_id": "2BE80C55",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-40",
+        "column": 2,
+        "paragraph_id": "002DD98C",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-40",
+        "column": 2,
+        "paragraph_id": "79FF79F7",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-44",
+        "column": 1,
+        "paragraph_id": "4AC50F17",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-44",
+        "column": 1,
+        "paragraph_id": "04E0D095",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 5,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-44",
+        "column": 2,
+        "paragraph_id": "6F4EB69E",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-44",
+        "column": 2,
+        "paragraph_id": "39C0B220",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-44",
+        "column": 2,
+        "paragraph_id": "307E50AA",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-44",
+        "column": 2,
+        "paragraph_id": "78E957D4",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 5,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-44",
+        "column": 2,
+        "paragraph_id": "2ADB6A8F",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-45",
+        "column": 1,
+        "paragraph_id": "50EE114E",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-45",
+        "column": 1,
+        "paragraph_id": "581AC5EF",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 5,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-45",
+        "column": 2,
+        "paragraph_id": "0D9EAF6D",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-45",
+        "column": 2,
+        "paragraph_id": "1BBCB121",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-45",
+        "column": 2,
+        "paragraph_id": "30E4123C",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-45",
+        "column": 2,
+        "paragraph_id": "389C5A12",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-45",
+        "column": 2,
+        "paragraph_id": "613828F2",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 5,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-45",
+        "column": 2,
+        "paragraph_id": "4287C5E6",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-46",
+        "column": 1,
+        "paragraph_id": "6CC5F731",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-46",
+        "column": 1,
+        "paragraph_id": "01A914A8",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-46",
+        "column": 2,
+        "paragraph_id": "61FBBC6F",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-46",
+        "column": 2,
+        "paragraph_id": "1178D80D",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-46",
+        "column": 2,
+        "paragraph_id": "64052983",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-46",
+        "column": 2,
+        "paragraph_id": "351668AC",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-47",
+        "column": 2,
+        "paragraph_id": "324455F9",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-48",
+        "column": 2,
+        "paragraph_id": "665D67D4",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-49",
+        "column": 2,
+        "paragraph_id": "22F67F46",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-52",
+        "column": 2,
+        "paragraph_id": "70F3176E",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-55",
+        "column": 1,
+        "paragraph_id": "25971AEE",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-55",
+        "column": 1,
+        "paragraph_id": "30F0E704",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-55",
+        "column": 2,
+        "paragraph_id": "07F549BE",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-55",
+        "column": 2,
+        "paragraph_id": "681ABF49",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-55",
+        "column": 2,
+        "paragraph_id": "65293560",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-55",
+        "column": 2,
+        "paragraph_id": "78F18641",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-55",
+        "column": 2,
+        "paragraph_id": "64B85868",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-59",
+        "column": 2,
+        "paragraph_id": "3C64E19A",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-59",
+        "column": 2,
+        "paragraph_id": "052F9F2D",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-59",
+        "column": 2,
+        "paragraph_id": "0EFA26BD",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-59",
+        "column": 2,
+        "paragraph_id": "2DACECA4",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-60",
+        "column": 1,
+        "paragraph_id": "1F8F83F7",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-60",
+        "column": 1,
+        "paragraph_id": "5FC661E9",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 5,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-60",
+        "column": 2,
+        "paragraph_id": "773B8FF6",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-60",
+        "column": 2,
+        "paragraph_id": "430EBD03",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 5,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-60",
+        "column": 2,
+        "paragraph_id": "2776049E",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-62",
+        "column": 1,
+        "paragraph_id": "0D256DFB",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-62",
+        "column": 2,
+        "paragraph_id": "5DB233D1",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-62",
+        "column": 2,
+        "paragraph_id": "187AC4D3",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-62",
+        "column": 2,
+        "paragraph_id": "38DD9BB5",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-63",
+        "column": 1,
+        "paragraph_id": "2F6AA29D",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-63",
+        "column": 2,
+        "paragraph_id": "23837CF4",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-63",
+        "column": 2,
+        "paragraph_id": "065D73B6",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-63",
+        "column": 2,
+        "paragraph_id": "4A2CC324",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-66",
+        "column": 1,
+        "paragraph_id": "7E2DC791",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-66",
+        "column": 1,
+        "paragraph_id": "3D4DF77E",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-66",
+        "column": 2,
+        "paragraph_id": "56C8641A",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-66",
+        "column": 2,
+        "paragraph_id": "60B52B7C",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-66",
+        "column": 2,
+        "paragraph_id": "21521F6C",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-67",
+        "column": 1,
+        "paragraph_id": "3948AC44",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-67",
+        "column": 1,
+        "paragraph_id": "3405778F",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-67",
+        "column": 2,
+        "paragraph_id": "0057CBC4",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-67",
+        "column": 2,
+        "paragraph_id": "4330D161",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-67",
+        "column": 2,
+        "paragraph_id": "42DD5267",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-67",
+        "column": 2,
+        "paragraph_id": "3FAF0B51",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-67",
+        "column": 2,
+        "paragraph_id": "3951EA5C",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-67",
+        "column": 2,
+        "paragraph_id": "16988D49",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-68",
+        "column": 1,
+        "paragraph_id": "2706EFDD",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-68",
+        "column": 1,
+        "paragraph_id": "502CBA90",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-68",
+        "column": 1,
+        "paragraph_id": "5EFE18E0",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-68",
+        "column": 2,
+        "paragraph_id": "55C61746",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-68",
+        "column": 2,
+        "paragraph_id": "2B77BF75",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-68",
+        "column": 2,
+        "paragraph_id": "2BF8BBFA",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-68",
+        "column": 2,
+        "paragraph_id": "005042CF",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-68",
+        "column": 2,
+        "paragraph_id": "221FC2A3",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-69",
+        "column": 1,
+        "paragraph_id": "50D61D0A",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-69",
+        "column": 1,
+        "paragraph_id": "4124DCC7",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-69",
+        "column": 1,
+        "paragraph_id": "3E369775",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 5,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-69",
+        "column": 2,
+        "paragraph_id": "126FF271",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-69",
+        "column": 2,
+        "paragraph_id": "6BB49E22",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-69",
+        "column": 2,
+        "paragraph_id": "0B236A54",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-69",
+        "column": 2,
+        "paragraph_id": "68B2C240",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-69",
+        "column": 2,
+        "paragraph_id": "2CD2F1C2",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-69",
+        "column": 2,
+        "paragraph_id": "33917785",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-69",
+        "column": 2,
+        "paragraph_id": "6EA2ED33",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 5,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-69",
+        "column": 2,
+        "paragraph_id": "7B72AD18",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-70",
+        "column": 1,
+        "paragraph_id": "098A7B5D",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-70",
+        "column": 1,
+        "paragraph_id": "20AB47B3",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 5,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-70",
+        "column": 2,
+        "paragraph_id": "71FB0251",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-70",
+        "column": 2,
+        "paragraph_id": "4594CD5E",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-70",
+        "column": 2,
+        "paragraph_id": "7897775F",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-70",
+        "column": 2,
+        "paragraph_id": "65CB6AC0",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 5,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-70",
+        "column": 2,
+        "paragraph_id": "47CB2FAD",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-71",
+        "column": 2,
+        "paragraph_id": "07004515",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-72",
+        "column": 2,
+        "paragraph_id": "34D194B7",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-76",
+        "column": 2,
+        "paragraph_id": "186D57C3",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-78",
+        "column": 1,
+        "paragraph_id": "17864890",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-78",
+        "column": 2,
+        "paragraph_id": "35BDCCDC",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-78",
+        "column": 2,
+        "paragraph_id": "4D68E658",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      },
+      {
+        "requirement": "SW-FW-RID-78",
+        "column": 2,
+        "paragraph_id": "4C599051",
+        "operation": "true paragraph-mark deletion of active empty paragraph",
+        "prior_revision_nodes_retained": 3,
+        "text_and_notice_runs_unchanged": true
+      }
+    ],
+    "figures": [],
+    "G_written": false,
+    "static_status": "통과",
+    "native_status": "미실행",
+    "scope_mixed_cells": 86,
+    "empty_paragraphs_mark_deleted": 183,
+    "header_repeat_unchanged": true,
+    "font_size_table_width_paragraph_style_notice_format_unchanged": true,
+    "baseline_root_publish_record": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\final-mic-first3-published.json",
+    "native_baseline_failures": [
+      {
+        "physical_page": 22,
+        "PNG": "docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\final-word\\SAD\\page-022.png",
+        "sha256": "79e1ebddfdf4d972929f909f83c63a27dd52d14b5363d7fca62565042c9a3c07",
+        "status": "실패",
+        "reason": "RID15 blank continued row below repeated header",
+        "inspection": "full individual native PNG directly opened",
+        "recheck": "root native of final-sad-trace-flow candidate"
+      },
+      {
+        "physical_page": 51,
+        "PNG": "docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\final-word\\SAD\\page-051.png",
+        "sha256": "824f8dd76b36799607ab3e495b5e4b72e7630b5bafa5c0fd7d0606f2bb0e160d",
+        "status": "실패",
+        "reason": "RID69 blank continued row occupies nearly whole page",
+        "inspection": "full individual native PNG directly opened",
+        "recheck": "root native of final-sad-trace-flow candidate"
+      }
+    ]
+  }
+}

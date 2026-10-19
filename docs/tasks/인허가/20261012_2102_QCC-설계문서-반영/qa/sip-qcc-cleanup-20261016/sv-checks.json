@@ -1,0 +1,18 @@
+{
+  "document":"SIP-FW-TD24A",
+  "scope":"QCC 반영 내용 빨강 표시 및 확인 문구/미비 안내 분리. 기능 내용/ID/설계/시험 판정의 변경 없음.",
+  "checks":[
+    {"numbers":[1,3,4,6,7],"result":"통과","evidence":"QCC SIP 원문과 SAD/SDDD 참고 문서의 기존 반영 설계 대조. ID 순서 동일. 빨강 37개 범위 및 혼합 안내 2곳만 변경. 기존 기능 문장 보존."},
+    {"numbers":[2,5,8,9,10,11,12,13,14,15,16,17,19,21,24,25],"result":"해당없음","reason":"요구사항/상세설계/시험 절차·결과/Excel/펌웨어 구조를 작성·수정하지 않는 표시 정리 범위."},
+    {"numbers":[18],"result":"통과","evidence":"미확정 계약·실측·실행 대기 문구 7곳과 표 2의 보류 조건 보존. 계획을 시험 통과로 변경하지 않음."},
+    {"numbers":[20],"result":"통과","evidence":"7개 미디어 파일 바이트 및 drawing/pict XML 보존. 최종 표시 그림 1 확인. 새 사진/측정값 없음."},
+    {"numbers":[22],"result":"통과","evidence":"현재 사용자 해제 지시에 따라 확인된 DMIC2 문장 2곳은 빨강/10pt/밑줄 없음. 남은 7개 안내는 C00000/12pt/밑줄. 기존 굵기 보존."},
+    {"numbers":[23],"result":"미실행","reason":"중앙 목록은 부모 단독 편집 범위. 저장본의 제목/ID/상태와 갱신안을 central-update-proposal.json으로 전달."},
+    {"numbers":[26],"result":"통과","evidence":"김은수 새 추적115개. 기존 추적 서명729개 보존. OOXML 새 추적 거부 시 문자/서식 원본 일치, Word 출력17쪽 픽셀 일치. Word AcceptAll 0개 잔여/본문 보존. Word RejectAll 양측10쪽 픽셀 일치."},
+    {"numbers":[27],"result":"통과","evidence":"지정 G파일 하나만 게시. 직전 원본 해시 대조 및 게시 후 후보와 바이트 동일. 표지/서명/승인 정보와 나머지 OOXML 파트 보존."},
+    {"numbers":[28],"result":"통과","evidence":"저장한 후보 Word 열기, 전체17쪽 PNG 검토, 내용/ID/그림/표폭/폰트 검증. 게시파일 재열기 및 해시 일치."},
+    {"numbers":[29],"result":"통과","scope":"현재 요청의 기존 형식 보존 범위","evidence":"styles/numbering/표속성/폭/제목/필드 불변, 전체페이지 검토. 공통 템플릿의 새 적용·재구성은 요청 범위 아님."}
+  ],
+  "product_test":"미실행: 이번 문서 표시 정리로 기존 실행/판정 상태를 변경하지 않음",
+  "formal_approval":"추가하지 않음"
+}

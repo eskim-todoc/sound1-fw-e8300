@@ -1,0 +1,308 @@
+0 7C612D96   
+1 371ED472   
+2 34C8E41E   
+3 19E43069   
+4 6221F9FE  TABLE 소프트웨어 요구사항 
+5 4C807AE9  TABLE (TD24A-A-EXT)
+6 04861915   
+7 277CFA65   
+8 009EBE46   
+9 64F64524   
+10 56C75B62   
+11 390993B9   
+12 3F74E0DF   
+13 01E39B7D   
+14 13D0C109   
+15 4A8A39B5   
+16 33D4B184   
+17 01AAE9DA   
+18 14D9FBF5  TABLE 
+19 09A39C7C  TABLE 작성
+20 64B6E72F  TABLE 검토
+21 57CFE15F  TABLE 승인
+22 442AEE20  TABLE 성함
+23 3DFE1A6A  TABLE 김은수
+24 584837B6  TABLE 
+25 658E2DD6  TABLE 
+26 6F69D4AF  TABLE 직책
+27 4A111D7B  TABLE 수석연구원
+28 0DA4E4B5  TABLE 
+29 09E6B23F  TABLE 
+30 23D83721  TABLE 일자
+31 38C7A58F  TABLE 
+32 5E273E1B  TABLE 
+33 228685E0  TABLE 
+34 01F765F2  TABLE 서명
+35 0B0EACD0  TABLE 
+36 4D086E5F  TABLE 
+37 577F15EE  TABLE 
+38 6344C25A   
+39 5FE0F193   
+40 53A09068 TOC  목차
+41 51D0D739 12  
+42 53DD7FB2 20  
+43 7378AF45 20  
+44 77E8E193 20  
+45 3C22B9D1 20  
+46 1B3F52AE 30  
+47 6753A930 12  
+48 0F8E7753 12  
+49 6784594E 20  
+50 5B630157 30  
+51 0037580D 30  
+52 66399E59 12  
+53 4B7C9BF1 20  
+54 06774C17 12  
+55 29AEB22C 12  
+56 6CD8D452 12  
+57 55563B1C 12  1. 서론1
+58 68267B9C 20  1.1. 개요1
+59 2760F2BB 20  1.2. 목적1
+60 4D4CA85B 20  1.3. 대상1
+61 10E37C49 20  1.4. 관련문서1
+62 0223AC1A 30  1.4.1. 프로젝트1
+63 2D8E2209 12  2. 하드웨어 플랫폼3
+64 40BC7CC7 12  3. 프로그램 언어 및 사이즈7
+65 1A0BB00B 20  3.1. 프로그램 언어 및 사이즈(Program Language and Size)7
+66 4D6D4FFD 30  3.1.1. 프로그램 언어7
+67 75A28D60 30  3.1.2. 프로그램 사이즈8
+68 78168E5D 12  4. 소프트웨어 요구사항8
+69 1460749B 12  5. 소프트웨어 요구사항 검증8
+70 53662AA9 12  6. 소프트웨어 위험분석 재평가10
+71 78D9C3B1   
+72 553555C9   
+73 7A28DCDA   
+74 0CAD996D a9 TABLE No.
+75 7AE39262 a9 TABLE 개정 내용
+76 0773A4C1 a9 TABLE 개정 위치 
+77 7A8429FF a9 TABLE 개정 날짜
+78 6F2B9793 a9 TABLE 0
+79 7662DB55 a9 TABLE 최초 제정
+80 498552AD a9 TABLE -
+81 1AC187FF a9 TABLE 
+82 2B091BBF a9 TABLE 
+83 177A3785 a9 TABLE 
+84 46B0A795 a9 TABLE 
+85 0219D6CD a9 TABLE 
+86 4C5D00C4 a9 TABLE 
+87 26F33992 a9 TABLE 
+88 5BF44BC3 a9 TABLE 
+89 460B5ABF a9 TABLE 
+90 261F3143 a9 TABLE 
+91 15B1AC89 a9 TABLE 
+92 5C34CB66 a9 TABLE 
+93 706BFAC4 a9 TABLE 
+94 467B4E86 a9 TABLE 
+95 03805036 a9 TABLE 
+96 6C91DFD0 a9 TABLE 
+97 3344113F a9 TABLE 
+98 6CC3DFB6 a9 TABLE 
+99 316A3F6E a9 TABLE 
+100 5410319B a9 TABLE 
+101 0C4BEE90 a9 TABLE 
+102 57376C23 a9 TABLE 
+103 043C65A4 a9 TABLE 
+104 1C13FFC6 a9 TABLE 
+105 46481570 a9 TABLE 
+106 6B9A48C2 a9 TABLE 
+107 18E61B23 a9 TABLE 
+108 4EABCD7A a9 TABLE 
+109 2FF6B144 a9 TABLE 
+110 32BCAAD0 a9 TABLE 
+111 0AF1B738 a9 TABLE 
+112 760EA805 a9 TABLE 
+113 2B50CF5D a9 TABLE 
+114 079FB2F6 a9 TABLE 
+115 14A12976 a9 TABLE 
+116 05C06026 a9 TABLE 
+117 403541D6 a9 TABLE 
+118 5BDF136F a9 TABLE 
+119 17F96CAF a9 TABLE 
+120 56CB2381 a9 TABLE 
+121 4A1DF2F7 a9 TABLE 
+122 3DDF01DA a9 TABLE 
+123 2F56CC28 a9 TABLE 
+124 2FE2EAB5 a9 TABLE 
+125 2F52E2DE a9 TABLE 
+126 495ECF4C a9 TABLE 
+127 554382A8 a9 TABLE 
+128 19F83E07 a9 TABLE 
+129 63704199 a9 TABLE 
+130 392DD040 a9 TABLE 
+131 2D9B05BC a9 TABLE 
+132 2F37D903 a9 TABLE 
+133 0C8D0828 a9 TABLE 
+134 2AA49C5B a9 TABLE 
+135 080F0F80 a9 TABLE 
+136 44D25D11 a9 TABLE 
+137 55493E86 a9 TABLE 
+138 26EC0A62 a9 TABLE 
+139 485720A7 a9 TABLE 
+140 518C7258 a9 TABLE 
+141 140B8558 a9 TABLE 
+142 462017D1 a9 TABLE 
+143 583E8617 a9 TABLE 
+144 71AB0009 a9 TABLE 
+145 482D57C0 a9 TABLE 
+146 32719E65   
+147 4BD64E4D   
+148 7786AFFE   
+149 051AA32E TDC1  서론
+150 69F2D195 TDC2  개요
+151 235F31F9 TDC20  본 문서는 TD24A-A-EXT 제품의 펌웨어를 개발하기 위한 소프트웨어의 요구사항을 정의한다.
+152 160CE611 TDC20  이 요구사항은 외부기의 E8300 펌웨어와 QCC5181의 Bluetooth/보안 펌웨어에 적용한다. 자극 처리의 담당과 무선 통신/인증의 담당을 구분하고 두 칩의 전달 경계를 함께 정의한다.
+153 07E2CE08 TDC20  
+154 2306B0B2 TDC2  목적
+155 52B56173 TDC20  외부기 펌웨어의 소프트웨어 요구사항을 결정함으로써 사양을 충족할 수 있는 설계 절차를 진행할 수 있게 하여 소프트웨어 개발 절차에 따라 안전하고 일관성 및 정확성을 제공하는 소프트웨어의 개발이 보장되는 것을 목적으로 한다.
+156 136848E1 TDC20  
+157 22C099E2 TDC2  대상
+158 51DC4B24 TDC20  TD24A-A-EXT 제품의 펌웨어 개발 프로젝트에 참여하는 모든 구성원은 이 문서를 참고하도록 한다.
+159 0B3B8E54 TDC20  
+160 06CFF5B9 TDC2  관련문서
+161 73127F70 TDC3  프로젝트
+162 27AFE599 TDC0 TABLE No
+163 2207E671 TDC0 TABLE 문서번호
+164 242037F2 TDC0 TABLE 문서 제목
+165 73E2450B TDC7 TABLE 1
+166 4A7FAA50 TDC7 TABLE SDP-FW-TD24A
+167 1EB59E73 TDC7 TABLE 소프트웨어 개발 계획서
+168 7BFFC127 TDC7 TABLE 2
+169 1DA1DF1E TDC7 TABLE SGR-FW-TD24A
+170 65F955BE TDC7 TABLE 소프트웨어 일반 요구사항
+171 2C5A0604 TDC7 TABLE 3
+172 14A59E13 TDC7 TABLE SRS-FW-TD24A
+173 30ADF17B TDC7 TABLE 소프트웨어 요구사항 사양서
+174 0A6B815A TDC30  
+175 594DFD0F TDC30  표준 및 규제
+176 1FF21E77 TDC0 TABLE No
+177 268771EE TDC0 TABLE 문서번호
+178 352A81DE TDC0 TABLE 문서 제목
+179 2E5045DB TDC7 TABLE 1
+180 5894B055 TDC7 TABLE IEC 62304
+181 5B3D9B8C TDC7 TABLE Medical device software – Software life cycle processes
+182 415828F2 TDC7 TABLE 2
+183 6E27B58F TDC7 TABLE ISO 14971
+184 046D3380 TDC7 TABLE Medical devices – Application of risk management to medical
+185 586E3B06 TDC30  
+186 17DB3504 TDC30  
+187 4F8D9A24 TDC30  
+188 065F400E TDC1  하드웨어 플랫폼
+189 0F291EEC TDC10  인공와우 시스템을 구성하는 시스템의 구성은 그림 1.과 같으며, 외부기 펌웨어가 동작하는 하드웨어 블록도는 그림 2.와 같다.
+190 3794024D TDC10  
+191 44291126 TDC14  
+192 7683BC16 TDC15  < 그림 1. 인공와우 시스템 >
+193 36D39DAA TDC10  
+194 6F545E64 TDC10  
+195 12B62827 TDC14  
+196 712F2387 TDC15  < 그림 2. 인공와우 외부장치 블록도 >
+197 3872D732 TDC10  • MCU or DSP
+198 28B67B66 TDC10  
+199 7BA8B08C TDC10  Ezairo 8300은 CFX
+200 1189E96B TDC10  , ARM Cortex-M3, HEAR
+201 72CC5967 TDC10  , Filter Engine, LPDSP32, NNA를 포함한다. Sound1의 신호처리와 제어는 CFX, HEAR, Cortex-M3를 중심으로 구성한다.
+202 248EB2B7 TDC10  - CFX : 오디오 입력, 빔포밍 및 자극 데이터 생성
+203 116AD858 TDC10  - HEAR : FFT 등 신호처리 연산
+204 4AFA74D8 TDC10  - Filter Engine, LPDSP32, NNA : 칩 내 제공 기능으로, 사용 여부는 펌웨어 설계에 따른다.
+205 05616A40 TDC10  - ARM Cortex-M3 : 시스템 제어 및 QCC5181과 통신. QCC5181은 별도의 Bluetooth 칩이다.
+206 0535BC52 TDC10  - QCC5181 : Bluetooth Classic 오디오 송수신과 BLE 연결/인증을 처리한다. 수신 오디오를 I2S로 E8300에 전달하고 전화 통화 시 DMIC2의 음성을 수음하여 통화 상대에게 송신한다. E8300의 명령/응답 데이터는 SPI로 중계한다. QCC의 내부 구성은 소프트웨어 아키텍쳐 기술서와 상세 설계서에서 정의한다.
+207 79864990 TDC10  
+208 2FC106DC TDC14  
+209 1B30EEFB TDC15  < 그림 3. Ezairo 8300 Chip 블록도 >
+210 3F4CCA7B TDC10  
+211 0000AC7A TDC10  • Memory device
+212 34E564FD TDC10  
+213 5F601F3E TDC10  
+214 059B7348 TDC10  프로그램과 맵 데이터는 외부 비휘발성 메모리에 저장하며, Ezairo 8300 내부 RAM에서 프로그램을 실행한다.
+215 37A237E5 TDC10  RAM은 프로그램용, 데이터용 및 코어 간 공유 영역으로 구분한다. 메모리 배치는 각 프로젝트의 링커 설정을 따른다.
+216 65472282 TDC10  부팅 시 부트로더가 저장된 프로그램과 데이터를 RAM으로 적재한다. 아래 값은 현재 CM3 프로젝트 링커에서 선언한 영역 크기이며, 실제 사용량은 빌드 결과로 확인한다.
+217 7503B8A7 TDC10  - 비휘발성 메모리
+218 2ACFE04C TDC10  
+219 03DC8061 TDC10  프로그램, 맵 데이터 및 설정 데이터를 저장할 수 있어야 한다.
+220 3D35C8A1 TDC10  - 프로그램 메모리
+221 535E9597 TDC10  
+222 6E9D982C TDC10  CFX : 128 kBytes, ARM Cortex-M3 : 384 kBytes
+223 2EE3B36A TDC10  - 데이터 메모리
+224 7066C4D8 TDC10  
+225 319A7C6B TDC10  ARM Cortex-M3 DRAM : 96 kBytes
+226 0EA3E8B8 TDC10  공유 메모리 : 신호처리 버퍼와 코어 간 공유 데이터 영역을 중복 없이 배치한다.
+227 41239823 TDC10  
+228 0D904086 TDC10  
+229 720804EE TDC10  
+230 38B21DC4 TDC10  
+231 242CB30F TDC10  
+232 61DE0B88 TDC10  
+233 1E6D4C61 TDC10  
+234 6217F543 TDC10  
+235 4C28E4E1 TDC10  
+236 57E167E6 TDC10  • Sensors
+237 7D5BCC6D TDC10  오디오 입력은 DMIC1/DMIC2의 디지털 마이크와 QCC5181에서 전달하는 I2S 오디오를 사용한다. DMIC2는 E8300과 QCC5181에 함께 연결되며, QCC5181은 전화 통화 상향 음성의 수음에 사용한다. IQS323 터치 센서는 사용자 입력을 감지한다.
+238 45BE64B0 TDC10  • 전원
+239 34298DC7 TDC10  충전형 내장 배터리를 사용한다.
+240 3930DCF7 TDC10  • 안전 특징
+241 2299C91F TDC10  
+242 00C5787E TDC10  시동과 종료 중에는 자극 출력을 생성하지 않으며, 맵에서 정한 자극 크기와 펄스폭 범위를 지켜야 한다.
+243 32AC1F2A TDC10  • 통신 
+244 10345A3D TDC10  근접 무선 통신 : 
+245 43769C2E TDC10  인공달팽이관 외부장치의 코일에서 인공달팽이관 내부장치의 코일로 10MHz ASK(Amplitude Shift Keying) 방식으로 전력 및 데이터를 송신하고, LSK(Load shift keying) 방식으로 데이터를 수신한다. 이 기능은 FPGA가 담당하고 있으며, Ezairo 8300 chip은 FPGA에 PCM interface를 사용하여 bitstream을 전달한다.
+246 385273E1 TDC10  Bluetooth Classic / LE :
+247 4E3454C1 TDC10  QCC5181을 통해 Bluetooth Classic 오디오를 송수신하고, 리모콘 앱과 매핑 프로그램의 제어 명령 및 응답 데이터를 송수신한다.
+248 48A45E08 TDC10  QCC의 Bluetooth 수신 오디오는 I2S 24비트, 샘플링 주파수 16kHz로 E8300에 전달한다. DMIC2는 E8300과 QCC에 함께 연결되며, 전화 통화 시 QCC가 DMIC2의 음성을 수음하여 통화 상대에게 송신한다. 통화 상향 마이크 입력과 QCC에서 E8300으로 전달하는 I2S 오디오는 서로 다른 경로이며, Bluetooth Classic 송수신 기능은 SW-FW-RID-69에 따른다.
+249 64B844A7 TDC10  BLE의 리모콘/매핑 데이터는 QCC와 E8300 사이에서 SPI로 중계한다. 보호 대상 접근에는 페어링과 CRA 인증을 요구하며, 3분 무송수신/인증 실패 5회 후 1분 연결 제한/인증 30초 시간 제한의 정의와 미비 사항은 소프트웨어 요구사항 사양서에 따른다.
+250 0C2E9C27 TDC10  [QCC/E8300 자료 입력] DMIC2가 E8300과 QCC에 함께 연결되는 경로는 확인되었다. 3분 무송수신의 감시/갱신 범위와 제어 명령 미수신 조건의 정합성, QCC 마이크 핀/클록, 연결 상대 및 프로파일/코덱별 송수신과 동시 동작 조건 및 시험 결과를 확인한다.
+251 732943B4 TDC10  
+252 111751CC TDC10  
+253 46A9A6E5 TDC10  
+254 75748A56 TDC1  프로그램 언어 및 사이즈
+255 12EBFBB5 TDC2  프로그램 언어 및 사이즈(Program Language and Size)
+256 022408FA TDC3  프로그램 언어
+257 3B791777 TDC30  - CFX : C language, Assembly language / HEAR : Microcode
+258 2F86165D TDC30  - ARM Cortex-M3 : C language
+259 4614A801 TDC30  - QCC5181 : C language 및 제조사 제공 Bluetooth stack/Built-in library와 scheduler를 사용하는 펌웨어로 구성한다.
+260 217E0D60 TDC30  [QCC 자료 입력] 실제 QCC 개발 환경, 라이브러리/ADK 버전과 빌드 구성을 입력한다.
+261 7BD3DBA3 TDC3  프로그램 사이즈
+262 099DEC29 TDC30  
+263 0A79A2C3 TDC30  - 각 코어의 실행 코드와 데이터가 링커에서 할당한 메모리 범위를 넘지 않아야 한다.
+264 7765B95A TDC30  QCC의 실행 이미지와 저장 데이터는 QCC에 할당한 메모리 영역의 범위를 넘지 않아야 한다. E8300 코어의 메모리 값과 QCC 메모리 값은 구분한다.
+265 14849979 TDC30  [QCC 자료 입력] QCC의 실제 메모리 배치, 실행 이미지/데이터 사용량과 부트 이미지 검사 설정을 입력한다.
+266 3E008076 TDC30  
+267 344D0FFA TDC30  
+268 0B6AACE2 TDC30  
+269 16772362 TDC1  소프트웨어 요구사항
+270 739532CD TDC10  소프트웨어 입력 요구사항 사양서(SRS-FW-TD24A) 참조
+271 3DCAD843 TDC10  외부기 소프트웨어의 요구사항은 소프트웨어 요구사항 사양서의 SW-FW-RID-1~81 및 SW-FW-RID-83으로 식별한다. Bluetooth Classic의 수신과 통화 상향 송신은 SW-FW-RID-69에 함께 정의한다.
+272 29D74A7F TDC10  사용 설명서의 안전 예방조치/사용/문제 해결 요구는 SW-FW-RID-83에 따른다. IEC 62304 개발 절차와 ISO 14971 위험관리 적용은 본 문서와 소프트웨어 일반 요구사항의 규제 요구를 유지한다.
+273 4351C0E7 TDC10  
+274 326244CC TDC10  
+275 7EF608A4 TDC1  소프트웨어 요구사항 검증
+276 3FB6872B TDC10  4장에서 기술된 소프트웨어 요구사항이 다음의 질문들을 만족하는지 검증한다.
+277 586C65BF TDC10  위험관리에 관련된 요구사항을 포함해 시스템 요구사항이 구현되었는가?
+278 51882428 TDC10  (Have system requirements been implemented, including requirements related to risk management?)
+279 6EDFEF37 TDC10  위험 통제와 기능/보안 요구사항은 소프트웨어 요구사항 사양서에서 해당 시스템 요구사항과 연결한다. 각 요구의 구현 및 검증 완료는 해당 시험 근거로 판단하며, 미확정 조건과 실제 시험이 남은 항목은 판정을 대기한다.
+280 1FE90545 TDC10  
+281 497BFE4F TDC10  서로 상충하지 않는가?
+282 34D7F929 TDC10  (Do they not contradict one another?)
+283 5C7E7947 TDC10  무송수신 시간의 감시 대상, 인증 알고리즘/키 역할 및 인터페이스의 상충 조건은 소프트웨어 요구사항 사양서에 표시한다. 조건을 확인한 후 관련 설계와 시험 기준을 함께 조정하고 대조한다.
+284 7AFF7B65 TDC10  
+285 362DD365 TDC10  모호한 표현을 방지하는 용어로 표현되었는가?
+286 17138D5B TDC10  (Are they expressed in terms that avoid ambiguity?)
+287 6422905B TDC10  I2S 데이터 크기/표본율, 연결 제한 시간/횟수 및 인증 상태를 구체적으로 정의한다. 키 역할, 타이머 시작/갱신 범위와 시간 경계의 허용 조건 및 실제 검증 결과는 추가 확인이 필요하다.
+288 1D08EB05 TDC10  
+289 7A2CF13C TDC10  시험 기준이 충족되는지 판단하기 위해 시험 기준과 시험 성능을 확립할 수 있는 용어로 언급되었는가?
+290 292F8382 TDC10  (Are they stated in terms that permit establishment of test criteria and performance of tests to determine whether the test criteria have been met? )
+291 1ED4DDAF TDC10  I2S 조건과 인증 시간/횟수는 시험 기준과 같은 입력 조건에서 비교한다. 타이머 갱신/허용오차, 실제 보호 방식 및 오디오 송수신의 미확정 조건은 확인 전 시험 통과로 판정하지 않는다.
+292 674932AD TDC10  
+293 7E2A0836 TDC10  유일하게 식별되는가?
+294 2D89F901 TDC10  (Are they uniquely identified?)
+295 212258BB TDC10  각 요구는 SW-FW-RID-1~81 및 SW-FW-RID-83으로 유일하게 식별한다. Bluetooth Classic 송수신은 SW-FW-RID-69, 사용 설명서는 SW-FW-RID-83에 정의한다.
+296 3DB2CEB5 TDC10  
+297 0FB0C841 TDC10  시스템 요구사항이나 다른 발생원까지 추적할 수 있는가?
+298 0BFF1891 TDC10  (Are they traceable to SYSTEM requirements or other source?)
+299 545E39EF TDC10  Bluetooth Classic 송수신 요구 SW-FW-RID-69는 SYS-RID-SP-FW-15에 연결한다. 사용 설명서 요구 SW-FW-RID-83은 경고/안전사항, 안전한 작동법 및 동작방법을 정의한 자체 소프트웨어 요구사항이다. 다른 요구의 시스템 및 위험 통제 추적은 소프트웨어 요구사항 사양서에서 확인한다.
+300 3DE155B3 TDC10  [E8300 보완] 제품 사용 설명서에서 경고/안전사항, 안전한 작동법 및 동작방법의 해당 절과 내용, 배포 대상 및 검토 결과를 확인한다.
+301 08A17FA2 TDC10  
+302 36AA27E5 TDC10  
+303 38C93EF4 TDC10  
+304 1B80EA6A TDC10  
+305 3BAD9AD5 TDC1  소프트웨어 위험분석 재평가
+306 0E19AB4F TDC10  오디오 송수신, 연결/인증, 키 관리 및 펌웨어 보호의 위험 통제 영향을 재평가하고 설계 입력/출력 및 시험 기준과 대조한다.
+307 09CDA595 TDC10  [QCC/E8300 자료 입력] 오디오 송수신, 연결/인증, 키 관리 및 펌웨어 보호에 대한 위험분석 재평가와 변경 영향의 검토 결과를 확인한다.

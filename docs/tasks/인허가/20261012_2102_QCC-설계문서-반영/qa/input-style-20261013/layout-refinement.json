@@ -1,0 +1,34 @@
+[
+  {
+    "code": "SR",
+    "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\SR-refined.docx",
+    "sha256": "F32F055558FCDEC8932B8A2F3AB970450300D6E456A3BF3B38B8E877FF4E419F",
+    "changes": [
+      "Continuous page numbering",
+      "Removed obsolete standalone page break before hardware chapter",
+      "Bold existing bullet/category/question labels",
+      "Consistent 0.35cm memory item indentation; removed two layout tabs"
+    ],
+    "new_structural_revision_ids": [
+      "681",
+      "682"
+    ],
+    "word_and_deleted_text_unchanged": true,
+    "prior_format_snapshots_preserved": true
+  },
+  {
+    "code": "SGR",
+    "path": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\input-style-20261013\\SGR-refined.docx",
+    "sha256": "BFC5C73254E720EBD85036B3DDC721E7E3D1D653BF77AA81C48BBF7A99614BDA",
+    "changes": [
+      "Moved introduction page break from two blank paragraphs to actual heading"
+    ],
+    "new_structural_revision_ids": [
+      "949",
+      "950",
+      "951"
+    ],
+    "word_and_deleted_text_unchanged": true,
+    "prior_format_snapshots_preserved": true
+  }
+]

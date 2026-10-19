@@ -1,0 +1,170 @@
+{
+  "source": "G:\\공유 드라이브\\20_프로젝트별\\01_project sound1\\08_DHF\\03_설계 출력\\SW\\외부기\\[E8300-QCC] SAD-FW-TD24A 소프트웨어 아키텍쳐 기술서.docx",
+  "sourceSHA256": "84F592A7F7988A78EB73FA718268CC22DDF20A5BAC796358B971ABA0D23CCC68",
+  "checked_at": "2026-10-13T10:47:53.940130+09:00",
+  "status": "통과",
+  "scope": "최종 native SAD 55쪽 중 담당 구간29~42쪽14개를 원본893×1263 PNG로 각각 직접 열어 확인했다. 축소 contact를 대신 사용하지 않았다. 이 기록은 담당14쪽의 실제 표시 검사이며 실제 제품시험이나 나머지41쪽 검사를 대신하지 않는다.",
+  "checks": [
+    "요구사항 ID와 모듈/유닛 ID 및 이름의 셀 안 표시",
+    "긴 유닛 목록/미비 안내의 첫줄과 끝줄 및 줄바꿈",
+    "표 세 열의 좌우/하단 셀 경계와 내용 잘림",
+    "빈 페이지/페이지 경계 오버플로/문자 겹침"
+  ],
+  "findings": [],
+  "pages": [
+    {
+      "page": 29,
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\final-word\\SAD\\page-029.png",
+      "sha256": "8dcd00856d10c4c3df8a0f1ae87277889c7ea714257808434468b5e02abe8e9b",
+      "size": [
+        893,
+        1263
+      ],
+      "direct_original_size_viewed": true,
+      "verdict": "통과"
+    },
+    {
+      "page": 30,
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\final-word\\SAD\\page-030.png",
+      "sha256": "4776fcf69a2266e57aa2ca55579b7b3b57336237c1b36b570a457419f43309c9",
+      "size": [
+        893,
+        1263
+      ],
+      "direct_original_size_viewed": true,
+      "verdict": "통과"
+    },
+    {
+      "page": 31,
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\final-word\\SAD\\page-031.png",
+      "sha256": "141944e731bcd5341876e0c7fd39771764613efc5a6137d838784f9a7c6ee341",
+      "size": [
+        893,
+        1263
+      ],
+      "direct_original_size_viewed": true,
+      "verdict": "통과"
+    },
+    {
+      "page": 32,
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\final-word\\SAD\\page-032.png",
+      "sha256": "211c6d9a57d2538cd8cf0fffcc93832164c464bf27e039d2b6bce6f6c348e0bf",
+      "size": [
+        893,
+        1263
+      ],
+      "direct_original_size_viewed": true,
+      "verdict": "통과"
+    },
+    {
+      "page": 33,
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\final-word\\SAD\\page-033.png",
+      "sha256": "77b29d558723d82155f9a2971b2a0962450797967945e33ad9000526ab30beb3",
+      "size": [
+        893,
+        1263
+      ],
+      "direct_original_size_viewed": true,
+      "verdict": "통과"
+    },
+    {
+      "page": 34,
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\final-word\\SAD\\page-034.png",
+      "sha256": "353aa39d60411709cc19c4ffa199016371bc49d605b9a9c50af0e50804d49a1f",
+      "size": [
+        893,
+        1263
+      ],
+      "direct_original_size_viewed": true,
+      "verdict": "통과"
+    },
+    {
+      "page": 35,
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\final-word\\SAD\\page-035.png",
+      "sha256": "1e42e2f8a2b1035eb1f8184e3e095ad6f4ad8866e2981a03ffa029bf8147d711",
+      "size": [
+        893,
+        1263
+      ],
+      "direct_original_size_viewed": true,
+      "verdict": "통과"
+    },
+    {
+      "page": 36,
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\final-word\\SAD\\page-036.png",
+      "sha256": "b489a80c3fca09c807254d6375300a619400d555820724eb89bc3d28b13cf641",
+      "size": [
+        893,
+        1263
+      ],
+      "direct_original_size_viewed": true,
+      "verdict": "통과"
+    },
+    {
+      "page": 37,
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\final-word\\SAD\\page-037.png",
+      "sha256": "ecb976ac93d685b4712639e607ebb5a37447e9816896a07a2602224029f39255",
+      "size": [
+        893,
+        1263
+      ],
+      "direct_original_size_viewed": true,
+      "verdict": "통과"
+    },
+    {
+      "page": 38,
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\final-word\\SAD\\page-038.png",
+      "sha256": "438fe0c8ba7c5df196bc82a4db7af7f00170517d8ef134432d0a0f9d2dd06886",
+      "size": [
+        893,
+        1263
+      ],
+      "direct_original_size_viewed": true,
+      "verdict": "통과"
+    },
+    {
+      "page": 39,
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\final-word\\SAD\\page-039.png",
+      "sha256": "e33809723dab6dd7ab793b53f107c08a47718373a72ee39be66b2c251e0b2678",
+      "size": [
+        893,
+        1263
+      ],
+      "direct_original_size_viewed": true,
+      "verdict": "통과"
+    },
+    {
+      "page": 40,
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\final-word\\SAD\\page-040.png",
+      "sha256": "2205870fa134bdde11d4d004bfdb56dbccf55ae8da264724167de10aace00d6c",
+      "size": [
+        893,
+        1263
+      ],
+      "direct_original_size_viewed": true,
+      "verdict": "통과"
+    },
+    {
+      "page": 41,
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\final-word\\SAD\\page-041.png",
+      "sha256": "573838acc14e6f7e3cf702db4698d2fab7e0f9f9e90d41ccbbfb93c081771d1a",
+      "size": [
+        893,
+        1263
+      ],
+      "direct_original_size_viewed": true,
+      "verdict": "통과"
+    },
+    {
+      "page": 42,
+      "png": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\final-word\\SAD\\page-042.png",
+      "sha256": "abd86e830e2adc040f60abc5b6ba42012696f36c96606a08b53f383169ef007b",
+      "size": [
+        893,
+        1263
+      ],
+      "direct_original_size_viewed": true,
+      "verdict": "통과"
+    }
+  ]
+}

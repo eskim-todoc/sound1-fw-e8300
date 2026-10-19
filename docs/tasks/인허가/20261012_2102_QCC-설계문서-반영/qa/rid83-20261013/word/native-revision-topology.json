@@ -1,0 +1,272 @@
+[
+  {
+    "code": "SR",
+    "native_XML": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\rid83-20261013\\word\\SR-native-open.xml",
+    "first_document_revisions": [
+      {
+        "type": "del",
+        "id": "2",
+        "author": "김은수",
+        "date": "2026-09-28T17:07:00Z",
+        "parent": "p",
+        "text": "TD20B"
+      },
+      {
+        "type": "ins",
+        "id": "3",
+        "author": "김은수",
+        "date": "2026-09-28T17:07:00Z",
+        "parent": "p",
+        "text": "TD24A"
+      },
+      {
+        "type": "del",
+        "id": "5",
+        "author": "김은수",
+        "date": "2026-09-28T17:07:00Z",
+        "parent": "p",
+        "text": "임정우"
+      },
+      {
+        "type": "ins",
+        "id": "6",
+        "author": "김은수",
+        "date": "2026-09-28T17:07:00Z",
+        "parent": "p",
+        "text": "김은수"
+      },
+      {
+        "type": "del",
+        "id": "7",
+        "author": "김은수",
+        "date": "2026-09-28T17:07:00Z",
+        "parent": "p",
+        "text": "이호승"
+      },
+      {
+        "type": "del",
+        "id": "8",
+        "author": "김은수",
+        "date": "2026-09-28T17:07:00Z",
+        "parent": "p",
+        "text": "사업부장"
+      },
+      {
+        "type": "ins",
+        "id": "9",
+        "author": "김은수",
+        "date": "2026-09-28T17:07:00Z",
+        "parent": "p",
+        "text": "수석연구원"
+      },
+      {
+        "type": "del",
+        "id": "10",
+        "author": "김은수",
+        "date": "2026-09-28T17:07:00Z",
+        "parent": "p",
+        "text": "기술이사"
+      }
+    ],
+    "new_nodes": [
+      {
+        "type": "del",
+        "id": "527",
+        "author": "김은수",
+        "date": "2026-10-13T06:53:00Z",
+        "parent": "ins",
+        "text": "Bluetooth Classic 송수신 요구 SW-FW-RID-69는 SYS-RID-SP-FW-15에 연결한다. 사용 설명서 요구 SW-FW-RID-83은 SYS-RID-ACDOC-17, SYS-RID-ACDOC-18 및 SYS-RID-ACDOC-20의 경고/안전사항, 안전한 작동법 및 동작방법에 연결한다. 다른 요구의 시스템 및 위험 통제 추적은 소프트웨어 요구사항 사양서에서 확인한다."
+      },
+      {
+        "type": "ins",
+        "id": "528",
+        "author": "김은수",
+        "date": "2026-10-13T06:53:00Z",
+        "parent": "p",
+        "text": "Bluetooth Classic 송수신 요구 SW-FW-RID-69는 SYS-RID-SP-FW-15에 연결한다. 사용 설명서 요구 SW-FW-RID-83은 경고/안전사항, 안전한 작동법 및 동작방법을 정의한 자체 소프트웨어 요구사항이다. 다른 요구의 시스템 및 위험 통제 추적은 소프트웨어 요구사항 사양서에서 확인한다."
+      }
+    ],
+    "target_paragraph_revision_nodes": [
+      {
+        "type": "pPrChange",
+        "id": "522",
+        "author": "김은수",
+        "date": "2026-10-12T23:59:00Z",
+        "parent": "pPr",
+        "text": ""
+      },
+      {
+        "type": "del",
+        "id": "523",
+        "author": "김은수",
+        "date": "2026-10-12T12:26:00Z",
+        "parent": "p",
+        "text": "예. 소프트웨어 요구사항 사양서 -> 설계 입력 요구사항 -> 위험 통제 조치"
+      },
+      {
+        "type": "ins",
+        "id": "524",
+        "author": "김은수",
+        "date": "2026-10-12T12:26:00Z",
+        "parent": "p",
+        "text": "소프트웨어 요구사항 사양서에서 기존 설계 입력/위험 통제 식별을 보존하고 QCC의 원문 요구사항을 연결한다. SW-FW-RID-82는 SYS-RID-SP-HW-11에 연결하며 SW-FW-RID-83의 정식 상위 요구사항 등록은 보완이 필요하다."
+      },
+      {
+        "type": "del",
+        "id": "525",
+        "author": "김은수",
+        "date": "2026-10-12T23:59:00Z",
+        "parent": "ins",
+        "text": "소프트웨어 요구사항 사양서에서 기존 설계 입력/위험 통제 식별을 보존하고 QCC의 원문 요구사항을 연결한다. SW-FW-RID-82는 SYS-RID-SP-HW-11에 연결하며 SW-FW-RID-83의 정식 상위 요구사항 등록은 보완이 필요하다."
+      },
+      {
+        "type": "ins",
+        "id": "526",
+        "author": "김은수",
+        "date": "2026-10-12T23:59:00Z",
+        "parent": "p",
+        "text": "Bluetooth Classic 송수신 요구 SW-FW-RID-69는 SYS-RID-SP-FW-15에 연결한다. 사용 설명서 요구 SW-FW-RID-83은 SYS-RID-ACDOC-17, SYS-RID-ACDOC-18 및 SYS-RID-ACDOC-20의 경고/안전사항, 안전한 작동법 및 동작방법에 연결한다. 다른 요구의 시스템 및 위험 통제 추적은 소프트웨어 요구사항 사양서에서 확인한다."
+      },
+      {
+        "type": "del",
+        "id": "527",
+        "author": "김은수",
+        "date": "2026-10-13T06:53:00Z",
+        "parent": "ins",
+        "text": "Bluetooth Classic 송수신 요구 SW-FW-RID-69는 SYS-RID-SP-FW-15에 연결한다. 사용 설명서 요구 SW-FW-RID-83은 SYS-RID-ACDOC-17, SYS-RID-ACDOC-18 및 SYS-RID-ACDOC-20의 경고/안전사항, 안전한 작동법 및 동작방법에 연결한다. 다른 요구의 시스템 및 위험 통제 추적은 소프트웨어 요구사항 사양서에서 확인한다."
+      },
+      {
+        "type": "ins",
+        "id": "528",
+        "author": "김은수",
+        "date": "2026-10-13T06:53:00Z",
+        "parent": "p",
+        "text": "Bluetooth Classic 송수신 요구 SW-FW-RID-69는 SYS-RID-SP-FW-15에 연결한다. 사용 설명서 요구 SW-FW-RID-83은 경고/안전사항, 안전한 작동법 및 동작방법을 정의한 자체 소프트웨어 요구사항이다. 다른 요구의 시스템 및 위험 통제 추적은 소프트웨어 요구사항 사양서에서 확인한다."
+      }
+    ],
+    "native_check_status": "Native metadata retained; real COM new-only rejection not verified yet"
+  },
+  {
+    "code": "SAD",
+    "native_XML": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\rid83-20261013\\word\\SAD-native-open.xml",
+    "first_document_revisions": [
+      {
+        "type": "ins",
+        "id": "0",
+        "author": "김은수",
+        "date": "2026-10-01T16:26:00Z",
+        "parent": "rPr",
+        "text": ""
+      },
+      {
+        "type": "ins",
+        "id": "1",
+        "author": "김은수",
+        "date": "2026-10-01T16:26:00Z",
+        "parent": "rPr",
+        "text": ""
+      },
+      {
+        "type": "del",
+        "id": "2",
+        "author": "김은수",
+        "date": "2026-09-29T18:27:00Z",
+        "parent": "p",
+        "text": "TD20B-A-EXT/TD23D"
+      },
+      {
+        "type": "ins",
+        "id": "3",
+        "author": "김은수",
+        "date": "2026-09-29T18:27:00Z",
+        "parent": "p",
+        "text": "TD24A"
+      },
+      {
+        "type": "del",
+        "id": "5",
+        "author": "김은수",
+        "date": "2026-09-29T18:27:00Z",
+        "parent": "p",
+        "text": "임정우"
+      },
+      {
+        "type": "ins",
+        "id": "6",
+        "author": "김은수",
+        "date": "2026-09-29T18:27:00Z",
+        "parent": "p",
+        "text": "김은수"
+      },
+      {
+        "type": "del",
+        "id": "7",
+        "author": "김은수",
+        "date": "2026-09-29T18:27:00Z",
+        "parent": "p",
+        "text": "이호승"
+      },
+      {
+        "type": "del",
+        "id": "8",
+        "author": "김은수",
+        "date": "2026-09-29T18:27:00Z",
+        "parent": "p",
+        "text": "사업부장"
+      }
+    ],
+    "new_nodes": [
+      {
+        "type": "del",
+        "id": "4523",
+        "author": "김은수",
+        "date": "2026-10-13T06:53:00Z",
+        "parent": "ins",
+        "text": "상위 요구사항: SYS-RID-ACDOC-17 / SYS-RID-ACDOC-18 / SYS-RID-ACDOC-20."
+      }
+    ],
+    "target_paragraph_revision_nodes": [
+      {
+        "type": "ins",
+        "id": "4522",
+        "author": "김은수",
+        "date": "2026-10-13T00:30:00Z",
+        "parent": "p",
+        "text": "상위 요구사항: SYS-RID-ACDOC-17 / SYS-RID-ACDOC-18 / SYS-RID-ACDOC-20."
+      },
+      {
+        "type": "del",
+        "id": "4523",
+        "author": "김은수",
+        "date": "2026-10-13T06:53:00Z",
+        "parent": "ins",
+        "text": "상위 요구사항: SYS-RID-ACDOC-17 / SYS-RID-ACDOC-18 / SYS-RID-ACDOC-20."
+      },
+      {
+        "type": "ins",
+        "id": "4524",
+        "author": "김은수",
+        "date": "2026-10-12T12:28:00Z",
+        "parent": "p",
+        "text": "제품 문서 항목 / 실행 유닛 배정 대상 아님"
+      },
+      {
+        "type": "del",
+        "id": "4525",
+        "author": "김은수",
+        "date": "2026-10-12T23:57:00Z",
+        "parent": "ins",
+        "text": "제품 문서 항목 / 실행 유닛 배정 대상 아님"
+      },
+      {
+        "type": "ins",
+        "id": "4526",
+        "author": "김은수",
+        "date": "2026-10-12T23:57:00Z",
+        "parent": "p",
+        "text": "제품 문서 항목 / 실행 유닛 배정 대상 아님[E8300 보완] 제품 사용 설명서의 안전/작동법/동작방법 및 문제 해결 내용, 배포 대상과 검토 결과를 확인해야 한다."
+      }
+    ],
+    "native_check_status": "Native metadata retained; real COM new-only rejection not verified yet"
+  }
+]

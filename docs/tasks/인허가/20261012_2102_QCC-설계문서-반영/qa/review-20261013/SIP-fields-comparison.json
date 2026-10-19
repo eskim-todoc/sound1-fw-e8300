@@ -1,0 +1,152 @@
+{
+  "before": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\pre-fields\\[E8300-QCC] SIP-FW-TD24A 소프트웨어 통합 계획서.docx",
+  "after": "E:\\workspace\\projects\\sound1-fw-e8300-backup\\docs\\tasks\\인허가\\20261012_2102_QCC-설계문서-반영\\qa\\review-20261013\\fields-candidate\\[E8300-QCC] SIP-FW-TD24A 소프트웨어 통합 계획서.docx",
+  "before_sha256": "2e4196077f9cfb3410cd0ce2c83dd5c62879dc5083bb0ffbf66d92300aec8829",
+  "after_sha256": "d2051a712ca509466c6d0fbeb0841a250af328d6dbe6570125b496f5a0400d40",
+  "checks": {
+    "accept": true,
+    "reject": true,
+    "body_revision_fingerprints": true,
+    "current_notice_text": true
+  },
+  "before_semantics": {
+    "accept": {
+      "body_text_sha256": "8bdd766eb5aac8d32b325dc556504a26a9d11b5bcec32b56867d7b5014c10092",
+      "body_text_length": 11563,
+      "picture_hashes_in_order": [
+        "6c5f3fc9004546177cde5c36ad22364d3061c73be77b656d4337ab3792122414"
+      ]
+    },
+    "reject": {
+      "body_text_sha256": "13efb2d7244e362ba7fefdb96b3710f7e65545a65b0d88bc50c4882eaddea931",
+      "body_text_length": 4564,
+      "picture_hashes_in_order": [
+        "b3f4b3d722e8b5093f6f211d940ec18e28b5b4eef3ce46769e9e464a461990a2",
+        "f372a9f37393ca468f9923b902fa1f9fdcfd62f7973c36a2b30ca1a81b4c893e",
+        "3ac1d9cb2bfd986907665d31db3f46436a91f0e91b67c7b7c7131aafa02d358e"
+      ]
+    },
+    "body_revision_fingerprints": {
+      "del|김은수|2026-09-29T18:28": {
+        "length": 635,
+        "sha256": "81d36e35960172ce71e39e9c6ca7057ce458e9525ef3dc7dbd4b5dd4834f0a1e"
+      },
+      "ins|김은수|2026-09-29T18:28": {
+        "length": 81,
+        "sha256": "c76a51ef9bd3adc5db449e62f623f5f959b49c97d627e2602d9a128a550424f4"
+      },
+      "del|김은수|2026-10-01T06:39": {
+        "length": 1804,
+        "sha256": "569b02e4fd7ca5c416f02b08aff65d4c9deda94d3a393dc954ad2671ffefab02"
+      },
+      "ins|김은수|2026-10-01T06:39": {
+        "length": 4182,
+        "sha256": "3940d743ccd71768b0f28608ca40c14a49db588edddc7ef1773e99e7f030d55e"
+      },
+      "ins|김은수|2026-10-12T23:57": {
+        "length": 4048,
+        "sha256": "3452add195c5e1a6a0e88ffccbd93fd1684ce115206780b3e732bbd581362c24"
+      },
+      "del|김은수|2026-10-12T00:00": {
+        "length": 394,
+        "sha256": "57e17d622edcc3c291635b5d0f11b9b7c1916d0bac00f03e1cd6ff7d33c54230"
+      },
+      "ins|김은수|2026-10-12T00:00": {
+        "length": 398,
+        "sha256": "2a98592c8ab4401aea4a86a043932c796a74a9a01f454decff6b43b0210ae093"
+      },
+      "del|김은수|2026-10-12T12:28": {
+        "length": 398,
+        "sha256": "2a98592c8ab4401aea4a86a043932c796a74a9a01f454decff6b43b0210ae093"
+      },
+      "ins|김은수|2026-10-12T12:28": {
+        "length": 5415,
+        "sha256": "992e853b2aa9c845d3d7ab38a1363fbd9a06b22d752352d48cb72b67c186beec"
+      },
+      "del|김은수|2026-10-12T23:57": {
+        "length": 1546,
+        "sha256": "c4ac222c2afb58afcfb113f8cb6d18df00faaec6d68fbd4b9186aef8cb944efb"
+      }
+    },
+    "current_notice_text": [
+      "[QCC 자료 입력] QCC 4모듈/14유닛의 실제 소스/빌드/라이브러리 설정과 유닛/통합 실행 및 측정 결과가 필요하다. DMIC2 입력 연결은 확인되었으며 이 안내는 구현/시험 근거의 확인 상태를 나타낸다.",
+      "[QCC 자료 입력] 실제 QCC 소스/빌드·ADK/BSP 버전과 단위 실행 로그를 제출해야 한다. 아래 단계는 통합 계획이며 구현/단위시험이 완료된 것으로 가정하지 않는다.",
+      "[QCC 자료 입력] QCC shutdown_ind의 정상/종료 논리와 실제 PIO 번호/전압/반전, 기동/종료 대기 및 I2S enable→I2S_FLAG Low 유효의 물리 대응을 확인해야 한다.",
+      "[QCC 자료 입력] 충전4상태→0x34 charger_connected0/1 변환, 통보/오류 처리, 실제 QCC 송신 length 필드와21byte 변환 및 GAIA 주소/type별 데이터 정의와 실행 결과가 필요하다.",
+      "[QCC 자료 입력] DMIC2의 QCC 입력 연결은 확인되었다. QCC 마이크 핀/클록, 프로파일/코덱별 송수신과 동시 동작, I2S 클록/프레임/좌우 배정 및 시작/중단 유효 신호의 실제 설정/파형과 오디오 시험 결과를 확인해야 한다.",
+      "[QCC 자료 입력] QCC 통합 실행 로그, 실제 입력/응답 전체 메시지, 오디오/핀 파형·장비/빌드 식별 및 시험자 확인 기록이 필요하다. 미해소 설계 상충은 시험 판정에도 유지한다.",
+      "[QCC 자료 입력] QCC 자체 펌웨어 갱신과 E8300 이미지 전달의 명령·버퍼·순서·재시도·인증·오류/중단 복구를 각각 정의하고 구현/통합 결과를 제출해야 한다. E8300 OTA 슬롯1~2와 부트 상태 슬롯1~4, 0x35 갱신 연결 통보를 구분하며 QCC 기동 이미지 무결성 검사 범위·알고리즘·실패 처리도 별도로 확인해야 한다."
+    ]
+  },
+  "after_semantics": {
+    "accept": {
+      "body_text_sha256": "8bdd766eb5aac8d32b325dc556504a26a9d11b5bcec32b56867d7b5014c10092",
+      "body_text_length": 11563,
+      "picture_hashes_in_order": [
+        "6c5f3fc9004546177cde5c36ad22364d3061c73be77b656d4337ab3792122414"
+      ]
+    },
+    "reject": {
+      "body_text_sha256": "13efb2d7244e362ba7fefdb96b3710f7e65545a65b0d88bc50c4882eaddea931",
+      "body_text_length": 4564,
+      "picture_hashes_in_order": [
+        "b3f4b3d722e8b5093f6f211d940ec18e28b5b4eef3ce46769e9e464a461990a2",
+        "f372a9f37393ca468f9923b902fa1f9fdcfd62f7973c36a2b30ca1a81b4c893e",
+        "3ac1d9cb2bfd986907665d31db3f46436a91f0e91b67c7b7c7131aafa02d358e"
+      ]
+    },
+    "body_revision_fingerprints": {
+      "del|김은수|2026-09-29T18:28": {
+        "length": 635,
+        "sha256": "81d36e35960172ce71e39e9c6ca7057ce458e9525ef3dc7dbd4b5dd4834f0a1e"
+      },
+      "ins|김은수|2026-09-29T18:28": {
+        "length": 81,
+        "sha256": "c76a51ef9bd3adc5db449e62f623f5f959b49c97d627e2602d9a128a550424f4"
+      },
+      "del|김은수|2026-10-01T06:39": {
+        "length": 1804,
+        "sha256": "569b02e4fd7ca5c416f02b08aff65d4c9deda94d3a393dc954ad2671ffefab02"
+      },
+      "ins|김은수|2026-10-01T06:39": {
+        "length": 4182,
+        "sha256": "3940d743ccd71768b0f28608ca40c14a49db588edddc7ef1773e99e7f030d55e"
+      },
+      "ins|김은수|2026-10-12T23:57": {
+        "length": 4048,
+        "sha256": "3452add195c5e1a6a0e88ffccbd93fd1684ce115206780b3e732bbd581362c24"
+      },
+      "del|김은수|2026-10-12T00:00": {
+        "length": 394,
+        "sha256": "57e17d622edcc3c291635b5d0f11b9b7c1916d0bac00f03e1cd6ff7d33c54230"
+      },
+      "ins|김은수|2026-10-12T00:00": {
+        "length": 398,
+        "sha256": "2a98592c8ab4401aea4a86a043932c796a74a9a01f454decff6b43b0210ae093"
+      },
+      "del|김은수|2026-10-12T12:28": {
+        "length": 398,
+        "sha256": "2a98592c8ab4401aea4a86a043932c796a74a9a01f454decff6b43b0210ae093"
+      },
+      "ins|김은수|2026-10-12T12:28": {
+        "length": 5415,
+        "sha256": "992e853b2aa9c845d3d7ab38a1363fbd9a06b22d752352d48cb72b67c186beec"
+      },
+      "del|김은수|2026-10-12T23:57": {
+        "length": 1546,
+        "sha256": "c4ac222c2afb58afcfb113f8cb6d18df00faaec6d68fbd4b9186aef8cb944efb"
+      }
+    },
+    "current_notice_text": [
+      "[QCC 자료 입력] QCC 4모듈/14유닛의 실제 소스/빌드/라이브러리 설정과 유닛/통합 실행 및 측정 결과가 필요하다. DMIC2 입력 연결은 확인되었으며 이 안내는 구현/시험 근거의 확인 상태를 나타낸다.",
+      "[QCC 자료 입력] 실제 QCC 소스/빌드·ADK/BSP 버전과 단위 실행 로그를 제출해야 한다. 아래 단계는 통합 계획이며 구현/단위시험이 완료된 것으로 가정하지 않는다.",
+      "[QCC 자료 입력] QCC shutdown_ind의 정상/종료 논리와 실제 PIO 번호/전압/반전, 기동/종료 대기 및 I2S enable→I2S_FLAG Low 유효의 물리 대응을 확인해야 한다.",
+      "[QCC 자료 입력] 충전4상태→0x34 charger_connected0/1 변환, 통보/오류 처리, 실제 QCC 송신 length 필드와21byte 변환 및 GAIA 주소/type별 데이터 정의와 실행 결과가 필요하다.",
+      "[QCC 자료 입력] DMIC2의 QCC 입력 연결은 확인되었다. QCC 마이크 핀/클록, 프로파일/코덱별 송수신과 동시 동작, I2S 클록/프레임/좌우 배정 및 시작/중단 유효 신호의 실제 설정/파형과 오디오 시험 결과를 확인해야 한다.",
+      "[QCC 자료 입력] QCC 통합 실행 로그, 실제 입력/응답 전체 메시지, 오디오/핀 파형·장비/빌드 식별 및 시험자 확인 기록이 필요하다. 미해소 설계 상충은 시험 판정에도 유지한다.",
+      "[QCC 자료 입력] QCC 자체 펌웨어 갱신과 E8300 이미지 전달의 명령·버퍼·순서·재시도·인증·오류/중단 복구를 각각 정의하고 구현/통합 결과를 제출해야 한다. E8300 OTA 슬롯1~2와 부트 상태 슬롯1~4, 0x35 갱신 연결 통보를 구분하며 QCC 기동 이미지 무결성 검사 범위·알고리즘·실패 처리도 별도로 확인해야 한다."
+    ]
+  },
+  "pass": true,
+  "scope": "TOC and computed fields excluded; accepted/rejected body text, drawings and author/date revision text preserved"
+}
